@@ -61,9 +61,9 @@ def _parsed_steps(problem: dict, symbols: dict, report: Report):
     parsed = []
     for index, step in enumerate(problem.get("steps", [])):
         if "expr" in step:
-            parsed.append(("expr", cas.parse_expression(step["expr"], symbols)))
+            parsed.append(("expr", cas.parse_expression(step["expr"], symbols), step))
         elif "equation" in step:
-            parsed.append(("equation", cas.parse_equation(step["equation"], symbols)))
+            parsed.append(("equation", cas.parse_equation(step["equation"], symbols), step))
         else:
             report.errors.append(f"step {index}: needs 'expr' or 'equation'")
     return parsed
@@ -71,13 +71,17 @@ def _parsed_steps(problem: dict, symbols: dict, report: Report):
 
 def _verify_steps(problem: dict, symbols: dict, report: Report) -> None:
     parsed = _parsed_steps(problem, symbols, report)
-    relation = problem.get("step_relation", "equivalent")
+    default_relation = problem.get("step_relation", "equivalent")
     variable_name = (problem.get("check") or {}).get("variable")
     variable = symbols.get(variable_name) if variable_name else None
 
     for index in range(len(parsed) - 1):
-        (kind_a, a), (kind_b, b) = parsed[index], parsed[index + 1]
+        (kind_a, a, _), (kind_b, b, step_b) = parsed[index], parsed[index + 1]
+        # The relation belongs to the step it produces, so a single solution can
+        # mix equivalent rewrites with, say, a differentiation or a substitution.
+        relation = step_b.get("relation", default_relation)
         label = f"step {index} -> {index + 1}"
+
         if relation == "solutions":
             if kind_a != "equation" or kind_b != "equation":
                 report.errors.append(f"{label}: solution steps must be equations")
@@ -108,6 +112,27 @@ def _verify_steps(problem: dict, symbols: dict, report: Report) -> None:
                 report.warnings.append(
                     f"{label}: implications can add extraneous roots; check the answer set"
                 )
+        elif relation == "apply":
+            # The step names the operation that produced it, e.g. differentiate.
+            spec = step_b.get("apply")
+            if not spec:
+                report.errors.append(f"{label}: relation 'apply' needs an 'apply' block")
+                continue
+            try:
+                if cas.is_indefinite_integral(spec):
+                    if variable is None:
+                        report.errors.append(f"{label}: integrate needs a variable")
+                        continue
+                    if not cas.is_antiderivative(b, a, variable):
+                        report.errors.append(f"{label}: is not an antiderivative of the previous step")
+                else:
+                    result = cas.apply_operation(a, spec, symbols)
+                    if not cas.equivalent(result, b):
+                        report.errors.append(
+                            f"{label}: applying {spec} does not give the next step"
+                        )
+            except (ValueError, TypeError, NotImplementedError) as err:
+                report.errors.append(f"{label}: cannot apply {spec}: {err}")
         else:
             if kind_a != "expr" or kind_b != "expr":
                 report.errors.append(f"{label}: equivalence steps must be expressions")
@@ -155,6 +180,31 @@ def _verify_check(problem: dict, symbols: dict, report: Report) -> None:
         if not cas.is_nearest_multiple(value, rounded, step):
             report.errors.append(
                 f"check: {check['rounded']} is not {check['value']} rounded to {check['to']}"
+            )
+    elif kind == "apply":
+        # A check that names its operation, e.g. differentiate x**3 to get 3x**2.
+        expression = cas.parse_expression(check["expression"], symbols)
+        answer = cas.parse_expression(check["answer"], symbols)
+        spec = check["apply"]
+        if cas.is_indefinite_integral(spec):
+            variable = symbols.get(check["variable"])
+            if variable is None:
+                report.errors.append("check: integrate needs a variable")
+                return
+            if not cas.is_antiderivative(answer, expression, variable):
+                report.errors.append(
+                    f"check: {check['answer']} is not an antiderivative of {check['expression']}"
+                )
+        elif not cas.equivalent(cas.apply_operation(expression, spec, symbols), answer):
+            report.errors.append(
+                f"check: applying {spec} to {check['expression']} does not give {check['answer']}"
+            )
+    elif kind == "statistic":
+        actual = cas.statistic(check["data"], check["stat"])
+        expected = cas.parse_expression(check["answer"], symbols)
+        if not cas.is_zero(actual - expected):
+            report.errors.append(
+                f"check: {check['stat']} is {actual}, expected {expected}"
             )
     elif kind == "between":
         low = cas.parse_expression(check["low"], symbols)

@@ -1,0 +1,90 @@
+# A-level calculus, to show the model generalises past equivalence-preserving
+# algebra. A differentiation step is not an equivalence of expressions, so the
+# step names the operation that produced it: `relation: apply`.
+#
+#   diff       next == d/dx(previous)
+#   integrate  next differentiates back to previous (the constant is free)
+chapter: forward
+symbols:
+  x: {real: true}
+problems:
+  - id: differentiate-power
+    section: "A-level"
+    statement: "Differentiate $x^3$."
+    check:
+      kind: apply
+      expression: "x**3"
+      apply: {op: diff, args: [x]}
+      answer: "3*x**2"
+    steps:
+      - expr: "x**3"
+      - expr: "3*x**2"
+        relation: apply
+        apply: {op: diff, args: [x]}
+
+  - id: differentiate-product
+    section: "A-level"
+    statement: "Differentiate $x\\sin x$."
+    check:
+      kind: apply
+      expression: "x*sin(x)"
+      apply: {op: diff, args: [x]}
+      answer: "sin(x) + x*cos(x)"
+    steps:
+      - expr: "x*sin(x)"
+      - expr: "sin(x) + x*cos(x)"
+        relation: apply
+        apply: {op: diff, args: [x]}
+
+  - id: differentiate-chain
+    section: "A-level"
+    statement: "Differentiate $\\sin(3x)$."
+    check:
+      kind: apply
+      expression: "sin(3*x)"
+      apply: {op: diff, args: [x]}
+      answer: "3*cos(3*x)"
+    steps:
+      - expr: "sin(3*x)"
+      - expr: "3*cos(3*x)"
+        relation: apply
+        apply: {op: diff, args: [x]}
+
+  - id: integrate-power
+    section: "A-level"
+    statement: "Find $\\int 6x\\,dx$."
+    check:
+      kind: apply
+      expression: "6*x"
+      apply: {op: integrate, args: [x]}
+      answer: "3*x**2"
+      variable: x
+    steps:
+      - expr: "6*x"
+      - expr: "3*x**2"
+        relation: apply
+        apply: {op: integrate, args: [x]}
+
+  - id: integrate-by-substitution
+    section: "A-level"
+    statement: "Find $\\int 2x(x^2+1)^3\\,dx$."
+    check:
+      kind: apply
+      expression: "2*x*(x**2 + 1)**3"
+      apply: {op: integrate, args: [x]}
+      answer: "(x**2 + 1)**4 / 4"
+      variable: x
+    steps:
+      - expr: "2*x*(x**2 + 1)**3"
+      - expr: "(x**2 + 1)**4 / 4"
+        relation: apply
+        apply: {op: integrate, args: [x]}
+
+  - id: definite-integral
+    section: "A-level"
+    statement: "Evaluate $\\int_0^1 x^2\\,dx$."
+    check:
+      kind: apply
+      expression: "x**2"
+      apply: {op: integrate, args: [x, "0", "1"]}
+      answer: "1/3"

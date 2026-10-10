@@ -1,0 +1,35 @@
+# Statistics and probability. The oracle is an independent exact computation, not
+# a symbolic solve: exact rational arithmetic for summary statistics and
+# combinatorics. Distribution work that exact arithmetic cannot reach (normal,
+# Poisson, chi-squared) should use scipy.stats as the oracle; see PROBLEMS.md.
+chapter: forward
+problems:
+  - id: mean-exact
+    section: "GCSE"
+    statement: "Find the mean of $3, 5, 5, 6, 8$."
+    check: {kind: statistic, data: [3, 5, 5, 6, 8], stat: mean, answer: "27/5"}
+
+  - id: median-even-count
+    section: "GCSE"
+    statement: "Find the median of $3, 5, 6, 8$."
+    check: {kind: statistic, data: [3, 5, 6, 8], stat: median, answer: "11/2"}
+
+  - id: range
+    section: "GCSE"
+    statement: "Find the range of $3, 5, 5, 6, 8$."
+    check: {kind: statistic, data: [3, 5, 5, 6, 8], stat: range, answer: "5"}
+
+  - id: probability-two-dice
+    section: "GCSE"
+    statement: "Two fair dice are thrown. Find $P(\\text{total} = 7)$."
+    check: {kind: evaluate, expression: "6 / 36", answer: "1/6"}
+
+  - id: binomial-probability
+    section: "A-level"
+    statement: "If $X \\sim B(5, \\tfrac12)$, find $P(X = 2)$."
+    check: {kind: evaluate, expression: "binomial(5, 2) / 2**5", answer: "5/16"}
+
+  - id: conditional-from-table
+    section: "GCSE"
+    statement: "From a two-way table, $P(A \\text{ given } B) = \\frac{12}{20}$."
+    check: {kind: evaluate, expression: "12 / 20", answer: "3/5"}

@@ -41,10 +41,77 @@ problems:
       - expr: "11"
 ```
 
-`check.kind ∈ {evaluate, solve, compare, rounded, between, all}` today.
-`step_relation ∈ {equivalent, solutions, implies}` (default `equivalent`).
+`check.kind ∈ {evaluate, solve, compare, rounded, between, apply, statistic, all}`.
+`step_relation ∈ {equivalent, solutions, implies, apply}` (default `equivalent`).
 `all` wraps a list of sub-checks; `between` proves a value lies in an interval;
-`rounded` proves an answer is the nearest multiple of a required step.
+`rounded` proves an answer is the nearest multiple of a required step; `apply`
+names a CAS operation (`diff`, `integrate`, `subs`, `simplify`, `factor`, ...);
+`statistic` computes an exact summary statistic.
+
+## How a page gets its answers
+
+There is no runtime lookup and no client-side problem engine. Injection is a
+**build-time** step:
+
+1. `renderers/mkdocs/hooks/problems.py` runs MkDocs's `on_page_markdown` event.
+2. It finds the line-anchored directive `:::answers <bank>` and reads the YAML
+   bank from disk with PyYAML.
+3. `verification/render.py` turns the selected records into markdown.
+4. The maths hook then renders the `$...$` in that markdown to MathML.
+5. The result is static HTML. The browser never fetches the bank.
+
+The substitution is a marker expansion, but it is not ad-hoc:
+
+- it is **fence-aware** (`hooks/_fences.py`): a marker shown inside a code fence
+  is left alone;
+- it **fails loudly** on an unknown bank, an empty selection, or an unknown
+  figure slug;
+- a **coverage test** (`tests/test_markers.py`) walks every page and asserts that
+  every `:::answers` bank and every `:::figure` slug exists;
+- the expansion itself is **tested** (expansion outside fences, verbatim inside,
+  loud failure), so the transport is covered, not assumed.
+
+The only client-side fetch in the book is the formulae booklet's JSON, which is
+a UI resource, not part of problem verification.
+
+## Beyond GCSE: calculus and statistics
+
+The model generalises by naming the operation a step performs, rather than only
+asserting equality:
+
+```yaml
+steps:
+  - expr: "x*sin(x)"
+  - expr: "sin(x) + x*cos(x)"
+    relation: apply
+    apply: {op: diff, args: [x]}
+```
+
+- **Differentiation** is a `apply: {op: diff}` rewrite; the verifier checks
+  `next == d/dx(previous)`.
+- **Indefinite integration** is verified by differentiation, so the constant of
+  integration is free: `is_antiderivative(answer, integrand)`.
+- **Definite integration** uses `apply: {op: integrate, args: [x, lower, upper]}`
+  and compares the exact value.
+- **Substitution, factorising, partial fractions** are `apply: subs | factor |
+apart | ...`.
+
+Statistics is not a symbolic problem, so its oracle is an independent exact
+computation, not SymPy solving:
+
+- summary statistics use exact rational arithmetic (`statistic` check);
+- probability and combinatorics use exact fractions (`binomial(5,2)/2**5 = 5/16`);
+- finite sample spaces can be **enumerated** and counted, which is a stronger
+  oracle than re-applying a formula;
+- work exact arithmetic cannot reach (normal, Poisson, chi-squared) should pin a
+  library such as `scipy.stats` as the oracle;
+- **conventions must be declared**: quartiles and IQR differ between methods, so
+  a statistic is only verifiable once the convention is named.
+
+What remains unverifiable by a CAS: the **logic** of a proof (induction
+scaffolding, epsilon–delta), the **choice** of method, and prose reasoning. The
+verifier proves the algebra, not the argument; a human review still covers the
+rest.
 
 ## Rendering the answers
 

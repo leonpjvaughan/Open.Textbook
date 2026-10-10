@@ -231,6 +231,11 @@ calling a chapter done.
   rounded ones. Rounding needs an interval check, not equality.
 - Squaring both sides or multiplying by a variable can add roots; those steps
   need a weaker relation and an explicit extraneous-root check. See PROBLEMS.md.
+- A step that is not an equivalence (differentiate, substitute, integrate) must
+  declare `relation: apply` with the operation. Do not fake calculus as an
+  `equivalent` step. The verifier proves the algebra, not the argument.
+- Markers are fence-aware. A real `:::answers` or `:::figure` marker inside a
+  code fence is left alone, so never rely on a fenced marker expanding.
 - The verifier proves the mathematics, not the method. A correct answer reached
   by an unexpected route still passes.
 

@@ -132,3 +132,43 @@ def test_rendered_answer_block_comes_from_the_record():
     assert '<details markdown="1">' in block
     assert "$2$" in block
     assert "**Answer:**" in block
+
+
+def test_apply_check_rejects_a_wrong_derivative():
+    problem = {
+        "id": "calc-check-bad",
+        "symbols": {"x": {"real": True}},
+        "check": {
+            "kind": "apply",
+            "expression": "x**3",
+            "apply": {"op": "diff", "args": ["x"]},
+            "answer": "2*x**2",
+        },
+    }
+    assert not verify_problem(problem).ok
+
+
+def test_apply_step_rejects_a_wrong_derivative():
+    problem = {
+        "id": "calc-step-bad",
+        "symbols": {"x": {"real": True}},
+        "check": {
+            "kind": "apply",
+            "expression": "x**3",
+            "apply": {"op": "diff", "args": ["x"]},
+            "answer": "3*x**2",
+        },
+        "steps": [
+            {"expr": "x**3"},
+            {"expr": "2*x**2", "relation": "apply", "apply": {"op": "diff", "args": ["x"]}},
+        ],
+    }
+    assert not verify_problem(problem).ok
+
+
+def test_statistic_check_rejects_a_wrong_median():
+    problem = {
+        "id": "stat-bad",
+        "check": {"kind": "statistic", "data": [3, 5, 6, 8], "stat": "median", "answer": "5"},
+    }
+    assert not verify_problem(problem).ok

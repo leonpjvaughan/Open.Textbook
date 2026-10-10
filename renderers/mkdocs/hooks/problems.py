@@ -13,12 +13,18 @@ from pathlib import Path
 
 import yaml
 
+# Hooks are loaded as standalone modules, so make the sibling helper importable.
+_HOOKS = Path(__file__).resolve().parent
+if str(_HOOKS) not in sys.path:
+    sys.path.insert(0, str(_HOOKS))
+
+from _fences import transform_outside_fences  # noqa: E402
+
 REPO = Path(__file__).resolve().parents[3]
 if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))
 
 from verification.render import render_answer_block  # noqa: E402
-
 BANKS = REPO / "problems"
 MARKER = re.compile(r"^:::[ \t]*answers[ \t]+([a-z0-9._-]+)(?:#([a-z0-9,._-]+))?[ \t]*$", re.M)
 
@@ -44,4 +50,4 @@ def on_page_markdown(markdown, page, config, files):
             )
         return render_answer_block(problems)
 
-    return MARKER.sub(replace, markdown)
+    return transform_outside_fences(markdown, lambda text: MARKER.sub(replace, text))

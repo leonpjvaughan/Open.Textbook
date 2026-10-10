@@ -10,7 +10,14 @@ fails the build.
 from __future__ import annotations
 
 import re
+import sys
 from pathlib import Path
+
+_HOOKS = Path(__file__).resolve().parent
+if str(_HOOKS) not in sys.path:
+    sys.path.insert(0, str(_HOOKS))
+
+from _fences import transform_outside_fences  # noqa: E402
 
 MARKER = re.compile(r"^:::[ \t]*figure[ \t]+([a-z0-9-]+)[ \t]*$", re.M)
 REPO = Path(__file__).resolve().parents[3]
@@ -45,7 +52,7 @@ def on_page_markdown(markdown, page, config, files):
         used.add(slug)
         return f'<maths-figure data-figure="{slug}"></maths-figure>'
 
-    markdown = MARKER.sub(replace, markdown)
+    markdown = transform_outside_fences(markdown, lambda text: MARKER.sub(replace, text))
     if used:
         src = root_prefix(page) + ASSET
         markdown += f'\n\n<script type="module" src="{src}"></script>\n'
