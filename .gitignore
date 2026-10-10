@@ -1,0 +1,12 @@
+# Build output
+site/
+
+# Fetched primary sources (reference material; see scripts/fetch_sources.sh)
+sources/
+
+# Python
+__pycache__/
+*.pyc
+
+# Tooling
+.venv/
