@@ -1,5 +1,5 @@
 ---
-title: "1.5 Rounding and estimation — Problems"
+title: "1.5 Rounding and estimation — Practise"
 chapter: 1
 chapter_title: Number skills
 section: "1.5"
@@ -9,7 +9,7 @@ dfe: [N14, N15]
 kind: problems
 ---
 
-# 1.5 Rounding and estimation — Problems
+# 1.5 Rounding and estimation — Practise
 
 1. Round $7\,284$ to the nearest (a) $10$, (b) $100$, (c) $1000$.
 
@@ -54,7 +54,7 @@ kind: problems
 7. $500 \div 5 = 100$.
 8. $1.9$ litres; $2$ litres.
 9. $4$ hours.
-10. $25 \div 2 = 12.5$ km/h; $13.7$ km/h is plausible.
+10. $25 \div 2 = 12.5$ km/h; $13.7$ km/h is reasonable.
 11. $£40$.
 12. $4.65$ to just below $4.75$ (i.e. $4.65 \leq x < 4.75$).
 13. $\dfrac{6 \times 20}{3} = 40$.

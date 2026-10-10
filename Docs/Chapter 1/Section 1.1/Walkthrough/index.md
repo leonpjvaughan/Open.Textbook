@@ -1,5 +1,5 @@
 ---
-title: "1.1 Place value and ordering numbers — Walkthrough"
+title: "1.1 Place value and ordering numbers — Learn"
 chapter: 1
 chapter_title: Number skills
 section: "1.1"
@@ -9,7 +9,7 @@ dfe: [N1, N2]
 kind: walkthrough
 ---
 
-# 1.1 Place value and ordering numbers — Walkthrough
+# 1.1 Place value and ordering numbers — Learn
 
 **Prerequisites:** reading and writing whole numbers; the four operations with
 whole numbers.
@@ -17,8 +17,6 @@ whole numbers.
 **By the end of this section you can:** state the value of any digit in a number;
 multiply and divide by powers of ten; and compare and order integers, decimals
 and negative numbers using $=, \neq, <, >, \leq$ and $\geq$.
-
-**Delivers DfE:** N1, N2 (place value).
 
 ## 1. The value of a digit
 
@@ -44,7 +42,7 @@ $$
 4.357 \times 100 = 435.7 \qquad 4.357 \div 1000 = 0.004357
 $$
 
-> **Common error.** "Add a zero." Adding a zero changes the number: $4.35 \times 10
+> **Watch out.** "Add a zero." Adding a zero changes the number: $4.35 \times 10
 > = 43.5$, not $4.350$. Move the digits; do not decorate the number with zeros.
 
 ## 3. Comparing and ordering
@@ -72,7 +70,7 @@ $$
 0.09 < 0.35 < 0.40
 $$
 
-> **Common error.** A longer decimal is **not** always larger. $0.4 = 0.40 >
+> **Watch out.** A longer decimal is **not** always larger. $0.4 = 0.40 >
 > 0.35$, even though "0.35" has more digits. Compare place value, not length of
 > writing.
 
@@ -85,9 +83,9 @@ left is smaller: $-7 < -2$, even though $7 > 2$.
 
 Reading left to right on the number line: $-5 < -3 < -0.5 < 0 < 2$.
 
-### Investigation — order two numbers
+### Try it: put two numbers in order
 
-**Predict first:** move nothing yet. If $a = -2.5$ and $b = 1.8$, which is
+**Predict first.** Do not move the sliders yet. If $a = -2.5$ and $b = 1.8$, which is
 greater? Then move the sliders and check. Finish by answering the question in the
 panel.
 
@@ -96,7 +94,7 @@ panel.
 **Explain:** why is $0.3$ greater than $0.29$, even though $0.29$ has more
 digits?
 
-## 5. Anchor checkpoint
+## 5. Progress check
 
 The drink prices were 65p and the selling price was £1.20. Use ordering to answer
 without calculating: is £1.20 greater than 65p? Which of the two stall costs,

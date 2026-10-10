@@ -1,0 +1,74 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: build, verify and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+        with:
+          enable-cache: true
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Python dependencies
+        run: uv sync --locked
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Generated files are in sync
+        run: |
+          uv run python scripts/build_booklet.py
+          uv run python scripts/scaffold_docs.py
+          git diff --exit-code
+
+      - name: Verify the problem bank
+        run: uv run python -m verification problems/
+
+      - name: Test
+        run: uv run pytest tests/ -q
+
+      - name: Build the book (Higher)
+        run: uv run mkdocs build -f renderers/mkdocs/mkdocs.yml --strict
+
+      - name: Build the book (Foundation)
+        run: uv run mkdocs build -f renderers/mkdocs/mkdocs.foundation.yml --strict
+
+      - name: No maths rendering errors
+        run: |
+          if grep -rl 'math-error' site/higher --include='*.html'; then
+            echo "KaTeX failed to render at least one expression" >&2
+            exit 1
+          fi
+
+      - name: Figure-hook and tier-profile evaluation
+        run: test/run.sh
+
+  lint:
+    name: lint workflows
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: rhysd/actionlint@03d0035246f3e81f36aed592ffb4bebf33a03106 # v1.7.7

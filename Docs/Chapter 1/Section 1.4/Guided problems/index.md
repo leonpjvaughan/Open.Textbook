@@ -1,5 +1,5 @@
 ---
-title: "1.4 Priority of operations and inverse operations — Guided problems"
+title: "1.4 Priority of operations and inverse operations — Practise with help"
 chapter: 1
 chapter_title: Number skills
 section: "1.4"
@@ -9,9 +9,9 @@ dfe: [N3]
 kind: guided-problems
 ---
 
-# 1.4 Priority of operations and inverse operations — Guided problems
+# 1.4 Priority of operations and inverse operations — Practise with help
 
-## Retrieval starter — from memory, no notes
+## Warm-up: remember
 
 1. Work out $52 \div 4$.
 2. Work out $(-3) \times (-8)$.
@@ -25,7 +25,7 @@ kind: guided-problems
 3. $-5$.
 </details>
 
-## Guided problems
+## Practise with help
 
 **1.** Work out $8 + 3 \times 5$.
 
@@ -125,7 +125,7 @@ Work backwards: first undo the subtraction, then the multiplication.
 $42 + 3 = 45$, then $45 \div 5 = 9$. Check: $9 \times 5 - 3 = 42$. ✓
 </details>
 
-**8.** Write a single expression for the cost of the stock in the anchor problem
+**8.** Write a single expression for the cost of the stock in the chapter problem
 and evaluate it.
 
 <details markdown="1">

@@ -41,8 +41,19 @@ problems:
       - expr: "11"
 ```
 
-`check.kind ∈ {evaluate, solve, compare, rounded}` today. `step_relation ∈
-{equivalent, solutions, implies}` (default `equivalent`).
+`check.kind ∈ {evaluate, solve, compare, rounded, between, all}` today.
+`step_relation ∈ {equivalent, solutions, implies}` (default `equivalent`).
+`all` wraps a list of sub-checks; `between` proves a value lies in an interval;
+`rounded` proves an answer is the nearest multiple of a required step.
+
+## Rendering the answers
+
+No page restates an answer by hand. The page carries a marker,
+`:::answers <bank>` (or `:::answers <bank>#<id>,<id>`), and
+`renderers/mkdocs/hooks/problems.py` expands it, at build time, from the same
+records CI verified. The block is emitted as markdown with `$...$` maths, so the
+maths hook renders it to MathML in the same pass. The reader therefore sees
+exactly what `python -m verification` proved, and the two cannot drift.
 
 ## What can be verified, and how
 
@@ -122,3 +133,6 @@ uv sync
 python -m verification problems/     # per-problem report
 pytest tests/ -q                     # bank verifies + planted errors fail
 ```
+
+CI runs the same commands, builds both book profiles strict, and fails if any
+page contains a `math-error` span (see `.github/workflows/verify.yml`).

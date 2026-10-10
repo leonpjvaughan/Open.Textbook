@@ -1,0 +1,117 @@
+# Practice answers for 1.1, generated into the page by :::answers.
+# `statement` here is the short label shown in the answer block; the full problem
+# lives on the page. Every answer carries an independent check.
+chapter: 1
+problems:
+  - id: p1-digit-8
+    section: "1.1"
+    statement: "Value of the digit $8$ in $5\\,082$"
+    answer_text: "$80$"
+    check: {kind: evaluate, expression: "8 * 10", answer: "80"}
+
+  - id: p2-digit-3
+    section: "1.1"
+    statement: "Value of the digit $3$ in $0.136$"
+    answer_text: "$0.03$"
+    check: {kind: evaluate, expression: "3 / 100", answer: "0.03"}
+
+  - id: p3-multiply-divide
+    section: "1.1"
+    statement: "$7.4 \\times 10$, $7.4 \\times 100$, $7.4 \\div 100$"
+    answer_text: "$74$, $740$, $0.074$"
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "7.4 * 10", answer: "74"}
+        - {kind: evaluate, expression: "7.4 * 100", answer: "740"}
+        - {kind: evaluate, expression: "7.4 / 100", answer: "0.074"}
+
+  - id: p4-times-1000
+    section: "1.1"
+    statement: "$0.06 \\times 1000$"
+    answer_text: "$60$"
+    check: {kind: evaluate, expression: "0.06 * 1000", answer: "60"}
+
+  - id: p5-insert-symbols
+    section: "1.1"
+    statement: "Insert $<$, $>$ or $=$"
+    answer_text: "(a) $0.45 < 0.5$ (b) $-8 > -12$ (c) $1.10 = 1.1$"
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "<", lhs: "0.45", rhs: "0.5"}
+        - {kind: compare, relation: ">", lhs: "-8", rhs: "-12"}
+        - {kind: compare, relation: "=", lhs: "1.10", rhs: "1.1"}
+
+  - id: p6-order-decimals
+    section: "1.1"
+    statement: "Order $0.505$, $0.55$, $0.5$, $0.0505$"
+    answer_text: "$0.0505 < 0.5 < 0.505 < 0.55$"
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "<", lhs: "0.0505", rhs: "0.5"}
+        - {kind: compare, relation: "<", lhs: "0.5", rhs: "0.505"}
+        - {kind: compare, relation: "<", lhs: "0.505", rhs: "0.55"}
+
+  - id: p7-order-temperatures
+    section: "1.1"
+    statement: "Temperatures, coldest first"
+    answer_text: "$-6 < -3 < -1 < 0 < 2$"
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "<", lhs: "-6", rhs: "-3"}
+        - {kind: compare, relation: "<", lhs: "-3", rhs: "-1"}
+        - {kind: compare, relation: "<", lhs: "-1", rhs: "0"}
+        - {kind: compare, relation: "<", lhs: "0", rhs: "2"}
+
+  - id: p8-order-balances
+    section: "1.1"
+    statement: "Balances, smallest first"
+    answer_text: "$-£15 < -£3 < £42$"
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "<", lhs: "-15", rhs: "-3"}
+        - {kind: compare, relation: "<", lhs: "-3", rhs: "42"}
+
+  - id: p9-true-false
+    section: "1.1"
+    statement: "True or false?"
+    answer_text: "(a) true (b) false, since $-2 < -1$ (c) true"
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: ">", lhs: "0.7", rhs: "0.65"}
+        - {kind: compare, relation: "<", lhs: "-2", rhs: "-1"}
+        - {kind: compare, relation: "=", lhs: "0.30", rhs: "0.3"}
+
+  - id: p10-between
+    section: "1.1"
+    statement: "A decimal between $0.3$ and $0.31$"
+    answer_text: "$0.305$ (any value between works)"
+    check: {kind: between, value: "0.305", low: "0.3", high: "0.31"}
+
+  - id: p11-one-decimal-place
+    section: "1.1"
+    statement: "Numbers from $4$, $0$, $7$ with one decimal place"
+    answer_text: "$4.7 < 7.4 < 40.7 < 47.0 < 70.4 < 74.0$"
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "<", lhs: "4.7", rhs: "7.4"}
+        - {kind: compare, relation: "<", lhs: "7.4", rhs: "40.7"}
+        - {kind: compare, relation: "<", lhs: "40.7", rhs: "47.0"}
+        - {kind: compare, relation: "<", lhs: "47.0", rhs: "70.4"}
+        - {kind: compare, relation: "<", lhs: "70.4", rhs: "74.0"}
+
+  - id: p12-compare-prices
+    section: "1.1"
+    statement: "Compare $65$p with $£1.20$, and $£1.85$ with $£3.00$"
+    answer_text: "$65\\text{p} < £1.20$ and $£1.85 < £3.00$"
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "<", lhs: "0.65", rhs: "1.20"}
+        - {kind: compare, relation: "<", lhs: "1.85", rhs: "3.00"}

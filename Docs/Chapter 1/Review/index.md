@@ -6,7 +6,7 @@ kind: review
 
 # Chapter 1: Review
 
-## The anchor problem, resolved
+## The chapter problem, solved
 
 The stall spent
 

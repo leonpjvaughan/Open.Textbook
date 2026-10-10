@@ -1,5 +1,5 @@
 ---
-title: "1.3 Negative numbers — Walkthrough"
+title: "1.3 Negative numbers — Learn"
 chapter: 1
 chapter_title: Number skills
 section: "1.3"
@@ -9,15 +9,13 @@ dfe: [N1, N2]
 kind: walkthrough
 ---
 
-# 1.3 Negative numbers — Walkthrough
+# 1.3 Negative numbers — Learn
 
 **Prerequisites:** ordering on a number line; the four operations (section 1.2).
 
 **By the end of this section you can:** order negative numbers; add, subtract,
 multiply and divide with negative numbers; and interpret a negative result as a
 loss, a debt or a fall.
-
-**Delivers DfE:** N1 (ordering), N2 (the four operations with negative numbers).
 
 ## 1. The number line
 
@@ -47,7 +45,7 @@ $$
 4 - (-2) = 4 + 2 = 6
 $$
 
-> **Common error.** "Two negatives make a positive" applies to **multiplying and
+> **Watch out.** "Two negatives make a positive" applies to **multiplying and
 > dividing**, not to adding. $(-3) + (-5) = -8$, not $+8$. And $-3 - 5 = -8$: you
 > move 5 further left, not right.
 
@@ -73,9 +71,9 @@ The same rules apply to division: $(-20) \div 5 = -4$ and $(-20) \div (-5) = 4$.
 A **profit** is positive; a **loss** is negative. A balance below zero is a debt.
 If takings are less than costs, the profit is negative.
 
-### Investigation — profit and loss
+### Try it: profit and loss
 
-**Predict first:** in the anchor problem the stall spent £92.80. If the stall only
+**Predict first:** in the chapter problem the stall spent £92.80. If the stall only
 sold **60 cans** (at £1.20) and 6 boxes (at £3.00), will the result be a profit or
 a loss? Decide before you move anything.
 
@@ -87,9 +85,9 @@ and "Sold" to 60 to see this case, and try your own values.
 **Explain:** when the readout says the profit is negative, what does that mean in
 words? Why is a negative profit called a loss?
 
-## 5. Anchor checkpoint
+## 5. Progress check
 
-**Checkpoint.** With 60 cans sold:
+With 60 cans sold:
 
 $$
 \text{revenue} = 60 \times 1.20 + 6 \times 3.00 = 72 + 18 = £90

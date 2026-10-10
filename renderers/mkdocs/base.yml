@@ -26,6 +26,7 @@ theme:
 hooks:
   - hooks/tier.py
   - hooks/figures.py
+  - hooks/problems.py
   - hooks/maths.py
 markdown_extensions:
   - admonition

@@ -52,6 +52,8 @@ why). Also:
 - Add every worked solution and answer you rely on to
   `problems/chapter-<n>.yaml`, with an independent `check` and, where you show
   steps, a `steps` chain. Run `python -m verification problems/` — it must pass.
+- Render answer blocks with `:::answers <bank>` instead of hand-writing them, so
+  the reader sees exactly what CI verified. See PROBLEMS.md.
 - Do **not** edit `curriculum.yaml`, `nav.yml`, `CURRICULUM-MAP.md`, `PLAN.md`, or
   any other chapter. `nav.yml` and the map are generated.
 
@@ -105,14 +107,17 @@ GCSE; if you reach for Pyodide, justify it in the chapter overview first.
 
 1. Every file listed above exists and contains no `scaffold:stub` marker.
 2. `python -m verification problems/` passes and `pytest tests/ -q` is green.
-3. Every `dfe` item in your chapter appears in at least one Walkthrough and one
+3. The prose follows `AGENTS.md` → Voice and language: no internal words (anchor
+   problem, retrieval starter, tier, DfE codes), no shaming words, plain English,
+   no negative contractions. Read every page aloud once; if you stumble, rewrite.
+4. Every `dfe` item in your chapter appears in at least one Learn page and one
    practice page (grep the refs and show the result).
-4. `python scripts/scaffold_docs.py` reports your chapter's files as **skipped**,
+5. `python scripts/scaffold_docs.py` reports your chapter's files as **skipped**,
    not rewritten.
-5. `mkdocs build -f renderers/mkdocs/mkdocs.yml --strict` succeeds and
+6. `mkdocs build -f renderers/mkdocs/mkdocs.yml --strict` succeeds and
    `grep -rl 'math-error' site/higher --include='*.html'` prints nothing.
-6. If you added a Tier-2 figure: regeneration is byte-identical.
-7. Report the literal commands you ran and their literal output.
+7. If you added a Tier-2 figure: regeneration is byte-identical.
+8. Report the literal commands you ran and their literal output.
 
 ## Escalate (stop and hand back with evidence) if
 

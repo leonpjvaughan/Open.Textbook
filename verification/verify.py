@@ -122,6 +122,13 @@ def _verify_check(problem: dict, symbols: dict, report: Report) -> None:
         report.warnings.append("no independent check declared")
         return
     kind = check.get("kind")
+    if kind == "all":
+        for index, sub in enumerate(check.get("checks", [])):
+            sub_report = Report(problem_id=f"{report.problem_id} #{index + 1}")
+            _verify_check({"check": sub, "symbols": problem.get("symbols")}, symbols, sub_report)
+            report.errors.extend(sub_report.errors)
+            report.warnings.extend(sub_report.warnings)
+        return
     if kind == "evaluate":
         lhs = cas.parse_expression(check["expression"], symbols)
         rhs = cas.parse_expression(check["answer"], symbols)
@@ -148,6 +155,14 @@ def _verify_check(problem: dict, symbols: dict, report: Report) -> None:
         if not cas.is_nearest_multiple(value, rounded, step):
             report.errors.append(
                 f"check: {check['rounded']} is not {check['value']} rounded to {check['to']}"
+            )
+    elif kind == "between":
+        low = cas.parse_expression(check["low"], symbols)
+        value = cas.parse_expression(check["value"], symbols)
+        high = cas.parse_expression(check["high"], symbols)
+        if not (low < value < high):
+            report.errors.append(
+                f"check: {check['value']} is not between {check['low']} and {check['high']}"
             )
     elif kind == "compare":
         relation = cas.RELATIONS.get(check["relation"])

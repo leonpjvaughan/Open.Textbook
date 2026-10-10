@@ -1,5 +1,5 @@
 ---
-title: "1.1 Place value and ordering numbers — Guided problems"
+title: "1.1 Place value and ordering numbers — Practise with help"
 chapter: 1
 chapter_title: Number skills
 section: "1.1"
@@ -9,12 +9,12 @@ dfe: [N1, N2]
 kind: guided-problems
 ---
 
-# 1.1 Place value and ordering numbers — Guided problems
+# 1.1 Place value and ordering numbers — Practise with help
 
 Work each one first. Reveal a hint only if you are stuck, and the full working
 only to check.
 
-## Retrieval starter — from memory, no notes
+## Warm-up: remember
 
 1. Write down the value of the digit $6$ in $4\,362$.
 2. Work out $3.4 \times 10$.
@@ -28,7 +28,7 @@ only to check.
 3. $0.7 = 0.70 > 0.68$.
 </details>
 
-## Guided problems
+## Practise with help
 
 **1.** Write the value of the digit $5$ in each number: (a) $2\,531$; (b) $7.05$;
 (c) $0.512$.

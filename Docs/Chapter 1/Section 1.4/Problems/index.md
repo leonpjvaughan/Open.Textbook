@@ -1,5 +1,5 @@
 ---
-title: "1.4 Priority of operations and inverse operations — Problems"
+title: "1.4 Priority of operations and inverse operations — Practise"
 chapter: 1
 chapter_title: Number skills
 section: "1.4"
@@ -9,7 +9,7 @@ dfe: [N3]
 kind: problems
 ---
 
-# 1.4 Priority of operations and inverse operations — Problems
+# 1.4 Priority of operations and inverse operations — Practise
 
 1. Work out $6 + 4 \times 3$.
 

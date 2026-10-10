@@ -77,6 +77,58 @@ The weight is fixed: anchor thread + one learner-constructed relevance prompt +
 guided investigation(s) per chapter; a bespoke application tool only where the
 application *is* the maths (`tool:` in `curriculum.yaml`).
 
+## Voice and language
+
+This book is written for **ages 14–16 of mixed attainment**, including many
+readers for whom English is an additional language and readers who find reading
+hard. Write so that the mathematics is the only difficulty. The target reading
+age is about 12–14.
+
+**How the voice should come across.** Calm, clear and encouraging, like a good
+teacher sitting beside the reader. Direct and plain. Never matey, never jokey at
+the reader's expense, never a salesperson. The reader should feel that the book
+is on their side and that progress is possible.
+
+Rules, with the evidence behind them:
+
+- **Active voice, short sentences.** GOV.UK's style guide requires the active
+  voice because it is "concise, clear content". Aim for about 15–20 words per
+  sentence and one idea per sentence. Break a sentence that needs "and" twice.
+- **Plain English; explain every term on first use.** GOV.UK's guidance is to
+  "present complicated information simply" and to explain jargon in plain
+  English. A term the reader has met is not a term they can be assumed to know.
+- **Avoid negative contractions.** GOV.UK: avoid `can't` and `don't` because
+  "many users find them harder to read, or misread them as the opposite". Write
+  `cannot`, `do not`. Contractions such as `it's` are best avoided too.
+- **No shaming words.** Never `obviously`, `clearly`, `simply`, `just` or
+  `easy`. If it were obvious the reader would not be reading this page.
+- **No slang, idioms or cultural references.** They exclude EAL readers and
+  date quickly. `piece of cake`, `no-brainer`, `blunder` and similar are out.
+- **Use the board command words exactly.** `Work out`, `show that`, `explain`,
+  `give a reason`, `describe`, `compare`, `estimate`, `solve`, `sketch` each mean
+  something specific in the exam. Use them with their exam meaning, and tell the
+  reader in a Walkthrough when a question wants a reason.
+- **Address the reader as `you`.** First person plural (`we`) is for reasoning
+  together: "we can check this by...". Never `one`.
+- **Frame mistakes kindly.** ``Common error`` is fine, but present it as a trap to
+  spot ("Watch out for..."), not as a failure. Explain why it happens.
+- **UK English, consistent units.** `factorise`, `metre`, `0.5` always with a
+  leading zero; currency as `£1.20`.
+
+**Internal words must never reach the reader.** These are ours, not theirs:
+
+| Do not write in a page | Write instead |
+|---|---|
+| anchor problem, anchor checkpoint | the chapter problem, `Progress check` |
+| retrieval starter | `Warm-up: remember` |
+| Walkthrough / Guided problems / Problems | `Learn` / `Practise with help` / `Practise` |
+| Delivers DfE N1, N2 | (stays in front matter; render as `Covers:` if shown) |
+| tier F / tier H | `Foundation and Higher` / `Higher only` |
+| scaffold, hook, JSON, front matter | (never) |
+
+The navigator uses the friendly page names. A page's own prose should use them
+too, so the reader sees one set of words.
+
 ## Evidence
 
 Do not overclaim. The synthesis is explicit that its causal evidence is mostly
@@ -187,9 +239,12 @@ calling a chapter done.
 - `booklet/gcse-maths.yaml` is the source of truth; `Docs/assets/booklet/booklet.json`
   is generated. Edit the YAML and run `scripts/build_booklet.py`.
 - Provision is per board and tier. Selecting a board hides every item that board
-  does not provide, so a wrong tag is a content bug: verify against the board's
-  current formula sheet, not memory. AQA and OCR 2026 are verified; confirm
-  Edexcel against its live sheet.
+  does not provide, so a wrong tag is a content bug. Since Ofqual's October 2024
+  decision, all boards provide the same DfE-based sheets for 2025–2027; AQA and
+  OCR 2026 sheets were checked directly, and Edexcel follows the same set.
+- The page's answer blocks come from the bank. Write `:::answers <bank>` (or
+  `:::answers <bank>#<id>`) instead of hand-writing answers, so the reader sees
+  exactly what CI verified. `verification/render.py` builds the block.
 - The booklet renders formulae from build-time MathML, so never put `$...$` into
   it at runtime. Tables are plain text and data.
 - Pop-out uses the Document Picture-in-Picture API, which is Chromium-only; the

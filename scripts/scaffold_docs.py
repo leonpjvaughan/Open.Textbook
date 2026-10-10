@@ -243,9 +243,9 @@ def build_nav_list(
             children.append(
                 {
                     f"{s['id']} {s['title']}": [
-                        {"Walkthrough": f"{base}/Walkthrough/index.md"},
-                        {"Guided problems": f"{base}/Guided problems/index.md"},
-                        {"Problems": f"{base}/Problems/index.md"},
+                        {"Learn": f"{base}/Walkthrough/index.md"},
+                        {"Practise with help": f"{base}/Guided problems/index.md"},
+                        {"Practise": f"{base}/Problems/index.md"},
                     ]
                 }
             )

@@ -4,10 +4,11 @@
   "year": 2026,
   "note": "GCSE Mathematics has no national booklet: the formulae a student may use come from the DfE subject content and each board's formulae sheet. Provision shown here is taken from the 2026 sheets for AQA and OCR; Edexcel follows the same arrangement and its cone and sphere formulae are given in the question.",
   "provenance": {
-   "aqa": "AQA GCSE Mathematics 8300 formulae sheet, exams in 2026 (verified)",
-   "ocr": "OCR GCSE (9-1) Mathematics J560 formulae sheet (verified)",
-   "edexcel": "Edexcel 1MA1 content guidance and specification Appendix 3 (confirm the current sheet)"
+   "aqa": "AQA formula sheet",
+   "ocr": "OCR formula sheet",
+   "edexcel": "Edexcel formula sheet (same set)"
   },
+  "basis": "Ofqual decided in October 2024 to require exam boards to provide formulae and equations sheets for GCSE mathematics in 2025, 2026 and 2027, setting out the formulae students must memorise in a normal year. The set is therefore common to all boards; AQA's 2026 Foundation and Higher sheets were checked directly.",
   "boards": {
    "aqa": {
     "name": "AQA",

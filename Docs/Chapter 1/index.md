@@ -15,7 +15,7 @@ anchor: The school-fair stall
 - use the correct order of operations and check a calculation with an inverse operation;
 - round to a required degree of accuracy, estimate, and use estimation to check an answer.
 
-## The anchor problem: the school-fair stall
+## The chapter problem: the school-fair stall
 
 You are running the drinks-and-cakes stall at the school fair. The cash box
 starts with a **£50 float** — money you must give back at the end.
@@ -55,11 +55,11 @@ Each section has three parts:
 
 | Page | What it is for |
 |---|---|
-| **Walkthrough** | The teaching: ideas, worked examples, and one investigation to try |
-| **Guided problems** | Practice with hints you reveal only if you need them |
-| **Problems** | Independent practice, with answers at the end |
+| **Learn** | The teaching: ideas, worked examples, and one investigation to try |
+| **Practise with help** | Problems with hints you reveal only if you need them |
+| **Practise** | Independent problems, with answers at the end |
 
-The **Review** page resolves the anchor problem and mixes the chapter's methods
+The **Review** page resolves the chapter problem and mixes the chapter's methods
 together. Round numbers, don't memorise them: if a step is unclear, the worked
 example above it will show the reasoning.
 

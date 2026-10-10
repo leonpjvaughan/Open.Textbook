@@ -1,5 +1,5 @@
 ---
-title: "1.2 The four operations — Walkthrough"
+title: "1.2 The four operations — Learn"
 chapter: 1
 chapter_title: Number skills
 section: "1.2"
@@ -9,16 +9,13 @@ dfe: [N2, N3]
 kind: walkthrough
 ---
 
-# 1.2 The four operations — Walkthrough
+# 1.2 The four operations — Learn
 
 **Prerequisites:** place value and ordering (section 1.1).
 
 **By the end of this section you can:** add, subtract, multiply and divide
 integers and decimals using written methods; and check an answer with an inverse
 operation.
-
-**Delivers DfE:** N2 (four operations, formal written methods, place value), N3
-(inverse operations).
 
 ## 1. Addition and subtraction
 
@@ -38,7 +35,7 @@ $$
 
 So $78 + 14.8 = 92.80$.
 
-> **Common error.** $78 + 14.8$ is **not** $78 + 14.8 \to 92.8$ by lining up the
+> **Watch out.** $78 + 14.8$ is **not** $78 + 14.8 \to 92.8$ by lining up the
 > last digits. The $8$ in $14.8$ is eight tenths, so it belongs under the tenths
 > column, not under the $8$ ones.
 
@@ -96,13 +93,13 @@ Every operation has an inverse that undoes it:
 **Example 6.** You work out $78 + 14.8 = 92.8$. Check it: $92.8 - 14.8 = 78$. ✓
 
 Estimation gives a second, independent check: $120 \times 0.65$ is about
-$120 \times 0.7 = 84$, and $78$ is plausible.
+$120 \times 0.7 = 84$, and $78$ is reasonable.
 
-> **Common error.** In long multiplication, forgetting that the second partial
+> **Watch out.** In long multiplication, forgetting that the second partial
 > product represents tens (not ones) shifts every following column and makes the
 > answer ten times too small.
 
-## 5. Anchor checkpoint
+## 5. Progress check
 
 Work out the two costs exactly and add them:
 

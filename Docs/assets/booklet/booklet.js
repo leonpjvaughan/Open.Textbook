@@ -370,7 +370,7 @@
         <span class="bk-count" aria-live="polite"></span>
       </div>
       <div class="bk-content" tabindex="0"></div>
-      <footer class="bk-foot"><span class="bk-provenance"></span> · 2026</footer>
+      <footer class="bk-foot"><span class="bk-provenance"></span> · exams in 2026</footer>
       <div class="bk-resize" tabindex="0" role="separator" aria-label="Resize booklet"></div>`;
 
     document.body.append(fab, panel);

@@ -1,5 +1,5 @@
 ---
-title: "1.3 Negative numbers — Guided problems"
+title: "1.3 Negative numbers — Practise with help"
 chapter: 1
 chapter_title: Number skills
 section: "1.3"
@@ -9,9 +9,9 @@ dfe: [N1, N2]
 kind: guided-problems
 ---
 
-# 1.3 Negative numbers — Guided problems
+# 1.3 Negative numbers — Practise with help
 
-## Retrieval starter — from memory, no notes
+## Warm-up: remember
 
 1. Work out $346 + 78$.
 2. Work out $7.5 \times 4$.
@@ -25,7 +25,7 @@ kind: guided-problems
 3. $-9$ (further left).
 </details>
 
-## Guided problems
+## Practise with help
 
 **1.** Work out: (a) $-5 + 9$; (b) $6 - 10$; (c) $-4 - 3$.
 
@@ -100,7 +100,7 @@ Payments total $45 + 12 + 8 = 65$. Balance $= 30 - 65 = -£35$. Negative means t
 account is overdrawn by £35.
 </details>
 
-**6.** In the anchor problem, the stall spent £92.80 and took £90. Write the profit
+**6.** In the chapter problem, the stall spent £92.80 and took £90. Write the profit
 as a negative number and say what it means.
 
 <details markdown="1">

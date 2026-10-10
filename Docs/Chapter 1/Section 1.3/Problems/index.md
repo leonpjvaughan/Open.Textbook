@@ -1,5 +1,5 @@
 ---
-title: "1.3 Negative numbers — Problems"
+title: "1.3 Negative numbers — Practise"
 chapter: 1
 chapter_title: Number skills
 section: "1.3"
@@ -9,7 +9,7 @@ dfe: [N1, N2]
 kind: problems
 ---
 
-# 1.3 Negative numbers — Problems
+# 1.3 Negative numbers — Practise
 
 1. Write these in order, smallest first: $4,\ -2,\ 0,\ -7,\ 1$.
 

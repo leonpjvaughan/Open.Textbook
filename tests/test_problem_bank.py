@@ -93,3 +93,42 @@ def test_implies_relation_rejects_unrelated_solutions():
         "steps": [{"equation": "x = 4"}, {"equation": "x = 5"}],
     }
     assert not verify_problem(problem).ok
+
+
+def test_all_check_fails_when_a_part_is_wrong():
+    problem = {
+        "id": "all-bad",
+        "check": {
+            "kind": "all",
+            "checks": [
+                {"kind": "evaluate", "expression": "1 + 1", "answer": "2"},
+                {"kind": "evaluate", "expression": "2 + 2", "answer": "5"},
+            ],
+        },
+    }
+    report = verify_problem(problem)
+    assert not report.ok, "verifier accepted a failing sub-check"
+
+
+def test_between_check_enforces_the_interval():
+    good = {"id": "between-ok", "check": {"kind": "between", "value": "0.305", "low": "0.3", "high": "0.31"}}
+    bad = {"id": "between-bad", "check": {"kind": "between", "value": "0.4", "low": "0.3", "high": "0.31"}}
+    assert verify_problem(good).ok
+    assert not verify_problem(bad).ok
+
+
+def test_rendered_answer_block_comes_from_the_record():
+    from verification.render import render_answer_block
+
+    block = render_answer_block(
+        [
+            {
+                "statement": "$1 + 1$",
+                "answer_text": "$2$",
+                "check": {"kind": "evaluate", "expression": "1 + 1", "answer": "2"},
+            }
+        ]
+    )
+    assert '<details markdown="1">' in block
+    assert "$2$" in block
+    assert "**Answer:**" in block

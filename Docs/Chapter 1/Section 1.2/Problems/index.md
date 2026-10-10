@@ -1,5 +1,5 @@
 ---
-title: "1.2 The four operations — Problems"
+title: "1.2 The four operations — Practise"
 chapter: 1
 chapter_title: Number skills
 section: "1.2"
@@ -9,7 +9,7 @@ dfe: [N2, N3]
 kind: problems
 ---
 
-# 1.2 The four operations — Problems
+# 1.2 The four operations — Practise
 
 1. Work out $374 + 268$.
 
@@ -34,7 +34,7 @@ kind: problems
 11. Three friends share a restaurant bill of £86.40 equally. How much does each
     pay?
 
-12. In the anchor problem, work out the exact profit: total taken $£132$ minus
+12. In the chapter problem, work out the exact profit: total taken $£132$ minus
     the cost of the stock.
 
 13. **H** Work out $4.8 \times 2.5$.

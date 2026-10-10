@@ -1,5 +1,5 @@
 ---
-title: "1.2 The four operations — Guided problems"
+title: "1.2 The four operations — Practise with help"
 chapter: 1
 chapter_title: Number skills
 section: "1.2"
@@ -9,9 +9,9 @@ dfe: [N2, N3]
 kind: guided-problems
 ---
 
-# 1.2 The four operations — Guided problems
+# 1.2 The four operations — Practise with help
 
-## Retrieval starter — from memory, no notes
+## Warm-up: remember
 
 1. Write $4.06 \times 100$.
 2. Write the value of the digit $7$ in $3.27$.
@@ -25,7 +25,7 @@ kind: guided-problems
 3. $0.5 = 0.50 > 0.45$.
 </details>
 
-## Guided problems
+## Practise with help
 
 **1.** Work out $146 + 27.5$.
 
@@ -113,7 +113,7 @@ Divide: $8.40 \div 12$. Check by multiplying your answer by $12$.
 $8.40 \div 12 = 0.70$, so one pen costs 70p. Check: $12 \times 0.70 = 8.40$. ✓
 </details>
 
-**7.** In the anchor problem, 95 cans are sold at £1.20 each and 6 boxes at
+**7.** In the chapter problem, 95 cans are sold at £1.20 each and 6 boxes at
 £3.00 each. Work out the total taken.
 
 <details markdown="1">

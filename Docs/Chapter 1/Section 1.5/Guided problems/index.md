@@ -1,5 +1,5 @@
 ---
-title: "1.5 Rounding and estimation — Guided problems"
+title: "1.5 Rounding and estimation — Practise with help"
 chapter: 1
 chapter_title: Number skills
 section: "1.5"
@@ -9,9 +9,9 @@ dfe: [N14, N15]
 kind: guided-problems
 ---
 
-# 1.5 Rounding and estimation — Guided problems
+# 1.5 Rounding and estimation — Practise with help
 
-## Retrieval starter — from memory, no notes
+## Warm-up: remember
 
 1. Work out $8 + 3 \times 4$.
 2. Round $347$ to the nearest $10$.
@@ -25,7 +25,7 @@ kind: guided-problems
 3. $5$.
 </details>
 
-## Guided problems
+## Practise with help
 
 **1.** Round $6\,482$ to the nearest (a) $10$, (b) $100$, (c) $1000$.
 
@@ -116,7 +116,7 @@ Estimate: $£19 + £33 = £52$. Exact: $£51.49$. The estimate is close, so the 
 answer is reasonable.
 </details>
 
-**7.** In the anchor problem, the profit was £39.20. Round it to the nearest pound
+**7.** In the chapter problem, the profit was £39.20. Round it to the nearest pound
 and to 1 significant figure.
 
 <details markdown="1">

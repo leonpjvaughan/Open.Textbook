@@ -1,5 +1,5 @@
 ---
-title: "1.5 Rounding and estimation — Walkthrough"
+title: "1.5 Rounding and estimation — Learn"
 chapter: 1
 chapter_title: Number skills
 section: "1.5"
@@ -9,16 +9,13 @@ dfe: [N14, N15]
 kind: walkthrough
 ---
 
-# 1.5 Rounding and estimation — Walkthrough
+# 1.5 Rounding and estimation — Learn
 
 **Prerequisites:** place value (1.1); the four operations (1.2).
 
 **By the end of this section you can:** round to the nearest 10, 100 or whole
 number; round to a given number of decimal places or significant figures; and use
 estimation to check an answer.
-
-**Delivers DfE:** N14 (estimate answers, check calculations), N15 (round to an
-appropriate degree of accuracy).
 
 ## 1. Rounding to the nearest 10, 100 or whole number
 
@@ -57,7 +54,7 @@ so round up: $4\,367 \approx 4\,400$.
 Leading zeros are **not** significant. The first significant figure is $4$, so the
 first two are $4$ and $3$, giving $0.004\,4$.
 
-> **Common error.** Treating leading zeros as significant figures.
+> **Watch out.** Treating leading zeros as significant figures.
 > $0.004\,367$ to 2 s.f. is $0.004\,4$, not $0.004\,37$.
 
 ## 4. Estimation
@@ -68,9 +65,9 @@ Estimating means rounding each number first, so the arithmetic is quick. It is a
 **Example 6.** Estimate $19.7 \times 6.2$.
 
 Round: $20 \times 6 = 120$. The exact answer is $122.14$, so the estimate is
-close — the calculation is plausible.
+close — the calculation is reasonable.
 
-### Investigation — rounding machine
+### Try it: rounding
 
 **Predict first:** what is $3.14159$ to 2 decimal places? Say it before you use
 the tool, then check. Now switch to significant figures and predict $3.14159$ to
@@ -81,15 +78,14 @@ the tool, then check. Now switch to significant figures and predict $3.14159$ to
 **Explain:** for a given number of decimal places or significant figures, which
 single digit decides whether you round up or down? Why?
 
-## 5. Anchor checkpoint
+## 5. Progress check
 
 The stall's profit was $£39.20$. Round it to the nearest pound for a poster:
 $£39.20 \approx £39$.
 
 Now estimate as a check: revenue is about $95 \times 1.20 + 6 \times 3 \approx
 100 \times 1.2 + 18 = 138$; cost is about $120 \times 0.65 + 8 \times 2 = 78 + 16 =
-94$; so the profit should be about $138 - 94 = £44$. The exact $£39.20$ is a
-little lower, but the same size — no arithmetic blunder.
+94$; so the profit should be about $138 - 94 = £44$. The exact $£39.20$ is a little lower, but it is the same size, so the answer is reasonable.
 
 ## You should now be able to
 
