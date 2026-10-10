@@ -1,5 +1,5 @@
 ---
-title: 7.4 Upper and lower bounds — Problems
+title: 7.4 Upper and lower bounds — Practise
 chapter: 7
 chapter_title: Measures, accuracy, standard form and surds
 section: '7.4'
@@ -10,10 +10,10 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 7.4 Upper and lower bounds — Practise
 
-# 7.4 Upper and lower bounds — Problems
+Work independently. The questions and checked answers appear below.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: N16
+:::problems chapter-7-practice-7.4
+
+:::answers chapter-7-practice-7.4

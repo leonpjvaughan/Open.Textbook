@@ -1,19 +1,17 @@
 ---
-title: 4.5 Recurring decimals — Problems
+title: "4.5 Recurring decimals — Practise"
 chapter: 4
 chapter_title: Fractions, decimals and percentages
-section: '4.5'
+section: "4.5"
 section_title: Recurring decimals
 tier: H
-dfe:
-- N10
+dfe: [N10]
 kind: problems
 ---
+# 4.5 Recurring decimals — Practise
 
-<!-- scaffold:stub -->
+Work through these independently, from the first question onwards. Questions marked **H** are Higher only.
 
-# 4.5 Recurring decimals — Problems
+:::problems chapter-4-practice-4.5
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: N10
+:::answers chapter-4-practice-4.5

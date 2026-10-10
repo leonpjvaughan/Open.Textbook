@@ -1,0 +1,73 @@
+chapter: 4
+symbols: {}
+problems:
+- id: ch4-equiv-1
+  section: '4.1'
+  tier: F
+  dfe:
+  - N10
+  statement: Write $\frac{3}{5}$ as an equivalent fraction with denominator $20$.
+  answer_label: Answer 1
+  check:
+    kind: evaluate
+    expression: 3/5
+    answer: 12/20
+  answer_text: $\frac{3}{5}=\frac{3\times4}{5\times4}=\frac{12}{20}.$
+- id: ch4-order-2
+  section: '4.1'
+  tier: F
+  dfe:
+  - N1
+  statement: Write $\frac{2}{3}$ and $\frac{5}{8}$ in order, smallest first.
+  answer_label: Answer 2
+  check:
+    kind: compare
+    relation: <
+    lhs: 5/8
+    rhs: 2/3
+  answer_text: $\frac{2}{3}=\frac{16}{24}$ and $\frac{5}{8}=\frac{15}{24}$, so $\frac{5}{8}<\frac{2}{3}.$
+- id: ch4-fraction-decimal
+  section: '4.1'
+  tier: F
+  dfe:
+  - N10
+  statement: Write $0.375$ as a fraction in its simplest form.
+  answer_label: Answer 3
+  check:
+    kind: evaluate
+    expression: 375/1000
+    answer: 3/8
+  answer_text: $0.375=\frac{375}{1000}=\frac{3}{8}.$
+- id: ch4-compare-decimals
+  section: '4.1'
+  tier: F
+  dfe:
+  - N1
+  statement: 'Insert $<$, $>$ or $=$: $\frac{7}{10}\;\square\;0.68$.'
+  answer_label: Answer 4
+  check:
+    kind: compare
+    relation: '>'
+    lhs: 7/10
+    rhs: '0.68'
+  answer_text: $0.7>0.68$, so insert $>$.
+- id: ch4-order-four
+  section: '4.1'
+  tier: F
+  dfe:
+  - N1
+  - N10
+  statement: Write $\frac{3}{4}$, $0.72$, $\frac{7}{10}$ in order, smallest first.
+  answer_label: Answer 5
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      relation: <
+      lhs: 7/10
+      rhs: '0.72'
+    - kind: compare
+      relation: <
+      lhs: '0.72'
+      rhs: 3/4
+  answer_text: $0.7<0.72<0.75$, so $\frac{7}{10}<0.72<\frac{3}{4}$.

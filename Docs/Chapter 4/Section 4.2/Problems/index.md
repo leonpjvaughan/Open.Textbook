@@ -1,19 +1,17 @@
 ---
-title: 4.2 Adding and subtracting fractions — Problems
+title: "4.2 Adding and subtracting fractions — Practise"
 chapter: 4
 chapter_title: Fractions, decimals and percentages
-section: '4.2'
+section: "4.2"
 section_title: Adding and subtracting fractions
 tier: F
-dfe:
-- N2
+dfe: [N2]
 kind: problems
 ---
+# 4.2 Adding and subtracting fractions — Practise
 
-<!-- scaffold:stub -->
+Work through these independently, from the first question onwards. Questions marked **H** are Higher only.
 
-# 4.2 Adding and subtracting fractions — Problems
+:::problems chapter-4-practice-4.2
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: N2
+:::answers chapter-4-practice-4.2

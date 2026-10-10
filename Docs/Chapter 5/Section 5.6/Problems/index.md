@@ -1,5 +1,5 @@
 ---
-title: 5.6 Comparing lengths, areas and volumes — Problems
+title: 5.6 Comparing lengths, areas and volumes — Practise
 chapter: 5
 chapter_title: Ratio and proportion
 section: '5.6'
@@ -10,10 +10,5 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
-# 5.6 Comparing lengths, areas and volumes — Problems
-
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: R12
+:::problems chapter-5-practice-5.6
+:::answers chapter-5-practice-5.6

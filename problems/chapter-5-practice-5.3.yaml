@@ -1,0 +1,171 @@
+chapter: 5
+problems:
+- id: ch5-5-3-direct-constant
+  section: '5.3'
+  tier: F
+  dfe:
+  - R10
+  - R13
+  - R14
+  statement: $y$ is directly proportional to $x$. When $x=4$, $y=18$. Find the constant $k$.
+  check:
+    kind: evaluate
+    expression: 18/4
+    answer: '4.5'
+  answer_text: $k=4.5$.
+  steps: []
+- id: ch5-5-3-direct-formula
+  section: '5.3'
+  tier: F
+  dfe:
+  - R10
+  - R13
+  - R14
+  statement: $y$ is directly proportional to $x$, and $y=21$ when $x=7$. Find $y$ when $x=12$.
+  check:
+    kind: evaluate
+    expression: 21/7*12
+    answer: '36'
+  answer_text: $y=36$.
+  steps: []
+- id: ch5-5-3-square-proportion
+  section: '5.3'
+  tier: F
+  dfe:
+  - R10
+  - R13
+  - R14
+  statement: $y$ is proportional to $x^2$. When $x=3$, $y=45$. Find $y$ when $x=5$.
+  check:
+    kind: evaluate
+    expression: 45/9*25
+    answer: '125'
+  answer_text: $125$.
+  steps: []
+- id: ch5-5-3-cube-proportion
+  section: '5.3'
+  tier: F
+  dfe:
+  - R10
+  - R13
+  - R14
+  statement: $V$ is proportional to $r^3$. $V=54$ when $r=3$. Find $V$ when $r=2$.
+  check:
+    kind: evaluate
+    expression: 54/27*8
+    answer: '16'
+  answer_text: $V=16$.
+  steps: []
+- id: ch5-5-3-direct-context
+  section: '5.3'
+  tier: F
+  dfe:
+  - R10
+  - R13
+  - R14
+  statement: A machine fills 84 bottles in 6 minutes. How many does it fill in 15 minutes at the same
+    rate?
+  check:
+    kind: evaluate
+    expression: 84/6*15
+    answer: '210'
+  answer_text: 210 bottles.
+  steps: []
+- id: ch5-5-3-direct-graph
+  section: '5.3'
+  tier: F
+  dfe:
+  - R10
+  - R13
+  - R14
+  statement: A directly proportional graph contains $(5,35)$. Find $y$ when $x=9$.
+  check:
+    kind: evaluate
+    expression: 35/5*9
+    answer: '63'
+  answer_text: $63$.
+  steps: []
+- id: ch5-5-3-direct-equation
+  section: '5.3'
+  tier: F
+  dfe:
+  - R10
+  - R13
+  - R14
+  statement: $p$ varies directly as $q$. If $p=16$ when $q=2$, write $p$ in terms of $q$.
+  check:
+    kind: evaluate
+    expression: 16/2
+    answer: '8'
+  answer_text: $p=8q$.
+  steps: []
+- id: ch5-5-3-direct-derive
+  section: '5.3'
+  tier: F
+  dfe:
+  - R10
+  - R13
+  - R14
+  statement: $y$ is proportional to $x$. Given $y=32$ when $x=8$, find $x$ when $y=54$.
+  check:
+    kind: evaluate
+    expression: 54/(32/8)
+    answer: '13.5'
+  answer_text: $x=13.5$.
+  steps: []
+- id: ch5-5-3-direct-square
+  section: '5.3'
+  tier: F
+  dfe:
+  - R10
+  - R13
+  - R14
+  statement: $A$ is proportional to $r^2$. $A=28$ when $r=2$. Find $A$ when $r=5$.
+  check:
+    kind: evaluate
+    expression: 28/4*25
+    answer: '175'
+  answer_text: $175$.
+  steps: []
+- id: ch5-5-3-direct-unit
+  section: '5.3'
+  tier: F
+  dfe:
+  - R10
+  - R13
+  - R14
+  statement: A car travels 156 km in 2 hours at constant speed. How far in 3.5 hours?
+  check:
+    kind: evaluate
+    expression: 156/2*3.5
+    answer: '273'
+  answer_text: 273 km.
+  steps: []
+- id: ch5-5-3-direct-check
+  section: '5.3'
+  tier: F
+  dfe:
+  - R10
+  - R13
+  - R14
+  statement: A learner says a direct proportion can have a non-zero value when $x=0$. Is this correct?
+  check:
+    kind: evaluate
+    expression: 5*0
+    answer: '0'
+  answer_text: No. Direct proportion has the form $y=kx$, so $y=0$ when $x=0$.
+  steps: []
+- id: ch5-5-3-direct-cube
+  section: '5.3'
+  tier: F
+  dfe:
+  - R10
+  - R13
+  - R14
+  statement: $z$ is proportional to $t^3$. $z=16$ when $t=2$. Find $z$ when $t=4$.
+  check:
+    kind: evaluate
+    expression: 16/8*64
+    answer: '128'
+  answer_text: $128$.
+  steps: []

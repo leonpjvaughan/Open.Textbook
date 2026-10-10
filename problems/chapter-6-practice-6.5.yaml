@@ -1,0 +1,130 @@
+# Checked practice for section 6.5; questions and solutions are rendered from these records.
+chapter: 6
+problems:
+- id: p1-growth
+  section: '6.5'
+  tier: H
+  dfe: &id001
+  - R16
+  statement: A population of 2400 grows by 3% each year for 4 years. Work out the population, to the nearest whole
+    person.
+  answer_label: Growth
+  check:
+    kind: rounded
+    value: 2400*1.03**4
+    rounded: '2701'
+    to: '1'
+  answer_text: 2,701
+- id: p2-decay
+  section: '6.5'
+  tier: H
+  dfe: *id001
+  statement: A machine worth £8000 loses 12% of its value each year. Work out its value after 3 years.
+  answer_label: Decay
+  check:
+    kind: rounded
+    value: 8000*0.88**3
+    rounded: '5451.78'
+    to: '0.01'
+  answer_text: £5,451.78
+- id: p3-repeated
+  section: '6.5'
+  tier: H
+  dfe: *id001
+  statement: A quantity starts at 500 and increases by 8%, then by 6%. Work out the final quantity.
+  answer_label: Repeated change
+  check:
+    kind: evaluate
+    expression: 500*1.08*1.06
+    answer: '572.4'
+  answer_text: '572.4'
+- id: p4-change-rate
+  section: '6.5'
+  tier: H
+  dfe: *id001
+  statement: A value is multiplied by 0.72. State the percentage decrease.
+  answer_label: Percentage decrease
+  check:
+    kind: evaluate
+    expression: (1-0.72)*100
+    answer: '28'
+  answer_text: 28%
+- id: p5-find-rate
+  section: '6.5'
+  tier: H
+  dfe: *id001
+  statement: A £4000 investment grows to £4410 in 2 years with annual compound growth. Find the annual percentage
+    rate.
+  answer_label: Annual rate
+  check:
+    kind: evaluate
+    expression: sqrt(4410/4000)
+    answer: '1.05'
+  answer_text: 5% (annual multiplier 1.05)
+- id: p6-depreciation
+  section: '6.5'
+  tier: H
+  dfe: *id001
+  statement: A car worth £18 000 depreciates by 18% each year. Work out its value after 2 years.
+  answer_label: Car value
+  check:
+    kind: rounded
+    value: 18000*0.82**2
+    rounded: '12103.2'
+    to: '0.01'
+  answer_text: £12,103.20
+- id: p7-comparison
+  section: '6.5'
+  tier: H
+  dfe: *id001
+  statement: A £1000 amount grows by 10% then falls by 10%. Work out the final amount and compare it with £1000.
+  answer_label: Net effect
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1000*1.1*0.9
+      answer: '990'
+    - kind: compare
+      relation: <
+      lhs: '990'
+      rhs: '1000'
+  answer_text: £990, which is £10 less than the start.
+- id: p8-reverse-time
+  section: '6.5'
+  tier: H
+  dfe: *id001
+  statement: A population of 5000 grows by 2% each year. Work out its population after 10 years, to the nearest
+    whole person.
+  answer_label: Population
+  check:
+    kind: rounded
+    value: 5000*1.02**10
+    rounded: '6095'
+    to: '1'
+  answer_text: 6,095
+- id: p9-higher
+  section: '6.5'
+  tier: H
+  dfe: *id001
+  statement: '**H** An investment doubles in 12 years with annual compound growth. Find the annual multiplier to
+    3 significant figures.'
+  answer_label: Multiplier
+  check:
+    kind: rounded
+    value: 2**(1/12)
+    rounded: '1.059'
+    to: '0.001'
+  answer_text: '1.059'
+- id: p10-higher2
+  section: '6.5'
+  tier: H
+  dfe: *id001
+  statement: '**H** A substance decays by 7% each hour. What percentage remains after 5 hours?'
+  answer_label: Percentage remaining
+  check:
+    kind: rounded
+    value: 0.93**5*100
+    rounded: '69.6'
+    to: '0.1'
+  answer_text: about 69.6%

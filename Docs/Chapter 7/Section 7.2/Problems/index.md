@@ -1,5 +1,5 @@
 ---
-title: '7.2 Compound measures: speed, density and pressure — Problems'
+title: '7.2 Compound measures: speed, density and pressure — Practise'
 chapter: 7
 chapter_title: Measures, accuracy, standard form and surds
 section: '7.2'
@@ -11,10 +11,10 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 7.2 Compound measures: speed, density and pressure — Practise
 
-# 7.2 Compound measures: speed, density and pressure — Problems
+Work independently. The questions and checked answers appear below.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: R1, R11
+:::problems chapter-7-practice-7.2
+
+:::answers chapter-7-practice-7.2

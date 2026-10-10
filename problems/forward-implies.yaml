@@ -9,7 +9,7 @@ problems:
     section: "12.5"
     tier: H
     dfe: [A18]
-    statement: "Solve $\\sqrt{x} = 4$."
+    statement: 'Solve $\sqrt{x} = 4$.'
     step_relation: implies
     check: {kind: solve, equation: "sqrt(x) = 4", variable: x, answer: ["16"]}
     steps:
@@ -20,7 +20,7 @@ problems:
     section: "12.5"
     tier: H
     dfe: [A18]
-    statement: "Solve $x^2 = 16$."
+    statement: 'Solve $x^2 = 16$.'
     step_relation: implies
     check: {kind: solve, equation: "x**2 = 16", variable: x, answer: ["4", "-4"]}
     steps:
@@ -31,7 +31,7 @@ problems:
     section: "12.5"
     tier: H
     dfe: [A18]
-    statement: "Explain why $\\sqrt{x} = -1$ has no real solution."
+    statement: 'Explain why $\sqrt{x} = -1$ has no real solution.'
     step_relation: implies
     check: {kind: solve, equation: "sqrt(x) = -1", variable: x, answer: []}
     steps:

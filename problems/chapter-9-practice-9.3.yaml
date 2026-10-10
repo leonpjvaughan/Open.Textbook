@@ -1,0 +1,144 @@
+chapter: 9
+symbols:
+  x:
+    real: true
+problems:
+- id: ch9-9-3-age
+  section: '9.3'
+  tier: F
+  dfe:
+  - A21
+  statement: Mina is 4 years older than Sam. Their ages total 30 years. Find both
+    ages.
+  answer_label: Mina is 4 years older than Sam. Their ages total 30 years. Find both
+    a
+  check:
+    kind: solve
+    equation: x + (x+4) = 30
+    variable: x
+    answer:
+    - '13'
+  answer_text: Sam is $13$ and Mina is $17$.
+- id: ch9-9-3-perimeter
+  section: '9.3'
+  tier: F
+  dfe:
+  - A21
+  statement: A rectangle has width $x$ cm and length $(x+3)$ cm. Its perimeter is
+    34 cm. Find its dimensions.
+  answer_label: A rectangle has width $x$ cm and length $(x+3)$ cm. Its perimeter
+    is 3
+  check:
+    kind: solve
+    equation: 2*x + 2*(x+3) = 34
+    variable: x
+    answer:
+    - '7'
+  answer_text: Width $7$ cm; length $10$ cm.
+- id: ch9-9-3-tickets
+  section: '9.3'
+  tier: F
+  dfe:
+  - A21
+  statement: An adult ticket costs £8 more than a child ticket. One adult and two
+    child tickets cost £35. Find each price.
+  answer_label: An adult ticket costs £8 more than a child ticket. One adult and two
+    c
+  check:
+    kind: solve
+    equation: (x+8) + 2*x = 35
+    variable: x
+    answer:
+    - '9'
+  answer_text: Child £9; adult £17.
+- id: ch9-9-3-taxi
+  section: '9.3'
+  tier: F
+  dfe:
+  - A21
+  statement: A taxi charge is £3 plus £2 per kilometre. The total is £19. How far
+    was the journey?
+  answer_label: A taxi charge is £3 plus £2 per kilometre. The total is £19. How far
+    w
+  check:
+    kind: solve
+    equation: 3 + 2*x = 19
+    variable: x
+    answer:
+    - '8'
+  answer_text: The journey was $8$ km.
+- id: ch9-9-3-three-numbers
+  section: '9.3'
+  tier: F
+  dfe:
+  - A21
+  statement: Three consecutive integers have a total of 72. Find them.
+  answer_label: Three consecutive integers have a total of 72. Find them.
+  check:
+    kind: solve
+    equation: x + (x+1) + (x+2) = 72
+    variable: x
+    answer:
+    - '23'
+  answer_text: The integers are $23$, $24$ and $25$.
+- id: ch9-9-3-sticks
+  section: '9.3'
+  tier: F
+  dfe:
+  - A21
+  statement: A 30 cm wire is cut into two pieces. One piece is 6 cm longer. Find each
+    length.
+  answer_label: A 30 cm wire is cut into two pieces. One piece is 6 cm longer. Find
+    ea
+  check:
+    kind: solve
+    equation: x + (x+6) = 30
+    variable: x
+    answer:
+    - '12'
+  answer_text: The pieces are $12$ cm and $18$ cm.
+- id: ch9-9-3-mobile-plan
+  section: '9.3'
+  tier: F
+  dfe:
+  - A21
+  statement: Plan A costs £5 plus £0.10 per text. Plan B costs £11. How many texts
+    make the costs equal?
+  answer_label: 'Plan A costs £5 plus £0.10 per text. Plan B costs £11. How many texts '
+  check:
+    kind: solve
+    equation: 5 + 0.1*x = 11
+    variable: x
+    answer:
+    - '60'
+  answer_text: At $60$ texts, both plans cost £11.
+- id: ch9-9-3-number
+  section: '9.3'
+  tier: F
+  dfe:
+  - A21
+  statement: Four times a number, then subtract 7, gives 29. Find the number.
+  answer_label: Four times a number, then subtract 7, gives 29. Find the number.
+  check:
+    kind: solve
+    equation: 4*x - 7 = 29
+    variable: x
+    answer:
+    - '9'
+  answer_text: $9$.
+- id: ch9-9-3-higher-equation
+  section: '9.3'
+  tier: F
+  dfe:
+  - A21
+  statement: A number is multiplied by 3, then 5 is added. This equals twice the number
+    plus 14. Find the number.
+  answer_label: A number is multiplied by 3, then 5 is added. This equals twice the
+    nu
+  check:
+    kind: solve
+    equation: 3*x + 5 = 2*x + 14
+    variable: x
+    answer:
+    - '9'
+  answer_text: $9$.

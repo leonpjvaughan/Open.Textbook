@@ -1,20 +1,17 @@
 ---
-title: 4.6 Fractions and percentages as operators — Problems
+title: "4.6 Fractions and percentages as operators — Practise"
 chapter: 4
 chapter_title: Fractions, decimals and percentages
-section: '4.6'
+section: "4.6"
 section_title: Fractions and percentages as operators
 tier: F
-dfe:
-- N11
-- N12
+dfe: [N11, N12]
 kind: problems
 ---
+# 4.6 Fractions and percentages as operators — Practise
 
-<!-- scaffold:stub -->
+Work through these independently, from the first question onwards. Questions marked **H** are Higher only.
 
-# 4.6 Fractions and percentages as operators — Problems
+:::problems chapter-4-practice-4.6
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: N11, N12
+:::answers chapter-4-practice-4.6

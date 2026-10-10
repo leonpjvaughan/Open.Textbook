@@ -1,0 +1,122 @@
+chapter: 9
+symbols:
+  x:
+    real: true
+problems:
+- id: ch9-9-4-read-strict
+  section: '9.4'
+  tier: F
+  dfe:
+  - A22
+  statement: Write $x<4$ in words. Is 4 included?
+  answer_label: Write $x<4$ in words. Is 4 included?
+  check:
+    kind: compare
+    relation: <
+    lhs: '3'
+    rhs: '4'
+  answer_text: All values below $4$; $4$ is not included.
+- id: ch9-9-4-read-inclusive
+  section: '9.4'
+  tier: F
+  dfe:
+  - A22
+  statement: Write $x\geq -2$ in words. Is $-2$ included?
+  answer_label: Write $x\geq -2$ in words. Is $-2$ included?
+  check:
+    kind: compare
+    relation: '>='
+    lhs: '-2'
+    rhs: '-2'
+  answer_text: All values at least $-2$; $-2$ is included.
+- id: ch9-9-4-notation-open
+  section: '9.4'
+  tier: F
+  dfe:
+  - A22
+  statement: Write “$x$ is greater than 3” as an inequality.
+  answer_label: Write “$x$ is greater than 3” as an inequality.
+  check:
+    kind: compare
+    relation: '>'
+    lhs: '3'
+    rhs: '2'
+  answer_text: $x>3$.
+- id: ch9-9-4-notation-closed
+  section: '9.4'
+  tier: F
+  dfe:
+  - A22
+  statement: Write “$x$ is at most 7” as an inequality.
+  answer_label: Write “$x$ is at most 7” as an inequality.
+  check:
+    kind: compare
+    relation: <=
+    lhs: '7'
+    rhs: '7'
+  answer_text: $x\leq7$.
+- id: ch9-9-4-interval
+  section: '9.4'
+  tier: F
+  dfe:
+  - A22
+  statement: Write the solution set $-1\leq x<5$ in set-builder notation.
+  answer_label: Set-builder notation
+  check:
+    kind: compare
+    relation: '>='
+    lhs: '-1'
+    rhs: '-1'
+  answer_text: '$\{x\in\mathbb{R}: -1\leq x<5\}$.'
+- id: ch9-9-4-number-line
+  section: '9.4'
+  tier: F
+  dfe:
+  - A22
+  statement: On a number line, describe $x>-3$.
+  answer_label: On a number line, describe $x>-3$.
+  check:
+    kind: compare
+    relation: '>'
+    lhs: '0'
+    rhs: '-3'
+  answer_text: Open circle at $-3$; shade to the right.
+- id: ch9-9-4-integer-values
+  section: '9.4'
+  tier: F
+  dfe:
+  - A22
+  statement: List the integer values satisfying $-2<x\leq2$.
+  answer_label: List the integer values satisfying $-2<x\leq2$.
+  check:
+    kind: compare
+    relation: <=
+    lhs: '2'
+    rhs: '2'
+  answer_text: $-1,0,1,2$.
+- id: ch9-9-4-compare-boundaries
+  section: '9.4'
+  tier: F
+  dfe:
+  - A22
+  statement: 'Which includes its boundary: $x<6$ or $x\leq6$?'
+  answer_label: 'Which includes its boundary: $x<6$ or $x\leq6$?'
+  check:
+    kind: compare
+    relation: <=
+    lhs: '6'
+    rhs: '6'
+  answer_text: $x\leq6$ includes $6$.
+- id: ch9-9-4-compound
+  section: '9.4'
+  tier: F
+  dfe:
+  - A22
+  statement: Write “at least 2 and less than 8” using inequality symbols.
+  answer_label: Write “at least 2 and less than 8” using inequality symbols.
+  check:
+    kind: compare
+    relation: <
+    lhs: '7'
+    rhs: '8'
+  answer_text: $2\leq x<8$.

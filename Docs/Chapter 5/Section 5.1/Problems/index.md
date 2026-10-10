@@ -1,5 +1,5 @@
 ---
-title: 5.1 Ratio notation, simplifying and sharing — Problems
+title: 5.1 Ratio notation, simplifying and sharing — Practise
 chapter: 5
 chapter_title: Ratio and proportion
 section: '5.1'
@@ -12,10 +12,5 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
-# 5.1 Ratio notation, simplifying and sharing — Problems
-
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: R3, R4, R5
+:::problems chapter-5-practice-5.1
+:::answers chapter-5-practice-5.1

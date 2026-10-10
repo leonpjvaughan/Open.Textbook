@@ -1,0 +1,147 @@
+chapter: 5
+problems:
+- id: ch5-5-5-scale-distance
+  section: '5.5'
+  tier: F
+  dfe:
+  - R2
+  statement: A map scale is 1 cm represents 5 km. What real distance is shown by 7 cm?
+  check:
+    kind: evaluate
+    expression: 7*5
+    answer: '35'
+  answer_text: 35 km.
+  steps: []
+- id: ch5-5-5-scale-drawing
+  section: '5.5'
+  tier: F
+  dfe:
+  - R2
+  statement: A 12 m wall is drawn as 6 cm. Find the scale in simplest form.
+  check:
+    kind: evaluate
+    expression: 1200/6
+    answer: '200'
+  answer_text: Scale $1:200$ after converting 12 m to 1200 cm.
+  steps: []
+- id: ch5-5-5-map-length
+  section: '5.5'
+  tier: F
+  dfe:
+  - R2
+  statement: A map uses scale $1:50\,000$. What real distance does 4 cm represent in km?
+  check:
+    kind: evaluate
+    expression: 4*50000/100000
+    answer: '2'
+  answer_text: 2 km.
+  steps: []
+- id: ch5-5-5-scale-reverse
+  section: '5.5'
+  tier: F
+  dfe:
+  - R2
+  statement: A 15 km road is 3 cm on a map. How many cm represent 1 km?
+  check:
+    kind: evaluate
+    expression: 3/15
+    answer: '0.2'
+  answer_text: 0.2 cm per km.
+  steps: []
+- id: ch5-5-5-scale-diagram
+  section: '5.5'
+  tier: F
+  dfe:
+  - R2
+  statement: A 4.5 m table is drawn at scale $1:30$. Find its drawing length in cm.
+  check:
+    kind: evaluate
+    expression: 450/30
+    answer: '15'
+  answer_text: 15 cm.
+  steps: []
+- id: ch5-5-5-map-distance
+  section: '5.5'
+  tier: F
+  dfe:
+  - R2
+  statement: Two towns are 8.2 cm apart on a map with scale $1:250\,000$. Find the real distance in km.
+  check:
+    kind: evaluate
+    expression: 8.2*250000/100000
+    answer: '20.5'
+  answer_text: 20.5 km.
+  steps: []
+- id: ch5-5-5-scale-ratio
+  section: '5.5'
+  tier: F
+  dfe:
+  - R2
+  statement: A model is 18 cm long; the real object is 2.7 m long. Write model:real scale.
+  check:
+    kind: evaluate
+    expression: 270/18
+    answer: '15'
+  answer_text: 'Convert to 270 cm: scale $1:15$.'
+  steps: []
+- id: ch5-5-5-bearing-map
+  section: '5.5'
+  tier: F
+  dfe:
+  - R2
+  statement: On a scale drawing, a path measures 6 cm at scale $1:10\,000$. Find its real length in metres.
+  check:
+    kind: evaluate
+    expression: 6*10000/100
+    answer: '600'
+  answer_text: 600 m.
+  steps: []
+- id: ch5-5-5-scale-area-prep
+  section: '5.5'
+  tier: F
+  dfe:
+  - R2
+  statement: A square side is enlarged by scale factor 3. What is the new side if it began at 4 cm?
+  check:
+    kind: evaluate
+    expression: 4*3
+    answer: '12'
+  answer_text: 12 cm.
+  steps: []
+- id: ch5-5-5-map-convert
+  section: '5.5'
+  tier: F
+  dfe:
+  - R2
+  statement: A map distance is 3.6 cm at scale $1:75\,000$. Find the real distance in km.
+  check:
+    kind: evaluate
+    expression: 3.6*75000/100000
+    answer: '2.7'
+  answer_text: 2.7 km.
+  steps: []
+- id: ch5-5-5-scale-reason
+  section: '5.5'
+  tier: F
+  dfe:
+  - R2
+  statement: Why must map and real lengths use the same units before forming a scale ratio?
+  check:
+    kind: evaluate
+    expression: 1000/100
+    answer: '10'
+  answer_text: A ratio compares like quantities; matching units prevents a factor-of-100 or factor-of-1000
+    error.
+  steps: []
+- id: ch5-5-5-scale-plan
+  section: '5.5'
+  tier: F
+  dfe:
+  - R2
+  statement: A room is 5.4 m wide. Find its width on a plan at scale $1:60$.
+  check:
+    kind: evaluate
+    expression: 540/60
+    answer: '9'
+  answer_text: 9 cm.
+  steps: []

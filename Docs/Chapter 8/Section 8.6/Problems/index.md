@@ -1,19 +1,18 @@
 ---
-title: 8.6 Rearranging formulae — Problems
+title: "8.6 Rearranging formulae — Practise"
 chapter: 8
 chapter_title: Algebraic expressions and manipulation
-section: '8.6'
+section: "8.6"
 section_title: Rearranging formulae
 tier: F
-dfe:
-- A5
+dfe: [A5]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 8.6 Rearranging formulae — Practise
 
-# 8.6 Rearranging formulae — Problems
+Work independently. Higher-only questions carry **H** in the question list.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: A5
+:::problems chapter-8-practice-8.6
+
+:::answers chapter-8-practice-8.6

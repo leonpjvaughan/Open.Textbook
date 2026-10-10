@@ -1,0 +1,115 @@
+# Checked practice for section 6.2; questions and solutions are rendered from these records.
+chapter: 6
+problems:
+- id: p1-increase
+  section: '6.2'
+  tier: F
+  dfe: &id001
+  - R9
+  statement: Increase £80 by 15%.
+  answer_label: 15% increase on £80
+  check:
+    kind: evaluate
+    expression: 80 * 1.15
+    answer: '92'
+  answer_text: £92
+- id: p2-decrease
+  section: '6.2'
+  tier: F
+  dfe: *id001
+  statement: Decrease 240 by 12%.
+  answer_label: 12% decrease from 240
+  check:
+    kind: evaluate
+    expression: 240 * 0.88
+    answer: '211.2'
+  answer_text: '211.2'
+- id: p3-change-amount
+  section: '6.2'
+  tier: F
+  dfe: *id001
+  statement: A price rises from £40 to £46. Work out the percentage increase.
+  answer_label: Percentage increase
+  check:
+    kind: evaluate
+    expression: (46-40)/40*100
+    answer: '15'
+  answer_text: 15%
+- id: p4-decrease-rate
+  section: '6.2'
+  tier: F
+  dfe: *id001
+  statement: A quantity falls from 250 to 200. Work out the percentage decrease.
+  answer_label: Percentage decrease
+  check:
+    kind: evaluate
+    expression: (250-200)/250*100
+    answer: '20'
+  answer_text: 20%
+- id: p5-multiplier
+  section: '6.2'
+  tier: F
+  dfe: *id001
+  statement: Write the multiplier for a 7% increase.
+  answer_label: Multiplier
+  check:
+    kind: evaluate
+    expression: 1 + 7/100
+    answer: '1.07'
+  answer_text: '1.07'
+- id: p6-multiplier-down
+  section: '6.2'
+  tier: F
+  dfe: *id001
+  statement: Write the multiplier for a 35% decrease.
+  answer_label: Multiplier
+  check:
+    kind: evaluate
+    expression: 1 - 35/100
+    answer: '0.65'
+  answer_text: '0.65'
+- id: p7-context
+  section: '6.2'
+  tier: F
+  dfe: *id001
+  statement: A £560 bicycle is reduced by 8%. Work out its new price.
+  answer_label: New price
+  check:
+    kind: evaluate
+    expression: 560 * 0.92
+    answer: '515.2'
+  answer_text: £515.20
+- id: p8-context2
+  section: '6.2'
+  tier: F
+  dfe: *id001
+  statement: A town population of 18 000 increases by 2.5%. Work out the new population.
+  answer_label: New population
+  check:
+    kind: evaluate
+    expression: 18000 * 1.025
+    answer: '18450'
+  answer_text: 18 450
+- id: p9-reason
+  section: '6.2'
+  tier: F
+  dfe: *id001
+  statement: A value changes from 64 to 80. Work out the percentage change and state whether it is an increase or
+    decrease.
+  answer_label: Percentage change
+  check:
+    kind: evaluate
+    expression: (80-64)/64*100
+    answer: '25'
+  answer_text: 25% increase
+- id: p10-two-step
+  section: '6.2'
+  tier: H
+  dfe: *id001
+  statement: '**H** A £120 item increases by 10%, then decreases by 10%. Work out its final price.'
+  answer_label: Final price
+  check:
+    kind: evaluate
+    expression: 120*1.10*0.90
+    answer: '118.8'
+  answer_text: £118.80

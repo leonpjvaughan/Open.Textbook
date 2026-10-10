@@ -1,20 +1,35 @@
 ---
-title: 'Chapter 4: Fractions, decimals and percentages'
+title: "Chapter 4: Fractions, decimals and percentages"
 chapter: 4
-strand: number
+chapter_title: Fractions, decimals and percentages
 ---
-
-<!-- scaffold:stub -->
-
 # Chapter 4: Fractions, decimals and percentages
 
-Interchangeable representations and the four operations on fractions.
+Fractions, decimals and percentages can describe the same amount in different forms.
 
-## Sections
+## The chapter problem
 
-- **4.1 Equivalent fractions and ordering** — tier F · DfE N1, N10
-- **4.2 Adding and subtracting fractions** — tier F · DfE N2
-- **4.3 Multiplying and dividing fractions** — tier F · DfE N2
-- **4.4 Fractions and terminating decimals** — tier F · DfE N10
-- **4.5 Recurring decimals** — tier H · DfE N10
-- **4.6 Fractions and percentages as operators** — tier F · DfE N11, N12
+A music shop offers a £48 keyboard with a discount of $\frac{1}{4}$. A second shop lists the same keyboard at £37.50. Which price is lower, and by how much?
+
+**First contact:** without working it out, predict which shop has the lower price. You are not being marked. You will return to this problem after learning how fractions and percentages describe amounts.
+
+## By the end of this chapter you will be able to
+
+- make equivalent fractions and order fractions, decimals and percentages;
+- add, subtract, multiply and divide fractions;
+- convert fractions to terminating and recurring decimals;
+- use fractions and percentages to find parts, changes and original amounts.
+
+## Roadmap
+
+1. [4.1 Equivalent fractions and ordering](Section 4.1/Walkthrough/index.md)
+2. [4.2 Adding and subtracting fractions](Section 4.2/Walkthrough/index.md)
+3. [4.3 Multiplying and dividing fractions](Section 4.3/Walkthrough/index.md)
+4. [4.4 Fractions and terminating decimals](Section 4.4/Walkthrough/index.md)
+5. [4.5 Recurring decimals](Section 4.5/Walkthrough/index.md) — Higher only
+6. [4.6 Fractions and percentages as operators](Section 4.6/Walkthrough/index.md)
+7. [Review](Review/index.md)
+
+## Your connection
+
+A fraction or percentage can appear in a price, a recipe, a score or a journey. Where have you or someone you know used one recently? Write one example and say what the number described.

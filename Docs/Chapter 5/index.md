@@ -4,17 +4,28 @@ chapter: 5
 strand: ratio
 ---
 
-<!-- scaffold:stub -->
-
 # Chapter 5: Ratio and proportion
 
-Ratio notation and sharing, multiplicative relationships, direct and inverse proportion, and scale.
+A school is drawing a model of a garden. The path is 18 m long, and a scale drawing must show it accurately. Before learning the method, predict: would the path fit on a 30 cm page if 1 cm represented 1 m? Estimation is enough for now.
 
-## Sections
+## By the end of this chapter you will be able to
 
-- **5.1 Ratio notation, simplifying and sharing** — tier F · DfE R3, R4, R5
-- **5.2 Ratio, fractions and linear functions** — tier F · DfE R6, R7, R8
-- **5.3 Direct proportion** — tier F · DfE R10, R13, R14
-- **5.4 Inverse proportion** — tier H · DfE R10, R13, R14
-- **5.5 Scale factors, scale diagrams and maps** — tier F · DfE R2
-- **5.6 Comparing lengths, areas and volumes** — tier H · DfE R12
+- Write, simplify and use ratios to share amounts.
+- Connect ratios with fractions, tables and straight-line relationships.
+- Model direct and inverse proportion.
+- Use scale drawings and compare lengths, areas and volumes of similar shapes.
+
+## Roadmap
+
+1. [5.1 Ratio notation, simplifying and sharing](Section%205.1/Walkthrough/)
+2. [5.2 Ratio, fractions and linear functions](Section%205.2/Walkthrough/)
+3. [5.3 Direct proportion](Section%205.3/Walkthrough/)
+4. [5.4 Inverse proportion](Section%205.4/Walkthrough/) — Higher only
+5. [5.5 Scale factors, scale diagrams and maps](Section%205.5/Walkthrough/)
+6. [5.6 Comparing lengths, areas and volumes](Section%205.6/Walkthrough/) — Higher only
+
+At each progress check, return to the garden path. By the end, you can choose and use its scale accurately.
+
+## Your connection
+
+Ratios compare quantities in many settings. Write one place where you or someone you know compares quantities, such as a recipe, journey or model. What quantities are compared?

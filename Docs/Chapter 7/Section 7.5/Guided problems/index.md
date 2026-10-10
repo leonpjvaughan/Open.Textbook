@@ -1,5 +1,5 @@
 ---
-title: 7.5 Standard form — Guided problems
+title: 7.5 Standard form — Practise with help
 chapter: 7
 chapter_title: Measures, accuracy, standard form and surds
 section: '7.5'
@@ -10,10 +10,38 @@ dfe:
 kind: guided-problems
 ---
 
-<!-- scaffold:stub -->
+# 7.5 Standard form — Practise with help
 
-# 7.5 Standard form — Guided problems
+## Warm-up: remember
 
-> **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
->
-> Tier: **F** · DfE refs: N9
+1. Convert $2.5$ m to cm.
+2. Work out $3.6\times10$.
+
+<details markdown="1">
+<summary>Answers</summary>
+
+1. $250$ cm.
+2. $36$.
+</details>
+
+## Practise with help
+
+**1.** Write $83\,000$ in standard form.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+Identify the conversion, formula or exact method that matches the question.
+</details>
+
+<details markdown="1">
+<summary>Choose a step</summary>
+
+Write the relevant relationship first, then substitute the given values.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$83\,000=8.3\times10^4$.
+</details>

@@ -1,5 +1,5 @@
 ---
-title: 7.5 Standard form — Walkthrough
+title: 7.5 Standard form — Learn
 chapter: 7
 chapter_title: Measures, accuracy, standard form and surds
 section: '7.5'
@@ -10,10 +10,67 @@ dfe:
 kind: walkthrough
 ---
 
-<!-- scaffold:stub -->
+# 7.5 Standard form — Learn
 
-# 7.5 Standard form — Walkthrough
+## Before you begin
 
-> **Stub.** Teaching narrative and fully worked examples. At least one Tier-1 or Tier-2 interactive figure where a parameter is worth manipulating. State prerequisites and learning objectives at the top.
->
-> Tier: **F** · DfE refs: N9
+You should be able to multiply and divide decimals and use powers of ten.
+
+## Objectives
+
+- Write numbers in standard form.
+- Compare numbers in standard form.
+- Multiply and divide numbers in standard form.
+- Add or subtract after matching powers of ten.
+
+## Writing standard form
+
+Standard form writes a number as $a\times10^n$, where $1\leq a<10$ and $n$ is an integer.
+
+**Example 1.** Write $5\,630\,000$ in standard form.
+
+$$
+5\,630\,000=5.63\times10^6
+$$
+
+The decimal point moved six places left, so the power is $6$.
+
+**Example 2.** Write $0.000072$ in standard form.
+
+$$
+0.000072=7.2\times10^{-5}
+$$
+
+The decimal point moved five places right, so the power is negative.
+
+## Calculating in standard form
+
+Multiply the number parts and add the powers. Divide the number parts and subtract the powers.
+
+**Example 3.** Work out $(3\times10^5)(4\times10^{-2})$.
+
+$$
+(3\times4)\times10^{5+(-2)}=12\times10^3
+$$
+
+$$
+12\times10^3=1.2\times10^4
+$$
+
+For addition, first express both terms with the same power.
+
+**Example 4.** Work out $4.2\times10^6+3\times10^5$.
+
+$$
+4.2\times10^6+0.3\times10^6=4.5\times10^6
+$$
+
+> **Watch out.** Standard form needs a first number from $1$ inclusive to $10$ exclusive. Rewrite $12\times10^3$ as $1.2\times10^4$.
+
+> **Progress check.** Which is greater: $8.1\times10^4$ or $7.9\times10^5$? Compare powers first.
+
+## You should now be able to
+
+- write large and small numbers in standard form;
+- compare numbers by their powers and first numbers;
+- multiply, divide, add and subtract in standard form.

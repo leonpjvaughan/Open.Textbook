@@ -1,19 +1,17 @@
 ---
-title: 4.4 Fractions and terminating decimals — Problems
+title: "4.4 Fractions and terminating decimals — Practise"
 chapter: 4
 chapter_title: Fractions, decimals and percentages
-section: '4.4'
+section: "4.4"
 section_title: Fractions and terminating decimals
 tier: F
-dfe:
-- N10
+dfe: [N10]
 kind: problems
 ---
+# 4.4 Fractions and terminating decimals — Practise
 
-<!-- scaffold:stub -->
+Work through these independently, from the first question onwards. Questions marked **H** are Higher only.
 
-# 4.4 Fractions and terminating decimals — Problems
+:::problems chapter-4-practice-4.4
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: N10
+:::answers chapter-4-practice-4.4

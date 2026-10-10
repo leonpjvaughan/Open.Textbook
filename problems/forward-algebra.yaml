@@ -11,7 +11,7 @@ problems:
     section: "9.1"
     tier: F
     dfe: [A17]
-    statement: "Solve $2x + 3 = 11$."
+    statement: 'Solve $2x + 3 = 11$.'
     step_relation: solutions
     check: {kind: solve, equation: "2*x + 3 = 11", variable: x, answer: ["4"]}
     steps:
@@ -23,7 +23,7 @@ problems:
     section: "12.1"
     tier: F
     dfe: [A4]
-    statement: "Expand $(x + 3)(x - 4)$."
+    statement: 'Expand $(x + 3)(x - 4)$.'
     check:
       kind: evaluate
       expression: "(x + 3) * (x - 4)"
@@ -37,7 +37,7 @@ problems:
     section: "12.1"
     tier: F
     dfe: [A4]
-    statement: "Factorise $x^2 - x - 12$."
+    statement: 'Factorise $x^2 - x - 12$.'
     check:
       kind: evaluate
       expression: "x**2 - x - 12"
@@ -50,7 +50,7 @@ problems:
     section: "12.4"
     tier: F
     dfe: [A18]
-    statement: "Solve $x^2 - 5 = 20$."
+    statement: 'Solve $x^2 - 5 = 20$.'
     step_relation: solutions
     check: {kind: solve, equation: "x**2 - 5 = 20", variable: x, answer: ["5", "-5"]}
     steps:
@@ -61,7 +61,7 @@ problems:
     section: "8.2"
     tier: F
     dfe: [A4]
-    statement: "Simplify $2x + 3y + 5x - y$."
+    statement: 'Simplify $2x + 3y + 5x - y$.'
     check:
       kind: evaluate
       expression: "2*x + 3*y + 5*x - y"

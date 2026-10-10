@@ -4,82 +4,82 @@ problems:
     section: "1.2"
     tier: F
     dfe: [N2, N3]
-    statement: "Work out $374 + 268$."
-    answer_label: "$374 + 268$"
+    statement: 'Work out $374 + 268$.'
+    answer_label: '$374 + 268$'
     check: {kind: evaluate, expression: "374 + 268", answer: "642"}
-    answer_text: "$642$"
+    answer_text: '$642$'
 
   - id: p2-subtract-integers
     section: "1.2"
     tier: F
     dfe: [N2, N3]
-    statement: "Work out $604 - 187$."
-    answer_label: "$604 - 187$"
+    statement: 'Work out $604 - 187$.'
+    answer_label: '$604 - 187$'
     check: {kind: evaluate, expression: "604 - 187", answer: "417"}
-    answer_text: "$417$"
+    answer_text: '$417$'
 
   - id: p3-add-decimals
     section: "1.2"
     tier: F
     dfe: [N2, N3]
-    statement: "Work out $36.5 + 7.85$."
-    answer_label: "$36.5 + 7.85$"
+    statement: 'Work out $36.5 + 7.85$.'
+    answer_label: '$36.5 + 7.85$'
     check: {kind: evaluate, expression: "36.5 + 7.85", answer: "44.35"}
-    answer_text: "$44.35$ (align: $36.50 + 7.85$)."
+    answer_text: '$44.35$ (align: $36.50 + 7.85$).'
 
   - id: p4-subtract-decimals
     section: "1.2"
     tier: F
     dfe: [N2, N3]
-    statement: "Work out $90 - 23.6$."
-    answer_label: "$90 - 23.6$"
+    statement: 'Work out $90 - 23.6$.'
+    answer_label: '$90 - 23.6$'
     check: {kind: evaluate, expression: "90 - 23.6", answer: "66.4"}
-    answer_text: "$66.4$ ($90.0 - 23.6$)."
+    answer_text: '$66.4$ ($90.0 - 23.6$).'
 
   - id: p5-multiply-integers
     section: "1.2"
     tier: F
     dfe: [N2, N3]
-    statement: "Work out $37 \\times 24$."
-    answer_label: "$37 \\times 24$"
+    statement: 'Work out $37 \times 24$.'
+    answer_label: '$37 \times 24$'
     check: {kind: evaluate, expression: "37 * 24", answer: "888"}
-    answer_text: "$888$ ($37 \\times 20 = 740$, $37 \\times 4 = 148$)."
+    answer_text: '$888$ ($37 \times 20 = 740$, $37 \times 4 = 148$).'
 
   - id: p6-multiply-decimal
     section: "1.2"
     tier: F
     dfe: [N2, N3]
-    statement: "Work out $6.4 \\times 7$."
-    answer_label: "$6.4 \\times 7$"
+    statement: 'Work out $6.4 \times 7$.'
+    answer_label: '$6.4 \times 7$'
     check: {kind: evaluate, expression: "6.4 * 7", answer: "44.8"}
-    answer_text: "$44.8$"
+    answer_text: '$44.8$'
 
   - id: p7-divide-integers
     section: "1.2"
     tier: F
     dfe: [N2, N3]
-    statement: "Work out $144 \\div 12$."
-    answer_label: "$144 \\div 12$"
+    statement: 'Work out $144 \div 12$.'
+    answer_label: '$144 \div 12$'
     check: {kind: evaluate, expression: "144 / 12", answer: "12"}
-    answer_text: "$12$"
+    answer_text: '$12$'
 
   - id: p8-divide-decimal
     section: "1.2"
     tier: F
     dfe: [N2, N3]
-    statement: "Work out $7.2 \\div 3$."
-    answer_label: "$7.2 \\div 3$"
+    statement: 'Work out $7.2 \div 3$.'
+    answer_label: '$7.2 \div 3$'
     check: {kind: evaluate, expression: "7.2 / 3", answer: "2.4"}
-    answer_text: "$2.4$"
+    answer_text: '$2.4$'
 
   - id: p9-multiply-by-100
     section: "1.2"
     tier: F
     dfe: [N2, N3]
-    statement: "Work out $2.35 \\times 100$."
-    answer_label: "$2.35 \\times 100$"
+    statement: 'Work out $2.35 \times 100$.'
+    answer_label: '$2.35 \times 100$'
     check: {kind: evaluate, expression: "2.35 * 100", answer: "235"}
-    answer_text: "$235$"
+    answer_text: '$235$'
 
   - id: p10-sandwich-cost
     section: "1.2"
@@ -88,7 +88,7 @@ problems:
     statement: "A pack of 8 sandwiches costs £10.40. Work out the cost of one sandwich."
     answer_label: "Cost of one sandwich"
     check: {kind: evaluate, expression: "10.40 / 8", answer: "1.30"}
-    answer_text: "$10.40 \\div 8 = £1.30$."
+    answer_text: '$10.40 \div 8 = £1.30$.'
 
   - id: p11-share-bill
     section: "1.2"
@@ -97,31 +97,31 @@ problems:
     statement: "Three friends share a restaurant bill of £86.40 equally. How much does each pay?"
     answer_label: "Each friend's share"
     check: {kind: evaluate, expression: "86.40 / 3", answer: "28.80"}
-    answer_text: "$86.40 \\div 3 = £28.80$."
+    answer_text: '$86.40 \div 3 = £28.80$.'
 
   - id: p12-stall-profit
     section: "1.2"
     tier: F
     dfe: [N2, N3]
-    statement: "In the chapter problem, work out the exact profit: total taken $£132$ minus the cost of the stock."
+    statement: 'In the chapter problem, work out the exact profit: total taken $£132$ minus the cost of the stock.'
     answer_label: "Exact profit"
     check: {kind: evaluate, expression: "132 - (120 * 0.65 + 8 * 1.85)", answer: "39.20"}
-    answer_text: "Stock cost $120 \\times 0.65 + 8 \\times 1.85 = 78 + 14.80 = £92.80$, so profit $= 132 - 92.80 = £39.20$."
+    answer_text: 'Stock cost $120 \times 0.65 + 8 \times 1.85 = 78 + 14.80 = £92.80$, so profit $= 132 - 92.80 = £39.20$.'
 
   - id: p13-multiply-decimals
     section: "1.2"
     tier: H
     dfe: [N2, N3]
-    statement: "Work out $4.8 \\times 2.5$."
-    answer_label: "$4.8 \\times 2.5$"
+    statement: 'Work out $4.8 \times 2.5$.'
+    answer_label: '$4.8 \times 2.5$'
     check: {kind: evaluate, expression: "4.8 * 2.5", answer: "12"}
-    answer_text: "$4.8 \\times 2.5 = 12$ (work out $48 \\times 25 = 1200$, two decimal places)."
+    answer_text: '$4.8 \times 2.5 = 12$ (work out $48 \times 25 = 1200$, two decimal places).'
 
   - id: p14-divide-by-decimal
     section: "1.2"
     tier: H
     dfe: [N2, N3]
-    statement: "Work out $15.6 \\div 0.4$."
-    answer_label: "$15.6 \\div 0.4$"
+    statement: 'Work out $15.6 \div 0.4$.'
+    answer_label: '$15.6 \div 0.4$'
     check: {kind: evaluate, expression: "15.6 / 0.4", answer: "39"}
-    answer_text: "$15.6 \\div 0.4 = 156 \\div 4 = 39$."
+    answer_text: '$15.6 \div 0.4 = 156 \div 4 = 39$.'

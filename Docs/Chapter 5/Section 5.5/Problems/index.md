@@ -1,5 +1,5 @@
 ---
-title: 5.5 Scale factors, scale diagrams and maps — Problems
+title: 5.5 Scale factors, scale diagrams and maps — Practise
 chapter: 5
 chapter_title: Ratio and proportion
 section: '5.5'
@@ -10,10 +10,5 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
-# 5.5 Scale factors, scale diagrams and maps — Problems
-
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: R2
+:::problems chapter-5-practice-5.5
+:::answers chapter-5-practice-5.5

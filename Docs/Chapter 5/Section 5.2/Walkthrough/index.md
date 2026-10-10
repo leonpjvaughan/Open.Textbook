@@ -1,5 +1,5 @@
 ---
-title: 5.2 Ratio, fractions and linear functions — Walkthrough
+title: 5.2 Ratio, fractions and linear functions — Learn
 chapter: 5
 chapter_title: Ratio and proportion
 section: '5.2'
@@ -12,10 +12,35 @@ dfe:
 kind: walkthrough
 ---
 
-<!-- scaffold:stub -->
+# 5.2 Ratio, fractions and linear functions — Learn
 
-# 5.2 Ratio, fractions and linear functions — Walkthrough
+## Before you start
 
-> **Stub.** Teaching narrative and fully worked examples. At least one Tier-1 or Tier-2 interactive figure where a parameter is worth manipulating. State prerequisites and learning objectives at the top.
->
-> Tier: **F** · DfE refs: R6, R7, R8
+You should be able to multiply and divide whole numbers and fractions. Check units before comparing quantities.
+
+## Key terms
+
+A **linear relationship** has a constant rate of change. A **constant of proportionality** is the multiplier in a relationship $y=kx$.
+
+## What you will learn
+
+- Express ratio parts as fractions of a total and identify proportional linear relationships.
+- Check that the result matches the units and direction of change.
+
+## Learn the method
+
+A ratio can describe a fraction of a total. For $a:b$, the first amount is $a/(a+b)$ of the total. A linear relationship has form $y=mx+c$. Direct proportion is $y=kx$, whose graph passes through $(0,0)$.
+
+**Worked example. 4 cakes use 300 g of flour. Find the flour for 10 cakes.**
+
+- Find flour for one cake: $300\div4=75$ g.
+- Multiply by 10 cakes: $75\times10=750$ g.
+- Check the rate: $750\div10=75$ g per cake.
+
+> **Watch out.** A straight line is not always direct proportion. Check its $y$-intercept: direct proportion passes through $(0,0)$.
+
+## You should now be able to
+
+- I can write each ratio part as a fraction of the total.
+- I can use a constant multiplier to complete a proportional relationship.
+- I can explain why a non-zero intercept is not direct proportion.

@@ -68,6 +68,9 @@ CONTENT RULES:
   (write Learn / Practise with help / Practise), no DfE codes.
 
 MATHS: write $...$ and $$...$$; they are rendered to MathML at build time.
+YAML: in the bank, always SINGLE-QUOTE any string containing `$` or a backslash,
+e.g. '$rac{3}{4}$'. Double quotes make \a and \f YAML escapes and corrupt the
+LaTeX.
 CRITICAL: separate two consecutive $$...$$ display blocks with a blank line (or
 prose). pymdownx.arithmatex reads adjacent $$ blocks as one and the maths fails
 to render.

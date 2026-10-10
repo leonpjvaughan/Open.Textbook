@@ -1,0 +1,64 @@
+chapter: 4
+symbols: {}
+problems:
+- id: ch4-multiply
+  section: '4.3'
+  tier: F
+  dfe:
+  - N2
+  statement: Work out $\frac{3}{7}\times\frac{14}{15}$.
+  answer_label: Answer 1
+  check:
+    kind: evaluate
+    expression: 3/7*14/15
+    answer: 2/5
+  answer_text: $\frac{3}{7}\times\frac{14}{15}=\frac{42}{105}=\frac{2}{5}.$
+- id: ch4-divide
+  section: '4.3'
+  tier: F
+  dfe:
+  - N2
+  statement: Work out $\frac{5}{6}\div\frac{10}{9}$.
+  answer_label: Answer 2
+  check:
+    kind: evaluate
+    expression: 5/6/(10/9)
+    answer: 3/4
+  answer_text: $\frac{5}{6}\times\frac{9}{10}=\frac{45}{60}=\frac{3}{4}.$
+- id: ch4-fraction-of
+  section: '4.3'
+  tier: F
+  dfe:
+  - N2
+  statement: Work out $\frac{3}{5}$ of $40$.
+  answer_label: Answer 3
+  check:
+    kind: evaluate
+    expression: 3/5*40
+    answer: '24'
+  answer_text: $\frac{3}{5}\times40=24.$
+- id: ch4-mixed-mult
+  section: '4.3'
+  tier: F
+  dfe:
+  - N2
+  statement: Work out $2\frac{1}{4}\times\frac{2}{3}$.
+  answer_label: Answer 4
+  check:
+    kind: evaluate
+    expression: 9/4*2/3
+    answer: 3/2
+  answer_text: $\frac{9}{4}\times\frac{2}{3}=\frac{18}{12}=1\frac{1}{2}.$
+- id: ch4-share-fraction
+  section: '4.3'
+  tier: F
+  dfe:
+  - N2
+  statement: A ribbon $\frac{5}{6}$ metre long is cut into pieces each $\frac{1}{12}$ metre long. How many pieces
+    are made?
+  answer_label: Answer 5
+  check:
+    kind: evaluate
+    expression: 5/6/(1/12)
+    answer: '10'
+  answer_text: $\frac{5}{6}\div\frac{1}{12}=\frac{5}{6}\times12=10$.

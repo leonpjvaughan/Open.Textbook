@@ -1,20 +1,17 @@
 ---
-title: 4.1 Equivalent fractions and ordering — Problems
+title: "4.1 Equivalent fractions and ordering — Practise"
 chapter: 4
 chapter_title: Fractions, decimals and percentages
-section: '4.1'
+section: "4.1"
 section_title: Equivalent fractions and ordering
 tier: F
-dfe:
-- N1
-- N10
+dfe: [N1, N10]
 kind: problems
 ---
+# 4.1 Equivalent fractions and ordering — Practise
 
-<!-- scaffold:stub -->
+Work through these independently, from the first question onwards. Questions marked **H** are Higher only.
 
-# 4.1 Equivalent fractions and ordering — Problems
+:::problems chapter-4-practice-4.1
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: N1, N10
+:::answers chapter-4-practice-4.1

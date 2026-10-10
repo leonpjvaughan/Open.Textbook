@@ -13,7 +13,7 @@ problems:
     section: '2.3'
     tier: F
     dfe: [N5]
-    statement: "List all three-digit numbers made from $2,4,6$, using each digit once."
+    statement: 'List all three-digit numbers made from $2,4,6$, using each digit once.'
     answer_label: "Three-digit numbers"
     check: {kind: all, checks: [{kind: compare, relation: "<", lhs: "246", rhs: "264"}, {kind: compare, relation: "<", lhs: "264", rhs: "426"}, {kind: compare, relation: "<", lhs: "426", rhs: "462"}, {kind: compare, relation: "<", lhs: "462", rhs: "624"}, {kind: compare, relation: "<", lhs: "624", rhs: "642"}]}
     answer_text: '$246,264,426,462,624,642$'
@@ -37,7 +37,7 @@ problems:
     section: '2.3'
     tier: F
     dfe: [N5]
-    statement: "List all two-digit numbers made from $1,2,3,4$ without repeating a digit."
+    statement: 'List all two-digit numbers made from $1,2,3,4$ without repeating a digit.'
     answer_label: "Two-digit numbers"
     check: {kind: all, checks: [{kind: evaluate, expression: "4*3", answer: "12"}]}
     answer_text: '$12,13,14,21,23,24,31,32,34,41,42,43$'
@@ -61,7 +61,7 @@ problems:
     section: '2.3'
     tier: F
     dfe: [N5]
-    statement: "Using digits $1,2,3$ once each, list the three-digit numbers that are even."
+    statement: 'Using digits $1,2,3$ once each, list the three-digit numbers that are even.'
     answer_label: "Even numbers"
     check: {kind: all, checks: [{kind: compare, relation: "<", lhs: "132", rhs: "312"}]}
     answer_text: '$132$ and $312$; an even number must end in 2.'

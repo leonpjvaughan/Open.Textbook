@@ -172,3 +172,27 @@ def test_statistic_check_rejects_a_wrong_median():
         "check": {"kind": "statistic", "data": [3, 5, 6, 8], "stat": "median", "answer": "5"},
     }
     assert not verify_problem(problem).ok
+
+
+def test_yaml_has_no_control_character_escapes():
+    """Double-quoted YAML turns \\a and \\f into control characters, silently
+    corrupting LaTeX. Authors must single-quote maths scalars."""
+    import yaml
+
+    offenders = []
+
+    def walk(value, where):
+        if isinstance(value, dict):
+            for key, item in value.items():
+                walk(item, f"{where}.{key}")
+        elif isinstance(value, list):
+            for index, item in enumerate(value):
+                walk(item, f"{where}[{index}]")
+        elif isinstance(value, str) and any(
+            ord(c) < 32 and c not in "\n\t" for c in value
+        ):
+            offenders.append(f"{where}: {value!r}")
+
+    for path in list(Path("problems").glob("*.yaml")) + list(Path("booklet").glob("*.yaml")):
+        walk(yaml.safe_load(path.read_text(encoding="utf-8")), str(path))
+    assert not offenders, "control characters in YAML (use single quotes): " + "; ".join(offenders)

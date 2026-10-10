@@ -37,7 +37,7 @@ problems:
     section: '2.4'
     tier: H
     dfe: [N5]
-    statement: "How many even three-digit numbers can be made from $1,2,3,4$ without repeating digits?"
+    statement: 'How many even three-digit numbers can be made from $1,2,3,4$ without repeating digits?'
     answer_label: "Even numbers without repetition"
     check: {kind: evaluate, expression: "2*3*2", answer: "12"}
     answer_text: 'The units digit has 2 choices (2 or 4), then the hundreds digit has 3 choices and the tens digit has 2. Thus $2\\times3\\times2=12$.'
@@ -61,7 +61,7 @@ problems:
     section: '2.4'
     tier: H
     dfe: [N5]
-    statement: "How many two-digit numbers greater than 30 can be made from digits $1,2,3,4,5$ without repetition?"
+    statement: 'How many two-digit numbers greater than 30 can be made from digits $1,2,3,4,5$ without repetition?'
     answer_label: "Two-digit numbers over 30"
     check: {kind: evaluate, expression: "3*4", answer: "12"}
     answer_text: 'The tens digit can be 3, 4 or 5, giving 3 choices. Then 4 digits remain: $3\\times4=12$.'

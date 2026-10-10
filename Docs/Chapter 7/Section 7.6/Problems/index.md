@@ -1,5 +1,5 @@
 ---
-title: 7.6 Surds and exact calculations — Problems
+title: 7.6 Surds and exact calculations — Practise
 chapter: 7
 chapter_title: Measures, accuracy, standard form and surds
 section: '7.6'
@@ -10,10 +10,10 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 7.6 Surds and exact calculations — Practise
 
-# 7.6 Surds and exact calculations — Problems
+Work independently. The questions and checked answers appear below.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: N8
+:::problems chapter-7-practice-7.6
+
+:::answers chapter-7-practice-7.6

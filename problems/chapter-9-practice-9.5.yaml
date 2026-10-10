@@ -1,0 +1,124 @@
+chapter: 9
+symbols:
+  x:
+    real: true
+problems:
+- id: ch9-9-5-add
+  section: '9.5'
+  tier: F
+  dfe:
+  - A22
+  statement: Solve $x+5<12$.
+  answer_label: Solve $x+5<12$.
+  check:
+    kind: compare
+    relation: <
+    lhs: '6'
+    rhs: '7'
+  answer_text: $x<7$
+- id: ch9-9-5-subtract
+  section: '9.5'
+  tier: F
+  dfe:
+  - A22
+  statement: Solve $x-4\geq3$.
+  answer_label: Solve $x-4\geq3$.
+  check:
+    kind: compare
+    relation: '>='
+    lhs: '3'
+    rhs: '3'
+  answer_text: $x\geq7$
+- id: ch9-9-5-positive
+  section: '9.5'
+  tier: F
+  dfe:
+  - A22
+  statement: Solve $3x<15$.
+  answer_label: Solve $3x<15$.
+  check:
+    kind: compare
+    relation: <
+    lhs: '12'
+    rhs: '15'
+  answer_text: $x<5$
+- id: ch9-9-5-negative
+  section: '9.5'
+  tier: F
+  dfe:
+  - A22
+  statement: Solve $-2x<8$.
+  answer_label: Solve $-2x<8$.
+  check:
+    kind: compare
+    relation: <
+    lhs: '0'
+    rhs: '8'
+  answer_text: $x>-4$
+- id: ch9-9-5-two-step
+  section: '9.5'
+  tier: F
+  dfe:
+  - A22
+  statement: Solve $4x+1\leq13$.
+  answer_label: Solve $4x+1\leq13$.
+  check:
+    kind: compare
+    relation: <=
+    lhs: '13'
+    rhs: '13'
+  answer_text: $x\leq3$
+- id: ch9-9-5-brackets
+  section: '9.5'
+  tier: F
+  dfe:
+  - A22
+  statement: Solve $2(x-3)>8$.
+  answer_label: Solve $2(x-3)>8$.
+  check:
+    kind: compare
+    relation: '>'
+    lhs: '10'
+    rhs: '8'
+  answer_text: $x>7$
+- id: ch9-9-5-fraction
+  section: '9.5'
+  tier: F
+  dfe:
+  - A22
+  statement: Solve $x/5-2\geq1$.
+  answer_label: Solve $x/5-2\geq1$.
+  check:
+    kind: compare
+    relation: '>='
+    lhs: '1'
+    rhs: '1'
+  answer_text: $x\geq15$
+- id: ch9-9-5-context
+  section: '9.5'
+  tier: F
+  dfe:
+  - A22
+  statement: A ride costs £4 entry plus £2 per ride. You have at most £18. What ride
+    counts are possible?
+  answer_label: A ride costs £4 entry plus £2 per ride. You have at most £18. What
+    rid
+  check:
+    kind: compare
+    relation: <=
+    lhs: '18'
+    rhs: '18'
+  answer_text: Integer ride counts are $0$ to $7$.
+- id: ch9-9-5-negative-divide
+  section: '9.5'
+  tier: F
+  dfe:
+  - A22
+  statement: Solve $5-3x\leq14$.
+  answer_label: Solve $5-3x\leq14$.
+  check:
+    kind: compare
+    relation: <=
+    lhs: '5'
+    rhs: '14'
+  answer_text: $x\geq-3$

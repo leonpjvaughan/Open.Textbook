@@ -1,0 +1,215 @@
+chapter: 5
+problems:
+- id: ch5-5-1-notation
+  section: '5.1'
+  tier: F
+  dfe:
+  - R3
+  - R4
+  - R5
+  statement: Simplify the ratio $18:24$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 18/6
+      answer: '3'
+    - kind: evaluate
+      expression: 24/6
+      answer: '4'
+  answer_text: $3:4$. Divide both parts by $6$.
+  steps: []
+- id: ch5-5-1-unitary
+  section: '5.1'
+  tier: F
+  dfe:
+  - R3
+  - R4
+  - R5
+  statement: The ratio of red to blue counters is $3:5$. There are $24$ counters. How many are blue?
+  check:
+    kind: evaluate
+    expression: 24*5/8
+    answer: '15'
+  answer_text: There are $15$ blue counters.
+  steps: []
+- id: ch5-5-1-share
+  section: '5.1'
+  tier: F
+  dfe:
+  - R3
+  - R4
+  - R5
+  statement: Share $£56$ in the ratio $3:5$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 56*3/8
+      answer: '21'
+    - kind: evaluate
+      expression: 56*5/8
+      answer: '35'
+  answer_text: $£21$ and $£35$. One part is $£56\div8=£7$.
+  steps: []
+- id: ch5-5-1-scale-ratio
+  section: '5.1'
+  tier: F
+  dfe:
+  - R3
+  - R4
+  - R5
+  statement: Write $2.4:0.8$ in its simplest whole-number form.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2.4/0.8
+      answer: '3'
+    - kind: evaluate
+      expression: 0.8/0.8
+      answer: '1'
+  answer_text: $3:1$.
+  steps: []
+- id: ch5-5-1-recipe
+  section: '5.1'
+  tier: F
+  dfe:
+  - R3
+  - R4
+  - R5
+  statement: A drink uses juice and water in the ratio $2:7$. How much juice is needed for $630$ ml of
+    drink?
+  check:
+    kind: evaluate
+    expression: 630*2/9
+    answer: '140'
+  answer_text: ' $140$ ml.'
+  steps: []
+- id: ch5-5-1-find-total
+  section: '5.1'
+  tier: F
+  dfe:
+  - R3
+  - R4
+  - R5
+  statement: A length is split in the ratio $4:7$. The shorter part is $20$ cm. Work out the total length.
+  check:
+    kind: evaluate
+    expression: 20/4*11
+    answer: '55'
+  answer_text: $55$ cm.
+  steps: []
+- id: ch5-5-1-compare
+  section: '5.1'
+  tier: F
+  dfe:
+  - R3
+  - R4
+  - R5
+  statement: Are the ratios $12:20$ and $3:5$ equivalent?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 12/20
+      answer: 3/5
+    - kind: evaluate
+      expression: 3/5
+      answer: 3/5
+  answer_text: Yes. Both equal $3/5$.
+  steps: []
+- id: ch5-5-1-ratio-units
+  section: '5.1'
+  tier: F
+  dfe:
+  - R3
+  - R4
+  - R5
+  statement: A class has 12 boys and 18 girls. Write boys:girls in simplest form.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 12/6
+      answer: '2'
+    - kind: evaluate
+      expression: 18/6
+      answer: '3'
+  answer_text: $2:3$.
+  steps: []
+- id: ch5-5-1-share-money
+  section: '5.1'
+  tier: F
+  dfe:
+  - R3
+  - R4
+  - R5
+  statement: Share £96 between A and B in the ratio $5:7$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 96*5/12
+      answer: '40'
+    - kind: evaluate
+      expression: 96*7/12
+      answer: '56'
+  answer_text: A gets £40 and B gets £56.
+  steps: []
+- id: ch5-5-1-missing-part
+  section: '5.1'
+  tier: F
+  dfe:
+  - R3
+  - R4
+  - R5
+  statement: The ratio of cats to dogs is $4:9$. There are 36 dogs. How many cats are there?
+  check:
+    kind: evaluate
+    expression: 36*4/9
+    answer: '16'
+  answer_text: 16 cats.
+  steps: []
+- id: ch5-5-1-scale-up
+  section: '5.1'
+  tier: F
+  dfe:
+  - R3
+  - R4
+  - R5
+  statement: Simplify $45:60:75$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 45/15
+      answer: '3'
+    - kind: evaluate
+      expression: 60/15
+      answer: '4'
+    - kind: evaluate
+      expression: 75/15
+      answer: '5'
+  answer_text: $3:4:5$.
+  steps: []
+- id: ch5-5-1-ratio-reason
+  section: '5.1'
+  tier: F
+  dfe:
+  - R3
+  - R4
+  - R5
+  statement: A pupil simplifies $8:12$ to $2:3$. Explain why both quantities must be divided by the same
+    number.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 8/12
+      answer: 2/3
+    - kind: evaluate
+      expression: 2/3
+      answer: 2/3
+  answer_text: $8$ and $12$ are both divided by $4$, so the multiplicative relationship stays unchanged.
+  steps: []

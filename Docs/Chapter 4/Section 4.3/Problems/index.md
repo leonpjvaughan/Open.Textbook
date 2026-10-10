@@ -1,19 +1,17 @@
 ---
-title: 4.3 Multiplying and dividing fractions — Problems
+title: "4.3 Multiplying and dividing fractions — Practise"
 chapter: 4
 chapter_title: Fractions, decimals and percentages
-section: '4.3'
+section: "4.3"
 section_title: Multiplying and dividing fractions
 tier: F
-dfe:
-- N2
+dfe: [N2]
 kind: problems
 ---
+# 4.3 Multiplying and dividing fractions — Practise
 
-<!-- scaffold:stub -->
+Work through these independently, from the first question onwards. Questions marked **H** are Higher only.
 
-# 4.3 Multiplying and dividing fractions — Problems
+:::problems chapter-4-practice-4.3
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: N2
+:::answers chapter-4-practice-4.3

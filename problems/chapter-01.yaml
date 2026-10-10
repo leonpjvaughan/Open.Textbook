@@ -9,7 +9,7 @@ problems:
     section: "1.2"
     tier: F
     dfe: [N2]
-    statement: "Work out $78 + 14.8$."
+    statement: 'Work out $78 + 14.8$.'
     check: {kind: evaluate, expression: "78 + 14.8", answer: "92.8"}
     steps:
       - expr: "78 + 14.8"
@@ -19,7 +19,7 @@ problems:
     section: "1.2"
     tier: F
     dfe: [N2]
-    statement: "Work out $3.7 \\times 4$."
+    statement: 'Work out $3.7 \times 4$.'
     check: {kind: evaluate, expression: "3.7 * 4", answer: "14.8"}
     steps:
       - expr: "3.7 * 4"
@@ -29,7 +29,7 @@ problems:
     section: "1.3"
     tier: F
     dfe: [N2]
-    statement: "Work out $(-6) \\times (-4)$."
+    statement: 'Work out $(-6) \times (-4)$.'
     check: {kind: evaluate, expression: "(-6) * (-4)", answer: "24"}
     steps:
       - expr: "(-6) * (-4)"
@@ -39,7 +39,7 @@ problems:
     section: "1.4"
     tier: F
     dfe: [N3]
-    statement: "Work out $3 + 2 \\times 4$."
+    statement: 'Work out $3 + 2 \times 4$.'
     check: {kind: evaluate, expression: "3 + 2 * 4", answer: "11"}
     steps:
       - expr: "3 + 2 * 4"
@@ -66,12 +66,12 @@ problems:
     section: "1.1"
     tier: F
     dfe: [N1]
-    statement: "Is $0.09$ less than $0.35$?"
+    statement: 'Is $0.09$ less than $0.35$?'
     check: {kind: compare, relation: "<", lhs: "0.09", rhs: "0.35"}
 
   - id: ch1-order-negatives
     section: "1.3"
     tier: F
     dfe: [N1]
-    statement: "Is $-7$ less than $-2$?"
+    statement: 'Is $-7$ less than $-2$?'
     check: {kind: compare, relation: "<", lhs: "-7", rhs: "-2"}

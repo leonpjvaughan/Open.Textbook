@@ -1,0 +1,130 @@
+# Checked practice for section 6.4; questions and solutions are rendered from these records.
+chapter: 6
+problems:
+- id: p1-simple
+  section: '6.4'
+  tier: F
+  dfe: &id001
+  - R9
+  - R16
+  statement: £500 is invested at 4% simple interest each year for 3 years. Work out the interest.
+  answer_label: Simple interest
+  check:
+    kind: evaluate
+    expression: 500*0.04*3
+    answer: '60'
+  answer_text: £60
+- id: p2-total-simple
+  section: '6.4'
+  tier: F
+  dfe: *id001
+  statement: £750 is invested at 2% simple interest each year for 5 years. Work out the final amount.
+  answer_label: Final amount
+  check:
+    kind: evaluate
+    expression: 750*(1+0.02*5)
+    answer: '825'
+  answer_text: £825
+- id: p3-compound
+  section: '6.4'
+  tier: F
+  dfe: *id001
+  statement: £600 is invested at 5% compound interest for 2 years. Work out the final amount.
+  answer_label: Compound amount
+  check:
+    kind: evaluate
+    expression: 600*1.05**2
+    answer: '661.5'
+  answer_text: £661.50
+- id: p4-growth-factor
+  section: '6.4'
+  tier: F
+  dfe: *id001
+  statement: Write the multiplier for 3% interest, compounded yearly.
+  answer_label: Annual multiplier
+  check:
+    kind: evaluate
+    expression: 1+3/100
+    answer: '1.03'
+  answer_text: '1.03'
+- id: p5-compare
+  section: '6.4'
+  tier: F
+  dfe: *id001
+  statement: Find the final amount for £1000 at 6% for 2 years using simple interest, then compound interest.
+  answer_label: Compare interest types
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1000*(1+0.06*2)
+      answer: '1120'
+    - kind: evaluate
+      expression: 1000*1.06**2
+      answer: '1123.6'
+  answer_text: 'Simple: £1,120. Compound: £1,123.60.'
+- id: p6-interest
+  section: '6.4'
+  tier: F
+  dfe: *id001
+  statement: £2400 is invested at 3.5% simple interest for 4 years. Work out the interest and final amount.
+  answer_label: Interest and amount
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2400*0.035*4
+      answer: '336'
+    - kind: evaluate
+      expression: 2400+336
+      answer: '2736'
+  answer_text: Interest £336; final amount £2,736.
+- id: p7-decimal
+  section: '6.4'
+  tier: F
+  dfe: *id001
+  statement: £1250 is invested at 2.4% compound interest for 3 years. Give the final amount to the nearest penny.
+  answer_label: Compound amount
+  check:
+    kind: rounded
+    value: 1250*1.024**3
+    rounded: '1342.18'
+    to: '0.01'
+  answer_text: £1,342.18
+- id: p8-context
+  section: '6.4'
+  tier: F
+  dfe: *id001
+  statement: A savings account pays 4% compound interest. Work out the balance of £800 after 4 years.
+  answer_label: Balance
+  check:
+    kind: rounded
+    value: 800*1.04**4
+    rounded: '935.89'
+    to: '0.01'
+  answer_text: £935.89
+- id: p9-meaning
+  section: '6.4'
+  tier: F
+  dfe: *id001
+  statement: Explain why compound interest gives more than simple interest after several years at a positive rate.
+  answer_label: Compare
+  check:
+    kind: compare
+    relation: '>'
+    lhs: 1000*1.05**3
+    rhs: 1000*(1+0.05*3)
+  answer_text: Compound interest earns interest on earlier interest.
+- id: p10-higher
+  section: '6.4'
+  tier: H
+  dfe: *id001
+  statement: '**H** £900 is invested at 3% compound interest for 5 years. Work out the increase in value to the
+    nearest penny.'
+  answer_label: Increase
+  check:
+    kind: rounded
+    value: 900*1.03**5-900
+    rounded: '143.35'
+    to: '0.01'
+  answer_text: £143.35

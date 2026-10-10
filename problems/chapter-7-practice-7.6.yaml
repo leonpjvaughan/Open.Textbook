@@ -1,0 +1,125 @@
+chapter: 7
+symbols:
+  x:
+    real: true
+problems:
+- id: ch7-76-simplify
+  section: '7.6'
+  tier: H
+  dfe:
+  - N8
+  statement: Simplify $\sqrt{98}$.
+  answer_label: Simplify a surd
+  check:
+    kind: evaluate
+    expression: sqrt(98)
+    answer: 7*sqrt(2)
+  answer_text: $7\sqrt2$.
+- id: ch7-76-add
+  section: '7.6'
+  tier: H
+  dfe:
+  - N8
+  statement: Simplify $2\sqrt{12}+\sqrt{27}$.
+  answer_label: Add like surds
+  check:
+    kind: evaluate
+    expression: 2*sqrt(12)+sqrt(27)
+    answer: 7*sqrt(3)
+  answer_text: $7\sqrt3$.
+- id: ch7-76-subtract
+  section: '7.6'
+  tier: H
+  dfe:
+  - N8
+  statement: Simplify $\sqrt{75}-\sqrt{12}$.
+  answer_label: Subtract like surds
+  check:
+    kind: evaluate
+    expression: sqrt(75)-sqrt(12)
+    answer: 3*sqrt(3)
+  answer_text: $\sqrt3$.
+- id: ch7-76-multiply
+  section: '7.6'
+  tier: H
+  dfe:
+  - N8
+  statement: "Simplify $\\sqrt{10}\times\\sqrt{40}$."
+  answer_label: Multiply surds
+  check:
+    kind: evaluate
+    expression: sqrt(10)*sqrt(40)
+    answer: '20'
+  answer_text: $20$.
+- id: ch7-76-rationalise
+  section: '7.6'
+  tier: H
+  dfe:
+  - N8
+  statement: 'Rationalise the denominator of $\frac{6}{\sqrt5}$.'
+  answer_label: Rationalise a denominator
+  check:
+    kind: evaluate
+    expression: 6/sqrt(5)
+    answer: 6*sqrt(5)/5
+  answer_text: '$\frac{6\sqrt5}{5}$.'
+- id: ch7-76-expand
+  section: '7.6'
+  tier: H
+  dfe:
+  - N8
+  statement: Expand and simplify $\sqrt3(2+\sqrt{12})$.
+  answer_label: Expand a surd expression
+  check:
+    kind: evaluate
+    expression: sqrt(3)*(2+sqrt(12))
+    answer: 6+2*sqrt(3)
+  answer_text: $8+2\sqrt3$.
+- id: ch7-76-square
+  section: '7.6'
+  tier: H
+  dfe:
+  - N8
+  statement: Expand $(\sqrt5+2)^2$.
+  answer_label: Square a surd expression
+  check:
+    kind: evaluate
+    expression: (sqrt(5)+2)**2
+    answer: 9+4*sqrt(5)
+  answer_text: $9+4\sqrt5$.
+- id: ch7-76-rationalise2
+  section: '7.6'
+  tier: H
+  dfe:
+  - N8
+  statement: 'Rationalise $\frac{3}{2\sqrt2}$.'
+  answer_label: Rationalise a denominator
+  check:
+    kind: evaluate
+    expression: 3/(2*sqrt(2))
+    answer: 3*sqrt(2)/4
+  answer_text: '$\frac{3\sqrt2}{4}$.'
+- id: ch7-76-h
+  section: '7.6'
+  tier: H
+  dfe:
+  - N8
+  statement: '**H** Simplify $(\sqrt7+\sqrt3)(\sqrt7-\sqrt3)$.'
+  answer_label: Use difference of squares
+  check:
+    kind: evaluate
+    expression: (sqrt(7)+sqrt(3))*(sqrt(7)-sqrt(3))
+    answer: '4'
+  answer_text: $4$.
+- id: ch7-76-exact
+  section: '7.6'
+  tier: H
+  dfe:
+  - N8
+  statement: 'Simplify $\frac{\sqrt{45}}{\sqrt5}+\sqrt{20}$.'
+  answer_label: Combine exact surd values
+  check:
+    kind: evaluate
+    expression: sqrt(45)/sqrt(5)+sqrt(20)
+    answer: 3+2*sqrt(5)
+  answer_text: $3+2\sqrt5$.

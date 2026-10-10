@@ -1,0 +1,115 @@
+# Checked practice for section 6.3; questions and solutions are rendered from these records.
+chapter: 6
+problems:
+- id: p1-reverse-20
+  section: '6.3'
+  tier: F
+  dfe: &id001
+  - R9
+  statement: After a 20% discount, a coat costs £72. Work out its original price.
+  answer_label: Original price
+  check:
+    kind: evaluate
+    expression: 72/0.8
+    answer: '90'
+  answer_text: £90
+- id: p2-reverse-rise
+  section: '6.3'
+  tier: F
+  dfe: *id001
+  statement: After a 15% increase, a value is 92. Work out its original value.
+  answer_label: Original value
+  check:
+    kind: evaluate
+    expression: 92/1.15
+    answer: '80'
+  answer_text: '80'
+- id: p3-vat
+  section: '6.3'
+  tier: F
+  dfe: *id001
+  statement: A price including 20% VAT is £54. Work out the price before VAT.
+  answer_label: Price before VAT
+  check:
+    kind: evaluate
+    expression: 54/1.2
+    answer: '45'
+  answer_text: £45
+- id: p4-original-percent
+  section: '6.3'
+  tier: F
+  dfe: *id001
+  statement: A number is 30% of its original value after a reduction. It is now 84. Work out the original value.
+  answer_label: Original value
+  check:
+    kind: evaluate
+    expression: 84/0.7
+    answer: '120'
+  answer_text: '120'
+- id: p5-sale
+  section: '6.3'
+  tier: F
+  dfe: *id001
+  statement: A television costs £408 after a 15% reduction. Work out the price before the reduction.
+  answer_label: Original price
+  check:
+    kind: evaluate
+    expression: 408/0.85
+    answer: '480'
+  answer_text: £480
+- id: p6-percentage
+  section: '6.3'
+  tier: F
+  dfe: *id001
+  statement: A value rises from an unknown amount to £138. The increase is 15%. Work out the starting value.
+  answer_label: Starting value
+  check:
+    kind: evaluate
+    expression: 138/1.15
+    answer: '120'
+  answer_text: £120
+- id: p7-context
+  section: '6.3'
+  tier: F
+  dfe: *id001
+  statement: A number after a 12% decrease is 220. Work out the original number.
+  answer_label: Original number
+  check:
+    kind: evaluate
+    expression: 220/0.88
+    answer: '250'
+  answer_text: '250'
+- id: p8-compare
+  section: '6.3'
+  tier: F
+  dfe: *id001
+  statement: A learner subtracts 20% of £80 from £80 to reverse a 20% reduction. Explain the error and find the
+    original if the reduced value is £80.
+  answer_label: Original value
+  check:
+    kind: evaluate
+    expression: 80/0.8
+    answer: '100'
+  answer_text: The reduction is 20% of the original, so £80 is 80% of the original. $80 ÷ 0.8 = £100$.
+- id: p9-higher
+  section: '6.3'
+  tier: H
+  dfe: *id001
+  statement: '**H** A price after 5% VAT is £210. Work out the price before VAT.'
+  answer_label: Price before VAT
+  check:
+    kind: evaluate
+    expression: 210/1.05
+    answer: '200'
+  answer_text: £200
+- id: p10-context
+  section: '6.3'
+  tier: F
+  dfe: *id001
+  statement: A phone is sold for £315 after a 30% discount. Work out its marked price.
+  answer_label: Marked price
+  check:
+    kind: evaluate
+    expression: 315/0.7
+    answer: '450'
+  answer_text: £450

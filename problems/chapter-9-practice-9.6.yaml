@@ -1,0 +1,122 @@
+chapter: 9
+symbols:
+  x:
+    real: true
+problems:
+- id: ch9-9-6-factor-positive
+  section: '9.6'
+  tier: H
+  dfe:
+  - A22
+  statement: Solve $(x-2)(x+3)>0$.
+  answer_label: Solve $(x-2)(x+3)>0$.
+  check:
+    kind: compare
+    relation: '>'
+    lhs: '6'
+    rhs: '0'
+  answer_text: $x<-3$ or $x>2$
+- id: ch9-9-6-factor-negative
+  section: '9.6'
+  tier: H
+  dfe:
+  - A22
+  statement: Solve $(x-1)(x-5)<0$.
+  answer_label: Solve $(x-1)(x-5)<0$.
+  check:
+    kind: compare
+    relation: <
+    lhs: '-4'
+    rhs: '0'
+  answer_text: $1<x<5$
+- id: ch9-9-6-square
+  section: '9.6'
+  tier: H
+  dfe:
+  - A22
+  statement: Solve $x^2-9\geq0$.
+  answer_label: Solve $x^2-9\geq0$.
+  check:
+    kind: compare
+    relation: '>='
+    lhs: '7'
+    rhs: '0'
+  answer_text: $x\leq-3$ or $x\geq3$
+- id: ch9-9-6-downward
+  section: '9.6'
+  tier: H
+  dfe:
+  - A22
+  statement: Solve $-x^2+4>0$.
+  answer_label: Solve $-x^2+4>0$.
+  check:
+    kind: compare
+    relation: '>'
+    lhs: '4'
+    rhs: '0'
+  answer_text: $-2<x<2$
+- id: ch9-9-6-shifted
+  section: '9.6'
+  tier: H
+  dfe:
+  - A22
+  statement: Solve $x^2+x-6\leq0$.
+  answer_label: Solve $x^2+x-6\leq0$.
+  check:
+    kind: compare
+    relation: <=
+    lhs: '0'
+    rhs: '0'
+  answer_text: $-3\leq x\leq2$
+- id: ch9-9-6-nonmonic
+  section: '9.6'
+  tier: H
+  dfe:
+  - A22
+  statement: Solve $2x^2-8x>0$.
+  answer_label: Solve $2x^2-8x>0$.
+  check:
+    kind: compare
+    relation: '>'
+    lhs: '10'
+    rhs: '0'
+  answer_text: $x<0$ or $x>4$
+- id: ch9-9-6-factor-form
+  section: '9.6'
+  tier: H
+  dfe:
+  - A22
+  statement: Solve $(x+4)(x-1)\leq0$.
+  answer_label: Solve $(x+4)(x-1)\leq0$.
+  check:
+    kind: compare
+    relation: <=
+    lhs: '-4'
+    rhs: '0'
+  answer_text: $-4\leq x\leq1$
+- id: ch9-9-6-mixed-linear
+  section: '9.6'
+  tier: H
+  dfe:
+  - A22
+  statement: Which method applies, and why? Solve $x^2-4x+3>0$.
+  answer_label: Which method applies, and why? Solve $x^2-4x+3>0$.
+  check:
+    kind: compare
+    relation: '>'
+    lhs: '3'
+    rhs: '0'
+  answer_text: 'Factor the quadratic: $(x-1)(x-3)>0$, so $x<1$ or $x>3$.'
+- id: ch9-9-6-strict-roots
+  section: '9.6'
+  tier: H
+  dfe:
+  - A22
+  statement: Solve $x^2-5x+6<0$.
+  answer_label: Solve $x^2-5x+6<0$.
+  check:
+    kind: compare
+    relation: <
+    lhs: -1/4
+    rhs: '0'
+  answer_text: $2<x<3$

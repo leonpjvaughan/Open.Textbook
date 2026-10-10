@@ -10,7 +10,7 @@ symbols:
 problems:
   - id: differentiate-power
     section: "A-level"
-    statement: "Differentiate $x^3$."
+    statement: 'Differentiate $x^3$.'
     check:
       kind: apply
       expression: "x**3"
@@ -24,7 +24,7 @@ problems:
 
   - id: differentiate-product
     section: "A-level"
-    statement: "Differentiate $x\\sin x$."
+    statement: 'Differentiate $x\sin x$.'
     check:
       kind: apply
       expression: "x*sin(x)"
@@ -38,7 +38,7 @@ problems:
 
   - id: differentiate-chain
     section: "A-level"
-    statement: "Differentiate $\\sin(3x)$."
+    statement: 'Differentiate $\sin(3x)$.'
     check:
       kind: apply
       expression: "sin(3*x)"
@@ -52,7 +52,7 @@ problems:
 
   - id: integrate-power
     section: "A-level"
-    statement: "Find $\\int 6x\\,dx$."
+    statement: 'Find $\int 6x\,dx$.'
     check:
       kind: apply
       expression: "6*x"
@@ -67,7 +67,7 @@ problems:
 
   - id: integrate-by-substitution
     section: "A-level"
-    statement: "Find $\\int 2x(x^2+1)^3\\,dx$."
+    statement: 'Find $\int 2x(x^2+1)^3\,dx$.'
     check:
       kind: apply
       expression: "2*x*(x**2 + 1)**3"
@@ -82,7 +82,7 @@ problems:
 
   - id: definite-integral
     section: "A-level"
-    statement: "Evaluate $\\int_0^1 x^2\\,dx$."
+    statement: 'Evaluate $\int_0^1 x^2\,dx$.'
     check:
       kind: apply
       expression: "x**2"

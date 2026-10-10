@@ -1,5 +1,5 @@
 ---
-title: 7.3 Rounding and error intervals — Problems
+title: 7.3 Rounding and error intervals — Practise
 chapter: 7
 chapter_title: Measures, accuracy, standard form and surds
 section: '7.3'
@@ -10,10 +10,10 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 7.3 Rounding and error intervals — Practise
 
-# 7.3 Rounding and error intervals — Problems
+Work independently. The questions and checked answers appear below.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: N15
+:::problems chapter-7-practice-7.3
+
+:::answers chapter-7-practice-7.3

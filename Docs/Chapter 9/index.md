@@ -1,20 +1,39 @@
 ---
-title: 'Chapter 9: Equations and inequalities'
+title: "Chapter 9: Equations and inequalities"
 chapter: 9
 strand: algebra
 ---
 
-<!-- scaffold:stub -->
-
 # Chapter 9: Equations and inequalities
 
-Linear equations and inequalities, forming equations from contexts, and quadratic inequalities.
+## The chapter problem
 
-## Sections
+A community hall hires a room for a fixed fee of £18, then charges £6 per hour. Another hall charges £10 plus £8 per hour. How many hours make the prices equal?
 
-- **9.1 Solving linear equations** — tier F · DfE A17
-- **9.2 Equations with unknowns on both sides** — tier F · DfE A17
-- **9.3 Forming and solving equations** — tier F · DfE A21
-- **9.4 Inequalities on a number line and set notation** — tier F · DfE A22
-- **9.5 Solving linear inequalities** — tier F · DfE A22
-- **9.6 Quadratic inequalities** — tier H · DfE A22
+Before calculating, predict whether the equal point is before or after two hours. You can revise your prediction later.
+
+## By the end of this chapter you will be able to
+
+- solve linear equations, including equations with an unknown on both sides;
+- turn information from a situation into an equation and solve it;
+- write inequalities, show their solutions on a number line, and use set notation;
+- solve linear inequalities, including those divided by a negative number;
+<!-- tier:h -->
+- solve quadratic inequalities by finding roots and checking intervals. (Higher only)
+<!-- /tier:h -->
+
+## Roadmap
+
+1. [9.1 Solving linear equations](Section 9.1/Walkthrough/index.md)
+2. [9.2 Equations with unknowns on both sides](Section 9.2/Walkthrough/index.md)
+3. [9.3 Forming and solving equations](Section 9.3/Walkthrough/index.md)
+4. [9.4 Inequalities on a number line and set notation](Section 9.4/Walkthrough/index.md)
+5. [9.5 Solving linear inequalities](Section 9.5/Walkthrough/index.md)
+<!-- tier:h -->
+6. [9.6 Quadratic inequalities](Section 9.6/Walkthrough/index.md) (Higher only)
+<!-- /tier:h -->
+7. [Review](Review/index.md)
+
+## Your connection
+
+A fixed fee plus a cost for each unit appears in many situations. Where might you or someone you know compare two such costs? Write your own example and say what the unknown would represent.

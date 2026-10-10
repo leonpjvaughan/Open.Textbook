@@ -1,0 +1,108 @@
+chapter: 8
+symbols:
+  x:
+    real: true
+  a:
+    real: true
+  b:
+    real: true
+  m:
+    real: true
+  n:
+    real: true
+  p:
+    real: true
+  q:
+    real: true
+  y:
+    real: true
+problems:
+- id: ch8-8-5-1
+  section: '8.5'
+  tier: F
+  dfe: &id001
+  - A2
+  statement: Find $2a+5$ when $a=3$.
+  answer_label: Find $2a+5$ when $a=3$.
+  check:
+    kind: evaluate
+    expression: 2*3+5
+    answer: '11'
+  answer_text: $2(3)+5=11$.
+- id: ch8-8-5-2
+  section: '8.5'
+  tier: F
+  dfe: *id001
+  statement: Find $x^2+4$ when $x=-3$.
+  answer_label: Find $x^2+4$ when $x=-3$.
+  check:
+    kind: evaluate
+    expression: (-3)**2+4
+    answer: '13'
+  answer_text: $(-3)^2+4=13$.
+- id: ch8-8-5-3
+  section: '8.5'
+  tier: F
+  dfe: *id001
+  statement: Find $3p-2q$ when $p=4$ and $q=5$.
+  answer_label: Find $3p-2q$ when $p=4$ and $q=5$.
+  check:
+    kind: evaluate
+    expression: 3*4-2*5
+    answer: '2'
+  answer_text: $12-10=2$.
+- id: ch8-8-5-4
+  section: '8.5'
+  tier: F
+  dfe: *id001
+  statement: Find $A=lw$ when $l=8$ and $w=3.5$.
+  answer_label: Find $A=lw$ when $l=8$ and $w=3.5$.
+  check:
+    kind: evaluate
+    expression: 8*3.5
+    answer: '28'
+  answer_text: $A=8(3.5)=28$ square units.
+- id: ch8-8-5-5
+  section: '8.5'
+  tier: F
+  dfe: *id001
+  statement: Find $v=u+at$ when $u=4$, $a=3$ and $t=5$.
+  answer_label: Find $v=u+at$ when $u=4$, $a=3$ and $t=5$.
+  check:
+    kind: evaluate
+    expression: 4+3*5
+    answer: '19'
+  answer_text: $v=4+3(5)=19$.
+- id: ch8-8-5-6
+  section: '8.5'
+  tier: F
+  dfe: *id001
+  statement: Find $3x^2-2$ when $x=-2$.
+  answer_label: Find $3x^2-2$ when $x=-2$.
+  check:
+    kind: evaluate
+    expression: 3*(-2)**2-2
+    answer: '10'
+  answer_text: $3(-2)^2-2=10$.
+- id: ch8-8-5-7
+  section: '8.5'
+  tier: F
+  dfe: *id001
+  statement: Find $5r-2$ when $r=6$.
+  answer_label: Find $5r-2$ when $r=6$.
+  check:
+    kind: evaluate
+    expression: 5*6-2
+    answer: '28'
+  answer_text: $5(6)-2=28$.
+- id: ch8-8-5-8
+  section: '8.5'
+  tier: F
+  dfe: *id001
+  statement: Find $P=2l+2w$ when $l=7,w=3$.
+  answer_label: Find $P=2l+2w$ when $l=7,w=3$.
+  check:
+    kind: evaluate
+    expression: 2*7+2*3
+    answer: '20'
+  answer_text: $P=2(7)+2(3)=20$.

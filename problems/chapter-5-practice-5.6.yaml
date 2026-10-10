@@ -1,0 +1,154 @@
+chapter: 5
+problems:
+- id: ch5-5-6-length-factor
+  section: '5.6'
+  tier: H
+  dfe:
+  - R12
+  statement: Similar shapes have length scale factor 4. A smaller length is 3 cm. Find the matching larger
+    length.
+  check:
+    kind: evaluate
+    expression: 3*4
+    answer: '12'
+  answer_text: 12 cm.
+  steps: []
+- id: ch5-5-6-area-factor
+  section: '5.6'
+  tier: H
+  dfe:
+  - R12
+  statement: Similar shapes have length scale factor 3. The smaller area is 8 cm$^2$. Find the larger
+    area.
+  check:
+    kind: evaluate
+    expression: 8*3**2
+    answer: '72'
+  answer_text: 72 cm$^2$.
+  steps: []
+- id: ch5-5-6-volume-factor
+  section: '5.6'
+  tier: H
+  dfe:
+  - R12
+  statement: Similar solids have length scale factor 2. The smaller volume is 15 cm$^3$. Find the larger
+    volume.
+  check:
+    kind: evaluate
+    expression: 15*2**3
+    answer: '120'
+  answer_text: 120 cm$^3$.
+  steps: []
+- id: ch5-5-6-area-from-length
+  section: '5.6'
+  tier: H
+  dfe:
+  - R12
+  statement: Similar rectangles have lengths 6 cm and 15 cm. The smaller area is 24 cm$^2$. Find the larger
+    area.
+  check:
+    kind: evaluate
+    expression: 24*(15/6)**2
+    answer: '150'
+  answer_text: 150 cm$^2$.
+  steps: []
+- id: ch5-5-6-volume-from-length
+  section: '5.6'
+  tier: H
+  dfe:
+  - R12
+  statement: Similar solids have corresponding lengths 4 cm and 10 cm. The smaller volume is 32 cm$^3$.
+    Find the larger volume.
+  check:
+    kind: evaluate
+    expression: 32*(10/4)**3
+    answer: '500'
+  answer_text: 500 cm$^3$.
+  steps: []
+- id: ch5-5-6-length-from-area
+  section: '5.6'
+  tier: H
+  dfe:
+  - R12
+  statement: Similar shapes have area scale factor 25. Find the length scale factor.
+  check:
+    kind: evaluate
+    expression: 5**2
+    answer: '25'
+  answer_text: The length scale factor is $5$ (since $5^2=25$).
+  steps: []
+- id: ch5-5-6-reverse-area
+  section: '5.6'
+  tier: H
+  dfe:
+  - R12
+  statement: Similar shapes have length scale factor 4 from small to large. The large area is 400 cm$^2$.
+    Find the small area.
+  check:
+    kind: evaluate
+    expression: 400/4**2
+    answer: '25'
+  answer_text: 25 cm$^2$.
+  steps: []
+- id: ch5-5-6-reverse-volume
+  section: '5.6'
+  tier: H
+  dfe:
+  - R12
+  statement: Similar solids have length scale factor 3 from small to large. The large volume is 540 cm$^3$.
+    Find the small volume.
+  check:
+    kind: evaluate
+    expression: 540/3**3
+    answer: '20'
+  answer_text: 20 cm$^3$.
+  steps: []
+- id: ch5-5-6-scale-dimensions
+  section: '5.6'
+  tier: H
+  dfe:
+  - R12
+  statement: A cuboid is enlarged by scale factor 1.5. Original volume is 80 cm$^3$. Find the new volume.
+  check:
+    kind: evaluate
+    expression: 80*1.5**3
+    answer: '270'
+  answer_text: 270 cm$^3$.
+  steps: []
+- id: ch5-5-6-compare-ratios
+  section: '5.6'
+  tier: H
+  dfe:
+  - R12
+  statement: Similar triangles have side ratio small:large $2:5$. Find the area ratio.
+  check:
+    kind: evaluate
+    expression: 2**2/5**2
+    answer: 4/25
+  answer_text: Area ratio small:large is $4:25$.
+  steps: []
+- id: ch5-5-6-area-side
+  section: '5.6'
+  tier: H
+  dfe:
+  - R12
+  statement: A similar shape has area scale factor 9. Its original corresponding length is 7 cm. Find
+    the enlarged length.
+  check:
+    kind: evaluate
+    expression: 7*3
+    answer: '21'
+  answer_text: 21 cm.
+  steps: []
+- id: ch5-5-6-volume-length
+  section: '5.6'
+  tier: H
+  dfe:
+  - R12
+  statement: Similar objects have volume ratio small:large $8:125$. Find the length ratio small:large.
+  check:
+    kind: evaluate
+    expression: 2/5
+    answer: 2/5
+  answer_text: Length ratio small:large is $2:5$.
+  steps: []
