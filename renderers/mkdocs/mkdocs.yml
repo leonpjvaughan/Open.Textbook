@@ -1,3 +1,9 @@
+INHERIT: base.yml
+site_name: GCSE Mathematics (9-1) — Higher
+docs_dir: ../../Docs
+site_dir: ../../site/higher
+extra:
+  tier_profile: higher
 nav:
 - Home: index.md
 - Glossary:
@@ -30,6 +36,7 @@ nav:
     - Walkthrough: Chapter 1/Section 1.5/Walkthrough/index.md
     - Guided problems: Chapter 1/Section 1.5/Guided problems/index.md
     - Problems: Chapter 1/Section 1.5/Problems/index.md
+  - Review: Chapter 1/Review/index.md
 - 'Chapter 2: Factors, multiples and primes':
   - Overview: Chapter 2/index.md
   - 2.1 Factors, multiples and prime numbers:
@@ -48,6 +55,7 @@ nav:
     - Walkthrough: Chapter 2/Section 2.4/Walkthrough/index.md
     - Guided problems: Chapter 2/Section 2.4/Guided problems/index.md
     - Problems: Chapter 2/Section 2.4/Problems/index.md
+  - Review: Chapter 2/Review/index.md
 - 'Chapter 3: Powers, roots and indices':
   - Overview: Chapter 3/index.md
   - 3.1 Powers and roots:
@@ -66,6 +74,7 @@ nav:
     - Walkthrough: Chapter 3/Section 3.4/Walkthrough/index.md
     - Guided problems: Chapter 3/Section 3.4/Guided problems/index.md
     - Problems: Chapter 3/Section 3.4/Problems/index.md
+  - Review: Chapter 3/Review/index.md
 - 'Chapter 4: Fractions, decimals and percentages':
   - Overview: Chapter 4/index.md
   - 4.1 Equivalent fractions and ordering:
@@ -92,6 +101,7 @@ nav:
     - Walkthrough: Chapter 4/Section 4.6/Walkthrough/index.md
     - Guided problems: Chapter 4/Section 4.6/Guided problems/index.md
     - Problems: Chapter 4/Section 4.6/Problems/index.md
+  - Review: Chapter 4/Review/index.md
 - 'Chapter 5: Ratio and proportion':
   - Overview: Chapter 5/index.md
   - 5.1 Ratio notation, simplifying and sharing:
@@ -118,6 +128,7 @@ nav:
     - Walkthrough: Chapter 5/Section 5.6/Walkthrough/index.md
     - Guided problems: Chapter 5/Section 5.6/Guided problems/index.md
     - Problems: Chapter 5/Section 5.6/Problems/index.md
+  - Review: Chapter 5/Review/index.md
 - 'Chapter 6: Percentages and financial mathematics':
   - Overview: Chapter 6/index.md
   - 6.1 Percentage of an amount:
@@ -140,6 +151,7 @@ nav:
     - Walkthrough: Chapter 6/Section 6.5/Walkthrough/index.md
     - Guided problems: Chapter 6/Section 6.5/Guided problems/index.md
     - Problems: Chapter 6/Section 6.5/Problems/index.md
+  - Review: Chapter 6/Review/index.md
 - 'Chapter 7: Measures, accuracy, standard form and surds':
   - Overview: Chapter 7/index.md
   - 7.1 Units of measure and conversions:
@@ -166,6 +178,7 @@ nav:
     - Walkthrough: Chapter 7/Section 7.6/Walkthrough/index.md
     - Guided problems: Chapter 7/Section 7.6/Guided problems/index.md
     - Problems: Chapter 7/Section 7.6/Problems/index.md
+  - Review: Chapter 7/Review/index.md
 - 'Chapter 8: Algebraic expressions and manipulation':
   - Overview: Chapter 8/index.md
   - 8.1 Algebraic notation and vocabulary:
@@ -196,6 +209,7 @@ nav:
     - Walkthrough: Chapter 8/Section 8.7/Walkthrough/index.md
     - Guided problems: Chapter 8/Section 8.7/Guided problems/index.md
     - Problems: Chapter 8/Section 8.7/Problems/index.md
+  - Review: Chapter 8/Review/index.md
 - 'Chapter 9: Equations and inequalities':
   - Overview: Chapter 9/index.md
   - 9.1 Solving linear equations:
@@ -222,6 +236,7 @@ nav:
     - Walkthrough: Chapter 9/Section 9.6/Walkthrough/index.md
     - Guided problems: Chapter 9/Section 9.6/Guided problems/index.md
     - Problems: Chapter 9/Section 9.6/Problems/index.md
+  - Review: Chapter 9/Review/index.md
 - 'Chapter 10: Sequences':
   - Overview: Chapter 10/index.md
   - 10.1 Term-to-term and position-to-term rules:
@@ -244,6 +259,7 @@ nav:
     - Walkthrough: Chapter 10/Section 10.5/Walkthrough/index.md
     - Guided problems: Chapter 10/Section 10.5/Guided problems/index.md
     - Problems: Chapter 10/Section 10.5/Problems/index.md
+  - Review: Chapter 10/Review/index.md
 - 'Chapter 11: Straight-line graphs and rates of change':
   - Overview: Chapter 11/index.md
   - 11.1 Coordinates and plotting graphs:
@@ -270,6 +286,7 @@ nav:
     - Walkthrough: Chapter 11/Section 11.6/Walkthrough/index.md
     - Guided problems: Chapter 11/Section 11.6/Guided problems/index.md
     - Problems: Chapter 11/Section 11.6/Problems/index.md
+  - Review: Chapter 11/Review/index.md
 - 'Chapter 12: Quadratic expressions, equations and graphs':
   - Overview: Chapter 12/index.md
   - 12.1 Expanding and factorising quadratics:
@@ -296,6 +313,7 @@ nav:
     - Walkthrough: Chapter 12/Section 12.6/Walkthrough/index.md
     - Guided problems: Chapter 12/Section 12.6/Guided problems/index.md
     - Problems: Chapter 12/Section 12.6/Problems/index.md
+  - Review: Chapter 12/Review/index.md
 - 'Chapter 13: Other functions and graphs':
   - Overview: Chapter 13/index.md
   - 13.1 Cubic, reciprocal and exponential graphs:
@@ -314,6 +332,7 @@ nav:
     - Walkthrough: Chapter 13/Section 13.4/Walkthrough/index.md
     - Guided problems: Chapter 13/Section 13.4/Guided problems/index.md
     - Problems: Chapter 13/Section 13.4/Problems/index.md
+  - Review: Chapter 13/Review/index.md
 - 'Chapter 14: Simultaneous equations and iteration':
   - Overview: Chapter 14/index.md
   - 14.1 Simultaneous equations by elimination:
@@ -336,6 +355,7 @@ nav:
     - Walkthrough: Chapter 14/Section 14.5/Walkthrough/index.md
     - Guided problems: Chapter 14/Section 14.5/Guided problems/index.md
     - Problems: Chapter 14/Section 14.5/Problems/index.md
+  - Review: Chapter 14/Review/index.md
 - 'Chapter 15: Functions, algebraic fractions and proof':
   - Overview: Chapter 15/index.md
   - '15.1 Functions: inverse and composite':
@@ -358,6 +378,7 @@ nav:
     - Walkthrough: Chapter 15/Section 15.5/Walkthrough/index.md
     - Guided problems: Chapter 15/Section 15.5/Guided problems/index.md
     - Problems: Chapter 15/Section 15.5/Problems/index.md
+  - Review: Chapter 15/Review/index.md
 - 'Chapter 16: Angles, polygons and geometrical reasoning':
   - Overview: Chapter 16/index.md
   - 16.1 Angle facts at a point and on a line:
@@ -380,6 +401,7 @@ nav:
     - Walkthrough: Chapter 16/Section 16.5/Walkthrough/index.md
     - Guided problems: Chapter 16/Section 16.5/Guided problems/index.md
     - Problems: Chapter 16/Section 16.5/Problems/index.md
+  - Review: Chapter 16/Review/index.md
 - 'Chapter 17: Properties, constructions, loci and bearings':
   - Overview: Chapter 17/index.md
   - 17.1 Properties of 2D and 3D shapes:
@@ -402,6 +424,7 @@ nav:
     - Walkthrough: Chapter 17/Section 17.5/Walkthrough/index.md
     - Guided problems: Chapter 17/Section 17.5/Guided problems/index.md
     - Problems: Chapter 17/Section 17.5/Problems/index.md
+  - Review: Chapter 17/Review/index.md
 - 'Chapter 18: Transformations, congruence and similarity':
   - Overview: Chapter 18/index.md
   - 18.1 Reflection, rotation and translation:
@@ -428,6 +451,7 @@ nav:
     - Walkthrough: Chapter 18/Section 18.6/Walkthrough/index.md
     - Guided problems: Chapter 18/Section 18.6/Guided problems/index.md
     - Problems: Chapter 18/Section 18.6/Problems/index.md
+  - Review: Chapter 18/Review/index.md
 - 'Chapter 19: Perimeter, area, surface area and volume':
   - Overview: Chapter 19/index.md
   - 19.1 Perimeter and area of 2D shapes:
@@ -454,6 +478,7 @@ nav:
     - Walkthrough: Chapter 19/Section 19.6/Walkthrough/index.md
     - Guided problems: Chapter 19/Section 19.6/Guided problems/index.md
     - Problems: Chapter 19/Section 19.6/Problems/index.md
+  - Review: Chapter 19/Review/index.md
 - 'Chapter 20: Pythagoras'' theorem and trigonometry':
   - Overview: Chapter 20/index.md
   - 20.1 Pythagoras' theorem:
@@ -488,6 +513,7 @@ nav:
     - Walkthrough: Chapter 20/Section 20.8/Walkthrough/index.md
     - Guided problems: Chapter 20/Section 20.8/Guided problems/index.md
     - Problems: Chapter 20/Section 20.8/Problems/index.md
+  - Review: Chapter 20/Review/index.md
 - 'Chapter 21: Circle geometry and circle theorems':
   - Overview: Chapter 21/index.md
   - 21.1 Parts of a circle:
@@ -506,6 +532,7 @@ nav:
     - Walkthrough: Chapter 21/Section 21.4/Walkthrough/index.md
     - Guided problems: Chapter 21/Section 21.4/Guided problems/index.md
     - Problems: Chapter 21/Section 21.4/Problems/index.md
+  - Review: Chapter 21/Review/index.md
 - 'Chapter 22: Vectors':
   - Overview: Chapter 22/index.md
   - 22.1 Vector notation and column vectors:
@@ -520,6 +547,7 @@ nav:
     - Walkthrough: Chapter 22/Section 22.3/Walkthrough/index.md
     - Guided problems: Chapter 22/Section 22.3/Guided problems/index.md
     - Problems: Chapter 22/Section 22.3/Problems/index.md
+  - Review: Chapter 22/Review/index.md
 - 'Chapter 23: Probability':
   - Overview: Chapter 23/index.md
   - 23.1 The probability scale and equally likely outcomes:
@@ -546,6 +574,7 @@ nav:
     - Walkthrough: Chapter 23/Section 23.6/Walkthrough/index.md
     - Guided problems: Chapter 23/Section 23.6/Guided problems/index.md
     - Problems: Chapter 23/Section 23.6/Problems/index.md
+  - Review: Chapter 23/Review/index.md
 - 'Chapter 24: Statistics: representing and analysing data':
   - Overview: Chapter 24/index.md
   - 24.1 Collecting data, sampling and questionnaires:
@@ -568,6 +597,7 @@ nav:
     - Walkthrough: Chapter 24/Section 24.5/Walkthrough/index.md
     - Guided problems: Chapter 24/Section 24.5/Guided problems/index.md
     - Problems: Chapter 24/Section 24.5/Problems/index.md
+  - Review: Chapter 24/Review/index.md
 - 'Chapter 25: Statistics: spread, grouped data and correlation':
   - Overview: Chapter 25/index.md
   - 25.1 Quartiles, interquartile range and box plots:
@@ -590,3 +620,4 @@ nav:
     - Walkthrough: Chapter 25/Section 25.5/Walkthrough/index.md
     - Guided problems: Chapter 25/Section 25.5/Guided problems/index.md
     - Problems: Chapter 25/Section 25.5/Problems/index.md
+  - Review: Chapter 25/Review/index.md

@@ -20,7 +20,8 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 CURRICULUM = ROOT / "curriculum.yaml"
 DOCS = ROOT / "Docs"
-NAV_OUT = ROOT / "renderers" / "mkdocs" / "nav.yml"
+MKDOCS_HIGHER = ROOT / "renderers" / "mkdocs" / "mkdocs.yml"
+MKDOCS_FOUNDATION = ROOT / "renderers" / "mkdocs" / "mkdocs.foundation.yml"
 STUB_MARKER = "<!-- scaffold:stub -->"
 
 MAP_OUT = ROOT / "CURRICULUM-MAP.md"
@@ -104,6 +105,14 @@ def chapter_stub(chapter: dict) -> str:
     )
     lines = [fm, f"{STUB_MARKER}\n", f"# Chapter {chapter['id']}: {chapter['title']}\n"]
     lines.append(f"{chapter['summary']}\n")
+    anchor = chapter.get("anchor")
+    if anchor:
+        lines.append("## Anchor problem\n")
+        lines.append(f"**{anchor['title']}.** {anchor['brief']}\n")
+    if chapter.get("application"):
+        lines.append(f"**Where it is used:** {chapter['application']}\n")
+    if chapter.get("relevance_prompt"):
+        lines.append(f"**Your turn to connect it:** {chapter['relevance_prompt']}\n")
     lines.append("## Sections\n")
     for s in chapter["sections"]:
         lines.append(
@@ -112,6 +121,27 @@ def chapter_stub(chapter: dict) -> str:
         )
     lines.append("")
     return "\n".join(lines)
+
+
+def review_stub(chapter: dict) -> str:
+    fm = front_matter(
+        title=f"Chapter {chapter['id']}: Review",
+        chapter=chapter["id"],
+        kind="review",
+    )
+    anchor = chapter.get("anchor")
+    anchor_line = (
+        f"Resolve the anchor problem — **{anchor['title']}** — now that every section "
+        "is available.\n"
+        if anchor
+        else "Resolve the chapter's anchor problem.\n"
+    )
+    return (
+        f"{fm}\n{STUB_MARKER}\n\n# Chapter {chapter['id']}: Review\n\n"
+        f"> **Stub.** {anchor_line}>\n"
+        "> Then set interleaved mixed practice across this chapter and earlier "
+        "chapters, with method-selection prompts (\u201cwhich method, and why?\u201d).\n"
+    )
 
 
 def glossary_stub() -> str:
@@ -195,7 +225,9 @@ def build_curriculum_map(meta: dict, strands: list[dict], chapters: list[dict]) 
     return "\n".join(lines)
 
 
-def build_nav(meta: dict, strands: list[dict], chapters: list[dict]) -> str:
+def build_nav_list(
+    strands: list[dict], chapters: list[dict], include_higher: bool = True
+) -> list[dict]:
     nav: list[dict] = [{"Home": "index.md"}]
     glossary_children = [{"Overview": "Glossary/index.md"}]
     strand_titles = {s["id"]: s["title"] for s in strands}
@@ -205,6 +237,8 @@ def build_nav(meta: dict, strands: list[dict], chapters: list[dict]) -> str:
     for c in chapters:
         children = [{"Overview": f"Chapter {c['id']}/index.md"}]
         for s in c["sections"]:
+            if not include_higher and s["tier"] == "H":
+                continue
             base = f"Chapter {c['id']}/Section {s['id']}"
             children.append(
                 {
@@ -215,8 +249,24 @@ def build_nav(meta: dict, strands: list[dict], chapters: list[dict]) -> str:
                     ]
                 }
             )
+        children.append({"Review": f"Chapter {c['id']}/Review/index.md"})
         nav.append({f"Chapter {c['id']}: {c['title']}": children})
-    return yaml.safe_dump({"nav": nav}, sort_keys=False, allow_unicode=True, width=120)
+    return nav
+
+
+def build_mkdocs_config(
+    meta: dict, strands: list[dict], chapters: list[dict], profile: str
+) -> str:
+    higher = profile != "foundation"
+    config = {
+        "INHERIT": "base.yml",
+        "site_name": f"{meta['title']} \u2014 {'Higher' if higher else 'Foundation'}",
+        "docs_dir": "../../Docs",
+        "site_dir": f"../../site/{profile}",
+        "extra": {"tier_profile": profile},
+        "nav": build_nav_list(strands, chapters, include_higher=higher),
+    }
+    return yaml.safe_dump(config, sort_keys=False, allow_unicode=True, width=120)
 
 
 def check_full_coverage(chapters: list[dict]) -> list[str]:
@@ -275,12 +325,21 @@ def main() -> int:
                 section_stub(c, s, "problems"),
                 args.dry_run,
             )
+        emit(
+            chapter_dir / "Review" / "index.md",
+            review_stub(c),
+            args.dry_run,
+        )
 
-    nav_text = build_nav(meta, strands, chapters)
-    written.append(NAV_OUT)
+    written.append(MKDOCS_HIGHER)
+    written.append(MKDOCS_FOUNDATION)
     if not args.dry_run:
-        NAV_OUT.parent.mkdir(parents=True, exist_ok=True)
-        NAV_OUT.write_text(nav_text, encoding="utf-8")
+        MKDOCS_HIGHER.write_text(
+            build_mkdocs_config(meta, strands, chapters, "higher"), encoding="utf-8"
+        )
+        MKDOCS_FOUNDATION.write_text(
+            build_mkdocs_config(meta, strands, chapters, "foundation"), encoding="utf-8"
+        )
 
     written.append(MAP_OUT)
     if not args.dry_run:

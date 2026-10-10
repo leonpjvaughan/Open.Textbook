@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "open-design": {
+      "type": "stdio",
+      "command": "${OD_BIN:-open-design}",
+      "args": ["mcp", "--daemon-url", "${OD_DAEMON_URL:-http://127.0.0.1:7456}"]
+    }
+  }
+}

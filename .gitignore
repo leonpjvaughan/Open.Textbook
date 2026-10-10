@@ -13,3 +13,10 @@ __pycache__/
 
 # Tooling
 .venv/
+
+# OpenDesign local state and staged skills
+.od/
+.od-skills/
+
+# Node build dependency (build-time KaTeX only)
+node_modules/

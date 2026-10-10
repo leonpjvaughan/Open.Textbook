@@ -1,0 +1,40 @@
+# Shared MkDocs configuration for every build profile.
+# Profile configs (mkdocs.yml, mkdocs.foundation.yml) are generated from
+# curriculum.yaml by scripts/scaffold_docs.py and INHERIT this file.
+site_description: An interactive, static GCSE Mathematics textbook.
+theme:
+  name: material
+  language: en
+  font: false
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - toc.follow
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+hooks:
+  - hooks/tier.py
+  - hooks/figures.py
+  - hooks/maths.py
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+extra_css:
+  - assets/stylesheets/extra.css
