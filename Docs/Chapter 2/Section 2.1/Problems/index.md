@@ -1,19 +1,18 @@
 ---
-title: 2.1 Factors, multiples and prime numbers — Problems
+title: 2.1 Factors, multiples and prime numbers — Practise
 chapter: 2
 chapter_title: Factors, multiples and primes
 section: '2.1'
 section_title: Factors, multiples and prime numbers
 tier: F
-dfe:
-- N4
+dfe: [N4]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 2.1 Factors, multiples and prime numbers — Practise
 
-# 2.1 Factors, multiples and prime numbers — Problems
+Work independently, then use the checked solutions to review your method.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: N4
+:::problems chapter-2-practice-2.1
+
+:::answers chapter-2-practice-2.1

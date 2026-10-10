@@ -1,19 +1,18 @@
 ---
-title: 2.3 Systematic listing strategies — Problems
+title: 2.3 Systematic listing strategies — Practise
 chapter: 2
 chapter_title: Factors, multiples and primes
 section: '2.3'
 section_title: Systematic listing strategies
 tier: F
-dfe:
-- N5
+dfe: [N5]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 2.3 Systematic listing strategies — Practise
 
-# 2.3 Systematic listing strategies — Problems
+Work independently, then use the checked solutions to review your method.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: N5
+:::problems chapter-2-practice-2.3
+
+:::answers chapter-2-practice-2.3

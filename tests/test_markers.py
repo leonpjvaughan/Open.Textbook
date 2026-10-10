@@ -89,3 +89,28 @@ def test_every_marker_in_the_book_resolves():
         assert (BANKS / f"{bank}.yaml").exists(), f"missing bank for :::answers {bank}"
     for slug in figures:
         assert (FIGURES / f"{slug}.js").exists(), f"missing figure module for {slug}"
+
+
+def test_no_adjacent_display_math_blocks():
+    """pymdownx.arithmatex reads two adjacent $$ blocks as one, so they must be
+    separated by a blank line (or prose). This lint keeps the book renderable."""
+    import re as _re
+
+    one_line = _re.compile(r"^\s*\$\$.*\$\$\s*$")
+    offenders = []
+    for path in Path("Docs").rglob("*.md"):
+        lines = path.read_text(encoding="utf-8").splitlines()
+        in_block = False
+        for i, line in enumerate(lines):
+            stripped = line.strip()
+            nxt = lines[i + 1].strip() if i + 1 < len(lines) else ""
+            if stripped == "$$":
+                if in_block:
+                    in_block = False
+                    if nxt.startswith("$$"):
+                        offenders.append(f"{path}:{i + 1}")
+                else:
+                    in_block = True
+            elif not in_block and one_line.match(line) and nxt.startswith("$$"):
+                offenders.append(f"{path}:{i + 1}")
+    assert not offenders, "adjacent $$ blocks (add a blank line): " + ", ".join(offenders)

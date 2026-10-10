@@ -20,3 +20,4 @@ __pycache__/
 
 # Node build dependency (build-time KaTeX only)
 node_modules/
+agent-runs/

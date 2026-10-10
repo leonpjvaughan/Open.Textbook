@@ -1,19 +1,18 @@
 ---
-title: 3.2 Estimating powers and roots — Problems
+title: 3.2 Estimating powers and roots — Practise
 chapter: 3
 chapter_title: Powers, roots and indices
 section: '3.2'
 section_title: Estimating powers and roots
 tier: F
-dfe:
-- N6
+dfe: [N6]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 3.2 Estimating powers and roots — Practise
 
-# 3.2 Estimating powers and roots — Problems
+Work independently. Questions and answers come from the checked question set.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: N6
+:::problems chapter-3-practice-3.2
+
+:::answers chapter-3-practice-3.2

@@ -1,0 +1,135 @@
+chapter: 1
+problems:
+  - id: p1-round-7284
+    section: "1.5"
+    tier: F
+    dfe: [N14, N15]
+    statement: "Round $7\\,284$ to the nearest (a) $10$, (b) $100$, (c) $1000$."
+    answer_label: "Round $7\\,284$"
+    check:
+      kind: all
+      checks:
+        - {kind: rounded, value: "7284", rounded: "7280", to: "10"}
+        - {kind: rounded, value: "7284", rounded: "7300", to: "100"}
+        - {kind: rounded, value: "7284", rounded: "7000", to: "1000"}
+    answer_text: "(a) $7\\,280$ (b) $7\\,300$ (c) $7\\,000$."
+
+  - id: p2-round-one-decimal-place
+    section: "1.5"
+    tier: F
+    dfe: [N14, N15]
+    statement: "Round $12.78$ to 1 decimal place."
+    answer_label: "Round $12.78$ to 1 decimal place"
+    check: {kind: rounded, value: "12.78", rounded: "12.8", to: "0.1"}
+    answer_text: "$12.8$."
+
+  - id: p3-round-two-decimal-places
+    section: "1.5"
+    tier: F
+    dfe: [N14, N15]
+    statement: "Round $0.916$ to 2 decimal places."
+    answer_label: "Round $0.916$ to 2 decimal places"
+    check: {kind: rounded, value: "0.916", rounded: "0.92", to: "0.01"}
+    answer_text: "$0.92$."
+
+  - id: p4-round-significant-figures
+    section: "1.5"
+    tier: F
+    dfe: [N14, N15]
+    statement: "Round $63\\,500$ to 2 significant figures."
+    answer_label: "Round $63\\,500$ to 2 significant figures"
+    check: {kind: rounded, value: "63500", rounded: "64000", to: "1000"}
+    answer_text: "$64\\,000$ (the $3$ and $5$ round up to $64$)."
+
+  - id: p5-round-small-decimal
+    section: "1.5"
+    tier: F
+    dfe: [N14, N15]
+    statement: "Round $0.020\\,45$ to 3 significant figures."
+    answer_label: "Round $0.020\\,45$ to 3 significant figures"
+    check: {kind: rounded, value: "0.02045", rounded: "0.0205", to: "0.0001"}
+    answer_text: "$0.020\\,5$."
+
+  - id: p6-estimate-product
+    section: "1.5"
+    tier: F
+    dfe: [N14, N15]
+    statement: "Estimate $59 \\times 31$ by rounding each number to 1 significant figure."
+    answer_label: "Estimate $59 \\times 31$"
+    check: {kind: evaluate, expression: "60 * 30", answer: "1800"}
+    answer_text: "$60 \\times 30 = 1800$."
+
+  - id: p7-estimate-quotient
+    section: "1.5"
+    tier: F
+    dfe: [N14, N15]
+    statement: "Estimate $497 \\div 5$."
+    answer_label: "Estimate $497 \\div 5$"
+    check: {kind: evaluate, expression: "500 / 5", answer: "100"}
+    answer_text: "$500 \\div 5 = 100$."
+
+  - id: p8-round-jug-capacity
+    section: "1.5"
+    tier: F
+    dfe: [N14, N15]
+    statement: "A jug holds $1.85$ litres. Round this to the nearest tenth of a litre and to the nearest litre."
+    answer_label: "Rounded jug capacity"
+    check:
+      kind: all
+      checks:
+        - {kind: rounded, value: "1.85", rounded: "1.9", to: "0.1"}
+        - {kind: rounded, value: "1.85", rounded: "2", to: "1"}
+    answer_text: "$1.9$ litres; $2$ litres."
+
+  - id: p9-round-journey-time
+    section: "1.5"
+    tier: F
+    dfe: [N14, N15]
+    statement: "A journey takes $3$ hours $47$ minutes. Round this to the nearest hour."
+    answer_label: "Journey time to nearest hour"
+    check: {kind: rounded, value: "3 + 47/60", rounded: "4", to: "1"}
+    answer_text: "$4$ hours."
+
+  - id: p10-estimate-cyclist-speed
+    section: "1.5"
+    tier: F
+    dfe: [N14, N15]
+    statement: "A cyclist travels $24.6$ km in $1.8$ hours. Estimate the average speed by rounding, then say whether an exact answer of $13.7$ km/h is reasonable."
+    answer_label: "Estimated average speed"
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "25 / 2", answer: "12.5"}
+        - {kind: between, value: "13.7", low: "12.5", high: "15"}
+    answer_text: "$25 \\div 2 = 12.5$ km/h; $13.7$ km/h is reasonable."
+
+  - id: p11-round-profit-to-five
+    section: "1.5"
+    tier: F
+    dfe: [N14, N15]
+    statement: "The stall's profit was £39.20. A poster must show the profit to the nearest £5. What should it say?"
+    answer_label: "Profit to nearest £5"
+    check: {kind: rounded, value: "39.20", rounded: "40", to: "5"}
+    answer_text: "$£40$."
+
+  - id: p12-range-rounding-to-one-decimal
+    section: "1.5"
+    tier: H
+    dfe: [N14, N15]
+    statement: "A number rounds to $4.7$ to 1 decimal place. Write down the smallest and largest values it could have."
+    answer_label: "Range of values"
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "4.65", answer: "4.65"}
+        - {kind: compare, relation: "<", lhs: "4.65", rhs: "4.75"}
+    answer_text: "$4.65$ to just below $4.75$ (that is, $4.65 \\leq x < 4.75$)."
+
+  - id: p13-estimate-compound-expression
+    section: "1.5"
+    tier: H
+    dfe: [N14, N15]
+    statement: "Estimate $\\dfrac{6.2 \\times 19.8}{3.1}$ by rounding each number to 1 significant figure."
+    answer_label: "Estimate the quotient"
+    check: {kind: evaluate, expression: "6 * 20 / 3", answer: "40"}
+    answer_text: "$\\dfrac{6 \\times 20}{3} = 40$."

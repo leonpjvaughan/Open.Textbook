@@ -1,19 +1,18 @@
 ---
-title: 2.4 The product rule for counting — Problems
+title: 2.4 The product rule for counting — Practise
 chapter: 2
 chapter_title: Factors, multiples and primes
 section: '2.4'
 section_title: The product rule for counting
 tier: H
-dfe:
-- N5
+dfe: [N5]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 2.4 The product rule for counting
 
-# 2.4 The product rule for counting — Problems
+**Higher only.** Work independently, then use the checked solutions to review your method.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: N5
+:::problems chapter-2-practice-2.4
+
+:::answers chapter-2-practice-2.4

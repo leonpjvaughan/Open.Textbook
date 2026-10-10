@@ -1,0 +1,79 @@
+chapter: 3
+symbols:
+  x: {real: true, nonzero: true}
+  a: {real: true, nonzero: true}
+  y: {real: true, nonzero: true}
+  m: {real: true, nonzero: true}
+problems:
+  - id: ch3-33-multiply-indices
+    section: '3.3'
+    tier: F
+    dfe: [N7]
+    statement: 'Simplify $x^4x^3$.'
+    answer_label: 'Multiply powers with the same base'
+    check: {kind: evaluate, expression: 'x**4*x**3', answer: 'x**7'}
+    answer_text: '$x^7$'
+  - id: ch3-33-divide-indices
+    section: '3.3'
+    tier: F
+    dfe: [N7]
+    statement: 'Simplify $a^8\\div a^5$.'
+    answer_label: 'Divide powers with the same base'
+    check: {kind: evaluate, expression: 'a**8/a**5', answer: 'a**3'}
+    answer_text: '$a^3$'
+  - id: ch3-33-power-power
+    section: '3.3'
+    tier: F
+    dfe: [A4, N7]
+    statement: 'Simplify $(y^3)^4$.'
+    answer_label: 'Raise a power to a power'
+    check: {kind: evaluate, expression: '(y**3)**4', answer: 'y**12'}
+    answer_text: '$y^{12}$'
+  - id: ch3-33-zero-index
+    section: '3.3'
+    tier: F
+    dfe: [N7]
+    statement: 'Work out $7^0$.'
+    answer_label: 'Use a zero index'
+    check: {kind: evaluate, expression: '7**0', answer: '1'}
+    answer_text: '$1$'
+  - id: ch3-33-negative-index
+    section: '3.3'
+    tier: F
+    dfe: [N7]
+    statement: 'Write $5^{-2}$ as a fraction.'
+    answer_label: 'Rewrite a negative index'
+    check: {kind: evaluate, expression: '5**(-2)', answer: '1/25'}
+    answer_text: '$\\frac1{25}$'
+  - id: ch3-33-algebraic-collect
+    section: '3.3'
+    tier: F
+    dfe: [A4]
+    statement: 'Simplify $3m^2\\times4m^5$.'
+    answer_label: 'Multiply coefficients and powers'
+    check: {kind: evaluate, expression: '3*m**2*4*m**5', answer: '12*m**7'}
+    answer_text: '$12m^7$'
+  - id: ch3-33-mixed-expression
+    section: '3.3'
+    tier: F
+    dfe: [A4, N7]
+    statement: 'Simplify $\\frac{p^7q^2}{p^3q}$.'
+    answer_label: 'Simplify a quotient of powers'
+    check: {kind: evaluate, expression: 'p**7*q**2/(p**3*q)', answer: 'p**4*q'}
+    answer_text: '$p^4q$'
+  - id: ch3-33-higher-negative-product
+    section: '3.3'
+    tier: H
+    dfe: [N7]
+    statement: 'Simplify $x^{-3}x^8$.'
+    answer_label: 'Combine positive and negative indices'
+    check: {kind: evaluate, expression: 'x**(-3)*x**8', answer: 'x**5'}
+    answer_text: '$x^5$'
+  - id: ch3-33-higher-algebraic-quotient
+    section: '3.3'
+    tier: H
+    dfe: [A4, N7]
+    statement: 'Simplify $\\frac{6a^5b^2}{3a^2b^5}$ using positive indices.'
+    answer_label: 'Simplify and use positive indices'
+    check: {kind: evaluate, expression: '6*a**5*b**2/(3*a**2*b**5)', answer: '2*a**3/b**3'}
+    answer_text: '$\\frac{2a^3}{b^3}$'

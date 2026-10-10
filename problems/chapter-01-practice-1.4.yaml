@@ -1,0 +1,129 @@
+chapter: 1
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-addition-before-multiplication
+    section: "1.4"
+    tier: F
+    dfe: [N3]
+    statement: "Work out $6 + 4 \\times 3$."
+    answer_label: "$6 + 4 \\times 3$"
+    check: {kind: evaluate, expression: "6 + 4 * 3", answer: "18"}
+    answer_text: "$18$."
+
+  - id: p2-brackets-first
+    section: "1.4"
+    tier: F
+    dfe: [N3]
+    statement: "Work out $(6 + 4) \\times 3$."
+    answer_label: "$(6 + 4) \\times 3$"
+    check: {kind: evaluate, expression: "(6 + 4) * 3", answer: "30"}
+    answer_text: "$30$."
+
+  - id: p3-subtraction-before-product
+    section: "1.4"
+    tier: F
+    dfe: [N3]
+    statement: "Work out $30 - 2 \\times 7$."
+    answer_label: "$30 - 2 \\times 7$"
+    check: {kind: evaluate, expression: "30 - 2 * 7", answer: "16"}
+    answer_text: "$16$."
+
+  - id: p4-square-and-subtract
+    section: "1.4"
+    tier: F
+    dfe: [N3]
+    statement: "Work out $4^2 - 5$."
+    answer_label: "$4^2 - 5$"
+    check: {kind: evaluate, expression: "4**2 - 5", answer: "11"}
+    answer_text: "$11$."
+
+  - id: p5-mixed-operations
+    section: "1.4"
+    tier: F
+    dfe: [N3]
+    statement: "Work out $15 \\div 3 + 2 \\times 4$."
+    answer_label: "$15 \\div 3 + 2 \\times 4$"
+    check: {kind: evaluate, expression: "15 / 3 + 2 * 4", answer: "13"}
+    answer_text: "$5 + 8 = 13$."
+
+  - id: p6-division-before-subtraction
+    section: "1.4"
+    tier: F
+    dfe: [N3]
+    statement: "Work out $20 - 12 \\div 4$."
+    answer_label: "$20 - 12 \\div 4$"
+    check: {kind: evaluate, expression: "20 - 12 / 4", answer: "17"}
+    answer_text: "$17$."
+
+  - id: p7-equal-priority-left-to-right
+    section: "1.4"
+    tier: F
+    dfe: [N3]
+    statement: "Work out $36 \\div 6 \\times 2$."
+    answer_label: "$36 \\div 6 \\times 2$"
+    check: {kind: evaluate, expression: "36 / 6 * 2", answer: "12"}
+    answer_text: "$6 \\times 2 = 12$."
+
+  - id: p8-square-root-and-add
+    section: "1.4"
+    tier: F
+    dfe: [N3]
+    statement: "Work out $10 + \\sqrt{25}$."
+    answer_label: "$10 + \\sqrt{25}$"
+    check: {kind: evaluate, expression: "10 + sqrt(25)", answer: "15"}
+    answer_text: "$15$."
+
+  - id: p9-brackets-and-square
+    section: "1.4"
+    tier: F
+    dfe: [N3]
+    statement: "Work out $2 \\times (9 - 4)^2$."
+    answer_label: "$2 \\times (9 - 4)^2$"
+    check: {kind: evaluate, expression: "2 * (9 - 4)**2", answer: "50"}
+    answer_text: "$2 \\times 5^2 = 2 \\times 25 = 50$."
+
+  - id: p10-reverse-operations
+    section: "1.4"
+    tier: F
+    dfe: [N3]
+    statement: "I think of a number, add 6, then multiply by 3. The result is 36. Find the number."
+    answer_label: "The number"
+    check: {kind: solve, variable: x, equation: "(x + 6) * 3 = 36", answer: "6"}
+    answer_text: "$36 \\div 3 = 12$, then $12 - 6 = 6$."
+
+  - id: p11-square-and-subtract-equation
+    section: "1.4"
+    tier: F
+    dfe: [N3]
+    statement: "I think of a number, square it, then subtract 5. The result is 20. Find the possible values."
+    answer_label: "Possible values"
+    check: {kind: solve, variable: x, equation: "x**2 - 5 = 20", answer: ["-5", "5"]}
+    answer_text: "$x^2 - 5 = 20$, so $x^2 = 25$ and $x = 5$ or $x = -5$."
+
+  - id: p12-stall-profit-expression
+    section: "1.4"
+    tier: F
+    dfe: [N3]
+    statement: "Write an expression for the profit at the stall and evaluate it."
+    answer_label: "Stall profit"
+    check: {kind: evaluate, expression: "95 * 1.20 + 6 * 3.00 - (120 * 0.65 + 8 * 1.85)", answer: "39.20"}
+    answer_text: "$95 \\times 1.20 + 6 \\times 3.00 - (120 \\times 0.65 + 8 \\times 1.85) = £39.20$."
+
+  - id: p13-insert-brackets
+    section: "1.4"
+    tier: H
+    dfe: [N3]
+    statement: "Insert brackets to make the statement true: $2 + 3 \\times 4 - 1 = 19$."
+    answer_label: "Brackets to make 19"
+    check: {kind: evaluate, expression: "(2 + 3) * 4 - 1", answer: "19"}
+    answer_text: "$(2 + 3) \\times 4 - 1 = 19$."
+
+  - id: p14-square-root-priority
+    section: "1.4"
+    tier: H
+    dfe: [N3]
+    statement: "Work out $3 + 4 \\times (7 - 2^2)$."
+    answer_label: "$3 + 4 \\times (7 - 2^2)$"
+    check: {kind: evaluate, expression: "3 + 4 * (7 - 2**2)", answer: "15"}
+    answer_text: "$2^2 = 4$, $7 - 4 = 3$, $4 \\times 3 = 12$, $3 + 12 = 15$."

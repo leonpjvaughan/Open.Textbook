@@ -1,0 +1,75 @@
+chapter: 2
+symbols: {}
+problems:
+  - id: c2-23-outfits
+    section: '2.3'
+    tier: F
+    dfe: [N5]
+    statement: "A badge has one of two shapes, circle or star, and one of three colours, red, blue or green. List all possible badges."
+    answer_label: "Badge outcomes"
+    check: {kind: all, checks: [{kind: evaluate, expression: "2*3", answer: "6"}, {kind: evaluate, expression: "1+1+1+1+1+1", answer: "6"}]}
+    answer_text: 'Circle-red, circle-blue, circle-green, star-red, star-blue, star-green.'
+  - id: c2-23-digit-numbers
+    section: '2.3'
+    tier: F
+    dfe: [N5]
+    statement: "List all three-digit numbers made from $2,4,6$, using each digit once."
+    answer_label: "Three-digit numbers"
+    check: {kind: all, checks: [{kind: compare, relation: "<", lhs: "246", rhs: "264"}, {kind: compare, relation: "<", lhs: "264", rhs: "426"}, {kind: compare, relation: "<", lhs: "426", rhs: "462"}, {kind: compare, relation: "<", lhs: "462", rhs: "624"}, {kind: compare, relation: "<", lhs: "624", rhs: "642"}]}
+    answer_text: '$246,264,426,462,624,642$'
+  - id: c2-23-snacks
+    section: '2.3'
+    tier: F
+    dfe: [N5]
+    statement: "A snack can be a yoghurt or a biscuit, with water, juice or milk. List every snack-and-drink choice."
+    answer_label: "Snack and drink choices"
+    check: {kind: all, checks: [{kind: evaluate, expression: "2*3", answer: "6"}]}
+    answer_text: 'Yoghurt-water, yoghurt-juice, yoghurt-milk, biscuit-water, biscuit-juice, biscuit-milk.'
+  - id: c2-23-train
+    section: '2.3'
+    tier: F
+    dfe: [N5]
+    statement: "A journey has a choice of two trains, A or B, and one of two buses, X or Y. List the possible train-and-bus pairs."
+    answer_label: "Journey pairs"
+    check: {kind: all, checks: [{kind: evaluate, expression: "2*2", answer: "4"}]}
+    answer_text: '$AX, AY, BX, BY$'
+  - id: c2-23-pairs
+    section: '2.3'
+    tier: F
+    dfe: [N5]
+    statement: "List all two-digit numbers made from $1,2,3,4$ without repeating a digit."
+    answer_label: "Two-digit numbers"
+    check: {kind: all, checks: [{kind: evaluate, expression: "4*3", answer: "12"}]}
+    answer_text: '$12,13,14,21,23,24,31,32,34,41,42,43$'
+  - id: c2-23-paths
+    section: '2.3'
+    tier: F
+    dfe: [N5]
+    statement: "There are three paths from A to B and two paths from B to C. List the route choices from A to C using labels A1, A2, A3 and B1, B2."
+    answer_label: "Route pairs"
+    check: {kind: all, checks: [{kind: evaluate, expression: "3*2", answer: "6"}]}
+    answer_text: '$A1B1,A1B2,A2B1,A2B2,A3B1,A3B2$'
+  - id: c2-23-ordering
+    section: '2.3'
+    tier: F
+    dfe: [N5]
+    statement: "Three runners, Ana (A), Ben (B) and Cal (C), finish first, second and third with no ties. List all possible finishing orders."
+    answer_label: "Finishing orders"
+    check: {kind: all, checks: [{kind: evaluate, expression: "3*2*1", answer: "6"}]}
+    answer_text: '$ABC,ACB,BAC,BCA,CAB,CBA$'
+  - id: c2-23-even
+    section: '2.3'
+    tier: F
+    dfe: [N5]
+    statement: "Using digits $1,2,3$ once each, list the three-digit numbers that are even."
+    answer_label: "Even numbers"
+    check: {kind: all, checks: [{kind: compare, relation: "<", lhs: "132", rhs: "312"}]}
+    answer_text: '$132$ and $312$; an even number must end in 2.'
+  - id: c2-23-menu
+    section: '2.3'
+    tier: F
+    dfe: [N5]
+    statement: "A menu has two starters (soup, salad), two mains (rice, pasta) and two desserts (fruit, cake). List the meals with salad and fruit."
+    answer_label: "Meals with salad and fruit"
+    check: {kind: all, checks: [{kind: evaluate, expression: "2", answer: "2"}]}
+    answer_text: 'Salad-rice-fruit and salad-pasta-fruit.'

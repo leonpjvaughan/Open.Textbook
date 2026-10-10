@@ -1,20 +1,18 @@
 ---
-title: 3.3 Laws of indices — Problems
+title: 3.3 Laws of indices — Practise
 chapter: 3
 chapter_title: Powers, roots and indices
 section: '3.3'
 section_title: Laws of indices
 tier: F
-dfe:
-- A4
-- N7
+dfe: [A4, N7]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 3.3 Laws of indices — Practise
 
-# 3.3 Laws of indices — Problems
+Work independently. Questions and answers come from the checked question set.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: A4, N7
+:::problems chapter-3-practice-3.3
+
+:::answers chapter-3-practice-3.3

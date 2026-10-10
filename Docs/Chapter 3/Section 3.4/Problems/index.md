@@ -1,19 +1,18 @@
 ---
-title: 3.4 Negative and fractional indices — Problems
+title: 3.4 Negative and fractional indices — Practise
 chapter: 3
 chapter_title: Powers, roots and indices
 section: '3.4'
 section_title: Negative and fractional indices
 tier: H
-dfe:
-- N7
+dfe: [N7]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 3.4 Negative and fractional indices — Practise
 
-# 3.4 Negative and fractional indices — Problems
+Work independently. Questions and answers come from the checked question set.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: N7
+:::problems chapter-3-practice-3.4
+
+:::answers chapter-3-practice-3.4

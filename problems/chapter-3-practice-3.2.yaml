@@ -1,0 +1,66 @@
+chapter: 3
+problems:
+  - id: ch3-32-sqrt-estimate
+    section: '3.2'
+    tier: F
+    dfe: [N6]
+    statement: 'Estimate $\\sqrt{50}$ to the nearest whole number. Give a reason.'
+    answer_label: 'Estimate a square root'
+    check: {kind: between, value: '7.1', low: '7', high: '8'}
+    answer_text: 'About $7$, since $7^2=49$ and $8^2=64$.'
+  - id: ch3-32-cube-estimate
+    section: '3.2'
+    tier: F
+    dfe: [N6]
+    statement: 'Estimate $\\sqrt[3]{90}$ to the nearest whole number.'
+    answer_label: 'Estimate a cube root'
+    check: {kind: between, value: '4', low: '3', high: '5'}
+    answer_text: 'About $4$, since $4^3=64$ and $5^3=125$.'
+  - id: ch3-32-power-estimate
+    section: '3.2'
+    tier: F
+    dfe: [N6]
+    statement: 'Estimate $48^2$ by rounding 48 to the nearest ten.'
+    answer_label: 'Estimate a square'
+    check: {kind: evaluate, expression: '50**2', answer: '2500'}
+    answer_text: '$48^2\\approx50^2=2500$.'
+  - id: ch3-32-cube-estimate
+    section: '3.2'
+    tier: F
+    dfe: [N6]
+    statement: 'Estimate $19^3$ by rounding 19 to one significant figure.'
+    answer_label: 'Estimate a cube'
+    check: {kind: evaluate, expression: '20**3', answer: '8000'}
+    answer_text: '$19^3\\approx20^3=8000$.'
+  - id: ch3-32-root-range
+    section: '3.2'
+    tier: F
+    dfe: [N6]
+    statement: 'Between which two consecutive whole numbers does $\\sqrt{120}$ lie?'
+    answer_label: 'Bracket a square root'
+    check: {kind: between, value: 'sqrt(120)', low: '10', high: '11'}
+    answer_text: 'Between $10$ and $11$, since $10^2<120<11^2$.'
+  - id: ch3-32-closer-estimate
+    section: '3.2'
+    tier: F
+    dfe: [N6]
+    statement: 'Is $\\sqrt{30}$ closer to 5 or 6? Give a reason.'
+    answer_label: 'Compare distances from squares'
+    check: {kind: compare, relation: '<', lhs: '30-25', rhs: '36-30'}
+    answer_text: 'Closer to $5$: $30-25=5$, while $36-30=6$.'
+  - id: ch3-32-higher-power-bound
+    section: '3.2'
+    tier: H
+    dfe: [N6]
+    statement: 'Estimate $98^3$ by rounding to the nearest ten.'
+    answer_label: 'Estimate a large cube'
+    check: {kind: evaluate, expression: '100**3', answer: '1000000'}
+    answer_text: '$98^3\\approx100^3=1\\,000\\,000$.'
+  - id: ch3-32-higher-root-bound
+    section: '3.2'
+    tier: H
+    dfe: [N6]
+    statement: 'Between which consecutive whole numbers does $\\sqrt[3]{500}$ lie?'
+    answer_label: 'Bracket a cube root'
+    check: {kind: between, value: 'root(500, 3)', low: '7', high: '8'}
+    answer_text: 'Between $7$ and $8$, since $7^3<500<8^3$.'

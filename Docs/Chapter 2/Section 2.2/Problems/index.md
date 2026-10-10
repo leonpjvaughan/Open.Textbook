@@ -1,19 +1,18 @@
 ---
-title: 2.2 Prime factorisation, HCF and LCM — Problems
+title: 2.2 Prime factorisation, HCF and LCM — Practise
 chapter: 2
 chapter_title: Factors, multiples and primes
 section: '2.2'
 section_title: Prime factorisation, HCF and LCM
 tier: F
-dfe:
-- N4
+dfe: [N4]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 2.2 Prime factorisation, HCF and LCM — Practise
 
-# 2.2 Prime factorisation, HCF and LCM — Problems
+Work independently, then use the checked solutions to review your method.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: N4
+:::problems chapter-2-practice-2.2
+
+:::answers chapter-2-practice-2.2
