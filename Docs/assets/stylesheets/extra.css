@@ -28,6 +28,11 @@
   --md-accent-fg-color: var(--gcse-accent);
   --md-typeset-a-color: #23577d;
   --md-code-bg-color: #f2f0e9;
+  /* Figure palette (adapts with the scheme). */
+  --gcse-fig-accent: #2f6690;
+  --gcse-fig-warn: #a3402f;
+  --gcse-fig-good: #2f7d4f;
+  --gcse-fig-grid: #d8d5cb;
 }
 
 /* Dark: off-black, never pure black. */
@@ -41,6 +46,11 @@
   --md-accent-fg-color: #6ea8d8;
   --md-typeset-a-color: #8cc0e8;
   --md-code-bg-color: #201f1c;
+  /* Figure palette (adapts with the scheme). */
+  --gcse-fig-accent: #6ea8d8;
+  --gcse-fig-warn: #e08a76;
+  --gcse-fig-good: #7fc79b;
+  --gcse-fig-grid: #3a3833;
 }
 
 /* Typography: sans body for legibility, serif display for an editorial feel. */
@@ -104,4 +114,41 @@
 .math-error {
   color: #b3261e;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Figure colours come from the scheme variables above, so every figure adapts to
+   dark mode and to a future palette change without editing the figure module. */
+.fig-accent {
+  fill: var(--gcse-fig-accent);
+  stroke: var(--gcse-fig-accent);
+}
+.fig-warn {
+  fill: var(--gcse-fig-warn);
+  stroke: var(--gcse-fig-warn);
+}
+.fig-good {
+  fill: var(--gcse-fig-good);
+  stroke: var(--gcse-fig-good);
+}
+.fig-ink {
+  fill: currentColor;
+  stroke: currentColor;
+}
+.fig-grid {
+  fill: none;
+  stroke: var(--gcse-fig-grid);
+}
+.fig-line {
+  fill: none;
+  stroke: var(--gcse-fig-accent);
+  stroke-width: 2;
+}
+.text-accent {
+  color: var(--gcse-fig-accent);
+}
+.text-warn {
+  color: var(--gcse-fig-warn);
+}
+.text-good {
+  color: var(--gcse-fig-good);
 }

@@ -42,12 +42,11 @@ export function mount(el) {
       readout.textContent = "Enter a number.";
       return;
     }
-    const result = rule.value === "dp"
-      ? Number(x.toFixed(n))
-      : roundToSf(x, n);
-    const unit = rule.value === "dp" ? `${n} decimal place(s)` : `${n} significant figure(s)`;
+    const result = rule.value === "dp" ? Number(x.toFixed(n)) : roundToSf(x, n);
+    const unit =
+      rule.value === "dp" ? `${n} decimal place(s)` : `${n} significant figure(s)`;
     readout.innerHTML =
-      `$${x}$ rounded to ${unit} is <strong>$${result}$</strong>. ` +
+      `${x} rounded to ${unit} is <strong>${result}</strong>. ` +
       `<em>Which digit did you look at to decide whether to round up?</em>`;
   }
 

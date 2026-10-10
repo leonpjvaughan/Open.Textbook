@@ -3,6 +3,7 @@
 // Guided, not a sandbox: the page asks the reader to predict before using it,
 // then to explain the sign of the result. Exposes one parameter family
 // (quantity / cost / price / sold) so the mathematics stays visible.
+// Colours come from CSS classes so the figure adapts to dark mode.
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-profit" style="font:14px system-ui;max-width:560px">
@@ -20,11 +21,11 @@ export function mount(el) {
   const svg = el.querySelector("svg");
   const readout = el.querySelector(".readout");
 
-  function bar(x, w, h, fill, label, value) {
+  function bar(x, w, h, cls, label, value) {
     const base = 100;
-    return `<rect x="${x}" y="${base - h}" width="${w}" height="${h}" fill="${fill}"></rect>
-      <text x="${x + w / 2}" y="${base + 12}" text-anchor="middle" font-size="10">${label}</text>
-      <text x="${x + w / 2}" y="${base - h - 4}" text-anchor="middle" font-size="10">${value}</text>`;
+    return `<rect x="${x}" y="${base - h}" width="${w}" height="${h}" class="${cls}"></rect>
+      <text x="${x + w / 2}" y="${base + 12}" text-anchor="middle" font-size="10" class="fig-ink">${label}</text>
+      <text x="${x + w / 2}" y="${base - h - 4}" text-anchor="middle" font-size="10" class="fig-ink">${value}</text>`;
   }
 
   function update() {
@@ -41,15 +42,15 @@ export function mount(el) {
     const cap = (v) => Math.max(0, Math.min(90, (v / scale) * 90));
 
     svg.innerHTML =
-      bar(70, 60, cap(revenue), "#2563eb", "Revenue", `£${revenue.toFixed(2)}`) +
-      bar(190, 60, cap(cost), "#dc2626", "Cost", `£${cost.toFixed(2)}`);
+      bar(70, 60, cap(revenue), "fig-accent", "Revenue", `£${revenue.toFixed(2)}`) +
+      bar(190, 60, cap(cost), "fig-warn", "Cost", `£${cost.toFixed(2)}`);
 
-    const sign = profit < 0 ? "loss" : "profit";
-    const colour = profit < 0 ? "#dc2626" : "#15803d";
+    const isLoss = profit < 0;
+    const cls = isLoss ? "text-warn" : "text-good";
     readout.innerHTML =
       `Profit = revenue − cost = £${revenue.toFixed(2)} − £${cost.toFixed(2)} = ` +
-      `<strong style="color:${colour}">£${profit.toFixed(2)}</strong> ` +
-      `(${sign}). <em>Why does a negative number mean a loss?</em>`;
+      `<strong class="${cls}">£${profit.toFixed(2)}</strong> ` +
+      `(${isLoss ? "a loss" : "a profit"}). <em>Why does a negative number mean a loss?</em>`;
   }
 
   el.querySelectorAll("input").forEach((input) =>

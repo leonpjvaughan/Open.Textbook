@@ -92,7 +92,7 @@ ranking of methods. Keep the claims to what the briefing supports; see
 | `Docs/` | Canonical content (marimo markdown). Never edit generated files by hand |
 | `renderers/mkdocs/` | MkDocs build: `base.yml`, generated configs, hooks, assets |
 | `Docs/assets/figures/` | Tier-1 pure-JS figures (each exports `mount(el)`); `figures.js` is the loader |
-| `scripts/` | `scaffold_docs.py`, `fetch_sources.sh`, `katex-render.mjs` |
+| `scripts/` | `scaffold_docs.py`, `fetch_sources.sh`, `katex-render.mjs`, `screenshot.cjs` |
 | `test/` | The figure-hook and tier-profile evaluation (24 assertions) |
 | `AGENT-BRIEF.md` | Per-chapter sub-agent brief |
 
@@ -154,7 +154,11 @@ calling a chapter done.
   markdown renders literally.
 - The anchor problem must be genuinely solvable by the chapter's end; keep hooks,
   applications and tools within the ~¼ budget.
-- Figures currently hard-code their colours, so they will not adapt to dark mode.
+- Figures must use the `fig-*` classes (`fig-accent`, `fig-warn`, `fig-good`,
+  `fig-ink`, `fig-grid`) and the `text-*` classes, never hard-coded colours, so
+  they adapt to dark mode.
+- Never put `$...$` in text a figure injects at runtime: the maths hook runs at
+  build time, so runtime LaTeX is not rendered. Use plain text or HTML.
 
 **Toolchain**
 
