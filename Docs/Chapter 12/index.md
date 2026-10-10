@@ -6,6 +6,8 @@ strand: algebra
 
 # Chapter 12: Quadratic expressions, equations and graphs
 
+## The chapter problem: the ball's path
+
 A ball follows a path that can be modelled by a quadratic graph. Its height $h$ metres after $t$ seconds is $h=-t^2+4t+5$.
 
 **First contact:** before calculating, predict when the ball reaches the ground. You can make a guess; you will return to this question after learning several methods.

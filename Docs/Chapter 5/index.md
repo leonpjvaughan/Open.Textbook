@@ -6,6 +6,8 @@ strand: ratio
 
 # Chapter 5: Ratio and proportion
 
+## The chapter problem: the model garden
+
 A school is drawing a model of a garden. The path is 18 m long, and a scale drawing must show it accurately. Before learning the method, predict: would the path fit on a 30 cm page if 1 cm represented 1 m? Estimation is enough for now.
 
 ## By the end of this chapter you will be able to
