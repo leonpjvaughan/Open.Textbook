@@ -160,9 +160,11 @@ pages that introduce it. Chapter authoring appends to the strand page.
 
 **Maths and code.** Mathematics is written as `$...$` / `$$...$$` and rendered at
 build time with KaTeX (Tier 0). Python cells, when used, use the canonical MkDocs
-marimo fence ` ```python {marimo} `. Figure embedding hooks will be finalised with
-the MkDocs shell; until then, author figures as pure-JS modules under
-`figures/js/<slug>.js` and reference them by slug so the hook is a one-line change.
+marimo fence ` ```python {marimo} `. Figures are authored with the line-anchored
+directive `:::figure <slug>`; a repo-owned MkDocs hook expands it to the portable
+`<maths-figure data-figure="<slug>">` element and injects the figure loader only
+into pages that use it. Figure modules live under `figures/js/<slug>.js` and
+export `mount(el)`. See `test/README.md` for the evaluation behind this.
 
 ## 6. Interactivity policy for GCSE
 
@@ -204,18 +206,29 @@ Default to the cheapest tier that earns its keep (`HANDOFF.md` §3). For this bo
    pages, Tier-2 determinism check, links and maths render check, tier-tag audit
    against AQA columns.
 
-## 9. Open decisions for the human
+## 9. Decisions taken this phase
 
-1. **One book or two?** This plan is one Higher-capable book with `F`/`H` section
-   tags. Alternative: separate Foundation and Higher books. One book is
-   recommended for a website (filter, don't fork) and matches the DfE's
-   standard/bold model.
-2. **Lower the chapter count?** 25 chapters / 133 sections is a full textbook. If
-   the PoC should be smaller, the natural cut is to run the vertical slice plus
-   Part A (chapters 1–7) and defer the rest.
-3. **Figure hooks.** Confirm the include convention (`{{ figure("slug") }}` vs a
-   MkDocs macro vs raw HTML) before Chapter 1 is authored, so sub-agents have one
-   target.
-4. **Source licensing.** Exam-board specifications and the DfE document are
-   OGL/Crown or board-copyrighted; we are using them as reference, not copying
-   text. Confirm that `sources/` may hold local copies or must stay out of git.
+- **D8 — Figure mechanism.** The wire format is the portable
+  `<maths-figure>` custom element (raw HTML, so it survives every renderer). On
+  MkDocs, authors write the line-anchored directive `:::figure <slug>`;
+  `renderers/mkdocs/hooks/figures_hook.py` expands it and injects the loader only
+  into pages that need it. `mkdocs-macros-plugin` is rejected: it loads JS on
+  every page and aborts the build on any literal `{{ … }}` in prose or maths.
+  Evidence: `test/README.md`.
+- **D9 — Tier delivery.** One source, three build profiles — `foundation`,
+  `higher` and `toggle` — selected by `extra.tier_profile`. Higher-only pages
+  carry `tier: H` front matter; in-page Higher extensions use
+  `<!-- tier:h -->…<!-- /tier:h -->`. Foundation drops the former and strips the
+  latter; Higher keeps both; toggle tags both for the runtime switch. The
+  two-site build is the product; the toggle is a third config from the same
+  source. Evidence: `test/` (24/24 assertions).
+- **D10 — Portability of D8/D9 to Quarto/MyST/MDX** remains CI work under
+  `HANDOFF.md` D4; only MkDocs is verified so far.
+
+## 10. Open decisions for the human
+
+1. **Source licensing.** Exam-board specifications and the DfE document are
+   OGL/Crown or board-copyrighted; we use them as reference, not copied text.
+   `sources/` is git-ignored and restorable. Confirm that is acceptable.
+2. **Vertical slice scope.** Chapter 1 end-to-end (5 sections × 3 page types,
+   glossary, one figure) to lock the format before the full run.

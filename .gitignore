@@ -1,6 +1,9 @@
 # Build output
 site/
+test/site/
 
+# Python virtualenv
+.venv/
 # Fetched primary sources (reference material; see scripts/fetch_sources.sh)
 sources/
 

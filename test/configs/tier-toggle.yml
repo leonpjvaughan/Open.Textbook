@@ -1,0 +1,13 @@
+INHERIT: tier-base.yml
+site_name: "Tier build — single-site toggle"
+site_dir: ../site/tier-toggle
+extra:
+  tier_profile: toggle
+  tier_toggle_js: assets/tier-toggle.js
+extra_javascript:
+  - assets/tier-toggle.js
+nav:
+  - Home: index.md
+  - Foundation core: foundation-core.md
+  - Mixed: mixed.md
+  - Higher only: higher-only.md

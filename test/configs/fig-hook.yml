@@ -1,0 +1,13 @@
+site_name: "Figure hook — repo-owned MkDocs hook"
+docs_dir: ../content-figures
+site_dir: ../site/fig-hook
+theme:
+  name: material
+hooks:
+  - ../hooks/figures_hook.py
+nav:
+  - Home: index.md
+  - Plain: plain.md
+  - Figure (raw): figure-raw.md
+  - Figure (directive): figure-directive.md
+  - Figure (jinja): figure-jinja.md

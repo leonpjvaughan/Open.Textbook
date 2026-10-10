@@ -1,0 +1,18 @@
+[project]
+name = "gcse-maths-site"
+version = "0.0.0"
+description = "Interactive, static GCSE Mathematics textbook (marimo markdown + MkDocs)"
+requires-python = ">=3.12"
+dependencies = [
+    "mkdocs==1.6.1",
+    "mkdocs-material==9.7.7",
+]
+
+[dependency-groups]
+dev = [
+    # Candidate figure-hook mechanism evaluated in test/; drop if not adopted.
+    "mkdocs-macros-plugin==1.5.0",
+]
+
+[tool.uv]
+package = false

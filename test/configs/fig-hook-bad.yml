@@ -1,0 +1,9 @@
+site_name: "Figure hook — unknown slug must fail"
+docs_dir: ../content-figures-bad
+site_dir: ../site/fig-hook-bad
+theme:
+  name: material
+hooks:
+  - ../hooks/figures_hook.py
+nav:
+  - Home: index.md

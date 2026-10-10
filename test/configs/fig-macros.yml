@@ -1,0 +1,17 @@
+site_name: "Figure hook — mkdocs-macros-plugin (Jinja macro)"
+docs_dir: ../content-figures
+site_dir: ../site/fig-macros
+theme:
+  name: material
+plugins:
+  - macros:
+      module_name: main
+# No page context in the macro, so the loader must be site-wide.
+extra_javascript:
+  - assets/figures/figures.js
+nav:
+  - Home: index.md
+  - Plain: plain.md
+  - Figure (raw): figure-raw.md
+  - Figure (directive): figure-directive.md
+  - Figure (jinja): figure-jinja.md

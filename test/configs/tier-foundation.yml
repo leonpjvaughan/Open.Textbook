@@ -1,0 +1,9 @@
+INHERIT: tier-base.yml
+site_name: "Tier build — Foundation"
+site_dir: ../site/tier-foundation
+extra:
+  tier_profile: foundation
+nav:
+  - Home: index.md
+  - Foundation core: foundation-core.md
+  - Mixed: mixed.md
