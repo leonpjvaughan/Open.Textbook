@@ -8,12 +8,16 @@ that is not on the curriculum, and do not touch work outside your chapter.
 
 Invoke with `CHAPTER_ID=<n>` (1–25). Read, in order:
 
-1. `PLAN.md` §4–§6 — folder conventions, content contract, interactivity policy.
-2. `curriculum.yaml` — find `chapters[?id=<n>]`. This is your scope: every section,
-   its `tier`, and its `dfe` references.
-3. `CURRICULUM-MAP.md` — confirm exactly which DfE items you must deliver.
-4. `HANDOFF.md` §3–§4 — interactivity tiers and the client-side compute constraints.
-5. The primary sources in `sources/` (run `scripts/fetch_sources.sh` if empty):
+1. `AGENTS.md` — the operative **chapter formula** (six principles, page
+   contracts, budget). This is binding.
+2. `PEDAGOGY.md` — the evidence and its limits, so you do not overclaim.
+3. `PLAN.md` §4–§6 — folder conventions, content contract, interactivity policy.
+4. `curriculum.yaml` — find `chapters[?id=<n>]`. This is your scope: every section,
+   its `tier`, its `dfe` references, and the chapter's `anchor`, `application`,
+   `relevance_prompt` and `tool` metadata.
+5. `CURRICULUM-MAP.md` — confirm exactly which DfE items you must deliver.
+6. `HANDOFF.md` §3–§4 — interactivity tiers and the client-side compute constraints.
+7. The primary sources in `sources/` (run `scripts/fetch_sources.sh` if empty):
    `dfe_content.txt`, `aqa_spec.txt`, `edexcel_spec.txt`, `ocr_spec.txt`. Use them
    to confirm scope and tier; quote nothing.
 
@@ -27,6 +31,13 @@ Docs/Chapter <n>/Section <n.m>/Guided problems/index.md
 Docs/Chapter <n>/Section <n.m>/Problems/index.md
 ```
 
+Plus two chapter-level pages:
+
+```
+Docs/Chapter <n>/index.md      # anchor problem, outcomes, roadmap, relevance prompt
+Docs/Chapter <n>/Review/index.md   # resolve the anchor, interleaved mixed practice
+```
+
 Replace the `<!-- scaffold:stub -->` pages. Keep the front matter (update it if the
 scope genuinely shifted, but do not change `id`, `tier` or `dfe` without recording
 why). Also:
@@ -35,7 +46,7 @@ why). Also:
   list; keep it short and navigational.
 - Append any new terms to `Docs/Glossary/<strand>.md`, alphabetically, one
   definition each. Define a term once in the book.
-- Add figures under `figures/js/<slug>.js` (Tier 1) or generators under
+- Add figures under `Docs/assets/figures/<slug>.js` (Tier 1) or generators under
   `figures/py/` writing to `figures/data/` (Tier 2). Only when they earn their keep.
 - Do **not** edit `curriculum.yaml`, `nav.yml`, `CURRICULUM-MAP.md`, `PLAN.md`, or
   any other chapter. `nav.yml` and the map are generated.
@@ -48,18 +59,29 @@ example per item. Each Guided/Problems page includes items keyed to each item. I
 you believe an item is misplaced, do not silently move it — finish the chapter and
 raise it (see escalation).
 
-## Content standards
+## Content standards — the chapter formula
 
+The binding rules are in `AGENTS.md`. In short: run an **interest arc**
+(anchor → maintain → learner-constructed relevance → invite) and a **memory arc**
+(explicit teaching → retrieval → spacing → interleaving) through the chapter.
+
+- **Chapter opener (`index.md`):** the anchor problem with low-stakes first
+  contact, a "by the end you'll…" outcome list, the roadmap, and the learner's
+  relevance prompt.
 - **Walkthrough:** prerequisites → objectives → teaching prose → worked examples
-  (one line of reasoning per line of algebra) → interactive figure where a parameter
-  is worth manipulating → "you should now be able to…" checklist.
-- **Guided problems:** attempt first, then hint, then fuller step, then full working,
-  using nested `<details>` blocks. Include at least one retrieval item from an
-  earlier chapter. Answers are numeric/structured — never free-text symbolic
-  equivalence.
-- **Problems:** 8–15 homework-style items in increasing difficulty; Higher-only
-  items marked like **H**; answers and concise solutions in one collapsed block.
-- **Maths** is `$...$` / `$$...$$` (KaTeX, build time). No MathJax on the same page.
+  (one line of reasoning per line of algebra) → a misconception callout → at most
+  one guided figure (Predict → Test → Explain) → "you should now be able to…".
+- **Guided problems:** a closed-book **retrieval starter** from earlier material,
+  then problems that fade hint → step → full working using nested `<details>`.
+- **Problems:** 8–15 items in increasing difficulty; later sections mix in earlier
+  topics and ask "which method, and why?". Higher-only items marked **H**;
+  answers and concise solutions in one collapsed block.
+- **Review:** resolve the anchor problem and set interleaved mixed practice across
+  the chapter and earlier chapters.
+- **Budget:** hooks, applications and tools together ≤ ~¼ of the chapter.
+
+- **Maths** is `$...$` / `$$...$$`, rendered to MathML at build time (no runtime
+  JS). `aligned` works. No MathJax on the same page.
 - **Language:** UK English, GCSE command words ("work out", "show that", "explain
   why", "give a reason"). Contexts should be plausible and varied, not filler.
 - **Tier:** confirm each `F`/`H` tag against the AQA 8300 tier columns. Fixing a

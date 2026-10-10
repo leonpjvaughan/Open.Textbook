@@ -163,8 +163,8 @@ build time with KaTeX (Tier 0). Python cells, when used, use the canonical MkDoc
 marimo fence ` ```python {marimo} `. Figures are authored with the line-anchored
 directive `:::figure <slug>`; a repo-owned MkDocs hook expands it to the portable
 `<maths-figure data-figure="<slug>">` element and injects the figure loader only
-into pages that use it. Figure modules live under `figures/js/<slug>.js` and
-export `mount(el)`. See `test/README.md` for the evaluation behind this.
+into pages that use it. Figure modules live under `Docs/assets/figures/<slug>.js`
+and export `mount(el)`. See `test/README.md` for the evaluation behind this.
 
 ## 6. Interactivity policy for GCSE
 
@@ -193,14 +193,16 @@ Default to the cheapest tier that earns its keep (`HANDOFF.md` §3). For this bo
 
 ## 8. Execution plan
 
-1. **Stack shell first (already scoped in `HANDOFF.md`).** MkDocs + marimo fence +
-   KaTeX + one Tier-1 and one Tier-2 figure, `--strict` build green.
-2. **Vertical slice.** Author **Chapter 1** end-to-end by a single sub-agent, plus
-   its glossary entries, to prove the content contract, the hint pattern, and one
-   figure of each tier, and to surface any missing hook. Review before scaling.
+1. **Stack shell.** MkDocs + tier profiles + repo-owned figure hook +
+   build-time maths, `--strict` green. **Done** — `renderers/mkdocs/` builds the
+   full book strict in the Higher and Foundation profiles.
+2. **Vertical slice.** Author **Chapter 1** end-to-end, plus its glossary entries,
+   to prove the pedagogy formula, the content contract, the hint pattern and the
+   figure mechanism, and to surface any missing hook. **Done** — Chapter 1 (17
+   pages + glossary) builds clean with three guided figures and no maths errors.
 3. **Long run: one sub-agent per chapter.** Chapters 2–25 dispatched in parallel
    or in small batches, each bounded to its chapter folder, its glossary strand
-   page, and `figures/js/` / `figures/py/` additions it needs. See
+   page, and `Docs/assets/figures/` / `figures/py/` additions it needs. See
    `AGENT-BRIEF.md` for the per-chapter brief.
 4. **Integration and verification.** MkDocs `--strict`, no-JS check on Tier-0
    pages, Tier-2 determinism check, links and maths render check, tier-tag audit
@@ -211,7 +213,7 @@ Default to the cheapest tier that earns its keep (`HANDOFF.md` §3). For this bo
 - **D8 — Figure mechanism.** The wire format is the portable
   `<maths-figure>` custom element (raw HTML, so it survives every renderer). On
   MkDocs, authors write the line-anchored directive `:::figure <slug>`;
-  `renderers/mkdocs/hooks/figures_hook.py` expands it and injects the loader only
+  `renderers/mkdocs/hooks/figures.py` expands it and injects the loader only
   into pages that need it. `mkdocs-macros-plugin` is rejected: it loads JS on
   every page and aborts the build on any literal `{{ … }}` in prose or maths.
   Evidence: `test/README.md`.
@@ -224,11 +226,24 @@ Default to the cheapest tier that earns its keep (`HANDOFF.md` §3). For this bo
   source. Evidence: `test/` (24/24 assertions).
 - **D10 — Portability of D8/D9 to Quarto/MyST/MDX** remains CI work under
   `HANDOFF.md` D4; only MkDocs is verified so far.
+- **D11 — Reading theme.** Warm off-white paper (`#faf9f5`) with warm near-black
+  ink, not pure white/black; dark-on-light default (positive polarity reads
+  better — Buchner & Baumgartner 2007), with a `prefers-color-scheme` dark mode
+  toggle. Measure capped at `70ch` (Butterick 45–90, Baymard 50–75 optimal);
+  ~17px body, 1.65 line-height; serif display + sans body. Implemented in
+  `renderers/mkdocs/base.yml` and `Docs/assets/stylesheets/extra.css`.
+- **D12 — Maths rendering.** Build-time KaTeX 0.19.0 to MathML (no runtime JS,
+  CSS or fonts), via `scripts/katex-render.mjs` and
+  `renderers/mkdocs/hooks/maths.py`. `aligned` works; the hook unescapes the
+  HTML entities Markdown introduces before rendering.
+- **D13 — OpenDesign** is activated project-scoped (`.mcp.json`,
+  `.claude/settings.json`); its design directions are the house style reference.
 
 ## 10. Open decisions for the human
 
 1. **Source licensing.** Exam-board specifications and the DfE document are
    OGL/Crown or board-copyrighted; we use them as reference, not copied text.
    `sources/` is git-ignored and restorable. Confirm that is acceptable.
-2. **Vertical slice scope.** Chapter 1 end-to-end (5 sections × 3 page types,
-   glossary, one figure) to lock the format before the full run.
+2. **Tier-2 figures.** The slice uses Tier-1 figures only; the first Tier-2
+   (precomputed JSON) figure should be added in a chapter where a parameter
+   family genuinely needs it, with the determinism check.
