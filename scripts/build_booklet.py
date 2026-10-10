@@ -33,13 +33,13 @@ def render_mathml(tex_items: list[str]) -> list[str]:
     payload = json.dumps([{"tex": tex, "display": False} for tex in tex_items])
     proc = subprocess.run(
         ["node", str(KATEX)],
-        input=payload,
+        input=payload + "\n",
         capture_output=True,
         text=True,
         timeout=60,
         check=True,
     )
-    return json.loads(proc.stdout)
+    return json.loads(proc.stdout.strip().splitlines()[-1])
 
 
 def validate(data: dict) -> None:

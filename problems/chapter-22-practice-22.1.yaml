@@ -1,0 +1,66 @@
+chapter: 22
+problems:
+  - id: ch22-221-translation-coordinate
+    section: '22.1'
+    tier: H
+    dfe: [G24, G25]
+    statement: 'Point $P=(2,-1)$ is translated by $\begin{pmatrix}-4\\3\end{pmatrix}$. Give the image coordinates.'
+    answer_label: 'Image of P'
+    check: {kind: all, checks: [{kind: evaluate, expression: '2 + (-4)', answer: '-2'}, {kind: evaluate, expression: '-1 + 3', answer: '2'}]}
+    answer_text: '$(-2,2)$: add the vector components to the coordinates.'
+  - id: ch22-221-endpoint-vector
+    section: '22.1'
+    tier: H
+    dfe: [G24, G25]
+    statement: 'Find the vector from $A=(-3,2)$ to $B=(1,-4)$. Give a column vector.'
+    answer_label: 'Vector AB'
+    check: {kind: all, checks: [{kind: evaluate, expression: '1 - (-3)', answer: '4'}, {kind: evaluate, expression: '-4 - 2', answer: '-6'}]}
+    answer_text: '$\overrightarrow{AB}=\begin{pmatrix}4\\-6\end{pmatrix}$.'
+  - id: ch22-221-describe-translation
+    section: '22.1'
+    tier: H
+    dfe: [G24]
+    statement: 'Describe the translation represented by $\begin{pmatrix}5\\-2\end{pmatrix}$.'
+    answer_label: 'Translation'
+    check: {kind: all, checks: [{kind: compare, relation: '>', lhs: '5', rhs: '0'}, {kind: compare, relation: '<', lhs: '-2', rhs: '0'}]}
+    answer_text: '5 units right and 2 units down.'
+  - id: ch22-221-arrow-endpoint
+    section: '22.1'
+    tier: H
+    dfe: [G25]
+    statement: 'An arrow starts at $(4,-2)$ and represents $\begin{pmatrix}-3\\5\end{pmatrix}$. Give its endpoint.'
+    answer_label: 'Endpoint'
+    check: {kind: all, checks: [{kind: evaluate, expression: '4 - 3', answer: '1'}, {kind: evaluate, expression: '-2 + 5', answer: '3'}]}
+    answer_text: '$(1,3)$.'
+  - id: ch22-221-negative-vector
+    section: '22.1'
+    tier: H
+    dfe: [G24, G25]
+    statement: 'Write the vector from $(2,5)$ to $(-3,1)$ as a column.'
+    answer_label: 'Column vector'
+    check: {kind: all, checks: [{kind: evaluate, expression: '-3 - 2', answer: '-5'}, {kind: evaluate, expression: '1 - 5', answer: '-4'}]}
+    answer_text: '$\begin{pmatrix}-5\\-4\end{pmatrix}$: 5 left and 4 down.'
+  - id: ch22-221-translation-chain
+    section: '22.1'
+    tier: H
+    dfe: [G24]
+    statement: 'A point moves 6 units left and 3 units up. Write its translation as a column vector.'
+    answer_label: 'Translation vector'
+    check: {kind: all, checks: [{kind: evaluate, expression: '-6', answer: '-6'}, {kind: evaluate, expression: '3', answer: '3'}]}
+    answer_text: '$\begin{pmatrix}-6\\3\end{pmatrix}$.'
+  - id: ch22-221-draw-vector
+    section: '22.1'
+    tier: H
+    dfe: [G25]
+    statement: 'An arrow starts at $(1,1)$ and ends at $(4,3)$. Write its column vector.'
+    answer_label: 'Vector'
+    check: {kind: all, checks: [{kind: evaluate, expression: '4 - 1', answer: '3'}, {kind: evaluate, expression: '3 - 1', answer: '2'}]}
+    answer_text: '$\begin{pmatrix}3\\2\end{pmatrix}$.'
+  - id: ch22-221-higher-composite
+    section: '22.1'
+    tier: H
+    dfe: [G25]
+    statement: 'A point moves by $\begin{pmatrix}3\\-2\end{pmatrix}$ and then by $\begin{pmatrix}-7\\4\end{pmatrix}$. Give the total horizontal and vertical changes.'
+    answer_label: 'Total change'
+    check: {kind: all, checks: [{kind: evaluate, expression: '3 + (-7)', answer: '-4'}, {kind: evaluate, expression: '-2 + 4', answer: '2'}]}
+    answer_text: 'Horizontal change $-4$ and vertical change $2$, so the total vector is $\begin{pmatrix}-4\\2\end{pmatrix}$.'

@@ -67,6 +67,14 @@ $x^3/x^5=1/x^2$.
 Rewrite $2^{20}$ as $(2^{10})^2$. Use $2^{10}=1024$ to find the exact size
 after 20 doublings. Compare the result with your estimate from 3.2.
 
+### Try it: the laws of indices
+
+**Predict first.** Work out $2^3 \times 2^2$ in two ways: multiply out the powers, then add the indices. Do you get the same number?
+
+:::figure ch3-index-laws
+
+**Explain:** why is $a^m \times a^n = a^{m+n}$? Say it in words about counting factors.
+
 ## You should now be able to
 
 - multiply and divide powers with the same base;

@@ -1,5 +1,5 @@
 ---
-title: 23.4 Combined events and tree diagrams — Problems
+title: 23.4 Combined events and tree diagrams — Practise
 chapter: 23
 chapter_title: Probability
 section: '23.4'
@@ -10,10 +10,9 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 23.4 Combined events and tree diagrams — Practise
 
-# 23.4 Combined events and tree diagrams — Problems
+Work through these independently. Every question gives you a chance to check what you understand.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: P8
+:::problems chapter-23-practice-23.4
+:::answers chapter-23-practice-23.4

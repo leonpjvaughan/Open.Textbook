@@ -114,3 +114,14 @@ def test_no_adjacent_display_math_blocks():
             elif not in_block and one_line.match(line) and nxt.startswith("$$"):
                 offenders.append(f"{path}:{i + 1}")
     assert not offenders, "adjacent $$ blocks (add a blank line): " + ", ".join(offenders)
+
+
+def test_no_control_characters_in_content():
+    """Agents can write a literal control character where a LaTeX escape was
+    meant (\\a -> BEL). It corrupts maths silently, so fail loudly."""
+    offenders = []
+    for path in list(Path("Docs").rglob("*.md")):
+        text = path.read_text(encoding="utf-8")
+        if any(ord(c) < 32 and c not in "\n\t" for c in text):
+            offenders.append(str(path))
+    assert not offenders, "control characters in markdown: " + ", ".join(offenders)

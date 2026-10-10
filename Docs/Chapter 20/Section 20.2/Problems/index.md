@@ -1,19 +1,17 @@
 ---
-title: 20.2 Trigonometric ratios (SOHCAHTOA) — Problems
+title: "20.2 Trigonometric ratios (SOHCAHTOA) — Practise"
 chapter: 20
-chapter_title: Pythagoras' theorem and trigonometry
+chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.2'
-section_title: Trigonometric ratios (SOHCAHTOA)
+section_title: "Trigonometric ratios (SOHCAHTOA)"
 tier: F
-dfe:
-- G20
+dfe: [G20]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 20.2 Trigonometric ratios (SOHCAHTOA) — Practise
 
-# 20.2 Trigonometric ratios (SOHCAHTOA) — Problems
+Work independently. Estimate where useful, show your method, and check units. In the mixed questions, choose the method and give a reason.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: G20
+:::problems chapter-20-practice-20.2
+:::answers chapter-20-practice-20.2

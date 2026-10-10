@@ -1,19 +1,17 @@
 ---
-title: 20.7 The cosine rule — Problems
+title: "20.7 The cosine rule — Practise"
 chapter: 20
-chapter_title: Pythagoras' theorem and trigonometry
+chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.7'
-section_title: The cosine rule
+section_title: "The cosine rule"
 tier: H
-dfe:
-- G22
+dfe: [G22]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 20.7 The cosine rule — Practise
 
-# 20.7 The cosine rule — Problems
+Work independently. Estimate where useful, show your method, and check units. In the mixed questions, choose the method and give a reason.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: G22
+:::problems chapter-20-practice-20.7
+:::answers chapter-20-practice-20.7

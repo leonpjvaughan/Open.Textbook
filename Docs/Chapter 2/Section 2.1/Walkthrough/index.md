@@ -53,6 +53,16 @@ It has factors besides 1 and itself, so it is composite.
 
 The club has 24 blue counters and 36 red counters. Which whole numbers divide both amounts? This list will help you find the largest possible pack count in the next section.
 
+### Try it: multiples on a grid
+
+**Predict first.** Without using the tool, is 42 a multiple of 3? Is 7 a factor of 42?
+
+Now pick a number and look at its multiples.
+
+:::figure ch2-multiples
+
+**Explain:** how can you tell from the grid whether one number is a factor of another?
+
 ## You should now be able to
 
 - list factors by using factor pairs;

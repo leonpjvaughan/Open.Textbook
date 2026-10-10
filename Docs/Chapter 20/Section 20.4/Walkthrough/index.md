@@ -1,19 +1,48 @@
 ---
-title: 20.4 Exact trigonometric values — Walkthrough
+title: "20.4 Exact trigonometric values — Learn"
 chapter: 20
-chapter_title: Pythagoras' theorem and trigonometry
+chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.4'
-section_title: Exact trigonometric values
+section_title: "Exact trigonometric values"
 tier: H
-dfe:
-- G21
+dfe: [G21]
 kind: walkthrough
 ---
 
-<!-- scaffold:stub -->
+# 20.4 Exact trigonometric values — Learn
 
-# 20.4 Exact trigonometric values — Walkthrough
+**Prerequisites:** special right-angled triangles, surds, and exact fractions.
 
-> **Stub.** Teaching narrative and fully worked examples. At least one Tier-1 or Tier-2 interactive figure where a parameter is worth manipulating. State prerequisites and learning objectives at the top.
->
-> Tier: **H** · DfE refs: G21
+**Objectives:** give exact sine, cosine, and tangent values for $0^\circ$, $30^\circ$, $45^\circ$, $60^\circ$, and $90^\circ$. This teaches DfE G21.
+
+An **exact value** uses fractions and surds instead of a rounded decimal. A $45^\circ$-$45^\circ$-$90^\circ$ triangle has sides $1,1,\sqrt2$, so $\sin45^\circ=\cos45^\circ=\frac{\sqrt2}{2}$ and $\tan45^\circ=1$. A $30^\circ$-$60^\circ$-$90^\circ$ triangle has sides $1,\sqrt3,2$.
+
+| Angle | $0^\circ$ | $30^\circ$ | $45^\circ$ | $60^\circ$ | $90^\circ$ |
+|---|---:|---:|---:|---:|---:|
+| $\sin$ | $0$ | $1/2$ | $\sqrt2/2$ | $\sqrt3/2$ | $1$ |
+| $\cos$ | $1$ | $\sqrt3/2$ | $\sqrt2/2$ | $1/2$ | $0$ |
+| $\tan$ | $0$ | $\sqrt3/3$ | $1$ | $\sqrt3$ | undefined |
+
+**Example 1.** Work out $2\sin30^\circ+\cos60^\circ$ exactly.
+
+$$2\sin30^\circ+\cos60^\circ=2\left(\frac12\right)+\frac12$$
+
+$$=\frac32$$
+
+**Example 2.** Work out $\tan60^\circ\times\tan30^\circ$ exactly.
+
+$$\tan60^\circ\times\tan30^\circ=\sqrt3\times\frac{1}{\sqrt3}$$
+
+$$=1$$
+
+> **Watch out.** $\tan90^\circ$ is undefined because its cosine denominator is zero. Do not copy a large calculator value as an exact answer.
+
+## Progress check
+
+The garden diagonal can be found exactly if its sides are chosen to form a special triangle. Which side lengths would make that possible?
+
+## You should now be able to
+
+- state the method and identify the measurements it needs;
+- show your working in a clear order;
+- check that your answer is sensible and give suitable units.

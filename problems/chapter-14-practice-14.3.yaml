@@ -1,0 +1,231 @@
+chapter: 14
+symbols:
+  x:
+    real: true
+  y:
+    real: true
+  a:
+    real: true
+  c:
+    real: true
+  l:
+    real: true
+  w:
+    real: true
+problems:
+- id: ch14-14-3-01
+  section: '14.3'
+  tier: F
+  dfe:
+  - A19
+  statement: For $y=2x+1$ and $y=-x+7$, find the intersection.
+  answer_label: For $y=2x+1$ and $y=-x+7$, find the intersection.
+  check:
+    kind: all
+    checks:
+    - kind: solve
+      equation: x-2=0
+      variable: x
+      answer:
+      - '2'
+    - kind: solve
+      equation: y-5=0
+      variable: y
+      answer:
+      - '5'
+  answer_text: $x=2$, $y=5$
+- id: ch14-14-3-02
+  section: '14.3'
+  tier: F
+  dfe:
+  - A19
+  statement: For $y=x-2$ and $y=-2x+7$, find the intersection.
+  answer_label: For $y=x-2$ and $y=-2x+7$, find the intersection.
+  check:
+    kind: all
+    checks:
+    - kind: solve
+      equation: x-3=0
+      variable: x
+      answer:
+      - '3'
+    - kind: solve
+      equation: y-1=0
+      variable: y
+      answer:
+      - '1'
+  answer_text: $x=3$, $y=1$
+- id: ch14-14-3-03
+  section: '14.3'
+  tier: F
+  dfe:
+  - A19
+  statement: For $y=3x-4$ and $y=x+2$, find the intersection.
+  answer_label: For $y=3x-4$ and $y=x+2$, find the intersection.
+  check:
+    kind: all
+    checks:
+    - kind: solve
+      equation: x-3=0
+      variable: x
+      answer:
+      - '3'
+    - kind: solve
+      equation: y-5=0
+      variable: y
+      answer:
+      - '5'
+  answer_text: $x=3$, $y=5$
+- id: ch14-14-3-04
+  section: '14.3'
+  tier: F
+  dfe:
+  - A19
+  statement: For $y=-x+4$ and $y=2x-5$, find the intersection.
+  answer_label: For $y=-x+4$ and $y=2x-5$, find the intersection.
+  check:
+    kind: all
+    checks:
+    - kind: solve
+      equation: x-3=0
+      variable: x
+      answer:
+      - '3'
+    - kind: solve
+      equation: y-1=0
+      variable: y
+      answer:
+      - '1'
+  answer_text: $x=3$, $y=1$
+- id: ch14-14-3-05
+  section: '14.3'
+  tier: F
+  dfe:
+  - A19
+  statement: For $y=0.5x+2$ and $y=-x+8$, find the intersection.
+  answer_label: For $y=0.5x+2$ and $y=-x+8$, find the intersection.
+  check:
+    kind: all
+    checks:
+    - kind: solve
+      equation: x-4=0
+      variable: x
+      answer:
+      - '4'
+    - kind: solve
+      equation: y-4=0
+      variable: y
+      answer:
+      - '4'
+  answer_text: $x=4$, $y=4$
+- id: ch14-14-3-06
+  section: '14.3'
+  tier: F
+  dfe:
+  - A19
+  statement: For $y=4-x$ and $y=2x-5$, find the intersection.
+  answer_label: For $y=4-x$ and $y=2x-5$, find the intersection.
+  check:
+    kind: all
+    checks:
+    - kind: solve
+      equation: x-3=0
+      variable: x
+      answer:
+      - '3'
+    - kind: solve
+      equation: y-1=0
+      variable: y
+      answer:
+      - '1'
+  answer_text: $x=3$, $y=1$
+- id: ch14-14-3-07
+  section: '14.3'
+  tier: F
+  dfe:
+  - A19
+  statement: For $y=2x-6$ and $y=-x+3$, find the intersection.
+  answer_label: For $y=2x-6$ and $y=-x+3$, find the intersection.
+  check:
+    kind: all
+    checks:
+    - kind: solve
+      equation: x-3=0
+      variable: x
+      answer:
+      - '3'
+    - kind: solve
+      equation: y=0
+      variable: y
+      answer:
+      - '0'
+  answer_text: $x=3$, $y=0$
+- id: ch14-14-3-08
+  section: '14.3'
+  tier: F
+  dfe:
+  - A19
+  statement: The lines $y=x+1$ and $y=5-x$ cross. State the coordinates of the crossing
+    point.
+  answer_label: The lines $y=x+1$ and $y=5-x$ cross. State the coordinates of the
+    cros
+  check:
+    kind: all
+    checks:
+    - kind: solve
+      equation: x-2=0
+      variable: x
+      answer:
+      - '2'
+    - kind: solve
+      equation: y-3=0
+      variable: y
+      answer:
+      - '3'
+  answer_text: $x=2$, $y=3$
+- id: ch14-14-3-09
+  section: '14.3'
+  tier: F
+  dfe:
+  - A19
+  statement: Explain why the intersection of $y=2x+1$ and $y=-x+7$ solves both equations.
+  answer_label: Explain why the intersection of $y=2x+1$ and $y=-x+7$ solves both
+    equa
+  check:
+    kind: all
+    checks:
+    - kind: solve
+      equation: x-2=0
+      variable: x
+      answer:
+      - '2'
+    - kind: solve
+      equation: y-5=0
+      variable: y
+      answer:
+      - '5'
+  answer_text: Both equations give $y=5$ when $x=2$, so the point $(2,5)$ lies on
+    both graphs.
+- id: ch14-14-3-10
+  section: '14.3'
+  tier: H
+  dfe:
+  - A19
+  statement: For $y=3x-2$ and $y=x+4$, find the intersection and the gradient of each
+    line.
+  answer_label: For $y=3x-2$ and $y=x+4$, find the intersection and the gradient of
+    ea
+  check:
+    kind: all
+    checks:
+    - kind: solve
+      equation: x-3=0
+      variable: x
+      answer:
+      - '3'
+    - kind: solve
+      equation: y-7=0
+      variable: y
+      answer:
+      - '7'
+  answer_text: Intersection $(3,7)$; gradients are $3$ and $1$.

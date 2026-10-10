@@ -1,19 +1,15 @@
 ---
-title: 19.5 Surface area and volume of spheres, cones and pyramids — Problems
+title: "19.5 Surface area and volume of spheres, cones and pyramids — Practise"
 chapter: 19
 chapter_title: Perimeter, area, surface area and volume
-section: '19.5'
+section: "19.5"
 section_title: Surface area and volume of spheres, cones and pyramids
 tier: H
-dfe:
-- G17
+dfe: [G17]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 19.5 Surface area and volume of spheres, cones and pyramids — Practise
 
-# 19.5 Surface area and volume of spheres, cones and pyramids — Problems
-
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: G17
+:::problems chapter-19-practice-19.5
+:::answers chapter-19-practice-19.5

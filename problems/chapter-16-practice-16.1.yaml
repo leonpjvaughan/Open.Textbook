@@ -1,0 +1,118 @@
+chapter: 16
+problems:
+- id: line-unknown
+  section: '16.1'
+  tier: F
+  dfe:
+  - G3
+  statement: 'Work out $x$: $x+124=180$.'
+  answer_label: 'Work out $x$: $x+124=180$.'
+  check:
+    kind: evaluate
+    expression: 180-124
+    answer: '56'
+  answer_text: $56^\circ$
+- id: point-unknown
+  section: '16.1'
+  tier: F
+  dfe:
+  - G3
+  statement: Angles around a point are $85^\circ$, $140^\circ$ and $y^\circ$. Find $y$.
+  answer_label: Angles around a point are $85^\circ$, $140^\circ$ and $y^\circ$. Find $y$.
+  check:
+    kind: evaluate
+    expression: 360-85-140
+    answer: '135'
+  answer_text: $135^\circ$
+- id: vertical
+  section: '16.1'
+  tier: F
+  dfe:
+  - G3
+  statement: Two lines cross. One angle is $47^\circ$. Find the other three angles.
+  answer_label: Two lines cross. One angle is $47^\circ$. Find the other three angles.
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      relation: '='
+      lhs: '47'
+      rhs: '47'
+    - kind: evaluate
+      expression: 180-47
+      answer: '133'
+    - kind: evaluate
+      expression: 180-47
+      answer: '133'
+  answer_text: $47^\circ$, $133^\circ$, $133^\circ$
+- id: line-algebra
+  section: '16.1'
+  tier: F
+  dfe:
+  - G3
+  statement: Angles on a line are $(3x+10)^\circ$ and $(2x+20)^\circ$. Find $x$ and both angles.
+  answer_label: Angles on a line are $(3x+10)^\circ$ and $(2x+20)^\circ$. Find $x$ and both angl
+  check:
+    kind: solve
+    equation: 3*x+10+2*x+20-180=0
+    variable: x
+    answer:
+    - '30'
+  answer_text: $x=30$; the angles are $100^\circ$ and $80^\circ$.
+- id: point-four
+  section: '16.1'
+  tier: F
+  dfe:
+  - G3
+  statement: Four angles around a point are $x^\circ$, $2x^\circ$, $90^\circ$ and $30^\circ$. Find $x$.
+  answer_label: Four angles around a point are $x^\circ$, $2x^\circ$, $90^\circ$ and $30^\circ$.
+  check:
+    kind: solve
+    equation: x+2*x+90+30-360=0
+    variable: x
+    answer:
+    - '80'
+  answer_text: $x=80^\circ$
+- id: straight-reason
+  section: '16.1'
+  tier: F
+  dfe:
+  - G3
+  statement: Explain why the angle next to $136^\circ$ on a straight line is $44^\circ$.
+  answer_label: Explain why the angle next to $136^\circ$ on a straight line is $44^\circ$.
+  check:
+    kind: evaluate
+    expression: 180-136
+    answer: '44'
+  answer_text: $44^\circ$; angles on a straight line sum to $180^\circ$.
+- id: mixed-earlier
+  section: '16.1'
+  tier: F
+  dfe:
+  - G3
+  statement: A rectangle has a perimeter of $30$ cm and length $9$ cm. Find its width.
+  answer_label: A rectangle has a perimeter of $30$ cm and length $9$ cm. Find its width.
+  check:
+    kind: evaluate
+    expression: (30-2*9)/2
+    answer: '6'
+  answer_text: $6$ cm. Use perimeter facts from earlier geometry.
+- id: vert-algebra
+  section: '16.1'
+  tier: F
+  dfe:
+  - G3
+  statement: Two vertically opposite angles are $(4x+5)^\circ$ and $(6x-25)^\circ$. Find $x$.
+  answer_label: Two vertically opposite angles are $(4x+5)^\circ$ and $(6x-25)^\circ$. Find $x$.
+  check:
+    kind: solve
+    equation: 4*x+5-(6*x-25)=0
+    variable: x
+    answer:
+    - '15'
+  answer_text: $x=15$
+symbols:
+  x:
+    real: true
+  n:
+    real: true

@@ -1,5 +1,5 @@
 ---
-title: 13.2 Trigonometric graphs — Problems
+title: 13.2 Trigonometric graphs — Practise
 chapter: 13
 chapter_title: Other functions and graphs
 section: '13.2'
@@ -10,10 +10,9 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 13.2 Trigonometric graphs — Practise
 
-# 13.2 Trigonometric graphs — Problems
+Work independently. Questions and answers are checked from the same problem bank. Questions marked **H** extend the Higher work.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: A12
+:::problems chapter-13-practice-13.2
+:::answers chapter-13-practice-13.2

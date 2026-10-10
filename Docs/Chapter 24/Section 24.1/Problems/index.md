@@ -1,20 +1,15 @@
 ---
-title: 24.1 Collecting data, sampling and questionnaires — Problems
+title: 24.1 Collecting data, sampling and questionnaires — Practise
 chapter: 24
 chapter_title: 'Statistics: representing and analysing data'
 section: '24.1'
 section_title: Collecting data, sampling and questionnaires
 tier: F
-dfe:
-- S1
-- S5
+dfe: [S1, S5]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 24.1 Collecting data, sampling and questionnaires — Practise
 
-# 24.1 Collecting data, sampling and questionnaires — Problems
-
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: S1, S5
+:::problems chapter-24-practice-24.1
+:::answers chapter-24-practice-24.1

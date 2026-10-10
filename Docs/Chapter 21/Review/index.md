@@ -4,10 +4,40 @@ chapter: 21
 kind: review
 ---
 
-<!-- scaffold:stub -->
-
 # Chapter 21: Review
 
-> **Stub.** Resolve the chapter's anchor problem.
->
-> Then set interleaved mixed practice across this chapter and earlier chapters, with method-selection prompts (“which method, and why?”).
+## Return to the chapter problem
+
+The two points on the circumference see the same chord in the same segment. Angles in the same segment are equal, so $x=38^\circ$.
+
+The radius meets the chord at right angles. A perpendicular from the centre bisects a chord, so each half is equal. If the chord length is $c$, each half is $c/2$. The radius and tangent theorem is not needed here because the line meets a chord, not a tangent.
+
+## Mixed practice
+
+Work without notes first. For each question, state which method applies and why.
+
+1. A circle has radius $6.5$ cm. Work out its diameter.
+2. An angle at the circumference is $29^\circ$. Find the centre angle on the same arc.
+3. A cyclic quadrilateral has one angle of $73^\circ$. Find its opposite angle.
+4. Two tangents from one point have lengths $3x+2$ and $20$ cm. Find $x$.
+5. A perpendicular from the centre meets a chord of length $22$ cm. Find each half.
+6. A tangent-chord angle is $41^\circ$. Find the angle in the alternate segment.
+7. An angle in a triangle standing on a diameter is $90^\circ$. Another angle is $33^\circ$. Find the third angle and give both reasons.
+8. An isosceles triangle has equal angles of $52^\circ$. Find the third angle. Explain why you use the triangle angle sum rather than a circle theorem.
+
+<details markdown="1">
+<summary>Answers and concise solutions</summary>
+
+1. Diameter: $2(6.5)=13$ cm.
+2. Centre angle theorem: $2(29)=58^\circ$.
+3. Opposite cyclic angles: $180-73=107^\circ$.
+4. Equal tangents: $3x+2=20$, so $x=6$.
+5. The perpendicular bisects the chord: $22\div2=11$ cm each.
+6. Alternate segment theorem: $41^\circ$.
+7. Triangle sum after the semicircle theorem: $180-90-33=57^\circ$.
+8. Triangle angle sum: $180-52-52=76^\circ$. The given shape is a triangle, so its angle sum applies.
+</details>
+
+## What can you now do?
+
+Write one circle fact you can use confidently. Write one fact you want to practise again, and name a question that would help.

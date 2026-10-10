@@ -1,0 +1,75 @@
+# Practice set for 20.7. Questions and answers are rendered from these verified records.
+chapter: 20
+problems:
+  - id: ch20-20-7-01
+    section: "20.7"
+    tier: H
+    dfe: [G22]
+    statement: "Two sides are 5 cm and 7 cm with included angle 60°. Find the third side exactly."
+    answer_label: "Question 1"
+    check: {kind: evaluate, expression: "5**2+7**2-2*5*7*cos(pi/3)", answer: "39"}
+    answer_text: "√39 cm"
+
+  - id: ch20-20-7-02
+    section: "20.7"
+    tier: H
+    dfe: [G22]
+    statement: "Two sides are 6 cm and 8 cm with included angle 90°. Find the third side."
+    answer_label: "Question 2"
+    check: {kind: evaluate, expression: "6**2+8**2-2*6*8*cos(pi/2)", answer: "100"}
+    answer_text: "10 cm"
+
+  - id: ch20-20-7-03
+    section: "20.7"
+    tier: H
+    dfe: [G22]
+    statement: "A triangle has sides 5 cm, 6 cm and 8 cm. Find the angle opposite side 8 to 1 decimal place."
+    answer_label: "Question 3"
+    check: {kind: rounded, value: "acos((5**2+6**2-8**2)/(2*5*6))*180/pi", rounded: "92.9", to: "0.1"}
+    answer_text: "92.9°"
+
+  - id: ch20-20-7-04
+    section: "20.7"
+    tier: H
+    dfe: [G22]
+    statement: "Two sides are 10 cm and 12 cm with included angle 30°. Find the opposite side to 1 decimal place."
+    answer_label: "Question 4"
+    check: {kind: rounded, value: "sqrt(10**2+12**2-2*10*12*cos(pi/6))", rounded: "6.01", to: "0.01"}
+    answer_text: "6.01 cm"
+
+  - id: ch20-20-7-05
+    section: "20.7"
+    tier: H
+    dfe: [G22]
+    statement: "Two sides are 7 cm and 9 cm with included angle 120°. Find the third side to 1 decimal place."
+    answer_label: "Question 5"
+    check: {kind: rounded, value: "sqrt(7**2+9**2-2*7*9*cos(2*pi/3))", rounded: "13.9", to: "0.1"}
+    answer_text: "13.9 cm"
+
+  - id: ch20-20-7-06
+    section: "20.7"
+    tier: H
+    dfe: [G22]
+    statement: "A triangle has sides 4 cm, 5 cm and 6 cm. Find the angle opposite side 6 to 1 decimal place."
+    answer_label: "Question 6"
+    check: {kind: rounded, value: "acos((4**2+5**2-6**2)/(2*4*5))*180/pi", rounded: "82.8", to: "0.1"}
+    answer_text: "82.8°"
+
+  - id: ch20-20-7-07
+    section: "20.7"
+    tier: H
+    dfe: [G22]
+    statement: "Two sides are 8 cm and 11 cm with included angle 75°. Find the third side to 1 decimal place."
+    answer_label: "Question 7"
+    check: {kind: rounded, value: "sqrt(8**2+11**2-2*8*11*cos(75*pi/180))", rounded: "11.8", to: "0.1"}
+    answer_text: "11.8 cm"
+
+  - id: ch20-20-7-08
+    section: "20.7"
+    tier: H
+    dfe: [G22]
+    statement: "A triangle has sides 9 cm, 10 cm and 13 cm. Find its largest angle to 1 decimal place."
+    answer_label: "Question 8"
+    check: {kind: rounded, value: "acos((9**2+10**2-13**2)/(2*9*10))*180/pi", rounded: "86.2", to: "0.1"}
+    answer_text: "86.2°"
+

@@ -1,0 +1,91 @@
+chapter: 19
+problems:
+- id: ch19-19-2-01
+  section: '19.2'
+  tier: F
+  dfe: &id001
+  - G17
+  statement: A circle has radius 4 cm. Work out its circumference in terms of π.
+  answer_label: Circumference
+  check:
+    kind: evaluate
+    expression: 2*pi*4
+    answer: 8*pi
+  answer_text: $8\pi\text{ cm}$
+- id: ch19-19-2-02
+  section: '19.2'
+  tier: F
+  dfe: *id001
+  statement: A circle has diameter 10 cm. Work out its circumference in terms of π.
+  answer_label: Circumference
+  check:
+    kind: evaluate
+    expression: pi*10
+    answer: 10*pi
+  answer_text: $10\pi\text{ cm}$
+- id: ch19-19-2-03
+  section: '19.2'
+  tier: F
+  dfe: *id001
+  statement: A circle has radius 3 cm. Work out its area in terms of π.
+  answer_label: Circle area
+  check:
+    kind: evaluate
+    expression: pi*3**2
+    answer: 9*pi
+  answer_text: $9\pi\text{ cm}^2$
+- id: ch19-19-2-04
+  section: '19.2'
+  tier: F
+  dfe: *id001
+  statement: A circle has diameter 12 cm. Work out its area in terms of π.
+  answer_label: Circle area
+  check:
+    kind: evaluate
+    expression: pi*6**2
+    answer: 36*pi
+  answer_text: $36\pi\text{ cm}^2$
+- id: ch19-19-2-05
+  section: '19.2'
+  tier: F
+  dfe: *id001
+  statement: Use π = 3.14 to work out the circumference of a circle with radius 5 cm.
+  answer_label: Circumference approximation
+  check:
+    kind: evaluate
+    expression: 2*3.14*5
+    answer: '31.4'
+  answer_text: $31.4\text{ cm}$
+- id: ch19-19-2-06
+  section: '19.2'
+  tier: F
+  dfe: *id001
+  statement: Use π = 3.14 to work out the area of a circle with radius 2 m.
+  answer_label: Circle area approximation
+  check:
+    kind: evaluate
+    expression: 3.14*2**2
+    answer: '12.56'
+  answer_text: $12.56\text{ m}^2$
+- id: ch19-19-2-07
+  section: '19.2'
+  tier: F
+  dfe: *id001
+  statement: A circle has circumference 18π cm. Work out its radius.
+  answer_label: Radius from circumference
+  check:
+    kind: evaluate
+    expression: 18/2
+    answer: '9'
+  answer_text: $9\text{ cm}$
+- id: ch19-19-2-08
+  section: '19.2'
+  tier: F
+  dfe: *id001
+  statement: A circle has area 49π cm². Work out its radius.
+  answer_label: Radius from area
+  check:
+    kind: evaluate
+    expression: sqrt(49)
+    answer: '7'
+  answer_text: $7\text{ cm}$

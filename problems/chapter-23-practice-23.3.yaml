@@ -1,0 +1,122 @@
+chapter: 23
+problems:
+- id: p1-frequency-total
+  section: '23.3'
+  tier: F
+  dfe:
+  - P1
+  statement: A survey has 38 people. 23 use a car and the rest use public transport. Find the public transport count.
+  answer_label: A survey has 38 people. 23 use a car and the rest use public transport. Find the public transport count.
+  check:
+    kind: evaluate
+    expression: 38-23
+    answer: '15'
+  answer_text: $15$.
+- id: p2-table-cell
+  section: '23.3'
+  tier: F
+  dfe:
+  - P6
+  statement: In a two-way table, 17 students are in a group and 9 are girls. How many are boys?
+  answer_label: In a two-way table, 17 students are in a group and 9 are girls. How many are boys?
+  check:
+    kind: evaluate
+    expression: 17-9
+    answer: '8'
+  answer_text: $8$.
+- id: p3-coin-die-space
+  section: '23.3'
+  tier: F
+  dfe:
+  - P7
+  statement: A coin is tossed and a four-sided die is rolled. How many outcomes are possible?
+  answer_label: A coin is tossed and a four-sided die is rolled. How many outcomes are possible?
+  check:
+    kind: evaluate
+    expression: 2*4
+    answer: '8'
+  answer_text: $8$ outcomes.
+- id: p4-two-dice-six
+  section: '23.3'
+  tier: F
+  dfe:
+  - P7
+  statement: Two fair dice are rolled. Find the probability that both show 6.
+  answer_label: Two fair dice are rolled. Find the probability that both show 6.
+  check:
+    kind: evaluate
+    expression: 1/36
+    answer: 1/36
+  answer_text: 'One of 36 outcomes, so $\frac1{36}$. '
+- id: p5-frequency-tree
+  section: '23.3'
+  tier: F
+  dfe:
+  - P1
+  statement: Of 50 visitors, 28 are adults. Find the number who are children.
+  answer_label: Of 50 visitors, 28 are adults. Find the number who are children.
+  check:
+    kind: evaluate
+    expression: 50-28
+    answer: '22'
+  answer_text: $22$.
+- id: p6-two-way-sum
+  section: '23.3'
+  tier: F
+  dfe:
+  - P6
+  statement: 'A table has four counts: 8, 7, 5 and 10. Find the total surveyed.'
+  answer_label: 'A table has four counts: 8, 7, 5 and 10. Find the total surveyed.'
+  check:
+    kind: evaluate
+    expression: 8+7+5+10
+    answer: '30'
+  answer_text: $30$.
+- id: p7-possibility-even
+  section: '23.3'
+  tier: F
+  dfe:
+  - P7
+  statement: A fair coin and a fair coin are tossed. List the outcomes with different results.
+  answer_label: A fair coin and a fair coin are tossed. List the outcomes with different results.
+  check:
+    kind: evaluate
+    expression: '2'
+    answer: '2'
+  answer_text: 'HT and TH: two outcomes.'
+- id: p8-three-colour
+  section: '23.3'
+  tier: F
+  dfe:
+  - P7
+  statement: A fair six-sided die is rolled. Find the probability of a result in $\{2,4,6\}$.
+  answer_label: A fair six-sided die is rolled. Find the probability of a result in $\{2,4,6\}$.
+  check:
+    kind: evaluate
+    expression: 3/6
+    answer: 1/2
+  answer_text: $\frac12$.
+- id: p9-table-remainder
+  section: '23.3'
+  tier: F
+  dfe:
+  - P6
+  statement: A group contains 42 people. 19 are in one category and 13 in a second disjoint category. How many are in neither?
+  answer_label: A group contains 42 people. 19 are in one category and 13 in a second disjoint category. How many are in neither?
+  check:
+    kind: evaluate
+    expression: 42-19-13
+    answer: '10'
+  answer_text: $10$.
+- id: p10-systematic-pairs
+  section: '23.3'
+  tier: F
+  dfe:
+  - P7
+  statement: A meal has 3 mains and 2 desserts. How many different main-dessert pairs are possible?
+  answer_label: A meal has 3 mains and 2 desserts. How many different main-dessert pairs are possible?
+  check:
+    kind: evaluate
+    expression: 3*2
+    answer: '6'
+  answer_text: $6$ pairs.

@@ -1,0 +1,77 @@
+chapter: 13
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: circle-centre-radius
+    section: '13.4'
+    tier: H
+    dfe: [A16]
+    statement: 'State the centre and radius of $(x-2)^2+(y+3)^2=25$.'
+    answer_label: 'Circle centre and radius'
+    check: {kind: evaluate, expression: sqrt(25), answer: '5'}
+    answer_text: 'Centre $(2,-3)$ and radius $5$.'
+  - id: circle-equation-origin
+    section: '13.4'
+    tier: H
+    dfe: [A16]
+    statement: 'Write the equation of a circle with centre $(0,0)$ and radius $4$.'
+    answer_label: 'Circle at the origin'
+    check: {kind: evaluate, expression: 4**2, answer: '16'}
+    answer_text: '$x^2+y^2=16$.'
+  - id: circle-equation-shifted
+    section: '13.4'
+    tier: H
+    dfe: [A16]
+    statement: 'Find the equation of a circle with centre $(2,-1)$ and radius $3$.'
+    answer_label: 'Circle with shifted centre'
+    check: {kind: evaluate, expression: 3**2, answer: '9'}
+    answer_text: '$(x-2)^2+(y+1)^2=9$.'
+  - id: circle-point-check
+    section: '13.4'
+    tier: H
+    dfe: [A16]
+    statement: 'Show that $(3,4)$ lies on $x^2+y^2=25$.'
+    answer_label: 'Check a point on a circle'
+    check: {kind: evaluate, expression: 3**2+4**2, answer: '25'}
+    answer_text: '$3^2+4^2=9+16=25$, so the point lies on the circle.'
+  - id: circle-x-axis
+    section: '13.4'
+    tier: H
+    dfe: [A16]
+    statement: 'Find the $x$-coordinates where $x^2+y^2=25$ meets the $x$-axis.'
+    answer_label: 'Circle and axis intersections'
+    check: {kind: solve, equation: 'x**2=25', variable: x, answer: ['-5', '5']}
+    answer_text: 'On the $x$-axis, $y=0$. Then $x^2=25$, so $x=-5$ or $x=5$.'
+  - id: tangent-gradient
+    section: '13.4'
+    tier: H
+    dfe: [A16]
+    statement: 'A radius has gradient $2$. Find the tangent gradient.'
+    answer_label: 'Tangent gradient'
+    check: {kind: evaluate, expression: -1/2, answer: '-1/2'}
+    answer_text: 'The tangent gradient is $-1/2$, the negative reciprocal.'
+  - id: tangent-at-3-4
+    section: '13.4'
+    tier: H
+    dfe: [A16]
+    statement: 'Find the equation of the tangent at $(3,4)$ to $x^2+y^2=25$.'
+    answer_label: 'Tangent equation at $(3,4)$'
+    check: {kind: all, checks: [{kind: evaluate, expression: (3/4)*3+7/4, answer: '4'}, {kind: evaluate, expression: 3*(-3/4)+4, answer: '7/4'}]}
+    answer_text: 'The radius gradient is $4/3$, so the tangent gradient is $-3/4$. Through $(3,4)$: $y-4=-\frac34(x-3)$, or $y=-\frac34x+\frac{25}{4}$.'
+  - id: tangent-at-top
+    section: '13.4'
+    tier: H
+    dfe: [A16]
+    statement: 'Find the tangent equation at $(0,5)$ to the circle $x^2+y^2=25$.'
+    answer_label: 'Tangent at top of circle'
+    check: {kind: evaluate, expression: '5', answer: '5'}
+    answer_text: 'The radius is vertical, so its tangent is horizontal. The equation is $y=5$.'
+  - id: tangent-through-point
+    section: '13.4'
+    tier: H
+    dfe: [A16]
+    statement: '**H** A circle has centre $(1,2)$. The radius to a point has gradient $-2$ and the point is $(3,-2)$. Find the tangent gradient.'
+    answer_label: 'Higher tangent gradient'
+    check: {kind: evaluate, expression: -1/(-2), answer: '1/2'}
+    answer_text: 'The radius gradient is $-2$, so the perpendicular tangent gradient is $1/2$.'

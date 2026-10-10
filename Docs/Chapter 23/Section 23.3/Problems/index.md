@@ -1,5 +1,5 @@
 ---
-title: 23.3 Frequency trees, tables and possibility spaces — Problems
+title: 23.3 Frequency trees, tables and possibility spaces — Practise
 chapter: 23
 chapter_title: Probability
 section: '23.3'
@@ -12,10 +12,9 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 23.3 Frequency trees, tables and possibility spaces — Practise
 
-# 23.3 Frequency trees, tables and possibility spaces — Problems
+Work through these independently. Every question gives you a chance to check what you understand.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: P1, P6, P7
+:::problems chapter-23-practice-23.3
+:::answers chapter-23-practice-23.3

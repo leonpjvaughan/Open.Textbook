@@ -1,0 +1,74 @@
+# Verified practice set for section 10.5.
+chapter: 10
+problems:
+  - id: ch10-105-multiplier
+    section: '10.5'
+    tier: H
+    dfe: [A24]
+    statement: 'Find the common multiplier and next term: $3,12,48,\ldots$.'
+    answer_label: 'Find the common multiplier and next term: $3,12,48,\ldots$.'
+    check: {"kind":"all","checks":[{"kind":"evaluate","expression":"12/3","answer":"4"},{"kind":"evaluate","expression":"48*4","answer":"192"}]}
+    answer_text: 'Multiplier $4$; next term $192$.'
+
+  - id: ch10-105-halving
+    section: '10.5'
+    tier: H
+    dfe: [A24]
+    statement: 'Continue $96,48,24,\ldots$ by two terms.'
+    answer_label: 'Continue $96,48,24,\ldots$ by two terms.'
+    check: {"kind":"all","checks":[{"kind":"evaluate","expression":"24/2","answer":"12"},{"kind":"evaluate","expression":"12/2","answer":"6"}]}
+    answer_text: '$12,6$.'
+
+  - id: ch10-105-find-term
+    section: '10.5'
+    tier: H
+    dfe: [A24]
+    statement: 'A geometric sequence starts at 2 and multiplies by 3. Find term 5.'
+    answer_label: 'A geometric sequence starts at 2 and multiplies by 3. Find term 5'
+    check: {"kind":"evaluate","expression":"2*3**4","answer":"162"}
+    answer_text: '$162$.'
+
+  - id: ch10-105-ratio-check
+    section: '10.5'
+    tier: H
+    dfe: [A24]
+    statement: 'Is $5,10,20,40$ geometric? Give the multiplier.'
+    answer_label: 'Is $5,10,20,40$ geometric? Give the multiplier.'
+    check: {"kind":"all","checks":[{"kind":"evaluate","expression":"10/5","answer":"2"},{"kind":"evaluate","expression":"20/10","answer":"2"},{"kind":"evaluate","expression":"40/20","answer":"2"}]}
+    answer_text: 'Yes; multiplier $2$.'
+
+  - id: ch10-105-negative-ratio
+    section: '10.5'
+    tier: H
+    dfe: [A24]
+    statement: 'Continue $2,-6,18,\ldots$ by two terms.'
+    answer_label: 'Continue $2,-6,18,\ldots$ by two terms.'
+    check: {"kind":"all","checks":[{"kind":"evaluate","expression":"18*(-3)","answer":"-54"},{"kind":"evaluate","expression":"-54*(-3)","answer":"162"}]}
+    answer_text: '$-54,162$.'
+
+  - id: ch10-105-compare-seq
+    section: '10.5'
+    tier: H
+    dfe: [A24]
+    statement: 'Sequence A starts at 3 and doubles. Sequence B starts at 2 and triples. Which has the greater 4th term?'
+    answer_label: 'Sequence A starts at 3 and doubles. Sequence B starts at 2 and tr'
+    check: {"kind":"compare","relation":">","lhs":"2*3**3","rhs":"3*2**3"}
+    answer_text: 'B: $54$, compared with A''s $24$.'
+
+  - id: ch10-105-context
+    section: '10.5'
+    tier: H
+    dfe: [A24]
+    statement: 'A quantity starts at 80 and halves each hour. How much remains after 4 hours?'
+    answer_label: 'A quantity starts at 80 and halves each hour. How much remains af'
+    check: {"kind":"evaluate","expression":"80*(1/2)**4","answer":"5"}
+    answer_text: '$5$.'
+
+  - id: ch10-105-higher-multiplier
+    section: '10.5'
+    tier: H
+    dfe: [A24]
+    statement: 'A geometric sequence has first term 7 and common multiplier 2. Find its 6th term.'
+    answer_label: 'A geometric sequence has first term 7 and common multiplier 2. Fi'
+    check: {"kind":"evaluate","expression":"7*2**5","answer":"224"}
+    answer_text: '$224$.'

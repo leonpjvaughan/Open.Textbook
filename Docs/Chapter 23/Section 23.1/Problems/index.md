@@ -1,5 +1,5 @@
 ---
-title: 23.1 The probability scale and equally likely outcomes — Problems
+title: 23.1 The probability scale and equally likely outcomes — Practise
 chapter: 23
 chapter_title: Probability
 section: '23.1'
@@ -12,10 +12,9 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 23.1 The probability scale and equally likely outcomes — Practise
 
-# 23.1 The probability scale and equally likely outcomes — Problems
+Work through these independently. Every question gives you a chance to check what you understand.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: P2, P3, P4
+:::problems chapter-23-practice-23.1
+:::answers chapter-23-practice-23.1

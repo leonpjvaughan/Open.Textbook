@@ -1,19 +1,17 @@
 ---
-title: 20.5 3D Pythagoras and trigonometry — Problems
+title: "20.5 3D Pythagoras and trigonometry — Practise"
 chapter: 20
-chapter_title: Pythagoras' theorem and trigonometry
+chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.5'
-section_title: 3D Pythagoras and trigonometry
+section_title: "3D Pythagoras and trigonometry"
 tier: H
-dfe:
-- G20
+dfe: [G20]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 20.5 3D Pythagoras and trigonometry — Practise
 
-# 20.5 3D Pythagoras and trigonometry — Problems
+Work independently. Estimate where useful, show your method, and check units. In the mixed questions, choose the method and give a reason.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: G20
+:::problems chapter-20-practice-20.5
+:::answers chapter-20-practice-20.5

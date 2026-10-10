@@ -1,19 +1,17 @@
 ---
-title: 17.4 Loci — Problems
+title: "17.4 Loci — Practise"
 chapter: 17
 chapter_title: Properties, constructions, loci and bearings
-section: '17.4'
+section: "17.4"
 section_title: Loci
 tier: F
-dfe:
-- G2
+dfe: [G2]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 17.4 Loci — Practise
 
-# 17.4 Loci — Problems
+Work independently, then check your answers and reasoning.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: G2
+:::problems chapter-17-practice-17.4
+:::answers chapter-17-practice-17.4

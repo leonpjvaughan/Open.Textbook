@@ -1,0 +1,75 @@
+# Practice set for 20.2. Questions and answers are rendered from these verified records.
+chapter: 20
+problems:
+  - id: ch20-20-2-01
+    section: "20.2"
+    tier: F
+    dfe: [G20]
+    statement: "A right triangle has angle 30° and hypotenuse 14 cm. Find the opposite side."
+    answer_label: "Question 1"
+    check: {kind: evaluate, expression: "14*sin(pi/6)", answer: "7"}
+    answer_text: "7 cm"
+
+  - id: ch20-20-2-02
+    section: "20.2"
+    tier: F
+    dfe: [G20]
+    statement: "A right triangle has angle 60° and hypotenuse 10 cm. Find the adjacent side."
+    answer_label: "Question 2"
+    check: {kind: evaluate, expression: "10*cos(pi/3)", answer: "5"}
+    answer_text: "5 cm"
+
+  - id: ch20-20-2-03
+    section: "20.2"
+    tier: F
+    dfe: [G20]
+    statement: "A right triangle has angle 45° and adjacent side 8 cm. Find the opposite side to 3 significant figures."
+    answer_label: "Question 3"
+    check: {kind: rounded, value: "8*tan(pi/4)", rounded: "8.00", to: "0.01"}
+    answer_text: "8.00 cm"
+
+  - id: ch20-20-2-04
+    section: "20.2"
+    tier: F
+    dfe: [G20]
+    statement: "The opposite and adjacent sides are 5 cm and 12 cm. Find the angle to 1 decimal place."
+    answer_label: "Question 4"
+    check: {kind: rounded, value: "atan(5/12)*180/pi", rounded: "22.6", to: "0.1"}
+    answer_text: "22.6°"
+
+  - id: ch20-20-2-05
+    section: "20.2"
+    tier: F
+    dfe: [G20]
+    statement: "The hypotenuse is 13 cm and one leg is 5 cm. Find the angle opposite that leg."
+    answer_label: "Question 5"
+    check: {kind: rounded, value: "asin(5/13)*180/pi", rounded: "22.6", to: "0.1"}
+    answer_text: "22.6°"
+
+  - id: ch20-20-2-06
+    section: "20.2"
+    tier: F
+    dfe: [G20]
+    statement: "A right triangle has angle 30° and adjacent side 6 cm. Find the hypotenuse."
+    answer_label: "Question 6"
+    check: {kind: evaluate, expression: "6/cos(pi/6)", answer: "4*sqrt(3)"}
+    answer_text: "4√3 cm"
+
+  - id: ch20-20-2-07
+    section: "20.2"
+    tier: F
+    dfe: [G20]
+    statement: "Find the opposite side when the hypotenuse is 20 cm and angle is 30°."
+    answer_label: "Question 7"
+    check: {kind: evaluate, expression: "20*sin(pi/6)", answer: "10"}
+    answer_text: "10 cm"
+
+  - id: ch20-20-2-08
+    section: "20.2"
+    tier: F
+    dfe: [G20]
+    statement: "A right triangle has opposite 9 cm and adjacent 12 cm. Find the hypotenuse."
+    answer_label: "Question 8"
+    check: {kind: evaluate, expression: "sqrt(9**2+12**2)", answer: "15"}
+    answer_text: "15 cm"
+

@@ -1,19 +1,17 @@
 ---
-title: 20.1 Pythagoras' theorem — Problems
+title: "20.1 Pythagoras' theorem — Practise"
 chapter: 20
-chapter_title: Pythagoras' theorem and trigonometry
+chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.1'
-section_title: Pythagoras' theorem
+section_title: "Pythagoras' theorem"
 tier: F
-dfe:
-- G20
+dfe: [G20]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 20.1 Pythagoras' theorem — Practise
 
-# 20.1 Pythagoras' theorem — Problems
+Work independently. Estimate where useful, show your method, and check units. In the mixed questions, choose the method and give a reason.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: G20
+:::problems chapter-20-practice-20.1
+:::answers chapter-20-practice-20.1

@@ -1,5 +1,5 @@
 ---
-title: 23.5 Venn diagrams and set notation — Problems
+title: 23.5 Venn diagrams and set notation — Practise
 chapter: 23
 chapter_title: Probability
 section: '23.5'
@@ -10,10 +10,9 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 23.5 Venn diagrams and set notation — Practise
 
-# 23.5 Venn diagrams and set notation — Problems
+Work through these independently. Every question gives you a chance to check what you understand.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: P6
+:::problems chapter-23-practice-23.5
+:::answers chapter-23-practice-23.5

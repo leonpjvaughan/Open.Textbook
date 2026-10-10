@@ -1,0 +1,98 @@
+chapter: 15
+symbols:
+  x: {real: true}
+  y: {real: true}
+  k: {real: true}
+  a: {real: true}
+  n: {integer: true}
+  m: {integer: true}
+problems:
+  - id: ch15-15-5-consecutive-three
+    section: "15.5"
+    tier: H
+    dfe: [A6]
+    statement: 'Prove that the sum of three consecutive integers is divisible by $3$.'
+    answer_label: 'Prove that the sum of three consecutive integers is divisible by $3$.'
+    check: {kind: evaluate, expression: 'n+(n+1)+(n+2)', answer: '3*(n+1)'}
+    answer_text: '$n+(n+1)+(n+2)=3(n+1)$'
+
+  - id: ch15-15-5-consecutive-two-odd
+    section: "15.5"
+    tier: H
+    dfe: [A6]
+    statement: 'Prove that the sum of two consecutive integers is odd.'
+    answer_label: 'Prove that the sum of two consecutive integers is odd.'
+    check: {kind: evaluate, expression: 'n+(n+1)', answer: '2*n+1'}
+    answer_text: '$n+(n+1)=2n+1$'
+
+  - id: ch15-15-5-square-difference
+    section: "15.5"
+    tier: H
+    dfe: [A6]
+    statement: 'Prove that the difference between the squares of consecutive integers is odd.'
+    answer_label: 'Prove that the difference between the squares of consecutive integers is odd.'
+    check: {kind: evaluate, expression: '(n+1)**2-n**2', answer: '2*n+1'}
+    answer_text: '$(n+1)^2-n^2=2n+1$'
+
+  - id: ch15-15-5-even-square
+    section: "15.5"
+    tier: H
+    dfe: [A6]
+    statement: 'Show that the square of an even integer is divisible by $4$.'
+    answer_label: 'Show that the square of an even integer is divisible by $4$.'
+    check: {kind: evaluate, expression: '(2*n)**2', answer: '4*n**2'}
+    answer_text: '$(2n)^2=4n^2$'
+
+  - id: ch15-15-5-odd-square
+    section: "15.5"
+    tier: H
+    dfe: [A6]
+    statement: 'Show that the square of an odd integer is odd.'
+    answer_label: 'Show that the square of an odd integer is odd.'
+    check: {kind: evaluate, expression: '(2*n+1)**2', answer: '2*(2*n**2+2*n)+1'}
+    answer_text: '$(2n+1)^2=2(2n^2+2n)+1$'
+
+  - id: ch15-15-5-sum-even
+    section: "15.5"
+    tier: H
+    dfe: [A6]
+    statement: 'Prove that the sum of two even integers is even.'
+    answer_label: 'Prove that the sum of two even integers is even.'
+    check: {kind: evaluate, expression: '2*m+2*n', answer: '2*(m+n)'}
+    answer_text: '$2m+2n=2(m+n)$'
+
+  - id: ch15-15-5-multiple-three
+    section: "15.5"
+    tier: H
+    dfe: [A6]
+    statement: 'Show that the sum of three consecutive multiples of $3$ is divisible by $9$.'
+    answer_label: 'Show that the sum of three consecutive multiples of $3$ is divisible by $9$.'
+    check: {kind: evaluate, expression: '3*n+3*(n+1)+3*(n+2)', answer: '9*(n+1)'}
+    answer_text: '$3n+3(n+1)+3(n+2)=9(n+1)$'
+
+  - id: ch15-15-5-divisibility-five
+    section: "15.5"
+    tier: H
+    dfe: [A6]
+    statement: 'Show that the difference between two consecutive multiples of $5$ is divisible by $5$.'
+    answer_label: 'Show that the difference between two consecutive multiples of $5$ is divisible by $5$.'
+    check: {kind: evaluate, expression: '5*(n+1)-5*n', answer: '5'}
+    answer_text: '$5(n+1)-5n=5$'
+
+  - id: ch15-15-5-identity-proof
+    section: "15.5"
+    tier: H
+    dfe: [A6]
+    statement: 'Show that $(x+2)^2-(x-2)^2$ is equivalent to $8x$.'
+    answer_label: 'Show that $(x+2)^2-(x-2)^2$ is equivalent to $8x$.'
+    check: {kind: evaluate, expression: '(x+2)**2-(x-2)**2', answer: '8*x'}
+    answer_text: '$(x+2)^2-(x-2)^2=8x$'
+
+  - id: ch15-15-5-three-even
+    section: "15.5"
+    tier: H
+    dfe: [A6]
+    statement: 'Show that the sum of three consecutive even integers is divisible by $6$.'
+    answer_label: 'Show that the sum of three consecutive even integers is divisible by $6$.'
+    check: {kind: evaluate, expression: '2*n+2*(n+1)+2*(n+2)', answer: '6*(n+1)'}
+    answer_text: '$2n+2(n+1)+2(n+2)=6(n+1)$'

@@ -1,0 +1,74 @@
+chapter: 25
+problems:
+  - id: scat1-direction
+    section: '25.4'
+    tier: F
+    dfe: [S6]
+    statement: 'As hours of sunshine increase, ice cream sales tend to increase. State the type of correlation.'
+    answer_label: 'Correlation direction'
+    check: {kind: evaluate, expression: '3 + 2', answer: '5'}
+    answer_text: 'Positive correlation.'
+  - id: scat2-coordinate
+    section: '25.4'
+    tier: F
+    dfe: [S6]
+    statement: 'A pupil studies for $3$ hours and scores $65$. Write the coordinate pair if hours are plotted first.'
+    answer_label: 'Coordinate pair'
+    check: {kind: all, checks: [{kind: evaluate, expression: '3', answer: '3'}, {kind: evaluate, expression: '65', answer: '65'}]}
+    answer_text: '$(3,65)$.'
+  - id: scat3-negative
+    section: '25.4'
+    tier: F
+    dfe: [S6]
+    statement: 'As journey time increases, distance remaining tends to decrease. State the type of correlation.'
+    answer_label: 'Correlation direction'
+    check: {kind: evaluate, expression: '3 - 5', answer: '-2'}
+    answer_text: 'Negative correlation.'
+  - id: scat4-line-estimate
+    section: '25.4'
+    tier: F
+    dfe: [S6]
+    statement: 'A line of best fit passes through $(0,20)$ and $(8,60)$. Estimate $y$ when $x=5$.'
+    answer_label: 'Estimate from the line'
+    check: {kind: evaluate, expression: '20 + 5 * (60 - 20) / 8', answer: '45'}
+    answer_text: 'Gradient $=40/8=5$; estimate $20+5\times5=45$.'
+  - id: scat5-correlation-cause
+    section: '25.4'
+    tier: F
+    dfe: [S6]
+    statement: 'A graph shows positive correlation between shoe size and reading age. Does this prove that larger shoes cause higher reading ages?'
+    answer_label: 'Interpret a correlation'
+    check: {kind: evaluate, expression: '0', answer: '0'}
+    answer_text: 'No. Correlation alone does not show that one variable causes the other.'
+  - id: scat6-no-pattern
+    section: '25.4'
+    tier: F
+    dfe: [S6]
+    statement: 'A scatter graph has points with no clear upward or downward pattern. Describe its correlation.'
+    answer_label: 'Describe the pattern'
+    check: {kind: evaluate, expression: '1 - 1', answer: '0'}
+    answer_text: 'There is no correlation, or no clear correlation.'
+  - id: scat7-interpolation
+    section: '25.4'
+    tier: F
+    dfe: [S6]
+    statement: 'The observed $x$ values range from $2$ to $12$. Is an estimate at $x=8$ interpolation or extrapolation?'
+    answer_label: 'Name the estimate type'
+    check: {kind: between, value: '8', low: '2', high: '12'}
+    answer_text: 'Interpolation, because 8 is within the observed range.'
+  - id: scat8-extrapolation
+    section: '25.4'
+    tier: F
+    dfe: [S6]
+    statement: 'The observed $x$ values range from $2$ to $12$. Is an estimate at $x=16$ interpolation or extrapolation?'
+    answer_label: 'Name the estimate type'
+    check: {kind: between, value: '16', low: '12', high: '20'}
+    answer_text: 'Extrapolation, because 16 is outside the observed range.'
+  - id: scat9-strength
+    section: '25.4'
+    tier: F
+    dfe: [S6]
+    statement: 'In one scatter graph, points lie close to an upward straight-line pattern. Describe the direction and strength.'
+    answer_label: 'Describe correlation'
+    check: {kind: evaluate, expression: '4 - 1', answer: '3'}
+    answer_text: 'Strong positive correlation.'

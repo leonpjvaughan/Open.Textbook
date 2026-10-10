@@ -1,19 +1,15 @@
 ---
-title: 15.5 Algebraic proof — Problems
+title: "15.5 Algebraic proof — Practise"
 chapter: 15
 chapter_title: Functions, algebraic fractions and proof
-section: '15.5'
-section_title: Algebraic proof
+section: "15.5"
+section_title: "Algebraic proof"
 tier: H
-dfe:
-- A6
-kind: problems
+dfe: [A6]
+kind: practise
 ---
 
-<!-- scaffold:stub -->
+# 15.5 Algebraic proof — Practise
 
-# 15.5 Algebraic proof — Problems
-
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: A6
+:::problems chapter-15-practice-15.5
+:::answers chapter-15-practice-15.5

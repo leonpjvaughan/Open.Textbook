@@ -1,0 +1,91 @@
+chapter: 19
+problems:
+- id: ch19-19-5-01
+  section: '19.5'
+  tier: H
+  dfe: &id001
+  - G17
+  statement: A sphere has radius 3 cm. Work out its volume in terms of π.
+  answer_label: Sphere volume
+  check:
+    kind: evaluate
+    expression: 4/3*pi*3**3
+    answer: 36*pi
+  answer_text: $36\pi\text{ cm}^3$
+- id: ch19-19-5-02
+  section: '19.5'
+  tier: H
+  dfe: *id001
+  statement: A sphere has radius 5 cm. Work out its surface area in terms of π.
+  answer_label: Sphere surface area
+  check:
+    kind: evaluate
+    expression: 4*pi*5**2
+    answer: 100*pi
+  answer_text: $100\pi\text{ cm}^2$
+- id: ch19-19-5-03
+  section: '19.5'
+  tier: H
+  dfe: *id001
+  statement: A cone has radius 3 cm and perpendicular height 8 cm. Work out its volume in terms of π.
+  answer_label: Cone volume
+  check:
+    kind: evaluate
+    expression: 1/3*pi*3**2*8
+    answer: 24*pi
+  answer_text: $24\pi\text{ cm}^3$
+- id: ch19-19-5-04
+  section: '19.5'
+  tier: H
+  dfe: *id001
+  statement: A cone has radius 5 cm and slant height 13 cm. Work out its curved surface area in terms of π.
+  answer_label: Cone curved surface area
+  check:
+    kind: evaluate
+    expression: pi*5*13
+    answer: 65*pi
+  answer_text: $65\pi\text{ cm}^2$
+- id: ch19-19-5-05
+  section: '19.5'
+  tier: H
+  dfe: *id001
+  statement: A square-based pyramid has base side 6 cm and perpendicular height 10 cm. Work out its volume.
+  answer_label: Pyramid volume
+  check:
+    kind: evaluate
+    expression: 1/3*6**2*10
+    answer: '120'
+  answer_text: $120\text{ cm}^3$
+- id: ch19-19-5-06
+  section: '19.5'
+  tier: H
+  dfe: *id001
+  statement: A square-based pyramid has base side 6 cm. Each triangular face has perpendicular height 5 cm. Work out its surface area.
+  answer_label: Pyramid surface area
+  check:
+    kind: evaluate
+    expression: 6**2+4*(6*5/2)
+    answer: '96'
+  answer_text: $96\text{ cm}^2$
+- id: ch19-19-5-07
+  section: '19.5'
+  tier: H
+  dfe: *id001
+  statement: A cone has radius 6 cm and perpendicular height 8 cm. Work out its volume in terms of π.
+  answer_label: Cone volume
+  check:
+    kind: evaluate
+    expression: 1/3*pi*6**2*8
+    answer: 96*pi
+  answer_text: $96\pi\text{ cm}^3$
+- id: ch19-19-5-08
+  section: '19.5'
+  tier: H
+  dfe: *id001
+  statement: A sphere has volume 288π cm³. Work out its radius.
+  answer_label: Sphere radius
+  check:
+    kind: evaluate
+    expression: (288*3/4)**(1/3)
+    answer: '6'
+  answer_text: $6\text{ cm}$

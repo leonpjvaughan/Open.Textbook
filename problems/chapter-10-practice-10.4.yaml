@@ -1,0 +1,76 @@
+# Verified practice set for section 10.4.
+chapter: 10
+symbols:
+  n: {real: true}
+problems:
+  - id: ch10-104-quadratic-basic
+    section: '10.4'
+    tier: H
+    dfe: [A25]
+    statement: 'Find the nth term of $2,6,12,20,30,\ldots$.'
+    answer_label: 'Find the nth term of $2,6,12,20,30,\ldots$.'
+    check: {"kind":"all","checks":[{"kind":"evaluate","expression":"1**2+1","answer":"2"},{"kind":"evaluate","expression":"2**2+2","answer":"6"},{"kind":"evaluate","expression":"3**2+3","answer":"12"},{"kind":"evaluate","expression":"4**2+4","answer":"20"},{"kind":"evaluate","expression":"5**2+5","answer":"30"}]}
+    answer_text: '$n^2+n$.'
+
+  - id: ch10-104-quadratic-leading2
+    section: '10.4'
+    tier: H
+    dfe: [A25]
+    statement: 'Find the nth term of $3,10,21,36,55,\ldots$.'
+    answer_label: 'Find the nth term of $3,10,21,36,55,\ldots$.'
+    check: {"kind":"all","checks":[{"kind":"evaluate","expression":"2*1**2+1","answer":"3"},{"kind":"evaluate","expression":"2*2**2+2","answer":"10"},{"kind":"evaluate","expression":"2*3**2+3","answer":"21"},{"kind":"evaluate","expression":"2*4**2+4","answer":"36"},{"kind":"evaluate","expression":"2*5**2+5","answer":"55"}]}
+    answer_text: '$2n^2+n$.'
+
+  - id: ch10-104-quadratic-constant
+    section: '10.4'
+    tier: H
+    dfe: [A25]
+    statement: 'Find the nth term of $4,11,22,37,56,\ldots$.'
+    answer_label: 'Find the nth term of $4,11,22,37,56,\ldots$.'
+    check: {"kind":"all","checks":[{"kind":"evaluate","expression":"2*1**2+1+1","answer":"4"},{"kind":"evaluate","expression":"2*2**2+2+1","answer":"11"},{"kind":"evaluate","expression":"2*3**2+3+1","answer":"22"},{"kind":"evaluate","expression":"2*4**2+4+1","answer":"37"},{"kind":"evaluate","expression":"2*5**2+5+1","answer":"56"}]}
+    answer_text: '$2n^2+n+1$.'
+
+  - id: ch10-104-next-term
+    section: '10.4'
+    tier: H
+    dfe: [A25]
+    statement: 'Continue $1,5,13,25,41,\ldots$ by one term.'
+    answer_label: 'Continue $1,5,13,25,41,\ldots$ by one term.'
+    check: {"kind":"evaluate","expression":"2*6**2-2*6+1","answer":"61"}
+    answer_text: '$61$.'
+
+  - id: ch10-104-find-10
+    section: '10.4'
+    tier: H
+    dfe: [A25]
+    statement: 'Find the 10th term of $n^2+3n$.'
+    answer_label: 'Find the 10th term of $n^2+3n$.'
+    check: {"kind":"evaluate","expression":"10**2+3*10","answer":"130"}
+    answer_text: '$130$.'
+
+  - id: ch10-104-check-rule
+    section: '10.4'
+    tier: H
+    dfe: [A25]
+    statement: 'Does $n^2+2n+2$ generate $4,8,14,22$?'
+    answer_label: 'Does $n^2+2n+2$ generate $4,8,14,22$?'
+    check: {"kind":"compare","relation":"!=","lhs":"1**2+2*1+2","rhs":"4"}
+    answer_text: 'No: at position 1 it gives 5, not 4.'
+
+  - id: ch10-104-difference-identify
+    section: '10.4'
+    tier: H
+    dfe: [A25]
+    statement: 'The first differences are $5,9,13,17$. Find the constant second difference.'
+    answer_label: 'The first differences are $5,9,13,17$. Find the constant second d'
+    check: {"kind":"all","checks":[{"kind":"evaluate","expression":"9-5","answer":"4"},{"kind":"evaluate","expression":"13-9","answer":"4"},{"kind":"evaluate","expression":"17-13","answer":"4"}]}
+    answer_text: '$4$.'
+
+  - id: ch10-104-higher-solve
+    section: '10.4'
+    tier: H
+    dfe: [A25]
+    statement: '**H** The nth term is $n^2+4n$. Find $n$ when the term is 45.'
+    answer_label: '**H** The nth term is $n^2+4n$. Find $n$ when the term is 45.'
+    check: {"kind":"evaluate","expression":"5**2+4*5","answer":"45"}
+    answer_text: '$n=5$.'

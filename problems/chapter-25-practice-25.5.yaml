@@ -1,0 +1,74 @@
+chapter: 25
+problems:
+  - id: comp1-iqr
+    section: '25.5'
+    tier: H
+    dfe: [S4]
+    statement: 'Group A has $Q_1=8$ and $Q_3=17$. Group B has $Q_1=10$ and $Q_3=23$. Find each IQR and identify the greater middle-half spread.'
+    answer_label: 'Compare IQRs'
+    check: {kind: compare, relation: '<', lhs: '9', rhs: '13'}
+    answer_text: 'A: IQR $9$. B: IQR $13$. Group B has the greater middle-half spread.'
+  - id: comp2-median-context
+    section: '25.5'
+    tier: H
+    dfe: [S4]
+    statement: 'The median waiting time is 12 minutes at Clinic A and 17 minutes at Clinic B. Which clinic has the lower typical wait, using the median?'
+    answer_label: 'Compare typical waits'
+    check: {kind: compare, relation: '<', lhs: '12', rhs: '17'}
+    answer_text: 'Clinic A has the lower median waiting time.'
+  - id: comp3-fences
+    section: '25.5'
+    tier: H
+    dfe: [S4]
+    statement: 'A data set has $Q_1=20$ and $Q_3=32$. Find the lower and upper fences using $1.5\times\mathrm{IQR}$.'
+    answer_label: 'IQR fences'
+    check: {kind: all, checks: [{kind: evaluate, expression: '20 - 1.5 * (32 - 20)', answer: '2'}, {kind: evaluate, expression: '32 + 1.5 * (32 - 20)', answer: '50'}]}
+    answer_text: 'IQR $=12$; lower fence $2$, upper fence $50$.'
+  - id: comp4-outlier-rule
+    section: '25.5'
+    tier: H
+    dfe: [S4]
+    statement: 'The upper fence is 40. A value is 46. Does the IQR rule flag it as a possible outlier?'
+    answer_label: 'Check the upper fence'
+    check: {kind: compare, relation: '>', lhs: '46', rhs: '40'}
+    answer_text: 'Yes. $46>40$, so it is a possible outlier.'
+  - id: comp5-range-v-iqr
+    section: '25.5'
+    tier: H
+    dfe: [S4]
+    statement: 'A distribution has minimum 4, maximum 50, $Q_1=12$ and $Q_3=20$. Find its range and IQR.'
+    answer_label: 'Range and IQR'
+    check: {kind: all, checks: [{kind: evaluate, expression: '50 - 4', answer: '46'}, {kind: evaluate, expression: '20 - 12', answer: '8'}]}
+    answer_text: 'Range $46$; IQR $8$.'
+  - id: comp6-outlier-check
+    section: '25.5'
+    tier: H
+    dfe: [S4]
+    statement: 'For the travel times, $Q_1=17.5$, $Q_3=26.5$, and the maximum is 42. Use the upper IQR fence to check whether 42 is a possible outlier.'
+    answer_label: 'Check the travel-time maximum'
+    check: {kind: all, checks: [{kind: evaluate, expression: '26.5 - 17.5', answer: '9'}, {kind: evaluate, expression: '26.5 + 1.5 * 9', answer: '40'}, {kind: compare, relation: '>', lhs: '42', rhs: '40'}]}
+    answer_text: 'IQR $9$; upper fence $40$. Since $42>40$, it is a possible outlier.'
+  - id: comp7-context-spread
+    section: '25.5'
+    tier: H
+    dfe: [S4]
+    statement: 'Two groups have the same median. Group A has IQR 5 and Group B has IQR 11. Which group has more variation in the middle half?'
+    answer_label: 'Compare middle-half variation'
+    check: {kind: compare, relation: '<', lhs: '5', rhs: '11'}
+    answer_text: 'Group B, because its IQR is larger.'
+  - id: comp8-outlier-lower
+    section: '25.5'
+    tier: H
+    dfe: [S4]
+    statement: 'A distribution has $Q_1=14$ and IQR 6. Find the lower fence.'
+    answer_label: 'Lower fence'
+    check: {kind: evaluate, expression: '14 - 1.5 * 6', answer: '5'}
+    answer_text: '$14-9=5$.'
+  - id: comp9-interpret-both
+    section: '25.5'
+    tier: H
+    dfe: [S4]
+    statement: 'Group X has median 30 and IQR 8. Group Y has median 25 and IQR 8. Compare their typical values and middle-half spreads.'
+    answer_label: 'Compare two distributions'
+    check: {kind: compare, relation: '>', lhs: '30', rhs: '25'}
+    answer_text: 'Group X has the higher median. Their IQRs are equal, so their middle-half spreads are equal.'

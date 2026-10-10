@@ -1,0 +1,120 @@
+chapter: 11
+problems:
+- id: p1-gradient-rate
+  section: '11.6'
+  tier: H
+  dfe: &id001
+  - A15
+  - R15
+  statement: A velocity rises from 2 m/s to 10 m/s in 4 seconds. Find the gradient.
+  answer_label: Question 1
+  check:
+    kind: evaluate
+    expression: (10-2)/4
+    answer: '2'
+  answer_text: 2 m/s²
+- id: p2-area-rectangle
+  section: '11.6'
+  tier: H
+  dfe: *id001
+  statement: A velocity-time graph shows 6 m/s for 5 seconds. Find distance travelled.
+  answer_label: Question 2
+  check:
+    kind: evaluate
+    expression: 6*5
+    answer: '30'
+  answer_text: 30 m
+- id: p3-area-triangle
+  section: '11.6'
+  tier: H
+  dfe: *id001
+  statement: Velocity rises uniformly from 0 to 8 m/s in 4 seconds. Find distance travelled.
+  answer_label: Question 3
+  check:
+    kind: evaluate
+    expression: (4*8)/2
+    answer: '16'
+  answer_text: 16 m
+- id: p4-area-trapezium
+  section: '11.6'
+  tier: H
+  dfe: *id001
+  statement: Velocity changes uniformly from 4 to 10 m/s over 3 seconds. Find distance.
+  answer_label: Question 4
+  check:
+    kind: evaluate
+    expression: ((4+10)/2)*3
+    answer: '21'
+  answer_text: 21 m
+- id: p5-acceleration
+  section: '11.6'
+  tier: H
+  dfe: *id001
+  statement: A velocity-time line goes from (0,3) to (5,13). Find the acceleration.
+  answer_label: Question 5
+  check:
+    kind: evaluate
+    expression: (13-3)/5
+    answer: '2'
+  answer_text: 2 m/s²
+- id: p6-interpret-area
+  section: '11.6'
+  tier: H
+  dfe: *id001
+  statement: What does the area under a velocity-time graph represent?
+  answer_label: Question 6
+  check:
+    kind: evaluate
+    expression: '1'
+    answer: '1'
+  answer_text: Distance travelled
+- id: p7-piecewise
+  section: '11.6'
+  tier: H
+  dfe: *id001
+  statement: A runner moves at 4 m/s for 3 seconds, then 2 m/s for 5 seconds. Find total distance.
+  answer_label: Question 7
+  check:
+    kind: evaluate
+    expression: 4*3+2*5
+    answer: '22'
+  answer_text: 22 m
+- id: p8-rate-distance
+  section: '11.6'
+  tier: H
+  dfe: *id001
+  statement: Water flows at 2 litres per minute for 7 minutes. Find volume transferred using rate times time.
+  answer_label: Question 8
+  check:
+    kind: evaluate
+    expression: 2*7
+    answer: '14'
+  answer_text: 14 litres
+- id: p9-mixed-gradient
+  section: '11.6'
+  tier: H
+  dfe: *id001
+  statement: Find the gradient between $(1,3)$ and $(4,12)$, then say if it is greater than the gradient from $(0,0)$ to $(2,5)$.
+  answer_label: Question 9
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: (12-3)/(4-1)
+      answer: '3'
+    - kind: compare
+      relation: '>'
+      lhs: '3'
+      rhs: 5/2
+  answer_text: 3; no, 3 is less than 2.5 is false
+- id: p10-higher
+  section: '11.6'
+  tier: H
+  dfe: *id001
+  statement: A velocity-time graph rises from 0 to 12 m/s in 6 s, then stays at 12 m/s for 4 s. Find total distance.
+  answer_label: Question 10
+  check:
+    kind: evaluate
+    expression: (6*12)/2+4*12
+    answer: '84'
+  answer_text: 36+48=84 m

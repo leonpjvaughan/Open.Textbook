@@ -1,0 +1,133 @@
+chapter: 11
+problems:
+- id: p1-gradient
+  section: '11.2'
+  tier: F
+  dfe: &id001
+  - A9
+  - A10
+  statement: Find the gradient between $(1,2)$ and $(4,11)$.
+  answer_label: Question 1
+  check:
+    kind: evaluate
+    expression: (11-2)/(4-1)
+    answer: '3'
+  answer_text: '3'
+- id: p2-intercept
+  section: '11.2'
+  tier: F
+  dfe: *id001
+  statement: State the gradient and $y$-intercept of $y=4x-3$.
+  answer_label: Question 2
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: '4'
+      answer: '4'
+    - kind: evaluate
+      expression: '-3'
+      answer: '-3'
+  answer_text: 4 and -3
+- id: p3-origin-line
+  section: '11.2'
+  tier: F
+  dfe: *id001
+  statement: A straight line through $(0,0)$ and $(3,12)$ has what gradient?
+  answer_label: Question 3
+  check:
+    kind: evaluate
+    expression: 12/3
+    answer: '4'
+  answer_text: '4'
+- id: p4-y-values
+  section: '11.2'
+  tier: F
+  dfe: *id001
+  statement: For $y=-2x+5$, find $y$ when $x=-1,0,2$.
+  answer_label: Question 4
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: -2*(-1)+5
+      answer: '7'
+    - kind: evaluate
+      expression: -2*0+5
+      answer: '5'
+    - kind: evaluate
+      expression: -2*2+5
+      answer: '1'
+  answer_text: 7, 5, 1
+- id: p5-gradient-between
+  section: '11.2'
+  tier: F
+  dfe: *id001
+  statement: Find the gradient between $(-2,7)$ and $(2,-1)$.
+  answer_label: Question 5
+  check:
+    kind: evaluate
+    expression: (-1-7)/(2-(-2))
+    answer: '-2'
+  answer_text: '-2'
+- id: p6-intercepts
+  section: '11.2'
+  tier: F
+  dfe: *id001
+  statement: State the $y$-intercept of $y=0.5x+6$ and where the line crosses the vertical axis.
+  answer_label: Question 6
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0.5*0+6
+      answer: '6'
+    - kind: evaluate
+      expression: '0'
+      answer: '0'
+  answer_text: 6; (0,6)
+- id: p7-identify-rule
+  section: '11.2'
+  tier: F
+  dfe: *id001
+  statement: A line has gradient 3 and intercept -2. Write its equation.
+  answer_label: Question 7
+  check:
+    kind: evaluate
+    expression: 3*1-2
+    answer: '1'
+  answer_text: $y=3x-2$
+- id: p8-check-point
+  section: '11.2'
+  tier: F
+  dfe: *id001
+  statement: Does $(4,9)$ lie on $y=2x+1$?
+  answer_label: Question 8
+  check:
+    kind: compare
+    relation: '='
+    lhs: 2*4+1
+    rhs: '9'
+  answer_text: 'Yes'
+- id: p9-context
+  section: '11.2'
+  tier: F
+  dfe: *id001
+  statement: A tank contains 12 litres initially and gains 3 litres each minute. Write $V$ in terms of minutes $t$.
+  answer_label: Question 9
+  check:
+    kind: evaluate
+    expression: 3*2+12
+    answer: '18'
+  answer_text: $V=3t+12$
+- id: p10-higher
+  section: '11.2'
+  tier: H
+  dfe: *id001
+  statement: Find the gradient of the line through $(1,2.5)$ and $(5,0.5)$.
+  answer_label: Question 10
+  check:
+    kind: evaluate
+    expression: (0.5-2.5)/(5-1)
+    answer: '-0.5'
+  answer_text: '-0.5'

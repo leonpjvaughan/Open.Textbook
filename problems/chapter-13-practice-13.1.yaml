@@ -1,0 +1,96 @@
+chapter: 13
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: cubic-roots
+    section: '13.1'
+    tier: H
+    dfe: [A12]
+    statement: 'For $y=x^3-4x$, work out the $x$-intercepts and the $y$-intercept.'
+    answer_label: 'Intercepts of $y=x^3-4x$'
+    check: {kind: solve, equation: x**3-4*x=0, variable: x, answer: ['-2', '0', '2']}
+    answer_text: 'The $x$-intercepts are $(-2,0),(0,0),(2,0)$. The $y$-intercept is $(0,0)$. Factor: $x(x-2)(x+2)=0$.'
+  - id: cubic-table
+    section: '13.1'
+    tier: H
+    dfe: [A12]
+    statement: 'For $y=x^3$, work out $y$ when $x=-2,-1,0,1,2$.'
+    answer_label: 'Values for $y=x^3$'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: (-2)**3, answer: '-8'}
+        - {kind: evaluate, expression: (-1)**3, answer: '-1'}
+        - {kind: evaluate, expression: 0**3, answer: '0'}
+        - {kind: evaluate, expression: 1**3, answer: '1'}
+        - {kind: evaluate, expression: 2**3, answer: '8'}
+    answer_text: 'The outputs are $-8,-1,0,1,8$ respectively. The graph falls left and rises right.'
+  - id: cubic-intersection
+    section: '13.1'
+    tier: H
+    dfe: [A14]
+    statement: 'Find where $y=x^3-3x$ meets the $x$-axis.'
+    answer_label: 'Cubic and $x$-axis intersections'
+    check: {kind: solve, equation: x**3-3*x=0, variable: x, answer: ['-sqrt(3)', '0', 'sqrt(3)']}
+    answer_text: 'Set $y=0$: $x(x^2-3)=0$. Thus $x=-\sqrt3,0,\sqrt3$.'
+  - id: reciprocal-values
+    section: '13.1'
+    tier: H
+    dfe: [A12]
+    statement: 'Complete the values of $y=1/x$ for $x=-2,-1,1,2$.'
+    answer_label: 'Values for $y=1/x$'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 1/(-2), answer: '-1/2'}
+        - {kind: evaluate, expression: 1/(-1), answer: '-1'}
+        - {kind: evaluate, expression: 1/1, answer: '1'}
+        - {kind: evaluate, expression: 1/2, answer: '1/2'}
+    answer_text: 'The outputs are $-1/2,-1,1,1/2$ respectively.'
+  - id: reciprocal-asymptotes
+    section: '13.1'
+    tier: H
+    dfe: [A12, A14]
+    statement: 'State the asymptotes of $y=1/x$ and explain why the graph has two branches.'
+    answer_label: 'Reciprocal asymptotes'
+    check: {kind: compare, relation: '!=', lhs: '1', rhs: '0'}
+    answer_text: 'The axes $x=0$ and $y=0$ are asymptotes. The rule is undefined at $x=0$, so the branches cannot join there.'
+  - id: exponential-values
+    section: '13.1'
+    tier: H
+    dfe: [A12]
+    statement: 'For $y=2^x$, work out $y$ when $x=-1,0,1,2$.'
+    answer_label: 'Values for $y=2^x$'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 2**(-1), answer: '1/2'}
+        - {kind: evaluate, expression: 2**0, answer: '1'}
+        - {kind: evaluate, expression: 2**1, answer: '2'}
+        - {kind: evaluate, expression: 2**2, answer: '4'}
+    answer_text: 'The outputs are $1/2,1,2,4$ respectively.'
+  - id: exponential-growth
+    section: '13.1'
+    tier: H
+    dfe: [A14]
+    statement: 'A quantity follows $y=3\times2^x$. Work out $y$ when $x=3$ and describe the growth factor.'
+    answer_label: 'Exponential growth'
+    check: {kind: evaluate, expression: 3*2**3, answer: '24'}
+    answer_text: '$y=3\times2^3=24$. Each unit step in $x$ multiplies $y$ by $2$.'
+  - id: match-graph-families
+    section: '13.1'
+    tier: H
+    dfe: [A12]
+    statement: 'Match each description to cubic, reciprocal or exponential: (a) S-shape through the origin; (b) two branches approaching both axes; (c) positive curve through $(0,1)$ that doubles each step right.'
+    answer_label: 'Match graph families'
+    check: {kind: evaluate, expression: 2**0, answer: '1'}
+    answer_text: '(a) cubic; (b) reciprocal; (c) exponential.'
+  - id: cubic-higher
+    section: '13.1'
+    tier: H
+    dfe: [A14]
+    statement: '**H** For $y=x^3-3x^2-4x$, find and list the $x$-intercepts.'
+    answer_label: 'Higher cubic intercepts'
+    check: {kind: solve, equation: x**3-3*x**2-4*x=0, variable: x, answer: ['-1', '0', '4']}
+    answer_text: '$x(x-4)(x+1)=0$, so the intercepts are $(-1,0),(0,0),(4,0)$.'

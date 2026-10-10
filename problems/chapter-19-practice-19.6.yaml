@@ -1,0 +1,95 @@
+chapter: 19
+problems:
+- id: ch19-19-6-01
+  section: '19.6'
+  tier: F
+  dfe: &id001
+  - G17
+  statement: An L-shape is made by removing a 3 cm by 2 cm rectangle from a 9 cm by 6 cm rectangle. Work out its area.
+  answer_label: Composite area
+  check:
+    kind: evaluate
+    expression: 9*6-3*2
+    answer: '48'
+  answer_text: $48\text{ cm}^2$
+- id: ch19-19-6-02
+  section: '19.6'
+  tier: F
+  dfe: *id001
+  statement: A rectangle 10 cm by 8 cm has a 4 cm by 3 cm rectangle removed. Work out the remaining area.
+  answer_label: Composite area
+  check:
+    kind: evaluate
+    expression: 10*8-4*3
+    answer: '68'
+  answer_text: $68\text{ cm}^2$
+- id: ch19-19-6-03
+  section: '19.6'
+  tier: F
+  dfe: *id001
+  statement: A shape is made from a rectangle 7 cm by 4 cm and a triangle with base 7 cm and height 3 cm. Work out its area.
+  answer_label: Composite area
+  check:
+    kind: evaluate
+    expression: 7*4+7*3/2
+    answer: '38.5'
+  answer_text: $38.5\text{ cm}^2$
+- id: ch19-19-6-04
+  section: '19.6'
+  tier: F
+  dfe: *id001
+  statement: A semicircle of radius 4 cm is joined to a rectangle 8 cm by 5 cm along the rectangle length. Work out the outer
+    perimeter in terms of π.
+  answer_label: Composite perimeter
+  check:
+    kind: evaluate
+    expression: 8+5+5+pi*4
+    answer: 18+4*pi
+  answer_text: $18+4\pi\text{ cm}$
+- id: ch19-19-6-05
+  section: '19.6'
+  tier: F
+  dfe: *id001
+  statement: A solid is made from a cuboid 5 cm by 4 cm by 3 cm and a cuboid 2 cm by 4 cm by 3 cm joined along a 4 cm by 3
+    cm face. Work out its volume.
+  answer_label: Composite volume
+  check:
+    kind: evaluate
+    expression: 5*4*3+2*4*3
+    answer: '84'
+  answer_text: $84\text{ cm}^3$
+- id: ch19-19-6-06
+  section: '19.6'
+  tier: F
+  dfe: *id001
+  statement: Two cuboids of dimensions 4 cm by 3 cm by 2 cm and 5 cm by 3 cm by 2 cm are joined along a 3 cm by 2 cm face.
+    Work out the outside surface area.
+  answer_label: Composite surface area
+  check:
+    kind: evaluate
+    expression: 2*(4*3+4*2+3*2)+2*(5*3+5*2+3*2)-2*3*2
+    answer: '102'
+  answer_text: $102\text{ cm}^2$
+- id: ch19-19-6-07
+  section: '19.6'
+  tier: F
+  dfe: *id001
+  statement: A solid consists of a cylinder of radius 3 cm and height 4 cm with a hemisphere of radius 3 cm on top. Work out
+    its volume in terms of π.
+  answer_label: Composite volume
+  check:
+    kind: evaluate
+    expression: pi*3**2*4+2/3*pi*3**3
+    answer: 54*pi
+  answer_text: $54\pi\text{ cm}^3$
+- id: ch19-19-6-08
+  section: '19.6'
+  tier: F
+  dfe: *id001
+  statement: A shape has area 72 cm². A square of side 4 cm is cut from it. Work out the remaining area.
+  answer_label: Remaining area
+  check:
+    kind: evaluate
+    expression: 72-4**2
+    answer: '56'
+  answer_text: $56\text{ cm}^2$

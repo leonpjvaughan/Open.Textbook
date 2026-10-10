@@ -43,6 +43,14 @@ In direct proportion, one quantity is a fixed multiple of another: $y=kx$. For $
 
 > **Watch out.** For $y\propto x^2$, doubling $x$ multiplies $y$ by 4, not 2. Square the scale factor, then check with the original and new values.
 
+### Try it: direct and inverse proportion
+
+**Predict first.** As $x$ doubles, does $y$ double or halve? Decide for direct proportion, then for inverse proportion.
+
+:::figure ch5-proportion
+
+**Explain:** what is the difference between $y = kx$ and $y = \frac{k}{x}$? Use the shape of each graph.
+
 ## You should now be able to
 
 - I can find $k$ in $y=kx$, $y=kx^2$ or $y=kx^3$.

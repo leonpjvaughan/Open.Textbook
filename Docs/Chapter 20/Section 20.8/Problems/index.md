@@ -1,19 +1,17 @@
 ---
-title: 20.8 The area of any triangle — Problems
+title: "20.8 The area of any triangle — Practise"
 chapter: 20
-chapter_title: Pythagoras' theorem and trigonometry
+chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.8'
-section_title: The area of any triangle
+section_title: "The area of any triangle"
 tier: H
-dfe:
-- G23
+dfe: [G23]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 20.8 The area of any triangle — Practise
 
-# 20.8 The area of any triangle — Problems
+Work independently. Estimate where useful, show your method, and check units. In the mixed questions, choose the method and give a reason.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: G23
+:::problems chapter-20-practice-20.8
+:::answers chapter-20-practice-20.8

@@ -17,12 +17,12 @@ A school is drawing a model of a garden. The path is 18 m long, and a scale draw
 
 ## Roadmap
 
-1. [5.1 Ratio notation, simplifying and sharing](Section%205.1/Walkthrough/)
-2. [5.2 Ratio, fractions and linear functions](Section%205.2/Walkthrough/)
-3. [5.3 Direct proportion](Section%205.3/Walkthrough/)
-4. [5.4 Inverse proportion](Section%205.4/Walkthrough/) — Higher only
-5. [5.5 Scale factors, scale diagrams and maps](Section%205.5/Walkthrough/)
-6. [5.6 Comparing lengths, areas and volumes](Section%205.6/Walkthrough/) — Higher only
+1. [5.1 Ratio notation, simplifying and sharing](Section 5.1/Walkthrough/index.md)
+2. [5.2 Ratio, fractions and linear functions](Section 5.2/Walkthrough/index.md)
+3. [5.3 Direct proportion](Section 5.3/Walkthrough/index.md)
+4. [5.4 Inverse proportion](Section 5.4/Walkthrough/index.md) — Higher only
+5. [5.5 Scale factors, scale diagrams and maps](Section 5.5/Walkthrough/index.md)
+6. [5.6 Comparing lengths, areas and volumes](Section 5.6/Walkthrough/index.md) — Higher only
 
 At each progress check, return to the garden path. By the end, you can choose and use its scale accurately.
 

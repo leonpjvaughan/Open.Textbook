@@ -1,5 +1,5 @@
 ---
-title: 10.1 Term-to-term and position-to-term rules — Problems
+title: 10.1 Term-to-term and position-to-term rules — Practise
 chapter: 10
 chapter_title: Sequences
 section: '10.1'
@@ -10,10 +10,10 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 10.1 Term-to-term and position-to-term rules — Practise
 
-# 10.1 Term-to-term and position-to-term rules — Problems
+Work each question independently. For mixed sequence types, name the method before you calculate.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: A23
+:::problems chapter-10-practice-10.1
+
+:::answers chapter-10-practice-10.1

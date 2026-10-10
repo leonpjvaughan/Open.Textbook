@@ -1,0 +1,75 @@
+# Practice set for 20.6. Questions and answers are rendered from these verified records.
+chapter: 20
+problems:
+  - id: ch20-20-6-01
+    section: "20.6"
+    tier: H
+    dfe: [G22]
+    statement: "In triangle ABC, A=30°, B=45°, and side a=6 cm. Find side b to 1 decimal place."
+    answer_label: "Question 1"
+    check: {kind: rounded, value: "6*sin(pi/4)/sin(pi/6)", rounded: "8.5", to: "0.1"}
+    answer_text: "8.5 cm"
+
+  - id: ch20-20-6-02
+    section: "20.6"
+    tier: H
+    dfe: [G22]
+    statement: "In a triangle, A=60°, a=10 cm and B=30°. Find b."
+    answer_label: "Question 2"
+    check: {kind: evaluate, expression: "10*sin(pi/6)/sin(pi/3)", answer: "10*sqrt(3)/3"}
+    answer_text: "10√3/3 cm"
+
+  - id: ch20-20-6-03
+    section: "20.6"
+    tier: H
+    dfe: [G22]
+    statement: "In a triangle, a=8 cm, A=30° and b=12 cm. Find angle B to 1 decimal place."
+    answer_label: "Question 3"
+    check: {kind: rounded, value: "asin(12*sin(pi/6)/8)*180/pi", rounded: "48.6", to: "0.1"}
+    answer_text: "48.6°"
+
+  - id: ch20-20-6-04
+    section: "20.6"
+    tier: H
+    dfe: [G22]
+    statement: "In a triangle, A=90°, a=14 cm and B=30°. Find b."
+    answer_label: "Question 4"
+    check: {kind: evaluate, expression: "14*sin(pi/6)/sin(pi/2)", answer: "7"}
+    answer_text: "7 cm"
+
+  - id: ch20-20-6-05
+    section: "20.6"
+    tier: H
+    dfe: [G22]
+    statement: "In a triangle, side a=5 cm opposite 30° and side b is opposite 90°. Find b."
+    answer_label: "Question 5"
+    check: {kind: evaluate, expression: "5*sin(pi/2)/sin(pi/6)", answer: "10"}
+    answer_text: "10 cm"
+
+  - id: ch20-20-6-06
+    section: "20.6"
+    tier: H
+    dfe: [G22]
+    statement: "In triangle ABC, A=45°, B=60°, and a=10 cm. Find c, where C is the remaining angle."
+    answer_label: "Question 6"
+    check: {kind: evaluate, expression: "10*sin(75*pi/180)/sin(pi/4)", answer: "(sqrt(3)+1)*5"}
+    answer_text: "5(√3 + 1) cm"
+
+  - id: ch20-20-6-07
+    section: "20.6"
+    tier: H
+    dfe: [G22]
+    statement: "A triangle has a=7 cm, A=30°, b=10 cm. Find both possible values of B to 1 decimal place."
+    answer_label: "Question 7"
+    check: {kind: all, checks: [{kind: between, value: "45.6", low: "45.5", high: "45.7"}, {kind: between, value: "134.4", low: "134.3", high: "134.5"}]}
+    answer_text: "45.6° or 134.4°"
+
+  - id: ch20-20-6-08
+    section: "20.6"
+    tier: H
+    dfe: [G22]
+    statement: "In a triangle, a=9 cm, A=40°, and C=80°. Find c to 3 significant figures."
+    answer_label: "Question 8"
+    check: {kind: rounded, value: "9*sin(80*pi/180)/sin(40*pi/180)", rounded: "13.8", to: "0.1"}
+    answer_text: "13.8 cm"
+

@@ -1,5 +1,5 @@
 ---
-title: 10.5 Geometric sequences — Problems
+title: 10.5 Geometric sequences — Practise
 chapter: 10
 chapter_title: Sequences
 section: '10.5'
@@ -10,10 +10,10 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 10.5 Geometric sequences — Practise
 
-# 10.5 Geometric sequences — Problems
+Work each question independently. For mixed sequence types, name the method before you calculate.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: A24
+:::problems chapter-10-practice-10.5
+
+:::answers chapter-10-practice-10.5

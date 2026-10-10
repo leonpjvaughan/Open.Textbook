@@ -1,5 +1,5 @@
 ---
-title: 23.6 Conditional probability — Problems
+title: 23.6 Conditional probability — Practise
 chapter: 23
 chapter_title: Probability
 section: '23.6'
@@ -10,10 +10,9 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 23.6 Conditional probability — Practise
 
-# 23.6 Conditional probability — Problems
+Work through these independently. Every question gives you a chance to check what you understand.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: P9
+:::problems chapter-23-practice-23.6
+:::answers chapter-23-practice-23.6

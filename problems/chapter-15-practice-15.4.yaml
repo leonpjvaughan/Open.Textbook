@@ -1,0 +1,98 @@
+chapter: 15
+symbols:
+  x: {real: true}
+  y: {real: true}
+  k: {real: true}
+  a: {real: true}
+  n: {integer: true}
+  m: {integer: true}
+problems:
+  - id: ch15-15-4-expand-square
+    section: "15.4"
+    tier: F
+    dfe: [A6]
+    statement: 'Expand $(x+4)^2$.'
+    answer_label: 'Expand $(x+4)^2$.'
+    check: {kind: evaluate, expression: '(x+4)**2', answer: 'x**2+8*x+16'}
+    answer_text: '$x^2+8x+16$'
+
+  - id: ch15-15-4-expand-product
+    section: "15.4"
+    tier: F
+    dfe: [A6]
+    statement: 'Expand $(x+3)(x+5)$.'
+    answer_label: 'Expand $(x+3)(x+5)$.'
+    check: {kind: evaluate, expression: '(x+3)*(x+5)', answer: 'x**2+8*x+15'}
+    answer_text: '$x^2+8x+15$'
+
+  - id: ch15-15-4-factor-equivalent
+    section: "15.4"
+    tier: F
+    dfe: [A6]
+    statement: 'Write $x^2+7x+12$ as a product of two brackets.'
+    answer_label: 'Write $x^2+7x+12$ as a product of two brackets.'
+    check: {kind: evaluate, expression: 'x**2+7*x+12', answer: '(x+3)*(x+4)'}
+    answer_text: '$(x+3)(x+4)$'
+
+  - id: ch15-15-4-collect
+    section: "15.4"
+    tier: F
+    dfe: [A6]
+    statement: 'Simplify $3x+5+2x-7$.'
+    answer_label: 'Simplify $3x+5+2x-7$.'
+    check: {kind: evaluate, expression: '3*x+5+2*x-7', answer: '5*x-2'}
+    answer_text: '$5x-2$'
+
+  - id: ch15-15-4-identity-k
+    section: "15.4"
+    tier: F
+    dfe: [A6]
+    statement: 'Find $k$ if $(x+2)(x+k)\equiv x^2+7x+10$.'
+    answer_label: 'Find $k$ if $(x+2)(x+k)\equiv x^2+7x+10$.'
+    check: {kind: evaluate, expression: '(x+2)*(x+5)', answer: 'x**2+7*x+10'}
+    answer_text: '$k=5$'
+
+  - id: ch15-15-4-identity-coeff
+    section: "15.4"
+    tier: F
+    dfe: [A6]
+    statement: 'Find $a$ if $3(x+2)\equiv ax+6$.'
+    answer_label: 'Find $a$ if $3(x+2)\equiv ax+6$.'
+    check: {kind: evaluate, expression: '3*(x+2)', answer: '3*x+6'}
+    answer_text: '$a=3$'
+
+  - id: ch15-15-4-expression-value
+    section: "15.4"
+    tier: F
+    dfe: [A6]
+    statement: 'For $x=3$, evaluate both $2(x+4)$ and $2x+8$.'
+    answer_label: 'For $x=3$, evaluate both $2(x+4)$ and $2x+8$.'
+    check: {kind: evaluate, expression: "2*(3+4)", answer: "14"}
+    answer_text: '$14$ for each'
+
+  - id: ch15-15-4-square-identity
+    section: "15.4"
+    tier: F
+    dfe: [A6]
+    statement: 'Complete the identity: $(x-5)^2\equiv x^2+bx+c$.'
+    answer_label: 'Complete the identity: $(x-5)^2\equiv x^2+bx+c$.'
+    check: {kind: evaluate, expression: '(x-5)**2', answer: 'x**2-10*x+25'}
+    answer_text: '$b=-10$, $c=25$'
+
+  - id: ch15-15-4-equivalent-form
+    section: "15.4"
+    tier: F
+    dfe: [A6]
+    statement: 'Write $4x+12$ as a product.'
+    answer_label: 'Write $4x+12$ as a product.'
+    check: {kind: evaluate, expression: '4*x+12', answer: '4*(x+3)'}
+    answer_text: '$4(x+3)$'
+
+  - id: ch15-15-4-difference-squares
+    section: "15.4"
+    tier: F
+    dfe: [A6]
+    statement: 'Expand $(x-2)(x+2)$ and state the equivalent expression.'
+    answer_label: 'Expand $(x-2)(x+2)$ and state the equivalent expression.'
+    check: {kind: evaluate, expression: '(x-2)*(x+2)', answer: 'x**2-4'}
+    answer_text: '$x^2-4$'

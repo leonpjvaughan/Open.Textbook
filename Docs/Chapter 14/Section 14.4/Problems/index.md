@@ -1,19 +1,18 @@
 ---
-title: 14.4 Linear and quadratic simultaneous equations — Problems
+title: "14.4 Linear and quadratic simultaneous equations — Practise"
 chapter: 14
 chapter_title: Simultaneous equations and iteration
-section: '14.4'
+section: "14.4"
 section_title: Linear and quadratic simultaneous equations
 tier: H
-dfe:
-- A19
+dfe: [A19]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 14.4 Linear and quadratic simultaneous equations — Practise
 
-# 14.4 Linear and quadratic simultaneous equations — Problems
+Work through these independently. Choose a method that fits each question. Questions marked **H** are Higher only.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: A19
+:::problems chapter-14-practice-14.4
+
+:::answers chapter-14-practice-14.4

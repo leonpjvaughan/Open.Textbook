@@ -1,0 +1,118 @@
+chapter: 11
+symbols:
+  m:
+    real: true
+problems:
+- id: p1-origin
+  section: '11.3'
+  tier: F
+  dfe: &id001
+  - A9
+  statement: Find the equation of a line through the origin with gradient 5.
+  answer_label: Question 1
+  check:
+    kind: evaluate
+    expression: 5*2
+    answer: '10'
+  answer_text: $y=5x$
+- id: p2-point-gradient
+  section: '11.3'
+  tier: F
+  dfe: *id001
+  statement: Find the equation with gradient 2 through $(0,4)$.
+  answer_label: Question 2
+  check:
+    kind: evaluate
+    expression: 2*1+4
+    answer: '6'
+  answer_text: $y=2x+4$
+- id: p3-find-c
+  section: '11.3'
+  tier: F
+  dfe: *id001
+  statement: A line has gradient -3 and passes through $(2,1)$. Find its equation.
+  answer_label: Question 3
+  check:
+    kind: evaluate
+    expression: -3*2+7
+    answer: '1'
+  answer_text: $y=-3x+7$
+- id: p4-find-m
+  section: '11.3'
+  tier: F
+  dfe: *id001
+  statement: A line $y=mx+2$ passes through $(3,11)$. Find $m$.
+  answer_label: Question 4
+  check:
+    kind: solve
+    equation: 3*m+2=11
+    variable: m
+    answer: '3'
+  answer_text: '3'
+- id: p5-two-points
+  section: '11.3'
+  tier: F
+  dfe: *id001
+  statement: Find the equation of the line through $(0,-2)$ and $(4,6)$.
+  answer_label: Question 5
+  check:
+    kind: evaluate
+    expression: 2*4-2
+    answer: '6'
+  answer_text: $y=2x-2$
+- id: p6-point-check
+  section: '11.3'
+  tier: F
+  dfe: *id001
+  statement: Find the equation of a line with gradient 4 through $(1,7)$.
+  answer_label: Question 6
+  check:
+    kind: evaluate
+    expression: 4*1+3
+    answer: '7'
+  answer_text: $y=4x+3$
+- id: p7-table-rule
+  section: '11.3'
+  tier: F
+  dfe: *id001
+  statement: A line has values $(1,5),(2,8),(3,11)$. Find its equation.
+  answer_label: Question 7
+  check:
+    kind: evaluate
+    expression: 3*3+2
+    answer: '11'
+  answer_text: $y=3x+2$
+- id: p8-context
+  section: '11.3'
+  tier: F
+  dfe: *id001
+  statement: A taxi fare is £4 plus £2.50 per kilometre. Write the cost $C$ for $d$ kilometres.
+  answer_label: Question 8
+  check:
+    kind: evaluate
+    expression: 2.5*4+4
+    answer: '14'
+  answer_text: $C=2.5d+4$
+- id: p9-which-method
+  section: '11.3'
+  tier: F
+  dfe: *id001
+  statement: 'Which method finds a line equation from two points: use the gradient then substitute, or read an intercept?
+    Give the gradient for $(2,1),(6,9)$.'
+  answer_label: Question 9
+  check:
+    kind: evaluate
+    expression: (9-1)/(6-2)
+    answer: '2'
+  answer_text: Use gradient then substitute; gradient 2
+- id: p10-higher
+  section: '11.3'
+  tier: H
+  dfe: *id001
+  statement: Find the equation through $(-2,5)$ and $(4,-4)$.
+  answer_label: Question 10
+  check:
+    kind: evaluate
+    expression: -1.5*(-2)+2
+    answer: '5'
+  answer_text: $y=-1.5x+2$

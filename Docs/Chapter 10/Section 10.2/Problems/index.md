@@ -1,5 +1,5 @@
 ---
-title: 10.2 Special sequences — Problems
+title: 10.2 Special sequences — Practise
 chapter: 10
 chapter_title: Sequences
 section: '10.2'
@@ -10,10 +10,10 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 10.2 Special sequences — Practise
 
-# 10.2 Special sequences — Problems
+Work each question independently. For mixed sequence types, name the method before you calculate.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: A24
+:::problems chapter-10-practice-10.2
+
+:::answers chapter-10-practice-10.2

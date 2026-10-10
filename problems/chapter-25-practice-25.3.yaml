@@ -1,0 +1,74 @@
+chapter: 25
+problems:
+  - id: hist1-density
+    section: '25.3'
+    tier: H
+    dfe: [S3]
+    statement: 'A class of width $8$ has frequency $24$. Find the frequency density.'
+    answer_label: 'Frequency density'
+    check: {kind: evaluate, expression: '24 / 8', answer: '3'}
+    answer_text: '$3$.'
+  - id: hist2-width-density
+    section: '25.3'
+    tier: H
+    dfe: [S3]
+    statement: 'The class $10<x\leq30$ has frequency $40$. Find its width and frequency density.'
+    answer_label: 'Width and density'
+    check: {kind: evaluate, expression: '40 / (30 - 10)', answer: '2'}
+    answer_text: 'Width $20$; density $40/20=2$.'
+  - id: hist3-area-frequency
+    section: '25.3'
+    tier: H
+    dfe: [S3]
+    statement: 'A histogram bar has width $6$ and frequency density $4$. Find the frequency.'
+    answer_label: 'Frequency from bar area'
+    check: {kind: evaluate, expression: '6 * 4', answer: '24'}
+    answer_text: 'Frequency $=6\times4=24$.'
+  - id: hist4-unequal-classes
+    section: '25.3'
+    tier: H
+    dfe: [S3]
+    statement: 'Class A has width $5$ and frequency $15$. Class B has width $10$ and frequency $20$. Find both densities and state which bar is taller.'
+    answer_label: 'Compare histogram heights'
+    check: {kind: compare, relation: '>', lhs: '15 / 5', rhs: '20 / 10'}
+    answer_text: 'A density $3$; B density $2$. Class A has the taller bar.'
+  - id: hist5-frequency-from-density
+    section: '25.3'
+    tier: H
+    dfe: [S3]
+    statement: 'A class from $20$ to $35$ has frequency density $1.6$. Find its frequency.'
+    answer_label: 'Class frequency'
+    check: {kind: evaluate, expression: '(35 - 20) * 1.6', answer: '24'}
+    answer_text: 'Width $15$; frequency $15\times1.6=24$.'
+  - id: hist6-density-table
+    section: '25.3'
+    tier: H
+    dfe: [S3]
+    statement: 'A class $0\leq x<4$ has frequency $12$. Find its frequency density.'
+    answer_label: 'Frequency density'
+    check: {kind: evaluate, expression: '12 / 4', answer: '3'}
+    answer_text: '$3$.'
+  - id: hist7-area-check
+    section: '25.3'
+    tier: H
+    dfe: [S3]
+    statement: 'A histogram bar has width $12$ and density $2.5$. Find the frequency.'
+    answer_label: 'Frequency'
+    check: {kind: evaluate, expression: '12 * 2.5', answer: '30'}
+    answer_text: '$30$.'
+  - id: hist8-find-width
+    section: '25.3'
+    tier: H
+    dfe: [S3]
+    statement: 'A class has frequency $18$ and density $3$. Find its class width.'
+    answer_label: 'Class width'
+    check: {kind: evaluate, expression: '18 / 3', answer: '6'}
+    answer_text: 'Width $=18/3=6$.'
+  - id: hist9-table-densities
+    section: '25.3'
+    tier: H
+    dfe: [S3]
+    statement: 'Classes $0<x\leq5$, $5<x\leq15$, $15<x\leq20$ have frequencies $10, 20, 15$. Find the density for each class.'
+    answer_label: 'Three frequency densities'
+    check: {kind: all, checks: [{kind: evaluate, expression: '10 / 5', answer: '2'}, {kind: evaluate, expression: '20 / 10', answer: '2'}, {kind: evaluate, expression: '15 / 5', answer: '3'}]}
+    answer_text: 'Densities $2,2,3$.'

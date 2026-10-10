@@ -1,5 +1,5 @@
 ---
-title: 12.1 Expanding and factorising quadratics — Problems
+title: "12.1 Expanding and factorising quadratics — Practise"
 chapter: 12
 chapter_title: Quadratic expressions, equations and graphs
 section: '12.1'
@@ -11,10 +11,8 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 12.1 Expanding and factorising quadratics — Practise
 
-# 12.1 Expanding and factorising quadratics — Problems
+:::problems chapter-12-practice-12.1
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: A4, A18
+:::answers chapter-12-practice-12.1

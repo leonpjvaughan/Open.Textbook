@@ -1,21 +1,24 @@
-// Build-time maths renderer. Reads a JSON array of {tex, display} on stdin and
-// writes a JSON array of MathML strings on stdout. Called once per page by the
-// MkDocs maths hook. MathML only: no runtime JavaScript, CSS or fonts.
+// Build-time maths renderer. Line-delimited protocol: one JSON array of
+// {tex, display} per line in, one JSON array of MathML per line out. Kept alive
+// by the MkDocs hook so there is no per-page Node startup cost.
 import katex from "katex";
+import readline from "node:readline";
 
-let input = "";
-process.stdin.setEncoding("utf8");
-process.stdin.on("data", (chunk) => (input += chunk));
-process.stdin.on("end", () => {
+const rl = readline.createInterface({ input: process.stdin });
+
+const escape = (s) =>
+  String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+rl.on("line", (line) => {
+  if (!line.trim()) return;
   let items = [];
   try {
-    items = JSON.parse(input);
+    items = JSON.parse(line);
   } catch (err) {
     process.stderr.write(`katex-render: bad input: ${err.message}\n`);
-    process.exit(1);
+    process.stdout.write("[]\n");
+    return;
   }
-  const escape = (s) =>
-    String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const out = items.map((item) => {
     try {
       const html = katex.renderToString(item.tex, {
@@ -29,5 +32,5 @@ process.stdin.on("end", () => {
       return `<span class="math-error" title="${escape(err.message)}">${escape(item.tex)}</span>`;
     }
   });
-  process.stdout.write(JSON.stringify(out));
+  process.stdout.write(JSON.stringify(out) + "\n");
 });

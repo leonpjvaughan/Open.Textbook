@@ -4,16 +4,33 @@ chapter: 24
 strand: statistics
 ---
 
-<!-- scaffold:stub -->
-
 # Chapter 24: Statistics: representing and analysing data
 
-Sampling and data collection, charts and tables, averages and range.
+## The chapter problem: a school travel survey
 
-## Sections
+A school wants to describe how pupils travel to school and whether the pattern changes during the year. How could it collect information and show the results fairly?
 
-- **24.1 Collecting data, sampling and questionnaires** — tier F · DfE S1, S5
-- **24.2 Tables, bar charts, pie charts and pictograms** — tier F · DfE S2
-- **24.3 Averages and range** — tier F · DfE S4
-- **24.4 Averages from frequency tables** — tier F · DfE S4
-- **24.5 Time series and line graphs** — tier F · DfE S2
+**First contact:** Predict which travel method might be most common. You are not being marked; record your prediction and revisit it after learning about samples and charts.
+
+## By the end of this chapter you will be able to
+
+- plan data collection, choose a sample, and identify limits in what it can show;
+- organise categorical and discrete data in tables and suitable charts;
+- calculate and compare the mean, median, mode and range;
+- find averages from a frequency table;
+- read and construct line graphs for data collected over time.
+
+## Where this could connect to your life
+
+A survey, club register or team record can use these methods. Where might you or someone you know collect information? Write one example and say what question the data could answer.
+
+## Roadmap
+
+1. [24.1 Collecting data, sampling and questionnaires](Section 24.1/Walkthrough/index.md)
+2. [24.2 Tables, bar charts, pie charts and pictograms](Section 24.2/Walkthrough/index.md)
+3. [24.3 Averages and range](Section 24.3/Walkthrough/index.md)
+4. [24.4 Averages from frequency tables](Section 24.4/Walkthrough/index.md)
+5. [24.5 Time series and line graphs](Section 24.5/Walkthrough/index.md)
+6. [Review](Review/index.md)
+
+Use Learn for teaching, Practise with help for supported questions, and Practise for independent work.

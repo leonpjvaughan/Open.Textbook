@@ -1,20 +1,17 @@
 ---
-title: 17.1 Properties of 2D and 3D shapes — Problems
+title: "17.1 Properties of 2D and 3D shapes — Practise"
 chapter: 17
 chapter_title: Properties, constructions, loci and bearings
-section: '17.1'
+section: "17.1"
 section_title: Properties of 2D and 3D shapes
 tier: F
-dfe:
-- G1
-- G12
+dfe: [G1, G12]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 17.1 Properties of 2D and 3D shapes — Practise
 
-# 17.1 Properties of 2D and 3D shapes — Problems
+Work independently, then check your answers and reasoning.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: G1, G12
+:::problems chapter-17-practice-17.1
+:::answers chapter-17-practice-17.1

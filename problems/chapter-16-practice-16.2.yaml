@@ -1,0 +1,108 @@
+chapter: 16
+problems:
+- id: corresponding
+  section: '16.2'
+  tier: F
+  dfe:
+  - G3
+  statement: Lines $l$ and $m$ are parallel. A corresponding angle is $72^\circ$. Find its partner.
+  answer_label: Lines $l$ and $m$ are parallel. A corresponding angle is $72^\circ$. Find its pa
+  check:
+    kind: evaluate
+    expression: '72'
+    answer: '72'
+  answer_text: $72^\circ$
+- id: alternate
+  section: '16.2'
+  tier: F
+  dfe:
+  - G3
+  statement: Lines $p$ and $q$ are parallel. An alternate angle is $118^\circ$. Find its partner.
+  answer_label: Lines $p$ and $q$ are parallel. An alternate angle is $118^\circ$. Find its part
+  check:
+    kind: evaluate
+    expression: '118'
+    answer: '118'
+  answer_text: $118^\circ$
+- id: cointerior
+  section: '16.2'
+  tier: F
+  dfe:
+  - G3
+  statement: Co-interior angles are $x^\circ$ and $67^\circ$. Find $x$.
+  answer_label: Co-interior angles are $x^\circ$ and $67^\circ$. Find $x$.
+  check:
+    kind: evaluate
+    expression: 180-67
+    answer: '113'
+  answer_text: $113^\circ$
+- id: identify-reason
+  section: '16.2'
+  tier: F
+  dfe:
+  - G3
+  statement: Parallel lines are crossed by a transversal. One angle is $54^\circ$. Find the co-interior angle on the same
+    side.
+  answer_label: Parallel lines are crossed by a transversal. One angle is $54^\circ$. Find the c
+  check:
+    kind: evaluate
+    expression: 180-54
+    answer: '126'
+  answer_text: $126^\circ$
+- id: parallel-algebra
+  section: '16.2'
+  tier: F
+  dfe:
+  - G3
+  statement: Corresponding angles are $(3x+8)^\circ$ and $(5x-26)^\circ$. Find $x$ and the angle.
+  answer_label: Corresponding angles are $(3x+8)^\circ$ and $(5x-26)^\circ$. Find $x$ and the an
+  check:
+    kind: solve
+    equation: 3*x+8-(5*x-26)=0
+    variable: x
+    answer:
+    - '17'
+  answer_text: $x=17$; each angle is $59^\circ$.
+- id: co-algebra
+  section: '16.2'
+  tier: F
+  dfe:
+  - G3
+  statement: Co-interior angles are $(2x+15)^\circ$ and $(3x+10)^\circ$. Find $x$.
+  answer_label: Co-interior angles are $(2x+15)^\circ$ and $(3x+10)^\circ$. Find $x$.
+  check:
+    kind: solve
+    equation: 2*x+15+3*x+10-180=0
+    variable: x
+    answer:
+    - '31'
+  answer_text: $x=31$
+- id: earlier-line
+  section: '16.2'
+  tier: F
+  dfe:
+  - G3
+  statement: A corresponding angle is $73^\circ$. Find the adjacent angle on the same straight line.
+  answer_label: A corresponding angle is $73^\circ$. Find the adjacent angle on the same straigh
+  check:
+    kind: evaluate
+    expression: 180-73
+    answer: '107'
+  answer_text: $107^\circ$; corresponding angles match, then angles on a line sum to $180^\circ$.
+- id: parallel-explain
+  section: '16.2'
+  tier: F
+  dfe:
+  - G3
+  statement: An alternate angle is $101^\circ$. Explain why its partner is also $101^\circ$.
+  answer_label: An alternate angle is $101^\circ$. Explain why its partner is also $101^\circ$.
+  check:
+    kind: evaluate
+    expression: '101'
+    answer: '101'
+  answer_text: They are equal because the lines are parallel and alternate angles are equal.
+symbols:
+  x:
+    real: true
+  n:
+    real: true

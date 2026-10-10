@@ -1,19 +1,52 @@
 ---
-title: 15.4 Identities and equivalent expressions — Guided problems
+title: "15.4 Identities and equivalent expressions — Practise with help"
 chapter: 15
 chapter_title: Functions, algebraic fractions and proof
-section: '15.4'
-section_title: Identities and equivalent expressions
+section: "15.4"
+section_title: "Identities and equivalent expressions"
 tier: F
-dfe:
-- A6
-kind: guided-problems
+dfe: [A6]
+kind: practise-with-help
 ---
 
-<!-- scaffold:stub -->
+# 15.4 Identities and equivalent expressions — Practise with help
 
-# 15.4 Identities and equivalent expressions — Guided problems
+Work each problem before revealing support.
 
-> **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
->
-> Tier: **F** · DfE refs: A6
+## Warm-up: remember
+
+1. Expand $(x+2)(x+3)$.
+2. Factorise $x^2-9$.
+3. Solve $2x+5=13$.
+
+<details markdown="1">
+<summary>Answers</summary>
+
+1. $x^2+5x+6$. 2. $(x-3)(x+3)$. 3. $x=4$.
+
+</details>
+
+## Practise with help
+
+**1.** Expand $(x+5)^2$ and write an equivalent expression.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+Multiply each term in the first bracket by each term in the second.
+
+</details>
+
+<details markdown="1">
+<summary>First step</summary>
+
+$(x+5)(x+5)$.
+
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$x^2+5x+5x+25=x^2+10x+25$.
+
+</details>

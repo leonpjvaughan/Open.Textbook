@@ -1,20 +1,46 @@
 ---
-title: 18.5 Similarity and similar lengths — Guided problems
+title: "18.5 Similarity and similar lengths — Practise with help"
 chapter: 18
 chapter_title: Transformations, congruence and similarity
-section: '18.5'
+section: "18.5"
 section_title: Similarity and similar lengths
 tier: F
-dfe:
-- G19
-- R12
+dfe: [G19, R12]
 kind: guided-problems
 ---
 
-<!-- scaffold:stub -->
+# 18.5 Similarity and similar lengths — Practise with help
 
-# 18.5 Similarity and similar lengths — Guided problems
+Attempt each question before opening a hint. Reveal the full working to check your method.
 
-> **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
->
-> Tier: **F** · DfE refs: G19, R12
+## Warm-up: remember
+
+1. Work out $-3+8$.
+2. Translate $(1,2)$ by $\begin{pmatrix}2\\-1\end{pmatrix}$.
+
+<details markdown="1">
+<summary>Check your answers</summary>
+
+1. $5$.
+2. $(3,1)$.
+</details>
+
+## Practise with help
+
+**1.** Similar shapes have matching lengths $6$ cm and $9$ cm. Find the scale factor.
+
+<details markdown="1"><summary>Hint</summary>Divide the image length by the original length.</details>
+<details markdown="1"><summary>Next step</summary>$9\div6=1.5$.</details>
+<details markdown="1"><summary>Full working</summary>The scale factor is $1.5$.</details>
+
+**2.** A corresponding side of $8$ cm becomes $20$ cm. A matching side is $3$ cm. Find its image.
+
+<details markdown="1"><summary>Hint</summary>First find $20\div8$.</details>
+<details markdown="1"><summary>Next step</summary>The scale factor is $2.5$, so $3\times2.5=7.5$.</details>
+<details markdown="1"><summary>Full working</summary>The image side is $7.5$ cm.</details>
+
+**3.** Earlier topic: solve $3x=18$.
+
+<details markdown="1"><summary>Hint</summary>Use the inverse operation.</details>
+<details markdown="1"><summary>Next step</summary>Divide both sides by $3$.</details>
+<details markdown="1"><summary>Full working</summary>$x=6$.</details>

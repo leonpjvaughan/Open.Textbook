@@ -1,5 +1,5 @@
 ---
-title: 13.4 The equation of a circle and tangents — Problems
+title: 13.4 The equation of a circle and tangents — Practise
 chapter: 13
 chapter_title: Other functions and graphs
 section: '13.4'
@@ -10,10 +10,9 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 13.4 The equation of a circle and tangents — Practise
 
-# 13.4 The equation of a circle and tangents — Problems
+Work independently. Questions and answers are checked from the same problem bank. Questions marked **H** extend the Higher work.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: A16
+:::problems chapter-13-practice-13.4
+:::answers chapter-13-practice-13.4

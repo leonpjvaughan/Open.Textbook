@@ -25,23 +25,36 @@ TOKEN = re.compile(
     re.S,
 )
 
+# One Node process for the whole build: the renderer speaks a line-delimited
+# JSON protocol, so there is no per-page startup cost.
+_process: subprocess.Popen | None = None
+
+
+def _renderer() -> subprocess.Popen:
+    global _process
+    if _process is None or _process.poll() is not None:
+        _process = subprocess.Popen(
+            ["node", str(RENDERER)],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            text=True,
+            bufsize=1,
+        )
+    return _process
+
 
 def render(items: list[dict]) -> list[str]:
     if not items:
         return []
     try:
-        proc = subprocess.run(
-            ["node", str(RENDERER)],
-            input=json.dumps(items),
-            capture_output=True,
-            text=True,
-            timeout=60,
-            check=True,
-        )
-    except (OSError, subprocess.SubprocessError) as err:
+        process = _renderer()
+        process.stdin.write(json.dumps(items) + "\n")
+        process.stdin.flush()
+        line = process.stdout.readline()
+        return json.loads(line)
+    except (OSError, ValueError, subprocess.SubprocessError) as err:
         log.warning("maths: KaTeX renderer unavailable (%s); maths left as LaTeX", err)
         return [f'<span class="math-error">{i["tex"]}</span>' for i in items]
-    return json.loads(proc.stdout)
 
 
 def on_page_content(content, page, config, files):

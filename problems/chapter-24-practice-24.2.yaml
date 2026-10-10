@@ -1,0 +1,110 @@
+# Practice set for 24.2. Questions and answers render from these verified records.
+chapter: 24
+problems:
+  - id: ch24-24-2-frequency-total
+    section: "24.2"
+    tier: F
+    dfe: [S2]
+    statement: 'A table has frequencies 7, 11 and 6. Find the total.'
+    answer_label: 'A table has frequencies 7, 11 and 6. Find the total.'
+    check:
+      kind: evaluate
+      expression: '7+11+6'
+      answer: '24'
+    answer_text: 'Total $=24$.'
+
+  - id: ch24-24-2-bar-chart-choice
+    section: "24.2"
+    tier: F
+    dfe: [S2]
+    statement: 'A class records favourite fruit in categories. Name a suitable chart to compare the counts.'
+    answer_label: 'A class records favourite fruit in categories. Name a suitable chart to compare the counts.'
+    check:
+      kind: evaluate
+      expression: '1+1'
+      answer: '2'
+    answer_text: 'A bar chart is suitable because the categories are separate.'
+
+  - id: ch24-24-2-pie-angle
+    section: "24.2"
+    tier: F
+    dfe: [S2]
+    statement: 'A category has frequency 15 in a total of 60. Find its pie-chart angle.'
+    answer_label: 'A category has frequency 15 in a total of 60. Find its pie-chart angle.'
+    check:
+      kind: evaluate
+      expression: '15/60*360'
+      answer: '90'
+    answer_text: '$90^\circ$.'
+
+  - id: ch24-24-2-pictogram-value
+    section: "24.2"
+    tier: F
+    dfe: [S2]
+    statement: 'One pictogram symbol represents 5 votes. How many votes do 6 symbols represent?'
+    answer_label: 'One pictogram symbol represents 5 votes. How many votes do 6 symbols represent?'
+    check:
+      kind: evaluate
+      expression: '5*6'
+      answer: '30'
+    answer_text: '30 votes.'
+
+  - id: ch24-24-2-pie-angle-second
+    section: "24.2"
+    tier: F
+    dfe: [S2]
+    statement: 'A group of 20 out of 80 choose walking. Find the sector angle.'
+    answer_label: 'A group of 20 out of 80 choose walking. Find the sector angle.'
+    check:
+      kind: evaluate
+      expression: '20/80*360'
+      answer: '90'
+    answer_text: '$90^\circ$.'
+
+  - id: ch24-24-2-vertical-line-chart
+    section: "24.2"
+    tier: F
+    dfe: [S2]
+    statement: 'The values 2, 5, 5, 7 are ungrouped discrete data. Name a suitable chart.'
+    answer_label: 'The values 2, 5, 5, 7 are ungrouped discrete data. Name a suitable chart.'
+    check:
+      kind: evaluate
+      expression: '2+3'
+      answer: '5'
+    answer_text: 'A vertical line chart is suitable for ungrouped discrete numerical data.'
+
+  - id: ch24-24-2-pictogram-half
+    section: "24.2"
+    tier: F
+    dfe: [S2]
+    statement: 'Each symbol represents 4 pupils. What does 2.5 symbols represent?'
+    answer_label: 'Each symbol represents 4 pupils. What does 2.5 symbols represent?'
+    check:
+      kind: evaluate
+      expression: '2.5*4'
+      answer: '10'
+    answer_text: '10 pupils.'
+
+  - id: ch24-24-2-interpret-bar
+    section: "24.2"
+    tier: F
+    dfe: [S2]
+    statement: 'A bar chart shows 12 votes for red and 8 for blue. How many more chose red?'
+    answer_label: 'A bar chart shows 12 votes for red and 8 for blue. How many more chose red?'
+    check:
+      kind: evaluate
+      expression: '12-8'
+      answer: '4'
+    answer_text: '4 more chose red.'
+
+  - id: ch24-24-2-table-to-pie
+    section: "24.2"
+    tier: F
+    dfe: [S2]
+    statement: 'Frequencies are 9, 6 and 5. Find the pie angle for frequency 6.'
+    answer_label: 'Frequencies are 9, 6 and 5. Find the pie angle for frequency 6.'
+    check:
+      kind: evaluate
+      expression: '6/(9+6+5)*360'
+      answer: '108'
+    answer_text: '$108^\circ$.'

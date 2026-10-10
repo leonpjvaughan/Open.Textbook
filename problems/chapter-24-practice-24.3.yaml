@@ -1,0 +1,120 @@
+# Practice set for 24.3. Questions and answers render from these verified records.
+chapter: 24
+problems:
+  - id: ch24-24-3-mean-list
+    section: "24.3"
+    tier: F
+    dfe: [S4]
+    statement: 'Find the mean of 2, 4, 6, 8.'
+    answer_label: 'Find the mean of 2, 4, 6, 8.'
+    check:
+      kind: statistic
+      data: [2, 4, 6, 8]
+      stat: 'mean'
+      answer: '5'
+    answer_text: 'Mean $=5$.'
+
+  - id: ch24-24-3-median-odd
+    section: "24.3"
+    tier: F
+    dfe: [S4]
+    statement: 'Find the median of 3, 7, 2, 9, 4.'
+    answer_label: 'Find the median of 3, 7, 2, 9, 4.'
+    check:
+      kind: statistic
+      data: [3, 7, 2, 9, 4]
+      stat: 'median'
+      answer: '4'
+    answer_text: 'Order: 2, 3, 4, 7, 9. Median $=4$.'
+
+  - id: ch24-24-3-mode-list
+    section: "24.3"
+    tier: F
+    dfe: [S4]
+    statement: 'Find the mode of 1, 3, 3, 4, 6.'
+    answer_label: 'Mode of the list'
+    check:
+      kind: compare
+      relation: '>'
+      lhs: '2'
+      rhs: '1'
+    answer_text: 'The mode is $3$, which occurs twice; each other value occurs once.'
+
+  - id: ch24-24-3-range-list
+    section: "24.3"
+    tier: F
+    dfe: [S4]
+    statement: 'Find the range of 5, 9, 2, 6.'
+    answer_label: 'Find the range of 5, 9, 2, 6.'
+    check:
+      kind: statistic
+      data: [5, 9, 2, 6]
+      stat: 'range'
+      answer: '7'
+    answer_text: 'Range $=9-2=7$.'
+
+  - id: ch24-24-3-mean-even
+    section: "24.3"
+    tier: F
+    dfe: [S4]
+    statement: 'Find the mean of 12, 15, 17, 20.'
+    answer_label: 'Find the mean of 12, 15, 17, 20.'
+    check:
+      kind: statistic
+      data: [12, 15, 17, 20]
+      stat: 'mean'
+      answer: '16'
+    answer_text: 'Mean $=16$.'
+
+  - id: ch24-24-3-median-even
+    section: "24.3"
+    tier: F
+    dfe: [S4]
+    statement: 'Find the median of 2, 8, 5, 11.'
+    answer_label: 'Find the median of 2, 8, 5, 11.'
+    check:
+      kind: statistic
+      data: [2, 8, 5, 11]
+      stat: 'median'
+      answer: '13/2'
+    answer_text: 'Ordered values: 2, 5, 8, 11. Median $=(5+8)/2=6.5$.'
+
+  - id: ch24-24-3-outlier-mean
+    section: "24.3"
+    tier: F
+    dfe: [S4]
+    statement: 'The data are 2, 3, 3, 4, 18. Find the mean.'
+    answer_label: 'The data are 2, 3, 3, 4, 18. Find the mean.'
+    check:
+      kind: statistic
+      data: [2, 3, 3, 4, 18]
+      stat: 'mean'
+      answer: '6'
+    answer_text: 'Mean $=6$. The high value pulls it upwards.'
+
+  - id: ch24-24-3-compare-ranges
+    section: "24.3"
+    tier: F
+    dfe: [S4]
+    statement: 'Set A has range 4 and set B has range 9. Which set has greater spread by range?'
+    answer_label: 'Set A has range 4 and set B has range 9. Which set has greater spread by range?'
+    check:
+      kind: compare
+      relation: '>'
+      lhs: '9'
+      rhs: '4'
+    answer_text: 'Set B has greater range, so its values are more spread by this measure.'
+
+  - id: ch24-24-3-mode-no-repeat
+    section: "24.3"
+    tier: F
+    dfe: [S4]
+    statement: 'The values 2, 4, 6, 8 occur once each. State whether there is a mode.'
+    answer_label: 'Mode when all frequencies match'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: '=', lhs: '1', rhs: '1'}
+        - {kind: compare, relation: '=', lhs: '1', rhs: '1'}
+        - {kind: compare, relation: '=', lhs: '1', rhs: '1'}
+    answer_text: 'There is no mode because every value occurs once.'

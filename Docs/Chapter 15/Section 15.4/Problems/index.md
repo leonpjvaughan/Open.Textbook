@@ -1,19 +1,15 @@
 ---
-title: 15.4 Identities and equivalent expressions — Problems
+title: "15.4 Identities and equivalent expressions — Practise"
 chapter: 15
 chapter_title: Functions, algebraic fractions and proof
-section: '15.4'
-section_title: Identities and equivalent expressions
+section: "15.4"
+section_title: "Identities and equivalent expressions"
 tier: F
-dfe:
-- A6
-kind: problems
+dfe: [A6]
+kind: practise
 ---
 
-<!-- scaffold:stub -->
+# 15.4 Identities and equivalent expressions — Practise
 
-# 15.4 Identities and equivalent expressions — Problems
-
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: A6
+:::problems chapter-15-practice-15.4
+:::answers chapter-15-practice-15.4

@@ -1,0 +1,127 @@
+chapter: 12
+symbols:
+  x:
+    real: true
+  t:
+    real: true
+problems:
+- id: ch12-12.4-solve-1
+  section: '12.4'
+  tier: F
+  dfe:
+  - A18
+  statement: Solve $x^2+5x+6=0$.
+  answer_label: Solve $x^2+5x+6=0$.
+  check:
+    kind: solve
+    equation: x**2+5*x+6 = 0
+    variable: x
+    answer:
+    - '-2'
+    - '-3'
+  answer_text: $x=-2$ or $x=-3$.
+- id: ch12-12.4-solve-2
+  section: '12.4'
+  tier: F
+  dfe:
+  - A18
+  statement: Solve $x^2-7x+12=0$.
+  answer_label: Solve $x^2-7x+12=0$.
+  check:
+    kind: solve
+    equation: x**2-7*x+12 = 0
+    variable: x
+    answer:
+    - '3'
+    - '4'
+  answer_text: $x=3$ or $x=4$.
+- id: ch12-12.4-solve-3
+  section: '12.4'
+  tier: F
+  dfe:
+  - A18
+  statement: Solve $x^2=16$.
+  answer_label: Solve $x^2=16$.
+  check:
+    kind: solve
+    equation: x**2-16 = 0
+    variable: x
+    answer:
+    - '-4'
+    - '4'
+  answer_text: $x=-4$ or $x=4$.
+- id: ch12-12.4-solve-4
+  section: '12.4'
+  tier: F
+  dfe:
+  - A18
+  statement: Solve $x^2+x-12=0$.
+  answer_label: Solve $x^2+x-12=0$.
+  check:
+    kind: solve
+    equation: x**2+x-12 = 0
+    variable: x
+    answer:
+    - '-4'
+    - '3'
+  answer_text: $x=-4$ or $x=3$.
+- id: ch12-12.4-rearrange
+  section: '12.4'
+  tier: F
+  dfe:
+  - A18
+  statement: Solve $x^2+2x=15$.
+  answer_label: Solve $x^2+2x=15$.
+  check:
+    kind: solve
+    equation: x**2+2*x-15 = 0
+    variable: x
+    answer:
+    - '-5'
+    - '3'
+  answer_text: $x=-5$ or $x=3$.
+- id: ch12-12.4-context
+  section: '12.4'
+  tier: F
+  dfe:
+  - A18
+  statement: "A rectangle has area $18\text{ cm}^2$ and sides $x$ cm and $(x+3)$ cm. Find positive $x$."
+  answer_label: "A rectangle has area $18\text{ cm}^2$ and sides $x$ cm and $(x+3)$ cm. Find positive $x$."
+  check:
+    kind: solve
+    equation: x*(x+3)-18 = 0
+    variable: x
+    answer:
+    - '3'
+    - '-6'
+  answer_text: $x=3$ cm because a length is positive.
+- id: ch12-12.4-solve-7
+  section: '12.4'
+  tier: F
+  dfe:
+  - A18
+  statement: Solve $2x^2-8x=0$.
+  answer_label: Solve $2x^2-8x=0$.
+  check:
+    kind: solve
+    equation: 2*x**2-8*x = 0
+    variable: x
+    answer:
+    - '0'
+    - '4'
+  answer_text: $x=0$ or $x=4$.
+- id: ch12-12.4-solve-8
+  section: '12.4'
+  tier: F
+  dfe:
+  - A18
+  statement: Solve $(x-1)(x+6)=0$.
+  answer_label: Solve $(x-1)(x+6)=0$.
+  check:
+    kind: solve
+    equation: (x-1)*(x+6) = 0
+    variable: x
+    answer:
+    - '1'
+    - '-6'
+  answer_text: $x=1$ or $x=-6$.

@@ -1,19 +1,17 @@
 ---
-title: 21.1 Parts of a circle — Problems
+title: 21.1 Parts of a circle — Practise
 chapter: 21
 chapter_title: Circle geometry and circle theorems
 section: '21.1'
 section_title: Parts of a circle
 tier: F
-dfe:
-- G9
+dfe: [G9]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 21.1 Parts of a circle — Practise
 
-# 21.1 Parts of a circle — Problems
+Work independently. Questions become more demanding as you progress. Check your answers after you have attempted the set.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: G9
+:::problems chapter-21-practice-21.1
+:::answers chapter-21-practice-21.1

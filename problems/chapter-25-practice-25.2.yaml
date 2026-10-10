@@ -1,0 +1,74 @@
+chapter: 25
+problems:
+  - id: cf1-running-total
+    section: '25.2'
+    tier: H
+    dfe: [S3]
+    statement: 'Frequencies are $4, 7, 5, 3$. Write the cumulative frequencies.'
+    answer_label: 'Cumulative frequencies'
+    check: {kind: all, checks: [{kind: evaluate, expression: '4', answer: '4'}, {kind: evaluate, expression: '4 + 7', answer: '11'}, {kind: evaluate, expression: '4 + 7 + 5', answer: '16'}, {kind: evaluate, expression: '4 + 7 + 5 + 3', answer: '19'}]}
+    answer_text: '$4,11,16,19$.'
+  - id: cf2-plot-coordinates
+    section: '25.2'
+    tier: H
+    dfe: [S3]
+    statement: 'Classes $0<x\leq10$, $10<x\leq20$, $20<x\leq30$ have frequencies $5,8,7$. Give the cumulative frequencies and graph coordinates, including $(0,0)$.'
+    answer_label: 'Cumulative frequency coordinates'
+    check: {kind: all, checks: [{kind: evaluate, expression: '5 + 8', answer: '13'}, {kind: evaluate, expression: '5 + 8 + 7', answer: '20'}]}
+    answer_text: 'Totals $5,13,20$; plot $(0,0),(10,5),(20,13),(30,20)$.'
+  - id: cf3-median-position
+    section: '25.2'
+    tier: H
+    dfe: [S3]
+    statement: 'A cumulative frequency graph represents 40 observations. At which cumulative frequency do you estimate the median?'
+    answer_label: 'Median cumulative frequency'
+    check: {kind: evaluate, expression: '40 / 2', answer: '20'}
+    answer_text: 'At cumulative frequency $20$.'
+  - id: cf4-quartile-positions
+    section: '25.2'
+    tier: H
+    dfe: [S3]
+    statement: 'A cumulative frequency graph represents 60 observations. State the cumulative frequencies for estimating the lower and upper quartiles.'
+    answer_label: 'Quartile positions'
+    check: {kind: all, checks: [{kind: evaluate, expression: '60 / 4', answer: '15'}, {kind: evaluate, expression: '3 * 60 / 4', answer: '45'}]}
+    answer_text: 'Lower quartile at $15$; upper quartile at $45$.'
+  - id: cf5-class-estimate
+    section: '25.2'
+    tier: H
+    dfe: [S3]
+    statement: 'Cumulative frequency is $12$ at time 10 minutes and $25$ at 20 minutes. How many observations lie in the class above 10 and up to 20 minutes?'
+    answer_label: 'Frequency in the class'
+    check: {kind: evaluate, expression: '25 - 12', answer: '13'}
+    answer_text: '$25-12=13$ observations.'
+  - id: cf6-upper-boundary
+    section: '25.2'
+    tier: H
+    dfe: [S3]
+    statement: 'Classes are $0<t\leq5$, $5<t\leq10$, $10<t\leq15$ with frequencies $2,9,4$. Give the cumulative frequency coordinates after $(0,0)$.'
+    answer_label: 'Coordinates'
+    check: {kind: all, checks: [{kind: evaluate, expression: '2 + 9', answer: '11'}, {kind: evaluate, expression: '2 + 9 + 4', answer: '15'}]}
+    answer_text: '$(5,2),(10,11),(15,15)$.'
+  - id: cf7-read-median-position
+    section: '25.2'
+    tier: H
+    dfe: [S3]
+    statement: 'A survey contains 80 values. Which cumulative frequency locates the median?'
+    answer_label: 'Median position'
+    check: {kind: evaluate, expression: '80 / 2', answer: '40'}
+    answer_text: '$40$.'
+  - id: cf8-read-interquartile-range
+    section: '25.2'
+    tier: H
+    dfe: [S3]
+    statement: 'On a cumulative frequency graph for 100 values, estimates read $Q_1=12$ and $Q_3=28$. Work out the IQR.'
+    answer_label: 'Estimated IQR'
+    check: {kind: evaluate, expression: '28 - 12', answer: '16'}
+    answer_text: '$28-12=16$.'
+  - id: cf9-shape-check
+    section: '25.2'
+    tier: H
+    dfe: [S3]
+    statement: 'A grouped table has frequencies $6, 3, 8$. Find the final cumulative frequency and state whether a cumulative frequency graph can decrease.'
+    answer_label: 'Final total and graph direction'
+    check: {kind: evaluate, expression: '6 + 3 + 8', answer: '17'}
+    answer_text: 'The final cumulative frequency is $17$. The graph cannot decrease because each running total stays the same or increases.'

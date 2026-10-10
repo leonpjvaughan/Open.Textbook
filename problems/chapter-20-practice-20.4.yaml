@@ -1,0 +1,75 @@
+# Practice set for 20.4. Questions and answers are rendered from these verified records.
+chapter: 20
+problems:
+  - id: ch20-20-4-01
+    section: "20.4"
+    tier: H
+    dfe: [G21]
+    statement: "Work out exactly: sin 30°."
+    answer_label: "Question 1"
+    check: {kind: evaluate, expression: "sin(pi/6)", answer: "1/2"}
+    answer_text: "1/2"
+
+  - id: ch20-20-4-02
+    section: "20.4"
+    tier: H
+    dfe: [G21]
+    statement: "Work out exactly: cos 30°."
+    answer_label: "Question 2"
+    check: {kind: evaluate, expression: "cos(pi/6)", answer: "sqrt(3)/2"}
+    answer_text: "√3/2"
+
+  - id: ch20-20-4-03
+    section: "20.4"
+    tier: H
+    dfe: [G21]
+    statement: "Work out exactly: tan 45°."
+    answer_label: "Question 3"
+    check: {kind: evaluate, expression: "tan(pi/4)", answer: "1"}
+    answer_text: "1"
+
+  - id: ch20-20-4-04
+    section: "20.4"
+    tier: H
+    dfe: [G21]
+    statement: "Work out exactly: sin 60° + cos 60°."
+    answer_label: "Question 4"
+    check: {kind: evaluate, expression: "sin(pi/3)+cos(pi/3)", answer: "(sqrt(3)+1)/2"}
+    answer_text: "(√3 + 1)/2"
+
+  - id: ch20-20-4-05
+    section: "20.4"
+    tier: H
+    dfe: [G21]
+    statement: "Work out exactly: tan 30° × tan 60°."
+    answer_label: "Question 5"
+    check: {kind: evaluate, expression: "tan(pi/6)*tan(pi/3)", answer: "1"}
+    answer_text: "1"
+
+  - id: ch20-20-4-06
+    section: "20.4"
+    tier: H
+    dfe: [G21]
+    statement: "Work out exactly: 2 cos 60° + sin 90°."
+    answer_label: "Question 6"
+    check: {kind: evaluate, expression: "2*cos(pi/3)+sin(pi/2)", answer: "2"}
+    answer_text: "2"
+
+  - id: ch20-20-4-07
+    section: "20.4"
+    tier: H
+    dfe: [G21]
+    statement: "Work out exactly: sin 45° × cos 45°."
+    answer_label: "Question 7"
+    check: {kind: evaluate, expression: "sin(pi/4)*cos(pi/4)", answer: "1/2"}
+    answer_text: "1/2"
+
+  - id: ch20-20-4-08
+    section: "20.4"
+    tier: H
+    dfe: [G21]
+    statement: "Work out exactly: sin² 30° + cos² 30°."
+    answer_label: "Question 8"
+    check: {kind: evaluate, expression: "sin(pi/6)**2+cos(pi/6)**2", answer: "1"}
+    answer_text: "1"
+

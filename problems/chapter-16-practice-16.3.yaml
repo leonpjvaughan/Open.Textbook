@@ -1,0 +1,109 @@
+chapter: 16
+problems:
+- id: triangle
+  section: '16.3'
+  tier: F
+  dfe:
+  - G3
+  statement: A triangle has angles $48^\circ$, $73^\circ$ and $x^\circ$. Find $x$.
+  answer_label: A triangle has angles $48^\circ$, $73^\circ$ and $x^\circ$. Find $x$.
+  check:
+    kind: evaluate
+    expression: 180-48-73
+    answer: '59'
+  answer_text: $59^\circ$
+- id: exterior
+  section: '16.3'
+  tier: F
+  dfe:
+  - G3
+  statement: The opposite interior angles of a triangle are $42^\circ$ and $69^\circ$. Find the exterior angle.
+  answer_label: The opposite interior angles of a triangle are $42^\circ$ and $69^\circ$. Find t
+  check:
+    kind: evaluate
+    expression: 42+69
+    answer: '111'
+  answer_text: $111^\circ$
+- id: quad
+  section: '16.3'
+  tier: F
+  dfe:
+  - G4
+  statement: A quadrilateral has three angles $90^\circ$, $105^\circ$, $83^\circ$. Find the fourth.
+  answer_label: A quadrilateral has three angles $90^\circ$, $105^\circ$, $83^\circ$. Find the f
+  check:
+    kind: evaluate
+    expression: 360-90-105-83
+    answer: '82'
+  answer_text: $82^\circ$
+- id: triangle-algebra
+  section: '16.3'
+  tier: F
+  dfe:
+  - G3
+  statement: Triangle angles are $x^\circ$, $(x+20)^\circ$ and $60^\circ$. Find $x$.
+  answer_label: Triangle angles are $x^\circ$, $(x+20)^\circ$ and $60^\circ$. Find $x$.
+  check:
+    kind: solve
+    equation: x+(x+20)+60-180=0
+    variable: x
+    answer:
+    - '50'
+  answer_text: $x=50$; the angles are $50^\circ$, $70^\circ$, $60^\circ$.
+- id: quad-algebra
+  section: '16.3'
+  tier: F
+  dfe:
+  - G4
+  statement: A quadrilateral has angles $x^\circ$, $2x^\circ$, $100^\circ$ and $80^\circ$. Find $x$.
+  answer_label: A quadrilateral has angles $x^\circ$, $2x^\circ$, $100^\circ$ and $80^\circ$. Fi
+  check:
+    kind: solve
+    equation: x+2*x+100+80-360=0
+    variable: x
+    answer:
+    - '60'
+  answer_text: $x=60^\circ$
+- id: exterior-explain
+  section: '16.3'
+  tier: F
+  dfe:
+  - G3
+  statement: A triangle has opposite interior angles $35^\circ$ and $78^\circ$. Find the exterior angle and state the rule.
+  answer_label: A triangle has opposite interior angles $35^\circ$ and $78^\circ$. Find the exte
+  check:
+    kind: evaluate
+    expression: 35+78
+    answer: '113'
+  answer_text: $113^\circ$; an exterior angle equals the sum of the two opposite interior angles.
+- id: mixed-parallel
+  section: '16.3'
+  tier: F
+  dfe:
+  - G3
+  statement: Two parallel lines give co-interior angles $x^\circ$ and $4x^\circ$. Find both angles.
+  answer_label: Two parallel lines give co-interior angles $x^\circ$ and $4x^\circ$. Find both a
+  check:
+    kind: solve
+    equation: x+4*x-180=0
+    variable: x
+    answer:
+    - '36'
+  answer_text: $x=36$; the angles are $36^\circ$ and $144^\circ$.
+- id: quad-check
+  section: '16.3'
+  tier: F
+  dfe:
+  - G4
+  statement: A quadrilateral has angles $90^\circ$, $90^\circ$, $90^\circ$ and $x^\circ$. Find $x$ and explain the sum.
+  answer_label: A quadrilateral has angles $90^\circ$, $90^\circ$, $90^\circ$ and $x^\circ$. Fin
+  check:
+    kind: evaluate
+    expression: 360-270
+    answer: '90'
+  answer_text: $90^\circ$; splitting the quadrilateral into two triangles gives $360^\circ$.
+symbols:
+  x:
+    real: true
+  n:
+    real: true

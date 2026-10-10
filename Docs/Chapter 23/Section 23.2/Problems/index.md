@@ -1,5 +1,5 @@
 ---
-title: 23.2 Relative frequency and expected outcomes — Problems
+title: 23.2 Relative frequency and expected outcomes — Practise
 chapter: 23
 chapter_title: Probability
 section: '23.2'
@@ -13,10 +13,9 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 23.2 Relative frequency and expected outcomes — Practise
 
-# 23.2 Relative frequency and expected outcomes — Problems
+Work through these independently. Every question gives you a chance to check what you understand.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: P1, P2, P3, P5
+:::problems chapter-23-practice-23.2
+:::answers chapter-23-practice-23.2

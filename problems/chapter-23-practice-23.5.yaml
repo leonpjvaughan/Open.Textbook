@@ -1,0 +1,122 @@
+chapter: 23
+problems:
+- id: p1-venn-neither
+  section: '23.5'
+  tier: F
+  dfe:
+  - P6
+  statement: In 40 students, 22 study art, 17 study music and 8 study both. How many study neither?
+  answer_label: In 40 students, 22 study art, 17 study music and 8 study both. How many study neither?
+  check:
+    kind: evaluate
+    expression: 40-(22+17-8)
+    answer: '9'
+  answer_text: $9$.
+- id: p2-intersection-probability
+  section: '23.5'
+  tier: F
+  dfe:
+  - P6
+  statement: In a group of 25, 7 are in both sets A and B. Find $P(A\cap B)$ for a random selection.
+  answer_label: In a group of 25, 7 are in both sets A and B. Find $P(A\cap B)$ for a random selection.
+  check:
+    kind: evaluate
+    expression: 7/25
+    answer: 7/25
+  answer_text: $\frac7{25}$.
+- id: p3-union-count
+  section: '23.5'
+  tier: F
+  dfe:
+  - P6
+  statement: There are 18 in A, 13 in B and 5 in both. Find the number in $A\cup B$.
+  answer_label: There are 18 in A, 13 in B and 5 in both. Find the number in $A\cup B$.
+  check:
+    kind: evaluate
+    expression: 18+13-5
+    answer: '26'
+  answer_text: $26$.
+- id: p4-only-a
+  section: '23.5'
+  tier: F
+  dfe:
+  - P6
+  statement: Set A contains 20 people, including 6 who are also in B. How many are in A only?
+  answer_label: Set A contains 20 people, including 6 who are also in B. How many are in A only?
+  check:
+    kind: evaluate
+    expression: 20-6
+    answer: '14'
+  answer_text: $14$.
+- id: p5-neither-prob
+  section: '23.5'
+  tier: F
+  dfe:
+  - P6
+  statement: Of 30 people, 21 are in at least one of A or B. Find the probability a random person is in neither.
+  answer_label: Of 30 people, 21 are in at least one of A or B. Find the probability a random person is in neither.
+  check:
+    kind: evaluate
+    expression: (30-21)/30
+    answer: 3/10
+  answer_text: $\frac9{30}=\frac3{10}$.
+- id: p6-intersection-language
+  section: '23.5'
+  tier: F
+  dfe:
+  - P6
+  statement: What does $A\cap B$ mean?
+  answer_label: What does $A\cap B$ mean?
+  check:
+    kind: evaluate
+    expression: '1'
+    answer: '1'
+  answer_text: It means in both A and B.
+- id: p7-union-language
+  section: '23.5'
+  tier: F
+  dfe:
+  - P6
+  statement: What does $A\cup B$ mean?
+  answer_label: What does $A\cup B$ mean?
+  check:
+    kind: evaluate
+    expression: '1'
+    answer: '1'
+  answer_text: It means in A or B or both.
+- id: p8-complete-overlap
+  section: '23.5'
+  tier: F
+  dfe:
+  - P6
+  statement: In 32 people, 15 are in A, 14 are in B and 4 in both. Find the number in neither.
+  answer_label: In 32 people, 15 are in A, 14 are in B and 4 in both. Find the number in neither.
+  check:
+    kind: evaluate
+    expression: 32-(15+14-4)
+    answer: '7'
+  answer_text: $7$.
+- id: p9-only-b
+  section: '23.5'
+  tier: F
+  dfe:
+  - P6
+  statement: Set B has 19 members, 8 of whom are also in A. Find the number in B only.
+  answer_label: Set B has 19 members, 8 of whom are also in A. Find the number in B only.
+  check:
+    kind: evaluate
+    expression: 19-8
+    answer: '11'
+  answer_text: $11$.
+- id: p10-at-least-a
+  section: '23.5'
+  tier: F
+  dfe:
+  - P6
+  statement: In a group of 50, 31 belong to A or B. How many are outside both sets?
+  answer_label: In a group of 50, 31 belong to A or B. How many are outside both sets?
+  check:
+    kind: evaluate
+    expression: 50-31
+    answer: '19'
+  answer_text: $19$.

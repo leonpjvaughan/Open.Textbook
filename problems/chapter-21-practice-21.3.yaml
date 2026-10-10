@@ -1,0 +1,95 @@
+# Independent practice for 21.3. Questions and answers share verified records.
+chapter: 21
+problems:
+  - id: ch21-tangent-radius
+    section: "21.3"
+    tier: F
+    dfe: [G10]
+    statement: 'A tangent touches a circle at $T$. What angle does the radius to $T$ make with the tangent?'
+    answer_label: 'Radius and tangent'
+    check: {kind: evaluate, expression: '90', answer: '90'}
+    answer_text: '$90^\circ$'
+
+  - id: ch21-equal-tangents
+    section: "21.3"
+    tier: F
+    dfe: [G10]
+    statement: 'Tangents from $P$ touch a circle at $A$ and $B$. If $PA=8.3$ cm, find $PB$.'
+    answer_label: 'Equal tangents'
+    check: {kind: evaluate, expression: '8.3', answer: '8.3'}
+    answer_text: '$8.3$ cm'
+
+  - id: ch21-chord-bisect
+    section: "21.3"
+    tier: F
+    dfe: [G10]
+    statement: 'A perpendicular from the centre meets a chord of length $14$ cm. Find each half.'
+    answer_label: 'Bisect the chord'
+    check: {kind: evaluate, expression: '14 / 2', answer: '7'}
+    answer_text: '$7$ cm'
+
+  - id: ch21-alternate-segment
+    section: "21.3"
+    tier: F
+    dfe: [G10]
+    statement: 'The angle between a tangent and chord is $53^\circ$. Find the angle in the alternate segment.'
+    answer_label: 'Alternate segment theorem'
+    check: {kind: evaluate, expression: '53', answer: '53'}
+    answer_text: '$53^\circ$'
+
+  - id: ch21-tangent-triangle
+    section: "21.3"
+    tier: F
+    dfe: [G10]
+    statement: 'At a point of contact, the angle between a radius and tangent is $90^\circ$. Another angle in the triangle is $32^\circ$. Find the third angle.'
+    answer_label: 'Use triangle angles'
+    check: {kind: evaluate, expression: '180 - 90 - 32', answer: '58'}
+    answer_text: '$58^\circ$'
+
+  - id: ch21-chord-length
+    section: "21.3"
+    tier: F
+    dfe: [G10]
+    statement: 'A perpendicular from the centre bisects a chord. One half is $6.8$ cm. Find the full chord length.'
+    answer_label: 'Rebuild the chord'
+    check: {kind: evaluate, expression: '2 * 6.8', answer: '13.6'}
+    answer_text: '$13.6$ cm'
+
+  - id: ch21-equal-tangent-equation
+    section: "21.3"
+    tier: F
+    dfe: [G10]
+    statement: 'Two tangents from one point have lengths $(2x+1)$ cm and $13$ cm. Find $x$.'
+    answer_label: 'Set tangent lengths equal'
+    check: {kind: solve, equation: '2*x + 1 - 13 = 0', variable: x, answer: ['6']}
+    symbols: {x: {real: true}}
+    answer_text: '$x=6$'
+
+  - id: ch21-alternate-triangle
+    section: "21.3"
+    tier: F
+    dfe: [G10]
+    statement: 'The alternate segment angle is $(3x-4)^\circ$. The tangent-chord angle is $50^\circ$. Find $x$.'
+    answer_label: 'Use equal angles'
+    check: {kind: solve, equation: '3*x - 4 - 50 = 0', variable: x, answer: ['18']}
+    symbols: {x: {real: true}}
+    answer_text: '$x=18$'
+
+  - id: ch21-chord-perpendicular-higher
+    section: "21.3"
+    tier: H
+    dfe: [G10]
+    statement: 'A perpendicular from the centre bisects a chord. The two pieces are $(x+2)$ cm and $(3x-6)$ cm. Find $x$.'
+    answer_label: 'Equal halves'
+    check: {kind: solve, equation: 'x + 2 - (3*x - 6) = 0', variable: x, answer: ['4']}
+    symbols: {x: {real: true}}
+    answer_text: '$x=4$'
+
+  - id: ch21-combined-angle
+    section: "21.3"
+    tier: H
+    dfe: [G10]
+    statement: 'A tangent-chord angle is $42^\circ$. The angle at the centre standing on the corresponding arc is twice the angle in the alternate segment. Find the centre angle.'
+    answer_label: 'Connect two theorems'
+    check: {kind: evaluate, expression: '2 * 42', answer: '84'}
+    answer_text: '$84^\circ$'

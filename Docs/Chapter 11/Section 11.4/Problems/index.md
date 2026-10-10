@@ -1,19 +1,17 @@
 ---
-title: 11.4 Parallel and perpendicular lines — Problems
+title: 11.4 Parallel and perpendicular lines — Practise
 chapter: 11
 chapter_title: Straight-line graphs and rates of change
 section: '11.4'
 section_title: Parallel and perpendicular lines
 tier: H
-dfe:
-- A9
+dfe: [A9]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 11.4 Parallel and perpendicular lines — Practise
 
-# 11.4 Parallel and perpendicular lines — Problems
+Work independently in order. The later questions mix this section with earlier methods. Questions marked **H** are Higher only.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: A9
+:::problems chapter-11-practice-11.4
+:::answers chapter-11-practice-11.4

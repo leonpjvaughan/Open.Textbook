@@ -1,0 +1,111 @@
+# Practice set for 24.4. Questions and answers render from these verified records.
+chapter: 24
+problems:
+  - id: ch24-24-4-weighted-mean
+    section: "24.4"
+    tier: F
+    dfe: [S4]
+    statement: 'Values 1, 2, 3 have frequencies 2, 3, 1. Find the mean.'
+    answer_label: 'Values 1, 2, 3 have frequencies 2, 3, 1. Find the mean.'
+    check:
+      kind: evaluate
+      expression: '(1*2+2*3+3*1)/(2+3+1)'
+      answer: '11/6'
+    answer_text: 'Mean $=11/6$.'
+
+  - id: ch24-24-4-frequency-median
+    section: "24.4"
+    tier: F
+    dfe: [S4]
+    statement: 'Values 2 and 5 have frequencies 3 and 2. Find the median.'
+    answer_label: 'Values 2 and 5 have frequencies 3 and 2. Find the median.'
+    check:
+      kind: evaluate
+      expression: '2'
+      answer: '2'
+    answer_text: 'Ordered values: 2, 2, 2, 5, 5. Median $=2$.'
+
+  - id: ch24-24-4-table-mode
+    section: "24.4"
+    tier: F
+    dfe: [S4]
+    statement: 'Values 4, 6 and 8 have frequencies 2, 5 and 1. Find the mode.'
+    answer_label: 'Values 4, 6 and 8 have frequencies 2, 5 and 1. Find the mode.'
+    check:
+      kind: compare
+      relation: '>'
+      lhs: '5'
+      rhs: '2'
+    answer_text: 'Mode $=6$ because it has the greatest frequency.'
+
+  - id: ch24-24-4-table-range
+    section: "24.4"
+    tier: F
+    dfe: [S4]
+    statement: 'Values 3, 7 and 9 have frequencies 4, 2 and 1. Find the range.'
+    answer_label: 'Values 3, 7 and 9 have frequencies 4, 2 and 1. Find the range.'
+    check:
+      kind: evaluate
+      expression: '9-3'
+      answer: '6'
+    answer_text: 'Range $=6$.'
+
+  - id: ch24-24-4-weighted-mean-two
+    section: "24.4"
+    tier: F
+    dfe: [S4]
+    statement: 'Values 10 and 20 have frequencies 3 and 2. Find the mean.'
+    answer_label: 'Values 10 and 20 have frequencies 3 and 2. Find the mean.'
+    check:
+      kind: evaluate
+      expression: '(10*3+20*2)/5'
+      answer: '14'
+    answer_text: 'Mean $=14$.'
+
+  - id: ch24-24-4-frequency-total-mean
+    section: "24.4"
+    tier: F
+    dfe: [S4]
+    statement: 'Values 0, 1, 2 have frequencies 1, 4, 3. Find the mean.'
+    answer_label: 'Values 0, 1, 2 have frequencies 1, 4, 3. Find the mean.'
+    check:
+      kind: evaluate
+      expression: '(0*1+1*4+2*3)/(1+4+3)'
+      answer: '5/4'
+    answer_text: 'Mean $=5/4$.'
+
+  - id: ch24-24-4-median-even-frequency
+    section: "24.4"
+    tier: F
+    dfe: [S4]
+    statement: 'Values 1 and 4 have frequencies 2 and 2. Find the median.'
+    answer_label: 'Values 1 and 4 have frequencies 2 and 2. Find the median.'
+    check:
+      kind: evaluate
+      expression: '(1+4)/2'
+      answer: '5/2'
+    answer_text: 'Middle pair is 1 and 4. Median $=2.5$.'
+
+  - id: ch24-24-4-frequency-range
+    section: "24.4"
+    tier: F
+    dfe: [S4]
+    statement: 'Values 12, 15 and 18 have frequencies 2, 7 and 1. Find the range.'
+    answer_label: 'Values 12, 15 and 18 have frequencies 2, 7 and 1. Find the range.'
+    check:
+      kind: evaluate
+      expression: '18-12'
+      answer: '6'
+    answer_text: 'Range $=6$.'
+
+  - id: ch24-24-4-compare-frequency-mean
+    section: "24.4"
+    tier: F
+    dfe: [S4]
+    statement: 'Values 2 and 8 occur 3 and 1 times. Find the mean and compare it with the median.'
+    answer_label: 'Values 2 and 8 occur 3 and 1 times. Find the mean and compare it with the median.'
+    check:
+      kind: evaluate
+      expression: '(2*3+8)/4'
+      answer: '7/2'
+    answer_text: 'Mean $=3.5$. Ordered data are 2, 2, 2, 8; median $=2$.'

@@ -34,7 +34,7 @@ profit or a loss, how much, and how much money should be in the cash box.
 <details markdown="1">
 <summary>If you are not sure where to start</summary>
 
-Round each price to something easy and think about the totals. For example, 120
+Round each price to a round number and think about the totals. For example, 120
 cans at about 65p costs a little less than $120 \times 70\text{p} = £84$.
 </details>
 
@@ -60,7 +60,7 @@ Each section has three parts:
 | **Practise** | Independent problems, with answers at the end |
 
 The **Review** page resolves the chapter problem and mixes the chapter's methods
-together. Round numbers, don't memorise them: if a step is unclear, the worked
+together. Round numbers, do not memorise them: if a step is unclear, the worked
 example above it will show the reasoning.
 
 ## Roadmap

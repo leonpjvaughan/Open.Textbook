@@ -1,20 +1,17 @@
 ---
-title: 11.5 Real-life and distance-time graphs — Problems
+title: 11.5 Real-life and distance-time graphs — Practise
 chapter: 11
 chapter_title: Straight-line graphs and rates of change
 section: '11.5'
 section_title: Real-life and distance-time graphs
 tier: F
-dfe:
-- A14
-- R14
+dfe: [A14, R14]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 11.5 Real-life and distance-time graphs — Practise
 
-# 11.5 Real-life and distance-time graphs — Problems
+Work independently in order. The later questions mix this section with earlier methods. Questions marked **H** are Higher only.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: A14, R14
+:::problems chapter-11-practice-11.5
+:::answers chapter-11-practice-11.5

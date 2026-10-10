@@ -1,0 +1,105 @@
+chapter: 16
+problems:
+- id: pentagon-sum
+  section: '16.4'
+  tier: F
+  dfe:
+  - G3
+  statement: Find the interior angle sum of a pentagon.
+  answer_label: Find the interior angle sum of a pentagon.
+  check:
+    kind: evaluate
+    expression: (5-2)*180
+    answer: '540'
+  answer_text: $540^\circ$
+- id: hexagon-regular
+  section: '16.4'
+  tier: F
+  dfe:
+  - G3
+  statement: Find each interior angle of a regular hexagon.
+  answer_label: Find each interior angle of a regular hexagon.
+  check:
+    kind: evaluate
+    expression: (6-2)*180/6
+    answer: '120'
+  answer_text: $120^\circ$
+- id: octagon-exterior
+  section: '16.4'
+  tier: F
+  dfe:
+  - G3
+  statement: Find each exterior angle of a regular octagon.
+  answer_label: Find each exterior angle of a regular octagon.
+  check:
+    kind: evaluate
+    expression: 360/8
+    answer: '45'
+  answer_text: $45^\circ$
+- id: unknown-n
+  section: '16.4'
+  tier: F
+  dfe:
+  - G3
+  statement: A polygon has interior angle sum $900^\circ$. How many sides does it have?
+  answer_label: A polygon has interior angle sum $900^\circ$. How many sides does it have?
+  check:
+    kind: solve
+    equation: (x-2)*180-900=0
+    variable: x
+    answer:
+    - '7'
+  answer_text: '7 sides: $(n-2)180=900$, so $n=7$.'
+- id: regular-interior
+  section: '16.4'
+  tier: F
+  dfe:
+  - G3
+  statement: Find each interior angle of a regular pentagon.
+  answer_label: Find each interior angle of a regular pentagon.
+  check:
+    kind: evaluate
+    expression: (5-2)*180/5
+    answer: '108'
+  answer_text: $108^\circ$
+- id: exterior-count
+  section: '16.4'
+  tier: F
+  dfe:
+  - G3
+  statement: Each exterior angle of a regular polygon is $30^\circ$. Find its number of sides.
+  answer_label: Each exterior angle of a regular polygon is $30^\circ$. Find its number of sides
+  check:
+    kind: evaluate
+    expression: 360/30
+    answer: '12'
+  answer_text: 12 sides.
+- id: mixed-quad
+  section: '16.4'
+  tier: F
+  dfe:
+  - G3
+  statement: A regular polygon has four sides. Find each interior angle using the polygon formula.
+  answer_label: A regular polygon has four sides. Find each interior angle using the polygon for
+  check:
+    kind: evaluate
+    expression: (4-2)*180/4
+    answer: '90'
+  answer_text: $90^\circ$
+- id: interior-algebra
+  section: '16.4'
+  tier: F
+  dfe:
+  - G3
+  statement: A regular polygon has each interior angle $150^\circ$. Find its number of sides using exterior angles.
+  answer_label: 'A regular polygon has each interior angle $150^\circ$. Find its number of sides '
+  check:
+    kind: evaluate
+    expression: 360/(180-150)
+    answer: '12'
+  answer_text: 12 sides; each exterior angle is $30^\circ$.
+symbols:
+  x:
+    real: true
+  n:
+    real: true

@@ -1,19 +1,19 @@
 ---
-title: 16.4 Angles in polygons — Problems
+title: '16.4 Angles in polygons — Practise'
 chapter: 16
 chapter_title: Angles, polygons and geometrical reasoning
 section: '16.4'
 section_title: Angles in polygons
 tier: F
-dfe:
-- G3
+dfe: [G3]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 16.4 Angles in polygons — Practise
 
-# 16.4 Angles in polygons — Problems
+**DfE practice:** G3. The questions below practise these items.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: G3
+Work independently first. If you make an error, return to the Learn page and use it to guide your next attempt.
+
+:::problems chapter-16-practice-16.4
+:::answers chapter-16-practice-16.4

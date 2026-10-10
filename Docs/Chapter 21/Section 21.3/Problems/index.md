@@ -1,19 +1,17 @@
 ---
-title: 21.3 Tangents and chords — Problems
+title: 21.3 Tangents and chords — Practise
 chapter: 21
 chapter_title: Circle geometry and circle theorems
 section: '21.3'
 section_title: Tangents and chords
 tier: H
-dfe:
-- G10
+dfe: [G10]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 21.3 Tangents and chords — Practise
 
-# 21.3 Tangents and chords — Problems
+Work independently. Questions become more demanding as you progress. Check your answers after you have attempted the set.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: G10
+:::problems chapter-21-practice-21.3
+:::answers chapter-21-practice-21.3

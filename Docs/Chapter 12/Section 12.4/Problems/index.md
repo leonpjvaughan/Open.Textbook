@@ -1,5 +1,5 @@
 ---
-title: 12.4 Solving quadratic equations by factorising — Problems
+title: "12.4 Solving quadratic equations by factorising — Practise"
 chapter: 12
 chapter_title: Quadratic expressions, equations and graphs
 section: '12.4'
@@ -10,10 +10,8 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 12.4 Solving quadratic equations by factorising — Practise
 
-# 12.4 Solving quadratic equations by factorising — Problems
+:::problems chapter-12-practice-12.4
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: A18
+:::answers chapter-12-practice-12.4

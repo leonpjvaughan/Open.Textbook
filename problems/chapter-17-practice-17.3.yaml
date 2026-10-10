@@ -1,0 +1,104 @@
+chapter: 17
+problems:
+- id: ch17-17-3-perp-bisector-mid
+  section: '17.3'
+  tier: F
+  dfe:
+  - G2
+  statement: A segment is 10 cm long. How far is its midpoint from either endpoint?
+  answer_label: A segment is 10 cm long. How far is its midpoint from either endpoint?
+  check:
+    kind: evaluate
+    expression: 10 / 2
+    answer: '5'
+  answer_text: 5 cm
+- id: ch17-17-3-perpendicular-angle
+  section: '17.3'
+  tier: F
+  dfe:
+  - G2
+  statement: What angle does a perpendicular make with a line?
+  answer_label: What angle does a perpendicular make with a line?
+  check:
+    kind: evaluate
+    expression: '90'
+    answer: '90'
+  answer_text: 90 degrees
+- id: ch17-17-3-angle-bisect
+  section: '17.3'
+  tier: F
+  dfe:
+  - G2
+  statement: An angle is 74 degrees. What is each angle after bisecting it?
+  answer_label: An angle is 74 degrees. What is each angle after bisecting it?
+  check:
+    kind: evaluate
+    expression: 74 / 2
+    answer: '37'
+  answer_text: 37 degrees
+- id: ch17-17-3-construct-60
+  section: '17.3'
+  tier: F
+  dfe:
+  - G2
+  statement: A compass construction makes an equilateral triangle. State each interior angle.
+  answer_label: A compass construction makes an equilateral triangle. State each interior angle.
+  check:
+    kind: evaluate
+    expression: 180 / 3
+    answer: '60'
+  answer_text: 60 degrees
+- id: ch17-17-3-arc-radius
+  section: '17.3'
+  tier: F
+  dfe:
+  - G2
+  statement: For a perpendicular bisector construction, should the compass radius be greater or less than half the
+    segment?
+  answer_label: For a perpendicular bisector construction, should the compass radius be greater or less than half
+    the segment?
+  check:
+    kind: compare
+    relation: '>'
+    lhs: '3'
+    rhs: '2'
+  answer_text: Greater than half
+- id: ch17-17-3-equal-distance
+  section: '17.3'
+  tier: F
+  dfe:
+  - G2
+  statement: Two points are both 7 cm from A and B. What locus contains them?
+  answer_label: Two points are both 7 cm from A and B. What locus contains them?
+  check:
+    kind: evaluate
+    expression: 7 - 7
+    answer: '0'
+  answer_text: The perpendicular bisector of AB
+- id: ch17-17-3-construction-check
+  section: '17.3'
+  tier: F
+  dfe:
+  - G2
+  statement: Two endpoints are 8 cm apart. The crossing point of equal arcs is 3 cm from each endpoint. Is this
+    possible?
+  answer_label: Two endpoints are 8 cm apart. The crossing point of equal arcs is 3 cm from each endpoint. Is this
+    possible?
+  check:
+    kind: compare
+    relation: '<'
+    lhs: '3'
+    rhs: '4'
+  answer_text: No; equal radius must exceed 4 cm to cross off the segment.
+- id: ch17-17-3-angle-construct
+  section: '17.3'
+  tier: F
+  dfe:
+  - G2
+  statement: An angle of 96 degrees is bisected. Work out the two resulting angles.
+  answer_label: An angle of 96 degrees is bisected. Work out the two resulting angles.
+  check:
+    kind: evaluate
+    expression: 96 / 2
+    answer: '48'
+  answer_text: 48 degrees each

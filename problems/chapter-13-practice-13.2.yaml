@@ -1,0 +1,91 @@
+chapter: 13
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: sine-key-values
+    section: '13.2'
+    tier: H
+    dfe: [A12]
+    statement: 'For $y=\sin x$, give the values at $x=0^\circ,90^\circ,180^\circ,270^\circ,360^\circ$.'
+    answer_label: 'Sine key values'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: sin(0), answer: '0'}
+        - {kind: evaluate, expression: sin(pi/2), answer: '1'}
+        - {kind: evaluate, expression: sin(pi), answer: '0'}
+        - {kind: evaluate, expression: sin(3*pi/2), answer: '-1'}
+        - {kind: evaluate, expression: sin(2*pi), answer: '0'}
+    answer_text: 'The values are $0,1,0,-1,0$.'
+  - id: cosine-key-values
+    section: '13.2'
+    tier: H
+    dfe: [A12]
+    statement: 'For $y=\cos x$, give the values at $x=0^\circ,90^\circ,180^\circ,270^\circ,360^\circ$.'
+    answer_label: 'Cosine key values'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: cos(0), answer: '1'}
+        - {kind: evaluate, expression: cos(pi/2), answer: '0'}
+        - {kind: evaluate, expression: cos(pi), answer: '-1'}
+        - {kind: evaluate, expression: cos(3*pi/2), answer: '0'}
+        - {kind: evaluate, expression: cos(2*pi), answer: '1'}
+    answer_text: 'The values are $1,0,-1,0,1$.'
+  - id: sine-period
+    section: '13.2'
+    tier: H
+    dfe: [A12]
+    statement: 'State the period of $y=\sin x$ and $y=\cos x$ in degrees.'
+    answer_label: 'Sine and cosine periods'
+    check: {kind: evaluate, expression: '360', answer: '360'}
+    answer_text: 'Both periods are $360^\circ$.'
+  - id: tangent-period
+    section: '13.2'
+    tier: H
+    dfe: [A12]
+    statement: 'State the period of $y=\tan x$ and its vertical asymptotes between $-180^\circ$ and $180^\circ$.'
+    answer_label: 'Tangent period and asymptotes'
+    check: {kind: evaluate, expression: '180', answer: '180'}
+    answer_text: 'The period is $180^\circ$. The asymptotes are $x=-90^\circ$ and $x=90^\circ$.'
+  - id: solve-sine-half
+    section: '13.2'
+    tier: H
+    dfe: [A12]
+    statement: 'Solve $\sin x=1/2$ for $0^\circ\leq x\leq360^\circ$.'
+    answer_label: 'Sine intersections'
+    check: {kind: all, checks: [{kind: evaluate, expression: sin(pi/6), answer: '1/2'}, {kind: evaluate, expression: sin(5*pi/6), answer: '1/2'}]}
+    answer_text: '$x=30^\circ$ or $150^\circ$, where the curve meets the line $y=1/2$.'
+  - id: solve-cos-zero
+    section: '13.2'
+    tier: H
+    dfe: [A12]
+    statement: 'Solve $\cos x=0$ for $0^\circ\leq x\leq360^\circ$.'
+    answer_label: 'Cosine intersections'
+    check: {kind: all, checks: [{kind: evaluate, expression: cos(pi/2), answer: '0'}, {kind: evaluate, expression: cos(3*pi/2), answer: '0'}]}
+    answer_text: '$x=90^\circ$ or $270^\circ$.'
+  - id: solve-sine-zero
+    section: '13.2'
+    tier: H
+    dfe: [A12]
+    statement: 'Solve $\sin x=0$ for $0^\circ\leq x\leq360^\circ$.'
+    answer_label: 'Sine axis intersections'
+    check: {kind: all, checks: [{kind: evaluate, expression: sin(0), answer: '0'}, {kind: evaluate, expression: sin(pi), answer: '0'}, {kind: evaluate, expression: sin(2*pi), answer: '0'}]}
+    answer_text: '$x=0^\circ,180^\circ,360^\circ$.'
+  - id: amplitude-investigation
+    section: '13.2'
+    tier: H
+    dfe: [A12]
+    statement: 'For $y=3\sin x$, state the maximum, minimum and period in degrees.'
+    answer_label: 'Sine amplitude features'
+    check: {kind: all, checks: [{kind: evaluate, expression: 3*sin(pi/2), answer: '3'}, {kind: evaluate, expression: 3*sin(3*pi/2), answer: '-3'}, {kind: evaluate, expression: sin(2*pi), answer: '0'}]}
+    answer_text: 'Maximum $3$, minimum $-3$, period $360^\circ$.'
+  - id: tangent-zeros
+    section: '13.2'
+    tier: H
+    dfe: [A12]
+    statement: 'Give the zeros of $y=\tan x$ from $-180^\circ$ to $180^\circ$.'
+    answer_label: 'Tangent zeros'
+    check: {kind: all, checks: [{kind: evaluate, expression: tan(-pi), answer: '0'}, {kind: evaluate, expression: tan(0), answer: '0'}, {kind: evaluate, expression: tan(pi), answer: '0'}]}
+    answer_text: '$x=-180^\circ,0^\circ,180^\circ$.'

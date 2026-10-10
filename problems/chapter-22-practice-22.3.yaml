@@ -1,0 +1,71 @@
+chapter: 22
+symbols:
+  a: {real: true}
+  b: {real: true}
+  u: {real: true}
+  v: {real: true}
+problems:
+  - id: ch22-223-route
+    section: '22.3'
+    tier: H
+    dfe: [G25]
+    statement: 'In triangle $ABC$, $\overrightarrow{AB}=\mathbf{a}$ and $\overrightarrow{BC}=\mathbf{b}$. Find $\overrightarrow{AC}$.'
+    answer_label: 'Vector AC'
+    check: {kind: all, checks: [{kind: evaluate, expression: 'a + b', answer: 'b + a'}]}
+    answer_text: '$\overrightarrow{AC}=\mathbf{a}+\mathbf{b}$, by adding the two route vectors.'
+  - id: ch22-223-reverse-route
+    section: '22.3'
+    tier: H
+    dfe: [G25]
+    statement: 'If $\overrightarrow{AB}=\mathbf{u}+\mathbf{v}$, write $\overrightarrow{BA}$.'
+    answer_label: 'Reverse vector'
+    check: {kind: all, checks: [{kind: evaluate, expression: '-(u + v)', answer: '-u - v'}]}
+    answer_text: '$\overrightarrow{BA}=-\mathbf{u}-\mathbf{v}$.'
+  - id: ch22-223-parallelogram-diagonal
+    section: '22.3'
+    tier: H
+    dfe: [G25]
+    statement: 'In parallelogram $ABCD$, $\overrightarrow{AB}=\mathbf{u}$ and $\overrightarrow{AD}=\mathbf{v}$. Find $\overrightarrow{AC}$.'
+    answer_label: 'Diagonal AC'
+    check: {kind: all, checks: [{kind: evaluate, expression: 'u + v', answer: 'v + u'}]}
+    answer_text: '$\overrightarrow{AC}=\mathbf{u}+\mathbf{v}$.'
+  - id: ch22-223-other-diagonal
+    section: '22.3'
+    tier: H
+    dfe: [G25]
+    statement: 'In the same parallelogram, find $\overrightarrow{DB}$.'
+    answer_label: 'Diagonal DB'
+    check: {kind: all, checks: [{kind: evaluate, expression: 'u - v', answer: 'u + (-v)'}]}
+    answer_text: '$\overrightarrow{DB}=\mathbf{u}-\mathbf{v}$, using $D$ to $A$ to $B$.'
+  - id: ch22-223-midpoint-position
+    section: '22.3'
+    tier: H
+    dfe: [G25]
+    statement: 'A segment has endpoint position vectors $\mathbf{p}$ and $\mathbf{q}$. Write the midpoint position vector.'
+    answer_label: 'Midpoint position vector'
+    check: {kind: all, checks: [{kind: evaluate, expression: '(p + q)/2', answer: 'p/2 + q/2'}]}
+    answer_text: '$\frac12(\mathbf{p}+\mathbf{q})$.'
+  - id: ch22-223-prove-midpoints
+    section: '22.3'
+    tier: H
+    dfe: [G25]
+    statement: 'In parallelogram $ABCD$, take $A$ as the origin, with $B=\mathbf{u}$ and $D=\mathbf{v}$. Show the diagonals have the same midpoint.'
+    answer_label: 'Midpoint equality'
+    check: {kind: all, checks: [{kind: evaluate, expression: '(u + v)/2', answer: 'u/2 + v/2'}, {kind: evaluate, expression: '(u + v)/2', answer: 'v/2 + u/2'}]}
+    answer_text: '$C=\mathbf{u}+\mathbf{v}$. Midpoint of $AC=\frac12(\mathbf{u}+\mathbf{v})$; midpoint of $BD=\frac12(\mathbf{u}+\mathbf{v})$. The midpoints are equal, so the diagonals bisect each other.'
+  - id: ch22-223-triangle-midpoint
+    section: '22.3'
+    tier: H
+    dfe: [G25]
+    statement: 'In triangle $OAB$, the position vectors of $A$ and $B$ are $\mathbf{a}$ and $\mathbf{b}$. Point $M$ is the midpoint of $AB$. Find $\overrightarrow{OM}$.'
+    answer_label: 'Vector OM'
+    check: {kind: all, checks: [{kind: evaluate, expression: '(a + b)/2', answer: 'a/2 + b/2'}, {kind: evaluate, expression: '(a + b)/2', answer: 'b/2 + a/2'}]}
+    answer_text: '$\overrightarrow{OM}=\frac12(\mathbf{a}+\mathbf{b})$.'
+  - id: ch22-223-higher-proof
+    section: '22.3'
+    tier: H
+    dfe: [G25]
+    statement: 'A quadrilateral has successive side vectors $\mathbf{p}$, $\mathbf{q}$, $-\mathbf{p}$ and $-\mathbf{q}$. Explain why it closes.'
+    answer_label: 'Closure'
+    check: {kind: all, checks: [{kind: evaluate, expression: 'u + v - u - v', answer: '0'}, {kind: evaluate, expression: 'u - u + v - v', answer: '0'}]}
+    answer_text: 'The total vector is $\mathbf{p}+\mathbf{q}-\mathbf{p}-\mathbf{q}=\mathbf{0}$, so the route returns to its start.'

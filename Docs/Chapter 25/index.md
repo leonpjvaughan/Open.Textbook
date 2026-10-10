@@ -4,16 +4,40 @@ chapter: 25
 strand: statistics
 ---
 
-<!-- scaffold:stub -->
-
 # Chapter 25: Statistics: spread, grouped data and correlation
 
-Quartiles and box plots, cumulative frequency, histograms, scatter graphs and comparing distributions.
+## The chapter problem: travel times
 
-## Sections
+A school records the travel time, in minutes, for 20 pupils:
 
-- **25.1 Quartiles, interquartile range and box plots** — tier H · DfE S4
-- **25.2 Cumulative frequency** — tier H · DfE S3
-- **25.3 Histograms** — tier H · DfE S3
-- **25.4 Scatter graphs and correlation** — tier F · DfE S6
-- **25.5 Comparing distributions and outliers** — tier H · DfE S4
+`12, 14, 15, 16, 17, 18, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 29, 31, 35, 42`
+
+**First contact:** without calculating, predict whether the middle half of these
+times lies in a narrow or wide interval. Which value might make the data look
+less typical?
+
+By the end, you will describe the data with quartiles and a box plot, read
+cumulative frequency, compare grouped data, and discuss possible unusual values.
+
+## By the end of this chapter you will be able to
+
+- find and interpret the median, quartiles and interquartile range;
+- draw and read box plots and cumulative frequency graphs;
+- use class width and frequency density to draw and interpret histograms;
+- draw scatter graphs and describe correlation, including its limits;
+- compare distributions using suitable measures and identify possible outliers.
+
+## Roadmap
+
+1. [25.1 Quartiles, interquartile range and box plots](Section 25.1/Walkthrough/index.md)
+2. [25.2 Cumulative frequency](Section 25.2/Walkthrough/index.md)
+3. [25.3 Histograms](Section 25.3/Walkthrough/index.md)
+4. [25.4 Scatter graphs and correlation](Section 25.4/Walkthrough/index.md)
+5. [25.5 Comparing distributions and outliers](Section 25.5/Walkthrough/index.md)
+6. [Review](Review/index.md)
+
+## Your turn to connect it
+
+Where might you or someone you know compare typical values or variation, such
+as journey times, waiting times, or sports results? Write one example and name
+the measure that could help.

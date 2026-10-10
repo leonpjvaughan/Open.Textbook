@@ -1,20 +1,17 @@
 ---
-title: '11.2 Gradient and intercept: y = mx + c — Problems'
+title: 11.2 Gradient and intercept: y = mx + c — Practise
 chapter: 11
 chapter_title: Straight-line graphs and rates of change
 section: '11.2'
-section_title: 'Gradient and intercept: y = mx + c'
+section_title: Gradient and intercept: y = mx + c
 tier: F
-dfe:
-- A9
-- A10
+dfe: [A9, A10]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 11.2 Gradient and intercept: y = mx + c — Practise
 
-# 11.2 Gradient and intercept: y = mx + c — Problems
+Work independently in order. The later questions mix this section with earlier methods. Questions marked **H** are Higher only.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: A9, A10
+:::problems chapter-11-practice-11.2
+:::answers chapter-11-practice-11.2

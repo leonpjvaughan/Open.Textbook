@@ -1,19 +1,18 @@
 ---
-title: 14.5 Iteration and numerical methods — Problems
+title: "14.5 Iteration and numerical methods — Practise"
 chapter: 14
 chapter_title: Simultaneous equations and iteration
-section: '14.5'
+section: "14.5"
 section_title: Iteration and numerical methods
 tier: H
-dfe:
-- A20
+dfe: [A20]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 14.5 Iteration and numerical methods — Practise
 
-# 14.5 Iteration and numerical methods — Problems
+Work through these independently. Choose a method that fits each question. Questions marked **H** are Higher only.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: A20
+:::problems chapter-14-practice-14.5
+
+:::answers chapter-14-practice-14.5

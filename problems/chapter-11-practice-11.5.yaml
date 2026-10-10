@@ -1,0 +1,122 @@
+chapter: 11
+problems:
+- id: p1-speed
+  section: '11.5'
+  tier: F
+  dfe: &id001
+  - A14
+  - R14
+  statement: A cyclist travels 18 km in 1.5 hours. Find the constant speed.
+  answer_label: Question 1
+  check:
+    kind: evaluate
+    expression: 18/1.5
+    answer: '12'
+  answer_text: 12 km/h
+- id: p2-distance
+  section: '11.5'
+  tier: F
+  dfe: *id001
+  statement: A car travels at 60 km/h for 2.5 hours. Find its distance.
+  answer_label: Question 2
+  check:
+    kind: evaluate
+    expression: 60*2.5
+    answer: '150'
+  answer_text: 150 km
+- id: p3-graph-rate
+  section: '11.5'
+  tier: F
+  dfe: *id001
+  statement: A distance-time graph rises from 0 km to 8 km in 40 minutes. Find speed in km/h.
+  answer_label: Question 3
+  check:
+    kind: evaluate
+    expression: 8/(40/60)
+    answer: '12'
+  answer_text: 12 km/h
+- id: p4-stationary
+  section: '11.5'
+  tier: F
+  dfe: *id001
+  statement: What does a horizontal section on a distance-time graph show?
+  answer_label: Question 4
+  check:
+    kind: evaluate
+    expression: '0'
+    answer: '0'
+  answer_text: The distance stays constant; stationary
+- id: p5-return
+  section: '11.5'
+  tier: F
+  dfe: *id001
+  statement: A walker is 6 km from home, then the graph slopes down to 2 km from home. Describe the journey.
+  answer_label: Question 5
+  check:
+    kind: compare
+    relation: <
+    lhs: '2'
+    rhs: '6'
+  answer_text: Walking towards home
+- id: p6-direct-proportion
+  section: '11.5'
+  tier: F
+  dfe: *id001
+  statement: A tap fills 9 litres in 3 minutes at a constant rate. How much in 8 minutes?
+  answer_label: Question 6
+  check:
+    kind: evaluate
+    expression: (9/3)*8
+    answer: '24'
+  answer_text: 24 litres
+- id: p7-compare-rates
+  section: '11.5'
+  tier: F
+  dfe: *id001
+  statement: 'Which is faster: 30 km in 2 hours or 20 km in 1.25 hours?'
+  answer_label: Question 7
+  check:
+    kind: compare
+    relation: '>'
+    lhs: 20/1.25
+    rhs: 30/2
+  answer_text: '20 km in 1.25 hours: 16 km/h vs 15 km/h'
+- id: p8-interpret
+  section: '11.5'
+  tier: F
+  dfe: *id001
+  statement: A graph shows cost £5 at 0 items and £2 added per item. State the fixed cost and cost for 4 items.
+  answer_label: Question 8
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: '5'
+      answer: '5'
+    - kind: evaluate
+      expression: 5+2*4
+      answer: '13'
+  answer_text: £5; £13
+- id: p9-gradient-units
+  section: '11.5'
+  tier: F
+  dfe: *id001
+  statement: A distance-time line has gradient 3 km per hour. How far in 5 hours at the same rate?
+  answer_label: Question 9
+  check:
+    kind: evaluate
+    expression: 3*5
+    answer: '15'
+  answer_text: 15 km
+- id: p10-higher
+  section: '11.5'
+  tier: H
+  dfe: *id001
+  statement: A journey covers 12 km in 30 minutes and then 18 km in 45 minutes. Compare the two speeds.
+  answer_label: Question 10
+  check:
+    kind: compare
+    relation: '='
+    lhs: 12/(1/2)
+    rhs: 18/(3/4)
+  answer_text: Both 24 km/h

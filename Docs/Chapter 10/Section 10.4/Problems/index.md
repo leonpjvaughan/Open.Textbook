@@ -1,5 +1,5 @@
 ---
-title: 10.4 The nth term of a quadratic sequence — Problems
+title: 10.4 The nth term of a quadratic sequence — Practise
 chapter: 10
 chapter_title: Sequences
 section: '10.4'
@@ -10,10 +10,10 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 10.4 The nth term of a quadratic sequence — Practise
 
-# 10.4 The nth term of a quadratic sequence — Problems
+Work each question independently. For mixed sequence types, name the method before you calculate.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: A25
+:::problems chapter-10-practice-10.4
+
+:::answers chapter-10-practice-10.4

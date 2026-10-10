@@ -1,5 +1,5 @@
 ---
-title: 12.6 Completing the square — Problems
+title: "12.6 Completing the square — Practise"
 chapter: 12
 chapter_title: Quadratic expressions, equations and graphs
 section: '12.6'
@@ -11,10 +11,8 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 12.6 Completing the square — Practise
 
-# 12.6 Completing the square — Problems
+:::problems chapter-12-practice-12.6
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **H** · DfE refs: A11, A18
+:::answers chapter-12-practice-12.6

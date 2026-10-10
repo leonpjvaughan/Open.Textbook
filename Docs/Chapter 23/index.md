@@ -4,17 +4,37 @@ chapter: 23
 strand: probability
 ---
 
-<!-- scaffold:stub -->
-
 # Chapter 23: Probability
 
-The probability scale, relative frequency, systematic enumeration, combined events and conditional probability.
+Probability measures how likely an event is. You will describe chance, use data, count outcomes, and combine events.
 
-## Sections
+## The chapter problem: a two-colour spinner
 
-- **23.1 The probability scale and equally likely outcomes** — tier F · DfE P2, P3, P4
-- **23.2 Relative frequency and expected outcomes** — tier F · DfE P1, P2, P3, P5
-- **23.3 Frequency trees, tables and possibility spaces** — tier F · DfE P1, P6, P7
-- **23.4 Combined events and tree diagrams** — tier F · DfE P8
-- **23.5 Venn diagrams and set notation** — tier F · DfE P6
-- **23.6 Conditional probability** — tier H · DfE P9
+A spinner has equal-sized red and blue regions. You will investigate the chance of landing on red, then compare a prediction with results from repeated spins.
+
+**First contact:** without calculating, predict whether red will appear more than half, less than half, or about half of the time over many spins. There is no score for this prediction.
+
+By the end, you can use probability models and results to explain how likely events are and how events depend on each other.
+
+## By the end of this chapter you will be able to
+
+- place probabilities on a scale and calculate probabilities for equally likely outcomes;
+- use relative frequency to estimate probability and expected outcomes;
+- organise outcomes in tables, frequency trees, lists and possibility spaces;
+- calculate probabilities for combined independent events;
+- use Venn diagrams and set notation to describe groups and events;
+- calculate conditional probabilities from a restricted group.
+
+## Roadmap
+
+1. [23.1 The probability scale and equally likely outcomes](Section 23.1/Walkthrough/index.md)
+2. [23.2 Relative frequency and expected outcomes](Section 23.2/Walkthrough/index.md)
+3. [23.3 Frequency trees, tables and possibility spaces](Section 23.3/Walkthrough/index.md)
+4. [23.4 Combined events and tree diagrams](Section 23.4/Walkthrough/index.md)
+5. [23.5 Venn diagrams and set notation](Section 23.5/Walkthrough/index.md)
+6. [23.6 Conditional probability](Section 23.6/Walkthrough/index.md)
+7. [Review](Review/index.md)
+
+## Your turn to connect it
+
+Where might you or someone you know use a probability estimate or compare a prediction with results? Write one example and explain what decision it could help with.

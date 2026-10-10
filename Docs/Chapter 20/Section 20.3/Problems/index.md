@@ -1,19 +1,17 @@
 ---
-title: 20.3 Angles of elevation and depression — Problems
+title: "20.3 Angles of elevation and depression — Practise"
 chapter: 20
-chapter_title: Pythagoras' theorem and trigonometry
+chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.3'
-section_title: Angles of elevation and depression
+section_title: "Angles of elevation and depression"
 tier: F
-dfe:
-- G20
+dfe: [G20]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 20.3 Angles of elevation and depression — Practise
 
-# 20.3 Angles of elevation and depression — Problems
+Work independently. Estimate where useful, show your method, and check units. In the mixed questions, choose the method and give a reason.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: G20
+:::problems chapter-20-practice-20.3
+:::answers chapter-20-practice-20.3

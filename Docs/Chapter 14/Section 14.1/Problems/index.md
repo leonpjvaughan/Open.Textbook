@@ -1,19 +1,18 @@
 ---
-title: 14.1 Simultaneous equations by elimination — Problems
+title: "14.1 Simultaneous equations by elimination — Practise"
 chapter: 14
 chapter_title: Simultaneous equations and iteration
-section: '14.1'
+section: "14.1"
 section_title: Simultaneous equations by elimination
 tier: F
-dfe:
-- A19
+dfe: [A19]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 14.1 Simultaneous equations by elimination — Practise
 
-# 14.1 Simultaneous equations by elimination — Problems
+Work through these independently. Choose a method that fits each question. Questions marked **H** are Higher only.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: A19
+:::problems chapter-14-practice-14.1
+
+:::answers chapter-14-practice-14.1

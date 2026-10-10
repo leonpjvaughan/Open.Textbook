@@ -1,19 +1,15 @@
 ---
-title: 24.4 Averages from frequency tables — Problems
+title: 24.4 Averages from frequency tables — Practise
 chapter: 24
 chapter_title: 'Statistics: representing and analysing data'
 section: '24.4'
 section_title: Averages from frequency tables
 tier: F
-dfe:
-- S4
+dfe: [S4]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 24.4 Averages from frequency tables — Practise
 
-# 24.4 Averages from frequency tables — Problems
-
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
->
-> Tier: **F** · DfE refs: S4
+:::problems chapter-24-practice-24.4
+:::answers chapter-24-practice-24.4

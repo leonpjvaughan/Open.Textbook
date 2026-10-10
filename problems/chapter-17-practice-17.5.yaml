@@ -1,0 +1,99 @@
+chapter: 17
+problems:
+- id: ch17-17-5-bearing-east
+  section: '17.5'
+  tier: F
+  dfe:
+  - G15
+  statement: Write the three-figure bearing for east.
+  answer_label: Write the three-figure bearing for east.
+  check:
+    kind: evaluate
+    expression: '90'
+    answer: '90'
+  answer_text: 090 degrees
+- id: ch17-17-5-bearing-southwest
+  section: '17.5'
+  tier: F
+  dfe:
+  - G15
+  statement: Write the three-figure bearing for south-west.
+  answer_label: Write the three-figure bearing for south-west.
+  check:
+    kind: evaluate
+    expression: 180 + 45
+    answer: '225'
+  answer_text: 225 degrees
+- id: ch17-17-5-bearing-southeast
+  section: '17.5'
+  tier: F
+  dfe:
+  - G15
+  statement: Write the three-figure bearing for south-east.
+  answer_label: Write the three-figure bearing for south-east.
+  check:
+    kind: evaluate
+    expression: 90 + 45
+    answer: '135'
+  answer_text: 135 degrees
+- id: ch17-17-5-scale-length
+  section: '17.5'
+  tier: F
+  dfe:
+  - G15
+  statement: A scale is 1 cm to 4 km. What real distance does 6 cm represent?
+  answer_label: A scale is 1 cm to 4 km. What real distance does 6 cm represent?
+  check:
+    kind: evaluate
+    expression: 6 * 4
+    answer: '24'
+  answer_text: 24 km
+- id: ch17-17-5-scale-drawing
+  section: '17.5'
+  tier: F
+  dfe:
+  - G15
+  statement: A scale is 1 cm to 5 m. How long is 35 m on the drawing?
+  answer_label: A scale is 1 cm to 5 m. How long is 35 m on the drawing?
+  check:
+    kind: evaluate
+    expression: 35 / 5
+    answer: '7'
+  answer_text: 7 cm
+- id: ch17-17-5-scale-map
+  section: '17.5'
+  tier: F
+  dfe:
+  - G15
+  statement: A map scale is 1:25 000. What real distance in metres does 4 cm represent?
+  answer_label: A map scale is 1:25 000. What real distance in metres does 4 cm represent?
+  check:
+    kind: evaluate
+    expression: 4 * 25000 / 100
+    answer: '1000'
+  answer_text: 1000 m
+- id: ch17-17-5-garden-diagonal
+  section: '17.5'
+  tier: F
+  dfe:
+  - G15
+  statement: A rectangle is 24 m by 18 m. Work out its diagonal.
+  answer_label: A rectangle is 24 m by 18 m. Work out its diagonal.
+  check:
+    kind: evaluate
+    expression: sqrt(24**2 + 18**2)
+    answer: '30'
+  answer_text: 30 m
+- id: ch17-17-5-garden-bearing
+  section: '17.5'
+  tier: F
+  dfe:
+  - G15
+  statement: A route goes 24 m east and 18 m north. Find its bearing to the nearest degree.
+  answer_label: A route goes 24 m east and 18 m north. Find its bearing to the nearest degree.
+  check:
+    kind: rounded
+    value: atan(24/18)*180/pi
+    rounded: '53'
+    to: '1'
+  answer_text: 053 degrees
