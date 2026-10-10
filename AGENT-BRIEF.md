@@ -52,8 +52,9 @@ why). Also:
 - Add every worked solution and answer you rely on to
   `problems/chapter-<n>.yaml`, with an independent `check` and, where you show
   steps, a `steps` chain. Run `python -m verification problems/` — it must pass.
-- Render answer blocks with `:::answers <bank>` instead of hand-writing them, so
-  the reader sees exactly what CI verified. See PROBLEMS.md.
+- Render the questions and answers with `:::problems <bank>` and
+  `:::answers <bank>` instead of hand-writing them, so the reader sees exactly
+  what CI verified. See PROBLEMS.md.
 - Do **not** edit `curriculum.yaml`, `nav.yml`, `CURRICULUM-MAP.md`, `PLAN.md`, or
   any other chapter. `nav.yml` and the map are generated.
 

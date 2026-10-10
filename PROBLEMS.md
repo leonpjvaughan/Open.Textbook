@@ -113,14 +113,19 @@ scaffolding, epsilon–delta), the **choice** of method, and prose reasoning. Th
 verifier proves the algebra, not the argument; a human review still covers the
 rest.
 
-## Rendering the answers
+## Rendering the problems and answers
 
-No page restates an answer by hand. The page carries a marker,
-`:::answers <bank>` (or `:::answers <bank>#<id>,<id>`), and
-`renderers/mkdocs/hooks/problems.py` expands it, at build time, from the same
-records CI verified. The block is emitted as markdown with `$...$` maths, so the
-maths hook renders it to MathML in the same pass. The reader therefore sees
-exactly what `python -m verification` proved, and the two cannot drift.
+No page restates a problem or an answer by hand. The page carries two markers:
+
+- `:::problems <bank>` prints the numbered question list (`**H**` marks
+  Higher-only items);
+- `:::answers <bank>` prints the solutions (or `#<id>,<id>` to select records).
+
+`renderers/mkdocs/hooks/problems.py` expands both, at build time, from the same
+records CI verified, using `verification/render.py`. The block is emitted as
+markdown with `$...$` maths, so the maths hook renders it to MathML in the same
+pass. The reader therefore sees exactly what `python -m verification` proved, and
+the page and the proof cannot drift.
 
 ## What can be verified, and how
 

@@ -17,11 +17,11 @@ def _step_line(step: dict) -> str:
 
 
 def render_problem(problem: dict, number: int) -> str:
-    statement = problem.get("statement", "").strip()
+    label = (problem.get("answer_label") or problem.get("statement", "")).strip()
     answer = problem.get("answer_text") or problem.get("check", {}).get("answer", "")
     steps = problem.get("steps") or []
 
-    lines = [f"**{number}.** {statement}"]
+    lines = [f"**{number}.** {label}".rstrip()]
     if steps:
         lines.append("")
         lines.extend(_step_line(step) for step in steps)
@@ -29,6 +29,16 @@ def render_problem(problem: dict, number: int) -> str:
         lines.append("")
         lines.append(f"**Answer:** {answer}")
     return "\n".join(lines)
+
+
+def render_problem_list(problems: list[dict]) -> str:
+    """Numbered problem list, marked **H** for Higher-only questions."""
+    lines = []
+    for index, problem in enumerate(problems, 1):
+        marker = " **H**" if problem.get("tier") == "H" else ""
+        statement = problem.get("statement", "").strip().replace("\n", "\n   ")
+        lines.append(f"{index}.{marker} {statement}")
+    return "\n".join(lines) + "\n"
 
 
 def render_answer_block(problems: list[dict], summary: str = "Answers and concise solutions") -> str:

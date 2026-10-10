@@ -1,63 +1,83 @@
-# Practice answers for 1.1, generated into the page by :::answers.
-# `statement` here is the short label shown in the answer block; the full problem
-# lives on the page. Every answer carries an independent check.
+# Practice set for 1.1. Both the problems and the answers are rendered from these
+# records: `:::problems` prints the numbered list, `:::answers` the solutions.
+# `statement` is the question; `answer_label` is the short label in the answers.
 chapter: 1
 problems:
   - id: p1-digit-8
     section: "1.1"
-    statement: "Value of the digit $8$ in $5\\,082$"
-    answer_text: "$80$"
+    tier: F
+    dfe: [N2]
+    statement: "Write the value of the digit $8$ in $5\\,082$."
+    answer_label: "Value of the digit $8$"
     check: {kind: evaluate, expression: "8 * 10", answer: "80"}
+    answer_text: "$80$"
 
   - id: p2-digit-3
     section: "1.1"
-    statement: "Value of the digit $3$ in $0.136$"
-    answer_text: "$0.03$"
+    tier: F
+    dfe: [N2]
+    statement: "Write the value of the digit $3$ in $0.136$."
+    answer_label: "Value of the digit $3$"
     check: {kind: evaluate, expression: "3 / 100", answer: "0.03"}
+    answer_text: "$0.03$"
 
   - id: p3-multiply-divide
     section: "1.1"
-    statement: "$7.4 \\times 10$, $7.4 \\times 100$, $7.4 \\div 100$"
-    answer_text: "$74$, $740$, $0.074$"
+    tier: F
+    dfe: [N2]
+    statement: "Work out: (a) $7.4 \\times 10$ (b) $7.4 \\times 100$ (c) $7.4 \\div 100$."
+    answer_label: "$7.4 \\times 10$, then $\\times 100$, then $\\div 100$"
     check:
       kind: all
       checks:
         - {kind: evaluate, expression: "7.4 * 10", answer: "74"}
         - {kind: evaluate, expression: "7.4 * 100", answer: "740"}
         - {kind: evaluate, expression: "7.4 / 100", answer: "0.074"}
+    answer_text: "(a) $74$ (b) $740$ (c) $0.074$"
 
   - id: p4-times-1000
     section: "1.1"
-    statement: "$0.06 \\times 1000$"
-    answer_text: "$60$"
+    tier: F
+    dfe: [N2]
+    statement: "Work out $0.06 \\times 1000$."
+    answer_label: "$0.06 \\times 1000$"
     check: {kind: evaluate, expression: "0.06 * 1000", answer: "60"}
+    answer_text: "$60$"
 
   - id: p5-insert-symbols
     section: "1.1"
-    statement: "Insert $<$, $>$ or $=$"
-    answer_text: "(a) $0.45 < 0.5$ (b) $-8 > -12$ (c) $1.10 = 1.1$"
+    tier: F
+    dfe: [N1]
+    statement: "Insert $<$, $>$ or $=$: (a) $0.45 \\;\\square\\; 0.5$ (b) $-8 \\;\\square\\; -12$ (c) $1.10 \\;\\square\\; 1.1$."
+    answer_label: "Insert $<$, $>$ or $=$"
     check:
       kind: all
       checks:
         - {kind: compare, relation: "<", lhs: "0.45", rhs: "0.5"}
         - {kind: compare, relation: ">", lhs: "-8", rhs: "-12"}
         - {kind: compare, relation: "=", lhs: "1.10", rhs: "1.1"}
+    answer_text: "(a) $0.45 < 0.5$ (b) $-8 > -12$ (c) $1.10 = 1.1$"
 
   - id: p6-order-decimals
     section: "1.1"
-    statement: "Order $0.505$, $0.55$, $0.5$, $0.0505$"
-    answer_text: "$0.0505 < 0.5 < 0.505 < 0.55$"
+    tier: F
+    dfe: [N1]
+    statement: "Write these numbers in order, smallest first: $0.505$, $0.55$, $0.5$, $0.0505$."
+    answer_label: "Order the decimals"
     check:
       kind: all
       checks:
         - {kind: compare, relation: "<", lhs: "0.0505", rhs: "0.5"}
         - {kind: compare, relation: "<", lhs: "0.5", rhs: "0.505"}
         - {kind: compare, relation: "<", lhs: "0.505", rhs: "0.55"}
+    answer_text: "$0.0505 < 0.5 < 0.505 < 0.55$"
 
   - id: p7-order-temperatures
     section: "1.1"
-    statement: "Temperatures, coldest first"
-    answer_text: "$-6 < -3 < -1 < 0 < 2$"
+    tier: F
+    dfe: [N1]
+    statement: "Write these temperatures in order, coldest first: $-6^\\circ\\text{C}$, $2^\\circ\\text{C}$, $-1^\\circ\\text{C}$, $0^\\circ\\text{C}$, $-3^\\circ\\text{C}$."
+    answer_label: "Order the temperatures"
     check:
       kind: all
       checks:
@@ -65,38 +85,50 @@ problems:
         - {kind: compare, relation: "<", lhs: "-3", rhs: "-1"}
         - {kind: compare, relation: "<", lhs: "-1", rhs: "0"}
         - {kind: compare, relation: "<", lhs: "0", rhs: "2"}
+    answer_text: "$-6 < -3 < -1 < 0 < 2$"
 
   - id: p8-order-balances
     section: "1.1"
-    statement: "Balances, smallest first"
-    answer_text: "$-£15 < -£3 < £42$"
+    tier: F
+    dfe: [N1]
+    statement: "A bank balance goes from $£42$ to $-£15$ to $-£3$. Put the balances in order, smallest first."
+    answer_label: "Order the balances"
     check:
       kind: all
       checks:
         - {kind: compare, relation: "<", lhs: "-15", rhs: "-3"}
         - {kind: compare, relation: "<", lhs: "-3", rhs: "42"}
+    answer_text: "$-£15 < -£3 < £42$"
 
   - id: p9-true-false
     section: "1.1"
-    statement: "True or false?"
-    answer_text: "(a) true (b) false, since $-2 < -1$ (c) true"
+    tier: F
+    dfe: [N1]
+    statement: "True or false? Explain each answer. (a) $0.7 > 0.65$ (b) $-2 > -1$ (c) $0.30 = 0.3$."
+    answer_label: "True or false"
     check:
       kind: all
       checks:
         - {kind: compare, relation: ">", lhs: "0.7", rhs: "0.65"}
         - {kind: compare, relation: "<", lhs: "-2", rhs: "-1"}
         - {kind: compare, relation: "=", lhs: "0.30", rhs: "0.3"}
+    answer_text: "(a) true (b) false, since $-2 < -1$ (c) true"
 
   - id: p10-between
     section: "1.1"
-    statement: "A decimal between $0.3$ and $0.31$"
-    answer_text: "$0.305$ (any value between works)"
+    tier: H
+    dfe: [N1]
+    statement: "Write a decimal that is between $0.3$ and $0.31$."
+    answer_label: "Decimal between $0.3$ and $0.31$"
     check: {kind: between, value: "0.305", low: "0.3", high: "0.31"}
+    answer_text: "$0.305$ (any value between works)"
 
   - id: p11-one-decimal-place
     section: "1.1"
-    statement: "Numbers from $4$, $0$, $7$ with one decimal place"
-    answer_text: "$4.7 < 7.4 < 40.7 < 47.0 < 70.4 < 74.0$"
+    tier: H
+    dfe: [N1]
+    statement: "The digits $4$, $0$, $7$ are used once each to make a number with one decimal place. List all the possible numbers and write them in order."
+    answer_label: "Numbers from $4$, $0$, $7$"
     check:
       kind: all
       checks:
@@ -105,13 +137,17 @@ problems:
         - {kind: compare, relation: "<", lhs: "40.7", rhs: "47.0"}
         - {kind: compare, relation: "<", lhs: "47.0", rhs: "70.4"}
         - {kind: compare, relation: "<", lhs: "70.4", rhs: "74.0"}
+    answer_text: "$4.7 < 7.4 < 40.7 < 47.0 < 70.4 < 74.0$"
 
   - id: p12-compare-prices
     section: "1.1"
-    statement: "Compare $65$p with $£1.20$, and $£1.85$ with $£3.00$"
-    answer_text: "$65\\text{p} < £1.20$ and $£1.85 < £3.00$"
+    tier: F
+    dfe: [N1]
+    statement: "In the chapter problem the cans cost 65p and sell for £1.20. Write a sentence using $<$ to compare these two amounts, and a sentence using $>$ to compare £1.85 with £3.00."
+    answer_label: "Compare the prices"
     check:
       kind: all
       checks:
         - {kind: compare, relation: "<", lhs: "0.65", rhs: "1.20"}
         - {kind: compare, relation: "<", lhs: "1.85", rhs: "3.00"}
+    answer_text: "$65\\text{p} < £1.20$ and $£1.85 < £3.00$"

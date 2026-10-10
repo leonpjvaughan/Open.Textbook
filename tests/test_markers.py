@@ -44,9 +44,16 @@ def test_problems_marker_expands_outside_a_fence():
     assert "**Answer:**" in out
 
 
-def test_problems_marker_is_ignored_inside_a_fence():
+def test_problems_list_is_rendered_from_the_bank():
     hook = load_hook("problems")
-    source = "```markdown\n:::answers chapter-01-practice-1.1\n```\n"
+    out = hook.on_page_markdown(":::problems chapter-01-practice-1.1\n", FakePage(), None, None)
+    assert "1. Write the value of the digit" in out
+    assert "**H**" in out  # the Higher-only items are marked
+
+
+def test_problems_and_answers_marker_are_ignored_inside_a_fence():
+    hook = load_hook("problems")
+    source = "```markdown\n:::problems chapter-01-practice-1.1\n:::answers chapter-01-practice-1.1\n```\n"
     assert hook.on_page_markdown(source, FakePage(), None, None) == source
 
 
@@ -66,6 +73,7 @@ def test_every_marker_in_the_book_resolves():
     fences = load_hook("_fences")
     figure = re.compile(r"^:::[ \t]*figure[ \t]+([a-z0-9-]+)", re.M)
     answers = re.compile(r"^:::[ \t]*answers[ \t]+([a-z0-9._-]+)", re.M)
+    problems_marker = re.compile(r"^:::[ \t]*problems[ \t]+([a-z0-9._-]+)", re.M)
 
     problems: set[str] = set()
     figures: set[str] = set()
@@ -74,6 +82,7 @@ def test_every_marker_in_the_book_resolves():
         fences.transform_outside_fences(path.read_text(encoding="utf-8"), lambda s: prose.append(s) or s)
         text = "\n".join(prose)
         problems.update(answers.findall(text))
+        problems.update(problems_marker.findall(text))
         figures.update(figure.findall(text))
 
     for bank in problems:
