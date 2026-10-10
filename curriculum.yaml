@@ -58,6 +58,15 @@ chapters:
     title: Number skills
     strand: number
     summary: Place value, the four operations including negative numbers, priority of operations, and rounding and estimation.
+    anchor:
+      title: The school-fair stall
+      brief: >-
+        You are running a stall at the school fair with a £50 float. Buy stock,
+        set a price, sell what you can, and work out whether the stall made a
+        profit or a loss — then decide how confident you can be in that answer.
+    application: Cash handling, budgets, profit and loss, and estimating before you commit money.
+    relevance_prompt: Where in your own week do you meet negative numbers, or need a quick estimate before deciding something?
+    tools: [profit-slider]
     sections:
       - {id: "1.1", title: "Place value and ordering numbers", tier: F, dfe: [N1, N2]}
       - {id: "1.2", title: "The four operations", tier: F, dfe: [N2, N3]}
