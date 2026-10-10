@@ -1,0 +1,39 @@
+# Non-reversible steps use the `implies` relation: the first solution set must be
+# contained in the second, and the verifier warns that extraneous roots are
+# possible. The independent `check` still has to name the true answer set.
+chapter: forward
+symbols:
+  x: {real: true}
+problems:
+  - id: solve-by-completing-the-root
+    section: "12.5"
+    tier: H
+    dfe: [A18]
+    statement: "Solve $\\sqrt{x} = 4$."
+    step_relation: implies
+    check: {kind: solve, equation: "sqrt(x) = 4", variable: x, answer: ["16"]}
+    steps:
+      - equation: "sqrt(x) = 4"
+      - equation: "x = 16"
+
+  - id: squaring-both-sides
+    section: "12.5"
+    tier: H
+    dfe: [A18]
+    statement: "Solve $x^2 = 16$."
+    step_relation: implies
+    check: {kind: solve, equation: "x**2 = 16", variable: x, answer: ["4", "-4"]}
+    steps:
+      - equation: "x = 4"
+      - equation: "x**2 = 16"
+
+  - id: extraneous-root
+    section: "12.5"
+    tier: H
+    dfe: [A18]
+    statement: "Explain why $\\sqrt{x} = -1$ has no real solution."
+    step_relation: implies
+    check: {kind: solve, equation: "sqrt(x) = -1", variable: x, answer: []}
+    steps:
+      - equation: "sqrt(x) = -1"
+      - equation: "x = 1"

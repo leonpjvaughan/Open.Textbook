@@ -1,0 +1,227 @@
+# GCSE Mathematics formulae and tables — data source of truth.
+#
+# Provision is per board and per tier, taken from the boards' 2026 formula
+# sheets. `group` is one of:
+#   given    - printed on the board's formulae sheet
+#   question - may be given inside the relevant question (DfE appendix, part 3)
+#   know     - not given; the student is expected to recall or derive it
+#
+# The widget shows only items whose `provision` includes the selected board, so
+# a board's selector hides anything that board does not allow.
+meta:
+  title: GCSE Mathematics — formulae and tables
+  year: 2026
+  note: >-
+    GCSE Mathematics has no national booklet: the formulae a student may use
+    come from the DfE subject content and each board's formulae sheet. Provision
+    shown here is taken from the 2026 sheets for AQA and OCR; Edexcel follows the
+    same arrangement and its cone and sphere formulae are given in the question.
+  provenance:
+    aqa: "AQA GCSE Mathematics 8300 formulae sheet, exams in 2026 (verified)"
+    ocr: "OCR GCSE (9-1) Mathematics J560 formulae sheet (verified)"
+    edexcel: "Edexcel 1MA1 content guidance and specification Appendix 3 (confirm the current sheet)"
+  boards:
+    aqa: {name: AQA, code: "8300"}
+    edexcel: {name: Edexcel, code: "1MA1"}
+    ocr: {name: OCR, code: "J560"}
+  groups:
+    given: {label: "On your formula sheet", tone: accent}
+    question: {label: "May be given in the question", tone: muted}
+    know: {label: "You must know", tone: warn}
+
+sections:
+  - id: perimeter-area-volume
+    title: Perimeter, area, surface area and volume
+    items:
+      - id: trapezium-area
+        name: Area of a trapezium
+        latex: 'A = \tfrac{1}{2}(a + b)h'
+        note: a and b are the parallel sides; h is their perpendicular separation.
+        provision: {aqa: given, edexcel: given, ocr: given}
+        tier: [F, H]
+        keywords: [trapezium, area]
+      - id: prism-volume
+        name: Volume of a prism
+        latex: 'V = \text{area of cross-section} \times \text{length}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        tier: [F, H]
+        keywords: [prism, volume]
+      - id: circle-circumference
+        name: Circumference of a circle
+        latex: 'C = 2\pi r = \pi d'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        tier: [F, H]
+        keywords: [circle, circumference, perimeter]
+      - id: circle-area
+        name: Area of a circle
+        latex: 'A = \pi r^2'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        tier: [F, H]
+        keywords: [circle, area]
+      - id: cone-curved-surface
+        name: Curved surface area of a cone
+        latex: '\text{curved surface area} = \pi r l'
+        note: l is the slant height.
+        provision: {aqa: question, edexcel: question, ocr: question}
+        tier: [H]
+        keywords: [cone, surface area, slant]
+      - id: sphere-surface
+        name: Surface area of a sphere
+        latex: 'A = 4\pi r^2'
+        provision: {aqa: question, edexcel: question, ocr: question}
+        tier: [H]
+        keywords: [sphere, surface area]
+      - id: sphere-volume
+        name: Volume of a sphere
+        latex: 'V = \tfrac{4}{3}\pi r^3'
+        provision: {aqa: question, edexcel: question, ocr: question}
+        tier: [H]
+        keywords: [sphere, volume]
+      - id: cone-volume
+        name: Volume of a cone
+        latex: 'V = \tfrac{1}{3}\pi r^2 h'
+        provision: {aqa: question, edexcel: question, ocr: question}
+        tier: [H]
+        keywords: [cone, volume]
+
+  - id: pythagoras-trigonometry
+    title: Pythagoras and trigonometry
+    items:
+      - id: pythagoras
+        name: Pythagoras' theorem
+        latex: 'a^2 + b^2 = c^2'
+        note: c is the hypotenuse.
+        provision: {aqa: given, edexcel: given, ocr: given}
+        tier: [F, H]
+        keywords: [pythagoras, hypotenuse, right-angled]
+      - id: trig-ratios
+        name: Trigonometric ratios
+        latex: '\sin A = \frac{a}{c} \qquad \cos A = \frac{b}{c} \qquad \tan A = \frac{a}{b}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        tier: [F, H]
+        keywords: [sine, cosine, tangent, sohcahtoa]
+      - id: sine-rule
+        name: Sine rule
+        latex: '\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        tier: [H]
+        keywords: [sine rule]
+      - id: cosine-rule
+        name: Cosine rule
+        latex: 'a^2 = b^2 + c^2 - 2bc\cos A'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        tier: [H]
+        keywords: [cosine rule]
+      - id: triangle-area-sinc
+        name: Area of any triangle
+        latex: 'A = \tfrac{1}{2}ab\sin C'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        tier: [H]
+        keywords: [area, triangle, sine]
+
+  - id: algebra
+    title: Algebra
+    items:
+      - id: quadratic-formula
+        name: Quadratic formula
+        latex: 'x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}'
+        note: The solutions of ax^2 + bx + c = 0 where a ≠ 0.
+        provision: {aqa: given, edexcel: given, ocr: given}
+        tier: [H]
+        keywords: [quadratic formula, roots, discriminant]
+      - id: straight-line
+        name: Equation of a straight line
+        latex: 'y = mx + c'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        tier: [F, H]
+        keywords: [gradient, intercept, straight line]
+      - id: nth-term-linear
+        name: nth term of a linear sequence
+        latex: 'a_n = a + (n - 1)d'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        tier: [F, H]
+        keywords: [sequence, nth term, arithmetic]
+
+  - id: ratio-proportion
+    title: Ratio, proportion and rates of change
+    items:
+      - id: compound-interest
+        name: Compound interest
+        latex: 'A = P\left(1 + \frac{r}{100}\right)^n'
+        note: P is the principal, r the rate per period, n the number of periods.
+        provision: {aqa: given, edexcel: given, ocr: given}
+        tier: [F, H]
+        keywords: [compound interest, growth, decay]
+      - id: direct-proportion
+        name: Direct proportion
+        latex: 'y = kx'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        tier: [F, H]
+        keywords: [proportion, direct, constant]
+      - id: inverse-proportion
+        name: Inverse proportion
+        latex: 'y = \frac{k}{x}'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        tier: [H]
+        keywords: [proportion, inverse]
+      - id: speed
+        name: Speed
+        latex: '\text{speed} = \frac{\text{distance}}{\text{time}}'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        tier: [F, H]
+        keywords: [speed, distance, time, compound measure]
+      - id: density
+        name: Density
+        latex: '\text{density} = \frac{\text{mass}}{\text{volume}}'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        tier: [F, H]
+        keywords: [density, mass, volume]
+      - id: pressure
+        name: Pressure
+        latex: '\text{pressure} = \frac{\text{force}}{\text{area}}'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        tier: [F, H]
+        keywords: [pressure, force, area]
+
+  - id: probability
+    title: Probability
+    items:
+      - id: probability-or
+        name: Addition rule
+        latex: 'P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        tier: [F, H]
+        keywords: [probability, mutually exclusive, addition]
+      - id: probability-and
+        name: Multiplication rule
+        latex: 'P(A \text{ and } B) = P(A \text{ given } B)\,P(B)'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        tier: [H]
+        keywords: [conditional probability, tree diagram, multiplication]
+
+tables:
+  - id: exact-trig
+    title: Exact trigonometric values
+    tier: [H]
+    columns: ["θ", "0°", "30°", "45°", "60°", "90°"]
+    rows:
+      - ["sin θ", "0", "1/2", "√2/2", "√3/2", "1"]
+      - ["cos θ", "1", "√3/2", "√2/2", "1/2", "0"]
+      - ["tan θ", "0", "√3/3", "1", "√3", "undefined"]
+  - id: metric-length
+    title: Metric conversions — length and mass
+    columns: ["Unit", "Equals"]
+    rows:
+      - ["1 cm", "10 mm"]
+      - ["1 m", "100 cm"]
+      - ["1 km", "1000 m"]
+      - ["1 kg", "1000 g"]
+      - ["1 tonne", "1000 kg"]
+  - id: metric-capacity
+    title: Metric conversions — capacity
+    columns: ["Unit", "Equals"]
+    rows:
+      - ["1 cl", "10 ml"]
+      - ["1 l", "1000 ml"]
+      - ["1 m³", "1 000 000 cm³"]
+      - ["1 cm³", "1 ml"]

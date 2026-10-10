@@ -38,3 +38,5 @@ markdown_extensions:
       generic: true
 extra_css:
   - assets/stylesheets/extra.css
+extra_javascript:
+  - assets/booklet/booklet.js

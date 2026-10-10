@@ -94,6 +94,8 @@ ranking of methods. Keep the claims to what the briefing supports; see
 | `Docs/assets/figures/` | Tier-1 pure-JS figures (each exports `mount(el)`); `figures.js` is the loader |
 | `scripts/` | `scaffold_docs.py`, `fetch_sources.sh`, `katex-render.mjs`, `screenshot.cjs` |
 | `problems/` | Verifiable problem bank, one YAML per chapter |
+| `booklet/` | Formula-and-tables data (source of truth) and its build step |
+| `Docs/assets/booklet/` | Generated booklet JSON and the `<formula-booklet>` widget |
 | `verification/` | SymPy CAS boundary, bank loader and verifier |
 | `tests/` | Bank verification plus planted-error tests |
 | `PROBLEMS.md` | Problem-bank schema and verification limits |
@@ -106,6 +108,7 @@ ranking of methods. Keep the claims to what the briefing supports; see
 uv sync                                   # Python toolchain (pinned)
 npm install                               # build-time KaTeX (pinned)
 python scripts/scaffold_docs.py           # regenerate Docs tree, configs, curriculum map
+python scripts/build_booklet.py            # validate booklet data, emit JSON + MathML
 mkdocs build -f renderers/mkdocs/mkdocs.yml --strict
 mkdocs build -f renderers/mkdocs/mkdocs.foundation.yml --strict
 grep -rl 'math-error' site/higher --include='*.html'   # must print nothing
@@ -178,6 +181,22 @@ calling a chapter done.
   need a weaker relation and an explicit extraneous-root check. See PROBLEMS.md.
 - The verifier proves the mathematics, not the method. A correct answer reached
   by an unexpected route still passes.
+
+**Booklet**
+
+- `booklet/gcse-maths.yaml` is the source of truth; `Docs/assets/booklet/booklet.json`
+  is generated. Edit the YAML and run `scripts/build_booklet.py`.
+- Provision is per board and tier. Selecting a board hides every item that board
+  does not provide, so a wrong tag is a content bug: verify against the board's
+  current formula sheet, not memory. AQA and OCR 2026 are verified; confirm
+  Edexcel against its live sheet.
+- The booklet renders formulae from build-time MathML, so never put `$...$` into
+  it at runtime. Tables are plain text and data.
+- Pop-out uses the Document Picture-in-Picture API, which is Chromium-only; the
+  button is hidden elsewhere and the in-page panel is the baseline.
+- The widget is site-wide runtime JS, a deliberate exception to the Tier-0
+  no-JS rule. Keep it deferred and lazy: nothing beyond the button loads until a
+  reader opens it.
 
 **Toolchain**
 

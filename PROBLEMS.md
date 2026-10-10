@@ -41,8 +41,8 @@ problems:
       - expr: "11"
 ```
 
-`check.kind ∈ {evaluate, solve, compare}` today. `step_relation ∈ {equivalent,
-solutions}` (default `equivalent`).
+`check.kind ∈ {evaluate, solve, compare, rounded}` today. `step_relation ∈
+{equivalent, solutions, implies}` (default `equivalent`).
 
 ## What can be verified, and how
 
@@ -52,8 +52,8 @@ solutions}` (default `equivalent`).
 | Solve an equation | `solutions` | `solveset(eq_a, x, Reals) == solveset(eq_b, x, Reals)` |
 | Numeric evaluation | `evaluate` | `equivalent(expression, answer)` over exact rationals |
 | Ordering / inequalities | `compare` | `Lt/Le/Gt/Ge` is `S.true` |
-| Squaring both sides, multiplying by an unknown | **`implies`** (not yet built) | solution set must be a *superset*; flag extraneous roots |
-| Rounding / approximation | **interval** (not yet built) | `lower ≤ value < upper` (the 1.5 / 7.3 content) |
+| Squaring both sides, multiplying by an unknown | `implies` | solution set must be a *superset*; verifier warns about extraneous roots |
+| Rounding | `rounded` | answer is the nearest multiple of the required step |
 | Geometry | numeric | coordinates + tolerance, or symbolic lengths |
 
 Decimals are **rationalised** (`0.65 → 13/20`) before comparison so results are

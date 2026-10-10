@@ -90,6 +90,24 @@ def _verify_steps(problem: dict, symbols: dict, report: Report) -> None:
                     f"{label}: solution sets differ "
                     f"({cas.solution_set(a, variable)} != {cas.solution_set(b, variable)})"
                 )
+        elif relation == "implies":
+            # A weaker relation for non-reversible steps (squaring, multiplying by
+            # an unknown): the first solution set must be contained in the second.
+            if kind_a != "equation" or kind_b != "equation":
+                report.errors.append(f"{label}: implication steps must be equations")
+                continue
+            if variable is None:
+                report.errors.append(f"{label}: no variable declared for solving")
+                continue
+            if not cas.solution_sets_subset(a, b, variable):
+                report.errors.append(
+                    f"{label}: {cas.solution_set(a, variable)} is not contained in "
+                    f"{cas.solution_set(b, variable)}"
+                )
+            else:
+                report.warnings.append(
+                    f"{label}: implications can add extraneous roots; check the answer set"
+                )
         else:
             if kind_a != "expr" or kind_b != "expr":
                 report.errors.append(f"{label}: equivalence steps must be expressions")
@@ -122,6 +140,14 @@ def _verify_check(problem: dict, symbols: dict, report: Report) -> None:
         if actual != expected:
             report.errors.append(
                 f"check: solutions are {actual}, expected {expected}"
+            )
+    elif kind == "rounded":
+        value = cas.parse_expression(check["value"], symbols)
+        rounded = cas.parse_expression(check["rounded"], symbols)
+        step = cas.parse_expression(check["to"], symbols)
+        if not cas.is_nearest_multiple(value, rounded, step):
+            report.errors.append(
+                f"check: {check['rounded']} is not {check['value']} rounded to {check['to']}"
             )
     elif kind == "compare":
         relation = cas.RELATIONS.get(check["relation"])

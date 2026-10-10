@@ -52,3 +52,44 @@ def test_verifier_catches_non_equivalent_step():
     }
     report = verify_problem(problem)
     assert not report.ok, "verifier accepted a sign error in a step"
+
+
+def test_verifier_accepts_correct_rounding():
+    problem = {
+        "id": "round-ok",
+        "check": {"kind": "rounded", "value": "3.14159", "rounded": "3.14", "to": "0.01"},
+    }
+    assert verify_problem(problem).ok
+
+
+def test_verifier_rejects_wrong_rounding():
+    problem = {
+        "id": "round-bad",
+        "check": {"kind": "rounded", "value": "3.14159", "rounded": "3.15", "to": "0.01"},
+    }
+    report = verify_problem(problem)
+    assert not report.ok, "verifier accepted an incorrectly rounded value"
+
+
+def test_implies_relation_allows_a_superset():
+    problem = {
+        "id": "imply-ok",
+        "symbols": {"x": {"real": True}},
+        "step_relation": "implies",
+        "check": {"kind": "solve", "equation": "x**2 = 16", "variable": "x", "answer": ["4", "-4"]},
+        "steps": [{"equation": "x = 4"}, {"equation": "x**2 = 16"}],
+    }
+    report = verify_problem(problem)
+    assert report.ok
+    assert report.warnings, "an implication step should warn about extraneous roots"
+
+
+def test_implies_relation_rejects_unrelated_solutions():
+    problem = {
+        "id": "imply-bad",
+        "symbols": {"x": {"real": True}},
+        "step_relation": "implies",
+        "check": {"kind": "solve", "equation": "x = 5", "variable": "x", "answer": ["5"]},
+        "steps": [{"equation": "x = 4"}, {"equation": "x = 5"}],
+    }
+    assert not verify_problem(problem).ok

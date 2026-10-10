@@ -79,5 +79,17 @@ def solution_set(equation, variable, domain=S.Reals):
     return solveset(equation, variable, domain=domain)
 
 
+def solution_sets_subset(equation_a, equation_b, variable) -> bool:
+    """True when every solution of a is a solution of b (a is reversible-weak)."""
+    return solution_set(equation_a, variable).is_subset(solution_set(equation_b, variable)) == S.true
+
+
+def is_nearest_multiple(value, rounded, step) -> bool:
+    """True when `rounded` is `value` rounded to the nearest multiple of `step`."""
+    if sympy.simplify(sympy.Mod(rounded, step)) != 0:
+        return False
+    return sympy.Abs(value - rounded) <= step / 2
+
+
 def value_set(values: Iterable[str], symbols: dict):
     return FiniteSet(*[parse_expression(v, symbols) for v in values])

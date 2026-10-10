@@ -1,0 +1,637 @@
+{
+ "meta": {
+  "title": "GCSE Mathematics — formulae and tables",
+  "year": 2026,
+  "note": "GCSE Mathematics has no national booklet: the formulae a student may use come from the DfE subject content and each board's formulae sheet. Provision shown here is taken from the 2026 sheets for AQA and OCR; Edexcel follows the same arrangement and its cone and sphere formulae are given in the question.",
+  "provenance": {
+   "aqa": "AQA GCSE Mathematics 8300 formulae sheet, exams in 2026 (verified)",
+   "ocr": "OCR GCSE (9-1) Mathematics J560 formulae sheet (verified)",
+   "edexcel": "Edexcel 1MA1 content guidance and specification Appendix 3 (confirm the current sheet)"
+  },
+  "boards": {
+   "aqa": {
+    "name": "AQA",
+    "code": "8300"
+   },
+   "edexcel": {
+    "name": "Edexcel",
+    "code": "1MA1"
+   },
+   "ocr": {
+    "name": "OCR",
+    "code": "J560"
+   }
+  },
+  "groups": {
+   "given": {
+    "label": "On your formula sheet",
+    "tone": "accent"
+   },
+   "question": {
+    "label": "May be given in the question",
+    "tone": "muted"
+   },
+   "know": {
+    "label": "You must know",
+    "tone": "warn"
+   }
+  }
+ },
+ "sections": [
+  {
+   "id": "perimeter-area-volume",
+   "title": "Perimeter, area, surface area and volume",
+   "items": [
+    {
+     "id": "trapezium-area",
+     "name": "Area of a trapezium",
+     "latex": "A = \\tfrac{1}{2}(a + b)h",
+     "note": "a and b are the parallel sides; h is their perpendicular separation.",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "trapezium",
+      "area"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>A</mi><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo stretchy=\"false\">(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo stretchy=\"false\">)</mo><mi>h</mi></mrow><annotation encoding=\"application/x-tex\">A = \\tfrac{1}{2}(a + b)h</annotation></semantics></math>"
+    },
+    {
+     "id": "prism-volume",
+     "name": "Volume of a prism",
+     "latex": "V = \\text{area of cross-section} \\times \\text{length}",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "prism",
+      "volume"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>V</mi><mo>=</mo><mtext>area of cross-section</mtext><mo>×</mo><mtext>length</mtext></mrow><annotation encoding=\"application/x-tex\">V = \\text{area of cross-section} \\times \\text{length}</annotation></semantics></math>"
+    },
+    {
+     "id": "circle-circumference",
+     "name": "Circumference of a circle",
+     "latex": "C = 2\\pi r = \\pi d",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "circle",
+      "circumference",
+      "perimeter"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>C</mi><mo>=</mo><mn>2</mn><mi>π</mi><mi>r</mi><mo>=</mo><mi>π</mi><mi>d</mi></mrow><annotation encoding=\"application/x-tex\">C = 2\\pi r = \\pi d</annotation></semantics></math>"
+    },
+    {
+     "id": "circle-area",
+     "name": "Area of a circle",
+     "latex": "A = \\pi r^2",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "circle",
+      "area"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>A</mi><mo>=</mo><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">A = \\pi r^2</annotation></semantics></math>"
+    },
+    {
+     "id": "cone-curved-surface",
+     "name": "Curved surface area of a cone",
+     "latex": "\\text{curved surface area} = \\pi r l",
+     "note": "l is the slant height.",
+     "provision": {
+      "aqa": "question",
+      "edexcel": "question",
+      "ocr": "question"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "cone",
+      "surface area",
+      "slant"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>curved surface area</mtext><mo>=</mo><mi>π</mi><mi>r</mi><mi>l</mi></mrow><annotation encoding=\"application/x-tex\">\\text{curved surface area} = \\pi r l</annotation></semantics></math>"
+    },
+    {
+     "id": "sphere-surface",
+     "name": "Surface area of a sphere",
+     "latex": "A = 4\\pi r^2",
+     "provision": {
+      "aqa": "question",
+      "edexcel": "question",
+      "ocr": "question"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "sphere",
+      "surface area"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>A</mi><mo>=</mo><mn>4</mn><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">A = 4\\pi r^2</annotation></semantics></math>"
+    },
+    {
+     "id": "sphere-volume",
+     "name": "Volume of a sphere",
+     "latex": "V = \\tfrac{4}{3}\\pi r^3",
+     "provision": {
+      "aqa": "question",
+      "edexcel": "question",
+      "ocr": "question"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "sphere",
+      "volume"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>V</mi><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>4</mn><mn>3</mn></mfrac></mstyle><mi>π</mi><msup><mi>r</mi><mn>3</mn></msup></mrow><annotation encoding=\"application/x-tex\">V = \\tfrac{4}{3}\\pi r^3</annotation></semantics></math>"
+    },
+    {
+     "id": "cone-volume",
+     "name": "Volume of a cone",
+     "latex": "V = \\tfrac{1}{3}\\pi r^2 h",
+     "provision": {
+      "aqa": "question",
+      "edexcel": "question",
+      "ocr": "question"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "cone",
+      "volume"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>V</mi><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>3</mn></mfrac></mstyle><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup><mi>h</mi></mrow><annotation encoding=\"application/x-tex\">V = \\tfrac{1}{3}\\pi r^2 h</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "pythagoras-trigonometry",
+   "title": "Pythagoras and trigonometry",
+   "items": [
+    {
+     "id": "pythagoras",
+     "name": "Pythagoras' theorem",
+     "latex": "a^2 + b^2 = c^2",
+     "note": "c is the hypotenuse.",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "pythagoras",
+      "hypotenuse",
+      "right-angled"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup><mo>=</mo><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">a^2 + b^2 = c^2</annotation></semantics></math>"
+    },
+    {
+     "id": "trig-ratios",
+     "name": "Trigonometric ratios",
+     "latex": "\\sin A = \\frac{a}{c} \\qquad \\cos A = \\frac{b}{c} \\qquad \\tan A = \\frac{a}{b}",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "sine",
+      "cosine",
+      "tangent",
+      "sohcahtoa"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>sin</mi><mo>⁡</mo><mi>A</mi><mo>=</mo><mfrac><mi>a</mi><mi>c</mi></mfrac><mspace width=\"2em\"/><mi>cos</mi><mo>⁡</mo><mi>A</mi><mo>=</mo><mfrac><mi>b</mi><mi>c</mi></mfrac><mspace width=\"2em\"/><mi>tan</mi><mo>⁡</mo><mi>A</mi><mo>=</mo><mfrac><mi>a</mi><mi>b</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">\\sin A = \\frac{a}{c} \\qquad \\cos A = \\frac{b}{c} \\qquad \\tan A = \\frac{a}{b}</annotation></semantics></math>"
+    },
+    {
+     "id": "sine-rule",
+     "name": "Sine rule",
+     "latex": "\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "sine rule"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mi>a</mi><mrow><mi>sin</mi><mo>⁡</mo><mi>A</mi></mrow></mfrac><mo>=</mo><mfrac><mi>b</mi><mrow><mi>sin</mi><mo>⁡</mo><mi>B</mi></mrow></mfrac><mo>=</mo><mfrac><mi>c</mi><mrow><mi>sin</mi><mo>⁡</mo><mi>C</mi></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}</annotation></semantics></math>"
+    },
+    {
+     "id": "cosine-rule",
+     "name": "Cosine rule",
+     "latex": "a^2 = b^2 + c^2 - 2bc\\cos A",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "cosine rule"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>=</mo><msup><mi>b</mi><mn>2</mn></msup><mo>+</mo><msup><mi>c</mi><mn>2</mn></msup><mo>−</mo><mn>2</mn><mi>b</mi><mi>c</mi><mi>cos</mi><mo>⁡</mo><mi>A</mi></mrow><annotation encoding=\"application/x-tex\">a^2 = b^2 + c^2 - 2bc\\cos A</annotation></semantics></math>"
+    },
+    {
+     "id": "triangle-area-sinc",
+     "name": "Area of any triangle",
+     "latex": "A = \\tfrac{1}{2}ab\\sin C",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "area",
+      "triangle",
+      "sine"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>A</mi><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>a</mi><mi>b</mi><mi>sin</mi><mo>⁡</mo><mi>C</mi></mrow><annotation encoding=\"application/x-tex\">A = \\tfrac{1}{2}ab\\sin C</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "algebra",
+   "title": "Algebra",
+   "items": [
+    {
+     "id": "quadratic-formula",
+     "name": "Quadratic formula",
+     "latex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+     "note": "The solutions of ax^2 + bx + c = 0 where a ≠ 0.",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "quadratic formula",
+      "roots",
+      "discriminant"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mo>−</mo><mi>b</mi><mo>±</mo><msqrt><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}</annotation></semantics></math>"
+    },
+    {
+     "id": "straight-line",
+     "name": "Equation of a straight line",
+     "latex": "y = mx + c",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "gradient",
+      "intercept",
+      "straight line"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>y</mi><mo>=</mo><mi>m</mi><mi>x</mi><mo>+</mo><mi>c</mi></mrow><annotation encoding=\"application/x-tex\">y = mx + c</annotation></semantics></math>"
+    },
+    {
+     "id": "nth-term-linear",
+     "name": "nth term of a linear sequence",
+     "latex": "a_n = a + (n - 1)d",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "sequence",
+      "nth term",
+      "arithmetic"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><mi>a</mi><mo>+</mo><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo><mi>d</mi></mrow><annotation encoding=\"application/x-tex\">a_n = a + (n - 1)d</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "ratio-proportion",
+   "title": "Ratio, proportion and rates of change",
+   "items": [
+    {
+     "id": "compound-interest",
+     "name": "Compound interest",
+     "latex": "A = P\\left(1 + \\frac{r}{100}\\right)^n",
+     "note": "P is the principal, r the rate per period, n the number of periods.",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "compound interest",
+      "growth",
+      "decay"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>A</mi><mo>=</mo><mi>P</mi><msup><mrow><mo fence=\"true\">(</mo><mn>1</mn><mo>+</mo><mfrac><mi>r</mi><mn>100</mn></mfrac><mo fence=\"true\">)</mo></mrow><mi>n</mi></msup></mrow><annotation encoding=\"application/x-tex\">A = P\\left(1 + \\frac{r}{100}\\right)^n</annotation></semantics></math>"
+    },
+    {
+     "id": "direct-proportion",
+     "name": "Direct proportion",
+     "latex": "y = kx",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "proportion",
+      "direct",
+      "constant"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>y</mi><mo>=</mo><mi>k</mi><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">y = kx</annotation></semantics></math>"
+    },
+    {
+     "id": "inverse-proportion",
+     "name": "Inverse proportion",
+     "latex": "y = \\frac{k}{x}",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "proportion",
+      "inverse"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>y</mi><mo>=</mo><mfrac><mi>k</mi><mi>x</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">y = \\frac{k}{x}</annotation></semantics></math>"
+    },
+    {
+     "id": "speed",
+     "name": "Speed",
+     "latex": "\\text{speed} = \\frac{\\text{distance}}{\\text{time}}",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "speed",
+      "distance",
+      "time",
+      "compound measure"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>speed</mtext><mo>=</mo><mfrac><mtext>distance</mtext><mtext>time</mtext></mfrac></mrow><annotation encoding=\"application/x-tex\">\\text{speed} = \\frac{\\text{distance}}{\\text{time}}</annotation></semantics></math>"
+    },
+    {
+     "id": "density",
+     "name": "Density",
+     "latex": "\\text{density} = \\frac{\\text{mass}}{\\text{volume}}",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "density",
+      "mass",
+      "volume"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>density</mtext><mo>=</mo><mfrac><mtext>mass</mtext><mtext>volume</mtext></mfrac></mrow><annotation encoding=\"application/x-tex\">\\text{density} = \\frac{\\text{mass}}{\\text{volume}}</annotation></semantics></math>"
+    },
+    {
+     "id": "pressure",
+     "name": "Pressure",
+     "latex": "\\text{pressure} = \\frac{\\text{force}}{\\text{area}}",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "pressure",
+      "force",
+      "area"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>pressure</mtext><mo>=</mo><mfrac><mtext>force</mtext><mtext>area</mtext></mfrac></mrow><annotation encoding=\"application/x-tex\">\\text{pressure} = \\frac{\\text{force}}{\\text{area}}</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "probability",
+   "title": "Probability",
+   "items": [
+    {
+     "id": "probability-or",
+     "name": "Addition rule",
+     "latex": "P(A \\text{ or } B) = P(A) + P(B) - P(A \\text{ and } B)",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "probability",
+      "mutually exclusive",
+      "addition"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mtext> or </mtext><mi>B</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mo stretchy=\"false\">)</mo><mo>+</mo><mi>P</mi><mo stretchy=\"false\">(</mo><mi>B</mi><mo stretchy=\"false\">)</mo><mo>−</mo><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mtext> and </mtext><mi>B</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">P(A \\text{ or } B) = P(A) + P(B) - P(A \\text{ and } B)</annotation></semantics></math>"
+    },
+    {
+     "id": "probability-and",
+     "name": "Multiplication rule",
+     "latex": "P(A \\text{ and } B) = P(A \\text{ given } B)\\,P(B)",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "conditional probability",
+      "tree diagram",
+      "multiplication"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mtext> and </mtext><mi>B</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mtext> given </mtext><mi>B</mi><mo stretchy=\"false\">)</mo><mtext> </mtext><mi>P</mi><mo stretchy=\"false\">(</mo><mi>B</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">P(A \\text{ and } B) = P(A \\text{ given } B)\\,P(B)</annotation></semantics></math>"
+    }
+   ]
+  }
+ ],
+ "tables": [
+  {
+   "id": "exact-trig",
+   "title": "Exact trigonometric values",
+   "tier": [
+    "H"
+   ],
+   "columns": [
+    "θ",
+    "0°",
+    "30°",
+    "45°",
+    "60°",
+    "90°"
+   ],
+   "rows": [
+    [
+     "sin θ",
+     "0",
+     "1/2",
+     "√2/2",
+     "√3/2",
+     "1"
+    ],
+    [
+     "cos θ",
+     "1",
+     "√3/2",
+     "√2/2",
+     "1/2",
+     "0"
+    ],
+    [
+     "tan θ",
+     "0",
+     "√3/3",
+     "1",
+     "√3",
+     "undefined"
+    ]
+   ]
+  },
+  {
+   "id": "metric-length",
+   "title": "Metric conversions — length and mass",
+   "columns": [
+    "Unit",
+    "Equals"
+   ],
+   "rows": [
+    [
+     "1 cm",
+     "10 mm"
+    ],
+    [
+     "1 m",
+     "100 cm"
+    ],
+    [
+     "1 km",
+     "1000 m"
+    ],
+    [
+     "1 kg",
+     "1000 g"
+    ],
+    [
+     "1 tonne",
+     "1000 kg"
+    ]
+   ]
+  },
+  {
+   "id": "metric-capacity",
+   "title": "Metric conversions — capacity",
+   "columns": [
+    "Unit",
+    "Equals"
+   ],
+   "rows": [
+    [
+     "1 cl",
+     "10 ml"
+    ],
+    [
+     "1 l",
+     "1000 ml"
+    ],
+    [
+     "1 m³",
+     "1 000 000 cm³"
+    ],
+    [
+     "1 cm³",
+     "1 ml"
+    ]
+   ]
+  }
+ ]
+}

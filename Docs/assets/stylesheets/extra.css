@@ -152,3 +152,222 @@
 .text-good {
   color: var(--gcse-fig-good);
 }
+
+/* ------------------------------------------------------------------ */
+/* Formulae & tables booklet                                           */
+/* ------------------------------------------------------------------ */
+
+.bk-fab {
+  position: fixed;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--md-primary-fg-color--dark, #24506f);
+  border-radius: 999px;
+  background: var(--md-primary-fg-color, #2f6690);
+  color: #fff;
+  font: 600 0.9rem/1 system-ui, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 22%);
+}
+.bk-fab:hover { filter: brightness(1.06); }
+.bk-fab [aria-hidden] { font-size: 1.1rem; }
+.bk-fab__label { font-size: 0.82rem; }
+
+/* Material's back-to-top button shares the corner; move it clear. */
+.md-top { right: 6.4rem; }
+
+.bk-panel {
+  position: fixed;
+  right: 1.1rem;
+  bottom: 4.6rem;
+  z-index: 31;
+  display: flex;
+  flex-direction: column;
+  width: min(430px, calc(100vw - 2rem));
+  height: min(72vh, 660px);
+  min-width: 320px;
+  min-height: 280px;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 12px;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  box-shadow: 0 12px 40px rgb(0 0 0 / 28%);
+  overflow: hidden;
+}
+.bk-panel[hidden] { display: none; }
+
+.bk-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  background: var(--md-primary-fg-color);
+  color: #fff;
+  cursor: grab;
+  touch-action: none;
+}
+.bk-bar:active { cursor: grabbing; }
+.bk-grip {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  background-image: radial-gradient(currentColor 1.2px, transparent 1.2px);
+  background-size: 5px 5px;
+  opacity: 0.6;
+}
+.bk-title { margin: 0; font-size: 0.95rem; font-weight: 700; flex: 1; }
+.bk-bar__tools { display: flex; align-items: center; gap: 0.4rem; }
+.bk-field { font-size: 0.72rem; display: flex; align-items: center; gap: 0.25rem; }
+.bk-field select {
+  font-size: 0.75rem;
+  padding: 0.1rem 0.2rem;
+  border-radius: 4px;
+  border: 1px solid rgb(255 255 255 / 40%);
+  background: rgb(255 255 255 / 12%);
+  color: inherit;
+}
+.bk-icon {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+}
+.bk-icon:hover { background: rgb(255 255 255 / 18%); }
+
+.bk-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.5rem 0.6rem 0.3rem;
+}
+.bk-search {
+  flex: 1 1 10rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 6px;
+  background: var(--md-default-bg-color);
+  color: inherit;
+  font-size: 0.85rem;
+}
+.bk-chips { display: flex; gap: 0.3rem; }
+.bk-chip {
+  font-size: 0.72rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  background: transparent;
+  color: var(--md-default-fg-color--light);
+  cursor: pointer;
+}
+.bk-chip[aria-pressed="true"] {
+  background: var(--md-primary-fg-color);
+  border-color: var(--md-primary-fg-color);
+  color: #fff;
+}
+
+.bk-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 0.6rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+.bk-tab {
+  border: 0;
+  background: transparent;
+  color: var(--md-default-fg-color--light);
+  font: 600 0.82rem/2.2 system-ui, sans-serif;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+.bk-tab[aria-selected="true"] {
+  color: var(--md-default-fg-color);
+  border-bottom-color: var(--md-primary-fg-color);
+}
+.bk-count { margin-left: auto; font-size: 0.72rem; color: var(--md-default-fg-color--light); }
+
+.bk-content { flex: 1; overflow: auto; padding: 0.5rem 0.7rem 0.8rem; }
+.bk-section h3 {
+  margin: 0.8rem 0 0.4rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--md-default-fg-color--light);
+}
+.bk-item {
+  padding: 0.45rem 0.55rem;
+  margin-bottom: 0.35rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-left: 3px solid var(--md-primary-fg-color);
+  border-radius: 6px;
+}
+.bk-item[data-group="question"] { border-left-color: var(--gcse-fig-warn); }
+.bk-item[data-group="know"] { border-left-color: var(--gcse-fig-good); }
+.bk-item__formula { overflow-x: auto; }
+.bk-item__meta { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.25rem; }
+.bk-item__name { font-size: 0.8rem; font-weight: 600; }
+.bk-item__note { margin: 0.25rem 0 0; font-size: 0.74rem; color: var(--md-default-fg-color--light); }
+.bk-badge {
+  margin-left: auto;
+  font-size: 0.66rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.bk-badge--accent { background: color-mix(in srgb, var(--md-primary-fg-color) 18%, transparent); }
+.bk-badge--muted { background: color-mix(in srgb, var(--gcse-fig-warn) 20%, transparent); }
+.bk-badge--warn { background: color-mix(in srgb, var(--gcse-fig-good) 20%, transparent); }
+.bk-empty { color: var(--md-default-fg-color--light); font-size: 0.85rem; }
+.bk-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+.bk-table th, .bk-table td { border: 1px solid var(--md-default-fg-color--lightest); padding: 0.25rem 0.4rem; text-align: left; }
+.bk-table thead th { background: color-mix(in srgb, var(--md-default-fg-color) 6%, transparent); }
+
+.bk-foot {
+  padding: 0.35rem 0.7rem;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  font-size: 0.68rem;
+  color: var(--md-default-fg-color--light);
+}
+.bk-resize {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 18px;
+  height: 18px;
+  cursor: nwse-resize;
+  background: linear-gradient(135deg, transparent 50%, var(--md-default-fg-color--lighter) 50%);
+  touch-action: none;
+}
+
+/* Mobile: bottom sheet instead of a floating window. */
+@media (max-width: 719px) {
+  .bk-panel {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: min(82vh, 700px);
+    border-radius: 16px 16px 0 0;
+  }
+  .bk-resize { display: none; }
+  .bk-bar { cursor: default; border-radius: 16px 16px 0 0; }
+}
+
+/* Document Picture-in-Picture window. */
+.bk-popout-body { margin: 0; background: var(--md-default-bg-color); }
+.bk-popout-body .bk-panel {
+  position: static;
+  width: 100%;
+  height: 100vh;
+  border-radius: 0;
+  box-shadow: none;
+}
