@@ -93,6 +93,10 @@ ranking of methods. Keep the claims to what the briefing supports; see
 | `renderers/mkdocs/` | MkDocs build: `base.yml`, generated configs, hooks, assets |
 | `Docs/assets/figures/` | Tier-1 pure-JS figures (each exports `mount(el)`); `figures.js` is the loader |
 | `scripts/` | `scaffold_docs.py`, `fetch_sources.sh`, `katex-render.mjs`, `screenshot.cjs` |
+| `problems/` | Verifiable problem bank, one YAML per chapter |
+| `verification/` | SymPy CAS boundary, bank loader and verifier |
+| `tests/` | Bank verification plus planted-error tests |
+| `PROBLEMS.md` | Problem-bank schema and verification limits |
 | `test/` | The figure-hook and tier-profile evaluation (24 assertions) |
 | `AGENT-BRIEF.md` | Per-chapter sub-agent brief |
 
@@ -105,6 +109,8 @@ python scripts/scaffold_docs.py           # regenerate Docs tree, configs, curri
 mkdocs build -f renderers/mkdocs/mkdocs.yml --strict
 mkdocs build -f renderers/mkdocs/mkdocs.foundation.yml --strict
 grep -rl 'math-error' site/higher --include='*.html'   # must print nothing
+python -m verification problems/          # verify the problem bank (SymPy)
+pytest tests/ -q                          # bank + verifier tests
 test/run.sh                               # figure-hook + tier evaluation
 ```
 
@@ -160,12 +166,28 @@ calling a chapter done.
 - Never put `$...$` in text a figure injects at runtime: the maths hook runs at
   build time, so runtime LaTeX is not rendered. Use plain text or HTML.
 
+**Problem bank**
+
+- Keep units, words and `%` out of the CAS fields; they belong in `statement`.
+  `£`, `p` and commas will not parse.
+- Declare assumptions (`symbols: {x: {real: true}}`) or the verifier will reject
+  valid steps such as `sqrt(x**2) -> x` when `x` can be negative.
+- Decimals are rationalised before checking, so write exact values rather than
+  rounded ones. Rounding needs an interval check, not equality.
+- Squaring both sides or multiplying by a variable can add roots; those steps
+  need a weaker relation and an explicit extraneous-root check. See PROBLEMS.md.
+- The verifier proves the mathematics, not the method. A correct answer reached
+  by an unexpected route still passes.
+
 **Toolchain**
 
 - The build needs both `uv sync` (MkDocs) and `npm install` (KaTeX). Without
   Node, maths silently degrades to `.math-error` spans.
 - `test/hooks/` duplicates the real hook logic; keep them in sync or point the
   harness at `renderers/mkdocs/hooks/`.
+- `screenshot.cjs` serves the built site through Playwright request interception
+  because this sandbox blocks listening sockets; set `PLAYWRIGHT_PATH` if
+  `require("playwright")` does not resolve.
 
 ## Conventions
 

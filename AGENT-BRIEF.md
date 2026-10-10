@@ -20,6 +20,7 @@ Invoke with `CHAPTER_ID=<n>` (1–25). Read, in order:
 7. The primary sources in `sources/` (run `scripts/fetch_sources.sh` if empty):
    `dfe_content.txt`, `aqa_spec.txt`, `edexcel_spec.txt`, `ocr_spec.txt`. Use them
    to confirm scope and tier; quote nothing.
+8. `PROBLEMS.md` — the problem-bank schema and its verification limits.
 
 ## Your deliverables
 
@@ -48,6 +49,9 @@ why). Also:
   definition each. Define a term once in the book.
 - Add figures under `Docs/assets/figures/<slug>.js` (Tier 1) or generators under
   `figures/py/` writing to `figures/data/` (Tier 2). Only when they earn their keep.
+- Add every worked solution and answer you rely on to
+  `problems/chapter-<n>.yaml`, with an independent `check` and, where you show
+  steps, a `steps` chain. Run `python -m verification problems/` — it must pass.
 - Do **not** edit `curriculum.yaml`, `nav.yml`, `CURRICULUM-MAP.md`, `PLAN.md`, or
   any other chapter. `nav.yml` and the map are generated.
 
@@ -100,14 +104,15 @@ GCSE; if you reach for Pyodide, justify it in the chapter overview first.
 ## Definition of done — report evidence, do not assert
 
 1. Every file listed above exists and contains no `scaffold:stub` marker.
-2. Every `dfe` item in your chapter appears in at least one Walkthrough and one
+2. `python -m verification problems/` passes and `pytest tests/ -q` is green.
+3. Every `dfe` item in your chapter appears in at least one Walkthrough and one
    practice page (grep the refs and show the result).
-3. `python scripts/scaffold_docs.py` reports your chapter's files as **skipped**,
+4. `python scripts/scaffold_docs.py` reports your chapter's files as **skipped**,
    not rewritten.
-4. If you added a Tier-2 figure: regeneration is byte-identical
-   (`git diff --exit-code figures/data/`, or the equivalent check).
-5. MkDocs renders your pages without errors if the shell exists at the time.
-6. Report the literal commands you ran and their literal output.
+5. `mkdocs build -f renderers/mkdocs/mkdocs.yml --strict` succeeds and
+   `grep -rl 'math-error' site/higher --include='*.html'` prints nothing.
+6. If you added a Tier-2 figure: regeneration is byte-identical.
+7. Report the literal commands you ran and their literal output.
 
 ## Escalate (stop and hand back with evidence) if
 

@@ -1,0 +1,71 @@
+# Problem bank — symbolic forward tests.
+#
+# These are not Chapter 1 content; they prove the verifier generalises beyond
+# arithmetic to algebraic manipulation, equation solving and factorising.
+chapter: forward
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: solve-linear
+    section: "9.1"
+    tier: F
+    dfe: [A17]
+    statement: "Solve $2x + 3 = 11$."
+    step_relation: solutions
+    check: {kind: solve, equation: "2*x + 3 = 11", variable: x, answer: ["4"]}
+    steps:
+      - equation: "2*x + 3 = 11"
+      - equation: "2*x = 8"
+      - equation: "x = 4"
+
+  - id: expand-binomial
+    section: "12.1"
+    tier: F
+    dfe: [A4]
+    statement: "Expand $(x + 3)(x - 4)$."
+    check:
+      kind: evaluate
+      expression: "(x + 3) * (x - 4)"
+      answer: "x**2 - x - 12"
+    steps:
+      - expr: "(x + 3) * (x - 4)"
+      - expr: "x**2 - 4*x + 3*x - 12"
+      - expr: "x**2 - x - 12"
+
+  - id: factorise-quadratic
+    section: "12.1"
+    tier: F
+    dfe: [A4]
+    statement: "Factorise $x^2 - x - 12$."
+    check:
+      kind: evaluate
+      expression: "x**2 - x - 12"
+      answer: "(x - 4) * (x + 3)"
+    steps:
+      - expr: "x**2 - x - 12"
+      - expr: "(x - 4) * (x + 3)"
+
+  - id: solve-quadratic
+    section: "12.4"
+    tier: F
+    dfe: [A18]
+    statement: "Solve $x^2 - 5 = 20$."
+    step_relation: solutions
+    check: {kind: solve, equation: "x**2 - 5 = 20", variable: x, answer: ["5", "-5"]}
+    steps:
+      - equation: "x**2 - 5 = 20"
+      - equation: "x**2 = 25"
+
+  - id: collect-like-terms
+    section: "8.2"
+    tier: F
+    dfe: [A4]
+    statement: "Simplify $2x + 3y + 5x - y$."
+    check:
+      kind: evaluate
+      expression: "2*x + 3*y + 5*x - y"
+      answer: "7*x + 2*y"
+    steps:
+      - expr: "2*x + 3*y + 5*x - y"
+      - expr: "7*x + 2*y"
