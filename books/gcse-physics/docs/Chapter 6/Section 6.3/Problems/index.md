@@ -10,9 +10,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.3 Domestic uses and safety — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: EL3
+Work through these on your own. Some questions ask for a description or an
+explanation, so write in full sentences and keep the science words exact.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-06-practice-6.3
+
+:::answers chapter-06-practice-6.3

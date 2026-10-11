@@ -1,0 +1,243 @@
+# Practice set for 6.4 (Energy transfers and the national grid).
+#
+# Both the questions and the answers on the page are rendered from these
+# records. Each calculation is checked twice: the exact magnitude and dimension
+# by `dimensions`, and the one rounding by `sigfigs`. The last few records
+# interleave Chapter 1 (efficiency, power) with this section.
+chapter: 6
+symbols: {}
+problems:
+  - id: p1-power-from-vi
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A lamp on the 230 V mains supply takes a current of 0.20 A. Calculate its power.'
+    answer_label: 'Power of the lamp'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V * I"
+          values:
+            V: {value: "230", unit: "V"}
+            I: {value: "0.20", unit: "A"}
+          answer: {value: "46", unit: "W"}
+        - {kind: sigfigs, value: "46", figures: 2, answer: "46", convention: round-once}
+    answer_text: '$P = VI = 230 \times 0.20 = 46\,\text{W}$.'
+
+  - id: p2-power-from-i2r
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A current of 3.0 A flows through an 8.0 Ω resistor. Calculate the power transferred to the resistor.'
+    answer_label: 'Power transferred to the resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I**2 * R"
+          values:
+            I: {value: "3.0", unit: "A"}
+            R: {value: "8.0", unit: "Ω"}
+          answer: {value: "72", unit: "W"}
+        - {kind: sigfigs, value: "72", figures: 2, answer: "72", convention: round-once}
+    answer_text: '$P = I^2R = 3.0^2 \times 8.0 = 9.0 \times 8.0 = 72\,\text{W}$.'
+
+  - id: p3-power-i2r-two
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A current of 0.50 A flows through a 40 Ω resistor. Calculate the power transferred to the resistor.'
+    answer_label: 'Power transferred to the resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I**2 * R"
+          values:
+            I: {value: "0.50", unit: "A"}
+            R: {value: "40", unit: "Ω"}
+          answer: {value: "10", unit: "W"}
+        - {kind: sigfigs, value: "10", figures: 2, answer: "1.0e1", convention: round-once}
+    answer_text: '$P = I^2R = 0.50^2 \times 40 = 0.25 \times 40 = 10\,\text{W} = 1.0 \times 10^1\,\text{W}$.'
+
+  - id: p4-energy-from-pt
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A 46 W lamp is switched on for 200 s. Calculate the energy it transfers.'
+    answer_label: 'Energy transferred by the lamp'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P * t"
+          values:
+            P: {value: "46", unit: "W"}
+            t: {value: "200", unit: "s"}
+          answer: {value: "9200", unit: "J"}
+        - {kind: sigfigs, value: "9200", figures: 2, answer: "9.2e3", convention: round-once}
+    answer_text: '$E = Pt = 46 \times 200 = 9200\,\text{J} = 9.2 \times 10^3\,\text{J}$.'
+
+  - id: p5-energy-from-qv
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A charge of 40 C flows through an appliance at a potential difference of 230 V. Calculate the energy transferred.'
+    answer_label: 'Energy transferred to the appliance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "Q * V"
+          values:
+            Q: {value: "40", unit: "C"}
+            V: {value: "230", unit: "V"}
+          answer: {value: "9200", unit: "J"}
+        - {kind: sigfigs, value: "9200", figures: 2, answer: "9.2e3", convention: round-once}
+    answer_text: '$E = QV = 40 \times 230 = 9200\,\text{J} = 9.2 \times 10^3\,\text{J}$.'
+
+  - id: p6-current-from-power
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A 460 W appliance is connected to the 230 V mains supply. Calculate the current through it.'
+    answer_label: 'Current through the appliance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P / V"
+          values:
+            P: {value: "460", unit: "W"}
+            V: {value: "230", unit: "V"}
+          answer: {value: "2.0", unit: "A"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$I = \dfrac{P}{V} = \dfrac{460}{230} = 2.0\,\text{A}$.'
+
+  - id: p7-energy-minutes
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A 138 W appliance is switched on for 5.0 minutes. Calculate the energy it transfers.'
+    answer_label: 'Energy transferred by the appliance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P * t"
+          values:
+            P: {value: "138", unit: "W"}
+            t: {value: "300", unit: "s"}
+          answer: {value: "41400", unit: "J"}
+        - {kind: sigfigs, value: "41400", figures: 2, answer: "4.1e4", convention: round-once}
+    answer_text: 'Change the time to seconds: $5.0 \times 60 = 300\,\text{s}$. Then $E = Pt = 138 \times 300 = 41\,400\,\text{J} = 4.1 \times 10^4\,\text{J}$.'
+
+  - id: p8-heater-energy
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A 1150 W heater is switched on for 30 minutes. Calculate the energy it transfers.'
+    answer_label: 'Energy transferred by the heater'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P * t"
+          values:
+            P: {value: "1150", unit: "W"}
+            t: {value: "1800", unit: "s"}
+          answer: {value: "2070000", unit: "J"}
+        - {kind: sigfigs, value: "2070000", figures: 2, answer: "2.1e6", convention: round-once}
+    answer_text: '$30\,\text{minutes} = 1800\,\text{s}$, so $E = Pt = 1150 \times 1800 = 2\,070\,000\,\text{J} = 2.1 \times 10^6\,\text{J}$.'
+
+  - id: p9-national-grid
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'Explain why the National Grid transfers electrical power at a very high potential difference.'
+    answer_label: 'Why the National Grid uses a high potential difference'
+    check:
+      kind: structured
+      requires: [low-current, less-wasted]
+      concepts: [national-grid, power]
+      points:
+        - id: low-current
+          text: 'For a given power, a higher potential difference means a lower current, because P = VI.'
+          concepts: [power]
+        - id: less-wasted
+          text: 'The power wasted as heating in the cables is P = I squared R, so a lower current wastes much less energy. This makes the transfer efficient.'
+          concepts: [national-grid]
+
+  - id: p10-transformers
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'Describe the job of the step-up transformers and the step-down transformers in the National Grid.'
+    answer_label: 'The two kinds of transformer'
+    check:
+      kind: structured
+      requires: [step-up, step-down]
+      concepts: [national-grid]
+      points:
+        - id: step-up
+          text: 'Step-up transformers increase the potential difference from the power station to the transmission cables.'
+          concepts: [national-grid]
+        - id: step-down
+          text: 'Step-down transformers decrease the potential difference to a much lower value for homes and businesses.'
+          concepts: [national-grid]
+
+  - id: p11-appliance-transfer
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'Describe how a kettle and an electric motor transfer energy from the supply to a useful store.'
+    answer_label: 'The energy transfers in the kettle and the motor'
+    check:
+      kind: structured
+      requires: [kettle, motor]
+      concepts: [energy-transfer]
+      points:
+        - id: kettle
+          text: 'In a kettle, energy is transferred from the supply to the thermal store of the water, in the heating element.'
+          concepts: [energy-transfer]
+        - id: motor
+          text: 'In an electric motor, energy is transferred from the supply to the kinetic store of the moving parts.'
+          concepts: [energy-transfer]
+
+  - id: p12-efficiency-interleaved
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'An electric motor transfers 2000 J of energy, and 1500 J is transferred usefully. Calculate the efficiency of the motor. This uses the idea of efficiency from Chapter 1.'
+    answer_label: 'Efficiency of the motor'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "1500 / 2000", answer: "0.75"}
+        - {kind: sigfigs, value: "0.75", figures: 2, answer: "0.75", convention: round-once}
+    answer_text: 'efficiency $= \dfrac{\text{useful output}}{\text{total input}} = \dfrac{1500}{2000} = 0.75$, which is 75%.'
+
+  - id: p13-method-choice
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A heater is connected to the 230 V mains supply and takes a current of 4.0 A. Say which relationships you will use, then calculate the power and the energy transferred in 10 minutes.'
+    answer_label: 'Power and energy transferred'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V * I"
+          values:
+            V: {value: "230", unit: "V"}
+            I: {value: "4.0", unit: "A"}
+          answer: {value: "920", unit: "W"}
+        - kind: dimensions
+          expression: "P * t"
+          values:
+            P: {value: "920", unit: "W"}
+            t: {value: "600", unit: "s"}
+          answer: {value: "552000", unit: "J"}
+        - {kind: sigfigs, value: "552000", figures: 2, answer: "5.5e5", convention: round-once}
+    answer_text: 'First use $P = VI = 230 \times 4.0 = 920\,\text{W}$. Then use $E = Pt$, with $10\,\text{minutes} = 600\,\text{s}$: $E = 920 \times 600 = 552\,000\,\text{J} = 5.5 \times 10^5\,\text{J}$ to two significant figures.'

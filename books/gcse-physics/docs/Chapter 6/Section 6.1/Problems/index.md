@@ -10,9 +10,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.1 Current, potential difference and resistance — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: EL1
+Work through these on your own. Keep your working neat, and keep the units with
+your numbers.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-06-practice-6.1
+
+:::answers chapter-06-practice-6.1

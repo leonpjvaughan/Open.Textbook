@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.5 Tangents, normals, maxima, minima and stationary points — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: G3
+Work through these on your own. Find the stationary points before you classify
+them, and check that every answer makes sense in the context.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-07-practice-7.5
+
+:::answers chapter-07-practice-7.5

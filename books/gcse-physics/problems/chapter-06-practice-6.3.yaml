@@ -1,0 +1,226 @@
+# Practice set for 6.3 (Domestic uses and safety).
+#
+# Both the questions and the answers on the page are rendered from these
+# records. Descriptive answers use `structured`, which proves only that a model
+# answer contains the declared ideas in order. The calculations reuse the
+# Section 6.1 equations, so this section also retrieves earlier material.
+chapter: 6
+symbols: {}
+problems:
+  - id: p1-convert-minutes
+    section: '6.3'
+    tier: F
+    dfe: [EL3]
+    statement: 'Express a time of 1.5 minutes in seconds.'
+    answer_label: '1.5 minutes in seconds'
+    check:
+      kind: convert
+      value: '1.5'
+      from: min
+      to: s
+      answer: '90'
+    answer_text: '$1.5\,\text{minutes} = 1.5 \times 60 = 90\,\text{s}$.'
+
+  - id: p2-charge-kettle
+    section: '6.3'
+    tier: F
+    dfe: [EL3]
+    statement: 'A mains kettle takes a current of 8.0 A for 90 s. Calculate the charge that flows through it.'
+    answer_label: 'Charge that flows through the kettle'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * t"
+          values:
+            I: {value: "8.0", unit: "A"}
+            t: {value: "90", unit: "s"}
+          answer: {value: "720", unit: "C"}
+        - {kind: sigfigs, value: "720", figures: 2, answer: "7.2e2", convention: round-once}
+    answer_text: '$Q = It = 8.0 \times 90 = 720\,\text{C} = 7.2 \times 10^2\,\text{C}$. The same charge flows back through the neutral wire.'
+
+  - id: p3-ac-dc
+    section: '6.3'
+    tier: F
+    dfe: [EL3]
+    statement: 'State the frequency and the potential difference of the UK domestic supply, and describe the difference between direct and alternating current.'
+    answer_label: 'The UK supply and the two kinds of current'
+    check:
+      kind: structured
+      requires: [supply-values, direct, alternating]
+      concepts: [alternating-current, direct-current]
+      points:
+        - id: supply-values
+          text: 'The UK domestic supply has a frequency of 50 Hz and a potential difference of about 230 V.'
+          concepts: [alternating-current]
+        - id: direct
+          text: 'A direct current flows in one direction only, like the current from a battery.'
+          concepts: [direct-current]
+        - id: alternating
+          text: 'An alternating current keeps changing direction, so the potential difference swaps ends many times each second.'
+          concepts: [alternating-current]
+
+  - id: p4-three-wires
+    section: '6.3'
+    tier: F
+    dfe: [EL3]
+    statement: 'Describe the job of the live wire, the neutral wire and the earth wire in a mains cable.'
+    answer_label: 'The three wires and their jobs'
+    check:
+      kind: structured
+      requires: [live, neutral, earth]
+      concepts: [live-wire, neutral-wire, earth-wire]
+      points:
+        - id: live
+          text: 'The live wire carries the alternating potential difference from the supply.'
+          concepts: [live-wire]
+        - id: neutral
+          text: 'The neutral wire completes the circuit and is at, or close to, earth potential.'
+          concepts: [neutral-wire]
+        - id: earth
+          text: 'The earth wire is a safety wire at 0 V. It carries a current only if there is a fault, and it stops the case of an appliance becoming live.'
+          concepts: [earth-wire]
+
+  - id: p5-live-danger
+    section: '6.3'
+    tier: F
+    dfe: [EL3]
+    statement: 'Explain why a live wire can be dangerous even when a switch in the mains circuit is open.'
+    answer_label: 'Why the live wire is still dangerous'
+    check:
+      kind: structured
+      requires: [switch-position, still-live]
+      concepts: [live-wire]
+      points:
+        - id: switch-position
+          text: 'The switch might be in the neutral wire, or between the appliance and the live wire.'
+          concepts: [live-wire]
+        - id: still-live
+          text: 'The wire that goes back to the supply stays at about 230 V. Touching it lets a current flow through the body to earth.'
+          concepts: [live-wire]
+
+  - id: p6-earth-wire
+    section: '6.3'
+    tier: F
+    dfe: [EL3]
+    statement: 'Explain why the metal case of a mains appliance is connected to the earth wire.'
+    answer_label: 'Why the metal case is earthed'
+    check:
+      kind: structured
+      requires: [fault, path-to-earth]
+      concepts: [earth-wire]
+      points:
+        - id: fault
+          text: 'If the live wire comes loose and touches the metal case, the case would become live.'
+          concepts: [earth-wire]
+        - id: path-to-earth
+          text: 'The earth wire gives the fault current a low-resistance path to earth, so a large current flows to earth and the case does not stay at 230 V.'
+          concepts: [earth-wire]
+
+  - id: p7-current-live-neutral
+    section: '6.3'
+    tier: F
+    dfe: [EL3]
+    statement: 'A mains lamp is switched on. Explain why the current in the live wire equals the current in the neutral wire.'
+    answer_label: 'Why the live and neutral currents are equal'
+    check:
+      kind: structured
+      requires: [closed-loop, charge-not-used]
+      concepts: [charge-flow]
+      points:
+        - id: closed-loop
+          text: 'The lamp, the live wire and the neutral wire form a single closed loop.'
+          concepts: [charge-flow]
+        - id: charge-not-used
+          text: 'Charge is not used up by the lamp, so the rate of flow of charge is the same in both wires. Only the energy carried by the charge is transferred.'
+          concepts: [charge-flow]
+
+  - id: p8-live-earth-pd
+    section: '6.3'
+    tier: F
+    dfe: [EL3]
+    statement: 'State the potential difference between the live wire and earth in a mains circuit, and state the potential of the earth wire.'
+    answer_label: 'The two potential differences'
+    check:
+      kind: structured
+      requires: [live-earth, earth-potential]
+      concepts: [potential-difference, earth-wire]
+      points:
+        - id: live-earth
+          text: 'The potential difference between the live wire and earth is about 230 V.'
+          concepts: [potential-difference]
+        - id: earth-potential
+          text: 'The earth wire is at 0 V.'
+          concepts: [earth-wire]
+
+  - id: p9-resistance-interleaved
+    section: '6.3'
+    tier: F
+    dfe: [EL3]
+    statement: 'A mains appliance has a potential difference of 230 V across it and a current of 0.40 A through it. Calculate its resistance.'
+    answer_label: 'Resistance of the appliance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / I"
+          values:
+            V: {value: "230", unit: "V"}
+            I: {value: "0.40", unit: "A"}
+          answer: {value: "575", unit: "Ω"}
+        - {kind: sigfigs, value: "575", figures: 2, answer: "5.8e2", convention: round-once}
+    answer_text: '$R = \dfrac{V}{I} = \dfrac{230}{0.40} = 575\,\Omega = 5.8 \times 10^2\,\Omega$ to two significant figures.'
+
+  - id: p10-series-interleaved
+    section: '6.3'
+    tier: F
+    dfe: [EL3]
+    statement: 'Two resistors of 6.0 Ω and 18 Ω are connected in series. Calculate the total resistance.'
+    answer_label: 'Total resistance of the series pair'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "R1 + R2"
+          values:
+            R1: {value: "6.0", unit: "Ω"}
+            R2: {value: "18", unit: "Ω"}
+          answer: {value: "24", unit: "Ω"}
+        - {kind: sigfigs, value: "24", figures: 2, answer: "24", convention: round-once}
+    answer_text: '$R_{total} = R_1 + R_2 = 6.0 + 18 = 24\,\Omega$.'
+
+  - id: p11-charge-interleaved
+    section: '6.3'
+    tier: F
+    dfe: [EL3]
+    statement: 'A current of 4.0 A flows for 3.0 minutes. Calculate the charge that flows.'
+    answer_label: 'Charge that flows'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * t"
+          values:
+            I: {value: "4.0", unit: "A"}
+            t: {value: "180", unit: "s"}
+          answer: {value: "720", unit: "C"}
+        - {kind: sigfigs, value: "720", figures: 2, answer: "7.2e2", convention: round-once}
+    answer_text: 'Change the time to seconds: $3.0 \times 60 = 180\,\text{s}$. Then $Q = It = 4.0 \times 180 = 720\,\text{C} = 7.2 \times 10^2\,\text{C}$.'
+
+  - id: p12-method-choice
+    section: '6.3'
+    tier: F
+    dfe: [EL3]
+    statement: 'A mains appliance carries a current of 2.5 A for 4.0 minutes. Say which relationship you will use, then calculate the charge that flows.'
+    answer_label: 'Charge that flows'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * t"
+          values:
+            I: {value: "2.5", unit: "A"}
+            t: {value: "240", unit: "s"}
+          answer: {value: "600", unit: "C"}
+        - {kind: sigfigs, value: "600", figures: 2, answer: "6.0e2", convention: round-once}
+    answer_text: 'Use $Q = It$, with the time in seconds. $4.0 \times 60 = 240\,\text{s}$, so $Q = 2.5 \times 240 = 600\,\text{C} = 6.0 \times 10^2\,\text{C}$.'

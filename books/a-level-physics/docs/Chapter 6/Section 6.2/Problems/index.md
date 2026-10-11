@@ -9,9 +9,16 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.2 Diffraction and polarisation — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: AP6
+Work through these on your own. Change nanometres and millimetres to metres
+before you substitute, and measure every grating angle from the straight-through
+direction. In the questions that ask for a reason, write your answer in full
+sentences.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-06-practice-6.2
+
+:::answers chapter-06-practice-6.2

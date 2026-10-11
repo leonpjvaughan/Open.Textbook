@@ -1,0 +1,124 @@
+# Practice set for 7.4, the second derivative and points of inflection.
+#
+# The checks prove the second derivative and the sign of the second derivative
+# at test points. The decision that a sign change makes a point of inflection,
+# and the description of the bending, are human review.
+chapter: 7
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-second-polynomial
+    section: "7.4"
+    dfe: [G1]
+    statement: 'Find $f''''(x)$ for $f(x) = x^4 - 6x^2$.'
+    answer_label: 'The second derivative'
+    check:
+      kind: evaluate
+      expression: "diff(diff(x**4 - 6*x**2, x), x)"
+      answer: "12*x**2 - 12"
+    answer_text: '$f''(x) = 4x^3 - 12x$, so $f''''(x) = 12x^2 - 12$.'
+
+  - id: p2-second-quintic
+    section: "7.4"
+    dfe: [G1]
+    statement: 'Find the second derivative of $y = 3x^5$.'
+    answer_label: 'The second derivative'
+    check:
+      kind: evaluate
+      expression: "diff(diff(3*x**5, x), x)"
+      answer: "60*x**3"
+    answer_text: 'First derivative $= 15x^4$, so second derivative $= 60x^3$.'
+
+  - id: p3-second-sine
+    section: "7.4"
+    dfe: [G1]
+    statement: 'Find $\dfrac{d^2y}{dx^2}$ for $y = \sin 2x$.'
+    answer_label: 'The second derivative'
+    check:
+      kind: evaluate
+      expression: "diff(diff(sin(2*x), x), x)"
+      answer: "-4*sin(2*x)"
+    answer_text: '$\dfrac{dy}{dx} = 2\cos 2x$, so $\dfrac{d^2y}{dx^2} = -4\sin 2x$. The minus sign returns after two differentiations.'
+
+  - id: p4-second-exponential
+    section: "7.4"
+    dfe: [G1]
+    statement: 'Find the second derivative of $y = e^{-x}$.'
+    answer_label: 'The second derivative'
+    check:
+      kind: evaluate
+      expression: "diff(diff(exp(-x), x), x)"
+      answer: "exp(-x)"
+    answer_text: '$\dfrac{dy}{dx} = -e^{-x}$, so $\dfrac{d^2y}{dx^2} = e^{-x}$. Each differentiation multiplies by $-1$, and two minus signs make a plus.'
+
+  - id: p5-candidate-inflection
+    section: "7.4"
+    dfe: [G1]
+    statement: 'For $f(x) = x^3 - 3x^2 + 2x$, find the value of $x$ where $f''''(x) = 0$.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "6*x - 6 = 0"
+      variable: "x"
+      answer: ["1"]
+    answer_text: '$f''(x) = 3x^2 - 6x + 2$ and $f''''(x) = 6x - 6$. Setting this to zero gives $6x = 6$, so $x = 1$.'
+
+  - id: p6-classify-turning
+    section: "7.4"
+    dfe: [G1]
+    statement: 'The curve $y = x^2 - 4x + 1$ has a turning point at $x = 2$. Use the second derivative to classify it.'
+    answer_label: 'The classification'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: "2*x - 4 = 0", variable: x, answer: ["2"]}
+        - {kind: evaluate, expression: "diff(diff(x**2 - 4*x + 1, x), x)", answer: "2"}
+    answer_text: 'The second derivative is $f''''(x) = 2$, which is positive, so the curve is convex. The turning point is a minimum.'
+
+  - id: p7-convex-quadratic
+    section: "7.4"
+    dfe: [G1]
+    statement: 'Find the second derivative of $f(x) = 3x^2 - 6x + 1$, and state whether the curve is convex or concave everywhere.'
+    answer_label: 'The second derivative'
+    check:
+      kind: evaluate
+      expression: "diff(diff(3*x**2 - 6*x + 1, x), x)"
+      answer: "6"
+    answer_text: 'The second derivative is the constant $6$, which is positive for every $x$. The curve is convex everywhere.'
+
+  - id: p8-inflection-signs
+    section: "7.4"
+    dfe: [G1]
+    statement: 'For $f(x) = x^3 - 6x^2$, show that $f''''(x) = 0$ at $x = 2$ and that the second derivative changes sign there.'
+    answer_label: 'The two signs'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "diff(diff(x**3 - 6*x**2, x), x)", answer: "6*x - 12"}
+        - {kind: compare, lhs: "6*1 - 12", relation: "<", rhs: "0"}
+        - {kind: compare, lhs: "6*3 - 12", relation: ">", rhs: "0"}
+    answer_text: '$f''(x) = 3x^2 - 12x$ and $f''''(x) = 6x - 12$, which is zero at $x = 2$. At $x = 1$ it is $-6 < 0$ (concave); at $x = 3$ it is $6 > 0$ (convex). The sign changes, so $x = 2$ is a point of inflection.'
+
+  - id: p9-no-inflection
+    section: "7.4"
+    dfe: [G1]
+    statement: 'For $f(x) = x^4$, show that $f''''(0) = 0$ but the second derivative does not change sign at $x = 0$.'
+    answer_label: 'The two signs'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "diff(diff(x**4, x), x)", answer: "12*x**2"}
+        - {kind: compare, lhs: "12*(-1)**2", relation: ">", rhs: "0"}
+        - {kind: compare, lhs: "12*1**2", relation: ">", rhs: "0"}
+    answer_text: '$f''''(x) = 12x^2$, so $f''''(0) = 0$. For $x = -1$ and for $x = 1$ the value is $12 > 0$, so the curve is convex on both sides. The second derivative does not change sign, so $x = 0$ is not a point of inflection.'
+
+  - id: p10-second-log
+    section: "7.4"
+    dfe: [G1]
+    statement: 'Find the second derivative of $y = \ln x$ for $x > 0$.'
+    answer_label: 'The second derivative'
+    check:
+      kind: evaluate
+      expression: "diff(diff(ln(x), x), x)"
+      answer: "-1/x**2"
+    answer_text: '$\dfrac{dy}{dx} = \dfrac{1}{x} = x^{-1}$, so $\dfrac{d^2y}{dx^2} = -x^{-2} = -\dfrac{1}{x^2}$. The second derivative is always negative, so the curve is concave.'

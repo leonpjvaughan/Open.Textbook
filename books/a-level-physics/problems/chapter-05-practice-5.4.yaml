@@ -1,0 +1,170 @@
+# Practice set for 5.4 (Capacitance).
+#
+# Both the questions and the answers on the page are rendered from these records.
+# A capacitance, a charge and an energy are checked by `dimensions` or `evaluate`.
+# A value that needs pi, e or ln 2 is checked by `approx` against a stated
+# tolerance. A gradient read from a straight-line graph is checked by `gradient`
+# against a declared interval, because reading a graph is a measurement. A reason
+# is a `structured` record.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics.
+chapter: 5
+problems:
+  - id: p1-capacitance
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A capacitor stores a charge of $2.0 \times 10^{-5}\,\text{C}$ at a potential difference of $10\,\text{V}$. Find its capacitance.'
+    answer_label: 'The capacitance'
+    check:
+      kind: dimensions
+      expression: "Q / V"
+      values:
+        Q: {value: "2.0e-5", unit: "C"}
+        V: {value: "10", unit: "V"}
+      answer: {value: "2.0e-6", unit: "F"}
+    answer_text: '$C = \dfrac{Q}{V} = \dfrac{2.0 \times 10^{-5}}{10} = 2.0 \times 10^{-6}\,\text{F} = 2.0\,\mu\text{F}$.'
+
+  - id: p2-charge
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A capacitor of capacitance $100\,\mu\text{F}$ is charged to a potential difference of $12\,\text{V}$. Find the charge stored.'
+    answer_label: 'The charge stored'
+    check: {kind: evaluate, expression: "100e-6 * 12", answer: "1.2e-3"}
+    answer_text: '$Q = CV = 100 \times 10^{-6} \times 12 = 1.2 \times 10^{-3}\,\text{C}$.'
+
+  - id: p3-energy
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A capacitor of capacitance $50\,\mu\text{F}$ is charged to a potential difference of $100\,\text{V}$. Find the energy stored.'
+    answer_label: 'The energy stored'
+    check:
+      kind: dimensions
+      expression: "0.5 * C * V**2"
+      values:
+        C: {value: "50e-6", unit: "F"}
+        V: {value: "100", unit: "V"}
+      answer: {value: "0.25", unit: "J"}
+    answer_text: '$E = \tfrac{1}{2}CV^2 = \tfrac{1}{2} \times 50 \times 10^{-6} \times 100^2 = 0.25\,\text{J}$.'
+
+  - id: p4-time-constant
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A capacitor of capacitance $10\,\mu\text{F}$ is discharged through a $10\,\text{k}\Omega$ resistor. Find the time constant.'
+    answer_label: 'The time constant'
+    check:
+      kind: dimensions
+      expression: "R * C"
+      values:
+        R: {value: "10e3", unit: "ohm"}
+        C: {value: "10e-6", unit: "F"}
+      answer: {value: "0.10", unit: "s"}
+    answer_text: '$\tau = RC = 10 \times 10^{3} \times 10 \times 10^{-6} = 0.10\,\text{s}$.'
+
+  - id: p5-discharge-pd
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A capacitor of capacitance $100\,\mu\text{F}$ is charged to $10\,\text{V}$ and discharged through a $1.0\,\text{k}\Omega$ resistor. Find the potential difference after $0.10\,\text{s}$.'
+    answer_label: 'The potential difference'
+    check: {kind: approx, value: "10 * exp(-0.10 / (1000 * 100e-6))", target: "3.68", tolerance: "0.01"}
+    answer_text: 'The time constant is $\tau = 1000 \times 100 \times 10^{-6} = 0.10\,\text{s}$, so after $0.10\,\text{s}$ the pd is $V = 10 e^{-1} = 3.7\,\text{V}$.'
+
+  - id: p6-parallel-plate
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A parallel plate capacitor has plates of area $0.050\,\text{m}^2$ separated by $2.0 \times 10^{-4}\,\text{m}$. The gap is filled with air, which has a relative permittivity of $1.0$. Find the capacitance.'
+    answer_label: 'The capacitance'
+    check: {kind: approx, value: "8.85e-12 * 1.0 * 0.050 / 2.0e-4", target: "2.21e-9", tolerance: "0.02e-9"}
+    answer_text: '$C = \dfrac{\varepsilon_0 \varepsilon_r A}{d} = \dfrac{8.85 \times 10^{-12} \times 1.0 \times 0.050}{2.0 \times 10^{-4}} = 2.2 \times 10^{-9}\,\text{F}$.'
+
+  - id: p7-energy-qv
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A capacitor holds a charge of $0.50\,\text{C}$ at a potential difference of $100\,\text{V}$. Find the energy stored.'
+    answer_label: 'The energy stored'
+    check: {kind: evaluate, expression: "0.5 * 0.50 * 100", answer: "25"}
+    answer_text: '$E = \tfrac{1}{2}QV = \tfrac{1}{2} \times 0.50 \times 100 = 25\,\text{J}$.'
+
+  - id: p8-half-life
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A capacitor discharges with a time constant of $0.050\,\text{s}$. Find the half-life, the time for the charge to fall to half its starting value.'
+    answer_label: 'The half-life'
+    check: {kind: approx, value: "0.050 * log(2)", target: "0.0347", tolerance: "0.0005"}
+    answer_text: 'The half-life is $t_{1/2} = RC\ln 2 = 0.050 \times 0.693 = 0.035\,\text{s}$.'
+
+  - id: p9-capacitance-from-energy
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A capacitor stores $0.10\,\text{J}$ when the potential difference across it is $50\,\text{V}$. Find its capacitance.'
+    answer_label: 'The capacitance'
+    check: {kind: evaluate, expression: "2 * 0.10 / 50**2", answer: "8.0e-5"}
+    answer_text: 'From $E = \tfrac{1}{2}CV^2$, $C = \dfrac{2E}{V^2} = \dfrac{2 \times 0.10}{50^2} = 8.0 \times 10^{-5}\,\text{F} = 80\,\mu\text{F}$.'
+
+  - id: p10-initial-current
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A capacitor is charged to $2000\,\text{V}$ and discharged through a total resistance of $50\,\Omega$. Find the current at the first instant of the discharge.'
+    answer_label: 'The initial current'
+    check:
+      kind: dimensions
+      expression: "V / R"
+      values:
+        V: {value: "2000", unit: "V"}
+        R: {value: "50", unit: "ohm"}
+      answer: {value: "40", unit: "A"}
+    answer_text: 'At the first instant the full pd is across the resistance, so $I_0 = \dfrac{V_0}{R} = \dfrac{2000}{50} = 40\,\text{A}$.'
+
+  - id: p11-log-graph
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A student plots $\ln V$ against time for a discharging capacitor. The points are $(0.00, 2.303)$, $(0.010, 1.803)$, $(0.020, 1.303)$ and $(0.030, 0.803)$. Find the gradient of the line, and state its unit.'
+    answer_label: 'The gradient'
+    check:
+      kind: gradient
+      series: [[0.00, 2.303], [0.010, 1.803], [0.020, 1.303], [0.030, 0.803]]
+      between: [-51, -49]
+    answer_text: 'The gradient is $\dfrac{0.803 - 2.303}{0.030 - 0.00} = -50\,\text{s}^{-1}$. The gradient is $-\dfrac{1}{RC}$, so the time constant is $\dfrac{1}{50} = 0.020\,\text{s}$.'
+
+  - id: p12-energy-area
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A capacitor holds a charge of $0.200\,\text{C}$ at a potential difference of $2000\,\text{V}$. The charge–potential difference graph is a straight line through the origin. Find the energy stored from the area under the graph.'
+    answer_label: 'The energy stored'
+    check:
+      kind: area
+      series: [[0.0, 0.0], [2000, 0.200]]
+      between: [199, 201]
+    answer_text: 'The area under the charge–potential difference graph is a triangle, so $E = \tfrac{1}{2}QV = \tfrac{1}{2} \times 0.200 \times 2000 = 200\,\text{J}$.'
+
+  - id: p13-log-intercept
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'For a discharging capacitor, the points $(0.00, 2.303)$, $(0.010, 1.803)$, $(0.020, 1.303)$ and $(0.030, 0.803)$ lie on a straight-line graph of $\ln V$ against time. Find the intercept of the line, which is $\ln V_0$.'
+    answer_label: 'The intercept'
+    check:
+      kind: intercept
+      series: [[0.00, 2.303], [0.010, 1.803], [0.020, 1.303], [0.030, 0.803]]
+      between: [2.29, 2.31]
+    answer_text: 'The intercept is $2.303$, so $\ln V_0 = 2.303$ and $V_0 = e^{2.303} = 10\,\text{V}$. The starting potential difference is $10\,\text{V}$.'
+
+  - id: p14-exponential-reason
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'Explain why the charge on a discharging capacitor falls exponentially with time.'
+    answer_label: 'Why the discharge is exponential'
+    check:
+      kind: structured
+      requires: [current-proportional-to-charge, charge-falls, rate-proportional]
+      concepts: [capacitance, discharge, exponential]
+      points:
+        - id: current-proportional-to-charge
+          text: 'The current through the resistor is proportional to the potential difference across the capacitor, which is proportional to the charge left on it. So a larger charge gives a larger current.'
+          concepts: [capacitance, discharge]
+        - id: charge-falls
+          text: 'The current is the rate at which the charge leaves the capacitor. With a larger current, the charge falls faster.'
+          concepts: [discharge]
+        - id: rate-proportional
+          text: 'So the rate at which the charge falls is proportional to the charge remaining. That is the condition for exponential decay, and it gives Q equals Q zero times e to the minus t over RC.'
+          concepts: [exponential, discharge]
+    answer_text: 'The current is proportional to the pd, and the pd is proportional to the charge remaining. So the rate at which the charge falls is proportional to the charge that is left. That is exponential decay, with time constant $RC$.'

@@ -1,0 +1,179 @@
+# Review bank for Chapter 7. The items mix this chapter with Chapters 1 to 6,
+# so the reader chooses a method before calculating. Each check proves the
+# algebra; the method choice and the reason for it are human review.
+chapter: 7
+symbols:
+  x: {real: true}
+  y: {real: true}
+  t: {real: true}
+  n: {real: true}
+  m: {real: true}
+  k: {real: true}
+  P: {real: true}
+problems:
+  - id: r1-chain
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = (2x + 3)^4$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "(2*x + 3)**4"
+      apply: {op: diff, args: [x]}
+      answer: "8*(2*x + 3)**3"
+    answer_text: 'A function of a function, so use the chain rule. The outside gives $4(2x + 3)^3$ and the inside gives $2$, so $\dfrac{dy}{dx} = 8(2x + 3)^3$.'
+
+  - id: r2-product
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = x^2e^{3x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "x**2*exp(3*x)"
+      apply: {op: diff, args: [x]}
+      answer: "exp(3*x)*(3*x**2 + 2*x)"
+    answer_text: 'A product, so use the product rule: $2xe^{3x} + 3x^2e^{3x} = e^{3x}(3x^2 + 2x)$ after taking out the common factor.'
+
+  - id: r3-quotient
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = \dfrac{3x - 1}{x + 2}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "(3*x - 1)/(x + 2)"
+      apply: {op: diff, args: [x]}
+      answer: "7/(x + 2)**2"
+    answer_text: 'A quotient, so use the quotient rule: $\dfrac{3(x + 2) - (3x - 1)}{(x + 2)^2} = \dfrac{7}{(x + 2)^2}$. The top simplifies to the constant $7$.'
+
+  - id: r4-implicit
+    section: "7.9"
+    dfe: [G5]
+    statement: 'Find $\dfrac{dy}{dx}$ for $x^2 + y^2 = 100$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "x**2 + y**2 - 100"
+      apply: {op: idiff, args: [y, x]}
+      answer: "-x/y"
+    answer_text: 'An implicit circle, so differentiate both sides and apply the chain rule to $y^2$: $2x + 2y\dfrac{dy}{dx} = 0$, giving $\dfrac{dy}{dx} = -\dfrac{x}{y}$.'
+
+  - id: r5-parametric
+    section: "7.9"
+    dfe: [G5]
+    statement: 'Find $\dfrac{dy}{dx}$ for the curve $x = t^3$, $y = t^2$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "Matrix([t**3, t**2])"
+      apply: {op: parametric_diff, args: [t]}
+      answer: "2/(3*t)"
+    answer_text: 'A parametric curve, so divide $\dfrac{dy}{dt}$ by $\dfrac{dx}{dt}$: $\dfrac{2t}{3t^2} = \dfrac{2}{3t}$.'
+
+  - id: r6-stationary
+    section: "7.5"
+    dfe: [G3]
+    statement: 'Find the stationary points of $y = x^3 - 12x$ and classify them.'
+    answer_label: 'The sign of the second derivative at each point'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: "3*x**2 - 12 = 0", variable: x, answer: ["2", "-2"]}
+        - {kind: compare, lhs: "6*(-2)", relation: "<", rhs: "0"}
+        - {kind: compare, lhs: "6*2", relation: ">", rhs: "0"}
+    answer_text: '$\dfrac{dy}{dx} = 3x^2 - 12 = 0$ gives $x = 2$ and $x = -2$. The second derivative is $6x$: at $x = -2$ it is $-12 < 0$, a maximum; at $x = 2$ it is $12 > 0$, a minimum.'
+
+  - id: r7-tangent
+    section: "7.5"
+    dfe: [G3]
+    statement: 'Find the gradient of the tangent to $y = x^2 - 4x$ at $x = 3$.'
+    answer_label: 'The gradient'
+    check:
+      kind: apply
+      expression: "2*x - 4"
+      apply: {op: subs, args: [x, 3]}
+      answer: "2"
+    answer_text: '$\dfrac{dy}{dx} = 2x - 4$, which is $2$ at $x = 3$. The point on the curve is $(3, -3)$, so the tangent is $y = 2x - 9$.'
+
+  - id: r8-exponential-equation
+    section: "7.3"
+    dfe: [G2, F5]
+    statement: 'Solve $2^x = 7$, giving $x$ to three significant figures.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "2**x = 7"
+      variable: "x"
+      answer: ["ln(7)/ln(2)"]
+    answer_text: 'Take logarithms of both sides: $x = \dfrac{\ln 7}{\ln 2} \approx 2.81$ to three significant figures.'
+
+  - id: r9-trigonometric-equation
+    section: "7.3"
+    dfe: [E7]
+    statement: 'Solve $\sin\theta = \dfrac{1}{2}$ for $0 \le \theta < 2\pi$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "sin(x) = 1/2"
+      variable: "x"
+      interval: ["0", "2*pi"]
+      answer: ["pi/6", "5*pi/6"]
+    answer_text: 'The principal value is $\dfrac{\pi}{6}$. The second solution in the interval is $\pi - \dfrac{\pi}{6} = \dfrac{5\pi}{6}$.'
+
+  - id: r10-surd
+    section: "7.3"
+    dfe: [B2]
+    statement: 'Write $\sqrt{75} + \sqrt{12}$ in the form $k\sqrt{3}$.'
+    answer_label: 'The value of $k$'
+    check:
+      kind: evaluate
+      expression: "sqrt(75) + sqrt(12)"
+      answer: "7*sqrt(3)"
+    answer_text: '$\sqrt{75} = 5\sqrt{3}$ and $\sqrt{12} = 2\sqrt{3}$, so the sum is $7\sqrt{3}$. The value of $k$ is $7$.'
+
+  - id: r11-proof
+    section: "1.2"
+    dfe: [A1]
+    statement: 'Show that $(n + 1)^2 - n^2$ is always odd.'
+    answer_label: 'The simplified difference'
+    check:
+      kind: evaluate
+      expression: "(n + 1)**2 - n**2 - (2*n + 1)"
+      answer: "0"
+    answer_text: 'Expand: $(n + 1)^2 - n^2 = n^2 + 2n + 1 - n^2 = 2n + 1$. This is one more than an even number, so it is always odd.'
+
+  - id: r12-binomial
+    section: "7.3"
+    dfe: [D1]
+    statement: 'Find the coefficient of $x^3$ in the expansion of $(2 + x)^6$.'
+    answer_label: 'The coefficient'
+    check:
+      kind: evaluate
+      expression: "binomial(6, 3)*2**3"
+      answer: "160"
+    answer_text: 'The term in $x^3$ is $\binom{6}{3}2^3x^3 = 20 \times 8x^3 = 160x^3$, so the coefficient is $160$.'
+
+  - id: r13-connected-rate
+    section: "7.8"
+    dfe: [G4]
+    statement: 'A balloon has $\dfrac{dV}{dt} = 200$ cm$^3$/s. Find $\dfrac{dr}{dt}$ when $r = 5$ cm.'
+    answer_label: 'The rate'
+    check:
+      kind: evaluate
+      expression: "200/(4*pi*5**2)"
+      answer: "2/pi"
+    answer_text: '$\dfrac{dV}{dr} = 4\pi r^2 = 100\pi$ at $r = 5$. Then $200 = 100\pi \dfrac{dr}{dt}$, so $\dfrac{dr}{dt} = \dfrac{2}{\pi} \approx 0.637$ cm/s.'
+
+  - id: r14-differential-equation
+    section: "7.10"
+    dfe: [G6, OT3]
+    statement: 'A radioactive mass $m$ decays at a rate proportional to $m$. Write the differential equation and show that $m = m_0e^{-kt}$ satisfies it.'
+    answer_label: 'The differential equation'
+    check:
+      kind: apply
+      expression: "diff(m(t), t) + k*m(t)"
+      apply: {op: dsolve, dependent: m, independent: t}
+      equation: "diff(m(t), t) = -k*m(t)"
+      answer: "C1*exp(-k*t)"
+    answer_text: 'The mass falls, so $\dfrac{dm}{dt} = -km$ with $k > 0$. Substituting $m = m_0e^{-kt}$ gives $\dfrac{dm}{dt} = -km_0e^{-kt} = -km$.'

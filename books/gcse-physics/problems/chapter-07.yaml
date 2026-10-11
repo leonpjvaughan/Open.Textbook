@@ -1,0 +1,307 @@
+# Worked solutions for Chapter 7 (Magnetism and electromagnetism).
+#
+# These are the numerical worked examples, the guided calculations and the
+# warm-up recalls that the Learn and Practise with help pages show. The pages
+# carry the prose and the reasoning; this bank is the independent check of every
+# number in them, so a slip in a worked example cannot ship. The records are not
+# rendered by a page marker: the pages write their own working, and the
+# `:::answers` blocks come from the practice banks.
+#
+# Each calculation proves the exact magnitude and dimension with `dimensions`
+# (or `evaluate` where the check cannot carry a unit) and the one rounding with
+# `sigfigs`. A descriptive answer uses `structured` elsewhere; the descriptive
+# worked examples on the pages carry no number, so they need no record here.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics.
+chapter: 7
+problems:
+  # --- Section 7.1, the guided calculations -----------------------------------
+  - id: w1-distance-cm
+    section: '7.1'
+    tier: F
+    dfe: [MG1]
+    statement: 'A compass is placed 8.0 cm from a magnet. Write this distance in metres.'
+    answer_label: 'The distance in metres'
+    check:
+      kind: convert
+      value: '8.0'
+      from: cm
+      to: m
+      answer: '0.080'
+    answer_text: '$8.0\,\text{cm} = 0.080\,\text{m}$.'
+
+  - id: w2-acceleration
+    section: '7.1'
+    tier: F
+    dfe: [MG1]
+    statement: 'A magnetic force of 0.40 N acts on a steel ball of mass 0.10 kg. Calculate the acceleration of the ball.'
+    answer_label: 'Acceleration of the ball'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / m"
+          values:
+            F: {value: "0.40", unit: "N"}
+            m: {value: "0.10", unit: "kg"}
+          answer: {value: "4.0", unit: "m/s^2"}
+        - {kind: sigfigs, value: "4.0", figures: 2, answer: "4.0", convention: round-once}
+    answer_text: '$a = \dfrac{F}{m} = \dfrac{0.40}{0.10} = 4.0\,\text{m/s}^2$.'
+
+  # --- Section 7.2, the Learn worked examples and guided calculations ---------
+  - id: w3-motor-force
+    section: '7.2'
+    tier: H
+    dfe: [MG2]
+    statement: 'A wire of length 0.15 m carries a current of 2.0 A at right angles to a magnetic field of flux density 0.25 T. Calculate the force on the wire.'
+    answer_label: 'Force on the wire'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "B * I * l"
+          values:
+            B: {value: "0.25", unit: "T"}
+            I: {value: "2.0", unit: "A"}
+            l: {value: "0.15", unit: "m"}
+          answer: {value: "0.075", unit: "N"}
+        - {kind: sigfigs, value: "0.075", figures: 2, answer: "0.075", convention: round-once}
+    answer_text: '$F = BIl = 0.25 \times 2.0 \times 0.15 = 0.075\,\text{N}$.'
+
+  - id: w4-motor-flux
+    section: '7.2'
+    tier: H
+    dfe: [MG2]
+    statement: 'A wire of length 0.50 m carries a current of 4.0 A and feels a force of 0.20 N at right angles to a magnetic field. Calculate the magnetic flux density.'
+    answer_label: 'Magnetic flux density'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / (I * l)"
+          values:
+            F: {value: "0.20", unit: "N"}
+            I: {value: "4.0", unit: "A"}
+            l: {value: "0.50", unit: "m"}
+          answer: {value: "0.10", unit: "T"}
+        - {kind: sigfigs, value: "0.10", figures: 2, answer: "0.10", convention: round-once}
+    answer_text: '$B = \dfrac{F}{Il} = \dfrac{0.20}{4.0 \times 0.50} = 0.10\,\text{T}$.'
+
+  - id: w5-guided-force
+    section: '7.2'
+    tier: H
+    dfe: [MG2]
+    statement: 'A wire of length 0.20 m carries a current of 3.0 A at right angles to a magnetic field of flux density 0.40 T. Calculate the force on the wire.'
+    answer_label: 'Force on the wire'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "B * I * l"
+          values:
+            B: {value: "0.40", unit: "T"}
+            I: {value: "3.0", unit: "A"}
+            l: {value: "0.20", unit: "m"}
+          answer: {value: "0.24", unit: "N"}
+        - {kind: sigfigs, value: "0.24", figures: 2, answer: "0.24", convention: round-once}
+    answer_text: '$F = BIl = 0.40 \times 3.0 \times 0.20 = 0.24\,\text{N}$.'
+
+  - id: w6-guided-current
+    section: '7.2'
+    tier: H
+    dfe: [MG2]
+    statement: 'The force on a wire of length 0.50 m is 0.60 N. The wire sits at right angles to a magnetic field of flux density 0.30 T. Calculate the current in the wire.'
+    answer_label: 'Current in the wire'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / (B * l)"
+          values:
+            F: {value: "0.60", unit: "N"}
+            B: {value: "0.30", unit: "T"}
+            l: {value: "0.50", unit: "m"}
+          answer: {value: "4.0", unit: "A"}
+        - {kind: sigfigs, value: "4.0", figures: 2, answer: "4.0", convention: round-once}
+    answer_text: '$I = \dfrac{F}{Bl} = \dfrac{0.60}{0.30 \times 0.50} = 4.0\,\text{A}$.'
+
+  # --- Section 7.3, the Learn worked examples and guided calculations ---------
+  - id: w7-transformer-turns
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'A transformer has 200 turns on the primary coil and 50 turns on the secondary coil. The primary potential difference is 12 V. Calculate the secondary potential difference.'
+    answer_label: 'Secondary potential difference'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "12 * 50 / 200", answer: "3"}
+        - {kind: sigfigs, value: "3", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: '$V_s = V_p \times \dfrac{n_s}{n_p} = 12 \times \dfrac{50}{200} = 3.0\,\text{V}$.'
+
+  - id: w8-anchor-turns
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'The transformer in the chapter problem steps 12 000 V down to 240 V. The primary coil has 4000 turns. Calculate the number of turns on the secondary coil.'
+    answer_label: 'Number of turns on the secondary coil'
+    check: {kind: evaluate, expression: "4000 * 240 / 12000", answer: "80"}
+    answer_text: '$n_s = n_p \times \dfrac{V_s}{V_p} = 4000 \times \dfrac{240}{12\,000} = 80$ turns.'
+
+  - id: w9-anchor-current
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'The yard in the chapter problem uses 24 kW of power. The transmission line delivers it at 12 000 V. Calculate the current in the line.'
+    answer_label: 'Current in the transmission line'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P / V"
+          values:
+            P: {value: "24", unit: "kW"}
+            V: {value: "12000", unit: "V"}
+          answer: {value: "2.0", unit: "A"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$I = \dfrac{P}{V} = \dfrac{24\,000}{12\,000} = 2.0\,\text{A}$.'
+
+  - id: w10-guided-vs
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'A transformer has 500 turns on the primary coil and 100 turns on the secondary coil. The primary potential difference is 240 V. Calculate the secondary potential difference.'
+    answer_label: 'Secondary potential difference'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "240 * 100 / 500", answer: "48"}
+        - {kind: sigfigs, value: "48", figures: 2, answer: "48", convention: round-once}
+    answer_text: '$V_s = V_p \times \dfrac{n_s}{n_p} = 240 \times \dfrac{100}{500} = 48\,\text{V}$.'
+
+  - id: w11-guided-np
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'A step-up transformer changes 12 V to 240 V. The secondary coil has 2000 turns. Calculate the number of turns on the primary coil.'
+    answer_label: 'Number of turns on the primary coil'
+    check: {kind: evaluate, expression: "2000 * 12 / 240", answer: "100"}
+    answer_text: '$n_p = n_s \times \dfrac{V_p}{V_s} = 2000 \times \dfrac{12}{240} = 100$ turns.'
+
+  - id: w12-guided-is
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'A transformer has a primary potential difference of 11 000 V and a primary current of 0.50 A. The secondary potential difference is 250 V. Assume the transformer is 100% efficient. Calculate the secondary current.'
+    answer_label: 'Secondary current'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "Vp * Ip / Vs"
+          values:
+            Vp: {value: "11000", unit: "V"}
+            Ip: {value: "0.50", unit: "A"}
+            Vs: {value: "250", unit: "V"}
+          answer: {value: "22", unit: "A"}
+        - {kind: sigfigs, value: "22", figures: 2, answer: "22", convention: round-once}
+    answer_text: '$I_s = \dfrac{V_p I_p}{V_s} = \dfrac{11\,000 \times 0.50}{250} = 22\,\text{A}$.'
+
+  # --- Section 7.4, the Learn worked example and guided calculation -----------
+  - id: w13-speaker-force
+    section: '7.4'
+    tier: H
+    dfe: [MG4]
+    statement: 'A loudspeaker coil has 0.050 m of wire inside the magnetic field. The flux density is 0.20 T and the current is 0.50 A. Calculate the force on the coil.'
+    answer_label: 'Force on the coil'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "B * I * l"
+          values:
+            B: {value: "0.20", unit: "T"}
+            I: {value: "0.50", unit: "A"}
+            l: {value: "0.050", unit: "m"}
+          answer: {value: "0.0050", unit: "N"}
+        - {kind: sigfigs, value: "0.0050", figures: 2, answer: "0.0050", convention: round-once}
+    answer_text: '$F = BIl = 0.20 \times 0.50 \times 0.050 = 0.0050\,\text{N}$.'
+
+  - id: w14-guided-speaker-force
+    section: '7.4'
+    tier: H
+    dfe: [MG4]
+    statement: 'A loudspeaker coil has 0.10 m of wire inside the magnetic field. The flux density is 0.30 T and the current is 0.40 A. Calculate the force on the coil.'
+    answer_label: 'Force on the coil'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "B * I * l"
+          values:
+            B: {value: "0.30", unit: "T"}
+            I: {value: "0.40", unit: "A"}
+            l: {value: "0.10", unit: "m"}
+          answer: {value: "0.012", unit: "N"}
+        - {kind: sigfigs, value: "0.012", figures: 2, answer: "0.012", convention: round-once}
+    answer_text: '$F = BIl = 0.30 \times 0.40 \times 0.10 = 0.012\,\text{N}$.'
+
+  # --- Section 7.2, the relay interpretation (physics only) -------------------
+  - id: w15-relay
+    section: '7.2'
+    tier: F
+    dfe: [MG2]
+    statement: 'A relay has a coil of wire on an iron core, an iron armature, and a switch. A small current flows through the coil. Explain how the relay closes a switch in a larger circuit.'
+    answer_label: 'How the relay works'
+    check:
+      kind: structured
+      requires: [electromagnet, armature-attracted, switch-closes]
+      concepts: [electromagnet, magnetic-material]
+      points:
+        - id: electromagnet
+          text: 'The small current makes the coil into an electromagnet.'
+          concepts: [electromagnet]
+        - id: armature-attracted
+          text: 'The electromagnet attracts the iron armature. Iron is a magnetic material, so the force is one of attraction.'
+          concepts: [magnetic-material]
+        - id: switch-closes
+          text: 'The armature moves and closes the switch, so a small current controls a larger current.'
+          concepts: [electromagnet]
+
+  # --- The warm-up recalls ----------------------------------------------------
+  - id: warmup-7-1-acceleration
+    section: '7.1'
+    tier: F
+    dfe: [FO6]
+    statement: 'Warm-up: a resultant force of 12 N acts on an object of mass 3.0 kg. Calculate the acceleration.'
+    answer_label: 'Acceleration'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / m"
+          values:
+            F: {value: "12", unit: "N"}
+            m: {value: "3.0", unit: "kg"}
+          answer: {value: "4.0", unit: "m/s^2"}
+        - {kind: sigfigs, value: "4.0", figures: 2, answer: "4.0", convention: round-once}
+    answer_text: '$a = \dfrac{F}{m} = \dfrac{12}{3.0} = 4.0\,\text{m/s}^2$.'
+
+  - id: warmup-7-3-power
+    section: '7.3'
+    tier: H
+    dfe: [EL4]
+    statement: 'Warm-up: a power supply has a potential difference of 12 V and drives a current of 2.0 A. Calculate the power.'
+    answer_label: 'Power'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V * I"
+          values:
+            V: {value: "12", unit: "V"}
+            I: {value: "2.0", unit: "A"}
+          answer: {value: "24", unit: "W"}
+        - {kind: sigfigs, value: "24", figures: 2, answer: "24", convention: round-once}
+    answer_text: '$P = VI = 12 \times 2.0 = 24\,\text{W}$.'

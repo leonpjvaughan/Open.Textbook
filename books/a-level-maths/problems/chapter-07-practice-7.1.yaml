@@ -1,0 +1,124 @@
+# Practice set for 7.1, the derivative as a gradient and a rate of change.
+#
+# The checks prove the arithmetic of each gradient, chord and rate. Reading a
+# gradient from a diagram, choosing the right chord and interpreting a rate in
+# context are human review, not CAS checks.
+chapter: 7
+symbols:
+  x: {real: true}
+  t: {real: true}
+  P: {real: true}
+problems:
+  - id: p1-line-gradient
+    section: "7.1"
+    dfe: [G1]
+    statement: 'Find the gradient of the straight line through $(2, 5)$ and $(6, 17)$.'
+    answer_label: 'The gradient'
+    check:
+      kind: evaluate
+      expression: "(17 - 5)/(6 - 2)"
+      answer: "3"
+    answer_text: 'Gradient $= \dfrac{17 - 5}{6 - 2} = \dfrac{12}{4} = 3$. This is the same at every point on the line.'
+
+  - id: p2-chord-quadratic
+    section: "7.1"
+    dfe: [G1]
+    statement: 'The curve $y = x^2$ passes through $P(1, 1)$ and $Q(3, 9)$. Find the gradient of the chord $PQ$.'
+    answer_label: 'The gradient of the chord'
+    check:
+      kind: evaluate
+      expression: "(9 - 1)/(3 - 1)"
+      answer: "4"
+    answer_text: 'Gradient $= \dfrac{9 - 1}{3 - 1} = \dfrac{8}{2} = 4$. The chord is steeper than the tangent at $P$, because it reaches all the way to $Q$.'
+
+  - id: p3-chord-close
+    section: "7.1"
+    dfe: [G1]
+    statement: 'The curve $y = x^2$ passes through $P(1, 1)$ and $Q(1.5, 2.25)$. Find the gradient of the chord $PQ$.'
+    answer_label: 'The gradient of the chord'
+    check:
+      kind: evaluate
+      expression: "(2.25 - 1)/(1.5 - 1)"
+      answer: "2.5"
+    answer_text: 'Gradient $= \dfrac{2.25 - 1}{1.5 - 1} = \dfrac{1.25}{0.5} = 2.5$. Moving $Q$ closer to $P$ has brought the gradient from $4$ to $2.5$, towards the tangent value $2$.'
+
+  - id: p4-estimate-cubic
+    section: "7.1"
+    dfe: [G1]
+    statement: 'Use the chord from $(2, 8)$ to $(2.1, 9.261)$ on the curve $y = x^3$ to estimate the gradient at $x = 2$. Give your answer to two decimal places.'
+    answer_label: 'The estimated gradient'
+    check:
+      kind: evaluate
+      expression: "(2.1**3 - 2**3)/(2.1 - 2)"
+      answer: "12.61"
+    answer_text: 'Gradient $= \dfrac{9.261 - 8}{2.1 - 2} = \dfrac{1.261}{0.1} = 12.61$. A shorter chord moves the estimate nearer to the true gradient, which is $12$.'
+
+  - id: p5-gradient-zero
+    section: "7.1"
+    dfe: [G1]
+    statement: 'A curve has gradient function $f''(x) = 3x^2 - 6x$. Find the two values of $x$ where the gradient is zero.'
+    answer_label: 'The two values of $x$'
+    check:
+      kind: solve
+      equation: "3*x**2 - 6*x = 0"
+      variable: "x"
+      answer: ["0", "2"]
+    answer_text: 'Factorise: $3x(x - 2) = 0$, so $x = 0$ or $x = 2$. At both points the tangent is horizontal.'
+
+  - id: p6-gradient-value
+    section: "7.1"
+    dfe: [G1]
+    statement: 'A curve has gradient function $f''(x) = 3x^2 - 6x$. Work out the gradient at $x = 3$.'
+    answer_label: 'The gradient at $x = 3$'
+    check:
+      kind: apply
+      expression: "3*x**2 - 6*x"
+      apply: {op: subs, args: [x, 3]}
+      answer: "9"
+    answer_text: 'Substitute $x = 3$: $3(9) - 6(3) = 27 - 18 = 9$. The gradient is positive, so the curve is rising at $x = 3$.'
+
+  - id: p7-average-speed
+    section: "7.1"
+    dfe: [G1]
+    statement: 'A stone falls a distance $s = 5t^2$ metres in $t$ seconds. Find the average speed between $t = 1$ and $t = 3$ seconds.'
+    answer_label: 'The average speed'
+    check:
+      kind: evaluate
+      expression: "(5*3**2 - 5*1**2)/(3 - 1)"
+      answer: "20"
+    answer_text: 'The stone falls $45 - 5 = 40$ m in $2$ s, so the average speed is $\dfrac{40}{2} = 20$ m/s. This is the average over the interval, not the speed at one instant.'
+
+  - id: p8-population-rate
+    section: "7.1"
+    dfe: [G1]
+    statement: 'The population $P$ of a village after $t$ years is modelled by $\dfrac{dP}{dt} = 40 - 4t$. Work out the rate of change of the population at $t = 5$.'
+    answer_label: 'The rate of change'
+    check:
+      kind: apply
+      expression: "40 - 4*t"
+      apply: {op: subs, args: [t, 5]}
+      answer: "20"
+    answer_text: 'Substitute $t = 5$: $40 - 4(5) = 20$. The population is still growing at $20$ people per year at $t = 5$.'
+
+  - id: p9-flat-points
+    section: "7.1"
+    dfe: [G1]
+    statement: 'A curve has gradient function $f''(x) = (x - 1)(x - 4)$. Find the two values of $x$ where the curve is flat.'
+    answer_label: 'The two values of $x$'
+    check:
+      kind: solve
+      equation: "(x - 1)*(x - 4) = 0"
+      variable: "x"
+      answer: ["1", "4"]
+    answer_text: 'A flat point has gradient zero, so $(x - 1)(x - 4) = 0$. Therefore $x = 1$ or $x = 4$.'
+
+  - id: p10-temperature-fall
+    section: "7.1"
+    dfe: [G1]
+    statement: 'A drink cools so that its temperature after $t$ minutes is $\theta = 100 - 3t$ degrees Celsius. Work out the change in temperature over $4$ minutes.'
+    answer_label: 'The change in temperature'
+    check:
+      kind: evaluate
+      expression: "(100 - 3*4) - 100"
+      answer: "-12"
+    answer_text: 'The change is $\theta(4) - \theta(0) = 88 - 100 = -12$ degrees. The negative sign shows that the temperature falls, and the rate is $-3$ degrees per minute.'

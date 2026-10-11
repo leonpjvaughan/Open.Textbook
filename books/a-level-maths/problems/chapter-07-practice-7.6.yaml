@@ -1,0 +1,128 @@
+# Practice set for 7.6, increasing and decreasing functions.
+#
+# Every check solves the inequality f'(x) > 0 or f'(x) < 0 and compares the
+# solution set. Reading the intervals off a sign table and linking them to the
+# shape of the curve is human review.
+chapter: 7
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-decreasing-quadratic
+    section: "7.6"
+    dfe: [G3]
+    statement: 'Find the interval on which $y = x^2 - 10x$ is decreasing.'
+    answer_label: 'The interval'
+    check:
+      kind: inequality
+      inequality: "2*x - 10 < 0"
+      variable: "x"
+      answer: "Interval.open(-oo, 5)"
+    answer_text: '$\dfrac{dy}{dx} = 2x - 10 < 0$ gives $x < 5$. The curve is decreasing for $x < 5$ and increasing for $x > 5$, with a minimum at $x = 5$.'
+
+  - id: p2-increasing-cubic
+    section: "7.6"
+    dfe: [G3]
+    statement: 'Find the intervals on which $y = x^3 - 3x^2$ is increasing.'
+    answer_label: 'The intervals'
+    check:
+      kind: inequality
+      inequality: "3*x*(x - 2) > 0"
+      variable: "x"
+      answer: "Union(Interval.open(-oo, 0), Interval.open(2, oo))"
+    answer_text: '$\dfrac{dy}{dx} = 3x^2 - 6x = 3x(x - 2) > 0$. The product is positive outside the roots, so the curve is increasing for $x < 0$ and for $x > 2$.'
+
+  - id: p3-decreasing-between-roots
+    section: "7.6"
+    dfe: [G3]
+    statement: 'Find the interval on which $y = x^3 - 12x + 1$ is decreasing.'
+    answer_label: 'The interval'
+    check:
+      kind: inequality
+      inequality: "3*x**2 - 12 < 0"
+      variable: "x"
+      answer: "Interval.open(-2, 2)"
+    answer_text: '$\dfrac{dy}{dx} = 3x^2 - 12 = 3(x - 2)(x + 2) < 0$. The product is negative between the roots, so the curve is decreasing for $-2 < x < 2$.'
+
+  - id: p4-increasing-cubic-factor
+    section: "7.6"
+    dfe: [G3]
+    statement: 'Find the intervals on which $y = 2x^3 - 3x^2 - 12x$ is increasing.'
+    answer_label: 'The intervals'
+    check:
+      kind: inequality
+      inequality: "6*(x - 2)*(x + 1) > 0"
+      variable: "x"
+      answer: "Union(Interval.open(-oo, -1), Interval.open(2, oo))"
+    answer_text: '$\dfrac{dy}{dx} = 6x^2 - 6x - 12 = 6(x - 2)(x + 1) > 0$. The product is positive outside the roots, so the curve is increasing for $x < -1$ and for $x > 2$.'
+
+  - id: p5-increasing-given-derivative
+    section: "7.6"
+    dfe: [G3]
+    statement: 'A function has $f''(x) = (x - 1)(x - 5)$. Find the intervals on which $f$ is increasing.'
+    answer_label: 'The intervals'
+    check:
+      kind: inequality
+      inequality: "(x - 1)*(x - 5) > 0"
+      variable: "x"
+      answer: "Union(Interval.open(-oo, 1), Interval.open(5, oo))"
+    answer_text: 'The product $(x - 1)(x - 5)$ is positive outside the roots, so $f$ is increasing for $x < 1$ and for $x > 5$.'
+
+  - id: p6-increasing-line
+    section: "7.6"
+    dfe: [G3]
+    statement: 'Find the interval on which $y = x^2 + 6x + 1$ is increasing.'
+    answer_label: 'The interval'
+    check:
+      kind: inequality
+      inequality: "2*x + 6 > 0"
+      variable: "x"
+      answer: "Interval.open(-3, oo)"
+    answer_text: '$\dfrac{dy}{dx} = 2x + 6 > 0$ gives $x > -3$. The curve is increasing for $x > -3$, with a minimum at $x = -3$.'
+
+  - id: p7-decreasing-given-derivative
+    section: "7.6"
+    dfe: [G3]
+    statement: 'A function has $f''(x) = 3(x - 1)(x - 3)$. Find the interval on which $f$ is decreasing.'
+    answer_label: 'The interval'
+    check:
+      kind: inequality
+      inequality: "3*(x - 1)*(x - 3) < 0"
+      variable: "x"
+      answer: "Interval.open(1, 3)"
+    answer_text: 'The product is negative between the roots, so $f$ is decreasing for $1 < x < 3$. It is increasing for $x < 1$ and for $x > 3$.'
+
+  - id: p8-decreasing-cubic
+    section: "7.6"
+    dfe: [G3]
+    statement: 'Find the interval on which $y = x^3 - 6x^2 + 9x$ is decreasing.'
+    answer_label: 'The interval'
+    check:
+      kind: inequality
+      inequality: "3*(x - 1)*(x - 3) < 0"
+      variable: "x"
+      answer: "Interval.open(1, 3)"
+    answer_text: '$\dfrac{dy}{dx} = 3x^2 - 12x + 9 = 3(x - 1)(x - 3) < 0$, so the curve is decreasing for $1 < x < 3$. The gradient is zero at $x = 1$ and $x = 3$.'
+
+  - id: p9-increasing-quadratic
+    section: "7.6"
+    dfe: [G3]
+    statement: 'Find the interval on which $y = 2x^2 - 8x + 3$ is increasing.'
+    answer_label: 'The interval'
+    check:
+      kind: inequality
+      inequality: "4*x - 8 > 0"
+      variable: "x"
+      answer: "Interval.open(2, oo)"
+    answer_text: '$\dfrac{dy}{dx} = 4x - 8 > 0$ gives $x > 2$. The minimum is at $x = 2$.'
+
+  - id: p10-increasing-factored
+    section: "7.6"
+    dfe: [G3]
+    statement: 'A function has $f''(x) = 6(x + 4)(x - 2)$. Find the intervals on which $f$ is increasing.'
+    answer_label: 'The intervals'
+    check:
+      kind: inequality
+      inequality: "6*(x + 4)*(x - 2) > 0"
+      variable: "x"
+      answer: "Union(Interval.open(-oo, -4), Interval.open(2, oo))"
+    answer_text: 'The product is positive outside the roots $x = -4$ and $x = 2$, so $f$ is increasing for $x < -4$ and for $x > 2$.'

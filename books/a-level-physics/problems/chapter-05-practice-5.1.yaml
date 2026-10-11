@@ -1,0 +1,182 @@
+# Practice set for 5.1 (Current, charge and emf).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]` in book.yaml, so a check may use either.
+#
+# A charge, a current, a potential difference and a resistance are checked by
+# `dimensions`, which carries the units exactly and refuses a dimensionally wrong
+# answer. A pure ratio is checked by `evaluate`. A reason is a `structured`
+# record: presence, order and coverage only, never physics.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 5
+problems:
+  - id: p1-charge
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A current of $0.40\,\text{A}$ flows for $25\,\text{s}$. Find the charge that flows.'
+    answer_label: 'The charge'
+    check:
+      kind: dimensions
+      expression: "I * t"
+      values:
+        I: {value: "0.40", unit: "A"}
+        t: {value: "25", unit: "s"}
+      answer: {value: "10", unit: "C"}
+    answer_text: 'The charge is $\Delta Q = I\Delta t = 0.40 \times 25 = 10\,\text{C}$.'
+
+  - id: p2-current
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A charge of $90\,\text{C}$ passes a point in a circuit in $60\,\text{s}$. Find the current.'
+    answer_label: 'The current'
+    check:
+      kind: dimensions
+      expression: "Q / t"
+      values:
+        Q: {value: "90", unit: "C"}
+        t: {value: "60", unit: "s"}
+      answer: {value: "1.5", unit: "A"}
+    answer_text: 'The current is $I = \dfrac{\Delta Q}{\Delta t} = \dfrac{90}{60} = 1.5\,\text{A}$.'
+
+  - id: p3-electrons
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'Find the number of electrons that carry a charge of $1.6\,\text{C}$. Use $e = 1.60 \times 10^{-19}\,\text{C}$.'
+    answer_label: 'The number of electrons'
+    check: {kind: evaluate, expression: "1.6 / 1.60e-19", answer: "1.0e19"}
+    answer_text: 'Each electron carries $1.60 \times 10^{-19}\,\text{C}$, so $n = \dfrac{1.6}{1.60 \times 10^{-19}} = 1.0 \times 10^{19}$ electrons.'
+
+  - id: p4-terminal-pd
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A battery has an emf of $6.0\,\text{V}$ and an internal resistance of $0.20\,\Omega$. It drives a current of $0.50\,\text{A}$. Find the terminal potential difference.'
+    answer_label: 'The terminal potential difference'
+    check:
+      kind: dimensions
+      expression: "emf - I * r"
+      values:
+        emf: {value: "6.0", unit: "V"}
+        I: {value: "0.50", unit: "A"}
+        r: {value: "0.20", unit: "ohm"}
+      answer: {value: "5.9", unit: "V"}
+    answer_text: 'The lost volts are $Ir = 0.50 \times 0.20 = 0.10\,\text{V}$, so $V = 6.0 - 0.10 = 5.9\,\text{V}$.'
+
+  - id: p5-power-energy
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A component has a potential difference of $12\,\text{V}$ across it and a current of $0.25\,\text{A}$ through it for $60\,\text{s}$. Find the power and the energy transferred.'
+    answer_label: 'The power and the energy'
+    check: {kind: evaluate, expression: "12 * 0.25 * 60", answer: "180"}
+    answer_text: '$P = VI = 12 \times 0.25 = 3.0\,\text{W}$ and $W = VIt = 12 \times 0.25 \times 60 = 180\,\text{J}$.'
+
+  - id: p6-circuit
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A cell of emf $1.5\,\text{V}$ and internal resistance $0.30\,\Omega$ is connected to a $1.2\,\Omega$ resistor. Find the current and the terminal potential difference.'
+    answer_label: 'The current and the terminal potential difference'
+    check:
+      kind: dimensions
+      expression: "emf / (R + r)"
+      values:
+        emf: {value: "1.5", unit: "V"}
+        R: {value: "1.2", unit: "ohm"}
+        r: {value: "0.30", unit: "ohm"}
+      answer: {value: "1.0", unit: "A"}
+    answer_text: '$I = \dfrac{1.5}{1.2 + 0.30} = \dfrac{1.5}{1.50} = 1.0\,\text{A}$ and $V = 1.5 - (1.0 \times 0.30) = 1.2\,\text{V}$.'
+
+  - id: p7-charge-time
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A current of $2.0\,\text{A}$ flows for $5.0$ minutes. Find the charge that flows.'
+    answer_label: 'The charge'
+    check:
+      kind: dimensions
+      expression: "I * t"
+      values:
+        I: {value: "2.0", unit: "A"}
+        t: {value: "300", unit: "s"}
+      answer: {value: "600", unit: "C"}
+    answer_text: 'The time is $5.0 \times 60 = 300\,\text{s}$. The charge is $I\Delta t = 2.0 \times 300 = 600\,\text{C}$.'
+
+  - id: p8-electrons
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'Find the number of electrons that carry a charge of $0.32\,\text{C}$. Use $e = 1.60 \times 10^{-19}\,\text{C}$.'
+    answer_label: 'The number of electrons'
+    check: {kind: evaluate, expression: "0.32 / 1.60e-19", answer: "2.0e18"}
+    answer_text: '$n = \dfrac{Q}{e} = \dfrac{0.32}{1.60 \times 10^{-19}} = 2.0 \times 10^{18}$ electrons.'
+
+  - id: p9-internal
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A battery has an emf of $24\,\text{V}$ and an internal resistance of $0.50\,\Omega$. It drives a current of $4.0\,\text{A}$. Find the terminal potential difference and the external resistance.'
+    answer_label: 'The terminal potential difference and the external resistance'
+    check:
+      kind: dimensions
+      expression: "emf - I * r"
+      values:
+        emf: {value: "24", unit: "V"}
+        I: {value: "4.0", unit: "A"}
+        r: {value: "0.50", unit: "ohm"}
+      answer: {value: "22", unit: "V"}
+    answer_text: '$V = 24 - (4.0 \times 0.50) = 22\,\text{V}$. The external resistance is $R = \dfrac{V}{I} = \dfrac{22}{4.0} = 5.5\,\Omega$.'
+
+  - id: p10-energy
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A battery of emf $9.0\,\text{V}$ transfers a charge of $5.0\,\text{C}$. Find the energy transferred to the charge.'
+    answer_label: 'The energy transferred'
+    check:
+      kind: dimensions
+      expression: "emf * Q"
+      values:
+        emf: {value: "9.0", unit: "V"}
+        Q: {value: "5.0", unit: "C"}
+      answer: {value: "45", unit: "J"}
+    answer_text: 'The energy is $W = \varepsilon Q = 9.0 \times 5.0 = 45\,\text{J}$.'
+
+  - id: p11-emf-vs-pd
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'Explain the difference between the emf of a battery and the potential difference across a bulb in the circuit.'
+    answer_label: 'The difference between emf and potential difference'
+    check:
+      kind: structured
+      requires: [define-emf, define-pd, energy-source-or-component]
+      concepts: [emf, potential-difference, energy-transfer]
+      points:
+        - id: define-emf
+          text: 'The emf is the energy transferred to each unit of charge by the battery. It is the energy given to the charge.'
+          concepts: [emf, energy-transfer]
+        - id: define-pd
+          text: 'The potential difference across the bulb is the energy transferred from each unit of charge by the bulb. It is the energy taken from the charge.'
+          concepts: [potential-difference, energy-transfer]
+        - id: energy-source-or-component
+          text: 'Both are measured in volts, but the emf is a property of the source and the potential difference is a property of a component. Around a complete circuit the energy given to the charge equals the energy taken from it.'
+          concepts: [emf, potential-difference]
+    answer_text: 'The emf is the energy given to each unit of charge by the battery. The potential difference across the bulb is the energy taken from each unit of charge by the bulb. Both are measured in volts, but one describes the source and the other describes a component.'
+
+  - id: p12-internal-resistance
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'Explain why the terminal potential difference of a battery is less than its emf when a current flows.'
+    answer_label: 'Why the terminal pd is less than the emf'
+    check:
+      kind: structured
+      requires: [internal-resistance, lost-volts, terminal-pd]
+      concepts: [internal-resistance, emf, terminal-potential-difference]
+      points:
+        - id: internal-resistance
+          text: 'A real battery has internal resistance. The current flows through this resistance as well as through the external circuit, so some energy is transferred inside the battery and heats it.'
+          concepts: [internal-resistance]
+        - id: lost-volts
+          text: 'The potential difference across the internal resistance is the lost volts, I times r. This part of the emf is not available to the external circuit.'
+          concepts: [emf]
+        - id: terminal-pd
+          text: 'Subtracting the lost volts from the emf gives the terminal potential difference, so the terminal pd is less than the emf whenever a current flows. When no current flows there are no lost volts, and the terminal pd equals the emf.'
+          concepts: [terminal-potential-difference]
+    answer_text: 'The current flows through the internal resistance of the battery, so some of the emf is used up inside as the lost volts $Ir$. The terminal pd is the emf minus the lost volts, so it is smaller than the emf whenever a current flows.'

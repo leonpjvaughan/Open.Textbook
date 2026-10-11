@@ -1,0 +1,225 @@
+# Practice set for 6.5 (Static electricity and electric fields).
+#
+# Both the questions and the answers on the page are rendered from these
+# records. Most answers are descriptive, so they use `structured`, which proves
+# only that a model answer contains the declared ideas in order. The charge
+# calculations reuse Section 6.1, and the last records interleave Section 6.4.
+chapter: 6
+symbols: {}
+problems:
+  - id: p1-convert-microcoulombs
+    section: '6.5'
+    tier: F
+    dfe: [EL5]
+    statement: 'Express a charge of 3.0 μC in coulombs, using standard form.'
+    answer_label: '3.0 μC in coulombs'
+    check:
+      kind: convert
+      value: '3.0'
+      from: μC
+      to: C
+      answer: '3.0e-6'
+    answer_text: '$3.0\,\mu\text{C} = 3.0 \times 10^{-6}\,\text{C}$. The prefix micro means one millionth.'
+
+  - id: p2-convert-microseconds
+    section: '6.5'
+    tier: F
+    dfe: [EL5]
+    statement: 'Express a time of 2.0 μs in seconds, using standard form.'
+    answer_label: '2.0 μs in seconds'
+    check:
+      kind: convert
+      value: '2.0'
+      from: μs
+      to: s
+      answer: '2.0e-6'
+    answer_text: '$2.0\,\mu\text{s} = 2.0 \times 10^{-6}\,\text{s}$. The prefix micro means one millionth.'
+
+  - id: p3-spark-current
+    section: '6.5'
+    tier: F
+    dfe: [EL5]
+    statement: 'A spark transfers a charge of 3.0 μC in a time of 1.5 μs. Calculate the average current.'
+    answer_label: 'Average current of the spark'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "Q / t"
+          values:
+            Q: {value: "3.0e-6", unit: "C"}
+            t: {value: "1.5e-6", unit: "s"}
+          answer: {value: "2.0", unit: "A"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$I = \dfrac{Q}{t} = \dfrac{3.0 \times 10^{-6}}{1.5 \times 10^{-6}} = 2.0\,\text{A}$.'
+
+  - id: p4-charging-by-rubbing
+    section: '6.5'
+    tier: F
+    dfe: [EL5]
+    statement: 'Describe how rubbing two insulating materials together makes them electrically charged, and state the sign of the charge on the material that gains electrons.'
+    answer_label: 'How rubbing produces charge'
+    check:
+      kind: structured
+      requires: [electron-transfer, negative]
+      concepts: [static-charge, electron]
+      points:
+        - id: electron-transfer
+          text: 'Electrons are rubbed off one material and on to the other.'
+          concepts: [electron]
+        - id: negative
+          text: 'The material that gains electrons becomes negatively charged, and the material that loses electrons is left with an equal positive charge.'
+          concepts: [static-charge]
+
+  - id: p5-forces-between-charges
+    section: '6.5'
+    tier: F
+    dfe: [EL5]
+    statement: 'State what force acts between two charged objects that carry the same type of charge, and between two that carry opposite types of charge. Say what kind of force this is.'
+    answer_label: 'The forces between charged objects'
+    check:
+      kind: structured
+      requires: [same-charge, opposite-charge, non-contact]
+      concepts: [electrostatic-force]
+      points:
+        - id: same-charge
+          text: 'Two objects with the same type of charge repel each other.'
+          concepts: [electrostatic-force]
+        - id: opposite-charge
+          text: 'Two objects with opposite types of charge attract each other.'
+          concepts: [electrostatic-force]
+        - id: non-contact
+          text: 'Attraction and repulsion between charged objects are non-contact forces, because they act without the objects touching.'
+          concepts: [electrostatic-force]
+
+  - id: p6-field-non-contact
+    section: '6.5'
+    tier: F
+    dfe: [EL5]
+    statement: 'Explain how the idea of an electric field helps to explain the non-contact force between two charged objects.'
+    answer_label: 'The electric field and the non-contact force'
+    check:
+      kind: structured
+      requires: [field-created, force-in-field]
+      concepts: [electric-field]
+      points:
+        - id: field-created
+          text: 'A charged object creates an electric field around itself. The field is strongest close to the object and weaker further away.'
+          concepts: [electric-field]
+        - id: force-in-field
+          text: 'A second charged object placed in the field experiences a force. The force gets stronger as the distance between the objects decreases, so the objects can push or pull each other without touching.'
+          concepts: [electric-field]
+
+  - id: p7-spark
+    section: '6.5'
+    tier: F
+    dfe: [EL5]
+    statement: 'Explain how a strong electric field can cause a spark.'
+    answer_label: 'How an electric field causes a spark'
+    check:
+      kind: structured
+      requires: [field-strong, ionises-air, charge-jumps]
+      concepts: [electric-field, spark]
+      points:
+        - id: field-strong
+          text: 'When charge builds up, the electric field near the object becomes very strong.'
+          concepts: [electric-field]
+        - id: ionises-air
+          text: 'A strong enough field ionises the air in the gap, removing electrons from the air molecules so that the air can conduct.'
+          concepts: [spark]
+        - id: charge-jumps
+          text: 'The ionised air gives the charge a path, so the charge jumps across the gap as a spark.'
+          concepts: [spark]
+
+  - id: p8-field-pattern
+    section: '6.5'
+    tier: F
+    dfe: [EL5]
+    statement: 'Describe the electric field pattern around an isolated charged sphere. Include the direction of the field lines for a positive sphere and for a negative sphere.'
+    answer_label: 'The field pattern of a charged sphere'
+    check:
+      kind: structured
+      requires: [radiate, arrows, spacing]
+      concepts: [electric-field]
+      points:
+        - id: radiate
+          text: 'The field lines radiate from the surface of the sphere, at right angles to the surface.'
+          concepts: [electric-field]
+        - id: arrows
+          text: 'For a positive sphere the arrows point away from the sphere. For a negative sphere the arrows point towards the sphere.'
+          concepts: [electric-field]
+        - id: spacing
+          text: 'The lines are closest together near the surface, so the field is strongest there and weaker further away.'
+          concepts: [electric-field]
+
+  - id: p9-field-strength
+    section: '6.5'
+    tier: F
+    dfe: [EL5]
+    statement: 'Describe how the strength of the electric field around a charged object changes as the distance from the object increases.'
+    answer_label: 'How the field strength changes with distance'
+    check:
+      kind: structured
+      requires: [strongest-close, weaker-far]
+      concepts: [electric-field]
+      points:
+        - id: strongest-close
+          text: 'The electric field is strongest close to the charged object.'
+          concepts: [electric-field]
+        - id: weaker-far
+          text: 'The further away from the charged object, the weaker the field becomes.'
+          concepts: [electric-field]
+
+  - id: p10-charge-interleaved
+    section: '6.5'
+    tier: F
+    dfe: [EL5]
+    statement: 'A current of 0.25 A flows for 80 s. Calculate the charge that flows. This uses the equation from Section 6.1.'
+    answer_label: 'Charge that flows'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * t"
+          values:
+            I: {value: "0.25", unit: "A"}
+            t: {value: "80", unit: "s"}
+          answer: {value: "20", unit: "C"}
+        - {kind: sigfigs, value: "20", figures: 2, answer: "2.0e1", convention: round-once}
+    answer_text: '$Q = It = 0.25 \times 80 = 20\,\text{C} = 2.0 \times 10^1\,\text{C}$.'
+
+  - id: p11-power-interleaved
+    section: '6.5'
+    tier: F
+    dfe: [EL5]
+    statement: 'A device on the 230 V supply takes a current of 0.30 A. Calculate its power. This uses the equation from Section 6.4.'
+    answer_label: 'Power of the device'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V * I"
+          values:
+            V: {value: "230", unit: "V"}
+            I: {value: "0.30", unit: "A"}
+          answer: {value: "69", unit: "W"}
+        - {kind: sigfigs, value: "69", figures: 2, answer: "69", convention: round-once}
+    answer_text: '$P = VI = 230 \times 0.30 = 69\,\text{W}$.'
+
+  - id: p12-method-choice
+    section: '6.5'
+    tier: F
+    dfe: [EL5]
+    statement: 'A spark transfers a charge of 4.0 μC in a time of 2.0 μs. Say which relationship you will use, then calculate the average current.'
+    answer_label: 'Average current of the spark'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "Q / t"
+          values:
+            Q: {value: "4.0e-6", unit: "C"}
+            t: {value: "2.0e-6", unit: "s"}
+          answer: {value: "2.0", unit: "A"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: 'Use $Q = It$, rearranged to $I = \dfrac{Q}{t}$. Then $I = \dfrac{4.0 \times 10^{-6}}{2.0 \times 10^{-6}} = 2.0\,\text{A}$.'

@@ -1,0 +1,189 @@
+# Practice set for 5.2 (Resistance and resistivity).
+#
+# Both the questions and the answers on the page are rendered from these records.
+# A resistance is checked by `dimensions`, which keeps the units exact. A value
+# that needs pi is checked by `approx` against a stated tolerance. A value read
+# off a graph is checked by `gradient`, which fits a least-squares line and
+# compares it against a declared interval, because reading a graph is a
+# measurement and never an equality. A reason is a `structured` record.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics.
+chapter: 5
+problems:
+  - id: p1-resistance
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A resistor has a potential difference of $4.5\,\text{V}$ across it and a current of $0.15\,\text{A}$ through it. Find its resistance.'
+    answer_label: 'The resistance'
+    check:
+      kind: dimensions
+      expression: "V / I"
+      values:
+        V: {value: "4.5", unit: "V"}
+        I: {value: "0.15", unit: "A"}
+      answer: {value: "30", unit: "ohm"}
+    answer_text: 'The resistance is $R = \dfrac{V}{I} = \dfrac{4.5}{0.15} = 30\,\Omega$.'
+
+  - id: p2-wire-resistance
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A wire of resistivity $1.7 \times 10^{-8}\,\Omega\,\text{m}$ has length $5.0\,\text{m}$ and cross-sectional area $1.0 \times 10^{-6}\,\text{m}^2$. Find its resistance.'
+    answer_label: 'The resistance'
+    check:
+      kind: dimensions
+      expression: "rho * L / A"
+      values:
+        rho: {value: "1.7e-8", unit: "ohm m"}
+        L: {value: "5.0", unit: "m"}
+        A: {value: "1.0e-6", unit: "m^2"}
+      answer: {value: "0.085", unit: "ohm"}
+    answer_text: '$R = \dfrac{\rho L}{A} = \dfrac{1.7 \times 10^{-8} \times 5.0}{1.0 \times 10^{-6}} = 0.085\,\Omega$.'
+
+  - id: p3-resistivity
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A wire of length $1.5\,\text{m}$ and cross-sectional area $2.0 \times 10^{-7}\,\text{m}^2$ has a resistance of $3.0\,\Omega$. Find the resistivity of the material.'
+    answer_label: 'The resistivity'
+    check:
+      kind: dimensions
+      expression: "R * A / L"
+      values:
+        R: {value: "3.0", unit: "ohm"}
+        A: {value: "2.0e-7", unit: "m^2"}
+        L: {value: "1.5", unit: "m"}
+      answer: {value: "4.0e-7", unit: "ohm m"}
+    answer_text: 'The resistivity is $\rho = \dfrac{RA}{L} = \dfrac{3.0 \times 2.0 \times 10^{-7}}{1.5} = 4.0 \times 10^{-7}\,\Omega\,\text{m}$.'
+
+  - id: p4-copper-wire
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A copper wire has a diameter of $0.50\,\text{mm}$ and a length of $1.0\,\text{m}$. The resistivity of copper is $1.7 \times 10^{-8}\,\Omega\,\text{m}$. Find its resistance.'
+    answer_label: 'The resistance'
+    check: {kind: approx, value: "1.7e-8 * 1.0 / (pi * (2.5e-4)**2)", target: "0.0866", tolerance: "0.001"}
+    answer_text: 'The radius is $2.5 \times 10^{-4}\,\text{m}$, so $A = \pi (2.5 \times 10^{-4})^2 = 1.96 \times 10^{-7}\,\text{m}^2$. Then $R = \dfrac{1.7 \times 10^{-8}}{1.96 \times 10^{-7}} = 0.087\,\Omega$.'
+
+  - id: p5-lamp-resistance
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A filament lamp has a current of $0.30\,\text{A}$ at a pd of $2.0\,\text{V}$ and a current of $0.50\,\text{A}$ at a pd of $6.0\,\text{V}$. Find the resistance at each pd.'
+    answer_label: 'The two resistances'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "2.0 / 0.30", target: "6.67", tolerance: "0.01"}
+        - {kind: evaluate, expression: "6.0 / 0.50", answer: "12"}
+    answer_text: '$R_1 = \dfrac{2.0}{0.30} = 6.7\,\Omega$ and $R_2 = \dfrac{6.0}{0.50} = 12\,\Omega$. The resistance rises as the filament gets hotter.'
+
+  - id: p6-graph-gradient
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A current–potential difference graph for a component is a straight line through $(0.10\,\text{A}, 2.0\,\text{V})$ and $(0.20\,\text{A}, 4.0\,\text{V})$. Find the gradient, which is the resistance.'
+    answer_label: 'The gradient'
+    check:
+      kind: gradient
+      series: [[0.10, 2.0], [0.20, 4.0]]
+      between: [19, 21]
+    answer_text: 'The gradient is $\dfrac{4.0 - 2.0}{0.20 - 0.10} = \dfrac{2.0}{0.10} = 20\,\Omega$. A straight line through the origin means the resistance is constant.'
+
+  - id: p7-scaling
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'Two wires are made of the same metal. One has three times the length and twice the diameter of the other. Find the factor by which the resistance of the first wire differs from the second.'
+    answer_label: 'The ratio of the resistances'
+    check: {kind: evaluate, expression: "3 / 4", answer: "0.75"}
+    answer_text: 'The resistance is proportional to $\dfrac{L}{A}$. Tripling the length triples $R$, and doubling the diameter makes the area four times larger, dividing $R$ by four. The factor is $\dfrac{3}{4} = 0.75$, so the first wire has three quarters of the resistance of the second.'
+
+  - id: p8-power
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A current of $0.50\,\text{A}$ flows through a $20\,\Omega$ resistor. Find the power dissipated in the resistor.'
+    answer_label: 'The power'
+    check:
+      kind: dimensions
+      expression: "I**2 * R"
+      values:
+        I: {value: "0.50", unit: "A"}
+        R: {value: "20", unit: "ohm"}
+      answer: {value: "5.0", unit: "W"}
+    answer_text: 'The power is $P = I^2R = 0.50^2 \times 20 = 5.0\,\text{W}$. It is dissipated as heat in the resistor.'
+
+  - id: p9-resistivity-diameter
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A wire of length $2.0\,\text{m}$ and diameter $0.60\,\text{mm}$ has a resistance of $0.50\,\Omega$. Find the resistivity of the material.'
+    answer_label: 'The resistivity'
+    check: {kind: approx, value: "0.50 * pi * (3.0e-4)**2 / 2.0", target: "7.07e-8", tolerance: "0.05e-8"}
+    answer_text: 'The radius is $3.0 \times 10^{-4}\,\text{m}$, so $A = \pi (3.0 \times 10^{-4})^2 = 2.83 \times 10^{-7}\,\text{m}^2$. Then $\rho = \dfrac{RA}{L} = \dfrac{0.50 \times 2.83 \times 10^{-7}}{2.0} = 7.1 \times 10^{-8}\,\Omega\,\text{m}$.'
+
+  - id: p10-filament-thermistor
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'Compare the effect of a rise in temperature on the resistance of a metal filament and on the resistance of a thermistor. Give a reason for each.'
+    answer_label: 'The comparison'
+    check:
+      kind: structured
+      requires: [metal-rises, metal-reason, thermistor-falls, thermistor-reason]
+      concepts: [resistance, temperature, thermistor]
+      points:
+        - id: metal-rises
+          text: 'The resistance of a metal rises as its temperature rises.'
+          concepts: [resistance, temperature]
+        - id: metal-reason
+          text: 'The ions in the metal lattice vibrate more when they are hotter, so they scatter the drifting electrons more often. The current is smaller for the same potential difference, so the resistance is larger.'
+          concepts: [resistance, temperature]
+        - id: thermistor-falls
+          text: 'The resistance of a thermistor falls as its temperature rises.'
+          concepts: [thermistor, temperature]
+        - id: thermistor-reason
+          text: 'A thermistor is a semiconductor. A higher temperature releases more charge carriers, so the number available to carry the current increases and the resistance falls.'
+          concepts: [thermistor, resistance]
+    answer_text: 'A metal filament gets a larger resistance as it heats, because the lattice ions vibrate more and scatter the electrons more often. A thermistor gets a smaller resistance as it heats, because a higher temperature releases more charge carriers.'
+
+  - id: p11-method-choice
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'You are given a wire, a battery, an ammeter and a voltmeter. Describe how you would find the resistivity of the metal of the wire, and say why each measurement is needed.'
+    answer_label: 'The method'
+    check:
+      kind: structured
+      requires: [measure-V-and-I, find-R, measure-length, measure-diameter, use-formula]
+      concepts: [resistance, resistivity, length, area]
+      points:
+        - id: measure-V-and-I
+          text: 'Measure the potential difference across the wire with the voltmeter and the current through it with the ammeter.'
+          concepts: [resistance]
+        - id: find-R
+          text: 'Find the resistance from R equals V divided by I.'
+          concepts: [resistance]
+        - id: measure-length
+          text: 'Measure the length of the wire with a metre rule.'
+          concepts: [length]
+        - id: measure-diameter
+          text: 'Measure the diameter with a micrometer and halve it to get the radius, then find the area from A equals pi r squared.'
+          concepts: [area]
+        - id: use-formula
+          text: 'Use the resistivity formula, resistivity equals R times A divided by L.'
+          concepts: [resistivity]
+    answer_text: 'Measure the pd and the current to find the resistance from $R = \dfrac{V}{I}$. Measure the length and the diameter so you can find the area. Then use $\rho = \dfrac{RA}{L}$.'
+
+  - id: p12-temperature-reason
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'Explain, in terms of the charge carriers, why the resistance of a metal wire increases when the wire gets hotter.'
+    answer_label: 'Why the resistance rises'
+    check:
+      kind: structured
+      requires: [lattice-vibrates, scatter-electrons, current-smaller]
+      concepts: [resistance, charge-carriers, temperature]
+      points:
+        - id: lattice-vibrates
+          text: 'A metal contains positive ions in a lattice and free electrons that carry the current. When the metal gets hotter, the ions vibrate with a larger amplitude.'
+          concepts: [charge-carriers, temperature]
+        - id: scatter-electrons
+          text: 'The vibrating ions scatter the drifting electrons more often, so the electrons are slowed down.'
+          concepts: [resistance, charge-carriers]
+        - id: current-smaller
+          text: 'For the same potential difference, the current is smaller. Since the resistance is V divided by I, a smaller current means a larger resistance.'
+          concepts: [resistance]
+    answer_text: 'The hotter lattice ions vibrate more and scatter the drifting electrons more often. For the same potential difference the current is smaller, so the resistance is larger.'

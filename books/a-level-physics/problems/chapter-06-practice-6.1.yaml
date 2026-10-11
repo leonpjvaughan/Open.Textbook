@@ -1,0 +1,177 @@
+# Practice set for 6.1 (Superposition and interference).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]`, so a check may use either.
+#
+# A value that involves a trigonometric ratio is checked by `approx` against a
+# stated tolerance, because the SymPy oracle keeps its arithmetic exact and the
+# ratio is irrational. An exact value with a unit is checked by `dimensions`. A
+# reason is a `structured` record: presence, order and coverage only, never
+# physics.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 6
+problems:
+  - id: p1-wavelength
+    section: '6.1'
+    dfe: [AP6]
+    statement: 'A sound wave has a frequency of 1.5 kHz and a speed of 330 m/s. Find its wavelength.'
+    answer_label: 'The wavelength'
+    check: {kind: approx, value: "330 / 1500", target: "0.22", tolerance: "0.005"}
+    answer_text: '$\lambda = \dfrac{v}{f} = \dfrac{330}{1500} = 0.22\,\text{m}$.'
+
+  - id: p2-frequency
+    section: '6.1'
+    dfe: [AP6]
+    statement: 'A wave has a wavelength of 2.5 m and a speed of 340 m/s. Find its frequency.'
+    answer_label: 'The frequency'
+    check: {kind: approx, value: "340 / 2.5", target: "136", tolerance: "0.5"}
+    answer_text: '$f = \dfrac{v}{\lambda} = \dfrac{340}{2.5} = 136\,\text{Hz}$.'
+
+  - id: p3-phase
+    section: '6.1'
+    dfe: [AP6]
+    statement: 'Two points on a wave are 0.15 m apart. The wavelength is 0.60 m. Find the phase difference between them, in degrees.'
+    answer_label: 'The phase difference'
+    check: {kind: approx, value: "0.15 / 0.60 * 360", target: "90", tolerance: "0.001"}
+    answer_text: '$\Delta\phi = \dfrac{0.15}{0.60} \times 360^\circ = 90^\circ$.'
+
+  - id: p4-path-difference
+    section: '6.1'
+    dfe: [AP6]
+    statement: 'Two loudspeakers are driven in phase at 425 Hz. The speed of sound is 340 m/s. A point is 2.60 m from one speaker and 1.40 m from the other. State whether the sound there is loud or quiet, and give a reason.'
+    answer_label: 'The sound at the point'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / f"
+          values:
+            v: {value: "340", unit: "m s^-1"}
+            f: {value: "425", unit: "Hz"}
+          answer: {value: "0.80", unit: "m"}
+        - kind: evaluate
+          expression: "(2.60 - 1.40) / (340 / 425)"
+          answer: "3/2"
+    answer_text: 'The wavelength is $\dfrac{340}{425} = 0.80\,\text{m}$. The path difference is $2.60 - 1.40 = 1.20\,\text{m}$, which is one and a half wavelengths. The waves arrive antiphase, so the sound is quiet.'
+
+  - id: p5-fringe-spacing
+    section: '6.1'
+    dfe: [AP6]
+    statement: 'A laser of wavelength 640 nm passes through two slits 0.30 mm apart. The screen is 2.0 m away. Find the fringe spacing.'
+    answer_label: 'The fringe spacing'
+    check: {kind: approx, value: "640e-9 * 2.0 / 0.30e-3", target: "4.27e-3", tolerance: "1e-5"}
+    answer_text: '$w = \dfrac{\lambda D}{s} = \dfrac{640 \times 10^{-9} \times 2.0}{0.30 \times 10^{-3}} = 4.3 \times 10^{-3}\,\text{m}$, or $4.3\,\text{mm}$ to two significant figures.'
+
+  - id: p6-wavelength-fringes
+    section: '6.1'
+    dfe: [AP6]
+    statement: 'In a two-slit experiment the slits are 0.20 mm apart and the screen is 1.5 m away. The fringe spacing is 2.4 mm. Find the wavelength of the light.'
+    answer_label: 'The wavelength'
+    check: {kind: approx, value: "2.4e-3 * 0.20e-3 / 1.5", target: "3.2e-7", tolerance: "1e-9"}
+    answer_text: '$\lambda = \dfrac{ws}{D} = \dfrac{2.4 \times 10^{-3} \times 0.20 \times 10^{-3}}{1.5} = 3.2 \times 10^{-7}\,\text{m}$, or $320\,\text{nm}$.'
+
+  - id: p7-coherence-method
+    section: '6.1'
+    dfe: [AP6]
+    statement: 'Two loudspeakers are placed side by side. Describe how to make them act as coherent sources, and explain why this matters.'
+    check:
+      kind: structured
+      requires: [same-signal, same-frequency, constant-phase, steady-pattern]
+      concepts: [coherence, interference]
+      points:
+        - id: same-signal
+          text: 'Connect both loudspeakers to the same signal generator, so one signal drives both of them.'
+          concepts: [coherence]
+        - id: same-frequency
+          text: 'They then emit sound of the same frequency.'
+          concepts: [coherence]
+        - id: constant-phase
+          text: 'They also keep a constant phase difference between them, because they started together and nothing changes that.'
+          concepts: [coherence]
+        - id: steady-pattern
+          text: 'This matters because only coherent sources give a steady interference pattern. With unconnected speakers the phase difference keeps changing and the loud and quiet places move.'
+          concepts: [interference]
+
+  - id: p8-two-source-angle
+    section: '6.1'
+    dfe: [AP6]
+    statement: 'Two loudspeakers 2.0 m apart are driven in phase at 850 Hz. The speed of sound is 340 m/s. Find the angle of the first loud band to the side of the centre.'
+    answer_label: 'The angle of the first loud band'
+    check: {kind: approx, value: "asin((340 / 850) / 2.0)*180/pi", target: "11.5", tolerance: "0.2"}
+    answer_text: 'The wavelength is $\dfrac{340}{850} = 0.40\,\text{m}$. Then $\sin\theta = \dfrac{\lambda}{s} = \dfrac{0.40}{2.0} = 0.20$, so $\theta = 11.5^\circ$.'
+
+  - id: p9-method
+    section: '6.1'
+    dfe: [AP6]
+    statement: 'You must find the wavelength of a laser. Describe a method that uses two slits, and state the three measurements you need.'
+    check:
+      kind: structured
+      requires: [measure-fringe-spacing, measure-slit-separation, measure-screen-distance, use-formula]
+      concepts: [fringe-spacing, interference]
+      points:
+        - id: measure-fringe-spacing
+          text: 'Measure the distance across several bright fringes and divide by the number of spaces, to get the fringe spacing w.'
+          concepts: [fringe-spacing]
+        - id: measure-slit-separation
+          text: 'Find the separation s of the two slits, which is printed on the slide.'
+          concepts: [interference]
+        - id: measure-screen-distance
+          text: 'Measure the distance D from the slits to the screen.'
+          concepts: [interference]
+        - id: use-formula
+          text: 'Use $w = \\dfrac{\\lambda D}{s}$, rearranged to give $\\lambda = \\dfrac{ws}{D}$.'
+          concepts: [fringe-spacing]
+    answer_text: 'Measure the fringe spacing across several fringes, the slit separation and the screen distance. Then use $\lambda = \dfrac{ws}{D}$.'
+
+  - id: p10-energy
+    section: '6.1'
+    dfe: [AP6]
+    statement: 'Explain why the dark fringes in an interference pattern do not mean that energy has been destroyed.'
+    check:
+      kind: structured
+      requires: [superposition, cancellation, energy-redistributed, bright-fringes]
+      concepts: [superposition, interference]
+      points:
+        - id: superposition
+          text: 'At a dark fringe the two waves arrive antiphase and their displacements add to zero, because of the principle of superposition.'
+          concepts: [superposition]
+        - id: cancellation
+          text: 'The energy is not lost at that point. It is moved to the places where the waves arrive in phase.'
+          concepts: [interference]
+        - id: energy-redistributed
+          text: 'The energy is redistributed across the pattern, so the total energy is unchanged.'
+          concepts: [interference]
+        - id: bright-fringes
+          text: 'The bright fringes are brighter than either wave alone, which is where the missing energy has gone.'
+          concepts: [interference]
+
+  - id: p11-uncertainty
+    section: '6.1'
+    dfe: [AP6]
+    statement: 'A sound wave has a frequency of 340 Hz with a percentage uncertainty of 0.5%, and a wavelength of 1.00 m with a percentage uncertainty of 2.0%. Find its speed and its absolute uncertainty.'
+    answer_label: 'The speed and its uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: "340", percentage: "0.5", power: 1}
+        - {value: "1.00", percentage: "2.0", power: 1}
+      result: "340"
+      uncertainty: "8.5"
+    answer_text: 'The speed is $v = f\lambda = 340 \times 1.00 = 340\,\text{m}\,\text{s}^{-1}$. The percentage uncertainties add: $0.5\% + 2.0\% = 2.5\%$. The absolute uncertainty is $340 \times \dfrac{2.5}{100} = 8.5\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: p12-sigfigs
+    section: '6.1'
+    dfe: [AP6]
+    statement: 'A wavelength is measured as 6.328e-7 m. Write it in nanometres, and round it to three significant figures.'
+    answer_label: 'The wavelength in nanometres and to three significant figures'
+    check:
+      kind: all
+      checks:
+        - {kind: convert, value: "6.328e-7", from: "m", to: "nm", answer: "632.8"}
+        - {kind: sigfigs, value: "6.328e-7", figures: 3, answer: "6.33e-7", convention: round-once}
+    answer_text: '$6.328 \times 10^{-7}\,\text{m} = 632.8\,\text{nm}$, and to three significant figures the wavelength is $6.33 \times 10^{-7}\,\text{m}$, or $633\,\text{nm}$.'

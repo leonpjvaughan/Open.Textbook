@@ -10,9 +10,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.2 Series and parallel circuits — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: EL2
+Work through these on your own. Keep your working neat. Some questions ask you
+to choose the relationship first, so read each one before you start.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-06-practice-6.2
+
+:::answers chapter-06-practice-6.2

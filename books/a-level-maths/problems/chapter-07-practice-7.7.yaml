@@ -1,0 +1,152 @@
+# Practice set for 7.7, the product, quotient and chain rules.
+#
+# Each check differentiates the expression and compares with the stated answer.
+# Naming the rule and writing the parts is the reader's working; the check proves
+# the resulting derivative.
+chapter: 7
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-product-polynomial-sine
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = x^2\sin x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "x**2*sin(x)"
+      apply: {op: diff, args: [x]}
+      answer: "2*x*sin(x) + x**2*cos(x)"
+    answer_text: 'Product rule with $u = x^2$ and $v = \sin x$: $u''v + uv'' = 2x\sin x + x^2\cos x$.'
+
+  - id: p2-product-cosine
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = x\cos x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "x*cos(x)"
+      apply: {op: diff, args: [x]}
+      answer: "cos(x) - x*sin(x)"
+    answer_text: 'Product rule with $u = x$ and $v = \cos x$: $1\cos x + x(-\sin x) = \cos x - x\sin x$.'
+
+  - id: p3-product-exponential
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = xe^{3x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "x*exp(3*x)"
+      apply: {op: diff, args: [x]}
+      answer: "exp(3*x)*(3*x + 1)"
+    answer_text: 'Product rule: $1e^{3x} + x(3e^{3x}) = e^{3x}(3x + 1)$ after taking out the common factor.'
+
+  - id: p4-quotient-linear
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = \dfrac{x}{x - 2}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "x/(x - 2)"
+      apply: {op: diff, args: [x]}
+      answer: "-2/(x - 2)**2"
+    answer_text: 'Quotient rule with $u = x$ and $v = x - 2$: $\dfrac{(x - 2)(1) - x(1)}{(x - 2)^2} = \dfrac{-2}{(x - 2)^2}$.'
+
+  - id: p5-quotient-sine
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = \dfrac{\sin x}{x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "sin(x)/x"
+      apply: {op: diff, args: [x]}
+      answer: "(x*cos(x) - sin(x))/x**2"
+    answer_text: 'Quotient rule with $u = \sin x$ and $v = x$: $\dfrac{x\cos x - \sin x}{x^2}$. The order in the numerator matters.'
+
+  - id: p6-quotient-exponential
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = \dfrac{e^{2x}}{x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "exp(2*x)/x"
+      apply: {op: diff, args: [x]}
+      answer: "exp(2*x)*(2*x - 1)/x**2"
+    answer_text: 'Quotient rule with $u = e^{2x}$ and $v = x$: $\dfrac{2xe^{2x} - e^{2x}}{x^2} = \dfrac{e^{2x}(2x - 1)}{x^2}$.'
+
+  - id: p7-chain-bracket
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = (3x + 1)^5$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "(3*x + 1)**5"
+      apply: {op: diff, args: [x]}
+      answer: "15*(3*x + 1)**4"
+    answer_text: 'Chain rule: the outside gives $5(3x + 1)^4$ and the inside gives $3$. Their product is $15(3x + 1)^4$.'
+
+  - id: p8-chain-sine
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = \sin(x^3)$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "sin(x**3)"
+      apply: {op: diff, args: [x]}
+      answer: "3*x**2*cos(x**3)"
+    answer_text: 'Chain rule: the derivative of sine is cosine, and the inside $x^3$ differentiates to $3x^2$.'
+
+  - id: p9-chain-exponential
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = e^{x^2}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "exp(x**2)"
+      apply: {op: diff, args: [x]}
+      answer: "2*x*exp(x**2)"
+    answer_text: 'Chain rule: the exponential stays the same, and the inside $x^2$ contributes $2x$. So $\dfrac{dy}{dx} = 2xe^{x^2}$.'
+
+  - id: p10-chain-logarithm
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = \ln(4x + 3)$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "ln(4*x + 3)"
+      apply: {op: diff, args: [x]}
+      answer: "4/(4*x + 3)"
+    answer_text: 'Chain rule: $\dfrac{1}{4x + 3} \times 4 = \dfrac{4}{4x + 3}$.'
+
+  - id: p11-product-logarithm
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = x^2\ln x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "x**2*ln(x)"
+      apply: {op: diff, args: [x]}
+      answer: "2*x*ln(x) + x"
+    answer_text: 'Product rule with $u = x^2$ and $v = \ln x$: $2x\ln x + x^2 \times \dfrac{1}{x} = 2x\ln x + x$.'
+
+  - id: p12-quotient-linear-second
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = \dfrac{3x + 1}{x + 2}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "(3*x + 1)/(x + 2)"
+      apply: {op: diff, args: [x]}
+      answer: "5/(x + 2)**2"
+    answer_text: 'Quotient rule: $\dfrac{3(x + 2) - (3x + 1)}{(x + 2)^2} = \dfrac{5}{(x + 2)^2}$.'

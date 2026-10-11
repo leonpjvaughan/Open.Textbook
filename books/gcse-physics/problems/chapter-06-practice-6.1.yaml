@@ -1,0 +1,224 @@
+# Practice set for 6.1 (Current, potential difference and resistance).
+#
+# Both the questions and the answers on the page are rendered from these
+# records. Each calculation is checked twice: the exact magnitude and dimension
+# by `dimensions`, and the one rounding by `sigfigs`. A descriptive answer uses
+# `structured`, which proves only that a model answer contains the declared
+# ideas in order.
+chapter: 6
+symbols: {}
+problems:
+  - id: p1-convert-ma
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'Express a current of 250 mA in amperes.'
+    answer_label: '250 mA in amperes'
+    check:
+      kind: convert
+      value: '250'
+      from: mA
+      to: A
+      answer: '0.25'
+    answer_text: '$250\,\text{mA} = 0.25\,\text{A}$. The prefix milli means one thousandth.'
+
+  - id: p2-convert-minutes
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'Express a time of 5.0 minutes in seconds.'
+    answer_label: '5.0 minutes in seconds'
+    check:
+      kind: convert
+      value: '5.0'
+      from: min
+      to: s
+      answer: '300'
+    answer_text: '$5.0\,\text{minutes} = 5.0 \times 60 = 300\,\text{s}$.'
+
+  - id: p3-charge-flow
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'A current of 5.0 A flows through a heater for 60 s. Calculate the charge that flows.'
+    answer_label: 'Charge that flows'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * t"
+          values:
+            I: {value: "5.0", unit: "A"}
+            t: {value: "60", unit: "s"}
+          answer: {value: "300", unit: "C"}
+        - {kind: sigfigs, value: "300", figures: 2, answer: "3.0e2", convention: round-once}
+    answer_text: '$Q = It = 5.0 \times 60 = 300\,\text{C} = 3.0 \times 10^2\,\text{C}$.'
+
+  - id: p4-current-from-charge
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'A charge of 120 C passes a point in a circuit in 40 s. Calculate the current.'
+    answer_label: 'Current in the circuit'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "Q / t"
+          values:
+            Q: {value: "120", unit: "C"}
+            t: {value: "40", unit: "s"}
+          answer: {value: "3.0", unit: "A"}
+        - {kind: sigfigs, value: "3.0", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: '$I = \dfrac{Q}{t} = \dfrac{120}{40} = 3.0\,\text{A}$.'
+
+  - id: p5-potential-difference
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'A current of 0.50 A flows through a 12 Ω resistor. Calculate the potential difference across the resistor.'
+    answer_label: 'Potential difference across the resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * R"
+          values:
+            I: {value: "0.50", unit: "A"}
+            R: {value: "12", unit: "Ω"}
+          answer: {value: "6.0", unit: "V"}
+        - {kind: sigfigs, value: "6.0", figures: 2, answer: "6.0", convention: round-once}
+    answer_text: '$V = IR = 0.50 \times 12 = 6.0\,\text{V}$.'
+
+  - id: p6-current-from-pd
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'The potential difference across a 30 Ω resistor is 9.0 V. Calculate the current through it.'
+    answer_label: 'Current through the resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / R"
+          values:
+            V: {value: "9.0", unit: "V"}
+            R: {value: "30", unit: "Ω"}
+          answer: {value: "0.30", unit: "A"}
+        - {kind: sigfigs, value: "0.30", figures: 2, answer: "0.30", convention: round-once}
+    answer_text: '$I = \dfrac{V}{R} = \dfrac{9.0}{30} = 0.30\,\text{A}$.'
+
+  - id: p7-resistance-from-pd
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'The potential difference across a component is 18 V and the current through it is 0.40 A. Calculate its resistance.'
+    answer_label: 'Resistance of the component'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / I"
+          values:
+            V: {value: "18", unit: "V"}
+            I: {value: "0.40", unit: "A"}
+          answer: {value: "45", unit: "Ω"}
+        - {kind: sigfigs, value: "45", figures: 2, answer: "45", convention: round-once}
+    answer_text: '$R = \dfrac{V}{I} = \dfrac{18}{0.40} = 45\,\Omega$.'
+
+  - id: p8-resistance-from-graph
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'A resistor is tested and the potential difference across it is plotted against the current through it. The graph is a straight line through the points (0.10 A, 2.0 V), (0.20 A, 4.0 V) and (0.30 A, 6.0 V). Use the gradient of the graph to find the resistance.'
+    answer_label: 'Resistance from the gradient'
+    check:
+      kind: gradient
+      series: [[0.10, 2.0], [0.20, 4.0], [0.30, 6.0]]
+      between: [19, 21]
+    answer_text: 'The graph of $V$ against $I$ is a straight line, so its gradient is the resistance. Gradient $= \dfrac{6.0}{0.30} = 20\,\Omega$.'
+
+  - id: p9-current-same-value
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'A cell, a lamp and a resistor are connected in a single closed loop. Explain why the current through the lamp equals the current through the resistor.'
+    answer_label: 'Why the current is the same at both components'
+    check:
+      kind: structured
+      requires: [state-equal, give-reason]
+      concepts: [charge-flow]
+      points:
+        - id: state-equal
+          text: 'The current has the same value at every point in a single closed loop.'
+          concepts: [charge-flow]
+        - id: give-reason
+          text: 'Charge is not used up as it flows around the circuit. The energy carried by the charge is transferred to the components, but the charge keeps moving, so the rate of flow is the same everywhere.'
+          concepts: [charge-flow]
+
+  - id: p10-filament-resistance
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'Explain why the resistance of a filament lamp increases as the current through it increases.'
+    answer_label: 'Why the resistance of a filament lamp increases'
+    check:
+      kind: structured
+      requires: [temperature-rises, resistance-rises]
+      concepts: [resistance]
+      points:
+        - id: temperature-rises
+          text: 'As the current rises, more energy is transferred to the thermal store of the filament, so its temperature rises.'
+          concepts: [resistance]
+        - id: resistance-rises
+          text: 'The resistance of the filament increases as its temperature rises, so the graph of V against I curves.'
+          concepts: [resistance]
+
+  - id: p11-thermistor-application
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'Describe what happens to the resistance of a thermistor as its temperature increases, and give one use for a thermistor in a circuit.'
+    answer_label: 'The thermistor and one use'
+    check:
+      kind: structured
+      requires: [resistance-falls, application]
+      concepts: [thermistor]
+      points:
+        - id: resistance-falls
+          text: 'The resistance of a thermistor decreases as its temperature increases.'
+          concepts: [thermistor]
+        - id: application
+          text: 'A thermistor is used in a thermostat, so that a heater switches on or off when the temperature changes.'
+          concepts: [thermistor]
+
+  - id: p12-power-interleaved
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'A lamp transfers 90 J of energy in 15 s. Calculate its power. This uses the idea of power from Chapter 1.'
+    answer_label: 'Power of the lamp'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "90 / 15", answer: "6.0"}
+        - {kind: sigfigs, value: "6.0", figures: 2, answer: "6.0", convention: round-once}
+    answer_text: 'power $= \dfrac{\text{energy transferred}}{\text{time}} = \dfrac{90}{15} = 6.0\,\text{W}$.'
+
+  - id: p13-method-choice
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'A lamp has a potential difference of 12 V across it and a resistance of 24 Ω. Say which relationship you will use, then calculate the current through the lamp.'
+    answer_label: 'Current through the lamp'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / R"
+          values:
+            V: {value: "12", unit: "V"}
+            R: {value: "24", unit: "Ω"}
+          answer: {value: "0.50", unit: "A"}
+        - {kind: sigfigs, value: "0.5", figures: 2, answer: "0.50", convention: round-once}
+    answer_text: 'Use $V = IR$, rearranged to $I = \dfrac{V}{R}$. Then $I = \dfrac{12}{24} = 0.50\,\text{A}$.'

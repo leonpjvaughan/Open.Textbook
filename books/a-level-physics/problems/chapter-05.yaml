@@ -1,0 +1,518 @@
+# Worked solutions for Chapter 5 (Electric circuits).
+#
+# These are the numerical worked examples, the warm-up recalls and the guided
+# calculations that the Learn and Practise with help pages show. The pages carry
+# the prose and the reasoning; this bank is the independent check of every number
+# in them, so a slip in a worked example cannot ship. The records are not rendered
+# by a page marker: the pages write their own working, and the `:::answers` blocks
+# come from the practice banks.
+#
+# Electromagnetic quantities are checked by `dimensions`, which carries the units
+# exactly: a potential difference is a joule per coulomb, a resistance is a volt
+# per ampere, and resistivity is an ohm metre. A value that needs pi or e is
+# checked by `approx` against a stated tolerance, because the oracle keeps its
+# arithmetic exact and those constants are irrational. A reason is a `structured`
+# record: presence, order and coverage only, never physics.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 5
+problems:
+  # --- Section 5.1, the Learn worked examples and the guided problems ---------
+  - id: w1-charge
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A current of 0.50 A flows through a lamp for 30 s. Find the charge.'
+    answer_label: 'The charge'
+    check:
+      kind: dimensions
+      expression: "I * t"
+      values:
+        I: {value: "0.50", unit: "A"}
+        t: {value: "30", unit: "s"}
+      answer: {value: "15", unit: "C"}
+    answer_text: 'The charge is $I\Delta t = 0.50 \times 30 = 15\,\text{C}$.'
+
+  - id: w2-electrons
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A charge of 15 C flows through a wire. Find the number of electrons.'
+    answer_label: 'The number of electrons'
+    check: {kind: evaluate, expression: "15 / 1.60e-19", answer: "9.375e19"}
+    answer_text: 'Each electron carries $1.60 \times 10^{-19}\,\text{C}$, so $n = \dfrac{Q}{e} = \dfrac{15}{1.60 \times 10^{-19}} = 9.4 \times 10^{19}$ electrons.'
+
+  - id: w3-emf-energy
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A charge of 15 C passes through a battery of emf 12 V. Find the energy transferred.'
+    answer_label: 'The energy transferred'
+    check:
+      kind: dimensions
+      expression: "emf * Q"
+      values:
+        emf: {value: "12", unit: "V"}
+        Q: {value: "15", unit: "C"}
+      answer: {value: "180", unit: "J"}
+    answer_text: 'The energy is $\varepsilon Q = 12 \times 15 = 180\,\text{J}$.'
+
+  - id: w4-terminal-pd
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A battery of emf 12 V and internal resistance 0.15 ohm drives a current of 2.0 A. Find the terminal potential difference.'
+    answer_label: 'The terminal potential difference'
+    check:
+      kind: dimensions
+      expression: "emf - I * r"
+      values:
+        emf: {value: "12", unit: "V"}
+        I: {value: "2.0", unit: "A"}
+        r: {value: "0.15", unit: "ohm"}
+      answer: {value: "11.7", unit: "V"}
+    answer_text: 'The lost volts are $Ir = 2.0 \times 0.15 = 0.30\,\text{V}$, so $V = 12 - 0.30 = 11.7\,\text{V}$.'
+
+  - id: w5-external-resistance
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A battery has an emf of 12 V, an internal resistance of 0.15 ohm and a terminal pd of 11.7 V. Find the external resistance.'
+    answer_label: 'The external resistance'
+    check:
+      kind: dimensions
+      expression: "V / I"
+      values:
+        V: {value: "11.7", unit: "V"}
+        I: {value: "2.0", unit: "A"}
+      answer: {value: "5.85", unit: "ohm"}
+    answer_text: 'The external resistance is $R = \dfrac{V}{I} = \dfrac{11.7}{2.0} = 5.85\,\Omega$.'
+
+  - id: w6-energy-power
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A component carries 2.0 A with a pd of 11.7 V for 5.0 s. Find the energy transferred and the power.'
+    answer_label: 'The energy and the power'
+    check:
+      kind: dimensions
+      expression: "V * I * t"
+      values:
+        V: {value: "11.7", unit: "V"}
+        I: {value: "2.0", unit: "A"}
+        t: {value: "5.0", unit: "s"}
+      answer: {value: "117", unit: "J"}
+    answer_text: 'The energy is $W = VIt = 11.7 \times 2.0 \times 5.0 = 117\,\text{J}$. The power is $P = VI = 11.7 \times 2.0 = 23.4\,\text{W}$.'
+
+  - id: g1-5.1-charge
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A current of 0.25 A flows for 40 s. Find the charge that flows.'
+    answer_label: 'The charge'
+    check: {kind: evaluate, expression: "0.25 * 40", answer: "10"}
+    answer_text: 'The charge is $I\Delta t = 0.25 \times 40 = 10\,\text{C}$.'
+
+  - id: g2-5.1-current
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A charge of 6.0 C passes a point in 12 s. Find the current.'
+    answer_label: 'The current'
+    check: {kind: evaluate, expression: "6.0 / 12", answer: "0.50"}
+    answer_text: 'The current is $I = \dfrac{\Delta Q}{\Delta t} = \dfrac{6.0}{12} = 0.50\,\text{A}$.'
+
+  - id: g3-5.1-electrons
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'Find the number of electrons that carry a charge of 4.8 C. Use e = 1.60e-19 C.'
+    answer_label: 'The number of electrons'
+    check: {kind: evaluate, expression: "4.8 / 1.60e-19", answer: "3.0e19"}
+    answer_text: '$n = \dfrac{Q}{e} = \dfrac{4.8}{1.60 \times 10^{-19}} = 3.0 \times 10^{19}$ electrons.'
+
+  - id: g4-5.1-terminal-pd
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A battery of emf 9.0 V and internal resistance 0.50 ohm drives a current of 1.5 A. Find the terminal pd.'
+    answer_label: 'The terminal pd'
+    check:
+      kind: dimensions
+      expression: "emf - I * r"
+      values:
+        emf: {value: "9.0", unit: "V"}
+        I: {value: "1.5", unit: "A"}
+        r: {value: "0.50", unit: "ohm"}
+      answer: {value: "8.25", unit: "V"}
+    answer_text: '$V = 9.0 - (1.5 \times 0.50) = 8.25\,\text{V}$, which is $8.3\,\text{V}$ to two significant figures.'
+
+  - id: g5-5.1-power-energy
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A component has a pd of 6.0 V across it and a current of 0.50 A through it. Find the power and the energy in 20 s.'
+    answer_label: 'The power and the energy'
+    check: {kind: evaluate, expression: "6.0 * 0.50 * 20", answer: "60"}
+    answer_text: '$P = VI = 6.0 \times 0.50 = 3.0\,\text{W}$ and $W = P\Delta t = 3.0 \times 20 = 60\,\text{J}$.'
+
+  - id: g6-5.1-circuit
+    section: '5.1'
+    dfe: [AP5]
+    statement: 'A battery of emf 12 V and internal resistance 0.20 ohm is connected to a 5.80 ohm resistor. Find the current and the terminal pd.'
+    answer_label: 'The current and the terminal pd'
+    check:
+      kind: dimensions
+      expression: "emf / (R + r)"
+      values:
+        emf: {value: "12", unit: "V"}
+        R: {value: "5.80", unit: "ohm"}
+        r: {value: "0.20", unit: "ohm"}
+      answer: {value: "2.0", unit: "A"}
+    answer_text: '$I = \dfrac{12}{5.80 + 0.20} = 2.0\,\text{A}$ and $V = 12 - (2.0 \times 0.20) = 11.6\,\text{V}$.'
+
+  # --- Section 5.2, the Learn worked examples and the guided problems ---------
+  - id: w1-resistance
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A resistor has a pd of 6.0 V across it and a current of 0.40 A through it. Find its resistance.'
+    answer_label: 'The resistance'
+    check:
+      kind: dimensions
+      expression: "V / I"
+      values:
+        V: {value: "6.0", unit: "V"}
+        I: {value: "0.40", unit: "A"}
+      answer: {value: "15", unit: "ohm"}
+    answer_text: 'The resistance is $R = \dfrac{V}{I} = \dfrac{6.0}{0.40} = 15\,\Omega$$.'
+
+  - id: w2-lamp-resistance
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A filament lamp has a pd of 12 V across it and a current of 0.50 A through it. Find its resistance.'
+    answer_label: 'The resistance'
+    check:
+      kind: dimensions
+      expression: "V / I"
+      values:
+        V: {value: "12", unit: "V"}
+        I: {value: "0.50", unit: "A"}
+      answer: {value: "24", unit: "ohm"}
+    answer_text: 'The resistance is $R = \dfrac{12}{0.50} = 24\,\Omega$. The hot filament has a much larger resistance than the cold filament.'
+
+  - id: w3-copper-resistance
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A copper wire has length 2.0 m and cross-sectional area 1.0e-6 m^2. Resistivity 1.7e-8 ohm m. Find its resistance.'
+    answer_label: 'The resistance'
+    check:
+      kind: dimensions
+      expression: "rho * L / A"
+      values:
+        rho: {value: "1.7e-8", unit: "ohm m"}
+        L: {value: "2.0", unit: "m"}
+        A: {value: "1.0e-6", unit: "m^2"}
+      answer: {value: "3.4e-2", unit: "ohm"}
+    answer_text: 'The resistance is $R = \dfrac{\rho L}{A} = \dfrac{1.7 \times 10^{-8} \times 2.0}{1.0 \times 10^{-6}} = 3.4 \times 10^{-2}\,\Omega$$.'
+
+  - id: w4-resistivity
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A wire has resistance 4.0 ohm, length 1.0 m and area 2.0e-7 m^2. Find the resistivity.'
+    answer_label: 'The resistivity'
+    check:
+      kind: dimensions
+      expression: "R * A / L"
+      values:
+        R: {value: "4.0", unit: "ohm"}
+        A: {value: "2.0e-7", unit: "m^2"}
+        L: {value: "1.0", unit: "m"}
+      answer: {value: "8.0e-7", unit: "ohm m"}
+    answer_text: 'The resistivity is $\rho = \dfrac{RA}{L} = \dfrac{4.0 \times 2.0 \times 10^{-7}}{1.0} = 8.0 \times 10^{-7}\,\Omega\,\text{m}$.'
+
+  - id: g1-5.2-resistance
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A resistor has a pd of 9.0 V and a current of 0.30 A. Find its resistance.'
+    answer_label: 'The resistance'
+    check:
+      kind: dimensions
+      expression: "V / I"
+      values:
+        V: {value: "9.0", unit: "V"}
+        I: {value: "0.30", unit: "A"}
+      answer: {value: "30", unit: "ohm"}
+    answer_text: 'The resistance is $R = \dfrac{9.0}{0.30} = 30\,\Omega$.'
+
+  - id: g2-5.2-wire
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A wire of resistivity 1.7e-8 ohm m has length 3.0 m and area 5.0e-7 m^2. Find its resistance.'
+    answer_label: 'The resistance'
+    check:
+      kind: dimensions
+      expression: "rho * L / A"
+      values:
+        rho: {value: "1.7e-8", unit: "ohm m"}
+        L: {value: "3.0", unit: "m"}
+        A: {value: "5.0e-7", unit: "m^2"}
+      answer: {value: "0.102", unit: "ohm"}
+    answer_text: '$R = \dfrac{1.7 \times 10^{-8} \times 3.0}{5.0 \times 10^{-7}} = 0.102\,\Omega$, about $0.10\,\Omega$$.'
+
+  - id: g3-5.2-resistivity
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A wire of length 2.0 m and area 4.0e-7 m^2 has a resistance of 6.0 ohm. Find the resistivity.'
+    answer_label: 'The resistivity'
+    check:
+      kind: dimensions
+      expression: "R * A / L"
+      values:
+        R: {value: "6.0", unit: "ohm"}
+        A: {value: "4.0e-7", unit: "m^2"}
+        L: {value: "2.0", unit: "m"}
+      answer: {value: "1.2e-6", unit: "ohm m"}
+    answer_text: 'The resistivity is $\rho = \dfrac{6.0 \times 4.0 \times 10^{-7}}{2.0} = 1.2 \times 10^{-6}\,\Omega\,\text{m}$.'
+
+  - id: g4-5.2-lamp
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A filament lamp carries 0.25 A at 3.0 V and 0.40 A at 6.0 V. Find the resistance at each pd.'
+    answer_label: 'The two resistances'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "3.0 / 0.25", answer: "12"}
+        - {kind: evaluate, expression: "6.0 / 0.40", answer: "15"}
+    answer_text: '$R_1 = \dfrac{3.0}{0.25} = 12\,\Omega$ and $R_2 = \dfrac{6.0}{0.40} = 15\,\Omega$. The resistance rises because the hotter filament scatters the electrons more often.'
+
+  - id: g5-5.2-copper-diameter
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'A copper wire has diameter 0.50 mm and length 2.0 m. Resistivity 1.7e-8 ohm m. Find its resistance.'
+    answer_label: 'The resistance'
+    check: {kind: approx, value: "1.7e-8 * 2.0 / (pi * (2.5e-4)**2)", target: "0.173", tolerance: "0.002"}
+    answer_text: 'The radius is $2.5 \times 10^{-4}\,\text{m}$, so $A = \pi (2.5 \times 10^{-4})^2 = 1.96 \times 10^{-7}\,\text{m}^2$. Then $R = \dfrac{1.7 \times 10^{-8} \times 2.0}{1.96 \times 10^{-7}} = 0.17\,\Omega$$.'
+
+  - id: g6-5.2-scaling
+    section: '5.2'
+    dfe: [AP5]
+    statement: 'Two wires of the same metal: one has twice the length and twice the diameter of the other. Explain how the resistance of the longer, thicker wire compares with the other.'
+    answer_label: 'The comparison'
+    check: {kind: evaluate, expression: "2 / 4", answer: "1/2"}
+    answer_text: 'The resistance is proportional to $\dfrac{L}{A}$. Doubling the length doubles $R$. Doubling the diameter makes the area four times larger, so it divides $R$ by four. The longer, thicker wire has half the resistance.'
+
+  # --- Section 5.3, the Learn worked examples and the guided problems ---------
+  - id: w1-series
+    section: '5.3'
+    dfe: [AP5]
+    statement: 'A 4.0 ohm and a 6.0 ohm resistor are in series. Find the equivalent resistance and the current from a 10 V supply.'
+    answer_label: 'The equivalent resistance and the current'
+    check:
+      kind: dimensions
+      expression: "R1 + R2"
+      values:
+        R1: {value: "4.0", unit: "ohm"}
+        R2: {value: "6.0", unit: "ohm"}
+      answer: {value: "10", unit: "ohm"}
+    answer_text: '$R_{\text{total}} = 4.0 + 6.0 = 10\,\Omega$, so $I = \dfrac{10}{10} = 1.0\,\text{A}$.'
+
+  - id: w2-parallel
+    section: '5.3'
+    dfe: [AP5]
+    statement: 'Two 100 ohm resistors are in parallel. Find the equivalent resistance.'
+    answer_label: 'The equivalent resistance'
+    check: {kind: evaluate, expression: "1 / (1/100 + 1/100)", answer: "50"}
+    answer_text: 'The two equal resistors in parallel give $R = \dfrac{100}{2} = 50\,\Omega$$.'
+
+  - id: w3-junction
+    section: '5.3'
+    dfe: [AP5]
+    statement: 'A current of 1.0 A enters a junction. Two branches carry 0.30 A and 0.20 A. Find the current in the third branch.'
+    answer_label: 'The third current'
+    check: {kind: evaluate, expression: "1.0 - 0.30 - 0.20", answer: "0.50"}
+    answer_text: 'The current leaving equals the current entering: $I_3 = 1.0 - 0.30 - 0.20 = 0.50\,\text{A}$.'
+
+  - id: w4-internal
+    section: '5.3'
+    dfe: [AP5]
+    statement: 'A battery of emf 12 V and internal resistance 0.15 ohm is joined to 5.85 ohm. Find the current and the terminal pd.'
+    answer_label: 'The current and the terminal pd'
+    check:
+      kind: dimensions
+      expression: "emf / (R + r)"
+      values:
+        emf: {value: "12", unit: "V"}
+        R: {value: "5.85", unit: "ohm"}
+        r: {value: "0.15", unit: "ohm"}
+      answer: {value: "2.0", unit: "A"}
+    answer_text: '$I = \dfrac{12}{6.00} = 2.0\,\text{A}$ and $V = 12 - (2.0 \times 0.15) = 11.7\,\text{V}$. The power wasted inside is $I^2r = 0.60\,\text{W}$.'
+
+  - id: w5-divider
+    section: '5.3'
+    dfe: [AP5]
+    statement: 'A 4.0 kohm and a 2.0 kohm resistor are in series across 12 V. Find the pd across the 2.0 kohm resistor.'
+    answer_label: 'The output potential difference'
+    check: {kind: evaluate, expression: "12 * 2.0 / (4.0 + 2.0)", answer: "4.0"}
+    answer_text: '$V_{\text{out}} = 12 \times \dfrac{2.0}{6.0} = 4.0\,\text{V}$.'
+
+  - id: g1-5.3-series
+    section: '5.3'
+    dfe: [AP5]
+    statement: 'A 3.0 ohm and a 5.0 ohm resistor are in series. Find the equivalent resistance.'
+    answer_label: 'The equivalent resistance'
+    check: {kind: evaluate, expression: "3.0 + 5.0", answer: "8.0"}
+    answer_text: 'The equivalent resistance is $R = 3.0 + 5.0 = 8.0\,\Omega$$.'
+
+  - id: g2-5.3-parallel
+    section: '5.3'
+    dfe: [AP5]
+    statement: 'A 6.0 ohm and a 3.0 ohm resistor are in parallel. Find the equivalent resistance.'
+    answer_label: 'The equivalent resistance'
+    check: {kind: evaluate, expression: "1 / (1/6.0 + 1/3.0)", answer: "2.0"}
+    answer_text: '$\dfrac{1}{R} = \dfrac{1}{6.0} + \dfrac{1}{3.0} = \dfrac{1}{2.0}$, so $R = 2.0\,\Omega$$.'
+
+  - id: g3-5.3-divider
+    section: '5.3'
+    dfe: [AP5]
+    statement: 'A 12 V supply is across a 2.0 kohm and a 4.0 kohm resistor in series. Find the pd across the 2.0 kohm resistor.'
+    answer_label: 'The output potential difference'
+    check: {kind: evaluate, expression: "12 * 2.0 / (2.0 + 4.0)", answer: "4.0"}
+    answer_text: '$V_{\text{out}} = 12 \times \dfrac{2.0}{6.0} = 4.0\,\text{V}$.'
+
+  - id: g4-5.3-internal
+    section: '5.3'
+    dfe: [AP5]
+    statement: 'A battery of emf 9.0 V and internal resistance 0.25 ohm is connected to 4.25 ohm. Find the current and the terminal pd.'
+    answer_label: 'The current and the terminal pd'
+    check:
+      kind: dimensions
+      expression: "emf / (R + r)"
+      values:
+        emf: {value: "9.0", unit: "V"}
+        R: {value: "4.25", unit: "ohm"}
+        r: {value: "0.25", unit: "ohm"}
+      answer: {value: "2.0", unit: "A"}
+    answer_text: '$I = \dfrac{9.0}{4.50} = 2.0\,\text{A}$ and $V = 9.0 - (2.0 \times 0.25) = 8.5\,\text{V}$.'
+
+  - id: g5-5.3-junction
+    section: '5.3'
+    dfe: [AP5]
+    statement: 'A current of 2.0 A enters a junction. Two branches leave with 0.50 A and 0.80 A. Find the third branch current.'
+    answer_label: 'The third current'
+    check: {kind: evaluate, expression: "2.0 - 0.50 - 0.80", answer: "0.70"}
+    answer_text: '$I_3 = 2.0 - 0.50 - 0.80 = 0.70\,\text{A}$.'
+
+  - id: g6-5.3-thermistor
+    section: '5.3'
+    dfe: [AP5]
+    statement: 'A 10 kohm resistor and a thermistor are in series across 6.0 V. The thermistor is 10 kohm at 20 C and 5.0 kohm at 40 C. Find the output pd across the thermistor at each temperature.'
+    answer_label: 'The two output potential differences'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "6.0 * 10 / (10 + 10)", answer: "3.0"}
+        - {kind: evaluate, expression: "6.0 * 5.0 / (10 + 5.0)", answer: "2.0"}
+    answer_text: 'At $20\,^\circ\text{C}$: $V_{\text{out}} = 6.0 \times \dfrac{10}{20} = 3.0\,\text{V}$. At $40\,^\circ\text{C}$: $V_{\text{out}} = 6.0 \times \dfrac{5.0}{15} = 2.0\,\text{V}$. The output falls as the temperature rises.'
+
+  # --- Section 5.4, the Learn worked examples and the guided problems ---------
+  - id: w1-capacitance
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A capacitor stores 0.200 C at a pd of 2000 V. Find its capacitance.'
+    answer_label: 'The capacitance'
+    check:
+      kind: dimensions
+      expression: "Q / V"
+      values:
+        Q: {value: "0.200", unit: "C"}
+        V: {value: "2000", unit: "V"}
+      answer: {value: "1.00e-4", unit: "F"}
+    answer_text: '$C = \dfrac{Q}{V} = \dfrac{0.200}{2000} = 1.00 \times 10^{-4}\,\text{F} = 100\,\mu\text{F}$.'
+
+  - id: w2-parallel-plate
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A parallel plate capacitor has area 0.030 m^2, separation 1.0e-4 m and dielectric relative permittivity 2.0. Find the capacitance.'
+    answer_label: 'The capacitance'
+    check: {kind: approx, value: "8.85e-12 * 2.0 * 0.030 / 1.0e-4", target: "5.31e-9", tolerance: "2e-11"}
+    answer_text: '$C = \dfrac{\varepsilon_0 \varepsilon_r A}{d} = \dfrac{8.85 \times 10^{-12} \times 2.0 \times 0.030}{1.0 \times 10^{-4}} = 5.3 \times 10^{-9}\,\text{F}$.'
+
+  - id: w3-energy
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A 100 microfarad capacitor is charged to 2000 V. Find the energy stored.'
+    answer_label: 'The energy stored'
+    check:
+      kind: dimensions
+      expression: "0.5 * C * V**2"
+      values:
+        C: {value: "100e-6", unit: "F"}
+        V: {value: "2000", unit: "V"}
+      answer: {value: "200", unit: "J"}
+    answer_text: '$E = \tfrac{1}{2}CV^2 = \tfrac{1}{2} \times 100 \times 10^{-6} \times (2000)^2 = 200\,\text{J}$.'
+
+  - id: w4-time-constant
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A 100 microfarad capacitor is discharged through a 50 ohm resistor. Find the time constant.'
+    answer_label: 'The time constant'
+    check:
+      kind: dimensions
+      expression: "R * C"
+      values:
+        R: {value: "50", unit: "ohm"}
+        C: {value: "100e-6", unit: "F"}
+      answer: {value: "5.0e-3", unit: "s"}
+    answer_text: '$\tau = RC = 50 \times 100 \times 10^{-6} = 5.0 \times 10^{-3}\,\text{s}$, or $5.0\,\text{ms}$.'
+
+  - id: w5-pd-after-time
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A capacitor charged to 2000 V discharges through a 50 ohm resistor and has capacitance 100 microfarad. Find the pd after 10 ms.'
+    answer_label: 'The potential difference'
+    check: {kind: approx, value: "2000 * exp(-10/5.0)", target: "270.67", tolerance: "1"}
+    answer_text: 'The time constant is $5.0\,\text{ms}$, so after $10\,\text{ms}$ the pd is $V = 2000 e^{-2} = 270\,\text{V}$.'
+
+  - id: g1-5.4-capacitance
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A capacitor stores 6.0e-4 C at a pd of 12 V. Find its capacitance.'
+    answer_label: 'The capacitance'
+    check: {kind: evaluate, expression: "6.0e-4 / 12", answer: "5.0e-5"}
+    answer_text: '$C = \dfrac{Q}{V} = \dfrac{6.0 \times 10^{-4}}{12} = 5.0 \times 10^{-5}\,\text{F} = 50\,\mu\text{F}$.'
+
+  - id: g2-5.4-charge
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A 470 microfarad capacitor is charged to 300 V. Find the charge stored.'
+    answer_label: 'The charge'
+    check: {kind: evaluate, expression: "470e-6 * 300", answer: "0.141"}
+    answer_text: '$Q = CV = 4.70 \times 10^{-4} \times 300 = 0.141\,\text{C}$.'
+
+  - id: g3-5.4-energy
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A 220 microfarad capacitor is charged to 50 V. Find the energy stored.'
+    answer_label: 'The energy stored'
+    check: {kind: evaluate, expression: "0.5 * 220e-6 * 50**2", answer: "0.275"}
+    answer_text: '$E = \tfrac{1}{2}CV^2 = \tfrac{1}{2} \times 220 \times 10^{-6} \times 50^2 = 0.275\,\text{J}$.'
+
+  - id: g4-5.4-time-constant
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A 100 microfarad capacitor is discharged through a 200 ohm resistor. Find the time constant.'
+    answer_label: 'The time constant'
+    check: {kind: evaluate, expression: "200 * 100e-6", answer: "2.0e-2"}
+    answer_text: '$\tau = RC = 200 \times 100 \times 10^{-6} = 2.0 \times 10^{-2}\,\text{s} = 20\,\text{ms}$.'
+
+  - id: g5-5.4-discharge
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A 50 microfarad capacitor charged to 100 V is discharged through a 1.0 kohm resistor. Find the time constant and the pd after one time constant.'
+    answer_label: 'The time constant and the pd'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "1000 * 50e-6", answer: "0.050"}
+        - {kind: approx, value: "100 * exp(-1)", target: "36.79", tolerance: "0.1"}
+    answer_text: '$\tau = 1000 \times 50 \times 10^{-6} = 0.050\,\text{s}$, and after one time constant $V = 100 e^{-1} = 36.8\,\text{V}$.'
+
+  - id: g6-5.4-parallel-plate
+    section: '5.4'
+    dfe: [AP5]
+    statement: 'A parallel plate capacitor has area 0.020 m^2, separation 5.0e-5 m and dielectric relative permittivity 3.0. Find the capacitance.'
+    answer_label: 'The capacitance'
+    check: {kind: approx, value: "8.85e-12 * 3.0 * 0.020 / 5.0e-5", target: "1.06e-8", tolerance: "5e-11"}
+    answer_text: '$C = \dfrac{8.85 \times 10^{-12} \times 3.0 \times 0.020}{5.0 \times 10^{-5}} = 1.1 \times 10^{-8}\,\text{F}$, or $11\,\text{nF}$.'

@@ -1,0 +1,152 @@
+# Practice set for 7.5, tangents, normals and stationary points.
+#
+# The checks prove the derivative, the stationary values and the sign of the
+# second derivative. Choosing the tangent or the normal, and rejecting a
+# contextually impossible answer, are human review.
+chapter: 7
+symbols:
+  x: {real: true}
+  t: {real: true}
+problems:
+  - id: p1-stationary-quadratic
+    section: "7.5"
+    dfe: [G3]
+    statement: 'Find the value of $x$ at the stationary point of $y = x^2 - 8x + 3$.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "2*x - 8 = 0"
+      variable: "x"
+      answer: ["4"]
+    answer_text: '$\dfrac{dy}{dx} = 2x - 8$, so $2x - 8 = 0$ gives $x = 4$. The second derivative is $2 > 0$, so this is a minimum.'
+
+  - id: p2-stationary-cubic
+    section: "7.5"
+    dfe: [G3]
+    statement: 'Find the two values of $x$ at the stationary points of $y = 2x^3 - 6x$.'
+    answer_label: 'The two values of $x$'
+    check:
+      kind: solve
+      equation: "6*x**2 - 6 = 0"
+      variable: "x"
+      answer: ["1", "-1"]
+    answer_text: '$\dfrac{dy}{dx} = 6x^2 - 6 = 6(x^2 - 1)$, so $x^2 = 1$ and $x = 1$ or $x = -1$.'
+
+  - id: p3-classify-cubic
+    section: "7.5"
+    dfe: [G3]
+    statement: 'The curve $y = x^3 - 3x^2 + 2$ has stationary points at $x = 0$ and $x = 2$. Use the second derivative $6x - 6$ to classify them.'
+    answer_label: 'The sign at each point'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, lhs: "6*0 - 6", relation: "<", rhs: "0"}
+        - {kind: compare, lhs: "6*2 - 6", relation: ">", rhs: "0"}
+    answer_text: 'At $x = 0$ the second derivative is $-6 < 0$, so the point is a maximum. At $x = 2$ it is $6 > 0$, so the point is a minimum.'
+
+  - id: p4-tangent-quadratic
+    section: "7.5"
+    dfe: [G3]
+    statement: 'Find the gradient of the tangent to $y = x^2 + 3x$ at $x = 1$.'
+    answer_label: 'The gradient'
+    check:
+      kind: apply
+      expression: "2*x + 3"
+      apply: {op: subs, args: [x, 1]}
+      answer: "5"
+    answer_text: '$\dfrac{dy}{dx} = 2x + 3$. At $x = 1$ the gradient is $2 + 3 = 5$. The tangent through $(1, 4)$ is $y = 5x - 1$.'
+
+  - id: p5-normal-gradient
+    section: "7.5"
+    dfe: [G3]
+    statement: 'Find the gradient of the normal to $y = x^2$ at $x = 1$.'
+    answer_label: 'The gradient'
+    check:
+      kind: evaluate
+      expression: "-1/(2*1)"
+      answer: "-1/2"
+    answer_text: 'The tangent gradient is $2x = 2$ at $x = 1$. The normal gradient is the negative reciprocal, $-\dfrac{1}{2}$. The normal through $(1, 1)$ is $y = -\tfrac{1}{2}x + \tfrac{3}{2}$.'
+
+  - id: p6-tangent-cubic
+    section: "7.5"
+    dfe: [G3]
+    statement: 'Find the gradient of the tangent to $y = x^3 - 3x$ at $x = 2$.'
+    answer_label: 'The gradient'
+    check:
+      kind: apply
+      expression: "3*x**2 - 3"
+      apply: {op: subs, args: [x, 2]}
+      answer: "9"
+    answer_text: '$\dfrac{dy}{dx} = 3x^2 - 3$. At $x = 2$ the gradient is $12 - 3 = 9$. The tangent through $(2, 2)$ is $y = 9x - 16$.'
+
+  - id: p7-box-stationary
+    section: "7.5"
+    dfe: [G3]
+    statement: 'The volume of an open box is $V = x(16 - 2x)(10 - 2x)$. Find the two values of $x$ for which $\dfrac{dV}{dx} = 12x^2 - 104x + 160$ is zero.'
+    answer_label: 'The two values of $x$'
+    check:
+      kind: solve
+      equation: "12*x**2 - 104*x + 160 = 0"
+      variable: "x"
+      answer: ["2", "20/3"]
+    answer_text: 'Divide by $4$: $3x^2 - 26x + 40 = 0$. Factorise as $(3x - 20)(x - 2) = 0$, so $x = \dfrac{20}{3}$ or $x = 2$. Only $x = 2$ fits the card, because the other value makes the base wider than $10$ cm.'
+
+  - id: p8-box-second-derivative
+    section: "7.5"
+    dfe: [G3]
+    statement: 'For the box with $V = 4x^3 - 52x^2 + 160x$, work out the value of $\dfrac{d^2V}{dx^2}$ at $x = 2$.'
+    answer_label: 'The second derivative'
+    check:
+      kind: apply
+      expression: "24*x - 104"
+      apply: {op: subs, args: [x, 2]}
+      answer: "-56"
+    answer_text: '$\dfrac{d^2V}{dx^2} = 24x - 104$. At $x = 2$: $48 - 104 = -56 < 0$, so the volume is a maximum there.'
+
+  - id: p9-rectangle-area
+    section: "7.5"
+    dfe: [G3]
+    statement: 'A rectangle has perimeter $20$ cm. Its area is $A = x(10 - x)$ for a side $x$. Find the value of $x$ that gives the greatest area.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "10 - 2*x = 0"
+      variable: "x"
+      answer: ["5"]
+    answer_text: '$\dfrac{dA}{dx} = 10 - 2x = 0$ gives $x = 5$. The second derivative is $-2 < 0$, so the area is a maximum. The area is $5 \times 5 = 25$ cm$^2$.'
+
+  - id: p10-exponential-minimum
+    section: "7.5"
+    dfe: [G3]
+    statement: 'Find the value of $x$ at the stationary point of $y = e^x - x$.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "exp(x) - 1 = 0"
+      variable: "x"
+      answer: ["0"]
+    answer_text: '$\dfrac{dy}{dx} = e^x - 1 = 0$, so $e^x = 1$ and $x = 0$. The second derivative is $e^x$, which is $1 > 0$ at $x = 0$, so the point is a minimum.'
+
+  - id: p11-ball-height
+    section: "7.5"
+    dfe: [G3]
+    statement: 'A ball is thrown so that its height after $t$ seconds is $h = 20t - 5t^2$ metres. Find the time at which the height is greatest.'
+    answer_label: 'The time'
+    check:
+      kind: solve
+      equation: "20 - 10*t = 0"
+      variable: "t"
+      answer: ["2"]
+    answer_text: '$\dfrac{dh}{dt} = 20 - 10t = 0$, so $t = 2$ seconds. The second derivative is $-10 < 0$, so the height is a maximum. The greatest height is $h(2) = 20$ m.'
+
+  - id: p12-stationary-inflection
+    section: "7.5"
+    dfe: [G3]
+    statement: 'Find the value of $x$ at the stationary point of $y = x^3$, and state the gradient there.'
+    answer_label: 'The value of $x$ and the gradient'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: "3*x**2 = 0", variable: x, answer: ["0"]}
+        - {kind: apply, expression: "3*x**2", apply: {op: subs, args: [x, 0]}, answer: "0"}
+    answer_text: '$\dfrac{dy}{dx} = 3x^2 = 0$ at $x = 0$, and the gradient there is $0$. The curve flattens at the origin but keeps rising, so this is a stationary point of inflection.'

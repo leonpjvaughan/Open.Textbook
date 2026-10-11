@@ -1,0 +1,146 @@
+# Practice set for 7.8, connected rates of change and inverse functions.
+#
+# The checks prove the arithmetic of each connected rate and each inverse
+# derivative. Setting up the chain rule, and choosing the matching point for an
+# inverse, are the reader's working and human review.
+chapter: 7
+symbols:
+  x: {real: true}
+  r: {real: true, positive: true}
+  t: {real: true}
+problems:
+  - id: p1-sphere-radius-rate
+    section: "7.8"
+    dfe: [G4]
+    statement: 'A sphere grows so that $\dfrac{dV}{dt} = 100$ cm$^3$/s. Find $\dfrac{dr}{dt}$ when $r = 5$ cm.'
+    answer_label: 'The rate'
+    check:
+      kind: evaluate
+      expression: "100/(4*pi*5**2)"
+      answer: "1/pi"
+    answer_text: '$V = \dfrac{4}{3}\pi r^3$, so $\dfrac{dV}{dr} = 4\pi r^2 = 100\pi$ at $r = 5$. Then $\dfrac{dV}{dt} = \dfrac{dV}{dr} \times \dfrac{dr}{dt}$ gives $100 = 100\pi \dfrac{dr}{dt}$, so $\dfrac{dr}{dt} = \dfrac{1}{\pi} \approx 0.318$ cm/s.'
+
+  - id: p2-sphere-unit-rate
+    section: "7.8"
+    dfe: [G4]
+    statement: 'A sphere grows so that $\dfrac{dV}{dt} = 4\pi$ cm$^3$/s. Find $\dfrac{dr}{dt}$ when $r = 1$ cm.'
+    answer_label: 'The rate'
+    check:
+      kind: evaluate
+      expression: "4*pi/(4*pi*1**2)"
+      answer: "1"
+    answer_text: '$\dfrac{dV}{dr} = 4\pi r^2 = 4\pi$ at $r = 1$. Then $\dfrac{dr}{dt} = \dfrac{4\pi}{4\pi} = 1$ cm/s.'
+
+  - id: p3-cube-volume-rate
+    section: "7.8"
+    dfe: [G4]
+    statement: 'A cube expands so that each edge grows at $0.5$ cm/s. Find $\dfrac{dV}{dt}$ when the edge is $4$ cm.'
+    answer_label: 'The rate'
+    check:
+      kind: evaluate
+      expression: "3*4**2*0.5"
+      answer: "24"
+    answer_text: '$V = x^3$, so $\dfrac{dV}{dx} = 3x^2 = 48$ at $x = 4$. Then $\dfrac{dV}{dt} = 48 \times 0.5 = 24$ cm$^3$/s.'
+
+  - id: p4-circle-radius-rate
+    section: "7.8"
+    dfe: [G4]
+    statement: 'A circle''s area grows at $2$ cm$^2$/s. Find $\dfrac{dr}{dt}$ when $r = 3$ cm.'
+    answer_label: 'The rate'
+    check:
+      kind: evaluate
+      expression: "2/(2*pi*3)"
+      answer: "1/(3*pi)"
+    answer_text: '$A = \pi r^2$, so $\dfrac{dA}{dr} = 2\pi r = 6\pi$ at $r = 3$. Then $2 = 6\pi \dfrac{dr}{dt}$, so $\dfrac{dr}{dt} = \dfrac{1}{3\pi} \approx 0.106$ cm/s.'
+
+  - id: p5-circle-area-rate
+    section: "7.8"
+    dfe: [G4]
+    statement: 'A circle''s radius grows at $0.05$ cm/s. Find $\dfrac{dA}{dt}$ when $r = 6$ cm.'
+    answer_label: 'The rate'
+    check:
+      kind: evaluate
+      expression: "2*pi*6*0.05"
+      answer: "3*pi/5"
+    answer_text: '$\dfrac{dA}{dr} = 2\pi r = 12\pi$ at $r = 6$. Then $\dfrac{dA}{dt} = 12\pi \times 0.05 = \dfrac{3\pi}{5} \approx 1.88$ cm$^2$/s.'
+
+  - id: p6-inverse-cube
+    section: "7.8"
+    dfe: [G4]
+    statement: 'The function $f(x) = x^3$ has an inverse. Find $\left(f^{-1}\right)''(27)$.'
+    answer_label: 'The gradient'
+    check:
+      kind: apply
+      expression: "1/(3*x**2)"
+      apply: {op: subs, args: [x, 3]}
+      answer: "1/27"
+    answer_text: '$f(3) = 27$, so the matching point is $x = 3$. Then $f''(x) = 3x^2$ and $f''(3) = 27$, so the inverse gradient is $\dfrac{1}{27}$.'
+
+  - id: p7-inverse-cubic-linear
+    section: "7.8"
+    dfe: [G4]
+    statement: 'The function $f(x) = x^3 + 3x$ has an inverse. Find $\left(f^{-1}\right)''(0)$.'
+    answer_label: 'The gradient'
+    check:
+      kind: apply
+      expression: "1/(3*x**2 + 3)"
+      apply: {op: subs, args: [x, 0]}
+      answer: "1/3"
+    answer_text: '$f(0) = 0$, so the matching point is $x = 0$. Then $f''(x) = 3x^2 + 3$ and $f''(0) = 3$, so the inverse gradient is $\dfrac{1}{3}$.'
+
+  - id: p8-inverse-quintic
+    section: "7.8"
+    dfe: [G4]
+    statement: 'The function $f(x) = x^5 + x$ has an inverse. Find $\left(f^{-1}\right)''(2)$.'
+    answer_label: 'The gradient'
+    check:
+      kind: apply
+      expression: "1/(5*x**4 + 1)"
+      apply: {op: subs, args: [x, 1]}
+      answer: "1/6"
+    answer_text: '$f(1) = 1 + 1 = 2$, so the matching point is $x = 1$. Then $f''(x) = 5x^4 + 1$ and $f''(1) = 6$, so the inverse gradient is $\dfrac{1}{6}$.'
+
+  - id: p9-connected-square
+    section: "7.8"
+    dfe: [G4]
+    statement: 'Two quantities are linked by $y = x^2$, and $x$ grows at $4$ units per second. Find $\dfrac{dy}{dt}$ when $x = 5$.'
+    answer_label: 'The rate'
+    check:
+      kind: evaluate
+      expression: "2*5*4"
+      answer: "40"
+    answer_text: '$\dfrac{dy}{dx} = 2x = 10$ at $x = 5$, so $\dfrac{dy}{dt} = 10 \times 4 = 40$ units/s.'
+
+  - id: p10-cylinder-volume
+    section: "7.8"
+    dfe: [G4]
+    statement: 'A cylinder has fixed height $10$ cm and volume $V = \pi r^2 h$. Its radius grows at $0.1$ cm/s. Find $\dfrac{dV}{dt}$ when $r = 2$ cm.'
+    answer_label: 'The rate'
+    check:
+      kind: evaluate
+      expression: "2*pi*2*10*0.1"
+      answer: "4*pi"
+    answer_text: 'With $h = 10$, $V = 10\pi r^2$ and $\dfrac{dV}{dr} = 20\pi r = 40\pi$ at $r = 2$. Then $\dfrac{dV}{dt} = 40\pi \times 0.1 = 4\pi \approx 12.6$ cm$^3$/s.'
+
+  - id: p11-droplet-radius
+    section: "7.8"
+    dfe: [G4]
+    statement: 'A spherical droplet grows so that $\dfrac{dV}{dt} = 5$ cm$^3$/s. Find $\dfrac{dr}{dt}$ when $r = 2$ cm.'
+    answer_label: 'The rate'
+    check:
+      kind: evaluate
+      expression: "5/(4*pi*2**2)"
+      answer: "5/(16*pi)"
+    answer_text: '$\dfrac{dV}{dr} = 4\pi r^2 = 16\pi$ at $r = 2$. Then $5 = 16\pi \dfrac{dr}{dt}$, so $\dfrac{dr}{dt} = \dfrac{5}{16\pi} \approx 0.0995$ cm/s.'
+
+  - id: p12-inverse-cubic-linear-second
+    section: "7.8"
+    dfe: [G4]
+    statement: 'The function $f(x) = x^3 + 4x$ has an inverse. Find $\left(f^{-1}\right)''(5)$.'
+    answer_label: 'The gradient'
+    check:
+      kind: apply
+      expression: "1/(3*x**2 + 4)"
+      apply: {op: subs, args: [x, 1]}
+      answer: "1/7"
+    answer_text: '$f(1) = 1 + 4 = 5$, so the matching point is $x = 1$. Then $f''(x) = 3x^2 + 4$ and $f''(1) = 7$, so the inverse gradient is $\dfrac{1}{7}$.'

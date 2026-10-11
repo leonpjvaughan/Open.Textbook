@@ -1,0 +1,194 @@
+# Mixed practice for the Chapter 5 Review.
+#
+# The first nine records resolve the chapter problem of the defibrillator. The
+# rest interleave the chapter with Chapters 1 to 4: a prefix conversion, a mean
+# and its uncertainty, a vector resolution, a work and power calculation, and a
+# density. Every numeric record is checked by the `units` oracle, and a
+# `structured` record stands where a computer cannot go: it proves that a model
+# answer contains the declared ideas in order, and nothing more.
+#
+# The anchor numbers: C = 100 microfarad and V = 2000 V, so Q = 0.200 C and
+# E = 200 J; the copper leads have R = 6.5e-3 ohm, negligible beside the 50 ohm
+# chest; the discharge has I0 = 40 A and tau = 5.0 ms, and V falls to 736 V after
+# one time constant; the battery terminal pd is 11.7 V; and the test load of two
+# 100 ohm resistors in parallel is 50 ohm.
+chapter: 5
+problems:
+  - id: r1-anchor-charge
+    section: Review
+    dfe: [AP5]
+    statement: 'A defibrillator capacitor of capacitance $100\,\mu\text{F}$ is charged to $2000\,\text{V}$. Find the charge stored.'
+    answer_label: 'The charge stored'
+    check:
+      kind: dimensions
+      expression: "C * V"
+      values:
+        C: {value: "100e-6", unit: "F"}
+        V: {value: "2000", unit: "V"}
+      answer: {value: "0.200", unit: "C"}
+    answer_text: 'The charge is $Q = CV = 100 \times 10^{-6} \times 2000 = 0.200\,\text{C}$.'
+
+  - id: r2-anchor-energy
+    section: Review
+    dfe: [AP5]
+    statement: 'A defibrillator capacitor of capacitance $100\,\mu\text{F}$ is charged to $2000\,\text{V}$. Find the energy stored.'
+    answer_label: 'The energy stored'
+    check:
+      kind: dimensions
+      expression: "0.5 * C * V**2"
+      values:
+        C: {value: "100e-6", unit: "F"}
+        V: {value: "2000", unit: "V"}
+      answer: {value: "200", unit: "J"}
+    answer_text: 'The energy is $E = \tfrac{1}{2}CV^2 = \tfrac{1}{2} \times 100 \times 10^{-6} \times (2000)^2 = 200\,\text{J}$.'
+
+  - id: r3-anchor-leads
+    section: Review
+    dfe: [AP5]
+    statement: 'The copper leads have total length $1.2\,\text{m}$ and diameter $2.0\,\text{mm}$. The resistivity of copper is $1.7 \times 10^{-8}\,\Omega\,\text{m}$. Find the resistance of the leads.'
+    answer_label: 'The resistance of the leads'
+    check: {kind: approx, value: "1.7e-8 * 1.2 / (pi * (1.0e-3)**2)", target: "6.49e-3", tolerance: "0.05e-3"}
+    answer_text: 'The radius is $1.0 \times 10^{-3}\,\text{m}$, so $A = \pi (1.0 \times 10^{-3})^2 = 3.14 \times 10^{-6}\,\text{m}^2$. Then $R = \dfrac{1.7 \times 10^{-8} \times 1.2}{3.14 \times 10^{-6}} = 6.5 \times 10^{-3}\,\Omega$.'
+
+  - id: r4-anchor-current
+    section: Review
+    dfe: [AP5]
+    statement: 'A capacitor charged to $2000\,\text{V}$ is discharged through a total resistance of $50\,\Omega$. Find the current at the first instant.'
+    answer_label: 'The initial current'
+    check:
+      kind: dimensions
+      expression: "V / R"
+      values:
+        V: {value: "2000", unit: "V"}
+        R: {value: "50", unit: "ohm"}
+      answer: {value: "40", unit: "A"}
+    answer_text: 'The initial current is $I_0 = \dfrac{V_0}{R} = \dfrac{2000}{50} = 40\,\text{A}$.'
+
+  - id: r5-anchor-time-constant
+    section: Review
+    dfe: [AP5]
+    statement: 'A $100\,\mu\text{F}$ capacitor discharges through a total resistance of $50\,\Omega$. Find the time constant.'
+    answer_label: 'The time constant'
+    check:
+      kind: dimensions
+      expression: "R * C"
+      values:
+        R: {value: "50", unit: "ohm"}
+        C: {value: "100e-6", unit: "F"}
+      answer: {value: "5.0e-3", unit: "s"}
+    answer_text: 'The time constant is $\tau = RC = 50 \times 100 \times 10^{-6} = 5.0 \times 10^{-3}\,\text{s} = 5.0\,\text{ms}$.'
+
+  - id: r6-anchor-pd
+    section: Review
+    dfe: [AP5]
+    statement: 'A capacitor charged to $2000\,\text{V}$ discharges with a time constant of $5.0\,\text{ms}$. Find the potential difference after $5.0\,\text{ms}$.'
+    answer_label: 'The potential difference'
+    check: {kind: approx, value: "2000 * exp(-1)", target: "736", tolerance: "2"}
+    answer_text: 'After one time constant the pd is $V = V_0 e^{-1} = 2000 \times 0.368 = 7.4 \times 10^{2}\,\text{V}$.'
+
+  - id: r7-anchor-battery
+    section: Review
+    dfe: [AP5]
+    statement: 'The unit draws $2.0\,\text{A}$ from a battery of emf $12\,\text{V}$ and internal resistance $0.15\,\Omega$. Find the terminal potential difference.'
+    answer_label: 'The terminal potential difference'
+    check:
+      kind: dimensions
+      expression: "emf - I * r"
+      values:
+        emf: {value: "12", unit: "V"}
+        I: {value: "2.0", unit: "A"}
+        r: {value: "0.15", unit: "ohm"}
+      answer: {value: "11.7", unit: "V"}
+    answer_text: 'The lost volts are $Ir = 2.0 \times 0.15 = 0.30\,\text{V}$, so $V = 12 - 0.30 = 11.7\,\text{V}$.'
+
+  - id: r8-anchor-test-load
+    section: Review
+    dfe: [AP5]
+    statement: 'The unit is tested on two $100\,\Omega$ resistors in parallel. Find the equivalent resistance of the test load.'
+    answer_label: 'The equivalent resistance'
+    check: {kind: evaluate, expression: "1 / (1/100 + 1/100)", answer: "50"}
+    answer_text: 'For two equal resistors in parallel, $R = \dfrac{100}{2} = 50\,\Omega$. The test load matches the resistance of the chest.'
+
+  - id: r9-anchor-judgement
+    section: Review
+    dfe: [AP5]
+    statement: 'The leads have a resistance of $6.5 \times 10^{-3}\,\Omega$ and the chest has a resistance of $50\,\Omega$. Decide whether the leads make a significant difference to the discharge, and give a reason.'
+    answer_label: 'The judgement'
+    check:
+      kind: structured
+      requires: [compare-resistances, percentage, decision]
+      concepts: [resistance, series, discharge]
+      points:
+        - id: compare-resistances
+          text: 'The lead resistance is much smaller than the chest resistance. Adding the two in series gives 50.0065 ohm, which is still 50 ohm to three significant figures.'
+          concepts: [resistance, series]
+        - id: percentage
+          text: 'The leads add about 0.013 percent to the total resistance, so they change the current by far less than the uncertainty of the measurement.'
+          concepts: [resistance]
+        - id: decision
+          text: 'The leads make no practical difference. Almost all of the 200 J is delivered to the chest, and the discharge time constant stays at about 5 ms.'
+          concepts: [discharge]
+    answer_text: 'The lead resistance is $6.5 \times 10^{-3}\,\Omega$, which is about $0.013\%$ of the $50\,\Omega$ chest. The leads make no practical difference to the discharge.'
+
+  - id: r10-convert-area
+    section: Review
+    dfe: [AP1, AP5]
+    statement: 'A wire has a cross-sectional area of $2.5\,\text{mm}^2$. Write this area in $\text{m}^2$.'
+    answer_label: 'The area in square metres'
+    check: {kind: convert, value: "2.5", from: "mm^2", to: "m^2", answer: "2.5e-06"}
+    answer_text: '$2.5\,\text{mm}^2 = 2.5 \times 10^{-6}\,\text{m}^2$. The millimetre is squared, so the factor is $10^{-6}$.'
+
+  - id: r11-uncertainty
+    section: Review
+    dfe: [AP1, AP5]
+    statement: 'A capacitor discharge is timed with repeated readings of $2.48\,\text{s}$, $2.50\,\text{s}$ and $2.52\,\text{s}$. Find the mean time and the uncertainty, using the half-range convention.'
+    answer_label: 'The mean and the uncertainty'
+    check:
+      kind: uncertainty
+      mean_of: ["2.48", "2.50", "2.52"]
+      convention: half-range
+      answer: "2.50"
+      uncertainty: "0.02"
+    answer_text: 'The mean is $\dfrac{2.48 + 2.50 + 2.52}{3} = 2.50\,\text{s}$. The range is $2.52 - 2.48 = 0.04\,\text{s}$, so the half-range uncertainty is $0.02\,\text{s}$, and the time is $2.50 \pm 0.02\,\text{s}$.'
+
+  - id: r12-resolve
+    section: Review
+    dfe: [AP2, AP5]
+    statement: 'A force of $800\,\text{N}$ acts at $40^\circ$ to the horizontal. Find its horizontal and vertical components.'
+    answer_label: 'The two components'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "800"
+      angle_deg: "40"
+      components: {x: "612.8", y: "514.2"}
+      tolerance: "0.5"
+    answer_text: 'The horizontal component is $800\cos 40^\circ = 613\,\text{N}$. The vertical component is $800\sin 40^\circ = 514\,\text{N}$. The horizontal component is the larger one.'
+
+  - id: r13-work-power
+    section: Review
+    dfe: [AP3, AP5]
+    statement: 'A force of $250\,\text{N}$ moves a crate $12\,\text{m}$ along its line of action in $15\,\text{s}$. Find the work done and the power.'
+    answer_label: 'The work done and the power'
+    check:
+      kind: dimensions
+      expression: "F * s"
+      values:
+        F: {value: "250", unit: "N"}
+        s: {value: "12", unit: "m"}
+      answer: {value: "3000", unit: "J"}
+    answer_text: 'The work done is $W = Fs = 250 \times 12 = 3000\,\text{J}$. The power is $P = \dfrac{W}{t} = \dfrac{3000}{15} = 200\,\text{W}$.'
+
+  - id: r14-density
+    section: Review
+    dfe: [AP4, AP5]
+    statement: 'A copper block has a volume of $1.5 \times 10^{-4}\,\text{m}^3$ and a mass of $1.35\,\text{kg}$. Find its density.'
+    answer_label: 'The density'
+    check:
+      kind: dimensions
+      expression: "m / V"
+      values:
+        m: {value: "1.35", unit: "kg"}
+        V: {value: "1.5e-4", unit: "m^3"}
+      answer: {value: "9000", unit: "kg m^-3"}
+    answer_text: 'The density is $\dfrac{m}{V} = \dfrac{1.35}{1.5 \times 10^{-4}} = 9000\,\text{kg}\,\text{m}^{-3}$.'

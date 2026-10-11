@@ -10,9 +10,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.5 Static electricity and electric fields — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: EL5
+Work through these on your own. Most of these questions want an explanation, so
+answer in full sentences and use the science words exactly.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-06-practice-6.5
+
+:::answers chapter-06-practice-6.5

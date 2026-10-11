@@ -1,0 +1,286 @@
+# Mixed practice for the Chapter 7 Review.
+#
+# The review resolves the scrapyard crane and then interleaves Chapter 7 with
+# earlier chapters: force and weight (Chapters 2 and 3), the gravitational store
+# (Chapter 1), electrical power (Chapter 6) and unit conversion. Items r1 to r8
+# resolve the chapter problem; r9 to r16 mix the chapter and reach back. The
+# transformer, motor-effect and microphone items are Higher tier and carry tier
+# H, so they are marked **H** for the reader. Each calculation proves its
+# dimensions and its single rounding; `structured` proves only that a model
+# answer contains the declared ideas.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# proves arithmetic and dimensions, not physics.
+chapter: 7
+problems:
+  - id: r1-anchor-electromagnet
+    section: Review
+    tier: F
+    dfe: [MG2]
+    statement: 'The scrapyard crane uses an electromagnet instead of a permanent magnet. Explain why.'
+    answer_label: 'Why the crane uses an electromagnet'
+    check:
+      kind: structured
+      requires: [switch-on, switch-off]
+      concepts: [electromagnet]
+      points:
+        - id: switch-on
+          text: 'The crane can switch the current on to make a magnetic field and pick up the steel scrap.'
+          concepts: [electromagnet]
+        - id: switch-off
+          text: 'It can switch the current off to remove the field and release the load. A permanent magnet could not let go.'
+          concepts: [electromagnet]
+
+  - id: r2-anchor-induced
+    section: Review
+    tier: F
+    dfe: [MG1]
+    statement: 'The crane magnet attracts the steel scrap but not the aluminium. Explain why.'
+    answer_label: 'Steel attracted, aluminium not'
+    check:
+      kind: structured
+      requires: [steel, aluminium]
+      concepts: [induced-magnet, magnetic-material]
+      points:
+        - id: steel
+          text: 'Steel is a magnetic material. It becomes an induced magnet in the field, and induced magnetism always causes attraction.'
+          concepts: [induced-magnet]
+        - id: aluminium
+          text: 'Aluminium is not a magnetic material, so the magnet does not attract it.'
+          concepts: [magnetic-material]
+
+  - id: r3-anchor-field
+    section: Review
+    tier: F
+    dfe: [MG2]
+    statement: 'Describe the magnetic field inside the crane solenoid.'
+    answer_label: 'The field inside the solenoid'
+    check:
+      kind: structured
+      requires: [strong, uniform]
+      concepts: [solenoid]
+      points:
+        - id: strong
+          text: 'The field inside the solenoid is strong, because the fields of all the turns add together.'
+          concepts: [solenoid]
+        - id: uniform
+          text: 'The field inside is uniform. The field lines are straight, equally spaced and parallel to the axis of the coil.'
+          concepts: [solenoid]
+
+  - id: r4-anchor-iron
+    section: Review
+    tier: F
+    dfe: [MG2]
+    statement: 'Explain how the iron core makes the crane electromagnet stronger.'
+    answer_label: 'How the iron core helps'
+    check:
+      kind: structured
+      requires: [iron-magnetised, adds-field]
+      concepts: [iron-core, electromagnet]
+      points:
+        - id: iron-magnetised
+          text: 'Iron is easily magnetised by the field of the coil.'
+          concepts: [iron-core]
+        - id: adds-field
+          text: 'The magnetised iron core adds its own magnetic field to the field of the coil, so the total field is much stronger.'
+          concepts: [electromagnet]
+
+  - id: r5-anchor-transformer-turns
+    section: Review
+    tier: H
+    dfe: [MG3]
+    statement: 'The yard transformer steps 12 000 V down to 240 V. The primary coil has 4000 turns. Calculate the number of turns on the secondary coil.'
+    answer_label: 'Number of turns on the secondary coil'
+    check: {kind: evaluate, expression: "4000 * 240 / 12000", answer: "80"}
+    answer_text: '$n_s = n_p \times \dfrac{V_s}{V_p} = 4000 \times \dfrac{240}{12\,000} = 80$ turns.'
+
+  - id: r6-anchor-line-current
+    section: Review
+    tier: H
+    dfe: [MG3]
+    statement: 'The yard uses 24 kW of power from a 12 000 V transmission line. Calculate the current in the line.'
+    answer_label: 'Current in the transmission line'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P / V"
+          values:
+            P: {value: "24", unit: "kW"}
+            V: {value: "12000", unit: "V"}
+          answer: {value: "2.0", unit: "A"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$I = \dfrac{P}{V} = \dfrac{24\,000}{12\,000} = 2.0\,\text{A}$.'
+
+  - id: r7-anchor-microphone
+    section: Review
+    tier: H
+    dfe: [MG4]
+    statement: 'Explain how the office microphone turns the yard manager''s voice into a varying current.'
+    answer_label: 'How the microphone works'
+    check:
+      kind: structured
+      requires: [sound-moves-coil, induced-current]
+      concepts: [microphone, generator-effect]
+      points:
+        - id: sound-moves-coil
+          text: 'The pressure variations in the sound wave make the diaphragm and the coil move in the magnetic field.'
+          concepts: [microphone]
+        - id: induced-current
+          text: 'The moving coil has a potential difference induced across it. This is the generator effect, and it drives a varying current that copies the sound wave.'
+          concepts: [generator-effect]
+
+  - id: r8-anchor-loudspeaker
+    section: Review
+    tier: H
+    dfe: [MG4]
+    statement: 'Explain how the office loudspeaker turns the varying current back into sound.'
+    answer_label: 'How the loudspeaker works'
+    check:
+      kind: structured
+      requires: [force-on-coil, cone-makes-sound]
+      concepts: [loudspeaker, motor-effect]
+      points:
+        - id: force-on-coil
+          text: 'The varying current flows through a coil in a magnetic field, so the coil experiences a changing force. This is the motor effect.'
+          concepts: [motor-effect]
+        - id: cone-makes-sound
+          text: 'The force makes the cone move backwards and forwards, which makes pressure variations in the air. These are heard as sound.'
+          concepts: [loudspeaker]
+
+  - id: r9-like-poles
+    section: Review
+    tier: F
+    dfe: [MG1]
+    statement: 'Two magnets are placed with their south poles facing each other. Describe the force between them, and give a reason.'
+    answer_label: 'The force between the two south poles'
+    check:
+      kind: structured
+      requires: [state-force, give-reason]
+      concepts: [like-poles, non-contact-force]
+      points:
+        - id: state-force
+          text: 'The two magnets repel each other.'
+          concepts: [like-poles]
+        - id: give-reason
+          text: 'The two south poles are like poles, and two like poles repel. The force acts without contact.'
+          concepts: [non-contact-force]
+
+  - id: r10-convert-cm
+    section: Review
+    tier: F
+    dfe: [MG1]
+    statement: 'The crane magnet is held 15 cm above the scrap. Write this distance in metres.'
+    answer_label: 'The distance in metres'
+    check:
+      kind: convert
+      value: '15'
+      from: cm
+      to: m
+      answer: '0.15'
+    answer_text: '$15\,\text{cm} = 0.15\,\text{m}$.'
+
+  - id: r11-force-calc
+    section: Review
+    tier: H
+    dfe: [MG2]
+    statement: 'A wire of length 0.25 m in a motor carries a current of 2.0 A and sits at right angles to a magnetic field of flux density 0.30 T. Calculate the force on the wire.'
+    answer_label: 'Force on the wire'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "B * I * l"
+          values:
+            B: {value: "0.30", unit: "T"}
+            I: {value: "2.0", unit: "A"}
+            l: {value: "0.25", unit: "m"}
+          answer: {value: "0.15", unit: "N"}
+        - {kind: sigfigs, value: "0.15", figures: 2, answer: "0.15", convention: round-once}
+    answer_text: '$F = BIl = 0.30 \times 2.0 \times 0.25 = 0.15\,\text{N}$.'
+
+  - id: r12-power
+    section: Review
+    tier: F
+    dfe: [EL4]
+    statement: 'The crane electromagnet runs from a 240 V supply and takes a current of 4.0 A. Calculate the power it uses.'
+    answer_label: 'Power used by the electromagnet'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V * I"
+          values:
+            V: {value: "240", unit: "V"}
+            I: {value: "4.0", unit: "A"}
+          answer: {value: "960", unit: "W"}
+        - {kind: sigfigs, value: "960", figures: 2, answer: "9.6e2", convention: round-once}
+    answer_text: '$P = VI = 240 \times 4.0 = 960\,\text{W} = 9.6 \times 10^2\,\text{W}$.'
+
+  - id: r13-gravitational
+    section: Review
+    tier: F
+    dfe: [EN2]
+    statement: 'A steel block of mass 2.0 kg is lifted 1.5 m onto a pile. Take g = 9.8 N/kg. Calculate the energy transferred to the gravitational store of the block.'
+    answer_label: 'Energy in the gravitational store'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g * h"
+          values:
+            m: {value: "2.0", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "1.5", unit: "m"}
+          answer: {value: "29.4", unit: "J"}
+        - {kind: sigfigs, value: "29.4", figures: 2, answer: "29", convention: round-once}
+    answer_text: '$E_p = mgh = 2.0 \times 9.8 \times 1.5 = 29.4\,\text{J}$, so $29\,\text{J}$ to 2 significant figures.'
+
+  - id: r14-weight
+    section: Review
+    tier: F
+    dfe: [FO1]
+    statement: 'The crane magnet supports a steel plate of mass 5.0 kg. Take g = 9.8 N/kg. Calculate the weight of the plate.'
+    answer_label: 'Weight of the plate'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g"
+          values:
+            m: {value: "5.0", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "49", unit: "N"}
+        - {kind: sigfigs, value: "49", figures: 2, answer: "49", convention: round-once}
+    answer_text: '$W = mg = 5.0 \times 9.8 = 49\,\text{N}$. The magnet must exert at least this much force to hold the plate.'
+
+  - id: r15-method-transformer
+    section: Review
+    tier: H
+    dfe: [MG3]
+    statement: 'A transformer has 2000 turns on the primary coil and 500 turns on the secondary coil. The primary potential difference is 240 V. Say which relationship you will use, then calculate the secondary potential difference.'
+    answer_label: 'Secondary potential difference'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "240 * 500 / 2000", answer: "60"}
+        - {kind: sigfigs, value: "60", figures: 2, answer: "6.0e1", convention: round-once}
+    answer_text: 'Use $\dfrac{V_p}{V_s} = \dfrac{n_p}{n_s}$. Then $V_s = V_p \times \dfrac{n_s}{n_p} = 240 \times \dfrac{500}{2000} = 60\,\text{V} = 6.0 \times 10^1\,\text{V}$. This is a step-down transformer.'
+
+  - id: r16-loudspeaker-effect
+    section: Review
+    tier: H
+    dfe: [MG4]
+    statement: 'A student says a loudspeaker works by the generator effect. Explain why the student is wrong, and name the correct effect.'
+    answer_label: 'The correct effect'
+    check:
+      kind: structured
+      requires: [wrong-effect, correct-effect]
+      concepts: [motor-effect, generator-effect]
+      points:
+        - id: wrong-effect
+          text: 'A loudspeaker starts with a current and makes movement and sound. The generator effect does the opposite: it starts with movement and makes a current.'
+          concepts: [generator-effect]
+        - id: correct-effect
+          text: 'A loudspeaker works by the motor effect, because a current in a magnetic field experiences a force.'
+          concepts: [motor-effect]

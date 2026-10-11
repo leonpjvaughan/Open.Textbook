@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.1 The derivative as a gradient and a rate of change — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: G1
+Work through these on your own. Sketch the curve or the chord first, and write
+down the meaning of each gradient or rate in the context. Give lengths to three
+significant figures where an answer is not exact.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-07-practice-7.1
+
+:::answers chapter-07-practice-7.1

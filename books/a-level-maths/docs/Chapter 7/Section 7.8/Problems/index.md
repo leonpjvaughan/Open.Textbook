@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.8 Connected rates of change and inverse functions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: G4
+Work through these on your own. Write the chain rule that links the rates before
+you substitute. For an inverse function, find the matching point on the original
+function first.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-07-practice-7.8
+
+:::answers chapter-07-practice-7.8

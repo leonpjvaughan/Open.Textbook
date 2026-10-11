@@ -1,0 +1,204 @@
+# Practice set for 7.4 (Microphones and speakers).
+#
+# Every section is Higher tier: AQA 8463 marks 4.7.2.4 Loudspeakers as
+# (physics only) (HT only) and 4.7.3.3 Microphones as (HT only), so this bank is
+# only ever reached from a Higher page and every record carries tier H. The one
+# calculation reuses F = BIl from the motor effect; `structured` proves only that
+# a model answer contains the declared ideas.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# proves arithmetic and dimensions, not physics.
+chapter: 7
+problems:
+  - id: p1-microphone
+    section: '7.4'
+    tier: H
+    dfe: [MG4]
+    statement: 'Explain how a moving-coil microphone converts the pressure variations in a sound wave into variations in a current.'
+    answer_label: 'How a microphone works'
+    check:
+      kind: structured
+      requires: [diaphragm-vibrates, coil-moves, induced-current]
+      concepts: [microphone, generator-effect]
+      points:
+        - id: diaphragm-vibrates
+          text: 'The pressure variations in the sound wave make the diaphragm of the microphone vibrate.'
+          concepts: [microphone]
+        - id: coil-moves
+          text: 'The diaphragm is attached to a coil, so the coil moves backwards and forwards in the magnetic field.'
+          concepts: [microphone]
+        - id: induced-current
+          text: 'The coil moves relative to the field, so a potential difference is induced across it. This is the generator effect, and it drives a varying current that copies the sound wave.'
+          concepts: [generator-effect]
+
+  - id: p2-loudspeaker
+    section: '7.4'
+    tier: H
+    dfe: [MG4]
+    statement: 'Explain how a moving-coil loudspeaker converts a varying current into a sound wave.'
+    answer_label: 'How a loudspeaker works'
+    check:
+      kind: structured
+      requires: [force-on-coil, cone-moves, pressure-variations]
+      concepts: [loudspeaker, motor-effect]
+      points:
+        - id: force-on-coil
+          text: 'The varying current flows through a coil in a magnetic field, so the coil experiences a force. This is the motor effect.'
+          concepts: [motor-effect]
+        - id: cone-moves
+          text: 'As the current changes, the size and direction of the force change, so the coil and the cone move backwards and forwards.'
+          concepts: [loudspeaker]
+        - id: pressure-variations
+          text: 'The moving cone pushes the air, making pressure variations that are a sound wave.'
+          concepts: [loudspeaker]
+
+  - id: p3-compare
+    section: '7.4'
+    tier: H
+    dfe: [MG4]
+    statement: 'Compare a moving-coil microphone with a moving-coil loudspeaker, and state the effect each device uses.'
+    answer_label: 'Microphone compared with loudspeaker'
+    check:
+      kind: structured
+      requires: [microphone, loudspeaker, effects]
+      concepts: [microphone, loudspeaker]
+      points:
+        - id: microphone
+          text: 'A microphone takes in sound and puts out a varying current.'
+          concepts: [microphone]
+        - id: loudspeaker
+          text: 'A loudspeaker takes in a varying current and puts out sound.'
+          concepts: [loudspeaker]
+        - id: effects
+          text: 'The microphone uses the generator effect, because a coil moves in a magnetic field. The loudspeaker uses the motor effect, because a current in a magnetic field feels a force.'
+          concepts: [generator-effect, motor-effect]
+
+  - id: p4-current-reverse
+    section: '7.4'
+    tier: H
+    dfe: [MG4]
+    statement: 'A current flows through the coil of a loudspeaker, and the cone moves forward. Describe what happens to the cone when the current is reversed, and give a reason.'
+    answer_label: 'What the reversed current does'
+    check:
+      kind: structured
+      requires: [direction-reverses, reason]
+      concepts: [loudspeaker, motor-effect]
+      points:
+        - id: direction-reverses
+          text: 'The cone moves backwards instead of forwards.'
+          concepts: [loudspeaker]
+        - id: reason
+          text: 'The force on the coil depends on the direction of the current, so reversing the current reverses the force.'
+          concepts: [motor-effect]
+
+  - id: p5-coil-must-move
+    section: '7.4'
+    tier: H
+    dfe: [MG4]
+    statement: 'A microphone produces no current when the sound stops. Explain why the coil must keep moving for a current to be induced.'
+    answer_label: 'Why the coil must move'
+    check:
+      kind: structured
+      requires: [needs-change, generated-only-while-moving]
+      concepts: [generator-effect, microphone]
+      points:
+        - id: needs-change
+          text: 'A potential difference is induced only when the magnetic field around the conductor changes.'
+          concepts: [generator-effect]
+        - id: generated-only-while-moving
+          text: 'The coil must move relative to the magnet to change the field through it. When the sound stops, the coil stops moving and the current stops.'
+          concepts: [microphone]
+
+  - id: p6-force-calc
+    section: '7.4'
+    tier: H
+    dfe: [MG4]
+    statement: 'A loudspeaker coil has 0.040 m of wire inside the magnetic field. The flux density is 0.25 T and the current is 0.80 A. Calculate the force on the coil.'
+    answer_label: 'Force on the coil'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "B * I * l"
+          values:
+            B: {value: "0.25", unit: "T"}
+            I: {value: "0.80", unit: "A"}
+            l: {value: "0.040", unit: "m"}
+          answer: {value: "0.0080", unit: "N"}
+        - {kind: sigfigs, value: "0.0080", figures: 2, answer: "0.0080", convention: round-once}
+    answer_text: '$F = BIl = 0.25 \times 0.80 \times 0.040 = 0.0080\,\text{N}$.'
+
+  - id: p7-headphones
+    section: '7.4'
+    tier: H
+    dfe: [MG4]
+    statement: 'Explain how a pair of moving-coil headphones produces sound from a varying current.'
+    answer_label: 'How headphones work'
+    check:
+      kind: structured
+      requires: [force-on-coil, diaphragm-moves, sound]
+      concepts: [headphones, motor-effect]
+      points:
+        - id: force-on-coil
+          text: 'The varying current flows through a coil in a magnetic field, so the coil experiences a changing force.'
+          concepts: [motor-effect]
+        - id: diaphragm-moves
+          text: 'The coil pushes a small diaphragm, which moves backwards and forwards.'
+          concepts: [headphones]
+        - id: sound
+          text: 'The moving diaphragm makes pressure variations in the air, which are heard as sound.'
+          concepts: [headphones]
+
+  - id: p8-diaphragm
+    section: '7.4'
+    tier: H
+    dfe: [MG4]
+    statement: 'Explain the part played by the diaphragm in a moving-coil microphone.'
+    answer_label: 'The job of the diaphragm'
+    check:
+      kind: structured
+      requires: [catches-pressure, moves-coil]
+      concepts: [microphone]
+      points:
+        - id: catches-pressure
+          text: 'The diaphragm catches the pressure variations of the sound wave and vibrates with them.'
+          concepts: [microphone]
+        - id: moves-coil
+          text: 'The diaphragm is attached to the coil, so it makes the coil move in the magnetic field. That movement induces the potential difference.'
+          concepts: [microphone]
+
+  - id: p9-which-effect
+    section: '7.4'
+    tier: H
+    dfe: [MG4]
+    statement: 'A student says a loudspeaker works by the generator effect. Explain why the student is wrong, and name the correct effect.'
+    answer_label: 'The correct effect'
+    check:
+      kind: structured
+      requires: [wrong-effect, correct-effect]
+      concepts: [motor-effect, generator-effect]
+      points:
+        - id: wrong-effect
+          text: 'A loudspeaker starts with a current and makes movement and sound. The generator effect does the opposite: it starts with movement and makes a current.'
+          concepts: [generator-effect]
+        - id: correct-effect
+          text: 'A loudspeaker works by the motor effect, because a current in a magnetic field experiences a force.'
+          concepts: [motor-effect]
+
+  - id: p10-method
+    section: '7.4'
+    tier: H
+    dfe: [MG4]
+    statement: 'A loudspeaker coil sits at right angles to a magnetic field. Say which equation you will use to find the force on the coil, and name the quantities you need.'
+    answer_label: 'Choosing the method'
+    check:
+      kind: structured
+      requires: [equation, quantities]
+      concepts: [motor-effect]
+      points:
+        - id: equation
+          text: 'Use F = BIl, the force on a current-carrying conductor in a magnetic field.'
+          concepts: [motor-effect]
+        - id: quantities
+          text: 'I need the magnetic flux density, the current in the coil, and the length of the coil in the field.'
+          concepts: [motor-effect]

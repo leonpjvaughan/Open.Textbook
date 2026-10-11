@@ -1,0 +1,748 @@
+# Worked solutions and guided calculations for Chapter 6 (Electricity).
+#
+# The Learn pages and the Practise with help pages show the prose and the
+# reasoning; this bank is the independent check of every number in them, so a
+# slip in a worked example cannot ship. The records are not rendered by a page
+# marker: the pages write their own working, and the `:::answers` blocks come
+# from the practice banks.
+#
+# Every calculation is checked twice: the exact magnitude and dimension by
+# `dimensions` (or `evaluate` where the answer is a pure ratio), and the one
+# rounding by `sigfigs`. Numbers are chosen so the arithmetic is exact, because
+# `dimensions` compares exact rationals.
+chapter: 6
+symbols: {}
+problems:
+  # --- Section 6.1, the Learn worked examples ---------------------------------
+  - id: w1-charge-flow
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'A current of 3.0 A flows through a lamp for 20 s. Calculate the charge that flows.'
+    answer_label: 'Charge that flows'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * t"
+          values:
+            I: {value: "3.0", unit: "A"}
+            t: {value: "20", unit: "s"}
+          answer: {value: "60", unit: "C"}
+        - {kind: sigfigs, value: "60", figures: 2, answer: "6.0e1", convention: round-once}
+    answer_text: '$Q = It = 3.0 \times 20 = 60\,\text{C} = 6.0 \times 10^1\,\text{C}$.'
+
+  - id: w2-current-from-charge
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'A charge of 120 C passes a point in a circuit in 40 s. Calculate the current.'
+    answer_label: 'Current in the circuit'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "Q / t"
+          values:
+            Q: {value: "120", unit: "C"}
+            t: {value: "40", unit: "s"}
+          answer: {value: "3.0", unit: "A"}
+        - {kind: sigfigs, value: "3.0", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: '$I = \dfrac{Q}{t} = \dfrac{120}{40} = 3.0\,\text{A}$.'
+
+  - id: w3-potential-difference
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'A current of 0.50 A flows through a 12 Ω resistor. Calculate the potential difference across the resistor.'
+    answer_label: 'Potential difference across the resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * R"
+          values:
+            I: {value: "0.50", unit: "A"}
+            R: {value: "12", unit: "Ω"}
+          answer: {value: "6.0", unit: "V"}
+        - {kind: sigfigs, value: "6.0", figures: 2, answer: "6.0", convention: round-once}
+    answer_text: '$V = IR = 0.50 \times 12 = 6.0\,\text{V}$.'
+
+  - id: w4-resistance-from-pd
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'The potential difference across a resistor is 9.0 V and the current through it is 0.30 A. Calculate the resistance.'
+    answer_label: 'Resistance of the resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / I"
+          values:
+            V: {value: "9.0", unit: "V"}
+            I: {value: "0.30", unit: "A"}
+          answer: {value: "30", unit: "Ω"}
+        - {kind: sigfigs, value: "30", figures: 2, answer: "3.0e1", convention: round-once}
+    answer_text: '$R = \dfrac{V}{I} = \dfrac{9.0}{0.30} = 30\,\Omega = 3.0 \times 10^1\,\Omega$.'
+
+  # --- Section 6.1, the Practise with help questions ---------------------------
+  - id: g1-current
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'A charge of 90 C flows through a lamp in 30 s. Calculate the current.'
+    answer_label: 'Current through the lamp'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "Q / t"
+          values:
+            Q: {value: "90", unit: "C"}
+            t: {value: "30", unit: "s"}
+          answer: {value: "3.0", unit: "A"}
+        - {kind: sigfigs, value: "3.0", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: '$I = \dfrac{Q}{t} = \dfrac{90}{30} = 3.0\,\text{A}$.'
+
+  - id: g2-charge-minutes
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'A current of 0.40 A flows through a heater for 5.0 minutes. Calculate the charge that flows.'
+    answer_label: 'Charge that flows'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * t"
+          values:
+            I: {value: "0.40", unit: "A"}
+            t: {value: "300", unit: "s"}
+          answer: {value: "120", unit: "C"}
+        - {kind: sigfigs, value: "120", figures: 2, answer: "1.2e2", convention: round-once}
+    answer_text: '$5.0\,\text{minutes} = 300\,\text{s}$, so $Q = It = 0.40 \times 300 = 120\,\text{C} = 1.2 \times 10^2\,\text{C}$.'
+
+  - id: g3-current-from-pd
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'The potential difference across a 15 Ω resistor is 6.0 V. Calculate the current through it.'
+    answer_label: 'Current through the resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / R"
+          values:
+            V: {value: "6.0", unit: "V"}
+            R: {value: "15", unit: "Ω"}
+          answer: {value: "0.40", unit: "A"}
+        - {kind: sigfigs, value: "0.4", figures: 2, answer: "0.40", convention: round-once}
+    answer_text: '$I = \dfrac{V}{R} = \dfrac{6.0}{15} = 0.40\,\text{A}$.'
+
+  - id: g4-potential-difference
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'A current of 0.20 A flows through a 60 Ω resistor. Calculate the potential difference across it.'
+    answer_label: 'Potential difference across the resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * R"
+          values:
+            I: {value: "0.20", unit: "A"}
+            R: {value: "60", unit: "Ω"}
+          answer: {value: "12", unit: "V"}
+        - {kind: sigfigs, value: "12", figures: 2, answer: "12", convention: round-once}
+    answer_text: '$V = IR = 0.20 \times 60 = 12\,\text{V}$.'
+
+  - id: g5-resistance-thermistor
+    section: '6.1'
+    tier: F
+    dfe: [EL1]
+    statement: 'The potential difference across a thermistor is 9.0 V and the current through it is 0.050 A. Calculate its resistance.'
+    answer_label: 'Resistance of the thermistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / I"
+          values:
+            V: {value: "9.0", unit: "V"}
+            I: {value: "0.050", unit: "A"}
+          answer: {value: "180", unit: "Ω"}
+        - {kind: sigfigs, value: "180", figures: 2, answer: "1.8e2", convention: round-once}
+    answer_text: '$R = \dfrac{V}{I} = \dfrac{9.0}{0.050} = 180\,\Omega = 1.8 \times 10^2\,\Omega$.'
+
+  # --- Section 6.2, the Learn worked examples ---------------------------------
+  - id: w5-series-resistance
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A 4.0 Ω resistor and a 6.0 Ω resistor are connected in series. Calculate the total resistance.'
+    answer_label: 'Total resistance of the series pair'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "R1 + R2"
+          values:
+            R1: {value: "4.0", unit: "Ω"}
+            R2: {value: "6.0", unit: "Ω"}
+          answer: {value: "10", unit: "Ω"}
+        - {kind: sigfigs, value: "10", figures: 2, answer: "1.0e1", convention: round-once}
+    answer_text: '$R_{total} = R_1 + R_2 = 4.0 + 6.0 = 10\,\Omega = 1.0 \times 10^1\,\Omega$.'
+
+  - id: w6-series-current
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A 4.0 Ω resistor and a 6.0 Ω resistor in series are connected to a 5.0 V supply. Calculate the current.'
+    answer_label: 'Current in the series circuit'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / R"
+          values:
+            V: {value: "5.0", unit: "V"}
+            R: {value: "10", unit: "Ω"}
+          answer: {value: "0.50", unit: "A"}
+        - {kind: sigfigs, value: "0.5", figures: 2, answer: "0.50", convention: round-once}
+    answer_text: '$I = \dfrac{V}{R_{total}} = \dfrac{5.0}{10} = 0.50\,\text{A}$. The same current flows through both resistors.'
+
+  - id: w7-series-pd-one
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A current of 0.50 A flows through a 4.0 Ω resistor. Calculate the potential difference across it.'
+    answer_label: 'Potential difference across the 4.0 Ω resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * R"
+          values:
+            I: {value: "0.50", unit: "A"}
+            R: {value: "4.0", unit: "Ω"}
+          answer: {value: "2.0", unit: "V"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$V = IR = 0.50 \times 4.0 = 2.0\,\text{V}$.'
+
+  - id: w8-series-pd-two
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A current of 0.50 A flows through a 6.0 Ω resistor. Calculate the potential difference across it.'
+    answer_label: 'Potential difference across the 6.0 Ω resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * R"
+          values:
+            I: {value: "0.50", unit: "A"}
+            R: {value: "6.0", unit: "Ω"}
+          answer: {value: "3.0", unit: "V"}
+        - {kind: sigfigs, value: "3.0", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: '$V = IR = 0.50 \times 6.0 = 3.0\,\text{V}$. The two potential differences add to $5.0\,\text{V}$, the supply.'
+
+  - id: w9-parallel-branch-one
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A 10 Ω resistor is connected across a 5.0 V supply. Calculate the current through it.'
+    answer_label: 'Current through the 10 Ω resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / R"
+          values:
+            V: {value: "5.0", unit: "V"}
+            R: {value: "10", unit: "Ω"}
+          answer: {value: "0.50", unit: "A"}
+        - {kind: sigfigs, value: "0.5", figures: 2, answer: "0.50", convention: round-once}
+    answer_text: '$I_1 = \dfrac{V}{R_1} = \dfrac{5.0}{10} = 0.50\,\text{A}$.'
+
+  - id: w10-parallel-branch-two
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A 20 Ω resistor is connected across a 5.0 V supply. Calculate the current through it.'
+    answer_label: 'Current through the 20 Ω resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / R"
+          values:
+            V: {value: "5.0", unit: "V"}
+            R: {value: "20", unit: "Ω"}
+          answer: {value: "0.25", unit: "A"}
+        - {kind: sigfigs, value: "0.25", figures: 2, answer: "0.25", convention: round-once}
+    answer_text: '$I_2 = \dfrac{V}{R_2} = \dfrac{5.0}{20} = 0.25\,\text{A}$.'
+
+  - id: w11-parallel-total
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'Branch currents of 0.50 A and 0.25 A join at the supply. Calculate the total current.'
+    answer_label: 'Total current from the supply'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I1 + I2"
+          values:
+            I1: {value: "0.50", unit: "A"}
+            I2: {value: "0.25", unit: "A"}
+          answer: {value: "0.75", unit: "A"}
+        - {kind: sigfigs, value: "0.75", figures: 2, answer: "0.75", convention: round-once}
+    answer_text: '$I_{total} = I_1 + I_2 = 0.50 + 0.25 = 0.75\,\text{A}$.'
+
+  # --- Section 6.2, the Practise with help questions ---------------------------
+  - id: g6-series-three-five
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A 3.0 Ω resistor and a 5.0 Ω resistor are connected in series to a 4.0 V supply. Calculate the current.'
+    answer_label: 'Current in the series circuit'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / (R1 + R2)"
+          values:
+            V: {value: "4.0", unit: "V"}
+            R1: {value: "3.0", unit: "Ω"}
+            R2: {value: "5.0", unit: "Ω"}
+          answer: {value: "0.50", unit: "A"}
+        - {kind: sigfigs, value: "0.5", figures: 2, answer: "0.50", convention: round-once}
+    answer_text: '$R_{total} = 3.0 + 5.0 = 8.0\,\Omega$, so $I = \dfrac{4.0}{8.0} = 0.50\,\text{A}$.'
+
+  - id: g7-series-three-pd
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A current of 0.50 A flows through a 3.0 Ω resistor. Calculate the potential difference across it.'
+    answer_label: 'Potential difference across the 3.0 Ω resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * R"
+          values:
+            I: {value: "0.50", unit: "A"}
+            R: {value: "3.0", unit: "Ω"}
+          answer: {value: "1.5", unit: "V"}
+        - {kind: sigfigs, value: "1.5", figures: 2, answer: "1.5", convention: round-once}
+    answer_text: '$V = IR = 0.50 \times 3.0 = 1.5\,\text{V}$. The 5.0 Ω resistor has the other 2.5 V.'
+
+  - id: g8-series-two-four
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A 2.0 Ω resistor and a 4.0 Ω resistor are connected in series to a 6.0 V battery. Calculate the current.'
+    answer_label: 'Current in the circuit'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / (R1 + R2)"
+          values:
+            V: {value: "6.0", unit: "V"}
+            R1: {value: "2.0", unit: "Ω"}
+            R2: {value: "4.0", unit: "Ω"}
+          answer: {value: "1.0", unit: "A"}
+        - {kind: sigfigs, value: "1.0", figures: 2, answer: "1.0", convention: round-once}
+    answer_text: '$R_{total} = 2.0 + 4.0 = 6.0\,\Omega$, so $I = \dfrac{6.0}{6.0} = 1.0\,\text{A}$.'
+
+  - id: g9-series-two-pd
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A current of 1.0 A flows through a 2.0 Ω resistor. Calculate the potential difference across it.'
+    answer_label: 'Potential difference across the 2.0 Ω resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * R"
+          values:
+            I: {value: "1.0", unit: "A"}
+            R: {value: "2.0", unit: "Ω"}
+          answer: {value: "2.0", unit: "V"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$V = IR = 1.0 \times 2.0 = 2.0\,\text{V}$. The 4.0 Ω resistor has 4.0 V across it, and $2.0 + 4.0 = 6.0\,\text{V}$.'
+
+  - id: g10-parallel-eight
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'An 8.0 Ω resistor is connected across a 6.0 V supply. Calculate the current through it.'
+    answer_label: 'Current through the 8.0 Ω resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / R"
+          values:
+            V: {value: "6.0", unit: "V"}
+            R: {value: "8.0", unit: "Ω"}
+          answer: {value: "0.75", unit: "A"}
+        - {kind: sigfigs, value: "0.75", figures: 2, answer: "0.75", convention: round-once}
+    answer_text: '$I = \dfrac{V}{R} = \dfrac{6.0}{8.0} = 0.75\,\text{A}$.'
+
+  - id: g11-parallel-twenty-four
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A 24 Ω resistor is connected across a 6.0 V supply. Calculate the current through it.'
+    answer_label: 'Current through the 24 Ω resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / R"
+          values:
+            V: {value: "6.0", unit: "V"}
+            R: {value: "24", unit: "Ω"}
+          answer: {value: "0.25", unit: "A"}
+        - {kind: sigfigs, value: "0.25", figures: 2, answer: "0.25", convention: round-once}
+    answer_text: '$I = \dfrac{V}{R} = \dfrac{6.0}{24} = 0.25\,\text{A}$.'
+
+  - id: g12-parallel-total
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'Branch currents of 0.75 A and 0.25 A join at the supply. Calculate the total current.'
+    answer_label: 'Total current from the supply'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I1 + I2"
+          values:
+            I1: {value: "0.75", unit: "A"}
+            I2: {value: "0.25", unit: "A"}
+          answer: {value: "1.0", unit: "A"}
+        - {kind: sigfigs, value: "1.0", figures: 2, answer: "1.0", convention: round-once}
+    answer_text: '$I_{total} = 0.75 + 0.25 = 1.0\,\text{A}$. The total resistance of the pair is less than $8.0\,\Omega$.'
+
+  - id: g13-lamp-current
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A 1150 Ω lamp is connected across a 230 V supply. Calculate the current through it.'
+    answer_label: 'Current through the lamp'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / R"
+          values:
+            V: {value: "230", unit: "V"}
+            R: {value: "1150", unit: "Ω"}
+          answer: {value: "0.20", unit: "A"}
+        - {kind: sigfigs, value: "0.2", figures: 2, answer: "0.20", convention: round-once}
+    answer_text: '$I = \dfrac{V}{R} = \dfrac{230}{1150} = 0.20\,\text{A}$. Two such lamps in parallel take 0.40 A in total.'
+
+  - id: g14-series-unknown
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A 9.0 V supply is connected in series with a 12 Ω resistor and an unknown resistor. The potential difference across the 12 Ω resistor is 3.0 V. Calculate the current.'
+    answer_label: 'Current in the circuit'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / R"
+          values:
+            V: {value: "3.0", unit: "V"}
+            R: {value: "12", unit: "Ω"}
+          answer: {value: "0.25", unit: "A"}
+        - {kind: sigfigs, value: "0.25", figures: 2, answer: "0.25", convention: round-once}
+    answer_text: '$I = \dfrac{V}{R} = \dfrac{3.0}{12} = 0.25\,\text{A}$. The same current flows through the unknown resistor.'
+
+  - id: g15-series-unknown-resistance
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'The unknown resistor in the same circuit carries 0.25 A and has 6.0 V across it. Calculate its resistance.'
+    answer_label: 'Resistance of the unknown resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / I"
+          values:
+            V: {value: "6.0", unit: "V"}
+            I: {value: "0.25", unit: "A"}
+          answer: {value: "24", unit: "Ω"}
+        - {kind: sigfigs, value: "24", figures: 2, answer: "24", convention: round-once}
+    answer_text: '$R = \dfrac{V}{I} = \dfrac{6.0}{0.25} = 24\,\Omega$. The supply is shared, so the unknown resistor has $9.0 - 3.0 = 6.0\,\text{V}$ across it.'
+
+  # --- Section 6.3 and Section 6.4, the Learn worked examples ------------------
+  - id: w12-charge-minutes
+    section: '6.3'
+    tier: F
+    dfe: [EL3]
+    statement: 'A mains appliance takes a current of 5.0 A for 2.0 minutes. Calculate the charge that flows through it.'
+    answer_label: 'Charge that flows'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * t"
+          values:
+            I: {value: "5.0", unit: "A"}
+            t: {value: "120", unit: "s"}
+          answer: {value: "600", unit: "C"}
+        - {kind: sigfigs, value: "600", figures: 2, answer: "6.0e2", convention: round-once}
+    answer_text: '$2.0\,\text{minutes} = 120\,\text{s}$, so $Q = It = 5.0 \times 120 = 600\,\text{C} = 6.0 \times 10^2\,\text{C}$.'
+
+  - id: g16-charge-kettle
+    section: '6.3'
+    tier: F
+    dfe: [EL3]
+    statement: 'A mains kettle takes a current of 8.0 A for 1.5 minutes. Calculate the charge that flows through it.'
+    answer_label: 'Charge that flows through the kettle'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * t"
+          values:
+            I: {value: "8.0", unit: "A"}
+            t: {value: "90", unit: "s"}
+          answer: {value: "720", unit: "C"}
+        - {kind: sigfigs, value: "720", figures: 2, answer: "7.2e2", convention: round-once}
+    answer_text: '$1.5\,\text{minutes} = 90\,\text{s}$, so $Q = It = 8.0 \times 90 = 720\,\text{C} = 7.2 \times 10^2\,\text{C}$.'
+
+  - id: w13-power-vi
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A heater on the 230 V supply takes a current of 5.0 A. Calculate its power.'
+    answer_label: 'Power of the heater'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V * I"
+          values:
+            V: {value: "230", unit: "V"}
+            I: {value: "5.0", unit: "A"}
+          answer: {value: "1150", unit: "W"}
+        - {kind: sigfigs, value: "1150", figures: 2, answer: "1.2e3", convention: round-once}
+    answer_text: '$P = VI = 230 \times 5.0 = 1150\,\text{W} = 1.2 \times 10^3\,\text{W}$ to two significant figures.'
+
+  - id: w14-power-i2r
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A current of 2.0 A flows through a 15 Ω resistor. Calculate the power transferred to it.'
+    answer_label: 'Power transferred to the resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I**2 * R"
+          values:
+            I: {value: "2.0", unit: "A"}
+            R: {value: "15", unit: "Ω"}
+          answer: {value: "60", unit: "W"}
+        - {kind: sigfigs, value: "60", figures: 2, answer: "6.0e1", convention: round-once}
+    answer_text: '$P = I^2R = 2.0^2 \times 15 = 4.0 \times 15 = 60\,\text{W} = 6.0 \times 10^1\,\text{W}$.'
+
+  - id: w15-energy-pt
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A 1150 W heater is switched on for 30 minutes. Calculate the energy it transfers.'
+    answer_label: 'Energy transferred by the heater'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P * t"
+          values:
+            P: {value: "1150", unit: "W"}
+            t: {value: "1800", unit: "s"}
+          answer: {value: "2070000", unit: "J"}
+        - {kind: sigfigs, value: "2070000", figures: 2, answer: "2.1e6", convention: round-once}
+    answer_text: '$30\,\text{minutes} = 1800\,\text{s}$, so $E = Pt = 1150 \times 1800 = 2\,070\,000\,\text{J} = 2.1 \times 10^6\,\text{J}$.'
+
+  - id: w16-energy-qv
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A charge of 9000 C flows through a heater at 230 V. Calculate the energy transferred.'
+    answer_label: 'Energy transferred to the heater'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "Q * V"
+          values:
+            Q: {value: "9000", unit: "C"}
+            V: {value: "230", unit: "V"}
+          answer: {value: "2070000", unit: "J"}
+        - {kind: sigfigs, value: "2070000", figures: 2, answer: "2.1e6", convention: round-once}
+    answer_text: '$E = QV = 9000 \times 230 = 2\,070\,000\,\text{J} = 2.1 \times 10^6\,\text{J}$. This is the same energy as $E = Pt$.'
+
+  # --- Section 6.4 and Section 6.5, the Practise with help questions -----------
+  - id: g17-power-lamp
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A lamp on the 230 V supply takes a current of 0.20 A. Calculate its power.'
+    answer_label: 'Power of the lamp'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V * I"
+          values:
+            V: {value: "230", unit: "V"}
+            I: {value: "0.20", unit: "A"}
+          answer: {value: "46", unit: "W"}
+        - {kind: sigfigs, value: "46", figures: 2, answer: "46", convention: round-once}
+    answer_text: '$P = VI = 230 \times 0.20 = 46\,\text{W}$.'
+
+  - id: g18-power-resistor
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A current of 3.0 A flows through an 8.0 Ω resistor. Calculate the power transferred to it.'
+    answer_label: 'Power transferred to the resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I**2 * R"
+          values:
+            I: {value: "3.0", unit: "A"}
+            R: {value: "8.0", unit: "Ω"}
+          answer: {value: "72", unit: "W"}
+        - {kind: sigfigs, value: "72", figures: 2, answer: "72", convention: round-once}
+    answer_text: '$P = I^2R = 3.0^2 \times 8.0 = 9.0 \times 8.0 = 72\,\text{W}$.'
+
+  - id: g19-energy-lamp
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A 46 W lamp is switched on for 200 s. Calculate the energy it transfers.'
+    answer_label: 'Energy transferred by the lamp'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P * t"
+          values:
+            P: {value: "46", unit: "W"}
+            t: {value: "200", unit: "s"}
+          answer: {value: "9200", unit: "J"}
+        - {kind: sigfigs, value: "9200", figures: 2, answer: "9.2e3", convention: round-once}
+    answer_text: '$E = Pt = 46 \times 200 = 9200\,\text{J} = 9.2 \times 10^3\,\text{J}$.'
+
+  - id: g20-energy-qv
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A charge of 40 C flows through an appliance at 230 V. Calculate the energy transferred.'
+    answer_label: 'Energy transferred to the appliance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "Q * V"
+          values:
+            Q: {value: "40", unit: "C"}
+            V: {value: "230", unit: "V"}
+          answer: {value: "9200", unit: "J"}
+        - {kind: sigfigs, value: "9200", figures: 2, answer: "9.2e3", convention: round-once}
+    answer_text: '$E = QV = 40 \times 230 = 9200\,\text{J} = 9.2 \times 10^3\,\text{J}$.'
+
+  - id: g21-current-from-power
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'A 460 W appliance is connected to the 230 V supply. Calculate the current through it.'
+    answer_label: 'Current through the appliance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P / V"
+          values:
+            P: {value: "460", unit: "W"}
+            V: {value: "230", unit: "V"}
+          answer: {value: "2.0", unit: "A"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$I = \dfrac{P}{V} = \dfrac{460}{230} = 2.0\,\text{A}$.'
+
+  - id: g22-power-and-energy
+    section: '6.4'
+    tier: F
+    dfe: [EL4]
+    statement: 'An appliance on the 230 V supply takes a current of 0.60 A for 5.0 minutes. Calculate the power and the energy transferred.'
+    answer_label: 'Power and energy transferred'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V * I"
+          values:
+            V: {value: "230", unit: "V"}
+            I: {value: "0.60", unit: "A"}
+          answer: {value: "138", unit: "W"}
+        - kind: dimensions
+          expression: "P * t"
+          values:
+            P: {value: "138", unit: "W"}
+            t: {value: "300", unit: "s"}
+          answer: {value: "41400", unit: "J"}
+        - {kind: sigfigs, value: "41400", figures: 2, answer: "4.1e4", convention: round-once}
+    answer_text: '$P = VI = 230 \times 0.60 = 138\,\text{W}$. Then $5.0\,\text{minutes} = 300\,\text{s}$, so $E = Pt = 138 \times 300 = 41\,400\,\text{J} = 4.1 \times 10^4\,\text{J}$.'
+
+  - id: w17-spark-current
+    section: '6.5'
+    tier: F
+    dfe: [EL5]
+    statement: 'A spark transfers a charge of 3.0 μC in a time of 1.5 μs. Calculate the average current.'
+    answer_label: 'Average current of the spark'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "Q / t"
+          values:
+            Q: {value: "3.0e-6", unit: "C"}
+            t: {value: "1.5e-6", unit: "s"}
+          answer: {value: "2.0", unit: "A"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$I = \dfrac{Q}{t} = \dfrac{3.0 \times 10^{-6}}{1.5 \times 10^{-6}} = 2.0\,\text{A}$.'
+
+  - id: g23-spark-current
+    section: '6.5'
+    tier: F
+    dfe: [EL5]
+    statement: 'A spark transfers a charge of 5.0 μC in a time of 2.0 μs. Calculate the average current.'
+    answer_label: 'Average current of the spark'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "Q / t"
+          values:
+            Q: {value: "5.0e-6", unit: "C"}
+            t: {value: "2.0e-6", unit: "s"}
+          answer: {value: "2.5", unit: "A"}
+        - {kind: sigfigs, value: "2.5", figures: 2, answer: "2.5", convention: round-once}
+    answer_text: '$I = \dfrac{Q}{t} = \dfrac{5.0 \times 10^{-6}}{2.0 \times 10^{-6}} = 2.5\,\text{A}$.'

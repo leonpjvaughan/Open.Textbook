@@ -10,9 +10,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.4 Microphones and speakers — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: MG4
+Work through these on your own. Keep your working neat, and keep the units with
+your numbers. Every question here is for Higher tier.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-07-practice-7.4
+
+:::answers chapter-07-practice-7.4

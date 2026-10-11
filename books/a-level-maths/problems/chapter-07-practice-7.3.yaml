@@ -1,0 +1,152 @@
+# Practice set for 7.3, differentiating standard functions.
+#
+# Every check applies the differential operator to the expression and compares
+# with the stated derivative. Rewriting a root or a fraction as a power is part
+# of the working the reader shows; the check proves the algebra after that.
+chapter: 7
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-power
+    section: "7.3"
+    dfe: [G2]
+    statement: 'Differentiate $y = 8x^3$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "8*x**3"
+      apply: {op: diff, args: [x]}
+      answer: "24*x**2"
+    answer_text: 'Multiply by the power $3$ and reduce it by one: $\dfrac{dy}{dx} = 8 \times 3x^2 = 24x^2$.'
+
+  - id: p2-reciprocal
+    section: "7.3"
+    dfe: [G2]
+    statement: 'Differentiate $y = \dfrac{5}{x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "5/x"
+      apply: {op: diff, args: [x]}
+      answer: "-5/x**2"
+    answer_text: 'Write $y = 5x^{-1}$. Then $\dfrac{dy}{dx} = -5x^{-2} = -\dfrac{5}{x^2}$. The derivative is negative everywhere, so the curve falls on each branch.'
+
+  - id: p3-fractional-power
+    section: "7.3"
+    dfe: [G2]
+    statement: 'Differentiate $y = x^{1/4}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "x**(1/4)"
+      apply: {op: diff, args: [x]}
+      answer: "1/4*x**(-3/4)"
+    answer_text: 'Apply the power rule: $\dfrac{dy}{dx} = \tfrac{1}{4}x^{-3/4}$. The new power is negative, so the derivative can also be written $\dfrac{1}{4x^{3/4}}$.'
+
+  - id: p4-polynomial
+    section: "7.3"
+    dfe: [G2]
+    statement: 'Differentiate $y = 2x^5 - 4x^3 + x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "2*x**5 - 4*x**3 + x"
+      apply: {op: diff, args: [x]}
+      answer: "10*x**4 - 12*x**2 + 1"
+    answer_text: 'Differentiate term by term: $10x^4 - 12x^2 + 1$. The derivative of $x$ is $1$, because $x = x^1$.'
+
+  - id: p5-negative-power
+    section: "7.3"
+    dfe: [G2]
+    statement: 'Differentiate $y = 3x^{-2}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "3*x**(-2)"
+      apply: {op: diff, args: [x]}
+      answer: "-6*x**(-3)"
+    answer_text: 'Multiply by $-2$ and reduce the power by one: $\dfrac{dy}{dx} = -6x^{-3} = -\dfrac{6}{x^3}$. Each branch of the curve falls.'
+
+  - id: p6-exponential
+    section: "7.3"
+    dfe: [G2]
+    statement: 'Differentiate $y = e^{4x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "exp(4*x)"
+      apply: {op: diff, args: [x]}
+      answer: "4*exp(4*x)"
+    answer_text: 'The derivative of $e^{kx}$ is $ke^{kx}$, so $\dfrac{dy}{dx} = 4e^{4x}$. The constant $4$ appears in front of the same exponential.'
+
+  - id: p7-exponential-negative
+    section: "7.3"
+    dfe: [G2]
+    statement: 'Differentiate $y = 3e^{-2x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "3*exp(-2*x)"
+      apply: {op: diff, args: [x]}
+      answer: "-6*exp(-2*x)"
+    answer_text: 'The constant in the exponent is $-2$, so the derivative is $3 \times (-2)e^{-2x} = -6e^{-2x}$. The curve falls, which matches the negative derivative.'
+
+  - id: p8-base-a
+    section: "7.3"
+    dfe: [G2]
+    statement: 'Differentiate $y = 2^{3x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "2**(3*x)"
+      apply: {op: diff, args: [x]}
+      answer: "3*ln(2)*2**(3*x)"
+    answer_text: 'For $a^{kx}$ the derivative is $ka^{kx}\ln a$. Here $a = 2$ and $k = 3$, so $\dfrac{dy}{dx} = 3 \times 2^{3x}\ln 2$.'
+
+  - id: p9-sine
+    section: "7.3"
+    dfe: [G2]
+    statement: 'Differentiate $y = \sin 5x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "sin(5*x)"
+      apply: {op: diff, args: [x]}
+      answer: "5*cos(5*x)"
+    answer_text: 'The derivative of $\sin kx$ is $k\cos kx$, so $\dfrac{dy}{dx} = 5\cos 5x$.'
+
+  - id: p10-cosine
+    section: "7.3"
+    dfe: [G2]
+    statement: 'Differentiate $y = 4\cos 2x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "4*cos(2*x)"
+      apply: {op: diff, args: [x]}
+      answer: "-8*sin(2*x)"
+    answer_text: 'The derivative of $\cos kx$ is $-k\sin kx$. Here $k = 2$, so $\dfrac{dy}{dx} = 4 \times (-2\sin 2x) = -8\sin 2x$.'
+
+  - id: p11-tangent
+    section: "7.3"
+    dfe: [G2]
+    statement: 'Differentiate $y = \tan 3x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "tan(3*x)"
+      apply: {op: diff, args: [x]}
+      answer: "3/(cos(3*x)**2)"
+    answer_text: 'The derivative of $\tan kx$ is $k\sec^2 kx$. Here $k = 3$, so $\dfrac{dy}{dx} = 3\sec^2 3x = \dfrac{3}{\cos^2 3x}$.'
+
+  - id: p12-logarithm-sum
+    section: "7.3"
+    dfe: [G2]
+    statement: 'Differentiate $y = 3\ln x + 2e^x - \cos x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "3*ln(x) + 2*exp(x) - cos(x)"
+      apply: {op: diff, args: [x]}
+      answer: "3/x + 2*exp(x) + sin(x)"
+    answer_text: 'Differentiate term by term: $\dfrac{3}{x} + 2e^x + \sin x$. The minus sign in front of $\cos x$ becomes a plus, because the derivative of $\cos x$ is $-\sin x$.'

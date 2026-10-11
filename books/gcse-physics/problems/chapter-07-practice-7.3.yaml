@@ -1,0 +1,224 @@
+# Practice set for 7.3 (Induced potential, transformers and the national grid).
+#
+# Every section is Higher tier: AQA 8463 marks the whole of 4.7.3 as
+# (physics only) (HT only), so this bank is only ever reached from a Higher page
+# and every record carries tier H. Each calculation proves its dimensions and
+# its single rounding; `structured` proves only that a model answer contains the
+# declared ideas.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# proves arithmetic and dimensions, not physics.
+chapter: 7
+problems:
+  - id: p1-generator-effect
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'Describe the generator effect, including what the induced current does to the magnetic field around it.'
+    answer_label: 'The generator effect'
+    check:
+      kind: structured
+      requires: [induced-pd, induced-current, opposes-change]
+      concepts: [generator-effect]
+      points:
+        - id: induced-pd
+          text: 'If a conductor moves relative to a magnetic field, or the field around it changes, a potential difference is induced across its ends.'
+          concepts: [generator-effect]
+        - id: induced-current
+          text: 'If the conductor is part of a complete circuit, the induced potential difference drives a current.'
+          concepts: [generator-effect]
+        - id: opposes-change
+          text: 'The induced current makes a magnetic field that opposes the change that made it.'
+          concepts: [generator-effect]
+
+  - id: p2-increase-induced
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'State three factors that increase the size of an induced potential difference.'
+    answer_label: 'Factors that increase the induced p.d.'
+    check:
+      kind: structured
+      requires: [speed, field-strength, turns]
+      concepts: [generator-effect]
+      points:
+        - id: speed
+          text: 'Move the conductor faster through the magnetic field.'
+          concepts: [generator-effect]
+        - id: field-strength
+          text: 'Use a stronger magnetic field.'
+          concepts: [generator-effect]
+        - id: turns
+          text: 'Use a coil with more turns.'
+          concepts: [generator-effect]
+
+  - id: p3-alternator-dynamo
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'Explain how an alternator generates a.c. and a dynamo generates d.c.'
+    answer_label: 'Alternator and dynamo'
+    check:
+      kind: structured
+      requires: [rotation, alternator-ac, dynamo-dc]
+      concepts: [alternator, dynamo]
+      points:
+        - id: rotation
+          text: 'In both machines a coil rotates in a magnetic field, so the field through the coil keeps changing and a potential difference is induced.'
+          concepts: [generator-effect]
+        - id: alternator-ac
+          text: 'In an alternator the connections stay the same, so the current in the outside circuit reverses every half turn. The output is alternating current.'
+          concepts: [alternator]
+        - id: dynamo-dc
+          text: 'In a dynamo a commutator reverses the connections every half turn, so the current in the outside circuit always flows the same way. The output is direct current.'
+          concepts: [dynamo]
+
+  - id: p4-turns-down
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'A transformer has 400 turns on the primary coil and 100 turns on the secondary coil. The primary potential difference is 12 V. Calculate the secondary potential difference.'
+    answer_label: 'Secondary potential difference'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: "12 * 100 / 400"
+          answer: "3"
+        - {kind: sigfigs, value: "3", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: '$V_s = V_p \times \dfrac{n_s}{n_p} = 12 \times \dfrac{100}{400} = 3.0\,\text{V}$. This is a step-down transformer.'
+
+  - id: p5-turns-up
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'A transformer has 800 turns on the primary coil and 40 turns on the secondary coil. The primary potential difference is 240 V. Calculate the secondary potential difference.'
+    answer_label: 'Secondary potential difference'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: "240 * 40 / 800"
+          answer: "12"
+        - {kind: sigfigs, value: "12", figures: 2, answer: "12", convention: round-once}
+    answer_text: '$V_s = V_p \times \dfrac{n_s}{n_p} = 240 \times \dfrac{40}{800} = 12\,\text{V}$. This is a step-down transformer.'
+
+  - id: p6-turns-find-ns
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'A step-up transformer changes 12 V to 240 V. The primary coil has 100 turns. Calculate the number of turns on the secondary coil.'
+    answer_label: 'Number of turns on the secondary coil'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: "100 * 240 / 12"
+          answer: "2000"
+        - {kind: sigfigs, value: "2000", figures: 2, answer: "2.0e3", convention: round-once}
+    answer_text: '$n_s = n_p \times \dfrac{V_s}{V_p} = 100 \times \dfrac{240}{12} = 2000$ turns.'
+
+  - id: p7-power-current
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'A transformer has a primary potential difference of 240 V and a primary current of 0.25 A. The secondary potential difference is 12 V. Assume the transformer is 100% efficient. Calculate the secondary current.'
+    answer_label: 'Secondary current'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: "240 * 0.25 / 12"
+          answer: "5"
+        - {kind: sigfigs, value: "5", figures: 2, answer: "5.0", convention: round-once}
+    answer_text: '$V_s I_s = V_p I_p$, so $I_s = \dfrac{V_p I_p}{V_s} = \dfrac{240 \times 0.25}{12} = 5.0\,\text{A}$.'
+
+  - id: p8-dc-supply
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'Explain why a transformer does not work when it is connected to a steady direct current supply.'
+    answer_label: 'A transformer on d.c.'
+    check:
+      kind: structured
+      requires: [needs-changing-field, no-change-no-induced]
+      concepts: [transformer]
+      points:
+        - id: needs-changing-field
+          text: 'A transformer needs a changing magnetic field in its core.'
+          concepts: [transformer]
+        - id: no-change-no-induced
+          text: 'A steady direct current makes a steady field, so the field in the core does not change and no potential difference is induced in the secondary coil.'
+          concepts: [transformer]
+
+  - id: p9-grid-high-voltage
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'Explain why the national grid transmits electrical power at a very high potential difference.'
+    answer_label: 'Why the grid uses high voltage'
+    check:
+      kind: structured
+      requires: [smaller-current, less-heating]
+      concepts: [national-grid, power]
+      points:
+        - id: smaller-current
+          text: 'For the same power, a higher potential difference means a smaller current, because P = VI.'
+          concepts: [power]
+        - id: less-heating
+          text: 'A smaller current transfers less energy to the thermal store of the cables, so less energy is wasted as the cables heat up.'
+          concepts: [national-grid]
+
+  - id: p10-method
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'Say which equation you would use to find the secondary current of a transformer, and name the quantities you need.'
+    answer_label: 'Choosing the method'
+    check:
+      kind: structured
+      requires: [equation, quantities]
+      concepts: [transformer]
+      points:
+        - id: equation
+          text: 'Use V_s I_s = V_p I_p, the power equation for a 100% efficient transformer.'
+          concepts: [transformer]
+        - id: quantities
+          text: 'I need the primary potential difference, the primary current and the secondary potential difference.'
+          concepts: [transformer]
+
+  - id: p11-induced-direction
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'State two ways to reverse the direction of an induced potential difference.'
+    answer_label: 'Reversing the induced p.d.'
+    check:
+      kind: structured
+      requires: [reverse-movement, reverse-field]
+      concepts: [generator-effect]
+      points:
+        - id: reverse-movement
+          text: 'Reverse the direction in which the conductor moves through the field.'
+          concepts: [generator-effect]
+        - id: reverse-field
+          text: 'Reverse the direction of the magnetic field.'
+          concepts: [generator-effect]
+
+  - id: p12-transmission-current
+    section: '7.3'
+    tier: H
+    dfe: [MG3]
+    statement: 'A transmission line carries 5.0 MW of power at a potential difference of 25 000 V. Calculate the current in the line.'
+    answer_label: 'Current in the transmission line'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P / V"
+          values:
+            P: {value: "5.0", unit: "MW"}
+            V: {value: "25000", unit: "V"}
+          answer: {value: "200", unit: "A"}
+        - {kind: sigfigs, value: "200", figures: 2, answer: "2.0e2", convention: round-once}
+    answer_text: '$I = \dfrac{P}{V} = \dfrac{5.0 \times 10^6}{25\,000} = 200\,\text{A} = 2.0 \times 10^2\,\text{A}$.'

@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.6 Increasing and decreasing functions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: G3
+Work through these on your own. Differentiate, factorise, and use a sign table or
+an inequality to state the intervals. Write each interval in the form
+$a < x < b$ or as two separate pieces.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-07-practice-7.6
+
+:::answers chapter-07-practice-7.6

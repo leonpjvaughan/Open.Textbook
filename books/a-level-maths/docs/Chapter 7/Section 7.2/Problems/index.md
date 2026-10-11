@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.2 Differentiation from first principles — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: G1
+Work through these on your own. For every question, write the four steps in
+order. Show the expansion, the subtraction, the division and the limit, even
+when the answer feels familiar.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-07-practice-7.2
+
+:::answers chapter-07-practice-7.2

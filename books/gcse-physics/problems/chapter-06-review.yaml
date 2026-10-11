@@ -1,0 +1,330 @@
+# Mixed practice for the Chapter 6 Review.
+#
+# The review resolves the chapter problem and then interleaves Chapter 6 with
+# earlier chapters: energy (Chapter 1), forces (Chapter 2), waves (Chapter 4) and
+# magnetism is not used because it is a later chapter. Each calculation is
+# checked twice: the exact magnitude and dimension by `dimensions` (or
+# `evaluate` for a pure ratio), and the one rounding by `sigfigs`. A descriptive
+# answer uses `structured`, which proves only that a model answer contains the
+# declared ideas in order.
+chapter: 6
+symbols: {}
+problems:
+  - id: r1-heater-power
+    section: Review
+    tier: F
+    dfe: [EL4]
+    statement: 'The cabin heater takes a current of 5.0 A from the 230 V supply. Calculate its power.'
+    answer_label: 'Power of the heater'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V * I"
+          values:
+            V: {value: "230", unit: "V"}
+            I: {value: "5.0", unit: "A"}
+          answer: {value: "1150", unit: "W"}
+        - {kind: sigfigs, value: "1150", figures: 2, answer: "1.2e3", convention: round-once}
+    answer_text: '$P = VI = 230 \times 5.0 = 1150\,\text{W} = 1.2 \times 10^3\,\text{W}$ to two significant figures.'
+
+  - id: r2-heater-resistance
+    section: Review
+    tier: F
+    dfe: [EL1]
+    statement: 'The cabin heater takes a current of 5.0 A from the 230 V supply. Calculate its resistance.'
+    answer_label: 'Resistance of the heater'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / I"
+          values:
+            V: {value: "230", unit: "V"}
+            I: {value: "5.0", unit: "A"}
+          answer: {value: "46", unit: "Ω"}
+        - {kind: sigfigs, value: "46", figures: 2, answer: "46", convention: round-once}
+    answer_text: '$R = \dfrac{V}{I} = \dfrac{230}{5.0} = 46\,\Omega$.'
+
+  - id: r3-lamp-power
+    section: Review
+    tier: F
+    dfe: [EL4]
+    statement: 'The cabin lamp takes a current of 0.20 A from the 230 V supply. Calculate its power.'
+    answer_label: 'Power of the lamp'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V * I"
+          values:
+            V: {value: "230", unit: "V"}
+            I: {value: "0.20", unit: "A"}
+          answer: {value: "46", unit: "W"}
+        - {kind: sigfigs, value: "46", figures: 2, answer: "46", convention: round-once}
+    answer_text: '$P = VI = 230 \times 0.20 = 46\,\text{W}$.'
+
+  - id: r4-lamp-resistance
+    section: Review
+    tier: F
+    dfe: [EL1]
+    statement: 'The cabin lamp takes a current of 0.20 A from the 230 V supply. Calculate its resistance.'
+    answer_label: 'Resistance of the lamp'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / I"
+          values:
+            V: {value: "230", unit: "V"}
+            I: {value: "0.20", unit: "A"}
+          answer: {value: "1150", unit: "Ω"}
+        - {kind: sigfigs, value: "1150", figures: 2, answer: "1.2e3", convention: round-once}
+    answer_text: '$R = \dfrac{V}{I} = \dfrac{230}{0.20} = 1150\,\Omega = 1.2 \times 10^3\,\Omega$ to two significant figures.'
+
+  - id: r5-total-current
+    section: Review
+    tier: F
+    dfe: [EL2]
+    statement: 'The heater takes 5.0 A and the lamp takes 0.20 A. They are connected in parallel. Calculate the total current from the supply.'
+    answer_label: 'Total current from the supply'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I1 + I2"
+          values:
+            I1: {value: "5.0", unit: "A"}
+            I2: {value: "0.20", unit: "A"}
+          answer: {value: "5.2", unit: "A"}
+        - {kind: sigfigs, value: "5.2", figures: 2, answer: "5.2", convention: round-once}
+    answer_text: 'In parallel the branch currents add, so $I_{total} = 5.0 + 0.20 = 5.2\,\text{A}$. The potential difference across each appliance is 230 V.'
+
+  - id: r6-heater-energy
+    section: Review
+    tier: F
+    dfe: [EL4]
+    statement: 'The 1150 W heater is switched on for 30 minutes. Calculate the energy it transfers.'
+    answer_label: 'Energy transferred by the heater'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P * t"
+          values:
+            P: {value: "1150", unit: "W"}
+            t: {value: "1800", unit: "s"}
+          answer: {value: "2070000", unit: "J"}
+        - {kind: sigfigs, value: "2070000", figures: 2, answer: "2.1e6", convention: round-once}
+    answer_text: '$30\,\text{minutes} = 1800\,\text{s}$, so $E = Pt = 1150 \times 1800 = 2\,070\,000\,\text{J} = 2.1 \times 10^6\,\text{J}$.'
+
+  - id: r7-heater-charge
+    section: Review
+    tier: F
+    dfe: [EL1]
+    statement: 'The heater takes a current of 5.0 A for 30 minutes. Calculate the charge that flows through it.'
+    answer_label: 'Charge that flows through the heater'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * t"
+          values:
+            I: {value: "5.0", unit: "A"}
+            t: {value: "1800", unit: "s"}
+          answer: {value: "9000", unit: "C"}
+        - {kind: sigfigs, value: "9000", figures: 2, answer: "9.0e3", convention: round-once}
+    answer_text: '$Q = It = 5.0 \times 1800 = 9000\,\text{C} = 9.0 \times 10^3\,\text{C}$. Multiplying by 230 V gives the same energy as $E = Pt$.'
+
+  - id: r8-pump-resistance
+    section: Review
+    tier: F
+    dfe: [EL2]
+    statement: 'The pump circuit contains a 6.0 Ω resistor and a 2.0 Ω resistor in series. Calculate the total resistance.'
+    answer_label: 'Total resistance of the pump circuit'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "R1 + R2"
+          values:
+            R1: {value: "6.0", unit: "Ω"}
+            R2: {value: "2.0", unit: "Ω"}
+          answer: {value: "8.0", unit: "Ω"}
+        - {kind: sigfigs, value: "8.0", figures: 2, answer: "8.0", convention: round-once}
+    answer_text: '$R_{total} = 6.0 + 2.0 = 8.0\,\Omega$.'
+
+  - id: r9-pump-current
+    section: Review
+    tier: F
+    dfe: [EL2]
+    statement: 'The pump circuit has a total resistance of 8.0 Ω and is connected to a 12 V battery. Calculate the current.'
+    answer_label: 'Current in the pump circuit'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / R"
+          values:
+            V: {value: "12", unit: "V"}
+            R: {value: "8.0", unit: "Ω"}
+          answer: {value: "1.5", unit: "A"}
+        - {kind: sigfigs, value: "1.5", figures: 2, answer: "1.5", convention: round-once}
+    answer_text: '$I = \dfrac{V}{R_{total}} = \dfrac{12}{8.0} = 1.5\,\text{A}$. The same current flows through both resistors.'
+
+  - id: r10-pump-pd
+    section: Review
+    tier: F
+    dfe: [EL2]
+    statement: 'A current of 1.5 A flows through the 2.0 Ω resistor in the pump circuit. Calculate the potential difference across it.'
+    answer_label: 'Potential difference across the 2.0 Ω resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * R"
+          values:
+            I: {value: "1.5", unit: "A"}
+            R: {value: "2.0", unit: "Ω"}
+          answer: {value: "3.0", unit: "V"}
+        - {kind: sigfigs, value: "3.0", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: '$V = IR = 1.5 \times 2.0 = 3.0\,\text{V}$. The 6.0 Ω resistor has the remaining 9.0 V across it, and $9.0 + 3.0 = 12\,\text{V}$.'
+
+  - id: r11-parallel-reason
+    section: Review
+    tier: F
+    dfe: [EL2]
+    statement: 'Explain why the heater and the lamp in the cabin are connected in parallel rather than in series.'
+    answer_label: 'Why the appliances are connected in parallel'
+    check:
+      kind: structured
+      requires: [full-pd, independent]
+      concepts: [parallel-circuit]
+      points:
+        - id: full-pd
+          text: 'Each appliance is designed to work at 230 V. In parallel the potential difference across each one is the full 230 V, so each works at its correct power. In series they would share the 230 V.'
+          concepts: [parallel-circuit]
+        - id: independent
+          text: 'In parallel the two appliances can be switched on and off separately.'
+          concepts: [parallel-circuit]
+
+  - id: r12-earth-safety
+    section: Review
+    tier: F
+    dfe: [EL3]
+    statement: 'Explain how the earth wire makes the metal frame of the cabin safer if a fault connects the live wire to the frame.'
+    answer_label: 'How the earth wire keeps the frame safe'
+    check:
+      kind: structured
+      requires: [fault, low-resistance-path]
+      concepts: [earth-wire]
+      points:
+        - id: fault
+          text: 'If the live wire touches the metal frame, the frame would become live at about 230 V.'
+          concepts: [earth-wire]
+        - id: low-resistance-path
+          text: 'The earth wire gives the fault current a low-resistance path to earth, so a large current flows to earth and the frame does not stay at 230 V.'
+          concepts: [earth-wire]
+
+  - id: r13-static-window
+    section: Review
+    tier: F
+    dfe: [EL5]
+    statement: 'The plastic window is rubbed with a dry cloth and afterwards attracts dust. Explain how the window becomes charged and how it attracts the dust.'
+    answer_label: 'How the window charges and attracts dust'
+    check:
+      kind: structured
+      requires: [electron-transfer, field]
+      concepts: [static-charge, electric-field]
+      points:
+        - id: electron-transfer
+          text: 'Rubbing transfers electrons from the cloth to the window, so the window becomes negatively charged.'
+          concepts: [static-charge]
+        - id: field
+          text: 'The charged window creates an electric field around itself. The field exerts a force on the nearby dust, pulling it towards the window.'
+          concepts: [electric-field]
+
+  - id: r14-kinetic-energy
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'A ball of mass 0.20 kg moves at 15 m/s. Calculate the energy in its kinetic store. This uses Chapter 1.'
+    answer_label: 'Energy in the kinetic store'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * m * v**2"
+          values:
+            m: {value: "0.20", unit: "kg"}
+            v: {value: "15", unit: "m/s"}
+          answer: {value: "22.5", unit: "J"}
+        - {kind: sigfigs, value: "22.5", figures: 2, answer: "23", convention: round-once}
+    answer_text: '$E_k = \tfrac{1}{2}mv^2 = 0.5 \times 0.20 \times 15^2 = 22.5\,\text{J}$, so $23\,\text{J}$ to two significant figures.'
+
+  - id: r15-work-done
+    section: Review
+    tier: F
+    dfe: [FO2]
+    statement: 'A force of 20 N moves an object 3.0 m in the direction of the force. Calculate the work done. This uses Chapter 2.'
+    answer_label: 'Work done by the force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "20", unit: "N"}
+            s: {value: "3.0", unit: "m"}
+          answer: {value: "60", unit: "J"}
+        - {kind: sigfigs, value: "60", figures: 2, answer: "6.0e1", convention: round-once}
+    answer_text: '$W = Fs = 20 \times 3.0 = 60\,\text{J} = 6.0 \times 10^1\,\text{J}$.'
+
+  - id: r16-sound-wavelength
+    section: Review
+    tier: F
+    dfe: [WA1]
+    statement: 'A sound wave travels through air at 340 m/s and has a frequency of 170 Hz. Calculate its wavelength. This uses Chapter 4.'
+    answer_label: 'Wavelength of the sound wave'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / f"
+          values:
+            v: {value: "340", unit: "m/s"}
+            f: {value: "170", unit: "Hz"}
+          answer: {value: "2.0", unit: "m"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$\lambda = \dfrac{v}{f} = \dfrac{340}{170} = 2.0\,\text{m}$. The wave equation works for sound as well as for light.'
+
+  - id: r17-efficiency
+    section: Review
+    tier: F
+    dfe: [EN2]
+    statement: 'A motor transfers 2000 J of energy, and 1500 J is transferred usefully. Calculate the efficiency of the motor. This uses Chapter 1.'
+    answer_label: 'Efficiency of the motor'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "1500 / 2000", answer: "0.75"}
+        - {kind: sigfigs, value: "0.75", figures: 2, answer: "0.75", convention: round-once}
+    answer_text: 'efficiency $= \dfrac{\text{useful output}}{\text{total input}} = \dfrac{1500}{2000} = 0.75$, which is 75%.'
+
+  - id: r18-method-choice
+    section: Review
+    tier: F
+    dfe: [EL4]
+    statement: 'A 920 W appliance is connected to the 230 V mains supply. Say which relationship you will use, then calculate the current through it.'
+    answer_label: 'Current through the appliance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P / V"
+          values:
+            P: {value: "920", unit: "W"}
+            V: {value: "230", unit: "V"}
+          answer: {value: "4.0", unit: "A"}
+        - {kind: sigfigs, value: "4.0", figures: 2, answer: "4.0", convention: round-once}
+    answer_text: 'Use $P = VI$, rearranged to $I = \dfrac{P}{V}$. Then $I = \dfrac{920}{230} = 4.0\,\text{A}$.'

@@ -1,0 +1,233 @@
+# Practice set for 7.1 (Permanent and induced magnetism, magnetic forces and
+# fields).
+#
+# Both the questions and the answers on the page are rendered from these
+# records. The section is descriptive, so most records use `structured`, which
+# proves only that a model answer contains the declared ideas in order. The two
+# numeric records reach back to force and weight from Chapters 2 and 3, and prove
+# the arithmetic and dimensions with `dimensions` and `sigfigs`.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# proves arithmetic and dimensions, not physics.
+chapter: 7
+problems:
+  - id: p1-magnetic-materials
+    section: '7.1'
+    tier: F
+    dfe: [MG1]
+    statement: 'Name two magnetic materials and two materials that are not magnetic.'
+    answer_label: 'Magnetic and non-magnetic materials'
+    check:
+      kind: structured
+      requires: [magnetic, non-magnetic]
+      concepts: [magnetic-material]
+      points:
+        - id: magnetic
+          text: 'Iron and steel are magnetic materials. Cobalt and nickel are also magnetic.'
+          concepts: [magnetic-material]
+        - id: non-magnetic
+          text: 'Copper and aluminium are not magnetic materials, and neither are plastic or wood.'
+          concepts: [magnetic-material]
+
+  - id: p2-permanent-induced
+    section: '7.1'
+    tier: F
+    dfe: [MG1]
+    statement: 'Describe the difference between a permanent magnet and an induced magnet.'
+    answer_label: 'Permanent and induced magnets'
+    check:
+      kind: structured
+      requires: [permanent, induced, loses-magnetism]
+      concepts: [permanent-magnet, induced-magnet]
+      points:
+        - id: permanent
+          text: 'A permanent magnet produces its own magnetic field all the time.'
+          concepts: [permanent-magnet]
+        - id: induced
+          text: 'An induced magnet becomes a magnet only when it is placed in a magnetic field. Induced magnetism always causes attraction.'
+          concepts: [induced-magnet]
+        - id: loses-magnetism
+          text: 'When the material is taken out of the field, an induced magnet loses most or all of its magnetism quickly.'
+          concepts: [induced-magnet]
+
+  - id: p3-like-poles
+    section: '7.1'
+    tier: F
+    dfe: [MG1]
+    statement: 'Two bar magnets are placed with their north poles facing each other. Describe the force between them, and give a reason.'
+    answer_label: 'The force between the two north poles'
+    check:
+      kind: structured
+      requires: [state-force, give-reason]
+      concepts: [like-poles, non-contact-force]
+      points:
+        - id: state-force
+          text: 'The two magnets repel each other.'
+          concepts: [like-poles]
+        - id: give-reason
+          text: 'The two north poles are like poles, and two like poles repel. The force acts without contact.'
+          concepts: [non-contact-force]
+
+  - id: p4-clip-copper
+    section: '7.1'
+    tier: F
+    dfe: [MG1]
+    statement: 'A steel paper clip is attracted to a magnet, but a copper coin is not. Explain why.'
+    answer_label: 'Why the clip is attracted and the coin is not'
+    check:
+      kind: structured
+      requires: [steel-is-magnetic, copper-is-not]
+      concepts: [magnetic-material]
+      points:
+        - id: steel-is-magnetic
+          text: 'Steel is a magnetic material, so the steel clip becomes an induced magnet and is attracted to the magnet.'
+          concepts: [magnetic-material]
+        - id: copper-is-not
+          text: 'Copper is not a magnetic material, so the magnet does not attract the copper coin.'
+          concepts: [magnetic-material]
+
+  - id: p5-compass-evidence
+    section: '7.1'
+    tier: F
+    dfe: [MG1]
+    statement: 'Explain how the behaviour of a compass gives evidence that the core of the Earth must be magnetic.'
+    answer_label: 'The evidence from a compass'
+    check:
+      kind: structured
+      requires: [needle-is-a-magnet, needs-a-field, core-is-magnetic]
+      concepts: [compass, earths-magnetic-field]
+      points:
+        - id: needle-is-a-magnet
+          text: 'A compass needle is a small bar magnet.'
+          concepts: [compass]
+        - id: needs-a-field
+          text: 'The needle lines up only when it is in a magnetic field, and it points north wherever it is used on the Earth.'
+          concepts: [earths-magnetic-field]
+        - id: core-is-magnetic
+          text: 'The Earth must therefore have a magnetic field, which must come from magnetic material deep inside it. This is evidence that the core is magnetic.'
+          concepts: [earths-magnetic-field]
+
+  - id: p6-plot-field
+    section: '7.1'
+    tier: F
+    dfe: [MG1]
+    statement: 'Describe how to plot the magnetic field pattern of a bar magnet with a plotting compass.'
+    answer_label: 'Plotting the field of a bar magnet'
+    check:
+      kind: structured
+      requires: [mark-needle, move-compass, join-marks]
+      concepts: [magnetic-field, plotting-compass]
+      points:
+        - id: mark-needle
+          text: 'Put the magnet on paper and put the compass near one pole. Mark the two ends of the needle.'
+          concepts: [plotting-compass]
+        - id: move-compass
+          text: 'Move the compass so that its south end sits where the north end was, and mark the new position of the north end. Repeat towards the other pole.'
+          concepts: [plotting-compass]
+        - id: join-marks
+          text: 'Join the marks with a smooth curve to show one field line, then start again from a different point.'
+          concepts: [magnetic-field]
+
+  - id: p7-field-strength
+    section: '7.1'
+    tier: F
+    dfe: [MG1]
+    statement: 'State where the magnetic field of a bar magnet is strongest and where it is weakest, and give a reason.'
+    answer_label: 'Where the field is strongest and weakest'
+    check:
+      kind: structured
+      requires: [strongest, weakest]
+      concepts: [magnetic-field]
+      points:
+        - id: strongest
+          text: 'The field is strongest at the poles, where the field lines are closest together.'
+          concepts: [magnetic-field]
+        - id: weakest
+          text: 'The field is weakest far from the magnet, because the field gets weaker as the distance increases.'
+          concepts: [magnetic-field]
+
+  - id: p8-convert-cm
+    section: '7.1'
+    tier: F
+    dfe: [MG1]
+    statement: 'A compass sits 12 cm from a magnet. Write the distance in metres.'
+    answer_label: 'The distance in metres'
+    check:
+      kind: convert
+      value: '12'
+      from: cm
+      to: m
+      answer: '0.12'
+    answer_text: 'The prefix centi means one hundredth, so $12\,\text{cm} = 0.12\,\text{m}$.'
+
+  - id: p9-acceleration
+    section: '7.1'
+    tier: F
+    dfe: [MG1]
+    statement: 'A magnetic force of 0.60 N acts on a steel ball of mass 0.20 kg. Calculate the acceleration of the ball.'
+    answer_label: 'Acceleration of the ball'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / m"
+          values:
+            F: {value: "0.60", unit: "N"}
+            m: {value: "0.20", unit: "kg"}
+          answer: {value: "3.0", unit: "m/s^2"}
+        - {kind: sigfigs, value: "3.0", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: '$a = \dfrac{F}{m} = \dfrac{0.60}{0.20} = 3.0\,\text{m/s}^2$.'
+
+  - id: p10-weight
+    section: '7.1'
+    tier: F
+    dfe: [MG1]
+    statement: 'A magnet holds up a steel block of mass 2.5 kg. Take g = 9.8 N/kg. Calculate the weight of the block.'
+    answer_label: 'Weight of the block'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g"
+          values:
+            m: {value: "2.5", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "24.5", unit: "N"}
+        - {kind: sigfigs, value: "24.5", figures: 2, answer: "25", convention: round-once}
+    answer_text: '$W = mg = 2.5 \times 9.8 = 24.5\,\text{N}$, so $25\,\text{N}$ to 2 significant figures. This is the force the magnet must balance.'
+
+  - id: p11-stay-magnetic
+    section: '7.1'
+    tier: F
+    dfe: [MG1]
+    statement: 'A steel object is brought near a magnet and then taken away. Will the object stay magnetic? Give a reason.'
+    answer_label: 'Whether the object stays magnetic'
+    check:
+      kind: structured
+      requires: [answer, reason]
+      concepts: [induced-magnet]
+      points:
+        - id: answer
+          text: 'The object will lose most or all of its magnetism.'
+          concepts: [induced-magnet]
+        - id: reason
+          text: 'The object became an induced magnet only while it was in the magnetic field. Once it is removed from the field, the induced magnetism is lost quickly.'
+          concepts: [induced-magnet]
+
+  - id: p12-induced-attraction
+    section: '7.1'
+    tier: F
+    dfe: [MG1]
+    statement: 'Explain why an induced magnet is always attracted to a magnet, and never repelled.'
+    answer_label: 'Why induced magnetism always attracts'
+    check:
+      kind: structured
+      requires: [lines-up, unlike-poles]
+      concepts: [induced-magnet]
+      points:
+        - id: lines-up
+          text: 'The field lines up the magnetic parts inside the material, so the material becomes an induced magnet with its nearest pole facing the magnet.'
+          concepts: [induced-magnet]
+        - id: unlike-poles
+          text: 'The nearest pole is an unlike pole, and unlike poles attract. So the force is always one of attraction.'
+          concepts: [induced-magnet]

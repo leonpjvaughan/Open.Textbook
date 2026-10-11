@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.7 The product, quotient and chain rules — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: G4
+Work through these on your own. For each expression, name the rule you need
+before you start, then write the parts $u$ and $v$ (or the inside function).
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-07-practice-7.7
+
+:::answers chapter-07-practice-7.7

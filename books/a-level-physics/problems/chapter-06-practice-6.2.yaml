@@ -1,0 +1,164 @@
+# Practice set for 6.2 (Diffraction and polarisation).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]`, so a check may use either.
+#
+# A value that involves a trigonometric ratio or a square root is checked by
+# `approx` against a stated tolerance, because the SymPy oracle keeps its
+# arithmetic exact and the value is irrational. A whole-number order is checked
+# by `between`, which proves the spacing-to-wavelength ratio lies between two
+# whole numbers. A reason is a `structured` record: presence, order and coverage
+# only, never physics.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 6
+problems:
+  - id: p1-spacing
+    section: '6.2'
+    dfe: [AP6]
+    statement: 'A diffraction grating has 250 lines per millimetre. Find the spacing between neighbouring slits, in metres.'
+    answer_label: 'The slit spacing'
+    check: {kind: approx, value: "1 / 250e3", target: "4.0e-6", tolerance: "1e-9"}
+    answer_text: '$250\,\text{lines mm}^{-1} = 2.50 \times 10^5\,\text{lines m}^{-1}$, so $d = \dfrac{1}{2.50 \times 10^5} = 4.0 \times 10^{-6}\,\text{m}$.'
+
+  - id: p2-first-order
+    section: '6.2'
+    dfe: [AP6]
+    statement: 'A grating has a slit spacing of 4.0e-6 m. Light of wavelength 500 nm falls on it. Find the angle of the first-order maximum.'
+    answer_label: 'The first-order angle'
+    check: {kind: approx, value: "asin(500e-9 / 4.0e-6)*180/pi", target: "7.2", tolerance: "0.2"}
+    answer_text: '$\sin\theta = \dfrac{500 \times 10^{-9}}{4.0 \times 10^{-6}} = 0.125$, so $\theta = 7.2^\circ$.'
+
+  - id: p3-highest
+    section: '6.2'
+    dfe: [AP6]
+    statement: 'For the grating and light of question 2, find the highest order the grating can give.'
+    answer_label: 'The highest order'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: ">=", lhs: "4.0e-6 / 500e-9", rhs: "8"}
+        - {kind: compare, relation: "<", lhs: "4.0e-6 / 500e-9", rhs: "9"}
+    answer_text: '$\dfrac{d}{\lambda} = \dfrac{4.0 \times 10^{-6}}{500 \times 10^{-9}} = 8.0$. The order must be a whole number with $n\lambda \le d$, so the highest order is 8.'
+
+  - id: p4-second-order
+    section: '6.2'
+    dfe: [AP6]
+    statement: 'A grating of spacing 3.33e-6 m gives its second-order maximum at 20.0 degrees. Find the wavelength of the light.'
+    answer_label: 'The wavelength'
+    check: {kind: approx, value: "3.33e-6 * sin(20 * pi / 180) / 2", target: "5.70e-7", tolerance: "1e-9"}
+    answer_text: '$\lambda = \dfrac{d\sin\theta}{n} = \dfrac{3.33 \times 10^{-6} \times \sin 20.0^\circ}{2} = 5.70 \times 10^{-7}\,\text{m}$, or $570\,\text{nm}$.'
+
+  - id: p5-diffraction
+    section: '6.2'
+    dfe: [AP6]
+    statement: 'Explain why you can hear a person through a doorway from around a corner, but you cannot see them.'
+    check:
+      kind: structured
+      requires: [sound-wavelength-long, light-wavelength-short, sound-diffracts, light-straight]
+      concepts: [diffraction, wavelength]
+      points:
+        - id: sound-wavelength-long
+          text: 'The wavelength of sound is about a metre, which is close to the width of the doorway.'
+          concepts: [wavelength]
+        - id: light-wavelength-short
+          text: 'The wavelength of light is about 500 nm, which is far smaller than the doorway.'
+          concepts: [wavelength]
+        - id: sound-diffracts
+          text: 'Sound therefore spreads out strongly at the doorway, so it reaches you around the corner.'
+          concepts: [diffraction]
+        - id: light-straight
+          text: 'Light spreads very little, because the gap is far larger than its wavelength, so it travels almost straight on and you cannot see the person.'
+          concepts: [diffraction]
+
+  - id: p6-intensity
+    section: '6.2'
+    dfe: [AP6]
+    statement: 'Plane-polarised light passes through an analyser whose axis is at 30 degrees to the plane of polarisation. Find the fraction of the intensity that passes.'
+    answer_label: 'The fraction of the intensity'
+    check: {kind: approx, value: "cos(30 * pi / 180)**2", target: "0.75", tolerance: "1e-6"}
+    answer_text: '$\dfrac{I}{I_0} = \cos^2 30^\circ = 0.75$, so three quarters of the intensity passes.'
+
+  - id: p7-amplitude
+    section: '6.2'
+    dfe: [AP6]
+    statement: 'Plane-polarised light of amplitude 25 V/m passes through an analyser at 40 degrees to the plane of polarisation. Find the transmitted amplitude.'
+    answer_label: 'The transmitted amplitude'
+    check: {kind: approx, value: "25 * cos(40 * pi / 180)", target: "19.2", tolerance: "0.1"}
+    answer_text: '$E = E_0\cos\theta = 25 \times \cos 40^\circ = 19.2\,\text{V}\,\text{m}^{-1}$.'
+
+  - id: p8-crossed
+    section: '6.2'
+    dfe: [AP6]
+    statement: 'Describe what happens to the light when the second of two polarising filters is turned until its axis is at 90 degrees to the first, and explain why.'
+    check:
+      kind: structured
+      requires: [no-light, perpendicular, component-zero]
+      concepts: [polarisation, polarising-filter]
+      points:
+        - id: no-light
+          text: 'No light passes through the second filter when the axes are at 90 degrees. The filters are crossed.'
+          concepts: [polarising-filter]
+        - id: perpendicular
+          text: 'The first filter leaves the light polarised along one line. The transmission axis of the second filter is at right angles to that line.'
+          concepts: [polarisation]
+        - id: component-zero
+          text: 'The component of the electric field along the axis of the second filter is then zero, so there is nothing for it to transmit.'
+          concepts: [polarisation, polarising-filter]
+
+  - id: p9-method
+    section: '6.2'
+    dfe: [AP6]
+    statement: 'You are given a diffraction grating labelled 300 lines per millimetre and a laser of unknown wavelength. Describe how to find the wavelength, and state the measurements you need.'
+    check:
+      kind: structured
+      requires: [find-spacing, measure-angle, identify-order, use-grating-equation]
+      concepts: [diffraction-grating, wavelength]
+      points:
+        - id: find-spacing
+          text: 'The number of lines per millimetre gives the slit spacing from d = 1 / N.'
+          concepts: [diffraction-grating]
+        - id: measure-angle
+          text: 'Shine the laser through the grating and measure the angle from the straight-through direction to a bright maximum.'
+          concepts: [diffraction-grating]
+        - id: identify-order
+          text: 'Note the order n of that maximum, counting the straight-through direction as order 0.'
+          concepts: [diffraction-grating]
+        - id: use-grating-equation
+          text: 'Use $d\\\\sin\\\\theta = n\\\\lambda$, rearranged to give $\\\\lambda = \\\\dfrac{d\\\\sin\\\\theta}{n}$.'
+          concepts: [wavelength]
+
+  - id: p10-fringe
+    section: '6.2'
+    dfe: [AP6]
+    statement: 'A laser of wavelength 600 nm passes through two slits 0.25 mm apart. The screen is 1.5 m away. Find the fringe spacing.'
+    answer_label: 'The fringe spacing'
+    check: {kind: approx, value: "600e-9 * 1.5 / 0.25e-3", target: "3.6e-3", tolerance: "1e-5"}
+    answer_text: '$w = \dfrac{\lambda D}{s} = \dfrac{600 \times 10^{-9} \times 1.5}{0.25 \times 10^{-3}} = 3.6 \times 10^{-3}\,\text{m}$, or $3.6\,\text{mm}$.'
+
+  - id: p11-uncertainty
+    section: '6.2'
+    dfe: [AP6]
+    statement: 'A grating has a spacing of 2.00e-6 m, known exactly. The sine of the first-order angle is 0.300 with a percentage uncertainty of 1.0%. Find the wavelength and its absolute uncertainty.'
+    answer_label: 'The wavelength and its uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: "2.00e-6", percentage: "0", power: 1}
+        - {value: "0.300", percentage: "1.0", power: 1}
+      result: "6.00e-7"
+      uncertainty: "6.0e-9"
+      tolerance: "1e-11"
+    answer_text: 'The wavelength is $\lambda = d\sin\theta = 2.00 \times 10^{-6} \times 0.300 = 6.00 \times 10^{-7}\,\text{m}$. The grating spacing is exact, so only the sine contributes: the percentage uncertainty is 1.0%. The absolute uncertainty is $6.00 \times 10^{-7} \times \dfrac{1.0}{100} = 6.0 \times 10^{-9}\,\text{m}$.'
+
+  - id: p12-sigfigs
+    section: '6.2'
+    dfe: [AP6]
+    statement: 'The angle of a first-order maximum is 18.46 degrees. Write the angle to three significant figures.'
+    answer_label: 'The angle to three significant figures'
+    check: {kind: sigfigs, value: "18.46", figures: 3, answer: "18.5", convention: round-once}
+    answer_text: '$18.46^\circ = 18.5^\circ$ to three significant figures.'

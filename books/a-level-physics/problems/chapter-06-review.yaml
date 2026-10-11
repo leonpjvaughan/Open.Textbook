@@ -1,0 +1,180 @@
+# Mixed practice for the Chapter 6 Review.
+#
+# The first nine records resolve the chapter problem of the concert hall check.
+# The rest interleave the chapter with Chapters 1, 2 and 3: a prefix conversion,
+# an uncertainty propagation, a vector resolution, a simple-harmonic period and
+# two method-choice prompts. Every numeric record is checked by the `units` or
+# `sympy` oracle, and a `structured` record stands where a computer cannot go: it
+# proves that a model answer contains the declared ideas in order, and nothing
+# more.
+#
+# The anchor numbers: the sound has wavelength 340/1000 = 0.340 m, so the first
+# loud band is at 16.5 degrees; the laser fringes are 6.33 mm apart; the grating
+# spacing is 3.33e-6 m, the first order is at 10.9 degrees and the highest order
+# is 5; the string wave speed is 450 m/s and its fundamental is 346 Hz; one
+# quarter of the light passes the analyser; and 330 Hz needs a tension of 73.6 N.
+chapter: 6
+problems:
+  - id: r1-anchor-sound-wavelength
+    section: Review
+    dfe: [AP6]
+    statement: 'The loudspeakers are driven at 1.00 kHz and the speed of sound is 340 m/s. Find the wavelength of the sound.'
+    check:
+      kind: dimensions
+      expression: "v / f"
+      values:
+        v: {value: "340", unit: "m s^-1"}
+        f: {value: "1000", unit: "Hz"}
+      answer: {value: "0.340", unit: "m"}
+    answer_text: '$\lambda = \dfrac{v}{f} = \dfrac{340}{1.00 \times 10^{3}} = 0.340\,\text{m}$.'
+
+  - id: r2-anchor-first-max
+    section: Review
+    dfe: [AP6]
+    statement: 'The speakers are 1.20 m apart and the sound has wavelength 0.340 m. Find the angle of the first loud band to the side of the centre line.'
+    check: {kind: approx, value: "asin(0.340 / 1.20)*180/pi", target: "16.5", tolerance: "0.2"}
+    answer_text: '$\sin\theta = \dfrac{\lambda}{s} = \dfrac{0.340}{1.20} = 0.2833$, so $\theta = 16.5^\circ$.'
+
+  - id: r3-anchor-fringe
+    section: Review
+    dfe: [AP6]
+    statement: 'The laser has wavelength 633 nm, the double slit is 0.25 mm wide and the screen is 2.50 m away. Find the fringe spacing.'
+    check: {kind: approx, value: "633e-9 * 2.50 / 0.25e-3", target: "6.33e-3", tolerance: "1e-5"}
+    answer_text: '$w = \dfrac{\lambda D}{s} = \dfrac{633 \times 10^{-9} \times 2.50}{0.25 \times 10^{-3}} = 6.33 \times 10^{-3}\,\text{m}$, or $6.33\,\text{mm}$.'
+
+  - id: r4-anchor-grating
+    section: Review
+    dfe: [AP6]
+    statement: 'The diffraction grating has 300 lines per millimetre. Find the spacing between neighbouring slits, in metres.'
+    check: {kind: approx, value: "1 / 300e3", target: "3.33e-6", tolerance: "1e-8"}
+    answer_text: '$300\,\text{lines mm}^{-1} = 3.00 \times 10^5\,\text{lines m}^{-1}$, so $d = \dfrac{1}{3.00 \times 10^5} = 3.33 \times 10^{-6}\,\text{m}$.'
+
+  - id: r5-anchor-first-order
+    section: Review
+    dfe: [AP6]
+    statement: 'The grating spacing is 3.33e-6 m and the light has wavelength 633 nm. Find the angle of the first-order maximum.'
+    check: {kind: approx, value: "asin(633e-9 / 3.333e-6)*180/pi", target: "10.9", tolerance: "0.2"}
+    answer_text: '$\sin\theta = \dfrac{633 \times 10^{-9}}{3.33 \times 10^{-6}} = 0.190$, so $\theta = 10.9^\circ$.'
+
+  - id: r6-anchor-highest-order
+    section: Review
+    dfe: [AP6]
+    statement: 'For the grating spacing 3.33e-6 m and the wavelength 633 nm, find the highest order the grating can give.'
+    check: {kind: between, value: "3.333e-6 / 633e-9", low: "5", high: "6"}
+    answer_text: '$\dfrac{d}{\lambda} = \dfrac{3.33 \times 10^{-6}}{633 \times 10^{-9}} = 5.26$. The highest whole number with $n\lambda \le d$ is 5.'
+
+  - id: r7-anchor-string
+    section: Review
+    dfe: [AP6]
+    statement: 'The guitar string has tension 81 N, a mass per unit length of 4.0e-4 kg/m, and a length of 0.650 m. Find the speed of a wave on it and the frequency of its fundamental note.'
+    answer_label: 'The wave speed and the fundamental frequency'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "sqrt(81 / 4.0e-4)", target: "450", tolerance: "0.5"}
+        - {kind: approx, value: "450 / (2 * 0.650)", target: "346", tolerance: "0.5"}
+    answer_text: '$v = \sqrt{\dfrac{T}{\mu}} = 450\,\text{m}\,\text{s}^{-1}$, and $f_1 = \dfrac{v}{2L} = \dfrac{450}{2 \times 0.650} = 346\,\text{Hz}$.'
+
+  - id: r8-anchor-polariser
+    section: Review
+    dfe: [AP6]
+    statement: 'Plane-polarised laser light passes through an analyser whose axis is at 60 degrees to the plane of polarisation. Find the fraction of the intensity that passes.'
+    check: {kind: approx, value: "cos(60 * pi / 180)**2", target: "0.25", tolerance: "1e-6"}
+    answer_text: '$\dfrac{I}{I_0} = \cos^2 60^\circ = 0.25$, so one quarter of the light passes.'
+
+  - id: r9-anchor-tension
+    section: Review
+    dfe: [AP6]
+    statement: 'The string sounds 346 Hz at a tension of 81 N. Find the tension needed for 330 Hz.'
+    answer_label: 'The tension'
+    check: {kind: approx, value: "81 * (330 / (450 / 1.3))**2", target: "73.6", tolerance: "0.1"}
+    answer_text: '$T_2 = T_1\left(\dfrac{f_2}{f_1}\right)^2 = 81 \times \left(\dfrac{330}{346}\right)^2 = 73.6\,\text{N}$. The string is too tight and must be slackened.'
+
+  - id: r10-convert
+    section: Review
+    dfe: [AP1, AP6]
+    statement: 'The grating spacing is 3.33e-6 m. Write this length in micrometres.'
+    check: {kind: convert, value: "3.33e-6", from: "m", to: "um", answer: "3.33"}
+    answer_text: '$3.33 \times 10^{-6}\,\text{m} = 3.33\,\mu\text{m}$. One micrometre is $10^{-6}\,\text{m}$.'
+
+  - id: r11-uncertainty
+    section: Review
+    dfe: [AP1, AP6]
+    statement: 'A sound wave has a frequency of 500 Hz with a percentage uncertainty of 0.4%, and a wavelength of 0.680 m with a percentage uncertainty of 1.5%. Find its speed and its absolute uncertainty.'
+    answer_label: 'The speed and its uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: "500", percentage: "0.4", power: 1}
+        - {value: "0.680", percentage: "1.5", power: 1}
+      result: "340"
+      uncertainty: "6.46"
+      tolerance: "0.001"
+    answer_text: 'The speed is $v = f\lambda = 500 \times 0.680 = 340\,\text{m}\,\text{s}^{-1}$. The percentage uncertainties add: $0.4\% + 1.5\% = 1.9\%$. The absolute uncertainty is $340 \times \dfrac{1.9}{100} = 6.46\,\text{m}\,\text{s}^{-1}$, or about $6\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: r12-resolve
+    section: Review
+    dfe: [AP2, AP6]
+    statement: 'A tension of 12.0 N acts along a string at 35 degrees to the horizontal. Find the horizontal and vertical components of the tension.'
+    answer_label: 'The two components'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "12.0"
+      angle_deg: "35"
+      components: {x: "9.83", y: "6.88"}
+      tolerance: "0.02"
+    answer_text: 'The horizontal component is $12.0\cos 35^\circ = 9.83\,\text{N}$. The vertical component is $12.0\sin 35^\circ = 6.88\,\text{N}$.'
+
+  - id: r13-shm
+    section: Review
+    dfe: [AP3, AP6]
+    statement: 'A mass of 0.10 kg hangs on a spring of force constant 40 N/m. Find the period of the oscillation.'
+    answer_label: 'The period'
+    check: {kind: approx, value: "2 * pi * sqrt(0.10 / 40)", target: "0.314", tolerance: "0.001"}
+    answer_text: '$T = 2\pi\sqrt{\dfrac{m}{k}} = 2\pi\sqrt{\dfrac{0.10}{40}} = 2\pi \times 0.0500 = 0.314\,\text{s}$.'
+
+  - id: r14-method-choice
+    section: Review
+    dfe: [AP6]
+    statement: 'You must measure the wavelength of a laser. Say which method you would choose, a double slit or a diffraction grating, and explain why. State the measurements you need.'
+    answer_label: 'The method and the measurements'
+    check:
+      kind: structured
+      requires: [choose-reason, measurements, use-equation]
+      concepts: [fringe-spacing, diffraction-grating, wavelength]
+      points:
+        - id: choose-reason
+          text: 'Use the diffraction grating, because its maxima are narrow and sharp, so the angle can be measured more precisely than a broad fringe position.'
+          concepts: [diffraction-grating]
+        - id: measurements
+          text: 'Measure the angle theta to a maximum of known order n, and find the slit spacing d from the printed number of lines per millimetre.'
+          concepts: [wavelength]
+        - id: use-equation
+          text: 'Use $d\\\\sin\\\\theta = n\\\\lambda$, rearranged to give $\\\\lambda = \\\\dfrac{d\\\\sin\\\\theta}{n}$. If a double slit is used instead, measure the fringe spacing w, the slit separation s and the screen distance D, then use $\\\\lambda = \\\\dfrac{ws}{D}$.'
+          concepts: [fringe-spacing, diffraction-grating]
+    answer_text: 'Use the grating: its sharp maxima give a more precise angle than a broad fringe. Measure the angle to a maximum of known order and find the slit spacing from the lines per millimetre, then use $\lambda = \dfrac{d\sin\theta}{n}$.'
+
+  - id: r15-stationary-compare
+    section: Review
+    dfe: [AP6]
+    statement: 'Compare a stationary wave with a progressive wave, in terms of the amplitude at different points and the transfer of energy.'
+    answer_label: 'The comparison'
+    check:
+      kind: structured
+      requires: [amplitude-varies, nodes-still, no-net-energy, progressive-transfer]
+      concepts: [stationary-wave, progressive-wave]
+      points:
+        - id: amplitude-varies
+          text: 'On a stationary wave the amplitude varies from zero at each node to a maximum at each antinode. On a progressive wave every point has the same amplitude.'
+          concepts: [stationary-wave, progressive-wave]
+        - id: nodes-still
+          text: 'The nodes of a stationary wave never move, while every point of a progressive wave moves by the same amount.'
+          concepts: [stationary-wave]
+        - id: no-net-energy
+          text: 'A stationary wave transfers no net energy along the wave. Energy is stored in the vibration.'
+          concepts: [stationary-wave]
+        - id: progressive-transfer
+          text: 'A progressive wave carries energy from one place to another as it travels.'
+          concepts: [progressive-wave]

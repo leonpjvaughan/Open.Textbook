@@ -1,0 +1,155 @@
+# Practice set for 6.3 (Stationary waves).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]`, so a check may use either.
+#
+# A value that involves a square root is checked by `approx` against a stated
+# tolerance, because the SymPy oracle keeps its arithmetic exact and the root is
+# irrational. An exact value with a unit is checked by `dimensions`. The last two
+# records interleave earlier chapters. A reason is a `structured` record:
+# presence, order and coverage only, never physics.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 6
+problems:
+  - id: p1-speed
+    section: '6.3'
+    dfe: [AP6]
+    statement: 'A string has a tension of 64 N and a mass per unit length of 4.0e-4 kg/m. Find the speed of a wave on the string.'
+    answer_label: 'The wave speed'
+    check: {kind: approx, value: "sqrt(64 / 4.0e-4)", target: "400", tolerance: "0.5"}
+    answer_text: '$v = \sqrt{\dfrac{T}{\mu}} = \sqrt{\dfrac{64}{4.0 \times 10^{-4}}} = 400\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: p2-fundamental
+    section: '6.3'
+    dfe: [AP6]
+    statement: 'A string 0.800 m long is fixed at both ends and has a wave speed of 320 m/s. Find the frequency of its fundamental note.'
+    answer_label: 'The fundamental frequency'
+    check: {kind: approx, value: "320 / (2 * 0.800)", target: "200", tolerance: "0.1"}
+    answer_text: '$f_1 = \dfrac{v}{2L} = \dfrac{320}{2 \times 0.800} = 200\,\text{Hz}$.'
+
+  - id: p3-second-harmonic
+    section: '6.3'
+    dfe: [AP6]
+    statement: 'Find the frequency of the second harmonic of the string in question 2.'
+    answer_label: 'The second harmonic'
+    check: {kind: approx, value: "2 * 320 / (2 * 0.800)", target: "400", tolerance: "0.1"}
+    answer_text: '$f_2 = 2f_1 = 2 \times 200 = 400\,\text{Hz}$.'
+
+  - id: p4-tension
+    section: '6.3'
+    dfe: [AP6]
+    statement: 'A string sounds a note of 150 Hz at a tension of 90 N. Find the tension needed for a note of 300 Hz.'
+    answer_label: 'The tension'
+    check: {kind: approx, value: "90 * (300 / 150)**2", target: "360", tolerance: "0.01"}
+    answer_text: '$T_2 = T_1\left(\dfrac{f_2}{f_1}\right)^2 = 90 \times 4 = 360\,\text{N}$.'
+
+  - id: p5-open-pipe
+    section: '6.3'
+    dfe: [AP6]
+    statement: 'An organ pipe is open at both ends and is 0.400 m long. The speed of sound is 340 m/s. Find the frequency of its fundamental note.'
+    answer_label: 'The fundamental frequency'
+    check: {kind: approx, value: "340 / (2 * 0.400)", target: "425", tolerance: "0.1"}
+    answer_text: '$f_1 = \dfrac{v}{2L} = \dfrac{340}{2 \times 0.400} = 425\,\text{Hz}$.'
+
+  - id: p6-closed-pipe
+    section: '6.3'
+    dfe: [AP6]
+    statement: 'A pipe closed at one end is 0.400 m long. The speed of sound is 340 m/s. Find the frequency of its fundamental note.'
+    answer_label: 'The fundamental frequency'
+    check: {kind: approx, value: "340 / (4 * 0.400)", target: "212.5", tolerance: "0.1"}
+    answer_text: '$f_1 = \dfrac{v}{4L} = \dfrac{340}{4 \times 0.400} = 213\,\text{Hz}$, to three significant figures.'
+
+  - id: p7-node-distance
+    section: '6.3'
+    dfe: [AP6]
+    statement: 'The distance between two neighbouring nodes on a stationary wave is 0.15 m. Find the wavelength.'
+    answer_label: 'The wavelength'
+    check: {kind: approx, value: "2 * 0.15", target: "0.30", tolerance: "0.001"}
+    answer_text: 'Neighbouring nodes are half a wavelength apart, so $\lambda = 2 \times 0.15 = 0.30\,\text{m}$.'
+
+  - id: p8-node-antinode
+    section: '6.3'
+    dfe: [AP6]
+    statement: 'On a stationary sound wave the distance from a node to the next antinode is 0.20 m. Find the wavelength.'
+    answer_label: 'The wavelength'
+    check: {kind: approx, value: "4 * 0.20", target: "0.80", tolerance: "0.001"}
+    answer_text: 'A node to the next antinode is a quarter of a wavelength, so $\lambda = 4 \times 0.20 = 0.80\,\text{m}$.'
+
+  - id: p9-stationary-explain
+    section: '6.3'
+    dfe: [AP6]
+    statement: 'Explain how a stationary wave is formed on a guitar string, and say why it transfers no energy along the string.'
+    check:
+      kind: structured
+      requires: [wave-reflects, opposite-directions, superpose, nodes-antinodes, no-net-energy]
+      concepts: [stationary-wave, superposition]
+      points:
+        - id: wave-reflects
+          text: 'A wave travels along the string and reflects from each fixed end.'
+          concepts: [stationary-wave]
+        - id: opposite-directions
+          text: 'The reflected wave and the incoming wave have the same frequency and travel in opposite directions.'
+          concepts: [stationary-wave]
+        - id: superpose
+          text: 'They superpose, so their displacements add at every point.'
+          concepts: [superposition]
+        - id: nodes-antinodes
+          text: 'The result has fixed nodes, where the displacement is always zero, and antinodes, where the amplitude is largest.'
+          concepts: [stationary-wave]
+        - id: no-net-energy
+          text: 'Each point oscillates in place, and no energy is carried from one end of the string to the other. Energy is stored in the vibration.'
+          concepts: [stationary-wave]
+
+  - id: p10-closed-harmonics
+    section: '6.3'
+    dfe: [AP6]
+    statement: 'Explain why a pipe closed at one end sounds only the odd harmonics.'
+    check:
+      kind: structured
+      requires: [node-at-closed-end, antinode-at-open-end, quarter-wavelength, odd-only]
+      concepts: [harmonic, node, antinode]
+      points:
+        - id: node-at-closed-end
+          text: 'The closed end must be a node, because the air there cannot move.'
+          concepts: [node]
+        - id: antinode-at-open-end
+          text: 'The open end must be an antinode, because the air there is free to move.'
+          concepts: [antinode]
+        - id: quarter-wavelength
+          text: 'The shortest wave that fits has a node at one end and an antinode at the other. That is a quarter of a wavelength, so the length is an odd number of quarter wavelengths.'
+          concepts: [harmonic]
+        - id: odd-only
+          text: 'An even harmonic would need a whole number of half wavelengths with an antinode at the closed end, which is impossible. So only the odd harmonics are present.'
+          concepts: [harmonic, node, antinode]
+
+  - id: p11-spring-energy
+    section: '6.3'
+    dfe: [AP4, AP6]
+    statement: 'A spring of force constant 250 N/m is stretched by 0.080 m. Find the energy stored in it.'
+    answer_label: 'The energy stored'
+    check:
+      kind: dimensions
+      expression: "0.5 * k * dL**2"
+      values:
+        k: {value: "250", unit: "N m^-1"}
+        dL: {value: "0.080", unit: "m"}
+      answer: {value: "0.80", unit: "J"}
+    answer_text: '$E = \tfrac{1}{2}k(\Delta L)^2 = \tfrac{1}{2} \times 250 \times 0.080^2 = 0.80\,\text{J}$.'
+
+  - id: p12-resolve-tension
+    section: '6.3'
+    dfe: [AP2, AP6]
+    statement: 'A tension of 500 N acts along a string at 30 degrees to the horizontal. Find the horizontal and vertical components of the tension.'
+    answer_label: 'The two components'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "500"
+      angle_deg: "30"
+      components: {x: "433", y: "250"}
+      tolerance: "1"
+    answer_text: 'The horizontal component is $500\cos 30^\circ = 433\,\text{N}$. The vertical component is $500\sin 30^\circ = 250\,\text{N}$.'

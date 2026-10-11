@@ -1,0 +1,280 @@
+# Practice set for 6.2 (Series and parallel circuits).
+#
+# Both the questions and the answers on the page are rendered from these
+# records. Series calculations use `dimensions` (exact magnitude and dimension)
+# plus `sigfigs` (one rounding at the end). Numeric values are chosen so the
+# arithmetic is exact. Parallel questions never ask for the total resistance,
+# because AQA 8463 does not require it; they ask for branch currents and use
+# `structured` for the qualitative ideas.
+chapter: 6
+symbols: {}
+problems:
+  - id: p1-series-total-resistance
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A 3.0 Ω resistor and a 5.0 Ω resistor are connected in series. Calculate the total resistance.'
+    answer_label: 'Total resistance of the series pair'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "R1 + R2"
+          values:
+            R1: {value: "3.0", unit: "Ω"}
+            R2: {value: "5.0", unit: "Ω"}
+          answer: {value: "8.0", unit: "Ω"}
+        - {kind: sigfigs, value: "8.0", figures: 2, answer: "8.0", convention: round-once}
+    answer_text: '$R_{total} = R_1 + R_2 = 3.0 + 5.0 = 8.0\,\Omega$.'
+
+  - id: p2-series-current
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'The series pair of question 1 is connected to a 4.0 V supply. Calculate the current in the circuit.'
+    answer_label: 'Current in the series circuit'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / R"
+          values:
+            V: {value: "4.0", unit: "V"}
+            R: {value: "8.0", unit: "Ω"}
+          answer: {value: "0.50", unit: "A"}
+        - {kind: sigfigs, value: "0.5", figures: 2, answer: "0.50", convention: round-once}
+    answer_text: '$I = \dfrac{V}{R_{total}} = \dfrac{4.0}{8.0} = 0.50\,\text{A}$. The same current flows through both resistors.'
+
+  - id: p3-series-potential-difference
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A current of 0.50 A flows through a 5.0 Ω resistor. Calculate the potential difference across it.'
+    answer_label: 'Potential difference across the 5.0 Ω resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * R"
+          values:
+            I: {value: "0.50", unit: "A"}
+            R: {value: "5.0", unit: "Ω"}
+          answer: {value: "2.5", unit: "V"}
+        - {kind: sigfigs, value: "2.5", figures: 2, answer: "2.5", convention: round-once}
+    answer_text: '$V = IR = 0.50 \times 5.0 = 2.5\,\text{V}$. The other 1.5 V of the 4.0 V supply is across the 3.0 Ω resistor.'
+
+  - id: p4-series-current-two
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A 2.0 Ω resistor and a 4.0 Ω resistor are connected in series to a 6.0 V battery. Calculate the current.'
+    answer_label: 'Current in the circuit'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / (R1 + R2)"
+          values:
+            V: {value: "6.0", unit: "V"}
+            R1: {value: "2.0", unit: "Ω"}
+            R2: {value: "4.0", unit: "Ω"}
+          answer: {value: "1.0", unit: "A"}
+        - {kind: sigfigs, value: "1.0", figures: 2, answer: "1.0", convention: round-once}
+    answer_text: '$R_{total} = 2.0 + 4.0 = 6.0\,\Omega$, so $I = \dfrac{6.0}{6.0} = 1.0\,\text{A}$.'
+
+  - id: p5-series-pd-two
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A current of 1.0 A flows through a 4.0 Ω resistor. Calculate the potential difference across it.'
+    answer_label: 'Potential difference across the 4.0 Ω resistor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * R"
+          values:
+            I: {value: "1.0", unit: "A"}
+            R: {value: "4.0", unit: "Ω"}
+          answer: {value: "4.0", unit: "V"}
+        - {kind: sigfigs, value: "4.0", figures: 2, answer: "4.0", convention: round-once}
+    answer_text: '$V = IR = 1.0 \times 4.0 = 4.0\,\text{V}$. The remaining 2.0 V of the supply is across the 2.0 Ω resistor.'
+
+  - id: p6-parallel-branch-currents
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A 6.0 Ω resistor and a 24 Ω resistor are connected in parallel across a 12 V supply. Calculate the current through each resistor.'
+    answer_label: 'Currents in the two branches'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / R1"
+          values:
+            V: {value: "12", unit: "V"}
+            R1: {value: "6.0", unit: "Ω"}
+          answer: {value: "2.0", unit: "A"}
+        - kind: dimensions
+          expression: "V / R2"
+          values:
+            V: {value: "12", unit: "V"}
+            R2: {value: "24", unit: "Ω"}
+          answer: {value: "0.50", unit: "A"}
+    answer_text: '$I_{6.0} = \dfrac{12}{6.0} = 2.0\,\text{A}$ and $I_{24} = \dfrac{12}{24} = 0.50\,\text{A}$. Both resistors have the full 12 V across them because they are in parallel.'
+
+  - id: p7-parallel-total-current
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'The two resistors of question 6 draw 2.0 A and 0.50 A. Calculate the total current from the supply.'
+    answer_label: 'Total current from the supply'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I1 + I2"
+          values:
+            I1: {value: "2.0", unit: "A"}
+            I2: {value: "0.50", unit: "A"}
+          answer: {value: "2.5", unit: "A"}
+        - {kind: sigfigs, value: "2.5", figures: 2, answer: "2.5", convention: round-once}
+    answer_text: '$I_{total} = I_1 + I_2 = 2.0 + 0.50 = 2.5\,\text{A}$.'
+
+  - id: p8-parallel-same-pd
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'Two resistors are connected in parallel across a 12 V supply. State the potential difference across each resistor, and give a reason.'
+    answer_label: 'Potential difference across each parallel resistor'
+    check:
+      kind: structured
+      requires: [state-pd, give-reason]
+      concepts: [parallel-circuit]
+      points:
+        - id: state-pd
+          text: 'The potential difference across each resistor is 12 V.'
+          concepts: [parallel-circuit]
+        - id: give-reason
+          text: 'Each resistor is connected across the same two points of the supply, so the potential difference across each one is the same.'
+          concepts: [parallel-circuit]
+
+  - id: p9-parallel-total-resistance
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'Two resistors of 6.0 Ω and 24 Ω are connected in parallel. Explain why the total resistance of the pair is less than 6.0 Ω.'
+    answer_label: 'Why the total resistance is less than the smallest resistor'
+    check:
+      kind: structured
+      requires: [extra-path, larger-current]
+      concepts: [parallel-circuit, resistance]
+      points:
+        - id: extra-path
+          text: 'The second resistor gives the current another path to flow along.'
+          concepts: [parallel-circuit]
+        - id: larger-current
+          text: 'The total current from the supply is larger than either branch current. A larger total current for the same supply potential difference means a smaller total resistance.'
+          concepts: [resistance]
+
+  - id: p10-compare-series-parallel
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'Describe the difference between a series circuit and a parallel circuit. Include what is the same and what is shared in each.'
+    answer_label: 'The difference between series and parallel circuits'
+    check:
+      kind: structured
+      requires: [series, parallel]
+      concepts: [series-circuit, parallel-circuit]
+      points:
+        - id: series
+          text: 'In a series circuit the components are joined one after another. The current is the same through each component, and the potential difference of the supply is shared between them.'
+          concepts: [series-circuit]
+        - id: parallel
+          text: 'In a parallel circuit the components are joined across the same two points. The potential difference is the same across each component, and the total current is the sum of the branch currents.'
+          concepts: [parallel-circuit]
+
+  - id: p11-resistance-interleaved
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'The potential difference across a component is 24 V and the current through it is 0.60 A. Calculate its resistance. This uses the equation from Section 6.1.'
+    answer_label: 'Resistance of the component'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V / I"
+          values:
+            V: {value: "24", unit: "V"}
+            I: {value: "0.60", unit: "A"}
+          answer: {value: "40", unit: "Ω"}
+        - {kind: sigfigs, value: "40", figures: 2, answer: "4.0e1", convention: round-once}
+    answer_text: '$R = \dfrac{V}{I} = \dfrac{24}{0.60} = 40\,\Omega = 4.0 \times 10^1\,\Omega$.'
+
+  - id: p12-charge-interleaved
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A current of 0.50 A flows through a circuit for 90 s. Calculate the charge that flows. This uses the equation from Section 6.1.'
+    answer_label: 'Charge that flows'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * t"
+          values:
+            I: {value: "0.50", unit: "A"}
+            t: {value: "90", unit: "s"}
+          answer: {value: "45", unit: "C"}
+        - {kind: sigfigs, value: "45", figures: 2, answer: "45", convention: round-once}
+    answer_text: '$Q = It = 0.50 \times 90 = 45\,\text{C}$.'
+
+  - id: p13-mixed-series-parallel
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A parallel pair draws a current of 0.60 A from a 9.0 V supply. The pair is connected in series with a 5.0 Ω resistor. Calculate the potential difference across the 5.0 Ω resistor, then the potential difference across the parallel pair.'
+    answer_label: 'Potential differences across the resistor and the parallel pair'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "I * R"
+          values:
+            I: {value: "0.60", unit: "A"}
+            R: {value: "5.0", unit: "Ω"}
+          answer: {value: "3.0", unit: "V"}
+        - kind: dimensions
+          expression: "V - I * R"
+          values:
+            V: {value: "9.0", unit: "V"}
+            I: {value: "0.60", unit: "A"}
+            R: {value: "5.0", unit: "Ω"}
+          answer: {value: "6.0", unit: "V"}
+    answer_text: 'The same current flows through the series resistor and the parallel pair. $V_{resistor} = IR = 0.60 \times 5.0 = 3.0\,\text{V}$. The supply is shared, so $V_{pair} = 9.0 - 3.0 = 6.0\,\text{V}$.'
+
+  - id: p14-method-choice
+    section: '6.2'
+    tier: F
+    dfe: [EL2]
+    statement: 'A 9.0 V supply is connected in series with a 12 Ω resistor and an unknown resistor. The potential difference across the 12 Ω resistor is 3.0 V. Say which relationship you will use, then calculate the current and the resistance of the unknown resistor.'
+    answer_label: 'Current and the unknown resistance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "V1 / R1"
+          values:
+            V1: {value: "3.0", unit: "V"}
+            R1: {value: "12", unit: "Ω"}
+          answer: {value: "0.25", unit: "A"}
+        - kind: dimensions
+          expression: "(V - V1) / I"
+          values:
+            V: {value: "9.0", unit: "V"}
+            V1: {value: "3.0", unit: "V"}
+            I: {value: "0.25", unit: "A"}
+          answer: {value: "24", unit: "Ω"}
+    answer_text: 'Use $V = IR$, rearranged for the current. $I = \dfrac{3.0}{12} = 0.25\,\text{A}$. The supply is shared, so the unknown resistor has $9.0 - 3.0 = 6.0\,\text{V}$ across it. Then $R = \dfrac{6.0}{0.25} = 24\,\Omega$.'

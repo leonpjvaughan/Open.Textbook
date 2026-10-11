@@ -1,0 +1,254 @@
+# Practice set for 7.2 (Magnetic effects of currents and the motor effect).
+#
+# The electromagnetism items are Foundation. The motor effect, Fleming's
+# left-hand rule, F = BIl and electric motors are marked (HT only) in AQA 8463
+# 4.7.2.2 and 4.7.2.3, so those records carry tier H and render **H** for the
+# reader. Each calculation proves its dimensions and its single rounding;
+# `structured` proves only that a model answer contains the declared ideas.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# proves arithmetic and dimensions, not physics.
+chapter: 7
+problems:
+  - id: p1-field-wire
+    section: '7.2'
+    tier: F
+    dfe: [MG2]
+    statement: 'Describe the magnetic field around a long straight wire carrying a current.'
+    answer_label: 'The field around a straight wire'
+    check:
+      kind: structured
+      requires: [circles, strongest-near]
+      concepts: [magnetic-field, straight-wire]
+      points:
+        - id: circles
+          text: 'The field lines are circles around the wire. The direction of the field depends on the direction of the current.'
+          concepts: [straight-wire]
+        - id: strongest-near
+          text: 'The field is strongest close to the wire and gets weaker as the distance from the wire increases.'
+          concepts: [magnetic-field]
+
+  - id: p2-solenoid
+    section: '7.2'
+    tier: F
+    dfe: [MG2]
+    statement: 'Explain how a solenoid increases the magnetic effect of a current.'
+    answer_label: 'How a solenoid increases the field'
+    check:
+      kind: structured
+      requires: [many-turns, fields-add]
+      concepts: [solenoid]
+      points:
+        - id: many-turns
+          text: 'A solenoid is a coil with many turns of wire, so the current passes around the same space many times.'
+          concepts: [solenoid]
+        - id: fields-add
+          text: 'The magnetic field of each turn adds to the fields of the other turns, so the total field inside the coil is much stronger.'
+          concepts: [solenoid]
+
+  - id: p3-iron-core
+    section: '7.2'
+    tier: F
+    dfe: [MG2]
+    statement: 'Explain why an iron core is placed inside a solenoid, and why an electromagnet can be switched off.'
+    answer_label: 'The iron core and switching off'
+    check:
+      kind: structured
+      requires: [iron-magnetised, field-off]
+      concepts: [electromagnet, iron-core]
+      points:
+        - id: iron-magnetised
+          text: 'Iron is easily magnetised by the field of the coil. The magnetised core adds its own field, so the electromagnet is much stronger.'
+          concepts: [iron-core]
+        - id: field-off
+          text: 'When the current stops, the field of the coil goes and the iron loses its magnetism, so the electromagnet can be switched off.'
+          concepts: [electromagnet]
+
+  - id: p4-field-distance
+    section: '7.2'
+    tier: F
+    dfe: [MG2]
+    statement: 'A compass is moved from 2.0 cm to 6.0 cm away from a straight wire carrying a steady current. Describe how the deflection of the needle changes as it is moved, and give a reason.'
+    answer_label: 'How the deflection changes with distance'
+    check:
+      kind: structured
+      requires: [deflection-smaller, weaker-field]
+      concepts: [magnetic-field, distance]
+      points:
+        - id: deflection-smaller
+          text: 'The deflection of the needle gets smaller as the compass is moved further from the wire.'
+          concepts: [distance]
+        - id: weaker-field
+          text: 'The magnetic field of the wire is weaker further away, so it turns the needle less.'
+          concepts: [magnetic-field]
+
+  - id: p5-field-inside
+    section: '7.2'
+    tier: F
+    dfe: [MG2]
+    statement: 'Describe the magnetic field inside a solenoid.'
+    answer_label: 'The field inside a solenoid'
+    check:
+      kind: structured
+      requires: [strong, uniform]
+      concepts: [solenoid]
+      points:
+        - id: strong
+          text: 'The field inside the solenoid is strong, because the fields of all the turns add together.'
+          concepts: [solenoid]
+        - id: uniform
+          text: 'The field inside is uniform. The field lines are straight, equally spaced and parallel to the axis of the coil.'
+          concepts: [solenoid]
+
+  - id: p6-current-factors
+    section: '7.2'
+    tier: F
+    dfe: [MG2]
+    statement: 'State the two factors that affect the strength of the magnetic field around a straight wire.'
+    answer_label: 'The two factors'
+    check:
+      kind: structured
+      requires: [current, distance]
+      concepts: [magnetic-field, straight-wire]
+      points:
+        - id: current
+          text: 'The size of the current through the wire: a larger current makes a stronger field.'
+          concepts: [straight-wire, magnetic-field]
+        - id: distance
+          text: 'The distance from the wire: the field is weaker further from the wire.'
+          concepts: [straight-wire, magnetic-field]
+
+  - id: p7-electromagnet-advantage
+    section: '7.2'
+    tier: F
+    dfe: [MG2]
+    statement: 'Give one advantage of an electromagnet over a permanent magnet, and describe one use that relies on it.'
+    answer_label: 'An advantage and a use'
+    check:
+      kind: structured
+      requires: [advantage, use]
+      concepts: [electromagnet]
+      points:
+        - id: advantage
+          text: 'An electromagnet can be switched on and off, and its strength can be changed by changing the current.'
+          concepts: [electromagnet]
+        - id: use
+          text: 'A scrapyard crane uses an electromagnet to lift steel scrap and then releases it by switching the current off.'
+          concepts: [electromagnet]
+
+  - id: p8-fleming
+    section: '7.2'
+    tier: H
+    dfe: [MG2]
+    statement: 'State Fleming''s left-hand rule, and name what each part of the left hand represents.'
+    answer_label: 'Fleming''s left-hand rule'
+    check:
+      kind: structured
+      requires: [field, current, force]
+      concepts: [fleming-left-hand-rule]
+      points:
+        - id: field
+          text: 'The first finger points in the direction of the magnetic field, from north to south.'
+          concepts: [fleming-left-hand-rule]
+        - id: current
+          text: 'The second finger points in the direction of the current.'
+          concepts: [fleming-left-hand-rule]
+        - id: force
+          text: 'The thumb points in the direction of the force on the conductor. The thumb and the two fingers are at right angles to each other.'
+          concepts: [fleming-left-hand-rule]
+
+  - id: p9-force-calc
+    section: '7.2'
+    tier: H
+    dfe: [MG2]
+    statement: 'A wire of length 0.20 m carries a current of 1.5 A at right angles to a magnetic field of flux density 0.50 T. Calculate the force on the wire.'
+    answer_label: 'Force on the wire'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "B * I * l"
+          values:
+            B: {value: "0.50", unit: "T"}
+            I: {value: "1.5", unit: "A"}
+            l: {value: "0.20", unit: "m"}
+          answer: {value: "0.15", unit: "N"}
+        - {kind: sigfigs, value: "0.15", figures: 2, answer: "0.15", convention: round-once}
+    answer_text: '$F = BIl = 0.50 \times 1.5 \times 0.20 = 0.15\,\text{N}$.'
+
+  - id: p10-flux-calc
+    section: '7.2'
+    tier: H
+    dfe: [MG2]
+    statement: 'A wire of length 0.30 m carries a current of 2.0 A and feels a force of 0.36 N at right angles to a magnetic field. Calculate the magnetic flux density.'
+    answer_label: 'Magnetic flux density'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / (I * l)"
+          values:
+            F: {value: "0.36", unit: "N"}
+            I: {value: "2.0", unit: "A"}
+            l: {value: "0.30", unit: "m"}
+          answer: {value: "0.60", unit: "T"}
+        - {kind: sigfigs, value: "0.60", figures: 2, answer: "0.60", convention: round-once}
+    answer_text: '$B = \dfrac{F}{Il} = \dfrac{0.36}{2.0 \times 0.30} = 0.60\,\text{T}$.'
+
+  - id: p11-motor
+    section: '7.2'
+    tier: H
+    dfe: [MG2]
+    statement: 'Explain how the force on a coil of wire in a magnetic field makes an electric motor rotate.'
+    answer_label: 'How the motor rotates'
+    check:
+      kind: structured
+      requires: [opposite-currents, opposite-forces, turning-effect]
+      concepts: [electric-motor, motor-effect]
+      points:
+        - id: opposite-currents
+          text: 'The current flows in one direction along one side of the coil and in the opposite direction along the other side.'
+          concepts: [electric-motor]
+        - id: opposite-forces
+          text: 'Both sides sit in the same magnetic field, so the forces on them act in opposite directions.'
+          concepts: [motor-effect]
+        - id: turning-effect
+          text: 'The two opposite forces form a turning effect, so the coil rotates.'
+          concepts: [electric-motor]
+
+  - id: p12-current-calc
+    section: '7.2'
+    tier: H
+    dfe: [MG2]
+    statement: 'A wire of length 0.50 m sits at right angles to a magnetic field of flux density 0.40 T. The force on the wire is 0.80 N. Calculate the current in the wire.'
+    answer_label: 'Current in the wire'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / (B * l)"
+          values:
+            F: {value: "0.80", unit: "N"}
+            B: {value: "0.40", unit: "T"}
+            l: {value: "0.50", unit: "m"}
+          answer: {value: "4.0", unit: "A"}
+        - {kind: sigfigs, value: "4.0", figures: 2, answer: "4.0", convention: round-once}
+    answer_text: '$I = \dfrac{F}{Bl} = \dfrac{0.80}{0.40 \times 0.50} = 4.0\,\text{A}$.'
+
+  - id: p13-method
+    section: '7.2'
+    tier: H
+    dfe: [MG2]
+    statement: 'A wire is placed at right angles to a magnetic field. Say which equation you will use to find the force on it, and name the three quantities you need.'
+    answer_label: 'Choosing the method'
+    check:
+      kind: structured
+      requires: [equation, quantities]
+      concepts: [motor-effect]
+      points:
+        - id: equation
+          text: 'Use F = BIl, the force on a current-carrying conductor in a magnetic field.'
+          concepts: [motor-effect]
+        - id: quantities
+          text: 'I need the magnetic flux density B, the current I and the length l of the wire in the field.'
+          concepts: [motor-effect]

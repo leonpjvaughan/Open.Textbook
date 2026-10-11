@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.4 The second derivative, convexity and points of inflection — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: G1
+Work through these on your own. Show the first derivative, then the second. For
+every candidate point of inflection, test the sign of the second derivative on
+both sides before you decide.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-07-practice-7.4
+
+:::answers chapter-07-practice-7.4

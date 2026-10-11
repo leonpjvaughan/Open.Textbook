@@ -10,9 +10,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.4 Energy transfers and the national grid — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: EL4
+Work through these on your own. Keep the units with your numbers. Some questions
+ask you to choose the relationship, so read each one before you calculate.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-06-practice-6.4
+
+:::answers chapter-06-practice-6.4
