@@ -42,7 +42,8 @@ problems:
 ```
 
 `check.kind ∈ {evaluate, solve, compare, rounded, between, apply, statistic, all,
-system, inequality, vector, ode, approx}`.
+system, inequality, vector, ode, approx, dimensions, convert, sigfigs,
+uncertainty, resolve, gradient, intercept, area, structured}`.
 `step_relation ∈ {equivalent, solutions, implies, apply}` (default `equivalent`).
 `all` wraps a list of sub-checks; `between` proves a value lies in an interval;
 `rounded` proves an answer is the nearest multiple of a required step; `apply`
@@ -50,14 +51,23 @@ names a CAS operation (`diff`, `integrate`, `subs`, `simplify`, ...); `statistic
 computes an exact summary statistic; `system` solves simultaneous equations;
 `inequality` compares an inequality solution set; `vector` names a vector
 operation; `ode` proves a differential equation's solution by substitution; and
-`approx` proves a value is within an absolute or relative tolerance.
+`approx` proves a value is within an absolute or relative tolerance. The nine
+physics kinds are described under **Physics** below.
 
-Every `check.kind` is owned by a **verification oracle**. The engine ships one,
-`sympy`, and a book names the oracles its banks may use:
+Every `check.kind` is owned by a **verification oracle**. The engine ships two —
+`sympy` for symbolic mathematics and `units` for physics quantities — and a book
+names the oracles its banks may use:
 
 ```yaml
 # books/<id>/book.yaml
 oracles: [sympy]
+```
+
+A physics book names both, because `all`, `evaluate` and `between` are still the
+arithmetic SymPy proves:
+
+```yaml
+oracles: [sympy, units]
 ```
 
 A bank may override that with its own top-level `oracles:` when one bank needs a
@@ -180,6 +190,90 @@ scaffolding, epsilon–delta), the **choice** of method, and prose reasoning. Th
 verifier proves the algebra, not the argument; a human review still covers the
 rest.
 
+### Physics: dimensions, figures, uncertainty, vectors, graphs
+
+A symbolic CAS cannot see a unit, a significant figure, an uncertainty or a
+graph reading, so a second oracle, `units`, owns nine kinds. They reuse the
+SymPy boundary (`cas.py`) only where a value is irrational — a trigonometric
+resolution, an uncertainty through a square root — and compare through a stated
+tolerance; the unit arithmetic itself is exact rationals, never a CAS string.
+**Units stay out of the CAS fields.**
+
+**Dimensions** (`kind: dimensions`). A quantity is a magnitude and a dimension
+vector over the seven SI base units (`m, kg, s, A, K, mol, cd`), with an exact
+factor to SI. `N` is `kg m s^-2` and `cm^3` is `(m^3, 1e-6)`, both exact. The
+kind proves one of three things:
+
+- **consistency** — both sides of an equation share a dimension vector, the
+  check a CAS cannot make: `F = m * a` passes and `F = m / a` fails, although
+  neither is a symbolic falsehood about numbers;
+- **arithmetic** — an expression over quantities has the declared magnitude
+  *and* dimension;
+- **a declared quantity** — a unit's dimension matches its declaration, and a
+  value converts exactly to the stated SI value.
+
+```yaml
+check:
+  kind: dimensions
+  consistency: "F = m * a"
+  units: {F: N, m: kg, a: "m s^-2"}
+```
+
+**Prefix conversion** (`kind: convert`). Proves `value from -> answer to`
+exactly, including powers: `100 cm^3 = 0.0001 m^3`. The dimensions must agree
+first, so a metre-to-second "conversion" fails even when the numbers match.
+
+**Significant figures** (`kind: sigfigs`). Takes the exact value and the answer
+as **strings**, because `1200` and `1.20e3` are not the same claim. It rounds the
+value **once** to the declared figures and checks the answer carries them, so a
+bank that rounds at every step fails. The convention is named
+(`convention: round-once`), half away from zero at the single final rounding;
+there is no other convention, and an unnamed one is an error.
+
+**Uncertainty** (`kind: uncertainty`). Proves the *band*, not a single number,
+and names the combining rule it enforces, because the boards word the rules
+differently:
+
+- `combine: add-absolutes` for sums and differences;
+- `combine: add-percentages` for products, quotients and powers (the power
+  multiplies the percentage);
+- `mean_of: [...]` with `convention: half-range`, `full-range`,
+  `standard-deviation` or `standard-error` for repeats.
+
+**Vector resolution** (`kind: resolve`). Turns a magnitude and angle into
+components, or components back into a magnitude and direction, against a
+declared tolerance. This is the physics resolution; it is not the `vector`
+dot/cross kind, which is SymPy's.
+
+**Graphs** (`kind: gradient`, `intercept`, `area`). Reads a series with a
+least-squares line or the trapezium rule and checks the result against a
+declared closed interval (or an answer with a tolerance). Reading a graph is a
+measurement, so the check is tolerant and interval-based, never an equality.
+
+**Structure** (`kind: structured`). Where a CAS cannot go, and honest about it:
+it proves a model answer contains its declared steps **in order** and covers its
+declared concepts. Presence, order and coverage — nothing about whether the
+steps are physically right or the best method.
+
+```yaml
+check:
+  kind: structured
+  requires: [measure-mass, measure-temperature-change, use-mc-delta-theta]
+  concepts: [specific-heat-capacity]
+  points:
+    - {id: measure-mass, text: "Measure the mass of the block."}
+    - {id: measure-temperature-change, text: "Measure the temperature change."}
+    - {id: use-mc-delta-theta, text: "Use E = mcΔθ.", concepts: [specific-heat-capacity]}
+```
+
+> **The verifier proves arithmetic and dimensions, not physics.** A
+> dimensionally consistent, arithmetically correct, physically absurd answer
+> passes: `F = m * a` with `m` in coulombs and `a` in volts can be made to
+> balance. Uncertainties and significant figures are verifiable only against the
+> **declared** convention, never the board's mark scheme. Graph shape, method
+> and conclusion are structural checks plus human review. A bank cannot be
+> trusted just because it verifies.
+
 ## Rendering the problems and answers
 
 No page restates a problem or an answer by hand. The page carries two markers:
@@ -193,6 +287,12 @@ records CI verified, using `engine/textbook/verify/render.py`. The block is emit
 markdown with `$...$` maths, so the maths hook renders it to MathML in the same
 pass. The reader therefore sees exactly what `python -m textbook.verify` proved, and
 the page and the proof cannot drift.
+
+A physics quantity is rendered as **plain text or HTML**, never `$...$`
+assembled at run time: the maths hook runs at build time, so an expression
+injected later would never reach KaTeX. `render_quantity("0.0001", "m^3")`
+produces `0.0001 m^3`, and `render_quantity_html` escapes it into a span. This
+is the trap the booklet and the figures have both hit.
 
 ## What can be verified, and how
 
@@ -222,14 +322,16 @@ form: `£`, `p` and `%` belong in `statement`, not in the expression.
 | Check kind | Oracle | Module |
 |---|---|---|
 | `all`, `evaluate`, `solve`, `compare`, `rounded`, `between`, `apply`, `statistic`, `system`, `inequality`, `vector`, `ode`, `approx` | `sympy` | `engine/textbook/verify/oracles/sympy.py` |
+| `dimensions`, `convert`, `sigfigs`, `uncertainty`, `resolve`, `gradient`, `intercept`, `area`, `structured` | `units` | `engine/textbook/verify/oracles/units.py` |
 
 The table is `engine/textbook/verify/oracles/__init__.py → KIND_ORACLE`, and
 `tests/test_verify_oracles.py` pins it. A new kind is added to an oracle module
 and to that table together, and the loader fails loudly if they disagree. Adding
 a subject's oracle is a new module and its name in `ORACLE_MODULES`; the loader,
-relations, renderer and CLI are shared. This is the seam `SHAPE.md` promises and
-`research/curriculum/physics-verifier-gaps.md` §5 builds on (units, significant
-figures and vectors are the next tranches).
+relations, renderer and CLI are shared. This is the seam `SHAPE.md` promises;
+`research/curriculum/physics-verifier-gaps.md` §5 named the physics tranche and
+`tests/test_verify_units.py` proves every kind in it, with a deliberately wrong
+record that must fail.
 
 ## What this does *not* prove
 
@@ -245,6 +347,11 @@ figures and vectors are the next tranches).
   cannot assert "use the quadratic formula here".
 - **Word problems.** The translation from prose to algebra is not verifiable; only
   the algebra after it is.
+- **Physics.** The verifier proves arithmetic and dimensions, not physics. A
+  dimensionally consistent, arithmetically correct, physically absurd answer
+  passes; uncertainties and significant figures are checked against a declared
+  convention, never the board's mark scheme; and `structured` proves presence and
+  order, not correctness. The caveat under **Physics** is the contract.
 
 ## Modularity
 

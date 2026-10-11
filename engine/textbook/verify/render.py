@@ -3,9 +3,76 @@
 The page never restates an answer by hand: `:::answers <bank>` is expanded at
 build time from the same records CI verifies, so the reader and the proof cannot
 drift apart.
+
+A quantity is rendered as **plain text or HTML**, never ``$...$``. The maths hook
+runs at build time, so an expression assembled for the reader would never reach
+KaTeX; the booklet and the figures have both hit that trap. A physics answer
+like ``0.0001 m^3`` is legible without any maths rendering at all.
 """
 
 from __future__ import annotations
+
+import html as html_lib
+
+#: The units-oracle kinds whose answer is a quantity rather than an expression.
+_QUANTITY_KINDS = frozenset(
+    {"dimensions", "convert", "sigfigs", "uncertainty", "resolve", "gradient", "intercept", "area"}
+)
+
+
+def render_quantity(value, unit: str = "") -> str:
+    """A quantity as plain text: ``render_quantity("0.0001", "m^3")``.
+
+    No ``$...$`` is introduced. The unit is the author's string, shown exactly.
+    """
+    value_text = str(value).strip()
+    unit_text = str(unit or "").strip()
+    if value_text and unit_text:
+        return f"{value_text} {unit_text}"
+    return value_text or unit_text
+
+
+def render_quantity_html(value, unit: str = "") -> str:
+    """A quantity as HTML, with the unit marked but no colour and no ``$...$``.
+
+    ``unit`` is escaped; the span classes are structural hooks for styling, and
+    carry no meaning a theme has to know.
+    """
+    value_text = html_lib.escape(str(value).strip())
+    unit_text = html_lib.escape(str(unit or "").strip())
+    if unit_text:
+        return (
+            f'<span class="quantity">{value_text}'
+            f' <span class="unit">{unit_text}</span></span>'
+        )
+    return f'<span class="quantity">{value_text}</span>'
+
+
+def _answer_from_check(check: dict) -> str:
+    """A units-oracle answer composed at build time, as plain text.
+
+    Only a single value and unit are composed here; anything richer (a vector's
+    components, a graph interval) is authored in ``answer_text``. A maths check
+    falls through to the caller, which keeps rendering its raw answer string.
+    """
+    kind = check.get("kind")
+    if kind not in _QUANTITY_KINDS:
+        return ""
+    if kind == "convert":
+        return render_quantity(check.get("answer", ""), check.get("to", ""))
+    if kind == "dimensions":
+        answer = check.get("answer")
+        if isinstance(answer, dict):
+            return render_quantity(answer.get("value", ""), answer.get("unit", ""))
+        if "si_value" in check:
+            return render_quantity(check["si_value"], "")
+        return ""
+    if kind in ("sigfigs", "uncertainty"):
+        answer = check.get("answer", check.get("result", ""))
+        if answer == "" or answer is None:
+            return ""
+        return render_quantity(answer, check.get("unit", ""))
+    return ""
 
 
 def _step_line(step: dict) -> str:
@@ -18,13 +85,21 @@ def _step_line(step: dict) -> str:
 
 def render_problem(problem: dict, number: int) -> str:
     label = (problem.get("answer_label") or problem.get("statement", "")).strip()
-    answer = problem.get("answer_text") or problem.get("check", {}).get("answer", "")
+    check = problem.get("check") or {}
+    answer = problem.get("answer_text") or _answer_from_check(check)
+    if not answer and not isinstance(check.get("answer"), dict):
+        answer = check.get("answer", "")
     steps = problem.get("steps") or []
 
     lines = [f"**{number}.** {label}".rstrip()]
     if steps:
         lines.append("")
         lines.extend(_step_line(step) for step in steps)
+    elif check.get("kind") == "structured" and check.get("points"):
+        # The model answer CI checked for step presence and order. It is prose,
+        # so it is rendered as written; no conclusion here is proved.
+        lines.append("")
+        lines.extend(f"- {point['text']}" for point in check["points"])
     if answer:
         lines.append("")
         lines.append(f"**Answer:** {answer}")

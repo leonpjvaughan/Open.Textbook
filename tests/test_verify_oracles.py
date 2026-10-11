@@ -37,6 +37,15 @@ PINNED_KINDS = {
     "vector": "sympy",
     "ode": "sympy",
     "approx": "sympy",
+    "dimensions": "units",
+    "convert": "units",
+    "sigfigs": "units",
+    "uncertainty": "units",
+    "resolve": "units",
+    "gradient": "units",
+    "intercept": "units",
+    "area": "units",
+    "structured": "units",
 }
 
 

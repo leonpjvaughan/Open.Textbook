@@ -1570,7 +1570,44 @@ otherwise assume.
 
 ---
 
-## 30. A physics oracle — the seam exists, the oracle does not
+## 30. A physics oracle — **done**
+
+**Done, 2026-10-11: §5 steps 1–6 of `research/curriculum/physics-verifier-gaps.md`.**
+Steps 1–2 built the seam (below). Steps 3–6 are
+`engine/textbook/verify/oracles/units.py`: a second oracle, registered in
+`ORACLE_MODULES` and `KIND_ORACLE`, owning nine physics check kinds.
+
+- **`dimensions`** — a quantity is an exact magnitude and a dimension vector over
+  `m, kg, s, A, K, mol, cd` plus an exact factor to SI. Proves dimensional
+  consistency of an equation, unit-carrying arithmetic, or a declared quantity.
+  `N` is `kg m s^-2`; `F = m * a` passes and `F = m / a` fails, which is the
+  independent check a CAS cannot give.
+- **`convert`** — exact prefix conversion, including powers (`100 cm^3 =
+  0.0001 m^3`), with the dimensions checked first.
+- **`sigfigs`** — rounds a value **once** to a declared number of significant
+  figures, against `convention: round-once`; the answer is a string, so
+  `1200` and `1.20e3` are distinguished.
+- **`uncertainty`** — `add-absolutes`, `add-percentages` (the power multiplies
+  the percentage) and a mean under a named convention (`half-range`, `full-range`,
+  `standard-deviation`, `standard-error`), proved as a band with a tolerance.
+- **`resolve`** — magnitude/angle to components and back, the physics resolution
+  distinct from SymPy's `vector` kind.
+- **`gradient`, `intercept`, `area`** — least-squares or trapezium readings of a
+  series, checked against a declared interval.
+- **`structured`** — proves a model answer contains its declared steps in order
+  and covers its declared concepts; presence and coverage only, never physics.
+
+`render.py` gains `render_quantity`/`render_quantity_html`: a quantity is plain
+text or HTML, never `$...$` assembled at run time. `PROBLEMS.md` documents every
+kind and states the §6 limit where an author meets it: the verifier proves
+arithmetic and dimensions, not physics. `tests/test_verify_units.py` proves each
+kind against a valid record and a deliberately wrong one, including a
+dimensional inconsistency, a wrong number of significant figures and an
+uncertainty that does not propagate. The two seam caveats resolved: physics books
+name `oracles: [sympy, units]` (so `all` still works), and a bank with no
+`oracles:` keeps SymPy alone and a units kind in it fails loudly.
+
+The book and its bank are the separate items 28 and 29; this lands without them.
 
 **Done, 2026-10-11: `research/curriculum/physics-verifier-gaps.md` §5 steps 1–2.**
 `engine/textbook/verify/oracles/` now exists: `__init__.py` owns the
@@ -1583,25 +1620,22 @@ fail loudly. `tests/test_verify_oracles.py` pins the table and the loud
 failures; the 139-bank `python -m textbook.verify` output is byte-identical
 before and after.
 
-**Still to do is the oracle itself** (§5 steps 3–6). **What a physics oracle
-must do**, none of which a symbolic CAS gives you: unit-carrying quantities and
-dimensional checks, significant figures and round-once conventions, uncertainty
-propagation, and vector resolution. **What it cannot do**, and the book must not
-pretend otherwise: explain a graph's shape, describe a method, evaluate a
-conclusion.
-
-**One seam caveat for step 3.** The `all` kind is owned by `sympy`, and
-`verify_check` already dispatches its sub-checks to *their* owners. A
-physics-only bank that composes with `all` would still have to declare `sympy`.
-When the units oracle lands, move `all`'s ownership to the composition layer
-(it is a combinator, not a subject kind) or accept `oracles: [sympy, units]`
-for every physics book, and update `KIND_ORACLE` and the pinned test together.
-
 `scipy` is **not installed**, and the maths gap analysis wants it for the normal,
 Poisson and chi-squared distributions — so that dependency decision comes first.
 
-**Done means.** A registered oracle, a bank that uses it, and a documented answer
-to what physics verification cannot reach.
+**Done means.**
+
+- [x] A registered oracle: `oracles: [sympy, units]` selects it; an unselected
+      units kind fails loudly.
+- [x] Nine kinds (`dimensions`, `convert`, `sigfigs`, `uncertainty`, `resolve`,
+      `gradient`, `intercept`, `area`, `structured`), pinned in
+      `tests/test_verify_oracles.py`.
+- [x] A failing record per kind in `tests/test_verify_units.py`.
+- [x] The §6 limit written in `PROBLEMS.md` and in the oracle module.
+- [ ] A physics bank that uses it — deferred with the book (items 28 and 29).
+- [ ] The equations-sheet coverage test (§3.6), which needs that book's booklet
+      (`books/<id>/booklet/*.yaml`) as data; it was not in the mission's build
+      order and cannot run without the book.
 
 ---
 

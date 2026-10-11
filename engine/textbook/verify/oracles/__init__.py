@@ -22,6 +22,7 @@ from typing import Any, Callable, Iterable, Mapping
 #: the module that implements it.
 ORACLE_MODULES: dict[str, str] = {
     "sympy": f"{__name__}.sympy",
+    "units": f"{__name__}.units",
 }
 
 #: check kind → the oracle that owns it. This is the one table an author (see
@@ -40,6 +41,15 @@ KIND_ORACLE: dict[str, str] = {
     "vector": "sympy",
     "ode": "sympy",
     "approx": "sympy",
+    "dimensions": "units",
+    "convert": "units",
+    "sigfigs": "units",
+    "uncertainty": "units",
+    "resolve": "units",
+    "gradient": "units",
+    "intercept": "units",
+    "area": "units",
+    "structured": "units",
 }
 
 
