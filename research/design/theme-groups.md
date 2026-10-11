@@ -1,5 +1,14 @@
 # Theme bundles as light/dark groups
 
+> **Superseded, 2026-10-11.** This note chose the light/dark group model, and the
+> bundles were built to it. They were then replaced: the collection now ships six
+> **original** palettes rather than seven named after other people's projects, so
+> that nothing depends on getting someone else's attribution exactly right.
+> `DECISIONS.md` records that decision and the date; `themes/*.yaml` is the live
+> set. Everything below is kept as the research that produced the model — the
+> group requirement, the derived-light problem and the four contrast defects it
+> found are all still true and still enforced by `tests/test_themes.py`.
+
 Research note. **Nothing here is implemented.** It records where the colour ideas
 come from, what the sources actually are, and the model I would use to make the
 existing bundles fit the light/dark pairing rule.

@@ -149,7 +149,7 @@ surface or two. Enough to know which book you are in. Not enough to relearn.
 A bundle declares each token as a passthrough with its own value as the fallback:
 
 ```css
---tb-accent: var(--tb-book-accent, #89b4fa);
+--tb-accent: var(--tb-book-accent, #6ea8d8);
 ```
 
 and the book supplies `--tb-book-*` values, one set per scheme. There is no

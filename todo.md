@@ -21,12 +21,13 @@ in `AGENTS.md` do not apply here, but the engineering rules do.
 - [x] 15. `extra.css` and `portal.css` declare literal colours
 - [x] 16. Material keyboard gaps found by the audit
 - [x] 17. Text drawn on the accent is not AA
-- [ ] 18. Theme bundles — nine light/dark groups, four calm and five vivid (shipped; provenance enforcement and the APCA check left)
+- [ ] 18. Theme bundles — six original light/dark groups; the third-party palettes replaced (see DECISIONS.md)
 - [ ] 19. The pipeline's 404 page declares literal colours
 - [x] 20. The pipeline ships no Formulae booklet and no `book-local.css`
 - [ ] 21. Recheck and verify — what the theme work could not settle
 - [ ] 22. Follow-ups from the MkDocs deletion
-- [ ] 23. Declare the ready state
+- [ ] 23. Stale theme references in the out-of-scope preview files
+- [ ] 24. Declare the ready state
 
 ---
 
@@ -906,6 +907,10 @@ bundle's own accent as well, so the palette is safe with no subject tint.
 
 ## 18. Theme bundles: make each one a light/dark group
 
+> **Superseded 2026-10-11.** The third-party groups described below were deleted
+> and replaced by six original bundles. See `DECISIONS.md`; the sections below are
+> kept as the record of how the older set was built and what the preview found.
+
 **Request.** "For the omarchy themes, I meant look up https://omarchy.org/themes/.
 Do not call a theme omarchy but use it for inspiration. Look at VS Code and other
 sources for theme ideas — mostly for ideas about colour. Use OpenDesign skills to
@@ -1288,7 +1293,30 @@ masthead, sidebar and search; no Material-only chrome selector remains in
 
 ---
 
-## 23. Declare the ready state
+## 23. Stale theme references in the out-of-scope preview files
+
+The bundles were replaced by six originals on 2026-10-11 (see `DECISIONS.md`),
+but two files this workstream may not edit still name the deleted ids and the old
+count:
+
+- `scripts/preview-themes.sh` — the matrix comment says "9 bundles x 2 schemes x
+  3 routes = 54 pages"; the harness discovers bundles from the generated
+  `themes.css`, so it now runs 6 x 2 x 3 = 36. The number is prose, not a check.
+- `test/README.md` — the worked example is
+  `node test/theme-preview.cjs --themes synthwave ...`, and `synthwave` no longer
+  exists, so a reader copying it gets an empty run. Its "catppuccin and kanagawa
+  light" audit note is history and can stay if marked as such.
+
+**Fix.** Update the comment and the example to a shipped bundle id (for example
+`neon`) and the count to six. `test/README.md`'s paragraph on the four defects
+can stay as the record it is.
+
+**Done means.** `grep -rn "synthwave\|9 bundles" scripts/ test/` returns nothing
+runnable; `scripts/preview-themes.sh` still passes on the six bundles.
+
+---
+
+## 24. Declare the ready state
 
 **Not a change: the gate.** The site is ready to publish when items 2–12 are
 closed and their "done means" boxes are ticked, and not before — a checklist that
