@@ -133,17 +133,20 @@ const PROBE = () => {
     return pageBackground();
   };
 
-  const sample = (selector) => {
-    const el = document.querySelector(selector);
-    if (!el) return null;
-    const style = getComputedStyle(el);
-    return {
-      selector,
-      colour: style.color,
-      background: paintedBackground(el),
-      size: parseFloat(style.fontSize),
-      text: (el.textContent || "").trim().slice(0, 40),
-    };
+  const sample = (...selectors) => {
+    for (const selector of selectors) {
+      const el = document.querySelector(selector);
+      if (!el) continue;
+      const style = getComputedStyle(el);
+      return {
+        selector,
+        colour: style.color,
+        background: paintedBackground(el),
+        size: parseFloat(style.fontSize),
+        text: (el.textContent || "").trim().slice(0, 40),
+      };
+    }
+    return null;
   };
 
   return {
@@ -151,10 +154,12 @@ const PROBE = () => {
     scheme: body.getAttribute("data-md-color-scheme"),
     bodyBackground: getComputedStyle(body).backgroundColor,
     tokens,
+    // Two renderers exist, so the sample is by role rather than by one markup:
+    // MkDocs wraps the page in <article>, the pipeline in <main class="content">.
     samples: [
-      sample("article p"),
-      sample("article a"),
-      sample("article h2"),
+      sample("article p", "main p", ".content p"),
+      sample("article a", "main a", ".content a"),
+      sample("article h2", "main h2", ".content h2"),
       sample("pre code"),
     ].filter(Boolean),
   };
