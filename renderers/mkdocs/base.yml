@@ -39,9 +39,10 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
 extra_css:
-  # The shared design system, then the book's generated tokens, then its own
-  # overrides. See SHAPE.md ("Per-book theming").
+  # In cascade order: the design system, the theme bundles, then the book's own
+  # subject tint and overrides. See SHAPE.md ("Per-book theming").
   - assets/stylesheets/extra.css
+  - assets/stylesheets/themes.css
   - assets/stylesheets/book.css
   - assets/stylesheets/book-local.css
 # extra_javascript is generated per book: a book without a formulae booklet must

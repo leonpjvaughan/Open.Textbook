@@ -1,0 +1,47 @@
+# A second member of the Omarchy family, to show that "Omarchy" is a family of
+# palettes rather than one look.
+#
+# The dark variation is Omarchy's `gruvbox` theme, read from
+# /usr/share/omarchy/themes. Omarchy ships gruvbox dark only, so the light
+# variation here is **derived** from the same upstream gruvbox hues rather than
+# taken from a stock theme file — derived, not observed, and labelled as such.
+
+id: gruvbox
+title: Gruvbox
+description: >-
+  Warm retro earth tones: low blue, high comfort, gently loud accents. A second
+  palette from the same desktop family.
+typography:
+  body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  display: 'Georgia, "Iowan Old Style", "Times New Roman", serif'
+  mono: '"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+light:
+  paper: "#fbf1c7"
+  ink: "#3c3836"
+  ink_soft: "#665c54"
+  ink_lighter: "#928374"
+  rule: "#ebdbb2"
+  accent: "#427b58"
+  accent_light: "#689d6a"
+  accent_dark: "#2f5a41"
+  # Darkened from the stock #427b58: the stock hue is 4.40:1 on gruvbox's light
+  # paper, just under the 4.5:1 a link needs. Caught by the contrast invariant.
+  link: "#3d7150"
+  code_bg: "#f2e5bc"
+  fig_warn: "#9d0006"
+  fig_good: "#79740e"
+  fig_grid: "#e0d3a8"
+dark:
+  paper: "#282828"
+  ink: "#d4be98"
+  ink_soft: "#a89984"
+  ink_lighter: "#7c6f64"
+  rule: "#3c3836"
+  accent: "#7daea3"
+  accent_light: "#a9b665"
+  accent_dark: "#5c8a80"
+  link: "#89b482"
+  code_bg: "#1d2021"
+  fig_warn: "#ea6962"
+  fig_good: "#a9b665"
+  fig_grid: "#504945"

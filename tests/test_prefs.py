@@ -1,9 +1,10 @@
-"""The light/dark choice belongs to the reader, not to the build.
+"""Both reader preferences belong to the reader, not to the build.
 
 Material scopes its palette storage to the root of each built site, so without a
-bridge a choice made in one book is invisible to the others. These tests pin the
-bridge: the shared key, the generated payload, where it is injected, and the
-landing page honouring the same key.
+bridge a choice made in one book is invisible to the others. The theme bundle is
+ours outright, so it is simply stored and applied. These tests pin both: the
+shared keys, the generated payload, where it is injected, and the landing page
+reading and writing the same keys.
 """
 
 from __future__ import annotations
@@ -12,7 +13,7 @@ import yaml
 
 from textbook import portal, scaffold
 from textbook.book import discover_books, repo_root
-from textbook.hooks import scheme
+from textbook.hooks import prefs as scheme
 
 BASE_YML = repo_root() / "renderers" / "mkdocs" / "base.yml"
 
@@ -24,7 +25,7 @@ def base_config() -> dict:
 
 def test_the_shared_key_is_not_scoped_to_a_path():
     """A path-scoped key would lose the reader's choice if the site moved."""
-    key = scheme.SHARED_KEY
+    key = scheme.SCHEME_KEY
     assert key and "/" not in key and not key.startswith(".")
 
 
@@ -35,7 +36,7 @@ def test_payload_follows_the_configured_palette():
 
 def test_snippet_offers_every_configured_scheme():
     snippet = scheme.snippet(base_config())
-    assert scheme.SHARED_KEY in snippet
+    assert scheme.SCHEME_KEY in snippet
     for entry in scheme.palette_entries(base_config()):
         assert f'"{entry["scheme"]}"' in snippet
 
@@ -50,8 +51,8 @@ def test_snippet_is_empty_without_a_real_palette():
 def test_bridge_is_injected_into_the_head():
     output = "<html><head><title>t</title></head><body></body></html>"
     patched = scheme.on_post_page(output, None, base_config())
-    assert scheme.SHARED_KEY in patched
-    assert patched.index(scheme.SHARED_KEY) < patched.index("</head>")
+    assert scheme.SCHEME_KEY in patched
+    assert patched.index(scheme.SCHEME_KEY) < patched.index("</head>")
 
 
 def test_bridge_seeds_material_before_material_runs():
@@ -78,7 +79,7 @@ def test_every_book_build_gets_the_bridge():
 
 def test_landing_page_honours_the_same_key():
     html = portal.render()
-    assert scheme.SHARED_KEY in html
+    assert scheme.SCHEME_KEY in html
     # Both directions: dark is applied, and an explicit light is respected.
     assert '"slate"' in html and '"default"' in html
 
@@ -86,7 +87,7 @@ def test_landing_page_honours_the_same_key():
 def test_landing_page_can_write_the_preference_too():
     """A reader who picks a scheme on the landing page must get it in the books."""
     html = portal.render()
-    assert "setItem(KEY" in html, "the landing page never writes the shared key"
+    assert f'write("{scheme.SCHEME_KEY}"' in html, "the landing page never writes the scheme"
     assert "scheme-toggle" in html
 
 
@@ -101,6 +102,6 @@ def test_every_reader_surface_reads_and_writes_the_key():
     book_page = scheme.snippet(base_config())
     landing = portal.render()
     for surface, name in ((book_page, "a book page"), (landing, "the landing page")):
-        assert scheme.SHARED_KEY in surface, f"{name} does not read the shared key"
+        assert scheme.SCHEME_KEY in surface, f"{name} does not read the shared key"
     assert "setItem" in book_page, "a book page does not record the choice"
     assert "setItem" in landing, "the landing page does not record the choice"

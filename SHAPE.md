@@ -18,14 +18,15 @@ shared; the curriculum, the content and the verification data are per book.**
 | MkDocs adapter (base config, hook entry point, generated per-book configs) | `renderers/mkdocs/` | shared |
 | Engine (hooks, scaffold, lint, booklet build, verifier, portal) | `engine/textbook/` | shared |
 | Design system and runtime widgets (CSS, figure loader, booklet widget) | `assets/` | shared |
+| Theme bundles: the core themes a reader chooses between | `themes/` | shared |
 | Evidence base and primary sources | `research/` | shared, with per-book folders |
-| Design exploration (not published) | `research/design/` | shared |
+| Design exploration (not published) | `research/design/`, `themes/` | shared; bundles are published, the mocks are not |
 | Curriculum, chapter plan, tier refs | `books/<id>/books/gcse-maths/curriculum.yaml` | per book |
 | Content pages | `books/<id>/docs/` | per book |
 | Problem banks | `books/<id>/books/gcse-maths/problems/` | per book |
 | Formulae booklet data | `books/<id>/booklet/` | per book |
 | Provenance manifest for the curriculum claims | `books/<id>/sources.yaml` | per book |
-| Per-book theme tokens and overrides | `books/<id>/docs/assets/stylesheets/` | per book |
+| Subject tint and per-book style overrides | `books/<id>/docs/assets/stylesheets/` | per book |
 
 ```
 repo/
@@ -116,82 +117,122 @@ Each card is tinted with the book's accent colour, read from
 landing page already reflects per-book identity — and will keep doing so as
 books diverge.
 
-## Per-book theming
+## Theme bundles
 
-**Each book carries its own theme, expressed as a light variation and a dark
-variation.** A book names only what makes it itself; everything else stays the
-house default. The cascade is:
+A **bundle** is the reading experience: a complete light and dark palette plus its
+typography. A **book** contributes only its subject identity. They multiply:
+four bundles times every book times two schemes, from two independent pieces of
+data.
 
-1. `assets/stylesheets/extra.css` — the **design system**. Both schemes are a
-   complete set of tokens (`--tb-*`), and the mapping onto Material's `--md-*`
-   variables is written once, from those tokens. This is the only file that sets
-   house defaults, and it is shared by every book.
-2. `books/<id>/docs/assets/stylesheets/book.css` — **generated** from
-   `book.yaml → theme:` by the scaffold, as one block per scheme. It overrides
-   tokens only. Do not hand-edit it; edit `book.yaml`.
-3. `books/<id>/docs/assets/stylesheets/book-local.css` — **authored**, loaded
-   last, empty by default. The escape hatch for component-level changes that a
-   book genuinely needs (a diagram style, a subject-specific block). Keep it
-   small: a book should be recognisable, not a different design system.
-4. The portal card is tinted from the **same two accents**, so a book's identity
-   holds from the front door inwards, in both schemes, rather than being the
-   light accent darkened.
-
-```yaml
-theme:
-  light:
-    accent: "#2f6690"
-    accent_light: "#4a7fae"
-    accent_dark: "#24506f"
-  dark:
-    accent: "#6ea8d8"
+```
+themes/<id>.yaml          core theme: --tb-* per scheme, plus fonts, plus `fixed:`
+books/<id>/book.yaml      subject tint: accent (and any surface it wants moved)
+        │
+        ▼
+assets/stylesheets/themes.css     generated: every bundle, once, for the collection
+books/<id>/docs/assets/stylesheets/book.css   generated: the book's tint
 ```
 
-The themable tokens are `accent`, `accent_light`, `accent_dark`, `paper`, `ink`,
-`ink_soft`, `rule`, `link`, `code_bg`, `fig_warn`, `fig_good` and `fig_grid`. An
-unknown key is an error rather than a silent no-op, because a typo that changes
-nothing is the worst kind. Token names are subject-neutral (`--tb-paper`,
-`--tb-accent`, `--tb-fig-warn`), because the same sheet serves physics and
-A-level as well as GCSE.
+### Why bundles are chosen by the reader, not by the subject
 
-A diagram tints itself by reading the book's accent, so setting one accent per
-scheme re-tints every figure in the book.
+This is the decision that makes the model work. A reader picks a bundle once and
+it applies to **every** book, so moving from mathematics to physics never moves
+the theme. If theming were per subject, a reader taking three subjects would get
+three reading experiences and a context switch each time — the opposite of what
+theming is for.
 
-The rule this protects: **a per-book theme must be expressible as token values.**
-Anything that needs new structure belongs in the shared design system, where
-every book benefits from it; anything that is genuinely one book's own belongs in
-its `book-local.css`. Both are supported, and neither forks the design system for
-everyone else.
+So the subject's contribution is deliberately small: a hue, and optionally a
+surface or two. Enough to know which book you are in. Not enough to relearn.
+
+### How they compose
+
+A bundle declares each token as a passthrough with its own value as the fallback:
+
+```css
+--tb-accent: var(--tb-book-accent, #89b4fa);
+```
+
+and the book supplies `--tb-book-*` values, one set per scheme. There is no
+specificity contest and no build step: the bundle owns the design, the subject
+keeps its identity, and everything resolves in CSS.
+
+A bundle can **refuse** a token by listing it under `fixed:`. The `clean` bundle
+does exactly that for the accent, so every book is monochrome there — the point of
+a clean group is that a reader who wants no colour wants it everywhere.
+
+A bundle is not obliged to consume a subject value either; refusing one is a
+design position, not a failure.
+
+### Typography belongs to the bundle
+
+Fonts are part of the reading experience, so they travel with the bundle rather
+than with the subject — the same reasoning as above, and the reason the earlier
+worry about subject-specific fonts does not apply here. Sizes are shared, so a
+bundle changes the voice without changing the reading measure.
+
+### The contrast invariant
+
+Because a bundle and a subject multiply, a subject accent that is comfortable on
+one bundle's paper may be unreadable on another's. That is not left to review:
+`tests/test_themes.py` computes the WCAG ratio for every bundle × book × scheme
+and fails below ink 7:1, link 4.5:1, accent 4.5:1.
+
+It earned its place immediately. It caught catppuccin-latte's own link colour at
+4.34:1 on its own paper and gruvbox's at 4.40:1 — both stock Omarchy palettes,
+both just under the threshold, neither visible by looking. Both are darkened in
+the bundle with a comment saying so.
+
+### The cascade
+
+| Layer | File | Owner |
+|---|---|---|
+| Plumbing: the Material mapping, components, fonts as tokens | `assets/stylesheets/extra.css` | shared, **defines no colour** |
+| Bundles: every `--tb-*` per scheme, per bundle | `assets/stylesheets/themes.css` | generated from `themes/*.yaml` |
+| Subject tint: `--tb-book-*` per scheme | `books/<id>/docs/assets/stylesheets/book.css` | generated from `book.yaml → theme` |
+| A book's own component changes | `books/<id>/docs/assets/stylesheets/book-local.css` | authored, empty by default |
+
+The rule that keeps this honest: **a bundle is a palette and a typography, and
+nothing else.** Anything structural belongs in `extra.css`, where every book
+benefits; anything genuinely one book's own belongs in its `book-local.css`.
+
+Adding a bundle is one file in `themes/` plus a line in `collection.yaml`, and it
+is covered by the drift check. No book is rebuilt to gain a theme.
 
 ## Theme preference
 
-The reader's light/dark choice is stored once, under the origin-wide key
-`textbooks:scheme`, and shared by every book profile and by the landing page.
+Both reader preferences are stored once, origin-wide, and shared by every book and
+by the landing page:
+
+| Key | Values | Meaning |
+|---|---|---|
+| `textbooks:scheme` | `default`, `slate` | light or dark |
+| `textbooks:theme` | a bundle id | which reading experience |
 
 Material does not do this by itself: it scopes its palette storage to the root of
-each built site, so a choice made in GCSE Mathematics Higher is invisible to
-GCSE Mathematics Foundation, to another book, and to the landing page. The bridge
-is `engine/textbook/hooks/scheme.py`, which injects a small inline script into
-the `<head>` of every page. It does two things:
+each built site, so a choice made in GCSE Mathematics Higher is invisible to GCSE
+Mathematics Foundation, to another book, and to the landing page. The bridge is
+`engine/textbook/hooks/prefs.py`, which injects a small inline script into the
+`<head>` of every page. It:
 
-1. **Before Material paints**, it seeds Material's own storage from the shared
-   key, using Material's `__md_set`. The correct theme therefore applies on the
-   first frame — there is no flash to correct afterwards.
-2. On every palette change, it records the chosen scheme under the shared key.
+1. **seeds Material's own storage** from the shared scheme key, using Material's
+   `__md_set`, so the right scheme applies on the first frame with no flash;
+2. **sets `data-theme`** on the document element from the shared bundle key, which
+   is ours outright and needs no bridging;
+3. records every palette change back to the shared scheme key.
 
-The payload is generated from `theme.palette` in `renderers/mkdocs/base.yml`, so
-editing the palette list cannot silently break the bridge. The key is deliberately
-not namespaced by path: renaming the repository or moving a book must not cost a
-reader their preference.
+The scheme payload is generated from `theme.palette` in `base.yml`, so editing the
+palette list cannot silently break the bridge. Neither key is namespaced by path:
+renaming the repository or moving a book must not cost a reader their preferences.
 
-The landing page is not a Material page, so it does not use that mechanism. The
-portal template replays the same key as `<html data-scheme="dark">` before paint,
-and `portal.css` lets an explicit choice win over the system preference.
+The landing page reads and writes both keys itself, and offers the bundle menu —
+which is what makes a choice made at the front door appear inside every book. The
+menu can be withdrawn with `theme_selector: false` in `collection.yaml` once a
+default is settled on, without affecting the preference.
 
 This is a second deliberate exception to the no-runtime-JS rule, alongside the
-booklet widget: a few lines of inline script, no request, and nothing that
-matters if JavaScript is unavailable — the reader simply gets their system
-preference, as before.
+booklet widget: a few lines of inline script, no request, and nothing that matters
+if JavaScript is unavailable — without it a reader gets the default bundle in
+their system's scheme, which is a perfectly good book.
 
 ## What a new book requires
 

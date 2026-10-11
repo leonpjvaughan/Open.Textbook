@@ -1,5 +1,11 @@
 # Theme direction mocks
 
+> **Superseded.** These mocks chose a direction; the direction chosen is the
+> theme bundles now implemented in `themes/`. Directions B and C became the
+> bundle model — a core palette per bundle with a subject tint composed in — and
+> this file is kept only as the record of how that was decided. For the live
+> thing, see `themes/*.yaml` and "Theme bundles" in `SHAPE.md`.
+
 Design exploration for how far the books should diverge. **Nothing here is
 published**; it exists so a direction can be chosen by looking at it rather than
 by describing it.

@@ -1,0 +1,50 @@
+# An Omarchy-flavoured bundle, taken from Omarchy's own stock themes.
+#
+# The dark variation is Omarchy's `catppuccin` theme and the light variation is
+# its `catppuccin-latte`, both read from /usr/share/omarchy/themes on the machine
+# this was built on. The palette is the point: a muted base with one confident
+# accent and soft secondary hues, which is what makes the desktop feel calm and
+# deliberate rather than loud.
+#
+# Typography carries the same voice: a sans body with a monospace label face, so
+# captions and section markers read as instrument labels rather than prose.
+
+id: omarchy
+title: Omarchy
+description: >-
+  Muted midnight and soft light, one confident accent, monospace labels. The
+  desktop's calm-on-purpose palette, for a technical feel that still reads.
+typography:
+  body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  display: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  mono: '"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+light:
+  paper: "#eff1f5"
+  ink: "#4c4f69"
+  ink_soft: "#6c6f85"
+  ink_lighter: "#9ca0b0"
+  rule: "#ccd0da"
+  accent: "#1e66f5"
+  accent_light: "#7287fd"
+  accent_dark: "#1a4fc4"
+  # Darkened from catppuccin-latte's #1e66f5, which is 4.34:1 on its own paper —
+  # just under the 4.5:1 a link needs. Caught by the contrast invariant.
+  link: "#1a58d8"
+  code_bg: "#e6e9ef"
+  fig_warn: "#d20f39"
+  fig_good: "#40a02b"
+  fig_grid: "#bcc0cc"
+dark:
+  paper: "#1e1e2e"
+  ink: "#cdd6f4"
+  ink_soft: "#a6adc8"
+  ink_lighter: "#6c7086"
+  rule: "#313244"
+  accent: "#89b4fa"
+  accent_light: "#b4befe"
+  accent_dark: "#74c7ec"
+  link: "#89b4fa"
+  code_bg: "#181825"
+  fig_warn: "#f38ba8"
+  fig_good: "#a6e3a1"
+  fig_grid: "#45475a"

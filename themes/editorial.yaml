@@ -1,0 +1,55 @@
+# Theme bundles: the collection's core themes.
+#
+# A bundle is a complete light and dark palette plus its typography. It is
+# chosen by the *reader* and applies to every book, so switching subject never
+# switches theme — which is the whole point of separating the two.
+#
+# A book contributes its subject identity as `--tb-book-<token>` values (see
+# book.yaml → theme). Bundles compose them in:
+#
+#   --tb-accent: var(--tb-book-accent-light, #89b4fa)
+#
+# so a bundle decides whether to accept the subject tint or refuse it. `fixed:`
+# lists tokens the bundle keeps for itself; the rest adopt the subject's value
+# when the book provides one.
+#
+# Adding a bundle is one file here plus a line in collection.yaml. Nothing is
+# rebuilt per book — see SHAPE.md.
+
+id: editorial
+title: Editorial
+description: >-
+  Warm paper, near-black ink, a serif display face. The calm default: built for
+  long reading rather than for looking at.
+typography:
+  body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  display: 'Georgia, "Iowan Old Style", "Times New Roman", serif'
+  mono: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+light:
+  paper: "#faf9f5"
+  ink: "#1f1e1b"
+  ink_soft: "#5c5a54"
+  ink_lighter: "#8a877e"
+  rule: "#e6e3da"
+  accent: "#2f6690"
+  accent_light: "#4a7fae"
+  accent_dark: "#24506f"
+  link: "#23577d"
+  code_bg: "#f2f0e9"
+  fig_warn: "#a3402f"
+  fig_good: "#2f7d4f"
+  fig_grid: "#d8d5cb"
+dark:
+  paper: "#171614"
+  ink: "#e9e7e1"
+  ink_soft: "#b7b4ac"
+  ink_lighter: "#8a877e"
+  rule: "#2a2926"
+  accent: "#6ea8d8"
+  accent_light: "#8cc0e8"
+  accent_dark: "#4a7fae"
+  link: "#8cc0e8"
+  code_bg: "#201f1c"
+  fig_warn: "#e08a76"
+  fig_good: "#7fc79b"
+  fig_grid: "#3a3833"

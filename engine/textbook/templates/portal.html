@@ -6,20 +6,38 @@
 <title>$title</title>
 <meta name="description" content="$description">
 <script>
-/* The light/dark preference is shared with every book, under one key.
- * Read before paint, so the landing page never flashes the wrong scheme.
- * See SHAPE.md ("Theme preference"). */
+/* Reader preferences, before the first paint, so neither the colour scheme nor
+ * the theme bundle flashes. Both keys are shared with every book, so a choice
+ * made here follows the reader, and one made in a book arrives here.
+ * See SHAPE.md ("Theme preference" and "Theme bundles"). */
 (function () {
+  var schemeDefault = $scheme_default;
+  var themes = $themes;
+  var defaultTheme = "$default_theme";
+  var store, scheme = schemeDefault, chosen = defaultTheme;
+  try { store = window.localStorage; } catch (err) {}
   try {
-    var scheme = localStorage.getItem("$scheme_key");
-    if (scheme === "slate") document.documentElement.setAttribute("data-scheme", "dark");
-    else if (scheme === "default") document.documentElement.setAttribute("data-scheme", "light");
+    var saved = store ? store.getItem("$scheme_key") : null;
+    if (saved) scheme = saved;
+    var savedTheme = store ? store.getItem("$theme_key") : null;
+    if (themes.indexOf(savedTheme) >= 0) chosen = savedTheme;
   } catch (err) {}
+  document.documentElement.setAttribute("data-scheme-pref", scheme);
+  document.documentElement.setAttribute("data-theme", chosen);
 })();
 </script>
+<link rel="stylesheet" href="assets/stylesheets/themes.css">
 <link rel="stylesheet" href="assets/stylesheets/portal.css">
 </head>
 <body>
+<script>
+/* Material sets the colour scheme on <body>; the books' bundle rules key off the
+ * same attribute, so the landing page matches them. */
+document.body.setAttribute(
+  "data-md-color-scheme",
+  document.documentElement.getAttribute("data-scheme-pref") === "slate" ? "slate" : "default"
+);
+</script>
 <header class="masthead">
   <div class="wrap masthead__inner">
     <div class="masthead__text">
@@ -31,6 +49,7 @@
       <span class="scheme__label">Dark mode</span>
     </button>
   </div>
+  $theme_menu
 </header>
 
 <main class="wrap" id="main">
@@ -48,53 +67,57 @@ $groups
 </footer>
 
 <script>
-/* The landing page writes the same shared preference the books do, so a reader
- * who picks a scheme here gets it inside every book as well. */
+/* Both preferences are writable here, and both are the same keys the books use. */
 (function () {
-  var KEY = "$scheme_key";
-  var button = document.getElementById("scheme-toggle");
-  if (!button) return;
-
   var store = null;
   try { store = window.localStorage; } catch (err) {}
+  function read(key) { try { return store ? store.getItem(key) : null; } catch (err) { return null; } }
+  function write(key, value) { try { if (store) store.setItem(key, value); } catch (err) {} }
 
-  function saved() {
-    try { return store ? store.getItem(KEY) : null; } catch (err) { return null; }
-  }
-
-  function current() {
-    var value = saved();
+  function scheme() {
+    var value = read("$scheme_key");
     if (value === "slate") return "dark";
     if (value === "default") return "light";
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
-
-  function render() {
-    var isDark = current() === "dark";
-    document.documentElement.setAttribute("data-scheme", isDark ? "dark" : "light");
+  function applyScheme() {
+    var isDark = scheme() === "dark";
+    document.body.setAttribute("data-md-color-scheme", isDark ? "slate" : "default");
+    var button = document.getElementById("scheme-toggle");
+    if (!button) return;
     button.setAttribute("aria-pressed", String(isDark));
     button.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
     button.querySelector(".scheme__label").textContent = isDark ? "Light mode" : "Dark mode";
   }
 
-  function choose(scheme) {
-    try { if (store) store.setItem(KEY, scheme === "dark" ? "slate" : "default"); } catch (err) {}
-    render();
-  }
-
-  button.hidden = false;
-  button.addEventListener("click", function () {
-    choose(current() === "dark" ? "light" : "dark");
-  });
-
-  /* With no explicit choice, follow the system as it changes. */
-  if (window.matchMedia) {
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
-      if (!saved()) render();
+  var toggle = document.getElementById("scheme-toggle");
+  if (toggle) {
+    toggle.hidden = false;
+    toggle.addEventListener("click", function () {
+      write("$scheme_key", scheme() === "dark" ? "default" : "slate");
+      applyScheme();
     });
   }
+  if (window.matchMedia) {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
+      if (!read("$scheme_key")) applyScheme();
+    });
+  }
+  applyScheme();
 
-  render();
+  var menu = document.getElementById("theme-menu");
+  if (!menu) return;
+  var blurb = document.getElementById("theme-blurb");
+  var descriptions = $theme_descriptions;
+  function applyTheme(value) {
+    document.documentElement.setAttribute("data-theme", value);
+    if (blurb) blurb.textContent = descriptions[value] || "";
+    menu.value = value;
+    write("$theme_key", value);
+  }
+  menu.value = document.documentElement.getAttribute("data-theme") || "$default_theme";
+  if (blurb) blurb.textContent = descriptions[menu.value] || "";
+  menu.addEventListener("change", function () { applyTheme(menu.value); });
 })();
 </script>
 </body>

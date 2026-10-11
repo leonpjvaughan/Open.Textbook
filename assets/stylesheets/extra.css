@@ -1,53 +1,21 @@
-/* Reading theme for the textbook collection.
+/* The shared design system: components and the token plumbing.
  *
- * Every colour is a token (--tb-*) set per scheme, so a book can override any
- * subset of them in its generated book.css and nothing else has to change. See
- * SHAPE.md ("Per-book theming"). The values here are the house defaults.
+ * No colour is defined here. Colours come from a **theme bundle**
+ * (assets/stylesheets/themes.css, generated from themes/*.yaml), and a book's
+ * subject tint arrives as --tb-book-* values that the bundle composes in. This
+ * file owns everything that is not a theme: the mapping onto Material's
+ * variables, the figure and booklet components, and the house typography.
  *
- * Evidence for the base: a warm off-white "paper" with near-black ink, not pure
- * white on pure black, reduces glare while keeping contrast above WCAG AA. Dark
- * is an option, not the default — positive polarity reads better for
- * proofreading (Buchner & Baumgartner 2007).
+ * See SHAPE.md, "Theme bundles".
  */
 
 :root {
-  /* Scheme-independent. */
+  /* Scheme-independent, and not part of any bundle unless a bundle overrides it. */
   --tb-measure: 70ch;
-}
-
-/* Light: warm paper. */
-[data-md-color-scheme="default"] {
-  --tb-paper: #faf9f5;
-  --tb-ink: #1f1e1b;
-  --tb-ink-soft: #5c5a54;
-  --tb-ink-lighter: #8a877e;
-  --tb-rule: #e6e3da;
-  --tb-accent: #2f6690;
-  --tb-accent-light: #4a7fae;
-  --tb-accent-dark: #24506f;
-  --tb-link: #23577d;
-  --tb-code-bg: #f2f0e9;
-  /* Figure palette. The accent follows the book; the rest are per scheme. */
-  --tb-fig-warn: #a3402f;
-  --tb-fig-good: #2f7d4f;
-  --tb-fig-grid: #d8d5cb;
-}
-
-/* Dark: off-black, never pure black. */
-[data-md-color-scheme="slate"] {
-  --tb-paper: #171614;
-  --tb-ink: #e9e7e1;
-  --tb-ink-soft: #b7b4ac;
-  --tb-ink-lighter: #8a877e;
-  --tb-rule: #2a2926;
-  --tb-accent: #6ea8d8;
-  --tb-accent-light: #8cc0e8;
-  --tb-accent-dark: #4a7fae;
-  --tb-link: #8cc0e8;
-  --tb-code-bg: #201f1c;
-  --tb-fig-warn: #e08a76;
-  --tb-fig-good: #7fc79b;
-  --tb-fig-grid: #3a3833;
+  --tb-radius: 8px;
+  --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --tb-font-display: "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
+  --tb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 /* A book tints its diagrams by setting its accent, unless it sets its own. */
@@ -56,8 +24,7 @@
 }
 
 /* Map the tokens onto Material's variables. Deliberately scheme-independent:
- * anything that differs between light and dark belongs in the token blocks
- * above, or in the book's generated book.css. */
+ * anything that differs between light and dark is a token, set by a bundle. */
 [data-md-color-scheme] {
   --md-default-bg-color: var(--tb-paper);
   --md-default-fg-color: var(--tb-ink);
@@ -72,8 +39,10 @@
   --md-code-bg-color: var(--tb-code-bg);
 }
 
-/* Typography: sans body for legibility, serif display for an editorial feel. */
+/* Typography: the faces themselves are bundle tokens; sizes are shared, so a
+ * bundle changes the voice without changing the reading measure. */
 .md-typeset {
+  font-family: var(--tb-font-body);
   font-size: 1.0625rem; /* ~17px */
   line-height: 1.65;
 }
@@ -82,7 +51,7 @@
 .md-typeset h2,
 .md-typeset h3,
 .md-typeset h4 {
-  font-family: "Iowan Old Style", Charter, Georgia, "Times New Roman", serif;
+  font-family: var(--tb-font-display);
   letter-spacing: -0.01em;
 }
 
@@ -132,7 +101,7 @@
 
 .math-error {
   color: #b3261e;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--tb-font-mono);
 }
 
 /* Figure colours come from the scheme variables above, so every figure adapts to

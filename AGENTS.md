@@ -227,14 +227,27 @@ calling a chapter done.
   `books/<id>/docs/assets/{stylesheets/extra.css,figures/figures.js,booklet/booklet.js}`
   point into the root `assets/`. Edit the file in `assets/` — never replace a
   symlink with a copy, or the books drift apart.
-- A per-book theme is data: set tokens in `book.yaml → theme`; the scaffold
-  generates `book.css`. Component-level tweaks go in the book's authored
-  `book-local.css`. Never fork `extra.css` for one book.
-- The light/dark choice is shared across every book and the landing page through
-  the one origin-wide key `textbooks:scheme`
-  (`engine/textbook/hooks/scheme.py`). Do not reintroduce a per-build key:
-  Material's own storage is scoped to each built site, which is precisely the
-  behaviour the bridge exists to fix.
+- Theming is two independent things, and keeping them apart is the point. A
+  **bundle** (`themes/*.yaml`) is the reading experience — a full light and dark
+  palette plus typography — and belongs to the *reader*, so it applies to every
+  book. A book contributes only its **subject tint** (`book.yaml → theme`), which
+  bundles compose in as `--tb-book-*` unless they list the token under `fixed:`.
+  Never put surfaces or fonts in a book, and never put a subject's identity in a
+  bundle. See SHAPE.md, "Theme bundles".
+- `assets/stylesheets/extra.css` defines **no colour**: colour comes from
+  `themes.css` (generated from `themes/`). A token declared there would silently
+  win over every bundle; a test enforces this.
+- A bundle and a subject multiply, so a new bundle or a new book can produce an
+  unreadable pair. `tests/test_themes.py` checks the WCAG contrast of every
+  bundle × book × scheme and fails below ink 7:1, link 4.5:1, accent 4.5:1. Do not
+  relax the threshold to make a palette fit; the palette is what is wrong —
+  stock Omarchy palettes have failed it twice.
+- Two reader preferences are shared across every book and the landing page,
+  under origin-wide keys: `textbooks:scheme` (light/dark) and `textbooks:theme`
+  (which bundle). They live in `engine/textbook/hooks/prefs.py`; the hook order
+  lists it as `prefs`. Do not reintroduce a per-build key — Material scopes its
+  own storage to each built site, which is precisely what the bridge exists to
+  fix — and do not make the theme path-scoped either.
 
 **Tiers**
 

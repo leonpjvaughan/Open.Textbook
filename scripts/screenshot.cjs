@@ -3,7 +3,11 @@
 // sockets, and for producing review images.
 //
 // Usage:
-//   node scripts/screenshot.cjs <siteDir> <outDir> [--schemes light,dark] -- name:path [name:path ...]
+//   node scripts/screenshot.cjs <siteDir> <outDir> [--schemes light,dark]
+//       [--theme <bundle>] -- name:path [name:path ...]
+//
+// --theme seeds the collection-wide "textbooks:theme" key before each page loads,
+// so a bundle can be captured the way a reader would see it.
 // Example:
 //   node scripts/screenshot.cjs site/gcse-maths/higher /tmp/shots -- schemes light,dark -- \
 //     home:/ "anchor:/Chapter 1/"
@@ -46,10 +50,13 @@ async function main() {
   const siteDir = path.resolve(argv.shift());
   const outDir = path.resolve(argv.shift());
   let schemes = ["light"];
+  let theme = null;
   const entries = [];
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === "--schemes") {
       schemes = argv[(i += 1)].split(",");
+    } else if (argv[i] === "--theme") {
+      theme = argv[(i += 1)];
     } else if (argv[i] === "--") {
       /* separator */
     } else {
@@ -68,6 +75,13 @@ async function main() {
       colorScheme: scheme,
       deviceScaleFactor: 2,
     });
+    if (theme) {
+      await context.addInitScript((chosen) => {
+        try {
+          localStorage.setItem("textbooks:theme", chosen);
+        } catch (err) {}
+      }, theme);
+    }
     await context.route("**/*", (route) => {
       const url = new URL(route.request().url());
       let rel = decodeURIComponent(url.pathname);

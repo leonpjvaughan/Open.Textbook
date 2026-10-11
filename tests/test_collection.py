@@ -109,7 +109,11 @@ def test_shared_assets_are_symlinked_not_copied(book):
     """CSS, the figure loader and the booklet widget are shared. A copy would
     drift; the point is that there is one truth."""
     assets = book.docs / "assets"
-    relative_paths = ["stylesheets/extra.css", "figures/figures.js"]
+    relative_paths = [
+        "stylesheets/extra.css",
+        "stylesheets/themes.css",
+        "figures/figures.js",
+    ]
     if book.booklet_name:
         relative_paths.append("booklet/booklet.js")
     for relative in relative_paths:
@@ -175,18 +179,24 @@ def test_an_old_flat_accent_block_still_reads():
 
 @pytest.mark.parametrize("book", ALL, ids=IDS)
 def test_generated_theme_css_covers_each_variation(book):
+    """book.css states the subject tint; a bundle composes it in.
+
+    The values are --tb-book-* rather than final tokens, which is what lets one
+    book work under every bundle.
+    """
     css = scaffold.theme_css(book)
     for scheme in book.theme.variations:
         if not scheme.tokens:
             continue
         selector = (
-            '[data-md-color-scheme="default"]'
+            'body[data-md-color-scheme="default"]'
             if scheme.scheme == "default"
-            else '[data-md-color-scheme="slate"]'
+            else 'body[data-md-color-scheme="slate"]'
         )
         assert selector in css
         for key, value in scheme.tokens.items():
-            assert f"{books.SCHEME_TOKENS[key]}: {value};" in css
+            variable = f"--tb-book-{key.replace('_', '-')}"
+            assert f"{variable}: {value};" in css
 
 
 def test_two_books_keep_separate_identities(tmp_path):

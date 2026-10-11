@@ -61,7 +61,12 @@ mathematics — logarithms are not on the specification.
 
 ## Style
 
-- `assets/stylesheets/extra.css` is shared with every other book. Do not fork it
-  here; set tokens in `book.yaml → theme` or add to `book-local.css`.
+- Theming belongs to the reader: bundles in `themes/` are the reading
+  experience and apply to every book. This book contributes only its **subject
+  tint** through `book.yaml → theme`, which bundles compose in. Do not add
+  surfaces or fonts here.
+- `assets/stylesheets/extra.css` and `themes.css` are shared with every other
+  book. Do not fork either; set the tint in `book.yaml → theme`, or add a
+  component rule to `book-local.css`.
 - Figures use the `fig-*` classes and `--tb-fig-*` variables, never hard-coded
   colours, so they adapt to dark mode.

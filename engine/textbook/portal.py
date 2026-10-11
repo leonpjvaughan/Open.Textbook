@@ -20,6 +20,7 @@ Usage: python -m textbook.portal
 from __future__ import annotations
 
 import html
+import json
 import shutil
 import sys
 from datetime import date
@@ -27,7 +28,8 @@ from pathlib import Path
 from string import Template
 
 from . import book as books
-from .hooks.scheme import SHARED_KEY
+from .hooks.prefs import SCHEME_KEY, THEME_KEY
+from .themes import default_bundle, ordered_bundles
 
 ROOT = books.repo_root()
 ASSETS = ROOT / "assets"
@@ -111,16 +113,55 @@ def groups_html(all_books: list[books.Book]) -> str:
     return "\n".join(out)
 
 
+def theme_menu() -> str:
+    """The reader's choice of theme bundle, or nothing if it is withdrawn.
+
+    A bundle applies to every book, so this is a reading choice rather than a
+    per-subject one — which is what stops a subject switch from feeling like a
+    context switch.
+    """
+    collection = books.load_collection()
+    if not collection.get("theme_selector", True):
+        return ""
+
+    bundles = ordered_bundles()
+    if len(bundles) < 2:
+        return ""
+
+    options = "".join(
+        f'<option value="{html.escape(bundle.id, quote=True)}">'
+        f"{html.escape(bundle.title)}</option>"
+        for bundle in bundles
+    )
+    return (
+        '<div class="theme-picker">\n'
+        '  <label class="theme-picker__label" for="theme-menu">Theme</label>\n'
+        '  <select class="theme-picker__select" id="theme-menu">'
+        f"{options}</select>\n"
+        '  <p class="theme-picker__blurb" id="theme-blurb"></p>\n'
+        "</div>"
+    )
+
+
 def render() -> str:
     collection = books.load_collection()
     all_books = books.discover_books()
+    bundles = ordered_bundles()
     template = Template(TEMPLATE.read_text(encoding="utf-8"))
     return template.substitute(
         title=html.escape(str(collection.get("title", "Textbooks"))),
         description=html.escape(str(collection.get("description", ""))),
         groups=groups_html(all_books),
         year=date.today().year,
-        scheme_key=SHARED_KEY,
+        scheme_key=SCHEME_KEY,
+        theme_key=THEME_KEY,
+        scheme_default=json.dumps("default"),
+        themes=json.dumps([bundle.id for bundle in bundles]),
+        theme_descriptions=json.dumps(
+            {bundle.id: bundle.description for bundle in bundles}
+        ),
+        default_theme=default_bundle().id,
+        theme_menu=theme_menu(),
     )
 
 
@@ -135,6 +176,8 @@ def main() -> int:
 
     target = SITE / "assets" / "stylesheets"
     target.mkdir(parents=True, exist_ok=True)
+    # The bundle stylesheet is shared with every book: one copy, one truth.
+    shutil.copyfile(ASSETS / "stylesheets" / "themes.css", target / "themes.css")
     shutil.copyfile(ASSETS / "stylesheets" / "portal.css", target / "portal.css")
 
     print(f"wrote site/index.html ({len(all_books)} books)")

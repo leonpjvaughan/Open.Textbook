@@ -20,6 +20,21 @@ description: >-
 # value (see `site_url()` in engine/textbook/scaffold.py).
 base_url: https://leonpjvaughan.github.io/GCSE.MATHS/
 
+# Theme bundles live in themes/. Each is a full light and dark palette plus its
+# typography; a book contributes its subject tint on top. The reader's choice is
+# shared across every book and the landing page, and switching subject never
+# switches theme.
+default_theme: editorial
+# Menu order. Any bundle not listed follows, alphabetically.
+themes:
+  - editorial
+  - omarchy
+  - gruvbox
+  - clean
+# Set to false to withdraw the theme menu from the landing page while keeping the
+# reader's choice working. Useful once a default has been settled on.
+theme_selector: true
+
 qualifications:
   - id: GCSE
     title: GCSE

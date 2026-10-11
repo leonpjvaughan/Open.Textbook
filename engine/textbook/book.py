@@ -39,6 +39,7 @@ SCHEME_TOKENS: dict[str, str] = {
     "paper": "--tb-paper",
     "ink": "--tb-ink",
     "ink_soft": "--tb-ink-soft",
+    "ink_lighter": "--tb-ink-lighter",
     "rule": "--tb-rule",
     "link": "--tb-link",
     "code_bg": "--tb-code-bg",

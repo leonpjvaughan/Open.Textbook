@@ -7,6 +7,12 @@ extra:
   book: gcse-maths
   book_dir: books/gcse-maths
   tier_profile: foundation
+  themes:
+  - editorial
+  - omarchy
+  - gruvbox
+  - clean
+  default_theme: editorial
 nav:
 - Home: index.md
 - Glossary:
