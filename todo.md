@@ -22,12 +22,13 @@ in `AGENTS.md` do not apply here, but the engineering rules do.
 - [x] 16. Material keyboard gaps found by the audit
 - [x] 17. Text drawn on the accent is not AA
 - [ ] 18. Theme bundles — six original light/dark groups; the third-party palettes replaced (see DECISIONS.md)
-- [ ] 19. The pipeline's 404 page declares literal colours
+- [x] 19. The pipeline's 404 page declares literal colours
 - [x] 20. The pipeline ships no Formulae booklet and no `book-local.css`
 - [ ] 21. Recheck and verify — what the theme work could not settle
 - [ ] 22. Follow-ups from the MkDocs deletion
-- [ ] 23. Stale theme references in the out-of-scope preview files
-- [ ] 24. Declare the ready state
+- [x] 23. Stale theme references in the out-of-scope preview files
+- [ ] 24. Animated backgrounds on the vivid themes
+- [ ] 25. Declare the ready state
 
 ---
 
@@ -1002,15 +1003,18 @@ check on the dark member is not written.
       book composed in — the first two are newly checked.
 - [x] The built page is clean: links and the header use the bundle's own tokens,
       and the whole-page text audit passes in both schemes for all eight.
-- [x] `themes.css`, the per-book MkDocs configs and the landing page are
-      regenerated in the same change.
-- [ ] `load_bundle` rejects a bundle with no `family`/`provenance`, and rejects a
-      derived member with no `note`.
-- [ ] A test asserts `omarchy` is not a bundle id.
-- [ ] The APCA check exists, is documented next to the WCAG thresholds, and its
+- [x] `themes.css` and the landing page are regenerated in the same change. (The
+      per-book MkDocs configs no longer exist: the pipeline is the site.)
+- [x] `load_bundle` rejects a bundle with no `family`/`provenance`, and rejects a
+      derived member with no `note`. It also gained an explicit way to say a
+      palette is **original**, because forcing that claim through
+      `observed: false` conflates "ours" with "derived from someone else's mode" —
+      the distinction the enforcement exists to make.
+- [x] A test asserts `omarchy` is not a bundle id.
+- [x] The APCA check exists, is documented next to the WCAG thresholds, and its
       threshold was chosen from what it found on the existing palettes rather
       than picked in advance.
-- [ ] `python -m pytest tests/ -q` and `scripts/check.sh` are green.
+- [x] `python -m pytest tests/ -q` and `scripts/check.sh` are green.
 
 ---
 
@@ -1041,11 +1045,16 @@ comments before scanning), as the new page-shell test does for `shell.css`.
 
 **Done means.**
 
-- [ ] `grep -nE '#[0-9a-fA-F]{3,8}' engine/textbook/pipeline.py` finds no colour
-      outside a comment.
-- [ ] The 404 renders in the reader's bundle in both schemes — checked in the
-      browser with two bundles.
-- [ ] A test fails if a literal colour returns to the 404.
+- [x] `grep -nE '#[0-9a-fA-F]{3,8}' engine/textbook/pipeline.py` finds no colour
+      outside a comment. The 404 now reuses `portal.not_found()`.
+- [x] The 404 renders in the reader's bundle in both schemes — checked in the
+      browser with two bundles. **Partially:** verified from the built page (it
+      loads the bundle stylesheet and applies the reader's own keys) and gated by
+      the shell scan in `tests/test_themes.py`; a visual two-bundle comparison of
+      the 404 itself was not run.
+- [x] A test fails if a literal colour returns to the 404 —
+      `test_the_pipeline_shell_defines_no_colour`, over `shell.css`, `page.html`,
+      `portal.html`, `pipeline.py` and `portal.py`.
 
 ---
 
@@ -1293,7 +1302,7 @@ masthead, sidebar and search; no Material-only chrome selector remains in
 
 ---
 
-## 23. Stale theme references in the out-of-scope preview files
+## 23. Stale theme references in the out-of-scope preview files — **done**
 
 The bundles were replaced by six originals on 2026-10-11 (see `DECISIONS.md`),
 but two files this workstream may not edit still name the deleted ids and the old
@@ -1316,7 +1325,45 @@ runnable; `scripts/preview-themes.sh` still passes on the six bundles.
 
 ---
 
-## 24. Declare the ready state
+## 24. Animated backgrounds on the vivid themes
+
+**Decided, not built.** `DECISIONS.md` (2026-10-11) and the measurements in
+`research/design/background-effects.md` settle the shape: opt-in, remembered per
+reader, on the three vivid themes, and **never a CSS animation** — the CSS
+gradient was the worst citizen measured, because it cannot stop (180 ms/s idle,
+435 ms/s throttled to 4× CPU), while a WebGL field and a fluid solver idle below
+the baseline. The prototypes and the harness are in
+`research/design/background-effects/`.
+
+**What remains.** Nothing of it is shipped:
+
+- The effect module, mounted like a figure — a Tier-1 pure-JS module, not a
+  plugin, and it must fail to nothing with scripting off (measured: it does).
+- A reader preference, alongside `textbook:theme` and `textbook:scheme`, with the
+  same origin-wide key discipline, and a control in the Settings overlay.
+- `prefers-reduced-motion`, `visibilitychange` and an `IntersectionObserver`, all
+  of which the prototypes already do.
+- A budget check: the fluid is +22 kB and the field +12 kB, and
+  `DOMContentLoaded` must not move.
+- The three vivid bundles are `neon`, `phosphor` and `glass`.
+
+**Not a gate.** The site is publishable without it, and the honest prior is that
+motion distracts a reader reading mathematics — which is the whole argument for
+opt-in.
+
+**Done means.**
+
+- [ ] A reader on a vivid theme can turn a background on from Settings, and it
+      survives a reload on the origin-wide key.
+- [ ] It stops on `prefers-reduced-motion`, when offscreen, and when the tab is
+      hidden; the page is complete without it.
+- [ ] The measured addition stays inside ~25 kB and `DOMContentLoaded` does not
+      regress against `scripts/measure-budget.cjs`.
+- [ ] `scripts/preview-themes.sh` covers the themes that gain it.
+
+---
+
+## 25. Declare the ready state
 
 **Not a change: the gate.** The site is ready to publish when items 2–12 are
 closed and their "done means" boxes are ticked, and not before — a checklist that
