@@ -4,6 +4,8 @@ This repository builds a **collection of interactive, static, backend-free
 textbooks** that share one engine. GCSE Mathematics is the first book; GCSE
 Physics and A-level Mathematics and Physics are planned.
 
+The repository is **Open.Textbook**: https://github.com/leonpjvaughan/Open.Textbook
+
 `SHAPE.md` describes the repository shape, the per-book theming, and what a new
 book requires. `PLAN.md` holds the authoring plan, `research/pedagogy.md` the
 evidence behind the teaching design, and `AGENT-BRIEF.md` the per-chapter
@@ -401,12 +403,20 @@ calling a chapter done.
 
 - The build needs both `uv sync` (MkDocs) and `npm install` (KaTeX). Without
   Node, maths silently degrades to `.math-error` spans.
+- `actionlint` only runs shellcheck if shellcheck is on `PATH`, and it is on
+  `PATH` in CI but not by default locally. Without it, a whole class of workflow
+  error passes locally and fails the `lint workflows` job — which has happened.
+  It is installed with `mise use -g shellcheck@0.11.0`; check with
+  `command -v shellcheck` before trusting a local `actionlint` run.
 - `test/hooks/` duplicates the hook logic on purpose: it is the evaluation
   harness that compared the candidate mechanisms. Keep it in sync with
   `engine/textbook/hooks/`.
 - `screenshot.cjs` serves the built site through Playwright request interception
-  because this sandbox blocks listening sockets; set `PLAYWRIGHT_PATH` if
-  `require("playwright")` does not resolve.
+  rather than binding a port. Listening sockets do work in this environment —
+  `python -m textbook.pipeline --serve` binds and serves — so interception is a
+  choice, not a workaround: it needs no free port and cannot clash with a server
+  that is already running. Set `PLAYWRIGHT_PATH` if `require("playwright")` does
+  not resolve.
 - `screenshot.cjs` maps a route to a file under the directory you give it, and
   only appends `index.html` for a trailing slash. A route without the file
   extension therefore 404s — and because every capture then returns the *same*

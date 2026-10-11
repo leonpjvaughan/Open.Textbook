@@ -7,7 +7,7 @@
 # agent-runs/, and is told not to run the build (the orchestrator does).
 set -uo pipefail
 
-cd "$(dirname "${BASH_SOURCE[0]}")/.."
+cd "$(dirname "${BASH_SOURCE[0]}")/.." || exit 1
 mkdir -p agent-runs
 
 launch() {

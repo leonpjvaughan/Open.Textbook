@@ -171,13 +171,13 @@ jobs:
     steps:
       - name: Every required job must have succeeded
         env:
-          RESULTS: ${{ join(needs.*.result, ',') }}
+          UPSTREAM_RESULTS: ${{ join(needs.*.result, ',') }}
         run: |
           failed=0
-          IFS=',' read -r -a results <<< "$RESULTS"
-          for result in "${results[@]}"; do
-            if [ "$result" != "success" ]; then
-              echo "a required job finished as '$result'"
+          IFS=',' read -r -a outcomes <<< "$UPSTREAM_RESULTS"
+          for outcome in "${outcomes[@]}"; do
+            if [ "$outcome" != "success" ]; then
+              echo "a required job finished as '$outcome'"
               failed=1
             fi
           done

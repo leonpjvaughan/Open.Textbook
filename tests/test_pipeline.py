@@ -16,6 +16,7 @@ Two of these tests are regressions for bugs this module actually shipped with:
 from __future__ import annotations
 
 import re
+import urllib.parse
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -35,13 +36,22 @@ BOOKS_BY_ID = pipeline.books.book_by_id(BOOK)
     ("md_path", "expected"),
     [
         ("index.md", ""),
-        ("Chapter 1/index.md", "Chapter 1/"),
-        ("Chapter 1/Section 1.1/Walkthrough/index.md", "Chapter 1/Section 1.1/Walkthrough/"),
-        ("Glossary/number.md", "Glossary/number/"),
+        ("Chapter 1/index.md", "chapter-1/"),
+        ("Chapter 1/index", "chapter-1/"),
+        ("Glossary/number.md", "glossary/number/"),
+        # Page-kind directories are ours, not the reader's, so the published URL
+        # uses the vocabulary the navigation does. AGENTS.md: internal words must
+        # never reach the reader.
+        ("Chapter 1/Section 1.1/Walkthrough/index.md", "chapter-1/section-1.1/learn/"),
+        (
+            "Chapter 1/Section 1.1/Guided problems/index.md",
+            "chapter-1/section-1.1/practise-with-help/",
+        ),
+        ("Chapter 1/Section 1.1/Problems/index.md", "chapter-1/section-1.1/practise/"),
+        ("Chapter 20/Review/index.md", "chapter-20/review/"),
         # A path whose suffix has already been stripped must still normalise:
-        # stripping '.md' first is what produced 'a/b/index/' instead of 'a/b/'.
-        ("Chapter 1/index", "Chapter 1/"),
-        ("Chapter 1/Section 1.1/Walkthrough/index", "Chapter 1/Section 1.1/Walkthrough/"),
+        # stripping '.md' first is what once produced 'a/b/index/' not 'a/b/'.
+        ("Chapter 1/Section 1.1/Walkthrough/index", "chapter-1/section-1.1/learn/"),
     ],
 )
 def test_url_for(md_path, expected):
@@ -49,20 +59,47 @@ def test_url_for(md_path, expected):
 
 
 @pytest.mark.parametrize(
+    ("segment", "expected"),
+    [
+        ("Chapter 1", "chapter-1"),
+        ("Section 1.1", "section-1.1"),
+        ("Glossary", "glossary"),
+        ("Review", "review"),
+        ("A-level", "a-level"),
+        ("  Mixed   Case  ", "mixed-case"),
+        # Relative segments are left alone, or every '../' link would break.
+        ("..", ".."),
+        (".", "."),
+    ],
+)
+def test_slugify(segment, expected):
+    assert pipeline.slugify(segment) == expected
+
+
+def test_slugs_contain_nothing_that_needs_encoding():
+    for md_path in (
+        "Chapter 1/Section 1.1/Guided problems/index.md",
+        "Chapter 20/Section 20.4/Walkthrough/index.md",
+    ):
+        assert urllib.parse.quote(pipeline.url_for(md_path)) == pipeline.url_for(md_path)
+
+
+@pytest.mark.parametrize(
     ("url", "expected"),
     [
         ("", ""),
-        ("Chapter 1/", "../"),
-        ("Chapter 1/Section 1.1/Walkthrough/", "../../../"),
-        ("Chapter 1/Section 1.1/Guided problems/", "../../../"),
+        ("chapter-1/", "../"),
+        ("chapter-1/section-1.1/learn/", "../../../"),
+        ("chapter-1/section-1.1/practise-with-help/", "../../../"),
     ],
 )
 def test_prefix_for(url, expected):
     assert pipeline.prefix_for(url) == expected
 
 
-def test_href_encodes_spaces_but_keeps_separators():
-    assert pipeline.href("Chapter 1/Guided problems/") == "Chapter%201/Guided%20problems/"
+def test_href_still_encodes_anything_a_slug_missed():
+    assert pipeline.href("chapter-1/learn/") == "chapter-1/learn/"
+    assert pipeline.href("a b/c") == "a%20b/c"
 
 
 # --- front matter -------------------------------------------------------------
@@ -134,18 +171,18 @@ def test_leaves_walks_nested_nav():
 def test_nav_hrefs_are_qualified_with_the_page_prefix():
     """Regression: bare root-relative hrefs 404 on nested pages.
 
-    The book is served from a subpath, so 'Chapter 1/Review/' on a page three
-    directories deep resolves to '.../Walkthrough/Chapter 1/Review/'.
+    The book is served from a subpath, so 'chapter-1/review/' on a page three
+    directories deep resolves to '.../learn/chapter-1/review/'.
     """
     nav = [{"Chapter 1": [{"Review": "Chapter 1/Review/index.md"}]}]
-    markup = pipeline.render_nav(nav, "Chapter 1/Section 1.1/Walkthrough/")
-    assert 'href="../../../Chapter%201/Review/"' in markup
-    assert 'href="Chapter%201/Review/"' not in markup
+    markup = pipeline.render_nav(nav, "chapter-1/section-1.1/learn/")
+    assert 'href="../../../chapter-1/review/"' in markup
+    assert 'href="chapter-1/review/"' not in markup
 
 
 def test_nav_marks_the_current_page():
     nav = [{"Chapter 1": [{"Review": "Chapter 1/Review/index.md"}]}]
-    markup = pipeline.render_nav(nav, "Chapter 1/Review/")
+    markup = pipeline.render_nav(nav, "chapter-1/review/")
     assert "nav__link--current" in markup
     assert 'aria-current="page"' in markup
 
@@ -155,7 +192,7 @@ def test_nav_opens_the_section_containing_the_current_page():
         {"Chapter 1": [{"Review": "Chapter 1/Review/index.md"}]},
         {"Chapter 2": [{"Review": "Chapter 2/Review/index.md"}]},
     ]
-    markup = pipeline.render_nav(nav, "Chapter 2/Review/")
+    markup = pipeline.render_nav(nav, "chapter-2/review/")
     opened = re.findall(r"<details( open)?>", markup)
     assert opened == ["", " open"]
 
@@ -173,7 +210,7 @@ def test_nav_escapes_titles():
     [
         ('<a href="a/b/index.md">x</a>', '<a href="a/b/">x</a>'),
         ('<a href="a/b/index.md#part">x</a>', '<a href="a/b/#part">x</a>'),
-        ('<a href="Chapter 1/index.md">x</a>', '<a href="Chapter%201/">x</a>'),
+        ('<a href="Chapter 1/index.md">x</a>', '<a href="chapter-1/">x</a>'),
         ('<img src="assets/pic.md">', '<img src="assets/pic/">'),
         ('<a href="https://x.dev/a.md">x</a>', '<a href="https://x.dev/a.md">x</a>'),
     ],
@@ -226,13 +263,13 @@ def test_check_links_reports_a_genuine_break(tmp_path):
 def test_check_links_rejects_bare_root_relative_hrefs(tmp_path):
     """Regression: an href with no prefix must not 'resolve' against the root.
 
-    The old check fell back to `out / path`, so a bare 'Chapter 1/Review/' always
+    The old check fell back to `out / path`, so a bare 'chapter-1/review/' always
     looked valid from the site root and every mis-prefixed nav link passed.
     """
-    _write(tmp_path, "deep/page/index.html", '<a href="Chapter 1/Review/">x</a>')
-    _write(tmp_path, "Chapter 1/Review/index.html", "ok")
+    _write(tmp_path, "deep/page/index.html", '<a href="chapter-1/review/">x</a>')
+    _write(tmp_path, "chapter-1/review/index.html", "ok")
     page = pipeline.RenderedPage(url="deep/page/", title="P", text="")
-    assert pipeline.check_links(tmp_path, [page]) == ["deep/page/ -> Chapter 1/Review/"]
+    assert pipeline.check_links(tmp_path, [page]) == ["deep/page/ -> chapter-1/review/"]
 
 
 def test_check_links_accepts_a_leading_slash_from_the_root(tmp_path):
@@ -253,10 +290,10 @@ def test_check_links_ignores_the_search_script(tmp_path):
 
 
 def test_check_links_scope_ignores_pages_outside_a_subset(tmp_path):
-    _write(tmp_path, "index.html", '<a href="Chapter 9/">unbuilt</a>')
+    _write(tmp_path, "index.html", '<a href="chapter-9/">unbuilt</a>')
     page = pipeline.RenderedPage(url="", title="Cover", text="")
-    assert pipeline.check_links(tmp_path, [page]) == [" -> Chapter 9/"]
-    assert pipeline.check_links(tmp_path, [page], scope="Chapter 1") == []
+    assert pipeline.check_links(tmp_path, [page]) == [" -> chapter-9/"]
+    assert pipeline.check_links(tmp_path, [page], scope="chapter-1") == []
 
 
 def test_check_links_reports_a_page_that_was_not_written(tmp_path):
@@ -278,20 +315,20 @@ def test_build_produces_the_cover_and_the_chapter(subset):
     assert subset.ok, subset.broken + subset.maths_errors
     urls = {page.url for page in subset.pages}
     assert "" in urls  # the cover, which the masthead links to
-    assert "Chapter 1/Section 1.1/Walkthrough/" in urls
-    assert "Chapter 1/Review/" in urls
+    assert "chapter-1/section-1.1/learn/" in urls
+    assert "chapter-1/review/" in urls
     assert len(subset.pages) == 18
 
 
 def test_build_writes_the_expected_files(subset):
     for name in ("search.json", "404.html", "robots.txt", "sitemap.xml"):
         assert (subset.out / name).exists(), name
-    assert (subset.out / "Chapter 1" / "index.html").exists()
+    assert (subset.out / "chapter-1" / "index.html").exists()
     assert (subset.out / "assets" / "stylesheets" / "shell.css").exists()
 
 
 def test_build_renders_maths_to_mathml(subset):
-    page = (subset.out / "Chapter 1/Section 1.1/Walkthrough/index.html").read_text()
+    page = (subset.out / "chapter-1/section-1.1/learn/index.html").read_text()
     assert "<math" in page
     assert "math-error" not in page
     # No runtime maths script: the whole point of build-time rendering.
@@ -314,20 +351,20 @@ def test_build_leaves_no_source_links(subset):
 
 def test_build_sets_the_scheme_on_body_for_the_shared_stylesheet(subset):
     """themes.css keys its tokens off body[data-md-color-scheme]."""
-    html = (subset.out / "Chapter 1/index.html").read_text()
+    html = (subset.out / "chapter-1/index.html").read_text()
     assert "document.body.setAttribute" in html
     assert "data-md-color-scheme" in html
 
 
 def test_build_uses_relative_asset_prefixes_for_a_subpath_deployment(subset):
-    html = (subset.out / "Chapter 1/Section 1.1/Walkthrough/index.html").read_text()
+    html = (subset.out / "chapter-1/section-1.1/learn/index.html").read_text()
     assert 'href="../../../assets/stylesheets/shell.css"' in html
 
 
 def test_build_is_deterministic(subset, tmp_path):
     again = pipeline.build(BOOK, "higher", out=tmp_path / "again", chapter=1)
-    first = (subset.out / "Chapter 1/Review/index.html").read_text()
-    second = (again.out / "Chapter 1/Review/index.html").read_text()
+    first = (subset.out / "chapter-1/review/index.html").read_text()
+    second = (again.out / "chapter-1/review/index.html").read_text()
     assert first == second
 
 
@@ -353,17 +390,17 @@ def test_foundation_profile_omits_higher_only_sections(tmp_path):
 
     result = pipeline.build(BOOK, "foundation", out=tmp_path / "f", chapter=5)
     urls = {page_.url for page_ in result.pages}
-    assert not any("Section 5.4/" in url for url in urls)
-    assert not any("Section 5.6/" in url for url in urls)
-    assert any("Section 5.1/" in url for url in urls)
-    assert any("Section 5.5/" in url for url in urls)
+    assert not any("section-5.4/" in url for url in urls)
+    assert not any("section-5.6/" in url for url in urls)
+    assert any("section-5.1/" in url for url in urls)
+    assert any("section-5.5/" in url for url in urls)
 
 
 def test_higher_profile_keeps_higher_only_sections(tmp_path):
     result = pipeline.build(BOOK, "higher", out=tmp_path / "h", chapter=5)
     urls = {page.url for page in result.pages}
-    assert any("Section 5.4/" in url for url in urls)
-    assert any("Section 5.6/" in url for url in urls)
+    assert any("section-5.4/" in url for url in urls)
+    assert any("section-5.6/" in url for url in urls)
 
 
 def test_sitemap_is_omitted_when_no_base_url_is_configured(monkeypatch, subset):
@@ -373,7 +410,7 @@ def test_sitemap_is_omitted_when_no_base_url_is_configured(monkeypatch, subset):
 
 
 def test_canonical_url_uses_the_collection_base_url():
-    url = pipeline.canonical_url(pipeline.books.book_by_id(BOOK), "Chapter 1/")
+    url = pipeline.canonical_url(pipeline.books.book_by_id(BOOK), "chapter-1/")
     assert url.startswith("http")
     assert "gcse-maths" in url
-    assert url.endswith("/Chapter%201/")
+    assert url.endswith("/chapter-1/")

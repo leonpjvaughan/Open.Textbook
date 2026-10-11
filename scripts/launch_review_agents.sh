@@ -6,7 +6,7 @@
 #   TEMPLATE=scripts/glossary-prompt.md scripts/launch_review_agents.sh glossary
 set -uo pipefail
 
-cd "$(dirname "${BASH_SOURCE[0]}")/.."
+cd "$(dirname "${BASH_SOURCE[0]}")/.." || exit 1
 mkdir -p agent-runs
 TEMPLATE="${TEMPLATE:-scripts/review-prompt.md}"
 
