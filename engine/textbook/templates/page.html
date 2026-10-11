@@ -13,6 +13,12 @@
 <link rel="canonical" href="$canonical">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" type="image/svg+xml" href="${prefix}assets/icons/favicon.svg">
+<!-- iOS ignores the manifest's icons and wants a PNG it can size itself, so
+     without this an iPhone home screen gets a screenshot of the page. The
+     file is committed rather than rasterised at build time: the build has no
+     dependable rasteriser, and an icon that silently goes missing is worse
+     than 2 kB in git. See assets/icons/README.md. -->
+<link rel="apple-touch-icon" href="${prefix}assets/icons/apple-touch-icon.png">
 $prefs_script
 <link rel="stylesheet" href="${prefix}assets/stylesheets/themes.css">
 <link rel="stylesheet" href="${prefix}assets/stylesheets/extra.css">

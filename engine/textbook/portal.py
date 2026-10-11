@@ -342,6 +342,9 @@ def not_found() -> str:
 {meta}
 {prefs_snippet(prefs_config())}
 <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+<!-- Root-absolute, like the stylesheets below and this page's link home: a
+     404 is served for a request at any depth. -->
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/stylesheets/themes.css">
 <link rel="stylesheet" href="/assets/stylesheets/portal.css">
 </head>
@@ -527,7 +530,7 @@ def main() -> int:
 
     icons_target = SITE / "assets" / "icons"
     icons_target.mkdir(parents=True, exist_ok=True)
-    for name in ("app-icon.svg", "favicon.svg"):
+    for name in ("app-icon.svg", "favicon.svg", "apple-touch-icon.png"):
         shutil.copyfile(ASSETS / "icons" / name, icons_target / name)
 
     label = build_label() or "no build identity"

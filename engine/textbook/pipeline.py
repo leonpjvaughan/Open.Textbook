@@ -489,7 +489,7 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
     # assets/icons/). The tab icon is declared in the page shell, which reaches
     # it by the same prefix-relative path the stylesheets use.
     icons = assets / "icons"
-    for name in ("app-icon.svg", "favicon.svg"):
+    for name in ("app-icon.svg", "favicon.svg", "apple-touch-icon.png"):
         source = icons / name
         if source.exists():
             dest = out / "assets" / "icons" / name
