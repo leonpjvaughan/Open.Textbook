@@ -43,16 +43,19 @@ document.body.setAttribute(
 <header class="masthead" data-pagefind-ignore>
   <div class="wrap masthead__inner">
     <a class="masthead__brand" href="${prefix}">$site_title</a>
+    <!-- The search is a sibling of the actions rather than one of them: at phone
+         widths it has to be able to take a row of its own, and a flex item cannot
+         escape a parent to do that. -->
+    <div class="search">
+      <input id="search-input" type="search" placeholder="Search" aria-label="Search this book">
+      <ul id="search-results" class="search__results"></ul>
+    </div>
     <div class="masthead__actions">
       <!-- Root-absolute, like the 404's link and the manifest: a book is served
            from a subpath, so a relative link home would be wrong at every depth.
            The landing page is where a reader changes book or qualification, and
            before this there was no way back to it from inside a book. -->
       <a class="masthead__home" href="/">All books</a>
-      <div class="search">
-        <input id="search-input" type="search" placeholder="Search" aria-label="Search this book">
-        <ul id="search-results" class="search__results"></ul>
-      </div>
       $settings_trigger
     </div>
   </div>

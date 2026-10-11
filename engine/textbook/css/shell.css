@@ -54,12 +54,16 @@ a { color: var(--tb-link); }
 .masthead__inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  /* Not `space-between`: this row wraps on a phone, and with wrapping the
+   * search has to be able to take its own line. The brand pushes the rest right
+   * instead, which reads identically and survives the wrap. */
+  gap: 0.5rem;
   min-height: 3.5rem;
 }
 
 .masthead__brand {
+  margin-right: auto;
+  min-width: 0;
   font-family: var(--tb-font-display);
   font-size: 1.05rem;
   font-weight: 600;
@@ -231,4 +235,51 @@ a { color: var(--tb-link); }
     max-height: none;
     border-bottom: 1px solid var(--tb-rule);
   }
+}
+
+/* Phone widths. The masthead is three controls wide and does not fit beside a
+ * book title: at 360px the settings button sat past the right edge, which is the
+ * control a reader needs to change the theme. So the row wraps, and the search —
+ * the one item that is comfortable at full width — takes the second line. */
+@media (max-width: 48rem) {
+  .masthead__inner {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .masthead__actions { order: 1; }
+  .search { order: 2; flex: 1 1 100%; }
+  .search input { width: 100%; }
+  /* The results panel is positioned against the search box, which is now the
+   * full width of the page. */
+  .search__results { left: 0; right: 0; min-width: 0; }
+  /* A long book title would otherwise push the actions off the row before the
+   * search has a chance to wrap. */
+  .masthead__brand {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* A worked example or a data table is routinely wider than a phone. Without a
+ * scroll container the table widens the page, and everything pinned to the
+ * viewport — the masthead controls, the booklet button — ends up off the right
+ * edge. This is why `render_page` wraps every table. */
+.table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* A display equation has the same problem and its own solution: MathML has no
+ * line-breaking, so a wide one cannot wrap and widens the page instead. Measured
+ * at 360px, the widest equation on a Learn page was 360px inside a 328px column,
+ * which pushed the document 16px wide. Scroll it, as a table is scrolled. */
+.md-typeset math[display="block"] {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  /* Room for the scrollbar so it does not sit on the equation. */
+  padding-bottom: 0.15rem;
 }

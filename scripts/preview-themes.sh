@@ -41,6 +41,11 @@ while read -r -a build; do
   uv run python -m textbook.pipeline "${build[@]}"
 done < <(uv run python -m textbook.plan --configs)
 
+# Phone widths, before the bundle sweep: a page that overflows sideways makes
+# every colour question moot, and this is the check that catches it. It costs a
+# few seconds and it is why the gate must not be built around a desktop browser.
+node scripts/check-mobile.cjs site
+
 # The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages. Adding a book means
 # adding its landing route and one of its chapter routes here.
 exec node test/theme-preview.cjs \
