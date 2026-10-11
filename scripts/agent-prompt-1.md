@@ -4,7 +4,8 @@ prose. Your job is to move the practice sets into verified banks.
 
 READ FIRST, and follow exactly:
 - AGENTS.md (chapter formula and the "Voice and language" standard — binding)
-- AGENTS.md → "Watch out for", PROBLEMS.md (bank schema; :::problems / :::answers)
+- books/AGENTS.md → "Problem bank" (the traps live there now, not in the root)
+- PROBLEMS.md (bank schema; :::problems / :::answers)
 - The finished example: "books/gcse-maths/docs/Chapter 1/Section 1.1/Problems/index.md" and
   books/gcse-maths/problems/chapter-01-practice-1.1.yaml
 

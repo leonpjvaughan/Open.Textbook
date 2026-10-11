@@ -1620,14 +1620,19 @@ cannot repeat the gap: in `tests/test_agent_context.py`, assert that every
 
 ---
 
-## 31. The root `AGENTS.md` is still 26 KB — a second pass
+## 31. The root `AGENTS.md` — **done**
 
-**Measured, 2026-10-11.** Splitting the `## Watch out for` groups by area and
-adding the routing table took the root from 29 KB to **25.8 KB**: the 34 area
-bullets left, the routing table arrived, and the nested files now carry 2–6 KB
-each. So the *routing* is solved — an agent editing `assets/` reads 4 KB of
-targeted rules instead of everything — but an agent still reads the whole root
-first, and most of it will not be about the task.
+**Done, 2026-10-11.** The root is **25.8 KB → 12.1 KB** (480 lines → 215) and
+`assets/AGENTS.md` grew from 4.1 KB to 9.6 KB to receive the detail. Every rule
+survived: the six principles, the four page contracts and the four page-name
+rules are still *stated* in the root as one-liners, and only the detail moved —
+a root that pointed at a skill for the rule itself would have been smaller and
+worse.
+
+The first pass had taken 29 KB to 25.8 KB by splitting the `## Watch out for`
+groups and adding the routing table, which solved the *routing*: an agent editing
+`assets/` now reads 4 KB of targeted rules rather than everything. This pass
+solved the *size*, by not restating what a skill already owns.
 
 The remaining bulk is three sections that are **already skills**:
 
@@ -1637,11 +1642,17 @@ The remaining bulk is three sections that are **already skills**:
 | The chapter formula | 71 | `.agents/skills/author-textbook-chapter/SKILL.md` is the same material, and the router already sends chapter work there. |
 | Voice and language | 51 | `.agents/skills/write-textbook-prose/SKILL.md` likewise. |
 
-**Fix:** each becomes a short statement of the rule plus a pointer, and the detail
-stays in the one place that already owns it. The rule of thumb: if a section is a
-skill, the root should name it rather than restate it — two copies drift, and the
-copy an agent reads may be the one that is stale.
+**The rule of thumb applied:** if a section is a skill, the root names it rather
+than restates it — two copies drift, and the copy an agent reads may be the one
+that is stale.
 
-**Done means.** The root is under about 12 KB, `tests/test_agent_context.py`
-still passes, and nothing that was only in the root has been lost — the same
-before-and-after mapping the first pass produced.
+**Done means.**
+
+- [x] The root is **12.1 KB**, down from 25.8 KB — a little over the 12.0 target,
+      deliberately: going under it meant replacing stated rules with bare
+      pointers, which is the thing that would have made the file worse.
+- [x] `tests/test_agent_context.py` still passes, and `scripts/check.sh` is green.
+- [x] Nothing lost — a phrase-level audit of the before-file against the final
+      root plus `assets/AGENTS.md`, with a mapping table per section.
+- [x] The one stale pointer outside the scope was fixed: `scripts/agent-prompt-1.md`
+      sent a reader to `AGENTS.md → "Watch out for"`, which no longer exists there.
