@@ -394,13 +394,15 @@ The file names the apex only for `TXT` records. **Never import an apex `A`,
 `AAAA` or `CNAME`**: the apex belongs to the Worker's custom domain, and importing
 an address record there collides with it.
 
-**Why CAA is commented out.** A CAA record restricts which certificate
-authorities may issue for the domain. It is real hardening with a delayed failure
-mode: if the list omits the CA Cloudflare actually uses, nothing breaks on the day
-and the certificate fails to **renew** weeks later. So enable it only after
-checking the list against the issuer of the live certificate, and re-check at each
-renewal. The three CAs in the commented block are the ones Cloudflare documents
-for custom domains.
+**Why CAA is enabled now.** A CAA record restricts which certificate
+authorities may issue for the domain. It is real hardening with a delayed
+failure mode: if the list omits the CA Cloudflare actually uses, nothing breaks
+on the day and the certificate fails to **renew** weeks later. It was therefore
+held back until the issuer could be checked. Checked 2026-10-11: the live
+certificate is issued by **Google Trust Services** (`CN=WE1`), valid to
+2027-01-09. The three CAs in the file are the ones Cloudflare documents for
+custom domains, so the list is a superset of what is known to be in use. Re-check
+it when that certificate comes up for renewal.
 
 The canonical link should read `https://open-textbook.org/gcse-maths/higher/`. If
 it points at the old GitHub Pages URL, `base_url` in `collection.yaml` did not

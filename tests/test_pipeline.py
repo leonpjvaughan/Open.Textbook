@@ -576,3 +576,26 @@ def test_the_page_shell_declares_no_literal_colour():
     stripped = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
     assert not re.search(r"#[0-9a-fA-F]{3,8}\b", stripped)
     assert not re.search(r"\b(rgba?|hsla?)\(", stripped, re.I)
+
+
+def test_a_page_the_build_did_not_write_fails_the_build(tmp_path):
+    """A recorded run printed "page was not written" for several routes and still
+    exited 0. The code path cannot do that: `check_links` records the page in
+    `broken`, and `BuildResult.ok` is false whenever `broken` is non-empty, so
+    `main` returns 1. The exit code in that note is therefore unexplained by the
+    code — this pins the invariant it was worried about, so the next sighting is
+    a real regression rather than a mystery.
+    """
+    out = tmp_path / "site"
+    (out / "one").mkdir(parents=True)
+    (out / "one" / "index.html").write_text("<p>One</p>", encoding="utf-8")
+
+    pages = [
+        pipeline.RenderedPage(url="/one/", title="One"),
+        pipeline.RenderedPage(url="/two/", title="Two"),  # never written
+    ]
+    broken = pipeline.check_links(out, pages)
+    assert any("page was not written" in entry for entry in broken), broken
+
+    result = pipeline.BuildResult(out=out, pages=pages, broken=broken)
+    assert not result.ok, "a page the build did not write must fail the build"

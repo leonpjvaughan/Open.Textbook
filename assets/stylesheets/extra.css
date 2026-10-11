@@ -52,21 +52,6 @@
   --md-default-fg-color--lighter: var(--tb-ink-lighter);
   --md-default-fg-color--lightest: var(--tb-rule);
   --md-primary-fg-color: var(--tb-accent);
-  --md-primary-fg-color--dark: var(--tb-accent-dark);
-}
-
-/* The closed search overlay is transparent but still in the tab order: the
- * scroll wrapper inside it has `tabindex="0"`, so Tab lands in an invisible box
- * and the next Tab closes the overlay under the reader. `visibility: hidden`
- * takes it out of the tab order; the `:checked` sibling rule restores it when
- * the search opens. The checkbox `#__search` is a sibling of `.md-header` in
- * Material's body, which is what makes the general-sibling selector reach the
- * output inside the header. */
-.md-search__output {
-  visibility: hidden;
-}
-[data-md-toggle="search"]:checked ~ .md-header .md-search__output {
-  visibility: visible;
 }
 
 /* Typography: the faces themselves are bundle tokens; sizes are shared, so a
@@ -198,9 +183,6 @@
 .bk-fab:hover { filter: brightness(1.06); }
 .bk-fab [aria-hidden] { font-size: 1.1rem; }
 .bk-fab__label { font-size: 0.82rem; }
-
-/* Material's back-to-top button shares the corner; move it clear. */
-.md-top { right: 6.4rem; }
 
 .bk-panel {
   position: fixed;

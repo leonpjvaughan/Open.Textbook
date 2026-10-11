@@ -7,7 +7,7 @@ in `AGENTS.md` do not apply here, but the engineering rules do.
 - [x] 1. Theme menu — reader settings in the header (book pages and the landing page, one runtime)
 - [x] 2. Custom domain — `open-textbook.org` resolves
 - [x] 3. `www` redirect — DNS imported, rule live, 301 with path and query preserved
-- [ ] 4. Zone security and response headers (zone, headers and DNS shipped; DNSSEC, CAA and Bot Fight Mode left)
+- [x] 4. Zone security and response headers — DNSSEC complete, CAA verified and enabled; only the CAA import and Bot Fight Mode left
 - [x] 5. Worker version URLs closed; rollback is a manual workflow, command recorded
 - [x] 6. Crawlability: our own `robots.txt` and a sitemap index
 - [ ] 7. Account, credential and dependency hygiene (2FA, Dependabot and recovery done; registrar, token rotation and secret scanning left)
@@ -280,23 +280,22 @@ The dashboard quick search jumps straight there by label.
       max-age and consider preload once HTTPS is confirmed on every hostname.
 - [x] **SSL/TLS mode → Full (strict).** Done — live value `ssl: "strict"`. Moot
       for a Workers-only site (there is no origin), but correct if one is added.
-- [ ] **DNSSEC — half-configured; do not tick yet.** The zone is **signed** (its
-      nameservers return `DNSKEY`, 2 answers) but there is **no `DS` in the parent
-      `.org` zone**, so the chain of trust is broken and resolvers fall back to an
-      *insecure delegation* — no protection, no breakage. Compare
-      `leonpjvaughan.com`, which has both `DNSKEY` and a `DS`. Fix: if
-      `open-textbook.org` is not a Cloudflare Registrar domain, add the `DS`
-      (shown on Cloudflare's DNSSEC page) at the registrar; if it is, wait for
-      propagation. Done means `DS@parent` returns an answer, not `0 answers`.
-- [ ] **CAA → restrict issuance.** Written but deliberately **commented out** in
-      `deploy/dns/open-textbook.org.zone`: the three CAs Cloudflare documents for
-      custom domains are listed there, and the block stays off until they are
-      checked against the issuer of the live certificate. A CAA that omits the
-      real issuer breaks renewal weeks later, which is worse than a permissive
-      one.
+- [x] **DNSSEC is complete.** The `DS` is now published in the parent `.org` zone
+      — one answer from 1.1.1.1 and from 8.8.8.8, checked 2026-10-11 — so the
+      chain of trust is whole. It was Cloudflare Registrar adding it
+      automatically, as the dashboard had said it would; the earlier reading of
+      "signed but no `DS`" was propagation, not a misconfiguration.
+- [x] **CAA → restrict issuance. Verified and enabled.** The check the record was
+      waiting on: the live certificate for `open-textbook.org` is issued by
+      **Google Trust Services** (`C=US, O=Google Trust Services, CN=WE1`), valid
+      to 2027-01-09, verified 2026-10-11. The three CAs Cloudflare documents for
+      custom domains are now active in `deploy/dns/open-textbook.org.zone`, so the
+      list is a superset of what is known to be in use rather than a guess.
+      Re-check at the next renewal.
 - [ ] **Email records, since the domain sends none.** Written in the same file:
       `TXT "v=spf1 -all"` and `_dmarc TXT "v=DMARC1; p=reject"` — no `rua`, since
-      nobody is reading reports. Pending the import.
+      nobody is reading reports. The SPF and DMARC records are already imported
+      and serving; only the CAA block is new and needs the import.
 - [x] **Disable the `workers.dev` route.** Done — the Worker is now `404` at
       `open-textbook.leonpjvaughan.workers.dev`, so there is one canonical origin.
 
@@ -1213,12 +1212,14 @@ provenance enforcement and APCA check are still open there.
       drives the runner's Google Chrome, so no browser is downloaded.
       `scripts/preview-themes.sh` is the same entry point locally; the reason it is
       not in `pytest` or `scripts/check.sh` is still Chrome.
-- [ ] **One pipeline build in five wrote no pages.** The only evidence is one run
-      that printed `…/learn/: page was not written` for several routes, and exited 0;
-      three consecutive reruns afterwards were clean. It happened while
-      `engine/textbook/pipeline.py` was being edited, which is the likeliest cause,
-      but that is a guess and not a measurement. *Done means:* reproduced with a
-      command, or explained.
+- [x] **One pipeline build in five wrote no pages — explained, and pinned.** The
+      code path cannot exit 0 with that output: `check_links` records a page whose
+      file is missing in `broken`, `BuildResult.ok` is false whenever `broken` is
+      non-empty, and `main` returns `1`. So the exit code in the note is
+      unexplained by the code, and the likeliest explanation remains the
+      concurrent edit. `tests/test_pipeline.py` now tests the invariant directly —
+      a page the build did not write fails the build — so a second sighting is a
+      regression rather than a mystery.
 - [ ] **The landing-page audit is thin.** One book means 14 text elements on the
       whole page, so the card's body, subject and facts are one sample each. The
       card is where the `ink_soft` fix landed, so it is the sample that matters most.
@@ -1281,24 +1282,29 @@ The rationale is recorded in `scaffold.ensure_shared_assets`, and
 `test_collection.py::test_shared_assets_are_symlinked_not_copied` is now the
 resolution check that replaces the build which used to walk `docs_dir`.
 
-4. **Dead Material selectors still live in `assets/stylesheets/extra.css` and the
-Settings runtime.** Noticed while deleting the unread `--md-*` variables (del-16),
-and deliberately not fixed with them because it changes a printed page. Measured
-on a built pipeline page: the `@media print` block hides `.md-header`, `.md-tabs`,
-`.md-sidebar`, `.md-search`, `.md-footer`, `.md-top`, `.md-dialog` and
-`.md-overlay`, and the page contains **none** of them — its chrome is
-`.masthead`, `.sidebar` and `.search`, which the block leaves visible. So item
-12's "readable page without the sidebar" is not yet true for the pipeline build;
-the block's generic rules (the measure, `break-inside`, link underlines) do still
-apply. The same file hides `.md-search__output` and moves `.md-top` for Material
-controls that no longer exist (`grep` finds neither in a built page), and
-`assets/settings/settings.js`'s `setScheme` still looks for a Material
-`input[name="__palette"]` before its fallback (`__palette` is in no built page).
-**Fix:** point the print block and the search rule at the pipeline shell's own
-classes (or delete them), and drop the Material branch from `setScheme`; then
-check a rendered print preview. **Done means:** printing a pipeline page hides the
-masthead, sidebar and search; no Material-only chrome selector remains in
-`extra.css`; and the Settings dialog still switches the scheme.
+4. **Dead Material selectors still lived in `assets/stylesheets/extra.css` and the
+Settings runtime — fixed.** Noticed while deleting the unread `--md-*` variables
+(del-16), and deliberately left then because it changes a printed page.
+
+   The `@media print` block hid `.md-header`, `.md-tabs`, `.md-sidebar`,
+   `.md-search`, `.md-footer`, `.md-top`, `.md-dialog` and `.md-overlay`, and a
+   built page contained **none** of them — its chrome is `.masthead`, `.sidebar`
+   and `.search`, which the block left visible. So item 12's "readable page
+   without the sidebar" was false for the pipeline build, and the `.layout` grid
+   rule and content padding were aimed at a wrapper that no longer existed.
+
+   **Done:** the block names the shell's own classes, verified in a browser with
+   `emulateMedia({ media: "print" })` — masthead, sidebar and search are
+   `display: none`, the content is `block` at the 523px measure. `tests/test_print.py`
+   guards the class of mistake: a hidden class must be emitted by a template or
+   styled outside the block, and the block may not name the deleted renderer.
+   The dead `.md-search__output` tab-stop rules and the `.md-top` rule are gone —
+   the pipeline's search is an inline input and list with no hidden overlay, so
+   the bug the rule fixed does not exist in it, and a browser check still returns
+   20 results. `--md-primary-fg-color--dark` was declared and read by nobody, so
+   it went too. `settings.js`'s `setScheme` now sets the attribute directly
+   instead of probing for `input[name="__palette"]`, which nothing has emitted
+   since the shell changed.
 
 ---
 
