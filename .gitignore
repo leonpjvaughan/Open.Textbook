@@ -1,5 +1,11 @@
 # Build output
 site/
+
+# Local secrets. Never commit these: .env holds the Cloudflare deploy
+# credentials. See .env.example for the shape.
+.env
+.env.*
+!.env.example
 test/site/
 var/
 
