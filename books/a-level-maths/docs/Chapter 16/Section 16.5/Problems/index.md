@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.5 Resolving forces and coplanar equilibrium — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: R4
+Work through these on your own. Choose the two axes first, then resolve every
+force and set the sum in each direction to zero. Take $g = 9.8$ m s$^{-2}$.
+Where a question asks for a decimal, give the number of decimal places it names.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-16-practice-16.5
+
+:::answers chapter-16-practice-16.5

@@ -1,0 +1,132 @@
+# Practice set for 16.1, force and Newton's first law.
+#
+# The questions and the answers on the page come from these records: `:::problems`
+# prints the numbered list and `:::answers` the solutions. The book declares
+# SymPy only, so every check is a SymPy kind: a resultant of forces is a `vector`
+# operation, a size is its `norm`, and a direction that is not exact is an
+# `approx` with a stated tolerance. Newton's first law itself is reasoning, so
+# each record carries a piece of algebra the reader can check.
+chapter: 16
+problems:
+  - id: p1-same-direction
+    section: "16.1"
+    dfe: [R1]
+    statement: 'Two horizontal forces of $12$ N and $5$ N act on a particle in the same direction. Find the resultant force.'
+    answer_label: 'The resultant force'
+    check: {kind: evaluate, expression: "12 + 5", answer: "17"}
+    answer_text: 'The forces act in the same direction, so add them: the resultant is $12 + 5 = 17$ N in that direction.'
+
+  - id: p2-opposite-directions
+    section: "16.1"
+    dfe: [R1]
+    statement: 'A horizontal force of $20$ N acts to the right and a horizontal force of $8$ N acts to the left on a particle. Find the resultant force, giving its size and direction.'
+    answer_label: 'The resultant force'
+    check: {kind: evaluate, expression: "20 - 8", answer: "12"}
+    answer_text: 'The forces oppose each other, so subtract: $20 - 8 = 12$ N. The larger force points to the right, so the resultant is $12$ N to the right.'
+
+  - id: p3-perpendicular-size
+    section: "16.1"
+    dfe: [R1]
+    statement: 'Forces of $6$ N and $8$ N act at right angles at a point. Find the size of the resultant force.'
+    answer_label: 'The size of the resultant'
+    check: {kind: vector, op: norm, args: ["Matrix([6, 8])"], answer: "10"}
+    answer_text: 'The two forces are perpendicular, so use Pythagoras: $\sqrt{6^2 + 8^2} = \sqrt{100} = 10$ N.'
+
+  - id: p4-perpendicular-direction
+    section: "16.1"
+    dfe: [R1]
+    statement: 'A force of $9$ N acts due east and a force of $40$ N acts due north at a point. Find the size of the resultant force and its direction from east.'
+    answer_label: 'The size and the direction'
+    check:
+      kind: all
+      checks:
+        - {kind: vector, op: norm, args: ["Matrix([9, 40])"], answer: "41"}
+        - {kind: approx, value: "atan2(40, 9) * 180 / pi", target: "77.32", tolerance: "0.05"}
+    answer_text: 'The size is $\sqrt{9^2 + 40^2} = \sqrt{1681} = 41$ N. The direction is $\tan^{-1}\left(\dfrac{40}{9}\right) = 77.3^\circ$ north of east, to $1$ d.p.'
+
+  - id: p5-three-forces-equilibrium
+    section: "16.1"
+    dfe: [R1]
+    statement: 'Two of the three forces on a particle in equilibrium are $5$ N due east and $3$ N due north. Find the third force as a column vector.'
+    answer_label: 'The third force'
+    check:
+      kind: vector
+      op: scale
+      args: ["-1", "Matrix([5, 3])"]
+      answer: "Matrix([-5, -3])"
+    answer_text: 'The forces add to the zero vector, so the third force is $-(5\mathbf{i} + 3\mathbf{j}) = -5\mathbf{i} - 3\mathbf{j}$ N. It has size $\sqrt{5^2 + 3^2} = \sqrt{34} \approx 5.83$ N.'
+
+  - id: p6-three-components
+    section: "16.1"
+    dfe: [R1]
+    statement: 'Forces $(2, 3)$ N, $(-5, 1)$ N and $(4, -6)$ N act at a point. Find the resultant force as a column vector.'
+    answer_label: 'The resultant'
+    check:
+      kind: vector
+      op: add
+      args: ["Matrix([2, 3])", "Matrix([-5, 1])", "Matrix([4, -6])"]
+      answer: "Matrix([1, -2])"
+    answer_text: 'Add the matching components: the resultant is $(2 - 5 + 4)\mathbf{i} + (3 + 1 - 6)\mathbf{j} = \mathbf{i} - 2\mathbf{j}$ N.'
+
+  - id: p7-constant-velocity
+    section: "16.1"
+    dfe: [R1]
+    statement: 'A car travels at a constant velocity. The driving force is $800$ N and the total resistance is $800$ N. Find the resultant force on the car.'
+    answer_label: 'The resultant force'
+    check: {kind: evaluate, expression: "800 - 800", answer: "0"}
+    answer_text: 'The driving force and the resistance are equal and opposite, so the resultant is $800 - 800 = 0$ N. A zero resultant is exactly what Newton''s first law needs for a constant velocity.'
+
+  - id: p8-terminal-velocity
+    section: "16.1"
+    dfe: [R1]
+    statement: 'A skydiver of weight $700$ N falls at terminal velocity. Find the resultant force on the skydiver and the size of the air resistance.'
+    answer_label: 'The resultant and the air resistance'
+    check: {kind: evaluate, expression: "700 - 700", answer: "0"}
+    answer_text: 'At terminal velocity the skydiver moves at a constant velocity, so the resultant force is $0$ N. The air resistance must balance the weight, so it is $700$ N upwards.'
+
+  - id: p9-angle-between
+    section: "16.1"
+    dfe: [R1]
+    statement: 'Two forces of $10$ N each act at a point with an angle of $60^\circ$ between them. Find the size of the resultant force.'
+    answer_label: 'The size of the resultant'
+    check:
+      kind: approx
+      value: "sqrt(10**2 + 10**2 + 2*10*10*cos(pi/3))"
+      target: "17.32"
+      tolerance: "0.05"
+    answer_text: 'The size is $\sqrt{10^2 + 10^2 + 2(10)(10)\cos 60^\circ} = \sqrt{300} = 10\sqrt{3} \approx 17.3$ N. The two forces partly cancel, so the answer is less than $20$ N.'
+
+  - id: p10-size-and-angle
+    section: "16.1"
+    dfe: [R1]
+    statement: 'Forces of $15$ N and $20$ N act at right angles at a point. Find the size of the resultant and the angle it makes with the $20$ N force.'
+    answer_label: 'The size and the angle'
+    check:
+      kind: all
+      checks:
+        - {kind: vector, op: norm, args: ["Matrix([20, 15])"], answer: "25"}
+        - {kind: approx, value: "atan2(15, 20) * 180 / pi", target: "36.87", tolerance: "0.05"}
+    answer_text: 'The size is $\sqrt{20^2 + 15^2} = \sqrt{625} = 25$ N. The angle with the $20$ N force is $\tan^{-1}\left(\dfrac{15}{20}\right) = 36.9^\circ$ to $1$ d.p.'
+
+  - id: p11-equilibrium-size
+    section: "16.1"
+    dfe: [R1]
+    statement: 'A particle is held in equilibrium by three forces. Two of them are $8$ N east and $6$ N north. Find the size of the third force.'
+    answer_label: 'The size of the third force'
+    check: {kind: vector, op: norm, args: ["Matrix([-8, -6])"], answer: "10"}
+    answer_text: 'The third force is the opposite of the sum of the other two, so it is $(-8, -6)$ N. Its size is $\sqrt{8^2 + 6^2} = 10$ N. The three force arrows, drawn head to tail, close up to make a triangle.'
+
+  - id: p12-resultant-of-components
+    section: "16.1"
+    dfe: [R1]
+    statement: 'Forces $(4, -1)$ N and $(-1, 5)$ N act at a point. Find the resultant force and its size.'
+    answer_label: 'The resultant and its size'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([4, -1])", "Matrix([-1, 5])"]
+          answer: "Matrix([3, 4])"
+        - {kind: vector, op: norm, args: ["Matrix([3, 4])"], answer: "5"}
+    answer_text: 'The resultant is $(4 - 1)\mathbf{i} + (-1 + 5)\mathbf{j} = 3\mathbf{i} + 4\mathbf{j}$ N. Its size is $\sqrt{3^2 + 4^2} = 5$ N.'

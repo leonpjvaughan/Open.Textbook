@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.3 Displacement–time and velocity–time graphs — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: Q2
+Work through these on your own. Decide whether the question needs a gradient or
+an area, then watch the sign of every area below the time axis. A distance adds
+the sizes; a displacement adds the signs.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-15-practice-15.3
+
+:::answers chapter-15-practice-15.3

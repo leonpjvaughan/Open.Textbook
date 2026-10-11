@@ -1,0 +1,139 @@
+# Practice set for 15.1, fundamental and derived SI quantities and units.
+#
+# Every record is arithmetic in the base or derived units. The units live in the
+# statement; the CAS fields carry the numbers only, so a conversion is checked by
+# the exact factor. No `units` oracle is available to this book.
+chapter: 15
+problems:
+  - id: p1-convert-kilometres
+    section: "15.1"
+    dfe: [P1]
+    statement: 'Convert $2.5$ km to metres.'
+    answer_label: 'The length in metres'
+    check:
+      kind: evaluate
+      expression: "2.5*1000"
+      answer: "2500"
+    answer_text: 'Kilo means $1000$, so multiply by $1000$: $2.5 \text{ km} = 2500$ m.'
+
+  - id: p2-convert-centimetres
+    section: "15.1"
+    dfe: [P1]
+    statement: 'Convert $340$ cm to metres.'
+    answer_label: 'The length in metres'
+    check:
+      kind: evaluate
+      expression: "340/100"
+      answer: "17/5"
+    answer_text: 'Centi means $0.01$, so divide by $100$: $340 \text{ cm} = \dfrac{340}{100} = 3.4$ m.'
+
+  - id: p3-kilometres-per-hour
+    section: "15.1"
+    dfe: [P1]
+    statement: 'Convert $90$ km/h to m/s.'
+    answer_label: 'The speed in m/s'
+    check:
+      kind: evaluate
+      expression: "90*5/18"
+      answer: "25"
+    answer_text: 'Multiply by $\dfrac{5}{18}$: $90 \times \dfrac{5}{18} = 25$ m/s. The number in m/s is smaller than in km/h, as expected.'
+
+  - id: p4-metres-per-second
+    section: "15.1"
+    dfe: [P1]
+    statement: 'Convert $15$ m/s to km/h.'
+    answer_label: 'The speed in km/h'
+    check:
+      kind: evaluate
+      expression: "15*18/5"
+      answer: "54"
+    answer_text: 'Multiply by $\dfrac{18}{5}$, which is $3.6$: $15 \times 3.6 = 54$ km/h. The number in km/h is larger than in m/s, as expected.'
+
+  - id: p5-weight-of-a-mass
+    section: "15.1"
+    dfe: [P1]
+    statement: 'Find the weight of a mass of $7.5$ kg. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The weight'
+    check:
+      kind: evaluate
+      expression: "7.5*9.8"
+      answer: "73.5"
+    answer_text: 'Weight is a force, so use $W = mg$: $W = 7.5 \times 9.8 = 73.5$ N.'
+
+  - id: p6-moment-of-a-force
+    section: "15.1"
+    dfe: [P1]
+    statement: 'Find the moment of a force of $36$ N acting at a perpendicular distance of $0.25$ m from a pivot.'
+    answer_label: 'The moment'
+    check:
+      kind: evaluate
+      expression: "36*0.25"
+      answer: "9"
+    answer_text: 'Multiply the force by the perpendicular distance: $36 \times 0.25 = 9$ N m.'
+
+  - id: p7-force-from-mass-and-acceleration
+    section: "15.1"
+    dfe: [P1]
+    statement: 'A mass of $8$ kg accelerates at $2.5$ m/s$^2$. Find the force that acts on it.'
+    answer_label: 'The force'
+    check:
+      kind: evaluate
+      expression: "8*2.5"
+      answer: "20"
+    answer_text: 'Use $F = ma$: $F = 8 \times 2.5 = 20$ N.'
+
+  - id: p8-acceleration-from-force
+    section: "15.1"
+    dfe: [P1]
+    statement: 'A force of $45$ N acts on a mass of $9$ kg. Find the acceleration.'
+    answer_label: 'The acceleration'
+    check:
+      kind: evaluate
+      expression: "45/9"
+      answer: "5"
+    answer_text: 'Rearrange $F = ma$ to $a = \dfrac{F}{m}$: $a = \dfrac{45}{9} = 5$ m/s$^2$.'
+
+  - id: p9-milliseconds
+    section: "15.1"
+    dfe: [P1]
+    statement: 'Convert $250$ ms to seconds.'
+    answer_label: 'The time in seconds'
+    check:
+      kind: evaluate
+      expression: "250/1000"
+      answer: "1/4"
+    answer_text: 'Milli means $0.001$, so divide by $1000$: $250 \text{ ms} = \dfrac{250}{1000} = 0.25$ s.'
+
+  - id: p10-mass-and-weight
+    section: "15.1"
+    dfe: [P1]
+    statement: 'A bag has a mass of $2$ kg $400$ g. Write the mass in kilograms, and find its weight. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The mass in kg and the weight'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2 + 400/1000", answer: "12/5"}
+        - {kind: evaluate, expression: "(2 + 400/1000)*9.8", answer: "23.52"}
+    answer_text: 'Convert the grams first: $400 \text{ g} = 0.4$ kg, so the mass is $2.4$ kg. Then $W = mg = 2.4 \times 9.8 = 23.52$ N.'
+
+  - id: p11-average-speed
+    section: "15.1"
+    dfe: [P1]
+    statement: 'A cyclist travels $3.6$ km in $5$ minutes. Find the average speed in m/s.'
+    answer_label: 'The average speed'
+    check:
+      kind: evaluate
+      expression: "3600/(5*60)"
+      answer: "12"
+    answer_text: 'Change the units first: $3.6 \text{ km} = 3600$ m and $5$ minutes $= 300$ s. Then divide: $\dfrac{3600}{300} = 12$ m/s.'
+
+  - id: p12-force-from-a-moment
+    section: "15.1"
+    dfe: [P1]
+    statement: 'A force produces a moment of $18$ N m at a perpendicular distance of $0.6$ m from the pivot. Find the force.'
+    answer_label: 'The force'
+    check:
+      kind: evaluate
+      expression: "18/0.6"
+      answer: "30"
+    answer_text: 'Rearrange the moment formula, $\text{moment} = Fd$: $F = \dfrac{18}{0.6} = 30$ N.'

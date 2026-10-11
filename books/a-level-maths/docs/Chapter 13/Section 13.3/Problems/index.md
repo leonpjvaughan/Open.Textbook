@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 13.3 The Normal distribution as a model — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: N2
+Work through these on your own. Check the second number in $N(\mu, \sigma^2)$:
+it is the variance. Sketch the curve and shade the region before you read the
+table.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-13-practice-13.3
+
+:::answers chapter-13-practice-13.3

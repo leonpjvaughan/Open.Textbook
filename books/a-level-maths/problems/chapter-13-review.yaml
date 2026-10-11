@@ -1,0 +1,163 @@
+# Review set for Chapter 13. Mixed practice across the chapter and earlier
+# statistics and pure content: binomial and Normal probabilities, the Normal
+# approximation, points of inflection, the binomial coefficient, and the
+# correlation and regression from Chapter 11. The check proves the value; the
+# choice of model or method is stated in the answer text.
+chapter: 13
+problems:
+  - id: r1-chapter-binomial
+    section: "13"
+    dfe: [N1]
+    statement: 'Each of 20 seeds germinates with probability 0.8, independently. The random variable $X$ is the number that germinate. Find $P(X \le 13)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 20, p: '4/5'}
+      query: {kind: at_most, value: 13}
+      answer: '0.0867'
+      tolerance: '0.00005'
+    answer_text: 'The quantity is a count in a fixed 20 independent trials with constant $p = 0.8$, so $X \sim B(20, 0.8)$. Then $P(X \le 13) = 1 - P(X \ge 14) \approx 0.0867$. So 13 or fewer seeds germinate in about 8.7% of packets.'
+
+  - id: r2-chapter-normal
+    section: "13"
+    dfe: [N2]
+    statement: 'The height of a mature sunflower is modelled as $X \sim N(45, 6^2)$ cm. Find $P(X > 52)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 45, sigma: 6}
+      query: {kind: at_least, value: 52}
+      answer: '0.1217'
+      tolerance: '0.0001'
+    answer_text: 'The height is a measurement, so the Normal model fits. Standardise: $z = \dfrac{52 - 45}{6} = 1.1667$. Then $P(X > 52) = 1 - \Phi(1.1667) \approx 0.1217$. About 12.2% of plants are taller than 52 cm.'
+
+  - id: r3-binomial-at-most
+    section: "13"
+    dfe: [N1]
+    statement: 'The random variable $X \sim B\left(10, \tfrac13\right)$. Find $P(X \le 2)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 10, p: '1/3'}
+      query: {kind: at_most, value: 2}
+      answer: '0.2991'
+      tolerance: '0.00005'
+    answer_text: 'Add the terms for 0, 1 and 2. The exact value is $\tfrac{5888}{19683} \approx 0.2991$. Keep four decimal places in each term and round once.'
+
+  - id: r4-normal-between
+    section: "13"
+    dfe: [N2]
+    statement: 'A measurement is modelled as $X \sim N(70, 8^2)$. Find $P(62 < X < 78)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 70, sigma: 8}
+      query: {kind: between, low: 62, high: 78}
+      answer: '0.6827'
+      tolerance: '0.0001'
+    answer_text: 'Standardise both ends: $z = \dfrac{62 - 70}{8} = -1$ and $z = \dfrac{78 - 70}{8} = 1$. Then $P(62 < X < 78) = \Phi(1) - \Phi(-1) = 0.6827$. The interval is the one-standard-deviation band.'
+
+  - id: r5-inverse-normal
+    section: "13"
+    dfe: [N2]
+    statement: 'The random variable $X \sim N(100, 15^2)$. Find the value $a$ such that $P(X < a) = 0.90$.'
+    answer_label: 'The value of a'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '100 + 1.2816 * 15', answer: '119.224'}
+        - {kind: distribution, distribution: normal, parameters: {mu: 100, sigma: 15}, query: {kind: at_most, value: '119.224'}, answer: '0.90', tolerance: '0.0001'}
+    answer_text: 'The value of $z$ with $\Phi(z) = 0.90$ is $z = 1.2816$. Then $a = \mu + z\sigma = 100 + 1.2816 \times 15 = 119.224$, so $a \approx 119.2$ (1 d.p.).'
+
+  - id: r6-correlation
+    section: "13"
+    dfe: [L2]
+    statement: 'The pairs of values $(1, 2)$, $(2, 3)$, $(3, 5)$, $(4, 4)$ and $(5, 6)$ are plotted. Work out Pearson product-moment correlation coefficient $r$.'
+    answer_label: 'The correlation coefficient'
+    check:
+      kind: correlation
+      x: [1, 2, 3, 4, 5]
+      y: [2, 3, 5, 4, 6]
+      answer: '9/10'
+    answer_text: 'The correlation coefficient is $r = \tfrac{9}{10} = 0.9$. The points rise from left to right and lie close to a straight line, so the correlation is positive and strong. A strong correlation does not prove that one variable causes the other.'
+
+  - id: r7-regression
+    section: "13"
+    dfe: [L2]
+    statement: 'For the pairs $(1, 2)$, $(2, 3)$, $(3, 5)$, $(4, 4)$ and $(5, 6)$, find the least-squares regression line $y = a + bx$.'
+    answer_label: 'The line'
+    check:
+      kind: regression
+      x: [1, 2, 3, 4, 5]
+      y: [2, 3, 5, 4, 6]
+      answer: {gradient: '9/10', intercept: '13/10'}
+    answer_text: 'The least-squares line is $y = 1.3 + 0.9x$, so the gradient is $b = \tfrac{9}{10} = 0.9$ and the intercept is $a = \tfrac{13}{10} = 1.3$. The gradient says that each extra unit of $x$ is associated with about 0.9 more of $y$.'
+
+  - id: r8-binomial-coefficient
+    section: "13"
+    dfe: [D1]
+    statement: 'Work out $\dbinom{10}{3}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: 'factorial(10) / (factorial(3) * factorial(7))'
+      answer: '120'
+    answer_text: '$\dbinom{10}{3} = \dfrac{10!}{3!\,7!} = \dfrac{10 \times 9 \times 8}{3 \times 2 \times 1} = 120$. This coefficient appears in the binomial expansion and in the binomial probability formula.'
+
+  - id: r9-points-of-inflection
+    section: "13"
+    dfe: [N2]
+    statement: 'The random variable $X \sim N(50, 5^2)$. Work out the two $x$-values of the points of inflection, which are at $\mu - \sigma$ and $\mu + \sigma$.'
+    answer_label: 'The two values'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '50 - 5', answer: '45'}
+        - {kind: evaluate, expression: '50 + 5', answer: '55'}
+    answer_text: 'The points of inflection are at $x = 45$ and $x = 55$. At these points the curve is steepest and changes from concave to convex, so the standard deviation fixes where the curve turns.'
+
+  - id: r10-normal-approximation
+    section: "13"
+    dfe: [N2]
+    statement: 'The random variable $X \sim B(50, 0.4)$. Use the Normal approximation, with the continuity correction, to estimate $P(X \le 15)$.'
+    answer_label: 'The estimate'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 20, sigma: 'sqrt(12)'}
+      query: {kind: at_most, value: '31/2'}
+      answer: '0.0970'
+      tolerance: '0.0001'
+    answer_text: 'Here $np = 20$ and $n(1-p) = 30$, both greater than 5, so the approximation is reasonable. Use $\mu = 20$ and $\sigma = \sqrt{12} \approx 3.464$. The continuity correction turns $X \le 15$ into $Y \le 15.5$, so $z = -1.30$ and $P(X \le 15) \approx 0.0970$.'
+
+  - id: r11-two-sigma-band
+    section: "13"
+    dfe: [N2]
+    statement: 'The random variable $Z \sim N(0, 1)$. Work out $P(-2 < Z < 2)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 0, sigma: 1}
+      query: {kind: between, low: -2, high: 2}
+      answer: '0.9545'
+      tolerance: '0.0001'
+    answer_text: '$P(-2 < Z < 2) = \Phi(2) - \Phi(-2) = 0.9772 - 0.0228 = 0.9545$. About 95% of a Normal variable lies within two standard deviations of the mean.'
+
+  - id: r12-normal-approximation-tail
+    section: "13"
+    dfe: [N2]
+    statement: 'The random variable $X \sim B(15, 0.8)$. Use the Normal approximation to estimate $P(X \ge 12)$.'
+    answer_label: 'The estimate'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 12, sigma: 'sqrt(12/5)'}
+      query: {kind: at_least, value: '23/2'}
+      answer: '0.6266'
+      tolerance: '0.0001'
+    answer_text: 'Here $np = 12$ and $n(1-p) = 3$, so $n(1-p)$ is not greater than 5 and the approximation is weaker. The matching Normal variable has $\mu = 12$ and $\sigma = \sqrt{15 \times 0.8 \times 0.2} = \sqrt{2.4} \approx 1.549$. The continuity correction turns $X \ge 12$ into $Y \ge 11.5$, so $z \approx -0.323$ and the estimate is $0.6266$. The exact binomial value is $0.6482$, so the estimate is out by about 0.02. This shows why the conditions matter.'

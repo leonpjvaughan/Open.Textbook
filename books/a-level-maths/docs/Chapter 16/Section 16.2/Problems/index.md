@@ -9,9 +9,16 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.2 Newton's second law and F = ma — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: R2
+Work through these on your own. Choose the direction of motion as positive.
+Write the resultant force along that direction, then use $F = ma$. Check the
+units: mass in kilograms, acceleration in metres per second squared, force in
+newtons.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-16-practice-16.2
+
+:::answers chapter-16-practice-16.2

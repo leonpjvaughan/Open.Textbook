@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 13.1 Discrete probability distributions and the binomial distribution — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: N1
+Work through these on your own. Write down $n$, $p$ and $r$ before you
+substitute into the formula.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-13-practice-13.1
+
+:::answers chapter-13-practice-13.1

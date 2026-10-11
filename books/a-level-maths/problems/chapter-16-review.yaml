@@ -1,0 +1,188 @@
+# Review bank for Chapter 16. The items mix this chapter with earlier ones, so
+# the reader chooses a method before calculating. Every `section` names the
+# section the method comes from. The checks prove the algebra; the choice of
+# method and the reason for it are human review.
+chapter: 16
+problems:
+  - id: q1-perpendicular-resultant
+    section: "16.1"
+    dfe: [R1]
+    statement: 'Forces of $9$ N and $12$ N act at right angles at a point. Find the size of the resultant and its direction from the $12$ N force.'
+    answer_label: 'The size and the direction'
+    check:
+      kind: all
+      checks:
+        - {kind: vector, op: norm, args: ["Matrix([12, 9])"], answer: "15"}
+        - {kind: approx, value: "atan2(9, 12) * 180 / pi", target: "36.87", tolerance: "0.05"}
+    answer_text: 'The size is $\sqrt{12^2 + 9^2} = 15$ N. The direction is $\tan^{-1}\left(\dfrac{9}{12}\right) = 36.87^\circ$ from the $12$ N force towards the $9$ N force.'
+
+  - id: q2-second-law
+    section: "16.2"
+    dfe: [R2]
+    statement: 'A car of mass $1500$ kg has a resultant force of $3000$ N along the road. Find its acceleration.'
+    answer_label: 'The acceleration'
+    check: {kind: evaluate, expression: "3000 / 1500", answer: "2"}
+    answer_text: 'Use $F = ma$ with the resultant force: $a = \dfrac{3000}{1500} = 2$ m s$^{-2}$ in the direction of the resultant.'
+
+  - id: q3-weight
+    section: "16.3"
+    dfe: [R3]
+    statement: 'Find the weight of a person of mass $75$ kg. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The weight'
+    check: {kind: evaluate, expression: "75 * 9.8", answer: "735"}
+    answer_text: '$W = mg = 75 \times 9.8 = 735$ N acting downwards.'
+
+  - id: q4-kinematics-and-force
+    section: "16.2"
+    dfe: [R2]
+    statement: 'A car of mass $1200$ kg accelerates from rest to $30$ m s$^{-1}$ in $6$ s. Find its acceleration and the resultant force on it.'
+    answer_label: 'The acceleration and the resultant force'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "30 / 6", answer: "5"}
+        - {kind: evaluate, expression: "1200 * (30 / 6)", answer: "6000"}
+    answer_text: 'Use the motion first: $a = \dfrac{30 - 0}{6} = 5$ m s$^{-2}$. Then $F = ma = 1200 \times 5 = 6000$ N. This mixes Chapter 15 kinematics with Newton''s second law.'
+
+  - id: q5-atwood
+    section: "16.4"
+    dfe: [R4]
+    statement: 'Masses of $5$ kg and $3$ kg hang over a smooth pulley on a light inextensible string and are released. Find the acceleration and the tension. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The acceleration and the tension'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2 * 9.8 / (5 + 3)", answer: "2.45"}
+        - {kind: evaluate, expression: "2 * 5 * 3 * 9.8 / (5 + 3)", answer: "36.75"}
+    answer_text: 'The acceleration is $\dfrac{(5 - 3) \times 9.8}{8} = 2.45$ m s$^{-2}$. For the $3$ kg mass moving up, $T = 3(9.8 + 2.45) = 36.75$ N.'
+
+  - id: q6-resolve-force
+    section: "16.5"
+    dfe: [R4]
+    statement: 'Resolve a force of $90$ N acting at $35^\circ$ above the horizontal into horizontal and vertical components, each to $2$ d.p.'
+    answer_label: 'The two components'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "90*cos(35*pi/180)", target: "73.72", tolerance: "0.01"}
+        - {kind: approx, value: "90*sin(35*pi/180)", target: "51.62", tolerance: "0.01"}
+    answer_text: 'Horizontal component $= 90\cos 35^\circ = 73.72$ N. Vertical component $= 90\sin 35^\circ = 51.62$ N. The angle is measured from the horizontal, so the cosine takes the horizontal part.'
+
+  - id: q7-weight-on-slope
+    section: "16.5"
+    dfe: [R4]
+    statement: 'A weight of $294$ N acts on a body on a slope of $20^\circ$. Find the components along and perpendicular to the slope, each to $2$ d.p.'
+    answer_label: 'The two components'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "294*sin(20*pi/180)", target: "100.54", tolerance: "0.02"}
+        - {kind: approx, value: "294*cos(20*pi/180)", target: "276.28", tolerance: "0.02"}
+    answer_text: 'Along the slope: $294\sin 20^\circ = 100.54$ N. Perpendicular to the slope: $294\cos 20^\circ = 276.28$ N. On a smooth slope the normal reaction is the perpendicular component.'
+
+  - id: q8-limiting-force
+    section: "16.7"
+    dfe: [R6]
+    statement: 'A block of mass $25$ kg rests on a rough horizontal floor. The coefficient of friction is $0.4$. Find the smallest horizontal force that will start it moving. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The smallest force'
+    check: {kind: evaluate, expression: "0.4 * 25 * 9.8", answer: "98"}
+    answer_text: 'The normal reaction is $R = 25 \times 9.8 = 245$ N, so the limiting friction is $0.4 \times 245 = 98$ N. The block starts to move when the push reaches $98$ N.'
+
+  - id: q9-rough-slope
+    section: "16.7"
+    dfe: [R6]
+    statement: 'A block of mass $8$ kg is released on a rough slope of $30^\circ$. The coefficient of friction is $0.25$. Show that the block slides, and find its acceleration, to $2$ d.p. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The acceleration'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, lhs: "8*9.8*sin(pi/6)", relation: ">", rhs: "0.25*8*9.8*cos(pi/6)"}
+        - {kind: approx, value: "(8*9.8*sin(pi/6) - 0.25*8*9.8*cos(pi/6)) / 8", target: "2.78", tolerance: "0.01"}
+    answer_text: 'The weight is $78.4$ N. Down the slope: $78.4\sin 30^\circ = 39.2$ N. Normal reaction: $78.4\cos 30^\circ = 67.90$ N, so the greatest friction is $0.25 \times 67.90 = 16.97$ N. Since $39.2 > 16.97$, the block slides. The resultant is $39.2 - 16.97 = 22.23$ N, so $a \approx 2.78$ m s$^{-2}$.'
+
+  - id: q10-beam-support
+    section: "16.8"
+    dfe: [S1]
+    statement: 'A uniform beam $AB$ has length $4$ m and mass $25$ kg. It rests on supports at $A$ and $B$. A load of mass $40$ kg rests $1$ m from $A$. Find the reaction at each support. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The two reactions'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(25*9.8*2 + 40*9.8*1) / 4", answer: "220.5"}
+        - {kind: evaluate, expression: "(25*9.8 + 40*9.8) - (25*9.8*2 + 40*9.8*1) / 4", answer: "416.5"}
+    answer_text: 'The beam weight is $245$ N at $2$ m from $A$ and the load is $392$ N at $1$ m. Taking moments about $A$: $4R_B = 245 \times 2 + 392 \times 1 = 882$, so $R_B = 220.5$ N. The total is $637$ N, so $R_A = 637 - 220.5 = 416.5$ N.'
+
+  - id: q11-moment-angle
+    section: "16.8"
+    dfe: [S1]
+    statement: 'A force of $30$ N acts at the end of a rod of length $0.8$ m. The force makes an angle of $50^\circ$ with the rod. Find the moment about the other end, to $2$ d.p.'
+    answer_label: 'The moment'
+    check:
+      kind: approx
+      value: "30 * 0.8 * sin(50*pi/180)"
+      target: "18.39"
+      tolerance: "0.01"
+    answer_text: 'The perpendicular distance is $0.8\sin 50^\circ = 0.613$ m. The moment is $30 \times 0.613 \approx 18.39$ N m.'
+
+  - id: q12-pull-at-angle
+    section: "16.6"
+    dfe: [R5]
+    statement: 'A body of mass $25$ kg is pulled along a smooth horizontal floor by a rope at $30^\circ$ to the horizontal with a tension of $120$ N. Find the normal reaction and the acceleration, each to $2$ d.p.'
+    answer_label: 'The normal reaction and the acceleration'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "25*9.8 - 120*sin(pi/6)", answer: "185"}
+        - {kind: approx, value: "120*cos(pi/6) / 25", target: "4.16", tolerance: "0.01"}
+    answer_text: 'The upward component of the pull is $120\sin 30^\circ = 60$ N, so $R = 245 - 60 = 185$ N. The horizontal component is $120\cos 30^\circ = 103.92$ N, so $a = \dfrac{103.92}{25} \approx 4.16$ m s$^{-2}$.'
+
+  - id: q13-table-connected
+    section: "16.4"
+    dfe: [R4]
+    statement: 'A block of mass $7$ kg rests on a smooth horizontal table. It is joined by a light inextensible string over a smooth pulley to a hanging mass of $3$ kg. Find the acceleration and the tension. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The acceleration and the tension'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "3 * 9.8 / (7 + 3)", answer: "2.94"}
+        - {kind: evaluate, expression: "7 * (3 * 9.8 / (7 + 3))", answer: "20.58"}
+    answer_text: 'The hanging weight is $29.4$ N on a total mass of $10$ kg, so $a = 2.94$ m s$^{-2}$. The block on the table has only the tension, so $T = 7 \times 2.94 = 20.58$ N.'
+
+  - id: q14-free-fall-speed
+    section: "16.3"
+    dfe: [R3]
+    statement: 'A stone is released from rest and falls $20$ m. Air resistance is negligible. Find its speed when it has fallen $20$ m, to $2$ d.p. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The speed'
+    check:
+      kind: approx
+      value: "sqrt(2 * 9.8 * 20)"
+      target: "19.80"
+      tolerance: "0.02"
+    answer_text: 'The stone accelerates at $g = 9.8$ m s$^{-2}$. Using $v^2 = u^2 + 2as$ with $u = 0$: $v^2 = 2 \times 9.8 \times 20 = 392$, so $v = \sqrt{392} \approx 19.80$ m s$^{-1}$. The mass does not matter.'
+
+  - id: q15-equilibrium-surd
+    section: "16.5"
+    dfe: [R4]
+    statement: 'A particle is in equilibrium under three forces. Two of them are $(6, 0)$ N and $(-2, 5)$ N. Find the third force and its size, to $3$ d.p.'
+    answer_label: 'The third force and its size'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: scale
+          args: ["-1", "Matrix([4, 5])"]
+          answer: "Matrix([-4, -5])"
+        - {kind: approx, value: "sqrt(4**2 + 5**2)", target: "6.403", tolerance: "0.001"}
+    answer_text: 'The two known forces add to $(6 - 2, 0 + 5) = (4, 5)$ N. The third force cancels it, so it is $(-4, -5)$ N. Its size is $\sqrt{4^2 + 5^2} = \sqrt{41} \approx 6.403$ N.'
+
+  - id: q16-rope-on-rough-slope
+    section: "16.7"
+    dfe: [R6]
+    statement: 'A crate of mass $20$ kg rests on a rough slope of $25^\circ$. The coefficient of friction is $0.3$. A light rope parallel to the slope holds the crate. Show that the crate would slide without the rope, and find the tension needed to hold it in equilibrium, to $2$ d.p. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The tension'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, lhs: "20*9.8*sin(25*pi/180)", relation: ">", rhs: "0.3*20*9.8*cos(25*pi/180)"}
+        - {kind: approx, value: "20*9.8*sin(25*pi/180) - 0.3*20*9.8*cos(25*pi/180)", target: "29.54", tolerance: "0.05"}
+    answer_text: 'The weight is $196$ N. Down the slope: $196\sin 25^\circ = 82.83$ N. The normal reaction is $196\cos 25^\circ = 177.64$ N, so the greatest friction is $0.3 \times 177.64 = 53.29$ N. Since $82.83 > 53.29$, the crate would slide. With the rope holding it, the crate is about to slide down, so friction acts up the slope at its greatest value: $T = 82.83 - 53.29 = 29.54$ N.'

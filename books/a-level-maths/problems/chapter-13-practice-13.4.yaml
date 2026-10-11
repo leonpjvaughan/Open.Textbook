@@ -1,0 +1,171 @@
+# Practice set for 13.4, links to the binomial, histograms and points of
+# inflection. The checks prove the matching Normal parameters, the approximate
+# probability through the continuity-corrected boundary, and the exact
+# binomial value for comparison. The continuity correction itself is a method
+# choice, so the answer text states it.
+chapter: 13
+problems:
+  - id: p1-matching-mean
+    section: "13.4"
+    dfe: [N2]
+    statement: 'The random variable $X \sim B(50, 0.4)$. Work out the mean $\mu = np$ of the matching Normal variable.'
+    answer_label: 'The mean'
+    check:
+      kind: evaluate
+      expression: '50 * (2/5)'
+      answer: '20'
+    answer_text: '$\mu = np = 50 \times 0.4 = 20$. The centre of the Normal curve sits at the centre of the binomial bars.'
+
+  - id: p2-matching-variance
+    section: "13.4"
+    dfe: [N2]
+    statement: 'The random variable $X \sim B(50, 0.4)$. Work out the variance $np(1-p)$ of the matching Normal variable.'
+    answer_label: 'The variance'
+    check:
+      kind: evaluate
+      expression: '50 * (2/5) * (3/5)'
+      answer: '12'
+    answer_text: '$np(1-p) = 50 \times 0.4 \times 0.6 = 12$. The variance is 12, so the standard deviation is $\sqrt{12}$.'
+
+  - id: p3-matching-standard-deviation
+    section: "13.4"
+    dfe: [N2]
+    statement: 'The random variable $X \sim B(50, 0.4)$. Work out the standard deviation $\sigma = \sqrt{np(1-p)}$ of the matching Normal variable.'
+    answer_label: 'The standard deviation'
+    check:
+      kind: evaluate
+      expression: 'sqrt(12)'
+      answer: '2*sqrt(3)'
+    answer_text: '$\sigma = \sqrt{12} = 2\sqrt{3} \approx 3.464$. Both $np = 20$ and $n(1-p) = 30$ are greater than 5, so the approximation is reasonable.'
+
+  - id: p4-approximate-at-most
+    section: "13.4"
+    dfe: [N2]
+    statement: 'The random variable $X \sim B(50, 0.4)$. Use the Normal approximation to estimate $P(X \le 15)$.'
+    answer_label: 'The estimate'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 20, sigma: 'sqrt(12)'}
+      query: {kind: at_most, value: '31/2'}
+      answer: '0.0970'
+      tolerance: '0.0001'
+    answer_text: 'Apply the continuity correction: $X \le 15$ becomes $Y \le 15.5$. Then $z = \dfrac{15.5 - 20}{3.464} \approx -1.30$, and $P(X \le 15) \approx \Phi(-1.30) = 0.0968$. To four decimal places the estimate is 0.0970. The exact binomial value is 0.0955.'
+
+  - id: p5-large-n-mean
+    section: "13.4"
+    dfe: [N2]
+    statement: 'The random variable $X \sim B(100, 0.5)$. Work out the mean of the matching Normal variable.'
+    answer_label: 'The mean'
+    check:
+      kind: evaluate
+      expression: '100 * (1/2)'
+      answer: '50'
+    answer_text: '$\mu = np = 100 \times 0.5 = 50$. With $p = 0.5$ the distribution is symmetric, so the curve is centred on 50.'
+
+  - id: p6-large-n-standard-deviation
+    section: "13.4"
+    dfe: [N2]
+    statement: 'The random variable $X \sim B(100, 0.5)$. Work out the standard deviation of the matching Normal variable.'
+    answer_label: 'The standard deviation'
+    check:
+      kind: evaluate
+      expression: 'sqrt(100 * (1/2) * (1/2))'
+      answer: '5'
+    answer_text: '$\sigma = \sqrt{np(1-p)} = \sqrt{100 \times 0.5 \times 0.5} = \sqrt{25} = 5$. Both $np$ and $n(1-p)$ equal 50, so the approximation conditions hold.'
+
+  - id: p7-approximate-at-most-forty
+    section: "13.4"
+    dfe: [N2]
+    statement: 'The random variable $X \sim B(100, 0.5)$. Use the Normal approximation to estimate $P(X \le 40)$.'
+    answer_label: 'The estimate'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 50, sigma: 5}
+      query: {kind: at_most, value: '81/2'}
+      answer: '0.0287'
+      tolerance: '0.0001'
+    answer_text: 'Apply the continuity correction: $X \le 40$ becomes $Y \le 40.5$. Then $z = \dfrac{40.5 - 50}{5} = -1.9$, and $P(X \le 40) \approx \Phi(-1.9) = 1 - 0.9713 = 0.0287$.'
+
+  - id: p8-within-one-sigma
+    section: "13.4"
+    dfe: [N2]
+    statement: 'The random variable $X \sim N(\mu, \sigma^2)$. Work out $P(\mu - \sigma < X < \mu + \sigma)$, the probability within one standard deviation of the mean.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 0, sigma: 1}
+      query: {kind: between, low: -1, high: 1}
+      answer: '0.6827'
+      tolerance: '0.0001'
+    answer_text: '$P(\mu - \sigma < X < \mu + \sigma) = \Phi(1) - \Phi(-1) = 0.8413 - 0.1587 = 0.6827$, so about 68% of a Normal variable lies within one standard deviation of the mean.'
+
+  - id: p9-within-two-sigma
+    section: "13.4"
+    dfe: [N2]
+    statement: 'The random variable $X \sim N(\mu, \sigma^2)$. Work out $P(\mu - 2\sigma < X < \mu + 2\sigma)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 0, sigma: 1}
+      query: {kind: between, low: -2, high: 2}
+      answer: '0.9545'
+      tolerance: '0.0001'
+    answer_text: '$P(\mu - 2\sigma < X < \mu + 2\sigma) = \Phi(2) - \Phi(-2) = 0.9772 - 0.0228 = 0.9545$, so about 95% lies within two standard deviations.'
+
+  - id: p10-within-three-sigma
+    section: "13.4"
+    dfe: [N2]
+    statement: 'The random variable $X \sim N(\mu, \sigma^2)$. Work out $P(\mu - 3\sigma < X < \mu + 3\sigma)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 0, sigma: 1}
+      query: {kind: between, low: -3, high: 3}
+      answer: '0.9973'
+      tolerance: '0.0001'
+    answer_text: '$P(\mu - 3\sigma < X < \mu + 3\sigma) = \Phi(3) - \Phi(-3) = 0.9987 - 0.0013 = 0.9973$, so about 99.7% lies within three standard deviations.'
+
+  - id: p11-points-of-inflection
+    section: "13.4"
+    dfe: [N2]
+    statement: 'The random variable $X \sim N(50, 5^2)$. The Normal curve has points of inflection at $\mu - \sigma$ and $\mu + \sigma$. Work out the two values of $x$.'
+    answer_label: 'The two values of x'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '50 - 5', answer: '45'}
+        - {kind: evaluate, expression: '50 + 5', answer: '55'}
+    answer_text: 'The points of inflection are at $x = \mu - \sigma = 50 - 5 = 45$ and $x = \mu + \sigma = 50 + 5 = 55$. These are the points where the curve is steepest and changes from concave to convex.'
+
+  - id: p12-approximate-at-most-twenty-four
+    section: "13.4"
+    dfe: [N2]
+    statement: 'The random variable $X \sim B(50, 0.4)$. Use the Normal approximation to estimate $P(X \le 24)$.'
+    answer_label: 'The estimate'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 20, sigma: 'sqrt(12)'}
+      query: {kind: at_most, value: '49/2'}
+      answer: '0.9030'
+      tolerance: '0.0001'
+    answer_text: 'Apply the continuity correction: $X \le 24$ becomes $Y \le 24.5$. Then $z = \dfrac{24.5 - 20}{3.464} \approx 1.30$, and $P(X \le 24) \approx \Phi(1.30) = 0.9030$.'
+
+  - id: p13-exact-for-comparison
+    section: "13.4"
+    dfe: [N2]
+    statement: 'The random variable $X \sim B(50, 0.4)$. Work out the exact binomial probability $P(X \le 15)$, to compare with the Normal estimate.'
+    answer_label: 'The exact probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 50, p: '2/5'}
+      query: {kind: at_most, value: 15}
+      answer: '0.0955'
+      tolerance: '0.00005'
+    answer_text: 'The exact binomial probability is $P(X \le 15) = 0.0955$ (4 d.p.). The Normal estimate of 0.0970 is close, which is why the approximation is useful when $n$ is large.'

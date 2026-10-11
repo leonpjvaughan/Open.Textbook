@@ -1,0 +1,167 @@
+# Practice set for 13.5, selecting an appropriate distribution. The check proves
+# the value once a model is chosen; the choice of model is human review and the
+# answer text gives the reasoning. The without-replacement item shows a context
+# where neither model fits and the probability is found by counting.
+chapter: 13
+problems:
+  - id: p1-coin-count
+    section: "13.5"
+    dfe: [N3, OT2]
+    statement: 'A fair coin is tossed 20 times. The random variable $X$ is the number of heads. State which model fits, and find $P(X = 10)$.'
+    answer_label: 'The model and the probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 20, p: '1/2'}
+      query: {kind: exactly, value: 10}
+      answer: '46189/262144'
+    answer_text: 'The quantity is a count in a fixed 20 independent trials with constant $p = 0.5$, so $X \sim B(20, 0.5)$. Then $P(X = 10) = \dbinom{20}{10}(0.5)^{20} = \tfrac{46189}{262144} \approx 0.1762$.'
+
+  - id: p2-apple-mass
+    section: "13.5"
+    dfe: [N3, OT2]
+    statement: 'The mass of an apple is modelled as $X \sim N(120, 15^2)$ grams. Find $P(X > 140)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 120, sigma: 15}
+      query: {kind: at_least, value: 140}
+      answer: '0.0912'
+      tolerance: '0.0001'
+    answer_text: 'The mass is a measurement, so the Normal model fits. Standardise: $z = \dfrac{140 - 120}{15} \approx 1.333$. Then $P(X > 140) = 1 - \Phi(1.333) \approx 0.0912$.'
+
+  - id: p3-faulty-none
+    section: "13.5"
+    dfe: [N3, OT2]
+    statement: 'A machine produces faulty items with probability 0.04. A sample of 25 items is checked. The random variable $X$ is the number of faulty items. State which model fits, and find $P(X = 0)$.'
+    answer_label: 'The model and the probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 25, p: '1/25'}
+      query: {kind: exactly, value: 0}
+      answer: '0.3604'
+      tolerance: '0.00005'
+    answer_text: 'The quantity is a count in a fixed sample of 25 with constant probability 0.04, so $X \sim B(25, 0.04)$. Then $P(X = 0) = (0.96)^{25} \approx 0.3604$.'
+
+  - id: p4-race-time
+    section: "13.5"
+    dfe: [N3, OT2]
+    statement: 'The time taken by a runner to finish a race is modelled as $X \sim N(60, 10^2)$ minutes. Find $P(X < 70)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 60, sigma: 10}
+      query: {kind: at_most, value: 70}
+      answer: '0.8413'
+      tolerance: '0.0001'
+    answer_text: 'The time is a measurement, so the Normal model fits. Standardise: $z = \dfrac{70 - 60}{10} = 1$. Then $P(X < 70) = \Phi(1) = 0.8413$.'
+
+  - id: p5-without-replacement-none
+    section: "13.5"
+    dfe: [N3, OT2]
+    statement: 'A bag holds 6 red counters and 4 blue counters. Three counters are taken without replacement. The random variable $X$ is the number of red counters. Explain why neither the binomial nor the Normal model fits, and find $P(X = 0)$.'
+    answer_label: 'The probability'
+    check:
+      kind: evaluate
+      expression: '4/120'
+      answer: '1/30'
+    answer_text: 'The probability of red changes after each draw, so $p$ is not constant and the binomial model fails. $X$ is a whole-number count from 0 to 3, so the Normal model fails. Every counter is blue, and there are $\binom{4}{3} = 4$ ways to choose three blues from four against $\binom{10}{3} = 120$ selections in total, so $P(X = 0) = \tfrac{4}{120} = \tfrac{1}{30} \approx 0.0333$.'
+
+  - id: p6-free-throws
+    section: "13.5"
+    dfe: [N3, OT2]
+    statement: 'A basketball player scores a free throw with probability 0.9. She takes 10 free throws. The random variable $X$ is the number she scores. State which model fits, and find $P(X \ge 9)$.'
+    answer_label: 'The model and the probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 10, p: '9/10'}
+      query: {kind: at_least, value: 9}
+      answer: '0.7361'
+      tolerance: '0.00005'
+    answer_text: 'The quantity is a count in a fixed 10 independent trials with constant $p = 0.9$, so $X \sim B(10, 0.9)$. Then $P(X \ge 9) = P(9) + P(10) \approx 0.7361$.'
+
+  - id: p7-measurement-between
+    section: "13.5"
+    dfe: [N3, OT2]
+    statement: 'A measurement is modelled as $X \sim N(30, 5^2)$. Find $P(25 < X < 35)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 30, sigma: 5}
+      query: {kind: between, low: 25, high: 35}
+      answer: '0.6827'
+      tolerance: '0.0001'
+    answer_text: 'Standardise both ends: $z = -1$ and $z = 1$. Then $P(25 < X < 35) = \Phi(1) - \Phi(-1) = 0.6827$. The interval is the one-standard-deviation band.'
+
+  - id: p8-sixes-at-least-one
+    section: "13.5"
+    dfe: [N3, OT2]
+    statement: 'A fair die is rolled 6 times. The random variable $X$ is the number of sixes. State which model fits, and find $P(X \ge 1)$.'
+    answer_label: 'The model and the probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 6, p: '1/6'}
+      query: {kind: at_least, value: 1}
+      answer: '31031/46656'
+    answer_text: 'The quantity is a count in a fixed 6 independent trials with constant $p = \tfrac16$, so $X \sim B(6, \tfrac16)$. Use the complement: $P(X \ge 1) = 1 - \left(\tfrac56\right)^6 = \tfrac{31031}{46656} \approx 0.6651$.'
+
+  - id: p9-jar-mass
+    section: "13.5"
+    dfe: [N3, OT2]
+    statement: 'The mass of a jar is modelled as $X \sim N(500, 20^2)$ grams. Find $P(X > 540)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 500, sigma: 20}
+      query: {kind: at_least, value: 540}
+      answer: '0.0228'
+      tolerance: '0.0001'
+    answer_text: 'Standardise: $z = \dfrac{540 - 500}{20} = 2$. Then $P(X > 540) = 1 - \Phi(2) = 1 - 0.9772 = 0.0228$.'
+
+  - id: p10-fish-mass
+    section: "13.5"
+    dfe: [N3, OT2]
+    statement: 'The mass of a fish is modelled as $X \sim N(2.4, 0.3^2)$ kilograms. Find $P(2.1 < X < 2.7)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: '12/5', sigma: '3/10'}
+      query: {kind: between, low: '21/10', high: '27/10'}
+      answer: '0.6827'
+      tolerance: '0.0001'
+    answer_text: 'Standardise both ends: $z = \dfrac{2.1 - 2.4}{0.3} = -1$ and $z = \dfrac{2.7 - 2.4}{0.3} = 1$. Then $P(2.1 < X < 2.7) = \Phi(1) - \Phi(-1) = 0.6827$.'
+
+  - id: p11-true-false-quiz
+    section: "13.5"
+    dfe: [N3, OT2]
+    statement: 'A quiz has 10 questions, each answered true or false. A student guesses every answer. The random variable $X$ is the number correct. State which model fits, and find $P(X \le 2)$.'
+    answer_label: 'The model and the probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 10, p: '1/2'}
+      query: {kind: at_most, value: 2}
+      answer: '7/128'
+    answer_text: 'The quantity is a count in a fixed 10 independent trials with constant $p = 0.5$, so $X \sim B(10, 0.5)$. Then $P(X \le 2) = \tfrac{1 + 10 + 45}{1024} = \tfrac{56}{1024} = \tfrac{7}{128} \approx 0.0547$.'
+
+  - id: p12-fault-rate-none
+    section: "13.5"
+    dfe: [N3, OT2]
+    statement: 'A machine produces faulty items with probability 0.03. A sample of 40 items is checked. The random variable $X$ is the number of faulty items. State which model fits, and find $P(X = 0)$.'
+    answer_label: 'The model and the probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 40, p: '3/100'}
+      query: {kind: exactly, value: 0}
+      answer: '0.2957'
+      tolerance: '0.00005'
+    answer_text: 'The quantity is a count in a fixed sample of 40 with constant probability 0.03, so $X \sim B(40, 0.03)$. Then $P(X = 0) = (0.97)^{40} \approx 0.2957$.'

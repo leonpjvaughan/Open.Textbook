@@ -1,0 +1,182 @@
+# Practice set for 14.2, binomial tests for a proportion. The checks prove the
+# exact tail probability, the critical region and the decision; that the model
+# and the tail fit the context is human review.
+chapter: 14
+problems:
+  - id: p1-pizza-lower
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A pizza chain claims that 1 delivery in 5 takes more than 30 minutes. In 30 deliveries, 2 take more than 30 minutes. Test the claim at the 5% level against the alternative that the proportion is lower.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 30, p: "1/5"}
+      tail: left
+      observed: 2
+      p_value: "41144886195656851456/931322574615478515625"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {max: 2}
+    answer_text: '$H_0: p = 0.2$ and $H_1: p < 0.2$. Under $H_0$, $X \sim \mathrm{B}(30, 0.2)$. The p-value is $P(X \le 2) = 0.0442 < 0.05$, so reject $H_0$. There is sufficient evidence at the 5% level that fewer than 1 delivery in 5 takes more than 30 minutes.'
+
+  - id: p2-components-lower-retain
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A manufacturer claims that 20% of components are faulty. A sample of 25 components contains 2 faulty ones. Test the claim at the 5% level against the alternative that the proportion is lower.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 25, p: "1/5"}
+      tail: left
+      observed: 2
+      p_value: "29273397577908224/298023223876953125"
+      alpha: "1/20"
+      decision: retain
+      critical_region: {max: 1}
+    answer_text: '$H_0: p = 0.2$ and $H_1: p < 0.2$. The p-value is $P(X \le 2) = 0.0982 > 0.05$, so retain $H_0$. There is not sufficient evidence at the 5% level that fewer than 20% of components are faulty.'
+
+  - id: p3-brand-upper-retain
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A survey claims that 40% of shoppers prefer brand A. In a sample of 30 shoppers, 16 prefer brand A. Test the claim at the 5% level against the alternative that the proportion is higher.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 30, p: "2/5"}
+      tail: right
+      observed: 16
+      p_value: "18078245934238466048/186264514923095703125"
+      alpha: "1/20"
+      decision: retain
+      critical_region: {min: 17}
+    answer_text: '$H_0: p = 0.4$ and $H_1: p > 0.4$. The p-value is $P(X \ge 16) = 0.0971 > 0.05$, so retain $H_0$. There is not sufficient evidence at the 5% level that more than 40% of shoppers prefer brand A.'
+
+  - id: p4-coin-upper
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A coin is tossed 16 times and shows 12 heads. Test at the 5% level whether the coin is biased towards heads.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 16, p: "1/2"}
+      tail: right
+      observed: 12
+      p_value: "2517/65536"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {min: 12}
+    answer_text: '$H_0: p = 0.5$ and $H_1: p > 0.5$. The p-value is $P(X \ge 12) = 0.0384 < 0.05$, so reject $H_0$. There is sufficient evidence at the 5% level that the coin is biased towards heads.'
+
+  - id: p5-spinner-two-reject
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A spinner is claimed to land on red 1 time in 4. In 30 spins it lands on red 13 times. Test at the 5% level whether the spinner is unfair.'
+    answer_label: 'The two-tailed p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 30, p: "1/4"}
+      tail: two
+      observed: 13
+      p_value: "24895772933142889/576460752303423488"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {max: 2, min: 13}
+    answer_text: '$H_0: p = 0.25$ and $H_1: p \ne 0.25$. The smaller tail is $P(X \ge 13) = 0.0216$, so the two-tailed p-value is $2 \times 0.0216 = 0.0432 < 0.05$ and the test rejects $H_0$. There is sufficient evidence at the 5% level that the spinner is unfair.'
+
+  - id: p6-spinner-two-retain
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'The same spinner in question 5 lands on red 12 times in 30 spins. Test at the 5% level whether the spinner is unfair.'
+    answer_label: 'The two-tailed p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 30, p: "1/4"}
+      tail: two
+      observed: 12
+      p_value: "29202510228914957/288230376151711744"
+      alpha: "1/20"
+      decision: retain
+      critical_region: {max: 2, min: 13}
+    answer_text: 'The smaller tail is $P(X \ge 12) = 0.0507$, so the two-tailed p-value is $2 \times 0.0507 = 0.1013 > 0.05$ and the test retains $H_0$. There is not sufficient evidence at the 5% level that the spinner is unfair.'
+
+  - id: p7-compare-five
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A test gives a p-value of $0.0442$. State, with a symbol, how this p-value compares with the 5% significance level, and name the decision.'
+    answer_label: 'The comparison and the decision'
+    check: {kind: compare, lhs: "0.0442", relation: "<", rhs: "0.05"}
+    answer_text: '$0.0442 < 0.05$, so the test rejects $H_0$ at the 5% level.'
+
+  - id: p8-compare-one
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'The same test gives a p-value of $0.0442$. State, with a symbol, how this p-value compares with the 1% significance level, and name the decision.'
+    answer_label: 'The comparison and the decision'
+    check: {kind: compare, lhs: "0.0442", relation: ">", rhs: "0.01"}
+    answer_text: '$0.0442 > 0.01$, so the test retains $H_0$ at the 1% level. The same evidence gives two decisions at two levels.'
+
+  - id: p9-pizza-tail
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A chain claims that 1 delivery in 5 takes more than 30 minutes. Find $P(X \le 2)$ for a sample of 30 deliveries, to 4 decimal places.'
+    answer_label: 'The lower tail probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 30, p: "1/5"}
+      query: {kind: at_most, value: 2}
+      answer: "41144886195656851456/931322574615478515625"
+    answer_text: '$P(X \le 2) = 0.0442$ to 4 decimal places.'
+
+  - id: p10-brand-tail
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A survey claims that 40% of shoppers prefer brand A. Find $P(X \ge 16)$ for a sample of 30 shoppers, to 4 decimal places.'
+    answer_label: 'The upper tail probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 30, p: "2/5"}
+      query: {kind: at_least, value: 16}
+      answer: "18078245934238466048/186264514923095703125"
+    answer_text: '$P(X \ge 16) = 0.0971$ to 4 decimal places.'
+
+  - id: p11-coin-strong-two
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A coin is tossed 20 times and shows 16 heads. Test at the 5% level whether the coin is fair.'
+    answer_label: 'The two-tailed p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 20, p: "1/2"}
+      tail: two
+      observed: 16
+      p_value: "1549/131072"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {max: 5, min: 15}
+    answer_text: '$H_0: p = 0.5$ and $H_1: p \ne 0.5$. The smaller tail is $P(X \ge 16) = 0.0059$, so the two-tailed p-value is $0.0118 < 0.05$ and the test rejects $H_0$. There is sufficient evidence at the 5% level that the coin is not fair.'
+
+  - id: p12-callcentre-upper-retain
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A call centre claims that 70% of calls are answered within 30 seconds. In a sample of 40 calls, 32 are answered in time. Test at the 5% level whether the proportion is higher than the claim.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 40, p: "7/10"}
+      tail: right
+      observed: 32
+      p_value: "277522938124494041228421083536284440137/2500000000000000000000000000000000000000"
+      alpha: "1/20"
+      decision: retain
+      critical_region: {min: 34}
+    answer_text: '$H_0: p = 0.7$ and $H_1: p > 0.7$. The p-value is $P(X \ge 32) = 0.1110 > 0.05$, so retain $H_0$. There is not sufficient evidence at the 5% level that more than 70% of calls are answered within 30 seconds.'

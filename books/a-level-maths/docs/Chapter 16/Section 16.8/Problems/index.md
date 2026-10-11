@@ -9,9 +9,16 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.8 Moments in static contexts — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: S1
+Work through these on your own. Draw the diagram and mark every force with its
+distance from the pivot. Remember the weight of a uniform beam acts at its
+midpoint, and use the perpendicular distance for a force at an angle. Take
+$g = 9.8$ m s$^{-2}$.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-16-practice-16.8
+
+:::answers chapter-16-practice-16.8

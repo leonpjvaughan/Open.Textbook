@@ -10,9 +10,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 13.5 Selecting an appropriate distribution — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: N3, OT2
+Work through these on your own. For each question, state the model and give one
+reason before you calculate. Decide whether the quantity is a count or a
+measurement.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-13-practice-13.5
+
+:::answers chapter-13-practice-13.5

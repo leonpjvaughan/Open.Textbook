@@ -1,0 +1,152 @@
+# Practice set for 15.5, calculus in kinematics.
+#
+# Differentiation and integration are operations, not equivalences, so a
+# derivative is `apply: {op: diff}` and an integral is `apply: {op: integrate}`.
+# An indefinite integral has a free constant, so the record also substitutes the
+# initial condition with `apply: {op: subs}`; the constant is then checked.
+# A time at rest is a `solve` on v = 0.
+chapter: 15
+symbols:
+  t: {real: true}
+problems:
+  - id: p1-velocity-and-acceleration
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'The displacement of a particle is $s = t^2 + 3t$ metres. Find its velocity and its acceleration.'
+    answer_label: 'The velocity and the acceleration'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "t**2 + 3*t", apply: {op: diff, args: [t]}, answer: "2*t + 3"}
+        - {kind: apply, expression: "2*t + 3", apply: {op: diff, args: [t]}, answer: "2"}
+    answer_text: 'Differentiate once: $v = \dfrac{ds}{dt} = 2t + 3$ m/s. Differentiate again: $a = \dfrac{dv}{dt} = 2$ m/s$^2$, which is constant.'
+
+  - id: p2-acceleration-not-constant
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'The displacement of a particle is $s = 2t^3 - 3t^2$ metres. Find its velocity and its acceleration.'
+    answer_label: 'The velocity and the acceleration'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "2*t**3 - 3*t**2", apply: {op: diff, args: [t]}, answer: "6*t**2 - 6*t"}
+        - {kind: apply, expression: "6*t**2 - 6*t", apply: {op: diff, args: [t]}, answer: "12*t - 6"}
+    answer_text: 'Differentiate once: $v = 6t^2 - 6t$ m/s. Differentiate again: $a = 12t - 6$ m/s$^2$. The acceleration depends on $t$, so the constant-acceleration formulae do not apply.'
+
+  - id: p3-displacement-from-velocity
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'A particle has velocity $v = 4t + 1$ m/s. Its displacement is $0$ m when $t = 0$. Find its displacement as a function of time.'
+    answer_label: 'The displacement'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "4*t + 1", apply: {op: integrate, args: [t]}, answer: "2*t**2 + t", variable: t}
+        - {kind: apply, expression: "2*t**2 + t", apply: {op: subs, args: [t, "0"]}, answer: "0"}
+    answer_text: 'Integrate: $s = \int (4t + 1)\,dt = 2t^2 + t + C$. The condition $s = 0$ at $t = 0$ gives $C = 0$, so $s = 2t^2 + t$ m.'
+
+  - id: p4-velocity-from-acceleration
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'A particle has constant acceleration $a = 10$ m/s$^2$. Its velocity is $3$ m/s when $t = 0$. Find its velocity as a function of time.'
+    answer_label: 'The velocity'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "10", apply: {op: integrate, args: [t]}, answer: "10*t + 3", variable: t}
+        - {kind: apply, expression: "10*t + 3", apply: {op: subs, args: [t, "0"]}, answer: "3"}
+    answer_text: 'Integrate: $v = \int 10\,dt = 10t + C$. The condition $v = 3$ at $t = 0$ gives $C = 3$, so $v = 10t + 3$ m/s.'
+
+  - id: p5-displacement-from-acceleration
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'A particle has constant acceleration $a = 10$ m/s$^2$. Its velocity is $3$ m/s and its displacement is $0$ m when $t = 0$. Find its displacement as a function of time.'
+    answer_label: 'The displacement'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "10*t + 3", apply: {op: integrate, args: [t]}, answer: "5*t**2 + 3*t", variable: t}
+        - {kind: apply, expression: "5*t**2 + 3*t", apply: {op: subs, args: [t, "0"]}, answer: "0"}
+    answer_text: 'The velocity is $v = 10t + 3$ m/s from the starting condition. Integrate: $s = \int (10t + 3)\,dt = 5t^2 + 3t + C$. With $s = 0$ at $t = 0$, $C = 0$, so $s = 5t^2 + 3t$ m.'
+
+  - id: p6-times-at-rest
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'The displacement of a particle is $s = t^3 - 3t^2$ metres. Find the times when the particle is at rest.'
+    answer_label: 'The times at rest'
+    check:
+      kind: solve
+      equation: "3*t**2 - 6*t = 0"
+      variable: t
+      answer: ["0", "2"]
+    answer_text: 'The velocity is $v = 3t^2 - 6t = 3t(t - 2)$. Setting $v = 0$ gives $t = 0$ or $t = 2$, so the particle is at rest at $0$ s and $2$ s.'
+
+  - id: p7-time-at-rest
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'The displacement of a particle is $s = 6t - t^2$ metres. Find the time when the particle is at rest.'
+    answer_label: 'The time at rest'
+    check:
+      kind: solve
+      equation: "6 - 2*t = 0"
+      variable: t
+      answer: ["3"]
+    answer_text: 'The velocity is $v = 6 - 2t$. Setting $v = 0$ gives $t = 3$ s. After that time the velocity is negative, so the particle turns around.'
+
+  - id: p8-displacement-over-interval
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'The displacement of a particle is $s = 6t - t^2$ metres for $0 \le t \le 6$. Find the displacement over the whole interval.'
+    answer_label: 'The displacement'
+    check:
+      kind: evaluate
+      expression: "(6*6 - 6**2) - (6*0 - 0**2)"
+      answer: "0"
+    answer_text: 'At $t = 6$, $s = 36 - 36 = 0$ m. At $t = 0$, $s = 0$ m. The displacement is $0 - 0 = 0$ m, so the particle returns to its starting point.'
+
+  - id: p9-distance-over-interval
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'The displacement of a particle is $s = 6t - t^2$ metres for $0 \le t \le 6$. The particle is at rest at $t = 3$. Find the total distance travelled.'
+    answer_label: 'The total distance'
+    check:
+      kind: evaluate
+      expression: "abs((6*3 - 3**2) - (6*0 - 0**2)) + abs((6*6 - 6**2) - (6*3 - 3**2))"
+      answer: "18"
+    answer_text: 'At $t = 3$, $s = 18 - 9 = 9$ m. The particle moves from $0$ m to $9$ m, then back to $0$ m, so the distance travelled is $9 + 9 = 18$ m.'
+
+  - id: p10-velocity-from-varying-acceleration
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'A particle has acceleration $a = 6t$ m/s$^2$. Its velocity is $4$ m/s when $t = 0$. Find its velocity as a function of time.'
+    answer_label: 'The velocity'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "6*t", apply: {op: integrate, args: [t]}, answer: "3*t**2 + 4", variable: t}
+        - {kind: apply, expression: "3*t**2 + 4", apply: {op: subs, args: [t, "0"]}, answer: "4"}
+    answer_text: 'Integrate: $v = \int 6t\,dt = 3t^2 + C$. The condition $v = 4$ at $t = 0$ gives $C = 4$, so $v = 3t^2 + 4$ m/s.'
+
+  - id: p11-displacement-from-varying-velocity
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'A particle has velocity $v = 3t^2 + 4$ m/s and displacement $0$ m when $t = 0$. Find its displacement as a function of time.'
+    answer_label: 'The displacement'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "3*t**2 + 4", apply: {op: integrate, args: [t]}, answer: "t**3 + 4*t", variable: t}
+        - {kind: apply, expression: "t**3 + 4*t", apply: {op: subs, args: [t, "0"]}, answer: "0"}
+    answer_text: 'Integrate term by term: $s = \int (3t^2 + 4)\,dt = t^3 + 4t + C$. With $s = 0$ at $t = 0$, $C = 0$, so $s = t^3 + 4t$ m.'
+
+  - id: p12-distance-with-calculus
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'A particle starts with velocity $5$ m/s and moves with constant acceleration $4$ m/s$^2$. Use calculus to find its displacement after $3$ s.'
+    answer_label: 'The displacement'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "4", apply: {op: integrate, args: [t]}, answer: "4*t + 5", variable: t}
+        - {kind: evaluate, expression: "2*3**2 + 5*3", answer: "33"}
+    answer_text: 'Integrate the acceleration: $v = 4t + 5$ m/s. Integrate the velocity: $s = 2t^2 + 5t$ m, because $s = 0$ at $t = 0$. At $t = 3$, $s = 18 + 15 = 33$ m. The constant-acceleration formula $s = ut + \frac{1}{2}at^2$ gives the same value.'

@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 13.2 Calculating binomial probabilities — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: N1
+Work through these on your own. Write the inequality in words first, then
+choose the shorter route. Round once, at the end.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-13-practice-13.2
+
+:::answers chapter-13-practice-13.2

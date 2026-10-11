@@ -1,0 +1,146 @@
+# Practice set for 15.4, the constant-acceleration formulae.
+#
+# The checks are arithmetic on the SUVAT formulae. Units and directions live in
+# the statement; the CAS fields hold numbers only. A deceleration is a negative
+# number, and the reader is expected to keep one positive direction.
+chapter: 15
+problems:
+  - id: p1-final-velocity-and-displacement
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A cyclist moves at $6$ m/s and accelerates at $3$ m/s$^2$ for $5$ s. Find the final velocity and the displacement.'
+    answer_label: 'The final velocity and the displacement'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "6 + 3*5", answer: "21"}
+        - {kind: evaluate, expression: "6*5 + 1/2*3*5**2", answer: "135/2"}
+    answer_text: 'Use $v = u + at$: $v = 6 + 3 \times 5 = 21$ m/s. Then $s = ut + \frac{1}{2}at^2 = 30 + 37.5 = 67.5$ m.'
+
+  - id: p2-from-rest
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A car starts from rest and accelerates at $4$ m/s$^2$ for $6$ s. Find its final velocity and the distance travelled.'
+    answer_label: 'The final velocity and the distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "0 + 4*6", answer: "24"}
+        - {kind: evaluate, expression: "0*6 + 1/2*4*6**2", answer: "72"}
+    answer_text: 'From rest, $u = 0$: $v = 0 + 4 \times 6 = 24$ m/s, and $s = \frac{1}{2} \times 4 \times 36 = 72$ m.'
+
+  - id: p3-braking-to-rest
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A car travelling at $25$ m/s brakes uniformly and stops in $100$ m. Find the acceleration and the time taken.'
+    answer_label: 'The acceleration and the time'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(0**2 - 25**2)/(2*100)", answer: "-25/8"}
+        - {kind: evaluate, expression: "100/((25 + 0)/2)", answer: "8"}
+    answer_text: 'Use $v^2 = u^2 + 2as$ with $v = 0$: $0 = 625 + 200a$, so $a = -\dfrac{625}{200} = -3.125$ m/s$^2$. The average velocity is $12.5$ m/s, so $t = \dfrac{100}{12.5} = 8$ s.'
+
+  - id: p4-velocity-from-distance
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A particle starts from rest and accelerates at $2$ m/s$^2$ over a distance of $36$ m. Find its final velocity and the time taken.'
+    answer_label: 'The final velocity and the time'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "sqrt(0**2 + 2*2*36)", answer: "12"}
+        - {kind: evaluate, expression: "12/2", answer: "6"}
+    answer_text: 'Use $v^2 = u^2 + 2as$: $v^2 = 0 + 2 \times 2 \times 36 = 144$, so $v = 12$ m/s. Then $v = u + at$ gives $12 = 2t$, so $t = 6$ s.'
+
+  - id: p5-greatest-height
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A ball is thrown vertically upwards at $14$ m/s. Find the greatest height it reaches. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The greatest height'
+    check:
+      kind: evaluate
+      expression: "14**2/(2*9.8)"
+      answer: "10"
+    answer_text: 'At the greatest height $v = 0$. Use $v^2 = u^2 + 2as$ with $a = -9.8$: $0 = 196 - 19.6s$, so $s = 10$ m.'
+
+  - id: p6-time-to-rest
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A ball is thrown vertically upwards at $19.6$ m/s. Find the time it takes to reach its greatest height. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The time to the greatest height'
+    check:
+      kind: evaluate
+      expression: "19.6/9.8"
+      answer: "2"
+    answer_text: 'At the greatest height $v = 0$. Use $v = u + at$ with $a = -9.8$: $0 = 19.6 - 9.8t$, so $t = 2$ s.'
+
+  - id: p7-dropped-ball
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A ball is dropped from rest and falls for $3$ s. Taking downwards as positive, find its final velocity and the distance fallen. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The final velocity and the distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "0 + 9.8*3", answer: "147/5"}
+        - {kind: evaluate, expression: "0*3 + 1/2*9.8*3**2", answer: "441/10"}
+    answer_text: 'With downwards positive, $u = 0$ and $a = 9.8$: $v = 9.8 \times 3 = 29.4$ m/s, and $s = \frac{1}{2} \times 9.8 \times 9 = 44.1$ m.'
+
+  - id: p8-braking-time-and-distance
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A car travelling at $30$ m/s brakes at $6$ m/s$^2$ until it stops. Find the stopping time and the stopping distance.'
+    answer_label: 'The stopping time and the distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "30/6", answer: "5"}
+        - {kind: evaluate, expression: "30*5 - 1/2*6*5**2", answer: "75"}
+    answer_text: 'The car stops, so $v = 0$. From $v = u + at$: $0 = 30 - 6t$, so $t = 5$ s. Then $s = ut + \frac{1}{2}at^2 = 150 - 75 = 75$ m.'
+
+  - id: p9-accelerating-train
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A train accelerates uniformly from $12$ m/s to $24$ m/s over $8$ s. Find its acceleration and the distance travelled.'
+    answer_label: 'The acceleration and the distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(24 - 12)/8", answer: "3/2"}
+        - {kind: evaluate, expression: "(12 + 24)/2*8", answer: "144"}
+    answer_text: 'Use $a = \dfrac{v - u}{t} = \dfrac{24 - 12}{8} = 1.5$ m/s$^2$. Then $s = \dfrac{u + v}{2}t = \dfrac{12 + 24}{2} \times 8 = 144$ m.'
+
+  - id: p10-return-to-the-hand
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A stone is thrown vertically upwards at $9.8$ m/s and returns to the thrower''s hand at the same height. Find the total time in the air and the greatest height. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The total time and the greatest height'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2*(9.8/9.8)", answer: "2"}
+        - {kind: evaluate, expression: "9.8**2/(2*9.8)", answer: "49/10"}
+    answer_text: 'The time to the greatest height is $t = \dfrac{u}{g} = 1$ s, so the total time is $2$ s. The greatest height is $\dfrac{u^2}{2g} = \dfrac{9.8^2}{19.6} = 4.9$ m.'
+
+  - id: p11-find-the-final-velocity
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A particle moving at $5$ m/s accelerates at $2$ m/s$^2$ over a distance of $44$ m. Find its final velocity.'
+    answer_label: 'The final velocity'
+    check:
+      kind: evaluate
+      expression: "sqrt(5**2 + 2*2*44)"
+      answer: "sqrt(201)"
+    answer_text: 'Use $v^2 = u^2 + 2as$: $v^2 = 25 + 176 = 201$, so $v = \sqrt{201} \approx 14.2$ m/s. The value is not a whole number, so the surd form is the exact answer.'
+
+  - id: p12-two-stages
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A car starts from rest and accelerates at $2$ m/s$^2$ for $5$ s. It then travels at a constant velocity for $10$ s. Find the total distance travelled.'
+    answer_label: 'The total distance'
+    check:
+      kind: evaluate
+      expression: "1/2*2*5**2 + (2*5)*10"
+      answer: "125"
+    answer_text: 'In the first stage the car travels $\frac{1}{2} \times 2 \times 25 = 25$ m and reaches $10$ m/s. In the second stage it travels $10 \times 10 = 100$ m. The total is $125$ m.'

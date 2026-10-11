@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.3 Weight and motion under gravity — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: R3
+Work through these on your own. Decide first whether the answer is a mass or a
+force, and use the right unit. Unless a question says otherwise, take
+$g = 9.8$ m s$^{-2}$.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-16-practice-16.3
+
+:::answers chapter-16-practice-16.3

@@ -1,0 +1,166 @@
+# Review bank for Chapter 12. The items mix this chapter with the statistics of
+# Chapter 11, so the reader chooses a method before calculating. Each check
+# proves the arithmetic; the choice of method and the reason for it are human
+# review.
+chapter: 12
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: r1-greater-than-four-or-odd
+    section: "12.1"
+    dfe: [M1]
+    statement: 'A fair six-sided die is rolled once. Find the probability of a number greater than 4 or an odd number.'
+    answer_label: 'The probability'
+    check:
+      kind: evaluate
+      expression: "2/6 + 3/6 - 1/6"
+      answer: "2/3"
+    answer_text: 'The numbers greater than 4 are 5 and 6. The odd numbers are 1, 3 and 5. The number 5 is in both sets, so subtract it once: $\dfrac{2}{6} + \dfrac{3}{6} - \dfrac{1}{6} = \dfrac{4}{6} = \dfrac{2}{3}$.'
+
+  - id: r2-independent-product
+    section: "12.1"
+    dfe: [M1]
+    statement: 'Events $A$ and $B$ are independent with $P(A) = 0.6$ and $P(B) = 0.5$. Find $P(A \text{ and } B)$.'
+    answer_label: 'The probability of A and B'
+    check:
+      kind: evaluate
+      expression: "0.6 * 0.5"
+      answer: "3/10"
+    answer_text: 'For independent events, multiply the probabilities: $0.6 \times 0.5 = 0.3 = \dfrac{3}{10}$.'
+
+  - id: r3-conditional-basic
+    section: "12.2"
+    dfe: [M2]
+    statement: 'For two events $A$ and $B$, $P(A \text{ and } B) = 0.12$ and $P(B) = 0.4$. Find $P(A \mid B)$.'
+    answer_label: 'The conditional probability'
+    check:
+      kind: evaluate
+      expression: "0.12 / 0.4"
+      answer: "3/10"
+    answer_text: 'Use the formula: $P(A \mid B) = \dfrac{P(A \text{ and } B)}{P(B)} = \dfrac{0.12}{0.4} = 0.3 = \dfrac{3}{10}$.'
+
+  - id: r4-different-colours
+    section: "12.2"
+    dfe: [M2]
+    statement: 'A bag has 4 white counters and 6 black counters. Two counters are taken at random, without replacement. Find the probability that the two counters are different colours.'
+    answer_label: 'The probability that the counters are different colours'
+    check:
+      kind: evaluate
+      expression: "4/10 * 6/9 + 6/10 * 4/9"
+      answer: "8/15"
+    answer_text: 'The counters are different on two paths: white then black gives $\dfrac{4}{10} \times \dfrac{6}{9} = \dfrac{24}{90}$, and black then white gives $\dfrac{6}{10} \times \dfrac{4}{9} = \dfrac{24}{90}$. Adding gives $\dfrac{48}{90} = \dfrac{8}{15}$.'
+
+  - id: r5-test-reverse
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'A test for a fault has sensitivity $0.9$ and false-positive rate $0.08$. The fault affects 5% of items. Find the probability that an item has the fault, given a positive result.'
+    answer_label: 'The probability that the item has the fault'
+    check:
+      kind: evaluate
+      expression: "(5/100 * 9/10) / (5/100 * 9/10 + 95/100 * 8/100)"
+      answer: "45/121"
+    answer_text: 'The fault and a positive result give $\dfrac{5}{100} \times \dfrac{9}{10} = \dfrac{45}{1000}$. No fault and a positive result give $\dfrac{95}{100} \times \dfrac{8}{100} = \dfrac{76}{1000}$. So $P(\text{positive}) = \dfrac{121}{1000}$ and $P(\text{fault} \mid \text{positive}) = \dfrac{45}{121} \approx 0.372$.'
+
+  - id: r6-expected-faults
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'A model gives a probability of $0.04$ that a machine produces a faulty part in one hour. Find the expected number of faulty parts in 250 hours.'
+    answer_label: 'The expected number of faulty parts'
+    check:
+      kind: evaluate
+      expression: "0.04 * 250"
+      answer: "10"
+    answer_text: 'The expected number is $0.04 \times 250 = 10$. This is a long-run average, so a particular 250 hours may give a different count.'
+
+  - id: r7-mean
+    section: "11.5"
+    dfe: [L3]
+    statement: 'Find the mean of $12, 15, 16, 18, 20, 21$.'
+    answer_label: 'The mean'
+    check:
+      kind: statistic
+      data: [12, 15, 16, 18, 20, 21]
+      stat: mean
+      answer: "17"
+    answer_text: 'The values sum to 102 over 6 values, so the mean is $\dfrac{102}{6} = 17$.'
+
+  - id: r8-standard-deviation
+    section: "11.5"
+    dfe: [L3]
+    statement: 'Find the standard deviation of $12, 15, 16, 18, 20, 21$, dividing by $n$.'
+    answer_label: 'The standard deviation'
+    check:
+      kind: statistic
+      data: [12, 15, 16, 18, 20, 21]
+      stat: std
+      convention: population
+      answer: "2*sqrt(21)/3"
+    answer_text: 'The mean is 17. The squared deviations sum to 56, so the variance is $\dfrac{56}{6} = \dfrac{28}{3}$ and $\sigma = \dfrac{2\sqrt{21}}{3} = 3.06$ (3 s.f.).'
+
+  - id: r9-frequency-density
+    section: "11.3"
+    dfe: [L1]
+    statement: 'A class of width 10 contains 45 values. Find the frequency density.'
+    answer_label: 'The frequency density'
+    check:
+      kind: evaluate
+      expression: "45 / 10"
+      answer: "9/2"
+    answer_text: 'Frequency density is frequency divided by class width: $\dfrac{45}{10} = 4.5 = \dfrac{9}{2}$.'
+
+  - id: r10-stratified-sample
+    section: "11.2"
+    dfe: [K1]
+    statement: 'A population has 450 members in one stratum and 150 in another. A stratified sample of 60 is taken. Find the number from the 450 stratum.'
+    answer_label: 'The sample size from the 450 stratum'
+    check:
+      kind: evaluate
+      expression: "(450 / 600) * 60"
+      answer: "45"
+    answer_text: 'The population is 600, so the 450 stratum gives $\dfrac{450}{600} \times 60 = 45$ members. The other stratum gives 15, and the two add to 60.'
+
+  - id: r11-gradient
+    section: "11.4"
+    dfe: [L2]
+    statement: 'A line of best fit passes through the points $(2, 10)$ and $(6, 22)$. Find its gradient.'
+    answer_label: 'The gradient'
+    check:
+      kind: evaluate
+      expression: "(22 - 10) / (6 - 2)"
+      answer: "3"
+    answer_text: 'Gradient $= \dfrac{\text{change in } y}{\text{change in } x} = \dfrac{22 - 10}{6 - 2} = 3$. The line rises by 3 for each extra unit of $x$.'
+
+  - id: r12-histogram-probability
+    section: "11.3"
+    dfe: [L1]
+    statement: 'A histogram of 200 values has frequency density 6 in a class of width 10. Estimate the probability that a value lies in this class.'
+    answer_label: 'The estimated probability'
+    check:
+      kind: evaluate
+      expression: "(6 * 10) / 200"
+      answer: "3/10"
+    answer_text: 'The frequency is frequency density multiplied by class width: $6 \times 10 = 60$. The probability is the frequency divided by the total: $\dfrac{60}{200} = \dfrac{3}{10}$.'
+
+  - id: r13-heart-or-king
+    section: "12.1"
+    dfe: [M1]
+    statement: 'A card is drawn at random from a standard pack of 52. Event $A$ is a heart. Event $B$ is a king. Find $P(A \text{ or } B)$.'
+    answer_label: 'The probability'
+    check:
+      kind: evaluate
+      expression: "13/52 + 4/52 - 1/52"
+      answer: "4/13"
+    answer_text: 'There are 13 hearts and 4 kings. The king of hearts is counted twice, so subtract it once: $\dfrac{13}{52} + \dfrac{4}{52} - \dfrac{1}{52} = \dfrac{16}{52} = \dfrac{4}{13}$.'
+
+  - id: r14-die-model-difference
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'A six-sided die is rolled 300 times. A model predicts 50 of each face. The observed count of sixes is 72. Find the model prediction for sixes and the difference from the observed count.'
+    answer_label: 'The prediction and the difference'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "300 / 6", answer: "50"}
+        - {kind: evaluate, expression: "72 - 50", answer: "22"}
+    answer_text: 'The model predicts $\dfrac{300}{6} = 50$ sixes. The observed count is 72, which is 22 higher. The difference is large, so the model of a fair die may not fit. A refinement is to estimate the probability of a six from the observed data.'

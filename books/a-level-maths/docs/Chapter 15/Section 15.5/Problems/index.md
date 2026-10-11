@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.5 Calculus in kinematics — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: Q4
+Work through these on your own. Decide whether you need a derivative or an
+integral, and apply the initial condition before you call the answer finished.
+When a particle turns around, split the interval before you find a distance.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-15-practice-15.5
+
+:::answers chapter-15-practice-15.5

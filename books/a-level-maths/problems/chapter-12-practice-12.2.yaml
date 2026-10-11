@@ -1,0 +1,140 @@
+# Practice set for 12.2, conditional probability and the conditional
+# probability formula. The checks prove the arithmetic of a conditional
+# probability or a tree-diagram path. The choice of method and the wording of a
+# reason are human review.
+chapter: 12
+problems:
+  - id: p1-table-physics-given-maths
+    section: "12.2"
+    dfe: [M2]
+    statement: 'A college has 200 students. 120 study Mathematics, 80 study Physics, and 50 study both. A student is chosen at random. Find the probability that the student studies Physics, given that the student studies Mathematics.'
+    answer_label: 'The probability that the student studies Physics, given Mathematics'
+    check:
+      kind: evaluate
+      expression: "50/120"
+      answer: "5/12"
+    answer_text: 'The condition restricts the sample space to the 120 students who study Mathematics. Of those, 50 study Physics: $P(\text{Physics} \mid \text{Mathematics}) = \dfrac{50}{120} = \dfrac{5}{12}$.'
+
+  - id: p2-table-maths-given-physics
+    section: "12.2"
+    dfe: [M2]
+    statement: 'A college has 200 students. 120 study Mathematics, 80 study Physics, and 50 study both. A student is chosen at random. Find the probability that the student studies Mathematics, given that the student studies Physics.'
+    answer_label: 'The probability that the student studies Mathematics, given Physics'
+    check:
+      kind: evaluate
+      expression: "50/80"
+      answer: "5/8"
+    answer_text: 'Now the condition restricts the sample space to the 80 students who study Physics. Of those, 50 study Mathematics: $P(\text{Mathematics} \mid \text{Physics}) = \dfrac{50}{80} = \dfrac{5}{8}$. The two conditional probabilities are different, so the order of the condition matters.'
+
+  - id: p3-formula-basic
+    section: "12.2"
+    dfe: [M2]
+    statement: 'For two events $A$ and $B$, $P(A \text{ and } B) = 0.2$ and $P(B) = 0.5$. Find $P(A \mid B)$.'
+    answer_label: 'The conditional probability'
+    check:
+      kind: evaluate
+      expression: "0.2 / 0.5"
+      answer: "2/5"
+    answer_text: 'Use the conditional probability formula: $P(A \mid B) = \dfrac{P(A \text{ and } B)}{P(B)} = \dfrac{0.2}{0.5} = 0.4 = \dfrac{2}{5}$.'
+
+  - id: p4-multiplication-rule
+    section: "12.2"
+    dfe: [M2]
+    statement: 'For two events $A$ and $B$, $P(A \mid B) = 0.7$ and $P(B) = 0.6$. Find $P(A \text{ and } B)$.'
+    answer_label: 'The probability of A and B'
+    check:
+      kind: evaluate
+      expression: "0.7 * 0.6"
+      answer: "21/50"
+    answer_text: 'Rearrange the formula: $P(A \text{ and } B) = P(A \mid B) \times P(B) = 0.7 \times 0.6 = 0.42 = \dfrac{21}{50}$.'
+
+  - id: p5-independence-from-conditional
+    section: "12.2"
+    dfe: [M2]
+    statement: 'For two events $A$ and $B$, $P(A \text{ and } B) = 0.2$, $P(B) = 0.5$ and $P(A) = 0.4$. Find $P(A \mid B)$ and state, with a reason, whether $A$ and $B$ are independent.'
+    answer_label: 'The conditional probability and the test for independence'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "0.2 / 0.5", answer: "2/5"}
+        - {kind: evaluate, expression: "(0.2 / 0.5) - 0.4", answer: "0"}
+    answer_text: '$P(A \mid B) = \dfrac{0.2}{0.5} = 0.4$. This equals $P(A)$, so knowing that $B$ happened does not change the probability of $A$. The events are independent.'
+
+  - id: p6-tree-red-then-blue
+    section: "12.2"
+    dfe: [M2]
+    statement: 'A bag contains 5 red counters and 3 blue counters. Two counters are taken at random, one after the other, without replacement. Find the probability that the first counter is red and the second is blue.'
+    answer_label: 'The probability of red then blue'
+    check:
+      kind: evaluate
+      expression: "5/8 * 3/7"
+      answer: "15/56"
+    answer_text: 'The first counter is red with probability $\dfrac{5}{8}$. Given that, 7 counters remain and 3 are blue, so the second is blue with probability $\dfrac{3}{7}$. Multiply along the branch: $\dfrac{5}{8} \times \dfrac{3}{7} = \dfrac{15}{56}$.'
+
+  - id: p7-tree-second-red
+    section: "12.2"
+    dfe: [M2]
+    statement: 'A bag contains 5 red counters and 3 blue counters. Two counters are taken at random, one after the other, without replacement. Find the probability that the second counter is red.'
+    answer_label: 'The probability that the second counter is red'
+    check:
+      kind: evaluate
+      expression: "5/8 * 4/7 + 3/8 * 5/7"
+      answer: "5/8"
+    answer_text: 'The second counter is red on two paths: red then red, and blue then red. Their probabilities are $\dfrac{5}{8} \times \dfrac{4}{7} = \dfrac{20}{56}$ and $\dfrac{3}{8} \times \dfrac{5}{7} = \dfrac{15}{56}$. Adding the paths gives $\dfrac{35}{56} = \dfrac{5}{8}$. The second draw has the same chance as the first.'
+
+  - id: p8-alarm-reverse
+    section: "12.2"
+    dfe: [M2]
+    statement: 'On any morning, the probability of a fire in a warehouse is $0.001$. A detector sounds when there is a fire with probability $0.95$. It sounds when there is no fire with probability $0.02$. Find the probability that there is a fire, given that the detector sounds.'
+    answer_label: 'The probability of a fire, given that the detector sounds'
+    check:
+      kind: evaluate
+      expression: "(1/1000 * 19/20) / (1/1000 * 19/20 + 999/1000 * 1/50)"
+      answer: "95/2093"
+    answer_text: 'The detector sounds on two paths. Fire and alarm gives $\dfrac{1}{1000} \times \dfrac{19}{20} = \dfrac{19}{20000}$. No fire and alarm gives $\dfrac{999}{1000} \times \dfrac{1}{50} = \dfrac{999}{50000}$. So $P(\text{alarm}) = \dfrac{19}{20000} + \dfrac{999}{50000} = \dfrac{2093}{100000}$. Then $P(\text{fire} \mid \text{alarm}) = \dfrac{19/20000}{2093/100000} = \dfrac{95}{2093} \approx 0.0454$.'
+
+  - id: p9-defect-reverse
+    section: "12.2"
+    dfe: [M2]
+    statement: 'In a factory, 2% of items are defective. A test detects a defective item with probability $0.9$. It wrongly flags a good item with probability $0.05$. Find the probability that an item is defective, given that the test flags it.'
+    answer_label: 'The probability that the item is defective, given that it is flagged'
+    check:
+      kind: evaluate
+      expression: "(2/100 * 9/10) / (2/100 * 9/10 + 98/100 * 5/100)"
+      answer: "18/67"
+    answer_text: 'The flag can happen on two paths. Defective and flagged gives $\dfrac{2}{100} \times \dfrac{9}{10} = \dfrac{18}{1000}$. Good and flagged gives $\dfrac{98}{100} \times \dfrac{5}{100} = \dfrac{490}{10000} = \dfrac{49}{1000}$. So $P(\text{flagged}) = \dfrac{67}{1000}$ and $P(\text{defective} \mid \text{flagged}) = \dfrac{18}{67} \approx 0.269$.'
+
+  - id: p10-spam-percentage
+    section: "12.2"
+    dfe: [M2]
+    statement: '60% of email is spam. A filter flags spam with probability $0.98$ and flags genuine email with probability $0.04$. Find the probability that a flagged email is spam, as a percentage to one decimal place.'
+    answer_label: 'The probability that a flagged email is spam'
+    check:
+      kind: approx
+      value: "(6/10 * 98/100) / (6/10 * 98/100 + 4/10 * 4/100)"
+      target: "0.974"
+      tolerance: "0.0005"
+    answer_text: 'Spam and flagged gives $0.6 \times 0.98 = 0.588$. Genuine and flagged gives $0.4 \times 0.04 = 0.016$. So $P(\text{flagged}) = 0.604$ and $P(\text{spam} \mid \text{flagged}) = \dfrac{0.588}{0.604} = \dfrac{147}{151} \approx 0.9735$. As a percentage this is $97.4\%$ to one decimal place.'
+
+  - id: p11-degree-given-finance
+    section: "12.2"
+    dfe: [M2]
+    statement: 'A survey of 400 people finds that 160 have a degree and 100 work in finance. Of the people with a degree, 40 work in finance. A person is chosen at random from the 100 who work in finance. Find the probability that the person has a degree.'
+    answer_label: 'The probability that the person has a degree'
+    check:
+      kind: evaluate
+      expression: "40/100"
+      answer: "2/5"
+    answer_text: 'The condition restricts the group to the 100 people who work in finance. Of those, 40 have a degree: $P(\text{degree} \mid \text{finance}) = \dfrac{40}{100} = \dfrac{2}{5}$. The formula gives the same value, because $\dfrac{40/400}{100/400} = \dfrac{40}{100}$.'
+
+  - id: p12-not-reversible
+    section: "12.2"
+    dfe: [M2]
+    statement: 'For two events $A$ and $B$, $P(A \text{ and } B) = 0.21$, $P(A) = 0.6$ and $P(B) = 0.3$. Find $P(A \mid B)$ and $P(B \mid A)$. Explain why the two answers are different.'
+    answer_label: 'The two conditional probabilities'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "0.21 / 0.3", answer: "7/10"}
+        - {kind: evaluate, expression: "0.21 / 0.6", answer: "7/20"}
+    answer_text: '$P(A \mid B) = \dfrac{0.21}{0.3} = \dfrac{7}{10}$ and $P(B \mid A) = \dfrac{0.21}{0.6} = \dfrac{7}{20}$. The two conditional probabilities divide the same overlap by different totals. Dividing by a larger total gives a smaller probability, so the answers differ. In general $P(A \mid B)$ is not the same as $P(B \mid A)$.'

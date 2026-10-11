@@ -1,0 +1,144 @@
+# Practice set for 16.6, resultant forces and dynamics in a plane.
+#
+# These questions use one axis along the acceleration and one perpendicular to
+# it. Where a friction or resistance force is needed it is given as data; the
+# model F <= mu R that produces it is Section 16.7. The resultant of two
+# non-parallel forces is found by adding components, so those checks are `approx`
+# against an exact trigonometric value.
+chapter: 16
+problems:
+  - id: p1-resultant-two-forces
+    section: "16.6"
+    dfe: [R5]
+    statement: 'A force of $60$ N acts at $30^\circ$ above the horizontal and a force of $100$ N acts at $120^\circ$. Find the size of the resultant and its direction from the positive $x$-axis.'
+    answer_label: 'The resultant and its direction'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "sqrt((60*cos(pi/6) + 100*cos(2*pi/3))**2 + (60*sin(pi/6) + 100*sin(2*pi/3))**2)", target: "116.62", tolerance: "0.05"}
+        - {kind: approx, value: "atan2(60*sin(pi/6) + 100*sin(2*pi/3), 60*cos(pi/6) + 100*cos(2*pi/3)) * 180 / pi", target: "89.04", tolerance: "0.05"}
+    answer_text: 'The components are $x = 51.96 - 50.00 = 1.96$ N and $y = 30.00 + 86.60 = 116.60$ N. The size is $\sqrt{1.96^2 + 116.60^2} \approx 116.62$ N, and the direction is $\tan^{-1}\left(\dfrac{116.60}{1.96}\right) \approx 89.04^\circ$. The resultant is almost vertical, because the two vertical parts add while the horizontal parts nearly cancel.'
+
+  - id: p2-pull-at-angle-acceleration
+    section: "16.6"
+    dfe: [R5]
+    statement: 'A crate of mass $45$ kg is pulled along a horizontal floor by a rope that makes $25^\circ$ with the horizontal. The tension is $200$ N and a resistance of $80$ N opposes the motion. Find the acceleration. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The acceleration'
+    check:
+      kind: approx
+      value: "(200*cos(25*pi/180) - 80) / 45"
+      target: "2.25"
+      tolerance: "0.01"
+    answer_text: 'The horizontal component of the tension is $200\cos 25^\circ = 181.26$ N. The resultant along the floor is $181.26 - 80 = 101.26$ N, so $a = \dfrac{101.26}{45} \approx 2.25$ m s$^{-2}$.'
+
+  - id: p3-pull-at-angle-reaction
+    section: "16.6"
+    dfe: [R5]
+    statement: 'For the crate of mass $45$ kg pulled by a rope at $25^\circ$ with a tension of $200$ N, find the normal reaction from the floor. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The normal reaction'
+    check:
+      kind: approx
+      value: "45*9.8 - 200*sin(25*pi/180)"
+      target: "356.48"
+      tolerance: "0.05"
+    answer_text: 'There is no vertical acceleration, so the vertical forces balance. Resolving upwards: $R + 200\sin 25^\circ = 45 \times 9.8$, so $R = 441 - 84.52 = 356.48$ N. The rope lifts the crate, so the normal reaction is less than the weight.'
+
+  - id: p4-smooth-pull
+    section: "16.6"
+    dfe: [R5]
+    statement: 'A body of mass $20$ kg is pulled along a smooth horizontal floor by a rope at $30^\circ$ to the horizontal with a tension of $100$ N. Find the acceleration.'
+    answer_label: 'The acceleration'
+    check:
+      kind: approx
+      value: "100*cos(pi/6) / 20"
+      target: "4.33"
+      tolerance: "0.01"
+    answer_text: 'Only the horizontal component of the tension moves the body: $100\cos 30^\circ = 86.60$ N. So $a = \dfrac{86.60}{20} \approx 4.33$ m s$^{-2}$. The vertical component does not change the horizontal motion.'
+
+  - id: p5-slope-given-friction
+    section: "16.6"
+    dfe: [R5]
+    statement: 'A block of mass $10$ kg slides down a slope of $30^\circ$. A friction force of $17$ N acts up the slope. Find the acceleration. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The acceleration'
+    check: {kind: evaluate, expression: "(10*9.8*sin(pi/6) - 17) / 10", answer: "3.2"}
+    answer_text: 'The weight is $98$ N. Its component down the slope is $98\sin 30^\circ = 49$ N. The friction of $17$ N opposes the sliding, so the resultant down the slope is $49 - 17 = 32$ N. Then $a = \dfrac{32}{10} = 3.2$ m s$^{-2}$.'
+
+  - id: p6-slope-given-friction-second
+    section: "16.6"
+    dfe: [R5]
+    statement: 'A block of mass $5$ kg slides down a slope of $40^\circ$. A friction force of $18.8$ N acts up the slope. Find the acceleration. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The acceleration'
+    check:
+      kind: approx
+      value: "(5*9.8*sin(40*pi/180) - 18.8) / 5"
+      target: "2.54"
+      tolerance: "0.01"
+    answer_text: 'The weight is $49$ N. Its component down the slope is $49\sin 40^\circ = 31.50$ N. The resultant is $31.50 - 18.8 = 12.70$ N, so $a = \dfrac{12.70}{5} \approx 2.54$ m s$^{-2}$.'
+
+  - id: p7-table-given-friction
+    section: "16.6"
+    dfe: [R5]
+    statement: 'A block of mass $6$ kg rests on a horizontal table. It is joined by a light inextensible string over a smooth pulley at the table edge to a hanging mass of $4$ kg. A friction force of $14.7$ N acts on the block. Find the acceleration. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The acceleration'
+    check: {kind: evaluate, expression: "(4*9.8 - 14.7) / (6 + 4)", answer: "2.45"}
+    answer_text: 'The hanging weight $4 \times 9.8 = 39.2$ N drives the system against the friction of $14.7$ N. The resultant is $39.2 - 14.7 = 24.5$ N on a total mass of $10$ kg, so $a = 2.45$ m s$^{-2}$.'
+
+  - id: p8-table-given-friction-tension
+    section: "16.6"
+    dfe: [R5]
+    statement: 'For the $6$ kg block on the table with $14.7$ N of friction and the $4$ kg hanging mass, find the tension in the string. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The tension'
+    check: {kind: evaluate, expression: "4*9.8 - 4*((4*9.8 - 14.7) / (6 + 4))", answer: "29.4"}
+    answer_text: 'For the hanging mass, moving down: $4g - T = 4a$. With $a = 2.45$ m s$^{-2}$, $T = 4(9.8 - 2.45) = 29.4$ N. Check with the block: $T - 14.7 = 6 \times 2.45 = 14.7$, and $14.7 + 14.7 = 29.4$ N, which agrees.'
+
+  - id: p9-angle-between-forces
+    section: "16.6"
+    dfe: [R5]
+    statement: 'Two forces of $30$ N each act at a point with an angle of $60^\circ$ between them. The forces act on a mass of $4$ kg. Find the resultant force and the acceleration.'
+    answer_label: 'The resultant and the acceleration'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "sqrt(30**2 + 30**2 + 2*30*30*cos(pi/3))", target: "51.96", tolerance: "0.05"}
+        - {kind: approx, value: "sqrt(30**2 + 30**2 + 2*30*30*cos(pi/3)) / 4", target: "12.99", tolerance: "0.02"}
+    answer_text: 'The resultant is $\sqrt{30^2 + 30^2 + 2(30)(30)\cos 60^\circ} = 30\sqrt{3} \approx 51.96$ N. Then $a = \dfrac{51.96}{4} \approx 12.99$ m s$^{-2}$ in the direction of the resultant.'
+
+  - id: p10-three-components
+    section: "16.6"
+    dfe: [R5]
+    statement: 'Forces $(10, 0)$ N, $(0, 15)$ N and $(-5, -5)$ N act on a mass of $2$ kg. Find the resultant force and the acceleration.'
+    answer_label: 'The resultant and the acceleration'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([10, 0])", "Matrix([0, 15])", "Matrix([-5, -5])"]
+          answer: "Matrix([5, 10])"
+        - {kind: approx, value: "sqrt(5**2 + 10**2)", target: "11.18", tolerance: "0.01"}
+        - {kind: approx, value: "sqrt(5**2 + 10**2) / 2", target: "5.59", tolerance: "0.01"}
+    answer_text: 'The resultant is $(10 + 0 - 5)\mathbf{i} + (0 + 15 - 5)\mathbf{j} = (5, 10)$ N. Its size is $\sqrt{5^2 + 10^2} = 5\sqrt{5} \approx 11.18$ N, so $a = \dfrac{11.18}{2} \approx 5.59$ m s$^{-2}$.'
+
+  - id: p11-up-smooth-slope
+    section: "16.6"
+    dfe: [R5]
+    statement: 'A block of mass $8$ kg is pulled up a smooth slope of $20^\circ$ by a rope parallel to the slope with a tension of $60$ N. Find the normal reaction and the acceleration, each to $2$ d.p. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The normal reaction and the acceleration'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "8*9.8*cos(20*pi/180)", target: "73.66", tolerance: "0.05"}
+        - {kind: approx, value: "(60 - 8*9.8*sin(20*pi/180)) / 8", target: "4.15", tolerance: "0.01"}
+    answer_text: 'Perpendicular to the slope, $R = 8 \times 9.8\cos 20^\circ = 73.66$ N. The weight component down the slope is $8 \times 9.8\sin 20^\circ = 26.82$ N. The resultant up the slope is $60 - 26.82 = 33.18$ N, so $a = \dfrac{33.18}{8} \approx 4.15$ m s$^{-2}$.'
+
+  - id: p12-smooth-pull-reaction
+    section: "16.6"
+    dfe: [R5]
+    statement: 'A body of mass $3$ kg rests on a smooth horizontal floor. A rope at $30^\circ$ to the horizontal pulls it with a tension of $20$ N. Find the normal reaction and the acceleration.'
+    answer_label: 'The normal reaction and the acceleration'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "3*9.8 - 20*sin(pi/6)", answer: "19.4"}
+        - {kind: approx, value: "20*cos(pi/6) / 3", target: "5.77", tolerance: "0.01"}
+    answer_text: 'The vertical component of the pull is $20\sin 30^\circ = 10$ N upwards, so $R = 3 \times 9.8 - 10 = 19.4$ N. The horizontal component is $20\cos 30^\circ = 17.32$ N, so $a = \dfrac{17.32}{3} \approx 5.77$ m s$^{-2}$.'

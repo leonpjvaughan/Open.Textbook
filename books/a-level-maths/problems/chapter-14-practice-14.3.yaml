@@ -1,0 +1,151 @@
+# Practice set for 14.3, Normal tests for a mean. The checks prove the exact
+# tail probability, the critical region and the decision from the stated Normal
+# distribution; that the variance really is known and the test is appropriate is
+# human review.
+chapter: 14
+problems:
+  - id: p1-bottles-lower
+    section: "14.3"
+    dfe: [O3]
+    statement: 'A machine fills bottles with a mean of 330 ml. The standard deviation is known to be 6 ml. A sample of 36 bottles has a mean of 328 ml. Test at the 5% level whether the machine is underfilling the bottles.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: normal
+      parameters: {mu: 330, sigma: 1}
+      tail: left
+      observed: 328
+      p_value: "0.0228"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {max: "328.355"}
+      tolerance: "0.001"
+    answer_text: '$H_0: \mu = 330$ and $H_1: \mu < 330$. The standard error is $\dfrac{6}{\sqrt{36}} = 1$, so $z = \dfrac{328 - 330}{1} = -2$. The p-value is $0.0228 < 0.05$, so reject $H_0$. There is sufficient evidence at the 5% level that the mean is below 330 ml.'
+
+  - id: p2-machine-retain
+    section: "14.3"
+    dfe: [O3]
+    statement: 'A machine is set to a mean of 60 g. The standard deviation is known to be 12 g. A sample of 36 items has a mean of 62 g. Test at the 5% level whether the mean has changed.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: normal
+      parameters: {mu: 60, sigma: 2}
+      tail: two
+      observed: 62
+      p_value: "0.3173"
+      alpha: "1/20"
+      decision: retain
+      critical_region: {max: "56.08", min: "63.92"}
+      tolerance: "0.01"
+    answer_text: '$H_0: \mu = 60$ and $H_1: \mu \ne 60$. The standard error is $\dfrac{12}{\sqrt{36}} = 2$, so $z = \dfrac{62 - 60}{2} = 1$. The two-tailed p-value is $0.3173 > 0.05$, so retain $H_0$. There is not sufficient evidence at the 5% level that the mean has changed.'
+
+  - id: p3-bottles-two
+    section: "14.3"
+    dfe: [O3]
+    statement: 'A bottle is filled with a mean of 20 ml. The standard deviation is known to be 2 ml. A sample of 16 bottles has a mean of 20.8 ml. Test at the 5% level whether the mean has changed.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: normal
+      parameters: {mu: 20, sigma: "1/2"}
+      tail: two
+      observed: "20.8"
+      p_value: "0.1096"
+      alpha: "1/20"
+      decision: retain
+      critical_region: {max: "19.02", min: "20.98"}
+      tolerance: "0.01"
+    answer_text: '$H_0: \mu = 20$ and $H_1: \mu \ne 20$. The standard error is $\dfrac{2}{\sqrt{16}} = 0.5$, so $z = \dfrac{20.8 - 20}{0.5} = 1.6$. The two-tailed p-value is $0.1096 > 0.05$, so retain $H_0$. There is not sufficient evidence at the 5% level that the mean has changed.'
+
+  - id: p4-bottles-two-large
+    section: "14.3"
+    dfe: [O3]
+    statement: 'The same bottle in question 3 is checked with a sample of 64 bottles instead, and the mean is again 20.8 ml. Test at the 5% level whether the mean has changed.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: normal
+      parameters: {mu: 20, sigma: "1/4"}
+      tail: two
+      observed: "20.8"
+      p_value: "0.00137"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {max: "19.51", min: "20.49"}
+      tolerance: "0.0001"
+    answer_text: 'The standard error is $\dfrac{2}{\sqrt{64}} = 0.25$, so $z = \dfrac{20.8 - 20}{0.25} = 3.2$. The two-tailed p-value is $0.00137 < 0.05$, so reject $H_0$. The same sample mean now gives a rejection, because the larger sample makes the gap more convincing.'
+
+  - id: p5-test-statistic
+    section: "14.3"
+    dfe: [O3]
+    statement: 'A claim sets $\mu = 250$ and the standard deviation is known to be 5. A sample of 25 has mean 248. Find the value of the test statistic $z$.'
+    answer_label: 'The test statistic'
+    check: {kind: evaluate, expression: "(248 - 250) / (5 / sqrt(25))", answer: "-2"}
+    answer_text: 'The standard error is $\dfrac{5}{\sqrt{25}} = 1$, so $z = \dfrac{248 - 250}{1} = -2$.'
+
+  - id: p6-standard-error
+    section: "14.3"
+    dfe: [O3]
+    statement: 'A population has standard deviation 10. A sample of size 25 is taken. Find the standard error of the sample mean.'
+    answer_label: 'The standard error'
+    check: {kind: evaluate, expression: "10 / sqrt(25)", answer: "2"}
+    answer_text: 'The standard error is $\dfrac{10}{\sqrt{25}} = \dfrac{10}{5} = 2$.'
+
+  - id: p7-upper-tail
+    section: "14.3"
+    dfe: [O3]
+    statement: 'A claim sets $\mu = 100$. The standard deviation is known to be 10. A sample of 25 has mean 104. Test at the 5% level whether the mean is higher than the claim.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: normal
+      parameters: {mu: 100, sigma: 2}
+      tail: right
+      observed: 104
+      p_value: "0.0228"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {min: "103.29"}
+      tolerance: "0.001"
+    answer_text: '$H_0: \mu = 100$ and $H_1: \mu > 100$. The standard error is $\dfrac{10}{\sqrt{25}} = 2$, so $z = \dfrac{104 - 100}{2} = 2$. The p-value is $0.0228 < 0.05$, so reject $H_0$. There is sufficient evidence at the 5% level that the mean is above 100.'
+
+  - id: p8-critical-value-order
+    section: "14.3"
+    dfe: [O3]
+    statement: 'State, with a symbol, how the two-tailed 5% critical value $1.96$ compares with the one-tailed 5% critical value $1.645$.'
+    answer_label: 'The comparison'
+    check: {kind: compare, lhs: "1.96", relation: ">", rhs: "1.645"}
+    answer_text: '$1.96 > 1.645$. A two-tailed test splits the 5% between two tails, so each boundary sits closer to the centre and more of the statistic is accepted.'
+
+  - id: p9-p-value-compare
+    section: "14.3"
+    dfe: [O3]
+    statement: 'A Normal test gives a p-value of $0.0228$. State, with a symbol, how it compares with the 5% significance level.'
+    answer_label: 'The comparison'
+    check: {kind: compare, lhs: "0.0228", relation: "<", rhs: "0.05"}
+    answer_text: '$0.0228 < 0.05$, so the test rejects $H_0$ at the 5% level.'
+
+  - id: p10-p-value-one-percent
+    section: "14.3"
+    dfe: [O3]
+    statement: 'The same test gives a p-value of $0.0228$. State, with a symbol, how it compares with the 1% significance level.'
+    answer_label: 'The comparison'
+    check: {kind: compare, lhs: "0.0228", relation: ">", rhs: "0.01"}
+    answer_text: '$0.0228 > 0.01$, so the test retains $H_0$ at the 1% level. The same evidence gives two decisions at the two levels.'
+
+  - id: p11-standardise
+    section: "14.3"
+    dfe: [O3]
+    statement: 'A claim sets $\mu = 100$ and the standard deviation is known to be 15. A sample of 25 has mean 104. Find the test statistic $z$, as an exact fraction.'
+    answer_label: 'The test statistic'
+    check: {kind: evaluate, expression: "(104 - 100) / (15 / sqrt(25))", answer: "4/3"}
+    answer_text: 'The standard error is $\dfrac{15}{\sqrt{25}} = 3$, so $z = \dfrac{4}{3}$. The value $1.96$ lies above $1.33$, so a two-tailed 5% test retains $H_0$.'
+
+  - id: p12-two-tailed-double
+    section: "14.3"
+    dfe: [O3]
+    statement: 'A Normal test has an upper-tail probability of $0.0038$. Find the two-tailed p-value.'
+    answer_label: 'The two-tailed p-value'
+    check: {kind: evaluate, expression: "2 * 0.0038", answer: "0.0076"}
+    answer_text: 'Double the smaller tail: $2 \times 0.0038 = 0.0076$.'

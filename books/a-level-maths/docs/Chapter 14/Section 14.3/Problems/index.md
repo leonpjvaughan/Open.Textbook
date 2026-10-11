@@ -1,5 +1,5 @@
 ---
-title: 14.3 Normal tests for a mean and the significance level — Practise
+title: 14.3 Normal tests for a mean — Practise
 chapter: 14
 chapter_title: Statistical hypothesis testing
 section: '14.3'
@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
+# 14.3 Normal tests for a mean — Practise
 
-# 14.3 Normal tests for a mean and the significance level — Practise
+Work through these on your own. For every test, check that the standard
+deviation is known, find the standard error, and name the significance level in
+the conclusion.
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: O3
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-14-practice-14.3
+
+:::answers chapter-14-practice-14.3

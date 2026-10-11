@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.4 The constant-acceleration formulae — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: Q3
+Work through these on your own. Write down the three quantities you know and
+the one you want. Choose the formula that omits the quantity you were not given.
+Keep one positive direction for the whole question.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-15-practice-15.4
+
+:::answers chapter-15-practice-15.4

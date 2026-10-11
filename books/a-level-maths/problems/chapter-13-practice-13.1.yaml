@@ -1,0 +1,154 @@
+# Practice set for 13.1, discrete probability distributions and the binomial
+# distribution. The checks prove the binomial probability from the formula and
+# the arithmetic of a valid distribution. The choice of model for a context is
+# human review, so the answer text gives the reasoning.
+chapter: 13
+problems:
+  - id: p1-coin-distribution
+    section: "13.1"
+    dfe: [N1]
+    statement: 'A fair coin is tossed 10 times. The random variable $X$ is the number of heads. Write down the distribution of $X$ and find $P(X = 5)$.'
+    answer_label: 'The distribution and the probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 10, p: '1/2'}
+      query: {kind: exactly, value: 5}
+      answer: '63/256'
+    answer_text: '$X \sim B(10, \tfrac12)$, because there are 10 independent tosses and the probability of a head is $\tfrac12$ every time. Then $P(X = 5) = \dbinom{10}{5} \left(\tfrac12\right)^{10} = \tfrac{63}{256} \approx 0.2461$.'
+
+  - id: p2-missing-probability
+    section: "13.1"
+    dfe: [N1]
+    statement: 'The probabilities for a discrete random variable $X$ are $0.1$, $0.3$, $k$ and $0.2$. Find $k$.'
+    answer_label: 'The value of $k$'
+    check:
+      kind: evaluate
+      expression: '1 - (0.1 + 0.3 + 0.2)'
+      answer: '0.4'
+    answer_text: 'The probabilities cover every value of $X$, so they add to 1. Then $k = 1 - (0.1 + 0.3 + 0.2) = 1 - 0.6 = 0.4$.'
+
+  - id: p3-die-at-least-five
+    section: "13.1"
+    dfe: [N1]
+    statement: 'A fair six-sided die is rolled once. The random variable $X$ is the score. Find $P(X \ge 5)$.'
+    answer_label: 'The probability'
+    check:
+      kind: evaluate
+      expression: '2/6'
+      answer: '1/3'
+    answer_text: 'The scores 5 and 6 are the two outcomes that satisfy $X \ge 5$, so $P(X \ge 5) = \tfrac{2}{6} = \tfrac13$. The distribution has four other values, 1, 2, 3 and 4, and the six probabilities add to 1.'
+
+  - id: p4-binomial-five-three-tenths
+    section: "13.1"
+    dfe: [N1]
+    statement: 'The random variable $X \sim B(5, 0.3)$. Find $P(X = 2)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 5, p: '3/10'}
+      query: {kind: exactly, value: 2}
+      answer: '3087/10000'
+    answer_text: '$P(X = 2) = \dbinom{5}{2}(0.3)^2(0.7)^3 = 10 \times 0.09 \times 0.343 = 0.3087$. The two powers add to 5, which is $n$.'
+
+  - id: p5-binomial-six-quarter
+    section: "13.1"
+    dfe: [N1]
+    statement: 'The random variable $X \sim B(6, \tfrac14)$. Find $P(X = 2)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 6, p: '1/4'}
+      query: {kind: exactly, value: 2}
+      answer: '1215/4096'
+    answer_text: '$P(X = 2) = \dbinom{6}{2} \left(\tfrac14\right)^2 \left(\tfrac34\right)^4 = 15 \times \tfrac{1}{16} \times \tfrac{81}{256} = \tfrac{1215}{4096} \approx 0.2966$.'
+
+  - id: p6-binomial-four-third
+    section: "13.1"
+    dfe: [N1]
+    statement: 'The random variable $X \sim B(4, \tfrac13)$. Find $P(X = 1)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 4, p: '1/3'}
+      query: {kind: exactly, value: 1}
+      answer: '32/81'
+    answer_text: '$P(X = 1) = \dbinom{4}{1} \left(\tfrac13\right) \left(\tfrac23\right)^3 = 4 \times \tfrac13 \times \tfrac{8}{27} = \tfrac{32}{81} \approx 0.3951$. The failure power is $4 - 1 = 3$.'
+
+  - id: p7-binomial-five-two-thirds
+    section: "13.1"
+    dfe: [N1]
+    statement: 'The random variable $X \sim B(5, \tfrac23)$. Find $P(X = 4)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 5, p: '2/3'}
+      query: {kind: exactly, value: 4}
+      answer: '80/243'
+    answer_text: '$P(X = 4) = \dbinom{5}{4} \left(\tfrac23\right)^4 \left(\tfrac13\right) = 5 \times \tfrac{16}{81} \times \tfrac13 = \tfrac{80}{243} \approx 0.3292$.'
+
+  - id: p8-probabilities-sum-to-one
+    section: "13.1"
+    dfe: [N1]
+    statement: 'A discrete random variable $X$ has probabilities $0.2$, $0.3$, $0.4$ and $0.1$. Work out the sum of the four probabilities and state whether they form a valid distribution.'
+    answer_label: 'The sum'
+    check:
+      kind: evaluate
+      expression: '0.2 + 0.3 + 0.4 + 0.1'
+      answer: '1'
+    answer_text: 'The sum is $0.2 + 0.3 + 0.4 + 0.1 = 1$. Every probability lies between 0 and 1, and the sum is 1, so these four probabilities form a valid probability distribution.'
+
+  - id: p9-without-replacement
+    section: "13.1"
+    dfe: [N1]
+    statement: 'A bag holds 5 red counters and 3 blue counters. Two counters are taken without replacement. The random variable $X$ is the number of red counters. Explain why $X$ is not binomial, and find $P(X = 1)$.'
+    answer_label: 'The probability'
+    check:
+      kind: evaluate
+      expression: '(5/8)*(3/7) + (3/8)*(5/7)'
+      answer: '15/28'
+    answer_text: 'The probability of red changes from $\tfrac58$ on the first draw to $\tfrac47$ or $\tfrac57$ on the second, so $p$ is not constant and the binomial model does not apply. The two orders give $P(X = 1) = \tfrac58 \times \tfrac37 + \tfrac38 \times \tfrac57 = \tfrac{15}{28} \approx 0.5357$.'
+
+  - id: p10-binomial-eight-fifth
+    section: "13.1"
+    dfe: [N1]
+    statement: 'The random variable $X \sim B(8, 0.2)$. Find $P(X = 0)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 8, p: '1/5'}
+      query: {kind: exactly, value: 0}
+      answer: '65536/390625'
+    answer_text: '$P(X = 0) = \dbinom{8}{0}(0.2)^0(0.8)^8 = (0.8)^8 = \tfrac{65536}{390625} \approx 0.1678$. Every trial is a failure.'
+
+  - id: p11-binomial-ten-nine-tenths
+    section: "13.1"
+    dfe: [N1]
+    statement: 'The random variable $X \sim B(10, 0.9)$. Find $P(X = 8)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 10, p: '9/10'}
+      query: {kind: exactly, value: 8}
+      answer: '0.1937'
+      tolerance: '0.00005'
+    answer_text: '$P(X = 8) = \dbinom{10}{8}(0.9)^8(0.1)^2 = 45 \times 0.43046721 \times 0.01 \approx 0.1937$. The failure power is $10 - 8 = 2$.'
+
+  - id: p12-multiple-choice
+    section: "13.1"
+    dfe: [N1]
+    statement: 'A multiple-choice test has 8 questions. Each question has 5 options, and exactly one option is correct. A student guesses every answer. The random variable $X$ is the number of correct answers. Write down the distribution of $X$ and find $P(X = 3)$.'
+    answer_label: 'The distribution and the probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 8, p: '1/5'}
+      query: {kind: exactly, value: 3}
+      answer: '57344/390625'
+    answer_text: '$X \sim B(8, \tfrac15)$, because there are 8 independent guesses and the probability of a correct guess is $\tfrac15$ each time. Then $P(X = 3) = \dbinom{8}{3} \left(\tfrac15\right)^3 \left(\tfrac45\right)^5 = \tfrac{57344}{390625} \approx 0.1468$.'

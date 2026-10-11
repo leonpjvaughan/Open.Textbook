@@ -1,0 +1,144 @@
+# Practice set for 15.6, motion under gravity and projectiles using vectors.
+#
+# A projectile is two constant-acceleration motions sharing one time. The checks
+# use the exact surd components and, where a decimal is wanted, an `approx` to a
+# declared tolerance. Units live in the statement; the CAS fields hold numbers
+# only. Gravity is taken as 9.8 m/s^2 throughout.
+chapter: 15
+problems:
+  - id: p1-resolve-20-at-30
+    section: "15.6"
+    dfe: [Q5, J5]
+    statement: 'A ball is projected at $20$ m/s at $30^\circ$ to the horizontal. Find the horizontal and vertical components of its initial velocity.'
+    answer_label: 'The two components'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "20*cos(pi/6)", answer: "10*sqrt(3)"}
+        - {kind: evaluate, expression: "20*sin(pi/6)", answer: "10"}
+    answer_text: 'Horizontal $= 20\cos 30^\circ = 10\sqrt{3} \approx 17.3$ m/s. Vertical $= 20\sin 30^\circ = 10$ m/s.'
+
+  - id: p2-resolve-14-at-45
+    section: "15.6"
+    dfe: [Q5, J5]
+    statement: 'A particle is projected at $14$ m/s at $45^\circ$ to the horizontal. Find the horizontal and vertical components of its initial velocity.'
+    answer_label: 'The two components'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "14*cos(pi/4)", answer: "7*sqrt(2)"}
+        - {kind: evaluate, expression: "14*sin(pi/4)", answer: "7*sqrt(2)"}
+    answer_text: 'At $45^\circ$ the two components are equal: $14\cos 45^\circ = 14 \times \dfrac{\sqrt{2}}{2} = 7\sqrt{2} \approx 9.90$ m/s, and the same for the vertical component.'
+
+  - id: p3-time-to-the-top
+    section: "15.6"
+    dfe: [Q5]
+    statement: 'A ball is projected at $20$ m/s at $45^\circ$ to the horizontal. Find the time to its greatest height. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The time to the greatest height'
+    check:
+      kind: evaluate
+      expression: "(20*sin(pi/4))/(49/5)"
+      answer: "50*sqrt(2)/49"
+    answer_text: 'The vertical component is $u_y = 20\sin 45^\circ = 10\sqrt{2}$. At the top $v_y = 0$, so $t = \dfrac{u_y}{g} = \dfrac{10\sqrt{2}}{9.8} = \dfrac{50\sqrt{2}}{49} \approx 1.44$ s.'
+
+  - id: p4-range-at-45
+    section: "15.6"
+    dfe: [Q5]
+    statement: 'A ball is projected at $20$ m/s at $45^\circ$ from level ground. Find its range. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The range'
+    check:
+      kind: evaluate
+      expression: "20**2/(49/5)"
+      answer: "2000/49"
+    answer_text: 'Over level ground the range is $R = \dfrac{U^2 \sin 2\theta}{g}$. Here $2\theta = 90^\circ$ and $\sin 90^\circ = 1$, so $R = \dfrac{400}{9.8} = \dfrac{2000}{49} \approx 40.8$ m.'
+
+  - id: p5-greatest-height-at-45
+    section: "15.6"
+    dfe: [Q5]
+    statement: 'A ball is projected at $20$ m/s at $45^\circ$. Find its greatest height. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The greatest height'
+    check:
+      kind: evaluate
+      expression: "(20*sin(pi/4))**2/(2*(49/5))"
+      answer: "500/49"
+    answer_text: 'The vertical component is $u_y = 10\sqrt{2}$. The greatest height is $\dfrac{u_y^2}{2g} = \dfrac{200}{19.6} = \dfrac{500}{49} \approx 10.2$ m.'
+
+  - id: p6-time-of-flight-24
+    section: "15.6"
+    dfe: [Q5]
+    statement: 'A ball is projected at $24$ m/s at $30^\circ$ from level ground. Find its time of flight. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The time of flight'
+    check:
+      kind: evaluate
+      expression: "2*24*sin(pi/6)/(49/5)"
+      answer: "120/49"
+    answer_text: 'The vertical component is $u_y = 24\sin 30^\circ = 12$ m/s. The time of flight is $\dfrac{2u_y}{g} = \dfrac{24}{9.8} = \dfrac{120}{49} \approx 2.45$ s.'
+
+  - id: p7-range-24
+    section: "15.6"
+    dfe: [Q5]
+    statement: 'A ball is projected at $24$ m/s at $30^\circ$ from level ground. Find its range. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The range'
+    check:
+      kind: evaluate
+      expression: "24**2*sin(pi/3)/(49/5)"
+      answer: "1440*sqrt(3)/49"
+    answer_text: 'Use $R = \dfrac{U^2 \sin 2\theta}{g}$ with $2\theta = 60^\circ$: $R = \dfrac{576 \times \frac{\sqrt{3}}{2}}{9.8} = \dfrac{288\sqrt{3}}{9.8} = \dfrac{1440\sqrt{3}}{49} \approx 50.9$ m.'
+
+  - id: p8-greatest-height-24
+    section: "15.6"
+    dfe: [Q5]
+    statement: 'A ball is projected at $24$ m/s at $30^\circ$. Find its greatest height. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The greatest height'
+    check:
+      kind: evaluate
+      expression: "(24*sin(pi/6))**2/(2*(49/5))"
+      answer: "360/49"
+    answer_text: 'The vertical component is $12$ m/s, so the greatest height is $\dfrac{12^2}{2 \times 9.8} = \dfrac{144}{19.6} = \dfrac{360}{49} \approx 7.35$ m.'
+
+  - id: p9-horizontal-projection
+    section: "15.6"
+    dfe: [Q5]
+    statement: 'A ball is hit horizontally at $15$ m/s from the top of a cliff $20$ m high. Find the time to reach the ground and the horizontal distance travelled. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The time and the horizontal distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "sqrt(2*20/(49/5))", answer: "10*sqrt(2)/7"}
+        - {kind: evaluate, expression: "15*sqrt(2*20/(49/5))", answer: "150*sqrt(2)/7"}
+    answer_text: 'The initial vertical velocity is $0$. From $20 = \frac{1}{2} \times 9.8 \times t^2$, $t = \sqrt{\frac{40}{9.8}} = \frac{10\sqrt{2}}{7} \approx 2.02$ s. The horizontal distance is $15 \times \frac{10\sqrt{2}}{7} = \frac{150\sqrt{2}}{7} \approx 30.3$ m.'
+
+  - id: p10-height-at-a-distance
+    section: "15.6"
+    dfe: [Q5]
+    statement: 'A ball is kicked from the ground at $20$ m/s at $45^\circ$. Find its height after it has travelled $20$ m horizontally. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The height'
+    check:
+      kind: evaluate
+      expression: "10*sqrt(2)*sqrt(2) - 1/2*(49/5)*(sqrt(2))**2"
+      answer: "51/5"
+    answer_text: 'From $x = u_x t$, $20 = 10\sqrt{2}\,t$, so $t = \sqrt{2}$. Then $y = 10\sqrt{2} \times \sqrt{2} - 4.9 \times 2 = 20 - 9.8 = 10.2$ m. This is the greatest height.'
+
+  - id: p11-vertical-velocity
+    section: "15.6"
+    dfe: [Q5]
+    statement: 'A ball is projected at $20$ m/s at $45^\circ$. Find its vertical velocity after $1$ s. Take $g = 9.8$ m/s$^2$ and upwards as positive.'
+    answer_label: 'The vertical velocity'
+    check:
+      kind: approx
+      value: "20*sin(pi/4) - 9.8"
+      target: "4.34"
+      tolerance: "0.02"
+    answer_text: 'The vertical component is $u_y = 10\sqrt{2} \approx 14.14$ m/s. Then $v_y = u_y - gt = 14.14 - 9.8 = 4.34$ m/s. The velocity is positive, so the ball is still rising.'
+
+  - id: p12-projectile-and-method-choice
+    section: "15.6"
+    dfe: [Q5, J5]
+    statement: 'A stone is thrown horizontally at $8$ m/s from a height of $45$ m. Find the time to reach the ground and the horizontal distance travelled. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The time and the horizontal distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "sqrt(2*45/(49/5))", answer: "15*sqrt(2)/7"}
+        - {kind: evaluate, expression: "8*sqrt(2*45/(49/5))", answer: "120*sqrt(2)/7"}
+    answer_text: 'The vertical motion starts from rest: $45 = \frac{1}{2} \times 9.8 \times t^2$, so $t = \sqrt{\frac{90}{9.8}} = \frac{15\sqrt{2}}{7} \approx 3.03$ s. The horizontal distance is $8 \times \frac{15\sqrt{2}}{7} = \frac{120\sqrt{2}}{7} \approx 24.2$ m.'

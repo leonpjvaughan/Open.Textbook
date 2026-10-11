@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.1 Mutually exclusive and independent events — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: M1
+Work through these on your own. For each question, first decide whether the
+events can overlap, and whether they are independent.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-12-practice-12.1
+
+:::answers chapter-12-practice-12.1

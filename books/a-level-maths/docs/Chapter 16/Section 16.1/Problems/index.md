@@ -9,9 +9,16 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.1 Force and Newton's first law — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: R1
+Work through these on your own. For each question, decide whether the answer is
+a single force, a size or a direction, and finish the calculation in that form.
+Add forces along the same line by adding or subtracting sizes. Add forces at an
+angle as vectors.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-16-practice-16.1
+
+:::answers chapter-16-practice-16.1

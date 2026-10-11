@@ -1,0 +1,190 @@
+# Review bank for Chapter 15. The items mix this chapter with Chapters 5, 7 and
+# 10, so the reader chooses a method before calculating. Every `section` names
+# the section the method comes from. The checks prove the algebra; the choice of
+# method and the reason for it are human review.
+#
+# Gravity is the exact rational 49/5 wherever a surd is involved, so the CAS
+# comparison stays exact. Units live in the statement.
+chapter: 15
+symbols:
+  t: {real: true}
+problems:
+  - id: q1-unit-conversion
+    section: "15.1"
+    dfe: [P1]
+    statement: 'Convert $108$ km/h to m/s.'
+    answer_label: 'The speed in m/s'
+    check:
+      kind: evaluate
+      expression: "108*5/18"
+      answer: "30"
+    answer_text: 'Multiply by $\dfrac{5}{18}$: $108 \times \dfrac{5}{18} = 30$ m/s.'
+
+  - id: q2-force-and-acceleration
+    section: "15.1"
+    dfe: [P1]
+    statement: 'A force of $12$ N acts on a mass of $4$ kg. Find the acceleration.'
+    answer_label: 'The acceleration'
+    check:
+      kind: evaluate
+      expression: "12/4"
+      answer: "3"
+    answer_text: 'Rearrange $F = ma$: $a = \dfrac{F}{m} = \dfrac{12}{4} = 3$ m/s$^2$.'
+
+  - id: q3-distance-and-displacement
+    section: "15.2"
+    dfe: [Q1]
+    statement: 'A walker walks $700$ m east, then turns and walks $200$ m west. Taking east as positive, find the distance travelled and the displacement.'
+    answer_label: 'The distance and the displacement'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "700 + 200", answer: "900"}
+        - {kind: evaluate, expression: "700 - 200", answer: "500"}
+    answer_text: 'Distance travelled $= 700 + 200 = 900$ m. Displacement $= (+700) + (-200) = +500$ m, which is $500$ m east.'
+
+  - id: q4-average-speed-and-velocity
+    section: "15.2"
+    dfe: [Q1]
+    statement: 'A boat moves $300$ m due north in $25$ s, then $100$ m due south in $15$ s. Find its average speed and its average velocity over the whole journey.'
+    answer_label: 'The average speed and the average velocity'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(300 + 100)/(25 + 15)", answer: "10"}
+        - {kind: evaluate, expression: "(300 - 100)/(25 + 15)", answer: "5"}
+    answer_text: 'Total distance $= 400$ m over $40$ s, so the average speed is $10$ m/s. The displacement is $200$ m north, so the average velocity is $5$ m/s north. The speed is larger because the boat doubled back.'
+
+  - id: q5-graph-gradient-and-area
+    section: "15.3"
+    dfe: [Q2]
+    statement: 'A velocity–time graph is a straight line from $(0, 6)$ to $(4, 18)$, with $v$ in m/s. Find the acceleration and the displacement.'
+    answer_label: 'The acceleration and the displacement'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(18 - 6)/(4 - 0)", answer: "3"}
+        - {kind: evaluate, expression: "(6 + 18)/2*4", answer: "48"}
+    answer_text: 'The acceleration is the gradient: $\dfrac{18 - 6}{4} = 3$ m/s$^2$. The displacement is the trapezium area: $\dfrac{6 + 18}{2} \times 4 = 48$ m.'
+
+  - id: q6-graph-crossing-the-axis
+    section: "15.3"
+    dfe: [Q2]
+    statement: 'A velocity–time graph is a straight line from $(0, 10)$ to $(5, -10)$, with $v$ in m/s. Find the displacement and the distance travelled.'
+    answer_label: 'The displacement and the distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "1/2*5/2*10 - 1/2*5/2*10", answer: "0"}
+        - {kind: evaluate, expression: "1/2*5/2*10 + 1/2*5/2*10", answer: "25"}
+    answer_text: 'The line crosses the axis at $t = 2.5$ s. Each triangle has area $\frac{1}{2} \times 2.5 \times 10 = 12.5$, so the displacement is $12.5 - 12.5 = 0$ m and the distance travelled is $12.5 + 12.5 = 25$ m.'
+
+  - id: q7-suvat-two-step
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A particle moves at $8$ m/s and accelerates at $3$ m/s$^2$ for $6$ s. Find its final velocity and its displacement.'
+    answer_label: 'The final velocity and the displacement'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "8 + 3*6", answer: "26"}
+        - {kind: evaluate, expression: "8*6 + 1/2*3*6**2", answer: "102"}
+    answer_text: 'Use $v = u + at$: $v = 8 + 3 \times 6 = 26$ m/s. Then $s = ut + \frac{1}{2}at^2 = 48 + 54 = 102$ m.'
+
+  - id: q8-braking-distance
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A car travelling at $20$ m/s brakes at $4$ m/s$^2$ until it stops. Find the stopping distance.'
+    answer_label: 'The stopping distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "20/4", answer: "5"}
+        - {kind: evaluate, expression: "20*5 - 1/2*4*5**2", answer: "50"}
+    answer_text: 'First find the time: $0 = 20 - 4t$, so $t = 5$ s. Then $s = ut + \frac{1}{2}at^2 = 100 - 50 = 50$ m. The formula $v^2 = u^2 + 2as$ gives the same distance directly.'
+
+  - id: q9-vertical-motion
+    section: "15.4"
+    dfe: [Q3]
+    statement: 'A ball is thrown vertically upwards at $24.5$ m/s. Find the time to its greatest height and the greatest height. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The time and the greatest height'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "24.5/9.8", answer: "5/2"}
+        - {kind: evaluate, expression: "24.5**2/(2*9.8)", answer: "245/8"}
+    answer_text: 'At the top $v = 0$, so $t = \dfrac{u}{g} = \dfrac{24.5}{9.8} = 2.5$ s. The greatest height is $\dfrac{u^2}{2g} = \dfrac{600.25}{19.6} = 30.625$ m.'
+
+  - id: q10-calculus-differentiation
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'The displacement of a particle is $s = t^3 - 6t^2 + 9t$ metres. Find its velocity and its acceleration.'
+    answer_label: 'The velocity and the acceleration'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "t**3 - 6*t**2 + 9*t", apply: {op: diff, args: [t]}, answer: "3*t**2 - 12*t + 9"}
+        - {kind: apply, expression: "3*t**2 - 12*t + 9", apply: {op: diff, args: [t]}, answer: "6*t - 12"}
+    answer_text: 'Differentiate once: $v = 3t^2 - 12t + 9$ m/s. Differentiate again: $a = 6t - 12$ m/s$^2$. Setting $v = 0$ gives $t = 1$ or $t = 3$, where the particle is at rest.'
+
+  - id: q11-calculus-integration
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'A particle has acceleration $a = 12$ m/s$^2$. Its velocity is $5$ m/s and its displacement is $0$ m when $t = 0$. Find its velocity and its displacement as functions of time.'
+    answer_label: 'The velocity and the displacement'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "12", apply: {op: integrate, args: [t]}, answer: "12*t + 5", variable: t}
+        - {kind: apply, expression: "12*t + 5", apply: {op: integrate, args: [t]}, answer: "6*t**2 + 5*t", variable: t}
+        - {kind: apply, expression: "6*t**2 + 5*t", apply: {op: subs, args: [t, "0"]}, answer: "0"}
+    answer_text: 'Integrate the acceleration: $v = 12t + C$. With $v = 5$ at $t = 0$, $C = 5$, so $v = 12t + 5$ m/s. Integrate again: $s = 6t^2 + 5t + K$. With $s = 0$ at $t = 0$, $K = 0$, so $s = 6t^2 + 5t$ m.'
+
+  - id: q12-distance-with-a-turn
+    section: "15.5"
+    dfe: [Q4]
+    statement: 'The displacement of a particle is $s = 8t - t^2$ metres for $0 \le t \le 8$. Find the displacement and the distance travelled over the whole interval.'
+    answer_label: 'The displacement and the distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(8*8 - 8**2) - (8*0 - 0**2)", answer: "0"}
+        - {kind: evaluate, expression: "abs((8*4 - 4**2) - 0) + abs((8*8 - 8**2) - (8*4 - 4**2))", answer: "32"}
+    answer_text: 'The particle is at rest at $t = 4$ s. At that time $s = 32 - 16 = 16$ m, and at $t = 8$ s $s = 64 - 64 = 0$ m. The displacement is $0$ m and the distance travelled is $16 + 16 = 32$ m.'
+
+  - id: q13-resolve-a-velocity
+    section: "15.6"
+    dfe: [Q5, J5]
+    statement: 'A particle is projected at $30$ m/s at $60^\circ$ to the horizontal. Find the horizontal and vertical components of its initial velocity.'
+    answer_label: 'The two components'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "30*cos(pi/3)", answer: "15"}
+        - {kind: evaluate, expression: "30*sin(pi/3)", answer: "15*sqrt(3)"}
+    answer_text: 'Horizontal $= 30\cos 60^\circ = 15$ m/s. Vertical $= 30\sin 60^\circ = 15\sqrt{3} \approx 26.0$ m/s.'
+
+  - id: q14-projectile-quantities
+    section: "15.6"
+    dfe: [Q5]
+    statement: 'A ball is projected at $30$ m/s at $30^\circ$ from level ground. Find its time of flight, its greatest height and its range. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The time, the greatest height and the range'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2*30*sin(pi/6)/(49/5)", answer: "150/49"}
+        - {kind: evaluate, expression: "(30*sin(pi/6))**2/(2*(49/5))", answer: "1125/98"}
+        - {kind: evaluate, expression: "30**2*sin(pi/3)/(49/5)", answer: "2250*sqrt(3)/49"}
+    answer_text: 'The vertical component is $u_y = 15$ m/s. The time of flight is $\dfrac{2u_y}{g} = \dfrac{30}{9.8} = \dfrac{150}{49} \approx 3.06$ s. The greatest height is $\dfrac{u_y^2}{2g} = \dfrac{225}{19.6} = \dfrac{1125}{98} \approx 11.5$ m. The range is $\dfrac{U^2 \sin 60^\circ}{g} = \dfrac{900 \times \frac{\sqrt{3}}{2}}{9.8} = \dfrac{2250\sqrt{3}}{49} \approx 79.5$ m.'
+
+  - id: q15-projectile-at-a-wall
+    section: "15.6"
+    dfe: [Q5, J5]
+    statement: 'A ball is kicked at $25$ m/s at $60^\circ$ towards a wall $25$ m away. Find the time it takes to reach the wall and its height then. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'The time and the height'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "25/(25*cos(pi/3))", answer: "2"}
+        - {kind: evaluate, expression: "25*sin(pi/3)*2 - 1/2*(49/5)*2**2", answer: "25*sqrt(3) - 98/5"}
+    answer_text: 'The horizontal component is $u_x = 25\cos 60^\circ = 12.5$ m/s, so the time is $\dfrac{25}{12.5} = 2$ s. The height is $y = u_y t - \frac{1}{2}gt^2 = 25\sin 60^\circ \times 2 - 4.9 \times 4 = 25\sqrt{3} - 19.6 \approx 23.7$ m.'

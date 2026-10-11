@@ -1,0 +1,160 @@
+# Practice set for 16.5, resolving forces and coplanar equilibrium.
+#
+# A component is a trigonometric value, so where it is not exact the check is an
+# `approx` against an exact SymPy expression with a stated tolerance. Equilibrium
+# is checked by adding the force vectors (`vector`) or by solving for the missing
+# force. Every statement says g = 9.8 when a weight is needed.
+chapter: 16
+problems:
+  - id: p1-resolve-50-30
+    section: "16.5"
+    dfe: [R4]
+    statement: 'A force of $50$ N acts at $30^\circ$ above the horizontal. Find its horizontal and vertical components.'
+    answer_label: 'The two components'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "50*cos(pi/6)", target: "43.30", tolerance: "0.01"}
+        - {kind: approx, value: "50*sin(pi/6)", target: "25.00", tolerance: "0.01"}
+    answer_text: 'The horizontal component is $50\cos 30^\circ = 43.30$ N. The vertical component is $50\sin 30^\circ = 25.00$ N. The angle is measured from the horizontal, so the cosine goes with the horizontal component.'
+
+  - id: p2-resolve-80-55
+    section: "16.5"
+    dfe: [R4]
+    statement: 'A force of $80$ N acts at $55^\circ$ above the horizontal. Find its horizontal and vertical components, each to $2$ d.p.'
+    answer_label: 'The two components'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "80*cos(55*pi/180)", target: "45.89", tolerance: "0.01"}
+        - {kind: approx, value: "80*sin(55*pi/180)", target: "65.53", tolerance: "0.01"}
+    answer_text: 'Horizontal component $= 80\cos 55^\circ = 45.89$ N. Vertical component $= 80\sin 55^\circ = 65.53$ N. The vertical component is the larger one because the angle is closer to the vertical.'
+
+  - id: p3-weight-on-slope-18
+    section: "16.5"
+    dfe: [R4]
+    statement: 'A weight of $441$ N acts on a body on a slope of $18^\circ$. Find the component of the weight along the slope and the component perpendicular to the slope, each to $1$ d.p.'
+    answer_label: 'The two components'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "441*sin(18*pi/180)", target: "136.3", tolerance: "0.05"}
+        - {kind: approx, value: "441*cos(18*pi/180)", target: "419.4", tolerance: "0.05"}
+    answer_text: 'The component down the slope is $441\sin 18^\circ = 136.3$ N. The component perpendicular to the slope is $441\cos 18^\circ = 419.4$ N. The two components add as vectors back to the $441$ N weight.'
+
+  - id: p4-weight-on-slope-30
+    section: "16.5"
+    dfe: [R4]
+    statement: 'A weight of $98$ N acts on a body on a slope of $30^\circ$. Find the component along the slope and the component perpendicular to the slope.'
+    answer_label: 'The two components'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "98*sin(pi/6)", target: "49", tolerance: "0.01"}
+        - {kind: approx, value: "98*cos(pi/6)", target: "84.87", tolerance: "0.01"}
+    answer_text: 'Along the slope: $98\sin 30^\circ = 49$ N. Perpendicular to the slope: $98\cos 30^\circ = 49\sqrt{3} \approx 84.87$ N.'
+
+  - id: p5-two-strings-60-30
+    section: "16.5"
+    dfe: [R4]
+    statement: 'A particle of weight $50$ N hangs in equilibrium from two light strings. One string makes $60^\circ$ with the horizontal and the other makes $30^\circ$ with the horizontal. Find the tension in each string.'
+    answer_label: 'The two tensions'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "25*sqrt(3)", target: "43.30", tolerance: "0.01"}
+        - {kind: approx, value: "25", target: "25.00", tolerance: "0.01"}
+    answer_text: 'Resolve vertically: $T_1\sin 60^\circ + T_2\sin 30^\circ = 50$. Resolve horizontally: $T_1\cos 60^\circ = T_2\cos 30^\circ$, so $T_1 = \sqrt{3}\,T_2$. Substituting gives $2T_2 = 50$, so $T_2 = 25$ N and $T_1 = 25\sqrt{3} \approx 43.30$ N.'
+
+  - id: p6-slope-rope-parallel
+    section: "16.5"
+    dfe: [R4]
+    statement: 'A block of mass $60$ kg rests on a smooth slope of $25^\circ$. A light rope parallel to the slope holds it in equilibrium. Find the tension and the normal reaction, each to $1$ d.p. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The tension and the normal reaction'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "60*9.8*sin(25*pi/180)", target: "248.5", tolerance: "0.1"}
+        - {kind: approx, value: "60*9.8*cos(25*pi/180)", target: "533.0", tolerance: "0.1"}
+    answer_text: 'The weight is $60 \times 9.8 = 588$ N. Along the slope, the tension balances the weight component: $T = 588\sin 25^\circ = 248.5$ N. Perpendicular to the slope, the normal reaction balances the other component: $R = 588\cos 25^\circ = 533.0$ N.'
+
+  - id: p7-horizontal-force-on-slope
+    section: "16.5"
+    dfe: [R4]
+    statement: 'A body of weight $392$ N is held in equilibrium on a smooth slope of $30^\circ$ by a horizontal force $P$. Find $P$ and the normal reaction, each to $1$ d.p.'
+    answer_label: 'The force and the normal reaction'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "392*tan(pi/6)", target: "226.3", tolerance: "0.1"}
+        - {kind: approx, value: "392/cos(pi/6)", target: "452.6", tolerance: "0.1"}
+    answer_text: 'Resolve along the slope: $P\cos 30^\circ = 392\sin 30^\circ$, so $P = 392\tan 30^\circ = 226.3$ N. Resolve perpendicular to the slope: $R = 392\cos 30^\circ + P\sin 30^\circ = 452.6$ N. The normal reaction is larger than the weight, because the horizontal force pushes into the slope.'
+
+  - id: p8-resolve-120-35
+    section: "16.5"
+    dfe: [R4]
+    statement: 'A force of $120$ N acts at $35^\circ$ below the horizontal. Find the horizontal component and the downward vertical component, each to $2$ d.p.'
+    answer_label: 'The two components'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "120*cos(35*pi/180)", target: "98.30", tolerance: "0.01"}
+        - {kind: approx, value: "120*sin(35*pi/180)", target: "68.83", tolerance: "0.01"}
+    answer_text: 'Horizontal component $= 120\cos 35^\circ = 98.30$ N. Downward vertical component $= 120\sin 35^\circ = 68.83$ N. The angle is still measured from the horizontal, so the cosine gives the horizontal part.'
+
+  - id: p9-four-forces-equilibrium
+    section: "16.5"
+    dfe: [R4]
+    statement: 'A particle is in equilibrium under four forces. Three of them are $(5, 0)$ N, $(-3, 4)$ N and $(0, -6)$ N. Find the fourth force as a column vector.'
+    answer_label: 'The fourth force'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([5, 0])", "Matrix([-3, 4])", "Matrix([0, -6])"]
+          answer: "Matrix([2, -2])"
+        - kind: vector
+          op: scale
+          args: ["-1", "Matrix([2, -2])"]
+          answer: "Matrix([-2, 2])"
+    answer_text: 'The three known forces add to $(2, -2)$ N. For equilibrium the four forces sum to zero, so the fourth force is $-(2, -2) = (-2, 2)$ N. It has size $\sqrt{2^2 + 2^2} = 2\sqrt{2} \approx 2.83$ N.'
+
+  - id: p10-three-forces-perpendicular
+    section: "16.5"
+    dfe: [R4]
+    statement: 'A particle is in equilibrium under three forces. Two of them are $12$ N due east and $5$ N due north. Find the third force as a column vector and its size.'
+    answer_label: 'The third force and its size'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: scale
+          args: ["-1", "Matrix([12, 5])"]
+          answer: "Matrix([-12, -5])"
+        - {kind: vector, op: norm, args: ["Matrix([-12, -5])"], answer: "13"}
+    answer_text: 'The third force cancels the other two, so it is $(-12, -5)$ N. Its size is $\sqrt{12^2 + 5^2} = 13$ N. The three force arrows form a $5$-$12$-$13$ triangle.'
+
+  - id: p11-two-strings-40-50
+    section: "16.5"
+    dfe: [R4]
+    statement: 'A particle of weight $30$ N hangs in equilibrium from two light strings. One string makes $40^\circ$ with the horizontal and the other makes $50^\circ$ with the horizontal. Find the two tensions, each to $2$ d.p.'
+    answer_label: 'The two tensions'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "30*sin(40*pi/180)", target: "19.28", tolerance: "0.01"}
+        - {kind: approx, value: "30*cos(40*pi/180)", target: "22.98", tolerance: "0.01"}
+    answer_text: 'Resolve horizontally: $T_1\cos 40^\circ = T_2\cos 50^\circ$, and since $\cos 50^\circ = \sin 40^\circ$, this gives $T_1 = T_2\tan 40^\circ$. Resolving vertically and substituting gives $T_2 = 30\cos 40^\circ = 22.98$ N and $T_1 = 30\sin 40^\circ = 19.28$ N.'
+
+  - id: p12-slope-rope-15
+    section: "16.5"
+    dfe: [R4]
+    statement: 'A block of mass $10$ kg rests on a smooth slope of $15^\circ$. A light rope parallel to the slope holds it in equilibrium. Find the tension and the normal reaction, each to $2$ d.p. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The tension and the normal reaction'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "10*9.8*sin(15*pi/180)", target: "25.36", tolerance: "0.01"}
+        - {kind: approx, value: "10*9.8*cos(15*pi/180)", target: "94.66", tolerance: "0.01"}
+    answer_text: 'The weight is $10 \times 9.8 = 98$ N. Along the slope: $T = 98\sin 15^\circ = 25.36$ N. Perpendicular to the slope: $R = 98\cos 15^\circ = 94.66$ N. The normal reaction is slightly less than the weight, because the slope carries only the perpendicular component.'

@@ -1,0 +1,131 @@
+# Practice set for 16.8, moments in static contexts.
+#
+# A moment is a force times a perpendicular distance. Where the numbers divide
+# cleanly the check is an exact `evaluate`; where a trigonometric distance is
+# involved, or a reaction does not terminate, the check is an `approx` with a
+# stated tolerance. Every statement names g = 9.8 where a weight is needed.
+chapter: 16
+problems:
+  - id: p1-moment-simple
+    section: "16.8"
+    dfe: [S1]
+    statement: 'A force of $20$ N acts at right angles to a spanner at a distance of $0.5$ m from the nut. Find the moment of the force about the nut.'
+    answer_label: 'The moment'
+    check: {kind: evaluate, expression: "20 * 0.5", answer: "10"}
+    answer_text: 'The moment is force times perpendicular distance: $20 \times 0.5 = 10$ N m. The force is at right angles to the spanner, so the distance given is already the perpendicular distance.'
+
+  - id: p2-moment-angle
+    section: "16.8"
+    dfe: [S1]
+    statement: 'A force of $15$ N acts at the end of a rod of length $2$ m. The force makes an angle of $30^\circ$ with the rod. Find the moment of the force about the other end of the rod.'
+    answer_label: 'The moment'
+    check:
+      kind: approx
+      value: "15 * 2 * sin(pi/6)"
+      target: "15"
+      tolerance: "0.01"
+    answer_text: 'The perpendicular distance from the pivot to the line of the force is $2\sin 30^\circ = 1$ m. The moment is $15 \times 1 = 15$ N m. Only the component of the force at right angles to the rod makes a moment.'
+
+  - id: p3-seesaw
+    section: "16.8"
+    dfe: [S1]
+    statement: 'A child of mass $30$ kg sits $2$ m from the pivot of a seesaw. A second child of mass $60$ kg sits on the other side. How far from the pivot must the second child sit to balance the seesaw? Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The distance'
+    check: {kind: evaluate, expression: "30*2 / 60", answer: "1"}
+    answer_text: 'For balance, the clockwise and anticlockwise moments at the pivot are equal: $30g \times 2 = 60g \times d$. The $g$ cancels, so $d = \dfrac{30 \times 2}{60} = 1$ m.'
+
+  - id: p4-plank-two-supports
+    section: "16.8"
+    dfe: [S1]
+    statement: 'A uniform plank $AB$ has length $4.0$ m and mass $20$ kg. It rests on two supports at $A$ and $B$. A crate of mass $45$ kg rests on the plank $1.5$ m from $A$. Find the reaction at each support, to $1$ d.p. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The two reactions'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "(20*9.8*2 + 45*9.8*1.5) / 4", target: "263.4", tolerance: "0.1"}
+        - {kind: approx, value: "(20*9.8 + 45*9.8) - (20*9.8*2 + 45*9.8*1.5) / 4", target: "373.6", tolerance: "0.1"}
+    answer_text: 'The plank is uniform, so its weight of $196$ N acts at its midpoint, $2$ m from $A$. The crate weighs $441$ N and acts $1.5$ m from $A$. Taking moments about $A$: $4R_B = 196 \times 2 + 441 \times 1.5 = 1053.5$, so $R_B = 263.4$ N. The total load is $637$ N, so $R_A = 637 - 263.4 = 373.6$ N. The support nearer the crate carries more.'
+
+  - id: p5-beam-off-centre
+    section: "16.8"
+    dfe: [S1]
+    statement: 'A uniform beam $AB$ has length $3.0$ m and mass $12$ kg. It rests on supports at $A$ and $B$. A load of mass $20$ kg rests on the beam $2.0$ m from $A$. Find the reaction at each support, to $1$ d.p. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The two reactions'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "(12*9.8*1.5 + 20*9.8*2) / 3", target: "189.5", tolerance: "0.1"}
+        - {kind: approx, value: "(12*9.8 + 20*9.8) - (12*9.8*1.5 + 20*9.8*2) / 3", target: "124.1", tolerance: "0.1"}
+    answer_text: 'The beam weight is $117.6$ N at $1.5$ m from $A$, and the load is $196$ N at $2.0$ m. Taking moments about $A$: $3R_B = 117.6 \times 1.5 + 196 \times 2 = 568.4$, so $R_B = 189.5$ N. The total is $313.6$ N, so $R_A = 313.6 - 189.5 = 124.1$ N.'
+
+  - id: p6-metre-rule
+    section: "16.8"
+    dfe: [S1]
+    statement: 'A uniform metre rule is pivoted at its centre, the $50$ cm mark. A mass of $0.2$ kg hangs at the $20$ cm mark. Where must a mass of $0.3$ kg hang to balance the rule?'
+    answer_label: 'The balance distance'
+    check: {kind: evaluate, expression: "0.2*0.3 / 0.3", answer: "0.2"}
+    answer_text: 'The $0.2$ kg mass is $0.30$ m from the pivot, so its moment is $0.2g \times 0.30$. Let the $0.3$ kg mass be $d$ m from the pivot on the other side: $0.3g\,d = 0.2g \times 0.30$. The $g$ cancels, so $d = 0.20$ m. The mass hangs at the $70$ cm mark.'
+
+  - id: p7-non-uniform-rod
+    section: "16.8"
+    dfe: [S1]
+    statement: 'A non-uniform rod $AB$ has length $4$ m and mass $6$ kg. It is pivoted at its centre and balances when a mass of $2$ kg is placed at $B$. Find the distance of the centre of mass of the rod from $A$, to $2$ d.p.'
+    answer_label: 'The distance of the centre of mass from A'
+    check:
+      kind: approx
+      value: "2 - 2*2/6"
+      target: "1.33"
+      tolerance: "0.01"
+    answer_text: 'The $2$ kg mass at $B$ is $2$ m from the pivot, giving a moment of $2g \times 2 = 4g$. The weight of the rod, $6g$, must act on the other side of the pivot at distance $x$: $6gx = 4g$, so $x = \dfrac{2}{3}$ m. The centre of mass is $2 - \dfrac{2}{3} \approx 1.33$ m from $A$. A non-uniform rod''s centre of mass is not at its midpoint.'
+
+  - id: p8-central-load
+    section: "16.8"
+    dfe: [S1]
+    statement: 'A uniform beam $AB$ has length $5$ m and mass $30$ kg. It rests on supports at $A$ and $B$. A load of mass $50$ kg rests at the midpoint. Find the reaction at each support. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The two reactions'
+    check: {kind: evaluate, expression: "(30 + 50) * 9.8 / 2", answer: "392"}
+    answer_text: 'The load is at the midpoint, and the beam is uniform, so every weight acts at the centre. The total weight is $(30 + 50) \times 9.8 = 784$ N. By symmetry each support carries half: $392$ N.'
+
+  - id: p9-supports-inside
+    section: "16.8"
+    dfe: [S1]
+    statement: 'A uniform beam $AB$ has length $4$ m and mass $25$ kg. It rests on a support at $A$ and a support at $C$, where $AC = 3$ m. A load of mass $40$ kg rests on the beam $2$ m from $A$. Find the reaction at each support, to $1$ d.p. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The two reactions'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "(25*9.8*2 + 40*9.8*2) / 3", target: "424.7", tolerance: "0.1"}
+        - {kind: approx, value: "(25*9.8 + 40*9.8) - (25*9.8*2 + 40*9.8*2) / 3", target: "212.3", tolerance: "0.1"}
+    answer_text: 'The beam weight is $245$ N at $2$ m from $A$ and the load is $392$ N at $2$ m from $A$. Taking moments about $A$: $3R_C = 245 \times 2 + 392 \times 2 = 1274$, so $R_C = 424.7$ N. The total is $637$ N, so $R_A = 637 - 424.7 = 212.3$ N.'
+
+  - id: p10-person-on-plank
+    section: "16.8"
+    dfe: [S1]
+    statement: 'A uniform plank $AB$ has length $6$ m and mass $40$ kg. It rests on supports at $A$ and $B$. A person of mass $80$ kg stands $2$ m from $A$. Find the reaction at each support, to $1$ d.p. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The two reactions'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "(40*9.8*3 + 80*9.8*2) / 6", target: "457.3", tolerance: "0.1"}
+        - {kind: approx, value: "(40*9.8 + 80*9.8) - (40*9.8*3 + 80*9.8*2) / 6", target: "718.7", tolerance: "0.1"}
+    answer_text: 'The plank weight is $392$ N at $3$ m from $A$; the person weighs $784$ N at $2$ m from $A$. Taking moments about $A$: $6R_B = 392 \times 3 + 784 \times 2 = 2744$, so $R_B = 457.3$ N. The total is $1176$ N, so $R_A = 1176 - 457.3 = 718.7$ N.'
+
+  - id: p11-moment-at-angle
+    section: "16.8"
+    dfe: [S1]
+    statement: 'A force of $50$ N acts at the end of a rod of length $1.5$ m. The force makes an angle of $40^\circ$ with the rod. Find the moment of the force about the other end, to $2$ d.p.'
+    answer_label: 'The moment'
+    check:
+      kind: approx
+      value: "50 * 1.5 * sin(40*pi/180)"
+      target: "48.21"
+      tolerance: "0.01"
+    answer_text: 'The perpendicular distance is $1.5\sin 40^\circ = 0.964$ m. The moment is $50 \times 0.964 \approx 48.21$ N m. Only the component of the force at right angles to the rod contributes.'
+
+  - id: p12-hinged-rod
+    section: "16.8"
+    dfe: [S1]
+    statement: 'A uniform rod $AB$ has mass $8$ kg and length $2.5$ m. It is hinged at $A$ and held horizontal by a vertical string at $B$. Find the tension in the string. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The tension'
+    check: {kind: evaluate, expression: "8*9.8*1.25 / 2.5", answer: "39.2"}
+    answer_text: 'The weight is $78.4$ N and acts at the midpoint, $1.25$ m from $A$. Taking moments about $A$: $2.5T = 78.4 \times 1.25 = 98$, so $T = 39.2$ N. The hinge carries the rest of the load.'

@@ -1,0 +1,107 @@
+# Practice set for 16.3, weight and motion under gravity.
+#
+# The awkward decimals here are all `approx` checks against an exact SymPy value,
+# because decimals must be checked in an interval, not by equality. The rest are
+# exact `evaluate` checks. Every statement says that g is 9.8 metres per second
+# squared, so the reader never has to guess.
+chapter: 16
+problems:
+  - id: p1-weight-crate
+    section: "16.3"
+    dfe: [R3]
+    statement: 'Find the weight of a crate of mass $45$ kg. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The weight'
+    check: {kind: evaluate, expression: "45 * 9.8", answer: "441"}
+    answer_text: 'Use $W = mg$: $W = 45 \times 9.8 = 441$ N, acting downwards. The mass stays $45$ kg; only the weight is a force.'
+
+  - id: p2-weight-person
+    section: "16.3"
+    dfe: [R3]
+    statement: 'Find the weight of a person of mass $70$ kg. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The weight'
+    check: {kind: evaluate, expression: "70 * 9.8", answer: "686"}
+    answer_text: '$W = mg = 70 \times 9.8 = 686$ N acting downwards.'
+
+  - id: p3-mass-from-weight
+    section: "16.3"
+    dfe: [R3]
+    statement: 'A body has a weight of $588$ N. Find its mass. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The mass'
+    check: {kind: evaluate, expression: "588 / 9.8", answer: "60"}
+    answer_text: 'Rearrange $W = mg$: $m = \dfrac{W}{g} = \dfrac{588}{9.8} = 60$ kg. Mass is measured in kilograms, not newtons.'
+
+  - id: p4-small-mass
+    section: "16.3"
+    dfe: [R3]
+    statement: 'Find the weight of a book of mass $2.5$ kg. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The weight'
+    check: {kind: evaluate, expression: "2.5 * 9.8", answer: "24.5"}
+    answer_text: '$W = mg = 2.5 \times 9.8 = 24.5$ N, acting downwards.'
+
+  - id: p5-falling-ball
+    section: "16.3"
+    dfe: [R3]
+    statement: 'A ball of mass $0.5$ kg is released and falls. Air resistance is negligible. Find the resultant force on the ball and its acceleration. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The resultant force and the acceleration'
+    check: {kind: evaluate, expression: "0.5 * 9.8", answer: "4.9"}
+    answer_text: 'The only force is the weight, so $F = mg = 0.5 \times 9.8 = 4.9$ N downwards. Then $a = \dfrac{F}{m} = \dfrac{4.9}{0.5} = 9.8$ m s$^{-2}$. A freely falling body accelerates at $g$.'
+
+  - id: p6-air-resistance
+    section: "16.3"
+    dfe: [R3]
+    statement: 'A skydiver of mass $60$ kg falls with an air resistance of $200$ N. Find the acceleration. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The acceleration'
+    check:
+      kind: approx
+      value: "(60*9.8 - 200) / 60"
+      target: "6.47"
+      tolerance: "0.01"
+    answer_text: 'The weight is $60 \times 9.8 = 588$ N downwards and the air resistance is $200$ N upwards. The resultant is $588 - 200 = 388$ N downwards, so $a = \dfrac{388}{60} \approx 6.47$ m s$^{-2}$ downwards.'
+
+  - id: p7-terminal-velocity
+    section: "16.3"
+    dfe: [R3]
+    statement: 'A skydiver of mass $60$ kg falls at terminal velocity. Find the air resistance. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The air resistance'
+    check: {kind: evaluate, expression: "60 * 9.8", answer: "588"}
+    answer_text: 'At terminal velocity the acceleration is zero, so the resultant force is zero. The air resistance balances the weight: $60 \times 9.8 = 588$ N upwards.'
+
+  - id: p8-lift-up
+    section: "16.3"
+    dfe: [R3]
+    statement: 'A person of mass $70$ kg stands on the floor of a lift. The lift accelerates upwards at $1.5$ m s$^{-2}$. Find the normal reaction from the floor. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The normal reaction'
+    check: {kind: evaluate, expression: "70 * (9.8 + 1.5)", answer: "791"}
+    answer_text: 'Taking upwards as positive, $R - mg = ma$, so $R = m(g + a) = 70(9.8 + 1.5) = 791$ N. The reaction is larger than the weight, so the person feels heavier.'
+
+  - id: p9-lift-down
+    section: "16.3"
+    dfe: [R3]
+    statement: 'A person of mass $70$ kg stands on the floor of a lift. The lift accelerates downwards at $1.5$ m s$^{-2}$. Find the normal reaction from the floor. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The normal reaction'
+    check: {kind: evaluate, expression: "70 * (9.8 - 1.5)", answer: "581"}
+    answer_text: 'Taking downwards as positive, $mg - R = ma$, so $R = m(g - a) = 70(9.8 - 1.5) = 581$ N. The reaction is smaller than the weight, so the person feels lighter.'
+
+  - id: p10-lift-constant
+    section: "16.3"
+    dfe: [R3]
+    statement: 'A person of mass $70$ kg stands on the floor of a lift moving at a constant velocity. Find the normal reaction from the floor. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The normal reaction'
+    check: {kind: evaluate, expression: "70 * 9.8", answer: "686"}
+    answer_text: 'A constant velocity means the acceleration is zero, so the resultant force is zero. The normal reaction equals the weight: $70 \times 9.8 = 686$ N. The reading is the same as when the lift is at rest.'
+
+  - id: p11-moon-weight
+    section: "16.3"
+    dfe: [R3]
+    statement: 'An astronaut of mass $45$ kg is on the Moon, where $g = 1.6$ m s$^{-2}$. Find the astronaut''s weight on the Moon.'
+    answer_label: 'The weight on the Moon'
+    check: {kind: evaluate, expression: "45 * 1.6", answer: "72"}
+    answer_text: 'The mass does not change, and it is still $45$ kg. The weight is $W = mg = 45 \times 1.6 = 72$ N. The smaller value of $g$ gives a smaller weight.'
+
+  - id: p12-drag-acceleration
+    section: "16.3"
+    dfe: [R3]
+    statement: 'A ball of mass $0.2$ kg falls with an air resistance of $0.5$ N. Find its acceleration. Take $g = 9.8$ m s$^{-2}$.'
+    answer_label: 'The acceleration'
+    check: {kind: evaluate, expression: "(0.2*9.8 - 0.5) / 0.2", answer: "7.3"}
+    answer_text: 'The weight is $0.2 \times 9.8 = 1.96$ N downwards. The resultant is $1.96 - 0.5 = 1.46$ N downwards, so $a = \dfrac{1.46}{0.2} = 7.3$ m s$^{-2}$. The air resistance reduces the acceleration below $g$.'

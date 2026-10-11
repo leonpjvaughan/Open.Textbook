@@ -1,0 +1,140 @@
+# Practice set for 12.3, modelling with probability and critiquing the
+# assumptions. The checks prove the model arithmetic: an expected count, a
+# conditional probability from a model, or the effect of changing one input.
+# Whether an assumption is criticised well is human review.
+chapter: 12
+problems:
+  - id: p1-fair-spinner-model
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'A five-sided spinner is modelled as fair. State the probability that the spinner lands on a given side under this model. Give one reason the model may not be suitable.'
+    answer_label: 'The model probability'
+    check:
+      kind: evaluate
+      expression: "1/5"
+      answer: "1/5"
+    answer_text: 'A fair spinner gives each side the same probability, so the model gives $\dfrac{1}{5} = 0.2$. The model assumes the sides are equally likely. In a real spinner the pointer may favour one side, because the sides are not identical in shape, so the equal-likelihood assumption may fail.'
+
+  - id: p2-expected-defects
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'A model says that the probability a component is defective is $0.03$. In a batch of 800 components, find the expected number that are defective.'
+    answer_label: 'The expected number of defective components'
+    check:
+      kind: evaluate
+      expression: "0.03 * 800"
+      answer: "24"
+    answer_text: 'Multiply the probability by the number of components: $0.03 \times 800 = 24$. The expected number is a long-run average, not a prediction for this exact batch.'
+
+  - id: p3-expected-sixes
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'A biased die has probability $0.2$ of showing a 6. In 50 rolls, find the expected number of sixes.'
+    answer_label: 'The expected number of sixes'
+    check:
+      kind: evaluate
+      expression: "0.2 * 50"
+      answer: "10"
+    answer_text: 'The expected number is $0.2 \times 50 = 10$. The model treats the rolls as independent and gives every roll the same probability of a 6.'
+
+  - id: p4-base-rate-effect
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'A screening test detects a condition with probability $0.9$ and wrongly gives a positive result for a healthy person with probability $0.05$. Find the probability that a person has the condition, given a positive result, when the condition affects (a) 1 in 1000 people, and (b) 5 in 100 people. Comment on the effect of the base rate.'
+    answer_label: 'The two conditional probabilities'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(1/1000 * 9/10) / (1/1000 * 9/10 + 999/1000 * 5/100)", answer: "2/113"}
+        - {kind: evaluate, expression: "(5/100 * 9/10) / (5/100 * 9/10 + 95/100 * 5/100)", answer: "18/37"}
+    answer_text: '(a) With a base rate of 1 in 1000, $P(\text{condition} \mid \text{positive}) = \dfrac{2}{113} \approx 0.0177$. (b) With a base rate of 5 in 100, the same test gives $\dfrac{18}{37} \approx 0.486$. The test has not changed. The base rate has changed, and it changes the answer a great deal, so a claim about a positive result is only as good as the assumed base rate.'
+
+  - id: p5-shared-cause
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'A model assumes that two components fail independently. Each fails with probability $0.02$. The components share a power supply that fails with probability $0.005$, and the components both fail when the supply fails. Show that the independence model underestimates the probability that both components fail.'
+    answer_label: 'The two probabilities'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "0.02 * 0.02", answer: "1/2500"}
+        - {kind: evaluate, expression: "0.005 - 0.02*0.02", answer: "23/5000"}
+    answer_text: 'The independence model gives $P(\text{both fail}) = 0.02^2 = 0.0004 = \dfrac{1}{2500}$. When the supply can fail, both components fail whenever the supply fails, so $P(\text{both fail})$ is at least $0.005$. The difference is $0.005 - 0.0004 = 0.0046 = \dfrac{23}{5000}$. The shared supply makes the failures dependent, so the model is too small.'
+
+  - id: p6-expected-wins
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'A game is modelled so that the probability of a win on one play is $0.02$. Find the expected number of wins in 500 plays.'
+    answer_label: 'The expected number of wins'
+    check:
+      kind: evaluate
+      expression: "0.02 * 500"
+      answer: "10"
+    answer_text: 'The expected number is $0.02 \times 500 = 10$. The model assumes each play is independent and has the same win probability.'
+
+  - id: p7-refine-false-alarm
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'A warehouse fire detector sounds when there is a fire with probability $0.95$. On a morning with no fire it sounds with probability $0.01$. The probability of a fire on a morning is $0.001$. Find the probability of a fire, given that the detector sounds.'
+    answer_label: 'The probability of a fire, given that the detector sounds'
+    check:
+      kind: evaluate
+      expression: "(1/1000 * 19/20) / (1/1000 * 19/20 + 999/1000 * 1/100)"
+      answer: "95/1094"
+    answer_text: 'The detector sounds on two paths. Fire and alarm gives $\dfrac{1}{1000} \times \dfrac{19}{20} = \dfrac{19}{20000}$. No fire and alarm gives $\dfrac{999}{1000} \times \dfrac{1}{100} = \dfrac{999}{100000}$. So $P(\text{alarm}) = \dfrac{1094}{100000}$ and $P(\text{fire} \mid \text{alarm}) = \dfrac{95}{1094} \approx 0.0868$. Halving the false-alarm rate raises the answer from about $0.045$ to about $0.087$.'
+
+  - id: p8-model-check-return
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'A model predicts that $15\%$ of 200 customers will return an item. In fact 24 customers return an item. Find the number the model predicts and describe one way to refine the model.'
+    answer_label: 'The predicted number'
+    check:
+      kind: evaluate
+      expression: "0.15 * 200"
+      answer: "30"
+    answer_text: 'The model predicts $0.15 \times 200 = 30$ returns. The observed number is 24, so the model overestimates by 6. One refinement is to estimate the return rate from a larger, more representative sample of customers, instead of assuming $15\%$.'
+
+  - id: p9-birthday-assumption
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'A model assumes that a birthday is equally likely on each of the 12 months. State the model probability that a randomly chosen person has a birthday in June. Give one reason the assumption may fail.'
+    answer_label: 'The model probability'
+    check:
+      kind: evaluate
+      expression: "1/12"
+      answer: "1/12"
+    answer_text: 'The model gives $\dfrac{1}{12}$ for each month, because the 12 months are treated as equally likely. The assumption may fail because the number of days in a month differs and because birth rates vary through the year.'
+
+  - id: p10-two-machines
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'Machine A makes 60% of a factory output and machine B makes 40%. The defect rate is 2% for machine A and 5% for machine B. A defective item is found. Find the probability that it came from machine B.'
+    answer_label: 'The probability that the item came from machine B'
+    check:
+      kind: evaluate
+      expression: "(4/10 * 5/100) / (6/10 * 2/100 + 4/10 * 5/100)"
+      answer: "5/8"
+    answer_text: 'A defective item can come from either machine. Machine A gives $\dfrac{6}{10} \times \dfrac{2}{100} = \dfrac{12}{1000}$ defectives. Machine B gives $\dfrac{4}{10} \times \dfrac{5}{100} = \dfrac{20}{1000}$. So $P(\text{defective}) = \dfrac{32}{1000}$ and $P(\text{machine B} \mid \text{defective}) = \dfrac{20}{32} = \dfrac{5}{8}$.'
+
+  - id: p11-rapid-test
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'A rapid test has sensitivity $0.95$ and specificity $0.98$, so the false-positive rate is $0.02$. The condition affects 1% of the population. Find the probability that a person has the condition, given a positive result, to 3 decimal places.'
+    answer_label: 'The probability of the condition, given a positive result'
+    check:
+      kind: approx
+      value: "(1/100 * 95/100) / (1/100 * 95/100 + 99/100 * 2/100)"
+      target: "0.324"
+      tolerance: "0.0005"
+    answer_text: 'The positive result can happen on two paths. Condition and positive gives $0.01 \times 0.95 = 0.0095$. Healthy and positive gives $0.99 \times 0.02 = 0.0198$. So $P(\text{positive}) = 0.0293$ and $P(\text{condition} \mid \text{positive}) = \dfrac{0.0095}{0.0293} = \dfrac{95}{293} \approx 0.324$. A positive result is more likely to come from a healthy person, because the condition is rare.'
+
+  - id: p12-die-model-plausible
+    section: "12.3"
+    dfe: [M3, OT3]
+    statement: 'A fair six-sided die is rolled 600 times. A model predicts 100 of each face. The observed counts are 96, 104, 99, 101, 98 and 102. Find the total observed count and state whether the model looks plausible. Describe one refinement.'
+    answer_label: 'The total observed count and the judgement'
+    check:
+      kind: evaluate
+      expression: "96 + 104 + 99 + 101 + 98 + 102"
+      answer: "600"
+    answer_text: 'The counts add to 600, and each count is close to the predicted 100. The model looks plausible on this evidence. A refinement would allow each face its own probability, estimated from a larger number of rolls, rather than assuming the die is fair.'

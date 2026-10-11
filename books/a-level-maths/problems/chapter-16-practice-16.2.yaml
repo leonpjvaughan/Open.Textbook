@@ -1,0 +1,114 @@
+# Practice set for 16.2, Newton's second law and F = ma.
+#
+# Every question here has a numeric answer the reader can check, so the checks
+# are an exact `evaluate` where the numbers divide cleanly and a `vector` scale
+# where the force is given in components. A deceleration is written as a negative
+# acceleration, which is what the algebra gives.
+chapter: 16
+problems:
+  - id: p1-acceleration
+    section: "16.2"
+    dfe: [R2]
+    statement: 'A resultant force of $20$ N acts on a mass of $5$ kg. Find the acceleration.'
+    answer_label: 'The acceleration'
+    check: {kind: evaluate, expression: "20 / 5", answer: "4"}
+    answer_text: 'Use $F = ma$ with $F = 20$ and $m = 5$: $a = \dfrac{F}{m} = \dfrac{20}{5} = 4$ m s$^{-2}$. The acceleration is in the direction of the resultant force.'
+
+  - id: p2-braking
+    section: "16.2"
+    dfe: [R2]
+    statement: 'A car of mass $1200$ kg brakes with a total braking force of $3600$ N. The only horizontal force is the braking force. Find the acceleration, taking the direction of motion as positive.'
+    answer_label: 'The acceleration'
+    check: {kind: evaluate, expression: "-3600 / 1200", answer: "-3"}
+    answer_text: 'The braking force acts backwards, so $F = -3600$ N and $a = \dfrac{-3600}{1200} = -3$ m s$^{-2}$. The negative sign means the car decelerates at $3$ m s$^{-2}$.'
+
+  - id: p3-crate
+    section: "16.2"
+    dfe: [R2]
+    statement: 'A crate of mass $45$ kg is pushed along a floor by a resultant force of $150$ N. Find the acceleration.'
+    answer_label: 'The acceleration'
+    check: {kind: evaluate, expression: "150 / 45", answer: "10/3"}
+    answer_text: '$a = \dfrac{F}{m} = \dfrac{150}{45} = \dfrac{10}{3} \approx 3.33$ m s$^{-2}$. Leave the answer as a fraction, or round it at the end.'
+
+  - id: p4-find-force
+    section: "16.2"
+    dfe: [R2]
+    statement: 'A mass of $8$ kg accelerates at $2.5$ m s$^{-2}$. Find the resultant force.'
+    answer_label: 'The resultant force'
+    check: {kind: evaluate, expression: "8 * 2.5", answer: "20"}
+    answer_text: 'Rearrange $F = ma$ for the force: $F = 8 \times 2.5 = 20$ N.'
+
+  - id: p5-find-mass
+    section: "16.2"
+    dfe: [R2]
+    statement: 'A resultant force of $240$ N gives a body an acceleration of $4$ m s$^{-2}$. Find the mass of the body.'
+    answer_label: 'The mass'
+    check: {kind: evaluate, expression: "240 / 4", answer: "60"}
+    answer_text: 'From $F = ma$, $m = \dfrac{F}{a} = \dfrac{240}{4} = 60$ kg.'
+
+  - id: p6-opposite-forces
+    section: "16.2"
+    dfe: [R2]
+    statement: 'Forces of $50$ N and $30$ N act in opposite directions on a body of mass $8$ kg. Find the acceleration.'
+    answer_label: 'The acceleration'
+    check: {kind: evaluate, expression: "(50 - 30) / 8", answer: "2.5"}
+    answer_text: 'The resultant force is $50 - 30 = 20$ N in the direction of the $50$ N force. Then $a = \dfrac{20}{8} = 2.5$ m s$^{-2}$.'
+
+  - id: p7-car
+    section: "16.2"
+    dfe: [R2]
+    statement: 'A car of mass $1500$ kg has a driving force of $4000$ N and a total resistance of $1000$ N. Find the acceleration.'
+    answer_label: 'The acceleration'
+    check: {kind: evaluate, expression: "(4000 - 1000) / 1500", answer: "2"}
+    answer_text: 'The resultant force is $4000 - 1000 = 3000$ N. Then $a = \dfrac{3000}{1500} = 2$ m s$^{-2}$.'
+
+  - id: p8-from-rest
+    section: "16.2"
+    dfe: [R2]
+    statement: 'A body of mass $4$ kg accelerates from rest to $20$ m s$^{-1}$ in $5$ s. Find the resultant force on it.'
+    answer_label: 'The resultant force'
+    check: {kind: evaluate, expression: "4 * (20 / 5)", answer: "16"}
+    answer_text: 'First find the acceleration: $a = \dfrac{20 - 0}{5} = 4$ m s$^{-2}$. Then $F = ma = 4 \times 4 = 16$ N.'
+
+  - id: p9-brake-force
+    section: "16.2"
+    dfe: [R2]
+    statement: 'A car of mass $900$ kg must decelerate at $2$ m s$^{-2}$. Find the braking force needed if the only horizontal force is the braking force.'
+    answer_label: 'The braking force'
+    check: {kind: evaluate, expression: "900 * 2", answer: "1800"}
+    answer_text: 'A deceleration of $2$ m s$^{-2}$ needs a resultant force of $F = ma = 900 \times 2 = 1800$ N acting backwards. The braking force is $1800$ N.'
+
+  - id: p10-components
+    section: "16.2"
+    dfe: [R2]
+    statement: 'A resultant force of $(6, 8)$ N acts on a mass of $2$ kg. Find the acceleration as a column vector, and its size.'
+    answer_label: 'The acceleration and its size'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: scale
+          args: ["1/2", "Matrix([6, 8])"]
+          answer: "Matrix([3, 4])"
+        - {kind: vector, op: norm, args: ["Matrix([3, 4])"], answer: "5"}
+    answer_text: 'Divide each component of the force by the mass: $\mathbf{a} = \dfrac{1}{2}(6, 8) = (3, 4)$ m s$^{-2}$. Its size is $\sqrt{3^2 + 4^2} = 5$ m s$^{-2}$.'
+
+  - id: p11-unknown-force
+    section: "16.2"
+    dfe: [R2]
+    statement: 'A body of mass $6$ kg accelerates at $1.5$ m s$^{-2}$ against a resistance of $5$ N. Find the driving force.'
+    answer_label: 'The driving force'
+    check: {kind: evaluate, expression: "6 * 1.5 + 5", answer: "14"}
+    answer_text: 'The resultant force must be $F = ma = 6 \times 1.5 = 9$ N. The driving force also has to overcome the $5$ N resistance, so it is $9 + 5 = 14$ N.'
+
+  - id: p12-perpendicular-forces
+    section: "16.2"
+    dfe: [R2]
+    statement: 'Forces of $30$ N and $40$ N act at right angles on a mass of $10$ kg. Find the size of the resultant force and the acceleration.'
+    answer_label: 'The resultant and the acceleration'
+    check:
+      kind: all
+      checks:
+        - {kind: vector, op: norm, args: ["Matrix([30, 40])"], answer: "50"}
+        - {kind: evaluate, expression: "50 / 10", answer: "5"}
+    answer_text: 'The resultant force is $\sqrt{30^2 + 40^2} = 50$ N. The acceleration is $a = \dfrac{50}{10} = 5$ m s$^{-2}$, in the direction of the resultant.'

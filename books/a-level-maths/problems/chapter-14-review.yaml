@@ -1,0 +1,182 @@
+# Review set for Chapter 14. The checks prove each computation and decision; the
+# choice of method, the tail and the wording of a conclusion are human review.
+chapter: 14
+problems:
+  - id: r1-voucher-claim
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A company claims that 1 packet in 4 contains a voucher. A customer buys 20 packets and finds 1 voucher. Test the claim at the 5% level against the alternative that fewer packets contain a voucher.'
+    answer_label: 'The p-value, the critical region and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 20, p: "1/4"}
+      tail: left
+      observed: 1
+      p_value: "26732013741/1099511627776"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {max: 1}
+    answer_text: '$H_0: p = 0.25$ and $H_1: p < 0.25$. Under $H_0$, $X \sim \mathrm{B}(20, 0.25)$. The p-value is $P(X \le 1) = 0.0243 < 0.05$, so reject $H_0$. The critical region is $X \le 1$ and the acceptance region is $X \ge 2$. There is sufficient evidence at the 5% level that fewer than 1 packet in 4 contains a voucher.'
+
+  - id: r2-underfilled-packets
+    section: "14.3"
+    dfe: [O3]
+    statement: 'A machine fills packets with a mean of 500 g. The standard deviation is known to be 4 g. A sample of 16 packets has mean 497 g. Test at the 5% level whether the mean is below 500 g.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: normal
+      parameters: {mu: 500, sigma: 1}
+      tail: left
+      observed: 497
+      p_value: "0.00135"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {max: "498.355"}
+      tolerance: "0.001"
+    answer_text: '$H_0: \mu = 500$ and $H_1: \mu < 500$. The standard error is $\dfrac{4}{\sqrt{16}} = 1$, so $z = -3$. The p-value is $0.00135 < 0.05$, so reject $H_0$. There is sufficient evidence at the 5% level that the mean is below 500 g.'
+
+  - id: r3-correlation-pvalue
+    section: "14.4"
+    dfe: [O1]
+    statement: 'A sample of 30 pairs gives $r = 0.42$ and a two-tailed p-value of $0.021$. State, with a symbol, how the p-value compares with the 5% significance level, and name the decision.'
+    answer_label: 'The comparison and the decision'
+    check: {kind: compare, lhs: "0.021", relation: "<", rhs: "0.05"}
+    answer_text: '$0.021 < 0.05$, so the test rejects $H_0$. There is sufficient evidence at the 5% level of a linear correlation.'
+
+  - id: r4-binomial-probability
+    section: "14.1"
+    dfe: [O1]
+    statement: 'A binomial variable has $n = 15$ and $p = 0.2$. Find $P(X \le 1)$, to 4 decimal places.'
+    answer_label: 'The lower tail probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 15, p: "1/5"}
+      query: {kind: at_most, value: 1}
+      answer: "5100273664/30517578125"
+    answer_text: '$P(X \le 1) = 0.1671$ to 4 decimal places.'
+
+  - id: r5-normal-probability
+    section: "14.3"
+    dfe: [O3]
+    statement: 'A Normal distribution has mean 100 and standard deviation 15. Find $P(X \le 85)$, to 4 decimal places.'
+    answer_label: 'The Normal probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 100, sigma: 15}
+      query: {kind: at_most, value: 85}
+      answer: "0.1587"
+      tolerance: "0.0001"
+    answer_text: '$z = \dfrac{85 - 100}{15} = -1$, and $P(Z \le -1) = 0.1587$ to 4 decimal places.'
+
+  - id: r6-sample-mean
+    section: "14.3"
+    dfe: [O3]
+    statement: 'A sample of six masses, in grams, is $12, 15, 18, 20, 25, 30$. Find the sample mean.'
+    answer_label: 'The sample mean'
+    check: {kind: evaluate, expression: "(12 + 15 + 18 + 20 + 25 + 30) / 6", answer: "20"}
+    answer_text: 'The total is 120, so the mean is $\dfrac{120}{6} = 20$ g.'
+
+  - id: r7-sample-variance
+    section: "14.3"
+    dfe: [O3]
+    statement: 'A sample is $2, 4, 4, 4, 5, 5, 7, 9$. Find the sample variance, using the sample convention that divides by $n - 1$.'
+    answer_label: 'The sample variance'
+    check:
+      kind: statistic
+      data: ["2", "4", "4", "4", "5", "5", "7", "9"]
+      stat: variance
+      convention: sample
+      answer: "32/7"
+    answer_text: 'The mean is 5 and the squared deviations add to 32. Dividing by $n - 1 = 7$ gives a variance of $\dfrac{32}{7}$. A variance reports the numbers divided by $n - 1$, so the convention matters.'
+
+  - id: r8-coin-two-tailed
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A coin is tossed 18 times and shows 14 heads. Test at the 5% level whether the coin is fair.'
+    answer_label: 'The two-tailed p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 18, p: "1/2"}
+      tail: two
+      observed: 14
+      p_value: "253/8192"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {max: 4, min: 14}
+    answer_text: '$H_0: p = 0.5$ and $H_1: p \ne 0.5$. The smaller tail is $P(X \ge 14) = 0.0154$, so the two-tailed p-value is $0.0309 < 0.05$ and the test rejects $H_0$. There is sufficient evidence at the 5% level that the coin is not fair.'
+
+  - id: r9-deliveries-upper
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A depot claims that 20% of vans arrive late. In 25 vans, 10 arrive late. Test at the 5% level whether the late rate is higher than the claim.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 25, p: "1/5"}
+      tail: right
+      observed: 10
+      p_value: "5165299636675621/298023223876953125"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {min: 9}
+    answer_text: '$H_0: p = 0.2$ and $H_1: p > 0.2$. The p-value is $P(X \ge 10) = 0.0173 < 0.05$, so reject $H_0$. There is sufficient evidence at the 5% level that more than 20% of vans arrive late.'
+
+  - id: r10-normal-two-tailed
+    section: "14.3"
+    dfe: [O3]
+    statement: 'A claim sets $\mu = 20$. The standard deviation is known to be 2. A sample of four items has mean 22. Test at the 5% level whether the mean has changed.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: normal
+      parameters: {mu: 20, sigma: 1}
+      tail: two
+      observed: 22
+      p_value: "0.0455"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {max: "18.04", min: "21.96"}
+      tolerance: "0.01"
+    answer_text: '$H_0: \mu = 20$ and $H_1: \mu \ne 20$. The standard error is $\dfrac{2}{\sqrt{4}} = 1$, so $z = \dfrac{22 - 20}{1} = 2$. The two-tailed p-value is $0.0455 < 0.05$, so reject $H_0$. There is sufficient evidence at the 5% level that the mean has changed. The result is close to the level, and at the 1% level the test would retain $H_0$.'
+
+  - id: r11-correlation-negative
+    section: "14.4"
+    dfe: [O1]
+    statement: 'A sample of 20 pairs gives $r = -0.61$. The test is two-tailed at the 5% level and the critical value for 20 pairs is $0.444$. State, with a symbol, how $|r|$ compares with the critical value, and name the decision.'
+    answer_label: 'The comparison and the decision'
+    check: {kind: compare, lhs: "Abs(-0.61)", relation: ">", rhs: "0.444"}
+    answer_text: '$|-0.61| = 0.61 > 0.444$, so the test rejects $H_0$. There is sufficient evidence at the 5% level of a linear correlation.'
+
+  - id: r12-correlation-retain
+    section: "14.4"
+    dfe: [O1]
+    statement: 'A sample of 15 pairs gives $r = 0.48$. The test is two-tailed at the 5% level and the critical value for 15 pairs is $0.514$. State, with a symbol, how $|r|$ compares with the critical value, and name the decision.'
+    answer_label: 'The comparison and the decision'
+    check: {kind: compare, lhs: "0.48", relation: "<", rhs: "0.514"}
+    answer_text: '$0.48 < 0.514$, so the test retains $H_0$. There is not sufficient evidence at the 5% level of a linear correlation. The result is close to the boundary, so a larger sample could change the decision.'
+
+  - id: r13-binomial-coefficient
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A binomial model has $n = 6$. Work out $\dbinom{6}{3}$.'
+    answer_label: 'The binomial coefficient'
+    check: {kind: evaluate, expression: "binomial(6, 3)", answer: "20"}
+    answer_text: '$\dbinom{6}{3} = \dfrac{6!}{3!\,3!} = 20$. The coefficient is needed when a binomial probability is worked out term by term.'
+
+  - id: r14-two-levels
+    section: "14.2"
+    dfe: [O1, O2]
+    statement: 'A test gives a p-value of $0.03$. State, with symbols, how this value compares with the 5% level and with the 1% level, and give the decision at each level.'
+    answer_label: 'The two comparisons and the decisions'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, lhs: "0.03", relation: "<", rhs: "0.05"}
+        - {kind: compare, lhs: "0.03", relation: ">", rhs: "0.01"}
+    answer_text: '$0.03 < 0.05$, so the test rejects $H_0$ at the 5% level. Also $0.03 > 0.01$, so the test retains $H_0$ at the 1% level. The same evidence gives two decisions, which is why the level is part of every conclusion.'

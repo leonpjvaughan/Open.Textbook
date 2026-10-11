@@ -1,0 +1,160 @@
+# Practice set for 14.1, the language of hypothesis testing. The checks prove
+# the probability arithmetic and the decision rule; that the hypotheses and the
+# tail were chosen honestly is human review.
+chapter: 14
+problems:
+  - id: p1-voucher-lower-tail
+    section: "14.1"
+    dfe: [O1]
+    statement: 'A packet contains a voucher with probability $0.25$. A sample of 20 packets is checked. Find $P(X \le 1)$, where $X$ is the number of vouchers, to 4 decimal places.'
+    answer_label: 'The lower tail probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 20, p: "1/4"}
+      query: {kind: at_most, value: 1}
+      answer: "26732013741/1099511627776"
+    answer_text: '$P(X \le 1) = P(0) + P(1) = 0.0032 + 0.0211 = 0.0243$ to 4 decimal places.'
+
+  - id: p2-voucher-test
+    section: "14.1"
+    dfe: [O1]
+    statement: 'A company claims that 1 packet in 4 contains a voucher. A customer buys 20 packets and finds 1 voucher. Test the claim at the 5% level against the alternative that fewer packets contain a voucher.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 20, p: "1/4"}
+      tail: left
+      observed: 1
+      p_value: "26732013741/1099511627776"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {max: 1}
+    answer_text: '$H_0: p = 0.25$ and $H_1: p < 0.25$. Under $H_0$, $X \sim \mathrm{B}(20, 0.25)$. The p-value is $P(X \le 1) = 0.0243 < 0.05$, so reject $H_0$. There is sufficient evidence at the 5% level that fewer than 1 packet in 4 contains a voucher.'
+
+  - id: p3-voucher-two-vouchers
+    section: "14.1"
+    dfe: [O1]
+    statement: 'Use the same claim and sample of 20 packets, but suppose the customer finds 2 vouchers. Test the claim at the 5% level against the alternative that fewer packets contain a voucher.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 20, p: "1/4"}
+      tail: left
+      observed: 2
+      p_value: "100341906651/1099511627776"
+      alpha: "1/20"
+      decision: retain
+      critical_region: {max: 1}
+    answer_text: 'The p-value is $P(X \le 2) = 0.0913 > 0.05$, so retain $H_0$. Two vouchers is below the expected 5, but a result this low is not unusual when $p = 0.25$.'
+
+  - id: p4-coin-upper-tail
+    section: "14.1"
+    dfe: [O1]
+    statement: 'A coin is tossed 20 times. Find $P(X \ge 15)$ for the number of heads $X$ when the coin is fair, to 4 decimal places.'
+    answer_label: 'The upper tail probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 20, p: "1/2"}
+      query: {kind: at_least, value: 15}
+      answer: "5425/262144"
+    answer_text: '$P(X \ge 15) = 0.0207$ to 4 decimal places. Only about 2% of fair-coin runs of 20 give 15 or more heads.'
+
+  - id: p5-coin-two-tailed
+    section: "14.1"
+    dfe: [O1]
+    statement: 'A coin is tossed 20 times and shows 15 heads. Test at the 5% level whether the coin is fair, using a two-tailed test.'
+    answer_label: 'The two-tailed p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 20, p: "1/2"}
+      tail: two
+      observed: 15
+      p_value: "5425/131072"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {max: 5, min: 15}
+    answer_text: '$H_0: p = 0.5$ and $H_1: p \ne 0.5$. The two-tailed p-value is $2 \times 0.0207 = 0.0414 < 0.05$, so reject $H_0$. There is sufficient evidence that the coin is not fair.'
+
+  - id: p6-coin-other-side
+    section: "14.1"
+    dfe: [O1]
+    statement: 'A coin is tossed 20 times and shows 5 heads. Test at the 5% level whether the coin is fair, using a two-tailed test.'
+    answer_label: 'The two-tailed p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 20, p: "1/2"}
+      tail: two
+      observed: 5
+      p_value: "5425/131072"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {max: 5, min: 15}
+    answer_text: 'The smaller tail is $P(X \le 5) = 0.0207$, so the two-tailed p-value is $0.0414 < 0.05$ and the test rejects $H_0$. By symmetry, 5 heads is as unlikely as 15 heads.'
+
+  - id: p7-compare-five
+    section: "14.1"
+    dfe: [O1]
+    statement: 'A test gives a p-value of $0.032$. State, with a symbol, how this p-value compares with the 5% significance level.'
+    answer_label: 'The comparison'
+    check: {kind: compare, lhs: "0.032", relation: "<", rhs: "0.05"}
+    answer_text: '$0.032 < 0.05$, so the test rejects $H_0$ at the 5% level.'
+
+  - id: p8-compare-one
+    section: "14.1"
+    dfe: [O1]
+    statement: 'The same test gives a p-value of $0.032$. State, with a symbol, how this p-value compares with the 1% significance level.'
+    answer_label: 'The comparison'
+    check: {kind: compare, lhs: "0.032", relation: ">", rhs: "0.01"}
+    answer_text: '$0.032 > 0.01$, so the test retains $H_0$ at the 1% level. The smaller level demands stronger evidence.'
+
+  - id: p9-significance-level
+    section: "14.1"
+    dfe: [O1]
+    statement: 'A test uses the 1% significance level. Write down the probability of incorrectly rejecting $H_0$ when $H_0$ is true.'
+    answer_label: 'The probability'
+    check: {kind: evaluate, expression: "1/100", answer: "0.01"}
+    answer_text: 'The significance level is that probability, so it is $0.01$.'
+
+  - id: p10-two-tail-split
+    section: "14.1"
+    dfe: [O1]
+    statement: 'A two-tailed test uses the 5% significance level. Find the probability placed in each tail.'
+    answer_label: 'The probability in each tail'
+    check: {kind: evaluate, expression: "0.05/2", answer: "1/40"}
+    answer_text: 'The 5% is shared equally, so each tail holds $\dfrac{0.05}{2} = 0.025$.'
+
+  - id: p11-walk-upper-tail
+    section: "14.1"
+    dfe: [O1]
+    statement: 'A company claims that 30% of students walk to school. In a sample of 25 students, 12 walk. Find $P(X \ge 12)$ under the claim, to 4 decimal places.'
+    answer_label: 'The upper tail probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 25, p: "3/10"}
+      query: {kind: at_least, value: 12}
+      answer: "110616243478206152292927/2500000000000000000000000"
+    answer_text: '$P(X \ge 12) = 0.0442$ to 4 decimal places.'
+
+  - id: p12-walk-upper-test
+    section: "14.1"
+    dfe: [O1]
+    statement: 'Test the claim that 30% of students walk to school at the 5% level, against the alternative that the proportion is higher. Use the sample of 25 students in which 12 walk.'
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: binomial
+      parameters: {n: 25, p: "3/10"}
+      tail: right
+      observed: 12
+      p_value: "110616243478206152292927/2500000000000000000000000"
+      alpha: "1/20"
+      decision: reject
+      critical_region: {min: 12}
+    answer_text: '$H_0: p = 0.3$ and $H_1: p > 0.3$. The p-value is $0.0442 < 0.05$, so reject $H_0$. There is sufficient evidence at the 5% level that more than 30% of students walk to school.'

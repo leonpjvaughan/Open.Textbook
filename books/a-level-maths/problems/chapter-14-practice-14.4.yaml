@@ -1,0 +1,101 @@
+# Practice set for 14.4, interpreting correlation coefficients. The checks prove
+# the comparison of a p-value or a coefficient with the value that was given;
+# that the tail and the conclusion suit the context is human review. The
+# calculation of r is not required by this specification and is never asked for.
+chapter: 14
+problems:
+  - id: p1-pvalue-positive-reject
+    section: "14.4"
+    dfe: [O1]
+    statement: 'A study of 15 pairs gives a correlation coefficient $r = 0.62$. The test is one-tailed with $H_1: \rho > 0$ at the 5% level, and the p-value is $0.007$. State, with a symbol, how the p-value compares with the significance level, and name the decision.'
+    answer_label: 'The comparison and the decision'
+    check: {kind: compare, lhs: "0.007", relation: "<", rhs: "0.05"}
+    answer_text: '$0.007 < 0.05$, so the test rejects $H_0$. There is sufficient evidence at the 5% level of a positive linear correlation.'
+
+  - id: p2-pvalue-retain
+    section: "14.4"
+    dfe: [O1]
+    statement: 'A sample of 20 pairs gives $r = 0.22$ and a two-tailed p-value of $0.35$. State, with a symbol, how the p-value compares with the 5% significance level, and name the decision.'
+    answer_label: 'The comparison and the decision'
+    check: {kind: compare, lhs: "0.35", relation: ">", rhs: "0.05"}
+    answer_text: '$0.35 > 0.05$, so the test retains $H_0$. There is not sufficient evidence at the 5% level of a linear correlation.'
+
+  - id: p3-pvalue-one-percent
+    section: "14.4"
+    dfe: [O1]
+    statement: 'A sample of 30 pairs gives $r = 0.42$ and a two-tailed p-value of $0.021$. State, with a symbol, how the p-value compares with the 1% significance level, and name the decision.'
+    answer_label: 'The comparison and the decision'
+    check: {kind: compare, lhs: "0.021", relation: ">", rhs: "0.01"}
+    answer_text: '$0.021 > 0.01$, so the test retains $H_0$ at the 1% level, although it rejects at the 5% level. The level must be reported with the decision.'
+
+  - id: p4-critical-two-reject
+    section: "14.4"
+    dfe: [O1]
+    statement: 'A sample of 30 pairs gives $r = 0.42$. The test is two-tailed at the 5% level and the critical value for 30 pairs is $0.361$. State, with a symbol, how $|r|$ compares with the critical value, and name the decision.'
+    answer_label: 'The comparison and the decision'
+    check: {kind: compare, lhs: "0.42", relation: ">", rhs: "0.361"}
+    answer_text: '$0.42 > 0.361$, so the test rejects $H_0$. There is sufficient evidence at the 5% level of a linear correlation.'
+
+  - id: p5-critical-two-retain
+    section: "14.4"
+    dfe: [O1]
+    statement: 'A sample of 30 pairs gives $r = 0.35$. The test is two-tailed at the 5% level and the critical value for 30 pairs is $0.361$. State, with a symbol, how $|r|$ compares with the critical value, and name the decision.'
+    answer_label: 'The comparison and the decision'
+    check: {kind: compare, lhs: "0.35", relation: "<", rhs: "0.361"}
+    answer_text: '$0.35 < 0.361$, so the test retains $H_0$. There is not sufficient evidence at the 5% level of a linear correlation.'
+
+  - id: p6-one-tail-reject
+    section: "14.4"
+    dfe: [O1]
+    statement: 'A sample of 20 pairs gives $r = 0.44$. The test is one-tailed with $H_1: \rho > 0$ at the 5% level and the critical value is $0.378$. State, with a symbol, how $r$ compares with the critical value, and name the decision.'
+    answer_label: 'The comparison and the decision'
+    check: {kind: compare, lhs: "0.44", relation: ">", rhs: "0.378"}
+    answer_text: '$0.44 > 0.378$, so the test rejects $H_0$. There is sufficient evidence at the 5% level of a positive linear correlation.'
+
+  - id: p7-two-tail-retain
+    section: "14.4"
+    dfe: [O1]
+    statement: 'The same 20 pairs give $r = 0.44$. The test is now two-tailed at the 5% level and the critical value is $0.444$. State, with a symbol, how $|r|$ compares with the critical value, and name the decision.'
+    answer_label: 'The comparison and the decision'
+    check: {kind: compare, lhs: "0.44", relation: "<", rhs: "0.444"}
+    answer_text: '$0.44 < 0.444$, so the test retains $H_0$. The same coefficient that rejected a one-tailed test does not reach the larger two-tailed critical value.'
+
+  - id: p8-negative-reject
+    section: "14.4"
+    dfe: [O1]
+    statement: 'A sample of 25 pairs gives $r = -0.52$. The test is one-tailed with $H_1: \rho < 0$ at the 5% level and the critical value is $0.337$. State, with a symbol, how $|r|$ compares with the critical value, and name the decision.'
+    answer_label: 'The comparison and the decision'
+    check: {kind: compare, lhs: "Abs(-0.52)", relation: ">", rhs: "0.337"}
+    answer_text: '$|-0.52| = 0.52 > 0.337$, so the test rejects $H_0$. There is sufficient evidence at the 5% level of a negative linear correlation.'
+
+  - id: p9-negative-retain
+    section: "14.4"
+    dfe: [O1]
+    statement: 'A sample of 25 pairs gives $r = -0.28$. The test is one-tailed with $H_1: \rho < 0$ at the 5% level and the critical value is $0.337$. State, with a symbol, how $|r|$ compares with the critical value, and name the decision.'
+    answer_label: 'The comparison and the decision'
+    check: {kind: compare, lhs: "Abs(-0.28)", relation: "<", rhs: "0.337"}
+    answer_text: '$|-0.28| = 0.28 < 0.337$, so the test retains $H_0$. There is not sufficient evidence at the 5% level of a negative linear correlation.'
+
+  - id: p10-sample-size
+    section: "14.4"
+    dfe: [O1]
+    statement: 'The two-tailed 5% critical value for a correlation is $0.361$ for 30 pairs and $0.254$ for 60 pairs. State, with a symbol, how the critical value for 60 pairs compares with the critical value for 30 pairs, and explain what this means for a fixed value of $r$.'
+    answer_label: 'The comparison'
+    check: {kind: compare, lhs: "0.254", relation: "<", rhs: "0.361"}
+    answer_text: '$0.254 < 0.361$. A larger sample gives a smaller critical value, so a moderate correlation is more likely to be significant when it is based on more pairs.'
+
+  - id: p11-absolute-value
+    section: "14.4"
+    dfe: [O1]
+    statement: 'A correlation coefficient is $r = -0.78$. Write down $|r|$, the value a two-tailed test compares with the critical value.'
+    answer_label: 'The value of $|r|$'
+    check: {kind: evaluate, expression: "Abs(-0.78)", answer: "0.78"}
+    answer_text: '$|-0.78| = 0.78$. A two-tailed test uses the size of the coefficient and ignores the sign.'
+
+  - id: p12-two-tail-split
+    section: "14.4"
+    dfe: [O1]
+    statement: 'A two-tailed test of a correlation uses the 5% significance level. Find the probability placed in each tail.'
+    answer_label: 'The probability in each tail'
+    check: {kind: evaluate, expression: "0.05/2", answer: "1/40"}
+    answer_text: 'The 5% is shared equally, so each tail holds $\dfrac{0.05}{2} = 0.025$.'

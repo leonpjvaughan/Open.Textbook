@@ -1,0 +1,168 @@
+# Practice set for 13.2, calculating binomial probabilities. The checks prove
+# the at-most, at-least and between probabilities from the binomial model. The
+# choice of route (direct sum or complement) is not checked, only the value.
+chapter: 13
+problems:
+  - id: p1-biased-coin-at-most-two
+    section: "13.2"
+    dfe: [N1]
+    statement: 'A biased coin lands on heads with probability 0.4. It is tossed 10 times. The random variable $X$ is the number of heads. Find $P(X \le 2)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 10, p: '2/5'}
+      query: {kind: at_most, value: 2}
+      answer: '0.1673'
+      tolerance: '0.00005'
+    answer_text: '$P(X \le 2) = P(0) + P(1) + P(2) = 0.0060 + 0.0403 + 0.1209 = 0.1673$ (4 d.p.). Adding the three terms is shorter than using the complement.'
+
+  - id: p2-free-throws-at-least-eight
+    section: "13.2"
+    dfe: [N1]
+    statement: 'A basketball player scores a free throw with probability 0.4. She takes 10 free throws. The random variable $X$ is the number she scores. Find $P(X \ge 8)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 10, p: '2/5'}
+      query: {kind: at_least, value: 8}
+      answer: '0.0123'
+      tolerance: '0.00005'
+    answer_text: 'Adding the terms for 8, 9 and 10 is shorter than the complement: $0.0106 + 0.0016 + 0.0001 = 0.0123$ (4 d.p.).'
+
+  - id: p3-faulty-between-three-and-five
+    section: "13.2"
+    dfe: [N1]
+    statement: 'A machine produces faulty items with probability 0.3. A sample of 12 items is checked. The random variable $X$ is the number of faulty items. Find $P(3 \le X \le 5)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 12, p: '3/10'}
+      query: {kind: between, low: 3, high: 5}
+      answer: '0.6293'
+      tolerance: '0.00005'
+    answer_text: 'Add the terms for 3, 4 and 5: $0.2397 + 0.2311 + 0.1585 = 0.6293$ (4 d.p.). Both ends are included.'
+
+  - id: p4-fair-coin-at-most-nine
+    section: "13.2"
+    dfe: [N1]
+    statement: 'A fair coin is tossed 20 times. The random variable $X$ is the number of heads. Find $P(X \le 9)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 20, p: '1/2'}
+      query: {kind: at_most, value: 9}
+      answer: '215955/524288'
+    answer_text: 'Every term has denominator $2^{20} = 1048576$. The terms for 0 to 9 add to $\tfrac{431910}{1048576} = \tfrac{215955}{524288} \approx 0.4119$.'
+
+  - id: p5-quiz-at-least-four
+    section: "13.2"
+    dfe: [N1]
+    statement: 'A quiz has 15 questions. Each question has 5 options, and exactly one is correct. A student guesses every answer. The random variable $X$ is the number correct. Find $P(X \ge 4)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 15, p: '1/5'}
+      query: {kind: at_least, value: 4}
+      answer: '0.3518'
+      tolerance: '0.00005'
+    answer_text: '$X \sim B(15, \tfrac15)$. Use the complement: $P(X \ge 4) = 1 - P(X \le 3) = 1 - 0.6482 = 0.3518$ (4 d.p.).'
+
+  - id: p6-seeds-at-least-one
+    section: "13.2"
+    dfe: [N1]
+    statement: 'A seed germinates with probability 0.6. Eight seeds are planted. The random variable $X$ is the number that germinate. Find $P(X \ge 1)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 8, p: '3/5'}
+      query: {kind: at_least, value: 1}
+      answer: '390369/390625'
+    answer_text: 'The complement of "at least one" is "none". So $P(X \ge 1) = 1 - (0.4)^8 = 1 - \tfrac{65536}{390625} = \tfrac{390369}{390625} \approx 0.9993$.'
+
+  - id: p7-chapter-seeds-at-most-thirteen
+    section: "13.2"
+    dfe: [N1]
+    statement: 'Each of 20 seeds germinates with probability 0.8, independently. The random variable $X$ is the number that germinate. Find $P(X \le 13)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 20, p: '4/5'}
+      query: {kind: at_most, value: 13}
+      answer: '0.0867'
+      tolerance: '0.00005'
+    answer_text: '$P(X \le 13) = 1 - P(X \ge 14) = 1 - (P(14) + \dots + P(20)) \approx 0.0867$. So 13 or fewer seeds germinate in about 8.7% of packets of this kind.'
+
+  - id: p8-fair-coin-at-least-five
+    section: "13.2"
+    dfe: [N1]
+    statement: 'A fair coin is tossed 6 times. The random variable $X$ is the number of heads. Find $P(X \ge 5)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 6, p: '1/2'}
+      query: {kind: at_least, value: 5}
+      answer: '7/64'
+    answer_text: '$P(X \ge 5) = P(5) + P(6) = \tfrac{6}{64} + \tfrac{1}{64} = \tfrac{7}{64} \approx 0.1094$. There are only two terms, so the direct sum is shorter than the complement.'
+
+  - id: p9-fault-rate-none
+    section: "13.2"
+    dfe: [N1]
+    statement: 'A machine produces faulty items with probability 0.1. A sample of 50 items is checked. The random variable $X$ is the number of faulty items. Find $P(X = 0)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 50, p: '1/10'}
+      query: {kind: exactly, value: 0}
+      answer: '0.0052'
+      tolerance: '0.00005'
+    answer_text: '$P(X = 0) = (0.9)^{50} \approx 0.0052$. Every item must pass, and each one does so with probability 0.9.'
+
+  - id: p10-spinner-at-most-one
+    section: "13.2"
+    dfe: [N1]
+    statement: 'A spinner lands on red with probability $\tfrac13$. It is spun 9 times. The random variable $X$ is the number of reds. Find $P(X \le 1)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 9, p: '1/3'}
+      query: {kind: at_most, value: 1}
+      answer: '0.1431'
+      tolerance: '0.00005'
+    answer_text: '$P(X \le 1) = P(0) + P(1) = \left(\tfrac23\right)^9 + 9\left(\tfrac13\right)\left(\tfrac23\right)^8 \approx 0.1431$. Keep the terms to four decimal places and round once.'
+
+  - id: p11-fair-coin-between-eight-and-twelve
+    section: "13.2"
+    dfe: [N1]
+    statement: 'A fair coin is tossed 20 times. The random variable $X$ is the number of heads. Find $P(8 \le X \le 12)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 20, p: '1/2'}
+      query: {kind: between, low: 8, high: 12}
+      answer: '96577/131072'
+    answer_text: 'Add the five terms for 8, 9, 10, 11 and 12: $P(8 \le X \le 12) = \tfrac{96577}{131072} \approx 0.7368$. The distribution is symmetric about 10, so the terms for 8 and 12 are equal, and so are those for 9 and 11.'
+
+  - id: p12-quiz-at-least-ten
+    section: "13.2"
+    dfe: [N1]
+    statement: 'A test has 20 questions. Each has 4 options, and exactly one is correct. A student guesses every answer. The random variable $X$ is the number correct. Find $P(X \ge 10)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: binomial
+      parameters: {n: 20, p: '1/4'}
+      query: {kind: at_least, value: 10}
+      answer: '0.0139'
+      tolerance: '0.00005'
+    answer_text: '$X \sim B(20, \tfrac14)$. Use the complement: $P(X \ge 10) = 1 - P(X \le 9) = 1 - 0.9861 = 0.0139$ (4 d.p.). Guessing as many as 10 is unlikely.'

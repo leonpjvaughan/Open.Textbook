@@ -10,9 +10,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.6 Motion under gravity and projectiles using vectors — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: Q5, J5
+Work through these on your own. Resolve the initial velocity first, choose one
+positive direction, and keep it. The horizontal and vertical motions share the
+same time.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-15-practice-15.6
+
+:::answers chapter-15-practice-15.6

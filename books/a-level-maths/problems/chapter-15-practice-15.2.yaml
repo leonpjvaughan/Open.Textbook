@@ -1,0 +1,143 @@
+# Practice set for 15.2, the language of kinematics.
+#
+# The checks are arithmetic on the signed quantities. Units and directions live
+# in the statement; the CAS fields hold numbers only. A distance is a sum of
+# magnitudes, a displacement is a signed sum, and an average is a quotient.
+chapter: 15
+problems:
+  - id: p1-distance-and-displacement
+    section: "15.2"
+    dfe: [Q1]
+    statement: 'A cyclist rides $4$ km east, then turns and rides $1.5$ km west. Taking east as positive, find the distance travelled and the displacement.'
+    answer_label: 'The distance and the displacement'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "4 + 1.5", answer: "11/2"}
+        - {kind: evaluate, expression: "4 - 1.5", answer: "5/2"}
+    answer_text: 'Distance travelled $= 4 + 1.5 = 5.5$ km. Displacement $= (+4) + (-1.5) = +2.5$ km, which is $2.5$ km east.'
+
+  - id: p2-out-and-back
+    section: "15.2"
+    dfe: [Q1]
+    statement: 'A runner jogs $2.4$ km along a straight path, then turns and jogs $0.8$ km back. Find the distance travelled and the displacement.'
+    answer_label: 'The distance and the displacement'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2.4 + 0.8", answer: "16/5"}
+        - {kind: evaluate, expression: "2.4 - 0.8", answer: "8/5"}
+    answer_text: 'Distance travelled $= 2.4 + 0.8 = 3.2$ km. Displacement $= 2.4 - 0.8 = 1.6$ km forward along the path.'
+
+  - id: p3-average-speed
+    section: "15.2"
+    dfe: [Q1]
+    statement: 'A car travels $420$ m along a straight road in $35$ s. Find its average speed.'
+    answer_label: 'The average speed'
+    check:
+      kind: evaluate
+      expression: "420/35"
+      answer: "12"
+    answer_text: 'Average speed $= \dfrac{\text{distance}}{\text{time}} = \dfrac{420}{35} = 12$ m/s.'
+
+  - id: p4-average-velocity
+    section: "15.2"
+    dfe: [Q1]
+    statement: 'A walker moves $300$ m due north in $20$ s. Find the average velocity.'
+    answer_label: 'The average velocity'
+    check:
+      kind: evaluate
+      expression: "300/20"
+      answer: "15"
+    answer_text: 'Average velocity $= \dfrac{\text{displacement}}{\text{time}} = \dfrac{300}{20} = 15$ m/s north. The direction is part of the answer, because velocity is a vector.'
+
+  - id: p5-average-speed-and-velocity
+    section: "15.2"
+    dfe: [Q1]
+    statement: 'A train moves $500$ m east in $25$ s, then $100$ m west in $20$ s. Find its average speed and its average velocity.'
+    answer_label: 'The average speed and the average velocity'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(500 + 100)/(25 + 20)", answer: "40/3"}
+        - {kind: evaluate, expression: "(500 - 100)/(25 + 20)", answer: "80/9"}
+    answer_text: 'Total distance $= 600$ m over $45$ s, so the average speed is $\dfrac{600}{45} = \dfrac{40}{3} \approx 13.3$ m/s. The displacement is $400$ m east, so the average velocity is $\dfrac{400}{45} = \dfrac{80}{9} \approx 8.9$ m/s east.'
+
+  - id: p6-acceleration
+    section: "15.2"
+    dfe: [Q1]
+    statement: 'A car speeds up from $4$ m/s to $22$ m/s in $6$ s. Find its acceleration.'
+    answer_label: 'The acceleration'
+    check:
+      kind: evaluate
+      expression: "(22 - 4)/6"
+      answer: "3"
+    answer_text: 'Acceleration $= \dfrac{v - u}{t} = \dfrac{22 - 4}{6} = 3$ m/s$^2$. The acceleration is positive, so the car speeds up in the positive direction.'
+
+  - id: p7-deceleration
+    section: "15.2"
+    dfe: [Q1]
+    statement: 'A train slows from $45$ m/s to $9$ m/s in $4$ s while travelling east. Taking east as positive, find its acceleration.'
+    answer_label: 'The acceleration'
+    check:
+      kind: evaluate
+      expression: "(9 - 45)/4"
+      answer: "-9"
+    answer_text: 'Acceleration $= \dfrac{9 - 45}{4} = -9$ m/s$^2$. The negative sign means the acceleration points west, opposite to the motion, so the train slows down.'
+
+  - id: p8-acceleration-under-gravity
+    section: "15.2"
+    dfe: [Q1]
+    statement: 'A ball is thrown vertically upwards at $14.7$ m/s and returns to the thrower''s hand $3$ s later, moving downwards at $14.7$ m/s. Taking upwards as positive, find its acceleration.'
+    answer_label: 'The acceleration'
+    check:
+      kind: evaluate
+      expression: "(-14.7 - 14.7)/3"
+      answer: "-49/5"
+    answer_text: 'Acceleration $= \dfrac{-14.7 - 14.7}{3} = \dfrac{-29.4}{3} = -9.8$ m/s$^2$. The acceleration is $-9.8$ m/s$^2$ throughout, because gravity always acts downwards.'
+
+  - id: p9-swimmer
+    section: "15.2"
+    dfe: [Q1]
+    statement: 'A swimmer swims $25$ m to the far end of a straight pool, back to the start, then $25$ m to the far end again. Find the distance travelled and the displacement.'
+    answer_label: 'The distance and the displacement'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "25 + 25 + 25", answer: "75"}
+        - {kind: evaluate, expression: "0 + 25 - 25 + 25", answer: "25"}
+    answer_text: 'Distance travelled $= 25 + 25 + 25 = 75$ m. The swimmer finishes $25$ m from the start, so the displacement is $25$ m.'
+
+  - id: p10-distance-from-speed
+    section: "15.2"
+    dfe: [Q1]
+    statement: 'A car travels at an average speed of $20$ m/s for $15$ s. Find the distance travelled.'
+    answer_label: 'The distance'
+    check:
+      kind: evaluate
+      expression: "20*15"
+      answer: "300"
+    answer_text: 'Distance $=$ average speed $\times$ time $= 20 \times 15 = 300$ m.'
+
+  - id: p11-position-and-velocity
+    section: "15.2"
+    dfe: [Q1]
+    statement: 'A particle on a straight line is at position $-3$ m when $t = 0$ and at position $7$ m when $t = 10$ s. Find its displacement and its average velocity.'
+    answer_label: 'The displacement and the average velocity'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "7 - (-3)", answer: "10"}
+        - {kind: evaluate, expression: "(7 - (-3))/10", answer: "1"}
+    answer_text: 'Displacement $= s_1 - s_0 = 7 - (-3) = 10$ m. Average velocity $= \dfrac{10}{10} = 1$ m/s in the positive direction.'
+
+  - id: p12-dropped-ball
+    section: "15.2"
+    dfe: [Q1]
+    statement: 'A ball is dropped from rest. After $3$ s it is moving downwards at $29.4$ m/s. Taking downwards as positive, find its acceleration.'
+    answer_label: 'The acceleration'
+    check:
+      kind: evaluate
+      expression: "(29.4 - 0)/3"
+      answer: "49/5"
+    answer_text: 'Acceleration $= \dfrac{29.4 - 0}{3} = 9.8$ m/s$^2$ downwards. With downwards positive the acceleration is $+9.8$ m/s$^2$, which is the acceleration of free fall.'

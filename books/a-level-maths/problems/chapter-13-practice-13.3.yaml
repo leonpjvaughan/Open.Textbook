@@ -1,0 +1,170 @@
+# Practice set for 13.3, the Normal distribution as a model. The checks prove
+# the standardised probability. The normal answers are exact erf expressions,
+# so a decimal is given with a tolerance; the table on the page rounds to four
+# decimal places. The choice of tail is not checked, only the value.
+chapter: 13
+problems:
+  - id: p1-standard-at-most-one-point-five
+    section: "13.3"
+    dfe: [N2]
+    statement: 'The random variable $Z \sim N(0, 1)$. Find $P(Z < 1.5)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 0, sigma: 1}
+      query: {kind: at_most, value: '3/2'}
+      answer: '0.9332'
+      tolerance: '0.0001'
+    answer_text: 'This is the table value directly: $P(Z < 1.5) = \Phi(1.5) = 0.9332$.'
+
+  - id: p2-standard-at-least-two
+    section: "13.3"
+    dfe: [N2]
+    statement: 'The random variable $Z \sim N(0, 1)$. Find $P(Z > 2)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 0, sigma: 1}
+      query: {kind: at_least, value: 2}
+      answer: '0.0228'
+      tolerance: '0.0001'
+    answer_text: 'Use the complement: $P(Z > 2) = 1 - \Phi(2) = 1 - 0.9772 = 0.0228$.'
+
+  - id: p3-standard-at-most-minus-one
+    section: "13.3"
+    dfe: [N2]
+    statement: 'The random variable $Z \sim N(0, 1)$. Find $P(Z < -1)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 0, sigma: 1}
+      query: {kind: at_most, value: -1}
+      answer: '0.1587'
+      tolerance: '0.0001'
+    answer_text: 'By symmetry, $P(Z < -1) = 1 - \Phi(1) = 1 - 0.8413 = 0.1587$.'
+
+  - id: p4-standard-between
+    section: "13.3"
+    dfe: [N2]
+    statement: 'The random variable $Z \sim N(0, 1)$. Find $P(-0.5 < Z < 1.5)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 0, sigma: 1}
+      query: {kind: between, low: '-1/2', high: '3/2'}
+      answer: '0.6247'
+      tolerance: '0.0001'
+    answer_text: '$P(-0.5 < Z < 1.5) = \Phi(1.5) - \Phi(-0.5) = 0.9332 - 0.3085 = 0.6247$.'
+
+  - id: p5-standardise-a-value
+    section: "13.3"
+    dfe: [N2]
+    statement: 'The random variable $X \sim N(30, 4^2)$. Work out the standardised value $z$ for $x = 36$.'
+    answer_label: 'The value of $z$'
+    check:
+      kind: evaluate
+      expression: '(36 - 30) / 4'
+      answer: '3/2'
+    answer_text: '$z = \dfrac{x - \mu}{\sigma} = \dfrac{36 - 30}{4} = 1.5$. The value 36 lies 1.5 standard deviations above the mean.'
+
+  - id: p6-general-at-most
+    section: "13.3"
+    dfe: [N2]
+    statement: 'The mass of a bag of sugar is modelled as $X \sim N(20, 5^2)$ grams. Find $P(X < 26)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 20, sigma: 5}
+      query: {kind: at_most, value: 26}
+      answer: '0.8849'
+      tolerance: '0.0001'
+    answer_text: 'Standardise: $z = \dfrac{26 - 20}{5} = 1.2$. Then $P(X < 26) = \Phi(1.2) = 0.8849$.'
+
+  - id: p7-general-at-least-below-mean
+    section: "13.3"
+    dfe: [N2]
+    statement: 'The mass of a bag of sugar is modelled as $X \sim N(20, 5^2)$ grams. Find $P(X > 12)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 20, sigma: 5}
+      query: {kind: at_least, value: 12}
+      answer: '0.9452'
+      tolerance: '0.0001'
+    answer_text: 'Standardise: $z = \dfrac{12 - 20}{5} = -1.6$. Then $P(X > 12) = P(Z > -1.6) = \Phi(1.6) = 0.9452$.'
+
+  - id: p8-chapter-taller-than-fifty-two
+    section: "13.3"
+    dfe: [N2]
+    statement: 'The height of a mature sunflower is modelled as $X \sim N(45, 6^2)$ cm. Find the probability that a plant is taller than 52 cm.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 45, sigma: 6}
+      query: {kind: at_least, value: 52}
+      answer: '0.1217'
+      tolerance: '0.0001'
+    answer_text: 'Standardise: $z = \dfrac{52 - 45}{6} = 1.1667$. Then $P(X > 52) = 1 - \Phi(1.1667) \approx 0.1217$. About 12.2% of plants are taller than 52 cm.'
+
+  - id: p9-general-between
+    section: "13.3"
+    dfe: [N2]
+    statement: 'The height of a mature sunflower is modelled as $X \sim N(45, 6^2)$ cm. Find $P(39 < X < 51)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 45, sigma: 6}
+      query: {kind: between, low: 39, high: 51}
+      answer: '0.6827'
+      tolerance: '0.0001'
+    answer_text: 'Standardise both ends: $z_1 = -1$ and $z_2 = 1$. Then $P(39 < X < 51) = \Phi(1) - \Phi(-1) = 0.8413 - 0.1587 = 0.6827$. This is the one-standard-deviation band.'
+
+  - id: p10-score-at-most
+    section: "13.3"
+    dfe: [N2]
+    statement: 'The score in a test is modelled as $X \sim N(100, 10^2)$. Find $P(X < 120)$.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 100, sigma: 10}
+      query: {kind: at_most, value: 120}
+      answer: '0.9772'
+      tolerance: '0.0001'
+    answer_text: 'Standardise: $z = \dfrac{120 - 100}{10} = 2$. Then $P(X < 120) = \Phi(2) = 0.9772$.'
+
+  - id: p11-find-a-value
+    section: "13.3"
+    dfe: [N2]
+    statement: 'The random variable $X \sim N(50, 6^2)$. Find the value $a$ such that $P(X < a) = 0.90$.'
+    answer_label: 'The value of $a$'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 50, sigma: 6}
+      query: {kind: at_most, value: '57.69'}
+      answer: '0.90'
+      tolerance: '0.0001'
+    answer_text: 'The value of $z$ with $\Phi(z) = 0.90$ is $z = 1.2816$. Then $a = \mu + z\sigma = 50 + 1.2816 \times 6 = 57.69$ (2 d.p.).'
+
+  - id: p12-weights-above
+    section: "13.3"
+    dfe: [N2]
+    statement: 'The mass of a jar is modelled as $X \sim N(500, 8^2)$ grams. Find the probability that a jar has mass greater than 512 grams.'
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 500, sigma: 8}
+      query: {kind: at_least, value: 512}
+      answer: '0.0668'
+      tolerance: '0.0001'
+    answer_text: 'Standardise: $z = \dfrac{512 - 500}{8} = 1.5$. Then $P(X > 512) = 1 - \Phi(1.5) = 1 - 0.9332 = 0.0668$.'

@@ -9,9 +9,16 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.7 Friction and the F <= mu R model — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: R6
+Work through these on your own. Find the normal reaction first, then the limit
+$\mu R$. Compare the driving force with the limit before you decide whether the
+body moves. Take $g = 9.8$ m s$^{-2}$. Where a decimal is wanted, give the number
+of decimal places the question names.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-16-practice-16.7
+
+:::answers chapter-16-practice-16.7
