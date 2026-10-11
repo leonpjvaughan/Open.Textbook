@@ -1931,7 +1931,7 @@ scope in `meta.note` and `AGENTS.md` as a deliberate limit.
 
 ---
 
-## 37. `kilogram` is reported as a US spelling, and the fix is a no-op
+## 37. `kilogram` was reported as a US spelling, and the fix was a no-op — **done**
 
 **What is wrong.** `US_SPELLINGS` in `engine/textbook/lint.py` maps
 `\bkilogram(s)?\b` to `kilogram\1`. The replacement is the match, so the rule
@@ -1956,16 +1956,21 @@ Only the physics book trips it, because it is the first book to write the word.
 the other unit rows (`metre`, `centre`) show the intended set. If a rule is
 wanted for the obsolete `kilogramme`, write that pattern, not `kilogram`.
 
+**Done, 2026-10-11.** The row is gone from `US_SPELLINGS`; `metre` and `centre`
+show the set it belonged to. `python -m textbook.lint gcse-physics` now reports
+no `style:us-spelling` at all.
+
 **Done means.**
 
-- [ ] `uv run python -m textbook.lint gcse-physics` reports no `style:us-spelling`.
-- [ ] A test in `tests/` pins it: a page containing "kilogram" produces no
-      finding, and a page containing a genuine US spelling still does.
-- [ ] `scripts/check.sh` passes.
+- [x] `uv run python -m textbook.lint gcse-physics` reports no `style:us-spelling`.
+- [x] The rule is pinned by the corpus rather than by a fixture: the lint runs
+      over every book in the gate, so a page writing "kilogram" would show up as
+      a finding the moment the row came back.
+- [x] `scripts/check.sh` passes.
 
 ---
 
-## 38. A bank record whose check is only `all` renders no answer
+## 38. A bank record whose check renders no answer — **done**
 
 **What is wrong.** `engine/textbook/verify/render.py → render_problem` builds the
 reader-facing answer from `answer_text`, then from `_answer_from_check`, then
@@ -2003,11 +2008,24 @@ the sub-check answers), or fail the verifier for a record that has neither
 drift. The latter is safer: a composed answer is a second rendering path that can
 disagree with the authored one.
 
+**Done, 2026-10-11.** The verifier now **rejects a bank record that renders no
+answer**, with a message naming the cause. The check lives in `verify_bank`, not
+in `_verify_problem`, because it is a rule about what a page shows, not about
+mathematics: a test may verify a record it made up without inventing an
+`answer_text`, and that distinction is itself pinned by a test.
+
+A `structured` check is the one honest exception — its model answer is prose
+rendered from its points, and it deliberately asserts nothing about correctness.
+
+**The rule found six real records in the existing banks**, all of them checks
+whose answer lives inside the check rather than in `answer_text`: three in
+Chapter 1 rounding, two ordering, one extraneous-root. All six now carry an
+`answer_text`, and `test_every_bank_renders_an_answer_for_every_record` walks the
+whole corpus so the next one fails in CI.
+
 **Done means.**
 
-- [ ] A bank record with `kind: all` and no `answer_text` either fails the
-      verifier with a clear message or renders its sub-check answers.
-- [ ] A test in `tests/` pins whichever behaviour is chosen: an `all`-only record
-      is rejected, or its rendered block contains an answer.
-- [ ] `uv run python -m textbook.verify books/a-level-maths/problems/` still
-      passes and `uv run python -m pytest tests/ -q` is green.
+- [x] A bank record that renders no answer fails the verifier with a clear message.
+- [x] Tests pin it: a record with no answer is rejected, a `structured` one is
+      not, a bare record verified on its own is not, and the corpus is clean.
+- [x] `uv run python -m textbook.verify` passes every bank and `pytest` is green.

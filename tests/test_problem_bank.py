@@ -5,8 +5,9 @@ from __future__ import annotations
 from pathlib import Path
 
 import pytest
+import yaml
 
-from textbook.book import discover_books
+from textbook.book import discover_books, repo_root
 from textbook.verify.verify import verify_bank, verify_problem
 
 ALL_BANKS = sorted(
@@ -205,3 +206,105 @@ def test_yaml_has_no_control_character_escapes():
     for path in sources:
         walk(yaml.safe_load(path.read_text(encoding="utf-8")), str(path))
     assert not offenders, "control characters in YAML (use single quotes): " + "; ".join(offenders)
+
+
+# --- a record the reader would see no answer for ------------------------------
+
+
+def _bank(tmp_path, *records, oracles=("sympy",)):
+    """A bank on disk, because the rule is about a bank, not a record.
+
+    `oracles` matters: a `units` kind in a bank that declares only `sympy` fails
+    loudly, which is the seam working.
+    """
+    path = tmp_path / "bank.yaml"
+    path.write_text(
+        yaml.safe_dump({"oracles": list(oracles), "problems": list(records)}),
+        encoding="utf-8",
+    )
+    return verify_bank(path)
+
+
+def test_a_bank_record_that_renders_no_answer_fails(tmp_path):
+    """The answers block is built from the records CI verifies.
+
+    So a record that verifies and renders nothing puts a question on the page
+    with no answer under it, and nothing in CI can see it — the verifier passed.
+    Six records in the GCSE banks were doing exactly this: a `kind: all` check has
+    no top-level `answer` (its values live in the sub-checks), so without
+    `answer_text` there was nothing to render.
+    """
+    record = {
+        "id": "all-with-no-answer-text",
+        "statement": "Decide whether 7 is prime.",
+        "answer_label": "Prime?",
+        "check": {
+            "kind": "all",
+            "checks": [
+                {"kind": "compare", "relation": "!=", "lhs": "Mod(7,2)", "rhs": "0"},
+                {"kind": "compare", "relation": "!=", "lhs": "Mod(7,3)", "rhs": "0"},
+            ],
+        },
+    }
+    bad = _bank(tmp_path, record)
+    assert not bad.ok
+    assert any("renders no answer" in e for e in bad.errors), bad.errors
+
+    # ...and the same record passes once the reader can be shown the answer.
+    record["answer_text"] = "Yes."
+    assert _bank(tmp_path, record).ok
+
+
+def test_a_structured_record_needs_no_answer_text(tmp_path):
+    """Its model answer is prose rendered from its points.
+
+    That is the one honest exception: a `structured` check asserts presence,
+    order and coverage, and deliberately says nothing about correctness, so it
+    renders its points rather than a conclusion.
+    """
+    record = {
+        "id": "structured-with-no-answer-text",
+        "statement": "Describe how to measure the period of a pendulum.",
+        "check": {
+            "kind": "structured",
+            "requires": ["time-swings", "divide"],
+            "concepts": ["period"],
+            "points": [
+                {"id": "time-swings", "text": "Time several swings.",
+                 "concepts": ["period"]},
+                {"id": "divide", "text": "Divide by the number of swings."},
+            ],
+        },
+    }
+    assert _bank(tmp_path, record, oracles=("sympy", "units")).ok
+
+
+def test_a_record_alone_needs_no_answer_text():
+    """The rule is a bank rule, not a mathematical one.
+
+    `verify_problem` answers "is this record's algebra right?", and a verifier
+    test that made a record up to ask that question should not have to invent an
+    `answer_text` first.
+    """
+    record = {
+        "id": "record-with-no-answer-text",
+        "check": {"kind": "evaluate", "expression": "2 + 2", "answer": "4"},
+    }
+    assert verify_problem(record).ok
+
+
+def test_every_bank_renders_an_answer_for_every_record():
+    """The guard over the real corpus, which is where the six were found."""
+    from textbook.verify import render
+
+    missing = []
+    for path in sorted((repo_root() / "books").glob("*/problems/*.yaml")):
+        data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        for record in data.get("problems", []):
+            check = record.get("check") or {}
+            if render.rendered_answer(record):
+                continue
+            if check.get("kind") == "structured" and check.get("points"):
+                continue
+            missing.append(f"{path.name}:{record.get('id')}")
+    assert not missing, "records that would render no answer: " + ", ".join(missing)

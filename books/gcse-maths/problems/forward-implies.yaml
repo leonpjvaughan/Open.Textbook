@@ -33,6 +33,7 @@ problems:
     dfe: [A18]
     statement: 'Explain why $\sqrt{x} = -1$ has no real solution.'
     step_relation: implies
+    answer_text: "There is no real solution. A square root is never negative, so the solution set is empty."
     check: {kind: solve, equation: "sqrt(x) = -1", variable: x, answer: []}
     steps:
       - equation: "sqrt(x) = -1"

@@ -123,7 +123,11 @@ US_SPELLINGS = {
     r"\brecogniz(e|es|ed|ing)\b": "recognis\\1",
     r"\bsummariz(e|es|ed|ing)\b": "summaris\\1",
     r"\banalyz(e|es|ed|ing)\b": "analys\\1",
-    r"\bkilogram(s)?\b": "kilogram\\1",
+    # `kilogram` used to be here, mapped to itself. The rule changed nothing and
+    # the reporting loop still tested the pattern, so every page that wrote
+    # "kilogram" — the UK spelling the book is asked to use — was reported as a
+    # US spelling, and `--fix` could not clear it. There is no UK/US difference to
+    # enforce; `kilogramme` is the obsolete form, and nothing writes it.
 }
 
 PLACEHOLDERS = re.compile(r"\b(TODO|TBD|FIXME|XXX|lorem ipsum|placeholder)\b", re.I)

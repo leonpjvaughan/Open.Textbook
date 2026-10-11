@@ -25,7 +25,7 @@ from typing import Any, Iterable
 import yaml
 
 from ..book import book_for_bank
-from . import cas
+from . import cas, render
 from .oracles import select as select_oracles
 from .oracles import verify_check
 
@@ -165,6 +165,29 @@ def _verify_problem(problem: dict, selection) -> Report:
     return report
 
 
+def _verify_renders(problem: dict, report: Report) -> None:
+    """A *bank* record must render an answer, or the page and its proof drift.
+
+    The reader's answers block is built from the same records CI verifies, so a
+    record that verifies and renders nothing puts a question on the page with no
+    answer under it — and nothing in CI can see it, because the verifier passed.
+    Six records in the GCSE banks were doing exactly this, all of them checks whose
+    answer lives inside the check rather than in `answer_text`.
+
+    A `structured` check is the one honest exception: its model answer is prose
+    rendered from its points, so a conclusion is deliberately not asserted.
+    """
+    if render.rendered_answer(problem):
+        return
+    check = problem.get("check") or {}
+    if check.get("kind") == "structured" and check.get("points"):
+        return
+    report.errors.append(
+        "renders no answer: add 'answer_text'. A check of kind 'all' has no "
+        "top-level answer, so the reader would see the question and nothing else."
+    )
+
+
 def verify_problem(problem: dict, oracles: Iterable[str] = ("sympy",)) -> Report:
     return _verify_problem(problem, select_oracles(oracles))
 
@@ -188,5 +211,11 @@ def verify_bank(path: Path, oracles: Iterable[str] | None = None) -> BankReport:
     for problem in data.get("problems", []):
         merged = dict(problem)
         merged.setdefault("symbols", data.get("symbols"))
-        bank.reports.append(_verify_problem(merged, selection))
+        report = _verify_problem(merged, selection)
+        # A bank is what a page renders, so the rule belongs here rather than in
+        # `_verify_problem`: a verifier test can check the mathematics of a record
+        # it made up, but a bank whose record renders no answer would print a
+        # question with nothing under it.
+        _verify_renders(merged, report)
+        bank.reports.append(report)
     return bank

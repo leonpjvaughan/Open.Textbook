@@ -83,12 +83,26 @@ def _step_line(step: dict) -> str:
     return f"- ${maths}$"
 
 
-def render_problem(problem: dict, number: int) -> str:
-    label = (problem.get("answer_label") or problem.get("statement", "")).strip()
+def rendered_answer(problem: dict) -> str:
+    """The answer the reader will actually see, or ``""``.
+
+    One function decides this, so the renderer and the verifier agree. It was
+    inline in `render_problem`, which is how a record could verify and then print
+    a question with nothing after it: a check of `kind: all` has no top-level
+    `answer` — its values live in the sub-checks — so without `answer_text` there
+    was nothing to render, and CI could not see it because the verifier passed.
+    """
     check = problem.get("check") or {}
     answer = problem.get("answer_text") or _answer_from_check(check)
     if not answer and not isinstance(check.get("answer"), dict):
         answer = check.get("answer", "")
+    return str(answer or "").strip()
+
+
+def render_problem(problem: dict, number: int) -> str:
+    label = (problem.get("answer_label") or problem.get("statement", "")).strip()
+    check = problem.get("check") or {}
+    answer = rendered_answer(problem)
     steps = problem.get("steps") or []
 
     lines = [f"**{number}.** {label}".rstrip()]

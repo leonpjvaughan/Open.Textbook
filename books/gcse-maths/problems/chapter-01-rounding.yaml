@@ -7,6 +7,7 @@ problems:
     tier: F
     dfe: [N15]
     statement: 'Round $3.14159$ to 2 decimal places.'
+    answer_text: "$3.14$"
     check: {kind: rounded, value: "3.14159", rounded: "3.14", to: "0.01"}
 
   - id: ch1-round-nearest-pound
@@ -14,6 +15,7 @@ problems:
     tier: F
     dfe: [N15]
     statement: 'Round £39.20 to the nearest pound.'
+    answer_text: "£39"
     check: {kind: rounded, value: "39.20", rounded: "39", to: "1"}
 
   - id: ch1-round-1sf
@@ -21,4 +23,5 @@ problems:
     tier: F
     dfe: [N15]
     statement: 'Round $4367$ to 2 significant figures.'
+    answer_text: "$4400$"
     check: {kind: rounded, value: "4367", rounded: "4400", to: "100"}
