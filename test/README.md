@@ -138,7 +138,7 @@ node test/theme-preview.cjs --audit --out /tmp/theme-preview -- \
   "learn:/gcse-maths/higher/chapter-1/section-1.1/learn/"
 
 # One bundle, dark only, no images
-node test/theme-preview.cjs --themes synthwave --schemes dark --no-shots -- \
+node test/theme-preview.cjs --themes neon --schemes dark --no-shots -- \
   "learn:/gcse-maths/higher/chapter-1/section-1.1/learn/"
 ```
 

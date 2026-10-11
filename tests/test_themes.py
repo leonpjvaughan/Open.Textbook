@@ -1,6 +1,6 @@
 """Theme bundles: the collection's core themes, and the subject tint on top.
 
-A bundle and a book multiply: four bundles times every book, in two schemes each.
+A bundle and a book multiply: six bundles times every book, in two schemes each.
 These tests are what keeps that combinable — a complete palette per bundle, a
 subject tint that composes rather than competes, and enough contrast to read in
 every combination.
@@ -126,11 +126,17 @@ def test_a_bundle_must_be_complete(tmp_path):
 # --- provenance: a claim someone else can check -------------------------------
 #
 # A bundle is a group: one palette family, a light member and a dark member, and
-# a recorded source for each. `observed: false` is the only interesting flag —
-# it stops a member derived here from being presented as something upstream
-# published. `load_bundle` refuses a bundle whose provenance is incomplete,
-# because a claim that can quietly vanish is a claim nobody can check. The
-# metadata comes from research/design/theme-groups.md.
+# a recorded origin for each. There are three honest states, and `load_bundle`
+# refuses a member that does not declare one:
+#
+#   * `original: true` — authored here, with no upstream;
+#   * `observed: true` — the hexes were read from `source`;
+#   * `observed: false` — derived here from `source`'s hues, which needs a `note`.
+#
+# The `original` flag exists because `observed: false` alone used to stand for both
+# "ours" and "derived from someone else's mode", which is the conflation it fixes.
+# A claim that can quietly vanish is a claim nobody can check, so a missing field
+# is an error rather than a default.
 
 
 def _bundle_data(theme_id: str = "editorial") -> dict:
@@ -159,34 +165,95 @@ def test_a_bundle_must_carry_a_provenance_block(tmp_path):
         load_bundle(_write_bundle(tmp_path, data))
 
 
+def _sourced(data: dict, scheme: str = "light", **member) -> dict:
+    """Replace one member's provenance with a sourced (non-original) record.
+
+    The bundles shipped here are all original, so the observed/derived
+    enforcement is exercised on a synthetic sourced member rather than on a real
+    one — which is also how the tests for the old `observed` flag worked.
+    """
+    data["provenance"][scheme] = {
+        "name": "Upstream",
+        "source": "https://example.invalid/palette",
+        **member,
+    }
+    return data
+
+
 @pytest.mark.parametrize("scheme", ["light", "dark"])
-@pytest.mark.parametrize("field", ["name", "source", "observed"])
-def test_a_bundle_must_record_each_provenance_field(tmp_path, scheme, field):
+def test_a_bundle_must_name_each_member(tmp_path, scheme):
     data = _bundle_data()
-    del data["provenance"][scheme][field]
+    del data["provenance"][scheme]["name"]
     with pytest.raises(
-        ValueError, match=rf"editorial\.yaml: provenance\.{scheme}: missing {field}"
+        ValueError, match=rf"editorial\.yaml: provenance\.{scheme}: missing name"
+    ):
+        load_bundle(_write_bundle(tmp_path, data))
+
+
+def test_an_original_member_needs_no_source_or_observed(tmp_path):
+    """The whole point of the flag: our own palette is not a derived one.
+
+    An original member must not be forced through the derived-member contract —
+    `observed: false` plus a `note` — which is what used to conflate "authored
+    here" with "derived from someone else's mode".
+    """
+    data = _bundle_data()
+    assert data["provenance"]["light"]["original"] is True
+    del data["provenance"]["light"]["source"]
+    bundle = load_bundle(_write_bundle(tmp_path, data))
+    member = bundle.provenance["light"]
+    assert member["original"] is True
+    assert member["source"] == "house"
+    assert member["observed"] is None
+
+
+def test_an_original_member_cannot_be_observed(tmp_path):
+    data = _bundle_data()
+    data["provenance"]["light"]["observed"] = True
+    with pytest.raises(
+        ValueError,
+        match=r"editorial\.yaml: provenance\.light: an original palette is authored here, so it cannot be observed",
     ):
         load_bundle(_write_bundle(tmp_path, data))
 
 
 def test_a_derived_member_must_say_what_was_derived(tmp_path):
     """`observed: false` without a `note` is the claim no one can check."""
-    data = _bundle_data("gruvbox")
-    assert data["provenance"]["light"]["observed"] is False
-    del data["provenance"]["light"]["note"]
+    data = _sourced(_bundle_data(), observed=False)
     with pytest.raises(
-        ValueError, match=r"gruvbox\.yaml: provenance\.light: derived, so it needs a note"
+        ValueError, match=r"editorial\.yaml: provenance\.light: derived, so it needs a note"
     ):
-        load_bundle(_write_bundle(tmp_path, data, "gruvbox"))
+        load_bundle(_write_bundle(tmp_path, data))
+    # With a note it loads, keeps the claim, and is not marked original.
+    data = _sourced(
+        _bundle_data(), observed=False, note="Derived here from the upstream hues."
+    )
+    bundle = load_bundle(_write_bundle(tmp_path, data))
+    assert bundle.provenance["light"]["original"] is False
+    assert bundle.provenance["light"]["observed"] is False
+
+
+def test_a_sourced_member_needs_a_source(tmp_path):
+    data = _sourced(_bundle_data(), observed=True)
+    del data["provenance"]["light"]["source"]
+    with pytest.raises(
+        ValueError, match=r"editorial\.yaml: provenance\.light: missing source"
+    ):
+        load_bundle(_write_bundle(tmp_path, data))
 
 
 def test_observed_is_a_boolean(tmp_path):
-    data = _bundle_data()
-    data["provenance"]["light"]["observed"] = "yes"
+    data = _sourced(_bundle_data(), observed="yes")
     with pytest.raises(
         ValueError, match=r"editorial\.yaml: provenance\.light: observed must be true or false"
     ):
+        load_bundle(_write_bundle(tmp_path, data))
+
+
+def test_a_bundle_must_declare_a_mood(tmp_path):
+    data = _bundle_data()
+    del data["mood"]
+    with pytest.raises(ValueError, match=r"editorial\.yaml: mood must be calm or vivid"):
         load_bundle(_write_bundle(tmp_path, data))
 
 
@@ -194,14 +261,18 @@ def test_observed_is_a_boolean(tmp_path):
 def test_a_bundle_exposes_its_family_and_provenance(bundle):
     """The metadata is carried on the bundle, not only validated and dropped.
 
-    The colophon (todo item 11) is the reader of this, and a derived member's
+    The colophon (todo item 11) is the reader of this, and a sourced member's
     `note` is the prose it publishes. A field the loader checks but forgets to
     keep is a check that buys nothing.
     """
     assert bundle.family
+    assert bundle.mood in ("calm", "vivid")
     for scheme in SCHEMES:
         member = bundle.provenance[scheme]
         assert member["name"] and member["source"]
+        assert isinstance(member["original"], bool)
+        if member["original"]:
+            continue
         assert isinstance(member["observed"], bool)
         if not member["observed"]:
             assert member["note"]
@@ -212,9 +283,10 @@ def test_no_bundle_is_named_after_a_distribution():
 
     Omarchy's gallery is 140 links and its stock install is 22 single-mode
     `colors.toml` files — 17 dark-only, 5 light-only — so it can supply at most
-    one member of a pair, and a bundle is two. The bundle it named is Catppuccin
-    (Latte + Mocha); see research/design/theme-groups.md. The mistake is one
-    filename away, so it is asserted rather than remembered.
+    one member of a pair, and a bundle is two. The bundle it once named was a
+    Catppuccin group (Latte + Mocha); both are gone now (see DECISIONS.md), and
+    this test keeps the naming mistake from returning. See
+    research/design/theme-groups.md.
     """
     assert "omarchy" not in IDS
 
@@ -277,7 +349,7 @@ def test_each_bundle_and_scheme_selects_a_block_per_bundle():
 @pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
 @pytest.mark.parametrize("book", BOOKS, ids=[b.id for b in BOOKS])
 def test_every_bundle_and_subject_pair_is_readable(bundle, book):
-    """Four bundles times every book, in two schemes: all of them must be legible.
+    """Six bundles times every book, in two schemes: all of them must be legible.
 
     This is what lets a book state one accent per scheme and trust it everywhere,
     rather than tuning a palette per bundle. It covers the figure tokens too:
@@ -300,9 +372,9 @@ def test_every_bundle_is_readable_with_no_subject_tint(bundle, scheme):
     This is the landing page, and any page of a book that states no tint. It is
     a different measurement from the composed one above: the subject's accent
     *replaces* the bundle's own wherever a book provides one, so a bundle accent
-    that fails can pass every composed check. gruvbox's light accent (4.40:1 on
-    its own paper) and catppuccin's (4.34:1) did exactly that until this test
-    existed — the same defect class as item 17's `accent_ink`.
+    that fails can pass every composed check. The stock bundles this set replaced
+    (gruvbox light 4.40:1, catppuccin light 4.34:1) did exactly that until this
+    test existed — the same defect class as item 17's `accent_ink`.
     """
     problems = contrast_problems(bundle, scheme, None)
     assert not problems, "; ".join(problems)
@@ -392,17 +464,14 @@ def test_apca_measures_what_wcag_cannot():
 
     This is F3 of research/design/theme-groups.md: `MIN_CONTRAST` applies the
     same number in both schemes, which is the symmetry APCA exists to criticise.
-    Kanagawa is the real example — its dark accent clears more WCAG than its
-    light one and scores lower in APCA.
+    The synthetic pair below is the example — dark #7c7c7c on #0a0a0a clears a
+    higher WCAG ratio than light #787878 on #ffffff, and scores less than half
+    the Lc. It switched the bundle check to a second opinion; the original
+    finding was Kanagawa's dark accent.
     """
-    kanagawa = bundle_by_id("kanagawa")
-    light, dark = kanagawa.palette("light"), kanagawa.palette("dark")
-    assert contrast(dark["accent"], dark["paper"]) > contrast(
-        light["accent"], light["paper"]
-    )
-    assert abs(apca_contrast(dark["accent"], dark["paper"])) < abs(
-        apca_contrast(light["accent"], light["paper"])
-    )
+    light, dark = "#787878", "#7c7c7c"
+    assert contrast(dark, "#0a0a0a") > contrast(light, "#ffffff")
+    assert abs(apca_contrast(dark, "#0a0a0a")) < abs(apca_contrast(light, "#ffffff"))
 
 
 def test_the_apca_thresholds_are_the_measured_levels():
@@ -425,7 +494,7 @@ def test_the_apca_check_can_actually_fail():
 @pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
 @pytest.mark.parametrize("scheme", ("light", "dark"))
 def test_every_bundle_passes_the_apca_second_opinion(bundle, scheme):
-    """Nine bundles × both schemes, measured in Lc as well as WCAG.
+    """Six bundles × both schemes, measured in Lc as well as WCAG.
 
     The thresholds are below the strict body-text levels on purpose: the dark
     vivid members sit at the floor of the measured distribution, and lifting
@@ -485,11 +554,12 @@ def test_the_soft_ink_check_can_actually_fail():
 def test_accent_ink_reads_on_the_bundles_own_accent(bundle, scheme):
     """The label knocked out of the accent is not the paper.
 
-    A bundle's own paper can sit below 4.5:1 on its own accent — omarchy light is
-    4.34:1 and gruvbox light 4.40:1 — which is the defect this token fixes. The
-    composed check in `contrast_problems` measures the book's effective accent;
-    this measures the bundle's own, so the palette is safe even with no subject
-    tint, and it fails if `accent_ink` goes back to the paper.
+    A bundle's own paper can sit below 4.5:1 on its own accent — the stock set
+    this replaced had a light member at 4.40:1 and another at 4.34:1 — which is
+    the defect this token fixes. The composed check in `contrast_problems`
+    measures the book's effective accent; this measures the bundle's own, so the
+    palette is safe even with no subject tint, and it fails if `accent_ink` goes
+    back to the paper.
     """
     tokens = bundle.palette(scheme)
     ratio = contrast(tokens["accent_ink"], tokens["accent"])

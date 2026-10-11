@@ -1,0 +1,66 @@
+# Harbour: a soft, low-chroma cool palette.
+#
+# The gentle counterweight to the vivid groups: blue-grey paper, slate ink and a
+# muted harbour-teal accent. Nothing in it is loud, and the chroma is held down
+# so the page stays quiet over a long chapter. Both members are authored here.
+#
+# Typography carries the same voice: a sans body for the prose, a serif display
+# so the section headings read as print rather than interface.
+
+id: harbour
+title: Harbour
+description: >-
+  Cool, soft and low in colour: blue-grey paper, slate ink and a muted
+  harbour-teal accent. The quiet one, for reading rather than for looking at.
+
+mood: calm
+family: Harbour
+provenance:
+  light:
+    name: Daylight
+    source: house
+    original: true
+    note: >-
+      Authored in this repository. A low-chroma cool light member: blue-grey
+      paper, slate ink, one muted teal accent.
+  dark:
+    name: Nightfall
+    source: house
+    original: true
+    note: >-
+      Authored in this repository as the dark half of the same pair, not an
+      inversion of the light member.
+typography:
+  body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  display: 'Georgia, "Iowan Old Style", "Times New Roman", serif'
+  mono: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+light:
+  paper: "#f4f7f8"
+  ink: "#23303a"
+  ink_soft: "#55656f"
+  ink_lighter: "#7e8d96"
+  rule: "#dde5e8"
+  accent: "#3a6b7a"
+  accent_light: "#5d8f9e"
+  accent_dark: "#2c5460"
+  accent_ink: "#ffffff"
+  link: "#35617a"
+  code_bg: "#e9eff1"
+  fig_warn: "#a34a34"
+  fig_good: "#33684f"
+  fig_grid: "#73838b"
+dark:
+  paper: "#10171c"
+  ink: "#d7e2e8"
+  ink_soft: "#a3b3bc"
+  ink_lighter: "#74848d"
+  rule: "#26323a"
+  accent: "#6fa8bd"
+  accent_light: "#96c4d5"
+  accent_dark: "#4d7f92"
+  accent_ink: "#0d1318"
+  link: "#86bdd0"
+  code_bg: "#0a1014"
+  fig_warn: "#e08a72"
+  fig_good: "#7fc79b"
+  fig_grid: "#6c7b84"

@@ -154,7 +154,7 @@ the point, and it is the decision most easily undone by accident.
   `--tb-book-*` values, and each bundle composes them in:
 
   ```css
-  --tb-accent: var(--tb-book-accent, #89b4fa);
+  --tb-accent: var(--tb-book-accent, #6ea8d8);
   ```
 
   A bundle may **refuse** a token by listing it under `fixed:`. `clean` refuses the
@@ -228,7 +228,7 @@ cost a reader their preferences.
 ### Previewing a bundle
 
 ```bash
-node scripts/screenshot.cjs site ~/out --schemes light,dark --theme catppuccin -- \
+node scripts/screenshot.cjs site ~/out --schemes light,dark --theme neon -- \
   "chapter:/gcse-maths/higher/Chapter 6/Section 6.4/Walkthrough/" "landing:/"
 ```
 
@@ -266,6 +266,7 @@ ranking of methods. Keep the claims to what the briefing supports; see
 | `tests/` | Engine, bank and collection-shape tests |
 | `test/` | The figure-hook and tier-profile evaluation (24 assertions) |
 | `AGENT-BRIEF.md` | Per-chapter sub-agent brief |
+| `DECISIONS.md` | Dated log of decisions that need to be findable, not a todo |
 | `todo.md` | The work queue. Anything noticed and not fixed now belongs here |
 
 ## Build and verify

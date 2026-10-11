@@ -16,14 +16,14 @@ provenance:
   light:
     name: White
     source: house
-    observed: false
+    original: true
     note: >-
       Authored in this repository, and deliberately refuses the subject tint
       (`fixed:`) so every book is monochrome here.
   dark:
     name: Black
     source: house
-    observed: false
+    original: true
     note: >-
       Authored in this repository, as the dark half of the same pair.
 typography:

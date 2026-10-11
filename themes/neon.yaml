@@ -1,0 +1,73 @@
+# Neon: a cyberpunk glass terminal — deep violet-black, hot magenta, electric
+# cyan. A **vivid** group. Both members are authored here.
+#
+# The dark member is the direction: violet-black surfaces, a magenta accent and a
+# cyan link, with the panel and code surfaces a step darker than the page. The
+# light member is deliberately derived, because a light cyberpunk terminal is a
+# contradiction: the same hue set is held on a pale violet page, and the magenta
+# and cyan are darkened until they are readable as text. It is not an inversion
+# of the dark member, and it gives up the glass glow on purpose rather than
+# shipping a neon page nobody could read.
+#
+# Typography carries the terminal: the display face is monospace, so headings
+# read as instrument labels.
+
+id: neon
+title: Neon
+description: >-
+  A cyberpunk glass terminal: violet-black surfaces, hot magenta and electric
+  cyan. The vivid member is the night page; the light member is the same hues
+  held down to a pale violet day.
+
+mood: vivid
+family: Neon
+provenance:
+  light:
+    name: Daylight
+    source: house
+    original: true
+    note: >-
+      Authored in this repository as the readable light counterpart of the
+      Violet member, not an inversion of it. The magenta and cyan are darkened
+      until they clear the contrast invariant as text.
+  dark:
+    name: Violet
+    source: house
+    original: true
+    note: >-
+      Authored in this repository: a violet-black glass terminal with a hot
+      magenta accent and an electric cyan link.
+typography:
+  body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  display: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+  mono: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+light:
+  paper: "#f7f3fb"
+  ink: "#1c1430"
+  ink_soft: "#554a6e"
+  ink_lighter: "#877da0"
+  rule: "#e6dcef"
+  accent: "#b81d8f"
+  accent_light: "#d95cb0"
+  accent_dark: "#8c1168"
+  accent_ink: "#ffffff"
+  link: "#0e6f80"
+  code_bg: "#efe6f6"
+  fig_warn: "#b02160"
+  fig_good: "#0f6b52"
+  fig_grid: "#7b7094"
+dark:
+  paper: "#120a20"
+  ink: "#ead9ff"
+  ink_soft: "#b4a3cf"
+  ink_lighter: "#7d6f99"
+  rule: "#2a1b42"
+  accent: "#ff4fd8"
+  accent_light: "#ff86e4"
+  accent_dark: "#d62fb5"
+  accent_ink: "#120a20"
+  link: "#4fe6ff"
+  code_bg: "#0b0616"
+  fig_warn: "#ff7aa8"
+  fig_good: "#5cf0c0"
+  fig_grid: "#7e6ca5"

@@ -7,7 +7,7 @@
 # A book contributes its subject identity as `--tb-book-<token>` values (see
 # book.yaml → theme). Bundles compose them in:
 #
-#   --tb-accent: var(--tb-book-accent-light, #89b4fa)
+#   --tb-accent: var(--tb-book-accent-light, #6ea8d8)
 #
 # so a bundle decides whether to accept the subject tint or refuse it. `fixed:`
 # lists tokens the bundle keeps for itself; the rest adopt the subject's value
@@ -28,14 +28,14 @@ provenance:
   light:
     name: Paper
     source: house
-    observed: false
+    original: true
     note: >-
       Authored in this repository. There is no upstream palette; both variations
       are tuned here and checked by the contrast invariant.
   dark:
     name: Ink
     source: house
-    observed: false
+    original: true
     note: >-
       Authored in this repository, as the dark half of the same pair.
 typography:
@@ -51,8 +51,8 @@ light:
   accent: "#2f6690"
   accent_light: "#4a7fae"
   accent_dark: "#24506f"
-  # Text knocked out of the accent (the booklet bar). Not the paper: the paper
-  # is 4.99:1 on gruvbox's own light accent, below AA for text.
+  # Text knocked out of the accent (the booklet bar). A bundle's own paper can
+  # sit below 4.5:1 on its own light accent, which is below AA for text.
   accent_ink: "#ffffff"
   link: "#23577d"
   code_bg: "#f2f0e9"

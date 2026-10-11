@@ -8,7 +8,7 @@ A **book** contributes only its subject identity: accent, and any surface it
 wants moved. It does so as ``--tb-book-<token>`` values, and each bundle composes
 them in::
 
-    --tb-accent: var(--tb-book-accent, #89b4fa)
+    --tb-accent: var(--tb-book-accent, #6ea8d8)
 
 So the bundle keeps control of the design, the subject keeps its identity, and a
 bundle can refuse the tint entirely by listing the token under ``fixed:``.
@@ -126,8 +126,12 @@ class Bundle:
     description: str
     palettes: dict[str, dict[str, str]]
     # The palette family this group belongs to, plus the recorded provenance of
-    # each member: the source, and whether it is observed or derived here.
+    # each member: the source, and whether the member is original work authored
+    # here, observed from a source, or derived from a source's hues.
     family: str = ""
+    # Whether the bundle is calm or vivid. The menu groups by this; it is not a
+    # contrast claim, and the invariant still measures every bundle.
+    mood: str = "calm"
     provenance: dict[str, dict] = field(default_factory=dict)
     typography: dict[str, str] = field(default_factory=dict)
     # Tokens the bundle keeps for itself, refusing the subject tint.
@@ -158,19 +162,52 @@ def _palette(scheme: str, data: dict | None, where: str) -> dict[str, str]:
 def _variation(scheme: str, data: dict | None, where: str) -> dict:
     """One member's provenance, required and complete.
 
-    A bundle's provenance is a claim a reader or maintainer can check: which
-    palette, from where, and whether the hexes were read from that source or
-    derived here. A missing field is a claim nobody can check, so it is an error
-    rather than a default — the message names the file and the field.
+    A bundle's provenance is a claim a reader or maintainer can check: where the
+    palette came from, and in what sense it is ours. There are three honest
+    states, and they are mutually exclusive:
+
+    * ``original: true`` — authored in this repository. It has no upstream, so
+      it needs no ``source`` and no ``observed``; ``observed: true`` alongside
+      it would be a contradiction.
+    * ``observed: true`` — the hexes were read from ``source``.
+    * ``observed: false`` — derived here from ``source``'s hues, and so it needs
+      a ``note`` saying what was derived.
+
+    A missing field is a claim nobody can check, so it is an error rather than a
+    default, and the message names the file and the field. ``original`` exists
+    because the earlier contract had only ``observed: false`` for both "ours"
+    and "derived from someone else's mode", which conflated the two. An original
+    member records ``observed: None`` (the question does not apply), which is
+    deliberately not ``False`` (which means derived).
     """
     label = f"{where}: provenance.{scheme}"
     if not isinstance(data, dict):
         raise ValueError(f"{label} is missing")
-    for key in ("name", "source"):
-        if not str(data.get(key, "")).strip():
-            raise ValueError(f"{label}: missing {key}")
+    if not str(data.get("name", "")).strip():
+        raise ValueError(f"{label}: missing name")
+    original = data.get("original", False)
+    if not isinstance(original, bool):
+        raise ValueError(f"{label}: original must be true or false")
+    if original:
+        if data.get("observed") is True:
+            raise ValueError(
+                f"{label}: an original palette is authored here, so it cannot be observed"
+            )
+        return {
+            "name": str(data["name"]).strip(),
+            # `house` is a reading convenience for a palette with no upstream;
+            # it is not a project and carries no attribution obligation.
+            "source": str(data.get("source", "")).strip() or "house",
+            "original": True,
+            # Not False: an original palette is not a derived one, so the
+            # upstream-observation question does not apply to it at all.
+            "observed": None,
+            "note": " ".join(str(data.get("note", "")).split()),
+        }
+    if not str(data.get("source", "")).strip():
+        raise ValueError(f"{label}: missing source")
     if "observed" not in data:
-        raise ValueError(f"{label}: missing observed")
+        raise ValueError(f"{label}: missing observed (or say original: true)")
     if not isinstance(data["observed"], bool):
         raise ValueError(f"{label}: observed must be true or false")
     if not data["observed"] and not str(data.get("note", "")).strip():
@@ -180,6 +217,7 @@ def _variation(scheme: str, data: dict | None, where: str) -> dict:
     return {
         "name": str(data["name"]).strip(),
         "source": str(data["source"]).strip(),
+        "original": False,
         "observed": data["observed"],
         "note": " ".join(str(data.get("note", "")).split()),
     }
@@ -191,6 +229,9 @@ def load_bundle(path: Path) -> Bundle:
     family = str(data.get("family", "")).strip()
     if not family:
         raise ValueError(f"{where}: missing family")
+    mood = str(data.get("mood", "")).strip()
+    if mood not in ("calm", "vivid"):
+        raise ValueError(f"{where}: mood must be calm or vivid")
     raw_provenance = data.get("provenance")
     if not isinstance(raw_provenance, dict):
         raise ValueError(f"{where}: missing provenance block")
@@ -203,6 +244,7 @@ def load_bundle(path: Path) -> Bundle:
             "dark": _palette("dark", data.get("dark"), where),
         },
         family=family,
+        mood=mood,
         provenance={
             scheme: _variation(scheme, raw_provenance.get(scheme), where)
             for scheme in SCHEMES

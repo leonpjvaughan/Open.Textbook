@@ -1,0 +1,74 @@
+# Glass: a glassmorphism developer OS — near-black with a cool green cast, lime
+# and teal. A **vivid** group. Both members are authored here.
+#
+# The other vivid direction on the table was a holographic blue-violet with
+# violet and cyan. This bundle takes the green-and-teal one instead: Neon already
+# owns the violet-magenta-cyan triangle, so a second violet-and-cyan group would
+# repeat it, while a cool green page pairs with Phosphor's warm amber as its
+# opposite. Lime carries the accent, teal the link.
+#
+# The dark member is the direction: a near-black page with a cool green cast,
+# lime and teal surfaces, and a lighter code panel, like a translucent developer
+# shell. The light member is deliberately derived: a mint-white page and a
+# teal-green accent, so the daylight page keeps the cool cast without the glow.
+#
+# Typography carries the shell: the display face is monospace.
+
+id: glass
+title: Glass
+description: >-
+  A glassmorphism developer OS: near-black with a cool green cast, lime and
+  teal. Cool and luminous at night, mint and teal by day.
+
+mood: vivid
+family: Glass
+provenance:
+  light:
+    name: Daybreak
+    source: house
+    original: true
+    note: >-
+      Authored in this repository as the readable light counterpart of the
+      Shell member, not an inversion of it. The lime and teal are darkened to
+      text inks on a mint-white page.
+  dark:
+    name: Shell
+    source: house
+    original: true
+    note: >-
+      Authored in this repository: a near-black page with a cool green cast, a
+      lime accent and a teal link.
+typography:
+  body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  display: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+  mono: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+light:
+  paper: "#f2faf6"
+  ink: "#10221c"
+  ink_soft: "#476058"
+  ink_lighter: "#74887e"
+  rule: "#d8e8e0"
+  accent: "#0f7a5a"
+  accent_light: "#2fa27c"
+  accent_dark: "#0a5c43"
+  accent_ink: "#ffffff"
+  link: "#0a6f6f"
+  code_bg: "#e6f2ec"
+  fig_warn: "#b0402a"
+  fig_good: "#35751a"
+  fig_grid: "#71837a"
+dark:
+  paper: "#08120f"
+  ink: "#d8f5e8"
+  ink_soft: "#a0c4b4"
+  ink_lighter: "#6f8f82"
+  rule: "#1c2e28"
+  accent: "#6ef0a0"
+  accent_light: "#98ffc0"
+  accent_dark: "#3fbf78"
+  accent_ink: "#04100b"
+  link: "#40e0d0"
+  code_bg: "#050d0a"
+  fig_warn: "#ff8a6a"
+  fig_good: "#b4ff6e"
+  fig_grid: "#5f8074"

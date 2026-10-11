@@ -1,0 +1,69 @@
+# Phosphor: a CRT terminal — amber and acid green on near-black. A **vivid**
+# group. Both members are authored here.
+#
+# The dark member is the direction: a warm near-black page, an amber accent and
+# an acid-green link, like a monochrome monitor with a second phosphor. The light
+# member is deliberately derived: the same amber and green are darkened to inks
+# on a warm cream page, so the daylight page keeps the hue without the glow. It
+# is not an inversion of the dark member.
+#
+# Typography carries the terminal: the display face is monospace.
+
+id: phosphor
+title: Phosphor
+description: >-
+  A CRT terminal: amber and acid green on near-black. The dark member is the
+  screen; the light member is the same two phosphors worked into warm daylight.
+
+mood: vivid
+family: Phosphor
+provenance:
+  light:
+    name: Daylight
+    source: house
+    original: true
+    note: >-
+      Authored in this repository as the readable light counterpart of the
+      Screen member, not an inversion of it. The amber and green are darkened
+      to text inks on a warm page.
+  dark:
+    name: Screen
+    source: house
+    original: true
+    note: >-
+      Authored in this repository: a warm near-black CRT page, an amber accent
+      and an acid-green link.
+typography:
+  body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  display: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+  mono: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+light:
+  paper: "#fbf7ec"
+  ink: "#241d0e"
+  ink_soft: "#5c4f38"
+  ink_lighter: "#8c7d63"
+  rule: "#e8dfc8"
+  accent: "#9a5b00"
+  accent_light: "#c47d1a"
+  accent_dark: "#744300"
+  accent_ink: "#ffffff"
+  link: "#7a5a00"
+  code_bg: "#f3ecd8"
+  fig_warn: "#b23a1f"
+  fig_good: "#3f6a1c"
+  fig_grid: "#8a7c60"
+dark:
+  paper: "#0c0b07"
+  ink: "#f0e6cf"
+  ink_soft: "#c0b394"
+  ink_lighter: "#7f765c"
+  rule: "#26231a"
+  accent: "#ffb000"
+  accent_light: "#ffc94d"
+  accent_dark: "#cc8a00"
+  accent_ink: "#0c0b07"
+  link: "#a8e05f"
+  code_bg: "#070604"
+  fig_warn: "#ff7a45"
+  fig_good: "#b6f05a"
+  fig_grid: "#6f6850"
