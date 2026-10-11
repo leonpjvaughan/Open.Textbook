@@ -1,0 +1,153 @@
+# Practice set for 6.4, solving equations of the form a^x = b.
+#
+# Solving an exponential equation is a solve check. Where the equation has a
+# natural domain (a logarithm needs a positive input) the record states it, so
+# the domain is part of what is proved, not an afterthought.
+chapter: 6
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-solve-base-2
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $2^x = 7$, giving $x$ exactly.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "2**x = 7"
+      variable: "x"
+      answer: ["ln(7)/ln(2)"]
+    answer_text: 'Take logarithms of both sides: $x\ln 2 = \ln 7$, so $x = \dfrac{\ln 7}{\ln 2}$. This is about $2.807$.'
+
+  - id: p2-solve-base-3
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $3^x = 20$, giving $x$ exactly.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "3**x = 20"
+      variable: "x"
+      answer: ["ln(20)/ln(3)"]
+    answer_text: 'Take logarithms: $x = \dfrac{\ln 20}{\ln 3}$, which is about $2.727$. Any base of logarithm works; the natural logarithm is the usual choice.'
+
+  - id: p3-solve-small-base
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $5^x = 0.1$, giving $x$ exactly.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "5**x = 0.1"
+      variable: "x"
+      answer: ["-1 - ln(2)/ln(5)"]
+    answer_text: 'Since $0.1 = 10^{-1}$, taking logarithms gives $x\ln 5 = -\ln 10$, so $x = -\dfrac{\ln 10}{\ln 5} \approx -1.431$. The answer is negative because the number on the right is smaller than $1$.'
+
+  - id: p4-solve-e
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $e^x = 5$, giving $x$ exactly.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "exp(x) = 5"
+      variable: "x"
+      answer: ["ln(5)"]
+    answer_text: 'The natural logarithm undoes the exponential, so $x = \ln 5 \approx 1.609$.'
+
+  - id: p5-solve-e-double
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $e^{2x} = 9$, giving $x$ exactly.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "exp(2*x) = 9"
+      variable: "x"
+      answer: ["ln(9)/2"]
+    answer_text: 'Take logarithms: $2x = \ln 9$, so $x = \dfrac{\ln 9}{2} = \ln 3 \approx 1.099$. Halving is the last step, after the logarithm.'
+
+  - id: p6-quadratic-in-e
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $e^{2x} - 5e^x + 6 = 0$, giving each value of $x$ exactly.'
+    answer_label: 'The values of $x$'
+    check:
+      kind: solve
+      equation: "exp(2*x) - 5*exp(x) + 6 = 0"
+      variable: "x"
+      answer: ["ln(2)", "ln(3)"]
+    answer_text: 'This is a quadratic in $e^x$. Factorise: $\left(e^x - 2\right)\left(e^x - 3\right) = 0$, so $e^x = 2$ or $e^x = 3$. Each gives a logarithm: $x = \ln 2$ or $x = \ln 3$.'
+
+  - id: p7-quadratic-in-2x
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $2^{2x} - 5\left(2^x\right) + 4 = 0$, giving each value of $x$ exactly.'
+    answer_label: 'The values of $x$'
+    check:
+      kind: solve
+      equation: "2**(2*x) - 5*2**x + 4 = 0"
+      variable: "x"
+      answer: ["0", "2"]
+    answer_text: 'Write $2^{2x}$ as $\left(2^x\right)^2$ and treat $2^x$ as the unknown. Factorise: $\left(2^x - 1\right)\left(2^x - 4\right) = 0$. So $2^x = 1$, giving $x = 0$, or $2^x = 4$, giving $x = 2$.'
+
+  - id: p8-solve-linear-exponent
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $5^{2x-1} = 30$, giving $x$ exactly.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "5**(2*x - 1) = 30"
+      variable: "x"
+      answer: ["log(6)/(2*log(5)) + 1"]
+    answer_text: 'Take logarithms: $(2x - 1)\ln 5 = \ln 30$, so $2x - 1 = \dfrac{\ln 30}{\ln 5}$ and $x = 1 + \dfrac{\ln 6}{2\ln 5}$. This is about $1.557$.'
+
+  - id: p9-solve-power-sum
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $3^{x+1} = 100$, giving $x$ exactly.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "3**(x + 1) = 100"
+      variable: "x"
+      answer: ["ln(100)/ln(3) - 1"]
+    answer_text: 'Take logarithms: $(x + 1)\ln 3 = \ln 100$, so $x = \dfrac{\ln 100}{\ln 3} - 1 \approx 3.192$. The $-1$ comes from the exponent $x + 1$.'
+
+  - id: p10-approximate
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $2^x = 7$, giving $x$ to three significant figures.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: approx
+      value: "ln(7)/ln(2)"
+      target: "2.81"
+      tolerance: "0.005"
+    answer_text: '$x = \dfrac{\ln 7}{\ln 2} = 2.80735\ldots$, which is $2.81$ to three significant figures.'
+
+  - id: p11-no-solution
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $e^x = -1$ for real $x$, or explain why there is no solution.'
+    answer_label: 'The solution set'
+    check:
+      kind: solve
+      equation: "exp(x) = -1"
+      variable: "x"
+      domain: "S.Reals"
+      answer: "EmptySet"
+    answer_text: 'The graph of $y = e^x$ lies above the $x$-axis for every real $x$, so it never equals $-1$. The solution set is empty. This is why a logarithmic equation is checked: only a positive input is allowed.'
+
+  - id: p12-solve-by-matching-base
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $4^x = 8$ by writing both sides as powers of $2$.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "4**x = 8"
+      variable: "x"
+      answer: ["log(2)/log(4) + 1"]
+    answer_text: 'Write $4 = 2^2$ and $8 = 2^3$. Then $\left(2^2\right)^x = 2^3$, so $2^{2x} = 2^3$ and $2x = 3$. The solution is $x = \dfrac{3}{2} = 1.5$. The computer also reports this as $\dfrac{\ln 2}{\ln 4} + 1$, which is the same number.'

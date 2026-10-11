@@ -1,0 +1,145 @@
+# Practice set for 11.4, scatter diagrams, regression lines and correlation.
+# The checks prove the arithmetic of reading a line of best fit: a gradient, a
+# prediction or a comparison. The descriptions of correlation and causation are
+# human review, as the DfE excludes calculations involving regression lines.
+chapter: 11
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: p1-gradient-positive
+    section: "11.4"
+    dfe: [L2]
+    statement: 'A line of best fit passes through the points $(2, 10)$ and $(6, 22)$. Find its gradient.'
+    answer_label: 'The gradient'
+    check:
+      kind: evaluate
+      expression: "(22 - 10) / (6 - 2)"
+      answer: "3"
+    answer_text: 'Gradient $= \dfrac{\text{change in } y}{\text{change in } x} = \dfrac{22 - 10}{6 - 2} = 3$. The line rises by 3 for each extra unit of $x$.'
+
+  - id: p2-predict
+    section: "11.4"
+    dfe: [L2]
+    statement: 'A regression line is $y = 3x + 4$. Use it to predict $y$ when $x = 10$.'
+    answer_label: 'The predicted value'
+    check:
+      kind: evaluate
+      expression: "3 * 10 + 4"
+      answer: "34"
+    answer_text: 'Substitute $x = 10$: $y = 3(10) + 4 = 34$. The prediction lies inside the range of the data.'
+
+  - id: p3-gradient-negative
+    section: "11.4"
+    dfe: [L2]
+    statement: 'A line of best fit passes through $(1, 20)$ and $(5, 4)$. Find its gradient and state whether the correlation is positive or negative.'
+    answer_label: 'The gradient'
+    check:
+      kind: evaluate
+      expression: "(4 - 20) / (5 - 1)"
+      answer: "-4"
+    answer_text: 'The gradient is $\dfrac{4 - 20}{5 - 1} = -4$. It is negative, so the correlation is negative: as $x$ increases, $y$ tends to decrease.'
+
+  - id: p4-intercept-negative
+    section: "11.4"
+    dfe: [L2]
+    statement: 'A line of best fit passes through $(0, 25)$ and $(5, 5)$. Find its gradient and its intercept.'
+    answer_label: 'The gradient and intercept'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(5 - 25) / (5 - 0)", answer: "-4"}
+        - {kind: evaluate, expression: "25", answer: "25"}
+    answer_text: 'The gradient is $\dfrac{5 - 25}{5 - 0} = -4$, and the line crosses the $y$-axis at $(0, 25)$, so the intercept is 25. The equation is $y = 25 - 4x$.'
+
+  - id: p5-predict-small
+    section: "11.4"
+    dfe: [L2]
+    statement: 'A regression line is $y = 2x + 5$. Predict $y$ when $x = 4$.'
+    answer_label: 'The predicted value'
+    check:
+      kind: evaluate
+      expression: "2 * 4 + 5"
+      answer: "13"
+    answer_text: 'Substitute $x = 4$: $y = 2(4) + 5 = 13$. The gradient 2 means each extra unit of $x$ adds about 2 to $y$.'
+
+  - id: p6-two-groups-intercept-difference
+    section: "11.4"
+    dfe: [L2]
+    statement: 'A scatter diagram has two distinct sections. The first section has line $y = 2x + 1$ and the second has line $y = 2x + 6$. Find the difference between the two intercepts.'
+    answer_label: 'The difference'
+    check:
+      kind: evaluate
+      expression: "6 - 1"
+      answer: "5"
+    answer_text: 'The intercepts are 1 and 6, so the difference is 5. The two sections sit at different levels, so one line for both would fit neither well.'
+
+  - id: p7-extrapolate
+    section: "11.4"
+    dfe: [L2]
+    statement: 'A regression line from data with $x$ between 1 and 12 is $y = 3x + 4$. Predict $y$ when $x = 100$, and state whether the prediction is an interpolation or an extrapolation.'
+    answer_label: 'The predicted value'
+    check:
+      kind: evaluate
+      expression: "3 * 100 + 4"
+      answer: "304"
+    answer_text: 'The value is $y = 3(100) + 4 = 304$. It is an extrapolation, because $x = 100$ lies far outside the range of the data. The trend may not continue, so the prediction is unreliable.'
+
+  - id: p8-above-line
+    section: "11.4"
+    dfe: [L2]
+    statement: 'The line $y = 2x + 1$ is drawn on a scatter diagram. The points are $(1, 2)$, $(2, 3)$, $(3, 9)$ and $(4, 8)$. Find how many points lie above the line.'
+    answer_label: 'The number of points above the line'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "<", lhs: "2", rhs: "2*1 + 1"}
+        - {kind: compare, relation: "<", lhs: "3", rhs: "2*2 + 1"}
+        - {kind: compare, relation: ">", lhs: "9", rhs: "2*3 + 1"}
+        - {kind: compare, relation: "<", lhs: "8", rhs: "2*4 + 1"}
+    answer_text: 'On the line, $y = 2x + 1$ gives 3, 5, 7 and 9 at $x = 1, 2, 3, 4$. Only the point $(3, 9)$ has a larger $y$-value than the line, so one point lies above the line.'
+
+  - id: p9-means-on-line
+    section: "11.4"
+    dfe: [L2]
+    statement: 'The points $(1, 2)$, $(2, 4)$, $(3, 6)$, $(4, 8)$ and $(5, 10)$ all lie on the line $y = 2x$. Find the mean of the $x$-values and the mean of the $y$-values.'
+    answer_label: 'The two means'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(1 + 2 + 3 + 4 + 5) / 5", answer: "3"}
+        - {kind: evaluate, expression: "(2 + 4 + 6 + 8 + 10) / 5", answer: "6"}
+    answer_text: 'The means are $\bar{x} = 3$ and $\bar{y} = 6$. The point $(3, 6)$ lies on the line, which is why every line of best fit from these data passes through $(\bar{x}, \bar{y})$.'
+
+  - id: p10-best-line-between-two
+    section: "11.4"
+    dfe: [L2]
+    statement: 'A line of best fit is drawn through $(10, 30)$ and $(30, 50)$. Find its gradient.'
+    answer_label: 'The gradient'
+    check:
+      kind: evaluate
+      expression: "(50 - 30) / (30 - 10)"
+      answer: "1"
+    answer_text: 'The gradient is $\dfrac{50 - 30}{30 - 10} = 1$. Each extra unit of $x$ is associated with about one extra unit of $y$.'
+
+  - id: p11-difference-predicted
+    section: "11.4"
+    dfe: [L2]
+    statement: 'Two lines of best fit are $y = 2x + 5$ and $y = 2x + 1$ for two distinct sections of a population. Find the difference between their predictions at $x = 4$.'
+    answer_label: 'The difference'
+    check:
+      kind: evaluate
+      expression: "(2 * 4 + 5) - (2 * 4 + 1)"
+      answer: "4"
+    answer_text: 'The predictions are 13 and 9, so the difference is 4 in the predicted $y$. The two sections need separate lines, because their levels differ.'
+
+  - id: p12-method-choice
+    section: "11.4"
+    dfe: [L2]
+    statement: 'The line of best fit for a scatter diagram is $y = 0.8x + 12$. Predict $y$ when $x = 15$. Say which variable is the explanatory variable if $x$ is the number of hours of sunshine and $y$ is the temperature.'
+    answer_label: 'The predicted value'
+    check:
+      kind: evaluate
+      expression: "0.8 * 15 + 12"
+      answer: "24"
+    answer_text: 'Substitute $x = 15$: $y = 0.8(15) + 12 = 24$. The explanatory variable is the number of hours of sunshine, because it is used to explain or predict the temperature. A correlation between sunshine and temperature does not prove that sunshine causes a rise in temperature, although a mechanism is plausible.'

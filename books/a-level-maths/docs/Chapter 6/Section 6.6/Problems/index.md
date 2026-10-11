@@ -10,9 +10,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.6 Exponential growth and decay in modelling — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: F7, OT3
+Work through these on your own. Write down the model with its units, decide the
+sign of the rate constant, and keep the rounding until the final answer.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-06-practice-6.6
+
+:::answers chapter-06-practice-6.6

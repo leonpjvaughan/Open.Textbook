@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.1 Population, sample and informal inference — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: K1
+Work through these on your own. For each estimate, write a sentence that says
+which group your conclusion describes.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-11-practice-11.1
+
+:::answers chapter-11-practice-11.1

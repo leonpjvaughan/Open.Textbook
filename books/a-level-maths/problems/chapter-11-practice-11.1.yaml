@@ -1,0 +1,139 @@
+# Practice set for 11.1, population, sample and informal inference. The checks
+# prove the arithmetic of an estimate or a mean; that the estimate is used
+# honestly as a claim about the population is human review.
+chapter: 11
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-estimate-total
+    section: "11.1"
+    dfe: [K1]
+    statement: 'A sample of 40 students spends a mean of $3.5$ hours per week on homework. Estimate the total number of hours spent on homework each week by the 1200 students in the school.'
+    answer_label: 'The estimated total'
+    check:
+      kind: evaluate
+      expression: "3.5 * 1200"
+      answer: "4200"
+    answer_text: 'Multiply the sample mean by the population size: $3.5 \times 1200 = 4200$ hours.'
+
+  - id: p2-faulty-count
+    section: "11.1"
+    dfe: [K1]
+    statement: 'In a sample of 200 components, 12 are faulty. Estimate the number of faulty components in a batch of 5000.'
+    answer_label: 'The estimated number of faulty components'
+    check:
+      kind: evaluate
+      expression: "(12 / 200) * 5000"
+      answer: "300"
+    answer_text: 'The sample proportion is $\dfrac{12}{200} = 0.06$, so the estimate is $0.06 \times 5000 = 300$ components.'
+
+  - id: p3-proportion
+    section: "11.1"
+    dfe: [K1]
+    statement: 'In a sample of 80 shoppers, 52 prefer brand A. Estimate the proportion of all shoppers who prefer brand A.'
+    answer_label: 'The estimated proportion'
+    check:
+      kind: evaluate
+      expression: "52 / 80"
+      answer: "13/20"
+    answer_text: 'Divide the count by the sample size: $\dfrac{52}{80} = \dfrac{13}{20} = 0.65$. About $65\%$ of shoppers prefer brand A.'
+
+  - id: p4-sample-mean
+    section: "11.1"
+    dfe: [K1]
+    statement: 'A sample of six trees has heights, in metres, $14, 16, 18, 20, 22, 24$. Find the sample mean.'
+    answer_label: 'The sample mean'
+    check:
+      kind: evaluate
+      expression: "(14 + 16 + 18 + 20 + 22 + 24) / 6"
+      answer: "19"
+    answer_text: 'Add the values and divide by the sample size: $\dfrac{114}{6} = 19$ metres.'
+
+  - id: p5-two-samples
+    section: "11.1"
+    dfe: [K1]
+    statement: 'Two samples of size 20 are taken from the same population. Their means are 24 and 27. Use the two sample means to estimate the population mean.'
+    answer_label: 'The estimate of the population mean'
+    check:
+      kind: evaluate
+      expression: "(24 + 27) / 2"
+      answer: "51/2"
+    answer_text: 'The samples are the same size, so take the mean of the sample means: $\dfrac{24 + 27}{2} = 25.5$. The two samples disagree because of sampling variability.'
+
+  - id: p6-village-bicycles
+    section: "11.1"
+    dfe: [K1]
+    statement: 'A sample of 40 adults in a village finds that 15 own a bicycle. The village has 840 adults. Estimate how many adults in the village own a bicycle.'
+    answer_label: 'The estimated number of adults'
+    check:
+      kind: evaluate
+      expression: "(15 / 40) * 840"
+      answer: "315"
+    answer_text: 'The sample proportion is $\dfrac{15}{40} = 0.375$, so the estimate is $0.375 \times 840 = 315$ adults.'
+
+  - id: p7-apple-mass
+    section: "11.1"
+    dfe: [K1]
+    statement: 'A sample of 25 apples has a mean mass of 180 g. Estimate the total mass, in grams, of 400 apples.'
+    answer_label: 'The estimated total mass'
+    check:
+      kind: evaluate
+      expression: "180 * 400"
+      answer: "72000"
+    answer_text: 'Multiply the sample mean by the number of apples: $180 \times 400 = 72000$ g, which is 72 kg.'
+
+  - id: p8-bus-percentage
+    section: "11.1"
+    dfe: [K1]
+    statement: 'In a sample of 250 people, 90 use the bus every day. Estimate the percentage of the population who use the bus every day.'
+    answer_label: 'The estimated percentage'
+    check:
+      kind: evaluate
+      expression: "(90 / 250) * 100"
+      answer: "36"
+    answer_text: 'The sample proportion is $\dfrac{90}{250} = 0.36$, which is $36\%$.'
+
+  - id: p9-difference
+    section: "11.1"
+    dfe: [K1]
+    statement: 'A company claims a mean delivery time of 40 minutes. A sample of 30 deliveries has a mean of 43.2 minutes. Find the difference between the sample mean and the claim.'
+    answer_label: 'The difference'
+    check:
+      kind: evaluate
+      expression: "43.2 - 40"
+      answer: "16/5"
+    answer_text: 'The difference is $43.2 - 40 = 3.2$ minutes. The sample mean is above the claim, but one sample cannot settle the question.'
+
+  - id: p10-outlier-means
+    section: "11.1"
+    dfe: [K1]
+    statement: 'Find the mean of $4, 5, 6, 7, 8$ and the mean of $4, 5, 6, 7, 30$.'
+    answer_label: 'The two means'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(4 + 5 + 6 + 7 + 8) / 5", answer: "6"}
+        - {kind: evaluate, expression: "(4 + 5 + 6 + 7 + 30) / 5", answer: "52/5"}
+    answer_text: 'The first mean is $\dfrac{30}{5} = 6$. The second is $\dfrac{52}{5} = 10.4$. The single large value raises the mean, which is why an outlier matters.'
+
+  - id: p11-trees
+    section: "11.1"
+    dfe: [K1]
+    statement: 'A sample of 30 trees has a mean height of $8.4$ m. Estimate the total height of 150 trees.'
+    answer_label: 'The estimated total height'
+    check:
+      kind: evaluate
+      expression: "8.4 * 150"
+      answer: "1260"
+    answer_text: 'Multiply the sample mean by the population size: $8.4 \times 150 = 1260$ m.'
+
+  - id: p12-method-choice
+    section: "11.1"
+    dfe: [K1]
+    statement: 'A sample of 400 voters finds that 220 support a plan. Estimate the percentage of the population who support the plan. Say whether your answer is a mean, a proportion or a total.'
+    answer_label: 'The estimated percentage'
+    check:
+      kind: evaluate
+      expression: "(220 / 400) * 100"
+      answer: "55"
+    answer_text: 'This is a proportion, written as a percentage: $\dfrac{220}{400} = 0.55$, which is $55\%$. It is an informal inference about the population of voters.'

@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.2 Simple iterative methods, cobweb and staircase diagrams — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: I2
+Work through these on your own. Keep the full value in your calculator, and
+write down four decimal places unless the question says otherwise.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-09-practice-9.2
+
+:::answers chapter-09-practice-9.2

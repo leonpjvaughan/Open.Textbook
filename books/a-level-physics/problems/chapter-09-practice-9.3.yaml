@@ -1,0 +1,193 @@
+# Practice set for 9.3 (Magnetic fields).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]`, so a check may use either.
+#
+# A value that uses B, a charge, a square root or a power of ten is proved by
+# `approx` against a stated tolerance. A unit conversion is proved exactly by
+# `convert`, a rounding by `sigfigs`, a propagation by `uncertainty`, a
+# dimensional statement by `dimensions`, and a reason by `structured`
+# (presence, order and coverage only, never physics).
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 9
+problems:
+  - id: p1-force-on-wire
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'A straight wire of length 0.60 m carries a current of 2.5 A at right angles to a magnetic field of flux density 0.35 T. Find the force on the wire.'
+    answer_label: 'The force on the wire'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "0.35 * 2.5 * 0.60", target: "0.525", tolerance: "0.005"}
+        - kind: dimensions
+          consistency: "F = B * I * L"
+          units: {F: N, B: T, I: A, L: m}
+    answer_text: '$F = BIL = 0.35 \times 2.5 \times 0.60 = 0.53\,\text{N}$.'
+
+  - id: p2-force-on-wire-angle
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'The wire in question 1 is turned so that it makes an angle of 55 degrees with the field. Find the force on it now.'
+    answer_label: 'The force on the wire'
+    check: {kind: approx, value: "0.35 * 2.5 * 0.60 * sin(55 * pi / 180)", target: "0.430", tolerance: "0.005"}
+    answer_text: '$F = BIL\sin\theta = 0.35 \times 2.5 \times 0.60 \times \sin 55^{\circ} = 0.43\,\text{N}$.'
+
+  - id: p3-force-on-electron
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'An electron moves at 3.0e6 m/s at right angles to a magnetic field of flux density 0.15 T. Find the magnetic force on it.'
+    answer_label: 'The magnetic force'
+    check: {kind: approx, value: "0.15 * 1.60e-19 * 3.0e6", target: "7.2e-14", tolerance: "1e-15"}
+    answer_text: '$F = BQv = 0.15 \times 1.60 \times 10^{-19} \times 3.0 \times 10^{6} = 7.2 \times 10^{-14}\,\text{N}$.'
+
+  - id: p4-radius-of-path
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'Find the radius of the circular path of the electron in question 3. The mass of an electron is 9.11e-31 kg.'
+    answer_label: 'The radius'
+    check: {kind: approx, value: "9.11e-31 * 3.0e6 / (0.15 * 1.60e-19)", target: "1.14e-4", tolerance: "1e-6"}
+    answer_text: '$r = \dfrac{mv}{BQ} = \dfrac{9.11 \times 10^{-31} \times 3.0 \times 10^{6}}{0.15 \times 1.60 \times 10^{-19}} = 1.1 \times 10^{-4}\,\text{m}$.'
+
+  - id: p5-period-of-path
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'Find the time the electron in question 3 takes to complete one full circle.'
+    answer_label: 'The period'
+    check: {kind: approx, value: "2 * pi * 9.11e-31 / (0.15 * 1.60e-19)", target: "2.39e-10", tolerance: "1e-12"}
+    answer_text: '$T = \dfrac{2\pi m}{BQ} = \dfrac{2\pi \times 9.11 \times 10^{-31}}{0.15 \times 1.60 \times 10^{-19}} = 2.4 \times 10^{-10}\,\text{s}$.'
+
+  - id: p6-magnetic-flux
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'A coil of area 2.0e-3 m^2 is placed at right angles to a magnetic field of flux density 0.45 T. Find the magnetic flux through one turn.'
+    answer_label: 'The magnetic flux'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "0.45 * 2.0e-3", target: "9.0e-4", tolerance: "1e-5"}
+        - kind: dimensions
+          consistency: "Phi = B * A"
+          units: {Phi: Wb, B: T, A: "m^2"}
+    answer_text: '$\Phi = BA = 0.45 \times 2.0 \times 10^{-3} = 9.0 \times 10^{-4}\,\text{Wb}$.'
+
+  - id: p7-flux-linkage
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'The coil in question 6 has 250 turns. Find the flux linkage.'
+    answer_label: 'The flux linkage'
+    check: {kind: approx, value: "250 * 0.45 * 2.0e-3", target: "0.225", tolerance: "0.002"}
+    answer_text: '$N\Phi = NBA = 250 \times 0.45 \times 2.0 \times 10^{-3} = 0.23\,\text{Wb}$.'
+
+  - id: p8-tesla-definition
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'A wire of length 1.0 m carrying a current of 1.0 A at right angles to a field feels a force of 1.0 N. Show that the flux density is 1.0 T.'
+    answer_label: 'The flux density'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "1.0 / (1.0 * 1.0)", target: "1.0", tolerance: "1e-6"}
+        - kind: dimensions
+          consistency: "B = F / (I * L)"
+          units: {B: T, F: N, I: A, L: m}
+    answer_text: 'Rearranging $F = BIL$ gives $B = \dfrac{F}{IL} = \dfrac{1.0}{1.0 \times 1.0} = 1.0\,\text{T}$. This is the definition of the tesla.'
+
+  - id: p9-no-force-parallel
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'Explain why a charged particle moving along the lines of a magnetic field feels no magnetic force.'
+    check:
+      kind: structured
+      requires: [angle-zero, sine-zero, component, no-perpendicular-component]
+      concepts: [magnetic-force]
+      points:
+        - id: angle-zero
+          text: 'The angle $\theta$ between the velocity and the field is zero.'
+          concepts: [magnetic-force]
+        - id: sine-zero
+          text: 'The force depends on $\sin\theta$, and $\sin 0^{\circ} = 0$.'
+          concepts: [magnetic-force]
+        - id: component
+          text: 'Only the component of the velocity at right angles to the field gives a force.'
+          concepts: [magnetic-force]
+        - id: no-perpendicular-component
+          text: 'A charge moving along the field has no component of velocity at right angles to it, so the force is zero.'
+          concepts: [magnetic-force]
+
+  - id: p10-uncertainty-radius
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'The radius of a charged particle in a magnetic field is 0.070 m. The flux density is measured with an uncertainty of 1.5% and the speed with an uncertainty of 0.5%. Find the absolute uncertainty in the radius.'
+    answer_label: 'The absolute uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: "0.070", percentage: "1.5", power: "1"}
+        - {value: "1", percentage: "0.5", power: "1"}
+      result: "0.070"
+      uncertainty: "0.0014"
+      tolerance: "1e-5"
+    answer_text: 'The radius is $r = \dfrac{mv}{BQ}$. A quotient adds percentage uncertainties, so the percentage uncertainty is $1.5 + 0.5 = 2.0\%$. The absolute uncertainty is $\dfrac{2.0}{100} \times 0.070 = 1.4 \times 10^{-3}\,\text{m}$. So $r = 0.070 \pm 0.001\,\text{m}$.'
+
+  - id: p11-force-2sf
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'A calculation gives a magnetic force of 9.6154e-14 N. Write the answer to two significant figures.'
+    answer_label: 'The force to two significant figures'
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: "9.6154e-14"
+      figures: 2
+      answer: "9.6e-14"
+    answer_text: '$9.6154 \times 10^{-14}\,\text{N}$ is $9.6 \times 10^{-14}\,\text{N}$ to two significant figures.'
+
+  - id: p12-convert-millitesla
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'A magnetic field has a flux density of 3.0 mT. Write this in tesla.'
+    answer_label: 'The flux density in tesla'
+    check: {kind: convert, value: "3.0", from: "mT", to: "T", answer: "3.0e-3"}
+    answer_text: '$3.0\,\text{mT} = 3.0 \times 10^{-3}\,\text{T}$, or 0.0030 T.'
+
+  - id: p13-ion-in-mass-spectrometer
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'A xenon ion of mass 2.18e-25 kg and charge +1.60e-19 C is accelerated from rest through 1.20 kV. It then enters a magnetic field of flux density 0.25 T at right angles to its velocity. Find the radius of its path.'
+    answer_label: 'The radius'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "2.18e-25 * sqrt(2 * 1.60e-19 * 1200 / 2.18e-25) / (0.25 * 1.60e-19)", target: "0.229", tolerance: "0.003"}
+        - kind: dimensions
+          consistency: "r = m * v / (B * Q)"
+          units: {r: m, m: kg, v: "m s^-1", B: T, Q: C}
+    answer_text: 'The kinetic energy is $E_{k} = eV = 1.92 \times 10^{-16}\,\text{J}$, so $v = \sqrt{\dfrac{2E_{k}}{m}} = 4.20 \times 10^{4}\,\text{m}\,\text{s}^{-1}$. Then $r = \dfrac{mv}{BQ} = \dfrac{2.18 \times 10^{-25} \times 4.20 \times 10^{4}}{0.25 \times 1.60 \times 10^{-19}} = 0.23\,\text{m}$.'
+
+  - id: p14-method-mass-spectrometer
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'State which equation you would use to find the radius of the path of an ion in a mass spectrometer, and why.'
+    check:
+      kind: structured
+      requires: [magnetic-force, centripetal-force, equate, rearranged]
+      concepts: [magnetic-force, circular-motion]
+      points:
+        - id: magnetic-force
+          text: 'The magnetic force on the moving ion is $F = BQv$.'
+          concepts: [magnetic-force]
+        - id: centripetal-force
+          text: 'The force needed for circular motion is $F = \dfrac{mv^{2}}{r}$.'
+          concepts: [circular-motion]
+        - id: equate
+          text: 'Set the two expressions equal, because the magnetic force provides the centripetal force.'
+          concepts: [circular-motion]
+        - id: rearranged
+          text: 'Rearranging gives $r = \dfrac{mv}{BQ}$.'
+          concepts: [magnetic-force]

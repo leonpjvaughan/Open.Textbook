@@ -1,18 +1,22 @@
 ---
-title: 11.5 Measures of central tendency and variation, including standard deviation
-  — Practise
+title: 11.5 Measures of central tendency and variation, including standard deviation — Practise
 chapter: 11
 chapter_title: Statistical sampling and data presentation
 section: '11.5'
-section_title: Measures of central tendency and variation, including standard deviation
+section_title: 'Measures of central tendency and variation, including standard deviation'
 dfe:
 - L3
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.5 Measures of central tendency and variation, including standard deviation — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: L3
+Work through these on your own. Every standard deviation below divides by $n$.
+State that convention in your working.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-11-practice-11.5
+
+:::answers chapter-11-practice-11.5

@@ -1,0 +1,154 @@
+# Practice set for 6.6, exponential growth and decay in modelling.
+#
+# The section applies the model y = Ae^{kt} to money, medicine, populations and
+# radioactive decay. Each check proves the algebra and the arithmetic; whether
+# the model itself is suitable is a modelling judgement and stays on the page.
+chapter: 6
+symbols:
+  t: {real: true}
+  x: {real: true}
+  k: {real: true}
+  A: {real: true, positive: true}
+problems:
+  - id: p1-continuous-interest
+    section: "6.6"
+    dfe: [F7, OT3]
+    statement: '£1000 is invested at $5\%$ per year, compounded continuously, so $A = 1000e^{0.05t}$. Find the amount after $10$ years, to the nearest penny.'
+    answer_label: 'The amount'
+    check:
+      kind: approx
+      value: "1000*exp(0.5)"
+      target: "1648.72"
+      tolerance: "0.005"
+    answer_text: 'Substitute $t = 10$: $A = 1000e^{0.5} = 1648.7209\ldots$, which is £$1648.72$. Continuous compounding is the limiting case of more and more frequent compounding.'
+
+  - id: p2-doubling-time
+    section: "6.6"
+    dfe: [F7, OT3]
+    statement: 'An investment grows as $A = A_0e^{0.07t}$. Find the exact time for the money to double.'
+    answer_label: 'The time'
+    check:
+      kind: solve
+      equation: "exp(0.07*t) = 2"
+      variable: "t"
+      answer: ["ln(2)*100/7"]
+    answer_text: 'Doubling means $A = 2A_0$, so $e^{0.07t} = 2$. Take logarithms: $0.07t = \ln 2$, and $t = \dfrac{\ln 2}{0.07} = \dfrac{100\ln 2}{7} \approx 9.90$ years. The starting amount cancels, so the doubling time does not depend on it.'
+
+  - id: p3-decay-constant
+    section: "6.6"
+    dfe: [F7, OT3]
+    statement: 'A radioactive isotope has a half-life of $5$ years. Find the decay constant $k$ in the model $m = m_0e^{-kt}$.'
+    answer_label: 'The value of $k$'
+    check:
+      kind: solve
+      equation: "exp(-5*k) = 1/2"
+      variable: "k"
+      answer: ["ln(2)/5"]
+    answer_text: 'Half-life means $m = \dfrac{m_0}{2}$ when $t = 5$, so $e^{-5k} = \dfrac{1}{2}$. Take logarithms: $-5k = -\ln 2$, giving $k = \dfrac{\ln 2}{5} \approx 0.139$ per year.'
+
+  - id: p4-fraction-remaining
+    section: "6.6"
+    dfe: [F7, OT3]
+    statement: 'A radioactive sample has a half-life of $8$ days. What fraction of the sample remains after $24$ days?'
+    answer_label: 'The fraction remaining'
+    check:
+      kind: evaluate
+      expression: "(1/2)**(24/8)"
+      answer: "1/8"
+    answer_text: '$24$ days is three half-lives, because $24 \div 8 = 3$. Each half-life leaves half of what was there, so the fraction left is $\left(\dfrac{1}{2}\right)^3 = \dfrac{1}{8}$.'
+
+  - id: p5-drug-amount
+    section: "6.6"
+    dfe: [F7, OT3]
+    statement: 'The amount of a drug in the blood is $A = 50e^{-0.3t}$ mg after $t$ hours. Find the amount after $4$ hours, to three significant figures.'
+    answer_label: 'The amount'
+    check:
+      kind: approx
+      value: "50*exp(-1.2)"
+      target: "15.1"
+      tolerance: "0.05"
+    answer_text: 'Substitute $t = 4$: $A = 50e^{-1.2} = 15.059\ldots$, which is $15.1$ mg to three significant figures. The negative exponent means the amount falls.'
+
+  - id: p6-drug-threshold
+    section: "6.6"
+    dfe: [F7, OT3]
+    statement: 'A drug is modelled by $A = 50e^{-0.3t}$. Find the exact time for the amount to fall to $5$ mg.'
+    answer_label: 'The time'
+    check:
+      kind: solve
+      equation: "50*exp(-0.3*t) = 5"
+      variable: "t"
+      answer: ["10*ln(10)/3"]
+    answer_text: 'Divide by $50$: $e^{-0.3t} = 0.1 = \dfrac{1}{10}$. Take logarithms: $-0.3t = -\ln 10$, so $t = \dfrac{\ln 10}{0.3} \approx 7.68$ hours. The amount has fallen by a factor of ten.'
+
+  - id: p7-population
+    section: "6.6"
+    dfe: [F7, OT3]
+    statement: 'A population is modelled by $P = 1500e^{0.02t}$, where $t$ is in years. Find $P$ after $25$ years, to the nearest whole number.'
+    answer_label: 'The population'
+    check:
+      kind: approx
+      value: "1500*exp(0.5)"
+      target: "2473"
+      tolerance: "0.5"
+    answer_text: 'Substitute $t = 25$: $P = 1500e^{0.5} = 2473.08\ldots$, which is $2473$ to the nearest whole number. The population grows, so the model has a positive exponent.'
+
+  - id: p8-car-value
+    section: "6.6"
+    dfe: [F7, OT3]
+    statement: 'A car worth £$20000$ loses value as $V = 20000e^{-0.15t}$, where $t$ is in years. Find its value after $3$ years, to the nearest penny.'
+    answer_label: 'The value'
+    check:
+      kind: approx
+      value: "20000*exp(-0.45)"
+      target: "12752.56"
+      tolerance: "0.005"
+    answer_text: 'Substitute $t = 3$: $V = 20000e^{-0.45} = 12752.563\ldots$, which is £$12752.56$. The value falls, so the exponent is negative.'
+
+  - id: p9-doubling-approximate
+    section: "6.6"
+    dfe: [F7, OT3]
+    statement: 'A quantity grows as $Q = Q_0e^{0.07t}$. Write the doubling time to three significant figures.'
+    answer_label: 'The doubling time'
+    check:
+      kind: approx
+      value: "ln(2)/0.07"
+      target: "9.90"
+      tolerance: "0.005"
+    answer_text: 'The doubling time is $\dfrac{\ln 2}{0.07} = 9.9021\ldots$, which is $9.90$ to three significant figures. A larger growth constant means a shorter doubling time.'
+
+  - id: p10-satisfies-model
+    section: "6.6"
+    dfe: [F7, OT3]
+    statement: 'Show that $y = Ae^{kt}$ satisfies the equation $\dfrac{dy}{dt} = ky$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "A*exp(k*t)"
+      apply: {op: diff, args: [t]}
+      answer: "A*k*exp(k*t)"
+    answer_text: 'Differentiate: $\dfrac{dy}{dt} = kAe^{kt}$. Since $y = Ae^{kt}$, this is exactly $ky$. The rate of change is proportional to the current amount, which is why the exponential model describes so many processes.'
+
+  - id: p11-model-error
+    section: "6.6"
+    dfe: [F7, OT3]
+    statement: 'A model predicts $1000e^{0.5}$ for a measurement. The measured value is $1600$. Find the difference, model minus measurement, to two decimal places.'
+    answer_label: 'The difference'
+    check:
+      kind: approx
+      value: "1000*exp(0.5) - 1600"
+      target: "48.72"
+      tolerance: "0.005"
+    answer_text: 'The model predicts $1000e^{0.5} = 1648.72\ldots$, so the difference is $1000e^{0.5} - 1600 = 48.72$ to two decimal places. A positive difference means the model overestimates.'
+
+  - id: p12-solve-concentration
+    section: "6.6"
+    dfe: [F7, OT3]
+    statement: 'A concentration is modelled by $C = 120e^{-0.25t}$. Find the exact time for $C$ to fall to $30$.'
+    answer_label: 'The time'
+    check:
+      kind: solve
+      equation: "120*exp(-0.25*t) = 30"
+      variable: "t"
+      answer: ["ln(4)/0.25"]
+    answer_text: 'Divide by $120$: $e^{-0.25t} = 0.25 = \dfrac{1}{4}$. Take logarithms: $-0.25t = -\ln 4$, so $t = \dfrac{\ln 4}{0.25} = 4\ln 4 \approx 5.55$. The time for a quarter to remain is two half-lives.'

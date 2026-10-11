@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 10.1 Vectors in two and three dimensions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: J1
+Work through these on your own. Before you write a vector, name the point you
+start from and the point you finish at. Check the order of the components in
+every column.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-10-practice-10.1
+
+:::answers chapter-10-practice-10.1

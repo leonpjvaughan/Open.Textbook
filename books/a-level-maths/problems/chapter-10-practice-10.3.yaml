@@ -1,0 +1,200 @@
+# Practice set for 10.3, vector addition and scalar multiplication.
+#
+# The `vector` checks add, subtract and scale matrices exactly; a magnitude or a
+# direction is a separate sub-check, because a resultant is a vector and its
+# length is a scalar. Directions are in degrees from the positive x-axis.
+chapter: 10
+problems:
+  - id: p1-add-two-vectors
+    section: "10.3"
+    dfe: [J3]
+    statement: 'Add $\mathbf{a} = 2\mathbf{i} + 5\mathbf{j}$ and $\mathbf{b} = 3\mathbf{i} - 4\mathbf{j}$.'
+    answer_label: 'The sum'
+    check:
+      kind: vector
+      op: add
+      args: ["Matrix([2, 5])", "Matrix([3, -4])"]
+      answer: "Matrix([5, 1])"
+    answer_text: 'Add the matching components: $\mathbf{a} + \mathbf{b} = (2 + 3)\mathbf{i} + (5 - 4)\mathbf{j} = 5\mathbf{i} + \mathbf{j}$. The resultant is the column $\begin{pmatrix} 5 \\ 1 \end{pmatrix}$.'
+
+  - id: p2-add-three-dimensions
+    section: "10.3"
+    dfe: [J3]
+    statement: 'Add $\mathbf{a} = \mathbf{i} - 2\mathbf{j} + 3\mathbf{k}$ and $\mathbf{b} = 2\mathbf{i} + 2\mathbf{j} - 5\mathbf{k}$.'
+    answer_label: 'The sum'
+    check:
+      kind: vector
+      op: add
+      args: ["Matrix([1, -2, 3])", "Matrix([2, 2, -5])"]
+      answer: "Matrix([3, 0, -2])"
+    answer_text: 'Add each row: $(1 + 2)\mathbf{i} + (-2 + 2)\mathbf{j} + (3 - 5)\mathbf{k} = 3\mathbf{i} - 2\mathbf{k}$. The $\mathbf{j}$ row cancels to $0$, so there is no $\mathbf{j}$ term.'
+
+  - id: p3-negative-scalar
+    section: "10.3"
+    dfe: [J3]
+    statement: 'Multiply $\mathbf{a} = 2\mathbf{i} - 5\mathbf{j}$ by $-3$.'
+    answer_label: 'The vector $-3\mathbf{a}$'
+    check:
+      kind: vector
+      op: scale
+      args: ["-3", "Matrix([2, -5])"]
+      answer: "Matrix([-6, 15])"
+    answer_text: '$-3\mathbf{a} = -3(2\mathbf{i} - 5\mathbf{j}) = -6\mathbf{i} + 15\mathbf{j}$. The negative scalar reverses the direction, and the new vector is three times as long as $\mathbf{a}$.'
+
+  - id: p4-combine-two-scalars
+    section: "10.3"
+    dfe: [J3]
+    statement: 'For $\mathbf{a} = 3\mathbf{i} - \mathbf{j}$ and $\mathbf{b} = \mathbf{i} + 4\mathbf{j}$, find $2\mathbf{a} + 3\mathbf{b}$.'
+    answer_label: 'The vector'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: scale
+          args: ["2", "Matrix([3, -1])"]
+          answer: "Matrix([6, -2])"
+        - kind: vector
+          op: scale
+          args: ["3", "Matrix([1, 4])"]
+          answer: "Matrix([3, 12])"
+        - kind: vector
+          op: add
+          args: ["Matrix([6, -2])", "Matrix([3, 12])"]
+          answer: "Matrix([9, 10])"
+    answer_text: '$2\mathbf{a} = 6\mathbf{i} - 2\mathbf{j}$ and $3\mathbf{b} = 3\mathbf{i} + 12\mathbf{j}$. Adding: $2\mathbf{a} + 3\mathbf{b} = 9\mathbf{i} + 10\mathbf{j}$.'
+
+  - id: p5-subtract-two-scalars
+    section: "10.3"
+    dfe: [J3]
+    statement: 'For $\mathbf{a} = \mathbf{i} + 2\mathbf{j}$ and $\mathbf{b} = 2\mathbf{i} - 3\mathbf{j}$, find $4\mathbf{a} - 2\mathbf{b}$.'
+    answer_label: 'The vector'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: scale
+          args: ["4", "Matrix([1, 2])"]
+          answer: "Matrix([4, 8])"
+        - kind: vector
+          op: scale
+          args: ["2", "Matrix([2, -3])"]
+          answer: "Matrix([4, -6])"
+        - kind: vector
+          op: subtract
+          args: ["Matrix([4, 8])", "Matrix([4, -6])"]
+          answer: "Matrix([0, 14])"
+    answer_text: '$4\mathbf{a} = 4\mathbf{i} + 8\mathbf{j}$ and $2\mathbf{b} = 4\mathbf{i} - 6\mathbf{j}$. Subtracting: $4\mathbf{a} - 2\mathbf{b} = (4 - 4)\mathbf{i} + (8 - (-6))\mathbf{j} = 14\mathbf{j}$.'
+
+  - id: p6-resultant-force
+    section: "10.3"
+    dfe: [J3]
+    statement: 'Two forces $\mathbf{F}_1 = 3\mathbf{i} + 4\mathbf{j}$ N and $\mathbf{F}_2 = 4\mathbf{i} - 3\mathbf{j}$ N act at a point. Find the resultant force, its magnitude and its direction from the positive $x$-axis.'
+    answer_label: 'The resultant, its magnitude and direction'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([3, 4])", "Matrix([4, -3])"]
+          answer: "Matrix([7, 1])"
+        - {kind: vector, op: norm, args: ["Matrix([7, 1])"], answer: "sqrt(50)"}
+        - {kind: approx, value: "atan2(1, 7) * 180 / pi", target: "8.13", tolerance: "0.01"}
+    answer_text: 'The resultant is $(3 + 4)\mathbf{i} + (4 - 3)\mathbf{j} = 7\mathbf{i} + \mathbf{j}$. Its magnitude is $\sqrt{7^2 + 1^2} = \sqrt{50} = 5\sqrt{2} \approx 7.07$ N, and its direction is $\tan^{-1}\left(\dfrac{1}{7}\right) = 8.1^\circ$ to $1$ d.p.'
+
+  - id: p7-equilibrium-third-force
+    section: "10.3"
+    dfe: [J3]
+    statement: 'Forces $\mathbf{A} = 5\mathbf{i} - 2\mathbf{j}$ N and $\mathbf{B} = -3\mathbf{i} + 7\mathbf{j}$ N act at a point. Find the force $\mathbf{C}$ that keeps the point still.'
+    answer_label: 'The third force'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([5, -2])", "Matrix([-3, 7])"]
+          answer: "Matrix([2, 5])"
+        - kind: vector
+          op: scale
+          args: ["-1", "Matrix([2, 5])"]
+          answer: "Matrix([-2, -5])"
+    answer_text: 'For the point to stay still, $\mathbf{A} + \mathbf{B} + \mathbf{C} = \mathbf{0}$. Now $\mathbf{A} + \mathbf{B} = 2\mathbf{i} + 5\mathbf{j}$ N, so $\mathbf{C} = -2\mathbf{i} - 5\mathbf{j}$ N.'
+
+  - id: p8-three-vectors-balance
+    section: "10.3"
+    dfe: [J3]
+    statement: 'Show that $\mathbf{a} = 2\mathbf{i} - \mathbf{j}$, $\mathbf{b} = -\mathbf{i} + 4\mathbf{j}$ and $\mathbf{c} = -\mathbf{i} - 3\mathbf{j}$ are in equilibrium.'
+    answer_label: 'The total'
+    check:
+      kind: vector
+      op: add
+      args: ["Matrix([2, -1])", "Matrix([-1, 4])", "Matrix([-1, -3])"]
+      answer: "Matrix([0, 0])"
+    answer_text: 'Add the three vectors: $(2 - 1 - 1)\mathbf{i} + (-1 + 4 - 3)\mathbf{j} = 0\mathbf{i} + 0\mathbf{j}$. The total is the zero vector, so the three vectors are in equilibrium.'
+
+  - id: p9-total-displacement
+    section: "10.3"
+    dfe: [J3]
+    statement: 'A ship has displacements $3\mathbf{i} - 4\mathbf{j}$ km, $-\mathbf{i} + 2\mathbf{j}$ km and $2\mathbf{i} + \mathbf{j}$ km. Find the single displacement from the start and the distance from the start.'
+    answer_label: 'The displacement and the distance'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([3, -4])", "Matrix([-1, 2])", "Matrix([2, 1])"]
+          answer: "Matrix([4, -1])"
+        - {kind: vector, op: norm, args: ["Matrix([4, -1])"], answer: "sqrt(17)"}
+    answer_text: 'The total displacement is $(3 - 1 + 2)\mathbf{i} + (-4 + 2 + 1)\mathbf{j} = 4\mathbf{i} - \mathbf{j}$ km. The distance from the start is $\sqrt{4^2 + (-1)^2} = \sqrt{17}$ km.'
+
+  - id: p10-mixed-scalars
+    section: "10.3"
+    dfe: [J3]
+    statement: 'For $\mathbf{a} = 2\mathbf{i} - \mathbf{j}$ and $\mathbf{b} = -\mathbf{i} + 2\mathbf{j}$, find $3\mathbf{a} - 4\mathbf{b}$.'
+    answer_label: 'The vector'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: scale
+          args: ["3", "Matrix([2, -1])"]
+          answer: "Matrix([6, -3])"
+        - kind: vector
+          op: scale
+          args: ["4", "Matrix([-1, 2])"]
+          answer: "Matrix([-4, 8])"
+        - kind: vector
+          op: subtract
+          args: ["Matrix([6, -3])", "Matrix([-4, 8])"]
+          answer: "Matrix([10, -11])"
+    answer_text: '$3\mathbf{a} = 6\mathbf{i} - 3\mathbf{j}$ and $4\mathbf{b} = -4\mathbf{i} + 8\mathbf{j}$. Subtracting: $3\mathbf{a} - 4\mathbf{b} = (6 - (-4))\mathbf{i} + (-3 - 8)\mathbf{j} = 10\mathbf{i} - 11\mathbf{j}$.'
+
+  - id: p11-boat-and-current
+    section: "10.3"
+    dfe: [J3]
+    statement: 'A boat can move at $3\mathbf{i} + 4\mathbf{j}$ m/s in still water. A current of $-\mathbf{i} + 2\mathbf{j}$ m/s flows. Find the boat''s resultant velocity, its speed and its direction from the positive $x$-axis.'
+    answer_label: 'The velocity, the speed and the direction'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([3, 4])", "Matrix([-1, 2])"]
+          answer: "Matrix([2, 6])"
+        - {kind: vector, op: norm, args: ["Matrix([2, 6])"], answer: "2*sqrt(10)"}
+        - {kind: approx, value: "atan2(6, 2) * 180 / pi", target: "71.57", tolerance: "0.01"}
+    answer_text: 'The resultant velocity is $(3 - 1)\mathbf{i} + (4 + 2)\mathbf{j} = 2\mathbf{i} + 6\mathbf{j}$ m/s. Its speed is $\sqrt{2^2 + 6^2} = \sqrt{40} = 2\sqrt{10} \approx 6.32$ m/s. Both components are positive, so the direction is $\tan^{-1}\left(\dfrac{6}{2}\right) = 71.6^\circ$ to $1$ d.p.'
+
+  - id: p12-three-legs
+    section: "10.3"
+    dfe: [J3]
+    statement: 'A drone flies displacement $6\mathbf{i} + \mathbf{j}$ m, then $-4\mathbf{i} + 3\mathbf{j}$ m, then $\mathbf{i} - \mathbf{j}$ m. Find its single displacement and its distance from the start.'
+    answer_label: 'The displacement and the distance'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([6, 1])", "Matrix([-4, 3])", "Matrix([1, -1])"]
+          answer: "Matrix([3, 3])"
+        - {kind: vector, op: norm, args: ["Matrix([3, 3])"], answer: "3*sqrt(2)"}
+    answer_text: 'The total displacement is $(6 - 4 + 1)\mathbf{i} + (1 + 3 - 1)\mathbf{j} = 3\mathbf{i} + 3\mathbf{j}$ m. The distance from the start is $\sqrt{3^2 + 3^2} = \sqrt{18} = 3\sqrt{2} \approx 4.24$ m.'

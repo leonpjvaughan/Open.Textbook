@@ -1,0 +1,300 @@
+# Practice set for 10.1 (The solar system and orbits).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]` in book.yaml, so a check may use either.
+#
+# A calculation here is checked as two claims: the exact magnitude and its
+# dimension (`dimensions`), and the one rounding to the figures the data support
+# (`sigfigs`). Space physics is qualitative at GCSE, so most records are
+# `structured`, which proves only that a model answer contains the declared ideas
+# in order, and covers its declared concepts.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# proves arithmetic and dimensions, not physics.
+chapter: 10
+problems:
+  - id: p1-solar-system-features
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'State the main features of our solar system.'
+    answer_label: 'The main features of the solar system'
+    check:
+      kind: structured
+      requires: [one-star, planets, moons, artificial, galaxy]
+      concepts: [solar-system, planet, moon, artificial-satellite]
+      points:
+        - id: one-star
+          text: 'The solar system has one star, the Sun.'
+          concepts: [solar-system]
+        - id: planets
+          text: 'Eight planets orbit the Sun, and dwarf planets also orbit the Sun.'
+          concepts: [planet]
+        - id: moons
+          text: 'Natural satellites, called moons, orbit the planets.'
+          concepts: [moon]
+        - id: artificial
+          text: 'Artificial satellites built by people also orbit the Earth and other bodies.'
+          concepts: [artificial-satellite]
+        - id: galaxy
+          text: 'The solar system is a small part of the Milky Way galaxy.'
+          concepts: [galaxy]
+
+  - id: p2-moon-and-satellite
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'Give one similarity and one distinction between a moon and an artificial satellite.'
+    answer_label: 'A moon compared with an artificial satellite'
+    check:
+      kind: structured
+      requires: [similarity, distinction]
+      concepts: [moon, artificial-satellite]
+      points:
+        - id: similarity
+          text: 'Both orbit a larger body, and gravity keeps both of them in orbit.'
+          concepts: [moon, artificial-satellite]
+        - id: distinction
+          text: 'A moon is natural and always orbits a planet. An artificial satellite is built by people and can orbit a planet or another body.'
+          concepts: [moon, artificial-satellite]
+
+  - id: p3-gravity-keeps-orbit
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'Explain what keeps a planet in a circular orbit around the Sun.'
+    answer_label: 'What keeps a planet in its orbit'
+    check:
+      kind: structured
+      requires: [gravity-force, towards-centre, bends-path]
+      concepts: [gravity, orbit]
+      points:
+        - id: gravity-force
+          text: 'Gravity provides a force of attraction between the planet and the Sun.'
+          concepts: [gravity]
+        - id: towards-centre
+          text: 'The force on the planet is directed towards the Sun, which is the centre of the orbit.'
+          concepts: [gravity, orbit]
+        - id: bends-path
+          text: 'The force changes the direction of the planet, so its path curves into a circle instead of going in a straight line.'
+          concepts: [orbit]
+
+  - id: p4-sun-formation
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'Describe how the Sun formed.'
+    answer_label: 'How the Sun formed'
+    check:
+      kind: structured
+      requires: [nebula, gravity, heat-fusion]
+      concepts: [nebula, gravity, fusion]
+      points:
+        - id: nebula
+          text: 'The Sun formed from a cloud of dust and gas, called a nebula.'
+          concepts: [nebula]
+        - id: gravity
+          text: 'Gravity pulled the dust and gas together.'
+          concepts: [gravity]
+        - id: heat-fusion
+          text: 'As the cloud was pulled together it became hot and dense enough for hydrogen nuclei to fuse and release energy.'
+          concepts: [fusion]
+
+  - id: p5-sun-equilibrium
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'Explain why the Sun stays the same size.'
+    answer_label: 'Why the Sun is stable'
+    check:
+      kind: structured
+      requires: [outward, inward, balance]
+      concepts: [fusion, gravity, equilibrium]
+      points:
+        - id: outward
+          text: 'Fusion reactions release energy. This pushes outwards and tends to make the Sun expand.'
+          concepts: [fusion]
+        - id: inward
+          text: 'Gravity pulls the material of the Sun inwards and tends to make it collapse.'
+          concepts: [gravity]
+        - id: balance
+          text: 'The outward push and the inward pull are equal, so the Sun is in equilibrium and stays the same size.'
+          concepts: [equilibrium]
+
+  - id: p6-lifecycle-sun-sized
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'Describe the life cycle of a star that has about the same mass as the Sun.'
+    answer_label: 'The life cycle of a Sun-sized star'
+    check:
+      kind: structured
+      requires: [nebula, main-sequence, red-giant, white-dwarf]
+      concepts: [nebula, main-sequence, red-giant, white-dwarf]
+      points:
+        - id: nebula
+          text: 'The star forms from a cloud of dust and gas pulled together by gravity.'
+          concepts: [nebula, gravity]
+        - id: main-sequence
+          text: 'Fusion starts and the star becomes a main-sequence star like the Sun.'
+          concepts: [main-sequence, fusion]
+        - id: red-giant
+          text: 'Later the star expands into a red giant.'
+          concepts: [red-giant]
+        - id: white-dwarf
+          text: 'It then cools and collapses into a white dwarf.'
+          concepts: [white-dwarf]
+
+  - id: p7-lifecycle-massive
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'Describe the life cycle of a star much more massive than the Sun. State where the elements heavier than iron are made.'
+    answer_label: 'The life cycle of a massive star'
+    check:
+      kind: structured
+      requires: [main-sequence, red-supergiant, supernova, remnant, heavy-elements]
+      concepts: [main-sequence, red-supergiant, supernova, neutron-star, black-hole]
+      points:
+        - id: main-sequence
+          text: 'It forms from a nebula and becomes a main-sequence star, fusing hydrogen into helium.'
+          concepts: [main-sequence]
+        - id: red-supergiant
+          text: 'It then expands into a red supergiant.'
+          concepts: [red-supergiant]
+        - id: supernova
+          text: 'The star explodes as a supernova.'
+          concepts: [supernova]
+        - id: remnant
+          text: 'The core is left behind as a neutron star, or as a black hole if the star was massive enough.'
+          concepts: [neutron-star, black-hole]
+        - id: heavy-elements
+          text: 'Elements heavier than iron are made in the supernova, which spreads them through space.'
+          concepts: [supernova]
+
+  - id: p8-signal-time
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'The telescope orbits 540 km above the Earth. A radio signal from the telescope travels at $3.0 \times 10^{8}\,\text{m/s}$. Say which equation you will use, then calculate the time for the signal to reach the ground. Give your answer to 2 significant figures.'
+    answer_label: 'Time for the radio signal to reach the ground'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 'd / v'
+          values:
+            d: {value: '5.4e5', unit: 'm'}
+            v: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '1.8e-3', unit: 's'}
+        - {kind: sigfigs, value: '1.8e-3', figures: 2, answer: '1.8e-3', convention: round-once}
+    answer_text: 'Use $\text{time} = \dfrac{\text{distance}}{\text{speed}}$. First change the height to metres: $540\,\text{km} = 5.4 \times 10^{5}\,\text{m}$. Then $t = \dfrac{5.4 \times 10^{5}}{3.0 \times 10^{8}} = 1.8 \times 10^{-3}\,\text{s}$, which is $1.8\,\text{ms}$.'
+
+  - id: p9-sunlight-time
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'The Sun is $1.5 \times 10^{11}\,\text{m}$ from the Earth. Light travels at $3.0 \times 10^{8}\,\text{m/s}$. Calculate how long light takes to travel from the Sun to the Earth. Give your answer to 2 significant figures.'
+    answer_label: 'Time for light to reach the Earth from the Sun'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 'd / v'
+          values:
+            d: {value: '1.5e11', unit: 'm'}
+            v: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '500', unit: 's'}
+        - {kind: sigfigs, value: '500', figures: 2, answer: '5.0e2', convention: round-once}
+    answer_text: '$t = \dfrac{d}{v} = \dfrac{1.5 \times 10^{11}}{3.0 \times 10^{8}} = 500\,\text{s}$, so $5.0 \times 10^{2}\,\text{s}$ to 2 significant figures. That is about 8 minutes.'
+
+  - id: p10-moonlight-time
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'The Moon is $3.84 \times 10^{8}\,\text{m}$ from the Earth. Calculate how long light takes to travel from the Moon to the Earth. Give your answer to 3 significant figures.'
+    answer_label: 'Time for light to travel from the Moon'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 'd / v'
+          values:
+            d: {value: '3.84e8', unit: 'm'}
+            v: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '1.28', unit: 's'}
+        - {kind: sigfigs, value: '1.28', figures: 3, answer: '1.28', convention: round-once}
+    answer_text: '$t = \dfrac{d}{v} = \dfrac{3.84 \times 10^{8}}{3.0 \times 10^{8}} = 1.28\,\text{s}$.'
+
+  - id: p11-jupiter-ratio
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'Jupiter is $7.8 \times 10^{11}\,\text{m}$ from the Sun. The Earth is $1.5 \times 10^{11}\,\text{m}$ from the Sun. Work out how many times further from the Sun Jupiter is than the Earth.'
+    answer_label: 'How many times further Jupiter is'
+    check: {kind: evaluate, expression: '7.8e11 / 1.5e11', answer: '5.2'}
+    answer_text: '$\dfrac{7.8 \times 10^{11}}{1.5 \times 10^{11}} = 5.2$. Jupiter is 5.2 times further from the Sun than the Earth is.'
+
+  - id: p12-no-gravity-misconception
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'A pupil says that the telescope floats because there is no gravity in space. Explain what is wrong with this statement.'
+    answer_label: 'Why the telescope does not float because of no gravity'
+    check:
+      kind: structured
+      requires: [gravity-everywhere, free-fall, orbit]
+      concepts: [gravity, orbit, free-fall]
+      points:
+        - id: gravity-everywhere
+          text: 'Gravity acts between all masses, so the Earth pulls on the telescope even in space. The force is weaker far from the Earth, but it is not zero.'
+          concepts: [gravity]
+        - id: free-fall
+          text: 'The telescope is falling towards the Earth all the time, and it is also moving sideways.'
+          concepts: [free-fall]
+        - id: orbit
+          text: 'The sideways motion and the pull of gravity together keep it moving in a circle. It falls around the Earth instead of into it.'
+          concepts: [orbit]
+
+  - id: p13-ht-changing-velocity
+    section: '10.1'
+    tier: H
+    dfe: [SP1]
+    statement: 'The telescope moves at a constant speed in a circular orbit, but its velocity changes. Explain how this is possible.'
+    answer_label: 'How the velocity changes while the speed stays the same'
+    check:
+      kind: structured
+      requires: [velocity-direction, direction-changes, speed-constant]
+      concepts: [velocity, speed, orbit]
+      points:
+        - id: velocity-direction
+          text: 'Velocity is speed in a given direction. It is a vector.'
+          concepts: [velocity]
+        - id: direction-changes
+          text: 'As the telescope goes round its circular orbit, the direction of its motion changes all the time.'
+          concepts: [orbit]
+        - id: speed-constant
+          text: 'Its speed stays the same, but the changing direction means the velocity is changing.'
+          concepts: [speed, velocity]
+
+  - id: p14-ht-stable-orbit
+    section: '10.1'
+    tier: H
+    dfe: [SP1]
+    statement: 'Explain, for a stable orbit, why the radius must change if the speed of the object changes.'
+    answer_label: 'Why the radius must change with the speed'
+    check:
+      kind: structured
+      requires: [match, change, radius]
+      concepts: [orbit, gravity]
+      points:
+        - id: match
+          text: 'A stable circular orbit needs a speed that matches its radius.'
+          concepts: [orbit]
+        - id: change
+          text: 'If the speed of the object changes, it can no longer stay in a stable orbit at the same radius.'
+          concepts: [orbit]
+        - id: radius
+          text: 'The radius must change until the speed and the radius match again, so the orbit becomes stable at the new radius.'
+          concepts: [orbit, gravity]

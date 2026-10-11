@@ -1,0 +1,176 @@
+# Review bank for Chapter 6. The items mix this chapter with Chapters 1 to 5
+# and 7, so the reader chooses a method before calculating. Each check proves the
+# algebra; the choice of method and the reason for it are human review.
+chapter: 6
+symbols:
+  x: {real: true, positive: true}
+  y: {real: true, positive: true}
+  t: {real: true}
+  k: {real: true}
+  n: {real: true}
+problems:
+  - id: r1-solve-exponential
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $3^x = 45$, giving $x$ exactly.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "3**x = 45"
+      variable: "x"
+      answer: ["log(5)/log(3) + 2"]
+    answer_text: 'Take logarithms of both sides: $x = \dfrac{\ln 45}{\ln 3} \approx 3.465$. Since $45 = 9 \times 5$, this can also be written as $2 + \dfrac{\ln 5}{\ln 3}$, which is the same number.'
+
+  - id: r2-log-laws
+    section: "6.3"
+    dfe: [F4]
+    statement: 'Write $2\ln x + \ln y$ as a single logarithm.'
+    answer_label: 'The single logarithm'
+    check:
+      kind: apply
+      expression: "2*ln(x) + ln(y)"
+      apply: {op: logcombine}
+      answer: "ln(x**2*y)"
+    answer_text: 'Use the power law on the first term, then the product law: $2\ln x + \ln y = \ln x^2 + \ln y = \ln\left(x^2y\right)$.'
+
+  - id: r3-differentiate-exponential
+    section: "6.2"
+    dfe: [F2, G2]
+    statement: 'Differentiate $y = 7e^{4x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "7*exp(4*x)"
+      apply: {op: diff, args: [x]}
+      answer: "28*exp(4*x)"
+    answer_text: 'The derivative of $e^{4x}$ is $4e^{4x}$, and the constant $7$ stays in front: $\dfrac{dy}{dx} = 28e^{4x}$.'
+
+  - id: r4-index-law
+    section: "6.1"
+    dfe: [B1, F1]
+    statement: 'Simplify $3^{x+2} \div 3^{x-1}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "3**(x+2) / 3**(x-1)"
+      answer: "27"
+    answer_text: 'Subtract the indices: $3^{(x+2)-(x-1)} = 3^3 = 27$. The $x$ cancels, so the result is a number.'
+
+  - id: r5-surd
+    section: "6.1"
+    dfe: [B2]
+    statement: 'Write $\sqrt{50} + \sqrt{18}$ in the form $k\sqrt{2}$.'
+    answer_label: 'The value of $k$'
+    check:
+      kind: evaluate
+      expression: "sqrt(50) + sqrt(18)"
+      answer: "8*sqrt(2)"
+    answer_text: '$\sqrt{50} = 5\sqrt{2}$ and $\sqrt{18} = 3\sqrt{2}$, so the sum is $8\sqrt{2}$ and $k = 8$.'
+
+  - id: r6-quadratic
+    section: "6.1"
+    dfe: [B3]
+    statement: 'Solve $x^2 - 5x + 6 = 0$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "x**2 - 5*x + 6 = 0"
+      variable: "x"
+      answer: ["2", "3"]
+    answer_text: 'Factorise: $\left(x - 2\right)\left(x - 3\right) = 0$, so $x = 2$ or $x = 3$. The roots are the two numbers that add to $5$ and multiply to $6$.'
+
+  - id: r7-trigonometric-equation
+    section: "6.1"
+    dfe: [E7]
+    statement: 'Solve $\sin x = \dfrac{\sqrt{3}}{2}$ for $0 \le x < 2\pi$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "sin(x) = sqrt(3)/2"
+      variable: "x"
+      interval: ["0", "2*pi"]
+      answer: ["pi/3", "2*pi/3"]
+    answer_text: 'The principal value is $\dfrac{\pi}{3}$. The second solution is $\pi - \dfrac{\pi}{3} = \dfrac{2\pi}{3}$. A sketch of the sine curve shows exactly two solutions in one full turn.'
+
+  - id: r8-binomial
+    section: "6.1"
+    dfe: [D1]
+    statement: 'Find the coefficient of $x^2$ in the expansion of $\left(1 + 2x\right)^5$.'
+    answer_label: 'The coefficient'
+    check:
+      kind: evaluate
+      expression: "binomial(5, 2) * 2**2"
+      answer: "40"
+    answer_text: 'The term in $x^2$ is $\dbinom{5}{2}\left(2x\right)^2 = 10 \times 4x^2 = 40x^2$. So the coefficient is $40$.'
+
+  - id: r9-proof
+    section: "6.1"
+    dfe: [A1]
+    statement: 'Show that $\left(2n + 1\right)^2 - \left(2n - 1\right)^2$ is a multiple of $8$.'
+    answer_label: 'The difference minus $8n$'
+    check:
+      kind: evaluate
+      expression: "((2*n + 1)**2 - (2*n - 1)**2) - 8*n"
+      answer: "0"
+    answer_text: 'Expand: $\left(4n^2 + 4n + 1\right) - \left(4n^2 - 4n + 1\right) = 8n$. Since $8n$ is $8$ times the whole number $n$, the difference is always a multiple of $8$.'
+
+  - id: r10-half-life
+    section: "6.6"
+    dfe: [F7]
+    statement: 'A radioactive sample halves every $12$ years. Find the decay constant $k$ in $m = m_0e^{-kt}$.'
+    answer_label: 'The value of $k$'
+    check:
+      kind: solve
+      equation: "exp(-12*k) = 1/2"
+      variable: "k"
+      answer: ["ln(2)/12"]
+    answer_text: 'When $t = 12$ the mass has halved, so $e^{-12k} = \dfrac{1}{2}$. Take logarithms: $-12k = -\ln 2$, giving $k = \dfrac{\ln 2}{12} \approx 0.0578$ per year.'
+
+  - id: r11-log-graph
+    section: "6.5"
+    dfe: [F6]
+    statement: 'A graph of $\ln y$ against $x$ for a model $y = kb^x$ has gradient $0.6$. Find $b$, to three significant figures.'
+    answer_label: 'The value of $b$'
+    check:
+      kind: approx
+      value: "exp(0.6)"
+      target: "1.82"
+      tolerance: "0.005"
+    answer_text: 'The gradient is $\ln b$, so $\ln b = 0.6$ and $b = e^{0.6} = 1.8221\ldots$, which is $1.82$ to three significant figures. The model grows because $b > 1$.'
+
+  - id: r12-log-domain
+    section: "6.3"
+    dfe: [F3, F4]
+    statement: 'Solve $\ln\left(x - 1\right) = 2$, stating the domain you use.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "ln(x - 1) = 2"
+      variable: "x"
+      domain: "Interval(1, oo)"
+      answer: ["exp(2) + 1"]
+    answer_text: 'A logarithm needs a positive input, so $x - 1 > 0$ and the domain is $x > 1$. Take the exponential of both sides: $x - 1 = e^2$, so $x = e^2 + 1 \approx 8.39$, which is in the domain.'
+
+  - id: r13-tangent-gradient
+    section: "6.2"
+    dfe: [G2, G3]
+    statement: 'Find the gradient of $y = x^3 - 6x^2$ at $x = 2$.'
+    answer_label: 'The gradient'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "x**3 - 6*x**2", apply: {op: diff, args: [x]}, answer: "3*x**2 - 12*x"}
+        - {kind: apply, expression: "3*x**2 - 12*x", apply: {op: subs, args: [x, 2]}, answer: "-12"}
+    answer_text: 'Differentiate: $\dfrac{dy}{dx} = 3x^2 - 12x$. At $x = 2$ this is $12 - 24 = -12$. The curve falls at that point.'
+
+  - id: r14-factor-theorem
+    section: "6.1"
+    dfe: [B6]
+    statement: 'Show that $\left(x - 2\right)$ is a factor of $x^3 - 4x^2 + x + 6$.'
+    answer_label: 'The remainder'
+    check:
+      kind: apply
+      expression: "x**3 - 4*x**2 + x + 6"
+      apply: {op: rem, args: ["x - 2", "x"]}
+      answer: "0"
+    answer_text: 'By the factor theorem, $\left(x - 2\right)$ is a factor exactly when the remainder is $0$. Dividing gives remainder $0$, so $\left(x - 2\right)$ is a factor. Indeed $2^3 - 4\left(2^2\right) + 2 + 6 = 8 - 16 + 8 = 0$.'

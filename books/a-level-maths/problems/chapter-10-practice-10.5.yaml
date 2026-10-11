@@ -1,0 +1,219 @@
+# Practice set for 10.5, vectors in pure mathematics and in context.
+#
+# Geometry is checked by comparing displacement matrices; the proof itself is
+# prose. A motion or force problem is checked by adding the vectors and then
+# taking a norm or a direction. Every record states its units in the statement,
+# never in the CAS fields.
+chapter: 10
+problems:
+  - id: p1-collinear-equal-steps
+    section: "10.5"
+    dfe: [J5]
+    statement: 'Show that $A(1, 2)$, $B(4, 8)$ and $C(7, 14)$ are collinear.'
+    answer_label: 'The two displacements'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: subtract
+          args: ["Matrix([4, 8])", "Matrix([1, 2])"]
+          answer: "Matrix([3, 6])"
+        - kind: vector
+          op: subtract
+          args: ["Matrix([7, 14])", "Matrix([4, 8])"]
+          answer: "Matrix([3, 6])"
+    answer_text: '$\vec{AB} = 3\mathbf{i} + 6\mathbf{j}$ and $\vec{BC} = 3\mathbf{i} + 6\mathbf{j}$. So $\vec{AB} = \vec{BC}$, and the two vectors share the point $B$. The three points lie on one straight line.'
+
+  - id: p2-parallelogram
+    section: "10.5"
+    dfe: [J5]
+    statement: 'The quadrilateral has vertices $A(0, 0)$, $B(3, 1)$, $C(5, 5)$ and $D(2, 4)$. Show that it is a parallelogram.'
+    answer_label: 'The two opposite sides'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: subtract
+          args: ["Matrix([3, 1])", "Matrix([0, 0])"]
+          answer: "Matrix([3, 1])"
+        - kind: vector
+          op: subtract
+          args: ["Matrix([5, 5])", "Matrix([2, 4])"]
+          answer: "Matrix([3, 1])"
+    answer_text: '$\vec{AB} = 3\mathbf{i} + \mathbf{j}$ and $\vec{DC} = (5 - 2)\mathbf{i} + (5 - 4)\mathbf{j} = 3\mathbf{i} + \mathbf{j}$. The opposite sides are equal, so $ABCD$ is a parallelogram.'
+
+  - id: p3-divide-ratio-one-two
+    section: "10.5"
+    dfe: [J5]
+    statement: 'The points are $A(1, 3)$ and $B(7, 9)$. Find the point $P$ on $AB$ with $AP : PB = 1 : 2$.'
+    answer_label: 'The position vector of $P$'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: scale
+          args: ["2", "Matrix([1, 3])"]
+          answer: "Matrix([2, 6])"
+        - kind: vector
+          op: scale
+          args: ["1", "Matrix([7, 9])"]
+          answer: "Matrix([7, 9])"
+        - kind: vector
+          op: scale
+          args: ["1/3", "Matrix([9, 15])"]
+          answer: "Matrix([3, 5])"
+    answer_text: 'With $m = 1$ and $n = 2$, $\vec{OP} = \dfrac{2\mathbf{a} + \mathbf{b}}{3} = \dfrac{2(1, 3) + (7, 9)}{3} = \dfrac{(9, 15)}{3} = (3, 5)$. So $P$ is $(3, 5)$, and $AP = (2, 2)$ while $PB = (4, 4)$, the ratio $1 : 2$.'
+
+  - id: p4-divide-ratio-three-two
+    section: "10.5"
+    dfe: [J5]
+    statement: 'The points are $A(2, 1)$ and $B(7, 6)$. Find the point $P$ on $AB$ with $AP : PB = 3 : 2$.'
+    answer_label: 'The position vector of $P$'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: scale
+          args: ["2", "Matrix([2, 1])"]
+          answer: "Matrix([4, 2])"
+        - kind: vector
+          op: scale
+          args: ["3", "Matrix([7, 6])"]
+          answer: "Matrix([21, 18])"
+        - kind: vector
+          op: scale
+          args: ["1/5", "Matrix([25, 20])"]
+          answer: "Matrix([5, 4])"
+    answer_text: 'With $m = 3$ and $n = 2$, $\vec{OP} = \dfrac{2\mathbf{a} + 3\mathbf{b}}{5} = \dfrac{(4, 2) + (21, 18)}{5} = \dfrac{(25, 20)}{5} = (5, 4)$. Then $AP = (3, 3)$ and $PB = (2, 2)$, the ratio $3 : 2$.'
+
+  - id: p5-equilibrium-third-force
+    section: "10.5"
+    dfe: [J5]
+    statement: 'Forces $\mathbf{F}_1 = 3\mathbf{i} - 2\mathbf{j}$ N and $\mathbf{F}_2 = -\mathbf{i} + 4\mathbf{j}$ N act at a point. Find the third force that keeps the point still.'
+    answer_label: 'The third force'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([3, -2])", "Matrix([-1, 4])"]
+          answer: "Matrix([2, 2])"
+        - kind: vector
+          op: scale
+          args: ["-1", "Matrix([2, 2])"]
+          answer: "Matrix([-2, -2])"
+    answer_text: 'The three forces sum to zero, so the third force is $-(\mathbf{F}_1 + \mathbf{F}_2)$. Now $\mathbf{F}_1 + \mathbf{F}_2 = 2\mathbf{i} + 2\mathbf{j}$ N, so the third force is $-2\mathbf{i} - 2\mathbf{j}$ N.'
+
+  - id: p6-resultant-force-magnitude
+    section: "10.5"
+    dfe: [J5]
+    statement: 'Two forces $\mathbf{F}_1 = 5\mathbf{i} + \mathbf{j}$ N and $\mathbf{F}_2 = -2\mathbf{i} + 4\mathbf{j}$ N act at a point. Find the resultant and its magnitude.'
+    answer_label: 'The resultant and its magnitude'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([5, 1])", "Matrix([-2, 4])"]
+          answer: "Matrix([3, 5])"
+        - {kind: vector, op: norm, args: ["Matrix([3, 5])"], answer: "sqrt(34)"}
+    answer_text: 'The resultant is $\mathbf{F}_1 + \mathbf{F}_2 = 3\mathbf{i} + 5\mathbf{j}$ N. Its magnitude is $\sqrt{3^2 + 5^2} = \sqrt{34} \approx 5.83$ N.'
+
+  - id: p7-motion-position
+    section: "10.5"
+    dfe: [J5]
+    statement: 'A particle starts at $\mathbf{r}_0 = 2\mathbf{i} - \mathbf{j}$ m and moves with velocity $\mathbf{v} = 3\mathbf{i} + 2\mathbf{j}$ m/s. Find its position after $3$ s and its distance from the origin then.'
+    answer_label: 'The position and the distance'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([2, -1])", "Matrix([9, 6])"]
+          answer: "Matrix([11, 5])"
+        - {kind: vector, op: norm, args: ["Matrix([11, 5])"], answer: "sqrt(146)"}
+    answer_text: 'After $3$ s, $\mathbf{r} = \mathbf{r}_0 + 3\mathbf{v} = (2\mathbf{i} - \mathbf{j}) + (9\mathbf{i} + 6\mathbf{j}) = 11\mathbf{i} + 5\mathbf{j}$ m. The distance from the origin is $\sqrt{11^2 + 5^2} = \sqrt{146} \approx 12.08$ m.'
+
+  - id: p8-boat-and-current
+    section: "10.5"
+    dfe: [J5]
+    statement: 'A boat has velocity $5\mathbf{i}$ m/s in still water. A current of $2\mathbf{j}$ m/s flows. Find the resultant velocity, the speed and the direction from the positive $x$-axis.'
+    answer_label: 'The velocity, the speed and the direction'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([5, 0])", "Matrix([0, 2])"]
+          answer: "Matrix([5, 2])"
+        - {kind: vector, op: norm, args: ["Matrix([5, 2])"], answer: "sqrt(29)"}
+        - {kind: approx, value: "atan2(2, 5) * 180 / pi", target: "21.8", tolerance: "0.05"}
+    answer_text: 'The resultant is $5\mathbf{i} + 2\mathbf{j}$ m/s. The speed is $\sqrt{5^2 + 2^2} = \sqrt{29} \approx 5.39$ m/s, and the direction is $\tan^{-1}\left(\dfrac{2}{5}\right) = 21.8^\circ$ to $1$ d.p. from the positive $x$-axis.'
+
+  - id: p9-plane-and-wind
+    section: "10.5"
+    dfe: [J5]
+    statement: 'A plane flies at $240$ km/h due east. A wind blows from the north at $70$ km/h, pushing the plane due south. Find the resultant velocity, the speed and the direction.'
+    answer_label: 'The velocity, the speed and the direction'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([240, 0])", "Matrix([0, -70])"]
+          answer: "Matrix([240, -70])"
+        - {kind: vector, op: norm, args: ["Matrix([240, -70])"], answer: "250"}
+        - {kind: approx, value: "atan2(-70, 240) * 180 / pi", target: "-16.26", tolerance: "0.01"}
+    answer_text: 'Take east as $\mathbf{i}$: the resultant is $240\mathbf{i} - 70\mathbf{j}$ km/h. The speed is $\sqrt{240^2 + 70^2} = \sqrt{62500} = 250$ km/h. The direction is $\tan^{-1}\left(\dfrac{70}{240}\right) = 16.3^\circ$ to $1$ d.p. south of east, which is $-16.3^\circ$ from the positive $x$-axis.'
+
+  - id: p10-collinear-common-point
+    section: "10.5"
+    dfe: [J5]
+    statement: 'Show that $A(1, 1)$, $B(3, 5)$ and $C(5, 9)$ are collinear.'
+    answer_label: 'The two displacements'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: subtract
+          args: ["Matrix([3, 5])", "Matrix([1, 1])"]
+          answer: "Matrix([2, 4])"
+        - kind: vector
+          op: subtract
+          args: ["Matrix([5, 9])", "Matrix([3, 5])"]
+          answer: "Matrix([2, 4])"
+    answer_text: '$\vec{AB} = 2\mathbf{i} + 4\mathbf{j}$ and $\vec{BC} = 2\mathbf{i} + 4\mathbf{j}$. The two displacements are equal and share the point $B$, so the three points are collinear.'
+
+  - id: p11-diagonals-bisect
+    section: "10.5"
+    dfe: [J5]
+    statement: 'The quadrilateral has vertices $A(0, 0)$, $B(4, 0)$, $C(5, 3)$ and $D(1, 3)$. Show that the diagonals $AC$ and $BD$ bisect each other.'
+    answer_label: 'The two midpoints'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: scale
+          args: ["1/2", "Matrix([5, 3])"]
+          answer: "Matrix([5/2, 3/2])"
+        - kind: vector
+          op: scale
+          args: ["1/2", "Matrix([5, 3])"]
+          answer: "Matrix([5/2, 3/2])"
+    answer_text: 'The midpoint of $AC$ is $\dfrac{1}{2}((0, 0) + (5, 3)) = \left(\dfrac{5}{2}, \dfrac{3}{2}\right)$. The midpoint of $BD$ is $\dfrac{1}{2}((4, 0) + (1, 3)) = \left(\dfrac{5}{2}, \dfrac{3}{2}\right)$. The two midpoints are the same, so the diagonals bisect each other.'
+
+  - id: p12-walk-from-base
+    section: "10.5"
+    dfe: [J5, OT2]
+    statement: 'A hiker starts at $B(1, 2)$ km, walks to a first waypoint at $(4, 6)$ km, then to a second at $(8, 3)$ km. Find the single displacement from the start, the distance from the start, and the direction of that displacement from the positive $x$-axis.'
+    answer_label: 'The displacement, the distance and the direction'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: subtract
+          args: ["Matrix([8, 3])", "Matrix([1, 2])"]
+          answer: "Matrix([7, 1])"
+        - {kind: vector, op: norm, args: ["Matrix([7, 1])"], answer: "5*sqrt(2)"}
+        - {kind: approx, value: "atan2(1, 7) * 180 / pi", target: "8.13", tolerance: "0.01"}
+    answer_text: 'The displacement from the start is $(8 - 1)\mathbf{i} + (3 - 2)\mathbf{j} = 7\mathbf{i} + \mathbf{j}$ km, whatever route was taken. The distance from the start is $\sqrt{7^2 + 1^2} = \sqrt{50} = 5\sqrt{2} \approx 7.07$ km, and the direction is $\tan^{-1}\left(\dfrac{1}{7}\right) = 8.1^\circ$ to $1$ d.p. from the positive $x$-axis.'

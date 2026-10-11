@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.3 Diagrams for single-variable data and the histogram — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: L1
+Work through these on your own. For every histogram question, use the area, not
+the height. Check that the frequencies add to the total.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-11-practice-11.3
+
+:::answers chapter-11-practice-11.3

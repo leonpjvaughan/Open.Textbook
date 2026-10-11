@@ -1,0 +1,154 @@
+# Practice set for 10.4, position vectors and distance.
+#
+# The displacement between two points is checked with `vector` subtraction; the
+# distance is the norm of that displacement. One record solves for an unknown
+# coordinate from a stated distance.
+chapter: 10
+symbols:
+  k: {real: true}
+problems:
+  - id: p1-position-vector
+    section: "10.4"
+    dfe: [J4]
+    statement: 'Write down the position vector of $A(-2, 5)$ from the origin.'
+    answer_label: 'The position vector'
+    check:
+      kind: vector
+      op: scale
+      args: ["1", "Matrix([-2, 5])"]
+      answer: "Matrix([-2, 5])"
+    answer_text: 'The position vector of a point has the coordinates as its components: $\vec{OA} = -2\mathbf{i} + 5\mathbf{j}$, the column $\begin{pmatrix} -2 \\ 5 \end{pmatrix}$.'
+
+  - id: p2-displacement-from-position-vectors
+    section: "10.4"
+    dfe: [J4]
+    statement: 'For $A(1, 3)$ and $B(6, 11)$, find $\vec{AB}$.'
+    answer_label: 'The displacement'
+    check:
+      kind: vector
+      op: subtract
+      args: ["Matrix([6, 11])", "Matrix([1, 3])"]
+      answer: "Matrix([5, 8])"
+    answer_text: '$\vec{AB} = \mathbf{b} - \mathbf{a} = (6 - 1)\mathbf{i} + (11 - 3)\mathbf{j} = 5\mathbf{i} + 8\mathbf{j}$. The letter that comes second is the one you subtract from.'
+
+  - id: p3-distance-from-origin
+    section: "10.4"
+    dfe: [J4]
+    statement: 'Find the distance between $O(0, 0)$ and $B(9, 12)$.'
+    answer_label: 'The distance'
+    check:
+      kind: vector
+      op: distance
+      args: ["Matrix([0, 0])", "Matrix([9, 12])"]
+      answer: "15"
+    answer_text: '$OB = \sqrt{9^2 + 12^2} = \sqrt{81 + 144} = \sqrt{225} = 15$.'
+
+  - id: p4-distance-two-points
+    section: "10.4"
+    dfe: [J4]
+    statement: 'Find the distance between $A(-2, 1)$ and $B(4, 9)$.'
+    answer_label: 'The distance'
+    check:
+      kind: vector
+      op: distance
+      args: ["Matrix([-2, 1])", "Matrix([4, 9])"]
+      answer: "10"
+    answer_text: '$\vec{AB} = (4 - (-2))\mathbf{i} + (9 - 1)\mathbf{j} = 6\mathbf{i} + 8\mathbf{j}$, so $AB = \sqrt{6^2 + 8^2} = \sqrt{100} = 10$.'
+
+  - id: p5-three-dimensional-distance
+    section: "10.4"
+    dfe: [J4]
+    statement: 'Find the distance between $A(1, -2, 3)$ and $B(4, 2, 5)$.'
+    answer_label: 'The distance'
+    check:
+      kind: vector
+      op: distance
+      args: ["Matrix([1, -2, 3])", "Matrix([4, 2, 5])"]
+      answer: "sqrt(29)"
+    answer_text: '$\vec{AB} = 3\mathbf{i} + 4\mathbf{j} + 2\mathbf{k}$, so $AB = \sqrt{3^2 + 4^2 + 2^2} = \sqrt{9 + 16 + 4} = \sqrt{29} \approx 5.39$.'
+
+  - id: p6-distance-three-dimensions-origin
+    section: "10.4"
+    dfe: [J4]
+    statement: 'Find the distance of $P(2, -3, 6)$ from the origin.'
+    answer_label: 'The distance'
+    check:
+      kind: vector
+      op: distance
+      args: ["Matrix([0, 0, 0])", "Matrix([2, -3, 6])"]
+      answer: "7"
+    answer_text: 'The distance from the origin is the magnitude of the position vector: $\sqrt{2^2 + (-3)^2 + 6^2} = \sqrt{4 + 9 + 36} = \sqrt{49} = 7$.'
+
+  - id: p7-midpoint-two-dimensions
+    section: "10.4"
+    dfe: [J4]
+    statement: 'Find the midpoint of $A(-1, 4)$ and $B(5, -2)$.'
+    answer_label: 'The midpoint'
+    check:
+      kind: vector
+      op: scale
+      args: ["1/2", "Matrix([4, 2])"]
+      answer: "Matrix([2, 1])"
+    answer_text: 'The midpoint is the average of the position vectors: $\dfrac{1}{2}\big((-1 + 5)\mathbf{i} + (4 - 2)\mathbf{j}\big) = \dfrac{1}{2}(4\mathbf{i} + 2\mathbf{j}) = 2\mathbf{i} + \mathbf{j}$, which is the point $(2, 1)$.'
+
+  - id: p8-midpoint-three-dimensions
+    section: "10.4"
+    dfe: [J4]
+    statement: 'Find the midpoint of $A(2, 1, -4)$ and $B(6, -3, 2)$.'
+    answer_label: 'The midpoint'
+    check:
+      kind: vector
+      op: scale
+      args: ["1/2", "Matrix([8, -2, -2])"]
+      answer: "Matrix([4, -1, -1])"
+    answer_text: 'Average each coordinate: $\dfrac{1}{2}(8\mathbf{i} - 2\mathbf{j} - 2\mathbf{k}) = 4\mathbf{i} - \mathbf{j} - \mathbf{k}$. The midpoint is $(4, -1, -1)$.'
+
+  - id: p9-collinear-by-distances
+    section: "10.4"
+    dfe: [J4]
+    statement: 'The points are $A(1, 2)$, $B(4, 6)$ and $C(7, 10)$. Find $AB$, $BC$ and $AC$, and explain what the three distances show.'
+    answer_label: 'The three distances'
+    check:
+      kind: all
+      checks:
+        - {kind: vector, op: distance, args: ["Matrix([1, 2])", "Matrix([4, 6])"], answer: "5"}
+        - {kind: vector, op: distance, args: ["Matrix([4, 6])", "Matrix([7, 10])"], answer: "5"}
+        - {kind: vector, op: distance, args: ["Matrix([1, 2])", "Matrix([7, 10])"], answer: "10"}
+    answer_text: '$\vec{AB} = 3\mathbf{i} + 4\mathbf{j}$ gives $AB = 5$, and $\vec{BC} = 3\mathbf{i} + 4\mathbf{j}$ gives $BC = 5$. Then $\vec{AC} = 6\mathbf{i} + 8\mathbf{j}$ gives $AC = 10$. Since $AB + BC = 5 + 5 = 10 = AC$, the two shorter distances add to the longest, so the three points lie on a straight line.'
+
+  - id: p10-unknown-coordinate
+    section: "10.4"
+    dfe: [J4]
+    statement: 'The distance between $A(2, 1)$ and $B(k, 5)$ is $5$. Find the two possible values of $k$.'
+    answer_label: 'The values of $k$'
+    check:
+      kind: solve
+      equation: "(k - 2)**2 + (5 - 1)**2 = 25"
+      variable: k
+      answer: ["5", "-1"]
+    answer_text: '$\vec{AB} = (k - 2)\mathbf{i} + 4\mathbf{j}$, so $AB^2 = (k - 2)^2 + 16 = 25$. Then $(k - 2)^2 = 9$, so $k - 2 = 3$ or $k - 2 = -3$. The two values are $k = 5$ and $k = -1$.'
+
+  - id: p11-right-angle-by-pythagoras
+    section: "10.4"
+    dfe: [J4]
+    statement: 'The points are $A(0, 0)$, $B(3, 4)$ and $C(7, 1)$. Show that the angle at $B$ is a right angle.'
+    answer_label: 'The check'
+    check:
+      kind: all
+      checks:
+        - {kind: vector, op: distance, args: ["Matrix([0, 0])", "Matrix([3, 4])"], answer: "5"}
+        - {kind: vector, op: distance, args: ["Matrix([3, 4])", "Matrix([7, 1])"], answer: "5"}
+        - {kind: vector, op: distance, args: ["Matrix([0, 0])", "Matrix([7, 1])"], answer: "sqrt(50)"}
+    answer_text: '$AB = \sqrt{3^2 + 4^2} = 5$ and $BC = \sqrt{4^2 + (-3)^2} = 5$, while $AC = \sqrt{7^2 + 1^2} = \sqrt{50}$. Since $AB^2 + BC^2 = 25 + 25 = 50 = AC^2$, the triangle satisfies Pythagoras'' theorem, so the angle at $B$ is a right angle.'
+
+  - id: p12-longer-three-dimensional-distance
+    section: "10.4"
+    dfe: [J4]
+    statement: 'Find the distance between $A(1, 1, 1)$ and $B(3, 5, 13)$.'
+    answer_label: 'The distance'
+    check:
+      kind: vector
+      op: distance
+      args: ["Matrix([1, 1, 1])", "Matrix([3, 5, 13])"]
+      answer: "2*sqrt(41)"
+    answer_text: '$\vec{AB} = 2\mathbf{i} + 4\mathbf{j} + 12\mathbf{k}$, so $AB = \sqrt{2^2 + 4^2 + 12^2} = \sqrt{4 + 16 + 144} = \sqrt{164} = 2\sqrt{41} \approx 12.81$.'

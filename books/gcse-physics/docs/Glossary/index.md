@@ -2,11 +2,11 @@
 title: Glossary
 ---
 
-<!-- scaffold:stub -->
-
 # Glossary
 
-Definitions of the terms used in this book. Each strand page is maintained alongside the chapters that use it; a term is defined once, here.
+Find plain-English definitions of the key words used across the GCSE Physics
+chapters. Each page covers one topic. A word is defined once, on the page for
+the topic where it is first met.
 
 - [Energy](energy.md)
 - [Forces and motion](forces.md)

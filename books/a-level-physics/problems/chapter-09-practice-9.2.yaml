@@ -1,0 +1,165 @@
+# Practice set for 9.2 (Electric fields).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]`, so a check may use either.
+#
+# A value that uses k, the electron charge, a square root or a power of ten is
+# proved by `approx` against a stated tolerance. A unit conversion is proved
+# exactly by `convert`, a rounding by `sigfigs`, a propagation by `uncertainty`,
+# a dimensional statement by `dimensions`, and a reason by `structured`
+# (presence, order and coverage only, never physics).
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 9
+problems:
+  - id: p1-coulomb-force-opposite
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'A charge of +6.0 microcoulombs and a charge of -3.0 microcoulombs are 0.20 m apart in air. Find the magnitude of the force between them.'
+    answer_label: 'The magnitude of the force'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "8.99e9 * 6.0e-6 * 3.0e-6 / 0.20**2", target: "4.05", tolerance: "0.02"}
+        - kind: dimensions
+          consistency: "F = k * Q * q / r**2"
+          units: {F: N, k: "N m^2 C^-2", Q: C, q: C, r: m}
+    answer_text: '$F = \dfrac{kQq}{r^{2}} = \dfrac{8.99 \times 10^{9} \times 6.0 \times 10^{-6} \times 3.0 \times 10^{-6}}{0.20^{2}} = 4.0\,\text{N}$. The charges have opposite signs, so the force is attractive.'
+
+  - id: p2-field-point-charge
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'Find the electric field strength at a distance of 0.50 m from a point charge of +4.0 microcoulombs.'
+    answer_label: 'The electric field strength'
+    check: {kind: approx, value: "8.99e9 * 4.0e-6 / 0.50**2", target: "1.44e5", tolerance: "1e3"}
+    answer_text: '$E = \dfrac{kQ}{r^{2}} = \dfrac{8.99 \times 10^{9} \times 4.0 \times 10^{-6}}{0.50^{2}} = 1.4 \times 10^{5}\,\text{N}\,\text{C}^{-1}$, directed away from the charge.'
+
+  - id: p3-uniform-field
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'Two parallel plates are 3.0 mm apart and have a potential difference of 150 V. Find the electric field strength between them.'
+    answer_label: 'The electric field strength'
+    check: {kind: approx, value: "150 / 3.0e-3", target: "5.0e4", tolerance: "1e2"}
+    answer_text: '$E = \dfrac{V}{d} = \dfrac{150}{3.0 \times 10^{-3}} = 5.0 \times 10^{4}\,\text{V}\,\text{m}^{-1}$.'
+
+  - id: p4-potential-point-charge
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'Find the electric potential at a distance of 0.50 m from a point charge of +4.0 microcoulombs.'
+    answer_label: 'The electric potential'
+    check: {kind: approx, value: "8.99e9 * 4.0e-6 / 0.50", target: "7.19e4", tolerance: "1e2"}
+    answer_text: '$V = \dfrac{kQ}{r} = \dfrac{8.99 \times 10^{9} \times 4.0 \times 10^{-6}}{0.50} = 7.2 \times 10^{4}\,\text{V}$.'
+
+  - id: p5-potential-energy
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'A charge of +2.0 microcoulombs is placed at a point where the electric potential is 3.0e4 V. Find its electric potential energy.'
+    answer_label: 'The electric potential energy'
+    check: {kind: approx, value: "2.0e-6 * 3.0e4", target: "0.060", tolerance: "0.001"}
+    answer_text: '$E_{p} = qV = 2.0 \times 10^{-6} \times 3.0 \times 10^{4} = 6.0 \times 10^{-2}\,\text{J}$.'
+
+  - id: p6-work-done-charge
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'Find the work done moving a charge of +5.0 microcoulombs through a potential difference of 1200 V.'
+    answer_label: 'The work done'
+    check: {kind: approx, value: "5.0e-6 * 1200", target: "6.0e-3", tolerance: "1e-4"}
+    answer_text: '$W = q\Delta V = 5.0 \times 10^{-6} \times 1200 = 6.0 \times 10^{-3}\,\text{J}$.'
+
+  - id: p7-electron-speed
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'An electron is accelerated from rest through a potential difference of 400 V. Find its speed. The mass of an electron is 9.11e-31 kg.'
+    answer_label: 'The speed'
+    check: {kind: approx, value: "sqrt(2 * 1.60e-19 * 400 / 9.11e-31)", target: "1.19e7", tolerance: "1e5"}
+    answer_text: 'The energy gained is $E_{k} = eV = 6.4 \times 10^{-17}\,\text{J}$. Then $\tfrac{1}{2}mv^{2} = E_{k}$, so $v = \sqrt{\dfrac{2E_{k}}{m}} = 1.2 \times 10^{7}\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: p8-ion-force-uniform-field
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'Two grids 2.0 mm apart have a potential difference of 900 V. Find the electric field strength between them and the force on a xenon ion of charge +1.60e-19 C.'
+    answer_label: 'The field strength and the force'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "900 / 2.0e-3", target: "4.5e5", tolerance: "1e3"}
+        - {kind: approx, value: "1.60e-19 * 900 / 2.0e-3", target: "7.2e-14", tolerance: "1e-15"}
+    answer_text: '$E = \dfrac{V}{d} = \dfrac{900}{2.0 \times 10^{-3}} = 4.5 \times 10^{5}\,\text{V}\,\text{m}^{-1}$, and $F = QE = 1.60 \times 10^{-19} \times 4.5 \times 10^{5} = 7.2 \times 10^{-14}\,\text{N}$.'
+
+  - id: p9-force-inverse-square
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'Two point charges 0.10 m apart repel each other with a force of 0.40 N. Find the force between them when they are 0.20 m apart.'
+    answer_label: 'The new force'
+    check: {kind: approx, value: "0.40 / 2**2", target: "0.10", tolerance: "0.001"}
+    answer_text: 'The force follows an inverse-square law, so doubling the distance divides it by 4: $F = \dfrac{0.40}{4} = 0.10\,\text{N}$.'
+
+  - id: p10-coulomb-force-2sf
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'A calculation gives an electric force of 0.16182 N. Write the answer to two significant figures.'
+    answer_label: 'The force to two significant figures'
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: "0.16182"
+      figures: 2
+      answer: "0.16"
+    answer_text: '$0.16182\,\text{N}$ is $0.16\,\text{N}$ to two significant figures.'
+
+  - id: p11-uncertainty-field-strength
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'The potential difference across two plates is measured with an uncertainty of 0.5%, and their separation with an uncertainty of 1.0%. The field strength is 6.0e4 V/m. Find its absolute uncertainty.'
+    answer_label: 'The absolute uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: "6.0e4", percentage: "0.5", power: "1"}
+        - {value: "1", percentage: "1.0", power: "1"}
+      result: "6.0e4"
+      uncertainty: "900"
+      tolerance: "1"
+    answer_text: 'The field strength is $E = \dfrac{V}{d}$. A quotient adds percentage uncertainties, so the percentage uncertainty is $0.5 + 1.0 = 1.5\%$. The absolute uncertainty is $\dfrac{1.5}{100} \times 6.0 \times 10^{4} = 9.0 \times 10^{2}\,\text{V}\,\text{m}^{-1}$. So $E = (6.0 \pm 0.09) \times 10^{4}\,\text{V}\,\text{m}^{-1}$.'
+
+  - id: p12-convert-plate-gap
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'A plate separation is 3.0 mm. Write it in metres.'
+    answer_label: 'The separation in metres'
+    check: {kind: convert, value: "3.0", from: "mm", to: "m", answer: "3.0e-3"}
+    answer_text: '$3.0\,\text{mm} = 3.0 \times 10^{-3}\,\text{m}$.'
+
+  - id: p13-method-accelerated-charge
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'A charged particle is released from rest in a uniform electric field. Explain how you would find its kinetic energy after it has crossed the field.'
+    check:
+      kind: structured
+      requires: [find-force, find-work, energy-transfer, work-energy]
+      concepts: [electric-field, work-done]
+      points:
+        - id: find-force
+          text: 'Find the force from $F = QE$.'
+          concepts: [electric-field]
+        - id: find-work
+          text: 'The work done by the field is $W = QV$, where $V$ is the potential difference crossed.'
+          concepts: [work-done]
+        - id: energy-transfer
+          text: 'The work done becomes kinetic energy, so $E_{k} = QV$.'
+          concepts: [work-done]
+        - id: work-energy
+          text: 'Alternatively, find the acceleration from $a = \dfrac{F}{m}$ and use the equations of motion.'
+          concepts: [work-done]
+
+  - id: p14-charge-and-electrons
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'A current of 0.25 A flows for 40 s. Find the charge that passes and the number of electrons.'
+    answer_label: 'The charge and the number of electrons'
+    check: {kind: approx, value: "0.25 * 40 / 1.60e-19", target: "6.25e19", tolerance: "1e18"}
+    answer_text: 'The charge is $Q = It = 0.25 \times 40 = 10\,\text{C}$. Each electron carries $1.60 \times 10^{-19}\,\text{C}$, so the number is $\dfrac{10}{1.60 \times 10^{-19}} = 6.3 \times 10^{19}$.'

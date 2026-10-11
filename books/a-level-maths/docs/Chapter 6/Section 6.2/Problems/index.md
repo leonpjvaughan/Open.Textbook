@@ -10,9 +10,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.2 The gradient of e^kx and the exponential model — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: F2, G2
+Work through these on your own. Write down the constant $k$ in the exponent
+before you differentiate, and keep the constant in front of the function.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-06-practice-6.2
+
+:::answers chapter-06-practice-6.2

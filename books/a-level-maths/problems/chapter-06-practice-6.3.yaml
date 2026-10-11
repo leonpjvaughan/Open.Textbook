@@ -1,0 +1,163 @@
+# Practice set for 6.3, logarithms and the laws of logarithms.
+#
+# The log laws are rewrites, so they are proved with op: expand_log and
+# op: logcombine. A logarithm is only defined for a positive input, so the
+# symbols are declared positive and one solve carries that domain explicitly.
+chapter: 6
+symbols:
+  x: {real: true, positive: true}
+  y: {real: true, positive: true}
+problems:
+  - id: p1-log-base-2
+    section: "6.3"
+    dfe: [F3]
+    statement: 'Work out $\log_2 16$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "log(16, 2)"
+      answer: "4"
+    answer_text: 'A logarithm answers the question: what power of the base gives this number? Since $2^4 = 16$, $\log_2 16 = 4$.'
+
+  - id: p2-log-reciprocal
+    section: "6.3"
+    dfe: [F3]
+    statement: 'Work out $\log_3 \dfrac{1}{27}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "log(1/27, 3)"
+      answer: "-3"
+    answer_text: 'Write $\dfrac{1}{27}$ as a power of $3$: it is $3^{-3}$. So $\log_3 \dfrac{1}{27} = -3$. A logarithm of a number smaller than $1$ is negative.'
+
+  - id: p3-log-base-10
+    section: "6.3"
+    dfe: [F3]
+    statement: 'Work out $\log_{10} 10000$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "log(10000, 10)"
+      answer: "4"
+    answer_text: 'Since $10^4 = 10000$, $\log_{10} 10000 = 4$. The logarithm counts the number of zeros in this case.'
+
+  - id: p4-natural-log-values
+    section: "6.3"
+    dfe: [F3]
+    statement: 'Write down the values of $\ln e$, $\ln 1$ and $\ln e^4$.'
+    answer_label: 'The three values'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "ln(exp(1))", answer: "1"}
+        - {kind: evaluate, expression: "ln(1)", answer: "0"}
+        - {kind: evaluate, expression: "ln(exp(4))", answer: "4"}
+    answer_text: '$\ln e = 1$, because $e^1 = e$. $\ln 1 = 0$, because $e^0 = 1$. And $\ln e^4 = 4$, because logarithm and exponential undo each other.'
+
+  - id: p5-to-log-form
+    section: "6.3"
+    dfe: [F3]
+    statement: 'Write $5^3 = 125$ in logarithmic form.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "log(125, 5)"
+      answer: "3"
+    answer_text: 'The index becomes the logarithm: $5^3 = 125$ is the same statement as $\log_5 125 = 3$. The base of the power is the base of the logarithm.'
+
+  - id: p6-solve-log
+    section: "6.3"
+    dfe: [F3]
+    statement: 'Solve $\log_2 x = 5$.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "log(x, 2) = 5"
+      variable: "x"
+      answer: ["32"]
+    answer_text: 'Rewrite the logarithm as a power: $x = 2^5 = 32$. The answer is positive, as every logarithm requires.'
+
+  - id: p7-solve-log-domain
+    section: "6.3"
+    dfe: [F3]
+    statement: 'Solve $\log_3 x = -1$, stating the domain you use.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "log(x, 3) = -1"
+      variable: "x"
+      domain: "Interval(0, oo)"
+      answer: ["1/3"]
+    answer_text: 'A logarithm needs a positive input, so the domain is $x > 0$. Rewriting gives $x = 3^{-1} = \dfrac{1}{3}$, which is positive and so lies in the domain.'
+
+  - id: p8-product-law
+    section: "6.3"
+    dfe: [F4]
+    statement: 'Write $\ln x + \ln y$ as a single logarithm.'
+    answer_label: 'The single logarithm'
+    check:
+      kind: apply
+      expression: "ln(x) + ln(y)"
+      apply: {op: logcombine}
+      answer: "ln(x*y)"
+    answer_text: 'The product law: $\ln x + \ln y = \ln(xy)$. Adding logarithms multiplies the inputs.'
+
+  - id: p9-quotient-law
+    section: "6.3"
+    dfe: [F4]
+    statement: 'Write $\ln x - \ln y$ as a single logarithm.'
+    answer_label: 'The single logarithm'
+    check:
+      kind: apply
+      expression: "ln(x) - ln(y)"
+      apply: {op: logcombine}
+      answer: "ln(x/y)"
+    answer_text: 'The quotient law: $\ln x - \ln y = \ln\dfrac{x}{y}$. Subtracting logarithms divides the inputs.'
+
+  - id: p10-power-law
+    section: "6.3"
+    dfe: [F4]
+    statement: 'Write $3\ln x$ as a single logarithm.'
+    answer_label: 'The single logarithm'
+    check:
+      kind: apply
+      expression: "3*ln(x)"
+      apply: {op: logcombine}
+      answer: "ln(x**3)"
+    answer_text: 'The power law: $3\ln x = \ln x^3$. A number multiplying a logarithm becomes a power inside it.'
+
+  - id: p11-power-law-negative
+    section: "6.3"
+    dfe: [F4]
+    statement: 'Write $-\dfrac{1}{2}\ln x$ as a single logarithm.'
+    answer_label: 'The single logarithm'
+    check:
+      kind: apply
+      expression: "-(1/2)*ln(x)"
+      apply: {op: logcombine}
+      answer: "ln(x**(-1/2))"
+    answer_text: 'The power law with $k = -\dfrac{1}{2}$: $-\dfrac{1}{2}\ln x = \ln x^{-1/2} = \ln\dfrac{1}{\sqrt{x}}$. The law holds for negative and fractional powers too.'
+
+  - id: p12-expand-log
+    section: "6.3"
+    dfe: [F4]
+    statement: 'Expand $\ln\left(x^2y\right)$ using the laws of logarithms.'
+    answer_label: 'The expanded form'
+    check:
+      kind: apply
+      expression: "ln(x**2 * y)"
+      apply: {op: expand_log}
+      answer: "2*ln(x) + ln(y)"
+    answer_text: 'The product law splits $\ln(x^2y)$ into $\ln x^2 + \ln y$. The power law then brings the $2$ down: $2\ln x + \ln y$.'
+
+  - id: p13-solve-natural-log
+    section: "6.3"
+    dfe: [F3, F4]
+    statement: 'Solve $\ln x = 3$, giving $x$ exactly.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "ln(x) = 3"
+      variable: "x"
+      answer: ["exp(3)"]
+    answer_text: 'The natural logarithm is the inverse of $e^x$, so undo it with the exponential: $x = e^3$. Since $e^3 \approx 20.1$, the answer is positive, as required.'

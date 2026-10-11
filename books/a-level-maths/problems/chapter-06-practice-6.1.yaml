@@ -1,0 +1,134 @@
+# Practice set for 6.1, the functions a^x and e^x.
+#
+# The checks prove the index arithmetic and the exponential values that the
+# section teaches. Reading a growth curve and comparing shapes is human review,
+# so it lives on the page as a guided figure, not here.
+chapter: 6
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-index-powers
+    section: "6.1"
+    dfe: [F1]
+    statement: 'Work out $2^5 \times 2^{-2}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "2**5 * 2**(-2)"
+      answer: "8"
+    answer_text: 'Add the indices: $2^5 \times 2^{-2} = 2^{5-2} = 2^3 = 8$.'
+
+  - id: p2-y-intercept
+    section: "6.1"
+    dfe: [F1]
+    statement: 'The curve $y = 7^x$ crosses the $y$-axis at one point. Write down the $y$-coordinate of that point.'
+    answer_label: 'The $y$-coordinate'
+    check:
+      kind: evaluate
+      expression: "7**0"
+      answer: "1"
+    answer_text: 'Every curve $y = a^x$ passes through $(0, 1)$, because $a^0 = 1$ for every positive base $a$.'
+
+  - id: p3-negative-power
+    section: "6.1"
+    dfe: [F1]
+    statement: 'Work out $\left(\dfrac{1}{2}\right)^{-3}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "(1/2)**(-3)"
+      answer: "8"
+    answer_text: 'A negative index turns the fraction over: $\left(\dfrac{1}{2}\right)^{-3} = 2^3 = 8$.'
+
+  - id: p4-fractional-power
+    section: "6.1"
+    dfe: [F1]
+    statement: 'Work out $16^{3/4}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "16**(3/4)"
+      answer: "8"
+    answer_text: 'The power $\dfrac{3}{4}$ means the fourth root, then the cube: $16^{1/4} = 2$, and $2^3 = 8$.'
+
+  - id: p5-base-e
+    section: "6.1"
+    dfe: [F1]
+    statement: 'Use $e \approx 2.71828$ to write $e^2$ to three significant figures.'
+    answer_label: 'The value'
+    check:
+      kind: approx
+      value: "exp(2)"
+      target: "7.39"
+      tolerance: "0.005"
+    answer_text: '$e^2 = e \times e \approx 7.389056$, which is $7.39$ to three significant figures.'
+
+  - id: p6-e-as-a-power
+    section: "6.1"
+    dfe: [F1]
+    statement: 'Show that $2^x = e^{x\ln 2}$.'
+    answer_label: 'The difference'
+    check:
+      kind: evaluate
+      expression: "2**x - exp(x*ln(2))"
+      answer: "0"
+    answer_text: 'Write the base $2$ as a power of $e$: $2 = e^{\ln 2}$. Then $2^x = \left(e^{\ln 2}\right)^x = e^{x\ln 2}$, using the index law $\left(a^m\right)^n = a^{mn}$.'
+
+  - id: p7-compare-growth
+    section: "6.1"
+    dfe: [F1]
+    statement: 'Work out $3^4$ and $4^3$, and state which is larger.'
+    answer_label: 'The two values'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "3**4", answer: "81"}
+        - {kind: evaluate, expression: "4**3", answer: "64"}
+    answer_text: '$3^4 = 81$ and $4^3 = 64$. So $3^4$ is larger. A larger base does not always win: the exponent matters too.'
+
+  - id: p8-simplify-quotient
+    section: "6.1"
+    dfe: [F1]
+    statement: 'Simplify $2^{x+3} \div 2^{x-1}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "2**(x+3) / 2**(x-1)"
+      answer: "16"
+    answer_text: 'Subtract the indices: $2^{(x+3) - (x-1)} = 2^4 = 16$. The $x$ cancels, so the answer is a number.'
+
+  - id: p9-decreasing-base
+    section: "6.1"
+    dfe: [F1]
+    statement: 'For $y = (0.4)^x$, work out $y$ when $x = 2$ and when $x = -1$.'
+    answer_label: 'The two values'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(0.4)**2", answer: "4/25"}
+        - {kind: evaluate, expression: "(0.4)**(-1)", answer: "5/2"}
+    answer_text: '$(0.4)^2 = 0.16 = \dfrac{4}{25}$ and $(0.4)^{-1} = \dfrac{1}{0.4} = 2.5 = \dfrac{5}{2}$. The values fall as $x$ grows, because the base is between $0$ and $1$.'
+
+  - id: p10-solve-by-recognition
+    section: "6.1"
+    dfe: [F1]
+    statement: 'The curve $y = 3^x$ meets the line $y = 81$ once. Find the $x$-coordinate of the meeting point.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "3**x = 81"
+      variable: "x"
+      answer: ["4"]
+    answer_text: 'Write $81$ as a power of $3$: $81 = 3^4$. So $3^x = 3^4$ and $x = 4$.'
+
+  - id: p11-sum-of-e-powers
+    section: "6.1"
+    dfe: [F1]
+    statement: 'Work out $e^0 + e^1$ to three significant figures.'
+    answer_label: 'The value'
+    check:
+      kind: approx
+      value: "exp(0) + exp(1)"
+      tolerance: "0.005"
+      target: "3.72"
+    answer_text: '$e^0 = 1$ and $e^1 = e \approx 2.71828$. Their sum is $3.71828$, which is $3.72$ to three significant figures.'

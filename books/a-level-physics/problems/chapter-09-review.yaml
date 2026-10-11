@@ -1,0 +1,170 @@
+# Review practice for Chapter 9 (Fields).
+#
+# Mixed practice across the chapter and earlier chapters, with method-selection
+# prompts. Both the questions and the answers on the Review page are rendered
+# from these records: `:::problems` prints the numbered list, `:::answers` the
+# solutions. The book declares `oracles: [sympy, units]`.
+#
+# A value with exact SI units is proved by `dimensions`. A value that uses G, k,
+# a power of ten or a square root is proved by `approx` with a stated tolerance.
+# A method-selection reason is a `structured` record: presence, order and
+# coverage only, never physics.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 9
+problems:
+  - id: r1-field-strength-at-radius
+    section: '9.1'
+    dfe: [AP9]
+    statement: 'Find the gravitational field strength at a distance of 1.0e7 m from the centre of the Earth.'
+    answer_label: 'The field strength'
+    check: {kind: approx, value: "6.67e-11 * 5.97e24 / 1.0e7**2", target: "3.98", tolerance: "0.02"}
+    answer_text: '$g = \dfrac{GM}{r^{2}} = \dfrac{6.67 \times 10^{-11} \times 5.97 \times 10^{24}}{(1.0 \times 10^{7})^{2}} = 3.98\,\text{N}\,\text{kg}^{-1}$.'
+
+  - id: r2-orbital-speed
+    section: '9.1'
+    dfe: [AP9]
+    statement: 'Find the orbital speed of a satellite in a circular orbit of radius 1.0e7 m around the Earth.'
+    answer_label: 'The orbital speed'
+    check: {kind: approx, value: "sqrt(6.67e-11 * 5.97e24 / 1.0e7)", target: "6.31e3", tolerance: "10"}
+    answer_text: '$v = \sqrt{\dfrac{GM}{r}} = \sqrt{\dfrac{3.98 \times 10^{14}}{1.0 \times 10^{7}}} = 6.3 \times 10^{3}\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: r3-escape-speed
+    section: '9.1'
+    dfe: [AP9]
+    statement: 'A planet has a mass of 6.0e23 kg and a radius of 3.0e6 m. Find the escape speed from its surface.'
+    answer_label: 'The escape speed'
+    check: {kind: approx, value: "sqrt(2 * 6.67e-11 * 6.0e23 / 3.0e6)", target: "5.17e3", tolerance: "20"}
+    answer_text: '$v_{\text{esc}} = \sqrt{\dfrac{2GM}{R}} = \sqrt{\dfrac{8.0 \times 10^{13}}{3.0 \times 10^{6}}} = 5.2 \times 10^{3}\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: r4-energy-between-potentials
+    section: '9.1'
+    dfe: [AP9]
+    statement: 'A 1500 kg spacecraft moves from a point where the gravitational potential is -6.0e7 J/kg to a point where it is -4.5e7 J/kg. Find the energy needed.'
+    answer_label: 'The energy needed'
+    check: {kind: approx, value: "1500 * ((-4.5e7) - (-6.0e7))", target: "2.25e10", tolerance: "1e8"}
+    answer_text: '$\Delta V = 1.5 \times 10^{7}\,\text{J}\,\text{kg}^{-1}$, so $E = m\Delta V = 1500 \times 1.5 \times 10^{7} = 2.25 \times 10^{10}\,\text{J}$.'
+
+  - id: r5-coulomb-force
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'Two point charges, each +1.0 microcoulomb, are 0.10 m apart in air. Find the force between them.'
+    answer_label: 'The force'
+    check: {kind: approx, value: "8.99e9 * 1.0e-6 * 1.0e-6 / 0.10**2", target: "0.899", tolerance: "0.005"}
+    answer_text: '$F = \dfrac{kQq}{r^{2}} = \dfrac{8.99 \times 10^{9} \times 1.0 \times 10^{-6} \times 1.0 \times 10^{-6}}{0.10^{2}} = 0.90\,\text{N}$, repulsive.'
+
+  - id: r6-uniform-field-force
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'Two parallel plates are 5.0 mm apart with a potential difference of 300 V. Find the electric field strength and the force on an electron between them.'
+    answer_label: 'The field strength and the force'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "300 / 5.0e-3", target: "6.0e4", tolerance: "1e2"}
+        - {kind: approx, value: "1.60e-19 * 300 / 5.0e-3", target: "9.6e-15", tolerance: "1e-16"}
+    answer_text: '$E = \dfrac{V}{d} = \dfrac{300}{5.0 \times 10^{-3}} = 6.0 \times 10^{4}\,\text{V}\,\text{m}^{-1}$, and $F = QE = 9.6 \times 10^{-15}\,\text{N}$.'
+
+  - id: r7-accelerated-electron-speed
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'An electron is accelerated from rest through a potential difference of 150 V. Find its speed. The mass of an electron is 9.11e-31 kg.'
+    answer_label: 'The speed'
+    check: {kind: approx, value: "sqrt(2 * 1.60e-19 * 150 / 9.11e-31)", target: "7.26e6", tolerance: "1e5"}
+    answer_text: 'The energy gained is $E_{k} = eV = 2.4 \times 10^{-17}\,\text{J}$, so $v = \sqrt{\dfrac{2E_{k}}{m}} = 7.3 \times 10^{6}\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: r8-force-on-wire
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'A straight wire of length 0.40 m carries a current of 3.0 A at right angles to a field of flux density 0.25 T. Find the force on the wire.'
+    answer_label: 'The force'
+    check: {kind: approx, value: "0.25 * 3.0 * 0.40", target: "0.30", tolerance: "0.005"}
+    answer_text: '$F = BIL = 0.25 \times 3.0 \times 0.40 = 0.30\,\text{N}$.'
+
+  - id: r9-radius-of-proton
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'A proton moves at 4.0e6 m/s at right angles to a field of flux density 0.20 T. Find the radius of its circular path. The mass of a proton is 1.67e-27 kg.'
+    answer_label: 'The radius'
+    check: {kind: approx, value: "1.67e-27 * 4.0e6 / (0.20 * 1.60e-19)", target: "0.209", tolerance: "0.003"}
+    answer_text: '$r = \dfrac{mv}{BQ} = \dfrac{1.67 \times 10^{-27} \times 4.0 \times 10^{6}}{0.20 \times 1.60 \times 10^{-19}} = 0.21\,\text{m}$.'
+
+  - id: r10-flux-linkage
+    section: '9.3'
+    dfe: [AP9]
+    statement: 'A coil of 300 turns and area 5.0e-3 m^2 is at right angles to a field of flux density 0.15 T. Find the flux linkage.'
+    answer_label: 'The flux linkage'
+    check: {kind: approx, value: "300 * 0.15 * 5.0e-3", target: "0.225", tolerance: "0.002"}
+    answer_text: '$N\Phi = NBA = 300 \times 0.15 \times 5.0 \times 10^{-3} = 0.23\,\text{Wb}$.'
+
+  - id: r11-faraday-emf
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'A coil of 120 turns has an area of 0.025 m^2. The flux density through it rises steadily from 0.10 T to 0.50 T in 0.30 s. Find the induced emf.'
+    answer_label: 'The induced emf'
+    check: {kind: approx, value: "120 * 0.025 * (0.50 - 0.10) / 0.30", target: "4.0", tolerance: "0.05"}
+    answer_text: 'The change in flux linkage is $120 \times 0.025 \times 0.40 = 1.2\,\text{Wb}$, so $\varepsilon = \dfrac{1.2}{0.30} = 4.0\,\text{V}$.'
+
+  - id: r12-motional-emf-power
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'A rod of length 0.15 m moves at 8.0 m/s at right angles to a field of 0.40 T. It completes a circuit of resistance 1.2 ohms. Find the emf and the power dissipated.'
+    answer_label: 'The emf and the power'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "0.40 * 0.15 * 8.0", target: "0.48", tolerance: "0.005"}
+        - {kind: approx, value: "(0.40 * 0.15 * 8.0)**2 / 1.2", target: "0.192", tolerance: "0.002"}
+    answer_text: '$\varepsilon = BLv = 0.40 \times 0.15 \times 8.0 = 0.48\,\text{V}$. Then $P = \dfrac{\varepsilon^{2}}{R} = \dfrac{0.48^{2}}{1.2} = 0.19\,\text{W}$.'
+
+  - id: r13-transformer
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'A transformer has 500 turns on the primary coil and 25 turns on the secondary coil. The primary is connected to a 230 V alternating supply. Find the secondary voltage.'
+    answer_label: 'The secondary voltage'
+    check: {kind: approx, value: "230 * 25 / 500", target: "11.5", tolerance: "0.1"}
+    answer_text: '$\dfrac{V_s}{V_p} = \dfrac{N_s}{N_p}$, so $V_s = 230 \times \dfrac{25}{500} = 11.5\,\text{V}$.'
+
+  - id: r14-method-accelerate-then-bend
+    section: '9.2'
+    dfe: [AP9]
+    statement: 'A charged particle is accelerated from rest by a uniform electric field and then enters a magnetic field at right angles. State which equations you would use to find its speed and the radius of its circular path, and why.'
+    check:
+      kind: structured
+      requires: [electric-energy, kinetic-speed, magnetic-force, centripetal-radius]
+      concepts: [electric-field, magnetic-force]
+      points:
+        - id: electric-energy
+          text: 'First find the kinetic energy from the electric field: $E_{k} = QV$.'
+          concepts: [electric-field]
+        - id: kinetic-speed
+          text: 'Then find the speed from $\tfrac{1}{2}mv^{2} = E_{k}$.'
+          concepts: [electric-field]
+        - id: magnetic-force
+          text: 'In the magnetic field the force is $F = BQv$, at right angles to the velocity.'
+          concepts: [magnetic-force]
+        - id: centripetal-radius
+          text: 'Set $BQv = \dfrac{mv^{2}}{r}$ and rearrange to $r = \dfrac{mv}{BQ}$.'
+          concepts: [magnetic-force]
+
+  - id: r15-gravitational-force-and-acceleration
+    section: '9.1'
+    dfe: [AP3]
+    statement: 'A satellite of mass 800 kg orbits the Earth at a radius of 7.0e6 m. Find the gravitational force on it and its centripetal acceleration.'
+    answer_label: 'The force and the acceleration'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "6.67e-11 * 5.97e24 * 800 / 7.0e6**2", target: "6.50e3", tolerance: "20"}
+        - {kind: approx, value: "(6.67e-11 * 5.97e24 / 7.0e6) / 7.0e6", target: "8.13", tolerance: "0.05"}
+    answer_text: 'The force is $F = \dfrac{GMm}{r^{2}} = 6.5 \times 10^{3}\,\text{N}$. The centripetal acceleration is $a = \dfrac{v^{2}}{r} = \dfrac{GM}{r^{2}} = 8.1\,\text{m}\,\text{s}^{-2}$, which is the gravitational field strength at that radius.'
+
+  - id: r16-photon-energy
+    section: '9.2'
+    dfe: [AP8]
+    statement: 'A photon has a wavelength of 500 nm. Find its energy in joules.'
+    answer_label: 'The photon energy'
+    check: {kind: approx, value: "6.63e-34 * 3.00e8 / 500e-9", target: "3.98e-19", tolerance: "1e-20"}
+    answer_text: '$E = \dfrac{hc}{\lambda} = \dfrac{6.63 \times 10^{-34} \times 3.00 \times 10^{8}}{500 \times 10^{-9}} = 4.0 \times 10^{-19}\,\text{J}$, from Section 8.1.'

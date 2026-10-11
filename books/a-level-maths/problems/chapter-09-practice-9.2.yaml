@@ -1,0 +1,153 @@
+# Practice set for 9.2, simple iterative methods.
+#
+# Each recurrence is checked by the `iterate` operation, which applies the rule
+# the stated number of times, so the produced value is proved. A fixed point is
+# checked by `solve`. Where a rearrangement is used, the substituted value is
+# checked with `subs`.
+chapter: 9
+symbols:
+  x: {real: true}
+problems:
+  - id: v1-iterate-third
+    section: "9.2"
+    dfe: [I2]
+    statement: 'Use $x_{n+1} = \dfrac{x_n + 2}{3}$ with $x_0 = 0$. Find $x_3$.'
+    answer_label: 'The value of x3'
+    check:
+      kind: apply
+      expression: "(x + 2)/3"
+      apply: {op: iterate, args: [0, 3]}
+      answer: "26/27"
+    answer_text: 'Apply the rule three times: $x_1 = \dfrac{2}{3}$, $x_2 = \dfrac{8}{9}$ and $x_3 = \dfrac{26}{27} = 0.9630$. The values climb towards the fixed point $x = 1$.'
+
+  - id: v2-iterate-fourth
+    section: "9.2"
+    dfe: [I2]
+    statement: 'Use $x_{n+1} = \dfrac{x_n + 2}{3}$ with $x_0 = 0$. Find $x_4$.'
+    answer_label: 'The value of x4'
+    check:
+      kind: apply
+      expression: "(x + 2)/3"
+      apply: {op: iterate, args: [0, 4]}
+      answer: "80/81"
+    answer_text: 'Continuing from $x_3 = \dfrac{26}{27}$ gives $x_4 = \dfrac{80}{81} = 0.9877$. Each step closes two thirds of the gap to $1$.'
+
+  - id: v3-iterate-reciprocal
+    section: "9.2"
+    dfe: [I2]
+    statement: 'Use $x_{n+1} = \dfrac{1}{x_n + 1}$ with $x_0 = 1$. Find $x_3$.'
+    answer_label: 'The value of x3'
+    check:
+      kind: apply
+      expression: "1/(x + 1)"
+      apply: {op: iterate, args: [1, 3]}
+      answer: "3/5"
+    answer_text: 'The values are $x_1 = \dfrac{1}{2}$, $x_2 = \dfrac{2}{3}$ and $x_3 = \dfrac{3}{5} = 0.6$. They approach the fixed point $0.6180\ldots$ from both sides, so the diagram is a cobweb.'
+
+  - id: v4-iterate-rearranged
+    section: "9.2"
+    dfe: [I2]
+    statement: 'Use $x_{n+1} = \dfrac{1}{x_n^2 + 1}$ with $x_0 = 1$. Find $x_3$.'
+    answer_label: 'The value of x3'
+    check:
+      kind: apply
+      expression: "1/(x**2 + 1)"
+      apply: {op: iterate, args: [1, 3]}
+      answer: "25/41"
+    answer_text: 'The values are $x_1 = \dfrac{1}{2}$, $x_2 = \dfrac{4}{5}$ and $x_3 = \dfrac{25}{41} = 0.6098$. They move to either side of the root $0.6823$ and settle slowly.'
+
+  - id: v5-fixed-point-linear
+    section: "9.2"
+    dfe: [I2]
+    statement: 'Find the fixed point of the recurrence $x_{n+1} = \dfrac{x_n + 2}{3}$.'
+    answer_label: 'The fixed point'
+    check:
+      kind: solve
+      equation: "x = (x + 2)/3"
+      variable: x
+      answer: ["1"]
+    answer_text: 'A fixed point satisfies $x = \dfrac{x + 2}{3}$. Multiply by $3$: $3x = x + 2$, so $2x = 2$ and $x = 1$. The iterates in the earlier questions approach this value.'
+
+  - id: v6-fixed-point-reciprocal
+    section: "9.2"
+    dfe: [I2]
+    statement: 'Find the fixed points of the recurrence $x_{n+1} = \dfrac{1}{x_n + 1}$. Give the answers in surd form.'
+    answer_label: 'The fixed points'
+    check:
+      kind: solve
+      equation: "x = 1/(x + 1)"
+      variable: x
+      answer: ["(-1 + sqrt(5))/2", "(-1 - sqrt(5))/2"]
+    answer_text: 'A fixed point satisfies $x = \dfrac{1}{x + 1}$. Multiply by $x + 1$: $x^2 + x - 1 = 0$. The quadratic formula gives $x = \dfrac{-1 \pm \sqrt{5}}{2}$, so the values are $0.6180\ldots$ and $-1.6180\ldots$ The positive value is the one the recurrence from $x_0 = 1$ approaches.'
+
+  - id: v7-gradient-linear
+    section: "9.2"
+    dfe: [I2]
+    statement: 'For $g(x) = \dfrac{x + 2}{3}$, find $g''(x)$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "(x + 2)/3"
+      apply: {op: diff, args: [x]}
+      answer: "1/3"
+    answer_text: 'Differentiating gives $g''(x) = \dfrac{1}{3}$. The magnitude is less than $1$ everywhere, so the iteration converges. A positive gradient means the path is a staircase.'
+
+  - id: v8-gradient-reciprocal
+    section: "9.2"
+    dfe: [I2]
+    statement: 'For $g(x) = \dfrac{1}{x + 1}$, find $g''(x)$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "1/(x + 1)"
+      apply: {op: diff, args: [x]}
+      answer: "-1/(x + 1)**2"
+    answer_text: 'Write $g(x) = (x + 1)^{-1}$ and differentiate: $g''(x) = -(x + 1)^{-2} = -\dfrac{1}{(x + 1)^2}$. At the fixed point $x = 0.6180$ this is about $-0.382$, so $|g''| < 1$ and the iteration converges. A negative gradient gives a cobweb.'
+
+  - id: v9-divergent
+    section: "9.2"
+    dfe: [I2]
+    statement: 'Use $x_{n+1} = 3x_n - 2$ with $x_0 = 0$. Find $x_3$.'
+    answer_label: 'The value of x3'
+    check:
+      kind: apply
+      expression: "3*x - 2"
+      apply: {op: iterate, args: [0, 3]}
+      answer: "-26"
+    answer_text: 'The values are $x_1 = -2$, $x_2 = -8$ and $x_3 = -26$. The fixed point is $x = 1$ but $g''(x) = 3 > 1$, so the iteration diverges and each step moves further away.'
+
+  - id: v10-within-tolerance
+    section: "9.2"
+    dfe: [I2]
+    statement: 'Use $x_{n+1} = \dfrac{x_n + 2}{3}$ with $x_0 = 0$. Find $x_5$, and state whether it is within $0.01$ of the fixed point $1$.'
+    answer_label: 'The value of x5'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "(x + 2)/3", apply: {op: iterate, args: [0, 5]}, answer: "242/243"}
+        - {kind: approx, value: "242/243", target: "1", tolerance: "0.01"}
+    answer_text: '$x_5 = \dfrac{242}{243} = 0.99588\ldots$, which is within $0.01$ of $1$. The difference from $1$ is $\dfrac{1}{243} = 0.0041\ldots$, so the value is close enough for many purposes. Agreement to a stated accuracy is the practical stopping rule, not a proof of exactness.'
+
+  - id: v11-rearranged-step
+    section: "9.2"
+    dfe: [I2]
+    statement: 'The equation $x^3 + 2x - 5 = 0$ can be rearranged to $x = \dfrac{5}{x^2 + 2}$. Starting from $x_0 = 1$, find $x_1$.'
+    answer_label: 'The value of x1'
+    check:
+      kind: apply
+      expression: "5/(x**2 + 2)"
+      apply: {op: subs, args: [x, "1"]}
+      answer: "5/3"
+    answer_text: 'Substitute $x_0 = 1$: $x_1 = \dfrac{5}{1^2 + 2} = \dfrac{5}{3} = 1.6667$. The fixed point of this rearrangement is the root of the original equation.'
+
+  - id: v12-cobweb-gradient
+    section: "9.2"
+    dfe: [I2]
+    statement: 'For $g(x) = 2 - \dfrac{x}{2}$, find $g''(x)$ and state whether the iteration gives a cobweb or a staircase.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "2 - x/2"
+      apply: {op: diff, args: [x]}
+      answer: "-1/2"
+    answer_text: '$g''(x) = -\dfrac{1}{2}$, which has magnitude $\dfrac{1}{2} < 1$, so the iteration converges. The negative gradient makes the values alternate on either side of the fixed point, so the diagram is a cobweb. The fixed point is $x = \dfrac{4}{3}$.'

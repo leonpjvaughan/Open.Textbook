@@ -1,0 +1,187 @@
+# Practice set for 9.4 (Electromagnetic induction).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]`, so a check may use either.
+#
+# A value that uses a flux, a rate or a power of ten is proved by `approx`
+# against a stated tolerance. A unit conversion is proved exactly by `convert`, a
+# rounding by `sigfigs`, a propagation by `uncertainty`, a dimensional statement
+# by `dimensions`, and a reason by `structured` (presence, order and coverage
+# only, never physics).
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 9
+problems:
+  - id: p1-faraday-changing-field
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'A coil of 80 turns has an area of 0.020 m^2. The flux density through it rises steadily from 0.15 T to 0.55 T in 0.25 s. Find the induced emf.'
+    answer_label: 'The induced emf'
+    check: {kind: approx, value: "80 * 0.020 * (0.55 - 0.15) / 0.25", target: "2.56", tolerance: "0.02"}
+    answer_text: 'The change in flux linkage is $N\Delta\Phi = NA\Delta B = 80 \times 0.020 \times 0.40 = 0.64\,\text{Wb}$, so $\varepsilon = \dfrac{0.64}{0.25} = 2.6\,\text{V}$.'
+
+  - id: p2-motional-emf
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'A rod of length 0.30 m moves at 5.0 m/s at right angles to a magnetic field of flux density 0.50 T. Find the emf induced across it.'
+    answer_label: 'The induced emf'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "0.50 * 0.30 * 5.0", target: "0.75", tolerance: "0.005"}
+        - kind: dimensions
+          consistency: "eps = B * L * v"
+          units: {eps: V, B: T, L: m, v: "m s^-1"}
+    answer_text: '$\varepsilon = BLv = 0.50 \times 0.30 \times 5.0 = 0.75\,\text{V}$.'
+
+  - id: p3-current-and-force
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'The rod in question 2 is part of a circuit of total resistance 1.5 ohms. Find the current and the force that opposes the motion.'
+    answer_label: 'The current and the force'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "0.50 * 0.30 * 5.0 / 1.5", target: "0.50", tolerance: "0.005"}
+        - {kind: approx, value: "0.50 * (0.50 * 0.30 * 5.0 / 1.5) * 0.30", target: "0.075", tolerance: "0.001"}
+    answer_text: '$I = \dfrac{\varepsilon}{R} = \dfrac{0.75}{1.5} = 0.50\,\text{A}$, and $F = BIL = 0.50 \times 0.50 \times 0.30 = 0.075\,\text{N}$, opposite to the velocity.'
+
+  - id: p4-search-coil
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'A search coil of 800 turns and area 1.2e-4 m^2 is in a magnetic field that changes at 0.25 T/s. Find the emf induced in the coil.'
+    answer_label: 'The induced emf'
+    check: {kind: approx, value: "800 * 1.2e-4 * 0.25", target: "0.024", tolerance: "0.0005"}
+    answer_text: '$\varepsilon = NA\dfrac{\Delta B}{\Delta t} = 800 \times 1.2 \times 10^{-4} \times 0.25 = 0.024\,\text{V}$, or 24 mV.'
+
+  - id: p5-peak-emf
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'A generator coil of 250 turns and area 4.0e-3 m^2 turns at 40 rad/s in a field of flux density 0.30 T. Find the peak emf.'
+    answer_label: 'The peak emf'
+    check: {kind: approx, value: "250 * 4.0e-3 * 0.30 * 40", target: "12", tolerance: "0.1"}
+    answer_text: '$\varepsilon_0 = NAB\omega = 250 \times 4.0 \times 10^{-3} \times 0.30 \times 40 = 12\,\text{V}$.'
+
+  - id: p6-rotating-coil-emf
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'A coil of 400 turns and area 6.0e-3 m^2 is turned from parallel to perpendicular to a field of 0.20 T in 0.050 s. Find the average induced emf.'
+    answer_label: 'The average induced emf'
+    check: {kind: approx, value: "400 * 0.20 * 6.0e-3 / 0.050", target: "9.6", tolerance: "0.1"}
+    answer_text: 'The change in flux linkage is $NBA = 400 \times 0.20 \times 6.0 \times 10^{-3} = 0.48\,\text{Wb}$, so the average emf is $\dfrac{0.48}{0.050} = 9.6\,\text{V}$.'
+
+  - id: p7-transformer
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'A transformer has 2000 turns on the primary coil and 50 turns on the secondary coil. The primary is connected to a 230 V alternating supply. Find the secondary voltage.'
+    answer_label: 'The secondary voltage'
+    check: {kind: approx, value: "230 * 50 / 2000", target: "5.75", tolerance: "0.05"}
+    answer_text: '$\dfrac{V_s}{V_p} = \dfrac{N_s}{N_p}$, so $V_s = 230 \times \dfrac{50}{2000} = 5.8\,\text{V}$.'
+
+  - id: p8-lenz-energy
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'Explain, using the conservation of energy, why the force on a conductor that carries an induced current opposes the motion producing it.'
+    check:
+      kind: structured
+      requires: [induced-current, oppose-change, if-helped, energy-from-nothing, work-done]
+      concepts: [lenz-law, conservation-of-energy]
+      points:
+        - id: induced-current
+          text: 'A changing flux induces a current in the conductor.'
+          concepts: [lenz-law]
+        - id: oppose-change
+          text: 'By Lenz''s law the induced current opposes the change in flux.'
+          concepts: [lenz-law]
+        - id: if-helped
+          text: 'If the current helped the change, the change would grow and the current would grow with it.'
+          concepts: [conservation-of-energy]
+        - id: energy-from-nothing
+          text: 'That would create electrical energy from nothing, which breaks the conservation of energy.'
+          concepts: [conservation-of-energy]
+        - id: work-done
+          text: 'So the force opposes the motion, and work must be done against it to keep the motion going. That work becomes electrical energy.'
+          concepts: [conservation-of-energy]
+
+  - id: p9-uncertainty-emf
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'A rod moving through a magnetic field induces an emf of 0.60 V. The flux density has an uncertainty of 2.0%, the length 0.5% and the speed 1.0%. Find the absolute uncertainty in the emf.'
+    answer_label: 'The absolute uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: "0.60", percentage: "2.0", power: "1"}
+        - {value: "1", percentage: "0.5", power: "1"}
+        - {value: "1", percentage: "1.0", power: "1"}
+      result: "0.60"
+      uncertainty: "0.021"
+      tolerance: "0.001"
+    answer_text: 'The emf is $\varepsilon = BLv$. A product adds percentage uncertainties, so the percentage uncertainty is $2.0 + 0.5 + 1.0 = 3.5\%$. The absolute uncertainty is $\dfrac{3.5}{100} \times 0.60 = 0.021\,\text{V}$. So $\varepsilon = 0.60 \pm 0.02\,\text{V}$.'
+
+  - id: p10-emf-2sf
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'A search-coil calculation gives an emf of 0.02431 V. Write the answer to two significant figures.'
+    answer_label: 'The emf to two significant figures'
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: "0.02431"
+      figures: 2
+      answer: "0.024"
+    answer_text: '$0.02431\,\text{V}$ is $0.024\,\text{V}$ to two significant figures.'
+
+  - id: p11-convert-millivolts
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'An induced emf is 30 mV. Write it in volts.'
+    answer_label: 'The emf in volts'
+    check: {kind: convert, value: "30", from: "mV", to: "V", answer: "0.030"}
+    answer_text: '$30\,\text{mV} = 30 \times 10^{-3}\,\text{V} = 0.030\,\text{V}$.'
+
+  - id: p12-power-dissipated
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'A rod of length 0.20 m moves at 4.0 m/s at right angles to a field of 0.30 T. It completes a circuit of resistance 0.60 ohms. Find the power dissipated in the circuit.'
+    answer_label: 'The power dissipated'
+    check: {kind: approx, value: "(0.30 * 0.20 * 4.0)**2 / 0.60", target: "0.096", tolerance: "0.002"}
+    answer_text: 'The emf is $\varepsilon = BLv = 0.24\,\text{V}$, so $I = \dfrac{0.24}{0.60} = 0.40\,\text{A}$. The power is $P = \varepsilon I = 0.24 \times 0.40 = 0.096\,\text{W}$, or 96 mW.'
+
+  - id: p13-method-rotating-coil
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'A coil is rotated at a steady rate in a uniform magnetic field. Explain how to find the maximum emf, and why the emf is zero at two positions in each turn.'
+    check:
+      kind: structured
+      requires: [peak-equation, rate-of-change, perpendicular-zero, parallel-maximum]
+      concepts: [faraday-law, generator]
+      points:
+        - id: peak-equation
+          text: 'The maximum emf is $\varepsilon_0 = NAB\omega$.'
+          concepts: [generator]
+        - id: rate-of-change
+          text: 'The emf depends on the rate of change of the flux linkage, not on the flux linkage itself.'
+          concepts: [faraday-law]
+        - id: perpendicular-zero
+          text: 'When the coil is at right angles to the field, the flux linkage is a maximum but its rate of change is zero, so the emf is zero.'
+          concepts: [faraday-law]
+        - id: parallel-maximum
+          text: 'When the coil is parallel to the field, the flux linkage is zero but it is changing fastest, so the emf is a maximum.'
+          concepts: [generator]
+
+  - id: p14-tether-power
+    section: '9.4'
+    dfe: [AP9]
+    statement: 'A conducting tether of length 25 m moves at 7.5e3 m/s at right angles to a field of flux density 4.0e-5 T. It drives a current of 0.60 A. Find the emf across the tether and the electrical power delivered.'
+    answer_label: 'The emf and the power'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "4.0e-5 * 25 * 7.5e3", target: "7.5", tolerance: "0.05"}
+        - {kind: approx, value: "4.0e-5 * 25 * 7.5e3 * 0.60", target: "4.5", tolerance: "0.05"}
+    answer_text: '$\varepsilon = BLv = 4.0 \times 10^{-5} \times 25 \times 7.5 \times 10^{3} = 7.5\,\text{V}$, and $P = \varepsilon I = 7.5 \times 0.60 = 4.5\,\text{W}$.'

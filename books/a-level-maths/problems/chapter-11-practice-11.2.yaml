@@ -1,0 +1,139 @@
+# Practice set for 11.2, sampling techniques and their critique. The checks
+# prove the sampling arithmetic: an interval, a stratum size, a probability or a
+# proportion. Whether a method is well chosen for a context is human review.
+chapter: 11
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-srs-probability
+    section: "11.2"
+    dfe: [K1]
+    statement: 'A school has 1200 students. A simple random sample of 60 is chosen. Find the probability that a given student is chosen.'
+    answer_label: 'The probability'
+    check:
+      kind: evaluate
+      expression: "60 / 1200"
+      answer: "1/20"
+    answer_text: 'In a simple random sample every student has the same chance: $\dfrac{60}{1200} = \dfrac{1}{20} = 0.05$.'
+
+  - id: p2-systematic-interval
+    section: "11.2"
+    dfe: [K1]
+    statement: 'A population of 500 is sampled systematically. The sample size is 25. Find the sampling interval $k$.'
+    answer_label: 'The interval'
+    check:
+      kind: evaluate
+      expression: "500 / 25"
+      answer: "20"
+    answer_text: 'Divide the population size by the sample size: $k = \dfrac{500}{25} = 20$. Every 20th member is taken.'
+
+  - id: p3-stratified-year12
+    section: "11.2"
+    dfe: [K1]
+    statement: 'A college has 480 Year 12 students and 320 Year 13 students. A stratified sample of 40 is taken. Find the number from Year 12.'
+    answer_label: 'The Year 12 sample size'
+    check:
+      kind: evaluate
+      expression: "(480 / 800) * 40"
+      answer: "24"
+    answer_text: 'The population is $800$, so the Year 12 sample is $\dfrac{480}{800} \times 40 = 24$ students.'
+
+  - id: p4-stratified-year13
+    section: "11.2"
+    dfe: [K1]
+    statement: 'A college has 480 Year 12 students and 320 Year 13 students. A stratified sample of 40 is taken. Find the number from Year 13.'
+    answer_label: 'The Year 13 sample size'
+    check:
+      kind: evaluate
+      expression: "(320 / 800) * 40"
+      answer: "16"
+    answer_text: 'The Year 13 sample is $\dfrac{320}{800} \times 40 = 16$ students. The two sample sizes add to $40$, as they must.'
+
+  - id: p5-stratified-largest
+    section: "11.2"
+    dfe: [K1]
+    statement: 'A town has three age groups of sizes 2000, 3000 and 5000. A stratified sample of 200 is taken. Find the number from the largest group.'
+    answer_label: 'The sample size from the largest group'
+    check:
+      kind: evaluate
+      expression: "(5000 / 10000) * 200"
+      answer: "100"
+    answer_text: 'The population is $10000$. The largest group gives $\dfrac{5000}{10000} \times 200 = 100$ people, which is half of the sample, because that group is half of the population.'
+
+  - id: p6-stratified-small-stratum
+    section: "11.2"
+    dfe: [K1]
+    statement: 'A population splits into strata of size 300 and 700. A stratified sample of 60 is taken. Find the number from the 700 stratum.'
+    answer_label: 'The sample size from the 700 stratum'
+    check:
+      kind: evaluate
+      expression: "(700 / 1000) * 60"
+      answer: "42"
+    answer_text: 'The population is $1000$, so the 700 stratum gives $\dfrac{700}{1000} \times 60 = 42$ people.'
+
+  - id: p7-sampling-fraction
+    section: "11.2"
+    dfe: [K1]
+    statement: 'A factory has 2500 workers, and a sample of 125 is taken. Find the fraction of the population that is sampled.'
+    answer_label: 'The sampling fraction'
+    check:
+      kind: evaluate
+      expression: "125 / 2500"
+      answer: "1/20"
+    answer_text: 'The fraction is $\dfrac{125}{2500} = \dfrac{1}{20} = 0.05$, so $5\%$ of the population is sampled.'
+
+  - id: p8-quota-proportion
+    section: "11.2"
+    dfe: [K1]
+    statement: 'An interviewer is told to fill a quota of 50 people, made up of 30 women and 20 men. Find the proportion of the quota that is women.'
+    answer_label: 'The proportion'
+    check:
+      kind: evaluate
+      expression: "30 / 50"
+      answer: "3/5"
+    answer_text: 'The proportion is $\dfrac{30}{50} = \dfrac{3}{5} = 0.6$. A quota controls the proportions, but the interviewer still chooses by convenience.'
+
+  - id: p9-systematic-third
+    section: "11.2"
+    dfe: [K1]
+    statement: 'A population numbered 1 to 200 is sampled systematically. The sample size is 40 and the starting point is 7. Find the third member of the sample.'
+    answer_label: 'The third member'
+    check:
+      kind: evaluate
+      expression: "7 + 2 * 5"
+      answer: "17"
+    answer_text: 'The interval is $k = \dfrac{200}{40} = 5$. Starting at 7, the members are 7, 12 and 17.'
+
+  - id: p10-systematic-k
+    section: "11.2"
+    dfe: [K1]
+    statement: 'A list of 720 names is sampled systematically, and the sample size is 90. Find the interval $k$.'
+    answer_label: 'The interval'
+    check:
+      kind: evaluate
+      expression: "720 / 90"
+      answer: "8"
+    answer_text: 'The interval is $k = \dfrac{720}{90} = 8$: every 8th name is taken.'
+
+  - id: p11-systematic-count
+    section: "11.2"
+    dfe: [K1]
+    statement: 'A list of 1000 names is sampled by taking every 10th name. How many names are in the sample?'
+    answer_label: 'The sample size'
+    check:
+      kind: evaluate
+      expression: "1000 / 10"
+      answer: "100"
+    answer_text: 'Taking every 10th name from 1000 names gives $\dfrac{1000}{10} = 100$ names.'
+
+  - id: p12-method-choice
+    section: "11.2"
+    dfe: [K1]
+    statement: 'A population of 350 is split into strata of size 120, 150 and 80. A stratified sample of 50 is taken. Find the stratum sample size for the 120 stratum, rounded to the nearest whole person.'
+    answer_label: 'The stratum sample size'
+    check:
+      kind: rounded
+      value: "(120 / 350) * 50"
+      rounded: "17"
+      to: "1"
+    answer_text: 'Proportional allocation gives $\dfrac{120}{350} \times 50 = \dfrac{6000}{350} = 17.14\ldots$, which rounds to 17 people. State that a whole person cannot be split.'

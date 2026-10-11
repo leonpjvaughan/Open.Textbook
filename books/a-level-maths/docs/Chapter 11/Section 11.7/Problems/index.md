@@ -13,9 +13,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.7 Working with the large data set — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: K1, L1, L2, L3, L4
+Work through these on your own. Clean the data before you calculate, and state
+the unit in your answer.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built. The tables in the questions are small extracts
+that stand in for your board's data set.
+
+:::problems chapter-11-practice-11.7
+
+:::answers chapter-11-practice-11.7

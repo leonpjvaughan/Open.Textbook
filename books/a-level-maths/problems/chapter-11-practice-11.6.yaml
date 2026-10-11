@@ -1,0 +1,150 @@
+# Practice set for 11.6, outliers, data cleaning and critiquing presentation.
+# The checks prove the quartiles, fences, counts and cleaned averages. The
+# decision to keep, correct or remove a value is human review.
+chapter: 11
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-iqr
+    section: "11.6"
+    dfe: [L4]
+    statement: 'Find the interquartile range of $12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 45$, using the $(n + 1)$ positions.'
+    answer_label: 'The interquartile range'
+    check:
+      kind: statistic
+      data: [12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 45]
+      stat: iqr
+      convention: linear
+      answer: "6"
+    answer_text: 'There are $n = 11$ values. The position of $Q_1$ is $\dfrac{12}{4} = 3$, giving $Q_1 = 15$. The position of $Q_3$ is $\dfrac{36}{4} = 9$, giving $Q_3 = 21$. The IQR is $21 - 15 = 6$.'
+
+  - id: p2-lower-quartile
+    section: "11.6"
+    dfe: [L4]
+    statement: 'Find the lower quartile of $12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 45$, using the $(n + 1)$ method.'
+    answer_label: 'The lower quartile'
+    check:
+      kind: statistic
+      data: [12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 45]
+      stat: quartile1
+      convention: linear
+      answer: "15"
+    answer_text: 'The position of $Q_1$ is $\dfrac{11 + 1}{4} = 3$, which is a whole number, so $Q_1$ is the 3rd value: 15.'
+
+  - id: p3-lower-fence
+    section: "11.6"
+    dfe: [L4]
+    statement: 'A data set has $Q_1 = 15$ and IQR $= 6$. Find the lower fence for a possible outlier.'
+    answer_label: 'The lower fence'
+    check:
+      kind: evaluate
+      expression: "15 - 1.5 * 6"
+      answer: "6"
+    answer_text: 'The lower fence is $Q_1 - 1.5 \times \text{IQR} = 15 - 9 = 6$. A value below 6 is a possible outlier.'
+
+  - id: p4-upper-fence
+    section: "11.6"
+    dfe: [L4]
+    statement: 'A data set has $Q_3 = 21$ and IQR $= 6$. Find the upper fence for a possible outlier.'
+    answer_label: 'The upper fence'
+    check:
+      kind: evaluate
+      expression: "21 + 1.5 * 6"
+      answer: "30"
+    answer_text: 'The upper fence is $Q_3 + 1.5 \times \text{IQR} = 21 + 9 = 30$. A value above 30 is a possible outlier.'
+
+  - id: p5-is-outlier
+    section: "11.6"
+    dfe: [L4]
+    statement: 'The upper fence of a data set is 30. Is the value 45 a possible outlier?'
+    answer_label: 'Whether 45 is a possible outlier'
+    check:
+      kind: compare
+      relation: ">"
+      lhs: "45"
+      rhs: "30"
+    answer_text: 'The value 45 is above the upper fence of 30, so it is a possible outlier. Being above the fence is a signal to look at the value, not proof that it is wrong.'
+
+  - id: p6-cleaned-mean
+    section: "11.6"
+    dfe: [L4]
+    statement: 'The data $12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 45$ contain the outlier 45. Remove 45 and find the mean of the remaining values.'
+    answer_label: 'The cleaned mean'
+    check:
+      kind: statistic
+      data: [12, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+      stat: mean
+      answer: "87/5"
+    answer_text: 'The remaining values sum to 174, and there are 10 of them, so the mean is $\dfrac{174}{10} = 17.4$. The mean of all 11 values was $\dfrac{219}{11} = 19.9$, so removing the outlier lowered the mean by about 2.5.'
+
+  - id: p7-unit-correction
+    section: "11.6"
+    dfe: [L4]
+    statement: 'A journey time is recorded as 300 seconds, but the rest of the data are in minutes. Convert 300 seconds to minutes.'
+    answer_label: 'The value in minutes'
+    check:
+      kind: evaluate
+      expression: "300 / 60"
+      answer: "5"
+    answer_text: 'Divide by 60: $300$ seconds $= 5$ minutes. Converting every value to one unit before calculating removes the inconsistency.'
+
+  - id: p8-outlier-count
+    section: "11.6"
+    dfe: [L4]
+    statement: 'A data set has fences at 6 and 30. The values $5, 12, 20, 31$ and $45$ are in the data. Find how many of these values lie outside the fences.'
+    answer_label: 'The number of values outside the fences'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "<", lhs: "5", rhs: "6"}
+        - {kind: compare, relation: ">", lhs: "12", rhs: "6"}
+        - {kind: compare, relation: "<", lhs: "12", rhs: "30"}
+        - {kind: compare, relation: ">", lhs: "31", rhs: "30"}
+        - {kind: compare, relation: ">", lhs: "45", rhs: "30"}
+    answer_text: 'The values outside the fences are 5 (below 6), 31 and 45 (both above 30). So 3 of the 5 values lie outside the fences.'
+
+  - id: p9-mean-sd-fence
+    section: "11.6"
+    dfe: [L4]
+    statement: 'A data set $10, 12, 14, 16, 18$ has mean 14 and standard deviation $\sqrt{8}$, dividing by $n$. Using the rule that a value more than two standard deviations from the mean is a possible outlier, find the two fences.'
+    answer_label: 'The two fences'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "14 - 2 * sqrt(8)", answer: "14 - 4*sqrt(2)"}
+        - {kind: evaluate, expression: "14 + 2 * sqrt(8)", answer: "14 + 4*sqrt(2)"}
+    answer_text: 'The fences are $14 \pm 2\sqrt{8} = 14 \pm 4\sqrt{2}$, which are about 8.34 and 19.66. State the rule you use, because a different rule gives different fences.'
+
+  - id: p10-missing-value
+    section: "11.6"
+    dfe: [L4]
+    statement: 'A data set has one missing value. The five known values are $12, 14, 16, 18, 20$. Find the mean of the known values.'
+    answer_label: 'The mean of the known values'
+    check:
+      kind: statistic
+      data: [12, 14, 16, 18, 20]
+      stat: mean
+      answer: "16"
+    answer_text: 'The known values sum to 80 and there are 5 of them, so the mean is $\dfrac{80}{5} = 16$. The missing value is excluded, and the answer should say that one value is missing.'
+
+  - id: p11-recorded-error
+    section: "11.6"
+    dfe: [L4]
+    statement: 'A data set of 10 values has mean 20. One value, 50, is found to be a recording error. Remove 50 and find the mean of the remaining 9 values.'
+    answer_label: 'The mean of the remaining values'
+    check:
+      kind: evaluate
+      expression: "(20 * 10 - 50) / 9"
+      answer: "50/3"
+    answer_text: 'The original total is $20 \times 10 = 200$. Removing 50 leaves 150 over 9 values, so the mean is $\dfrac{150}{9} = \dfrac{50}{3} = 16.67$ (3 s.f.).'
+
+  - id: p12-method-choice
+    section: "11.6"
+    dfe: [L4]
+    statement: 'A bar chart shows profits of 96, 98 and 100, and its vertical axis starts at 95. Find the percentage increase from 96 to 100, and say whether the chart exaggerates the change.'
+    answer_label: 'The percentage increase'
+    check:
+      kind: evaluate
+      expression: "(100 - 96) / 96 * 100"
+      answer: "25/6"
+    answer_text: 'The increase is $\dfrac{4}{96} \times 100 = \dfrac{25}{6} = 4.17\%$ (3 s.f.), which is small. Starting the axis at 95 makes the three bars look very different, so the chart exaggerates the change. An axis starting at 0 would show three almost equal bars.'

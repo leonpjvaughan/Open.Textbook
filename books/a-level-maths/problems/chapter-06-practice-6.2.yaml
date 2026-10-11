@@ -1,0 +1,152 @@
+# Practice set for 6.2, the gradient of e^{kx} and the exponential model.
+#
+# A derivative step is an operation, not an equivalence, so every
+# differentiation is relation: apply with op: diff. Evaluating a gradient at a
+# point is a second apply with op: subs, wrapped in kind: all.
+chapter: 6
+symbols:
+  x: {real: true}
+  t: {real: true}
+problems:
+  - id: p1-diff-e-3x
+    section: "6.2"
+    dfe: [F2, G2]
+    statement: 'Differentiate $y = e^{3x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "exp(3*x)"
+      apply: {op: diff, args: [x]}
+      answer: "3*exp(3*x)"
+    answer_text: 'The derivative of $e^{kx}$ is $ke^{kx}$. Here $k = 3$, so $\dfrac{dy}{dx} = 3e^{3x}$. The curve climbs three times as fast as $e^x$ at every point.'
+
+  - id: p2-diff-e-negative
+    section: "6.2"
+    dfe: [F2, G2]
+    statement: 'Differentiate $y = e^{-x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "exp(-x)"
+      apply: {op: diff, args: [x]}
+      answer: "-exp(-x)"
+    answer_text: 'Here $k = -1$, so $\dfrac{dy}{dx} = -1 \times e^{-x} = -e^{-x}$. The derivative is negative, which matches the falling curve.'
+
+  - id: p3-diff-multiple
+    section: "6.2"
+    dfe: [F2, G2]
+    statement: 'Differentiate $y = 5e^{2x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "5*exp(2*x)"
+      apply: {op: diff, args: [x]}
+      answer: "10*exp(2*x)"
+    answer_text: 'The constant $5$ stays in front, and the exponent gives a factor $2$: $\dfrac{dy}{dx} = 5 \times 2e^{2x} = 10e^{2x}$.'
+
+  - id: p4-diff-base-2
+    section: "6.2"
+    dfe: [F2, G2]
+    statement: 'Differentiate $y = 2^x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "2**x"
+      apply: {op: diff, args: [x]}
+      answer: "2**x * ln(2)"
+    answer_text: 'For a positive base $a$, the derivative of $a^x$ is $a^x \ln a$. So $\dfrac{dy}{dx} = 2^x \ln 2$. The factor $\ln 2 \approx 0.693$ makes the curve a little less steep than $e^x$.'
+
+  - id: p5-diff-base-4k
+    section: "6.2"
+    dfe: [F2, G2]
+    statement: 'Differentiate $y = 4^{3x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "4**(3*x)"
+      apply: {op: diff, args: [x]}
+      answer: "3 * 4**(3*x) * ln(4)"
+    answer_text: 'For $a^{kx}$ the derivative is $ka^{kx}\ln a$. Here $a = 4$ and $k = 3$, so $\dfrac{dy}{dx} = 3 \times 4^{3x} \ln 4$.'
+
+  - id: p6-gradient-at-zero
+    section: "6.2"
+    dfe: [F2, G2]
+    statement: 'Find the gradient of $y = e^{2x}$ at the point where $x = 0$.'
+    answer_label: 'The gradient'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "exp(2*x)", apply: {op: diff, args: [x]}, answer: "2*exp(2*x)"}
+        - {kind: apply, expression: "2*exp(2*x)", apply: {op: subs, args: [x, 0]}, answer: "2"}
+    answer_text: 'The derivative is $2e^{2x}$. At $x = 0$ this is $2e^0 = 2 \times 1 = 2$. The point on the curve is $(0, 1)$, and the tangent there has gradient $2$.'
+
+  - id: p7-gradient-negative
+    section: "6.2"
+    dfe: [F2, G2]
+    statement: 'Find the gradient of $y = 3e^{-x}$ at the point where $x = 0$.'
+    answer_label: 'The gradient'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "3*exp(-x)", apply: {op: diff, args: [x]}, answer: "-3*exp(-x)"}
+        - {kind: apply, expression: "-3*exp(-x)", apply: {op: subs, args: [x, 0]}, answer: "-3"}
+    answer_text: 'The derivative is $-3e^{-x}$. At $x = 0$ this is $-3e^0 = -3$. The negative gradient matches the falling curve.'
+
+  - id: p8-satisfies-equation
+    section: "6.2"
+    dfe: [F2, G2]
+    statement: 'Show that $y = e^{3x}$ satisfies the equation $\dfrac{dy}{dx} = 3y$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "exp(3*x)"
+      apply: {op: diff, args: [x]}
+      answer: "3*exp(3*x)"
+    answer_text: 'The derivative is $3e^{3x}$. Since $y = e^{3x}$, this is exactly $3y$. The rate of change is three times the current value, which is the defining property of the exponential model.'
+
+  - id: p9-growth-rate
+    section: "6.2"
+    dfe: [F2, G2]
+    statement: 'A population is modelled by $P = 200e^{0.05t}$, where $t$ is in years. Find $\dfrac{dP}{dt}$ when $t = 0$.'
+    answer_label: 'The rate at $t = 0$'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "200*exp(t/20)", apply: {op: diff, args: [t]}, answer: "10*exp(t/20)"}
+        - {kind: apply, expression: "10*exp(t/20)", apply: {op: subs, args: [t, 0]}, answer: "10"}
+    answer_text: 'Differentiate: $\dfrac{dP}{dt} = 200 \times 0.05e^{0.05t} = 10e^{0.05t}$. At $t = 0$ this is $10e^0 = 10$. The population grows by about $10$ individuals per year at the start.'
+
+  - id: p10-decay-rate
+    section: "6.2"
+    dfe: [F2, G2]
+    statement: 'A mass is modelled by $m = 80e^{-0.2t}$, where $t$ is in hours. Find $\dfrac{dm}{dt}$ when $t = 0$.'
+    answer_label: 'The rate at $t = 0$'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "80*exp(-t/5)", apply: {op: diff, args: [t]}, answer: "-16*exp(-t/5)"}
+        - {kind: apply, expression: "-16*exp(-t/5)", apply: {op: subs, args: [t, 0]}, answer: "-16"}
+    answer_text: 'Differentiate: $\dfrac{dm}{dt} = 80 \times (-0.2)e^{-0.2t} = -16e^{-0.2t}$. At $t = 0$ this is $-16$. The mass starts by falling at about $16$ units per hour, and the rate shrinks as the mass shrinks.'
+
+  - id: p11-gradient-half
+    section: "6.2"
+    dfe: [F2, G2]
+    statement: 'Find the gradient of $y = e^{x/2}$ at the point where $x = 0$.'
+    answer_label: 'The gradient'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "exp(x/2)", apply: {op: diff, args: [x]}, answer: "exp(x/2)/2"}
+        - {kind: apply, expression: "exp(x/2)/2", apply: {op: subs, args: [x, 0]}, answer: "1/2"}
+    answer_text: 'The derivative is $\dfrac{1}{2}e^{x/2}$. At $x = 0$ this is $\dfrac{1}{2}$. The curve climbs half as fast as $e^x$ at every point, because $k = \dfrac{1}{2}$.'
+
+  - id: p12-compare-gradients
+    section: "6.2"
+    dfe: [F2, G2]
+    statement: 'Compare the gradients of $y = e^x$ and $y = e^{2x}$ at $x = 0$.'
+    answer_label: 'The difference in gradient'
+    check:
+      kind: evaluate
+      expression: "2*exp(0) - exp(0)"
+      answer: "1"
+    answer_text: 'The gradient of $e^x$ at $x = 0$ is $1$. The gradient of $e^{2x}$ there is $2$. So the second curve is twice as steep, and the difference is $1$. Doubling the constant $k$ doubles the gradient at every point.'

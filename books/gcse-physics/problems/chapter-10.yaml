@@ -1,0 +1,269 @@
+# Worked solutions for Chapter 10 (Space physics).
+#
+# These are the numerical worked examples and the guided answers that the Learn
+# and Practise with help pages show. The pages carry the prose and the reasoning;
+# this bank is the independent check of every number in them, so a slip in a
+# worked example cannot ship. The records are not rendered by a page marker: the
+# pages write their own working, and the `:::answers` blocks come from the
+# practice banks.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# proves arithmetic and dimensions, not physics. A `structured` record proves only
+# that a model answer contains the declared ideas, in order.
+chapter: 10
+problems:
+  # --- Section 10.1 ----------------------------------------------------------
+  - id: w1-signal-time
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'The telescope orbits 540 km above the Earth. A radio signal travels at $3.0 \times 10^{8}\,\text{m/s}$. Calculate the time for a signal from the telescope to reach the ground.'
+    answer_label: 'Time for the radio signal to reach the ground'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 'd / v'
+          values:
+            d: {value: '5.4e5', unit: 'm'}
+            v: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '1.8e-3', unit: 's'}
+        - {kind: sigfigs, value: '1.8e-3', figures: 2, answer: '1.8e-3', convention: round-once}
+    answer_text: '$540\,\text{km} = 5.4 \times 10^{5}\,\text{m}$. $t = \dfrac{d}{v} = \dfrac{5.4 \times 10^{5}}{3.0 \times 10^{8}} = 1.8 \times 10^{-3}\,\text{s}$, which is 1.8 ms.'
+
+  - id: w2-sunlight-time
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'The Sun is $1.5 \times 10^{11}\,\text{m}$ from the Earth. Light travels at $3.0 \times 10^{8}\,\text{m/s}$. Calculate how long light takes to travel from the Sun to the Earth.'
+    answer_label: 'Time for light to reach the Earth'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 'd / v'
+          values:
+            d: {value: '1.5e11', unit: 'm'}
+            v: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '500', unit: 's'}
+        - {kind: sigfigs, value: '500', figures: 2, answer: '5.0e2', convention: round-once}
+    answer_text: '$t = \dfrac{d}{v} = \dfrac{1.5 \times 10^{11}}{3.0 \times 10^{8}} = 500\,\text{s}$, so $5.0 \times 10^{2}\,\text{s}$ to 2 significant figures. That is about 8 minutes.'
+
+  - id: w3-moonlight-time
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'The Moon is $3.84 \times 10^{8}\,\text{m}$ from the Earth. Calculate how long light takes to travel from the Moon to the Earth.'
+    answer_label: 'Time for light to travel from the Moon'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 'd / v'
+          values:
+            d: {value: '3.84e8', unit: 'm'}
+            v: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '1.28', unit: 's'}
+        - {kind: sigfigs, value: '1.28', figures: 3, answer: '1.28', convention: round-once}
+    answer_text: '$t = \dfrac{d}{v} = \dfrac{3.84 \times 10^{8}}{3.0 \times 10^{8}} = 1.28\,\text{s}$.'
+
+  - id: w4-jupiter-ratio
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'Jupiter is $7.8 \times 10^{11}\,\text{m}$ from the Sun and the Earth is $1.5 \times 10^{11}\,\text{m}$ from the Sun. Work out how many times further from the Sun Jupiter is.'
+    answer_label: 'How many times further Jupiter is'
+    check: {kind: evaluate, expression: '7.8e11 / 1.5e11', answer: '5.2'}
+    answer_text: '$\dfrac{7.8 \times 10^{11}}{1.5 \times 10^{11}} = 5.2$. Jupiter is 5.2 times further from the Sun than the Earth is.'
+
+  - id: w5-gravity-keeps-orbit
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'Explain what keeps the telescope in a circular orbit around the Earth.'
+    answer_label: 'What keeps the telescope in orbit'
+    check:
+      kind: structured
+      requires: [gravity-force, towards-centre, bends-path]
+      concepts: [gravity, orbit]
+      points:
+        - id: gravity-force
+          text: 'Gravity provides a force of attraction between the telescope and the Earth.'
+          concepts: [gravity]
+        - id: towards-centre
+          text: 'The force on the telescope is directed towards the centre of the Earth.'
+          concepts: [gravity]
+        - id: bends-path
+          text: 'The force changes the direction of the telescope, so its path curves into a circle instead of a straight line.'
+          concepts: [orbit]
+
+  - id: w6-sun-equilibrium
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'Explain why the Sun stays the same size instead of collapsing or exploding.'
+    answer_label: 'Why the Sun is stable'
+    check:
+      kind: structured
+      requires: [outward, inward, balance]
+      concepts: [fusion, gravity, equilibrium]
+      points:
+        - id: outward
+          text: 'Fusion reactions in the core release energy, which pushes outwards and tends to make the Sun expand.'
+          concepts: [fusion]
+        - id: inward
+          text: 'Gravity pulls the material of the Sun inwards and tends to make it collapse.'
+          concepts: [gravity]
+        - id: balance
+          text: 'The outward push and the inward pull are equal, so the Sun is in equilibrium and stays the same size.'
+          concepts: [equilibrium]
+
+  - id: w7-star-lifecycle
+    section: '10.1'
+    tier: F
+    dfe: [SP1]
+    statement: 'Describe the life cycle of a star much more massive than the Sun.'
+    answer_label: 'The life cycle of a massive star'
+    check:
+      kind: structured
+      requires: [nebula, main-sequence, red-supergiant, supernova, remnant]
+      concepts: [nebula, supernova, neutron-star, black-hole]
+      points:
+        - id: nebula
+          text: 'It forms from a cloud of dust and gas pulled together by gravity.'
+          concepts: [nebula]
+        - id: main-sequence
+          text: 'Fusion starts and it becomes a main-sequence star.'
+          concepts: [main-sequence]
+        - id: red-supergiant
+          text: 'It then expands into a red supergiant.'
+          concepts: [red-supergiant]
+        - id: supernova
+          text: 'It explodes as a supernova.'
+          concepts: [supernova]
+        - id: remnant
+          text: 'The core is left as a neutron star, or as a black hole if the star was massive enough.'
+          concepts: [neutron-star, black-hole]
+
+  - id: w8-ht-changing-velocity
+    section: '10.1'
+    tier: H
+    dfe: [SP1]
+    statement: 'The telescope moves at a constant speed but its velocity changes. Explain how.'
+    answer_label: 'How the velocity changes while the speed stays the same'
+    check:
+      kind: structured
+      requires: [velocity-direction, direction-changes, speed-constant]
+      concepts: [velocity, speed, orbit]
+      points:
+        - id: velocity-direction
+          text: 'Velocity is speed in a given direction, so it is a vector.'
+          concepts: [velocity]
+        - id: direction-changes
+          text: 'As the telescope goes round the circular orbit, the direction of its motion changes all the time.'
+          concepts: [orbit]
+        - id: speed-constant
+          text: 'Its speed stays the same, but the changing direction means the velocity changes.'
+          concepts: [speed, velocity]
+
+  - id: w9-ht-stable-orbit
+    section: '10.1'
+    tier: H
+    dfe: [SP1]
+    statement: 'For a stable orbit, explain why the radius must change if the speed of the object changes.'
+    answer_label: 'Why the radius must change with the speed'
+    check:
+      kind: structured
+      requires: [match, change, radius]
+      concepts: [orbit, gravity]
+      points:
+        - id: match
+          text: 'A stable circular orbit needs a speed that matches its radius.'
+          concepts: [orbit]
+        - id: change
+          text: 'If the speed changes, the object can no longer stay in a stable orbit at the same radius.'
+          concepts: [orbit]
+        - id: radius
+          text: 'The radius must change until the speed and the radius match again, so the orbit is stable at the new radius.'
+          concepts: [orbit, gravity]
+
+  # --- Section 10.2 ----------------------------------------------------------
+  - id: w10-distant-galaxy
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'A distant galaxy is $2.4 \times 10^{25}\,\text{m}$ from the Earth. Light travels at $3.0 \times 10^{8}\,\text{m/s}$. Calculate how long the light has taken to reach the Earth.'
+    answer_label: 'Time for the light from a distant galaxy'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 'd / v'
+          values:
+            d: {value: '2.4e25', unit: 'm'}
+            v: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '8.0e16', unit: 's'}
+        - {kind: sigfigs, value: '8.0e16', figures: 2, answer: '8.0e16', convention: round-once}
+        - {kind: approx, value: '2.54e9', target: '8.0e16 / 3.15e7', tolerance: '1e7'}
+    answer_text: '$t = \dfrac{d}{v} = \dfrac{2.4 \times 10^{25}}{3.0 \times 10^{8}} = 8.0 \times 10^{16}\,\text{s}$. Taking one year as $3.15 \times 10^{7}\,\text{s}$, this is about $2.5 \times 10^{9}$ years, or 2.5 billion years.'
+
+  - id: w11-andromeda
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'The Andromeda galaxy is $2.4 \times 10^{22}\,\text{m}$ from the Earth. Calculate how long light takes to travel from Andromeda to the Earth.'
+    answer_label: 'Light-travel time from Andromeda'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 'd / v'
+          values:
+            d: {value: '2.4e22', unit: 'm'}
+            v: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '8.0e13', unit: 's'}
+        - {kind: sigfigs, value: '8.0e13', figures: 2, answer: '8.0e13', convention: round-once}
+        - {kind: approx, value: '2.54e6', target: '8.0e13 / 3.15e7', tolerance: '1e5'}
+    answer_text: '$t = \dfrac{d}{v} = \dfrac{2.4 \times 10^{22}}{3.0 \times 10^{8}} = 8.0 \times 10^{13}\,\text{s}$. Taking one year as $3.15 \times 10^{7}\,\text{s}$, this is $2.5 \times 10^{6}$ years, or 2.5 million years.'
+
+  - id: w12-redshift-explanation
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'Explain what the red-shift of a galaxy shows.'
+    answer_label: 'What red-shift shows'
+    check:
+      kind: structured
+      requires: [longer-wavelength, moving-away, expanding]
+      concepts: [red-shift, universe]
+      points:
+        - id: longer-wavelength
+          text: 'The wavelength of the light from the galaxy is longer than the wavelength of the same light measured in a laboratory.'
+          concepts: [wavelength]
+        - id: moving-away
+          text: 'This shows that the galaxy is moving away from the Earth.'
+          concepts: [red-shift]
+        - id: expanding
+          text: 'The further away a galaxy is, the faster it is moving away, which is evidence that the universe is expanding.'
+          concepts: [universe]
+
+  - id: w13-big-bang
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'Describe the Big Bang model and explain how red-shift supports it.'
+    answer_label: 'The Big Bang model and the evidence for it'
+    check:
+      kind: structured
+      requires: [hot-dense, expansion, evidence]
+      concepts: [big-bang, red-shift]
+      points:
+        - id: hot-dense
+          text: 'The Big Bang model says the universe began from a very small region that was extremely hot and dense.'
+          concepts: [big-bang]
+        - id: expansion
+          text: 'The model says the universe has been expanding ever since.'
+          concepts: [big-bang]
+        - id: evidence
+          text: 'Red-shift shows that the galaxies are moving apart, which is evidence that the universe is expanding. This supports the model.'
+          concepts: [red-shift]

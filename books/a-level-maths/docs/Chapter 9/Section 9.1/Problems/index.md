@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.1 Locating roots by change of sign — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: I1
+Work through these on your own. For each bracket, write down the two values and
+their signs before you decide.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-09-practice-9.1
+
+:::answers chapter-09-practice-9.1

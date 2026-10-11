@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 10.2 Magnitude and direction; component and magnitude/direction form — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: J2
+Work through these on your own. Sketch the vector before you quote a direction,
+and write the quadrant beside every angle. Check the length of any unit vector
+you find.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-10-practice-10.2
+
+:::answers chapter-10-practice-10.2

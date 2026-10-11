@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.2 Sampling techniques and their critique — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: K1
+Work through these on your own. For each sampling method, say whether it is
+random, and name any part of the population it may miss.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-11-practice-11.2
+
+:::answers chapter-11-practice-11.2

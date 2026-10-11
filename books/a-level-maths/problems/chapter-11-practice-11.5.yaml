@@ -1,0 +1,154 @@
+# Practice set for 11.5, measures of central tendency and variation. Each
+# statistic names its convention, because quartiles and standard deviation
+# differ between methods. The convention here is the linear (n + 1) quartile
+# position and the population standard deviation, which divides by n.
+chapter: 11
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-mean-list
+    section: "11.5"
+    dfe: [L3]
+    statement: 'Find the mean of $4, 7, 9, 12, 13, 15$.'
+    answer_label: 'The mean'
+    check:
+      kind: statistic
+      data: [4, 7, 9, 12, 13, 15]
+      stat: mean
+      answer: "10"
+    answer_text: 'Add the values and divide by the number of values: $\dfrac{60}{6} = 10$.'
+
+  - id: p2-median-list
+    section: "11.5"
+    dfe: [L3]
+    statement: 'Find the median of $3, 5, 8, 10, 12, 14$.'
+    answer_label: 'The median'
+    check:
+      kind: statistic
+      data: [3, 5, 8, 10, 12, 14]
+      stat: median
+      answer: "9"
+    answer_text: 'There are six values, so the median is the mean of the 3rd and 4th: $\dfrac{8 + 10}{2} = 9$.'
+
+  - id: p3-range
+    section: "11.5"
+    dfe: [L3]
+    statement: 'Find the range of $2, 5, 9, 14$.'
+    answer_label: 'The range'
+    check:
+      kind: statistic
+      data: [2, 5, 9, 14]
+      stat: range
+      answer: "12"
+    answer_text: 'The range is the largest value minus the smallest: $14 - 2 = 12$.'
+
+  - id: p4-variance-population
+    section: "11.5"
+    dfe: [L3]
+    statement: 'Find the variance of $2, 4, 6, 8, 10$, using the convention that divides by $n$.'
+    answer_label: 'The variance'
+    check:
+      kind: statistic
+      data: [2, 4, 6, 8, 10]
+      stat: variance
+      convention: population
+      answer: "8"
+    answer_text: 'The mean is 6. The squared deviations are $16, 4, 0, 4, 16$, which sum to 40. Dividing by $n = 5$ gives variance $\dfrac{40}{5} = 8$.'
+
+  - id: p5-std-population
+    section: "11.5"
+    dfe: [L3]
+    statement: 'Find the standard deviation of $2, 4, 6, 8, 10$, dividing by $n$.'
+    answer_label: 'The standard deviation'
+    check:
+      kind: statistic
+      data: [2, 4, 6, 8, 10]
+      stat: std
+      convention: population
+      answer: "2*sqrt(2)"
+    answer_text: 'The variance is 8, so $\sigma = \sqrt{8} = 2\sqrt{2} = 2.83$ (3 s.f.).'
+
+  - id: p6-std-summary
+    section: "11.5"
+    dfe: [L3]
+    statement: 'A data set has $n = 10$, $\sum x = 60$ and $\sum x^2 = 800$. Find the standard deviation, dividing by $n$.'
+    answer_label: 'The standard deviation'
+    check:
+      kind: evaluate
+      expression: "sqrt(800 / 10 - (60 / 10)**2)"
+      answer: "2*sqrt(11)"
+    answer_text: 'The mean is $\bar{x} = 6$. Then $\sigma = \sqrt{\dfrac{800}{10} - 6^2} = \sqrt{44} = 2\sqrt{11} = 6.63$ (3 s.f.).'
+
+  - id: p7-iqr-linear
+    section: "11.5"
+    dfe: [L3]
+    statement: 'Find the interquartile range of $1, 3, 4, 6, 8, 9, 11, 14$, using the $(n + 1)$ position method.'
+    answer_label: 'The interquartile range'
+    check:
+      kind: statistic
+      data: [1, 3, 4, 6, 8, 9, 11, 14]
+      stat: iqr
+      convention: linear
+      answer: "29/4"
+    answer_text: 'There are $n = 8$ values. The position of $Q_1$ is $\dfrac{9}{4} = 2.25$, giving $Q_1 = 3.25$. The position of $Q_3$ is $\dfrac{27}{4} = 6.75$, giving $Q_3 = 10.5$. The IQR is $10.5 - 3.25 = 7.25 = \dfrac{29}{4}$.'
+
+  - id: p8-q3-linear
+    section: "11.5"
+    dfe: [L3]
+    statement: 'Find the upper quartile of $1, 3, 4, 6, 8, 9, 11, 14$, using the $(n + 1)$ position method.'
+    answer_label: 'The upper quartile'
+    check:
+      kind: statistic
+      data: [1, 3, 4, 6, 8, 9, 11, 14]
+      stat: quartile3
+      convention: linear
+      answer: "21/2"
+    answer_text: 'The position of $Q_3$ is $\dfrac{3(8 + 1)}{4} = 6.75$, so $Q_3 = 9 + 0.75(11 - 9) = 10.5 = \dfrac{21}{2}$.'
+
+  - id: p9-std-outlier
+    section: "11.5"
+    dfe: [L3]
+    statement: 'Find the standard deviation, dividing by $n$, of $10, 12, 14, 16, 18$, and then of $10, 12, 14, 16, 18, 30$.'
+    answer_label: 'The two standard deviations'
+    check:
+      kind: all
+      checks:
+        - {kind: statistic, data: [10, 12, 14, 16, 18], stat: std, convention: population, answer: "2*sqrt(2)"}
+        - {kind: statistic, data: [10, 12, 14, 16, 18, 30], stat: std, convention: population, answer: "2*sqrt(95)/3"}
+    answer_text: 'The first standard deviation is $\sqrt{8} = 2.83$ (3 s.f.). Adding 30 raises the second to $\dfrac{2\sqrt{95}}{3} = 6.50$ (3 s.f.). One outlier can more than double the standard deviation.'
+
+  - id: p10-median-mean-outlier
+    section: "11.5"
+    dfe: [L3]
+    statement: 'Find the median and the mean of $5, 6, 6, 7, 100$.'
+    answer_label: 'The median and the mean'
+    check:
+      kind: all
+      checks:
+        - {kind: statistic, data: [5, 6, 6, 7, 100], stat: median, answer: "6"}
+        - {kind: statistic, data: [5, 6, 6, 7, 100], stat: mean, answer: "124/5"}
+    answer_text: 'The median is 6 and the mean is $\dfrac{124}{5} = 24.8$. The single large value pulls the mean far above the median, so the median describes the typical value better here.'
+
+  - id: p11-compare-spread
+    section: "11.5"
+    dfe: [L3]
+    statement: 'Two data sets both have mean 17. Set A is $12, 15, 17, 18, 23$ and set B is $5, 15, 17, 19, 29$. Find the standard deviation of each, dividing by $n$.'
+    answer_label: 'The two standard deviations'
+    check:
+      kind: all
+      checks:
+        - {kind: statistic, data: [12, 15, 17, 18, 23], stat: std, convention: population, answer: "sqrt(330)/5"}
+        - {kind: statistic, data: [5, 15, 17, 19, 29], stat: std, convention: population, answer: "2*sqrt(370)/5"}
+    answer_text: 'Set A has $\sigma = \dfrac{\sqrt{330}}{5} = 3.63$ (3 s.f.). Set B has $\sigma = \dfrac{2\sqrt{370}}{5} = 7.69$ (3 s.f.). The means agree, but set B is more spread out.'
+
+  - id: p12-method-choice
+    section: "11.5"
+    dfe: [L3]
+    statement: 'Find the mean and the median of $6, 7, 7, 8, 9, 9, 10, 12$. State which average you would report, and why.'
+    answer_label: 'The mean and the median'
+    check:
+      kind: all
+      checks:
+        - {kind: statistic, data: [6, 7, 7, 8, 9, 9, 10, 12], stat: mean, answer: "17/2"}
+        - {kind: statistic, data: [6, 7, 7, 8, 9, 9, 10, 12], stat: median, answer: "17/2"}
+    answer_text: 'The mean is $\dfrac{68}{8} = 8.5$ and the median is $\dfrac{8 + 9}{2} = 8.5$. The data are fairly symmetric with no outlier, so either average is suitable. The mean uses every value, so report it.'

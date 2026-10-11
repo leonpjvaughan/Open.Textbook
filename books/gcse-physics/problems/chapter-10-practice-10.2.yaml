@@ -1,0 +1,271 @@
+# Practice set for 10.2 (Red-shift and the Big Bang).
+#
+# Both the questions and the answers on the page are rendered from these
+# records: `:::problems` prints the numbered list, `:::answers` the solutions.
+# The book declares `oracles: [sympy, units]` in book.yaml, so a check may use
+# either. Red-shift is qualitative at GCSE, so most records are `structured`.
+# The two calculations use `dimensions` for the exact magnitude and unit and
+# `sigfigs` for the single rounding the data support. The light-travel-time
+# records also carry an `approx` on the answer in years, with the year taken as
+# 3.15 x 10^7 seconds.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# proves arithmetic and dimensions, not physics.
+chapter: 10
+problems:
+  - id: p1-redshift-meaning
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'Explain what is meant by the red-shift of light from a galaxy.'
+    answer_label: 'What red-shift means'
+    check:
+      kind: structured
+      requires: [longer-wavelength, pattern-shift, moving-away]
+      concepts: [red-shift, wavelength]
+      points:
+        - id: longer-wavelength
+          text: 'The wavelength of the light is longer than the wavelength of the same light measured in a laboratory.'
+          concepts: [wavelength]
+        - id: pattern-shift
+          text: 'The dark lines in the galaxy spectrum are moved towards the red end of the spectrum, where the wavelengths are longer.'
+          concepts: [red-shift]
+        - id: moving-away
+          text: 'This happens because the galaxy is moving away from the Earth.'
+          concepts: [red-shift]
+
+  - id: p2-further-faster
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'Describe how the red-shift of a galaxy changes as the galaxy gets further away.'
+    answer_label: 'Red-shift and distance'
+    check:
+      kind: structured
+      requires: [bigger-shift, faster]
+      concepts: [red-shift, distance]
+      points:
+        - id: bigger-shift
+          text: 'The further away a galaxy is, the bigger its red-shift.'
+          concepts: [distance]
+        - id: faster
+          text: 'A bigger red-shift means the galaxy is moving away from us faster.'
+          concepts: [red-shift]
+
+  - id: p3-expanding-evidence
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'Explain how red-shift provides evidence that the universe is expanding.'
+    answer_label: 'Red-shift and the expanding universe'
+    check:
+      kind: structured
+      requires: [receding, further-faster, expansion]
+      concepts: [red-shift, universe]
+      points:
+        - id: receding
+          text: 'The red-shift shows that most galaxies are moving away from us.'
+          concepts: [red-shift]
+        - id: further-faster
+          text: 'The further away a galaxy is, the faster it is moving away.'
+          concepts: [red-shift]
+        - id: expansion
+          text: 'This pattern is what we expect if space itself is expanding, so the galaxies are carried apart as space grows.'
+          concepts: [universe]
+
+  - id: p4-big-bang-support
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'Explain how red-shift supports the Big Bang model of the universe.'
+    answer_label: 'Red-shift and the Big Bang model'
+    check:
+      kind: structured
+      requires: [hot-dense, expansion, evidence]
+      concepts: [big-bang, red-shift]
+      points:
+        - id: hot-dense
+          text: 'The Big Bang model says the universe began from a very small region that was extremely hot and dense.'
+          concepts: [big-bang]
+        - id: expansion
+          text: 'The model predicts that the universe has been expanding ever since.'
+          concepts: [big-bang]
+        - id: evidence
+          text: 'Red-shift shows that the universe is expanding, so it is evidence that supports the model.'
+          concepts: [red-shift]
+
+  - id: p5-observations-to-theories
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'Explain how scientists use observations to decide whether a model, such as the Big Bang model, is a good one.'
+    answer_label: 'How observations are used to test a model'
+    check:
+      kind: structured
+      requires: [predictions, repeated, change]
+      concepts: [model, evidence]
+      points:
+        - id: predictions
+          text: 'A model makes predictions that can be checked against observations.'
+          concepts: [model]
+        - id: repeated
+          text: 'Scientists collect many observations and check whether they match the predictions.'
+          concepts: [evidence]
+        - id: change
+          text: 'If new evidence does not fit the model, the model is changed or replaced.'
+          concepts: [model]
+
+  - id: p6-other-evidence
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'State one piece of evidence, other than red-shift, that supports the Big Bang model. Explain what it shows.'
+    answer_label: 'Another piece of evidence for the Big Bang'
+    check:
+      kind: structured
+      requires: [cmbr, leftover]
+      concepts: [cmbr, big-bang]
+      points:
+        - id: cmbr
+          text: 'The cosmic microwave background radiation is a faint microwave signal that comes from every direction in space.'
+          concepts: [cmbr]
+        - id: leftover
+          text: 'It is left over from the hot, dense early universe, so it matches a prediction of the Big Bang model.'
+          concepts: [cmbr, big-bang]
+
+  - id: p7-distant-galaxy-time
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'A distant galaxy is $2.4 \times 10^{25}\,\text{m}$ from the Earth. Light travels at $3.0 \times 10^{8}\,\text{m/s}$. Say which equation you will use, then calculate how long the light has taken to reach the Earth. Give your answer in seconds to 2 significant figures.'
+    answer_label: 'Time for the light from a distant galaxy'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 'd / v'
+          values:
+            d: {value: '2.4e25', unit: 'm'}
+            v: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '8.0e16', unit: 's'}
+        - {kind: sigfigs, value: '8.0e16', figures: 2, answer: '8.0e16', convention: round-once}
+        - {kind: approx, value: '2.54e9', target: '8.0e16 / 3.15e7', tolerance: '1e7'}
+    answer_text: 'Use $\text{time} = \dfrac{\text{distance}}{\text{speed}}$. $t = \dfrac{2.4 \times 10^{25}}{3.0 \times 10^{8}} = 8.0 \times 10^{16}\,\text{s}$. Taking one year as $3.15 \times 10^{7}\,\text{s}$, this is about $2.5 \times 10^{9}$ years, so the light set out about 2.5 billion years ago.'
+
+  - id: p8-andromeda-check
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'The Andromeda galaxy is $2.4 \times 10^{22}\,\text{m}$ from the Earth. A pupil says that the light we see from Andromeda left it 2.5 million years ago. Check the pupil claim by calculating the time for the light to travel that distance.'
+    answer_label: 'Checking the light-travel time from Andromeda'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 'd / v'
+          values:
+            d: {value: '2.4e22', unit: 'm'}
+            v: {value: '3.0e8', unit: 'm/s'}
+          answer: {value: '8.0e13', unit: 's'}
+        - {kind: sigfigs, value: '8.0e13', figures: 2, answer: '8.0e13', convention: round-once}
+        - {kind: approx, value: '2.54e6', target: '8.0e13 / 3.15e7', tolerance: '1e5'}
+    answer_text: '$t = \dfrac{d}{v} = \dfrac{2.4 \times 10^{22}}{3.0 \times 10^{8}} = 8.0 \times 10^{13}\,\text{s}$. Taking one year as $3.15 \times 10^{7}\,\text{s}$, this is $2.5 \times 10^{6}$ years. The pupil is right.'
+
+  - id: p9-looking-back-in-time
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'Explain why looking at a very distant galaxy is like looking back in time.'
+    answer_label: 'Why a distant galaxy is seen as it was'
+    check:
+      kind: structured
+      requires: [travel-time, old-image, not-now]
+      concepts: [light, universe]
+      points:
+        - id: travel-time
+          text: 'Light takes a very long time to travel from the galaxy to us, because the distance is enormous.'
+          concepts: [light]
+        - id: old-image
+          text: 'The light we see now set out from the galaxy billions of years ago.'
+          concepts: [light]
+        - id: not-now
+          text: 'So we see the galaxy as it was then, not as it is now.'
+          concepts: [universe]
+
+  - id: p10-accelerating-expansion
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'Since 1998, observations of distant supernovae suggest that the expansion of the universe is speeding up. Explain why scientists say that the universe is still not fully understood.'
+    answer_label: 'Why the universe is not fully understood'
+    check:
+      kind: structured
+      requires: [accelerating, unknown]
+      concepts: [supernova, dark-energy]
+      points:
+        - id: accelerating
+          text: 'The distant supernovae are further away than expected, so the expansion of the universe seems to be getting faster.'
+          concepts: [supernova]
+        - id: unknown
+          text: 'The cause of the speeding up is not known. It is called dark energy, and dark matter is also not understood.'
+          concepts: [dark-energy]
+
+  - id: p11-steady-state-and-big-bang
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'Two models of the universe were once considered: the Steady State model and the Big Bang model. Explain why the Big Bang model is the one accepted today.'
+    answer_label: 'Why the Big Bang model is accepted'
+    check:
+      kind: structured
+      requires: [both-explain, cmbr, accepted]
+      concepts: [steady-state, big-bang, cmbr]
+      points:
+        - id: both-explain
+          text: 'Both models can explain the red-shift of the galaxies.'
+          concepts: [steady-state, big-bang, red-shift]
+        - id: cmbr
+          text: 'The Steady State model does not explain the cosmic microwave background radiation. That radiation fits a hot, dense beginning.'
+          concepts: [cmbr]
+        - id: accepted
+          text: 'More evidence supports the Big Bang model, so it is the accepted model for the origin of the universe.'
+          concepts: [big-bang]
+
+  - id: p12-redshift-direction
+    section: '10.2'
+    tier: F
+    dfe: [SP2]
+    statement: 'A line in a laboratory spectrum has a wavelength of 500 nm. The same line in the light from a galaxy has a wavelength of 550 nm. State whether the galaxy is moving towards the Earth or away from it, and explain your answer.'
+    answer_label: 'The direction the galaxy is moving'
+    check:
+      kind: structured
+      requires: [longer, away, reason]
+      concepts: [red-shift, wavelength]
+      points:
+        - id: longer
+          text: 'The wavelength in the galaxy light, 550 nm, is longer than the laboratory wavelength of 500 nm.'
+          concepts: [wavelength]
+        - id: away
+          text: 'The galaxy is moving away from the Earth.'
+          concepts: [red-shift]
+        - id: reason
+          text: 'A longer wavelength, shifted towards the red end, is the red-shift caused by a source that is receding.'
+          concepts: [red-shift]
+
+  - id: p13-wave-speed-interleave
+    section: '10.2'
+    tier: F
+    dfe: [WA1]
+    statement: 'The light from a galaxy has a frequency of $5.0 \times 10^{14}\,\text{Hz}$ and a wavelength of $6.0 \times 10^{-7}\,\text{m}$. Say which equation you will use, then calculate the speed of the light. Give your answer to 2 significant figures.'
+    answer_label: 'Speed of the light'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 'f * lam'
+          values:
+            f: {value: '5.0e14', unit: 'Hz'}
+            lam: {value: '6.0e-7', unit: 'm'}
+          answer: {value: '3.0e8', unit: 'm/s'}
+        - {kind: sigfigs, value: '3.0e8', figures: 2, answer: '3.0e8', convention: round-once}
+    answer_text: 'Use the wave equation $v = f\lambda = 5.0 \times 10^{14} \times 6.0 \times 10^{-7} = 3.0 \times 10^{8}\,\text{m/s}$. This is the speed of light in a vacuum, which is what we expect for light.'

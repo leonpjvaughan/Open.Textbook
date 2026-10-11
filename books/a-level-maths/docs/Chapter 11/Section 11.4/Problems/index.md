@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.4 Scatter diagrams, regression lines and correlation — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: L2
+Work through these on your own. For each prediction, say whether it is an
+interpolation or an extrapolation, and whether causation is justified.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-11-practice-11.4
+
+:::answers chapter-11-practice-11.4

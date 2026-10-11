@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.1 The functions a^x and e^x — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: F1
+Work through these on your own. Before each question, decide whether the base
+lies above $1$ or between $0$ and $1$, and note whether the question asks for an
+exact value or a decimal.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-06-practice-6.1
+
+:::answers chapter-06-practice-6.1

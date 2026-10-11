@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.6 Outliers, data cleaning and critiquing presentation — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: L4
+Work through these on your own. For every unusual value, say whether you keep
+it, correct it or remove it, and give a reason.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-11-practice-11.6
+
+:::answers chapter-11-practice-11.6

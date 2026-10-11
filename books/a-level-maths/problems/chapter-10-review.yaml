@@ -1,0 +1,230 @@
+# Review bank for Chapter 10. The items mix this chapter with Chapters 1 to 9,
+# so the reader chooses a method before calculating. Every `section` names the
+# section the method comes from. The checks prove the algebra; the choice of
+# method and the reason for it are human review.
+chapter: 10
+symbols:
+  x: {real: true}
+  t: {real: true}
+  n: {integer: true}
+problems:
+  - id: q1-add-vectors
+    section: "10.3"
+    dfe: [J3]
+    statement: 'Add $\mathbf{a} = 3\mathbf{i} - 2\mathbf{j}$ and $\mathbf{b} = -2\mathbf{i} + 5\mathbf{j}$.'
+    answer_label: 'The sum'
+    check:
+      kind: vector
+      op: add
+      args: ["Matrix([3, -2])", "Matrix([-2, 5])"]
+      answer: "Matrix([1, 3])"
+    answer_text: 'Add the matching components: $\mathbf{a} + \mathbf{b} = (3 - 2)\mathbf{i} + (-2 + 5)\mathbf{j} = \mathbf{i} + 3\mathbf{j}$.'
+
+  - id: q2-magnitude-and-direction
+    section: "10.2"
+    dfe: [J2]
+    statement: 'Find the magnitude and the direction of $\mathbf{c} = 8\mathbf{i} - 6\mathbf{j}$, giving the direction from the positive $x$-axis.'
+    answer_label: 'The magnitude and the direction'
+    check:
+      kind: all
+      checks:
+        - {kind: vector, op: norm, args: ["Matrix([8, -6])"], answer: "10"}
+        - {kind: approx, value: "atan2(-6, 8) * 180 / pi", target: "-36.87", tolerance: "0.01"}
+    answer_text: 'The magnitude is $\sqrt{8^2 + (-6)^2} = \sqrt{100} = 10$. The vector is in the fourth quadrant, so the direction is $\tan^{-1}\left(\dfrac{6}{8}\right) = 36.9^\circ$ below the positive $x$-axis, which is $-36.9^\circ$.'
+
+  - id: q3-three-dimensional-distance
+    section: "10.4"
+    dfe: [J4]
+    statement: 'Find the distance between $A(1, 2, 3)$ and $B(4, 6, 15)$.'
+    answer_label: 'The distance'
+    check:
+      kind: vector
+      op: distance
+      args: ["Matrix([1, 2, 3])", "Matrix([4, 6, 15])"]
+      answer: "13"
+    answer_text: '$\vec{AB} = 3\mathbf{i} + 4\mathbf{j} + 12\mathbf{k}$, so $AB = \sqrt{3^2 + 4^2 + 12^2} = \sqrt{9 + 16 + 144} = \sqrt{169} = 13$.'
+
+  - id: q4-position-and-displacement
+    section: "10.4"
+    dfe: [J4]
+    statement: 'For $A(2, 3)$ and $B(7, 9)$, find $\vec{AB}$ and the distance $AB$.'
+    answer_label: 'The displacement and the distance'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: subtract
+          args: ["Matrix([7, 9])", "Matrix([2, 3])"]
+          answer: "Matrix([5, 6])"
+        - {kind: vector, op: distance, args: ["Matrix([2, 3])", "Matrix([7, 9])"], answer: "sqrt(61)"}
+    answer_text: '$\vec{AB} = \mathbf{b} - \mathbf{a} = 5\mathbf{i} + 6\mathbf{j}$. The distance is $AB = \sqrt{5^2 + 6^2} = \sqrt{61} \approx 7.81$.'
+
+  - id: q5-collinear
+    section: "10.5"
+    dfe: [J5]
+    statement: 'Show that $A(2, 1)$, $B(5, 7)$ and $C(8, 13)$ are collinear.'
+    answer_label: 'The two displacements'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: subtract
+          args: ["Matrix([5, 7])", "Matrix([2, 1])"]
+          answer: "Matrix([3, 6])"
+        - kind: vector
+          op: subtract
+          args: ["Matrix([8, 13])", "Matrix([5, 7])"]
+          answer: "Matrix([3, 6])"
+    answer_text: '$\vec{AB} = 3\mathbf{i} + 6\mathbf{j}$ and $\vec{BC} = 3\mathbf{i} + 6\mathbf{j}$. The displacements are equal and share the point $B$, so the three points are collinear.'
+
+  - id: q6-divide-ratio
+    section: "10.5"
+    dfe: [J5]
+    statement: 'The points are $A(1, 2)$ and $B(11, 7)$. Find the point $P$ on $AB$ with $AP : PB = 2 : 3$.'
+    answer_label: 'The position vector of $P$'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: scale
+          args: ["3", "Matrix([1, 2])"]
+          answer: "Matrix([3, 6])"
+        - kind: vector
+          op: scale
+          args: ["2", "Matrix([11, 7])"]
+          answer: "Matrix([22, 14])"
+        - kind: vector
+          op: scale
+          args: ["1/5", "Matrix([25, 20])"]
+          answer: "Matrix([5, 4])"
+    answer_text: 'With $m = 2$ and $n = 3$, $\vec{OP} = \dfrac{3\mathbf{a} + 2\mathbf{b}}{5} = \dfrac{(3, 6) + (22, 14)}{5} = \dfrac{(25, 20)}{5} = (5, 4)$. Then $AP = (4, 2)$ and $PB = (6, 3)$, the ratio $2 : 3$.'
+
+  - id: q7-equilibrium
+    section: "10.5"
+    dfe: [J5]
+    statement: 'Forces $\mathbf{F}_1 = 4\mathbf{i} - 3\mathbf{j}$ N and $\mathbf{F}_2 = -\mathbf{i} + 5\mathbf{j}$ N act at a point. Find the third force that keeps the point still, and its magnitude.'
+    answer_label: 'The third force and its magnitude'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([4, -3])", "Matrix([-1, 5])"]
+          answer: "Matrix([3, 2])"
+        - kind: vector
+          op: scale
+          args: ["-1", "Matrix([3, 2])"]
+          answer: "Matrix([-3, -2])"
+        - {kind: vector, op: norm, args: ["Matrix([-3, -2])"], answer: "sqrt(13)"}
+    answer_text: 'The point is still, so the three forces sum to zero. Now $\mathbf{F}_1 + \mathbf{F}_2 = 3\mathbf{i} + 2\mathbf{j}$ N, so the third force is $-3\mathbf{i} - 2\mathbf{j}$ N. Its magnitude is $\sqrt{(-3)^2 + (-2)^2} = \sqrt{13} \approx 3.61$ N.'
+
+  - id: q8-motion
+    section: "10.5"
+    dfe: [J5]
+    statement: 'A particle starts at $\mathbf{r}_0 = \mathbf{i} - 2\mathbf{j}$ m and moves with velocity $\mathbf{v} = 4\mathbf{i} + 3\mathbf{j}$ m/s. Find its position after $2$ s and its distance from the origin then.'
+    answer_label: 'The position and the distance'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([1, -2])", "Matrix([8, 6])"]
+          answer: "Matrix([9, 4])"
+        - {kind: vector, op: norm, args: ["Matrix([9, 4])"], answer: "sqrt(97)"}
+    answer_text: 'After $2$ s, $\mathbf{r} = \mathbf{r}_0 + 2\mathbf{v} = (\mathbf{i} - 2\mathbf{j}) + (8\mathbf{i} + 6\mathbf{j}) = 9\mathbf{i} + 4\mathbf{j}$ m. The distance from the origin is $\sqrt{9^2 + 4^2} = \sqrt{97} \approx 9.85$ m.'
+
+  - id: q9-quadratic
+    section: "2.4"
+    dfe: [B3]
+    statement: 'Solve $2x^2 - 7x + 3 = 0$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "2*x**2 - 7*x + 3 = 0"
+      variable: x
+      answer: ["3", "1/2"]
+    answer_text: 'Factorise: $(2x - 1)(x - 3) = 0$. So $2x - 1 = 0$ or $x - 3 = 0$, giving $x = \dfrac{1}{2}$ or $x = 3$. This uses the quadratics from Chapter 2.'
+
+  - id: q10-exponential-equation
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $3^x = 20$, giving an exact answer for $x$.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "3**x = 20"
+      variable: x
+      answer: ["ln(20)/ln(3)"]
+    answer_text: 'Take logarithms of both sides: $x\ln 3 = \ln 20$, so $x = \dfrac{\ln 20}{\ln 3} \approx 2.73$. This uses the logarithms from Chapter 6.'
+
+  - id: q11-differentiate
+    section: "7.3"
+    dfe: [G2]
+    statement: 'Differentiate $y = 3x^2 - 4x + 1$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "3*x**2 - 4*x + 1"
+      apply: {op: diff, args: [x]}
+      answer: "6*x - 4"
+    answer_text: 'Differentiate term by term: $3 \times 2x - 4 = 6x - 4$. This uses the differentiation from Chapter 7.'
+
+  - id: q12-integrate
+    section: "8.1"
+    dfe: [H2]
+    statement: 'Find $\displaystyle\int \left(6x^2 + 2x\right)dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "6*x**2 + 2*x"
+      apply: {op: integrate, args: [x]}
+      answer: "2*x**3 + x**2"
+      variable: x
+    answer_text: 'Integrate term by term: $6 \times \dfrac{x^3}{3} + 2 \times \dfrac{x^2}{2} + C = 2x^3 + x^2 + C$. This uses the integration from Chapter 8.'
+
+  - id: q13-trigonometric-equation
+    section: "5.10"
+    dfe: [E7]
+    statement: 'Solve $\sin x = \dfrac{1}{2}$ for $0 \le x \le 2\pi$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "sin(x) = 1/2"
+      variable: x
+      interval: ["0", "2*pi"]
+      answer: ["pi/6", "5*pi/6"]
+    answer_text: 'The sine of $x$ is positive, so $x$ is in the first or second quadrant. The first solution is $x = \dfrac{\pi}{6}$, and the second is $x = \pi - \dfrac{\pi}{6} = \dfrac{5\pi}{6}$. This uses the trigonometric equations from Chapter 5.'
+
+  - id: q14-proof-by-deduction
+    section: "1.2"
+    dfe: [A1]
+    statement: 'Prove that the sum of two consecutive odd numbers is a multiple of $4$.'
+    answer_label: 'The algebra of the proof'
+    check:
+      kind: evaluate
+      expression: "(2*n + 1) + (2*n + 3)"
+      answer: "4*n + 4"
+    answer_text: 'Let the two consecutive odd numbers be $2n + 1$ and $2n + 3$ for an integer $n$. Their sum is $(2n + 1) + (2n + 3) = 4n + 4 = 4(n + 1)$, which has a factor of $4$. The sum is a multiple of $4$. This is proof by deduction, from Chapter 1.'
+
+  - id: q15-trapezium-rule
+    section: "9.4"
+    dfe: [I3]
+    statement: 'Use the trapezium rule with two strips to estimate $\displaystyle\int_0^2 x^2\,dx$.'
+    answer_label: 'The estimate'
+    check:
+      kind: evaluate
+      expression: "(1/2) * 1 * (0 + 2*1 + 4)"
+      answer: "3"
+    answer_text: 'With two strips, each of width $h = 1$, the ordinates at $x = 0, 1, 2$ are $0, 1, 4$. The estimate is $\dfrac{h}{2}\left(y_0 + 2y_1 + y_2\right) = \dfrac{1}{2}(0 + 2 + 4) = 3$. This uses the trapezium rule from Chapter 9.'
+
+  - id: q16-speed-and-distance
+    section: "10.2"
+    dfe: [J2]
+    statement: 'A drone moves with velocity $6\mathbf{i} + 8\mathbf{j}$ km/h for $1.5$ hours. Find its speed and the distance travelled.'
+    answer_label: 'The speed and the distance'
+    check:
+      kind: all
+      checks:
+        - {kind: vector, op: norm, args: ["Matrix([6, 8])"], answer: "10"}
+        - {kind: evaluate, expression: "10 * 1.5", answer: "15"}
+    answer_text: 'The speed is the magnitude of the velocity: $\sqrt{6^2 + 8^2} = 10$ km/h. The distance travelled is speed $\times$ time $= 10 \times 1.5 = 15$ km.'
