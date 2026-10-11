@@ -287,6 +287,31 @@ scripts/next-tag.sh                       # the release tag scheme (yy.day.incre
 scripts/protect-main.sh                   # require the gate check on main (needs GitHub Pro)
 ```
 
+## Branches and releases
+
+| Branch | Push to it and you get |
+|---|---|
+| `dev` | the whole gate — banks, tests, voice, both tier builds, drift, actionlint — and nothing else |
+| `main` | the same gate, then a release, then a deploy to open-textbook.org |
+
+`dev` is where work happens and it merges into `main`. The release and deploy jobs
+require `refs/heads/main`, so they are skipped elsewhere by construction rather
+than by remembering to guard them; that is what makes `dev` safe to push to.
+
+**A change to the workflow itself is inert until it reaches `main`.** The pipeline
+that runs is the one on the branch being pushed, and the release and deploy jobs
+only ever run from `main` — so editing `.github/workflows/verify.yml` on `dev`
+changes nothing about what happens on a push to `main` until the merge. This is
+easy to get wrong in the other direction too: pushing such a change straight to
+`main` deploys, because that is what pushing to `main` does.
+
+Releases are tagged `yy.<day of year>.<increment>` — `26.284.1` is the second
+release on day 284 of 2026 — so two deploys in a day cannot collide. The scheme
+lives in `scripts/next-tag.sh`, tested in `tests/test_release.py`.
+
+`DEPLOY.md` is the runbook: credentials, the domain, what each stage does, and how
+to check a deploy.
+
 ## Watch out for
 
 Issues found while building the shell and the Chapter 1 slice. Check these before
