@@ -1,18 +1,18 @@
 # Build output
 site/
 test/site/
+var/
 
 # Python virtualenv
 .venv/
-# Fetched primary sources (reference material; see scripts/fetch_sources.sh)
-sources/
+
+# Fetched primary sources: reference material, not build input. The tracked
+# manifest is books/<id>/sources.yaml; see scripts/fetch_sources.sh.
+research/sources/
 
 # Python
 __pycache__/
 *.pyc
-
-# Tooling
-.venv/
 
 # OpenDesign local state and staged skills
 .od/
@@ -20,4 +20,3 @@ __pycache__/
 
 # Node build dependency (build-time KaTeX only)
 node_modules/
-agent-runs/

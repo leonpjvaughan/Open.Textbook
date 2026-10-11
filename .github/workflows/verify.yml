@@ -13,10 +13,34 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  verify:
-    name: build, verify and test
+  # One row per book profile, derived from books/*/book.yaml, so adding a book
+  # needs no workflow edit.
+  plan:
+    name: plan
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
+    outputs:
+      include: ${{ steps.matrix.outputs.include }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
+
+      - name: Install Python dependencies
+        run: uv sync --locked
+
+      - id: matrix
+        name: Emit the build matrix
+        run: echo "include=$(uv run python -m textbook.plan --github-matrix)" >> "$GITHUB_OUTPUT"
+
+  generated:
+    name: generated files are in sync
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
 
@@ -31,41 +55,85 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install Python dependencies
-        run: uv sync --locked
-
-      - name: Install Node dependencies
-        run: npm ci
-
-      - name: Generated files are in sync
+      - name: Install dependencies
         run: |
-          uv run python scripts/build_booklet.py
-          uv run python scripts/scaffold_docs.py
+          uv sync --locked
+          npm ci
+
+      - name: Regenerate and check for drift
+        run: |
+          uv run python -m textbook.scaffold
+          uv run python -m textbook.booklet
+          uv run python -m textbook.portal
           git diff --exit-code
 
-      - name: Verify the problem bank
-        run: uv run python -m verification problems/
+  build:
+    name: build ${{ matrix.book }} (${{ matrix.profile }})
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.plan.outputs.include) }}
+    steps:
+      - uses: actions/checkout@v7
 
-      - name: Test
-        run: uv run pytest tests/ -q
+      - name: Set up uv
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
 
-      - name: Build the book (Higher)
-        run: uv run mkdocs build -f renderers/mkdocs/mkdocs.yml --strict
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
 
-      - name: Build the book (Foundation)
-        run: uv run mkdocs build -f renderers/mkdocs/mkdocs.foundation.yml --strict
+      - name: Install dependencies
+        run: |
+          uv sync --locked
+          npm ci
+
+      - name: Build ${{ matrix.title }} — ${{ matrix.name }}
+        run: uv run mkdocs build -f ${{ matrix.config }} --strict
 
       - name: No maths rendering errors
         run: |
-          if grep -rl 'math-error' site/higher --include='*.html'; then
+          if grep -rl 'math-error' ${{ matrix.site_dir }} --include='*.html'; then
             echo "KaTeX failed to render at least one expression" >&2
             exit 1
           fi
 
+  content:
+    name: banks, tests and voice
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
+
+      - name: Install Python dependencies
+        run: uv sync --locked
+
+      - name: Verify the problem banks
+        run: uv run python -m textbook.verify
+
+      - name: Lint the books
+        run: uv run python -m textbook.lint
+
+      - name: Test
+        run: uv run pytest tests/ -q
+
       - name: Figure-hook and tier-profile evaluation
         run: test/run.sh
 
-  lint:
+  workflows:
     name: lint workflows
     runs-on: ubuntu-latest
     timeout-minutes: 5

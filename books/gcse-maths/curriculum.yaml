@@ -1,0 +1,347 @@
+# GCSE Mathematics (England) — chapter and section plan
+# Single source of truth for the Docs/ scaffold and for per-chapter sub-agent briefs.
+# Tier: F = Foundation and Higher; H = Higher only.
+# dfe: reference into the DfE subject content, using the strand letter + item number
+#      (N = Number, A = Algebra, R = Ratio/proportion/rates of change,
+#       G = Geometry and measures, P = Probability, S = Statistics).
+#      The same references are used by AQA 8300. See PLAN.md for the mapping method.
+
+meta:
+  title: GCSE Mathematics (9-1)
+  jurisdiction: England
+  awarding_bodies: [AQA 8300, Pearson Edexcel 1MA1, OCR J560]
+  tiers: [Foundation, Higher]
+  retrieved: 2026-10-10
+  note: >-
+    Items G11, G14 and P4 sit inside cross-cutting sections rather than
+    having a dedicated section of their own.
+
+# Curriculum coverage: the item ranges the scaffold checks and maps to sections.
+# Each group is a prefix, the strand it belongs to, and how many items it has.
+# The provenance for these claims lives in sources.yaml.
+coverage:
+  - prefix: N
+    strand: number
+    items: 16
+  - prefix: A
+    strand: algebra
+    items: 25
+  - prefix: R
+    strand: ratio
+    items: 16
+  - prefix: G
+    strand: geometry
+    items: 25
+  - prefix: P
+    strand: probability
+    items: 9
+  - prefix: S
+    strand: statistics
+    items: 6
+
+strands:
+  - id: number
+    title: Number
+  - id: algebra
+    title: Algebra
+  - id: ratio
+    title: Ratio, proportion and rates of change
+  - id: geometry
+    title: Geometry and measures
+  - id: probability
+    title: Probability
+  - id: statistics
+    title: Statistics
+
+chapters:
+  - id: 1
+    title: Number skills
+    strand: number
+    summary: Place value, the four operations including negative numbers, priority of operations, and rounding and estimation.
+    anchor:
+      title: The school-fair stall
+      brief: >-
+        You are running a stall at the school fair with a £50 float. Buy stock,
+        set a price, sell what you can, and work out whether the stall made a
+        profit or a loss — then decide how confident you can be in that answer.
+    application: Cash handling, budgets, profit and loss, and estimating before you commit money.
+    relevance_prompt: Where in your own week do you meet negative numbers, or need a quick estimate before deciding something?
+    tools: [profit-slider]
+    sections:
+      - {id: "1.1", title: "Place value and ordering numbers", tier: F, dfe: [N1, N2]}
+      - {id: "1.2", title: "The four operations", tier: F, dfe: [N2, N3]}
+      - {id: "1.3", title: "Negative numbers", tier: F, dfe: [N1, N2]}
+      - {id: "1.4", title: "Priority of operations and inverse operations", tier: F, dfe: [N3]}
+      - {id: "1.5", title: "Rounding and estimation", tier: F, dfe: [N14, N15]}
+
+  - id: 2
+    title: Factors, multiples and primes
+    strand: number
+    summary: Divisibility structure of the integers and systematic counting.
+    sections:
+      - {id: "2.1", title: "Factors, multiples and prime numbers", tier: F, dfe: [N4]}
+      - {id: "2.2", title: "Prime factorisation, HCF and LCM", tier: F, dfe: [N4]}
+      - {id: "2.3", title: "Systematic listing strategies", tier: F, dfe: [N5]}
+      - {id: "2.4", title: "The product rule for counting", tier: H, dfe: [N5]}
+
+  - id: 3
+    title: Powers, roots and indices
+    strand: number
+    summary: Powers and real roots, estimation of powers and roots, and the laws of indices.
+    sections:
+      - {id: "3.1", title: "Powers and roots", tier: F, dfe: [N6]}
+      - {id: "3.2", title: "Estimating powers and roots", tier: F, dfe: [N6]}
+      - {id: "3.3", title: "Laws of indices", tier: F, dfe: [A4, N7]}
+      - {id: "3.4", title: "Negative and fractional indices", tier: H, dfe: [N7]}
+
+  - id: 4
+    title: Fractions, decimals and percentages
+    strand: number
+    summary: Interchangeable representations and the four operations on fractions.
+    sections:
+      - {id: "4.1", title: "Equivalent fractions and ordering", tier: F, dfe: [N1, N10]}
+      - {id: "4.2", title: "Adding and subtracting fractions", tier: F, dfe: [N2]}
+      - {id: "4.3", title: "Multiplying and dividing fractions", tier: F, dfe: [N2]}
+      - {id: "4.4", title: "Fractions and terminating decimals", tier: F, dfe: [N10]}
+      - {id: "4.5", title: "Recurring decimals", tier: H, dfe: [N10]}
+      - {id: "4.6", title: "Fractions and percentages as operators", tier: F, dfe: [N11, N12]}
+
+  - id: 5
+    title: Ratio and proportion
+    strand: ratio
+    summary: Ratio notation and sharing, multiplicative relationships, direct and inverse proportion, and scale.
+    sections:
+      - {id: "5.1", title: "Ratio notation, simplifying and sharing", tier: F, dfe: [R3, R4, R5]}
+      - {id: "5.2", title: "Ratio, fractions and linear functions", tier: F, dfe: [R6, R7, R8]}
+      - {id: "5.3", title: "Direct proportion", tier: F, dfe: [R10, R13, R14]}
+      - {id: "5.4", title: "Inverse proportion", tier: H, dfe: [R10, R13, R14]}
+      - {id: "5.5", title: "Scale factors, scale diagrams and maps", tier: F, dfe: [R2]}
+      - {id: "5.6", title: "Comparing lengths, areas and volumes", tier: H, dfe: [R12]}
+
+  - id: 6
+    title: Percentages and financial mathematics
+    strand: ratio
+    summary: Percentage change and reverse percentage problems, simple and compound interest, growth and decay.
+    sections:
+      - {id: "6.1", title: "Percentage of an amount", tier: F, dfe: [R9]}
+      - {id: "6.2", title: "Percentage change", tier: F, dfe: [R9]}
+      - {id: "6.3", title: "Reverse percentages", tier: F, dfe: [R9]}
+      - {id: "6.4", title: "Simple and compound interest", tier: F, dfe: [R9, R16]}
+      - {id: "6.5", title: "Growth, decay and repeated percentage change", tier: H, dfe: [R16]}
+
+  - id: 7
+    title: Measures, accuracy, standard form and surds
+    strand: number
+    summary: Units and compound measures, degrees of accuracy and bounds, standard form, and exact calculation with surds.
+    sections:
+      - {id: "7.1", title: "Units of measure and conversions", tier: F, dfe: [N13, R1, G14]}
+      - {id: "7.2", title: "Compound measures: speed, density and pressure", tier: F, dfe: [R1, R11]}
+      - {id: "7.3", title: "Rounding and error intervals", tier: F, dfe: [N15]}
+      - {id: "7.4", title: "Upper and lower bounds", tier: H, dfe: [N16]}
+      - {id: "7.5", title: "Standard form", tier: F, dfe: [N9]}
+      - {id: "7.6", title: "Surds and exact calculations", tier: H, dfe: [N8]}
+
+  - id: 8
+    title: Algebraic expressions and manipulation
+    strand: algebra
+    summary: Algebraic notation and vocabulary, simplification, brackets, factorisation, substitution and rearranging formulae.
+    sections:
+      - {id: "8.1", title: "Algebraic notation and vocabulary", tier: F, dfe: [A1, A3]}
+      - {id: "8.2", title: "Simplifying and collecting like terms", tier: F, dfe: [A4]}
+      - {id: "8.3", title: "Expanding brackets", tier: F, dfe: [A4]}
+      - {id: "8.4", title: "Factorising with common factors", tier: F, dfe: [A4]}
+      - {id: "8.5", title: "Substitution into expressions and formulae", tier: F, dfe: [A2]}
+      - {id: "8.6", title: "Rearranging formulae", tier: F, dfe: [A5]}
+      - {id: "8.7", title: "Expanding products of three binomials", tier: H, dfe: [A4]}
+
+  - id: 9
+    title: Equations and inequalities
+    strand: algebra
+    summary: Linear equations and inequalities, forming equations from contexts, and quadratic inequalities.
+    sections:
+      - {id: "9.1", title: "Solving linear equations", tier: F, dfe: [A17]}
+      - {id: "9.2", title: "Equations with unknowns on both sides", tier: F, dfe: [A17]}
+      - {id: "9.3", title: "Forming and solving equations", tier: F, dfe: [A21]}
+      - {id: "9.4", title: "Inequalities on a number line and set notation", tier: F, dfe: [A22]}
+      - {id: "9.5", title: "Solving linear inequalities", tier: F, dfe: [A22]}
+      - {id: "9.6", title: "Quadratic inequalities", tier: H, dfe: [A22]}
+
+  - id: 10
+    title: Sequences
+    strand: algebra
+    summary: Term-to-term and position-to-term rules, special sequences, and nth-term expressions.
+    sections:
+      - {id: "10.1", title: "Term-to-term and position-to-term rules", tier: F, dfe: [A23]}
+      - {id: "10.2", title: "Special sequences", tier: F, dfe: [A24]}
+      - {id: "10.3", title: "The nth term of a linear sequence", tier: F, dfe: [A25]}
+      - {id: "10.4", title: "The nth term of a quadratic sequence", tier: H, dfe: [A25]}
+      - {id: "10.5", title: "Geometric sequences", tier: H, dfe: [A24]}
+
+  - id: 11
+    title: Straight-line graphs and rates of change
+    strand: algebra
+    summary: Coordinates, gradient and intercept, equations of lines, parallel and perpendicular lines, and interpreting real graphs.
+    sections:
+      - {id: "11.1", title: "Coordinates and plotting graphs", tier: F, dfe: [A8, A9, G11]}
+      - {id: "11.2", title: "Gradient and intercept: y = mx + c", tier: F, dfe: [A9, A10]}
+      - {id: "11.3", title: "Finding the equation of a line", tier: F, dfe: [A9]}
+      - {id: "11.4", title: "Parallel and perpendicular lines", tier: H, dfe: [A9]}
+      - {id: "11.5", title: "Real-life and distance-time graphs", tier: F, dfe: [A14, R14]}
+      - {id: "11.6", title: "Gradients and areas under graphs", tier: H, dfe: [A15, R15]}
+
+  - id: 12
+    title: Quadratic expressions, equations and graphs
+    strand: algebra
+    summary: Expanding and factorising quadratics, quadratic graphs, and the three solution methods.
+    sections:
+      - {id: "12.1", title: "Expanding and factorising quadratics", tier: F, dfe: [A4, A18]}
+      - {id: "12.2", title: "Factorising harder quadratics", tier: H, dfe: [A4]}
+      - {id: "12.3", title: "Quadratic graphs and their features", tier: F, dfe: [A11, A12]}
+      - {id: "12.4", title: "Solving quadratic equations by factorising", tier: F, dfe: [A18]}
+      - {id: "12.5", title: "The quadratic formula", tier: H, dfe: [A18]}
+      - {id: "12.6", title: "Completing the square", tier: H, dfe: [A11, A18]}
+
+  - id: 13
+    title: Other functions and graphs
+    strand: algebra
+    summary: Cubic, reciprocal, exponential and trigonometric graphs, graph transformations, and the circle equation.
+    sections:
+      - {id: "13.1", title: "Cubic, reciprocal and exponential graphs", tier: H, dfe: [A12, A14]}
+      - {id: "13.2", title: "Trigonometric graphs", tier: H, dfe: [A12]}
+      - {id: "13.3", title: "Transformations of graphs", tier: H, dfe: [A13]}
+      - {id: "13.4", title: "The equation of a circle and tangents", tier: H, dfe: [A16]}
+
+  - id: 14
+    title: Simultaneous equations and iteration
+    strand: algebra
+    summary: Solving pairs of equations algebraically and graphically, and numerical solution by iteration.
+    sections:
+      - {id: "14.1", title: "Simultaneous equations by elimination", tier: F, dfe: [A19]}
+      - {id: "14.2", title: "Simultaneous equations by substitution", tier: F, dfe: [A19]}
+      - {id: "14.3", title: "Solving simultaneous equations graphically", tier: F, dfe: [A19]}
+      - {id: "14.4", title: "Linear and quadratic simultaneous equations", tier: H, dfe: [A19]}
+      - {id: "14.5", title: "Iteration and numerical methods", tier: H, dfe: [A20]}
+
+  - id: 15
+    title: Functions, algebraic fractions and proof
+    strand: algebra
+    summary: Inverse and composite functions, algebraic fractions, identities, and algebraic proof.
+    sections:
+      - {id: "15.1", title: "Functions: inverse and composite", tier: H, dfe: [A7]}
+      - {id: "15.2", title: "Simplifying algebraic fractions", tier: H, dfe: [A4]}
+      - {id: "15.3", title: "Operations with algebraic fractions", tier: H, dfe: [A4]}
+      - {id: "15.4", title: "Identities and equivalent expressions", tier: F, dfe: [A6]}
+      - {id: "15.5", title: "Algebraic proof", tier: H, dfe: [A6]}
+
+  - id: 16
+    title: Angles, polygons and geometrical reasoning
+    strand: geometry
+    summary: Angle facts, parallel lines, triangles, quadrilaterals, polygon angle sums, and deductive reasoning.
+    sections:
+      - {id: "16.1", title: "Angle facts at a point and on a line", tier: F, dfe: [G3]}
+      - {id: "16.2", title: "Angles in parallel lines", tier: F, dfe: [G3]}
+      - {id: "16.3", title: "Angles in triangles and quadrilaterals", tier: F, dfe: [G3, G4]}
+      - {id: "16.4", title: "Angles in polygons", tier: F, dfe: [G3]}
+      - {id: "16.5", title: "Geometrical reasoning and proof", tier: H, dfe: [G6]}
+
+  - id: 17
+    title: Properties, constructions, loci and bearings
+    strand: geometry
+    summary: Shape properties, plans and elevations, ruler-and-compass constructions, loci, and bearings.
+    sections:
+      - {id: "17.1", title: "Properties of 2D and 3D shapes", tier: F, dfe: [G1, G12]}
+      - {id: "17.2", title: "Plans and elevations", tier: F, dfe: [G13]}
+      - {id: "17.3", title: "Constructions with ruler and compasses", tier: F, dfe: [G2]}
+      - {id: "17.4", title: "Loci", tier: F, dfe: [G2]}
+      - {id: "17.5", title: "Bearings and scale drawings", tier: F, dfe: [G15]}
+
+  - id: 18
+    title: Transformations, congruence and similarity
+    strand: geometry
+    summary: The four transformations, congruence criteria, and similarity including area and volume scale factors.
+    sections:
+      - {id: "18.1", title: "Reflection, rotation and translation", tier: F, dfe: [G7, G8]}
+      - {id: "18.2", title: "Enlargement", tier: F, dfe: [G7]}
+      - {id: "18.3", title: "Enlargement with fractional and negative scale factors", tier: H, dfe: [G7]}
+      - {id: "18.4", title: "Congruence and congruence criteria", tier: F, dfe: [G5]}
+      - {id: "18.5", title: "Similarity and similar lengths", tier: F, dfe: [G19, R12]}
+      - {id: "18.6", title: "Similarity: areas and volumes", tier: H, dfe: [G19]}
+
+  - id: 19
+    title: Perimeter, area, surface area and volume
+    strand: geometry
+    summary: Perimeters and areas of plane figures, circles and sectors, and surface area and volume of solids.
+    sections:
+      - {id: "19.1", title: "Perimeter and area of 2D shapes", tier: F, dfe: [G16]}
+      - {id: "19.2", title: "Circumference and area of circles", tier: F, dfe: [G17]}
+      - {id: "19.3", title: "Arc length and sector area", tier: H, dfe: [G18]}
+      - {id: "19.4", title: "Surface area and volume of prisms and cylinders", tier: F, dfe: [G16, G17]}
+      - {id: "19.5", title: "Surface area and volume of spheres, cones and pyramids", tier: H, dfe: [G17]}
+      - {id: "19.6", title: "Composite shapes and solids", tier: F, dfe: [G17]}
+
+  - id: 20
+    title: Pythagoras' theorem and trigonometry
+    strand: geometry
+    summary: Right-angled triangles, exact values, 3D problems, and the sine and cosine rules.
+    sections:
+      - {id: "20.1", title: "Pythagoras' theorem", tier: F, dfe: [G20]}
+      - {id: "20.2", title: "Trigonometric ratios (SOHCAHTOA)", tier: F, dfe: [G20]}
+      - {id: "20.3", title: "Angles of elevation and depression", tier: F, dfe: [G20]}
+      - {id: "20.4", title: "Exact trigonometric values", tier: H, dfe: [G21]}
+      - {id: "20.5", title: "3D Pythagoras and trigonometry", tier: H, dfe: [G20]}
+      - {id: "20.6", title: "The sine rule", tier: H, dfe: [G22]}
+      - {id: "20.7", title: "The cosine rule", tier: H, dfe: [G22]}
+      - {id: "20.8", title: "The area of any triangle", tier: H, dfe: [G23]}
+
+  - id: 21
+    title: Circle geometry and circle theorems
+    strand: geometry
+    summary: Circle vocabulary, the standard circle theorems, tangents and chords, and their proofs.
+    sections:
+      - {id: "21.1", title: "Parts of a circle", tier: F, dfe: [G9]}
+      - {id: "21.2", title: "Circle theorems", tier: H, dfe: [G10]}
+      - {id: "21.3", title: "Tangents and chords", tier: H, dfe: [G10]}
+      - {id: "21.4", title: "Proof of circle theorems", tier: H, dfe: [G10]}
+
+  - id: 22
+    title: Vectors
+    strand: geometry
+    summary: Vector notation and arithmetic, column vectors, and vector arguments in geometry.
+    sections:
+      - {id: "22.1", title: "Vector notation and column vectors", tier: H, dfe: [G24, G25]}
+      - {id: "22.2", title: "Adding and subtracting vectors", tier: H, dfe: [G25]}
+      - {id: "22.3", title: "Vectors in geometric problems and proofs", tier: H, dfe: [G25]}
+
+  - id: 23
+    title: Probability
+    strand: probability
+    summary: The probability scale, relative frequency, systematic enumeration, combined events and conditional probability.
+    sections:
+      - {id: "23.1", title: "The probability scale and equally likely outcomes", tier: F, dfe: [P2, P3, P4]}
+      - {id: "23.2", title: "Relative frequency and expected outcomes", tier: F, dfe: [P1, P2, P3, P5]}
+      - {id: "23.3", title: "Frequency trees, tables and possibility spaces", tier: F, dfe: [P1, P6, P7]}
+      - {id: "23.4", title: "Combined events and tree diagrams", tier: F, dfe: [P8]}
+      - {id: "23.5", title: "Venn diagrams and set notation", tier: F, dfe: [P6]}
+      - {id: "23.6", title: "Conditional probability", tier: H, dfe: [P9]}
+
+  - id: 24
+    title: "Statistics: representing and analysing data"
+    strand: statistics
+    summary: Sampling and data collection, charts and tables, averages and range.
+    sections:
+      - {id: "24.1", title: "Collecting data, sampling and questionnaires", tier: F, dfe: [S1, S5]}
+      - {id: "24.2", title: "Tables, bar charts, pie charts and pictograms", tier: F, dfe: [S2]}
+      - {id: "24.3", title: "Averages and range", tier: F, dfe: [S4]}
+      - {id: "24.4", title: "Averages from frequency tables", tier: F, dfe: [S4]}
+      - {id: "24.5", title: "Time series and line graphs", tier: F, dfe: [S2]}
+
+  - id: 25
+    title: "Statistics: spread, grouped data and correlation"
+    strand: statistics
+    summary: Quartiles and box plots, cumulative frequency, histograms, scatter graphs and comparing distributions.
+    sections:
+      - {id: "25.1", title: "Quartiles, interquartile range and box plots", tier: H, dfe: [S4]}
+      - {id: "25.2", title: "Cumulative frequency", tier: H, dfe: [S3]}
+      - {id: "25.3", title: "Histograms", tier: H, dfe: [S3]}
+      - {id: "25.4", title: "Scatter graphs and correlation", tier: F, dfe: [S6]}
+      - {id: "25.5", title: "Comparing distributions and outliers", tier: H, dfe: [S4]}

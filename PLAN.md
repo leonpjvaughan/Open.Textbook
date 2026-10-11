@@ -43,13 +43,13 @@ placed.
 4. Cross-check against Maths Genie's grade-ordered list to confirm every examinable
    topic appears somewhere.
 5. Tag each section `F` (Foundation and Higher) or `H` (Higher only). This is a
-   first pass; `scripts/scaffold_docs.py` and the DfE map guarantee *coverage*, not
+   first pass; `engine/textbook/scaffold.py` and the DfE map guarantee *coverage*, not
    *tier accuracy*. Tier tags must be confirmed against the AQA columns while
    authoring (see the agent brief).
 
 ## 3. Structure at a glance
 
-25 chapters, 133 sections, in four parts. Source of truth: `curriculum.yaml`.
+25 chapters, 133 sections, in four parts. Source of truth: `books/gcse-maths/curriculum.yaml`.
 Generated reverse index: `CURRICULUM-MAP.md`.
 
 | Part | Strand(s) | Chapters |
@@ -90,7 +90,7 @@ Generated reverse index: `CURRICULUM-MAP.md`.
 ## 4. Folder and file conventions
 
 ```
-Docs/
+books/gcse-maths/docs/
   index.md                       # book front page
   Glossary/
     index.md
@@ -99,7 +99,7 @@ Docs/
     index.md                     # chapter overview: summary + section list
     Section <n.m>/
       Walkthrough/index.md
-      Guided problems/index.md
+      Guided books/gcse-maths/problems/index.md
       Problems/index.md
 ```
 
@@ -111,11 +111,11 @@ Docs/
   section (`Chapter 1/Section 1.1/Walkthrough/`). Extra sibling pages may be added
   inside a leaf folder when a topic genuinely needs more than one page (e.g.
   `Questions/index.md`); the `index.md` remains the landing page.
-- `renderers/mkdocs/nav.yml` is generated from `curriculum.yaml` and should not be
+- `renderers/mkdocs/nav.yml` is generated from `books/gcse-maths/curriculum.yaml` and should not be
   hand-edited.
 - The scaffold is idempotent. Every generated file carries `<!-- scaffold:stub -->`;
-  `python scripts/scaffold_docs.py` rewrites only files that still carry it, so
-  authored content is never clobbered. Re-run after editing `curriculum.yaml`.
+  `python -m textbook.scaffold` rewrites only files that still carry it, so
+  authored content is never clobbered. Re-run after editing `books/gcse-maths/curriculum.yaml`.
 
 ## 5. Content contract
 
@@ -163,7 +163,7 @@ build time with KaTeX (Tier 0). Python cells, when used, use the canonical MkDoc
 marimo fence ` ```python {marimo} `. Figures are authored with the line-anchored
 directive `:::figure <slug>`; a repo-owned MkDocs hook expands it to the portable
 `<maths-figure data-figure="<slug>">` element and injects the figure loader only
-into pages that use it. Figure modules live under `Docs/assets/figures/<slug>.js`
+into pages that use it. Figure modules live under `books/gcse-maths/docs/assets/figures/<slug>.js`
 and export `mount(el)`. See `test/README.md` for the evaluation behind this.
 
 ## 6. Interactivity policy for GCSE
@@ -186,8 +186,8 @@ Default to the cheapest tier that earns its keep (`HANDOFF.md` §3). For this bo
 
 - `CURRICULUM-MAP.md` maps all 97 DfE content items (N1–16, A1–25, R1–16, G1–25,
   P1–9, S1–6) to the section(s) that teach them.
-- `python scripts/scaffold_docs.py` **fails** if any DfE item loses its home,
-  and regenerates the docs tree, `nav.yml` and the map from `curriculum.yaml`.
+- `python -m textbook.scaffold` **fails** if any DfE item loses its home,
+  and regenerates the docs tree, `nav.yml` and the map from `books/gcse-maths/curriculum.yaml`.
 - `scripts/fetch_sources.sh` restores the primary sources into git-ignored
   `sources/` (DfE subject content, AQA/Edexcel/OCR specifications).
 
@@ -202,7 +202,7 @@ Default to the cheapest tier that earns its keep (`HANDOFF.md` §3). For this bo
    pages + glossary) builds clean with three guided figures and no maths errors.
 3. **Long run: one sub-agent per chapter.** Chapters 2–25 dispatched in parallel
    or in small batches, each bounded to its chapter folder, its glossary strand
-   page, and `Docs/assets/figures/` / `figures/py/` additions it needs. See
+   page, and `books/gcse-maths/docs/assets/figures/` / `figures/py/` additions it needs. See
    `AGENT-BRIEF.md` for the per-chapter brief.
 4. **Integration and verification.** MkDocs `--strict`, no-JS check on Tier-0
    pages, Tier-2 determinism check, links and maths render check, tier-tag audit
@@ -231,9 +231,9 @@ Default to the cheapest tier that earns its keep (`HANDOFF.md` §3). For this bo
   better — Buchner & Baumgartner 2007), with a `prefers-color-scheme` dark mode
   toggle. Measure capped at `70ch` (Butterick 45–90, Baymard 50–75 optimal);
   ~17px body, 1.65 line-height; serif display + sans body. Implemented in
-  `renderers/mkdocs/base.yml` and `Docs/assets/stylesheets/extra.css`.
+  `renderers/mkdocs/base.yml` and `assets/stylesheets/extra.css`.
 - **D12 — Maths rendering.** Build-time KaTeX 0.19.0 to MathML (no runtime JS,
-  CSS or fonts), via `scripts/katex-render.mjs` and
+  CSS or fonts), via `engine/textbook/js/katex-render.mjs` and
   `renderers/mkdocs/hooks/maths.py`. `aligned` works; the hook unescapes the
   HTML entities Markdown introduces before rendering.
 - **D13 — OpenDesign** is activated project-scoped (`.mcp.json`,

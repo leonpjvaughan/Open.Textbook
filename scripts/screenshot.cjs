@@ -5,7 +5,7 @@
 // Usage:
 //   node scripts/screenshot.cjs <siteDir> <outDir> [--schemes light,dark] -- name:path [name:path ...]
 // Example:
-//   node scripts/screenshot.cjs site/higher /tmp/shots -- schemes light,dark -- \
+//   node scripts/screenshot.cjs site/gcse-maths/higher /tmp/shots -- schemes light,dark -- \
 //     home:/ "anchor:/Chapter 1/"
 const fs = require("node:fs");
 const path = require("node:path");

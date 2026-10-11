@@ -1,0 +1,83 @@
+# Provenance for every curriculum claim in this book.
+#
+# This is a tracked build input: it is what the chapter plan's DfE references and
+# the board assumptions rest on, so it belongs with the content. The fetched
+# artefacts (PDFs and extracted text) are bulky and regenerable, so they live
+# outside the build tree in research/sources/gcse-maths/ and are git-ignored.
+#
+#   scripts/fetch_sources.sh gcse-maths
+
+retrieved: 2026-10-10
+
+references:
+  - id: dfe
+    title: "Mathematics: GCSE subject content and assessment objectives"
+    ref: DFE-00233-2013
+    url: https://assets.publishing.service.gov.uk/media/5a7cb5b040f0b6629523b52c/GCSE_mathematics_subject_content_and_assessment_objectives.pdf
+    role: >-
+      Primary curriculum. Six strands; standard / underlined / bold type encodes
+      tier.
+
+  - id: aqa-8300
+    title: "AQA GCSE Mathematics 8300 specification (v1.1, September 2026)"
+    url: https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300
+    role: >-
+      Content organised into topic areas with basic / additional foundation /
+      higher columns.
+
+  - id: edexcel-1ma1
+    title: >-
+      Pearson Edexcel Level 1/Level 2 GCSE (9-1) in Mathematics (1MA1)
+      specification and Content Guidance
+    url: https://qualifications.pearson.com/en/qualifications/edexcel-gcses/mathematics-2015.html
+    role: >-
+      Confirms the six DfE strands; Content Guidance gives worked examples and
+      exam-style depth.
+
+  - id: ocr-j560
+    title: "Cambridge OCR GCSE (9-1) Mathematics J560 specification (v2.1, August 2026)"
+    url: https://www.ocr.org.uk/qualifications/gcse/mathematics-j560-from-2015/
+    role: >-
+      Twelve-topic grouping; useful cross-check that topic bundles are shared
+      across boards.
+
+  - id: mathsgenie
+    title: "Maths Genie — GCSE Maths (Edexcel) topic list, grades 1-9"
+    url: https://www.mathsgenie.co.uk/gcse/maths/edexcel
+    role: >-
+      Public grade-ordered enumeration of every teachable topic; used to check no
+      topic is orphaned.
+
+  - id: pearson-titles
+    title: >-
+      Pearson Edexcel GCSE (9-1) Mathematics Higher Student Book
+      (9781447980209, 728pp) / Foundation (9781447980193, 712pp)
+    url: https://openlibrary.org/books/OL29259620M
+    role: >-
+      Existence, length and tier split of the market-leading textbook series;
+      the table of contents is not machine-retrievable.
+
+  - id: ofqual-formulae-2026
+    title: "Ofqual: formulae and equations sheets for GCSE mathematics and science, 2025-2027"
+    url: https://www.gov.uk/government/publications/gcse-mathematics-and-science-equations-sheets
+    role: >-
+      The October 2024 decision that all boards provide the same DfE-based
+      sheets, which is why the booklet's Edexcel provision matches AQA and OCR.
+
+# What scripts/fetch_sources.sh downloads into research/sources/<book>/.
+downloads:
+  - file: dfe_content.pdf
+    url: https://assets.publishing.service.gov.uk/media/5a7cb5b040f0b6629523b52c/GCSE_mathematics_subject_content_and_assessment_objectives.pdf
+    text: true
+  - file: aqa_spec.pdf
+    url: https://www.aqa.org.uk/files/resources.mathematics.specifications.AQA-8300-SP-2015_PDF/ed86a99d3abbb2fff89fc83ee6046f9ae8e37c78.pdf
+    text: true
+  - file: edexcel_spec.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/mathematics/2015/specification-and-sample-assesment/gcse-maths-2015-specification.pdf
+    text: true
+  - file: edexcel_content_guidance.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/mathematics/2015/teaching-and-learning-materials/GCSE_(9-1)_Mathematics_Content_Guidance.pdf
+    text: true
+  - file: ocr_spec.pdf
+    url: https://www.ocr.org.uk/Images/168982-specification-gcse-mathematics.pdf
+    text: true

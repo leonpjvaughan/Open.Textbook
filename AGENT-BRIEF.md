@@ -10,9 +10,9 @@ Invoke with `CHAPTER_ID=<n>` (1–25). Read, in order:
 
 1. `AGENTS.md` — the operative **chapter formula** (six principles, page
    contracts, budget). This is binding.
-2. `PEDAGOGY.md` — the evidence and its limits, so you do not overclaim.
+2. `research/pedagogy.md` — the evidence and its limits, so you do not overclaim.
 3. `PLAN.md` §4–§6 — folder conventions, content contract, interactivity policy.
-4. `curriculum.yaml` — find `chapters[?id=<n>]`. This is your scope: every section,
+4. `books/gcse-maths/curriculum.yaml` — find `chapters[?id=<n>]`. This is your scope: every section,
    its `tier`, its `dfe` references, and the chapter's `anchor`, `application`,
    `relevance_prompt` and `tool` metadata.
 5. `CURRICULUM-MAP.md` — confirm exactly which DfE items you must deliver.
@@ -27,35 +27,35 @@ Invoke with `CHAPTER_ID=<n>` (1–25). Read, in order:
 For every section `s` in your chapter:
 
 ```
-Docs/Chapter <n>/Section <n.m>/Walkthrough/index.md
-Docs/Chapter <n>/Section <n.m>/Guided problems/index.md
-Docs/Chapter <n>/Section <n.m>/Problems/index.md
+books/gcse-maths/docs/Chapter <n>/Section <n.m>/Walkthrough/index.md
+books/gcse-maths/docs/Chapter <n>/Section <n.m>/Guided books/gcse-maths/problems/index.md
+books/gcse-maths/docs/Chapter <n>/Section <n.m>/Problems/index.md
 ```
 
 Plus two chapter-level pages:
 
 ```
-Docs/Chapter <n>/index.md      # anchor problem, outcomes, roadmap, relevance prompt
-Docs/Chapter <n>/Review/index.md   # resolve the anchor, interleaved mixed practice
+books/gcse-maths/docs/Chapter <n>/index.md      # anchor problem, outcomes, roadmap, relevance prompt
+books/gcse-maths/docs/Chapter <n>/Review/index.md   # resolve the anchor, interleaved mixed practice
 ```
 
 Replace the `<!-- scaffold:stub -->` pages. Keep the front matter (update it if the
 scope genuinely shifted, but do not change `id`, `tier` or `dfe` without recording
 why). Also:
 
-- Update the chapter `Docs/Chapter <n>/index.md` with a real overview and section
+- Update the chapter `books/gcse-maths/docs/Chapter <n>/index.md` with a real overview and section
   list; keep it short and navigational.
-- Append any new terms to `Docs/Glossary/<strand>.md`, alphabetically, one
+- Append any new terms to `books/gcse-maths/docs/Glossary/<strand>.md`, alphabetically, one
   definition each. Define a term once in the book.
-- Add figures under `Docs/assets/figures/<slug>.js` (Tier 1) or generators under
+- Add figures under `books/gcse-maths/docs/assets/figures/<slug>.js` (Tier 1) or generators under
   `figures/py/` writing to `figures/data/` (Tier 2). Only when they earn their keep.
 - Add every worked solution and answer you rely on to
-  `problems/chapter-<n>.yaml`, with an independent `check` and, where you show
-  steps, a `steps` chain. Run `python -m verification problems/` — it must pass.
+  `books/gcse-maths/problems/chapter-<n>.yaml`, with an independent `check` and, where you show
+  steps, a `steps` chain. Run `python -m textbook.verify books/gcse-maths/problems/` — it must pass.
 - Render the questions and answers with `:::problems <bank>` and
   `:::answers <bank>` instead of hand-writing them, so the reader sees exactly
   what CI verified. See PROBLEMS.md.
-- Do **not** edit `curriculum.yaml`, `nav.yml`, `CURRICULUM-MAP.md`, `PLAN.md`, or
+- Do **not** edit `books/gcse-maths/curriculum.yaml`, `nav.yml`, `CURRICULUM-MAP.md`, `PLAN.md`, or
   any other chapter. `nav.yml` and the map are generated.
 
 ## Coverage — non-negotiable
@@ -107,16 +107,16 @@ GCSE; if you reach for Pyodide, justify it in the chapter overview first.
 ## Definition of done — report evidence, do not assert
 
 1. Every file listed above exists and contains no `scaffold:stub` marker.
-2. `python -m verification problems/` passes and `pytest tests/ -q` is green.
+2. `python -m textbook.verify books/gcse-maths/problems/` passes and `pytest tests/ -q` is green.
 3. The prose follows `AGENTS.md` → Voice and language: no internal words (anchor
    problem, retrieval starter, tier, DfE codes), no shaming words, plain English,
    no negative contractions. Read every page aloud once; if you stumble, rewrite.
 4. Every `dfe` item in your chapter appears in at least one Learn page and one
    practice page (grep the refs and show the result).
-5. `python scripts/scaffold_docs.py` reports your chapter's files as **skipped**,
+5. `python -m textbook.scaffold` reports your chapter's files as **skipped**,
    not rewritten.
-6. `mkdocs build -f renderers/mkdocs/mkdocs.yml --strict` succeeds and
-   `grep -rl 'math-error' site/higher --include='*.html'` prints nothing.
+6. `mkdocs build -f renderers/mkdocs/gcse-maths.higher.yml --strict` succeeds and
+   `grep -rl 'math-error' site/gcse-maths/higher --include='*.html'` prints nothing.
 7. If you added a Tier-2 figure: regeneration is byte-identical.
 8. Report the literal commands you ran and their literal output.
 

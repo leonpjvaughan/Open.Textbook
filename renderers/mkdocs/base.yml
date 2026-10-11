@@ -1,7 +1,11 @@
-# Shared MkDocs configuration for every build profile.
-# Profile configs (mkdocs.yml, mkdocs.foundation.yml) are generated from
-# curriculum.yaml by scripts/scaffold_docs.py and INHERIT this file.
-site_description: An interactive, static GCSE Mathematics textbook.
+# Shared MkDocs configuration for every book and profile.
+#
+# Per-book configs (renderers/mkdocs/<book>.<profile>.yml) are generated from
+# books/<id>/book.yaml by `python -m textbook.scaffold`, and INHERIT this file.
+#
+# Everything here is genuinely common: the theme, the shared design system, the
+# runtime widgets and the hook entry point. Anything that varies by book — the
+# site name, description, URL, docs directory, nav and profile — is generated.
 theme:
   name: material
   language: en
@@ -24,11 +28,7 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
 hooks:
-  - hooks/tier.py
-  - hooks/figures.py
-  - hooks/problems.py
-  - hooks/toc.py
-  - hooks/maths.py
+  - hooks/entry.py
 markdown_extensions:
   - admonition
   - attr_list
@@ -39,6 +39,10 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
 extra_css:
+  # The shared design system, then the book's generated tokens, then its own
+  # overrides. See SHAPE.md ("Per-book theming").
   - assets/stylesheets/extra.css
+  - assets/stylesheets/book.css
+  - assets/stylesheets/book-local.css
 extra_javascript:
   - assets/booklet/booklet.js

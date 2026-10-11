@@ -1,9 +1,18 @@
 # AGENTS.md — repository instructions
 
-This repository builds an interactive, static, backend-free **GCSE Mathematics**
-textbook. Authoritative planning lives in `PLAN.md`; the evidence behind the
-teaching design lives in `PEDAGOGY.md`; the per-chapter authoring contract is
-`AGENT-BRIEF.md`. This file is the operative summary every agent must follow.
+This repository builds a **collection of interactive, static, backend-free
+textbooks** that share one engine. GCSE Mathematics is the first book; GCSE
+Physics and A-level Mathematics and Physics are planned.
+
+`SHAPE.md` describes the repository shape, the per-book theming, and what a new
+book requires. `PLAN.md` holds the authoring plan, `research/pedagogy.md` the
+evidence behind the teaching design, and `AGENT-BRIEF.md` the per-chapter
+authoring contract.
+
+Read this file first for the cross-cutting rules. Then read the book's own
+`books/<id>/AGENTS.md` for everything specific to that book: its exam boards, its
+tier axis, and its subject pitfalls. The rules below hold for every book in the
+collection.
 
 ## The chapter formula
 
@@ -134,39 +143,51 @@ too, so the reader sees one set of words.
 Do not overclaim. The synthesis is explicit that its causal evidence is mostly
 US, secondary science or early-secondary maths, and that effects are not a
 ranking of methods. Keep the claims to what the briefing supports; see
-`PEDAGOGY.md` for the mapping and the primary sources.
+`research/pedagogy.md` for the mapping and the primary sources.
 
 ## Repository map
 
 | Path | Role |
 |---|---|
-| `curriculum.yaml` | Source of truth: chapters, sections, tier, DfE refs, pedagogy metadata |
-| `Docs/` | Canonical content (marimo markdown). Never edit generated files by hand |
-| `renderers/mkdocs/` | MkDocs build: `base.yml`, generated configs, hooks, assets |
-| `Docs/assets/figures/` | Tier-1 pure-JS figures (each exports `mount(el)`); `figures.js` is the loader |
-| `scripts/` | `scaffold_docs.py`, `fetch_sources.sh`, `katex-render.mjs`, `screenshot.cjs` |
-| `problems/` | Verifiable problem bank, one YAML per chapter |
-| `booklet/` | Formula-and-tables data (source of truth) and its build step |
-| `Docs/assets/booklet/` | Generated booklet JSON and the `<formula-booklet>` widget |
-| `verification/` | SymPy CAS boundary, bank loader and verifier |
-| `tests/` | Bank verification plus planted-error tests |
+| `SHAPE.md` | Repository shape, per-book theming, what a new book requires |
+| `collection.yaml` | Collection title, deployment base URL, qualification order |
+| `engine/textbook/` | The shared engine: hooks, scaffold, booklet build, portal, lint, verifier |
+| `assets/` | Shared design system and runtime widgets (CSS, figure loader, booklet widget) |
+| `books/<id>/book.yaml` | A book's identity, profiles, tier axis, theme tokens and paths |
+| `books/<id>/curriculum.yaml` | Source of truth: chapters, sections, tier, curriculum refs |
+| `books/<id>/docs/` | Canonical content (marimo markdown). Never edit generated files by hand |
+| `books/<id>/problems/` | Verifiable problem banks, one YAML per practice set |
+| `books/<id>/booklet/` | Formulae-and-tables data (source of truth) |
+| `books/<id>/sources.yaml` | Tracked provenance for the curriculum claims |
+| `books/<id>/AGENTS.md` | Book-specific instructions |
+| `renderers/mkdocs/` | MkDocs adapter: `base.yml`, the hook entry point, generated per-book configs |
+| `research/` | `pedagogy.md`, per-book notes, and fetched sources (git-ignored) |
 | `PROBLEMS.md` | Problem-bank schema and verification limits |
+| `scripts/` | Thin developer entry points (`check.sh`, `fetch_sources.sh`, `screenshot.cjs`) |
+| `tests/` | Engine, bank and collection-shape tests |
 | `test/` | The figure-hook and tier-profile evaluation (24 assertions) |
 | `AGENT-BRIEF.md` | Per-chapter sub-agent brief |
 
 ## Build and verify
 
 ```bash
-uv sync                                   # Python toolchain (pinned)
+uv sync                                   # Python toolchain and the local engine
 npm install                               # build-time KaTeX (pinned)
-python scripts/scaffold_docs.py           # regenerate Docs tree, configs, curriculum map
-python scripts/build_booklet.py            # validate booklet data, emit JSON + MathML
-mkdocs build -f renderers/mkdocs/mkdocs.yml --strict
-mkdocs build -f renderers/mkdocs/mkdocs.foundation.yml --strict
-grep -rl 'math-error' site/higher --include='*.html'   # must print nothing
-python -m verification problems/          # verify the problem bank (SymPy)
-pytest tests/ -q                          # bank + verifier tests
+
+python -m textbook.scaffold               # docs tree, per-book configs, theme CSS
+python -m textbook.booklet                # validate booklet data, emit JSON + MathML
+python -m textbook.portal                 # the collection landing page
+python -m textbook.lint                   # voice, style, structure
+python -m textbook.verify                 # verify every problem bank (SymPy)
+
+python -m textbook.plan                   # the build matrix: book x profile
+mkdocs build -f renderers/mkdocs/gcse-maths.higher.yml --strict
+mkdocs build -f renderers/mkdocs/gcse-maths.foundation.yml --strict
+grep -rl 'math-error' site --include='*.html'          # must print nothing
+
+pytest tests/ -q                          # bank, marker and collection tests
 test/run.sh                               # figure-hook + tier evaluation
+scripts/check.sh                          # everything CI enforces, in one call
 ```
 
 ## Watch out for
@@ -187,10 +208,27 @@ calling a chapter done.
 **Hooks**
 
 - Never name a hook parameter `html`; it shadows the `html` module.
-- Figure slugs are auto-discovered from `Docs/assets/figures/*.js`. The filename
-  must equal the slug, and an unknown `:::figure` slug fails the build.
+- Hooks resolve every path from the build's `config.extra` block, through
+  `textbook/config.py` — never from `__file__`. A hook that guesses its own
+  location works for one book and silently breaks for the next.
+- MkDocs requires a **file** path in `hooks:`; a dotted module path is rejected.
+  `renderers/mkdocs/hooks/entry.py` is the shim that re-exports the engine's
+  hooks. Hook order is declared once, in `engine/textbook/hooks/__init__.py`.
+- Figure slugs are auto-discovered from `books/<id>/docs/assets/figures/*.js`.
+  The filename must equal the slug, and an unknown `:::figure` slug fails the
+  build.
 - Use the `:::figure` directive, not raw `<maths-figure>` HTML: only the
   directive triggers the per-page loader injection. Modules export `mount(el)`.
+
+**Layout**
+
+- Shared CSS and runtime widgets reach each book by symlink:
+  `books/<id>/docs/assets/{stylesheets/extra.css,figures/figures.js,booklet/booklet.js}`
+  point into the root `assets/`. Edit the file in `assets/` — never replace a
+  symlink with a copy, or the books drift apart.
+- A per-book theme is data: set tokens in `book.yaml → theme`; the scaffold
+  generates `book.css`. Component-level tweaks go in the book's authored
+  `book-local.css`. Never fork `extra.css` for one book.
 
 **Tiers**
 
@@ -201,9 +239,10 @@ calling a chapter done.
 
 **Generated files**
 
-- `Docs/**` stubs, `renderers/mkdocs/mkdocs.yml`,
-  `renderers/mkdocs/mkdocs.foundation.yml` and `CURRICULUM-MAP.md` are generated.
-  Never hand-edit them; edit `curriculum.yaml` and re-run `scaffold_docs.py`.
+- `books/<id>/docs/**` stubs, `renderers/mkdocs/<book>.<profile>.yml`,
+  `books/<id>/docs/assets/stylesheets/book.css` and `books/<id>/CURRICULUM-MAP.md`
+  are generated. Never hand-edit them; edit `book.yaml` or `curriculum.yaml` and
+  re-run `python -m textbook.scaffold`.
 - A stub is rewritten only while it carries `<!-- scaffold:stub -->`; authored
   pages must never contain that marker.
 
@@ -241,15 +280,16 @@ calling a chapter done.
 
 **Booklet**
 
-- `booklet/gcse-maths.yaml` is the source of truth; `Docs/assets/booklet/booklet.json`
-  is generated. Edit the YAML and run `scripts/build_booklet.py`.
+- `books/<id>/booklet/gcse-maths.yaml` is the source of truth;
+  `books/<id>/docs/assets/booklet/booklet.json` is generated. Edit the YAML and
+  run `python -m textbook.booklet`.
 - Provision is per board and tier. Selecting a board hides every item that board
   does not provide, so a wrong tag is a content bug. Since Ofqual's October 2024
   decision, all boards provide the same DfE-based sheets for 2025–2027; AQA and
   OCR 2026 sheets were checked directly, and Edexcel follows the same set.
 - The page's answer blocks come from the bank. Write `:::answers <bank>` (or
   `:::answers <bank>#<id>`) instead of hand-writing answers, so the reader sees
-  exactly what CI verified. `verification/render.py` builds the block.
+  exactly what CI verified. `engine/textbook/verify/render.py` builds the block.
 - The booklet renders formulae from build-time MathML, so never put `$...$` into
   it at runtime. Tables are plain text and data.
 - Pop-out uses the Document Picture-in-Picture API, which is Chromium-only; the
@@ -262,8 +302,9 @@ calling a chapter done.
 
 - The build needs both `uv sync` (MkDocs) and `npm install` (KaTeX). Without
   Node, maths silently degrades to `.math-error` spans.
-- `test/hooks/` duplicates the real hook logic; keep them in sync or point the
-  harness at `renderers/mkdocs/hooks/`.
+- `test/hooks/` duplicates the hook logic on purpose: it is the evaluation
+  harness that compared the candidate mechanisms. Keep it in sync with
+  `engine/textbook/hooks/`.
 - `screenshot.cjs` serves the built site through Playwright request interception
   because this sandbox blocks listening sockets; set `PLAYWRIGHT_PATH` if
   `require("playwright")` does not resolve.
@@ -272,10 +313,13 @@ calling a chapter done.
 
 - **Tier:** `F` = Foundation and Higher, `H` = Higher only. Higher-only pages
   carry `tier: H` front matter; in-page extensions use
-  `<!-- tier:h -->…<!-- /tier:h -->`.
+  `<!-- tier:h -->…<!-- /tier:h -->`. Each book declares its own axis in
+  `book.yaml → tier_axis` and the profiles it builds.
 - **Figures:** author with the line-anchored directive `:::figure <slug>`; the
   MkDocs hook expands it to `<maths-figure data-figure="<slug>">` and injects the
-  loader only on pages that need it. Do not edit generated configs or nav files.
+  loader only on pages that need it. Modules live in
+  `books/<id>/docs/assets/figures/`; the loader `assets/figures/figures.js` is
+  shared. Do not edit generated configs or nav files.
 - **Maths:** write `$…$` and `$$…$$`. It is rendered to MathML at build time
   (KaTeX 0.19.0) with no runtime JavaScript. `aligned` environments are supported.
 - **Glossary:** define a term once on its strand page and link to it.

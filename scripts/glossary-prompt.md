@@ -3,15 +3,15 @@ Build the shared glossary for an interactive GCSE Mathematics textbook in
 
 READ FIRST:
 - AGENTS.md (the "Voice and language" standard — binding)
-- Docs/Glossary/number.md (the finished example)
-- The curriculum: curriculum.yaml and CURRICULUM-MAP.md
-- The chapters: Docs/Chapter */Section */Walkthrough/index.md
+- books/gcse-maths/docs/Glossary/number.md (the finished example)
+- The curriculum: books/gcse-maths/curriculum.yaml and CURRICULUM-MAP.md
+- The chapters: books/gcse-maths/docs/Chapter */Section */Walkthrough/index.md
 
 TASK:
-- Fill each of Docs/Glossary/algebra.md, ratio.md, geometry.md, probability.md
+- Fill each of books/gcse-maths/docs/Glossary/algebra.md, ratio.md, geometry.md, probability.md
   and statistics.md with the key terms actually used in the book for that strand.
   `number.md` is done; match its format exactly.
-- Also update Docs/Glossary/index.md: remove the `<!-- scaffold:stub -->` marker
+- Also update books/gcse-maths/docs/Glossary/index.md: remove the `<!-- scaffold:stub -->` marker
   and replace the placeholder sentence with a proper one-line introduction.
 
 RULES:
@@ -24,6 +24,6 @@ RULES:
   these are markdown files, so write `$\frac{3}{4}$` normally.
 - Extract terms from the chapters (bolded terms, headings, and glossary-worthy
   words). Aim for 15–30 solid terms per strand, not every word.
-- SCOPE: edit ONLY Docs/Glossary/*.md. Nothing else.
+- SCOPE: edit ONLY books/gcse-maths/docs/Glossary/*.md. Nothing else.
 
 WHEN DONE, report the terms you added per strand.

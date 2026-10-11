@@ -1,0 +1,19 @@
+# The textbook collection.
+#
+# One entry point for every book: the landing page, the deployment base URL and
+# the order qualifications are presented in. Individual books declare their own
+# identity in books/<id>/book.yaml.
+
+title: Interactive Textbooks
+description: >-
+  Free, interactive textbooks with computer-checked answers. Read online, with
+  nothing to install.
+base_url: https://leonpjvaughan.github.io/GCSE.MATHS/
+
+qualifications:
+  - id: GCSE
+    title: GCSE
+    note: Grades 9-1, with Foundation and Higher tier where the board offers it.
+  - id: A-level
+    title: A level
+    note: Full A-level courses.

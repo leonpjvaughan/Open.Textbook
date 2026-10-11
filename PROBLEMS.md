@@ -4,8 +4,8 @@
 correct in CI, so a wrong worked step cannot ship. The rendered page and the
 verified data must not drift.
 
-**Status.** Working spike: `problems/*.yaml`, `verification/`, `tests/`. Verified
-by `python -m verification problems/` and `pytest tests/`.
+**Status.** Working spike: `books/gcse-maths/problems/*.yaml`, `engine/textbook/verify/`, `tests/`. Verified
+by `python -m textbook.verify books/gcse-maths/problems/` and `pytest tests/`.
 
 ## The design in one line
 
@@ -14,8 +14,8 @@ mathematics), join them by a stable id, and make each solution step declare *how
 it relates to the next so a machine can check it.
 
 ```
-problems/<chapter>.yaml     # the bank: statement + CAS check + steps
-verification/               # SymPy boundary, schema, verifier
+books/gcse-maths/problems/<chapter>.yaml     # the bank: statement + CAS check + steps
+engine/textbook/verify/               # SymPy boundary, schema, verifier
 tests/test_problem_bank.py  # every bank verifies; planted errors must fail
 ```
 
@@ -56,7 +56,7 @@ There is no runtime lookup and no client-side problem engine. Injection is a
 1. `renderers/mkdocs/hooks/problems.py` runs MkDocs's `on_page_markdown` event.
 2. It finds the line-anchored directive `:::answers <bank>` and reads the YAML
    bank from disk with PyYAML.
-3. `verification/render.py` turns the selected records into markdown.
+3. `engine/textbook/verify/render.py` turns the selected records into markdown.
 4. The maths hook then renders the `$...$` in that markdown to MathML.
 5. The result is static HTML. The browser never fetches the bank.
 
@@ -122,9 +122,9 @@ No page restates a problem or an answer by hand. The page carries two markers:
 - `:::answers <bank>` prints the solutions (or `#<id>,<id>` to select records).
 
 `renderers/mkdocs/hooks/problems.py` expands both, at build time, from the same
-records CI verified, using `verification/render.py`. The block is emitted as
+records CI verified, using `engine/textbook/verify/render.py`. The block is emitted as
 markdown with `$...$` maths, so the maths hook renders it to MathML in the same
-pass. The reader therefore sees exactly what `python -m verification` proved, and
+pass. The reader therefore sees exactly what `python -m textbook.verify` proved, and
 the page and the proof cannot drift.
 
 ## What can be verified, and how
@@ -160,7 +160,7 @@ form: `£`, `p` and `%` belong in `statement`, not in the expression.
 
 ## Modularity
 
-- **One CAS boundary.** All SymPy use is in `verification/cas.py`. Swapping to
+- **One CAS boundary.** All SymPy use is in `engine/textbook/verify/cas.py`. Swapping to
   SymEngine (speed) or to a JS CAS for client-side marking touches one module.
 - **One dispatch point.** `check.kind` and `step_relation` are looked up in one
   function, so new problem types are additive.
@@ -202,7 +202,7 @@ Phase 3: drive client-side input checking from the same answers.
 
 ```bash
 uv sync
-python -m verification problems/     # per-problem report
+python -m textbook.verify books/gcse-maths/problems/     # per-problem report
 pytest tests/ -q                     # bank verifies + planted errors fail
 ```
 

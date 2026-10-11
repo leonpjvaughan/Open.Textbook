@@ -1,0 +1,47 @@
+# Identity and build metadata for this book.
+#
+# Everything a build needs that is not the content itself. The scaffold reads
+# this to generate the MkDocs profiles; the portal reads it to build the landing
+# page card; the hooks read the paths through the generated config's `extra`.
+
+id: gcse-maths
+title: GCSE Mathematics (9-1)
+qualification: GCSE
+subject: Mathematics
+order: 1
+description: >-
+  A complete, interactive GCSE Mathematics book for England, covering both
+  Foundation and Higher tier.
+
+boards: [AQA, Pearson Edexcel, OCR]
+
+# One MkDocs build per profile. `tier_filter` selects the tier hook's behaviour;
+# `default` marks the profile the landing page links to first.
+profiles:
+  - id: higher
+    name: Higher
+    tier_filter: higher
+    default: true
+  - id: foundation
+    name: Foundation
+    tier_filter: foundation
+
+# The tier axis for this book, for documentation and for the scaffold's stubs.
+tier_axis:
+  F: Foundation and Higher
+  H: Higher only
+
+# Verification oracles the banks in this book may use.
+oracles: [sympy]
+
+# Design tokens. `accent` also tints this book's card on the landing page.
+theme:
+  accent: "#2f6690"
+  accent_light: "#4a7fae"
+  accent_dark: "#24506f"
+
+# Paths, relative to this directory.
+curriculum: curriculum.yaml
+banks: problems
+booklet: booklet/gcse-maths.yaml
+sources: sources.yaml

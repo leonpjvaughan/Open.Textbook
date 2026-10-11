@@ -1,0 +1,221 @@
+/* Landing page for the textbook collection.
+ *
+ * Deliberately self-contained: the portal is not a Material page, so it does not
+ * load the book stylesheet. The palette values are intentionally mirrored from
+ * assets/stylesheets/extra.css — keep them in step if the house theme changes.
+ * Per-book identity comes from each card's --card-accent, set from book.yaml.
+ */
+
+:root {
+  --tb-paper: #faf9f5;
+  --tb-ink: #1f1e1b;
+  --tb-ink-soft: #5c5a54;
+  --tb-rule: #e6e3da;
+  --tb-card: #ffffff;
+  --tb-accent: #2f6690;
+  --tb-measure: 70ch;
+  --tb-radius: 10px;
+  --tb-shadow: 0 1px 2px rgb(0 0 0 / 6%), 0 8px 24px rgb(0 0 0 / 4%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tb-paper: #171614;
+    --tb-ink: #e9e7e1;
+    --tb-ink-soft: #b7b4ac;
+    --tb-rule: #2a2926;
+    --tb-card: #1e1d1a;
+    --tb-accent: #6ea8d8;
+    --tb-shadow: 0 1px 2px rgb(0 0 0 / 40%), 0 8px 24px rgb(0 0 0 / 28%);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--tb-paper);
+  color: var(--tb-ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- masthead ------------------------------------------------------------- */
+
+.masthead {
+  border-bottom: 1px solid var(--tb-rule);
+  padding: 56px 0 36px;
+}
+
+.masthead__title {
+  margin: 0 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.8rem, 1.3rem + 2vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.masthead__lead {
+  margin: 0;
+  max-width: var(--tb-measure);
+  color: var(--tb-ink-soft);
+  font-size: 1.05rem;
+}
+
+/* --- groups --------------------------------------------------------------- */
+
+.group { margin: 44px 0 0; }
+
+.group__title {
+  margin: 0 0 4px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.group__note {
+  margin: 0 0 18px;
+  max-width: var(--tb-measure);
+  color: var(--tb-ink-soft);
+  font-size: 0.94rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  padding-bottom: 8px;
+}
+
+/* --- card ----------------------------------------------------------------- */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 20px 18px;
+  background: var(--tb-card);
+  border: 1px solid var(--tb-rule);
+  border-top: 3px solid var(--card-accent, var(--tb-accent));
+  border-radius: var(--tb-radius);
+  box-shadow: var(--tb-shadow);
+}
+
+.card__title {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card__title a:hover,
+.card__title a:focus-visible {
+  color: var(--card-accent, var(--tb-accent));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.card__subject {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--tb-ink-soft);
+}
+
+.card__body {
+  margin: 6px 0 0;
+  color: var(--tb-ink-soft);
+  font-size: 0.95rem;
+}
+
+.card__facts {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 0.85rem;
+  color: var(--tb-ink-soft);
+}
+
+.card__facts li { position: relative; }
+
+.card__facts li + li::before {
+  content: "·";
+  position: absolute;
+  left: -9px;
+  color: var(--tb-rule);
+}
+
+.card__profiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.chip {
+  display: inline-block;
+  padding: 5px 14px;
+  border: 1px solid var(--card-accent, var(--tb-accent));
+  border-radius: 999px;
+  color: var(--card-accent, var(--tb-accent));
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.chip:hover,
+.chip:focus-visible {
+  background: var(--card-accent, var(--tb-accent));
+  color: var(--tb-card);
+}
+
+.chip--primary {
+  background: var(--card-accent, var(--tb-accent));
+  color: var(--tb-card);
+}
+
+.chip--primary:hover,
+.chip--primary:focus-visible {
+  filter: brightness(1.1);
+}
+
+/* --- footer --------------------------------------------------------------- */
+
+.footer {
+  margin-top: 56px;
+  padding: 28px 0 48px;
+  border-top: 1px solid var(--tb-rule);
+  color: var(--tb-ink-soft);
+  font-size: 0.9rem;
+}
+
+.footer p { margin: 0 0 6px; max-width: var(--tb-measure); }
+
+.footer__fine { font-size: 0.85rem; }
+
+:focus-visible { outline: 2px solid var(--tb-accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

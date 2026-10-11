@@ -6,16 +6,19 @@ from pathlib import Path
 
 import pytest
 
-from verification.verify import verify_bank, verify_problem
+from textbook.book import discover_books
+from textbook.verify.verify import verify_bank, verify_problem
 
-BANKS = sorted(Path("problems").glob("*.yaml"))
+ALL_BANKS = sorted(
+    bank for book in discover_books() for bank in book.banks.glob("*.yaml")
+)
 
 
 def test_banks_exist():
-    assert BANKS, "no problem banks found under problems/"
+    assert ALL_BANKS, "no problem banks found under any book"
 
 
-@pytest.mark.parametrize("bank", BANKS, ids=lambda path: path.name)
+@pytest.mark.parametrize("bank", ALL_BANKS, ids=lambda path: path.name)
 def test_bank_verifies(bank: Path):
     report = verify_bank(bank)
     assert report.ok, "\n".join(report.errors)
@@ -118,7 +121,7 @@ def test_between_check_enforces_the_interval():
 
 
 def test_rendered_answer_block_comes_from_the_record():
-    from verification.render import render_answer_block
+    from textbook.verify.render import render_answer_block
 
     block = render_answer_block(
         [
@@ -193,6 +196,12 @@ def test_yaml_has_no_control_character_escapes():
         ):
             offenders.append(f"{where}: {value!r}")
 
-    for path in list(Path("problems").glob("*.yaml")) + list(Path("booklet").glob("*.yaml")):
+    sources = list(ALL_BANKS) + [
+        path
+        for book in discover_books()
+        if book.booklet_name
+        for path in book.root.glob("booklet/*.yaml")
+    ]
+    for path in sources:
         walk(yaml.safe_load(path.read_text(encoding="utf-8")), str(path))
     assert not offenders, "control characters in YAML (use single quotes): " + "; ".join(offenders)
