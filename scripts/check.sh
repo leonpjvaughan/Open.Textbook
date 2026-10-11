@@ -25,10 +25,9 @@ step "tests"
 uv run python -m pytest tests/ -q
 
 step "builds"
-while read -r _ _ config _; do
-  [ -n "${config:-}" ] || continue
+while read -r config; do
   uv run mkdocs build -f "$config" --strict
-done < <(uv run python -m textbook.plan)
+done < <(uv run python -m textbook.plan --configs)
 
 step "no maths rendering errors"
 if grep -rl 'math-error' site --include='*.html'; then

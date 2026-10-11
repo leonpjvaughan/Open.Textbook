@@ -5,6 +5,7 @@ CI calls this so that adding a book needs no workflow edit — the matrix is
 derived from ``books/*/book.yaml``.
 
     python -m textbook.plan                     # one row per line, for humans
+    python -m textbook.plan --configs           # config paths, one per line
     python -m textbook.plan --github-matrix     # {"include": [...]} for CI
 """
 
@@ -39,9 +40,16 @@ def rows() -> list[dict[str, str]]:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Emit the build matrix.")
     parser.add_argument("--github-matrix", action="store_true")
+    parser.add_argument(
+        "--configs", action="store_true", help="print one MkDocs config path per line"
+    )
     args = parser.parse_args()
 
     matrix = rows()
+    if args.configs:
+        for row in matrix:
+            print(row["config"])
+        return 0
     if args.github_matrix:
         # GitHub wants a JSON object with an `include` list; keep it on one line.
         print(json.dumps({"include": matrix}, separators=(",", ":")))
