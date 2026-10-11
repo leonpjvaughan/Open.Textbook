@@ -253,7 +253,7 @@ Then:
 
 1. Add the book to `collection.yaml` if it should appear on the landing page.
 2. Run `python -m textbook.scaffold` — it generates the docs tree, the per-book
-   MkDocs configs, the theme CSS and the curriculum map.
+   MkDocs configs, themes.css and the curriculum map.
 3. Run `python -m textbook.portal` — the landing page picks the card up.
 4. CI discovers the new configs automatically; there is no workflow to edit.
 
@@ -281,7 +281,7 @@ only by books that declare a booklet.
 ```bash
 uv sync                                  # Python toolchain and the local engine
 npm install                              # build-time KaTeX
-python -m textbook.scaffold              # docs tree, per-book configs, theme CSS
+python -m textbook.scaffold              # docs tree, per-book configs, themes.css
 python -m textbook.booklet               # validate booklet data, emit JSON
 python -m textbook.portal                # landing page
 python -m textbook.lint                  # voice, style, structure

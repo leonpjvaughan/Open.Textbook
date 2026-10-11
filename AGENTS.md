@@ -138,6 +138,93 @@ Rules, with the evidence behind them:
 The navigator uses the friendly page names. A page's own prose should use them
 too, so the reader sees one set of words.
 
+## Theming
+
+How a book looks is two independent things that multiply. Keeping them apart is
+the point, and it is the decision most easily undone by accident.
+
+- A **bundle** (`themes/<id>.yaml`) is the *reading experience*: a complete light
+  and dark palette plus its typography. It is chosen by the **reader** and applies
+  to **every book**, so moving from mathematics to physics never moves the theme.
+  One file per bundle, plus a line in `collection.yaml`.
+- A book contributes only its **subject tint** (`book.yaml → theme`): an accent,
+  and any surface it wants moved, given per scheme. It is supplied as
+  `--tb-book-*` values, and each bundle composes them in:
+
+  ```css
+  --tb-accent: var(--tb-book-accent, #89b4fa);
+  ```
+
+  A bundle may **refuse** a token by listing it under `fixed:`. `clean` refuses the
+  accent, so every book is monochrome there — by design, not by omission.
+
+Never put a surface or a font in a book, and never put a subject's identity in a
+bundle. A book states its tint once and every bundle decides how to use it.
+
+### The cascade
+
+| Layer | File | Owner |
+|---|---|---|
+| Plumbing: the Material mapping, components, fonts as tokens | `assets/stylesheets/extra.css` | shared, **declares no colour** |
+| Bundles: every `--tb-*` per scheme, per bundle | `assets/stylesheets/themes.css` | generated from `themes/*.yaml` |
+| Subject tint: `--tb-book-*` per scheme | `books/<id>/docs/assets/stylesheets/book.css` | generated from `book.yaml → theme` |
+| A book's own component changes | `books/<id>/docs/assets/stylesheets/book-local.css` | authored, empty by default |
+
+`extra.css` must not declare a colour token: a declaration there outranks every
+bundle, silently. A test enforces this.
+
+### What a page or a figure may do
+
+Nothing in a page, and nothing in a figure, may carry a colour.
+
+- Use the `fig-*` classes (`fig-accent`, `fig-warn`, `fig-good`, `fig-ink`,
+  `fig-grid`) and the `text-*` classes.
+- A figure reads the tokens (`var(--tb-accent)`, `var(--tb-fig-warn)`, …), so it
+  adapts to every bundle and both schemes without being revisited.
+- Never put `$...$` in text a figure injects at runtime: the maths hook runs at
+  build time, so runtime LaTeX is not rendered. Use plain text or HTML.
+
+### The contrast invariant
+
+Bundles and subjects multiply, so a subject accent that is comfortable on one
+bundle's paper can be unreadable on another's. This is not left to review.
+`tests/test_themes.py` computes the WCAG ratio for every bundle × book × scheme
+and fails below **ink 7:1, link 4.5:1, accent 4.5:1**.
+
+When a new bundle or a new book fails it, **fix the palette, not the threshold.**
+The check has already caught two stock Omarchy palettes — catppuccin-latte's own
+link at 4.34:1 and gruvbox's at 4.40:1 — neither of which is visible by looking.
+
+### Adding a bundle
+
+1. Copy an existing file in `themes/`, change `id`, `title`, `description`, the
+   two palettes and the typography. Both palettes must be complete: every token in
+   `SCHEME_TOKENS` (`engine/textbook/book.py`), in both `light:` and `dark:`.
+2. Add the id to `themes:` in `collection.yaml`. That list is the menu order.
+3. `python -m textbook.scaffold` — regenerates `assets/stylesheets/themes.css`.
+   No book is rebuilt to gain a theme.
+4. `pytest tests/test_themes.py` — the contrast invariant will tell you if the
+   palette is not readable against a book's tint.
+
+### Reader preferences
+
+Both preferences are the reader's and are shared by every book and the landing
+page, under origin-wide keys: `textbooks:scheme` (`default` / `slate`) and
+`textbooks:theme` (a bundle id). They are applied before the first paint by
+`engine/textbook/hooks/prefs.py`, which is why the hook order lists `prefs` last.
+
+Do not reintroduce a per-build key: Material scopes its own storage to each built
+site, which is exactly what the bridge exists to fix. Do not make the theme key
+path-scoped either — renaming the repository must not cost a reader their
+preferences.
+
+### Previewing a bundle
+
+```bash
+node scripts/screenshot.cjs site ~/out --schemes light,dark --theme omarchy -- \
+  "chapter:/gcse-maths/higher/Chapter 6/Section 6.4/Walkthrough/" "landing:/"
+```
+
 ## Evidence
 
 Do not overclaim. The synthesis is explicit that its causal evidence is mostly
@@ -149,11 +236,12 @@ ranking of methods. Keep the claims to what the briefing supports; see
 
 | Path | Role |
 |---|---|
-| `SHAPE.md` | Repository shape, per-book theming, what a new book requires |
+| `SHAPE.md` | Repository shape, theme bundles, what a new book requires |
 | `collection.yaml` | Collection title, deployment base URL, qualification order |
 | `engine/textbook/` | The shared engine: hooks, scaffold, booklet build, portal, lint, verifier |
+| `themes/<id>.yaml` | A theme bundle: a full light and dark palette, plus typography |
 | `assets/` | Shared design system and runtime widgets (CSS, figure loader, booklet widget) |
-| `books/<id>/book.yaml` | A book's identity, profiles, tier axis, theme tokens and paths |
+| `books/<id>/book.yaml` | A book's identity, profiles, tier axis, subject tint and paths |
 | `books/<id>/curriculum.yaml` | Source of truth: chapters, sections, tier, curriculum refs |
 | `books/<id>/docs/` | Canonical content (marimo markdown). Never edit generated files by hand |
 | `books/<id>/problems/` | Verifiable problem banks, one YAML per practice set |
@@ -175,7 +263,7 @@ ranking of methods. Keep the claims to what the briefing supports; see
 uv sync                                   # Python toolchain and the local engine
 npm install                               # build-time KaTeX (pinned)
 
-python -m textbook.scaffold               # docs tree, per-book configs, theme CSS
+python -m textbook.scaffold               # docs tree, per-book configs, themes.css
 python -m textbook.booklet                # validate booklet data, emit JSON + MathML
 python -m textbook.portal                 # the collection landing page
 python -m textbook.lint                   # voice, style, structure
@@ -186,7 +274,7 @@ mkdocs build -f renderers/mkdocs/gcse-maths.higher.yml --strict
 mkdocs build -f renderers/mkdocs/gcse-maths.foundation.yml --strict
 grep -rl 'math-error' site --include='*.html'          # must print nothing
 
-pytest tests/ -q                          # bank, marker and collection tests
+pytest tests/ -q                          # bank, marker, collection and theme tests
 test/run.sh                               # figure-hook + tier evaluation
 scripts/check.sh                          # everything CI enforces, in one call
 ```
@@ -224,30 +312,13 @@ calling a chapter done.
 **Layout**
 
 - Shared CSS and runtime widgets reach each book by symlink:
-  `books/<id>/docs/assets/{stylesheets/extra.css,figures/figures.js,booklet/booklet.js}`
+  `books/<id>/docs/assets/{stylesheets/extra.css,stylesheets/themes.css,figures/figures.js,booklet/booklet.js}`
   point into the root `assets/`. Edit the file in `assets/` — never replace a
-  symlink with a copy, or the books drift apart.
-- Theming is two independent things, and keeping them apart is the point. A
-  **bundle** (`themes/*.yaml`) is the reading experience — a full light and dark
-  palette plus typography — and belongs to the *reader*, so it applies to every
-  book. A book contributes only its **subject tint** (`book.yaml → theme`), which
-  bundles compose in as `--tb-book-*` unless they list the token under `fixed:`.
-  Never put surfaces or fonts in a book, and never put a subject's identity in a
-  bundle. See SHAPE.md, "Theme bundles".
-- `assets/stylesheets/extra.css` defines **no colour**: colour comes from
-  `themes.css` (generated from `themes/`). A token declared there would silently
-  win over every bundle; a test enforces this.
-- A bundle and a subject multiply, so a new bundle or a new book can produce an
-  unreadable pair. `tests/test_themes.py` checks the WCAG contrast of every
-  bundle × book × scheme and fails below ink 7:1, link 4.5:1, accent 4.5:1. Do not
-  relax the threshold to make a palette fit; the palette is what is wrong —
-  stock Omarchy palettes have failed it twice.
-- Two reader preferences are shared across every book and the landing page,
-  under origin-wide keys: `textbooks:scheme` (light/dark) and `textbooks:theme`
-  (which bundle). They live in `engine/textbook/hooks/prefs.py`; the hook order
-  lists it as `prefs`. Do not reintroduce a per-build key — Material scopes its
-  own storage to each built site, which is precisely what the bridge exists to
-  fix — and do not make the theme path-scoped either.
+  symlink with a copy, or the books drift apart. The scaffold creates these, so a
+  new book gets them by running it.
+- A broken symlink under `docs_dir` fails the build: MkDocs copies every file
+  there, not only the referenced ones.
+- Anything to do with colour, fonts or bundles: see **Theming** above.
 
 **Tiers**
 
@@ -351,4 +422,7 @@ calling a chapter done.
   shared. Do not edit generated configs or nav files.
 - **Maths:** write `$…$` and `$$…$$`. It is rendered to MathML at build time
   (KaTeX 0.19.0) with no runtime JavaScript. `aligned` environments are supported.
+- **Theming:** never a colour in a page or a figure. Use the `fig-*`/`text-*`
+  classes and the `--tb-*` tokens, so everything adapts to every bundle and both
+  schemes. See **Theming** above.
 - **Glossary:** define a term once on its strand page and link to it.
