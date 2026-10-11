@@ -6,11 +6,16 @@ strand: ratio
 
 # Chapter 6: Percentages and financial mathematics
 
-## The chapter problem: a savings goal
+## The chapter problem
 
-You put £600 into an account that pays 4% interest each year. Estimate the balance after two years. Will it be more than £640? Write a prediction before calculating. You can revise it later.
+An account starts with £600 and earns 4% compound interest each year. Predict its balance after two years. Will it be more than £640? Make a prediction before calculating.
 
-By the end of this chapter, you will be able to calculate percentages, percentage changes and original values. You will compare simple and compound interest and model repeated growth or decay.
+## By the end of this chapter
+
+- Find a percentage of an amount and calculate a percentage change.
+- Recover an original amount after a percentage change.
+- Calculate simple and compound interest.
+- Model repeated growth and decay with a multiplier.
 
 ## Roadmap
 
@@ -18,11 +23,11 @@ By the end of this chapter, you will be able to calculate percentages, percentag
 2. [6.2 Percentage change](Section 6.2/Walkthrough/index.md)
 3. [6.3 Reverse percentages](Section 6.3/Walkthrough/index.md)
 4. [6.4 Simple and compound interest](Section 6.4/Walkthrough/index.md)
-5. [6.5 Growth, decay and repeated percentage change](Section 6.5/Walkthrough/index.md) — Higher only
+5. [6.5 Growth, decay and repeated percentage change](Section 6.5/Walkthrough/index.md)
 6. [Review](Review/index.md)
 
-## Where could this connect to your life?
+## Your turn to connect it
 
 A percentage may appear in a sale, a bill, a savings account or a change in population. Which situation matters to you or someone you know? Write one example and say what you would want to calculate.
 
-Use each section to learn a method, practise with support, then try independent questions. The Review returns to your savings estimate and mixes methods from this chapter with earlier work.
+Use each section to learn a method, practise with support, then try independent questions. The Review returns to your savings prediction and mixes methods from this chapter with earlier work.

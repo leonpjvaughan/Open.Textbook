@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** percentage multipliers and division.
 
-**Objectives:** recover an original amount after a percentage increase or decrease. 
+**Objectives:** recover an original amount after a percentage increase or decrease.
 
 The final amount represents a percentage of the original. For a 20% decrease, the final amount is 80% of the original. Divide by 0.8 to reverse the change.
 
@@ -31,7 +31,7 @@ The increase multiplier is 1.15.
 
 92 ÷ 1.15 = 80.
 
-**Watch out.** Do not add 20% of £72 to reverse a 20% discount. The discount was calculated from the original price. Check: 20% of £90 is £18, and £90 − £18 = £72.
+> **Watch out.** Adding 20% of £72 does not reverse a 20% discount. The discount was calculated from the original price. Check: 20% of £90 is £18, and £90 − £18 = £72.
 
 ## Progress check
 

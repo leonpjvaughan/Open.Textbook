@@ -12,16 +12,16 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-Work without looking back. Then open the answers to check.
+Answer from memory before checking.
 
-1. Write $0.4$ as a fraction with denominator $10$.
-2. Work out $3\times8$.
+1. From Section 4.1, write $\frac{2}{5}$ with denominator $10$.
+2. From Chapter 1, work out $7-12$.
 
 <details markdown="1">
 <summary>Answers</summary>
 
 1. $\frac{4}{10}$.
-2. $24$.
+2. $-5$.
 </details>
 
 ## Practise with help

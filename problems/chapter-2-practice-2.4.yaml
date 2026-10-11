@@ -5,32 +5,32 @@ problems:
     section: '2.4'
     tier: H
     dfe: [N5]
-    statement: "A cafe offers 5 hot drinks and 4 cakes. How many hot-drink-and-cake choices are there?"
-    answer_label: "Cafe choices"
+    statement: 'A cafe offers 5 hot drinks and 4 cakes. How many hot-drink-and-cake choices are there?'
+    answer_label: 'Cafe choices'
     check: {kind: evaluate, expression: "5*4", answer: "20"}
     answer_text: '$5\\times4=20$ choices.'
   - id: c2-24-code-repeat
     section: '2.4'
     tier: H
     dfe: [N5]
-    statement: "How many three-letter codes can be made from A, B, C and D if letters may repeat?"
-    answer_label: "Codes with repetition"
+    statement: 'How many three-letter codes can be made from A, B, C and D if letters may repeat?'
+    answer_label: 'Codes with repetition'
     check: {kind: evaluate, expression: "4^3", answer: "64"}
     answer_text: '$4\\times4\\times4=64$ codes.'
   - id: c2-24-code-distinct
     section: '2.4'
     tier: H
     dfe: [N5]
-    statement: "How many three-letter codes can be made from A, B, C and D if letters cannot repeat?"
-    answer_label: "Codes without repetition"
+    statement: 'How many three-letter codes can be made from A, B, C and D if letters cannot repeat?'
+    answer_label: 'Codes without repetition'
     check: {kind: evaluate, expression: "4*3*2", answer: "24"}
     answer_text: '$4\\times3\\times2=24$ codes.'
   - id: c2-24-outfits
     section: '2.4'
     tier: H
     dfe: [N5]
-    statement: "There are 3 tops, 2 trousers and 2 pairs of shoes. How many outfits use one of each?"
-    answer_label: "Outfits"
+    statement: 'There are 3 tops, 2 trousers and 2 pairs of shoes. How many outfits use one of each?'
+    answer_label: 'Outfits'
     check: {kind: evaluate, expression: "3*2*2", answer: "12"}
     answer_text: '$3\\times2\\times2=12$ outfits.'
   - id: c2-24-number-even
@@ -38,23 +38,23 @@ problems:
     tier: H
     dfe: [N5]
     statement: 'How many even three-digit numbers can be made from $1,2,3,4$ without repeating digits?'
-    answer_label: "Even numbers without repetition"
+    answer_label: 'Even numbers without repetition'
     check: {kind: evaluate, expression: "2*3*2", answer: "12"}
     answer_text: 'The units digit has 2 choices (2 or 4), then the hundreds digit has 3 choices and the tens digit has 2. Thus $2\\times3\\times2=12$.'
   - id: c2-24-travel
     section: '2.4'
     tier: H
     dfe: [N5]
-    statement: "A trip uses one of 4 trains, one of 3 buses and one of 2 walking routes. How many routes are possible?"
-    answer_label: "Trip routes"
+    statement: 'A trip uses one of 4 trains, one of 3 buses and one of 2 walking routes. How many routes are possible?'
+    answer_label: 'Trip routes'
     check: {kind: evaluate, expression: "4*3*2", answer: "24"}
     answer_text: '$4\\times3\\times2=24$ routes.'
   - id: c2-24-meal-restriction
     section: '2.4'
     tier: H
     dfe: [N5]
-    statement: "A meal has a choice of 4 mains and 3 drinks. One drink is unavailable with one particular main. How many combinations remain?"
-    answer_label: "Restricted combinations"
+    statement: 'A meal has a choice of 4 mains and 3 drinks. One drink is unavailable with one particular main. How many combinations remain?'
+    answer_label: 'Restricted combinations'
     check: {kind: evaluate, expression: "4*3-1", answer: "11"}
     answer_text: 'There are $4\\times3=12$ unrestricted pairs. Remove the one forbidden pair: 11 combinations.'
   - id: c2-24-digits-greater
@@ -62,14 +62,14 @@ problems:
     tier: H
     dfe: [N5]
     statement: 'How many two-digit numbers greater than 30 can be made from digits $1,2,3,4,5$ without repetition?'
-    answer_label: "Two-digit numbers over 30"
+    answer_label: 'Two-digit numbers over 30'
     check: {kind: evaluate, expression: "3*4", answer: "12"}
     answer_text: 'The tens digit can be 3, 4 or 5, giving 3 choices. Then 4 digits remain: $3\\times4=12$.'
   - id: c2-24-password
     section: '2.4'
     tier: H
     dfe: [N5]
-    statement: "A password has one capital letter from A to C followed by two digits from 0 to 9. Digits may repeat. How many passwords are possible?"
-    answer_label: "Passwords"
+    statement: 'A password has one capital letter from A to C followed by two digits from 0 to 9. Digits may repeat. How many passwords are possible?'
+    answer_label: 'Passwords'
     check: {kind: evaluate, expression: "3*10*10", answer: "300"}
     answer_text: '$3\\times10\\times10=300$ passwords.'

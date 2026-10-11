@@ -18,7 +18,7 @@ problems:
   tier: H
   dfe:
   - A19
-  statement: Solve $y=x+1$ and $y=x^2-3x+1$.
+  statement: 'Solve $y=x+1$ and $y=x^2-3x+1$.'
   answer_label: Solve $y=x+1$ and $y=x^2-3x+1$.
   check:
     kind: solve
@@ -27,13 +27,13 @@ problems:
     answer:
     - '0'
     - '4'
-  answer_text: $(x,y)=(0,1)$ or $(4,5)$
+  answer_text: '$(x,y)=(0,1)$ or $(4,5)$'
 - id: ch14-14-4-02
   section: '14.4'
   tier: H
   dfe:
   - A19
-  statement: Solve $y=2x$ and $y=x^2-2x$.
+  statement: 'Solve $y=2x$ and $y=x^2-2x$.'
   answer_label: Solve $y=2x$ and $y=x^2-2x$.
   check:
     kind: solve
@@ -42,13 +42,13 @@ problems:
     answer:
     - '0'
     - '4'
-  answer_text: $(x,y)=(0,0)$ or $(4,8)$
+  answer_text: '$(x,y)=(0,0)$ or $(4,8)$'
 - id: ch14-14-4-03
   section: '14.4'
   tier: H
   dfe:
   - A19
-  statement: Solve $y=x+2$ and $y=x^2-4$.
+  statement: 'Solve $y=x+2$ and $y=x^2-4$.'
   answer_label: Solve $y=x+2$ and $y=x^2-4$.
   check:
     kind: solve
@@ -57,13 +57,13 @@ problems:
     answer:
     - '-2'
     - '3'
-  answer_text: $(x,y)=(-2,0)$ or $(3,5)$
+  answer_text: '$(x,y)=(-2,0)$ or $(3,5)$'
 - id: ch14-14-4-04
   section: '14.4'
   tier: H
   dfe:
   - A19
-  statement: Solve $y=3-x$ and $y=x^2-1$.
+  statement: 'Solve $y=3-x$ and $y=x^2-1$.'
   answer_label: Solve $y=3-x$ and $y=x^2-1$.
   check:
     kind: solve
@@ -72,13 +72,13 @@ problems:
     answer:
     - '-2'
     - '1'
-  answer_text: $(x,y)=(-2,5)$ or $(1,2)$
+  answer_text: '$(x,y)=(-2,5)$ or $(1,2)$'
 - id: ch14-14-4-05
   section: '14.4'
   tier: H
   dfe:
   - A19
-  statement: Solve $y=2x+3$ and $y=x^2+1$.
+  statement: 'Solve $y=2x+3$ and $y=x^2+1$.'
   answer_label: Solve $y=2x+3$ and $y=x^2+1$.
   check:
     kind: solve
@@ -87,13 +87,13 @@ problems:
     answer:
     - '-1'
     - '3'
-  answer_text: $(x,y)=(-1,1)$ or $(3,9)$
+  answer_text: '$(x,y)=(-1,1)$ or $(3,9)$'
 - id: ch14-14-4-06
   section: '14.4'
   tier: H
   dfe:
   - A19
-  statement: Solve $y=5-x$ and $y=x^2-x-1$.
+  statement: 'Solve $y=5-x$ and $y=x^2-x-1$.'
   answer_label: Solve $y=5-x$ and $y=x^2-x-1$.
   check:
     kind: solve
@@ -102,13 +102,13 @@ problems:
     answer:
     - '-2'
     - '2'
-  answer_text: $(x,y)=(-2,7)$ or $(2,3)$
+  answer_text: '$(x,y)=(-2,7)$ or $(2,3)$'
 - id: ch14-14-4-07
   section: '14.4'
   tier: H
   dfe:
   - A19
-  statement: Solve $y=x-1$ and $y=x^2-5x+5$.
+  statement: 'Solve $y=x-1$ and $y=x^2-5x+5$.'
   answer_label: Solve $y=x-1$ and $y=x^2-5x+5$.
   check:
     kind: solve
@@ -117,13 +117,13 @@ problems:
     answer:
     - '1'
     - '3'
-  answer_text: $(x,y)=(1,0)$ or $(3,2)$
+  answer_text: '$(x,y)=(1,0)$ or $(3,2)$'
 - id: ch14-14-4-08
   section: '14.4'
   tier: H
   dfe:
   - A19
-  statement: The graphs $y=x+2$ and $y=x^2-4$ meet twice. Find both points.
+  statement: 'The graphs $y=x+2$ and $y=x^2-4$ meet twice. Find both points.'
   answer_label: The graphs $y=x+2$ and $y=x^2-4$ meet twice. Find both points.
   check:
     kind: solve
@@ -132,13 +132,13 @@ problems:
     answer:
     - '-2'
     - '3'
-  answer_text: $(x,y)=(-2,0)$ or $(3,5)$
+  answer_text: '$(x,y)=(-2,0)$ or $(3,5)$'
 - id: ch14-14-4-09
   section: '14.4'
   tier: H
   dfe:
   - A19
-  statement: A line $y=2x+1$ meets $y=x^2-2x+1$. Find the intersection points.
+  statement: 'A line $y=2x+1$ meets $y=x^2-2x+1$. Find the intersection points.'
   answer_label: A line $y=2x+1$ meets $y=x^2-2x+1$. Find the intersection points.
   check:
     kind: solve
@@ -147,13 +147,13 @@ problems:
     answer:
     - '0'
     - '4'
-  answer_text: $(x,y)=(0,1)$ or $(4,9)$
+  answer_text: '$(x,y)=(0,1)$ or $(4,9)$'
 - id: ch14-14-4-10
   section: '14.4'
   tier: H
   dfe:
   - A19
-  statement: Solve $y=4-x$ and $y=x^2-2x-2$.
+  statement: 'Solve $y=4-x$ and $y=x^2-2x-2$.'
   answer_label: Solve $y=4-x$ and $y=x^2-2x-2$.
   check:
     kind: solve
@@ -162,4 +162,4 @@ problems:
     answer:
     - '-1'
     - '4'
-  answer_text: $(x,y)=(-1,5)$ or $(4,0)$
+  answer_text: '$(x,y)=(-1,5)$ or $(4,0)$'

@@ -4,7 +4,7 @@ chapter: 19
 chapter_title: Perimeter, area, surface area and volume
 section: "19.3"
 section_title: Arc length and sector area
-tier: H
+tier: F
 dfe: [G18]
 kind: walkthrough
 ---
@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** use circle circumference and area formulae; calculate fractions of amounts.
 
-**Objectives:** calculate arc lengths, sector areas and sector perimeters from an angle and radius. This covers G18.
+**Objectives:** calculate arc lengths, sector areas and sector perimeters from an angle and radius.
 
 ## Fractions of a circle
 
@@ -38,6 +38,14 @@ The sector is one quarter of a circle: $90\div360=\frac14$.
 Take one quarter of the circle area: $\frac14\times\pi\times8^2=16\pi$.
 
 So its area is $16\pi\text{ cm}^2$. Add both radii to the arc when finding sector perimeter.
+
+**Example 3.** A sector has area $20\pi\text{ cm}^2$ in a circle of radius 10 cm. Work out its angle.
+
+Find the fraction of the full circle: $\frac{20\pi}{\pi\times10^2}=\frac15$.
+
+Find one fifth of $360^\circ$: $\frac15\times360^\circ=72^\circ$.
+
+So the sector angle is $72^\circ$.
 
 > **Watch out.** The angle fraction must use degrees out of $360^\circ$. Do not use the angle alone as a multiplier.
 

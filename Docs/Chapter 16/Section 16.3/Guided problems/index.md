@@ -27,7 +27,7 @@ Try each question before opening a hint. Open the next part only when you need i
 
 ## Practise with help
 
-**1.** Work out the missing angle in a basic question from this section.
+**1.** A triangle has angles $48^\circ$, $73^\circ$ and $x^\circ$. Find $x$.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -37,9 +37,17 @@ Write the angle fact that fits the diagram or shape.
 <details markdown="1">
 <summary>One step</summary>
 
-Set up an equation using the known angle total.
+The interior angles of a triangle total $180^\circ$. Write an equation.
 
-$48+73+x=180$, so $x=59^\circ$ because triangle angles sum to $180^\circ$.
+The interior angles of a triangle total $180^\circ$.
+
+$$
+48+73+x=180
+$$
+
+$$
+x=180-48-73=59^\circ
+$$
 
 <details markdown="1">
 <summary>Full working</summary>
@@ -50,7 +58,7 @@ Use the relevant angle sum and subtract the known angles. State the angle fact i
 </details>
 </details>
 
-**2.** A courtyard design uses the angle fact from this section. Find an unknown angle and explain your choice of fact.
+**2.** A quadrilateral has angles $90^\circ$, $105^\circ$, $83^\circ$ and $x^\circ$. Find $x$.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -60,14 +68,20 @@ Mark the known angles and identify their relationship before calculating.
 <details markdown="1">
 <summary>One step</summary>
 
-Write an equation for the known angles and the unknown.
+The interior angles of a quadrilateral total $360^\circ$. Write an equation.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-Substitute the known values, solve, then check that the angles fit the shape.
+The interior angles of a quadrilateral total $360^\circ$.
 
-$90+105+83+x=360$, so $x=82^\circ$ because quadrilateral angles sum to $360^\circ$.
+$$
+90+105+83+x=360
+$$
+
+$$
+x=360-90-105-83=82^\circ
+$$
 
 </details>
 </details>

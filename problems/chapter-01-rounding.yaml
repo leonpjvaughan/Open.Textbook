@@ -13,7 +13,7 @@ problems:
     section: "1.5"
     tier: F
     dfe: [N15]
-    statement: "Round £39.20 to the nearest pound."
+    statement: 'Round £39.20 to the nearest pound.'
     check: {kind: rounded, value: "39.20", rounded: "39", to: "1"}
 
   - id: ch1-round-1sf

@@ -18,27 +18,28 @@ Try the questions before opening the support. Reveal each level in order.
 1. Find the gradient between $(0,0)$ and $(2,6)$.
 2. Work out $5^2$.
 3. State the positive square root of $49$.
+4. Solve $x^2=25$.
 
 <details markdown="1"><summary>Answers</summary>
 
-$3$; $25$; $7$.
+$3$; $25$; $7$; $x=-5$ or $x=5$.
 </details>
 
 ## Practise with help
 
-**1.** Find the centre and radius of $(x-1)^2+(y+2)^2=16$.
+**1.** Find the centre and radius of $x^2+y^2=16$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Compare with $(x-a)^2+(y-b)^2=r^2$.
+Compare with $x^2+y^2=r^2$.
 </details>
 <details markdown="1"><summary>Next step</summary>
 
-Read $a=1$, $b=-2$, and $r^2=16$.
+The centre is $(0,0)$ and $r^2=16$.
 </details>
 <details markdown="1"><summary>Full working</summary>
 
-The centre is $(1,-2)$. The radius is $\sqrt{16}=4$.
+The centre is $(0,0)$. The radius is $\sqrt{16}=4$.
 </details>
 
 **2.** Check whether $(3,0)$ is on the circle $x^2+y^2=9$.

@@ -1,92 +1,91 @@
 chapter: 19
 problems:
-- id: ch19-19-1-01
+- id: 'ch19-19-1-01'
   section: '19.1'
-  tier: F
+  tier: 'F'
   dfe: &id001
-  - G16
-  statement: Work out the perimeter of a rectangle with length 8 cm and width 3 cm.
-  answer_label: Rectangle perimeter
+  - 'G16'
+  statement: 'Work out the perimeter of a rectangle with length 8 cm and width 3 cm.'
+  answer_label: 'Rectangle perimeter'
   check:
-    kind: evaluate
-    expression: 2*(8+3)
+    kind: 'evaluate'
+    expression: '2*(8+3)'
     answer: '22'
-  answer_text: $22\text{ cm}$
-- id: ch19-19-1-02
+  answer_text: '$22\text{ cm}$'
+- id: 'ch19-19-1-02'
   section: '19.1'
-  tier: F
+  tier: 'F'
   dfe: *id001
-  statement: Work out the area of a rectangle measuring 7 cm by 5 cm.
-  answer_label: Rectangle area
+  statement: 'Work out the area of a rectangle measuring 7 cm by 5 cm.'
+  answer_label: 'Rectangle area'
   check:
-    kind: evaluate
-    expression: 7*5
+    kind: 'evaluate'
+    expression: '7*5'
     answer: '35'
-  answer_text: $35\text{ cm}^2$
-- id: ch19-19-1-03
+  answer_text: '$35\text{ cm}^2$'
+- id: 'ch19-19-1-03'
   section: '19.1'
-  tier: F
+  tier: 'F'
   dfe: *id001
-  statement: Work out the area of a triangle with base 10 cm and perpendicular height 6 cm.
-  answer_label: Triangle area
+  statement: 'Work out the area of a triangle with base 10 cm and perpendicular height 6 cm.'
+  answer_label: 'Triangle area'
   check:
-    kind: evaluate
-    expression: 10*6/2
+    kind: 'evaluate'
+    expression: '10*6/2'
     answer: '30'
-  answer_text: $30\text{ cm}^2$
-- id: ch19-19-1-04
+  answer_text: '$30\text{ cm}^2$'
+- id: 'ch19-19-1-04'
   section: '19.1'
-  tier: F
+  tier: 'F'
   dfe: *id001
-  statement: A parallelogram has base 9 cm and perpendicular height 4 cm. Work out its area.
-  answer_label: Parallelogram area
+  statement: 'A parallelogram has base 9 cm and perpendicular height 4 cm. Work out its area.'
+  answer_label: 'Parallelogram area'
   check:
-    kind: evaluate
-    expression: 9*4
+    kind: 'evaluate'
+    expression: '9*4'
     answer: '36'
-  answer_text: $36\text{ cm}^2$
-- id: ch19-19-1-05
+  answer_text: '$36\text{ cm}^2$'
+- id: 'ch19-19-1-05'
   section: '19.1'
-  tier: F
+  tier: 'F'
   dfe: *id001
-  statement: A trapezium has parallel sides 5 cm and 11 cm, with perpendicular height 4 cm. Work out its area.
-  answer_label: Trapezium area
+  statement: 'A trapezium has parallel sides 5 cm and 11 cm, with perpendicular height 4 cm. Work out its area.'
+  answer_label: 'Trapezium area'
   check:
-    kind: evaluate
-    expression: (5+11)*4/2
+    kind: 'evaluate'
+    expression: '(5+11)*4/2'
     answer: '32'
-  answer_text: $32\text{ cm}^2$
-- id: ch19-19-1-06
+  answer_text: '$32\text{ cm}^2$'
+- id: 'ch19-19-1-06'
   section: '19.1'
-  tier: F
+  tier: 'F'
   dfe: *id001
-  statement: A rectangle is 12 m long and 7 m wide. Work out its perimeter.
-  answer_label: Rectangle perimeter
+  statement: 'A rectangle is 12 m long and 7 m wide. Work out its perimeter.'
+  answer_label: 'Rectangle perimeter'
   check:
-    kind: evaluate
-    expression: 2*(12+7)
+    kind: 'evaluate'
+    expression: '2*(12+7)'
     answer: '38'
-  answer_text: $38\text{ m}$
-- id: ch19-19-1-07
+  answer_text: '$38\text{ m}$'
+- id: 'ch19-19-1-07'
   section: '19.1'
-  tier: F
+  tier: 'F'
   dfe: *id001
-  statement: A compound shape is made from a 10 cm by 6 cm rectangle and a 4 cm by 3 cm rectangle joined without overlap.
-    Work out its total area.
-  answer_label: Compound area
+  statement: 'A compound shape is made from a 10 cm by 6 cm rectangle and a 4 cm by 3 cm rectangle joined without overlap. Work out its total area.'
+  answer_label: 'Compound area'
   check:
-    kind: evaluate
-    expression: 10*6+4*3
+    kind: 'evaluate'
+    expression: '10*6+4*3'
     answer: '72'
-  answer_text: $72\text{ cm}^2$
-- id: ch19-19-1-08
+  answer_text: '$72\text{ cm}^2$'
+- id: 'ch19-19-1-08'
   section: '19.1'
-  tier: F
+  tier: 'F'
   dfe: *id001
-  statement: A triangle has area 42 cm² and base 12 cm. Work out its perpendicular height.
-  answer_label: Triangle height
+  statement: 'A triangle has area 42 cm² and base 12 cm. Work out its perpendicular height.'
+  answer_label: 'Triangle height'
   check:
-    kind: evaluate
-    expression: 2*42/12
+    kind: 'evaluate'
+    expression: '2*42/12'
     answer: '7'
-  answer_text: $7\text{ cm}$
+  answer_text: '$7\text{ cm}$'

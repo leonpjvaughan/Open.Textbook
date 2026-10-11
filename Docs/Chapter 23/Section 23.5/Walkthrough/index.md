@@ -20,7 +20,7 @@ A set is a collection of items that meet a rule. A Venn diagram uses overlapping
 
 The notation $A\cap B$ means “in A and B”. The notation $A\cup B$ means “in A or B or both”.
 
-**Example — P6.** In a group of 30 students, 17 study French, 12 study Spanish and 5 study both. Find how many study neither.
+**Example.** In a group of 30 students, 17 study French, 12 study Spanish and 5 study both. Find how many study neither.
 
 Put 5 in the overlap.
 
@@ -44,4 +44,4 @@ If 8 of 20 people are in both sets, then $P(A\cap B)=\frac8{20}=0.4$ for a rando
 
 - represent groups and overlaps in a Venn diagram;
 - interpret $A\cap B$ and $A\cup B$;
-- calculate probabilities from set counts (P6).
+- calculate probabilities from set counts.

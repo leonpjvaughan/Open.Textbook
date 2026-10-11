@@ -12,7 +12,7 @@ kind: walkthrough
 
 # 5.6 Comparing lengths, areas and volumes — Learn
 
-## Before you start
+## Prerequisites
 
 You should be able to multiply and divide whole numbers and fractions. Check units before comparing quantities.
 
@@ -20,7 +20,7 @@ You should be able to multiply and divide whole numbers and fractions. Check uni
 
 **Similar shapes** have equal angles and proportional corresponding lengths. A **scale factor** compares their matching lengths.
 
-## What you will learn
+## Objectives
 
 - Convert a length scale factor into area and volume scale factors, in both directions.
 - Check that the result matches the units and direction of change.

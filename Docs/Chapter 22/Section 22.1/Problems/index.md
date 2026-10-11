@@ -4,7 +4,7 @@ chapter: 22
 chapter_title: Vectors
 section: '22.1'
 section_title: Vector notation and column vectors
-tier: H
+tier: F
 dfe: [G24, G25]
 kind: problems
 ---

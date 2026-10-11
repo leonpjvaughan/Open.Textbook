@@ -11,36 +11,39 @@ kind: walkthrough
 
 # 11.2 Gradient and intercept: y = mx + c — Learn
 
-**Prerequisites:** read ordered pairs and use the four operations with integers and decimals.
+**Prerequisites:** read and plot coordinates, and divide integers.
 
-**Objectives:** plot and interpret points; gradient and intercept: y = mx + c.
+## Objectives
 
-## Key idea
+By the end of this section, you can calculate the gradient between two points and identify the gradient and vertical intercept in $y=mx+c$.
 
-The gradient tells you how much $y$ changes when $x$ increases by one. Calculate it using change in $y$ divided by change in $x$. In $y=mx+c$, $m$ is the gradient and $c$ is where the line crosses the vertical axis.
+## Gradient and intercept
 
-## Worked example
+The **gradient** measures the change in $y$ for each 1-unit increase in $x$. Calculate it by dividing the change in $y$ by the change in $x$.
 
-Find the gradient through $(1,2)$ and $(4,11)$.
+In $y=mx+c$, $m$ is the gradient and $c$ is the vertical intercept, where the line crosses the $y$-axis.
+
+**Worked example.** Find the gradient through $(1,2)$ and $(4,11)$.
 
 $$
 \begin{aligned}
-m &= \frac{11-2}{4-1} \\
-  &= \frac{9}{3} \\
-  &= 3
+m &= \frac{11-2}{4-1}\\
+  &= \frac{9}{3}\\
+  &= 3.
 \end{aligned}
 $$
 
-The gradient is 3. In $y=-2x+5$, the gradient is $-2$ and the vertical intercept is 5.
+The line rises 9 units while moving 3 units right, so its gradient is 3. In $y=-2x+5$, the gradient is $-2$ and the vertical intercept is 5.
 
-> **Watch out.** Reversing $(x,y)$ swaps horizontal and vertical positions. Read the horizontal coordinate first, then check each plotted point against both axes.
+> **Watch out.** Keep the order consistent in both differences. If you calculate $11-2$ in the numerator, use $4-1$ in the denominator.
 
 ## Progress check
 
-Progress check: the journey line rises 2 km in 30 minutes. Its gradient is $2/30$ km per minute.
+The walker travels 2 km in 30 minutes. Its gradient is $2/30=1/15$ km per minute.
+
 
 ## You should now be able to
 
-- explain the key terms and method in this section;
-- show working and check a result using the graph or equation;
-- answer the DfE requirements: A9, A10.
+- calculate the gradient between two points and identify the gradient and vertical intercept in $y=mx+c$.;
+- check your result by substitution or by interpreting the graph;
+- explain the method in your own words.

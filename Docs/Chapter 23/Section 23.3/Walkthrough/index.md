@@ -20,7 +20,7 @@ kind: walkthrough
 
 A frequency tree splits a total into groups and subgroups. Each branch count tells how many observations are in that group. A two-way table displays counts for two categories. A possibility space lists every possible outcome of an experiment.
 
-**Example 1 — P1 and P6.** A survey asks 30 students whether they walk to school. Of 18 who walk, 11 are girls. Of 12 who do not walk, 5 are girls. Complete the counts.
+**Example 1.** A survey asks 30 students whether they walk to school. Of 18 who walk, 11 are girls. Of 12 who do not walk, 5 are girls. Complete the counts.
 
 Walking girls: 11; walking boys: $18-11=7$.
 
@@ -30,7 +30,13 @@ Girls total: $11+5=16$; boys total: $7+7=14$.
 
 The table entries total $16+14=30$, which checks the survey total.
 
-**Example 2 — P7.** Two fair coins are tossed. List the outcomes and find the probability of one head.
+|  | Girls | Boys | Total |
+|---|---:|---:|---:|
+| Walk | 11 | 7 | 18 |
+| Do not walk | 5 | 7 | 12 |
+| Total | 16 | 14 | 30 |
+
+**Example 2.** Two fair coins are tossed. List the outcomes and find the probability of one head.
 
 List the first coin then the second: HH, HT, TH, TT.
 
@@ -46,5 +52,5 @@ A frequency tree starts with 50 people: 28 use a bus and 22 do not. If 16 bus us
 
 ## You should now be able to
 
-- read and complete frequency trees and two-way tables (P1, P6);
-- list a possibility space systematically and use it to find probability (P7).
+- read and complete frequency trees and two-way tables;
+- list a possibility space systematically and use it to find probability.

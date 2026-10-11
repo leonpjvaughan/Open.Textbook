@@ -73,7 +73,7 @@ The graph passes through $(0,1)$ and increases by a factor of two each step righ
 
 ## Progress check
 
-Which graph family could model repeated equal percentage growth? Explain how its outputs change over equal input steps.
+The chapter signal crosses its middle value while rising, then reaches a peak. Which graph family could model this repeating pattern? Give one reason.
 
 ## You should now be able to
 

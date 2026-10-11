@@ -33,7 +33,7 @@ For each question, name the method and explain why it fits before calculating.
 
 <details markdown="1"><summary>Answers and checks</summary>
 
-1. Pythagoras: $5$ m. 2. Tangent: $45^\circ$. 3. Cosine rule: $\sqrt{67}$ cm. 4. $22\sqrt3$ cm$^2$. 5. Two triangles; $13$ cm. 6. $6\sqrt2$ cm. 7. $3/4$. 8. Cosine rule: about $92.9^\circ$.
+1. Pythagoras: $5$ m. 2. Tangent: $45^\circ$. 3. Cosine rule: $\sqrt{67}$ cm. 4. $22$ cm$^2$. 5. Two triangles; $13$ cm. 6. $6\sqrt2$ cm. 7. $3/4$. 8. Cosine rule: about $92.9^\circ$.
 
 **Reflection:** Which measurements help you choose between Pythagoras, a trigonometric ratio, the sine rule, the cosine rule, and the area formula? Which method can you now explain without notes?
 </details>

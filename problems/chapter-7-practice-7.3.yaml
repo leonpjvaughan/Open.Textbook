@@ -8,33 +8,33 @@ problems:
   tier: F
   dfe:
   - N15
-  statement: Round $38.476$ to 2 decimal places.
+  statement: 'Round $38.476$ to 2 decimal places.'
   answer_label: Round to 2 decimal places
   check:
     kind: rounded
     value: '38.476'
     rounded: '38.48'
     to: '0.01'
-  answer_text: $38.48$.
+  answer_text: '$38.48$.'
 - id: ch7-73-sf
   section: '7.3'
   tier: F
   dfe:
   - N15
-  statement: Round $0.006384$ to 2 significant figures.
+  statement: 'Round $0.006384$ to 2 significant figures.'
   answer_label: Round to 2 significant figures
   check:
     kind: rounded
     value: '0.006384'
     rounded: '0.0064'
     to: '0.0001'
-  answer_text: $0.0064$.
+  answer_text: '$0.0064$.'
 - id: ch7-73-interval
   section: '7.3'
   tier: F
   dfe:
   - N15
-  statement: A length is $12.6$ cm to the nearest $0.1$ cm. Write its error interval.
+  statement: 'A length is $12.6$ cm to the nearest $0.1$ cm. Write its error interval.'
   answer_label: Error interval
   check:
     kind: all
@@ -47,13 +47,13 @@ problems:
       relation: <
       lhs: '12.6'
       rhs: '12.65'
-  answer_text: $12.55\leq L<12.65$ cm.
+  answer_text: '$12.55\leq L<12.65$ cm.'
 - id: ch7-73-interval2
   section: '7.3'
   tier: F
   dfe:
   - N15
-  statement: A mass is $540$ g to the nearest $10$ g. Give its lower and upper bounds.
+  statement: 'A mass is $540$ g to the nearest $10$ g. Give its lower and upper bounds.'
   answer_label: Bounds from rounding
   check:
     kind: all
@@ -66,58 +66,58 @@ problems:
       relation: <
       lhs: '540'
       rhs: '545'
-  answer_text: $535\leq m<545$ g.
+  answer_text: '$535\leq m<545$ g.'
 - id: ch7-73-decimal
   section: '7.3'
   tier: F
   dfe:
   - N15
-  statement: Round $7.995$ to 2 decimal places.
+  statement: 'Round $7.995$ to 2 decimal places.'
   answer_label: Round a carry value
   check:
     kind: rounded
     value: '7.995'
     rounded: '8.00'
     to: '0.01'
-  answer_text: $8.00$.
+  answer_text: '$8.00$.'
 - id: ch7-73-estimate
   section: '7.3'
   tier: F
   dfe:
   - N15
-  statement: "Estimate $49.8\times19.7$ by rounding each value to 1 significant figure."
+  statement: 'Estimate $49.8\times19.7$ by rounding each value to 1 significant figure.'
   answer_label: Estimate a product
   check:
     kind: evaluate
     expression: 50 * 20
     answer: '1000'
-  answer_text: About $1000$.
+  answer_text: 'About $1000$.'
 - id: ch7-73-roundmass
   section: '7.3'
   tier: F
   dfe:
   - N15
-  statement: Round $0.0847$ kg to 2 significant figures.
+  statement: 'Round $0.0847$ kg to 2 significant figures.'
   answer_label: Round a small measurement
   check:
     kind: rounded
     value: '0.0847'
     rounded: '0.085'
     to: '0.001'
-  answer_text: $0.085$ kg.
+  answer_text: '$0.085$ kg.'
 - id: ch7-73-interpret
   section: '7.3'
   tier: F
   dfe:
   - N15
-  statement: A number rounds to $250$ to the nearest $10$. Is $255$ included in its interval?
+  statement: 'A number rounds to $250$ to the nearest $10$. Is $255$ included in its interval?'
   answer_label: Interpret an endpoint
   check:
     kind: compare
     relation: <
     lhs: '255'
     rhs: '255.0001'
-  answer_text: No. The interval is $245\leq x<255$.
+  answer_text: 'No. The interval is $245\leq x<255$.'
 - id: ch7-73-interval-h
   section: '7.3'
   tier: H
@@ -136,13 +136,13 @@ problems:
       relation: <
       lhs: '3.4'
       rhs: '3.405'
-  answer_text: $3.395\leq x<3.405$.
+  answer_text: '$3.395\leq x<3.405$.'
 - id: ch7-73-boundary
   section: '7.3'
   tier: F
   dfe:
   - N15
-  statement: A time rounds to $6.2$ seconds to the nearest $0.1$ second. Give its interval and explain the upper sign.
+  statement: 'A time rounds to $6.2$ seconds to the nearest $0.1$ second. Give its interval and explain the upper sign.'
   answer_label: Explain an interval
   check:
     kind: all
@@ -155,4 +155,4 @@ problems:
       relation: <
       lhs: '6.2'
       rhs: '6.25'
-  answer_text: $6.15\leq t<6.25$; $6.25$ rounds to $6.3$.
+  answer_text: '$6.15\leq t<6.25$; $6.25$ rounds to $6.3$.'

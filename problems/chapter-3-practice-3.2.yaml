@@ -8,7 +8,7 @@ problems:
     answer_label: 'Estimate a square root'
     check: {kind: between, value: '7.1', low: '7', high: '8'}
     answer_text: 'About $7$, since $7^2=49$ and $8^2=64$.'
-  - id: ch3-32-cube-estimate
+  - id: ch3-32-cube-estimate-90
     section: '3.2'
     tier: F
     dfe: [N6]
@@ -46,8 +46,8 @@ problems:
     dfe: [N6]
     statement: 'Is $\\sqrt{30}$ closer to 5 or 6? Give a reason.'
     answer_label: 'Compare distances from squares'
-    check: {kind: compare, relation: '<', lhs: '30-25', rhs: '36-30'}
-    answer_text: 'Closer to $5$: $30-25=5$, while $36-30=6$.'
+    check: {kind: compare, relation: '<', lhs: 'sqrt(30)-5', rhs: '6-sqrt(30)'}
+    answer_text: 'Closer to $5$: $\\sqrt{30}-5<6-\\sqrt{30}$ because $\\sqrt{30}<5.5$. Equivalently, $30<30.25$.'
   - id: ch3-32-higher-power-bound
     section: '3.2'
     tier: H

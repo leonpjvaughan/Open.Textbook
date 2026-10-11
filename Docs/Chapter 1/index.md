@@ -7,7 +7,9 @@ anchor: The school-fair stall
 
 # Chapter 1: Number skills
 
-**By the end of this chapter you will be able to:**
+## By the end of this chapter
+
+You will be able to:
 
 - read, write and order numbers, including decimals and negative numbers;
 - add, subtract, multiply and divide with integers and decimals using reliable written methods;
@@ -35,7 +37,7 @@ profit or a loss, how much, and how much money should be in the cash box.
 <summary>If you are not sure where to start</summary>
 
 Round each price to a round number and think about the totals. For example, 120
-cans at about 65p costs a little less than $120 \times 70\text{p} = £84$.
+cans at about 65p costs a little less than $120 \times 70 = 8400$ pence, or £84.
 </details>
 
 ## Where it is used
@@ -56,7 +58,7 @@ Each section has three parts:
 | Page | What it is for |
 |---|---|
 | **Learn** | The teaching: ideas, worked examples, and one investigation to try |
-| **Practise with help** | Problems with hints you reveal only if you need them |
+| **Guided problems** | Problems with hints you reveal only if you need them |
 | **Practise** | Independent problems, with answers at the end |
 
 The **Review** page resolves the chapter problem and mixes the chapter's methods

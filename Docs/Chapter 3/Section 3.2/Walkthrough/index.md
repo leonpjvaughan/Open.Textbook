@@ -13,9 +13,13 @@ kind: walkthrough
 
 **Prerequisites:** square and cube numbers, place value and rounding.
 
-**Objectives:** estimate powers and roots; give a reason for an estimate by comparing nearby values.
+**Objectives:** estimate powers and roots; give a reason for an estimate by
+comparing nearby values.
 
-This section covers estimation of powers and roots in N6.
+By the end of this section, you can estimate powers and roots and explain why
+your estimate is reasonable.
+
+This section covers N6.
 
 ## Compare with known values
 
@@ -26,15 +30,15 @@ matching base values. You can then refine the estimate.
 
 $$8^2=64 \qquad 9^2=81$$
 
-So $\sqrt{70}$ lies between 8 and 9. Since 70 is closer to 64 than to 81,
-$\sqrt{70}$ is about 8.
+So $\sqrt{70}$ lies between 8 and 9. The midpoint of 64 and 81 is 72.5.
+Since $70<72.5$, $\sqrt{70}$ rounds to 8.
 
 **Example 2.** Estimate $\sqrt[3]{200}$ to the nearest whole number.
 
 $$5^3=125 \qquad 6^3=216$$
 
-So $\sqrt[3]{200}$ lies between 5 and 6. Since 200 is closer to 216, the
-estimate is about 6.
+So $\sqrt[3]{200}$ lies between 5 and 6. The midpoint of 125 and 216 is 170.5.
+Since $200>170.5$, $\sqrt[3]{200}$ rounds to 6.
 
 ## Estimating powers
 
@@ -49,7 +53,8 @@ $$19^3\approx20^3$$
 
 $$20^3=8000$$
 
-The estimate is 8000. The exact value is near this because 19 is close to 20.
+The estimate is 8000. The exact value is $19^3=6859$, so rounding the base
+gives an estimate that is 1141 too high.
 
 > **Watch out.** A nearby number can give a poor estimate when the power grows
 > quickly. Rounding 19 to 20 changes the cube from $6859$ to $8000$. State the
@@ -57,13 +62,14 @@ The estimate is 8000. The exact value is near this because 19 is close to 20.
 
 ## Progress check
 
-After 20 doublings, the file size is $2^{20}$. Use $2^{10}=1024$ to predict
-whether this is closer to $10^6$ or $10^9$ units. The next section gives a way
-to rewrite the power.
+After 20 doublings, the file size is $2^{20}$. Since $2^{10}=1024$, predict
+whether it is closer to $10^3$ or $10^6$ units. The next section gives a way to
+rewrite the power.
 
 ## You should now be able to
 
 - locate a square or cube root between consecutive whole numbers;
-- refine an estimate by comparing distances from known powers;
+- round a root to the nearest whole number by comparing with the midpoint of
+  nearby powers;
 - estimate a power by rounding its base;
 - explain why an estimate is reasonable.

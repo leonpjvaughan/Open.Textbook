@@ -36,7 +36,7 @@ For each question, name a method before working it out. Give a reason for your c
 5. Write $x^2+10x+1$ in completed-square form. State its turning point as a graph of $y$.
 6. A quadratic graph has roots $-1$ and $4$. What equation could describe its roots?
 7. From earlier work: solve $3x+8=20$. Explain how you checked your answer.
-8. From earlier work: simplify $2^3	imes2^4$.
+8. From earlier work: simplify $2^3\times2^4$.
 
 <details markdown="1">
 <summary>Answers</summary>

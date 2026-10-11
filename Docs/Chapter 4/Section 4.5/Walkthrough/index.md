@@ -12,11 +12,11 @@ kind: walkthrough
 
 **Prerequisites:** multiplication and place value.
 
-**Objectives:** A recurring decimal has a digit or block of digits that repeats forever. A dot above a digit marks the repeating block. This section is Higher only.
+**Objectives:** Convert recurring decimals, including those with a non-recurring part, into fractions. This content is Higher only.
 
 ## Learn the method
 
-Set the recurring decimal equal to $x$. Multiply by a power of $10$ that moves one repeating block past the decimal point. Subtract the equations to remove the recurring tail.
+Set the recurring decimal equal to $x$. Multiply by a power of $10$ that moves one repeating block past the decimal point. Subtract the equations to remove the recurring tail. A dot above a digit marks the repeating block.
 
 ## Worked examples
 
@@ -48,12 +48,12 @@ $90x=11$, so $x=\frac{11}{90}$.
 
 ## Progress check
 
-The keyboard problem gives a discount of $\frac{1}{4}$. Write this as a percentage. Which section method will help you compare prices?
+The keyboard discount is $\frac14$. As a decimal this is $0.25$, so it is not recurring. Convert $0.\dot{2}$ to a fraction: $x=0.222\ldots$, so $10x-x=2$, $9x=2$, and $x=\frac29$.
 
 ## You should now be able to
 
-- explain the key idea in this section in your own words;
-- choose and use the method shown in the worked examples;
-- check your answer using an equivalent representation.
+- convert a recurring decimal to a fraction;
+- convert a recurring decimal with a non-recurring part to a fraction;
+- use subtraction to remove a repeating tail.
 
 **Covers:** [N10].

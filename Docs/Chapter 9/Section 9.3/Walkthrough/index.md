@@ -11,9 +11,11 @@ kind: walkthrough
 
 # 9.3 Forming and solving equations — Learn
 
-**Prerequisites:** forming expressions and solving equations from sections 9.1 and 9.2.
+**Prerequisites:** forming expressions and solving equations from Sections 9.1 and 9.2.
 
 **Objectives:** define an unknown, form an equation from words, solve it, and interpret the answer in context.
+
+This section covers forming and solving equations from simple situations, within AQA reference A21.
 
 Choose a letter for the unknown and state what it represents. Translate each relationship into an expression. Use the equality in the question to form an equation, then check that your answer fits the situation.
 
@@ -39,7 +41,9 @@ Perimeter is twice the length plus twice the width: $2w+2(w+3)=34$.
 
 Expand and collect: $4w+6=34$.
 
-Subtract $6$ and divide by $4$: $w=7$.
+Subtract $6$: $4w=28$.
+
+Divide by $4$: $w=7$.
 
 The dimensions are $7$ cm and $10$ cm. Their perimeter is $34$ cm.
 

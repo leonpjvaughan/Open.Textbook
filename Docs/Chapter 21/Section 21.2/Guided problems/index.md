@@ -11,8 +11,6 @@ kind: guided-problems
 
 # 21.2 Circle theorems — Practise with help
 
-Try each question before opening a hint. Open the full working to check your method.
-
 ## Warm-up: remember
 
 1. What is the total angle in a triangle?
@@ -41,7 +39,7 @@ Calculate $2\times27$.
 $2\times27^\circ=54^\circ$.
 </details>
 
-**2.** An angle in a semicircle and an angle in the same segment are marked $x$ and $y$. Find both angles.
+**2.** An angle in a semicircle is $x$. A second angle stands on the same diameter in the same segment and is $y$. Find both angles.
 
 <details markdown="1"><summary>Hint</summary>
 

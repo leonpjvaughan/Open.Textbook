@@ -12,16 +12,16 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-Work without looking back. Then open the answers to check.
+Answer from memory before checking.
 
-1. Write $0.4$ as a fraction with denominator $10$.
-2. Work out $3\times8$.
+1. From Section 4.4, write $0.125$ as a fraction in simplest form.
+2. From Section 4.4, write $\frac{3}{8}$ as a decimal.
 
 <details markdown="1">
 <summary>Answers</summary>
 
-1. $\frac{4}{10}$.
-2. $24$.
+1. $\frac{1}{8}$.
+2. $0.375$.
 </details>
 
 ## Practise with help
@@ -68,22 +68,22 @@ If $x=0.272727\ldots$, then $100x-x=27$, so $99x=27$ and $x=\frac{3}{11}$.
 </details>
 </details>
 
-**3. Progress check.** Return to the keyboard prices. What fraction of £48 is the discount?
+**3. Progress check.** Convert $0.\dot{6}$ to a fraction, then use it to find $0.\dot{6}$ of £48.
 
 <details markdown="1">
 <summary>Hint</summary>
 
-Multiply the price by the discount fraction.
+First convert the recurring decimal to a fraction.
 
 <details markdown="1">
 <summary>Next step</summary>
 
-Find one quarter of £48, then compare with £37.50.
+Then multiply £48 by that fraction.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-£48 divided by $4$ is £12. The discounted price is £48-£12=£36, which is £1.50 below £37.50.
+$0.\dot{6}=\frac23$, so $\frac23\times£48=£32$.
 </details>
 </details>
 </details>

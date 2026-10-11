@@ -1,64 +1,64 @@
-chapter: 4
+chapter: '4'
 symbols: {}
 problems:
-- id: ch4-decimal-frac
+- id: 'ch4-decimal-frac'
   section: '4.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - N10
-  statement: Write $0.48$ as a fraction in its simplest form.
-  answer_label: Answer 1
+  - 'N10'
+  statement: 'Write $0.48$ as a fraction in its simplest form.'
+  answer_label: 'Answer 1'
   check:
-    kind: evaluate
-    expression: 48/100
-    answer: 12/25
-  answer_text: $0.48=\frac{48}{100}=\frac{12}{25}.$
-- id: ch4-fraction-dec
+    'kind': 'evaluate'
+    'expression': '48/100'
+    'answer': '12/25'
+  answer_text: '$0.48=\frac{48}{100}=\frac{12}{25}.$'
+- id: 'ch4-fraction-dec'
   section: '4.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - N10
-  statement: Write $\frac{7}{20}$ as a decimal.
-  answer_label: Answer 2
+  - 'N10'
+  statement: 'Write $\frac{7}{20}$ as a decimal.'
+  answer_label: 'Answer 2'
   check:
-    kind: evaluate
-    expression: 7/20
-    answer: '0.35'
-  answer_text: $\frac{7}{20}=\frac{35}{100}=0.35.$
-- id: ch4-terminating
+    'kind': 'evaluate'
+    'expression': '7/20'
+    'answer': '0.35'
+  answer_text: '$\frac{7}{20}=\frac{35}{100}=0.35.$'
+- id: 'ch4-terminating'
   section: '4.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - N10
-  statement: Work out $\frac{13}{40}$ as a decimal.
-  answer_label: Answer 3
+  - 'N10'
+  statement: 'Work out $\frac{13}{40}$ as a decimal.'
+  answer_label: 'Answer 3'
   check:
-    kind: evaluate
-    expression: 13/40
-    answer: '0.325'
-  answer_text: $\frac{13}{40}=\frac{325}{1000}=0.325.$
-- id: ch4-nonterm-check
+    'kind': 'evaluate'
+    'expression': '13/40'
+    'answer': '0.325'
+  answer_text: '$\frac{13}{40}=\frac{325}{1000}=0.325.$'
+- id: 'ch4-nonterm-check'
   section: '4.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - N10
+  - 'N10'
   statement: 'Which fraction has a terminating decimal: $\frac{5}{12}$ or $\frac{7}{40}$? Give the decimal.'
-  answer_label: Answer 4
+  answer_label: 'Answer 4'
   check:
-    kind: evaluate
-    expression: 7/40
-    answer: '0.175'
-  answer_text: $\frac{7}{40}=0.175$; the denominator $40=2^3\times5$ gives a terminating decimal.
-- id: ch4-order-rep
+    'kind': 'evaluate'
+    'expression': '7/40'
+    'answer': '0.175'
+  answer_text: '$\frac{7}{40}=0.175$; the denominator $40=2^3\times5$ gives a terminating decimal.'
+- id: 'ch4-order-rep'
   section: '4.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - N10
-  statement: Write $\frac{5}{8}$ and $0.61$ in order, smallest first.
-  answer_label: Answer 5
+  - 'N10'
+  statement: 'Write $\frac{5}{8}$ and $0.61$ in order, smallest first.'
+  answer_label: 'Answer 5'
   check:
-    kind: compare
-    relation: <
-    lhs: '0.61'
-    rhs: 5/8
-  answer_text: $\frac{5}{8}=0.625$, so $0.61<\frac{5}{8}$.
+    'kind': 'compare'
+    'relation': '<'
+    'lhs': '0.61'
+    'rhs': '5/8'
+  answer_text: '$\frac{5}{8}=0.625$, so $0.61<\frac{5}{8}$.'

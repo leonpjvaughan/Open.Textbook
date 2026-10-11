@@ -1,110 +1,110 @@
 # Practice set for 24.1. Questions and answers render from these verified records.
 chapter: 24
 problems:
-  - id: ch24-24-1-sample-proportion
-    section: "24.1"
-    tier: F
-    dfe: [S1, S5]
+  - id: 'ch24-24-1-sample-proportion'
+    section: '24.1'
+    tier: 'F'
+    dfe: ['S1', 'S5']
     statement: 'A sample of 40 pupils includes 12 who walk. Work out the sample proportion who walk.'
     answer_label: 'A sample of 40 pupils includes 12 who walk. Work out the sample proportion who walk.'
     check:
-      kind: evaluate
+      kind: 'evaluate'
       expression: '12/40'
       answer: '3/10'
     answer_text: 'The sample proportion is $12/40=3/10$.'
 
-  - id: ch24-24-1-population-estimate
-    section: "24.1"
-    tier: F
-    dfe: [S1, S5]
+  - id: 'ch24-24-1-population-estimate'
+    section: '24.1'
+    tier: 'F'
+    dfe: ['S1', 'S5']
     statement: 'A random sample of 30 people has 9 who use the bus. Estimate the number in a population of 500 who use the bus.'
     answer_label: 'A random sample of 30 people has 9 who use the bus. Estimate the number in a population of 500 who use the bus.'
     check:
-      kind: evaluate
+      kind: 'evaluate'
       expression: '9 / 30 * 500'
       answer: '150'
     answer_text: 'Estimate: $150$.'
 
-  - id: ch24-24-1-survey-percentage
-    section: "24.1"
-    tier: F
-    dfe: [S1, S5]
+  - id: 'ch24-24-1-survey-percentage'
+    section: '24.1'
+    tier: 'F'
+    dfe: ['S1', 'S5']
     statement: 'In a sample of 80 pupils, 28 bring lunch from home. Work out the percentage.'
     answer_label: 'In a sample of 80 pupils, 28 bring lunch from home. Work out the percentage.'
     check:
-      kind: evaluate
+      kind: 'evaluate'
       expression: '28 / 80 * 100'
       answer: '35'
     answer_text: '$35\%$.'
 
-  - id: ch24-24-1-questionnaire-count
-    section: "24.1"
-    tier: F
-    dfe: [S1, S5]
+  - id: 'ch24-24-1-questionnaire-count'
+    section: '24.1'
+    tier: 'F'
+    dfe: ['S1', 'S5']
     statement: 'A neutral survey records 14 “walk”, 18 “bus”, and 8 “car” responses. How many responses were recorded?'
     answer_label: 'A neutral survey records 14 “walk”, 18 “bus”, and 8 “car” responses. How many responses were recorded?'
     check:
-      kind: evaluate
+      kind: 'evaluate'
       expression: '14+18+8'
       answer: '40'
     answer_text: 'There were 40 responses.'
 
-  - id: ch24-24-1-representative-fraction
-    section: "24.1"
-    tier: F
-    dfe: [S1, S5]
+  - id: 'ch24-24-1-representative-fraction'
+    section: '24.1'
+    tier: 'F'
+    dfe: ['S1', 'S5']
     statement: 'A sample of 25 pupils includes 10 cyclists. Write the sample fraction in its simplest form.'
     answer_label: 'A sample of 25 pupils includes 10 cyclists. Write the sample fraction in its simplest form.'
     check:
-      kind: evaluate
+      kind: 'evaluate'
       expression: '10/25'
       answer: '2/5'
     answer_text: 'The sample fraction is $2/5$.'
 
-  - id: ch24-24-1-estimate-size
-    section: "24.1"
-    tier: F
-    dfe: [S1, S5]
+  - id: 'ch24-24-1-estimate-size'
+    section: '24.1'
+    tier: 'F'
+    dfe: ['S1', 'S5']
     statement: 'A sample of 45 households has 18 with a pet. Estimate the number with a pet in 300 households.'
     answer_label: 'A sample of 45 households has 18 with a pet. Estimate the number with a pet in 300 households.'
     check:
-      kind: evaluate
+      kind: 'evaluate'
       expression: '18/45*300'
       answer: '120'
     answer_text: 'Estimate: 120 households.'
 
-  - id: ch24-24-1-biased-survey
-    section: "24.1"
-    tier: F
-    dfe: [S1, S5]
-    statement: 'A pupil asks only friends from the chess club whether the school should buy more footballs. Explain one limitation.'
-    answer_label: 'A pupil asks only friends from the chess club whether the school should buy more footballs. Explain one limitation.'
+  - id: 'ch24-24-1-biased-survey'
+    section: '24.1'
+    tier: 'F'
+    dfe: ['S1', 'S5']
+    statement: 'A pupil asks only friends from the chess club whether the school should buy more footballs. Work out the percentage represented by 6 yes votes in a sample of 10, and explain one limitation of the sample.'
+    answer_label: 'A pupil asks only friends from the chess club whether the school should buy more footballs. Work out the percentage represented by 6 yes votes in a sample of 10, and explain one limitation of the sample.'
     check:
-      kind: evaluate
-      expression: '2+2'
-      answer: '4'
-    answer_text: 'The sample may be biased because chess-club friends may not represent the whole school.'
+      kind: 'evaluate'
+      expression: '6/10*100'
+      answer: '60'
+    answer_text: 'The sample result is $60\%$. The sample may be biased because chess-club friends may not represent the whole school.'
 
-  - id: ch24-24-1-sample-coverage
-    section: "24.1"
-    tier: F
-    dfe: [S1, S5]
-    statement: 'A town survey asks 50 people at a train station about car ownership. State one group that may be under-represented.'
-    answer_label: 'A town survey asks 50 people at a train station about car ownership. State one group that may be under-represented.'
+  - id: 'ch24-24-1-sample-coverage'
+    section: '24.1'
+    tier: 'F'
+    dfe: ['S1', 'S5']
+    statement: 'A town survey asks 50 people at a train station about car ownership. Work out the percentage represented by 20 car owners, then state one group that may be under-represented.'
+    answer_label: 'A town survey asks 50 people at a train station about car ownership. Work out the percentage represented by 20 car owners, then state one group that may be under-represented.'
     check:
-      kind: evaluate
-      expression: '3+1'
-      answer: '4'
-    answer_text: 'People who do not use the train station may be under-represented.'
+      kind: 'evaluate'
+      expression: '20/50*100'
+      answer: '40'
+    answer_text: '$40\%$ own cars in the sample. People who do not use the train station may be under-represented.'
 
-  - id: ch24-24-1-neutral-question
-    section: "24.1"
-    tier: F
-    dfe: [S1, S5]
-    statement: 'Replace “You agree that the new route is safer, do you not?” with a neutral question.'
-    answer_label: 'Replace “You agree that the new route is safer, do you not?” with a neutral question.'
+  - id: 'ch24-24-1-neutral-question'
+    section: '24.1'
+    tier: 'F'
+    dfe: ['S1', 'S5']
+    statement: 'Replace “You agree that the new route is safer, do you not?” with a neutral question. In a sample of 30 responses, 18 people answer yes. Work out this percentage.'
+    answer_label: 'Replace “You agree that the new route is safer, do you not?” with a neutral question. In a sample of 30 responses, 18 people answer yes. Work out this percentage.'
     check:
-      kind: evaluate
-      expression: '5-2'
-      answer: '3'
-    answer_text: 'For example: “How safe do you think the new route is?”'
+      kind: 'evaluate'
+      expression: '18/30*100'
+      answer: '60'
+    answer_text: 'For example: “Do you think the new route is safe?” The sample percentage is $60\%$.'

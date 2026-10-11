@@ -14,8 +14,13 @@ launch() {
   local n="$1"
   local prompt
   prompt=$(sed "s/CHAPTER/${n}/g" "$TEMPLATE")
-  printf '%s' "$prompt" | codex exec -s workspace-write - \
-    >"agent-runs/review-${n}.log" 2>&1
+  if [ "${AGENT:-codex}" = "copilot" ]; then
+    copilot -p "$prompt" --allow-all-tools --allow-all-paths \
+      >"agent-runs/review-${n}.log" 2>&1
+  else
+    printf '%s' "$prompt" | codex exec -s workspace-write - \
+      >"agent-runs/review-${n}.log" 2>&1
+  fi
   echo "review ${n}: exit $? -> agent-runs/review-${n}.log"
 }
 

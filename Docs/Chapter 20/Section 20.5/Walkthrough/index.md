@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** Pythagoras' theorem and trigonometric ratios in a flat triangle.
 
-**Objectives:** find a diagonal or angle in a three-dimensional shape by identifying a right-angled triangle. This teaches DfE G20.
+**Objectives:** find a diagonal or angle in a three-dimensional shape by identifying right-angled triangles.
 
 A **3D diagonal** joins two vertices that do not lie on one face. Work in stages: find a face diagonal first, then use it with the remaining perpendicular side.
 
@@ -47,6 +47,6 @@ The garden diagonal in 20.1 is a flat version of the same method: identify perpe
 
 ## You should now be able to
 
-- state the method and identify the measurements it needs;
-- show your working in a clear order;
-- check that your answer is sensible and give suitable units.
+- identify the face diagonal and use it to find a space diagonal;
+- model the angle between a space diagonal and a face using a right-angled triangle;
+- select Pythagoras' theorem or a trigonometric ratio and check the units.

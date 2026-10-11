@@ -6,15 +6,20 @@ strand: number
 
 # Chapter 3: Powers, roots and indices
 
-## The chapter problem: repeated doubling
+## The chapter problem
 
-A computer file starts at 1 unit. Each copy doubles its size, and this happens
-for 20 rounds. Predict whether the final size is nearer one thousand or one
-million units. You do not need an exact answer yet.
+### Repeated doubling
 
-By the end, you will use powers and index laws to find and estimate the size.
+A computer file starts at 1 unit. In each round, its size doubles. After 20
+rounds, predict whether its size is nearer one thousand or one million units.
+You do not need an exact answer yet.
 
-## By the end of this chapter you will be able to
+By the end of this chapter, you will use powers and index laws to find and
+estimate the size.
+
+## By the end of this chapter
+
+You will be able to:
 
 - calculate powers and roots, including square roots and cube roots;
 - estimate powers and roots by comparing with nearby known values;

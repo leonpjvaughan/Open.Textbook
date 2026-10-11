@@ -35,9 +35,9 @@ $$
 
 So $78 + 14.8 = 92.80$.
 
-> **Watch out.** $78 + 14.8$ is **not** $78 + 14.8 \to 92.8$ by lining up the
-> last digits. The $8$ in $14.8$ is eight tenths, so it belongs under the tenths
-> column, not under the $8$ ones.
+> **Watch out.** If you line up the final digits, you may put the $8$ in $14.8$
+> under the $8$ ones in $78$. That treats eight tenths as eight ones. Align the
+> decimal points instead: $78.00 + 14.80 = 92.80$.
 
 ## 2. Multiplication
 
@@ -54,12 +54,12 @@ $$
 0.65 \times 120 = 7\,800 \div 100 = 78
 $$
 
-So the drinks cost $£78$.
+So the drinks cost £78.00.
 
 **Example 3.** Work out $8 \times 1.85$.
 
 $8 \times 185 = 1\,480$, and $1.85$ has two decimal places, so the answer has two:
-$8 \times 1.85 = £14.80$.
+$8 \times 1.85 = 14.80$. So the cakes cost £14.80.
 
 ## 3. Division
 
@@ -75,7 +75,7 @@ $$
 **Example 5.** Work out $95 \times 1.20$ to find the drinks revenue.
 
 $95 \times 120 = 11\,400$, and $1.20$ has two decimal places, so
-$95 \times 1.20 = £114$.
+$95 \times 1.20 = 114$. The drinks revenue is £114.00.
 
 Where a division does not come out exactly, either give the remainder
 ($29 \div 4 = 7$ remainder $1$) or continue past the decimal point

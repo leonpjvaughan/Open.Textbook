@@ -1,98 +1,135 @@
-chapter: 15
-symbols:
-  x: {real: true}
-  y: {real: true}
-  k: {real: true}
-  a: {real: true}
-  n: {integer: true}
-  m: {integer: true}
-problems:
-  - id: ch15-15-3-add-like
-    section: "15.3"
-    tier: H
-    dfe: [A4]
-    statement: 'Simplify $\frac{3}{x}+\frac{2}{x}$.'
-    answer_label: 'Simplify $\frac{3}{x}+\frac{2}{x}$.'
-    check: {kind: evaluate, expression: '3/x+2/x', answer: '5/x'}
-    answer_text: '$\frac{5}{x}$, $x\neq0$'
-
-  - id: ch15-15-3-add-unlike
-    section: "15.3"
-    tier: H
-    dfe: [A4]
-    statement: 'Simplify $\frac{2}{x}+\frac{3}{x+1}$.'
-    answer_label: 'Simplify $\frac{2}{x}+\frac{3}{x+1}$.'
-    check: {kind: evaluate, expression: '2/x+3/(x+1)', answer: '(5*x+2)/(x*(x+1))'}
-    answer_text: '$\frac{5x+2}{x(x+1)}$, $x\neq0,-1$'
-
-  - id: ch15-15-3-subtract-unlike
-    section: "15.3"
-    tier: H
-    dfe: [A4]
-    statement: 'Simplify $\frac{5}{x-1}-\frac{2}{x+1}$.'
-    answer_label: 'Simplify $\frac{5}{x-1}-\frac{2}{x+1}$.'
-    check: {kind: evaluate, expression: '5/(x-1)-2/(x+1)', answer: '(3*x+7)/((x-1)*(x+1))'}
-    answer_text: '$\frac{3x+7}{(x-1)(x+1)}$, $x\neq1,-1$'
-
-  - id: ch15-15-3-multiply
-    section: "15.3"
-    tier: H
-    dfe: [A4]
-    statement: 'Simplify $\frac{2x}{3}\times\frac{9}{4x}$.'
-    answer_label: 'Simplify $\frac{2x}{3}\times\frac{9}{4x}$.'
-    check: {kind: evaluate, expression: '(2*x/3)*(9/(4*x))', answer: '3/2'}
-    answer_text: '$\frac{3}{2}$, $x\neq0$'
-
-  - id: ch15-15-3-divide
-    section: "15.3"
-    tier: H
-    dfe: [A4]
-    statement: 'Simplify $\frac{x}{3}\div\frac{2x}{5}$.'
-    answer_label: 'Simplify $\frac{x}{3}\div\frac{2x}{5}$.'
-    check: {kind: evaluate, expression: '(x/3)/(2*x/5)', answer: '5/6'}
-    answer_text: '$\frac{5}{6}$, $x\neq0$'
-
-  - id: ch15-15-3-add-factor
-    section: "15.3"
-    tier: H
-    dfe: [A4]
-    statement: 'Simplify $\frac{1}{x}+\frac{1}{x+2}$.'
-    answer_label: 'Simplify $\frac{1}{x}+\frac{1}{x+2}$.'
-    check: {kind: evaluate, expression: '1/x+1/(x+2)', answer: '(2*x+2)/(x*(x+2))'}
-    answer_text: '$\frac{2x+2}{x(x+2)}$, $x\neq0,-2$'
-
-  - id: ch15-15-3-subtract-factor
-    section: "15.3"
-    tier: H
-    dfe: [A4]
-    statement: 'Simplify $\frac{3}{x-2}-\frac{1}{x}$.'
-    answer_label: 'Simplify $\frac{3}{x-2}-\frac{1}{x}$.'
-    check: {kind: evaluate, expression: '3/(x-2)-1/x', answer: '(2*x+2)/(x*(x-2))'}
-    answer_text: '$\frac{2x+2}{x(x-2)}$, $x\neq0,2$'
-
-  - id: ch15-15-3-multiply-factor
-    section: "15.3"
-    tier: H
-    dfe: [A4]
-    statement: 'Simplify $\frac{x^2-9}{x+3}\times\frac{2}{x}$.'
-    answer_label: 'Simplify $\frac{x^2-9}{x+3}\times\frac{2}{x}$.'
-    check: {kind: evaluate, expression: '((x**2-9)/(x+3))*(2/x)', answer: '2*(x-3)/x'}
-    answer_text: '$\frac{2(x-3)}{x}$, $x\neq0,-3$'
-
-  - id: ch15-15-3-divide-factor
-    section: "15.3"
-    tier: H
-    dfe: [A4]
-    statement: 'Simplify $\frac{x+1}{x}\div\frac{x^2-1}{2x}$.'
-    answer_label: 'Simplify $\frac{x+1}{x}\div\frac{x^2-1}{2x}$.'
-    check: {kind: evaluate, expression: '((x+1)/x)/((x**2-1)/(2*x))', answer: '2/(x-1)'}
-    answer_text: '$\frac{2}{x-1}$, $x\neq0,1,-1$'
-
-  - id: ch15-15-3-mixed-earlier
-    section: "15.3"
-    tier: H
-    dfe: [A4]
-    statement: 'Simplify $\frac{1}{x}+\frac{1}{x^2}$, where $x\neq0$.'
-    answer_label: 'Simplify $\frac{1}{x}+\frac{1}{x^2}$, where $x\neq0$.'
-    check: {kind: evaluate, expression: '1/x+1/x**2', answer: '(x+1)/x**2'}
-    answer_text: '$\frac{x+1}{x^2}$'
+'chapter': 15
+'symbols':
+  'x':
+    'real': true
+  'y':
+    'real': true
+  'k':
+    'real': true
+  'a':
+    'real': true
+  'n':
+    'integer': true
+  'm':
+    'integer': true
+'problems':
+- 'id': 'ch15-15-3-add-like'
+  'section': '15.3'
+  'tier': 'H'
+  'dfe':
+  - 'A4'
+  'statement': 'Simplify $\frac{3}{x}+\frac{2}{x}$.'
+  'answer_label': 'Simplify $\frac{3}{x}+\frac{2}{x}$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '3/x+2/x'
+    'answer': '5/x'
+  'answer_text': '$\frac{5}{x}$, $x\neq0$'
+- 'id': 'ch15-15-3-add-unlike'
+  'section': '15.3'
+  'tier': 'H'
+  'dfe':
+  - 'A4'
+  'statement': 'Simplify $\frac{2}{x}+\frac{3}{x+1}$.'
+  'answer_label': 'Simplify $\frac{2}{x}+\frac{3}{x+1}$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '2/x+3/(x+1)'
+    'answer': '(5*x+2)/(x*(x+1))'
+  'answer_text': '$\frac{5x+2}{x(x+1)}$, $x\neq0,-1$'
+- 'id': 'ch15-15-3-subtract-unlike'
+  'section': '15.3'
+  'tier': 'H'
+  'dfe':
+  - 'A4'
+  'statement': 'Simplify $\frac{5}{x-1}-\frac{2}{x+1}$.'
+  'answer_label': 'Simplify $\frac{5}{x-1}-\frac{2}{x+1}$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '5/(x-1)-2/(x+1)'
+    'answer': '(3*x+7)/((x-1)*(x+1))'
+  'answer_text': '$\frac{3x+7}{(x-1)(x+1)}$, $x\neq1,-1$'
+- 'id': 'ch15-15-3-multiply'
+  'section': '15.3'
+  'tier': 'H'
+  'dfe':
+  - 'A4'
+  'statement': 'Simplify $\frac{2x}{3}\times\frac{9}{4x}$.'
+  'answer_label': 'Simplify $\frac{2x}{3}\times\frac{9}{4x}$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '(2*x/3)*(9/(4*x))'
+    'answer': '3/2'
+  'answer_text': '$\frac{3}{2}$, $x\neq0$'
+- 'id': 'ch15-15-3-divide'
+  'section': '15.3'
+  'tier': 'H'
+  'dfe':
+  - 'A4'
+  'statement': 'Simplify $\frac{x}{3}\div\frac{2x}{5}$.'
+  'answer_label': 'Simplify $\frac{x}{3}\div\frac{2x}{5}$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '(x/3)/(2*x/5)'
+    'answer': '5/6'
+  'answer_text': '$\frac{5}{6}$, $x\neq0$'
+- 'id': 'ch15-15-3-add-factor'
+  'section': '15.3'
+  'tier': 'H'
+  'dfe':
+  - 'A4'
+  'statement': 'Simplify $\frac{1}{x}+\frac{1}{x+2}$.'
+  'answer_label': 'Simplify $\frac{1}{x}+\frac{1}{x+2}$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '1/x+1/(x+2)'
+    'answer': '(2*x+2)/(x*(x+2))'
+  'answer_text': '$\frac{2x+2}{x(x+2)}$, $x\neq0,-2$'
+- 'id': 'ch15-15-3-subtract-factor'
+  'section': '15.3'
+  'tier': 'H'
+  'dfe':
+  - 'A4'
+  'statement': 'Simplify $\frac{3}{x-2}-\frac{1}{x}$.'
+  'answer_label': 'Simplify $\frac{3}{x-2}-\frac{1}{x}$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '3/(x-2)-1/x'
+    'answer': '(2*x+2)/(x*(x-2))'
+  'answer_text': '$\frac{2x+2}{x(x-2)}$, $x\neq0,2$'
+- 'id': 'ch15-15-3-multiply-factor'
+  'section': '15.3'
+  'tier': 'H'
+  'dfe':
+  - 'A4'
+  'statement': 'Simplify $\frac{x^2-9}{x+3}\times\frac{2}{x}$.'
+  'answer_label': 'Simplify $\frac{x^2-9}{x+3}\times\frac{2}{x}$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '((x**2-9)/(x+3))*(2/x)'
+    'answer': '2*(x-3)/x'
+  'answer_text': '$\frac{2(x-3)}{x}$, $x\neq0,-3$'
+- 'id': 'ch15-15-3-divide-factor'
+  'section': '15.3'
+  'tier': 'H'
+  'dfe':
+  - 'A4'
+  'statement': 'Simplify $\frac{x+1}{x}\div\frac{x^2-1}{2x}$.'
+  'answer_label': 'Simplify $\frac{x+1}{x}\div\frac{x^2-1}{2x}$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '((x+1)/x)/((x**2-1)/(2*x))'
+    'answer': '2/(x-1)'
+  'answer_text': '$\frac{2}{x-1}$, $x\neq0,1,-1$'
+- 'id': 'ch15-15-3-mixed-earlier'
+  'section': '15.3'
+  'tier': 'H'
+  'dfe':
+  - 'A4'
+  'statement': 'Simplify $\frac{1}{x}+\frac{1}{x^2}$, where $x\neq0$.'
+  'answer_label': 'Simplify $\frac{1}{x}+\frac{1}{x^2}$, where $x\neq0$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '1/x+1/x**2'
+    'answer': '(x+1)/x**2'
+  'answer_text': '$\frac{x+1}{x^2}$'

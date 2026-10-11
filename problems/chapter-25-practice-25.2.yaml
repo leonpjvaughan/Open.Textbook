@@ -14,7 +14,7 @@ problems:
     dfe: [S3]
     statement: 'Classes $0<x\leq10$, $10<x\leq20$, $20<x\leq30$ have frequencies $5,8,7$. Give the cumulative frequencies and graph coordinates, including $(0,0)$.'
     answer_label: 'Cumulative frequency coordinates'
-    check: {kind: all, checks: [{kind: evaluate, expression: '5 + 8', answer: '13'}, {kind: evaluate, expression: '5 + 8 + 7', answer: '20'}]}
+    check: {kind: all, checks: [{kind: evaluate, expression: '5', answer: '5'}, {kind: evaluate, expression: '5 + 8', answer: '13'}, {kind: evaluate, expression: '5 + 8 + 7', answer: '20'}]}
     answer_text: 'Totals $5,13,20$; plot $(0,0),(10,5),(20,13),(30,20)$.'
   - id: cf3-median-position
     section: '25.2'
@@ -46,7 +46,7 @@ problems:
     dfe: [S3]
     statement: 'Classes are $0<t\leq5$, $5<t\leq10$, $10<t\leq15$ with frequencies $2,9,4$. Give the cumulative frequency coordinates after $(0,0)$.'
     answer_label: 'Coordinates'
-    check: {kind: all, checks: [{kind: evaluate, expression: '2 + 9', answer: '11'}, {kind: evaluate, expression: '2 + 9 + 4', answer: '15'}]}
+    check: {kind: all, checks: [{kind: evaluate, expression: '2', answer: '2'}, {kind: evaluate, expression: '2 + 9', answer: '11'}, {kind: evaluate, expression: '2 + 9 + 4', answer: '15'}]}
     answer_text: '$(5,2),(10,11),(15,15)$.'
   - id: cf7-read-median-position
     section: '25.2'

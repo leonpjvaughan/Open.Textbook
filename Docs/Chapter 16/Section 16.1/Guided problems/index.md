@@ -27,7 +27,7 @@ Try each question before opening a hint. Open the next part only when you need i
 
 ## Practise with help
 
-**1.** Work out the missing angle in a basic question from this section.
+**1.** Angles $x^\circ$ and $124^\circ$ lie on a straight line. Find $x$.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -37,20 +37,26 @@ Write the angle fact that fits the diagram or shape.
 <details markdown="1">
 <summary>One step</summary>
 
-Set up an equation using the known angle total.
-
-$x+124=180$, so $x=56^\circ$ because angles on a line total $180^\circ$.
+Set up an equation using the straight-line angle total.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-Use the relevant angle sum and subtract the known angles. State the angle fact in your answer.
+Angles on a straight line total $180^\circ$.
+
+$$
+x+124=180
+$$
+
+$$
+x=180-124=56^\circ
+$$
 
 </details>
 </details>
 </details>
 
-**2.** A courtyard design uses the angle fact from this section. Find an unknown angle and explain your choice of fact.
+**2.** Three angles around a point are $85^\circ$, $140^\circ$ and $y^\circ$. Find $y$.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -60,14 +66,20 @@ Mark the known angles and identify their relationship before calculating.
 <details markdown="1">
 <summary>One step</summary>
 
-Write an equation for the known angles and the unknown.
+Angles around a point total $360^\circ$. Write an equation with that total.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-Substitute the known values, solve, then check that the angles fit the shape.
+Angles around a point total $360^\circ$.
 
-$85+140+y=360$, so $y=135^\circ$ because angles around a point total $360^\circ$.
+$$
+85+140+y=360
+$$
+
+$$
+y=360-85-140=135^\circ
+$$
 
 </details>
 </details>

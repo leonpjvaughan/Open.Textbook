@@ -13,8 +13,6 @@ kind: problems
 
 # 7.2 Compound measures: speed, density and pressure — Practise
 
-Work independently. The questions and checked answers appear below.
-
 :::problems chapter-7-practice-7.2
 
 :::answers chapter-7-practice-7.2

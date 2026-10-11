@@ -12,16 +12,16 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-Work without looking back. Then open the answers to check.
+Answer from memory before checking.
 
-1. Write $0.4$ as a fraction with denominator $10$.
-2. Work out $3\times8$.
+1. From Section 4.3, work out $\frac{2}{3}$ of $30$.
+2. From Section 4.4, write $0.25$ as a fraction.
 
 <details markdown="1">
 <summary>Answers</summary>
 
-1. $\frac{4}{10}$.
-2. $24$.
+1. $20$.
+2. $\frac{1}{4}$.
 </details>
 
 ## Practise with help
@@ -68,22 +68,22 @@ Write the calculation before simplifying.
 </details>
 </details>
 
-**3. Progress check.** Return to the keyboard prices. What fraction of £48 is the discount?
+**3. Progress check.** The £48 keyboard has a $25\%$ discount. Work out the new price and compare it with £37.50.
 
 <details markdown="1">
 <summary>Hint</summary>
 
-Multiply the price by the discount fraction.
+Find the multiplier for a $25\%$ decrease.
 
 <details markdown="1">
 <summary>Next step</summary>
 
-Find one quarter of £48, then compare with £37.50.
+Multiply £48 by the multiplier, then find the difference from £37.50.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-£48 divided by $4$ is £12. The discounted price is £48-£12=£36, which is £1.50 below £37.50.
+$48\times0.75=£36$. The first price is $£37.50-£36=£1.50$ lower.
 </details>
 </details>
 </details>

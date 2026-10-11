@@ -14,6 +14,8 @@ kind: walkthrough
 
 # 7.1 Units of measure and conversions — Learn
 
+**Prerequisites:** decimal place value and multiplying or dividing by 10.
+
 ## Before you begin
 
 You should know decimal place value and how to multiply and divide by 10.
@@ -54,7 +56,7 @@ $$
 
 So the area is $24\,000\text{ cm}^2$.
 
-> **Watch out.** A square unit has two length dimensions. Multiplying by $100$ gives the wrong area conversion; use $100^2$.
+> **Watch out.** A common error is to multiply a square measure by $100$. Area has two length dimensions, so use $100^2$. For example, $1\text{ m}^2=10\,000\text{ cm}^2$.
 
 ## Scale drawings
 

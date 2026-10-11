@@ -41,8 +41,7 @@ problems:
   tier: F
   dfe:
   - G3
-  statement: Parallel lines are crossed by a transversal. One angle is $54^\circ$. Find the co-interior angle on the same
-    side.
+  statement: 'Parallel lines are crossed by a transversal. One angle is $54^\circ$. Find the co-interior angle on the same side.'
   answer_label: Parallel lines are crossed by a transversal. One angle is $54^\circ$. Find the c
   check:
     kind: evaluate

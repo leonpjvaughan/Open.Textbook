@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** equivalent fractions and decimal multiplication.
 
-**Objectives:** find a percentage of an amount using a fraction, decimal or known percentage. 
+**Objectives:** find a percentage of an amount using a fraction, decimal or known percentage.
 
 A percentage means “out of 100”. So 1% is one hundredth of an amount. Divide by 100 to find 1%, then multiply by the required number of percent.
 
@@ -21,9 +21,11 @@ A percentage means “out of 100”. So 1% is one hundredth of an amount. Divide
 
 10% of £240 is £24.
 
+30% is $3 × £24 = £72$.
+
 5% is half of 10%, so it is £12.
 
-35% is 30% plus 5%: £72 + £12 = £84.
+35% is $£72 + £12 = £84$.
 
 **Example 2.** Work out 18% of 350 using a decimal multiplier.
 
@@ -31,11 +33,11 @@ A percentage means “out of 100”. So 1% is one hundredth of an amount. Divide
 
 0.18 × 350 = 63.
 
-**Watch out.** Do not find 35% by multiplying by 35. Convert the percentage to 0.35, or split it into known percentages. Check that 35% is less than the whole amount.
+> **Watch out.** Multiplying by 35 gives 35 times the amount, not 35% of it. Convert 35% to 0.35, or split it into known percentages. Check that 35% of a positive amount is less than that amount.
 
 ## Progress check
 
-A savings account has £600. Predict 4% of £600 before moving on. You will use this amount in the chapter problem.
+A savings account has £600. Predict 4% of £600 before moving on. The exact amount will help you calculate interest later.
 
 ## You should now be able to
 

@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** use circle angle theorems, triangle angle sums and isosceles triangle facts.
 
-**Objectives:** apply and prove circle theorems concerning angles, radii, tangents and chords, then use them to prove related results. This page covers G10 proof.
+**Objectives:** apply and prove circle theorems concerning angles, radii, tangents and chords, then use them to prove related results.
 
 ## Build a proof from known facts
 

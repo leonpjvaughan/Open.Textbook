@@ -13,11 +13,11 @@ kind: walkthrough
 
 **Prerequisites:** name a point, line segment, angle and perpendicular lines.
 
-**Objectives:** identify and use circle definitions and properties: centre, radius, chord, diameter, circumference, tangent, arc, sector and segment. This page covers G9.
+**Objectives:** identify and use circle definitions and properties: centre, radius, chord, diameter, circumference, tangent, arc, sector and segment.
 
 ## Name the parts
 
-The **centre** is the fixed point equally distant from the circle. A **radius** joins the centre to the circumference, the boundary of the circle. A **diameter** is a straight line through the centre joining two points on the circumference. It is twice the radius.
+The **centre** is the fixed point equally distant from every point on the circumference, the boundary of the circle. A **radius** joins the centre to the circumference. A **diameter** is a straight line through the centre joining two points on the circumference. It is twice the radius.
 
 A **chord** joins two points on the circumference. A diameter is the longest chord. An **arc** is part of the circumference. A **sector** is the region between two radii and an arc. A **segment** is the region between a chord and its arc. A **tangent** is a straight line that touches a circle at one point.
 
@@ -39,9 +39,15 @@ So the chord cannot belong to this circle.
 
 > **Watch out.** A radius is not the whole distance across a circle. Check: the diameter is two equal radii, so $d=2r$.
 
-## Progress check
+## Check your circle vocabulary
 
-In the chapter problem, the chord has two endpoints on the circumference. The line from the centre meets it at right angles. Which words from this page describe those parts? Keep your answer for the chapter review.
+A line joins two points on a circle and passes through its centre. Name the line, then explain how it is related to a chord.
+
+<details markdown="1">
+<summary>Check your answer</summary>
+
+This is a diameter. It is also a chord because it joins two points on the circumference.
+</details>
 
 ## You should now be able to
 

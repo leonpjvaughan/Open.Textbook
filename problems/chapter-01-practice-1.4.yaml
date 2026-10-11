@@ -87,8 +87,8 @@ problems:
     section: "1.4"
     tier: F
     dfe: [N3]
-    statement: "I think of a number, add 6, then multiply by 3. The result is 36. Find the number."
-    answer_label: "The number"
+    statement: 'I think of a number, add 6, then multiply by 3. The result is 36. Find the number.'
+    answer_label: 'The number'
     check: {kind: solve, variable: x, equation: "(x + 6) * 3 = 36", answer: "6"}
     answer_text: '$36 \div 3 = 12$, then $12 - 6 = 6$.'
 
@@ -96,8 +96,8 @@ problems:
     section: "1.4"
     tier: F
     dfe: [N3]
-    statement: "I think of a number, square it, then subtract 5. The result is 20. Find the possible values."
-    answer_label: "Possible values"
+    statement: 'I think of a number, square it, then subtract 5. The result is 20. Find the possible values.'
+    answer_label: 'Possible values'
     check: {kind: solve, variable: x, equation: "x**2 - 5 = 20", answer: ["-5", "5"]}
     answer_text: '$x^2 - 5 = 20$, so $x^2 = 25$ and $x = 5$ or $x = -5$.'
 
@@ -105,8 +105,8 @@ problems:
     section: "1.4"
     tier: F
     dfe: [N3]
-    statement: "Write an expression for the profit at the stall and evaluate it."
-    answer_label: "Stall profit"
+    statement: 'Write an expression for the profit at the stall and evaluate it.'
+    answer_label: 'Stall profit'
     check: {kind: evaluate, expression: "95 * 1.20 + 6 * 3.00 - (120 * 0.65 + 8 * 1.85)", answer: "39.20"}
     answer_text: '$95 \times 1.20 + 6 \times 3.00 - (120 \times 0.65 + 8 \times 1.85) = £39.20$.'
 
@@ -115,7 +115,7 @@ problems:
     tier: H
     dfe: [N3]
     statement: 'Insert brackets to make the statement true: $2 + 3 \times 4 - 1 = 19$.'
-    answer_label: "Brackets to make 19"
+    answer_label: 'Brackets to make 19'
     check: {kind: evaluate, expression: "(2 + 3) * 4 - 1", answer: "19"}
     answer_text: '$(2 + 3) \times 4 - 1 = 19$.'
 

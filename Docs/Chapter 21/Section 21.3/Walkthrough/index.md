@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** identify a radius, chord and tangent; use right angles and isosceles triangles.
 
-**Objectives:** apply tangent-radius, equal-tangent and perpendicular-bisector chord facts, and the alternate segment theorem. This page covers these G10 results.
+**Objectives:** apply the tangent-radius, equal-tangent and perpendicular-bisector chord facts, and the alternate segment theorem.
 
 ## Tangents and radii
 

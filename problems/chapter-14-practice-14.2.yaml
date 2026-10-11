@@ -18,7 +18,7 @@ problems:
   tier: F
   dfe:
   - A19
-  statement: Solve $y=x+2$ and $x+y=10$.
+  statement: 'Solve $y=x+2$ and $x+y=10$.'
   answer_label: Solve $y=x+2$ and $x+y=10$.
   check:
     kind: all
@@ -33,13 +33,13 @@ problems:
       variable: y
       answer:
       - '6'
-  answer_text: $x=4$, $y=2$
+  answer_text: '$x=4$, $y=6$'
 - id: ch14-14-2-02
   section: '14.2'
   tier: F
   dfe:
   - A19
-  statement: Solve $y=2x-1$ and $x+y=8$.
+  statement: 'Solve $y=2x-1$ and $x+y=8$.'
   answer_label: Solve $y=2x-1$ and $x+y=8$.
   check:
     kind: all
@@ -54,13 +54,13 @@ problems:
       variable: y
       answer:
       - '5'
-  answer_text: $x=3$, $y=5$
+  answer_text: '$x=3$, $y=5$'
 - id: ch14-14-2-03
   section: '14.2'
   tier: F
   dfe:
   - A19
-  statement: Solve $x=3y+1$ and $x+y=13$.
+  statement: 'Solve $x=3y+1$ and $x+y=13$.'
   answer_label: Solve $x=3y+1$ and $x+y=13$.
   check:
     kind: all
@@ -75,13 +75,13 @@ problems:
       variable: x
       answer:
       - '10'
-  answer_text: $x=10$, $y=3$
+  answer_text: '$x=10$, $y=3$'
 - id: ch14-14-2-04
   section: '14.2'
   tier: F
   dfe:
   - A19
-  statement: Solve $y=5-x$ and $2x+3y=11$.
+  statement: 'Solve $y=5-x$ and $2x+3y=11$.'
   answer_label: Solve $y=5-x$ and $2x+3y=11$.
   check:
     kind: all
@@ -96,13 +96,13 @@ problems:
       variable: y
       answer:
       - '1'
-  answer_text: $x=4$, $y=1$
+  answer_text: '$x=4$, $y=1$'
 - id: ch14-14-2-05
   section: '14.2'
   tier: F
   dfe:
   - A19
-  statement: Solve $y=3x+4$ and $2x+y=19$.
+  statement: 'Solve $y=3x+4$ and $2x+y=19$.'
   answer_label: Solve $y=3x+4$ and $2x+y=19$.
   check:
     kind: all
@@ -117,13 +117,13 @@ problems:
       variable: y
       answer:
       - '13'
-  answer_text: $x=3$, $y=13$
+  answer_text: '$x=3$, $y=13$'
 - id: ch14-14-2-06
   section: '14.2'
   tier: F
   dfe:
   - A19
-  statement: Solve $x=2y-3$ and $3x+y=17$.
+  statement: 'Solve $x=2y-3$ and $3x+y=17$.'
   answer_label: Solve $x=2y-3$ and $3x+y=17$.
   check:
     kind: all
@@ -138,7 +138,7 @@ problems:
       variable: x
       answer:
       - '5'
-  answer_text: $x=5$, $y=4$
+  answer_text: '$x=5$, $y=4$'
 - id: ch14-14-2-07
   section: '14.2'
   tier: F
@@ -159,13 +159,13 @@ problems:
       variable: y
       answer:
       - '4'
-  answer_text: $x=6$, $y=4$
+  answer_text: '$x=6$, $y=4$'
 - id: ch14-14-2-08
   section: '14.2'
   tier: F
   dfe:
   - A19
-  statement: Solve $x=4-y$ and $3x+2y=8$.
+  statement: 'Solve $x=4-y$ and $3x+2y=8$.'
   answer_label: Solve $x=4-y$ and $3x+2y=8$.
   check:
     kind: all
@@ -180,13 +180,13 @@ problems:
       variable: y
       answer:
       - '4'
-  answer_text: $x=0$, $y=4$
+  answer_text: '$x=0$, $y=4$'
 - id: ch14-14-2-09
   section: '14.2'
   tier: F
   dfe:
   - A19
-  statement: A rectangle has length $l=2w+1$ cm and perimeter 26 cm. Find its dimensions.
+  statement: 'A rectangle has length $l=2w+1$ cm and perimeter 26 cm. Find its dimensions.'
   answer_label: A rectangle has length $l=2w+1$ cm and perimeter 26 cm. Find its dimen
   check:
     kind: all
@@ -201,13 +201,13 @@ problems:
       variable: l
       answer:
       - '9'
-  answer_text: Width $4$ cm and length $9$ cm.
+  answer_text: 'Width $4$ cm and length $9$ cm.'
 - id: ch14-14-2-10
   section: '14.2'
   tier: H
   dfe:
   - A19
-  statement: Solve $y=2x-3$ and $4x+3y=17$.
+  statement: 'Solve $y=2x-3$ and $4x+3y=17$.'
   answer_label: Solve $y=2x-3$ and $4x+3y=17$.
   check:
     kind: all
@@ -222,4 +222,4 @@ problems:
       variable: y
       answer:
       - '5'
-  answer_text: $x=4$, $y=5$
+  answer_text: '$x=4$, $y=5$'

@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** calculate class widths, divide, and read grouped frequency tables.
 
-**Objectives:** calculate frequency density and use it to draw and interpret a histogram. This section covers S3.
+**Objectives:** calculate frequency density and use it to draw and interpret a histogram.
 
 A **histogram** represents grouped continuous data. Its bars touch. The area of each bar represents frequency.
 

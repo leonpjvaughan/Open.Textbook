@@ -15,6 +15,8 @@ kind: walkthrough
 
 **Objectives:** count combined choices by multiplying the number of options at each stage; use the rule when choices have restrictions.
 
+**Covers:** N5 (the product rule for counting; Higher only).
+
 ## Multiply choices across stages
 
 The **product rule** says that if one choice has $a$ options and a following choice has $b$ options for each first choice, there are $a\times b$ combined outcomes.
@@ -35,7 +37,7 @@ So there are $4\times3=12$ codes.
 
 The restriction changes the second number of choices, so it is not $4\times4$.
 
-> **Watch out.** Multiplying the same number at every stage can ignore restrictions. For different digits, count the remaining options after the first choice.
+> **Watch out.** Multiplying the same number at every stage can ignore restrictions. When digits cannot repeat, count the remaining options after the first choice.
 
 ## Guided check: predict, test, explain
 

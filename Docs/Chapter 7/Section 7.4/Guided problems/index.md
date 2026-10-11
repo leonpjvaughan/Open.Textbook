@@ -14,14 +14,14 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Convert $2.5$ m to cm.
-2. Work out $3.6\times10$.
+1. Write the interval for $4.6$ cm rounded to the nearest $0.1$ cm.
+2. Work out $1.5\times80$.
 
 <details markdown="1">
 <summary>Answers</summary>
 
-1. $250$ cm.
-2. $36$.
+1. $4.55\leq L<4.65$ cm.
+2. $120$.
 </details>
 
 ## Practise with help
@@ -31,17 +31,37 @@ kind: guided-problems
 <details markdown="1">
 <summary>Hint</summary>
 
-Identify the conversion, formula or exact method that matches the question.
+The rounding step is $10$ g, so the half-step is $5$ g.
 </details>
 
 <details markdown="1">
 <summary>Choose a step</summary>
 
-Write the relevant relationship first, then substitute the given values.
+Subtract $5$ g for the lower bound and add $5$ g for the upper boundary.
 </details>
 
 <details markdown="1">
 <summary>Full working</summary>
 
 $245\leq m<255$ g; lower bound $245$, upper bound $255$.
+</details>
+
+**2.** A rectangle has length $6.2$ cm and width $3.4$ cm, each to the nearest $0.1$ cm. Find the upper bound for its area.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+Use the upper boundary for each positive length.
+</details>
+
+<details markdown="1">
+<summary>Choose a step</summary>
+
+The upper boundaries are $6.25$ cm and $3.45$ cm. Multiply them.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$6.25\times3.45=21.5625$ cm$^2$.
 </details>

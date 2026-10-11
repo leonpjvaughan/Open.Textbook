@@ -2,122 +2,140 @@ chapter: 23
 problems:
 - id: p1-scale-endpoints
   section: '23.1'
-  tier: F
+  tier: 'F'
   dfe:
-  - P2
-  statement: A probability is $0.7$. Is the event more likely or less likely than not?
-  answer_label: A probability is $0.7$. Is the event more likely or less likely than not?
+  - 'P2'
+  statement: 'A probability is $0.7$. Is the event more likely or less likely than not?'
+  answer_label: 'A probability is $0.7$. Is the event more likely or less likely than not?'
   check:
-    kind: compare
+    kind: 'compare'
     relation: '>'
     lhs: '0.7'
     rhs: '0.5'
-  answer_text: More likely than not, because $0.7>0.5$.
+  answer_text: 'More likely than not, because $0.7>0.5$.'
 - id: p2-die-prime
   section: '23.1'
-  tier: F
+  tier: 'F'
   dfe:
-  - P3
-  statement: A fair six-sided die is rolled. Find the probability of a prime number.
-  answer_label: A fair six-sided die is rolled. Find the probability of a prime number.
+  - 'P3'
+  statement: 'A fair six-sided die is rolled. Find the probability of a prime number.'
+  answer_label: 'A fair six-sided die is rolled. Find the probability of a prime number.'
   check:
-    kind: evaluate
-    expression: 3/6
-    answer: 1/2
-  answer_text: $\frac{3}{6}=\frac12$.
+    kind: 'evaluate'
+    expression: '3/6'
+    answer: '1/2'
+  answer_text: '$\frac{3}{6}=\frac12$.'
 - id: p3-spinner-not-blue
   section: '23.1'
-  tier: F
+  tier: 'F'
   dfe:
-  - P4
-  statement: A spinner has 3 blue and 5 yellow equal sectors. Find the probability it does not land on blue.
-  answer_label: A spinner has 3 blue and 5 yellow equal sectors. Find the probability it does not land on blue.
+  - 'P4'
+  statement: 'A spinner has 3 blue and 5 yellow equal sectors. Find the probability it does not land on blue.'
+  answer_label: 'A spinner has 3 blue and 5 yellow equal sectors. Find the probability it does not land on blue.'
   check:
-    kind: evaluate
-    expression: 1-3/8
-    answer: 5/8
-  answer_text: $1-\frac38=\frac58$.
+    kind: 'evaluate'
+    expression: '1-3/8'
+    answer: '5/8'
+  answer_text: '$1-\frac38=\frac58$.'
 - id: p4-certain-event
   section: '23.1'
-  tier: F
+  tier: 'F'
   dfe:
-  - P2
-  statement: A fair die is rolled. Find the probability of a result from 1 to 6.
-  answer_label: A fair die is rolled. Find the probability of a result from 1 to 6.
+  - 'P2'
+  statement: 'A fair die is rolled. Find the probability of a result from 1 to 6.'
+  answer_label: 'A fair die is rolled. Find the probability of a result from 1 to 6.'
   check:
-    kind: evaluate
-    expression: 6/6
+    kind: 'evaluate'
+    expression: '6/6'
     answer: '1'
-  answer_text: $1$; the event is certain.
+  answer_text: '$1$; the event is certain.'
 - id: p5-two-dice-total
   section: '23.1'
-  tier: F
+  tier: 'F'
   dfe:
-  - P3
-  statement: Two fair dice are rolled. Find the probability their total is 7.
-  answer_label: Two fair dice are rolled. Find the probability their total is 7.
+  - 'P3'
+  statement: 'Two fair dice are rolled. Find the probability their total is 7.'
+  answer_label: 'Two fair dice are rolled. Find the probability their total is 7.'
   check:
-    kind: evaluate
-    expression: 6/36
-    answer: 1/6
-  answer_text: Six of 36 outcomes total 7, so $\frac16$.
+    kind: 'evaluate'
+    expression: '6/36'
+    answer: '1/6'
+  answer_text: 'Six of 36 outcomes total 7, so $\frac16$.'
 - id: p6-complement
   section: '23.1'
-  tier: F
+  tier: 'F'
   dfe:
-  - P4
-  statement: The probability a bus is late is $0.18$. Find the probability it is not late.
-  answer_label: The probability a bus is late is $0.18$. Find the probability it is not late.
+  - 'P4'
+  statement: 'The probability a bus is late is $0.18$. Find the probability it is not late.'
+  answer_label: 'The probability a bus is late is $0.18$. Find the probability it is not late.'
   check:
-    kind: evaluate
-    expression: 1-0.18
+    kind: 'evaluate'
+    expression: '1-0.18'
     answer: '0.82'
-  answer_text: $1-0.18=0.82$.
+  answer_text: '$1-0.18=0.82$.'
 - id: p7-fraction-percent
   section: '23.1'
-  tier: F
+  tier: 'F'
   dfe:
-  - P2
-  statement: Write $\frac{3}{5}$ as a percentage.
-  answer_label: Write $\frac{3}{5}$ as a percentage.
+  - 'P2'
+  statement: 'Write $\frac{3}{5}$ as a percentage.'
+  answer_label: 'Write $\frac{3}{5}$ as a percentage.'
   check:
-    kind: evaluate
-    expression: 3/5*100
+    kind: 'evaluate'
+    expression: '3/5*100'
     answer: '60'
-  answer_text: $60\%$.
+  answer_text: '$60\%$.'
 - id: p8-marbles
   section: '23.1'
-  tier: F
+  tier: 'F'
   dfe:
-  - P3
-  statement: A bag has 7 red, 2 green and 1 blue counter. Find the probability of green.
-  answer_label: A bag has 7 red, 2 green and 1 blue counter. Find the probability of green.
+  - 'P3'
+  statement: 'A bag has 7 red, 2 green and 1 blue counter. Find the probability of green.'
+  answer_label: 'A bag has 7 red, 2 green and 1 blue counter. Find the probability of green.'
   check:
-    kind: evaluate
-    expression: 2/10
-    answer: 1/5
-  answer_text: $\frac{2}{10}=\frac15$.
+    kind: 'evaluate'
+    expression: '2/10'
+    answer: '1/5'
+  answer_text: '$\frac{2}{10}=\frac15$.'
 - id: p9-impossible
   section: '23.1'
-  tier: F
+  tier: 'F'
   dfe:
-  - P2
-  statement: A fair coin is tossed. Find the probability it lands on both heads and tails at once.
-  answer_label: A fair coin is tossed. Find the probability it lands on both heads and tails at once.
+  - 'P2'
+  statement: 'A fair coin is tossed. Find the probability it lands on both heads and tails at once.'
+  answer_label: 'A fair coin is tossed. Find the probability it lands on both heads and tails at once.'
   check:
-    kind: evaluate
+    kind: 'evaluate'
     expression: '0'
     answer: '0'
-  answer_text: $0$; the event is impossible.
+  answer_text: '$0$; the event is impossible.'
 - id: p10-at-least-one
   section: '23.1'
-  tier: F
+  tier: 'F'
   dfe:
-  - P4
-  statement: A bag has 4 white and 6 black counters. Find the probability of not choosing white.
-  answer_label: A bag has 4 white and 6 black counters. Find the probability of not choosing white.
+  - 'P4'
+  statement: 'A bag has 4 white and 6 black counters. Find the probability of not choosing white.'
+  answer_label: 'A bag has 4 white and 6 black counters. Find the probability of not choosing white.'
   check:
-    kind: evaluate
-    expression: 1-4/10
-    answer: 3/5
-  answer_text: $1-\frac4{10}=\frac35$.
+    kind: 'evaluate'
+    expression: '1-4/10'
+    answer: '3/5'
+  answer_text: '$1-\frac4{10}=\frac35$.'
+- id: p11-theoretical-expected-frequency
+  section: '23.1'
+  tier: 'F'
+  dfe:
+  - 'P2'
+  - 'P3'
+  statement: 'A fair six-sided die is rolled 60 times. Find the expected number of fives and the expected relative frequency of fives.'
+  answer_label: 'A fair six-sided die is rolled 60 times. Find the expected number of fives and the expected relative frequency of fives.'
+  check:
+    kind: 'all'
+    checks:
+    - kind: evaluate
+      expression: '60*(1/6)'
+      answer: '10'
+    - kind: evaluate
+      expression: '10/60'
+      answer: '1/6'
+  answer_text: 'The expected number is $60\times\frac16=10$. The expected relative frequency is $\frac{10}{60}=\frac16$, the theoretical probability.'

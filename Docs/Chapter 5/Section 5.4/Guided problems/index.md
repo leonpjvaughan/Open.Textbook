@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Ratio and proportion
 section: '5.4'
 section_title: Inverse proportion
-tier: H
+tier: F
 dfe:
 - R10
 - R13
@@ -16,26 +16,28 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Without looking back, simplify $12:18$.
-2. Work out $3\times 14$.
+1. Without looking back, calculate $\frac{3}{4}+\frac{1}{8}$.
+2. Work out $-4+9$.
 
 <details markdown="1">
 <summary>Check the warm-up</summary>
 
-$12:18=2:3$. Also, $3\times14=42$.
+$\frac{3}{4}+\frac{1}{8}=\frac{7}{8}$. Also, $-4+9=5$.
 
 </details>
 
 ## Try these questions
 
+**Question:** 6 identical pumps empty a tank in 20 minutes. How long would 8 pumps take at the same rate?
+
 ### Hint
 
-For the first question, identify what each part represents. Make one part equal to one unit if that helps.
+The number of pumps and the time are inversely proportional. Find their fixed product.
 
 <details markdown="1">
 <summary>Show a hint</summary>
 
-Write the known quantities in matching units. Find the common multiplier or the total number of ratio parts.
+Calculate $6\times20$, then divide by 8 pumps.
 
 </details>
 
@@ -52,6 +54,7 @@ Set up the multiplier or ratio parts, then calculate the requested quantity.
 Divide the known amount by its corresponding number of parts. Multiply by the required number of parts.
 
 </details>
+</details>
 
 ### Full working
 
@@ -60,7 +63,7 @@ Use this model on one question from the section, then complete it without help.
 <details markdown="1">
 <summary>Show full working</summary>
 
-For inverse proportion, $xy=k$. With 4 workers and 18 days, $k=72$. For 6 workers, days are $72\div6=12$.
+The fixed product is $6\times20=120$. For 8 pumps, the time is $120\div8=15$ minutes. Check: $8\times15=120$.
 
 </details>
 

@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** coordinates, scales and reading points from a graph.
 
-**Objectives:** read and construct a time-series table and line graph; describe changes over time. This section covers S2.
+**Objectives:** read and construct a time-series table and line graph; describe changes over time.
 
 A **time series** is data collected at different times. Put time on the horizontal axis and the measured quantity on the vertical axis. Choose an even scale, label both axes with units, plot each point, then join points in time order.
 

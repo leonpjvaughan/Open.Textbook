@@ -7,7 +7,7 @@ problems:
     tier: F
     dfe: [N1, N2]
     statement: 'Write these in order, smallest first: $4,\ -2,\ 0,\ -7,\ 1$.'
-    answer_label: "Order the numbers"
+    answer_label: 'Order the numbers'
     check:
       kind: all
       checks:
@@ -85,7 +85,7 @@ problems:
     tier: F
     dfe: [N1, N2]
     statement: 'The temperature falls from $2\, ^\circ\text{C}$ to $-5\, ^\circ\text{C}$. By how many degrees did it fall?'
-    answer_label: "Temperature change"
+    answer_label: 'Temperature change'
     check: {kind: evaluate, expression: "2 - (-5)", answer: "7"}
     answer_text: '$7$ degrees.'
 
@@ -94,7 +94,7 @@ problems:
     tier: F
     dfe: [N1, N2]
     statement: 'A submarine is at $-40$ m and rises $15$ m. What is its new depth?'
-    answer_label: "New submarine depth"
+    answer_label: 'New submarine depth'
     check: {kind: evaluate, expression: "-40 + 15", answer: "-25"}
     answer_text: '$-25$ m.'
 
@@ -102,8 +102,8 @@ problems:
     section: "1.3"
     tier: F
     dfe: [N1, N2]
-    statement: "A shop's takings are £210 and its costs are £235. Work out the profit as a negative number and describe the result."
-    answer_label: "Profit or loss"
+    statement: 'A shop''s takings are £210 and its costs are £235. Work out the profit as a negative number and describe the result.'
+    answer_label: 'Profit or loss'
     check: {kind: evaluate, expression: "210 - 235", answer: "-25"}
     answer_text: '$210 - 235 = -25$, a loss of £25.'
 
@@ -112,7 +112,7 @@ problems:
     tier: F
     dfe: [N1, N2]
     statement: 'In a quiz, teams score $+3$ for a correct answer and $-1$ for a wrong answer. A team gets 7 correct and 4 wrong. What is its total score?'
-    answer_label: "Total quiz score"
+    answer_label: 'Total quiz score'
     check: {kind: evaluate, expression: "7 * 3 + 4 * (-1)", answer: "17"}
     answer_text: '$7 \times 3 + 4 \times (-1) = 21 - 4 = 17$.'
 
@@ -121,7 +121,7 @@ problems:
     tier: H
     dfe: [N1, N2]
     statement: 'Work out $-4 + 6 - 3 + 2 - 5$.'
-    answer_label: "Mixed calculation"
+    answer_label: 'Mixed calculation'
     check: {kind: evaluate, expression: "-4 + 6 - 3 + 2 - 5", answer: "-4"}
     answer_text: '$-4 + 6 = 2$, $2 - 3 = -1$, $-1 + 2 = 1$, $1 - 5 = -4$.'
 
@@ -130,7 +130,7 @@ problems:
     tier: H
     dfe: [N1, N2]
     statement: 'The product of two negative numbers is $+36$. Give two possible pairs.'
-    answer_label: "Two possible pairs"
+    answer_label: 'Two possible pairs'
     check:
       kind: all
       checks:

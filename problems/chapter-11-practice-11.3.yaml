@@ -97,8 +97,7 @@ problems:
   section: '11.3'
   tier: F
   dfe: *id001
-  statement: 'Which method finds a line equation from two points: use the gradient then substitute, or read an intercept?
-    Give the gradient for $(2,1),(6,9)$.'
+  statement: 'Which method finds a line equation from two points: use the gradient then substitute, or read an intercept? Give the gradient for $(2,1),(6,9)$.'
   answer_label: Question 9
   check:
     kind: evaluate

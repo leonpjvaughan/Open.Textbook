@@ -50,12 +50,12 @@ Find the fraction of the whole.
 
 <details markdown="1"><summary>Next step</summary>
 
-Angle $=12/48	imes360^\circ=90^\circ$.
+Angle $=12/48\times360^\circ=90^\circ$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
 
-Angle $=12/48	imes360^\circ=90^\circ$.
+Angle $=12/48\times360^\circ=90^\circ$.
 </details>
 
 ### Question 3
@@ -69,11 +69,10 @@ Multiply the symbol count by its value.
 
 <details markdown="1"><summary>Next step</summary>
 
- $3	imes4=12$ votes.
+$3\times4=12$ votes.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
 
- $3	imes4=12$ votes.
+$3\times4=12$ votes.
 </details>
-

@@ -36,9 +36,9 @@ export function mount(el) {
       `<line x1="30" y1="20" x2="30" y2="175" class="fig-ink"></line>` +
       points.join("") +
       `<circle cx="${X(x)}" cy="${Y(y)}" r="5" class="fig-warn"></circle>`;
-    readout.innerHTML = inverse
-      ? `Inverse proportion: $y=\\frac{${k}}{x}$, so when $x=${x}$, $y=${Number.isInteger(y) ? y : y.toFixed(2)}$. <em>Predict: as $x$ doubles, what happens to $y$?</em>`
-      : `Direct proportion: $y=${k}x$, so when $x=${x}$, $y=${y}$. <em>Predict: as $x$ doubles, what happens to $y$?</em>`;
+    readout.textContent = inverse
+      ? `Inverse proportion: y = ${k}/x. When x = ${x}, y = ${Number.isInteger(y) ? y : y.toFixed(2)}. Predict: as x doubles, what happens to y?`
+      : `Direct proportion: y = ${k}x. When x = ${x}, y = ${y}. Predict: as x doubles, what happens to y?`;
   }
 
   el.querySelectorAll("input").forEach((i) => i.addEventListener("input", update));

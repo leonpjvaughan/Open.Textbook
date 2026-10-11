@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Ratio and proportion
 section: '5.4'
 section_title: Inverse proportion
-tier: H
+tier: F
 dfe:
 - R10
 - R13

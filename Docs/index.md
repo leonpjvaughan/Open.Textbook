@@ -2,40 +2,45 @@
 title: GCSE Mathematics (9-1)
 ---
 
-<!-- scaffold:stub -->
-
 # GCSE Mathematics (9-1)
 
-An interactive, static, backend-free GCSE Mathematics textbook.
+Welcome. This is a complete, interactive GCSE Mathematics book for England,
+covering both **Foundation** and **Higher** tier. Everything here is free to read
+online, and there is nothing to install.
 
-- 25 chapters, 133 sections
-- Tiers: Foundation, Higher
-- Awarding bodies: AQA 8300, Pearson Edexcel 1MA1, OCR J560
+## How to use this book
+
+Each section has three pages:
+
+| Page | What it is for |
+|---|---|
+| **Learn** | The teaching: ideas, worked examples, and something to try |
+| **Guided problems** | Questions with hints you reveal only if you need them |
+| **Practise** | Independent questions, with answers at the end |
+
+Each chapter opens with a problem you will be able to solve by the end, and ends
+with a **Review** that mixes the chapter's methods together.
+
+**Higher only.** Some sections are for Higher tier only. They are marked in the
+chapter lists. If you are taking Foundation, you can skip them.
+
+## The formulae booklet
+
+A **Formulae** button sits at the bottom right of every page. It opens a
+searchable booklet of the formulae and tables you are given in the exam. Choose
+your exam board and tier, and it shows only what that board allows.
+
+## Computer-checked answers
+
+Every answer in this book is checked by a computer algebra system when the book
+is built. If a worked step were wrong, the build would fail. The questions and
+the answers are printed from the same checked source, so they cannot disagree.
 
 ## Chapters
 
-1. [Chapter 1: Number skills](Chapter 1/index.md)
-1. [Chapter 2: Factors, multiples and primes](Chapter 2/index.md)
-1. [Chapter 3: Powers, roots and indices](Chapter 3/index.md)
-1. [Chapter 4: Fractions, decimals and percentages](Chapter 4/index.md)
-1. [Chapter 5: Ratio and proportion](Chapter 5/index.md)
-1. [Chapter 6: Percentages and financial mathematics](Chapter 6/index.md)
-1. [Chapter 7: Measures, accuracy, standard form and surds](Chapter 7/index.md)
-1. [Chapter 8: Algebraic expressions and manipulation](Chapter 8/index.md)
-1. [Chapter 9: Equations and inequalities](Chapter 9/index.md)
-1. [Chapter 10: Sequences](Chapter 10/index.md)
-1. [Chapter 11: Straight-line graphs and rates of change](Chapter 11/index.md)
-1. [Chapter 12: Quadratic expressions, equations and graphs](Chapter 12/index.md)
-1. [Chapter 13: Other functions and graphs](Chapter 13/index.md)
-1. [Chapter 14: Simultaneous equations and iteration](Chapter 14/index.md)
-1. [Chapter 15: Functions, algebraic fractions and proof](Chapter 15/index.md)
-1. [Chapter 16: Angles, polygons and geometrical reasoning](Chapter 16/index.md)
-1. [Chapter 17: Properties, constructions, loci and bearings](Chapter 17/index.md)
-1. [Chapter 18: Transformations, congruence and similarity](Chapter 18/index.md)
-1. [Chapter 19: Perimeter, area, surface area and volume](Chapter 19/index.md)
-1. [Chapter 20: Pythagoras' theorem and trigonometry](Chapter 20/index.md)
-1. [Chapter 21: Circle geometry and circle theorems](Chapter 21/index.md)
-1. [Chapter 22: Vectors](Chapter 22/index.md)
-1. [Chapter 23: Probability](Chapter 23/index.md)
-1. [Chapter 24: Statistics: representing and analysing data](Chapter 24/index.md)
-1. [Chapter 25: Statistics: spread, grouped data and correlation](Chapter 25/index.md)
+:::chapters
+
+## Learn more
+
+- [Glossary](Glossary/index.md) — the key words, by topic
+- [Number](Chapter 1/index.md) · [Algebra](Chapter 8/index.md) · [Geometry](Chapter 16/index.md) · [Probability and statistics](Chapter 23/index.md)

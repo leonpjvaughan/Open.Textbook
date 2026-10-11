@@ -13,7 +13,9 @@ kind: walkthrough
 
 **Prerequisites:** ordering numbers and reading number lines.
 
-**Objectives:** interpret and write inequalities, represent their solutions on a number line, and describe solution sets.
+**Objectives:** interpret and write inequalities, represent their solutions on a number line, and describe solution sets using set-builder and interval notation.
+
+This section covers writing and representing linear inequality solution sets, within AQA reference A22.
 
 An inequality compares values that may differ. The symbols $<$ and $>$ exclude the boundary. The symbols $\leq$ and $\geq$ include it.
 

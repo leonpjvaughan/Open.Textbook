@@ -11,26 +11,29 @@ kind: walkthrough
 
 # 11.4 Parallel and perpendicular lines — Learn
 
-**Prerequisites:** read ordered pairs and use the four operations with integers and decimals.
+**Prerequisites:** identify the gradient and vertical intercept in $y=mx+c$.
 
-**Objectives:** plot and interpret points; parallel and perpendicular lines.
+## Objectives
 
-## Key idea
+By the end of this section, you can use gradients to identify parallel and perpendicular lines and find their equations.
 
-Parallel lines have the same gradient. Perpendicular lines meet at a right angle; their gradients multiply to $-1$. Thus the perpendicular gradient to $m$ is $-1/m$, when $m$ is non-zero.
+## Parallel and perpendicular gradients
 
-## Worked example
+Parallel lines have equal gradients. Perpendicular lines meet at a right angle. Their gradients multiply to $-1$, so a line with non-zero gradient $m$ has perpendicular gradient $-1/m$.
 
-Find the line perpendicular to $y=2x+1$ through $(0,4)$. Its gradient is $-1/2$. Since it crosses the vertical axis at 4, its equation is $y=-\frac12x+4$.
+**Worked example.** Find the line perpendicular to $y=2x+1$ through $(0,4)$.
 
-> **Watch out.** Reversing $(x,y)$ swaps horizontal and vertical positions. Read the horizontal coordinate first, then check each plotted point against both axes.
+The given gradient is 2. The perpendicular gradient is $-1/2$, because $2\\times(-1/2)=-1$. The point $(0,4)$ gives the vertical intercept 4. Therefore, the equation is $y=-\\frac12x+4$.
+
+> **Watch out.** Do not change only the sign of the gradient. For gradient 2, the perpendicular gradient is $-1/2$, and their product is $-1$.
 
 ## Progress check
 
-Progress check: the walker gradient is $1/15$. A perpendicular line would have gradient $-15$ in swapped axes.
+A line with gradient $1/15$ is perpendicular to a line with gradient $-15$, since $(1/15)(-15)=-1$.
+
 
 ## You should now be able to
 
-- explain the key terms and method in this section;
-- show working and check a result using the graph or equation;
-- answer the DfE requirements: A9.
+- use gradients to identify parallel and perpendicular lines and find their equations.;
+- check your result by substitution or by interpreting the graph;
+- explain the method in your own words.

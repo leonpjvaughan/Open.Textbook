@@ -64,7 +64,7 @@ The ones digit decides it: $1.7$ has $1$ one; $0.95$ has $0$ ones. So $1.7 > 0.9
 Give each number the same number of decimal places: $0.40,\ 0.09,\ 0.35$. Now
 compare tenths: $0.09$ has $0$ tenths, so it is smallest. Between $0.40$ and
 $0.35$, the tenths are equal, so compare hundredths: $0 < 5$, so
-$0.40 < 0.35$. The order is
+$0.40 > 0.35$. The order is
 
 $$
 0.09 < 0.35 < 0.40

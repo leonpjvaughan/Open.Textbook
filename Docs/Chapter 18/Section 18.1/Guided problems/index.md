@@ -11,18 +11,18 @@ kind: guided-problems
 
 # 18.1 Reflection, rotation and translation — Practise with help
 
-Attempt each question before opening a hint. Reveal the full working to check your method.
+Attempt these from memory before opening the answers. Then try each question before opening a hint.
 
 ## Warm-up: remember
 
 1. Work out $-3+8$.
-2. Translate $(1,2)$ by $\begin{pmatrix}2\\-1\end{pmatrix}$.
+2. Work out $4\times6$.
 
 <details markdown="1">
-<summary>Check your answers</summary>
+<summary>Answers and feedback</summary>
 
-1. $5$.
-2. $(3,1)$.
+1. $5$. Starting at $-3$ and moving $8$ places right gives $5$.
+2. $24$. Multiply $4$ by $6$.
 </details>
 
 ## Practise with help
@@ -39,7 +39,15 @@ Attempt each question before opening a hint. Reveal the full working to check yo
 <details markdown="1"><summary>Next step</summary>Substitute $x=3$ and $y=1$ to get $(-1,3)$.</details>
 <details markdown="1"><summary>Full working</summary>The image is $(-1,3)$ after a quarter-turn anticlockwise.</details>
 
-**3.** Earlier topic: solve $3x=18$.
+<!-- tier:h -->
+**H 3.** Translate the triangle with vertices $(1,1)$, $(3,1)$ and $(1,2)$ by $\begin{pmatrix}1\\1\end{pmatrix}$. Then reflect it in the $y$-axis and rotate it $90^\circ$ clockwise about the origin. Give the image vertices. State what stays unchanged.
+
+<details markdown="1"><summary>Hint</summary>Use the translation first, then reflect, then use $(x,y)\mapsto(y,-x)$ for the clockwise turn.</details>
+<details markdown="1"><summary>Next step</summary>After translating, the vertices are $(2,2)$, $(4,2)$ and $(2,3)$. After reflection, they are $(-2,2)$, $(-4,2)$ and $(-2,3)$.</details>
+<details markdown="1"><summary>Full working</summary>The final vertices are $(2,2)$, $(2,4)$ and $(3,2)$. Side lengths and angles stay unchanged.</details>
+<!-- /tier:h -->
+
+**4.** Earlier topic: solve $3x=18$.
 
 <details markdown="1"><summary>Hint</summary>Use the inverse operation.</details>
 <details markdown="1"><summary>Next step</summary>Divide both sides by $3$.</details>

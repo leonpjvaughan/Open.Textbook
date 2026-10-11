@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** ordering numbers and dividing exactly or approximately.
 
-**Objectives:** calculate and interpret mean, median, mode and range; compare what each measure describes. This section covers S4.
+**Objectives:** calculate and interpret mean, median, mode and range; compare what each measure describes.
 
 The **mean** is total divided by count. The **median** is the middle value after ordering. The **mode** is the most frequent value. The **range** is maximum minus minimum. These are measures of a data set; an unusual value, called an **outlier**, can affect the mean and range strongly.
 

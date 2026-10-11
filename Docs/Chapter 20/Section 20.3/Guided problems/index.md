@@ -61,4 +61,4 @@ Use tangent with opposite and adjacent.
 tan θ = 20/25, so θ ≈ 38.7°.
 </details>
 
-For the final question, choose the method before opening the working. Explain which measurements determine your choice.
+Before opening each full working, name the method and explain which measurements led you to choose it.

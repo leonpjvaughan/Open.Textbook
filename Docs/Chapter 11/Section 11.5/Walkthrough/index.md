@@ -11,36 +11,37 @@ kind: walkthrough
 
 # 11.5 Real-life and distance-time graphs — Learn
 
-**Prerequisites:** read ordered pairs and use the four operations with integers and decimals.
+**Prerequisites:** read graph axes and calculate with units.
 
-**Objectives:** plot and interpret points; real-life and distance-time graphs.
+## Objectives
 
-## Key idea
+By the end of this section, you can interpret real-life graphs and use gradient as a rate of change, including speed on a distance-time graph.
 
-A real-life graph links two quantities. On a distance-time graph, time usually lies on the horizontal axis and distance on the vertical axis. The gradient gives speed: distance change divided by time change. A flat section means the distance stays unchanged.
+## Read a real-life graph
 
-## Worked example
+A graph connects two quantities. Read the axis labels and units before interpreting it. On a distance-time graph, time is usually horizontal and distance is vertical. The gradient is change in distance divided by change in time, so it gives speed. A horizontal section means the distance is unchanged.
 
-A cyclist travels 18 km in 1.5 hours.
+**Worked example.** A cyclist travels 18 km in 1.5 hours. Find the constant speed.
 
 $$
 \begin{aligned}
-\text{speed} &= \frac{\text{distance}}{\text{time}} \\
-&= \frac{18}{1.5} \\
-&= 12\text{ km/h}
+\text{speed} &= \frac{\text{distance}}{\text{time}}\\
+&= \frac{18}{1.5}\\
+&=12\text{ km/h}.
 \end{aligned}
 $$
 
-Check units: kilometres divided by hours gives kilometres per hour.
+Kilometres divided by hours gives kilometres per hour.
 
-> **Watch out.** Reversing $(x,y)$ swaps horizontal and vertical positions. Read the horizontal coordinate first, then check each plotted point against both axes.
+> **Watch out.** Convert time units before dividing. For example, 30 minutes is 0.5 hours, not 30 hours.
 
 ## Progress check
 
-Progress check: the walker speed is $2/0.5=4$ km/h. At that rate, one hour gives 4 km.
+The walker covers 2 km in 0.5 hours, so the speed is $2/0.5=4$ km/h. In one hour, the walker is 4 km from home.
+
 
 ## You should now be able to
 
-- explain the key terms and method in this section;
-- show working and check a result using the graph or equation;
-- answer the DfE requirements: A14, R14.
+- interpret real-life graphs and use gradient as a rate of change, including speed on a distance-time graph.;
+- check your result by substitution or by interpreting the graph;
+- explain the method in your own words.

@@ -9,9 +9,9 @@ dfe: [N5]
 kind: problems
 ---
 
-# 2.4 The product rule for counting
+# 2.4 The product rule for counting — Practise
 
-**Higher only.** Work independently, then use the checked solutions to review your method.
+Work independently, then use the checked solutions to review your method.
 
 :::problems chapter-2-practice-2.4
 

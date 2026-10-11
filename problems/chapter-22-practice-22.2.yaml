@@ -2,7 +2,7 @@ chapter: 22
 problems:
   - id: ch22-222-add
     section: '22.2'
-    tier: H
+    tier: F
     dfe: [G25]
     statement: 'Work out $\begin{pmatrix}4\\-3\end{pmatrix}+\begin{pmatrix}-2\\5\end{pmatrix}$.'
     answer_label: 'Vector sum'
@@ -10,7 +10,7 @@ problems:
     answer_text: '$\begin{pmatrix}2\\2\end{pmatrix}$.'
   - id: ch22-222-subtract
     section: '22.2'
-    tier: H
+    tier: F
     dfe: [G25]
     statement: 'Work out $\begin{pmatrix}7\\2\end{pmatrix}-\begin{pmatrix}3\\-4\end{pmatrix}$.'
     answer_label: 'Vector difference'
@@ -18,7 +18,7 @@ problems:
     answer_text: '$\begin{pmatrix}4\\6\end{pmatrix}$.'
   - id: ch22-222-scalar
     section: '22.2'
-    tier: H
+    tier: F
     dfe: [G25]
     statement: 'Work out $-3\begin{pmatrix}2\\-5\end{pmatrix}$.'
     answer_label: 'Scaled vector'
@@ -26,7 +26,7 @@ problems:
     answer_text: '$\begin{pmatrix}-6\\15\end{pmatrix}$.'
   - id: ch22-222-combined
     section: '22.2'
-    tier: H
+    tier: F
     dfe: [G25]
     statement: 'Work out $2\begin{pmatrix}1\\-3\end{pmatrix}+\begin{pmatrix}-5\\4\end{pmatrix}$.'
     answer_label: 'Combined vector'
@@ -34,7 +34,7 @@ problems:
     answer_text: '$\begin{pmatrix}-3\\-2\end{pmatrix}$.'
   - id: ch22-222-scale-difference
     section: '22.2'
-    tier: H
+    tier: F
     dfe: [G25]
     statement: 'Work out $3\begin{pmatrix}-2\\4\end{pmatrix}-2\begin{pmatrix}1\\-3\end{pmatrix}$.'
     answer_label: 'Vector expression'
@@ -42,7 +42,7 @@ problems:
     answer_text: '$\begin{pmatrix}-8\\18\end{pmatrix}$.'
   - id: ch22-222-route
     section: '22.2'
-    tier: H
+    tier: F
     dfe: [G25]
     statement: 'A route has vector $\begin{pmatrix}-4\\2\end{pmatrix}$, followed by $\begin{pmatrix}7\\-6\end{pmatrix}$. Find the total vector.'
     answer_label: 'Total vector'
@@ -50,7 +50,7 @@ problems:
     answer_text: '$\begin{pmatrix}3\\-4\end{pmatrix}$.'
   - id: ch22-222-reverse
     section: '22.2'
-    tier: H
+    tier: F
     dfe: [G25]
     statement: 'Find the vector opposite to $\begin{pmatrix}-5\\3\end{pmatrix}$.'
     answer_label: 'Opposite vector'
@@ -58,7 +58,7 @@ problems:
     answer_text: '$\begin{pmatrix}5\\-3\end{pmatrix}$.'
   - id: ch22-222-higher-expression
     section: '22.2'
-    tier: H
+    tier: F
     dfe: [G25]
     statement: 'Given $\mathbf{a}=\begin{pmatrix}2\\-1\end{pmatrix}$ and $\mathbf{b}=\begin{pmatrix}-3\\4\end{pmatrix}$, work out $2\mathbf{a}-3\mathbf{b}$.'
     answer_label: 'Expression value'

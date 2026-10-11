@@ -12,8 +12,6 @@ kind: problems
 
 # 7.5 Standard form — Practise
 
-Work independently. The questions and checked answers appear below.
-
 :::problems chapter-7-practice-7.5
 
 :::answers chapter-7-practice-7.5

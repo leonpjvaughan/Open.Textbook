@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** ratio, fractions, multiplication and division.
 
-**Objectives:** identify similar shapes and find corresponding lengths using a common scale factor. Covers: G19 and R12.
+**Objectives:** identify similar shapes and find corresponding lengths using a common scale factor.
 
 **Similar** shapes have equal corresponding angles and proportional corresponding lengths. The **scale factor** is the multiplier from one shape to the other.
 

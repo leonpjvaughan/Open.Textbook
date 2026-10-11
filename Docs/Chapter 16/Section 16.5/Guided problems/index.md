@@ -27,30 +27,36 @@ Try each question before opening a hint. Open the next part only when you need i
 
 ## Practise with help
 
-**1.** Work out the missing angle in a basic question from this section.
+**1.** Parallel lines give one angle of $64^\circ$. Find and justify the co-interior angle.
 
 <details markdown="1">
 <summary>Hint</summary>
 
-Write the angle fact that fits the diagram or shape.
+Co-interior angles on parallel lines total $180^\circ$.
 
 <details markdown="1">
 <summary>One step</summary>
 
-Set up an equation using the known angle total.
-
-$x+64=180$, so $x=116^\circ$ by the co-interior angle fact.
+Let the co-interior angle be $x$.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-Use the relevant angle sum and subtract the known angles. State the angle fact in your answer.
+$$
+x+64=180 \qquad \text{co-interior angles total }180^\circ
+$$
+
+$$
+x=180-64=116^\circ
+$$
+
+The angle is $116^\circ$.
 
 </details>
 </details>
 </details>
 
-**2.** A courtyard design uses the angle fact from this section. Find an unknown angle and explain your choice of fact.
+**2.** A triangle has angles $52^\circ$, $x^\circ$ and $(x+20)^\circ$. Find $x$ and give a reason.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -60,14 +66,26 @@ Mark the known angles and identify their relationship before calculating.
 <details markdown="1">
 <summary>One step</summary>
 
-Write an equation for the known angles and the unknown.
+The interior angles of a triangle total $180^\circ$. Use this fact to form an equation.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-Substitute the known values, solve, then check that the angles fit the shape.
+$$
+52+x+(x+20)=180 \qquad \text{triangle angles total }180^\circ
+$$
 
-$52+x+(x+20)=180$, so $x=54^\circ$ by the triangle angle sum.
+$$
+2x+72=180
+$$
+
+$$
+2x=108
+$$
+
+$$
+x=54^\circ
+$$
 
 </details>
 </details>

@@ -1,108 +1,99 @@
 chapter: 8
 symbols:
-  x:
-    real: true
-  a:
-    real: true
-  b:
-    real: true
-  m:
-    real: true
-  n:
-    real: true
-  p:
-    real: true
-  q:
-    real: true
-  y:
-    real: true
+  x: {real: true}
+  a: {real: true}
+  b: {real: true}
+  m: {real: true}
+  n: {real: true}
+  p: {real: true}
+  q: {real: true}
+  y: {real: true}
 problems:
-- id: ch8-8-4-1
-  section: '8.4'
-  tier: F
-  dfe: &id001
-  - A4
-  statement: Factorise $6x+12$.
-  answer_label: Factorise $6x+12$.
-  check:
-    kind: evaluate
-    expression: 6*x+12
-    answer: 6*(x+2)
-  answer_text: $6(x+2)$.
-- id: ch8-8-4-2
-  section: '8.4'
-  tier: F
-  dfe: *id001
-  statement: Factorise $10y-15$.
-  answer_label: Factorise $10y-15$.
-  check:
-    kind: evaluate
-    expression: 10*y-15
-    answer: 5*(2*y-3)
-  answer_text: $5(2y-3)$.
-- id: ch8-8-4-3
-  section: '8.4'
-  tier: F
-  dfe: *id001
-  statement: Factorise $8a+12b$.
-  answer_label: Factorise $8a+12b$.
-  check:
-    kind: evaluate
-    expression: 8*a+12*b
-    answer: 4*(2*a+3*b)
-  answer_text: $4(2a+3b)$.
-- id: ch8-8-4-4
-  section: '8.4'
-  tier: F
-  dfe: *id001
-  statement: Factorise $9x^2+6x$.
-  answer_label: Factorise $9x^2+6x$.
-  check:
-    kind: evaluate
-    expression: 9*x**2+6*x
-    answer: 3*x*(3*x+2)
-  answer_text: $3x(3x+2)$.
-- id: ch8-8-4-5
-  section: '8.4'
-  tier: F
-  dfe: *id001
-  statement: Factorise $14m-21mn$.
-  answer_label: Factorise $14m-21mn$.
-  check:
-    kind: evaluate
-    expression: 14*m-21*m*n
-    answer: 7*m*(2-3*n)
-  answer_text: $7m(2-3n)$.
-- id: ch8-8-4-6
-  section: '8.4'
-  tier: F
-  dfe: *id001
-  statement: Factorise $18x+24$.
-  answer_label: Factorise $18x+24$.
-  check:
-    kind: evaluate
-    expression: 18*x+24
-    answer: 6*(3*x+4)
-  answer_text: $6(3x+4)$.
-- id: ch8-8-4-7
-  section: '8.4'
-  tier: F
-  dfe: *id001
-  statement: Factorise $12x-8$.
-  answer_label: Factorise $12x-8$.
-  check:
-    kind: evaluate
-    expression: 12*x-8
-    answer: 4*(3*x-2)
-  answer_text: $4(3x-2)$.
-- id: ch8-8-4-8
-  section: '8.4'
-  tier: F
-  dfe: *id001
-  statement: Factorise $15a+25b$.
-  answer_label: Factorise $15a+25b$.
-  check:
-    kind: evaluate
-    expression: 15*a+25*b
-    answer: 5*(3*a+5*b)
-  answer_text: $5(3a+5b)$.
+  - id: ch8-8-4-1
+    section: '8.4'
+    tier: F
+    dfe: [A4]
+    statement: 'Factorise $6x+12$.'
+    answer_label: 'Factorise $6x+12$.'
+    check:
+      kind: evaluate
+      expression: '6*x+12'
+      answer: '6*(x+2)'
+    answer_text: '$6(x+2)$.'
+  - id: ch8-8-4-2
+    section: '8.4'
+    tier: F
+    dfe: [A4]
+    statement: 'Factorise $10y-15$.'
+    answer_label: 'Factorise $10y-15$.'
+    check:
+      kind: evaluate
+      expression: '10*y-15'
+      answer: '5*(2*y-3)'
+    answer_text: '$5(2y-3)$.'
+  - id: ch8-8-4-3
+    section: '8.4'
+    tier: F
+    dfe: [A4]
+    statement: 'Factorise $8a+12b$.'
+    answer_label: 'Factorise $8a+12b$.'
+    check:
+      kind: evaluate
+      expression: '8*a+12*b'
+      answer: '4*(2*a+3*b)'
+    answer_text: '$4(2a+3b)$.'
+  - id: ch8-8-4-4
+    section: '8.4'
+    tier: F
+    dfe: [A4]
+    statement: 'Factorise $9x^2+6x$.'
+    answer_label: 'Factorise $9x^2+6x$.'
+    check:
+      kind: evaluate
+      expression: '9*x**2+6*x'
+      answer: '3*x*(3*x+2)'
+    answer_text: '$3x(3x+2)$.'
+  - id: ch8-8-4-5
+    section: '8.4'
+    tier: F
+    dfe: [A4]
+    statement: 'Factorise $14m-21mn$.'
+    answer_label: 'Factorise $14m-21mn$.'
+    check:
+      kind: evaluate
+      expression: '14*m-21*m*n'
+      answer: '7*m*(2-3*n)'
+    answer_text: '$7m(2-3n)$.'
+  - id: ch8-8-4-6
+    section: '8.4'
+    tier: F
+    dfe: [A4]
+    statement: 'Factorise $18x+24$.'
+    answer_label: 'Factorise $18x+24$.'
+    check:
+      kind: evaluate
+      expression: '18*x+24'
+      answer: '6*(3*x+4)'
+    answer_text: '$6(3x+4)$.'
+  - id: ch8-8-4-7
+    section: '8.4'
+    tier: F
+    dfe: [A4]
+    statement: 'Factorise $12x-8$.'
+    answer_label: 'Factorise $12x-8$.'
+    check:
+      kind: evaluate
+      expression: '12*x-8'
+      answer: '4*(3*x-2)'
+    answer_text: '$4(3x-2)$.'
+  - id: ch8-8-4-8
+    section: '8.4'
+    tier: F
+    dfe: [A4]
+    statement: 'Factorise $15a+25b$.'
+    answer_label: 'Factorise $15a+25b$.'
+    check:
+      kind: evaluate
+      expression: '15*a+25*b'
+      answer: '5*(3*a+5*b)'
+    answer_text: '$5(3a+5b)$.'

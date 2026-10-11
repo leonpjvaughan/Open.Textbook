@@ -14,14 +14,14 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Convert $2.5$ m to cm.
-2. Work out $3.6\times10$.
+1. Round $38.476$ to 2 decimal places.
+2. Work out $3.4\times10$.
 
 <details markdown="1">
 <summary>Answers</summary>
 
-1. $250$ cm.
-2. $36$.
+1. $38.48$.
+2. $34$.
 </details>
 
 ## Practise with help
@@ -31,17 +31,37 @@ kind: guided-problems
 <details markdown="1">
 <summary>Hint</summary>
 
-Identify the conversion, formula or exact method that matches the question.
+Move the decimal point so one non-zero digit stays before it.
 </details>
 
 <details markdown="1">
 <summary>Choose a step</summary>
 
-Write the relevant relationship first, then substitute the given values.
+Count four places from $83\,000$ to $8.3$.
 </details>
 
 <details markdown="1">
 <summary>Full working</summary>
 
 $83\,000=8.3\times10^4$.
+</details>
+
+**2.** Work out $(2\times10^5)(3\times10^{-2})$ in standard form.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+Multiply the first numbers and add the powers.
+</details>
+
+<details markdown="1">
+<summary>Choose a step</summary>
+
+Work out $6\times10^3$, then check the first number is between $1$ and $10$.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$(2\times3)\times10^{5+(-2)}=6\times10^3$.
 </details>

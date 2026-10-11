@@ -20,12 +20,11 @@ kind: walkthrough
 
 ## The formula
 
-For $ax^2+bx+c=0$, where $a
-e0$,
+For $ax^2+bx+c=0$, where $a\ne 0$,
 
 $$
 x=
-rac{-b\pm\sqrt{b^2-4ac}}{2a}
+\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 $$
 
 The expression $b^2-4ac$ is the **discriminant**. A positive discriminant gives two real roots, zero gives one repeated root, and a negative discriminant gives no real roots.
@@ -36,17 +35,17 @@ Here $a=2$, $b=3$, and $c=-2$.
 
 $$
 x=
-rac{-3\pm\sqrt{3^2-4(2)(-2)}}{2(2)}
+\frac{-3\pm\sqrt{3^2-4(2)(-2)}}{2(2)}
 $$
 
 $$
 =
-rac{-3\pm\sqrt{25}}{4}
+\frac{-3\pm\sqrt{25}}{4}
 $$
 
 $$
 x=
-rac{1}{2}\quad	ext{or}\quad x=-2
+\frac{1}{2}\quad\text{or}\quad x=-2
 $$
 
 > **Watch out.** Keep the negative sign in $c=-2$ when substituting. The discriminant is $9-4(2)(-2)=25$, not $9-16$.

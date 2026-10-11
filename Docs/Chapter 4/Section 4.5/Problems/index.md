@@ -10,8 +10,6 @@ kind: problems
 ---
 # 4.5 Recurring decimals — Practise
 
-Work through these independently, from the first question onwards. Questions marked **H** are Higher only.
-
 :::problems chapter-4-practice-4.5
 
 :::answers chapter-4-practice-4.5

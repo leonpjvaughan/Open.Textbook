@@ -12,8 +12,6 @@ kind: problems
 
 # 7.3 Rounding and error intervals — Practise
 
-Work independently. The questions and checked answers appear below.
-
 :::problems chapter-7-practice-7.3
 
 :::answers chapter-7-practice-7.3

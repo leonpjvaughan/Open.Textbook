@@ -4,7 +4,7 @@ chapter: 20
 chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.4'
 section_title: "Exact trigonometric values"
-tier: H
+tier: F
 dfe: [G21]
 kind: guided-problems
 ---
@@ -61,4 +61,4 @@ Both values are √3/2.
 (√3/2)(√3/2) = 3/4.
 </details>
 
-For the final question, choose the method before opening the working. Explain which measurements determine your choice.
+Before opening each full working, name the method and explain which measurements led you to choose it.

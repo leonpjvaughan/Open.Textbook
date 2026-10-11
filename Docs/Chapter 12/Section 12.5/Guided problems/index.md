@@ -12,18 +12,18 @@ kind: guided-problems
 
 # 12.5 The quadratic formula — Practise with help
 
-Start closed-book. Check each answer after you have tried it.
-
 ## Warm-up: remember
 
-1. Expand $(x+2)(x+3)$.
-2. Factorise $x^2+5x+6$.
+Answer these from earlier chapters before you continue. Then open the answers and check your work.
+
+1. Solve $3x+8=20$.
+2. Simplify $2^3\times2^4$.
 
 <details markdown="1">
 <summary>Answers</summary>
 
-1. $x^2+5x+6$.
-2. $(x+2)(x+3)$.
+1. $x=4$. Substitution gives $3(4)+8=20$.
+2. $2^7=128$. Add the powers when multiplying powers with the same base.
 </details>
 
 ## Practise with help
@@ -39,7 +39,7 @@ Identify $a,b,c$ and substitute into the formula.
 <details markdown="1">
 <summary>Next step</summary>
 
-Set out the expression or equation using the hint, then continue without opening the next part.
+Use the hint to write the next algebra line. Then finish the calculation before opening the full working.
 </details>
 
 <details markdown="1">

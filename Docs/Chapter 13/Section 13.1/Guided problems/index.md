@@ -18,11 +18,12 @@ Try each question first. Open one level at a time when you need support.
 1. Factorise $x^2-9$.
 2. Work out $2^3$.
 3. Give the coordinates of the $y$-intercept of $y=3x+2$.
+4. Solve $x^2-9=0$.
 
 <details markdown="1">
 <summary>Answers</summary>
 
-$ (x-3)(x+3)$; $8$; $(0,2)$.
+$ (x-3)(x+3)$; $8$; $(0,2)$; $x=-3$ or $x=3$.
 </details>
 
 ## Practise with help

@@ -15,7 +15,7 @@ kind: walkthrough
 
 **Objectives:** use Pythagoras' theorem to find a missing side in a right-angled triangle, including the hypotenuse.
 
-A **hypotenuse** is the longest side, opposite the right angle. If the shorter sides are $a$ and $b$, and the hypotenuse is $c$, then $a^2+b^2=c^2$. This relationship is DfE G20.
+A **hypotenuse** is the longest side, opposite the right angle. If the shorter sides are $a$ and $b$, and the hypotenuse is $c$, then $a^2+b^2=c^2$.
 
 **Example 1.** A right-angled triangle has shorter sides $6$ cm and $8$ cm. Find its hypotenuse.
 
@@ -56,9 +56,3 @@ The chapter problem asks for a direct distance across a rectangular garden measu
 - identify the hypotenuse from the right angle;
 - use $a^2+b^2=c^2$ to find a missing side;
 - give a length with suitable units and check it is plausible.
-
-## You should now be able to
-
-- state the method and identify the measurements it needs;
-- show your working in a clear order;
-- check that your answer is sensible and give suitable units.

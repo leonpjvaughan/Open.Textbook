@@ -12,11 +12,11 @@ kind: walkthrough
 
 **Prerequisites:** equivalent fractions and multiplication.
 
-**Objectives:** An operator acts on an amount. For example, $\frac{3}{5}$ of £20 means multiply £20 by $\frac{3}{5}$. A percentage is a fraction out of $100$.
+**Objectives:** Interpret fractions and percentages as operators; calculate percentage increases, decreases and original amounts.
 
 ## Learn the method
 
-To find a fraction or percentage of an amount, multiply. For a percentage increase, multiply by $1+p/100$. For a decrease, multiply by $1-p/100$.
+An operator acts on an amount. For example, $\frac{3}{5}$ of £20 means multiply £20 by $\frac{3}{5}$. A percentage is a fraction out of $100$. To find a fraction or percentage of an amount, multiply. For a percentage increase, multiply by $1+p/100$. For a decrease, multiply by $1-p/100$.
 
 ## Worked examples
 
@@ -46,12 +46,13 @@ $72\div0.8=£90$.
 
 ## Progress check
 
-The keyboard problem gives a discount of $\frac{1}{4}$. Write this as a percentage. Which section method will help you compare prices?
+The first shop's discounted price is $£48\times(1-\frac14)=£36$. Compare it with £37.50: $37.50-36=£1.50$, so the first shop costs £1.50 less.
 
 ## You should now be able to
 
-- explain the key idea in this section in your own words;
-- choose and use the method shown in the worked examples;
-- check your answer using an equivalent representation.
+- find a fraction or percentage of an amount;
+- calculate percentage increases and decreases with multipliers;
+- find an original amount from a changed amount;
+- compare prices after a discount.
 
 **Covers:** [N11, N12].

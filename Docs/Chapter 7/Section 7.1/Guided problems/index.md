@@ -16,14 +16,14 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Convert $2.5$ m to cm.
-2. Work out $3.6\times10$.
+1. Write the value of the digit $6$ in $4\,362$.
+2. Work out $3.4\times10$.
 
 <details markdown="1">
 <summary>Answers</summary>
 
-1. $250$ cm.
-2. $36$.
+1. $60$.
+2. $34$.
 </details>
 
 ## Practise with help
@@ -33,17 +33,77 @@ kind: guided-problems
 <details markdown="1">
 <summary>Hint</summary>
 
-Identify the conversion, formula or exact method that matches the question.
+There are $1000$ metres in one kilometre.
 </details>
 
 <details markdown="1">
 <summary>Choose a step</summary>
 
-Write the relevant relationship first, then substitute the given values.
+Write $1$ km $=1000$ m, then multiply the number of kilometres by $1000$.
 </details>
 
 <details markdown="1">
 <summary>Full working</summary>
 
 $4.2\times1000=4200$ m.
+</details>
+
+**2.** Convert $1.6\text{ m}^2$ to $\text{cm}^2$.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+First convert metres to centimetres. Then square that conversion factor.
+</details>
+
+<details markdown="1">
+<summary>Choose a step</summary>
+
+Use $1\text{ m}^2=10\,000\text{ cm}^2$.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$1.6\times10\,000=16\,000\text{ cm}^2$.
+</details>
+
+**3.** A route is $2.4$ cm on a $1:50\,000$ map. Find its real distance in kilometres.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+First find the real distance in centimetres. Then convert centimetres to kilometres.
+</details>
+
+<details markdown="1">
+<summary>Choose a step</summary>
+
+Multiply the map distance by $50\,000$ and divide by $100\,000$.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$2.4\times50\,000=120\,000$ cm, and $120\,000\div100\,000=1.2$ km.
+</details>
+
+**4.** A boat travels on a bearing of $238^\circ$. Give the reverse bearing.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+Add or subtract $180^\circ$ to find the direction back.
+</details>
+
+<details markdown="1">
+<summary>Choose a step</summary>
+
+Subtract $180^\circ$, because the bearing is greater than $180^\circ$.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$238^\circ-180^\circ=058^\circ$.
 </details>

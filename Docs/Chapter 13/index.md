@@ -12,7 +12,9 @@ A sensor records a repeating signal. Its graph crosses the middle value while ri
 
 **First contact:** Predict what comes next. Sketch a curve or describe it. No calculation is needed yet.
 
-## By the end of this chapter you will be able to
+## By the end of this chapter
+
+You will be able to:
 
 - sketch cubic, reciprocal, exponential and trigonometric graphs;
 - read intercepts, periods, asymptotes and intersections;

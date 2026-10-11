@@ -3,11 +3,10 @@ chapter: 6
 problems:
 - id: p1-growth
   section: '6.5'
-  tier: H
+  tier: F
   dfe: &id001
   - R16
-  statement: A population of 2400 grows by 3% each year for 4 years. Work out the population, to the nearest whole
-    person.
+  statement: 'A population of 2400 grows by 3% each year for 4 years. Work out the population, to the nearest whole person.'
   answer_label: Growth
   check:
     kind: rounded
@@ -17,9 +16,9 @@ problems:
   answer_text: 2,701
 - id: p2-decay
   section: '6.5'
-  tier: H
+  tier: F
   dfe: *id001
-  statement: A machine worth £8000 loses 12% of its value each year. Work out its value after 3 years.
+  statement: 'A machine worth £8000 loses 12% of its value each year. Work out its value after 3 years.'
   answer_label: Decay
   check:
     kind: rounded
@@ -29,9 +28,9 @@ problems:
   answer_text: £5,451.78
 - id: p3-repeated
   section: '6.5'
-  tier: H
+  tier: F
   dfe: *id001
-  statement: A quantity starts at 500 and increases by 8%, then by 6%. Work out the final quantity.
+  statement: 'A quantity starts at 500 and increases by 8%, then by 6%. Work out the final quantity.'
   answer_label: Repeated change
   check:
     kind: evaluate
@@ -40,9 +39,9 @@ problems:
   answer_text: '572.4'
 - id: p4-change-rate
   section: '6.5'
-  tier: H
+  tier: F
   dfe: *id001
-  statement: A value is multiplied by 0.72. State the percentage decrease.
+  statement: 'A value is multiplied by 0.72. State the percentage decrease.'
   answer_label: Percentage decrease
   check:
     kind: evaluate
@@ -51,10 +50,9 @@ problems:
   answer_text: 28%
 - id: p5-find-rate
   section: '6.5'
-  tier: H
+  tier: F
   dfe: *id001
-  statement: A £4000 investment grows to £4410 in 2 years with annual compound growth. Find the annual percentage
-    rate.
+  statement: 'A £4000 investment grows to £4410 in 2 years with annual compound growth. Find the annual percentage rate.'
   answer_label: Annual rate
   check:
     kind: evaluate
@@ -63,9 +61,9 @@ problems:
   answer_text: 5% (annual multiplier 1.05)
 - id: p6-depreciation
   section: '6.5'
-  tier: H
+  tier: F
   dfe: *id001
-  statement: A car worth £18 000 depreciates by 18% each year. Work out its value after 2 years.
+  statement: 'A car worth £18 000 depreciates by 18% each year. Work out its value after 2 years.'
   answer_label: Car value
   check:
     kind: rounded
@@ -75,9 +73,9 @@ problems:
   answer_text: £12,103.20
 - id: p7-comparison
   section: '6.5'
-  tier: H
+  tier: F
   dfe: *id001
-  statement: A £1000 amount grows by 10% then falls by 10%. Work out the final amount and compare it with £1000.
+  statement: 'A £1000 amount grows by 10% then falls by 10%. Work out the final amount and compare it with £1000.'
   answer_label: Net effect
   check:
     kind: all
@@ -92,10 +90,9 @@ problems:
   answer_text: £990, which is £10 less than the start.
 - id: p8-reverse-time
   section: '6.5'
-  tier: H
+  tier: F
   dfe: *id001
-  statement: A population of 5000 grows by 2% each year. Work out its population after 10 years, to the nearest
-    whole person.
+  statement: 'A population of 5000 grows by 2% each year. Work out its population after 10 years, to the nearest whole person.'
   answer_label: Population
   check:
     kind: rounded
@@ -105,10 +102,9 @@ problems:
   answer_text: 6,095
 - id: p9-higher
   section: '6.5'
-  tier: H
+  tier: F
   dfe: *id001
-  statement: '**H** An investment doubles in 12 years with annual compound growth. Find the annual multiplier to
-    3 significant figures.'
+  statement: 'An investment doubles in 12 years with annual compound growth. Find the annual multiplier to 3 significant figures.'
   answer_label: Multiplier
   check:
     kind: rounded
@@ -118,9 +114,9 @@ problems:
   answer_text: '1.059'
 - id: p10-higher2
   section: '6.5'
-  tier: H
+  tier: F
   dfe: *id001
-  statement: '**H** A substance decays by 7% each hour. What percentage remains after 5 hours?'
+  statement: 'A substance decays by 7% each hour. What percentage remains after 5 hours?'
   answer_label: Percentage remaining
   check:
     kind: rounded

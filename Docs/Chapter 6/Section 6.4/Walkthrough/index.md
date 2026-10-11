@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** percentage multipliers and repeated multiplication.
 
-**Objectives:** calculate simple and compound interest. Simple interest adds the same amount each year; compound interest applies the rate to the changing balance. 
+**Objectives:** calculate simple and compound interest. Simple interest adds the same amount each year; compound interest applies the rate to the changing balance.
 
 For simple interest, calculate the yearly interest from the starting amount, then multiply by the number of years. For compound interest, multiply by the yearly growth multiplier each year.
 
@@ -33,15 +33,15 @@ The yearly multiplier is 1.04.
 
 To the nearest penny, the amount is £562.43.
 
-**Watch out.** Compound interest does not add the same amount each year. The balance grows, so later interest is calculated from a larger amount. Check the compound result is slightly above the simple result at a positive rate.
+> **Watch out.** Compound interest does not add the same amount each year. The balance grows, so later interest is calculated from a larger amount. Check that the compound result is above the simple result at a positive rate.
 
 ## Guided investigation: interest over time
 
 **Predict:** Which line will be higher after five years at 5%? **Test:** Move the years control to five. **Explain:** Why does the gap change each year?
 
-**Predict:** Which line will be higher after five years at 5%? **Test:** Move the years control to five. **Explain:** Why does the gap change each year?
-
 :::figure ch6-interest
+
+After testing, write why the gap between the balances changes each year.
 
 ## You should now be able to
 

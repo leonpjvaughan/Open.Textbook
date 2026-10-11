@@ -1,122 +1,122 @@
 chapter: 18
 problems:
-- id: ch18-18.6-area-factor
+- id: 'ch18-18.6-area-factor'
   section: '18.6'
-  tier: H
+  tier: 'H'
   dfe:
-  - G19
-  statement: Similar shapes have length scale factor $3$. Find the area scale factor.
-  answer_label: Similar shapes have length scale factor $3$. Find the area scale factor.
+  - 'G19'
+  statement: 'Similar shapes have length scale factor $3$. Find the area scale factor.'
+  answer_label: 'Similar shapes have length scale factor $3$. Find the area scale factor.'
   check:
-    kind: evaluate
-    expression: 3**2
+    kind: 'evaluate'
+    expression: '3**2'
     answer: '9'
   answer_text: '9'
-- id: ch18-18.6-volume-factor
+- id: 'ch18-18.6-volume-factor'
   section: '18.6'
-  tier: H
+  tier: 'H'
   dfe:
-  - G19
-  statement: Similar solids have length scale factor $2$. Find the volume scale factor.
-  answer_label: Similar solids have length scale factor $2$. Find the volume scale factor.
+  - 'G19'
+  statement: 'Similar solids have length scale factor $2$. Find the volume scale factor.'
+  answer_label: 'Similar solids have length scale factor $2$. Find the volume scale factor.'
   check:
-    kind: evaluate
-    expression: 2**3
+    kind: 'evaluate'
+    expression: '2**3'
     answer: '8'
   answer_text: '8'
-- id: ch18-18.6-area
+- id: 'ch18-18.6-area'
   section: '18.6'
-  tier: H
+  tier: 'H'
   dfe:
-  - G19
-  statement: A small similar shape has area $12$ cm$^2$. Length scale factor to the large shape is $4$. Find the large area.
-  answer_label: A small similar shape has area $12$ cm$^2$. Length scale factor to the large shape is $4$. Find the large area.
+  - 'G19'
+  statement: 'A small similar shape has area $12$ cm$^2$. Length scale factor to the large shape is $4$. Find the large area.'
+  answer_label: 'A small similar shape has area $12$ cm$^2$. Length scale factor to the large shape is $4$. Find the large area.'
   check:
-    kind: evaluate
-    expression: 12*4**2
+    kind: 'evaluate'
+    expression: '12*4**2'
     answer: '192'
-  answer_text: 192 cm^2
-- id: ch18-18.6-volume
+  answer_text: '192 cm^2'
+- id: 'ch18-18.6-volume'
   section: '18.6'
-  tier: H
+  tier: 'H'
   dfe:
-  - G19
-  statement: A solid has volume $5$ cm$^3$. It is enlarged by length factor $3$. Find the new volume.
-  answer_label: A solid has volume $5$ cm$^3$. It is enlarged by length factor $3$. Find the new volume.
+  - 'G19'
+  statement: 'A solid has volume $5$ cm$^3$. It is enlarged by length factor $3$. Find the new volume.'
+  answer_label: 'A solid has volume $5$ cm$^3$. It is enlarged by length factor $3$. Find the new volume.'
   check:
-    kind: evaluate
-    expression: 5*3**3
+    kind: 'evaluate'
+    expression: '5*3**3'
     answer: '135'
-  answer_text: 135 cm^3
-- id: ch18-18.6-reverse-area
+  answer_text: '135 cm^3'
+- id: 'ch18-18.6-reverse-area'
   section: '18.6'
-  tier: H
+  tier: 'H'
   dfe:
-  - G19
-  statement: Similar shapes have area ratio small:large $=1:25$. Find the length scale factor small to large.
-  answer_label: Similar shapes have area ratio small:large $=1:25$. Find the length scale factor small to large.
+  - 'G19'
+  statement: 'Similar shapes have area ratio small:large $=1:25$. Find the length scale factor small to large.'
+  answer_label: 'Similar shapes have area ratio small:large $=1:25$. Find the length scale factor small to large.'
   check:
-    kind: evaluate
-    expression: sqrt(25)
+    kind: 'evaluate'
+    expression: 'sqrt(25)'
     answer: '5'
   answer_text: '5'
-- id: ch18-18.6-reverse-volume
+- id: 'ch18-18.6-reverse-volume'
   section: '18.6'
-  tier: H
+  tier: 'H'
   dfe:
-  - G19
-  statement: Similar solids have volume ratio small:large $=8:125$. Find the length scale factor.
-  answer_label: Similar solids have volume ratio small:large $=8:125$. Find the length scale factor.
+  - 'G19'
+  statement: 'Similar solids have volume ratio small:large $=8:125$. Find the length scale factor.'
+  answer_label: 'Similar solids have volume ratio small:large $=8:125$. Find the length scale factor.'
   check:
-    kind: evaluate
-    expression: (8/125)**(1/3)
-    answer: 2/5
-  answer_text: 2/5
-- id: ch18-18.6-length-from-area
+    kind: 'evaluate'
+    expression: '(8/125)**(1/3)'
+    answer: '2/5'
+  answer_text: '2/5'
+- id: 'ch18-18.6-length-from-area'
   section: '18.6'
-  tier: H
+  tier: 'H'
   dfe:
-  - G19
-  statement: A shape has area $20$ cm$^2$. Its enlargement has area $180$ cm$^2$. Find the length scale factor.
-  answer_label: A shape has area $20$ cm$^2$. Its enlargement has area $180$ cm$^2$. Find the length scale factor.
+  - 'G19'
+  statement: 'A shape has area $20$ cm$^2$. Its enlargement has area $180$ cm$^2$. Find the length scale factor.'
+  answer_label: 'A shape has area $20$ cm$^2$. Its enlargement has area $180$ cm$^2$. Find the length scale factor.'
   check:
-    kind: evaluate
-    expression: sqrt(180/20)
+    kind: 'evaluate'
+    expression: 'sqrt(180/20)'
     answer: '3'
   answer_text: '3'
-- id: ch18-18.6-length-from-volume
+- id: 'ch18-18.6-length-from-volume'
   section: '18.6'
-  tier: H
+  tier: 'H'
   dfe:
-  - G19
-  statement: Similar solids have volumes $27$ cm$^3$ and $216$ cm$^3$. Find the length scale factor from smaller to larger.
-  answer_label: Similar solids have volumes $27$ cm$^3$ and $216$ cm$^3$. Find the length scale factor from smaller to larger.
+  - 'G19'
+  statement: 'Similar solids have volumes $27$ cm$^3$ and $216$ cm$^3$. Find the length scale factor from smaller to larger.'
+  answer_label: 'Similar solids have volumes $27$ cm$^3$ and $216$ cm$^3$. Find the length scale factor from smaller to larger.'
   check:
-    kind: evaluate
-    expression: (216/27)**(1/3)
+    kind: 'evaluate'
+    expression: '(216/27)**(1/3)'
     answer: '2'
   answer_text: '2'
-- id: ch18-18.6-density-context
+- id: 'ch18-18.6-density-context'
   section: '18.6'
-  tier: H
+  tier: 'H'
   dfe:
-  - G19
-  statement: A similar solid is enlarged by length factor $5$. Its volume is $40$ cm$^3$. Find the new volume.
-  answer_label: A similar solid is enlarged by length factor $5$. Its volume is $40$ cm$^3$. Find the new volume.
+  - 'G19'
+  statement: 'A similar solid is enlarged by length factor $5$. Its volume is $40$ cm$^3$. Find the new volume.'
+  answer_label: 'A similar solid is enlarged by length factor $5$. Its volume is $40$ cm$^3$. Find the new volume.'
   check:
-    kind: evaluate
-    expression: 40*5**3
+    kind: 'evaluate'
+    expression: '40*5**3'
     answer: '5000'
-  answer_text: 5000 cm^3
-- id: ch18-18.6-reason
+  answer_text: '5000 cm^3'
+- id: 'ch18-18.6-reason'
   section: '18.6'
-  tier: H
+  tier: 'H'
   dfe:
-  - G19
-  statement: Why is the area scale factor the square of the length scale factor?
-  answer_label: Why is the area scale factor the square of the length scale factor?
+  - 'G19'
+  statement: 'Why is the area scale factor the square of the length scale factor?'
+  answer_label: 'Why is the area scale factor the square of the length scale factor?'
   check:
-    kind: evaluate
-    expression: 1+1
+    kind: 'evaluate'
+    expression: '1+1'
     answer: '2'
-  answer_text: Area multiplies two lengths, each by the length factor, so the multiplier is its square.
+  answer_text: 'Area multiplies two lengths, each by the length factor, so the multiplier is its square.'

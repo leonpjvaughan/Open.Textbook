@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** similarity and scale factors, area of rectangles, and volume of cuboids.
 
-**Objectives:** relate length, area and volume scale factors for similar shapes and solids. Covers: G19.
+**Objectives:** relate length, area and volume scale factors for similar shapes and solids.
 
 When a shape is enlarged by length scale factor $k$, each length is multiplied by $k$. An area uses two lengths, so its scale factor is $k^2$. A volume uses three lengths, so its scale factor is $k^3$.
 

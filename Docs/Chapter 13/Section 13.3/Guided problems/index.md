@@ -18,10 +18,11 @@ Try each question before opening a hint. Move through the steps in order.
 1. Find $f(2)$ if $f(x)=x^2$.
 2. State the $y$-intercept of $y=x+3$.
 3. Give the image of $(1,4)$ after moving it two units up.
+4. Expand $(x+2)^2$.
 
 <details markdown="1"><summary>Answers</summary>
 
-$4$; $(0,3)$; $(1,6)$.
+$4$; $(0,3)$; $(1,6)$; $x^2+4x+4$.
 </details>
 
 ## Practise with help
@@ -71,17 +72,17 @@ Write the new output as $-f(x)$.
 The reflected rule is $y=-f(x)$.
 </details>
 
-**4.** A point $(2,5)$ lies on $y=f(x)$. Find its image under a vertical stretch by factor $3$.
+**4.** A point $(2,5)$ lies on $y=f(x)$. Find its image under reflection in the $x$-axis.
 
 <details markdown="1"><summary>Hint</summary>
 
-Keep the input fixed and multiply the output by three.
+Keep the input fixed and change the sign of the output.
 </details>
 <details markdown="1"><summary>Next step</summary>
 
-The new output is $3\times5$.
+The new output is $-5$.
 </details>
 <details markdown="1"><summary>Full working</summary>
 
-The image is $(2,15)$, because the input is unchanged and the output is tripled.
+The image is $(2,-5)$, because the input stays fixed and the output changes sign.
 </details>

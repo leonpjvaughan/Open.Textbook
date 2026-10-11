@@ -14,14 +14,14 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Convert $2.5$ m to cm.
-2. Work out $3.6\times10$.
+1. Simplify $\sqrt{36}$.
+2. Work out $3.4\times10$.
 
 <details markdown="1">
 <summary>Answers</summary>
 
-1. $250$ cm.
-2. $36$.
+1. $6$.
+2. $34$.
 </details>
 
 ## Practise with help
@@ -31,17 +31,37 @@ kind: guided-problems
 <details markdown="1">
 <summary>Hint</summary>
 
-Identify the conversion, formula or exact method that matches the question.
+Find the largest square factor of $48$.
 </details>
 
 <details markdown="1">
 <summary>Choose a step</summary>
 
-Write the relevant relationship first, then substitute the given values.
+Write $48=16\times3$ under the root.
 </details>
 
 <details markdown="1">
 <summary>Full working</summary>
 
 $\sqrt{48}=\sqrt{16\times3}=4\sqrt3$.
+</details>
+
+**2.** Simplify $2\sqrt{12}+\sqrt{27}$.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+Simplify each root before adding.
+</details>
+
+<details markdown="1">
+<summary>Choose a step</summary>
+
+Write $\sqrt{12}=2\sqrt3$ and $\sqrt{27}=3\sqrt3$.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$2(2\sqrt3)+3\sqrt3=7\sqrt3$.
 </details>

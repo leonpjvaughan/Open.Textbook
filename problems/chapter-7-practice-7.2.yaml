@@ -8,97 +8,97 @@ problems:
   tier: F
   dfe:
   - R11
-  statement: A car travels $210$ km in $3.5$ hours. Find its average speed.
+  statement: 'A car travels $210$ km in $3.5$ hours. Find its average speed.'
   answer_label: Average speed
   check:
     kind: evaluate
     expression: 210 / 3.5
     answer: '60'
-  answer_text: $60$ km/h.
+  answer_text: '$60$ km/h.'
 - id: ch7-72-distance
   section: '7.2'
   tier: F
   dfe:
   - R11
-  statement: A runner moves at $5.5$ m/s for $40$ seconds. Find the distance.
+  statement: 'A runner moves at $5.5$ m/s for $40$ seconds. Find the distance.'
   answer_label: Distance travelled
   check:
     kind: evaluate
     expression: 5.5 * 40
     answer: '220'
-  answer_text: $220$ m.
+  answer_text: '$220$ m.'
 - id: ch7-72-time
   section: '7.2'
   tier: F
   dfe:
   - R11
-  statement: A train travels $96$ km at $80$ km/h. Find the time.
+  statement: 'A train travels $96$ km at $80$ km/h. Find the time.'
   answer_label: Journey time
   check:
     kind: evaluate
     expression: 96 / 80
     answer: '1.2'
-  answer_text: $1.2$ hours.
+  answer_text: '$1.2$ hours.'
 - id: ch7-72-density
   section: '7.2'
   tier: F
   dfe:
   - R11
-  statement: A metal block has mass $780$ g and volume $100$ cm$^3$. Find its density.
+  statement: 'A metal block has mass $780$ g and volume $100$ cm$^3$. Find its density.'
   answer_label: Density
   check:
     kind: evaluate
     expression: 780 / 100
     answer: '7.8'
-  answer_text: $7.8$ g/cm$^3$.
+  answer_text: '$7.8$ g/cm$^3$.'
 - id: ch7-72-mass
   section: '7.2'
   tier: F
   dfe:
   - R11
-  statement: A liquid has density $1.2$ g/cm$^3$ and volume $250$ cm$^3$. Find its mass.
+  statement: 'A liquid has density $1.2$ g/cm$^3$ and volume $250$ cm$^3$. Find its mass.'
   answer_label: Mass
   check:
     kind: evaluate
     expression: 1.2 * 250
     answer: '300'
-  answer_text: $300$ g.
+  answer_text: '$300$ g.'
 - id: ch7-72-pressure
   section: '7.2'
   tier: F
   dfe:
   - R11
-  statement: A force of $600$ N acts on an area of $0.2$ m$^2$. Find the pressure.
+  statement: 'A force of $600$ N acts on an area of $0.2$ m$^2$. Find the pressure.'
   answer_label: Pressure
   check:
     kind: evaluate
     expression: 600 / 0.2
     answer: '3000'
-  answer_text: $3000$ Pa.
+  answer_text: '$3000$ Pa.'
 - id: ch7-72-force
   section: '7.2'
   tier: F
   dfe:
   - R11
-  statement: A pressure of $500$ Pa acts on an area of $0.4$ m$^2$. Find the force.
+  statement: 'A pressure of $500$ Pa acts on an area of $0.4$ m$^2$. Find the force.'
   answer_label: Force
   check:
     kind: evaluate
     expression: 500 * 0.4
     answer: '200'
-  answer_text: $200$ N.
+  answer_text: '$200$ N.'
 - id: ch7-72-convert
   section: '7.2'
   tier: F
   dfe:
   - R1
-  statement: A cyclist travels $900$ m in $2$ minutes. Find the speed in m/s.
+  statement: 'A cyclist travels $900$ m in $2$ minutes. Find the speed in m/s.'
   answer_label: Convert units then find speed
   check:
     kind: evaluate
     expression: 900 / 120
     answer: '7.5'
-  answer_text: $7.5$ m/s.
+  answer_text: '$7.5$ m/s.'
 - id: ch7-72-density-h
   section: '7.2'
   tier: H
@@ -110,13 +110,13 @@ problems:
     kind: evaluate
     expression: 1800 / 750
     answer: '2.4'
-  answer_text: $2.4$ g/cm$^3$.
+  answer_text: '$2.4$ g/cm$^3$.'
 - id: ch7-72-choice
   section: '7.2'
   tier: F
   dfe:
   - R1
-  statement: A vehicle travels $150$ km in $2.5$ hours. State which calculation finds its speed, then work it out.
+  statement: 'A vehicle travels $150$ km in $2.5$ hours. State which calculation finds its speed, then work it out.'
   answer_label: Choose and use a formula
   check:
     kind: evaluate

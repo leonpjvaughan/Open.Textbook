@@ -21,7 +21,7 @@ $$
 
 So it is exactly $30$ m, not shorter or longer. The angle east of north is
 $\tan^{-1}(24/18)\approx 53.1^\circ$, so the bearing is approximately
-$053^\circ$. Label the plan's faces and edges using the shape words from 17.1;
+$053^\circ$. Label the plan's sides and vertices using the shape words from 17.1;
 use a plan and elevations if the garden includes a raised structure.
 
 ## Mixed practice: choose a method and explain why

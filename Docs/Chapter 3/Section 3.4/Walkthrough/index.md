@@ -13,16 +13,21 @@ kind: walkthrough
 
 **Prerequisites:** roots and integer index laws; fractions and reciprocals.
 
-**Objectives:** interpret fractional indices as roots; combine roots and powers; evaluate negative fractional indices.
+**Objectives:** interpret fractional indices as roots; combine roots and
+powers; evaluate negative fractional indices.
 
-This Higher section extends N7. A fractional index connects powers with roots.
+By the end of this section, you can interpret and calculate with fractional
+and negative fractional indices.
+
+This section covers the Higher content in N7. A fractional index connects
+powers with roots.
 
 ## Unit fractions as roots
 
 For a positive number $a$, the index law shows that squaring $a^{1/2}$ gives
-$a$. So $a^{1/2}=\sqrt a$. In the same way, $a^{1/3}=\sqrt[3]a$.
+$a$. So $a^{1/2}=\sqrt a$. Also, $a^{1/3}=\sqrt[3]{a}$.
 
-$$a^{1/2}=\sqrt a \qquad a^{1/3}=\sqrt[3]a$$
+$$a^{1/2}=\sqrt{a} \qquad a^{1/3}=\sqrt[3]{a}$$
 
 **Example 1.** Work out $64^{1/3}$.
 
@@ -35,7 +40,7 @@ $$64^{1/3}=4$$
 The denominator gives the root. The numerator gives the power. For example,
 $a^{2/3}$ means take the cube root, then square.
 
-$$a^{2/3}=(\sqrt[3]a)^2$$
+$$a^{2/3}=(\sqrt[3]{a})^2$$
 
 **Example 2.** Work out $81^{3/4}$.
 

@@ -4,7 +4,7 @@ chapter: 6
 chapter_title: Percentages and financial mathematics
 section: "6.5"
 section_title: Growth, decay and repeated percentage change
-tier: H
+tier: F
 dfe: [R16]
 kind: guided-problems
 ---

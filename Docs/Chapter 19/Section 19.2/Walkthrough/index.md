@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** calculate with fractions and decimals; recognise radius and diameter.
 
-**Objectives:** calculate circumference and area from a radius or diameter, including exact answers in terms of $\pi$. This covers G17.
+**Objectives:** calculate circumference and area from a radius or diameter, including exact answers in terms of $\pi$.
 
 ## Circle measures
 
@@ -29,7 +29,7 @@ So $C=14\pi\text{ cm}$.
 
 Use the radius in $A=\pi r^2$: $A=\pi\times5^2$.
 
-So $A=25\pi\text{ m}^2$, approximately $78.5\text{ m}^2$.
+So $A=25\pi\text{ m}^2$, approximately $78.5\text{ m}^2$ when $\pi\approx3.14$.
 
 > **Watch out.** Squaring the diameter gives the wrong area. Find the radius first, then square it.
 

@@ -13,9 +13,13 @@ kind: walkthrough
 
 **Prerequisites:** multiplication, division and square numbers.
 
-**Objectives:** calculate integer powers; find square, cube and higher roots; connect a root to the power that reverses it.
+**Objectives:** calculate integer powers; find square, cube and higher roots;
+connect a root to the power that reverses it.
 
-This section covers powers and roots in N6.
+By the end of this section, you can calculate integer powers, find roots, and
+check a root by using its matching power.
+
+This section covers N6.
 
 ## Powers
 
@@ -66,6 +70,6 @@ how the power will represent the size after 20 rounds.
 ## You should now be able to
 
 - write repeated multiplication as a power and calculate it;
-- find square roots and cube roots of known powers;
+- find square, cube and higher roots of known powers;
 - check a root by raising it to the matching power;
 - distinguish a positive square root from the two solutions of a square equation.

@@ -1,122 +1,169 @@
 chapter: 18
 problems:
-- id: ch18-18.3-half
+- id: 'ch18-18.3-half'
   section: '18.3'
-  tier: H
+  tier: 'H'
   dfe:
-  - G7
-  statement: Enlarge $(6,-4)$ by scale factor $1/2$ about the origin.
-  answer_label: Enlarge $(6,-4)$ by scale factor $1/2$ about the origin.
+  - 'G7'
+  statement: 'Enlarge $(6,-4)$ by scale factor $1/2$ about the origin.'
+  answer_label: 'Enlarge $(6,-4)$ by scale factor $1/2$ about the origin.'
   check:
-    kind: evaluate
-    expression: 6*(1/2)
-    answer: '3'
-  answer_text: (3,-2)
-- id: ch18-18.3-negative
+    kind: 'all'
+    checks:
+    - kind: 'evaluate'
+      expression: '6*(1/2)'
+      answer: '3'
+    - kind: 'evaluate'
+      expression: '-4*(1/2)'
+      answer: '-2'
+  answer_text: '(3,-2)'
+- id: 'ch18-18.3-negative'
   section: '18.3'
-  tier: H
+  tier: 'H'
   dfe:
-  - G7
-  statement: Enlarge $(2,3)$ by scale factor $-2$ about the origin.
-  answer_label: Enlarge $(2,3)$ by scale factor $-2$ about the origin.
+  - 'G7'
+  statement: 'Enlarge $(2,3)$ by scale factor $-2$ about the origin.'
+  answer_label: 'Enlarge $(2,3)$ by scale factor $-2$ about the origin.'
   check:
-    kind: evaluate
-    expression: 2*(-2)
-    answer: '-4'
-  answer_text: (-4,-6)
-- id: ch18-18.3-negative-half
+    kind: 'all'
+    checks:
+    - kind: 'evaluate'
+      expression: '2*(-2)'
+      answer: '-4'
+    - kind: 'evaluate'
+      expression: '3*(-2)'
+      answer: '-6'
+  answer_text: '(-4,-6)'
+- id: 'ch18-18.3-negative-half'
   section: '18.3'
-  tier: H
+  tier: 'H'
   dfe:
-  - G7
-  statement: Enlarge $(-8,4)$ by scale factor $-1/2$ about the origin.
-  answer_label: Enlarge $(-8,4)$ by scale factor $-1/2$ about the origin.
+  - 'G7'
+  statement: 'Enlarge $(-8,4)$ by scale factor $-1/2$ about the origin.'
+  answer_label: 'Enlarge $(-8,4)$ by scale factor $-1/2$ about the origin.'
   check:
-    kind: evaluate
-    expression: -8*(-1/2)
-    answer: '4'
-  answer_text: (4,-2)
-- id: ch18-18.3-fraction-shape
+    kind: 'all'
+    checks:
+    - kind: 'evaluate'
+      expression: '-8*(-1/2)'
+      answer: '4'
+    - kind: 'evaluate'
+      expression: '4*(-1/2)'
+      answer: '-2'
+  answer_text: '(4,-2)'
+- id: 'ch18-18.3-fraction-shape'
   section: '18.3'
-  tier: H
+  tier: 'H'
   dfe:
-  - G7
-  statement: Triangle vertices are $(2,0),(0,4),(2,4)$. Enlarge by factor $-1/2$ about the origin.
-  answer_label: Triangle vertices are $(2,0),(0,4),(2,4)$. Enlarge by factor $-1/2$ about the origin.
+  - 'G7'
+  statement: 'Triangle vertices are $(2,0),(0,4),(2,4)$. Enlarge by factor $-1/2$ about the origin.'
+  answer_label: 'Triangle vertices are $(2,0),(0,4),(2,4)$. Enlarge by factor $-1/2$ about the origin.'
   check:
-    kind: evaluate
-    expression: 2*(-1/2)
-    answer: '-1'
-  answer_text: (-1,0), (0,-2), (-1,-2)
-- id: ch18-18.3-factor
+    kind: 'all'
+    checks:
+    - kind: 'evaluate'
+      expression: '2*(-1/2)'
+      answer: '-1'
+    - kind: 'evaluate'
+      expression: '0*(-1/2)'
+      answer: '0'
+    - kind: 'evaluate'
+      expression: '0*(-1/2)'
+      answer: '0'
+    - kind: 'evaluate'
+      expression: '4*(-1/2)'
+      answer: '-2'
+    - kind: 'evaluate'
+      expression: '2*(-1/2)'
+      answer: '-1'
+    - kind: 'evaluate'
+      expression: '4*(-1/2)'
+      answer: '-2'
+  answer_text: '(-1,0), (0,-2), (-1,-2)'
+- id: 'ch18-18.3-factor'
   section: '18.3'
-  tier: H
+  tier: 'H'
   dfe:
-  - G7
-  statement: A length of $12$ cm maps to $3$ cm. Give the positive scale factor.
-  answer_label: A length of $12$ cm maps to $3$ cm. Give the positive scale factor.
+  - 'G7'
+  statement: 'A length of $12$ cm maps to $3$ cm. Give the positive scale factor.'
+  answer_label: 'A length of $12$ cm maps to $3$ cm. Give the positive scale factor.'
   check:
-    kind: evaluate
-    expression: 3/12
-    answer: 1/4
-  answer_text: 1/4
-- id: ch18-18.3-negative-image
+    kind: 'evaluate'
+    expression: '3/12'
+    answer: '1/4'
+  answer_text: '1/4'
+- id: 'ch18-18.3-negative-image'
   section: '18.3'
-  tier: H
+  tier: 'H'
   dfe:
-  - G7
-  statement: Point $(-3,5)$ maps to $(6,-10)$. Give the scale factor for an enlargement centred at the origin.
-  answer_label: Point $(-3,5)$ maps to $(6,-10)$. Give the scale factor for an enlargement centred at the origin.
+  - 'G7'
+  statement: 'Point $(-3,5)$ maps to $(6,-10)$. Give the scale factor for an enlargement centred at the origin.'
+  answer_label: 'Point $(-3,5)$ maps to $(6,-10)$. Give the scale factor for an enlargement centred at the origin.'
   check:
-    kind: evaluate
-    expression: 6/(-3)
-    answer: '-2'
+    kind: 'all'
+    checks:
+    - kind: 'evaluate'
+      expression: '6/(-3)'
+      answer: '-2'
+    - kind: 'evaluate'
+      expression: '-10/5'
+      answer: '-2'
   answer_text: '-2'
-- id: ch18-18.3-distance
+- id: 'ch18-18.3-distance'
   section: '18.3'
-  tier: H
+  tier: 'H'
   dfe:
-  - G7
-  statement: Point $(4,0)$ maps to $(-2,0)$ under an enlargement centred at the origin. Find the scale factor.
-  answer_label: Point $(4,0)$ maps to $(-2,0)$ under an enlargement centred at the origin. Find the scale factor.
+  - 'G7'
+  statement: 'Point $(4,0)$ maps to $(-2,0)$ under an enlargement centred at the origin. Find the scale factor.'
+  answer_label: 'Point $(4,0)$ maps to $(-2,0)$ under an enlargement centred at the origin. Find the scale factor.'
   check:
-    kind: evaluate
-    expression: -2/4
-    answer: -1/2
-  answer_text: -1/2
-- id: ch18-18.3-meaning
+    kind: 'evaluate'
+    expression: '-2/4'
+    answer: '-1/2'
+  answer_text: '-1/2'
+- id: 'ch18-18.3-meaning'
   section: '18.3'
-  tier: H
+  tier: 'H'
   dfe:
-  - G7
-  statement: Explain what the negative sign in scale factor $-3$ tells you.
-  answer_label: Explain what the negative sign in scale factor $-3$ tells you.
+  - 'G7'
+  statement: 'Explain what the negative sign in scale factor $-3$ tells you.'
+  answer_label: 'Explain what the negative sign in scale factor $-3$ tells you.'
   check:
-    kind: evaluate
-    expression: abs(-3)
+    kind: 'evaluate'
+    expression: 'abs(-3)'
     answer: '3'
-  answer_text: The image is on the opposite side of the centre; lengths are tripled.
-- id: ch18-18.3-quarter
+  answer_text: 'The image is on the opposite side of the centre; lengths are tripled.'
+- id: 'ch18-18.3-quarter'
   section: '18.3'
-  tier: H
+  tier: 'H'
   dfe:
-  - G7
-  statement: Enlarge $(12,8)$ by scale factor $-1/4$ about the origin.
-  answer_label: Enlarge $(12,8)$ by scale factor $-1/4$ about the origin.
+  - 'G7'
+  statement: 'Enlarge $(12,8)$ by scale factor $-1/4$ about the origin.'
+  answer_label: 'Enlarge $(12,8)$ by scale factor $-1/4$ about the origin.'
   check:
-    kind: evaluate
-    expression: 12*(-1/4)
-    answer: '-3'
-  answer_text: (-3,-2)
-- id: ch18-18.3-mixed
+    kind: 'all'
+    checks:
+    - kind: 'evaluate'
+      expression: '12*(-1/4)'
+      answer: '-3'
+    - kind: 'evaluate'
+      expression: '8*(-1/4)'
+      answer: '-2'
+  answer_text: '(-3,-2)'
+- id: 'ch18-18.3-mixed'
   section: '18.3'
-  tier: H
+  tier: 'H'
   dfe:
-  - G7
+  - 'G7'
   statement: 'Which method maps $(4,6)$ to $(2,3)$ about the origin: translation or enlargement? Give a reason.'
   answer_label: 'Which method maps $(4,6)$ to $(2,3)$ about the origin: translation or enlargement? Give a reason.'
   check:
-    kind: evaluate
-    expression: 4*(1/2)
-    answer: '2'
-  answer_text: Enlargement, scale factor $1/2$, because both coordinates are multiplied by the same number.
+    kind: 'all'
+    checks:
+    - kind: 'evaluate'
+      expression: '4*(1/2)'
+      answer: '2'
+    - kind: 'evaluate'
+      expression: '6*(1/2)'
+      answer: '3'
+  answer_text: 'Enlargement, scale factor $1/2$, because both coordinates are multiplied by the same number.'

@@ -13,8 +13,9 @@ groups of ten factors:
 
 $$2^{20}=(2^{10})^2=1024^2=1\,048\,576$$
 
-The size is about one million units, so it is much nearer one million than one
-thousand. The estimate from 3.2 was reasonable.
+The size is $1,048,576$ units. It is about $1,000,000$ units and far from
+$1,000$ units, so it is nearer one million. The estimate from 3.2 was
+reasonable.
 
 ## Mixed practice
 

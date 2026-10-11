@@ -15,6 +15,8 @@ kind: walkthrough
 
 **Objectives:** solve equations with the unknown on both sides, including brackets and decimals; recognise identities and contradictions.
 
+This section covers equations with the unknown on both sides, including brackets, within AQA reference A17.
+
 Collecting like terms means combining terms with the same unknown part. First expand brackets, then collect unknown terms on one side and constants on the other.
 
 **Example 1.** Solve $5x+3=2x+18$.
@@ -37,7 +39,9 @@ Subtract $6$: $2x=8$.
 
 Divide by $2$: $x=4$.
 
-> **Watch out.** Moving a term across the equals sign changes its sign because the same operation must keep both sides balanced. For example, subtracting $x$ gives $3x-x=14-6$.
+> **Watch out.** Do not change a term's sign without doing the same operation to both sides. From $3x+6=x+14$, subtracting $x$ and $6$ gives $2x=8$.
+
+For example, $2x+4=2x+4$ is true for every value of $x$. In contrast, $2x+4=2x+5$ has no solution because it reduces to $4=5$.
 
 Sometimes the unknown terms cancel. If both sides then match, every value works; if they disagree, no value works.
 

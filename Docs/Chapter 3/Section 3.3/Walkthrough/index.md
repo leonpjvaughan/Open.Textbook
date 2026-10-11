@@ -11,12 +11,17 @@ kind: walkthrough
 
 # 3.3 Laws of indices — Learn
 
-**Prerequisites:** powers as repeated multiplication; multiplication and division of algebraic terms.
+**Prerequisites:** powers as repeated multiplication; multiplication and
+division of algebraic terms.
 
-**Objectives:** simplify products and quotients of powers; simplify a power raised to a power; use zero and negative integer indices.
+**Objectives:** simplify products and quotients of powers; simplify a power
+raised to a power; use zero and negative integer indices.
 
-This section covers the laws of indices in A4 and N7. An index is the small
-number that tells how many equal factors a power contains.
+By the end of this section, you can use index laws to simplify products,
+quotients and powers, including zero and negative integer indices.
+
+This section covers A4 and N7. An index is the small number that tells how
+many equal factors a power contains.
 
 ## Multiply and divide powers
 
@@ -27,7 +32,8 @@ $$x^3x^2=(xxx)(xx)=x^5$$
 
 $$\frac{x^5}{x^2}=\frac{xxxxx}{xx}=x^3 \quad (x\ne0)$$
 
-So $x^a x^b=x^{a+b}$ and $x^a\div x^b=x^{a-b}$ for non-zero $x$.
+For non-zero $x$, $x^a x^b=x^{a+b}$ for non-negative integer indices. Also,
+$x^a\div x^b=x^{a-b}$ when $b>0$, with a non-zero divisor.
 
 **Example 1.** Simplify $a^4a^3$.
 
@@ -55,7 +61,7 @@ equals both 1 and $x^{3-3}=x^0$.
 
 $$x^0=1 \quad (x\ne0)$$
 
-The same law gives $x^{-2}=1/x^2$, because $x^3\div x^5=x^{-2}$ and also
+The same law gives $x^{-2}=1/x^2$, because $x^3\div x^5=x^{-2}$ and
 $x^3/x^5=1/x^2$.
 
 > **Watch out.** In $x^3x^4$, add the indices to get $x^7$. In $(x^3)^4$,
@@ -69,11 +75,13 @@ after 20 doublings. Compare the result with your estimate from 3.2.
 
 ### Try it: the laws of indices
 
-**Predict first.** Work out $2^3 \times 2^2$ in two ways: multiply out the powers, then add the indices. Do you get the same number?
+**Predict first.** Without multiplying, predict $2^3\times2^2$ and
+$2^{3+2}$. Then calculate each expression to test your prediction.
 
 :::figure ch3-index-laws
 
-**Explain:** why is $a^m \times a^n = a^{m+n}$? Say it in words about counting factors.
+**Explain:** why is $a^m\times a^n=a^{m+n}$? Describe how many factors of $a$
+the product contains.
 
 ## You should now be able to
 

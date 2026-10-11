@@ -43,22 +43,22 @@ problems:
     answer_label: '$y$-axis reflection'
     check: {kind: evaluate, expression: (-3)**2+1, answer: '10'}
     answer_text: '$y=(-x)^2+1=x^2+1$.'
-  - id: vertical-stretch
+  - id: reflect-point-in-x-axis
     section: '13.3'
     tier: H
     dfe: [A13]
-    statement: 'Stretch $y=f(x)$ vertically by scale factor 3. State the transformed rule and image of $(2,5)$.'
-    answer_label: 'Vertical stretch'
-    check: {kind: evaluate, expression: 3*5, answer: '15'}
-    answer_text: 'The rule is $y=3f(x)$. The point $(2,5)$ maps to $(2,15)$.'
-  - id: horizontal-stretch
+    statement: 'The point $(2,5)$ lies on $y=f(x)$. State its image after reflection in the $x$-axis.'
+    answer_label: '$x$-axis reflection of a point'
+    check: {kind: evaluate, expression: -5, answer: '-5'}
+    answer_text: 'The image is $(2,-5)$: the input stays fixed and the output changes sign.'
+  - id: reflect-point-in-y-axis
     section: '13.3'
     tier: H
     dfe: [A13]
-    statement: 'Stretch $y=f(x)$ horizontally by scale factor 2. State the transformed rule and image of $(4,3)$.'
-    answer_label: 'Horizontal stretch'
-    check: {kind: evaluate, expression: 2*2, answer: '4'}
-    answer_text: 'The rule is $y=f(x/2)$. The point $(4,3)$ maps to $(8,3)$.'
+    statement: 'The point $(4,3)$ lies on $y=f(x)$. State its image after reflection in the $y$-axis.'
+    answer_label: '$y$-axis reflection of a point'
+    check: {kind: evaluate, expression: -4, answer: '-4'}
+    answer_text: 'The image is $(-4,3)$: the input changes sign and the output stays fixed.'
   - id: point-shift
     section: '13.3'
     tier: H

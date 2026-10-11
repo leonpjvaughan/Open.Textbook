@@ -12,7 +12,7 @@ kind: walkthrough
 
 # 5.5 Scale factors, scale diagrams and maps — Learn
 
-## Before you start
+## Prerequisites
 
 You should be able to multiply and divide whole numbers and fractions. Check units before comparing quantities.
 
@@ -20,7 +20,7 @@ You should be able to multiply and divide whole numbers and fractions. Check uni
 
 A **scale** compares a drawing length with a real length. The **scale factor** is the multiplier between corresponding lengths.
 
-## What you will learn
+## Objectives
 
 - Convert units and use scales to find map, drawing and real lengths.
 - Check that the result matches the units and direction of change.

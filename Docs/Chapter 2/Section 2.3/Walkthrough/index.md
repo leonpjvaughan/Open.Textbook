@@ -15,17 +15,25 @@ kind: walkthrough
 
 **Objectives:** list possibilities without repetition or omission; use a table or organised list to solve a counting problem.
 
+**Covers:** N5 (systematic listing strategies).
+
 ## Organised lists
 
 A **systematic list** follows a fixed order. You choose one part, record every possible partner, then move to the next part. This makes omissions easier to spot.
 
-**Worked example.** A spinner has red, blue and green sections. A coin shows heads or tails. List all outcomes.
+**Worked example.** A spinner has red, blue and green sections. A coin shows heads or tails. List all outcomes in a table.
 
 Start with red: red-heads, red-tails.
 
 Then blue: blue-heads, blue-tails.
 
 Then green: green-heads, green-tails.
+
+| Colour | Heads | Tails |
+|---|---|---|
+| Red | red-heads | red-tails |
+| Blue | blue-heads | blue-tails |
+| Green | green-heads | green-tails |
 
 There are six outcomes. Each colour appears with both coin results, so the list is complete.
 
@@ -39,7 +47,7 @@ Starting with 3 gives 31 and 32.
 
 There are six numbers. The first digit groups make the list straightforward to check.
 
-> **Watch out.** A list such as 12, 13, 21, 31 misses 23 and 32. Check every starting choice and then every allowed partner.
+> **Watch out.** A list such as 12, 13, 21, 31 misses 23 and 32. Check each starting choice and then each allowed partner.
 
 ## Progress check
 

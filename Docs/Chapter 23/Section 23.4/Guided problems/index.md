@@ -35,12 +35,12 @@ Try these from memory before opening the answers.
 <details markdown="1">
 <summary>Hint</summary>
 
-Find red then blue and blue then red. Add the two path probabilities.
+List the four equally likely outcomes. Which one has two tails?
 
 <details markdown="1">
 <summary>Full working</summary>
 
-Each path has probability $\frac25\times\frac35=\frac6{25}$. Add both: $\frac{12}{25}$.
+Only TT has two tails. Its probability is $\frac12\times\frac12=\frac14$.
 
 </details>
 </details>
@@ -65,12 +65,27 @@ For each roll the probability is $\frac26=\frac13$. Multiply: $\frac13\times\fra
 <details markdown="1">
 <summary>Hint</summary>
 
-Think about the opposite event, total count, or restricted group named in the question.
+Find the probability of no heads, then subtract it from 1.
 
 <details markdown="1">
 <summary>Full working</summary>
 
  Use the complement: $1-P(\text{no heads})=1-\frac14=\frac34$.
 
+</details>
+</details>
+
+**4.** A bag contains 4 red and 3 blue counters. One counter is drawn and not replaced. Find the probability of red then blue.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+After a red counter is removed, count the blue counters and the total counters left.
+
+<details markdown="1">
+<summary>Full working</summary>
+
+The probabilities are $\frac47$ for red first and $\frac36$ for blue next.
+Multiply: $\frac47\times\frac36=\frac{12}{42}=\frac27$.
 </details>
 </details>

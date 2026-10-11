@@ -27,7 +27,7 @@ Try each question before opening a hint. Open the next part only when you need i
 
 ## Practise with help
 
-**1.** Work out the missing angle in a basic question from this section.
+**1.** Lines $l$ and $m$ are parallel. A corresponding angle is $72^\circ$. Find its partner.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -37,20 +37,20 @@ Write the angle fact that fits the diagram or shape.
 <details markdown="1">
 <summary>One step</summary>
 
-Set up an equation using the known angle total.
+Corresponding angles are equal when the lines are parallel.
 
-The corresponding partner is $72^\circ$ because corresponding angles are equal in parallel lines.
+The partner equals $72^\circ$.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-Use the relevant angle sum and subtract the known angles. State the angle fact in your answer.
+The corresponding angle fact gives an angle of $72^\circ$.
 
 </details>
 </details>
 </details>
 
-**2.** A courtyard design uses the angle fact from this section. Find an unknown angle and explain your choice of fact.
+**2.** Co-interior angles are $x^\circ$ and $67^\circ$. Find $x$.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -60,14 +60,20 @@ Mark the known angles and identify their relationship before calculating.
 <details markdown="1">
 <summary>One step</summary>
 
-Write an equation for the known angles and the unknown.
+Co-interior angles on parallel lines total $180^\circ$. Write an equation.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-Substitute the known values, solve, then check that the angles fit the shape.
+Co-interior angles on parallel lines total $180^\circ$.
 
-$x+67=180$, so $x=113^\circ$ because co-interior angles sum to $180^\circ$.
+$$
+x+67=180
+$$
+
+$$
+x=180-67=113^\circ
+$$
 
 </details>
 </details>

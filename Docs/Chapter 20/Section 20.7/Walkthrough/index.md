@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** cosine, square roots, and rearranging equations.
 
-**Objectives:** use the cosine rule to find a side or angle in a non-right-angled triangle. This teaches DfE G22.
+**Objectives:** use the cosine rule to find a side or angle in a non-right-angled triangle.
 
 The **cosine rule** finds a side from two sides and their included angle: $a^2=b^2+c^2-2bc\cos A$. It can also find an angle by rearranging the formula.
 
@@ -41,6 +41,6 @@ The garden diagonal uses Pythagoras because its triangle is right-angled. In a t
 
 ## You should now be able to
 
-- state the method and identify the measurements it needs;
-- show your working in a clear order;
-- check that your answer is sensible and give suitable units.
+- use the included angle and two adjacent sides to find a third side;
+- rearrange the cosine rule to find an angle;
+- check that the chosen angle matches the sides in the formula.

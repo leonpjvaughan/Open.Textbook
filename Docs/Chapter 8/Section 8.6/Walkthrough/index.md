@@ -15,6 +15,8 @@ kind: walkthrough
 
 **By the end of this section you can:** rearrange a formula by using inverse operations to make a named letter the subject.
 
+**Covers:** A5.
+
 ## Learn the method
 
 A formula can be rearranged to make a different letter the subject. The subject is the letter alone on one side.
@@ -31,13 +33,14 @@ $y+2=5x$ — add $2$ to both sides.
 
 $x=\frac{y+2}{5}$ — divide both sides by $5$.
 
-> **Watch out.** Do not change only one side of a formula. Apply each inverse operation to both sides, then substitute back to check.
+> **Watch out.** Change both sides of a formula in the same way. Apply each inverse operation to both sides, then substitute back to check.
 
 ## Progress check
 
 The chapter frame has outer area $(x+6)(x+4)$ and inner area $x(x+2)$. In the next section, you will expand these products to find the frame area.
 
+The frame area will be closer to $10x$ than $12x$ for large $x$.
+
 ## You should now be able to
 
 - rearrange a formula by using inverse operations to make a named letter the subject.
-- explain your method and check your answer using the inverse operation or substitution.

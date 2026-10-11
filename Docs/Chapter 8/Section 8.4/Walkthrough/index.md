@@ -15,6 +15,8 @@ kind: walkthrough
 
 **By the end of this section you can:** factorise an expression by taking out its common factor and check by expanding.
 
+**Covers:** A4.
+
 ## Learn the method
 
 Factorising reverses expanding. It writes a sum as a product.
@@ -36,4 +38,4 @@ Check: $5(3x+4)=15x+20$.
 ## You should now be able to
 
 - factorise an expression by taking out its common factor and check by expanding.
-- explain your method and check your answer using the inverse operation or substitution.
+

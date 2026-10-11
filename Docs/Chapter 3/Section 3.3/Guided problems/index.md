@@ -1,8 +1,8 @@
 ---
-title: 3.3 Laws of indices — Practise with help
+title: "3.3 Laws of indices — Practise with help"
 chapter: 3
 chapter_title: Powers, roots and indices
-section: '3.3'
+section: "3.3"
 section_title: Laws of indices
 tier: F
 dfe: [A4, N7]
@@ -13,77 +13,77 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Work out $3^2$.
-2. Work out $36\div6$, then check by multiplying.
+1. Write $2\times2\times2\times2$ as a power.
+2. Work out $5^2$.
 
 <details markdown="1">
 <summary>Answers and feedback</summary>
 
-1. $9$, because $3\times3=9$.
-2. $6$, because $6\times6=36$. The check is $6\times6=36$.
+1. $2^4$, because there are four factors of 2.
+2. $25$, because $5\times5=25$.
 
 </details>
 
 ## Practise with help
 
-**1.** Start with $2^4$. Find its value.
+**1.** Simplify $a^3a^5$.
 
 <details markdown="1">
 <summary>Hint</summary>
 
-Write four factors of 2.
+Write the factors and count them.
 
 <details markdown="1">
 <summary>One step</summary>
 
-$2^4=2\times2\times2\times2$.
+$a^3a^5=a^{3+5}$.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-$2^4=2\times2\times2\times2=16$.
+$a^3a^5=a^8$, because the product contains eight factors of $a$.
 
 </details>
 </details>
 </details>
 
-**2.** Find $\sqrt{81}$.
+**2.** Simplify $(b^2)^4$.
 
 <details markdown="1">
 <summary>Hint</summary>
 
-Which positive whole number squares to 81?
+The whole group $b^2$ appears four times.
 
 <details markdown="1">
 <summary>One step</summary>
 
-$9^2=81$.
+$(b^2)^4=b^{2\times4}$.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-$\sqrt{81}=9$, since $9^2=81$.
+$(b^2)^4=b^8$, because there are four groups of two factors of $b$.
 
 </details>
 </details>
 </details>
 
-**3.** Simplify $x^2x^5$.
+**3.** Write $4^{-2}$ as a fraction.
 
 <details markdown="1">
 <summary>Hint</summary>
 
-Write out the factors, then count them.
+A negative index means take the reciprocal.
 
 <details markdown="1">
 <summary>One step</summary>
 
-$x^2x^5=x^{2+5}$.
+$4^{-2}=\frac{1}{4^2}$.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-$x^2x^5=x^7$ because the product joins seven factors of $x$.
+$4^{-2}=\frac{1}{4^2}=\frac{1}{16}$.
 
 </details>
 </details>

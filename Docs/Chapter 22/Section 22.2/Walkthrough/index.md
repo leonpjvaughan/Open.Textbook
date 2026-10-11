@@ -4,7 +4,7 @@ chapter: 22
 chapter_title: Vectors
 section: '22.2'
 section_title: Adding and subtracting vectors
-tier: H
+tier: F
 dfe: [G25]
 kind: walkthrough
 ---
@@ -48,8 +48,8 @@ $$
 \end{aligned}
 $$
 
-**Watch out.** The lower component is $6-(-2)=8$, not $4$. Subtracting a
-negative number increases the result. Check by adding the opposite vector.
+> **Watch out.** The lower component is $6-(-2)=8$, not $4$. Subtracting a
+> negative number increases the result. Check by adding the opposite vector.
 
 ## Progress check
 

@@ -4,7 +4,7 @@ chapter: 22
 chapter_title: Vectors
 section: '22.2'
 section_title: Adding and subtracting vectors
-tier: H
+tier: F
 dfe: [G25]
 kind: guided-problems
 ---

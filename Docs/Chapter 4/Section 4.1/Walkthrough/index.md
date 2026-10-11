@@ -12,11 +12,11 @@ kind: walkthrough
 
 **Prerequisites:** multiplication and place value.
 
-**Objectives:** A fraction names equal parts of a whole. The top number is the numerator; the bottom number is the denominator. Equivalent fractions have the same value.
+**Objectives:** Name the numerator and denominator; make equivalent fractions; order fractions, decimals and negative numbers.
 
-## Learn the method
+## Equivalent fractions
 
-Multiply or divide the numerator and denominator by the same non-zero number. This keeps the fraction value unchanged. To compare fractions, use a common denominator or convert to decimals.
+Multiply or divide the numerator and denominator by the same non-zero number. This keeps the fraction value unchanged. To compare fractions, use a common denominator or convert to decimals. A numerator counts the parts chosen; a denominator counts the equal parts in the whole.
 
 ## Worked examples
 
@@ -46,12 +46,13 @@ Therefore $\frac{7}{9}<\frac{5}{6}$.
 
 ## Progress check
 
-The keyboard problem gives a discount of $\frac{1}{4}$. Write this as a percentage. Which section method will help you compare prices?
+The keyboard discount is $\frac{1}{4}$. Write it as a percentage. Since $\frac{1}{4}=\frac{25}{100}$, the discount is $25\%$.
 
 ## You should now be able to
 
-- explain the key idea in this section in your own words;
-- choose and use the method shown in the worked examples;
-- check your answer using an equivalent representation.
+- name the numerator and denominator;
+- make equivalent fractions;
+- order fractions and decimals using a common representation;
+- compare positive and negative fractions on a number line.
 
 **Covers:** [N1, N10].

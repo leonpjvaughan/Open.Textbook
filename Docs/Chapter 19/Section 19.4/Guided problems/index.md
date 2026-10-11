@@ -28,45 +28,45 @@ Attempt each question first. Open the hint, then the next step, when needed.
 
 <details markdown="1"><summary>Hint</summary>
 
-Choose the matching formula and identify each measurement.
+Multiply the three edge lengths.
 
 <details markdown="1"><summary>Next step</summary>
 
-Substitute the values, keep units, and calculate.
+Use $V=lwh$ with lengths 4 cm, 3 cm and 2 cm.
 
 <details markdown="1"><summary>Full working</summary>
 
-$24\text{ cm}^3$.
+$V=4\times3\times2=24\text{ cm}^3$.
 </details></details></details>
 
 **2.** A cuboid measures 5 cm by 4 cm by 3 cm. Work out its surface area.
 
 <details markdown="1"><summary>Hint</summary>
 
-Choose the matching formula and identify each measurement.
+There are two faces of each of the three different sizes.
 
 <details markdown="1"><summary>Next step</summary>
 
-Substitute the values, keep units, and calculate.
+Use $S=2(lw+lh+wh)$ with lengths 5 cm, 4 cm and 3 cm.
 
 <details markdown="1"><summary>Full working</summary>
 
-$94\text{ cm}^2$.
+$S=2(5\times4+5\times3+4\times3)=2(47)=94\text{ cm}^2$.
 </details></details></details>
 
 **3.** A triangular prism has cross-section area 12 cm² and length 8 cm. Work out its volume.
 
 <details markdown="1"><summary>Hint</summary>
 
-Choose the matching formula and identify each measurement.
+Prism volume is cross-section area multiplied by prism length.
 
 <details markdown="1"><summary>Next step</summary>
 
-Substitute the values, keep units, and calculate.
+Multiply $12\text{ cm}^2$ by the length, 8 cm.
 
 <details markdown="1"><summary>Full working</summary>
 
-$96\text{ cm}^3$.
+$V=12\times8=96\text{ cm}^3$.
 </details></details></details>
 
 Try the remaining questions without opening the full working.

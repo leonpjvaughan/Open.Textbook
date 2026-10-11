@@ -15,6 +15,8 @@ kind: walkthrough
 
 **By the end of this section you can:** simplify expressions by collecting like terms and constants.
 
+**Covers:** A4.
+
 ## Learn the method
 
 Like terms have the same variable part. For example, $3x$ and $8x$ are like terms, but $3x$ and $3y$ are not.
@@ -29,7 +31,7 @@ For $5x+2+3x-7$, collect the $x$ terms and the constants: $5x+3x+2-7=8x-5$.
 
 $6x+4-2x+3$
 
-$=(6-2)x+(4+3)$ — collect matching terms.
+$=(6-2)x+(4+3)$ — group the $x$ terms and constants.
 
 $=4x+7$
 
@@ -38,4 +40,4 @@ $=4x+7$
 ## You should now be able to
 
 - simplify expressions by collecting like terms and constants.
-- explain your method and check your answer using the inverse operation or substitution.
+

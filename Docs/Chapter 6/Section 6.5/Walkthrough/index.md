@@ -4,7 +4,7 @@ chapter: 6
 chapter_title: Percentages and financial mathematics
 section: "6.5"
 section_title: Growth, decay and repeated percentage change
-tier: H
+tier: F
 dfe: [R16]
 kind: walkthrough
 ---
@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** percentage multipliers, powers and reverse percentages.
 
-**Objectives:** model repeated percentage growth and decay, and interpret the multiplier. 
+**Objectives:** model repeated percentage growth and decay, and interpret the multiplier.
 
 For repeated growth, use $1+r/100$ as the multiplier. For decay, use $1-r/100$. Raise the multiplier to the number of equal time periods, then multiply by the starting value.
 
@@ -29,11 +29,11 @@ To the nearest person, the population is 2,251.
 
 The remaining-value multiplier is 0.88.
 
-After three years, $8000 × 0.88^3 = £5,449.216$.
+After three years, $8000 × 0.88^3 = 5449.216$.
 
 To the nearest penny, its value is £5,449.22.
 
-**Watch out.** A 12% decrease uses 0.88, not 0.12. Check that a decay model gives a value below the starting value.
+> **Watch out.** A 12% decrease uses 0.88, not 0.12. Check that a decay model gives a value below the starting value.
 
 ## You should now be able to
 

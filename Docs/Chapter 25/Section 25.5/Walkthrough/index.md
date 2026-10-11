@@ -13,9 +13,9 @@ kind: walkthrough
 
 **Prerequisites:** find medians, ranges and IQRs, and read box plots.
 
-**Objectives:** compare distributions using suitable measures and discuss possible outliers. This section covers S4.
+**Objectives:** compare distributions using suitable measures and discuss possible outliers.
 
-Compare the **average** to describe a typical value. The median resists the effect of an unusually high or low value. Compare the **spread** using range or IQR. The range uses the extremes; the IQR describes the middle half.
+Compare a suitable measure of central tendency, such as the median, to describe a typical value. The median resists the effect of an unusually high or low value. Compare the **spread** using range or IQR. The range uses the extremes; the IQR describes the middle half.
 
 **Example 1.** Group A has median 18 and IQR 6. Group B has median 21 and IQR 10.
 

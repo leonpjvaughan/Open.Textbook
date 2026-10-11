@@ -12,6 +12,8 @@ kind: walkthrough
 
 # 7.5 Standard form — Learn
 
+**Prerequisites:** multiplying and dividing decimals and using powers of ten.
+
 ## Before you begin
 
 You should be able to multiply and divide decimals and use powers of ten.
@@ -65,7 +67,7 @@ $$
 4.2\times10^6+0.3\times10^6=4.5\times10^6
 $$
 
-> **Watch out.** Standard form needs a first number from $1$ inclusive to $10$ exclusive. Rewrite $12\times10^3$ as $1.2\times10^4$.
+> **Watch out.** A common error is to leave the first number outside the range $1\leq a<10$. Rewrite $12\times10^3$ as $1.2\times10^4$.
 
 > **Progress check.** Which is greater: $8.1\times10^4$ or $7.9\times10^5$? Compare powers first.
 

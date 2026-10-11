@@ -15,6 +15,8 @@ kind: walkthrough
 
 **By the end of this section you can:** expand and simplify a product of three binomials.
 
+**Covers:** A4.
+
 ## Learn the method
 
 A binomial has two terms. For three brackets, expand two brackets first, then multiply every resulting term by the third bracket.
@@ -40,4 +42,4 @@ $=x^3+6x^2+11x+6$ — collect like terms.
 ## You should now be able to
 
 - expand and simplify a product of three binomials.
-- explain your method and check your answer using the inverse operation or substitution.
+

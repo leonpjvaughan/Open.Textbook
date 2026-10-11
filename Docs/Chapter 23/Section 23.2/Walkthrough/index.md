@@ -21,7 +21,7 @@ kind: walkthrough
 
 Relative frequency is the number of times an event happens divided by the total number of trials. A trial is one repeated attempt. Relative frequency estimates probability from data; it may change when more trials are added.
 
-**Example 1 — P1, P2 and P3.** A coin lands on heads 54 times in 100 tosses. Find the relative frequency of heads.
+**Example 1.** A coin lands on heads 54 times in 100 tosses. Find the relative frequency of heads.
 
 $$\text{Relative frequency}=\frac{54}{100}=0.54=54\%$$
 
@@ -29,7 +29,7 @@ This result estimates the chance of heads. A fair coin has theoretical probabili
 
 Expected frequency is the number of trials multiplied by the probability. It is a prediction, not a promise about the observed result.
 
-**Example 2 — P5.** A fair six-sided die is rolled 240 times. Estimate the number of sixes.
+**Example 2.** A fair six-sided die is rolled 240 times. Estimate the number of sixes.
 
 The probability of a six is $\frac16$.
 
@@ -45,6 +45,6 @@ If a spinner lands on red 32 times in 50 spins, its relative frequency is $\frac
 
 ## You should now be able to
 
-- calculate relative frequency from results (P1, P2, P3);
-- explain why relative frequency estimates rather than fixes probability (P2, P3);
-- calculate expected outcomes from probability and trial count (P5).
+- calculate relative frequency from results;
+- explain that relative frequency estimates probability and can change with more trials;
+- calculate expected outcomes from probability and trial count.

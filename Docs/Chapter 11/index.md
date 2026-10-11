@@ -6,7 +6,7 @@ strand: algebra
 
 # Chapter 11: Straight-line graphs and rates of change
 
-## The chapter problem: a walk to the station
+## The chapter problem
 
 A route planner shows that a walker is 2 km from home after 30 minutes. The
 walker continues at the same rate. Predict the distance from home after one
@@ -15,7 +15,7 @@ hour. What information would help you draw a graph of the journey?
 Make an estimate first. You can revise it as you learn about coordinates,
 gradient and real-life graphs.
 
-**By the end of this chapter you will be able to:**
+## By the end of this chapter
 
 - plot coordinates and draw straight-line graphs from tables and equations;
 - find and interpret the gradient and intercept of a straight line;

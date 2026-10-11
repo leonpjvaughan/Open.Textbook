@@ -1,171 +1,170 @@
-chapter: 5
-problems:
-- id: ch5-5-2-fraction
-  section: '5.2'
-  tier: F
-  dfe:
-  - R6
-  - R7
-  - R8
-  statement: Write the ratio $3:8$ as a fraction of the total for the first part.
-  check:
-    kind: evaluate
-    expression: 3/(3+8)
-    answer: 3/11
-  answer_text: $3/11$.
-  steps: []
-- id: ch5-5-2-fraction-second
-  section: '5.2'
-  tier: F
-  dfe:
-  - R6
-  - R7
-  - R8
-  statement: In the ratio $2:5$, what fraction of the total is the second part?
-  check:
-    kind: evaluate
-    expression: 5/(2+5)
-    answer: 5/7
-  answer_text: $5/7$.
-  steps: []
-- id: ch5-5-2-linear-table
-  section: '5.2'
-  tier: F
-  dfe:
-  - R6
-  - R7
-  - R8
-  statement: For the ratio $y:x=4:3$, complete $y$ when $x=9$.
-  check:
-    kind: evaluate
-    expression: 9*4/3
-    answer: '12'
-  answer_text: $y=12$.
-  steps: []
-- id: ch5-5-2-constant
-  section: '5.2'
-  tier: F
-  dfe:
-  - R6
-  - R7
-  - R8
-  statement: For $y=6x$, find the constant of proportionality.
-  check:
-    kind: evaluate
-    expression: '6'
-    answer: '6'
-  answer_text: The constant is $6$.
-  steps: []
-- id: ch5-5-2-function
-  section: '5.2'
-  tier: F
-  dfe:
-  - R6
-  - R7
-  - R8
-  statement: A printer makes 18 labels in 3 minutes at a constant rate. How many labels in 7 minutes?
-  check:
-    kind: evaluate
-    expression: 18/3*7
-    answer: '42'
-  answer_text: 42 labels.
-  steps: []
-- id: ch5-5-2-fraction-share
-  section: '5.2'
-  tier: F
-  dfe:
-  - R6
-  - R7
-  - R8
-  statement: A sum is shared in the ratio $3:7$. What fraction goes to the smaller share?
-  check:
-    kind: evaluate
-    expression: 3/(3+7)
-    answer: 3/10
-  answer_text: $3/10$.
-  steps: []
-- id: ch5-5-2-graph-origin
-  section: '5.2'
-  tier: F
-  dfe:
-  - R6
-  - R7
-  - R8
-  statement: A straight-line graph passes through $(0,0)$ and $(4,20)$. Find the multiplier from $x$ to
-    $y$.
-  check:
-    kind: evaluate
-    expression: 20/4
-    answer: '5'
-  answer_text: The multiplier is $5$, so $y=5x$.
-  steps: []
-- id: ch5-5-2-linear-value
-  section: '5.2'
-  tier: F
-  dfe:
-  - R6
-  - R7
-  - R8
-  statement: If $y=2.5x$, find $y$ when $x=12$.
-  check:
-    kind: evaluate
-    expression: 2.5*12
-    answer: '30'
-  answer_text: $30$.
-  steps: []
-- id: ch5-5-2-reverse-linear
-  section: '5.2'
-  tier: F
-  dfe:
-  - R6
-  - R7
-  - R8
-  statement: If $y=7x$ and $y=63$, find $x$.
-  check:
-    kind: evaluate
-    expression: 63/7
-    answer: '9'
-  answer_text: $x=9$.
-  steps: []
-- id: ch5-5-2-ratio-equation
-  section: '5.2'
-  tier: F
-  dfe:
-  - R6
-  - R7
-  - R8
-  statement: If $a:b=5:2$ and $b=14$, find $a$.
-  check:
-    kind: evaluate
-    expression: 14*5/2
-    answer: '35'
-  answer_text: $a=35$.
-  steps: []
-- id: ch5-5-2-context-linear
-  section: '5.2'
-  tier: F
-  dfe:
-  - R6
-  - R7
-  - R8
-  statement: A taxi fare is £3 plus £1.80 for each kilometre. Write the fare for $k$ km.
-  check:
-    kind: evaluate
-    expression: 3+1.8*4
-    answer: '10.2'
-  answer_text: For $k$ km the fare is $3+1.80k$ pounds. For 4 km it is £10.20.
-  steps: []
-- id: ch5-5-2-not-proportional
-  section: '5.2'
-  tier: F
-  dfe:
-  - R6
-  - R7
-  - R8
-  statement: Explain why $y=3x+2$ is not directly proportional to $x$.
-  check:
-    kind: evaluate
-    expression: 3*0+2
-    answer: '2'
-  answer_text: When $x=0$, $y=2$, so the graph does not pass through the origin.
-  steps: []
+'chapter': 5
+'problems':
+- 'id': 'ch5-5-2-fraction'
+  'section': '5.2'
+  'tier': 'F'
+  'dfe':
+  - 'R6'
+  - 'R7'
+  - 'R8'
+  'statement': 'Write the ratio $3:8$ as a fraction of the total for the first part.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '3/(3+8)'
+    'answer': '3/11'
+  'answer_text': '$3/11$.'
+  'steps': []
+- 'id': 'ch5-5-2-fraction-second'
+  'section': '5.2'
+  'tier': 'F'
+  'dfe':
+  - 'R6'
+  - 'R7'
+  - 'R8'
+  'statement': 'In the ratio $2:5$, what fraction of the total is the second part?'
+  'check':
+    'kind': 'evaluate'
+    'expression': '5/(2+5)'
+    'answer': '5/7'
+  'answer_text': '$5/7$.'
+  'steps': []
+- 'id': 'ch5-5-2-linear-table'
+  'section': '5.2'
+  'tier': 'F'
+  'dfe':
+  - 'R6'
+  - 'R7'
+  - 'R8'
+  'statement': 'For the ratio $y:x=4:3$, complete $y$ when $x=9$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '9*4/3'
+    'answer': '12'
+  'answer_text': '$y=12$.'
+  'steps': []
+- 'id': 'ch5-5-2-constant'
+  'section': '5.2'
+  'tier': 'F'
+  'dfe':
+  - 'R6'
+  - 'R7'
+  - 'R8'
+  'statement': 'For $y=6x$, find the constant of proportionality.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '6'
+    'answer': '6'
+  'answer_text': 'The constant is $6$.'
+  'steps': []
+- 'id': 'ch5-5-2-function'
+  'section': '5.2'
+  'tier': 'F'
+  'dfe':
+  - 'R6'
+  - 'R7'
+  - 'R8'
+  'statement': 'A printer makes 18 labels in 3 minutes at a constant rate. How many labels in 7 minutes?'
+  'check':
+    'kind': 'evaluate'
+    'expression': '18/3*7'
+    'answer': '42'
+  'answer_text': '42 labels.'
+  'steps': []
+- 'id': 'ch5-5-2-fraction-share'
+  'section': '5.2'
+  'tier': 'F'
+  'dfe':
+  - 'R6'
+  - 'R7'
+  - 'R8'
+  'statement': 'A sum is shared in the ratio $3:7$. What fraction goes to the smaller share?'
+  'check':
+    'kind': 'evaluate'
+    'expression': '3/(3+7)'
+    'answer': '3/10'
+  'answer_text': '$3/10$.'
+  'steps': []
+- 'id': 'ch5-5-2-graph-origin'
+  'section': '5.2'
+  'tier': 'F'
+  'dfe':
+  - 'R6'
+  - 'R7'
+  - 'R8'
+  'statement': 'A straight-line graph passes through $(0,0)$ and $(4,20)$. Find the multiplier from $x$ to $y$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '20/4'
+    'answer': '5'
+  'answer_text': 'The multiplier is $5$, so $y=5x$.'
+  'steps': []
+- 'id': 'ch5-5-2-linear-value'
+  'section': '5.2'
+  'tier': 'F'
+  'dfe':
+  - 'R6'
+  - 'R7'
+  - 'R8'
+  'statement': 'If $y=2.5x$, find $y$ when $x=12$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '2.5*12'
+    'answer': '30'
+  'answer_text': '$30$.'
+  'steps': []
+- 'id': 'ch5-5-2-reverse-linear'
+  'section': '5.2'
+  'tier': 'F'
+  'dfe':
+  - 'R6'
+  - 'R7'
+  - 'R8'
+  'statement': 'If $y=7x$ and $y=63$, find $x$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '63/7'
+    'answer': '9'
+  'answer_text': '$x=9$.'
+  'steps': []
+- 'id': 'ch5-5-2-ratio-equation'
+  'section': '5.2'
+  'tier': 'F'
+  'dfe':
+  - 'R6'
+  - 'R7'
+  - 'R8'
+  'statement': 'If $a:b=5:2$ and $b=14$, find $a$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '14*5/2'
+    'answer': '35'
+  'answer_text': '$a=35$.'
+  'steps': []
+- 'id': 'ch5-5-2-context-linear'
+  'section': '5.2'
+  'tier': 'F'
+  'dfe':
+  - 'R6'
+  - 'R7'
+  - 'R8'
+  'statement': 'A taxi fare is £3 plus £1.80 for each kilometre. Work out the fare for 4 km.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '3+1.8*4'
+    'answer': '10.2'
+  'answer_text': 'The fare is £10.20.'
+  'steps': []
+- 'id': 'ch5-5-2-not-proportional'
+  'section': '5.2'
+  'tier': 'F'
+  'dfe':
+  - 'R6'
+  - 'R7'
+  - 'R8'
+  'statement': 'Explain why $y=3x+2$ is not directly proportional to $x$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '3*0+2'
+    'answer': '2'
+  'answer_text': 'When $x=0$, $y=2$, so the graph does not pass through the origin.'
+  'steps': []

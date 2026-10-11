@@ -11,37 +11,41 @@ kind: walkthrough
 
 # 11.3 Finding the equation of a line — Learn
 
-**Prerequisites:** read ordered pairs and use the four operations with integers and decimals.
+**Prerequisites:** identify gradient and vertical intercept in $y=mx+c$.
 
-**Objectives:** plot and interpret points; finding the equation of a line.
+## Objectives
 
-## Key idea
+By the end of this section, you can find the equation of a line through two points or through one point with a given gradient.
 
-A straight line can be written $y=mx+c$. Find its gradient first. Substitute a known point to find the intercept, then write the equation.
+## Find an equation from a point and gradient
 
-## Worked example
+A straight-line equation has the form $y=mx+c$. If you know the gradient $m$ and one point $(x,y)$, substitute them into the equation to find $c$.
 
-Find the line through $(2,1)$ with gradient 3.
+**Worked example.** Find the line through $(2,1)$ with gradient 3.
 
 $$
 \begin{aligned}
-y &= mx+c \\
-1 &= 3(2)+c \\
-c &= -5 \\
-y &= 3x-5
+y &= mx+c\\
+1 &= 3(2)+c\\
+1 &= 6+c\\
+c &= -5\\
+y &= 3x-5.
 \end{aligned}
 $$
 
-Substitution checks: when $x=2$, $y=3(2)-5=1$.
+Check: when $x=2$, $y=3(2)-5=1$.
 
-> **Watch out.** Reversing $(x,y)$ swaps horizontal and vertical positions. Read the horizontal coordinate first, then check each plotted point against both axes.
+To find a line through two points, first calculate the gradient, then substitute one point to find $c$.
+
+> **Watch out.** The vertical intercept is not the $y$-coordinate of every point. Substitute the known point into $y=mx+c$ before stating $c$.
 
 ## Progress check
 
-Progress check: for the walker, gradient is $1/15$ km per minute and the journey starts at zero distance. So $d=t/15$.
+The station walk starts at distance 0, so $c=0$. With gradient $1/15$ km per minute, its model is $d=t/15$.
+
 
 ## You should now be able to
 
-- explain the key terms and method in this section;
-- show working and check a result using the graph or equation;
-- answer the DfE requirements: A9.
+- find the equation of a line through two points or through one point with a given gradient.;
+- check your result by substitution or by interpreting the graph;
+- explain the method in your own words.

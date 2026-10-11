@@ -67,12 +67,28 @@ The matching results are 1 and 2, so the probability is $\frac26=\frac13$.
 <details markdown="1">
 <summary>Hint</summary>
 
-Think about the opposite event, total count, or restricted group named in the question.
+Find the total number of counters. The white counters are the outcomes that are not black.
 
 <details markdown="1">
 <summary>Full working</summary>
 
- Not black means white, so $P=\frac28=\frac14$.
+Not black means white, so $P=\frac28=\frac14$.
 
+</details>
+</details>
+
+**4.** A fair six-sided die is rolled 60 times. Find the expected number of fives. Then compare the expected relative frequency with the theoretical probability of a five.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+Find the probability of a five first. Multiply it by 60 for the expected count.
+
+<details markdown="1">
+<summary>Full working</summary>
+
+The probability of a five is $\frac16$. The expected number is
+$60\times\frac16=10$. The expected relative frequency is $\frac{10}{60}=\frac16$,
+which matches the theoretical probability. An actual set of 60 rolls may differ.
 </details>
 </details>

@@ -16,26 +16,28 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Without looking back, simplify $12:18$.
-2. Work out $3\times 14$.
+1. Without looking back, calculate $\frac{3}{4}+\frac{1}{8}$.
+2. Work out $-4+9$.
 
 <details markdown="1">
 <summary>Check the warm-up</summary>
 
-$12:18=2:3$. Also, $3\times14=42$.
+$\frac{3}{4}+\frac{1}{8}=\frac{7}{8}$. Also, $-4+9=5$.
 
 </details>
 
 ## Try these questions
 
+**Question:** $y$ is proportional to $x^2$. When $x=4$, $y=32$. Find $y$ when $x=6$.
+
 ### Hint
 
-For the first question, identify what each part represents. Make one part equal to one unit if that helps.
+Write $y=kx^2$. Use the known values to find $k$.
 
 <details markdown="1">
 <summary>Show a hint</summary>
 
-Write the known quantities in matching units. Find the common multiplier or the total number of ratio parts.
+Substitute $x=4$ and $y=32$, then solve $32=16k$.
 
 </details>
 
@@ -52,6 +54,7 @@ Set up the multiplier or ratio parts, then calculate the requested quantity.
 Divide the known amount by its corresponding number of parts. Multiply by the required number of parts.
 
 </details>
+</details>
 
 ### Full working
 
@@ -60,7 +63,7 @@ Use this model on one question from the section, then complete it without help.
 <details markdown="1">
 <summary>Show full working</summary>
 
-If $y\propto x^2$, write $y=kx^2$. With $x=3,y=45$, $45=9k$, so $k=5$. At $x=5$, $y=5\times25=125$.
+From $32=16k$, $k=2$. When $x=6$, $y=2\times36=72$. The square factor is $(6/4)^2=2.25$, and $32\times2.25=72$.
 
 </details>
 

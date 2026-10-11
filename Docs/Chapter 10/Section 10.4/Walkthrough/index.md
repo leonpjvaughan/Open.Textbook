@@ -15,7 +15,7 @@ kind: walkthrough
 **Prerequisites:** square numbers, linear sequences, and collecting like terms.
 
 **Objectives:** use constant second differences to find a quadratic nth term.
-This Higher-only section covers A25.
+This section develops the Higher content in A25.
 
 ## First and second differences
 
@@ -40,12 +40,7 @@ $$
 2-2=0,\quad 7-8=-1,\quad 16-18=-2,\quad 29-32=-3
 $$
 
-The differences form $-n$, so this gives $2n^2-n$. Test position 1:
-$2(1)^2-1=1$, but the first term is 2. Add 1.
-
-$$
-2n^2-n+1
-$$
+The differences follow $1-n$, so the rule is $2n^2-n+1$.
 
 Check at position $4$:
 

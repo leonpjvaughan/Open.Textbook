@@ -6,7 +6,9 @@ strand: number
 
 # Chapter 2: Factors, multiples and primes
 
-**By the end of this chapter you will be able to:**
+## By the end of this chapter
+
+You will be able to:
 
 - find factors and multiples, and identify prime numbers;
 - write a number as a product of prime factors, then use it to find HCF and LCM;
@@ -19,7 +21,8 @@ A school club has 24 blue counters and 36 red counters. It wants to make identic
 
 How many packs could it make? First, make a low-stakes prediction: do you think there are only one or several possible pack counts? You do not need to work it out yet.
 
-By the end, you will use common factors to find the greatest possible number of packs, then use organised lists and the product rule to count other choices.
+You will use common factors to find the greatest possible number of packs.
+You will also use organised lists and the product rule to count other choices.
 
 ## Your turn to connect it
 

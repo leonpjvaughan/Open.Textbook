@@ -12,16 +12,16 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-Work without looking back. Then open the answers to check.
+Answer from memory before checking.
 
-1. Write $0.4$ as a fraction with denominator $10$.
-2. Work out $3\times8$.
+1. In Chapter 1, what is the value of the digit $7$ in $3.72$?
+2. Work out $18\div3$.
 
 <details markdown="1">
 <summary>Answers</summary>
 
-1. $\frac{4}{10}$.
-2. $24$.
+1. $0.7$.
+2. $6$.
 </details>
 
 ## Practise with help

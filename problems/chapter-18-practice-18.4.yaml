@@ -1,122 +1,122 @@
 chapter: 18
 problems:
-- id: ch18-18.4-definition
+- id: 'ch18-18.4-definition'
   section: '18.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - G5
-  statement: What does it mean for two triangles to be congruent?
-  answer_label: What does it mean for two triangles to be congruent?
+  - 'G5'
+  statement: 'What does it mean for two triangles to be congruent?'
+  answer_label: 'What does it mean for two triangles to be congruent?'
   check:
-    kind: evaluate
-    expression: 3-3
+    kind: 'evaluate'
+    expression: '3-3'
     answer: '0'
-  answer_text: They have the same shape and the same size.
-- id: ch18-18.4-sss
+  answer_text: 'They have the same shape and the same size.'
+- id: 'ch18-18.4-sss'
   section: '18.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - G5
-  statement: Two triangles have side lengths $3,4,5$ and $5,4,3$. Which criterion proves congruence?
-  answer_label: Two triangles have side lengths $3,4,5$ and $5,4,3$. Which criterion proves congruence?
+  - 'G5'
+  statement: 'Two triangles have side lengths $3,4,5$ and $5,4,3$. Which criterion proves congruence?'
+  answer_label: 'Two triangles have side lengths $3,4,5$ and $5,4,3$. Which criterion proves congruence?'
   check:
-    kind: evaluate
-    expression: 3+4+5
+    kind: 'evaluate'
+    expression: '3+4+5'
     answer: '12'
-  answer_text: SSS
-- id: ch18-18.4-sas
+  answer_text: 'SSS'
+- id: 'ch18-18.4-sas'
   section: '18.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - G5
-  statement: Two sides and the included angle match in two triangles. Name the criterion.
-  answer_label: Two sides and the included angle match in two triangles. Name the criterion.
+  - 'G5'
+  statement: 'Two sides and the included angle match in two triangles. Name the criterion.'
+  answer_label: 'Two sides and the included angle match in two triangles. Name the criterion.'
   check:
-    kind: evaluate
-    expression: 2+1
+    kind: 'evaluate'
+    expression: '2+1'
     answer: '3'
-  answer_text: SAS
-- id: ch18-18.4-asa
+  answer_text: 'SAS'
+- id: 'ch18-18.4-asa'
   section: '18.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - G5
-  statement: Two angles and the included side match. Name the criterion.
-  answer_label: Two angles and the included side match. Name the criterion.
+  - 'G5'
+  statement: 'Two angles and the included side match. Name the criterion.'
+  answer_label: 'Two angles and the included side match. Name the criterion.'
   check:
-    kind: evaluate
-    expression: 2+1
+    kind: 'evaluate'
+    expression: '2+1'
     answer: '3'
-  answer_text: ASA
-- id: ch18-18.4-rhs
+  answer_text: 'ASA'
+- id: 'ch18-18.4-rhs'
   section: '18.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - G5
-  statement: Two right-angled triangles have equal hypotenuse and one equal side. Name the criterion.
-  answer_label: Two right-angled triangles have equal hypotenuse and one equal side. Name the criterion.
+  - 'G5'
+  statement: 'Two right-angled triangles have equal hypotenuses and one equal corresponding leg. Name the criterion.'
+  answer_label: 'Two right-angled triangles have equal hypotenuses and one equal corresponding leg. Name the criterion.'
   check:
-    kind: evaluate
-    expression: 1+1+1
+    kind: 'evaluate'
+    expression: '1+1+1'
     answer: '3'
-  answer_text: RHS
-- id: ch18-18.4-not-aaa
+  answer_text: 'RHS'
+- id: 'ch18-18.4-not-aaa'
   section: '18.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - G5
-  statement: Is matching three angles enough to prove triangles congruent? Explain.
-  answer_label: Is matching three angles enough to prove triangles congruent? Explain.
+  - 'G5'
+  statement: 'Is matching three angles enough to prove triangles congruent? Explain.'
+  answer_label: 'Is matching three angles enough to prove triangles congruent? Explain.'
   check:
-    kind: evaluate
-    expression: 6/3
+    kind: 'evaluate'
+    expression: '6/3'
     answer: '2'
-  answer_text: No. AAA fixes shape but not size, so the triangles may be different sizes.
-- id: ch18-18.4-criterion
+  answer_text: 'No. AAA fixes shape but not size, so the triangles may be different sizes.'
+- id: 'ch18-18.4-criterion'
   section: '18.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - G5
-  statement: Two sides and a non-included angle are given equal. Does this always prove congruence?
-  answer_label: Two sides and a non-included angle are given equal. Does this always prove congruence?
+  - 'G5'
+  statement: 'Two sides and a non-included angle are given equal. Does this always prove congruence?'
+  answer_label: 'Two sides and a non-included angle are given equal. Does this always prove congruence?'
   check:
-    kind: evaluate
-    expression: 2+1
+    kind: 'evaluate'
+    expression: '2+1'
     answer: '3'
-  answer_text: No. SSA is not a general congruence criterion.
-- id: ch18-18.4-identify
+  answer_text: 'No. SSA is not a general congruence criterion.'
+- id: 'ch18-18.4-identify'
   section: '18.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - G5
-  statement: Triangles have sides $6,8,10$ each. State a congruence criterion.
-  answer_label: Triangles have sides $6,8,10$ each. State a congruence criterion.
+  - 'G5'
+  statement: 'Triangles have sides $6,8,10$ each. State a congruence criterion.'
+  answer_label: 'Triangles have sides $6,8,10$ each. State a congruence criterion.'
   check:
-    kind: evaluate
-    expression: 6+8+10
+    kind: 'evaluate'
+    expression: '6+8+10'
     answer: '24'
-  answer_text: SSS
-- id: ch18-18.4-reason
+  answer_text: 'SSS'
+- id: 'ch18-18.4-reason'
   section: '18.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - G5
-  statement: A pair of triangles has equal hypotenuse, one equal leg, and each has a right angle. Give a reason they are congruent.
-  answer_label: A pair of triangles has equal hypotenuse, one equal leg, and each has a right angle. Give a reason they are congruent.
+  - 'G5'
+  statement: 'A pair of triangles has equal hypotenuse, one equal leg, and each has a right angle. Give a reason they are congruent.'
+  answer_label: 'A pair of triangles has equal hypotenuse, one equal leg, and each has a right angle. Give a reason they are congruent.'
   check:
-    kind: evaluate
-    expression: 90-90
+    kind: 'evaluate'
+    expression: '90-90'
     answer: '0'
-  answer_text: RHS
-- id: ch18-18.4-classify
+  answer_text: 'RHS'
+- id: 'ch18-18.4-classify'
   section: '18.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - G5
-  statement: Two triangles have angles $40^\circ,60^\circ,80^\circ$ and corresponding sides of lengths $3,4,5$ and $6,8,10$. Congruent?
-  answer_label: Two triangles have angles $40^\circ,60^\circ,80^\circ$ and corresponding sides of lengths $3,4,5$ and $6,8,10$. Congruent?
+  - 'G5'
+  statement: 'Two triangles have angles $40^\circ,60^\circ,80^\circ$ and corresponding sides of lengths $3,4,5$ and $6,8,10$. Congruent?'
+  answer_label: 'Two triangles have angles $40^\circ,60^\circ,80^\circ$ and corresponding sides of lengths $3,4,5$ and $6,8,10$. Congruent?'
   check:
-    kind: evaluate
-    expression: 6/3
+    kind: 'evaluate'
+    expression: '6/3'
     answer: '2'
-  answer_text: No; corresponding sides differ, so they are similar but not congruent.
+  answer_text: 'No; corresponding sides differ, so they are similar but not congruent.'

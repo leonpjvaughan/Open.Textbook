@@ -16,26 +16,28 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Without looking back, simplify $12:18$.
-2. Work out $3\times 14$.
+1. Without looking back, calculate $\frac{3}{4}+\frac{1}{8}$.
+2. Work out $-4+9$.
 
 <details markdown="1">
 <summary>Check the warm-up</summary>
 
-$12:18=2:3$. Also, $3\times14=42$.
+$\frac{3}{4}+\frac{1}{8}=\frac{7}{8}$. Also, $-4+9=5$.
 
 </details>
 
 ## Try these questions
 
+**Question:** Share 72 counters in the ratio $5:7$.
+
 ### Hint
 
-For the first question, identify what each part represents. Make one part equal to one unit if that helps.
+Add the ratio parts. Divide the total by their sum to find the value of one part.
 
 <details markdown="1">
 <summary>Show a hint</summary>
 
-Write the known quantities in matching units. Find the common multiplier or the total number of ratio parts.
+There are $5+7=12$ parts. Find the number represented by one part.
 
 </details>
 
@@ -52,6 +54,7 @@ Set up the multiplier or ratio parts, then calculate the requested quantity.
 Divide the known amount by its corresponding number of parts. Multiply by the required number of parts.
 
 </details>
+</details>
 
 ### Full working
 
@@ -60,7 +63,7 @@ Use this model on one question from the section, then complete it without help.
 <details markdown="1">
 <summary>Show full working</summary>
 
-For 24 counters in ratio $3:5$, total parts are $3+5=8$. One part is $24\div8=3$. The blue amount is $5\times3=15$.
+One part is $72\div12=6$. The shares are $5\times6=30$ and $7\times6=42$. Check: $30+42=72$.
 
 </details>
 

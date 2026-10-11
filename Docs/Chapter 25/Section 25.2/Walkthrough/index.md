@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** read a frequency table, plot coordinates, and find medians and quartiles.
 
-**Objectives:** form cumulative frequencies, draw and read a cumulative frequency graph, and estimate quartiles. This section covers S3.
+**Objectives:** form cumulative frequencies, draw and read a cumulative frequency graph, and estimate quartiles.
 
 **Cumulative frequency** is a running total. It gives the number of observations up to and including a boundary.
 

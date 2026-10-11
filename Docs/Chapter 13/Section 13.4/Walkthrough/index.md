@@ -17,26 +17,26 @@ kind: walkthrough
 
 ## Circle equations
 
-A circle with centre $(a,b)$ and radius $r$ has equation
+A circle with centre $(0,0)$ and radius $r$ has equation
 
 $$
-(x-a)^2+(y-b)^2=r^2
+x^2+y^2=r^2
 $$
 
 The two squared distances from the centre add to the squared radius.
 
-**Example 1.** State the centre and radius of $(x-2)^2+(y+3)^2=25$.
+**Example 1.** State the centre and radius of $x^2+y^2=25$.
 
-Compare the equation with standard form:
+Compare with the equation for a circle centred at the origin:
 
 $$
-a=2,\quad b=-3,\quad r^2=25
+\text{centre }(0,0),\quad r^2=25
 $$
 
 Take the positive square root because a radius is a length:
 
 $$
-\text{centre }(2,-3),\quad r=5
+\text{centre }(0,0),\quad r=5
 $$
 
 **Example 2.** Check whether $(3,4)$ lies on $x^2+y^2=25$.
@@ -73,7 +73,7 @@ $$
 y-4=-\frac34(x-3)
 $$
 
-> **Watch out.** In $(x-a)^2+(y-b)^2=r^2$, the centre is $(a,b)$. The signs inside the brackets look opposite; substitute the centre to check.
+> **Watch out.** The equation in this section is for a circle centred at the origin. Check that both squared terms are $x^2$ and $y^2$ before reading off the radius.
 
 ## Progress check
 
@@ -82,6 +82,6 @@ A circle has centre $(1,2)$ and a radius with gradient $2$. Predict the tangent 
 ## You should now be able to
 
 - find the centre and radius from a circle equation;
-- write the equation from a centre and radius;
+- write the equation of a circle centred at the origin from its radius;
 - test whether a point lies on a circle;
 - find a tangent gradient and equation using perpendicular lines.

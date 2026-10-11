@@ -3,11 +3,9 @@ export function mount(el) {
   el.innerHTML = `
     <div style="max-width:520px">
       <svg viewBox="0 0 320 230" width="100%" role="img" aria-label="Coordinate grid showing a point and its enlarged image">
-        <path d="M30 110H290 M160 210V20" class="fig-grid" fill="none" stroke="currentColor" stroke-width="1" />
-        <circle class="fig-accent" cx="190" cy="80" r="5" fill="currentColor" />
-        <circle class="fig-warn" cx="220" cy="50" r="5" fill="currentColor" />
-        <text x="195" y="96" class="text-accent">P</text>
-        <text x="225" y="45" class="text-warn">image</text>
+        <path d="M20 200H290 M60 210V20" class="fig-grid" fill="none" stroke="currentColor" stroke-width="1" />
+        <circle class="fig-accent" cx="100" cy="160" r="5" fill="currentColor" />
+        <text x="105" y="156" class="text-accent">P</text>
       </svg>
       <label>Scale factor <input type="range" min="1" max="4" value="2" step="1"></label>
       <p aria-live="polite"></p>
@@ -17,10 +15,9 @@ export function mount(el) {
   const svg = el.querySelector('svg');
   function update() {
     const k = Number(input.value);
-    const px = 160 + 30 * k;
-    const py = 110 - 30 * k;
-    const old = svg.querySelector('[data-image]');
-    if (old) old.remove();
+    const px = 60 + 40 * k;
+    const py = 200 - 40 * k;
+    svg.querySelectorAll('[data-image]').forEach((image) => image.remove());
     const imagePoint = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     imagePoint.setAttribute('data-image', '');
     imagePoint.setAttribute('cx', px);
@@ -29,8 +26,15 @@ export function mount(el) {
     imagePoint.setAttribute('class', 'fig-good');
     imagePoint.setAttribute('fill', 'currentColor');
     svg.appendChild(imagePoint);
-    readout.innerHTML = `For P = (1, 1) and scale factor ${k}, the image is (${k}, ${k}). Explain the coordinate rule.`;
+    const imageLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    imageLabel.setAttribute('data-image', '');
+    imageLabel.setAttribute('x', px + 6);
+    imageLabel.setAttribute('y', py - 6);
+    imageLabel.setAttribute('class', 'text-good');
+    imageLabel.textContent = 'image';
+    svg.appendChild(imageLabel);
+    readout.textContent = `Scale factor ${k}. Explain how the image coordinates relate to P.`;
   }
   input.addEventListener('input', update);
-  update();
+  readout.textContent = 'Choose a scale factor to test your prediction.';
 }

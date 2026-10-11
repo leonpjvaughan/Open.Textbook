@@ -37,11 +37,9 @@ $$
 
 The turning point moves from $(0,0)$ to $(3,-2)$.
 
-## Reflections and stretches
+## Reflections
 
 Reflecting in the $x$-axis changes each output's sign, giving $y=-f(x)$. Reflecting in the $y$-axis changes each input's sign, giving $y=f(-x)$.
-
-A vertical stretch by scale factor $a$ gives $y=af(x)$. A horizontal stretch by scale factor $a$ gives $y=f(x/a)$.
 
 **Example 2.** The point $(2,5)$ lies on $y=f(x)$. Find its image on $y=f(x)+3$.
 
@@ -59,16 +57,6 @@ $$
 
 So the image is $(2,8)$.
 
-**Example 3.** Apply a vertical stretch of factor $3$ to $y=x^2$.
-
-Multiply each output by $3$:
-
-$$
-y=3x^2
-$$
-
-At $x=2$, the original output is $4$, and the transformed output is $12$.
-
 > **Watch out.** In $f(x-3)$, the graph moves right by $3$. Check with a known point: the original point at $x=0$ appears at $x=3$.
 
 ## Progress check
@@ -80,4 +68,4 @@ The chapter problem's signal is moved up by $4$. Predict how every point changes
 - write rules for translations, reflections and stretches;
 - describe how a point changes under a transformation;
 - explain the direction of horizontal translations;
-- identify how a scale factor changes outputs or inputs.
+- reflect a graph in either coordinate axis.

@@ -50,9 +50,9 @@ def _rationalize(expr):
     )
 
 
-def parse_expression(text: str, symbols: dict):
+def parse_expression(text, symbols: dict):
     expr = parse_expr(
-        text,
+        str(text),
         local_dict=dict(symbols),
         transformations=TRANSFORMS,
         evaluate=True,
@@ -60,7 +60,8 @@ def parse_expression(text: str, symbols: dict):
     return _rationalize(expr)
 
 
-def parse_equation(text: str, symbols: dict):
+def parse_equation(text, symbols: dict):
+    text = str(text)
     if text.count("=") != 1:
         raise ValueError(f"not a single equation: {text!r}")
     lhs, rhs = text.split("=")

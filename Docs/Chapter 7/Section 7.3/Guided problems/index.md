@@ -14,14 +14,14 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Convert $2.5$ m to cm.
-2. Work out $3.6\times10$.
+1. Round $4.376$ to 2 decimal places.
+2. Round $0.006384$ to 2 significant figures.
 
 <details markdown="1">
 <summary>Answers</summary>
 
-1. $250$ cm.
-2. $36$.
+1. $4.38$.
+2. $0.0064$.
 </details>
 
 ## Practise with help
@@ -31,17 +31,37 @@ kind: guided-problems
 <details markdown="1">
 <summary>Hint</summary>
 
-Identify the conversion, formula or exact method that matches the question.
+The value is rounded to the nearest $0.1$ cm. Find half of $0.1$.
 </details>
 
 <details markdown="1">
 <summary>Choose a step</summary>
 
-Write the relevant relationship first, then substitute the given values.
+Subtract and add $0.05$ to $7.3$.
 </details>
 
 <details markdown="1">
 <summary>Full working</summary>
 
 $7.25\leq L<7.35$ cm.
+</details>
+
+**2.** A mass is $460$ g to the nearest $10$ g. Write its interval.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+Half of $10$ g is $5$ g.
+</details>
+
+<details markdown="1">
+<summary>Choose a step</summary>
+
+Subtract and add $5$ g. The upper endpoint is excluded.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$455\leq m<465$ g.
 </details>

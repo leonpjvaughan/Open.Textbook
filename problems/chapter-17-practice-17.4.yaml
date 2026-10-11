@@ -1,102 +1,100 @@
 chapter: 17
 problems:
-- id: ch17-17-4-circle-locus
-  section: '17.4'
-  tier: F
-  dfe:
-  - G2
-  statement: Describe the locus of points 6 cm from fixed point P.
-  answer_label: Describe the locus of points 6 cm from fixed point P.
-  check:
-    kind: evaluate
-    expression: '6'
-    answer: '6'
-  answer_text: Circle centre P, radius 6 cm
-- id: ch17-17-4-line-locus
-  section: '17.4'
-  tier: F
-  dfe:
-  - G2
-  statement: Describe the locus 2 cm from a straight line.
-  answer_label: Describe the locus 2 cm from a straight line.
-  check:
-    kind: evaluate
-    expression: '2'
-    answer: '2'
-  answer_text: Two parallel lines, 2 cm away on either side
-- id: ch17-17-4-equal-distance
-  section: '17.4'
-  tier: F
-  dfe:
-  - G2
-  statement: What locus contains points equally distant from A and B?
-  answer_label: What locus contains points equally distant from A and B?
-  check:
-    kind: evaluate
-    expression: 5 - 5
-    answer: '0'
-  answer_text: Perpendicular bisector of AB
-- id: ch17-17-4-shortest-distance
-  section: '17.4'
-  tier: F
-  dfe:
-  - G2
-  statement: A point is 4 cm from a line measured perpendicularly. Can another segment from the point to the line
-    be shorter?
-  answer_label: A point is 4 cm from a line measured perpendicularly. Can another segment from the point to the
-    line be shorter?
-  check:
-    kind: compare
-    relation: '<'
-    lhs: '3'
-    rhs: '4'
-  answer_text: 'No'
-- id: ch17-17-4-distance-point-line
-  section: '17.4'
-  tier: F
-  dfe:
-  - G2
-  statement: A point lies 3 cm above a horizontal line. State its perpendicular distance to the line.
-  answer_label: A point lies 3 cm above a horizontal line. State its perpendicular distance to the line.
-  check:
-    kind: evaluate
-    expression: '3'
-    answer: '3'
-  answer_text: 3 cm
-- id: ch17-17-4-intersect-loci
-  section: '17.4'
-  tier: F
-  dfe:
-  - G2
-  statement: A point is 5 cm from P and equally distant from A and B. Which two loci must intersect?
-  answer_label: A point is 5 cm from P and equally distant from A and B. Which two loci must intersect?
-  check:
-    kind: evaluate
-    expression: '5'
-    answer: '5'
-  answer_text: Circle centre P radius 5 cm and perpendicular bisector of AB
-- id: ch17-17-4-garden-locus
-  section: '17.4'
-  tier: F
-  dfe:
-  - G2
-  statement: The water point is at the garden centre. What radius circle marks points 4 m away?
-  answer_label: The water point is at the garden centre. What radius circle marks points 4 m away?
-  check:
-    kind: evaluate
-    expression: '4'
-    answer: '4'
-  answer_text: Circle radius 4 m
-- id: ch17-17-4-perp-shortest
-  section: '17.4'
-  tier: F
-  dfe:
-  - G2
-  statement: A sloping segment and perpendicular segment both join a point to a line. Which is shorter?
-  answer_label: A sloping segment and perpendicular segment both join a point to a line. Which is shorter?
-  check:
-    kind: compare
-    relation: '<'
-    lhs: '3'
-    rhs: '4'
-  answer_text: The perpendicular segment
+  - id: 'ch17-17-4-circle-locus'
+    section: '17.4'
+    tier: 'F'
+    dfe:
+      - 'G2'
+    statement: 'Describe the locus of points 6 cm from fixed point P.'
+    answer_label: 'Describe the locus of points 6 cm from fixed point P.'
+    check:
+      kind: 'evaluate'
+      expression: '6'
+      answer: '6'
+    answer_text: 'Circle centre P, radius 6 cm'
+  - id: 'ch17-17-4-line-locus'
+    section: '17.4'
+    tier: 'F'
+    dfe:
+      - 'G2'
+    statement: 'Describe the locus 2 cm from a straight line.'
+    answer_label: 'Describe the locus 2 cm from a straight line.'
+    check:
+      kind: 'evaluate'
+      expression: '2'
+      answer: '2'
+    answer_text: 'Two parallel lines, 2 cm away on either side'
+  - id: 'ch17-17-4-equal-distance'
+    section: '17.4'
+    tier: 'F'
+    dfe:
+      - 'G2'
+    statement: 'What locus contains points equally distant from A and B?'
+    answer_label: 'What locus contains points equally distant from A and B?'
+    check:
+      kind: 'evaluate'
+      expression: '5 - 5'
+      answer: '0'
+    answer_text: 'Perpendicular bisector of AB'
+  - id: 'ch17-17-4-shortest-distance'
+    section: '17.4'
+    tier: 'F'
+    dfe:
+      - 'G2'
+    statement: 'A point is 4 cm from a line measured perpendicularly. A sloping segment to the line is 5 cm. Can it be shorter?'
+    answer_label: 'A point is 4 cm from a line measured perpendicularly. A sloping segment to the line is 5 cm. Can it be shorter?'
+    check:
+      kind: 'compare'
+      relation: '<'
+      lhs: '4'
+      rhs: '5'
+    answer_text: 'No'
+  - id: 'ch17-17-4-distance-point-line'
+    section: '17.4'
+    tier: 'F'
+    dfe:
+      - 'G2'
+    statement: 'A point lies 3 cm above a horizontal line. State its perpendicular distance to the line.'
+    answer_label: 'A point lies 3 cm above a horizontal line. State its perpendicular distance to the line.'
+    check:
+      kind: 'evaluate'
+      expression: '3'
+      answer: '3'
+    answer_text: '3 cm'
+  - id: 'ch17-17-4-intersect-loci'
+    section: '17.4'
+    tier: 'F'
+    dfe:
+      - 'G2'
+    statement: 'A point is 5 cm from P and equally distant from A and B. Which two loci must intersect?'
+    answer_label: 'A point is 5 cm from P and equally distant from A and B. Which two loci must intersect?'
+    check:
+      kind: 'evaluate'
+      expression: '5'
+      answer: '5'
+    answer_text: 'Circle centre P radius 5 cm and perpendicular bisector of AB'
+  - id: 'ch17-17-4-garden-locus'
+    section: '17.4'
+    tier: 'F'
+    dfe:
+      - 'G2'
+    statement: 'The water point is at the garden centre. What radius circle marks points 4 m away?'
+    answer_label: 'The water point is at the garden centre. What radius circle marks points 4 m away?'
+    check:
+      kind: 'evaluate'
+      expression: '4'
+      answer: '4'
+    answer_text: 'Circle radius 4 m'
+  - id: 'ch17-17-4-perp-shortest'
+    section: '17.4'
+    tier: 'F'
+    dfe:
+      - 'G2'
+    statement: 'A sloping segment and perpendicular segment both join a point to a line. Which is shorter?'
+    answer_label: 'A sloping segment and perpendicular segment both join a point to a line. Which is shorter?'
+    check:
+      kind: 'compare'
+      relation: '<'
+      lhs: '3'
+      rhs: '4'
+    answer_text: 'The perpendicular segment'

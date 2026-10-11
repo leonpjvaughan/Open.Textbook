@@ -45,7 +45,13 @@ The solution is $(x,y)=(4,3)$. Check: $2(4)+3=11$ and $4+3=7$.
 
 **Example 2.** Solve $3x+2y=16$ and $3x-y=7$.
 
-Subtract the second equation from the first:
+Subtract the second equation from the first. The $x$ terms cancel:
+
+$$
+(3x+2y)-(3x-y)=16-7
+$$
+
+Collect the remaining terms:
 
 $$
 3y=9
@@ -55,7 +61,7 @@ $$
 y=3
 $$
 
-Substitute $y=3$ into $3x-y=7$:
+Substitute $y=3$ into $3x-y=7$ to find $x$:
 
 $$
 3x-3=7
@@ -69,7 +75,7 @@ $$
 x=\frac{10}{3}
 $$
 
-Check both original equations with these values.
+Check the pair in both original equations: $3(10/3)+2(3)=16$ and $3(10/3)-3=7$.
 
 > **Watch out.** When subtracting an equation, subtract every term. In $(2x+y)-(x+y)$ the $y$ terms cancel because $y-y=0$. Check the final pair in both equations.
 

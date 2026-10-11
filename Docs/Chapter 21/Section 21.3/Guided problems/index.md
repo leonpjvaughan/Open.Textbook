@@ -11,8 +11,6 @@ kind: guided-problems
 
 # 21.3 Tangents and chords — Practise with help
 
-Try each question before opening a hint. Open the full working to check your method.
-
 ## Warm-up: remember
 
 1. How many degrees are in a right angle?

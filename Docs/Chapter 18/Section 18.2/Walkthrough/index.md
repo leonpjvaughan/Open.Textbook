@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** coordinates, multiplication and ratio.
 
-**Objectives:** enlarge points and shapes by positive scale factors; find missing lengths using the scale factor. Covers: G7.
+**Objectives:** enlarge points and shapes by positive scale factors; find missing lengths using the scale factor.
 
 An **enlargement** changes a shape's size from a fixed **centre**. The **scale factor** tells you how each length changes.
 
@@ -32,6 +32,14 @@ To find a scale factor from two corresponding lengths, divide image length by or
 Scale factor $=10\div4$.
 $10\div4=2.5$.
 The scale factor is $2.5$.
+
+### Guided investigation: coordinate changes
+
+**Predict:** for a point $(1,1)$, predict its image after an enlargement by scale factor $2$ about the origin.
+
+:::figure ch18-transform
+
+**Test:** move the scale-factor control and check the image. **Explain:** how does each coordinate change, and how can you check the distance from the origin?
 
 > **Watch out.** A scale factor of $2$ doubles every length, not every coordinate difference from an arbitrary point. Check that the stated centre is used.
 

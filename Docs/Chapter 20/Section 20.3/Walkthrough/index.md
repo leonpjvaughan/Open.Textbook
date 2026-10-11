@@ -13,9 +13,9 @@ kind: walkthrough
 
 **Prerequisites:** trigonometric ratios and drawing right-angled triangles.
 
-**Objectives:** model an angle of elevation or depression and solve for a distance or angle. This teaches DfE G20.
+**Objectives:** model an angle of elevation or depression and solve for a distance or angle.
 
-An **angle of elevation** is measured upwards from a horizontal line. An **angle of depression** is measured downwards from a horizontal line. The two horizontal lines are parallel, so these angles can match an alternate interior angle in the triangle.
+An **angle of elevation** is measured upwards from a horizontal line. An **angle of depression** is measured downwards from a horizontal line. The horizontal lines are parallel, so the angle of depression equals the matching angle inside the triangle.
 
 **Example 1.** A person stands $20$ m from a tower. The angle of elevation to its top is $35^\circ$. Find the height above the person's eye level.
 
@@ -45,6 +45,6 @@ Sketch the garden and its diagonal. Mark the right angle and explain which angle
 
 ## You should now be able to
 
-- state the method and identify the measurements it needs;
-- show your working in a clear order;
-- check that your answer is sensible and give suitable units.
+- draw and label a right-angled triangle for an elevation or depression problem;
+- select a trigonometric ratio to find a distance or angle;
+- state whether a calculated height is above eye level or ground level.

@@ -15,6 +15,8 @@ kind: walkthrough
 
 **Objectives:** express an integer as a product of primes; find the highest common factor (HCF) and lowest common multiple (LCM).
 
+**Covers:** N4.
+
 ## Prime factorisation
 
 A **prime factorisation** writes a number as a product of prime numbers. Divide by small primes repeatedly until every factor is prime.
@@ -49,7 +51,7 @@ Their HCF is $12$, so the greatest possible count is 12 packs.
 
 Each pack then has $24\div12=2$ blue and $36\div12=3$ red counters.
 
-> **Watch out.** Watch for using the LCM when a problem asks for the greatest equal group size. A group size must divide each total, so use common factors and choose the greatest.
+> **Watch out.** You may use the LCM when a problem asks for the greatest equal group size. A group size must divide each total, so use common factors and choose the greatest.
 
 ## Progress check
 

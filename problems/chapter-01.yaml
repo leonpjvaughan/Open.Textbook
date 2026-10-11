@@ -50,9 +50,7 @@ problems:
     section: "Review"
     tier: F
     dfe: [N2, N3]
-    statement: >-
-      The stall took $95 \\times £1.20 + 6 \\times £3.00$ and spent
-      $120 \\times £0.65 + 8 \\times £1.85$. Work out the profit.
+    statement: 'The stall took $95 \\times £1.20 + 6 \\times £3.00$ and spent $120 \\times £0.65 + 8 \\times £1.85$. Work out the profit.'
     check:
       kind: evaluate
       expression: "95 * 1.20 + 6 * 3.00 - (120 * 0.65 + 8 * 1.85)"

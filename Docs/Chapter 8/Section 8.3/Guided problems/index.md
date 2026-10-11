@@ -15,12 +15,14 @@ Attempt each question before opening a hint. Reveal the full working to check yo
 
 ## Warm-up: remember
 
-1. Work out $7+(-3)$.
-2. Work out $4\times6$.
+Answer from memory before checking.
 
-<details markdown="1"><summary>Answers</summary>
+1. Simplify $4x+3x$.
+2. Substitute $x=2$ into $x+5$.
+<details markdown="1"><summary>Answers and feedback</summary>
 
-1. $4$. 2. $24$.
+1. $7x$. 2. $7$.
+If an answer differs, review the earlier method before continuing.
 </details>
 
 ## Practise with help
@@ -34,7 +36,7 @@ Apply the outside factor to both terms inside the bracket.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -51,7 +53,7 @@ Apply the outside factor to both terms inside the bracket.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -68,7 +70,7 @@ Apply the outside factor to both terms inside the bracket.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -85,7 +87,7 @@ Apply the outside factor to both terms inside the bracket.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -102,7 +104,7 @@ Apply the outside factor to both terms inside the bracket.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -119,7 +121,7 @@ Apply the outside factor to both terms inside the bracket.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -136,7 +138,7 @@ Apply the outside factor to both terms inside the bracket.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -153,7 +155,7 @@ Apply the outside factor to both terms inside the bracket.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
 </details>
 
 <details markdown="1"><summary>Full working</summary>

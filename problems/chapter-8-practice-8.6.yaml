@@ -1,108 +1,99 @@
 chapter: 8
 symbols:
-  x:
-    real: true
-  a:
-    real: true
-  b:
-    real: true
-  m:
-    real: true
-  n:
-    real: true
-  p:
-    real: true
-  q:
-    real: true
-  y:
-    real: true
+  x: {real: true}
+  a: {real: true}
+  b: {real: true}
+  m: {real: true}
+  n: {real: true}
+  p: {real: true}
+  q: {real: true}
+  y: {real: true}
 problems:
-- id: ch8-8-6-1
-  section: '8.6'
-  tier: F
-  dfe: &id001
-  - A5
-  statement: Make $x$ the subject of $y=x+7$.
-  answer_label: Make $x$ the subject of $y=x+7$.
-  check:
-    kind: evaluate
-    expression: y-7
-    answer: y-7
-  answer_text: $x=y-7$.
-- id: ch8-8-6-2
-  section: '8.6'
-  tier: F
-  dfe: *id001
-  statement: Make $x$ the subject of $y=4x$.
-  answer_label: Make $x$ the subject of $y=4x$.
-  check:
-    kind: evaluate
-    expression: y/4
-    answer: y/4
-  answer_text: '$x=\frac{y}{4}$. Check: $4(y/4)=y$.'
-- id: ch8-8-6-3
-  section: '8.6'
-  tier: F
-  dfe: *id001
-  statement: Make $b$ the subject of $A=a+b$.
-  answer_label: Make $b$ the subject of $A=a+b$.
-  check:
-    kind: evaluate
-    expression: A-a
-    answer: A-a
-  answer_text: $b=A-a$.
-- id: ch8-8-6-4
-  section: '8.6'
-  tier: F
-  dfe: *id001
-  statement: Make $r$ the subject of $C=2r$.
-  answer_label: Make $r$ the subject of $C=2r$.
-  check:
-    kind: evaluate
-    expression: C/2
-    answer: C/2
-  answer_text: '$r=\frac{C}{2}$.'
-- id: ch8-8-6-5
-  section: '8.6'
-  tier: F
-  dfe: *id001
-  statement: Make $h$ the subject of $V=bh/2$.
-  answer_label: Make $h$ the subject of $V=bh/2$.
-  check:
-    kind: evaluate
-    expression: 2*V/b
-    answer: 2*V/b
-  answer_text: '$h=\frac{2V}{b}$.'
-- id: ch8-8-6-6
-  section: '8.6'
-  tier: F
-  dfe: *id001
-  statement: Make $t$ the subject of $s=t-9$.
-  answer_label: Make $t$ the subject of $s=t-9$.
-  check:
-    kind: evaluate
-    expression: s+9
-    answer: s+9
-  answer_text: $t=s+9$.
-- id: ch8-8-6-7
-  section: '8.6'
-  tier: F
-  dfe: *id001
-  statement: Make $w$ the subject of $P=2l+2w$.
-  answer_label: Make $w$ the subject of $P=2l+2w$.
-  check:
-    kind: evaluate
-    expression: (P-2*l)/2
-    answer: (P-2*l)/2
-  answer_text: '$w=\frac{P-2l}{2}$.'
-- id: ch8-8-6-8
-  section: '8.6'
-  tier: F
-  dfe: [A5]
-  statement: Make $y$ the subject of $x=y+4$.
-  answer_label: Make $y$ the subject of $x=y+4$.
-  check:
-    kind: evaluate
-    expression: x-4
-    answer: x-4
-  answer_text: $y=x-4$.
+  - id: ch8-8-6-1
+    section: '8.6'
+    tier: F
+    dfe: [A5]
+    statement: 'Make $x$ the subject of $y=x+7$.'
+    answer_label: 'Make $x$ the subject of $y=x+7$.'
+    check:
+      kind: evaluate
+      expression: 'y-7'
+      answer: 'y-7'
+    answer_text: '$x=y-7$.'
+  - id: ch8-8-6-2
+    section: '8.6'
+    tier: F
+    dfe: [A5]
+    statement: 'Make $x$ the subject of $y=4x$.'
+    answer_label: 'Make $x$ the subject of $y=4x$.'
+    check:
+      kind: evaluate
+      expression: 'y/4'
+      answer: 'y/4'
+    answer_text: '$x=\frac{y}{4}$. Check: $4(y/4)=y$.'
+  - id: ch8-8-6-3
+    section: '8.6'
+    tier: F
+    dfe: [A5]
+    statement: 'Make $b$ the subject of $A=a+b$.'
+    answer_label: 'Make $b$ the subject of $A=a+b$.'
+    check:
+      kind: evaluate
+      expression: 'A-a'
+      answer: 'A-a'
+    answer_text: '$b=A-a$.'
+  - id: ch8-8-6-4
+    section: '8.6'
+    tier: F
+    dfe: [A5]
+    statement: 'Make $r$ the subject of $C=2r$.'
+    answer_label: 'Make $r$ the subject of $C=2r$.'
+    check:
+      kind: evaluate
+      expression: 'C/2'
+      answer: 'C/2'
+    answer_text: '$r=\frac{C}{2}$.'
+  - id: ch8-8-6-5
+    section: '8.6'
+    tier: F
+    dfe: [A5]
+    statement: 'Make $h$ the subject of $V=bh/2$.'
+    answer_label: 'Make $h$ the subject of $V=bh/2$.'
+    check:
+      kind: evaluate
+      expression: '2*V/b'
+      answer: '2*V/b'
+    answer_text: '$h=\frac{2V}{b}$.'
+  - id: ch8-8-6-6
+    section: '8.6'
+    tier: F
+    dfe: [A5]
+    statement: 'Make $t$ the subject of $s=t-9$.'
+    answer_label: 'Make $t$ the subject of $s=t-9$.'
+    check:
+      kind: evaluate
+      expression: 's+9'
+      answer: 's+9'
+    answer_text: '$t=s+9$.'
+  - id: ch8-8-6-7
+    section: '8.6'
+    tier: F
+    dfe: [A5]
+    statement: 'Make $w$ the subject of $P=2l+2w$.'
+    answer_label: 'Make $w$ the subject of $P=2l+2w$.'
+    check:
+      kind: evaluate
+      expression: '(P-2*l)/2'
+      answer: '(P-2*l)/2'
+    answer_text: '$w=\frac{P-2l}{2}$.'
+  - id: ch8-8-6-8
+    section: '8.6'
+    tier: F
+    dfe: [A5]
+    statement: 'Make $y$ the subject of $x=y+4$.'
+    answer_label: 'Make $y$ the subject of $x=y+4$.'
+    check:
+      kind: evaluate
+      expression: 'x-4'
+      answer: 'x-4'
+    answer_text: '$y=x-4$.'

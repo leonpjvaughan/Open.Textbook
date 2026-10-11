@@ -12,8 +12,6 @@ kind: problems
 
 # 10.2 Special sequences — Practise
 
-Work each question independently. For mixed sequence types, name the method before you calculate.
-
 :::problems chapter-10-practice-10.2
 
 :::answers chapter-10-practice-10.2

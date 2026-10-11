@@ -4,6 +4,9 @@ symbols:
   a: {real: true, nonzero: true}
   y: {real: true, nonzero: true}
   m: {real: true, nonzero: true}
+  p: {real: true, nonzero: true}
+  q: {real: true, nonzero: true}
+  b: {real: true, nonzero: true}
 problems:
   - id: ch3-33-multiply-indices
     section: '3.3'

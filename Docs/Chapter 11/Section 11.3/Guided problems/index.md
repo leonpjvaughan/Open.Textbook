@@ -11,7 +11,7 @@ kind: guided-problems
 
 # 11.3 Finding the equation of a line — Practise with help
 
-Try each item before opening its hint. Check your method after completing the working.
+Try each question before opening its hint.
 
 ## Warm-up: remember
 
@@ -19,25 +19,26 @@ Try each item before opening its hint. Check your method after completing the wo
 
 <details markdown="1"><summary>Check your answers</summary>
 
-Answers: origin $(0,0)$; 11. For the other item: $y$-axis; 8; 2; 6; 6; 20; 6, as appropriate to the questions above.
+Answers: 4; $x=4$.
 </details>
 
 ## Practise with help
 
-**1.** Find the equation of a line through the origin with gradient 5.
+**1.** Find the equation through the origin with gradient 5.
 
-<details markdown="1"><summary>Hint</summary>Identify the known values and select the rule from this section.</details>
-<details markdown="1"><summary>Next step</summary>Substitute the values into the rule and keep the units consistent.</details>
-<details markdown="1"><summary>Full working</summary>$y=5x$</details>
+<details markdown="1"><summary>Hint</summary>Use $y=mx+c$ and the origin.</details>
+<details markdown="1"><summary>Next step</summary>Substitute $(0,0)$ and $m=5$ to find $c$.</details>
+<details markdown="1"><summary>Full working</summary>The intercept is 0, so $y=5x$.</details>
 
 **2.** Find the equation with gradient 2 through $(0,4)$.
 
-<details markdown="1"><summary>Hint</summary>Write the relevant formula before substituting.</details>
-<details markdown="1"><summary>Next step</summary>Show one operation on each line, then check the result.</details>
-<details markdown="1"><summary>Full working</summary>$y=2x+4$</details>
+<details markdown="1"><summary>Hint</summary>The point lies on the vertical axis.</details>
+<details markdown="1"><summary>Next step</summary>Its vertical coordinate is the intercept.</details>
+<details markdown="1"><summary>Full working</summary>$y=2x+4$.</details>
 
-**3. Earlier learning.** Solve $2x+3=11$. Which method did you choose, and why?
+**3.** Earlier learning: solve $2x+3=11$. Which inverse operation comes first?
 
 <details markdown="1"><summary>Hint</summary>Undo addition before division.</details>
 <details markdown="1"><summary>Next step</summary>$2x=8$.</details>
-<details markdown="1"><summary>Full working</summary>$2x+3=11$, so $2x=8$, hence $x=4$. Use inverse operations to isolate $x$.</details>
+<details markdown="1"><summary>Full working</summary>Subtract 3, then divide by 2: $x=4$.</details>
+

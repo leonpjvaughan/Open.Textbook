@@ -28,45 +28,45 @@ Attempt each question first. Open the hint, then the next step, when needed.
 
 <details markdown="1"><summary>Hint</summary>
 
-Choose the matching formula and identify each measurement.
+Use the radius in $C=2\pi r$.
 
 <details markdown="1"><summary>Next step</summary>
 
-Substitute the values, keep units, and calculate.
+Substitute $r=4$ cm.
 
 <details markdown="1"><summary>Full working</summary>
 
-$8\pi\text{ cm}$.
+$C=2\pi\times4=8\pi\text{ cm}$.
 </details></details></details>
 
 **2.** A circle has diameter 10 cm. Work out its circumference in terms of π.
 
 <details markdown="1"><summary>Hint</summary>
 
-Choose the matching formula and identify each measurement.
+Use the diameter in $C=\pi d$.
 
 <details markdown="1"><summary>Next step</summary>
 
-Substitute the values, keep units, and calculate.
+Substitute $d=10$ cm.
 
 <details markdown="1"><summary>Full working</summary>
 
-$10\pi\text{ cm}$.
+$C=\pi\times10=10\pi\text{ cm}$.
 </details></details></details>
 
 **3.** A circle has radius 3 cm. Work out its area in terms of π.
 
 <details markdown="1"><summary>Hint</summary>
 
-Choose the matching formula and identify each measurement.
+Use the radius in $A=\pi r^2$.
 
 <details markdown="1"><summary>Next step</summary>
 
-Substitute the values, keep units, and calculate.
+Substitute $r=3$ cm, then square the radius.
 
 <details markdown="1"><summary>Full working</summary>
 
-$9\pi\text{ cm}^2$.
+$A=\pi\times3^2=9\pi\text{ cm}^2$.
 </details></details></details>
 
 Try the remaining questions without opening the full working.

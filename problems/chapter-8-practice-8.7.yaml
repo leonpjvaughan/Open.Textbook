@@ -1,108 +1,99 @@
 chapter: 8
 symbols:
-  x:
-    real: true
-  a:
-    real: true
-  b:
-    real: true
-  m:
-    real: true
-  n:
-    real: true
-  p:
-    real: true
-  q:
-    real: true
-  y:
-    real: true
+  x: {real: true}
+  a: {real: true}
+  b: {real: true}
+  m: {real: true}
+  n: {real: true}
+  p: {real: true}
+  q: {real: true}
+  y: {real: true}
 problems:
-- id: ch8-8-7-1
-  section: '8.7'
-  tier: H
-  dfe: &id001
-  - A4
-  statement: Expand $(x+1)(x+2)(x+3)$.
-  answer_label: Expand $(x+1)(x+2)(x+3)$.
-  check:
-    kind: evaluate
-    expression: (x+1)*(x+2)*(x+3)
-    answer: x**3+6*x**2+11*x+6
-  answer_text: $x^3+6x^2+11x+6$.
-- id: ch8-8-7-2
-  section: '8.7'
-  tier: H
-  dfe: *id001
-  statement: Expand $(x-1)(x+1)(x+2)$.
-  answer_label: Expand $(x-1)(x+1)(x+2)$.
-  check:
-    kind: evaluate
-    expression: (x-1)*(x+1)*(x+2)
-    answer: x**3+2*x**2-x-2
-  answer_text: $x^3+2x^2-x-2$.
-- id: ch8-8-7-3
-  section: '8.7'
-  tier: H
-  dfe: *id001
-  statement: Expand $(x+2)(x+2)(x-1)$.
-  answer_label: Expand $(x+2)(x+2)(x-1)$.
-  check:
-    kind: evaluate
-    expression: (x+2)*(x+2)*(x-1)
-    answer: x**3+3*x**2-4
-  answer_text: $x^3+3x^2-4$.
-- id: ch8-8-7-4
-  section: '8.7'
-  tier: H
-  dfe: *id001
-  statement: Expand $(2x+1)(x+1)(x-1)$.
-  answer_label: Expand $(2x+1)(x+1)(x-1)$.
-  check:
-    kind: evaluate
-    expression: (2*x+1)*(x+1)*(x-1)
-    answer: 2*x**3+x**2-2*x-1
-  answer_text: $2x^3+x^2-2x-1$.
-- id: ch8-8-7-5
-  section: '8.7'
-  tier: H
-  dfe: *id001
-  statement: Expand $(x-2)(x+3)(x+4)$.
-  answer_label: Expand $(x-2)(x+3)(x+4)$.
-  check:
-    kind: evaluate
-    expression: (x-2)*(x+3)*(x+4)
-    answer: x**3+5*x**2-2*x-24
-  answer_text: $x^3+5x^2-2x-24$.
-- id: ch8-8-7-6
-  section: '8.7'
-  tier: H
-  dfe: *id001
-  statement: Expand $(x+2)(x-2)(x+1)$.
-  answer_label: Expand $(x+2)(x-2)(x+1)$.
-  check:
-    kind: evaluate
-    expression: (x+2)*(x-2)*(x+1)
-    answer: x**3+x**2-4*x-4
-  answer_text: $x^3+x^2-4x-4$.
-- id: ch8-8-7-7
-  section: '8.7'
-  tier: H
-  dfe: *id001
-  statement: Expand $(x+1)(x-2)(x+4)$.
-  answer_label: Expand $(x+1)(x-2)(x+4)$.
-  check:
-    kind: evaluate
-    expression: (x+1)*(x-2)*(x+4)
-    answer: x**3+3*x**2-6*x-8
-  answer_text: $x^3+3x^2-6x-8$.
-- id: ch8-8-7-8
-  section: '8.7'
-  tier: H
-  dfe: *id001
-  statement: Expand $(x-3)(x+1)(x+2)$.
-  answer_label: Expand $(x-3)(x+1)(x+2)$.
-  check:
-    kind: evaluate
-    expression: (x-3)*(x+1)*(x+2)
-    answer: x**3-7*x-6
-  answer_text: $x^3-7x-6$.
+  - id: ch8-8-7-1
+    section: '8.7'
+    tier: H
+    dfe: [A4]
+    statement: 'Expand $(x+1)(x+2)(x+3)$.'
+    answer_label: 'Expand $(x+1)(x+2)(x+3)$.'
+    check:
+      kind: evaluate
+      expression: '(x+1)*(x+2)*(x+3)'
+      answer: 'x**3+6*x**2+11*x+6'
+    answer_text: '$x^3+6x^2+11x+6$.'
+  - id: ch8-8-7-2
+    section: '8.7'
+    tier: H
+    dfe: [A4]
+    statement: 'Expand $(x-1)(x+1)(x+2)$.'
+    answer_label: 'Expand $(x-1)(x+1)(x+2)$.'
+    check:
+      kind: evaluate
+      expression: '(x-1)*(x+1)*(x+2)'
+      answer: 'x**3+2*x**2-x-2'
+    answer_text: '$x^3+2x^2-x-2$.'
+  - id: ch8-8-7-3
+    section: '8.7'
+    tier: H
+    dfe: [A4]
+    statement: 'Expand $(x+2)(x+2)(x-1)$.'
+    answer_label: 'Expand $(x+2)(x+2)(x-1)$.'
+    check:
+      kind: evaluate
+      expression: '(x+2)*(x+2)*(x-1)'
+      answer: 'x**3+3*x**2-4'
+    answer_text: '$x^3+3x^2-4$.'
+  - id: ch8-8-7-4
+    section: '8.7'
+    tier: H
+    dfe: [A4]
+    statement: 'Expand $(2x+1)(x+1)(x-1)$.'
+    answer_label: 'Expand $(2x+1)(x+1)(x-1)$.'
+    check:
+      kind: evaluate
+      expression: '(2*x+1)*(x+1)*(x-1)'
+      answer: '2*x**3+x**2-2*x-1'
+    answer_text: '$2x^3+x^2-2x-1$.'
+  - id: ch8-8-7-5
+    section: '8.7'
+    tier: H
+    dfe: [A4]
+    statement: 'Expand $(x-2)(x+3)(x+4)$.'
+    answer_label: 'Expand $(x-2)(x+3)(x+4)$.'
+    check:
+      kind: evaluate
+      expression: '(x-2)*(x+3)*(x+4)'
+      answer: 'x**3+5*x**2-2*x-24'
+    answer_text: '$x^3+5x^2-2x-24$.'
+  - id: ch8-8-7-6
+    section: '8.7'
+    tier: H
+    dfe: [A4]
+    statement: 'Expand $(x+2)(x-2)(x+1)$.'
+    answer_label: 'Expand $(x+2)(x-2)(x+1)$.'
+    check:
+      kind: evaluate
+      expression: '(x+2)*(x-2)*(x+1)'
+      answer: 'x**3+x**2-4*x-4'
+    answer_text: '$x^3+x^2-4x-4$.'
+  - id: ch8-8-7-7
+    section: '8.7'
+    tier: H
+    dfe: [A4]
+    statement: 'Expand $(x+1)(x-2)(x+4)$.'
+    answer_label: 'Expand $(x+1)(x-2)(x+4)$.'
+    check:
+      kind: evaluate
+      expression: '(x+1)*(x-2)*(x+4)'
+      answer: 'x**3+3*x**2-6*x-8'
+    answer_text: '$x^3+3x^2-6x-8$.'
+  - id: ch8-8-7-8
+    section: '8.7'
+    tier: H
+    dfe: [A4]
+    statement: 'Expand $(x-3)(x+1)(x+2)$.'
+    answer_label: 'Expand $(x-3)(x+1)(x+2)$.'
+    check:
+      kind: evaluate
+      expression: '(x-3)*(x+1)*(x+2)'
+      answer: 'x**3-7*x-6'
+    answer_text: '$x^3-7x-6$.'

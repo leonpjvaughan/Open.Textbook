@@ -11,7 +11,7 @@ kind: problems
 
 # 3.2 Estimating powers and roots — Practise
 
-Work independently. Questions and answers come from the checked question set.
+Work independently. Questions and answers are shown together at the end.
 
 :::problems chapter-3-practice-3.2
 

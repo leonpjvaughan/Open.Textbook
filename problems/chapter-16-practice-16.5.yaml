@@ -57,8 +57,7 @@ problems:
   tier: H
   dfe:
   - G6
-  statement: A triangle has opposite interior angles $x^\circ$ and $(x+30)^\circ$. Its exterior angle is $130^\circ$. Find
-    $x$.
+  statement: 'A triangle has opposite interior angles $x^\circ$ and $(x+30)^\circ$. Its exterior angle is $130^\circ$. Find $x$.'
   answer_label: A triangle has opposite interior angles $x^\circ$ and $(x+30)^\circ$. Its exteri
   check:
     kind: solve
@@ -96,8 +95,7 @@ problems:
   tier: H
   dfe:
   - G6
-  statement: A triangle sits on a straight line. Its base angles are $x^\circ$ and $(x+20)^\circ$; its exterior angle is $130^\circ$.
-    Find all three interior angles.
+  statement: 'A triangle sits on a straight line. Its base angles are $x^\circ$ and $(x+20)^\circ$; its exterior angle is $130^\circ$. Find all three interior angles.'
   answer_label: A triangle sits on a straight line. Its base angles are $x^\circ$ and $(x+20)^\c
   check:
     kind: solve

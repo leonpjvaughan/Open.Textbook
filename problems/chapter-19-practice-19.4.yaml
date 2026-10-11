@@ -1,92 +1,92 @@
 chapter: 19
 problems:
-- id: ch19-19-4-01
+- id: 'ch19-19-4-01'
   section: '19.4'
-  tier: F
+  tier: 'F'
   dfe: &id001
-  - G16
-  - G17
-  statement: A cuboid measures 4 cm by 3 cm by 2 cm. Work out its volume.
-  answer_label: Cuboid volume
+  - 'G16'
+  - 'G17'
+  statement: 'A cuboid measures 4 cm by 3 cm by 2 cm. Work out its volume.'
+  answer_label: 'Cuboid volume'
   check:
-    kind: evaluate
-    expression: 4*3*2
+    kind: 'evaluate'
+    expression: '4*3*2'
     answer: '24'
-  answer_text: $24\text{ cm}^3$
-- id: ch19-19-4-02
+  answer_text: '$24\text{ cm}^3$'
+- id: 'ch19-19-4-02'
   section: '19.4'
-  tier: F
+  tier: 'F'
   dfe: *id001
-  statement: A cuboid measures 5 cm by 4 cm by 3 cm. Work out its surface area.
-  answer_label: Cuboid surface area
+  statement: 'A cuboid measures 5 cm by 4 cm by 3 cm. Work out its surface area.'
+  answer_label: 'Cuboid surface area'
   check:
-    kind: evaluate
-    expression: 2*(5*4+5*3+4*3)
+    kind: 'evaluate'
+    expression: '2*(5*4+5*3+4*3)'
     answer: '94'
-  answer_text: $94\text{ cm}^2$
-- id: ch19-19-4-03
+  answer_text: '$94\text{ cm}^2$'
+- id: 'ch19-19-4-03'
   section: '19.4'
-  tier: F
+  tier: 'F'
   dfe: *id001
-  statement: A triangular prism has cross-section area 12 cm² and length 8 cm. Work out its volume.
-  answer_label: Prism volume
+  statement: 'A triangular prism has cross-section area 12 cm² and length 8 cm. Work out its volume.'
+  answer_label: 'Prism volume'
   check:
-    kind: evaluate
-    expression: 12*8
+    kind: 'evaluate'
+    expression: '12*8'
     answer: '96'
-  answer_text: $96\text{ cm}^3$
-- id: ch19-19-4-04
+  answer_text: '$96\text{ cm}^3$'
+- id: 'ch19-19-4-04'
   section: '19.4'
-  tier: F
+  tier: 'F'
   dfe: *id001
-  statement: A prism has cross-section perimeter 18 cm, cross-section area 20 cm² and length 7 cm. Work out its volume.
-  answer_label: Prism volume
+  statement: 'A triangular prism has a triangular cross-section with base 6 cm and perpendicular height 4 cm. Its length is 10 cm. Work out its volume and state which area formula you use.'
+  answer_label: 'Prism volume'
   check:
-    kind: evaluate
-    expression: 20*7
-    answer: '140'
-  answer_text: $140\text{ cm}^3$
-- id: ch19-19-4-05
+    kind: 'evaluate'
+    expression: '6*4/2*10'
+    answer: '120'
+    answer_text: '$120\text{ cm}^3$'
+- id: 'ch19-19-4-05'
   section: '19.4'
-  tier: F
+  tier: 'F'
   dfe: *id001
-  statement: A cylinder has radius 3 cm and height 5 cm. Work out its volume in terms of π.
-  answer_label: Cylinder volume
+  statement: 'A cylinder has radius 3 cm and height 5 cm. Work out its volume in terms of π.'
+  answer_label: 'Cylinder volume'
   check:
-    kind: evaluate
-    expression: pi*3**2*5
-    answer: 45*pi
-  answer_text: $45\pi\text{ cm}^3$
-- id: ch19-19-4-06
+    kind: 'evaluate'
+    expression: 'pi*3**2*5'
+    answer: '45*pi'
+  answer_text: '$45\pi\text{ cm}^3$'
+- id: 'ch19-19-4-06'
   section: '19.4'
-  tier: F
+  tier: 'F'
   dfe: *id001
-  statement: A cylinder has radius 2 cm and height 7 cm. Work out its curved surface area in terms of π.
-  answer_label: Curved surface area
+  statement: 'A cylinder has radius 2 cm and height 7 cm. Work out its curved surface area in terms of π.'
+  answer_label: 'Curved surface area'
   check:
-    kind: evaluate
-    expression: 2*pi*2*7
-    answer: 28*pi
-  answer_text: $28\pi\text{ cm}^2$
-- id: ch19-19-4-07
+    kind: 'evaluate'
+    expression: '2*pi*2*7'
+    answer: '28*pi'
+  answer_text: '$28\pi\text{ cm}^2$'
+- id: 'ch19-19-4-07'
   section: '19.4'
-  tier: F
+  tier: 'F'
   dfe: *id001
-  statement: A cylinder has radius 4 cm and height 6 cm. Work out its total surface area in terms of π.
-  answer_label: Cylinder surface area
+  statement: 'A cylinder has radius 4 cm and height 6 cm. Work out its total surface area in terms of π.'
+  answer_label: 'Cylinder surface area'
   check:
-    kind: evaluate
-    expression: 2*pi*4**2+2*pi*4*6
-    answer: 80*pi
-  answer_text: $80\pi\text{ cm}^2$
-- id: ch19-19-4-08
+    kind: 'evaluate'
+    expression: '2*pi*4**2+2*pi*4*6'
+    answer: '80*pi'
+  answer_text: '$80\pi\text{ cm}^2$'
+- id: 'ch19-19-4-08'
   section: '19.4'
-  tier: F
+  tier: 'F'
   dfe: *id001
-  statement: A prism has volume 180 cm³ and length 12 cm. Work out its cross-section area.
-  answer_label: Cross-section area
+  statement: 'A prism has volume 180 cm³ and length 12 cm. Work out its cross-section area. Explain why you divide by the length.'
+  answer_label: 'Cross-section area'
   check:
-    kind: evaluate
-    expression: 180/12
+    kind: 'evaluate'
+    expression: '180/12'
     answer: '15'
-  answer_text: $15\text{ cm}^2$
+  answer_text: '$15\text{ cm}^2$'

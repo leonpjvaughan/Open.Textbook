@@ -14,26 +14,28 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Without looking back, simplify $12:18$.
-2. Work out $3\times 14$.
+1. Without looking back, calculate $\frac{3}{4}+\frac{1}{8}$.
+2. Work out $-4+9$.
 
 <details markdown="1">
 <summary>Check the warm-up</summary>
 
-$12:18=2:3$. Also, $3\times14=42$.
+$\frac{3}{4}+\frac{1}{8}=\frac{7}{8}$. Also, $-4+9=5$.
 
 </details>
 
 ## Try these questions
 
+**Question:** A map uses scale $1:25\,000$. Work out the real distance represented by 6 cm, in kilometres.
+
 ### Hint
 
-For the first question, identify what each part represents. Make one part equal to one unit if that helps.
+Multiply the map length by 25,000 to find the real length in centimetres. Then convert to kilometres.
 
 <details markdown="1">
 <summary>Show a hint</summary>
 
-Write the known quantities in matching units. Find the common multiplier or the total number of ratio parts.
+The real length is $6\times25\,000=150\,000$ cm. Use $100\,000$ cm per kilometre.
 
 </details>
 
@@ -50,6 +52,7 @@ Set up the multiplier or ratio parts, then calculate the requested quantity.
 Divide the known amount by its corresponding number of parts. Multiply by the required number of parts.
 
 </details>
+</details>
 
 ### Full working
 
@@ -58,7 +61,7 @@ Use this model on one question from the section, then complete it without help.
 <details markdown="1">
 <summary>Show full working</summary>
 
-At scale $1:50\,000$, 4 cm represents $4\times50\,000=200\,000$ cm. Since $100\,000$ cm is 1 km, the distance is 2 km.
+Since $150\,000\div100\,000=1.5$, the real distance is 1.5 km. Check that 6 cm is multiplied by the scale factor before converting units.
 
 </details>
 

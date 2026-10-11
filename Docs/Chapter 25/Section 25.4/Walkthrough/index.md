@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** plot coordinate pairs and describe a trend using everyday language.
 
-**Objectives:** plot paired data, describe correlation, and use a line of best fit for estimates. This section covers S6.
+**Objectives:** plot paired data, describe correlation, and use a line of best fit for estimates.
 
 A **scatter graph** plots pairs of measurements as points. **Correlation** describes how two variables change together. Positive correlation means both tend to increase; negative correlation means one tends to decrease as the other increases. No correlation means there is no clear pattern.
 

@@ -2,6 +2,8 @@ chapter: 22
 symbols:
   a: {real: true}
   b: {real: true}
+  p: {real: true}
+  q: {real: true}
   u: {real: true}
   v: {real: true}
 problems:
@@ -67,5 +69,5 @@ problems:
     dfe: [G25]
     statement: 'A quadrilateral has successive side vectors $\mathbf{p}$, $\mathbf{q}$, $-\mathbf{p}$ and $-\mathbf{q}$. Explain why it closes.'
     answer_label: 'Closure'
-    check: {kind: all, checks: [{kind: evaluate, expression: 'u + v - u - v', answer: '0'}, {kind: evaluate, expression: 'u - u + v - v', answer: '0'}]}
+    check: {kind: all, checks: [{kind: evaluate, expression: 'p + q - p - q', answer: '0'}, {kind: evaluate, expression: 'p - p + q - q', answer: '0'}]}
     answer_text: 'The total vector is $\mathbf{p}+\mathbf{q}-\mathbf{p}-\mathbf{q}=\mathbf{0}$, so the route returns to its start.'

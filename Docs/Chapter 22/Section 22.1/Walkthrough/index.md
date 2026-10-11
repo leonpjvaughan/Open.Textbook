@@ -4,7 +4,7 @@ chapter: 22
 chapter_title: Vectors
 section: '22.1'
 section_title: Vector notation and column vectors
-tier: H
+tier: F
 dfe: [G24, G25]
 kind: walkthrough
 ---
@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** coordinates, directed movement, and the horizontal and vertical axes.
 
-**Objectives:** describe translations as 2D vectors; read and draw column vectors on a grid.
+**Objectives:** describe translations as two-dimensional vectors; read and draw column vectors on a grid.
 
 ## Describe a translation
 

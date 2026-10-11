@@ -1,108 +1,99 @@
 chapter: 8
 symbols:
-  x:
-    real: true
-  a:
-    real: true
-  b:
-    real: true
-  m:
-    real: true
-  n:
-    real: true
-  p:
-    real: true
-  q:
-    real: true
-  y:
-    real: true
+  x: {real: true}
+  a: {real: true}
+  b: {real: true}
+  m: {real: true}
+  n: {real: true}
+  p: {real: true}
+  q: {real: true}
+  y: {real: true}
 problems:
-- id: ch8-8-2-1
-  section: '8.2'
-  tier: F
-  dfe: &id001
-  - A4
-  statement: Simplify $4a+3a$.
-  answer_label: Simplify $4a+3a$.
-  check:
-    kind: evaluate
-    expression: 4*a+3*a
-    answer: 7*a
-  answer_text: $7a$.
-- id: ch8-8-2-2
-  section: '8.2'
-  tier: F
-  dfe: *id001
-  statement: Simplify $9y-2y+5$.
-  answer_label: Simplify $9y-2y+5$.
-  check:
-    kind: evaluate
-    expression: 9*y-2*y+5
-    answer: 7*y+5
-  answer_text: $7y+5$.
-- id: ch8-8-2-3
-  section: '8.2'
-  tier: F
-  dfe: *id001
-  statement: Simplify $3p+4+2p-9$.
-  answer_label: Simplify $3p+4+2p-9$.
-  check:
-    kind: evaluate
-    expression: 3*p+4+2*p-9
-    answer: 5*p-5
-  answer_text: $5p-5$.
-- id: ch8-8-2-4
-  section: '8.2'
-  tier: F
-  dfe: *id001
-  statement: Simplify $7m-3+2m+8$.
-  answer_label: Simplify $7m-3+2m+8$.
-  check:
-    kind: evaluate
-    expression: 7*m-3+2*m+8
-    answer: 9*m+5
-  answer_text: $9m+5$.
-- id: ch8-8-2-5
-  section: '8.2'
-  tier: F
-  dfe: *id001
-  statement: Simplify $4x+3y+2x-y$.
-  answer_label: Simplify $4x+3y+2x-y$.
-  check:
-    kind: evaluate
-    expression: 4*x+3*y+2*x-y
-    answer: 6*x+2*y
-  answer_text: $6x+2y$.
-- id: ch8-8-2-6
-  section: '8.2'
-  tier: F
-  dfe: *id001
-  statement: Simplify $2r+7r-3r$.
-  answer_label: Simplify $2r+7r-3r$.
-  check:
-    kind: evaluate
-    expression: 2*r+7*r-3*r
-    answer: 6*r
-  answer_text: $6r$.
-- id: ch8-8-2-7
-  section: '8.2'
-  tier: F
-  dfe: *id001
-  statement: Simplify $5b+2b-4$.
-  answer_label: Simplify $5b+2b-4$.
-  check:
-    kind: evaluate
-    expression: 5*b+2*b-4
-    answer: 7*b-4
-  answer_text: $7b-4$.
-- id: ch8-8-2-8
-  section: '8.2'
-  tier: F
-  dfe: *id001
-  statement: Simplify $6c+3-2c+8$.
-  answer_label: Simplify $6c+3-2c+8$.
-  check:
-    kind: evaluate
-    expression: 6*c+3-2*c+8
-    answer: 4*c+11
-  answer_text: $4c+11$.
+  - id: ch8-8-2-1
+    section: '8.2'
+    tier: F
+    dfe: [A4]
+    statement: 'Simplify $4a+3a$.'
+    answer_label: 'Simplify $4a+3a$.'
+    check:
+      kind: evaluate
+      expression: '4*a+3*a'
+      answer: '7*a'
+    answer_text: '$7a$.'
+  - id: ch8-8-2-2
+    section: '8.2'
+    tier: F
+    dfe: [A4]
+    statement: 'Simplify $9y-2y+5$.'
+    answer_label: 'Simplify $9y-2y+5$.'
+    check:
+      kind: evaluate
+      expression: '9*y-2*y+5'
+      answer: '7*y+5'
+    answer_text: '$7y+5$.'
+  - id: ch8-8-2-3
+    section: '8.2'
+    tier: F
+    dfe: [A4]
+    statement: 'Simplify $3p+4+2p-9$.'
+    answer_label: 'Simplify $3p+4+2p-9$.'
+    check:
+      kind: evaluate
+      expression: '3*p+4+2*p-9'
+      answer: '5*p-5'
+    answer_text: '$5p-5$.'
+  - id: ch8-8-2-4
+    section: '8.2'
+    tier: F
+    dfe: [A4]
+    statement: 'Simplify $7m-3+2m+8$.'
+    answer_label: 'Simplify $7m-3+2m+8$.'
+    check:
+      kind: evaluate
+      expression: '7*m-3+2*m+8'
+      answer: '9*m+5'
+    answer_text: '$9m+5$.'
+  - id: ch8-8-2-5
+    section: '8.2'
+    tier: F
+    dfe: [A4]
+    statement: 'Simplify $4x+3y+2x-y$.'
+    answer_label: 'Simplify $4x+3y+2x-y$.'
+    check:
+      kind: evaluate
+      expression: '4*x+3*y+2*x-y'
+      answer: '6*x+2*y'
+    answer_text: '$6x+2y$.'
+  - id: ch8-8-2-6
+    section: '8.2'
+    tier: F
+    dfe: [A4]
+    statement: 'Simplify $2r+7r-3r$.'
+    answer_label: 'Simplify $2r+7r-3r$.'
+    check:
+      kind: evaluate
+      expression: '2*r+7*r-3*r'
+      answer: '6*r'
+    answer_text: '$6r$.'
+  - id: ch8-8-2-7
+    section: '8.2'
+    tier: F
+    dfe: [A4]
+    statement: 'Simplify $5b+2b-4$.'
+    answer_label: 'Simplify $5b+2b-4$.'
+    check:
+      kind: evaluate
+      expression: '5*b+2*b-4'
+      answer: '7*b-4'
+    answer_text: '$7b-4$.'
+  - id: ch8-8-2-8
+    section: '8.2'
+    tier: F
+    dfe: [A4]
+    statement: 'Simplify $6c+3-2c+8$.'
+    answer_label: 'Simplify $6c+3-2c+8$.'
+    check:
+      kind: evaluate
+      expression: '6*c+3-2*c+8'
+      answer: '4*c+11'
+    answer_text: '$4c+11$.'

@@ -49,6 +49,22 @@ $$
 
 Expanding checks the answer: $x^2+4x+3x+12=x^2+7x+12$.
 
+## Solve by factorising
+
+To solve a quadratic equation, first make one side zero. Then factorise and set each factor equal to zero.
+
+**Example 3.** Solve $x^2+5x+6=0$.
+
+$$
+x^2+5x+6=0
+$$
+
+$$
+(x+2)(x+3)=0
+$$
+
+So $x+2=0$ or $x+3=0$. Therefore $x=-2$ or $x=-3$.
+
 > **Watch out.** The factors must have both the correct sum and product. For $x^2+7x+12$, $(x+2)(x+6)$ has the right product, but its middle coefficient is $8$. Expand to check.
 
 ## Progress check
@@ -60,4 +76,5 @@ The height model for the chapter problem is $h=-t^2+4t+5$. Notice its quadratic 
 - multiply every term in one bracket by every term in another;
 - collect like terms after expansion;
 - factorise a monic quadratic using the sum and product of two numbers;
+- solve a factorisable quadratic equation by setting each factor to zero;
 - check a factorisation by expanding it.

@@ -10,7 +10,7 @@ strand: algebra
 
 Two taxi companies charge a fixed fee plus a price for each kilometre. A 4 km trip costs £14 with Company A and £16 with Company B. An 8 km trip costs £22 with Company A and £24 with Company B.
 
-**First contact:** Which company do you predict charges more per kilometre? Make an estimate; you will not need an exact answer yet.
+**First contact:** Which company do you predict charges more per kilometre? Estimate first. You can check your prediction at the end of the chapter.
 
 ## By the end of this chapter you will be able to
 

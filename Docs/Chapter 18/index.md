@@ -12,7 +12,7 @@ A school mural uses a triangular tile with corners at $(1,1)$, $(3,1)$ and $(1,2
 
 **First contact:** predict which corner will be farthest from the origin after enlargement by scale factor $2$. You do not need to calculate yet.
 
-At two progress checks, you will track how transformations move the tile and how scale factors change its measurements. The Review resolves both copies.
+Progress checks will help you track how transformations move the tile and how scale factors change its measurements. The Review resolves both copies.
 
 **By the end of this chapter you will be able to:**
 

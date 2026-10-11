@@ -6,7 +6,7 @@ problems:
     tier: F
     dfe: [N4]
     statement: 'List all the factors of $18$.'
-    answer_label: "Factors of 18"
+    answer_label: 'Factors of 18'
     check: {kind: all, checks: [{kind: evaluate, expression: "1*18", answer: "18"}, {kind: evaluate, expression: "2*9", answer: "18"}, {kind: evaluate, expression: "3*6", answer: "18"}]}
     answer_text: '$1,2,3,6,9,18$'
   - id: c2-21-factors-28
@@ -14,7 +14,7 @@ problems:
     tier: F
     dfe: [N4]
     statement: 'List all the factors of $28$.'
-    answer_label: "Factors of 28"
+    answer_label: 'Factors of 28'
     check: {kind: all, checks: [{kind: evaluate, expression: "1*28", answer: "28"}, {kind: evaluate, expression: "2*14", answer: "28"}, {kind: evaluate, expression: "4*7", answer: "28"}]}
     answer_text: '$1,2,4,7,14,28$'
   - id: c2-21-multiples-9
@@ -22,7 +22,7 @@ problems:
     tier: F
     dfe: [N4]
     statement: 'Write the first six positive multiples of $9$.'
-    answer_label: "First six multiples of 9"
+    answer_label: 'First six multiples of 9'
     check: {kind: all, checks: [{kind: evaluate, expression: "9*1", answer: "9"}, {kind: evaluate, expression: "9*2", answer: "18"}, {kind: evaluate, expression: "9*3", answer: "27"}, {kind: evaluate, expression: "9*4", answer: "36"}, {kind: evaluate, expression: "9*5", answer: "45"}, {kind: evaluate, expression: "9*6", answer: "54"}]}
     answer_text: '$9,18,27,36,45,54$'
   - id: c2-21-prime-29
@@ -30,7 +30,7 @@ problems:
     tier: F
     dfe: [N4]
     statement: 'Is $29$ prime or composite? Give a reason.'
-    answer_label: "Classify 29"
+    answer_label: 'Classify 29'
     check: {kind: all, checks: [{kind: compare, relation: "<", lhs: "2^2", rhs: "29"}, {kind: compare, relation: "<", lhs: "3^2", rhs: "29"}, {kind: compare, relation: "<", lhs: "5^2", rhs: "29"}]}
     answer_text: '$29$ is prime: it is not divisible by $2$, $3$ or $5$, the primes up to $\\sqrt{29}$.'
   - id: c2-21-composite-35
@@ -38,7 +38,7 @@ problems:
     tier: F
     dfe: [N4]
     statement: 'Explain why $35$ is composite.'
-    answer_label: "Classify 35"
+    answer_label: 'Classify 35'
     check: {kind: evaluate, expression: "5*7", answer: "35"}
     answer_text: '$35=5\\times7$, so it has factors other than 1 and 35.'
   - id: c2-21-number-1
@@ -46,7 +46,7 @@ problems:
     tier: F
     dfe: [N4]
     statement: 'Explain why $1$ is not a prime number.'
-    answer_label: "Why 1 is not prime"
+    answer_label: 'Why 1 is not prime'
     check: {kind: evaluate, expression: "1", answer: "1"}
     answer_text: 'A prime number has exactly two factors. The number 1 has only one factor, itself.'
   - id: c2-21-common-multiples
@@ -54,7 +54,7 @@ problems:
     tier: F
     dfe: [N4]
     statement: 'Write the first three positive common multiples of $4$ and $6$.'
-    answer_label: "Common multiples"
+    answer_label: 'Common multiples'
     check: {kind: all, checks: [{kind: evaluate, expression: "4*3", answer: "12"}, {kind: evaluate, expression: "6*2", answer: "12"}, {kind: evaluate, expression: "4*6", answer: "24"}, {kind: evaluate, expression: "6*4", answer: "24"}, {kind: evaluate, expression: "4*9", answer: "36"}, {kind: evaluate, expression: "6*6", answer: "36"}]}
     answer_text: '$12,24,36$'
   - id: c2-21-prime-37
@@ -62,7 +62,7 @@ problems:
     tier: F
     dfe: [N4]
     statement: 'Is $37$ prime? Explain how you know.'
-    answer_label: "Check 37"
+    answer_label: 'Check 37'
     check: {kind: all, checks: [{kind: compare, relation: "<", lhs: "2^2", rhs: "37"}, {kind: compare, relation: "<", lhs: "3^2", rhs: "37"}, {kind: compare, relation: "<", lhs: "5^2", rhs: "37"}]}
     answer_text: '$37$ is prime: no prime number up to $\\sqrt{37}$ divides it exactly.'
   - id: c2-21-divisibility
@@ -70,6 +70,6 @@ problems:
     tier: F
     dfe: [N4]
     statement: 'From $42,43,45,49$, select the numbers divisible by $3$.'
-    answer_label: "Divisibility by 3"
+    answer_label: 'Divisibility by 3'
     check: {kind: all, checks: [{kind: evaluate, expression: "42/3", answer: "14"}, {kind: evaluate, expression: "45/3", answer: "15"}]}
     answer_text: '$42$ and $45$ are divisible by 3.'

@@ -1,64 +1,64 @@
-chapter: 4
+chapter: '4'
 symbols: {}
 problems:
-- id: ch4-recurring-place
+- id: 'ch4-recurring-place'
   section: '4.5'
-  tier: H
+  tier: 'H'
   dfe:
-  - N10
-  statement: Write $0.\dot{3}$ as a fraction.
-  answer_label: Answer 1
+  - 'N10'
+  statement: 'Write $0.\dot{3}$ as a fraction.'
+  answer_label: 'Answer 1'
   check:
-    kind: evaluate
-    expression: 1/3
-    answer: 1/3
+    'kind': 'evaluate'
+    'expression': '1/3'
+    'answer': '1/3'
   answer_text: '$x=0.333\ldots$, so $10x=3.333\ldots$. Subtract: $9x=3$, hence $x=\frac{1}{3}.$'
-- id: ch4-recurring-two
+- id: 'ch4-recurring-two'
   section: '4.5'
-  tier: H
+  tier: 'H'
   dfe:
-  - N10
-  statement: Write $0.\dot{2}\dot{7}$ as a fraction.
-  answer_label: Answer 2
+  - 'N10'
+  statement: 'Write $0.\dot{2}\dot{7}$ as a fraction.'
+  answer_label: 'Answer 2'
   check:
-    kind: evaluate
-    expression: 27/99
-    answer: 3/11
-  answer_text: $0.272727\ldots=\frac{27}{99}=\frac{3}{11}.$
-- id: ch4-recurring-mixed
+    'kind': 'evaluate'
+    'expression': '27/99'
+    'answer': '3/11'
+  answer_text: '$0.272727\ldots=\frac{27}{99}=\frac{3}{11}.$'
+- id: 'ch4-recurring-mixed'
   section: '4.5'
-  tier: H
+  tier: 'H'
   dfe:
-  - N10
-  statement: Write $0.1\dot{6}$ as a fraction.
-  answer_label: Answer 3
+  - 'N10'
+  statement: 'Write $0.1\dot{6}$ as a fraction.'
+  answer_label: 'Answer 3'
   check:
-    kind: evaluate
-    expression: 1/6
-    answer: 1/6
-  answer_text: $x=0.1666\ldots$. Then $10x=1.666\ldots$ and $100x=16.666\ldots$; subtract to get $90x=15$, so $x=\frac{1}{6}.$
-- id: ch4-recurring-minus
+    'kind': 'evaluate'
+    'expression': '1/6'
+    'answer': '1/6'
+  answer_text: '$x=0.1666\ldots$. Then $10x=1.666\ldots$ and $100x=16.666\ldots$; subtract to get $90x=15$, so $x=\frac{1}{6}.$'
+- id: 'ch4-recurring-minus'
   section: '4.5'
-  tier: H
+  tier: 'H'
   dfe:
-  - N10
-  statement: Work out $0.\dot{5}+0.\dot{2}$ as a fraction.
-  answer_label: Answer 4
+  - 'N10'
+  statement: 'Work out $0.\dot{5}+0.\dot{2}$ as a fraction.'
+  answer_label: 'Answer 4'
   check:
-    kind: evaluate
-    expression: 5/9+2/9
-    answer: 7/9
-  answer_text: $0.\dot{5}=\frac{5}{9}$ and $0.\dot{2}=\frac{2}{9}$, so the sum is $\frac{7}{9}.$
-- id: ch4-recurring-order
+    'kind': 'evaluate'
+    'expression': '5/9+2/9'
+    'answer': '7/9'
+  answer_text: '$0.\dot{5}=\frac{5}{9}$ and $0.\dot{2}=\frac{2}{9}$, so the sum is $\frac{7}{9}.$'
+- id: 'ch4-recurring-order'
   section: '4.5'
-  tier: H
+  tier: 'H'
   dfe:
-  - N10
-  statement: Which is larger, $0.\dot{4}$ or $0.\dot{4}\dot{3}$?
-  answer_label: Answer 5
+  - 'N10'
+  statement: 'Which is larger, $0.\dot{4}$ or $0.\dot{4}\dot{3}$?'
+  answer_label: 'Answer 5'
   check:
-    kind: compare
-    relation: '>'
-    lhs: 4/9
-    rhs: 43/99
-  answer_text: $0.\dot{4}=\frac{44}{99}>\frac{43}{99}=0.\dot{4}\dot{3}$.
+    'kind': 'compare'
+    'relation': '>'
+    'lhs': '4/9'
+    'rhs': '43/99'
+  answer_text: '$0.\dot{4}=\frac{44}{99}>\frac{43}{99}=0.\dot{4}\dot{3}$.'

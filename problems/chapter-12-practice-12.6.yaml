@@ -5,112 +5,120 @@ symbols:
   t:
     real: true
 problems:
-- id: ch12-12.6-square-1
-  section: '12.6'
-  tier: H
-  dfe:
-  - A11
-  - A18
-  statement: Complete the square for $x^2+8x+3$.
-  answer_label: Complete the square for $x^2+8x+3$.
-  check:
-    kind: evaluate
-    expression: x**2+8*x+3
-    answer: (x+4)**2-13
-  answer_text: $(x+4)^2-13$.
-- id: ch12-12.6-square-2
-  section: '12.6'
-  tier: H
-  dfe:
-  - A11
-  - A18
-  statement: Complete the square for $x^2-6x+1$.
-  answer_label: Complete the square for $x^2-6x+1$.
-  check:
-    kind: evaluate
-    expression: x**2-6*x+1
-    answer: (x-3)**2-8
-  answer_text: $(x-3)^2-8$.
-- id: ch12-12.6-turning
-  section: '12.6'
-  tier: H
-  dfe:
-  - A11
-  statement: State the turning point of $y=(x-4)^2+2$.
-  answer_label: State the turning point of $y=(x-4)^2+2$.
-  check:
-    kind: evaluate
-    expression: (4-4)**2+2
-    answer: '2'
-  answer_text: $(4,2)$, a minimum.
-- id: ch12-12.6-solve-1
-  section: '12.6'
-  tier: H
-  dfe:
-  - A18
-  statement: Solve $x^2+4x-1=0$ by completing the square.
-  answer_label: Solve $x^2+4x-1=0$ by completing the square.
-  check:
-    kind: solve
-    equation: x**2+4*x-1 = 0
-    variable: x
-    answer:
-    - -2+sqrt(5)
-    - -2-sqrt(5)
-  answer_text: $x=-2\pm\sqrt5$.
-- id: ch12-12.6-square-5
-  section: '12.6'
-  tier: H
-  dfe:
-  - A11
-  - A18
-  statement: Write $x^2-10x+7$ in completed-square form.
-  answer_label: Write $x^2-10x+7$ in completed-square form.
-  check:
-    kind: evaluate
-    expression: x**2-10*x+7
-    answer: (x-5)**2-18
-  answer_text: $(x-5)^2-18$.
-- id: ch12-12.6-solve-2
-  section: '12.6'
-  tier: H
-  dfe:
-  - A18
-  statement: Solve $x^2-6x+5=0$ by completing the square.
-  answer_label: Solve $x^2-6x+5=0$ by completing the square.
-  check:
-    kind: solve
-    equation: x**2-6*x+5 = 0
-    variable: x
-    answer:
-    - '1'
-    - '5'
-  answer_text: $x=1$ or $x=5$.
-- id: ch12-12.6-max
-  section: '12.6'
-  tier: H
-  dfe:
-  - A11
-  statement: State the maximum value of $y=-(x-2)^2+7$.
-  answer_label: State the maximum value of $y=-(x-2)^2+7$.
-  check:
-    kind: compare
-    relation: <=
-    lhs: -(x-2)**2+7
-    rhs: '7'
-  answer_text: The maximum value is $7$.
-- id: ch12-12.6-solve-4
-  section: '12.6'
-  tier: H
-  dfe:
-  - A18
-  statement: Solve $x^2+2x-7=0$ by completing the square.
-  answer_label: Solve $x^2+2x-7=0$ by completing the square.
-  check:
-    kind: solve
-    equation: x**2+2*x-7 = 0
-    variable: x
-    answer:
-    - -1+2*sqrt(2)
-    - -1-2*sqrt(2)
-  answer_text: $x=-1\pm2\sqrt2$.
+  -
+    id: 'ch12-12.6-square-1'
+    section: '12.6'
+    tier: 'H'
+    dfe:
+      - 'A11'
+      - 'A18'
+    statement: 'Complete the square for $x^2+8x+3$.'
+    answer_label: 'Complete the square for $x^2+8x+3$.'
+    check:
+      kind: 'evaluate'
+      expression: 'x**2+8*x+3'
+      answer: '(x+4)**2-13'
+    answer_text: '$(x+4)^2-13$.'
+  -
+    id: 'ch12-12.6-square-2'
+    section: '12.6'
+    tier: 'H'
+    dfe:
+      - 'A11'
+      - 'A18'
+    statement: 'Complete the square for $x^2-6x+1$.'
+    answer_label: 'Complete the square for $x^2-6x+1$.'
+    check:
+      kind: 'evaluate'
+      expression: 'x**2-6*x+1'
+      answer: '(x-3)**2-8'
+    answer_text: '$(x-3)^2-8$.'
+  -
+    id: 'ch12-12.6-turning'
+    section: '12.6'
+    tier: 'H'
+    dfe:
+      - 'A11'
+    statement: 'State the turning point of $y=(x-4)^2+2$.'
+    answer_label: 'State the turning point of $y=(x-4)^2+2$.'
+    check:
+      kind: 'evaluate'
+      expression: '(4-4)**2+2'
+      answer: '2'
+    answer_text: '$(4,2)$, a minimum.'
+  -
+    id: 'ch12-12.6-solve-1'
+    section: '12.6'
+    tier: 'H'
+    dfe:
+      - 'A18'
+    statement: 'Solve $x^2+4x-1=0$ by completing the square.'
+    answer_label: 'Solve $x^2+4x-1=0$ by completing the square.'
+    check:
+      kind: 'solve'
+      equation: 'x**2+4*x-1 = 0'
+      variable: 'x'
+      answer:
+        - '-2+sqrt(5)'
+        - '-2-sqrt(5)'
+    answer_text: '$x=-2\pm\sqrt5$.'
+  -
+    id: 'ch12-12.6-square-5'
+    section: '12.6'
+    tier: 'H'
+    dfe:
+      - 'A11'
+      - 'A18'
+    statement: 'Write $x^2-10x+7$ in completed-square form.'
+    answer_label: 'Write $x^2-10x+7$ in completed-square form.'
+    check:
+      kind: 'evaluate'
+      expression: 'x**2-10*x+7'
+      answer: '(x-5)**2-18'
+    answer_text: '$(x-5)^2-18$.'
+  -
+    id: 'ch12-12.6-solve-2'
+    section: '12.6'
+    tier: 'H'
+    dfe:
+      - 'A18'
+    statement: 'Solve $x^2-6x+5=0$ by completing the square.'
+    answer_label: 'Solve $x^2-6x+5=0$ by completing the square.'
+    check:
+      kind: 'solve'
+      equation: 'x**2-6*x+5 = 0'
+      variable: 'x'
+      answer:
+        - '1'
+        - '5'
+    answer_text: '$x=1$ or $x=5$.'
+  -
+    id: 'ch12-12.6-max'
+    section: '12.6'
+    tier: 'H'
+    dfe:
+      - 'A11'
+    statement: 'State the maximum value of $y=-(x-2)^2+7$.'
+    answer_label: 'State the maximum value of $y=-(x-2)^2+7$.'
+    check:
+      kind: 'compare'
+      relation: '<='
+      lhs: '-(x-2)**2+7'
+      rhs: '7'
+    answer_text: 'The maximum value is $7$.'
+  -
+    id: 'ch12-12.6-solve-4'
+    section: '12.6'
+    tier: 'H'
+    dfe:
+      - 'A18'
+    statement: 'Solve $x^2+2x-7=0$ by completing the square.'
+    answer_label: 'Solve $x^2+2x-7=0$ by completing the square.'
+    check:
+      kind: 'solve'
+      equation: 'x**2+2*x-7 = 0'
+      variable: 'x'
+      answer:
+        - '-1+2*sqrt(2)'
+        - '-1-2*sqrt(2)'
+    answer_text: '$x=-1\pm2\sqrt2$.'

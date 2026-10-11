@@ -8,124 +8,124 @@ problems:
   tier: F
   dfe:
   - A17
-  statement: Solve $x+7=19$.
-  answer_label: Solve $x+7=19$.
+  statement: 'Solve $x+7=19$.'
+  answer_label: 'Solve $x+7=19$.'
   check:
     kind: solve
     equation: x + 7 = 19
     variable: x
     answer:
     - '12'
-  answer_text: $12$
+  answer_text: '$12$'
 - id: ch9-9-1-subtract
   section: '9.1'
   tier: F
   dfe:
   - A17
-  statement: Solve $x-8=5$.
-  answer_label: Solve $x-8=5$.
+  statement: 'Solve $x-8=5$.'
+  answer_label: 'Solve $x-8=5$.'
   check:
     kind: solve
     equation: x - 8 = 5
     variable: x
     answer:
     - '13'
-  answer_text: $13$
+  answer_text: '$13$'
 - id: ch9-9-1-multiply
   section: '9.1'
   tier: F
   dfe:
   - A17
-  statement: Solve $5x=35$.
-  answer_label: Solve $5x=35$.
+  statement: 'Solve $5x=35$.'
+  answer_label: 'Solve $5x=35$.'
   check:
     kind: solve
     equation: 5*x = 35
     variable: x
     answer:
     - '7'
-  answer_text: $7$
+  answer_text: '$7$'
 - id: ch9-9-1-divide
   section: '9.1'
   tier: F
   dfe:
   - A17
-  statement: Solve $x/4=6$.
-  answer_label: Solve $x/4=6$.
+  statement: 'Solve $x/4=6$.'
+  answer_label: 'Solve $x/4=6$.'
   check:
     kind: solve
     equation: x/4 = 6
     variable: x
     answer:
     - '24'
-  answer_text: $24$
+  answer_text: '$24$'
 - id: ch9-9-1-two-step
   section: '9.1'
   tier: F
   dfe:
   - A17
-  statement: Solve $3x+4=25$.
-  answer_label: Solve $3x+4=25$.
+  statement: 'Solve $3x+4=25$.'
+  answer_label: 'Solve $3x+4=25$.'
   check:
     kind: solve
     equation: 3*x + 4 = 25
     variable: x
     answer:
     - '7'
-  answer_text: $7$
+  answer_text: '$7$'
 - id: ch9-9-1-brackets
   section: '9.1'
   tier: F
   dfe:
   - A17
-  statement: Solve $2(x+3)=18$.
-  answer_label: Solve $2(x+3)=18$.
+  statement: 'Solve $2(x+3)=18$.'
+  answer_label: 'Solve $2(x+3)=18$.'
   check:
     kind: solve
     equation: 2*(x+3) = 18
     variable: x
     answer:
     - '6'
-  answer_text: $6$
+  answer_text: '$6$'
 - id: ch9-9-1-fraction
   section: '9.1'
   tier: F
   dfe:
   - A17
-  statement: Solve $x/3+2=7$.
-  answer_label: Solve $x/3+2=7$.
+  statement: 'Solve $x/3+2=7$.'
+  answer_label: 'Solve $x/3+2=7$.'
   check:
     kind: solve
     equation: x/3 + 2 = 7
     variable: x
     answer:
     - '15'
-  answer_text: $15$
+  answer_text: '$15$'
 - id: ch9-9-1-negative
   section: '9.1'
   tier: F
   dfe:
   - A17
-  statement: Solve $4-2x=-8$.
-  answer_label: Solve $4-2x=-8$.
+  statement: 'Solve $4-2x=-8$.'
+  answer_label: 'Solve $4-2x=-8$.'
   check:
     kind: solve
     equation: 4 - 2*x = -8
     variable: x
     answer:
     - '6'
-  answer_text: $6$
+  answer_text: '$6$'
 - id: ch9-9-1-decimal
   section: '9.1'
   tier: F
   dfe:
   - A17
-  statement: Solve $0.5x+1.2=4.2$.
-  answer_label: Solve $0.5x+1.2=4.2$.
+  statement: 'Solve $0.5x+1.2=4.2$.'
+  answer_label: 'Solve $0.5x+1.2=4.2$.'
   check:
     kind: solve
     equation: 0.5*x + 1.2 = 4.2
     variable: x
     answer:
     - '6'
-  answer_text: $6$
+  answer_text: '$6$'

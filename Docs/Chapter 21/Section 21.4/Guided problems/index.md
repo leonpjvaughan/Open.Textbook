@@ -11,8 +11,6 @@ kind: guided-problems
 
 # 21.4 Proof of circle theorems — Practise with help
 
-Try each question before opening a hint. Open the full working to check your method.
-
 ## Warm-up: remember
 
 1. What do equal sides in an isosceles triangle tell you about the opposite angles?

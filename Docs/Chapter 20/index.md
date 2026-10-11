@@ -6,9 +6,9 @@ strand: geometry
 
 # Chapter 20: Pythagoras' theorem and trigonometry
 
-## The chapter problem: cross the garden
+## The chapter problem
 
-A rectangular garden is $9$ m long and $12$ m wide. A path runs straight from one corner to the opposite corner. Estimate the path length before calculating. There is no mark for the estimate; use it to decide whether your final answer makes sense.
+**Cross the garden.** A rectangular garden is $9$ m long and $12$ m wide. A path runs straight from one corner to the opposite corner. Estimate the path length before calculating. There is no mark for the estimate; use it to decide whether your final answer makes sense.
 
 By the end of the chapter, you will find missing lengths and angles in right-angled and other triangles, including triangles in three dimensions.
 

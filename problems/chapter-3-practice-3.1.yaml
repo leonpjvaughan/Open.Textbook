@@ -31,7 +31,7 @@ problems:
     section: '3.1'
     tier: F
     dfe: [N6]
-    statement: 'Work out $\\sqrt[3]{-125}$. '
+    statement: 'Work out $\\sqrt[3]{-125}$.'
     answer_label: 'Work out the cube root'
     check: {kind: evaluate, expression: '-5', answer: '-5'}
     answer_text: '$-5$, because $(-5)^3=-125$.'
@@ -55,7 +55,7 @@ problems:
     section: '3.1'
     tier: H
     dfe: [N6]
-    statement: 'Work out $\\sqrt[4]{625}$. '
+    statement: 'Work out $\\sqrt[4]{625}$.'
     answer_label: 'Find a fourth root'
     check: {kind: evaluate, expression: '625**(1/4)', answer: '5'}
     answer_text: '$5$, because $5^4=625$.'

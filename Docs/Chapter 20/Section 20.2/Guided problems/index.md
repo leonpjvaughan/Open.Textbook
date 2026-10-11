@@ -61,4 +61,4 @@ Use tangent, then inverse tangent.
 tan θ = 8/15, so θ ≈ 28.1°.
 </details>
 
-For the final question, choose the method before opening the working. Explain which measurements determine your choice.
+Before opening each full working, name the method and explain which measurements led you to choose it.

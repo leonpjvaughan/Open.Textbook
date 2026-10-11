@@ -12,6 +12,8 @@ kind: walkthrough
 
 # 7.6 Surds and exact calculations — Learn
 
+**Prerequisites:** square numbers, factors and simplifying fractions.
+
 ## Before you begin
 
 You should be confident with square numbers, factors and simplifying fractions.
@@ -43,7 +45,7 @@ $$
 =9\sqrt2
 $$
 
-Only like surds can be added, just as only matching variables can be combined.
+Only like surds can be added, as with matching variables.
 
 ## Products and denominators
 
@@ -61,7 +63,7 @@ $$
 \frac5{\sqrt3}\times\frac{\sqrt3}{\sqrt3}=\frac{5\sqrt3}{3}
 $$
 
-> **Watch out.** $\sqrt a+\sqrt b$ does not usually equal $\sqrt{a+b}$. Simplify each root first, then combine only matching surds.
+> **Watch out.** A common error is to write $\sqrt a+\sqrt b=\sqrt{a+b}$. For example, $\sqrt9+\sqrt{16}=7$, but $\sqrt{25}=5$. Simplify each root first, then combine only matching surds.
 
 > **Progress check.** Before simplifying $\sqrt{50}+\sqrt8$, identify the square factor in each radicand.
 

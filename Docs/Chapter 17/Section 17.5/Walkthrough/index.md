@@ -41,7 +41,7 @@ A **scale** compares a drawing length with a real length. At scale $1$ cm repres
 
 ## Progress check
 
-The estimate was that the path is shorter than $30$ m. The scaled plan gives $10$ cm, which represents $30$ m exactly; check the right triangle before deciding.
+The estimate was that the path was shorter than $30$ m. The scaled plan gives a diagonal of $10$ cm, which represents $30$ m exactly.
 
 ## You should now be able to
 

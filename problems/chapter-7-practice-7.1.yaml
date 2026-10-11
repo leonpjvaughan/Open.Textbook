@@ -8,97 +8,97 @@ problems:
   tier: F
   dfe:
   - N13
-  statement: Convert $3.45$ km to metres.
+  statement: 'Convert $3.45$ km to metres.'
   answer_label: Convert kilometres to metres
   check:
     kind: evaluate
     expression: 3.45 * 1000
     answer: '3450'
-  answer_text: $3450$ m.
+  answer_text: '$3450$ m.'
 - id: ch7-71-capacity
   section: '7.1'
   tier: F
   dfe:
   - N13
-  statement: Convert $750$ ml to litres.
+  statement: 'Convert $750$ ml to litres.'
   answer_label: Convert millilitres to litres
   check:
     kind: evaluate
     expression: 750 / 1000
     answer: '0.75'
-  answer_text: $0.75$ litres.
+  answer_text: '$0.75$ litres.'
 - id: ch7-71-area
   section: '7.1'
   tier: F
   dfe:
   - N13
-  statement: Convert $0.8$ m$^2$ to cm$^2$.
+  statement: 'Convert $0.8$ m$^2$ to cm$^2$.'
   answer_label: Convert square metres
   check:
     kind: evaluate
     expression: 0.8 * 10000
     answer: '8000'
-  answer_text: $8000$ cm$^2$.
+  answer_text: '$8000$ cm$^2$.'
 - id: ch7-71-scale
   section: '7.1'
   tier: F
   dfe:
   - R1
-  statement: A map scale is $1:25\,000$. Two towns are $6.4$ cm apart. Find the real distance in kilometres.
+  statement: 'A map scale is $1:25\,000$. Two towns are $6.4$ cm apart. Find the real distance in kilometres.'
   answer_label: Map distance
   check:
     kind: evaluate
     expression: 6.4 * 25000 / 100000
     answer: '1.6'
-  answer_text: $1.6$ km.
+  answer_text: '$1.6$ km.'
 - id: ch7-71-drawing
   section: '7.1'
   tier: F
   dfe:
   - R1
-  statement: A plan uses scale $1:80$. Find the drawing length for a real wall measuring $4$ m.
+  statement: 'A plan uses scale $1:80$. Find the drawing length for a real wall measuring $4$ m.'
   answer_label: Plan length
   check:
     kind: evaluate
     expression: 400 / 80
     answer: '5'
-  answer_text: $5$ cm.
+  answer_text: '$5$ cm.'
 - id: ch7-71-bearing
   section: '7.1'
   tier: F
   dfe:
   - G14
-  statement: A boat travels on a bearing of $072^\circ$. Give the reverse bearing.
+  statement: 'A boat travels on a bearing of $072^\circ$. Give the reverse bearing.'
   answer_label: Reverse bearing
   check:
     kind: evaluate
     expression: 72 + 180
     answer: '252'
-  answer_text: $252^\circ$.
+  answer_text: '$252^\circ$.'
 - id: ch7-71-bearing2
   section: '7.1'
   tier: F
   dfe:
   - G14
-  statement: A bearing is measured clockwise from which direction?
+  statement: 'A bearing is measured clockwise from which direction?'
   answer_label: Bearing reference
   check:
     kind: evaluate
     expression: 360 - 0
     answer: '360'
-  answer_text: From north, clockwise.
+  answer_text: 'From north, clockwise.'
 - id: ch7-71-convert
   section: '7.1'
   tier: F
   dfe:
   - N13
-  statement: Convert $2.3$ tonnes to kilograms.
+  statement: 'Convert $2.3$ tonnes to kilograms.'
   answer_label: Convert tonnes
   check:
     kind: evaluate
     expression: 2.3 * 1000
     answer: '2300'
-  answer_text: $2300$ kg.
+  answer_text: '$2300$ kg.'
 - id: ch7-71-scale-h
   section: '7.1'
   tier: H
@@ -110,7 +110,7 @@ problems:
     kind: evaluate
     expression: 300000 / 7.5
     answer: '40000'
-  answer_text: $1:40\,000$.
+  answer_text: '$1:40\,000$.'
 - id: ch7-71-area-h
   section: '7.1'
   tier: H
@@ -122,4 +122,4 @@ problems:
     kind: evaluate
     expression: 35000 / 10000
     answer: '3.5'
-  answer_text: $3.5$ m$^2$.
+  answer_text: '$3.5$ m$^2$.'

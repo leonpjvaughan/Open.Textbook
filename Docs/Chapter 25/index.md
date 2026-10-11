@@ -6,7 +6,9 @@ strand: statistics
 
 # Chapter 25: Statistics: spread, grouped data and correlation
 
-## The chapter problem: travel times
+## The chapter problem
+
+### Travel times
 
 A school records the travel time, in minutes, for 20 pupils:
 
@@ -16,10 +18,9 @@ A school records the travel time, in minutes, for 20 pupils:
 times lies in a narrow or wide interval. Which value might make the data look
 less typical?
 
-By the end, you will describe the data with quartiles and a box plot, read
-cumulative frequency, compare grouped data, and discuss possible unusual values.
+## By the end of this chapter
 
-## By the end of this chapter you will be able to
+You will be able to:
 
 - find and interpret the median, quartiles and interquartile range;
 - draw and read box plots and cumulative frequency graphs;

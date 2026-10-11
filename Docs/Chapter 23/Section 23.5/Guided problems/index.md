@@ -65,7 +65,7 @@ The matching results are 1 and 2, so the probability is $\frac26=\frac13$.
 <details markdown="1">
 <summary>Hint</summary>
 
-Think about the opposite event, total count, or restricted group named in the question.
+Count the results less than 3, then divide by the six equally likely die results.
 
 <details markdown="1">
 <summary>Full working</summary>

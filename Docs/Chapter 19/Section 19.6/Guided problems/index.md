@@ -28,45 +28,45 @@ Attempt each question first. Open the hint, then the next step, when needed.
 
 <details markdown="1"><summary>Hint</summary>
 
-Choose the matching formula and identify each measurement.
+Subtract the area removed from the original rectangle's area.
 
 <details markdown="1"><summary>Next step</summary>
 
-Substitute the values, keep units, and calculate.
+Find $9\times6-3\times2$.
 
 <details markdown="1"><summary>Full working</summary>
 
-$48\text{ cm}^2$.
+$9\times6-3\times2=54-6=48\text{ cm}^2$.
 </details></details></details>
 
 **2.** A rectangle 10 cm by 8 cm has a 4 cm by 3 cm rectangle removed. Work out the remaining area.
 
 <details markdown="1"><summary>Hint</summary>
 
-Choose the matching formula and identify each measurement.
+Find the two rectangle areas, then subtract the smaller area.
 
 <details markdown="1"><summary>Next step</summary>
 
-Substitute the values, keep units, and calculate.
+Find $10\times8-4\times3$.
 
 <details markdown="1"><summary>Full working</summary>
 
-$68\text{ cm}^2$.
+$10\times8-4\times3=80-12=68\text{ cm}^2$.
 </details></details></details>
 
 **3.** A shape is made from a rectangle 7 cm by 4 cm and a triangle with base 7 cm and height 3 cm. Work out its area.
 
 <details markdown="1"><summary>Hint</summary>
 
-Choose the matching formula and identify each measurement.
+Add the rectangle area and the triangle area.
 
 <details markdown="1"><summary>Next step</summary>
 
-Substitute the values, keep units, and calculate.
+Find $7\times4+\frac12\times7\times3$.
 
 <details markdown="1"><summary>Full working</summary>
 
-$38.5\text{ cm}^2$.
+$7\times4+\frac12\times7\times3=28+10.5=38.5\text{ cm}^2$.
 </details></details></details>
 
 Try the remaining questions without opening the full working.

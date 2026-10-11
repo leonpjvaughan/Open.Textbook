@@ -15,6 +15,8 @@ kind: walkthrough
 
 **Objectives:** find factors and multiples; recognise prime and composite numbers; explain why 1 is not prime.
 
+**Covers:** N4.
+
 ## Factors and multiples
 
 A **factor** of a number divides it exactly, with no remainder. A **multiple** is the result of multiplying a number by a whole number.
@@ -47,7 +49,7 @@ $21=3\times7$, so 3 and 7 divide it exactly.
 
 It has factors besides 1 and itself, so it is composite.
 
-> **Watch out.** Some learners call 1 prime because it has no factor pair. A prime must have exactly two factors; 1 has only one. Check the number of factors.
+> **Watch out.** You may call 1 prime because it has no factor pair. A prime must have exactly two factors; 1 has only one. Check the number of factors.
 
 ## Progress check
 

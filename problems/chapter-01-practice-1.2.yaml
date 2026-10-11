@@ -85,8 +85,8 @@ problems:
     section: "1.2"
     tier: F
     dfe: [N2, N3]
-    statement: "A pack of 8 sandwiches costs £10.40. Work out the cost of one sandwich."
-    answer_label: "Cost of one sandwich"
+    statement: 'A pack of 8 sandwiches costs £10.40. Work out the cost of one sandwich.'
+    answer_label: 'Cost of one sandwich'
     check: {kind: evaluate, expression: "10.40 / 8", answer: "1.30"}
     answer_text: '$10.40 \div 8 = £1.30$.'
 
@@ -94,8 +94,8 @@ problems:
     section: "1.2"
     tier: F
     dfe: [N2, N3]
-    statement: "Three friends share a restaurant bill of £86.40 equally. How much does each pay?"
-    answer_label: "Each friend's share"
+    statement: 'Three friends share a restaurant bill of £86.40 equally. How much does each pay?'
+    answer_label: 'Each friend''s share'
     check: {kind: evaluate, expression: "86.40 / 3", answer: "28.80"}
     answer_text: '$86.40 \div 3 = £28.80$.'
 
@@ -104,7 +104,7 @@ problems:
     tier: F
     dfe: [N2, N3]
     statement: 'In the chapter problem, work out the exact profit: total taken $£132$ minus the cost of the stock.'
-    answer_label: "Exact profit"
+    answer_label: 'Exact profit'
     check: {kind: evaluate, expression: "132 - (120 * 0.65 + 8 * 1.85)", answer: "39.20"}
     answer_text: 'Stock cost $120 \times 0.65 + 8 \times 1.85 = 78 + 14.80 = £92.80$, so profit $= 132 - 92.80 = £39.20$.'
 

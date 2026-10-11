@@ -11,33 +11,34 @@ kind: guided-problems
 
 # 11.2 Gradient and intercept: y = mx + c — Practise with help
 
-Try each item before opening its hint. Check your method after completing the working.
+Try each question before opening its hint.
 
 ## Warm-up: remember
 
-1. Plot or name $(0,3)$. 2. Work out $12\div3$.
+1. What are the gradient and vertical intercept in $y=4x+2$? 2. Work out $12\div3$.
 
 <details markdown="1"><summary>Check your answers</summary>
 
-Answers: origin $(0,0)$; 11. For the other item: $y$-axis; 8; 2; 6; 6; 20; 6, as appropriate to the questions above.
+Answers: gradient 4 and vertical intercept 2; 4.
 </details>
 
 ## Practise with help
 
-**1.** Find the gradient between $(1,2)$ and $(4,11)$.
+**1.** Find the gradient through $(1,2)$ and $(4,11)$.
 
-<details markdown="1"><summary>Hint</summary>Identify the known values and select the rule from this section.</details>
-<details markdown="1"><summary>Next step</summary>Substitute the values into the rule and keep the units consistent.</details>
-<details markdown="1"><summary>Full working</summary>3</details>
+<details markdown="1"><summary>Hint</summary>Use change in $y$ divided by change in $x$.</details>
+<details markdown="1"><summary>Next step</summary>Substitute: $(11-2)/(4-1)$.</details>
+<details markdown="1"><summary>Full working</summary>$(11-2)/(4-1)=9/3=3$.</details>
 
-**2.** State the gradient and $y$-intercept of $y=4x-3$.
+**2.** State the gradient and vertical intercept of $y=4x-3$.
 
-<details markdown="1"><summary>Hint</summary>Write the relevant formula before substituting.</details>
-<details markdown="1"><summary>Next step</summary>Show one operation on each line, then check the result.</details>
-<details markdown="1"><summary>Full working</summary>4 and -3</details>
+<details markdown="1"><summary>Hint</summary>Compare with $y=mx+c$.</details>
+<details markdown="1"><summary>Next step</summary>Identify the coefficient of $x$ and the constant term.</details>
+<details markdown="1"><summary>Full working</summary>Gradient 4; vertical intercept $-3$.</details>
 
-**3. Earlier learning.** Solve $2x+3=11$. Which method did you choose, and why?
+**3.** Earlier learning: work out $-2+5$.
 
-<details markdown="1"><summary>Hint</summary>Undo addition before division.</details>
-<details markdown="1"><summary>Next step</summary>$2x=8$.</details>
-<details markdown="1"><summary>Full working</summary>$2x+3=11$, so $2x=8$, hence $x=4$. Use inverse operations to isolate $x$.</details>
+<details markdown="1"><summary>Hint</summary>Start at $-2$ on the number line and move 5 units right.</details>
+<details markdown="1"><summary>Next step</summary>Add 5 to $-2$.</details>
+<details markdown="1"><summary>Full working</summary>3.</details>
+

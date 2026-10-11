@@ -63,7 +63,7 @@ problems:
     tier: F
     dfe: [N1]
     statement: 'Write these numbers in order, smallest first: $0.505$, $0.55$, $0.5$, $0.0505$.'
-    answer_label: "Order the decimals"
+    answer_label: 'Order the decimals'
     check:
       kind: all
       checks:
@@ -77,7 +77,7 @@ problems:
     tier: F
     dfe: [N1]
     statement: 'Write these temperatures in order, coldest first: $-6^\circ\text{C}$, $2^\circ\text{C}$, $-1^\circ\text{C}$, $0^\circ\text{C}$, $-3^\circ\text{C}$.'
-    answer_label: "Order the temperatures"
+    answer_label: 'Order the temperatures'
     check:
       kind: all
       checks:
@@ -92,7 +92,7 @@ problems:
     tier: F
     dfe: [N1]
     statement: 'A bank balance goes from $£42$ to $-£15$ to $-£3$. Put the balances in order, smallest first.'
-    answer_label: "Order the balances"
+    answer_label: 'Order the balances'
     check:
       kind: all
       checks:
@@ -105,7 +105,7 @@ problems:
     tier: F
     dfe: [N1]
     statement: 'True or false? Explain each answer. (a) $0.7 > 0.65$ (b) $-2 > -1$ (c) $0.30 = 0.3$.'
-    answer_label: "True or false"
+    answer_label: 'True or false'
     check:
       kind: all
       checks:
@@ -144,7 +144,7 @@ problems:
     tier: F
     dfe: [N1]
     statement: 'In the chapter problem the cans cost 65p and sell for £1.20. Write a sentence using $<$ to compare these two amounts, and a sentence using $>$ to compare £1.85 with £3.00.'
-    answer_label: "Compare the prices"
+    answer_label: 'Compare the prices'
     check:
       kind: all
       checks:

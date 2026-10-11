@@ -1,8 +1,8 @@
 ---
-title: 3.4 Negative and fractional indices — Practise with help
+title: "3.4 Negative and fractional indices — Practise with help"
 chapter: 3
 chapter_title: Powers, roots and indices
-section: '3.4'
+section: "3.4"
 section_title: Negative and fractional indices
 tier: H
 dfe: [N7]
@@ -13,77 +13,77 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Work out $3^2$, then use your answer to check $\sqrt{9}$.
-2. Work out $36\div6$.
+1. Work out $\sqrt{64}$.
+2. Write $3^{-2}$ as a fraction.
 
 <details markdown="1">
 <summary>Answers and feedback</summary>
 
-1. $9$, because $3\times3=9$. Then $\sqrt{9}=3$, which checks the root.
-2. $6$, because $6\times6=36$.
+1. $8$, because $8^2=64$.
+2. $\frac{1}{9}$, because $3^{-2}=1/3^2$.
 
 </details>
 
 ## Practise with help
 
-**1.** Start with $2^4$. Find its value.
+**1.** Work out $81^{1/2}$.
 
 <details markdown="1">
 <summary>Hint</summary>
 
-Write four factors of 2.
+An index of $\frac12$ means square root.
 
 <details markdown="1">
 <summary>One step</summary>
 
-$2^4=2\times2\times2\times2$.
+$81^{1/2}=\sqrt{81}$.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-$2^4=2\times2\times2\times2=16$.
+$81^{1/2}=\sqrt{81}=9$.
 
 </details>
 </details>
 </details>
 
-**2.** Find $\sqrt{81}$.
+**2.** Work out $125^{2/3}$.
 
 <details markdown="1">
 <summary>Hint</summary>
 
-Which positive whole number squares to 81?
+Take the cube root, then square the result.
 
 <details markdown="1">
 <summary>One step</summary>
 
-$9^2=81$.
+$125^{2/3}=(\sqrt[3]{125})^2=5^2$.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-$\sqrt{81}=9$, since $9^2=81$.
+$125^{2/3}=(\sqrt[3]{125})^2=5^2=25$.
 
 </details>
 </details>
 </details>
 
-**3.** Simplify $x^2x^5$.
+**3.** Work out $8^{-4/3}$.
 
 <details markdown="1">
 <summary>Hint</summary>
 
-Write out the factors, then count them.
+Find $8^{4/3}$, then take its reciprocal.
 
 <details markdown="1">
 <summary>One step</summary>
 
-$x^2x^5=x^{2+5}$.
+$8^{4/3}=(\sqrt[3]{8})^4=2^4=16$.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-$x^2x^5=x^7$ because the product joins seven factors of $x$.
+$8^{-4/3}=\frac{1}{8^{4/3}}=\frac{1}{16}$.
 
 </details>
 </details>

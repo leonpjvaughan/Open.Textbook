@@ -2,127 +2,121 @@ chapter: 23
 problems:
 - id: p1-conditional-table
   section: '23.6'
-  tier: F
+  tier: 'H'
   dfe:
-  - P9
-  statement: Of 20 students who cycle, 15 wear helmets. Find the probability a cyclist wears a helmet.
-  answer_label: Of 20 students who cycle, 15 wear helmets. Find the probability a cyclist wears a helmet.
+  - 'P9'
+  statement: 'Of 20 students who cycle, 15 wear helmets. Find the probability a cyclist wears a helmet.'
+  answer_label: 'Of 20 students who cycle, 15 wear helmets. Find the probability a cyclist wears a helmet.'
   check:
-    kind: evaluate
-    expression: 15/20
-    answer: 3/4
-  answer_text: $\frac34$.
+    kind: 'evaluate'
+    expression: '15/20'
+    answer: '3/4'
+  answer_text: '$\frac34$.'
 - id: p2-given-bus
   section: '23.6'
-  tier: F
+  tier: 'H'
   dfe:
-  - P9
-  statement: Of 18 bus users, 7 bring lunch. Find $P(\text{lunch}\mid\text{bus})$.
-  answer_label: Of 18 bus users, 7 bring lunch. Find $P(\text{lunch}\mid\text{bus})$.
+  - 'P9'
+  statement: 'Of 18 bus users, 7 bring lunch. Find $P(\text{lunch}\mid\text{bus})$.'
+  answer_label: 'Of 18 bus users, 7 bring lunch. Find $P(\text{lunch}\mid\text{bus})$.'
   check:
-    kind: evaluate
-    expression: 7/18
-    answer: 7/18
-  answer_text: $\frac7{18}$.
+    kind: 'evaluate'
+    expression: '7/18'
+    answer: '7/18'
+  answer_text: '$\frac7{18}$.'
 - id: p3-venn-conditional
   section: '23.6'
-  tier: F
+  tier: 'H'
   dfe:
-  - P9
-  statement: In a group of 30, 12 are in A and 8 are in both A and B. Find $P(B\mid A)$.
-  answer_label: In a group of 30, 12 are in A and 8 are in both A and B. Find $P(B\mid A)$.
+  - 'P9'
+  statement: 'In a group of 30, 12 are in A and 8 are in both A and B. Find $P(B\mid A)$.'
+  answer_label: 'In a group of 30, 12 are in A and 8 are in both A and B. Find $P(B\mid A)$.'
   check:
-    kind: evaluate
-    expression: 8/12
-    answer: 2/3
-  answer_text: $\frac23$.
+    kind: 'evaluate'
+    expression: '8/12'
+    answer: '2/3'
+  answer_text: '$\frac23$.'
 - id: p4-without-replacement
   section: '23.6'
-  tier: F
+  tier: 'H'
   dfe:
-  - P9
-  statement: A bag has 4 red and 3 blue counters. A red is removed. Find the probability the next counter is blue.
-  answer_label: A bag has 4 red and 3 blue counters. A red is removed. Find the probability the next counter is blue.
+  - 'P9'
+  statement: 'A bag has 4 red and 3 blue counters. Given that a red counter was removed, find the probability the next counter is blue.'
+  answer_label: 'A bag has 4 red and 3 blue counters. Given that a red counter was removed, find the probability the next counter is blue.'
   check:
-    kind: evaluate
-    expression: 3/6
-    answer: 1/2
+    kind: 'evaluate'
+    expression: '3/6'
+    answer: '1/2'
   answer_text: 'After removal, 3 of 6 are blue: $\frac12$.'
 - id: p5-conditional-group
   section: '23.6'
-  tier: F
+  tier: 'H'
   dfe:
-  - P9
-  statement: There are 16 students in a team, and 6 are left-handed. Find the probability a randomly selected team member
-    is left-handed.
-  answer_label: There are 16 students in a team, and 6 are left-handed. Find the probability a randomly selected team member
-    is left-handed.
+  - 'P9'
+  statement: 'There are 16 students in a team. Six are left-handed, and 4 of the left-handed students wear glasses. Find the probability a student wears glasses, given that the student is left-handed.'
+  answer_label: 'There are 16 students in a team. Six are left-handed, and 4 of the left-handed students wear glasses. Find the probability a student wears glasses, given that the student is left-handed.'
   check:
-    kind: evaluate
-    expression: 6/16
-    answer: 3/8
-  answer_text: $\frac38$.
+    kind: 'evaluate'
+    expression: '4/6'
+    answer: '2/3'
+  answer_text: 'Among the 6 left-handed students, 4 wear glasses: $\frac46=\frac23$.'
 - id: p6-given-girls
   section: '23.6'
-  tier: F
+  tier: 'H'
   dfe:
-  - P9
-  statement: In a group, 14 girls attend a club and 9 of them walk home. Find the probability a club attendee walks home,
-    given the attendee is a girl.
-  answer_label: In a group, 14 girls attend a club and 9 of them walk home. Find the probability a club attendee walks home,
-    given the attendee is a girl.
+  - 'P9'
+  statement: 'In a group, 14 girls attend a club and 9 of them walk home. Find the probability a club attendee walks home, given the attendee is a girl.'
+  answer_label: 'In a group, 14 girls attend a club and 9 of them walk home. Find the probability a club attendee walks home, given the attendee is a girl.'
   check:
-    kind: evaluate
-    expression: 9/14
-    answer: 9/14
-  answer_text: $\frac9{14}$.
+    kind: 'evaluate'
+    expression: '9/14'
+    answer: '9/14'
+  answer_text: '$\frac9{14}$.'
 - id: p7-conditional-die
   section: '23.6'
-  tier: F
+  tier: 'H'
   dfe:
-  - P9
-  statement: A fair die is rolled. Given the result is even, find the probability it is greater than 3.
-  answer_label: A fair die is rolled. Given the result is even, find the probability it is greater than 3.
+  - 'P9'
+  statement: 'A fair die is rolled. Given the result is even, find the probability it is greater than 3.'
+  answer_label: 'A fair die is rolled. Given the result is even, find the probability it is greater than 3.'
   check:
-    kind: evaluate
-    expression: 2/3
-    answer: 2/3
+    kind: 'evaluate'
+    expression: '2/3'
+    answer: '2/3'
   answer_text: 'Among 2, 4 and 6, two exceed 3: $\frac23$.'
 - id: p8-conditional-set
   section: '23.6'
-  tier: F
+  tier: 'H'
   dfe:
-  - P9
-  statement: In a group, 24 are in A and 10 are in both A and B. Find $P(A\cap B\mid A)$.
-  answer_label: In a group, 24 are in A and 10 are in both A and B. Find $P(A\cap B\mid A)$.
+  - 'P9'
+  statement: 'In a group, 24 are in A and 10 are in both A and B. Find $P(A\cap B\mid A)$.'
+  answer_label: 'In a group, 24 are in A and 10 are in both A and B. Find $P(A\cap B\mid A)$.'
   check:
-    kind: evaluate
-    expression: 10/24
-    answer: 5/12
-  answer_text: $\frac5{12}$.
+    kind: 'evaluate'
+    expression: '10/24'
+    answer: '5/12'
+  answer_text: '$\frac5{12}$.'
 - id: p9-higher-dependent
   section: '23.6'
-  tier: H
+  tier: 'H'
   dfe:
-  - P9
-  statement: '**H** A bag has 5 red and 3 blue counters. One red is removed without replacement. Find the probability the
-    second counter is red, given the first was red.'
-  answer_label: '**H** A bag has 5 red and 3 blue counters. One red is removed without replacement. Find the probability the
-    second counter is red, given the first was red.'
+  - 'P9'
+  statement: 'A bag has 5 red and 3 blue counters. One red is removed without replacement. Find the probability the second counter is red, given the first was red.'
+  answer_label: 'A bag has 5 red and 3 blue counters. One red is removed without replacement. Find the probability the second counter is red, given the first was red.'
   check:
-    kind: evaluate
-    expression: 4/7
-    answer: 4/7
+    kind: 'evaluate'
+    expression: '4/7'
+    answer: '4/7'
   answer_text: 'Four red remain among seven counters: $\frac47$.'
 - id: p10-higher-conditional
   section: '23.6'
-  tier: H
+  tier: 'H'
   dfe:
-  - P9
-  statement: '**H** A fair die is rolled. Given the result is greater than 2, find the probability it is odd.'
-  answer_label: '**H** A fair die is rolled. Given the result is greater than 2, find the probability it is odd.'
+  - 'P9'
+  statement: 'A fair die is rolled. Given the result is greater than 2, find the probability it is odd.'
+  answer_label: 'A fair die is rolled. Given the result is greater than 2, find the probability it is odd.'
   check:
-    kind: evaluate
-    expression: 2/4
-    answer: 1/2
-  answer_text: The restricted results are 3, 4, 5, 6; two are odd, so $\frac12$.
+    kind: 'evaluate'
+    expression: '2/4'
+    answer: '1/2'
+  answer_text: 'The restricted results are 3, 4, 5, 6; two are odd, so $\frac12$.'

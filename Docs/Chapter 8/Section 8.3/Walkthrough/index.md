@@ -15,11 +15,13 @@ kind: walkthrough
 
 **By the end of this section you can:** expand a single bracket, including when the factor is negative, then collect like terms.
 
+**Covers:** A4.
+
 ## Learn the method
 
 Expanding means multiplying each term inside brackets by the factor outside. This uses the distributive law.
 
-For $3(x+4)$, multiply $3$ by both terms: $3	imes x+3	imes4=3x+12$.
+For $3(x+4)$, multiply $3$ by both terms: $3\times x+3\times4=3x+12$.
 
 A negative factor multiplies every term. For $-2(y-5)$, the products are $-2y$ and $+10$.
 
@@ -29,7 +31,7 @@ If terms appear outside the bracket, expand first, then collect like terms.
 
 $-3(2x-5)$
 
-$=(-3)(2x)+(-3)(-5)$ — multiply each term.
+$=(-3)(2x)+(-3)(-5)$ — multiply $-3$ by both terms.
 
 $=-6x+15$
 
@@ -50,4 +52,4 @@ A rectangular frame has outer dimensions $x+6$ and $x+4$. Its inner rectangle ha
 ## You should now be able to
 
 - expand a single bracket, including when the factor is negative, then collect like terms.
-- explain your method and check your answer using the inverse operation or substitution.
+

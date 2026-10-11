@@ -38,9 +38,6 @@ Brackets first: $3 + 2 = 5$, then $5 \times 4 = 20$.
 So brackets can change an answer completely: $3 + 2 \times 4 = 11$, but
 $(3 + 2) \times 4 = 20$.
 
-> **Watch out.** Working strictly left to right. $3 + 2 \times 4$ is **not**
-> $(3 + 2) \times 4$.
-
 > **Watch out.** Thinking multiplication always beats division. They have
 > equal priority, so work left to right: $12 \div 4 \times 3 = 3 \times 3 = 9$,
 > not $12 \div 12 = 1$. Addition and subtraction behave the same way:

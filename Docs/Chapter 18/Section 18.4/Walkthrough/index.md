@@ -13,9 +13,9 @@ kind: walkthrough
 
 **Prerequisites:** triangle angle facts, side lengths and equality.
 
-**Objectives:** define congruence and choose a valid triangle congruence criterion. Covers: G5.
+**Objectives:** define congruence and choose a valid triangle congruence criterion.
 
-Two shapes are **congruent** when they have the same shape and the same size. One can fit exactly over the other after a reflection, rotation or translation.
+Two shapes are **congruent** when they have the same shape and the same size. You can place either shape exactly over the other after a reflection, rotation or translation.
 
 For triangles, use the given matching sides and angles to establish congruence. Common criteria are SSS (three sides), SAS (two sides and the included angle), ASA (two angles and the included side), and RHS (right angle, hypotenuse and one side).
 

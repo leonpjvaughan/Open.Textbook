@@ -61,4 +61,4 @@ Rearrange cosine rule for cos C.
 cos C = (16+25−36)/40 = 1/8; C ≈ 82.8°.
 </details>
 
-For the final question, choose the method before opening the working. Explain which measurements determine your choice.
+Before opening each full working, name the method and explain which measurements led you to choose it.

@@ -12,8 +12,6 @@ kind: problems
 
 # 10.5 Geometric sequences — Practise
 
-Work each question independently. For mixed sequence types, name the method before you calculate.
-
 :::problems chapter-10-practice-10.5
 
 :::answers chapter-10-practice-10.5

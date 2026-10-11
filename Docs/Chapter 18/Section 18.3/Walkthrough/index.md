@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** enlargement, fractions, negative numbers and coordinates.
 
-**Objectives:** use fractional and negative scale factors for enlargements about the origin. Covers: G7.
+**Objectives:** use fractional and negative scale factors for enlargements about the origin.
 
 A fractional scale factor between $0$ and $1$ makes a smaller image. A negative scale factor places the image on the opposite side of the centre.
 

@@ -13,6 +13,8 @@ kind: walkthrough
 
 # 7.2 Compound measures: speed, density and pressure — Learn
 
+**Prerequisites:** unit conversions and rearranging a formula with inverse operations.
+
 ## Before you begin
 
 You should be able to convert units and rearrange a formula by using inverse operations.
@@ -60,7 +62,7 @@ $$
 
 One pascal, written Pa, is one newton per square metre. Check that all units agree before substituting.
 
-> **Watch out.** Dividing by time gives speed, but multiplying gives distance. Check the formula triangle or units before choosing an operation.
+> **Watch out.** A common error is to multiply distance by time when finding speed. For $150$ km in $2.5$ hours, divide: $150\div2.5=60$ km/h. Multiplying gives $375$ km hours, which is not a speed.
 
 > **Progress check.** A runner covers $400$ m in $80$ seconds. Which formula gives the speed, and what units will the answer use?
 

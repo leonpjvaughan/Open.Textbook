@@ -117,10 +117,9 @@ problems:
   answer_text: Compound interest earns interest on earlier interest.
 - id: p10-higher
   section: '6.4'
-  tier: H
+  tier: F
   dfe: *id001
-  statement: '**H** £900 is invested at 3% compound interest for 5 years. Work out the increase in value to the
-    nearest penny.'
+  statement: '£900 is invested at 3% compound interest for 5 years. Work out the increase in value to the nearest penny.'
   answer_label: Increase
   check:
     kind: rounded

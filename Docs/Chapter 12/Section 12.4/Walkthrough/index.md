@@ -34,7 +34,7 @@ $$
 So $x+2=0$ or $x+3=0$.
 
 $$
-x=-2 \quad	ext{or}\quad x=-3
+x=-2 \quad\text{or}\quad x=-3
 $$
 
 **Example 2.** Solve $x^2=5x+14$.

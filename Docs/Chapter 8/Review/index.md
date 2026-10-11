@@ -8,13 +8,15 @@ kind: review
 
 ## Resolve the chapter problem
 
-The outer area is $(x+6)(x+4)=x^2+10x+24$. The opening area is $x(x+2)=x^2+2x$. Subtract: $x^2+10x+24-(x^2+2x)=8x+24$ square centimetres. For $x=5$, the frame area is $8(5)+24=64$ square centimetres.
+The outer area is $(x+6)(x+4)=x^2+10x+24$. The opening area is $x(x+2)=x^2+2x$.
+
+Subtract the opening area from the outer area: $x^2+10x+24-(x^2+2x)=8x+24$ square centimetres. For $x=5$, the frame area is $8(5)+24=64$ square centimetres.
 
 The expression can also be factorised as $8(x+3)$, which provides a check by expansion.
 
 ## Mixed practice
 
-For each question, choose a method and explain why it applies.
+For each question, choose a method and explain why it applies. Check by reversing the operation when possible.
 
 1. Simplify $4a+3-2a+6$.
 2. Expand $3(2x-5)$.

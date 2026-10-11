@@ -42,6 +42,6 @@ might help you check the result.
 
 ## How to use this chapter
 
-Each section has **Learn**, **Practise with help**, and **Practise** pages. The
+Each section has **Learn**, **Guided problems**, and **Practise** pages. The
 Review page returns to the two machines and mixes their ideas with earlier
 algebra. You can revisit a worked example whenever you need it.

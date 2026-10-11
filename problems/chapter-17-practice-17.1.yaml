@@ -1,106 +1,106 @@
 chapter: 17
 problems:
-- id: ch17-17-1-shape-polygon
-  section: '17.1'
-  tier: F
-  dfe:
-  - G1
-  - G12
-  statement: Name the polygon with 8 sides.
-  answer_label: Name the polygon with 8 sides.
-  check:
-    kind: evaluate
-    expression: '8'
-    answer: '8'
-  answer_text: An octagon
-- id: ch17-17-1-cube-count
-  section: '17.1'
-  tier: F
-  dfe:
-  - G1
-  - G12
-  statement: A cube has how many edges?
-  answer_label: A cube has how many edges?
-  check:
-    kind: evaluate
-    expression: '12'
-    answer: '12'
-  answer_text: 12 edges
-- id: ch17-17-1-cuboid-vertices
-  section: '17.1'
-  tier: F
-  dfe:
-  - G1
-  - G12
-  statement: How many vertices does a cuboid have?
-  answer_label: How many vertices does a cuboid have?
-  check:
-    kind: evaluate
-    expression: '8'
-    answer: '8'
-  answer_text: 8 vertices
-- id: ch17-17-1-prism-faces
-  section: '17.1'
-  tier: F
-  dfe:
-  - G1
-  - G12
-  statement: A triangular prism has how many faces?
-  answer_label: A triangular prism has how many faces?
-  check:
-    kind: evaluate
-    expression: 2 + 3
-    answer: '5'
-  answer_text: 5 faces
-- id: ch17-17-1-symmetry-square
-  section: '17.1'
-  tier: F
-  dfe:
-  - G1
-  - G12
-  statement: How many lines of reflection symmetry does a square have?
-  answer_label: How many lines of reflection symmetry does a square have?
-  check:
-    kind: evaluate
-    expression: '4'
-    answer: '4'
-  answer_text: 4 lines
-- id: ch17-17-1-triangle-label
-  section: '17.1'
-  tier: F
-  dfe:
-  - G1
-  - G12
-  statement: In triangle ABC, name the angle at B using three letters.
-  answer_label: In triangle ABC, name the angle at B using three letters.
-  check:
-    kind: evaluate
-    expression: 180 - 60 - 60
-    answer: '60'
-  answer_text: Angle ABC (or CBA)
-- id: ch17-17-1-draw-description
-  section: '17.1'
-  tier: F
-  dfe:
-  - G1
-  - G12
-  statement: A right-angled triangle has its right angle at C. If angle A is 35 degrees, work out angle B.
-  answer_label: A right-angled triangle has its right angle at C. If angle A is 35 degrees, work out angle B.
-  check:
-    kind: evaluate
-    expression: 180 - 90 - 35
-    answer: '55'
-  answer_text: 55 degrees
-- id: ch17-17-1-sphere-properties
-  section: '17.1'
-  tier: F
-  dfe:
-  - G1
-  - G12
-  statement: How many edges and vertices does a sphere have?
-  answer_label: How many edges and vertices does a sphere have?
-  check:
-    kind: evaluate
-    expression: '0'
-    answer: '0'
-  answer_text: 0 edges and 0 vertices
+  - id: 'ch17-17-1-shape-polygon'
+    section: '17.1'
+    tier: 'F'
+    dfe:
+      - 'G1'
+      - 'G12'
+    statement: 'Name the polygon with 8 sides.'
+    answer_label: 'Name the polygon with 8 sides.'
+    check:
+      kind: 'evaluate'
+      expression: '8'
+      answer: '8'
+    answer_text: 'An octagon'
+  - id: 'ch17-17-1-cube-count'
+    section: '17.1'
+    tier: 'F'
+    dfe:
+      - 'G1'
+      - 'G12'
+    statement: 'A cube has how many edges?'
+    answer_label: 'A cube has how many edges?'
+    check:
+      kind: 'evaluate'
+      expression: '12'
+      answer: '12'
+    answer_text: '12 edges'
+  - id: 'ch17-17-1-cuboid-vertices'
+    section: '17.1'
+    tier: 'F'
+    dfe:
+      - 'G1'
+      - 'G12'
+    statement: 'How many vertices does a cuboid have?'
+    answer_label: 'How many vertices does a cuboid have?'
+    check:
+      kind: 'evaluate'
+      expression: '8'
+      answer: '8'
+    answer_text: '8 vertices'
+  - id: 'ch17-17-1-prism-faces'
+    section: '17.1'
+    tier: 'F'
+    dfe:
+      - 'G1'
+      - 'G12'
+    statement: 'A triangular prism has how many faces?'
+    answer_label: 'A triangular prism has how many faces?'
+    check:
+      kind: 'evaluate'
+      expression: '2 + 3'
+      answer: '5'
+    answer_text: '5 faces'
+  - id: 'ch17-17-1-symmetry-square'
+    section: '17.1'
+    tier: 'F'
+    dfe:
+      - 'G1'
+      - 'G12'
+    statement: 'How many lines of reflection symmetry does a square have?'
+    answer_label: 'How many lines of reflection symmetry does a square have?'
+    check:
+      kind: 'evaluate'
+      expression: '4'
+      answer: '4'
+    answer_text: '4 lines'
+  - id: 'ch17-17-1-triangle-label'
+    section: '17.1'
+    tier: 'F'
+    dfe:
+      - 'G1'
+      - 'G12'
+    statement: 'In triangle ABC, name the angle at B using three letters.'
+    answer_label: 'In triangle ABC, name the angle at B using three letters.'
+    check:
+      kind: 'evaluate'
+      expression: '180 - 60 - 60'
+      answer: '60'
+    answer_text: 'Angle ABC (or CBA)'
+  - id: 'ch17-17-1-draw-description'
+    section: '17.1'
+    tier: 'F'
+    dfe:
+      - 'G1'
+      - 'G12'
+    statement: 'A right-angled triangle has its right angle at C. If angle A is 35 degrees, work out angle B.'
+    answer_label: 'A right-angled triangle has its right angle at C. If angle A is 35 degrees, work out angle B.'
+    check:
+      kind: 'evaluate'
+      expression: '180 - 90 - 35'
+      answer: '55'
+    answer_text: '55 degrees'
+  - id: 'ch17-17-1-sphere-properties'
+    section: '17.1'
+    tier: 'F'
+    dfe:
+      - 'G1'
+      - 'G12'
+    statement: 'How many edges and vertices does a sphere have?'
+    answer_label: 'How many edges and vertices does a sphere have?'
+    check:
+      kind: 'evaluate'
+      expression: '0'
+      answer: '0'
+    answer_text: '0 edges and 0 vertices'

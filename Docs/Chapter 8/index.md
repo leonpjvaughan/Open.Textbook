@@ -10,7 +10,7 @@ strand: algebra
 
 A maker builds a rectangular frame. Its outer sides measure $x+6$ cm and $x+4$ cm. The opening measures $x$ cm by $x+2$ cm.
 
-**First contact:** without working it out, predict whether the frame area is closer to $10x$ or $12x$ square centimetres when $x$ is large. You can change your prediction later.
+**First contact:** without working it out, predict whether the frame area is closer to $10x$ or $12x$ square centimetres when $x$ is large. You can change your prediction later. The frame area is the outer area minus the opening area.
 
 By the end, you will find a simplified expression for the frame area and calculate it for a chosen value of $x$.
 

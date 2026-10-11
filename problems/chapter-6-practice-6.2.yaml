@@ -94,8 +94,7 @@ problems:
   section: '6.2'
   tier: F
   dfe: *id001
-  statement: A value changes from 64 to 80. Work out the percentage change and state whether it is an increase or
-    decrease.
+  statement: 'A value changes from 64 to 80. Work out the percentage change and state whether it is an increase or decrease.'
   answer_label: Percentage change
   check:
     kind: evaluate
@@ -104,9 +103,9 @@ problems:
   answer_text: 25% increase
 - id: p10-two-step
   section: '6.2'
-  tier: H
+  tier: F
   dfe: *id001
-  statement: '**H** A £120 item increases by 10%, then decreases by 10%. Work out its final price.'
+  statement: 'A £120 item increases by 10%, then decreases by 10%. Work out its final price.'
   answer_label: Final price
   check:
     kind: evaluate

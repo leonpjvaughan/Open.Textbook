@@ -11,7 +11,7 @@ kind: problems
 
 # 18.3 Enlargement with fractional and negative scale factors — Practise
 
-Work through these on your own. Questions marked **H** are for Higher tier.
+Work through these on your own. Questions marked **H** are for Higher only.
 
 :::problems chapter-18-practice-18.3
 

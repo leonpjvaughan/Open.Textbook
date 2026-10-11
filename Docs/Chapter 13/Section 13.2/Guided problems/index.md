@@ -18,10 +18,11 @@ Try each question first. Reveal support in order when you need it.
 1. Work out $\sin 30^\circ$.
 2. Work out $\cos 60^\circ$.
 3. Find the gradient through $(0,0)$ and $(2,4)$.
+4. Factorise $x^2-4$.
 
 <details markdown="1"><summary>Answers</summary>
 
-$1/2$; $1/2$; $2$.
+$1/2$; $1/2$; $2$; $(x-2)(x+2)$.
 </details>
 
 ## Practise with help

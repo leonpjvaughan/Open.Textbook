@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** finding a percentage of an amount and subtracting decimals.
 
-**Objectives:** calculate a percentage increase or decrease and find the percentage change. 
+**Objectives:** calculate a percentage increase or decrease and find the percentage change.
 
 A percentage change compares the change with the starting amount. The multiplier for a rise of $r$% is $1+r/100$. For a fall, use $1-r/100$.
 
@@ -31,7 +31,7 @@ The change as a fraction of the start is $8/50=0.16$.
 
 So the decrease is 16%.
 
-**Watch out.** Divide the change by the starting amount, not the new amount. Check the answer: £8 is 16% of £50.
+> **Watch out.** Dividing by the new amount gives the wrong base. Divide the change by the starting amount. Check: £8 is 16% of £50.
 
 ## Progress check
 

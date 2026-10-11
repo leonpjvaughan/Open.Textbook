@@ -1,122 +1,146 @@
 chapter: 18
 problems:
-- id: ch18-18.5-ratio
+- id: 'ch18-18.5-ratio'
   section: '18.5'
-  tier: F
+  tier: 'F'
   dfe:
-  - G19
-  statement: Similar shapes have corresponding sides $4$ cm and $10$ cm. Find the scale factor from small to large.
-  answer_label: Similar shapes have corresponding sides $4$ cm and $10$ cm. Find the scale factor from small to large.
+  - 'G19'
+  statement: 'Similar shapes have corresponding sides $4$ cm and $10$ cm. Find the scale factor from small to large.'
+  answer_label: 'Similar shapes have corresponding sides $4$ cm and $10$ cm. Find the scale factor from small to large.'
   check:
-    kind: evaluate
-    expression: 10/4
-    answer: 5/2
-  answer_text: 5/2
-- id: ch18-18.5-missing
+    kind: 'evaluate'
+    expression: '10/4'
+    answer: '5/2'
+  answer_text: '5/2'
+- id: 'ch18-18.5-missing'
   section: '18.5'
-  tier: F
+  tier: 'F'
   dfe:
-  - R12
-  statement: Similar triangles have sides $3,4,5$ and a corresponding longest side $15$. Find the scale factor and the other two sides.
-  answer_label: Similar triangles have sides $3,4,5$ and a corresponding longest side $15$. Find the scale factor and the other two sides.
+  - 'R12'
+  statement: 'Similar triangles have sides $3,4,5$ and a corresponding longest side $15$. Find the scale factor and the other two sides.'
+  answer_label: 'Similar triangles have sides $3,4,5$ and a corresponding longest side $15$. Find the scale factor and the other two sides.'
   check:
-    kind: evaluate
-    expression: 15/5
-    answer: '3'
-  answer_text: Scale factor $3$; sides $9$ and $12$.
-- id: ch18-18.5-map
+    kind: 'all'
+    checks:
+    - kind: 'evaluate'
+      expression: '15/5'
+      answer: '3'
+    - kind: 'evaluate'
+      expression: '3*3'
+      answer: '9'
+    - kind: 'evaluate'
+      expression: '4*3'
+      answer: '12'
+  answer_text: 'Scale factor $3$; sides $9$ and $12$.'
+- id: 'ch18-18.5-map'
   section: '18.5'
-  tier: F
+  tier: 'F'
   dfe:
-  - G19
-  statement: Two similar rectangles have corresponding widths $5$ cm and $8$ cm. A short side of the first is $3$ cm. Find the corresponding side.
-  answer_label: Two similar rectangles have corresponding widths $5$ cm and $8$ cm. A short side of the first is $3$ cm. Find the corresponding side.
+  - 'G19'
+  statement: 'Two similar rectangles have corresponding widths $5$ cm and $8$ cm. A short side of the first is $3$ cm. Find the corresponding side.'
+  answer_label: 'Two similar rectangles have corresponding widths $5$ cm and $8$ cm. A short side of the first is $3$ cm. Find the corresponding side.'
   check:
-    kind: evaluate
-    expression: 3*(8/5)
-    answer: 24/5
-  answer_text: 4.8 cm
-- id: ch18-18.5-ratio-check
+    kind: 'evaluate'
+    expression: '3*(8/5)'
+    answer: '24/5'
+  answer_text: '4.8 cm'
+- id: 'ch18-18.5-ratio-check'
   section: '18.5'
-  tier: F
+  tier: 'F'
   dfe:
-  - G19
-  statement: Are triangles with sides $2,3,4$ and $4,6,8$ similar? Give a reason.
-  answer_label: Are triangles with sides $2,3,4$ and $4,6,8$ similar? Give a reason.
+  - 'G19'
+  statement: 'Are triangles with sides $2,3,4$ and $4,6,8$ similar? Give a reason.'
+  answer_label: 'Are triangles with sides $2,3,4$ and $4,6,8$ similar? Give a reason.'
   check:
-    kind: evaluate
-    expression: 8/4
-    answer: '2'
-  answer_text: Yes; each corresponding side has scale factor $2$.
-- id: ch18-18.5-find-side
+    kind: 'all'
+    checks:
+    - kind: 'evaluate'
+      expression: '4/2'
+      answer: '2'
+    - kind: 'evaluate'
+      expression: '6/3'
+      answer: '2'
+    - kind: 'evaluate'
+      expression: '8/4'
+      answer: '2'
+  answer_text: 'Yes; each corresponding side has scale factor $2$.'
+- id: 'ch18-18.5-find-side'
   section: '18.5'
-  tier: F
+  tier: 'F'
   dfe:
-  - R12
-  statement: Corresponding sides are $7$ cm and $21$ cm. A second side on the smaller shape is $5$ cm. Find its matching length.
-  answer_label: Corresponding sides are $7$ cm and $21$ cm. A second side on the smaller shape is $5$ cm. Find its matching length.
+  - 'R12'
+  statement: 'Corresponding sides are $7$ cm and $21$ cm. A second side on the smaller shape is $5$ cm. Find its matching length.'
+  answer_label: 'Corresponding sides are $7$ cm and $21$ cm. A second side on the smaller shape is $5$ cm. Find its matching length.'
   check:
-    kind: evaluate
-    expression: 5*(21/7)
+    kind: 'evaluate'
+    expression: '5*(21/7)'
     answer: '15'
-  answer_text: 15 cm
-- id: ch18-18.5-context
+  answer_text: '15 cm'
+- id: 'ch18-18.5-context'
   section: '18.5'
-  tier: F
+  tier: 'F'
   dfe:
-  - R12
-  statement: A model bridge is $1.2$ m long. The real bridge is $30$ m long. Find the scale factor from model to real.
-  answer_label: A model bridge is $1.2$ m long. The real bridge is $30$ m long. Find the scale factor from model to real.
+  - 'R12'
+  statement: 'A model bridge is $1.2$ m long. The real bridge is $30$ m long. Find the scale factor from model to real.'
+  answer_label: 'A model bridge is $1.2$ m long. The real bridge is $30$ m long. Find the scale factor from model to real.'
   check:
-    kind: evaluate
-    expression: 30/1.2
+    kind: 'evaluate'
+    expression: '30/1.2'
     answer: '25'
   answer_text: '25'
-- id: ch18-18.5-similar-or-congruent
+- id: 'ch18-18.5-similar-or-congruent'
   section: '18.5'
-  tier: F
+  tier: 'F'
   dfe:
-  - G19
-  statement: Two similar shapes have scale factor $1.4$. Are they congruent? Explain.
-  answer_label: Two similar shapes have scale factor $1.4$. Are they congruent? Explain.
+  - 'G19'
+  statement: 'Two similar shapes have scale factor $1.4$. Are they congruent? Explain.'
+  answer_label: 'Two similar shapes have scale factor $1.4$. Are they congruent? Explain.'
   check:
-    kind: evaluate
-    expression: 1.4-1
+    kind: 'evaluate'
+    expression: '1.4-1'
     answer: '0.4'
-  answer_text: No; congruent shapes have scale factor $1$.
-- id: ch18-18.5-missing-length
+  answer_text: 'No; congruent shapes have scale factor $1$.'
+- id: 'ch18-18.5-missing-length'
   section: '18.5'
-  tier: F
+  tier: 'F'
   dfe:
-  - G19
-  statement: Similar triangles have corresponding sides $8$ and $12$. A side matching $10$ is on the second triangle. Find its corresponding side on the first.
-  answer_label: Similar triangles have corresponding sides $8$ and $12$. A side matching $10$ is on the second triangle. Find its corresponding side on the first.
+  - 'G19'
+  statement: 'Similar triangles have corresponding sides $8$ and $12$. A side matching $10$ is on the second triangle. Find its corresponding side on the first.'
+  answer_label: 'Similar triangles have corresponding sides $8$ and $12$. A side matching $10$ is on the second triangle. Find its corresponding side on the first.'
   check:
-    kind: evaluate
-    expression: 8*10/12
-    answer: 20/3
-  answer_text: 20/3
-- id: ch18-18.5-explain
+    kind: 'evaluate'
+    expression: '8*10/12'
+    answer: '20/3'
+  answer_text: '20/3'
+- id: 'ch18-18.5-explain'
   section: '18.5'
-  tier: F
+  tier: 'F'
   dfe:
-  - R12
-  statement: A drawing uses scale $1:50$. A line is $6$ cm on the drawing. Find the real length in metres.
-  answer_label: A drawing uses scale $1:50$. A line is $6$ cm on the drawing. Find the real length in metres.
+  - 'R12'
+  statement: 'A drawing uses scale $1:50$. A line is $6$ cm on the drawing. Find the real length in metres.'
+  answer_label: 'A drawing uses scale $1:50$. A line is $6$ cm on the drawing. Find the real length in metres.'
   check:
-    kind: evaluate
-    expression: 6*50/100
+    kind: 'evaluate'
+    expression: '6*50/100'
     answer: '3'
-  answer_text: 3 m
-- id: ch18-18.5-method
+  answer_text: '3 m'
+- id: 'ch18-18.5-method'
   section: '18.5'
-  tier: F
+  tier: 'F'
   dfe:
-  - G19
-  statement: Lengths $6,9,12$ are compared with $10,15,20$. Which method checks similarity, and why?
-  answer_label: Lengths $6,9,12$ are compared with $10,15,20$. Which method checks similarity, and why?
+  - 'G19'
+  statement: 'Lengths $6,9,12$ are compared with $10,15,20$. Which method checks similarity, and why?'
+  answer_label: 'Lengths $6,9,12$ are compared with $10,15,20$. Which method checks similarity, and why?'
   check:
-    kind: evaluate
-    expression: 10/6
-    answer: 5/3
-  answer_text: Compare corresponding ratios; all are $5/3$, so the shapes are similar.
+    kind: 'all'
+    checks:
+    - kind: 'evaluate'
+      expression: '10/6'
+      answer: '5/3'
+    - kind: 'evaluate'
+      expression: '15/9'
+      answer: '5/3'
+    - kind: 'evaluate'
+      expression: '20/12'
+      answer: '5/3'
+  answer_text: 'Compare corresponding ratios; all are $5/3$, so the shapes are similar.'

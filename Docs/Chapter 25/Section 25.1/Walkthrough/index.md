@@ -14,7 +14,7 @@ kind: walkthrough
 **Prerequisites:** order data, find a median, and calculate a range.
 
 **Objectives:** find quartiles and the interquartile range, draw a box plot, and
-interpret these measures. This section covers S4.
+interpret these measures.
 
 A **quartile** divides ordered data into four equal groups. The lower quartile
 $Q_1$ is the median of the lower half. The upper quartile $Q_3$ is the median

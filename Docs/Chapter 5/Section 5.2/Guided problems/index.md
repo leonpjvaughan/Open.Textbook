@@ -16,26 +16,28 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Without looking back, simplify $12:18$.
-2. Work out $3\times 14$.
+1. Without looking back, calculate $\frac{3}{4}+\frac{1}{8}$.
+2. Work out $-4+9$.
 
 <details markdown="1">
 <summary>Check the warm-up</summary>
 
-$12:18=2:3$. Also, $3\times14=42$.
+$\frac{3}{4}+\frac{1}{8}=\frac{7}{8}$. Also, $-4+9=5$.
 
 </details>
 
 ## Try these questions
 
+**Question:** 5 cakes use 375 g of flour. How much flour do 8 cakes use at the same rate?
+
 ### Hint
 
-For the first question, identify what each part represents. Make one part equal to one unit if that helps.
+Find the flour for one cake, then multiply by 8.
 
 <details markdown="1">
 <summary>Show a hint</summary>
 
-Write the known quantities in matching units. Find the common multiplier or the total number of ratio parts.
+One cake uses $375\div5=75$ g. Multiply 75 g by 8.
 
 </details>
 
@@ -52,6 +54,7 @@ Set up the multiplier or ratio parts, then calculate the requested quantity.
 Divide the known amount by its corresponding number of parts. Multiply by the required number of parts.
 
 </details>
+</details>
 
 ### Full working
 
@@ -60,7 +63,7 @@ Use this model on one question from the section, then complete it without help.
 <details markdown="1">
 <summary>Show full working</summary>
 
-For 4 cakes using 300 g, one cake uses $300\div4=75$ g. Ten cakes use $75\times10=750$ g.
+Eight cakes use $75\times8=600$ g. The ratio stays constant because $375\div5=600\div8=75$.
 
 </details>
 

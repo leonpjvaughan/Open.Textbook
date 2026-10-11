@@ -6,13 +6,17 @@ strand: statistics
 
 # Chapter 24: Statistics: representing and analysing data
 
-## The chapter problem: a school travel survey
+## The chapter problem
+
+A school travel survey
 
 A school wants to describe how pupils travel to school and whether the pattern changes during the year. How could it collect information and show the results fairly?
 
 **First contact:** Predict which travel method might be most common. You are not being marked; record your prediction and revisit it after learning about samples and charts.
 
-## By the end of this chapter you will be able to
+## By the end of this chapter
+
+You will be able to:
 
 - plan data collection, choose a sample, and identify limits in what it can show;
 - organise categorical and discrete data in tables and suitable charts;

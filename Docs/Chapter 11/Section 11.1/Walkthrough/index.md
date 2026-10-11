@@ -11,33 +11,42 @@ kind: walkthrough
 
 # 11.1 Coordinates and plotting graphs — Learn
 
-**Prerequisites:** read ordered pairs and use the four operations with integers and decimals.
+**Prerequisites:** read ordered pairs and calculate with positive and negative integers.
 
-**Objectives:** plot and interpret points; coordinates and plotting graphs.
+## Objectives
 
-## Key idea
+By the end of this section, you can plot points in four quadrants and plot a straight-line graph from a rule.
 
-Coordinates are written $(x,y)$. The first number gives horizontal position; the second gives vertical position. The axes meet at the origin $(0,0)$. A graph shows ordered pairs that follow a rule.
+## Coordinates and straight-line graphs
 
-## Worked example
+A coordinate is written $(x,y)$. The first value gives the horizontal position. The second gives the vertical position. The axes meet at the origin, $(0,0)$.
 
-For $y=2x+1$, choose $x=-1,0,1$. The matching values are $-1,1,3$. Plot $(-1,-1),(0,1),(1,3)$ and join them with a straight edge. A straight-line graph is made from points that lie on one straight path.
+To plot a point, move along the horizontal axis first, then move vertically. A negative coordinate means move left or down.
 
-> **Watch out.** Reversing $(x,y)$ swaps horizontal and vertical positions. Read the horizontal coordinate first, then check each plotted point against both axes.
+**Worked example.** Plot $(-2,3)$ and find the values for $y=2x+1$ when $x=-1,0,1$.
 
+For $(-2,3)$, move two units left and three units up.
 
-## Investigate the line
+$$
+y=2(-1)+1=-1,\qquad y=2(0)+1=1,\qquad y=2(1)+1=3.
+$$
 
-**Predict:** for $y=2x+1$, predict the point when $x=2$. **Test:** change the input on the figure and check your prediction. **Explain:** write how changing $x$ changes $y$.
+Plot $(-1,-1)$, $(0,1)$ and $(1,3)$, then join the points with a straight line.
 
-:::figure ch11-coordinate-line
+> **Watch out.** Reversing the coordinates changes the point. For $(-2,3)$, $-2$ is horizontal and $3$ is vertical. Check both movements from the origin.
 
 ## Progress check
 
-Progress check: the walker begins at $(0,0)$ and reaches $(30,2)$. Mark both points before drawing the journey.
+The walker is at $(0,0)$ after 0 minutes and $(30,2)$ after 30 minutes. Plot both points. What does the horizontal coordinate measure?
+
+## Try a graph rule
+
+**Predict:** for $y=2x+1$, predict $y$ when $x=2$. **Test:** use the figure to check. **Explain:** describe how changing $x$ changes $y$.
+
+:::figure ch11-coordinate-line
 
 ## You should now be able to
 
-- explain the key terms and method in this section;
-- show working and check a result using the graph or equation;
-- answer the DfE requirements: A8, A9, G11.
+- plot coordinates in all four quadrants;
+- plot a straight-line graph from a rule;
+- check plotted points against the equation.

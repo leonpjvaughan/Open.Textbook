@@ -31,7 +31,7 @@ For each item, name the method before you work. After calculating, say why that 
 6. Solve $(x+1)(x-4)\geq0$.
 7. Solve $x^2-2x-8<0$.
 <!-- /tier:h -->
-8. Chapter 1 link: estimate $19.8	imes4.9$ and explain how the estimate checks an exact answer.
+8. Chapter 1 link: estimate $19.8\times4.9$ and explain how the estimate checks an exact answer.
 
 <details markdown="1">
 <summary>Answers</summary>
@@ -45,7 +45,7 @@ For each item, name the method before you work. After calculating, say why that 
 6. Roots $-1,4$; test intervals: $x\leq-1$ or $x\geq4$.
 7. Factor: $(x-4)(x+2)<0$, so $-2<x<4$.
 <!-- /tier:h -->
-8. Estimate $20	imes5=100$. An exact result near 100 is plausible.
+8. Estimate $20\times5=100$. The exact product is $97.02$, which is close to the estimate.
 </details>
 
 ## What you can now do

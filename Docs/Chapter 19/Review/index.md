@@ -31,4 +31,4 @@ For each question, choose a method first. Say why it applies, then calculate. Ch
 
 ## Reflect
 
-Which formula can you now choose without a prompt? Which measurement still needs a labelled sketch? Note one next step for your practice.
+Which formula can you now choose without a prompt? Which measurement still needs a labelled sketch? Note a next step for your practice.

@@ -4,7 +4,7 @@ chapter: 20
 chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.4'
 section_title: "Exact trigonometric values"
-tier: H
+tier: F
 dfe: [G21]
 kind: problems
 ---

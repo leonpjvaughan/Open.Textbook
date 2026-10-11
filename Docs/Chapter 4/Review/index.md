@@ -16,7 +16,7 @@ Subtract the discount from the original price.
 
 $£48-£12=£36$.
 
-The first shop charges £36. The second shop charges £37.50. The first shop is cheaper by $£37.50-£36=£1.50$.
+The first shop charges £36. The second shop charges £37.50. The first shop is cheaper by $37.50-36=£1.50$.
 
 ## Mixed practice: choose the method and explain why
 

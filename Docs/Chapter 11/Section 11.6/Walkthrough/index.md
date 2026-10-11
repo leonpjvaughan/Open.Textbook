@@ -11,34 +11,37 @@ kind: walkthrough
 
 # 11.6 Gradients and areas under graphs — Learn
 
-**Prerequisites:** read ordered pairs and use the four operations with integers and decimals.
+**Prerequisites:** calculate triangle and rectangle areas and interpret graph axes.
 
-**Objectives:** plot and interpret points; gradients and areas under graphs.
+## Objectives
 
-## Key idea
+By the end of this section, you can calculate gradients and areas under graphs, then interpret each result with units.
 
-For a graph of rate against time, gradient measures change in rate per unit of time. Area under a velocity-time graph gives distance. Split a shape into rectangles and triangles, then add their areas.
+## Gradient and area on rate graphs
 
-## Worked example
+On a velocity-time graph, the gradient is acceleration: change in velocity divided by change in time. The area under the graph is distance travelled. For a straight rising section, split the area into familiar shapes and add them.
 
-Velocity rises evenly from 0 to 8 m/s over 4 s. The graph section is a triangle.
+**Worked example.** Velocity rises evenly from 0 m/s to 8 m/s over 4 s. The area is a triangle.
 
 $$
 \begin{aligned}
-\text{distance} &= \frac12 \times \text{base} \times \text{height} \\
-&= \frac12 \times 4 \times 8 \\
-&= 16\text{ m}
+\text{distance} &= \frac12 \times \text{base} \times \text{height}\\
+&= \frac12 \times 4 \times 8\\
+&=16\text{ m}.
 \end{aligned}
 $$
 
-> **Watch out.** Reversing $(x,y)$ swaps horizontal and vertical positions. Read the horizontal coordinate first, then check each plotted point against both axes.
+The units are seconds multiplied by metres per second, which gives metres.
+
+> **Watch out.** The gradient and area answer different questions. The gradient gives acceleration in m/s²; the area gives distance in metres. Check the requested quantity and units.
 
 ## Progress check
 
-Progress check: the chapter journey is constant speed, so distance after 60 minutes follows the straight line and is 4 km.
+The station walk is constant speed, so its distance-time graph is a straight line. At 60 minutes, the distance is 4 km.
+
 
 ## You should now be able to
 
-- explain the key terms and method in this section;
-- show working and check a result using the graph or equation;
-- answer the DfE requirements: A15, R15.
+- calculate gradients and areas under graphs, then interpret each result with units.;
+- check your result by substitution or by interpreting the graph;
+- explain the method in your own words.

@@ -1,104 +1,98 @@
 chapter: 17
 problems:
-- id: ch17-17-2-cuboid-plan
-  section: '17.2'
-  tier: F
-  dfe:
-  - G13
-  statement: A cuboid is 8 cm wide, 5 cm deep and 3 cm high. Give its plan dimensions.
-  answer_label: A cuboid is 8 cm wide, 5 cm deep and 3 cm high. Give its plan dimensions.
-  check:
-    kind: evaluate
-    expression: 8 * 5
-    answer: '40'
-  answer_text: 8 cm by 5 cm
-- id: ch17-17-2-cuboid-front
-  section: '17.2'
-  tier: F
-  dfe:
-  - G13
-  statement: For the cuboid above, give the front elevation dimensions.
-  answer_label: For the cuboid above, give the front elevation dimensions.
-  check:
-    kind: evaluate
-    expression: 8 * 3
-    answer: '24'
-  answer_text: 8 cm by 3 cm
-- id: ch17-17-2-cuboid-side
-  section: '17.2'
-  tier: F
-  dfe:
-  - G13
-  statement: For the cuboid above, give the side elevation dimensions.
-  answer_label: For the cuboid above, give the side elevation dimensions.
-  check:
-    kind: evaluate
-    expression: 5 * 3
-    answer: '15'
-  answer_text: 5 cm by 3 cm
-- id: ch17-17-2-stack-plan
-  section: '17.2'
-  tier: F
-  dfe:
-  - G13
-  statement: A stack has three unit cubes in a row on the bottom and one cube on top of the middle cube. How many
-    squares appear in its plan?
-  answer_label: A stack has three unit cubes in a row on the bottom and one cube on top of the middle cube. How
-    many squares appear in its plan?
-  check:
-    kind: evaluate
-    expression: '3'
-    answer: '3'
-  answer_text: 3 squares
-- id: ch17-17-2-stack-front
-  section: '17.2'
-  tier: F
-  dfe:
-  - G13
-  statement: For that stack, the front elevation has what maximum height in cube units?
-  answer_label: For that stack, the front elevation has what maximum height in cube units?
-  check:
-    kind: evaluate
-    expression: 1 + 1
-    answer: '2'
-  answer_text: 2 units
-- id: ch17-17-2-views-height
-  section: '17.2'
-  tier: F
-  dfe:
-  - G13
-  statement: A plan is 6 cm by 4 cm. Can it alone determine the solid height? Explain.
-  answer_label: A plan is 6 cm by 4 cm. Can it alone determine the solid height? Explain.
-  check:
-    kind: evaluate
-    expression: 6 + 4
-    answer: '10'
-  answer_text: No; a plan shows width and depth, not height.
-- id: ch17-17-2-elevation-match
-  section: '17.2'
-  tier: F
-  dfe:
-  - G13
-  statement: A cuboid has dimensions 9 cm, 4 cm and 2 cm. Which two dimensions appear in its front elevation if
-    9 cm is the width?
-  answer_label: A cuboid has dimensions 9 cm, 4 cm and 2 cm. Which two dimensions appear in its front elevation
-    if 9 cm is the width?
-  check:
-    kind: evaluate
-    expression: 9 * 2
-    answer: '18'
-  answer_text: 9 cm by 2 cm
-- id: ch17-17-2-views-prism
-  section: '17.2'
-  tier: F
-  dfe:
-  - G13
-  statement: A triangular prism has a triangular cross-section 3 cm high. What height appears in its front elevation
-    if viewed square-on to that end?
-  answer_label: A triangular prism has a triangular cross-section 3 cm high. What height appears in its front elevation
-    if viewed square-on to that end?
-  check:
-    kind: evaluate
-    expression: '3'
-    answer: '3'
-  answer_text: 3 cm
+  - id: 'ch17-17-2-cuboid-plan'
+    section: '17.2'
+    tier: 'F'
+    dfe:
+      - 'G13'
+    statement: 'A cuboid is 8 cm wide, 5 cm deep and 3 cm high. Give its plan dimensions.'
+    answer_label: 'A cuboid is 8 cm wide, 5 cm deep and 3 cm high. Give its plan dimensions.'
+    check:
+      kind: 'evaluate'
+      expression: '8 * 5'
+      answer: '40'
+    answer_text: '8 cm by 5 cm'
+  - id: 'ch17-17-2-cuboid-front'
+    section: '17.2'
+    tier: 'F'
+    dfe:
+      - 'G13'
+    statement: 'For the cuboid above, give the front elevation dimensions.'
+    answer_label: 'For the cuboid above, give the front elevation dimensions.'
+    check:
+      kind: 'evaluate'
+      expression: '8 * 3'
+      answer: '24'
+    answer_text: '8 cm by 3 cm'
+  - id: 'ch17-17-2-cuboid-side'
+    section: '17.2'
+    tier: 'F'
+    dfe:
+      - 'G13'
+    statement: 'For the cuboid above, give the side elevation dimensions.'
+    answer_label: 'For the cuboid above, give the side elevation dimensions.'
+    check:
+      kind: 'evaluate'
+      expression: '5 * 3'
+      answer: '15'
+    answer_text: '5 cm by 3 cm'
+  - id: 'ch17-17-2-stack-plan'
+    section: '17.2'
+    tier: 'F'
+    dfe:
+      - 'G13'
+    statement: 'A stack has three unit cubes in a row on the bottom and one cube on top of the middle cube. How many squares appear in its plan?'
+    answer_label: 'A stack has three unit cubes in a row on the bottom and one cube on top of the middle cube. How many squares appear in its plan?'
+    check:
+      kind: 'evaluate'
+      expression: '3'
+      answer: '3'
+    answer_text: '3 squares'
+  - id: 'ch17-17-2-stack-front'
+    section: '17.2'
+    tier: 'F'
+    dfe:
+      - 'G13'
+    statement: 'For that stack, the front elevation has what maximum height in cube units?'
+    answer_label: 'For that stack, the front elevation has what maximum height in cube units?'
+    check:
+      kind: 'evaluate'
+      expression: '1 + 1'
+      answer: '2'
+    answer_text: '2 units'
+  - id: 'ch17-17-2-views-height'
+    section: '17.2'
+    tier: 'F'
+    dfe:
+      - 'G13'
+    statement: 'A plan is 6 cm by 4 cm. Can it alone determine the solid height? Explain.'
+    answer_label: 'A plan is 6 cm by 4 cm. Can it alone determine the solid height? Explain.'
+    check:
+      kind: 'evaluate'
+      expression: '6 + 4'
+      answer: '10'
+    answer_text: 'No; a plan shows width and depth, not height.'
+  - id: 'ch17-17-2-elevation-match'
+    section: '17.2'
+    tier: 'F'
+    dfe:
+      - 'G13'
+    statement: 'A cuboid has dimensions 9 cm, 4 cm and 2 cm. Which two dimensions appear in its front elevation if 9 cm is the width?'
+    answer_label: 'A cuboid has dimensions 9 cm, 4 cm and 2 cm. Which two dimensions appear in its front elevation if 9 cm is the width?'
+    check:
+      kind: 'evaluate'
+      expression: '9 * 2'
+      answer: '18'
+    answer_text: '9 cm by 2 cm'
+  - id: 'ch17-17-2-views-prism'
+    section: '17.2'
+    tier: 'F'
+    dfe:
+      - 'G13'
+    statement: 'A triangular prism has a triangular cross-section 3 cm high. What height appears in its front elevation if viewed square-on to that end?'
+    answer_label: 'A triangular prism has a triangular cross-section 3 cm high. What height appears in its front elevation if viewed square-on to that end?'
+    check:
+      kind: 'evaluate'
+      expression: '3'
+      answer: '3'
+    answer_text: '3 cm'

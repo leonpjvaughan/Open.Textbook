@@ -25,7 +25,7 @@ A circle's distance around it is a little more than three diameters. Its area is
 
 ## Where the maths can appear
 
-These methods can help when measuring a garden border, covering a floor, choosing packaging, or estimating material for a container.
+A garden border needs a perimeter measurement. Covering a floor needs an area, and a container's capacity relates to its volume.
 
 ## Your turn to connect it
 

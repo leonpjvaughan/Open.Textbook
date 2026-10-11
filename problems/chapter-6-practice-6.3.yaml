@@ -17,7 +17,7 @@ problems:
   section: '6.3'
   tier: F
   dfe: *id001
-  statement: After a 15% increase, a value is 92. Work out its original value.
+  statement: 'A value after a 15% increase is 92. Work out its original value.'
   answer_label: Original value
   check:
     kind: evaluate
@@ -39,7 +39,7 @@ problems:
   section: '6.3'
   tier: F
   dfe: *id001
-  statement: A number is 30% of its original value after a reduction. It is now 84. Work out the original value.
+  statement: 'A value is reduced by 30% and is now 84. Work out its original value.'
   answer_label: Original value
   check:
     kind: evaluate
@@ -83,14 +83,13 @@ problems:
   section: '6.3'
   tier: F
   dfe: *id001
-  statement: A learner subtracts 20% of £80 from £80 to reverse a 20% reduction. Explain the error and find the
-    original if the reduced value is £80.
+  statement: 'A learner subtracts 20% of £80 from £80 to reverse a 20% reduction. Explain the error and find the original if the reduced value is £80.'
   answer_label: Original value
   check:
     kind: evaluate
     expression: 80/0.8
     answer: '100'
-  answer_text: The reduction is 20% of the original, so £80 is 80% of the original. $80 ÷ 0.8 = £100$.
+  answer_text: 'The reduction is 20% of the original, so £80 is 80% of the original. $80 ÷ 0.8 = £100$.'
 - id: p9-higher
   section: '6.3'
   tier: H

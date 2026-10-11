@@ -8,7 +8,7 @@ problems:
   tier: H
   dfe:
   - N16
-  statement: A length is $9.3$ cm to the nearest $0.1$ cm. Give its bounds.
+  statement: 'A length is $9.3$ cm to the nearest $0.1$ cm. Give its bounds.'
   answer_label: Length bounds
   check:
     kind: all
@@ -21,43 +21,43 @@ problems:
       relation: <
       lhs: '9.3'
       rhs: '9.35'
-  answer_text: $9.25\leq L<9.35$ cm.
+  answer_text: '$9.25\leq L<9.35$ cm.'
 - id: ch7-74-area
   section: '7.4'
   tier: H
   dfe:
   - N16
-  statement: A rectangle has length $8.2$ cm and width $4.6$ cm, each to the nearest $0.1$ cm. Find the upper bound for its area.
+  statement: 'A rectangle has length $8.2$ cm and width $4.6$ cm, each to the nearest $0.1$ cm. Find the upper bound for its area.'
   answer_label: Upper bound for area
   check:
     kind: evaluate
     expression: 8.25 * 4.65
     answer: '38.3625'
-  answer_text: $38.3625$ cm$^2$.
+  answer_text: '$38.3625$ cm$^2$.'
 - id: ch7-74-minarea
   section: '7.4'
   tier: H
   dfe:
   - N16
-  statement: Using the same measurements, find the lower bound for the rectangle area.
+  statement: 'Using the same measurements, find the lower bound for the rectangle area.'
   answer_label: Lower bound for area
   check:
     kind: evaluate
     expression: 8.15 * 4.55
     answer: '37.0825'
-  answer_text: $37.0825$ cm$^2$.
+  answer_text: '$37.0825$ cm$^2$.'
 - id: ch7-74-speed
   section: '7.4'
   tier: H
   dfe:
   - N16
-  statement: A distance is $100$ m to the nearest metre and a time is $8.0$ s to the nearest $0.1$ s. Find the upper bound for speed.
+  statement: 'A distance is $100$ m to the nearest metre and a time is $8.0$ s to the nearest $0.1$ s. Find the upper bound for speed.'
   answer_label: Upper bound for speed
   check:
     kind: evaluate
     expression: 100.5 / 7.95
     answer: 100.5 / 7.95
-  answer_text: '$100.5\div7.95\approx12.64$ m/s.'
+  answer_text: '$100.5\div7.95\approx12.6$ m/s.'
 - id: ch7-74-quotient
   section: '7.4'
   tier: H
@@ -70,25 +70,25 @@ problems:
     relation: '>'
     lhs: 10/2
     rhs: 2/10
-  answer_text: Greatest $a$ with least $b$.
+  answer_text: 'Greatest $a$ with least $b$.'
 - id: ch7-74-volume
   section: '7.4'
   tier: H
   dfe:
   - N16
-  statement: A cube side is $3.0$ cm to the nearest $0.1$ cm. Find the upper bound for its volume.
+  statement: 'A cube side is $3.0$ cm to the nearest $0.1$ cm. Find the upper bound for its volume.'
   answer_label: Upper bound for volume
   check:
     kind: evaluate
     expression: 3.05**3
     answer: '28.372625'
-  answer_text: $28.372625$ cm$^3$.
+  answer_text: '$28.372625$ cm$^3$.'
 - id: ch7-74-density
   section: '7.4'
   tier: H
   dfe:
   - N16
-  statement: A mass is $50$ g to the nearest gram and volume is $20$ cm$^3$ to the nearest cm$^3$. Find the greatest possible density.
+  statement: 'A mass is $50$ g to the nearest gram and volume is $20$ cm$^3$ to the nearest cm$^3$. Find the greatest possible density.'
   answer_label: Maximum density
   check:
     kind: evaluate
@@ -100,31 +100,31 @@ problems:
   tier: H
   dfe:
   - N16
-  statement: Two lengths are $12.4$ cm and $8.1$ cm, each to the nearest $0.1$ cm. Find the upper bound for their difference.
+  statement: 'Two lengths are $12.4$ cm and $8.1$ cm, each to the nearest $0.1$ cm. Find the upper bound for their difference.'
   answer_label: Upper bound for a difference
   check:
     kind: evaluate
     expression: 12.45 - 8.05
     answer: '4.4'
-  answer_text: $4.4$ cm.
+  answer_text: '$4.4$ cm.'
 - id: ch7-74-bound
   section: '7.4'
   tier: H
   dfe:
   - N16
-  statement: A speed is $v=d/t$ where $d=72$ km to the nearest km and $t=1.2$ h to the nearest $0.1$ h. Find the lower bound for speed.
+  statement: 'A speed is $v=d/t$ where $d=72$ km to the nearest km and $t=1.2$ h to the nearest $0.1$ h. Find the lower bound for speed.'
   answer_label: Lower bound for speed
   check:
     kind: evaluate
     expression: 71.5 / 1.25
     answer: '57.2'
-  answer_text: $57.2$ km/h.
+  answer_text: '$57.2$ km/h.'
 - id: ch7-74-compare
   section: '7.4'
   tier: H
   dfe:
   - N16
-  statement: A rectangle has sides $5.0$ m and $2.0$ m, each to the nearest $0.1$ m. Find upper bounds for its perimeter and area.
+  statement: 'A rectangle has sides $5.0$ m and $2.0$ m, each to the nearest $0.1$ m. Find upper bounds for its perimeter and area.'
   answer_label: Compare upper bounds
   check:
     kind: all
@@ -135,4 +135,4 @@ problems:
     - kind: evaluate
       expression: 5.05*2.05
       answer: '10.3525'
-  answer_text: Perimeter $14.2$ m; area $10.3525$ m$^2$.
+  answer_text: 'Perimeter $14.2$ m; area $10.3525$ m$^2$.'

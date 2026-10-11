@@ -11,7 +11,7 @@ kind: problems
 
 # 8.6 Rearranging formulae — Practise
 
-Work independently. Higher-only questions carry **H** in the question list.
+Work independently. Questions marked **H** are for Higher tier.
 
 :::problems chapter-8-practice-8.6
 

@@ -13,7 +13,11 @@ kind: walkthrough
 
 **Prerequisites:** coordinates, positive and negative numbers, and reading a number line.
 
-**Objectives:** reflect, rotate and translate points and shapes on a coordinate grid; describe a transformation using its defining information. Covers: G7 and G8.
+**Objectives:** reflect, rotate and translate points and shapes on a coordinate grid; describe a transformation using its defining information.
+
+<!-- tier:h -->
+Higher only: describe changes and invariance after combining transformations.
+<!-- /tier:h -->
 
 A **transformation** moves or changes a shape according to a rule. Reflection, rotation and translation keep lengths and angles unchanged. Such transformations preserve size and shape.
 
@@ -48,19 +52,29 @@ Add $-3$ to the $x$-coordinate: $2+(-3)=-1$.
 Add $4$ to the $y$-coordinate: $-1+4=3$.
 The image is $(-1,3)$.
 
+<!-- tier:h -->
+### Higher only: combinations of transformations
+
+Apply each transformation in the order given. Keep the image from the first move as the starting point for the second.
+
+**Example.** Translate the triangle with vertices $(1,1)$, $(3,1)$ and $(1,2)$ by $\begin{pmatrix}1\\1\end{pmatrix}$. Then reflect it in the $y$-axis and rotate it $90^\circ$ clockwise about the origin.
+
+After the translation, the vertices are $(2,2)$, $(4,2)$ and $(2,3)$.
+
+After reflection, they are $(-2,2)$, $(-4,2)$ and $(-2,3)$.
+
+The clockwise quarter-turn maps $(x,y)$ to $(y,-x)$.
+
+The final vertices are $(2,2)$, $(2,4)$ and $(3,2)$.
+
+Each move preserves side lengths and angles, so these remain unchanged.
+<!-- /tier:h -->
+
 > **Watch out.** A reflection in the $y$-axis changes the sign of $x$, not $y$. Check that the point and image sit opposite each other across that axis.
-
-### Guided investigation: coordinate changes
-
-**Predict:** for a point $(x,y)$, predict the image after a scale factor of $2$ about the origin.
-
-:::figure ch18-transform
-
-**Test:** move the point using the controls. **Explain:** what happens to each coordinate, and how can you check the distance from the origin?
 
 ### Progress check
 
-The mural plan begins with a tile corner at $(2,1)$. A half-turn about the origin maps it to $(-2,-1)$. Name the transformation and check the signs.
+The mural tile has a corner at $(3,1)$. A half-turn about the origin maps it to $(-3,-1)$. Name the transformation and check the signs.
 
 ## You should now be able to
 
@@ -68,3 +82,6 @@ The mural plan begins with a tile corner at $(2,1)$. A half-turn about the origi
 - rotate a shape when the centre, angle and direction are given;
 - translate a shape using a vector;
 - describe a transformation with enough detail to identify it.
+<!-- tier:h -->
+- combine transformations in order and state what stays unchanged.
+<!-- /tier:h -->

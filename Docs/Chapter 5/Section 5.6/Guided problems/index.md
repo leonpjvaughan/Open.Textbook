@@ -14,26 +14,28 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Without looking back, simplify $12:18$.
-2. Work out $3\times 14$.
+1. Without looking back, calculate $\frac{3}{4}+\frac{1}{8}$.
+2. Work out $-4+9$.
 
 <details markdown="1">
 <summary>Check the warm-up</summary>
 
-$12:18=2:3$. Also, $3\times14=42$.
+$\frac{3}{4}+\frac{1}{8}=\frac{7}{8}$. Also, $-4+9=5$.
 
 </details>
 
 ## Try these questions
 
+**Question:** Similar shapes have length scale factor 2.5 from small to large. The smaller area is 12 cm$^2$. Find the larger area.
+
 ### Hint
 
-For the first question, identify what each part represents. Make one part equal to one unit if that helps.
+Square the length scale factor to get the area scale factor.
 
 <details markdown="1">
 <summary>Show a hint</summary>
 
-Write the known quantities in matching units. Find the common multiplier or the total number of ratio parts.
+The area scale factor is $2.5^2=6.25$. Multiply 12 cm$^2$ by 6.25.
 
 </details>
 
@@ -50,6 +52,7 @@ Set up the multiplier or ratio parts, then calculate the requested quantity.
 Divide the known amount by its corresponding number of parts. Multiply by the required number of parts.
 
 </details>
+</details>
 
 ### Full working
 
@@ -58,7 +61,7 @@ Use this model on one question from the section, then complete it without help.
 <details markdown="1">
 <summary>Show full working</summary>
 
-A length factor of 3 gives volume factor $3^3=27$. A 20 cm$^3$ solid becomes $20\times27=540$ cm$^3$.
+The larger area is $12\times6.25=75$ cm$^2$. The area ratio is $1:6.25$, the square of the length ratio $1:2.5$.
 
 </details>
 

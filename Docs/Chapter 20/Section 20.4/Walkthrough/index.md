@@ -4,7 +4,7 @@ chapter: 20
 chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.4'
 section_title: "Exact trigonometric values"
-tier: H
+tier: F
 dfe: [G21]
 kind: walkthrough
 ---
@@ -13,9 +13,9 @@ kind: walkthrough
 
 **Prerequisites:** special right-angled triangles, surds, and exact fractions.
 
-**Objectives:** give exact sine, cosine, and tangent values for $0^\circ$, $30^\circ$, $45^\circ$, $60^\circ$, and $90^\circ$. This teaches DfE G21.
+**Objectives:** give exact sine and cosine values for $0^\circ$, $30^\circ$, $45^\circ$, $60^\circ$, and $90^\circ$, and exact tangent values for $0^\circ$, $30^\circ$, $45^\circ$, and $60^\circ$.
 
-An **exact value** uses fractions and surds instead of a rounded decimal. A $45^\circ$-$45^\circ$-$90^\circ$ triangle has sides $1,1,\sqrt2$, so $\sin45^\circ=\cos45^\circ=\frac{\sqrt2}{2}$ and $\tan45^\circ=1$. A $30^\circ$-$60^\circ$-$90^\circ$ triangle has sides $1,\sqrt3,2$.
+An **exact value** uses fractions and surds instead of a rounded decimal. A **surd** is a root kept in exact form, such as $\sqrt2$. A $45^\circ$-$45^\circ$-$90^\circ$ triangle has sides $1,1,\sqrt2$, so $\sin45^\circ=\cos45^\circ=\frac{\sqrt2}{2}$ and $\tan45^\circ=1$. A $30^\circ$-$60^\circ$-$90^\circ$ triangle has sides $1,\sqrt3,2$.
 
 | Angle | $0^\circ$ | $30^\circ$ | $45^\circ$ | $60^\circ$ | $90^\circ$ |
 |---|---:|---:|---:|---:|---:|
@@ -43,6 +43,6 @@ The garden diagonal can be found exactly if its sides are chosen to form a speci
 
 ## You should now be able to
 
-- state the method and identify the measurements it needs;
-- show your working in a clear order;
-- check that your answer is sensible and give suitable units.
+- give the exact sine and cosine values for the five special angles;
+- give the exact tangent values for the four defined special angles;
+- simplify expressions using exact values, and explain why $\tan90^\circ$ is undefined.

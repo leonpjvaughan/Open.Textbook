@@ -1,96 +1,96 @@
 # Independent practice for 21.4. Questions and answers share verified records.
 chapter: 21
 problems:
-  - id: ch21-proof-semicircle
-    section: "21.4"
-    tier: F
-    dfe: [G10]
+  - id: 'ch21-proof-semicircle'
+    section: '21.4'
+    tier: 'H'
+    dfe: ['G10']
     statement: 'A triangle stands on a diameter. State the angle at the circumference and the theorem that proves it.'
     answer_label: 'State the result and reason'
-    check: {kind: evaluate, expression: '180 / 2', answer: '90'}
+    check: {kind: 'evaluate', expression: '180 / 2', answer: '90'}
     answer_text: '$90^\circ$, by the angle in a semicircle theorem.'
 
-  - id: ch21-proof-chord
-    section: "21.4"
-    tier: F
-    dfe: [G10]
+  - id: 'ch21-proof-chord'
+    section: '21.4'
+    tier: 'H'
+    dfe: ['G10']
     statement: 'A perpendicular from the centre meets a chord of length $10$ cm. State the two equal lengths.'
     answer_label: 'State the chord result'
-    check: {kind: evaluate, expression: '10 / 2', answer: '5'}
+    check: {kind: 'evaluate', expression: '10 / 2', answer: '5'}
     answer_text: 'Each half is $5$ cm, because the perpendicular from the centre bisects the chord.'
 
-  - id: ch21-proof-cyclic
-    section: "21.4"
-    tier: F
-    dfe: [G10]
+  - id: 'ch21-proof-cyclic'
+    section: '21.4'
+    tier: 'H'
+    dfe: ['G10']
     statement: 'One angle in a cyclic quadrilateral is $124^\circ$. Find its opposite angle and name the reason.'
     answer_label: 'Use a theorem in a proof'
-    check: {kind: evaluate, expression: '180 - 124', answer: '56'}
+    check: {kind: 'evaluate', expression: '180 - 124', answer: '56'}
     answer_text: '$56^\circ$, since opposite angles in a cyclic quadrilateral total $180^\circ$.'
 
-  - id: ch21-proof-tangent
-    section: "21.4"
-    tier: F
-    dfe: [G10]
+  - id: 'ch21-proof-tangent'
+    section: '21.4'
+    tier: 'H'
+    dfe: ['G10']
     statement: 'A radius meets a tangent at $T$. State the angle and the theorem.'
     answer_label: 'State the tangent result'
-    check: {kind: evaluate, expression: '90', answer: '90'}
+    check: {kind: 'evaluate', expression: '90', answer: '90'}
     answer_text: '$90^\circ$, because the tangent is perpendicular to the radius at the point of contact.'
 
-  - id: ch21-proof-same-segment
-    section: "21.4"
-    tier: F
-    dfe: [G10]
+  - id: 'ch21-proof-same-segment'
+    section: '21.4'
+    tier: 'H'
+    dfe: ['G10']
     statement: 'Two angles stand on the same chord in the same segment. One is $61^\circ$. State the other angle and reason.'
     answer_label: 'Same segment reasoning'
-    check: {kind: evaluate, expression: '61', answer: '61'}
+    check: {kind: 'evaluate', expression: '61', answer: '61'}
     answer_text: '$61^\circ$, because angles in the same segment are equal.'
 
-  - id: ch21-proof-tangents
-    section: "21.4"
-    tier: F
-    dfe: [G10]
+  - id: 'ch21-proof-tangents'
+    section: '21.4'
+    tier: 'H'
+    dfe: ['G10']
     statement: 'Two tangents from $P$ have lengths $PA=2x+3$ and $PB=15$. Find $x$, stating the theorem used.'
     answer_label: 'Use equal tangent lengths'
-    check: {kind: solve, equation: '2*x + 3 - 15 = 0', variable: x, answer: ['6']}
-    symbols: {x: {real: true}}
+    check: {kind: 'solve', equation: '2*x + 3 - 15 = 0', variable: 'x', answer: ['6']}
+    symbols: {'x': {real: true}}
     answer_text: '$x=6$, since tangents from the same external point are equal.'
 
-  - id: ch21-proof-triangle-angle
-    section: "21.4"
-    tier: F
-    dfe: [G10]
+  - id: 'ch21-proof-triangle-angle'
+    section: '21.4'
+    tier: 'H'
+    dfe: ['G10']
     statement: 'An angle in a semicircle is $90^\circ$. The triangle has another angle of $28^\circ$. Find the last angle and give both reasons used.'
     answer_label: 'Complete the proof'
-    check: {kind: evaluate, expression: '180 - 90 - 28', answer: '62'}
+    check: {kind: 'evaluate', expression: '180 - 90 - 28', answer: '62'}
     answer_text: '$62^\circ$, using the angle in a semicircle theorem and the triangle angle sum.'
 
-  - id: ch21-proof-alternate
-    section: "21.4"
-    tier: F
-    dfe: [G10]
+  - id: 'ch21-proof-alternate'
+    section: '21.4'
+    tier: 'H'
+    dfe: ['G10']
     statement: 'A tangent-chord angle is $x+8$ degrees. The alternate segment angle is $68^\circ$. Find $x$ and name the theorem.'
     answer_label: 'Apply the alternate segment theorem'
-    check: {kind: solve, equation: 'x + 8 - 68 = 0', variable: x, answer: ['60']}
-    symbols: {x: {real: true}}
+    check: {kind: 'solve', equation: 'x + 8 - 68 = 0', variable: 'x', answer: ['60']}
+    symbols: {'x': {real: true}}
     answer_text: '$x=60$, by the alternate segment theorem.'
 
-  - id: ch21-proof-cyclic-algebra
-    section: "21.4"
-    tier: H
-    dfe: [G10]
+  - id: 'ch21-proof-cyclic-algebra'
+    section: '21.4'
+    tier: 'H'
+    dfe: ['G10']
     statement: 'Opposite angles of a cyclic quadrilateral are $(4x-3)^\circ$ and $(2x+15)^\circ$. Find $x$ and both angles.'
     answer_label: 'Prove by setting opposite angles'
-    check: {kind: solve, equation: '4*x - 3 + 2*x + 15 - 180 = 0', variable: x, answer: ['28']}
-    symbols: {x: {real: true}}
+    check: {kind: 'solve', equation: '4*x - 3 + 2*x + 15 - 180 = 0', variable: 'x', answer: ['28']}
+    symbols: {'x': {real: true}}
     answer_text: '$x=28$; the angles are $109^\circ$ and $71^\circ$.'
 
-  - id: ch21-proof-chord-algebra
-    section: "21.4"
-    tier: H
-    dfe: [G10]
+  - id: 'ch21-proof-chord-algebra'
+    section: '21.4'
+    tier: 'H'
+    dfe: ['G10']
     statement: 'A perpendicular from centre $O$ bisects chord $AB$. If $AM=2x+1$ and $MB=17$, find $x$.'
     answer_label: 'Use the chord theorem'
-    check: {kind: solve, equation: '2*x + 1 - 17 = 0', variable: x, answer: ['8']}
-    symbols: {x: {real: true}}
+    check: {kind: 'solve', equation: '2*x + 1 - 17 = 0', variable: 'x', answer: ['8']}
+    symbols: {'x': {real: true}}
     answer_text: '$x=8$, since the perpendicular from the centre bisects the chord.'

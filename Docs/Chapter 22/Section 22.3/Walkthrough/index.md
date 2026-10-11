@@ -57,7 +57,7 @@ $$
 The diagonals have the same midpoint, so they bisect each other. Each midpoint
 step follows from adding the endpoint position vectors and halving.
 
-> **Watch out.** Equal lengths alone do not prove two segments have the same
+> **Watch out.** Equal lengths alone do not prove that two segments have the same
 > midpoint. Compare both midpoint position vectors, including both components.
 
 ## Progress check

@@ -27,7 +27,7 @@ Try each question before opening a hint. Open the next part only when you need i
 
 ## Practise with help
 
-**1.** Work out the missing angle in a basic question from this section.
+**1.** Find the interior angle sum of a pentagon.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -37,20 +37,22 @@ Write the angle fact that fits the diagram or shape.
 <details markdown="1">
 <summary>One step</summary>
 
-Set up an equation using the known angle total.
+An $n$-sided polygon has interior angle sum $(n-2)\times180^\circ$.
 
-$(5-2)\times180=540^\circ$ for a pentagon.
+$$
+(5-2)\times180=540^\circ
+$$
 
 <details markdown="1">
 <summary>Full working</summary>
 
-Use the relevant angle sum and subtract the known angles. State the angle fact in your answer.
+The pentagon has $5-2=3$ triangles, so its interior angle sum is $3\times180=540^\circ$.
 
 </details>
 </details>
 </details>
 
-**2.** A courtyard design uses the angle fact from this section. Find an unknown angle and explain your choice of fact.
+**2.** Find each interior angle of a regular pentagon.
 
 <details markdown="1">
 <summary>Hint</summary>
@@ -60,14 +62,18 @@ Mark the known angles and identify their relationship before calculating.
 <details markdown="1">
 <summary>One step</summary>
 
-Write an equation for the known angles and the unknown.
+Find the pentagon's interior sum, then divide by its five equal angles.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-Substitute the known values, solve, then check that the angles fit the shape.
+The interior sum is $540^\circ$. A regular pentagon has five equal angles.
 
-$540\div5=108^\circ$ for each angle of a regular pentagon.
+$$
+540\div5=108^\circ
+$$
+
+Each interior angle is $108^\circ$.
 
 </details>
 </details>

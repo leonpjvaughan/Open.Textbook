@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** angles on a straight line total $180^\circ$; angles in a triangle total $180^\circ$; identify a radius, chord and circumference.
 
-**Objectives:** apply angle at centre, semicircle, same segment and cyclic quadrilateral theorems. This page covers these G10 angle results.
+**Objectives:** apply the angle-at-the-centre, semicircle, same-segment and cyclic-quadrilateral theorems.
 
 ## Angles at the centre and circumference
 

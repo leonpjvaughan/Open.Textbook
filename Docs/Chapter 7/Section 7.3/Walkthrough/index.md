@@ -12,6 +12,8 @@ kind: walkthrough
 
 # 7.3 Rounding and error intervals — Learn
 
+**Prerequisites:** rounding to decimal places and significant figures.
+
 ## Before you begin
 
 You should know how to round numbers to a stated number of decimal places or significant figures.
@@ -48,7 +50,7 @@ $$
 12.35\leq t<12.45
 $$
 
-> **Watch out.** The upper bound is usually not included. A value exactly halfway above rounds to the next stated value.
+> **Watch out.** A common error is to include the upper endpoint. For $4.7$ cm to the nearest $0.1$ cm, $4.75$ cm rounds to $4.8$ cm, so write $L<4.75$.
 
 > **Progress check.** A distance is $8.2$ km to the nearest $0.1$ km. Predict the two interval endpoints.
 

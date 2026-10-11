@@ -15,12 +15,14 @@ Attempt each question before opening a hint. Reveal the full working to check yo
 
 ## Warm-up: remember
 
-1. Work out $7+(-3)$.
-2. Work out $4\times6$.
+Answer from memory before checking.
 
-<details markdown="1"><summary>Answers</summary>
+1. Work out $-8+3$.
+2. Work out $3^2$.
+<details markdown="1"><summary>Answers and feedback</summary>
 
-1. $4$. 2. $24$.
+1. $-5$. 2. $9$.
+If an answer differs, review the earlier method before continuing.
 </details>
 
 ## Practise with help
@@ -34,7 +36,7 @@ Identify the letter, coefficient and constant in the written expression.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+Write $x$ three times as a sum, then name the number multiplying $x$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -51,7 +53,7 @@ Identify the letter, coefficient and constant in the written expression.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+Which operation combines $n$ and $5$?
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -68,7 +70,7 @@ Identify the letter, coefficient and constant in the written expression.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+Replace $x$ with $3$, then multiply before adding.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -85,7 +87,7 @@ Identify the letter, coefficient and constant in the written expression.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+List each part separated by a plus sign and identify the number multiplying each letter.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -102,7 +104,7 @@ Identify the letter, coefficient and constant in the written expression.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+Replace $n$ with $6$ in $C=5n$, then attach the currency unit.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -119,7 +121,7 @@ Identify the letter, coefficient and constant in the written expression.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+Replace $m$ with $4$ and follow the order of operations.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -136,7 +138,7 @@ Identify the letter, coefficient and constant in the written expression.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+Subtract $3$ from $t$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -153,7 +155,7 @@ Identify the letter, coefficient and constant in the written expression.
 
 <details markdown="1"><summary>Next step</summary>
 
-Start from the exact expression in the question. Write each operation before simplifying.
+An equation contains an equals sign. Does this statement have one?
 </details>
 
 <details markdown="1"><summary>Full working</summary>

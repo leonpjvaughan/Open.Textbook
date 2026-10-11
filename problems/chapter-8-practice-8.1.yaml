@@ -1,109 +1,99 @@
 chapter: 8
 symbols:
-  x:
-    real: true
-  a:
-    real: true
-  b:
-    real: true
-  m:
-    real: true
-  n:
-    real: true
-  p:
-    real: true
-  q:
-    real: true
-  y:
-    real: true
+  x: {real: true}
+  a: {real: true}
+  b: {real: true}
+  m: {real: true}
+  n: {real: true}
+  p: {real: true}
+  q: {real: true}
+  y: {real: true}
 problems:
-- id: ch8-8-1-1
-  section: '8.1'
-  tier: F
-  dfe: &id001
-  - A1
-  - A3
-  statement: Write $7x$ as repeated addition, then state its coefficient.
-  answer_label: Write $7x$ as repeated addition, then state its coefficient.
-  check:
-    kind: evaluate
-    expression: 7*x
-    answer: 7*x
-  answer_text: Seven groups of $x$; coefficient $7$.
-- id: ch8-8-1-2
-  section: '8.1'
-  tier: F
-  dfe: *id001
-  statement: Write an expression for five more than $n$.
-  answer_label: Write an expression for five more than $n$.
-  check:
-    kind: evaluate
-    expression: n+5
-    answer: n+5
-  answer_text: $n+5$.
-- id: ch8-8-1-3
-  section: '8.1'
-  tier: F
-  dfe: *id001
-  statement: Evaluate $3x+2$ when $x=3$.
-  answer_label: Evaluate $3x+2$ when $x=3$.
-  check:
-    kind: evaluate
-    expression: 3*3+2
-    answer: '11'
-  answer_text: $3(3)+2=11$.
-- id: ch8-8-1-4
-  section: '8.1'
-  tier: F
-  dfe: *id001
-  statement: State the terms and coefficients in $4a+4b$.
-  answer_label: State the terms and coefficients in $4a+4b$.
-  check:
-    kind: evaluate
-    expression: 4*a+4*b
-    answer: 4*a+4*b
-  answer_text: Terms $4a$ and $4b$; each coefficient is $4$.
-- id: ch8-8-1-5
-  section: '8.1'
-  tier: F
-  dfe: *id001
-  statement: If each item costs £5, write and evaluate the total cost $C=5n$ for $n=6$.
-  answer_label: If each item costs £5, write and evaluate the total cost $C=5n$ for $n
-  check:
-    kind: evaluate
-    expression: 5*6
-    answer: '30'
-  answer_text: $C=5(6)=£30$.
-- id: ch8-8-1-6
-  section: '8.1'
-  tier: F
-  dfe: *id001
-  statement: Evaluate $2m+1$ when $m=4$.
-  answer_label: Evaluate $2m+1$ when $m=4$.
-  check:
-    kind: evaluate
-    expression: 2*4+1
-    answer: '9'
-  answer_text: The expression $2m+1$ becomes $2(4)+1=9$.
-- id: ch8-8-1-7
-  section: '8.1'
-  tier: F
-  dfe: *id001
-  statement: Write an expression for three fewer than $t$.
-  answer_label: Write an expression for three fewer than $t$.
-  check:
-    kind: evaluate
-    expression: t-3
-    answer: t-3
-  answer_text: $t-3$.
-- id: ch8-8-1-8
-  section: '8.1'
-  tier: F
-  dfe: *id001
-  statement: Is $2m+1=9$ an expression or equation?
-  answer_label: Is $2m+1=9$ an expression or equation?
-  check:
-    kind: evaluate
-    expression: 2*4+1
-    answer: '9'
-  answer_text: It is an equation because it states equality.
+  - id: ch8-8-1-1
+    section: '8.1'
+    tier: F
+    dfe: [A1, A3]
+    statement: 'Write $7x$ as repeated addition, then state its coefficient.'
+    answer_label: 'Write $7x$ as repeated addition, then state its coefficient.'
+    check:
+      kind: evaluate
+      expression: '7*x'
+      answer: '7*x'
+    answer_text: 'Seven groups of $x$; coefficient $7$.'
+  - id: ch8-8-1-2
+    section: '8.1'
+    tier: F
+    dfe: [A1, A3]
+    statement: 'Write an expression for five more than $n$.'
+    answer_label: 'Write an expression for five more than $n$.'
+    check:
+      kind: evaluate
+      expression: 'n+5'
+      answer: 'n+5'
+    answer_text: '$n+5$.'
+  - id: ch8-8-1-3
+    section: '8.1'
+    tier: F
+    dfe: [A1, A3]
+    statement: 'Evaluate $3x+2$ when $x=3$.'
+    answer_label: 'Evaluate $3x+2$ when $x=3$.'
+    check:
+      kind: evaluate
+      expression: '3*3+2'
+      answer: '11'
+    answer_text: '$3(3)+2=11$.'
+  - id: ch8-8-1-4
+    section: '8.1'
+    tier: F
+    dfe: [A1, A3]
+    statement: 'State the terms and coefficients in $4a+4b$.'
+    answer_label: 'State the terms and coefficients in $4a+4b$.'
+    check:
+      kind: evaluate
+      expression: '4*a+4*b'
+      answer: '4*a+4*b'
+    answer_text: 'Terms $4a$ and $4b$; each coefficient is $4$.'
+  - id: ch8-8-1-5
+    section: '8.1'
+    tier: F
+    dfe: [A1, A3]
+    statement: 'If each item costs £5, write and evaluate the total cost $C=5n$ for $n=6$.'
+    answer_label: 'If each item costs £5, write and evaluate the total cost $C=5n$ for $n'
+    check:
+      kind: evaluate
+      expression: '5*6'
+      answer: '30'
+    answer_text: '$C=5(6)=£30$.'
+  - id: ch8-8-1-6
+    section: '8.1'
+    tier: F
+    dfe: [A1, A3]
+    statement: 'Evaluate $2m+1$ when $m=4$.'
+    answer_label: 'Evaluate $2m+1$ when $m=4$.'
+    check:
+      kind: evaluate
+      expression: '2*4+1'
+      answer: '9'
+    answer_text: 'The expression $2m+1$ becomes $2(4)+1=9$.'
+  - id: ch8-8-1-7
+    section: '8.1'
+    tier: F
+    dfe: [A1, A3]
+    statement: 'Write an expression for three fewer than $t$.'
+    answer_label: 'Write an expression for three fewer than $t$.'
+    check:
+      kind: evaluate
+      expression: 't-3'
+      answer: 't-3'
+    answer_text: '$t-3$.'
+  - id: ch8-8-1-8
+    section: '8.1'
+    tier: F
+    dfe: [A1, A3]
+    statement: 'Is $2m+1=9$ an expression or equation?'
+    answer_label: 'Is $2m+1=9$ an expression or equation?'
+    check:
+      kind: evaluate
+      expression: '2*m+1'
+      answer: '2*m+1'
+    answer_text: 'It is an equation because it states equality.'

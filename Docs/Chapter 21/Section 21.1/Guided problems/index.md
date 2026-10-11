@@ -11,8 +11,6 @@ kind: guided-problems
 
 # 21.1 Parts of a circle — Practise with help
 
-Try each question before opening a hint. Open the full working to check your method.
-
 ## Warm-up: remember
 
 1. What is a line segment?

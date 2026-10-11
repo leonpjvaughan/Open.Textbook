@@ -11,7 +11,7 @@ kind: guided-problems
 
 # 18.4 Congruence and congruence criteria — Practise with help
 
-Attempt each question before opening a hint. Reveal the full working to check your method.
+Attempt these from memory before opening the answers. Then try each question before opening a hint.
 
 ## Warm-up: remember
 
@@ -19,10 +19,10 @@ Attempt each question before opening a hint. Reveal the full working to check yo
 2. Translate $(1,2)$ by $\begin{pmatrix}2\\-1\end{pmatrix}$.
 
 <details markdown="1">
-<summary>Check your answers</summary>
+<summary>Answers and feedback</summary>
 
-1. $5$.
-2. $(3,1)$.
+1. $5$. Starting at $-3$ and moving $8$ places right gives $5$.
+2. $(3,1)$. Add $2$ to the horizontal coordinate and subtract $1$ from the vertical coordinate.
 </details>
 
 ## Practise with help

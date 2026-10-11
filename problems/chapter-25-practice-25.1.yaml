@@ -38,7 +38,7 @@ problems:
     dfe: [S4]
     statement: 'Group A has $Q_1=11$ and $Q_3=19$. Group B has $Q_1=8$ and $Q_3=21$. Which group has the larger middle-half spread?'
     answer_label: 'Compare middle-half spread'
-    check: {kind: compare, relation: '<', lhs: '8', rhs: '13'}
+    check: {kind: all, checks: [{kind: evaluate, expression: '19 - 11', answer: '8'}, {kind: evaluate, expression: '21 - 8', answer: '13'}, {kind: compare, relation: '<', lhs: '8', rhs: '13'}]}
     answer_text: 'Group A has IQR $8$; Group B has IQR $13$. Group B has the larger spread.'
   - id: p6-quartile-check
     section: '25.1'
@@ -46,8 +46,8 @@ problems:
     dfe: [S4]
     statement: 'For $2, 4, 5, 7, 9, 10, 12, 16, 18, 20$, find the median and quartiles using the median-of-halves convention.'
     answer_label: 'Median and quartiles'
-    check: {kind: all, checks: [{kind: evaluate, expression: '(9 + 10) / 2', answer: '19/2'}, {kind: evaluate, expression: '(5 + 7) / 2', answer: '6'}, {kind: evaluate, expression: '(16 + 18) / 2', answer: '17'}]}
-    answer_text: 'Median $=9.5$, $Q_1=6$, $Q_3=17$.'
+    check: {kind: all, checks: [{kind: evaluate, expression: '(9 + 10) / 2', answer: '19/2'}, {kind: evaluate, expression: '5', answer: '5'}, {kind: evaluate, expression: '16', answer: '16'}]}
+    answer_text: 'Median $=9.5$, $Q_1=5$, $Q_3=16$.'
   - id: p7-iqr-from-data
     section: '25.1'
     tier: H

@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** sine ratios, angle sum in a triangle, and calculator degree mode.
 
-**Objectives:** use the sine rule to find a missing side or angle in a non-right-angled triangle. This teaches DfE G22.
+**Objectives:** use the sine rule to find a missing side or angle in a non-right-angled triangle.
 
 A side and its opposite angle form a pair. The **sine rule** is $\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}$, where lower-case letters are opposite their matching capital angles.
 
@@ -41,6 +41,6 @@ For the garden diagonal, the right-triangle ratios still work. The sine rule is 
 
 ## You should now be able to
 
-- state the method and identify the measurements it needs;
-- show your working in a clear order;
-- check that your answer is sensible and give suitable units.
+- match each side to its opposite angle before using the sine rule;
+- use the sine rule to find a missing side or angle;
+- check whether a second angle is possible by using the triangle's angle sum.

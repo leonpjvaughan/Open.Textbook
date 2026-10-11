@@ -22,7 +22,7 @@ $3+4=7$. Also, $0.25=25/100=1/4$. If either answer differs, revisit number opera
 
 ### Question 1
 
-Estimate the number of 240 pupils who prefer football if 18 of 30 sampled pupils do.
+Estimate the number of pupils who prefer football in a group of 240, if 18 of 30 sampled pupils do.
 
 <details markdown="1"><summary>Hint</summary>
 
@@ -36,7 +36,7 @@ Multiply the sample fraction by the population.
 
 <details markdown="1"><summary>Full working</summary>
 
-Multiply the sample fraction by the population.
+The sample fraction is $18/30=0.6$. Estimate $0.6\times240=144$ pupils.
 </details>
 
 ### Question 2
@@ -50,12 +50,12 @@ Look for wording that suggests an answer.
 
 <details markdown="1"><summary>Next step</summary>
 
-Ask a neutral question with clear response choices.
+Ask for an opinion without suggesting a preferred answer.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
 
-Ask a neutral question with clear response choices.
+For example: “What do you think of the new canteen menu?”
 </details>
 
 ### Question 3
@@ -69,11 +69,10 @@ Divide the count by the sample size.
 
 <details markdown="1"><summary>Next step</summary>
 
-Convert the fraction to a percentage.
+Multiply the fraction of the sample by 100.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
 
-Convert the fraction to a percentage.
+The fraction is $15/50=0.3$. Convert it to a percentage: $0.3\times100=30\%$.
 </details>
-

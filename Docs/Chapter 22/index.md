@@ -10,7 +10,9 @@ anchor: Parallelogram diagonals
 Vectors describe both a direction and a distance. You can use them to describe
 translations, calculate journeys, and explain why geometric facts are true.
 
-## The chapter problem: diagonals of a parallelogram
+## The chapter problem
+
+### Diagonals of a parallelogram
 
 Start at point $A$. Move by vector $\mathbf{u}$ to point $B$, then by vector
 $\mathbf{v}$ to point $C$. A second route from $A$ moves by $\mathbf{v}$ to $D$.
@@ -22,7 +24,9 @@ halfway along each diagonal? Say what you think, or sketch a parallelogram.
 
 By the end, you will use vectors to give a proof and check your prediction.
 
-## By the end of this chapter you will be able to
+## By the end of this chapter
+
+You will be able to:
 
 - describe a translation using a two-dimensional vector;
 - write and draw vectors as columns, and interpret their horizontal and vertical changes;
@@ -41,4 +45,3 @@ By the end, you will use vectors to give a proof and check your prediction.
 Maps, movement and design can involve directions and distances. Where might a
 description of movement help you or someone you know? Write one example in your
 own words. You can return to it after the chapter.
-

@@ -12,11 +12,11 @@ kind: walkthrough
 
 **Prerequisites:** equivalent fractions and multiplication.
 
-**Objectives:** You need to add or subtract equal-sized parts. A common denominator gives both fractions the same-sized parts.
+**Objectives:** Add and subtract positive and negative proper and improper fractions, including mixed numbers.
 
 ## Learn the method
 
-If denominators already match, add or subtract only the numerators. Otherwise, rewrite both fractions using a common denominator, then simplify.
+If denominators already match, add or subtract only the numerators. Otherwise, rewrite both fractions using a common denominator, then simplify. For a mixed number, convert it to an improper fraction before calculating.
 
 ## Worked examples
 
@@ -44,12 +44,13 @@ $\frac{15}{20}-\frac{8}{20}=\frac{7}{20}$.
 
 ## Progress check
 
-The keyboard problem gives a discount of $\frac{1}{4}$. Write this as a percentage. Which section method will help you compare prices?
+The discount is $\frac{1}{4}$ of £48. Subtract it from £48: $48-\frac14(48)=48-12=£36$.
 
 ## You should now be able to
 
-- explain the key idea in this section in your own words;
-- choose and use the method shown in the worked examples;
-- check your answer using an equivalent representation.
+- add and subtract fractions with equal and different denominators;
+- simplify a fraction answer;
+- calculate with mixed numbers;
+- use a negative answer when subtracting fractions.
 
 **Covers:** [N2].

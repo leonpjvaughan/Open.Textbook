@@ -15,13 +15,15 @@ kind: walkthrough
 
 **By the end of this section you can:** substitute positive and negative values into expressions and formulae, then calculate accurately.
 
+**Covers:** A2.
+
 ## Learn the method
 
 Substitution means replacing a letter with its given value. Put a negative value in brackets to protect its sign.
 
 Then follow the order of operations: powers first, then multiplication and division, then addition and subtraction.
 
-For $3x^2-2$ when $x=-2$, write $3(-2)^2-2=3	imes4-2=10$.
+For $3x^2-2$ when $x=-2$, write $3(-2)^2-2=3\times4-2=10$.
 
 A formula is an equation that shows a relationship. Substitute every stated value before calculating.
 
@@ -29,7 +31,7 @@ A formula is an equation that shows a relationship. Substitute every stated valu
 
 $2(-4)^2-3$ — replace $x$ with $-4$.
 
-$=2	imes16-3$ — evaluate the power.
+$=2\times16-3$ — evaluate the power.
 
 $=29$ — multiply, then subtract.
 
@@ -38,4 +40,4 @@ $=29$ — multiply, then subtract.
 ## You should now be able to
 
 - substitute positive and negative values into expressions and formulae, then calculate accurately.
-- explain your method and check your answer using the inverse operation or substitution.
+

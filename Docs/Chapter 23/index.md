@@ -6,24 +6,28 @@ strand: probability
 
 # Chapter 23: Probability
 
-Probability measures how likely an event is. You will describe chance, use data, count outcomes, and combine events.
+Probability measures how likely an event is. You will describe chance, use data,
+count outcomes and combine events.
 
-## The chapter problem: a two-colour spinner
+## By the end of this chapter
 
-A spinner has equal-sized red and blue regions. You will investigate the chance of landing on red, then compare a prediction with results from repeated spins.
-
-**First contact:** without calculating, predict whether red will appear more than half, less than half, or about half of the time over many spins. There is no score for this prediction.
-
-By the end, you can use probability models and results to explain how likely events are and how events depend on each other.
-
-## By the end of this chapter you will be able to
+You will be able to:
 
 - place probabilities on a scale and calculate probabilities for equally likely outcomes;
 - use relative frequency to estimate probability and expected outcomes;
 - organise outcomes in tables, frequency trees, lists and possibility spaces;
-- calculate probabilities for combined independent events;
+- calculate probabilities for independent and dependent combined events using tree diagrams;
 - use Venn diagrams and set notation to describe groups and events;
-- calculate conditional probabilities from a restricted group.
+- calculate conditional probabilities from a restricted group using tables, tree diagrams and Venn diagrams.
+
+## The chapter problem
+
+A spinner has equal-sized red and blue regions. You will investigate the chance
+of landing on red, then compare a prediction with results from repeated spins.
+
+**First contact:** without calculating, predict whether red will appear more
+than half, less than half or about half of the time over many spins. There is no
+score for this prediction.
 
 ## Roadmap
 

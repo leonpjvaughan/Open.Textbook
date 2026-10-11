@@ -5,140 +5,162 @@ symbols:
   t:
     real: true
 problems:
-- id: ch12-12.3-values
-  section: '12.3'
-  tier: F
-  dfe:
-  - A11
-  statement: For $y=x^2-4$, work out $y$ when $x=-2,-1,0,1,2$.
-  answer_label: For $y=x^2-4$, work out $y$ when $x=-2,-1,0,1,2$.
-  check:
-    kind: all
-    checks:
-    - kind: evaluate
-      expression: (-2)**2-4
-      answer: '0'
-    - kind: evaluate
-      expression: (-1)**2-4
-      answer: '-3'
-    - kind: evaluate
-      expression: 0**2-4
+  -
+    id: 'ch12-12.3-values'
+    section: '12.3'
+    tier: 'F'
+    dfe:
+      - 'A11'
+    statement: 'For $y=x^2-4$, work out $y$ when $x=-2,-1,0,1,2$.'
+    answer_label: 'For $y=x^2-4$, work out $y$ when $x=-2,-1,0,1,2$.'
+    check:
+      kind: 'all'
+      checks:
+        -
+          kind: 'evaluate'
+          expression: '(-2)**2-4'
+          answer: '0'
+        -
+          kind: 'evaluate'
+          expression: '(-1)**2-4'
+          answer: '-3'
+        -
+          kind: 'evaluate'
+          expression: '0**2-4'
+          answer: '-4'
+        -
+          kind: 'evaluate'
+          expression: '1**2-4'
+          answer: '-3'
+        -
+          kind: 'evaluate'
+          expression: '2**2-4'
+          answer: '0'
+    answer_text: '$0,-3,-4,-3,0$ respectively.'
+  -
+    id: 'ch12-12.3-roots'
+    section: '12.3'
+    tier: 'F'
+    dfe:
+      - 'A11'
+    statement: 'State the roots of $y=x^2-9$.'
+    answer_label: 'State the roots of $y=x^2-9$.'
+    check:
+      kind: 'all'
+      checks:
+        -
+          kind: 'evaluate'
+          expression: '(-3)**2-9'
+          answer: '0'
+        -
+          kind: 'evaluate'
+          expression: '3**2-9'
+          answer: '0'
+    answer_text: '$x=-3$ and $x=3$.'
+  -
+    id: 'ch12-12.3-intercept'
+    section: '12.3'
+    tier: 'F'
+    dfe:
+      - 'A11'
+    statement: 'Find the $y$-intercept of $y=x^2+3x-4$.'
+    answer_label: 'Find the $y$-intercept of $y=x^2+3x-4$.'
+    check:
+      kind: 'evaluate'
+      expression: '0**2+3*0-4'
       answer: '-4'
-    - kind: evaluate
-      expression: 1**2-4
-      answer: '-3'
-    - kind: evaluate
-      expression: 2**2-4
-      answer: '0'
-  answer_text: $0,-3,-4,-3,0$ respectively.
-- id: ch12-12.3-roots
-  section: '12.3'
-  tier: F
-  dfe:
-  - A11
-  statement: State the roots of $y=x^2-9$.
-  answer_label: State the roots of $y=x^2-9$.
-  check:
-    kind: all
-    checks:
-    - kind: evaluate
-      expression: (-3)**2-9
-      answer: '0'
-    - kind: evaluate
-      expression: 3**2-9
-      answer: '0'
-  answer_text: $x=-3$ and $x=3$.
-- id: ch12-12.3-intercept
-  section: '12.3'
-  tier: F
-  dfe:
-  - A11
-  statement: Find the $y$-intercept of $y=x^2+3x-4$.
-  answer_label: Find the $y$-intercept of $y=x^2+3x-4$.
-  check:
-    kind: evaluate
-    expression: 0**2+3*0-4
-    answer: '-4'
-  answer_text: $(0,-4)$.
-- id: ch12-12.3-turn
-  section: '12.3'
-  tier: F
-  dfe:
-  - A11
-  statement: Find the turning point of $y=(x-2)^2+1$.
-  answer_label: Find the turning point of $y=(x-2)^2+1$.
-  check:
-    kind: all
-    checks:
-    - kind: evaluate
-      expression: (2-2)**2+1
-      answer: '1'
-    - kind: compare
-      relation: '>='
-      lhs: (x-2)**2+1
-      rhs: '1'
-  answer_text: $(2,1)$, a minimum.
-- id: ch12-12.3-shape
-  section: '12.3'
-  tier: F
-  dfe:
-  - A11
-  statement: Does $y=-2x^2+1$ open upwards or downwards?
-  answer_label: Does $y=-2x^2+1$ open upwards or downwards?
-  check:
-    kind: compare
-    relation: <
-    lhs: '-2'
-    rhs: '0'
-  answer_text: Downwards because the coefficient of $x^2$ is negative.
-- id: ch12-12.3-translated
-  section: '12.3'
-  tier: F
-  dfe:
-  - A11
-  - A12
-  statement: For $y=(x+1)^2-4$, state the turning point and roots.
-  answer_label: For $y=(x+1)^2-4$, state the turning point and roots.
-  check:
-    kind: all
-    checks:
-    - kind: evaluate
-      expression: (-1)**2-4
-      answer: '-3'
-    - kind: evaluate
-      expression: (-1-2)**2-4
-      answer: '5'
-    - kind: evaluate
-      expression: (-1+2)**2-4
-      answer: '-3'
-  answer_text: Turning point $(-1,-4)$; roots are $x=-3$ and $x=1$.
-- id: ch12-12.3-graph-count
-  section: '12.3'
-  tier: F
-  dfe:
-  - A12
-  statement: How many roots does $y=x^2+2$ have?
-  answer_label: How many roots does $y=x^2+2$ have?
-  check:
-    kind: compare
-    relation: '>'
-    lhs: x**2+2
-    rhs: '0'
-  answer_text: No real roots, because $x^2+2$ is always positive.
-- id: ch12-12.3-model
-  section: '12.3'
-  tier: F
-  dfe:
-  - A11
-  statement: For $h=-t^2+4t+5$, work out $h$ at $t=0$ and $t=2$.
-  answer_label: For $h=-t^2+4t+5$, work out $h$ at $t=0$ and $t=2$.
-  check:
-    kind: all
-    checks:
-    - kind: evaluate
-      expression: -(0**2)+4*0+5
-      answer: '5'
-    - kind: evaluate
-      expression: -(2**2)+4*2+5
-      answer: '9'
-  answer_text: $5$ m and $9$ m.
+    answer_text: '$(0,-4)$.'
+  -
+    id: 'ch12-12.3-turn'
+    section: '12.3'
+    tier: 'F'
+    dfe:
+      - 'A11'
+    statement: 'Find the turning point of $y=(x-2)^2+1$.'
+    answer_label: 'Find the turning point of $y=(x-2)^2+1$.'
+    check:
+      kind: 'all'
+      checks:
+        -
+          kind: 'evaluate'
+          expression: '(2-2)**2+1'
+          answer: '1'
+        -
+          kind: 'compare'
+          relation: '>='
+          lhs: '(x-2)**2+1'
+          rhs: '1'
+    answer_text: '$(2,1)$, a minimum.'
+  -
+    id: 'ch12-12.3-shape'
+    section: '12.3'
+    tier: 'F'
+    dfe:
+      - 'A11'
+    statement: 'Does $y=-2x^2+1$ open upwards or downwards?'
+    answer_label: 'Does $y=-2x^2+1$ open upwards or downwards?'
+    check:
+      kind: 'compare'
+      relation: '<'
+      lhs: '-2'
+      rhs: '0'
+    answer_text: 'Downwards because the coefficient of $x^2$ is negative.'
+  -
+    id: 'ch12-12.3-translated'
+    section: '12.3'
+    tier: 'F'
+    dfe:
+      - 'A11'
+      - 'A12'
+    statement: 'For $y=(x+1)^2-4$, state the turning point and roots.'
+    answer_label: 'For $y=(x+1)^2-4$, state the turning point and roots.'
+    check:
+      kind: 'all'
+      checks:
+        -
+          kind: 'evaluate'
+          expression: '(-1)**2-4'
+          answer: '-3'
+        -
+          kind: 'evaluate'
+          expression: '(-3+1)**2-4'
+          answer: '0'
+        -
+          kind: 'evaluate'
+          expression: '(1+1)**2-4'
+          answer: '0'
+    answer_text: 'Turning point $(-1,-4)$; roots are $x=-3$ and $x=1$.'
+  -
+    id: 'ch12-12.3-graph-count'
+    section: '12.3'
+    tier: 'F'
+    dfe:
+      - 'A12'
+    statement: 'How many roots does $y=x^2+2$ have?'
+    answer_label: 'How many roots does $y=x^2+2$ have?'
+    check:
+      kind: 'compare'
+      relation: '>'
+      lhs: 'x**2+2'
+      rhs: '0'
+    answer_text: 'No real roots, because $x^2+2$ is always positive.'
+  -
+    id: 'ch12-12.3-model'
+    section: '12.3'
+    tier: 'F'
+    dfe:
+      - 'A11'
+    statement: 'For $h=-t^2+4t+5$, work out $h$ at $t=0$ and $t=2$.'
+    answer_label: 'For $h=-t^2+4t+5$, work out $h$ at $t=0$ and $t=2$.'
+    check:
+      kind: 'all'
+      checks:
+        -
+          kind: 'evaluate'
+          expression: '-(0**2)+4*0+5'
+          answer: '5'
+        -
+          kind: 'evaluate'
+          expression: '-(2**2)+4*2+5'
+          answer: '9'
+    answer_text: '$5$ m and $9$ m.'

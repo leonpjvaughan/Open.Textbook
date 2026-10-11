@@ -73,7 +73,7 @@ problems:
     tier: F
     dfe: [N14, N15]
     statement: 'A jug holds $1.85$ litres. Round this to the nearest tenth of a litre and to the nearest litre.'
-    answer_label: "Rounded jug capacity"
+    answer_label: 'Rounded jug capacity'
     check:
       kind: all
       checks:
@@ -86,7 +86,7 @@ problems:
     tier: F
     dfe: [N14, N15]
     statement: 'A journey takes $3$ hours $47$ minutes. Round this to the nearest hour.'
-    answer_label: "Journey time to nearest hour"
+    answer_label: 'Journey time to nearest hour'
     check: {kind: rounded, value: "3 + 47/60", rounded: "4", to: "1"}
     answer_text: '$4$ hours.'
 
@@ -95,7 +95,7 @@ problems:
     tier: F
     dfe: [N14, N15]
     statement: 'A cyclist travels $24.6$ km in $1.8$ hours. Estimate the average speed by rounding, then say whether an exact answer of $13.7$ km/h is reasonable.'
-    answer_label: "Estimated average speed"
+    answer_label: 'Estimated average speed'
     check:
       kind: all
       checks:
@@ -107,8 +107,8 @@ problems:
     section: "1.5"
     tier: F
     dfe: [N14, N15]
-    statement: "The stall's profit was £39.20. A poster must show the profit to the nearest £5. What should it say?"
-    answer_label: "Profit to nearest £5"
+    statement: 'The stall''s profit was £39.20. A poster must show the profit to the nearest £5. What should it say?'
+    answer_label: 'Profit to nearest £5'
     check: {kind: rounded, value: "39.20", rounded: "40", to: "5"}
     answer_text: '$£40$.'
 
@@ -117,7 +117,7 @@ problems:
     tier: H
     dfe: [N14, N15]
     statement: 'A number rounds to $4.7$ to 1 decimal place. Write down the smallest and largest values it could have.'
-    answer_label: "Range of values"
+    answer_label: 'Range of values'
     check:
       kind: all
       checks:
@@ -130,6 +130,6 @@ problems:
     tier: H
     dfe: [N14, N15]
     statement: 'Estimate $\dfrac{6.2 \times 19.8}{3.1}$ by rounding each number to 1 significant figure.'
-    answer_label: "Estimate the quotient"
+    answer_label: 'Estimate the quotient'
     check: {kind: evaluate, expression: "6 * 20 / 3", answer: "40"}
     answer_text: '$\dfrac{6 \times 20}{3} = 40$.'

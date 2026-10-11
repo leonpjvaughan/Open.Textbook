@@ -1,93 +1,93 @@
-chapter: 4
+chapter: '4'
 symbols: {}
 problems:
-- id: ch4-fraction-amount
+- id: 'ch4-fraction-amount'
   section: '4.6'
-  tier: F
+  tier: 'F'
   dfe:
-  - N11
-  statement: Work out $\frac{3}{8}$ of $£64$.
-  answer_label: Answer 1
+  - 'N11'
+  statement: 'Work out $\frac{3}{8}$ of $£64$.'
+  answer_label: 'Answer 1'
   check:
-    kind: evaluate
-    expression: 3/8*64
-    answer: '24'
-  answer_text: $\frac{3}{8}\times64=24$, so the amount is £24.
-- id: ch4-percent-amount
+    'kind': 'evaluate'
+    'expression': '3/8*64'
+    'answer': '24'
+  answer_text: '$\frac{3}{8}\times64=24$, so the amount is £24.'
+- id: 'ch4-percent-amount'
   section: '4.6'
-  tier: F
+  tier: 'F'
   dfe:
-  - N11
-  statement: Work out $15\%$ of $80$.
-  answer_label: Answer 2
+  - 'N11'
+  statement: 'Work out $15\%$ of $80$.'
+  answer_label: 'Answer 2'
   check:
-    kind: evaluate
-    expression: 15/100*80
-    answer: '12'
-  answer_text: $15\%\times80=\frac{15}{100}\times80=12.$
-- id: ch4-percent-change
+    'kind': 'evaluate'
+    'expression': '15/100*80'
+    'answer': '12'
+  answer_text: '$15\%\times80=\frac{15}{100}\times80=12.$'
+- id: 'ch4-percent-change'
   section: '4.6'
-  tier: F
+  tier: 'F'
   dfe:
-  - N12
-  statement: A £60 coat is reduced by $20\%$. Work out its sale price.
-  answer_label: Answer 3
+  - 'N12'
+  statement: 'A £60 coat is reduced by $20\%$. Work out its sale price.'
+  answer_label: 'Answer 3'
   check:
-    kind: evaluate
-    expression: 60*(1-20/100)
-    answer: '48'
-  answer_text: $20\%$ of £60 is £12, so £60-£12=£48.
-- id: ch4-reverse-percent
+    'kind': 'evaluate'
+    'expression': '60*(1-20/100)'
+    'answer': '48'
+  answer_text: '$20\%$ of £60 is £12, so £60-£12=£48.'
+- id: 'ch4-reverse-percent'
   section: '4.6'
-  tier: F
+  tier: 'F'
   dfe:
-  - N12
-  statement: After a $25\%$ increase, a price is £90. Work out the original price.
-  answer_label: Answer 4
+  - 'N12'
+  statement: 'After a $25\%$ increase, a price is £90. Work out the original price.'
+  answer_label: 'Answer 4'
   check:
-    kind: evaluate
-    expression: 90/(1+25/100)
-    answer: '72'
-  answer_text: The new price is $125\%$ of the original. £90 divided by $1.25$ is £72.
-- id: ch4-fraction-percent
+    'kind': 'evaluate'
+    'expression': '90/(1+25/100)'
+    'answer': '72'
+  answer_text: 'The new price is $125\%$ of the original. £90 divided by $1.25$ is £72.'
+- id: 'ch4-fraction-percent'
   section: '4.6'
-  tier: F
+  tier: 'F'
   dfe:
-  - N11
-  - N12
-  statement: Write $\frac{3}{20}$ as a percentage, then work out $\frac{3}{20}$ of £140.
-  answer_label: Answer 5
+  - 'N11'
+  - 'N12'
+  statement: 'Write $\frac{3}{20}$ as a percentage, then work out $\frac{3}{20}$ of £140.'
+  answer_label: 'Answer 5'
   check:
-    kind: all
-    checks:
-    - kind: evaluate
-      expression: 3/20
-      answer: 15/100
-    - kind: evaluate
-      expression: 3/20*140
-      answer: '21'
-  answer_text: $\frac{3}{20}=15\%$. Also $\frac{3}{20}\times140=£21$.
-- id: ch4-fraction-increase
+    'kind': 'all'
+    'checks':
+    - 'kind': 'evaluate'
+      'expression': '3/20'
+      'answer': '15/100'
+    - 'kind': 'evaluate'
+      'expression': '3/20*140'
+      'answer': '21'
+  answer_text: '$\frac{3}{20}=15\%$. Also $\frac{3}{20}\times140=£21$.'
+- id: 'ch4-fraction-increase'
   section: '4.6'
-  tier: F
+  tier: 'F'
   dfe:
-  - N12
-  statement: Increase £80 by $\frac{1}{5}$. Work out the new price.
-  answer_label: Increase by one fifth
+  - 'N12'
+  statement: 'Increase £80 by $\frac{1}{5}$. Work out the new price.'
+  answer_label: 'Increase by one fifth'
   check:
-    kind: evaluate
-    expression: 80*(1+1/5)
-    answer: '96'
-  answer_text: $\frac{1}{5}=20\%$. The multiplier is $1.2$, so $£80\times1.2=£96$.
-- id: ch4-reverse-fraction
+    'kind': 'evaluate'
+    'expression': '80*(1+1/5)'
+    'answer': '96'
+  answer_text: '$\frac{1}{5}=20\%$. The multiplier is $1.2$, so $£80\times1.2=£96$.'
+- id: 'ch4-reverse-fraction'
   section: '4.6'
-  tier: F
+  tier: 'F'
   dfe:
-  - N12
-  statement: After a $10\%$ decrease, a price is £54. Work out the original price.
-  answer_label: Original price after decrease
+  - 'N12'
+  statement: 'After a $10\%$ decrease, a price is £54. Work out the original price.'
+  answer_label: 'Original price after decrease'
   check:
-    kind: evaluate
-    expression: 54/(1-10/100)
-    answer: '60'
-  answer_text: The sale price is $90\%$ of the original. $£54\div0.9=£60$.
+    'kind': 'evaluate'
+    'expression': '54/(1-10/100)'
+    'answer': '60'
+  answer_text: 'The sale price is $90\%$ of the original. $£54\div0.9=£60$.'

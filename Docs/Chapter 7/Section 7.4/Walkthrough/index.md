@@ -12,6 +12,8 @@ kind: walkthrough
 
 # 7.4 Upper and lower bounds — Learn
 
+**Prerequisites:** error intervals and substituting values into a formula.
+
 ## Before you begin
 
 You should be able to write error intervals and substitute values into a formula.
@@ -44,13 +46,9 @@ $$
 119.5\leq d<120.5,\qquad1.95\leq t<2.05
 $$
 
-$$
-\text{speed}<120.5\div1.95\approx61.8\text{ km/h}
-$$
+The speed is less than $120.5\div1.95\approx61.7949$ km/h. To 3 significant figures, this is about $61.8$ km/h.
 
-Thus $61.8$ km/h is the upper bound (to 3 significant figures); the speed is below the exact quotient.
-
-> **Watch out.** For a maximum quotient, do not pair the two upper bounds. A smaller positive denominator makes the quotient larger.
+> **Watch out.** A common error is to divide the upper distance by the upper time. For the greatest speed, use the upper distance and lower time: a smaller positive denominator makes the quotient larger.
 
 > **Progress check.** A rectangle has length $5.2$ m and width $3.1$ m, each rounded to the nearest $0.1$ m. Which bounds give its maximum area?
 

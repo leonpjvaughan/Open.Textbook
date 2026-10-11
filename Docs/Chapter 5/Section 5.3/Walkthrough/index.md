@@ -14,7 +14,7 @@ kind: walkthrough
 
 # 5.3 Direct proportion — Learn
 
-## Before you start
+## Prerequisites
 
 You should be able to multiply and divide whole numbers and fractions. Check units before comparing quantities.
 
@@ -22,7 +22,7 @@ You should be able to multiply and divide whole numbers and fractions. Check uni
 
 **Direct proportion** means one quantity is a fixed multiple of another. The **constant of proportionality** is written $k$.
 
-## What you will learn
+## Objectives
 
 - Find equations and values in direct proportion, including square and cube relationships.
 - Check that the result matches the units and direction of change.
@@ -38,6 +38,12 @@ In direct proportion, one quantity is a fixed multiple of another: $y=kx$. For $
 - Divide by 9: $k=5$.
 - Substitute $x=5$: $y=5\times25=125$.
 - Check: $45\times(25/9)=125$.
+
+**Worked example. A graph of direct proportion passes through $(0,0)$ and $(3,12)$. Find its gradient and equation.**
+
+- Find the gradient: $12\div3=4$.
+- The graph passes through the origin, so its equation is $y=4x$.
+- Check with $(3,12)$: $4\times3=12$.
 
 **Progress check:** apply this multiplier idea to the garden path scale.
 

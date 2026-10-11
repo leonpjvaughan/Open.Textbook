@@ -2,126 +2,133 @@ chapter: 23
 problems:
 - id: p1-two-heads
   section: '23.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - P8
-  statement: A fair coin is tossed twice. Find the probability of two heads.
-  answer_label: A fair coin is tossed twice. Find the probability of two heads.
+  - 'P8'
+  statement: 'A fair coin is tossed twice. Find the probability of two heads.'
+  answer_label: 'A fair coin is tossed twice. Find the probability of two heads.'
   check:
-    kind: evaluate
-    expression: 1/2*1/2
-    answer: 1/4
-  answer_text: $\frac12\times\frac12=\frac14$.
+    kind: 'evaluate'
+    expression: '1/2*1/2'
+    answer: '1/4'
+  answer_text: '$\frac12\times\frac12=\frac14$.'
 - id: p2-one-head
   section: '23.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - P8
-  statement: A fair coin is tossed twice. Find the probability of exactly one head.
-  answer_label: A fair coin is tossed twice. Find the probability of exactly one head.
+  - 'P8'
+  statement: 'A fair coin is tossed twice. Find the probability of exactly one head.'
+  answer_label: 'A fair coin is tossed twice. Find the probability of exactly one head.'
   check:
-    kind: evaluate
-    expression: 2/4
-    answer: 1/2
-  answer_text: HT and TH give $\frac24=\frac12$.
+    kind: 'evaluate'
+    expression: '2/4'
+    answer: '1/2'
+  answer_text: 'HT and TH give $\frac24=\frac12$.'
 - id: p3-at-least-one-six
   section: '23.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - P8
-  statement: A fair die is rolled twice. Find the probability of at least one six.
-  answer_label: A fair die is rolled twice. Find the probability of at least one six.
+  - 'P8'
+  statement: 'A fair die is rolled twice. Find the probability of at least one six.'
+  answer_label: 'A fair die is rolled twice. Find the probability of at least one six.'
   check:
-    kind: evaluate
-    expression: 1-5/6*5/6
-    answer: 11/36
-  answer_text: $1-\frac{25}{36}=\frac{11}{36}$.
+    kind: 'evaluate'
+    expression: '1-5/6*5/6'
+    answer: '11/36'
+  answer_text: '$1-\frac{25}{36}=\frac{11}{36}$.'
 - id: p4-red-then-blue
   section: '23.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - P8
-  statement: A bag has 3 red and 2 blue counters. A counter is replaced after each pick. Find the probability of red then
-    blue.
-  answer_label: A bag has 3 red and 2 blue counters. A counter is replaced after each pick. Find the probability of red then
-    blue.
+  - 'P8'
+  statement: 'A bag has 3 red and 2 blue counters. A counter is replaced after each pick. Find the probability of red then blue.'
+  answer_label: 'A bag has 3 red and 2 blue counters. A counter is replaced after each pick. Find the probability of red then blue.'
   check:
-    kind: evaluate
-    expression: 3/5*2/5
-    answer: 6/25
-  answer_text: $\frac35\times\frac25=\frac6{25}$.
+    kind: 'evaluate'
+    expression: '3/5*2/5'
+    answer: '6/25'
+  answer_text: '$\frac35\times\frac25=\frac6{25}$.'
 - id: p5-two-tails
   section: '23.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - P8
-  statement: A fair coin is tossed three times. Find the probability of three tails.
-  answer_label: A fair coin is tossed three times. Find the probability of three tails.
+  - 'P8'
+  statement: 'A fair coin is tossed three times. Find the probability of three tails.'
+  answer_label: 'A fair coin is tossed three times. Find the probability of three tails.'
   check:
-    kind: evaluate
-    expression: 1/2**3
-    answer: 1/8
-  answer_text: $\frac18$.
+    kind: 'evaluate'
+    expression: '1/2**3'
+    answer: '1/8'
+  answer_text: '$\frac18$.'
 - id: p6-two-or-more
   section: '23.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - P8
-  statement: A fair coin is tossed twice. Find the probability of at most one head.
-  answer_label: A fair coin is tossed twice. Find the probability of at most one head.
+  - 'P8'
+  statement: 'A fair coin is tossed twice. Find the probability of at most one head.'
+  answer_label: 'A fair coin is tossed twice. Find the probability of at most one head.'
   check:
-    kind: evaluate
-    expression: 3/4
-    answer: 3/4
+    kind: 'evaluate'
+    expression: '3/4'
+    answer: '3/4'
   answer_text: 'TT, HT and TH: $\frac34$.'
 - id: p7-spinner-then-coin
   section: '23.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - P8
-  statement: A spinner has probability $\frac14$ of red. It is spun and a coin is tossed. Find the probability of red and
-    heads.
-  answer_label: A spinner has probability $\frac14$ of red. It is spun and a coin is tossed. Find the probability of red and
-    heads.
+  - 'P8'
+  statement: 'A spinner has probability $\frac14$ of red. It is spun and a coin is tossed. Find the probability of red and heads.'
+  answer_label: 'A spinner has probability $\frac14$ of red. It is spun and a coin is tossed. Find the probability of red and heads.'
   check:
-    kind: evaluate
-    expression: 1/4*1/2
-    answer: 1/8
-  answer_text: $\frac18$.
+    kind: 'evaluate'
+    expression: '1/4*1/2'
+    answer: '1/8'
+  answer_text: '$\frac18$.'
 - id: p8-two-sixes
   section: '23.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - P8
-  statement: A fair die is rolled twice. Find the probability of no sixes.
-  answer_label: A fair die is rolled twice. Find the probability of no sixes.
+  - 'P8'
+  statement: 'A fair die is rolled twice. Find the probability of no sixes.'
+  answer_label: 'A fair die is rolled twice. Find the probability of no sixes.'
   check:
-    kind: evaluate
-    expression: 5/6*5/6
-    answer: 25/36
-  answer_text: $\frac{25}{36}$.
+    kind: 'evaluate'
+    expression: '5/6*5/6'
+    answer: '25/36'
+  answer_text: '$\frac{25}{36}$.'
 - id: p9-either-path
   section: '23.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - P8
-  statement: A fair coin is tossed twice. Find the probability of exactly one tail.
-  answer_label: A fair coin is tossed twice. Find the probability of exactly one tail.
+  - 'P8'
+  statement: 'A fair coin is tossed twice. Find the probability of exactly one tail.'
+  answer_label: 'A fair coin is tossed twice. Find the probability of exactly one tail.'
   check:
-    kind: evaluate
-    expression: 2/4
-    answer: 1/2
-  answer_text: HT and TH, so $\frac12$.
+    kind: 'evaluate'
+    expression: '2/4'
+    answer: '1/2'
+  answer_text: 'HT and TH, so $\frac12$.'
 - id: p10-three-trials
   section: '23.4'
-  tier: F
+  tier: 'F'
   dfe:
-  - P8
-  statement: An event has probability $\frac13$ on each independent trial. Find the probability it happens on all three trials.
-  answer_label: An event has probability $\frac13$ on each independent trial. Find the probability it happens on all three
-    trials.
+  - 'P8'
+  statement: 'An event has probability $\frac13$ on each independent trial. Find the probability it happens on all three trials.'
+  answer_label: 'An event has probability $\frac13$ on each independent trial. Find the probability it happens on all three trials.'
   check:
-    kind: evaluate
-    expression: 1/3**3
-    answer: 1/27
-  answer_text: $\frac1{27}$.
+    kind: 'evaluate'
+    expression: '1/3**3'
+    answer: '1/27'
+  answer_text: '$\frac1{27}$.'
+- id: p11-dependent-draws
+  section: '23.4'
+  tier: 'F'
+  dfe:
+  - 'P8'
+  statement: 'A bag has 4 red and 3 blue counters. One counter is drawn and not replaced. Find the probability of red then blue.'
+  answer_label: 'A bag has 4 red and 3 blue counters. One counter is drawn and not replaced. Find the probability of red then blue.'
+  check:
+    kind: 'evaluate'
+    expression: '(4/7)*(3/6)'
+    answer: '2/7'
+  answer_text: 'After red, 3 of the 6 remaining counters are blue: $\frac47\times\frac36=\frac27$.'

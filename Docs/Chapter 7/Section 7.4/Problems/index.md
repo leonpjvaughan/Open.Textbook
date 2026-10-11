@@ -12,8 +12,6 @@ kind: problems
 
 # 7.4 Upper and lower bounds — Practise
 
-Work independently. The questions and checked answers appear below.
-
 :::problems chapter-7-practice-7.4
 
 :::answers chapter-7-practice-7.4

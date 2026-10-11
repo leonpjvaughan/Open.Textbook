@@ -12,11 +12,11 @@ kind: walkthrough
 
 **Prerequisites:** equivalent fractions and multiplication.
 
-**Objectives:** Multiplication finds a fraction of an amount or another fraction. Division asks how many groups of a given size fit.
+**Objectives:** Multiply and divide positive and negative proper and improper fractions, including mixed numbers.
 
 ## Learn the method
 
-Multiply numerators together and denominators together. To divide by a fraction, multiply by its reciprocal. A reciprocal swaps the numerator and denominator.
+Multiply numerators together and denominators together. To divide by a fraction, multiply by its reciprocal. A reciprocal swaps the numerator and denominator. Convert mixed numbers to improper fractions first.
 
 ## Worked examples
 
@@ -40,12 +40,13 @@ $\frac{3}{4}\times\frac{5}{2}=\frac{15}{8}=1\frac{7}{8}$.
 
 ## Progress check
 
-The keyboard problem gives a discount of $\frac{1}{4}$. Write this as a percentage. Which section method will help you compare prices?
+One keyboard costs £48 and the discount is one quarter of that price. Work out the discounted price: $48\times\frac34=£36$.
 
 ## You should now be able to
 
-- explain the key idea in this section in your own words;
-- choose and use the method shown in the worked examples;
-- check your answer using an equivalent representation.
+- multiply fractions and simplify the product;
+- divide by multiplying by the reciprocal;
+- calculate with mixed numbers;
+- interpret fraction division as the number of groups.
 
 **Covers:** [N2].

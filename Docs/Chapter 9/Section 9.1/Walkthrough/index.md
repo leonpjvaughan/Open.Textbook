@@ -15,6 +15,8 @@ kind: walkthrough
 
 **Objectives:** solve one-step and multi-step linear equations, including brackets and fractional coefficients.
 
+This section covers solving linear equations in one unknown, including brackets, as set out in AQA reference A17.
+
 An equation says that two expressions have the same value. The solution is the value of the unknown that makes the statement true. Keep the equation balanced: whatever operation you apply to one side, apply to the other.
 
 **Example 1.** Solve $3x+5=20$.
@@ -39,7 +41,7 @@ A fractional coefficient works in the same way. For $x/3+2=7$, subtract $2$ to g
 
 ## Progress check
 
-The fixed fee example has a charge of £18 plus £6 per hour. Write its cost after $h$ hours: $18+6h$. You will compare it with another expression in section 9.3.
+The fixed fee example has a charge of £18 plus £6 per hour. Write its cost after $h$ hours: $18+6h$. You will compare it with another expression in Section 9.3.
 
 ## You should now be able to
 

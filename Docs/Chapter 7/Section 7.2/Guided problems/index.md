@@ -15,14 +15,14 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Convert $2.5$ m to cm.
-2. Work out $3.6\times10$.
+1. Convert $1.8$ m to cm.
+2. Work out $12\times5$.
 
 <details markdown="1">
 <summary>Answers</summary>
 
-1. $250$ cm.
-2. $36$.
+1. $180$ cm.
+2. $60$.
 </details>
 
 ## Practise with help
@@ -32,17 +32,57 @@ kind: guided-problems
 <details markdown="1">
 <summary>Hint</summary>
 
-Identify the conversion, formula or exact method that matches the question.
+Speed is distance divided by time.
 </details>
 
 <details markdown="1">
 <summary>Choose a step</summary>
 
-Write the relevant relationship first, then substitute the given values.
+Divide $180$ km by $3$ hours.
 </details>
 
 <details markdown="1">
 <summary>Full working</summary>
 
 $180\div3=60$ km/h.
+</details>
+
+**2.** A liquid has density $1.5$ g/cm$^3$ and volume $80$ cm$^3$. Find its mass.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+Rearrange density $=\text{mass}\div\text{volume}$.
+</details>
+
+<details markdown="1">
+<summary>Choose a step</summary>
+
+Mass $=\text{density}\times\text{volume}$.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$1.5\times80=120$ g.
+</details>
+
+**3.** A force of $450$ N acts on an area of $0.15$ m$^2$. Find the pressure.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+Pressure is force divided by area.
+</details>
+
+<details markdown="1">
+<summary>Choose a step</summary>
+
+Divide $450$ N by $0.15$ m$^2$.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$450\div0.15=3000$ Pa.
 </details>

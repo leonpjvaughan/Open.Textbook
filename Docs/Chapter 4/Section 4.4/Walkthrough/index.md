@@ -12,11 +12,11 @@ kind: walkthrough
 
 **Prerequisites:** multiplication and place value.
 
-**Objectives:** A terminating decimal has a finite number of digits after the decimal point. Fractions with denominators that reduce to factors of $2$ and $5$ terminate.
+**Objectives:** Convert between terminating decimals and fractions, and work with these representations in calculations.
 
 ## Learn the method
 
-To convert a fraction to a decimal, divide the numerator by the denominator. To convert a terminating decimal, write it over $10$, $100$, or another power of $10$, then simplify.
+To convert a fraction to a decimal, divide the numerator by the denominator. To convert a terminating decimal, write it over $10$, $100$, or another power of $10$, then simplify. In simplest form, a fraction terminates exactly when its denominator has no prime factors other than $2$ and $5$.
 
 ## Worked examples
 
@@ -40,12 +40,13 @@ $\frac{125}{1000}=\frac{1}{8}$.
 
 ## Progress check
 
-The keyboard problem gives a discount of $\frac{1}{4}$. Write this as a percentage. Which section method will help you compare prices?
+The discount is $\frac14=0.25=25\%$. The reduced price is $75\%$ of £48: $0.75\times48=£36$.
 
 ## You should now be able to
 
-- explain the key idea in this section in your own words;
-- choose and use the method shown in the worked examples;
-- check your answer using an equivalent representation.
+- convert a terminating decimal to a fraction in simplest form;
+- convert a fraction to a terminating decimal;
+- recognise when a fraction has a terminating decimal;
+- order decimals and fractions.
 
 **Covers:** [N10].

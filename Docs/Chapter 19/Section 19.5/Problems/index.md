@@ -4,7 +4,7 @@ chapter: 19
 chapter_title: Perimeter, area, surface area and volume
 section: "19.5"
 section_title: Surface area and volume of spheres, cones and pyramids
-tier: H
+tier: F
 dfe: [G17]
 kind: problems
 ---

@@ -12,8 +12,6 @@ kind: problems
 
 # 7.6 Surds and exact calculations — Practise
 
-Work independently. The questions and checked answers appear below.
-
 :::problems chapter-7-practice-7.6
 
 :::answers chapter-7-practice-7.6

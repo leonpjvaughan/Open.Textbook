@@ -24,9 +24,12 @@ For equally likely outcomes, count the outcomes that match the event and divide 
 
 $$P(\text{event})=\frac{\text{number of matching outcomes}}{\text{total number of outcomes}}$$
 
-The complement is the event that does not happen. Its probability is $1-P(\text{event})$.
+The complement is the event that does not happen. Its probability is
+$1-P(\text{event})$. An event and its complement are mutually exclusive and
+include every possible outcome, so their probabilities add to 1.
 
-**Example 1 — P2 and P3.** A fair six-sided die is rolled. Find the probability of rolling a number greater than 4.
+**Example 1.** A fair six-sided die is rolled. Find the probability of rolling
+a number greater than 4.
 
 The outcomes are 1, 2, 3, 4, 5 and 6, each equally likely.
 
@@ -34,7 +37,11 @@ Two outcomes, 5 and 6, are greater than 4.
 
 $$P(\text{greater than 4})=\frac{2}{6}=\frac13$$
 
-**Example 2 — P4.** A bag contains 4 green counters and 1 yellow counter. Find the probability of not choosing green.
+If the die is rolled 12 times, the expected number of results greater than 4
+is $12\times\frac13=4$. The observed number may differ from this expectation.
+
+**Example 2.** A bag contains 4 green counters and 1 yellow counter. Find the
+probability of not choosing green.
 
 There are 5 counters, so the probability of green is $\frac45$.
 
@@ -59,5 +66,6 @@ The fair die has probability $\frac13$ of showing more than 4. The opposite even
 ## You should now be able to
 
 - describe probabilities using the scale from 0 to 1;
-- calculate probabilities from equally likely outcomes (P2, P3);
-- use the complement to find a probability (P4).
+- calculate probabilities from equally likely outcomes;
+- relate theoretical probability to an expected number of outcomes;
+- use the complement to find a probability.

@@ -59,7 +59,7 @@ Mark asymptotes at $-90^\circ$ and $90^\circ$, then draw increasing branches bet
 
 ## Progress check
 
-The chapter problem signal crosses its middle value while rising. Which graph fits this start, and where does its first maximum occur?
+The chapter signal crosses its middle value while rising. Which graph fits this start, and where does its first maximum occur?
 
 ## You should now be able to
 

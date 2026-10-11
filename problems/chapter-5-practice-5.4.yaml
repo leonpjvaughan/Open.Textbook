@@ -1,172 +1,189 @@
-chapter: 5
-problems:
-- id: ch5-5-4-inverse-constant
-  section: '5.4'
-  tier: H
-  dfe:
-  - R10
-  - R13
-  - R14
-  statement: $y$ is inversely proportional to $x$. If $y=12$ when $x=5$, find $k$ in $y=k/x$.
-  check:
-    kind: evaluate
-    expression: 12*5
-    answer: '60'
-  answer_text: $k=60$.
-  steps: []
-- id: ch5-5-4-inverse-value
-  section: '5.4'
-  tier: H
-  dfe:
-  - R10
-  - R13
-  - R14
-  statement: $y$ is inversely proportional to $x$. $y=8$ when $x=3$. Find $y$ when $x=12$.
-  check:
-    kind: evaluate
-    expression: 8*3/12
-    answer: '2'
-  answer_text: $y=2$.
-  steps: []
-- id: ch5-5-4-inverse-square
-  section: '5.4'
-  tier: H
-  dfe:
-  - R10
-  - R13
-  - R14
-  statement: $y$ is inversely proportional to $x^2$. $y=18$ when $x=2$. Find $y$ when $x=6$.
-  check:
-    kind: evaluate
-    expression: 18*4/36
-    answer: '2'
-  answer_text: $y=2$.
-  steps: []
-- id: ch5-5-4-inverse-context
-  section: '5.4'
-  tier: H
-  dfe:
-  - R10
-  - R13
-  - R14
-  statement: 4 identical taps fill a tank in 15 minutes. How long do 6 taps take at the same rate?
-  check:
-    kind: evaluate
-    expression: 4*15/6
-    answer: '10'
-  answer_text: 10 minutes.
-  steps: []
-- id: ch5-5-4-inverse-equation
-  section: '5.4'
-  tier: H
-  dfe:
-  - R10
-  - R13
-  - R14
-  statement: $p$ is inversely proportional to $q$. $p=9$ when $q=4$. Write $p$ in terms of $q$.
-  check:
-    kind: evaluate
-    expression: 9*4
-    answer: '36'
-  answer_text: $p=36/q$.
-  steps: []
-- id: ch5-5-4-inverse-find
-  section: '5.4'
-  tier: H
-  dfe:
-  - R10
-  - R13
-  - R14
-  statement: $y=72/x$. Find $x$ when $y=9$.
-  check:
-    kind: evaluate
-    expression: 72/9
-    answer: '8'
-  answer_text: $x=8$.
-  steps: []
-- id: ch5-5-4-inverse-square-value
-  section: '5.4'
-  tier: H
-  dfe:
-  - R10
-  - R13
-  - R14
-  statement: $P$ is inversely proportional to $d^2$. $P=20$ when $d=3$. Find $P$ when $d=6$.
-  check:
-    kind: evaluate
-    expression: 20*9/36
-    answer: '5'
-  answer_text: $P=5$.
-  steps: []
-- id: ch5-5-4-inverse-graph
-  section: '5.4'
-  tier: H
-  dfe:
-  - R10
-  - R13
-  - R14
-  statement: For $y=24/x$, find $y$ when $x=8$.
-  check:
-    kind: evaluate
-    expression: 24/8
-    answer: '3'
-  answer_text: $3$.
-  steps: []
-- id: ch5-5-4-inverse-work
-  section: '5.4'
-  tier: H
-  dfe:
-  - R10
-  - R13
-  - R14
-  statement: 5 workers take 18 days to complete a job. How many days would 15 workers take at the same
-    rate?
-  check:
-    kind: evaluate
-    expression: 5*18/15
-    answer: '6'
-  answer_text: 6 days.
-  steps: []
-- id: ch5-5-4-inverse-compare
-  section: '5.4'
-  tier: H
-  dfe:
-  - R10
-  - R13
-  - R14
-  statement: For inverse proportion, what happens to $y$ when $x$ is doubled?
-  check:
-    kind: evaluate
-    expression: (60/2)/(60/1)
-    answer: 1/2
-  answer_text: $y$ halves; for example, $y=60/x$ changes from 30 to 15 when $x$ doubles from 2 to 4.
-  steps: []
-- id: ch5-5-4-inverse-square-context
-  section: '5.4'
-  tier: H
-  dfe:
-  - R10
-  - R13
-  - R14
-  statement: A light intensity is inversely proportional to distance squared. It is 80 units at 2 m. Find
-    it at 4 m.
-  check:
-    kind: evaluate
-    expression: 80*4/16
-    answer: '20'
-  answer_text: 20 units.
-  steps: []
-- id: ch5-5-4-inverse-reason
-  section: '5.4'
-  tier: H
-  dfe:
-  - R10
-  - R13
-  - R14
-  statement: Explain why the graph of $y=30/x$ does not pass through the origin.
-  check:
-    kind: evaluate
-    expression: 30/0
-    answer: zoo
-  answer_text: At $x=0$ the formula is undefined, so the graph cannot contain the origin.
-  steps: []
+'chapter': 5
+'problems':
+- 'id': 'ch5-5-4-inverse-constant'
+  'section': '5.4'
+  'tier': 'F'
+  'dfe':
+  - 'R10'
+  - 'R13'
+  - 'R14'
+  'statement': '$y$ is inversely proportional to $x$. If $y=12$ when $x=5$, find $k$ in $y=k/x$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '12*5'
+    'answer': '60'
+  'answer_text': '$k=60$.'
+  'steps': []
+- 'id': 'ch5-5-4-inverse-value'
+  'section': '5.4'
+  'tier': 'F'
+  'dfe':
+  - 'R10'
+  - 'R13'
+  - 'R14'
+  'statement': '$y$ is inversely proportional to $x$. $y=8$ when $x=3$. Find $y$ when $x=12$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '8*3/12'
+    'answer': '2'
+  'answer_text': '$y=2$.'
+  'steps': []
+- 'id': 'ch5-5-4-inverse-square'
+  'section': '5.4'
+  'tier': 'F'
+  'dfe':
+  - 'R10'
+  - 'R13'
+  - 'R14'
+  'statement': '$y$ is inversely proportional to $x^2$. $y=18$ when $x=2$. Find $y$ when $x=6$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '18*4/36'
+    'answer': '2'
+  'answer_text': '$y=2$.'
+  'steps': []
+- 'id': 'ch5-5-4-inverse-context'
+  'section': '5.4'
+  'tier': 'F'
+  'dfe':
+  - 'R10'
+  - 'R13'
+  - 'R14'
+  'statement': '4 identical taps fill a tank in 15 minutes. How long do 6 taps take at the same rate?'
+  'check':
+    'kind': 'evaluate'
+    'expression': '4*15/6'
+    'answer': '10'
+  'answer_text': '10 minutes.'
+  'steps': []
+- 'id': 'ch5-5-4-inverse-equation'
+  'section': '5.4'
+  'tier': 'H'
+  'dfe':
+  - 'R10'
+  - 'R13'
+  - 'R14'
+  'statement': '**H**. $p$ is inversely proportional to $q$. $p=9$ when $q=4$. Write $p$ in terms of $q$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '9*4'
+    'answer': '36'
+  'answer_text': '$p=36/q$.'
+  'steps': []
+- 'id': 'ch5-5-4-inverse-find'
+  'section': '5.4'
+  'tier': 'F'
+  'dfe':
+  - 'R10'
+  - 'R13'
+  - 'R14'
+  'statement': '$y=72/x$. Find $x$ when $y=9$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '72/9'
+    'answer': '8'
+  'answer_text': '$x=8$.'
+  'steps': []
+- 'id': 'ch5-5-4-inverse-square-value'
+  'section': '5.4'
+  'tier': 'F'
+  'dfe':
+  - 'R10'
+  - 'R13'
+  - 'R14'
+  'statement': '$P$ is inversely proportional to $d^2$. $P=20$ when $d=3$. Find $P$ when $d=6$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '20*9/36'
+    'answer': '5'
+  'answer_text': '$P=5$.'
+  'steps': []
+- 'id': 'ch5-5-4-inverse-graph'
+  'section': '5.4'
+  'tier': 'F'
+  'dfe':
+  - 'R10'
+  - 'R13'
+  - 'R14'
+  'statement': 'For $y=24/x$, find $y$ when $x=8$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '24/8'
+    'answer': '3'
+  'answer_text': '$3$.'
+  'steps': []
+- 'id': 'ch5-5-4-inverse-work'
+  'section': '5.4'
+  'tier': 'F'
+  'dfe':
+  - 'R10'
+  - 'R13'
+  - 'R14'
+  'statement': '5 workers take 18 days to complete a job. How many days would 15 workers take at the same rate?'
+  'check':
+    'kind': 'evaluate'
+    'expression': '5*18/15'
+    'answer': '6'
+  'answer_text': '6 days.'
+  'steps': []
+- 'id': 'ch5-5-4-inverse-compare'
+  'section': '5.4'
+  'tier': 'F'
+  'dfe':
+  - 'R10'
+  - 'R13'
+  - 'R14'
+  'statement': 'For inverse proportion, what happens to $y$ when $x$ is doubled?'
+  'check':
+    'kind': 'evaluate'
+    'expression': '(60/2)/(60/1)'
+    'answer': '1/2'
+  'answer_text': '$y$ halves; for example, $y=60/x$ changes from 30 to 15 when $x$ doubles from 2 to 4.'
+  'steps': []
+- 'id': 'ch5-5-4-inverse-square-context'
+  'section': '5.4'
+  'tier': 'F'
+  'dfe':
+  - 'R10'
+  - 'R13'
+  - 'R14'
+  'statement': 'A light intensity is inversely proportional to distance squared. It is 80 units at 2 m. Find it at 4 m.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '80*4/16'
+    'answer': '20'
+  'answer_text': '20 units.'
+  'steps': []
+- 'id': 'ch5-5-4-inverse-reason'
+  'section': '5.4'
+  'tier': 'F'
+  'dfe':
+  - 'R10'
+  - 'R13'
+  - 'R14'
+  'statement': 'Explain why the graph of $y=30/x$ does not pass through the origin.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '30/0'
+    'answer': 'zoo'
+  'answer_text': 'At $x=0$ the formula is undefined, so the graph cannot contain the origin.'
+  'steps': []
+- 'id': 'ch5-5-4-mixed-direct-inverse'
+  'tier': 'F'
+  'dfe':
+  - 'R10'
+  - 'R13'
+  - 'R14'
+  'statement': 'Choose the direct or inverse model for each relationship: $y=8x$ and $z=8/x$. Work out both values when $x=4$. Which value halves when $x$ doubles, and why?'
+  'check':
+    'kind': 'all'
+    'checks':
+    - 'kind': 'evaluate'
+      'expression': '8*4'
+      'answer': '32'
+    - 'kind': 'evaluate'
+      'expression': '8/4'
+      'answer': '2'
+  'answer_text': '$y=32$ and $z=2$. The inverse model halves because doubling $x$ doubles the denominator.'
+  'steps': []
+  'section': '5.4'

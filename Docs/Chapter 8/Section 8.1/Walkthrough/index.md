@@ -15,6 +15,8 @@ kind: walkthrough
 
 **By the end of this section you can:** use algebraic notation and identify variables, terms, coefficients, constants, expressions, equations, identities and formulae.
 
+**Covers:** A1, A3.
+
 ## Learn the method
 
 A variable is a letter that stands for a number. A term is a number, a letter, or numbers and letters multiplied together.
@@ -25,19 +27,20 @@ An expression combines numbers, variables and operations. An equation says that 
 
 The expression $3a+5$ has two terms: $3a$ and $5$. Its coefficient is $3$, and its constant is $5$.
 
+An inequality compares two expressions using a symbol such as $<$ or $\geq$. A factor is an expression multiplied by another expression. In $3(x+2)$, the factors are $3$ and $(x+2)$.
+
 A formula is a rule written with symbols, such as $P=2l+2w$. It links quantities.
 
 **Worked example.** Describe $7m-4$.
 
-It is an expression with two terms, $7m$ and $-4$.
+It is an expression, not an equation, because it has no equals sign.
 
-The coefficient of $m$ is $7$.
+Its terms are $7m$ and $-4$.
 
-The constant term is $-4$.
+The coefficient of $m$ is $7$, and the constant term is $-4$.
 
-> **Watch out.** A coefficient multiplies a letter; it is not a separate term. In $5x$, the coefficient is $5$, and the term is $5x$. Check by reading it as five lots of $x$.
+> **Watch out.** An equation is not always an identity. The equation $x+2=5$ is true only when $x=3$. The equation $x+2=2+x$ is true for every value of $x$. Check whether it holds for every value.
 
 ## You should now be able to
 
 - use algebraic notation and identify variables, terms, coefficients, constants, expressions, equations, identities and formulae.
-- explain your method and check your answer using the inverse operation or substitution.

@@ -1,98 +1,136 @@
-chapter: 15
-symbols:
-  x: {real: true}
-  y: {real: true}
-  k: {real: true}
-  a: {real: true}
-  n: {integer: true}
-  m: {integer: true}
-problems:
-  - id: ch15-15-1-inverse-a
-    section: "15.1"
-    tier: H
-    dfe: [A7]
-    statement: 'Find the inverse of $f(x)=3x+5$.'
-    answer_label: 'Find the inverse of $f(x)=3x+5$.'
-    check: {kind: evaluate, expression: '3*((x-5)/3)+5', answer: 'x'}
-    answer_text: '$\frac{x-5}{3}$'
-
-  - id: ch15-15-1-inverse-b
-    section: "15.1"
-    tier: H
-    dfe: [A7]
-    statement: 'Find the inverse of $f(x)=4x-7$.'
-    answer_label: 'Find the inverse of $f(x)=4x-7$.'
-    check: {kind: evaluate, expression: '4*((x+7)/4)-7', answer: 'x'}
-    answer_text: '$\frac{x+7}{4}$'
-
-  - id: ch15-15-1-inverse-c
-    section: "15.1"
-    tier: H
-    dfe: [A7]
-    statement: 'Find the inverse of $f(x)=\frac{x-2}{5}$.'
-    answer_label: 'Find the inverse of $f(x)=\frac{x-2}{5}$.'
-    check: {kind: evaluate, expression: '(5*x+2-2)/5', answer: 'x'}
-    answer_text: '$5x+2$'
-
-  - id: ch15-15-1-composite-a
-    section: "15.1"
-    tier: H
-    dfe: [A7]
-    statement: 'Let $f(x)=2x+1$ and $g(x)=x^2$. Find $f(g(x))$.'
-    answer_label: 'Let $f(x)=2x+1$ and $g(x)=x^2$. Find $f(g(x))$.'
-    check: {kind: evaluate, expression: '2*x**2+1', answer: '2*x**2+1'}
-    answer_text: '$2x^2+1$'
-
-  - id: ch15-15-1-composite-b
-    section: "15.1"
-    tier: H
-    dfe: [A7]
-    statement: 'Let $f(x)=2x+1$ and $g(x)=x^2$. Find $g(f(x))$.'
-    answer_label: 'Let $f(x)=2x+1$ and $g(x)=x^2$. Find $g(f(x))$.'
-    check: {kind: evaluate, expression: '(2*x+1)**2', answer: '(2*x+1)**2'}
-    answer_text: '$(2x+1)^2$'
-
-  - id: ch15-15-1-composite-c
-    section: "15.1"
-    tier: H
-    dfe: [A7]
-    statement: 'Let $f(x)=x-4$ and $g(x)=3x$. Find $f(g(x))$.'
-    answer_label: 'Let $f(x)=x-4$ and $g(x)=3x$. Find $f(g(x))$.'
-    check: {kind: evaluate, expression: '3*x-4', answer: '3*x-4'}
-    answer_text: '$3x-4$'
-
-  - id: ch15-15-1-composite-d
-    section: "15.1"
-    tier: H
-    dfe: [A7]
-    statement: 'Let $f(x)=x-4$ and $g(x)=3x$. Find $g(f(x))$.'
-    answer_label: 'Let $f(x)=x-4$ and $g(x)=3x$. Find $g(f(x))$.'
-    check: {kind: evaluate, expression: '3*(x-4)', answer: '3*x-12'}
-    answer_text: '$3x-12$'
-
-  - id: ch15-15-1-domain-a
-    section: "15.1"
-    tier: H
-    dfe: [A7]
-    statement: 'State the excluded value for $h(x)=\frac{1}{x+6}$.'
-    answer_label: 'State the excluded value for $h(x)=\frac{1}{x+6}$.'
-    check: {kind: compare, relation: "!=", lhs: "-6", rhs: "0"}
-    answer_text: '$x\neq-6$'
-
-  - id: ch15-15-1-composition-check
-    section: "15.1"
-    tier: H
-    dfe: [A7]
-    statement: 'For $f(x)=2x+3$ and $g(x)=\frac{x-3}{2}$, simplify $g(f(x))$.'
-    answer_label: 'For $f(x)=2x+3$ and $g(x)=\frac{x-3}{2}$, simplify $g(f(x))$.'
-    check: {kind: evaluate, expression: '((2*x+3)-3)/2', answer: 'x'}
-    answer_text: '$x$'
-
-  - id: ch15-15-1-composition-check2
-    section: "15.1"
-    tier: H
-    dfe: [A7]
-    statement: 'For $f(x)=2x+3$ and $g(x)=\frac{x-3}{2}$, simplify $f(g(x))$.'
-    answer_label: 'For $f(x)=2x+3$ and $g(x)=\frac{x-3}{2}$, simplify $f(g(x))$.'
-    check: {kind: evaluate, expression: '2*((x-3)/2)+3', answer: 'x'}
-    answer_text: '$x$'
+'chapter': 15
+'symbols':
+  'x':
+    'real': true
+  'y':
+    'real': true
+  'k':
+    'real': true
+  'a':
+    'real': true
+  'n':
+    'integer': true
+  'm':
+    'integer': true
+'problems':
+- 'id': 'ch15-15-1-inverse-a'
+  'section': '15.1'
+  'tier': 'H'
+  'dfe':
+  - 'A7'
+  'statement': 'Find the inverse of $f(x)=3x+5$.'
+  'answer_label': 'Find the inverse of $f(x)=3x+5$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '3*((x-5)/3)+5'
+    'answer': 'x'
+  'answer_text': '$\frac{x-5}{3}$'
+- 'id': 'ch15-15-1-inverse-b'
+  'section': '15.1'
+  'tier': 'H'
+  'dfe':
+  - 'A7'
+  'statement': 'Find the inverse of $f(x)=4x-7$.'
+  'answer_label': 'Find the inverse of $f(x)=4x-7$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '4*((x+7)/4)-7'
+    'answer': 'x'
+  'answer_text': '$\frac{x+7}{4}$'
+- 'id': 'ch15-15-1-inverse-c'
+  'section': '15.1'
+  'tier': 'H'
+  'dfe':
+  - 'A7'
+  'statement': 'Find the inverse of $f(x)=\frac{x-2}{5}$.'
+  'answer_label': 'Find the inverse of $f(x)=\frac{x-2}{5}$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '(5*x+2-2)/5'
+    'answer': 'x'
+  'answer_text': '$5x+2$'
+- 'id': 'ch15-15-1-composite-a'
+  'section': '15.1'
+  'tier': 'H'
+  'dfe':
+  - 'A7'
+  'statement': 'Let $f(x)=2x+1$ and $g(x)=x^2$. Find $f(g(x))$.'
+  'answer_label': 'Let $f(x)=2x+1$ and $g(x)=x^2$. Find $f(g(x))$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '2*x**2+1'
+    'answer': '2*x**2+1'
+  'answer_text': '$2x^2+1$'
+- 'id': 'ch15-15-1-composite-b'
+  'section': '15.1'
+  'tier': 'H'
+  'dfe':
+  - 'A7'
+  'statement': 'Let $f(x)=2x+1$ and $g(x)=x^2$. Find $g(f(x))$.'
+  'answer_label': 'Let $f(x)=2x+1$ and $g(x)=x^2$. Find $g(f(x))$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '(2*x+1)**2'
+    'answer': '(2*x+1)**2'
+  'answer_text': '$(2x+1)^2$'
+- 'id': 'ch15-15-1-composite-c'
+  'section': '15.1'
+  'tier': 'H'
+  'dfe':
+  - 'A7'
+  'statement': 'Let $f(x)=x-4$ and $g(x)=3x$. Find $f(g(x))$.'
+  'answer_label': 'Let $f(x)=x-4$ and $g(x)=3x$. Find $f(g(x))$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '3*x-4'
+    'answer': '3*x-4'
+  'answer_text': '$3x-4$'
+- 'id': 'ch15-15-1-composite-d'
+  'section': '15.1'
+  'tier': 'H'
+  'dfe':
+  - 'A7'
+  'statement': 'Let $f(x)=x-4$ and $g(x)=3x$. Find $g(f(x))$.'
+  'answer_label': 'Let $f(x)=x-4$ and $g(x)=3x$. Find $g(f(x))$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '3*(x-4)'
+    'answer': '3*x-12'
+  'answer_text': '$3x-12$'
+- 'id': 'ch15-15-1-domain-a'
+  'section': '15.1'
+  'tier': 'H'
+  'dfe':
+  - 'A7'
+  'statement': 'State the excluded value for $h(x)=\frac{1}{x+6}$.'
+  'answer_label': 'State the excluded value for $h(x)=\frac{1}{x+6}$.'
+  'check':
+    'kind': 'compare'
+    'relation': '!='
+    'lhs': '-6'
+    'rhs': '0'
+  'answer_text': '$x\neq-6$'
+- 'id': 'ch15-15-1-composition-check'
+  'section': '15.1'
+  'tier': 'H'
+  'dfe':
+  - 'A7'
+  'statement': 'For $f(x)=2x+3$ and $g(x)=\frac{x-3}{2}$, simplify $g(f(x))$.'
+  'answer_label': 'For $f(x)=2x+3$ and $g(x)=\frac{x-3}{2}$, simplify $g(f(x))$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '((2*x+3)-3)/2'
+    'answer': 'x'
+  'answer_text': '$x$'
+- 'id': 'ch15-15-1-composition-check2'
+  'section': '15.1'
+  'tier': 'H'
+  'dfe':
+  - 'A7'
+  'statement': 'For $f(x)=2x+3$ and $g(x)=\frac{x-3}{2}$, simplify $f(g(x))$.'
+  'answer_label': 'For $f(x)=2x+3$ and $g(x)=\frac{x-3}{2}$, simplify $f(g(x))$.'
+  'check':
+    'kind': 'evaluate'
+    'expression': '2*((x-3)/2)+3'
+    'answer': 'x'
+  'answer_text': '$x$'

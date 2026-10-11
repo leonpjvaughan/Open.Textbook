@@ -22,7 +22,7 @@ $3+4=7$. Also, $0.25=25/100=1/4$. If either answer differs, revisit number opera
 
 ### Question 1
 
-Work out $6	imes4$ and $24/6$.
+Work out $6\times4$ and $24/6$.
 
 <details markdown="1"><summary>Hint</summary>
 
@@ -69,11 +69,10 @@ Multiply each value by its frequency.
 
 <details markdown="1"><summary>Next step</summary>
 
-Mean $=(1	imes2+3	imes4)/6=14/6=7/3$.
+Mean $=(1\times2+3\times4)/6=14/6=7/3$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
 
-Mean $=(1	imes2+3	imes4)/6=14/6=7/3$.
+Mean $=(1\times2+3\times4)/6=14/6=7/3$.
 </details>
-

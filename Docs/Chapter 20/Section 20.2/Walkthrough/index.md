@@ -13,9 +13,11 @@ kind: walkthrough
 
 **Prerequisites:** right-angled triangles, fractions, and a calculator in degree mode.
 
-**Objectives:** select and use sine, cosine, or tangent to find a missing side. This teaches DfE G20.
+**Objectives:** select and use sine, cosine, or tangent to find a missing side or angle.
 
 For an acute angle $\theta$, label the sides from that angle. The **opposite** side is across from it, the **adjacent** side touches it, and the hypotenuse is opposite the right angle. The ratios are $\sin\theta=\frac{\text{opposite}}{\text{hypotenuse}}$, $\cos\theta=\frac{\text{adjacent}}{\text{hypotenuse}}$, and $\tan\theta=\frac{\text{opposite}}{\text{adjacent}}$.
+
+SOHCAHTOA is a memory aid: sine uses opposite and hypotenuse, cosine uses adjacent and hypotenuse, and tangent uses opposite and adjacent.
 
 **Example 1.** Find the opposite side when $\theta=30^\circ$ and the hypotenuse is $10$ cm.
 
@@ -43,6 +45,6 @@ For the garden diagonal from 20.1, identify a possible angle and the sides you w
 
 ## You should now be able to
 
-- state the method and identify the measurements it needs;
-- show your working in a clear order;
-- check that your answer is sensible and give suitable units.
+- label the sides from a chosen angle;
+- choose a ratio to find a missing side or use an inverse ratio to find an angle;
+- use degree mode and check that the answer fits the triangle.

@@ -61,4 +61,4 @@ First find the base diagonal, then use tangent.
 Base diagonal = 10; tan θ = 10/10, so θ = 45°.
 </details>
 
-For the final question, choose the method before opening the working. Explain which measurements determine your choice.
+Before opening each full working, name the method and explain which measurements led you to choose it.

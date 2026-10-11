@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** fractions, percentages and reading tables.
 
-**Objectives:** distinguish a population from a sample; compare sampling methods; write neutral questionnaire questions; describe what a sample can and cannot tell us. This section covers S1 and S5.
+**Objectives:** distinguish a population from a sample; compare sampling methods; write neutral questionnaire questions; describe what a sample can and cannot tell you.
 
 ## Population, sample and data
 
@@ -23,7 +23,7 @@ A **population** is the whole group a question concerns. A **sample** is the sma
 
 The sample proportion is $27/90=0.3$.
 
-Convert to a percentage: $0.3	imes100=30\%$.
+Convert to a percentage: $0.3\times100=30\%$.
 
 So the estimate is 30%. It may differ from the true population percentage because only some pupils were asked.
 
@@ -37,7 +37,7 @@ A questionnaire question should be clear and neutral. “Do you agree that walki
 
 The sample proportion is $18/60=0.3$.
 
-Apply this proportion to the population: $0.3	imes800=240$.
+Apply this proportion to the population: $0.3\times800=240$.
 
 The estimate is 240 pupils. This assumes the sample represents the population; it is not an exact count.
 
