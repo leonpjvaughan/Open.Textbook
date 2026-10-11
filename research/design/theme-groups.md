@@ -29,7 +29,7 @@ bundle is allowed to be.
 
 ## What landed
 
-The collection now ships **eight** bundles: four calm and four vivid. Each is a
+The collection now ships **nine** bundles: four calm and five vivid. Each is a
 light/dark group with a `family` and a `provenance` block naming each member's
 source and whether it is observed or derived.
 
@@ -43,6 +43,14 @@ source and whether it is observed or derived.
 | Tokyo Night | Day / Night | folke/tokyonight.nvim | dark observed, light derived |
 | Synthwave '84 | Dawn / Synthwave '84 | robb0wen/synthwave-vscode | dark observed, light derived |
 | Kanagawa | Lotus / Wave | rebelot/kanagawa.nvim | both observed |
+| Archwave | Dawn / Archwave | davidguttman/archwave | dark observed, light derived |
+
+Archwave arrived after the 4 + 4 decision, on the strength of its palette, and
+makes the collection nine rather than eight. It is a good palette and it is also
+the closest thing to a duplicate in the set: magenta-and-cyan on deep aubergine
+is the same position as Synthwave '84, with pastels instead of neon. If the menu
+has to go back to eight, the choice is between those two — Synthwave is the
+louder and Archwave the softer, and there is no measurement that prefers either.
 
 `id: omarchy` is gone. The examples below are the research that produced this;
 the "Candidates" section is kept as the record of the shortlist and what was not
@@ -322,12 +330,13 @@ the reader attention (not cheap). Eight was the ceiling agreed for now.
 | **Tokyo Night** | Day (derived) / Night | taken — vivid | blue and violet; upstream's own light is generated, not authored |
 | **Synthwave '84** | Dawn (derived) / Synthwave '84 | taken — vivid | the loudest of the four; magenta on purple-black |
 | **Kanagawa** | Lotus / Wave | taken — vivid | the only new group whose two members are both the family's own |
+| **Archwave** | Dawn (derived) / Archwave | taken — vivid | a 5th vivid, added after the 4 + 4 split; soft vaporwave pastels |
 | Solarized | Light / Dark | **not taken** | both observed and designed for sustained reading, but the six-group plan became 4 calm + 4 vivid, and Catppuccin and Gruvbox already occupy the low-chroma calm slot |
 | Flexoki | Light / Dark | **not taken** | the cheapest group to maintain (one ramp per hue), and the best remaining candidate if a calm group is swapped |
 | Rosé Pine | Dawn / Moon | **not taken** | softer and cooler; would overlap Kanagawa |
 | Everforest | Light / Dark | **not taken** | deliberately soft green; overlaps Gruvbox |
 
-Three of the four vivid lights are **derived**, which is the honest consequence
+Four of the five vivid lights are **derived**, which is the honest consequence
 of what the upstream projects publish: vivid palettes are usually dark-only, and
 an inversion is not a palette. Each says so in a `note`. If a vivid group whose
 light is genuinely observed is wanted, Kanagawa is the one that already has it —

@@ -44,6 +44,11 @@ html[data-theme="synthwave"] {
   --tb-font-display: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --tb-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
+html[data-theme="archwave"] {
+  --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --tb-font-display: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --tb-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
 html[data-theme="kanagawa"] {
   --tb-font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --tb-font-display: Georgia, "Iowan Old Style", "Times New Roman", serif;
@@ -328,6 +333,41 @@ html[data-theme="synthwave"] body[data-md-color-scheme="slate"] {
   --tb-fig-warn: var(--tb-book-fig-warn, #fe6f78);
   --tb-fig-good: var(--tb-book-fig-good, #72f1b8);
   --tb-fig-grid: var(--tb-book-fig-grid, #7f7b96);
+}
+
+/* Archwave */
+html[data-theme="archwave"] body[data-md-color-scheme="default"] {
+  --tb-accent: var(--tb-book-accent, #b01d7e);
+  --tb-accent-light: var(--tb-book-accent-light, #d94fa6);
+  --tb-accent-dark: var(--tb-book-accent-dark, #8a1462);
+  --tb-accent-ink: var(--tb-book-accent-ink, #ffffff);
+  --tb-paper: var(--tb-book-paper, #fdf5ff);
+  --tb-ink: var(--tb-book-ink, #2a1240);
+  --tb-ink-soft: var(--tb-book-ink-soft, #5b4372);
+  --tb-ink-lighter: var(--tb-book-ink-lighter, #8a739f);
+  --tb-rule: var(--tb-book-rule, #eddaf5);
+  --tb-link: var(--tb-book-link, #0f6f7a);
+  --tb-code-bg: var(--tb-book-code-bg, #f7ecfb);
+  --tb-fig-warn: var(--tb-book-fig-warn, #b02a6a);
+  --tb-fig-good: var(--tb-book-fig-good, #106b5e);
+  --tb-fig-grid: var(--tb-book-fig-grid, #8b7a9b);
+}
+
+html[data-theme="archwave"] body[data-md-color-scheme="slate"] {
+  --tb-accent: var(--tb-book-accent, #ff6ec7);
+  --tb-accent-light: var(--tb-book-accent-light, #ff9adc);
+  --tb-accent-dark: var(--tb-book-accent-dark, #e04fa6);
+  --tb-accent-ink: var(--tb-book-accent-ink, #1a0d2e);
+  --tb-paper: var(--tb-book-paper, #1a0d2e);
+  --tb-ink: var(--tb-book-ink, #d4a5ff);
+  --tb-ink-soft: var(--tb-book-ink-soft, #b18ad6);
+  --tb-ink-lighter: var(--tb-book-ink-lighter, #8a6bb0);
+  --tb-rule: var(--tb-book-rule, #2d1b4e);
+  --tb-link: var(--tb-book-link, #5ffbf1);
+  --tb-code-bg: var(--tb-book-code-bg, #150a26);
+  --tb-fig-warn: var(--tb-book-fig-warn, #ff9adc);
+  --tb-fig-good: var(--tb-book-fig-good, #5ffbf1);
+  --tb-fig-grid: var(--tb-book-fig-grid, #746298);
 }
 
 /* Kanagawa */
