@@ -15,12 +15,17 @@ Try each problem first. Open a hint if you need it, then use the working to chec
 
 ## Warm-up: remember
 
-1. Work out $3^2+4^2$.
-2. State the sum of the angles in a triangle.
+Answer these from memory. Do not look back at the section.
+
+1. Work out $\sin 30^\circ$ on your calculator in degree mode.
+2. In a right-angled triangle, name the side next to an angle, other than the hypotenuse.
 
 <details markdown="1"><summary>Answers</summary>
 
-1. $25$. 2. $180^\circ$.
+1. $0.5$. 2. The adjacent side.
+
+If an answer differs, revisit Section 20.2 for the sine ratio and for naming the
+sides of a right-angled triangle.
 </details>
 
 ## Practise with help

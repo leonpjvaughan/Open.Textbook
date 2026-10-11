@@ -15,17 +15,20 @@ Work each problem before revealing support.
 
 ## Warm-up: remember
 
-1. Expand $(x+2)(x+3)$.
-2. Factorise $x^2-9$.
-3. Solve $2x+5=13$.
+Answer these from memory. Do not look back at the section.
+
+1. Work out $\frac{2}{3}+\frac{1}{4}$.
+2. Factorise $3x+6$.
 
 <details markdown="1">
-<summary>Answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x^2+5x+6$. 2. $(x-3)(x+3)$. 3. $x=4$.
+1. $\frac{11}{12}$.
+2. $3(x+2)$.
+
+If an answer differs, revisit Section 4.2 for adding fractions and Section 8.4 for common factors.
 
 </details>
-
 ## Practise with help
 
 **1.** Simplify $\frac{1}{x}+\frac{2}{x+2}$.

@@ -14,18 +14,20 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-Answer these from earlier chapters before you continue. Then open the answers and check your work.
+Answer these from memory. Do not look back at the section.
 
-1. Solve $3x+8=20$.
-2. Simplify $2^3\times2^4$.
+1. Factorise $x^2-x-6$.
+2. Solve $x+3=0$.
 
 <details markdown="1">
-<summary>Answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x=4$. Substitution gives $3(4)+8=20$.
-2. $2^7=128$. Add the powers when multiplying powers with the same base.
+1. $(x-3)(x+2)$.
+2. $x=-3$.
+
+If an answer differs, revisit Section 12.1 for factorising and Section 9.1 for solving a linear equation.
+
 </details>
-
 ## Practise with help
 
 **1.** Solve $x^2+2x-8=0$.

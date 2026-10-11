@@ -13,15 +13,20 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Solve $2x=18$.
-2. Work out $3(4+2)$.
+Answer these from memory. Do not look back at the section.
+
+1. Write $-3$ and $2$ in order, smallest first.
+2. Which is greater, $-5$ or $-2$?
 
 <details markdown="1">
-<summary>Check your answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x=9$. 2. $18$.
+1. $-3$, then $2$.
+2. $-2$.
+
+If an answer differs, revisit Section 1.1 for ordering numbers and Section 1.3 for negative numbers.
+
 </details>
-
 ## Practise with help
 
 **1.** Which is greater: $-2$ or $1$?

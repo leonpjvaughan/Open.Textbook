@@ -45,9 +45,13 @@ To bisect an angle, draw an arc from its vertex to meet both arms. From those tw
 
 ## Guided investigation: where do the arcs meet?
 
+**Predict:** will the two arc intersections be the same distance from $A$ and $B$? Write your prediction down first.
+
 :::figure ch17-construction
 
-**Predict:** will the two arc intersections be the same distance from $A$ and $B$? **Test:** follow the displayed construction and compare those distances. **Explain:** why does joining the intersections make a perpendicular bisector?
+**Test:** follow the displayed construction and compare those distances.
+
+**Explain:** why does joining the intersections make a perpendicular bisector? Write your explanation before reading on.
 
 ## Progress check
 

@@ -15,16 +15,20 @@ Attempt these from memory before opening the answers. Then try each question bef
 
 ## Warm-up: remember
 
-1. Work out $-3+8$.
-2. Translate $(1,2)$ by $\begin{pmatrix}2\\-1\end{pmatrix}$.
+Answer these from memory. Do not look back at the section.
+
+1. Work out $3\times4$.
+2. What are the coordinates of the point 2 right and 3 up from $(1,1)$?
 
 <details markdown="1">
-<summary>Answers and feedback</summary>
+<summary>Check the warm-up</summary>
 
-1. $5$. Starting at $-3$ and moving $8$ places right gives $5$.
-2. $(3,1)$. Add $2$ to the horizontal coordinate and subtract $1$ from the vertical coordinate.
+1. $12$.
+2. $(3,4)$.
+
+If an answer differs, revisit Section 11.1 for coordinates and Section 5.1 for scale factors.
+
 </details>
-
 ## Practise with help
 
 **1.** Enlarge $(3,2)$ by scale factor $2$ about the origin.

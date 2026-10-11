@@ -13,15 +13,20 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Solve $2x=18$.
-2. Work out $3(4+2)$.
+Answer these from memory. Do not look back at the section.
+
+1. Solve $2x+1<9$.
+2. List the integers that satisfy $-1<x\le2$.
 
 <details markdown="1">
-<summary>Check your answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x=9$. 2. $18$.
+1. $x<4$.
+2. $0$, $1$ and $2$.
+
+If an answer differs, revisit Section 9.5 for solving inequalities and Section 9.4 for reading a number line.
+
 </details>
-
 ## Practise with help
 
 **1.** Solve $x+4=0$.

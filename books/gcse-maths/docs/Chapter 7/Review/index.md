@@ -8,13 +8,13 @@ kind: review
 
 ## The chapter problem, resolved
 
-Suppose the map uses scale $1:25\,000$, and the path measures $3.2$ cm. Its real length is
+The map uses scale $1:25\,000$, and the path measures $3.2$ cm. Its real length is
 
 $$
 3.2\times25\,000=80\,000\text{ cm}=800\text{ m}=0.8\text{ km}.
 $$
 
-If a walker takes $10$ minutes, that is $1/6$ hour. The average speed is
+The walker takes $10$ minutes, which is $1/6$ hour. The average speed is
 
 $$
 0.8\div(1/6)=4.8\text{ km/h}.

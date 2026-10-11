@@ -12,57 +12,107 @@ kind: guided-problems
 
 # 5.5 Scale factors, scale diagrams and maps — Practise with help
 
+Try each question first. Open a hint if you are stuck, the next step for one
+concrete move, and the full working only to check.
+
 ## Warm-up: remember
 
-1. Without looking back, calculate $\frac{3}{4}+\frac{1}{8}$.
-2. Work out $-4+9$.
+Answer these from memory. Do not look back at the section.
+
+1. Work out $6\times1000$.
+2. Simplify the ratio $4:12$.
 
 <details markdown="1">
 <summary>Check the warm-up</summary>
 
-$\frac{3}{4}+\frac{1}{8}=\frac{7}{8}$. Also, $-4+9=5$.
+1. $6\times1000=6000$.
+2. $4:12=1:3$.
+
+If an answer differs, revisit Section 1.2 for multiplication and Section 5.1
+for simplifying ratios.
 
 </details>
 
-## Try these questions
+## Practise with help
 
-**Question:** A map uses scale $1:25\,000$. Work out the real distance represented by 6 cm, in kilometres.
-
-### Hint
-
-Multiply the map length by 25,000 to find the real length in centimetres. Then convert to kilometres.
+**1.** A map uses scale $1:25\,000$. Work out the real distance represented by
+6 cm, in kilometres.
 
 <details markdown="1">
-<summary>Show a hint</summary>
+<summary>Hint</summary>
 
-The real length is $6\times25\,000=150\,000$ cm. Use $100\,000$ cm per kilometre.
-
+Multiply the map length by $25\,000$ to find the real length in centimetres.
 </details>
-
-### One step
-
-Set up the multiplier or ratio parts, then calculate the requested quantity.
 
 <details markdown="1">
-<summary>Show the next step</summary>
+<summary>Next step</summary>
+
+$6\times25\,000=150\,000$ cm. Use $100\,000$ cm in a kilometre.
+</details>
 
 <details markdown="1">
-<summary>Need one more step?</summary>
+<summary>Full working</summary>
 
-Divide the known amount by its corresponding number of parts. Multiply by the required number of parts.
-
-</details>
+$150\,000\div100\,000=1.5$, so the real distance is 1.5 km.
 </details>
 
-### Full working
-
-Use this model on one question from the section, then complete it without help.
+**2.** A 4 cm drawing represents a 6 m wall. Write the scale in the form $1:n$.
 
 <details markdown="1">
-<summary>Show full working</summary>
+<summary>Hint</summary>
 
-Since $150\,000\div100\,000=1.5$, the real distance is 1.5 km. Check that 6 cm is multiplied by the scale factor before converting units.
-
+Write both lengths in the same unit before forming the ratio.
 </details>
 
-At least one later question asks you to connect this method with material from an earlier section.
+<details markdown="1">
+<summary>Next step</summary>
+
+$6\text{ m}=600\text{ cm}$, so the ratio is $4:600$.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+Divide both parts by 4: the scale is $1:150$.
+</details>
+
+**3.** A map uses scale $1:50\,000$. Two towns are 7 cm apart on the map. Work
+out the real distance in kilometres.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+Multiply by $50\,000$, then convert centimetres to kilometres.
+</details>
+
+<details markdown="1">
+<summary>Next step</summary>
+
+$7\times50\,000=350\,000$ cm.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$350\,000\div100\,000=3.5$, so the real distance is 3.5 km.
+</details>
+
+**4. Earlier learning.** Work out $2.4\times100$.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+Multiplying by 100 moves each digit two places to the left.
+</details>
+
+<details markdown="1">
+<summary>Next step</summary>
+
+Move the digits of 2.4 two places: 2, then 4 tens.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$2.4\times100=240$. Changing centimetres to metres uses the same place-value move.
+</details>

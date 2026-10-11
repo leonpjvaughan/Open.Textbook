@@ -15,17 +15,20 @@ Work each problem before revealing support.
 
 ## Warm-up: remember
 
-1. Expand $(x+2)(x+3)$.
-2. Factorise $x^2-9$.
-3. Solve $2x+5=13$.
+Answer these from memory. Do not look back at the section.
+
+1. Write an expression for an even number.
+2. Simplify $2n+3n$.
 
 <details markdown="1">
-<summary>Answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x^2+5x+6$. 2. $(x-3)(x+3)$. 3. $x=4$.
+1. $2n$, where $n$ is a whole number.
+2. $5n$.
+
+If an answer differs, revisit Section 8.1 for algebraic notation and Section 8.2 for collecting like terms.
 
 </details>
-
 ## Practise with help
 
 **1.** Prove that the sum of two consecutive integers is odd.

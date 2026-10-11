@@ -15,12 +15,17 @@ Try each problem first. Open a hint if you need it, then use the working to chec
 
 ## Warm-up: remember
 
-1. Work out $3^2+4^2$.
-2. State the sum of the angles in a triangle.
+Answer these from memory. Do not look back at the section.
+
+1. Find the hypotenuse of a right-angled triangle with shorter sides 9 and 12.
+2. Work out $\frac{1}{2}\times6\times8$.
 
 <details markdown="1"><summary>Answers</summary>
 
-1. $25$. 2. $180^\circ$.
+1. $15$. 2. $24$.
+
+If an answer differs, revisit Section 20.1 for Pythagoras' theorem and Section
+19.1 for the area of a triangle.
 </details>
 
 ## Practise with help

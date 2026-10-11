@@ -15,12 +15,17 @@ Try each problem first. Open a hint if you need it, then use the working to chec
 
 ## Warm-up: remember
 
-1. Work out $3^2+4^2$.
-2. State the sum of the angles in a triangle.
+Answer these from memory. Do not look back at the section.
+
+1. Simplify $\sqrt{48}$.
+2. Work out $\frac{1}{2}+\frac{1}{4}$.
 
 <details markdown="1"><summary>Answers</summary>
 
-1. $25$. 2. $180^\circ$.
+1. $4\sqrt{3}$. 2. $\frac{3}{4}$.
+
+If an answer differs, revisit Section 7.6 for simplifying surds and Section 4.2
+for adding fractions.
 </details>
 
 ## Practise with help

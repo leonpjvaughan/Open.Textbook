@@ -15,17 +15,20 @@ Work each problem before revealing support.
 
 ## Warm-up: remember
 
-1. Expand $(x+2)(x+3)$.
-2. Factorise $x^2-9$.
-3. Solve $2x+5=13$.
+Answer these from memory. Do not look back at the section.
+
+1. Expand $3(x+4)$.
+2. Simplify $7a-2a+3$.
 
 <details markdown="1">
-<summary>Answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x^2+5x+6$. 2. $(x-3)(x+3)$. 3. $x=4$.
+1. $3x+12$.
+2. $5a+3$.
+
+If an answer differs, revisit Section 8.3 for expanding brackets and Section 8.2 for collecting like terms.
 
 </details>
-
 ## Practise with help
 
 **1.** Expand $(x+5)^2$ and write an equivalent expression.

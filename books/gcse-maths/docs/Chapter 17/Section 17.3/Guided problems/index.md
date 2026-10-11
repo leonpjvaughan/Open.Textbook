@@ -15,18 +15,20 @@ Attempt each item before opening its help. Recall ideas from earlier chapters fi
 
 ## Warm-up: remember
 
-1. Name a shape with four right angles.
-2. What does a scale of $1$ cm to $2$ m mean?
-3. What angle is a right angle?
+Answer these from memory. Do not look back at the section.
+
+1. How many degrees are in a right angle?
+2. Which instrument measures an angle in degrees?
 
 <details markdown="1">
-<summary>Answers</summary>
+<summary>Check the warm-up</summary>
 
-1. A rectangle (a square is also correct).
-2. Each centimetre on the drawing represents $2$ m in real life.
-3. $90^\circ$.
+1. $90^\circ$.
+2. A protractor.
+
+If an answer differs, revisit Section 16.1 for right angles and measuring angles.
+
 </details>
-
 ## Try these with help
 
 **1.** Construct the perpendicular bisector of a 6 cm segment.

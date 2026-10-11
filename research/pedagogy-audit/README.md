@@ -61,18 +61,68 @@ starts higher:
 The reports are the specification; the work is content. In the order the formula
 values it:
 
-1. Fix Chapter 7's chapter problem so it is solvable as set.
-2. Rewrite the fade in Chapters 19, 23 and 24.
-3. Give Chapter 5's Guided pages more than one question each, and remove the false
-   claim about a later question.
-4. Replace the nine repeated warm-ups with retrieval from what each section
-   actually depends on.
-5. Turn the answer-printing progress checks into questions (17, 18, 22, 23).
-6. Put interleaving and a method choice into the problem banks, not only the
-   Reviews.
-7. Move the five mis-ordered figures below their Predict prompt.
+1. **Done.** Chapter 7's chapter problem is now solvable as set.
+2. **Not done.** Rewrite the fade in Chapters 19, 23 and 24. Deliberately left:
+   it needs the author's judgement.
+3. **Done.** Chapter 5's Guided pages now carry a real fading set.
+4. **Done.** All nine repeated warm-ups are replaced.
+5. **Not done.** Turn the answer-printing progress checks into questions
+   (17, 18, 22, 23).
+6. **Not done.** Put interleaving and a method choice into the problem banks, not
+   only the Reviews.
+7. **Done.** The five mis-ordered figures now sit below their Predict prompt.
 
 Each of these should be done with the skills in `.agents/skills/` —
 `author-textbook-chapter` for the rewrite, `write-textbook-prose` for the voice,
 `build-practice-set` for the banks, `build-guided-figure` for the figures — and
 gated with `verify-textbook-change` before it is called done.
+
+## Fix pass — 2026-10-11 (after the audit)
+
+A separate pass fixed the four highest-certainty defects. It changed only
+`books/gcse-maths/docs/**`; no bank changed, so no answer moved.
+
+**1. Chapter 7's chapter problem.** The opener stated a question with no data and
+the Review supplied the numbers. The opener now carries the three measurements
+(scale $1:25\,000$, path $3.2$ cm, walker $10$ minutes, mass $0.0042$ kg to 2 s.f.)
+and names the three tasks, so the problem is answerable from the opener alone.
+The Review's "Suppose the map uses scale…" is now "The map uses scale…", and its
+figures agree.
+
+- `Chapter 7/index.md:9` — before: "A survey team measures a path on a map, … How
+  can you convert the measurements…" with no numbers; after: the three bullets
+  and the three tasks.
+- `Chapter 7/Review/index.md:11` — "Suppose the map uses scale" → "The map uses
+  scale".
+
+**2. Five figures above their Predict prompt.** Each now reads
+Predict → figure → Test → Explain, matching 21.2: `15.1` (Walkthrough:38–44),
+`17.3` (48–54), `22.1` (45–52), `24.2` (45–51), `25.1` (46–53). While there,
+**5.3**'s figure gained the Test beat the audit found missing
+(`Chapter 5/Section 5.3/Walkthrough/index.md:56`).
+
+**3. Chapter 5's Guided pages.** Each of 5.1–5.6 now has four questions, every one
+fading `Hint` → `Next step` → `Full working`, the last drawn from earlier
+material (Chapter 4 fractions, Chapter 1 negatives, Chapter 3 powers). The false
+line "At least one later question asks you to connect this method with material
+from an earlier section" is gone from all six pages.
+
+**4. Repeated warm-ups.** All nine chapters now give each section a closed-book
+retrieval starter from what that section depends on, with a corrective route
+naming the section to revisit. The lint's `structure:guided-warmup-repeated` count
+goes from 9 to 0. Chapter 20 (8 sections) and Chapter 5 (6 sections) went first,
+end to end, then 8, 9, 12, 14, 15, 17 and 18.
+
+**Verification.** `textbook.lint` exits 0 with no `voice:internal` finding and no
+`structure:guided-warmup-repeated`. `textbook.verify` passes every bank.
+`pytest tests/ -q` is 750 passed. Both profiles of `gcse-maths` build with no
+broken link and `grep -rl math-error site` is empty.
+
+**Left, and why.** The Chapter 19 and 24 fades and the Chapter 23 statements are
+unfinished by choice (item 2). The answer-printing progress checks (item 5) and
+bank interleaving (item 6) are untouched. Two lesser observations stand: 9.6
+(quadratic inequalities) has a hard prerequisite — factorising quadratics —
+taught later, in Chapter 12, so its warm-up retrieves the within-chapter
+number-line work instead; and 17.1, 17.2 and 18.6 retrieve general KS3 shape
+knowledge rather than an earlier chapter, because the book has no earlier
+section for those prerequisites.

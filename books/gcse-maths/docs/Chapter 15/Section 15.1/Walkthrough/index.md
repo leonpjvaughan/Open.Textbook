@@ -35,9 +35,13 @@ A denominator cannot be zero. For $r(x)=\frac{1}{x-4}$, the input $4$ is exclude
 
 > **Watch out.** In $g(f(x))$, apply $f$ first. At $x=1$, $g(f(1))=9$ while $f(g(1))=3$. The results differ, so order matters.
 
+**Predict:** before moving the sliders, predict the inverse of $f(x)=2x+3$. Write your prediction down first.
+
 :::figure ch15-functions
 
-**Predict → Test → Explain:** predict the inverse of $f(x)=2x+3$. Adjust the sliders to test different rules. Explain why undoing the rule requires reversing its operations.
+**Test:** adjust the sliders to test different rules and compare each inverse with your prediction.
+
+**Explain:** why does undoing a rule require reversing its operations? Write your explanation before reading on.
 
 ## Progress check
 

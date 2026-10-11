@@ -14,57 +14,107 @@ kind: guided-problems
 
 # 5.2 Ratio, fractions and linear functions — Practise with help
 
+Try each question first. Open a hint if you are stuck, the next step for one
+concrete move, and the full working only to check.
+
 ## Warm-up: remember
 
-1. Without looking back, calculate $\frac{3}{4}+\frac{1}{8}$.
-2. Work out $-4+9$.
+Answer these from memory. Do not look back at the section.
+
+1. Write $\frac{5}{6}$ with denominator 18.
+2. Share £56 into 7 equal parts. Work out the value of one part.
 
 <details markdown="1">
 <summary>Check the warm-up</summary>
 
-$\frac{3}{4}+\frac{1}{8}=\frac{7}{8}$. Also, $-4+9=5$.
+1. $\frac{5}{6}=\frac{15}{18}$.
+2. $56\div7=8$, so one part is £8.
+
+If an answer differs, revisit Section 4.1 for equivalent fractions and
+Section 5.1 for the unitary method.
 
 </details>
 
-## Try these questions
+## Practise with help
 
-**Question:** 5 cakes use 375 g of flour. How much flour do 8 cakes use at the same rate?
-
-### Hint
-
-Find the flour for one cake, then multiply by 8.
+**1.** The ratio of red to blue counters is $2:3$. If the ratio stays the same,
+how many blue counters go with 8 red counters?
 
 <details markdown="1">
-<summary>Show a hint</summary>
+<summary>Hint</summary>
 
-One cake uses $375\div5=75$ g. Multiply 75 g by 8.
-
+Set the two ratios equal: $\frac{2}{3}=\frac{8}{b}$.
 </details>
-
-### One step
-
-Set up the multiplier or ratio parts, then calculate the requested quantity.
 
 <details markdown="1">
-<summary>Show the next step</summary>
+<summary>Next step</summary>
+
+The first part grew from 2 to 8, so it was multiplied by 4.
+</details>
 
 <details markdown="1">
-<summary>Need one more step?</summary>
+<summary>Full working</summary>
 
-Divide the known amount by its corresponding number of parts. Multiply by the required number of parts.
-
-</details>
+Multiply the second part by 4: $b=3\times4=12$. Check: $8:12=2:3$.
 </details>
 
-### Full working
-
-Use this model on one question from the section, then complete it without help.
+**2.** 4 cakes use 300 g of flour. How much flour do 9 cakes use at the same
+rate?
 
 <details markdown="1">
-<summary>Show full working</summary>
+<summary>Hint</summary>
 
-Eight cakes use $75\times8=600$ g. The ratio stays constant because $375\div5=600\div8=75$.
-
+Find the flour for one cake, then multiply.
 </details>
 
-At least one later question asks you to connect this method with material from an earlier section.
+<details markdown="1">
+<summary>Next step</summary>
+
+One cake uses $300\div4=75$ g.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$75\times9=675$ g. Check the rate: $675\div9=75$ g per cake.
+</details>
+
+**3.** A straight line passes through $(0,0)$ and $(4,10)$. Write its equation.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+A line through the origin has equation $y=mx$. Find the multiplier $m$.
+</details>
+
+<details markdown="1">
+<summary>Next step</summary>
+
+The multiplier is $10\div4=2.5$.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+The equation is $y=2.5x$. Check with $x=4$: $2.5\times4=10$.
+</details>
+
+**4. Earlier learning.** Write $\frac{3}{8}$ as a fraction with denominator 40.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+$40\div8=5$, so multiply the numerator and denominator by 5.
+</details>
+
+<details markdown="1">
+<summary>Next step</summary>
+
+$3\times5=15$.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$\frac{3}{8}=\frac{15}{40}$.
+</details>

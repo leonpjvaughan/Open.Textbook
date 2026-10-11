@@ -15,17 +15,20 @@ Work each problem before revealing support.
 
 ## Warm-up: remember
 
-1. Expand $(x+2)(x+3)$.
+Answer these from memory. Do not look back at the section.
+
+1. Simplify $\frac{15}{20}$.
 2. Factorise $x^2-9$.
-3. Solve $2x+5=13$.
 
 <details markdown="1">
-<summary>Answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x^2+5x+6$. 2. $(x-3)(x+3)$. 3. $x=4$.
+1. $\frac{3}{4}$.
+2. $(x-3)(x+3)$.
+
+If an answer differs, revisit Section 4.1 for simplifying fractions and Section 12.1 for factorising.
 
 </details>
-
 ## Practise with help
 
 **1.** Simplify $\frac{x^2-4}{x^2+4x+4}$.

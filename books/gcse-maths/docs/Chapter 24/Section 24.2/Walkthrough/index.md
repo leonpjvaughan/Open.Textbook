@@ -42,9 +42,13 @@ The value 2 occurs once, 5 occurs twice, and 7 occurs once.
 
 A vertical line chart has heights 1, 2 and 1 above 2, 5 and 7.
 
+**Predict:** which category will have the most responses? Write your prediction down first.
+
 :::figure ch24-chart-choice
 
-**Predict:** Which category will have the most responses? **Test:** Change the sample size and compare the counts. **Explain:** Why can the counts grow while the proportions stay the same? Write one sentence before reading on.
+**Test:** change the sample size and compare the counts.
+
+**Explain:** why can the counts grow while the proportions stay the same? Write one sentence before reading on.
 
 > **Watch out.** A pictogram must state the value of one symbol. If one symbol means four pupils, a half-symbol means two pupils.
 

@@ -14,57 +14,107 @@ kind: guided-problems
 
 # 5.4 Inverse proportion — Practise with help
 
+Try each question first. Open a hint if you are stuck, the next step for one
+concrete move, and the full working only to check.
+
 ## Warm-up: remember
 
-1. Without looking back, calculate $\frac{3}{4}+\frac{1}{8}$.
-2. Work out $-4+9$.
+Answer these from memory. Do not look back at the section.
+
+1. Work out $9+(-4)$.
+2. Work out $6\times15$.
 
 <details markdown="1">
 <summary>Check the warm-up</summary>
 
-$\frac{3}{4}+\frac{1}{8}=\frac{7}{8}$. Also, $-4+9=5$.
+1. $9+(-4)=5$.
+2. $6\times15=90$.
+
+If an answer differs, revisit Section 1.3 for negative numbers and Section 1.2
+for multiplication facts.
 
 </details>
 
-## Try these questions
+## Practise with help
 
-**Question:** 6 identical pumps empty a tank in 20 minutes. How long would 8 pumps take at the same rate?
-
-### Hint
-
-The number of pumps and the time are inversely proportional. Find their fixed product.
+**1.** 4 workers take 18 days. How long do 6 workers take, at the same rate?
 
 <details markdown="1">
-<summary>Show a hint</summary>
+<summary>Hint</summary>
 
-Calculate $6\times20$, then divide by 8 pumps.
-
+The product of workers and days stays fixed.
 </details>
-
-### One step
-
-Set up the multiplier or ratio parts, then calculate the requested quantity.
 
 <details markdown="1">
-<summary>Show the next step</summary>
+<summary>Next step</summary>
+
+The fixed product is $4\times18=72$ worker-days.
+</details>
 
 <details markdown="1">
-<summary>Need one more step?</summary>
+<summary>Full working</summary>
 
-Divide the known amount by its corresponding number of parts. Multiply by the required number of parts.
-
-</details>
+The time is $72\div6=12$ days. Check: $6\times12=72$.
 </details>
 
-### Full working
-
-Use this model on one question from the section, then complete it without help.
+**2.** $y$ is inversely proportional to $x$. When $x=6$, $y=4$. Find $y$ when
+$x=8$.
 
 <details markdown="1">
-<summary>Show full working</summary>
+<summary>Hint</summary>
 
-The fixed product is $6\times20=120$. For 8 pumps, the time is $120\div8=15$ minutes. Check: $8\times15=120$.
-
+Write $y=k/x$, so the product $xy$ stays fixed.
 </details>
 
-At least one later question asks you to connect this method with material from an earlier section.
+<details markdown="1">
+<summary>Next step</summary>
+
+$k=6\times4=24$.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$y=24\div8=3$. Check: $8\times3=24$.
+</details>
+
+**3.** 5 pumps empty a tank in 24 minutes. How long do 8 pumps take at the same
+rate?
+
+<details markdown="1">
+<summary>Hint</summary>
+
+Find the fixed product of pumps and minutes.
+</details>
+
+<details markdown="1">
+<summary>Next step</summary>
+
+$5\times24=120$ pump-minutes.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$120\div8=15$ minutes. Check: $8\times15=120$.
+</details>
+
+**4. Earlier learning.** Work out $-8+3$ and $7-(-2)$.
+
+<details markdown="1">
+<summary>Hint</summary>
+
+Picture a number line. Start at the first number and move along it.
+</details>
+
+<details markdown="1">
+<summary>Next step</summary>
+
+For $-8+3$, count 3 to the right from $-8$. Subtracting $-2$ moves 2 to the right.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$-8+3=-5$, and $7-(-2)=7+2=9$.
+</details>

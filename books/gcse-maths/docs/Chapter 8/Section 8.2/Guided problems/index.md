@@ -15,16 +15,20 @@ Attempt each question before opening a hint. Reveal the full working to check yo
 
 ## Warm-up: remember
 
-Answer from memory before checking.
+Answer these from memory. Do not look back at the section.
 
-1. Simplify $4x+3x$.
-2. Substitute $x=2$ into $x+5$.
-<details markdown="1"><summary>Answers and feedback</summary>
+1. Work out $-5+8$.
+2. Write an expression for 7 more than $x$.
 
-1. $7x$. 2. $7$.
-If an answer differs, review the earlier method before continuing.
+<details markdown="1">
+<summary>Check the warm-up</summary>
+
+1. $3$.
+2. $x+7$.
+
+If an answer differs, revisit Section 1.3 for adding with negative numbers and Section 8.1 for algebraic notation.
+
 </details>
-
 ## Practise with help
 
 **1.** Simplify $4a+3a$.

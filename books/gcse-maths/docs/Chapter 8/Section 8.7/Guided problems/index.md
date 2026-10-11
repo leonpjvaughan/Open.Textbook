@@ -15,16 +15,20 @@ Attempt each question before opening a hint. Reveal the full working to check yo
 
 ## Warm-up: remember
 
-Answer from memory before checking.
+Answer these from memory. Do not look back at the section.
 
-1. Simplify $4x+3x$.
-2. Substitute $x=2$ into $x+5$.
-<details markdown="1"><summary>Answers and feedback</summary>
+1. Expand $2(x+5)$.
+2. Simplify $x^2+3x+x^2$.
 
-1. $7x$. 2. $7$.
-If an answer differs, review the earlier method before continuing.
+<details markdown="1">
+<summary>Check the warm-up</summary>
+
+1. $2x+10$.
+2. $2x^2+3x$.
+
+If an answer differs, revisit Section 8.3 for expanding brackets and Section 8.2 for collecting like terms.
+
 </details>
-
 ## Practise with help
 
 **1.** Expand $(x+1)(x+2)(x+3)$.

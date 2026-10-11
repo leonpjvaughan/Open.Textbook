@@ -13,15 +13,20 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Solve $2x=18$.
-2. Work out $3(4+2)$.
+Answer these from memory. Do not look back at the section.
+
+1. Solve $x+7=12$.
+2. On a number line, does $x>2$ use an open or a filled circle?
 
 <details markdown="1">
-<summary>Check your answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x=9$. 2. $18$.
+1. $x=5$.
+2. An open circle.
+
+If an answer differs, revisit Section 9.1 for solving equations and Section 9.4 for number-line notation.
+
 </details>
-
 ## Practise with help
 
 **1.** Solve $x+4>9$.

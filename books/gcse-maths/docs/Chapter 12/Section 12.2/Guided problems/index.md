@@ -14,18 +14,20 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-Answer these from earlier chapters before you continue. Then open the answers and check your work.
+Answer these from memory. Do not look back at the section.
 
-1. Solve $3x+8=20$.
-2. Simplify $2^3\times2^4$.
+1. Expand $(x+4)(x+2)$.
+2. Factorise $x^2+7x+10$.
 
 <details markdown="1">
-<summary>Answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x=4$. Substitution gives $3(4)+8=20$.
-2. $2^7=128$. Add the powers when multiplying powers with the same base.
+1. $x^2+6x+8$.
+2. $(x+5)(x+2)$.
+
+If an answer differs, revisit Section 8.3 for expanding brackets and Section 12.1 for factorising monic quadratics.
+
 </details>
-
 ## Practise with help
 
 **1.** Factorise $2x^2+7x+3$.

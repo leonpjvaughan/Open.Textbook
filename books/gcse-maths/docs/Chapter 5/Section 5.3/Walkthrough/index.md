@@ -51,11 +51,13 @@ In direct proportion, one quantity is a fixed multiple of another: $y=kx$. For $
 
 ### Try it: direct and inverse proportion
 
-**Predict first.** As $x$ doubles, does $y$ double or halve? Decide for direct proportion, then for inverse proportion.
+**Predict:** as $x$ doubles, does $y$ double or halve? Decide for direct proportion, then for inverse proportion. Write your predictions down first.
 
 :::figure ch5-proportion
 
-**Explain:** what is the difference between $y = kx$ and $y = \frac{k}{x}$? Use the shape of each graph.
+**Test:** adjust $k$ and $x$, then tick the inverse box, and check each graph against your prediction.
+
+**Explain:** what is the difference between $y = kx$ and $y = \frac{k}{x}$? Use the shape of each graph, and write your answer before reading on.
 
 ## You should now be able to
 

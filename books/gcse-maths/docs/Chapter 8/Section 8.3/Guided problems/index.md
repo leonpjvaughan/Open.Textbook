@@ -15,16 +15,20 @@ Attempt each question before opening a hint. Reveal the full working to check yo
 
 ## Warm-up: remember
 
-Answer from memory before checking.
+Answer these from memory. Do not look back at the section.
 
-1. Simplify $4x+3x$.
-2. Substitute $x=2$ into $x+5$.
-<details markdown="1"><summary>Answers and feedback</summary>
+1. Simplify $6x+2x$.
+2. Work out $-2\times4$.
 
-1. $7x$. 2. $7$.
-If an answer differs, review the earlier method before continuing.
+<details markdown="1">
+<summary>Check the warm-up</summary>
+
+1. $8x$.
+2. $-8$.
+
+If an answer differs, revisit Section 8.2 for collecting like terms and Section 1.3 for multiplying with negative numbers.
+
 </details>
-
 ## Practise with help
 
 **1.** Expand $2(x+3)$.

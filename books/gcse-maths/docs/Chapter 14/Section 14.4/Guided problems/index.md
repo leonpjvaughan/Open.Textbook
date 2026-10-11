@@ -15,15 +15,20 @@ Work each question first. Open a hint if you need one, then reveal the working t
 
 ## Warm-up: remember
 
-1. Solve $2x+3=11$.
-2. If $y=3x-2$, find $y$ when $x=4$.
+Answer these from memory. Do not look back at the section.
+
+1. Expand $(x+2)(x-3)$.
+2. Solve $x^2-4=0$.
 
 <details markdown="1">
-<summary>Answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x=4$. 2. $y=10$.
+1. $x^2-x-6$.
+2. $x=2$ or $x=-2$.
+
+If an answer differs, revisit Section 8.3 for expanding brackets and Section 12.4 for solving quadratics.
+
 </details>
-
 ## Practise with help
 
 **1.** Solve $x+y=9$ and $x-y=3$.
