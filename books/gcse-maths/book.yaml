@@ -34,11 +34,20 @@ tier_axis:
 # Verification oracles the banks in this book may use.
 oracles: [sympy]
 
-# Design tokens. `accent` also tints this book's card on the landing page.
+# This book's own theme, one variation per colour scheme. Set only what makes
+# this book itself; everything else stays the house default in
+# assets/stylesheets/extra.css. `accent` also tints the book's landing-page card
+# in both schemes. Themable tokens: accent, accent_light, accent_dark, paper,
+# ink, ink_soft, rule, link, code_bg, fig_warn, fig_good, fig_grid.
 theme:
-  accent: "#2f6690"
-  accent_light: "#4a7fae"
-  accent_dark: "#24506f"
+  light:
+    accent: "#2f6690"
+    accent_light: "#4a7fae"
+    accent_dark: "#24506f"
+  dark:
+    accent: "#6ea8d8"
+    accent_light: "#8cc0e8"
+    accent_dark: "#4a7fae"
 
 # Paths, relative to this directory.
 curriculum: curriculum.yaml

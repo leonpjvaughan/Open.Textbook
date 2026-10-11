@@ -432,4 +432,6 @@ nav:
     - Practise with help: Chapter 25/Section 25.4/Guided problems/index.md
     - Practise: Chapter 25/Section 25.4/Problems/index.md
   - Review: Chapter 25/Review/index.md
+extra_javascript:
+- assets/booklet/booklet.js
 site_url: https://leonpjvaughan.github.io/GCSE.MATHS/gcse-maths/foundation/

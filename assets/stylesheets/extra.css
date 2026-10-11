@@ -1,35 +1,33 @@
-/* Reading theme for a maths textbook.
+/* Reading theme for the textbook collection.
  *
- * Base: a warm off-white "paper" background with near-black ink, not pure
- * white/black, to reduce glare while keeping contrast well above WCAG AA.
- * Evidence and rationale: PEDAGOGY.md and the theme note in PLAN.md.
- * Dark mode is an option (positive polarity is the default; Buchner &
- * Baumgartner 2007 found dark-on-light reads better for proofreading).
+ * Every colour is a token (--tb-*) set per scheme, so a book can override any
+ * subset of them in its generated book.css and nothing else has to change. See
+ * SHAPE.md ("Per-book theming"). The values here are the house defaults.
+ *
+ * Evidence for the base: a warm off-white "paper" with near-black ink, not pure
+ * white on pure black, reduces glare while keeping contrast above WCAG AA. Dark
+ * is an option, not the default — positive polarity reads better for
+ * proofreading (Buchner & Baumgartner 2007).
  */
 
 :root {
-  --tb-paper: #faf9f5;
-  --tb-ink: #1f1e1b;
-  --tb-rule: #e6e3da;
-  --tb-accent: #2f6690;
+  /* Scheme-independent. */
   --tb-measure: 70ch;
 }
 
 /* Light: warm paper. */
 [data-md-color-scheme="default"] {
-  --md-default-bg-color: var(--tb-paper);
-  --md-default-fg-color: var(--tb-ink);
-  --md-default-fg-color--light: #5c5a54;
-  --md-default-fg-color--lighter: #8a877e;
-  --md-default-fg-color--lightest: var(--tb-rule);
-  --md-primary-fg-color: var(--tb-accent);
-  --md-primary-fg-color--light: #4a7fae;
-  --md-primary-fg-color--dark: #24506f;
-  --md-accent-fg-color: var(--tb-accent);
-  --md-typeset-a-color: #23577d;
-  --md-code-bg-color: #f2f0e9;
-  /* Figure palette (adapts with the scheme). */
-  --tb-fig-accent: #2f6690;
+  --tb-paper: #faf9f5;
+  --tb-ink: #1f1e1b;
+  --tb-ink-soft: #5c5a54;
+  --tb-ink-lighter: #8a877e;
+  --tb-rule: #e6e3da;
+  --tb-accent: #2f6690;
+  --tb-accent-light: #4a7fae;
+  --tb-accent-dark: #24506f;
+  --tb-link: #23577d;
+  --tb-code-bg: #f2f0e9;
+  /* Figure palette. The accent follows the book; the rest are per scheme. */
   --tb-fig-warn: #a3402f;
   --tb-fig-good: #2f7d4f;
   --tb-fig-grid: #d8d5cb;
@@ -37,20 +35,41 @@
 
 /* Dark: off-black, never pure black. */
 [data-md-color-scheme="slate"] {
-  --md-default-bg-color: #171614;
-  --md-default-fg-color: #e9e7e1;
-  --md-default-fg-color--light: #b7b4ac;
-  --md-default-fg-color--lighter: #8a877e;
-  --md-default-fg-color--lightest: #2a2926;
-  --md-primary-fg-color: var(--tb-accent);
-  --md-accent-fg-color: #6ea8d8;
-  --md-typeset-a-color: #8cc0e8;
-  --md-code-bg-color: #201f1c;
-  /* Figure palette (adapts with the scheme). */
-  --tb-fig-accent: #6ea8d8;
+  --tb-paper: #171614;
+  --tb-ink: #e9e7e1;
+  --tb-ink-soft: #b7b4ac;
+  --tb-ink-lighter: #8a877e;
+  --tb-rule: #2a2926;
+  --tb-accent: #6ea8d8;
+  --tb-accent-light: #8cc0e8;
+  --tb-accent-dark: #4a7fae;
+  --tb-link: #8cc0e8;
+  --tb-code-bg: #201f1c;
   --tb-fig-warn: #e08a76;
   --tb-fig-good: #7fc79b;
   --tb-fig-grid: #3a3833;
+}
+
+/* A book tints its diagrams by setting its accent, unless it sets its own. */
+[data-md-color-scheme] {
+  --tb-fig-accent: var(--tb-accent);
+}
+
+/* Map the tokens onto Material's variables. Deliberately scheme-independent:
+ * anything that differs between light and dark belongs in the token blocks
+ * above, or in the book's generated book.css. */
+[data-md-color-scheme] {
+  --md-default-bg-color: var(--tb-paper);
+  --md-default-fg-color: var(--tb-ink);
+  --md-default-fg-color--light: var(--tb-ink-soft);
+  --md-default-fg-color--lighter: var(--tb-ink-lighter);
+  --md-default-fg-color--lightest: var(--tb-rule);
+  --md-primary-fg-color: var(--tb-accent);
+  --md-primary-fg-color--light: var(--tb-accent-light);
+  --md-primary-fg-color--dark: var(--tb-accent-dark);
+  --md-accent-fg-color: var(--tb-accent);
+  --md-typeset-a-color: var(--tb-link);
+  --md-code-bg-color: var(--tb-code-bg);
 }
 
 /* Typography: sans body for legibility, serif display for an editorial feel. */

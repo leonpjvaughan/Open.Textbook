@@ -6,8 +6,9 @@
 <title>$title</title>
 <meta name="description" content="$description">
 <script>
-/* Honour the collection-wide light/dark choice the books record, before paint,
- * so the landing page never flashes the wrong theme. See SHAPE.md. */
+/* The light/dark preference is shared with every book, under one key.
+ * Read before paint, so the landing page never flashes the wrong scheme.
+ * See SHAPE.md ("Theme preference"). */
 (function () {
   try {
     var scheme = localStorage.getItem("$scheme_key");
@@ -20,9 +21,15 @@
 </head>
 <body>
 <header class="masthead">
-  <div class="wrap">
-    <h1 class="masthead__title">$title</h1>
-    <p class="masthead__lead">$description</p>
+  <div class="wrap masthead__inner">
+    <div class="masthead__text">
+      <h1 class="masthead__title">$title</h1>
+      <p class="masthead__lead">$description</p>
+    </div>
+    <button class="scheme" type="button" id="scheme-toggle" hidden>
+      <span class="scheme__icon" aria-hidden="true"></span>
+      <span class="scheme__label">Dark mode</span>
+    </button>
   </div>
 </header>
 
@@ -39,5 +46,56 @@ $groups
     <p class="footer__fine">Built $year · static, no account, nothing to install.</p>
   </div>
 </footer>
+
+<script>
+/* The landing page writes the same shared preference the books do, so a reader
+ * who picks a scheme here gets it inside every book as well. */
+(function () {
+  var KEY = "$scheme_key";
+  var button = document.getElementById("scheme-toggle");
+  if (!button) return;
+
+  var store = null;
+  try { store = window.localStorage; } catch (err) {}
+
+  function saved() {
+    try { return store ? store.getItem(KEY) : null; } catch (err) { return null; }
+  }
+
+  function current() {
+    var value = saved();
+    if (value === "slate") return "dark";
+    if (value === "default") return "light";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+
+  function render() {
+    var isDark = current() === "dark";
+    document.documentElement.setAttribute("data-scheme", isDark ? "dark" : "light");
+    button.setAttribute("aria-pressed", String(isDark));
+    button.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+    button.querySelector(".scheme__label").textContent = isDark ? "Light mode" : "Dark mode";
+  }
+
+  function choose(scheme) {
+    try { if (store) store.setItem(KEY, scheme === "dark" ? "slate" : "default"); } catch (err) {}
+    render();
+  }
+
+  button.hidden = false;
+  button.addEventListener("click", function () {
+    choose(current() === "dark" ? "light" : "dark");
+  });
+
+  /* With no explicit choice, follow the system as it changes. */
+  if (window.matchMedia) {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
+      if (!saved()) render();
+    });
+  }
+
+  render();
+})();
+</script>
 </body>
 </html>

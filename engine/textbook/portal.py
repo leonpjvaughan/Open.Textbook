@@ -36,7 +36,14 @@ TEMPLATE = Path(__file__).resolve().parent / "templates" / "portal.html"
 
 
 def card(book: books.Book) -> str:
-    accent = html.escape(book.theme.accent, quote=True)
+    """One landing-page card, tinted with the book's own accents.
+
+    Both variations are passed, so a card keeps the book's identity when the
+    reader is in dark mode rather than just darkening the light accent.
+    """
+    light = html.escape(book.theme.for_scheme("default").accent, quote=True)
+    dark = html.escape(book.theme.for_scheme("slate").accent, quote=True)
+    styles = f"--card-accent: {light}; --card-accent-dark: {dark}"
     title = html.escape(book.title)
     primary = book.default_profile
     href = f"{book.deploy_path(primary.id)}/"
@@ -58,7 +65,7 @@ def card(book: books.Book) -> str:
 
     return "\n".join(
         [
-            f'<article class="card" style="--card-accent: {accent}">',
+            f'<article class="card" style="{styles}">',
             '  <h3 class="card__title">'
             f'<a href="{href}">{title}</a></h3>',
             f'  <p class="card__subject">{html.escape(book.qualification)} '

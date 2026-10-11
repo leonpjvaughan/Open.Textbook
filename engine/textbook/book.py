@@ -22,10 +22,32 @@ import yaml
 COLLECTION_FILE = "collection.yaml"
 BOOKS_DIR = "books"
 
-# House accent, used when a book declares no theme of its own.
+# House accents, used when a book declares none for a scheme.
 HOUSE_ACCENT = "#2f6690"
 HOUSE_ACCENT_LIGHT = "#4a7fae"
 HOUSE_ACCENT_DARK = "#24506f"
+HOUSE_ACCENT_DARK_SCHEME = "#6ea8d8"
+HOUSE_ACCENT_LIGHT_SCHEME = "#8cc0e8"
+
+# The tokens a book may set, per scheme, in book.yaml. Everything else about the
+# design system is shared; a book that needs more than tinting belongs in its
+# authored book-local.css.
+SCHEME_TOKENS: dict[str, str] = {
+    "accent": "--tb-accent",
+    "accent_light": "--tb-accent-light",
+    "accent_dark": "--tb-accent-dark",
+    "paper": "--tb-paper",
+    "ink": "--tb-ink",
+    "ink_soft": "--tb-ink-soft",
+    "rule": "--tb-rule",
+    "link": "--tb-link",
+    "code_bg": "--tb-code-bg",
+    "fig_warn": "--tb-fig-warn",
+    "fig_good": "--tb-fig-good",
+    "fig_grid": "--tb-fig-grid",
+}
+
+SCHEMES = ("default", "slate")
 
 
 def repo_root() -> Path:
@@ -65,21 +87,64 @@ class Profile:
 
 
 @dataclass(frozen=True)
-class Theme:
-    """Design tokens a book may override, and the accent its card is tinted with."""
+class Scheme:
+    """The token overrides a book declares for one colour scheme.
 
-    accent: str = HOUSE_ACCENT
-    accent_light: str = HOUSE_ACCENT_LIGHT
-    accent_dark: str = HOUSE_ACCENT_DARK
+    Empty means "use the house defaults", which is the common case: a book
+    usually names only an accent, or an accent plus its tints.
+    """
+
+    scheme: str
+    tokens: dict[str, str] = field(default_factory=dict)
+
+    @classmethod
+    def from_dict(cls, scheme: str, data: dict | None) -> "Scheme":
+        data = data or {}
+        tokens = {}
+        for key, value in data.items():
+            if key not in SCHEME_TOKENS:
+                raise ValueError(
+                    f"theme.{scheme}.{key} is not a themable token; "
+                    f"choose one of {', '.join(sorted(SCHEME_TOKENS))} "
+                    "or use book-local.css"
+                )
+            if value:
+                tokens[key] = str(value)
+        return cls(scheme=scheme, tokens=tokens)
+
+    @property
+    def accent(self) -> str:
+        """The accent to tint this book's card with, house default included."""
+        if self.tokens.get("accent"):
+            return self.tokens["accent"]
+        return HOUSE_ACCENT_DARK_SCHEME if self.scheme == "slate" else HOUSE_ACCENT
+
+
+@dataclass(frozen=True)
+class Theme:
+    """A book's own theme: one variation per colour scheme."""
+
+    light: Scheme = field(default_factory=lambda: Scheme("default"))
+    dark: Scheme = field(default_factory=lambda: Scheme("slate"))
 
     @classmethod
     def from_dict(cls, data: dict | None) -> "Theme":
         data = data or {}
+        # A flat accent block is read as the light variation, so an older
+        # book.yaml still works.
+        if "accent" in data:
+            return cls(light=Scheme.from_dict("default", data), dark=Scheme("slate"))
         return cls(
-            accent=data.get("accent", HOUSE_ACCENT),
-            accent_light=data.get("accent_light", HOUSE_ACCENT_LIGHT),
-            accent_dark=data.get("accent_dark", HOUSE_ACCENT_DARK),
+            light=Scheme.from_dict("default", data.get("light")),
+            dark=Scheme.from_dict("slate", data.get("dark")),
         )
+
+    def for_scheme(self, scheme: str) -> Scheme:
+        return self.dark if scheme == "slate" else self.light
+
+    @property
+    def variations(self) -> tuple[Scheme, Scheme]:
+        return (self.light, self.dark)
 
 
 @dataclass(frozen=True)

@@ -125,13 +125,17 @@ body {
 /* --- card ----------------------------------------------------------------- */
 
 .card {
+  /* A card keeps the book's identity in dark mode rather than darkening the
+   * light accent: both variations come from book.yaml. */
+  --card-accent-active: var(--card-accent, var(--tb-accent));
+
   display: flex;
   flex-direction: column;
   gap: 6px;
   padding: 20px 20px 18px;
   background: var(--tb-card);
   border: 1px solid var(--tb-rule);
-  border-top: 3px solid var(--card-accent, var(--tb-accent));
+  border-top: 3px solid var(--card-accent-active);
   border-radius: var(--tb-radius);
   box-shadow: var(--tb-shadow);
 }
@@ -150,7 +154,7 @@ body {
 
 .card__title a:hover,
 .card__title a:focus-visible {
-  color: var(--card-accent, var(--tb-accent));
+  color: var(--card-accent-active);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -200,9 +204,9 @@ body {
 .chip {
   display: inline-block;
   padding: 5px 14px;
-  border: 1px solid var(--card-accent, var(--tb-accent));
+  border: 1px solid var(--card-accent-active);
   border-radius: 999px;
-  color: var(--card-accent, var(--tb-accent));
+  color: var(--card-accent-active);
   font-size: 0.9rem;
   font-weight: 500;
   text-decoration: none;
@@ -210,18 +214,80 @@ body {
 
 .chip:hover,
 .chip:focus-visible {
-  background: var(--card-accent, var(--tb-accent));
+  background: var(--card-accent-active);
   color: var(--tb-card);
 }
 
 .chip--primary {
-  background: var(--card-accent, var(--tb-accent));
+  background: var(--card-accent-active);
   color: var(--tb-card);
 }
 
 .chip--primary:hover,
 .chip--primary:focus-visible {
   filter: brightness(1.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-scheme="light"]) .card {
+    --card-accent-active: var(--card-accent-dark, var(--card-accent, var(--tb-accent)));
+  }
+}
+
+:root[data-scheme="dark"] .card {
+  --card-accent-active: var(--card-accent-dark, var(--card-accent, var(--tb-accent)));
+}
+
+/* --- masthead action ------------------------------------------------------ */
+
+.masthead__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.masthead__text { min-width: min(100%, 34ch); }
+
+.scheme {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1px solid var(--tb-rule);
+  border-radius: 999px;
+  background: var(--tb-card);
+  color: var(--tb-ink-soft);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.scheme:hover,
+.scheme:focus-visible {
+  border-color: var(--tb-accent);
+  color: var(--tb-accent);
+}
+
+.scheme__icon {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  box-shadow: inset 5px -4px 0 0 currentColor;
+}
+
+:root[data-scheme="dark"] .scheme__icon {
+  box-shadow: inset 5px -4px 0 0 transparent;
+  background: currentColor;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-scheme="light"]) .scheme__icon {
+    box-shadow: inset 5px -4px 0 0 transparent;
+    background: currentColor;
+  }
 }
 
 /* --- footer --------------------------------------------------------------- */

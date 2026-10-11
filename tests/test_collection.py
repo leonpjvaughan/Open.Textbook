@@ -10,6 +10,7 @@ from __future__ import annotations
 import re
 
 import pytest
+import yaml
 
 from textbook import book as books
 from textbook import portal, scaffold
@@ -108,25 +109,131 @@ def test_shared_assets_are_symlinked_not_copied(book):
     """CSS, the figure loader and the booklet widget are shared. A copy would
     drift; the point is that there is one truth."""
     assets = book.docs / "assets"
-    for relative in (
-        "stylesheets/extra.css",
-        "figures/figures.js",
-        "booklet/booklet.js",
-    ):
+    relative_paths = ["stylesheets/extra.css", "figures/figures.js"]
+    if book.booklet_name:
+        relative_paths.append("booklet/booklet.js")
+    for relative in relative_paths:
         path = assets / relative
         assert path.is_symlink(), f"{book.id}: {relative} should be a symlink"
         assert path.resolve().is_file(), f"{book.id}: {relative} is a broken symlink"
+
+
+@pytest.mark.parametrize("book", ALL, ids=IDS)
+def test_booklet_widget_is_loaded_only_where_there_is_a_booklet(book):
+    """A book without a formula sheet must not ship a widget that fetches one."""
+    for profile in book.profiles:
+        config = yaml.safe_load(
+            scaffold.config_path(book, profile.id).read_text(encoding="utf-8")
+        )
+        scripts = config.get("extra_javascript") or []
+        if book.booklet_name:
+            assert scaffold.BOOKLET_WIDGET in scripts
+        else:
+            assert scaffold.BOOKLET_WIDGET not in scripts
 
 
 def test_portal_renders_every_book():
     html = portal.render()
     for book in ALL:
         assert book.title in html, f"portal is missing {book.id}"
-        assert book.theme.accent in html, f"portal card is not tinted with {book.id}'s accent"
+        light = book.theme.for_scheme("default").accent
+        dark = book.theme.for_scheme("slate").accent
+        assert f"--card-accent: {light}" in html, f"{book.id}: light accent missing"
+        assert f"--card-accent-dark: {dark}" in html, f"{book.id}: dark accent missing"
         for profile in book.profiles:
             assert f'href="{book.deploy_path(profile.id)}/"' in html
         if book.boards:
             assert book.boards[0] in html
+
+
+@pytest.mark.parametrize("book", ALL, ids=IDS)
+def test_book_theme_is_a_light_and_dark_pair(book):
+    """Each book carries its own theme, reduced to one variation per scheme."""
+    assert {s.scheme for s in book.theme.variations} == {"default", "slate"}
+    for scheme in book.theme.variations:
+        assert scheme.accent.startswith("#"), f"{book.id}: bad accent {scheme.accent}"
+        for key in scheme.tokens:
+            assert key in books.SCHEME_TOKENS, f"{book.id}: unknown token {key}"
+
+
+def test_a_theme_may_only_override_known_tokens():
+    """Guessing a token name would silently do nothing."""
+    from textbook.book import Theme
+
+    with pytest.raises(ValueError):
+        Theme.from_dict({"light": {"not-a-token": "#fff"}})
+
+
+def test_an_old_flat_accent_block_still_reads():
+    """A single accent block is read as the light variation."""
+    from textbook.book import Theme
+
+    theme = Theme.from_dict({"accent": "#123456"})
+    assert theme.for_scheme("default").tokens["accent"] == "#123456"
+    assert theme.for_scheme("slate").tokens == {}
+
+
+@pytest.mark.parametrize("book", ALL, ids=IDS)
+def test_generated_theme_css_covers_each_variation(book):
+    css = scaffold.theme_css(book)
+    for scheme in book.theme.variations:
+        if not scheme.tokens:
+            continue
+        selector = (
+            '[data-md-color-scheme="default"]'
+            if scheme.scheme == "default"
+            else '[data-md-color-scheme="slate"]'
+        )
+        assert selector in css
+        for key, value in scheme.tokens.items():
+            assert f"{books.SCHEME_TOKENS[key]}: {value};" in css
+
+
+def test_two_books_keep_separate_identities(tmp_path):
+    """The properties that must hold once a second book exists.
+
+    A two-book repository is built from these files, so they are exercised here
+    rather than by committing a fixture book that would publish itself.
+    """
+    from textbook.book import Theme, load_book
+
+    def write(name: str, accent: str, dark_accent: str):
+        directory = tmp_path / name
+        directory.mkdir()
+        (directory / "book.yaml").write_text(
+            f"id: {name}\n"
+            f"title: {name.title()}\n"
+            "qualification: GCSE\n"
+            "subject: Physics\n"
+            "profiles:\n"
+            "  - {id: higher, name: Higher, default: true}\n"
+            "theme:\n"
+            f"  light: {{accent: '{accent}'}}\n"
+            f"  dark: {{accent: '{dark_accent}'}}\n",
+            encoding="utf-8",
+        )
+        return load_book(directory / "book.yaml")
+
+    maths = ALL[0]
+    physics = write("gcse-physics", "#b45309", "#f0a860")
+
+    # Distinct URLs and distinct identities, in both schemes.
+    assert maths.deploy_path("higher") != physics.deploy_path("higher")
+    assert maths.theme.for_scheme("default").accent != physics.theme.for_scheme(
+        "default"
+    ).accent
+    assert maths.theme.for_scheme("slate").accent != physics.theme.for_scheme(
+        "slate"
+    ).accent
+
+    # A book's card is tinted from its own pair, not from the house palette.
+    css = scaffold.theme_css(physics)
+    assert '#b45309' in css and '#f0a860' in css
+
+    # Neither variation leaks into the other.
+    light, dark = physics.theme.variations
+    assert light.scheme == "default" and dark.scheme == "slate"
+    assert Theme.from_dict({}).for_scheme("slate").tokens == {}
 
 
 def test_portal_groups_by_qualification():

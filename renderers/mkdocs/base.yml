@@ -44,5 +44,5 @@ extra_css:
   - assets/stylesheets/extra.css
   - assets/stylesheets/book.css
   - assets/stylesheets/book-local.css
-extra_javascript:
-  - assets/booklet/booklet.js
+# extra_javascript is generated per book: a book without a formulae booklet must
+# not ship a widget that would fetch one.

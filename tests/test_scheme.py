@@ -81,3 +81,26 @@ def test_landing_page_honours_the_same_key():
     assert scheme.SHARED_KEY in html
     # Both directions: dark is applied, and an explicit light is respected.
     assert '"slate"' in html and '"default"' in html
+
+
+def test_landing_page_can_write_the_preference_too():
+    """A reader who picks a scheme on the landing page must get it in the books."""
+    html = portal.render()
+    assert "setItem(KEY" in html, "the landing page never writes the shared key"
+    assert "scheme-toggle" in html
+
+
+def test_landing_toggle_is_hidden_without_javascript():
+    """The control is inert without scripting, so it must not appear."""
+    html = portal.render()
+    assert 'id="scheme-toggle" hidden' in html
+
+
+def test_every_reader_surface_reads_and_writes_the_key():
+    """Books and the landing page must agree on reading and writing."""
+    book_page = scheme.snippet(base_config())
+    landing = portal.render()
+    for surface, name in ((book_page, "a book page"), (landing, "the landing page")):
+        assert scheme.SHARED_KEY in surface, f"{name} does not read the shared key"
+    assert "setItem" in book_page, "a book page does not record the choice"
+    assert "setItem" in landing, "the landing page does not record the choice"
