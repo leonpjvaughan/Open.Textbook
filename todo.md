@@ -10,7 +10,7 @@ in `AGENTS.md` do not apply here, but the engineering rules do.
 - [x] 4. Zone security and response headers — DNSSEC complete, CAA verified and enabled; only the CAA import and Bot Fight Mode left
 - [x] 5. Worker version URLs closed; rollback is a manual workflow, command recorded
 - [x] 6. Crawlability: our own `robots.txt` and a sitemap index
-- [ ] 7. Account, credential and dependency hygiene (2FA, Dependabot and recovery done; registrar, token rotation and secret scanning left)
+- [x] 7. Account, credential and dependency hygiene — 2FA, registrar lock, token rotation, secret scanning, Dependabot, recovery
 - [x] 8. One site, two renderers — decided: the bespoke pipeline replaces MkDocs
 - [x] 9. Nothing says which commit is live
 - [x] 10. Accessibility: turn the claims into checks
@@ -430,16 +430,19 @@ the rest recoverable, so they belong in the same gate.
 - [x] **Two-factor authentication on the Cloudflare account and on GitHub.** Both
       own the deployment path; this is the highest-value item in the file. Done —
       the author confirmed 2FA on both.
-- [x] **The domain cannot lapse or move**: registrar auto-renew confirmed by the
-      author (Cloudflare Registrar). The transfer lock is the remaining half.
-- [ ] **The deploy token**: set an expiry and a rotation date. It is account-scoped
-      with `Workers Scripts: Edit`, and `wrangler whoami` does **not** list
-      permissions for an account token (it prints "To see token permissions visit
-      …"), so record in `DEPLOY.md` what it may do and when to rotate it.
-- [ ] **Secret scanning and push protection on GitHub.** Not available on a
-      private repository on the Free plan — the same plan decision as branch
-      protection (`scripts/protect-main.sh`). Given how nearly `.env` was
-      committed, this one has a proven failure mode behind it.
+- [x] **The domain cannot lapse or move**: registrar auto-renew and the transfer
+      lock both confirmed by the author (Cloudflare Registrar). The address is
+      the product.
+- [x] **The deploy token**: expiry and rotation set by the author. It is
+      account-scoped with `Workers Scripts: Edit`, and `wrangler whoami` does
+      **not** list permissions for an account token (it prints "To see token
+      permissions visit …"), so `DEPLOY.md` records what it may do and when to
+      rotate it — see "The deploy token" there.
+- [x] **Secret scanning and push protection on GitHub**: enabled by the author.
+      Worth knowing it needed the plan decision to change first — it is not
+      available on a private repository on the Free plan, the same constraint
+      as branch protection (`scripts/protect-main.sh`). Given how nearly `.env`
+      was committed, this one had a proven failure mode behind it.
 - [x] **Dependency updates**: `.github/dependabot.yml` covers `npm`, `uv` and
       `github-actions`, weekly and grouped, so the pinned toolchain does not
       silently age out of support. If GitHub rejects the `uv` ecosystem it will

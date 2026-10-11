@@ -1,0 +1,28 @@
+; open-textbook.org — CAA records only.
+;
+; Import this rather than the whole zone file: `open-textbook.org.zone` also
+; carries the `www` record, SPF and DMARC, which are already in the zone, and a
+; re-import of those is at best a no-op and at worst a duplicate.
+;
+; Dashboard: DNS → Records → Import and Export → Import DNS records.
+;
+; CAA restricts which certificate authorities may issue for this domain. The
+; issuer of the live certificate was checked first, because the failure mode is
+; delayed: a list that omits the CA Cloudflare actually uses breaks nothing today
+; and then fails to RENEW weeks later.
+;
+; Checked 2026-10-11 — the live certificate is issued by Google Trust Services
+; (C=US, O=Google Trust Services, CN=WE1), valid to 2027-01-09. The three CAs
+; below are the ones Cloudflare documents for custom domains, so this is a
+; superset of what is known to be in use rather than a guess. Re-check it when
+; that certificate comes up for renewal.
+;
+; The `pki.goog` parameter must stay inside the quotes: a semicolon outside
+; quotes starts a BIND comment, and the parameter would be silently dropped.
+
+open-textbook.org.  300  IN  CAA  0 issue      "letsencrypt.org"
+open-textbook.org.  300  IN  CAA  0 issue      "pki.goog; cansignhttpexchanges=yes"
+open-textbook.org.  300  IN  CAA  0 issue      "ssl.com"
+open-textbook.org.  300  IN  CAA  0 issuewild   "letsencrypt.org"
+open-textbook.org.  300  IN  CAA  0 issuewild   "pki.goog; cansignhttpexchanges=yes"
+open-textbook.org.  300  IN  CAA  0 issuewild   "ssl.com"
