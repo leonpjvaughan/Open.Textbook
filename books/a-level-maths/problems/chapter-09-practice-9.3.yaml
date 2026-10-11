@@ -1,0 +1,167 @@
+# Practice set for 9.3, Newton-Raphson and other recurrence relations.
+#
+# A Newton-Raphson step is the recurrence x - f(x)/f'(x), so it is checked with
+# the `iterate` operation: apply the stated rule the stated number of times, and
+# the produced value is proved. A rounded answer is checked with `approx`,
+# because a rounded decimal is an interval, not an equality. Where the exact
+# iterate is not rational (the exponential equation) the step is checked with
+# `approx` on the arithmetic itself.
+chapter: 9
+symbols:
+  x: {real: true}
+problems:
+  - id: n1-derivative-cubic
+    section: "9.3"
+    dfe: [I2]
+    statement: 'For $f(x) = x^3 + x - 1$, write down $f''(x)$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "x**3 + x - 1"
+      apply: {op: diff, args: [x]}
+      answer: "3*x**2 + 1"
+    answer_text: 'Differentiate term by term: $f''(x) = 3x^2 + 1$. The Newton–Raphson step needs this at each estimate.'
+
+  - id: n2-nr-first-step
+    section: "9.3"
+    dfe: [I2]
+    statement: 'Use Newton–Raphson on $f(x) = x^3 + x - 1$ with $x_0 = 0.7$. Find $x_1$ to four decimal places.'
+    answer_label: 'The value of x1'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "x - (x**3 + x - 1)/(3*x**2 + 1)", apply: {op: iterate, args: ["0.7", 1]}, answer: "843/1235"}
+        - {kind: approx, value: "843/1235", target: "0.6826", tolerance: "0.00005"}
+    answer_text: 'Here $f(0.7) = 0.043$ and $f''(0.7) = 2.47$, so $x_1 = 0.7 - \dfrac{0.043}{2.47} = 0.6825911$, which is $0.6826$ to four decimal places.'
+
+  - id: n3-nr-second-step
+    section: "9.3"
+    dfe: [I2]
+    statement: 'Continue the iteration to find $x_2$ for $f(x) = x^3 + x - 1$ from $x_0 = 0.7$.'
+    answer_label: 'The value of x2'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "x - (x**3 + x - 1)/(3*x**2 + 1)", apply: {op: iterate, args: ["0.7", 2]}, answer: "3081807089/4516607420"}
+        - {kind: approx, value: "3081807089/4516607420", target: "0.6823", tolerance: "0.00005"}
+    answer_text: 'With $x_1 = 0.6825911$, $f(x_1) = 0.0006312$ and $f''(x_1) = 2.3977918$, so $x_2 = 0.6823279$. The value has settled.'
+
+  - id: n4-nr-root-cubic
+    section: "9.3"
+    dfe: [I2]
+    statement: 'State the root of $x^3 + x - 1 = 0$ to four decimal places.'
+    answer_label: 'The root'
+    check:
+      kind: approx
+      value: "75338384852952803646082689969/110413769496547597170580284730"
+      target: "0.6823"
+      tolerance: "0.00005"
+    answer_text: 'The Newton–Raphson values settle on $0.6823278$, so the root is $0.6823$ to four decimal places. Section 9.1 found the same root, but needed four halving steps to reach only two decimal places.'
+
+  - id: n5-derivative-exponential
+    section: "9.3"
+    dfe: [I2]
+    statement: 'For $f(x) = e^x - 3x$, write down $f''(x)$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "exp(x) - 3*x"
+      apply: {op: diff, args: [x]}
+      answer: "exp(x) - 3"
+    answer_text: 'The derivative of $e^x$ is $e^x$, and the derivative of $3x$ is $3$, so $f''(x) = e^x - 3$.'
+
+  - id: n6-nr-exponential-step
+    section: "9.3"
+    dfe: [I2]
+    statement: 'Use Newton–Raphson on $e^x = 3x$ with $x_0 = 1.5$. Find $x_1$ to four decimal places.'
+    answer_label: 'The value of x1'
+    check:
+      kind: approx
+      value: "1.5 - (exp(1.5) - 4.5)/(exp(1.5) - 3)"
+      target: "1.5124"
+      tolerance: "0.00005"
+    answer_text: 'Rearrange to $e^x - 3x = 0$, so $f''(x) = e^x - 3$. Then $f(1.5) = -0.0183109$ and $f''(1.5) = 1.4816891$, so $x_1 = 1.5 + 0.0123581 = 1.5124$ to four decimal places.'
+
+  - id: n7-nr-exponential-root
+    section: "9.3"
+    dfe: [I2]
+    statement: 'Continue the iteration on $e^x = 3x$ to find the root near $1.5$ to four decimal places.'
+    answer_label: 'The root'
+    check:
+      kind: approx
+      value: "1.5121345516578425"
+      target: "1.5121"
+      tolerance: "0.00005"
+    answer_text: 'The values are $x_1 = 1.5123581$, $x_2 = 1.5121346$ and $x_3 = 1.5121346$, so the root is $1.5121$ to four decimal places. The equation also has a root near $0.6191$, which a different starting value would find.'
+
+  - id: n8-square-root-recurrence
+    section: "9.3"
+    dfe: [I2]
+    statement: 'Use $x_{n+1} = \dfrac{1}{2}\left(x_n + \dfrac{5}{x_n}\right)$ with $x_0 = 2$. Find $x_3$ to four decimal places.'
+    answer_label: 'The value of x3'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "(x + 5/x)/2", apply: {op: iterate, args: ["2", 3]}, answer: "51841/23184"}
+        - {kind: approx, value: "51841/23184", target: "2.2361", tolerance: "0.00005"}
+    answer_text: '$x_1 = 2.25$, $x_2 = 2.236111$ and $x_3 = 2.236068$, which is $2.2361$ to four decimal places. The recurrence is Newton–Raphson applied to $x^2 - 5 = 0$, so it finds $\sqrt{5}$.'
+
+  - id: n9-square-root-converged
+    section: "9.3"
+    dfe: [I2]
+    statement: 'Continue the recurrence in the previous question to find $x_4$ to five decimal places.'
+    answer_label: 'The value of x4'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "(x + 5/x)/2", apply: {op: iterate, args: ["2", 4]}, answer: "5374978561/2403763488"}
+        - {kind: approx, value: "5374978561/2403763488", target: "2.23607", tolerance: "0.000005"}
+    answer_text: '$x_4 = 2.2360680$ to five decimal places. This matches $\sqrt{5} = 2.2360680\ldots$ The recurrence is Newton–Raphson for $x^2 - 5 = 0$, so it homes in on $\sqrt{5}$.'
+
+  - id: n10-sqrt-seven-recurrence
+    section: "9.3"
+    dfe: [I2]
+    statement: 'The recurrence $x_{n+1} = \dfrac{1}{2}\left(x_n + \dfrac{7}{x_n}\right)$ starts from $x_0 = 3$. Find $x_2$ as an exact fraction.'
+    answer_label: 'The value of x2'
+    check:
+      kind: apply
+      expression: "(x + 7/x)/2"
+      apply: {op: iterate, args: ["3", 2]}
+      answer: "127/48"
+    answer_text: '$x_1 = \dfrac{1}{2}\left(3 + \dfrac{7}{3}\right) = \dfrac{8}{3}$, so $x_2 = \dfrac{1}{2}\left(\dfrac{8}{3} + \dfrac{21}{8}\right) = \dfrac{127}{48} = 2.6458$. This is Newton–Raphson for $x^2 - 7 = 0$, so it finds $\sqrt{7}$.'
+
+  - id: n11-stationary-point-failure
+    section: "9.3"
+    dfe: [I2]
+    statement: 'For $f(x) = x^2 - 4$, work out $f''(0)$. Explain why Newton–Raphson fails from $x_0 = 0$.'
+    answer_label: 'The value of the derivative at 0'
+    check:
+      kind: apply
+      expression: "2*x"
+      apply: {op: subs, args: [x, "0"]}
+      answer: "0"
+    answer_text: '$f''(x) = 2x$ and $f''(0) = 0$. The Newton–Raphson step divides by $f''(x_0)$, so the first step would divide by zero. The tangent at $x_0 = 0$ is horizontal and never meets the axis.'
+
+  - id: n12-cycle-failure
+    section: "9.3"
+    dfe: [I2]
+    statement: 'For $f(x) = x^3 - 2x + 2$ with $x_0 = 0$, find $x_2$.'
+    answer_label: 'The value of x2'
+    check:
+      kind: apply
+      expression: "x - (x**3 - 2*x + 2)/(3*x**2 - 2)"
+      apply: {op: iterate, args: ["0", 2]}
+      answer: "0"
+    answer_text: '$x_1 = 1$ and $x_2 = 0$, because $f(1) = 1$ and $f''(1) = 1$. The values repeat $1, 0, 1, 0, \ldots$ The formula was applied correctly, but the method cycles and never settles.'
+
+  - id: n13-nr-cubic-two
+    section: "9.3"
+    dfe: [I2]
+    statement: 'Use Newton–Raphson on $x^3 - 2x - 5 = 0$ with $x_0 = 2$. Find $x_2$.'
+    answer_label: 'The value of x2'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "x - (x**3 - 2*x - 5)/(3*x**2 - 2)", apply: {op: iterate, args: ["2", 2]}, answer: "11761/5615"}
+        - {kind: approx, value: "11761/5615", target: "2.0946", tolerance: "0.00005"}
+    answer_text: '$f''(x) = 3x^2 - 2$, so $x_1 = 2 - \dfrac{-1}{10} = 2.1$, and $x_2 = 2.1 - \dfrac{0.061}{11.23} = 2.0946$ to four decimal places.'

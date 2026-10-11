@@ -1,0 +1,178 @@
+# Practice set for 9.5, numerical methods in context.
+#
+# Each record pairs a contextual statement with a check that proves the
+# arithmetic or the sign comparison. The method choice and the interpretation of
+# the answer are prose; the verifier proves the number, not the choice. Sign
+# comparisons use `compare`, so a bracket is proved rather than asserted. A
+# rounded contextual answer uses `approx`, because a rounded decimal is an
+# interval, not an equality. All exact sums use fractions, never decimals.
+chapter: 9
+symbols:
+  t: {real: true}
+problems:
+  - id: c1-drone-bracket
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'A drone''s height is $h(t) = 40e^{-t/4} - 2t$ metres. Show that the drone lands between $5$ and $6$ seconds.'
+    answer_label: 'The two heights'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: ">", lhs: "40*exp(-5/4) - 10", rhs: "0"}
+        - {kind: compare, relation: "<", lhs: "40*exp(-6/4) - 12", rhs: "0"}
+    answer_text: '$h(5) = 40e^{-1.25} - 10 = 1.4602 > 0$ and $h(6) = 40e^{-1.5} - 12 = -3.0748 < 0$. The height changes sign, so the landing time lies in $(5, 6)$.'
+
+  - id: c2-drone-derivative
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'For the drone model $h(t) = 40e^{-t/4} - 2t$, write down $h''(t)$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "40*exp(-t/4) - 2*t"
+      apply: {op: diff, args: [t]}
+      answer: "-10*exp(-t/4) - 2"
+    answer_text: 'Differentiate each term: the derivative of $40e^{-t/4}$ is $-10e^{-t/4}$, and the derivative of $-2t$ is $-2$. So $h''(t) = -10e^{-t/4} - 2$.'
+
+  - id: c3-drone-newton-step
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'Use Newton–Raphson with $t_0 = 5$ on $h(t) = 40e^{-t/4} - 2t$. Find $t_1$ to four decimal places.'
+    answer_label: 'The value of t1'
+    check:
+      kind: approx
+      value: "5 - (40*exp(-5/4) - 10)/(-10*exp(-5/4) - 2)"
+      target: "5.3001"
+      tolerance: "0.00005"
+    answer_text: '$h(5) = 1.4602$ and $h''(5) = -4.8650$, so $t_1 = 5 - \dfrac{1.4602}{-4.8650} = 5.3001$ to four decimal places.'
+
+  - id: c4-drone-landing-time
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'For the drone, state the landing time to three decimal places.'
+    answer_label: 'The landing time'
+    check:
+      kind: approx
+      value: "5.3068986609688"
+      target: "5.307"
+      tolerance: "0.0005"
+    answer_text: 'The Newton–Raphson values are $t_1 = 5.3001$, $t_2 = 5.3069$ and $t_3 = 5.3069$, so the landing time is $5.307$ seconds to three decimal places. In context, the answer is about $5.3$ seconds.'
+
+  - id: c5-river-area
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'A river survey gives depths $0, 1.2, 2.5, 3.1, 2.4, 0.9, 0$ metres at distances $0, 2, 4, 6, 8, 10, 12$ metres. Estimate the cross-sectional area.'
+    answer_label: 'The area'
+    check:
+      kind: evaluate
+      expression: "2/2*(0 + 0 + 2*(6/5 + 5/2 + 31/10 + 12/5 + 9/10))"
+      answer: "101/5"
+    answer_text: 'The readings are equally spaced with $h = 2$, and the interior depths add to $10.1$. So $A \approx \dfrac{2}{2}\bigl[0 + 0 + 2(10.1)\bigr] = 20.2$ square metres.'
+
+  - id: c6-river-limits
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'For the river survey, give a lower limit and an upper limit for the cross-sectional area.'
+    answer_label: 'The limits'
+    check:
+      kind: between
+      low: "14"
+      high: "132/5"
+      value: "101/5"
+    answer_text: 'The smaller depth on each strip gives the lower sum $2(0 + 1.2 + 2.5 + 2.4 + 0.9 + 0) = 14.0$ square metres. The larger depth on each strip gives the upper sum $2(1.2 + 2.5 + 3.1 + 3.1 + 2.4 + 0.9) = 26.4$ square metres. So the area lies between $14.0$ and $26.4$ square metres.'
+
+  - id: c7-speed-distance
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'A car''s speed is recorded every two seconds: $0, 5, 9, 12, 14, 15$ metres per second at $t = 0, 2, 4, 6, 8, 10$ seconds. Estimate the distance travelled.'
+    answer_label: 'The distance'
+    check:
+      kind: evaluate
+      expression: "2/2*(0 + 15 + 2*(5 + 9 + 12 + 14))"
+      answer: "95"
+    answer_text: 'The distance is the area under the speed–time graph. With $h = 2$, $s \approx \dfrac{2}{2}\bigl[0 + 15 + 2(5 + 9 + 12 + 14)\bigr] = 95$ metres.'
+
+  - id: c8-speed-limits
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'For the speed trace in the previous question, give a lower limit and an upper limit for the distance travelled.'
+    answer_label: 'The limits'
+    check:
+      kind: between
+      low: "80"
+      high: "110"
+      value: "95"
+    answer_text: 'The speed increases, so the lower sum uses the left-hand heights: $2(0 + 5 + 9 + 12 + 14) = 80$ metres. The upper sum uses the right-hand heights: $2(5 + 9 + 12 + 14 + 15) = 110$ metres. The distance lies between $80$ and $110$ metres, with the estimate $95$ in the middle.'
+
+  - id: c9-drug-bracket
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'A drug''s concentration is $C(t) = 6te^{-0.4t}$ milligrams per litre. Show that the concentration reaches $2$ milligrams per litre between $t = 0.35$ and $t = 0.4$ hours.'
+    answer_label: 'The two values'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "<", lhs: "3*(7/20) - exp(0.4*(7/20))", rhs: "0"}
+        - {kind: compare, relation: ">", lhs: "3*(2/5) - exp(0.4*(2/5))", rhs: "0"}
+    answer_text: 'Set $C(t) = 2$ and divide by $2$: $3te^{-0.4t} = 1$, so $3t = e^{0.4t}$. With $f(t) = 3t - e^{0.4t}$, $f(0.35) = -0.1003 < 0$ and $f(0.4) = 0.0265 > 0$, so the root lies in $(0.35, 0.4)$.'
+
+  - id: c10-drug-newton-step
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'For $f(t) = 3t - e^{0.4t}$, use Newton–Raphson with $t_0 = 0.4$. Find $t_1$ to four decimal places.'
+    answer_label: 'The value of t1'
+    check:
+      kind: approx
+      value: "(2/5) - (3*(2/5) - exp(4/25))/(3 - (2/5)*exp(4/25))"
+      target: "0.3895"
+      tolerance: "0.00005"
+    answer_text: '$f''(t) = 3 - 0.4e^{0.4t}$, so $f''(0.4) = 2.5306$. Then $t_1 = 0.4 - \dfrac{0.0265}{2.5306} = 0.3895$ to four decimal places.'
+
+  - id: c11-drug-time
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'State the time from the previous question to two decimal places, in hours.'
+    answer_label: 'The time'
+    check:
+      kind: approx
+      value: "0.3895365090022"
+      target: "0.39"
+      tolerance: "0.005"
+    answer_text: 'The values settle on $0.3895$, so the time is $0.39$ hours to two decimal places. That is about $23.4$ minutes.'
+
+  - id: c12-temperature-bracket
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'A cooling model gives $T = 20 + 60e^{-0.05t} - 0.5t$ degrees, $t$ minutes after a switch is pressed. Show that the temperature is $30$ degrees between $t = 21$ and $t = 22$.'
+    answer_label: 'The two values'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: ">", lhs: "60*exp(-0.05*21) - 0.5*21 - 10", rhs: "0"}
+        - {kind: compare, relation: "<", lhs: "60*exp(-0.05*22) - 0.5*22 - 10", rhs: "0"}
+    answer_text: 'Set $T = 30$ and subtract $30$: $60e^{-0.05t} - 0.5t - 10 = 0$. At $t = 21$ the value is $0.4963 > 0$, and at $t = 22$ it is $-1.0277 < 0$. The sign changes, so the temperature reaches $30$ degrees between $21$ and $22$ minutes.'
+
+  - id: c13-temperature-time
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'For the cooling model in the previous question, state the time when the temperature is $30$ degrees, to two decimal places.'
+    answer_label: 'The time'
+    check:
+      kind: approx
+      value: "21.3219555"
+      target: "21.32"
+      tolerance: "0.005"
+    answer_text: 'Newton–Raphson from $t_0 = 21$ gives $21.2925$, then $21.3219$ and $21.3219$. The time is $21.32$ minutes to two decimal places.'
+
+  - id: c14-second-drone
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'A second drone has height $h(t) = 30e^{-t/3} - 3t$ metres. Show that it lands between $3$ and $4$ seconds, and state the landing time to two decimal places.'
+    answer_label: 'The bracket and the time'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: ">", lhs: "30*exp(-1) - 9", rhs: "0"}
+        - {kind: compare, relation: "<", lhs: "30*exp(-4/3) - 12", rhs: "0"}
+        - {kind: approx, value: "3.3136260556", target: "3.31", tolerance: "0.005"}
+    answer_text: '$h(3) = 30e^{-1} - 9 = 2.0364 > 0$ and $h(4) = 30e^{-4/3} - 12 = -4.0921 < 0$, so the drone lands between $3$ and $4$ seconds. Newton–Raphson gives $3.31$ seconds to two decimal places.'

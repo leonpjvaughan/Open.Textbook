@@ -2,11 +2,11 @@
 title: Glossary
 ---
 
-<!-- scaffold:stub -->
-
 # Glossary
 
-Definitions of the terms used in this book. Each strand page is maintained alongside the chapters that use it; a term is defined once, here.
+Find plain-English definitions of the key words used across the A-level
+Mathematics chapters. Each page covers one strand. A word is defined once, on
+the page for the strand where it belongs.
 
 - [Pure Mathematics](pure.md)
 - [Statistics](statistics.md)

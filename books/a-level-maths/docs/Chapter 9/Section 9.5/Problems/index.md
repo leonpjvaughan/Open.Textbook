@@ -10,9 +10,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.5 Numerical methods in context — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: I4, OT2
+Work through these on your own. Decide which method you need before you
+calculate, and write the units with every answer.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-09-practice-9.5
+
+:::answers chapter-09-practice-9.5

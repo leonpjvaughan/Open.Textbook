@@ -1,0 +1,174 @@
+# Review bank for Chapter 9. The items mix this chapter with Chapters 6 to 8, so
+# the reader chooses a method before calculating. Each check proves the algebra
+# or the sign comparison; the method choice and the reason for it are human
+# review. Exact sums use fractions, never decimals.
+chapter: 9
+symbols:
+  x: {real: true}
+  t: {real: true}
+problems:
+  - id: r1-bracket-exponential
+    section: "9.1"
+    dfe: [I1]
+    statement: 'Show that $e^{-x} = x$ has a root between $0$ and $1$.'
+    answer_label: 'The two values'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: ">", lhs: "exp(0) - 0", rhs: "0"}
+        - {kind: compare, relation: "<", lhs: "exp(-1) - 1", rhs: "0"}
+    answer_text: 'Write $f(x) = e^{-x} - x$. Then $f(0) = 1 > 0$ and $f(1) = e^{-1} - 1 = -0.6321 < 0$. The sign changes, so the root lies in $(0, 1)$.'
+
+  - id: r2-derivative-cubic
+    section: "9.3"
+    dfe: [I2]
+    statement: 'For $f(x) = x^3 - 4x + 1$, write down $f''(x)$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "x**3 - 4*x + 1"
+      apply: {op: diff, args: [x]}
+      answer: "3*x**2 - 4"
+    answer_text: 'Differentiate term by term: $f''(x) = 3x^2 - 4$.'
+
+  - id: r3-newton-cubic
+    section: "9.3"
+    dfe: [I2]
+    statement: 'Use Newton–Raphson on $x^3 - 4x + 1 = 0$ with $x_0 = 0.3$. Find $x_2$ to four decimal places.'
+    answer_label: 'The value of x2'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "x - (x**3 - 4*x + 1)/(3*x**2 - 4)", apply: {op: iterate, args: ["0.3", 2]}, answer: "6275241991/24695794745"}
+        - {kind: approx, value: "6275241991/24695794745", target: "0.2541", tolerance: "0.00005"}
+    answer_text: '$f''(0.3) = -3.73$ gives $x_1 = 0.2536$, and the next step gives $x_2 = 0.2541$ to four decimal places. The root is $0.2541$.'
+
+  - id: r4-simple-iteration
+    section: "9.2"
+    dfe: [I2]
+    statement: 'Use $x_{n+1} = \dfrac{1}{2}\left(x_n + \dfrac{3}{x_n}\right)$ with $x_0 = 2$ to find $x_2$.'
+    answer_label: 'The value of x2'
+    check:
+      kind: apply
+      expression: "(x + 3/x)/2"
+      apply: {op: iterate, args: ["2", 2]}
+      answer: "97/56"
+    answer_text: '$x_1 = \dfrac{1}{2}\left(2 + \dfrac{3}{2}\right) = \dfrac{7}{4}$ and $x_2 = \dfrac{97}{56} = 1.7321$. The recurrence is Newton–Raphson for $x^2 - 3 = 0$, so it finds $\sqrt{3} = 1.7321$.'
+
+  - id: r5-trapezium-cubic
+    section: "9.4"
+    dfe: [I3]
+    statement: 'Use the trapezium rule with four strips to estimate $\displaystyle\int_0^1 (x^3 + 1)\,dx$.'
+    answer_label: 'The estimate'
+    check:
+      kind: evaluate
+      expression: "(1/4)/2*(1 + 2 + 2*(65/64 + 9/8 + 91/64))"
+      answer: "81/64"
+    answer_text: 'Here $h = 0.25$ and the heights are $1, 1.015625, 1.125, 1.421875, 2$. The estimate is $\dfrac{0.25}{2}\bigl[3 + 2(3.5625)\bigr] = 1.265625 = \dfrac{81}{64}$.'
+
+  - id: r6-trapezium-exact
+    section: "9.4"
+    dfe: [I3]
+    statement: 'Find the exact value of $\displaystyle\int_0^1 (x^3 + 1)\,dx$.'
+    answer_label: 'The exact value'
+    check:
+      kind: apply
+      expression: "x**3 + 1"
+      apply: {op: integrate, args: [x, "0", "1"]}
+      answer: "5/4"
+    answer_text: '$\left[\dfrac{x^4}{4} + x\right]_0^1 = \dfrac{1}{4} + 1 = \dfrac{5}{4} = 1.25$.'
+
+  - id: r7-trapezium-overestimate
+    section: "9.4"
+    dfe: [I3]
+    statement: 'State whether the four-strip estimate $1.265625$ for $\displaystyle\int_0^1 (x^3 + 1)\,dx$ is too large or too small.'
+    answer_label: 'The comparison'
+    check:
+      kind: compare
+      relation: ">"
+      lhs: "81/64"
+      rhs: "5/4"
+    answer_text: 'The estimate is larger than $1.25$, so it is an overestimate. The second derivative is $6x$, which is positive on $[0, 1]$, so the curve bends upwards and each chord lies above it.'
+
+  - id: r8-trapezium-bounds
+    section: "9.4"
+    dfe: [I3]
+    statement: 'Using four strips and rectangles, give a lower limit and an upper limit for $\displaystyle\int_0^1 (x^3 + 1)\,dx$.'
+    answer_label: 'The limits'
+    check:
+      kind: between
+      low: "73/64"
+      high: "89/64"
+      value: "5/4"
+    answer_text: 'The function increases, so the lower sum uses the left-hand heights: $\dfrac{1}{4}\left(1 + \dfrac{65}{64} + \dfrac{9}{8} + \dfrac{91}{64}\right) = \dfrac{73}{64} = 1.140625$. The upper sum uses the right-hand heights: $\dfrac{1}{4}\left(\dfrac{65}{64} + \dfrac{9}{8} + \dfrac{91}{64} + 2\right) = \dfrac{89}{64} = 1.390625$. So $1.140625 < \dfrac{5}{4} < 1.390625$.'
+
+  - id: r9-differentiate-logarithm
+    section: "9.3"
+    dfe: [I2]
+    statement: 'Differentiate $y = x^2 \ln x$. This uses Chapter 7.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "x**2*ln(x)"
+      apply: {op: diff, args: [x]}
+      answer: "2*x*ln(x) + x"
+    answer_text: 'A product, so use the product rule: $2x\ln x + x^2 \times \dfrac{1}{x} = 2x\ln x + x$. A root-finding method on this derivative would need this step.'
+
+  - id: r10-definite-integral
+    section: "9.4"
+    dfe: [I3]
+    statement: 'Evaluate $\displaystyle\int_0^1 \left(3x^2 + 2x\right)dx$. This uses Chapter 8.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: "3*x**2 + 2*x"
+      apply: {op: integrate, args: [x, "0", "1"]}
+      answer: "2"
+    answer_text: '$\Bigl[x^3 + x^2\Bigr]_0^1 = (1 + 1) - 0 = 2$. The trapezium rule would estimate this value; on this interval it would overestimate, because the curve bends upwards.'
+
+  - id: r11-solve-exponential
+    section: "9.5"
+    dfe: [I4]
+    statement: 'Solve $2^x = 10$, giving an exact answer for $x$. This uses Chapter 6.'
+    answer_label: 'The value of x'
+    check:
+      kind: solve
+      equation: "2**x = 10"
+      variable: x
+      answer: ["1 + log(5)/log(2)"]
+    answer_text: 'Take logarithms of both sides: $x\ln 2 = \ln 10$, so $x = \dfrac{\ln 10}{\ln 2} = 3.32$ to three significant figures.'
+
+  - id: r12-speed-context
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'A van''s speed is recorded every two seconds: $0, 6, 10, 12, 12$ metres per second at $t = 0, 2, 4, 6, 8$ seconds. Estimate the distance travelled.'
+    answer_label: 'The distance'
+    check:
+      kind: evaluate
+      expression: "2/2*(0 + 12 + 2*(6 + 10 + 12))"
+      answer: "68"
+    answer_text: 'The distance is the area under the speed–time graph. With $h = 2$, $s \approx \dfrac{2}{2}\bigl[0 + 12 + 2(6 + 10 + 12)\bigr] = 68$ metres.'
+
+  - id: r13-bracket-logarithm
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'Show that $x + \ln x = 3$ has a root between $2$ and $3$.'
+    answer_label: 'The two values'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "<", lhs: "2 + ln(2) - 3", rhs: "0"}
+        - {kind: compare, relation: ">", lhs: "3 + ln(3) - 3", rhs: "0"}
+    answer_text: 'Write $f(x) = x + \ln x - 3$. Then $f(2) = -0.3069 < 0$ and $f(3) = 1.0986 > 0$. The sign changes, so a root lies in $(2, 3)$.'
+
+  - id: r14-root-logarithm
+    section: "9.5"
+    dfe: [I4, OT2]
+    statement: 'For $f(x) = x + \ln x - 3$, state the root to three decimal places.'
+    answer_label: 'The root'
+    check:
+      kind: approx
+      value: "2.2079400316"
+      target: "2.208"
+      tolerance: "0.0005"
+    answer_text: 'Newton–Raphson from $x_0 = 2$ gives $2.2046$, then $2.2079$, so the root is $2.208$ to three decimal places. The bracket $(2, 3)$ confirms which root this is.'

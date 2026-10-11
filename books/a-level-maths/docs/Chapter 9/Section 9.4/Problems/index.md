@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.4 The trapezium rule and limits on the estimate — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: I3
+Work through these on your own. Write down the strip width and every height
+before you substitute into the rule.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-09-practice-9.4
+
+:::answers chapter-09-practice-9.4

@@ -1,0 +1,178 @@
+# Practice set for 9.4, the trapezium rule and its limits.
+#
+# A trapezium estimate is a finite sum of heights, so it is checked with
+# `evaluate` on the exact sum. A true area is checked with `apply integrate`
+# where a formula exists. A limit statement is checked with `between`, which
+# proves the exact area lies strictly inside the two rectangle sums. A direction
+# of error is checked with `compare`, so "too large" is proved, not asserted.
+#
+# Every sum is written with exact fractions, never a decimal: a decimal makes
+# SymPy evaluate in floating point before the rationalisation, and the sum then
+# fails an exact comparison.
+chapter: 9
+symbols:
+  x: {real: true}
+problems:
+  - id: t1-square-four-strips
+    section: "9.4"
+    dfe: [I3]
+    statement: 'Use the trapezium rule with four strips to estimate $\displaystyle\int_0^2 x^2\,dx$.'
+    answer_label: 'The estimate'
+    check:
+      kind: evaluate
+      expression: "(1/2)/2*(0 + 4 + 2*(1/4 + 1 + 9/4))"
+      answer: "11/4"
+    answer_text: 'Here $h = 0.5$ and the heights are $0, 0.25, 1, 2.25, 4$, so the estimate is $\dfrac{0.5}{2}\bigl[0 + 4 + 2(0.25 + 1 + 2.25)\bigr] = 2.75$.'
+
+  - id: t2-square-exact
+    section: "9.4"
+    dfe: [I3]
+    statement: 'Find the exact value of $\displaystyle\int_0^2 x^2\,dx$.'
+    answer_label: 'The exact value'
+    check:
+      kind: apply
+      expression: "x**2"
+      apply: {op: integrate, args: [x, "0", "2"]}
+      answer: "8/3"
+    answer_text: '$\left[\dfrac{x^3}{3}\right]_0^2 = \dfrac{8}{3} = 2.6667$ to four decimal places.'
+
+  - id: t3-square-overestimate
+    section: "9.4"
+    dfe: [I3]
+    statement: 'State whether the trapezium estimate $2.75$ for $\displaystyle\int_0^2 x^2\,dx$ is an overestimate or an underestimate, and give a reason.'
+    answer_label: 'The comparison'
+    check:
+      kind: compare
+      relation: ">"
+      lhs: "11/4"
+      rhs: "8/3"
+    answer_text: '$2.75 > 2.6667$, so the estimate is too large: an overestimate. The second derivative is $2 > 0$, so the curve bends upwards and every chord lies above the curve.'
+
+  - id: t4-square-eight-strips
+    section: "9.4"
+    dfe: [I3]
+    statement: 'Use the trapezium rule with eight strips to estimate $\displaystyle\int_0^2 x^2\,dx$.'
+    answer_label: 'The estimate'
+    check:
+      kind: evaluate
+      expression: "(1/4)/2*(0 + 4 + 2*(1/16 + 1/4 + 9/16 + 1 + 25/16 + 9/4 + 49/16))"
+      answer: "43/16"
+    answer_text: 'Here $h = 0.25$, and the interior heights add to $8.75$. The estimate is $\dfrac{0.25}{2}\bigl[4 + 17.5\bigr] = 2.6875$. It is closer to $\dfrac{8}{3}$ than the four-strip estimate.'
+
+  - id: t5-square-limits
+    section: "9.4"
+    dfe: [I3]
+    statement: 'Using four strips and rectangles, give a lower limit and an upper limit for $\displaystyle\int_0^2 x^2\,dx$.'
+    answer_label: 'The limits'
+    check:
+      kind: between
+      low: "7/4"
+      high: "15/4"
+      value: "8/3"
+    answer_text: 'The left-hand heights give the lower sum $\dfrac{1}{2}(0 + 0.25 + 1 + 2.25) = 1.75$. The right-hand heights give the upper sum $\dfrac{1}{2}(0.25 + 1 + 2.25 + 4) = 3.75$. So $1.75 < \dfrac{8}{3} < 3.75$.'
+
+  - id: t6-reciprocal-four-strips
+    section: "9.4"
+    dfe: [I3]
+    statement: 'Use the trapezium rule with four strips to estimate $\displaystyle\int_0^1 \frac{1}{1 + x}\,dx$.'
+    answer_label: 'The estimate'
+    check:
+      kind: evaluate
+      expression: "(1/4)/2*(1 + 1/2 + 2*(4/5 + 2/3 + 4/7))"
+      answer: "1171/1680"
+    answer_text: 'Here $h = 0.25$ and the heights are $1, 0.8, 0.6667, 0.5714, 0.5$. The estimate is $\dfrac{0.25}{2}\bigl[1.5 + 2(2.0381)\bigr] = 0.6970$ to four decimal places.'
+
+  - id: t7-reciprocal-exact
+    section: "9.4"
+    dfe: [I3]
+    statement: 'Find the exact value of $\displaystyle\int_0^1 \frac{1}{1 + x}\,dx$.'
+    answer_label: 'The exact value'
+    check:
+      kind: apply
+      expression: "1/(1 + x)"
+      apply: {op: integrate, args: [x, "0", "1"]}
+      answer: "ln(2)"
+    answer_text: '$\Bigl[\ln(1 + x)\Bigr]_0^1 = \ln 2 - \ln 1 = \ln 2 = 0.6931$ to four decimal places.'
+
+  - id: t8-reciprocal-overestimate
+    section: "9.4"
+    dfe: [I3]
+    statement: 'State whether the four-strip estimate $0.6970$ for $\displaystyle\int_0^1 \frac{1}{1 + x}\,dx$ is too large or too small, and give a reason.'
+    answer_label: 'The comparison'
+    check:
+      kind: compare
+      relation: ">"
+      lhs: "1171/1680"
+      rhs: "ln(2)"
+    answer_text: 'The estimate is larger than $\ln 2 = 0.6931$, so it is an overestimate. Also $\dfrac{d^2y}{dx^2} = \dfrac{2}{(1 + x)^3} > 0$ on $[0, 1]$, so the curve bends upwards and each chord lies above the curve.'
+
+  - id: t9-reciprocal-limits
+    section: "9.4"
+    dfe: [I3]
+    statement: 'Using four strips and rectangles, give a lower limit and an upper limit for $\displaystyle\int_0^1 \frac{1}{1 + x}\,dx$.'
+    answer_label: 'The limits'
+    check:
+      kind: between
+      low: "533/840"
+      high: "319/420"
+      value: "ln(2)"
+    answer_text: 'The function decreases, so the lower sum uses the right-hand heights: $\dfrac{1}{4}\left(\dfrac{4}{5} + \dfrac{2}{3} + \dfrac{4}{7} + \dfrac{1}{2}\right) = 0.6345$. The upper sum uses the left-hand heights: $\dfrac{1}{4}\left(1 + \dfrac{4}{5} + \dfrac{2}{3} + \dfrac{4}{7}\right) = 0.7595$. So $0.6345 < \ln 2 < 0.7595$.'
+
+  - id: t10-speed-table
+    section: "9.4"
+    dfe: [I3]
+    statement: 'A car''s speed is recorded every second: $0, 3, 5, 6, 6$ metres per second at $t = 0, 1, 2, 3, 4$ seconds. Estimate the distance travelled.'
+    answer_label: 'The distance'
+    check:
+      kind: evaluate
+      expression: "1/2*(0 + 6 + 2*(3 + 5 + 6))"
+      answer: "17"
+    answer_text: 'The distance is the area under the speed–time graph. With $h = 1$, $s \approx \dfrac{1}{2}\bigl[0 + 6 + 2(3 + 5 + 6)\bigr] = 17$ metres.'
+
+  - id: t11-speed-limits
+    section: "9.4"
+    dfe: [I3]
+    statement: 'For the speed table in the previous question, give a lower limit and an upper limit for the distance travelled.'
+    answer_label: 'The limits'
+    check:
+      kind: between
+      low: "14"
+      high: "20"
+      value: "17"
+    answer_text: 'The speed increases, so the lower sum uses the left-hand heights: $1(0 + 3 + 5 + 6) = 14$ metres. The upper sum uses the right-hand heights: $1(3 + 5 + 6 + 6) = 20$ metres. So the distance lies between $14$ and $20$ metres, and the estimate $17$ is the midpoint.'
+
+  - id: t12-second-derivative
+    section: "9.4"
+    dfe: [I3]
+    statement: 'For $f(x) = x^2$, find $f''''(x)$ and use its sign to explain why the trapezium rule overestimates $\displaystyle\int_0^2 x^2\,dx$.'
+    answer_label: 'The second derivative'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "x**2", apply: {op: diff, args: [x]}, answer: "2*x"}
+        - {kind: apply, expression: "2*x", apply: {op: diff, args: [x]}, answer: "2"}
+        - {kind: compare, relation: ">", lhs: "2", rhs: "0"}
+    answer_text: '$f''(x) = 2x$, so $f''''(x) = 2 > 0$ on the whole interval. A curve with $f''''(x) > 0$ bends upwards, so each chord lies above the curve and the trapezium estimate is too large.'
+
+  - id: t13-pond-area
+    section: "9.4"
+    dfe: [I3]
+    statement: 'A pond is sounded at $2$ metre intervals across a straight line: the depths are $0, 1.4, 1.9, 1.2, 0$ metres. Estimate the cross-sectional area.'
+    answer_label: 'The area'
+    check:
+      kind: evaluate
+      expression: "2/2*(0 + 0 + 2*(7/5 + 19/10 + 6/5))"
+      answer: "9"
+    answer_text: 'The readings are equally spaced with $h = 2$, so $A \approx \dfrac{2}{2}\bigl[0 + 0 + 2(1.4 + 1.9 + 1.2)\bigr] = 9$ square metres.'
+
+  - id: t14-pond-limits
+    section: "9.4"
+    dfe: [I3]
+    statement: 'For the pond in the previous question, give a lower limit and an upper limit for the area.'
+    answer_label: 'The limits'
+    check:
+      kind: between
+      low: "26/5"
+      high: "64/5"
+      value: "9"
+    answer_text: 'The smaller reading on each strip gives the lower sum $2(0 + 1.4 + 1.2 + 0) = 5.2$ square metres. The larger reading on each strip gives the upper sum $2(1.4 + 1.9 + 1.9 + 1.2) = 12.8$ square metres. So the area lies between $5.2$ and $12.8$ square metres.'
