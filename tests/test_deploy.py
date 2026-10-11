@@ -182,6 +182,28 @@ def test_the_zone_file_leaves_the_apex_address_records_alone():
     assert not apex_address, f"the apex must not be imported: {apex_address}"
 
 
+def test_the_caa_file_carries_only_caa_records():
+    """The CAA change ships on its own, so an import cannot duplicate the rest.
+
+    `open-textbook.org.zone` also carries `www`, SPF and DMARC, which are already
+    serving. Re-importing those is at best a no-op and at worst a duplicate, so
+    the CAA records travel in a file of their own.
+    """
+    caa = ROOT / "deploy" / "dns" / "open-textbook.org.caa.zone"
+    assert caa.is_file(), "the CAA records need their own importable file"
+    records = [
+        line
+        for line in caa.read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.lstrip().startswith(";")
+    ]
+    assert records, "the CAA file has no active records"
+    assert all("IN" in line and " CAA " in line for line in records), records
+    # A semicolon outside quotes starts a BIND comment, so the pki.goog parameter
+    # has to stay inside them or it is silently dropped.
+    assert any('"pki.goog; cansignhttpexchanges=yes"' in line for line in records)
+    assert any("issuewild" in line for line in records)
+
+
 # --- response headers ---------------------------------------------------------
 
 
