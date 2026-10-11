@@ -40,7 +40,9 @@ light:
   # the card surface the landing page draws (`color-mix(ink 4%, paper)`), below
   # the 4.5:1 its body text needs. Caught by the soft-ink check.
   ink_soft: "#6a655b"
-  ink_lighter: "#8a8980"
+  # Darkened from #8a8980, which is 2.93:1 on the paper — just under the 3:1
+  # the sidebar's disclosure marker, a non-text control, needs.
+  ink_lighter: "#807f76"
   rule: "#d5cea3"
   accent: "#4d699b"
   accent_light: "#6693bf"

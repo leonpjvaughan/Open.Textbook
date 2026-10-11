@@ -35,11 +35,14 @@ typography:
 light:
   paper: "#eff1f5"
   ink: "#4c4f69"
-  ink_soft: "#66697e"
   # Darkened from catppuccin-latte's #6c6f85, which is 4.13:1 on the card
   # surface the landing page draws (`color-mix(ink 4%, paper)`), below the 4.5:1
   # its body text needs. Caught by the soft-ink check in `contrast_problems`.
-  ink_lighter: "#9ca0b0"
+  ink_soft: "#66697e"
+  # Latte's own `overlay2` #7c7f93 (3.50:1), taken over the palette's
+  # `overlay0` #9ca0b0 (2.30:1): this token paints the sidebar's disclosure
+  # marker, a non-text control that needs 3:1.
+  ink_lighter: "#7c7f93"
   rule: "#ccd0da"
   # Darkened from catppuccin-latte's #1e66f5, which is 4.34:1 on its own paper —
   # below the 4.5:1 the collection holds an accent to. It only shows where no
