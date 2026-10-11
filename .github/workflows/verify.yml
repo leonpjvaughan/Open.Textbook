@@ -74,8 +74,10 @@ jobs:
     timeout-minutes: 20
     strategy:
       fail-fast: false
-      matrix:
-        include: ${{ fromJSON(needs.plan.outputs.include) }}
+      # `plan` emits the whole {"include": [...]} object, so it is passed to
+      # `matrix` directly. Wrapping it in an `include:` key instead makes the job
+      # fail to configure, and GitHub then reports a failed run with no job.
+      matrix: ${{ fromJSON(needs.plan.outputs.include) }}
     steps:
       - uses: actions/checkout@v7
 
