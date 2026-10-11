@@ -6,7 +6,8 @@ in `AGENTS.md` do not apply here, but the engineering rules do.
 
 - [ ] 1. Theme menu — reader settings in the header
 - [x] 2. Custom domain — `open-textbook.org` does not resolve
-- [ ] 3. `www` serves the site instead of redirecting to the apex
+- [ ] 3. `www` no longer resolves at all (NXDOMAIN) — fix the redirect
+- [ ] 4. Zone security settings and response headers
 
 ---
 
@@ -165,25 +166,227 @@ reason step 4 is manual. Decide before changing `DEPLOY.md`.
 
 ---
 
-## 3. `www` serves the site instead of redirecting to the apex
+## 3. `www` no longer resolves at all (NXDOMAIN) — fix the redirect
 
-**Symptom.** `https://www.open-textbook.org/` returns `200` and serves the book
-itself. `DEPLOY.md` says `www` should redirect to the apex, and the dashboard's
-"Add custom domain" does not redirect — it attaches a second serving hostname.
-So the same content is live at two origins, which is a duplicate-content problem
-and splits any future analytics.
+**Symptom (checked 2026-10-11, after the `www` custom domain was replaced by a
+`*.open-textbook.org/*` route).** `www.open-textbook.org` is **NXDOMAIN** from
+the authoritative nameservers and from 1.1.1.1 and 8.8.8.8. Anyone typing `www`
+gets a browser DNS error. This is worse than before, when `www` at least served
+the content.
 
-**Fix (dashboard, no code).** Zone `open-textbook.org` → **Rules → Redirect
-Rules**: when the hostname is `www.open-textbook.org`, redirect to
-`https://open-textbook.org$1` with a `301` and "preserve query string". Keep the
-`www` custom domain in place; the redirect rule runs in front of it. (A Bulk
-Redirect in a list, or a tiny Worker, are the alternatives; a redirect rule is
-the smallest.)
+**Why.** A Worker **route** only fires for a hostname that already has a
+**proxied DNS record**. The `www` custom domain was removed, which removed its
+DNS record, and the `*.open-textbook.org/*` route was then removed too. So `www`
+has no DNS record, resolves nowhere, and no rule or route can fire for it.
+(Tests: `test123.open-textbook.org` and `anything.open-textbook.org` are NXDOMAIN
+too, so there is no wildcard DNS record either.)
+
+**The redirect is not DNS and not a Worker setting.** A DNS record cannot return
+an HTTP `301`; the mechanism is a **zone Redirect Rule**. But the rule needs a
+DNS prerequisite: Cloudflare only sees a request for a hostname that resolves to
+its edge. So there are two steps, neither of them a Worker setting.
+
+**Fix (dashboard, no code).**
+
+1. **DNS → Records:** add a **proxied** record for `www` — `AAAA` to `100::` (the
+   conventional dummy), proxy on. The address is never contacted; the rule
+   answers first.
+2. **Rules → Redirect Rules:** when the hostname is `www.open-textbook.org`,
+   redirect to `https://open-textbook.org$1`, `301`, preserve the query string.
+3. Leave `www` out of the Worker entirely: no custom domain, no route. (The apex
+   custom domain is correct and stays.)
+
+The inert `*.open-textbook.org/*` route has already been removed. A CNAME to the
+apex is **not** a substitute: it resolves and *serves* the book (`200`), which is
+duplicate content, not a redirect. Bulk Redirects, a Page Rule (legacy), or a
+small Worker script all do the same job; a Redirect Rule is the smallest.
+
+If `www` should not exist at all, say so and close this item — NXDOMAIN is a
+valid choice, just less friendly. Record the decision in `DEPLOY.md` either way.
 
 **Done means.**
 
+- [ ] `www.open-textbook.org` resolves (rcode 0) from 1.1.1.1 and 8.8.8.8.
 - [ ] `curl -sI https://www.open-textbook.org/` returns `301` with
       `location: https://open-textbook.org/`.
-- [ ] `curl -sI https://www.open-textbook.org/gcse-maths/higher/` keeps the path
-      (`https://open-textbook.org/gcse-maths/higher/`).
-- [ ] `DEPLOY.md` records that `www` redirects, and how.
+- [ ] `curl -sI https://www.open-textbook.org/gcse-maths/higher/` keeps the path.
+- [ ] `DEPLOY.md` records whether `www` redirects or is deliberately absent.
+
+---
+
+## 4. Zone security settings and response headers
+
+**State (read from the API, 2026-10-11).** The zone is on `ssl: full`,
+`min_tls_version: 1.0`, `always_use_https: off`, `automatic_https_rewrites: on`,
+`tls_1_3: on`, `security_level: medium`, `browser_check: on`, HSTS **disabled**,
+`waf: off`. The site sends **no security headers at all** (no HSTS, no CSP, no
+`nosniff`, no `Referrer-Policy`).
+
+**Verified findings.** `http://open-textbook.org/` returns `200` and serves the
+whole book over plaintext — HTTP is not redirected to HTTPS. Minimum TLS is
+1.0/1.1-eligible. There is a second public origin at
+`open-textbook.leonpjvaughan.workers.dev` (and `*-…workers.dev` previews).
+
+### Zone settings (dashboard, one click each; SSL/TLS and DNS)
+
+- [ ] **Always Use HTTPS → ON.** The highest-value fix: stop serving the book
+      over plaintext.
+- [ ] **Minimum TLS version → 1.2** (1.0 and 1.1 are deprecated).
+- [ ] **HSTS → ON**: start at `max-age=15552000` (6 months), `includeSubDomains`
+      on, `preload` off, `nosniff` on. Raise the max-age and consider preload once
+      HTTPS is confirmed on every hostname.
+- [ ] **SSL/TLS mode → Full (strict).** Moot for a Workers-only site (there is no
+      origin), but correct if an origin is ever added.
+- [ ] **DNSSEC → ON** (DNS → Settings). The deploy token cannot read this, so
+      check the dashboard. It prevents DNS spoofing.
+- [ ] **CAA → restrict issuance** to the CAs Cloudflare actually uses for
+      Universal SSL. Check which before writing the record and re-check at the
+      next renewal: a CAA that omits the real issuer breaks renewal, which is
+      worse than a permissive one.
+- [ ] **Email records, since the domain sends none.** `TXT` `v=spf1 -all` and
+      `_dmarc` `TXT` `v=DMARC1; p=reject; rua=mailto:…`. A textbook has no reason
+      to send mail, so this closes domain spoofing cheaply.
+- [ ] **Disable the `workers.dev` route** for the Worker, or put Access in front
+      of the preview URLs, so there is one canonical origin.
+
+Keep `security_level: medium`, `browser_check: on`, `tls_1_3: on`,
+`automatic_https_rewrites: on`. Leave `rocket_loader` off — it injects JavaScript.
+**Check Development Mode is off too**: it disables the edge cache and is easy to
+leave on.
+Skip Bot Fight Mode and Turnstile: there are no forms and no user input, and they
+would challenge real students. WAF managed rules are optional here.
+
+### Response headers
+
+Add one `_headers` file at the asset root. `DEPLOY.md` already anticipates it,
+with two caveats that hold: **one splat per rule** (so `/*/assets/main.*.css` is
+invalid), and a header set by two matching rules is **joined with a comma** (which
+would make an invalid `Cache-Control`).
+
+```
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+```
+
+Notes:
+
+- Set **HSTS in the Cloudflare toggle, not here** — setting it in both sends two
+  `Strict-Transport-Security` headers.
+- `script-src` and `style-src` need `'unsafe-inline'`: the `prefs` hook, the
+  landing page and Material all use inline scripts and styles. There is no server
+  and no user input, so the XSS surface is small; a nonce/hash CSP is a later
+  hardening step, not a blocker.
+- `frame-ancestors 'none'` (with `X-Frame-Options: DENY` for old browsers) is the
+  clickjacking fix.
+- `_headers` must be **emitted by the build**, like every other generated file,
+  so it is drift-checked — not hand-written into `site/`. `site/` is generated.
+  A zone Transform Rule (Modify Response Header) is the no-code alternative, but
+  then the header set lives in the dashboard, not the repository.
+
+**Done means.**
+
+- [ ] `http://open-textbook.org/` returns `301` to the HTTPS URL.
+- [ ] `curl -sI https://open-textbook.org/ | grep -i strict-transport-security`
+      returns a header.
+- [ ] The CSP is present on every HTML response and the site still works with it
+      (maths, search, figures, booklet) — check the browser console.
+- [ ] `scripts/check.sh` covers the header set, so a regression fails CI.
+
+---
+
+## 5. Worker version URLs are public, and rollback is untested
+
+**Why item 4's checkbox is worth doing rather than a preference.** Cloudflare's
+own documentation, on Version URLs (formerly preview URLs): *"If Version URLs are
+enabled, the URL is public and available after version creation."* Every version
+uploaded before promotion is therefore a publicly reachable copy of the site —
+unlisted, not private. Item 4 closes the `workers.dev` origin and puts Access in
+front of previews; `"workers_dev": false` and `"preview_urls": false` in
+`wrangler.jsonc` are the code-side equivalents if the dashboard route is
+preferred the other way.
+
+**Rollback is a plan, not a capability.** `wrangler rollback` exists and versions
+are retained, but nobody has run it. Exercise it once — a drill counts — and put
+the exact command in `DEPLOY.md`. The recovery path is the worst thing to discover
+during an incident.
+
+**Done means.**
+
+- [ ] `curl -sI https://open-textbook.leonpjvaughan.workers.dev/` no longer
+      returns `200`.
+- [ ] Version URLs are either disabled or restricted, and `DEPLOY.md` says which.
+- [ ] One rollback has been performed and the command is recorded.
+
+---
+
+## 6. Crawlability: our own `robots.txt` and a sitemap index
+
+**What is wrong.**
+
+- `/robots.txt` returns `200`, but it is **not ours**: it is Cloudflare's injected
+  content-signals preamble. It contains no `Sitemap:` line, and it is a policy
+  about AI crawlers and content signals that we have never actually chosen.
+- `/sitemap.xml` returns `404`. The per-book sitemaps exist and are fine —
+  `/gcse-maths/higher/sitemap.xml` and `/gcse-maths/foundation/sitemap.xml` both
+  return `200` — but **nothing links to them**, so a crawler will not find them.
+
+**Fix.** Emit a root `robots.txt` and a `sitemap.xml` index from
+`textbook.portal`, which already owns the deployment root: the index lists the
+per-book sitemaps and the robots file points at the index. Then read Cloudflare's
+content-signals defaults and either keep them deliberately or replace them,
+rather than inheriting a policy by omission.
+
+**Done means.**
+
+- [ ] `/robots.txt` is ours, and includes a `Sitemap:` line.
+- [ ] `/sitemap.xml` resolves and lists both book sitemaps.
+- [ ] The content-signal policy is a decision we recorded, not a default inherited
+      by omission.
+
+---
+
+## 7. Account, credential and dependency hygiene
+
+Adjacent to the Worker rather than part of it, but these are the things that make
+the rest recoverable, so they belong in the same gate.
+
+- [ ] **Two-factor authentication on the Cloudflare account and on GitHub.** Both
+      own the deployment path; this is the highest-value item in the file.
+- [ ] **The domain cannot lapse or move**: registrar auto-renew confirmed, and the
+      transfer lock on. The address is the product.
+- [ ] **The deploy token**: set an expiry and a rotation date. It is account-scoped
+      with `Workers Scripts: Edit`, and `wrangler whoami` does **not** list
+      permissions for an account token (it prints "To see token permissions visit
+      …"), so record in `DEPLOY.md` what it may do and when to rotate it.
+- [ ] **Secret scanning and push protection on GitHub.** Not available on a
+      private repository on the Free plan — the same plan decision as branch
+      protection (`scripts/protect-main.sh`). Given how nearly `.env` was
+      committed, this one has a proven failure mode behind it.
+- [ ] **Dependency updates**: Dependabot for `npm` and `uv`, so the pinned
+      toolchain does not silently age out of support.
+- [ ] **Recovery**: confirm the repository is not the only copy of anything that
+      cannot be regenerated. `site/` is regenerable and drift-checked, so the
+      answer should be yes — verify rather than assume.
+
+---
+
+## 8. Declare the ready state
+
+**Not a change: the gate.** The site is in a ready state when items 2–7 are closed
+and their "done means" boxes are ticked, and not before — a checklist that is
+mostly ticked is a checklist that has not been done.
+
+**Done means.**
+
+- [ ] Every box in items 2–7 is ticked.
+- [ ] `curl -sI https://open-textbook.org/` returns `301`/`200` as appropriate
+      with `strict-transport-security` present, and the `www` and `workers.dev`
+      origins both redirect or refuse.
+- [ ] A release exists for the commit that is live, and `main` is what is
+      deployed.
+- [ ] Item 1 (the reader settings menu) is done or explicitly deferred. It is a
+      feature, not a gate — the site can be ready without it.
+
