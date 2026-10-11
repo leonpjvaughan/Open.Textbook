@@ -19,6 +19,7 @@ shared; the curriculum, the content and the verification data are per book.**
 | Engine (hooks, scaffold, lint, booklet build, verifier, portal) | `engine/textbook/` | shared |
 | Design system and runtime widgets (CSS, figure loader, booklet widget) | `assets/` | shared |
 | Evidence base and primary sources | `research/` | shared, with per-book folders |
+| Design exploration (not published) | `research/design/` | shared |
 | Curriculum, chapter plan, tier refs | `books/<id>/books/gcse-maths/curriculum.yaml` | per book |
 | Content pages | `books/<id>/docs/` | per book |
 | Problem banks | `books/<id>/books/gcse-maths/problems/` | per book |
