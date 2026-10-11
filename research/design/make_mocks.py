@@ -583,6 +583,58 @@ html[data-md-color-scheme] body {{ visibility: visible; }}
 """
 
 
+def contact_sheet() -> str:
+    """All directions on one page, so the whole set can be reviewed at once."""
+    cells = "".join(
+        f'<figure><figcaption>{spec["title"]} — {spec["blurb"]}</figcaption>'
+        f'<iframe src="{slug}.html" title="{spec["title"]}"></iframe></figure>'
+        for slug, spec in DIRECTIONS.items()
+    )
+    cells += (
+        '<figure><figcaption>F · Tint board — the same components in three '
+        'subject hues</figcaption><iframe src="tint-board.html" '
+        'title="Tint board"></iframe></figure>'
+    )
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Theme directions</title>
+<style>
+  body {{
+    margin: 0;
+    background: #dddad2;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: #23211d;
+  }}
+  .sheet {{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    padding: 18px;
+  }}
+  figure {{ margin: 0; }}
+  figcaption {{
+    font-size: 12px;
+    line-height: 1.45;
+    padding: 0 2px 7px;
+  }}
+  iframe {{
+    display: block;
+    width: 100%;
+    height: 1180px;
+    border: 1px solid #b8b4aa;
+    background: #fff;
+  }}
+</style>
+</head>
+<body>
+<div class="sheet">{cells}</div>
+</body>
+</html>
+"""
+
+
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(EXTRA_CSS, OUT / "extra.css")
@@ -595,7 +647,9 @@ def main() -> int:
         print(f"wrote {slug}.html")
 
     (OUT / "tint-board.html").write_text(tint_board(), encoding="utf-8")
+    (OUT / "board.html").write_text(contact_sheet(), encoding="utf-8")
     print("wrote tint-board.html")
+    print("wrote board.html")
     print(f"\n{' | '.join(DIRECTIONS)}")
     return 0
 

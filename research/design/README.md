@@ -32,11 +32,18 @@ Higher-only chip, and a collapsed answer block.
 ```bash
 python research/design/make_mocks.py                 # writes var/mockups/
 node scripts/screenshot.cjs var/mockups ~/out --schemes light,dark -- \
-  "A-house:/a-house" "B-subject-tint:/b-tint" "C-subject-temperature:/c-temperature" \
-  "D-subject-native:/d-native" "E-editorial-print:/e-print" "F-tint-board:/tint-board"
+  "01-house:/a-house.html" "02-subject-tint:/b-tint.html" \
+  "03-subject-temperature:/c-temperature.html" "04-subject-native:/d-native.html" \
+  "05-editorial-print:/e-print.html" "06-tint-board:/tint-board.html" \
+  "07-all-directions:/board.html"
 ```
 
 Images land in `~/out`, in light and dark. `var/` is git-ignored scratch.
+
+Note the `.html` on every route. `screenshot.cjs` only appends `index.html` for a
+trailing slash, so a route without the extension 404s — and since every capture
+then returns the same 404 page, the run reports success while writing twelve
+identical images. Check the files differ before reviewing them.
 
 ## Reading the trade-offs
 

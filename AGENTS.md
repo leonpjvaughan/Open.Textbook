@@ -319,6 +319,11 @@ calling a chapter done.
 - `screenshot.cjs` serves the built site through Playwright request interception
   because this sandbox blocks listening sockets; set `PLAYWRIGHT_PATH` if
   `require("playwright")` does not resolve.
+- `screenshot.cjs` maps a route to a file under the directory you give it, and
+  only appends `index.html` for a trailing slash. A route without the file
+  extension therefore 404s — and because every capture then returns the *same*
+  404 page, the run looks successful while producing identical images. Check the
+  captures differ (byte size or hash) before reviewing them.
 
 ## Conventions
 
