@@ -97,7 +97,15 @@ INTERNAL_PHRASES = {
     r"\btier [FH]\b": "Foundation / Higher",
     r"\bscaffold\b": "(delete)",
     r"\bfront matter\b": "(delete)",
-    r"\bthe (?:problem )?bank\b": "(delete)",
+    # "The bank" is also ordinary English — a financial institution, the bank of
+    # a river — so a chapter may legitimately write "the bank adds interest". The
+    # internal sense is our bank *of problems*: the word "problem" is what tells
+    # them apart. A bare "the bank" means the English word and is left alone; a
+    # lookahead on money or river words would miss the next phrasing ("the bank
+    # charges") and misread the next chapter ("the bank asks questions"), which
+    # is worse than the one internal phrasing it would keep.
+    r"\bthe problem bank\b": "(delete)",
+    r"\bthe bank of problems\b": "(delete)",
 }
 
 STYLE_WORDS = {

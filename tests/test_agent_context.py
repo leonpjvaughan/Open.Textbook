@@ -187,3 +187,26 @@ def test_the_nested_agents_files_exist_for_the_engine_and_the_books():
     }
     found = set(nested_agents_files())
     assert expected <= found, f"missing area AGENTS.md files: {expected - found}"
+
+
+def test_every_book_names_its_parent_agents_file():
+    """A book's file must point one directory up, or it shadows the parent.
+
+    The nearest file wins, and a nested file is additive. ``books/AGENTS.md``
+    holds what is common to every book — the tier traps, the generated-file
+    rules and the problem-bank schema — so an agent that reads only
+    ``books/<id>/AGENTS.md`` would miss all of them unless the book names it.
+    ``books/gcse-maths/AGENTS.md`` did exactly that gap when the parent was
+    introduced; this is the guard that a second book cannot repeat it.
+    """
+    book_files = sorted((ROOT / "books").glob("*/AGENTS.md"))
+    assert book_files, "no books/<id>/AGENTS.md files to check"
+    missing = [
+        str(path.relative_to(ROOT))
+        for path in book_files
+        if "books/AGENTS.md" not in path.read_text(encoding="utf-8")
+    ]
+    assert not missing, (
+        "book AGENTS.md files that do not name their parent books/AGENTS.md: "
+        f"{missing}. The closest file wins, so add a line pointing to it."
+    )

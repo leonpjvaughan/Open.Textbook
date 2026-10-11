@@ -9,9 +9,10 @@ the structural check that stands where a CAS cannot go.
 **Units never enter the CAS string** (``PROBLEMS.md``). A unit is parsed here
 into an exact dimension vector over the SI base units and an exact factor to SI,
 and the arithmetic is done on exact rationals. The SymPy boundary (``..cas``) is
-used only where an irrational value is unavoidable — a trigonometric resolution
-or an uncertainty computed through a square root — and a stated tolerance is
-then what is proved.
+used only where an irrational value is unavoidable — a trigonometric resolution,
+a square root inside a dimension check, a significant-figure check of a
+$\pi$-based value, or an uncertainty computed through a square root — and a
+stated tolerance is then what is proved.
 
 Honest limit (``research/curriculum/physics-verifier-gaps.md`` §6)
 -----------------------------------------------------------------
@@ -34,6 +35,7 @@ loudly if it does not.
 from __future__ import annotations
 
 import ast
+import math
 import re
 from dataclasses import dataclass
 from fractions import Fraction
@@ -305,11 +307,35 @@ def _parse_dimensions(value: Any) -> Dimension | None:
 # ---------------------------------------------------------------------------
 
 
+def _rational_sqrt(value: Fraction) -> Fraction | sympy.Expr:
+    """The exact root when ``value`` is a perfect square, else a symbolic one.
+
+    A unit-carrying magnitude is usually the exact 3-4-5 kind, but a check may
+    legitimately need ``sqrt(5)``; the symbolic form keeps it exact and a
+    declared tolerance decides the comparison.
+    """
+    if value < 0:
+        raise UnitError("cannot take the square root of a negative magnitude")
+    numerator = math.isqrt(value.numerator)
+    denominator = math.isqrt(value.denominator)
+    if (
+        numerator * numerator == value.numerator
+        and denominator * denominator == value.denominator
+    ):
+        return Fraction(numerator, denominator)
+    return sympy.sqrt(value)
+
+
 @dataclass(frozen=True)
 class Quantity:
-    """A magnitude in SI base units and its dimension vector."""
+    """A magnitude in SI base units and its dimension vector.
 
-    value: Fraction
+    The magnitude is an exact :class:`~fractions.Fraction` wherever the
+    arithmetic stays rational. A ``sqrt`` of an imperfect square is instead an
+    exact SymPy expression, and a check that uses one declares a tolerance.
+    """
+
+    value: Fraction | sympy.Expr
     dimension: Dimension
 
     def __mul__(self, other: "Quantity") -> "Quantity":
@@ -323,6 +349,25 @@ class Quantity:
         if exponent.denominator != 1:
             raise UnitError("only integer powers of a quantity are supported")
         return Quantity(self.value**exponent.numerator, self.dimension**exponent)
+
+    def sqrt(self) -> "Quantity":
+        """The square root, defined only when every exponent is even."""
+        exponents: dict[str, Fraction] = {}
+        for name, power in self.dimension.exponents:
+            if power.denominator != 1 or power.numerator % 2 != 0:
+                raise UnitError(
+                    f"cannot take the square root of {self.dimension}: "
+                    f"{name} has an odd power"
+                )
+            exponents[name] = power / 2
+        if isinstance(self.value, Fraction):
+            value: Fraction | sympy.Expr = _rational_sqrt(self.value)
+        else:
+            value = sympy.sqrt(self.value)
+        return Quantity(value, Dimension(**exponents))
+
+    def abs(self) -> "Quantity":
+        return Quantity(abs(self.value), self.dimension)
 
     def _add(self, other: "Quantity", sign: int) -> "Quantity":
         if self.dimension != other.dimension:
@@ -375,6 +420,8 @@ def _eval_node(node: ast.AST, names: dict[str, Quantity]) -> Quantity:
     if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.USub):
         inner = _eval_node(node.operand, names)
         return Quantity(-inner.value, inner.dimension)
+    if isinstance(node, ast.Call):
+        return _eval_call(node, names)
     if isinstance(node, ast.BinOp):
         left = _eval_node(node.left, names)
         right = _eval_node(node.right, names)
@@ -391,6 +438,24 @@ def _eval_node(node: ast.AST, names: dict[str, Quantity]) -> Quantity:
         if isinstance(node.op, ast.Sub):
             return left - right
     raise UnitError(f"unsupported expression element {ast.dump(node)}")
+
+
+def _eval_call(node: ast.Call, names: dict[str, Quantity]) -> Quantity:
+    """A fixed set of real-valued functions over quantities.
+
+    ``sqrt`` halves every dimension exponent, so it only accepts even powers; a
+    magnitude such as ``sqrt(vx**2 + vy**2)`` is then dimension-checked like any
+    other expression. The set is deliberately closed: an unknown name is an
+    error, never a silent pass.
+    """
+    if not isinstance(node.func, ast.Name) or node.keywords or len(node.args) != 1:
+        raise UnitError(f"unsupported function call {ast.dump(node)}")
+    argument = _eval_node(node.args[0], names)
+    if node.func.id == "sqrt":
+        return argument.sqrt()
+    if node.func.id == "abs":
+        return argument.abs()
+    raise UnitError(f"unknown function {node.func.id!r}")
 
 
 # ---------------------------------------------------------------------------
@@ -449,11 +514,13 @@ def _count_significant(text: Any) -> int:
     return len(mantissa.lstrip("0").rstrip("0"))
 
 
-def _write(value: Fraction) -> str:
+def _write(value: Fraction | sympy.Expr) -> str:
     """A short exact decimal for an error message."""
-    if value.denominator == 1:
-        return str(value.numerator)
-    return str(float(value))
+    if isinstance(value, Fraction):
+        if value.denominator == 1:
+            return str(value.numerator)
+        return str(float(value))
+    return str(value)
 
 
 # ---------------------------------------------------------------------------
@@ -571,6 +638,7 @@ def _check_arithmetic(check, report) -> None:
         names = {name: _as_quantity(spec) for name, spec in values.items()}
         computed = _evaluate(check["expression"], names)
         answer = _as_quantity(check["answer"])
+        tolerance = _exact(check.get("tolerance", 0))
     except (UnitError, KeyError) as err:
         report.errors.append(f"check: {err}")
         return
@@ -580,7 +648,7 @@ def _check_arithmetic(check, report) -> None:
             f"but the answer declares {answer.dimension}"
         )
         return
-    if computed.value != answer.value:
+    if not _within(computed.value, answer.value, tolerance):
         report.errors.append(
             f"check: {check['expression']} is {_write(computed.value)} "
             f"{computed.dimension}, not {_write(answer.value)} {answer.dimension}"
@@ -663,14 +731,28 @@ def check_sigfigs(check, symbols, report, dispatch):
         )
         return
     try:
-        value = _exact(check["value"])
+        value, tolerance = _read_sigfig_value(check, symbols)
         figures = int(check["figures"])
         answer_text = str(check["answer"])
         expected = _exact(answer_text)
     except (UnitError, KeyError, ValueError) as err:
         report.errors.append(f"check: {err}")
         return
-    rounded = _round_significant(value, figures)
+    if tolerance is None:
+        rounded = _round_significant(value, figures)
+    else:
+        # A value built on an irrational constant is only known within its
+        # declared tolerance, so the rounding must hold across the whole band.
+        low = _round_significant(value - tolerance, figures)
+        high = _round_significant(value + tolerance, figures)
+        if low != high:
+            report.errors.append(
+                f"check: {check['value']} is too close to a rounding boundary to "
+                f"round to {figures} significant figures within a tolerance of "
+                f"{_write(tolerance)}; narrow the tolerance or declare more figures"
+            )
+            return
+        rounded = low
     if rounded != expected:
         report.errors.append(
             f"check: {answer_text} is not {check['value']} rounded once to "
@@ -683,6 +765,29 @@ def check_sigfigs(check, symbols, report, dispatch):
             f"check: {answer_text} is written to {written} significant figures, "
             f"not {figures}; use scientific notation to show trailing zeros"
         )
+
+
+def _read_sigfig_value(check, symbols) -> tuple[Fraction, Fraction | None]:
+    """The value to round, and the tolerance for a value that is not rational.
+
+    An exactly rational ``value`` is used as it stands. A value built on an
+    irrational constant, such as ``4 * pi**2 * L / T**2``, cannot be represented
+    exactly, so it is evaluated to high precision and the declared tolerance is
+    the band across which the reported rounding must not change. Without a
+    tolerance a symbolic value is ambiguous, so the check refuses it.
+    """
+    expression = cas.parse_expression(str(check["value"]), symbols)
+    if expression.is_rational:
+        return Fraction(expression.p, expression.q), None
+    if "tolerance" not in check:
+        raise UnitError(
+            f"value {check['value']!r} is not an exact rational; declare a "
+            "'tolerance' for its rounding"
+        )
+    tolerance = _exact(check["tolerance"])
+    if tolerance <= 0:
+        raise UnitError("'tolerance' must be positive for a symbolic value")
+    return Fraction(str(expression.evalf(60))), tolerance
 
 
 def check_uncertainty(check, symbols, report, dispatch):
@@ -778,7 +883,7 @@ def _check_add_percentages(check, symbols, report) -> None:
             percentage = cas.parse_expression(str(term["percentage"]), symbols)
             power = cas.parse_expression(str(term.get("power", 1)), symbols)
             result *= value**power
-            total_percentage += power * percentage
+            total_percentage += abs(power) * percentage
         uncertainty = result * total_percentage / 100
         tolerance = cas.parse_expression(str(check.get("tolerance", 0)), symbols)
         expected_result = cas.parse_expression(str(check.get("result", check.get("answer"))), symbols)

@@ -112,6 +112,14 @@ coherent but physically absurd result. The oracle should use it (or a small
 hand-rolled dimension algebra) for conversions and keep dimensional *decisions*
 in the bank.
 
+**Closed.** `kind: dimensions` evaluates a fixed set of real-valued functions
+over quantities, so a unit-carrying magnitude written
+`sqrt(vx**2 + vy**2)` is checked with its dimension instead of being worked
+around with `resolve` or `vector`. `sqrt` halves every exponent, so the result
+still has an integer dimension vector and an odd power fails loudly. A root of
+an imperfect square stays exact in SymPy and is compared within the declared
+tolerance; every other value stays an exact rational.
+
 ### 3.2 Significant figures and rounding-once
 
 Physics marking is not "is the number equal" but "is the number reported to the
@@ -151,6 +159,12 @@ Points the oracle must get right:
   limits of the least accurate measurement". A bank that checks intermediate
   roundings would enforce the wrong method.
 
+**Closed.** `sigfigs.value` may be a symbolic expression that is not an exact
+rational, such as $g = 4\pi^2 L/T^2$. It is evaluated to high precision, and the
+declared rounding must hold across the declared `tolerance`, so the answer is
+proved rather than pre-rounded by hand. A symbolic value with no tolerance is
+refused, because its rounding would be ambiguous.
+
 ### 3.3 Uncertainty propagation
 
 The oracle must model the two combining rules and the two quoting conventions,
@@ -177,6 +191,12 @@ physics: `propagation` is only verifiable once the rule is named, and the
 booklet/pages should state the rule the book teaches. The check should
 `between`-verify the *band* rather than assert a single uncertainty, so a
 tolerance is explicit.
+
+**Closed.** `add-percentages` takes the magnitude of each term's percentage
+contribution, so a quotient written with a negative power — the natural
+$g = L/T^2$ — adds the same positive percentage as the reciprocal form, and the
+uncertainty is never negative. The check still fails a record that under-counts
+or over-counts the contribution.
 
 ### 3.4 Vector resolution
 

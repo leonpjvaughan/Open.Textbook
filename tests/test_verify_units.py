@@ -124,6 +124,61 @@ def test_wrong_magnitude_with_the_right_dimension_fails():
     assert not report.ok
 
 
+def test_sqrt_magnitude_verifies_and_a_wrong_unit_fails():
+    """`sqrt(vx**2 + vy**2)` is a magnitude that carries a unit, so the oracle
+    must be able to compose it. The resultant is 5.0 m s^-1; a record that keeps
+    the components' speed without the dimension, or with a wrong magnitude, is
+    wrong."""
+    values = {
+        "vx": {"value": "4.0", "unit": "m s^-1"},
+        "vy": {"value": "3.0", "unit": "m s^-1"},
+    }
+    good = _verify(
+        {
+            "kind": "dimensions",
+            "expression": "sqrt(vx**2 + vy**2)",
+            "values": values,
+            "answer": {"value": "5.0", "unit": "m s^-1"},
+        }
+    )
+    wrong_unit = _verify(
+        {
+            "kind": "dimensions",
+            "expression": "sqrt(vx**2 + vy**2)",
+            "values": values,
+            "answer": {"value": "5.0", "unit": "m"},
+        }
+    )
+    wrong_magnitude = _verify(
+        {
+            "kind": "dimensions",
+            "expression": "sqrt(vx**2 + vy**2)",
+            "values": values,
+            "answer": {"value": "4.0", "unit": "m s^-1"},
+        }
+    )
+    assert good.ok
+    assert not wrong_unit.ok
+    assert "dimensions" in wrong_unit.errors[0]
+    assert not wrong_magnitude.ok
+
+
+def test_sqrt_of_an_odd_dimension_power_fails():
+    """A square root halves every exponent, so an odd power has no integer
+    dimension. `sqrt(vx)` with `vx` in metres is not a length the oracle can
+    express, and the check says so rather than guessing."""
+    report = _verify(
+        {
+            "kind": "dimensions",
+            "expression": "sqrt(vx)",
+            "values": {"vx": {"value": "4.0", "unit": "m"}},
+            "answer": {"value": "2.0", "unit": "m"},
+        }
+    )
+    assert not report.ok
+    assert "square root" in report.errors[0]
+
+
 def test_declared_quantity_with_the_wrong_dimension_fails():
     report = _verify(
         {"kind": "dimensions", "unit": "N", "dimensions": ["kg", "m", "s^-1"]}
@@ -192,6 +247,52 @@ def test_a_wrong_number_of_significant_figures_fails():
     )
     assert not report.ok
     assert "0.00387" in report.errors[0]
+
+
+def test_sigfigs_rounds_a_symbolic_value_with_a_tolerance():
+    """$g = 4\\pi^2 L/T^2$ is irrational, so a bank cannot pre-round it by hand
+    and call that the proof. The value may be the expression; the declared
+    tolerance is the band across which the rounding must hold, and a wrong
+    rounding still fails."""
+    good = _verify(
+        {
+            "kind": "sigfigs",
+            "value": "4 * pi**2 * (4/5) / ((359/200)**2)",
+            "figures": 3,
+            "answer": "9.80",
+            "convention": "round-once",
+            "tolerance": "0.0005",
+        }
+    )
+    wrong_rounding = _verify(
+        {
+            "kind": "sigfigs",
+            "value": "4 * pi**2 * (4/5) / ((359/200)**2)",
+            "figures": 3,
+            "answer": "9.81",
+            "convention": "round-once",
+            "tolerance": "0.0005",
+        }
+    )
+    assert good.ok
+    assert not wrong_rounding.ok
+    assert "9.8" in wrong_rounding.errors[0]
+
+
+def test_a_symbolic_value_without_a_tolerance_fails_loudly():
+    """An irrational value with no tolerance is ambiguous, so it is an error,
+    never a silent pass."""
+    report = _verify(
+        {
+            "kind": "sigfigs",
+            "value": "pi",
+            "figures": 3,
+            "answer": "3.14",
+            "convention": "round-once",
+        }
+    )
+    assert not report.ok
+    assert "tolerance" in report.errors[0]
 
 
 def test_trailing_zeros_are_a_convention_not_a_number():
@@ -295,6 +396,42 @@ def test_uncertainty_add_percentages_passes_and_fails():
     )
     assert good.ok
     assert not bad.ok
+
+
+def test_uncertainty_add_percentages_handles_a_negative_power():
+    """$g = L/T^2$ is the natural way to write the quotient: the period enters
+    with power -2, whose percentage contribution is still positive. A record
+    that forgets to double the period's percentage, or that lets the negative
+    power subtract, is wrong."""
+    good = _verify(
+        {
+            "kind": "uncertainty",
+            "combine": "add-percentages",
+            "terms": [
+                {"value": "2.00", "percentage": "0.5"},
+                {"value": "1.00", "percentage": "1.0", "power": -2},
+            ],
+            "result": "2.00",
+            "uncertainty": "0.05",
+            "tolerance": "0.0001",
+        }
+    )
+    wrong_uncertainty = _verify(
+        {
+            "kind": "uncertainty",
+            "combine": "add-percentages",
+            "terms": [
+                {"value": "2.00", "percentage": "0.5"},
+                {"value": "1.00", "percentage": "1.0", "power": -2},
+            ],
+            "result": "2.00",
+            "uncertainty": "0.03",
+            "tolerance": "0.0001",
+        }
+    )
+    assert good.ok
+    assert not wrong_uncertainty.ok
+    assert "uncertainty" in wrong_uncertainty.errors[0]
 
 
 def test_mean_uncertainty_uses_the_named_convention():

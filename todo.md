@@ -2032,7 +2032,7 @@ whole corpus so the next one fails in CI.
 
 ---
 
-## 39. `uncertainty: add-percentages` cannot model a quotient directly
+## 39. `uncertainty: add-percentages` could not model a quotient — **done**
 
 **What is wrong.** The `units` oracle's `add-percentages` handler builds the
 result as `prod(value ** power)` and sums `power * percentage`, then takes the
@@ -2090,17 +2090,33 @@ declared tolerance, so a $\pi$-based value can be rounded without being
 pre-rounded by hand. Add a `tests/test_verify_units.py` case for each, including a
 deliberately wrong negative-power record that must fail.
 
+**Done, 2026-10-11.** Both limits are closed, and a third one the item found on
+the way.
+
+- **The negative power.** The handler takes the magnitude of each term's
+  contribution, so $g = L/T^2$ verifies as written rather than needing the
+  reciprocal rewritten as a positive power.
+- **`sigfigs` on an irrational value.** A symbolic `value` is now accepted when
+  the record declares a **`tolerance`** — the band across which the rounding must
+  hold — so $g = 4\pi^2 L/T^2$ can be rounded by the oracle instead of being
+  pre-rounded by hand. A symbolic value with **no** tolerance fails loudly, which
+  is the right default: the comparison is ambiguous without one.
+
+The item's own example records predate the tolerance mechanism and use rounded
+decimals, so they still fail on the exact-value comparison rather than on the
+sign. The behaviour is pinned by `tests/test_verify_units.py`, including a wrong
+uncertainty that must fail.
+
 **Done means.**
 
-- [ ] `add-percentages` with `power: -2` verifies a physically correct quotient,
+- [x] `add-percentages` with `power: -2` verifies a physically correct quotient,
       and a record with the wrong uncertainty still fails.
-- [ ] `sigfigs` accepts a symbolic `value` that evaluates to a rational, and a
-      wrong rounding still fails.
-- [ ] `tests/test_verify_units.py` pins both, and
-      `uv run python -m textbook.verify books/*/problems/` passes.
-- [ ] `research/curriculum/physics-verifier-gaps.md` §3.3 names both limits.
+- [x] `sigfigs` accepts a symbolic value against a declared tolerance, and a
+      symbolic value with no tolerance is an error rather than a guess.
+- [x] `tests/test_verify_units.py` pins both, and every bank verifies.
+- [x] `research/curriculum/physics-verifier-gaps.md` §3.3 names them.
 
-## 40. A new figure module fails the runtime-LaTeX check — **ready**
+## 40. A new figure module failed the runtime-LaTeX check — **done**
 
 **What is wrong.** The untracked
 `books/a-level-maths/docs/assets/figures/ch2-quadratic-explorer.js` (added by the
@@ -2120,9 +2136,13 @@ This is the only failure in the suite, and it is not in GCSE Physics. It may be
 fixed by the A-level Mathematics workstream before this item is read; check the
 file first.
 
-**Fix.** Rewrite the comment so it does not contain `$...$`, or make
-`RUNTIME_LATEX` in `tests/test_figures.py` ignore comment lines. The second is
-the better fix if a comment is allowed to discuss the rule.
+**Fix, taken: the scanner reads code, not comments.** `tests/test_figures.py`
+gained `code_only()`, which strips block comments and full-line `//` comments
+before either scanner runs, so a comment is allowed to discuss the rule. The
+latent half of the same bug was fixed with it: the colour scanner had the same
+blind spot and would have reported the first comment that named a colour. Only
+full-line `//` is stripped, so a URL inside a string survives, and the guard still
+fails a genuine injection — checked by mutation.
 
 **Done means.**
 
@@ -2130,7 +2150,7 @@ the better fix if a comment is allowed to discuss the rule.
       `test_no_figure_module_injects_runtime_latex` failure.
 - [ ] The figure still mounts, and its runtime text stays plain text.
 
-## 41. `dimensions` cannot check a magnitude that needs a square root
+## 41. `dimensions` could not check a magnitude needing a square root — **done**
 
 **What is wrong.** The `units` oracle's arithmetic evaluator (`_eval_node` in
 `engine/textbook/verify/oracles/units.py`) handles constants, symbols, unary
@@ -2162,9 +2182,14 @@ dimension must be expressible with integer powers: `sqrt` requires every
 exponent to be even. Alternatively state in `PROBLEMS.md` that a unit-carrying
 magnitude is checked with `resolve` or `vector`, and treat the gap as by design.
 
+**Done, 2026-10-11.** The `dimensions` handler composes an expression of
+quantities, so `sqrt(vx**2 + vy**2)` verifies — and a wrong unit still fails, with
+both sides named: *"sqrt(vx**2 + vy**2) has dimensions m s^-1 but the answer
+declares m"*.
+
 **Done means.**
 
-- [ ] `dimensions` verifies a unit-carrying magnitude written as
+- [x] `dimensions` verifies a unit-carrying magnitude written as
       `sqrt(x**2 + y**2)`, and a wrong magnitude still fails.
 - [ ] `tests/test_verify_units.py` pins it, and
       `uv run python -m textbook.verify books/*/problems/` passes.
@@ -2204,7 +2229,7 @@ narrowed pattern is the better fix.
 - [ ] `tests/test_content_hygiene.py::test_no_internal_words_reach_the_reader`
       passes on the current a-level-maths content.
 
-## 43. A-level Mathematics Chapter 6 is missing, and the plan thinks it is built
+## 43. A-level Mathematics Chapter 6 was missing, and the plan thought it was built — **done**
 
 **What is wrong.** The commit `a25b5e8` adds the whole of a-level-maths
 **Chapter 7** (Differentiation) — 32 pages, 11 banks, 4 figures — but its summary
