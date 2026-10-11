@@ -2129,3 +2129,42 @@ the better fix if a comment is allowed to discuss the rule.
 - [ ] `uv run python -m pytest tests/ -q` passes, with no
       `test_no_figure_module_injects_runtime_latex` failure.
 - [ ] The figure still mounts, and its runtime text stays plain text.
+
+## 41. `dimensions` cannot check a magnitude that needs a square root
+
+**What is wrong.** The `units` oracle's arithmetic evaluator (`_eval_node` in
+`engine/textbook/verify/oracles/units.py`) handles constants, symbols, unary
+minus and the binary `+ - * / **` only, and `Quantity.__pow__` rejects a
+non-integer power. So the natural check of a Pythagoras magnitude that carries a
+unit, `sqrt(vx**2 + vy**2)`, fails on syntax, and `(vx**2 + vy**2) ** 0.5` fails
+on the integer-power rule. A physics bank with a unit-carrying resultant cannot
+prove it with `dimensions`; it either checks the square (an area, not the
+resultant) or drops the unit and leans on `resolve`, `vector` or `approx`, which
+carry no dimension. Measured while authoring A-level Physics Chapter 2 (see
+`books/a-level-physics/problems/chapter-02-practice-2.2.yaml`, which works around
+it):
+
+```bash
+$ uv run python - <<'PY'
+from textbook.verify.verify import verify_problem
+rec = {"id":"magnitude","statement":"x","answer_text":"y",
+       "check":{"kind":"dimensions","expression":"sqrt(vx**2 + vy**2)",
+                "values":{"vx":{"value":"4.0","unit":"m s^-1"},"vy":{"value":"3.0","unit":"m s^-1"}},
+                "answer":{"value":"5.0","unit":"m s^-1"}}}
+print(verify_problem(rec, oracles=("sympy", "units")).errors)
+PY
+["check: unsupported expression element Call(func=Name(id='sqrt', ...))"]
+```
+
+**Fix.** Add a small fixed set of real-valued functions to `_eval_node` (`sqrt`,
+and the trig functions a check may want), keeping the rule that the resulting
+dimension must be expressible with integer powers: `sqrt` requires every
+exponent to be even. Alternatively state in `PROBLEMS.md` that a unit-carrying
+magnitude is checked with `resolve` or `vector`, and treat the gap as by design.
+
+**Done means.**
+
+- [ ] `dimensions` verifies a unit-carrying magnitude written as
+      `sqrt(x**2 + y**2)`, and a wrong magnitude still fails.
+- [ ] `tests/test_verify_units.py` pins it, and
+      `uv run python -m textbook.verify books/*/problems/` passes.

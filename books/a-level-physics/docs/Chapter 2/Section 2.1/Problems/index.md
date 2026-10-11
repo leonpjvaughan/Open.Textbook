@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.1 Scalars and vectors — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: AP2
+Work through these on your own. For each quantity, decide whether a direction is
+needed before you write anything down.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-02-practice-2.1
+
+:::answers chapter-02-practice-2.1

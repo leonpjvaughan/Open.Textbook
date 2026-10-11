@@ -1,0 +1,156 @@
+# Practice set for 3.5, parametric equations in modelling.
+#
+# A parametric model is two things at once: a path and a timing. A "where"
+# question is answered by the path, so it reduces to eliminating the parameter or
+# to the identity x^2 + y^2 = r^2 on the shifted circle; a "when" question is
+# answered by solving for the parameter in an interval, which is where the
+# `interval` on a `solve` check earns its place. A normal-distribution-free,
+# exact-arithmetic bank: every value is a rational or a surd.
+chapter: 3
+symbols:
+  x: {real: true}
+  y: {real: true}
+  t: {real: true}
+problems:
+  - id: p1-greatest-height
+    section: "3.5"
+    dfe: [C4, OT3]
+    statement: 'A ball is modelled by $x = 10t$, $y = 15t - 5t^2$, in metres and seconds. Find the greatest height of the ball, and the time at which it occurs.'
+    answer_label: 'The greatest height and the time'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "15*(3/2) - 5*(3/2)**2", answer: "45/4"}
+        - {kind: evaluate, expression: "-5*(t - 3/2)**2 + 45/4", answer: "15*t - 5*t**2"}
+    answer_text: 'Complete the square on the height: $y = -5(t^2 - 3t) = -5\left(t - \frac{3}{2}\right)^2 + \frac{45}{4}$. The greatest height is $\frac{45}{4} = 11.25$ m, at $t = \frac{3}{2} = 1.5$ s. The height is a quadratic in $t$, so the vertex gives the greatest value.'
+
+  - id: p2-parametric-to-cartesian
+    section: "3.5"
+    dfe: [C4, OT3]
+    statement: 'For the model $x = 10t$, $y = 15t - 5t^2$, find the Cartesian equation of the path.'
+    answer_label: 'The Cartesian equation'
+    check:
+      kind: apply
+      expression: "Matrix([10*t, 15*t - 5*t**2])"
+      apply: {op: eliminate, args: ["t", "x", "y"]}
+      answer: "Eq(y, 3*x/2 - x**2/20)"
+    answer_text: 'From $x = 10t$, $t = \frac{x}{10}$. Substitute: $y = 15\left(\frac{x}{10}\right) - 5\left(\frac{x}{10}\right)^2 = \frac{3}{2}x - \frac{x^2}{20}$. The path is a parabola. This equation answers a "where" question, and it does not give the time at any point.'
+
+  - id: p3-landing-point
+    section: "3.5"
+    dfe: [C4, OT3]
+    statement: 'For the model $x = 10t$, $y = 15t - 5t^2$, find the time at which the ball lands and the distance it travels.'
+    answer_label: 'The time and the distance'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: "15*t - 5*t**2 = 0", variable: t, answer: ["0", "3"]}
+        - {kind: evaluate, expression: "10*3", answer: "30"}
+    answer_text: 'The ball lands when $y = 0$: $15t - 5t^2 = 5t(3 - t) = 0$, so $t = 0$ or $t = 3$. The value $0$ is the kick, so the ball lands at $t = 3$ s. Its distance is $x = 10 \times 3 = 30$ m. The domain of the model is $0 \le t \le 3$, and a time outside it is not covered by the model.'
+
+  - id: p4-wheel-path
+    section: "3.5"
+    dfe: [C4, OT3]
+    statement: 'A wheel cabin is modelled by $x = 7\cos t$, $y = 9 + 7\sin t$. Find the Cartesian equation of the path and describe it.'
+    answer_label: 'The path'
+    check:
+      kind: evaluate
+      expression: "(7*cos(t))**2 + (9 + 7*sin(t) - 9)**2"
+      answer: "49"
+    answer_text: 'Rearrange to $\cos t = \frac{x}{7}$ and $\sin t = \frac{y - 9}{7}$, then square and add, using $\cos^2 t + \sin^2 t = 1$: $\left(\frac{x}{7}\right)^2 + \left(\frac{y - 9}{7}\right)^2 = 1$. Multiplying by $49$ gives $x^2 + (y - 9)^2 = 49$, a circle with centre $(0, 9)$ and radius $7$. The cabin stays $7$ m from the centre of the wheel.'
+
+  - id: p5-wheel-greatest-height
+    section: "3.5"
+    dfe: [C4, OT3]
+    statement: 'For the cabin model $x = 7\cos t$, $y = 9 + 7\sin t$, work out the greatest height of the cabin and the value of $t$ at which it occurs.'
+    answer_label: 'The greatest height and the value of t'
+    check:
+      kind: evaluate
+      expression: "9 + 7*sin(pi/2)"
+      answer: "16"
+    answer_text: 'The height is greatest when $\sin t$ is greatest, which is $1$ at $t = \frac{\pi}{2}$. The height is then $9 + 7 \times 1 = 16$ m. The centre of the wheel is $9$ m above the ground, and the cabin adds the radius $7$ m, so $16$ m is the highest point of the wheel.'
+
+  - id: p6-position-at-time
+    section: "3.5"
+    dfe: [C4, OT3]
+    statement: 'A point moves on $x = 3 + 2\cos t$, $y = 1 + 2\sin t$. Find its position at $t = \frac{\pi}{2}$.'
+    answer_label: 'The position'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "3 + 2*cos(pi/2)", answer: "3"}
+        - {kind: evaluate, expression: "1 + 2*sin(pi/2)", answer: "3"}
+    answer_text: 'At $t = \frac{\pi}{2}$, $\cos\frac{\pi}{2} = 0$ and $\sin\frac{\pi}{2} = 1$. So $x = 3 + 2 \times 0 = 3$ and $y = 1 + 2 \times 1 = 3$. The point is $(3, 3)$, which is the highest point of the circle, since the centre is $(3, 1)$ and the radius is $2$.'
+
+  - id: p7-drone-path
+    section: "3.5"
+    dfe: [C4, OT3]
+    statement: 'The drone is modelled by $x = 6 + 5\cos\left(\frac{\pi t}{30}\right)$, $y = 8 + 5\sin\left(\frac{\pi t}{30}\right)$. Convert the path to Cartesian form.'
+    answer_label: 'The path'
+    check:
+      kind: evaluate
+      expression: "(6 + 5*cos(pi*t/30) - 6)**2 + (8 + 5*sin(pi*t/30) - 8)**2"
+      answer: "25"
+    answer_text: 'Rearrange to $\cos\left(\frac{\pi t}{30}\right) = \frac{x - 6}{5}$ and $\sin\left(\frac{\pi t}{30}\right) = \frac{y - 8}{5}$, then square and add: $\left(\frac{x - 6}{5}\right)^2 + \left(\frac{y - 8}{5}\right)^2 = 1$. Multiplying by $25$ gives $(x - 6)^2 + (y - 8)^2 = 25$, the rim of the lake.'
+
+  - id: p8-drone-crossing-times
+    section: "3.5"
+    dfe: [C4, OT3]
+    statement: 'The drone is at $(6 + 5\cos\left(\frac{\pi t}{30}\right), 8 + 5\sin\left(\frac{\pi t}{30}\right))$. The causeway is the line $x + y = 19$. Find every time in the first $60$ seconds at which the drone is above the causeway.'
+    answer_label: 'The times'
+    check:
+      kind: solve
+      equation: "cos(pi*t/30) + sin(pi*t/30) = 1"
+      variable: t
+      interval: [0, 60]
+      answer: ["0", "15", "60"]
+    answer_text: 'The drone is above the causeway when its point lies on $x + y = 19$. Substituting the parametric expressions gives $14 + 5\cos\left(\frac{\pi t}{30}\right) + 5\sin\left(\frac{\pi t}{30}\right) = 19$, so $\cos\left(\frac{\pi t}{30}\right) + \sin\left(\frac{\pi t}{30}\right) = 1$. In the first $60$ seconds the solutions are $t = 0$, $t = 15$ and $t = 60$. The points at $t = 0$ and $t = 60$ are the same point of the rim, at the start and the end of one lap, and $t = 15$ gives the other crossing point.'
+
+  - id: p9-drone-easternmost
+    section: "3.5"
+    dfe: [C4, OT3]
+    statement: 'For the drone model $x = 6 + 5\cos\left(\frac{\pi t}{30}\right)$, $y = 8 + 5\sin\left(\frac{\pi t}{30}\right)$, find every time in the first $60$ seconds at which the drone is at the easternmost point of the rim.'
+    answer_label: 'The times'
+    check:
+      kind: solve
+      equation: "cos(pi*t/30) = 1"
+      variable: t
+      interval: [0, 60]
+      answer: ["0", "60"]
+    answer_text: 'The easternmost point is $(11, 8)$, where $x - 6 = 5$. That needs $\cos\left(\frac{\pi t}{30}\right) = 1$, which first happens at $t = 0$ and again at $t = 60$ when the angle has completed one full turn. The two times are the start and the end of one lap, and the drone is at the same point at both. The lap time is $60$ seconds.'
+
+  - id: p10-write-a-model
+    section: "3.5"
+    dfe: [C4, OT3]
+    statement: 'An object moves around the circle $(x - 4)^2 + (y - 6)^2 = 9$ at a steady speed, starting at the easternmost point and taking $20$ seconds for one lap. Write its position after $t$ seconds as parametric equations.'
+    answer_label: 'The parametric equations'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(4 + 3*cos(pi*t/10) - 4)**2 + (6 + 3*sin(pi*t/10) - 6)**2", answer: "9"}
+        - {kind: evaluate, expression: "pi*20/10", answer: "2*pi"}
+    answer_text: 'The circle has centre $(4, 6)$ and radius $3$. One lap in $20$ seconds means the angle turns at $\frac{2\pi}{20} = \frac{\pi}{10}$ radians per second, so $x = 4 + 3\cos\left(\frac{\pi t}{10}\right)$ and $y = 6 + 3\sin\left(\frac{\pi t}{10}\right)$. At $t = 0$ the point is $(7, 6)$, the easternmost point, and at $t = 20$ the angle is $2\pi$, a full turn, so the point returns to $(7, 6)$.'
+
+  - id: p11-projectile-path
+    section: "3.5"
+    dfe: [C4, OT3]
+    statement: 'A ball is modelled by $x = 8t$, $y = 20t - 5t^2$. Find the Cartesian equation of its path.'
+    answer_label: 'The path'
+    check:
+      kind: apply
+      expression: "Matrix([8*t, 20*t - 5*t**2])"
+      apply: {op: eliminate, args: ["t", "x", "y"]}
+      answer: "Eq(y, 5*x/2 - 5*x**2/64)"
+    answer_text: 'From $x = 8t$, $t = \frac{x}{8}$. Substitute: $y = 20\left(\frac{x}{8}\right) - 5\left(\frac{x}{8}\right)^2 = \frac{5}{2}x - \frac{5}{64}x^2$. The path is a parabola, and its greatest height comes at $x = 16$, where $y = 40 - 20 = 20$ m.'
+
+  - id: p12-method-choice
+    section: "3.5"
+    dfe: [C4, OT3]
+    statement: 'A ball is modelled by $x = 12t$, $y = 18t - 5t^2$. Work out the greatest height of the ball. Say whether you used a "where" method or a "when" method.'
+    answer_label: 'The greatest height'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "18*(9/5) - 5*(9/5)**2", answer: "81/5"}
+        - {kind: evaluate, expression: "-5*(t - 9/5)**2 + 81/5", answer: "18*t - 5*t**2"}
+    answer_text: 'Complete the square on the height: $y = -5\left(t - \frac{9}{5}\right)^2 + \frac{81}{5}$. The greatest height is $\frac{81}{5} = 16.2$ m. This is a "when" method: the height depends on the time, so the vertex is read from the $t$ equation, at $t = \frac{9}{5}$ s. The $x$ equation is not needed, although substituting $t = \frac{9}{5}$ into $x = 12t$ would give the horizontal distance at which the ball reaches its peak.'

@@ -1,0 +1,207 @@
+# Practice set for 3.2 (Forces, acceleration and Newton's laws of motion).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. A force is
+# a quantity with the unit N, so a calculation proves `dimensions` for the exact
+# magnitude and unit, and `sigfigs` for the one rounding. The `structured`
+# records prove only that a model answer contains the declared ideas in order,
+# never that the explanation is right; the page says so.
+chapter: 3
+problems:
+  - id: p1-force-car
+    section: '3.2'
+    tier: F
+    dfe: [FO6]
+    statement: 'A car of mass 1400 kg accelerates at 2.0 m/s². Calculate the resultant force.'
+    answer_label: 'Resultant force on the car'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * a"
+          values:
+            m: {value: "1400", unit: "kg"}
+            a: {value: "2.0", unit: "m/s^2"}
+          answer: {value: "2800", unit: "N"}
+        - {kind: sigfigs, value: "2800", figures: 2, answer: "2.8e3", convention: round-once}
+    answer_text: '$F = ma = 1400 \times 2.0 = 2800\,\text{N} = 2.8 \times 10^3\,\text{N}$.'
+
+  - id: p2-mass-object
+    section: '3.2'
+    tier: F
+    dfe: [FO6]
+    statement: 'A resultant force of 150 N gives an object an acceleration of 5.0 m/s². Calculate the mass of the object.'
+    answer_label: 'Mass of the object'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / a"
+          values:
+            F: {value: "150", unit: "N"}
+            a: {value: "5.0", unit: "m/s^2"}
+          answer: {value: "30", unit: "kg"}
+        - {kind: sigfigs, value: "30", figures: 2, answer: "3.0e1", convention: round-once}
+    answer_text: '$m = \dfrac{F}{a} = \dfrac{150}{5.0} = 30\,\text{kg} = 3.0 \times 10^1\,\text{kg}$.'
+
+  - id: p3-acceleration-trolley
+    section: '3.2'
+    tier: F
+    dfe: [FO6]
+    statement: 'A resultant force of 350 N acts on a trolley of mass 70 kg. Calculate the acceleration.'
+    answer_label: 'Acceleration of the trolley'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / m"
+          values:
+            F: {value: "350", unit: "N"}
+            m: {value: "70", unit: "kg"}
+          answer: {value: "5.0", unit: "m/s^2"}
+        - {kind: sigfigs, value: "5", figures: 2, answer: "5.0", convention: round-once}
+    answer_text: '$a = \dfrac{F}{m} = \dfrac{350}{70} = 5.0\,\text{m/s}^2$.'
+
+  - id: p4-braking-force-car
+    section: '3.2'
+    tier: F
+    dfe: [FO6]
+    statement: 'A car of mass 1200 kg accelerates at 7.0 m/s². Calculate the resultant force on the car.'
+    answer_label: 'Resultant force on the car'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * a"
+          values:
+            m: {value: "1200", unit: "kg"}
+            a: {value: "7.0", unit: "m/s^2"}
+          answer: {value: "8400", unit: "N"}
+        - {kind: sigfigs, value: "8400", figures: 2, answer: "8.4e3", convention: round-once}
+    answer_text: '$F = ma = 1200 \times 7.0 = 8400\,\text{N} = 8.4 \times 10^3\,\text{N}$.'
+
+  - id: p5-lorry-force
+    section: '3.2'
+    tier: F
+    dfe: [FO6]
+    statement: 'A lorry of mass 30000 kg accelerates at 3.5 m/s². Calculate the resultant force on the lorry.'
+    answer_label: 'Resultant force on the lorry'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * a"
+          values:
+            m: {value: "30000", unit: "kg"}
+            a: {value: "3.5", unit: "m/s^2"}
+          answer: {value: "105000", unit: "N"}
+        - {kind: sigfigs, value: "105000", figures: 2, answer: "1.1e5", convention: round-once}
+    answer_text: '$F = ma = 30000 \times 3.5 = 105000\,\text{N}$, so $1.1 \times 10^5\,\text{N}$ to 2 significant figures.'
+
+  - id: p6-newton-first-book
+    section: '3.2'
+    tier: F
+    dfe: [FO6]
+    statement: 'A book rests on a table without moving. Name the two forces acting on the book, and explain why the resultant force is zero.'
+    answer_label: 'The two forces on the book'
+    check:
+      kind: structured
+      requires: [identify-forces, explain-balanced]
+      concepts: [weight, normal-contact-force, resultant-force]
+      points:
+        - id: identify-forces
+          text: 'The weight of the book pulls downwards, and the normal contact force from the table pushes upwards.'
+          concepts: [weight, normal-contact-force]
+        - id: explain-balanced
+          text: 'The two forces are equal in size and opposite in direction, so they balance and the resultant force is zero. Newton''s first law then says the book stays at rest.'
+          concepts: [resultant-force]
+
+  - id: p7-newton-third-rocket
+    section: '3.2'
+    tier: F
+    dfe: [FO6]
+    statement: 'A rocket pushes hot gas downwards out of its engine. Use Newton''s third law to explain why the rocket moves upwards.'
+    answer_label: 'The force that moves the rocket'
+    check:
+      kind: structured
+      requires: [force-on-gas, force-on-rocket]
+      concepts: [newtons-third-law]
+      points:
+        - id: force-on-gas
+          text: 'The rocket pushes the gas downwards.'
+          concepts: [newtons-third-law]
+        - id: force-on-rocket
+          text: 'By Newton''s third law the gas pushes the rocket upwards with an equal force in the opposite direction, and this upward force moves the rocket.'
+          concepts: [newtons-third-law]
+
+  - id: p8-method-choice-anchor
+    section: '3.2'
+    tier: F
+    dfe: [FO6]
+    statement: 'The chapter problem asks for the acceleration of the bus and the resultant force on it. Say which equation you would use for each step, and name the quantities you need.'
+    answer_label: 'Choosing the equation for each step'
+    check:
+      kind: structured
+      requires: [acceleration-equation, force-equation]
+      concepts: [acceleration, resultant-force]
+      points:
+        - id: acceleration-equation
+          text: 'For the acceleration, use $a = \dfrac{\Delta v}{t}$. I need the change in velocity and the time taken.'
+          concepts: [acceleration]
+        - id: force-equation
+          text: 'For the resultant force, use $F = ma$. I need the mass of the bus and the acceleration I have just found.'
+          concepts: [resultant-force]
+
+  - id: p9-inertial-mass
+    section: '3.2'
+    tier: H
+    dfe: [FO6]
+    statement: 'Explain what is meant by inertial mass, and why an object with a larger inertial mass is harder to stop.'
+    answer_label: 'Inertial mass'
+    check:
+      kind: structured
+      requires: [definition, harder-to-change]
+      concepts: [inertial-mass, inertia]
+      points:
+        - id: definition
+          text: 'Inertial mass is a measure of how difficult it is to change the velocity of an object, defined as the ratio of the force acting on the object to the acceleration it produces.'
+          concepts: [inertial-mass]
+        - id: harder-to-change
+          text: 'A larger inertial mass means a larger force is needed for the same acceleration, so a heavier object is harder to start moving and harder to stop.'
+          concepts: [inertia]
+
+  - id: p10-acceleration-car
+    section: '3.2'
+    tier: F
+    dfe: [FO6]
+    statement: 'A resultant force of 900 N acts on a car of mass 1500 kg. Calculate the acceleration.'
+    answer_label: 'Acceleration of the car'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / m"
+          values:
+            F: {value: "900", unit: "N"}
+            m: {value: "1500", unit: "kg"}
+          answer: {value: "0.6", unit: "m/s^2"}
+        - {kind: sigfigs, value: "0.6", figures: 2, answer: "0.60", convention: round-once}
+    answer_text: '$a = \dfrac{F}{m} = \dfrac{900}{1500} = 0.60\,\text{m/s}^2$.'
+
+  - id: p11-acceleration-ball
+    section: '3.2'
+    tier: F
+    dfe: [FO6]
+    statement: 'A resultant force of 6.0 N acts on a ball of mass 0.50 kg. Calculate the acceleration.'
+    answer_label: 'Acceleration of the ball'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / m"
+          values:
+            F: {value: "6.0", unit: "N"}
+            m: {value: "0.50", unit: "kg"}
+          answer: {value: "12", unit: "m/s^2"}
+        - {kind: sigfigs, value: "12", figures: 2, answer: "12", convention: round-once}
+    answer_text: '$a = \dfrac{F}{m} = \dfrac{6.0}{0.50} = 12\,\text{m/s}^2$.'

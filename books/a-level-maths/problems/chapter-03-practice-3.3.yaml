@@ -1,0 +1,167 @@
+# Practice set for 3.3, the equation of a circle and its properties.
+#
+# The algebra is exact. A completed-square circle is verified by the centre and
+# the radius it forces; a line meeting a circle is a `system`, so the two points
+# come out as tuples and the order does not matter; a tangent is proved by
+# comparing the distance from the centre with the radius. The three geometric
+# properties are coordinate facts here, so each one reduces to a gradient or a
+# distance that the verifier can prove.
+chapter: 3
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: p1-equation-from-centre-and-radius
+    section: "3.3"
+    dfe: [C2]
+    statement: 'Write the equation of the circle with centre $(3, -2)$ and radius $4$, in expanded form.'
+    answer_label: 'The equation'
+    check:
+      kind: apply
+      expression: "(x - 3)**2 + (y + 2)**2 - 16"
+      apply: {op: expand}
+      answer: "x**2 + y**2 - 6*x + 4*y - 3"
+    answer_text: 'Substitute the centre and the radius into $(x - a)^2 + (y - b)^2 = r^2$: $(x - 3)^2 + (y + 2)^2 = 16$. Expanding gives $x^2 - 6x + 9 + y^2 + 4y + 4 = 16$, so $x^2 + y^2 - 6x + 4y - 3 = 0$. The expanded form is the same circle, written differently.'
+
+  - id: p2-complete-the-square
+    section: "3.3"
+    dfe: [C2]
+    statement: 'Find the centre and the radius of the circle $x^2 + y^2 - 12x - 16y + 75 = 0$.'
+    answer_label: 'The centre and the radius'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "-(-12)/2", answer: "6"}
+        - {kind: evaluate, expression: "-(-16)/2", answer: "8"}
+        - {kind: evaluate, expression: "sqrt(6**2 + 8**2 - 75)", answer: "5"}
+    answer_text: 'Complete the square twice: $(x - 6)^2 - 36 + (y - 8)^2 - 64 + 75 = 0$, so $(x - 6)^2 + (y - 8)^2 = 25$. The centre is $(6, 8)$ and the radius is $5$. The centre is $\left(-\frac{D}{2}, -\frac{E}{2}\right)$ and the radius satisfies $r^2 = a^2 + b^2 - F$.'
+
+  - id: p3-complete-the-square-signs
+    section: "3.3"
+    dfe: [C2]
+    statement: 'Find the centre and the radius of the circle $x^2 + y^2 + 4x - 6y - 12 = 0$.'
+    answer_label: 'The centre and the radius'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "-4/2", answer: "-2"}
+        - {kind: evaluate, expression: "-(-6)/2", answer: "3"}
+        - {kind: evaluate, expression: "sqrt((-2)**2 + 3**2 - (-12))", answer: "5"}
+    answer_text: 'Complete the square: $(x + 2)^2 - 4 + (y - 3)^2 - 9 - 12 = 0$, so $(x + 2)^2 + (y - 3)^2 = 25$. The centre is $(-2, 3)$ and the radius is $5$. The signs matter: $(x + 2)^2$ means the centre coordinate is $-2$, not $2$.'
+
+  - id: p4-inside-the-circle
+    section: "3.3"
+    dfe: [C2]
+    statement: 'Decide whether the point $(5, 4)$ is inside, on, or outside the circle $(x - 1)^2 + (y - 2)^2 = 25$.'
+    answer_label: 'The decision'
+    check:
+      kind: compare
+      relation: "<"
+      lhs: "(5 - 1)**2 + (4 - 2)**2"
+      rhs: "25"
+    answer_text: 'Substitute the point: $(5 - 1)^2 + (4 - 2)^2 = 16 + 4 = 20$. Since $20 < 25$, the point is inside the circle. The distance from the centre is $\sqrt{20} \approx 4.47$, which is less than the radius $5$.'
+
+  - id: p5-radius-through-a-point
+    section: "3.3"
+    dfe: [C2]
+    statement: 'A circle has centre $(2, 3)$ and passes through $(6, 6)$. Find its equation.'
+    answer_label: 'The equation'
+    check:
+      kind: evaluate
+      expression: "(6 - 2)**2 + (6 - 3)**2"
+      answer: "25"
+    answer_text: 'The radius is the distance from the centre to the point: $r^2 = (6 - 2)^2 + (6 - 3)^2 = 16 + 9 = 25$, so $r = 5$. The equation is $(x - 2)^2 + (y - 3)^2 = 25$. Working with $r^2$ first avoids a square root, and the square root is only needed if the question asks for the radius itself.'
+
+  - id: p6-tangent-at-a-point
+    section: "3.3"
+    dfe: [C2]
+    statement: 'Find the tangent to the circle $x^2 + y^2 = 169$ at the point $(5, 12)$. Give the equation and show that the distance from the centre to your line equals the radius.'
+    answer_label: 'The tangent and the distance check'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "5*5 + 12*12", answer: "169"}
+        - {kind: evaluate, expression: "Abs(5*0 + 12*0 - 169)/sqrt(5**2 + 12**2)", answer: "13"}
+    answer_text: 'The radius from $(0, 0)$ to $(5, 12)$ has gradient $\frac{12}{5}$, so the tangent has gradient $-\frac{5}{12}$: $y - 12 = -\frac{5}{12}(x - 5)$, which is $5x + 12y = 169$. The point satisfies the line, since $25 + 144 = 169$. The distance from the centre $(0, 0)$ to the line is $\frac{|-169|}{\sqrt{5^2 + 12^2}} = \frac{169}{13} = 13$, which equals the radius. A line at the radius from the centre touches the circle once, so it is a tangent.'
+
+  - id: p7-horizontal-chord
+    section: "3.3"
+    dfe: [C2]
+    statement: 'Find the two points where the line $y = 3$ meets the circle $x^2 + y^2 = 25$.'
+    answer_label: 'The two points'
+    check:
+      kind: system
+      equations: ["x**2 + y**2 = 25", "y = 3"]
+      variables: [x, y]
+      answer: [["-4", "3"], ["4", "3"]]
+    answer_text: 'Substitute $y = 3$: $x^2 + 9 = 25$, so $x^2 = 16$ and $x = 4$ or $x = -4$. The two points are $(4, 3)$ and $(-4, 3)$. The line meets the circle twice, so it is a secant, and the chord is $8$ units long.'
+
+  - id: p8-chord-endpoints
+    section: "3.3"
+    dfe: [C2]
+    statement: 'Find the two points where the line $x + y = 19$ meets the circle $(x - 6)^2 + (y - 8)^2 = 25$.'
+    answer_label: 'The two points'
+    check:
+      kind: system
+      equations: ["x + y = 19", "(x - 6)**2 + (y - 8)**2 = 25"]
+      variables: [x, y]
+      answer: [["6", "13"], ["11", "8"]]
+    answer_text: 'Substitute $y = 19 - x$: $(x - 6)^2 + (11 - x)^2 = 25$, so $x^2 - 17x + 66 = 0$ and $(x - 6)(x - 11) = 0$. Then $x = 6$ or $x = 11$, giving $(6, 13)$ and $(11, 8)$. Two distinct real roots mean the line cuts the circle twice.'
+
+  - id: p9-chord-length
+    section: "3.3"
+    dfe: [C2]
+    statement: 'The line $x + y = 19$ cuts the circle $(x - 6)^2 + (y - 8)^2 = 25$ at $(6, 13)$ and $(11, 8)$. Work out the length of the chord.'
+    answer_label: 'The chord length'
+    check:
+      kind: evaluate
+      expression: "sqrt((11 - 6)**2 + (8 - 13)**2)"
+      answer: "5*sqrt(2)"
+    answer_text: 'The chord length is the distance between the endpoints: $\sqrt{(11 - 6)^2 + (8 - 13)^2} = \sqrt{25 + 25} = \sqrt{50} = 5\sqrt{2}$, about $7.07$. The exact surd is the answer; a rounded decimal is not.'
+
+  - id: p10-chord-bisected
+    section: "3.3"
+    dfe: [C2]
+    statement: 'For the chord of $(x - 6)^2 + (y - 8)^2 = 25$ on the line $x + y = 19$, with endpoints $(6, 13)$ and $(11, 8)$, show that the perpendicular from the centre passes through the midpoint of the chord.'
+    answer_label: 'The midpoint and the perpendicular'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(6 + 11)/2", answer: "17/2"}
+        - {kind: evaluate, expression: "(13 + 8)/2", answer: "21/2"}
+        - {kind: evaluate, expression: "21/2 - (17/2 + 2)", answer: "0"}
+    answer_text: 'The midpoint is $\left(\frac{6 + 11}{2}, \frac{13 + 8}{2}\right) = \left(\frac{17}{2}, \frac{21}{2}\right)$. The chord has gradient $-1$, so the perpendicular from the centre $(6, 8)$ has gradient $1$: $y = x + 2$. Substituting the midpoint gives $\frac{21}{2} = \frac{17}{2} + 2$, which is true. So the perpendicular from the centre meets the chord at its midpoint and bisects it.'
+
+  - id: p11-angle-in-a-semicircle
+    section: "3.3"
+    dfe: [C2]
+    statement: 'The circle $x^2 + y^2 = 25$ has $A(-5, 0)$, $B(5, 0)$ and $C(-3, 4)$ on it. Show that angle $ACB$ is a right angle.'
+    answer_label: 'The gradient product'
+    check:
+      kind: evaluate
+      expression: "((4 - 0)/(-3 - (-5)))*((4 - 0)/(-3 - 5))"
+      answer: "-1"
+    answer_text: 'The gradient of $CA$ is $\frac{4 - 0}{-3 - (-5)} = 2$ and the gradient of $CB$ is $\frac{4 - 0}{-3 - 5} = -\frac{1}{2}$. Their product is $-1$, so the two lines meet at a right angle. $AB$ is a diameter because it joins $(-5, 0)$ and $(5, 0)$ through the centre, so this is the angle in a semicircle.'
+
+  - id: p12-tangent-condition
+    section: "3.3"
+    dfe: [C2]
+    statement: 'Show that the line $y = 2x + 5$ is a tangent to the circle $(x - 1)^2 + (y - 2)^2 = 5$ by comparing the distance from the centre to the line with the radius.'
+    answer_label: 'The distance and the conclusion'
+    check:
+      kind: evaluate
+      expression: "Abs(2*1 - 2 + 5)/sqrt(2**2 + 1**2) - sqrt(5)"
+      answer: "0"
+    answer_text: 'Write the line as $2x - y + 5 = 0$. The centre is $(1, 2)$, so the distance is $\frac{|2 - 2 + 5|}{\sqrt{2^2 + 1^2}} = \frac{5}{\sqrt{5}} = \sqrt{5}$. The radius is also $\sqrt{5}$, since $r^2 = 5$. The distance equals the radius, so the line touches the circle at exactly one point and is a tangent.'
+
+  - id: p13-line-misses-a-circle
+    section: "3.3"
+    dfe: [C2]
+    statement: 'Decide whether the line $y = 10$ meets the circle $x^2 + y^2 = 25$. Use the discriminant of the quadratic you get.'
+    answer_label: 'The decision and the discriminant'
+    check:
+      kind: compare
+      relation: "<"
+      lhs: "0**2 - 4*1*75"
+      rhs: "0"
+    answer_text: 'Substitute $y = 10$: $x^2 + 100 = 25$, so $x^2 + 75 = 0$. The discriminant is $0^2 - 4 \times 1 \times 75 = -300$, which is negative. A negative discriminant means no real roots, so the line misses the circle. This matches the distance check: the distance from $(0, 0)$ to $y = 10$ is $10$, which is greater than the radius $5$.'

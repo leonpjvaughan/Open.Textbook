@@ -1,0 +1,212 @@
+# Mixed practice for the Chapter 2 Review.
+#
+# The first seven records resolve the chapter problem of the river ferry. The
+# rest interleave the chapter with Chapter 1: a unit conversion, a homogeneity
+# check, an uncertainty propagation, a significant-figure quote, a method-choice
+# prompt and two further resolution problems. Every numeric record is checked by
+# the `units` oracle, and the two `structured` records stand where a computer
+# cannot go: they prove that a model answer contains the declared ideas in order,
+# and nothing more.
+#
+# The anchor numbers: the river is 120 m wide; the ferry's speed through the water
+# is 4.0 m/s across and the current is 3.0 m/s downstream; the velocity over the
+# ground is 5.0 m/s at 36.9 degrees to the straight-across direction; the crossing
+# takes 30 s and the ferry lands 90 m downstream. To cancel the current the heading
+# is asin(3/4) = 48.6 degrees upstream, the across component falls to 2.65 m/s,
+# and the crossing takes 45 s.
+chapter: 2
+problems:
+  - id: r1-ferry-velocity
+    section: Review
+    dfe: [AP2]
+    statement: 'The ferry points straight across at $4.0\,\text{m}\,\text{s}^{-1}$ and the current is $3.0\,\text{m}\,\text{s}^{-1}$ downstream. Find the magnitude and direction of the velocity over the ground.'
+    answer_label: 'The velocity over the ground'
+    check:
+      kind: resolve
+      relation: magnitude-and-angle-from-components
+      components: {x: "4.0", y: "3.0"}
+      magnitude: "5.0"
+      angle_deg: "36.9"
+    answer_text: 'Magnitude $= \sqrt{4.0^2 + 3.0^2} = 5.0\,\text{m}\,\text{s}^{-1}$. Direction $= \tan^{-1}(3.0/4.0) = 36.9^\circ$ from the straight-across direction, towards downstream.'
+
+  - id: r2-ferry-time
+    section: Review
+    dfe: [AP2]
+    statement: 'The river is $120\,\text{m}$ wide and the across component of the velocity is $4.0\,\text{m}\,\text{s}^{-1}$. Find the crossing time.'
+    answer_label: 'The crossing time'
+    check:
+      kind: dimensions
+      expression: "d / v"
+      values:
+        d: {value: "120", unit: "m"}
+        v: {value: "4.0", unit: "m s^-1"}
+      answer: {value: "30", unit: "s"}
+    answer_text: '$t = \dfrac{120}{4.0} = 30\,\text{s}$.'
+
+  - id: r3-ferry-downstream
+    section: Review
+    dfe: [AP2]
+    statement: 'The current is $3.0\,\text{m}\,\text{s}^{-1}$ and the crossing takes $30\,\text{s}$. Find how far downstream the ferry lands.'
+    answer_label: 'The distance downstream'
+    check:
+      kind: dimensions
+      expression: "v * t"
+      values:
+        v: {value: "3.0", unit: "m s^-1"}
+        t: {value: "30", unit: "s"}
+      answer: {value: "90", unit: "m"}
+    answer_text: 'Distance downstream $= 3.0 \times 30 = 90\,\text{m}$. The ferry is carried $90\,\text{m}$ downstream while it crosses.'
+
+  - id: r4-ferry-heading
+    section: Review
+    dfe: [AP2]
+    statement: 'Find the angle upstream, from the straight-across direction, at which the ferry must head so that the current is exactly cancelled.'
+    answer_label: 'The heading'
+    check: {kind: approx, value: "asin(3.0 / 4.0) * 180 / pi", target: "48.59", tolerance: "0.01"}
+    answer_text: 'The upstream component must equal the current: $4.0\sin\theta = 3.0$, so $\theta = \sin^{-1}(0.75) = 48.6^\circ$ upstream of the straight-across direction.'
+
+  - id: r5-ferry-direct-time
+    section: Review
+    dfe: [AP2]
+    statement: 'With the heading at $48.59^\circ$ upstream, find the crossing time for the $120\,\text{m}$ river.'
+    answer_label: 'The crossing time with the heading upstream'
+    check: {kind: approx, value: "120 / (4.0 * cos(asin(3.0 / 4.0)))", target: "45.36", tolerance: "0.01"}
+    answer_text: 'The across component is $4.0\cos 48.6^\circ = 2.65\,\text{m}\,\text{s}^{-1}$, so $t = \dfrac{120}{2.65} = 45\,\text{s}$. The crossing is longer because part of the ferry speed is used to fight the current.'
+
+  - id: r6-ferry-judgement
+    section: Review
+    dfe: [AP2]
+    statement: 'State the heading needed to land directly opposite, the crossing time it gives, and a reason an operator might still choose to point straight across.'
+    answer_label: 'The judgement'
+    check:
+      kind: structured
+      requires: [state-heading, state-time, state-choice]
+      concepts: [resultant, resolution]
+      points:
+        - id: state-heading
+          text: 'Head about 49 degrees upstream of the straight-across direction, so the upstream component cancels the current.'
+          concepts: [resolution]
+        - id: state-time
+          text: 'The crossing then takes about 45 s, longer than the 30 s straight-across crossing, because the across component falls to 2.65 m/s.'
+          concepts: [resultant]
+        - id: state-choice
+          text: 'Pointing straight across reaches the far bank in 30 s, but the ferry lands 90 m downstream, so the operator might accept the drift to save time.'
+          concepts: [resultant]
+    answer_text: 'Head about $49^\circ$ upstream to land directly opposite; the crossing then takes about $45\,\text{s}$. Pointing straight across is quicker at $30\,\text{s}$, but the ferry lands $90\,\text{m}$ downstream.'
+
+  - id: r7-ferry-time-reason
+    section: Review
+    dfe: [AP2]
+    statement: 'Explain why the current does not change the time the ferry takes to cross the river.'
+    answer_label: 'Why the current does not change the crossing time'
+    check:
+      kind: structured
+      requires: [components-independent, across-only]
+      concepts: [resolution, resultant]
+      points:
+        - id: components-independent
+          text: 'The two velocities are at right angles, so the current has no component along the straight-across direction.'
+          concepts: [resolution]
+        - id: across-only
+          text: 'The crossing time depends only on the across component of the velocity and the width of the river. The current changes the direction over the ground and the distance downstream, but not the across component.'
+          concepts: [resultant]
+    answer_text: 'The current is at right angles to the crossing, so it has no component across the river. The crossing time depends only on the across component and the width, so the current does not change it.'
+
+  - id: r8-convert-speed
+    section: Review
+    dfe: [AP1, AP2]
+    statement: 'Write $15\,\text{m}\,\text{s}^{-1}$ in $\text{km}\,\text{h}^{-1}$.'
+    answer_label: 'The speed in kilometres per hour'
+    check: {kind: convert, value: "15", from: "m s^-1", to: "km h^-1", answer: "54"}
+    answer_text: '$15\,\text{m}\,\text{s}^{-1} = 15 \times \dfrac{3600}{1000} = 54\,\text{km}\,\text{h}^{-1}$.'
+
+  - id: r9-homogeneity
+    section: Review
+    dfe: [AP1, AP2]
+    statement: 'Show that the equation of motion $v^2 = u^2 + 2as$ is homogeneous.'
+    answer_label: 'A homogeneity check'
+    check:
+      kind: dimensions
+      consistency: "v**2 = u**2 + 2 * a * s"
+      units: {v: "m s^-1", u: "m s^-1", a: "m s^-2", s: "m"}
+    answer_text: 'The left side has base units $(\text{m}\,\text{s}^{-1})^2 = \text{m}^2\,\text{s}^{-2}$. The right side has $u^2 = \text{m}^2\,\text{s}^{-2}$ and $as = \text{m}\,\text{s}^{-2} \times \text{m} = \text{m}^2\,\text{s}^{-2}$. All three terms match, so the equation is homogeneous.'
+
+  - id: r10-uncertainty-speed
+    section: Review
+    dfe: [AP1, AP2]
+    statement: 'A trolley travels $25.0 \pm 0.1\,\text{m}$ in $5.0 \pm 0.2\,\text{s}$. Find the speed and its absolute uncertainty.'
+    answer_label: 'The speed and its uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: "25.0", percentage: "0.4"}
+        - {value: "1/5", percentage: "4.0"}
+      result: "5.0"
+      uncertainty: "0.22"
+    answer_text: 'The percentage uncertainty in the distance is $\dfrac{0.1}{25.0} \times 100\% = 0.4\%$, and in the time it is $\dfrac{0.2}{5.0} \times 100\% = 4.0\%$. For a quotient, add them: $0.4\% + 4.0\% = 4.4\%$. The speed is $\dfrac{25.0}{5.0} = 5.0\,\text{m}\,\text{s}^{-1}$, so its absolute uncertainty is $5.0 \times 0.044 = 0.22\,\text{m}\,\text{s}^{-1}$. The speed is $5.0 \pm 0.2\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: r11-quote-result
+    section: Review
+    dfe: [AP1, AP2]
+    statement: 'A measurement gives $3.14159\,\text{m}$ with an uncertainty of $0.02\,\text{m}$. Write the result in the correct form.'
+    answer_label: 'The result in the correct form'
+    check: {kind: sigfigs, value: "3.14159", figures: 3, answer: "3.14", convention: round-once}
+    answer_text: 'The uncertainty is $0.02\,\text{m}$ to one significant figure, so the value is quoted to the same decimal place: $3.14 \pm 0.02\,\text{m}$.'
+
+  - id: r12-method-choice
+    section: Review
+    dfe: [AP2]
+    statement: 'Two forces of $9.0\,\text{N}$ and $12\,\text{N}$ act at right angles. State which method you would use, and why, before you calculate the resultant.'
+    answer_label: 'The method and its reason'
+    check:
+      kind: structured
+      requires: [identify-perpendicular, use-pythagoras]
+      concepts: [resultant, vector]
+      points:
+        - id: identify-perpendicular
+          text: 'The two forces are at right angles, so they and their resultant form a right-angled triangle.'
+          concepts: [vector]
+        - id: use-pythagoras
+          text: 'Find the magnitude with Pythagoras, and the direction from the tangent of the angle. This is quicker and more accurate than a scale drawing because the vectors are perpendicular.'
+          concepts: [resultant]
+    answer_text: 'The forces are at right angles, so use Pythagoras: the resultant has magnitude $\sqrt{9.0^2 + 12^2} = 15\,\text{N}$ and direction $\tan^{-1}(12/9.0) = 53.1^\circ$ from the $9.0\,\text{N}$ force.'
+
+  - id: r13-resolve-80n
+    section: Review
+    dfe: [AP2]
+    statement: 'Resolve a force of $80\,\text{N}$ at $25^\circ$ to the horizontal into horizontal and vertical components.'
+    answer_label: 'The two components'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "80"
+      angle_deg: "25"
+      components: {x: "72.5", y: "33.8"}
+    answer_text: 'Horizontal component $= 80\cos 25^\circ = 72.5\,\text{N}$. Vertical component $= 80\sin 25^\circ = 33.8\,\text{N}$.'
+
+  - id: r14-resultant-5-12
+    section: Review
+    dfe: [AP2]
+    statement: 'Two perpendicular displacements are $5.0\,\text{m}$ and $12\,\text{m}$. Find the magnitude and direction of the resultant displacement.'
+    answer_label: 'The resultant displacement'
+    check:
+      kind: resolve
+      relation: magnitude-and-angle-from-components
+      components: {x: "5.0", y: "12"}
+      magnitude: "13"
+      angle_deg: "67.4"
+    answer_text: 'Magnitude $= \sqrt{5.0^2 + 12^2} = 13\,\text{m}$. Direction $= \tan^{-1}(12/5.0) = 67.4^\circ$ from the $5.0\,\text{m}$ displacement.'
+
+  - id: r15-slope-1200
+    section: Review
+    dfe: [AP2]
+    statement: 'A car of weight $1200\,\text{N}$ rests on a slope at $12^\circ$ to the horizontal. Find the component of the weight along the slope and the component perpendicular to it.'
+    answer_label: 'The two components of the weight'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "1200"
+      angle_deg: "78"
+      components: {x: "249.5", y: "1173.8"}
+    answer_text: 'Along the slope: $1200\sin 12^\circ = 249.5\,\text{N}$. Perpendicular to the slope: $1200\cos 12^\circ = 1173.8\,\text{N}$. The perpendicular component is much larger because the slope is shallow.'

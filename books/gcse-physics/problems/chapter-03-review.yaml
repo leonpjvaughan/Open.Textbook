@@ -1,0 +1,303 @@
+# Mixed practice for the Chapter 3 Review.
+#
+# The review resolves the chapter problem and then interleaves the four sections
+# with Chapters 1 and 2. Items r1 to r9 resolve the coast road bus; r10 to r13
+# reach back to kinetic energy (Chapter 1), speed, work done (Chapter 2) and
+# weight (Chapter 2); r14 to r16 mix the chapter. Each calculation proves
+# `dimensions` and `sigfigs`; the three `structured` records prove only that a
+# model answer contains the declared ideas in order. The momentum items are
+# Higher tier and carry tier H, so they are marked **H** for the reader.
+chapter: 3
+problems:
+  - id: r1-anchor-acceleration
+    section: Review
+    tier: F
+    dfe: [FO5]
+    statement: 'In the chapter problem the bus accelerates from rest to 12 m/s in 8.0 s. Calculate its acceleration.'
+    answer_label: 'Acceleration of the bus'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "(v - u) / t"
+          values:
+            u: {value: "0", unit: "m/s"}
+            v: {value: "12", unit: "m/s"}
+            t: {value: "8.0", unit: "s"}
+          answer: {value: "1.5", unit: "m/s^2"}
+        - {kind: sigfigs, value: "1.5", figures: 2, answer: "1.5", convention: round-once}
+    answer_text: '$a = \dfrac{\Delta v}{t} = \dfrac{12 - 0}{8.0} = 1.5\,\text{m/s}^2$.'
+
+  - id: r2-anchor-force
+    section: Review
+    tier: F
+    dfe: [FO6]
+    statement: 'The bus and its passengers have a mass of 12000 kg and accelerate at 1.5 m/s². Calculate the resultant force on the bus.'
+    answer_label: 'Resultant force on the bus'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * a"
+          values:
+            m: {value: "12000", unit: "kg"}
+            a: {value: "1.5", unit: "m/s^2"}
+          answer: {value: "18000", unit: "N"}
+        - {kind: sigfigs, value: "18000", figures: 2, answer: "1.8e4", convention: round-once}
+    answer_text: '$F = ma = 12000 \times 1.5 = 18000\,\text{N} = 1.8 \times 10^4\,\text{N}$.'
+
+  - id: r3-anchor-thinking
+    section: Review
+    tier: F
+    dfe: [FO7]
+    statement: 'The bus travels at 12 m/s and the driver reacts in 0.60 s. Calculate the thinking distance.'
+    answer_label: 'Thinking distance of the bus'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t"
+          values:
+            v: {value: "12", unit: "m/s"}
+            t: {value: "0.60", unit: "s"}
+          answer: {value: "7.2", unit: "m"}
+        - {kind: sigfigs, value: "7.2", figures: 2, answer: "7.2", convention: round-once}
+    answer_text: '$s = vt = 12 \times 0.60 = 7.2\,\text{m}$.'
+
+  - id: r4-anchor-stopping-dry
+    section: Review
+    tier: F
+    dfe: [FO7]
+    statement: 'On a dry road the thinking distance is 7.2 m and the braking distance is 9.0 m. Calculate the stopping distance.'
+    answer_label: 'Stopping distance on a dry road'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "t_d + s"
+          values:
+            t_d: {value: "7.2", unit: "m"}
+            s: {value: "9.0", unit: "m"}
+          answer: {value: "16.2", unit: "m"}
+        - {kind: sigfigs, value: "16.2", figures: 2, answer: "1.6e1", convention: round-once}
+    answer_text: 'Stopping distance $= 7.2 + 9.0 = 16.2\,\text{m} = 1.6 \times 10^1\,\text{m}$. The hazard is 20 m ahead, so the bus stops in time.'
+
+  - id: r5-anchor-deceleration
+    section: Review
+    tier: F
+    dfe: [FO5]
+    statement: 'On a dry road the bus slows from 12 m/s to rest in a braking distance of 9.0 m. Calculate the deceleration.'
+    answer_label: 'Deceleration of the bus'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "u**2 / (2 * s)"
+          values:
+            u: {value: "12", unit: "m/s"}
+            s: {value: "9.0", unit: "m"}
+          answer: {value: "8.0", unit: "m/s^2"}
+        - {kind: sigfigs, value: "8", figures: 2, answer: "8.0", convention: round-once}
+    answer_text: '$v^2 - u^2 = 2as$ with $v = 0$, so $a = \dfrac{12^2}{2 \times 9.0} = 8.0\,\text{m/s}^2$. The deceleration is $8.0\,\text{m/s}^2$.'
+
+  - id: r6-anchor-braking-force
+    section: Review
+    tier: H
+    dfe: [FO7]
+    statement: 'The bus has a mass of 12000 kg and decelerates at 8.0 m/s². Calculate the braking force.'
+    answer_label: 'Braking force on the bus'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * a"
+          values:
+            m: {value: "12000", unit: "kg"}
+            a: {value: "8.0", unit: "m/s^2"}
+          answer: {value: "96000", unit: "N"}
+        - {kind: sigfigs, value: "96000", figures: 2, answer: "9.6e4", convention: round-once}
+    answer_text: '$F = ma = 12000 \times 8.0 = 96000\,\text{N} = 9.6 \times 10^4\,\text{N}$. A deceleration of $8.0\,\text{m/s}^2$ is large.'
+
+  - id: r7-anchor-stopping-wet
+    section: Review
+    tier: F
+    dfe: [FO7]
+    statement: 'On a wet road the thinking distance is 7.2 m and the braking distance is 14 m. Calculate the stopping distance, and say whether the bus stops before a hazard 20 m ahead.'
+    answer_label: 'Stopping distance on a wet road'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "t_d + s"
+          values:
+            t_d: {value: "7.2", unit: "m"}
+            s: {value: "14", unit: "m"}
+          answer: {value: "21.2", unit: "m"}
+        - {kind: sigfigs, value: "21.2", figures: 2, answer: "21", convention: round-once}
+    answer_text: 'Stopping distance $= 7.2 + 14 = 21.2\,\text{m} = 21\,\text{m}$ to 2 significant figures. This is more than 20 m, so on a wet road the bus does not stop in time.'
+
+  - id: r8-anchor-momentum
+    section: Review
+    tier: H
+    dfe: [FO6]
+    statement: 'The bus has a mass of 12000 kg and travels at 12 m/s. Calculate its momentum.'
+    answer_label: 'Momentum of the bus'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * v"
+          values:
+            m: {value: "12000", unit: "kg"}
+            v: {value: "12", unit: "m/s"}
+          answer: {value: "144000", unit: "kg m/s"}
+        - {kind: sigfigs, value: "144000", figures: 2, answer: "1.4e5", convention: round-once}
+    answer_text: '$p = mv = 12000 \times 12 = 144000\,\text{kg m/s} = 1.4 \times 10^5\,\text{kg m/s}$.'
+
+  - id: r9-anchor-collision
+    section: Review
+    tier: H
+    dfe: [FO6]
+    statement: 'The bus of mass 12000 kg travelling at 12 m/s hits the stationary van of mass 8000 kg. The two move off together. Calculate their common velocity.'
+    answer_label: 'Common velocity of the bus and van'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m1 * v1 / (m1 + m2)"
+          values:
+            m1: {value: "12000", unit: "kg"}
+            v1: {value: "12", unit: "m/s"}
+            m2: {value: "8000", unit: "kg"}
+          answer: {value: "7.2", unit: "m/s"}
+        - {kind: sigfigs, value: "7.2", figures: 2, answer: "7.2", convention: round-once}
+    answer_text: 'Total momentum before $= 12000 \times 12 = 144000\,\text{kg m/s}$. Total momentum after $= 20000 \times v$, so $v = \dfrac{144000}{20000} = 7.2\,\text{m/s}$.'
+
+  - id: r10-kinetic-energy
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'A car of mass 1200 kg travels at 20 m/s. Calculate the energy in its kinetic store.'
+    answer_label: 'Kinetic energy of the car'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * m * v**2"
+          values:
+            m: {value: "1200", unit: "kg"}
+            v: {value: "20", unit: "m/s"}
+          answer: {value: "240000", unit: "J"}
+        - {kind: sigfigs, value: "240000", figures: 2, answer: "2.4e5", convention: round-once}
+    answer_text: '$E_k = \tfrac{1}{2}mv^2 = 0.5 \times 1200 \times 20^2 = 240000\,\text{J} = 2.4 \times 10^5\,\text{J}$.'
+
+  - id: r11-average-speed
+    section: Review
+    tier: F
+    dfe: [FO5]
+    statement: 'A train travels 3600 m in 120 s. Calculate its average speed.'
+    answer_label: 'Average speed of the train'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "s / t"
+          values:
+            s: {value: "3600", unit: "m"}
+            t: {value: "120", unit: "s"}
+          answer: {value: "30", unit: "m/s"}
+        - {kind: sigfigs, value: "30", figures: 2, answer: "3.0e1", convention: round-once}
+    answer_text: '$v = \dfrac{s}{t} = \dfrac{3600}{120} = 30\,\text{m/s} = 3.0 \times 10^1\,\text{m/s}$.'
+
+  - id: r12-work-done
+    section: Review
+    tier: F
+    dfe: [FO2]
+    statement: 'A force of 250 N moves a crate 12 m along the line of the force. Calculate the work done.'
+    answer_label: 'Work done on the crate'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "250", unit: "N"}
+            s: {value: "12", unit: "m"}
+          answer: {value: "3000", unit: "J"}
+        - {kind: sigfigs, value: "3000", figures: 2, answer: "3.0e3", convention: round-once}
+    answer_text: '$W = Fs = 250 \times 12 = 3000\,\text{J} = 3.0 \times 10^3\,\text{J}$.'
+
+  - id: r13-weight
+    section: Review
+    tier: F
+    dfe: [FO1]
+    statement: 'A passenger has a mass of 80 kg. Take $g = 9.8\,\text{N/kg}$. Calculate her weight.'
+    answer_label: 'Weight of the passenger'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g"
+          values:
+            m: {value: "80", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "784", unit: "N"}
+        - {kind: sigfigs, value: "784", figures: 2, answer: "7.8e2", convention: round-once}
+    answer_text: '$W = mg = 80 \times 9.8 = 784\,\text{N} = 7.8 \times 10^2\,\text{N}$.'
+
+  - id: r14-momentum-ball
+    section: Review
+    tier: H
+    dfe: [FO6]
+    statement: 'A ball of mass 0.50 kg moves at 12 m/s. Calculate its momentum.'
+    answer_label: 'Momentum of the ball'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * v"
+          values:
+            m: {value: "0.50", unit: "kg"}
+            v: {value: "12", unit: "m/s"}
+          answer: {value: "6.0", unit: "kg m/s"}
+        - {kind: sigfigs, value: "6", figures: 2, answer: "6.0", convention: round-once}
+    answer_text: '$p = mv = 0.50 \times 12 = 6.0\,\text{kg m/s}$.'
+
+  - id: r15-method-choice
+    section: Review
+    tier: F
+    dfe: [FO5, FO6, FO7]
+    statement: 'A car brakes to a stop. Say which equation you would use to find the deceleration, and which equation you would then use to find the braking force. Name the quantities you need for each.'
+    answer_label: 'Choosing the equation for each step'
+    check:
+      kind: structured
+      requires: [deceleration-equation, force-equation]
+      concepts: [acceleration, resultant-force]
+      points:
+        - id: deceleration-equation
+          text: 'For the deceleration, use $v^2 - u^2 = 2as$ with the final velocity zero. I need the initial velocity and the braking distance.'
+          concepts: [acceleration]
+        - id: force-equation
+          text: 'For the braking force, use $F = ma$. I need the mass of the car and the deceleration I have just found.'
+          concepts: [resultant-force]
+
+  - id: r16-terminal-velocity
+    section: Review
+    tier: F
+    dfe: [FO5]
+    statement: 'Explain why an object falling through a fluid reaches a terminal velocity.'
+    answer_label: 'Reaching terminal velocity'
+    check:
+      kind: structured
+      requires: [drag-increases, resultant-zero, velocity-constant]
+      concepts: [terminal-velocity, resultant-force, drag]
+      points:
+        - id: drag-increases
+          text: 'At first the weight is larger than the drag, so the object accelerates. As the object gets faster, the drag force increases.'
+          concepts: [drag]
+        - id: resultant-zero
+          text: 'Eventually the drag force equals the weight, so the resultant force is zero.'
+          concepts: [resultant-force]
+        - id: velocity-constant
+          text: 'A zero resultant force means the velocity stops changing, so the object falls at a steady terminal velocity.'
+          concepts: [terminal-velocity]

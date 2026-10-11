@@ -9,9 +9,17 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.2 Parallel and perpendicular lines — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: C1
+Work through these on your own. Put every line into the form $y = mx + c$ before
+you compare gradients, and check the product $m_1 m_2$ when a question asks
+whether two lines are perpendicular. The last two items reach back to the
+gradient and the equation of a line from 3.1, so decide which tool each one
+needs before you start.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-03-practice-3.2
+
+:::answers chapter-03-practice-3.2

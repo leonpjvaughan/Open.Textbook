@@ -1,0 +1,252 @@
+# Practice set for 3.3 (Safety in public transport).
+#
+# Both the questions and the answers on the page are rendered from these records.
+# A distance proves `dimensions` and `sigfigs`; a deceleration and a force do the
+# same. The `structured` records prove only that a model answer contains the
+# declared ideas in order. The question of which factors matter, and how much,
+# stays with the reader and the teacher.
+chapter: 3
+problems:
+  - id: p1-thinking-distance-car
+    section: '3.3'
+    tier: F
+    dfe: [FO7]
+    statement: 'A car travels at 18 m/s. The driver has a reaction time of 0.50 s. Calculate the thinking distance.'
+    answer_label: 'Thinking distance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t"
+          values:
+            v: {value: "18", unit: "m/s"}
+            t: {value: "0.50", unit: "s"}
+          answer: {value: "9.0", unit: "m"}
+        - {kind: sigfigs, value: "9", figures: 2, answer: "9.0", convention: round-once}
+    answer_text: '$s = vt = 18 \times 0.50 = 9.0\,\text{m}$. The car keeps moving at 18 m/s while the driver reacts.'
+
+  - id: p2-stopping-distance-car
+    section: '3.3'
+    tier: F
+    dfe: [FO7]
+    statement: 'A car travels at 22 m/s. The reaction time is 0.50 s and the braking distance is 40 m. Calculate the thinking distance and the stopping distance.'
+    answer_label: 'Thinking distance and stopping distance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t"
+          values:
+            v: {value: "22", unit: "m/s"}
+            t: {value: "0.50", unit: "s"}
+          answer: {value: "11", unit: "m"}
+        - {kind: sigfigs, value: "11", figures: 2, answer: "11", convention: round-once}
+    answer_text: 'Thinking distance $= 22 \times 0.50 = 11\,\text{m}$. Stopping distance $= 11 + 40 = 51\,\text{m}$.'
+
+  - id: p3-deceleration-van
+    section: '3.3'
+    tier: F
+    dfe: [FO7]
+    statement: 'A van travels at 16 m/s and stops in a distance of 32 m. Calculate the deceleration.'
+    answer_label: 'Deceleration of the van'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "u**2 / (2 * s)"
+          values:
+            u: {value: "16", unit: "m/s"}
+            s: {value: "32", unit: "m"}
+          answer: {value: "4.0", unit: "m/s^2"}
+        - {kind: sigfigs, value: "4", figures: 2, answer: "4.0", convention: round-once}
+    answer_text: '$v^2 - u^2 = 2as$ with $v = 0$, so $a = \dfrac{u^2}{2s} = \dfrac{16^2}{2 \times 32} = 4.0\,\text{m/s}^2$. The deceleration is $4.0\,\text{m/s}^2$.'
+
+  - id: p4-braking-force-car
+    section: '3.3'
+    tier: H
+    dfe: [FO7]
+    statement: 'A car of mass 1200 kg travels at 20 m/s and stops in a distance of 25 m. Calculate the deceleration and the braking force.'
+    answer_label: 'Deceleration and braking force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "u**2 / (2 * s)"
+          values:
+            u: {value: "20", unit: "m/s"}
+            s: {value: "25", unit: "m"}
+          answer: {value: "8.0", unit: "m/s^2"}
+        - kind: dimensions
+          expression: "m * u**2 / (2 * s)"
+          values:
+            m: {value: "1200", unit: "kg"}
+            u: {value: "20", unit: "m/s"}
+            s: {value: "25", unit: "m"}
+          answer: {value: "9600", unit: "N"}
+        - {kind: sigfigs, value: "9600", figures: 2, answer: "9.6e3", convention: round-once}
+    answer_text: 'The deceleration is $\dfrac{20^2}{2 \times 25} = 8.0\,\text{m/s}^2$. The braking force is $F = ma = 1200 \times 8.0 = 9600\,\text{N} = 9.6 \times 10^3\,\text{N}$.'
+
+  - id: p5-braking-force-lorry
+    section: '3.3'
+    tier: H
+    dfe: [FO7]
+    statement: 'A van of mass 1300 kg travels at 20 m/s and stops in a distance of 40 m. Calculate the braking force.'
+    answer_label: 'Braking force on the van'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * u**2 / (2 * s)"
+          values:
+            m: {value: "1300", unit: "kg"}
+            u: {value: "20", unit: "m/s"}
+            s: {value: "40", unit: "m"}
+          answer: {value: "6500", unit: "N"}
+        - {kind: sigfigs, value: "6500", figures: 2, answer: "6.5e3", convention: round-once}
+    answer_text: 'The deceleration is $\dfrac{20^2}{2 \times 40} = 5.0\,\text{m/s}^2$, so $F = ma = 1300 \times 5.0 = 6500\,\text{N} = 6.5 \times 10^3\,\text{N}$.'
+
+  - id: p6-factors-braking
+    section: '3.3'
+    tier: F
+    dfe: [FO7]
+    statement: 'Give two factors that can increase the braking distance of a car, and explain how one of them has its effect.'
+    answer_label: 'Two factors that increase braking distance'
+    check:
+      kind: structured
+      requires: [factor-road, factor-vehicle, explain-effect]
+      concepts: [braking-distance, friction]
+      points:
+        - id: factor-road
+          text: 'A wet or icy road increases the braking distance, because there is less grip between the tyres and the road.'
+          concepts: [braking-distance, friction]
+        - id: factor-vehicle
+          text: 'Worn brakes or worn tyres increase the braking distance, because the vehicle can transmit a smaller braking force.'
+          concepts: [braking-distance]
+        - id: explain-effect
+          text: 'A smaller braking force gives a smaller deceleration, so the vehicle takes longer to stop and travels further while it stops.'
+          concepts: [friction]
+
+  - id: p7-reaction-time-factors
+    section: '3.3'
+    tier: F
+    dfe: [FO7]
+    statement: 'State two factors that can increase the reaction time of a driver, and say what a longer reaction time does to the stopping distance.'
+    answer_label: 'Two factors that increase reaction time'
+    check:
+      kind: structured
+      requires: [factor-tiredness, factor-substance, effect-on-distance]
+      concepts: [reaction-time, thinking-distance, stopping-distance]
+      points:
+        - id: factor-tiredness
+          text: 'Tiredness increases the reaction time.'
+          concepts: [reaction-time]
+        - id: factor-substance
+          text: 'Alcohol or drugs increase the reaction time, and so do distractions.'
+          concepts: [reaction-time]
+        - id: effect-on-distance
+          text: 'A longer reaction time means a longer thinking distance, so the stopping distance is longer.'
+          concepts: [thinking-distance, stopping-distance]
+
+  - id: p8-measure-reaction-time
+    section: '3.3'
+    tier: F
+    dfe: [FO7]
+    statement: 'Describe how to measure a reaction time with a ruler.'
+    answer_label: 'Measuring a reaction time with a ruler'
+    check:
+      kind: structured
+      requires: [drop-ruler, measure-distance, repeat]
+      concepts: [reaction-time]
+      points:
+        - id: drop-ruler
+          text: 'A partner holds a ruler vertically above the open hand and lets it fall without warning.'
+          concepts: [reaction-time]
+        - id: measure-distance
+          text: 'Catch the ruler as quickly as possible and measure how far it fell. A longer distance means a slower reaction.'
+          concepts: [reaction-time]
+        - id: repeat
+          text: 'Repeat the test and take an average, so the result is more reliable.'
+          concepts: [reaction-time]
+
+  - id: p9-large-deceleration-force
+    section: '3.3'
+    tier: H
+    dfe: [FO7]
+    statement: 'A car of mass 1500 kg travels at 24 m/s and stops in a distance of 36 m. Calculate the deceleration and the braking force.'
+    answer_label: 'Deceleration and braking force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "u**2 / (2 * s)"
+          values:
+            u: {value: "24", unit: "m/s"}
+            s: {value: "36", unit: "m"}
+          answer: {value: "8.0", unit: "m/s^2"}
+        - kind: dimensions
+          expression: "m * u**2 / (2 * s)"
+          values:
+            m: {value: "1500", unit: "kg"}
+            u: {value: "24", unit: "m/s"}
+            s: {value: "36", unit: "m"}
+          answer: {value: "12000", unit: "N"}
+        - {kind: sigfigs, value: "12000", figures: 2, answer: "1.2e4", convention: round-once}
+    answer_text: 'The deceleration is $\dfrac{24^2}{2 \times 36} = 8.0\,\text{m/s}^2$. The braking force is $F = ma = 1500 \times 8.0 = 12000\,\text{N} = 1.2 \times 10^4\,\text{N}$. A deceleration of $8.0\,\text{m/s}^2$ is large and dangerous.'
+
+  - id: p10-stopping-distance-van
+    section: '3.3'
+    tier: F
+    dfe: [FO7]
+    statement: 'A van travels at 16 m/s. The reaction time is 0.50 s and the braking distance is 24 m. Calculate the stopping distance.'
+    answer_label: 'Stopping distance of the van'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t + s"
+          values:
+            v: {value: "16", unit: "m/s"}
+            t: {value: "0.50", unit: "s"}
+            s: {value: "24", unit: "m"}
+          answer: {value: "32", unit: "m"}
+        - {kind: sigfigs, value: "32", figures: 2, answer: "32", convention: round-once}
+    answer_text: 'Thinking distance $= 16 \times 0.50 = 8.0\,\text{m}$. Stopping distance $= 8.0 + 24 = 32\,\text{m}$.'
+
+  - id: p11-graph-shape
+    section: '3.3'
+    tier: F
+    dfe: [FO7]
+    statement: 'A graph of stopping distance against speed curves upwards. Explain why the thinking distance is a straight line on this graph, and why the braking distance curves.'
+    answer_label: 'Why the graph curves upwards'
+    check:
+      kind: structured
+      requires: [thinking-linear, braking-square]
+      concepts: [thinking-distance, braking-distance]
+      points:
+        - id: thinking-linear
+          text: 'Thinking distance is speed multiplied by the reaction time, so it is proportional to speed; its graph is a straight line through the origin.'
+          concepts: [thinking-distance]
+        - id: braking-square
+          text: 'Braking distance depends on the square of the speed, so doubling the speed makes it four times as large. Its graph curves upwards.'
+          concepts: [braking-distance]
+
+  - id: p12-brakes-heat
+    section: '3.3'
+    tier: F
+    dfe: [FO7]
+    statement: 'Explain why the brakes of a vehicle become hot when the vehicle stops.'
+    answer_label: 'Why the brakes become hot'
+    check:
+      kind: structured
+      requires: [kinetic-energy, work-done-friction, thermal-store]
+      concepts: [kinetic-store, work-done, thermal-store]
+      points:
+        - id: kinetic-energy
+          text: 'The moving vehicle has energy in its kinetic store.'
+          concepts: [kinetic-store]
+        - id: work-done-friction
+          text: 'The friction force between the brakes and the wheels does work on the brakes as the vehicle slows.'
+          concepts: [work-done]
+        - id: thermal-store
+          text: 'This work transfers energy to the thermal store of the brakes, so their temperature rises.'
+          concepts: [thermal-store]

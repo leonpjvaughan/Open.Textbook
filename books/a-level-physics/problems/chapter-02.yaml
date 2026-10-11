@@ -1,0 +1,459 @@
+# Worked solutions for Chapter 2 (Vectors and scalars).
+#
+# These are the numerical worked examples, the warm-up recalls and the guided
+# calculations that the Learn and Practise with help pages show. The pages carry
+# the prose and the reasoning; this bank is the independent check of every number
+# in them, so a slip in a worked example cannot ship. The records are not rendered
+# by a page marker: the pages write their own working, and the `:::answers` blocks
+# come from the practice banks.
+#
+# A one-dimensional resultant or a scalar multiple is proved by `evaluate`; a
+# quantity with a unit by `dimensions`; a resolved vector or a perpendicular
+# resultant by `resolve`, which compares against the exact trigonometric value
+# with a stated tolerance; a non-exact direction by `approx`. A reason is a
+# `structured` record: presence, order and coverage only, never physics.
+chapter: 2
+problems:
+  # --- Section 2.1, the Learn worked examples and the guided problems ---------
+  - id: w1-classify
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'Classify each quantity as a scalar or a vector: distance, displacement, speed, velocity, mass, force.'
+    answer_label: 'Scalars and vectors'
+    check:
+      kind: structured
+      requires: [scalars, vectors]
+      concepts: [scalar, vector]
+      points:
+        - id: scalars
+          text: 'Distance, speed and mass are scalars, because each has magnitude only.'
+          concepts: [scalar]
+        - id: vectors
+          text: 'Displacement, velocity and force are vectors, because each has a direction as well as a magnitude.'
+          concepts: [vector]
+    answer_text: 'Distance, speed and mass are scalars. Displacement, velocity and force are vectors.'
+
+  - id: w2-displacement-line
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A walker walks 3.0 km east, then 1.5 km west. Find the resultant displacement.'
+    answer_label: 'The resultant displacement'
+    check:
+      kind: dimensions
+      expression: "a - b"
+      values:
+        a: {value: "3.0", unit: "km"}
+        b: {value: "1.5", unit: "km"}
+      answer: {value: "1.5", unit: "km"}
+    answer_text: 'The displacements are along the same line but opposite, so subtract: $3.0 - 1.5 = 1.5\,\text{km}$ east.'
+
+  - id: w3-velocity-dt
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A cyclist travels 500 m east in 20 s. Find the average velocity.'
+    answer_label: 'The average velocity'
+    check:
+      kind: dimensions
+      expression: "d / t"
+      values:
+        d: {value: "500", unit: "m"}
+        t: {value: "20", unit: "s"}
+      answer: {value: "25", unit: "m s^-1"}
+    answer_text: '$v = \dfrac{d}{t} = \dfrac{500}{20} = 25\,\text{m}\,\text{s}^{-1}$ east.'
+
+  - id: w4-boat-collinear
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A boat has a speed through the water of 6.0 m/s east. The current is 2.0 m/s east. Find its velocity over the ground when it travels with the current and against it.'
+    answer_label: 'The velocity with and against the current'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "6.0 + 2.0", answer: "8.0"}
+        - {kind: evaluate, expression: "6.0 - 2.0", answer: "4.0"}
+    answer_text: 'With the current the two velocities are along the same line and in the same direction, so add: $6.0 + 2.0 = 8.0\,\text{m}\,\text{s}^{-1}$ east. Against the current, subtract: $6.0 - 2.0 = 4.0\,\text{m}\,\text{s}^{-1}$ west.'
+
+  - id: w5-scalar-multiple
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A force of 20 N acts east. Find the force 3 times larger in the same direction.'
+    answer_label: 'The scaled force'
+    check: {kind: evaluate, expression: "3 * 20", answer: "60"}
+    answer_text: 'Multiplying a vector by 3 gives $3 \times 20 = 60\,\text{N}$ east. The direction is unchanged.'
+
+  - id: g1-classify-guided
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'Classify each quantity as a scalar or a vector: energy, acceleration, temperature, weight.'
+    answer_label: 'Scalars and vectors'
+    check:
+      kind: structured
+      requires: [scalars, vectors]
+      concepts: [scalar, vector]
+      points:
+        - id: scalars
+          text: 'Energy and temperature are scalars, because each has magnitude only.'
+          concepts: [scalar]
+        - id: vectors
+          text: 'Acceleration and weight are vectors, because each has a direction as well as a magnitude.'
+          concepts: [vector]
+    answer_text: 'Energy and temperature are scalars. Acceleration and weight are vectors.'
+
+  - id: g2-hiker-line
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A hiker walks 4.0 km north, then 2.5 km south. Find the resultant displacement.'
+    answer_label: 'The resultant displacement'
+    check: {kind: evaluate, expression: "4.0 - 2.5", answer: "1.5"}
+    answer_text: 'Subtract the opposite displacements: $4.0 - 2.5 = 1.5\,\text{km}$ north.'
+
+  - id: g3-speed-velocity
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A car drives at a steady 15 m/s round a bend. Explain why its speed is constant but its velocity is changing.'
+    answer_label: 'Speed and velocity on a bend'
+    check:
+      kind: structured
+      requires: [speed-constant, velocity-changes]
+      concepts: [speed, velocity]
+      points:
+        - id: speed-constant
+          text: 'The speed is a scalar, and it is the magnitude of the velocity, so a steady speed means the magnitude does not change.'
+          concepts: [speed]
+        - id: velocity-changes
+          text: 'The velocity is a vector. Its direction changes as the car goes round the bend, so the velocity changes.'
+          concepts: [velocity]
+    answer_text: 'Speed is a scalar and stays at 15 m/s. Velocity is a vector, and its direction changes round the bend, so the velocity changes.'
+
+  - id: g4-cyclist-line
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A cyclist rides 8.0 km east, then 6.0 km west. Find the resultant displacement.'
+    answer_label: 'The resultant displacement'
+    check: {kind: evaluate, expression: "8.0 - 6.0", answer: "2.0"}
+    answer_text: 'Subtract: $8.0 - 6.0 = 2.0\,\text{km}$ east.'
+
+  - id: g5-current-scalar
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'Explain why electric current is a scalar even though it has a direction.'
+    answer_label: 'Why current is a scalar'
+    check:
+      kind: structured
+      requires: [vector-rule, current-fails]
+      concepts: [vector, scalar]
+      points:
+        - id: vector-rule
+          text: 'A quantity is a vector only if it adds by the triangle rule, so two of them combine into one resultant with a direction.'
+          concepts: [vector]
+        - id: current-fails
+          text: 'Currents do not combine by the triangle rule, so current is a scalar.'
+          concepts: [scalar]
+    answer_text: 'A vector must add by the triangle rule. Currents do not combine in that way, so current is a scalar.'
+
+  - id: g6-return
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A dog runs 50 m east, then 50 m west. Find its resultant displacement.'
+    answer_label: 'The resultant displacement'
+    check: {kind: evaluate, expression: "50 - 50", answer: "0"}
+    answer_text: 'The displacements are equal and opposite, so the resultant is $0\,\text{m}$.'
+
+  # --- Section 2.2, the Learn worked examples and the guided problems ---------
+  - id: w6-resolve-25-30
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'Resolve a velocity of 25 m/s at 30 degrees above the horizontal into horizontal and vertical components.'
+    answer_label: 'The two components'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "25"
+      angle_deg: "30"
+      components: {x: "21.65", y: "12.5"}
+    answer_text: '$v_x = 25\cos 30^\circ = 21.7\,\text{m}\,\text{s}^{-1}$ and $v_y = 25\sin 30^\circ = 12.5\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: w7-resolve-200-120
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'A force of 200 N acts at 120 degrees from the positive x-axis. Find its components.'
+    answer_label: 'The two components'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "200"
+      angle_deg: "120"
+      components: {x: "-100", y: "173.2"}
+    answer_text: '$F_x = 200\cos 120^\circ = -100\,\text{N}$ and $F_y = 200\sin 120^\circ = 173.2\,\text{N}$. The negative $x$-component shows the force acts back along the $x$-axis.'
+
+  - id: w8-resultant-6-8
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'Two forces of 6.0 N and 8.0 N act at right angles. Find the magnitude and direction of the resultant.'
+    answer_label: 'The resultant force'
+    check:
+      kind: resolve
+      relation: magnitude-and-angle-from-components
+      components: {x: "6.0", y: "8.0"}
+      magnitude: "10"
+      angle_deg: "53.1"
+    answer_text: 'Magnitude $= \sqrt{6.0^2 + 8.0^2} = 10\,\text{N}$. Direction $= \tan^{-1}\!\left(\dfrac{8.0}{6.0}\right) = 53.1^\circ$ from the 6.0 N force.'
+
+  - id: w9-slope-500
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'A block of weight 500 N rests on a slope at 25 degrees to the horizontal. Resolve the weight along and perpendicular to the slope.'
+    answer_label: 'The two components of the weight'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "500"
+      angle_deg: "65"
+      components: {x: "211.3", y: "453.2"}
+    answer_text: 'The weight makes $65^\circ$ with the down-slope direction, so the component along the slope is $500\cos 65^\circ = 211.3\,\text{N}$, equal to $500\sin 25^\circ$. The perpendicular component is $500\sin 65^\circ = 453.2\,\text{N}$, equal to $500\cos 25^\circ$.'
+
+  - id: w10-components-120-50
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'A displacement has components 120 m east and 50 m north. Find its magnitude and direction.'
+    answer_label: 'The magnitude and direction'
+    check:
+      kind: resolve
+      relation: magnitude-and-angle-from-components
+      components: {x: "120", y: "50"}
+      magnitude: "130"
+      angle_deg: "22.6"
+    answer_text: 'Magnitude $= \sqrt{120^2 + 50^2} = 130\,\text{m}$. Direction $= \tan^{-1}\!\left(\dfrac{50}{120}\right) = 22.6^\circ$ north of east.'
+
+  - id: w11-scale-drawing
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'Describe how to add two vectors at 40 degrees by a scale drawing.'
+    answer_label: 'The scale-drawing method'
+    check:
+      kind: structured
+      requires: [choose-scale, draw, measure]
+      concepts: [scale-drawing, resultant]
+      points:
+        - id: choose-scale
+          text: 'Choose a scale, such as 1 cm to 10 N, and write it down.'
+          concepts: [scale-drawing]
+        - id: draw
+          text: 'Draw the first vector as an arrow to scale in its direction, then draw the second vector head to tail from the tip of the first.'
+          concepts: [scale-drawing]
+        - id: measure
+          text: 'Draw the resultant from the tail of the first vector to the tip of the second, measure its length and convert it with the scale, and measure its angle with a protractor.'
+          concepts: [resultant, scale-drawing]
+    answer_text: 'Choose a scale, draw the vectors head to tail, then draw and measure the resultant.'
+
+  - id: g7-resolve-60-40
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'Resolve a force of 60 N at 40 degrees to the horizontal.'
+    answer_label: 'The two components'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "60"
+      angle_deg: "40"
+      components: {x: "45.96", y: "38.57"}
+    answer_text: '$F_x = 60\cos 40^\circ = 46.0\,\text{N}$ and $F_y = 60\sin 40^\circ = 38.6\,\text{N}$.'
+
+  - id: g8-components-minus-3-4
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'A vector has components -3.0 and +4.0. Find its magnitude and direction.'
+    answer_label: 'The magnitude and direction'
+    check:
+      kind: resolve
+      relation: magnitude-and-angle-from-components
+      components: {x: "-3.0", y: "4.0"}
+      magnitude: "5.0"
+      angle_deg: "126.9"
+    answer_text: 'Magnitude $= \sqrt{(-3.0)^2 + 4.0^2} = 5.0$. The vector lies in the second quadrant, so the direction is $180^\circ - 53.1^\circ = 126.9^\circ$ from the positive $x$-axis.'
+
+  - id: g9-resultant-7-24
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'Two forces of 7.0 N and 24 N act at right angles. Find the resultant.'
+    answer_label: 'The resultant force'
+    check:
+      kind: resolve
+      relation: magnitude-and-angle-from-components
+      components: {x: "7.0", y: "24"}
+      magnitude: "25"
+      angle_deg: "73.7"
+    answer_text: 'Magnitude $= \sqrt{7.0^2 + 24^2} = 25\,\text{N}$. Direction $= \tan^{-1}\!\left(\dfrac{24}{7.0}\right) = 73.7^\circ$ from the 7.0 N force.'
+
+  - id: g10-slope-800
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'A weight of 800 N acts on a slope at 20 degrees to the horizontal. Resolve it along and perpendicular to the slope.'
+    answer_label: 'The two components of the weight'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "800"
+      angle_deg: "70"
+      components: {x: "273.6", y: "751.8"}
+    answer_text: 'Along the slope: $800\sin 20^\circ = 273.6\,\text{N}$. Perpendicular to the slope: $800\cos 20^\circ = 751.8\,\text{N}$.'
+
+  - id: g11-resolve-15-35
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'Resolve a velocity of 15 m/s at 35 degrees above the horizontal.'
+    answer_label: 'The two components'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "15"
+      angle_deg: "35"
+      components: {x: "12.29", y: "8.60"}
+    answer_text: '$v_x = 15\cos 35^\circ = 12.3\,\text{m}\,\text{s}^{-1}$ and $v_y = 15\sin 35^\circ = 8.60\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: g12-scale-method
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'State why Pythagoras cannot be used alone to add two vectors at 55 degrees, and name a method that works.'
+    answer_label: 'Why Pythagoras fails, and what to use'
+    check:
+      kind: structured
+      requires: [no-right-angle, use-scale-drawing]
+      concepts: [resultant, scale-drawing]
+      points:
+        - id: no-right-angle
+          text: 'Pythagoras applies only to a right-angled triangle, and the triangle formed by two vectors at 55 degrees has no right angle unless the vectors are at right angles.'
+          concepts: [resultant]
+        - id: use-scale-drawing
+          text: 'Draw the vectors head to tail to scale and measure the resultant, or resolve each vector into perpendicular components first.'
+          concepts: [scale-drawing, component]
+    answer_text: 'The vectors are not at right angles, so Pythagoras alone does not apply. Use a scale drawing, or resolve each vector into components first.'
+
+  # --- The warm-up recalls ----------------------------------------------------
+  - id: warmup-2-1-speed
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'Warm-up: write 72 km/h in metres per second.'
+    check: {kind: convert, value: "72", from: "km h^-1", to: "m s^-1", answer: "20"}
+    answer_text: '$72\,\text{km}\,\text{h}^{-1} = 20\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: warmup-2-1-standard-form
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'Warm-up: write 0.00045 m in standard form to two significant figures.'
+    check: {kind: sigfigs, value: "0.00045", figures: 2, answer: "4.5e-4", convention: round-once}
+    answer_text: '$4.5 \times 10^{-4}\,\text{m}$.'
+
+  - id: warmup-2-1-pythagoras
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'Warm-up: a right-angled triangle has shorter sides 3 and 4. Find the hypotenuse.'
+    check: {kind: evaluate, expression: "sqrt(3**2 + 4**2)", answer: "5"}
+    answer_text: 'The hypotenuse is $\sqrt{3^2 + 4^2} = \sqrt{25} = 5$.'
+
+  - id: warmup-2-2-pythagoras
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'Warm-up: a right-angled triangle has shorter sides 5 and 12. Find the hypotenuse.'
+    check: {kind: evaluate, expression: "sqrt(5**2 + 12**2)", answer: "13"}
+    answer_text: 'The hypotenuse is $\sqrt{5^2 + 12^2} = \sqrt{169} = 13$.'
+
+  - id: warmup-2-2-cos60
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'Warm-up: work out $50\cos 60^\circ$.'
+    check: {kind: evaluate, expression: "50 * cos(60 * pi / 180)", answer: "25"}
+    answer_text: '$50\cos 60^\circ = 50 \times 0.5 = 25$.'
+
+  - id: warmup-2-2-sin60
+    section: '2.2'
+    dfe: [AP2]
+    statement: 'Warm-up: work out $50\sin 60^\circ$ to three significant figures.'
+    check: {kind: approx, value: "50 * sin(60 * pi / 180)", target: "43.3", tolerance: "0.01"}
+    answer_text: '$50\sin 60^\circ = 43.3$ to three significant figures.'
+
+  # --- The chapter problem, resolved on the Review page -----------------------
+  - id: anchor-ferry-velocity
+    section: Review
+    dfe: [AP2]
+    statement: 'The ferry points straight across at 4.0 m/s and the current is 3.0 m/s. Find the velocity over the ground, as a magnitude and a direction.'
+    check:
+      kind: resolve
+      relation: magnitude-and-angle-from-components
+      components: {x: "4.0", y: "3.0"}
+      magnitude: "5.0"
+      angle_deg: "36.9"
+    answer_text: '$v = \sqrt{4.0^2 + 3.0^2} = 5.0\,\text{m}\,\text{s}^{-1}$, at $\tan^{-1}(3.0/4.0) = 36.9^\circ$ from the line straight across, on the downstream side.'
+
+  - id: anchor-ferry-time
+    section: Review
+    dfe: [AP2]
+    statement: 'The river is 120 m wide and the across component of the velocity is 4.0 m/s. Find the crossing time.'
+    check:
+      kind: dimensions
+      expression: "d / v"
+      values:
+        d: {value: "120", unit: "m"}
+        v: {value: "4.0", unit: "m s^-1"}
+      answer: {value: "30", unit: "s"}
+    answer_text: '$t = \dfrac{120}{4.0} = 30\,\text{s}$. The current is at right angles to the crossing, so it does not change the crossing time.'
+
+  - id: anchor-ferry-downstream
+    section: Review
+    dfe: [AP2]
+    statement: 'The current is 3.0 m/s and the crossing takes 30 s. Find how far downstream the ferry lands.'
+    check:
+      kind: dimensions
+      expression: "v * t"
+      values:
+        v: {value: "3.0", unit: "m s^-1"}
+        t: {value: "30", unit: "s"}
+      answer: {value: "90", unit: "m"}
+    answer_text: 'Distance downstream $= 3.0 \times 30 = 90\,\text{m}$.'
+
+  - id: anchor-ferry-heading
+    section: Review
+    dfe: [AP2]
+    statement: 'The ferry must cancel the 3.0 m/s current and land directly opposite. Find the angle upstream from the straight-across direction.'
+    check: {kind: approx, value: "asin(3.0 / 4.0) * 180 / pi", target: "48.59", tolerance: "0.01"}
+    answer_text: 'The ferry must have an upstream component of 3.0 m/s, so $4.0\sin\theta = 3.0$ and $\theta = \sin^{-1}(0.75) = 48.6^\circ$.'
+
+  - id: anchor-ferry-heading-components
+    section: Review
+    dfe: [AP2]
+    statement: 'With the heading at 48.59 degrees upstream, find the across component and the upstream component of the ferry velocity.'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "4.0"
+      angle_deg: "48.59"
+      components: {x: "2.646", y: "3.0"}
+    answer_text: 'Across component $= 4.0\cos 48.6^\circ = 2.65\,\text{m}\,\text{s}^{-1}$. Upstream component $= 4.0\sin 48.6^\circ = 3.0\,\text{m}\,\text{s}^{-1}$, which exactly cancels the current.'
+
+  - id: anchor-ferry-direct-time
+    section: Review
+    dfe: [AP2]
+    statement: 'With the heading at 48.59 degrees upstream, the across component is 2.646 m/s. Find the crossing time for the 120 m river.'
+    check: {kind: approx, value: "120 / (4.0 * cos(asin(3.0 / 4.0)))", target: "45.36", tolerance: "0.01"}
+    answer_text: '$t = \dfrac{120}{2.65} = 45\,\text{s}$. The ferry takes longer than the 30 s straight-across crossing, because the across component is smaller when part of the velocity is used to fight the current.'
+
+  - id: anchor-ferry-judgement
+    section: Review
+    dfe: [AP2]
+    statement: 'State the heading needed to land directly opposite, how long the crossing then takes, and one reason the ferry operator might choose the shorter crossing instead.'
+    answer_label: 'The judgement'
+    check:
+      kind: structured
+      requires: [state-heading, state-time, state-choice]
+      concepts: [resultant, resolution]
+      points:
+        - id: state-heading
+          text: 'To land directly opposite, the ferry must head about 49 degrees upstream of the straight-across direction, so that its upstream component cancels the 3.0 m/s current.'
+          concepts: [resolution]
+        - id: state-time
+          text: 'The crossing then takes about 45 s, longer than the 30 s straight-across crossing, because the across component falls to 2.65 m/s.'
+          concepts: [resultant]
+        - id: state-choice
+          text: 'The operator might choose the 30 s crossing and allow the ferry to be carried 90 m downstream, then use a shorter landing stage or a curved route on the return.'
+          concepts: [resultant]
+    answer_text: 'Head about 49 degrees upstream to land directly opposite; the crossing then takes about 45 s. The operator may prefer the 30 s straight-across crossing and accept the 90 m of downstream drift.'

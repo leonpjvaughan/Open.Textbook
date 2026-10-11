@@ -1,0 +1,197 @@
+# Practice set for 2.1 (Scalars and vectors).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]` in book.yaml, so a check may use either.
+#
+# This section carries no component arithmetic: resolving a vector is Section 2.2.
+# A quantity with magnitude and direction is checked as a `vector` addition or a
+# `dimensions` quotient; a classification or a reason is a `structured` record,
+# which proves only that a model answer contains the declared ideas in order and
+# covers the declared concepts.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 2
+problems:
+  - id: p1-classify-scalar-vector
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'Classify each quantity as a scalar or a vector: mass, weight, displacement, energy, acceleration, temperature.'
+    answer_label: 'Scalars and vectors'
+    check:
+      kind: structured
+      requires: [scalars, vectors]
+      concepts: [scalar, vector]
+      points:
+        - id: scalars
+          text: 'Mass, energy and temperature are scalars, because each has a magnitude but no direction.'
+          concepts: [scalar]
+        - id: vectors
+          text: 'Weight, displacement and acceleration are vectors, because each has a direction as well as a magnitude.'
+          concepts: [vector]
+    answer_text: 'Mass, energy and temperature are scalars. Weight, displacement and acceleration are vectors.'
+
+  - id: p2-hiker-displacement
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A hiker walks $4.2\,\text{km}$ north, then turns and walks $1.7\,\text{km}$ south. Find the resultant displacement.'
+    answer_label: 'The resultant displacement'
+    check:
+      kind: dimensions
+      expression: "a - b"
+      values:
+        a: {value: "4.2", unit: "km"}
+        b: {value: "1.7", unit: "km"}
+      answer: {value: "2.5", unit: "km"}
+    answer_text: 'The two displacements are along the same line but in opposite directions, so subtract: $4.2 - 1.7 = 2.5\,\text{km}$ north.'
+
+  - id: p3-velocity-dimensions
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A car travels $1.2\,\text{km}$ east in $60\,\text{s}$. Find its average velocity.'
+    answer_label: 'The average velocity'
+    check:
+      kind: dimensions
+      expression: "d / t"
+      values:
+        d: {value: "1200", unit: "m"}
+        t: {value: "60", unit: "s"}
+      answer: {value: "20", unit: "m s^-1"}
+    answer_text: 'Velocity is displacement divided by time. In metres, $d = 1.2 \times 10^3\,\text{m}$, so $v = \dfrac{1200}{60} = 20\,\text{m}\,\text{s}^{-1}$ east.'
+
+  - id: p4-collinear-forces
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'Two forces act along the same line. A force of $300\,\text{N}$ acts to the right, and a force of $450\,\text{N}$ acts to the left. Find the resultant force, and state its direction.'
+    answer_label: 'The resultant force'
+    check: {kind: evaluate, expression: "300 - 450", answer: "-150"}
+    answer_text: 'Take right as positive. The resultant is $300 - 450 = -150\,\text{N}$, so $150\,\text{N}$ to the left.'
+
+  - id: p5-distance-displacement
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'Explain the difference between distance and displacement, using a journey that ends where it started.'
+    answer_label: 'Distance and displacement'
+    check:
+      kind: structured
+      requires: [distance-definition, displacement-definition, worked-example]
+      concepts: [distance, displacement]
+      points:
+        - id: distance-definition
+          text: 'Distance is a scalar: it is the total length of the path travelled, with no direction.'
+          concepts: [distance, scalar]
+        - id: displacement-definition
+          text: 'Displacement is a vector: it is the straight-line distance and direction from the start to the finish.'
+          concepts: [displacement, vector]
+        - id: worked-example
+          text: 'For a runner who completes one lap of a 400 m track, the distance is 400 m, but the displacement is zero, because the finish is the same point as the start.'
+          concepts: [distance, displacement]
+    answer_text: 'Distance is the total length of the path travelled. Displacement is the straight-line distance and direction from the start to the finish. A runner who completes one lap of a 400 m track covers a distance of 400 m, but the displacement is zero.'
+
+  - id: p6-return-displacement
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A plane flies $800\,\text{km}$ east and then $800\,\text{km}$ west. Find its final displacement.'
+    answer_label: 'The final displacement'
+    check: {kind: evaluate, expression: "800 - 800", answer: "0"}
+    answer_text: 'The two displacements are equal and opposite, so the resultant displacement is $0\,\text{km}$. The distance travelled is $1600\,\text{km}$, but the plane is back where it started.'
+
+  - id: p7-current-scalar
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'An electric current has a direction, but it is not a vector. Explain why.'
+    answer_label: 'Why current is not a vector'
+    check:
+      kind: structured
+      requires: [direction-rule, current-fails]
+      concepts: [vector, scalar]
+      points:
+        - id: direction-rule
+          text: 'A vector is a quantity that is added by the triangle rule, so two vectors combine into a single resultant with a direction.'
+          concepts: [vector]
+        - id: current-fails
+          text: 'Currents do not combine in that way. Two currents meeting at a junction add as numbers at the junction, and a current is not drawn as an arrow with a length, so current is a scalar.'
+          concepts: [scalar]
+    answer_text: 'A vector must add by the triangle rule. Currents do not combine like that, so current is a scalar even though it has a direction.'
+
+  - id: p8-notation
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A displacement is written as $250\,\text{m}$ on a bearing of $060^\circ$. State its magnitude and its direction.'
+    answer_label: 'The magnitude and direction'
+    check:
+      kind: structured
+      requires: [magnitude, direction]
+      concepts: [magnitude, direction]
+      points:
+        - id: magnitude
+          text: 'The magnitude is 250 m.'
+          concepts: [magnitude]
+        - id: direction
+          text: 'The direction is a bearing of 060 degrees, measured clockwise from north.'
+          concepts: [direction]
+    answer_text: 'The magnitude is $250\,\text{m}$. The direction is the bearing $060^\circ$, measured clockwise from north.'
+
+  - id: p9-speed-velocity
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A car travels round a roundabout at a steady $8.0\,\text{m}\,\text{s}^{-1}$. Explain why its speed is constant but its velocity is not.'
+    answer_label: 'Speed and velocity on a roundabout'
+    check:
+      kind: structured
+      requires: [speed-constant, velocity-changes]
+      concepts: [speed, velocity]
+      points:
+        - id: speed-constant
+          text: 'The speed is the magnitude of the velocity, and it stays at 8.0 m s^-1, because the car covers the same distance each second.'
+          concepts: [speed]
+        - id: velocity-changes
+          text: 'The velocity is a vector. Its direction changes as the car goes round, so the velocity changes even though its magnitude does not.'
+          concepts: [velocity]
+    answer_text: 'Speed is a scalar and stays at $8.0\,\text{m}\,\text{s}^{-1}$. Velocity is a vector whose direction changes round the roundabout, so the velocity changes.'
+
+  - id: p10-trolley-displacement
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A trolley moves $2.0\,\text{m}$ to the right, then $5.0\,\text{m}$ to the left. Find its resultant displacement.'
+    answer_label: 'The resultant displacement'
+    check: {kind: evaluate, expression: "2.0 - 5.0", answer: "-3.0"}
+    answer_text: 'Take right as positive. The displacement is $2.0 - 5.0 = -3.0\,\text{m}$, so $3.0\,\text{m}$ to the left.'
+
+  - id: p11-vector-quantities
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'Which of these quantities are vectors: force, power, momentum, work, impulse, pressure? Give the magnitude and the direction for one of them.'
+    answer_label: 'The vector quantities'
+    check:
+      kind: structured
+      requires: [select-vectors, example]
+      concepts: [vector, magnitude, direction]
+      points:
+        - id: select-vectors
+          text: 'Force, momentum and impulse are vectors. Power, work and pressure are scalars.'
+          concepts: [vector, scalar]
+        - id: example
+          text: 'For example, a momentum of 1.5 kg m s^-1 to the north has a magnitude of 1.5 and a direction of due north.'
+          concepts: [magnitude, direction]
+    answer_text: 'Force, momentum and impulse are vectors. Power, work and pressure are scalars. A momentum of $1.5\,\text{kg}\,\text{m}\,\text{s}^{-1}$ to the north has magnitude $1.5$ and direction due north.'
+
+  - id: p12-method-choice
+    section: '2.1'
+    dfe: [AP2]
+    statement: 'A ferry points straight across a river at $4.0\,\text{m}\,\text{s}^{-1}$. The current flows at $3.0\,\text{m}\,\text{s}^{-1}$ at right angles to the crossing. A student says the velocity over the ground is $7.0\,\text{m}\,\text{s}^{-1}$. Explain why this is wrong, and say what rule gives the correct value.'
+    answer_label: 'Why the velocities do not simply add'
+    check:
+      kind: structured
+      requires: [not-same-line, perpendicular-rule]
+      concepts: [vector, resultant]
+      points:
+        - id: not-same-line
+          text: 'The two velocities are not along the same line, so their magnitudes cannot be added as ordinary numbers. The ferry is carried sideways while it crosses.'
+          concepts: [vector]
+        - id: perpendicular-rule
+          text: 'The two velocities are at right angles, so the resultant is found with Pythagoras: the square of the resultant is the sum of the squares of the two velocities.'
+          concepts: [resultant]
+    answer_text: 'The velocities are at right angles, not along the same line, so $4.0 + 3.0$ is wrong. The resultant is found from Pythagoras: $v = \sqrt{4.0^2 + 3.0^2} = 5.0\,\text{m}\,\text{s}^{-1}$.'

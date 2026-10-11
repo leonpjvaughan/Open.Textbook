@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.1 Straight lines, gradients and straight-line models — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: C1
+Work through these on your own. Before you calculate, decide what the question
+gives you: a gradient, a point, or two points. In a model, check what the
+gradient and the intercept mean in the situation before you quote a number.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-03-practice-3.1
+
+:::answers chapter-03-practice-3.1

@@ -1,0 +1,243 @@
+# Practice set for 3.1 (Speed, velocity and motion graphs).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]` in book.yaml, so a check may use either.
+#
+# A calculation is the composition of two claims: the exact magnitude and
+# dimension (`dimensions`, or `evaluate` where the quantity has no unit) and the
+# single rounding to the figures the data support (`sigfigs`, round-once). A
+# value read from a graph is a measurement, so it is proved against a declared
+# closed interval by `gradient` or `area`.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass. The two
+# `structured` records prove only that a model answer contains the declared ideas
+# in order, not that the ideas are right.
+chapter: 3
+problems:
+  - id: p1-speed-cyclist
+    section: '3.1'
+    tier: F
+    dfe: [FO5]
+    statement: 'A cyclist travels 180 m in 30 s. Calculate her average speed.'
+    answer_label: 'Average speed of the cyclist'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "s / t"
+          values:
+            s: {value: "180", unit: "m"}
+            t: {value: "30", unit: "s"}
+          answer: {value: "6", unit: "m/s"}
+        - {kind: sigfigs, value: "6", figures: 2, answer: "6.0", convention: round-once}
+    answer_text: '$v = \dfrac{s}{t} = \dfrac{180}{30} = 6.0\,\text{m/s}$.'
+
+  - id: p2-distance-car
+    section: '3.1'
+    tier: F
+    dfe: [FO5]
+    statement: 'A car travels at a steady 15 m/s for 20 s. Calculate the distance it travels.'
+    answer_label: 'Distance travelled'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t"
+          values:
+            v: {value: "15", unit: "m/s"}
+            t: {value: "20", unit: "s"}
+          answer: {value: "300", unit: "m"}
+        - {kind: sigfigs, value: "300", figures: 2, answer: "3.0e2", convention: round-once}
+    answer_text: '$s = vt = 15 \times 20 = 300\,\text{m} = 3.0 \times 10^2\,\text{m}$ to 2 significant figures.'
+
+  - id: p3-time-train
+    section: '3.1'
+    tier: F
+    dfe: [FO5]
+    statement: 'A train travels 900 m at a steady 30 m/s. Calculate the time taken.'
+    answer_label: 'Time taken by the train'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "s / v"
+          values:
+            s: {value: "900", unit: "m"}
+            v: {value: "30", unit: "m/s"}
+          answer: {value: "30", unit: "s"}
+        - {kind: sigfigs, value: "30", figures: 2, answer: "3.0e1", convention: round-once}
+    answer_text: '$t = \dfrac{s}{v} = \dfrac{900}{30} = 30\,\text{s} = 3.0 \times 10^1\,\text{s}$ to 2 significant figures.'
+
+  - id: p4-average-speed-walker
+    section: '3.1'
+    tier: F
+    dfe: [FO5]
+    statement: 'A walker covers 1200 m in 800 s. Calculate his average speed.'
+    answer_label: 'Average speed of the walker'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "s / t"
+          values:
+            s: {value: "1200", unit: "m"}
+            t: {value: "800", unit: "s"}
+          answer: {value: "1.5", unit: "m/s"}
+        - {kind: sigfigs, value: "1.5", figures: 2, answer: "1.5", convention: round-once}
+    answer_text: '$v = \dfrac{s}{t} = \dfrac{1200}{800} = 1.5\,\text{m/s}$. This is the typical speed of a person walking.'
+
+  - id: p5-acceleration-car
+    section: '3.1'
+    tier: F
+    dfe: [FO5]
+    statement: 'A car speeds up from 8.0 m/s to 20 m/s in 4.0 s. Calculate its acceleration.'
+    answer_label: 'Acceleration of the car'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "(v - u) / t"
+          values:
+            u: {value: "8.0", unit: "m/s"}
+            v: {value: "20", unit: "m/s"}
+            t: {value: "4.0", unit: "s"}
+          answer: {value: "3.0", unit: "m/s^2"}
+        - {kind: sigfigs, value: "3", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: '$a = \dfrac{\Delta v}{t} = \dfrac{20 - 8.0}{4.0} = 3.0\,\text{m/s}^2$.'
+
+  - id: p6-deceleration-bus
+    section: '3.1'
+    tier: F
+    dfe: [FO5]
+    statement: 'A bus slows from 15 m/s to rest in 5.0 s. Calculate the size of its deceleration.'
+    answer_label: 'Deceleration of the bus'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "(u - v) / t"
+          values:
+            u: {value: "15", unit: "m/s"}
+            v: {value: "0", unit: "m/s"}
+            t: {value: "5.0", unit: "s"}
+          answer: {value: "3.0", unit: "m/s^2"}
+        - {kind: sigfigs, value: "3", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: 'The acceleration is $\dfrac{0 - 15}{5.0} = -3.0\,\text{m/s}^2$, so the deceleration is $3.0\,\text{m/s}^2$.'
+
+  - id: p7-gradient-distance-time
+    section: '3.1'
+    tier: F
+    dfe: [FO5]
+    statement: 'A distance-time graph is a straight line through $(0\,\text{s}, 0\,\text{m})$, $(10\,\text{s}, 60\,\text{m})$ and $(20\,\text{s}, 120\,\text{m})$. Calculate the speed from the gradient of the line.'
+    answer_label: 'Speed from the gradient'
+    check:
+      kind: gradient
+      series: [[0, 0], [10, 60], [20, 120]]
+      between: [5.9, 6.1]
+    answer_text: '$\text{speed} = \dfrac{120 - 0}{20 - 0} = 6.0\,\text{m/s}$. The gradient of a distance-time graph is the speed.'
+
+  - id: p8-gradient-velocity-time
+    section: '3.1'
+    tier: F
+    dfe: [FO5]
+    statement: 'A velocity-time graph is a straight line through $(0\,\text{s}, 0\,\text{m/s})$, $(4.0\,\text{s}, 10\,\text{m/s})$ and $(8.0\,\text{s}, 20\,\text{m/s})$. Calculate the acceleration from the gradient of the line.'
+    answer_label: 'Acceleration from the gradient'
+    check:
+      kind: gradient
+      series: [[0, 0], [4, 10], [8, 20]]
+      between: [2.4, 2.6]
+    answer_text: '$a = \dfrac{20 - 0}{8.0 - 0} = 2.5\,\text{m/s}^2$. The gradient of a velocity-time graph is the acceleration.'
+
+  - id: p9-braking-distance
+    section: '3.1'
+    tier: F
+    dfe: [FO5]
+    statement: 'A car travels at 24 m/s. The driver brakes with a steady deceleration of 6.0 m/s² until the car stops. Calculate the braking distance.'
+    answer_label: 'Braking distance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "u**2 / (2 * a)"
+          values:
+            u: {value: "24", unit: "m/s"}
+            a: {value: "6.0", unit: "m/s^2"}
+          answer: {value: "48", unit: "m"}
+        - {kind: sigfigs, value: "48", figures: 2, answer: "48", convention: round-once}
+    answer_text: '$v^2 - u^2 = 2as$, and $v = 0$, so $s = \dfrac{u^2}{2a} = \dfrac{24^2}{2 \times 6.0} = \dfrac{576}{12} = 48\,\text{m}$.'
+
+  - id: p10-final-velocity
+    section: '3.1'
+    tier: F
+    dfe: [FO5]
+    statement: 'A trolley starts from rest and accelerates at 2.0 m/s² over a distance of 25 m. Calculate its final velocity.'
+    answer_label: 'Final velocity of the trolley'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "sqrt(2 * 2.0 * 25)", answer: "10"}
+        - {kind: sigfigs, value: "10", figures: 2, answer: "1.0e1", convention: round-once}
+    answer_text: '$v^2 - u^2 = 2as$ with $u = 0$, so $v^2 = 2 \times 2.0 \times 25 = 100$ and $v = 10\,\text{m/s} = 1.0 \times 10^1\,\text{m/s}$.'
+
+  - id: p11-tangent-distance-time
+    section: '3.1'
+    tier: H
+    dfe: [FO5]
+    statement: 'A distance-time graph for an accelerating object is curved. The tangent at 4.0 s passes through $(2.0\,\text{s}, 10\,\text{m})$ and $(6.0\,\text{s}, 30\,\text{m})$. Calculate the speed at 4.0 s.'
+    answer_label: 'Speed from the tangent'
+    check:
+      kind: gradient
+      series: [[2, 10], [6, 30]]
+      between: [4.9, 5.1]
+    answer_text: 'The gradient of the tangent is the speed at that moment: $\dfrac{30 - 10}{6.0 - 2.0} = 5.0\,\text{m/s}$.'
+
+  - id: p12-area-velocity-time
+    section: '3.1'
+    tier: H
+    dfe: [FO5]
+    statement: 'A velocity-time graph rises in a straight line from 0 m/s at 0 s to 20 m/s at 8.0 s. Calculate the distance travelled from the area under the graph.'
+    answer_label: 'Distance from the area under the graph'
+    check:
+      kind: area
+      series: [[0, 0], [8, 20]]
+      between: [79, 81]
+    answer_text: 'The area is a triangle: $\tfrac{1}{2} \times 8.0 \times 20 = 80\,\text{m}$. The area under a velocity-time graph is the distance travelled.'
+
+  - id: p13-velocity-roundabout
+    section: '3.1'
+    tier: H
+    dfe: [FO5]
+    statement: 'A car travels around a roundabout at a steady 8.0 m/s. Explain why the velocity of the car is changing even though its speed is constant.'
+    answer_label: 'Why the velocity is changing'
+    check:
+      kind: structured
+      requires: [speed-constant, direction-changing]
+      concepts: [speed, velocity, circular-motion]
+      points:
+        - id: speed-constant
+          text: 'The speed is constant, because the car covers the same distance each second.'
+          concepts: [speed]
+        - id: direction-changing
+          text: 'The direction of travel changes all the way around the roundabout, and velocity is speed in a given direction, so the velocity changes.'
+          concepts: [velocity, circular-motion]
+
+  - id: p14-scalars-vectors
+    section: '3.1'
+    tier: F
+    dfe: [FO5]
+    statement: 'Describe the difference between distance and displacement, and between speed and velocity.'
+    answer_label: 'Distance and displacement, speed and velocity'
+    check:
+      kind: structured
+      requires: [distance-displacement, speed-velocity]
+      concepts: [scalar, vector, distance, displacement, speed, velocity]
+      points:
+        - id: distance-displacement
+          text: 'Distance is how far an object moves and has no direction, so it is a scalar. Displacement is the distance in a straight line from the start to the finish, with its direction, so it is a vector.'
+          concepts: [scalar, vector, distance, displacement]
+        - id: speed-velocity
+          text: 'Speed is how fast an object moves and has no direction, so it is a scalar. Velocity is speed in a given direction, so it is a vector.'
+          concepts: [speed, velocity]

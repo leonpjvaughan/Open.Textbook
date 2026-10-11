@@ -1,0 +1,149 @@
+# Practice set for 3.2, parallel and perpendicular lines.
+#
+# The whole section is one relation between gradients: m1 = m2 for parallel, and
+# m1*m2 = -1 for perpendicular. A line through a point is again fixed by its
+# gradient and one point, so an `all` check on the perpendicular gradient and
+# the intercept proves the equation. The distance to a line is exact in the
+# surd, so no tolerance is needed.
+chapter: 3
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: p1-parallel-same-gradient
+    section: "3.2"
+    dfe: [C1]
+    statement: 'Decide whether the lines $y = 7x + 2$ and $y = 7x - 5$ are parallel. Give a reason.'
+    answer_label: 'The decision and the reason'
+    check:
+      kind: evaluate
+      expression: "7 - 7"
+      answer: "0"
+    answer_text: 'Both lines have gradient $7$, and the difference is $0$. Parallel lines have equal gradients, so the lines are parallel. The intercepts, $2$ and $-5$, are different, so they are not the same line.'
+
+  - id: p2-negative-reciprocal
+    section: "3.2"
+    dfe: [C1]
+    statement: 'A line has gradient $\dfrac{5}{2}$. Work out the gradient of a line perpendicular to it.'
+    answer_label: 'The perpendicular gradient'
+    check:
+      kind: evaluate
+      expression: "-1/(5/2)"
+      answer: "-2/5"
+    answer_text: 'The perpendicular gradient is the negative reciprocal: invert $\frac{5}{2}$ to get $\frac{2}{5}$, then change the sign to get $-\frac{2}{5}$. Check: $\frac{5}{2} \times \left(-\frac{2}{5}\right) = -1$, so the lines are perpendicular.'
+
+  - id: p3-perpendicular-through-point
+    section: "3.2"
+    dfe: [C1]
+    statement: 'Find the equation of the line through $(-1, 4)$ perpendicular to $y = 2x + 1$.'
+    answer_label: 'The equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "-1/2", answer: "-1/2"}
+        - {kind: evaluate, expression: "4 - (-1/2)*(-1)", answer: "7/2"}
+    answer_text: 'The given gradient is $2$, so the perpendicular gradient is $-\frac{1}{2}$. Substitute $(-1, 4)$ into $y - 4 = -\frac{1}{2}(x + 1)$: $y = -\frac{1}{2}x - \frac{1}{2} + 4 = -\frac{1}{2}x + \frac{7}{2}$. Check the point: $-\frac{1}{2} \times (-1) + \frac{7}{2} = 4$.'
+
+  - id: p4-parallel-through-point
+    section: "3.2"
+    dfe: [C1]
+    statement: 'Find the equation of the line through $(2, -3)$ parallel to $4x + y = 1$.'
+    answer_label: 'The equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "-4", answer: "-4"}
+        - {kind: evaluate, expression: "-3 - (-4)*2", answer: "5"}
+    answer_text: 'Rearrange the given line: $y = -4x + 1$, so its gradient is $-4$. A parallel line has the same gradient. Substitute $(2, -3)$ into $y - (-3) = -4(x - 2)$: $y + 3 = -4x + 8$, so $y = -4x + 5$. Check the point: $-4 \times 2 + 5 = -3$.'
+
+  - id: p5-perpendicular-from-general
+    section: "3.2"
+    dfe: [C1]
+    statement: 'Find the equation of the line through $(5, 1)$ perpendicular to $3x - 2y = 8$.'
+    answer_label: 'The equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "-1/(3/2)", answer: "-2/3"}
+        - {kind: evaluate, expression: "1 - (-2/3)*5", answer: "13/3"}
+    answer_text: 'Rearrange the given line: $2y = 3x - 8$, so $y = \frac{3}{2}x - 4$ and the gradient is $\frac{3}{2}$. The perpendicular gradient is $-\frac{2}{3}$. Substitute $(5, 1)$ into $y - 1 = -\frac{2}{3}(x - 5)$: $y = -\frac{2}{3}x + \frac{10}{3} + 1 = -\frac{2}{3}x + \frac{13}{3}$. Multiplying by $3$ gives $2x + 3y - 13 = 0$.'
+
+  - id: p6-midpoint
+    section: "3.2"
+    dfe: [C1]
+    statement: 'Work out the midpoint of the segment from $(-3, 7)$ to $(9, -1)$.'
+    answer_label: 'The midpoint'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(-3 + 9)/2", answer: "3"}
+        - {kind: evaluate, expression: "(7 + (-1))/2", answer: "3"}
+    answer_text: 'The midpoint averages the coordinates: $M = \left(\dfrac{-3 + 9}{2}, \dfrac{7 + (-1)}{2}\right) = (3, 3)$. It is the same distance from each endpoint.'
+
+  - id: p7-perpendicular-test
+    section: "3.2"
+    dfe: [C1]
+    statement: 'Show that $y = \dfrac{2}{5}x + 4$ and $y = -\dfrac{5}{2}x - 1$ are perpendicular.'
+    answer_label: 'The test'
+    check:
+      kind: evaluate
+      expression: "(2/5)*(-5/2)"
+      answer: "-1"
+    answer_text: 'Multiply the two gradients: $\frac{2}{5} \times \left(-\frac{5}{2}\right) = -1$. Since the product of the gradients is $-1$, the lines meet at a right angle.'
+
+  - id: p8-distance-to-line
+    section: "3.2"
+    dfe: [C1]
+    statement: 'Work out the shortest distance from $(2, 1)$ to the line $3x + 4y = 22$.'
+    answer_label: 'The distance'
+    check:
+      kind: evaluate
+      expression: "Abs(3*2 + 4*1 - 22)/sqrt(3**2 + 4**2)"
+      answer: "12/5"
+    answer_text: 'Write the line as $3x + 4y - 22 = 0$, so $a = 3$, $b = 4$ and $c = -22$. Then the distance is $\dfrac{|3 \times 2 + 4 \times 1 - 22|}{\sqrt{3^2 + 4^2}} = \dfrac{12}{5}$. The shortest path to the line is along the perpendicular, so this is the perpendicular distance.'
+
+  - id: p9-distance-anchor
+    section: "3.2"
+    dfe: [C1]
+    statement: 'Work out the shortest distance from the point $(6, 8)$ to the line $x + y = 19$. Give the answer as an exact surd.'
+    answer_label: 'The distance'
+    check:
+      kind: evaluate
+      expression: "Abs(6 + 8 - 19)/sqrt(1**2 + 1**2)"
+      answer: "5*sqrt(2)/2"
+    answer_text: 'Write the line as $x + y - 19 = 0$. Then the distance is $\dfrac{|6 + 8 - 19|}{\sqrt{1^2 + 1^2}} = \dfrac{5}{\sqrt{2}} = \dfrac{5\sqrt{2}}{2}$, about $3.54$. The point $(6, 8)$ will be the centre of the lake in Section 3.3, so this number decides whether the causeway crosses the water.'
+
+  - id: p10-foot-of-perpendicular
+    section: "3.2"
+    dfe: [C1]
+    statement: 'Find the point where the perpendicular from $(6, 8)$ to the line $x + y = 19$ meets the line.'
+    answer_label: 'The foot of the perpendicular'
+    check:
+      kind: system
+      equations: ["x + y = 19", "y = x + 2"]
+      variables: [x, y]
+      answer: [["17/2", "21/2"]]
+    answer_text: 'The line has gradient $-1$, so the perpendicular has gradient $1$. Through $(6, 8)$: $y - 8 = 1(x - 6)$, which is $y = x + 2$. Solving $x + y = 19$ with $y = x + 2$ gives $2x + 2 = 19$, so $x = \frac{17}{2}$ and $y = \frac{21}{2}$. The foot is $\left(\frac{17}{2}, \frac{21}{2}\right)$. It is the midpoint of the chord the line makes with the circle, which Section 3.3 proves.'
+
+  - id: p11-perpendicular-bisector
+    section: "3.2"
+    dfe: [C1]
+    statement: 'Find the perpendicular bisector of the segment joining $(2, 1)$ and $(6, 9)$.'
+    answer_label: 'The equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "-1/((9 - 1)/(6 - 2))", answer: "-1/2"}
+        - {kind: evaluate, expression: "5 - (-1/2)*4", answer: "7"}
+    answer_text: 'The segment has gradient $\dfrac{9 - 1}{6 - 2} = 2$, so the perpendicular bisector has gradient $-\frac{1}{2}$. The midpoint is $\left(\frac{2 + 6}{2}, \frac{1 + 9}{2}\right) = (4, 5)$. Substituting into $y - 5 = -\frac{1}{2}(x - 4)$ gives $y = -\frac{1}{2}x + 7$. Every point on this line is the same distance from $(2, 1)$ and $(6, 9)$.'
+
+  - id: p12-method-choice
+    section: "3.2"
+    dfe: [C1]
+    statement: 'Which of these lines is perpendicular to $2x - 5y = 10$? Give the gradient of the line you choose. (a) $y = -\dfrac{5}{2}x + 1$   (b) $y = \dfrac{5}{2}x - 1$   (c) $y = -\dfrac{2}{5}x$'
+    answer_label: 'The line and its gradient'
+    check:
+      kind: evaluate
+      expression: "-1/(2/5)"
+      answer: "-5/2"
+    answer_text: 'Rearrange the given line: $5y = 2x - 10$, so $y = \frac{2}{5}x - 2$ and its gradient is $\frac{2}{5}$. The perpendicular gradient is the negative reciprocal, $-\frac{5}{2}$. That is line (a). Working through the rearrangement first is what makes the choice clear: answering from the printed coefficients would give the wrong sign.'

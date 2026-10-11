@@ -1,0 +1,250 @@
+# Practice set for 3.4 (Momentum).
+#
+# Every section is Higher tier: AQA 8463 marks the whole of 4.5.7 Momentum as
+# (HT only), so this bank is only ever reached from a Higher page. A momentum
+# proves `dimensions` with the unit kg m/s and `sigfigs`; a force from a rate of
+# change of momentum proves the same. The `structured` records prove only that a
+# model answer contains the declared ideas in order.
+chapter: 3
+problems:
+  - id: p1-momentum-car
+    section: '3.4'
+    tier: H
+    dfe: [FO6]
+    statement: 'A car of mass 900 kg travels at 25 m/s. Calculate its momentum.'
+    answer_label: 'Momentum of the car'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * v"
+          values:
+            m: {value: "900", unit: "kg"}
+            v: {value: "25", unit: "m/s"}
+          answer: {value: "22500", unit: "kg m/s"}
+        - {kind: sigfigs, value: "22500", figures: 2, answer: "2.3e4", convention: round-once}
+    answer_text: '$p = mv = 900 \times 25 = 22500\,\text{kg m/s} = 2.3 \times 10^4\,\text{kg m/s}$ to 2 significant figures.'
+
+  - id: p2-momentum-ball
+    section: '3.4'
+    tier: H
+    dfe: [FO6]
+    statement: 'A ball of mass 0.20 kg moves at 30 m/s. Calculate its momentum.'
+    answer_label: 'Momentum of the ball'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * v"
+          values:
+            m: {value: "0.20", unit: "kg"}
+            v: {value: "30", unit: "m/s"}
+          answer: {value: "6.0", unit: "kg m/s"}
+        - {kind: sigfigs, value: "6", figures: 2, answer: "6.0", convention: round-once}
+    answer_text: '$p = mv = 0.20 \times 30 = 6.0\,\text{kg m/s}$.'
+
+  - id: p3-conservation-trolleys
+    section: '3.4'
+    tier: H
+    dfe: [FO6]
+    statement: 'A trolley of mass 5.0 kg moves at 4.0 m/s and hits a stationary trolley of mass 3.0 kg. The two trolleys stick together. Calculate their common velocity.'
+    answer_label: 'Common velocity of the trolleys'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m1 * v1 / (m1 + m2)"
+          values:
+            m1: {value: "5.0", unit: "kg"}
+            v1: {value: "4.0", unit: "m/s"}
+            m2: {value: "3.0", unit: "kg"}
+          answer: {value: "2.5", unit: "m/s"}
+        - {kind: sigfigs, value: "2.5", figures: 2, answer: "2.5", convention: round-once}
+    answer_text: 'Total momentum before $= 5.0 \times 4.0 = 20\,\text{kg m/s}$. Total momentum after $= (5.0 + 3.0) \times v$, so $v = \dfrac{20}{8.0} = 2.5\,\text{m/s}$.'
+
+  - id: p4-conservation-bus-van
+    section: '3.4'
+    tier: H
+    dfe: [FO6]
+    statement: 'In the chapter problem the bus of mass 12000 kg travels at 12 m/s and hits the stationary van of mass 8000 kg. The two move off together. Calculate their common velocity.'
+    answer_label: 'Common velocity of the bus and van'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m1 * v1 / (m1 + m2)"
+          values:
+            m1: {value: "12000", unit: "kg"}
+            v1: {value: "12", unit: "m/s"}
+            m2: {value: "8000", unit: "kg"}
+          answer: {value: "7.2", unit: "m/s"}
+        - {kind: sigfigs, value: "7.2", figures: 2, answer: "7.2", convention: round-once}
+    answer_text: 'Total momentum before $= 12000 \times 12 = 144000\,\text{kg m/s}$. Total momentum after $= 20000 \times v$, so $v = \dfrac{144000}{20000} = 7.2\,\text{m/s}$.'
+
+  - id: p5-force-momentum-car
+    section: '3.4'
+    tier: H
+    dfe: [FO6]
+    statement: 'A car of mass 1500 kg travels at 20 m/s and stops in 0.50 s. Calculate the force on the car.'
+    answer_label: 'Force on the car'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * v / t"
+          values:
+            m: {value: "1500", unit: "kg"}
+            v: {value: "20", unit: "m/s"}
+            t: {value: "0.50", unit: "s"}
+          answer: {value: "60000", unit: "N"}
+        - {kind: sigfigs, value: "60000", figures: 2, answer: "6.0e4", convention: round-once}
+    answer_text: '$F = \dfrac{m\Delta v}{\Delta t} = \dfrac{1500 \times 20}{0.50} = 60000\,\text{N} = 6.0 \times 10^4\,\text{N}$.'
+
+  - id: p6-force-crumple-zone
+    section: '3.4'
+    tier: H
+    dfe: [FO6]
+    statement: 'In a crash test, a car of mass 1500 kg travelling at 20 m/s stops in 1.5 s because the front of the car crumples. Calculate the force on the car.'
+    answer_label: 'Force on the car with the crumple zone'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * v / t"
+          values:
+            m: {value: "1500", unit: "kg"}
+            v: {value: "20", unit: "m/s"}
+            t: {value: "1.5", unit: "s"}
+          answer: {value: "20000", unit: "N"}
+        - {kind: sigfigs, value: "20000", figures: 2, answer: "2.0e4", convention: round-once}
+    answer_text: '$F = \dfrac{m\Delta v}{\Delta t} = \dfrac{1500 \times 20}{1.5} = 20000\,\text{N} = 2.0 \times 10^4\,\text{N}$. The longer time gives a smaller force.'
+
+  - id: p7-explosion-trolley
+    section: '3.4'
+    tier: H
+    dfe: [FO6]
+    statement: 'Two trolleys are pushed apart. Before the push both are stationary. The trolley of mass 2.0 kg moves to the left at 3.0 m/s. Calculate the speed of the trolley of mass 1.0 kg.'
+    answer_label: 'Speed of the second trolley'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m1 * v1 / m2"
+          values:
+            m1: {value: "2.0", unit: "kg"}
+            v1: {value: "3.0", unit: "m/s"}
+            m2: {value: "1.0", unit: "kg"}
+          answer: {value: "6.0", unit: "m/s"}
+        - {kind: sigfigs, value: "6", figures: 2, answer: "6.0", convention: round-once}
+    answer_text: 'The total momentum stays zero, so the momenta are equal in size and opposite. The first trolley has $2.0 \times 3.0 = 6.0\,\text{kg m/s}$, so the second has $6.0\,\text{kg m/s}$ and moves at $\dfrac{6.0}{1.0} = 6.0\,\text{m/s}$ to the right.'
+
+  - id: p8-crumple-zone-explain
+    section: '3.4'
+    tier: H
+    dfe: [FO6]
+    statement: 'Explain how a crumple zone on the front of a car reduces the force on the passengers in a crash.'
+    answer_label: 'How a crumple zone helps'
+    check:
+      kind: structured
+      requires: [increases-time, reduces-force]
+      concepts: [rate-of-change-of-momentum, momentum]
+      points:
+        - id: increases-time
+          text: 'The front of the car crumples, so the car takes a longer time to stop. The change in momentum is fixed by the mass and the speed.'
+          concepts: [momentum]
+        - id: reduces-force
+          text: 'A longer time for the same change in momentum gives a smaller force, because $F = \dfrac{m\Delta v}{\Delta t}$. A smaller force means less injury.'
+          concepts: [rate-of-change-of-momentum]
+
+  - id: p9-conservation-explain
+    section: '3.4'
+    tier: H
+    dfe: [FO6]
+    statement: 'Explain why the total momentum of two colliding objects is conserved.'
+    answer_label: 'Why momentum is conserved'
+    check:
+      kind: structured
+      requires: [third-law-forces, equal-and-opposite-change]
+      concepts: [newtons-third-law, conservation-of-momentum]
+      points:
+        - id: third-law-forces
+          text: 'During the collision the two objects push on each other with equal and opposite forces, by Newton''s third law.'
+          concepts: [newtons-third-law]
+        - id: equal-and-opposite-change
+          text: 'The two forces act for the same time, so the momentum gained by one object equals the momentum lost by the other. The total momentum does not change.'
+          concepts: [conservation-of-momentum]
+
+  - id: p10-equations
+    section: '3.4'
+    tier: H
+    dfe: [FO6]
+    statement: 'State the equation for the momentum of an object, and the equation for the force from a rate of change of momentum. Name each quantity and its unit.'
+    answer_label: 'The two equations'
+    check:
+      kind: structured
+      requires: [momentum-equation, force-equation]
+      concepts: [momentum, rate-of-change-of-momentum]
+      points:
+        - id: momentum-equation
+          text: 'Momentum $p = mv$, where $m$ is the mass in kilograms and $v$ is the velocity in metres per second. Momentum is measured in kg m/s.'
+          concepts: [momentum]
+        - id: force-equation
+          text: 'Force $F = \dfrac{m\Delta v}{\Delta t}$, where $m\Delta v$ is the change in momentum and $\Delta t$ is the time taken. Force is measured in newtons.'
+          concepts: [rate-of-change-of-momentum]
+
+  - id: p11-head-on
+    section: '3.4'
+    tier: H
+    dfe: [FO6]
+    statement: 'A trolley of mass 4.0 kg moves to the right at 3.0 m/s. It collides head-on with a trolley of mass 2.0 kg moving to the left at 3.0 m/s. The two trolleys stick together. Calculate their common velocity, taking the right as positive.'
+    answer_label: 'Common velocity after the head-on collision'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "(m1 * v1 - m2 * v2) / (m1 + m2)"
+          values:
+            m1: {value: "4.0", unit: "kg"}
+            v1: {value: "3.0", unit: "m/s"}
+            m2: {value: "2.0", unit: "kg"}
+            v2: {value: "3.0", unit: "m/s"}
+          answer: {value: "1.0", unit: "m/s"}
+        - {kind: sigfigs, value: "1", figures: 2, answer: "1.0", convention: round-once}
+    answer_text: 'Taking the right as positive, the momentum before is $4.0 \times 3.0 - 2.0 \times 3.0 = 12 - 6.0 = 6.0\,\text{kg m/s}$. The combined mass is 6.0 kg, so $v = \dfrac{6.0}{6.0} = 1.0\,\text{m/s}$ to the right.'
+
+  - id: p12-momentum-skater
+    section: '3.4'
+    tier: H
+    dfe: [FO6]
+    statement: 'A skater of mass 60 kg moves at 2.0 m/s. Calculate the momentum of the skater.'
+    answer_label: 'Momentum of the skater'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * v"
+          values:
+            m: {value: "60", unit: "kg"}
+            v: {value: "2.0", unit: "m/s"}
+          answer: {value: "120", unit: "kg m/s"}
+        - {kind: sigfigs, value: "120", figures: 2, answer: "1.2e2", convention: round-once}
+    answer_text: '$p = mv = 60 \times 2.0 = 120\,\text{kg m/s} = 1.2 \times 10^2\,\text{kg m/s}$.'
+
+  - id: p13-force-momentum-van
+    section: '3.4'
+    tier: H
+    dfe: [FO6]
+    statement: 'A van of mass 800 kg travels at 15 m/s and stops in 0.30 s. Calculate the force on the van.'
+    answer_label: 'Force on the van'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * v / t"
+          values:
+            m: {value: "800", unit: "kg"}
+            v: {value: "15", unit: "m/s"}
+            t: {value: "0.30", unit: "s"}
+          answer: {value: "40000", unit: "N"}
+        - {kind: sigfigs, value: "40000", figures: 2, answer: "4.0e4", convention: round-once}
+    answer_text: '$F = \dfrac{m\Delta v}{\Delta t} = \dfrac{800 \times 15}{0.30} = 40000\,\text{N} = 4.0 \times 10^4\,\text{N}$.'

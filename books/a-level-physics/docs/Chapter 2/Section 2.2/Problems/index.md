@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.2 Resolving and adding vectors — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: AP2
+Work through these on your own. For each one, write the direction the angle is
+measured from before you choose a sine or a cosine. For a resultant, state the
+angle from one of the two vectors.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-02-practice-2.2
+
+:::answers chapter-02-practice-2.2
