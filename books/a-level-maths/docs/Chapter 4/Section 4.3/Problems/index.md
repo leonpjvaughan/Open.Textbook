@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.3 Sequences from formulae and recurrences — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: D2
+Work through these on your own. Decide first whether the question gives a
+formula for the $n$th term or a recurrence. A formula reaches any term directly;
+a recurrence has to travel through every term on the way.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-04-practice-4.3
+
+:::answers chapter-04-practice-4.3

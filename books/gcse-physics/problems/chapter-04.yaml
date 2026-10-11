@@ -1,0 +1,700 @@
+# Worked solutions for Chapter 4 (Waves in matter).
+#
+# These are the numerical worked examples, the guided calculations and the
+# warm-up recalls that the Learn and Practise with help pages show. The pages
+# carry the prose and the reasoning; this bank is the independent check of every
+# number in them, so a slip in a worked example cannot ship. The records are not
+# rendered by a page marker: the pages write their own working, and the
+# `:::answers` blocks come from the practice banks.
+#
+# A calculation proves the exact magnitude and dimension with `dimensions` and
+# the one rounding with `sigfigs`. An echo distance uses `v * t / 2`, because the
+# pulse travels to the boundary and back. Where a value comes from a list of
+# readings, the `uncertainty` kind would be used; none of these records needs it.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics.
+chapter: 4
+problems:
+  # --- Section 4.1, the Learn worked examples ---------------------------------
+  - id: w1-period
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A wave has a frequency of 4.0 Hz. Calculate its period.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "1 / f"
+          values:
+            f: {value: "4.0", unit: "Hz"}
+          answer: {value: "0.25", unit: "s"}
+        - {kind: sigfigs, value: "0.25", figures: 2, answer: "0.25", convention: round-once}
+    answer_text: '$T = \dfrac{1}{f} = \dfrac{1}{4.0} = 0.25\,\text{s}$.'
+
+  - id: w2-ripple-speed
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A ripple tank makes water waves with a frequency of 2.5 Hz and a wavelength of 0.20 m. Calculate the wave speed.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "f * wavelength"
+          values:
+            f: {value: "2.5", unit: "Hz"}
+            wavelength: {value: "0.20", unit: "m"}
+          answer: {value: "0.5", unit: "m/s"}
+        - {kind: sigfigs, value: "0.5", figures: 2, answer: "0.50", convention: round-once}
+    answer_text: '$v = f\lambda = 2.5 \times 0.20 = 0.50\,\text{m/s}$.'
+
+  - id: w3-sound-wavelength
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A sound wave in air has a frequency of 440 Hz. The speed of sound in air is 330 m/s. Calculate the wavelength.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / f"
+          values:
+            v: {value: "330", unit: "m/s"}
+            f: {value: "440", unit: "Hz"}
+          answer: {value: "0.75", unit: "m"}
+        - {kind: sigfigs, value: "0.75", figures: 2, answer: "0.75", convention: round-once}
+    answer_text: '$\lambda = \dfrac{v}{f} = \dfrac{330}{440} = 0.75\,\text{m}$.'
+
+  - id: w4-spring-frequency
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A wave travels along a spring at 6.0 m/s. Its wavelength is 0.40 m. Calculate the frequency.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / wavelength"
+          values:
+            v: {value: "6.0", unit: "m/s"}
+            wavelength: {value: "0.40", unit: "m"}
+          answer: {value: "15", unit: "Hz"}
+        - {kind: sigfigs, value: "15", figures: 2, answer: "15", convention: round-once}
+    answer_text: '$f = \dfrac{v}{\lambda} = \dfrac{6.0}{0.40} = 15\,\text{Hz}$.'
+
+  - id: w5-anchor-ripple
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'In the chapter problem the ripple tank makes waves with a frequency of 5.0 Hz and a wavelength of 0.12 m. Calculate the wave speed.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "f * wavelength"
+          values:
+            f: {value: "5.0", unit: "Hz"}
+            wavelength: {value: "0.12", unit: "m"}
+          answer: {value: "0.6", unit: "m/s"}
+        - {kind: sigfigs, value: "0.6", figures: 2, answer: "0.60", convention: round-once}
+    answer_text: '$v = f\lambda = 5.0 \times 0.12 = 0.60\,\text{m/s}$.'
+
+  - id: w6-steel-wavelength
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A sound wave travels through a steel rail at 5000 m/s. Its frequency is 1000 Hz. Calculate the wavelength.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / f"
+          values:
+            v: {value: "5000", unit: "m/s"}
+            f: {value: "1000", unit: "Hz"}
+          answer: {value: "5", unit: "m"}
+        - {kind: sigfigs, value: "5", figures: 2, answer: "5.0", convention: round-once}
+    answer_text: '$\lambda = \dfrac{v}{f} = \dfrac{5000}{1000} = 5.0\,\text{m}$.'
+
+  # --- Section 4.1, the guided calculations -----------------------------------
+  - id: g1-speed
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A water wave has a frequency of 2.0 Hz and a wavelength of 0.30 m. Calculate the wave speed.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "f * wavelength"
+          values:
+            f: {value: "2.0", unit: "Hz"}
+            wavelength: {value: "0.30", unit: "m"}
+          answer: {value: "0.6", unit: "m/s"}
+        - {kind: sigfigs, value: "0.6", figures: 2, answer: "0.60", convention: round-once}
+    answer_text: '$v = f\lambda = 2.0 \times 0.30 = 0.60\,\text{m/s}$.'
+
+  - id: g2-wavelength
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A sound wave in air has a frequency of 155 Hz. The speed of sound in air is 310 m/s. Calculate the wavelength.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / f"
+          values:
+            v: {value: "310", unit: "m/s"}
+            f: {value: "155", unit: "Hz"}
+          answer: {value: "2", unit: "m"}
+        - {kind: sigfigs, value: "2", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$\lambda = \dfrac{v}{f} = \dfrac{310}{155} = 2.0\,\text{m}$.'
+
+  - id: g3-frequency
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A wave travels along a rope at 15 m/s. The wavelength is 3.0 m. Calculate the frequency.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / wavelength"
+          values:
+            v: {value: "15", unit: "m/s"}
+            wavelength: {value: "3.0", unit: "m"}
+          answer: {value: "5", unit: "Hz"}
+        - {kind: sigfigs, value: "5", figures: 2, answer: "5.0", convention: round-once}
+    answer_text: '$f = \dfrac{v}{\lambda} = \dfrac{15}{3.0} = 5.0\,\text{Hz}$.'
+
+  - id: g4-period
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A wave has a frequency of 2.0 Hz. Calculate its period.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "1 / f"
+          values:
+            f: {value: "2.0", unit: "Hz"}
+          answer: {value: "0.5", unit: "s"}
+        - {kind: sigfigs, value: "0.5", figures: 2, answer: "0.50", convention: round-once}
+    answer_text: '$T = \dfrac{1}{f} = \dfrac{1}{2.0} = 0.50\,\text{s}$.'
+
+  - id: g5-wavelength
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A wave travels at 1200 m/s with a frequency of 400 Hz. Calculate the wavelength.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / f"
+          values:
+            v: {value: "1200", unit: "m/s"}
+            f: {value: "400", unit: "Hz"}
+          answer: {value: "3", unit: "m"}
+        - {kind: sigfigs, value: "3", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: '$\lambda = \dfrac{v}{f} = \dfrac{1200}{400} = 3.0\,\text{m}$.'
+
+  - id: g6-frequency-count
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'Twenty waves pass a point in 5.0 s. Calculate the frequency of the waves.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "n / t"
+          values:
+            n: {value: "20", unit: "1"}
+            t: {value: "5.0", unit: "s"}
+          answer: {value: "4", unit: "Hz"}
+        - {kind: sigfigs, value: "4", figures: 2, answer: "4.0", convention: round-once}
+    answer_text: '$f = \dfrac{20}{5.0} = 4.0\,\text{Hz}$, so the period is $T = \dfrac{1}{4.0} = 0.25\,\text{s}$.'
+
+  # --- Section 4.1, the warm-up recalls ---------------------------------------
+  - id: warmup-4-1-speed
+    section: '4.1'
+    tier: F
+    dfe: [FO5]
+    statement: 'A runner covers 400 m in 50 s. Calculate her average speed.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "s / t"
+          values:
+            s: {value: "400", unit: "m"}
+            t: {value: "50", unit: "s"}
+          answer: {value: "8", unit: "m/s"}
+        - {kind: sigfigs, value: "8", figures: 2, answer: "8.0", convention: round-once}
+    answer_text: '$v = \dfrac{s}{t} = \dfrac{400}{50} = 8.0\,\text{m/s}$.'
+
+  - id: warmup-4-1-time
+    section: '4.1'
+    tier: F
+    dfe: [FO5]
+    statement: 'A train travels 900 m at a steady speed of 25 m/s. Calculate the time taken.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "s / v"
+          values:
+            s: {value: "900", unit: "m"}
+            v: {value: "25", unit: "m/s"}
+          answer: {value: "36", unit: "s"}
+        - {kind: sigfigs, value: "36", figures: 2, answer: "36", convention: round-once}
+    answer_text: '$t = \dfrac{s}{v} = \dfrac{900}{25} = 36\,\text{s}$.'
+
+  # --- Section 4.2, the Learn worked examples ---------------------------------
+  - id: w7-hearing-period
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'The lowest frequency a healthy young person can hear is 20 Hz. Calculate the period of this sound wave.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "1 / f"
+          values:
+            f: {value: "20", unit: "Hz"}
+          answer: {value: "0.05", unit: "s"}
+        - {kind: sigfigs, value: "0.05", figures: 2, answer: "0.050", convention: round-once}
+    answer_text: '$T = \dfrac{1}{f} = \dfrac{1}{20} = 0.050\,\text{s}$.'
+
+  - id: w8-echo-tissue
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'A pulse of ultrasound travels through tissue at 1500 m/s. The reflection returns to the detector after 0.00012 s. Calculate the distance to the boundary.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t / 2"
+          values:
+            v: {value: "1500", unit: "m/s"}
+            t: {value: "0.00012", unit: "s"}
+          answer: {value: "0.09", unit: "m"}
+        - {kind: sigfigs, value: "0.09", figures: 2, answer: "0.090", convention: round-once}
+    answer_text: '$s = \dfrac{v t}{2} = \dfrac{1500 \times 0.00012}{2} = 0.090\,\text{m}$.'
+
+  - id: w9-anchor-depth
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'In the chapter problem the echo sounder sends a pulse through sea water at 1500 m/s. The reflection returns after 0.020 s. Calculate the depth of the sea floor.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t / 2"
+          values:
+            v: {value: "1500", unit: "m/s"}
+            t: {value: "0.020", unit: "s"}
+          answer: {value: "15", unit: "m"}
+        - {kind: sigfigs, value: "15", figures: 2, answer: "15", convention: round-once}
+    answer_text: '$s = \dfrac{v t}{2} = \dfrac{1500 \times 0.020}{2} = 15\,\text{m}$.'
+
+  - id: w10-ultrasound-wavelength
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'A medical scanner uses ultrasound at a frequency of 2.0 MHz. The speed of sound in tissue is 1500 m/s. Calculate the wavelength.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / f"
+          values:
+            v: {value: "1500", unit: "m/s"}
+            f: {value: "2000000", unit: "Hz"}
+          answer: {value: "0.00075", unit: "m"}
+        - {kind: sigfigs, value: "0.00075", figures: 2, answer: "7.5e-4", convention: round-once}
+    answer_text: '$\lambda = \dfrac{v}{f} = \dfrac{1500}{2.0 \times 10^6} = 7.5 \times 10^{-4}\,\text{m}$, which is 0.75 mm.'
+
+  - id: w11-seismic-speed
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'A seismic P-wave travels 60 km in 12 s. Calculate its speed.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "s / t"
+          values:
+            s: {value: "60", unit: "km"}
+            t: {value: "12", unit: "s"}
+          answer: {value: "5000", unit: "m/s"}
+        - {kind: sigfigs, value: "5000", figures: 2, answer: "5.0e3", convention: round-once}
+    answer_text: '$60\,\text{km} = 60000\,\text{m}$, so $v = \dfrac{s}{t} = \dfrac{60000}{12} = 5000\,\text{m/s} = 5.0 \times 10^3\,\text{m/s}$.'
+
+  # --- Section 4.2, the guided calculations -----------------------------------
+  - id: g7-echo-distance
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'A pulse of ultrasound travels through tissue at 1500 m/s. The reflection returns after 0.00020 s. Calculate the distance to the boundary.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t / 2"
+          values:
+            v: {value: "1500", unit: "m/s"}
+            t: {value: "0.00020", unit: "s"}
+          answer: {value: "0.15", unit: "m"}
+        - {kind: sigfigs, value: "0.15", figures: 2, answer: "0.15", convention: round-once}
+    answer_text: '$s = \dfrac{v t}{2} = \dfrac{1500 \times 0.00020}{2} = 0.15\,\text{m}$.'
+
+  - id: g8-ship-depth
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'A ship sends a pulse of sound down through water at 1500 m/s. The reflection returns after 0.040 s. Calculate the depth of the water.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t / 2"
+          values:
+            v: {value: "1500", unit: "m/s"}
+            t: {value: "0.040", unit: "s"}
+          answer: {value: "30", unit: "m"}
+        - {kind: sigfigs, value: "30", figures: 2, answer: "3.0e1", convention: round-once}
+    answer_text: '$s = \dfrac{v t}{2} = \dfrac{1500 \times 0.040}{2} = 30\,\text{m} = 3.0 \times 10^1\,\text{m}$.'
+
+  - id: g9-seismic-speed
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'An earthquake P-wave travels 45 km in 15 s. Calculate the speed of the P-wave.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "s / t"
+          values:
+            s: {value: "45", unit: "km"}
+            t: {value: "15", unit: "s"}
+          answer: {value: "3000", unit: "m/s"}
+        - {kind: sigfigs, value: "3000", figures: 2, answer: "3.0e3", convention: round-once}
+    answer_text: '$45\,\text{km} = 45000\,\text{m}$, so $v = \dfrac{s}{t} = \dfrac{45000}{15} = 3000\,\text{m/s} = 3.0 \times 10^3\,\text{m/s}$.'
+
+  - id: g10-ultrasound-wavelength
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'An ultrasound scanner works at a frequency of 2.5 MHz. The speed of sound in tissue is 1500 m/s. Calculate the wavelength of the ultrasound.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / f"
+          values:
+            v: {value: "1500", unit: "m/s"}
+            f: {value: "2500000", unit: "Hz"}
+          answer: {value: "0.0006", unit: "m"}
+        - {kind: sigfigs, value: "0.0006", figures: 2, answer: "6.0e-4", convention: round-once}
+    answer_text: '$\lambda = \dfrac{v}{f} = \dfrac{1500}{2.5 \times 10^6} = 6.0 \times 10^{-4}\,\text{m}$, which is 0.60 mm.'
+
+  # --- Section 4.2, the warm-up recalls ---------------------------------------
+  - id: warmup-4-2-speed
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'A wave has a frequency of 2.0 Hz and a wavelength of 1.5 m. Calculate the wave speed.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "f * wavelength"
+          values:
+            f: {value: "2.0", unit: "Hz"}
+            wavelength: {value: "1.5", unit: "m"}
+          answer: {value: "3", unit: "m/s"}
+        - {kind: sigfigs, value: "3", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: '$v = f\lambda = 2.0 \times 1.5 = 3.0\,\text{m/s}$.'
+
+  - id: warmup-4-2-period
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'A sound wave has a frequency of 500 Hz. Calculate its period.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "1 / f"
+          values:
+            f: {value: "500", unit: "Hz"}
+          answer: {value: "0.002", unit: "s"}
+        - {kind: sigfigs, value: "0.002", figures: 2, answer: "2.0e-3", convention: round-once}
+    answer_text: '$T = \dfrac{1}{f} = \dfrac{1}{500} = 0.0020\,\text{s} = 2.0 \times 10^{-3}\,\text{s}$.'
+
+  # --- Section 4.3, the Learn worked examples ---------------------------------
+  - id: w12-law-of-reflection
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A ray of light meets a mirror at an angle of incidence of 35 degrees. State the angle of reflection, and say what line the angles are measured from.'
+    check:
+      kind: structured
+      requires: [equal-angle, normal]
+      concepts: [reflection, normal]
+      points:
+        - id: equal-angle
+          text: 'The angle of reflection is 35 degrees, because the angle of reflection equals the angle of incidence.'
+          concepts: [reflection]
+        - id: normal
+          text: 'Both angles are measured from the normal, which is the line at right angles to the mirror at the point where the ray hits it.'
+          concepts: [normal]
+
+  - id: w13-boundary-wavelengths
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A sound wave of frequency 500 Hz passes from air into water. The speed of sound is 330 m/s in air and 1500 m/s in water. Calculate the wavelength in each material.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v1 / f"
+          values:
+            v1: {value: "330", unit: "m/s"}
+            f: {value: "500", unit: "Hz"}
+          answer: {value: "0.66", unit: "m"}
+        - {kind: sigfigs, value: "0.66", figures: 2, answer: "0.66", convention: round-once}
+        - kind: dimensions
+          expression: "v2 / f"
+          values:
+            v2: {value: "1500", unit: "m/s"}
+            f: {value: "500", unit: "Hz"}
+          answer: {value: "3", unit: "m"}
+        - {kind: sigfigs, value: "3", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: 'In air, $\lambda = \dfrac{330}{500} = 0.66\,\text{m}$. In water, $\lambda = \dfrac{1500}{500} = 3.0\,\text{m}$. The higher speed gives the longer wavelength.'
+
+  - id: w14-transmitted
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'When a wave meets a boundary, 15% of its energy is reflected and 25% is absorbed. Calculate the percentage of the energy that is transmitted.'
+    check:
+      kind: evaluate
+      expression: "100 - 15 - 25"
+      answer: "60"
+    answer_text: 'The reflected and absorbed energy together are 40%, so 60% is transmitted.'
+
+  - id: w15-echo-time
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A water wave travels at 4.0 m/s and reflects from a wall 30 m away. Calculate the time taken for the wave to travel to the wall and back.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "2 * d / v"
+          values:
+            d: {value: "30", unit: "m"}
+            v: {value: "4.0", unit: "m/s"}
+          answer: {value: "15", unit: "s"}
+        - {kind: sigfigs, value: "15", figures: 2, answer: "15", convention: round-once}
+    answer_text: 'The total distance is $2 \times 30 = 60\,\text{m}$, so $t = \dfrac{60}{4.0} = 15\,\text{s}$.'
+
+  - id: w16-convert-depth
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A ripple tank contains water to a depth of 25 cm. Convert this depth to metres.'
+    check:
+      kind: convert
+      value: "25"
+      from: "cm"
+      to: "m"
+      answer: "0.25"
+    answer_text: '$25\,\text{cm} = 0.25\,\text{m}$.'
+
+  - id: w17-echo-distance
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A person claps and hears the echo from a wall after 0.80 s. The speed of sound in air is 330 m/s. Calculate the distance from the person to the wall.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t / 2"
+          values:
+            v: {value: "330", unit: "m/s"}
+            t: {value: "0.80", unit: "s"}
+          answer: {value: "132", unit: "m"}
+        - {kind: sigfigs, value: "132", figures: 2, answer: "1.3e2", convention: round-once}
+    answer_text: '$d = \dfrac{v t}{2} = \dfrac{330 \times 0.80}{2} = 132\,\text{m} = 1.3 \times 10^2\,\text{m}$ to 2 significant figures.'
+
+  # --- Section 4.3, the guided calculations -----------------------------------
+  - id: g11-law-of-reflection
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'State the law of reflection for a wave at a surface.'
+    check:
+      kind: structured
+      requires: [equal-angles, measured-from-normal]
+      concepts: [reflection, normal]
+      points:
+        - id: equal-angles
+          text: 'The angle of reflection equals the angle of incidence.'
+          concepts: [reflection]
+        - id: measured-from-normal
+          text: 'Both angles are measured from the normal, which is the line at right angles to the surface at the point where the ray hits it.'
+          concepts: [normal]
+
+  - id: g12-echo-time
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A water wave travels at 2.0 m/s and reflects from a wall 18 m away. Calculate the time taken for the wave to travel to the wall and back.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "2 * d / v"
+          values:
+            d: {value: "18", unit: "m"}
+            v: {value: "2.0", unit: "m/s"}
+          answer: {value: "18", unit: "s"}
+        - {kind: sigfigs, value: "18", figures: 2, answer: "18", convention: round-once}
+    answer_text: 'The total distance is $2 \times 18 = 36\,\text{m}$, so $t = \dfrac{36}{2.0} = 18\,\text{s}$.'
+
+  - id: g13-interface-wavelengths
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A wave of frequency 250 Hz passes from one material into another. Its speed changes from 5.0 m/s to 8.0 m/s. The frequency does not change. Calculate the wavelength in each material.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v1 / f"
+          values:
+            v1: {value: "5.0", unit: "m/s"}
+            f: {value: "250", unit: "Hz"}
+          answer: {value: "0.02", unit: "m"}
+        - {kind: sigfigs, value: "0.02", figures: 2, answer: "0.020", convention: round-once}
+        - kind: dimensions
+          expression: "v2 / f"
+          values:
+            v2: {value: "8.0", unit: "m/s"}
+            f: {value: "250", unit: "Hz"}
+          answer: {value: "0.032", unit: "m"}
+        - {kind: sigfigs, value: "0.032", figures: 2, answer: "0.032", convention: round-once}
+    answer_text: 'The frequency stays at 250 Hz. In the first material $\lambda = \dfrac{5.0}{250} = 0.020\,\text{m}$, and in the second $\lambda = \dfrac{8.0}{250} = 0.032\,\text{m}$.'
+
+  - id: g14-transmitted
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'When a wave meets a boundary, 20% of its energy is reflected and 30% is absorbed. Calculate the percentage of the energy that is transmitted.'
+    check:
+      kind: evaluate
+      expression: "100 - 20 - 30"
+      answer: "50"
+    answer_text: 'The reflected and absorbed energy together are 50%, so 50% is transmitted.'
+
+  - id: g15-three-effects
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'Describe what can happen to a wave when it meets the boundary between two different materials.'
+    check:
+      kind: structured
+      requires: [reflection, transmission, absorption]
+      concepts: [reflection, transmission, absorption]
+      points:
+        - id: reflection
+          text: 'Part of the wave can be reflected, so it bounces back from the boundary.'
+          concepts: [reflection]
+        - id: transmission
+          text: 'Part of the wave can be transmitted, so it passes through the boundary into the second material.'
+          concepts: [transmission]
+        - id: absorption
+          text: 'Part of the wave can be absorbed by the material, so its energy is transferred to the material.'
+          concepts: [absorption]
+
+  - id: g16-why-normal
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'Explain why the angles in a reflection diagram are measured from the normal and not from the surface.'
+    answer_label: 'Why the normal is used'
+    check:
+      kind: structured
+      requires: [normal-is-perpendicular, surface-does-not-fix-angle]
+      concepts: [normal, reflection]
+      points:
+        - id: normal-is-perpendicular
+          text: 'The normal is at right angles to the surface, so it gives a fixed reference line for measuring both angles.'
+          concepts: [normal]
+        - id: surface-does-not-fix-angle
+          text: 'The surface lies flat along the boundary, so the angle between a ray and the surface is never the same from one diagram to the next. Measuring from the normal gives the same rule at every point.'
+          concepts: [reflection]
+
+  - id: g17-echo-distance
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A person claps and hears the echo from a wall after 0.50 s. The speed of sound in air is 340 m/s. Calculate the distance from the person to the wall.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t / 2"
+          values:
+            v: {value: "340", unit: "m/s"}
+            t: {value: "0.50", unit: "s"}
+          answer: {value: "85", unit: "m"}
+        - {kind: sigfigs, value: "85", figures: 2, answer: "85", convention: round-once}
+    answer_text: '$d = \dfrac{v t}{2} = \dfrac{340 \times 0.50}{2} = 85\,\text{m}$.'
+
+  # --- Section 4.3, the warm-up recalls ---------------------------------------
+  - id: warmup-4-3-speed
+    section: '4.3'
+    tier: F
+    dfe: [WA1]
+    statement: 'A wave has a frequency of 5.0 Hz and a wavelength of 0.40 m. Calculate the wave speed.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "f * wavelength"
+          values:
+            f: {value: "5.0", unit: "Hz"}
+            wavelength: {value: "0.40", unit: "m"}
+          answer: {value: "2", unit: "m/s"}
+        - {kind: sigfigs, value: "2", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$v = f\lambda = 5.0 \times 0.40 = 2.0\,\text{m/s}$.'
+
+  - id: warmup-4-3-convert
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'Convert 40 cm to metres.'
+    check:
+      kind: convert
+      value: "40"
+      from: "cm"
+      to: "m"
+      answer: "0.40"
+    answer_text: '$40\,\text{cm} = 0.40\,\text{m}$.'

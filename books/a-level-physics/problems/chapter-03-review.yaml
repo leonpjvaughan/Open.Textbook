@@ -1,0 +1,204 @@
+# Mixed practice for the Chapter 3 Review.
+#
+# The first twelve records resolve the chapter problem of the roller-coaster loop:
+# the first drop, the energy, the forces, the loop and the braking. The last five
+# interleave the chapter with Chapters 1 and 2: a vector resolution, an
+# uncertainty propagation, a significant-figures rounding, a vector momentum and a
+# method-choice prompt. Every numeric record is checked by the `units` oracle, and
+# the `structured` records stand where a computer cannot go: they prove that a
+# model answer contains the declared ideas in order, and nothing more.
+#
+# The anchor numbers: m = 500 kg; the drop is 45 m vertical at 60 degrees;
+# g = 9.81 m/s^2; v at the bottom = 29.7 m/s; the loop radius is 12 m and its top
+# is 24 m above the bottom; the braking time is 3.0 s.
+chapter: 3
+problems:
+  - id: r1-drop-acceleration
+    section: Review
+    dfe: [AP3]
+    statement: 'The first drop is at 60° to the horizontal. Find the acceleration of the car down the slope. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The acceleration down the slope'
+    check: {kind: approx, value: "9.81 * sin(60 * pi / 180)", target: "8.50", tolerance: "0.01"}
+    answer_text: 'The only force along the slope is $mg\sin 60^\circ$, so $a = g\sin 60^\circ = 9.81 \times 0.866 = 8.50\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: r2-slope-length
+    section: Review
+    dfe: [AP3]
+    statement: 'The car descends 45 m vertically along a straight slope at 60° to the horizontal. Find the length of the slope.'
+    answer_label: 'The slope length'
+    check: {kind: approx, value: "45 / sin(60 * pi / 180)", target: "51.96", tolerance: "0.01"}
+    answer_text: 'The vertical drop is the opposite side and the slope is the hypotenuse, so $s = \dfrac{45}{\sin 60^\circ} = 52.0\,\text{m}$.'
+
+  - id: r3-bottom-speed
+    section: Review
+    dfe: [AP3]
+    statement: 'Use $v^2 = u^2 + 2as$ from rest with $a = 8.50\,\text{m}\,\text{s}^{-2}$ and $s = 52.0\,\text{m}$ to find the speed at the bottom of the drop.'
+    answer_label: 'The speed at the bottom'
+    check: {kind: approx, value: "sqrt(2 * 8.50 * 52.0)", target: "29.7", tolerance: "0.1"}
+    answer_text: '$v^2 = 2 \times 8.50 \times 52.0 = 884$, so $v = 29.7\,\text{m}\,\text{s}^{-1}$. The same value comes from energy: $v = \sqrt{2gh}$ with $h = 45\,\text{m}$.'
+
+  - id: r4-drop-time
+    section: Review
+    dfe: [AP3]
+    statement: 'From rest, the car reaches $29.7\,\text{m}\,\text{s}^{-1}$ down the slope with acceleration $8.50\,\text{m}\,\text{s}^{-2}$. Find the time it takes.'
+    answer_label: 'The time down the slope'
+    check: {kind: approx, value: "29.7 / 8.50", target: "3.49", tolerance: "0.01"}
+    answer_text: '$t = \dfrac{v - u}{a} = \dfrac{29.7}{8.50} = 3.5\,\text{s}$.'
+
+  - id: r5-gpe-top
+    section: Review
+    dfe: [AP3]
+    statement: 'The car and riders have a mass of 500 kg and start 45 m above the bottom. Find the gravitational potential energy relative to the bottom. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The gravitational potential energy'
+    check: {kind: approx, value: "500 * 9.81 * 45", target: "220725", tolerance: "1"}
+    answer_text: '$E_p = mg\Delta h = 500 \times 9.81 \times 45 = 2.21 \times 10^5\,\text{J}$.'
+
+  - id: r6-slope-forces
+    section: Review
+    dfe: [AP3]
+    statement: 'Find the weight of the 500 kg car and riders, and the components of the weight along and perpendicular to the 60° slope. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The weight and its two components'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "500 * 9.81", target: "4905", tolerance: "0.5"}
+        - {kind: approx, value: "500 * 9.81 * sin(60 * pi / 180)", target: "4248", tolerance: "1"}
+        - {kind: approx, value: "500 * 9.81 * cos(60 * pi / 180)", target: "2453", tolerance: "1"}
+    answer_text: 'The weight is $W = mg = 4905\,\text{N}$. The component along the slope is $W\sin 60^\circ = 4248\,\text{N}$ and the component perpendicular to the slope is $W\cos 60^\circ = 2453\,\text{N}$.'
+
+  - id: r7-loop-centripetal
+    section: Review
+    dfe: [AP3]
+    statement: 'The car passes the top of the 12 m loop at $20.3\,\text{m}\,\text{s}^{-1}$. Find the centripetal acceleration.'
+    answer_label: 'The centripetal acceleration'
+    check: {kind: approx, value: "20.3**2 / 12", target: "34.3", tolerance: "0.1"}
+    answer_text: '$a = \dfrac{v^2}{r} = \dfrac{20.3^2}{12} = 34.3\,\text{m}\,\text{s}^{-2}$ towards the centre of the loop.'
+
+  - id: r8-loop-force
+    section: Review
+    dfe: [AP3]
+    statement: 'The 500 kg car passes the top of the loop with centripetal acceleration $34.3\,\text{m}\,\text{s}^{-2}$. Find the force the track exerts on the car. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The force from the track'
+    check: {kind: approx, value: "500 * (34.3 - 9.81)", target: "12245", tolerance: "10"}
+    answer_text: 'At the top, the track force and the weight both act downwards towards the centre, so $N + mg = \dfrac{mv^2}{r}$. Then $N = 500(34.3 - 9.81) = 1.2 \times 10^4\,\text{N}$ downwards on the car.'
+
+  - id: r9-min-speed-top
+    section: Review
+    dfe: [AP3]
+    statement: 'Find the minimum speed the car needs at the top of the 12 m loop to stay on the track. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The minimum speed at the top'
+    check: {kind: approx, value: "sqrt(9.81 * 12)", target: "10.8", tolerance: "0.1"}
+    answer_text: 'At the minimum speed the weight provides the whole centripetal force: $mg = \dfrac{mv^2}{r}$, so $v = \sqrt{gr} = \sqrt{9.81 \times 12} = 10.8\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: r10-min-height
+    section: Review
+    dfe: [AP3]
+    statement: 'Find the least height above the bottom of the loop from which the car can be released and still stay on the track. The loop radius is 12 m.'
+    answer_label: 'The least release height'
+    check: {kind: approx, value: "2.5 * 12", target: "30", tolerance: "0.001"}
+    answer_text: 'At the top the car needs $v^2 = gr$, and the top is $2r$ above the bottom. Energy conservation gives $mgH = \dfrac{1}{2}mgr + mg(2r) = \dfrac{5}{2}mgr$, so $H = \dfrac{5}{2}r = 30\,\text{m}$. The actual release height is 45 m, so the car stays on the track.'
+
+  - id: r11-braking
+    section: Review
+    dfe: [AP3]
+    statement: 'The car and riders of mass 500 kg are brought to rest from $29.7\,\text{m}\,\text{s}^{-1}$ in 3.0 s. Find the momentum at the bottom and the average braking force.'
+    answer_label: 'The momentum and the braking force'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "500 * 29.7", target: "14850", tolerance: "1"}
+        - {kind: approx, value: "(0 - 500 * 29.7) / 3.0", target: "-4950", tolerance: "1"}
+    answer_text: '$p = mv = 1.49 \times 10^4\,\text{kg}\,\text{m}\,\text{s}^{-1}$ and $\Delta p = -1.49 \times 10^4\,\text{kg}\,\text{m}\,\text{s}^{-1}$, so $F = \dfrac{\Delta p}{\Delta t} = -5.0 \times 10^3\,\text{N}$. The braking force is about 5000 N opposite to the motion.'
+
+  - id: r12-judgement
+    section: Review
+    dfe: [AP3]
+    statement: 'The ride is designed so that the car stays on the track with a large margin. State the minimum release height for the loop, whether the actual drop is enough, and one reason a real loop is not a circle.'
+    answer_label: 'The judgement'
+    check:
+      kind: structured
+      requires: [state-height, compare, real-loop]
+      concepts: [circular-motion, energy]
+      points:
+        - id: state-height
+          text: 'The least release height is 2.5 times the loop radius, which is 30 m for a 12 m loop.'
+          concepts: [energy, circular-motion]
+        - id: compare
+          text: 'The actual drop is 45 m, which is greater than 30 m, so the car stays on the track with a margin.'
+          concepts: [energy]
+        - id: real-loop
+          text: 'A real loop is not a circle, because a circular loop would give a very large force at the bottom where the radius is smallest. A teardrop or clothoid shape keeps the force within safe limits.'
+          concepts: [circular-motion]
+    answer_text: 'The least release height is 30 m for a 12 m loop, and the actual drop of 45 m is enough. A real loop is teardrop-shaped, not circular, to keep the forces on the riders within safe limits.'
+
+  - id: r13-resolve-velocity
+    section: Review
+    dfe: [AP3]
+    statement: 'A ball is thrown at $25\,\text{m}\,\text{s}^{-1}$ at 35° above the horizontal. Find the horizontal and vertical components of its velocity.'
+    answer_label: 'The two components'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "25"
+      angle_deg: "35"
+      components: {x: "20.48", y: "14.34"}
+    answer_text: '$v_x = 25\cos 35^\circ = 20.5\,\text{m}\,\text{s}^{-1}$ and $v_y = 25\sin 35^\circ = 14.3\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: r14-timing-uncertainty
+    section: Review
+    dfe: [AP3]
+    statement: 'A student times 20 oscillations three times and records $32.40\,\text{s}$, $32.30\,\text{s}$ and $32.50\,\text{s}$. Find the mean time and its uncertainty using the half-range convention.'
+    answer_label: 'The mean time and its uncertainty'
+    check:
+      kind: uncertainty
+      mean_of: ["32.40", "32.30", "32.50"]
+      convention: half-range
+      answer: "32.40"
+      uncertainty: "0.10"
+    answer_text: 'The mean is $\dfrac{32.40 + 32.30 + 32.50}{3} = 32.40\,\text{s}$. The range is $32.50 - 32.30 = 0.20\,\text{s}$, so half the range is $0.10\,\text{s}$. The time is $32.40 \pm 0.10\,\text{s}$.'
+
+  - id: r15-sigfigs
+    section: Review
+    dfe: [AP3]
+    statement: 'The acceleration down the first drop is $8.4957\,\text{m}\,\text{s}^{-2}$. Write it to three significant figures.'
+    answer_label: 'The acceleration to three significant figures'
+    check:
+      kind: sigfigs
+      value: "8.4957"
+      figures: 3
+      answer: "8.50"
+      convention: round-once
+    answer_text: '$8.4957\,\text{m}\,\text{s}^{-2} = 8.50\,\text{m}\,\text{s}^{-2}$ to three significant figures. The trailing zero matters, because it shows the place of the last reliable figure.'
+
+  - id: r16-vector-momentum
+    section: Review
+    dfe: [AP3]
+    statement: 'A ball of mass 0.10 kg moves due east at $8.0\,\text{m}\,\text{s}^{-1}$. A second ball of mass 0.20 kg moves due north at $3.0\,\text{m}\,\text{s}^{-1}$. Find the magnitude of the total momentum of the two balls.'
+    answer_label: 'The magnitude of the total momentum'
+    check:
+      kind: vector
+      op: norm
+      args: ["Matrix([0.8, 0.6])"]
+      answer: "1.0"
+    answer_text: 'The momenta are $0.10 \times 8.0 = 0.80\,\text{kg}\,\text{m}\,\text{s}^{-1}$ east and $0.20 \times 3.0 = 0.60\,\text{kg}\,\text{m}\,\text{s}^{-1}$ north. They are perpendicular, so the magnitude is $\sqrt{0.80^2 + 0.60^2} = 1.0\,\text{kg}\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: r17-method-choice
+    section: Review
+    dfe: [AP3]
+    statement: 'A stone is thrown upwards at an angle. Say which method you would use to find the greatest height it reaches, and why.'
+    answer_label: 'The method and the reason'
+    check:
+      kind: structured
+      requires: [resolve-vertical, choose-equation, reason]
+      concepts: [projectile, method-choice]
+      points:
+        - id: resolve-vertical
+          text: 'Resolve the initial velocity into components and take the vertical component.'
+          concepts: [projectile]
+        - id: choose-equation
+          text: 'At the highest point the vertical velocity is zero, so use v squared = u squared minus 2 g h vertically, or equate the kinetic energy to the potential energy.'
+          concepts: [projectile]
+        - id: reason
+          text: 'The horizontal motion does not affect the height, and the vertical motion has a constant acceleration of g.'
+          concepts: [method-choice, projectile]
+    answer_text: 'Resolve the velocity and use the vertical component. At the highest point the vertical velocity is zero, so use $v^2 = u^2 - 2gh$ vertically, or equate the kinetic energy to the potential energy.'

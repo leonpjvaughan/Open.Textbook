@@ -1,0 +1,233 @@
+# Practice set for 5.1 (The electromagnetic spectrum).
+#
+# Both the questions and the answers on the page are rendered from these
+# records. Each calculation is checked twice: the exact magnitude and dimension
+# by `dimensions`, and the one rounding by `sigfigs`. The `structured` records at
+# the end prove only that a model answer contains the declared ideas in order.
+chapter: 5
+problems:
+  - id: p1-convert-mhz
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'Express a frequency of 150 MHz in hertz, using standard form.'
+    answer_label: '150 MHz in hertz'
+    check:
+      kind: convert
+      value: '150'
+      from: MHz
+      to: Hz
+      answer: '1.5e8'
+    answer_text: '$150\,\text{MHz} = 1.5 \times 10^8\,\text{Hz}$. The prefix mega means one million.'
+
+  - id: p2-convert-nm
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'Express a wavelength of 600 nm in metres, using standard form.'
+    answer_label: '600 nm in metres'
+    check:
+      kind: convert
+      value: '600'
+      from: nm
+      to: m
+      answer: '6.0e-7'
+    answer_text: '$600\,\text{nm} = 6.0 \times 10^{-7}\,\text{m}$. The prefix nano means one thousand-millionth.'
+
+  - id: p3-radio-wavelength
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'A radio station broadcasts at 100 MHz. Calculate the wavelength of the radio waves. Take the speed of electromagnetic waves as 3.0e8 m/s.'
+    answer_label: 'Wavelength of the radio waves'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "100", unit: "MHz"}
+          answer: {value: "3.0", unit: "m"}
+        - {kind: sigfigs, value: "3.0", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{1.0 \times 10^8} = 3.0\,\text{m}$.'
+
+  - id: p4-microwave-wavelength
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'A microwave link uses radiation with a frequency of 2.0 GHz. Calculate its wavelength.'
+    answer_label: 'Wavelength of the microwaves'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "2.0", unit: "GHz"}
+          answer: {value: "0.15", unit: "m"}
+        - {kind: sigfigs, value: "0.15", figures: 2, answer: "0.15", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{2.0 \times 10^9} = 0.15\,\text{m}$.'
+
+  - id: p5-infrared-frequency
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'Infrared radiation has a wavelength of 5.0 μm. Calculate its frequency.'
+    answer_label: 'Frequency of the infrared radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "5.0", unit: "μm"}
+          answer: {value: "6.0e13", unit: "Hz"}
+        - {kind: sigfigs, value: "6.0e13", figures: 2, answer: "6.0e13", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{5.0 \times 10^{-6}} = 6.0 \times 10^{13}\,\text{Hz}$.'
+
+  - id: p6-visible-frequency
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'Blue-green light has a wavelength of 500 nm. Calculate its frequency.'
+    answer_label: 'Frequency of the light'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "500", unit: "nm"}
+          answer: {value: "6.0e14", unit: "Hz"}
+        - {kind: sigfigs, value: "6.0e14", figures: 2, answer: "6.0e14", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{5.0 \times 10^{-7}} = 6.0 \times 10^{14}\,\text{Hz}$.'
+
+  - id: p7-ultraviolet-frequency
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'Ultraviolet radiation has a wavelength of 200 nm. Calculate its frequency.'
+    answer_label: 'Frequency of the ultraviolet radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "200", unit: "nm"}
+          answer: {value: "1.5e15", unit: "Hz"}
+        - {kind: sigfigs, value: "1.5e15", figures: 2, answer: "1.5e15", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{2.0 \times 10^{-7}} = 1.5 \times 10^{15}\,\text{Hz}$.'
+
+  - id: p8-xray-frequency
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'A dental X-ray has a wavelength of 2.0e-10 m. Calculate its frequency.'
+    answer_label: 'Frequency of the X-ray'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "2.0e-10", unit: "m"}
+          answer: {value: "1.5e18", unit: "Hz"}
+        - {kind: sigfigs, value: "1.5e18", figures: 2, answer: "1.5e18", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{2.0 \times 10^{-10}} = 1.5 \times 10^{18}\,\text{Hz}$.'
+
+  - id: p9-gamma-wavelength
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'Gamma radiation from a sample has a frequency of 3.0e20 Hz. Calculate its wavelength.'
+    answer_label: 'Wavelength of the gamma radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "3.0e20", unit: "Hz"}
+          answer: {value: "1.0e-12", unit: "m"}
+        - {kind: sigfigs, value: "1.0e-12", figures: 2, answer: "1.0e-12", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{3.0 \times 10^{20}} = 1.0 \times 10^{-12}\,\text{m}$.'
+
+  - id: p10-hidden-frequency
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'A microwave has a wavelength of 0.030 m. Calculate its frequency.'
+    answer_label: 'Frequency of the microwave'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "0.030", unit: "m"}
+          answer: {value: "1.0e10", unit: "Hz"}
+        - {kind: sigfigs, value: "1.0e10", figures: 2, answer: "1.0e10", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{0.030} = 1.0 \times 10^{10}\,\text{Hz} = 10\,\text{GHz}$.'
+
+  - id: p11-order-spectrum
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'Place these four groups in order of increasing wavelength: infrared, gamma, radio, ultraviolet.'
+    answer_label: 'The order of increasing wavelength'
+    check:
+      kind: structured
+      requires: [state-order, give-reason]
+      concepts: [electromagnetic-spectrum]
+      points:
+        - id: state-order
+          text: 'Gamma, ultraviolet, infrared, radio.'
+          concepts: [electromagnetic-spectrum]
+        - id: give-reason
+          text: 'Gamma radiation has the shortest wavelength and radio waves have the longest. Ultraviolet is shorter than infrared.'
+          concepts: [electromagnetic-spectrum]
+
+  - id: p12-same-speed
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'A radio wave and a gamma ray travel through a vacuum together. Explain how their speeds and their frequencies compare.'
+    answer_label: 'A comparison of speeds and frequencies'
+    check:
+      kind: structured
+      requires: [speed, frequency]
+      concepts: [electromagnetic-spectrum, speed-of-light]
+      points:
+        - id: speed
+          text: 'They travel at the same speed in a vacuum, 3.0e8 m/s.'
+          concepts: [speed-of-light]
+        - id: frequency
+          text: 'The radio wave has a much lower frequency and a much longer wavelength than the gamma ray.'
+          concepts: [electromagnetic-spectrum]
+
+  - id: p13-method-choice-anchor
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'In the chapter problem the radio telescope receives a signal at 150 MHz. Say which relationship you will use, then calculate the wavelength.'
+    answer_label: 'Wavelength of the signal'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "150", unit: "MHz"}
+          answer: {value: "2.0", unit: "m"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: 'Use the wave equation as $\lambda = \dfrac{c}{f}$. Then $\lambda = \dfrac{3.0 \times 10^8}{1.5 \times 10^8} = 2.0\,\text{m}$.'

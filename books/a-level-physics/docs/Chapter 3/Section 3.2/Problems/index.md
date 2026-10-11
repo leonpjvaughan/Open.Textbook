@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.2 Dynamics and Newton's laws of motion — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: AP3
+Work through these on your own. For each question, draw a free-body diagram
+before you write an equation. Mark the positive direction on the diagram.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-03-practice-3.2
+
+:::answers chapter-03-practice-3.2

@@ -1,0 +1,139 @@
+# Practice set for 5.10, solving trigonometric equations in an interval.
+#
+# Each equation is solved with `solve` against an exact interval where SymPy can
+# find every root. The quadratic case uses one check per root, because SymPy's
+# solver does not find all roots of that equation; the answer text states the
+# full set and a human confirms completeness.
+chapter: 5
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-sin-exact
+    section: "5.10"
+    dfe: [E7]
+    statement: 'Solve $\sin\theta = \dfrac{\sqrt{3}}{2}$ for $0 \le \theta < 2\pi$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "sin(x) = sqrt(3)/2"
+      variable: "x"
+      interval: ["0", "2*pi"]
+      answer: ["pi/3", "2*pi/3"]
+    answer_text: 'Sine is positive in the first and second quadrants. The principal value is $\dfrac{\pi}{3}$, and the second solution is $\pi - \dfrac{\pi}{3} = \dfrac{2\pi}{3}$.'
+
+  - id: p2-cos-negative
+    section: "5.10"
+    dfe: [E7]
+    statement: 'Solve $\cos\theta = -\dfrac{1}{2}$ for $0 \le \theta < 2\pi$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "cos(x) = -1/2"
+      variable: "x"
+      interval: ["0", "2*pi"]
+      answer: ["2*pi/3", "4*pi/3"]
+    answer_text: 'The related acute angle is $\dfrac{\pi}{3}$. Cosine is negative in the second and third quadrants, so the solutions are $\pi - \dfrac{\pi}{3} = \dfrac{2\pi}{3}$ and $\pi + \dfrac{\pi}{3} = \dfrac{4\pi}{3}$.'
+
+  - id: p3-tan-exact
+    section: "5.10"
+    dfe: [E7]
+    statement: 'Solve $\tan\theta = \sqrt{3}$ for $0 \le \theta < 2\pi$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "tan(x) = sqrt(3)"
+      variable: "x"
+      interval: ["0", "2*pi"]
+      answer: ["pi/3", "4*pi/3"]
+    answer_text: 'The principal value is $\dfrac{\pi}{3}$. Tangent has period $\pi$, so the second solution is $\dfrac{\pi}{3} + \pi = \dfrac{4\pi}{3}$.'
+
+  - id: p4-double-angle
+    section: "5.10"
+    dfe: [E7]
+    statement: 'Solve $\sin 2\theta = \dfrac{\sqrt{3}}{2}$ for $0 \le \theta < 2\pi$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "sin(2*x) = sqrt(3)/2"
+      variable: "x"
+      interval: ["0", "2*pi"]
+      answer: ["pi/6", "pi/3", "7*pi/6", "4*pi/3"]
+    answer_text: 'Let $u = 2\theta$, so $0 \le u < 4\pi$. The equation $\sin u = \dfrac{\sqrt{3}}{2}$ has four solutions in that range: $u = \dfrac{\pi}{3}, \dfrac{2\pi}{3}, \dfrac{7\pi}{3}, \dfrac{8\pi}{3}$. Dividing by $2$ gives $\theta = \dfrac{\pi}{6}, \dfrac{\pi}{3}, \dfrac{7\pi}{6}, \dfrac{4\pi}{3}$.'
+
+  - id: p5-factorise
+    section: "5.10"
+    dfe: [E7]
+    statement: 'Solve $2\cos^2\theta - \cos\theta = 0$ for $0 \le \theta < 2\pi$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "2*cos(x)**2 - cos(x) = 0"
+      variable: "x"
+      interval: ["0", "2*pi"]
+      answer: ["pi/3", "pi/2", "3*pi/2", "5*pi/3"]
+    answer_text: 'Factorise rather than divide: $\cos\theta(2\cos\theta - 1) = 0$. So $\cos\theta = 0$, giving $\theta = \dfrac{\pi}{2}$ and $\dfrac{3\pi}{2}$, or $\cos\theta = \dfrac{1}{2}$, giving $\theta = \dfrac{\pi}{3}$ and $\dfrac{5\pi}{3}$.'
+
+  - id: p6-squared
+    section: "5.10"
+    dfe: [E7]
+    statement: 'Solve $\sin^2\theta = \dfrac{1}{4}$ for $0 \le \theta < 2\pi$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "sin(x)**2 = 1/4"
+      variable: "x"
+      interval: ["0", "2*pi"]
+      answer: ["pi/6", "5*pi/6", "7*pi/6", "11*pi/6"]
+    answer_text: 'Take both square roots: $\sin\theta = \dfrac{1}{2}$ or $\sin\theta = -\dfrac{1}{2}$. The first gives $\dfrac{\pi}{6}$ and $\dfrac{5\pi}{6}$; the second gives $\dfrac{7\pi}{6}$ and $\dfrac{11\pi}{6}$.'
+
+  - id: p7-quadratic
+    section: "5.10"
+    dfe: [E7]
+    statement: 'Solve $2\sin^2\theta - \sin\theta - 1 = 0$ for $0 \le \theta < 2\pi$.'
+    answer_label: 'The solutions'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2*sin(pi/2)**2 - sin(pi/2) - 1", answer: "0"}
+        - {kind: evaluate, expression: "2*sin(7*pi/6)**2 - sin(7*pi/6) - 1", answer: "0"}
+        - {kind: evaluate, expression: "2*sin(11*pi/6)**2 - sin(11*pi/6) - 1", answer: "0"}
+    answer_text: 'Factorise: $(2\sin\theta + 1)(\sin\theta - 1) = 0$. So $\sin\theta = -\dfrac{1}{2}$ or $\sin\theta = 1$. The first gives $\theta = \dfrac{7\pi}{6}$ and $\dfrac{11\pi}{6}$; the second gives $\theta = \dfrac{\pi}{2}$. The three solutions are $\dfrac{\pi}{2}$, $\dfrac{7\pi}{6}$ and $\dfrac{11\pi}{6}$.'
+
+  - id: p8-sin-half
+    section: "5.10"
+    dfe: [E7]
+    statement: 'Solve $\sin\theta = \dfrac{1}{2}$ for $0 \le \theta < 2\pi$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "sin(x) = 1/2"
+      variable: "x"
+      interval: ["0", "2*pi"]
+      answer: ["pi/6", "5*pi/6"]
+    answer_text: 'The principal value is $\dfrac{\pi}{6}$. The second solution is $\pi - \dfrac{\pi}{6} = \dfrac{5\pi}{6}$.'
+
+  - id: p9-cos-surd
+    section: "5.10"
+    dfe: [E7]
+    statement: 'Solve $\cos\theta = -\dfrac{\sqrt{3}}{2}$ for $0 \le \theta < 2\pi$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "cos(x) = -sqrt(3)/2"
+      variable: "x"
+      interval: ["0", "2*pi"]
+      answer: ["5*pi/6", "7*pi/6"]
+    answer_text: 'The related acute angle is $\dfrac{\pi}{6}$. Cosine is negative in the second and third quadrants, so $\theta = \dfrac{5\pi}{6}$ and $\dfrac{7\pi}{6}$.'
+
+  - id: p10-tan-one
+    section: "5.10"
+    dfe: [E7]
+    statement: 'Solve $\tan\theta = 1$ for $0 \le \theta < 2\pi$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "tan(x) = 1"
+      variable: "x"
+      interval: ["0", "2*pi"]
+      answer: ["pi/4", "5*pi/4"]
+    answer_text: 'The principal value is $\dfrac{\pi}{4}$. Adding the period $\pi$ gives the second solution $\dfrac{5\pi}{4}$.'

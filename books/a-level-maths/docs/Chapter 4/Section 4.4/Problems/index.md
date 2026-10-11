@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.4 Sigma notation for sums — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: D3
+Work through these on your own. Check the start and the end of the index first.
+When the summand is a polynomial, the standard results are faster than adding
+the terms one by one.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-04-practice-4.4
+
+:::answers chapter-04-practice-4.4

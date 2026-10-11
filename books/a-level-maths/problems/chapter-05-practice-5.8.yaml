@@ -1,0 +1,118 @@
+# Practice set for 5.8, addition and double-angle formulae.
+#
+# The exact values and the identities are checked symbolically. A double-angle
+# value is checked from the given ratio, not from a rounded decimal.
+chapter: 5
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: p1-sin-75
+    section: "5.8"
+    dfe: [E6]
+    statement: 'Find the exact value of $\sin 75^\circ$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "sin(5*pi/12)"
+      answer: "(sqrt(6) + sqrt(2))/4"
+    answer_text: 'Write $75^\circ = 45^\circ + 30^\circ$. Then $\sin 75^\circ = \dfrac{\sqrt{2}}{2} \times \dfrac{\sqrt{3}}{2} + \dfrac{\sqrt{2}}{2} \times \dfrac{1}{2} = \dfrac{\sqrt{6} + \sqrt{2}}{4}$.'
+
+  - id: p2-cos-15
+    section: "5.8"
+    dfe: [E6]
+    statement: 'Find the exact value of $\cos 15^\circ$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "cos(pi/12)"
+      answer: "(sqrt(6) + sqrt(2))/4"
+    answer_text: 'Write $15^\circ = 45^\circ - 30^\circ$. Then $\cos 15^\circ = \dfrac{\sqrt{2}}{2} \times \dfrac{\sqrt{3}}{2} + \dfrac{\sqrt{2}}{2} \times \dfrac{1}{2} = \dfrac{\sqrt{6} + \sqrt{2}}{4}$.'
+
+  - id: p3-tan-75
+    section: "5.8"
+    dfe: [E6]
+    statement: 'Find the exact value of $\tan 75^\circ$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "tan(5*pi/12)"
+      answer: "2 + sqrt(3)"
+    answer_text: 'Write $75^\circ = 45^\circ + 30^\circ$. Then $\tan 75^\circ = \dfrac{1 + \frac{\sqrt{3}}{3}}{1 - \frac{\sqrt{3}}{3}} = \dfrac{3 + \sqrt{3}}{3 - \sqrt{3}}$. Rationalising gives $2 + \sqrt{3}$.'
+
+  - id: p4-sin-double
+    section: "5.8"
+    dfe: [E6]
+    statement: 'Given that $\sin A = \dfrac{5}{13}$ and $A$ is acute, find $\sin 2A$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "2*(5/13)*(12/13)"
+      answer: "120/169"
+    answer_text: 'From $\sin^2 A + \cos^2 A = 1$ and the acute condition, $\cos A = \dfrac{12}{13}$. Then $\sin 2A = 2 \times \dfrac{5}{13} \times \dfrac{12}{13} = \dfrac{120}{169}$.'
+
+  - id: p5-cos-double
+    section: "5.8"
+    dfe: [E6]
+    statement: 'Given that $\sin A = \dfrac{5}{13}$ and $A$ is acute, find $\cos 2A$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "1 - 2*(5/13)**2"
+      answer: "119/169"
+    answer_text: 'Use the sine form, which needs only $\sin A$: $\cos 2A = 1 - 2\sin^2 A = 1 - \dfrac{50}{169} = \dfrac{119}{169}$.'
+
+  - id: p6-tan-double
+    section: "5.8"
+    dfe: [E6]
+    statement: 'Given that $\tan A = \dfrac{1}{2}$, find $\tan 2A$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "2*(1/2)/(1 - (1/2)**2)"
+      answer: "4/3"
+    answer_text: '$\tan 2A = \dfrac{2\tan A}{1 - \tan^2 A} = \dfrac{1}{1 - \frac{1}{4}} = \dfrac{4}{3}$.'
+
+  - id: p7-sin-105
+    section: "5.8"
+    dfe: [E6]
+    statement: 'Find the exact value of $\sin 105^\circ$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "sin(7*pi/12)"
+      answer: "(sqrt(6) + sqrt(2))/4"
+    answer_text: 'Write $105^\circ = 60^\circ + 45^\circ$. Then $\sin 105^\circ = \dfrac{\sqrt{3}}{2} \times \dfrac{\sqrt{2}}{2} + \dfrac{1}{2} \times \dfrac{\sqrt{2}}{2} = \dfrac{\sqrt{6} + \sqrt{2}}{4}$. This is the value the chapter problem needs for the angle at $L$.'
+
+  - id: p8-cos-double-from-cos
+    section: "5.8"
+    dfe: [E6]
+    statement: 'Given that $\cos A = \dfrac{3}{5}$, find $\cos 2A$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "2*(3/5)**2 - 1"
+      answer: "-7/25"
+    answer_text: 'Use the cosine form, which needs only $\cos A$: $\cos 2A = 2\cos^2 A - 1 = 2 \times \dfrac{9}{25} - 1 = \dfrac{18}{25} - \dfrac{25}{25} = -\dfrac{7}{25}$.'
+
+  - id: p9-sum-to-product
+    section: "5.8"
+    dfe: [E6]
+    statement: 'Show that $\sin(A + B) + \sin(A - B) \equiv 2\sin A\cos B$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "sin(x + y) + sin(x - y)"
+      answer: "2*sin(x)*cos(y)"
+    answer_text: 'Add the two addition formulae: $\sin(A + B) + \sin(A - B) = (\sin A\cos B + \cos A\sin B) + (\sin A\cos B - \cos A\sin B)$. The $\cos A\sin B$ terms cancel, leaving $2\sin A\cos B$.'
+
+  - id: p10-double-division
+    section: "5.8"
+    dfe: [E6]
+    statement: 'Show that $\dfrac{\sin 2A}{2\sin A} \equiv \cos A$ for $\sin A \neq 0$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "sin(2*x)/(2*sin(x))"
+      answer: "cos(x)"
+    answer_text: 'Replace $\sin 2A$ with $2\sin A\cos A$: $\dfrac{2\sin A\cos A}{2\sin A} = \cos A$, provided $\sin A \neq 0$.'

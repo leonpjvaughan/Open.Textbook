@@ -1,0 +1,118 @@
+# Practice set for 5.6, secant, cosecant, cotangent and the inverse functions.
+#
+# The reciprocal values and the two Pythagorean identities are checked
+# symbolically. The choice of the principal angle is the statement's job.
+chapter: 5
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-sec
+    section: "5.6"
+    dfe: [E4]
+    statement: 'Write down the value of $\sec\dfrac{\pi}{3}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "1/cos(pi/3)"
+      answer: "2"
+    answer_text: '$\sec\dfrac{\pi}{3} = \dfrac{1}{\cos\dfrac{\pi}{3}} = \dfrac{1}{\frac{1}{2}} = 2$.'
+
+  - id: p2-cosec
+    section: "5.6"
+    dfe: [E4]
+    statement: 'Write down the value of $\operatorname{cosec}\dfrac{\pi}{6}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "1/sin(pi/6)"
+      answer: "2"
+    answer_text: '$\operatorname{cosec}\dfrac{\pi}{6} = \dfrac{1}{\sin\dfrac{\pi}{6}} = \dfrac{1}{\frac{1}{2}} = 2$.'
+
+  - id: p3-cot
+    section: "5.6"
+    dfe: [E4]
+    statement: 'Write down the value of $\cot\dfrac{\pi}{4}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "cos(pi/4)/sin(pi/4)"
+      answer: "1"
+    answer_text: '$\cot\dfrac{\pi}{4} = \dfrac{\cos\dfrac{\pi}{4}}{\sin\dfrac{\pi}{4}} = \dfrac{\frac{\sqrt{2}}{2}}{\frac{\sqrt{2}}{2}} = 1$.'
+
+  - id: p4-cosec-identity
+    section: "5.6"
+    dfe: [E4]
+    statement: 'Simplify $\operatorname{cosec}^2\theta - \cot^2\theta$.'
+    answer_label: 'The simplified expression'
+    check:
+      kind: evaluate
+      expression: "csc(x)**2 - cot(x)**2"
+      answer: "1"
+    answer_text: 'From $1 + \cot^2\theta = \operatorname{cosec}^2\theta$, subtract $\cot^2\theta$ from both sides. The result is $\operatorname{cosec}^2\theta - \cot^2\theta = 1$.'
+
+  - id: p5-sec-identity
+    section: "5.6"
+    dfe: [E4]
+    statement: 'Simplify $\sec^2\theta - \tan^2\theta$.'
+    answer_label: 'The simplified expression'
+    check:
+      kind: evaluate
+      expression: "sec(x)**2 - tan(x)**2"
+      answer: "1"
+    answer_text: 'From $\sec^2\theta = 1 + \tan^2\theta$, subtract $\tan^2\theta$ from both sides. The result is $\sec^2\theta - \tan^2\theta = 1$.'
+
+  - id: p6-from-cos
+    section: "5.6"
+    dfe: [E4]
+    statement: 'Given that $\cos\theta = \dfrac{5}{13}$ and $\theta$ is acute, find $\sin\theta$ and $\operatorname{cosec}\theta$.'
+    answer_label: 'The two values'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "sqrt(1 - (5/13)**2)", answer: "12/13"}
+        - {kind: evaluate, expression: "1/(12/13)", answer: "13/12"}
+    answer_text: '$\sin^2\theta = 1 - \dfrac{25}{169} = \dfrac{144}{169}$. Since $\theta$ is acute, $\sin\theta = \dfrac{12}{13}$. Then $\operatorname{cosec}\theta = \dfrac{13}{12}$.'
+
+  - id: p7-arcsin
+    section: "5.6"
+    dfe: [E4]
+    statement: 'Work out $\arcsin\dfrac{\sqrt{3}}{2}$, giving the principal value in radians.'
+    answer_label: 'The principal value'
+    check:
+      kind: evaluate
+      expression: "asin(sqrt(3)/2)"
+      answer: "pi/3"
+    answer_text: 'The principal range of arcsine is $\left[-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right]$. Inside it, $\sin\dfrac{\pi}{3} = \dfrac{\sqrt{3}}{2}$, so $\arcsin\dfrac{\sqrt{3}}{2} = \dfrac{\pi}{3}$.'
+
+  - id: p8-arccos
+    section: "5.6"
+    dfe: [E4]
+    statement: 'Work out $\arccos\dfrac{1}{2}$, giving the principal value in radians.'
+    answer_label: 'The principal value'
+    check:
+      kind: evaluate
+      expression: "acos(1/2)"
+      answer: "pi/3"
+    answer_text: 'The principal range of arccosine is $[0, \pi]$. Inside it, $\cos\dfrac{\pi}{3} = \dfrac{1}{2}$, so $\arccos\dfrac{1}{2} = \dfrac{\pi}{3}$.'
+
+  - id: p9-arctan
+    section: "5.6"
+    dfe: [E4]
+    statement: 'Work out $\arctan 1$, giving the principal value in radians.'
+    answer_label: 'The principal value'
+    check:
+      kind: evaluate
+      expression: "atan(1)"
+      answer: "pi/4"
+    answer_text: 'The principal range of arctangent is $\left(-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right)$. Inside it, $\tan\dfrac{\pi}{4} = 1$, so $\arctan 1 = \dfrac{\pi}{4}$.'
+
+  - id: p10-tan-from-sec
+    section: "5.6"
+    dfe: [E4]
+    statement: 'Given that $\sec\theta = \dfrac{5}{3}$ and $\theta$ is acute, find $\tan\theta$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "sqrt((5/3)**2 - 1)"
+      answer: "4/3"
+    answer_text: 'Use $\sec^2\theta = 1 + \tan^2\theta$. Then $\tan^2\theta = \dfrac{25}{9} - 1 = \dfrac{16}{9}$, so $\tan\theta = \dfrac{4}{3}$ because $\theta$ is acute.'

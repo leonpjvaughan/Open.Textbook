@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.4 Momentum — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: AP3
+Work through these on your own. Write the positive direction at the top of each
+answer, and check whether the collision is elastic before you claim that kinetic
+energy is conserved.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-03-practice-3.4
+
+:::answers chapter-03-practice-3.4

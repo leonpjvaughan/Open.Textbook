@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.5 Circular motion — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: AP3
+Work through these on your own. For each question, name the force that provides
+the centripetal force before you calculate its size.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-03-practice-3.5
+
+:::answers chapter-03-practice-3.5

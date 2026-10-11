@@ -10,9 +10,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.12 Trigonometry in context: vectors, kinematics and forces — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: E9, OT3
+Work through these on your own. Draw the triangle for each question, mark the
+angle you are given, and decide whether you need a component, a resultant or a
+direction. Give lengths and forces to three significant figures.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-05-practice-5.12
+
+:::answers chapter-05-practice-5.12

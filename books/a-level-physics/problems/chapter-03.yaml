@@ -1,0 +1,1093 @@
+# Worked solutions for Chapter 3 (Mechanics).
+#
+# These are the numerical worked examples, the warm-up recalls and the guided
+# calculations that the Learn and Practise with help pages show. The pages carry
+# the prose and the reasoning; this bank is the independent check of every number
+# in them, so a slip in a worked example cannot ship. The records are not rendered
+# by a page marker: the pages write their own working, and the `:::answers` blocks
+# come from the practice banks.
+#
+# A quantity with a unit is proved by `dimensions`; an irrational value by
+# `approx` with a stated tolerance; a value read off a graph series by `gradient`
+# and `area`; a reason by `structured`, which proves presence, order and coverage
+# only, never physics.
+chapter: 3
+problems:
+  # --- Section 3.1, the Learn worked examples and the guided problems ---------
+  - id: w1-accelerate
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A car accelerates uniformly from 8.0 m/s to 20 m/s in 4.0 s. Find its acceleration and the distance travelled.'
+    answer_label: 'The acceleration and the distance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "(v - u) / t"
+          values:
+            v: {value: "20", unit: "m s^-1"}
+            u: {value: "8.0", unit: "m s^-1"}
+            t: {value: "4.0", unit: "s"}
+          answer: {value: "3.0", unit: "m s^-2"}
+        - kind: dimensions
+          expression: "0.5 * (u + v) * t"
+          values:
+            u: {value: "8.0", unit: "m s^-1"}
+            v: {value: "20", unit: "m s^-1"}
+            t: {value: "4.0", unit: "s"}
+          answer: {value: "56", unit: "m"}
+    answer_text: '$a = \dfrac{v - u}{t} = \dfrac{20 - 8.0}{4.0} = 3.0\,\text{m}\,\text{s}^{-2}$ and $s = \dfrac{(u + v)t}{2} = \dfrac{(8.0 + 20) \times 4.0}{2} = 56\,\text{m}$.'
+
+  - id: w2-train-decelerate
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A train slows from 30 m/s to rest over 450 m. Find its deceleration.'
+    answer_label: 'The deceleration'
+    check:
+      kind: dimensions
+      expression: "(v**2 - u**2) / (2 * s)"
+      values:
+        v: {value: "0", unit: "m s^-1"}
+        u: {value: "30", unit: "m s^-1"}
+        s: {value: "450", unit: "m"}
+      answer: {value: "-1.0", unit: "m s^-2"}
+    answer_text: 'Use $v^2 = u^2 + 2as$, which omits the time: $0 = 30^2 + 2a(450)$, so $a = -1.0\,\text{m}\,\text{s}^{-2}$. The train slows at 1.0 m s⁻².'
+
+  - id: w3-graph-distance
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A van speeds up from 0 to 12 m/s in 6.0 s, travels at 12 m/s for 10 s, then slows to rest in 5.0 s. Find the acceleration in the first stage and the total displacement.'
+    answer_label: 'The acceleration and the total displacement'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "12 / 6.0", answer: "2.0"}
+        - {kind: evaluate, expression: "0.5 * 6.0 * 12 + 10 * 12 + 0.5 * 5.0 * 12", answer: "186"}
+    answer_text: 'The acceleration is the gradient, $\dfrac{12 - 0}{6.0} = 2.0\,\text{m}\,\text{s}^{-2}$. The displacement is the area under the graph: $\tfrac{1}{2}(6.0)(12) + (10)(12) + \tfrac{1}{2}(5.0)(12) = 186\,\text{m}$.'
+
+  - id: w4-stone-fall
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A stone is dropped from rest and falls for 2.5 s. Find its speed and the distance it falls. Take g = 9.81 m/s^2.'
+    answer_label: 'The speed and the distance'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "9.81 * 2.5", target: "24.5", tolerance: "0.05"}
+        - {kind: approx, value: "0.5 * 9.81 * 2.5**2", target: "30.7", tolerance: "0.05"}
+    answer_text: 'Take downwards as positive. $v = gt = 9.81 \times 2.5 = 24.5\,\text{m}\,\text{s}^{-1}$ and $s = \tfrac{1}{2}gt^2 = \tfrac{1}{2} \times 9.81 \times 2.5^2 = 30.7\,\text{m}$.'
+
+  # --- Section 3.1, the chapter problem (the first drop) ----------------------
+  - id: anchor-first-drop
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'The roller-coaster car is released from rest down a straight track at 60 degrees to the horizontal and descends 45 m vertically. Find the acceleration down the slope, the length of the slope, and the speed at the bottom. Take g = 9.81 m/s^2.'
+    answer_label: 'The acceleration, the slope length and the speed'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "9.81 * sin(pi/3)", target: "8.50", tolerance: "0.01"}
+        - {kind: approx, value: "45 / sin(pi/3)", target: "51.96", tolerance: "0.01"}
+        - {kind: approx, value: "sqrt(2 * 9.81 * 45)", target: "29.71", tolerance: "0.01"}
+    answer_text: '$a = g\sin 60^\circ = 9.81 \times 0.866 = 8.50\,\text{m}\,\text{s}^{-2}$. The slope length is $s = \dfrac{45}{\sin 60^\circ} = 52.0\,\text{m}$. From rest, $v^2 = 2as = 2 \times 8.50 \times 52.0 = 884$, so $v = 29.7\,\text{m}\,\text{s}^{-1}$.'
+
+  # --- Section 3.1, the warm-up recalls ---------------------------------------
+  - id: warmup-3-1-km
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'Warm-up: write 2.5 x 10^4 m in kilometres.'
+    check:
+      kind: convert
+      value: "25000"
+      from: "m"
+      to: "km"
+      answer: "25"
+    answer_text: '$2.5 \times 10^4\,\text{m} = 25\,\text{km}$.'
+
+  - id: warmup-3-1-component
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'Warm-up: a force of 60 N acts at 30 degrees to the horizontal. Find its horizontal component.'
+    answer_label: 'The horizontal component'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "60"
+      angle_deg: "30"
+      components: {x: "51.96", y: "30"}
+    answer_text: '$60\cos 30^\circ = 52.0\,\text{N}$.'
+
+  - id: warmup-3-1-trapezium
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'Warm-up: find the area of a trapezium with parallel sides 6.0 cm and 14 cm and height 5.0 cm.'
+    answer_label: 'The area'
+    check: {kind: evaluate, expression: "0.5 * (6.0 + 14) * 5.0", answer: "50"}
+    answer_text: '$\tfrac{1}{2}(6.0 + 14) \times 5.0 = 50\,\text{cm}^2$.'
+
+  # --- Section 3.1, the guided problems ---------------------------------------
+  - id: g1-cyclist-from-rest
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A cyclist accelerates uniformly from rest to 8.0 m/s in 5.0 s. Find the acceleration and the distance travelled.'
+    answer_label: 'The acceleration and the distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "8.0 / 5.0", answer: "1.6"}
+        - {kind: evaluate, expression: "0.5 * 1.6 * 5.0**2", answer: "20"}
+    answer_text: '$a = \dfrac{8.0}{5.0} = 1.6\,\text{m}\,\text{s}^{-2}$ and $s = \tfrac{1}{2}at^2 = \tfrac{1}{2} \times 1.6 \times 5.0^2 = 20\,\text{m}$.'
+
+  - id: g2-car-braking
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A car slows uniformly from 24 m/s to rest in 6.0 s. Find its deceleration and the braking distance.'
+    answer_label: 'The deceleration and the braking distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(0 - 24) / 6.0", answer: "-4.0"}
+        - {kind: evaluate, expression: "0.5 * (24 + 0) * 6.0", answer: "72"}
+    answer_text: '$a = \dfrac{0 - 24}{6.0} = -4.0\,\text{m}\,\text{s}^{-2}$ and $s = \dfrac{(u + v)t}{2} = \dfrac{(24 + 0) \times 6.0}{2} = 72\,\text{m}$.'
+
+  - id: g3-van-graph
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A van speeds up from 0 to 20 m/s in 8.0 s, travels at 20 m/s for 12 s, then slows to rest in 4.0 s. Find the total displacement and the deceleration in the last stage.'
+    answer_label: 'The total displacement and the deceleration'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "0.5 * 8.0 * 20 + 12 * 20 + 0.5 * 4.0 * 20", answer: "360"}
+        - {kind: evaluate, expression: "(0 - 20) / 4.0", answer: "-5.0"}
+    answer_text: 'The displacement is the area under the graph: $80 + 240 + 40 = 360\,\text{m}$. The deceleration is the gradient, $\dfrac{0 - 20}{4.0} = -5.0\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: g4-stone-well
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A stone is dropped from rest down a well and falls 20 m. Find the time and the speed at the bottom. Take g = 9.81 m/s^2.'
+    answer_label: 'The time and the speed'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "sqrt(2 * 20 / 9.81)", target: "2.02", tolerance: "0.01"}
+        - {kind: approx, value: "9.81 * sqrt(2 * 20 / 9.81)", target: "19.8", tolerance: "0.05"}
+    answer_text: '$20 = \tfrac{1}{2}gt^2$ gives $t = \sqrt{\dfrac{40}{9.81}} = 2.02\,\text{s}$, and $v = gt = 9.81 \times 2.02 = 19.8\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: g6-train-stages
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'Explain why one equation of motion cannot describe a train journey with three stages, and describe how to find the total distance.'
+    answer_label: 'Why one equation fails, and the method'
+    check:
+      kind: structured
+      requires: [state-constant-a, name-stages, use-area]
+      concepts: [equations-of-motion, velocity-time-graph]
+      points:
+        - id: state-constant-a
+          text: 'The equations of motion hold only while the acceleration is constant.'
+          concepts: [equations-of-motion]
+        - id: name-stages
+          text: 'The journey has three stages with different accelerations: speeding up, constant velocity, and slowing down.'
+          concepts: [equations-of-motion]
+        - id: use-area
+          text: 'Draw the velocity-time graph and find the area under it in stages. The total area is the displacement.'
+          concepts: [velocity-time-graph]
+    answer_text: 'The equations of motion need a constant acceleration, and this journey has three different accelerations. Split it into stages and find the area under the velocity-time graph.'
+
+  # --- Section 3.2, the Learn worked examples and the guided problems ---------
+  - id: w5-resultant-force
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A car of mass 1200 kg accelerates at 2.0 m/s^2. Find the resultant force on it.'
+    answer_label: 'The resultant force'
+    check:
+      kind: dimensions
+      expression: "m * a"
+      values:
+        m: {value: "1200", unit: "kg"}
+        a: {value: "2.0", unit: "m s^-2"}
+      answer: {value: "2400", unit: "N"}
+    answer_text: '$F = ma = 1200 \times 2.0 = 2400\,\text{N}$.'
+
+  - id: w6-crate-friction
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A crate of mass 25 kg is pulled with a horizontal force of 90 N against a friction force of 40 N. Find the acceleration.'
+    answer_label: 'The acceleration'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(90 - 40) / 25", answer: "2.0"}
+    answer_text: 'The resultant is $90 - 40 = 50\,\text{N}$, so $a = \dfrac{50}{25} = 2.0\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: w7-slope-components
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A crate of mass 30 kg rests on a slope at 20 degrees to the horizontal. Find the normal reaction and the component of the weight along the slope. Take g = 9.81 m/s^2.'
+    answer_label: 'The normal reaction and the along-slope component'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "30 * 9.81 * cos(20 * pi / 180)", target: "276", tolerance: "1"}
+        - {kind: approx, value: "30 * 9.81 * sin(20 * pi / 180)", target: "101", tolerance: "1"}
+    answer_text: 'The weight is $mg = 30 \times 9.81 = 294\,\text{N}$. The normal reaction is $W\cos 20^\circ = 276\,\text{N}$ and the along-slope component is $W\sin 20^\circ = 101\,\text{N}$.'
+
+  - id: w8-lift-passenger
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A passenger of mass 70 kg stands in a lift that accelerates upwards at 1.2 m/s^2. Find the normal reaction on the passenger. Take g = 9.81 m/s^2.'
+    answer_label: 'The normal reaction'
+    check:
+      kind: dimensions
+      expression: "m * (g + a)"
+      values:
+        m: {value: "70", unit: "kg"}
+        g: {value: "9.81", unit: "m s^-2"}
+        a: {value: "1.2", unit: "m s^-2"}
+      answer: {value: "770.7", unit: "N"}
+    answer_text: '$N = m(g + a) = 70(9.81 + 1.2) = 771\,\text{N}$. The weight is 687 N, so the floor pushes up harder than gravity pulls down.'
+
+  - id: w9-projectile
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A ball is kicked at 20 m/s at 30 degrees above the horizontal. Find the time of flight, the range and the maximum height. Take g = 9.81 m/s^2.'
+    answer_label: 'The time of flight, the range and the maximum height'
+    check:
+      kind: all
+      checks:
+        - kind: resolve
+          relation: components-from-magnitude-and-angle
+          magnitude: "20"
+          angle_deg: "30"
+          components: {x: "17.32", y: "10.0"}
+        - {kind: approx, value: "2 * 20 * sin(30 * pi / 180) / 9.81", target: "2.04", tolerance: "0.01"}
+        - {kind: approx, value: "20 * cos(30 * pi / 180) * 2 * 20 * sin(30 * pi / 180) / 9.81", target: "35.3", tolerance: "0.1"}
+        - {kind: approx, value: "(20 * sin(30 * pi / 180))**2 / (2 * 9.81)", target: "5.10", tolerance: "0.02"}
+    answer_text: '$u_x = 20\cos 30^\circ = 17.3\,\text{m}\,\text{s}^{-1}$ and $u_y = 20\sin 30^\circ = 10.0\,\text{m}\,\text{s}^{-1}$. The time to the top is $10.0/9.81 = 1.02\,\text{s}$, so the flight time is $2.04\,\text{s}$. The range is $17.3 \times 2.04 = 35.3\,\text{m}$ and the greatest height is $\dfrac{10.0^2}{2 \times 9.81} = 5.10\,\text{m}$.'
+
+  - id: w10-terminal-velocity
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A skydiver of mass 80 kg falls at terminal velocity, and later has a drag force of 600 N. Find the drag at terminal velocity and the acceleration at the later instant. Take g = 9.81 m/s^2.'
+    answer_label: 'The terminal drag and the acceleration'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "80 * 9.81", target: "784.8", tolerance: "0.05"}
+        - {kind: approx, value: "(80 * 9.81 - 600) / 80", target: "2.31", tolerance: "0.01"}
+    answer_text: 'At terminal velocity the drag equals the weight: $D = mg = 80 \times 9.81 = 785\,\text{N}$. When the drag is 600 N the resultant is $785 - 600 = 185\,\text{N}$, so $a = \dfrac{185}{80} = 2.3\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: anchor-slope-forces
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'The roller-coaster car and riders have a mass of 500 kg and the first drop is at 60 degrees. Find the weight, the component along the slope and the component perpendicular to the slope. Take g = 9.81 m/s^2.'
+    answer_label: 'The weight and its two components'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "500 * 9.81", target: "4905", tolerance: "0.1"}
+        - {kind: approx, value: "500 * 9.81 * sin(60 * pi / 180)", target: "4248", tolerance: "1"}
+        - {kind: approx, value: "500 * 9.81 * cos(60 * pi / 180)", target: "2452.5", tolerance: "0.5"}
+    answer_text: 'The weight is $W = mg = 500 \times 9.81 = 4905\,\text{N}$. The component along the slope is $W\sin 60^\circ = 4248\,\text{N}$ and the component perpendicular to the slope is $W\cos 60^\circ = 2453\,\text{N}$. Dividing the along-slope force by the mass gives $a = g\sin 60^\circ = 8.50\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: warmup-3-2-acceleration
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'Warm-up: a car accelerates from 12 m/s to 30 m/s in 6.0 s. Find its acceleration.'
+    answer_label: 'The acceleration'
+    check: {kind: evaluate, expression: "(30 - 12) / 6.0", answer: "3.0"}
+    answer_text: '$a = \dfrac{30 - 12}{6.0} = 3.0\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: warmup-3-2-fall
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'Warm-up: a stone falls from rest for 1.5 s. Find its speed. Take g = 9.81 m/s^2.'
+    answer_label: 'The speed'
+    check: {kind: approx, value: "9.81 * 1.5", target: "14.7", tolerance: "0.05"}
+    answer_text: '$v = gt = 9.81 \times 1.5 = 14.7\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: warmup-3-2-components
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'Warm-up: a force of 40 N acts at 25 degrees to the horizontal. Find its horizontal and vertical components.'
+    answer_label: 'The two components'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "40"
+      angle_deg: "25"
+      components: {x: "36.25", y: "16.90"}
+    answer_text: '$F_x = 40\cos 25^\circ = 36.3\,\text{N}$ and $F_y = 40\sin 25^\circ = 16.9\,\text{N}$.'
+
+  - id: g7-resultant-12kg
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A resultant force of 36 N acts on an object of mass 12 kg. Find the acceleration.'
+    answer_label: 'The acceleration'
+    check: {kind: evaluate, expression: "36 / 12", answer: "3.0"}
+    answer_text: '$a = \dfrac{36}{12} = 3.0\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: g8-car-driving-drag
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A car of mass 1500 kg has a driving force of 4000 N and a drag and friction force of 2500 N. Find the acceleration.'
+    answer_label: 'The acceleration'
+    check: {kind: evaluate, expression: "(4000 - 2500) / 1500", answer: "1.0"}
+    answer_text: 'The resultant is $4000 - 2500 = 1500\,\text{N}$, so $a = \dfrac{1500}{1500} = 1.0\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: g9-slope-15
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A crate of mass 20 kg is released on a frictionless slope at 15 degrees to the horizontal. Find its acceleration and the normal reaction. Take g = 9.81 m/s^2.'
+    answer_label: 'The acceleration and the normal reaction'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "9.81 * sin(15 * pi / 180)", target: "2.54", tolerance: "0.01"}
+        - {kind: approx, value: "20 * 9.81 * cos(15 * pi / 180)", target: "190", tolerance: "1"}
+    answer_text: '$a = g\sin 15^\circ = 2.5\,\text{m}\,\text{s}^{-2}$ and $N = mg\cos 15^\circ = 190\,\text{N}$.'
+
+  - id: g10-lift-down
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A passenger of mass 80 kg stands in a lift that accelerates downwards at 0.80 m/s^2. Find the normal reaction. Take g = 9.81 m/s^2.'
+    answer_label: 'The normal reaction'
+    check:
+      kind: dimensions
+      expression: "m * (g - a)"
+      values:
+        m: {value: "80", unit: "kg"}
+        g: {value: "9.81", unit: "m s^-2"}
+        a: {value: "0.80", unit: "m s^-2"}
+      answer: {value: "720.8", unit: "N"}
+    answer_text: '$mg - N = ma$, so $N = m(g - a) = 80(9.81 - 0.80) = 721\,\text{N}$.'
+
+  - id: g11-projectile-15-40
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A ball is thrown at 15 m/s at 40 degrees above the horizontal. Find the maximum height, the time of flight and the range. Take g = 9.81 m/s^2.'
+    answer_label: 'The maximum height, the time of flight and the range'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "(15 * sin(40 * pi / 180))**2 / (2 * 9.81)", target: "4.74", tolerance: "0.02"}
+        - {kind: approx, value: "2 * 15 * sin(40 * pi / 180) / 9.81", target: "1.97", tolerance: "0.01"}
+        - {kind: approx, value: "15 * cos(40 * pi / 180) * 2 * 15 * sin(40 * pi / 180) / 9.81", target: "22.6", tolerance: "0.1"}
+    answer_text: '$u_y = 15\sin 40^\circ = 9.64\,\text{m}\,\text{s}^{-1}$ and $u_x = 15\cos 40^\circ = 11.5\,\text{m}\,\text{s}^{-1}$. The greatest height is $\dfrac{u_y^2}{2g} = 4.7\,\text{m}$, the time to the top is $0.983\,\text{s}$, so the flight time is $1.97\,\text{s}$, and the range is $11.5 \times 1.97 = 23\,\text{m}$.'
+
+  - id: g12-terminal-explanation
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'Explain how the forces on a falling raindrop lead to terminal velocity, and state the resultant at terminal velocity.'
+    answer_label: 'The explanation'
+    check:
+      kind: structured
+      requires: [two-forces, drag-grows, resultant-zero]
+      concepts: [terminal-velocity, drag]
+      points:
+        - id: two-forces
+          text: 'The weight acts downwards and is constant. The drag acts upwards and grows as the speed rises.'
+          concepts: [terminal-velocity, drag]
+        - id: drag-grows
+          text: 'As the drop speeds up the drag grows, so the resultant force falls and the acceleration falls.'
+          concepts: [terminal-velocity, drag]
+        - id: resultant-zero
+          text: 'When the drag equals the weight the resultant is zero, the acceleration is zero and the drop falls at a constant terminal velocity.'
+          concepts: [terminal-velocity]
+    answer_text: 'Two forces act: the constant weight downwards and the drag upwards, which grows with speed. The resultant and the acceleration fall as the speed rises. At terminal velocity the drag equals the weight, so the resultant is zero.'
+
+  # --- Section 3.3, the Learn worked examples and the guided problems ---------
+  - id: w11-work-force
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A force of 40 N pushes a box 5.0 m along a floor. Find the work done.'
+    answer_label: 'The work done'
+    check:
+      kind: dimensions
+      expression: "F * s"
+      values:
+        F: {value: "40", unit: "N"}
+        s: {value: "5.0", unit: "m"}
+      answer: {value: "200", unit: "J"}
+    answer_text: '$W = Fs = 40 \times 5.0 = 200\,\text{J}$.'
+
+  - id: w12-work-angle
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A rope pulls a sled with a force of 250 N at 30 degrees to the horizontal over 12 m. Find the work done.'
+    answer_label: 'The work done'
+    check:
+      kind: approx
+      value: "250 * 12 * cos(30 * pi / 180)"
+      target: "2598"
+      tolerance: "1"
+    answer_text: '$W = Fs\cos 30^\circ = 250 \times 12 \times 0.866 = 2600\,\text{J}$. Only the horizontal component of the pull does work.'
+
+  - id: w13-car-work
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A car of mass 1500 kg speeds up from 10 m/s to 20 m/s. Find the work done by the resultant force.'
+    answer_label: 'The work done'
+    check:
+      kind: dimensions
+      expression: "0.5 * m * (v**2 - u**2)"
+      values:
+        m: {value: "1500", unit: "kg"}
+        v: {value: "20", unit: "m s^-1"}
+        u: {value: "10", unit: "m s^-1"}
+      answer: {value: "225000", unit: "J"}
+    answer_text: '$E_k(\text{initial}) = 75000\,\text{J}$ and $E_k(\text{final}) = 300000\,\text{J}$, so the work done is $300000 - 75000 = 225000\,\text{J} = 225\,\text{kJ}$.'
+
+  - id: w14-book-pe
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A book of mass 2.0 kg is lifted through 1.5 m. Find the gravitational potential energy gained. Take g = 9.81 m/s^2.'
+    answer_label: 'The gravitational potential energy gained'
+    check:
+      kind: dimensions
+      expression: "m * g * h"
+      values:
+        m: {value: "2.0", unit: "kg"}
+        g: {value: "9.81", unit: "m s^-2"}
+        h: {value: "1.5", unit: "m"}
+      answer: {value: "29.43", unit: "J"}
+    answer_text: '$\Delta E_p = mg\Delta h = 2.0 \times 9.81 \times 1.5 = 29\,\text{J}$.'
+
+  - id: w15-drop-speed
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A ball is dropped from a height of 5.0 m. Find its speed just before it lands, if air resistance is negligible. Take g = 9.81 m/s^2.'
+    answer_label: 'The landing speed'
+    check:
+      kind: approx
+      value: "sqrt(2 * 9.81 * 5.0)"
+      target: "9.90"
+      tolerance: "0.01"
+    answer_text: '$mgh = \tfrac{1}{2}mv^2$, so $v = \sqrt{2gh} = \sqrt{2 \times 9.81 \times 5.0} = 9.9\,\text{m}\,\text{s}^{-1}$. The mass cancels.'
+
+  - id: w16-pump-power
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A pump raises 200 kg of water through 15 m in 30 s. Find the useful power. Take g = 9.81 m/s^2.'
+    answer_label: 'The useful power'
+    check:
+      kind: dimensions
+      expression: "m * g * h / t"
+      values:
+        m: {value: "200", unit: "kg"}
+        g: {value: "9.81", unit: "m s^-2"}
+        h: {value: "15", unit: "m"}
+        t: {value: "30", unit: "s"}
+      answer: {value: "981", unit: "W"}
+    answer_text: '$W = mg\Delta h = 29430\,\text{J}$, so $P = \dfrac{W}{t} = \dfrac{29430}{30} = 981\,\text{W}$.'
+
+  - id: w17-power-fv
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A car travels at a constant 25 m/s with a driving force of 2000 N. Find the useful power.'
+    answer_label: 'The useful power'
+    check:
+      kind: dimensions
+      expression: "F * v"
+      values:
+        F: {value: "2000", unit: "N"}
+        v: {value: "25", unit: "m s^-1"}
+      answer: {value: "50000", unit: "W"}
+    answer_text: '$P = Fv = 2000 \times 25 = 50000\,\text{W} = 50\,\text{kW}$.'
+
+  - id: anchor-energy-bottom
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'The roller-coaster car and riders have a mass of 500 kg and descend 45 m from rest. Find the potential energy lost, the kinetic energy at the bottom and the speed at the bottom. Take g = 9.81 m/s^2.'
+    answer_label: 'The energy lost and the speed at the bottom'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "500 * 9.81 * 45", target: "220725", tolerance: "1"}
+        - {kind: approx, value: "sqrt(2 * 9.81 * 45)", target: "29.71", tolerance: "0.01"}
+    answer_text: 'The potential energy lost is $mg\Delta h = 500 \times 9.81 \times 45 = 2.21 \times 10^5\,\text{J}$, and this becomes kinetic energy. So $v = \sqrt{2g\Delta h} = \sqrt{2 \times 9.81 \times 45} = 29.7\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: anchor-energy-top
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'The car has 220725 J of kinetic energy at the bottom. The top of the 12 m loop is 24 m above the bottom. Find the kinetic energy and the speed at the top of the loop. Take g = 9.81 m/s^2.'
+    answer_label: 'The kinetic energy and the speed at the top'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "220725 - 500 * 9.81 * 24", target: "103005", tolerance: "1"}
+        - {kind: approx, value: "sqrt(2 * (220725 - 500 * 9.81 * 24) / 500)", target: "20.30", tolerance: "0.02"}
+    answer_text: 'The potential energy gained is $500 \times 9.81 \times 24 = 117720\,\text{J}$, so the kinetic energy at the top is $220725 - 117720 = 1.03 \times 10^5\,\text{J}$. The speed is $v = \sqrt{\dfrac{2 \times 103005}{500}} = 20.3\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: warmup-3-3-acceleration
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'Warm-up: a car accelerates from 8.0 m/s to 24 m/s in 4.0 s. Find its acceleration and the distance travelled.'
+    answer_label: 'The acceleration and the distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(24 - 8.0) / 4.0", answer: "4.0"}
+        - {kind: evaluate, expression: "0.5 * (8.0 + 24) * 4.0", answer: "64"}
+    answer_text: '$a = 4.0\,\text{m}\,\text{s}^{-2}$ and $s = \dfrac{(u + v)t}{2} = 64\,\text{m}$.'
+
+  - id: warmup-3-3-lift
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'Warm-up: a person of mass 60 kg stands in a lift that accelerates downwards at 2.0 m/s^2. Find the normal reaction. Take g = 9.81 m/s^2.'
+    answer_label: 'The normal reaction'
+    check:
+      kind: dimensions
+      expression: "m * (g - a)"
+      values:
+        m: {value: "60", unit: "kg"}
+        g: {value: "9.81", unit: "m s^-2"}
+        a: {value: "2.0", unit: "m s^-2"}
+      answer: {value: "468.6", unit: "N"}
+    answer_text: '$mg - N = ma$, so $N = m(g - a) = 60(9.81 - 2.0) = 469\,\text{N}$.'
+
+  - id: warmup-3-3-components
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'Warm-up: a force of 100 N acts at 35 degrees to the horizontal. Find its horizontal and vertical components.'
+    answer_label: 'The two components'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "100"
+      angle_deg: "35"
+      components: {x: "81.92", y: "57.36"}
+    answer_text: '$100\cos 35^\circ = 81.9\,\text{N}$ and $100\sin 35^\circ = 57.4\,\text{N}$.'
+
+  - id: g13-work-150
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A force of 150 N moves a crate 8.0 m along the direction of the force. Find the work done.'
+    answer_label: 'The work done'
+    check: {kind: evaluate, expression: "150 * 8.0", answer: "1200"}
+    answer_text: '$W = Fs = 150 \times 8.0 = 1200\,\text{J}$.'
+
+  - id: g14-work-angle
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A force of 200 N acts at 40 degrees to the horizontal and drags a box 15 m. Find the work done.'
+    answer_label: 'The work done'
+    check: {kind: approx, value: "200 * 15 * cos(40 * pi / 180)", target: "2298", tolerance: "1"}
+    answer_text: '$W = Fs\cos 40^\circ = 200 \times 15 \times 0.766 = 2300\,\text{J}$.'
+
+  - id: g15-stone-energy
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A stone of mass 4.0 kg falls 12 m from rest. Find the potential energy lost and the speed at the ground. Take g = 9.81 m/s^2.'
+    answer_label: 'The potential energy lost and the speed'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "4.0 * 9.81 * 12", target: "470.9", tolerance: "0.1"}
+        - {kind: approx, value: "sqrt(2 * 9.81 * 12)", target: "15.34", tolerance: "0.01"}
+    answer_text: '$\Delta E_p = mg\Delta h = 4.0 \times 9.81 \times 12 = 471\,\text{J}$ and $v = \sqrt{2g\Delta h} = 15.3\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: g16-throw-energy
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A ball of mass 0.50 kg is thrown upwards at 12 m/s. Use energy to find the maximum height. Take g = 9.81 m/s^2.'
+    answer_label: 'The maximum height'
+    check: {kind: approx, value: "12**2 / (2 * 9.81)", target: "7.34", tolerance: "0.01"}
+    answer_text: '$\tfrac{1}{2}mv^2 = mgh$, so $h = \dfrac{v^2}{2g} = \dfrac{144}{19.62} = 7.3\,\text{m}$.'
+
+  - id: g17-motor-power
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A motor lifts a load of mass 250 kg through 20 m in 12 s. Find the work done and the useful power. Take g = 9.81 m/s^2.'
+    answer_label: 'The work done and the useful power'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "250 * 9.81 * 20", target: "49050", tolerance: "1"}
+        - {kind: approx, value: "250 * 9.81 * 20 / 12", target: "4088", tolerance: "1"}
+    answer_text: '$W = mg\Delta h = 250 \times 9.81 \times 20 = 49050\,\text{J}$ and $P = \dfrac{W}{t} = \dfrac{49050}{12} = 4088\,\text{W}$, about 4.1 kW.'
+
+  - id: g18-cyclist-thermal
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A cyclist of total mass 80 kg freewheels from rest down a hill, descending 20 m, and reaches 15 m/s. Find the energy transferred to thermal stores. Take g = 9.81 m/s^2.'
+    answer_label: 'The thermal energy transferred'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "80 * 9.81 * 20", target: "15696", tolerance: "1"}
+        - {kind: approx, value: "80 * 9.81 * 20 - 0.5 * 80 * 15**2", target: "6696", tolerance: "1"}
+    answer_text: '$mg\Delta h = 80 \times 9.81 \times 20 = 15696\,\text{J}$ and $E_k = \tfrac{1}{2} \times 80 \times 15^2 = 9000\,\text{J}$, so the thermal energy is $15696 - 9000 = 6696\,\text{J} \approx 6700\,\text{J}$.'
+
+  # --- Section 3.4, the Learn worked examples and the guided problems ---------
+  - id: w18-car-momentum
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A car of mass 1200 kg travels at 15 m/s due east. Find its momentum.'
+    answer_label: 'The momentum'
+    check:
+      kind: dimensions
+      expression: "m * v"
+      values:
+        m: {value: "1200", unit: "kg"}
+        v: {value: "15", unit: "m s^-1"}
+      answer: {value: "18000", unit: "kg m s^-1"}
+    answer_text: '$p = mv = 1200 \times 15 = 1.8 \times 10^4\,\text{kg}\,\text{m}\,\text{s}^{-1}$ due east.'
+
+  - id: w19-ball-rebound
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A ball of mass 0.20 kg hits a wall at 8.0 m/s and rebounds at 6.0 m/s. The contact lasts 0.050 s. Find the change in momentum and the average force. Take the direction towards the wall as positive.'
+    answer_label: 'The change in momentum and the average force'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "0.20 * (-6.0 - 8.0)", answer: "-2.8"}
+        - {kind: evaluate, expression: "0.20 * (-6.0 - 8.0) / 0.050", answer: "-56"}
+    answer_text: '$\Delta p = m(v - u) = 0.20(-6.0 - 8.0) = -2.8\,\text{kg}\,\text{m}\,\text{s}^{-1}$ and $F = \dfrac{\Delta p}{\Delta t} = \dfrac{-2.8}{0.050} = -56\,\text{N}$. The force is 56 N away from the wall.'
+
+  - id: w20-brake-force
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A car of mass 900 kg is brought to rest from 20 m/s in 4.0 s. Find the average braking force.'
+    answer_label: 'The average braking force'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "0 - 900 * 20", answer: "-18000"}
+        - {kind: evaluate, expression: "(0 - 900 * 20) / 4.0", answer: "-4500"}
+    answer_text: '$\Delta p = 0 - 900 \times 20 = -18000\,\text{kg}\,\text{m}\,\text{s}^{-1}$ and $F = \dfrac{\Delta p}{\Delta t} = \dfrac{-18000}{4.0} = -4500\,\text{N}$. The braking force is 4500 N opposite to the motion.'
+
+  - id: w21-trolleys-stick
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'Trolley A of mass 2.0 kg moves at 3.0 m/s towards trolley B of mass 4.0 kg, which is at rest. They collide and stick together. Find their common velocity.'
+    answer_label: 'The common velocity'
+    check:
+      kind: dimensions
+      expression: "(m1 * u1) / (m1 + m2)"
+      values:
+        m1: {value: "2.0", unit: "kg"}
+        u1: {value: "3.0", unit: "m s^-1"}
+        m2: {value: "4.0", unit: "kg"}
+      answer: {value: "1.0", unit: "m s^-1"}
+    answer_text: 'Total momentum before $= 2.0 \times 3.0 = 6.0\,\text{kg}\,\text{m}\,\text{s}^{-1}$. After, $6.0 = 6.0v$, so $v = 1.0\,\text{m}\,\text{s}^{-1}$ in the original direction of A.'
+
+  - id: w22-rifle-recoil
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A rifle of mass 4.0 kg fires a bullet of mass 0.020 kg at 400 m/s. Find the recoil velocity of the rifle.'
+    answer_label: 'The recoil velocity'
+    check: {kind: evaluate, expression: "-(0.020 * 400) / 4.0", answer: "-2.0"}
+    answer_text: 'Total momentum before is zero, so $0 = 0.020 \times 400 + 4.0v$ and $v = -\dfrac{8.0}{4.0} = -2.0\,\text{m}\,\text{s}^{-1}$. The rifle recoils at 2.0 m/s opposite to the bullet.'
+
+  - id: w23-ke-inelastic
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'Check whether the collision of the 2.0 kg trolley at 3.0 m/s with the 4.0 kg trolley at rest is elastic.'
+    answer_label: 'Whether the collision is elastic'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "0.5 * 2.0 * 3.0**2", target: "9.0", tolerance: "0.001"}
+        - {kind: approx, value: "0.5 * 6.0 * 1.0**2", target: "3.0", tolerance: "0.001"}
+    answer_text: 'Kinetic energy before $= \tfrac{1}{2} \times 2.0 \times 3.0^2 = 9.0\,\text{J}$ and after $= \tfrac{1}{2} \times 6.0 \times 1.0^2 = 3.0\,\text{J}$. Kinetic energy has fallen, so the collision is inelastic and 6.0 J has become thermal energy and sound.'
+
+  - id: anchor-braking
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'The car and riders of mass 500 kg reach 29.7 m/s at the bottom of the first drop and are brought to rest in 3.0 s. Find the momentum at the bottom, the change in momentum and the average braking force.'
+    answer_label: 'The momentum, the change in momentum and the braking force'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "500 * 29.7", target: "14850", tolerance: "1"}
+        - {kind: approx, value: "(0 - 500 * 29.7) / 3.0", target: "-4950", tolerance: "1"}
+    answer_text: '$p = mv = 500 \times 29.7 = 1.49 \times 10^4\,\text{kg}\,\text{m}\,\text{s}^{-1}$. The change is $\Delta p = 0 - 1.49 \times 10^4 = -1.49 \times 10^4\,\text{kg}\,\text{m}\,\text{s}^{-1}$, so $F = \dfrac{\Delta p}{\Delta t} = -5.0 \times 10^3\,\text{N}$. The average braking force is about 5000 N.'
+
+  - id: warmup-3-4-force
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'Warm-up: a resultant force of 240 N acts on an object of mass 60 kg. Find the acceleration.'
+    answer_label: 'The acceleration'
+    check: {kind: evaluate, expression: "240 / 60", answer: "4.0"}
+    answer_text: '$a = \dfrac{240}{60} = 4.0\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: warmup-3-4-ke
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'Warm-up: a car of mass 1000 kg travels at 12 m/s. Find its kinetic energy.'
+    answer_label: 'The kinetic energy'
+    check: {kind: evaluate, expression: "0.5 * 1000 * 12**2", answer: "72000"}
+    answer_text: '$E_k = \tfrac{1}{2}mv^2 = \tfrac{1}{2} \times 1000 \times 12^2 = 72000\,\text{J} = 72\,\text{kJ}$.'
+
+  - id: warmup-3-4-fall
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'Warm-up: a ball of mass 5.0 kg is dropped from rest from 3.0 m. Find its speed just before it lands. Take g = 9.81 m/s^2.'
+    answer_label: 'The landing speed'
+    check: {kind: approx, value: "sqrt(2 * 9.81 * 3.0)", target: "7.67", tolerance: "0.01"}
+    answer_text: '$v = \sqrt{2g\Delta h} = \sqrt{2 \times 9.81 \times 3.0} = 7.7\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: g19-car-momentum
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A car of mass 1500 kg travels at 20 m/s due north. Find its momentum.'
+    answer_label: 'The momentum'
+    check: {kind: evaluate, expression: "1500 * 20", answer: "30000"}
+    answer_text: '$p = mv = 1500 \times 20 = 3.0 \times 10^4\,\text{kg}\,\text{m}\,\text{s}^{-1}$ north.'
+
+  - id: g20-impulse-ball
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A force of 250 N acts for 0.40 s on a ball of mass 2.0 kg initially at rest. Find the impulse and the final speed.'
+    answer_label: 'The impulse and the final speed'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "250 * 0.40", answer: "100"}
+        - {kind: evaluate, expression: "250 * 0.40 / 2.0", answer: "50"}
+    answer_text: 'Impulse $= F\Delta t = 100\,\text{N}\,\text{s}$, and $v = \dfrac{100}{2.0} = 50\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: g21-rebound-change
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A ball of mass 0.15 kg hits a wall at 12 m/s and rebounds at 8.0 m/s. Find the change in momentum. Take the direction towards the wall as positive.'
+    answer_label: 'The change in momentum'
+    check: {kind: evaluate, expression: "0.15 * (-8.0 - 12)", answer: "-3.0"}
+    answer_text: '$\Delta p = 0.15(-8.0 - 12) = -3.0\,\text{kg}\,\text{m}\,\text{s}^{-1}$, so the change is $3.0\,\text{kg}\,\text{m}\,\text{s}^{-1}$ away from the wall.'
+
+  - id: g22-trolley-stick
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A trolley of mass 3.0 kg moves at 4.0 m/s towards a trolley of mass 1.0 kg at rest. They stick together. Find their common velocity.'
+    answer_label: 'The common velocity'
+    check: {kind: evaluate, expression: "(3.0 * 4.0) / (3.0 + 1.0)", answer: "3.0"}
+    answer_text: '$3.0 \times 4.0 = 4.0v$, so $v = 3.0\,\text{m}\,\text{s}^{-1}$ in the original direction.'
+
+  - id: g23-explosion
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'An object of mass 0.80 kg at rest explodes into two pieces. One piece of mass 0.30 kg moves at 4.0 m/s. Find the velocity of the other piece.'
+    answer_label: 'The velocity of the other piece'
+    check: {kind: evaluate, expression: "-(0.30 * 4.0) / 0.50", answer: "-2.4"}
+    answer_text: '$0 = 0.30 \times 4.0 + 0.50v$, so $v = -2.4\,\text{m}\,\text{s}^{-1}$. The other piece moves at 2.4 m/s in the opposite direction.'
+
+  # --- Section 3.5, the Learn worked examples and the guided problems ---------
+  - id: w24-radians
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'Write 150 degrees in radians.'
+    answer_label: 'The angle in radians'
+    check: {kind: approx, value: "150 * pi / 180", target: "2.618", tolerance: "0.001"}
+    answer_text: '$150 \times \dfrac{\pi}{180} = \dfrac{5\pi}{6} = 2.62\,\text{rad}$.'
+
+  - id: w25-wheel-angular-velocity
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A wheel spins at 300 revolutions per minute. Find its angular velocity in radians per second.'
+    answer_label: 'The angular velocity'
+    check: {kind: approx, value: "2 * pi * 5.0", target: "31.4", tolerance: "0.05"}
+    answer_text: '$300\,\text{rev}\,\text{min}^{-1} = 5.0\,\text{rev}\,\text{s}^{-1}$, so $\omega = 2\pi \times 5.0 = 31.4\,\text{rad}\,\text{s}^{-1}$.'
+
+  - id: w26-roundabout
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A car of mass 1200 kg goes round a roundabout of radius 40 m at 12 m/s. Find the centripetal acceleration and the friction force. Take g = 9.81 m/s^2.'
+    answer_label: 'The acceleration and the friction force'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "12**2 / 40", target: "3.6", tolerance: "0.001"}
+        - {kind: approx, value: "1200 * 12**2 / 40", target: "4320", tolerance: "1"}
+    answer_text: '$a = \dfrac{v^2}{r} = \dfrac{12^2}{40} = 3.6\,\text{m}\,\text{s}^{-2}$ and $F = ma = 1200 \times 3.6 = 4320\,\text{N}$. The friction from the road provides the centripetal force.'
+
+  - id: w27-ball-string
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A ball of mass 0.50 kg is whirled in a horizontal circle of radius 0.80 m at 3.0 m/s. Find the tension in the string.'
+    answer_label: 'The tension'
+    check:
+      kind: dimensions
+      expression: "m * v**2 / r"
+      values:
+        m: {value: "0.50", unit: "kg"}
+        v: {value: "3.0", unit: "m s^-1"}
+        r: {value: "0.80", unit: "m"}
+      answer: {value: "5.625", unit: "N"}
+    answer_text: '$T = \dfrac{mv^2}{r} = \dfrac{0.50 \times 3.0^2}{0.80} = 5.6\,\text{N}$.'
+
+  - id: w28-bucket-top
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A bucket of water is swung in a vertical circle of radius 0.60 m. Find the minimum speed at the top. Take g = 9.81 m/s^2.'
+    answer_label: 'The minimum speed at the top'
+    check: {kind: approx, value: "sqrt(9.81 * 0.60)", target: "2.426", tolerance: "0.005"}
+    answer_text: '$v = \sqrt{gr} = \sqrt{9.81 \times 0.60} = 2.4\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: w29-anchor-loop-top
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'The car and riders of mass 500 kg pass the top of the 12 m loop at 20.3 m/s. Find the centripetal acceleration and the force the track exerts on the car. Take g = 9.81 m/s^2.'
+    answer_label: 'The centripetal acceleration and the track force'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "20.3**2 / 12", target: "34.34", tolerance: "0.01"}
+        - {kind: approx, value: "500 * (20.3**2 / 12 - 9.81)", target: "12263", tolerance: "5"}
+    answer_text: '$a = \dfrac{v^2}{r} = \dfrac{20.3^2}{12} = 34.3\,\text{m}\,\text{s}^{-2}$. The track force and the weight together provide the centripetal force: $N + mg = \dfrac{mv^2}{r}$, so $N = 500(34.3 - 9.81) = 1.23 \times 10^4\,\text{N}$.'
+
+  - id: warmup-3-5-force
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'Warm-up: a car of mass 1200 kg accelerates at 3.0 m/s^2. Find the resultant force.'
+    answer_label: 'The resultant force'
+    check: {kind: evaluate, expression: "1200 * 3.0", answer: "3600"}
+    answer_text: '$F = ma = 1200 \times 3.0 = 3600\,\text{N}$.'
+
+  - id: warmup-3-5-radians
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'Warm-up: write 90 degrees in radians.'
+    answer_label: 'The angle in radians'
+    check: {kind: approx, value: "pi / 2", target: "1.57", tolerance: "0.01"}
+    answer_text: '$90 \times \dfrac{\pi}{180} = \dfrac{\pi}{2} = 1.57\,\text{rad}$.'
+
+  - id: warmup-3-5-ke
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'Warm-up: a ball of mass 0.40 kg moves at 5.0 m/s. Find its kinetic energy.'
+    answer_label: 'The kinetic energy'
+    check: {kind: evaluate, expression: "0.5 * 0.40 * 5.0**2", answer: "5.0"}
+    answer_text: '$E_k = \tfrac{1}{2} \times 0.40 \times 5.0^2 = 5.0\,\text{J}$.'
+
+  - id: g25-radians
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'Write 60 degrees and 200 degrees in radians.'
+    answer_label: 'The two angles in radians'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "60 * pi / 180", target: "1.047", tolerance: "0.001"}
+        - {kind: approx, value: "200 * pi / 180", target: "3.491", tolerance: "0.001"}
+    answer_text: '$60^\circ = \dfrac{\pi}{3} = 1.05\,\text{rad}$ and $200^\circ = \dfrac{10\pi}{9} = 3.49\,\text{rad}$.'
+
+  - id: g26-wheel
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A wheel of radius 0.30 m rotates at 4.0 revolutions per second. Find its angular velocity and the speed of a point on the rim.'
+    answer_label: 'The angular velocity and the rim speed'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "2 * pi * 4.0", target: "25.13", tolerance: "0.01"}
+        - {kind: approx, value: "2 * pi * 4.0 * 0.30", target: "7.54", tolerance: "0.01"}
+    answer_text: '$\omega = 2\pi f = 25.1\,\text{rad}\,\text{s}^{-1}$ and $v = \omega r = 7.5\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: g27-bend
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A car of mass 1400 kg goes round a bend of radius 50 m at 15 m/s. Find the centripetal acceleration and the friction force.'
+    answer_label: 'The acceleration and the friction force'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "15**2 / 50", target: "4.5", tolerance: "0.001"}
+        - {kind: approx, value: "1400 * 15**2 / 50", target: "6300", tolerance: "1"}
+    answer_text: '$a = \dfrac{225}{50} = 4.5\,\text{m}\,\text{s}^{-2}$ and $F = ma = 6300\,\text{N}$ towards the centre.'
+
+  - id: g28-max-speed
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A ball of mass 0.25 kg on a string moves in a circle of radius 0.60 m. The string can take a maximum tension of 6.0 N. Find the maximum speed.'
+    answer_label: 'The maximum speed'
+    check: {kind: approx, value: "sqrt(6.0 * 0.60 / 0.25)", target: "3.79", tolerance: "0.01"}
+    answer_text: '$v^2 = \dfrac{Tr}{m} = \dfrac{6.0 \times 0.60}{0.25} = 14.4$, so $v = 3.8\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: g29-min-top
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A bucket of water is swung in a vertical circle of radius 0.80 m. Find the minimum speed at the top. Take g = 9.81 m/s^2.'
+    answer_label: 'The minimum speed at the top'
+    check: {kind: approx, value: "sqrt(9.81 * 0.80)", target: "2.80", tolerance: "0.01"}
+    answer_text: '$v = \sqrt{gr} = \sqrt{9.81 \times 0.80} = 2.8\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: g30-no-centrifugal
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A passenger on a roundabout feels pushed outwards. Explain what is really happening and name the force that keeps the passenger moving in a circle.'
+    answer_label: 'The explanation'
+    check:
+      kind: structured
+      requires: [accel-inwards, name-friction, tangent]
+      concepts: [centripetal-force, newtons-first-law]
+      points:
+        - id: accel-inwards
+          text: 'The passenger moves in a circle, so the acceleration points towards the centre and a resultant force is needed in that direction.'
+          concepts: [centripetal-force]
+        - id: name-friction
+          text: 'The friction from the seat points towards the centre and provides the centripetal force.'
+          concepts: [centripetal-force]
+        - id: tangent
+          text: 'The body tends to keep moving in a straight line, by Newton first law, so it would fly off along the tangent if the friction disappeared.'
+          concepts: [newtons-first-law]
+    answer_text: 'The acceleration points towards the centre and friction from the seat provides the force. There is no real outward force; the body tends to travel in a straight line.'
+
+  # --- Section 3.6, the Learn worked examples and the guided problems ---------
+  - id: w30-shm-values
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'A mass on a spring oscillates with amplitude 0.040 m and period 0.50 s. Find the angular frequency, the maximum speed and the maximum acceleration.'
+    answer_label: 'The angular frequency, the maximum speed and the maximum acceleration'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "2 * pi / 0.50", target: "12.57", tolerance: "0.01"}
+        - {kind: approx, value: "0.040 * 2 * pi / 0.50", target: "0.503", tolerance: "0.001"}
+        - {kind: approx, value: "0.040 * (2 * pi / 0.50)**2", target: "6.32", tolerance: "0.01"}
+    answer_text: '$\omega = \dfrac{2\pi}{0.50} = 12.6\,\text{rad}\,\text{s}^{-1}$, $v_{\max} = A\omega = 0.50\,\text{m}\,\text{s}^{-1}$ and $a_{\max} = A\omega^2 = 6.3\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: w31-mass-spring-period
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'A mass of 0.50 kg hangs on a spring of spring constant 20 N/m. Find the period.'
+    answer_label: 'The period'
+    check: {kind: approx, value: "2 * pi * sqrt(0.50 / 20)", target: "0.993", tolerance: "0.005"}
+    answer_text: '$T = 2\pi\sqrt{\dfrac{m}{k}} = 2\pi\sqrt{\dfrac{0.50}{20}} = 0.99\,\text{s}$.'
+
+  - id: w32-pendulum-period
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'A simple pendulum has length 0.800 m. Find its period. Take g = 9.81 m/s^2.'
+    answer_label: 'The period'
+    check: {kind: approx, value: "2 * pi * sqrt(0.800 / 9.81)", target: "1.795", tolerance: "0.005"}
+    answer_text: '$T = 2\pi\sqrt{\dfrac{l}{g}} = 2\pi\sqrt{\dfrac{0.800}{9.81}} = 1.80\,\text{s}$. This is the pendulum from Chapter 1, measured at 1.795 s.'
+
+  - id: w33-speed-general-x
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'A mass oscillates with amplitude 0.050 m and angular frequency 8.0 rad/s. Find its speed when the displacement is 0.030 m.'
+    answer_label: 'The speed'
+    check: {kind: approx, value: "8.0 * sqrt(0.050**2 - 0.030**2)", target: "0.32", tolerance: "0.001"}
+    answer_text: '$v = \omega\sqrt{A^2 - x^2} = 8.0\sqrt{0.050^2 - 0.030^2} = 8.0 \times 0.040 = 0.32\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: w34-energy-shm
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'A mass of 0.20 kg oscillates with amplitude 0.10 m and angular frequency 5.0 rad/s. Find the total energy and the kinetic energy at displacement 0.060 m.'
+    answer_label: 'The total energy and the kinetic energy'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "0.5 * 0.20 * 5.0**2 * 0.10**2", target: "0.025", tolerance: "0.0001"}
+        - {kind: approx, value: "0.5 * 0.20 * 5.0**2 * 0.060**2", target: "0.0090", tolerance: "0.0001"}
+        - {kind: approx, value: "0.5 * 0.20 * 5.0**2 * (0.10**2 - 0.060**2)", target: "0.016", tolerance: "0.0001"}
+    answer_text: '$E_{\text{total}} = \tfrac{1}{2}m\omega^2A^2 = 0.025\,\text{J}$ and $E_p = \tfrac{1}{2}m\omega^2x^2 = 0.0090\,\text{J}$, so $E_k = 0.016\,\text{J}$.'
+
+  - id: anchor-pendulum-period
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'The pendulum from Chapter 1 has length 0.800 m and measured period 1.795 s. Find the predicted period and the length needed for a period of exactly 2.000 s. Take g = 9.81 m/s^2.'
+    answer_label: 'The predicted period and the required length'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "2 * pi * sqrt(0.800 / 9.81)", target: "1.795", tolerance: "0.005"}
+        - {kind: approx, value: "9.81 * 2.000**2 / (4 * pi**2)", target: "0.994", tolerance: "0.002"}
+    answer_text: 'The predicted period is $2\pi\sqrt{\dfrac{0.800}{9.81}} = 1.795\,\text{s}$, in agreement with the measurement. For $T = 2.000\,\text{s}$, $l = \dfrac{gT^2}{4\pi^2} = \dfrac{9.81 \times 4.000}{4\pi^2} = 0.994\,\text{m}$.'
+
+  - id: warmup-3-6-pendulum
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'Warm-up: a pendulum of length 0.500 m. Find its period. Take g = 9.81 m/s^2.'
+    answer_label: 'The period'
+    check: {kind: approx, value: "2 * pi * sqrt(0.500 / 9.81)", target: "1.419", tolerance: "0.005"}
+    answer_text: '$T = 2\pi\sqrt{\dfrac{0.500}{9.81}} = 1.42\,\text{s}$.'
+
+  - id: warmup-3-6-force
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'Warm-up: a resultant force of 3.0 N acts on a mass of 0.60 kg. Find the acceleration.'
+    answer_label: 'The acceleration'
+    check: {kind: evaluate, expression: "3.0 / 0.60", answer: "5.0"}
+    answer_text: '$a = \dfrac{F}{m} = \dfrac{3.0}{0.60} = 5.0\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: warmup-3-6-ke
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'Warm-up: a mass of 0.20 kg moves at 3.0 m/s. Find its kinetic energy.'
+    answer_label: 'The kinetic energy'
+    check: {kind: evaluate, expression: "0.5 * 0.20 * 3.0**2", answer: "0.90"}
+    answer_text: '$E_k = \tfrac{1}{2} \times 0.20 \times 3.0^2 = 0.90\,\text{J}$.'
+
+  - id: g31-shm-values
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'A mass on a spring oscillates with amplitude 0.080 m and period 0.40 s. Find the angular frequency, the maximum speed and the maximum acceleration.'
+    answer_label: 'The three values'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "2 * pi / 0.40", target: "15.71", tolerance: "0.01"}
+        - {kind: approx, value: "0.080 * 2 * pi / 0.40", target: "1.257", tolerance: "0.001"}
+        - {kind: approx, value: "0.080 * (2 * pi / 0.40)**2", target: "19.74", tolerance: "0.01"}
+    answer_text: '$\omega = 15.7\,\text{rad}\,\text{s}^{-1}$, $v_{\max} = 1.3\,\text{m}\,\text{s}^{-1}$ and $a_{\max} = 20\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: g32-mass-spring
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'A mass of 0.40 kg hangs on a spring of spring constant 25 N/m. Find the period.'
+    answer_label: 'The period'
+    check: {kind: approx, value: "2 * pi * sqrt(0.40 / 25)", target: "0.795", tolerance: "0.005"}
+    answer_text: '$T = 2\pi\sqrt{\dfrac{0.40}{25}} = 0.79\,\text{s}$.'
+
+  - id: g33-pendulum-120
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'A simple pendulum has length 1.20 m. Find its period. Take g = 9.81 m/s^2.'
+    answer_label: 'The period'
+    check: {kind: approx, value: "2 * pi * sqrt(1.20 / 9.81)", target: "2.198", tolerance: "0.005"}
+    answer_text: '$T = 2\pi\sqrt{\dfrac{1.20}{9.81}} = 2.20\,\text{s}$.'
+
+  - id: g34-speed-at-x
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'A mass oscillates with amplitude 0.060 m and angular frequency 6.0 rad/s. Find its speed when the displacement is 0.020 m.'
+    answer_label: 'The speed'
+    check: {kind: approx, value: "6.0 * sqrt(0.060**2 - 0.020**2)", target: "0.339", tolerance: "0.001"}
+    answer_text: '$v = 6.0\sqrt{0.060^2 - 0.020^2} = 6.0 \times 0.0566 = 0.34\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: g35-energy-shm
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'A mass of 0.30 kg oscillates with amplitude 0.040 m and angular frequency 10 rad/s. Find the total energy and the kinetic energy at displacement 0.020 m.'
+    answer_label: 'The total energy and the kinetic energy'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "0.5 * 0.30 * 10**2 * 0.040**2", target: "0.024", tolerance: "0.0001"}
+        - {kind: approx, value: "0.5 * 0.30 * 10**2 * (0.040**2 - 0.020**2)", target: "0.018", tolerance: "0.0001"}
+    answer_text: '$E_{\text{total}} = \tfrac{1}{2} \times 0.30 \times 10^2 \times 0.040^2 = 0.024\,\text{J}$ and $E_p = \tfrac{1}{2} \times 0.30 \times 10^2 \times 0.020^2 = 0.0060\,\text{J}$, so $E_k = 0.018\,\text{J}$.'
+
+  - id: g36-clock-length
+    section: '3.6'
+    dfe: [AP3]
+    statement: 'Explain why a pendulum clock uses a small swing, and find the length needed for a period of exactly 2.000 s. Take g = 9.81 m/s^2.'
+    answer_label: 'The explanation and the length'
+    check:
+      kind: structured
+      requires: [small-angle, rearrange, substitute]
+      concepts: [simple-harmonic-motion, pendulum]
+      points:
+        - id: small-angle
+          text: 'The simple-pendulum formula uses the approximation sin theta is about theta, which holds only for small angles, so a clock uses a small swing.'
+          concepts: [simple-harmonic-motion, pendulum]
+        - id: rearrange
+          text: 'Squaring T = 2 pi times the square root of l over g gives l = g T squared divided by 4 pi squared.'
+          concepts: [pendulum]
+        - id: substitute
+          text: 'Substituting T = 2.000 s and g = 9.81 m/s^2 gives l = 0.994 m.'
+          concepts: [pendulum]
+    answer_text: 'A small swing keeps sin theta close to theta, so the period formula is accurate and the clock keeps time. The length is $l = \dfrac{gT^2}{4\pi^2} = 0.994\,\text{m}$.'

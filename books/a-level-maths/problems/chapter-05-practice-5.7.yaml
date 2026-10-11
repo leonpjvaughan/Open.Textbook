@@ -1,0 +1,120 @@
+# Practice set for 5.7, trigonometric identities.
+#
+# An identity is checked by proving the two sides equivalent. Where a proof has
+# a named algebraic move, the step declares the operation.
+chapter: 5
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-cancel-sine
+    section: "5.7"
+    dfe: [E5]
+    statement: 'Prove that $\dfrac{\sin^2\theta}{\sin\theta} \equiv \sin\theta$ for $\sin\theta \neq 0$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "sin(x)**2/sin(x)"
+      answer: "sin(x)"
+    answer_text: 'Write the numerator as a product: $\dfrac{\sin^2\theta}{\sin\theta} = \dfrac{\sin\theta \times \sin\theta}{\sin\theta} = \sin\theta$. The left-hand side becomes the right-hand side, so the identity holds wherever $\sin\theta \neq 0$.'
+
+  - id: p2-cos-tan
+    section: "5.7"
+    dfe: [E5]
+    statement: 'Prove that $\cos\theta\tan\theta \equiv \sin\theta$ for $\cos\theta \neq 0$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "cos(x)*tan(x)"
+      answer: "sin(x)"
+    answer_text: 'Replace tangent: $\cos\theta\tan\theta = \cos\theta \times \dfrac{\sin\theta}{\cos\theta} = \sin\theta$.'
+
+  - id: p3-sec-squared
+    section: "5.7"
+    dfe: [E5]
+    statement: 'Prove that $1 + \tan^2\theta \equiv \sec^2\theta$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "1 + tan(x)**2"
+      answer: "sec(x)**2"
+    answer_text: 'Use a common denominator: $1 + \tan^2\theta = 1 + \dfrac{\sin^2\theta}{\cos^2\theta} = \dfrac{\cos^2\theta + \sin^2\theta}{\cos^2\theta} = \dfrac{1}{\cos^2\theta} = \sec^2\theta$.'
+
+  - id: p4-square-difference
+    section: "5.7"
+    dfe: [E5]
+    statement: 'Prove that $(\sin\theta - \cos\theta)^2 \equiv 1 - 2\sin\theta\cos\theta$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "(sin(x) - cos(x))**2"
+      answer: "1 - 2*sin(x)*cos(x)"
+    answer_text: 'Expand the square: $\sin^2\theta - 2\sin\theta\cos\theta + \cos^2\theta$. Group the two squares and use $\sin^2\theta + \cos^2\theta = 1$. The result is $1 - 2\sin\theta\cos\theta$.'
+
+  - id: p5-fraction
+    section: "5.7"
+    dfe: [E5]
+    statement: 'Prove that $\dfrac{\cos^2\theta}{1 - \sin\theta} \equiv 1 + \sin\theta$ for $\sin\theta \neq 1$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "cos(x)**2/(1 - sin(x))"
+      answer: "1 + sin(x)"
+    answer_text: 'Replace $\cos^2\theta$ with $1 - \sin^2\theta$ and factorise: $\dfrac{(1 - \sin\theta)(1 + \sin\theta)}{1 - \sin\theta} = 1 + \sin\theta$.'
+
+  - id: p6-sec-cosec
+    section: "5.7"
+    dfe: [E5]
+    statement: 'Prove that $\sec^2\theta + \operatorname{cosec}^2\theta \equiv \sec^2\theta\,\operatorname{cosec}^2\theta$ for $\sin\theta\cos\theta \neq 0$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "sec(x)**2 + csc(x)**2"
+      answer: "sec(x)**2*csc(x)**2"
+    answer_text: 'Write both terms over $\cos^2\theta\sin^2\theta$: $\dfrac{\sin^2\theta + \cos^2\theta}{\cos^2\theta\sin^2\theta} = \dfrac{1}{\cos^2\theta\sin^2\theta} = \sec^2\theta\,\operatorname{cosec}^2\theta$.'
+
+  - id: p7-one-minus-cos
+    section: "5.7"
+    dfe: [E5]
+    statement: 'Prove that $\dfrac{1 - \cos^2\theta}{\sin\theta} \equiv \sin\theta$ for $\sin\theta \neq 0$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "(1 - cos(x)**2)/sin(x)"
+      answer: "sin(x)"
+    answer_text: 'From $\sin^2\theta + \cos^2\theta = 1$, the numerator is $\sin^2\theta$. Then $\dfrac{\sin^2\theta}{\sin\theta} = \sin\theta$.'
+
+  - id: p8-mixed-product
+    section: "5.7"
+    dfe: [E5]
+    statement: 'Prove that $\sin\theta\cos\theta(\tan\theta + \cot\theta) \equiv 1$ for $\sin\theta\cos\theta \neq 0$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "sin(x)*cos(x)*(tan(x) + cot(x))"
+      answer: "1"
+    answer_text: 'Expand the bracket: $\sin\theta\cos\theta\left(\dfrac{\sin\theta}{\cos\theta} + \dfrac{\cos\theta}{\sin\theta}\right) = \sin^2\theta + \cos^2\theta = 1$.'
+
+  - id: p9-with-steps
+    section: "5.7"
+    dfe: [E5]
+    statement: 'Prove that $\tan\theta\cos\theta \equiv \sin\theta$ by simplifying the left-hand side.'
+    answer_label: 'The identity'
+    steps:
+      - {expr: "tan(x)*cos(x)"}
+      - {expr: "sin(x)", relation: apply, apply: {op: trigsimp}}
+    check:
+      kind: evaluate
+      expression: "tan(x)*cos(x)"
+      answer: "sin(x)"
+    answer_text: 'Write tangent as a fraction: $\tan\theta\cos\theta = \dfrac{\sin\theta}{\cos\theta} \times \cos\theta = \sin\theta$. The step from the product to the sine is the cancellation of the cosine, which the verifier checks as a trigonometric simplification.'
+
+  - id: p10-pythagorean
+    section: "5.7"
+    dfe: [E5]
+    statement: 'Simplify $\sin^2\theta + \cos^2\theta$ using the basic identity.'
+    answer_label: 'The simplified expression'
+    check:
+      kind: evaluate
+      expression: "sin(x)**2 + cos(x)**2"
+      answer: "1"
+    answer_text: 'This is the first identity, true for every angle. On the unit circle it says that the point $(\cos\theta, \sin\theta)$ is always distance $1$ from the origin.'

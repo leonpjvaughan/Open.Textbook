@@ -1,0 +1,117 @@
+# Practice set for 5.2, radian measure, arc length and sector area.
+#
+# SymPy works in radians, so every CAS expression here uses radians. The
+# statements keep the degree labels where the reader needs them.
+chapter: 5
+problems:
+  - id: p1-degrees-to-radians
+    section: "5.2"
+    dfe: [E1]
+    statement: 'Change $135^\circ$ into radians, in terms of $\pi$.'
+    answer_label: 'The angle in radians'
+    check:
+      kind: evaluate
+      expression: "135*pi/180"
+      answer: "3*pi/4"
+    answer_text: 'Multiply by $\dfrac{\pi}{180}$: $135 \times \dfrac{\pi}{180} = \dfrac{135\pi}{180} = \dfrac{3\pi}{4}$.'
+
+  - id: p2-radians-to-degrees
+    section: "5.2"
+    dfe: [E1]
+    statement: 'Change $\dfrac{5\pi}{6}$ radians into degrees.'
+    answer_label: 'The angle in degrees'
+    check:
+      kind: evaluate
+      expression: "(5*pi/6)*(180/pi)"
+      answer: "150"
+    answer_text: 'Multiply by $\dfrac{180}{\pi}$: $\dfrac{5\pi}{6} \times \dfrac{180}{\pi} = \dfrac{5 \times 180}{6} = 150^\circ$.'
+
+  - id: p3-decimal-radians
+    section: "5.2"
+    dfe: [E1]
+    statement: 'Change $2.4$ radians into degrees, to one decimal place.'
+    answer_label: 'The angle in degrees'
+    check:
+      kind: approx
+      value: "2.4*180/pi"
+      target: "137.5"
+      tolerance: "0.05"
+    answer_text: '$2.4 \times \dfrac{180}{\pi} \approx 137.5^\circ$.'
+
+  - id: p4-arc-length
+    section: "5.2"
+    dfe: [E1]
+    statement: 'A circle has radius $12$ cm. Find the length of the arc that subtends $0.6$ radians at the centre.'
+    answer_label: 'The arc length'
+    check:
+      kind: evaluate
+      expression: "12*0.6"
+      answer: "36/5"
+    answer_text: 'The angle is already in radians, so $l = r\theta = 12 \times 0.6 = 7.2$ cm.'
+
+  - id: p5-sector-area
+    section: "5.2"
+    dfe: [E1]
+    statement: 'A sector has radius $9$ cm and angle $2$ radians. Find its area.'
+    answer_label: 'The sector area'
+    check:
+      kind: evaluate
+      expression: "1/2*9**2*2"
+      answer: "81"
+    answer_text: '$A = \tfrac{1}{2}r^2\theta = \tfrac{1}{2} \times 81 \times 2 = 81$ cm$^2$.'
+
+  - id: p6-arc-and-sector
+    section: "5.2"
+    dfe: [E1]
+    statement: 'A sector has radius $10$ cm and angle $\dfrac{\pi}{4}$ radians. Find the arc length and the sector area, in terms of $\pi$.'
+    answer_label: 'The arc length and the area'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "10*(pi/4)", answer: "5*pi/2"}
+        - {kind: evaluate, expression: "1/2*10**2*(pi/4)", answer: "25*pi/2"}
+    answer_text: 'Arc: $l = 10 \times \dfrac{\pi}{4} = \dfrac{5\pi}{2}$ cm. Area: $A = \tfrac{1}{2} \times 100 \times \dfrac{\pi}{4} = \dfrac{25\pi}{2}$ cm$^2$.'
+
+  - id: p7-segment-area
+    section: "5.2"
+    dfe: [E1]
+    statement: 'A circle has radius $5$ cm. Find the area of the segment cut off by an arc of angle $\dfrac{\pi}{6}$ radians. Give the exact value.'
+    answer_label: 'The segment area'
+    check:
+      kind: evaluate
+      expression: "1/2*5**2*(pi/6) - 1/2*5**2*sin(pi/6)"
+      answer: "25*pi/12 - 25/4"
+    answer_text: 'Sector $= \tfrac{1}{2} \times 25 \times \dfrac{\pi}{6} = \dfrac{25\pi}{12}$. Triangle $= \tfrac{1}{2} \times 25 \times \sin\dfrac{\pi}{6} = \dfrac{25}{4}$. Segment $= \dfrac{25\pi}{12} - \dfrac{25}{4} \approx 0.295$ cm$^2$.'
+
+  - id: p8-fraction-turn
+    section: "5.2"
+    dfe: [E1]
+    statement: 'Change $210^\circ$ into radians, in terms of $\pi$.'
+    answer_label: 'The angle in radians'
+    check:
+      kind: evaluate
+      expression: "210*pi/180"
+      answer: "7*pi/6"
+    answer_text: '$210 \times \dfrac{\pi}{180} = \dfrac{210\pi}{180} = \dfrac{7\pi}{6}$.'
+
+  - id: p9-angle-from-arc
+    section: "5.2"
+    dfe: [E1]
+    statement: 'A sector has radius $8$ cm and arc length $20$ cm. Find the angle at the centre, in radians.'
+    answer_label: 'The angle in radians'
+    check:
+      kind: evaluate
+      expression: "20/8"
+      answer: "5/2"
+    answer_text: 'Rearrange $l = r\theta$: $\theta = \dfrac{l}{r} = \dfrac{20}{8} = 2.5$ radians.'
+
+  - id: p10-angle-from-area
+    section: "5.2"
+    dfe: [E1]
+    statement: 'A sector has radius $6$ cm and area $30$ cm$^2$. Find the angle at the centre, in radians.'
+    answer_label: 'The angle in radians'
+    check:
+      kind: evaluate
+      expression: "2*30/6**2"
+      answer: "5/3"
+    answer_text: 'Rearrange $A = \tfrac{1}{2}r^2\theta$: $\theta = \dfrac{2A}{r^2} = \dfrac{60}{36} = \dfrac{5}{3}$ radians.'

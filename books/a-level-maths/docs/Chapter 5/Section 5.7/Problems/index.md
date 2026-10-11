@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.7 Trigonometric identities — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: E5
+Work through these on your own. Prove each identity by changing one side only.
+Start with the more complicated side, and show every step.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-05-practice-5.7
+
+:::answers chapter-05-practice-5.7

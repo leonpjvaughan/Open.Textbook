@@ -1,0 +1,183 @@
+# Practice set for 3.3 (Work, energy and power).
+#
+# Both the questions and the answers on the page are rendered from these records.
+# Work, kinetic energy, potential energy and power with a unit are checked by
+# `dimensions`; a force at an angle uses `approx` because the cosine is irrational;
+# a conservation-of-energy step uses `approx` for the square root. The `structured`
+# records at the end prove only that a model answer contains its declared ideas in
+# order.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. Which energy store a transfer
+# belongs to, and whether the right store was chosen, is not checked.
+chapter: 3
+problems:
+  - id: p1-work-along
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A force of 120 N moves a trolley 6.0 m along the direction of the force. Find the work done.'
+    answer_label: 'The work done'
+    check:
+      kind: dimensions
+      expression: "F * s"
+      values:
+        F: {value: "120", unit: "N"}
+        s: {value: "6.0", unit: "m"}
+      answer: {value: "720", unit: "J"}
+    answer_text: 'The force is along the displacement, so $W = Fs = 120 \times 6.0 = 720\,\text{J}$.'
+
+  - id: p2-work-at-angle
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A force of 300 N acts at 25° to the horizontal and moves a crate 10 m along the ground. Find the work done by the force.'
+    answer_label: 'The work done'
+    check:
+      kind: approx
+      value: "300 * 10 * cos(25 * pi / 180)"
+      target: "2719"
+      tolerance: "1"
+    answer_text: 'Only the horizontal component does work: $W = Fs\cos 25^\circ = 300 \times 10 \times 0.906 = 2.7 \times 10^3\,\text{J}$.'
+
+  - id: p3-perpendicular-work
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A person carries a box along a level floor at a constant height. Explain why the person does no work on the box against gravity.'
+    answer_label: 'Why the work against gravity is zero'
+    check:
+      kind: structured
+      requires: [perpendicular, no-height-change]
+      concepts: [work, force-displacement-angle]
+      points:
+        - id: perpendicular
+          text: 'The upward force on the box is perpendicular to the horizontal displacement, and cos 90 degrees is zero.'
+          concepts: [work, force-displacement-angle]
+        - id: no-height-change
+          text: 'The box does not change height, so its gravitational potential energy does not change and no work is done against gravity.'
+          concepts: [work]
+    answer_text: 'The lifting force is perpendicular to the horizontal displacement, so it does no work. The height does not change, so the gravitational potential energy does not change either.'
+
+  - id: p4-kinetic-energy
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A car of mass 1200 kg travels at $15\,\text{m}\,\text{s}^{-1}$. Find its kinetic energy.'
+    answer_label: 'The kinetic energy'
+    check:
+      kind: dimensions
+      expression: "0.5 * m * v**2"
+      values:
+        m: {value: "1200", unit: "kg"}
+        v: {value: "15", unit: "m s^-1"}
+      answer: {value: "135000", unit: "J"}
+    answer_text: '$E_k = \tfrac{1}{2}mv^2 = \tfrac{1}{2} \times 1200 \times 15^2 = 1.35 \times 10^5\,\text{J} = 135\,\text{kJ}$.'
+
+  - id: p5-potential-energy
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A mass of 5.0 kg is lifted through 8.0 m. Find the gravitational potential energy gained. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The gravitational potential energy gained'
+    check:
+      kind: dimensions
+      expression: "m * g * h"
+      values:
+        m: {value: "5.0", unit: "kg"}
+        g: {value: "9.81", unit: "m s^-2"}
+        h: {value: "8.0", unit: "m"}
+      answer: {value: "392.4", unit: "J"}
+    answer_text: '$\Delta E_p = mg\Delta h = 5.0 \times 9.81 \times 8.0 = 392\,\text{J}$.'
+
+  - id: p6-fall-speed
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'An object is dropped from rest through 20 m. Use conservation of energy to find its speed just before it lands. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The speed just before landing'
+    check:
+      kind: approx
+      value: "sqrt(2 * 9.81 * 20)"
+      target: "19.8"
+      tolerance: "0.05"
+    answer_text: '$mg\Delta h = \tfrac{1}{2}mv^2$, so $v = \sqrt{2g\Delta h} = \sqrt{2 \times 9.81 \times 20} = 19.8\,\text{m}\,\text{s}^{-1}$. The mass cancels, so the speed does not depend on it.'
+
+  - id: p7-work-energy-car
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A car of mass 800 kg speeds up from $5.0\,\text{m}\,\text{s}^{-1}$ to $15\,\text{m}\,\text{s}^{-1}$. Find the work done by the resultant force.'
+    answer_label: 'The work done'
+    check:
+      kind: dimensions
+      expression: "0.5 * m * (v**2 - u**2)"
+      values:
+        m: {value: "800", unit: "kg"}
+        v: {value: "15", unit: "m s^-1"}
+        u: {value: "5.0", unit: "m s^-1"}
+      answer: {value: "80000", unit: "J"}
+    answer_text: 'The work done equals the gain in kinetic energy: $W = \tfrac{1}{2} \times 800 \times (15^2 - 5.0^2) = 400 \times 200 = 80000\,\text{J} = 80\,\text{kJ}$.'
+
+  - id: p8-power-work-time
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A machine does 3000 J of useful work in 6.0 s. Find its useful power.'
+    answer_label: 'The useful power'
+    check:
+      kind: dimensions
+      expression: "W / t"
+      values:
+        W: {value: "3000", unit: "J"}
+        t: {value: "6.0", unit: "s"}
+      answer: {value: "500", unit: "W"}
+    answer_text: '$P = \dfrac{W}{t} = \dfrac{3000}{6.0} = 500\,\text{W}$.'
+
+  - id: p9-power-force-velocity
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A car travels at a constant $12\,\text{m}\,\text{s}^{-1}$ against a resistive force of 500 N. Find the useful power developed by the engine.'
+    answer_label: 'The useful power'
+    check:
+      kind: dimensions
+      expression: "F * v"
+      values:
+        F: {value: "500", unit: "N"}
+        v: {value: "12", unit: "m s^-1"}
+      answer: {value: "6000", unit: "W"}
+    answer_text: 'At a constant speed the driving force balances the resistance, so $P = Fv = 500 \times 12 = 6000\,\text{W} = 6.0\,\text{kW}$.'
+
+  - id: p10-thermal-energy
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A block slides down a slope. It loses 50 J of gravitational potential energy and gains 30 J of kinetic energy. Find the energy transferred to thermal stores.'
+    answer_label: 'The thermal energy transferred'
+    check: {kind: evaluate, expression: "50 - 30", answer: "20"}
+    answer_text: 'Energy is conserved, so the missing energy has been transferred to thermal stores: $50 - 30 = 20\,\text{J}$.'
+
+  - id: p11-efficiency
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A motor is supplied with 5000 J of energy and uses it to raise a load of mass 40 kg through 10 m. Find the useful energy transferred and the efficiency. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The useful energy and the efficiency'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "40 * 9.81 * 10", target: "3924", tolerance: "0.5"}
+        - {kind: approx, value: "40 * 9.81 * 10 / 5000", target: "0.785", tolerance: "0.001"}
+    answer_text: 'The useful energy is $mg\Delta h = 40 \times 9.81 \times 10 = 3924\,\text{J}$. The efficiency is $\dfrac{3924}{5000} = 0.78$, or 78%. The rest is transferred to thermal stores by friction in the motor.'
+
+  - id: p12-method-choice
+    section: '3.3'
+    dfe: [AP3]
+    statement: 'A ball is dropped from a height of 3.0 m and you must find its speed at the ground. Say which method you would use and why, and name the assumption that makes the answer simple.'
+    answer_label: 'The method and its assumption'
+    check:
+      kind: structured
+      requires: [choose-energy, state-assumption, give-reason]
+      concepts: [conservation-of-energy, method-choice]
+      points:
+        - id: choose-energy
+          text: 'Use conservation of energy: the potential energy lost equals the kinetic energy gained, so v = sqrt(2gh).'
+          concepts: [conservation-of-energy]
+        - id: state-assumption
+          text: 'Assume air resistance is negligible, so no energy is transferred to thermal stores.'
+          concepts: [conservation-of-energy]
+        - id: give-reason
+          text: 'The energy method is shorter than the equations of motion here, because it does not need the time and the mass cancels.'
+          concepts: [method-choice]
+    answer_text: 'Use conservation of energy, $mg\Delta h = \tfrac{1}{2}mv^2$, giving $v = \sqrt{2gh}$, and assume air resistance is negligible.'
+    answer_text: 'Use conservation of energy, $mg\Delta h = \tfrac{1}{2}mv^2$, giving $v = \sqrt{2gh}$, and assume air resistance is negligible.'

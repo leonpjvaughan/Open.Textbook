@@ -10,9 +10,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.3 Lenses and ray diagrams — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: WA5
+Work through these on your own. For a calculation, write the relationship first
+and keep the units with your numbers. For an explanation, answer in full
+sentences.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-05-practice-5.3
+
+:::answers chapter-05-practice-5.3

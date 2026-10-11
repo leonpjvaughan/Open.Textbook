@@ -1,0 +1,125 @@
+# Practice set for 5.5, small-angle approximations.
+#
+# The estimates are checked against the exact value with an absolute tolerance,
+# so a rounded statement is proven only to the accuracy the record declares.
+chapter: 5
+problems:
+  - id: p1-sin-small
+    section: "5.5"
+    dfe: [E2]
+    statement: 'Use a small-angle approximation to estimate $\sin 0.1$.'
+    answer_label: 'The estimate'
+    check:
+      kind: approx
+      value: "0.1"
+      target: "sin(0.1)"
+      tolerance: "0.001"
+    answer_text: 'For a small angle in radians, $\sin\theta \approx \theta$. So $\sin 0.1 \approx 0.1$. The exact value is $0.09983$, so the estimate is within $0.0002$.'
+
+  - id: p2-cos-small
+    section: "5.5"
+    dfe: [E2]
+    statement: 'Use a small-angle approximation to estimate $\cos 0.2$.'
+    answer_label: 'The estimate'
+    check:
+      kind: approx
+      value: "1 - 0.2**2/2"
+      target: "cos(0.2)"
+      tolerance: "0.001"
+    answer_text: '$\cos\theta \approx 1 - \dfrac{\theta^2}{2}$. So $\cos 0.2 \approx 1 - \dfrac{0.04}{2} = 0.98$. The exact value is $0.98007$, so the estimate is within $0.0001$.'
+
+  - id: p3-tan-small
+    section: "5.5"
+    dfe: [E2]
+    statement: 'Use a small-angle approximation to estimate $\tan 0.05$.'
+    answer_label: 'The estimate'
+    check:
+      kind: approx
+      value: "0.05"
+      target: "tan(0.05)"
+      tolerance: "0.001"
+    answer_text: 'For a small angle in radians, $\tan\theta \approx \theta$. So $\tan 0.05 \approx 0.05$. The exact value is $0.05004$, so the estimate is within $0.0001$.'
+
+  - id: p4-pendulum
+    section: "5.5"
+    dfe: [E2]
+    statement: 'A pendulum of length $0.6$ m swings through a small angle $\theta = 0.12$ radians. Estimate the horizontal displacement of the bob, in metres.'
+    answer_label: 'The displacement'
+    check:
+      kind: approx
+      value: "0.6*0.12"
+      target: "0.6*sin(0.12)"
+      tolerance: "0.0005"
+    answer_text: 'The displacement is $x = L\sin\theta \approx L\theta = 0.6 \times 0.12 = 0.072$ m, which is about $7.2$ cm.'
+
+  - id: p5-sin-error
+    section: "5.5"
+    dfe: [E2]
+    statement: 'The error in $\sin\theta \approx \theta$ is about $\dfrac{\theta^3}{6}$. Estimate the error at $\theta = 0.2$, to three significant figures.'
+    answer_label: 'The error'
+    check:
+      kind: approx
+      value: "0.2**3/6"
+      target: "0.00133"
+      tolerance: "0.00005"
+    answer_text: 'The error is about $\dfrac{0.2^3}{6} = \dfrac{0.008}{6} \approx 0.00133$. The exact difference is $0.2 - \sin 0.2 = 0.00133$, so the estimate matches.'
+
+  - id: p6-snell
+    section: "5.5"
+    dfe: [E2]
+    statement: 'Light meets a surface at a small angle $i = 0.04$ radians, and $\sin i = 1.5\sin r$. Estimate the angle $r$ in radians, to three significant figures.'
+    answer_label: 'The angle $r$'
+    check:
+      kind: approx
+      value: "0.04/1.5"
+      target: "asin(sin(0.04)/1.5)"
+      tolerance: "0.0005"
+    answer_text: 'Replace both sines with their angles: $i \approx 1.5r$. Then $r \approx \dfrac{0.04}{1.5} \approx 0.0267$ radians.'
+
+  - id: p7-cos-small-again
+    section: "5.5"
+    dfe: [E2]
+    statement: 'Use a small-angle approximation to estimate $\cos 0.1$.'
+    answer_label: 'The estimate'
+    check:
+      kind: approx
+      value: "1 - 0.1**2/2"
+      target: "cos(0.1)"
+      tolerance: "0.001"
+    answer_text: '$\cos 0.1 \approx 1 - \dfrac{0.01}{2} = 0.995$. The exact value is $0.99500$, so the estimate is accurate to five decimal places.'
+
+  - id: p8-sin-tiny
+    section: "5.5"
+    dfe: [E2]
+    statement: 'Use a small-angle approximation to estimate $\sin 0.02$.'
+    answer_label: 'The estimate'
+    check:
+      kind: approx
+      value: "0.02"
+      target: "sin(0.02)"
+      tolerance: "0.001"
+    answer_text: '$\sin 0.02 \approx 0.02$. The exact value is $0.019999$, so the error is about $1.3 \times 10^{-6}$.'
+
+  - id: p9-sum
+    section: "5.5"
+    dfe: [E2]
+    statement: 'Use small-angle approximations to estimate $\sin 0.1 + \tan 0.1$.'
+    answer_label: 'The estimate'
+    check:
+      kind: approx
+      value: "0.1 + 0.1"
+      target: "sin(0.1) + tan(0.1)"
+      tolerance: "0.001"
+    answer_text: 'Both $\sin\theta$ and $\tan\theta$ are approximately $\theta$, so the sum is approximately $0.1 + 0.1 = 0.2$. The exact value is $0.19999$.'
+
+  - id: p10-error-grows
+    section: "5.5"
+    dfe: [E2]
+    statement: 'Work out the error in the approximation $\sin\theta \approx \theta$ at $\theta = 0.5$, to three significant figures.'
+    answer_label: 'The error at $0.5$'
+    check:
+      kind: approx
+      value: "0.5 - sin(0.5)"
+      target: "0.0206"
+      tolerance: "0.0005"
+    answer_text: 'The error is $0.5 - \sin 0.5 = 0.5 - 0.47943 \approx 0.0206$. At $0.2$ radians the error was only $0.00133$, so the error grows quickly with the angle.'

@@ -1,0 +1,253 @@
+# Practice set for 4.2 (Sound waves and waves for detection and exploration).
+#
+# Every section is Higher tier: AQA 8463 marks 4.6.1.4 Sound waves and 4.6.1.5
+# Waves for detection and exploration as (physics only) (HT only), so this bank
+# is only ever reached from a Higher page. The prefix arithmetic is proved by
+# `convert`; an echo distance proves the dimensions of speed x time, because the
+# pulse travels to the boundary and back.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. The `structured` records prove
+# only that a model answer contains the declared ideas in order.
+chapter: 4
+problems:
+  - id: p1-ultrasound-echo
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'An ultrasound pulse travels through tissue at 1500 m/s. The reflection returns to the detector after 0.00020 s. Calculate the distance to the boundary.'
+    answer_label: 'Distance to the boundary'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t / 2"
+          values:
+            v: {value: "1500", unit: "m/s"}
+            t: {value: "0.00020", unit: "s"}
+          answer: {value: "0.15", unit: "m"}
+        - {kind: sigfigs, value: "0.15", figures: 2, answer: "0.15", convention: round-once}
+    answer_text: 'The pulse travels there and back, so $s = \dfrac{v t}{2} = \dfrac{1500 \times 0.00020}{2} = 0.15\,\text{m}$. The boundary is 0.15 m away.'
+
+  - id: p2-ship-echo-sounder
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'A ship uses an echo sounder. A pulse of sound travels through sea water at 1500 m/s and returns from the sea floor after 0.050 s. Calculate the depth of the water.'
+    answer_label: 'Depth of the water'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t / 2"
+          values:
+            v: {value: "1500", unit: "m/s"}
+            t: {value: "0.050", unit: "s"}
+          answer: {value: "37.5", unit: "m"}
+        - {kind: sigfigs, value: "37.5", figures: 2, answer: "38", convention: round-once}
+    answer_text: 'The echo time is for the trip down and back, so the depth is $s = \dfrac{v t}{2} = \dfrac{1500 \times 0.050}{2} = 37.5\,\text{m} = 38\,\text{m}$ to 2 significant figures.'
+
+  - id: p3-seismic-speed
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'An earthquake produces a P-wave that travels 90 km in 15 s. Calculate the speed of the P-wave.'
+    answer_label: 'Speed of the P-wave'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "s / t"
+          values:
+            s: {value: "90", unit: "km"}
+            t: {value: "15", unit: "s"}
+          answer: {value: "6000", unit: "m/s"}
+        - {kind: sigfigs, value: "6000", figures: 2, answer: "6.0e3", convention: round-once}
+    answer_text: 'Convert the distance: $90\,\text{km} = 90000\,\text{m}$. Then $v = \dfrac{s}{t} = \dfrac{90000}{15} = 6000\,\text{m/s} = 6.0 \times 10^3\,\text{m/s}$.'
+
+  - id: p4-ultrasound-wavelength
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'An ultrasound scanner works at a frequency of 2.5 MHz. The speed of sound in tissue is 1500 m/s. Calculate the wavelength of the ultrasound.'
+    answer_label: 'Wavelength of the ultrasound'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / f"
+          values:
+            v: {value: "1500", unit: "m/s"}
+            f: {value: "2500000", unit: "Hz"}
+          answer: {value: "0.0006", unit: "m"}
+        - {kind: sigfigs, value: "0.0006", figures: 2, answer: "6.0e-4", convention: round-once}
+    answer_text: '$2.5\,\text{MHz} = 2.5 \times 10^6\,\text{Hz}$. Then $v = f\lambda$, so $\lambda = \dfrac{v}{f} = \dfrac{1500}{2.5 \times 10^6} = 6.0 \times 10^{-4}\,\text{m}$, which is 0.60 mm.'
+
+  - id: p5-convert-khz
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'The upper limit of normal human hearing is 20 kHz. Convert this frequency to hertz.'
+    answer_label: 'Frequency in hertz'
+    check:
+      kind: convert
+      value: "20"
+      from: "kHz"
+      to: "Hz"
+      answer: "20000"
+    answer_text: 'The prefix kilo means one thousand, so $20\,\text{kHz} = 20000\,\text{Hz}$.'
+
+  - id: p6-hearing-period
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'The lowest frequency a healthy young person can hear is 20 Hz. Calculate the period of this sound wave.'
+    answer_label: 'Period of the lowest audible sound'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "1 / f"
+          values:
+            f: {value: "20", unit: "Hz"}
+          answer: {value: "0.05", unit: "s"}
+        - {kind: sigfigs, value: "0.05", figures: 2, answer: "0.050", convention: round-once}
+    answer_text: '$T = \dfrac{1}{f} = \dfrac{1}{20} = 0.050\,\text{s}$.'
+
+  - id: p7-echo-time-tissue
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'In a scan, an ultrasound boundary is 0.060 m from the detector. The speed of sound in tissue is 1500 m/s. Calculate the time for the pulse to travel to the boundary and back.'
+    answer_label: 'Echo time'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "2 * d / v"
+          values:
+            d: {value: "0.060", unit: "m"}
+            v: {value: "1500", unit: "m/s"}
+          answer: {value: "0.00008", unit: "s"}
+        - {kind: sigfigs, value: "0.00008", figures: 2, answer: "8.0e-5", convention: round-once}
+    answer_text: 'The pulse travels twice the distance, so $t = \dfrac{2d}{v} = \dfrac{2 \times 0.060}{1500} = 8.0 \times 10^{-5}\,\text{s}$.'
+
+  - id: p8-sound-vacuum
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'Explain why a sound wave cannot travel through a vacuum.'
+    answer_label: 'Sound in a vacuum'
+    check:
+      kind: structured
+      requires: [longitudinal-vibration, needs-particles]
+      concepts: [sound, longitudinal-wave, vacuum]
+      points:
+        - id: longitudinal-vibration
+          text: 'A sound wave is a longitudinal wave. It travels as a series of compressions and rarefactions, so it needs particles to vibrate.'
+          concepts: [sound, longitudinal-wave]
+        - id: needs-particles
+          text: 'A vacuum contains no particles, so there is nothing to vibrate and the sound cannot pass through.'
+          concepts: [vacuum]
+
+  - id: p9-ear-frequency-range
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'Explain why the ear can detect sound only over a limited range of frequencies.'
+    answer_label: 'The range of hearing'
+    check:
+      kind: structured
+      requires: [solid-vibration, limited-range, hearing-limits]
+      concepts: [sound, vibration, human-hearing]
+      points:
+        - id: solid-vibration
+          text: 'Sound waves arriving at the ear make the ear drum and other parts of the ear vibrate. This converts the sound wave into a vibration of a solid.'
+          concepts: [sound, vibration]
+        - id: limited-range
+          text: 'This conversion only works over a limited range of frequencies, because the parts of the ear cannot vibrate at every frequency.'
+          concepts: [vibration]
+        - id: hearing-limits
+          text: 'That limited range sets the limits of human hearing, which is about 20 Hz to 20 kHz.'
+          concepts: [human-hearing]
+
+  - id: p10-ultrasound-detection
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'Explain how an ultrasound pulse can be used to find the distance to a boundary inside the body.'
+    answer_label: 'Finding a boundary with ultrasound'
+    check:
+      kind: structured
+      requires: [partial-reflection, timed-return, halve-the-time]
+      concepts: [ultrasound, reflection, echo]
+      points:
+        - id: partial-reflection
+          text: 'When the ultrasound wave meets a boundary between two different materials, part of the wave is reflected back to the detector.'
+          concepts: [ultrasound, reflection]
+        - id: timed-return
+          text: 'The detector measures the time taken for the reflection to return.'
+          concepts: [echo]
+        - id: halve-the-time
+          text: 'The pulse travelled to the boundary and back, so the distance to the boundary is half of speed x time.'
+          concepts: [echo]
+
+  - id: p11-seismic-core
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'Explain how the study of seismic waves from earthquakes gives evidence about the structure of the Earth, including its core.'
+    answer_label: 'Seismic evidence for the Earth'
+    check:
+      kind: structured
+      requires: [p-and-s-waves, s-waves-stop, hidden-structure]
+      concepts: [seismic-wave, earths-core]
+      points:
+        - id: p-and-s-waves
+          text: 'An earthquake produces P-waves, which are longitudinal, and S-waves, which are transverse. P-waves travel at different speeds through solids and liquids.'
+          concepts: [seismic-wave]
+        - id: s-waves-stop
+          text: 'S-waves cannot travel through a liquid, and they do not pass through the outer core. This shows that part of the core is liquid.'
+          concepts: [earths-core]
+        - id: hidden-structure
+          text: 'The behaviour of the waves gives evidence about the size and structure of the core, which cannot be seen directly.'
+          concepts: [earths-core]
+
+  - id: p12-compare-p-s
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'Compare P-waves and S-waves from an earthquake.'
+    answer_label: 'P-waves and S-waves'
+    check:
+      kind: structured
+      requires: [p-wave, s-wave, travel-difference]
+      concepts: [seismic-wave, longitudinal-wave, transverse-wave]
+      points:
+        - id: p-wave
+          text: 'A P-wave is a longitudinal wave, so its vibration is along the direction of travel. It can travel through solids and liquids.'
+          concepts: [seismic-wave, longitudinal-wave]
+        - id: s-wave
+          text: 'An S-wave is a transverse wave, so its vibration is at right angles to the direction of travel. It cannot travel through a liquid.'
+          concepts: [seismic-wave, transverse-wave]
+        - id: travel-difference
+          text: 'The two waves travel at different speeds, so they reach a distant detector at different times.'
+          concepts: [seismic-wave]
+
+  - id: p13-echo-sounding-depth
+    section: '4.2'
+    tier: H
+    dfe: [WA1]
+    statement: 'An echo sounder on a boat sends a pulse of sound down through water at 1500 m/s. The reflection returns after 0.080 s. Calculate the depth of the water.'
+    answer_label: 'Depth of the water'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t / 2"
+          values:
+            v: {value: "1500", unit: "m/s"}
+            t: {value: "0.080", unit: "s"}
+          answer: {value: "60", unit: "m"}
+        - {kind: sigfigs, value: "60", figures: 2, answer: "6.0e1", convention: round-once}
+    answer_text: '$s = \dfrac{v t}{2} = \dfrac{1500 \times 0.080}{2} = 60\,\text{m} = 6.0 \times 10^1\,\text{m}$.'

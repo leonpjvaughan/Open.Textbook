@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.5 Small-angle approximations — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: E2
+Work through these on your own. Check that each angle is in radians and small
+before you replace a function with its approximation. Where a question asks for
+an estimate, compare it with a calculator value afterwards.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-05-practice-5.5
+
+:::answers chapter-05-practice-5.5

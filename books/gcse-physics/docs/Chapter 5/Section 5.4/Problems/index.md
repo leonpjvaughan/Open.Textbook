@@ -10,9 +10,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.4 Colour and frequency — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: WA6
+Work through these on your own. Most of the questions want an explanation, so
+answer in full sentences and name the wavelengths involved.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-05-practice-5.4
+
+:::answers chapter-05-practice-5.4

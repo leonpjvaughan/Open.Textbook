@@ -1,0 +1,176 @@
+# Practice set for 4.1 (Stress, strain and the Young modulus).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]` in book.yaml, so a check may use either.
+#
+# A stress or a Young modulus is checked by `dimensions`, which carries the units
+# exactly and refuses a dimensionally wrong answer. A value that needs the number
+# pi is checked by `approx` against a stated tolerance, because the oracle keeps
+# its arithmetic exact and pi is irrational. A reason is a `structured` record:
+# presence, order and coverage only, never physics.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 4
+problems:
+  - id: p1-stress-basic
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A wire of cross-sectional area $2.0 \times 10^{-6}\,\text{m}^2$ carries a tensile force of $50\,\text{N}$. Find the stress.'
+    answer_label: 'The tensile stress'
+    check:
+      kind: dimensions
+      expression: "F / A"
+      values:
+        F: {value: "50", unit: "N"}
+        A: {value: "2.0e-6", unit: "m^2"}
+      answer: {value: "2.5e7", unit: "Pa"}
+    answer_text: 'The stress is $\dfrac{50}{2.0 \times 10^{-6}} = 2.5 \times 10^{7}\,\text{Pa}$.'
+
+  - id: p2-strain
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A wire of original length $1.60\,\text{m}$ extends by $0.80\,\text{mm}$. Find the strain.'
+    answer_label: 'The tensile strain'
+    check: {kind: evaluate, expression: "0.80e-3 / 1.60", answer: "5.0e-4"}
+    answer_text: 'The extension is $0.80\,\text{mm} = 8.0 \times 10^{-4}\,\text{m}$, so the strain is $\dfrac{8.0 \times 10^{-4}}{1.60} = 5.0 \times 10^{-4}$. The strain has no unit.'
+
+  - id: p3-young-modulus
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A material has a stress of $1.2 \times 10^{8}\,\text{Pa}$ and a strain of $6.0 \times 10^{-4}$. Find its Young modulus.'
+    answer_label: 'The Young modulus'
+    check:
+      kind: dimensions
+      expression: "stress / strain"
+      values:
+        stress: {value: "1.2e8", unit: "Pa"}
+        strain: {value: "6.0e-4"}
+      answer: {value: "2.0e11", unit: "Pa"}
+    answer_text: 'The Young modulus is the stress divided by the strain: $\dfrac{1.2 \times 10^{8}}{6.0 \times 10^{-4}} = 2.0 \times 10^{11}\,\text{Pa}$.'
+
+  - id: p4-diameter-stress
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A wire has a diameter of $0.60\,\text{mm}$ and carries a force of $30\,\text{N}$. Find the stress in the wire.'
+    answer_label: 'The tensile stress'
+    check: {kind: approx, value: "30 / (pi * (0.30e-3)**2)", target: "1.06e8", tolerance: "5e6"}
+    answer_text: 'The radius is $0.30\,\text{mm} = 3.0 \times 10^{-4}\,\text{m}$. The area is $\pi (3.0 \times 10^{-4})^2 = 2.8 \times 10^{-7}\,\text{m}^2$. The stress is $\dfrac{30}{2.8 \times 10^{-7}} = 1.1 \times 10^{8}\,\text{Pa}$.'
+
+  - id: p5-extension
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A steel wire has $E = 2.0 \times 10^{11}\,\text{Pa}$, cross-sectional area $5.0 \times 10^{-7}\,\text{m}^2$ and length $1.80\,\text{m}$. A force of $40\,\text{N}$ stretches it. Find the extension.'
+    answer_label: 'The extension'
+    check:
+      kind: dimensions
+      expression: "F * L / (A * E)"
+      values:
+        F: {value: "40", unit: "N"}
+        L: {value: "1.80", unit: "m"}
+        A: {value: "5.0e-7", unit: "m^2"}
+        E: {value: "2.0e11", unit: "Pa"}
+      answer: {value: "7.2e-4", unit: "m"}
+    answer_text: 'The extension is $\dfrac{FL}{AE} = \dfrac{40 \times 1.80}{5.0 \times 10^{-7} \times 2.0 \times 10^{11}} = 7.2 \times 10^{-4}\,\text{m}$, or $0.72\,\text{mm}$.'
+
+  - id: p6-material-ratio
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A steel wire and a copper wire have the same length and area and carry the same force. Steel has $E = 2.0 \times 10^{11}\,\text{Pa}$ and copper has $E = 1.2 \times 10^{11}\,\text{Pa}$. Find how many times larger the copper extension is than the steel extension.'
+    answer_label: 'The ratio of the extensions'
+    check: {kind: evaluate, expression: "20 / 12", answer: "5/3"}
+    answer_text: 'The extension is inversely proportional to the Young modulus when the other quantities are fixed, so the ratio is $\dfrac{2.0 \times 10^{11}}{1.2 \times 10^{11}} = \dfrac{5}{3} = 1.7$. The copper wire extends 1.7 times as far as the steel wire.'
+
+  - id: p7-cable-stress
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A cable of cross-sectional area $1.2 \times 10^{-4}\,\text{m}^2$ supports a load of mass $900\,\text{kg}$. Take $g = 9.81\,\text{N}\,\text{kg}^{-1}$ and find the stress.'
+    answer_label: 'The tensile stress'
+    check: {kind: approx, value: "900 * 9.81 / 1.2e-4", target: "7.4e7", tolerance: "5e5"}
+    answer_text: 'The weight is $mg = 900 \times 9.81 = 8829\,\text{N}$. The stress is $\dfrac{8829}{1.2 \times 10^{-4}} = 7.4 \times 10^{7}\,\text{Pa}$ to two significant figures.'
+
+  - id: p8-percentage-strain
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A wire $2.50\,\text{m}$ long extends by $1.5\,\text{mm}$. Find the strain, and write it as a percentage.'
+    answer_label: 'The strain and the percentage strain'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "1.5e-3 / 2.50", answer: "6.0e-4"}
+        - {kind: sigfigs, value: "0.06", figures: 2, answer: "0.060", convention: round-once}
+    answer_text: 'The strain is $\dfrac{1.5 \times 10^{-3}}{2.50} = 6.0 \times 10^{-4}$. As a percentage this is $6.0 \times 10^{-4} \times 100\% = 0.060\%$.'
+
+  - id: p9-find-E
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A wire of length $2.50\,\text{m}$ and area $4.0 \times 10^{-7}\,\text{m}^2$ extends by $1.0\,\text{mm}$ under a force of $32\,\text{N}$. Find the Young modulus.'
+    answer_label: 'The Young modulus'
+    check:
+      kind: dimensions
+      expression: "F * L / (A * dL)"
+      values:
+        F: {value: "32", unit: "N"}
+        L: {value: "2.50", unit: "m"}
+        A: {value: "4.0e-7", unit: "m^2"}
+        dL: {value: "1.0e-3", unit: "m"}
+      answer: {value: "2.0e11", unit: "Pa"}
+    answer_text: 'The stress is $\dfrac{32}{4.0 \times 10^{-7}} = 8.0 \times 10^{7}\,\text{Pa}$ and the strain is $\dfrac{1.0 \times 10^{-3}}{2.50} = 4.0 \times 10^{-4}$. The Young modulus is $\dfrac{8.0 \times 10^{7}}{4.0 \times 10^{-4}} = 2.0 \times 10^{11}\,\text{Pa}$.'
+
+  - id: p10-method-choice
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'You know the force, the original length, the extension and the cross-sectional area of a stretched wire. Describe how to find the Young modulus, and state its unit.'
+    answer_label: 'The method and the unit'
+    check:
+      kind: structured
+      requires: [find-stress, find-strain, divide, state-unit]
+      concepts: [stress, strain, young-modulus]
+      points:
+        - id: find-stress
+          text: 'Find the stress by dividing the force by the cross-sectional area.'
+          concepts: [stress]
+        - id: find-strain
+          text: 'Find the strain by dividing the extension by the original length.'
+          concepts: [strain]
+        - id: divide
+          text: 'Divide the stress by the strain to get the Young modulus.'
+          concepts: [young-modulus]
+        - id: state-unit
+          text: 'The unit is the pascal, which is one newton per square metre.'
+          concepts: [young-modulus]
+    answer_text: 'Divide the force by the area to get the stress. Divide the extension by the original length to get the strain. Divide the stress by the strain to get the Young modulus, in pascals.'
+
+  - id: p11-thicker-wire
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'Two steel wires have the same length. One has twice the diameter of the other. Both carry the same force. Explain what happens to the stress and to the extension of the thicker wire.'
+    answer_label: 'The stress and the extension of the thicker wire'
+    check:
+      kind: structured
+      requires: [area-four-times, stress-quarter, extension-quarter]
+      concepts: [stress, strain, young-modulus]
+      points:
+        - id: area-four-times
+          text: 'The area of a circle depends on the square of the diameter, so doubling the diameter makes the area four times larger.'
+          concepts: [stress]
+        - id: stress-quarter
+          text: 'The force is the same, and stress is force divided by area, so the stress in the thicker wire is one quarter of the stress in the thinner wire.'
+          concepts: [stress]
+        - id: extension-quarter
+          text: 'The strain is the stress divided by the Young modulus, so it is also one quarter. The extension is the strain times the length, and the lengths are equal, so the thicker wire extends by one quarter as much.'
+          concepts: [strain, young-modulus]
+    answer_text: 'Doubling the diameter makes the area four times larger. The same force then gives one quarter of the stress, so the strain is one quarter and the extension is one quarter as large.'
+
+  - id: p12-homogeneity
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'Show that $E = \dfrac{FL}{A\,\Delta L}$ gives the base units $\text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$.'
+    answer_label: 'A base-unit check'
+    check:
+      kind: dimensions
+      consistency: "E = F * L / (A * dL)"
+      units: {E: "Pa", F: "N", L: "m", A: "m^2", dL: "m"}
+    answer_text: 'On the right, the newton is $\text{kg}\,\text{m}\,\text{s}^{-2}$. The expression is $\dfrac{(\text{kg}\,\text{m}\,\text{s}^{-2}) \times \text{m}}{\text{m}^2 \times \text{m}} = \text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$, which is the pascal. Both sides match, so the equation is homogeneous.'

@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.6 Secant, cosecant, cotangent and the inverse trigonometric functions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: E4
+Work through these on your own. Give every value in exact form. For an inverse
+function, state the principal value, and give the angle in radians unless the
+question asks for degrees.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-05-practice-5.6
+
+:::answers chapter-05-practice-5.6

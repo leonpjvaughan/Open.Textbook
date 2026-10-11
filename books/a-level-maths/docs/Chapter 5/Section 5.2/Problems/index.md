@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.2 Radian measure, arc length and sector area — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: E1
+Work through these on your own. Check the unit of every angle before you use it.
+Leave answers in terms of $\pi$ when the question asks for an exact value, and
+give other answers to three significant figures.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-05-practice-5.2
+
+:::answers chapter-05-practice-5.2

@@ -1,0 +1,181 @@
+# Practice set for 4.2 (Force-extension graphs and stored energy).
+#
+# Both the questions and the answers on the page are rendered from these records.
+# A spring constant and an energy are checked by `dimensions`, which keeps the
+# units exact. A graph value is checked by `gradient` or `area`: the series is
+# read with a least-squares line or the trapezium rule, and the result is
+# compared against a declared interval, because reading a graph is a measurement
+# and never an equality. A reason is a `structured` record.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. The gradient proves the
+# least-squares line for the given points, not the line a reader would draw.
+chapter: 4
+problems:
+  - id: p1-spring-constant
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A spring extends by $0.050\,\text{m}$ under a force of $10\,\text{N}$. Find the spring constant.'
+    answer_label: 'The spring constant'
+    check:
+      kind: dimensions
+      expression: "F / x"
+      values:
+        F: {value: "10", unit: "N"}
+        x: {value: "0.050", unit: "m"}
+      answer: {value: "200", unit: "N m^-1"}
+    answer_text: 'From Hooke''s law, $k = \dfrac{F}{\Delta L} = \dfrac{10}{0.050} = 200\,\text{N}\,\text{m}^{-1}$.'
+
+  - id: p2-force
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A spring of constant $250\,\text{N}\,\text{m}^{-1}$ is stretched by $0.080\,\text{m}$. Find the force.'
+    answer_label: 'The force'
+    check:
+      kind: dimensions
+      expression: "k * x"
+      values:
+        k: {value: "250", unit: "N m^-1"}
+        x: {value: "0.080", unit: "m"}
+      answer: {value: "20", unit: "N"}
+    answer_text: 'The force is $F = k\Delta L = 250 \times 0.080 = 20\,\text{N}$.'
+
+  - id: p3-energy
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A spring of constant $250\,\text{N}\,\text{m}^{-1}$ is stretched by $0.080\,\text{m}$ by a force of $20\,\text{N}$. Find the energy stored.'
+    answer_label: 'The energy stored'
+    check:
+      kind: dimensions
+      expression: "0.5 * F * x"
+      values:
+        F: {value: "20", unit: "N"}
+        x: {value: "0.080", unit: "m"}
+      answer: {value: "0.80", unit: "J"}
+    answer_text: 'The graph is a straight line through the origin, so the energy is $\tfrac{1}{2}F\Delta L = \tfrac{1}{2} \times 20 \times 0.080 = 0.80\,\text{J}$.'
+
+  - id: p4-graph-gradient
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A force-extension graph is a straight line through $(0, 0)$ and $(0.040\,\text{m}, 8.0\,\text{N})$. Find the gradient, which is the spring constant.'
+    answer_label: 'The gradient'
+    check:
+      kind: gradient
+      series: [[0.0, 0.0], [0.040, 8.0]]
+      between: [195, 205]
+    answer_text: 'The gradient is $\dfrac{8.0}{0.040} = 200\,\text{N}\,\text{m}^{-1}$.'
+
+  - id: p5-graph-area
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'The same straight-line graph reaches $8.0\,\text{N}$ at an extension of $0.040\,\text{m}$. Find the energy stored, from the area under the graph.'
+    answer_label: 'The energy stored'
+    check:
+      kind: area
+      series: [[0.0, 0.0], [0.040, 8.0]]
+      between: [0.155, 0.165]
+    answer_text: 'The area is a triangle, so the energy stored is $\tfrac{1}{2} \times 8.0 \times 0.040 = 0.16\,\text{J}$.'
+
+  - id: p6-gradient-to-E
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A wire of length $1.50\,\text{m}$ and area $2.0 \times 10^{-7}\,\text{m}^2$ has a force-extension graph of gradient $2.0 \times 10^{4}\,\text{N}\,\text{m}^{-1}$. Find the Young modulus.'
+    answer_label: 'The Young modulus'
+    check:
+      kind: dimensions
+      expression: "k * L / A"
+      values:
+        k: {value: "2.0e4", unit: "N m^-1"}
+        L: {value: "1.50", unit: "m"}
+        A: {value: "2.0e-7", unit: "m^2"}
+      answer: {value: "1.5e11", unit: "Pa"}
+    answer_text: 'The gradient of a wire''s force-extension graph is $k = \dfrac{EA}{L}$, so $E = \dfrac{kL}{A} = \dfrac{2.0 \times 10^{4} \times 1.50}{2.0 \times 10^{-7}} = 1.5 \times 10^{11}\,\text{Pa}$.'
+
+  - id: p7-energy-kx
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A spring of constant $400\,\text{N}\,\text{m}^{-1}$ is stretched by $0.10\,\text{m}$. Find the energy stored.'
+    answer_label: 'The energy stored'
+    check:
+      kind: dimensions
+      expression: "0.5 * k * x**2"
+      values:
+        k: {value: "400", unit: "N m^-1"}
+        x: {value: "0.10", unit: "m"}
+      answer: {value: "2.0", unit: "J"}
+    answer_text: 'The energy stored is $\tfrac{1}{2}k(\Delta L)^2 = \tfrac{1}{2} \times 400 \times 0.10^2 = 2.0\,\text{J}$.'
+
+  - id: p8-energy-force-extension
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A wire carries a force of $60\,\text{N}$ and extends by $25\,\text{mm}$. Find the energy stored in the wire.'
+    answer_label: 'The energy stored'
+    check:
+      kind: dimensions
+      expression: "0.5 * F * dL"
+      values:
+        F: {value: "60", unit: "N"}
+        dL: {value: "0.025", unit: "m"}
+      answer: {value: "0.75", unit: "J"}
+    answer_text: 'The extension is $25\,\text{mm} = 0.025\,\text{m}$, so the energy stored is $\tfrac{1}{2}F\Delta L = \tfrac{1}{2} \times 60 \times 0.025 = 0.75\,\text{J}$.'
+
+  - id: p9-nonlinear-area
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A force-extension graph for a rubber cord gives the points $(0, 0)$, $(0.020, 3.5)$, $(0.040, 7.5)$, $(0.060, 13)$ and $(0.080, 20)$. Find the energy stored at an extension of $0.080\,\text{m}$.'
+    answer_label: 'The energy stored'
+    check:
+      kind: area
+      series: [[0.0, 0.0], [0.020, 3.5], [0.040, 7.5], [0.060, 13], [0.080, 20]]
+      between: [0.67, 0.69]
+    answer_text: 'The graph is not a straight line, so use strips. The trapezium areas are $0.035$, $0.11$, $0.205$ and $0.33\,\text{J}$, and their sum is $0.68\,\text{J}$.'
+
+  - id: p10-force-from-energy
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A spring stores $0.36\,\text{J}$ when it is extended by $0.060\,\text{m}$. The graph is a straight line through the origin. Find the final force.'
+    answer_label: 'The final force'
+    check:
+      kind: dimensions
+      expression: "2 * E / x"
+      values:
+        E: {value: "0.36", unit: "J"}
+        x: {value: "0.060", unit: "m"}
+      answer: {value: "12", unit: "N"}
+    answer_text: 'For a straight-line graph, $E = \tfrac{1}{2}Fx$, so $F = \dfrac{2E}{x} = \dfrac{2 \times 0.36}{0.060} = 12\,\text{N}$.'
+
+  - id: p11-nonlinear-method
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'Explain why $E = \tfrac{1}{2}F\Delta L$ cannot be used to find the energy stored when the force-extension graph is not a straight line.'
+    answer_label: 'Why the triangle formula fails'
+    check:
+      kind: structured
+      requires: [not-straight, area-method]
+      concepts: [stored-energy, force-extension-graph]
+      points:
+        - id: not-straight
+          text: 'The formula half F times extension is the area of a triangle. It is only correct when the graph is a straight line through the origin, because then the area under the graph is a triangle.'
+          concepts: [force-extension-graph]
+        - id: area-method
+          text: 'When the graph bends, the area under it is not a triangle. Find the real area by counting squares or by splitting it into strips and adding their areas.'
+          concepts: [stored-energy]
+    answer_text: 'The formula gives the area of a triangle, which is only right for a straight line through the origin. When the graph bends, find the area under it by counting squares or by adding strips.'
+
+  - id: p12-limit-of-proportionality
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A spring obeys Hooke''s law up to a force of $15\,\text{N}$. A student loads it to $25\,\text{N}$ and finds that the extension is larger than $F = k\Delta L$ predicts. Explain why.'
+    answer_label: 'Why the extension is larger'
+    check:
+      kind: structured
+      requires: [limit-exceeded, graph-bends]
+      concepts: [limit-of-proportionality, elastic-limit]
+      points:
+        - id: limit-exceeded
+          text: 'The force of 25 N is past the limit of proportionality, so the extension is no longer proportional to the force. Hooke''s law only describes the straight part of the graph.'
+          concepts: [limit-of-proportionality]
+        - id: graph-bends
+          text: 'On the graph the line bends away from the straight line, so the gradient is no longer constant. At 25 N the extension is larger than the straight line would give, and the spring may have been permanently stretched. That happens past the elastic limit.'
+          concepts: [elastic-limit]
+    answer_text: 'The 25 N load is above the limit of proportionality, so the extension stops being proportional to the force and the graph bends away from the straight line. At that load the spring may also have passed its elastic limit and be permanently stretched.'

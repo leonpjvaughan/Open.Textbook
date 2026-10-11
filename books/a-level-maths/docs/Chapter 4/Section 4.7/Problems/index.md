@@ -10,9 +10,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.7 Sequences and series in modelling — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: D6, OT3
+Work through these on your own. Decide whether the quantity changes by a fixed
+amount or a fixed factor. Write the model down, say what it assumes, and only
+then calculate.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-04-practice-4.7
+
+:::answers chapter-04-practice-4.7

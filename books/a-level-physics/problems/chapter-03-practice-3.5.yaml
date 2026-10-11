@@ -1,0 +1,181 @@
+# Practice set for 3.5 (Circular motion).
+#
+# Both the questions and the answers on the page are rendered from these records.
+# An angular velocity, a speed, an acceleration or a force with a unit is checked
+# by `dimensions`; a value that involves pi or a square root uses `approx`; a
+# proportional change uses `evaluate`. The `structured` records prove only that a
+# model answer contains its declared ideas in order.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. Which real force provides the
+# centripetal force is not checked.
+chapter: 3
+problems:
+  - id: p1-radians
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'Write $120^\circ$ in radians.'
+    answer_label: 'The angle in radians'
+    check:
+      kind: approx
+      value: "120 * pi / 180"
+      target: "2.094"
+      tolerance: "0.001"
+    answer_text: '$120 \times \dfrac{\pi}{180} = \dfrac{2\pi}{3} = 2.09\,\text{rad}$.'
+
+  - id: p2-angular-velocity
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A wheel rotates at 2.5 revolutions per second. Find its angular velocity in radians per second.'
+    answer_label: 'The angular velocity'
+    check:
+      kind: approx
+      value: "2 * pi * 2.5"
+      target: "15.71"
+      tolerance: "0.01"
+    answer_text: '$\omega = 2\pi f = 2\pi \times 2.5 = 15.7\,\text{rad}\,\text{s}^{-1}$.'
+
+  - id: p3-v-omega-r
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'An object moves in a circle of radius 0.40 m with an angular velocity of $20\,\text{rad}\,\text{s}^{-1}$. Find its speed.'
+    answer_label: 'The speed'
+    check:
+      kind: dimensions
+      expression: "omega * r"
+      values:
+        omega: {value: "20", unit: "s^-1"}
+        r: {value: "0.40", unit: "m"}
+      answer: {value: "8.0", unit: "m s^-1"}
+    answer_text: '$v = \omega r = 20 \times 0.40 = 8.0\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: p4-centripetal-acceleration
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'An object moves at $6.0\,\text{m}\,\text{s}^{-1}$ in a circle of radius 12 m. Find its centripetal acceleration.'
+    answer_label: 'The centripetal acceleration'
+    check:
+      kind: dimensions
+      expression: "v**2 / r"
+      values:
+        v: {value: "6.0", unit: "m s^-1"}
+        r: {value: "12", unit: "m"}
+      answer: {value: "3.0", unit: "m s^-2"}
+    answer_text: '$a = \dfrac{v^2}{r} = \dfrac{6.0^2}{12} = 3.0\,\text{m}\,\text{s}^{-2}$, directed towards the centre of the circle.'
+
+  - id: p5-centripetal-force
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'An object of mass 0.60 kg moves at $4.0\,\text{m}\,\text{s}^{-1}$ in a circle of radius 0.80 m. Find the centripetal force on it.'
+    answer_label: 'The centripetal force'
+    check:
+      kind: dimensions
+      expression: "m * v**2 / r"
+      values:
+        m: {value: "0.60", unit: "kg"}
+        v: {value: "4.0", unit: "m s^-1"}
+        r: {value: "0.80", unit: "m"}
+      answer: {value: "12", unit: "N"}
+    answer_text: '$F = \dfrac{mv^2}{r} = \dfrac{0.60 \times 4.0^2}{0.80} = 12\,\text{N}$ towards the centre.'
+
+  - id: p6-car-bend
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A car of mass 1000 kg goes round a bend of radius 80 m at $20\,\text{m}\,\text{s}^{-1}$. Find the centripetal acceleration and the friction force. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The acceleration and the friction force'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "20**2 / 80", target: "5.0", tolerance: "0.001"}
+        - {kind: approx, value: "1000 * 20**2 / 80", target: "5000", tolerance: "1"}
+    answer_text: '$a = \dfrac{v^2}{r} = \dfrac{20^2}{80} = 5.0\,\text{m}\,\text{s}^{-2}$ and $F = ma = 1000 \times 5.0 = 5000\,\text{N}$. The friction from the road provides the centripetal force.'
+
+  - id: p7-minimum-speed-top
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A ball is whirled in a vertical circle of radius 1.2 m. Find the minimum speed at the top of the circle for the ball to keep moving in the circle. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The minimum speed at the top'
+    check:
+      kind: approx
+      value: "sqrt(9.81 * 1.2)"
+      target: "3.43"
+      tolerance: "0.01"
+    answer_text: 'At the minimum speed the weight provides the whole centripetal force: $mg = \dfrac{mv^2}{r}$, so $v = \sqrt{gr} = \sqrt{9.81 \times 1.2} = 3.4\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: p8-tension-bottom
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A bucket of mass 0.40 kg is swung in a vertical circle of radius 0.50 m. At the bottom of the circle its speed is $4.0\,\text{m}\,\text{s}^{-1}$. Find the tension in the string. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The tension in the string'
+    check:
+      kind: dimensions
+      expression: "m * (g + v**2 / r)"
+      values:
+        m: {value: "0.40", unit: "kg"}
+        g: {value: "9.81", unit: "m s^-2"}
+        v: {value: "4.0", unit: "m s^-1"}
+        r: {value: "0.50", unit: "m"}
+      answer: {value: "16.724", unit: "N"}
+    answer_text: 'At the bottom the tension acts upwards and the weight acts downwards, so $T - mg = \dfrac{mv^2}{r}$. Then $T = m\left(g + \dfrac{v^2}{r}\right) = 0.40(9.81 + 32) = 16.7\,\text{N}$.'
+
+  - id: p9-period
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A wheel rotates with an angular velocity of $12\,\text{rad}\,\text{s}^{-1}$. Find its period of rotation.'
+    answer_label: 'The period'
+    check:
+      kind: approx
+      value: "2 * pi / 12"
+      target: "0.524"
+      tolerance: "0.001"
+    answer_text: '$\omega = \dfrac{2\pi}{T}$, so $T = \dfrac{2\pi}{\omega} = \dfrac{2\pi}{12} = 0.52\,\text{s}$.'
+
+  - id: p10-factor-change
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'The speed of an object in a circle is doubled and the radius is halved. By what factor does the centripetal acceleration change?'
+    answer_label: 'The factor'
+    check: {kind: evaluate, expression: "(2**2) / (1/2)", answer: "8"}
+    answer_text: 'The acceleration is $a = \dfrac{v^2}{r}$. Doubling $v$ multiplies it by 4, and halving $r$ multiplies it by 2 again, so it increases by a factor of 8.'
+
+  - id: p11-no-centrifugal
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A passenger on a roundabout says there is an outward force pushing them outwards. Explain why there is no such force in the ground frame.'
+    answer_label: 'Why there is no outward force'
+    check:
+      kind: structured
+      requires: [acceleration-inwards, real-force, straight-line]
+      concepts: [centripetal-force, newtons-first-law]
+      points:
+        - id: acceleration-inwards
+          text: 'The passenger is moving in a circle, so the acceleration points towards the centre and a resultant force in that direction is needed.'
+          concepts: [centripetal-force]
+        - id: real-force
+          text: 'The real force is friction from the seat, pointing towards the centre. It provides the centripetal force.'
+          concepts: [centripetal-force]
+        - id: straight-line
+          text: 'The passenger feels pushed outwards because the body tends to keep moving in a straight line, by Newton first law, and the seat presses inwards on it.'
+          concepts: [newtons-first-law]
+    answer_text: 'The acceleration points towards the centre, and friction from the seat provides the centripetal force. No outward force acts. The sensation comes from the body tending to travel in a straight line.'
+
+  - id: p12-method-choice
+    section: '3.5'
+    dfe: [AP3]
+    statement: 'A stone is whirled in a horizontal circle on a string. Say how you would find the tension, and name the force that provides the centripetal force.'
+    answer_label: 'The method and the force'
+    check:
+      kind: structured
+      requires: [find-speed, use-force, name-tension]
+      concepts: [centripetal-force, method-choice]
+      points:
+        - id: find-speed
+          text: 'Find the speed from the radius and the period or the angular velocity, using v = omega r.'
+          concepts: [method-choice]
+        - id: use-force
+          text: 'Use F = m v squared over r to find the size of the centripetal force.'
+          concepts: [centripetal-force]
+        - id: name-tension
+          text: 'The tension in the string provides the centripetal force, and it points towards the centre of the circle.'
+          concepts: [centripetal-force]
+    answer_text: 'Find the speed from $v = \omega r$, then use $F = \dfrac{mv^2}{r}$. The tension in the string provides the centripetal force.'

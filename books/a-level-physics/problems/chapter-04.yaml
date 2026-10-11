@@ -1,0 +1,518 @@
+# Worked solutions for Chapter 4 (Materials).
+#
+# These are the numerical worked examples, the warm-up recalls and the guided
+# calculations that the Learn and Practise with help pages show. The pages carry
+# the prose and the reasoning; this bank is the independent check of every number
+# in them, so a slip in a worked example cannot ship. The records are not rendered
+# by a page marker: the pages write their own working, and the `:::answers` blocks
+# come from the practice banks.
+#
+# Stress and the Young modulus are checked by `dimensions`, which carries the
+# units exactly: a stress is a force over an area, and the Young modulus is a
+# stress over a dimensionless strain. A graph value is checked by `gradient` or
+# `area`, which read a series with a least-squares line or the trapezium rule and
+# compare the result against a declared interval. A reason is a `structured`
+# record: presence, order and coverage only, never physics.
+chapter: 4
+problems:
+  # --- Section 4.1, the Learn worked examples and the guided problems ---------
+  - id: w1-stress-240
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A wire of cross-sectional area 1.5e-5 m^2 carries a tensile force of 240 N. Find the stress.'
+    answer_label: 'The tensile stress'
+    check:
+      kind: dimensions
+      expression: "F / A"
+      values:
+        F: {value: "240", unit: "N"}
+        A: {value: "1.5e-5", unit: "m^2"}
+      answer: {value: "1.6e7", unit: "Pa"}
+    answer_text: 'The stress is $\dfrac{240}{1.5 \times 10^{-5}} = 1.6 \times 10^{7}\,\text{Pa}$, or $16\,\text{MPa}$.'
+
+  - id: w2-diameter-stress
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A wire has a diameter of 0.80 mm and carries a force of 50 N. Find the stress.'
+    answer_label: 'The tensile stress'
+    check: {kind: approx, value: "50 / (pi * (0.40e-3)**2)", target: "1.0e8", tolerance: "2e6"}
+    answer_text: 'The radius is $4.0 \times 10^{-4}\,\text{m}$, so the area is $\pi (4.0 \times 10^{-4})^2 = 5.0 \times 10^{-7}\,\text{m}^2$. The stress is $\dfrac{50}{5.0 \times 10^{-7}} = 1.0 \times 10^{8}\,\text{Pa}$.'
+
+  - id: w3-strain
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A wire 2.50 m long extends by 0.60 mm. Find the strain.'
+    answer_label: 'The tensile strain'
+    check: {kind: evaluate, expression: "6.0e-4 / 2.50", answer: "2.4e-4"}
+    answer_text: 'The extension is $6.0 \times 10^{-4}\,\text{m}$, so the strain is $\dfrac{6.0 \times 10^{-4}}{2.50} = 2.4 \times 10^{-4}$, which is $0.024\%$. The strain has no unit.'
+
+  - id: w4-young-extension
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A steel wire of length 2.00 m and area 4.0e-7 m^2 carries a force of 60 N. Use E = 2.0e11 Pa to find the stress, the strain and the extension.'
+    answer_label: 'The stress, the strain and the extension'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / A"
+          values:
+            F: {value: "60", unit: "N"}
+            A: {value: "4.0e-7", unit: "m^2"}
+          answer: {value: "1.5e8", unit: "Pa"}
+        - kind: dimensions
+          expression: "stress / E"
+          values:
+            stress: {value: "1.5e8", unit: "Pa"}
+            E: {value: "2.0e11", unit: "Pa"}
+          answer: {value: "7.5e-4"}
+        - kind: dimensions
+          expression: "strain * L"
+          values:
+            strain: {value: "7.5e-4"}
+            L: {value: "2.00", unit: "m"}
+          answer: {value: "1.5e-3", unit: "m"}
+    answer_text: 'The stress is $\dfrac{60}{4.0 \times 10^{-7}} = 1.5 \times 10^{8}\,\text{Pa}$. The strain is $\dfrac{1.5 \times 10^{8}}{2.0 \times 10^{11}} = 7.5 \times 10^{-4}$. The extension is $7.5 \times 10^{-4} \times 2.00 = 1.5 \times 10^{-3}\,\text{m}$, or $1.5\,\text{mm}$.'
+
+  - id: w5-find-E
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A wire 2.00 m long and of area 1.0e-7 m^2 extends by 2.0 mm under a force of 20 N. Find the Young modulus.'
+    answer_label: 'The Young modulus'
+    check:
+      kind: dimensions
+      expression: "F * L / (A * dL)"
+      values:
+        F: {value: "20", unit: "N"}
+        L: {value: "2.00", unit: "m"}
+        A: {value: "1.0e-7", unit: "m^2"}
+        dL: {value: "2.0e-3", unit: "m"}
+      answer: {value: "2.0e11", unit: "Pa"}
+    answer_text: '$E = \dfrac{FL}{A\,\Delta L} = \dfrac{20 \times 2.00}{1.0 \times 10^{-7} \times 2.0 \times 10^{-3}} = \dfrac{40}{2.0 \times 10^{-10}} = 2.0 \times 10^{11}\,\text{Pa}$, the Young modulus of steel.'
+
+  - id: w6-young-unit
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'Use E = stress / strain to show that the base units of the Young modulus are kg m^-1 s^-2.'
+    answer_label: 'The base units of the Young modulus'
+    check:
+      kind: dimensions
+      expression: "F / A"
+      values:
+        F: {value: "1", unit: "N"}
+        A: {value: "1", unit: "m^2"}
+      answer: {value: "1", unit: "kg m^-1 s^-2"}
+    answer_text: 'Strain has no unit, so the Young modulus has the same unit as stress. Stress is a force over an area: $\dfrac{\text{kg}\,\text{m}\,\text{s}^{-2}}{\text{m}^2} = \text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$, which is the pascal.'
+
+  - id: g1-stress-guided
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A wire of cross-sectional area 4.0e-6 m^2 carries a force of 80 N. Find the stress.'
+    answer_label: 'The tensile stress'
+    check:
+      kind: dimensions
+      expression: "F / A"
+      values:
+        F: {value: "80", unit: "N"}
+        A: {value: "4.0e-6", unit: "m^2"}
+      answer: {value: "2.0e7", unit: "Pa"}
+    answer_text: 'The stress is $\dfrac{80}{4.0 \times 10^{-6}} = 2.0 \times 10^{7}\,\text{Pa}$.'
+
+  - id: g2-strain-guided
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A wire of original length 2.00 m extends by 1.2 mm. Find the strain.'
+    answer_label: 'The tensile strain'
+    check: {kind: evaluate, expression: "1.2e-3 / 2.00", answer: "6.0e-4"}
+    answer_text: 'The extension is $1.2 \times 10^{-3}\,\text{m}$, so the strain is $\dfrac{1.2 \times 10^{-3}}{2.00} = 6.0 \times 10^{-4}$.'
+
+  - id: g3-E-guided
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A material has a stress of 9.0e7 Pa and a strain of 4.5e-4. Find its Young modulus.'
+    answer_label: 'The Young modulus'
+    check:
+      kind: dimensions
+      expression: "stress / strain"
+      values:
+        stress: {value: "9.0e7", unit: "Pa"}
+        strain: {value: "4.5e-4"}
+      answer: {value: "2.0e11", unit: "Pa"}
+    answer_text: 'The Young modulus is $\dfrac{9.0 \times 10^{7}}{4.5 \times 10^{-4}} = 2.0 \times 10^{11}\,\text{Pa}$.'
+
+  - id: g4-diameter-guided
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A wire has a diameter of 0.50 mm and carries a force of 20 N. Find the stress.'
+    answer_label: 'The tensile stress'
+    check: {kind: approx, value: "20 / (pi * (0.25e-3)**2)", target: "1.0e8", tolerance: "3e6"}
+    answer_text: 'The radius is $2.5 \times 10^{-4}\,\text{m}$, so the area is $\pi (2.5 \times 10^{-4})^2 = 1.96 \times 10^{-7}\,\text{m}^2$. The stress is $\dfrac{20}{1.96 \times 10^{-7}} = 1.0 \times 10^{8}\,\text{Pa}$.'
+
+  - id: g5-extension-guided
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A copper wire has E = 1.2e11 Pa, length 1.50 m and area 3.0e-7 m^2. A force of 36 N stretches it. Find the extension.'
+    answer_label: 'The extension'
+    check:
+      kind: dimensions
+      expression: "F * L / (A * E)"
+      values:
+        F: {value: "36", unit: "N"}
+        L: {value: "1.50", unit: "m"}
+        A: {value: "3.0e-7", unit: "m^2"}
+        E: {value: "1.2e11", unit: "Pa"}
+      answer: {value: "1.5e-3", unit: "m"}
+    answer_text: 'The extension is $\dfrac{FL}{AE} = \dfrac{36 \times 1.50}{3.0 \times 10^{-7} \times 1.2 \times 10^{11}} = \dfrac{54}{3.6 \times 10^{4}} = 1.5 \times 10^{-3}\,\text{m}$, or $1.5\,\text{mm}$.'
+
+  - id: g6-stiffer-material
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'A steel wire and a copper wire are the same length and area and carry the same force. Explain which stretches more. Steel has E = 2.0e11 Pa and copper has E = 1.2e11 Pa.'
+    answer_label: 'Which wire stretches more, and why'
+    check:
+      kind: structured
+      requires: [state-copper, state-reason]
+      concepts: [young-modulus, stiffness]
+      points:
+        - id: state-copper
+          text: 'The copper wire stretches more, because its Young modulus is smaller.'
+          concepts: [young-modulus]
+        - id: state-reason
+          text: 'The same force gives the same stress, because the areas are equal. A smaller Young modulus means a larger strain for that stress, because strain equals stress divided by the Young modulus. The extension is the strain multiplied by the length, so the copper wire extends more.'
+          concepts: [young-modulus, stiffness]
+    answer_text: 'The copper wire stretches more. The two wires carry the same stress, and strain is stress divided by the Young modulus, so the smaller Young modulus gives the larger strain and the larger extension.'
+
+  # --- Section 4.1, the warm-up recalls ---------------------------------------
+  - id: warmup-4-1-mm2
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'Warm-up: write 3.0 mm^2 in m^2.'
+    check: {kind: convert, value: "3.0", from: "mm^2", to: "m^2", answer: "3.0e-06"}
+    answer_text: '$3.0\,\text{mm}^2 = 3.0 \times 10^{-6}\,\text{m}^2$.'
+
+  - id: warmup-4-1-decimal
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'Warm-up: write 2.4e-4 as an ordinary decimal.'
+    check: {kind: evaluate, expression: "2.4e-4", answer: "0.00024"}
+    answer_text: '$2.4 \times 10^{-4} = 0.000\,24$.'
+
+  - id: warmup-4-1-circle
+    section: '4.1'
+    dfe: [AP4]
+    statement: 'Warm-up: find the area of a circle of diameter 0.80 mm, in m^2, to two significant figures.'
+    check: {kind: approx, value: "pi * (0.40e-3)**2", target: "5.0e-7", tolerance: "1e-8"}
+    answer_text: 'The radius is $0.40\,\text{mm} = 4.0 \times 10^{-4}\,\text{m}$, so the area is $\pi (4.0 \times 10^{-4})^2 = 5.0 \times 10^{-7}\,\text{m}^2$.'
+
+  # --- Section 4.2, the Learn worked examples and the guided problems ---------
+  - id: w7-hooke-k
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A spring extends by 0.040 m when a force of 8.0 N acts on it. Find the spring constant.'
+    answer_label: 'The spring constant'
+    check:
+      kind: dimensions
+      expression: "F / dL"
+      values:
+        F: {value: "8.0", unit: "N"}
+        dL: {value: "0.040", unit: "m"}
+      answer: {value: "200", unit: "N m^-1"}
+    answer_text: 'Hooke''s law gives $k = \dfrac{F}{\Delta L} = \dfrac{8.0}{0.040} = 200\,\text{N}\,\text{m}^{-1}$.'
+
+  - id: w8-graph-gradient
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A force-extension graph is a straight line through (0.010 m, 4.0 N) and (0.040 m, 16 N). Find the spring constant.'
+    answer_label: 'The spring constant'
+    check:
+      kind: gradient
+      series: [[0.010, 4.0], [0.040, 16]]
+      between: [395, 405]
+    answer_text: 'The gradient is $\dfrac{16 - 4.0}{0.040 - 0.010} = \dfrac{12}{0.030} = 400\,\text{N}\,\text{m}^{-1}$.'
+
+  - id: w9-energy-straight
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A spring of spring constant 200 N/m is stretched by 0.040 m. Find the energy stored.'
+    answer_label: 'The energy stored'
+    check:
+      kind: dimensions
+      expression: "0.5 * F * dL"
+      values:
+        F: {value: "8.0", unit: "N"}
+        dL: {value: "0.040", unit: "m"}
+      answer: {value: "0.16", unit: "J"}
+    answer_text: 'The force is $F = k\Delta L = 200 \times 0.040 = 8.0\,\text{N}$. The energy stored is $\tfrac{1}{2}F\Delta L = \tfrac{1}{2} \times 8.0 \times 0.040 = 0.16\,\text{J}$.'
+
+  - id: w10-energy-graph
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A straight-line force-extension graph reaches 16 N at an extension of 0.040 m. Find the energy stored, from the area under the graph.'
+    answer_label: 'The energy stored'
+    check:
+      kind: dimensions
+      expression: "0.5 * F * dL"
+      values:
+        F: {value: "16", unit: "N"}
+        dL: {value: "0.040", unit: "m"}
+      answer: {value: "0.32", unit: "J"}
+    answer_text: 'The graph is a straight line through the origin, so the area is a triangle: $\tfrac{1}{2} \times 16 \times 0.040 = 0.32\,\text{J}$.'
+
+  - id: w11-area-nonlinear
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A rubber cord gives forces 0, 3.5, 7.5, 13 and 20 N at extensions 0, 0.020, 0.040, 0.060 and 0.080 m. Find the energy stored at 0.080 m.'
+    answer_label: 'The energy stored'
+    check:
+      kind: area
+      series: [[0.0, 0.0], [0.020, 3.5], [0.040, 7.5], [0.060, 13], [0.080, 20]]
+      between: [0.67, 0.69]
+    answer_text: 'The graph is not a straight line, so use strips. The trapezium areas are $0.035$, $0.11$, $0.205$ and $0.33\,\text{J}$, and their sum is $0.68\,\text{J}$.'
+
+  - id: w12-gradient-to-E
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A wire of length 1.50 m and area 2.0e-7 m^2 has a force-extension graph of gradient 2.0e4 N/m. Find the Young modulus.'
+    answer_label: 'The Young modulus'
+    check:
+      kind: dimensions
+      expression: "k * L / A"
+      values:
+        k: {value: "2.0e4", unit: "N m^-1"}
+        L: {value: "1.50", unit: "m"}
+        A: {value: "2.0e-7", unit: "m^2"}
+      answer: {value: "1.5e11", unit: "Pa"}
+    answer_text: 'The gradient of a wire''s force-extension graph is $k = \dfrac{EA}{L}$, so $E = \dfrac{kL}{A} = \dfrac{2.0 \times 10^{4} \times 1.50}{2.0 \times 10^{-7}} = 1.5 \times 10^{11}\,\text{Pa}$.'
+
+  - id: g7-hooke-guided
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A spring extends by 0.060 m under a force of 12 N. Find the spring constant.'
+    answer_label: 'The spring constant'
+    check:
+      kind: dimensions
+      expression: "F / dL"
+      values:
+        F: {value: "12", unit: "N"}
+        dL: {value: "0.060", unit: "m"}
+      answer: {value: "200", unit: "N m^-1"}
+    answer_text: 'Hooke''s law gives $k = \dfrac{F}{\Delta L} = \dfrac{12}{0.060} = 200\,\text{N}\,\text{m}^{-1}$.'
+
+  - id: g8-force-energy-guided
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A spring of constant 300 N/m is stretched by 0.050 m. Find the force and the energy stored.'
+    answer_label: 'The force and the energy stored'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "k * dL"
+          values:
+            k: {value: "300", unit: "N m^-1"}
+            dL: {value: "0.050", unit: "m"}
+          answer: {value: "15", unit: "N"}
+        - kind: dimensions
+          expression: "0.5 * k * dL**2"
+          values:
+            k: {value: "300", unit: "N m^-1"}
+            dL: {value: "0.050", unit: "m"}
+          answer: {value: "0.375", unit: "J"}
+    answer_text: 'The force is $F = k\Delta L = 300 \times 0.050 = 15\,\text{N}$. The energy stored is $\tfrac{1}{2}k(\Delta L)^2 = \tfrac{1}{2} \times 300 \times 0.050^2 = 0.375\,\text{J}$.'
+
+  - id: g9-graph-guided
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A force-extension graph is a straight line through (0, 0) and (0.025 m, 10 N). Find the gradient and the energy stored at 10 N.'
+    answer_label: 'The gradient and the energy stored'
+    check:
+      kind: all
+      checks:
+        - kind: gradient
+          series: [[0.0, 0.0], [0.025, 10]]
+          between: [395, 405]
+        - kind: area
+          series: [[0.0, 0.0], [0.025, 10]]
+          between: [0.12, 0.13]
+    answer_text: 'The gradient is $\dfrac{10}{0.025} = 400\,\text{N}\,\text{m}^{-1}$. The energy stored is the area of the triangle, $\tfrac{1}{2} \times 10 \times 0.025 = 0.125\,\text{J}$.'
+
+  - id: g10-wire-k-energy
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A wire has E = 2.0e11 Pa, area 1.0e-7 m^2 and length 2.00 m. Find its stiffness and the energy stored when it extends by 1.0 mm.'
+    answer_label: 'The stiffness and the energy stored'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "E * A / L"
+          values:
+            E: {value: "2.0e11", unit: "Pa"}
+            A: {value: "1.0e-7", unit: "m^2"}
+            L: {value: "2.00", unit: "m"}
+          answer: {value: "1.0e4", unit: "N m^-1"}
+        - kind: dimensions
+          expression: "0.5 * k * x**2"
+          values:
+            k: {value: "1.0e4", unit: "N m^-1"}
+            x: {value: "1.0e-3", unit: "m"}
+          answer: {value: "5.0e-3", unit: "J"}
+    answer_text: 'The stiffness is $k = \dfrac{EA}{L} = \dfrac{2.0 \times 10^{11} \times 1.0 \times 10^{-7}}{2.00} = 1.0 \times 10^{4}\,\text{N}\,\text{m}^{-1}$. The energy stored is $\tfrac{1}{2}kx^2 = \tfrac{1}{2} \times 1.0 \times 10^{4} \times (1.0 \times 10^{-3})^2 = 5.0 \times 10^{-3}\,\text{J}$.'
+
+  - id: g11-nonlinear-method
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A force-extension graph bends. Explain why the energy stored is not half F times the extension, and how to find it.'
+    answer_label: 'Why the triangle formula fails, and what to use'
+    check:
+      kind: structured
+      requires: [not-straight, area-method]
+      concepts: [stored-energy, force-extension-graph]
+      points:
+        - id: not-straight
+          text: 'The graph is not a straight line through the origin, so the area under it is not a triangle. The formula half F times extension gives the area of a triangle only.'
+          concepts: [force-extension-graph]
+        - id: area-method
+          text: 'Find the area under the graph itself, by counting squares or by splitting the area into strips and adding them.'
+          concepts: [stored-energy]
+    answer_text: 'The graph is not a straight line, so the energy is not $\tfrac{1}{2}F\Delta L$. Find the area under the graph by counting squares or by adding the areas of strips.'
+
+  - id: g12-energy-to-force
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'A spring stores 0.90 J when it is extended by 0.060 m. Find the final force and the spring constant.'
+    answer_label: 'The final force and the spring constant'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "2 * E / x"
+          values:
+            E: {value: "0.90", unit: "J"}
+            x: {value: "0.060", unit: "m"}
+          answer: {value: "30", unit: "N"}
+        - kind: dimensions
+          expression: "F / x"
+          values:
+            F: {value: "30", unit: "N"}
+            x: {value: "0.060", unit: "m"}
+          answer: {value: "500", unit: "N m^-1"}
+    answer_text: 'For a straight-line graph, $E = \tfrac{1}{2}Fx$, so $F = \dfrac{2E}{x} = \dfrac{2 \times 0.90}{0.060} = 30\,\text{N}$. The spring constant is $k = \dfrac{F}{x} = \dfrac{30}{0.060} = 500\,\text{N}\,\text{m}^{-1}$.'
+
+  # --- Section 4.2, the warm-up recalls ---------------------------------------
+  - id: warmup-4-2-half
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'Warm-up: work out half of 12 multiplied by 0.30.'
+    check: {kind: evaluate, expression: "0.5 * 12 * 0.30", answer: "1.8"}
+    answer_text: '$\tfrac{1}{2} \times 12 \times 0.30 = 1.8$.'
+
+  - id: warmup-4-2-triangle
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'Warm-up: find the area of a triangle with base 0.040 m and height 8.0 N.'
+    check: {kind: evaluate, expression: "0.5 * 0.040 * 8.0", answer: "0.16"}
+    answer_text: 'The area is $\tfrac{1}{2} \times 0.040 \times 8.0 = 0.16$.'
+
+  - id: warmup-4-2-gradient
+    section: '4.2'
+    dfe: [AP4]
+    statement: 'Warm-up: find the gradient of the line through (0, 0) and (0.050 m, 15 N).'
+    check:
+      kind: gradient
+      series: [[0.0, 0.0], [0.050, 15]]
+      between: [295, 305]
+    answer_text: 'The gradient is $\dfrac{15}{0.050} = 300$.'
+
+  # --- The chapter problem, resolved on the Review page -----------------------
+  - id: anchor-crane-stress
+    section: Review
+    dfe: [AP4]
+    statement: 'The beam has mass 2500 kg and the cable has area 1.5e-4 m^2. Find the stress in the cable.'
+    check:
+      kind: dimensions
+      expression: "m * g / A"
+      values:
+        m: {value: "2500", unit: "kg"}
+        g: {value: "9.81", unit: "m s^-2"}
+        A: {value: "1.5e-4", unit: "m^2"}
+      answer: {value: "1.635e8", unit: "Pa"}
+    answer_text: 'The weight is $mg = 2500 \times 9.81 = 24\,525\,\text{N}$. The stress is $\dfrac{24\,525}{1.5 \times 10^{-4}} = 1.635 \times 10^{8}\,\text{Pa}$, about $1.64 \times 10^{8}\,\text{Pa}$.'
+
+  - id: anchor-crane-strain
+    section: Review
+    dfe: [AP4]
+    statement: 'The cable stress is 1.635e8 Pa and the steel has E = 2.0e11 Pa. Find the strain.'
+    check:
+      kind: dimensions
+      expression: "stress / E"
+      values:
+        stress: {value: "1.635e8", unit: "Pa"}
+        E: {value: "2.0e11", unit: "Pa"}
+      answer: {value: "8.175e-4"}
+    answer_text: 'The strain is $\dfrac{1.635 \times 10^{8}}{2.0 \times 10^{11}} = 8.175 \times 10^{-4}$, about $8.18 \times 10^{-4}$.'
+
+  - id: anchor-crane-extension
+    section: Review
+    dfe: [AP4]
+    statement: 'The cable is 20.0 m long and the strain is 8.175e-4. Find the extension.'
+    check:
+      kind: dimensions
+      expression: "strain * L"
+      values:
+        strain: {value: "8.175e-4"}
+        L: {value: "20.0", unit: "m"}
+      answer: {value: "1.635e-2", unit: "m"}
+    answer_text: 'The extension is $8.175 \times 10^{-4} \times 20.0 = 1.635 \times 10^{-2}\,\text{m}$, about $16.4\,\text{mm}$.'
+
+  - id: anchor-crane-energy
+    section: Review
+    dfe: [AP4]
+    statement: 'The load is 24 525 N and the extension is 1.635e-2 m. Find the energy stored in the cable.'
+    answer_label: 'The energy stored'
+    check: {kind: approx, value: "0.5 * 24525 * 0.01635", target: "200.49", tolerance: "0.05"}
+    answer_text: 'The energy stored is $\tfrac{1}{2}F\Delta L = \tfrac{1}{2} \times 24\,525 \times 1.635 \times 10^{-2} = 200\,\text{J}$ to three significant figures.'
+
+  - id: anchor-crane-spring-constant
+    section: Review
+    dfe: [AP4]
+    statement: 'Use E = 2.0e11 Pa, area 1.5e-4 m^2 and length 20.0 m to find the stiffness of the cable.'
+    answer_label: 'The stiffness of the cable'
+    check:
+      kind: dimensions
+      expression: "E * A / L"
+      values:
+        E: {value: "2.0e11", unit: "Pa"}
+        A: {value: "1.5e-4", unit: "m^2"}
+        L: {value: "20.0", unit: "m"}
+      answer: {value: "1.5e6", unit: "N m^-1"}
+    answer_text: 'The stiffness is $k = \dfrac{EA}{L} = \dfrac{2.0 \times 10^{11} \times 1.5 \times 10^{-4}}{20.0} = 1.5 \times 10^{6}\,\text{N}\,\text{m}^{-1}$.'
+
+  - id: anchor-crane-max-mass
+    section: Review
+    dfe: [AP4]
+    statement: 'The working stress is 3.0e8 Pa and the cable area is 1.5e-4 m^2. Find the greatest mass the cable may lift.'
+    answer_label: 'The greatest mass'
+    check: {kind: approx, value: "3.0e8 * 1.5e-4 / 9.81", target: "4587", tolerance: "2"}
+    answer_text: 'The greatest force is $3.0 \times 10^{8} \times 1.5 \times 10^{-4} = 4.5 \times 10^{4}\,\text{N}$. The greatest mass is $\dfrac{4.5 \times 10^{4}}{9.81} = 4.6 \times 10^{3}\,\text{kg}$, about $4600\,\text{kg}$.'
+
+  - id: anchor-crane-judgement
+    section: Review
+    dfe: [AP4]
+    statement: 'A second beam of mass 5000 kg is proposed. Decide whether the cable may lift it under the safety rule, and give a reason.'
+    answer_label: 'The judgement'
+    check:
+      kind: structured
+      requires: [compute-stress, compare-limit, decision]
+      concepts: [working-stress, safety-factor]
+      points:
+        - id: compute-stress
+          text: 'The weight of the second beam is 5000 times 9.81 = 49 050 N, so the stress is 49 050 divided by 1.5 times 10 to the minus 4, which is 3.27 times 10 to the 8 Pa.'
+          concepts: [working-stress]
+        - id: compare-limit
+          text: 'The working stress must not exceed 3.0 times 10 to the 8 Pa. The stress of 3.27 times 10 to the 8 Pa is larger than the limit.'
+          concepts: [working-stress]
+        - id: decision
+          text: 'The cable may not lift the 5000 kg beam under the safety rule. A larger cross-sectional area of at least 1.64 times 10 to the minus 4 square metres, or a lower load, is needed.'
+          concepts: [safety-factor]
+    answer_text: 'The second beam gives a stress of $3.27 \times 10^{8}\,\text{Pa}$, which is above the working limit of $3.0 \times 10^{8}\,\text{Pa}$. The cable is not safe for it under the rule. A thicker cable, of area at least $1.64 \times 10^{-4}\,\text{m}^2$, would be needed.'

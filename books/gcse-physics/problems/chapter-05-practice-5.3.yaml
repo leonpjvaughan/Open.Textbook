@@ -1,0 +1,210 @@
+# Practice set for 5.3 (Lenses and ray diagrams).
+#
+# A magnification is a pure ratio, so its arithmetic is proved by `evaluate`
+# and its rounding by `sigfigs`; a lens calculation carries no dimension beyond
+# the ratio. The `structured` records prove only that a model answer contains
+# the declared ideas in order.
+chapter: 5
+problems:
+  - id: p1-magnification-small
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'A lens forms an image 12 mm tall of an object 4.0 mm tall. Calculate the magnification.'
+    answer_label: 'Magnification of the lens'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "12 / 4.0", answer: "3.0"}
+        - {kind: sigfigs, value: "3.0", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: 'magnification $= \dfrac{12\,\text{mm}}{4.0\,\text{mm}} = 3.0$.'
+
+  - id: p2-magnification-coin
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'A lens forms an image 30 mm across of a coin 6.0 mm across. Calculate the magnification.'
+    answer_label: 'Magnification of the lens'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "30 / 6.0", answer: "5.0"}
+        - {kind: sigfigs, value: "5.0", figures: 2, answer: "5.0", convention: round-once}
+    answer_text: 'magnification $= \dfrac{30\,\text{mm}}{6.0\,\text{mm}} = 5.0$.'
+
+  - id: p3-magnification-metres
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'A slide 4.0 cm tall is projected so that its image is 0.20 m tall. Calculate the magnification. Take care with the units.'
+    answer_label: 'Magnification of the projected image'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "20 / 4.0", answer: "5.0"}
+        - {kind: sigfigs, value: "5.0", figures: 2, answer: "5.0", convention: round-once}
+    answer_text: 'Convert 0.20 m to 20 cm. Then magnification $= \dfrac{20\,\text{cm}}{4.0\,\text{cm}} = 5.0$. The ratio has no unit.'
+
+  - id: p4-image-height
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'A lens has a magnification of 4.0. An object 7.0 mm tall is placed in front of it. Calculate the height of the image.'
+    answer_label: 'Height of the image'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "4.0 * 7.0", answer: "28"}
+        - {kind: sigfigs, value: "28", figures: 2, answer: "28", convention: round-once}
+    answer_text: 'image height $= \text{magnification} \times \text{object height} = 4.0 \times 7.0 = 28\,\text{mm}$.'
+
+  - id: p5-object-height
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'A lens has a magnification of 5.0. The image of an insect is 45 mm long. Calculate the length of the insect.'
+    answer_label: 'Length of the insect'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "45 / 5.0", answer: "9.0"}
+        - {kind: sigfigs, value: "9.0", figures: 2, answer: "9.0", convention: round-once}
+    answer_text: 'object height $= \dfrac{\text{image height}}{\text{magnification}} = \dfrac{45\,\text{mm}}{5.0} = 9.0\,\text{mm}$.'
+
+  - id: p6-magnification-anchor
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'The visitor centre lens projects a picture 2.0 cm tall so that its image is 0.30 m tall. Calculate the magnification.'
+    answer_label: 'Magnification of the projected picture'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "30 / 2.0", answer: "15"}
+        - {kind: sigfigs, value: "15", figures: 2, answer: "15", convention: round-once}
+    answer_text: 'Convert 0.30 m to 30 cm. Then magnification $= \dfrac{30\,\text{cm}}{2.0\,\text{cm}} = 15$.'
+
+  - id: p7-ray-parallel
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'A ray of light enters a convex lens parallel to the principal axis. Describe the path of the ray after it leaves the lens, and name the point it passes through.'
+    answer_label: 'The path of the ray'
+    check:
+      kind: structured
+      requires: [describe-path, name-point]
+      concepts: [principal-focus, convex-lens]
+      points:
+        - id: describe-path
+          text: 'The ray bends and travels through the principal focus on the other side of the lens.'
+          concepts: [convex-lens]
+        - id: name-point
+          text: 'The point is the principal focus, where rays parallel to the principal axis meet.'
+          concepts: [principal-focus]
+
+  - id: p8-ray-diagram
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'Describe how to draw a ray diagram to find the image formed by a convex lens. Include what you must label.'
+    answer_label: 'How to draw the ray diagram'
+    check:
+      kind: structured
+      requires: [draw-axis, draw-lens, draw-ray-parallel, draw-ray-centre, label-image]
+      concepts: [principal-axis, convex-lens, real-image]
+      points:
+        - id: draw-axis
+          text: 'Draw the principal axis as a straight line through the centre of the lens.'
+          concepts: [principal-axis]
+        - id: draw-lens
+          text: 'Draw the convex lens as a vertical line across the axis and mark the principal focus on each side.'
+          concepts: [convex-lens]
+        - id: draw-ray-parallel
+          text: 'Draw one ray from the top of the object parallel to the axis, then through the principal focus.'
+          concepts: [convex-lens]
+        - id: draw-ray-centre
+          text: 'Draw a second ray from the top of the object straight through the centre of the lens.'
+          concepts: [convex-lens]
+        - id: label-image
+          text: 'Where the two rays meet, draw the image and label it as inverted.'
+          concepts: [real-image]
+
+  - id: p9-real-virtual
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'Compare a real image with a virtual image. State one difference in how each is formed.'
+    answer_label: 'A comparison of real and virtual images'
+    check:
+      kind: structured
+      requires: [real, virtual]
+      concepts: [real-image, virtual-image]
+      points:
+        - id: real
+          text: 'A real image forms where rays of light actually meet. It can be put on a screen and is inverted.'
+          concepts: [real-image]
+        - id: virtual
+          text: 'A virtual image forms where rays only appear to come from. It cannot be put on a screen. It is upright, and a magnifying glass makes one.'
+          concepts: [virtual-image]
+
+  - id: p10-convex-concave
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'A convex lens and a concave lens are each held in sunlight. Describe the effect each lens has on a beam of parallel rays.'
+    answer_label: 'The effect of each lens'
+    check:
+      kind: structured
+      requires: [convex, concave]
+      concepts: [convex-lens, concave-lens]
+      points:
+        - id: convex
+          text: 'The convex lens brings the parallel rays together to a focus. It is a converging lens.'
+          concepts: [convex-lens]
+        - id: concave
+          text: 'The concave lens spreads the parallel rays apart. It is a diverging lens.'
+          concepts: [concave-lens]
+
+  - id: p11-no-unit
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'Explain why magnification has no unit.'
+    answer_label: 'Why magnification has no unit'
+    check:
+      kind: structured
+      requires: [state-ratio, explain-units]
+      concepts: [magnification]
+      points:
+        - id: state-ratio
+          text: 'Magnification is the image height divided by the object height.'
+          concepts: [magnification]
+        - id: explain-units
+          text: 'Both heights are lengths in the same unit, so the units cancel and the answer is a plain number.'
+          concepts: [magnification]
+
+  - id: p12-image-height-method
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'A lens has a magnification of 2.5. An object is 1.2 cm tall. Say which form of the magnification relationship you will use, then calculate the height of the image.'
+    answer_label: 'Height of the image'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2.5 * 1.2", answer: "3.0"}
+        - {kind: sigfigs, value: "3.0", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: 'Use image height $= \text{magnification} \times \text{object height} = 2.5 \times 1.2 = 3.0\,\text{cm}$.'
+
+  - id: p13-magnification-bee
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'A magnifying glass forms an image of a bee. The image is 27 mm long and the bee is 4.5 mm long. Calculate the magnification.'
+    answer_label: 'Magnification of the lens'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "27 / 4.5", answer: "6.0"}
+        - {kind: sigfigs, value: "6.0", figures: 2, answer: "6.0", convention: round-once}
+    answer_text: 'magnification $= \dfrac{27\,\text{mm}}{4.5\,\text{mm}} = 6.0$.'

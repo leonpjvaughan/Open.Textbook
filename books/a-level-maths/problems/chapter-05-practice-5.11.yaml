@@ -1,0 +1,121 @@
+# Practice set for 5.11, proofs with trigonometric functions and identities.
+#
+# Each identity is proven by reducing one side to the other. Two of them need a
+# named operation rather than the default equivalence check, because SymPy does
+# not reduce the difference automatically; the operation is declared.
+chapter: 5
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: p1-square-sum
+    section: "5.11"
+    dfe: [E8]
+    statement: 'Prove that $(\sin A + \cos A)^2 \equiv 1 + \sin 2A$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "(sin(x) + cos(x))**2"
+      answer: "1 + sin(2*x)"
+    answer_text: 'Expand the square: $\sin^2 A + 2\sin A\cos A + \cos^2 A$. Group the two squares and use $\sin^2 A + \cos^2 A = 1$: this is $1 + 2\sin A\cos A$. The double-angle formula gives $2\sin A\cos A = \sin 2A$, so the left-hand side is $1 + \sin 2A$.'
+
+  - id: p2-product
+    section: "5.11"
+    dfe: [E8]
+    statement: 'Prove that $\sin(A + B)\sin(A - B) \equiv \sin^2 A - \sin^2 B$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "sin(x + y)*sin(x - y)"
+      answer: "sin(x)**2 - sin(y)**2"
+    answer_text: 'Use the two addition formulae and the difference of two squares: $\sin(A + B)\sin(A - B) = \sin^2 A\cos^2 B - \cos^2 A\sin^2 B$. Replace each cosine squared with $1 - \sin^2$ and collect. The cross terms cancel, leaving $\sin^2 A - \sin^2 B$.'
+
+  - id: p3-cos2-from-tan
+    section: "5.11"
+    dfe: [E8]
+    statement: 'Prove that $\cos 2A \equiv \dfrac{1 - \tan^2 A}{1 + \tan^2 A}$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "(1 - tan(x)**2)/(1 + tan(x)**2)"
+      answer: "cos(2*x)"
+    answer_text: 'Multiply the top and the bottom by $\cos^2 A$: $\dfrac{\cos^2 A - \sin^2 A}{\cos^2 A + \sin^2 A} = \dfrac{\cos^2 A - \sin^2 A}{1} = \cos 2A$.'
+
+  - id: p4-tan-cot
+    section: "5.11"
+    dfe: [E8]
+    statement: 'Prove that $\tan A + \cot A \equiv 2\operatorname{cosec} 2A$ for $\sin A\cos A \neq 0$.'
+    answer_label: 'The identity'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "tan(x) + cot(x)", answer: "1/(sin(x)*cos(x))"}
+        - {kind: evaluate, expression: "1/(sin(x)*cos(x))", answer: "2*csc(2*x)"}
+    answer_text: 'Write both terms over the common denominator: $\dfrac{\sin^2 A + \cos^2 A}{\sin A\cos A} = \dfrac{1}{\sin A\cos A}$. Then multiply top and bottom by $2$ and use $\sin 2A = 2\sin A\cos A$: $\dfrac{2}{\sin 2A} = 2\operatorname{cosec} 2A$.'
+
+  - id: p5-fourth-powers
+    section: "5.11"
+    dfe: [E8]
+    statement: 'Prove that $\cos^4 A - \sin^4 A \equiv \cos 2A$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "cos(x)**4 - sin(x)**4"
+      answer: "cos(2*x)"
+    answer_text: 'The left-hand side is a difference of two squares: $(\cos^2 A - \sin^2 A)(\cos^2 A + \sin^2 A)$. The first bracket is $\cos 2A$ and the second is $1$, so the product is $\cos 2A$.'
+
+  - id: p6-sin-triple
+    section: "5.11"
+    dfe: [E8]
+    statement: 'Prove that $\sin 3A \equiv 3\sin A - 4\sin^3 A$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "sin(3*x)"
+      answer: "3*sin(x) - 4*sin(x)**3"
+    answer_text: 'Write $3A = 2A + A$, so $\sin 3A = \sin 2A\cos A + \cos 2A\sin A$. Replace $\sin 2A = 2\sin A\cos A$ and $\cos 2A = 1 - 2\sin^2 A$. Then replace $\cos^2 A = 1 - \sin^2 A$ and collect the sine terms.'
+
+  - id: p7-cos-triple
+    section: "5.11"
+    dfe: [E8]
+    statement: 'Prove that $\cos 3A \equiv 4\cos^3 A - 3\cos A$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "cos(3*x)"
+      answer: "4*cos(x)**3 - 3*cos(x)"
+    answer_text: 'Write $3A = 2A + A$, so $\cos 3A = \cos 2A\cos A - \sin 2A\sin A$. Replace $\cos 2A = 2\cos^2 A - 1$ and $\sin 2A = 2\sin A\cos A$. Then replace $\sin^2 A = 1 - \cos^2 A$ and collect the cosine terms.'
+
+  - id: p8-double-fraction
+    section: "5.11"
+    dfe: [E8]
+    statement: 'Prove that $\dfrac{\sin 2A}{1 + \cos 2A} \equiv \tan A$ for $1 + \cos 2A \neq 0$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "sin(2*x)/(1 + cos(2*x))"
+      answer: "tan(x)"
+    answer_text: 'Replace both double angles: $\dfrac{2\sin A\cos A}{1 + 2\cos^2 A - 1} = \dfrac{2\sin A\cos A}{2\cos^2 A} = \dfrac{\sin A}{\cos A} = \tan A$.'
+
+  - id: p9-half-angle
+    section: "5.11"
+    dfe: [E8]
+    statement: 'Prove that $\dfrac{1 - \cos 2A}{\sin 2A} \equiv \tan A$ for $\sin 2A \neq 0$.'
+    answer_label: 'The identity'
+    check:
+      kind: apply
+      expression: "(1 - cos(2*x))/sin(2*x)"
+      apply: {op: trigsimp}
+      answer: "tan(x)"
+    answer_text: 'Use $\cos 2A = 1 - 2\sin^2 A$, so the numerator is $2\sin^2 A$. Use $\sin 2A = 2\sin A\cos A$ for the denominator. Then $\dfrac{2\sin^2 A}{2\sin A\cos A} = \dfrac{\sin A}{\cos A} = \tan A$. The verifier reduces the left-hand side with a trigonometric simplification and matches the tangent.'
+
+  - id: p10-double-from-product
+    section: "5.11"
+    dfe: [E8]
+    statement: 'Prove that $2\sin A\cos A \equiv \sin 2A$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "2*sin(x)*cos(x)"
+      answer: "sin(2*x)"
+    answer_text: 'This is the double-angle formula for sine. It follows from the addition formula $\sin(A + B) = \sin A\cos B + \cos A\sin B$ by putting $B = A$.'

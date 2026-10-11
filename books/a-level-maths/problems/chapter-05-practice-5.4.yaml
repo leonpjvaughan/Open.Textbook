@@ -1,0 +1,115 @@
+# Practice set for 5.4, exact trigonometric values.
+#
+# Every value is checked symbolically, so a surd such as sqrt(3)/2 is proven
+# exactly and no decimal is involved.
+chapter: 5
+problems:
+  - id: p1-sin-60
+    section: "5.4"
+    dfe: [E3]
+    statement: 'Write down the exact value of $\sin 60^\circ$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "sin(pi/3)"
+      answer: "sqrt(3)/2"
+    answer_text: 'From the half-equilateral triangle with sides $1$, $\sqrt{3}$ and $2$, the side opposite $60^\circ$ is $\sqrt{3}$ and the hypotenuse is $2$. So $\sin 60^\circ = \dfrac{\sqrt{3}}{2}$.'
+
+  - id: p2-tan-30
+    section: "5.4"
+    dfe: [E3]
+    statement: 'Write down the exact value of $\tan 30^\circ$, with a rational denominator.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "tan(pi/6)"
+      answer: "sqrt(3)/3"
+    answer_text: 'From the half-equilateral triangle, $\tan 30^\circ = \dfrac{1}{\sqrt{3}}$. Rationalising gives $\dfrac{1}{\sqrt{3}} \times \dfrac{\sqrt{3}}{\sqrt{3}} = \dfrac{\sqrt{3}}{3}$.'
+
+  - id: p3-sin-second-quadrant
+    section: "5.4"
+    dfe: [E3]
+    statement: 'Find the exact value of $\sin\dfrac{2\pi}{3}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "sin(2*pi/3)"
+      answer: "sqrt(3)/2"
+    answer_text: '$\dfrac{2\pi}{3}$ is $120^\circ$, in the second quadrant where sine is positive. The related acute angle is $\dfrac{\pi}{3}$, so $\sin\dfrac{2\pi}{3} = \sin\dfrac{\pi}{3} = \dfrac{\sqrt{3}}{2}$.'
+
+  - id: p4-cos-third-quadrant
+    section: "5.4"
+    dfe: [E3]
+    statement: 'Find the exact value of $\cos\dfrac{5\pi}{4}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "cos(5*pi/4)"
+      answer: "-sqrt(2)/2"
+    answer_text: '$\dfrac{5\pi}{4}$ is $225^\circ$, in the third quadrant where cosine is negative. The related acute angle is $\dfrac{\pi}{4}$, so $\cos\dfrac{5\pi}{4} = -\cos\dfrac{\pi}{4} = -\dfrac{\sqrt{2}}{2}$.'
+
+  - id: p5-tan-second-quadrant
+    section: "5.4"
+    dfe: [E3]
+    statement: 'Find the exact value of $\tan\dfrac{5\pi}{6}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "tan(5*pi/6)"
+      answer: "-sqrt(3)/3"
+    answer_text: '$\dfrac{5\pi}{6}$ is $150^\circ$, in the second quadrant where tangent is negative. The related acute angle is $\dfrac{\pi}{6}$, so $\tan\dfrac{5\pi}{6} = -\tan\dfrac{\pi}{6} = -\dfrac{\sqrt{3}}{3}$.'
+
+  - id: p6-sum-of-values
+    section: "5.4"
+    dfe: [E3]
+    statement: 'Find the exact value of $\sin\dfrac{7\pi}{6} + \cos\dfrac{\pi}{3}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "sin(7*pi/6) + cos(pi/3)"
+      answer: "0"
+    answer_text: '$\dfrac{7\pi}{6}$ is $210^\circ$, in the third quadrant, so $\sin\dfrac{7\pi}{6} = -\dfrac{1}{2}$. Also $\cos\dfrac{\pi}{3} = \dfrac{1}{2}$. The sum is $-\dfrac{1}{2} + \dfrac{1}{2} = 0$.'
+
+  - id: p7-cos-second-quadrant
+    section: "5.4"
+    dfe: [E3]
+    statement: 'Find the exact value of $\cos\dfrac{2\pi}{3}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "cos(2*pi/3)"
+      answer: "-1/2"
+    answer_text: '$\dfrac{2\pi}{3}$ is $120^\circ$, in the second quadrant where cosine is negative. The related acute angle is $\dfrac{\pi}{3}$, so $\cos\dfrac{2\pi}{3} = -\dfrac{1}{2}$.'
+
+  - id: p8-product
+    section: "5.4"
+    dfe: [E3]
+    statement: 'Find the exact value of $\sin\dfrac{\pi}{4}\cos\dfrac{\pi}{4}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "sin(pi/4)*cos(pi/4)"
+      answer: "1/2"
+    answer_text: 'Both factors equal $\dfrac{\sqrt{2}}{2}$, so their product is $\dfrac{\sqrt{2}}{2} \times \dfrac{\sqrt{2}}{2} = \dfrac{2}{4} = \dfrac{1}{2}$.'
+
+  - id: p9-sum
+    section: "5.4"
+    dfe: [E3]
+    statement: 'Find the exact value of $\sin\dfrac{\pi}{4} + \cos\dfrac{\pi}{4}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "sin(pi/4) + cos(pi/4)"
+      answer: "sqrt(2)"
+    answer_text: 'Each term is $\dfrac{\sqrt{2}}{2}$, so the sum is $2 \times \dfrac{\sqrt{2}}{2} = \sqrt{2}$.'
+
+  - id: p10-tan-60
+    section: "5.4"
+    dfe: [E3]
+    statement: 'Find the exact value of $\tan\dfrac{\pi}{3}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "tan(pi/3)"
+      answer: "sqrt(3)"
+    answer_text: 'From the half-equilateral triangle, the side opposite $60^\circ$ is $\sqrt{3}$ and the side next to it is $1$, so $\tan 60^\circ = \sqrt{3}$.'

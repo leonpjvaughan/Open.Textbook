@@ -1,0 +1,148 @@
+# Practice set for 4.6, geometric sequences and series.
+#
+# Terms and finite sums are exact `evaluate` checks, so the rational arithmetic
+# carries no rounding. The sum to infinity is checked only where |r| < 1, and the
+# record says so. A convergence decision is checked by the common ratio and by
+# the growth of a finite sum, while the reason the series does not settle stays
+# in the answer text, because that is reasoning rather than a value.
+chapter: 4
+symbols:
+  r: {real: true}
+  n: {integer: true, positive: true}
+problems:
+  - id: p1-nth-term-geometric
+    section: "4.6"
+    dfe: [D5]
+    statement: 'A geometric sequence begins $5, 15, 45, \dots$. Work out the 6th term.'
+    answer_label: 'The term'
+    check:
+      kind: evaluate
+      expression: "5*3**5"
+      answer: "1215"
+    answer_text: 'Here $a = 5$ and $r = 3$. Then $u_6 = 5(3)^{6-1} = 5(243) = 1215$. The power is $5$, one less than the position, because the first term is the starting value.'
+
+  - id: p2-finite-sum
+    section: "4.6"
+    dfe: [D5]
+    statement: 'Work out the sum of the first 8 terms of $2, 6, 18, \dots$.'
+    answer_label: 'The sum'
+    check:
+      kind: evaluate
+      expression: "2*(1 - 3**8)/(1 - 3)"
+      answer: "6560"
+    answer_text: 'Here $a = 2$ and $r = 3$. Then $S_8 = \frac{2(1 - 3^8)}{1 - 3} = \frac{2(1 - 6561)}{-2} = 6560$. Both the numerator and the denominator are negative, so the answer is positive.'
+
+  - id: p3-find-the-ratio
+    section: "4.6"
+    dfe: [D5]
+    statement: 'A geometric sequence has first term $5$ and third term $20$. Find the possible values of the common ratio.'
+    answer_label: 'The values of r'
+    check:
+      kind: solve
+      equation: "5*r**2 = 20"
+      variable: r
+      answer: ["2", "-2"]
+    answer_text: 'The third term is $ar^2 = 5r^2$, so $5r^2 = 20$ and $r^2 = 4$. Then $r = 2$ or $r = -2$. Both values give a third term of $20$, because the term depends on the square of the ratio. A condition such as "the terms are positive" selects one of them.'
+
+  - id: p4-sum-to-infinity
+    section: "4.6"
+    dfe: [D5]
+    statement: 'Work out the sum to infinity of $24 + 6 + 1.5 + \dots$.'
+    answer_label: 'The sum to infinity'
+    check:
+      kind: evaluate
+      expression: "24/(1 - 1/4)"
+      answer: "32"
+    answer_text: 'The common ratio is $r = \frac{6}{24} = \frac{1}{4}$, and $|r| < 1$, so the series converges. Then $S_\infty = \frac{24}{1 - \frac{1}{4}} = \frac{24}{\frac{3}{4}} = 32$. The total settles on $32$.'
+
+  - id: p5-sum-to-infinity-large-ratio
+    section: "4.6"
+    dfe: [D5]
+    statement: 'Work out the sum to infinity of the geometric series with first term $100$ and common ratio $0.9$.'
+    answer_label: 'The sum to infinity'
+    check:
+      kind: evaluate
+      expression: "100/(1 - 9/10)"
+      answer: "1000"
+    answer_text: 'The condition $|0.9| < 1$ holds, so the sum to infinity exists: $S_\infty = \frac{100}{1 - 0.9} = \frac{100}{0.1} = 1000$. The total is ten times the first term, because the ratio is close to $1$. It approaches $1000$ but never reaches it.'
+
+  - id: p6-recurring-decimal
+    section: "4.6"
+    dfe: [D5]
+    statement: 'Write $0.444\dots$ as a fraction in its simplest form.'
+    answer_label: 'The fraction'
+    check:
+      kind: evaluate
+      expression: "(4/10)/(1 - 1/10)"
+      answer: "4/9"
+    answer_text: 'Split the decimal: $0.444\dots = 0.4 + 0.04 + 0.004 + \dots$, which is geometric with $a = 0.4$ and $r = 0.1$. Then $S_\infty = \frac{0.4}{1 - 0.1} = \frac{0.4}{0.9} = \frac{4}{9}$. The recurring decimal is exactly the fraction $\frac{4}{9}$.'
+
+  - id: p7-shrinking-term
+    section: "4.6"
+    dfe: [D5]
+    statement: 'A geometric sequence begins $100, 20, 4, \dots$. Work out the 10th term, as an exact fraction.'
+    answer_label: 'The term'
+    check:
+      kind: evaluate
+      expression: "100*(1/5)**9"
+      answer: "4/78125"
+    answer_text: 'The common ratio is $r = \frac{20}{100} = \frac{1}{5}$. Then $u_{10} = 100\left(\frac{1}{5}\right)^{9} = \frac{100}{1953125} = \frac{4}{78125}$. The exact fraction is the answer; a decimal would be rounded and tiny.'
+
+  - id: p8-large-finite-sum
+    section: "4.6"
+    dfe: [D5]
+    statement: 'Work out the sum of the first 10 terms of $4, 12, 36, \dots$.'
+    answer_label: 'The sum'
+    check:
+      kind: evaluate
+      expression: "4*(1 - 3**10)/(1 - 3)"
+      answer: "118096"
+    answer_text: 'Here $a = 4$ and $r = 3$. Then $S_{10} = \frac{4(1 - 3^{10})}{1 - 3} = \frac{4(1 - 59049)}{-2} = \frac{4(-59048)}{-2} = 118096$. The sum is close to twice the last term, $4(3^9) = 78732$, which is the pattern for a ratio of $3$.'
+
+  - id: p9-negative-ratio
+    section: "4.6"
+    dfe: [D5]
+    statement: 'Work out the sum to infinity of $8 - 4 + 2 - 1 + \dots$.'
+    answer_label: 'The sum to infinity'
+    check:
+      kind: evaluate
+      expression: "8/(1 - (-1/2))"
+      answer: "16/3"
+    answer_text: 'The common ratio is $r = \frac{-4}{8} = -\frac{1}{2}$, and $\left|-\frac{1}{2}\right| < 1$, so the series converges even though the signs alternate. Then $S_\infty = \frac{8}{1 - \left(-\frac{1}{2}\right)} = \frac{8}{\frac{3}{2}} = \frac{16}{3}$. Subtracting a negative ratio makes the denominator larger, so the total is smaller than it would be for a positive ratio of the same size.'
+
+  - id: p10-divergent-series
+    section: "4.6"
+    dfe: [D5]
+    statement: 'For the series $2 + 4 + 8 + \dots$, work out the common ratio and the sum of the first 10 terms. Explain why the series has no sum to infinity.'
+    answer_label: 'The ratio, the sum and the reason'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "4/2", answer: "2"}
+        - {kind: evaluate, expression: "2*(1 - 2**10)/(1 - 2)", answer: "2046"}
+    answer_text: 'The common ratio is $r = \frac{4}{2} = 2$, and the sum of the first 10 terms is $\frac{2(1 - 2^{10})}{1 - 2} = \frac{2(-1023)}{-1} = 2046$. The series has no sum to infinity because $|r| \ge 1$: each term is larger than the one before, so the running total grows without limit. The formula $S_\infty = \frac{a}{1 - r}$ is not available here.'
+
+  - id: p11-least-number-of-terms
+    section: "4.6"
+    dfe: [D5]
+    statement: 'A geometric series has first term $100$ and common ratio $1.1$. Find the smallest number of terms for which the sum exceeds $1000$.'
+    answer_label: 'The number of terms'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "<", lhs: "1000*(1.1**7 - 1)", rhs: "1000"}
+        - {kind: compare, relation: ">", lhs: "1000*(1.1**8 - 1)", rhs: "1000"}
+    answer_text: 'The sum of the first $n$ terms is $S_n = \frac{100(1.1^n - 1)}{1.1 - 1} = 1000(1.1^n - 1)$. For $n = 7$, $S_7 = 1000(1.9487171 - 1) = 948.72$, which is below $1000$. For $n = 8$, $S_8 = 1000(2.14358881 - 1) = 1143.59$, which is above. So the smallest number of terms is $8$. A series with a ratio just above $1$ takes many terms to grow, which is why the answer is checked on both sides of the boundary.'
+
+  - id: p12-appeal-totals
+    section: "4.6"
+    dfe: [D5]
+    statement: 'The online appeal raises $600$ pounds in month 1 and 80% of that each month after. Work out the total after 12 months, to the nearest penny, and the sum to infinity.'
+    answer_label: 'The 12-month total and the sum to infinity'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "600*(1 - 0.8**12)/(1 - 0.8)", answer: "2793.841569792"}
+        - {kind: rounded, value: "600*(1 - 0.8**12)/(1 - 0.8)", rounded: "2793.84", to: "0.01"}
+        - {kind: evaluate, expression: "600/(1 - 0.8)", answer: "3000"}
+    answer_text: 'Here $a = 600$ and $r = 0.8$, so $S_{12} = \frac{600(1 - 0.8^{12})}{1 - 0.8} = 3000(1 - 0.8^{12}) = 2793.841569792$, which is £2793.84 to the nearest penny. The sum to infinity is $\frac{600}{1 - 0.8} = 3000$. After 12 months the appeal has raised £206.16 less than the £3000 it can never quite reach.'

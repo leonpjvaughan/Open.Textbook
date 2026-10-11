@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.10 Solving trigonometric equations in an interval — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: E7
+Work through these on your own. Sketch the curve over the interval first, and
+write down how many solutions you expect. Give every solution, and give angles
+in radians.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-05-practice-5.10
+
+:::answers chapter-05-practice-5.10

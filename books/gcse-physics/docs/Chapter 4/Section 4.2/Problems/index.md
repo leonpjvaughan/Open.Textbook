@@ -10,9 +10,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.2 Sound waves and waves for detection and exploration — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: WA1
+Work through these on your own. Keep your working neat: the method matters as
+much as the answer.
+
+Every question on this page is Higher tier. The questions and the answers below
+come from a set that is checked by computer every time the book is built.
+
+:::problems chapter-04-practice-4.2
+
+:::answers chapter-04-practice-4.2

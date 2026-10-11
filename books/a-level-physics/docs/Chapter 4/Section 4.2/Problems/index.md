@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.2 Force-extension graphs and stored energy — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: AP4
+Work through these on your own. Decide whether each graph is a straight line
+before you choose a formula, and write the unit of every answer. In the last two
+questions, explain your reasoning in full sentences.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-04-practice-4.2
+
+:::answers chapter-04-practice-4.2

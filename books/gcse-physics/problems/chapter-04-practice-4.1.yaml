@@ -1,0 +1,234 @@
+# Practice set for 4.1 (Waves in air, fluids and solids).
+#
+# Both the questions and the answers on the page are rendered from these
+# records: `:::problems` prints the numbered list, `:::answers` the solutions.
+# The book declares `oracles: [sympy, units]` in book.yaml, so a check may use
+# either.
+#
+# A calculation is the composition of two claims: the exact magnitude and
+# dimension (`dimensions`, or `evaluate` where the quantity has no unit) and the
+# single rounding to the figures the data support (`sigfigs`, round-once). A
+# conversion is proved by `convert`, so the prefix arithmetic cannot slip.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass. The `structured`
+# records prove only that a model answer contains the declared ideas in order,
+# not that the ideas are right.
+chapter: 4
+problems:
+  - id: p1-ripple-speed
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A ripple tank makes water waves with a frequency of 4.0 Hz and a wavelength of 0.15 m. Calculate the wave speed.'
+    answer_label: 'Wave speed of the ripples'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "f * wavelength"
+          values:
+            f: {value: "4.0", unit: "Hz"}
+            wavelength: {value: "0.15", unit: "m"}
+          answer: {value: "0.6", unit: "m/s"}
+        - {kind: sigfigs, value: "0.6", figures: 2, answer: "0.60", convention: round-once}
+    answer_text: '$v = f\lambda = 4.0 \times 0.15 = 0.60\,\text{m/s}$.'
+
+  - id: p2-sound-wavelength
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A sound wave in air has a frequency of 165 Hz. The speed of sound in air is 330 m/s. Calculate the wavelength.'
+    answer_label: 'Wavelength of the sound wave'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / f"
+          values:
+            v: {value: "330", unit: "m/s"}
+            f: {value: "165", unit: "Hz"}
+          answer: {value: "2", unit: "m"}
+        - {kind: sigfigs, value: "2", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$v = f\lambda$, so $\lambda = \dfrac{v}{f} = \dfrac{330}{165} = 2.0\,\text{m}$.'
+
+  - id: p3-rope-frequency
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A wave travels along a rope at 12 m/s. The wavelength is 3.0 m. Calculate the frequency.'
+    answer_label: 'Frequency of the wave on the rope'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / wavelength"
+          values:
+            v: {value: "12", unit: "m/s"}
+            wavelength: {value: "3.0", unit: "m"}
+          answer: {value: "4", unit: "Hz"}
+        - {kind: sigfigs, value: "4", figures: 2, answer: "4.0", convention: round-once}
+    answer_text: '$v = f\lambda$, so $f = \dfrac{v}{\lambda} = \dfrac{12}{3.0} = 4.0\,\text{Hz}$.'
+
+  - id: p4-period-mains
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A sound wave has a frequency of 50 Hz. Calculate its period.'
+    answer_label: 'Period of the sound wave'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "1 / f"
+          values:
+            f: {value: "50", unit: "Hz"}
+          answer: {value: "0.02", unit: "s"}
+        - {kind: sigfigs, value: "0.02", figures: 2, answer: "0.020", convention: round-once}
+    answer_text: '$T = \dfrac{1}{f} = \dfrac{1}{50} = 0.020\,\text{s}$.'
+
+  - id: p5-frequency-from-period
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A wave has a period of 0.40 s. Calculate its frequency.'
+    answer_label: 'Frequency of the wave'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "1 / T"
+          values:
+            T: {value: "0.40", unit: "s"}
+          answer: {value: "2.5", unit: "Hz"}
+        - {kind: sigfigs, value: "2.5", figures: 2, answer: "2.5", convention: round-once}
+    answer_text: '$T = \dfrac{1}{f}$, so $f = \dfrac{1}{T} = \dfrac{1}{0.40} = 2.5\,\text{Hz}$.'
+
+  - id: p6-convert-mhz
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'An ultrasound scanner uses a frequency of 2.5 MHz. Convert this frequency to hertz.'
+    answer_label: 'Frequency in hertz'
+    check:
+      kind: convert
+      value: "2.5"
+      from: "MHz"
+      to: "Hz"
+      answer: "2500000"
+    answer_text: 'The prefix mega means one million, so $2.5\,\text{MHz} = 2.5 \times 10^6\,\text{Hz} = 2500000\,\text{Hz}$.'
+
+  - id: p7-solid-wave-speed
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A longitudinal wave in a metal bar has a frequency of 1000 Hz and a wavelength of 5.0 m. Calculate the wave speed.'
+    answer_label: 'Wave speed in the metal bar'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "f * wavelength"
+          values:
+            f: {value: "1000", unit: "Hz"}
+            wavelength: {value: "5.0", unit: "m"}
+          answer: {value: "5000", unit: "m/s"}
+        - {kind: sigfigs, value: "5000", figures: 2, answer: "5.0e3", convention: round-once}
+    answer_text: '$v = f\lambda = 1000 \times 5.0 = 5000\,\text{m/s} = 5.0 \times 10^3\,\text{m/s}$.'
+
+  - id: p8-ten-waves
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'Ten waves pass a point in 4.0 s. Calculate the frequency and the period of the waves.'
+    answer_label: 'Frequency and period'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "n / t"
+          values:
+            n: {value: "10", unit: "1"}
+            t: {value: "4.0", unit: "s"}
+          answer: {value: "2.5", unit: "Hz"}
+        - {kind: sigfigs, value: "2.5", figures: 2, answer: "2.5", convention: round-once}
+    answer_text: '$f = \dfrac{10}{4.0} = 2.5\,\text{Hz}$. The period is $T = \dfrac{1}{f} = \dfrac{1}{2.5} = 0.40\,\text{s}$.'
+
+  - id: p9-transverse-longitudinal
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'Describe the difference between a transverse wave and a longitudinal wave. Give one example of each.'
+    answer_label: 'Transverse and longitudinal waves'
+    check:
+      kind: structured
+      requires: [transverse-definition, longitudinal-definition, examples]
+      concepts: [transverse-wave, longitudinal-wave]
+      points:
+        - id: transverse-definition
+          text: 'In a transverse wave the vibration is at right angles to the direction in which the wave travels.'
+          concepts: [transverse-wave]
+        - id: longitudinal-definition
+          text: 'In a longitudinal wave the vibration is along the same line as the direction in which the wave travels, so the wave has areas of compression and rarefaction.'
+          concepts: [longitudinal-wave]
+        - id: examples
+          text: 'A water ripple is a transverse wave. A sound wave in air is a longitudinal wave.'
+          concepts: [transverse-wave, longitudinal-wave]
+
+  - id: p10-cork-evidence
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A cork floats on water. A water wave passes the cork and the cork bobs up and down but does not move along with the wave. Explain what this shows about what a wave transfers.'
+    answer_label: 'What the cork shows'
+    check:
+      kind: structured
+      requires: [cork-bobs, wave-transfers-energy]
+      concepts: [wave, energy]
+      points:
+        - id: cork-bobs
+          text: 'The cork moves up and down as the wave passes, but it returns to the same place. The water itself does not travel along with the wave.'
+          concepts: [wave]
+        - id: wave-transfers-energy
+          text: 'The wave transfers energy from one place to another, and not water or matter.'
+          concepts: [energy]
+
+  - id: p11-measure-sound-speed
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'Describe a method to measure the speed of sound in air using an echo from a wall.'
+    answer_label: 'Measuring the speed of sound'
+    check:
+      kind: structured
+      requires: [measure-distance, measure-time, use-equation]
+      concepts: [wave-speed, echo]
+      points:
+        - id: measure-distance
+          text: 'Measure the distance from the sound source to the wall with a tape measure.'
+          concepts: [wave-speed]
+        - id: measure-time
+          text: 'Make a short, loud sound and measure the time for the echo to return with a stopwatch or a data logger.'
+          concepts: [echo]
+        - id: use-equation
+          text: 'The sound travels to the wall and back, a distance of twice the measured distance. Use v = s / t with this total distance and the measured time.'
+          concepts: [wave-speed]
+
+  - id: p12-speed-from-distance
+    section: '4.1'
+    tier: F
+    dfe: [WA1]
+    statement: 'A water wave travels 24 m in 8.0 s. Calculate the wave speed.'
+    answer_label: 'Wave speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "s / t"
+          values:
+            s: {value: "24", unit: "m"}
+            t: {value: "8.0", unit: "s"}
+          answer: {value: "3", unit: "m/s"}
+        - {kind: sigfigs, value: "3", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: '$v = \dfrac{s}{t} = \dfrac{24}{8.0} = 3.0\,\text{m/s}$.'

@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.2 Binomial expansion for rational n and approximation — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: D1
+Work through these on your own. Write down $n$ and the range of validity before
+you expand. When the bracket is not $(1 + x)^n$, take out the factor $a^n$
+first.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-04-practice-4.2
+
+:::answers chapter-04-practice-4.2

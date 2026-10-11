@@ -1,0 +1,215 @@
+# Mixed practice for the Chapter 4 Review.
+#
+# The first six records resolve the chapter problem of the crane cable. The rest
+# interleave the chapter with Chapters 1 and 2: a prefix conversion, a base-unit
+# check, an uncertainty propagation, a vector resolution, a density and two
+# method-choice prompts. Every numeric record is checked by the `units` oracle,
+# and a `structured` record stands where a computer cannot go: it proves that a
+# model answer contains the declared ideas in order, and nothing more.
+#
+# The anchor numbers: the beam has mass 2500 kg, so the load is 24 525 N; the
+# cable has area 1.5e-4 m^2, so the stress is 1.635e8 Pa; with E = 2.0e11 Pa the
+# strain is 8.175e-4 and the 20.0 m cable extends by 1.635e-2 m; the energy
+# stored is 200 J; the stiffness is 1.5e6 N/m; and the working stress 3.0e8 Pa
+# allows a greatest mass of 4.6e3 kg. A 5000 kg beam gives 3.27e8 Pa, above the
+# limit.
+chapter: 4
+problems:
+  - id: r1-crane-stress
+    section: Review
+    dfe: [AP4]
+    statement: 'The beam has mass $2500\,\text{kg}$ and the cable has area $1.5 \times 10^{-4}\,\text{m}^2$. Find the stress in the cable.'
+    answer_label: 'The stress in the cable'
+    check:
+      kind: dimensions
+      expression: "m * g / A"
+      values:
+        m: {value: "2500", unit: "kg"}
+        g: {value: "9.81", unit: "m s^-2"}
+        A: {value: "1.5e-4", unit: "m^2"}
+      answer: {value: "1.635e8", unit: "Pa"}
+    answer_text: 'The load is $mg = 2500 \times 9.81 = 24\,525\,\text{N}$. The stress is $\dfrac{24\,525}{1.5 \times 10^{-4}} = 1.64 \times 10^{8}\,\text{Pa}$.'
+
+  - id: r2-crane-strain
+    section: Review
+    dfe: [AP4]
+    statement: 'The cable stress is $1.635 \times 10^{8}\,\text{Pa}$ and $E = 2.0 \times 10^{11}\,\text{Pa}$. Find the strain.'
+    answer_label: 'The strain'
+    check:
+      kind: dimensions
+      expression: "stress / E"
+      values:
+        stress: {value: "1.635e8", unit: "Pa"}
+        E: {value: "2.0e11", unit: "Pa"}
+      answer: {value: "8.175e-4"}
+    answer_text: 'The strain is $\dfrac{1.635 \times 10^{8}}{2.0 \times 10^{11}} = 8.18 \times 10^{-4}$. It has no unit.'
+
+  - id: r3-crane-extension
+    section: Review
+    dfe: [AP4]
+    statement: 'The cable is $20.0\,\text{m}$ long and the strain is $8.175 \times 10^{-4}$. Find the extension.'
+    answer_label: 'The extension'
+    check:
+      kind: dimensions
+      expression: "strain * L"
+      values:
+        strain: {value: "8.175e-4"}
+        L: {value: "20.0", unit: "m"}
+      answer: {value: "1.635e-2", unit: "m"}
+    answer_text: 'The extension is $8.175 \times 10^{-4} \times 20.0 = 1.64 \times 10^{-2}\,\text{m}$, which is $16.4\,\text{mm}$. The cable stretches by about a centimetre, not a metre.'
+
+  - id: r4-crane-energy
+    section: Review
+    dfe: [AP4]
+    statement: 'The load is $24\,525\,\text{N}$ and the extension is $1.635 \times 10^{-2}\,\text{m}$. Find the energy stored in the cable.'
+    answer_label: 'The energy stored'
+    check: {kind: approx, value: "0.5 * 24525 * 0.01635", target: "200.49", tolerance: "0.05"}
+    answer_text: 'The energy stored is $\tfrac{1}{2}F\Delta L = \tfrac{1}{2} \times 24\,525 \times 1.635 \times 10^{-2} = 2.00 \times 10^{2}\,\text{J}$.'
+
+  - id: r5-crane-max-mass
+    section: Review
+    dfe: [AP4]
+    statement: 'The working stress is $3.0 \times 10^{8}\,\text{Pa}$ and the cable area is $1.5 \times 10^{-4}\,\text{m}^2$. Find the greatest mass the cable may lift.'
+    answer_label: 'The greatest mass'
+    check: {kind: approx, value: "3.0e8 * 1.5e-4 / 9.81", target: "4587", tolerance: "2"}
+    answer_text: 'The greatest force is $3.0 \times 10^{8} \times 1.5 \times 10^{-4} = 4.5 \times 10^{4}\,\text{N}$. The greatest mass is $\dfrac{4.5 \times 10^{4}}{9.81} = 4.6 \times 10^{3}\,\text{kg}$.'
+
+  - id: r6-crane-judgement
+    section: Review
+    dfe: [AP4]
+    statement: 'A second beam of mass $5000\,\text{kg}$ is proposed. Decide whether the cable may lift it under the safety rule, and give a reason.'
+    answer_label: 'The judgement'
+    check:
+      kind: structured
+      requires: [compute-stress, compare-limit, decision]
+      concepts: [working-stress, safety-factor]
+      points:
+        - id: compute-stress
+          text: 'The second beam weighs 5000 times 9.81 = 49 050 N, so the stress is 49 050 divided by 1.5 times 10 to the minus 4, which is 3.27 times 10 to the 8 Pa.'
+          concepts: [working-stress]
+        - id: compare-limit
+          text: 'The working stress must not exceed 3.0 times 10 to the 8 Pa, and 3.27 times 10 to the 8 Pa is larger than that.'
+          concepts: [working-stress]
+        - id: decision
+          text: 'The cable may not lift the 5000 kg beam under the safety rule. A cable of area at least 1.64 times 10 to the minus 4 square metres, or a lighter beam, is needed.'
+          concepts: [safety-factor]
+    answer_text: 'The second beam gives a stress of $3.27 \times 10^{8}\,\text{Pa}$, which is above the working limit of $3.0 \times 10^{8}\,\text{Pa}$, so the cable is not safe for it under the rule.'
+
+  - id: r7-convert-area
+    section: Review
+    dfe: [AP1, AP4]
+    statement: 'A wire has a cross-sectional area of $4.0\,\text{mm}^2$. Write this area in $\text{m}^2$.'
+    answer_label: 'The area in square metres'
+    check: {kind: convert, value: "4.0", from: "mm^2", to: "m^2", answer: "4.0e-06"}
+    answer_text: '$4.0\,\text{mm}^2 = 4.0 \times 10^{-6}\,\text{m}^2$. The millimetre is squared, so the factor is $10^{-6}$.'
+
+  - id: r8-homogeneity-stress
+    section: Review
+    dfe: [AP1, AP4]
+    statement: 'Show that a stress has the base units $\text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$.'
+    answer_label: 'The base units of stress'
+    check:
+      kind: dimensions
+      expression: "F / A"
+      values:
+        F: {value: "1", unit: "N"}
+        A: {value: "1", unit: "m^2"}
+      answer: {value: "1", unit: "kg m^-1 s^-2"}
+    answer_text: 'A stress is a force over an area. A newton is $\text{kg}\,\text{m}\,\text{s}^{-2}$, so $\dfrac{\text{kg}\,\text{m}\,\text{s}^{-2}}{\text{m}^2} = \text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$, which is the pascal.'
+
+  - id: r9-uncertainty-diameter
+    section: Review
+    dfe: [AP1, AP4]
+    statement: 'A wire has a diameter of $2.00 \pm 0.01\,\text{mm}$. Find the percentage uncertainty in the cross-sectional area.'
+    answer_label: 'The percentage uncertainty in the area'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: "2.00", percentage: "0.5", power: 2}
+      result: "4.0"
+      uncertainty: "0.04"
+    answer_text: 'The percentage uncertainty in the diameter is $\dfrac{0.01}{2.00} \times 100\% = 0.5\%$. The area depends on the square of the diameter, so its percentage uncertainty is doubled: $2 \times 0.5\% = 1.0\%$.'
+
+  - id: r10-resolve-tension
+    section: Review
+    dfe: [AP2, AP4]
+    statement: 'A cable pulls a post with a tension of $5000\,\text{N}$ at $30^\circ$ to the horizontal. Find the horizontal and vertical components of the tension.'
+    answer_label: 'The two components of the tension'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: "5000"
+      angle_deg: "30"
+      components: {x: "4330", y: "2500"}
+      tolerance: "1"
+    answer_text: 'The horizontal component is $5000\cos 30^\circ = 4330\,\text{N}$. The vertical component is $5000\sin 30^\circ = 2500\,\text{N}$. The horizontal component is the larger one, because the cable is closer to the horizontal.'
+
+  - id: r11-method-choice-graph
+    section: Review
+    dfe: [AP4]
+    statement: 'A wire is stretched, and the force and the extension are measured. Say which graph you would plot to find the Young modulus, and how you would use it. State one measurement you need as well as the graph.'
+    answer_label: 'The graph and the method'
+    check:
+      kind: structured
+      requires: [choose-graph, use-gradient, measure-size]
+      concepts: [force-extension-graph, young-modulus]
+      points:
+        - id: choose-graph
+          text: 'Plot the force on the vertical axis against the extension on the horizontal axis. Use only the straight part of the graph.'
+          concepts: [force-extension-graph]
+        - id: use-gradient
+          text: 'Find the gradient, which is the stiffness k. Then use E = kL divided by A, where L is the original length.'
+          concepts: [young-modulus]
+        - id: measure-size
+          text: 'Measure the original length and the cross-sectional area of the wire as well as the graph.'
+          concepts: [young-modulus]
+    answer_text: 'Plot force against extension and find the gradient, which is the stiffness k. Measure the original length and the cross-sectional area, then use $E = \dfrac{kL}{A}$.'
+
+  - id: r12-density
+    section: Review
+    dfe: [AP4]
+    statement: 'A steel block has a volume of $2.5 \times 10^{-4}\,\text{m}^3$ and a mass of $1.96\,\text{kg}$. Find its density.'
+    answer_label: 'The density'
+    check:
+      kind: dimensions
+      expression: "m / V"
+      values:
+        m: {value: "1.96", unit: "kg"}
+        V: {value: "2.5e-4", unit: "m^3"}
+      answer: {value: "7840", unit: "kg m^-3"}
+    answer_text: 'The density is $\dfrac{m}{V} = \dfrac{1.96}{2.5 \times 10^{-4}} = 7840\,\text{kg}\,\text{m}^{-3}$.'
+
+  - id: r13-graph-gradient-area
+    section: Review
+    dfe: [AP4]
+    statement: 'A force-extension graph for a wire is a straight line through $(0, 0)$ and $(1.5\,\text{mm},\, 12\,\text{N})$. Find the gradient and the energy stored at that extension.'
+    answer_label: 'The gradient and the energy stored'
+    check:
+      kind: all
+      checks:
+        - kind: gradient
+          series: [[0.0, 0.0], [1.5e-3, 12]]
+          between: [7900, 8100]
+        - kind: area
+          series: [[0.0, 0.0], [1.5e-3, 12]]
+          between: [0.0085, 0.0095]
+    answer_text: 'The gradient is $\dfrac{12}{1.5 \times 10^{-3}} = 8.0 \times 10^{3}\,\text{N}\,\text{m}^{-1}$. The energy stored is the area of the triangle, $\tfrac{1}{2} \times 12 \times 1.5 \times 10^{-3} = 9.0 \times 10^{-3}\,\text{J}$.'
+
+  - id: r14-limit-vs-elastic
+    section: Review
+    dfe: [AP4]
+    statement: 'Explain the difference between the limit of proportionality and the elastic limit.'
+    answer_label: 'The two limits'
+    check:
+      kind: structured
+      requires: [define-proportional, define-elastic]
+      concepts: [limit-of-proportionality, elastic-limit]
+      points:
+        - id: define-proportional
+          text: 'The limit of proportionality is the point where the force-extension graph stops being a straight line. Past it the extension is no longer proportional to the force, so Hooke''s law no longer holds.'
+          concepts: [limit-of-proportionality]
+        - id: define-elastic
+          text: 'The elastic limit is the point past which the material does not return to its original length when the load is removed. The change that remains is plastic deformation. A material can pass its limit of proportionality before it passes its elastic limit, so the graph can bend while the material still springs back.'
+          concepts: [elastic-limit]
+    answer_text: 'The limit of proportionality is where the graph stops being a straight line, so the extension is no longer proportional to the force. The elastic limit is where the material stops returning to its original length. The graph can bend before the elastic limit is reached.'

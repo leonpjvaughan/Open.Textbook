@@ -1,0 +1,280 @@
+# Mixed practice for the Chapter 5 Review.
+#
+# The review resolves the chapter problem and then interleaves Chapter 5 with
+# earlier chapters: waves (Chapter 4), energy (Chapter 1) and forces (Chapter 2).
+# Each calculation is checked twice: the exact magnitude and dimension by
+# `dimensions` (or `evaluate` for a pure ratio), and the one rounding by
+# `sigfigs`. The `structured` records prove only that a model answer contains the
+# declared ideas in order.
+chapter: 5
+problems:
+  - id: r1-anchor-radio
+    section: Review
+    tier: F
+    dfe: [WA3]
+    statement: 'The observatory radio telescope receives a signal with a frequency of 150 MHz. Calculate the wavelength.'
+    answer_label: 'Wavelength of the radio signal'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "150", unit: "MHz"}
+          answer: {value: "2.0", unit: "m"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{1.5 \times 10^8} = 2.0\,\text{m}$.'
+
+  - id: r2-anchor-infrared
+    section: Review
+    tier: F
+    dfe: [WA3]
+    statement: 'The observatory infrared camera detects radiation with a wavelength of 10 μm. Calculate its frequency.'
+    answer_label: 'Frequency of the infrared radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "10", unit: "μm"}
+          answer: {value: "3.0e13", unit: "Hz"}
+        - {kind: sigfigs, value: "3.0e13", figures: 2, answer: "3.0e13", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{1.0 \times 10^{-5}} = 3.0 \times 10^{13}\,\text{Hz}$.'
+
+  - id: r3-anchor-visible
+    section: Review
+    tier: F
+    dfe: [WA3]
+    statement: 'A visible-light image uses light with a wavelength of 600 nm. Calculate its frequency.'
+    answer_label: 'Frequency of the visible light'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "600", unit: "nm"}
+          answer: {value: "5.0e14", unit: "Hz"}
+        - {kind: sigfigs, value: "5.0e14", figures: 2, answer: "5.0e14", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{6.0 \times 10^{-7}} = 5.0 \times 10^{14}\,\text{Hz}$.'
+
+  - id: r4-anchor-magnification
+    section: Review
+    tier: F
+    dfe: [WA5]
+    statement: 'The visitor centre lens projects a picture 2.0 cm tall so that its image is 0.30 m tall. Calculate the magnification.'
+    answer_label: 'Magnification of the projected picture'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "30 / 2.0", answer: "15"}
+        - {kind: sigfigs, value: "15", figures: 2, answer: "15", convention: round-once}
+    answer_text: 'magnification $= \dfrac{30\,\text{cm}}{2.0\,\text{cm}} = 15$, so the image is 15 times taller than the object.'
+
+  - id: r5-anchor-order
+    section: Review
+    tier: F
+    dfe: [WA3]
+    statement: 'Place the radio signal, the infrared radiation and the visible light from the chapter problem in order of increasing frequency. Explain your answer.'
+    answer_label: 'The order of increasing frequency'
+    check:
+      kind: structured
+      requires: [state-order, give-reason]
+      concepts: [frequency, wavelength]
+      points:
+        - id: state-order
+          text: 'Radio, then infrared, then visible light.'
+          concepts: [frequency]
+        - id: give-reason
+          text: 'All electromagnetic waves travel at the same speed, so the longer the wavelength the lower the frequency. The radio wavelength of 2.0 m is the longest, then the infrared at 10 μm, then the visible light at 600 nm.'
+          concepts: [wavelength]
+
+  - id: r6-anchor-white-walls
+    section: Review
+    tier: F
+    dfe: [WA7]
+    statement: 'The observatory walls are painted white. Explain why white walls keep the building cooler in sunshine than black walls would.'
+    answer_label: 'Why white walls keep the building cooler'
+    check:
+      kind: structured
+      requires: [reflect-most, absorb-little, emit-little]
+      concepts: [reflection, absorption, emission]
+      points:
+        - id: reflect-most
+          text: 'A white surface reflects most of the infrared radiation that reaches it.'
+          concepts: [reflection]
+        - id: absorb-little
+          text: 'It absorbs little of the radiation, so less energy is transferred to the thermal store of the building.'
+          concepts: [absorption]
+        - id: emit-little
+          text: 'A poor absorber is also a poor emitter, so the walls radiate little energy back.'
+          concepts: [emission]
+
+  - id: r7-sound-wavelength
+    section: Review
+    tier: F
+    dfe: [WA1]
+    statement: 'A sound wave travels through air at 340 m/s and has a frequency of 170 Hz. Calculate its wavelength.'
+    answer_label: 'Wavelength of the sound wave'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / f"
+          values:
+            v: {value: "340", unit: "m/s"}
+            f: {value: "170", unit: "Hz"}
+          answer: {value: "2.0", unit: "m"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$\lambda = \dfrac{v}{f} = \dfrac{340}{170} = 2.0\,\text{m}$. The wave equation works for sound as well as for light.'
+
+  - id: r8-sound-period
+    section: Review
+    tier: F
+    dfe: [WA1]
+    statement: 'A sound wave has a frequency of 50 Hz. Calculate its period.'
+    answer_label: 'Period of the sound wave'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "1 / 50", answer: "0.02"}
+        - {kind: sigfigs, value: "0.020", figures: 2, answer: "0.020", convention: round-once}
+    answer_text: '$T = \dfrac{1}{f} = \dfrac{1}{50} = 0.020\,\text{s}$, so one complete wave takes 0.020 s.'
+
+  - id: r9-kinetic-energy
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'A ball of mass 0.20 kg moves at 15 m/s. Calculate the energy in its kinetic store.'
+    answer_label: 'Energy in the kinetic store'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * m * v**2"
+          values:
+            m: {value: "0.20", unit: "kg"}
+            v: {value: "15", unit: "m/s"}
+          answer: {value: "22.5", unit: "J"}
+        - {kind: sigfigs, value: "22.5", figures: 2, answer: "23", convention: round-once}
+    answer_text: '$E_k = \tfrac{1}{2}mv^2 = 0.5 \times 0.20 \times 15^2 = 22.5\,\text{J}$, so $23\,\text{J}$ to 2 significant figures.'
+
+  - id: r10-efficiency
+    section: Review
+    tier: F
+    dfe: [EN2]
+    statement: 'A motor transfers 200 J of energy, and 150 J is usefully transferred. Calculate the efficiency of the motor.'
+    answer_label: 'Efficiency of the motor'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "150 / 200", answer: "0.75"}
+        - {kind: sigfigs, value: "0.75", figures: 2, answer: "0.75", convention: round-once}
+    answer_text: 'efficiency $= \dfrac{\text{useful output}}{\text{total input}} = \dfrac{150}{200} = 0.75$. This is 75%.'
+
+  - id: r11-weight
+    section: Review
+    tier: F
+    dfe: [FO1]
+    statement: 'A pupil of mass 60 kg stands on the ground. Take $g = 9.8\,\text{N/kg}$. Calculate the pupil''s weight.'
+    answer_label: 'Weight of the pupil'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g"
+          values:
+            m: {value: "60", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "588", unit: "N"}
+        - {kind: sigfigs, value: "588", figures: 2, answer: "590", convention: round-once}
+    answer_text: '$W = mg = 60 \times 9.8 = 588\,\text{N}$, so $590\,\text{N}$ to 2 significant figures.'
+
+  - id: r12-radio-frequency
+    section: Review
+    tier: F
+    dfe: [WA3]
+    statement: 'A radio wave has a wavelength of 0.15 m. Calculate its frequency.'
+    answer_label: 'Frequency of the radio wave'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "0.15", unit: "m"}
+          answer: {value: "2.0e9", unit: "Hz"}
+        - {kind: sigfigs, value: "2.0e9", figures: 2, answer: "2.0e9", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{0.15} = 2.0 \times 10^9\,\text{Hz} = 2.0\,\text{GHz}$.'
+
+  - id: r13-image-height
+    section: Review
+    tier: F
+    dfe: [WA5]
+    statement: 'A lens has a magnification of 8.0. An object is 3.0 mm tall. Calculate the height of the image.'
+    answer_label: 'Height of the image'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "8.0 * 3.0", answer: "24"}
+        - {kind: sigfigs, value: "24", figures: 2, answer: "24", convention: round-once}
+    answer_text: 'image height $= 8.0 \times 3.0 = 24\,\text{mm}$.'
+
+  - id: r14-ultraviolet-frequency
+    section: Review
+    tier: F
+    dfe: [WA4]
+    statement: 'Ultraviolet radiation has a wavelength of 250 nm. Calculate its frequency.'
+    answer_label: 'Frequency of the ultraviolet radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "250", unit: "nm"}
+          answer: {value: "1.2e15", unit: "Hz"}
+        - {kind: sigfigs, value: "1.2e15", figures: 2, answer: "1.2e15", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{2.5 \times 10^{-7}} = 1.2 \times 10^{15}\,\text{Hz}$.'
+
+  - id: r15-method-choice
+    section: Review
+    tier: F
+    dfe: [WA3]
+    statement: 'A signal has a frequency of 300 MHz. Say which relationship you will use, then calculate the wavelength.'
+    answer_label: 'Wavelength of the signal'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "300", unit: "MHz"}
+          answer: {value: "1.0", unit: "m"}
+        - {kind: sigfigs, value: "1.0", figures: 2, answer: "1.0", convention: round-once}
+    answer_text: 'Use the wave equation as $\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{3.0 \times 10^8} = 1.0\,\text{m}$.'
+
+  - id: r16-black-body
+    section: Review
+    tier: F
+    dfe: [WA7]
+    statement: 'Explain why a hot object emits radiation with a shorter peak wavelength than a cool object.'
+    answer_label: 'Why the peak wavelength is shorter'
+    check:
+      kind: structured
+      requires: [hotter-more, shorter-peak]
+      concepts: [black-body-radiation]
+      points:
+        - id: hotter-more
+          text: 'A hotter object emits more radiation and its particles have more energy.'
+          concepts: [black-body-radiation]
+        - id: shorter-peak
+          text: 'As the temperature rises, the wavelength of the most intense radiation becomes shorter.'
+          concepts: [black-body-radiation]

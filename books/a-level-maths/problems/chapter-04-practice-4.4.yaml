@@ -1,0 +1,154 @@
+# Practice set for 4.4, sigma notation for sums.
+#
+# Every sum is checked with `apply: sum`, which evaluates the summation exactly,
+# so a wrong limit or a wrong summand fails. The last record is a sum with a
+# symbolic upper limit, which proves the closed form in n. Whether the sum is the
+# right model for a context is reasoning, and lives in the answer text.
+chapter: 4
+symbols:
+  r: {integer: true, positive: true}
+  n: {integer: true, positive: true}
+problems:
+  - id: p1-evaluate-finite-sum
+    section: "4.4"
+    dfe: [D3]
+    statement: 'Evaluate $\sum_{r=1}^{4}(5r - 2)$.'
+    answer_label: 'The sum'
+    check:
+      kind: apply
+      expression: "5*r - 2"
+      apply: {op: sum, args: [r, 1, 4]}
+      answer: "42"
+    answer_text: 'Write out the terms: $3 + 8 + 13 + 18 = 42$. There are four terms, because the index runs from $1$ to $4$. The terms rise by $5$ each time.'
+
+  - id: p2-geometric-looking-sum
+    section: "4.4"
+    dfe: [D3]
+    statement: 'Evaluate $\sum_{r=1}^{5}2^r$.'
+    answer_label: 'The sum'
+    check:
+      kind: apply
+      expression: "2**r"
+      apply: {op: sum, args: [r, 1, 5]}
+      answer: "62"
+    answer_text: 'Write out the terms: $2 + 4 + 8 + 16 + 32 = 62$. The summand is the term, not the sum, so each value of $r$ gives one power of $2$. The terms double each time, which is why the total is close to the last term.'
+
+  - id: p3-evaluate-arithmetic-sum
+    section: "4.4"
+    dfe: [D3]
+    statement: 'Evaluate $\sum_{r=1}^{8}(3r - 2)$.'
+    answer_label: 'The sum'
+    check:
+      kind: apply
+      expression: "3*r - 2"
+      apply: {op: sum, args: [r, 1, 8]}
+      answer: "92"
+    answer_text: 'The terms are $1, 4, 7, 10, 13, 16, 19, 22$. Adding them gives $92$. The last term is $3(8) - 2 = 22$, which confirms the upper limit. Pairing the ends works too: four pairs each totalling $23$ give $4 \times 23 = 92$.'
+
+  - id: p4-sum-of-squares
+    section: "4.4"
+    dfe: [D3]
+    statement: 'Evaluate $\sum_{r=1}^{4}r^2$.'
+    answer_label: 'The sum'
+    check:
+      kind: apply
+      expression: "r**2"
+      apply: {op: sum, args: [r, 1, 4]}
+      answer: "30"
+    answer_text: 'The terms are $1, 4, 9, 16$, and their sum is $30$. The standard result gives the same answer: $\frac{4 \times 5 \times 9}{6} = 30$.'
+
+  - id: p5-write-in-sigma
+    section: "4.4"
+    dfe: [D3]
+    statement: 'Write $5 + 10 + 15 + \dots + 60$ in sigma notation, and work out the sum.'
+    answer_label: 'The sum'
+    check:
+      kind: apply
+      expression: "5*r"
+      apply: {op: sum, args: [r, 1, 12]}
+      answer: "390"
+    answer_text: 'The terms are multiples of $5$, so the rule is $5r$. The last term is $60$, and $5r = 60$ gives $r = 12$, so the sum is $\sum_{r=1}^{12}5r = 5 \times \frac{12 \times 13}{2} = 5 \times 78 = 390$. The upper limit $12$ is the position of the last term.'
+
+  - id: p6-linear-standard-results
+    section: "4.4"
+    dfe: [D3]
+    statement: 'Use the standard results to work out $\sum_{r=1}^{12}(2r + 3)$.'
+    answer_label: 'The sum'
+    check:
+      kind: apply
+      expression: "2*r + 3"
+      apply: {op: sum, args: [r, 1, 12]}
+      answer: "192"
+    answer_text: 'Split the sum: $\sum(2r + 3) = 2\sum r + \sum 3$. Now $\sum_{r=1}^{12}r = \frac{12 \times 13}{2} = 78$, and the constant $3$ is added twelve times, giving $36$. So the sum is $2(78) + 36 = 156 + 36 = 192$. The constant contributes $12 \times 3$, not $3$.'
+
+  - id: p7-square-standard-result
+    section: "4.4"
+    dfe: [D3]
+    statement: 'Use a standard result to work out $\sum_{r=1}^{10}r^2$.'
+    answer_label: 'The sum'
+    check:
+      kind: apply
+      expression: "r**2"
+      apply: {op: sum, args: [r, 1, 10]}
+      answer: "385"
+    answer_text: 'Use $\sum_{r=1}^{n}r^2 = \frac{n(n+1)(2n+1)}{6}$ with $n = 10$: $\frac{10 \times 11 \times 21}{6} = \frac{2310}{6} = 385$. Adding the terms by hand also gives $385$, but the formula is quicker and less likely to slip.'
+
+  - id: p8-mixed-standard-results
+    section: "4.4"
+    dfe: [D3]
+    statement: 'Use the standard results to work out $\sum_{r=1}^{8}(r^2 + r)$.'
+    answer_label: 'The sum'
+    check:
+      kind: apply
+      expression: "r**2 + r"
+      apply: {op: sum, args: [r, 1, 8]}
+      answer: "240"
+    answer_text: 'Split the sum: $\sum(r^2 + r) = \sum r^2 + \sum r$. With $n = 8$, $\sum r^2 = \frac{8 \times 9 \times 17}{6} = 204$ and $\sum r = \frac{8 \times 9}{2} = 36$. The total is $204 + 36 = 240$. Splitting the sum is valid because each term is added separately.'
+
+  - id: p9-sum-of-cubes
+    section: "4.4"
+    dfe: [D3]
+    statement: 'Use a standard result to work out $\sum_{r=1}^{4}r^3$.'
+    answer_label: 'The sum'
+    check:
+      kind: apply
+      expression: "r**3"
+      apply: {op: sum, args: [r, 1, 4]}
+      answer: "100"
+    answer_text: 'Use $\sum_{r=1}^{n}r^3 = \left(\frac{n(n+1)}{2}\right)^2$ with $n = 4$: $\left(\frac{4 \times 5}{2}\right)^2 = 10^2 = 100$. The terms are $1, 8, 27, 64$, and their sum is $100$, so the result checks.'
+
+  - id: p10-index-not-from-one
+    section: "4.4"
+    dfe: [D3]
+    statement: 'Use the standard results to work out $\sum_{r=4}^{9}r$.'
+    answer_label: 'The sum'
+    check:
+      kind: apply
+      expression: "r"
+      apply: {op: sum, args: [r, 4, 9]}
+      answer: "39"
+    answer_text: 'The sum starts at $4$, not $1$. Adjust by subtracting the missing part: $\sum_{r=4}^{9}r = \sum_{r=1}^{9}r - \sum_{r=1}^{3}r = \frac{9 \times 10}{2} - \frac{3 \times 4}{2} = 45 - 6 = 39$. Check by adding: $4 + 5 + 6 + 7 + 8 + 9 = 39$.'
+
+  - id: p11-quiz-total
+    section: "4.4"
+    dfe: [D3]
+    statement: 'The quiz night raises $50n + 100$ pounds in month $n$. Write the total raised in the first 10 months in sigma notation, and work it out.'
+    answer_label: 'The total'
+    check:
+      kind: apply
+      expression: "50*n + 100"
+      apply: {op: sum, args: [n, 1, 10]}
+      answer: "3750"
+    answer_text: 'The total is $\sum_{n=1}^{10}(50n + 100) = 50\sum_{n=1}^{10}n + \sum_{n=1}^{10}100 = 50 \times 55 + 1000 = 2750 + 1000 = 3750$. The quiz night raises £3750 in the first 10 months. The constant $100$ is added once for each of the ten months.'
+
+  - id: p12-symbolic-sum
+    section: "4.4"
+    dfe: [D3]
+    statement: 'Work out $\sum_{r=1}^{n}(3r + 1)$ in terms of $n$.'
+    answer_label: 'The sum in terms of n'
+    check:
+      kind: apply
+      expression: "3*r + 1"
+      apply: {op: sum, args: [r, 1, n]}
+      answer: "n*(3*n + 5)/2"
+    answer_text: 'Split the sum: $3\sum_{r=1}^{n}r + \sum_{r=1}^{n}1 = 3 \times \frac{n(n+1)}{2} + n$. Take out the common factor $n$: $n\left(\frac{3(n+1)}{2} + 1\right) = \frac{n(3n + 5)}{2}$. Check with $n = 5$: $\frac{5 \times 20}{2} = 50$, which matches the sum $4 + 7 + 10 + 13 + 16$.'

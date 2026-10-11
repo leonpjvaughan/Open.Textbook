@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.1 Binomial expansion for positive integer n; n! and nCr — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: D1
+Work through these on your own. Before a long expansion, write down the row of
+coefficients you will use. When a question asks for one term, use the single-term
+form instead of expanding everything.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-04-practice-4.1
+
+:::answers chapter-04-practice-4.1

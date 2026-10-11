@@ -1,0 +1,128 @@
+# Practice set for 5.3, the sine, cosine and tangent graphs and periodicity.
+#
+# The checks prove the amplitude, period and range arithmetic of a named wave.
+# Reading a sketch is human review.
+chapter: 5
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-amplitude-period
+    section: "5.3"
+    dfe: [E3]
+    statement: 'State the amplitude, the period and the range of $y = 4\sin x$.'
+    answer_label: 'The amplitude, period and range'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "4", answer: "4"}
+        - {kind: evaluate, expression: "2*pi/1", answer: "2*pi"}
+    answer_text: 'Amplitude $= 4$. Period $= \dfrac{2\pi}{1} = 2\pi$. The middle line is $y = 0$, so the range is $-4 \le y \le 4$.'
+
+  - id: p2-transformed-wave
+    section: "5.3"
+    dfe: [E3]
+    statement: 'State the amplitude, the period and the range of $y = 2\cos(4x) + 3$.'
+    answer_label: 'The amplitude, period and range'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2*pi/4", answer: "pi/2"}
+        - {kind: evaluate, expression: "3 + 2", answer: "5"}
+        - {kind: evaluate, expression: "3 - 2", answer: "1"}
+    answer_text: 'Amplitude $= 2$. Period $= \dfrac{2\pi}{4} = \dfrac{\pi}{2}$. The middle line is $y = 3$, so the range is $1 \le y \le 5$.'
+
+  - id: p3-tangent-period
+    section: "5.3"
+    dfe: [E3]
+    statement: 'State the period of $y = \tan x$, and the $x$-values of its asymptotes in the interval from $0$ to $2\pi$, not including the endpoints.'
+    answer_label: 'The period and the asymptotes'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "pi", answer: "pi"}
+        - {kind: solve, equation: "cos(x) = 0", variable: "x", interval: ["0", "2*pi"], answer: ["pi/2", "3*pi/2"]}
+    answer_text: 'The period of tangent is $\pi$, half the period of sine and cosine. In $0 < x < 2\pi$ the asymptotes are at $x = \dfrac{\pi}{2}$ and $x = \dfrac{3\pi}{2}$, where $\cos x = 0$.'
+
+  - id: p4-read-values
+    section: "5.3"
+    dfe: [E3]
+    statement: 'Write down the values of $\sin\dfrac{\pi}{2}$, $\cos\dfrac{\pi}{2}$ and $\tan\dfrac{\pi}{4}$.'
+    answer_label: 'The three values'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "sin(pi/2)", answer: "1"}
+        - {kind: evaluate, expression: "cos(pi/2)", answer: "0"}
+        - {kind: evaluate, expression: "tan(pi/4)", answer: "1"}
+    answer_text: '$\sin\dfrac{\pi}{2} = 1$, $\cos\dfrac{\pi}{2} = 0$ and $\tan\dfrac{\pi}{4} = 1$. The point at a quarter turn is $(0, 1)$, which gives the first two values.'
+
+  - id: p5-phase-period
+    section: "5.3"
+    dfe: [E3]
+    statement: 'State the period and the phase shift of $y = \sin\left(2x - \dfrac{\pi}{3}\right)$.'
+    answer_label: 'The period and the phase shift'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2*pi/2", answer: "pi"}
+        - {kind: evaluate, expression: "-( -pi/3)/2", answer: "pi/6"}
+    answer_text: 'Here $B = 2$ and $C = -\dfrac{\pi}{3}$. Period $= \dfrac{2\pi}{2} = \pi$. Phase shift $= -\dfrac{C}{B} = \dfrac{\pi}{6}$ to the right.'
+
+  - id: p6-max-min
+    section: "5.3"
+    dfe: [E3]
+    statement: 'State the maximum and minimum values of $y = 3\sin x - 1$.'
+    answer_label: 'The maximum and minimum'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "-1 + 3", answer: "2"}
+        - {kind: evaluate, expression: "-1 - 3", answer: "-4"}
+    answer_text: 'The middle line is $y = -1$ and the amplitude is $3$. The maximum is $-1 + 3 = 2$ and the minimum is $-1 - 3 = -4$.'
+
+  - id: p7-slow-wave
+    section: "5.3"
+    dfe: [E3]
+    statement: 'State the period and the range of $y = 5\sin(0.5x)$.'
+    answer_label: 'The period and range'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2*pi/0.5", answer: "4*pi"}
+    answer_text: 'Period $= \dfrac{2\pi}{0.5} = 4\pi$. The amplitude is $5$ and the middle line is $y = 0$, so the range is $-5 \le y \le 5$.'
+
+  - id: p8-cosine-phase
+    section: "5.3"
+    dfe: [E3]
+    statement: 'State the period and the phase shift of $y = \cos\left(3x - \dfrac{\pi}{2}\right)$.'
+    answer_label: 'The period and the phase shift'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2*pi/3", answer: "2*pi/3"}
+        - {kind: evaluate, expression: "-(-pi/2)/3", answer: "pi/6"}
+    answer_text: 'Period $= \dfrac{2\pi}{3}$. Phase shift $= -\dfrac{C}{B} = -\dfrac{-\pi/2}{3} = \dfrac{\pi}{6}$ to the right.'
+
+  - id: p9-odd-even
+    section: "5.3"
+    dfe: [E3]
+    statement: 'Use the symmetry of the graphs to show that $\sin(-x) = -\sin x$ for every real number $x$.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "sin(-x) + sin(x)"
+      answer: "0"
+    answer_text: 'The graph of $y = \sin x$ is unchanged by a half turn about the origin, so it is an odd function. That means $\sin(-x) = -\sin x$, and adding $\sin x$ to both sides gives the zero in the check. The graph of $y = \cos x$ is instead even, so $\cos(-x) = \cos x$.'
+
+  - id: p10-shifted-cosine
+    section: "5.3"
+    dfe: [E3]
+    statement: 'State the period, the maximum and the minimum of $y = 2 + 3\cos\left(\dfrac{x}{2}\right)$.'
+    answer_label: 'The period, maximum and minimum'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2*pi/(1/2)", answer: "4*pi"}
+        - {kind: evaluate, expression: "2 + 3", answer: "5"}
+        - {kind: evaluate, expression: "2 - 3", answer: "-1"}
+    answer_text: 'Here $B = \dfrac{1}{2}$ and $D = 2$, so the period is $\dfrac{2\pi}{1/2} = 4\pi$. The middle line is $y = 2$ and the amplitude is $3$. The maximum is $5$ and the minimum is $-1$.'

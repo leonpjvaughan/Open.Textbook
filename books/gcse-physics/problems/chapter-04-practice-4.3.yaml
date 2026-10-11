@@ -1,0 +1,235 @@
+# Practice set for 4.3 (Waves at material interfaces).
+#
+# Reflection, transmission and absorption are descriptive, so the bank proves
+# them with `structured` records: presence, order and coverage of the declared
+# ideas, not their physics. The calculations prove `dimensions` and `sigfigs`,
+# and the prefix arithmetic is proved by `convert`.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics.
+chapter: 4
+problems:
+  - id: p1-law-of-reflection
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'State the law of reflection for a wave at a surface.'
+    answer_label: 'The law of reflection'
+    check:
+      kind: structured
+      requires: [equal-angles, measured-from-normal]
+      concepts: [reflection, normal]
+      points:
+        - id: equal-angles
+          text: 'The angle of reflection equals the angle of incidence.'
+          concepts: [reflection]
+        - id: measured-from-normal
+          text: 'Both angles are measured between the ray and the normal, which is the line at right angles to the surface.'
+          concepts: [normal]
+
+  - id: p2-echo-time-wall
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A water wave travels at 3.0 m/s and reflects from a wall 24 m away. Calculate the time taken for the wave to travel to the wall and back.'
+    answer_label: 'Time for the echo'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "2 * d / v"
+          values:
+            d: {value: "24", unit: "m"}
+            v: {value: "3.0", unit: "m/s"}
+          answer: {value: "16", unit: "s"}
+        - {kind: sigfigs, value: "16", figures: 2, answer: "16", convention: round-once}
+    answer_text: 'The wave travels to the wall and back, a distance of $2 \times 24 = 48\,\text{m}$. Then $t = \dfrac{s}{v} = \dfrac{48}{3.0} = 16\,\text{s}$.'
+
+  - id: p3-wavelength-change
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A wave of frequency 250 Hz passes from one material into another. Its speed changes from 5.0 m/s to 8.0 m/s. The frequency does not change. Calculate the wavelength in each material.'
+    answer_label: 'Wavelengths in the two materials'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v1 / f"
+          values:
+            v1: {value: "5.0", unit: "m/s"}
+            f: {value: "250", unit: "Hz"}
+          answer: {value: "0.02", unit: "m"}
+        - {kind: sigfigs, value: "0.02", figures: 2, answer: "0.020", convention: round-once}
+        - kind: dimensions
+          expression: "v2 / f"
+          values:
+            v2: {value: "8.0", unit: "m/s"}
+            f: {value: "250", unit: "Hz"}
+          answer: {value: "0.032", unit: "m"}
+        - {kind: sigfigs, value: "0.032", figures: 2, answer: "0.032", convention: round-once}
+    answer_text: 'The frequency stays the same. In the first material $\lambda = \dfrac{v}{f} = \dfrac{5.0}{250} = 0.020\,\text{m}$. In the second material $\lambda = \dfrac{8.0}{250} = 0.032\,\text{m}$. A higher speed gives a longer wavelength at the same frequency.'
+
+  - id: p4-transmitted-fraction
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'When a wave meets a boundary, 10% of its energy is reflected and 20% is absorbed. Calculate the percentage of the energy that is transmitted.'
+    answer_label: 'Percentage transmitted'
+    check:
+      kind: evaluate
+      expression: "100 - 10 - 20"
+      answer: "70"
+    answer_text: 'The reflected and absorbed energy together are $10\% + 20\% = 30\%$, so the transmitted energy is $100\% - 30\% = 70\%$.'
+
+  - id: p5-three-effects
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'Describe what can happen to a wave when it meets the boundary between two different materials.'
+    answer_label: 'What happens at a boundary'
+    check:
+      kind: structured
+      requires: [reflection, transmission, absorption]
+      concepts: [reflection, transmission, absorption]
+      points:
+        - id: reflection
+          text: 'Some of the wave can be reflected, so it bounces back from the boundary.'
+          concepts: [reflection]
+        - id: transmission
+          text: 'Some of the wave can be transmitted, so it passes through the boundary into the other material.'
+          concepts: [transmission]
+        - id: absorption
+          text: 'Some of the wave can be absorbed by the material, so its energy is transferred to the material.'
+          concepts: [absorption]
+
+  - id: p6-why-normal
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'Explain why the angles in a reflection diagram are measured from the normal and not from the surface.'
+    answer_label: 'Why the normal is used'
+    check:
+      kind: structured
+      requires: [normal-is-perpendicular, surface-cannot-fix-an-angle]
+      concepts: [normal, reflection]
+      points:
+        - id: normal-is-perpendicular
+          text: 'The normal is at right angles to the surface, so it gives one fixed reference line.'
+          concepts: [normal]
+        - id: surface-cannot-fix-an-angle
+          text: 'The surface itself is flat and lies along the boundary, so it cannot fix the angle of a ray. Measuring from the normal gives the same angle for every point and every surface.'
+          concepts: [reflection]
+
+  - id: p7-ray-diagram
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'Describe how to draw a ray diagram to show a wave reflecting from a flat surface.'
+    answer_label: 'Drawing a reflection ray diagram'
+    check:
+      kind: structured
+      requires: [draw-surface-and-normal, draw-incident-ray, draw-reflected-ray]
+      concepts: [reflection, normal]
+      points:
+        - id: draw-surface-and-normal
+          text: 'Draw the flat surface as a straight line, and draw the normal as a dashed line at right angles to it at the point where the ray hits.'
+          concepts: [normal]
+        - id: draw-incident-ray
+          text: 'Draw the incident ray arriving at the surface, and mark the angle between it and the normal.'
+          concepts: [reflection]
+        - id: draw-reflected-ray
+          text: 'Draw the reflected ray leaving the surface on the other side of the normal, with the angle of reflection equal to the angle of incidence.'
+          concepts: [reflection]
+
+  - id: p8-absorption-example
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A room is lined with soft, thick curtains. Explain how this reduces the loudness of an echo in the room.'
+    answer_label: 'How curtains reduce an echo'
+    check:
+      kind: structured
+      requires: [absorption, less-reflected, less-energy]
+      concepts: [absorption, reflection, sound]
+      points:
+        - id: absorption
+          text: 'The soft curtains absorb some of the sound energy when the wave meets them.'
+          concepts: [absorption]
+        - id: less-reflected
+          text: 'Less of the sound is reflected back into the room, because the curtains are not a hard, smooth surface.'
+          concepts: [reflection]
+        - id: less-energy
+          text: 'With less reflected energy, the echo is quieter.'
+          concepts: [sound]
+
+  - id: p9-convert-cm
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A ripple tank is filled with water to a depth of 15 cm. Convert this depth to metres.'
+    answer_label: 'Depth in metres'
+    check:
+      kind: convert
+      value: "15"
+      from: "cm"
+      to: "m"
+      answer: "0.15"
+    answer_text: 'The prefix centi means one hundredth, so $15\,\text{cm} = 0.15\,\text{m}$.'
+
+  - id: p10-deep-water-speed
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A water wave of frequency 4.0 Hz passes from shallow water into deep water. In the deep water the wavelength is 0.35 m. The frequency stays the same. Calculate the wave speed in the deep water.'
+    answer_label: 'Wave speed in deep water'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "f * wavelength"
+          values:
+            f: {value: "4.0", unit: "Hz"}
+            wavelength: {value: "0.35", unit: "m"}
+          answer: {value: "1.4", unit: "m/s"}
+        - {kind: sigfigs, value: "1.4", figures: 2, answer: "1.4", convention: round-once}
+    answer_text: '$v = f\lambda = 4.0 \times 0.35 = 1.4\,\text{m/s}$. The frequency does not change when the wave crosses the boundary.'
+
+  - id: p11-sound-echo-distance
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A person claps and hears the echo from a wall after 0.60 s. The speed of sound in air is 330 m/s. Calculate the distance from the person to the wall.'
+    answer_label: 'Distance to the wall'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t / 2"
+          values:
+            v: {value: "330", unit: "m/s"}
+            t: {value: "0.60", unit: "s"}
+          answer: {value: "99", unit: "m"}
+        - {kind: sigfigs, value: "99", figures: 2, answer: "99", convention: round-once}
+    answer_text: 'The sound travels to the wall and back, so $d = \dfrac{v t}{2} = \dfrac{330 \times 0.60}{2} = 99\,\text{m}$.'
+
+  - id: p12-method-choice
+    section: '4.3'
+    tier: F
+    dfe: [WA2]
+    statement: 'A sound wave passes from air into water. The frequency does not change. Say which equation links the speed, the frequency and the wavelength, and explain what happens to the wavelength.'
+    answer_label: 'Choosing the equation and predicting the wavelength'
+    check:
+      kind: structured
+      requires: [wave-equation, frequency-fixed, wavelength-changes]
+      concepts: [wave-speed, frequency, wavelength, transmission]
+      points:
+        - id: wave-equation
+          text: 'Use v = f lambda. The speed is the frequency multiplied by the wavelength.'
+          concepts: [wave-speed]
+        - id: frequency-fixed
+          text: 'The frequency is set by the source, so it stays the same when the wave crosses the boundary.'
+          concepts: [frequency]
+        - id: wavelength-changes
+          text: 'The speed of sound is greater in water than in air, so for the same frequency the wavelength must be longer in water.'
+          concepts: [wavelength, transmission]

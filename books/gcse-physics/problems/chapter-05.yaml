@@ -1,0 +1,467 @@
+# Worked solutions and guided calculations for Chapter 5 (Light and
+# electromagnetic waves).
+#
+# The Learn pages and the Practise with help pages show the prose and the
+# reasoning; this bank is the independent check of every number in them, so a
+# slip in a worked example cannot ship. The records are not rendered by a page
+# marker: the pages write their own working, and the `:::answers` blocks come
+# from the practice banks.
+#
+# Every calculation is checked twice: the exact magnitude and dimension by
+# `dimensions` (or `evaluate` where the answer is a pure ratio), and the one
+# rounding by `sigfigs`. A descriptive answer uses `structured`, which proves
+# only that a model answer contains the declared steps in order.
+#
+# Numbers are chosen so the arithmetic is exact, because `dimensions` compares
+# exact rationals: 3.0e8 / 1.5e8 is exactly 2.0, so the radio answer is 2.0 m,
+# while 3.0e8 / 1.42e9 would not be a terminating decimal.
+chapter: 5
+problems:
+  # --- Section 5.1, the Learn worked examples ---------------------------------
+  - id: w1-radio-wavelength
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'A radio signal has a frequency of 150 MHz. Take the speed of electromagnetic waves in a vacuum as 3.0e8 m/s. Calculate the wavelength.'
+    answer_label: 'Wavelength of the radio signal'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "150", unit: "MHz"}
+          answer: {value: "2.0", unit: "m"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{1.5 \times 10^8} = 2.0\,\text{m}$.'
+
+  - id: w2-infrared-frequency
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'Infrared radiation has a wavelength of 10 μm. Calculate its frequency.'
+    answer_label: 'Frequency of the infrared radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "10", unit: "μm"}
+          answer: {value: "3.0e13", unit: "Hz"}
+        - {kind: sigfigs, value: "3.0e13", figures: 2, answer: "3.0e13", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{1.0 \times 10^{-5}} = 3.0 \times 10^{13}\,\text{Hz}$.'
+
+  - id: w3-visible-frequency
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'Green light has a wavelength of 600 nm. Calculate its frequency.'
+    answer_label: 'Frequency of the green light'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "600", unit: "nm"}
+          answer: {value: "5.0e14", unit: "Hz"}
+        - {kind: sigfigs, value: "5.0e14", figures: 2, answer: "5.0e14", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{6.0 \times 10^{-7}} = 5.0 \times 10^{14}\,\text{Hz}$.'
+
+  - id: w4-xray-frequency
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'An X-ray has a wavelength of 1.0e-10 m. Calculate its frequency.'
+    answer_label: 'Frequency of the X-ray'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "1.0e-10", unit: "m"}
+          answer: {value: "3.0e18", unit: "Hz"}
+        - {kind: sigfigs, value: "3.0e18", figures: 2, answer: "3.0e18", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{1.0 \times 10^{-10}} = 3.0 \times 10^{18}\,\text{Hz}$.'
+
+  # --- Section 5.2, the Learn worked examples ---------------------------------
+  - id: w5-microwave-oven
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'A microwave oven uses radiation with a frequency of 2.5 GHz. Calculate its wavelength.'
+    answer_label: 'Wavelength of the microwave radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "2.5", unit: "GHz"}
+          answer: {value: "0.12", unit: "m"}
+        - {kind: sigfigs, value: "0.12", figures: 2, answer: "0.12", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{2.5 \times 10^9} = 0.12\,\text{m}$.'
+
+  - id: w6-infrared-remote
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'A television remote control sends infrared radiation with a wavelength of 1.0 μm. Calculate its frequency.'
+    answer_label: 'Frequency of the infrared radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "1.0", unit: "μm"}
+          answer: {value: "3.0e14", unit: "Hz"}
+        - {kind: sigfigs, value: "3.0e14", figures: 2, answer: "3.0e14", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{1.0 \times 10^{-6}} = 3.0 \times 10^{14}\,\text{Hz}$.'
+
+  - id: w7-reflection-angle
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'A ray of light hits a mirror at an angle of incidence of 40°. State the angle of reflection and give a reason.'
+    answer_label: 'The angle of reflection'
+    check:
+      kind: structured
+      requires: [state-angle, give-reason]
+      concepts: [law-of-reflection]
+      points:
+        - id: state-angle
+          text: 'The angle of reflection is 40°.'
+          concepts: [law-of-reflection]
+        - id: give-reason
+          text: 'The angle of reflection equals the angle of incidence, and both are measured from the normal.'
+          concepts: [law-of-reflection]
+
+  # --- Section 5.3, the Learn worked examples ---------------------------------
+  - id: w8-magnification-picture
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'A lens projects a picture 2.0 cm tall onto a wall. The image is 0.30 m tall. Calculate the magnification.'
+    answer_label: 'Magnification of the lens'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "30 / 2.0", answer: "15"}
+        - {kind: sigfigs, value: "15", figures: 2, answer: "15", convention: round-once}
+    answer_text: 'magnification $= \dfrac{\text{image height}}{\text{object height}} = \dfrac{30\,\text{cm}}{2.0\,\text{cm}} = 15$. The image is 15 times taller than the object.'
+
+  - id: w9-magnification-coin
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'A lens forms an image of a coin. The coin is 3.0 mm across and the image is 15 mm across. Calculate the magnification.'
+    answer_label: 'Magnification of the lens'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "15 / 3.0", answer: "5.0"}
+        - {kind: sigfigs, value: "5.0", figures: 2, answer: "5.0", convention: round-once}
+    answer_text: 'magnification $= \dfrac{15\,\text{mm}}{3.0\,\text{mm}} = 5.0$.'
+
+  - id: w10-image-height
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'A lens has a magnification of 3.0. The object is 8.0 mm tall. Calculate the height of the image.'
+    answer_label: 'Height of the image'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "3.0 * 8.0", answer: "24"}
+        - {kind: sigfigs, value: "24", figures: 2, answer: "24", convention: round-once}
+    answer_text: 'image height $= \text{magnification} \times \text{object height} = 3.0 \times 8.0 = 24\,\text{mm}$.'
+
+  # --- Section 5.4, the Learn worked examples ---------------------------------
+  - id: w11-red-frequency
+    section: '5.4'
+    tier: F
+    dfe: [WA6]
+    statement: 'Red light has a wavelength of 750 nm. Calculate its frequency.'
+    answer_label: 'Frequency of the red light'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "750", unit: "nm"}
+          answer: {value: "4.0e14", unit: "Hz"}
+        - {kind: sigfigs, value: "4.0e14", figures: 2, answer: "4.0e14", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{7.5 \times 10^{-7}} = 4.0 \times 10^{14}\,\text{Hz}$.'
+
+  # --- Section 5.5, the Learn worked examples ---------------------------------
+  - id: w12-peak-frequency
+    section: '5.5'
+    tier: F
+    dfe: [WA7]
+    statement: 'A warm object emits most of its radiation at a wavelength of 8.0 μm. Calculate the frequency of this radiation.'
+    answer_label: 'Frequency of the peak radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "8.0", unit: "μm"}
+          answer: {value: "3.75e13", unit: "Hz"}
+        - {kind: sigfigs, value: "3.75e13", figures: 2, answer: "3.8e13", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{8.0 \times 10^{-6}} = 3.75 \times 10^{13}\,\text{Hz}$, so $3.8 \times 10^{13}\,\text{Hz}$ to 2 significant figures.'
+
+  # --- Section 5.1, guided calculations ---------------------------------------
+  - id: g1-radio-wavelength
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'An FM radio station broadcasts at 100 MHz. Calculate the wavelength of the radio waves.'
+    answer_label: 'Wavelength of the radio waves'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "100", unit: "MHz"}
+          answer: {value: "3.0", unit: "m"}
+        - {kind: sigfigs, value: "3.0", figures: 2, answer: "3.0", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{1.0 \times 10^8} = 3.0\,\text{m}$.'
+
+  - id: g2-microwave-wavelength
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'A radar transmitter sends microwaves at 10 GHz. Calculate their wavelength.'
+    answer_label: 'Wavelength of the microwaves'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "10", unit: "GHz"}
+          answer: {value: "0.030", unit: "m"}
+        - {kind: sigfigs, value: "0.030", figures: 2, answer: "0.030", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{1.0 \times 10^{10}} = 0.030\,\text{m} = 3.0\,\text{cm}$.'
+
+  - id: g3-infrared-wavelength
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'A detector measures infrared radiation with a frequency of 6.0e13 Hz. Calculate its wavelength. Give your answer in micrometres.'
+    answer_label: 'Wavelength of the infrared radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "6.0e13", unit: "Hz"}
+          answer: {value: "5.0e-6", unit: "m"}
+        - {kind: sigfigs, value: "5.0e-6", figures: 2, answer: "5.0e-6", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{6.0 \times 10^{13}} = 5.0 \times 10^{-6}\,\text{m} = 5.0\,\mu\text{m}$.'
+
+  # --- Section 5.2, guided calculations ---------------------------------------
+  - id: g4-uv-wavelength
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'Ultraviolet radiation has a frequency of 1.5e15 Hz. Calculate its wavelength.'
+    answer_label: 'Wavelength of the ultraviolet radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "1.5e15", unit: "Hz"}
+          answer: {value: "2.0e-7", unit: "m"}
+        - {kind: sigfigs, value: "2.0e-7", figures: 2, answer: "2.0e-7", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{1.5 \times 10^{15}} = 2.0 \times 10^{-7}\,\text{m}$.'
+
+  - id: g5-infrared-absorption
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'A black metal plate and a shiny metal plate are placed in bright sunshine. Explain which plate warms up faster and why.'
+    answer_label: 'Which plate warms faster, and why'
+    check:
+      kind: structured
+      requires: [choose-black, explain-absorption]
+      concepts: [infrared-absorption]
+      points:
+        - id: choose-black
+          text: 'The black plate warms up faster.'
+          concepts: [infrared-absorption]
+        - id: explain-absorption
+          text: 'A black surface absorbs infrared radiation well, so it transfers more energy to its thermal store. The shiny surface reflects most of the radiation instead.'
+          concepts: [infrared-absorption]
+
+  # --- Section 5.3, guided calculations ---------------------------------------
+  - id: g6-magnification
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'A magnifying glass forms an image 20 mm tall of an object 5.0 mm tall. Calculate the magnification.'
+    answer_label: 'Magnification of the lens'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "20 / 5.0", answer: "4.0"}
+        - {kind: sigfigs, value: "4.0", figures: 2, answer: "4.0", convention: round-once}
+    answer_text: 'magnification $= \dfrac{20\,\text{mm}}{5.0\,\text{mm}} = 4.0$.'
+
+  - id: g7-image-height
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'A lens has a magnification of 6.0. A bee in front of it is 1.5 mm long. Calculate the length of the image of the bee.'
+    answer_label: 'Length of the image'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "6.0 * 1.5", answer: "9.0"}
+        - {kind: sigfigs, value: "9.0", figures: 2, answer: "9.0", convention: round-once}
+    answer_text: 'image height $= 6.0 \times 1.5 = 9.0\,\text{mm}$.'
+
+  # --- Section 5.4, guided descriptions ---------------------------------------
+  - id: g8-colour-object
+    section: '5.4'
+    tier: F
+    dfe: [WA6]
+    statement: 'A red shirt is seen in green light. Explain the colour the shirt appears, and why.'
+    answer_label: 'The colour of the shirt in green light'
+    check:
+      kind: structured
+      requires: [state-colour, explain-frequencies]
+      concepts: [absorption, reflection, colour]
+      points:
+        - id: state-colour
+          text: 'The shirt appears black.'
+          concepts: [colour]
+        - id: explain-frequencies
+          text: 'A red object reflects red light and absorbs the other colours. Green light contains no red, so the shirt reflects almost nothing and looks black.'
+          concepts: [absorption, reflection]
+
+  # --- Section 5.5, guided descriptions ---------------------------------------
+  - id: g9-black-body
+    section: '5.5'
+    tier: F
+    dfe: [WA7]
+    statement: 'A metal block is heated until it glows. Explain how the radiation it emits changes as its temperature rises.'
+    answer_label: 'How the emitted radiation changes'
+    check:
+      kind: structured
+      requires: [state-intensity, state-wavelength]
+      concepts: [black-body-radiation]
+      points:
+        - id: state-intensity
+          text: 'The block emits more radiation at every wavelength, so the total intensity rises.'
+          concepts: [black-body-radiation]
+        - id: state-wavelength
+          text: 'The wavelength of the most intense radiation becomes shorter, so the glow changes from red towards yellow and white.'
+          concepts: [black-body-radiation]
+
+  # --- The chapter problem, checked -------------------------------------------
+  - id: anchor-radio-wavelength
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'The observatory radio telescope receives a signal with a frequency of 150 MHz. Calculate the wavelength.'
+    answer_label: 'Wavelength of the radio signal'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "150", unit: "MHz"}
+          answer: {value: "2.0", unit: "m"}
+        - {kind: sigfigs, value: "2.0", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{1.5 \times 10^8} = 2.0\,\text{m}$.'
+
+  - id: anchor-infrared-frequency
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'The observatory infrared camera detects radiation with a wavelength of 10 μm. Calculate its frequency.'
+    answer_label: 'Frequency of the infrared radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "10", unit: "μm"}
+          answer: {value: "3.0e13", unit: "Hz"}
+        - {kind: sigfigs, value: "3.0e13", figures: 2, answer: "3.0e13", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{1.0 \times 10^{-5}} = 3.0 \times 10^{13}\,\text{Hz}$.'
+
+  - id: anchor-visible-frequency
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'A visible-light image at the observatory uses light with a wavelength of 600 nm. Calculate its frequency.'
+    answer_label: 'Frequency of the visible light'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "600", unit: "nm"}
+          answer: {value: "5.0e14", unit: "Hz"}
+        - {kind: sigfigs, value: "5.0e14", figures: 2, answer: "5.0e14", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{6.0 \times 10^{-7}} = 5.0 \times 10^{14}\,\text{Hz}$.'
+
+  - id: anchor-magnification
+    section: '5.3'
+    tier: F
+    dfe: [WA5]
+    statement: 'The visitor centre lens projects a picture 2.0 cm tall so that its image on the wall is 0.30 m tall. Calculate the magnification.'
+    answer_label: 'Magnification of the projected picture'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "30 / 2.0", answer: "15"}
+        - {kind: sigfigs, value: "15", figures: 2, answer: "15", convention: round-once}
+    answer_text: 'magnification $= \dfrac{30\,\text{cm}}{2.0\,\text{cm}} = 15$.'
+
+  - id: anchor-spectrum-order
+    section: '5.1'
+    tier: F
+    dfe: [WA3]
+    statement: 'Place the radio signal, the infrared radiation and the visible light from the chapter problem in order of increasing frequency. Explain your answer.'
+    answer_label: 'The order of increasing frequency'
+    check:
+      kind: structured
+      requires: [state-order, give-reason]
+      concepts: [frequency, wavelength]
+      points:
+        - id: state-order
+          text: 'Radio, then infrared, then visible light.'
+          concepts: [frequency]
+        - id: give-reason
+          text: 'All three travel at the same speed, so the longer the wavelength the lower the frequency. The radio wavelength of 2.0 m is the longest, then the infrared at 10 μm, then the visible light at 600 nm.'
+          concepts: [wavelength]

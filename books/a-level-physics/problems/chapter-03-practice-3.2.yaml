@@ -1,0 +1,197 @@
+# Practice set for 3.2 (Dynamics and Newton's laws of motion).
+#
+# Both the questions and the answers on the page are rendered from these records.
+# A force, an acceleration or a normal reaction with a unit is checked by
+# `dimensions`; an irrational value from a trigonometric resolution uses `approx`;
+# a projectile's components use `resolve`. The `structured` records at the end
+# prove only that a model answer contains the declared ideas in order.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass; the choice of the
+# right free-body diagram is not checked.
+chapter: 3
+problems:
+  - id: p1-resultant-force
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A resultant force of 45 N acts on an object of mass 15 kg. Find the acceleration.'
+    answer_label: 'The acceleration'
+    check:
+      kind: dimensions
+      expression: "F / m"
+      values:
+        F: {value: "45", unit: "N"}
+        m: {value: "15", unit: "kg"}
+      answer: {value: "3.0", unit: "m s^-2"}
+    answer_text: '$a = \dfrac{F}{m} = \dfrac{45}{15} = 3.0\,\text{m}\,\text{s}^{-2}$. The acceleration is in the direction of the resultant force.'
+
+  - id: p2-car-resultant
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A car of mass 600 kg has a driving force of 2000 N. A drag force of 800 N acts against the motion. Find the acceleration.'
+    answer_label: 'The acceleration'
+    check:
+      kind: dimensions
+      expression: "(F_drive - F_drag) / m"
+      values:
+        F_drive: {value: "2000", unit: "N"}
+        F_drag: {value: "800", unit: "N"}
+        m: {value: "600", unit: "kg"}
+      answer: {value: "2.0", unit: "m s^-2"}
+    answer_text: 'The resultant is $2000 - 800 = 1200\,\text{N}$, so $a = \dfrac{1200}{600} = 2.0\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: p3-balanced-forces
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'Two horizontal forces act on a 5.0 kg trolley: 20 N to the right and 35 N to the left. Find the resultant force and the acceleration.'
+    answer_label: 'The resultant force and the acceleration'
+    check:
+      kind: dimensions
+      expression: "(F_right - F_left) / m"
+      values:
+        F_right: {value: "20", unit: "N"}
+        F_left: {value: "35", unit: "N"}
+        m: {value: "5.0", unit: "kg"}
+      answer: {value: "-3.0", unit: "m s^-2"}
+    answer_text: 'Taking right as positive, the resultant is $20 - 35 = -15\,\text{N}$, so it is 15 N to the left. The acceleration is $a = \dfrac{-15}{5.0} = -3.0\,\text{m}\,\text{s}^{-2}$, so it is $3.0\,\text{m}\,\text{s}^{-2}$ to the left.'
+
+  - id: p4-lift-up
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A passenger of mass 60 kg stands in a lift that accelerates upwards at $2.0\,\text{m}\,\text{s}^{-2}$. Find the normal reaction on the passenger. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The normal reaction'
+    check:
+      kind: dimensions
+      expression: "m * (g + a)"
+      values:
+        m: {value: "60", unit: "kg"}
+        g: {value: "9.81", unit: "m s^-2"}
+        a: {value: "2.0", unit: "m s^-2"}
+      answer: {value: "708.6", unit: "N"}
+    answer_text: 'The resultant is upwards, so $N - mg = ma$ and $N = m(g + a) = 60 \times 11.81 = 709\,\text{N}$ to three significant figures. The weight is 589 N, so the passenger feels heavier.'
+
+  - id: p5-lift-down
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A passenger of mass 70 kg stands in a lift that accelerates downwards at $1.5\,\text{m}\,\text{s}^{-2}$. Find the normal reaction on the passenger. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The normal reaction'
+    check:
+      kind: dimensions
+      expression: "m * (g - a)"
+      values:
+        m: {value: "70", unit: "kg"}
+        g: {value: "9.81", unit: "m s^-2"}
+        a: {value: "1.5", unit: "m s^-2"}
+      answer: {value: "581.7", unit: "N"}
+    answer_text: 'The resultant is downwards, so $mg - N = ma$ and $N = m(g - a) = 70 \times 8.31 = 582\,\text{N}$ to three significant figures. The weight is 687 N, so the passenger feels lighter.'
+
+  - id: p6-frictionless-slope
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A block is released on a frictionless slope at 30° to the horizontal. Find its acceleration down the slope. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The acceleration down the slope'
+    check:
+      kind: approx
+      value: "9.81 * sin(pi/6)"
+      target: "4.91"
+      tolerance: "0.01"
+    answer_text: 'The only force along the slope is $mg\sin 30^\circ$, so $a = g\sin 30^\circ = 9.81 \times 0.5 = 4.9\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: p7-slope-with-friction
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A crate of mass 4.0 kg is on a slope at 25° to the horizontal. A friction force of 6.0 N acts up the slope. Find the acceleration of the crate down the slope. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The acceleration down the slope'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "(4.0 * 9.81 * sin(25 * pi / 180) - 6.0) / 4.0", target: "2.65", tolerance: "0.01"}
+    answer_text: 'The component of the weight down the slope is $4.0 \times 9.81 \times \sin 25^\circ = 16.6\,\text{N}$. The resultant is $16.6 - 6.0 = 10.6\,\text{N}$ down the slope, so $a = \dfrac{10.6}{4.0} = 2.6\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: p8-projectile-height
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A ball is thrown at $25\,\text{m}\,\text{s}^{-1}$ at 50° above the horizontal. Find the maximum height it reaches. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The maximum height'
+    check:
+      kind: all
+      checks:
+        - kind: resolve
+          relation: components-from-magnitude-and-angle
+          magnitude: "25"
+          angle_deg: "50"
+          components: {x: "16.07", y: "19.15"}
+        - {kind: approx, value: "(25 * sin(50 * pi / 180))**2 / (2 * 9.81)", target: "18.7", tolerance: "0.05"}
+    answer_text: 'The vertical component is $u_y = 25\sin 50^\circ = 19.2\,\text{m}\,\text{s}^{-1}$. At the highest point $v_y = 0$, so $h = \dfrac{u_y^2}{2g} = \dfrac{19.2^2}{19.62} = 18.7\,\text{m}$.'
+
+  - id: p9-projectile-range
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A stone is thrown at $18\,\text{m}\,\text{s}^{-1}$ at 35° above level ground. Find the time of flight and the range. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The time of flight and the range'
+    check:
+      kind: all
+      checks:
+        - kind: resolve
+          relation: components-from-magnitude-and-angle
+          magnitude: "18"
+          angle_deg: "35"
+          components: {x: "14.74", y: "10.32"}
+        - {kind: approx, value: "2 * 18 * sin(35 * pi / 180) / 9.81", target: "2.10", tolerance: "0.01"}
+        - {kind: approx, value: "18 * cos(35 * pi / 180) * 2 * 18 * sin(35 * pi / 180) / 9.81", target: "31.0", tolerance: "0.1"}
+    answer_text: 'The vertical component is $u_y = 18\sin 35^\circ = 10.3\,\text{m}\,\text{s}^{-1}$, so the time of flight is $t = \dfrac{2u_y}{g} = \dfrac{20.6}{9.81} = 2.10\,\text{s}$. The horizontal component is $u_x = 18\cos 35^\circ = 14.7\,\text{m}\,\text{s}^{-1}$, so the range is $u_x t = 14.7 \times 2.10 = 30.9\,\text{m} \approx 31\,\text{m}$.'
+
+  - id: p10-skydiver-drag
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A skydiver of mass 90 kg falls downwards with an acceleration of $1.5\,\text{m}\,\text{s}^{-2}$. Find the drag force on the skydiver. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
+    answer_label: 'The drag force'
+    check:
+      kind: dimensions
+      expression: "m * (g - a)"
+      values:
+        m: {value: "90", unit: "kg"}
+        g: {value: "9.81", unit: "m s^-2"}
+        a: {value: "1.5", unit: "m s^-2"}
+      answer: {value: "747.9", unit: "N"}
+    answer_text: 'The resultant is $mg - D = ma$, so $D = m(g - a) = 90(9.81 - 1.5) = 748\,\text{N}$ to three significant figures.'
+
+  - id: p11-third-law
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A book rests on a table. A student says the weight of the book and the normal reaction from the table are a third-law pair. Explain why the student is wrong.'
+    answer_label: 'Why the two forces are not a third-law pair'
+    check:
+      kind: structured
+      requires: [same-object, name-partner]
+      concepts: [newtons-third-law, free-body]
+      points:
+        - id: same-object
+          text: 'The weight and the normal reaction both act on the same object, the book. A third law pair always acts on two different objects.'
+          concepts: [newtons-third-law]
+        - id: name-partner
+          text: 'The third law partner of the weight of the book is the gravitational pull of the book on the Earth. The weight and the reaction balance, so the book is in equilibrium, but they are not a third-law pair.'
+          concepts: [newtons-third-law, free-body]
+    answer_text: 'A third-law pair acts on two different objects. The weight and the normal reaction both act on the book, so they are a balanced pair, not a third-law pair.'
+
+  - id: p12-method-choice
+    section: '3.2'
+    dfe: [AP3]
+    statement: 'A ball is kicked at 22 m/s at 28 degrees above the horizontal. Say how you would set up the calculation before you find the range, and name the one quantity that is the same in both directions.'
+    answer_label: 'The method and the shared quantity'
+    check:
+      kind: structured
+      requires: [resolve-first, constant-horizontal, vertical-suvat]
+      concepts: [projectile, resolution]
+      points:
+        - id: resolve-first
+          text: 'Resolve the initial velocity into a horizontal component u cos 28 and a vertical component u sin 28.'
+          concepts: [resolution]
+        - id: constant-horizontal
+          text: 'The horizontal velocity is constant, because there is no horizontal force. The time is the same in both directions.'
+          concepts: [projectile]
+        - id: vertical-suvat
+          text: 'Use v = u + at vertically to find the time of flight, then multiply the horizontal velocity by that time to find the range.'
+          concepts: [projectile]
+    answer_text: 'Resolve the velocity first. The time is the same in both directions. Use the vertical motion to find the time of flight, then multiply by the constant horizontal velocity to find the range.'

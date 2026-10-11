@@ -1,0 +1,154 @@
+# Practice set for 4.7, sequences and series in modelling.
+#
+# The numbers a model produces are checked exactly: a geometric term is an
+# `evaluate`, a finite sum is an `evaluate`, a settling level is an `evaluate` of
+# the fixed-point equation, and a "when does it pass" question is a pair of
+# `compare` checks on either side of the target. The choice of model, the
+# assumptions and the refinement are reasoning, so they live in the answer text;
+# the verifier proves the arithmetic those answers rest on, nothing more.
+chapter: 4
+symbols:
+  n: {integer: true, positive: true}
+  x: {real: true}
+problems:
+  - id: p1-choose-the-model
+    section: "4.7"
+    dfe: [D6, OT3]
+    statement: 'One list is $300, 330, 363, \dots$ and another is $300, 340, 380, \dots$. For each list, decide whether an arithmetic or a geometric model fits, and give the common difference or common ratio.'
+    answer_label: 'The two models'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "330/300", answer: "11/10"}
+        - {kind: evaluate, expression: "340 - 300", answer: "40"}
+    answer_text: 'For $300, 330, 363, \dots$ the ratios are $\frac{330}{300} = 1.1$ and $\frac{363}{330} = 1.1$, which are constant, so the model is geometric with $r = 1.1$. For $300, 340, 380, \dots$ the differences are $40$ and $40$, so the model is arithmetic with $d = 40$. Working out the ratios settles the choice when the numbers grow quickly.'
+
+  - id: p2-geometric-term
+    section: "4.7"
+    dfe: [D6, OT3]
+    statement: 'A quantity follows the geometric model $u_n = 300(1.1)^{n-1}$. Work out the 8th value, to 2 decimal places.'
+    answer_label: 'The value'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "300*(11/10)**7", answer: "584.61513"}
+        - {kind: rounded, value: "300*(11/10)**7", rounded: "584.62", to: "0.01"}
+    answer_text: 'Substitute $n = 8$: $u_8 = 300(1.1)^{7} = 300(1.9487171) = 584.61513$, which is $584.62$ to 2 decimal places. The growth factor $1.1$ appears seven times, because the first value is the starting point.'
+
+  - id: p3-arithmetic-term
+    section: "4.7"
+    dfe: [D6, OT3]
+    statement: 'A quantity follows the arithmetic model $u_n = 300 + (n - 1)40$. Work out the 15th value.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "300 + 14*40"
+      answer: "860"
+    answer_text: 'Substitute $n = 15$: $u_{15} = 300 + 14(40) = 300 + 560 = 860$. The fixed amount $40$ is added fourteen times, one fewer than the position, because the first value is the starting point.'
+
+  - id: p4-declining-population
+    section: "4.7"
+    dfe: [D6, OT3]
+    statement: 'A town has $25{,}000$ people at the start of year 1, and the population falls by 4% each year. Work out the population at the start of year 10, to the nearest person.'
+    answer_label: 'The population'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "25000*(24/25)**9", answer: "17313.3498956120064"}
+        - {kind: rounded, value: "25000*(24/25)**9", rounded: "17313", to: "1"}
+    answer_text: 'A fall of 4% leaves 96% each year, so the model is $P_n = 25{,}000(0.96)^{n-1}$. At the start of year 10, $P_{10} = 25{,}000(0.96)^9 = 17{,}313.35$, which is $17{,}313$ people to the nearest person. The model treats a fraction of a person as meaningful; the answer is rounded because a population is counted in whole people.'
+
+  - id: p5-settling-level
+    section: "4.7"
+    dfe: [D6, OT3]
+    statement: 'A recurrence model is $u_{n+1} = 0.7u_n + 90$. Find the level the terms settle on.'
+    answer_label: 'The settling level'
+    check:
+      kind: evaluate
+      expression: "90/(1 - 7/10)"
+      answer: "300"
+    answer_text: 'At the settling level $L$, the next term equals the current one, so $L = 0.7L + 90$. Then $0.3L = 90$ and $L = 300$. The formula $L = \frac{c}{1 - r}$ gives the same value with $r = 0.7$ and $c = 90$. The level exists because $|r| < 1$.'
+
+  - id: p6-depreciation
+    section: "4.7"
+    dfe: [D6, OT3]
+    statement: 'A van costs £18,000. Its value falls by 12% each year. Work out its value after 4 years, to the nearest penny.'
+    answer_label: 'The value'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "18000*(22/25)**4", answer: "10794.51648"}
+        - {kind: rounded, value: "18000*(22/25)**4", rounded: "10794.52", to: "0.01"}
+    answer_text: 'A fall of 12% leaves 88%, so the model is $V_n = 18{,}000(0.88)^{n-1}$. After 4 years, $V_5 = 18{,}000(0.88)^4 = 18{,}000(0.59969536) = 10{,}794.51648$, which is £10,794.52 to the nearest penny. The factor $0.88$ appears once for each year that has passed.'
+
+  - id: p7-savings-with-deposits
+    section: "4.7"
+    dfe: [D6, OT3]
+    statement: 'A saver starts with £500. Each year the balance grows by 5%, then £200 is deposited. The balance just after a deposit follows $u_{n+1} = 1.05u_n + 200$ with $u_1 = 500$. Work out the balance just after the 4th deposit, to the nearest penny.'
+    answer_label: 'The balance'
+    check:
+      kind: apply
+      expression: "1.05*x + 200"
+      apply: {op: iterate, args: [500, 3]}
+      answer: "1209.3125"
+    answer_text: 'Apply the rule three times from $u_1 = 500$: $u_2 = 1.05(500) + 200 = 725$, then $u_3 = 1.05(725) + 200 = 961.25$, then $u_4 = 1.05(961.25) + 200 = 1209.3125$. The balance is £1209.31 to the nearest penny. The interest is added before the deposit, which is the order the model describes.'
+
+  - id: p8-when-a-target-is-passed
+    section: "4.7"
+    dfe: [D6, OT3]
+    statement: 'A village has $4000$ people at the start of year 1 and grows by 2% each year, so $P_n = 4000(1.02)^{n-1}$. Use trial and improvement to find when the population first passes $4500$.'
+    answer_label: 'The year it passes 4500'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "<", lhs: "4000*(51/50)**5", rhs: "4500"}
+        - {kind: compare, relation: ">", lhs: "4000*(51/50)**6", rhs: "4500"}
+    answer_text: 'Work out the model on both sides of $4500$. At the start of year 6, $P_6 = 4000(1.02)^5 = 4416.3$, which is below. At the start of year 7, $P_7 = 4000(1.02)^6 = 4504.6$, which is above. So the population first passes $4500$ during year 6. Trial and improvement is the honest method here: it shows exactly where the target lies, and it needs no logarithms.'
+
+  - id: p9-compare-two-plans
+    section: "4.7"
+    dfe: [D6, OT3]
+    statement: 'A fund has two plans. Plan A pays £1000 in month 1 and £60 more each month. Plan B pays £1500 in month 1 and 5% more each month. Work out the total paid by each plan over the first 5 months, and state which is larger.'
+    answer_label: 'The two totals'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(5/2)*(2*1000 + 4*60)", answer: "5600"}
+        - {kind: evaluate, expression: "1500*((21/20)**5 - 1)/(21/20 - 1)", answer: "8288.446875"}
+    answer_text: 'Plan A is arithmetic with $a = 1000$ and $d = 60$, so $S_5 = \frac{5}{2}(2(1000) + 4(60)) = 2.5(2240) = 5600$. Plan B is geometric with $a = 1500$ and $r = 1.05$, so $S_5 = \frac{1500(1.05^5 - 1)}{0.05} = 8288.446875$. Plan B pays more after 5 months: £8288.45 against £5600. The plan B model assumes 5% growth every month, which is 80% a year and cannot continue indefinitely; that assumption is part of what the plan claims.'
+
+  - id: p10-growth-factor
+    section: "4.7"
+    dfe: [D6, OT3]
+    statement: 'An investment of £1200 grows by 7% each year. Work out its value after 5 years, to the nearest penny.'
+    answer_label: 'The value'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "1200*(107/100)**5", answer: "1683.06207684"}
+        - {kind: rounded, value: "1200*(107/100)**5", rounded: "1683.06", to: "0.01"}
+    answer_text: 'A rise of 7% gives the growth factor $1 + 0.07 = 1.07$, so the model is $V_n = 1200(1.07)^{n-1}$. After 5 years, $V_6 = 1200(1.07)^5 = 1200(1.40255173) = 1683.06207684$, which is £1683.06 to the nearest penny. The growth factor is the number the old value is multiplied by, not the number added.'
+
+  - id: p11-refine-the-model
+    section: "4.7"
+    dfe: [D6, OT3]
+    statement: 'A population model is $P_n = 4000(1.02)^{n-1}$. Measurements suggest that the growth rate was too high, so the model is refined to $P_n = 4000(1.015)^{n-1}$. Work out $P_7$ under the refined model, to the nearest whole number, and compare it with the original.'
+    answer_label: 'The refined value'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "4000*(203/200)**6", answer: "4373.7730557705625"}
+        - {kind: rounded, value: "4000*(203/200)**6", rounded: "4374", to: "1"}
+    answer_text: 'Under the refined model, $P_7 = 4000(1.015)^6 = 4373.77$, which is 4374 people to the nearest person. The original model gives $P_7 = 4000(1.02)^6 = 4504.65$, about 131 people more. Refining a model changes the numbers, not the method: the same geometric structure stays, and only the growth factor is replaced.'
+
+  - id: p12-fund-passes-target
+    section: "4.7"
+    dfe: [D6, OT3]
+    statement: 'The roof fund has a quiz total of $25n^2 + 125n$ pounds and an appeal total of $3000(1 - 0.8^n)$ pounds after $n$ months. Show that the fund passes £9,000 during month 14.'
+    answer_label: 'The two totals either side of the target'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "<", lhs: "25*13**2 + 125*13 + 3000*(1 - (4/5)**13)", rhs: "9000"}
+        - {kind: compare, relation: ">", lhs: "25*14**2 + 125*14 + 3000*(1 - (4/5)**14)", rhs: "9000"}
+    answer_text: 'At the end of month 13 the total is $25(13)^2 + 125(13) + 3000(1 - 0.8^{13}) = 5850 + 2835.07 = 8685.07$, which is below £9,000. At the end of month 14 it is $25(14)^2 + 125(14) + 3000(1 - 0.8^{14}) = 6650 + 2868.06 = 9518.06$, which is above. The fund therefore passes £9,000 during month 14. Checking both sides of the target is what pins the answer to a single month.'

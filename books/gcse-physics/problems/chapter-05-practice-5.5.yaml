@@ -1,0 +1,223 @@
+# Practice set for 5.5 (Black body radiation).
+#
+# Every object emits and absorbs electromagnetic radiation. Almost every record
+# is descriptive, so it uses `structured` and proves only that a model answer
+# contains the declared ideas in order. The two numeric records apply the wave
+# equation to the peak of the emitted radiation.
+chapter: 5
+problems:
+  - id: p1-every-object
+    section: '5.5'
+    tier: F
+    dfe: [WA7]
+    statement: 'Explain why every object emits infrared radiation, even when it is cold.'
+    answer_label: 'Why every object emits infrared radiation'
+    check:
+      kind: structured
+      requires: [state-emission, state-temperature]
+      concepts: [black-body-radiation, infrared]
+      points:
+        - id: state-emission
+          text: 'Every object emits electromagnetic radiation because of the motion of the particles inside it.'
+          concepts: [black-body-radiation]
+        - id: state-temperature
+          text: 'A warm object emits more infrared radiation than a cool object, but even a cold object emits some.'
+          concepts: [infrared]
+
+  - id: p2-black-surface
+    section: '5.5'
+    tier: F
+    dfe: [WA7]
+    statement: 'A black surface and a shiny surface are at the same temperature. Compare the radiation each surface emits and absorbs.'
+    answer_label: 'A comparison of the two surfaces'
+    check:
+      kind: structured
+      requires: [black-surface, shiny-surface]
+      concepts: [absorption, emission]
+      points:
+        - id: black-surface
+          text: 'A black surface is a good absorber and a good emitter of infrared radiation.'
+          concepts: [absorption, emission]
+        - id: shiny-surface
+          text: 'A shiny surface is a poor absorber and a poor emitter, because it reflects most of the radiation.'
+          concepts: [absorption, emission]
+
+  - id: p3-temperature-rise
+    section: '5.5'
+    tier: F
+    dfe: [WA7]
+    statement: 'Explain what happens to the temperature of an object when it absorbs more radiation than it emits.'
+    answer_label: 'What happens to the temperature'
+    check:
+      kind: structured
+      requires: [net-absorption, temperature-rise]
+      concepts: [emission, absorption, thermal-store]
+      points:
+        - id: net-absorption
+          text: 'The object absorbs more energy each second than it emits, so its thermal store fills.'
+          concepts: [absorption, thermal-store]
+        - id: temperature-rise
+          text: 'The extra energy raises the temperature of the object.'
+          concepts: [emission]
+
+  - id: p4-hotter-object
+    section: '5.5'
+    tier: F
+    dfe: [WA7]
+    statement: 'Two objects have the same size and the same surface. One is hotter than the other. Compare the radiation they emit.'
+    answer_label: 'A comparison of the radiation emitted'
+    check:
+      kind: structured
+      requires: [more-radiation, shorter-wavelength]
+      concepts: [black-body-radiation]
+      points:
+        - id: more-radiation
+          text: 'The hotter object emits more radiation each second, so its total intensity is greater.'
+          concepts: [black-body-radiation]
+        - id: shorter-wavelength
+          text: 'The most intense wavelength emitted by the hotter object is shorter than for the cooler object.'
+          concepts: [black-body-radiation]
+
+  - id: p5-peak-frequency
+    section: '5.5'
+    tier: F
+    dfe: [WA7]
+    statement: 'A warm object emits most of its radiation at a wavelength of 10 μm. Calculate the frequency of this radiation.'
+    answer_label: 'Frequency of the peak radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "10", unit: "μm"}
+          answer: {value: "3.0e13", unit: "Hz"}
+        - {kind: sigfigs, value: "3.0e13", figures: 2, answer: "3.0e13", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{1.0 \times 10^{-5}} = 3.0 \times 10^{13}\,\text{Hz}$.'
+
+  - id: p6-hot-peak-frequency
+    section: '5.5'
+    tier: F
+    dfe: [WA7]
+    statement: 'A hotter object emits most of its radiation at a wavelength of 2.0 μm. Calculate the frequency of this radiation.'
+    answer_label: 'Frequency of the peak radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "2.0", unit: "μm"}
+          answer: {value: "1.5e14", unit: "Hz"}
+        - {kind: sigfigs, value: "1.5e14", figures: 2, answer: "1.5e14", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{2.0 \times 10^{-6}} = 1.5 \times 10^{14}\,\text{Hz}$.'
+
+  - id: p7-glow
+    section: '5.5'
+    tier: F
+    dfe: [WA7]
+    statement: 'A piece of iron is heated. It first glows dull red, then orange, then white. Explain the change.'
+    answer_label: 'Why the glow changes colour'
+    check:
+      kind: structured
+      requires: [more-radiation, shorter-wavelength]
+      concepts: [black-body-radiation, visible-spectrum]
+      points:
+        - id: more-radiation
+          text: 'As the iron gets hotter it emits much more radiation at every wavelength.'
+          concepts: [black-body-radiation]
+        - id: shorter-wavelength
+          text: 'The most intense wavelength becomes shorter. It moves from red, through orange, towards the shorter wavelengths of white light.'
+          concepts: [visible-spectrum]
+
+  - id: p8-star-temperature
+    section: '5.5'
+    tier: F
+    dfe: [WA7]
+    statement: 'One star looks red and another looks blue. State which star is hotter and explain your answer.'
+    answer_label: 'Which star is hotter'
+    check:
+      kind: structured
+      requires: [choose-star, explain-colour]
+      concepts: [black-body-radiation, visible-spectrum]
+      points:
+        - id: choose-star
+          text: 'The blue star is hotter.'
+          concepts: [black-body-radiation]
+        - id: explain-colour
+          text: 'A hotter star emits its most intense radiation at a shorter wavelength. Blue light has a shorter wavelength than red light.'
+          concepts: [visible-spectrum]
+
+  - id: p9-equilibrium
+    section: '5.5'
+    tier: F
+    dfe: [WA7]
+    statement: 'A cup of hot tea cools down and then stays at room temperature. Explain why its temperature becomes constant.'
+    answer_label: 'Why the temperature becomes constant'
+    check:
+      kind: structured
+      requires: [losing-more, balance]
+      concepts: [emission, absorption]
+      points:
+        - id: losing-more
+          text: 'At first the tea is hotter than its surroundings, so it emits more radiation than it absorbs and it cools.'
+          concepts: [emission]
+        - id: balance
+          text: 'Once the tea is at room temperature it emits and absorbs energy at the same rate, so its temperature stops changing.'
+          concepts: [absorption]
+
+  - id: p10-sun-earth
+    section: '5.5'
+    tier: F
+    dfe: [WA7]
+    statement: 'The Sun is much hotter than the Earth. Explain how their emitted radiation differs, and why the Earth still has a steady temperature.'
+    answer_label: 'How the radiation differs'
+    check:
+      kind: structured
+      requires: [sun-hotter, earth-balance]
+      concepts: [black-body-radiation, emission, absorption]
+      points:
+        - id: sun-hotter
+          text: 'The Sun is much hotter, so it emits far more radiation and its most intense wavelength is much shorter.'
+          concepts: [black-body-radiation]
+        - id: earth-balance
+          text: 'The Earth absorbs radiation from the Sun and emits its own infrared radiation. Its temperature is steady when the two rates are equal.'
+          concepts: [emission, absorption]
+
+  - id: p11-thermogram
+    section: '5.5'
+    tier: F
+    dfe: [WA7]
+    statement: 'A thermal camera shows a person as bright against a cold background. Explain what the camera is detecting.'
+    answer_label: 'What the thermal camera detects'
+    check:
+      kind: structured
+      requires: [detect-infrared, brightness]
+      concepts: [infrared, emission, black-body-radiation]
+      points:
+        - id: detect-infrared
+          text: 'The camera detects the infrared radiation emitted by the objects in the scene.'
+          concepts: [infrared, emission]
+        - id: brightness
+          text: 'The person is warmer than the background, so the person emits more infrared radiation and appears brighter.'
+          concepts: [black-body-radiation]
+
+  - id: p12-method-choice
+    section: '5.5'
+    tier: F
+    dfe: [WA7]
+    statement: 'Two objects emit their most intense radiation at 3.0 μm and 6.0 μm. Say which relationship you will use to compare their frequencies, then work out both frequencies and state which object is hotter.'
+    answer_label: 'The two frequencies and the hotter object'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "3.0", unit: "μm"}
+          answer: {value: "1.0e14", unit: "Hz"}
+        - {kind: sigfigs, value: "1.0e14", figures: 2, answer: "1.0e14", convention: round-once}
+    answer_text: 'Use $f = \dfrac{c}{\lambda}$. The first object emits at $f = \dfrac{3.0 \times 10^8}{3.0 \times 10^{-6}} = 1.0 \times 10^{14}\,\text{Hz}$. The second emits at $f = \dfrac{3.0 \times 10^8}{6.0 \times 10^{-6}} = 5.0 \times 10^{13}\,\text{Hz}$. The first object has the higher frequency and the shorter peak wavelength, so it is the hotter object.'

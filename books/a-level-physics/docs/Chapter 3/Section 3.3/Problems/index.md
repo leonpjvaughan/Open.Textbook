@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.3 Work, energy and power — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: AP3
+Work through these on your own. Start each energy question by naming the store
+that loses energy and the store that gains it.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-03-practice-3.3
+
+:::answers chapter-03-practice-3.3

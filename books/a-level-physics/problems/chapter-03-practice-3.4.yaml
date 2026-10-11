@@ -1,0 +1,181 @@
+# Practice set for 3.4 (Momentum).
+#
+# Both the questions and the answers on the page are rendered from these records.
+# Momentum, impulse and force with a unit are checked by `dimensions`; a change in
+# momentum that reverses direction uses `approx`; a two-dimensional momentum uses
+# the SymPy `vector` kind (a norm); a force-time graph uses `area`. The
+# `structured` records prove only that a model answer contains its declared ideas
+# in order.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. Whether a system really has no
+# resultant external force, and whether kinetic energy should be conserved, are
+# not checked.
+chapter: 3
+problems:
+  - id: p1-momentum
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A ball of mass 0.25 kg moves at $20\,\text{m}\,\text{s}^{-1}$. Find its momentum.'
+    answer_label: 'The momentum'
+    check:
+      kind: dimensions
+      expression: "m * v"
+      values:
+        m: {value: "0.25", unit: "kg"}
+        v: {value: "20", unit: "m s^-1"}
+      answer: {value: "5.0", unit: "kg m s^-1"}
+    answer_text: '$p = mv = 0.25 \times 20 = 5.0\,\text{kg}\,\text{m}\,\text{s}^{-1}$, in the direction of motion.'
+
+  - id: p2-impulse
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A force of 600 N acts for 0.20 s. Find the impulse.'
+    answer_label: 'The impulse'
+    check:
+      kind: dimensions
+      expression: "F * t"
+      values:
+        F: {value: "600", unit: "N"}
+        t: {value: "0.20", unit: "s"}
+      answer: {value: "120", unit: "N s"}
+    answer_text: 'Impulse $= F\Delta t = 600 \times 0.20 = 120\,\text{N}\,\text{s}$, which is also $120\,\text{kg}\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: p3-rebound-momentum
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A ball of mass 0.10 kg hits a wall at $20\,\text{m}\,\text{s}^{-1}$ and rebounds at $15\,\text{m}\,\text{s}^{-1}$. Find the change in momentum. Take the direction towards the wall as positive.'
+    answer_label: 'The change in momentum'
+    check:
+      kind: approx
+      value: "0.10 * (-15 - 20)"
+      target: "-3.5"
+      tolerance: "0.001"
+    answer_text: '$\Delta p = m(v - u) = 0.10(-15 - 20) = -3.5\,\text{kg}\,\text{m}\,\text{s}^{-1}$, so the change is $3.5\,\text{kg}\,\text{m}\,\text{s}^{-1}$ away from the wall.'
+
+  - id: p4-force-from-momentum
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'The momentum of a ball increases from $1.2\,\text{kg}\,\text{m}\,\text{s}^{-1}$ to $3.6\,\text{kg}\,\text{m}\,\text{s}^{-1}$ in 0.30 s. Find the average force on the ball.'
+    answer_label: 'The average force'
+    check:
+      kind: dimensions
+      expression: "(p2 - p1) / t"
+      values:
+        p2: {value: "3.6", unit: "kg m s^-1"}
+        p1: {value: "1.2", unit: "kg m s^-1"}
+        t: {value: "0.30", unit: "s"}
+      answer: {value: "8.0", unit: "N"}
+    answer_text: '$F = \dfrac{\Delta p}{\Delta t} = \dfrac{3.6 - 1.2}{0.30} = 8.0\,\text{N}$, in the direction of the change.'
+
+  - id: p5-stick-together
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A trolley of mass 4.0 kg moves at $2.5\,\text{m}\,\text{s}^{-1}$ and collides with a stationary trolley of mass 1.0 kg. The trolleys stick together. Find their common velocity.'
+    answer_label: 'The common velocity'
+    check:
+      kind: dimensions
+      expression: "(m1 * u1) / (m1 + m2)"
+      values:
+        m1: {value: "4.0", unit: "kg"}
+        u1: {value: "2.5", unit: "m s^-1"}
+        m2: {value: "1.0", unit: "kg"}
+      answer: {value: "2.0", unit: "m s^-1"}
+    answer_text: 'Total momentum before $= 4.0 \times 2.5 = 10\,\text{kg}\,\text{m}\,\text{s}^{-1}$. Total mass after $= 5.0\,\text{kg}$, so $v = \dfrac{10}{5.0} = 2.0\,\text{m}\,\text{s}^{-1}$ in the original direction.'
+
+  - id: p6-inelastic-loss
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A trolley of mass 2.0 kg moves at $5.0\,\text{m}\,\text{s}^{-1}$ and collides with a stationary trolley of mass 3.0 kg. They stick together. Find the kinetic energy lost in the collision.'
+    answer_label: 'The kinetic energy lost'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "0.5 * 2.0 * 5.0**2", target: "25", tolerance: "0.001"}
+        - {kind: approx, value: "0.5 * 5.0 * ((2.0 * 5.0) / 5.0)**2", target: "10", tolerance: "0.001"}
+        - {kind: approx, value: "0.5 * 2.0 * 5.0**2 - 0.5 * 5.0 * ((2.0 * 5.0) / 5.0)**2", target: "15", tolerance: "0.001"}
+    answer_text: 'Before, $E_k = \tfrac{1}{2} \times 2.0 \times 5.0^2 = 25\,\text{J}$. The common velocity is $v = \dfrac{10}{5.0} = 2.0\,\text{m}\,\text{s}^{-1}$, so after, $E_k = \tfrac{1}{2} \times 5.0 \times 2.0^2 = 10\,\text{J}$. The kinetic energy lost is $25 - 10 = 15\,\text{J}$, transferred to thermal stores and sound. The collision is inelastic.'
+
+  - id: p7-two-dimensions
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A ball of mass 0.20 kg moves due east at $6.0\,\text{m}\,\text{s}^{-1}$. A second ball of mass 0.30 kg moves due north at $4.0\,\text{m}\,\text{s}^{-1}$. Find the magnitude of the total momentum of the two balls.'
+    answer_label: 'The magnitude of the total momentum'
+    check:
+      kind: vector
+      op: norm
+      args: ["Matrix([1.2, 1.2])"]
+      answer: "6*sqrt(2)/5"
+    answer_text: 'The momenta are $0.20 \times 6.0 = 1.2\,\text{kg}\,\text{m}\,\text{s}^{-1}$ east and $0.30 \times 4.0 = 1.2\,\text{kg}\,\text{m}\,\text{s}^{-1}$ north. They are perpendicular, so the magnitude is $\sqrt{1.2^2 + 1.2^2} = 1.7\,\text{kg}\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: p8-force-time-area
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A force–time graph for a collision has the points $(0, 0)$, $(0.10, 200)$ and $(0.20, 0)$. Find the impulse.'
+    answer_label: 'The impulse'
+    check:
+      kind: area
+      series: [[0, 0], [0.10, 200], [0.20, 0]]
+      answer: "20"
+      tolerance: "0.001"
+    answer_text: 'The impulse is the area under the force–time graph, a triangle of base 0.20 s and height 200 N: $\tfrac{1}{2} \times 0.20 \times 200 = 20\,\text{N}\,\text{s}$.'
+
+  - id: p9-recoil
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'A rifle of mass 3.5 kg fires a bullet of mass 0.015 kg at $600\,\text{m}\,\text{s}^{-1}$. Find the recoil velocity of the rifle.'
+    answer_label: 'The recoil velocity'
+    check:
+      kind: approx
+      value: "-(0.015 * 600) / 3.5"
+      target: "-2.57"
+      tolerance: "0.01"
+    answer_text: 'Total momentum is zero before firing, so $0 = 0.015 \times 600 + 3.5v$. Then $v = -\dfrac{9.0}{3.5} = -2.6\,\text{m}\,\text{s}^{-1}$. The rifle recoils at $2.6\,\text{m}\,\text{s}^{-1}$ opposite to the bullet.'
+
+  - id: p10-explosion
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'An object of mass 6.0 kg is at rest. It explodes into two pieces of mass 2.0 kg and 4.0 kg. The 2.0 kg piece moves at $9.0\,\text{m}\,\text{s}^{-1}$. Find the velocity of the 4.0 kg piece.'
+    answer_label: 'The velocity of the larger piece'
+    check: {kind: evaluate, expression: "-(2.0 * 9.0) / 4.0", answer: "-4.5"}
+    answer_text: 'Total momentum stays at zero: $0 = 2.0 \times 9.0 + 4.0v$, so $v = -\dfrac{18}{4.0} = -4.5\,\text{m}\,\text{s}^{-1}$. The larger piece moves at $4.5\,\text{m}\,\text{s}^{-1}$ in the opposite direction.'
+
+  - id: p11-airbag
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'Explain why an airbag reduces the injury to a driver in a crash, using the impulse–momentum relation.'
+    answer_label: 'Why the airbag reduces injury'
+    check:
+      kind: structured
+      requires: [fixed-change, longer-time]
+      concepts: [impulse, force]
+      points:
+        - id: fixed-change
+          text: 'The change in the momentum of the driver is fixed by the initial and final velocities, so the impulse F times t is fixed.'
+          concepts: [impulse]
+        - id: longer-time
+          text: 'The airbag increases the contact time, so the average force on the driver is smaller, because F = delta p / delta t.'
+          concepts: [impulse, force]
+    answer_text: 'The change in momentum is fixed. The airbag increases the contact time, so the average force is smaller.'
+
+  - id: p12-method-choice
+    section: '3.4'
+    dfe: [AP3]
+    statement: 'Two railway wagons collide and couple. Say whether you would use the equations of motion, conservation of energy, or conservation of momentum to find the speed after the collision, and why.'
+    answer_label: 'The method and the reason'
+    check:
+      kind: structured
+      requires: [choose-momentum, reject-energy, state-when]
+      concepts: [conservation-of-momentum, method-choice]
+      points:
+        - id: choose-momentum
+          text: 'Use conservation of momentum, because the collision involves two masses and momentum is conserved in every collision.'
+          concepts: [conservation-of-momentum]
+        - id: reject-energy
+          text: 'Kinetic energy is not conserved, because the wagons couple and some energy becomes thermal energy and sound.'
+          concepts: [conservation-of-momentum]
+        - id: state-when
+          text: 'The equations of motion need a constant acceleration, and a collision does not have one that is known.'
+          concepts: [method-choice]
+    answer_text: 'Use conservation of momentum, because it holds in every collision. Kinetic energy is not conserved when the wagons couple, so an energy method would be wrong.'
+    answer_text: 'Use conservation of momentum, because it holds in every collision. Kinetic energy is not conserved when the wagons couple, so an energy method would be wrong.'

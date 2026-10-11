@@ -9,9 +9,16 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.1 The sine and cosine rules and the area of a triangle — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: E1
+Work through these on your own. Decide which rule you need before you reach for
+the calculator: two angles and a side, two sides and the included angle, or three
+sides. Give each angle in degrees and each length to three significant figures
+unless the question says otherwise.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-05-practice-5.1
+
+:::answers chapter-05-practice-5.1

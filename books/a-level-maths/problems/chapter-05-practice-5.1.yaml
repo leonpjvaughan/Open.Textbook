@@ -1,0 +1,118 @@
+# Practice set for 5.1, the sine and cosine rules and the area of a triangle.
+#
+# Every angle is written in radians in the CAS fields, because SymPy works in
+# radians. The statements keep the degree labels the reader sees. The checks
+# prove the arithmetic of each rule; the choice of rule and the reading of the
+# diagram are human review.
+chapter: 5
+problems:
+  - id: p1-sine-rule-side
+    section: "5.1"
+    dfe: [E1]
+    statement: 'In triangle $ABC$, angle $A = 30^\circ$, angle $B = 45^\circ$ and side $a = 6$ cm. Find side $b$.'
+    answer_label: 'The side $b$'
+    check:
+      kind: evaluate
+      expression: "6*sin(pi/4)/sin(pi/6)"
+      answer: "6*sqrt(2)"
+    answer_text: 'Pair each side with the angle opposite it: $\dfrac{b}{\sin 45^\circ} = \dfrac{6}{\sin 30^\circ}$. So $b = \dfrac{6 \times \frac{\sqrt{2}}{2}}{\frac{1}{2}} = 6\sqrt{2} \approx 8.49$ cm.'
+
+  - id: p2-sine-rule-angle
+    section: "5.1"
+    dfe: [E1]
+    statement: 'In triangle $ABC$, side $a = 5$ cm, side $b = 5\sqrt{2}$ cm and angle $A = 30^\circ$. Find the acute value of angle $B$.'
+    answer_label: 'The acute angle $B$'
+    check:
+      kind: evaluate
+      expression: "asin(5*sqrt(2)*sin(pi/6)/5)"
+      answer: "pi/4"
+    answer_text: 'Use the angle form: $\dfrac{\sin B}{5\sqrt{2}} = \dfrac{\sin 30^\circ}{5}$. Then $\sin B = \dfrac{5\sqrt{2} \times \frac{1}{2}}{5} = \dfrac{\sqrt{2}}{2}$. The acute value is $B = 45^\circ$.'
+
+  - id: p3-cosine-rule-side
+    section: "5.1"
+    dfe: [E1]
+    statement: 'In triangle $ABC$, side $b = 5$ cm, side $c = 8$ cm and the included angle $A = 60^\circ$. Find side $a$.'
+    answer_label: 'The side $a$'
+    check:
+      kind: evaluate
+      expression: "sqrt(5**2 + 8**2 - 2*5*8*cos(pi/3))"
+      answer: "7"
+    answer_text: 'Cosine rule: $a^2 = 5^2 + 8^2 - 2 \times 5 \times 8 \times \cos 60^\circ = 25 + 64 - 40 = 49$, so $a = 7$ cm.'
+
+  - id: p4-cosine-rule-angle
+    section: "5.1"
+    dfe: [E1]
+    statement: 'A triangle has sides $3$ cm, $5$ cm and $7$ cm. Find the angle opposite the $7$ cm side, in degrees.'
+    answer_label: 'The angle opposite the $7$ cm side'
+    check:
+      kind: evaluate
+      expression: "acos((3**2 + 5**2 - 7**2)/(2*3*5))"
+      answer: "2*pi/3"
+    answer_text: 'Rearrange the cosine rule: $\cos C = \dfrac{3^2 + 5^2 - 7^2}{2 \times 3 \times 5} = \dfrac{9 + 25 - 49}{30} = -\dfrac{1}{2}$. So $C = 120^\circ$, which is $\dfrac{2\pi}{3}$ radians.'
+
+  - id: p5-area
+    section: "5.1"
+    dfe: [E1]
+    statement: 'Find the area of the triangle with $a = 6$ cm, $b = 8$ cm and included angle $C = 30^\circ$.'
+    answer_label: 'The area'
+    check:
+      kind: evaluate
+      expression: "1/2*6*8*sin(pi/6)"
+      answer: "12"
+    answer_text: 'Area $= \tfrac{1}{2}ab\sin C = \tfrac{1}{2} \times 6 \times 8 \times \sin 30^\circ = 24 \times \tfrac{1}{2} = 12$ cm$^2$.'
+
+  - id: p6-area-surds
+    section: "5.1"
+    dfe: [E1]
+    statement: 'Find the area of the triangle with sides $6$ cm and $4\sqrt{2}$ cm and included angle $45^\circ$.'
+    answer_label: 'The area'
+    check:
+      kind: evaluate
+      expression: "1/2*6*4*sqrt(2)*sin(pi/4)"
+      answer: "12"
+    answer_text: 'Area $= \tfrac{1}{2} \times 6 \times 4\sqrt{2} \times \sin 45^\circ = 12\sqrt{2} \times \dfrac{\sqrt{2}}{2} = 12$ cm$^2$.'
+
+  - id: p7-ambiguous-angle
+    section: "5.1"
+    dfe: [E1]
+    statement: 'In triangle $ABC$, side $a = 10$ cm, side $b = 12$ cm and angle $A = 40^\circ$. Find the obtuse possible value of angle $B$, to three significant figures.'
+    answer_label: 'The obtuse angle $B$'
+    check:
+      kind: approx
+      value: "180 - asin(12*sin(40*pi/180)/10)*180/pi"
+      target: "129.5"
+      tolerance: "0.05"
+    answer_text: 'The sine rule gives $\sin B = \dfrac{12\sin 40^\circ}{10} \approx 0.7713$. The calculator returns the acute value $B \approx 50.5^\circ$. The other angle with the same sine is $180^\circ - 50.5^\circ \approx 129.5^\circ$. Both fit here, because the remaining angle is positive in each case.'
+
+  - id: p8-survey-side
+    section: "5.1"
+    dfe: [E1]
+    statement: 'In triangle $SLB$, the angle at $S$ is $30^\circ$, the angle at $B$ is $45^\circ$ and the side $SL = 10$ km. Find the side $LB$, opposite the angle at $S$.'
+    answer_label: 'The side $LB$'
+    check:
+      kind: evaluate
+      expression: "10*sin(pi/6)/sin(pi/4)"
+      answer: "5*sqrt(2)"
+    answer_text: 'Pair $LB$ with the angle at $S$ and $SL$ with the angle at $B$: $\dfrac{LB}{\sin 30^\circ} = \dfrac{10}{\sin 45^\circ}$. So $LB = \dfrac{10 \times \frac{1}{2}}{\frac{\sqrt{2}}{2}} = 5\sqrt{2} \approx 7.07$ km.'
+
+  - id: p9-obtuse-included
+    section: "5.1"
+    dfe: [E1]
+    statement: 'In triangle $ABC$, side $b = 7$ cm, side $c = 9$ cm and the included angle $A = 120^\circ$. Find side $a$, in surd form.'
+    answer_label: 'The side $a$'
+    check:
+      kind: evaluate
+      expression: "sqrt(7**2 + 9**2 - 2*7*9*cos(2*pi/3))"
+      answer: "sqrt(193)"
+    answer_text: 'Cosine rule: $a^2 = 49 + 81 - 126\cos 120^\circ = 130 - 126 \times \left(-\tfrac{1}{2}\right) = 130 + 63 = 193$. So $a = \sqrt{193} \approx 13.9$ cm. The negative cosine makes the third side longer than either known side.'
+
+  - id: p10-obtuse-area
+    section: "5.1"
+    dfe: [E1]
+    statement: 'Find the area of the triangle with sides $5$ cm and $8$ cm and included angle $150^\circ$.'
+    answer_label: 'The area'
+    check:
+      kind: evaluate
+      expression: "1/2*5*8*sin(5*pi/6)"
+      answer: "10"
+    answer_text: 'Area $= \tfrac{1}{2} \times 5 \times 8 \times \sin 150^\circ = 20 \times \tfrac{1}{2} = 10$ cm$^2$. The angle is obtuse, so its sine is smaller than its acute partner, and the area is smaller than for $30^\circ$.'

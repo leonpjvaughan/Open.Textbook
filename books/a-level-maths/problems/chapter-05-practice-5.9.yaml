@@ -1,0 +1,123 @@
+# Practice set for 5.9, the single-wave forms.
+#
+# The equivalence of a sum of a cosine and a sine with R cos(t - a) is proven
+# symbolically. A decimal solution of that equation is checked to a declared
+# tolerance, because its exact surd form is not unique.
+chapter: 5
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-single-wave
+    section: "5.9"
+    dfe: [E6]
+    statement: 'Write $3\cos\theta + 4\sin\theta$ in the form $R\cos(\theta - \alpha)$, and state the greatest value.'
+    answer_label: 'The single wave and its greatest value'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "sqrt(3**2 + 4**2)", answer: "5"}
+        - {kind: evaluate, expression: "3*cos(x) + 4*sin(x)", answer: "5*cos(x - atan(4/3))"}
+    answer_text: '$R = \sqrt{3^2 + 4^2} = 5$ and $\tan\alpha = \dfrac{4}{3}$, so $\alpha \approx 0.927$. The single wave is $5\cos(\theta - 0.927)$, and its greatest value is $5$.'
+
+  - id: p2-negative-sine
+    section: "5.9"
+    dfe: [E6]
+    statement: 'Write $5\cos\theta - 12\sin\theta$ in the form $R\cos(\theta - \alpha)$, and state the greatest value.'
+    answer_label: 'The single wave and its greatest value'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "sqrt(5**2 + 12**2)", answer: "13"}
+        - {kind: evaluate, expression: "5*cos(x) - 12*sin(x)", answer: "13*cos(x + atan(12/5))"}
+    answer_text: '$R = \sqrt{25 + 144} = 13$. Here $a = 5$ and $b = -12$, so $\alpha \approx -1.176$ and the wave is $13\cos(\theta + 1.176)$. The greatest value is $13$.'
+
+  - id: p3-exact-form
+    section: "5.9"
+    dfe: [E6]
+    statement: 'Write $-\cos\theta + \sqrt{3}\sin\theta$ in the form $R\cos(\theta - \alpha)$, in exact form.'
+    answer_label: 'The single wave'
+    check:
+      kind: evaluate
+      expression: "-cos(x) + sqrt(3)*sin(x)"
+      answer: "2*cos(x - 2*pi/3)"
+    answer_text: '$R = \sqrt{1 + 3} = 2$. The coefficient of cosine is negative and the coefficient of sine is positive, so $\alpha$ is in the second quadrant. The related acute angle is $\dfrac{\pi}{3}$, so $\alpha = \dfrac{2\pi}{3}$ and the wave is $2\cos\left(\theta - \dfrac{2\pi}{3}\right)$.'
+
+  - id: p4-greatest-value
+    section: "5.9"
+    dfe: [E6]
+    statement: 'State the greatest value of $3\cos\theta + 4\sin\theta$.'
+    answer_label: 'The greatest value'
+    check:
+      kind: evaluate
+      expression: "sqrt(3**2 + 4**2)"
+      answer: "5"
+    answer_text: 'The greatest value is $R = \sqrt{3^2 + 4^2} = 5$. It is reached when $\theta - \alpha = 0$, that is when $\theta \approx 0.927$.'
+
+  - id: p5-least-value
+    section: "5.9"
+    dfe: [E6]
+    statement: 'State the least value of $5\cos\theta - 12\sin\theta$.'
+    answer_label: 'The least value'
+    check:
+      kind: evaluate
+      expression: "-sqrt(5**2 + 12**2)"
+      answer: "-13"
+    answer_text: 'The least value is $-R = -\sqrt{5^2 + 12^2} = -13$. It is reached when $\cos(\theta - \alpha) = -1$, that is at the opposite phase to the peak.'
+
+  - id: p6-sine-form
+    section: "5.9"
+    dfe: [E6]
+    statement: 'Write $4\sin\theta + 3\cos\theta$ in the form $R\sin(\theta + \beta)$, with $\beta$ acute.'
+    answer_label: 'The single wave'
+    check:
+      kind: evaluate
+      expression: "4*sin(x) + 3*cos(x)"
+      answer: "5*sin(x + atan(3/4))"
+    answer_text: '$R = \sqrt{4^2 + 3^2} = 5$. For the sine form, $\cos\beta = \dfrac{4}{5}$ and $\sin\beta = \dfrac{3}{5}$, so $\beta \approx 0.644$ and the wave is $5\sin(\theta + 0.644)$.'
+
+  - id: p7-solve-equation
+    section: "5.9"
+    dfe: [E6]
+    statement: 'Solve $3\cos\theta + 4\sin\theta = 2$ for the smallest positive value of $\theta$, to three decimal places.'
+    answer_label: 'The smallest positive solution'
+    check:
+      kind: approx
+      value: "atan(4/3) + acos(2/5)"
+      target: "2.087"
+      tolerance: "0.001"
+    answer_text: 'The left-hand side is $5\cos(\theta - 0.927)$. So $\cos(\theta - 0.927) = 0.4$, giving $\theta - 0.927 = \pm 1.159$. The positive solution is $\theta \approx 0.927 + 1.159 = 2.087$ radians.'
+
+  - id: p8-tide-maximum
+    section: "5.9"
+    dfe: [E6]
+    statement: 'The tide height is $h = 12\cos\theta + 5\sin\theta$ metres. State the greatest height.'
+    answer_label: 'The greatest height'
+    check:
+      kind: evaluate
+      expression: "sqrt(12**2 + 5**2)"
+      answer: "13"
+    answer_text: 'The greatest height is $R = \sqrt{144 + 25} = 13$ m. The height is never $17$ m, because the cosine and sine terms do not reach their peaks at the same angle.'
+
+  - id: p9-phase-angle
+    section: "5.9"
+    dfe: [E6]
+    statement: 'For $12\cos\theta + 5\sin\theta$, find the phase $\alpha$ in radians to three decimal places.'
+    answer_label: 'The phase'
+    check:
+      kind: approx
+      value: "atan(5/12)"
+      target: "0.395"
+      tolerance: "0.001"
+    answer_text: '$\tan\alpha = \dfrac{5}{12}$, so $\alpha \approx 0.395$ radians. Both coefficients are positive, so $\alpha$ is acute and no quadrant adjustment is needed.'
+
+  - id: p10-tide-equation
+    section: "5.9"
+    dfe: [E6]
+    statement: 'Solve $12\cos\theta + 5\sin\theta = 10$ for the smallest positive value of $\theta$, to three decimal places.'
+    answer_label: 'The smallest positive solution'
+    check:
+      kind: approx
+      value: "atan(5/12) + acos(10/13)"
+      target: "1.088"
+      tolerance: "0.001"
+    answer_text: 'Write the left-hand side as $13\cos(\theta - 0.395)$. Then $\cos(\theta - 0.395) = \dfrac{10}{13} = 0.7692$, so $\theta - 0.395 \approx 0.693$. The smallest positive solution is $\theta \approx 0.395 + 0.693 = 1.088$ radians.'

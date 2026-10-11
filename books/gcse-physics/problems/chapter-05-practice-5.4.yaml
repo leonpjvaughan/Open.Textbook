@@ -1,0 +1,224 @@
+# Practice set for 5.4 (Colour and frequency).
+#
+# Visible light is a small part of the spectrum, and the colour of an object is
+# a matter of which wavelengths it reflects. Almost every record is descriptive,
+# so it uses `structured` and proves only that a model answer contains the
+# declared ideas in order. The two numeric records apply the wave equation to
+# the ends of the visible spectrum.
+chapter: 5
+problems:
+  - id: p1-red-frequency
+    section: '5.4'
+    tier: F
+    dfe: [WA6]
+    statement: 'Red light has a wavelength of 750 nm. Calculate its frequency.'
+    answer_label: 'Frequency of the red light'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "750", unit: "nm"}
+          answer: {value: "4.0e14", unit: "Hz"}
+        - {kind: sigfigs, value: "4.0e14", figures: 2, answer: "4.0e14", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{7.5 \times 10^{-7}} = 4.0 \times 10^{14}\,\text{Hz}$.'
+
+  - id: p2-violet-frequency
+    section: '5.4'
+    tier: F
+    dfe: [WA6]
+    statement: 'Violet light has a wavelength of 400 nm. Calculate its frequency.'
+    answer_label: 'Frequency of the violet light'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "400", unit: "nm"}
+          answer: {value: "7.5e14", unit: "Hz"}
+        - {kind: sigfigs, value: "7.5e14", figures: 2, answer: "7.5e14", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{4.0 \times 10^{-7}} = 7.5 \times 10^{14}\,\text{Hz}$.'
+
+  - id: p3-red-violet
+    section: '5.4'
+    tier: F
+    dfe: [WA6]
+    statement: 'Compare red light and violet light. State which has the longer wavelength and which has the higher frequency.'
+    answer_label: 'A comparison of red and violet light'
+    check:
+      kind: structured
+      requires: [wavelength, frequency]
+      concepts: [visible-spectrum]
+      points:
+        - id: wavelength
+          text: 'Red light has the longer wavelength.'
+          concepts: [visible-spectrum]
+        - id: frequency
+          text: 'Violet light has the higher frequency.'
+          concepts: [visible-spectrum]
+
+  - id: p4-white-light
+    section: '5.4'
+    tier: F
+    dfe: [WA6]
+    statement: 'White light passes through a prism and spreads into a spectrum. Explain why the colours separate.'
+    answer_label: 'Why the colours separate'
+    check:
+      kind: structured
+      requires: [state-dispersion, explain-refraction]
+      concepts: [dispersion, refraction, frequency]
+      points:
+        - id: state-dispersion
+          text: 'The white light spreads out into the colours of the visible spectrum.'
+          concepts: [dispersion]
+        - id: explain-refraction
+          text: 'Each colour has a different frequency, so each colour is refracted by a different amount. Violet is refracted most and red least.'
+          concepts: [refraction, frequency]
+
+  - id: p5-red-filter
+    section: '5.4'
+    tier: F
+    dfe: [WA6]
+    statement: 'White light shines on a red filter. Describe the light that passes through the filter, and explain what happens to the other colours.'
+    answer_label: 'The light that passes through the filter'
+    check:
+      kind: structured
+      requires: [transmit-red, absorb-others]
+      concepts: [filter, absorption]
+      points:
+        - id: transmit-red
+          text: 'Red light passes through the filter.'
+          concepts: [filter]
+        - id: absorb-others
+          text: 'The filter absorbs the other colours, so green and blue light are removed.'
+          concepts: [absorption]
+
+  - id: p6-red-object-green-light
+    section: '5.4'
+    tier: F
+    dfe: [WA6]
+    statement: 'A red football is taken into a room lit only by green light. State and explain the colour the ball appears.'
+    answer_label: 'The colour of the ball in green light'
+    check:
+      kind: structured
+      requires: [state-colour, explain-reflection]
+      concepts: [reflection, absorption, colour]
+      points:
+        - id: state-colour
+          text: 'The ball appears black.'
+          concepts: [colour]
+        - id: explain-reflection
+          text: 'A red object reflects red light and absorbs the other colours. There is no red light in the room, so the ball reflects almost nothing.'
+          concepts: [reflection, absorption]
+
+  - id: p7-white-object-red-light
+    section: '5.4'
+    tier: F
+    dfe: [WA6]
+    statement: 'A white wall is lit by red light. State and explain the colour the wall appears.'
+    answer_label: 'The colour of the wall in red light'
+    check:
+      kind: structured
+      requires: [state-colour, explain-reflection]
+      concepts: [reflection, colour]
+      points:
+        - id: state-colour
+          text: 'The wall appears red.'
+          concepts: [colour]
+        - id: explain-reflection
+          text: 'A white surface reflects every colour. It reflects the red light that reaches it, so the wall looks red.'
+          concepts: [reflection]
+
+  - id: p8-black-object
+    section: '5.4'
+    tier: F
+    dfe: [WA6]
+    statement: 'Explain why a black object looks black when it is lit by white light.'
+    answer_label: 'Why a black object looks black'
+    check:
+      kind: structured
+      requires: [absorb-all, no-reflection]
+      concepts: [absorption, colour]
+      points:
+        - id: absorb-all
+          text: 'A black surface absorbs all the wavelengths of visible light.'
+          concepts: [absorption]
+        - id: no-reflection
+          text: 'Almost no light is reflected from the surface to the eye, so the object looks black.'
+          concepts: [colour]
+
+  - id: p9-frequency-to-wavelength
+    section: '5.4'
+    tier: F
+    dfe: [WA6]
+    statement: 'The light from a lamp has a frequency of 5.0e14 Hz. Calculate its wavelength in nanometres, and state the colour of the light.'
+    answer_label: 'Wavelength of the light'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "5.0e14", unit: "Hz"}
+          answer: {value: "6.0e-7", unit: "m"}
+        - {kind: sigfigs, value: "6.0e-7", figures: 2, answer: "6.0e-7", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{5.0 \times 10^{14}} = 6.0 \times 10^{-7}\,\text{m} = 600\,\text{nm}$. This is orange-red light.'
+
+  - id: p10-diffuse-reflection
+    section: '5.4'
+    tier: F
+    dfe: [WA6]
+    statement: 'Explain why a rough white wall looks white, even though the light is reflected in many directions.'
+    answer_label: 'Why the rough wall looks white'
+    check:
+      kind: structured
+      requires: [diffuse, colour]
+      concepts: [diffuse-reflection, colour]
+      points:
+        - id: diffuse
+          text: 'The rough surface reflects light in many directions. This is diffuse reflection.'
+          concepts: [diffuse-reflection]
+        - id: colour
+          text: 'Each part of the wall still reflects all the colours it receives, so the wall looks white from every direction.'
+          concepts: [colour]
+
+  - id: p11-method-choice
+    section: '5.4'
+    tier: F
+    dfe: [WA6]
+    statement: 'A light source has a wavelength of 500 nm. Say which relationship you will use, then calculate the frequency.'
+    answer_label: 'Frequency of the light'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "500", unit: "nm"}
+          answer: {value: "6.0e14", unit: "Hz"}
+        - {kind: sigfigs, value: "6.0e14", figures: 2, answer: "6.0e14", convention: round-once}
+    answer_text: 'Use $f = \dfrac{c}{\lambda}$, so $f = \dfrac{3.0 \times 10^8}{5.0 \times 10^{-7}} = 6.0 \times 10^{14}\,\text{Hz}$.'
+
+  - id: p12-spectrum-order
+    section: '5.4'
+    tier: F
+    dfe: [WA6]
+    statement: 'Place the colours of the visible spectrum in order from the longest wavelength to the shortest.'
+    answer_label: 'The colours in order of wavelength'
+    check:
+      kind: structured
+      requires: [state-order, give-reason]
+      concepts: [visible-spectrum]
+      points:
+        - id: state-order
+          text: 'Red, orange, yellow, green, blue, violet.'
+          concepts: [visible-spectrum]
+        - id: give-reason
+          text: 'Red has the longest wavelength and the lowest frequency. Violet has the shortest wavelength and the highest frequency.'
+          concepts: [visible-spectrum]

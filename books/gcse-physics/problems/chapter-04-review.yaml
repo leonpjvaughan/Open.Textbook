@@ -1,0 +1,307 @@
+# Mixed practice for the Chapter 4 Review.
+#
+# The review resolves the harbour survey and then interleaves the three sections
+# with Chapters 1, 2 and 3. Items r1 to r8 resolve the survey; r9 to r13 reach
+# back to speed (Chapter 3), kinetic energy (Chapter 1), weight (Chapter 2),
+# force and acceleration (Chapter 3) and work done (Chapter 2); r14 to r16 mix
+# the chapter. Each calculation proves `dimensions` and `sigfigs`; the
+# `structured` records prove only that a model answer contains the declared ideas
+# in order. The ultrasound and seismic items are Higher tier and carry tier H,
+# so they are marked **H** for the reader.
+chapter: 4
+problems:
+  - id: r1-anchor-depth
+    section: Review
+    tier: F
+    dfe: [WA1]
+    statement: 'In the chapter problem a survey boat sends a sound pulse down at 1500 m/s. The reflection returns after 0.020 s. Calculate the depth of the sea floor.'
+    answer_label: 'Depth of the sea floor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t / 2"
+          values:
+            v: {value: "1500", unit: "m/s"}
+            t: {value: "0.020", unit: "s"}
+          answer: {value: "15", unit: "m"}
+        - {kind: sigfigs, value: "15", figures: 2, answer: "15", convention: round-once}
+    answer_text: 'The pulse travels down and back, so $s = \dfrac{v t}{2} = \dfrac{1500 \times 0.020}{2} = 15\,\text{m}$. The channel is deeper than the 12 m the ferry needs.'
+
+  - id: r2-anchor-wavelength
+    section: Review
+    tier: F
+    dfe: [WA1]
+    statement: 'The echo sounder in the chapter problem sends sound at a frequency of 50 kHz. The speed of sound in sea water is 1500 m/s. Calculate the wavelength.'
+    answer_label: 'Wavelength of the echo sounder'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / f"
+          values:
+            v: {value: "1500", unit: "m/s"}
+            f: {value: "50000", unit: "Hz"}
+          answer: {value: "0.03", unit: "m"}
+        - {kind: sigfigs, value: "0.03", figures: 2, answer: "0.030", convention: round-once}
+    answer_text: '$50\,\text{kHz} = 50000\,\text{Hz}$, so $\lambda = \dfrac{v}{f} = \dfrac{1500}{50000} = 0.030\,\text{m}$, which is 3.0 cm.'
+
+  - id: r3-anchor-ripple-speed
+    section: Review
+    tier: F
+    dfe: [WA1]
+    statement: 'In the chapter problem a ripple tank makes waves with a frequency of 5.0 Hz and a wavelength of 0.12 m. Calculate the wave speed.'
+    answer_label: 'Speed of the ripples'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "f * wavelength"
+          values:
+            f: {value: "5.0", unit: "Hz"}
+            wavelength: {value: "0.12", unit: "m"}
+          answer: {value: "0.6", unit: "m/s"}
+        - {kind: sigfigs, value: "0.6", figures: 2, answer: "0.60", convention: round-once}
+    answer_text: '$v = f\lambda = 5.0 \times 0.12 = 0.60\,\text{m/s}$.'
+
+  - id: r4-anchor-ripple-period
+    section: Review
+    tier: F
+    dfe: [WA1]
+    statement: 'The ripple tank in the chapter problem has a frequency of 5.0 Hz. Calculate the period of the waves.'
+    answer_label: 'Period of the ripples'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "1 / f"
+          values:
+            f: {value: "5.0", unit: "Hz"}
+          answer: {value: "0.2", unit: "s"}
+        - {kind: sigfigs, value: "0.2", figures: 2, answer: "0.20", convention: round-once}
+    answer_text: '$T = \dfrac{1}{f} = \dfrac{1}{5.0} = 0.20\,\text{s}$.'
+
+  - id: r5-anchor-ultrasound
+    section: Review
+    tier: H
+    dfe: [WA1]
+    statement: 'A medical scanner uses ultrasound at a frequency of 2.0 MHz. The speed of sound in tissue is 1500 m/s. Calculate the wavelength.'
+    answer_label: 'Wavelength of the ultrasound'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v / f"
+          values:
+            v: {value: "1500", unit: "m/s"}
+            f: {value: "2000000", unit: "Hz"}
+          answer: {value: "0.00075", unit: "m"}
+        - {kind: sigfigs, value: "0.00075", figures: 2, answer: "7.5e-4", convention: round-once}
+    answer_text: '$2.0\,\text{MHz} = 2.0 \times 10^6\,\text{Hz}$, so $\lambda = \dfrac{v}{f} = \dfrac{1500}{2.0 \times 10^6} = 7.5 \times 10^{-4}\,\text{m}$, which is 0.75 mm.'
+
+  - id: r6-anchor-seismic
+    section: Review
+    tier: H
+    dfe: [WA1]
+    statement: 'A seismic P-wave travels 60 km in 12 s. Calculate its speed.'
+    answer_label: 'Speed of the P-wave'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "s / t"
+          values:
+            s: {value: "60", unit: "km"}
+            t: {value: "12", unit: "s"}
+          answer: {value: "5000", unit: "m/s"}
+        - {kind: sigfigs, value: "5000", figures: 2, answer: "5.0e3", convention: round-once}
+    answer_text: '$60\,\text{km} = 60000\,\text{m}$, so $v = \dfrac{s}{t} = \dfrac{60000}{12} = 5000\,\text{m/s} = 5.0 \times 10^3\,\text{m/s}$.'
+
+  - id: r7-reflection-law
+    section: Review
+    tier: F
+    dfe: [WA2]
+    statement: 'A ray of light meets a mirror at an angle of incidence of 35 degrees. State the angle of reflection, and say what line the angles are measured from.'
+    answer_label: 'The angle of reflection'
+    check:
+      kind: structured
+      requires: [equal-angle, normal]
+      concepts: [reflection, normal]
+      points:
+        - id: equal-angle
+          text: 'The angle of reflection is 35 degrees, because the angle of reflection equals the angle of incidence.'
+          concepts: [reflection]
+        - id: normal
+          text: 'Both angles are measured from the normal, which is the line at right angles to the mirror at the point where the ray hits it.'
+          concepts: [normal]
+
+  - id: r8-interface-describe
+    section: Review
+    tier: F
+    dfe: [WA2]
+    statement: 'Describe what happens to a wave at the boundary between two different materials.'
+    answer_label: 'A wave at a boundary'
+    check:
+      kind: structured
+      requires: [reflection, transmission, absorption]
+      concepts: [reflection, transmission, absorption]
+      points:
+        - id: reflection
+          text: 'Part of the wave can be reflected back from the boundary.'
+          concepts: [reflection]
+        - id: transmission
+          text: 'Part of the wave can be transmitted through the boundary into the second material. The speed of the wave may change when it is transmitted.'
+          concepts: [transmission]
+        - id: absorption
+          text: 'Part of the wave can be absorbed by the material, so its energy is transferred to the material.'
+          concepts: [absorption]
+
+  - id: r9-speed-train
+    section: Review
+    tier: F
+    dfe: [FO5]
+    statement: 'A train travels 360 m in 20 s. Calculate its average speed.'
+    answer_label: 'Average speed of the train'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "s / t"
+          values:
+            s: {value: "360", unit: "m"}
+            t: {value: "20", unit: "s"}
+          answer: {value: "18", unit: "m/s"}
+        - {kind: sigfigs, value: "18", figures: 2, answer: "18", convention: round-once}
+    answer_text: '$v = \dfrac{s}{t} = \dfrac{360}{20} = 18\,\text{m/s}$.'
+
+  - id: r10-kinetic-energy
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'A ball of mass 2.0 kg moves at 3.0 m/s. Calculate the energy in its kinetic store.'
+    answer_label: 'Kinetic energy of the ball'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * m * v**2"
+          values:
+            m: {value: "2.0", unit: "kg"}
+            v: {value: "3.0", unit: "m/s"}
+          answer: {value: "9", unit: "J"}
+        - {kind: sigfigs, value: "9", figures: 2, answer: "9.0", convention: round-once}
+    answer_text: '$E_k = \tfrac{1}{2}mv^2 = 0.5 \times 2.0 \times 3.0^2 = 9.0\,\text{J}$.'
+
+  - id: r11-weight
+    section: Review
+    tier: F
+    dfe: [FO1]
+    statement: 'A pupil has a mass of 50 kg. Take g = 9.8 N/kg. Calculate the weight of the pupil.'
+    answer_label: 'Weight of the pupil'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g"
+          values:
+            m: {value: "50", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "490", unit: "N"}
+        - {kind: sigfigs, value: "490", figures: 2, answer: "4.9e2", convention: round-once}
+    answer_text: '$W = mg = 50 \times 9.8 = 490\,\text{N} = 4.9 \times 10^2\,\text{N}$.'
+
+  - id: r12-force-acceleration
+    section: Review
+    tier: F
+    dfe: [FO6]
+    statement: 'A resultant force acts on a trolley of mass 800 kg and gives it an acceleration of 2.0 m/s squared. Calculate the resultant force.'
+    answer_label: 'Resultant force on the trolley'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * a"
+          values:
+            m: {value: "800", unit: "kg"}
+            a: {value: "2.0", unit: "m/s^2"}
+          answer: {value: "1600", unit: "N"}
+        - {kind: sigfigs, value: "1600", figures: 2, answer: "1.6e3", convention: round-once}
+    answer_text: '$F = ma = 800 \times 2.0 = 1600\,\text{N} = 1.6 \times 10^3\,\text{N}$.'
+
+  - id: r13-work-done
+    section: Review
+    tier: F
+    dfe: [FO2]
+    statement: 'A force of 60 N moves a box 4.0 m along the line of the force. Calculate the work done.'
+    answer_label: 'Work done on the box'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "60", unit: "N"}
+            s: {value: "4.0", unit: "m"}
+          answer: {value: "240", unit: "J"}
+        - {kind: sigfigs, value: "240", figures: 2, answer: "2.4e2", convention: round-once}
+    answer_text: '$W = Fs = 60 \times 4.0 = 240\,\text{J} = 2.4 \times 10^2\,\text{J}$.'
+
+  - id: r14-method-choice
+    section: Review
+    tier: F
+    dfe: [WA1, WA2]
+    statement: 'A sound wave passes from air into water. Say which ideas you would use to find the wavelength in the water, and name the quantities you need.'
+    answer_label: 'Choosing the method'
+    check:
+      kind: structured
+      requires: [wave-equation, frequency-fixed, speed-in-water]
+      concepts: [wave-speed, frequency, wavelength]
+      points:
+        - id: wave-equation
+          text: 'Use v = f lambda, rearranged to lambda = v / f.'
+          concepts: [wave-speed]
+        - id: frequency-fixed
+          text: 'The frequency does not change when the wave crosses the boundary. It is set by the source.'
+          concepts: [frequency]
+        - id: speed-in-water
+          text: 'I need the speed of sound in water, and the frequency. Then the wavelength is the speed divided by the frequency.'
+          concepts: [wavelength]
+
+  - id: r15-ultrasound-depth
+    section: Review
+    tier: H
+    dfe: [WA1]
+    statement: 'A pulse of ultrasound travels through tissue at 1500 m/s. The reflection returns after 0.00016 s. Calculate the distance to the boundary.'
+    answer_label: 'Distance to the boundary'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "v * t / 2"
+          values:
+            v: {value: "1500", unit: "m/s"}
+            t: {value: "0.00016", unit: "s"}
+          answer: {value: "0.12", unit: "m"}
+        - {kind: sigfigs, value: "0.12", figures: 2, answer: "0.12", convention: round-once}
+    answer_text: '$s = \dfrac{v t}{2} = \dfrac{1500 \times 0.00016}{2} = 0.12\,\text{m}$. The boundary is 0.12 m away.'
+
+  - id: r16-compare-seismic
+    section: Review
+    tier: H
+    dfe: [WA1]
+    statement: 'Compare the P-waves and the S-waves produced by an earthquake, and explain how they give evidence about the Earth.'
+    answer_label: 'P-waves, S-waves and the Earth'
+    check:
+      kind: structured
+      requires: [wave-types, travel-difference, core-evidence]
+      concepts: [seismic-wave, earths-core]
+      points:
+        - id: wave-types
+          text: 'A P-wave is longitudinal and an S-wave is transverse. Both travel out from the earthquake.'
+          concepts: [seismic-wave]
+        - id: travel-difference
+          text: 'P-waves travel at different speeds through solids and liquids. S-waves cannot travel through a liquid.'
+          concepts: [seismic-wave]
+        - id: core-evidence
+          text: 'S-waves do not pass through the liquid outer core, so a region on the far side of the Earth receives no S-waves. This is evidence for the size and structure of the core.'
+          concepts: [earths-core]

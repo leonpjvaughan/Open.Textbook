@@ -1,0 +1,149 @@
+# Practice set for 4.5, arithmetic sequences and series.
+#
+# A term is an `evaluate` at the position, and a sum is an `evaluate` of the
+# series formula, so the arithmetic is proved exactly. A question that asks how
+# many terms a series has is a `solve`, and a question that gives two terms and
+# asks for a and d is a `system`. The modelling answers explain what the numbers
+# mean; the verifier proves only the numbers.
+chapter: 4
+symbols:
+  a: {real: true}
+  d: {real: true}
+  n: {integer: true, positive: true}
+problems:
+  - id: p1-nth-term
+    section: "4.5"
+    dfe: [D4]
+    statement: 'An arithmetic sequence begins $7, 11, 15, \dots$. Work out the 15th term.'
+    answer_label: 'The term'
+    check:
+      kind: evaluate
+      expression: "7 + 14*4"
+      answer: "63"
+    answer_text: 'Here $a = 7$ and $d = 4$. Then $u_{15} = 7 + (15 - 1)(4) = 7 + 56 = 63$. The number of steps is $14$, one less than the position.'
+
+  - id: p2-negative-common-difference
+    section: "4.5"
+    dfe: [D4]
+    statement: 'An arithmetic sequence begins $100, 92, 84, \dots$. Work out the 20th term.'
+    answer_label: 'The term'
+    check:
+      kind: evaluate
+      expression: "100 + 19*(-8)"
+      answer: "-52"
+    answer_text: 'The sequence falls by $8$ each step, so $d = -8$. Then $u_{20} = 100 + (20 - 1)(-8) = 100 - 152 = -52$. A negative term is expected because the sequence passes zero after the 13th term.'
+
+  - id: p3-sum-of-series
+    section: "4.5"
+    dfe: [D4]
+    statement: 'Work out the sum of the first 20 terms of $5, 9, 13, \dots$.'
+    answer_label: 'The sum'
+    check:
+      kind: evaluate
+      expression: "(20/2)*(2*5 + 19*4)"
+      answer: "860"
+    answer_text: 'Here $a = 5$ and $d = 4$. Then $S_{20} = \frac{20}{2}(2(5) + 19(4)) = 10(10 + 76) = 10(86) = 860$. The bracket uses the $19$ steps from the first term to the twentieth.'
+
+  - id: p4-count-the-terms
+    section: "4.5"
+    dfe: [D4]
+    statement: 'For the series $3 + 7 + 11 + \dots + 83$, work out how many terms there are and then the total.'
+    answer_label: 'The number of terms and the total'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: "3 + (n - 1)*4 = 83", variable: n, answer: ["21"]}
+        - {kind: evaluate, expression: "(21/2)*(3 + 83)", answer: "903"}
+    answer_text: 'Set the term equal to the last term: $3 + (n - 1)(4) = 83$, so $4(n - 1) = 80$ and $n = 21$. There are 21 terms. Then $S_{21} = \frac{21}{2}(3 + 83) = \frac{21}{2}(86) = 903$. The negative root of any quadratic in $n$ is rejected, because a number of terms must be a positive whole number.'
+
+  - id: p5-sum-thirty-terms
+    section: "4.5"
+    dfe: [D4]
+    statement: 'Work out the sum of the first 30 terms of $2, 6, 10, \dots$.'
+    answer_label: 'The sum'
+    check:
+      kind: evaluate
+      expression: "(30/2)*(2*2 + 29*4)"
+      answer: "1800"
+    answer_text: 'Here $a = 2$ and $d = 4$. Then $S_{30} = \frac{30}{2}(2(2) + 29(4)) = 15(4 + 116) = 15(120) = 1800$. The sixteenth term is $62$, so the average term is about $60$ and the total is about $30 \times 60$, which matches.'
+
+  - id: p6-two-terms-given
+    section: "4.5"
+    dfe: [D4]
+    statement: 'The 8th term of an arithmetic sequence is $45$ and the 12th term is $65$. Find the first term and the common difference.'
+    answer_label: 'The first term and the common difference'
+    check:
+      kind: system
+      equations: ["a + 7*d = 45", "a + 11*d = 65"]
+      variables: [a, d]
+      answer: [["10", "5"]]
+    answer_text: 'Write two equations: $a + 7d = 45$ and $a + 11d = 65$. Subtracting gives $4d = 20$, so $d = 5$. Substituting back gives $a + 35 = 45$, so $a = 10$. Check the 12th term: $10 + 11(5) = 65$.'
+
+  - id: p7-first-negative-term
+    section: "4.5"
+    dfe: [D4]
+    statement: 'An arithmetic sequence begins $40, 36, 32, \dots$. Find the first term that is negative.'
+    answer_label: 'The first negative term'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "44 - 4*11", answer: "0"}
+        - {kind: evaluate, expression: "44 - 4*12", answer: "-4"}
+    answer_text: 'Here $a = 40$ and $d = -4$, so $u_n = 40 - 4(n - 1) = 44 - 4n$. The eleventh term is $44 - 44 = 0$, which is not negative. The twelfth term is $44 - 48 = -4$, so the first negative term is the 12th, $u_{12} = -4$.'
+
+  - id: p8-sum-from-a-and-d
+    section: "4.5"
+    dfe: [D4]
+    statement: 'An arithmetic series has first term $3$ and common difference $7$. Work out the sum of the first 12 terms.'
+    answer_label: 'The sum'
+    check:
+      kind: evaluate
+      expression: "(12/2)*(2*3 + 11*7)"
+      answer: "498"
+    answer_text: 'Substitute into $S_n = \frac{n}{2}(2a + (n - 1)d)$: $S_{12} = \frac{12}{2}(2(3) + 11(7)) = 6(6 + 77) = 6(83) = 498$. The last term is $3 + 11(7) = 80$, so the average term is about $41$ and the total is about $12 \times 41$, which agrees.'
+
+  - id: p9-multiples-in-a-range
+    section: "4.5"
+    dfe: [D4]
+    statement: 'Work out the sum of the multiples of $4$ from $12$ to $96$ inclusive.'
+    answer_label: 'The sum'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: "12 + (n - 1)*4 = 96", variable: n, answer: ["22"]}
+        - {kind: evaluate, expression: "(22/2)*(12 + 96)", answer: "1188"}
+    answer_text: 'The multiples form an arithmetic series with $a = 12$, $d = 4$ and last term $96$. From $12 + (n - 1)(4) = 96$ we get $n - 1 = 21$, so $n = 22$. Then $S_{22} = \frac{22}{2}(12 + 96) = 11 \times 108 = 1188$. There are 22 terms, because both ends are included.'
+
+  - id: p10-quiz-eighteen-months
+    section: "4.5"
+    dfe: [D4]
+    statement: 'The quiz night raises $150$ pounds in month 1 and $50$ more each month. Work out the total raised in the first 18 months.'
+    answer_label: 'The total'
+    check:
+      kind: evaluate
+      expression: "(18/2)*(2*150 + 17*50)"
+      answer: "10350"
+    answer_text: 'Here $a = 150$ and $d = 50$. Then $S_{18} = \frac{18}{2}(2(150) + 17(50)) = 9(300 + 850) = 9(1150) = 10{,}350$. The quiz night alone raises £10,350 in 18 months, which is more than the £9,000 the roof costs. The month 18 income is $150 + 17(50) = 1000$ pounds.'
+
+  - id: p11-savings-plan
+    section: "4.5"
+    dfe: [D4]
+    statement: 'A savings club pays in £200 in month 1 and £15 more each month after that. Work out the total paid in over 24 months.'
+    answer_label: 'The total'
+    check:
+      kind: evaluate
+      expression: "(24/2)*(2*200 + 23*15)"
+      answer: "8940"
+    answer_text: 'The payments form an arithmetic series with $a = 200$ and $d = 15$. Then $S_{24} = \frac{24}{2}(2(200) + 23(15)) = 12(400 + 345) = 12(745) = 8940$. The club pays in £8940 over two years. The final payment is $200 + 23(15) = 545$ pounds.'
+
+  - id: p12-sum-given-find-terms
+    section: "4.5"
+    dfe: [D4]
+    statement: 'The sum of the first $n$ terms of an arithmetic series is $S_n = n^2 + 3n$. Work out the 5th term and the common difference.'
+    answer_label: 'The term and the difference'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(5**2 + 3*5) - (4**2 + 3*4)", answer: "12"}
+        - {kind: evaluate, expression: "(6**2 + 3*6) - 2*(5**2 + 3*5) + (4**2 + 3*4)", answer: "2"}
+    answer_text: 'The $n$th term is the difference between consecutive sums: $u_n = S_n - S_{n-1}$. For $n = 5$, $u_5 = S_5 - S_4 = 40 - 28 = 12$. The common difference is $u_6 - u_5 = (S_6 - S_5) - (S_5 - S_4) = 54 - 2(40) + 28 = 2$. Working with differences of sums turns a sum formula into term information.'

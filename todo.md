@@ -2168,3 +2168,38 @@ magnitude is checked with `resolve` or `vector`, and treat the gap as by design.
       `sqrt(x**2 + y**2)`, and a wrong magnitude still fails.
 - [ ] `tests/test_verify_units.py` pins it, and
       `uv run python -m textbook.verify books/*/problems/` passes.
+
+## 42. The internal-words lint flags the literal phrase "the bank"
+
+**What is wrong.** `engine/textbook/lint.py` maps `\bthe (?:problem )?bank\b`
+to `(delete)` in `INTERNAL_PHRASES`, so any page that uses the ordinary English
+word "bank", meaning a financial institution or a river bank, is reported as an
+internal word and fails `tests/test_content_hygiene.py`.
+`tests/test_content_hygiene.py::test_no_internal_words_reach_the_reader` fails on
+a-level-maths Chapter 4 Section 4.7 while this item was written:
+
+```bash
+$ uv run python -m pytest tests/ -q
+FAILED tests/test_content_hygiene.py::test_no_internal_words_reach_the_reader
+    books/a-level-maths/docs/Chapter 4/Section 4.7/Guided problems/index.md:193:
+    **6.** A savings account holds £500. Each year the bank adds 5% interest, then
+1 failed, 1300 passed in 60.75s
+```
+
+The rule was added because "the bank" was our word for the problem bank, but it
+is far too broad: the reader-facing phrase is the plural "the problems" or the
+page name, and the singular is also a legitimate English word.
+
+**Fix.** Narrow the pattern to the phrases that are genuinely ours, for example
+`\bthe problem bank\b` and `\bthe bank of problems\b`, and check the other
+`INTERNAL_PHRASES` entries for the same over-reach. If the phrase is kept, add a
+negative lookahead for a financial or a river context, which is brittle; the
+narrowed pattern is the better fix.
+
+**Done means.**
+
+- [ ] `uv run python -m pytest tests/test_content_hygiene.py -q` passes.
+- [ ] A page that writes "the bank adds interest" is no longer reported, and a
+      page that writes "the problem bank" still is.
+- [ ] `tests/test_content_hygiene.py::test_no_internal_words_reach_the_reader`
+      passes on the current a-level-maths content.

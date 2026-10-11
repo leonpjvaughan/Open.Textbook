@@ -1,0 +1,232 @@
+# Practice set for 5.2 (Interactions of electromagnetic radiation with matter).
+#
+# The numeric records apply the wave equation to the uses of each group. The
+# `structured` records stand where a computer cannot go: they prove only that a
+# model answer contains the declared ideas in order, never that the physics is
+# right.
+chapter: 5
+problems:
+  - id: p1-microwave-oven
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'A microwave oven uses radiation with a frequency of 2.5 GHz. Calculate its wavelength.'
+    answer_label: 'Wavelength of the microwaves'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "2.5", unit: "GHz"}
+          answer: {value: "0.12", unit: "m"}
+        - {kind: sigfigs, value: "0.12", figures: 2, answer: "0.12", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{2.5 \times 10^9} = 0.12\,\text{m}$.'
+
+  - id: p2-infrared-wavelength
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'A thermal camera detects infrared radiation with a frequency of 3.0e14 Hz. Calculate its wavelength in micrometres.'
+    answer_label: 'Wavelength of the infrared radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "3.0e14", unit: "Hz"}
+          answer: {value: "1.0e-6", unit: "m"}
+        - {kind: sigfigs, value: "1.0e-6", figures: 2, answer: "1.0e-6", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{3.0 \times 10^{14}} = 1.0 \times 10^{-6}\,\text{m} = 1.0\,\mu\text{m}$.'
+
+  - id: p3-ultraviolet-frequency
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'Ultraviolet radiation used in a sunbed has a wavelength of 300 nm. Calculate its frequency.'
+    answer_label: 'Frequency of the ultraviolet radiation'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / lam"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            lam: {value: "300", unit: "nm"}
+          answer: {value: "1.0e15", unit: "Hz"}
+        - {kind: sigfigs, value: "1.0e15", figures: 2, answer: "1.0e15", convention: round-once}
+    answer_text: '$f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^8}{3.0 \times 10^{-7}} = 1.0 \times 10^{15}\,\text{Hz}$.'
+
+  - id: p4-xray-wavelength
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'An X-ray machine produces radiation with a frequency of 1.0e18 Hz. Calculate its wavelength in nanometres.'
+    answer_label: 'Wavelength of the X-rays'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "1.0e18", unit: "Hz"}
+          answer: {value: "3.0e-10", unit: "m"}
+        - {kind: sigfigs, value: "3.0e-10", figures: 2, answer: "3.0e-10", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{1.0 \times 10^{18}} = 3.0 \times 10^{-10}\,\text{m} = 0.30\,\text{nm}$.'
+
+  - id: p5-mobile-signal
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'A mobile phone signal has a frequency of 750 MHz. Calculate its wavelength.'
+    answer_label: 'Wavelength of the mobile signal'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "750", unit: "MHz"}
+          answer: {value: "0.40", unit: "m"}
+        - {kind: sigfigs, value: "0.40", figures: 2, answer: "0.40", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{7.5 \times 10^8} = 0.40\,\text{m}$.'
+
+  - id: p6-wifi-wavelength
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'A wi-fi router sends radiation at 6.0 GHz. Calculate its wavelength.'
+    answer_label: 'Wavelength of the wi-fi signal'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "6.0", unit: "GHz"}
+          answer: {value: "0.050", unit: "m"}
+        - {kind: sigfigs, value: "0.050", figures: 2, answer: "0.050", convention: round-once}
+    answer_text: '$\lambda = \dfrac{c}{f} = \dfrac{3.0 \times 10^8}{6.0 \times 10^9} = 0.050\,\text{m} = 5.0\,\text{cm}$.'
+
+  - id: p7-reflection
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'A light ray hits a plane mirror. The angle between the incoming ray and the mirror is 50°. Work out the angle of reflection and give a reason.'
+    answer_label: 'The angle of reflection'
+    check:
+      kind: structured
+      requires: [find-incidence, state-reflection, give-reason]
+      concepts: [law-of-reflection, normal]
+      points:
+        - id: find-incidence
+          text: 'The angle of incidence is 90° - 50° = 40°, because angles are measured from the normal.'
+          concepts: [normal]
+        - id: state-reflection
+          text: 'The angle of reflection is 40°.'
+          concepts: [law-of-reflection]
+        - id: give-reason
+          text: 'The angle of reflection equals the angle of incidence.'
+          concepts: [law-of-reflection]
+
+  - id: p8-refraction
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'A ray of light passes from air into a glass block. Describe what happens to the ray, and explain why one part of the ray changes direction.'
+    answer_label: 'What happens at the air-glass boundary'
+    check:
+      kind: structured
+      requires: [describe-bend, explain-speed]
+      concepts: [refraction]
+      points:
+        - id: describe-bend
+          text: 'Most of the light passes into the glass and bends towards the normal. A small part is reflected.'
+          concepts: [refraction]
+        - id: explain-speed
+          text: 'Light travels more slowly in glass than in air. The change of speed at the boundary makes the ray change direction.'
+          concepts: [refraction]
+
+  - id: p9-gamma-uses
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'Give one medical use of gamma radiation and one medical use of X-rays. Explain why each is suitable.'
+    answer_label: 'One use of each, with a reason'
+    check:
+      kind: structured
+      requires: [gamma-use, gamma-reason, xray-use, xray-reason]
+      concepts: [gamma, x-ray]
+      points:
+        - id: gamma-use
+          text: 'Gamma radiation is used to sterilise medical equipment.'
+          concepts: [gamma]
+        - id: gamma-reason
+          text: 'Gamma radiation is very penetrating, so it can reach inside a sealed pack and kill microorganisms.'
+          concepts: [gamma]
+        - id: xray-use
+          text: 'X-rays are used to make images of bones.'
+          concepts: [x-ray]
+        - id: xray-reason
+          text: 'X-rays pass through soft tissue but are absorbed by denser bone, so the bone shows up on the image.'
+          concepts: [x-ray]
+
+  - id: p10-uv-dangers
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'Explain one danger of ultraviolet radiation and state one way to reduce the risk.'
+    answer_label: 'One danger of ultraviolet radiation, and a way to reduce it'
+    check:
+      kind: structured
+      requires: [state-danger, state-control]
+      concepts: [ultraviolet]
+      points:
+        - id: state-danger
+          text: 'Ultraviolet radiation can damage the skin and the eyes, and cause skin cancer.'
+          concepts: [ultraviolet]
+        - id: state-control
+          text: 'Keep out of strong sunshine, cover the skin, and wear sunglasses or sunscreen.'
+          concepts: [ultraviolet]
+
+  - id: p11-absorption
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'A black surface and a white surface are side by side in the sunshine. Compare how each surface absorbs and reflects infrared radiation.'
+    answer_label: 'A comparison of the two surfaces'
+    check:
+      kind: structured
+      requires: [black-surface, white-surface]
+      concepts: [infrared-absorption, reflection]
+      points:
+        - id: black-surface
+          text: 'The black surface absorbs infrared radiation well and reflects very little, so it warms quickly.'
+          concepts: [infrared-absorption]
+        - id: white-surface
+          text: 'The white surface reflects most of the radiation and absorbs little, so it warms slowly.'
+          concepts: [reflection]
+
+  - id: p12-method-choice
+    section: '5.2'
+    tier: F
+    dfe: [WA4]
+    statement: 'A radio transmitter sends a signal at 6.0 GHz. Say which relationship you will use, then calculate the wavelength.'
+    answer_label: 'Wavelength of the radio signal'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "c / f"
+          values:
+            c: {value: "3.0e8", unit: "m/s"}
+            f: {value: "6.0", unit: "GHz"}
+          answer: {value: "0.050", unit: "m"}
+        - {kind: sigfigs, value: "0.050", figures: 2, answer: "0.050", convention: round-once}
+    answer_text: 'Use the wave equation as $\lambda = \dfrac{c}{f}$. Then $\lambda = \dfrac{3.0 \times 10^8}{6.0 \times 10^9} = 0.050\,\text{m}$.'

@@ -1,0 +1,197 @@
+# Practice set for 3.1 (Kinematics and motion graphs).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]` in book.yaml, so a check may use either.
+#
+# A quantity with a unit is checked exactly by `dimensions`; an irrational value
+# that involves a square root uses `approx` with a stated tolerance; a value read
+# off a graph series uses `gradient` and `area`. The four equations of motion are
+# used only where the acceleration is constant, and the records say so.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass. The `structured`
+# records at the end prove only that a model answer contains the declared ideas
+# in order, not that the ideas are right.
+chapter: 3
+problems:
+  - id: p1-accelerate-from-rest
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A car accelerates uniformly from rest at $2.5\,\text{m}\,\text{s}^{-2}$ for 6.0 s. Find its final speed and the distance it travels.'
+    answer_label: 'The final speed and the distance'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "a * t"
+          values:
+            a: {value: "2.5", unit: "m s^-2"}
+            t: {value: "6.0", unit: "s"}
+          answer: {value: "15", unit: "m s^-1"}
+        - kind: dimensions
+          expression: "0.5 * a * t**2"
+          values:
+            a: {value: "2.5", unit: "m s^-2"}
+            t: {value: "6.0", unit: "s"}
+          answer: {value: "45", unit: "m"}
+    answer_text: 'From rest, $v = u + at = 0 + 2.5 \times 6.0 = 15\,\text{m}\,\text{s}^{-1}$. The distance is $s = ut + \tfrac{1}{2}at^2 = 0 + \tfrac{1}{2} \times 2.5 \times 6.0^2 = 45\,\text{m}$.'
+
+  - id: p2-train-decelerate
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A train slows from $40\,\text{m}\,\text{s}^{-1}$ to $15\,\text{m}\,\text{s}^{-1}$ over a distance of 500 m. Find its acceleration.'
+    answer_label: 'The acceleration'
+    check:
+      kind: dimensions
+      expression: "(v**2 - u**2) / (2 * s)"
+      values:
+        v: {value: "15", unit: "m s^-1"}
+        u: {value: "40", unit: "m s^-1"}
+        s: {value: "500", unit: "m"}
+      answer: {value: "-1.375", unit: "m s^-2"}
+    answer_text: 'Use $v^2 = u^2 + 2as$ with the time absent. Rearranging gives $a = \dfrac{v^2 - u^2}{2s} = \dfrac{15^2 - 40^2}{2 \times 500} = \dfrac{-1375}{1000} = -1.375\,\text{m}\,\text{s}^{-2}$. The negative sign shows that the train is slowing down.'
+
+  - id: p3-stone-fall
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A stone is dropped from rest and falls for 3.2 s. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$. Find its speed and the distance it falls.'
+    answer_label: 'The speed and the distance'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "9.81 * 3.2", target: "31.4", tolerance: "0.05"}
+        - {kind: approx, value: "0.5 * 9.81 * 3.2**2", target: "50.2", tolerance: "0.05"}
+    answer_text: 'Take downwards as positive. The speed is $v = gt = 9.81 \times 3.2 = 31.4\,\text{m}\,\text{s}^{-1}$. The distance is $s = \tfrac{1}{2}gt^2 = \tfrac{1}{2} \times 9.81 \times 3.2^2 = 50.2\,\text{m}$.'
+
+  - id: p4-ball-thrown-up
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A ball is thrown vertically upwards at $12\,\text{m}\,\text{s}^{-1}$. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$. Find the maximum height it reaches and the time it takes to reach it.'
+    answer_label: 'The maximum height and the time'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "12**2 / (2 * 9.81)", target: "7.34", tolerance: "0.01"}
+        - {kind: approx, value: "12 / 9.81", target: "1.22", tolerance: "0.01"}
+    answer_text: 'At the highest point the velocity is zero, so $0 = u^2 - 2gs$ gives $s = \dfrac{u^2}{2g} = \dfrac{144}{19.62} = 7.34\,\text{m}$. The time is $t = \dfrac{u}{g} = \dfrac{12}{9.81} = 1.22\,\text{s}$.'
+
+  - id: p5-graph-gradient-and-area
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A velocity–time graph has the points $(0, 0)$, $(2, 6)$, $(4, 12)$, $(6, 12)$ and $(8, 0)$. The first two points are in a straight line. Find the acceleration in the first 2.0 s and the total displacement over the 8.0 s.'
+    answer_label: 'The acceleration and the displacement'
+    check:
+      kind: all
+      checks:
+        - {kind: gradient, series: [[0, 0], [2, 6]], answer: "3.0", tolerance: "0.001"}
+        - {kind: area, series: [[0, 0], [2, 6], [4, 12], [6, 12], [8, 0]], answer: "60", tolerance: "0.001"}
+    answer_text: 'The acceleration is the gradient in the first 2.0 s: $\dfrac{6 - 0}{2 - 0} = 3.0\,\text{m}\,\text{s}^{-2}$. The displacement is the area under the graph, split into trapezia: $\tfrac{1}{2}(2)(0 + 6) + \tfrac{1}{2}(2)(6 + 12) + \tfrac{1}{2}(2)(12 + 12) + \tfrac{1}{2}(2)(12 + 0) = 6 + 18 + 24 + 12 = 60\,\text{m}$.'
+
+  - id: p6-thrown-up-velocity
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A ball is thrown vertically upwards at $20\,\text{m}\,\text{s}^{-1}$. Take upwards as positive and $g = 9.81\,\text{m}\,\text{s}^{-2}$. Find its velocity after 3.0 s.'
+    answer_label: 'The velocity after 3.0 s'
+    check:
+      kind: approx
+      value: "20 - 9.81 * 3.0"
+      target: "-9.43"
+      tolerance: "0.01"
+    answer_text: 'Using $v = u + at$ with $a = -g$: $v = 20 - 9.81 \times 3.0 = -9.43\,\text{m}\,\text{s}^{-1}$. The velocity is negative, so the ball is now moving downwards.'
+
+  - id: p7-two-stage
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A car accelerates uniformly from rest at $1.5\,\text{m}\,\text{s}^{-2}$ for 8.0 s, then travels at the final speed for a further 12 s. Find the total distance travelled.'
+    answer_label: 'The total distance'
+    check:
+      kind: dimensions
+      expression: "0.5 * a * t**2 + a * t * t2"
+      values:
+        a: {value: "1.5", unit: "m s^-2"}
+        t: {value: "8.0", unit: "s"}
+        t2: {value: "12", unit: "s"}
+      answer: {value: "192", unit: "m"}
+    answer_text: 'In the first stage the car reaches $v = 1.5 \times 8.0 = 12\,\text{m}\,\text{s}^{-1}$ and covers $s_1 = \tfrac{1}{2} \times 1.5 \times 8.0^2 = 48\,\text{m}$. In the second stage it covers $s_2 = 12 \times 12 = 144\,\text{m}$. The total is $48 + 144 = 192\,\text{m}$. One equation cannot describe both stages, because the acceleration changes.'
+
+  - id: p8-distance-displacement
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A runner completes one lap of a 400 m track in 50 s and stops at the start. Explain the difference between the distance travelled, the displacement and the average speed.'
+    answer_label: 'Distance, displacement and average speed'
+    check:
+      kind: structured
+      requires: [state-distance, state-displacement, state-speed]
+      concepts: [distance, displacement, vector, speed]
+      points:
+        - id: state-distance
+          text: 'The distance travelled is 400 m, because the runner has covered the whole lap.'
+          concepts: [distance]
+        - id: state-displacement
+          text: 'The displacement is zero, because the runner finishes at the starting point. Displacement is a vector from the start to the finish.'
+          concepts: [displacement, vector]
+        - id: state-speed
+          text: 'The average speed is 400 / 50 = 8.0 m/s. The average velocity is zero, because the displacement is zero.'
+          concepts: [speed]
+    answer_text: 'The distance travelled is 400 m. The displacement is zero, because the runner returns to the start. The average speed is 8.0 m/s; the average velocity is zero.'
+
+  - id: p9-rocket-two-phase
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A model rocket lifts off from rest and accelerates upwards at $25\,\text{m}\,\text{s}^{-2}$ for 4.0 s. The engine then cuts off and the rocket decelerates at $g = 9.81\,\text{m}\,\text{s}^{-2}$. Find the speed at engine cut-off and the time from cut-off until the rocket reaches its highest point.'
+    answer_label: 'The speed at cut-off and the time to the highest point'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "25 * 4.0", target: "100", tolerance: "0.01"}
+        - {kind: approx, value: "100 / 9.81", target: "10.2", tolerance: "0.05"}
+    answer_text: 'At cut-off the speed is $v = at = 25 \times 4.0 = 100\,\text{m}\,\text{s}^{-1}$. After cut-off the only force is gravity, so the rocket slows at $g$. The time to the highest point is $t = \dfrac{v}{g} = \dfrac{100}{9.81} = 10.2\,\text{s}$.'
+
+  - id: p10-speed-conversion
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A car travels at $25\,\text{m}\,\text{s}^{-1}$. Write this speed in $\text{km}\,\text{h}^{-1}$.'
+    answer_label: 'The speed in kilometres per hour'
+    check:
+      kind: convert
+      value: "25"
+      from: "m s^-1"
+      to: "km h^-1"
+      answer: "90"
+    answer_text: '$25\,\text{m}\,\text{s}^{-1} = 25 \times \dfrac{3600}{1000} = 90\,\text{km}\,\text{h}^{-1}$. Multiplying metres per second by 3.6 gives kilometres per hour.'
+
+  - id: p11-method-choice
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A car accelerates uniformly from $10\,\text{m}\,\text{s}^{-1}$ to $22\,\text{m}\,\text{s}^{-1}$ over 120 m. Say which equation of motion you would choose, and why, before you calculate the acceleration.'
+    answer_label: 'The equation and the reason'
+    check:
+      kind: structured
+      requires: [identify-unknown, choose-equation, give-reason]
+      concepts: [equations-of-motion, method-choice]
+      points:
+        - id: identify-unknown
+          text: 'The acceleration is wanted, and the time is not given and is not wanted.'
+          concepts: [method-choice]
+        - id: choose-equation
+          text: 'Use v^2 = u^2 + 2as, because it is the equation that leaves out the time.'
+          concepts: [equations-of-motion]
+        - id: give-reason
+          text: 'Each of the four equations leaves out one quantity, so choose the one that omits the quantity you do not have.'
+          concepts: [method-choice]
+    answer_text: 'The acceleration is wanted and the time is not given, so use $v^2 = u^2 + 2as$. Rearranging gives $a = \dfrac{22^2 - 10^2}{2 \times 120} = \dfrac{384}{240} = 1.6\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: p12-sigfigs
+    section: '3.1'
+    dfe: [AP3]
+    statement: 'A trolley starts from rest and travels 60 m in 8.0 s with constant acceleration. Find the acceleration to two significant figures.'
+    answer_label: 'The acceleration to two significant figures'
+    check:
+      kind: sigfigs
+      value: "120/64"
+      figures: 2
+      answer: "1.9"
+      convention: round-once
+    answer_text: 'Using $s = ut + \tfrac{1}{2}at^2$ from rest: $60 = \tfrac{1}{2}a(8.0)^2$, so $a = \dfrac{120}{64} = 1.9\,\text{m}\,\text{s}^{-2}$ to two significant figures.'

@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.6 Geometric sequences and series, and the sum to infinity — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: D5
+Work through these on your own. Write down $a$ and $r$ first. Every use of the
+sum to infinity needs the condition $|r| < 1$, so write that condition down
+before you substitute.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-04-practice-4.6
+
+:::answers chapter-04-practice-4.6

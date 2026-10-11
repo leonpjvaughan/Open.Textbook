@@ -1,0 +1,153 @@
+# Practice set for 4.3, sequences from formulae and recurrences.
+#
+# A term from a formula is an `evaluate` at a named position. A term from a
+# recurrence is an `iterate`, which applies the rule the stated number of times
+# from the starting value, so the whole chain of terms is proved, not only the
+# last one. A periodic term is checked by the remainder that selects it. The
+# written answer carries the increasing/decreasing decision, which is reasoning,
+# not arithmetic.
+chapter: 4
+symbols:
+  x: {real: true}
+  n: {integer: true, positive: true}
+problems:
+  - id: p1-formula-distant-term
+    section: "4.3"
+    dfe: [D2]
+    statement: 'A sequence is given by $u_n = 4n - 7$. Work out $u_{20}$.'
+    answer_label: 'The term'
+    check:
+      kind: evaluate
+      expression: "4*20 - 7"
+      answer: "73"
+    answer_text: 'Substitute $n = 20$: $u_{20} = 4(20) - 7 = 80 - 7 = 73$. The formula reaches position $20$ directly, so the eighteen terms in between are not needed.'
+
+  - id: p2-formula-quadratic
+    section: "4.3"
+    dfe: [D2]
+    statement: 'A sequence is given by $u_n = 3n^2 + 1$. Work out $u_6$.'
+    answer_label: 'The term'
+    check:
+      kind: evaluate
+      expression: "3*6**2 + 1"
+      answer: "109"
+    answer_text: 'Substitute $n = 6$: $u_6 = 3(36) + 1 = 108 + 1 = 109$. The square comes before the multiplication, so $3 \times 6^2$ is $3 \times 36$, not $(3 \times 6)^2$.'
+
+  - id: p3-recurrence-three-steps
+    section: "4.3"
+    dfe: [D2]
+    statement: 'A sequence is given by $u_{n+1} = 2u_n + 3$ and $u_1 = 1$. Work out $u_4$.'
+    answer_label: 'The term'
+    check:
+      kind: apply
+      expression: "2*x + 3"
+      apply: {op: iterate, args: [1, 3]}
+      answer: "29"
+    answer_text: 'Work forward one term at a time: $u_2 = 2(1) + 3 = 5$, then $u_3 = 2(5) + 3 = 13$, then $u_4 = 2(13) + 3 = 29$. The starting value $u_1 = 1$ is part of the definition; without it the rule gives no sequence.'
+
+  - id: p4-recurrence-first-negative
+    section: "4.3"
+    dfe: [D2]
+    statement: 'A sequence is given by $u_{n+1} = u_n - 4$ and $u_1 = 20$. Find the first term that is negative.'
+    answer_label: 'The position of the first negative term'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "20 - 4*(6 - 1)", answer: "0"}
+        - {kind: evaluate, expression: "20 - 4*(7 - 1)", answer: "-4"}
+    answer_text: 'The terms fall by $4$ each step: $20, 16, 12, 8, 4, 0, -4, \dots$ The sixth term is exactly $0$, which is not negative. The seventh term is $-4$, so the first negative term is $u_7 = -4$. The rule for the $n$th term is $u_n = 20 - 4(n - 1) = 24 - 4n$.'
+
+  - id: p5-periodic-distant-term
+    section: "4.3"
+    dfe: [D2]
+    statement: 'A sequence repeats the pattern $6, 1, 8, 1, 6, 1, 8, 1, \dots$. Work out $u_{50}$.'
+    answer_label: 'The term'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "Mod(50, 4)", answer: "2"}
+    answer_text: 'The pattern repeats every $4$ terms, so the period is $4$. Now $50 = 4 \times 12 + 2$, so the remainder is $2$. Position $50$ is therefore the second term of a block, which is $1$. So $u_{50} = 1$. The remainder selects the term; a remainder of $0$ would mean the fourth term of a block.'
+
+  - id: p6-fibonacci
+    section: "4.3"
+    dfe: [D2]
+    statement: 'The Fibonacci sequence is defined by $f_1 = 1$, $f_2 = 1$ and $f_{n+2} = f_{n+1} + f_n$. Work out $f_{10}$.'
+    answer_label: 'The term'
+    check:
+      kind: evaluate
+      expression: "fibonacci(10)"
+      answer: "55"
+    answer_text: 'Each term is the sum of the two before it: $1, 1, 2, 3, 5, 8, 13, 21, 34, 55$. So $f_{10} = 55$. This recurrence needs two starting values, because the rule adds the two previous terms.'
+
+  - id: p7-alternating-sequence
+    section: "4.3"
+    dfe: [D2]
+    statement: 'A sequence is given by $u_n = (-1)^n$. Work out $u_7$ and $u_{100}$, and state the period.'
+    answer_label: 'The two terms and the period'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(-1)**7", answer: "-1"}
+        - {kind: evaluate, expression: "(-1)**100", answer: "1"}
+    answer_text: 'An odd power of $-1$ is $-1$, so $u_7 = -1$; an even power is $1$, so $u_{100} = 1$. The terms are $-1, 1, -1, 1, \dots$, so the sequence is periodic with period $2$.'
+
+  - id: p8-depreciation
+    section: "4.3"
+    dfe: [D2]
+    statement: 'A van costs £12,000. Its value falls by 15% each year, so $v_{n+1} = 0.85v_n$ with $v_1 = 12{,}000$. Work out its value after 3 years, to the nearest penny.'
+    answer_label: 'The value'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "12000*0.85**3", answer: "7369.5"}
+        - {kind: rounded, value: "12000*0.85**3", rounded: "7369.50", to: "0.01"}
+    answer_text: 'The value after 3 years is $v_4 = 12{,}000(0.85)^3 = 12{,}000 \times 0.614125 = 7369.50$. The factor $0.85$ appears once for each year, so it is cubed after three years. Losing 15% each year is a decreasing sequence that settles towards zero.'
+
+  - id: p9-halving-recurrence
+    section: "4.3"
+    dfe: [D2]
+    statement: 'A sequence is given by $u_{n+1} = \frac{1}{2}u_n + 1$ and $u_1 = 0$. Work out $u_4$ and say whether the sequence increases or decreases.'
+    answer_label: 'The term and the direction'
+    check:
+      kind: apply
+      expression: "x/2 + 1"
+      apply: {op: iterate, args: [0, 3]}
+      answer: "7/4"
+    answer_text: 'The terms are $u_1 = 0$, $u_2 = 1$, $u_3 = \frac{3}{2}$ and $u_4 = \frac{7}{4}$. Each term is larger than the one before, so the sequence increases. The steps get smaller, and the terms settle towards $2$, which is the value that satisfies $u = \frac{1}{2}u + 1$.'
+
+  - id: p10-two-ways-to-see-it
+    section: "4.3"
+    dfe: [D2]
+    statement: 'The sequence $1, 4, 9, 16, \dots$ can be described by the formula $u_n = n^2$ or by the recurrence $u_{n+1} = u_n + 2n + 1$. Show that the recurrence gives the gap $7$ between the third and fourth terms, then work out $u_{20}$.'
+    answer_label: 'The gap and the twentieth term'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "4**2 - 3**2", answer: "7"}
+        - {kind: evaluate, expression: "2*3 + 1", answer: "7"}
+        - {kind: evaluate, expression: "20**2", answer: "400"}
+    answer_text: 'The gap between $u_3 = 9$ and $u_4 = 16$ is $16 - 9 = 7$, and the recurrence gives $2(3) + 1 = 7$ at $n = 3$. Both descriptions fit. The formula is better for a distant term: $u_{20} = 20^2 = 400$, which the recurrence would reach only after nineteen steps. This is the choice between a formula and a recurrence in practice.'
+
+  - id: p11-recurrence-iterate
+    section: "4.3"
+    dfe: [D2]
+    statement: 'A sequence is given by $u_{n+1} = 2u_n - 1$ and $u_1 = 3$. Work out $u_5$.'
+    answer_label: 'The term'
+    check:
+      kind: apply
+      expression: "2*x - 1"
+      apply: {op: iterate, args: [3, 4]}
+      answer: "33"
+    answer_text: 'Work forward: $u_2 = 5$, $u_3 = 9$, $u_4 = 17$, $u_5 = 33$. Four steps are needed, because the rule moves from one term to the next. The sequence increases, and the steps roughly double each time.'
+
+  - id: p12-fundraising-terms
+    section: "4.3"
+    dfe: [D2]
+    statement: 'The quiz night follows $q_{n+1} = q_n + 50$ with $q_1 = 150$. The online appeal follows $a_{n+1} = 0.8a_n$ with $a_1 = 600$. Work out the quiz income in month 10 and the appeal income in month 6, to the nearest penny.'
+    answer_label: 'The two incomes'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "x + 50", apply: {op: iterate, args: [150, 9]}, answer: "600"}
+        - {kind: evaluate, expression: "600*(0.8)**5", answer: "196.608"}
+    answer_text: 'The quiz income in month 10 is $q_{10} = 150 + 9(50) = 600$, so £600. The appeal income in month 6 is $a_6 = 600(0.8)^5 = 600 \times 0.32768 = 196.608$, so £196.61 to the nearest penny. The quiz stream grows without limit, while the appeal stream shrinks towards zero.'
