@@ -43,7 +43,7 @@ document.body.setAttribute(
 </script>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="masthead">
+<header class="masthead" data-pagefind-ignore>
   <div class="wrap masthead__inner">
     <a class="masthead__brand" href="${prefix}">$site_title</a>
     <div class="search">
@@ -54,29 +54,51 @@ document.body.setAttribute(
 </header>
 
 <div class="wrap layout">
-  <nav class="sidebar" aria-label="Book contents">
+  <nav class="sidebar" aria-label="Book contents" data-pagefind-ignore>
     $nav
   </nav>
 
-  <main id="main" class="content md-typeset">
+  <!-- data-pagefind-body scopes the index to the page's own content. Without it
+       every page also indexes the whole sidebar, so every search hit would match
+       a chapter title that merely appears in the navigation. -->
+  <main id="main" class="content md-typeset" data-pagefind-body>
     $content
   </main>
 </div>
 
-<script>
-/* Search. The index is built at build time into search.json and fetched on first
- * use, so no page carries it inline. */
-let index = null;
+<script type="module">
+/* Search, powered by Pagefind: the index is built over the rendered HTML after
+ * the build, so the ranking, stemming and excerpting are not ours to write, and
+ * nothing is fetched until the reader actually types.
+ *
+ * Pagefind stores result URLs from the site root, so every one is re-based onto
+ * this book's prefix: the book is served from a subpath. */
+const prefix = "${prefix}";
 const input = document.getElementById("search-input");
 const results = document.getElementById("search-results");
+let pagefind = null;
+let sequence = 0;
+
+async function load() {
+  if (!pagefind) pagefind = await import(prefix + "pagefind/pagefind.js");
+  return pagefind;
+}
+
 input.addEventListener("input", async () => {
-  if (!index) index = await (await fetch("${prefix}search.json")).json();
-  const term = input.value.trim().toLowerCase();
+  const term = input.value.trim();
   if (term.length < 2) { results.innerHTML = ""; return; }
-  results.innerHTML = index
-    .filter((page) => page.title.toLowerCase().includes(term) || page.text.toLowerCase().includes(term))
-    .slice(0, 20)
-    .map((page) => '<li><a href="${prefix}' + page.url + '">' + page.title + "</a></li>")
+  const mine = ++sequence;
+  let search;
+  try {
+    search = await (await load()).search(term);
+  } catch (err) {
+    results.innerHTML = "<li>Search is unavailable.</li>";
+    return;
+  }
+  const pages = await Promise.all(search.results.slice(0, 20).map((r) => r.data()));
+  if (mine !== sequence) return;
+  results.innerHTML = pages
+    .map((p) => '<li><a href="' + prefix + p.url.replace(/^\//, "") + '">' + p.meta.title + "</a></li>")
     .join("");
 });
 </script>
