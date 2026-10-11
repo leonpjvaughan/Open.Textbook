@@ -12,7 +12,7 @@ import re
 
 import pytest
 
-from textbook import headers, portal, scaffold
+from textbook import headers, pipeline, portal, scaffold
 from textbook.book import discover_books, load_collection, repo_root
 
 ROOT = repo_root()
@@ -108,7 +108,7 @@ def test_the_root_robots_is_ours_and_names_the_sitemap():
 
 
 def test_the_sitemap_index_points_at_every_profile_sitemap():
-    """MkDocs emits one sitemap per profile; nothing at the root linked to them."""
+    """Each profile build emits its own sitemap; nothing at the root linked to them."""
     portal.main()
     text = (ROOT / "site" / "sitemap.xml").read_text(encoding="utf-8")
     assert "<sitemapindex" in text
@@ -236,12 +236,13 @@ def test_every_profile_url_sits_under_the_base(book):
         assert url.endswith("/"), url
 
 
-def test_the_generated_site_url_matches_the_base_url():
-    """The configs carry site_url, and it is derived; make sure it followed."""
+def test_the_site_url_matches_the_canonical_url_used_on_every_page():
+    """`site_url` and a page's canonical are derived from the one base URL."""
     for book in BOOKS:
-        for profile in book.profiles:
-            config = (scaffold.config_path(book, profile.id)).read_text(encoding="utf-8")
-            assert scaffold.site_url(book, profile.id) in config
+        default = book.default_profile
+        assert pipeline.canonical_url(book, "") == scaffold.site_url(book, default.id), (
+            f"{book.id}: the canonical URL has drifted from the profile's site_url"
+        )
 
 
 # --- the deploy script --------------------------------------------------------

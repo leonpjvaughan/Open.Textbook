@@ -41,8 +41,11 @@ step "build"
 uv run python -m textbook.scaffold
 uv run python -m textbook.booklet
 uv run python -m textbook.portal
-while read -r config; do
-  uv run mkdocs build -f "$config" --strict
+# The pipeline is the site now. It replaces `mkdocs build --strict`: check_links()
+# requires every internal link to resolve to a built file, and the build exits
+# non-zero when one does not. `--configs` emits the pipeline's arguments.
+while read -r -a build; do
+  uv run python -m textbook.pipeline "${build[@]}"
 done < <(uv run python -m textbook.plan --configs)
 
 step "refuse to ship broken maths"

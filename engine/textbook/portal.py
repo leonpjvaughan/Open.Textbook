@@ -304,7 +304,7 @@ def service_worker() -> str:
 def not_found() -> str:
     """The root 404 page.
 
-    Each book ships its own 404 from its MkDocs build, so a missing page under a
+    Each book ships its own 404 from its own profile build, so a missing page under a
     book offers that book's own navigation. This one catches everything else, and
     its only job is to get the reader to the landing page.
 
@@ -404,7 +404,7 @@ def robots_txt() -> str:
 def sitemap_index() -> str:
     """A sitemap index over the per-book sitemaps.
 
-    MkDocs emits one sitemap per profile — ``site/gcse-maths/higher/sitemap.xml``
+    Each profile build emits its own sitemap — ``site/gcse-maths/higher/sitemap.xml``
     and so on — but nothing at the root pointed at them, so a crawler never found
     them. This is that pointer.
 

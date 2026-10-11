@@ -50,8 +50,12 @@ step "tests"
 uv run python -m pytest tests/ -q
 
 step "builds"
-while read -r config; do
-  uv run mkdocs build -f "$config" --strict
+# The pipeline is the site now. It replaces `mkdocs build --strict`: check_links()
+# requires every internal link to resolve to a built file, and the build exits
+# non-zero when one does not. It also reports maths errors and exits non-zero on
+# those. `--configs` now emits the pipeline's arguments, not MkDocs config paths.
+while read -r -a build; do
+  uv run python -m textbook.pipeline "${build[@]}"
 done < <(uv run python -m textbook.plan --configs)
 
 step "no maths rendering errors"
@@ -60,8 +64,5 @@ if grep -rl 'math-error' site --include='*.html'; then
   exit 1
 fi
 echo "none"
-
-step "figure-hook and tier-profile evaluation"
-test/run.sh
 
 printf '\nall checks passed\n'

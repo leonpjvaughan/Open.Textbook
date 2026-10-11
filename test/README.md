@@ -1,31 +1,23 @@
-# `test/` — figure-hook and tier-strategy evaluation
+# `test/` — theme preview
 
 Two design questions had to be answered before authoring the vertical slice:
 
 1. **How should a figure be embedded**, so that a parameter can be manipulated
-   without breaking portability to the other three renderers?
+   without breaking portability to the other renderers?
 2. **How should Foundation vs Higher be delivered** — one site with a toggle, or
    two sites built from one source?
 
-This directory answers both by building the same fixtures several ways and
-asserting the behaviour that matters.
-
-## Run it
-
-```bash
-uv sync                       # pinned in pyproject.toml
-test/run.sh                   # builds every prototype, 24 assertions
-```
-
-`test/site/` holds the build output and one `.build.log` per config.
-
-## Layout
+Both are settled, and the evaluation that settled them has moved out of this
+directory. The fixture books, their MkDocs configurations and `run.sh` are gone:
+the pipeline uses the same hook chain (`MARKDOWN_HOOKS = (tier, toc, figures,
+problems)` in `engine/textbook/pipeline.py`), so the behaviour is now pinned
+against the hooks themselves, in pytest, where it runs as part of
+`scripts/check.sh`.
 
 ```
-content-figures/   one source page per authoring style (+ a plain Tier-0 page)
-content-tiers/     one source with F pages, H pages and in-page H blocks
-hooks/             figures_hook.py (directive → element), tier_filter.py (profiles)
-configs/           one mkdocs.yml per prototype, all sharing the fixtures
+tests/test_render_hooks.py    # figure hook + tier strategies (the old 24 assertions)
+tests/test_figures.py         # every figure carries an accessible name and no literal colour
+tests/test_pipeline.py        # the renderer's last mile: URLs, nav, links, search, the shell
 ```
 
 ## Result
@@ -34,9 +26,48 @@ configs/           one mkdocs.yml per prototype, all sharing the fixtures
 pass: 24   fail: 0
 ```
 
+was the old `test/run.sh` summary. The assertions survive here:
+
+| Old assertion | Where it lives now |
+|---|---|
+| raw HTML element passes through | `test_the_portable_substrate_passes_through_untouched` |
+| `:::figure` expands to `<maths-figure>` | `test_the_directive_expands_to_the_portable_element` |
+| loader injected per page, page-relative | `test_the_loader_is_injected_relative_to_the_page` |
+| no figure JS on a Tier-0 page | `test_a_page_without_a_figure_ships_no_figure_javascript` |
+| unknown slug fails the build | `test_an_unknown_slug_fails_the_build` |
+| Jinja marker left untouched | `test_another_systems_marker_is_left_alone` |
+| Foundation drops a Higher-only page | `test_foundation_drops_a_higher_only_page` |
+| Foundation strips an in-page Higher block | `test_foundation_strips_the_in_page_higher_block` |
+| Foundation keeps shared content | asserted in the same test |
+| Higher keeps the Higher-only page | `test_the_profiles_agree_with_the_tier_axis[higher]` |
+| Higher keeps the in-page Higher block | `test_higher_keeps_the_in_page_higher_block` |
+| toggle tags the Higher block | `test_the_toggle_tags_the_higher_block_for_the_switch` |
+
+The build-success assertions (`fig-raw builds`, `fig-macros builds`, `fig-hook
+builds`, `foundation builds`, `higher builds`, `toggle builds`) are the tests
+themselves: a hook that raised would fail them.
+
+Three assertions were **comparison points**, not behaviour, and are recorded
+rather than ported:
+
+- **`raw: loader on every page` and `macros: loader on every page`** contrasted
+  the rejected mechanisms, both of which load the figure loader site-wide, with
+  the hook, which injects it per page. The hook is now the only mechanism, and
+  the guarantee that survives is `test_a_page_without_a_figure_ships_no_figure_javascript`.
+- **`raw: directive is NOT understood` and `macros: directive is NOT understood`
+  and `macros: jinja marker expands`** measured the mechanisms that are gone.
+  `mkdocs-macros-plugin` is dropped; the substrate's portability is pinned by
+  `test_the_portable_substrate_passes_through_untouched` instead.
+- **`toggle: switch script present`** was the fixture's own `assets/tier-toggle.js`
+  listed in the fixture's MkDocs config, not engine behaviour. There is no
+  engine switch script: the toggle profile tags the block
+  (`data-tier="higher"`) and the runtime that reacts to the tag is content, not
+  the engine. `test_the_toggle_tag_renders_as_an_element_a_script_can_select`
+  keeps the half that is the engine's.
+
 ## 1. Figure hooks
 
-Three mechanisms, all rendering to the same portable
+Three mechanisms were compared; all rendered the same portable
 `<maths-figure data-figure="…">` custom element:
 
 | | **raw HTML** | **mkdocs-macros-plugin** | **repo-owned hook** |
@@ -44,34 +75,20 @@ Three mechanisms, all rendering to the same portable
 | Author writes | `<maths-figure data-figure="gradient">` | `{{ figure("gradient") }}` | `:::figure gradient` |
 | Build dependency | none | `mkdocs-macros-plugin` | none |
 | Tier-0 page JS | **global loader on every page** | **global loader on every page** | **none — injected per page** |
-| Loader path | handled by `extra_javascript` | handled by `extra_javascript` | computed relative to the page |
 | Unknown slug | rendered, fails silently in the browser | build aborts | build aborts |
 | Collision risk | none | **any literal `{{ … }}` in prose/maths aborts the build** (observed) | none; `:::` is line-anchored |
 | Portability | raw HTML works in every renderer | MkDocs-plugin syntax | MkDocs-hook syntax |
-| Owned/tested here | yes (platform) | no (third party) | yes (repo code) |
 
-Findings, all reproduced by `test/run.sh`:
-
-- The **macro plugin aborted the build** on a page that merely contained a
-  literal double-brace sequence in prose. At GCSE, maths and code snippets make
-  that a real hazard.
-- Both the macro plugin and the raw-HTML approach must load the figure loader
-  site-wide, so **Tier-0 pages ship runtime JS**. Only the hook can inject the
-  loader per page.
-- The **raw-HTML substrate is the only mechanism that is portable as-is**. It was
-  deliberately chosen as the wire format so the shorthand is pure sugar.
-
-**Decision — canonical substrate + repo-owned hook.**
-The wire format is the portable `<maths-figure>` custom element (raw HTML, works
-in MkDocs, Quarto, MyST and MDX). On MkDocs the author writes the line-anchored
-directive `:::figure slug`, which `hooks/figures_hook.py` expands while injecting
-the loader only into pages that need it. `mkdocs-macros-plugin` is dropped.
+**Decision — canonical substrate + repo-owned hook.** The wire format is the
+portable `<maths-figure>` custom element (raw HTML, works in MkDocs, Quarto, MyST
+and MDX). The author writes the line-anchored directive `:::figure slug`, which
+`engine/textbook/hooks/figures.py` expands while injecting the loader only into
+pages that need it. `mkdocs-macros-plugin` is dropped.
 
 Portability of the substrate itself is **expected from the renderers' documented
-handling of raw HTML, but not yet CI-verified** — that remains the job of the
-`HANDOFF.md` D4 port work. What *is* verified here: MkDocs builds all three
-authoring styles, the hook fails loudly on an unknown slug, and Tier-0 pages get
-no figure JS.
+handling of raw HTML, but not CI-verified** — that remains the job of the
+`HANDOFF.md` D4 port work. What *is* verified: the directive expands, the hook
+fails loudly on an unknown slug, and Tier-0 pages get no figure JS.
 
 ## 2. Tier strategies
 
@@ -80,12 +97,10 @@ no figure JS.
 | Builds | 1 | 1 per tier |
 | Foundation reader receives H content | yes (hidden by JS) | no |
 | Works without JS | no (H shown) | yes |
-| Matches GCSE structure (separate papers) | loosely | yes |
 | Deep-linkable per-tier URL | no | yes |
-| Extra cost to also offer the toggle | — | one more config |
 
-Both are produced from **one source** by `hooks/tier_filter.py`, selected with
-`extra.tier_profile`:
+Both are produced from **one source** by `engine/textbook/hooks/tier.py`, selected
+with `extra.tier_profile`:
 
 - `foundation` drops `tier: H` pages (`on_files`) and strips
   `<!-- tier:h -->…<!-- /tier:h -->` blocks (`on_page_markdown`);
@@ -95,11 +110,9 @@ Both are produced from **one source** by `hooks/tier_filter.py`, selected with
 
 **Decision — two sites first, toggle as a bonus.** The two-site build is the
 product: it matches the two GCSE tiers, keeps Higher content out of the
-Foundation payload, and works without JavaScript. Because it costs one extra
-config, the combined toggle site can also be published from the same source. The
-portable interface is the front matter (`tier: H`) plus the HTML-comment block;
-both survive the other renderers (the comment degrades to visible content, which
-a port codemod strips).
+Foundation payload, and works without JavaScript. The portable interface is the
+front matter (`tier: H`) plus the HTML-comment block; both survive the other
+renderers (the comment degrades to visible content, which a port codemod strips).
 
 ## 3. Theme preview
 
@@ -130,12 +143,4 @@ is what found the four defects recorded in `todo.md` item 18, including Material
 palette stylesheet out-ranking our link mapping in dark mode, and the header's
 white-on-accent title. Both were invisible to the palette tests. The script exits
 non-zero on any failure, so it can be wired into CI; it needs Chrome, so it is not
-part of `test/run.sh`.
-
-## Risks noted
-
-- `mkdocs-material` prints a banner warning that **MkDocs 2.0 will break plugins
-  and theme overrides** and is currently unlicensed for production. We pin MkDocs
-  1.6.1 and Material 9.7.7, which work today, but the ship target should be
-  re-evaluated if MkDocs 2.0 lands. This does not affect the figure or tier
-  mechanisms, both of which are plain MkDocs hooks.
+part of `scripts/check.sh`.

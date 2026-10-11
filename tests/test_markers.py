@@ -16,7 +16,7 @@ BOOKS = discover_books()
 
 
 def build_config(book) -> dict:
-    """The config MkDocs hands to a hook, for a real book."""
+    """The config a hook is driven with, for a real book."""
     return {
         "docs_dir": str(book.docs),
         "extra": {

@@ -74,7 +74,7 @@ def repo_root() -> Path:
 
 @dataclass(frozen=True)
 class Profile:
-    """One MkDocs build of a book."""
+    """One build of a book: a tier filter and a name."""
 
     id: str
     name: str

@@ -75,8 +75,7 @@ def snippet(config) -> str:
         "<script>\n"
         "/* Reader preferences: see SHAPE.md (\"Theme preference\" and \"Theme\n"
         " * bundles\"). Applied before paint, so neither the scheme nor the theme\n"
-        " * flashes. Edit the palette in renderers/mkdocs/base.yml and the bundles\n"
-        " * in themes/*.yaml. */\n"
+        " * flashes. The colour schemes are fixed; the bundles are in themes/*.yaml. */\n"
         "(function () {\n"
         f'  var SCHEME_KEY = "{SCHEME_KEY}";\n'
         f'  var THEME_KEY = "{THEME_KEY}";\n'

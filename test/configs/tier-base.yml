@@ -1,8 +1,0 @@
-site_name: "Tier build profiles"
-docs_dir: ../content-tiers
-theme:
-  name: material
-markdown_extensions:
-  - md_in_html
-hooks:
-  - ../hooks/tier_filter.py

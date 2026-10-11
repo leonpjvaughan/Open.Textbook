@@ -1,10 +1,7 @@
-"""The MkDocs hooks, composed in an explicit order.
+"""The engine's page hooks, composed in an explicit order.
 
-MkDocs collects hooks by looking for event-named callables in the namespace of
-each file listed under ``hooks:``. Several of our hooks want the same event, so
-the order cannot be expressed by listing files — it is stated here, once, and
-tested. The MkDocs-facing file (``renderers/mkdocs/hooks/entry.py``) re-exports
-only these functions.
+Several hooks want the same event, so the order cannot be expressed by listing
+files — it is stated once, here, and tested.
 
 Order matters:
 

@@ -4,15 +4,11 @@ version = "0.0.0"
 description = "A collection of interactive, static, backend-free textbooks"
 requires-python = ">=3.12"
 dependencies = [
-    "mkdocs==1.6.1",
-    "mkdocs-material==9.7.7",
     "textbook",
 ]
 
 [dependency-groups]
 dev = [
-    # Candidate figure-hook mechanism, kept only while test/run.sh evaluates it.
-    "mkdocs-macros-plugin==1.5.0",
     "pytest==9.1.1",
 ]
 

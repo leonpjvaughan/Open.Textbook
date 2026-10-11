@@ -15,8 +15,7 @@ shared; the curriculum, the content and the verification data are per book.**
 
 | Layer | Lives in | Shared? |
 |---|---|---|
-| MkDocs adapter (base config, hook entry point, generated per-book configs) | `renderers/mkdocs/` | shared |
-| Engine (hooks, scaffold, lint, booklet build, verifier, portal) | `engine/textbook/` | shared |
+| Engine (hooks, pipeline, scaffold, lint, booklet build, verifier, portal) | `engine/textbook/` | shared |
 | Design system and runtime widgets (CSS, figure loader, booklet widget) | `assets/` | shared |
 | Theme bundles: the core themes a reader chooses between | `themes/` | shared |
 | Evidence base and primary sources | `research/` | shared, with per-book folders |
@@ -37,7 +36,6 @@ repo/
 ├── assets/                   # shared design system and runtime widgets
 ├── research/                 # pedagogy, notes, fetched sources
 ├── books/<id>/               # one self-contained book
-├── renderers/mkdocs/         # MkDocs adapter; per-book configs are generated
 ├── scripts/                  # thin developer entry points
 ├── tests/                    # engine and content tests
 └── .github/workflows/        # CI, one matrix over book × profile
@@ -59,9 +57,10 @@ site/
 └── gcse-physics/higher/…
 ```
 
-This is a generalisation of what the repository already did: `mkdocs.yml` and
+This is a generalisation of an earlier shape: `mkdocs.yml` and
 `mkdocs.foundation.yml` were two builds from one source. Now it is
-`<book>.<profile>` in a matrix.
+`--book <id> --profile <profile>` in a matrix, and the pipeline reads
+`curriculum.yaml` directly.
 
 Two consequences worth knowing:
 
@@ -70,17 +69,18 @@ Two consequences worth knowing:
 - The landing page is a **separate artefact** from the books, so a broken chapter
   in one book cannot take the collection's front door down.
 
-### Two mechanisms, both verified
+### Shared assets and hooks
 
 - **Shared assets** reach each book through a symlink from
-  `books/<id>/docs/assets/…` into `assets/`. MkDocs follows the symlink under
-  `--strict` and copies real files into the output. Caveat: Git stores the
-  symlink, so a checkout needs `core.symlinks` (true on Linux and macOS) and CI
-  must run on a platform that honours it.
-- **Shared hooks** reach MkDocs through a two-line file,
-  `renderers/mkdocs/hooks/entry.py`, which re-exports the engine's hooks. MkDocs
-  requires a *file* path for the `hooks:` setting — a dotted module path is
-  rejected — so the shim is permanent, not a workaround.
+  `books/<id>/docs/assets/…` into `assets/`. The scaffold creates the symlinks and
+  the tests check they resolve; the pipeline copies the shared bytes from
+  `assets/` into the build output. Caveat: Git stores the symlink, so a checkout
+  needs `core.symlinks` (true on Linux and macOS) and CI must run on a platform
+  that honours it.
+- **Shared hooks** live in `engine/textbook/hooks/` and are composed in one
+  place. `engine/textbook/hooks/__init__.py` states the order, and the pipeline
+  reads the same order from `pipeline.MARKDOWN_HOOKS`; a test pins the two
+  together.
 
 ## The landing page
 
@@ -209,31 +209,23 @@ by the landing page:
 | `textbooks:scheme` | `default`, `slate` | light or dark |
 | `textbooks:theme` | a bundle id | which reading experience |
 
-Material does not do this by itself: it scopes its palette storage to the root of
-each built site, so a choice made in GCSE Mathematics Higher is invisible to GCSE
-Mathematics Foundation, to another book, and to the landing page. The bridge is
-`engine/textbook/hooks/prefs.py`, which injects a small inline script into the
-`<head>` of every page. It:
+The pipeline applies both before the first paint: an inline script at the top of
+`engine/textbook/templates/page.html` reads the two keys and sets `data-theme` and
+`data-md-color-scheme` on the document, so the right bundle and scheme paint on
+the first frame with no flash. The landing page carries the same script (see
+`engine/textbook/templates/portal.html`), and the reader's Settings control
+(`assets/settings/settings.js`) is the only writer. `engine/textbook/hooks/prefs.py`
+owns the key names.
 
-1. **seeds Material's own storage** from the shared scheme key, using Material's
-   `__md_set`, so the right scheme applies on the first frame with no flash;
-2. **sets `data-theme`** on the document element from the shared bundle key, which
-   is ours outright and needs no bridging;
-3. records every palette change back to the shared scheme key.
+Neither key is namespaced by path: renaming the repository or moving a book must
+not cost a reader their preferences. The bundle menu can be withdrawn with
+`theme_selector: false` in `collection.yaml` once a default is settled on, without
+affecting the stored preference.
 
-The scheme payload is generated from `theme.palette` in `base.yml`, so editing the
-palette list cannot silently break the bridge. Neither key is namespaced by path:
-renaming the repository or moving a book must not cost a reader their preferences.
-
-The landing page reads and writes both keys itself, and offers the bundle menu —
-which is what makes a choice made at the front door appear inside every book. The
-menu can be withdrawn with `theme_selector: false` in `collection.yaml` once a
-default is settled on, without affecting the preference.
-
-This is a second deliberate exception to the no-runtime-JS rule, alongside the
-booklet widget: a few lines of inline script, no request, and nothing that matters
-if JavaScript is unavailable — without it a reader gets the default bundle in
-their system's scheme, which is a perfectly good book.
+This is a deliberate exception to the no-runtime-JS rule, alongside the booklet
+widget: a few lines of inline script, no request, and nothing that matters if
+JavaScript is unavailable — without it a reader gets the default bundle in their
+system's scheme, which is a perfectly good book.
 
 ## What a new book requires
 
@@ -253,10 +245,10 @@ books/<id>/
 Then:
 
 1. Add the book to `collection.yaml` if it should appear on the landing page.
-2. Run `python -m textbook.scaffold` — it generates the docs tree, the per-book
-   MkDocs configs, themes.css and the curriculum map.
+2. Run `python -m textbook.scaffold` — it generates the docs tree, themes.css,
+   the book's tint and the curriculum map.
 3. Run `python -m textbook.portal` — the landing page picks the card up.
-4. CI discovers the new configs automatically; there is no workflow to edit.
+4. CI discovers the new build automatically; there is no workflow to edit.
 
 A book that uses a different verification oracle (units and significant figures
 for physics, rather than symbolic equivalence) declares it in
@@ -282,15 +274,14 @@ only by books that declare a booklet.
 ```bash
 uv sync                                  # Python toolchain and the local engine
 npm install                              # build-time KaTeX
-python -m textbook.scaffold              # docs tree, per-book configs, themes.css
+python -m textbook.scaffold              # docs tree, generated CSS, themes.css
 python -m textbook.booklet               # validate booklet data, emit JSON
 python -m textbook.portal                # landing page
 python -m textbook.lint                  # voice, style, structure
 python -m textbook.verify books/         # verify every problem bank
-uv run mkdocs build -f renderers/mkdocs/gcse-maths.higher.yml --strict
-uv run mkdocs build -f renderers/mkdocs/gcse-maths.foundation.yml --strict
-uv run pytest tests/ -q
-test/run.sh                              # figure-hook and tier evaluation
+while read -r -a b; do uv run python -m textbook.pipeline "${b[@]}"; done \
+    < <(uv run python -m textbook.plan --configs)   # both profiles, link-checked
+uv run pytest tests/ -q                  # includes the figure-hook and tier evaluation
 ```
 
 ## Deployment and platform targets
@@ -325,30 +316,24 @@ Three consequences shape everything else:
 
 `site/` is assembled by the engine, so the root of the deployment is ours:
 `site/index.html` and `site/404.html` come from `textbook.portal`, with one
-MkDocs build per book profile beside them. A Worker whose static assets are that
+pipeline build per book profile beside them. A Worker whose static assets are that
 directory therefore serves the whole collection from one place, and the service
 worker's scope will be the whole site without needing a header at all.
 
-Note the interaction with **Deliberate limits** below: third-party MkDocs plugins
-are excluded, and MkDocs 2.0 removes the plugin system entirely. The PWA
-therefore cannot come from a plugin — it is engine work, authored in `assets/`
-and emitted by the engine, exactly like the booklet widget.
-
-**MkDocs is the only renderer that ships.** `engine/textbook/pipeline.py` is a
-second, complete renderer for the same books, and it is parked: no new feature
-lands in it and no bug is fixed twice, but it is not deleted. It is the escape
-hatch from the MkDocs 2.0 rewrite and from Material's licence notice, so
-`tests/test_pipeline.py` stays in the gate and the decision is re-opened when
-either becomes real. See `todo.md` item 8.
+**The bespoke renderer is the site.** `engine/textbook/pipeline.py` renders a book
+to static HTML — nav, Pagefind search, link checking, a sitemap and a 404 per
+profile — and it is the only renderer. It is the one we control: no third-party
+theming to be rewritten under us, no plugin system to lose, no licence notice, and
+one place to change the shell. It replaced MkDocs in October 2026; see `todo.md`
+item 8 for the migration record.
 
 ## Deliberate limits
 
-- **One MkDocs build per profile, not one site for everything.** Blending the
+- **One build per profile, not one site for everything.** Blending the
   books into a single build would remove tier separation for readers who need it,
   and would let one book's error block every other book's deployment.
 - **Symlinks, not copies, for shared assets.** A copy would drift; the CI drift
   check would then have to police two truths instead of one.
-- **No third-party MkDocs plugins.** `mkdocs-macros-plugin` was evaluated and
-  rejected (it aborted a build on a literal `{{ … }}` in prose, which is a real
-  hazard in mathematics). MkDocs 2.0 removes the plugin system, so the engine
-  stays on plain hooks and a shim.
+- **No third-party site-generator plugins.** A template-plugin mechanism was
+  evaluated and rejected (it aborted a build on a literal `{{ … }}` in prose,
+  which is a real hazard in mathematics), so the engine stays on plain hooks.

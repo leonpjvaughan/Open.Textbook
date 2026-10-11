@@ -5,29 +5,28 @@ scripting: maths is rendered to MathML by KaTeX at build time, the prose is in
 the markup, and the interactive chrome is an enhancement. That was an assertion.
 This is the check.
 
-The suite renders one real page through the own-pipeline renderer — the same
-hooks, the same maths renderer and the same ``<math>`` output the MkDocs build
-uses — then removes every ``<script>`` element. That is the page as a reader
-with scripting off actually sees it. What must survive is the prose and the
-maths; what must not be needed is a runtime maths renderer.
+The suite renders one real page through the pipeline — the same hooks, the same
+maths renderer and the same ``<math>`` output the build produces — then removes
+every ``<script>`` element. That is the page as a reader with scripting off
+actually sees it. What must survive is the prose and the maths; what must not be
+needed is a runtime maths renderer.
 
 Coverage boundary, stated so it is not mistaken for more than it is: this file
-exercises the shared engine, not the MkDocs shell. The MkDocs path differs only
-in its chrome, and the one piece of chrome that makes a no-JavaScript promise —
-the Settings trigger, which is ``hidden`` until its script runs — is pinned by
-``tests/test_settings.py``. The real-browser, JavaScript-disabled run lives in
-``research/accessibility.md``, where a Playwright result belongs.
+exercises the shared engine and the page shell. The one piece of chrome that
+makes a no-JavaScript promise — the Settings trigger, which is ``hidden`` until
+its script runs — is pinned by ``tests/test_settings.py``. The real-browser,
+JavaScript-disabled run lives in ``research/accessibility.md``, where a Playwright
+result belongs.
 """
 
 from __future__ import annotations
 
 import re
-from pathlib import Path
 from string import Template
 
 import pytest
 
-from textbook import pipeline
+from textbook import pipeline, portal
 from textbook.book import book_by_id, repo_root
 
 BOOK = "gcse-maths"
@@ -45,9 +44,6 @@ ANNOTATION = re.compile(
 # inline script. The build-time renderer must leave no such reference behind.
 RUNTIME_RENDERERS = ("katex", "mathjax", "rendermathinelement", "temml")
 
-SETTINGS_HTML = (
-    repo_root() / "renderers" / "mkdocs" / "overrides" / "partials" / "settings.html"
-)
 SETTINGS_JS = repo_root() / "assets" / "settings" / "settings.js"
 
 
@@ -137,17 +133,17 @@ def test_the_build_reports_a_maths_failure_rather_than_an_empty_span(page_html):
 
 
 def test_the_settings_control_is_hidden_until_its_script_runs():
-    """The MkDocs shell's only no-JavaScript promise, pinned where it is made.
+    """The pipeline shell's only no-JavaScript promise, pinned where it is made.
 
     With scripting off the trigger is absent, not a dead control; the script is
     what reveals it. ``tests/test_settings.py`` pins the same source, and this
     keeps the no-JavaScript file self-contained.
     """
     button = re.search(
-        r"<button\b[^>]*id=\"tb-settings\"[^>]*>", SETTINGS_HTML.read_text("utf-8")
+        r"<button\b[^>]*id=\"tb-settings\"[^>]*>", portal.settings_trigger()
     )
-    assert button, "the MkDocs Settings trigger moved"
+    assert button, "the Settings trigger moved"
     assert "hidden" in button.group(0)
     assert "trigger.hidden = false" in SETTINGS_JS.read_text("utf-8")
     # The panel is only ever enhanced, never built, by the script.
-    assert 'id="tb-settings-dialog"' in SETTINGS_HTML.read_text("utf-8")
+    assert 'id="tb-settings-dialog"' in portal.settings_dialog()

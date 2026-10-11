@@ -25,7 +25,9 @@ from types import SimpleNamespace
 import pytest
 
 from textbook import pipeline
+from textbook import portal
 from textbook.book import repo_root
+from textbook.themes import ordered_bundles
 
 BOOK = "gcse-maths"
 
@@ -366,6 +368,36 @@ def test_build_writes_the_expected_files(subset):
     assert (subset.out / "assets" / "stylesheets" / "shell.css").exists()
 
 
+def test_every_page_links_the_book_local_stylesheet(subset):
+    """The per-book override is the last stylesheet, so it must reach the page.
+
+    A book's own component rules live here; a build that copies `book.css` but
+    not `book-local.css` would silently drop them.
+    """
+    page = (subset.out / "chapter-1/index.html").read_text()
+    assert 'href="../assets/stylesheets/book-local.css"' in page
+    assert (subset.out / "assets" / "stylesheets" / "book-local.css").is_file()
+
+
+def test_the_formulae_booklet_and_its_data_are_shipped(subset):
+    """The widget and the JSON it fetches are one feature, so they ship together."""
+    book = pipeline.books.book_by_id(BOOK)
+    assert book.booklet_name, "this test assumes the book declares a booklet"
+    for asset in ("booklet.js", "booklet.json"):
+        assert (subset.out / "assets" / "booklet" / asset).is_file(), asset
+    page = (subset.out / "chapter-1/index.html").read_text()
+    assert 'src="../assets/booklet/booklet.js"' in page
+    assert page.count("assets/booklet/booklet.js") == 1
+
+
+def test_a_book_without_a_booklet_ships_no_widget():
+    """No page may fetch a booklet a book does not have."""
+    from dataclasses import replace
+
+    book = replace(pipeline.books.book_by_id(BOOK), booklet_name="")
+    assert pipeline.booklet_widget(book, "../") == ""
+
+
 def test_build_renders_maths_to_mathml(subset):
     page = (subset.out / "chapter-1/section-1.1/learn/index.html").read_text()
     assert "<math" in page
@@ -410,7 +442,7 @@ def test_build_is_deterministic(subset, tmp_path):
 def test_foundation_profile_omits_higher_only_sections(tmp_path):
     """The nav comes from curriculum.yaml, so the pipeline filters by tier there.
 
-    The MkDocs path filters by each page's own front matter, which is how a
+    The old renderer filtered by each page's own front matter, which is how a
     Higher-only section once reached Foundation readers. Trusting the curriculum,
     which AGENTS.md names the source of truth for tier, means the pipeline cannot
     leak one even if the two ever disagree again.
@@ -443,3 +475,89 @@ def test_canonical_url_uses_the_collection_base_url():
     assert url.startswith("http")
     assert "gcse-maths" in url
     assert url.endswith("/chapter-1/")
+
+
+# --- the page shell: settings, PWA and build identity -------------------------
+
+
+def test_every_page_carries_the_settings_control(subset):
+    html = (subset.out / "chapter-1/index.html").read_text()
+    assert 'id="tb-settings"' in html
+    assert 'aria-label="Settings"' in html
+    assert 'aria-haspopup="dialog"' in html
+    assert 'aria-controls="tb-settings-dialog"' in html
+    assert 'id="tb-settings-dialog"' in html
+    assert 'method="dialog"' in html
+    assert 'name="tb-scheme"' in html
+    assert 'name="tb-theme"' in html
+
+
+def test_the_settings_options_come_from_the_bundle_registry(subset):
+    """The dialog reads the bundles, so it cannot drift from ``themes/``."""
+    html = (subset.out / "chapter-1/index.html").read_text()
+    for bundle in ordered_bundles():
+        assert f'value="{bundle.id}"' in html, bundle.id
+    for scheme in ("default", "slate"):
+        assert f'value="{scheme}"' in html
+
+
+def test_every_page_carries_the_build_identity(subset):
+    label = portal.build_label()
+    assert label, "the test checkout should have a git build label"
+    html = (subset.out / "chapter-1/index.html").read_text()
+    assert f'<meta name="build" content="{label}">' in html
+
+
+def test_every_page_links_the_manifest_and_the_shared_runtimes(subset):
+    html = (subset.out / "chapter-1/index.html").read_text()
+    assert '<link rel="manifest" href="/manifest.webmanifest">' in html
+    assert "/assets/settings/service-worker.js" in html
+    assert "assets/settings/settings.js" in html
+    assert "assets/stylesheets/settings.css" in html
+
+
+def test_build_copies_the_settings_and_pwa_assets(subset):
+    for relative in (
+        "assets/stylesheets/settings.css",
+        "assets/settings/settings.js",
+        "assets/settings/service-worker.js",
+        "assets/icons/app-icon.svg",
+        "manifest.webmanifest",
+        "sw.js",
+    ):
+        assert (subset.out / relative).exists(), relative
+
+
+def test_the_copied_settings_assets_are_the_shared_ones(subset):
+    """No second control: the build ships the bytes the landing page loads."""
+    shared = repo_root() / "assets"
+    for relative in (
+        "stylesheets/settings.css",
+        "settings/settings.js",
+        "settings/service-worker.js",
+    ):
+        copied = (subset.out / "assets" / relative).read_bytes()
+        assert copied == (shared / relative).read_bytes(), relative
+
+
+def test_the_service_worker_carries_the_build_label_not_the_placeholder(subset):
+    text = (subset.out / "sw.js").read_text()
+    assert "__TB_BUILD__" not in text
+    assert portal.build_label() in text
+
+
+def test_the_manifest_names_the_app_and_its_scope(subset):
+    import json
+
+    data = json.loads((subset.out / "manifest.webmanifest").read_text())
+    assert data["start_url"] == "/"
+    assert data["scope"] == "/"
+    assert data["icons"][0]["src"] == "/assets/icons/app-icon.svg"
+
+
+def test_the_page_shell_declares_no_literal_colour():
+    """Colour belongs to the bundles: the shell uses `--tb-*` tokens only."""
+    text = pipeline.SHELL_CSS.read_text(encoding="utf-8")
+    stripped = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
+    assert not re.search(r"#[0-9a-fA-F]{3,8}\b", stripped)
+    assert not re.search(r"\b(rgba?|hsla?)\(", stripped, re.I)

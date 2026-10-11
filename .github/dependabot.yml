@@ -1,7 +1,7 @@
 # Dependency updates.
 #
-# The build's toolchain is pinned on purpose — `uv.lock` for MkDocs and its
-# plugins, `package-lock.json` for build-time KaTeX — so nothing here should move
+# The build's toolchain is pinned on purpose — `uv.lock` for the Python
+# toolchain, `package-lock.json` for build-time KaTeX — so nothing here should move
 # on its own. But a pin that is never revisited silently ages out of support,
 # which is how a build breaks months later on the day a mirror is retired. A
 # weekly pull request is the reminder; the pins stay, because CI still builds
@@ -24,8 +24,8 @@ updates:
         patterns:
           - "*"
 
-  # Python: the MkDocs toolchain, declared in pyproject.toml and pinned in
-  # uv.lock. If GitHub ever rejects the `uv` ecosystem, `pip` reads
+  # Python: the engine and its runtime dependencies, declared in pyproject.toml
+  # and pinned in uv.lock. If GitHub ever rejects the `uv` ecosystem, `pip` reads
   # pyproject.toml but cannot update uv.lock, so this would become a manual job.
   - package-ecosystem: uv
     directory: /

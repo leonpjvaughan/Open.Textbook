@@ -194,13 +194,17 @@ site/
 ├── assets/stylesheets/        themes.css, portal.css, settings.css
 ├── assets/settings/           the Settings runtime, the registration
 ├── assets/icons/              the home-screen icon
-├── gcse-maths/higher/         one MkDocs build per book profile
+├── gcse-maths/higher/         one pipeline build per book profile
 └── gcse-maths/foundation/
 ```
 
 `wrangler.jsonc` points the Worker's static assets at `site/`, so the Worker is
 an asset server with no script of its own. Adding a book needs no change here:
-the build matrix in `engine/textbook/plan.py` drives it.
+the build matrix in `engine/textbook/plan.py` drives it. `--configs` emits the
+arguments for `python -m textbook.pipeline`, one `--book <id> --profile <profile>`
+per build, and CI and `scripts/deploy.sh` run that list. The pipeline's link
+checker is the strict build: every internal link must resolve to a
+built file and the build exits non-zero when one does not.
 
 `workers_dev` and `preview_urls` are both `false`, so there is exactly one
 origin. Both settings are public copies of the site otherwise — `workers_dev`
@@ -267,8 +271,8 @@ whole collection for free: a worker's scope defaults to its own directory, and
 `site/` is ours, so no `Service-Worker-Allowed` header is needed. Every page —
 the landing page and each book page — links the manifest and loads one shared
 registration script (`site/assets/settings/service-worker.js`), so there is a
-single registration site-wide. `renderers/mkdocs/overrides/main.html` adds both
-to the book pages through Material's `extrahead` block.
+single registration site-wide. `engine/textbook/templates/page.html` adds both
+to the book pages.
 
 The manifest carries no `theme_color` and no `background_color`. Those cannot
 follow the reader's bundle or colour scheme, and a fixed value would contradict

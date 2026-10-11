@@ -5,7 +5,7 @@ CI calls this so that adding a book needs no workflow edit — the matrix is
 derived from ``books/*/book.yaml``.
 
     python -m textbook.plan                     # one row per line, for humans
-    python -m textbook.plan --configs           # config paths, one per line
+    python -m textbook.plan --configs           # pipeline build args, one per line
     python -m textbook.plan --generated         # every generated file's path
     python -m textbook.plan --github-matrix     # {"include": [...]} for CI
 """
@@ -17,21 +17,18 @@ import json
 import sys
 
 from .book import discover_books, repo_root
-from .scaffold import config_path
 
 
 def rows() -> list[dict[str, str]]:
     out: list[dict[str, str]] = []
     for book in discover_books():
         for profile in book.profiles:
-            config = config_path(book, profile.id).relative_to(repo_root())
             out.append(
                 {
                     "book": book.id,
                     "title": book.title,
                     "profile": profile.id,
                     "name": profile.name,
-                    "config": config.as_posix(),
                     "site_dir": f"site/{book.deploy_path(profile.id)}",
                 }
             )
@@ -52,8 +49,6 @@ def generated_paths() -> list[str]:
         paths.append(book.docs / "assets" / "stylesheets" / "book.css")
         if book.booklet_name:
             paths.append(book.docs / "assets" / "booklet" / "booklet.json")
-        for profile in book.profiles:
-            paths.append(config_path(book, profile.id))
     return sorted(str(path.relative_to(root)) for path in paths)
 
 
@@ -61,7 +56,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Emit the build matrix.")
     parser.add_argument("--github-matrix", action="store_true")
     parser.add_argument(
-        "--configs", action="store_true", help="print one MkDocs config path per line"
+        "--configs",
+        action="store_true",
+        help="print one pipeline build's arguments per line",
     )
     parser.add_argument(
         "--generated", action="store_true", help="print every generated file's path"
@@ -75,8 +72,14 @@ def main() -> int:
 
     matrix = rows()
     if args.configs:
+        # The arguments for `python -m textbook.pipeline`, one build per line.
+        # The scripts and CI read this instead of naming builds, so adding a book
+        # still needs no edit outside books/*/book.yaml. The exact ordering
+        # matches `rows()`, so a line and a matrix row are the same build. This
+        # is a build list, not a shell command: the caller supplies the
+        # interpreter and decides whether to quote the split arguments.
         for row in matrix:
-            print(row["config"])
+            print(f"--book {row['book']} --profile {row['profile']}")
         return 0
     if args.github_matrix:
         # GitHub wants a JSON object with an `include` list; keep it on one line.
@@ -84,7 +87,7 @@ def main() -> int:
         return 0
 
     for row in matrix:
-        print(f"{row['book']:<14} {row['profile']:<12} {row['config']}  ->  {row['site_dir']}")
+        print(f"{row['book']:<14} {row['profile']:<12} {row['site_dir']}")
     print(f"\n{len(matrix)} build(s) across {len({r['book'] for r in matrix})} book(s)")
     return 0
 

@@ -1,6 +1,7 @@
-"""Resolve the current build's book and paths from the MkDocs config.
+"""Resolve the current build's book and paths from its config.
 
-Every generated MkDocs config carries an ``extra`` block written by the scaffold:
+The pipeline builds a plain dict through :func:`textbook.pipeline.make_config`, with
+the same ``extra`` block every hook reads:
 
     extra:
       book: gcse-maths

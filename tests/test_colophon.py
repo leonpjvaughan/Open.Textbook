@@ -12,7 +12,6 @@ from __future__ import annotations
 import re
 
 import pytest
-import yaml
 
 from textbook import book as books
 from textbook import scaffold
@@ -43,10 +42,11 @@ def test_about_page_is_in_sync_with_its_generator():
 
 @pytest.mark.parametrize("profile", [p.id for p in MATHS.profiles])
 def test_about_page_is_in_the_navigation(profile):
-    config = yaml.safe_load(
-        scaffold.config_path(MATHS, profile).read_text(encoding="utf-8")
+    include_higher = MATHS.profile(profile).tier_filter != "foundation"
+    nav = scaffold.build_nav_list(
+        MATHS.strands, MATHS.chapters, include_higher=include_higher
     )
-    entries = {key: value for entry in config["nav"] for key, value in entry.items()}
+    entries = {key: value for entry in nav for key, value in entry.items()}
     assert scaffold.COLOPHON_TITLE in entries, f"{profile}: About page is not in the nav"
     assert entries[scaffold.COLOPHON_TITLE] == scaffold.COLOPHON_FILE
     assert (MATHS.docs / scaffold.COLOPHON_FILE).is_file()
