@@ -182,16 +182,16 @@ html[data-theme="harbour"] body[data-md-color-scheme="slate"] {
 
 /* Neon */
 html[data-theme="neon"] body[data-md-color-scheme="default"] {
-  --tb-accent: var(--tb-book-accent, #b81d8f);
-  --tb-accent-light: var(--tb-book-accent-light, #d95cb0);
-  --tb-accent-dark: var(--tb-book-accent-dark, #8c1168);
-  --tb-accent-ink: var(--tb-book-accent-ink, #ffffff);
+  --tb-accent: #b81d8f;
+  --tb-accent-light: #d95cb0;
+  --tb-accent-dark: #8c1168;
+  --tb-accent-ink: #ffffff;
   --tb-paper: var(--tb-book-paper, #f7f3fb);
   --tb-ink: var(--tb-book-ink, #1c1430);
   --tb-ink-soft: var(--tb-book-ink-soft, #554a6e);
   --tb-ink-lighter: var(--tb-book-ink-lighter, #877da0);
   --tb-rule: var(--tb-book-rule, #e6dcef);
-  --tb-link: var(--tb-book-link, #0e6f80);
+  --tb-link: #0e6f80;
   --tb-code-bg: var(--tb-book-code-bg, #efe6f6);
   --tb-fig-warn: var(--tb-book-fig-warn, #b02160);
   --tb-fig-good: var(--tb-book-fig-good, #0f6b52);
@@ -199,16 +199,16 @@ html[data-theme="neon"] body[data-md-color-scheme="default"] {
 }
 
 html[data-theme="neon"] body[data-md-color-scheme="slate"] {
-  --tb-accent: var(--tb-book-accent, #ff4fd8);
-  --tb-accent-light: var(--tb-book-accent-light, #ff86e4);
-  --tb-accent-dark: var(--tb-book-accent-dark, #d62fb5);
-  --tb-accent-ink: var(--tb-book-accent-ink, #120a20);
+  --tb-accent: #ff4fd8;
+  --tb-accent-light: #ff86e4;
+  --tb-accent-dark: #d62fb5;
+  --tb-accent-ink: #120a20;
   --tb-paper: var(--tb-book-paper, #120a20);
   --tb-ink: var(--tb-book-ink, #ead9ff);
   --tb-ink-soft: var(--tb-book-ink-soft, #b4a3cf);
   --tb-ink-lighter: var(--tb-book-ink-lighter, #7d6f99);
   --tb-rule: var(--tb-book-rule, #2a1b42);
-  --tb-link: var(--tb-book-link, #4fe6ff);
+  --tb-link: #4fe6ff;
   --tb-code-bg: var(--tb-book-code-bg, #0b0616);
   --tb-fig-warn: var(--tb-book-fig-warn, #ff7aa8);
   --tb-fig-good: var(--tb-book-fig-good, #5cf0c0);
@@ -217,16 +217,16 @@ html[data-theme="neon"] body[data-md-color-scheme="slate"] {
 
 /* Phosphor */
 html[data-theme="phosphor"] body[data-md-color-scheme="default"] {
-  --tb-accent: var(--tb-book-accent, #9a5b00);
-  --tb-accent-light: var(--tb-book-accent-light, #c47d1a);
-  --tb-accent-dark: var(--tb-book-accent-dark, #744300);
-  --tb-accent-ink: var(--tb-book-accent-ink, #ffffff);
+  --tb-accent: #9a5b00;
+  --tb-accent-light: #c47d1a;
+  --tb-accent-dark: #744300;
+  --tb-accent-ink: #ffffff;
   --tb-paper: var(--tb-book-paper, #fbf7ec);
   --tb-ink: var(--tb-book-ink, #241d0e);
   --tb-ink-soft: var(--tb-book-ink-soft, #5c4f38);
   --tb-ink-lighter: var(--tb-book-ink-lighter, #8c7d63);
   --tb-rule: var(--tb-book-rule, #e8dfc8);
-  --tb-link: var(--tb-book-link, #7a5a00);
+  --tb-link: #7a5a00;
   --tb-code-bg: var(--tb-book-code-bg, #f3ecd8);
   --tb-fig-warn: var(--tb-book-fig-warn, #b23a1f);
   --tb-fig-good: var(--tb-book-fig-good, #3f6a1c);
@@ -234,16 +234,16 @@ html[data-theme="phosphor"] body[data-md-color-scheme="default"] {
 }
 
 html[data-theme="phosphor"] body[data-md-color-scheme="slate"] {
-  --tb-accent: var(--tb-book-accent, #ffb000);
-  --tb-accent-light: var(--tb-book-accent-light, #ffc94d);
-  --tb-accent-dark: var(--tb-book-accent-dark, #cc8a00);
-  --tb-accent-ink: var(--tb-book-accent-ink, #0c0b07);
+  --tb-accent: #ffb000;
+  --tb-accent-light: #ffc94d;
+  --tb-accent-dark: #cc8a00;
+  --tb-accent-ink: #0c0b07;
   --tb-paper: var(--tb-book-paper, #0c0b07);
   --tb-ink: var(--tb-book-ink, #f0e6cf);
   --tb-ink-soft: var(--tb-book-ink-soft, #c0b394);
   --tb-ink-lighter: var(--tb-book-ink-lighter, #7f765c);
   --tb-rule: var(--tb-book-rule, #26231a);
-  --tb-link: var(--tb-book-link, #a8e05f);
+  --tb-link: #a8e05f;
   --tb-code-bg: var(--tb-book-code-bg, #070604);
   --tb-fig-warn: var(--tb-book-fig-warn, #ff7a45);
   --tb-fig-good: var(--tb-book-fig-good, #b6f05a);
@@ -252,16 +252,16 @@ html[data-theme="phosphor"] body[data-md-color-scheme="slate"] {
 
 /* Glass */
 html[data-theme="glass"] body[data-md-color-scheme="default"] {
-  --tb-accent: var(--tb-book-accent, #0f7a5a);
-  --tb-accent-light: var(--tb-book-accent-light, #2fa27c);
-  --tb-accent-dark: var(--tb-book-accent-dark, #0a5c43);
-  --tb-accent-ink: var(--tb-book-accent-ink, #ffffff);
+  --tb-accent: #0f7a5a;
+  --tb-accent-light: #2fa27c;
+  --tb-accent-dark: #0a5c43;
+  --tb-accent-ink: #ffffff;
   --tb-paper: var(--tb-book-paper, #f2faf6);
   --tb-ink: var(--tb-book-ink, #10221c);
   --tb-ink-soft: var(--tb-book-ink-soft, #476058);
   --tb-ink-lighter: var(--tb-book-ink-lighter, #74887e);
   --tb-rule: var(--tb-book-rule, #d8e8e0);
-  --tb-link: var(--tb-book-link, #0a6f6f);
+  --tb-link: #0a6f6f;
   --tb-code-bg: var(--tb-book-code-bg, #e6f2ec);
   --tb-fig-warn: var(--tb-book-fig-warn, #b0402a);
   --tb-fig-good: var(--tb-book-fig-good, #35751a);
@@ -269,16 +269,16 @@ html[data-theme="glass"] body[data-md-color-scheme="default"] {
 }
 
 html[data-theme="glass"] body[data-md-color-scheme="slate"] {
-  --tb-accent: var(--tb-book-accent, #6ef0a0);
-  --tb-accent-light: var(--tb-book-accent-light, #98ffc0);
-  --tb-accent-dark: var(--tb-book-accent-dark, #3fbf78);
-  --tb-accent-ink: var(--tb-book-accent-ink, #04100b);
+  --tb-accent: #6ef0a0;
+  --tb-accent-light: #98ffc0;
+  --tb-accent-dark: #3fbf78;
+  --tb-accent-ink: #04100b;
   --tb-paper: var(--tb-book-paper, #08120f);
   --tb-ink: var(--tb-book-ink, #d8f5e8);
   --tb-ink-soft: var(--tb-book-ink-soft, #a0c4b4);
   --tb-ink-lighter: var(--tb-book-ink-lighter, #6f8f82);
   --tb-rule: var(--tb-book-rule, #1c2e28);
-  --tb-link: var(--tb-book-link, #40e0d0);
+  --tb-link: #40e0d0;
   --tb-code-bg: var(--tb-book-code-bg, #050d0a);
   --tb-fig-warn: var(--tb-book-fig-warn, #ff8a6a);
   --tb-fig-good: var(--tb-book-fig-good, #b4ff6e);

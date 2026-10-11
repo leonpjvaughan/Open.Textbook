@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import json
 import re
+from xml.etree import ElementTree
 
 from textbook import headers, pipeline, portal
 from textbook.book import repo_root
@@ -24,6 +25,7 @@ SITE = ROOT / "site"
 SW = ASSETS / "sw.js"
 REGISTER = ASSETS / "settings" / "service-worker.js"
 ICON = ASSETS / "icons" / "app-icon.svg"
+FAVICON = ASSETS / "icons" / "favicon.svg"
 
 
 def function_body(source: str, name: str) -> str:
@@ -71,6 +73,70 @@ def test_the_manifest_link_and_worker_are_allowed_by_the_policy():
     policy = headers.HEADERS["Content-Security-Policy"]
     assert "manifest-src 'self'" in policy
     assert "worker-src 'self'" in policy
+
+
+# --- the tab icon -------------------------------------------------------------
+
+
+def svg_colours(source: str) -> set[str]:
+    """Every hex colour a stylesheet-free SVG declares."""
+    return {colour.lower() for colour in re.findall(r"#[0-9a-fA-F]{3,8}\b", source)}
+
+
+def test_the_tab_icon_is_drawn_in_the_house_ink_and_paper():
+    """One motif, one palette, two files.
+
+    An icon is a fixed image, so it cannot follow the reader's bundle or scheme
+    the way a page does. It is drawn once in the collection's own ink and paper
+    instead. Pinning the tab icon to the launcher icon's palette is what stops
+    the two from drifting into two different brands.
+    """
+    launcher = svg_colours(ICON.read_text(encoding="utf-8"))
+    tab = svg_colours(FAVICON.read_text(encoding="utf-8"))
+    assert launcher, "the launcher icon declares no colour at all"
+    assert tab, "the tab icon declares no colour at all"
+    assert tab <= launcher, (
+        f"the tab icon uses colours the launcher icon does not: {sorted(tab - launcher)}"
+    )
+
+
+def test_neither_icon_reaches_for_a_theme_token():
+    """`var(--tb-*)` cannot resolve inside an image, so a token here is a bug."""
+    for path in (ICON, FAVICON):
+        assert "var(--tb-" not in path.read_text(encoding="utf-8"), path.name
+
+
+def test_the_tab_icon_is_square_and_full_bleed():
+    """Square, and grounded to the edges.
+
+    The icon is drawn on a square 64 grid at whole-unit sizes so that the gutter
+    between the two pages lands on a whole pixel at 16 and 32: that gutter is the
+    spine. The ground is full bleed so the glyph still reads on a dark tab, where
+    the ink square disappears into the chrome.
+    """
+    root = ElementTree.fromstring(FAVICON.read_text(encoding="utf-8"))
+    assert root.get("viewBox") == "0 0 64 64"
+    ground = [
+        element
+        for element in root
+        if element.tag.endswith("rect")
+        and element.get("width") == "64"
+        and element.get("height") == "64"
+    ]
+    assert ground, "the tab icon has no full-bleed ground"
+
+
+def test_every_page_shell_links_the_tab_icon():
+    page = pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8")
+    assert 'rel="icon" type="image/svg+xml" href="${prefix}assets/icons/favicon.svg"' in page
+    assert 'rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg"' in portal.render()
+    # A 404 is served from arbitrary depths, so it links absolutely like its CSS.
+    assert 'rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg"' in portal.not_found()
+
+
+def test_the_tab_icon_is_shipped_by_the_portal():
+    portal.main()
+    assert (SITE / "assets" / "icons" / "favicon.svg").read_bytes() == FAVICON.read_bytes()
 
 
 # --- the service worker and its update path -----------------------------------
@@ -176,6 +242,7 @@ def test_the_portal_copies_the_new_assets_into_the_site():
         "assets/settings/settings.js",
         "assets/settings/service-worker.js",
         "assets/icons/app-icon.svg",
+        "assets/icons/favicon.svg",
     ):
         assert (SITE / relative).is_file(), f"{relative} is not in site/"
     assert (SITE / "manifest.webmanifest").read_text(encoding="utf-8") == portal.manifest()

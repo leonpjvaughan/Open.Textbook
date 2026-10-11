@@ -19,6 +19,15 @@ description: >-
   cyan. The vivid member is the night page; the light member is the same hues
   held down to a pale violet day.
 
+# `fixed:` here because a vivid bundle IS its colour. The subject tint composes
+# into a bundle by default, which is right for the calm themes — the subject
+# identifies itself without shouting — but it meant the book's blue arrived in
+# the middle of an amber, a violet or a lime palette: the booklet button and bar,
+# the search chips, and the current-page link in the sidebar were all
+# `--tb-book-accent` while everything around them was this theme. The landing
+# page still carries the book's tint on its card, which is where the subject is
+# the point.
+fixed: [accent, accent_light, accent_dark, accent_ink, link]
 mood: vivid
 family: Neon
 provenance:

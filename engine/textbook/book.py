@@ -169,6 +169,9 @@ class Book:
     curriculum_name: str = "curriculum.yaml"
     banks_name: str = "problems"
     booklet_name: str = ""
+    #: Where an animated background may run: site / default / chapters / sections.
+    #: Empty by default, and nothing ships one — see textbook/backgrounds.py.
+    backgrounds: dict = field(default_factory=dict)
     sources_name: str = "sources.yaml"
 
     # --- paths ---------------------------------------------------------------
@@ -282,6 +285,7 @@ def load_book(path: Path) -> Book:
         curriculum_name=data.get("curriculum", "curriculum.yaml"),
         banks_name=data.get("banks", "problems"),
         booklet_name=data.get("booklet", ""),
+        backgrounds=dict(data.get("backgrounds", {}) or {}),
         sources_name=data.get("sources", "sources.yaml"),
     )
 

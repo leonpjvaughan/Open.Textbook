@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Open Textbook">
+  <!--
+    The browser-tab icon: the same open book as the home-screen icon, redrawn for
+    16 pixels.
+
+    An icon is a fixed image, the one place a colour cannot follow the reader's
+    bundle or scheme, so it is drawn in the collection's own ink and paper and it
+    reads on a light or a dark tab. This file and `app-icon.svg` differ only in
+    what survives at their size: the launcher icon spends its detail on the page
+    rules, which a tab cannot render, so this one drops them and spends the room
+    on the book instead. Keep the motif, the palette and the proportions of the
+    two in step.
+
+    The geometry is drawn on the 64 grid rather than scaled from the launcher
+    icon so that the four unit gutter lands on a whole pixel at 16 and 32: that
+    gutter is the spine, and it is what makes the shape a book and not a page.
+  -->
+  <rect width="64" height="64" fill="#1f1e1b"/>
+  <path fill="#faf9f5" d="M30 22C23 17.5 16 13.5 9 12L9 46C16 46.5 23 49 30 50Z"/>
+  <path fill="#faf9f5" d="M34 22C41 17.5 48 13.5 55 12L55 46C48 46.5 41 49 34 50Z"/>
+</svg>

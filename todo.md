@@ -28,7 +28,8 @@ in `AGENTS.md` do not apply here, but the engineering rules do.
 - [x] 22. Follow-ups from the MkDocs deletion
 - [x] 23. Stale theme references in the out-of-scope preview files
 - [ ] 24. Animated backgrounds on the vivid themes
-- [ ] 25. Declare the ready state
+- [ ] 25. An iOS home-screen icon (`apple-touch-icon`); today iOS falls back to a page screenshot
+- [ ] 26. Declare the ready state
 
 ---
 
@@ -1383,7 +1384,58 @@ opt-in.
 
 ---
 
-## 25. Declare the ready state
+## 25. iOS gets a page screenshot, not an icon
+
+**What is wrong.** The site ships a tab icon (`assets/icons/favicon.svg`) and a
+launcher icon for Android (`assets/icons/app-icon.svg`, declared in the manifest as
+`any maskable`), but nothing for iOS. Safari's own requirement for a home-screen
+tile is `<link rel="apple-touch-icon">` pointing at a PNG at a fixed size, and
+the site declares neither, so a reader who adds the site to an iPhone home screen
+is likely to get a screenshot of the page. That is the platform SHAPE.md's
+"installable on a phone" is written for, and the one where the icon is largest and
+most seen. **Not verified on a device or in the iOS simulator** — the shape of the
+fix does not depend on the answer, since the link is the documented one either
+way, but the last box under "Done means" is what settles it.
+
+**Evidence (measured 2026-10-11).**
+
+- `grep -rn "apple-touch-icon" engine assets books tests` returns nothing, and no
+  page head declares one.
+- `python -m textbook.portal` copies `app-icon.svg` and `favicon.svg` into
+  `site/assets/icons/`, and the manifest declares one icon, an SVG.
+- `git ls-files | grep -cE '\.(png|jpg|jpeg|gif|webp|ico|bmp|avif)$'` is `0`: no
+  file in the repository is a raster image, and no CI job has a rasteriser on its
+  path — which is the reason this was not done alongside the favicon.
+
+**Fix.** Ship `assets/icons/apple-touch-icon.png` at 180×180 and link it
+root-absolutely from the page shell, the landing page and the 404 —
+`<link rel="apple-touch-icon" href="…/assets/icons/apple-touch-icon.png">` — then
+copy it in `pipeline.copy_assets` and `portal.main` as the other two icons are
+today. Two choices have to be settled first:
+
+1. **Where the PNG comes from.** Either commit it as an authored asset, which
+   would be the repository's only binary file, or rasterise it at build time. The
+   second cannot drift from the SVG; the first costs nothing to run. `sharp` is
+   available only as a transitive dependency of `wrangler`, so a build-time
+   rasteriser means taking a direct dependency on it.
+2. **How it is drawn.** iOS applies no mask to an `apple-touch-icon`, so this is
+   `app-icon.svg`'s shape — a full-bleed ink square — and not the tab icon's:
+   nothing is clipped, so there is no safe area to design for.
+
+**Done means.**
+
+- [ ] `curl -sI https://open-textbook.org/assets/icons/apple-touch-icon.png` is
+      `200` with `content-type: image/png`, and the image is 180×180.
+- [ ] Every head links it: a nested page (`/gcse-maths/higher/chapter-1/`), the
+      landing page and the 404, with the paths each resolves from.
+- [ ] Both profile builds and the portal ship the file, pinned by a test that also
+      asserts it is the bytes in `assets/icons/`.
+- [ ] Adding the site to the home screen on an iPhone (or the iOS simulator) shows
+      the open book rather than a screenshot of the page.
+- [ ] Whatever produces it can be re-run from a clean checkout: `scripts/check.sh`
+      passes and the generated-file drift check is happy.
+
+## 26. Declare the ready state
 
 **Not a change: the gate.** The site is ready to publish when items 2–12 are
 closed and their "done means" boxes are ticked, and not before — a checklist that
