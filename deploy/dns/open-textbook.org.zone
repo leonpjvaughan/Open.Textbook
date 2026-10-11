@@ -31,19 +31,23 @@ www.open-textbook.org.  300  IN  AAAA  100::  ; cf_tags=cf-proxied:true
 open-textbook.org.       300  IN  TXT   "v=spf1 -all"
 _dmarc.open-textbook.org.  300  IN  TXT   "v=DMARC1; p=reject"
 
-; --- CAA: verify before enabling, then uncomment ------------------------------
+; --- CAA: verified against the live certificate, then enabled -------------------
 ; CAA restricts which certificate authorities may issue for this domain. It is
-; real hardening and it has a delayed failure mode: if the list omits the CA
-; Cloudflare actually uses, nothing breaks today and the certificate fails to
-; RENEW weeks later. So it stays off until checked against Cloudflare's current
-; list (SSL/TLS → Edge Certificates → CAA, or the certificate's issuer).
+; real hardening with a delayed failure mode: if the list omits the CA Cloudflare
+; actually uses, nothing breaks today and the certificate fails to RENEW weeks
+; later. So it was held back until the issuer could be checked.
 ;
-; These three are the CAs Cloudflare documents for custom domains. Note the
-; pki.goog parameter, and that it must stay inside the quotes: a semicolon
-; outside quotes starts a BIND comment.
-; open-textbook.org.  300  IN  CAA  0 issue     "letsencrypt.org"
-; open-textbook.org.  300  IN  CAA  0 issue     "pki.goog; cansignhttpexchanges=yes"
-; open-textbook.org.  300  IN  CAA  0 issue     "ssl.com"
-; open-textbook.org.  300  IN  CAA  0 issuewild  "letsencrypt.org"
-; open-textbook.org.  300  IN  CAA  0 issuewild  "pki.goog; cansignhttpexchanges=yes"
-; open-textbook.org.  300  IN  CAA  0 issuewild  "ssl.com"
+; Checked 2026-10-11: the live certificate for open-textbook.org is issued by
+; **Google Trust Services** (C=US, O=Google Trust Services, CN=WE1), valid to
+; 2027-01-09. The three CAs below are the ones Cloudflare documents for custom
+; domains, so the list is a superset of what is known to be in use rather than a
+; guess. Re-check when that certificate comes up for renewal.
+;
+; Note the pki.goog parameter, and that it must stay inside the quotes: a
+; semicolon outside quotes starts a BIND comment.
+open-textbook.org.  300  IN  CAA  0 issue      "letsencrypt.org"
+open-textbook.org.  300  IN  CAA  0 issue      "pki.goog; cansignhttpexchanges=yes"
+open-textbook.org.  300  IN  CAA  0 issue      "ssl.com"
+open-textbook.org.  300  IN  CAA  0 issuewild   "letsencrypt.org"
+open-textbook.org.  300  IN  CAA  0 issuewild   "pki.goog; cansignhttpexchanges=yes"
+open-textbook.org.  300  IN  CAA  0 issuewild   "ssl.com"
