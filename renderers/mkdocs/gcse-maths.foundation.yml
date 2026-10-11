@@ -113,6 +113,10 @@ nav:
     - Learn: Chapter 5/Section 5.3/Walkthrough/index.md
     - Practise with help: Chapter 5/Section 5.3/Guided problems/index.md
     - Practise: Chapter 5/Section 5.3/Problems/index.md
+  - 5.4 Inverse proportion:
+    - Learn: Chapter 5/Section 5.4/Walkthrough/index.md
+    - Practise with help: Chapter 5/Section 5.4/Guided problems/index.md
+    - Practise: Chapter 5/Section 5.4/Problems/index.md
   - 5.5 Scale factors, scale diagrams and maps:
     - Learn: Chapter 5/Section 5.5/Walkthrough/index.md
     - Practise with help: Chapter 5/Section 5.5/Guided problems/index.md
@@ -136,6 +140,10 @@ nav:
     - Learn: Chapter 6/Section 6.4/Walkthrough/index.md
     - Practise with help: Chapter 6/Section 6.4/Guided problems/index.md
     - Practise: Chapter 6/Section 6.4/Problems/index.md
+  - 6.5 Growth, decay and repeated percentage change:
+    - Learn: Chapter 6/Section 6.5/Walkthrough/index.md
+    - Practise with help: Chapter 6/Section 6.5/Guided problems/index.md
+    - Practise: Chapter 6/Section 6.5/Problems/index.md
   - Review: Chapter 6/Review/index.md
 - 'Chapter 7: Measures, accuracy, standard form and surds':
   - Overview: Chapter 7/index.md
@@ -351,10 +359,18 @@ nav:
     - Learn: Chapter 19/Section 19.2/Walkthrough/index.md
     - Practise with help: Chapter 19/Section 19.2/Guided problems/index.md
     - Practise: Chapter 19/Section 19.2/Problems/index.md
+  - 19.3 Arc length and sector area:
+    - Learn: Chapter 19/Section 19.3/Walkthrough/index.md
+    - Practise with help: Chapter 19/Section 19.3/Guided problems/index.md
+    - Practise: Chapter 19/Section 19.3/Problems/index.md
   - 19.4 Surface area and volume of prisms and cylinders:
     - Learn: Chapter 19/Section 19.4/Walkthrough/index.md
     - Practise with help: Chapter 19/Section 19.4/Guided problems/index.md
     - Practise: Chapter 19/Section 19.4/Problems/index.md
+  - 19.5 Surface area and volume of spheres, cones and pyramids:
+    - Learn: Chapter 19/Section 19.5/Walkthrough/index.md
+    - Practise with help: Chapter 19/Section 19.5/Guided problems/index.md
+    - Practise: Chapter 19/Section 19.5/Problems/index.md
   - 19.6 Composite shapes and solids:
     - Learn: Chapter 19/Section 19.6/Walkthrough/index.md
     - Practise with help: Chapter 19/Section 19.6/Guided problems/index.md
@@ -374,6 +390,10 @@ nav:
     - Learn: Chapter 20/Section 20.3/Walkthrough/index.md
     - Practise with help: Chapter 20/Section 20.3/Guided problems/index.md
     - Practise: Chapter 20/Section 20.3/Problems/index.md
+  - 20.4 Exact trigonometric values:
+    - Learn: Chapter 20/Section 20.4/Walkthrough/index.md
+    - Practise with help: Chapter 20/Section 20.4/Guided problems/index.md
+    - Practise: Chapter 20/Section 20.4/Problems/index.md
   - Review: Chapter 20/Review/index.md
 - 'Chapter 21: Circle geometry and circle theorems':
   - Overview: Chapter 21/index.md
@@ -384,6 +404,14 @@ nav:
   - Review: Chapter 21/Review/index.md
 - 'Chapter 22: Vectors':
   - Overview: Chapter 22/index.md
+  - 22.1 Vector notation and column vectors:
+    - Learn: Chapter 22/Section 22.1/Walkthrough/index.md
+    - Practise with help: Chapter 22/Section 22.1/Guided problems/index.md
+    - Practise: Chapter 22/Section 22.1/Problems/index.md
+  - 22.2 Adding and subtracting vectors:
+    - Learn: Chapter 22/Section 22.2/Walkthrough/index.md
+    - Practise with help: Chapter 22/Section 22.2/Guided problems/index.md
+    - Practise: Chapter 22/Section 22.2/Problems/index.md
   - Review: Chapter 22/Review/index.md
 - 'Chapter 23: Probability':
   - Overview: Chapter 23/index.md
