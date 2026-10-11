@@ -41,7 +41,7 @@ while read -r -a build; do
   uv run python -m textbook.pipeline "${build[@]}"
 done < <(uv run python -m textbook.plan --configs)
 
-# The matrix, 9 bundles x 2 schemes x 3 routes = 54 pages. Adding a book means
+# The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages. Adding a book means
 # adding its landing route and one of its chapter routes here.
 exec node test/theme-preview.cjs \
   --root site \

@@ -171,7 +171,8 @@ implied claim of coverage:
 
 - pseudo-elements — `::marker` and `::before`/`::after` content. The sidebar's
   `<summary>` disclosure marker draws `--tb-ink-lighter`, and a below-3:1 pair in
-  catppuccin and kanagawa light went unseen for exactly this reason;
+  catppuccin and kanagawa light went unseen for exactly this reason (historical:
+  those bundles were replaced on 2026-10-11, see `DECISIONS.md`);
 - `input::placeholder` text, including the search box's;
 - SVG `fill`, so no icon is measured.
 
