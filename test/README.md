@@ -120,27 +120,75 @@ renderers (the comment degrades to visible content, which a port codemod strips)
 and checks the two things a screenshot cannot: that the reader's preference
 actually reached the page, and that the text on it has enough contrast.
 
+**The route layout is asserted before a browser starts.** The routes really did
+change when the renderer did: MkDocs served
+`/gcse-maths/higher/Chapter 1/Section 1.1/Walkthrough/`, the pipeline serves
+`/gcse-maths/higher/chapter-1/section-1.1/learn/`. The harness names the layout it
+expects (`--layout pipeline`, the default; `--layout mkdocs` for the parked
+shell), checks that layout's witness page exists under `--root`, and resolves
+every route to a built file. Any miss exits 2 and prints the layout it expected,
+with the known layouts. This is not theoretical: a miss was once served to the
+audit as a `not found` body, which it then measured as 738 "text elements" and
+reported as a pass.
+
 ```bash
 # The whole matrix, with a full-page text audit per route
 node test/theme-preview.cjs --audit --out /tmp/theme-preview -- \
   "landing:/" \
-  "learn:/gcse-maths/higher/Chapter%201/Section%201.1/Walkthrough/"
+  "learn:/gcse-maths/higher/chapter-1/section-1.1/learn/"
 
 # One bundle, dark only, no images
 node test/theme-preview.cjs --themes synthwave --schemes dark --no-shots -- \
-  "learn:/gcse-maths/higher/Chapter%201/Section%201.1/Walkthrough/"
+  "learn:/gcse-maths/higher/chapter-1/section-1.1/learn/"
 ```
+
+The repository's own matrix — every bundle and the three routes that can carry a
+defect — is `scripts/preview-themes.sh`, which builds the site first:
+
+```bash
+scripts/preview-themes.sh            # build, then 9 bundles x 2 schemes x 3 routes
+scripts/preview-themes.sh --shots    # the same, writing var/theme-preview/*.png
+```
+
+### It is in a gate
+
+The `preview` job in `.github/workflows/verify.yml` runs
+`scripts/preview-themes.sh` on every push and pull request, and the `gate` job
+requires it, so it is part of the check branch protection enforces. It needs
+Chrome, which pytest and `scripts/check.sh` cannot assume, so it is deliberately
+in neither. The job installs the Playwright client (`playwright@1.64.0`, not a
+`package.json` dependency) with the browser download skipped, and drives the
+Google Chrome the `ubuntu-latest` runner ships. Locally, the same script uses
+whatever `PLAYWRIGHT_PATH` and `CHROME_PATH` point at, falling back to
+Playwright's own defaults.
+
+### What it cannot see
+
+`--audit` walks every element that owns a text node, which is what makes it
+measure what the page actually paints rather than what the palette declares. It
+is blind to what a text node does not carry. That is a recorded limit, not an
+implied claim of coverage:
+
+- pseudo-elements — `::marker` and `::before`/`::after` content. The sidebar's
+  `<summary>` disclosure marker draws `--tb-ink-lighter`, and a below-3:1 pair in
+  catppuccin and kanagawa light went unseen for exactly this reason;
+- `input::placeholder` text, including the search box's;
+- SVG `fill`, so no icon is measured.
+
+Growing the check means reading pseudo-element computed styles and SVG
+presentation attributes as well.
 
 It seeds **both** origin-wide keys (`textbooks:theme`, `textbooks:scheme`) before
 the first paint, then asserts `data-theme` on `<html>` and
 `data-md-color-scheme` on `<body>`. Ratios are read twice: from the `--tb-*`
 tokens, and from real elements against the first ancestor that painted a
-background, so a token that is defined but not *applied* cannot pass.
+background, so a token that is defined but not *applied* cannot pass. Service
+workers are blocked in the preview browser: their fetches are not seen by the
+harness's request interception, and the preview host is not real, so a
+controlled navigation would fail instead of measuring.
 
-`--audit` walks every element that paints text — 582 of them on a Walkthrough —
-and reports any below WCAG AA, with the element, its colours and the ratio. This
-is what found the four defects recorded in `todo.md` item 18, including Material's
-palette stylesheet out-ranking our link mapping in dark mode, and the header's
-white-on-accent title. Both were invisible to the palette tests. The script exits
-non-zero on any failure, so it can be wired into CI; it needs Chrome, so it is not
-part of `scripts/check.sh`.
+`--audit` reports any element below WCAG AA with its colours and ratio — 730
+elements on a Learn page. This is what found the four defects recorded in
+`todo.md` item 18, including Material's palette stylesheet out-ranking our link
+mapping in dark mode, and the header's white-on-accent title. Both were invisible
+to the palette tests. The script exits non-zero on any failure.

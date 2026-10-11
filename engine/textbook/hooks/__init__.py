@@ -10,16 +10,18 @@ Order matters:
 3. ``figures`` expands ``:::figure`` and injects the loader;
 4. ``problems`` expands ``:::problems`` / ``:::answers`` from the verified bank;
 5. ``maths`` renders the ``$...$`` those hooks emitted — last, because it runs
-   on rendered HTML rather than markdown;
-6. ``prefs`` runs on the finished page, applying the reader's colour scheme and
-   theme bundle before the first paint.
+   on rendered HTML rather than markdown.
+
+The reader-preference script is not a hook: ``prefs.snippet`` generates it and
+both page templates carry the result, so the pipeline and the portal share one
+implementation rather than a MkDocs hook that no renderer calls.
 """
 
 from __future__ import annotations
 
-from . import figures, maths, prefs, problems, tier, toc
+from . import figures, maths, problems, tier, toc
 
-__all__ = ["on_files", "on_page_markdown", "on_page_content", "on_post_page"]
+__all__ = ["on_files", "on_page_markdown", "on_page_content"]
 
 
 def on_files(files, config, **kwargs):
@@ -34,7 +36,3 @@ def on_page_markdown(markdown, page, config, files):
 
 def on_page_content(content, page, config, files):
     return maths.on_page_content(content, page, config, files)
-
-
-def on_post_page(output, page, config):
-    return prefs.on_post_page(output, page, config)

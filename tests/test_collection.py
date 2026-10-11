@@ -99,7 +99,14 @@ def test_book_has_an_author_local_stylesheet(book):
 @pytest.mark.parametrize("book", ALL, ids=IDS)
 def test_shared_assets_are_symlinked_not_copied(book):
     """CSS, the figure loader and the booklet widget are shared. A copy would
-    drift; the point is that there is one truth."""
+    drift; the point is that there is one truth.
+
+    The pipeline reads the shared bytes from ``assets/`` directly, so these links
+    are the book's self-describing view rather than the build's source. Keeping
+    them is a deliberate decision — see ``scaffold.ensure_shared_assets`` — and
+    this test is what keeps one from going stale now that no build walks
+    ``docs_dir``.
+    """
     assets = book.docs / "assets"
     relative_paths = [
         "stylesheets/extra.css",

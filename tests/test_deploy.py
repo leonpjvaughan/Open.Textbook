@@ -14,6 +14,7 @@ import pytest
 
 from textbook import headers, pipeline, portal, scaffold
 from textbook.book import discover_books, load_collection, repo_root
+from textbook.hooks import prefs
 
 ROOT = repo_root()
 WRANGLER = ROOT / "wrangler.jsonc"
@@ -42,6 +43,8 @@ def test_the_root_404_honours_reader_preferences():
     page = portal.not_found()
     assert "textbooks:scheme" in page
     assert "textbooks:theme" in page
+    # It carries the one generated script, not a fourth hand-written copy.
+    assert prefs.snippet(portal.prefs_config()) in page
     # Colour comes from the bundles, so the 404 loads the same stylesheet.
     assert "assets/stylesheets/themes.css" in page
 
@@ -193,7 +196,7 @@ def test_the_headers_file_uses_one_rule_and_indents_every_header():
 def test_the_policy_allows_exactly_what_the_site_loads():
     policy = headers.HEADERS["Content-Security-Policy"]
     assert "default-src 'self'" in policy
-    # The prefs hook and Material both inject inline script and style.
+    # The generated reader-preference script and the page's inline scripts need it.
     assert "script-src 'self' 'unsafe-inline'" in policy
     assert "style-src 'self' 'unsafe-inline'" in policy
     # Material's search is a same-origin worker, not a blob.

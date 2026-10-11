@@ -6,51 +6,7 @@
 <title>$title</title>
 <meta name="description" content="$description">
 $build_meta
-<script>
-/* Reader preferences, before the first paint, so neither the colour scheme nor
- * the theme bundle flashes. Both keys are shared with every book, so a choice
- * made here follows the reader, and one made in a book arrives here.
- * See SHAPE.md ("Theme preference" and "Theme bundles"). */
-(function () {
-  var schemeDefault = $scheme_default;
-  var themes = $themes;
-  var defaultTheme = "$default_theme";
-  var store, scheme = schemeDefault;
-  try { store = window.localStorage; } catch (err) {}
-  function read(key) {
-    try { return store ? store.getItem(key) : null; } catch (err) { return null; }
-  }
-  function write(key, value) {
-    try { if (store) store.setItem(key, value); } catch (err) {}
-  }
-  function applyTheme(value) {
-    var wanted = themes.indexOf(value) >= 0 ? value : defaultTheme;
-    if (wanted) document.documentElement.setAttribute("data-theme", wanted);
-    return wanted;
-  }
-  try {
-    var saved = read("$scheme_key");
-    if (saved) scheme = saved;
-  } catch (err) {}
-  document.documentElement.setAttribute("data-scheme-pref", scheme);
-  applyTheme(read("$theme_key"));
-  /* The same interface a book page exposes, so the one shared Settings runtime
-   * (assets/settings/settings.js) reads and writes a single store everywhere. */
-  window.textbookPrefs = {
-    schemeKey: "$scheme_key",
-    themeKey: "$theme_key",
-    themes: themes.slice(),
-    defaultTheme: defaultTheme,
-    read: read,
-    write: write,
-    setTheme: function (value) {
-      write("$theme_key", value);
-      return applyTheme(value);
-    },
-    currentTheme: function () { return applyTheme(read("$theme_key")); }
-  };
-})();
-</script>
+$prefs_script
 <link rel="stylesheet" href="assets/stylesheets/themes.css">
 <link rel="stylesheet" href="assets/stylesheets/portal.css">
 <link rel="stylesheet" href="assets/stylesheets/settings.css">

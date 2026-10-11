@@ -38,7 +38,8 @@ SETTINGS_WIDGET = "assets/settings/settings.js"
 COLOPHON_FILE = "colophon.md"
 COLOPHON_TITLE = "About this book"
 
-# Shared files every book sees through a symlink, so there is one copy.
+# Shared files every book sees through a symlink, so there is one copy. Kept as
+# the book's self-describing view; see ``ensure_shared_assets``.
 SHARED_ASSETS: tuple[tuple[str, str], ...] = (
     ("stylesheets/extra.css", "assets/stylesheets/extra.css"),
     ("stylesheets/themes.css", "assets/stylesheets/themes.css"),
@@ -93,11 +94,19 @@ def generate(path: Path, content: str, dry_run: bool) -> None:
 def ensure_shared_assets(book: Book, dry_run: bool) -> None:
     """Make the shared files visible inside this book's docs tree, through symlinks.
 
-    The shared bytes live once in ``assets/``; a symlink from ``docs/assets/``
-    keeps one copy of them beside the book's own files. This is created rather
-    than left to whoever adds a book, because a *broken* symlink is a broken
-    book: anything that walks the docs tree meets it whether or not a page
-    references it, and the tests check every one resolves.
+    The shared bytes live once in ``assets/``, and ``pipeline.copy_assets`` reads
+    them from there directly — MkDocs was the last build that needed them inside
+    ``docs_dir``. They are kept deliberately, as the book's self-describing view:
+    ``docs/assets/`` shows which shared stylesheets, figure loader, settings
+    runtime and booklet widget a book uses, beside its own files. The links are
+    the contract that ``tests/test_themes.py``, ``tests/test_figures.py`` and
+    ``tests/test_settings.py`` read, and ``tests/test_collection.py`` checks each
+    one resolves.
+
+    A *broken* symlink no longer fails a build, because nothing walks
+    ``docs_dir`` any more, so that test is what holds it. Creating the links here
+    rather than leaving them to whoever adds a book is what keeps a new book from
+    starting with a broken one.
     """
     pairs = list(SHARED_ASSETS)
     if book.booklet_name:

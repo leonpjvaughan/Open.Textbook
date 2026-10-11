@@ -319,28 +319,47 @@ falls back to `open-textbook-dev`.
 ### Performance budget
 
 One page is budgeted at **under 1.7 MB and no more than 16 requests, with the
-document under 350 kB and at most 7 render-blocking stylesheets.** Measured on
-2026-10-11 in Chromium headless shell 1243, against a local server that
-reproduces Workers' `Cache-Control: public, max-age=0, must-revalidate`, for
-`gcse-maths/higher` → `Chapter 1/Section 1.1/Walkthrough/`:
+document under 350 kB and at most 7 render-blocking stylesheets.** Re-measured on
+2026-10-11 in Chromium (Playwright, driving the runner's Google Chrome) against a
+local server that reproduces Workers' `Cache-Control: public, max-age=0,
+must-revalidate`, for `gcse-maths/higher` → `chapter-1/section-1.1/learn/`:
 
 | Measure | Value |
 |---|---|
-| Requests (document + resources) | 16 |
-| Transferred bytes | ~1,620 kB |
-| Document | ~340 kB (≈340 kB encoded) |
-| Stylesheets | 7, all render-blocking |
-| Scripts | Material bundle 115 kB, search worker 40 kB, booklet widget 16 kB |
-| Largest single resource | `search/search_index.json`, ~917 kB |
-| DOMContentLoaded / load | ~340 ms |
+| Requests (document + resources) | 13 |
+| Transferred bytes | ~153 kB |
+| Document | ~83 kB |
+| Stylesheets | 6, all render-blocking |
+| Scripts | booklet 16 kB, settings 4 kB, one figure module 3 kB, service-worker registration 1 kB, figures loader 1 kB |
+| Largest single resource | `assets/stylesheets/themes.css`, ~19 kB |
+| DOMContentLoaded / load | ~200 ms |
 
-The search index is the whole of the excess: excluding it a page is ~700 kB. It
-is fetched lazily by Material's search and is not needed to read a page. There is
-no font request (`theme.font: false`) and no third-party origin. Re-measure with
-Playwright against a locally served `site/`; the numbers above are the
-`transferSize` sums from `performance.getEntriesByType("resource")` plus the
-navigation entry, so they are bytes over the wire on the first load and include
-the service worker's registration script.
+The page uses a fifth of the byte budget and is three requests under the request
+budget. There is no font request and no third-party origin. Unlike the MkDocs
+shell these numbers replace, the pipeline loads no Material bundle and no eagerly
+fetched search index: Pagefind fetches its index only when the reader searches,
+so the largest single resource is now the theme palette. Routes differ by the
+document's own size and, on a page with a figure, by one figure module — across
+the pages measured here (the landing page, a chapter landing page, a Learn page
+and a practise page) the range is 7–13 requests, 47–153 kB and a document of
+11–86 kB.
+
+Re-measure with:
+
+```bash
+node scripts/measure-budget.cjs site /gcse-maths/higher/chapter-1/section-1.1/learn/
+```
+
+It binds a local server on an ephemeral port rather than serving through request
+interception, because an intercepted response reports `transferSize` as 0 and the
+budget would read as far too small. The server sends the files with no compression
+(the method above, and what the previous numbers used); `--compress` shows what a
+CDN in front of the Worker would add. The totals are the `transferSize` of the
+navigation entry plus the sum over `performance.getEntriesByType("resource")`, so
+they are bytes over the wire on the first load and include the service worker's
+registration script. The `sw.js` it registers is fetched by the browser outside
+the page's resource timings, so it is not counted. Like the theme preview, the
+script needs Chrome and the Playwright client (see `test/README.md`).
 
 ## Checking a deploy
 

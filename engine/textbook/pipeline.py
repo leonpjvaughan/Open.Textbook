@@ -50,7 +50,8 @@ from . import scaffold
 from .frontmatter import FrontMatterError
 from .frontmatter import read as read_page
 from .frontmatter import split as split_front_matter
-from .hooks import figures, maths, problems, tier, toc
+from .hooks import figures, maths, prefs, problems, tier, toc
+from .themes import default_bundle, ordered_bundles
 
 log = logging.getLogger("textbook.pipeline")
 
@@ -264,12 +265,18 @@ def nav_paths(nav, subset: str | None = None) -> list[str]:
 
 
 def make_config(book: books.Book, profile: str) -> dict:
-    """A plain dict satisfies the hooks, which only ever call ``config.get()``."""
+    """A plain dict satisfies the hooks, which only ever call ``config.get()``.
+
+    The bundle registry is here so the before-paint script can offer exactly the
+    themes in ``themes/`` without the page template holding a second list.
+    """
     return {
         "extra": {
             "book": book.id,
             "book_dir": book.rel(book.root),
             "tier_profile": profile,
+            "themes": [bundle.id for bundle in ordered_bundles()],
+            "default_theme": default_bundle().id,
         },
         "docs_dir": str(book.docs),
     }
@@ -363,6 +370,7 @@ def render_page(
         settings_trigger=trigger,
         settings_dialog=dialog,
         booklet_script=booklet,
+        prefs_script=prefs.snippet(config),
     )
     return rendered, RenderedPage(url=url, title=title), bool(MATH_ERROR.search(content))
 

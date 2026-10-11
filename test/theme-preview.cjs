@@ -6,6 +6,8 @@
 //   node test/theme-preview.cjs [options] -- name:path [name:path ...]
 //
 // Options:
+//   --layout <id>       the route layout the site was built with
+//                       (default: pipeline; see LAYOUTS below)
 //   --root <dir>        the built site to serve      (default: site)
 //   --out <dir>         where the PNGs go            (default: /tmp/theme-preview)
 //   --themes a,b,c      bundles to preview           (default: every bundle)
@@ -22,6 +24,29 @@
 // then asserts the page reflects the choice: `data-theme` on <html> and
 // `data-md-color-scheme` on <body>. Screenshots are the by-product; the checks
 // are the point, and a failure exits non-zero.
+//
+// The route layout is asserted before a browser starts. The layout's own witness
+// page must exist under --root, and every route must resolve to a built file;
+// any miss is printed with the layout the run expected and exits 2. This exists
+// because the routes really did change when the renderer did — MkDocs served
+// `Chapter 1/Section 1.1/Walkthrough/`, the pipeline serves
+// `chapter-1/section-1.1/learn/` — and a miss used to be served to the audit as
+// a `not found` body, which it then measured as 738 "text elements" and
+// reported as a pass. A renderer swap must fail here, not pass quietly.
+//
+// What `--audit` can and cannot see. It walks every element that owns a text
+// node, so it measures the text the page actually paints and is not fooled by a
+// token that is declared but never applied. It cannot see anything a text node
+// does not carry:
+//
+//   - pseudo-elements. `::marker` — the sidebar's `<summary>` disclosure
+//     triangle, where a below-3:1 `--tb-ink-lighter` went unseen — and
+//     `::before`/`::after` content;
+//   - `input::placeholder` text, including the search box's;
+//   - SVG `fill`, so no icon is measured.
+//
+// That is a documented limit, not a coverage claim. Growing it means reading
+// pseudo-element computed styles and SVG presentation attributes as well.
 //
 // Colours are read two ways on purpose. The `--tb-*` tokens are read from
 // computed style, and the same ratios are also measured on real elements
@@ -47,6 +72,23 @@ function loadPlaywright() {
   throw new Error("playwright not found; set PLAYWRIGHT_PATH");
 }
 
+// The route layouts this harness knows. They are not interchangeable: the
+// renderer decides the path, and a run that names the wrong one must stop before
+// it measures a 404. `witness` is a page that only that renderer writes, so its
+// presence is what makes the assertion concrete rather than stylistic.
+const LAYOUTS = {
+  pipeline: {
+    label: "the pipeline (`python -m textbook.pipeline`) — the site",
+    example: "/gcse-maths/higher/chapter-1/section-1.1/learn/",
+    witness: "gcse-maths/higher/chapter-1/section-1.1/learn/index.html",
+  },
+  mkdocs: {
+    label: "the parked MkDocs shell — only if MkDocs is un-parked",
+    example: "/gcse-maths/higher/Chapter 1/Section 1.1/Walkthrough/",
+    witness: "gcse-maths/higher/Chapter 1/Section 1.1/Walkthrough/index.html",
+  },
+};
+
 const TYPES = {
   ".html": "text/html",
   ".js": "text/javascript",
@@ -64,6 +106,58 @@ const TYPES = {
   ".xml": "application/xml",
   ".ico": "image/x-icon",
 };
+
+// A URL path to a built file under `siteDir`, or `null` when the site has no
+// such page. A trailing slash is a directory index; anything that escapes the
+// root or is itself a directory is a miss. The route handler and the up-front
+// layout check share this so they cannot disagree about what resolves.
+function resolveFile(siteDir, urlPath) {
+  let rel = decodeURIComponent(urlPath);
+  if (rel.endsWith("/")) rel += "index.html";
+  const file = path.join(siteDir, rel);
+  if (!file.startsWith(siteDir)) return null;
+  if (!fs.existsSync(file) || fs.statSync(file).isDirectory()) return null;
+  return file;
+}
+
+// Stop before a browser starts if the site is not the layout the run is for.
+// Every route is resolved here, so a route handler that later comes up empty can
+// only mean the tree changed mid-run, which is a bug worth failing on too.
+function assertLayout(layoutId, siteDir, entries) {
+  const layout = LAYOUTS[layoutId];
+  if (!layout) {
+    console.error(`unknown layout "${layoutId}"; known: ${Object.keys(LAYOUTS).join(", ")}`);
+    process.exit(2);
+  }
+  if (!fs.existsSync(siteDir) || !fs.statSync(siteDir).isDirectory()) {
+    console.error(`--root ${siteDir} is not a directory; build the site first (test/README.md)`);
+    process.exit(2);
+  }
+
+  const problems = [];
+  if (!fs.existsSync(path.join(siteDir, layout.witness))) {
+    problems.push(`this layout's witness page is missing: ${layout.witness}`);
+  }
+  for (const { name, route } of entries) {
+    if (!resolveFile(siteDir, route)) problems.push(`route "${name}" (${route}) does not resolve`);
+  }
+
+  console.log(`layout: ${layoutId} — ${layout.label}`);
+  console.log(`  route shape: ${layout.example}`);
+  if (!problems.length) return;
+
+  console.error(`\nlayout assertion failed for --root ${siteDir}`);
+  for (const problem of problems) console.error(`  - ${problem}`);
+  console.error(`\nThis site was not built with the "${layoutId}" layout, or the routes are\nfrom a different renderer. Known layouts:`);
+  for (const [id, known] of Object.entries(LAYOUTS)) {
+    console.error(`  ${id.padEnd(9)} ${known.example}`);
+  }
+  console.error(
+    "\nRefusing to run: a missing route served as 404 once left this audit\n" +
+      "measuring 738 \"text elements\" of a \"not found\" body and reporting a pass.",
+  );
+  process.exit(2);
+}
 
 // --- colour maths, the same definition the Python invariant uses -------------
 
@@ -311,6 +405,7 @@ async function main() {
   const argv = process.argv.slice(2);
   let root = "site";
   let out = "/tmp/theme-preview";
+  let layout = "pipeline";
   let themes = null;
   let schemes = ["light", "dark"];
   let viewport = { width: 1280, height: 900 };
@@ -322,6 +417,7 @@ async function main() {
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === "--root") root = argv[(i += 1)];
+    else if (arg === "--layout") layout = argv[(i += 1)];
     else if (arg === "--out") out = argv[(i += 1)];
     else if (arg === "--themes") themes = argv[(i += 1)].split(",");
     else if (arg === "--schemes") schemes = argv[(i += 1)].split(",");
@@ -347,6 +443,16 @@ async function main() {
   const outDir = path.resolve(out);
   if (shots) fs.mkdirSync(outDir, { recursive: true });
 
+  // Before Playwright, before any page: does this site have the layout and the
+  // routes the run is about to measure?
+  assertLayout(layout, siteDir, entries);
+  if (audit) {
+    console.log(
+      "audit limit: sees elements that own a text node; blind to ::marker,\n" +
+        "             ::before/::after, input::placeholder and SVG fills",
+    );
+  }
+
   if (!themes) {
     // Read the bundle ids from the selectors the generated stylesheet emits.
     const css = fs.readFileSync(path.join(siteDir, "assets", "stylesheets", "themes.css"), "utf8");
@@ -355,6 +461,7 @@ async function main() {
 
   const thresholds = { ink: 7.0, link: 4.5, accent: 4.5 };
   const failures = [];
+  const routeMisses = new Set();
   const { chromium } = loadPlaywright();
   const browser = await chromium.launch({
     channel: process.env.CHROME_CHANNEL || "chrome",
@@ -366,14 +473,22 @@ async function main() {
       viewport,
       deviceScaleFactor: 1,
       colorScheme: scheme === "dark" ? "dark" : "light",
+      // The pages register a service worker. Its fetches are not seen by the
+      // request interception below, and `preview.local` is not a real host, so a
+      // controlled navigation would fail. The preview wants the bytes on disk
+      // anyway, not whatever the worker's cache answers with.
+      serviceWorkers: "block",
     });
     await context.route("**/*", (route) => {
-      const url = new URL(route.request().url());
-      let rel = decodeURIComponent(url.pathname);
-      if (rel.endsWith("/")) rel += "index.html";
-      const file = path.join(siteDir, rel);
-      if (!file.startsWith(siteDir) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
-        return route.fulfill({ status: 404, body: "not found" });
+      const urlPath = new URL(route.request().url()).pathname;
+      const file = resolveFile(siteDir, urlPath);
+      if (!file) {
+        // Every route resolved before the browser started, so a miss now means
+        // the tree changed under the run. Serve nothing rather than a body the
+        // audit would measure as if it were the page.
+        console.error(`route miss during the run: ${urlPath}`);
+        routeMisses.add(urlPath);
+        return route.abort();
       }
       return route.fulfill({
         status: 200,
@@ -438,6 +553,12 @@ async function main() {
   }
 
   await browser.close();
+
+  if (routeMisses.size) {
+    failures.push(
+      `route(s) stopped resolving while the run was in progress: ${[...routeMisses].join(", ")}`,
+    );
+  }
 
   if (failures.length) {
     console.error(`\n${failures.length} problem(s):`);
