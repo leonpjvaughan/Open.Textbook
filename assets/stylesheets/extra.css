@@ -23,8 +23,28 @@
   --tb-fig-accent: var(--tb-accent);
 }
 
-/* Map the tokens onto Material's variables. Deliberately scheme-independent:
- * anything that differs between light and dark is a token, set by a bundle. */
+/* Map the tokens onto Material's variable names. Deliberately
+ * scheme-independent: anything that differs between light and dark is a token,
+ * set by a bundle.
+ *
+ * Only the variables a component here still reads are declared. The names began
+ * as Material's, but the shared stylesheet and the booklet widget read them, and
+ * themes.css keys its tokens off `[data-md-color-scheme]`, so the attribute and
+ * the names it needs stay. Six Material-only variables were deleted with the
+ * renderer — `--md-primary-fg-color--light`, `--md-accent-fg-color`,
+ * `--md-typeset-a-color`, `--md-code-bg-color`, `--md-primary-bg-color` and
+ * `--md-primary-bg-color--light` — because nothing read them any more.
+ *
+ * Two of those were fixes, not decoration: the dark-mode link and the header's
+ * ink on the accent. Material's palette.css beat the bare
+ * `[data-md-color-scheme]` selector at (0,2,0), so both had to be restated at
+ * that specificity. Material is gone and nothing consumed them, so the
+ * restatement went too. The fixes themselves survive where they are now made:
+ * shell.css paints links from `--tb-link` (`a { color: var(--tb-link) }`) and the
+ * masthead title from `--tb-ink`, both straight from the bundle with no
+ * third-party rule to beat. The Settings dialog's focus ring still names
+ * `--md-accent-fg-color` with `--tb-accent` as its fallback — the same value, so
+ * it is unchanged. */
 [data-md-color-scheme] {
   --md-default-bg-color: var(--tb-paper);
   --md-default-fg-color: var(--tb-ink);
@@ -32,36 +52,7 @@
   --md-default-fg-color--lighter: var(--tb-ink-lighter);
   --md-default-fg-color--lightest: var(--tb-rule);
   --md-primary-fg-color: var(--tb-accent);
-  --md-primary-fg-color--light: var(--tb-accent-light);
   --md-primary-fg-color--dark: var(--tb-accent-dark);
-  --md-accent-fg-color: var(--tb-accent);
-  --md-typeset-a-color: var(--tb-link);
-  --md-code-bg-color: var(--tb-code-bg);
-}
-
-/* Two of those have to be restated one notch more specifically, and this is the
- * trap that made it necessary.
- *
- * Material's palette.css carries per-scheme-and-primary rules such as
- * `[data-md-color-scheme=slate][data-md-color-primary=indigo]` — specificity
- * (0,2,0), which beats the bare `[data-md-color-scheme]` above. Left alone,
- * `--md-typeset-a-color` stayed Material's indigo (#5488e8) in dark mode for
- * every bundle, so the bundle's link colour was ignored exactly where it
- * matters: #5488e8 is 4.26:1 on gruvbox's dark page and 4.41:1 on Synthwave's,
- * both under the AA minimum, and it also colours the active nav item. The
- * assertion that catches it is the page audit in test/theme-preview.cjs.
- *
- * extra.css is loaded after palette.css, so tying Material at (0,2,0) is
- * enough — no `!important` and no invented element names.
- *
- * The second is `--md-primary-bg-color`, which Material leaves white. White is
- * 2.54:1 on a light accent, and the dark scheme's subject tint is exactly that:
- * the header's own title, unreadable. `accent_ink` is the token for text drawn
- * on the accent — the same defect item 17 fixed for the booklet bar. */
-[data-md-color-scheme][data-md-color-primary] {
-  --md-typeset-a-color: var(--tb-link);
-  --md-primary-bg-color: var(--tb-accent-ink);
-  --md-primary-bg-color--light: color-mix(in srgb, var(--tb-accent-ink) 72%, transparent);
 }
 
 /* The closed search overlay is transparent but still in the tab order: the

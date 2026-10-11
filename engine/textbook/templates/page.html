@@ -8,26 +8,7 @@
 <meta name="build" content="$build">
 <link rel="canonical" href="$canonical">
 <link rel="manifest" href="/manifest.webmanifest">
-<script>
-/* Reader preferences before first paint. Both keys are origin-wide, shared with
- * every other book and with the landing page, so a choice follows the reader.
- * See SHAPE.md, "Theme preference" and "Theme bundles". */
-(function () {
-  var store, scheme = "default", theme = "editorial";
-  try { store = window.localStorage; } catch (err) {}
-  try {
-    var s = store ? store.getItem("textbooks:scheme") : null;
-    if (s) scheme = s;
-    var t = store ? store.getItem("textbooks:theme") : null;
-    if (t) theme = t;
-  } catch (err) {}
-  document.documentElement.setAttribute("data-scheme-pref", scheme);
-  document.documentElement.setAttribute("data-theme", theme);
-  document.documentElement.setAttribute(
-    "data-md-color-scheme", scheme === "slate" ? "slate" : "default"
-  );
-})();
-</script>
+$prefs_script
 <link rel="stylesheet" href="${prefix}assets/stylesheets/themes.css">
 <link rel="stylesheet" href="${prefix}assets/stylesheets/extra.css">
 <link rel="stylesheet" href="${prefix}assets/stylesheets/book.css">

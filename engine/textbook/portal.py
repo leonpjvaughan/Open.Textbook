@@ -44,7 +44,7 @@ from string import Template
 
 from . import book as books
 from . import headers
-from .hooks.prefs import SCHEME_KEY, THEME_KEY
+from .hooks.prefs import snippet as prefs_snippet
 from .themes import default_bundle, ordered_bundles
 
 ROOT = books.repo_root()
@@ -301,6 +301,20 @@ def service_worker() -> str:
     return source.replace(SW_PLACEHOLDER, label)
 
 
+def prefs_config() -> dict:
+    """The config ``hooks/prefs.py`` reads: the bundle registry, from ``themes/``.
+
+    Built here rather than in the template, so the landing page and the books
+    share one generated before-paint script and neither can drift.
+    """
+    return {
+        "extra": {
+            "themes": [bundle.id for bundle in ordered_bundles()],
+            "default_theme": default_bundle().id,
+        }
+    }
+
+
 def not_found() -> str:
     """The root 404 page.
 
@@ -326,16 +340,7 @@ def not_found() -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page not found</title>
 {meta}
-<script>
-(function () {{
-  try {{
-    var scheme = localStorage.getItem("{SCHEME_KEY}");
-    var theme = localStorage.getItem("{THEME_KEY}");
-    if (scheme === "slate") document.documentElement.setAttribute("data-scheme-pref", "slate");
-    if (theme) document.documentElement.setAttribute("data-theme", theme);
-  }} catch (err) {{}}
-}})();
-</script>
+{prefs_snippet(prefs_config())}
 <link rel="stylesheet" href="/assets/stylesheets/themes.css">
 <link rel="stylesheet" href="/assets/stylesheets/portal.css">
 </head>
@@ -362,7 +367,6 @@ document.body.setAttribute(
 def render() -> str:
     collection = books.load_collection()
     all_books = books.discover_books()
-    bundles = ordered_bundles()
     template = Template(TEMPLATE.read_text(encoding="utf-8"))
     return template.substitute(
         title=html.escape(str(collection.get("title", "Textbooks"))),
@@ -370,11 +374,7 @@ def render() -> str:
         groups=groups_html(all_books),
         year=date.today().year,
         build_meta=build_meta(),
-        scheme_key=SCHEME_KEY,
-        theme_key=THEME_KEY,
-        scheme_default=json.dumps("default"),
-        themes=json.dumps([bundle.id for bundle in bundles]),
-        default_theme=default_bundle().id,
+        prefs_script=prefs_snippet(prefs_config()),
         settings_trigger=settings_trigger(),
         settings_dialog=settings_dialog(),
     )

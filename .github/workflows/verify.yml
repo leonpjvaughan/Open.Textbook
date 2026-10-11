@@ -166,12 +166,59 @@ jobs:
       - uses: actions/checkout@v7
       - uses: rhysd/actionlint@03d0035246f3e81f36aed592ffb4bebf33a03106 # v1.7.7
 
+  # The theme preview: every bundle in both schemes on three built routes, with a
+  # full-page contrast audit. It is the only check that measures what the shell
+  # actually paints — a token that is declared but never applied, Material's
+  # specificity defects, and an accent that only fails without a subject tint —
+  # so it runs here rather than only when a human remembers. Chrome is the one
+  # thing pytest cannot provide; the runner ships it, so only the Playwright
+  # client is installed and no browser is downloaded.
+  preview:
+    name: theme preview
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          enable-cache: true
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          uv sync --locked
+          npm ci
+
+      # `playwright` is not a package.json dependency: it is only needed here and
+      # by scripts/screenshot.cjs. Skip the browser download and use the
+      # runner's Chrome through the harness's `channel: "chrome"` default.
+      - name: Install the Playwright client
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+        run: npm install --no-save playwright@1.64.0
+
+      - name: Chrome is available
+        run: google-chrome --version || google-chrome-stable --version
+
+      # Builds every profile and the portal, then runs the 9 x 2 x 3 audit. The
+      # script asserts the route layout first, so a renderer swap fails on a
+      # missing route rather than auditing a 404.
+      - name: Preview every bundle on the built site
+        run: scripts/preview-themes.sh
+
   # One stable check name for branch protection to require. The build matrix
   # generates per-book job names, so requiring those would mean editing the
   # protection rule every time a book is added; requiring this does not.
   gate:
     name: all checks
-    needs: [plan, generated, build, content, workflows]
+    needs: [plan, generated, build, content, workflows, preview]
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5

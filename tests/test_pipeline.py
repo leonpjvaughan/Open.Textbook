@@ -27,6 +27,7 @@ import pytest
 from textbook import pipeline
 from textbook import portal
 from textbook.book import repo_root
+from textbook.hooks import prefs
 from textbook.themes import ordered_bundles
 
 BOOK = "gcse-maths"
@@ -425,6 +426,20 @@ def test_build_sets_the_scheme_on_body_for_the_shared_stylesheet(subset):
     html = (subset.out / "chapter-1/index.html").read_text()
     assert "document.body.setAttribute" in html
     assert "data-md-color-scheme" in html
+
+
+def test_every_page_applies_preferences_from_the_shared_snippet(subset):
+    """The pipeline fills the template's ``$prefs_script``, with no copy of its own.
+
+    ``hooks/prefs.py`` is the only implementation; this pins that the pipeline
+    actually substitutes it rather than leaving the slot or shipping a second
+    script.
+    """
+    snippet = prefs.snippet(pipeline.make_config(pipeline.books.book_by_id(BOOK), "higher"))
+    for page in subset.pages:
+        html = (subset.out / page.output).read_text(encoding="utf-8")
+        assert snippet in html, page.url
+        assert html.count("window.textbookPrefs") == 1, page.url
 
 
 def test_build_uses_relative_asset_prefixes_for_a_subpath_deployment(subset):

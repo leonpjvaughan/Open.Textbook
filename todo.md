@@ -1117,7 +1117,7 @@ Everything here was measured; none of it is fixed. Each line says what is
 unverified and what would close it. Nothing is repeated from item 18, whose
 provenance enforcement and APCA check are still open there.
 
-- [ ] **The renderer changed mid-verification.** The theme work was verified twice
+- [x] **The renderer changed mid-verification.** The theme work was verified twice
       — against MkDocs, where the four defects were found, and against the
       pipeline, where the final 9 × 2 × 3 audit ran. The pipeline is the site now,
       so the preview's routes are `chapter-1/section-1.1/learn/`; the MkDocs routes
@@ -1128,7 +1128,14 @@ provenance enforcement and APCA check are still open there.
       the layout it expects and fails loudly when routes no longer resolve, so a
       renderer swap cannot leave it passing on 404 pages — it did exactly that
       once, auditing 738 "text elements" of a `not found` body.
-- [ ] **`extra.css` declares six `--md-*` variables nothing reads.** Measured: of
+      **Done (del-17):** `test/theme-preview.cjs` declares the layouts it knows
+      (`pipeline`, `mkdocs`), checks the layout's own witness page and resolves
+      every route *before* a browser starts, and exits 2 naming the layout it
+      expected when one does not. The route handler no longer serves a `not found`
+      body: a miss during the run is recorded and fails it. Both directions were
+      shown failing — the MkDocs routes against the pipeline site, and
+      `--layout mkdocs` against it.
+- [x] **`extra.css` declares six `--md-*` variables nothing reads.** Measured: of
       the 13 it declares, only `--md-default-{bg,fg}-color`, `--md-default-fg-color--light`,
       `--lighter`, `--lightest` and `--md-primary-fg-color` / `--dark` are consumed
       by its own components. `--md-accent-fg-color`, `--md-code-bg-color`,
@@ -1138,6 +1145,16 @@ provenance enforcement and APCA check are still open there.
       header's ink on the accent — which are correct for MkDocs and now unexercised
       by the site. *Done means:* they are either kept behind a comment naming the
       parked renderer, or deleted; the file says which.
+      **Done (del-16): deleted.** Five had no reader anywhere in `assets/`,
+      `engine/` or a book's own assets; `--md-accent-fg-color` was read only by
+      `settings.css`'s `var(--md-accent-fg-color, var(--tb-accent))`, whose
+      fallback is the same value the declaration supplied, so the computed style
+      is identical. The `(0,2,0)` restatement block that beat Material's
+      specificity went with them. The fixes it carried survive where they are now
+      made: shell.css paints links from `--tb-link` (`a { color: var(--tb-link) }`)
+      and the masthead title from `--tb-ink`, straight from the bundle. The
+      `data-md-color-scheme` attribute stays, because `themes.css` keys its tokens
+      off `body[data-md-color-scheme]`.
 - [ ] **`--tb-ink-lighter` is below 3:1 on the page for 2 of 18 bundle × scheme
       pairs**, and it paints one visible control: `.sidebar summary::marker`
       (`shell.css:164`, and the built sidebar does contain a `<summary>`; `.sidebar`
@@ -1150,11 +1167,16 @@ provenance enforcement and APCA check are still open there.
       *Done means:* the token is raised in the failing bundles, or the marker gets a
       token of its own with its own threshold, and the audit either covers
       pseudo-elements or records that it does not.
-- [ ] **The audit cannot see pseudo-elements, placeholders or SVG `fill`.** It walks
+- [x] **The audit cannot see pseudo-elements, placeholders or SVG `fill`.** It walks
       elements that own a text node, so `::marker`, `::before`/`::after` content,
       `input::placeholder` and icon fills are invisible to it — the reason the
       `summary` marker above was not caught. *Done means:* the script's header says
       so, or the check grows.
+      **Done (del-17): documented.** The harness's header and `test/README.md` §3
+      name all three, with the `summary` marker as the worked example, and say
+      plainly that this is a limit rather than coverage. Growing the check was
+      rejected here: it means reading pseudo-element computed styles and SVG
+      presentation attributes as well, which is a separate piece of work.
 - [ ] **Five derived light members have never been looked at by a human**: gruvbox,
       arc-blueberry, tokyo-night, synthwave and archwave. They pass the invariant and
       the page audit, which is not the same as still looking like the family they
@@ -1164,11 +1186,19 @@ provenance enforcement and APCA check are still open there.
       Synthwave '84** — magenta-and-cyan on deep aubergine, pastels against neon. No
       measurement prefers either. *Done means:* one is dropped, or the nine are kept
       with the overlap written down as deliberate.
-- [ ] **The preview harness is in no gate.** It is the only thing that catches the
+- [x] **The preview harness is in no gate.** It is the only thing that catches the
       pseudo-element gap, the two Material defects and a bundle whose accent fails
       only with no subject tint. It needs Chrome, so it is not in `pytest` or CI, and
       `test/run.sh` no longer exists. *Done means:* it runs somewhere — a mise task,
       a CI job with a browser, or a documented manual step in `test/README.md`.
+      **Done (del-17): a CI job with a browser, with a named task in front of it.**
+      The `preview` job in `.github/workflows/verify.yml` runs
+      `scripts/preview-themes.sh` (build every profile and the portal, then the
+      9 × 2 × 3 audit) on every push and pull request, and the `gate` job requires
+      it. It installs the Playwright client with the browser download skipped and
+      drives the runner's Google Chrome, so no browser is downloaded.
+      `scripts/preview-themes.sh` is the same entry point locally; the reason it is
+      not in `pytest` or `scripts/check.sh` is still Chrome.
 - [ ] **One pipeline build in five wrote no pages.** The only evidence is one run
       that printed `…/learn/: page was not written` for several routes, and exited 0;
       three consecutive reruns afterwards were clean. It happened while
@@ -1194,6 +1224,14 @@ numbers are not the shipped page. **Fix:** re-measure with Playwright against a
 locally served `site/` (the method is described in the same section) and replace
 the table. **Done means:** every number names a resource the pipeline actually
 loads, and the totals are reproduced by one recorded command.
+**Done (del-17).** Re-measured with the new task `scripts/measure-budget.cjs`,
+which binds a local server on an ephemeral port (request interception reports
+`transferSize` as 0), loads the route in Playwright and sums the navigation entry
+with `performance.getEntriesByType("resource")`. The shipped page is 13 requests,
+~153 kB, document ~83 kB, 6 render-blocking stylesheets, largest resource
+`assets/stylesheets/themes.css` at ~19 kB, DOMContentLoaded ~200 ms — and no
+search index, because Pagefind fetches it only on a search. Table and method
+replaced in `DEPLOY.md`'s performance-budget section.
 
 2. **`engine/textbook/hooks/prefs.py`'s `snippet()`/`on_post_page()` are now
 unreachable.** The MkDocs shell was their only caller; the pipeline's before-paint
@@ -1203,6 +1241,16 @@ template carry `prefs.snippet(config)` (which would also restore the
 `window.textbookPrefs` store on book pages) or delete the dead half and keep the
 key constants. **Done means:** one implementation of the before-paint script, and
 a test that fails if the two disagree.
+**Done (del-16).** `prefs.snippet(config)` is the only implementation. It is
+Material-free — no `__md_set`, no palette — and the page templates carry
+`$prefs_script`, filled by `pipeline.render_page` and `portal.render`;
+`portal.not_found` carries it too, so all three reader surfaces render one
+script. `on_post_page` (an MkDocs-only entry point) is deleted and
+`hooks/__init__.py` no longer composes it. Book pages regain
+`window.textbookPrefs`, so the Settings runtime's fallback is never needed, and
+an unknown stored bundle id now falls back to the default instead of setting an
+unmatched `data-theme`. `tests/test_prefs.py` renders a real page and asserts the
+bytes match `prefs.snippet`, and fails if either template holds a second copy.
 
 3. **The shared-asset symlinks under `books/<id>/docs/assets/` are now
 vestigial.** `pipeline.copy_assets` reads the shared bytes from `assets/`
@@ -1210,6 +1258,33 @@ directly; the symlinks exist because MkDocs served only `docs_dir`. Two tests
 still require them. **Fix:** decide whether to keep them as the book's
 self-describing view or drop them from `scaffold.ensure_shared_assets` and the
 two tests together.
+**Decided (del-16): keep them.** The links are no longer the build's source, so
+they stay as the book's self-describing view of which shared stylesheets, figure
+loader, settings runtime and booklet widget it uses, beside its own files.
+Dropping them would also break the out-of-scope `tests/test_themes.py` (and
+`test_figures.py`, `test_settings.py`), which read the links as that contract.
+The rationale is recorded in `scaffold.ensure_shared_assets`, and
+`test_collection.py::test_shared_assets_are_symlinked_not_copied` is now the
+resolution check that replaces the build which used to walk `docs_dir`.
+
+4. **Dead Material selectors still live in `assets/stylesheets/extra.css` and the
+Settings runtime.** Noticed while deleting the unread `--md-*` variables (del-16),
+and deliberately not fixed with them because it changes a printed page. Measured
+on a built pipeline page: the `@media print` block hides `.md-header`, `.md-tabs`,
+`.md-sidebar`, `.md-search`, `.md-footer`, `.md-top`, `.md-dialog` and
+`.md-overlay`, and the page contains **none** of them — its chrome is
+`.masthead`, `.sidebar` and `.search`, which the block leaves visible. So item
+12's "readable page without the sidebar" is not yet true for the pipeline build;
+the block's generic rules (the measure, `break-inside`, link underlines) do still
+apply. The same file hides `.md-search__output` and moves `.md-top` for Material
+controls that no longer exist (`grep` finds neither in a built page), and
+`assets/settings/settings.js`'s `setScheme` still looks for a Material
+`input[name="__palette"]` before its fallback (`__palette` is in no built page).
+**Fix:** point the print block and the search rule at the pipeline shell's own
+classes (or delete them), and drop the Material branch from `setScheme`; then
+check a rendered print preview. **Done means:** printing a pipeline page hides the
+masthead, sidebar and search; no Material-only chrome selector remains in
+`extra.css`; and the Settings dialog still switches the scheme.
 
 ---
 
