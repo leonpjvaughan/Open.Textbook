@@ -124,8 +124,20 @@ jobs:
         with:
           enable-cache: true
 
-      - name: Install Python dependencies
-        run: uv sync --locked
+      # The pipeline tests render real pages, and the maths hook shells out to
+      # the Node KaTeX renderer. Without it KaTeX is unavailable and every
+      # expression degrades to a .math-error span, so the tests fail on maths
+      # that is in fact fine.
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          uv sync --locked
+          npm ci
 
       - name: Verify the problem banks
         run: uv run python -m textbook.verify
