@@ -12,6 +12,14 @@ the upstream palette families, VS Code's paired semantic themes and the
 OpenDesign directions, and proposes the light/dark group model and the bundle
 rename that follows from it. Read it before adding or changing a bundle.
 
+**Whether a background can move is in
+[`background-effects.md`](background-effects.md).** It measures a static
+gradient, a CSS animated gradient, a particle field and a stable-fluids solver
+against a page the pipeline actually ships, and recommends opt-in on the vivid
+themes — the counter-intuitive finding being that the CSS animation is the worst
+citizen because it never stops. `background-effects/` beside it holds the
+prototypes and the harness; none of it is shipped.
+
 Design exploration for how far the books should diverge. **Nothing here is
 published**; it exists so a direction can be chosen by looking at it rather than
 by describing it.

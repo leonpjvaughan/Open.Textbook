@@ -13,6 +13,7 @@ const LOADERS = {
   dots: () => import("./dots.js").then((m) => m.mount),
   "gradient-static": () => import("./gradient.js").then((m) => m.mountStatic),
   "gradient-animated": () => import("./gradient.js").then((m) => m.mountAnimated),
+  "gradient-transform": () => import("./gradient.js").then((m) => m.mountTransform),
 };
 
 /** CSP probes: do not animate; they report whether the policy permits them. */
