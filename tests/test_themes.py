@@ -17,13 +17,17 @@ import yaml
 from textbook import portal
 from textbook.book import SCHEME_TOKENS, discover_books, load_collection, repo_root
 from textbook.themes import (
+    APCA_MIN_CONTRAST,
     CARD_INK,
     FIGURE_MIN_CONTRAST,
     FIGURE_PANEL_INK,
+    INK_LIGHTER_MIN_CONTRAST,
     MIN_CONTRAST,
     ON_ACCENT_MIN_CONTRAST,
     SCHEMES,
     SOFT_MIN_CONTRAST,
+    apca_contrast,
+    apca_problems,
     bundle_by_id,
     card_surface,
     contrast,
@@ -37,10 +41,37 @@ from textbook.themes import (
     stylesheet,
 )
 
-BUNDLES = discover_bundles()
+
+def _load_bundles():
+    """Discover bundles, recording a broken one instead of dying at import.
+
+    `load_bundle` is the provenance gate. When it rejects a real bundle, that
+    should be a named test failure carrying the loader's message — not a
+    collection error that hides every other test in the file. The suite still
+    goes red; `test_every_bundle_loads` is simply louder about why.
+    """
+    try:
+        return discover_bundles(), None
+    except (ValueError, KeyError) as error:
+        return [], str(error)
+
+
+BUNDLES, BUNDLE_LOAD_ERROR = _load_bundles()
 BOOKS = discover_books()
 IDS = [bundle.id for bundle in BUNDLES]
 THEMES_CSS = repo_root() / "assets" / "stylesheets" / "themes.css"
+
+
+def test_every_bundle_loads():
+    """The provenance gate, as a named failure rather than an import error.
+
+    Drop a `family:`, a provenance field, or a derived member's `note` from a
+    real `themes/*.yaml` and this fails with `load_bundle`'s message naming the
+    file and the field.
+    """
+    assert BUNDLE_LOAD_ERROR is None, (
+        f"a theme bundle failed to load: {BUNDLE_LOAD_ERROR}"
+    )
 
 
 def test_bundles_exist():
@@ -90,6 +121,102 @@ def test_a_bundle_must_be_complete(tmp_path):
     )
     with pytest.raises(ValueError, match="missing"):
         load_bundle(path)
+
+
+# --- provenance: a claim someone else can check -------------------------------
+#
+# A bundle is a group: one palette family, a light member and a dark member, and
+# a recorded source for each. `observed: false` is the only interesting flag —
+# it stops a member derived here from being presented as something upstream
+# published. `load_bundle` refuses a bundle whose provenance is incomplete,
+# because a claim that can quietly vanish is a claim nobody can check. The
+# metadata comes from research/design/theme-groups.md.
+
+
+def _bundle_data(theme_id: str = "editorial") -> dict:
+    """A real bundle's parsed YAML, so a test breaks one field at a time."""
+    path = repo_root() / "themes" / f"{theme_id}.yaml"
+    return yaml.safe_load(path.read_text(encoding="utf-8"))
+
+
+def _write_bundle(tmp_path, data: dict, theme_id: str = "editorial"):
+    path = tmp_path / f"{theme_id}.yaml"
+    path.write_text(yaml.safe_dump(data, sort_keys=False), encoding="utf-8")
+    return path
+
+
+def test_a_bundle_must_name_its_family(tmp_path):
+    data = _bundle_data()
+    del data["family"]
+    with pytest.raises(ValueError, match=r"editorial\.yaml: missing family"):
+        load_bundle(_write_bundle(tmp_path, data))
+
+
+def test_a_bundle_must_carry_a_provenance_block(tmp_path):
+    data = _bundle_data()
+    del data["provenance"]
+    with pytest.raises(ValueError, match=r"editorial\.yaml: missing provenance block"):
+        load_bundle(_write_bundle(tmp_path, data))
+
+
+@pytest.mark.parametrize("scheme", ["light", "dark"])
+@pytest.mark.parametrize("field", ["name", "source", "observed"])
+def test_a_bundle_must_record_each_provenance_field(tmp_path, scheme, field):
+    data = _bundle_data()
+    del data["provenance"][scheme][field]
+    with pytest.raises(
+        ValueError, match=rf"editorial\.yaml: provenance\.{scheme}: missing {field}"
+    ):
+        load_bundle(_write_bundle(tmp_path, data))
+
+
+def test_a_derived_member_must_say_what_was_derived(tmp_path):
+    """`observed: false` without a `note` is the claim no one can check."""
+    data = _bundle_data("gruvbox")
+    assert data["provenance"]["light"]["observed"] is False
+    del data["provenance"]["light"]["note"]
+    with pytest.raises(
+        ValueError, match=r"gruvbox\.yaml: provenance\.light: derived, so it needs a note"
+    ):
+        load_bundle(_write_bundle(tmp_path, data, "gruvbox"))
+
+
+def test_observed_is_a_boolean(tmp_path):
+    data = _bundle_data()
+    data["provenance"]["light"]["observed"] = "yes"
+    with pytest.raises(
+        ValueError, match=r"editorial\.yaml: provenance\.light: observed must be true or false"
+    ):
+        load_bundle(_write_bundle(tmp_path, data))
+
+
+@pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
+def test_a_bundle_exposes_its_family_and_provenance(bundle):
+    """The metadata is carried on the bundle, not only validated and dropped.
+
+    The colophon (todo item 11) is the reader of this, and a derived member's
+    `note` is the prose it publishes. A field the loader checks but forgets to
+    keep is a check that buys nothing.
+    """
+    assert bundle.family
+    for scheme in SCHEMES:
+        member = bundle.provenance[scheme]
+        assert member["name"] and member["source"]
+        assert isinstance(member["observed"], bool)
+        if not member["observed"]:
+            assert member["note"]
+
+
+def test_no_bundle_is_named_after_a_distribution():
+    """`omarchy` names a catalogue, not a palette family, so it cannot be an id.
+
+    Omarchy's gallery is 140 links and its stock install is 22 single-mode
+    `colors.toml` files — 17 dark-only, 5 light-only — so it can supply at most
+    one member of a pair, and a bundle is two. The bundle it named is Catppuccin
+    (Latte + Mocha); see research/design/theme-groups.md. The mistake is one
+    filename away, so it is asserted rather than remembered.
+    """
+    assert "omarchy" not in IDS
 
 
 def test_the_default_bundle_is_declared():
@@ -223,6 +350,101 @@ def test_the_on_accent_threshold_is_a_text_minimum():
 def test_the_soft_ink_threshold_is_a_text_minimum():
     """`ink_soft` is secondary text, not a tone: it carries the landing card."""
     assert SOFT_MIN_CONTRAST == {"ink_soft": 4.5}
+
+
+def test_the_ink_lighter_threshold_is_for_a_non_text_control():
+    """`ink_lighter` paints `.sidebar summary::marker`, a disclosure control.
+
+    WCAG 1.4.11's 3:1 applies to a graphical component a reader has to operate,
+    not the 4.5:1 that text needs. The whole-page audit never sampled it: a
+    `::marker` is a pseudo-element with no text node, which is the gap the
+    threshold closes. No bundle relied on the old, lower value for anything but
+    this marker, so the token was raised rather than duplicated.
+    """
+    assert INK_LIGHTER_MIN_CONTRAST == {"ink_lighter": 3.0}
+    assert INK_LIGHTER_MIN_CONTRAST["ink_lighter"] < MIN_CONTRAST["ink"]
+
+
+def test_the_ink_lighter_check_can_actually_fail():
+    """A guard on the guard: a maker-coloured lighter ink must be reported."""
+    editorial = bundle_by_id("editorial")
+    assert contrast_problems(
+        editorial, "light", {"ink_lighter": editorial.palette("light")["paper"]}
+    )
+    assert not contrast_problems(editorial, "light", None)
+
+
+def test_apca_is_polarity_sensitive_and_matches_the_reference():
+    """Lc is signed, and the reference anchors bracket the scale."""
+    assert apca_contrast("#000000", "#ffffff") == pytest.approx(106.04, abs=0.05)
+    assert apca_contrast("#ffffff", "#000000") == pytest.approx(-107.89, abs=0.05)
+    # Swapping foreground and background flips the sign, and the two magnitudes
+    # are deliberately not mirrors: that asymmetry is what WCAG's symmetric
+    # ratio cannot express at all.
+    forward = apca_contrast("#4c4f69", "#eff1f5")
+    reverse = apca_contrast("#eff1f5", "#4c4f69")
+    assert forward > 0 > reverse
+    assert abs(abs(forward) - abs(reverse)) > 0.5
+
+
+def test_apca_measures_what_wcag_cannot():
+    """A dark pair can clear a *higher* WCAG ratio and still be weaker in Lc.
+
+    This is F3 of research/design/theme-groups.md: `MIN_CONTRAST` applies the
+    same number in both schemes, which is the symmetry APCA exists to criticise.
+    Kanagawa is the real example — its dark accent clears more WCAG than its
+    light one and scores lower in APCA.
+    """
+    kanagawa = bundle_by_id("kanagawa")
+    light, dark = kanagawa.palette("light"), kanagawa.palette("dark")
+    assert contrast(dark["accent"], dark["paper"]) > contrast(
+        light["accent"], light["paper"]
+    )
+    assert abs(apca_contrast(dark["accent"], dark["paper"])) < abs(
+        apca_contrast(light["accent"], light["paper"])
+    )
+
+
+def test_the_apca_thresholds_are_the_measured_levels():
+    """The numbers are a choice, pinned so a change has to argue with them.
+
+    They sit below APCA's strict body-text levels because the dark vivid members
+    measured there and redrawing them would repaint the families; the point is to
+    catch a palette that drifts weaker, not to fail the ones that exist.
+    """
+    assert APCA_MIN_CONTRAST == {"ink": 60.0, "link": 45.0, "accent": 45.0, "accent_ink": 45.0}
+
+
+def test_the_apca_check_can_actually_fail():
+    """A guard on the guard: an accent the colour of the paper must be caught."""
+    editorial = bundle_by_id("editorial")
+    assert apca_problems(editorial, "light", {"accent": "#f7f7f7"})
+    assert not apca_problems(editorial, "light", None)
+
+
+@pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
+@pytest.mark.parametrize("scheme", ("light", "dark"))
+def test_every_bundle_passes_the_apca_second_opinion(bundle, scheme):
+    """Nine bundles × both schemes, measured in Lc as well as WCAG.
+
+    The thresholds are below the strict body-text levels on purpose: the dark
+    vivid members sit at the floor of the measured distribution, and lifting
+    them to Lc 75/60 would repaint those families rather than check them. The
+    distribution is recorded in the comment above APCA_MIN_CONTRAST in
+    themes.py, where the threshold is chosen from it.
+    """
+    problems = apca_problems(bundle, scheme, None)
+    assert not problems, "; ".join(problems)
+
+
+@pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
+@pytest.mark.parametrize("book", BOOKS, ids=[b.id for b in BOOKS])
+def test_every_composed_pair_passes_the_apca_second_opinion(bundle, book):
+    """The book's subject tint is measured too, not only the bundle's own."""
+    for scheme, attr in (("light", "default"), ("dark", "slate")):
+        subject = book.theme.for_scheme(attr).tokens
+        problems = apca_problems(bundle, scheme, subject)
+        assert not problems, "; ".join(problems)
 
 
 def test_the_card_surface_matches_the_stylesheet():

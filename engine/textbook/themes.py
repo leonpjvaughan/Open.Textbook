@@ -83,6 +83,41 @@ CARD_INK = {"default": 0.04, "slate": 0.07}
 # minimum for normal text rather than the 3:1 a graphic would allow.
 SOFT_MIN_CONTRAST = {"ink_soft": 4.5}
 
+# `ink_lighter` is `--md-default-fg-color--lighter`, and the one visible control
+# it paints is `.sidebar summary::marker` — the disclosure triangle on a section
+# heading. A marker is a non-text component a reader has to operate, so WCAG
+# 1.4.11's 3:1 applies, not the 4.5:1 for text. It is measured on the page:
+# `.sidebar` paints no background of its own, so the paper shows through.
+#
+# This is the gap the whole-page audit could not see. The audit walks elements
+# that own a text node, and a `::marker` is a pseudo-element with none, so the
+# token was never sampled. Raising it in the two failing bundles was chosen over
+# minting a marker-only token: one token kept truthful is simpler, and anything
+# else the lighter ink touches benefits too.
+INK_LIGHTER_MIN_CONTRAST = {"ink_lighter": 3.0}
+
+# --- APCA, the polarity-sensitive second opinion ------------------------------
+#
+# WCAG 2.x computes a ratio from relative luminance and `MIN_CONTRAST` applies
+# the same number in both schemes. That symmetry is exactly what APCA exists to
+# criticise: 4.5:1 can be comfortable as dark text on light paper and weak as
+# light text on dark paper. APCA's Lc is signed — positive for dark-on-light,
+# negative for light-on-dark — and its magnitude is the perceptually-scaled
+# contrast. It is a *second opinion*, not the compliance bar: WCAG stays as the
+# minimum every bundle must clear, and APCA catches a dark palette that passes
+# on the technicality of the ratio.
+#
+# Thresholds from the APCA published levels. The strict body-text levels (Lc 75
+# for `ink`, Lc 60 for the rest) are not met by several dark vivid members, and
+# lifting them there would repaint those families rather than check them. So the
+# second opinion is held at the next published level down — Lc 60 body, Lc 45
+# large — which is what the measured distribution supports and still catches a
+# palette that drifts weaker. The distribution is recorded in the test file.
+APCA_MIN_CONTRAST = {"ink": 60.0, "link": 45.0, "accent": 45.0, "accent_ink": 45.0}
+
+# The pairs APCA is measured over: each role against the surface it is drawn on.
+APCA_PAIRS = (("ink", "paper"), ("link", "paper"), ("accent", "paper"), ("accent_ink", "accent"))
+
 
 @dataclass(frozen=True)
 class Bundle:
@@ -90,6 +125,10 @@ class Bundle:
     title: str
     description: str
     palettes: dict[str, dict[str, str]]
+    # The palette family this group belongs to, plus the recorded provenance of
+    # each member: the source, and whether it is observed or derived here.
+    family: str = ""
+    provenance: dict[str, dict] = field(default_factory=dict)
     typography: dict[str, str] = field(default_factory=dict)
     # Tokens the bundle keeps for itself, refusing the subject tint.
     fixed: frozenset[str] = frozenset()
@@ -116,9 +155,45 @@ def _palette(scheme: str, data: dict | None, where: str) -> dict[str, str]:
     return {key: str(data[key]) for key in SCHEME_TOKENS}
 
 
+def _variation(scheme: str, data: dict | None, where: str) -> dict:
+    """One member's provenance, required and complete.
+
+    A bundle's provenance is a claim a reader or maintainer can check: which
+    palette, from where, and whether the hexes were read from that source or
+    derived here. A missing field is a claim nobody can check, so it is an error
+    rather than a default — the message names the file and the field.
+    """
+    label = f"{where}: provenance.{scheme}"
+    if not isinstance(data, dict):
+        raise ValueError(f"{label} is missing")
+    for key in ("name", "source"):
+        if not str(data.get(key, "")).strip():
+            raise ValueError(f"{label}: missing {key}")
+    if "observed" not in data:
+        raise ValueError(f"{label}: missing observed")
+    if not isinstance(data["observed"], bool):
+        raise ValueError(f"{label}: observed must be true or false")
+    if not data["observed"] and not str(data.get("note", "")).strip():
+        raise ValueError(
+            f"{label}: derived, so it needs a note saying what was derived and from what"
+        )
+    return {
+        "name": str(data["name"]).strip(),
+        "source": str(data["source"]).strip(),
+        "observed": data["observed"],
+        "note": " ".join(str(data.get("note", "")).split()),
+    }
+
+
 def load_bundle(path: Path) -> Bundle:
     data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
     where = path.name
+    family = str(data.get("family", "")).strip()
+    if not family:
+        raise ValueError(f"{where}: missing family")
+    raw_provenance = data.get("provenance")
+    if not isinstance(raw_provenance, dict):
+        raise ValueError(f"{where}: missing provenance block")
     bundle = Bundle(
         id=data["id"],
         title=data.get("title", data["id"]),
@@ -126,6 +201,11 @@ def load_bundle(path: Path) -> Bundle:
         palettes={
             "light": _palette("light", data.get("light"), where),
             "dark": _palette("dark", data.get("dark"), where),
+        },
+        family=family,
+        provenance={
+            scheme: _variation(scheme, raw_provenance.get(scheme), where)
+            for scheme in SCHEMES
         },
         typography={
             key: str(value)
@@ -213,6 +293,65 @@ def contrast(foreground: str, background: str) -> float:
     return (lighter + 0.05) / (darker + 0.05)
 
 
+def apca_luminance(value: str) -> float:
+    """APCA's screen luminance Ys.
+
+    Not the WCAG piecewise curve: APCA uses a plain 2.4 exponent on the sRGB
+    channels, which is what makes the same colours resolve differently from
+    WCAG. The constants are APCA-W3 0.1.9.
+    """
+    red, green, blue = (channel / 255 for channel in _component(value))
+    return 0.2126729 * red**2.4 + 0.7151522 * green**2.4 + 0.0721750 * blue**2.4
+
+
+def apca_contrast(foreground: str, background: str) -> float:
+    """APCA Lc, signed: positive dark-on-light, negative light-on-dark.
+
+    The magnitude is the contrast; the sign is the polarity. The reference is
+    APCA-W3 0.1.9 (the SAPC algorithm). Black on white is about Lc 106 and white
+    on black about Lc -108, which is the asymmetry WCAG's symmetric ratio
+    cannot express.
+    """
+    text, back = apca_luminance(foreground), apca_luminance(background)
+    # Soft-clamp the near-black region, as the reference implementation does.
+    text = text if text > 0.022 else text + (0.022 - text) ** 1.414
+    back = back if back > 0.022 else back + (0.022 - back) ** 1.414
+    if abs(back - text) < 0.0005:
+        return 0.0
+    if back > text:  # dark text on a light surface
+        sapc = (back**0.56 - text**0.57) * 1.14
+        output = 0.0 if sapc < 0.1 else sapc - 0.027
+    else:  # light text on a dark surface
+        sapc = (back**0.65 - text**0.62) * 1.14
+        output = 0.0 if sapc > -0.1 else sapc + 0.027
+    return output * 100
+
+
+def apca_problems(
+    bundle: Bundle, scheme: str, subject: dict[str, str] | None
+) -> list[str]:
+    """The APCA second opinion: Lc for each pair that carries meaning.
+
+    `ink`, `link` and `accent` are measured on the paper; `accent_ink` on the
+    accent it is knocked out of. The threshold is on the magnitude, because Lc
+    is signed by polarity.
+    """
+    tokens = effective_tokens(bundle, scheme, subject)
+    problems = []
+    for role, surface in APCA_PAIRS:
+        colour, under = tokens.get(role), tokens.get(surface)
+        if not colour or not under:
+            continue
+        value = apca_contrast(colour, under)
+        minimum = APCA_MIN_CONTRAST[role]
+        if abs(value) < minimum:
+            problems.append(
+                f"{bundle.id}/{scheme}: {role} {colour} on {surface} {under} "
+                f"is Lc {value:.1f}, below Lc {minimum:g} in magnitude"
+            )
+    return problems
+
+
 def effective_tokens(bundle: Bundle, scheme: str, subject: dict[str, str] | None) -> dict[str, str]:
     """The tokens a reader actually sees: the bundle, with the subject composed in."""
     palette = bundle.palette(scheme)
@@ -290,6 +429,16 @@ def contrast_problems(bundle: Bundle, scheme: str, subject: dict[str, str] | Non
             problems.append(
                 f"{bundle.id}/{scheme}: {role} {colour} on the card {card} "
                 f"is {ratio:.2f}:1, below {minimum}:1"
+            )
+    for role, minimum in INK_LIGHTER_MIN_CONTRAST.items():
+        colour = tokens.get(role)
+        if not colour:
+            continue
+        ratio = contrast(colour, tokens["paper"])
+        if ratio < minimum:
+            problems.append(
+                f"{bundle.id}/{scheme}: {role} {colour} on paper {tokens['paper']} "
+                f"is {ratio:.2f}:1, below the {minimum}:1 a non-text control needs"
             )
     return problems
 

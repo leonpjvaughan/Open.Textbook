@@ -169,7 +169,7 @@ html[data-theme="catppuccin"] body[data-md-color-scheme="default"] {
   --tb-paper: var(--tb-book-paper, #eff1f5);
   --tb-ink: var(--tb-book-ink, #4c4f69);
   --tb-ink-soft: var(--tb-book-ink-soft, #66697e);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #9ca0b0);
+  --tb-ink-lighter: var(--tb-book-ink-lighter, #7c7f93);
   --tb-rule: var(--tb-book-rule, #ccd0da);
   --tb-link: var(--tb-book-link, #1a58d8);
   --tb-code-bg: var(--tb-book-code-bg, #e6e9ef);
@@ -379,7 +379,7 @@ html[data-theme="kanagawa"] body[data-md-color-scheme="default"] {
   --tb-paper: var(--tb-book-paper, #f2ecbc);
   --tb-ink: var(--tb-book-ink, #4c4c5a);
   --tb-ink-soft: var(--tb-book-ink-soft, #6a655b);
-  --tb-ink-lighter: var(--tb-book-ink-lighter, #8a8980);
+  --tb-ink-lighter: var(--tb-book-ink-lighter, #807f76);
   --tb-rule: var(--tb-book-rule, #d5cea3);
   --tb-link: var(--tb-book-link, #4e5d8c);
   --tb-code-bg: var(--tb-book-code-bg, #e7dba0);
