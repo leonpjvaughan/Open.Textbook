@@ -260,6 +260,7 @@ ranking of methods. Keep the claims to what the briefing supports; see
 | `tests/` | Engine, bank and collection-shape tests |
 | `test/` | The figure-hook and tier-profile evaluation (24 assertions) |
 | `AGENT-BRIEF.md` | Per-chapter sub-agent brief |
+| `todo.md` | The work queue. Anything noticed and not fixed now belongs here |
 
 ## Build and verify
 
@@ -311,6 +312,39 @@ lives in `scripts/next-tag.sh`, tested in `tests/test_release.py`.
 
 `DEPLOY.md` is the runbook: credentials, the domain, what each stage does, and how
 to check a deploy.
+
+## Capturing work
+
+`todo.md` is the work queue: one item per change, ordered rather than dated, the
+first being next. It is ours, not the reader's — the voice rules do not apply
+there, but these do.
+
+**Anything you notice and are not going to fix now goes in `todo.md` before you
+finish.** Not in a commit message, not in a reply that scrolls away, not in your
+head. An observation without a home gets made twice, and the second time is by
+someone who no longer remembers the evidence.
+
+That includes the small things, and especially those: a setting nobody verified, a
+dead link, a claim in a document that turned out to be false, a test that would
+have caught the bug you just fixed by hand.
+
+Write it the way the file already reads:
+
+- **What is wrong**, and the evidence you actually measured — a command and its
+  output, or a quote from a primary source. "Probably" and "should" are worth
+  less than what you ran. If you measured nothing, say what you would measure.
+- **The fix**, concretely enough to do without re-deriving it.
+- **A `done means` checklist**, in terms anyone can verify.
+
+Then:
+
+- Add a **new numbered item**; do not append to an unrelated one.
+- Keep the **ready-state gate last**, renumbering it if you add items above it.
+- **Do not park work you should be doing.** If it is next, do it; `todo.md` is for
+  what is not.
+- **Close items properly** when they land: tick the boxes and keep the diagnosis,
+  because the diagnosis is what stops the problem returning. Item 2 keeps its
+  nameserver evidence for that reason.
 
 ## Watch out for
 
