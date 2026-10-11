@@ -396,6 +396,33 @@ def test_the_base_stylesheet_defines_no_colour():
     )
 
 
+def test_the_pipeline_shell_defines_no_colour():
+    """The bespoke renderer is the site, so its shell is held to the same rule.
+
+    A literal in the shell is the same bug as one in `extra.css`: it outranks
+    every bundle, so every reader gets the same paint no matter which theme they
+    chose. The pipeline's 404 was the last one — it shipped the editorial palette's
+    hexes inline, so a reader on Catppuccin got Catppuccin inside the book and
+    editorial on a missing page.
+    """
+    root = repo_root()
+    shells = (
+        root / "engine" / "textbook" / "css" / "shell.css",
+        root / "engine" / "textbook" / "templates" / "page.html",
+        root / "engine" / "textbook" / "templates" / "portal.html",
+        root / "engine" / "textbook" / "pipeline.py",
+        root / "engine" / "textbook" / "portal.py",
+    )
+    for path in shells:
+        assert path.is_file(), f"{path} is missing; did the shell move?"
+        literals = colour_literals(path.read_text(encoding="utf-8"))
+        assert not literals, (
+            f"{path.name} declares a literal colour ({literals}), which outranks "
+            "every theme bundle. Use a --tb-* token, a fig-*/text-* class, or "
+            "color-mix(in srgb, var(--tb-…), transparent)."
+        )
+
+
 def test_the_colour_scanner_can_actually_fail():
     """A guard on the guard: the scanner must catch each shape of literal.
 

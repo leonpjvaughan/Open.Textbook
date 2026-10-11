@@ -407,29 +407,6 @@ def sitemap(book: books.Book, pages: list[RenderedPage]) -> str:
     )
 
 
-NOT_FOUND = """<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found</title>
-<!-- Self-contained: a 404 can be served for a request at any depth, under any
-     book's subpath, so linked stylesheets have no reliable base. -->
-<style>
-body { margin: 0; background: #faf9f5; color: #1f1e1b;
-  font: 16px/1.7 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-.wrap { max-width: 40rem; margin: 4rem auto; padding: 0 1rem; }
-a { color: #23577d; }
-@media (prefers-color-scheme: dark) {
-  body { background: #171614; color: #e9e7e1; }
-  a { color: #8cc0e8; }
-}
-</style>
-</head><body><div class="wrap">
-<h1>Page not found</h1>
-<p>That page is not here. Use the contents list, or start again from the book cover.</p>
-</div></body></html>
-"""
-
-
 def copy_assets(book: books.Book, out: Path) -> list[str]:
     """Copy the shared design system, the shell, and this book's figure modules."""
     copied: list[str] = []
@@ -655,7 +632,14 @@ def build(
 
     result.assets = copy_assets(book, out)
     result.indexed = run_pagefind(out) if index else False
-    (out / "404.html").write_text(NOT_FOUND, encoding="utf-8")
+    # The same 404 the landing page uses, rather than a second one. It loads the
+    # bundle stylesheet from the site root and applies the reader's own scheme and
+    # theme before paint, so a missing page is painted from the reader's bundle
+    # instead of a hardcoded one — which is what this had, and every reader of
+    # every bundle got the editorial palette on a 404. Root-absolute paths are
+    # what make that safe at any depth, which is why the page carries no linked
+    # stylesheet of its own.
+    (out / "404.html").write_text(portal.not_found(), encoding="utf-8")
     if xml := sitemap(book, result.pages):
         (out / "sitemap.xml").write_text(xml, encoding="utf-8")
     (out / "robots.txt").write_text("User-agent: *\nAllow: /\n", encoding="utf-8")
