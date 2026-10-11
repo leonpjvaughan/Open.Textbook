@@ -29,7 +29,7 @@ in `AGENTS.md` do not apply here, but the engineering rules do.
 - [x] 23. Stale theme references in the out-of-scope preview files
 - [ ] 24. Animated backgrounds on the vivid themes
 - [x] 25. An iOS home-screen icon (`apple-touch-icon`) — shipped, with the drift guarded
-- [ ] 26. Declare the ready state
+- [x] 26. Declare the ready state — published 2026-10-11, release 26.284.0
 
 ---
 
@@ -99,9 +99,9 @@ disclosure, dialog patterns), and WCAG 2.2 for dialog focus management.
 
 ### Done means
 
-- [ ] A labelled, keyboard-reachable Settings control sits at the top right of
-      every book page and the landing page. **Book pages done; the landing page
-      keeps its own `<select>` (see the open questions).**
+- [x] A labelled, keyboard-reachable Settings control sits at the top right of
+      every book page **and the landing page** — both use one runtime and one
+      set of keys, verified live on the deployed site.
 - [x] Opening it **does not change the URL** (no new path, no hash, no query).
 - [x] Choosing a bundle updates the page immediately and persists to
       `textbooks:theme`; a new page or tab keeps it.
@@ -182,7 +182,8 @@ reason step 4 is manual. Decide before changing `DEPLOY.md`.
 
 - [x] `https://open-textbook.org/` returns `200`.
 - [x] The canonical link reads `https://open-textbook.org/...`.
-- [ ] `https://www.open-textbook.org/` redirects to the apex — **not yet, see item 3.**
+- [x] `https://www.open-textbook.org/` redirects to the apex — live and verified: `301`
+      with the path and the query string preserved.
 - [x] A missing path returns the 404 page, not a connection error.
 - [x] `DEPLOY.md` describes the domain step accurately, whatever route we choose —
       the `www` redirect is now written up under "DNS: the `www` redirect".
@@ -238,11 +239,12 @@ valid choice, just less friendly. Record the decision in `DEPLOY.md` either way.
 
 **Done means.**
 
-- [ ] `www.open-textbook.org` resolves (rcode 0) from 1.1.1.1 and 8.8.8.8.
-- [ ] `curl -sI https://www.open-textbook.org/` returns `301` with
-      `location: https://open-textbook.org/`.
-- [ ] `curl -sI https://www.open-textbook.org/gcse-maths/higher/` keeps the path.
-- [ ] `DEPLOY.md` records whether `www` redirects or is deliberately absent.
+- [x] `www.open-textbook.org` resolves from 1.1.1.1 and 8.8.8.8.
+- [x] `https://www.open-textbook.org/` returns `301` to the apex.
+- [x] `https://www.open-textbook.org/gcse-maths/higher/?x=1` keeps the path **and
+      the query** — the wildcard captures the path, the redirect rule's
+      preserve-query setting is what carries the rest.
+- [x] `DEPLOY.md` records it under "DNS: the `www` redirect".
 
 ---
 
@@ -293,10 +295,10 @@ The dashboard quick search jumps straight there by label.
       custom domains are now active in `deploy/dns/open-textbook.org.zone`, so the
       list is a superset of what is known to be in use rather than a guess.
       Re-check at the next renewal.
-- [ ] **Email records, since the domain sends none.** Written in the same file:
-      `TXT "v=spf1 -all"` and `_dmarc TXT "v=DMARC1; p=reject"` — no `rua`, since
-      nobody is reading reports. The SPF and DMARC records are already imported
-      and serving; only the CAA block is new and needs the import.
+- [x] **Email records, since the domain sends none.** `TXT "v=spf1 -all"` and
+      `_dmarc TXT "v=DMARC1; p=reject"` — no `rua`, since nobody is reading
+      reports. Imported and serving, confirmed in the zone export. The CAA block
+      was imported separately, on its own file, so nothing was duplicated.
 - [x] **Disable the `workers.dev` route.** Done — the Worker is now `404` at
       `open-textbook.leonpjvaughan.workers.dev`, so there is one canonical origin.
 
@@ -304,10 +306,12 @@ Keep `security_level: medium`, `browser_check: on`, `tls_1_3: on`,
 `automatic_https_rewrites: on`. Leave `rocket_loader` off — it injects JavaScript.
 **Check Development Mode is off too**: it disables the edge cache and is easy to
 leave on.
-- [ ] **Turn Bot Fight Mode OFF.** Currently **on**; it injects a challenge
-      script into every page and has no free-plan allowlist. It adds no DDoS
-      protection (that is always on and separate). No login, no forms, no origin —
-      the threat model is empty.
+- [x] **Bot Fight Mode — kept on, deliberately, against the recommendation.** It
+      injects a challenge script into every page, has no free-plan allowlist to
+      exempt a reader who is wrongly challenged, and adds no DDoS protection
+      (that is always on and separate): no login, no forms, no origin, so the
+      threat model is empty. The author chose to keep it; recorded here and in
+      `DECISIONS.md` so it reads as a decision rather than an oversight.
 
 Skip Turnstile: there are no forms and no user input. WAF managed rules are
 optional here.
@@ -358,8 +362,9 @@ Other notes:
       in Chromium with the real header attached — landing page, a book page, a
       Walkthrough with a figure and the 404 — with **no** `securitypolicyviolation`
       and Material's search still returning results.
-- [ ] Deployed: `curl -sI https://open-textbook.org/` shows the header set once a
-      build with this change is live.
+- [x] Deployed and verified live: `content-security-policy`,
+      `x-content-type-options`, `referrer-policy`, `permissions-policy`,
+      `x-frame-options` and `strict-transport-security` all present on a book page.
 
 ---
 
@@ -790,12 +795,16 @@ finds both, plus an `#888` in the gradient in `ch16-point.js`.
 
 **Done means.**
 
-- [ ] `ch3-index-laws.js` injects no `$...$` at runtime; a reader sees
-      mathematics, not dollar signs.
-- [ ] No figure module contains an inline colour literal.
-- [ ] `tests/test_figures.py` (or lint) fails on a colour literal in a figure, so
-      the rule is enforced rather than remembered.
-- [ ] Each figure is checked in both schemes.
+- [x] `ch3-index-laws.js` no longer injects `$...$` at runtime; the readout is
+      HTML, so a reader sees mathematics rather than dollar signs.
+- [x] No figure module contains an inline colour literal — `ch2-multiples.js`
+      used `color:#fff` on a span where `.fig-accent` sets only `fill`/`stroke`,
+      which was white on white, and `ch16-point.js` carried a stray `#888`.
+- [x] `tests/test_figures.py` fails on a colour literal in a figure, so the rule
+      is enforced rather than remembered. Demonstrated by reintroducing one.
+- [x] Each figure is checked in both schemes: the preview harness walks every
+      bundle in both, and the palette fix that followed from it was scoped to
+      the bundles that actually failed.
 
 ---
 
@@ -875,10 +884,12 @@ audit task owns. Both were reproduced on
       faithful override carrying the `aria-label` on the icon-only label;
       `tests/test_a11y_shell.py` pins the name and fails if the override drifts
       from the installed Material template.
-- [ ] Both fixes pass the audit in `research/accessibility.md` §5. The search fix
-      was re-run in the browser; the toggle override needs the next shared build
-      before the rendered audit can be re-run, because the check is structural
-      until then.
+- [x] **Satisfied by construction, not by the override.** The search tab-stop fix
+      was re-run in the browser and holds. The toggle override was for Material's
+      icon-only `<label>` toggles; the pipeline renders the sidebar as
+      `<details><summary>{title}</summary>`, so 159 summaries carry their visible
+      text as their accessible name and there is no icon-only toggle to label.
+      The override, and the test that pinned it, went with MkDocs.
 
 ---
 
@@ -1440,9 +1451,8 @@ guessing at the background.
 
 **Done means.**
 
-- [ ] `curl -sI https://open-textbook.org/assets/icons/apple-touch-icon.png` is
-      `200` with `content-type: image/png`, and the image is 180×180. **Pending the
-      next deploy** — it is built and in `site/`, but `dev` is not live.
+- [x] Deployed and verified: `200`, `content-type: image/png`, 180×180 RGB with no
+      alpha. Live since tag `26.284.0`.
 - [x] Every head links it — a nested page (which resolves the prefix), the landing
       page, and the 404, which links both icons root-absolutely because it is
       served for a request at any depth. `tests/test_pipeline.py` checks that each
@@ -1457,7 +1467,7 @@ guessing at the background.
       `assets/icons/README.md`.
 
 
-## 26. Declare the ready state
+## 26. Declare the ready state — **published, 2026-10-11**
 
 **Not a change: the gate.** The site is ready to publish when items 2–12 are
 closed and their "done means" boxes are ticked, and not before — a checklist that
@@ -1467,15 +1477,33 @@ Item 13 (content quality) is a rolling programme rather than a gate: the site ca
 be ready while it continues. But a chapter is not *done* until it passes its own
 pedagogy audit.
 
+**Status: published, 2026-10-11.** PR #1 merged to `main`, release `26.284.0`,
+deployed, and verified against the live site rather than locally.
+
 **Done means.**
 
-- [ ] Every box in items 2–12 is ticked, or the item is explicitly
-      deferred here with a reason.
-- [ ] `curl -sI https://open-textbook.org/` returns `301`/`200` as appropriate
-      with `strict-transport-security` present, and the `www` and `workers.dev`
-      origins both redirect or refuse.
-- [ ] A release exists for the commit that is live, and `main` is what is
-      deployed.
-- [ ] Item 1 (the reader settings menu) is done or explicitly deferred. It is a
-      feature, not a gate — the site can be ready without it.
+- [x] Every box in items 2–12 is ticked, or the item is explicitly deferred here
+      with a reason. The only box left open is item 5's rollback drill, deferred
+      below with the rest.
+- [x] `https://open-textbook.org/` returns `200` with `strict-transport-security`,
+      `content-security-policy`, `x-content-type-options`, `referrer-policy`,
+      `permissions-policy` and `x-frame-options`; `www` returns `301` with the path
+      and the query preserved; the `workers.dev` origin returns `404`; and a
+      missing path returns the 404 page.
+- [x] Release `26.284.0` exists, `version.json` names commit `6eab87b`, and `main`
+      is what is deployed. `dev` was fast-forwarded onto `main` afterwards: the PR
+      was merged with a rebase, which rewrites SHAs, and without that the two
+      branches would have diverged permanently while holding identical trees.
+- [x] Item 1 is done — the reader settings menu is on every book page **and** the
+      landing page, one runtime, confirmed live.
+
+**Deferred, each with its reason.**
+
+| What | Why |
+|---|---|
+| Item 5's rollback drill | The capability is a manual workflow and the command is in `DEPLOY.md`. A drill means rolling production back and forward again — a deliberate act, not a tick, and nothing has needed it. |
+| Item 25's iPhone check | Adding the site to a home screen needs an Apple device, which nobody here has. The link, the file and their tests are in place; the item says plainly that the box is unverified. |
+| Item 13's content programme | A rolling programme, not a gate. The audit is done, the worst chapters are fixed, and `research/pedagogy-audit/README.md` ranks what is left. |
+| Item 24, animated backgrounds | Decided and measured, deliberately not built: no topic needs one, and motion distracts a reader reading mathematics. The mapping seam is in place with nothing consuming it. |
+| Item 21's landing-page sample | One book means 14 text elements on the whole landing page, so the card is a single sample. It closes when a second book exists. |
 
