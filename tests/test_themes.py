@@ -8,13 +8,18 @@ every combination.
 
 from __future__ import annotations
 
+import re
+
 import pytest
 import yaml
 
 from textbook import portal
 from textbook.book import SCHEME_TOKENS, discover_books, load_collection, repo_root
 from textbook.themes import (
+    FIGURE_MIN_CONTRAST,
+    FIGURE_PANEL_INK,
     MIN_CONTRAST,
+    ON_ACCENT_MIN_CONTRAST,
     SCHEMES,
     bundle_by_id,
     contrast,
@@ -22,6 +27,7 @@ from textbook.themes import (
     default_bundle,
     discover_bundles,
     effective_tokens,
+    figure_panel,
     load_bundle,
     ordered_bundles,
     stylesheet,
@@ -143,7 +149,9 @@ def test_every_bundle_and_subject_pair_is_readable(bundle, book):
     """Four bundles times every book, in two schemes: all of them must be legible.
 
     This is what lets a book state one accent per scheme and trust it everywhere,
-    rather than tuning a palette per bundle.
+    rather than tuning a palette per bundle. It covers the figure tokens too:
+    `fig-warn`, `fig-good` and `fig-grid` are measured against the figure panel,
+    which is a different surface from the page (see `contrast_problems`).
     """
     for scheme in ("default", "slate"):
         subject = book.theme.for_scheme(
@@ -158,6 +166,79 @@ def test_the_contrast_check_can_actually_fail():
     editorial = bundle_by_id("editorial")
     assert contrast_problems(editorial, "default", {"accent": "#f7f7f7"})
     assert not contrast_problems(editorial, "default", {"accent": "#2f6690"})
+    # An `accent_ink` the colour of the accent it sits on must be reported too.
+    assert contrast_problems(
+        editorial, "default", {"accent_ink": editorial.palette("default")["accent"]}
+    )
+
+
+def test_the_figure_contrast_check_can_actually_fail():
+    """And a figure token the colour of the panel must be reported too."""
+    editorial = bundle_by_id("editorial")
+    panel = figure_panel(editorial.palette("default"))
+    assert contrast_problems(editorial, "default", {"fig_grid": panel})
+    assert contrast_problems(editorial, "default", {"fig_good": panel})
+    assert not contrast_problems(editorial, "default", None)
+
+
+def test_the_figure_thresholds_follow_what_the_token_draws():
+    """Why the two figures differ, recorded where a change must argue with it.
+
+    `fig-warn` and `fig-good` colour text (`.text-warn`, `.text-good`, and SVG
+    labels), so they are held to the 4.5:1 WCAG AA minimum for normal text.
+    `fig-grid` draws axes and gridlines: a graphical object a reader needs, but
+    not text, so WCAG 1.4.11's 3:1 applies. Both are below ink's AAA 7:1, which
+    is body text on plain paper.
+    """
+    assert FIGURE_MIN_CONTRAST == {"fig_warn": 4.5, "fig_good": 4.5, "fig_grid": 3.0}
+    assert FIGURE_MIN_CONTRAST["fig_grid"] < FIGURE_MIN_CONTRAST["fig_warn"]
+    assert FIGURE_MIN_CONTRAST["fig_warn"] < MIN_CONTRAST["ink"]
+
+
+def test_the_on_accent_threshold_is_a_text_minimum():
+    """`accent_ink` is text, so it is held to AA like link and accent."""
+    assert ON_ACCENT_MIN_CONTRAST == {"accent_ink": 4.5}
+
+
+@pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
+@pytest.mark.parametrize("scheme", ("default", "slate"))
+def test_accent_ink_reads_on_the_bundles_own_accent(bundle, scheme):
+    """The label knocked out of the accent is not the paper.
+
+    A bundle's own paper can sit below 4.5:1 on its own accent — omarchy light is
+    4.34:1 and gruvbox light 4.40:1 — which is the defect this token fixes. The
+    composed check in `contrast_problems` measures the book's effective accent;
+    this measures the bundle's own, so the palette is safe even with no subject
+    tint, and it fails if `accent_ink` goes back to the paper.
+    """
+    tokens = bundle.palette(scheme)
+    ratio = contrast(tokens["accent_ink"], tokens["accent"])
+    assert ratio >= ON_ACCENT_MIN_CONTRAST["accent_ink"], (
+        f"{bundle.id}/{scheme}: accent_ink {tokens['accent_ink']} on the accent "
+        f"{tokens['accent']} is {ratio:.2f}:1"
+    )
+
+
+def test_the_figure_surface_matches_the_stylesheet():
+    """The panel a figure is drawn on is mirrored from `extra.css`.
+
+    If one moves without the other, every figure ratio this file computes is
+    measured against the wrong surface.
+    """
+    css = (repo_root() / "assets" / "stylesheets" / "extra.css").read_text(encoding="utf-8")
+    match = re.search(
+        r"maths-figure\s*\{[^}]*?background:\s*color-mix\(\s*in srgb,\s*"
+        r"var\(--md-default-bg-color\)\s*([\d.]+)%,\s*"
+        r"var\(--md-default-fg-color\)\s*([\d.]+)%\s*\)",
+        css,
+        re.DOTALL,
+    )
+    assert match, (
+        "the maths-figure panel is no longer `color-mix(in srgb, paper N%, ink M%)`; "
+        "update FIGURE_PANEL_INK and figure_panel() to match"
+    )
+    paper_share, ink_share = (float(value) for value in match.groups())
+    assert ink_share / (paper_share + ink_share) == pytest.approx(FIGURE_PANEL_INK, abs=0.001)
 
 
 def test_contrast_is_symmetric_and_bounded():
@@ -177,6 +258,64 @@ def test_generated_stylesheet_is_in_sync():
     )
 
 
+# --- no colour literal in the shared stylesheet -------------------------------
+
+# `extra.css` is the plumbing layer: a colour declared here outranks every bundle,
+# silently, in both schemes and for every reader. So the check cannot be "no
+# --tb-* token name appears" alone — the literal that broke the rule was
+# `.math-error { color: #b3261e; }`, which that check passed.
+#
+# The scanner ignores comments (prose may name a colour) and flags a hex, a
+# colour function, or a CSS named colour. `transparent` and `currentColor` are
+# `<color>` keywords but not `<named-color>`, so they are not flagged: neither
+# picks a hue. `white-space` is not a colour, so names are matched against whole
+# hyphenated words, not substrings.
+CSS_COMMENT = re.compile(r"/\*.*?\*/", re.DOTALL)
+HEX_COLOUR = re.compile(r"#[0-9a-fA-F]{3,8}(?![0-9a-fA-F])")
+COLOUR_FUNCTION = re.compile(
+    r"(?<![\w-])(?:rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|color)\([^)]*\)",
+    re.IGNORECASE,
+)
+NAMED_COLOUR = re.compile(r"(?<![\w-])([a-z]+)(?![\w-])", re.IGNORECASE)
+NAMED_COLOURS = frozenset(
+    """
+    aliceblue antiquewhite aqua aquamarine azure beige bisque black
+    blanchedalmond blue blueviolet brown burlywood cadetblue chartreuse chocolate
+    coral cornflowerblue cornsilk crimson cyan darkblue darkcyan darkgoldenrod
+    darkgray darkgreen darkgrey darkkhaki darkmagenta darkolivegreen darkorange
+    darkorchid darkred darksalmon darkseagreen darkslateblue darkslategray
+    darkslategrey darkturquoise darkviolet deeppink deepskyblue dimgray dimgrey
+    dodgerblue firebrick floralwhite forestgreen fuchsia gainsboro ghostwhite
+    gold goldenrod gray grey green greenyellow honeydew hotpink indianred indigo
+    ivory khaki lavender lavenderblush lawngreen lemonchiffon lightblue lightcoral
+    lightcyan lightgoldenrodyellow lightgray lightgreen lightgrey lightpink
+    lightsalmon lightseagreen lightskyblue lightslategray lightslategrey
+    lightsteelblue lightyellow lime limegreen linen magenta maroon
+    mediumaquamarine mediumblue mediumorchid mediumpurple mediumseagreen
+    mediumslateblue mediumspringgreen mediumturquoise mediumvioletred midnightblue
+    mintcream mistyrose moccasin navajowhite navy oldlace olive olivedrab orange
+    orangered orchid palegoldenrod palegreen paleturquoise palevioletred
+    papayawhip peachpuff peru pink plum powderblue purple rebeccapurple red
+    rosybrown royalblue saddlebrown salmon sandybrown seagreen seashell sienna
+    silver skyblue slateblue slategray slategrey snow springgreen steelblue tan
+    teal thistle tomato turquoise violet wheat white whitesmoke yellow yellowgreen
+    """.split()
+)
+
+
+def colour_literals(css: str) -> list[str]:
+    """Every colour literal in a stylesheet, comments ignored."""
+    text = CSS_COMMENT.sub(" ", css)
+    found = [match.group(0) for match in HEX_COLOUR.finditer(text)]
+    found += [match.group(0) for match in COLOUR_FUNCTION.finditer(text)]
+    found += [
+        match.group(1)
+        for match in NAMED_COLOUR.finditer(text)
+        if match.group(1).lower() in NAMED_COLOURS
+    ]
+    return found
+
+
 @pytest.mark.parametrize("book", BOOKS, ids=[b.id for b in BOOKS])
 def test_each_book_sees_the_shared_stylesheet(book):
     link = book.docs / "assets" / "stylesheets" / "themes.css"
@@ -191,6 +330,44 @@ def test_the_base_stylesheet_defines_no_colour():
     # would win over every bundle.
     for token in SCHEME_TOKENS.values():
         assert f"{token}:" not in css, f"extra.css declares {token}; that belongs to a bundle"
+    literals = colour_literals(css)
+    assert not literals, (
+        "extra.css declares a literal colour, which outranks every theme bundle, "
+        f"so every reader gets the same one: {literals}. Use a --tb-* token, a "
+        "fig-*/text-* class, or color-mix(in srgb, var(--tb-…), transparent)."
+    )
+
+
+def test_the_colour_scanner_can_actually_fail():
+    """A guard on the guard: the scanner must catch each shape of literal.
+
+    The check this replaces only looked for a `--tb-*` token name, so the
+    `.math-error { color: #b3261e; }` it was meant to catch passed it.
+    """
+    assert colour_literals(".math-error { color: #b3261e; }")
+    assert colour_literals("x { background: rgb(0 0 0 / 20%); }")
+    assert colour_literals("x { background: hsl(200 50% 40%); }")
+    assert colour_literals("x { color: white; }")
+    # Tokens, classes, and the absence of paint are not literals.
+    assert not colour_literals("x { color: var(--tb-fig-warn); background: transparent; }")
+    assert not colour_literals("x { box-shadow: 0 1px 2px color-mix(in srgb, var(--tb-ink) 20%, transparent); }")
+    # `white-space` contains a colour name but is a property, not a value.
+    assert not colour_literals("x { white-space: nowrap; }")
+
+
+def test_the_portal_stylesheet_defines_no_colour():
+    """The landing page's own stylesheet follows the bundle, not a literal hue.
+
+    The same bug class as `extra.css` (item 15): `portal.css` declared
+    `--tb-shadow` with a literal `rgb(0 0 0 / …)`, so the card's elevation was
+    identical under every bundle in both schemes.
+    """
+    css = (repo_root() / "assets" / "stylesheets" / "portal.css").read_text(encoding="utf-8")
+    literals = colour_literals(css)
+    assert not literals, (
+        f"portal.css declares literal colour(s): {literals}. Use a --tb-* token "
+        "or color-mix over one."
+    )
 
 
 # --- the landing page ---------------------------------------------------------

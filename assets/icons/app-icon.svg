@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Open Textbook">
+  <!--
+    The home-screen icon. An icon is a fixed image, the one place a colour cannot
+    follow the reader's bundle or scheme; it is drawn in the collection's ink and
+    paper so it reads on a light or a dark launcher. The motif sits inside the
+    maskable safe circle (80% of the icon), so the same file is both `any` and
+    `maskable` and no rounding shows through a themed mask.
+  -->
+  <rect width="512" height="512" fill="#1f1e1b"/>
+  <path fill="#faf9f5" d="M256 168c-30-19-72-29-122-29-13 0-25 1-36 3v214c11-2 23-3 36-3 50 0 92 10 122 29 30-19 72-29 122-29 13 0 25 1 36 3V142c-11-2-23-3-36-3-50 0-92 10-122 29z"/>
+  <path fill="#1f1e1b" d="M250 170h12v216h-12z"/>
+  <path fill="#1f1e1b" d="M160 190h64v10h-64zM160 224h64v10h-64zM160 258h64v10h-64zM288 190h64v10h-64zM288 224h64v10h-64zM288 258h64v10h-64z"/>
+</svg>

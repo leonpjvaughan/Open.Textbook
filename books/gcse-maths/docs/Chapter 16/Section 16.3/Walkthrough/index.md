@@ -57,8 +57,6 @@ $$
 
 The courtyard tile is triangular. Two angles are $68^\circ$ and $47^\circ$. Find the last angle and state the sum used.
 
-**DfE coverage:** G3, G4. Each item is taught above and appears in the independent practice set.
-
 ## You should now be able to
 
 - find a missing interior angle in a triangle;

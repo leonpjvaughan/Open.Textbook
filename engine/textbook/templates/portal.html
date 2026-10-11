@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>$title</title>
 <meta name="description" content="$description">
+$build_meta
 <script>
 /* Reader preferences, before the first paint, so neither the colour scheme nor
  * the theme bundle flashes. Both keys are shared with every book, so a choice
@@ -14,20 +15,48 @@
   var schemeDefault = $scheme_default;
   var themes = $themes;
   var defaultTheme = "$default_theme";
-  var store, scheme = schemeDefault, chosen = defaultTheme;
+  var store, scheme = schemeDefault;
   try { store = window.localStorage; } catch (err) {}
+  function read(key) {
+    try { return store ? store.getItem(key) : null; } catch (err) { return null; }
+  }
+  function write(key, value) {
+    try { if (store) store.setItem(key, value); } catch (err) {}
+  }
+  function applyTheme(value) {
+    var wanted = themes.indexOf(value) >= 0 ? value : defaultTheme;
+    if (wanted) document.documentElement.setAttribute("data-theme", wanted);
+    return wanted;
+  }
   try {
-    var saved = store ? store.getItem("$scheme_key") : null;
+    var saved = read("$scheme_key");
     if (saved) scheme = saved;
-    var savedTheme = store ? store.getItem("$theme_key") : null;
-    if (themes.indexOf(savedTheme) >= 0) chosen = savedTheme;
   } catch (err) {}
   document.documentElement.setAttribute("data-scheme-pref", scheme);
-  document.documentElement.setAttribute("data-theme", chosen);
+  applyTheme(read("$theme_key"));
+  /* The same interface a book page exposes, so the one shared Settings runtime
+   * (assets/settings/settings.js) reads and writes a single store everywhere. */
+  window.textbookPrefs = {
+    schemeKey: "$scheme_key",
+    themeKey: "$theme_key",
+    themes: themes.slice(),
+    defaultTheme: defaultTheme,
+    read: read,
+    write: write,
+    setTheme: function (value) {
+      write("$theme_key", value);
+      return applyTheme(value);
+    },
+    currentTheme: function () { return applyTheme(read("$theme_key")); }
+  };
 })();
 </script>
 <link rel="stylesheet" href="assets/stylesheets/themes.css">
 <link rel="stylesheet" href="assets/stylesheets/portal.css">
+<link rel="stylesheet" href="assets/stylesheets/settings.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<script src="assets/settings/settings.js" defer></script>
+<script src="assets/settings/service-worker.js" defer></script>
 </head>
 <body>
 <script>
@@ -44,13 +73,12 @@ document.body.setAttribute(
       <h1 class="masthead__title">$title</h1>
       <p class="masthead__lead">$description</p>
     </div>
-    <button class="scheme" type="button" id="scheme-toggle" hidden>
-      <span class="scheme__icon" aria-hidden="true"></span>
-      <span class="scheme__label">Dark mode</span>
-    </button>
+    <div class="masthead__actions">
+      $settings_trigger
+    </div>
   </div>
-  $theme_menu
 </header>
+$settings_dialog
 
 <main class="wrap" id="main">
 $groups
@@ -65,60 +93,5 @@ $groups
     <p class="footer__fine">Built $year · static, no account, nothing to install.</p>
   </div>
 </footer>
-
-<script>
-/* Both preferences are writable here, and both are the same keys the books use. */
-(function () {
-  var store = null;
-  try { store = window.localStorage; } catch (err) {}
-  function read(key) { try { return store ? store.getItem(key) : null; } catch (err) { return null; } }
-  function write(key, value) { try { if (store) store.setItem(key, value); } catch (err) {} }
-
-  function scheme() {
-    var value = read("$scheme_key");
-    if (value === "slate") return "dark";
-    if (value === "default") return "light";
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  }
-  function applyScheme() {
-    var isDark = scheme() === "dark";
-    document.body.setAttribute("data-md-color-scheme", isDark ? "slate" : "default");
-    var button = document.getElementById("scheme-toggle");
-    if (!button) return;
-    button.setAttribute("aria-pressed", String(isDark));
-    button.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
-    button.querySelector(".scheme__label").textContent = isDark ? "Light mode" : "Dark mode";
-  }
-
-  var toggle = document.getElementById("scheme-toggle");
-  if (toggle) {
-    toggle.hidden = false;
-    toggle.addEventListener("click", function () {
-      write("$scheme_key", scheme() === "dark" ? "default" : "slate");
-      applyScheme();
-    });
-  }
-  if (window.matchMedia) {
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
-      if (!read("$scheme_key")) applyScheme();
-    });
-  }
-  applyScheme();
-
-  var menu = document.getElementById("theme-menu");
-  if (!menu) return;
-  var blurb = document.getElementById("theme-blurb");
-  var descriptions = $theme_descriptions;
-  function applyTheme(value) {
-    document.documentElement.setAttribute("data-theme", value);
-    if (blurb) blurb.textContent = descriptions[value] || "";
-    menu.value = value;
-    write("$theme_key", value);
-  }
-  menu.value = document.documentElement.getAttribute("data-theme") || "$default_theme";
-  if (blurb) blurb.textContent = descriptions[menu.value] || "";
-  menu.addEventListener("change", function () { applyTheme(menu.value); });
-})();
-</script>
 </body>
 </html>

@@ -8,11 +8,15 @@ export function mount(el) {
         <label>m <input class="m" type="range" min="1" max="5" step="1" value="3"></label>
         <label>n <input class="n" type="range" min="1" max="5" step="1" value="2"></label>
       </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
+      <p class="readout" aria-live="polite" role="img" aria-label="A product and a quotient of powers written as a single power of the same base" style="margin:.6rem 0 0"></p>
     </div>`;
 
   const readout = el.querySelector(".readout");
   const val = (cls) => Number(el.querySelector(`.${cls}`).value);
+
+  // Plain HTML, not LaTeX: the maths hook runs at build time, so anything this
+  // module injects at runtime must be written in HTML to render.
+  const power = (base, index) => `${base}<sup>${index}</sup>`;
 
   function update() {
     const a = val("a");
@@ -21,14 +25,13 @@ export function mount(el) {
     const product = a ** m * a ** n;
     const sum = a ** (m + n);
     const quotient = a ** m / a ** n;
-    const difference = a ** (m - n);
     readout.innerHTML =
-      `$a=${a}$, $m=${m}$, $n=${n}$. ` +
-      `Multiplying: $${a}^{${m}}\\times${a}^{${n}}=${a}^{${m + n}}=${product}$ ` +
-      `(the same as $${sum}$). ` +
-      `Dividing: $${a}^{${m}}\\div${a}^{${n}}=${a}^{${m - n}}$` +
-      (m >= n ? ` $=${Number.isInteger(quotient) ? quotient : quotient.toFixed(4)}$. ` : " (a fraction). ") +
-      `<em>Predict: what is $${a}^{${m + n}}$ without multiplying it out? Why do the indices add?</em>`;
+      `a = ${a}, m = ${m}, n = ${n}. ` +
+      `Multiplying: ${power(a, m)} × ${power(a, n)} = ${power(a, m + n)} = ${product} ` +
+      `(the same as ${sum}). ` +
+      `Dividing: ${power(a, m)} ÷ ${power(a, n)} = ${power(a, m - n)}` +
+      (m >= n ? ` = ${Number.isInteger(quotient) ? quotient : quotient.toFixed(4)}. ` : " (a fraction). ") +
+      `<em>Predict: what is ${power(a, m + n)} without multiplying it out? Why do the indices add?</em>`;
   }
 
   el.querySelectorAll("input").forEach((i) => i.addEventListener("input", update));

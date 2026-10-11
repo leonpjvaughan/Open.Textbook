@@ -36,6 +36,10 @@ SCHEME_TOKENS: dict[str, str] = {
     "accent": "--tb-accent",
     "accent_light": "--tb-accent-light",
     "accent_dark": "--tb-accent-dark",
+    # Text drawn *on* the accent (the booklet bar's label, chip text). It is not
+    # `paper`: a bundle's paper can sit too close to its own accent to read, so
+    # each bundle names a dedicated ink for that surface.
+    "accent_ink": "--tb-accent-ink",
     "paper": "--tb-paper",
     "ink": "--tb-ink",
     "ink_soft": "--tb-ink-soft",

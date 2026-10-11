@@ -194,6 +194,11 @@ jobs:
   release:
     name: tag and release
     needs: gate
+    # The tag is published so the deploy job can stamp it into the build: the
+    # release happens in this job, and nothing else can recover the tag the
+    # release actually created (GITHUB_REF_NAME is still the branch here).
+    outputs:
+      tag: ${{ steps.release.outputs.tag }}
     # Main only: a branch whose whole purpose is work in progress must not tag.
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
@@ -204,7 +209,8 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Tag and release
+      - id: release
+        name: Tag and release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
@@ -221,6 +227,7 @@ jobs:
             --title "$tag" \
             --notes "Live at https://open-textbook.org/" \
             --generate-notes
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
           echo "::notice::released $tag"
 
   deploy:
@@ -259,6 +266,11 @@ jobs:
       # drift above, so this reproduces what was verified; the maths guard is
       # re-run here for the same reason.
       - name: Build the site
+        env:
+          # Stamped into site/version.json and every page's <meta name="build">,
+          # so a live site can be traced back to a commit. See textbook.portal.
+          BUILD_COMMIT: ${{ github.sha }}
+          BUILD_TAG: ${{ needs.release.outputs.tag }}
         run: |
           uv run python -m textbook.scaffold
           uv run python -m textbook.booklet

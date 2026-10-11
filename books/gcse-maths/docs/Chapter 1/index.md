@@ -58,7 +58,7 @@ Each section has three parts:
 | Page | What it is for |
 |---|---|
 | **Learn** | The teaching: ideas, worked examples, and one investigation to try |
-| **Guided problems** | Problems with hints you reveal only if you need them |
+| **Practise with help** | Problems with hints you reveal only if you need them |
 | **Practise** | Independent problems, with answers at the end |
 
 The **Review** page resolves the chapter problem and mixes the chapter's methods

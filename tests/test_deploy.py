@@ -12,7 +12,7 @@ import re
 
 import pytest
 
-from textbook import portal, scaffold
+from textbook import headers, portal, scaffold
 from textbook.book import discover_books, load_collection, repo_root
 
 ROOT = repo_root()
@@ -87,14 +87,135 @@ def test_wrangler_handles_missing_pages_with_a_404():
     assert wrangler_config()["assets"]["not_found_handling"] == "404-page"
 
 
-def test_the_default_cache_control_is_what_we_rely_on():
+def test_the_headers_file_is_generated_at_the_asset_root():
+    portal.main()
+    page = ROOT / "site" / "_headers"
+    assert page.is_file(), "no _headers; run `python -m textbook.portal`"
+    assert page.read_text(encoding="utf-8") == headers.content()
+
+
+def test_the_root_robots_is_ours_and_names_the_sitemap():
+    """A zone that serves no robots.txt gets Cloudflare's own injected preamble.
+
+    Shipping ours replaces an inherited content-signals policy with one we chose,
+    and names the sitemap index so a crawler does not have to guess it.
+    """
+    portal.main()
+    text = (ROOT / "site" / "robots.txt").read_text(encoding="utf-8")
+    assert "User-agent: *" in text
+    base = str(load_collection()["base_url"]).rstrip("/")
+    assert f"Sitemap: {base}/sitemap.xml" in text
+
+
+def test_the_sitemap_index_points_at_every_profile_sitemap():
+    """MkDocs emits one sitemap per profile; nothing at the root linked to them."""
+    portal.main()
+    text = (ROOT / "site" / "sitemap.xml").read_text(encoding="utf-8")
+    assert "<sitemapindex" in text
+    for book in BOOKS:
+        for profile in book.profiles:
+            expected = f"{book.deploy_path(profile.id)}/sitemap.xml"
+            assert expected in text, f"{expected} missing from the sitemap index"
+
+
+def test_the_build_identity_is_recorded_at_the_root():
+    """Nothing used to say which commit was live."""
+    portal.main()
+    page = ROOT / "site" / "version.json"
+    assert page.is_file(), "no version.json; run `python -m textbook.portal`"
+    data = json.loads(page.read_text(encoding="utf-8"))
+    assert data == portal.build_identity()
+    assert data.get("origin", "").startswith("https://")
+
+
+def test_the_pages_carry_the_build_label_when_there_is_one():
+    """The label is what a reader's report can be traced back to."""
+    label = portal.build_label()
+    not_found = portal.not_found()
+    landing = portal.render()
+    if label:
+        meta = f'<meta name="build" content="{label}">'
+        assert meta in not_found
+        assert meta in landing
+    else:
+        assert 'name="build"' not in not_found
+
+
+def test_wrangler_closes_the_extra_origins():
+    """`workers_dev` and version URLs are both public copies of the site.
+
+    Closed in config as well as in the dashboard, because a deploy would otherwise
+    reopen what the dashboard closed.
+    """
+    config = wrangler_config()
+    assert config["workers_dev"] is False
+    assert config["preview_urls"] is False
+
+
+def test_the_zone_file_leaves_the_apex_address_records_alone():
+    """The apex is owned by the Worker's custom domain.
+
+    Importing an apex A/AAAA/CNAME would collide with it. `www` is the one address
+    record the file should carry, and it must be marked proxied: a redirect rule
+    cannot fire for a hostname Cloudflare does not proxy.
+    """
+    zone = ROOT / "deploy" / "dns" / "open-textbook.org.zone"
+    assert zone.is_file(), "the zone file is the importable form of the DNS change"
+    records = [
+        line
+        for line in zone.read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.lstrip().startswith(";")
+    ]
+    assert records, "the zone file has no active records"
+    www = [line for line in records if line.split()[0].startswith("www.")]
+    assert www and "cf-proxied:true" in www[0], www
+    assert re.search(r"\bAAAA\b", www[0]), www[0]
+    apex_address = [
+        line
+        for line in records
+        if line.split()[0].rstrip(".") == "open-textbook.org"
+        and re.search(r"\b(A|AAAA|CNAME)\b", line)
+    ]
+    assert not apex_address, f"the apex must not be imported: {apex_address}"
+
+
+# --- response headers ---------------------------------------------------------
+
+
+def test_the_headers_file_uses_one_rule_and_indents_every_header():
+    """`_headers` allows one splat per rule, and a header must be indented."""
+    lines = headers.content().splitlines()
+    assert lines[0] == "/*"
+    assert len(lines) > 1 and all(line.startswith("  ") for line in lines[1:])
+    assert headers.content().count("*") == 1
+
+
+def test_the_policy_allows_exactly_what_the_site_loads():
+    policy = headers.HEADERS["Content-Security-Policy"]
+    assert "default-src 'self'" in policy
+    # The prefs hook and Material both inject inline script and style.
+    assert "script-src 'self' 'unsafe-inline'" in policy
+    assert "style-src 'self' 'unsafe-inline'" in policy
+    # Material's search is a same-origin worker, not a blob.
+    assert "worker-src 'self'" in policy
+    # Nothing is framed or plugged in.
+    assert "frame-ancestors 'none'" in policy
+    assert "object-src 'none'" in policy
+
+
+def test_the_headers_do_not_redeclare_cache_control():
     """Workers' default is `max-age=0, must-revalidate` with an ETag.
 
-    That is why there is no `_headers` file yet: stale content is never served, so
-    a deploy takes effect immediately. If this ever becomes a `_headers` file, it
-    needs its own tests — the rules join rather than override.
+    A header set by two matching rules is joined with a comma, which would produce
+    an invalid `Cache-Control`. The default is what keeps a deploy immediate, so
+    this file must not touch it.
     """
-    assert not (ROOT / "site" / "_headers").exists()
+    assert "cache-control" not in headers.content().lower()
+
+
+def test_hsts_is_left_to_the_zone():
+    """Cloudflare's SSL/TLS toggle sends HSTS; sending it here would duplicate it."""
+    assert "strict-transport-security" not in headers.content().lower()
 
 
 # --- URLs ---------------------------------------------------------------------
@@ -133,3 +254,33 @@ def test_deploy_script_exists_and_guards_broken_maths():
     assert "math-error" in script
     # And it must map the deprecated credential names onto the canonical ones.
     assert "CF_API_TOKEN" in script and "CLOUDFLARE_API_TOKEN" in script
+
+
+# --- rolling back -------------------------------------------------------------
+
+
+def test_rollback_is_a_manual_workflow_that_asks_first():
+    """The recovery path must exist, be deliberate, and be impossible by accident.
+
+    A rollback is what you reach for when a deploy is wrong. Nobody should be
+    discovering it for the first time during an incident, and nobody should be
+    able to trigger one with a stray click either.
+    """
+    path = ROOT / ".github" / "workflows" / "rollback.yml"
+    assert path.is_file(), "no rollback workflow, so recovery is undocumented"
+    text = path.read_text(encoding="utf-8")
+    assert "workflow_dispatch" in text, "a rollback must be asked for, not automatic"
+    assert "wrangler rollback" in text
+    # A confirmation input, checked in a step that fails otherwise.
+    assert "confirm" in text and "exit 1" in text
+    # It must not race itself, and it must be auditable.
+    assert "cancel-in-progress: false" in text
+    assert "environment:" in text
+    assert "CLOUDFLARE_API_TOKEN" in text
+
+
+def test_the_rollback_command_is_written_down():
+    """If GitHub is the thing that is broken, the command still has to be findable."""
+    deploy = (ROOT / "DEPLOY.md").read_text(encoding="utf-8")
+    assert "wrangler rollback" in deploy
+    assert "## Rolling back" in deploy

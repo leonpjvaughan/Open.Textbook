@@ -15,7 +15,7 @@ Each section has three pages:
 | Page | What it is for |
 |---|---|
 | **Learn** | The teaching: ideas, worked examples, and something to try |
-| **Guided problems** | Questions with hints you reveal only if you need them |
+| **Practise with help** | Questions with hints you reveal only if you need them |
 | **Practise** | Independent questions, with answers at the end |
 
 Each chapter opens with a problem you will be able to solve by the end, and ends

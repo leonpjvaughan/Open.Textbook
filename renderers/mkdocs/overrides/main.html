@@ -1,0 +1,15 @@
+{#-
+  The manifest link and the service-worker registration, in the head.
+
+  Material has no head block for this, so the page template is overridden to add
+  a single include to `extrahead`. `pwa.html` is deliberately tiny: the manifest
+  and a deferred registration script. Nothing here is load-bearing — with
+  JavaScript off it does nothing, and the prose and the build-time MathML are in
+  the HTML.
+-#}
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% include "partials/pwa.html" %}
+{% endblock %}

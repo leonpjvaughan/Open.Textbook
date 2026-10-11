@@ -19,7 +19,7 @@ from pathlib import Path
 
 import yaml
 
-from .book import Book, SCHEME_TOKENS, discover_books, repo_root
+from .book import Book, SCHEME_TOKENS, discover_books, load_collection, repo_root
 from .themes import default_bundle, ordered_bundles
 from .config import book_by_id
 
@@ -30,10 +30,23 @@ SITE_DIR = repo_root() / "site"
 # The shared formulae-and-tables widget, loaded only by books that have one.
 BOOKLET_WIDGET = "assets/booklet/booklet.js"
 
+# The reader Settings runtime. Loaded by every book, because the control is on
+# every page of every book.
+SETTINGS_WIDGET = "assets/settings/settings.js"
+
+# The reader-facing page about the book. It is generated rather than authored
+# because the licence it may carry is a collection-level decision: the page reads
+# `licence` from collection.yaml and shows a licence section only once the author
+# has chosen one. See `colophon_page`.
+COLOPHON_FILE = "colophon.md"
+COLOPHON_TITLE = "About this book"
+
 # Shared files every book sees through a symlink, so there is one copy.
 SHARED_ASSETS: tuple[tuple[str, str], ...] = (
     ("stylesheets/extra.css", "assets/stylesheets/extra.css"),
     ("stylesheets/themes.css", "assets/stylesheets/themes.css"),
+    ("stylesheets/settings.css", "assets/stylesheets/settings.css"),
+    ("settings/settings.js", SETTINGS_WIDGET),
     ("figures/figures.js", "assets/figures/figures.js"),
 )
 
@@ -61,6 +74,19 @@ def emit(path: Path, content: str, dry_run: bool) -> None:
         if STUB_MARKER not in existing:
             skipped.append(path)
             return
+    written.append(path)
+    if not dry_run:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content, encoding="utf-8")
+
+
+def generate(path: Path, content: str, dry_run: bool) -> None:
+    """Write a *generated* file, always, replacing whatever is there.
+
+    Used for files whose content depends on data that can change without a
+    content edit — the About page's licence comes from collection.yaml, so it
+    cannot be a stub that is written once.
+    """
     written.append(path)
     if not dry_run:
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -237,6 +263,213 @@ def strand_glossary_stub(strand: dict) -> str:
     )
 
 
+_USE_COLLECTION = object()
+
+
+def collection_licence() -> object | None:
+    """The collection's licence, or None while the author has not chosen one.
+
+    It lives in collection.yaml because a licence covers the whole collection,
+    not one book. Reading it when the page is generated means choosing one is a
+    one-line change there, and no page ever carries a placeholder licence.
+    """
+    return load_collection().get("licence")
+
+
+def _licence_markdown(licence: object) -> str:
+    """A licence value as inline markdown.
+
+    ``licence`` is normally a string (a name, or a name and a URL). A mapping
+    with ``name`` and ``url`` is also accepted, so the name can link to the full
+    terms without the author writing markdown in YAML.
+    """
+    if isinstance(licence, dict):
+        name = str(licence.get("name", "")).strip()
+        url = str(licence.get("url", "")).strip()
+        if name and url:
+            return f"[{name}]({url})"
+        return name or url
+    return str(licence).strip()
+
+
+def _sources_data(book: Book) -> dict:
+    """The book's sources.yaml, or an empty mapping when it has none."""
+    if not book.sources.is_file():
+        return {}
+    return yaml.safe_load(book.sources.read_text(encoding="utf-8")) or {}
+
+
+def _join_words(items) -> str:
+    """A list as a reader would say it: ``A, B and C``."""
+    words = [str(item).strip() for item in items if str(item).strip()]
+    if not words:
+        return ""
+    if len(words) == 1:
+        return words[0]
+    return ", ".join(words[:-1]) + " and " + words[-1]
+
+
+# The references a reader is entitled to see linked: the curriculum, the
+# awarding-body specifications and the regulator's decision on formula sheets.
+# A book whose sources.yaml uses other ids simply omits those links.
+ATTRIBUTION_IDS: tuple[str, ...] = (
+    "dfe",
+    "aqa-8300",
+    "edexcel-1ma1",
+    "ocr-j560",
+    "ofqual-formulae-2026",
+)
+
+
+def _attribution_links(book: Book) -> list[str]:
+    references = _sources_data(book).get("references", [])
+    by_id = {str(ref.get("id")): ref for ref in references if isinstance(ref, dict)}
+    links = []
+    for source_id in ATTRIBUTION_IDS:
+        reference = by_id.get(source_id)
+        if not reference:
+            continue
+        title = str(reference.get("title", "")).strip()
+        url = str(reference.get("url", "")).strip()
+        if title and url:
+            links.append(f"- [{title}]({url})")
+    return links
+
+
+def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
+    """The reader-facing page about the book: what it is and where it came from.
+
+    It answers the questions a reader is entitled to ask — what this is, who
+    made it, whether the answers can be trusted, and what to do about a mistake —
+    and it carries the attribution the sources require. The licence is read from
+    collection.yaml and rendered only when it is set (`_USE_COLLECTION`), so
+    choosing one is a data change and a placeholder licence is impossible.
+
+    Everything subject-specific comes from the book and its sources.yaml, so a
+    new book needs no code change here.
+    """
+    if licence is _USE_COLLECTION:
+        licence = collection_licence()
+    licence_md = _licence_markdown(licence) if licence else ""
+
+    sources = _sources_data(book)
+    retrieved = str(sources.get("retrieved") or "").strip()
+    # `tier_axis` maps F and H to their reader-facing labels; F's label already
+    # names both tiers ("Foundation and Higher").
+    tiers = str(book.tier_axis.get("F", "")).strip()
+    boards = _join_words(book.boards)
+
+    lines = [
+        "<!-- Generated from collection.yaml and sources.yaml.",
+        "     Do not edit this file: edit the sources and regenerate. -->",
+        "",
+        "# About this book",
+        "",
+        "## What this book is",
+        "",
+        f"This is a complete {book.qualification} {book.subject} book for England.",
+    ]
+    if tiers and boards:
+        lines.append(
+            f"It covers {tiers} tier, and it follows the specifications of {boards}."
+        )
+    elif tiers:
+        lines.append(f"It covers {tiers} tier.")
+    elif boards:
+        lines.append(f"It follows the specifications of {boards}.")
+    lines += [
+        "You can read the whole book in a browser, and there is nothing to",
+        "install.",
+        "",
+        "Every section has three pages. **Learn** teaches the ideas and the method.",
+        "**Practise with help** gives questions with hints you can reveal.",
+        "**Practise** gives independent questions, with the answers at the end. Each",
+        "chapter opens with a problem you can solve by the end, and closes with a",
+        "**Review**.",
+        "",
+        "## Who made it",
+        "",
+        "This book is part of **Open.Textbook**, an independent project by Leon",
+        "Vaughan, who wrote and assembled it.",
+        "",
+        "## Answers are checked by a computer",
+        "",
+        "The questions and answers in **Practise** come from one set of data. Before",
+        "the book is published, a computer checks that data with SymPy, a computer",
+        "algebra system. The check tests each step against the claim it makes, so a",
+        "page cannot show an answer the check did not pass.",
+        "",
+        "The check proves the mathematics. It cannot judge whether an explanation is",
+        "clear. If a page is confusing, report it, even when the answer is correct.",
+        "",
+        "## Where the content comes from",
+        "",
+        "The curriculum follows the subject content published by the Department for",
+        "Education. That material is Crown copyright, and it is used here under the",
+        "[Open Government Licence v3.0]",
+        "(https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).",
+    ]
+    if boards:
+        lines += [
+            "",
+            "The specification content, and any wording taken from a specification,",
+            f"belongs to the awarding bodies. {boards} publish the specifications",
+            "this book follows.",
+        ]
+    else:
+        lines += [
+            "",
+            "The specification content, and any wording taken from a specification,",
+            "belongs to the awarding bodies.",
+        ]
+    lines += [
+        "",
+        "The formulae and tables in the **Formulae** booklet are the awarding",
+        "bodies' own sheets. Ofqual decides which material the boards must",
+        "provide.",
+    ]
+    links = _attribution_links(book)
+    if links:
+        lines += [
+            "",
+            "The claims in this book rest on these documents:",
+            "",
+        ]
+        lines += links
+    if retrieved:
+        lines += [
+            "",
+            f"These sources were last checked on {retrieved}.",
+        ]
+    lines += [
+        "",
+        "No awarding body endorses this book, and the Department for Education",
+        "does not supply it.",
+        "",
+        "## Reporting a mistake",
+        "",
+        "If you find a mistake, report it as an issue on the project's GitHub page:",
+        "<https://github.com/leonpjvaughan/Open.Textbook/issues/new>.",
+        "",
+        "That route needs a free GitHub account. The project has no email address,",
+        "because it does not run a mail service.",
+        "",
+        "In your report, say which page you were reading, what you expected, and what",
+        "you saw. That is enough to find the mistake and fix it.",
+    ]
+    if licence_md:
+        lines += [
+            "",
+            "## Licence",
+            "",
+            f"This book is available under {licence_md}. That covers the text and",
+            "figures written for this book. Material from the sources listed above",
+            "keeps its own copyright and licence.",
+        ]
+    lines.append("")
+    return "\n".join(lines)
+
+
 def home_stub(book: Book, chapters: list[dict]) -> str:
     fm = front_matter(title=book.title)
     total_sections = sum(len(c["sections"]) for c in chapters)
@@ -374,6 +607,8 @@ def build_nav_list(
             )
         children.append({"Review": f"Chapter {c['id']}/Review/index.md"})
         nav.append({f"Chapter {c['id']}: {c['title']}": children})
+    # The colophon sits last, where a reader expects to find it.
+    nav.append({COLOPHON_TITLE: COLOPHON_FILE})
     return nav
 
 
@@ -394,6 +629,7 @@ def site_url(book: Book, profile_id: str) -> str:
 def build_mkdocs_config(book: Book, profile_id: str) -> str:
     profile = book.profile(profile_id)
     include_higher = profile.tier_filter != "foundation"
+    bundles = ordered_bundles()
     config = {
         "INHERIT": "base.yml",
         "site_name": f"{book.title} — {profile.name}",
@@ -404,13 +640,25 @@ def build_mkdocs_config(book: Book, profile_id: str) -> str:
             "book": book.id,
             "book_dir": book.rel(book.root),
             "tier_profile": profile.tier_filter,
-            "themes": [bundle.id for bundle in ordered_bundles()],
+            "themes": [bundle.id for bundle in bundles],
             "default_theme": default_bundle().id,
+            # Titles and descriptions for the Settings panel. The bundles are the
+            # single source of truth, so the panel cannot drift from themes/.
+            "theme_info": {
+                bundle.id: {
+                    "title": bundle.title,
+                    "description": bundle.description,
+                }
+                for bundle in bundles
+            },
         },
         "nav": build_nav_list(book.strands, book.chapters, include_higher=include_higher),
     }
+    # The Settings runtime is on every page; the booklet widget only where there
+    # is a booklet to fetch.
+    config["extra_javascript"] = [SETTINGS_WIDGET]
     if book.booklet_name:
-        config["extra_javascript"] = [BOOKLET_WIDGET]
+        config["extra_javascript"].append(BOOKLET_WIDGET)
     url = site_url(book, profile_id)
     if url:
         config["site_url"] = url
@@ -450,6 +698,7 @@ def scaffold(book: Book, dry_run: bool) -> None:
     docs = book.docs
 
     emit(docs / "index.md", home_stub(book, chapters), dry_run)
+    generate(docs / COLOPHON_FILE, colophon_page(book), dry_run)
     emit(docs / "Glossary" / "index.md", glossary_stub(strands), dry_run)
     for strand in strands:
         filename = STRAND_FILES.get(strand["id"], f"{strand['id']}.md")

@@ -38,4 +38,4 @@ At Progress checks, return to the pattern and add a reason to your angle calcula
 
 Where have you seen a tiled pattern, road junction or frame made from straight edges? Write one sentence about where angle reasoning could help you or someone you know.
 
-The Learn pages teach each fact. Guided problems pages fade support, then Practise pages let you work independently.
+The Learn pages teach each fact. **Practise with help** pages fade support, then Practise pages let you work independently.

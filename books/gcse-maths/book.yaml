@@ -37,8 +37,8 @@ oracles: [sympy]
 # This book's own theme, one variation per colour scheme. Set only what makes
 # this book itself; everything else stays the house default in
 # assets/stylesheets/extra.css. `accent` also tints the book's landing-page card
-# in both schemes. Themable tokens: accent, accent_light, accent_dark, paper,
-# ink, ink_soft, rule, link, code_bg, fig_warn, fig_good, fig_grid.
+# in both schemes. Themable tokens: accent, accent_light, accent_dark,
+# accent_ink, paper, ink, ink_soft, rule, link, code_bg, fig_warn, fig_good, fig_grid.
 theme:
   light:
     accent: "#2f6690"

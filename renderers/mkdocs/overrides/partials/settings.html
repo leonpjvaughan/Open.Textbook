@@ -1,0 +1,67 @@
+{#-
+  The reader's Settings control: the theme bundle and the colour scheme.
+
+  It is a native <dialog> opened with showModal(), so the URL never changes and
+  the browser supplies the label relationship, the Escape key and the inert
+  background. assets/settings/settings.js does the wiring and reuses the
+  origin-wide keys that hooks/prefs.py already owns.
+
+  The trigger is `hidden` until the script runs, so a reader without JavaScript
+  sees an unchanged page rather than a control that does nothing. No colour is
+  declared here: every class reads a --tb-* or --md-* token.
+-#}
+<button class="md-header__button md-icon tb-settings__trigger" id="tb-settings" type="button"
+        aria-haspopup="dialog" aria-controls="tb-settings-dialog" aria-label="Settings"
+        title="Settings" hidden data-pagefind-ignore>
+  {% set icon = config.theme.icon.settings or "material/cog" %}
+  {% include ".icons/" ~ icon ~ ".svg" %}
+</button>
+<dialog class="tb-settings" id="tb-settings-dialog" aria-labelledby="tb-settings-title"
+        data-pagefind-ignore>
+  <form method="dialog" class="tb-settings__form">
+    <div class="tb-settings__head">
+      <h2 class="tb-settings__title" id="tb-settings-title">Settings</h2>
+      <button class="tb-settings__close" type="submit" value="close" aria-label="Close settings" title="Close settings">
+        {% include ".icons/material/close.svg" %}
+      </button>
+    </div>
+
+    <fieldset class="tb-settings__group">
+      <legend class="tb-settings__legend">Colour scheme</legend>
+      <p class="tb-settings__hint">Applies to every book you read here.</p>
+      <div class="tb-settings__options">
+        {% for option in config.theme.palette %}
+          {% set scheme = option.scheme | d("default", true) %}
+          {% set scheme_name = {"default": "Light", "slate": "Dark"}.get(scheme, scheme | capitalize) %}
+          <label class="tb-settings__option">
+            <input class="tb-settings__radio" type="radio" name="tb-scheme" value="{{ scheme }}"
+                   {% if scheme == "default" %}checked{% endif %}>
+            <span class="tb-settings__card">
+              <span class="tb-settings__option-title">{{ scheme_name }}</span>
+            </span>
+          </label>
+        {% endfor %}
+      </div>
+    </fieldset>
+
+    <fieldset class="tb-settings__group">
+      <legend class="tb-settings__legend">Reading theme</legend>
+      <p class="tb-settings__hint">Applies to every book you read here.</p>
+      <div class="tb-settings__options">
+        {% for theme_id in config.extra.themes %}
+          {% set info = config.extra.theme_info.get(theme_id, {}) %}
+          <label class="tb-settings__option">
+            <input class="tb-settings__radio" type="radio" name="tb-theme" value="{{ theme_id }}"
+                   {% if theme_id == config.extra.default_theme %}checked{% endif %}>
+            <span class="tb-settings__card">
+              <span class="tb-settings__option-title">{{ info.get("title", theme_id) }}</span>
+              {% if info.get("description") %}
+                <span class="tb-settings__option-desc">{{ info.get("description") }}</span>
+              {% endif %}
+            </span>
+          </label>
+        {% endfor %}
+      </div>
+    </fieldset>
+  </form>
+</dialog>

@@ -7,7 +7,7 @@ export function mount(el) {
         <input class="n" type="range" min="2" max="12" step="1" value="3">
         <output class="nOut">3</output>
       </label>
-      <div class="grid" style="display:grid;grid-template-columns:repeat(10,1fr);gap:3px;margin:.6rem 0"></div>
+      <div class="grid" role="img" aria-label="Number grid from one to sixty with the multiples of one number highlighted" style="display:grid;grid-template-columns:repeat(10,1fr);gap:3px;margin:.6rem 0"></div>
       <p class="readout" aria-live="polite"></p>
     </div>`;
 
@@ -25,9 +25,12 @@ export function mount(el) {
       const isMultiple = v % n === 0;
       if (isMultiple) count += 1;
       cells.push(
-        `<span class="${isMultiple ? "fig-accent" : "fig-ink"}" ` +
+        // `.text-accent` sets the text colour; a bare `.fig-accent` sets only
+        // fill/stroke, which do nothing to HTML text. Weight is the second
+        // signal, so the highlight does not depend on colour alone.
+        `<span class="${isMultiple ? "text-accent" : "fig-ink"}" ` +
           `style="text-align:center;padding:3px 0;border-radius:4px;` +
-          `${isMultiple ? "color:#fff;" : ""}">${v}</span>`,
+          `${isMultiple ? "font-weight:700;" : ""}">${v}</span>`,
       );
     }
     grid.innerHTML = cells.join("");

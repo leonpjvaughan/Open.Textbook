@@ -1,0 +1,49 @@
+; open-textbook.org — a BIND zone file for Cloudflare's "Import DNS records".
+;
+; Dashboard: DNS → Records → Import and Export → Import DNS records. Upload this
+; file. It ADDS the records below; it does not touch the apex records that the
+; Worker's custom domain owns, because nothing here names the apex with an
+; A/AAAA/CNAME.
+;
+; Before importing: check the "Proxy imported DNS records" box STAYS TICKED. The
+; redirect in the second block only works for a proxied hostname, and a redirect
+; rule cannot fire for a name Cloudflare does not proxy. The cf_tags comment on
+; the www record forces it either way, and takes precedence over the checkbox.
+;
+; See DEPLOY.md, "DNS: the www redirect".
+
+$ORIGIN open-textbook.org.
+
+; --- www: a redirect, not a copy ---------------------------------------------
+; www has to RESOLVE and be PROXIED, or nothing can answer for it. It is not a
+; second origin: the redirect rule returns 301 to the apex before any content is
+; served. The address is therefore never contacted, and 100:: is the IPv6
+; discard prefix (RFC 6666), which exists for exactly this purpose.
+; cf_tags=cf-proxied:true wins over the import form's proxy setting.
+www.open-textbook.org.  300  IN  AAAA  100::  ; cf_tags=cf-proxied:true
+
+; --- mail: the domain neither sends nor receives ------------------------------
+; A textbook has no reason to send mail, so SPF denies every sender and DMARC
+; rejects on failure. Together they close the domain as a spoofing source, and
+; an empty SPF record is the strongest form: "v=spf1 -all" means "no host may
+; send as this domain". No rua: nobody is reading reports, and an address that
+; nobody reads is worse than none.
+open-textbook.org.       300  IN  TXT   "v=spf1 -all"
+_dmarc.open-textbook.org.  300  IN  TXT   "v=DMARC1; p=reject"
+
+; --- CAA: verify before enabling, then uncomment ------------------------------
+; CAA restricts which certificate authorities may issue for this domain. It is
+; real hardening and it has a delayed failure mode: if the list omits the CA
+; Cloudflare actually uses, nothing breaks today and the certificate fails to
+; RENEW weeks later. So it stays off until checked against Cloudflare's current
+; list (SSL/TLS → Edge Certificates → CAA, or the certificate's issuer).
+;
+; These three are the CAs Cloudflare documents for custom domains. Note the
+; pki.goog parameter, and that it must stay inside the quotes: a semicolon
+; outside quotes starts a BIND comment.
+; open-textbook.org.  300  IN  CAA  0 issue     "letsencrypt.org"
+; open-textbook.org.  300  IN  CAA  0 issue     "pki.goog; cansignhttpexchanges=yes"
+; open-textbook.org.  300  IN  CAA  0 issue     "ssl.com"
+; open-textbook.org.  300  IN  CAA  0 issuewild  "letsencrypt.org"
+; open-textbook.org.  300  IN  CAA  0 issuewild  "pki.goog; cansignhttpexchanges=yes"
+; open-textbook.org.  300  IN  CAA  0 issuewild  "ssl.com"

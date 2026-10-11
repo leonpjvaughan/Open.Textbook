@@ -1,0 +1,14 @@
+{#-
+  Installable and readable offline: the manifest, and the one shared
+  registration script.
+
+  Both paths are root-absolute because the worker and the manifest are emitted at
+  the deployment root (`site/sw.js`, `site/manifest.webmanifest`) by
+  `textbook.portal`, not into each book's build directory. Site-root scope is what
+  gives the worker the whole collection for free: `site/` is ours.
+
+  The registration is `defer`red, so it never delays the page, and it is an
+  enhancement — the site is unchanged with JavaScript off.
+-#}
+<link rel="manifest" href="/manifest.webmanifest">
+<script src="/assets/settings/service-worker.js" defer></script>

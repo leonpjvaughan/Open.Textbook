@@ -9,6 +9,8 @@ reading and writing the same keys.
 
 from __future__ import annotations
 
+import re
+
 import yaml
 
 from textbook import portal, scaffold
@@ -85,16 +87,25 @@ def test_landing_page_honours_the_same_key():
 
 
 def test_landing_page_can_write_the_preference_too():
-    """A reader who picks a scheme on the landing page must get it in the books."""
+    """A reader who picks a scheme on the landing page must get it in the books.
+
+    The landing page loads the same Settings runtime the books use, and exposes
+    the same ``window.textbookPrefs`` interface, so the write is the shared one
+    rather than a second copy that could drift.
+    """
     html = portal.render()
-    assert f'write("{scheme.SCHEME_KEY}"' in html, "the landing page never writes the scheme"
-    assert "scheme-toggle" in html
+    assert "assets/settings/settings.js" in html, "the shared Settings runtime is not loaded"
+    assert "window.textbookPrefs" in html, "the landing page does not expose the shared store"
+    runtime = (repo_root() / "assets" / "settings" / "settings.js").read_text(encoding="utf-8")
+    assert scheme.SCHEME_KEY in runtime, "the runtime never writes the shared scheme key"
 
 
-def test_landing_toggle_is_hidden_without_javascript():
+def test_landing_control_is_hidden_without_javascript():
     """The control is inert without scripting, so it must not appear."""
     html = portal.render()
-    assert 'id="scheme-toggle" hidden' in html
+    trigger = re.search(r'<button\b[^>]*id="tb-settings"[^>]*>', html)
+    assert trigger, "the landing page has no Settings trigger"
+    assert "hidden" in trigger.group(0), "the trigger is visible before its script runs"
 
 
 def test_every_reader_surface_reads_and_writes_the_key():
@@ -104,4 +115,7 @@ def test_every_reader_surface_reads_and_writes_the_key():
     for surface, name in ((book_page, "a book page"), (landing, "the landing page")):
         assert scheme.SCHEME_KEY in surface, f"{name} does not read the shared key"
     assert "setItem" in book_page, "a book page does not record the choice"
-    assert "setItem" in landing, "the landing page does not record the choice"
+    # The landing page records it through the shared runtime, whose writer is
+    # localStorage.setItem; the landed page itself only needs to load it.
+    runtime = (repo_root() / "assets" / "settings" / "settings.js").read_text(encoding="utf-8")
+    assert "localStorage.setItem" in runtime, "the landing runtime never records the choice"

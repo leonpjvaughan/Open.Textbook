@@ -17,7 +17,7 @@ export function mount(el) {
         <input class="places" type="range" min="1" max="4" step="1" value="2">
         <output class="placesOut">2</output>
       </label>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
+      <p class="readout" aria-live="polite" role="img" aria-label="A number rounded to a chosen number of decimal places or significant figures" style="margin:.6rem 0 0"></p>
     </div>`;
 
   const num = el.querySelector(".value");

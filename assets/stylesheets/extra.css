@@ -39,6 +39,20 @@
   --md-code-bg-color: var(--tb-code-bg);
 }
 
+/* The closed search overlay is transparent but still in the tab order: the
+ * scroll wrapper inside it has `tabindex="0"`, so Tab lands in an invisible box
+ * and the next Tab closes the overlay under the reader. `visibility: hidden`
+ * takes it out of the tab order; the `:checked` sibling rule restores it when
+ * the search opens. The checkbox `#__search` is a sibling of `.md-header` in
+ * Material's body, which is what makes the general-sibling selector reach the
+ * output inside the header. */
+.md-search__output {
+  visibility: hidden;
+}
+[data-md-toggle="search"]:checked ~ .md-header .md-search__output {
+  visibility: visible;
+}
+
 /* Typography: the faces themselves are bundle tokens; sizes are shared, so a
  * bundle changes the voice without changing the reading measure. */
 .md-typeset {
@@ -100,7 +114,7 @@
 }
 
 .math-error {
-  color: #b3261e;
+  color: var(--tb-fig-warn);
   font-family: var(--tb-font-mono);
 }
 
@@ -154,13 +168,16 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.6rem 0.9rem;
-  border: 1px solid var(--md-primary-fg-color--dark, #24506f);
+  border: 1px solid var(--md-primary-fg-color--dark);
   border-radius: 999px;
-  background: var(--md-primary-fg-color, #2f6690);
-  color: #fff;
+  background: var(--md-primary-fg-color);
+  /* The label is knocked out of the accent fill, so it uses the bundle's
+   * dedicated on-accent ink, not the paper: a bundle's paper can sit too close
+   * to its own accent to read (omarchy light 4.34:1, gruvbox light 4.40:1). */
+  color: var(--tb-accent-ink);
   font: 600 0.9rem/1 system-ui, sans-serif;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgb(0 0 0 / 22%);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--md-default-fg-color) 22%, transparent);
 }
 .bk-fab:hover { filter: brightness(1.06); }
 .bk-fab [aria-hidden] { font-size: 1.1rem; }
@@ -184,7 +201,7 @@
   border-radius: 12px;
   background: var(--md-default-bg-color);
   color: var(--md-default-fg-color);
-  box-shadow: 0 12px 40px rgb(0 0 0 / 28%);
+  box-shadow: 0 12px 40px color-mix(in srgb, var(--md-default-fg-color) 28%, transparent);
   overflow: hidden;
 }
 .bk-panel[hidden] { display: none; }
@@ -196,7 +213,7 @@
   padding: 0.5rem 0.6rem;
   border-bottom: 1px solid var(--md-default-fg-color--lightest);
   background: var(--md-primary-fg-color);
-  color: #fff;
+  color: var(--tb-accent-ink);
   cursor: grab;
   touch-action: none;
 }
@@ -216,8 +233,8 @@
   font-size: 0.75rem;
   padding: 0.1rem 0.2rem;
   border-radius: 4px;
-  border: 1px solid rgb(255 255 255 / 40%);
-  background: rgb(255 255 255 / 12%);
+  border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
+  background: color-mix(in srgb, currentColor 12%, transparent);
   color: inherit;
 }
 .bk-icon {
@@ -229,7 +246,7 @@
   padding: 0.15rem 0.35rem;
   border-radius: 4px;
 }
-.bk-icon:hover { background: rgb(255 255 255 / 18%); }
+.bk-icon:hover { background: color-mix(in srgb, currentColor 18%, transparent); }
 
 .bk-toolbar {
   display: flex;
@@ -259,7 +276,7 @@
 .bk-chip[aria-pressed="true"] {
   background: var(--md-primary-fg-color);
   border-color: var(--md-primary-fg-color);
-  color: #fff;
+  color: var(--tb-accent-ink);
 }
 
 .bk-tabs {
@@ -358,4 +375,98 @@
   height: 100vh;
   border-radius: 0;
   box-shadow: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Print                                                               */
+/* ------------------------------------------------------------------ */
+
+/* Printing drops the browser chrome and the pointer. This block turns the page
+ * into a sheet: no navigation furniture, one readable measure, and worked
+ * examples that stay whole. It declares no colour, so a theme bundle and the
+ * book tint still decide everything on paper exactly as they do on screen. */
+@media print {
+  /* Navigation, search, tabs and footer are for a viewport, not a sheet. The
+   * booklet button and panel are fixed overlays, so without this they print
+   * over the text on every page. `!important` beats the `@media screen` rules
+   * that Material leaves in place while printing. */
+  .md-header,
+  .md-tabs,
+  .md-sidebar,
+  .md-search,
+  .md-footer,
+  .md-top,
+  .md-dialog,
+  .md-overlay,
+  .bk-fab,
+  .bk-panel {
+    display: none !important;
+  }
+
+  /* The content column now has the whole width. Give it one measure and centre
+   * it, so line length on paper matches the screen rather than the sheet. */
+  .md-main__inner {
+    display: block;
+    margin: 0;
+  }
+  .md-content__inner {
+    margin: 0;
+    padding: 0;
+  }
+  .md-typeset {
+    max-width: var(--tb-measure);
+    margin: 0 auto;
+  }
+
+  /* A table wider than the page must read, not sit inside a scroll box that
+   * cannot scroll on paper. */
+  .md-typeset__scrollwrap { overflow: visible; }
+
+  /* Worked examples should not split across a page break. `break-inside` is a
+   * hint: an item taller than a page is still broken by the paginator, so a
+   * long answer block cannot overflow the sheet. The `page-break-*` aliases
+   * cover engines that predate the fragmentation properties. */
+  .md-typeset table,
+  .md-typeset__scrollwrap,
+  .md-typeset details,
+  .md-typeset maths-figure,
+  .md-typeset figure {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .md-typeset h1,
+  .md-typeset h2,
+  .md-typeset h3,
+  .md-typeset h4,
+  .md-typeset details > summary {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  .md-typeset thead {
+    display: table-header-group; /* repeat a table's header if it must break */
+  }
+  .md-typeset p {
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* Practice answers live in <details>. A browser does not lay out the content
+   * of a closed detail, and a printed page cannot be clicked, so `details`
+   * prints exactly as the reader left it. We deliberately do not force closed
+   * details open: these pages are low-stakes retrieval, and printing every
+   * answer beside its question would remove the retrieval. A reader who wants
+   * an answer opens that detail before printing; the `break-inside: avoid`
+   * above then keeps it whole. Open and closed alike keep the summary marker,
+   * so a reader can see there is something to unfold. */
+
+  /* Hover does not exist on paper, so links are underlined rather than left to
+   * a colour a grayscale or mono printer may drop. */
+  .md-typeset a {
+    text-decoration: underline;
+  }
+}
+
+/* A comfortable sheet margin; the printer's own headers and page numbers stay. */
+@page {
+  margin: 18mm 16mm;
 }

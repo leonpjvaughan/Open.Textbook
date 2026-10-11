@@ -10,6 +10,13 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "open-textbook",
   "compatibility_date": "2026-10-11",
+  // One origin, and only one. `workers_dev` would otherwise serve the whole
+  // collection at open-textbook.<account>.workers.dev, and `preview_urls` would
+  // publish every version uploaded before promotion — unlisted, but public.
+  // Both are closed here so `wrangler deploy` cannot reopen them by accident;
+  // the dashboard toggle alone can be undone by a deploy.
+  "workers_dev": false,
+  "preview_urls": false,
   "assets": {
     // Assembled by `python -m textbook.portal` plus one build per book profile.
     "directory": "./site",

@@ -49,8 +49,6 @@ Co-interior angles on the same side of a transversal sum to $180^\circ$.
 
 A straight path crosses two parallel tile borders. One acute angle is $68^\circ$. What is the co-interior angle on its side? Give the angle fact.
 
-**DfE coverage:** G3. Each item is taught above and appears in the independent practice set.
-
 ## You should now be able to
 
 - recognise corresponding, alternate and co-interior angle pairs;

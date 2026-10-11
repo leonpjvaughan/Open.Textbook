@@ -11,14 +11,19 @@
 :root {
   --tb-measure: 70ch;
   --tb-radius: 10px;
-  /* Portal-only surfaces, derived from the bundle so they follow any palette. */
+  /* Portal-only surfaces, derived from the bundle so they follow any palette.
+   * Elevation is mixed from the ink token rather than a literal black, so it
+   * tracks the reader's bundle; on dark paper the same mix reads as a soft edge
+   * rather than a black drop shadow. */
   --tb-card: color-mix(in srgb, var(--tb-ink) 4%, var(--tb-paper));
-  --tb-shadow: 0 1px 2px rgb(0 0 0 / 6%), 0 8px 24px rgb(0 0 0 / 4%);
+  --tb-shadow: 0 1px 2px color-mix(in srgb, var(--tb-ink) 7%, transparent),
+    0 8px 24px color-mix(in srgb, var(--tb-ink) 5%, transparent);
 }
 
 [data-md-color-scheme="slate"] {
   --tb-card: color-mix(in srgb, var(--tb-ink) 7%, var(--tb-paper));
-  --tb-shadow: 0 1px 2px rgb(0 0 0 / 45%), 0 8px 24px rgb(0 0 0 / 30%);
+  --tb-shadow: 0 1px 2px color-mix(in srgb, var(--tb-ink) 10%, transparent),
+    0 8px 24px color-mix(in srgb, var(--tb-ink) 8%, transparent);
 }
 
 * { box-sizing: border-box; }
@@ -72,77 +77,43 @@ body {
   font-size: 1.05rem;
 }
 
-/* --- scheme toggle and theme picker --------------------------------------- */
+/* --- reader settings ------------------------------------------------------ */
 
-.scheme {
-  display: inline-flex;
+/* The masthead's right-hand actions. One control: the same Settings trigger the
+ * books carry, so there is no second pattern to keep in step. */
+.masthead__actions {
+  display: flex;
   align-items: center;
   gap: 8px;
-  padding: 7px 14px;
+}
+
+/* `settings.js` reveals it; with scripting off it stays `hidden` in the markup,
+ * so a reader never gets a control that does nothing. No colour is declared
+ * here: every value is a bundle token, so it follows the reader's theme. */
+.tb-settings__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
   border: 1px solid var(--tb-rule);
   border-radius: 999px;
   background: var(--tb-card);
   color: var(--tb-ink-soft);
-  font: inherit;
-  font-size: 0.9rem;
   cursor: pointer;
 }
 
-.scheme:hover,
-.scheme:focus-visible {
+.tb-settings__trigger:hover,
+.tb-settings__trigger:focus-visible {
   border-color: var(--tb-accent);
   color: var(--tb-accent);
 }
 
-.scheme__icon {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 1.5px solid currentColor;
-  box-shadow: inset 5px -4px 0 0 currentColor;
-}
-
-[data-md-color-scheme="slate"] .scheme__icon {
-  box-shadow: inset 5px -4px 0 0 transparent;
-  background: currentColor;
-}
-
-.theme-picker {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 10px 14px;
-  margin-top: 26px;
-}
-
-.theme-picker__label {
-  font-family: var(--tb-font-mono, ui-monospace, monospace);
-  font-size: 0.74rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--tb-ink-soft);
-}
-
-.theme-picker__select {
-  padding: 6px 12px;
-  border: 1px solid var(--tb-rule);
-  border-radius: 8px;
-  background: var(--tb-card);
-  color: var(--tb-ink);
-  font: inherit;
-  font-size: 0.92rem;
-}
-
-.theme-picker__select:hover,
-.theme-picker__select:focus-visible {
-  border-color: var(--tb-accent);
-}
-
-.theme-picker__blurb {
-  flex: 1 1 24ch;
-  margin: 0;
-  font-size: 0.88rem;
-  color: var(--tb-ink-soft);
+.tb-settings__trigger svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
 }
 
 /* --- groups --------------------------------------------------------------- */
@@ -266,12 +237,12 @@ body {
 .chip:hover,
 .chip:focus-visible {
   background: var(--card-accent-active);
-  color: var(--tb-paper);
+  color: var(--tb-accent-ink);
 }
 
 .chip--primary {
   background: var(--card-accent-active);
-  color: var(--tb-paper);
+  color: var(--tb-accent-ink);
 }
 
 .chip--primary:hover,

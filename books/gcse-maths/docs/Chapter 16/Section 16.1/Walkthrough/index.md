@@ -59,8 +59,6 @@ Predict the missing angle when a full turn is split into $90^\circ$, $110^\circ$
 
 The courtyard path is straight. If one tile edge makes $68^\circ$ with it, what is the adjacent angle? Name the fact you used.
 
-**DfE coverage:** G3. Each item is taught above and appears in the independent practice set.
-
 ## You should now be able to
 
 - use $180^\circ$ for angles on a straight line;

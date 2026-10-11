@@ -41,8 +41,6 @@ Let the opposite interior angles be $a$ and $b$, and the adjacent interior angle
 
 For the triangular courtyard tile, two interior angles are $68^\circ$ and $47^\circ$. Write one line that gives the remaining angle and its reason.
 
-**DfE coverage:** G6. Each item is taught above and appears in the independent practice set.
-
 ## You should now be able to
 
 - organise a proof as statements supported by reasons;

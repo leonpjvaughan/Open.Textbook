@@ -10,23 +10,28 @@ theme:
   name: material
   language: en
   font: false
+  # The reader Settings control lives here: partials/header.html adds it to the
+  # header, and partials/settings.html is the dialog. Material has no hook for an
+  # extra header action, so its header is overridden. The path is relative to the
+  # *generated* config in this directory, not to base.yml's own location.
+  custom_dir: overrides
   features:
     - navigation.sections
     - navigation.indexes
     - navigation.top
     - toc.follow
     - content.code.copy
+  # Both schemes stay configured, because hooks/prefs.py seeds Material's own
+  # palette from the shared key before the first paint. Material's header toggle
+  # is deliberately absent: light/dark is offered once, inside the Settings
+  # dialog, so there are not two controls for one idea. The palette inputs are
+  # kept (hidden) and the dialog drives them, so Material still applies the
+  # scheme and the bridge still records it.
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
 hooks:
   - hooks/entry.py
 markdown_extensions:
@@ -45,5 +50,7 @@ extra_css:
   - assets/stylesheets/themes.css
   - assets/stylesheets/book.css
   - assets/stylesheets/book-local.css
-# extra_javascript is generated per book: a book without a formulae booklet must
-# not ship a widget that would fetch one.
+  - assets/stylesheets/settings.css
+# extra_javascript is generated per book: the Settings runtime is on every page,
+# and a book without a formulae booklet must not ship a widget that would fetch
+# one.
