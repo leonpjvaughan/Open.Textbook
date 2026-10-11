@@ -15,6 +15,7 @@ extra:
   - arc-blueberry
   - tokyo-night
   - synthwave
+  - archwave
   - kanagawa
   default_theme: editorial
   theme_info:
@@ -45,6 +46,10 @@ extra:
       title: Synthwave '84
       description: 'Eighties neon: magenta, cyan and warm pink on a purple-black page, or the same colours held down to a
         pale one. High colour and high contrast.'
+    archwave:
+      title: Archwave
+      description: 'Vaporwave: pastel pink, lavender and cyan on deep aubergine, or the same hues held down to a pale lilac
+        page. The softest of the vivid groups.'
     kanagawa:
       title: Kanagawa
       description: Ink-brush blues and jade on storm-dark grey, or warm parchment in the light. A printmaking palette, soft

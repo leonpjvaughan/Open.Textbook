@@ -101,6 +101,19 @@ function contrast(a, b) {
 const PROBE = () => {
   const root = document.documentElement;
   const body = document.body;
+  // The page itself may be painted on <html>, on <body>, or not at all (the
+  // reader's `--tb-paper` is then the background by definition). Everything that
+  // measures text needs one answer to "what is behind this?", so it is here.
+  const pageBackground = () => {
+    for (const node of [body, root]) {
+      const bg = node && getComputedStyle(node).backgroundColor;
+      if (bg && bg !== "transparent" && bg !== "rgba(0, 0, 0, 0)") return bg;
+    }
+    const paper = getComputedStyle(body).getPropertyValue("--tb-paper").trim();
+    if (paper) return paper;
+    const paperRoot = getComputedStyle(root).getPropertyValue("--tb-paper").trim();
+    return paperRoot || "rgba(0, 0, 0, 0)";
+  };
   const tokens = {};
   for (const name of [
     "--tb-paper", "--tb-ink", "--tb-ink-soft", "--tb-link", "--tb-accent",
@@ -117,7 +130,7 @@ const PROBE = () => {
       if (bg && bg !== "transparent" && !bg.includes("rgba(0, 0, 0, 0)")) return bg;
       node = node.parentElement;
     }
-    return getComputedStyle(body).backgroundColor;
+    return pageBackground();
   };
 
   const sample = (selector) => {
@@ -152,6 +165,14 @@ const PROBE = () => {
 // page, not a sample, so a token that is readable in the palette but misused in
 // the CSS shows up here.
 const AUDIT = () => {
+  const pageBackground = () => {
+    for (const node of [document.body, document.documentElement]) {
+      const bg = node && getComputedStyle(node).backgroundColor;
+      if (bg && bg !== "transparent" && bg !== "rgba(0, 0, 0, 0)") return bg;
+    }
+    const paper = getComputedStyle(document.body).getPropertyValue("--tb-paper").trim();
+    return paper || "rgba(0, 0, 0, 0)";
+  };
   const painted = (el) => {
     let node = el;
     while (node) {
@@ -159,7 +180,7 @@ const AUDIT = () => {
       if (bg && bg !== "transparent" && !/rgba\(0, 0, 0, 0\)/.test(bg)) return bg;
       node = node.parentElement;
     }
-    return getComputedStyle(document.body).backgroundColor;
+    return pageBackground();
   };
   const found = [];
   for (const el of document.querySelectorAll("body *")) {
@@ -371,7 +392,24 @@ async function main() {
       const page = await context.newPage();
       for (const { name, route } of entries) {
         await page.goto(`http://preview.local${route}`, { waitUntil: "load" });
-        await page.waitForTimeout(1200);
+        // The build's stylesheets are fetched after `load` often enough that a
+        // fixed pause is a race: an unstyled page reads as black-on-transparent
+        // and every element "fails". Wait for the shell to paint instead.
+        await page
+          .waitForFunction(
+            () => {
+              const body = document.body;
+              if (!body) return false;
+              const style = getComputedStyle(body);
+              const paper = style.getPropertyValue("--tb-paper").trim();
+              if (paper) return true;
+              const bg = style.backgroundColor;
+              return Boolean(bg) && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent";
+            },
+            { timeout: 10000 },
+          )
+          .catch(() => {});
+        await page.waitForTimeout(250);
         const probe = await page.evaluate(PROBE);
         console.log(`\n=== ${theme} / ${scheme} / ${name} ===`);
         for (const line of checkOne(theme, scheme, name, probe, thresholds, failures)) {
