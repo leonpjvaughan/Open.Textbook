@@ -49,12 +49,26 @@ account-scoped, with no zone permissions to leak.
 Push to `main`. The pipeline runs in order, and nothing later starts until the
 earlier stages succeed:
 
-| Stage | Job | What it does |
-|---|---|---|
-| 1 | `plan`, `generated`, `build`, `content`, `lint workflows` | banks, tests, voice, both tier builds, drift check, actionlint |
-| 2 | **all checks** (`gate`) | one stable check name, so branch protection does not have to track the build matrix |
-| 3 | `tag and release` | tags `YYYY.MM.DD` and publishes a release with generated notes |
-| 4 | `deploy to production` | rebuilds `site/` and runs `wrangler deploy` |
+| Stage | Job | main | other branches |
+|---|---|---|---|
+| 1 | `plan`, `generated`, `build`, `content`, `lint workflows` | ✔ | ✔ |
+| 2 | **all checks** (`gate`) | ✔ | ✔ |
+| 3 | `tag and release` | ✔ | — |
+| 4 | `deploy to production` | ✔ | — |
+
+Stages 3 and 4 require `refs/heads/main`, so they cannot run anywhere else. That
+is what makes any other branch a safe place to push: you get the whole gate and
+neither of the side effects.
+
+### `dev`
+
+`dev` is the branch for work in progress. Push to it and the verification runs;
+nothing is tagged and nothing is deployed. To verify every branch rather than the
+named ones, change the workflow's `branches:` list to `'**'`.
+
+There is deliberately no staging deploy on `dev`. If you want one, the pieces are
+a second Worker name and a `--env`-style split in `wrangler.jsonc`; say so and it
+is a small change.
 
 You can also trigger it by hand from the Actions tab (**Run workflow**), which
 runs the same pipeline on whatever is on `main`.
