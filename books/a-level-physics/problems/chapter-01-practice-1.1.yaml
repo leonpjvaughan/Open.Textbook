@@ -1,0 +1,182 @@
+# Practice set for 1.1 (SI units and prefixes).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]` in book.yaml, so a check may use either.
+#
+# A unit conversion is checked exactly by `convert`, which parses a unit into a
+# dimension and a factor to SI and refuses a conversion whose dimensions differ.
+# A dimensional argument is checked by `dimensions`; a value with a unit is
+# checked by `dimensions` for the exact magnitude and dimension, and its rounding
+# by `sigfigs`. The A-level reader has no Foundation/Higher axis, so no record
+# carries a tier.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass. The `structured`
+# records at the end prove only that a model answer contains the declared ideas
+# in order, not that the ideas are right.
+chapter: 1
+problems:
+  - id: p1-area-mm2
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'A wire has a cross-sectional area of $2.5\,\text{mm}^2$. Write this area in $\text{m}^2$.'
+    answer_label: 'The area in square metres'
+    check:
+      kind: convert
+      value: "2.5"
+      from: "mm^2"
+      to: "m^2"
+      answer: "2.5e-06"
+    answer_text: '$2.5\,\text{mm}^2 = 2.5 \times 10^{-6}\,\text{m}^2$. The prefix is squared, so the factor is $1 \times 10^{-6}$.'
+
+  - id: p2-capacitance-muf
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'A capacitor is marked $4.7\,\mu\text{F}$. Write its capacitance in farads.'
+    answer_label: 'The capacitance in farads'
+    check:
+      kind: convert
+      value: "4.7"
+      from: "uF"
+      to: "F"
+      answer: "4.7e-06"
+    answer_text: '$4.7\,\mu\text{F} = 4.7 \times 10^{-6}\,\text{F}$.'
+
+  - id: p3-speed-kmh
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'A train travels at $72\,\text{km}\,\text{h}^{-1}$. Write this speed in $\text{m}\,\text{s}^{-1}$.'
+    answer_label: 'The speed in metres per second'
+    check:
+      kind: convert
+      value: "72"
+      from: "km h^-1"
+      to: "m s^-1"
+      answer: "20"
+    answer_text: '$72\,\text{km}\,\text{h}^{-1} = 72 \times \dfrac{1000}{3600}\,\text{m}\,\text{s}^{-1} = 20\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: p4-homogeneity-ke
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Show that the kinetic energy equation $E_k = \tfrac{1}{2}mv^2$ is homogeneous. Use the base units $\text{kg}$, $\text{m}$ and $\text{s}$.'
+    answer_label: 'A homogeneity check'
+    check:
+      kind: dimensions
+      consistency: "E = 0.5 * m * v**2"
+      units: {E: "J", m: "kg", v: "m s^-1"}
+    answer_text: 'The joule is $\text{kg}\,\text{m}^2\,\text{s}^{-2}$. On the right, $mv^2$ has base units $\text{kg} \times (\text{m}\,\text{s}^{-1})^2 = \text{kg}\,\text{m}^2\,\text{s}^{-2}$. Both sides match, so the equation is homogeneous.'
+
+  - id: p5-homogeneity-suvat
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Show that the equation of motion $v^2 = u^2 + 2as$ is homogeneous.'
+    answer_label: 'A homogeneity check'
+    check:
+      kind: dimensions
+      consistency: "v**2 = u**2 + 2 * a * s"
+      units: {v: "m s^-1", u: "m s^-1", a: "m s^-2", s: "m"}
+    answer_text: 'The left side has base units $(\text{m}\,\text{s}^{-1})^2 = \text{m}^2\,\text{s}^{-2}$. On the right, $u^2$ is also $\text{m}^2\,\text{s}^{-2}$, and $as$ is $\text{m}\,\text{s}^{-2} \times \text{m} = \text{m}^2\,\text{s}^{-2}$. All three terms match, so the equation is homogeneous.'
+
+  - id: p6-planck-units
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'The energy of a photon is $E = hf$, where $f$ is the frequency. Use base units to find the unit of the Planck constant $h$.'
+    answer_label: 'The base units of the Planck constant'
+    check:
+      kind: dimensions
+      expression: "E / f"
+      values:
+        E: {value: "1", unit: "J"}
+        f: {value: "1", unit: "Hz"}
+      answer: {value: "1", unit: "kg m^2 s^-1"}
+    answer_text: '$h = \dfrac{E}{f}$, so its unit is $\text{J}\,\text{s} = \text{kg}\,\text{m}^2\,\text{s}^{-1}$.'
+
+  - id: p7-drag-viscosity
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'The drag force on a small sphere moving slowly through a liquid is $F = 6\pi\eta rv$, where $r$ is the radius and $v$ is the speed. Use base units to find the unit of the viscosity $\eta$.'
+    answer_label: 'The base units of the viscosity'
+    check:
+      kind: dimensions
+      expression: "F / (r * v)"
+      values:
+        F: {value: "1", unit: "N"}
+        r: {value: "1", unit: "m"}
+        v: {value: "1", unit: "m s^-1"}
+      answer: {value: "1", unit: "kg m^-1 s^-1"}
+    answer_text: 'The number $6\pi$ has no unit, so $\eta = \dfrac{F}{rv}$. The unit is $\dfrac{\text{kg}\,\text{m}\,\text{s}^{-2}}{\text{m} \times \text{m}\,\text{s}^{-1}} = \text{kg}\,\text{m}^{-1}\,\text{s}^{-1}$.'
+
+  - id: p8-base-units-pascal
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'The pascal is one newton per square metre. Show that its base units are $\text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$.'
+    answer_label: 'The base units of the pascal'
+    check:
+      kind: dimensions
+      expression: "N / m**2"
+      values:
+        N: {value: "1", unit: "N"}
+        m: {value: "1", unit: "m"}
+      answer: {value: "1", unit: "kg m^-1 s^-2"}
+    answer_text: 'One newton is $\text{kg}\,\text{m}\,\text{s}^{-2}$, so a pascal is $\dfrac{\text{kg}\,\text{m}\,\text{s}^{-2}}{\text{m}^2} = \text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$.'
+
+  - id: p9-proton-mass-grams
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'The mass of a proton is $1.67 \times 10^{-27}\,\text{kg}$. Write this mass in grams.'
+    answer_label: 'The mass in grams'
+    check:
+      kind: convert
+      value: "1.67e-27"
+      from: "kg"
+      to: "g"
+      answer: "1.67e-24"
+    answer_text: '$1.67 \times 10^{-27}\,\text{kg} = 1.67 \times 10^{-24}\,\text{g}$, because a gram is one thousandth of a kilogram.'
+
+  - id: p10-density-prefix-error
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'A student writes the density of aluminium as $2700\,\text{g}\,\text{m}^{-3}$. Explain the mistake and write the density correctly in $\text{kg}\,\text{m}^{-3}$.'
+    answer_label: 'The mistake and the correction'
+    check:
+      kind: structured
+      requires: [name-the-mistake, correct-value]
+      concepts: [prefix, si-base-unit, density]
+      points:
+        - id: name-the-mistake
+          text: 'The density has been written with grams in place of the SI base unit for mass, the kilogram.'
+          concepts: [prefix, si-base-unit]
+        - id: correct-value
+          text: 'To change grams to kilograms, divide by 1000. The density is 2.7 kg m^-3.'
+          concepts: [density]
+
+  - id: p11-force-base-units
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Two students disagree about the unit of force. Student A says $\text{kg}\,\text{m}\,\text{s}^{-2}$. Student B says $\text{kg}\,\text{m}\,\text{s}^{-1}$. Decide which student is correct, and show how the base units follow from $F = ma$.'
+    answer_label: 'The correct unit of force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * a"
+          values:
+            m: {value: "1", unit: "kg"}
+            a: {value: "1", unit: "m s^-2"}
+          answer: {value: "1", unit: "N"}
+    answer_text: 'Student A is correct. In $F = ma$, the mass has base units $\text{kg}$ and the acceleration has base units $\text{m}\,\text{s}^{-2}$. Their product is $\text{kg}\,\text{m}\,\text{s}^{-2}$, which is one newton. Student B has divided by time once instead of twice.'
+
+  - id: p12-standard-form
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'The wavelength of a green light wave is $0.000\,000\,54\,\text{m}$. Write this wavelength in standard form to two significant figures.'
+    answer_label: 'The wavelength in standard form'
+    check:
+      kind: sigfigs
+      value: "0.00000054"
+      figures: 2
+      answer: "5.4e-7"
+      convention: round-once
+    answer_text: '$0.000\,000\,54\,\text{m} = 5.4 \times 10^{-7}\,\text{m}$.'

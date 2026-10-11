@@ -1,0 +1,194 @@
+# Mixed practice for the Chapter 1 Review.
+#
+# The first eight records resolve the chapter problem of the pendulum in the
+# church tower. The last five interleave the chapter: a unit conversion, a
+# homogeneity check, an estimate, an uncertainty propagation and a method-choice
+# prompt. Every numeric record is checked by the `units` oracle, and the two
+# `structured` records stand where a computer cannot go: they prove that a model
+# answer contains the declared ideas in order, and nothing more.
+#
+# The anchor numbers: length L = 0.800 m with uncertainty 0.001 m; 20 oscillations
+# timed three times as 35.90 s, 35.85 s and 35.95 s; the mean period is
+# T = 1.795 s; g = 4 pi^2 L / T^2 = 9.802 m s^-2; and the percentage uncertainty
+# in g is 1/8 + 2 x 50/359 = 1159/2872 = 0.404 %, so g = 9.80 +/- 0.04 m s^-2.
+chapter: 1
+problems:
+  - id: r1-mean-timing
+    section: Review
+    dfe: [AP1]
+    statement: 'The 20-oscillation timings are $35.90\,\text{s}$, $35.85\,\text{s}$ and $35.95\,\text{s}$. Find the mean time and its uncertainty using the half-range convention.'
+    answer_label: 'The mean time and its uncertainty'
+    check:
+      kind: uncertainty
+      mean_of: ["35.90", "35.85", "35.95"]
+      convention: half-range
+      answer: "35.90"
+      uncertainty: "0.05"
+    answer_text: 'The mean is $\dfrac{35.90 + 35.85 + 35.95}{3} = 35.90\,\text{s}$. The range is $0.10\,\text{s}$, so the uncertainty is half the range, $0.05\,\text{s}$. The time for 20 oscillations is $35.90 \pm 0.05\,\text{s}$.'
+
+  - id: r2-period
+    section: Review
+    dfe: [AP1]
+    statement: 'The time for 20 oscillations is $35.90\,\text{s}$. Find the period $T$ of one oscillation in seconds.'
+    answer_label: 'The period of one oscillation'
+    check:
+      kind: evaluate
+      expression: "(359/10) / 20"
+      answer: "359/200"
+    answer_text: '$T = \dfrac{35.90}{20} = 1.795\,\text{s}$.'
+
+  - id: r3-calculate-g
+    section: Review
+    dfe: [AP1]
+    statement: 'Use $g = \dfrac{4\pi^2 L}{T^2}$ with $L = 0.800\,\text{m}$ and $T = 1.795\,\text{s}$ to find $g$.'
+    answer_label: 'The value of g'
+    check:
+      kind: approx
+      value: "4 * pi**2 * (4/5) / ((359/200)**2)"
+      target: "9.802"
+      tolerance: "0.001"
+    answer_text: '$g = \dfrac{4\pi^2 \times 0.800}{1.795^2} = 9.80\,\text{m}\,\text{s}^{-2}$ to three significant figures.'
+
+  - id: r4-percentage-g
+    section: Review
+    dfe: [AP1]
+    statement: 'The percentage uncertainty in the length is $0.125\%$ and the percentage uncertainty in the period is $0.139\%$. Find the percentage uncertainty in $g$, using $g = \dfrac{4\pi^2 L}{T^2}$.'
+    answer_label: 'The percentage uncertainty in g'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "1/8 + 2 * 50/359", answer: "1159/2872"}
+        - {kind: sigfigs, value: "1159/2872", figures: 2, answer: "0.40", convention: round-once}
+    answer_text: 'The period appears squared, so its percentage uncertainty is doubled: $2 \times 0.139\% = 0.279\%$. The constant $4\pi^2$ contributes nothing. Add the length: $0.125\% + 0.279\% = 0.40\%$ to two significant figures.'
+
+  - id: r5-uncertainty-g
+    section: Review
+    dfe: [AP1]
+    statement: 'The value of $g$ is $9.802\,\text{m}\,\text{s}^{-2}$ and its percentage uncertainty is $0.40\%$. Find the absolute uncertainty in $g$.'
+    answer_label: 'The absolute uncertainty in g'
+    check:
+      kind: approx
+      value: "(128000 * pi**2 / 128881) * (1159/2872) / 100"
+      target: "0.0396"
+      tolerance: "0.0005"
+    answer_text: '$0.40\%$ of $9.802$ is $\dfrac{0.40}{100} \times 9.802 = 0.039\,\text{m}\,\text{s}^{-2}$, which is $0.04\,\text{m}\,\text{s}^{-2}$ to one significant figure.'
+
+  - id: r6-quote-g
+    section: Review
+    dfe: [AP1]
+    statement: 'The value of $g$ is $9.802\,\text{m}\,\text{s}^{-2}$ and the absolute uncertainty is $0.04\,\text{m}\,\text{s}^{-2}$. Write the result in the correct form.'
+    answer_label: 'The result in the correct form'
+    check:
+      kind: sigfigs
+      value: "9.802138122294503"
+      figures: 3
+      answer: "9.80"
+      convention: round-once
+    answer_text: 'The uncertainty is $0.04\,\text{m}\,\text{s}^{-2}$ to one significant figure, so the value is quoted to the same decimal place: $g = 9.80 \pm 0.04\,\text{m}\,\text{s}^{-2}$.'
+
+  - id: r7-agreement
+    section: Review
+    dfe: [AP1]
+    statement: 'The experiment gives $g = 9.80 \pm 0.04\,\text{m}\,\text{s}^{-2}$. The accepted value is $9.81\,\text{m}\,\text{s}^{-2}$. Decide whether the experiment agrees with the accepted value, and give a reason.'
+    answer_label: 'Whether the experiment agrees with the accepted value'
+    check:
+      kind: structured
+      requires: [state-range, compare-accepted, state-conclusion]
+      concepts: [uncertainty-interval, agreement]
+      points:
+        - id: state-range
+          text: 'The experimental value lies between 9.76 and 9.84 m s^-2.'
+          concepts: [uncertainty-interval]
+        - id: compare-accepted
+          text: 'The accepted value 9.81 m s^-2 falls inside that range.'
+          concepts: [agreement]
+        - id: state-conclusion
+          text: 'The experiment agrees with the accepted value within its stated uncertainty. A disagreement would need a gap larger than the uncertainty, not merely a different value.'
+          concepts: [agreement]
+
+  - id: r8-clock-length
+    section: Review
+    dfe: [AP1]
+    statement: 'A clock keeps time when its pendulum has a period of exactly $2.000\,\text{s}$. Use $T = 2\pi\sqrt{\dfrac{L}{g}}$ with $g = 9.81\,\text{m}\,\text{s}^{-2}$ to find the length the pendulum needs.'
+    answer_label: 'The length the pendulum needs'
+    check:
+      kind: approx
+      value: "9.81 / pi**2"
+      target: "0.994"
+      tolerance: "0.001"
+    answer_text: 'Rearranging $T = 2\pi\sqrt{\dfrac{L}{g}}$ gives $L = \dfrac{gT^2}{4\pi^2} = \dfrac{9.81 \times 4.000}{4\pi^2} = \dfrac{9.81}{\pi^2} = 0.994\,\text{m}$. The 0.800 m pendulum is too short, so its period is less than 2.000 s and the clock would run fast. The technician must lengthen the pendulum to about 0.994 m.'
+
+  - id: r9-homogeneity-period
+    section: Review
+    dfe: [AP1]
+    statement: 'Show that the period equation $T = 2\pi\sqrt{\dfrac{L}{g}}$ is homogeneous.'
+    answer_label: 'A homogeneity check'
+    check:
+      kind: dimensions
+      consistency: "T**2 = L / g"
+      units: {T: "s", L: "m", g: "m s^-2"}
+    answer_text: 'Squaring both sides gives $T^2 = \dfrac{4\pi^2 L}{g}$, and $4\pi^2$ has no unit. The left side has base units $\text{s}^2$. On the right, $\dfrac{\text{m}}{\text{m}\,\text{s}^{-2}} = \text{s}^2$. Both sides match, so the equation is homogeneous.'
+
+  - id: r10-convert-pressure
+    section: Review
+    dfe: [AP1]
+    statement: 'A pressure is quoted as $2.5\,\text{MPa}$. Write it in pascals and in base units.'
+    answer_label: 'The pressure in pascals'
+    check:
+      kind: convert
+      value: "2.5"
+      from: "MPa"
+      to: "Pa"
+      answer: "2500000"
+    answer_text: '$2.5\,\text{MPa} = 2.5 \times 10^6\,\text{Pa}$. A pascal is $\text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$, so the pressure in base units is $2.5 \times 10^6\,\text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$.'
+
+  - id: r11-estimate-year
+    section: Review
+    dfe: [AP1]
+    statement: 'Estimate the number of seconds in a year to one significant figure.'
+    answer_label: 'The number of seconds in a year'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "365 * 24 * 3600", answer: "31536000"}
+        - {kind: sigfigs, value: "31536000", figures: 1, answer: "3e7", convention: round-once}
+    answer_text: '$365 \times 24 \times 3600 = 3.15 \times 10^7$, so about $3 \times 10^7\,\text{s}$ to one significant figure.'
+
+  - id: r12-density-uncertainty
+    section: Review
+    dfe: [AP1]
+    statement: 'A metal block has mass $84.6 \pm 0.1\,\text{g}$ and volume $30.0 \pm 0.5\,\text{cm}^3$. Find the density and its absolute uncertainty.'
+    answer_label: 'The density and its absolute uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: "84.6", percentage: "50/423"}
+        - {value: "1/30", percentage: "5/3"}
+      result: "2.82"
+      uncertainty: "0.0503"
+      tolerance: "0.0001"
+    answer_text: 'The density is $\dfrac{84.6}{30.0} = 2.82\,\text{g}\,\text{cm}^{-3}$. The percentage uncertainty in the mass is $0.12\%$ and in the volume is $1.7\%$, so in the density it is $0.12\% + 1.7\% = 1.8\%$. The absolute uncertainty is $2.82 \times 0.018 = 0.05\,\text{g}\,\text{cm}^{-3}$, so the density is $2.82 \pm 0.05\,\text{g}\,\text{cm}^{-3}$.'
+
+  - id: r13-method-choice
+    section: Review
+    dfe: [AP1]
+    statement: 'A student must find the acceleration of a trolley down a ramp. Say which quantity the student should measure directly, which equation relates the measurements, and which uncertainty is likely to dominate the result.'
+    answer_label: 'The method and the dominant uncertainty'
+    check:
+      kind: structured
+      requires: [measure-time, measure-distance, choose-equation, identify-dominant]
+      concepts: [method-choice, uncertainty]
+      points:
+        - id: measure-time
+          text: 'Measure the time for the trolley to travel a measured distance, using light gates or by timing several runs.'
+          concepts: [method-choice]
+        - id: measure-distance
+          text: 'Measure the distance along the ramp, and take account of the ramp angle if the acceleration along the ramp is wanted.'
+          concepts: [method-choice]
+        - id: choose-equation
+          text: 'Starting from rest, use s = 1/2 a t^2 to find a = 2s / t^2.'
+          concepts: [method-choice]
+        - id: identify-dominant
+          text: 'The time appears squared, so its percentage uncertainty is doubled and usually dominates the uncertainty in the acceleration.'
+          concepts: [uncertainty]

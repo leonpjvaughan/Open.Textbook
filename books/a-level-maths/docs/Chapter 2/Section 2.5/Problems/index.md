@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.5 Simultaneous equations by elimination and substitution — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: B4
+Work through these on your own. Decide on the method before you write anything:
+elimination for two straight lines, substitution when one equation is a curve.
+Write every solution as a pair and check it in both equations.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-02-practice-2.5
+
+:::answers chapter-02-practice-2.5

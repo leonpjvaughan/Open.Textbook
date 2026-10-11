@@ -10,9 +10,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.3 Work done and energy transfer — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: FO2
+Work through these on your own. Keep your working neat: the method matters as
+much as the answer.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-02-practice-2.3
+
+:::answers chapter-02-practice-2.3

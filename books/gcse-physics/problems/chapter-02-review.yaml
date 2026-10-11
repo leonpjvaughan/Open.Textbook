@@ -1,0 +1,232 @@
+# Mixed practice for the Chapter 2 Review.
+#
+# The review resolves the chapter problem and then interleaves the five sections
+# with Chapter 1. Items r1 to r7 resolve the bike-hire workshop; r8, r9 and r11
+# reach back to Chapter 1 (kinetic energy, efficiency, gravitational potential
+# energy); r10 and r12 mix the chapter; r13 keeps the Higher-only pressure at a
+# depth in the mixed set, marked tier H. Each calculation proves `dimensions` and
+# `sigfigs`; the two `structured` records prove only that a model answer contains
+# the declared ideas.
+chapter: 2
+problems:
+  - id: r1-anchor-weight
+    section: Review
+    tier: F
+    dfe: [FO1]
+    statement: 'In the chapter problem the bike and its rider have a mass of 110 kg. Take $g = 9.8\,\text{N/kg}$. Calculate their total weight.'
+    answer_label: 'Total weight of bike and rider'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g"
+          values:
+            m: {value: "110", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "1078", unit: "N"}
+        - {kind: sigfigs, value: "1078", figures: 2, answer: "1.1e3", convention: round-once}
+    answer_text: '$W = mg = 110 \times 9.8 = 1078\,\text{N}$, so $1.1 \times 10^3\,\text{N}$ to 2 significant figures.'
+
+  - id: r2-anchor-spring-k
+    section: Review
+    tier: F
+    dfe: [FO1]
+    statement: 'The front suspension spring of the bike compresses by 0.020 m when the front wheel carries a force of 600 N. Calculate the spring constant of the spring.'
+    answer_label: 'Spring constant of the front spring'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / e"
+          values:
+            F: {value: "600", unit: "N"}
+            e: {value: "0.020", unit: "m"}
+          answer: {value: "30000", unit: "N/m"}
+        - {kind: sigfigs, value: "30000", figures: 2, answer: "3.0e4", convention: round-once}
+    answer_text: '$k = \dfrac{F}{e} = \dfrac{600}{0.020} = 30000\,\text{N/m} = 3.0 \times 10^4\,\text{N/m}$.'
+
+  - id: r3-anchor-spring-energy
+    section: Review
+    tier: F
+    dfe: [FO1]
+    statement: 'The spring constant is $3.0 \times 10^4\,\text{N/m}$ and the spring is compressed by 0.020 m. Calculate the energy stored in the elastic potential store.'
+    answer_label: 'Energy stored in the spring'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * k * e**2"
+          values:
+            k: {value: "30000", unit: "N/m"}
+            e: {value: "0.020", unit: "m"}
+          answer: {value: "6.0", unit: "J"}
+        - {kind: sigfigs, value: "6", figures: 2, answer: "6.0", convention: round-once}
+    answer_text: '$E_e = \tfrac{1}{2}ke^2 = 0.5 \times 30000 \times 0.020^2 = 6.0\,\text{J}$.'
+
+  - id: r4-anchor-work
+    section: Review
+    tier: F
+    dfe: [FO2]
+    statement: 'A force of 150 N pushes the bike 8.0 m up the workshop ramp, along the line of the force. Calculate the work done.'
+    answer_label: 'Work done pushing the bike up the ramp'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "150", unit: "N"}
+            s: {value: "8.0", unit: "m"}
+          answer: {value: "1200", unit: "J"}
+        - {kind: sigfigs, value: "1200", figures: 2, answer: "1.2e3", convention: round-once}
+    answer_text: '$W = Fs = 150 \times 8.0 = 1200\,\text{J} = 1.2 \times 10^3\,\text{J}$.'
+
+  - id: r5-anchor-pressure
+    section: Review
+    tier: F
+    dfe: [FO3]
+    statement: 'The front tyre carries a force of 540 N. The contact patch has an area of 12 cm$^2$. Calculate the pressure in the tyre in pascals.'
+    answer_label: 'Pressure in the front tyre'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / A"
+          values:
+            F: {value: "540", unit: "N"}
+            A: {value: "0.0012", unit: "m^2"}
+          answer: {value: "450000", unit: "Pa"}
+        - {kind: sigfigs, value: "450000", figures: 2, answer: "4.5e5", convention: round-once}
+    answer_text: 'First convert the area: $12\,\text{cm}^2 = 0.0012\,\text{m}^2$. Then $p = \dfrac{F}{A} = \dfrac{540}{0.0012} = 450000\,\text{Pa} = 4.5 \times 10^5\,\text{Pa}$.'
+
+  - id: r6-anchor-moment
+    section: Review
+    tier: F
+    dfe: [FO4]
+    statement: 'A hand pulls the brake lever with a force of 60 N at a perpendicular distance of 0.090 m from the pivot. Calculate the moment of the force about the pivot.'
+    answer_label: 'Moment of the hand force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * d"
+          values:
+            F: {value: "60", unit: "N"}
+            d: {value: "0.090", unit: "m"}
+          answer: {value: "5.4", unit: "N m"}
+        - {kind: sigfigs, value: "5.4", figures: 2, answer: "5.4", convention: round-once}
+    answer_text: '$M = Fd = 60 \times 0.090 = 5.4\,\text{N m}$.'
+
+  - id: r7-anchor-cable-force
+    section: Review
+    tier: F
+    dfe: [FO4]
+    statement: 'The brake cable is 0.030 m from the pivot. The moment about the pivot is 5.4 N m. Calculate the force in the cable.'
+    answer_label: 'Force in the brake cable'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "M / d2"
+          values:
+            M: {value: "5.4", unit: "N m"}
+            d2: {value: "0.030", unit: "m"}
+          answer: {value: "180", unit: "N"}
+        - {kind: sigfigs, value: "180", figures: 2, answer: "180", convention: round-once}
+    answer_text: '$F = \dfrac{M}{d} = \dfrac{5.4}{0.030} = 180\,\text{N}$. The lever multiplies the 60 N hand force three times.'
+
+  - id: r8-kinetic-energy
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'The bike and its rider have a total mass of 110 kg and travel at 6.0 m/s. Calculate the energy in the kinetic store.'
+    answer_label: 'Energy in the kinetic store'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * m * v**2"
+          values:
+            m: {value: "110", unit: "kg"}
+            v: {value: "6.0", unit: "m/s"}
+          answer: {value: "1980", unit: "J"}
+        - {kind: sigfigs, value: "1980", figures: 2, answer: "2.0e3", convention: round-once}
+    answer_text: '$E_k = \tfrac{1}{2}mv^2 = 0.5 \times 110 \times 6.0^2 = 1980\,\text{J}$, so $2.0 \times 10^3\,\text{J}$ to 2 significant figures.'
+
+  - id: r9-efficiency
+    section: Review
+    tier: F
+    dfe: [EN2]
+    statement: 'A workshop motor does 1200 J of work, and 900 J of that work is useful. Calculate the efficiency of the motor as a decimal and as a percentage.'
+    answer_label: 'Efficiency of the motor'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "900 / 1200", answer: "0.75"}
+        - {kind: sigfigs, value: "0.75", figures: 2, answer: "0.75", convention: round-once}
+    answer_text: '$\text{efficiency} = \dfrac{900}{1200} = 0.75 = 75\%$.'
+
+  - id: r10-resultant
+    section: Review
+    tier: F
+    dfe: [FO1]
+    statement: 'A cyclist pedals with a forward force of 260 N. Air resistance and friction give a total backward force of 190 N. Calculate the resultant force on the bicycle.'
+    answer_label: 'Resultant force on the bicycle'
+    check: {kind: evaluate, expression: "260 - 190", answer: "70"}
+    answer_text: 'The forces act in opposite directions, so subtract: $260 - 190 = 70\,\text{N}$ forwards.'
+
+  - id: r11-gpe-lift
+    section: Review
+    tier: F
+    dfe: [EN1, FO2]
+    statement: 'The bike is lifted 0.50 m onto a rack. Its mass is 110 kg. Take $g = 9.8\,\text{N/kg}$. Calculate the work done against gravity, using the gravitational potential energy gained.'
+    answer_label: 'Work done lifting the bike'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g * h"
+          values:
+            m: {value: "110", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "0.50", unit: "m"}
+          answer: {value: "539", unit: "J"}
+        - {kind: sigfigs, value: "539", figures: 2, answer: "540", convention: round-once}
+    answer_text: '$E_p = mgh = 110 \times 9.8 \times 0.50 = 539\,\text{J}$, so $540\,\text{J}$ to 2 significant figures. The work done against gravity is the same size.'
+
+  - id: r12-method-choice
+    section: Review
+    tier: F
+    dfe: [FO1, FO3, FO4]
+    statement: 'The chapter problem asks for the pressure in the front tyre and the moment on the brake lever. Say which equation you would use for each part, and name the quantities you need.'
+    answer_label: 'Choosing the equation for each part'
+    check:
+      kind: structured
+      requires: [pressure-equation, moment-equation]
+      concepts: [pressure, moment]
+      points:
+        - id: pressure-equation
+          text: 'For the tyre, use $p = \dfrac{F}{A}$. I need the force on the tyre and the area of the contact patch.'
+          concepts: [pressure]
+        - id: moment-equation
+          text: 'For the brake lever, use $M = Fd$. I need the force on the lever and the perpendicular distance from the pivot.'
+          concepts: [moment]
+
+  - id: r13-depth-pressure
+    section: Review
+    tier: H
+    dfe: [FO3]
+    statement: 'A water tank is 1.2 m deep. The density of water is 1000 kg/m$^3$ and $g = 9.8\,\text{N/kg}$. Calculate the pressure due to the water at the bottom of the tank.'
+    answer_label: 'Pressure at the bottom of the tank'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "h * rho * g"
+          values:
+            h: {value: "1.2", unit: "m"}
+            rho: {value: "1000", unit: "kg/m^3"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "11760", unit: "Pa"}
+        - {kind: sigfigs, value: "11760", figures: 2, answer: "1.2e4", convention: round-once}
+    answer_text: '$p = h\rho g = 1.2 \times 1000 \times 9.8 = 11760\,\text{Pa} = 1.2 \times 10^4\,\text{Pa}$.'

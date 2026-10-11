@@ -1,0 +1,372 @@
+# Worked solutions for Chapter 1 (Working scientifically and measurements).
+#
+# These are the numerical worked examples, the warm-up recalls and the guided
+# calculations that the Learn and Practise with help pages show. The pages carry
+# the prose and the reasoning; this bank is the independent check of every number
+# in them, so a slip in a worked example cannot ship. The records are not rendered
+# by a page marker: the pages write their own working, and the `:::answers` blocks
+# come from the practice banks.
+#
+# A conversion is proved exactly by `convert`, a dimensional argument by
+# `dimensions`, a value with a unit by `dimensions` plus `sigfigs`, and a
+# propagated uncertainty by `uncertainty` against the rule the pages name.
+chapter: 1
+problems:
+  # --- Section 1.1, the Learn worked examples and the guided problems ---------
+  - id: w1-kn-base-units
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Write 3.6 kN in base units.'
+    check: {kind: convert, value: "3.6", from: "kN", to: "N", answer: "3600"}
+    answer_text: '$3.6 \times 10^{3}\,\text{N} = 3600\,\text{N}$'
+
+  - id: w2-ms-base-units
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Write 25 ms in base units.'
+    check: {kind: convert, value: "25", from: "ms", to: "s", answer: "0.025"}
+    answer_text: '$25 \times 10^{-3}\,\text{s} = 0.025\,\text{s}$'
+
+  - id: w3-cm3-to-m3
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Write 250 cm^3 in m^3.'
+    check: {kind: convert, value: "250", from: "cm^3", to: "m^3", answer: "2.5e-04"}
+    answer_text: '$2.5 \times 10^{-4}\,\text{m}^3$'
+
+  - id: w4-homogeneity-ke
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Show that E_k = half m v^2 is homogeneous.'
+    check:
+      kind: dimensions
+      consistency: "E = 0.5 * m * v**2"
+      units: {E: "J", m: "kg", v: "m s^-1"}
+    answer_text: 'Both sides are kg m^2 s^-2.'
+
+  - id: w5-viscosity-units
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Find the base units of the viscosity in F = 6 pi eta r v.'
+    check:
+      kind: dimensions
+      expression: "F / (r * v)"
+      values:
+        F: {value: "1", unit: "N"}
+        r: {value: "1", unit: "m"}
+        v: {value: "1", unit: "m s^-1"}
+      answer: {value: "1", unit: "kg m^-1 s^-1"}
+    answer_text: 'kg m^-1 s^-1'
+
+  - id: w6-pendulum-g-units
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Use T^2 = L / g to find the base units of g.'
+    check:
+      kind: dimensions
+      consistency: "T**2 = L / g"
+      units: {T: "s", L: "m", g: "m s^-2"}
+    answer_text: 'g has base units m s^-2.'
+
+  - id: g1-cm2-to-m2
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Write 25 cm^2 in m^2.'
+    check: {kind: convert, value: "25", from: "cm^2", to: "m^2", answer: "2.5e-03"}
+    answer_text: '$2.5 \times 10^{-3}\,\text{m}^2$'
+
+  - id: g2-capacitor
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Write 4.7 microfarad in farads.'
+    check: {kind: convert, value: "4.7", from: "uF", to: "F", answer: "4.7e-06"}
+    answer_text: '$4.7 \times 10^{-6}\,\text{F}$'
+
+  - id: g3-homogeneity-suvat
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Show that s = u t + half a t^2 is homogeneous.'
+    check:
+      kind: dimensions
+      consistency: "s = u * t + 0.5 * a * t**2"
+      units: {s: "m", u: "m s^-1", t: "s", a: "m s^-2"}
+    answer_text: 'All three terms are metres.'
+
+  - id: g4-planck-units
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Find the unit of the Planck constant from E = h f.'
+    check:
+      kind: dimensions
+      expression: "E / f"
+      values:
+        E: {value: "1", unit: "J"}
+        f: {value: "1", unit: "Hz"}
+      answer: {value: "1", unit: "kg m^2 s^-1"}
+    answer_text: 'kg m^2 s^-1'
+
+  - id: g5-density-7-8
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Write 7.8 g cm^-3 in kg m^-3.'
+    check: {kind: convert, value: "7.8", from: "g cm^-3", to: "kg m^-3", answer: "7800"}
+    answer_text: '$7.8 \times 10^{3}\,\text{kg}\,\text{m}^{-3}$'
+
+  - id: g6-spring-constant-units
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Find the unit of the spring constant k from F = k x.'
+    check:
+      kind: dimensions
+      expression: "F / x"
+      values:
+        F: {value: "1", unit: "N"}
+        x: {value: "1", unit: "m"}
+      answer: {value: "1", unit: "N m^-1"}
+    answer_text: 'N m^-1, which is kg s^-2.'
+
+  # --- Section 1.2, the Learn worked examples and the guided problems ---------
+  - id: g7-page-thickness-mm
+    section: '1.2'
+    dfe: [AP1]
+    statement: 'A stack of 100 sheets is 12 mm thick. Find the thickness of one sheet.'
+    check:
+      kind: dimensions
+      expression: "d / n"
+      values:
+        d: {value: "12", unit: "mm"}
+        n: {value: "100"}
+      answer: {value: "0.12", unit: "mm"}
+    answer_text: '0.12 mm'
+
+  - id: g8-oscillation-uncertainty
+    section: '1.2'
+    dfe: [AP1]
+    statement: 'A total time of 25 oscillations has an uncertainty of 0.3 s. Find the uncertainty in the period.'
+    check: {kind: evaluate, expression: "3/10 / 25", answer: "3/250"}
+    answer_text: '0.012 s'
+
+  - id: g9-book-thickness
+    section: '1.2'
+    dfe: [AP1]
+    statement: 'A book of 500 sheets is 5.0 cm thick. Find the thickness of one sheet in centimetres.'
+    check:
+      kind: dimensions
+      expression: "t / n"
+      values:
+        t: {value: "5.0", unit: "cm"}
+        n: {value: "500"}
+      answer: {value: "0.010", unit: "cm"}
+    answer_text: '0.010 cm, which is 0.10 mm.'
+
+  # --- Section 1.3, the Learn worked examples and the guided problems ---------
+  - id: g10-mean-half-range
+    section: '1.3'
+    dfe: [AP1]
+    statement: 'Find the mean and the half-range uncertainty of 0.542, 0.540, 0.544 and 0.538 mm.'
+    check:
+      kind: uncertainty
+      mean_of: ["0.542", "0.540", "0.544", "0.538"]
+      convention: half-range
+      answer: "0.541"
+      uncertainty: "0.003"
+    answer_text: '0.541 +/- 0.003 mm'
+
+  - id: g11-single-reading-percentage
+    section: '1.3'
+    dfe: [AP1]
+    statement: 'A single reading of 0.542 m has an uncertainty of 0.0005 m. Find the percentage uncertainty.'
+    check:
+      kind: sigfigs
+      value: "25/271"
+      figures: 2
+      answer: "0.092"
+      convention: round-once
+    answer_text: '0.092 %'
+
+  - id: g12-cylinder-uncertainty
+    section: '1.3'
+    dfe: [AP1]
+    statement: 'A cylinder has r = 1.25 cm with 4.0 % uncertainty and h = 8.00 cm with 0.625 % uncertainty. Find the percentage uncertainty in r^2 h.'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: "1.25", percentage: "4.0", power: 2}
+        - {value: "8.00", percentage: "0.625"}
+      result: "12.5"
+      uncertainty: "1.078125"
+    answer_text: '8.6 %'
+
+  - id: g13-sum-uncertainty
+    section: '1.3'
+    dfe: [AP1]
+    statement: 'Add lengths of 12.4 +/- 0.1 cm and 8.6 +/- 0.1 cm.'
+    check:
+      kind: uncertainty
+      combine: add-absolutes
+      terms:
+        - {value: "12.4", absolute: "0.1"}
+        - {value: "8.6", absolute: "0.1"}
+      result: "21.0"
+      uncertainty: "0.2"
+    answer_text: '21.0 +/- 0.2 cm'
+
+  - id: g14-quote-time
+    section: '1.3'
+    dfe: [AP1]
+    statement: 'Quote 4.567 s with an uncertainty of 0.1 s.'
+    check:
+      kind: sigfigs
+      value: "4.567"
+      figures: 2
+      answer: "4.6"
+      convention: round-once
+    answer_text: '4.6 +/- 0.1 s'
+
+  - id: g15-oscillations-for-target
+    section: '1.3'
+    dfe: [AP1]
+    statement: 'Find the number of oscillations for which 40 / (1.795 N) is below 0.5.'
+    check:
+      kind: approx
+      value: "40 / (1.795 * 0.5)"
+      target: "44.6"
+      tolerance: "0.1"
+    answer_text: '44.6, so at least 45 oscillations.'
+
+  # --- The warm-up recalls ----------------------------------------------------
+  - id: warmup-1-1-km
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Warm-up: write 3500 m in kilometres.'
+    check: {kind: convert, value: "3500", from: "m", to: "km", answer: "3.5"}
+    answer_text: '3.5 km'
+
+  - id: warmup-1-1-ms
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Warm-up: write 0.045 s in milliseconds.'
+    check: {kind: convert, value: "0.045", from: "s", to: "ms", answer: "45"}
+    answer_text: '45 ms'
+
+  - id: warmup-1-1-arithmetic
+    section: '1.1'
+    dfe: [AP1]
+    statement: 'Warm-up: work out 0.5 x 1200 x 15^2.'
+    check: {kind: evaluate, expression: "0.5 * 1200 * 15**2", answer: "135000"}
+    answer_text: '135000'
+
+  - id: warmup-1-2-mm2
+    section: '1.2'
+    dfe: [AP1]
+    statement: 'Warm-up: write 2.5 mm^2 in m^2.'
+    check: {kind: convert, value: "2.5", from: "mm^2", to: "m^2", answer: "2.5e-06"}
+    answer_text: '2.5e-6 m^2'
+
+  - id: warmup-1-2-standard-form
+    section: '1.2'
+    dfe: [AP1]
+    statement: 'Warm-up: write 0.00030 m in standard form.'
+    check: {kind: sigfigs, value: "0.0003", figures: 2, answer: "3.0e-4", convention: round-once}
+    answer_text: '3.0e-4 m'
+
+  - id: warmup-1-2-divide
+    section: '1.2'
+    dfe: [AP1]
+    statement: 'Warm-up: work out 0.2 / 20.'
+    check: {kind: evaluate, expression: "1/5 / 20", answer: "1/100"}
+    answer_text: '0.010'
+
+  - id: warmup-1-3-mm
+    section: '1.3'
+    dfe: [AP1]
+    statement: 'Warm-up: write 0.800 mm in metres.'
+    check: {kind: convert, value: "0.800", from: "mm", to: "m", answer: "8e-04"}
+    answer_text: '8.00e-4 m'
+
+  - id: warmup-1-3-mean
+    section: '1.3'
+    dfe: [AP1]
+    statement: 'Warm-up: find the mean of 12.4, 12.6 and 12.5.'
+    check:
+      kind: uncertainty
+      mean_of: ["12.4", "12.6", "12.5"]
+      convention: half-range
+      answer: "12.5"
+      uncertainty: "0.1"
+    answer_text: '12.5'
+
+  - id: warmup-1-3-percentage
+    section: '1.3'
+    dfe: [AP1]
+    statement: 'Warm-up: work out the percentage 0.2 / 8.0 x 100 %.'
+    check: {kind: sigfigs, value: "5/2", figures: 2, answer: "2.5", convention: round-once}
+    answer_text: '2.5 %'
+
+  # --- The chapter problem, resolved on the Review page -----------------------
+  - id: anchor-mean-timing
+    section: Review
+    dfe: [AP1]
+    statement: 'The mean and half-range uncertainty of 35.90 s, 35.85 s and 35.95 s.'
+    check:
+      kind: uncertainty
+      mean_of: ["35.90", "35.85", "35.95"]
+      convention: half-range
+      answer: "35.90"
+      uncertainty: "0.05"
+    answer_text: '35.90 +/- 0.05 s'
+
+  - id: anchor-period
+    section: Review
+    dfe: [AP1]
+    statement: 'The period is the time for 20 oscillations divided by 20.'
+    check: {kind: evaluate, expression: "(359/10) / 20", answer: "359/200"}
+    answer_text: '1.795 s'
+
+  - id: anchor-g
+    section: Review
+    dfe: [AP1]
+    statement: 'g = 4 pi^2 L / T^2 with L = 0.800 m and T = 1.795 s.'
+    check:
+      kind: approx
+      value: "4 * pi**2 * (4/5) / ((359/200)**2)"
+      target: "9.802"
+      tolerance: "0.001"
+    answer_text: '9.802 m s^-2'
+
+  - id: anchor-percentage-g
+    section: Review
+    dfe: [AP1]
+    statement: 'The percentage uncertainty in g is 0.125 % + 2 x 0.139 %.'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "1/8 + 2 * 50/359", answer: "1159/2872"}
+        - {kind: sigfigs, value: "1159/2872", figures: 2, answer: "0.40", convention: round-once}
+    answer_text: '0.40 %'
+
+  - id: anchor-uncertainty-g
+    section: Review
+    dfe: [AP1]
+    statement: 'The absolute uncertainty in g from 0.40 % of 9.802 m s^-2.'
+    check:
+      kind: approx
+      value: "(128000 * pi**2 / 128881) * (1159/2872) / 100"
+      target: "0.0396"
+      tolerance: "0.0005"
+    answer_text: '0.04 m s^-2'
+
+  - id: anchor-quote-g
+    section: Review
+    dfe: [AP1]
+    statement: 'Quote the value of g with its uncertainty.'
+    check: {kind: sigfigs, value: "9.802138122294503", figures: 3, answer: "9.80", convention: round-once}
+    answer_text: '9.80 +/- 0.04 m s^-2'
+
+  - id: anchor-clock-length
+    section: Review
+    dfe: [AP1]
+    statement: 'The length of a seconds pendulum from L = g T^2 / (4 pi^2).'
+    check: {kind: approx, value: "9.81 / pi**2", target: "0.994", tolerance: "0.001"}
+    answer_text: '0.994 m'

@@ -1,0 +1,165 @@
+# Practice set for 2.6, linear and quadratic inequalities, and set notation.
+#
+# An inequality answer is a set. The `inequality` check compares the solution set
+# from reduce_inequalities with the declared set, so an open end where the chain
+# is closed fails. Endpoints are read straight from the set notation:
+# Interval.open is strict, Interval(a, b) is closed, Interval.Lopen is open at a.
+chapter: 2
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-linear
+    section: "2.6"
+    dfe: [B5]
+    statement: 'Solve $3x - 5 < 7$. Give the solution in set notation.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: "3*x - 5 < 7"
+      answer: "Interval.open(-oo, 4)"
+    answer_text: 'Add $5$ to both sides: $3x < 12$. Divide by $3$: $x < 4$. In set notation the solution is $x \in (-\infty, 4)$.'
+
+  - id: p2-negative-divide
+    section: "2.6"
+    dfe: [B5]
+    statement: 'Solve $2(x - 3) \geq 5x$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: "2*(x - 3) >= 5*x"
+      answer: "Interval(-oo, -2)"
+    answer_text: 'Expand: $2x - 6 \geq 5x$. Subtract $2x$: $-6 \geq 3x$. Divide by $3$: $-2 \geq x$, so $x \leq -2$. In set notation, $x \in (-\infty, -2]$. Both sides close at $-2$ because the inequality is "or equal to".'
+
+  - id: p3-bracket-fraction
+    section: "2.6"
+    dfe: [B5]
+    statement: 'Solve $\dfrac{x + 1}{2} \geq 3$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: "(x + 1)/2 >= 3"
+      answer: "Interval(5, oo)"
+    answer_text: 'Multiply both sides by $2$: $x + 1 \geq 6$. Subtract $1$: $x \geq 5$. In set notation, $x \in [5, \infty)$.'
+
+  - id: p4-variable-both-sides
+    section: "2.6"
+    dfe: [B5]
+    statement: 'Solve $2x - 3 < 5x + 6$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: "2*x - 3 < 5*x + 6"
+      answer: "Interval.open(-3, oo)"
+    answer_text: 'Subtract $2x$ from both sides: $-3 < 3x + 6$. Subtract $6$: $-9 < 3x$. Divide by $3$: $-3 < x$, so $x > -3$. In set notation, $x \in (-3, \infty)$.'
+
+  - id: p5-quadratic-below
+    section: "2.6"
+    dfe: [B5]
+    statement: 'Solve $x^2 - x - 6 < 0$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: "x**2 - x - 6 < 0"
+      answer: "Interval.open(-2, 3)"
+    answer_text: 'Factorise: $x^2 - x - 6 = (x - 3)(x + 2)$, so the parabola crosses the $x$-axis at $x = -2$ and $x = 3$. It opens upwards, so it is below the axis between the roots. The solution is $-2 < x < 3$, or $x \in (-2, 3)$.'
+
+  - id: p6-quadratic-outside
+    section: "2.6"
+    dfe: [B5]
+    statement: 'Solve $x^2 \geq 4$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: "x**2 >= 4"
+      answer: "Union(Interval(-oo, -2), Interval(2, oo))"
+    answer_text: 'Rearrange to $x^2 - 4 \geq 0$, which factorises as $(x - 2)(x + 2) \geq 0$. The parabola opens upwards and the inequality is "greater than or equal to zero", so the solution lies outside the roots: $x \leq -2$ or $x \geq 2$. In set notation, $x \in (-\infty, -2] \cup [2, \infty)$.'
+
+  - id: p7-quadratic-outside-strict
+    section: "2.6"
+    dfe: [B5]
+    statement: 'Solve $x^2 + 2x - 8 > 0$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: "x**2 + 2*x - 8 > 0"
+      answer: "Union(Interval.open(-oo, -4), Interval.open(2, oo))"
+    answer_text: 'Factorise: $x^2 + 2x - 8 = (x + 4)(x - 2)$, with roots $x = -4$ and $x = 2$. The parabola opens upwards, so it is positive outside the roots. The inequality is strict, so the endpoints are not included: $x < -4$ or $x > 2$, or $x \in (-\infty, -4) \cup (2, \infty)$.'
+
+  - id: p8-repeated-root-inequality
+    section: "2.6"
+    dfe: [B5]
+    statement: 'Solve $x^2 - 6x + 9 \leq 0$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: "x**2 - 6*x + 9 <= 0"
+      answer: [3]
+    answer_text: 'Factorise: $x^2 - 6x + 9 = (x - 3)^2$. A square is never negative, so the only way for $(x - 3)^2 \leq 0$ is $(x - 3)^2 = 0$. The only solution is $x = 3$.'
+
+  - id: p9-no-solution
+    section: "2.6"
+    dfe: [B5]
+    statement: 'Solve $x^2 < 0$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: "x**2 < 0"
+      answer: "EmptySet"
+    answer_text: 'A square is never negative, so no real number satisfies $x^2 < 0$. The solution set is empty. Compare this with $x^2 \geq 0$, whose solution set is every real number.'
+
+  - id: p10-contradiction
+    section: "2.6"
+    dfe: [B5]
+    statement: 'Solve $3x + 1 > 3x + 5$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: "3*x + 1 > 3*x + 5"
+      answer: "EmptySet"
+    answer_text: 'Subtract $3x$ from both sides: $1 > 5$. This is false, whatever the value of $x$, so no value of $x$ works. The solution set is empty.'
+
+  - id: p11-quadratic-between
+    section: "2.6"
+    dfe: [B5]
+    statement: 'Solve $x^2 \leq 9$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: "x**2 <= 9"
+      answer: "Interval(-3, 3)"
+    answer_text: 'Rearrange to $x^2 - 9 \leq 0$, which factorises as $(x - 3)(x + 3) \leq 0$. The parabola opens upwards, so it is negative or zero between the roots: $-3 \leq x \leq 3$, or $x \in [-3, 3]$.'
+
+  - id: p12-always-true
+    section: "2.6"
+    dfe: [B5]
+    statement: 'Solve $x^2 \geq 0$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: "x**2 >= 0"
+      answer: "UniversalSet"
+    answer_text: 'A square is never negative, so every real number satisfies $x^2 \geq 0$. The solution set is the whole number line, written $x \in \mathbb{R}$.'
+
+  - id: p13-double-inequality
+    section: "2.6"
+    dfe: [B5]
+    statement: 'Solve the double inequality $-3 < 2x + 1 \leq 5$.'
+    answer_label: 'The solution set'
+    check:
+      kind: inequality
+      variable: x
+      inequality: "-3 < 2*x + 1 <= 5"
+      answer: "Interval.Lopen(-2, 2)"
+    answer_text: 'Subtract $1$ from all three parts: $-4 < 2x \leq 4$. Divide by $2$: $-2 < x \leq 2$. The left end is strict and the right end is included, so $x \in (-2, 2]$.'

@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.2 Estimation and the limitations of measurement — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: AP1
+Work through these on your own. For an estimate, round each quantity to one
+significant figure first, and say where the estimate is weak.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-01-practice-1.2
+
+:::answers chapter-01-practice-1.2

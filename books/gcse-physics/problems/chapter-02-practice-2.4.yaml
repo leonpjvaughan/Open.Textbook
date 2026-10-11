@@ -1,0 +1,231 @@
+# Practice set for 2.4 (Pressure and pressure differences in fluids).
+#
+# Pressure in a fluid is a quantity with a unit, so a calculation carries
+# `dimensions` for the exact magnitude and unit, and `sigfigs` for the one
+# rounding. An area conversion is proved by `convert`, which checks that the
+# dimensions agree before it compares the numbers. The pressure at a depth,
+# p = h rho g, is Higher-only content (AQA 8463 4.5.5.1.2 is marked HT only), so
+# those records carry tier H. Every `all` record states its answer_text; without
+# it a composed check would print a question with no answer.
+chapter: 2
+problems:
+  - id: p1-pressure-block
+    section: '2.4'
+    tier: F
+    dfe: [FO3]
+    statement: 'A block pushes down on the ground with a force of 200 N. The area in contact with the ground is 0.080 m$^2$. Calculate the pressure on the ground.'
+    answer_label: 'Pressure on the ground'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / A"
+          values:
+            F: {value: "200", unit: "N"}
+            A: {value: "0.080", unit: "m^2"}
+          answer: {value: "2500", unit: "Pa"}
+        - {kind: sigfigs, value: "2500", figures: 2, answer: "2.5e3", convention: round-once}
+    answer_text: '$p = \dfrac{F}{A} = \dfrac{200}{0.080} = 2500\,\text{Pa} = 2.5 \times 10^3\,\text{Pa}$.'
+
+  - id: p2-tyre-pressure
+    section: '2.4'
+    tier: F
+    dfe: [FO3]
+    statement: 'A tyre pushes on the road with a force of 540 N. The contact patch between the tyre and the road has an area of 0.0012 m$^2$. Calculate the pressure in the tyre.'
+    answer_label: 'Pressure in the tyre'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / A"
+          values:
+            F: {value: "540", unit: "N"}
+            A: {value: "0.0012", unit: "m^2"}
+          answer: {value: "450000", unit: "Pa"}
+        - {kind: sigfigs, value: "450000", figures: 2, answer: "4.5e5", convention: round-once}
+    answer_text: '$p = \dfrac{F}{A} = \dfrac{540}{0.0012} = 450000\,\text{Pa} = 4.5 \times 10^5\,\text{Pa}$.'
+
+  - id: p3-force-from-pressure
+    section: '2.4'
+    tier: F
+    dfe: [FO3]
+    statement: 'A pressure of 4500 Pa acts on an area of 0.60 m$^2$. Calculate the force normal to the surface.'
+    answer_label: 'Force normal to the surface'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p * A"
+          values:
+            p: {value: "4500", unit: "Pa"}
+            A: {value: "0.60", unit: "m^2"}
+          answer: {value: "2700", unit: "N"}
+        - {kind: sigfigs, value: "2700", figures: 2, answer: "2.7e3", convention: round-once}
+    answer_text: '$F = pA = 4500 \times 0.60 = 2700\,\text{N} = 2.7 \times 10^3\,\text{N}$.'
+
+  - id: p4-area-from-pressure
+    section: '2.4'
+    tier: F
+    dfe: [FO3]
+    statement: 'A force of 600 N produces a pressure of 15000 Pa. Calculate the area that the force acts on.'
+    answer_label: 'Area the force acts on'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / p"
+          values:
+            F: {value: "600", unit: "N"}
+            p: {value: "15000", unit: "Pa"}
+          answer: {value: "0.040", unit: "m^2"}
+        - {kind: sigfigs, value: "0.04", figures: 2, answer: "0.040", convention: round-once}
+    answer_text: '$A = \dfrac{F}{p} = \dfrac{600}{15000} = 0.040\,\text{m}^2$.'
+
+  - id: p5-convert-area
+    section: '2.4'
+    tier: F
+    dfe: [FO3]
+    statement: 'The area of a small tile is 25 cm$^2$. Convert this area to square metres.'
+    answer_label: 'Area in square metres'
+    check:
+      kind: convert
+      value: "25"
+      from: "cm^2"
+      to: "m^2"
+      answer: "0.0025"
+    answer_text: 'There are $10000\,\text{cm}^2$ in $1\,\text{m}^2$, so $25\,\text{cm}^2 = 25 \div 10000 = 0.0025\,\text{m}^2$.'
+
+  - id: p6-stiletto-pressure
+    section: '2.4'
+    tier: F
+    dfe: [FO3]
+    statement: 'A force of 600 N acts through the point of a stiletto heel. The area of the point is 0.00020 m$^2$. Calculate the pressure. Explain why a wide heel is kinder to a wooden floor.'
+    answer_label: 'Pressure from the heel'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / A"
+          values:
+            F: {value: "600", unit: "N"}
+            A: {value: "0.00020", unit: "m^2"}
+          answer: {value: "3000000", unit: "Pa"}
+        - {kind: sigfigs, value: "3000000", figures: 2, answer: "3.0e6", convention: round-once}
+    answer_text: '$p = \dfrac{F}{A} = \dfrac{600}{0.00020} = 3000000\,\text{Pa} = 3.0 \times 10^6\,\text{Pa}$. A wide heel spreads the same force over a larger area, so the pressure is smaller and the floor is less likely to be damaged.'
+
+  - id: p7-normal-force
+    section: '2.4'
+    tier: F
+    dfe: [FO3]
+    statement: 'Explain why the pressure in a fluid causes a force normal to a surface, and give one example of the effect.'
+    answer_label: 'The force from fluid pressure'
+    check:
+      kind: structured
+      requires: [normal-reason, example]
+      concepts: [fluid, pressure]
+      points:
+        - id: normal-reason
+          text: 'The particles of the fluid collide with the surface. Each collision pushes on the surface, and the total force is at right angles to the surface.'
+          concepts: [fluid, pressure]
+        - id: example
+          text: 'The air inside a bicycle tyre pushes outwards on the tyre, at right angles to the rubber at every point.'
+          concepts: [pressure]
+
+  - id: p8-atmosphere-height
+    section: '2.4'
+    tier: F
+    dfe: [FO3]
+    statement: 'Explain why atmospheric pressure decreases as the height above the ground increases.'
+    answer_label: 'Why atmospheric pressure falls with height'
+    check:
+      kind: structured
+      requires: [fewer-molecules, less-weight, lower-pressure]
+      concepts: [atmospheric-pressure]
+      points:
+        - id: fewer-molecules
+          text: 'The atmosphere is a thin layer of air around the Earth, and there are fewer air molecules above a high surface.'
+          concepts: [atmospheric-pressure]
+        - id: less-weight
+          text: 'So the weight of the air above the surface is smaller.'
+          concepts: [atmospheric-pressure]
+        - id: lower-pressure
+          text: 'Fewer collisions from the air molecules give a smaller pressure, so atmospheric pressure decreases with height.'
+          concepts: [atmospheric-pressure]
+
+  - id: p9-pressure-depth
+    section: '2.4'
+    tier: H
+    dfe: [FO3]
+    statement: 'Calculate the pressure due to a column of water 10 m high. The density of water is 1000 kg/m$^3$ and $g = 9.8\,\text{N/kg}$. Use $p = h\rho g$.'
+    answer_label: 'Pressure at a depth of 10 m'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "h * rho * g"
+          values:
+            h: {value: "10", unit: "m"}
+            rho: {value: "1000", unit: "kg/m^3"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "98000", unit: "Pa"}
+        - {kind: sigfigs, value: "98000", figures: 2, answer: "9.8e4", convention: round-once}
+    answer_text: '$p = h\rho g = 10 \times 1000 \times 9.8 = 98000\,\text{Pa} = 9.8 \times 10^4\,\text{Pa}$.'
+
+  - id: p10-pressure-oil
+    section: '2.4'
+    tier: H
+    dfe: [FO3]
+    statement: 'A tank holds a layer of oil 0.50 m deep. The density of the oil is 800 kg/m$^3$ and $g = 9.8\,\text{N/kg}$. Calculate the pressure due to the oil at the bottom of the layer.'
+    answer_label: 'Pressure due to the oil'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "h * rho * g"
+          values:
+            h: {value: "0.50", unit: "m"}
+            rho: {value: "800", unit: "kg/m^3"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "3920", unit: "Pa"}
+        - {kind: sigfigs, value: "3920", figures: 2, answer: "3.9e3", convention: round-once}
+    answer_text: '$p = h\rho g = 0.50 \times 800 \times 9.8 = 3920\,\text{Pa} = 3.9 \times 10^3\,\text{Pa}$.'
+
+  - id: p11-depth-difference
+    section: '2.4'
+    tier: H
+    dfe: [FO3]
+    statement: 'A diver moves from a depth of 1.0 m to a depth of 3.0 m in water of density 1000 kg/m$^3$. Take $g = 9.8\,\text{N/kg}$. Calculate the increase in pressure.'
+    answer_label: 'Increase in pressure on the diver'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "h * rho * g"
+          values:
+            h: {value: "2.0", unit: "m"}
+            rho: {value: "1000", unit: "kg/m^3"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "19600", unit: "Pa"}
+        - {kind: sigfigs, value: "19600", figures: 2, answer: "2.0e4", convention: round-once}
+    answer_text: 'The extra depth is $3.0 - 1.0 = 2.0\,\text{m}$. Then $\Delta p = h\rho g = 2.0 \times 1000 \times 9.8 = 19600\,\text{Pa} = 2.0 \times 10^4\,\text{Pa}$.'
+
+  - id: p12-upthrust
+    section: '2.4'
+    tier: H
+    dfe: [FO3]
+    statement: 'Explain why a partly submerged object feels an upward force, and describe one factor that decides whether the object floats or sinks.'
+    answer_label: 'Upthrust and floating'
+    check:
+      kind: structured
+      requires: [greater-pressure-below, upthrust, density-factor]
+      concepts: [upthrust, floating-and-sinking]
+      points:
+        - id: greater-pressure-below
+          text: 'The bottom surface of the object is deeper than the top surface, so the pressure on the bottom is greater.'
+          concepts: [upthrust]
+        - id: upthrust
+          text: 'The greater upward force on the bottom and the smaller downward force on the top give a resultant upward force called upthrust.'
+          concepts: [upthrust]
+        - id: density-factor
+          text: 'An object floats if its average density is less than the density of the fluid, and sinks if its average density is greater.'
+          concepts: [floating-and-sinking]

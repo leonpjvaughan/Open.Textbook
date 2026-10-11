@@ -1,0 +1,152 @@
+# Practice set for 2.12, functions in modelling: limitations and refinements.
+#
+# A model's algebra is checkable: completing the square for a greatest value, a
+# `solve` with an interval for a realistic time, a `regression` for a line fitted
+# to data, and an `approx` for a prediction against a measurement. Whether the
+# model is appropriate, and what its limitations are, is a judgement and lives in
+# the answer text, never in a check.
+chapter: 2
+symbols:
+  t: {real: true}
+  n: {nonnegative: true}
+problems:
+  - id: p1-greatest-height
+    section: "2.12"
+    dfe: [B11, OT3]
+    statement: 'A ball is thrown upwards. Its height in metres after $t$ seconds is modelled by $h = 1.5 + 4t - 5t^2$. Complete the square and state the greatest height.'
+    answer_label: 'The completed square and the greatest height'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "1.5 + 4*t - 5*t**2", answer: "-5*(t - 2/5)**2 + 23/10"}
+        - {kind: evaluate, expression: "1.5 + 4*(2/5) - 5*(2/5)**2", answer: "23/10"}
+    answer_text: 'Complete the square: $h = -5\left(t - \frac{2}{5}\right)^2 + \frac{23}{10}$. The squared term is subtracted, so $h$ is greatest when $t = \frac{2}{5}$. The greatest height is $\frac{23}{10} = 2.3$ m. The coefficient of $t^2$ is negative, so the parabola opens downwards and the vertex is a maximum.'
+
+  - id: p2-landing-time
+    section: "2.12"
+    dfe: [B11, OT3]
+    statement: 'For the model $h = 1.5 + 4t - 5t^2$, solve $h = 0$ and give the realistic landing time. Give both exact roots first.'
+    answer_label: 'The roots and the realistic time'
+    check:
+      kind: solve
+      equation: "1.5 + 4*t - 5*t**2 = 0"
+      variable: t
+      answer: ["(4 + sqrt(46))/10", "(4 - sqrt(46))/10"]
+    answer_text: 'Solve $5t^2 - 4t - 1.5 = 0$ with the formula. The discriminant is $16 + 30 = 46$, so $t = \frac{4 \pm \sqrt{46}}{10}$. Numerically these are about $-0.278$ and $1.078$. A negative time is outside the model, so the ball lands at about $1.08$ s. The domain of the model is $0 \le t \le \frac{4 + \sqrt{46}}{10}$.'
+
+  - id: p3-initial-height
+    section: "2.12"
+    dfe: [B11, OT3]
+    statement: 'For the model $h = 1.5 + 4t - 5t^2$, work out the height at $t = 0$ and explain what the constant $1.5$ means.'
+    answer_label: 'The initial height and its meaning'
+    check:
+      kind: evaluate
+      expression: "1.5 + 4*0 - 5*0**2"
+      answer: "3/2"
+    answer_text: 'At $t = 0$, $h = 1.5$. The constant term is the height at the instant the model starts, so the ball is released from $1.5$ m above the ground. This is the $y$-intercept of the graph.'
+
+  - id: p4-height-at-a-time
+    section: "2.12"
+    dfe: [B11, OT3]
+    statement: 'For the model $h = 1.5 + 4t - 5t^2$, find the two times at which the ball is $2$ m high.'
+    answer_label: 'The two times'
+    check:
+      kind: solve
+      equation: "1.5 + 4*t - 5*t**2 = 2"
+      variable: t
+      answer: ["(4 - sqrt(6))/10", "(4 + sqrt(6))/10"]
+    answer_text: 'Set $1.5 + 4t - 5t^2 = 2$ and rearrange: $5t^2 - 4t + 0.5 = 0$. The discriminant is $16 - 10 = 6$, so $t = \frac{4 \pm \sqrt{6}}{10}$. Numerically the two times are about $0.155$ s and $0.645$ s. The ball is at $2$ m once on the way up and once on the way down, so two times is the expected answer.'
+
+  - id: p5-fit-a-line
+    section: "2.12"
+    dfe: [B11, OT3]
+    statement: 'A sensor records the readings $(1, 3)$, $(2, 5)$, $(3, 8)$ and $(4, 9)$. Find the least-squares line $y = a + bx$ for these data.'
+    answer_label: 'The gradient and intercept'
+    check:
+      kind: regression
+      x: [1, 2, 3, 4]
+      y: [3, 5, 8, 9]
+      answer: {gradient: "21/10", intercept: "1"}
+    answer_text: 'The least-squares line has gradient $b = \frac{21}{10} = 2.1$ and intercept $a = 1$, so $y = 1 + 2.1x$. The gradient is positive, so the reading increases as the input increases. The line is a fit to these four points only, and it says nothing about readings outside them.'
+
+  - id: p6-approx-prediction
+    section: "2.12"
+    dfe: [B11, OT3]
+    statement: 'A model predicts a value of $2.3$. A measurement gives $2.28$. Decide whether the prediction is within a tolerance of $0.05$.'
+    answer_label: 'The decision'
+    check:
+      kind: approx
+      value: "2.28"
+      target: "23/10"
+      tolerance: "1/20"
+    answer_text: 'The difference is $|2.28 - 2.3| = 0.02$, which is less than $0.05$. So the prediction is within the stated tolerance. A tolerance is part of the claim: without one, a decimal prediction and a measurement can never be compared fairly.'
+
+  - id: p7-cost-model
+    section: "2.12"
+    dfe: [B11, OT3]
+    statement: 'The cost in pounds of making $n$ items is modelled by $C = 50 + 12n + 0.5n^2$. Work out the cost of making $20$ items.'
+    answer_label: 'The cost'
+    check:
+      kind: evaluate
+      expression: "50 + 12*20 + 1/2*20**2"
+      answer: "490"
+    answer_text: 'Substitute $n = 20$: $C = 50 + 12 \times 20 + 0.5 \times 20^2 = 50 + 240 + 200 = 490$. The cost is £490. The fixed term $50$ is the set-up cost, and the $n^2$ term makes the cost grow faster as the run gets longer.'
+
+  - id: p8-break-even
+    section: "2.12"
+    dfe: [B11, OT3]
+    statement: 'For the cost model $C = 50 + 12n + 0.5n^2$, find the smallest whole number of items for which the cost is at least £250.'
+    answer_label: 'The number of items'
+    check:
+      kind: solve
+      equation: "50 + 12*n + 1/2*n**2 = 250"
+      variable: n
+      interval: [0, 30]
+      answer: ["-12 + 4*sqrt(34)"]
+    answer_text: 'Set $50 + 12n + 0.5n^2 = 250$: multiply by $2$ and rearrange to $n^2 + 24n - 400 = 0$. The formula gives $n = -12 \pm 4\sqrt{34}$. Only the positive root is realistic: $n = -12 + 4\sqrt{34} \approx 11.32$. Since $n$ is a whole number of items, the smallest count is $12$. The negative root is rejected because a number of items cannot be negative.'
+
+  - id: p9-two-forms
+    section: "2.12"
+    dfe: [B11, OT3]
+    statement: 'Show that the two forms of the height model $h = 1.5 + 4t - 5t^2$ and $h = -5\left(t - \frac{2}{5}\right)^2 + \frac{23}{10}$ are the same.'
+    answer_label: 'The identity'
+    check:
+      kind: evaluate
+      expression: "-5*(t - 2/5)**2 + 23/10"
+      answer: "-5*t**2 + 4*t + 3/2"
+    answer_text: 'Expand the completed-square form: $-5\left(t - \frac{2}{5}\right)^2 = -5\left(t^2 - \frac{4}{5}t + \frac{4}{25}\right) = -5t^2 + 4t - \frac{4}{5}$. Add $\frac{23}{10}$: $-5t^2 + 4t - \frac{4}{5} + \frac{23}{10} = -5t^2 + 4t + \frac{3}{2}$. Since $1.5 = \frac{3}{2}$, this is the expanded model. The two forms are equal for every $t$.'
+
+  - id: p10-cost-per-item
+    section: "2.12"
+    dfe: [B11, OT3]
+    statement: 'A model for the average cost per item is $A = \dfrac{100}{x} + 2x$ pounds, for $x > 0$. Work out the average cost when $x = 5$ and when $x = 10$.'
+    answer_label: 'The two average costs'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "100/5 + 2*5", answer: "30"}
+        - {kind: evaluate, expression: "100/10 + 2*10", answer: "30"}
+    answer_text: 'At $x = 5$: $A = \frac{100}{5} + 10 = 20 + 10 = 30$. At $x = 10$: $A = \frac{100}{10} + 20 = 10 + 20 = 30$. Both runs give the same average cost, which suggests the model has a smallest value somewhere between the two. The model is not defined at $x = 0$, because it would divide by zero, and a run of zero items has no average cost; the domain is $x > 0$.'
+
+  - id: p11-refined-model
+    section: "2.12"
+    dfe: [B11, OT3]
+    statement: 'A refined model for the ball is $h = 1.6 + 4.1t - 5t^2$. Work out its height at $t = 0.4$ and compare it with the original model.'
+    answer_label: 'The refined value'
+    check:
+      kind: evaluate
+      expression: "1.6 + 4.1*(2/5) - 5*(2/5)**2"
+      answer: "61/25"
+    answer_text: 'Substitute $t = 0.4$: $h = 1.6 + 4.1 \times 0.4 - 5 \times 0.4^2 = 1.6 + 1.64 - 0.8 = 2.44$ m. The original model gives $2.3$ m at the same time. The refined model gives a higher peak, because the constant and the linear coefficient were increased after comparing with measurements.'
+
+  - id: p12-choose-the-model
+    section: "2.12"
+    dfe: [B11, OT3]
+    statement: 'A measurement gives $2.28$ m. Model A predicts $2.30$ m and model B predicts $2.44$ m. With a tolerance of $0.05$, decide which model fits the measurement, and say what the decision does not show.'
+    answer_label: 'The decision and its limit'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "2.30", target: "2.28", tolerance: "1/20"}
+        - {kind: compare, relation: ">", lhs: "Abs(2.44 - 2.28)", rhs: "1/20"}
+    answer_text: 'Model A is within the tolerance: $|2.30 - 2.28| = 0.02 < 0.05$. Model B is not: $|2.44 - 2.28| = 0.16 > 0.05$. So model A fits this measurement and model B does not. This shows only that A is closer at this one point. One measurement cannot show that a model is correct in general; more data, and a thought about the assumptions, are needed before either model can be trusted.'

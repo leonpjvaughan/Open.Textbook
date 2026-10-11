@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.3 Measurements and uncertainties — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: AP1
+Work through these on your own. For each calculation, write the uncertainty rule
+you are using before you substitute any numbers.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-01-practice-1.3
+
+:::answers chapter-01-practice-1.3

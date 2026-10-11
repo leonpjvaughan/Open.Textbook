@@ -10,9 +10,16 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.10 Composite and inverse functions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: B8, OT1
+Work through these on your own. For a composite, work from the inside out. For an
+inverse, make the input the subject and then swap the letters; finish by
+composing both ways to check. State a domain restriction when the function is not
+one-to-one on the whole real line.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-02-practice-2.10
+
+:::answers chapter-02-practice-2.10

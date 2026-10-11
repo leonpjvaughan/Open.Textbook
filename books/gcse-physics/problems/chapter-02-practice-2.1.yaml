@@ -1,0 +1,210 @@
+# Practice set for 2.1 (Forces and their interactions).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]` in book.yaml, so a check may use either.
+#
+# A weight is checked as the composition of two claims: `dimensions` proves the
+# exact magnitude and unit, and `sigfigs` proves the one rounding to the figures
+# the data support. A resultant in a line has no unit conversion to prove, so it
+# uses `evaluate`. A resolved force is a vector, so it uses `resolve`, which
+# compares each component against the exact trigonometric value with a stated
+# tolerance.
+#
+# Honest limit (research/curriculum/verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass. The `structured`
+# records at the end prove only that a model answer contains the declared ideas,
+# not that the reasoning is right, and the page says so.
+chapter: 2
+problems:
+  - id: p1-weight-pupil
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'A pupil has a mass of 55 kg. Take $g = 9.8\,\text{N/kg}$. Calculate the weight of the pupil.'
+    answer_label: 'Weight of the pupil'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g"
+          values:
+            m: {value: "55", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "539", unit: "N"}
+        - {kind: sigfigs, value: "539", figures: 2, answer: "540", convention: round-once}
+    answer_text: '$W = mg = 55 \times 9.8 = 539\,\text{N}$, so $540\,\text{N}$ to 2 significant figures.'
+
+  - id: p2-weight-apple
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'An apple has a mass of 0.20 kg. Take $g = 9.8\,\text{N/kg}$. Calculate the weight of the apple.'
+    answer_label: 'Weight of the apple'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g"
+          values:
+            m: {value: "0.20", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "1.96", unit: "N"}
+        - {kind: sigfigs, value: "1.96", figures: 2, answer: "2.0", convention: round-once}
+    answer_text: '$W = mg = 0.20 \times 9.8 = 1.96\,\text{N}$, so $2.0\,\text{N}$ to 2 significant figures.'
+
+  - id: p3-resultant-forward
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'A box is pushed to the right with a force of 320 N. A friction force of 180 N acts to the left. Calculate the resultant force on the box, and give its direction.'
+    answer_label: 'Resultant force on the box'
+    check: {kind: evaluate, expression: "320 - 180", answer: "140"}
+    answer_text: 'The two forces act in opposite directions, so subtract: $320 - 180 = 140\,\text{N}$ to the right.'
+
+  - id: p4-resultant-same
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'Two people push a car in the same direction. One pushes with a force of 400 N and the other pushes with 350 N. Calculate the resultant force on the car.'
+    answer_label: 'Resultant force on the car'
+    check: {kind: evaluate, expression: "400 + 350", answer: "750"}
+    answer_text: 'The forces act in the same direction, so add: $400 + 350 = 750\,\text{N}$ in the direction of the push.'
+
+  - id: p5-balanced
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'Two teams pull on a rope in opposite directions. Each team pulls with a force of 1200 N. Calculate the resultant force on the rope.'
+    answer_label: 'Resultant force on the rope'
+    check: {kind: evaluate, expression: "1200 - 1200", answer: "0"}
+    answer_text: 'The forces are equal and opposite, so the resultant force is $0\,\text{N}$. The forces are balanced.'
+
+  - id: p6-weight-moon
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'A box of tools has a mass of 5.0 kg. On the Moon, $g = 1.6\,\text{N/kg}$. Calculate the weight of the box on the Moon.'
+    answer_label: 'Weight of the box on the Moon'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g"
+          values:
+            m: {value: "5.0", unit: "kg"}
+            g: {value: "1.6", unit: "N/kg"}
+          answer: {value: "8.0", unit: "N"}
+        - {kind: sigfigs, value: "8", figures: 2, answer: "8.0", convention: round-once}
+    answer_text: '$W = mg = 5.0 \times 1.6 = 8.0\,\text{N}$. The mass is the same on the Earth, but the weight is smaller because $g$ is smaller.'
+
+  - id: p7-crate-weight
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'A crate has a mass of 40 kg. Take $g = 9.8\,\text{N/kg}$. Calculate the weight of the crate.'
+    answer_label: 'Weight of the crate'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g"
+          values:
+            m: {value: "40", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "392", unit: "N"}
+        - {kind: sigfigs, value: "392", figures: 2, answer: "390", convention: round-once}
+    answer_text: '$W = mg = 40 \times 9.8 = 392\,\text{N}$, so $390\,\text{N}$ to 2 significant figures.'
+
+  - id: p8-contact-noncontact
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'Classify each of these forces as a contact force or a non-contact force: friction, the magnetic force, tension, the gravitational force.'
+    answer_label: 'Contact and non-contact forces'
+    check:
+      kind: structured
+      requires: [contact-forces, non-contact-forces]
+      concepts: [contact-force, non-contact-force]
+      points:
+        - id: contact-forces
+          text: 'Friction and tension are contact forces, because the objects touch.'
+          concepts: [contact-force]
+        - id: non-contact-forces
+          text: 'The magnetic force and the gravitational force are non-contact forces, because the objects do not touch.'
+          concepts: [non-contact-force]
+
+  - id: p9-interaction-pair
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'A book rests on a table. Name the force the table exerts on the book, and the force the book exerts on the table. Explain why these two forces form an interaction pair.'
+    answer_label: 'The interaction pair'
+    check:
+      kind: structured
+      requires: [table-on-book, book-on-table, pair-reason]
+      concepts: [normal-contact-force, interaction-pair]
+      points:
+        - id: table-on-book
+          text: 'The table pushes up on the book with a normal contact force.'
+          concepts: [normal-contact-force]
+        - id: book-on-table
+          text: 'The book pushes down on the table with a normal contact force of the same size.'
+          concepts: [normal-contact-force]
+        - id: pair-reason
+          text: 'The two forces are an interaction pair, because they come from the interaction between the book and the table, and each object feels one force.'
+          concepts: [interaction-pair]
+
+  - id: p10-mass-weight
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'A pupil says that their weight is 50 kg. Explain what is wrong with this statement.'
+    answer_label: 'What is wrong with the statement'
+    check:
+      kind: structured
+      requires: [mass-unit, weight-unit, correct]
+      concepts: [mass, weight]
+      points:
+        - id: mass-unit
+          text: 'The kilogram is the unit of mass, not of weight.'
+          concepts: [mass]
+        - id: weight-unit
+          text: 'Weight is a force, so it is measured in newtons.'
+          concepts: [weight]
+        - id: correct
+          text: 'A correct statement is that the pupil has a mass of 50 kg and a weight of about 490 N on the Earth, because $W = mg = 50 \times 9.8$.'
+          concepts: [weight]
+
+  - id: p11-resolve-40n
+    section: '2.1'
+    tier: H
+    dfe: [FO1]
+    statement: 'A force of 40 N acts at $35^\circ$ to the horizontal. Resolve the force into a horizontal component and a vertical component. Give each component to 3 significant figures.'
+    answer_label: 'The two components'
+    check:
+      kind: all
+      checks:
+        - kind: resolve
+          relation: components-from-magnitude-and-angle
+          magnitude: "40"
+          angle_deg: "35"
+          components: {x: "32.8", y: "22.9"}
+    answer_text: 'Horizontal component $= 40\cos 35^\circ = 32.8\,\text{N}$. Vertical component $= 40\sin 35^\circ = 22.9\,\text{N}$.'
+
+  - id: p12-resultant-perpendicular
+    section: '2.1'
+    tier: H
+    dfe: [FO1]
+    statement: 'Two forces act at right angles. One force is 60 N and the other is 80 N. Calculate the magnitude and the direction of the resultant force.'
+    answer_label: 'The resultant force'
+    check:
+      kind: all
+      checks:
+        - kind: resolve
+          relation: magnitude-and-angle-from-components
+          components: {x: "60", y: "80"}
+          magnitude: "100"
+          angle_deg: "53.1"
+    answer_text: 'Magnitude $= \sqrt{60^2 + 80^2} = 100\,\text{N}$. Direction $= 53.1^\circ$ from the 60 N force, found from $\tan\theta = 80/60$.'

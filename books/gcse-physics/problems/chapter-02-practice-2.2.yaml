@@ -1,0 +1,204 @@
+# Practice set for 2.2 (Forces and elasticity).
+#
+# A force, a spring constant and an extension are quantities with a unit, so each
+# calculation proves the exact magnitude and dimension with `dimensions` and then
+# the one rounding with `sigfigs`. A value read from a force-extension graph is a
+# measurement, so it is proved against a declared closed interval by `gradient` or
+# `area`, never by an equality. The two `structured` records prove only that a
+# model answer contains the declared ideas; the page says so.
+chapter: 2
+problems:
+  - id: p1-spring-force
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A spring has a spring constant of 200 N/m. It is stretched by 0.16 m. Calculate the force applied to the spring.'
+    answer_label: 'Force applied to the spring'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "k * e"
+          values:
+            k: {value: "200", unit: "N/m"}
+            e: {value: "0.16", unit: "m"}
+          answer: {value: "32", unit: "N"}
+        - {kind: sigfigs, value: "32", figures: 2, answer: "32", convention: round-once}
+    answer_text: '$F = ke = 200 \times 0.16 = 32\,\text{N}$.'
+
+  - id: p2-spring-constant
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A force of 15 N stretches a spring by 0.060 m. Calculate the spring constant of the spring.'
+    answer_label: 'Spring constant of the spring'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / e"
+          values:
+            F: {value: "15", unit: "N"}
+            e: {value: "0.060", unit: "m"}
+          answer: {value: "250", unit: "N/m"}
+        - {kind: sigfigs, value: "250", figures: 2, answer: "250", convention: round-once}
+    answer_text: '$k = \dfrac{F}{e} = \dfrac{15}{0.060} = 250\,\text{N/m}$.'
+
+  - id: p3-extension
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A spring has a spring constant of 150 N/m. A force of 45 N is applied. Calculate the extension of the spring.'
+    answer_label: 'Extension of the spring'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / k"
+          values:
+            F: {value: "45", unit: "N"}
+            k: {value: "150", unit: "N/m"}
+          answer: {value: "0.30", unit: "m"}
+        - {kind: sigfigs, value: "0.3", figures: 2, answer: "0.30", convention: round-once}
+    answer_text: '$e = \dfrac{F}{k} = \dfrac{45}{150} = 0.30\,\text{m}$.'
+
+  - id: p4-elastic-energy
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A spring has a spring constant of 250 N/m. It is stretched by 0.20 m, up to the limit of proportionality. Calculate the energy stored in the elastic potential store.'
+    answer_label: 'Energy stored in the spring'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * k * e**2"
+          values:
+            k: {value: "250", unit: "N/m"}
+            e: {value: "0.20", unit: "m"}
+          answer: {value: "5.0", unit: "J"}
+        - {kind: sigfigs, value: "5", figures: 2, answer: "5.0", convention: round-once}
+    answer_text: '$E_e = \tfrac{1}{2}ke^2 = 0.5 \times 250 \times 0.20^2 = 5.0\,\text{J}$.'
+
+  - id: p5-elastic-energy-small
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A spring has a spring constant of 400 N/m. It is compressed by 0.050 m. Calculate the energy stored in the elastic potential store.'
+    answer_label: 'Energy stored in the spring'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * k * e**2"
+          values:
+            k: {value: "400", unit: "N/m"}
+            e: {value: "0.050", unit: "m"}
+          answer: {value: "0.5", unit: "J"}
+        - {kind: sigfigs, value: "0.5", figures: 2, answer: "0.50", convention: round-once}
+    answer_text: '$E_e = \tfrac{1}{2}ke^2 = 0.5 \times 400 \times 0.050^2 = 0.50\,\text{J}$.'
+
+  - id: p6-spring-force-2
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A spring has a spring constant of 60 N/m. It is stretched by 0.35 m. Calculate the force applied to the spring.'
+    answer_label: 'Force applied to the spring'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "k * e"
+          values:
+            k: {value: "60", unit: "N/m"}
+            e: {value: "0.35", unit: "m"}
+          answer: {value: "21", unit: "N"}
+        - {kind: sigfigs, value: "21", figures: 2, answer: "21", convention: round-once}
+    answer_text: '$F = ke = 60 \times 0.35 = 21\,\text{N}$.'
+
+  - id: p7-graph-gradient
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A force is added to a spring and the extension is measured. The results are shown in the table. Use the gradient of the force-extension graph to find the spring constant, in N/m.'
+    answer_label: 'Spring constant from the graph'
+    check:
+      kind: gradient
+      series: [[0.00, 0.0], [0.020, 4.0], [0.040, 8.0], [0.060, 12.0]]
+      between: [195, 205]
+    answer_text: 'The graph is a straight line through the origin, so the gradient is the spring constant. Gradient $= \dfrac{12.0}{0.060} = 200\,\text{N/m}$.'
+
+  - id: p8-graph-area
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A spring stretches by 0.30 m when a force of 30 N is applied. The graph of force against extension is a straight line through the origin. Use the area under the graph to find the energy stored in the spring.'
+    answer_label: 'Energy stored, from the area under the graph'
+    check:
+      kind: area
+      series: [[0.0, 0.0], [0.30, 30.0]]
+      between: [4.4, 4.6]
+    answer_text: 'The area under a force-extension graph is the energy stored. Area $= \tfrac{1}{2} \times 0.30 \times 30 = 4.5\,\text{J}$, which is the same as $E_e = \tfrac{1}{2}ke^2$.'
+
+  - id: p9-elastic-inelastic
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'Describe the difference between elastic deformation and inelastic deformation. Give one example of each.'
+    answer_label: 'Elastic and inelastic deformation'
+    check:
+      kind: structured
+      requires: [elastic, inelastic, examples]
+      concepts: [elastic-deformation, inelastic-deformation]
+      points:
+        - id: elastic
+          text: 'In elastic deformation the object returns to its original shape and size when the forces are removed.'
+          concepts: [elastic-deformation]
+        - id: inelastic
+          text: 'In inelastic deformation the object does not return to its original shape and size when the forces are removed.'
+          concepts: [inelastic-deformation]
+        - id: examples
+          text: 'A rubber band stretched a little is elastic. A spring stretched past its limit of proportionality, or a bent paper clip, is inelastically deformed.'
+          concepts: [inelastic-deformation]
+
+  - id: p10-limit-proportionality
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'Describe the relationship between force and extension for a spring, up to the limit of proportionality and beyond it.'
+    answer_label: 'Force and extension for a spring'
+    check:
+      kind: structured
+      requires: [up-to-limit, beyond-limit]
+      concepts: [limit-of-proportionality, linear-relationship]
+      points:
+        - id: up-to-limit
+          text: 'Up to the limit of proportionality, the extension is directly proportional to the force, so the graph is a straight line through the origin.'
+          concepts: [limit-of-proportionality, linear-relationship]
+        - id: beyond-limit
+          text: 'Beyond the limit of proportionality the line curves, so the extension is no longer proportional to the force. The spring is inelastically deformed.'
+          concepts: [limit-of-proportionality]
+
+  - id: p11-force-and-energy
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A spring has a spring constant of 500 N/m. It is stretched by 0.040 m. Calculate the force applied and the energy stored in the elastic potential store.'
+    answer_label: 'Force and energy stored'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "k * e"
+          values:
+            k: {value: "500", unit: "N/m"}
+            e: {value: "0.040", unit: "m"}
+          answer: {value: "20", unit: "N"}
+        - kind: dimensions
+          expression: "0.5 * k * e**2"
+          values:
+            k: {value: "500", unit: "N/m"}
+            e: {value: "0.040", unit: "m"}
+          answer: {value: "0.4", unit: "J"}
+        - {kind: sigfigs, value: "0.4", figures: 2, answer: "0.40", convention: round-once}
+    answer_text: '$F = ke = 500 \times 0.040 = 20\,\text{N}$. $E_e = \tfrac{1}{2}ke^2 = 0.5 \times 500 \times 0.040^2 = 0.40\,\text{J}$.'

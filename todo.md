@@ -2029,3 +2029,103 @@ whole corpus so the next one fails in CI.
 - [x] Tests pin it: a record with no answer is rejected, a `structured` one is
       not, a bare record verified on its own is not, and the corpus is clean.
 - [x] `uv run python -m textbook.verify` passes every bank and `pytest` is green.
+
+---
+
+## 39. `uncertainty: add-percentages` cannot model a quotient directly
+
+**What is wrong.** The `units` oracle's `add-percentages` handler builds the
+result as `prod(value ** power)` and sums `power * percentage`, then takes the
+uncertainty as `result * total_percentage / 100`. It never takes the magnitude of
+`power * percentage`, so a term with a **negative** power — the natural way to
+write a quotient such as $g = L/T^2$ — produces a *negative* total percentage and
+a negative uncertainty. Measured:
+
+```bash
+$ uv run python - <<'PY'
+from textbook.verify.verify import verify_problem
+record = {
+    "id": "quotient", "statement": "g = L / T^2",
+    "check": {"kind": "uncertainty", "combine": "add-percentages",
+        "terms": [{"value": "0.800", "percentage": "0.125"},
+                  {"value": "1.795", "percentage": "0.139", "power": -2}],
+        "result": "0.2483", "uncertainty": "0.001"},
+    "answer_text": "x",
+}
+print(verify_problem(record, oracles=("sympy", "units")).errors)
+PY
+['check: multiplying the terms gives 32000/128881, not 2483/10000',
+ 'check: adding the percentage uncertainties gives an absolute uncertainty of -1224/3222025, not 1/1000']
+```
+
+A related limit: `sigfigs` takes a value as an exact rational, so a quantity built
+on an irrational constant cannot be rounded by the oracle at all. Measured with
+the Chapter 1 pendulum value $g = 4\pi^2 L/T^2$:
+
+```bash
+$ uv run python - <<'PY'
+from textbook.verify.verify import verify_problem
+record = {"id": "pi", "statement": "round g",
+    "check": {"kind": "sigfigs", "value": "128000 * pi**2 / 128881",
+              "figures": 3, "answer": "9.80", "convention": "round-once"},
+    "answer_text": "x"}
+print(verify_problem(record, oracles=("sympy", "units")).errors)
+PY
+["check: not an exact number: '128000 * pi**2 / 128881'"]
+```
+
+**The workaround the A-level Physics Chapter 1 banks use.** The quotient is
+rewritten with the reciprocal as a positive power (`1/T` carries the same
+percentage uncertainty as `T` and enters with power 2), and an irrational value is
+written as a sufficiently precise decimal for the `sigfigs` check while the value
+itself is proved by `approx`. Both are honest, but neither is obvious to the next
+author, and the first is a trap: the record fails with a *negative* uncertainty,
+which reads like a wrong number rather than a missing `abs()`.
+
+**Fix.** In `engine/textbook/verify/oracles/units.py`, take the magnitude of the
+percentage contribution (`total_percentage += abs(power) * percentage`, or use
+`abs(power) * percentage`) so a quotient verifies as written, and allow
+`sigfigs.value` to be a SymPy expression that evaluates to a `Rational` within a
+declared tolerance, so a $\pi$-based value can be rounded without being
+pre-rounded by hand. Add a `tests/test_verify_units.py` case for each, including a
+deliberately wrong negative-power record that must fail.
+
+**Done means.**
+
+- [ ] `add-percentages` with `power: -2` verifies a physically correct quotient,
+      and a record with the wrong uncertainty still fails.
+- [ ] `sigfigs` accepts a symbolic `value` that evaluates to a rational, and a
+      wrong rounding still fails.
+- [ ] `tests/test_verify_units.py` pins both, and
+      `uv run python -m textbook.verify books/*/problems/` passes.
+- [ ] `research/curriculum/physics-verifier-gaps.md` §3.3 names both limits.
+
+## 40. A new figure module fails the runtime-LaTeX check — **ready**
+
+**What is wrong.** The untracked
+`books/a-level-maths/docs/assets/figures/ch2-quadratic-explorer.js` (added by the
+A-level Mathematics workstream on 2026-10-11) fails
+`tests/test_figures.py::test_no_figure_module_injects_runtime_latex`. The
+offending line is a **comment** that contains a literal `$...$` example. The
+test is line-based, so a comment counts. Measured while gating GCSE Physics
+Chapter 2:
+
+```bash
+$ uv run python -m pytest tests/ -q
+FAILED tests/test_figures.py::test_no_figure_module_injects_runtime_latex[a-level-maths/ch2-quadratic-explorer.js]
+1 failed, 1087 passed in 28.76s
+```
+
+This is the only failure in the suite, and it is not in GCSE Physics. It may be
+fixed by the A-level Mathematics workstream before this item is read; check the
+file first.
+
+**Fix.** Rewrite the comment so it does not contain `$...$`, or make
+`RUNTIME_LATEX` in `tests/test_figures.py` ignore comment lines. The second is
+the better fix if a comment is allowed to discuss the rule.
+
+**Done means.**
+
+- [ ] `uv run python -m pytest tests/ -q` passes, with no
+      `test_no_figure_module_injects_runtime_latex` failure.
+- [ ] The figure still mounts, and its runtime text stays plain text.

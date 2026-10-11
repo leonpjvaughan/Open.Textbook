@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.1 Laws of indices for rational exponents — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: B1
+Work through these on your own. Before you evaluate a power, decide which to do
+first: the root or the power. Taking the root first keeps the numbers small.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-02-practice-2.1
+
+:::answers chapter-02-practice-2.1

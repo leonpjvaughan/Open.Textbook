@@ -1,0 +1,226 @@
+# Practice set for 2.3 (Work done and energy transfer).
+#
+# Work done has the unit of energy, so a calculation is proved by `dimensions`
+# (the exact magnitude and unit) together with `sigfigs` (the one rounding). A
+# conversion between newton-metres and joules is proved by `convert`, which checks
+# the dimensions agree before it compares the numbers, so a metre-to-second
+# mistake fails even when the digits match. The `structured` record proves only
+# that a model answer contains the declared ideas.
+chapter: 2
+problems:
+  - id: p1-work-push
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A force of 60 N pushes a crate 4.0 m along the line of the force. Calculate the work done on the crate.'
+    answer_label: 'Work done on the crate'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "60", unit: "N"}
+            s: {value: "4.0", unit: "m"}
+          answer: {value: "240", unit: "J"}
+        - {kind: sigfigs, value: "240", figures: 2, answer: "240", convention: round-once}
+    answer_text: '$W = Fs = 60 \times 4.0 = 240\,\text{J}$.'
+
+  - id: p2-work-sled
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A force of 35 N pulls a sledge 12 m along the line of the force. Calculate the work done on the sledge.'
+    answer_label: 'Work done on the sledge'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "35", unit: "N"}
+            s: {value: "12", unit: "m"}
+          answer: {value: "420", unit: "J"}
+        - {kind: sigfigs, value: "420", figures: 2, answer: "420", convention: round-once}
+    answer_text: '$W = Fs = 35 \times 12 = 420\,\text{J}$.'
+
+  - id: p3-force-from-work
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A machine does 900 J of work as it moves a load 12 m along the line of the force. Calculate the force.'
+    answer_label: 'Force exerted by the machine'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "W / s"
+          values:
+            W: {value: "900", unit: "J"}
+            s: {value: "12", unit: "m"}
+          answer: {value: "75", unit: "N"}
+        - {kind: sigfigs, value: "75", figures: 2, answer: "75", convention: round-once}
+    answer_text: '$F = \dfrac{W}{s} = \dfrac{900}{12} = 75\,\text{N}$.'
+
+  - id: p4-distance-from-work
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A force of 90 N does 720 J of work. Calculate the distance moved along the line of the force.'
+    answer_label: 'Distance moved'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "W / F"
+          values:
+            W: {value: "720", unit: "J"}
+            F: {value: "90", unit: "N"}
+          answer: {value: "8.0", unit: "m"}
+        - {kind: sigfigs, value: "8", figures: 2, answer: "8.0", convention: round-once}
+    answer_text: '$s = \dfrac{W}{F} = \dfrac{720}{90} = 8.0\,\text{m}$.'
+
+  - id: p5-work-lifting
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A box of mass 8.0 kg is lifted 3.0 m onto a shelf. Take $g = 9.8\,\text{N/kg}$. Calculate the work done against gravity. Use the force needed to lift the box.'
+    answer_label: 'Work done against gravity'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g * h"
+          values:
+            m: {value: "8.0", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "3.0", unit: "m"}
+          answer: {value: "235.2", unit: "J"}
+        - {kind: sigfigs, value: "235.2", figures: 2, answer: "240", convention: round-once}
+    answer_text: 'The lifting force equals the weight: $F = mg = 8.0 \times 9.8 = 78.4\,\text{N}$. Then $W = Fs = 78.4 \times 3.0 = 235.2\,\text{J}$, so $240\,\text{J}$ to 2 significant figures.'
+
+  - id: p6-work-friction
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A friction force of 45 N acts on a sledge that is pulled 22 m. Calculate the work done against friction.'
+    answer_label: 'Work done against friction'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "45", unit: "N"}
+            s: {value: "22", unit: "m"}
+          answer: {value: "990", unit: "J"}
+        - {kind: sigfigs, value: "990", figures: 2, answer: "990", convention: round-once}
+    answer_text: '$W = Fs = 45 \times 22 = 990\,\text{J}$. This energy is transferred to the thermal store of the sledge and the snow.'
+
+  - id: p7-kinetic-energy
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A car of mass 1200 kg travels at 20 m/s. Calculate the energy in its kinetic store. This is the work done by the brakes when the car stops.'
+    answer_label: 'Work done by the brakes'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * m * v**2"
+          values:
+            m: {value: "1200", unit: "kg"}
+            v: {value: "20", unit: "m/s"}
+          answer: {value: "240000", unit: "J"}
+        - {kind: sigfigs, value: "240000", figures: 2, answer: "2.4e5", convention: round-once}
+    answer_text: '$E_k = \tfrac{1}{2}mv^2 = 0.5 \times 1200 \times 20^2 = 240000\,\text{J} = 2.4 \times 10^5\,\text{J}$.'
+
+  - id: p8-braking-force
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'The brakes of the car transfer $2.4 \times 10^5\,\text{J}$ of energy over a braking distance of 50 m. Calculate the average braking force.'
+    answer_label: 'Average braking force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "W / s"
+          values:
+            W: {value: "240000", unit: "J"}
+            s: {value: "50", unit: "m"}
+          answer: {value: "4800", unit: "N"}
+        - {kind: sigfigs, value: "4800", figures: 2, answer: "4.8e3", convention: round-once}
+    answer_text: '$F = \dfrac{W}{s} = \dfrac{240000}{50} = 4800\,\text{N} = 4.8 \times 10^3\,\text{N}$.'
+
+  - id: p9-convert-nm
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A pulley does 350 N m of work. Convert this value to joules.'
+    answer_label: 'Work done in joules'
+    check:
+      kind: convert
+      value: "350"
+      from: "N m"
+      to: "J"
+      answer: "350"
+    answer_text: 'One newton-metre is one joule, so $350\,\text{N m} = 350\,\text{J}$.'
+
+  - id: p10-power-link
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A motor does 3000 J of work in 20 s. Calculate the power of the motor.'
+    answer_label: 'Power of the motor'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "W / t"
+          values:
+            W: {value: "3000", unit: "J"}
+            t: {value: "20", unit: "s"}
+          answer: {value: "150", unit: "W"}
+        - {kind: sigfigs, value: "150", figures: 2, answer: "150", convention: round-once}
+    answer_text: '$P = \dfrac{W}{t} = \dfrac{3000}{20} = 150\,\text{W}$.'
+
+  - id: p11-work-lifting-2
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A bag of mass 25 kg is lifted 1.2 m onto a wall. Take $g = 9.8\,\text{N/kg}$. Say which force does the work, then calculate the work done.'
+    answer_label: 'Work done lifting the bag'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g * h"
+          values:
+            m: {value: "25", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "1.2", unit: "m"}
+          answer: {value: "294", unit: "J"}
+        - {kind: sigfigs, value: "294", figures: 2, answer: "290", convention: round-once}
+    answer_text: 'The lifting force equals the weight, $F = mg = 25 \times 9.8 = 245\,\text{N}$. Then $W = Fs = 245 \times 1.2 = 294\,\text{J}$, so $290\,\text{J}$ to 2 significant figures.'
+
+  - id: p12-friction-transfer
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A box slides across a floor and stops. Describe the energy transfer that happens as the box slows, and name the store that receives the energy.'
+    answer_label: 'The energy transfer'
+    check:
+      kind: structured
+      requires: [store-decrease, work-friction, store-increase]
+      concepts: [kinetic-store, work-done, thermal-store]
+      points:
+        - id: store-decrease
+          text: 'The kinetic store of the box decreases as the box slows down.'
+          concepts: [kinetic-store]
+        - id: work-friction
+          text: 'The friction force does work on the box as it moves, and the work done is $W = Fs$.'
+          concepts: [work-done]
+        - id: store-increase
+          text: 'The energy is transferred to the thermal store of the floor and the box, so their temperature rises.'
+          concepts: [thermal-store]

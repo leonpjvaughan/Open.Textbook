@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.9 Graphs, the modulus function, asymptotes and intersections — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: B7
+Work through these on your own. For a modulus equation, split into cases and
+reject any value that does not fit its case. Write an inequality solution as a
+set, and an asymptote as an equation.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-02-practice-2.9
+
+:::answers chapter-02-practice-2.9

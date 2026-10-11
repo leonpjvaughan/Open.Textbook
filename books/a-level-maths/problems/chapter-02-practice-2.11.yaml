@@ -1,0 +1,151 @@
+# Practice set for 2.11, transformations of graphs.
+#
+# A transformation is an algebra fact: a translation $f(x + a)$ and a stretch
+# $f(ax)$ name `apply: {op: compose}`, while $af(x)$ and $f(x) + a$ are plain
+# equivalences. The picture is a human judgement and stays in the answer text.
+chapter: 2
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-translate-right
+    section: "2.11"
+    dfe: [B9]
+    statement: 'The curve $y = f(x)$ is translated $3$ units to the right. Write the equation of the new curve when $f(x) = x^2$.'
+    answer_label: 'The new equation'
+    check:
+      kind: apply
+      expression: "x**2"
+      apply: {op: compose, args: ["x - 3"]}
+      answer: "(x - 3)**2"
+    answer_text: 'A translation to the right by $3$ replaces $x$ with $x - 3$. The new equation is $y = (x - 3)^2$. The vertex moves from $(0, 0)$ to $(3, 0)$. Expanding gives $x^2 - 6x + 9$, but the factorised form shows the transformation.'
+
+  - id: p2-translate-up
+    section: "2.11"
+    dfe: [B9]
+    statement: 'The curve $y = x^2$ is translated $2$ units upwards. Write the new equation.'
+    answer_label: 'The new equation'
+    check:
+      kind: evaluate
+      expression: "(x**2 + 2) - x**2"
+      answer: "2"
+    answer_text: 'A translation upwards by $2$ adds $2$ to the output: $y = x^2 + 2$. The vertex moves from $(0, 0)$ to $(0, 2)$.'
+
+  - id: p3-stretch-vertical
+    section: "2.11"
+    dfe: [B9]
+    statement: 'The curve $y = x^2$ is stretched vertically by a factor of $3$. Write the new equation.'
+    answer_label: 'The new equation'
+    check:
+      kind: evaluate
+      expression: "(3*(x**2))/(x**2)"
+      answer: "3"
+    answer_text: 'A vertical stretch by $3$ multiplies the output: $y = 3x^2$. Every point moves three times as far from the $x$-axis, and the vertex stays at $(0, 0)$.'
+
+  - id: p4-stretch-horizontal
+    section: "2.11"
+    dfe: [B9]
+    statement: 'The curve $y = x^2$ is stretched horizontally by a factor of $\frac{1}{2}$. Write the new equation in expanded form.'
+    answer_label: 'The new equation'
+    check:
+      kind: apply
+      expression: "x**2"
+      apply: {op: compose, args: ["2*x"]}
+      answer: "4*x**2"
+    answer_text: 'A horizontal stretch by a factor of $\frac{1}{2}$ multiplies the input by $2$: replace $x$ with $2x$. Then $y = (2x)^2 = 4x^2$. A horizontal stretch changes the input, so it affects the $x$-coordinate in the opposite way to what the factor suggests.'
+
+  - id: p5-combination
+    section: "2.11"
+    dfe: [B9]
+    statement: 'Given $f(x) = x^3$, write the equation of $y = 2f(x - 1) + 3$ in expanded form.'
+    answer_label: 'The new equation'
+    check:
+      kind: evaluate
+      expression: "2*(x - 1)**3 + 3"
+      answer: "2*x**3 - 6*x**2 + 6*x + 1"
+    answer_text: 'Apply the transformations in order. Replace $x$ with $x - 1$: $(x - 1)^3$. Multiply by $2$: $2(x - 1)^3$. Add $3$: $2(x - 1)^3 + 3$. Expanding, $(x - 1)^3 = x^3 - 3x^2 + 3x - 1$, so the expanded form is $2x^3 - 6x^2 + 6x + 1$.'
+
+  - id: p6-compose-left
+    section: "2.11"
+    dfe: [B9]
+    statement: 'Given $f(x) = \sqrt{x}$, write the equation of $y = f(x + 4)$ and state its domain.'
+    answer_label: 'The new equation and the domain'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "sqrt(x)", apply: {op: compose, args: ["x + 4"]}, answer: "sqrt(x + 4)"}
+        - {kind: compare, relation: "<", lhs: "-5 + 4", rhs: "0"}
+    answer_text: 'Replace $x$ with $x + 4$: $y = \sqrt{x + 4}$. The expression under the root must not be negative, so $x + 4 \geq 0$ and the domain is $x \geq -4$. The graph is the original curve moved $4$ units to the left.'
+
+  - id: p7-reflection-x-axis
+    section: "2.11"
+    dfe: [B9]
+    statement: 'The point $(2, 8)$ is on the curve $y = x^3$. Write the equation of the curve after a reflection in the $x$-axis, and state the image of the point.'
+    answer_label: 'The new equation'
+    check:
+      kind: evaluate
+      expression: "(-x**3) + x**3"
+      answer: "0"
+    answer_text: 'A reflection in the $x$-axis sends $y$ to $-y$, so the new equation is $y = -x^3$. Each point keeps its $x$-coordinate and its $y$-coordinate changes sign, so $(2, 8)$ maps to $(2, -8)$.'
+
+  - id: p8-reflection-y-axis
+    section: "2.11"
+    dfe: [B9]
+    statement: 'Given $f(x) = 2x + 1$, write the equation of $y = f(-x)$.'
+    answer_label: 'The new equation'
+    check:
+      kind: apply
+      expression: "2*x + 1"
+      apply: {op: compose, args: ["-x"]}
+      answer: "-2*x + 1"
+    answer_text: 'Replace $x$ with $-x$: $f(-x) = 2(-x) + 1 = -2x + 1$. The line is reflected in the $y$-axis, so its gradient changes sign.'
+
+  - id: p9-order-of-stretches
+    section: "2.11"
+    dfe: [B9]
+    statement: 'Given $f(x) = x^2 + 1$, write $y = f(2x) + 1$ and $y = 2f(x) + 1$ in expanded form and explain why they differ.'
+    answer_label: 'Both equations'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "x**2 + 1", apply: {op: compose, args: ["2*x"]}, answer: "4*x**2 + 1"}
+        - {kind: evaluate, expression: "(4*x**2 + 1) + 1", answer: "4*x**2 + 2"}
+        - {kind: evaluate, expression: "2*(x**2 + 1) + 1", answer: "2*x**2 + 3"}
+        - {kind: compare, relation: "!=", lhs: "4*(0)**2 + 2", rhs: "2*(0)**2 + 3"}
+    answer_text: 'For $f(2x)$ the input is doubled first: $f(2x) = (2x)^2 + 1 = 4x^2 + 1$, so $f(2x) + 1 = 4x^2 + 2$. For $2f(x)$ the output is doubled: $2f(x) = 2(x^2 + 1) = 2x^2 + 2$, so $2f(x) + 1 = 2x^2 + 3$. The two differ because $f(2x)$ changes the input and $2f(x)$ changes the output. A stretch and a translation do not commute.'
+
+  - id: p10-describe-transformation
+    section: "2.11"
+    dfe: [B9]
+    statement: 'The curve $y = x^2$ is transformed into $y = (3x)^2$. Describe the transformation in words, and give the transformed equation in expanded form.'
+    answer_label: 'The description and the equation'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "x**2", apply: {op: compose, args: ["3*x"]}, answer: "9*x**2"}
+        - {kind: compare, relation: "=", lhs: "(3*1)**2", rhs: "9*(1**2)"}
+    answer_text: 'The input has been multiplied by $3$, which is a horizontal stretch by a factor of $\frac{1}{3}$. The equation simplifies: $y = (3x)^2 = 9x^2$. The curve is squeezed towards the $y$-axis, so it becomes narrower than $y = x^2$.'
+
+  - id: p11-combined-transform
+    section: "2.11"
+    dfe: [B9]
+    statement: 'The curve $y = x^2$ is translated $2$ units to the right and then $5$ units downwards. Write the equation of the new curve in completed-square form and state its vertex.'
+    answer_label: 'The equation and the vertex'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "x**2", apply: {op: compose, args: ["x - 2"]}, answer: "(x - 2)**2"}
+        - {kind: evaluate, expression: "(x - 2)**2 - 5", answer: "x**2 - 4*x - 1"}
+        - {kind: evaluate, expression: "(2)**2 - 4*2 - 1", answer: "-5"}
+    answer_text: 'Translating $2$ right replaces $x$ with $x - 2$, giving $(x - 2)^2$. Translating $5$ down subtracts $5$: $y = (x - 2)^2 - 5$. The completed-square form is already written, so the vertex is $(2, -5)$.'
+
+  - id: p12-state-the-transformation
+    section: "2.11"
+    dfe: [B9]
+    statement: 'Compare $y = x^3$ and $y = -x^3 + 4$. State the two transformations and the effect on the point $(1, 1)$.'
+    answer_label: 'The transformations and the image'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "-(1**3)", answer: "-1"}
+        - {kind: evaluate, expression: "-(1**3) + 4", answer: "3"}
+    answer_text: 'Two transformations are applied to $y = x^3$: a reflection in the $x$-axis, giving $y = -x^3$, then a translation $4$ units upwards, giving $y = -x^3 + 4$. The point $(1, 1)$ reflects to $(1, -1)$, then moves up to $(1, 3)$.'

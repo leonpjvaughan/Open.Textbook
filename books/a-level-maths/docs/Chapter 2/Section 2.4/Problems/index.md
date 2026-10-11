@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.4 Solving quadratic equations, including in a function of the unknown — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: B3
+Work through these on your own. Give surd answers exactly. When an equation is
+quadratic in a function of the unknown, write down the substitution you choose
+before you solve.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-02-practice-2.4
+
+:::answers chapter-02-practice-2.4

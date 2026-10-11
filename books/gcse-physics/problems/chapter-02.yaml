@@ -1,0 +1,793 @@
+# Worked solutions for Chapter 2 (Forces and their interactions).
+#
+# These are the numerical worked examples, the guided calculations and the
+# warm-up recalls that the Learn and Practise with help pages show. The pages
+# carry the prose and the reasoning; this bank is the independent check of every
+# number in them, so a slip in a worked example cannot ship. The records are not
+# rendered by a page marker: the pages write their own working, and the
+# `:::answers` blocks come from the practice banks.
+#
+# Each calculation proves the exact magnitude and dimension with `dimensions`
+# (or `evaluate` where the quantity has no unit) and the one rounding with
+# `sigfigs`. A value read from a graph is a measurement, so it is proved against
+# a declared interval by `gradient`. A resolved force uses `resolve` and carries
+# an answer_text, because a composed check has no top-level answer to render.
+chapter: 2
+problems:
+  # --- Section 2.1, the Learn worked examples ---------------------------------
+  - id: w1-weight-pupil
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'A pupil of mass 70 kg stands on the ground. Take g = 9.8 N/kg. Calculate the weight of the pupil.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g"
+          values:
+            m: {value: "70", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "686", unit: "N"}
+        - {kind: sigfigs, value: "686", figures: 2, answer: "690", convention: round-once}
+    answer_text: '$690\,\text{N}$'
+
+  - id: w2-resultant-opposite
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'A force of 250 N acts to the right and a force of 100 N acts to the left. Calculate the resultant force.'
+    check: {kind: evaluate, expression: "250 - 100", answer: "150"}
+    answer_text: '$150\,\text{N}$ to the right'
+
+  - id: w3-resultant-same
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'Two forces of 35 N and 50 N act in the same direction. Calculate the resultant force.'
+    check: {kind: evaluate, expression: "35 + 50", answer: "85"}
+    answer_text: '$85\,\text{N}$ in the direction of the forces'
+
+  - id: w4-resolve-50n
+    section: '2.1'
+    tier: H
+    dfe: [FO1]
+    statement: 'A force of 50 N acts at 30 degrees to the horizontal. Resolve the force into components.'
+    check:
+      kind: all
+      checks:
+        - kind: resolve
+          relation: components-from-magnitude-and-angle
+          magnitude: "50"
+          angle_deg: "30"
+          components: {x: "43.3", y: "25.0"}
+    answer_text: 'horizontal $43.3\,\text{N}$, vertical $25.0\,\text{N}$'
+
+  - id: w5-resultant-perpendicular
+    section: '2.1'
+    tier: H
+    dfe: [FO1]
+    statement: 'Two forces of 30 N and 40 N act at right angles. Calculate the resultant.'
+    check:
+      kind: all
+      checks:
+        - kind: resolve
+          relation: magnitude-and-angle-from-components
+          components: {x: "30", y: "40"}
+          magnitude: "50"
+          angle_deg: "53.1"
+    answer_text: '$50\,\text{N}$ at $53.1^\circ$ to the 30 N force'
+
+  # --- Section 2.1, the Practise with help calculations -----------------------
+  - id: g1-weight-climber
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'A climber has a mass of 65 kg. Take g = 9.8 N/kg. Calculate the weight of the climber.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g"
+          values:
+            m: {value: "65", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "637", unit: "N"}
+        - {kind: sigfigs, value: "637", figures: 2, answer: "640", convention: round-once}
+    answer_text: '$640\,\text{N}$'
+
+  - id: g2-resultant-tug
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'A force of 185 N acts to the right and a force of 120 N acts to the left. Calculate the resultant force.'
+    check: {kind: evaluate, expression: "185 - 120", answer: "65"}
+    answer_text: '$65\,\text{N}$ to the right'
+
+  - id: g3-resolve-80n
+    section: '2.1'
+    tier: H
+    dfe: [FO1]
+    statement: 'A force of 80 N acts at 25 degrees to the horizontal. Resolve the force into components.'
+    check:
+      kind: all
+      checks:
+        - kind: resolve
+          relation: components-from-magnitude-and-angle
+          magnitude: "80"
+          angle_deg: "25"
+          components: {x: "72.5", y: "33.8"}
+    answer_text: 'horizontal $72.5\,\text{N}$, vertical $33.8\,\text{N}$'
+
+  - id: g4-resultant-same
+    section: '2.1'
+    tier: F
+    dfe: [FO1]
+    statement: 'Two forces of 25 N and 40 N act in the same direction. Calculate the resultant force.'
+    check: {kind: evaluate, expression: "25 + 40", answer: "65"}
+    answer_text: '$65\,\text{N}$ in the direction of the forces'
+
+  # --- Section 2.2, the Learn worked examples ---------------------------------
+  - id: w6-spring-force
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A spring has a spring constant of 320 N/m and is stretched by 0.15 m. Calculate the force.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "k * e"
+          values:
+            k: {value: "320", unit: "N/m"}
+            e: {value: "0.15", unit: "m"}
+          answer: {value: "48", unit: "N"}
+        - {kind: sigfigs, value: "48", figures: 2, answer: "48", convention: round-once}
+    answer_text: '$48\,\text{N}$'
+
+  - id: w7-spring-constant
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A force of 20 N stretches a spring by 0.080 m. Calculate the spring constant.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / e"
+          values:
+            F: {value: "20", unit: "N"}
+            e: {value: "0.080", unit: "m"}
+          answer: {value: "250", unit: "N/m"}
+        - {kind: sigfigs, value: "250", figures: 2, answer: "250", convention: round-once}
+    answer_text: '$250\,\text{N/m}$'
+
+  - id: w8-spring-extension
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A spring has a spring constant of 120 N/m. A force of 36 N is applied. Calculate the extension.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / k"
+          values:
+            F: {value: "36", unit: "N"}
+            k: {value: "120", unit: "N/m"}
+          answer: {value: "0.30", unit: "m"}
+        - {kind: sigfigs, value: "0.3", figures: 2, answer: "0.30", convention: round-once}
+    answer_text: '$0.30\,\text{m}$'
+
+  - id: w9-elastic-energy
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A spring has a spring constant of 200 N/m and is stretched by 0.20 m. Calculate the energy stored.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * k * e**2"
+          values:
+            k: {value: "200", unit: "N/m"}
+            e: {value: "0.20", unit: "m"}
+          answer: {value: "4.0", unit: "J"}
+        - {kind: sigfigs, value: "4", figures: 2, answer: "4.0", convention: round-once}
+    answer_text: '$4.0\,\text{J}$'
+
+  # --- Section 2.2, the Practise with help calculations -----------------------
+  - id: g5-spring-force
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A spring has a spring constant of 150 N/m and is stretched by 0.24 m. Calculate the force.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "k * e"
+          values:
+            k: {value: "150", unit: "N/m"}
+            e: {value: "0.24", unit: "m"}
+          answer: {value: "36", unit: "N"}
+        - {kind: sigfigs, value: "36", figures: 2, answer: "36", convention: round-once}
+    answer_text: '$36\,\text{N}$'
+
+  - id: g6-spring-constant
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A force of 30 N stretches a spring by 0.12 m. Calculate the spring constant.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / e"
+          values:
+            F: {value: "30", unit: "N"}
+            e: {value: "0.12", unit: "m"}
+          answer: {value: "250", unit: "N/m"}
+        - {kind: sigfigs, value: "250", figures: 2, answer: "250", convention: round-once}
+    answer_text: '$250\,\text{N/m}$'
+
+  - id: g7-elastic-energy
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A spring has a spring constant of 350 N/m and is stretched by 0.20 m. Calculate the energy stored.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * k * e**2"
+          values:
+            k: {value: "350", unit: "N/m"}
+            e: {value: "0.20", unit: "m"}
+          answer: {value: "7.0", unit: "J"}
+        - {kind: sigfigs, value: "7", figures: 2, answer: "7.0", convention: round-once}
+    answer_text: '$7.0\,\text{J}$'
+
+  - id: g8-graph-gradient
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'A force-extension graph is a straight line through the origin. The extension is 0.30 m when the force is 60 N. Find the spring constant from the gradient.'
+    check:
+      kind: gradient
+      series: [[0.0, 0.0], [0.10, 20.0], [0.20, 40.0], [0.30, 60.0]]
+      between: [198, 202]
+    answer_text: '$200\,\text{N/m}$'
+
+  # --- Section 2.3, the Learn worked examples ---------------------------------
+  - id: w10-work-push
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A force of 75 N pushes a box 6.0 m along the line of the force. Calculate the work done.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "75", unit: "N"}
+            s: {value: "6.0", unit: "m"}
+          answer: {value: "450", unit: "J"}
+        - {kind: sigfigs, value: "450", figures: 2, answer: "450", convention: round-once}
+    answer_text: '$450\,\text{J}$'
+
+  - id: w11-force-from-work
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A machine does 600 J of work over 8.0 m. Calculate the force.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "W / s"
+          values:
+            W: {value: "600", unit: "J"}
+            s: {value: "8.0", unit: "m"}
+          answer: {value: "75", unit: "N"}
+        - {kind: sigfigs, value: "75", figures: 2, answer: "75", convention: round-once}
+    answer_text: '$75\,\text{N}$'
+
+  - id: w12-distance-from-work
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A force of 120 N does 480 J of work. Calculate the distance moved.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "W / F"
+          values:
+            W: {value: "480", unit: "J"}
+            F: {value: "120", unit: "N"}
+          answer: {value: "4.0", unit: "m"}
+        - {kind: sigfigs, value: "4", figures: 2, answer: "4.0", convention: round-once}
+    answer_text: '$4.0\,\text{m}$'
+
+  - id: w13-work-lifting
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A box of mass 12 kg is lifted 2.5 m. Take g = 9.8 N/kg. Calculate the work done against gravity.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g * h"
+          values:
+            m: {value: "12", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "2.5", unit: "m"}
+          answer: {value: "294", unit: "J"}
+        - {kind: sigfigs, value: "294", figures: 2, answer: "290", convention: round-once}
+    answer_text: '$290\,\text{J}$'
+
+  - id: w14-work-friction
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A friction force of 45 N acts on a crate that slides 12 m. Calculate the work done against friction.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "45", unit: "N"}
+            s: {value: "12", unit: "m"}
+          answer: {value: "540", unit: "J"}
+        - {kind: sigfigs, value: "540", figures: 2, answer: "540", convention: round-once}
+    answer_text: '$540\,\text{J}$ to the thermal store'
+
+  - id: w14b-motor-power
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A motor does 1800 J of work in 6.0 s. Calculate the power of the motor.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "W / t"
+          values:
+            W: {value: "1800", unit: "J"}
+            t: {value: "6.0", unit: "s"}
+          answer: {value: "300", unit: "W"}
+        - {kind: sigfigs, value: "300", figures: 2, answer: "3.0e2", convention: round-once}
+    answer_text: '$3.0 \times 10^2\,\text{W}$'
+
+  # --- Section 2.3, the Practise with help calculations -----------------------
+  - id: g9-work-push
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A force of 90 N pushes a crate 6.0 m. Calculate the work done.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "90", unit: "N"}
+            s: {value: "6.0", unit: "m"}
+          answer: {value: "540", unit: "J"}
+        - {kind: sigfigs, value: "540", figures: 2, answer: "540", convention: round-once}
+    answer_text: '$540\,\text{J}$'
+
+  - id: g10-force-from-work
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A machine does 1200 J of work over 25 m. Calculate the force.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "W / s"
+          values:
+            W: {value: "1200", unit: "J"}
+            s: {value: "25", unit: "m"}
+          answer: {value: "48", unit: "N"}
+        - {kind: sigfigs, value: "48", figures: 2, answer: "48", convention: round-once}
+    answer_text: '$48\,\text{N}$'
+
+  - id: g11-work-lifting
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A bag of mass 6.0 kg is lifted 1.5 m. Take g = 9.8 N/kg. Calculate the work done against gravity.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g * h"
+          values:
+            m: {value: "6.0", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "1.5", unit: "m"}
+          answer: {value: "88.2", unit: "J"}
+        - {kind: sigfigs, value: "88.2", figures: 2, answer: "88", convention: round-once}
+    answer_text: '$88\,\text{J}$'
+
+  - id: g12-work-lifting-2
+    section: '2.3'
+    tier: F
+    dfe: [FO2]
+    statement: 'A bag of mass 20 kg is lifted 1.8 m. Take g = 9.8 N/kg. Calculate the work done against gravity.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g * h"
+          values:
+            m: {value: "20", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "1.8", unit: "m"}
+          answer: {value: "352.8", unit: "J"}
+        - {kind: sigfigs, value: "352.8", figures: 2, answer: "350", convention: round-once}
+    answer_text: '$350\,\text{J}$'
+
+  # --- Section 2.4, the Learn worked examples ---------------------------------
+  - id: w15-pressure-block
+    section: '2.4'
+    tier: F
+    dfe: [FO3]
+    statement: 'A force of 300 N acts on an area of 0.015 m squared. Calculate the pressure.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / A"
+          values:
+            F: {value: "300", unit: "N"}
+            A: {value: "0.015", unit: "m^2"}
+          answer: {value: "20000", unit: "Pa"}
+        - {kind: sigfigs, value: "20000", figures: 2, answer: "2.0e4", convention: round-once}
+    answer_text: '$2.0 \times 10^4\,\text{Pa}$'
+
+  - id: w16-force-from-pressure
+    section: '2.4'
+    tier: F
+    dfe: [FO3]
+    statement: 'A pressure of 8000 Pa acts on an area of 0.25 m squared. Calculate the force.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p * A"
+          values:
+            p: {value: "8000", unit: "Pa"}
+            A: {value: "0.25", unit: "m^2"}
+          answer: {value: "2000", unit: "N"}
+        - {kind: sigfigs, value: "2000", figures: 2, answer: "2.0e3", convention: round-once}
+    answer_text: '$2.0 \times 10^3\,\text{N}$'
+
+  - id: w17-area-from-pressure
+    section: '2.4'
+    tier: F
+    dfe: [FO3]
+    statement: 'A force of 900 N produces a pressure of 30000 Pa. Calculate the area.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / p"
+          values:
+            F: {value: "900", unit: "N"}
+            p: {value: "30000", unit: "Pa"}
+          answer: {value: "0.030", unit: "m^2"}
+        - {kind: sigfigs, value: "0.03", figures: 2, answer: "0.030", convention: round-once}
+    answer_text: '$0.030\,\text{m}^2$'
+
+  - id: w18-pressure-depth
+    section: '2.4'
+    tier: H
+    dfe: [FO3]
+    statement: 'Calculate the pressure due to a column of water 5.0 m high. The density of water is 1000 kg/m cubed and g = 9.8 N/kg.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "h * rho * g"
+          values:
+            h: {value: "5.0", unit: "m"}
+            rho: {value: "1000", unit: "kg/m^3"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "49000", unit: "Pa"}
+        - {kind: sigfigs, value: "49000", figures: 2, answer: "4.9e4", convention: round-once}
+    answer_text: '$4.9 \times 10^4\,\text{Pa}$'
+
+  - id: w19-depth-difference
+    section: '2.4'
+    tier: H
+    dfe: [FO3]
+    statement: 'Calculate the pressure difference between depths of 1.0 m and 3.0 m in water of density 1000 kg/m cubed. Take g = 9.8 N/kg.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "h * rho * g"
+          values:
+            h: {value: "2.0", unit: "m"}
+            rho: {value: "1000", unit: "kg/m^3"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "19600", unit: "Pa"}
+        - {kind: sigfigs, value: "19600", figures: 2, answer: "2.0e4", convention: round-once}
+    answer_text: '$2.0 \times 10^4\,\text{Pa}$'
+
+  # --- Section 2.4, the Practise with help calculations -----------------------
+  - id: g13-pressure-block
+    section: '2.4'
+    tier: F
+    dfe: [FO3]
+    statement: 'A force of 240 N acts on an area of 0.020 m squared. Calculate the pressure.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / A"
+          values:
+            F: {value: "240", unit: "N"}
+            A: {value: "0.020", unit: "m^2"}
+          answer: {value: "12000", unit: "Pa"}
+        - {kind: sigfigs, value: "12000", figures: 2, answer: "1.2e4", convention: round-once}
+    answer_text: '$1.2 \times 10^4\,\text{Pa}$'
+
+  - id: g14-force-from-pressure
+    section: '2.4'
+    tier: F
+    dfe: [FO3]
+    statement: 'A pressure of 2500 Pa acts on an area of 0.48 m squared. Calculate the force.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p * A"
+          values:
+            p: {value: "2500", unit: "Pa"}
+            A: {value: "0.48", unit: "m^2"}
+          answer: {value: "1200", unit: "N"}
+        - {kind: sigfigs, value: "1200", figures: 2, answer: "1.2e3", convention: round-once}
+    answer_text: '$1.2 \times 10^3\,\text{N}$'
+
+  - id: g15-pressure-depth
+    section: '2.4'
+    tier: H
+    dfe: [FO3]
+    statement: 'Calculate the pressure due to a column of water 0.20 m high. The density of water is 1000 kg/m cubed and g = 9.8 N/kg.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "h * rho * g"
+          values:
+            h: {value: "0.20", unit: "m"}
+            rho: {value: "1000", unit: "kg/m^3"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "1960", unit: "Pa"}
+        - {kind: sigfigs, value: "1960", figures: 2, answer: "2.0e3", convention: round-once}
+    answer_text: '$2.0 \times 10^3\,\text{Pa}$'
+
+  # --- Section 2.5, the Learn worked examples ---------------------------------
+  - id: w20-moment
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A force of 40 N acts at a perpendicular distance of 0.15 m from a pivot. Calculate the moment.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * d"
+          values:
+            F: {value: "40", unit: "N"}
+            d: {value: "0.15", unit: "m"}
+          answer: {value: "6.0", unit: "N m"}
+        - {kind: sigfigs, value: "6", figures: 2, answer: "6.0", convention: round-once}
+    answer_text: '$6.0\,\text{N m}$'
+
+  - id: w21-balance
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A weight of 300 N sits 2.0 m from the pivot of a balanced beam. A second weight sits 2.5 m from the pivot on the other side. Calculate the second weight.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F1 * d1 / d2"
+          values:
+            F1: {value: "300", unit: "N"}
+            d1: {value: "2.0", unit: "m"}
+            d2: {value: "2.5", unit: "m"}
+          answer: {value: "240", unit: "N"}
+        - {kind: sigfigs, value: "240", figures: 2, answer: "240", convention: round-once}
+    answer_text: '$240\,\text{N}$'
+
+  - id: w22-lever
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A lever has an effort of 200 N at 0.80 m from the pivot and a load at 0.20 m from the pivot. Calculate the force on the load.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F1 * d1 / d2"
+          values:
+            F1: {value: "200", unit: "N"}
+            d1: {value: "0.80", unit: "m"}
+            d2: {value: "0.20", unit: "m"}
+          answer: {value: "800", unit: "N"}
+        - {kind: sigfigs, value: "800", figures: 2, answer: "8.0e2", convention: round-once}
+    answer_text: '$8.0 \times 10^2\,\text{N}$'
+
+  - id: w23-gear
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A gear with 30 teeth drives a gear with 15 teeth. The driving gear has a moment of 8.0 N m. Calculate the moment of the driven gear.'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "8.0 * 30 / 15", answer: "16"}
+        - {kind: sigfigs, value: "16", figures: 2, answer: "16", convention: round-once}
+    answer_text: '$16\,\text{N m}$'
+
+  # --- Section 2.5, the Practise with help calculations -----------------------
+  - id: g16-moment
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A force of 25 N acts at a perpendicular distance of 0.40 m from a pivot. Calculate the moment.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * d"
+          values:
+            F: {value: "25", unit: "N"}
+            d: {value: "0.40", unit: "m"}
+          answer: {value: "10", unit: "N m"}
+        - {kind: sigfigs, value: "10", figures: 2, answer: "1.0e1", convention: round-once}
+    answer_text: '$10\,\text{N m}$'
+
+  - id: g17-balance
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A weight of 500 N sits 0.60 m from the pivot of a balanced beam. A second weight sits 1.5 m from the pivot on the other side. Calculate the second weight.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F1 * d1 / d2"
+          values:
+            F1: {value: "500", unit: "N"}
+            d1: {value: "0.60", unit: "m"}
+            d2: {value: "1.5", unit: "m"}
+          answer: {value: "200", unit: "N"}
+        - {kind: sigfigs, value: "200", figures: 2, answer: "2.0e2", convention: round-once}
+    answer_text: '$2.0 \times 10^2\,\text{N}$'
+
+  - id: g18-lever
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A lever has an effort of 120 N at 0.50 m from the pivot and a load at 0.10 m from the pivot. Calculate the force on the load.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F1 * d1 / d2"
+          values:
+            F1: {value: "120", unit: "N"}
+            d1: {value: "0.50", unit: "m"}
+            d2: {value: "0.10", unit: "m"}
+          answer: {value: "600", unit: "N"}
+        - {kind: sigfigs, value: "600", figures: 2, answer: "6.0e2", convention: round-once}
+    answer_text: '$6.0 \times 10^2\,\text{N}$'
+
+  - id: g19-gear
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A gear with 20 teeth drives a gear with 40 teeth. The driving gear has a moment of 12 N m. Calculate the moment of the driven gear.'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "12 * 20 / 40", answer: "6"}
+        - {kind: sigfigs, value: "6", figures: 2, answer: "6.0", convention: round-once}
+    answer_text: '$6.0\,\text{N m}$'
+
+  # --- The warm-up recalls ----------------------------------------------------
+  - id: warmup-2-1-kinetic
+    section: '2.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'Warm-up: calculate the energy in the kinetic store of a 2.0 kg object moving at 3.0 m/s.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * m * v**2"
+          values:
+            m: {value: "2.0", unit: "kg"}
+            v: {value: "3.0", unit: "m/s"}
+          answer: {value: "9.0", unit: "J"}
+    answer_text: '$9.0\,\text{J}$'
+
+  - id: warmup-2-2-weight
+    section: '2.2'
+    tier: F
+    dfe: [FO1]
+    statement: 'Warm-up: calculate the weight of a 4.0 kg bag. Take g = 9.8 N/kg.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g"
+          values:
+            m: {value: "4.0", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+          answer: {value: "39.2", unit: "N"}
+        - {kind: sigfigs, value: "39.2", figures: 2, answer: "39", convention: round-once}
+    answer_text: '$39\,\text{N}$'
+
+  - id: warmup-2-3-spring
+    section: '2.3'
+    tier: F
+    dfe: [FO1]
+    statement: 'Warm-up: a spring of spring constant 200 N/m is stretched by 0.10 m. Calculate the force.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "k * e"
+          values:
+            k: {value: "200", unit: "N/m"}
+            e: {value: "0.10", unit: "m"}
+          answer: {value: "20", unit: "N"}
+        - {kind: sigfigs, value: "20", figures: 2, answer: "2.0e1", convention: round-once}
+    answer_text: '$20\,\text{N}$'
+
+  - id: warmup-2-4-work
+    section: '2.4'
+    tier: F
+    dfe: [FO2]
+    statement: 'Warm-up: calculate the work done when a force of 60 N moves an object 5.0 m along the line of the force.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "60", unit: "N"}
+            s: {value: "5.0", unit: "m"}
+          answer: {value: "300", unit: "J"}
+        - {kind: sigfigs, value: "300", figures: 2, answer: "3.0e2", convention: round-once}
+    answer_text: '$300\,\text{J}$'
+
+  - id: warmup-2-5-pressure
+    section: '2.5'
+    tier: F
+    dfe: [FO3]
+    statement: 'Warm-up: calculate the pressure when a force of 400 N acts on an area of 0.20 m squared.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / A"
+          values:
+            F: {value: "400", unit: "N"}
+            A: {value: "0.20", unit: "m^2"}
+          answer: {value: "2000", unit: "Pa"}
+        - {kind: sigfigs, value: "2000", figures: 2, answer: "2.0e3", convention: round-once}
+    answer_text: '$2.0 \times 10^3\,\text{Pa}$'

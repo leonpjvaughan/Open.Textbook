@@ -1,0 +1,153 @@
+# Practice set for 2.8, rational expressions and partial fractions.
+#
+# Simplifying and recombining name their operation (`cancel`, `together`), and
+# partial fractions name `apart`. The verifier proves the algebra; the excluded
+# values of x are a statement about the domain, so they are carried in the answer
+# text and checked only where they make a denominator zero.
+chapter: 2
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-cancel-common-factor
+    section: "2.8"
+    dfe: [B6]
+    statement: 'Simplify $\dfrac{x^2 - 1}{x^2 + 3x + 2}$.'
+    answer_label: 'Simplified'
+    check:
+      kind: apply
+      expression: "(x**2 - 1)/(x**2 + 3*x + 2)"
+      apply: {op: cancel}
+      answer: "(x - 1)/(x + 2)"
+    answer_text: 'Factorise the top and the bottom: $x^2 - 1 = (x - 1)(x + 1)$ and $x^2 + 3x + 2 = (x + 1)(x + 2)$. Cancel the common factor $x + 1$: the expression is $\dfrac{x - 1}{x + 2}$, valid for $x \neq -2$. The cancelled factor matters: $x = -1$ made the original undefined.'
+
+  - id: p2-cancel-difference-of-squares
+    section: "2.8"
+    dfe: [B6]
+    statement: 'Simplify $\dfrac{x^2 - 9}{x^2 - x - 6}$.'
+    answer_label: 'Simplified'
+    check:
+      kind: apply
+      expression: "(x**2 - 9)/(x**2 - x - 6)"
+      apply: {op: cancel}
+      answer: "(x + 3)/(x + 2)"
+    answer_text: 'Factorise: $x^2 - 9 = (x - 3)(x + 3)$ and $x^2 - x - 6 = (x - 3)(x + 2)$. Cancel $x - 3$ to leave $\dfrac{x + 3}{x + 2}$. The original expression is undefined where $x = 3$, even though the simplified form is defined there.'
+
+  - id: p3-cancel-quadratic
+    section: "2.8"
+    dfe: [B6]
+    statement: 'Simplify $\dfrac{x^2 + 5x + 6}{x^2 - 4}$.'
+    answer_label: 'Simplified'
+    check:
+      kind: apply
+      expression: "(x**2 + 5*x + 6)/(x**2 - 4)"
+      apply: {op: cancel}
+      answer: "(x + 3)/(x - 2)"
+    answer_text: 'Factorise: $x^2 + 5x + 6 = (x + 2)(x + 3)$ and $x^2 - 4 = (x - 2)(x + 2)$. Cancel $x + 2$, giving $\dfrac{x + 3}{x - 2}$, valid for $x \neq 2$.'
+
+  - id: p4-cancel-simple
+    section: "2.8"
+    dfe: [B6]
+    statement: 'Simplify $\dfrac{x^2 - 4}{x - 2}$, stating the value of $x$ that is not allowed.'
+    answer_label: 'Simplified, with the excluded value'
+    check:
+      kind: apply
+      expression: "(x**2 - 4)/(x - 2)"
+      apply: {op: cancel}
+      answer: "x + 2"
+    answer_text: 'Factorise the numerator as a difference of two squares: $x^2 - 4 = (x - 2)(x + 2)$. Cancel $x - 2$ to leave $x + 2$. The original denominator is zero when $x = 2$, so the expression is defined only for $x \neq 2$.'
+
+  - id: p5-add-fractions
+    section: "2.8"
+    dfe: [B6]
+    statement: 'Write $\dfrac{2}{x} + \dfrac{3}{x + 1}$ as a single fraction.'
+    answer_label: 'A single fraction'
+    check:
+      kind: apply
+      expression: "2/x + 3/(x + 1)"
+      apply: {op: together}
+      answer: "(5*x + 2)/(x*(x + 1))"
+    answer_text: 'The common denominator is $x(x + 1)$. Put each fraction over it: $\dfrac{2(x + 1) + 3x}{x(x + 1)} = \dfrac{5x + 2}{x(x + 1)}$. The expression is defined for $x \neq 0$ and $x \neq -1$.'
+
+  - id: p6-subtract-fractions
+    section: "2.8"
+    dfe: [B6]
+    statement: 'Write $\dfrac{1}{x - 1} - \dfrac{1}{x + 1}$ as a single fraction.'
+    answer_label: 'A single fraction'
+    check:
+      kind: apply
+      expression: "1/(x - 1) - 1/(x + 1)"
+      apply: {op: together}
+      answer: "2/(x**2 - 1)"
+    answer_text: 'The common denominator is $(x - 1)(x + 1)$. Then $\dfrac{(x + 1) - (x - 1)}{(x - 1)(x + 1)} = \dfrac{2}{x^2 - 1}$. The denominator is a difference of two squares.'
+
+  - id: p7-partial-fractions-distinct
+    section: "2.8"
+    dfe: [B10]
+    statement: 'Express $\dfrac{3x + 2}{(x - 1)(x + 2)}$ in partial fractions.'
+    answer_label: 'Partial fractions'
+    check:
+      kind: apply
+      expression: "(3*x + 2)/((x - 1)*(x + 2))"
+      apply: {op: apart, args: [x]}
+      answer: "5/(3*(x - 1)) + 4/(3*(x + 2))"
+    answer_text: 'Write $\dfrac{3x + 2}{(x - 1)(x + 2)} = \dfrac{A}{x - 1} + \dfrac{B}{x + 2}$. Then $3x + 2 = A(x + 2) + B(x - 1)$. Substituting $x = 1$ gives $5 = 3A$, so $A = \frac{5}{3}$. Substituting $x = -2$ gives $-4 = -3B$, so $B = \frac{4}{3}$. So the fractions are $\dfrac{5}{3(x - 1)} + \dfrac{4}{3(x + 2)}$.'
+
+  - id: p8-partial-fractions-repeated
+    section: "2.8"
+    dfe: [B10]
+    statement: 'Express $\dfrac{2x + 3}{(x - 1)^2}$ in partial fractions.'
+    answer_label: 'Partial fractions'
+    check:
+      kind: apply
+      expression: "(2*x + 3)/(x - 1)**2"
+      apply: {op: apart, args: [x]}
+      answer: "2/(x - 1) + 5/(x - 1)**2"
+    answer_text: 'A repeated factor needs one fraction for each power: $\dfrac{2x + 3}{(x - 1)^2} = \dfrac{A}{x - 1} + \dfrac{B}{(x - 1)^2}$. Then $2x + 3 = A(x - 1) + B$. Comparing constants gives $B = 5$; comparing $x$ terms gives $A = 2$. So the fractions are $\dfrac{2}{x - 1} + \dfrac{5}{(x - 1)^2}$.'
+
+  - id: p9-partial-fractions-three-terms
+    section: "2.8"
+    dfe: [B10]
+    statement: 'Express $\dfrac{6x^2 + 5x - 5}{(x - 1)(x + 1)(x + 2)}$ in partial fractions.'
+    answer_label: 'Partial fractions'
+    check:
+      kind: apply
+      expression: "(6*x**2 + 5*x - 5)/((x - 1)*(x + 1)*(x + 2))"
+      apply: {op: apart, args: [x]}
+      answer: "1/(x - 1) + 2/(x + 1) + 3/(x + 2)"
+    answer_text: 'Write $\dfrac{6x^2 + 5x - 5}{(x - 1)(x + 1)(x + 2)} = \dfrac{A}{x - 1} + \dfrac{B}{x + 1} + \dfrac{C}{x + 2}$. Substitute the three roots of the denominator. At $x = 1$: $6 + 5 - 5 = 6$ and $(1 + 1)(1 + 2) = 6$, so $A = 1$. At $x = -1$: $6 - 5 - 5 = -4$ and $(-1 - 1)(-1 + 2) = -2$, so $B = 2$. At $x = -2$: $24 - 10 - 5 = 9$ and $(-2 - 1)(-2 + 1) = 3$, so $C = 3$. So the fractions are $\dfrac{1}{x - 1} + \dfrac{2}{x + 1} + \dfrac{3}{x + 2}$.'
+
+  - id: p10-partial-fractions-linear-denominator
+    section: "2.8"
+    dfe: [B10]
+    statement: 'Express $\dfrac{7x + 4}{(2x + 1)(x + 2)}$ in partial fractions.'
+    answer_label: 'Partial fractions'
+    check:
+      kind: apply
+      expression: "(7*x + 4)/((2*x + 1)*(x + 2))"
+      apply: {op: apart, args: [x]}
+      answer: "1/(3*(2*x + 1)) + 10/(3*(x + 2))"
+    answer_text: 'Write the fractions with constant numerators: $\dfrac{7x + 4}{(2x + 1)(x + 2)} = \dfrac{A}{2x + 1} + \dfrac{B}{x + 2}$. Then $7x + 4 = A(x + 2) + B(2x + 1)$. At $x = -2$: $-10 = -3B$, so $B = \frac{10}{3}$. At $x = -\frac{1}{2}$: $-\frac{7}{2} + 4 = \frac{1}{2} = A \times \frac{3}{2}$, so $A = \frac{1}{3}$. So the fractions are $\dfrac{1}{3(2x + 1)} + \dfrac{10}{3(x + 2)}$.'
+
+  - id: p11-excluded-values
+    section: "2.8"
+    dfe: [B6]
+    statement: 'For $\dfrac{x + 1}{(x - 2)(x + 3)}$, work out the values of $x$ for which the expression is not defined.'
+    answer_label: 'The excluded values'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(2 - 2)*((2) + 3)", answer: "0"}
+        - {kind: evaluate, expression: "((-3) - 2)*((-3) + 3)", answer: "0"}
+    answer_text: 'The expression is not defined when the denominator is zero. $(x - 2)(x + 3) = 0$ when $x = 2$ or $x = -3$. So $x = 2$ and $x = -3$ are excluded.'
+
+  - id: p12-partial-fractions-mixed
+    section: "2.8"
+    dfe: [B10]
+    statement: 'Express $\dfrac{3x^2 + 2x + 1}{(x - 1)(x + 2)^2}$ in partial fractions.'
+    answer_label: 'Partial fractions'
+    check:
+      kind: apply
+      expression: "(3*x**2 + 2*x + 1)/((x - 1)*(x + 2)**2)"
+      apply: {op: apart, args: [x]}
+      answer: "2/(3*(x - 1)) + 7/(3*(x + 2)) - 3/(x + 2)**2"
+    answer_text: 'Write $\dfrac{3x^2 + 2x + 1}{(x - 1)(x + 2)^2} = \dfrac{A}{x - 1} + \dfrac{B}{x + 2} + \dfrac{C}{(x + 2)^2}$. Then $3x^2 + 2x + 1 = A(x + 2)^2 + B(x - 1)(x + 2) + C(x - 1)$. At $x = 1$: $3 + 2 + 1 = 6 = 9A$, so $A = \frac{2}{3}$. At $x = -2$: $12 - 4 + 1 = 9 = -3C$, so $C = -3$. Comparing $x^2$ coefficients: $3 = A + B$, so $B = 3 - \frac{2}{3} = \frac{7}{3}$. So the fractions are $\dfrac{2}{3(x - 1)} + \dfrac{7}{3(x + 2)} - \dfrac{3}{(x + 2)^2}$.'

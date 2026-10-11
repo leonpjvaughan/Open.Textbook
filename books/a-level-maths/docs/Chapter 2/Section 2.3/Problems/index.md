@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.3 Quadratic functions, the discriminant and completing the square — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: B3
+Work through these on your own. For each item, decide which feature the question
+wants — a root, a vertex, or the number of roots — and choose the form of the
+quadratic that reads that feature off.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-02-practice-2.3
+
+:::answers chapter-02-practice-2.3

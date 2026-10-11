@@ -176,6 +176,20 @@ def test_every_figure_accessible_name_follows_the_voice_rules(book, path):
     )
 
 
+
+def code_only(text: str) -> str:
+    """A module's code with its comments removed.
+
+    Both scanners below look for something a figure must not *do*, and a comment
+    that names the thing is not doing it. A figure explaining that its readout is
+    "plain text, never $...$" was reported as injecting LaTeX; a comment naming a
+    colour would have been reported the same way. Only full-line `//` comments and
+    block comments are removed, so a URL inside a string survives.
+    """
+    text = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
+    return re.sub(r"(?m)^\s*//.*$", "", text)
+
+
 def colour_literals(text: str) -> list[str]:
     """The colour literals in a figure module: a hex, an rgb/hsl function, or a
     named colour where a colour value belongs."""
@@ -191,7 +205,7 @@ def colour_literals(text: str) -> list[str]:
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_no_figure_module_hard_codes_a_colour(book, path):
-    literals = colour_literals(path.read_text(encoding="utf-8"))
+    literals = colour_literals(code_only(path.read_text(encoding="utf-8")))
     assert not literals, (
         f"{book.id}/{path.name}: a figure must adapt to every bundle and both "
         f"schemes, so it cannot carry a colour literal: {literals!r}. Use a "
@@ -205,7 +219,7 @@ def test_no_figure_module_injects_runtime_latex(book, path):
     shown literally (``${`` is a template expression and is allowed)."""
     offenders = [
         line.strip()
-        for line in path.read_text(encoding="utf-8").splitlines()
+        for line in code_only(path.read_text(encoding="utf-8")).splitlines()
         if RUNTIME_LATEX.search(line)
     ]
     assert not offenders, (

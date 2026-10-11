@@ -1,0 +1,159 @@
+# Practice set for 2.10, composite and inverse functions.
+#
+# Composition names its operation: `apply: {op: compose}` substitutes the inner
+# function into the outer one. An inverse is proved by composing both ways and
+# recovering x, which is stronger than asserting a formula. A function whose
+# inverse is not a function on the whole real line is shown by two inputs with
+# the same output, which a `compare` proves exactly.
+chapter: 2
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-compose-fg
+    section: "2.10"
+    dfe: [B8, OT1]
+    statement: 'Given $f(x) = 2x + 3$ and $g(x) = x^2$, find $f(g(x))$.'
+    answer_label: 'The composite function'
+    check:
+      kind: apply
+      expression: "2*x + 3"
+      apply: {op: compose, args: ["x**2"]}
+      answer: "2*x**2 + 3"
+    answer_text: '$f(g(x))$ means $f$ applied to $g(x)$: substitute $x^2$ into $f$. So $f(g(x)) = 2x^2 + 3$. The output of $g$ becomes the input of $f$.'
+
+  - id: p2-compose-gf
+    section: "2.10"
+    dfe: [B8, OT1]
+    statement: 'Given $f(x) = 2x + 3$ and $g(x) = x^2$, find $g(f(x))$.'
+    answer_label: 'The composite function'
+    check:
+      kind: apply
+      expression: "x**2"
+      apply: {op: compose, args: ["2*x + 3"]}
+      answer: "(2*x + 3)**2"
+    answer_text: '$g(f(x))$ substitutes $2x + 3$ into $g$: $g(f(x)) = (2x + 3)^2$. Notice that $f(g(x)) = 2x^2 + 3$ is not the same as $g(f(x)) = (2x + 3)^2$, so the order of composition matters.'
+
+  - id: p3-compose-value
+    section: "2.10"
+    dfe: [B8, OT1]
+    statement: 'Given $f(x) = x^2 + 1$ and $g(x) = 3x - 1$, work out $f(g(2))$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "(3*2 - 1)**2 + 1"
+      answer: "26"
+    answer_text: 'Work from the inside out. First $g(2) = 3 \times 2 - 1 = 5$. Then $f(5) = 5^2 + 1 = 26$. So $f(g(2)) = 26$.'
+
+  - id: p4-inverse-linear
+    section: "2.10"
+    dfe: [B8, OT1]
+    statement: 'Find the inverse of $f(x) = 3x - 2$.'
+    answer_label: 'The inverse function'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "(x + 2)/3", apply: {op: compose, args: ["3*x - 2"]}, answer: "x"}
+        - {kind: apply, expression: "3*x - 2", apply: {op: compose, args: ["(x + 2)/3"]}, answer: "x"}
+    answer_text: 'Write $y = 3x - 2$ and make $x$ the subject: $y + 2 = 3x$, so $x = \frac{y + 2}{3}$. Swap the letters: $f^{-1}(x) = \frac{x + 2}{3}$. Check both ways: $f^{-1}(f(x)) = x$ and $f(f^{-1}(x)) = x$.'
+
+  - id: p5-inverse-rational
+    section: "2.10"
+    dfe: [B8, OT1]
+    statement: 'Find the inverse of $f(x) = \dfrac{x + 1}{x - 2}$, where $x \neq 2$.'
+    answer_label: 'The inverse function'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "(2*x + 1)/(x - 1)", apply: {op: compose, args: ["(x + 1)/(x - 2)"]}, answer: "x"}
+        - {kind: apply, expression: "(x + 1)/(x - 2)", apply: {op: compose, args: ["(2*x + 1)/(x - 1)"]}, answer: "x"}
+    answer_text: 'Write $y = \frac{x + 1}{x - 2}$ and cross-multiply: $y(x - 2) = x + 1$, so $yx - 2y = x + 1$. Collect the $x$ terms: $x(y - 1) = 2y + 1$, so $x = \frac{2y + 1}{y - 1}$. Swap the letters: $f^{-1}(x) = \frac{2x + 1}{x - 1}$, where $x \neq 1$.'
+
+  - id: p6-inverse-square-restricted
+    section: "2.10"
+    dfe: [B8, OT1]
+    statement: 'The function $f(x) = x^2 + 1$ has domain $x \geq 0$. Find its inverse.'
+    symbols:
+      x: {nonnegative: true}
+    answer_label: 'The inverse function'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "sqrt(x - 1)", apply: {op: compose, args: ["x**2 + 1"]}, answer: "x"}
+        - {kind: apply, expression: "x**2 + 1", apply: {op: compose, args: ["sqrt(x - 1)"]}, answer: "x"}
+    answer_text: 'Write $y = x^2 + 1$, so $x^2 = y - 1$ and $x = \pm\sqrt{y - 1}$. The domain $x \geq 0$ selects the positive root, so $x = \sqrt{y - 1}$. Swap: $f^{-1}(x) = \sqrt{x - 1}$ with domain $x \geq 1$ and range $f^{-1}(x) \geq 0$.'
+
+  - id: p7-inverse-cube
+    section: "2.10"
+    dfe: [B8, OT1]
+    statement: 'Find the inverse of $f(x) = x^3 + 2$.'
+    symbols:
+      x: {positive: true}
+    answer_label: 'The inverse function'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "(x - 2)**(1/3)", apply: {op: compose, args: ["x**3 + 2"]}, answer: "x"}
+        - {kind: apply, expression: "x**3 + 2", apply: {op: compose, args: ["(x - 2)**(1/3)"]}, answer: "x"}
+    answer_text: 'Write $y = x^3 + 2$, so $x^3 = y - 2$ and $x = \sqrt[3]{y - 2}$. Swap the letters: $f^{-1}(x) = \sqrt[3]{x - 2}$. A cube has one real root for every input, so no restriction on the domain is needed.'
+
+  - id: p8-self-composition
+    section: "2.10"
+    dfe: [B8, OT1]
+    statement: 'Given $f(x) = 2x - 1$, find $f(f(x))$.'
+    answer_label: 'The composite function'
+    check:
+      kind: apply
+      expression: "2*x - 1"
+      apply: {op: compose, args: ["2*x - 1"]}
+      answer: "4*x - 3"
+    answer_text: 'Substitute $f(x) = 2x - 1$ into $f$: $f(f(x)) = 2(2x - 1) - 1 = 4x - 2 - 1 = 4x - 3$. Applying a function twice is written $f^2(x)$.'
+
+  - id: p9-domain-and-range
+    section: "2.10"
+    dfe: [B8, OT1]
+    statement: 'For $f(x) = \sqrt{x - 2}$, state the domain and the range, and work out $f(6)$.'
+    answer_label: 'The domain, the range and a value'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "sqrt(6 - 2)", answer: "2"}
+        - {kind: compare, relation: "<", lhs: "1 - 2", rhs: "0"}
+    answer_text: 'The expression under the square root must not be negative, so $x - 2 \geq 0$ and the domain is $x \geq 2$. A square root is never negative, so the range is $f(x) \geq 0$. For $f(6)$: $\sqrt{6 - 2} = \sqrt{4} = 2$. At $x = 1$ the input inside the root is $-1$, which has no real square root, so $x = 1$ is outside the domain.'
+
+  - id: p10-no-inverse
+    section: "2.10"
+    dfe: [B8, OT1]
+    statement: 'Explain why $f(x) = x^2$ has no inverse function on the whole real line.'
+    answer_label: 'A reason, with two inputs'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "=", lhs: "(-2)**2", rhs: "2**2"}
+        - {kind: compare, relation: "!=", lhs: "-2", rhs: "2"}
+    answer_text: 'An inverse needs each output to come from one input. But $f(2) = 4$ and $f(-2) = 4$: two different inputs give the same output, so reversing the function would not know whether to return $2$ or $-2$. The function is not one-to-one. Restricting the domain to $x \geq 0$ makes it one-to-one, and an inverse then exists.'
+
+  - id: p11-inverses-check
+    section: "2.10"
+    dfe: [B8, OT1]
+    statement: 'Show that $f(x) = 5x + 1$ and $g(x) = \dfrac{x - 1}{5}$ are inverses of each other.'
+    answer_label: 'Both compositions'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "5*x + 1", apply: {op: compose, args: ["(x - 1)/5"]}, answer: "x"}
+        - {kind: apply, expression: "(x - 1)/5", apply: {op: compose, args: ["5*x + 1"]}, answer: "x"}
+    answer_text: 'Compose in both orders. $f(g(x)) = 5\left(\frac{x - 1}{5}\right) + 1 = (x - 1) + 1 = x$. And $g(f(x)) = \frac{(5x + 1) - 1}{5} = \frac{5x}{5} = x$. Both compositions return $x$, so each function undoes the other.'
+
+  - id: p12-inverse-of-square-shifted
+    section: "2.10"
+    dfe: [B8, OT1]
+    statement: 'Given $f(x) = x^2 + 3$ on $x \geq 0$, show that $g(x) = \sqrt{x - 3}$ is its inverse.'
+    symbols:
+      x: {nonnegative: true}
+    answer_label: 'Both compositions'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "sqrt(x - 3)", apply: {op: compose, args: ["x**2 + 3"]}, answer: "x"}
+        - {kind: apply, expression: "x**2 + 3", apply: {op: compose, args: ["sqrt(x - 3)"]}, answer: "x"}
+    answer_text: '$g(f(x)) = \sqrt{(x^2 + 3) - 3} = \sqrt{x^2}$. Because the domain of $f$ is $x \geq 0$, the value of $x$ is not negative, so $\sqrt{x^2} = x$. In the other direction, $f(g(x)) = \left(\sqrt{x - 3}\right)^2 + 3 = (x - 3) + 3 = x$ for $x \geq 3$. Both compositions return $x$, so $g$ is the inverse of $f$.'

@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.1 SI units and prefixes — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: AP1
+Work through these on your own. Show the base units at every step, so a mistake
+in the units is visible before it reaches the answer.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-01-practice-1.1
+
+:::answers chapter-01-practice-1.1

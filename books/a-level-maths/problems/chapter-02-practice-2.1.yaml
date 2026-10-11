@@ -1,0 +1,152 @@
+# Practice set for 2.1, laws of indices for rational exponents.
+#
+# The exponent arithmetic is exact, and the verifier proves each value. Where a
+# step needs x > 0 or x >= 0 the record declares it, because an even root of a
+# negative number is not real.
+chapter: 2
+symbols:
+  x: {real: true}
+problems:
+  - id: p1-power-of-a-quarter
+    section: "2.1"
+    dfe: [B1]
+    statement: 'Work out $16^{\frac{3}{4}}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "16**(3/4)"
+      answer: "8"
+    answer_text: 'Take the fourth root first: $16^{\frac{3}{4}} = \left(\sqrt[4]{16}\right)^3 = 2^3 = 8$.'
+
+  - id: p2-negative-exponent
+    section: "2.1"
+    dfe: [B1]
+    statement: 'Work out $27^{-\frac{2}{3}}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "27**(-2/3)"
+      answer: "1/9"
+    answer_text: 'The negative index gives a reciprocal: $27^{-\frac{2}{3}} = \dfrac{1}{27^{\frac{2}{3}}} = \dfrac{1}{\left(\sqrt[3]{27}\right)^2} = \dfrac{1}{3^2} = \dfrac{1}{9}$.'
+
+  - id: p3-three-halves
+    section: "2.1"
+    dfe: [B1]
+    statement: 'Work out $25^{\frac{3}{2}}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "25**(3/2)"
+      answer: "125"
+    answer_text: '$25^{\frac{3}{2}} = \left(\sqrt{25}\right)^3 = 5^3 = 125$.'
+
+  - id: p4-three-fifths
+    section: "2.1"
+    dfe: [B1]
+    statement: 'Work out $32^{\frac{3}{5}}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "32**(3/5)"
+      answer: "8"
+    answer_text: '$32^{\frac{3}{5}} = \left(\sqrt[5]{32}\right)^3 = 2^3 = 8$. The fifth root of $32$ is $2$ because $2^5 = 32$.'
+
+  - id: p5-fraction-base
+    section: "2.1"
+    dfe: [B1]
+    statement: 'Work out $\left(\dfrac{16}{81}\right)^{\frac{3}{4}}$.'
+    answer_label: 'The value'
+    check:
+      kind: evaluate
+      expression: "(16/81)**(3/4)"
+      answer: "8/27"
+    answer_text: 'The power applies to the numerator and the denominator: $\left(\dfrac{16}{81}\right)^{\frac{3}{4}} = \dfrac{16^{\frac{3}{4}}}{81^{\frac{3}{4}}} = \dfrac{8}{27}$, since $16^{\frac{3}{4}} = 2^3 = 8$ and $81^{\frac{3}{4}} = 3^3 = 27$. Ensure the cube is taken of the root, not of the base.'
+
+  - id: p6-multiply-powers
+    section: "2.1"
+    dfe: [B1]
+    statement: 'Simplify $x^{\frac{1}{2}} \times x^{\frac{3}{2}}$, where $x > 0$.'
+    symbols:
+      x: {positive: true}
+    answer_label: 'Simplified'
+    check:
+      kind: evaluate
+      expression: "x**(1/2)*x**(3/2)"
+      answer: "x**2"
+    answer_text: 'Multiply by adding the indices: $x^{\frac{1}{2}} \times x^{\frac{3}{2}} = x^{\frac{1}{2} + \frac{3}{2}} = x^{2}$. The condition $x > 0$ keeps every root real.'
+
+  - id: p7-divide-powers
+    section: "2.1"
+    dfe: [B1]
+    statement: 'Simplify $\dfrac{x^{\frac{5}{2}}}{x^{\frac{1}{2}}}$, where $x > 0$.'
+    symbols:
+      x: {positive: true}
+    answer_label: 'Simplified'
+    check:
+      kind: evaluate
+      expression: "x**(5/2)/x**(1/2)"
+      answer: "x**2"
+    answer_text: 'Divide by subtracting the indices: $\dfrac{x^{\frac{5}{2}}}{x^{\frac{1}{2}}} = x^{\frac{5}{2} - \frac{1}{2}} = x^{2}$.'
+
+  - id: p8-power-of-a-product
+    section: "2.1"
+    dfe: [B1]
+    statement: 'Simplify $\left(8x^6\right)^{\frac{2}{3}}$, where $x > 0$.'
+    symbols:
+      x: {positive: true}
+    answer_label: 'Simplified'
+    check:
+      kind: evaluate
+      expression: "(8*x**6)**(2/3)"
+      answer: "4*x**4"
+    answer_text: 'The power applies to each factor: $\left(8x^6\right)^{\frac{2}{3}} = 8^{\frac{2}{3}} \times \left(x^6\right)^{\frac{2}{3}} = 4x^{4}$. The power of a power multiplies the indices: $6 \times \frac{2}{3} = 4$.'
+
+  - id: p9-solve-two-thirds
+    section: "2.1"
+    dfe: [B1]
+    statement: 'Solve $x^{\frac{2}{3}} = 9$.'
+    answer_label: 'The solutions'
+    check:
+      kind: solve
+      equation: "x**(2/3) = 9"
+      variable: x
+      answer: ["-27", "27"]
+    answer_text: 'Raise both sides to the power $\frac{3}{2}$: $x = 9^{\frac{3}{2}} = \left(\sqrt{9}\right)^3 = 27$. The numerator $2$ is even, so a negative base gives the same value: $(-27)^{\frac{2}{3}} = \left(\sqrt[3]{-27}\right)^2 = 9$. Both values solve the equation, so $x = 27$ or $x = -27$.'
+
+  - id: p10-solve-three-halves
+    section: "2.1"
+    dfe: [B1]
+    statement: 'Solve $x^{\frac{3}{2}} = 27$, where $x \ge 0$.'
+    symbols:
+      x: {nonnegative: true}
+    answer_label: 'The solution'
+    check:
+      kind: solve
+      equation: "x**(3/2) = 27"
+      variable: x
+      answer: ["9"]
+    answer_text: 'Raise both sides to the power $\frac{2}{3}$: $x = 27^{\frac{2}{3}} = \left(\sqrt[3]{27}\right)^2 = 9$. A negative base has no real value for $x^{\frac{3}{2}}$, because the square root of a negative number is not real, so $x = 9$ is the only real solution.'
+
+  - id: p11-compare-powers
+    section: "2.1"
+    dfe: [B1]
+    statement: 'Which is larger, $2^{\frac{1}{2}}$ or $2^{\frac{1}{3}}$? Give a reason.'
+    answer_label: 'The larger value, with a reason'
+    check:
+      kind: compare
+      relation: ">"
+      lhs: "2**(1/2)"
+      rhs: "2**(1/3)"
+    answer_text: '$2^{\frac{1}{2}} = \sqrt{2} \approx 1.414$ and $2^{\frac{1}{3}} = \sqrt[3]{2} \approx 1.260$. So $2^{\frac{1}{2}}$ is larger. For a base greater than $1$, a larger index gives a larger value, and $\frac{1}{2} > \frac{1}{3}$.'
+
+  - id: p12-root-of-a-sum
+    section: "2.1"
+    dfe: [B1]
+    statement: 'A student writes $\sqrt{9 + 16} = \sqrt{9} + \sqrt{16}$. Work out both sides and explain what the result shows.'
+    answer_label: 'Both sides, and the conclusion'
+    check:
+      kind: compare
+      relation: "!="
+      lhs: "(9 + 16)**(1/2)"
+      rhs: "9**(1/2) + 16**(1/2)"
+    answer_text: 'The left side is $\sqrt{25} = 5$. The right side is $3 + 4 = 7$. The sides are not equal, so a root cannot be split across a sum. The law $a^{\frac{1}{n}} b^{\frac{1}{n}} = (ab)^{\frac{1}{n}}$ applies to a product, not to a sum.'

@@ -1,0 +1,200 @@
+# Practice set for 2.5 (Moments, levers and gears).
+#
+# This section is physics-only, not Higher-only: AQA 8463 marks 4.5.4 (physics
+# only) and does not mark it (HT only), so every record is tier F. A moment is a
+# quantity with the unit N m, so a calculation proves `dimensions` for the exact
+# magnitude and unit, and `sigfigs` for the one rounding. The two `structured`
+# records prove only that a model answer contains the declared ideas, not that the
+# explanation is right.
+chapter: 2
+problems:
+  - id: p1-moment-basic
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A force of 20 N acts at a perpendicular distance of 0.30 m from a pivot. Calculate the moment of the force.'
+    answer_label: 'Moment of the force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * d"
+          values:
+            F: {value: "20", unit: "N"}
+            d: {value: "0.30", unit: "m"}
+          answer: {value: "6.0", unit: "N m"}
+        - {kind: sigfigs, value: "6", figures: 2, answer: "6.0", convention: round-once}
+    answer_text: '$M = Fd = 20 \times 0.30 = 6.0\,\text{N m}$.'
+
+  - id: p2-moment-spanner
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A force of 250 N is applied to a spanner at a perpendicular distance of 0.14 m from the nut. Calculate the moment of the force about the nut.'
+    answer_label: 'Moment about the nut'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * d"
+          values:
+            F: {value: "250", unit: "N"}
+            d: {value: "0.14", unit: "m"}
+          answer: {value: "35", unit: "N m"}
+        - {kind: sigfigs, value: "35", figures: 2, answer: "35", convention: round-once}
+    answer_text: '$M = Fd = 250 \times 0.14 = 35\,\text{N m}$.'
+
+  - id: p3-distance-from-moment
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'The moment of a force is 45 N m. The force is 150 N. Calculate the perpendicular distance from the pivot to the line of action of the force.'
+    answer_label: 'Distance from the pivot'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "M / F"
+          values:
+            M: {value: "45", unit: "N m"}
+            F: {value: "150", unit: "N"}
+          answer: {value: "0.30", unit: "m"}
+        - {kind: sigfigs, value: "0.3", figures: 2, answer: "0.30", convention: round-once}
+    answer_text: '$d = \dfrac{M}{F} = \dfrac{45}{150} = 0.30\,\text{m}$.'
+
+  - id: p4-seesaw-balance
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A child of weight 400 N sits 1.5 m from the pivot of a see-saw. A second child sits 2.5 m from the pivot on the other side. The see-saw is balanced. Calculate the weight of the second child.'
+    answer_label: 'Weight of the second child'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F1 * d1 / d2"
+          values:
+            F1: {value: "400", unit: "N"}
+            d1: {value: "1.5", unit: "m"}
+            d2: {value: "2.5", unit: "m"}
+          answer: {value: "240", unit: "N"}
+        - {kind: sigfigs, value: "240", figures: 2, answer: "240", convention: round-once}
+    answer_text: 'The moments balance, so $F_1 d_1 = F_2 d_2$. Then $F_2 = \dfrac{400 \times 1.5}{2.5} = 240\,\text{N}$.'
+
+  - id: p5-crowbar
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A crowbar is used to lift a heavy stone. The effort of 150 N is applied 1.0 m from the pivot. The load acts 0.20 m from the pivot. Calculate the force on the stone.'
+    answer_label: 'Force on the stone'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F1 * d1 / d2"
+          values:
+            F1: {value: "150", unit: "N"}
+            d1: {value: "1.0", unit: "m"}
+            d2: {value: "0.20", unit: "m"}
+          answer: {value: "750", unit: "N"}
+        - {kind: sigfigs, value: "750", figures: 2, answer: "750", convention: round-once}
+    answer_text: 'The moments are equal: $F_1 d_1 = F_2 d_2$. The force on the stone is $F_2 = \dfrac{150 \times 1.0}{0.20} = 750\,\text{N}$. The crowbar multiplies the effort five times.'
+
+  - id: p6-wheelbarrow
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A wheelbarrow carries a load of weight 500 N. The load acts 0.40 m from the wheel, and the person lifts at 1.2 m from the wheel. Calculate the upward force the person must use.'
+    answer_label: 'Upward force at the handles'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F1 * d1 / d2"
+          values:
+            F1: {value: "500", unit: "N"}
+            d1: {value: "0.40", unit: "m"}
+            d2: {value: "1.2", unit: "m"}
+          answer: {value: "500/3", unit: "N"}
+        - {kind: sigfigs, value: "500/3", figures: 2, answer: "170", convention: round-once}
+    answer_text: 'The moments balance: $F_1 d_1 = F_2 d_2$. The force is $F_2 = \dfrac{500 \times 0.40}{1.2} = 166.7\,\text{N}$, so $170\,\text{N}$ to 2 significant figures.'
+
+  - id: p7-gear-moment
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A driving gear with 40 teeth meshes with a driven gear with 10 teeth. The driving gear has a moment of 6.0 N m. Calculate the moment of the driven gear.'
+    answer_label: 'Moment of the driven gear'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "6.0 * 40 / 10", answer: "24"}
+        - {kind: sigfigs, value: "24", figures: 2, answer: "24", convention: round-once}
+    answer_text: 'The gear ratio is $\dfrac{40}{10} = 4$, so the moment is multiplied by 4: $M_2 = 6.0 \times 4 = 24\,\text{N m}$.'
+
+  - id: p8-lever-explain
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'Explain how a lever transmits the rotational effect of a force, and why it can make a job easier.'
+    answer_label: 'How a lever works'
+    check:
+      kind: structured
+      requires: [pivot, moment, advantage]
+      concepts: [moment, lever]
+      points:
+        - id: pivot
+          text: 'A lever turns about a pivot. A force applied to the lever makes the lever rotate about the pivot.'
+          concepts: [pivot, lever]
+        - id: moment
+          text: 'The turning effect is the moment of the force, $M = Fd$, where $d$ is the perpendicular distance from the pivot.'
+          concepts: [moment]
+        - id: advantage
+          text: 'If the effort acts further from the pivot than the load, a small effort gives a large moment. The lever then produces a larger force on the load than the effort put in.'
+          concepts: [lever]
+
+  - id: p9-gear-explain
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'Explain how two gears transmit the rotational effect of a force, and what decides the moment of the driven gear.'
+    answer_label: 'How gears work'
+    check:
+      kind: structured
+      requires: [teeth-mesh, moment-transfer, ratio]
+      concepts: [gear, moment]
+      points:
+        - id: teeth-mesh
+          text: 'The teeth of the two gears mesh, so one gear turns the other.'
+          concepts: [gear]
+        - id: moment-transfer
+          text: 'The force on the teeth transfers the rotational effect from one gear to the other.'
+          concepts: [gear]
+        - id: ratio
+          text: 'The moments are in the same ratio as the numbers of teeth, so a small gear turns a large gear with a larger moment and a slower turn.'
+          concepts: [moment]
+
+  - id: p10-spanner-combined
+    section: '2.5'
+    tier: F
+    dfe: [FO4]
+    statement: 'A spanner is used to loosen a nut. The hand applies 180 N at 0.25 m from the nut. Calculate the moment. Then calculate the force the spanner must apply at 0.050 m from the nut to give the same moment.'
+    answer_label: 'Moment and force from the spanner'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F1 * d1"
+          values:
+            F1: {value: "180", unit: "N"}
+            d1: {value: "0.25", unit: "m"}
+          answer: {value: "45", unit: "N m"}
+        - kind: dimensions
+          expression: "F1 * d1 / d2"
+          values:
+            F1: {value: "180", unit: "N"}
+            d1: {value: "0.25", unit: "m"}
+            d2: {value: "0.050", unit: "m"}
+          answer: {value: "900", unit: "N"}
+        - {kind: sigfigs, value: "900", figures: 2, answer: "9.0e2", convention: round-once}
+    answer_text: 'The moment is $M = Fd = 180 \times 0.25 = 45\,\text{N m}$. At 0.050 m the force is $F = \dfrac{M}{d} = \dfrac{45}{0.050} = 900\,\text{N} = 9.0 \times 10^2\,\text{N}$.'

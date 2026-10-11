@@ -10,9 +10,16 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.12 Functions in modelling: limitations and refinements — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: B11, OT3
+Work through these on your own. For each one, write the model's domain and one
+assumption before you calculate. Give every final answer with a unit and one
+sentence of interpretation. When a measurement disagrees, say which model fits
+and what the fit does not show.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-02-practice-2.12
+
+:::answers chapter-02-practice-2.12
