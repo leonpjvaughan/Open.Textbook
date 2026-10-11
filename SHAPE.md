@@ -334,6 +334,13 @@ are excluded, and MkDocs 2.0 removes the plugin system entirely. The PWA
 therefore cannot come from a plugin — it is engine work, authored in `assets/`
 and emitted by the engine, exactly like the booklet widget.
 
+**MkDocs is the only renderer that ships.** `engine/textbook/pipeline.py` is a
+second, complete renderer for the same books, and it is parked: no new feature
+lands in it and no bug is fixed twice, but it is not deleted. It is the escape
+hatch from the MkDocs 2.0 rewrite and from Material's licence notice, so
+`tests/test_pipeline.py` stays in the gate and the decision is re-opened when
+either becomes real. See `todo.md` item 8.
+
 ## Deliberate limits
 
 - **One MkDocs build per profile, not one site for everything.** Blending the
