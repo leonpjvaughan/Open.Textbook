@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>$title — $site_title</title>
 <meta name="description" content="$description">
+<meta name="build" content="$build">
 <link rel="canonical" href="$canonical">
+<link rel="manifest" href="/manifest.webmanifest">
 <script>
 /* Reader preferences before first paint. Both keys are origin-wide, shared with
  * every other book and with the landing page, so a choice follows the reader.
@@ -29,7 +31,10 @@
 <link rel="stylesheet" href="${prefix}assets/stylesheets/themes.css">
 <link rel="stylesheet" href="${prefix}assets/stylesheets/extra.css">
 <link rel="stylesheet" href="${prefix}assets/stylesheets/book.css">
+<link rel="stylesheet" href="${prefix}assets/stylesheets/book-local.css">
 <link rel="stylesheet" href="${prefix}assets/stylesheets/shell.css">
+<link rel="stylesheet" href="${prefix}assets/stylesheets/settings.css">
+<script src="/assets/settings/service-worker.js" defer></script>
 </head>
 <body>
 <script>
@@ -46,9 +51,12 @@ document.body.setAttribute(
 <header class="masthead" data-pagefind-ignore>
   <div class="wrap masthead__inner">
     <a class="masthead__brand" href="${prefix}">$site_title</a>
-    <div class="search">
-      <input id="search-input" type="search" placeholder="Search" aria-label="Search this book">
-      <ul id="search-results" class="search__results"></ul>
+    <div class="masthead__actions">
+      <div class="search">
+        <input id="search-input" type="search" placeholder="Search" aria-label="Search this book">
+        <ul id="search-results" class="search__results"></ul>
+      </div>
+      $settings_trigger
     </div>
   </div>
 </header>
@@ -65,6 +73,10 @@ document.body.setAttribute(
     $content
   </main>
 </div>
+
+$settings_dialog
+$booklet_script
+<script src="${prefix}assets/settings/settings.js"></script>
 
 <script type="module">
 /* Search, powered by Pagefind: the index is built over the rendered HTML after

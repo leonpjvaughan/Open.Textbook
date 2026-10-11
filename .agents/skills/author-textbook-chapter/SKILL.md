@@ -23,8 +23,8 @@ Work inside one chapter only:
 - The glossary strand page the chapter's new terms belong to.
 - The problem banks and figures the chapter needs.
 
-Never edit `curriculum.yaml`, the generated `nav.yml`, `CURRICULUM-MAP.md`, a
-generated MkDocs config, or another chapter. If the curriculum is wrong, finish
+Never edit `curriculum.yaml`, `CURRICULUM-MAP.md`, the generated nav, or
+another chapter. If the curriculum is wrong, finish
 the chapter and raise it (see Escalating).
 
 ## Step 1 — Plan the two arcs before writing prose

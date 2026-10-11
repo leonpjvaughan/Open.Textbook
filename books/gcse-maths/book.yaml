@@ -1,8 +1,8 @@
 # Identity and build metadata for this book.
 #
 # Everything a build needs that is not the content itself. The scaffold reads
-# this to generate the MkDocs profiles; the portal reads it to build the landing
-# page card; the hooks read the paths through the generated config's `extra`.
+# this to generate the docs tree and the book's tint; the portal reads it to build the landing
+# page card; the hooks read the paths through the build's config.
 
 id: gcse-maths
 title: GCSE Mathematics (9-1)
@@ -15,7 +15,7 @@ description: >-
 
 boards: [AQA, Pearson Edexcel, OCR]
 
-# One MkDocs build per profile. `tier_filter` selects the tier hook's behaviour;
+# One build per profile. `tier_filter` selects the tier hook's behaviour;
 # `default` marks the profile the landing page links to first.
 profiles:
   - id: higher

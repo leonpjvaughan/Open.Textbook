@@ -4,12 +4,13 @@ Three callers need this: the lint reports it, the tier filter depends on it, and
 the pipeline builds pages from it. They must agree, because the failure it guards
 against is silent.
 
-MkDocs' own front-matter loader catches a YAML error, reports nothing, and treats
-the page as having no metadata. That is not cosmetic. ``tier.py`` decides which
-pages belong to a Foundation build from ``tier: H`` in this same block, so a page
-whose front matter fails to parse has no tier, is therefore not Higher-only, and
-is built into the Foundation output — reachable by URL, absent from the
-navigation — while ``mkdocs build --strict`` still exits 0.
+MkDocs' own front-matter loader caught a YAML error, reported nothing, and treats
+the page as having no metadata. That lesson still governs the pipeline, which
+uses this same parser for every page. It is not cosmetic. ``tier.py`` decides
+which pages belong to a Foundation build from ``tier: H`` in this same block, so
+a page whose front matter fails to parse has no tier, is therefore not
+Higher-only, and would be built into the Foundation output — reachable by URL,
+absent from the navigation — while the build still exited 0.
 
 Six pages of the first book shipped that way: an unquoted title containing a
 colon, such as ``title: 11.2 Gradient and intercept: y = mx + c``, which YAML

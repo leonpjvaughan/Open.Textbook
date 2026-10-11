@@ -53,7 +53,7 @@ names a CAS operation (`diff`, `integrate`, `subs`, `simplify`, `factor`, ...);
 There is no runtime lookup and no client-side problem engine. Injection is a
 **build-time** step:
 
-1. `renderers/mkdocs/hooks/problems.py` runs MkDocs's `on_page_markdown` event.
+1. `engine/textbook/hooks/problems.py` runs on the page's markdown.
 2. It finds the line-anchored directive `:::answers <bank>` and reads the YAML
    bank from disk with PyYAML.
 3. `engine/textbook/verify/render.py` turns the selected records into markdown.
@@ -121,7 +121,7 @@ No page restates a problem or an answer by hand. The page carries two markers:
   Higher-only items);
 - `:::answers <bank>` prints the solutions (or `#<id>,<id>` to select records).
 
-`renderers/mkdocs/hooks/problems.py` expands both, at build time, from the same
+`engine/textbook/hooks/problems.py` expands both, at build time, from the same
 records CI verified, using `engine/textbook/verify/render.py`. The block is emitted as
 markdown with `$...$` maths, so the maths hook renders it to MathML in the same
 pass. The reader therefore sees exactly what `python -m textbook.verify` proved, and

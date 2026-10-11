@@ -45,6 +45,7 @@ from pymdownx.arithmatex import ArithmatexExtension
 
 from . import book as books
 from . import config as cfg
+from . import portal
 from . import scaffold
 from .frontmatter import FrontMatterError
 from .frontmatter import read as read_page
@@ -63,12 +64,13 @@ SHELL_CSS = CSS / "shell.css"
 # hooks want the same event.
 MARKDOWN_HOOKS = (tier, toc, figures, problems)
 
-# Only the extensions the content actually uses. base.yml also declares
-# admonition, attr_list, pymdownx.details and pymdownx.superfences; measured
-# usage across all 457 pages of the first book is zero, zero, zero and one.
+# Only the extensions the content actually uses. The retired MkDocs shell also
+# declared admonition, attr_list, pymdownx.details and pymdownx.superfences;
+# measured usage across all 457 pages of the first book is zero, zero, zero and
+# one.
 #
-# These are Extension *instances*. The ``{name: {options}}`` mapping that MkDocs
-# accepts is MkDocs sugar: Python-Markdown wants a name or an Extension.
+# These are Extension *instances*. The ``{name: {options}}`` mapping a config
+# file accepts is sugar: Python-Markdown wants a name or an Extension.
 EXTENSIONS = [
     "md_in_html",  # <details markdown="1">
     "tables",
@@ -76,8 +78,9 @@ EXTENSIONS = [
 ]
 
 # Shared stylesheets, in load order. book.css is generated per book by the
-# scaffold and copied from the book's own docs assets.
-SHARED_CSS = ("themes.css", "extra.css", "portal.css")
+# scaffold and copied from the book's own docs assets; settings.css is the
+# reader Settings control's stylesheet, shared with the landing page.
+SHARED_CSS = ("themes.css", "extra.css", "portal.css", "settings.css")
 
 # Links to source .md paths in rendered HTML. The suffix stays in the captured
 # group so url_for can tell 'a/b/index.md' from 'a/b/index'; stripping it here
@@ -154,6 +157,19 @@ def prefix_for(url: str) -> str:
     return "../" * depth
 
 
+def booklet_widget(book: books.Book, prefix: str) -> str:
+    """The formulae-booklet `<script>` a page carries, or the empty string.
+
+    A classic deferred script rather than a module: it resolves its sibling
+    ``booklet.json`` from ``document.currentScript.src``, which is null in a
+    module. A book without a booklet gets no element at all, so no page fetches
+    data that is not there.
+    """
+    if not book.booklet_name:
+        return ""
+    return f'<script src="{prefix}assets/booklet/booklet.js" defer></script>'
+
+
 # --- navigation ---------------------------------------------------------------
 
 
@@ -217,7 +233,7 @@ def render_nav(nav, current_url: str) -> str:
 
 
 def nav_for(book: books.Book, include_higher: bool) -> list:
-    """The nav MkDocs would be handed, built from curriculum.yaml."""
+    """The nav, built from curriculum.yaml."""
     return scaffold.build_nav_list(
         book.strands, book.chapters, include_higher=include_higher
     )
@@ -307,7 +323,13 @@ class RenderedPage:
 
 
 def render_page(
-    book: books.Book, config: dict, nav, md_path: str, template: Template
+    book: books.Book,
+    config: dict,
+    nav,
+    md_path: str,
+    template: Template,
+    settings: tuple[str, str] = ("", ""),
+    build: str = "",
 ) -> tuple[str, RenderedPage, bool]:
     """Render one page. Returns (html, index entry, had a maths error)."""
     meta, body = read_page(book.docs / md_path)
@@ -322,6 +344,13 @@ def render_page(
     content = rewrite_source_links(content)
 
     title = str(meta.get("title") or md_path)
+    prefix = prefix_for(url)
+    trigger, dialog = settings
+    # The booklet widget is a classic deferred script: it reads
+    # ``document.currentScript.src`` to find its sibling JSON, so it must be a
+    # real script element rather than a module. A book without a booklet gets no
+    # element at all, so no page ever fetches data that is not there.
+    booklet = booklet_widget(book, prefix)
     rendered = template.substitute(
         title=html.escape(title),
         description=html.escape(str(meta.get("description") or book.description)),
@@ -329,7 +358,11 @@ def render_page(
         canonical=canonical_url(book, url),
         content=content,
         nav=render_nav(nav, url),
-        prefix=prefix_for(url),
+        prefix=prefix,
+        build=html.escape(build, quote=True),
+        settings_trigger=trigger,
+        settings_dialog=dialog,
+        booklet_script=booklet,
     )
     return rendered, RenderedPage(url=url, title=title), bool(MATH_ERROR.search(content))
 
@@ -400,10 +433,11 @@ a { color: #23577d; }
 def copy_assets(book: books.Book, out: Path) -> list[str]:
     """Copy the shared design system, the shell, and this book's figure modules."""
     copied: list[str] = []
+    assets = Path(books.repo_root()) / "assets"
     sheets = out / "assets" / "stylesheets"
     sheets.mkdir(parents=True, exist_ok=True)
 
-    shared = Path(books.repo_root()) / "assets" / "stylesheets"
+    shared = assets / "stylesheets"
     for name in SHARED_CSS:
         source = shared / name
         if source.exists():
@@ -417,7 +451,57 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
         shutil.copy2(generated, sheets / "book.css")
         copied.append("book.css")
 
-    loader = Path(books.repo_root()) / "assets" / "figures" / "figures.js"
+    # The book's author-local stylesheet, last in the cascade. It is authored,
+    # not generated, and may be empty; a book that has one must ship it or its
+    # own component rules silently disappear.
+    local = book.docs / "assets" / "stylesheets" / "book-local.css"
+    if local.exists():
+        shutil.copy2(local, sheets / "book-local.css")
+        copied.append("book-local.css")
+
+    # The formulae booklet: the shared widget and the book's generated data,
+    # copied together so the widget's sibling fetch resolves. A book without a
+    # booklet ships neither the script nor a request for one.
+    if book.booklet_name:
+        widget = assets / "booklet" / "booklet.js"
+        data = book.docs / "assets" / "booklet" / "booklet.json"
+        if widget.exists() and data.exists():
+            booklet_dir = out / "assets" / "booklet"
+            booklet_dir.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(widget, booklet_dir / "booklet.js")
+            shutil.copy2(data, booklet_dir / "booklet.json")
+            copied.append("booklet.js")
+            copied.append("booklet.json")
+
+    # The Settings runtime and the service-worker registration. The registration
+    # script is loaded by the deferred <script> every page carries; without it in
+    # the output a profile served on its own would 404 on that request.
+    settings_dir = out / "assets" / "settings"
+    settings_dir.mkdir(parents=True, exist_ok=True)
+    for name in ("settings.js", "service-worker.js"):
+        source = assets / "settings" / name
+        if source.exists():
+            shutil.copy2(source, settings_dir / name)
+            copied.append(name)
+
+    # The PWA: the manifest, the worker, and the home-screen icon. Written from
+    # the portal rather than copied raw, so the worker carries the same build
+    # label the pages do and the cache rotates on every deploy. They belong at
+    # the deployment root, but a profile built on its own needs them beside its
+    # pages for the root-absolute links in the shell to resolve.
+    (out / "manifest.webmanifest").write_text(portal.manifest(), encoding="utf-8")
+    copied.append("manifest.webmanifest")
+    (out / "sw.js").write_text(portal.service_worker(), encoding="utf-8")
+    copied.append("sw.js")
+
+    icon = assets / "icons" / "app-icon.svg"
+    if icon.exists():
+        icons_dir = out / "assets" / "icons"
+        icons_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(icon, icons_dir / "app-icon.svg")
+        copied.append("app-icon.svg")
+
+    loader = assets / "figures" / "figures.js"
     if loader.exists():
         dest = out / "assets" / "figures" / "figures.js"
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -522,6 +606,10 @@ def build(
     include_higher = profile != "foundation"
     config = make_config(book, profile)
     template = Template(PAGE_TEMPLATE.read_text(encoding="utf-8"))
+    # The Settings control is the one the landing page uses: same trigger, same
+    # dialog, built from the same bundles. Computed once per build, not per page.
+    settings = (portal.settings_trigger(), portal.settings_dialog())
+    build_label = portal.build_label()
 
     if clean and out.exists():
         shutil.rmtree(out)
@@ -555,7 +643,9 @@ def build(
         if not source.exists():
             result.broken.append(f"{md_path}: listed in the nav but not on disk")
             continue
-        rendered, entry, maths_failed = render_page(book, config, nav, md_path, template)
+        rendered, entry, maths_failed = render_page(
+            book, config, nav, md_path, template, settings=settings, build=build_label
+        )
         destination = out / entry.output
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_text(rendered, encoding="utf-8")
@@ -681,8 +771,8 @@ def main() -> int:
     except FrontMatterError as err:
         log.error("%s", err)
         log.error(
-            "MkDocs would swallow this and build the page with no metadata, "
-            "including no tier."
+            "The build refuses to guess: an unquoted title containing ': ' is "
+            "invalid YAML, and a page with no metadata has no tier."
         )
         return 2
     except KeyError as err:

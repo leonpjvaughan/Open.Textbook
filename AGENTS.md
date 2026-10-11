@@ -215,13 +215,15 @@ link at 4.34:1 and gruvbox's at 4.40:1 — neither of which is visible by lookin
 
 Both preferences are the reader's and are shared by every book and the landing
 page, under origin-wide keys: `textbooks:scheme` (`default` / `slate`) and
-`textbooks:theme` (a bundle id). They are applied before the first paint by
-`engine/textbook/hooks/prefs.py`, which is why the hook order lists `prefs` last.
+`textbooks:theme` (a bundle id). They are applied before the first paint by an
+inline script at the top of `engine/textbook/templates/page.html`, which reads
+the two keys and sets `data-theme` and `data-md-color-scheme`; the landing page
+carries the same script, and both pages expose the same store to the shared
+Settings runtime. Keep the script ahead of every stylesheet in that template, so
+the chosen bundle paints with no flash.
 
-Do not reintroduce a per-build key: Material scopes its own storage to each built
-site, which is exactly what the bridge exists to fix. Do not make the theme key
-path-scoped either — renaming the repository must not cost a reader their
-preferences.
+Do not make the theme key path-scoped either — renaming the repository must not
+cost a reader their preferences.
 
 ### Previewing a bundle
 
@@ -253,8 +255,7 @@ ranking of methods. Keep the claims to what the briefing supports; see
 | `books/<id>/booklet/` | Formulae-and-tables data (source of truth) |
 | `books/<id>/sources.yaml` | Tracked provenance for the curriculum claims |
 | `books/<id>/AGENTS.md` | Book-specific instructions |
-| `renderers/mkdocs/` | MkDocs adapter: `base.yml`, the hook entry point, generated per-book configs — **the site** |
-| `engine/textbook/pipeline.py` | A second renderer, **parked**: not the site, not deleted, tests stay green. See SHAPE.md, "MkDocs is the only renderer that ships" |
+| `engine/textbook/pipeline.py` | **The site.** Renders a book to static HTML: nav, Pagefind search, link checking, sitemap, 404 |
 | `deploy/dns/` | The importable BIND zone file for the DNS records, and the export it produced |
 | `research/` | `pedagogy.md`, per-book notes, and fetched sources (git-ignored) |
 | `PROBLEMS.md` | Problem-bank schema and verification limits |
@@ -273,19 +274,20 @@ ranking of methods. Keep the claims to what the briefing supports; see
 uv sync                                   # Python toolchain and the local engine
 npm install                               # build-time KaTeX (pinned)
 
-python -m textbook.scaffold               # docs tree, per-book configs, themes.css
+python -m textbook.scaffold               # docs tree, generated CSS, themes.css
 python -m textbook.booklet                # validate booklet data, emit JSON + MathML
 python -m textbook.portal                 # the collection landing page
 python -m textbook.lint                   # voice, style, structure
 python -m textbook.verify                 # verify every problem bank (SymPy)
 
 python -m textbook.plan                   # the build matrix: book x profile
-mkdocs build -f renderers/mkdocs/gcse-maths.higher.yml --strict
-mkdocs build -f renderers/mkdocs/gcse-maths.foundation.yml --strict
+while read -r -a b; do python -m textbook.pipeline "${b[@]}"; done \
+    < <(python -m textbook.plan --configs)             # both profiles, no broken links
 grep -rl 'math-error' site --include='*.html'          # must print nothing
 
 pytest tests/ -q                          # bank, marker, collection and theme tests
-test/run.sh                               # figure-hook + tier evaluation
+                                          #   (test_render_hooks.py holds the figure-hook
+                                          #    and tier-profile evaluation)
 scripts/check.sh                          # everything CI enforces, in one call
 python -m textbook.plan --generated       # the files a drift check should diff
 scripts/deploy.sh                         # build, guard, then deploy (see DEPLOY.md)
@@ -372,9 +374,9 @@ calling a chapter done.
 - Hooks resolve every path from the build's `config.extra` block, through
   `textbook/config.py` — never from `__file__`. A hook that guesses its own
   location works for one book and silently breaks for the next.
-- MkDocs requires a **file** path in `hooks:`; a dotted module path is rejected.
-  `renderers/mkdocs/hooks/entry.py` is the shim that re-exports the engine's
-  hooks. Hook order is declared once, in `engine/textbook/hooks/__init__.py`.
+- Hook order is declared once, in `engine/textbook/hooks/__init__.py`, and the
+  pipeline reads the same order from `pipeline.MARKDOWN_HOOKS`. Adding a hook
+  means adding it to both, and the tests pin the two together.
 - Figure slugs are auto-discovered from `books/<id>/docs/assets/figures/*.js`.
   The filename must equal the slug, and an unknown `:::figure` slug fails the
   build.
@@ -388,8 +390,9 @@ calling a chapter done.
   point into the root `assets/`. Edit the file in `assets/` — never replace a
   symlink with a copy, or the books drift apart. The scaffold creates these, so a
   new book gets them by running it.
-- A broken symlink under `docs_dir` fails the build: MkDocs copies every file
-  there, not only the referenced ones.
+- A broken symlink under `docs_dir` breaks the book: the scaffold creates the
+  shared symlinks and the tests check they resolve, because a tool that walks the
+  tree meets them whether or not a page references them.
 - Anything to do with colour, fonts or bundles: see **Theming** above.
 
 **Tiers**
@@ -401,10 +404,10 @@ calling a chapter done.
 
 **Generated files**
 
-- `books/<id>/docs/**` stubs, `renderers/mkdocs/<book>.<profile>.yml`,
-  `books/<id>/docs/assets/stylesheets/book.css` and `books/<id>/CURRICULUM-MAP.md`
-  are generated. Never hand-edit them; edit `book.yaml` or `curriculum.yaml` and
-  re-run `python -m textbook.scaffold`.
+- `books/<id>/docs/**` stubs, `books/<id>/docs/assets/stylesheets/book.css`
+  and
+  `books/<id>/CURRICULUM-MAP.md` are generated. Never hand-edit them; edit
+  `book.yaml` or `curriculum.yaml` and re-run `python -m textbook.scaffold`.
 - A stub is rewritten only while it carries `<!-- scaffold:stub -->`; authored
   pages must never contain that marker.
 
@@ -467,16 +470,17 @@ calling a chapter done.
 
 **Toolchain**
 
-- The build needs both `uv sync` (MkDocs) and `npm install` (KaTeX). Without
-  Node, maths silently degrades to `.math-error` spans.
+- The build needs `uv sync` (the engine, Markdown and PyYAML) and `npm install`
+  (KaTeX and Pagefind). Without Node, maths silently degrades to `.math-error`
+  spans.
 - `actionlint` only runs shellcheck if shellcheck is on `PATH`, and it is on
   `PATH` in CI but not by default locally. Without it, a whole class of workflow
   error passes locally and fails the `lint workflows` job — which has happened.
   It is installed with `mise use -g shellcheck@0.11.0`; check with
   `command -v shellcheck` before trusting a local `actionlint` run.
-- `test/hooks/` duplicates the hook logic on purpose: it is the evaluation
-  harness that compared the candidate mechanisms. Keep it in sync with
-  `engine/textbook/hooks/`.
+- The figure-hook and tier-profile evaluation is `tests/test_render_hooks.py`,
+  from the pipeline's hooks (`pipeline.MARKDOWN_HOOKS`). It replaced
+  `test/run.sh` and the `test/content-*` fixture books.
 - `screenshot.cjs` serves the built site through Playwright request interception
   rather than binding a port. Listening sockets do work in this environment —
   `python -m textbook.pipeline --serve` binds and serves — so interception is a
@@ -512,10 +516,10 @@ Claude Code reads skills from `.claude/skills/`; project that directory with the
   `<!-- tier:h -->…<!-- /tier:h -->`. Each book declares its own axis in
   `book.yaml → tier_axis` and the profiles it builds.
 - **Figures:** author with the line-anchored directive `:::figure <slug>`; the
-  MkDocs hook expands it to `<maths-figure data-figure="<slug>">` and injects the
+  figure hook expands it to `<maths-figure data-figure="<slug>">` and injects the
   loader only on pages that need it. Modules live in
   `books/<id>/docs/assets/figures/`; the loader `assets/figures/figures.js` is
-  shared. Do not edit generated configs or nav files.
+  shared. Do not edit generated files or nav lists.
 - **Maths:** write `$…$` and `$$…$$`. It is rendered to MathML at build time
   (KaTeX 0.19.0) with no runtime JavaScript. `aligned` environments are supported.
 - **Theming:** never a colour in a page or a figure. Use the `fig-*`/`text-*`

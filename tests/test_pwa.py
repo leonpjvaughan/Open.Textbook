@@ -15,7 +15,7 @@ from __future__ import annotations
 import json
 import re
 
-from textbook import headers, portal
+from textbook import headers, pipeline, portal
 from textbook.book import repo_root
 
 ROOT = repo_root()
@@ -24,9 +24,6 @@ SITE = ROOT / "site"
 SW = ASSETS / "sw.js"
 REGISTER = ASSETS / "settings" / "service-worker.js"
 ICON = ASSETS / "icons" / "app-icon.svg"
-OVERRIDES = ROOT / "renderers" / "mkdocs" / "overrides"
-PWA_PARTIAL = OVERRIDES / "partials" / "pwa.html"
-MAIN_HTML = OVERRIDES / "main.html"
 
 
 def function_body(source: str, name: str) -> str:
@@ -157,17 +154,10 @@ def test_the_worker_registers_but_never_blocks_the_page():
 
 
 def test_the_book_template_adds_the_manifest_and_the_registration():
-    partial = PWA_PARTIAL.read_text(encoding="utf-8")
-    assert '<link rel="manifest" href="/manifest.webmanifest">' in partial
-    assert 'src="/assets/settings/service-worker.js"' in partial
-    assert "defer" in partial, "an eager script would delay the page"
-
-
-def test_the_book_template_override_is_materials_with_one_head_block():
-    text = MAIN_HTML.read_text(encoding="utf-8")
-    assert '{% extends "base.html" %}' in text, "the override must stay Material's template"
-    assert "extrahead" in text
-    assert '{% include "partials/pwa.html" %}' in text
+    template = pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8")
+    assert '<link rel="manifest" href="/manifest.webmanifest">' in template
+    assert 'src="/assets/settings/service-worker.js"' in template
+    assert "defer" in template, "an eager script would delay the page"
 
 
 def test_the_landing_page_is_installable_too():

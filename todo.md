@@ -11,7 +11,7 @@ in `AGENTS.md` do not apply here, but the engineering rules do.
 - [x] 5. Worker version URLs closed; rollback is a manual workflow, command recorded
 - [x] 6. Crawlability: our own `robots.txt` and a sitemap index
 - [ ] 7. Account, credential and dependency hygiene (2FA, Dependabot and recovery done; registrar, token rotation and secret scanning left)
-- [x] 8. One site, two renderers — signed off: MkDocs is the site, the pipeline is parked
+- [x] 8. One site, two renderers — decided: the bespoke pipeline replaces MkDocs
 - [x] 9. Nothing says which commit is live
 - [x] 10. Accessibility: turn the claims into checks
 - [x] 11. Licence, colophon and a way to report an error
@@ -21,8 +21,12 @@ in `AGENTS.md` do not apply here, but the engineering rules do.
 - [x] 15. `extra.css` and `portal.css` declare literal colours
 - [x] 16. Material keyboard gaps found by the audit
 - [x] 17. Text drawn on the accent is not AA
-- [ ] 18. Theme bundles — eight light/dark groups, four calm and four vivid (shipped; provenance enforcement and the APCA check left)
-- [ ] 19. Declare the ready state
+- [ ] 18. Theme bundles — nine light/dark groups, four calm and five vivid (shipped; provenance enforcement and the APCA check left)
+- [ ] 19. The pipeline's 404 page declares literal colours
+- [x] 20. The pipeline ships no Formulae booklet and no `book-local.css`
+- [ ] 21. Recheck and verify — what the theme work could not settle
+- [ ] 22. Follow-ups from the MkDocs deletion
+- [ ] 23. Declare the ready state
 
 ---
 
@@ -425,8 +429,8 @@ the rest recoverable, so they belong in the same gate.
 - [x] **Two-factor authentication on the Cloudflare account and on GitHub.** Both
       own the deployment path; this is the highest-value item in the file. Done —
       the author confirmed 2FA on both.
-- [ ] **The domain cannot lapse or move**: registrar auto-renew confirmed, and the
-      transfer lock on. The address is the product.
+- [x] **The domain cannot lapse or move**: registrar auto-renew confirmed by the
+      author (Cloudflare Registrar). The transfer lock is the remaining half.
 - [ ] **The deploy token**: set an expiry and a rotation date. It is account-scoped
       with `Workers Scripts: Edit`, and `wrangler whoami` does **not** list
       permissions for an account token (it prints "To see token permissions visit
@@ -450,7 +454,7 @@ the rest recoverable, so they belong in the same gate.
 
 
 
-## 8. One site, two renderers — **signed off: MkDocs is the site, the pipeline is parked**
+## 8. One site, two renderers — **decided: the pipeline replaces MkDocs**
 
 **This is the largest structural item in the file.** There are two ways to build a
 book, and only one of them is deployed.
@@ -476,47 +480,44 @@ this decision more urgent rather than less.
 **Decide:** the pipeline replaces MkDocs, or MkDocs stays and the pipeline goes.
 Not both, and not for long — the cost is paid on every change to the page shell.
 
-**Recommendation (2026-10-11) — MkDocs stays for now; the pipeline is parked,
-not deleted. Signed off and applied the same day.**
+**Decision (2026-10-11) — `engine/textbook/pipeline.py` becomes the site. MkDocs
+is retired.**
 
-The evidence points one way for the moment. MkDocs is what deploys, and every
-change of the last day — the settings overlay, the PWA, the colophon in the nav,
-`accent_ink`, the nav override, the search tab-stop fix, the sitemap and
-`robots.txt` — is built for it. Switching now means paying for all of that twice,
-and the pipeline has no deploy path, no search parity (Pagefind against Material's
-index) and no sitemap of its own.
+Signed off by the author. The bespoke renderer is the one we control: no
+third-party theming to be rewritten under us when MkDocs 2.0 lands, no plugin
+system to lose, no licence notice, and one place to change the shell instead of
+two. The cost is the migration below, paid once.
 
-The pipeline is worth keeping precisely because of the two things that will force
-this decision: `MkDocs 2.0` removes the plugin system and rewrites theming, and
-Material 9.7.7 says it is unlicensed for production. Deleting the pipeline now
-would remove the escape hatch from both.
+**Migration, in order.** The pipeline already renders the book, builds Pagefind
+search, checks links, rewrites source links, and emits a sitemap and a 404 per
+profile. What it does not yet have is everything the last day added to the MkDocs
+shell:
 
-So "parked" means something specific:
+| Gap | Where |
+|---|---|
+| The Settings overlay: trigger, dialog, `settings.js`, `settings.css` | `templates/page.html`, `css/shell.css`, `pipeline.copy_assets` |
+| The PWA: manifest link and service-worker registration | same |
+| `<meta name="build">` on book pages | same |
+| Copying `book.css`, `shell.css`, `settings.*`, `sw.js`, the manifest, the icons | `pipeline.copy_assets` |
+| The build matrix, CI and the local gate | `plan.py`, `deploy.sh`, `check.sh`, `verify.yml` |
+| The figure-hook and tier evaluation (24 assertions) | **done** — `tests/test_render_hooks.py`, replacing `test/run.sh` + `test/configs/` |
+| The Formulae booklet widget and `book-local.css` | **done** — item 20 |
+| Retiring MkDocs | `renderers/`, `scaffold.py`'s nav-to-YAML, `pyproject.toml` |
 
-- **MkDocs is the site.** `DEPLOY.md`, `AGENTS.md` and `SHAPE.md` describe it and
-  only it; the pipeline stops being presented as an alternative.
-- **No new features land in the pipeline**, and no bug is fixed twice. It is frozen
-  at `3bc6594`.
-- **It does not rot.** `tests/test_pipeline.py` stays in the gate, so a change to
-  `textbook/` that breaks it still fails CI and someone notices.
-- **A dated review.** Re-open when MkDocs 2.0 has a stable release, or when the
-  Material licence notice becomes an error rather than a warning, whichever is
-  first. Owner: the author.
-
-That resolves the real cost — two answers for every shell change — without a
-migration nobody has budgeted for.
+MkDocs was deleted once the pipeline had built and served the site in CI, so at
+no point did the deploy point at nothing. The deletion landed in del-14: the
+pipeline is the only renderer, `renderers/` is gone, and the MkDocs and Material
+dependencies are out of `pyproject.toml` and `uv.lock`.
 
 **Done means.**
 
-- [x] One renderer is the site, and the other is explicitly parked with a reason
-      and an owner. MkDocs ships; `pipeline.py` is parked, frozen, with the reason
-      and the re-open trigger recorded here and in SHAPE.md. Owner: the author.
-- [x] `DEPLOY.md`, `AGENTS.md` and `SHAPE.md` describe that renderer only — the map
-      in AGENTS.md marks the pipeline "not the site", and SHAPE.md carries the
-      "MkDocs is the only renderer that ships" note.
-- [x] CI builds the site with it. `verify.yml` builds MkDocs per profile;
-      `tests/test_pipeline.py` runs in the same gate, so a change that breaks the
-      parked renderer still fails rather than rotting quietly.
+- [x] The pipeline builds the site for every profile, with the settings overlay,
+      the PWA and the build identity on every page.
+- [x] The figure-hook and tier evaluation is pytest (`tests/test_render_hooks.py`),
+      and `test/run.sh` and its fixtures are deleted.
+- [x] CI builds and deploys with the pipeline; `check.sh` does too.
+- [x] MkDocs is deleted, and `DEPLOY.md`, `AGENTS.md` and `SHAPE.md` describe the
+      pipeline only.
 
 ---
 
@@ -1008,7 +1009,211 @@ check on the dark member is not written.
 
 ---
 
-## 19. Declare the ready state
+## 19. The pipeline's 404 page declares literal colours
+
+**Noticed while bringing the bespoke shell to parity (del-11).** `NOT_FOUND` in
+`engine/textbook/pipeline.py` inlines a `<style>` with six literal colours:
+`#faf9f5`, `#1f1e1b`, `#23577d`, `#171614`, `#e9e7e1` and `#8cc0e8`. It
+therefore ignores the reader's bundle entirely — a reader on Catppuccin gets
+Editorial's paper on the 404, and one on Clean gets a blue link. This is the
+same class of bug item 15 fixed for `extra.css` and `portal.css`.
+
+Evidence:
+
+    grep -nE '#[0-9a-fA-F]{3,8}' engine/textbook/pipeline.py
+
+It is deliberately self-contained: a 404 can be served for a request at any
+depth, so its comment argues linked stylesheets have no reliable base. That is
+true of a *relative* link, but the collection is served from the origin root, so
+a root-absolute `/assets/stylesheets/themes.css` resolves at any depth. The
+per-profile copy could link `${prefix}assets/stylesheets/...` instead.
+
+**Fix.** Replace the inline literal-colour `<style>` with the same root-absolute
+themes stylesheet `portal.not_found()` loads, or keep it inline and read the
+`--tb-*` tokens from a link to `themes.css`. Then assert in
+`tests/test_pipeline.py` that `NOT_FOUND` declares no literal colour (strip
+comments before scanning), as the new page-shell test does for `shell.css`.
+
+**Done means.**
+
+- [ ] `grep -nE '#[0-9a-fA-F]{3,8}' engine/textbook/pipeline.py` finds no colour
+      outside a comment.
+- [ ] The 404 renders in the reader's bundle in both schemes — checked in the
+      browser with two bundles.
+- [ ] A test fails if a literal colour returns to the 404.
+
+---
+
+## 20. The pipeline ships no Formulae booklet and no `book-local.css` — **done**
+
+**Found while porting `test/run.sh` to pytest (del-13).** `engine/textbook/pipeline.py`
+is the site — CI and the deploy build with it — but it never loads the two shell
+features the MkDocs path does. Both are reader-visible or documented extension
+points, so deleting MkDocs would remove the only renderer that has them.
+
+**Evidence (measured 2026-10-11).**
+
+- The MkDocs shell loads both: `renderers/mkdocs/base.yml:52` lists
+  `assets/stylesheets/book-local.css` in `extra_css`, and
+  `renderers/mkdocs/gcse-maths.higher.yml:677` lists `assets/booklet/booklet.js`
+  in `extra_javascript` for a book that declares `booklet:` in `book.yaml`.
+- The pipeline has neither: `grep -in booklet engine/textbook/templates/page.html`
+  and `grep -in booklet` inside `pipeline.copy_assets` return nothing, and
+  `book-local.css` appears in neither `SHARED_CSS` nor the page template.
+- The built output follows:
+
+  ```
+  $ uv run python -m textbook.pipeline --book gcse-maths --profile higher --out /tmp/out --chapter 1 --no-index
+  assets     themes.css, extra.css, portal.css, settings.css, shell.css, book.css,
+             settings.js, service-worker.js, manifest.webmanifest, sw.js,
+             app-icon.svg, figures.js, 29 figure modules   # no booklet
+  $ ls /tmp/out/assets/booklet
+  ls: cannot access '/tmp/out/assets/booklet': No such file or directory
+  $ grep -rl 'booklet.js' /tmp/out --include='*.html'      # no page references it
+  ```
+
+`books/gcse-maths/book.yaml` declares `booklet: booklet/gcse-maths.yaml`, so the
+widget is expected for this book; `assets/stylesheets/book-local.css` is empty
+for GCSE Mathematics today, but SHAPE.md calls it the per-book component escape
+hatch, so a second book would need it and the pipeline would silently drop it.
+
+**Why this blocks deleting MkDocs.** The mission for del-13 says: if deleting
+MkDocs would remove a capability the pipeline does not have — anything a reader
+would notice — stop and report rather than proceed. A Formulae booklet is such a
+capability. MkDocs is therefore left in place until the pipeline reaches parity.
+(The ship path already lost the booklet when CI moved to the pipeline in del-12;
+this item is the repair, not a fresh regression.)
+
+**Fix.** In `pipeline.copy_assets`, when `book.booklet_name` is set, copy
+`assets/booklet/booklet.js` and the generated
+`book.docs/assets/booklet/booklet.json`. Add a `$booklet` slot to
+`engine/textbook/templates/page.html`, filled by `render_page`/`build` only when
+the book has a booklet, and a `book-local.css` copy beside `book.css` linked
+after it. Then rewrite
+`tests/test_collection.py::test_booklet_widget_is_loaded_only_where_there_is_a_booklet`
+to read the built page instead of the generated config.
+
+**Done means.**
+
+- [x] A built profile for a book that declares `booklet:` links
+      `assets/booklet/booklet.js` and ships `booklet.json`; a book that declares
+      none ships neither.
+- [x] A built page links `book-local.css`, and the file is copied into the output.
+- [x] A test fails if either link or asset disappears.
+- [x] `renderers/` can then be deleted, and item 8 closed.
+
+**Done (del-14).** `pipeline.booklet_widget()` emits the deferred `<script>` only
+when `book.booklet_name` is set, and `copy_assets` copies the widget and
+`booklet.json` together; `book-local.css` is copied and linked after `book.css`.
+Pinned by `test_pipeline.py` (the built page and the shipped assets),
+`test_collection.py` (the no-booklet branch), and a real-browser run in which the
+button appears, the panel opens, and the formulae render as MathML.
+
+---
+
+## 21. Recheck and verify — what the theme work could not settle
+
+Everything here was measured; none of it is fixed. Each line says what is
+unverified and what would close it. Nothing is repeated from item 18, whose
+provenance enforcement and APCA check are still open there.
+
+- [ ] **The renderer changed mid-verification.** The theme work was verified twice
+      — against MkDocs, where the four defects were found, and against the
+      pipeline, where the final 9 × 2 × 3 audit ran. The pipeline is the site now,
+      so the preview's routes are `chapter-1/section-1.1/learn/`; the MkDocs routes
+      (`Chapter%201/Section%201.1/Walkthrough/`) exist only if MkDocs is un-parked.
+      The two really are different: `plan --configs` now emits pipeline arguments,
+      and feeding those to `mkdocs build -f` exits 2 with `Invalid value for '-f'`,
+      which is what the old `check.sh` line did. *Done means:* the preview states
+      the layout it expects and fails loudly when routes no longer resolve, so a
+      renderer swap cannot leave it passing on 404 pages — it did exactly that
+      once, auditing 738 "text elements" of a `not found` body.
+- [ ] **`extra.css` declares six `--md-*` variables nothing reads.** Measured: of
+      the 13 it declares, only `--md-default-{bg,fg}-color`, `--md-default-fg-color--light`,
+      `--lighter`, `--lightest` and `--md-primary-fg-color` / `--dark` are consumed
+      by its own components. `--md-accent-fg-color`, `--md-code-bg-color`,
+      `--md-primary-bg-color`, `--md-primary-bg-color--light`,
+      `--md-primary-fg-color--light` and `--md-typeset-a-color` existed for Material.
+      Two of them are the previous commit's fixes — the dark-mode link and the
+      header's ink on the accent — which are correct for MkDocs and now unexercised
+      by the site. *Done means:* they are either kept behind a comment naming the
+      parked renderer, or deleted; the file says which.
+- [ ] **`--tb-ink-lighter` is below 3:1 on the page for 2 of 18 bundle × scheme
+      pairs**, and it paints one visible control: `.sidebar summary::marker`
+      (`shell.css:164`, and the built sidebar does contain a `<summary>`; `.sidebar`
+      paints no background of its own, so the marker is on the paper). The two are
+      catppuccin light at 2.30:1 and kanagawa light at 2.93:1 — under WCAG 1.4.11's
+      3:1 for a non-text component. Measured across all 18: the range is 2.30 to
+      5.04. (On the *figure* panel it is below 3:1 for 8 pairs, one of them 2.05:1,
+      but nothing draws this token inside a figure.) The page audit missed it because
+      a `::marker` is a pseudo-element, not an element with a text node.
+      *Done means:* the token is raised in the failing bundles, or the marker gets a
+      token of its own with its own threshold, and the audit either covers
+      pseudo-elements or records that it does not.
+- [ ] **The audit cannot see pseudo-elements, placeholders or SVG `fill`.** It walks
+      elements that own a text node, so `::marker`, `::before`/`::after` content,
+      `input::placeholder` and icon fills are invisible to it — the reason the
+      `summary` marker above was not caught. *Done means:* the script's header says
+      so, or the check grows.
+- [ ] **Five derived light members have never been looked at by a human**: gruvbox,
+      arc-blueberry, tokyo-night, synthwave and archwave. They pass the invariant and
+      the page audit, which is not the same as still looking like the family they
+      claim to be. 54 screenshots are in `var/theme-preview/` (git-ignored, 7.5 MB).
+      *Done means:* someone opens them and either accepts or redraws the light half.
+- [ ] **Archwave makes nine, five of them vivid, and it is a near-duplicate of
+      Synthwave '84** — magenta-and-cyan on deep aubergine, pastels against neon. No
+      measurement prefers either. *Done means:* one is dropped, or the nine are kept
+      with the overlap written down as deliberate.
+- [ ] **The preview harness is in no gate.** It is the only thing that catches the
+      pseudo-element gap, the two Material defects and a bundle whose accent fails
+      only with no subject tint. It needs Chrome, so it is not in `pytest` or CI, and
+      `test/run.sh` no longer exists. *Done means:* it runs somewhere — a mise task,
+      a CI job with a browser, or a documented manual step in `test/README.md`.
+- [ ] **One pipeline build in five wrote no pages.** The only evidence is one run
+      that printed `…/learn/: page was not written` for several routes, and exited 0;
+      three consecutive reruns afterwards were clean. It happened while
+      `engine/textbook/pipeline.py` was being edited, which is the likeliest cause,
+      but that is a guess and not a measurement. *Done means:* reproduced with a
+      command, or explained.
+- [ ] **The landing-page audit is thin.** One book means 14 text elements on the
+      whole page, so the card's body, subject and facts are one sample each. The
+      card is where the `ink_soft` fix landed, so it is the sample that matters most.
+      *Done means:* re-run once a second book exists.
+
+---
+
+## 22. Follow-ups from the MkDocs deletion
+
+**Found while completing the deletion (del-14).** Small, none a capability loss,
+all cheaper to fix while the context is fresh.
+
+1. **`DEPLOY.md`'s performance budget was measured against the MkDocs shell.** The
+table ("Material bundle 115 kB", "at most 7 render-blocking stylesheets") predates
+the pipeline, which loads no Material bundle and links six stylesheets, so the
+numbers are not the shipped page. **Fix:** re-measure with Playwright against a
+locally served `site/` (the method is described in the same section) and replace
+the table. **Done means:** every number names a resource the pipeline actually
+loads, and the totals are reproduced by one recorded command.
+
+2. **`engine/textbook/hooks/prefs.py`'s `snippet()`/`on_post_page()` are now
+unreachable.** The MkDocs shell was their only caller; the pipeline's before-paint
+script lives in `templates/page.html` and sets the keys directly, so the two can
+drift. `test_prefs.py` still pins the snippet. **Fix:** either make the page
+template carry `prefs.snippet(config)` (which would also restore the
+`window.textbookPrefs` store on book pages) or delete the dead half and keep the
+key constants. **Done means:** one implementation of the before-paint script, and
+a test that fails if the two disagree.
+
+3. **The shared-asset symlinks under `books/<id>/docs/assets/` are now
+vestigial.** `pipeline.copy_assets` reads the shared bytes from `assets/`
+directly; the symlinks exist because MkDocs served only `docs_dir`. Two tests
+still require them. **Fix:** decide whether to keep them as the book's
+self-describing view or drop them from `scaffold.ensure_shared_assets` and the
+two tests together.
+
+---
+
+## 23. Declare the ready state
 
 **Not a change: the gate.** The site is ready to publish when items 2–12 are
 closed and their "done means" boxes are ticked, and not before — a checklist that

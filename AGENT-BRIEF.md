@@ -115,7 +115,7 @@ GCSE; if you reach for Pyodide, justify it in the chapter overview first.
    practice page (grep the refs and show the result).
 5. `python -m textbook.scaffold` reports your chapter's files as **skipped**,
    not rewritten.
-6. `mkdocs build -f renderers/mkdocs/gcse-maths.higher.yml --strict` succeeds and
+6. `python -m textbook.pipeline --book gcse-maths --profile higher` succeeds and
    `grep -rl 'math-error' site/gcse-maths/higher --include='*.html'` prints nothing.
 7. If you added a Tier-2 figure: regeneration is byte-identical.
 8. Report the literal commands you ran and their literal output.

@@ -5,11 +5,13 @@
 **Repo:** `/home/leon/Work/maths-site` (not yet a git repository)
 
 This plan supersedes the "no mathematical content" clause of `HANDOFF.md`. The
-stack decisions in `HANDOFF.md` (marimo-markdown canonical format, MkDocs as the
-shipped renderer, static/GitHub Pages only, interactivity tiers) still hold; what
-changes is that we now have a concrete subject, a concrete structure, and we *are*
-writing content. The folder layout below is the one the human specified and
-replaces `math-book/content/` as the content root.
+stack decisions in `HANDOFF.md` (marimo-markdown canonical format, a static
+backend-free site, interactivity tiers) still hold; the renderer is now the
+bespoke `engine/textbook/pipeline.py` rather than MkDocs — see `SHAPE.md`,
+"The bespoke renderer is the site". What changes is that we now have a concrete
+subject, a concrete structure, and we *are* writing content. The folder layout
+below is the one the human specified and replaces `math-book/content/` as the
+content root.
 
 ---
 
@@ -107,12 +109,12 @@ books/gcse-maths/docs/
   `Walkthrough`, `Guided problems`, `Problems`. Section folders carry the section
   id (`Section 1.1`), not a bare `Section1`, so chapter and section numbers cannot
   drift apart.
-- One page per leaf folder, named `index.md`, so each folder is a MkDocs directory
-  section (`Chapter 1/Section 1.1/Walkthrough/`). Extra sibling pages may be added
+- One page per leaf folder, named `index.md`, so each folder is a directory
+  section in the built site (`Chapter 1/Section 1.1/Walkthrough/`). Extra sibling pages may be added
   inside a leaf folder when a topic genuinely needs more than one page (e.g.
   `Questions/index.md`); the `index.md` remains the landing page.
-- `renderers/mkdocs/nav.yml` is generated from `books/gcse-maths/curriculum.yaml` and should not be
-  hand-edited.
+- The navigation is generated from `books/gcse-maths/curriculum.yaml` by
+  `scaffold.build_nav_list` and should not be hand-edited.
 - The scaffold is idempotent. Every generated file carries `<!-- scaffold:stub -->`;
   `python -m textbook.scaffold` rewrites only files that still carry it, so
   authored content is never clobbered. Re-run after editing `books/gcse-maths/curriculum.yaml`.
@@ -159,9 +161,9 @@ kind: walkthrough  # walkthrough | guided-problems | problems
 pages that introduce it. Chapter authoring appends to the strand page.
 
 **Maths and code.** Mathematics is written as `$...$` / `$$...$$` and rendered at
-build time with KaTeX (Tier 0). Python cells, when used, use the canonical MkDocs
-marimo fence ` ```python {marimo} `. Figures are authored with the line-anchored
-directive `:::figure <slug>`; a repo-owned MkDocs hook expands it to the portable
+build time with KaTeX (Tier 0). Python cells, when used, use the canonical marimo
+fence ` ```python {marimo} `. Figures are authored with the line-anchored
+directive `:::figure <slug>`; the engine's figure hook expands it to the portable
 `<maths-figure data-figure="<slug>">` element and injects the figure loader only
 into pages that use it. Figure modules live under `books/gcse-maths/docs/assets/figures/<slug>.js`
 and export `mount(el)`. See `test/README.md` for the evaluation behind this.
@@ -193,9 +195,9 @@ Default to the cheapest tier that earns its keep (`HANDOFF.md` §3). For this bo
 
 ## 8. Execution plan
 
-1. **Stack shell.** MkDocs + tier profiles + repo-owned figure hook +
-   build-time maths, `--strict` green. **Done** — `renderers/mkdocs/` builds the
-   full book strict in the Higher and Foundation profiles.
+1. **Stack shell.** a renderer + tier profiles + repo-owned figure hook +
+   build-time maths, a strict link check green. **Done** — the pipeline builds the
+   full book with no broken links in the Higher and Foundation profiles.
 2. **Vertical slice.** Author **Chapter 1** end-to-end, plus its glossary entries,
    to prove the pedagogy formula, the content contract, the hint pattern and the
    figure mechanism, and to surface any missing hook. **Done** — Chapter 1 (17
@@ -204,18 +206,18 @@ Default to the cheapest tier that earns its keep (`HANDOFF.md` §3). For this bo
    or in small batches, each bounded to its chapter folder, its glossary strand
    page, and `books/gcse-maths/docs/assets/figures/` / `figures/py/` additions it needs. See
    `AGENT-BRIEF.md` for the per-chapter brief.
-4. **Integration and verification.** MkDocs `--strict`, no-JS check on Tier-0
-   pages, Tier-2 determinism check, links and maths render check, tier-tag audit
-   against AQA columns.
+4. **Integration and verification.** the pipeline's link check, no-JS check on
+   Tier-0 pages, Tier-2 determinism check, links and maths render check, tier-tag
+   audit against AQA columns.
 
 ## 9. Decisions taken this phase
 
 - **D8 — Figure mechanism.** The wire format is the portable
-  `<maths-figure>` custom element (raw HTML, so it survives every renderer). On
-  MkDocs, authors write the line-anchored directive `:::figure <slug>`;
-  `renderers/mkdocs/hooks/figures.py` expands it and injects the loader only
-  into pages that need it. `mkdocs-macros-plugin` is rejected: it loads JS on
-  every page and aborts the build on any literal `{{ … }}` in prose or maths.
+  `<maths-figure>` custom element (raw HTML, so it survives every renderer).
+  Authors write the line-anchored directive `:::figure <slug>`;
+  `engine/textbook/hooks/figures.py` expands it and injects the loader only
+  into pages that need it. A template-plugin mechanism was rejected: it loads JS
+  on every page and aborts the build on any literal `{{ … }}` in prose or maths.
   Evidence: `test/README.md`.
 - **D9 — Tier delivery.** One source, three build profiles — `foundation`,
   `higher` and `toggle` — selected by `extra.tier_profile`. Higher-only pages
@@ -225,16 +227,16 @@ Default to the cheapest tier that earns its keep (`HANDOFF.md` §3). For this bo
   two-site build is the product; the toggle is a third config from the same
   source. Evidence: `test/` (24/24 assertions).
 - **D10 — Portability of D8/D9 to Quarto/MyST/MDX** remains CI work under
-  `HANDOFF.md` D4; only MkDocs is verified so far.
+  `HANDOFF.md` D4; only the pipeline is verified so far.
 - **D11 — Reading theme.** Warm off-white paper (`#faf9f5`) with warm near-black
   ink, not pure white/black; dark-on-light default (positive polarity reads
   better — Buchner & Baumgartner 2007), with a `prefers-color-scheme` dark mode
   toggle. Measure capped at `70ch` (Butterick 45–90, Baymard 50–75 optimal);
   ~17px body, 1.65 line-height; serif display + sans body. Implemented in
-  `renderers/mkdocs/base.yml` and `assets/stylesheets/extra.css`.
+  `assets/stylesheets/extra.css` and the theme bundles in `themes/`.
 - **D12 — Maths rendering.** Build-time KaTeX 0.19.0 to MathML (no runtime JS,
   CSS or fonts), via `engine/textbook/js/katex-render.mjs` and
-  `renderers/mkdocs/hooks/maths.py`. `aligned` works; the hook unescapes the
+  `engine/textbook/hooks/maths.py`. `aligned` works; the hook unescapes the
   HTML entities Markdown introduces before rendering.
 - **D13 — OpenDesign** is activated project-scoped (`.mcp.json`,
   `.claude/settings.json`); its design directions are the house style reference.

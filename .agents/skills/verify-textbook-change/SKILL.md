@@ -17,8 +17,9 @@ scripts/check.sh
 
 That is everything CI enforces, in one call. It runs, in order: generated-file
 drift (`scaffold`, `booklet`, `portal`, `git diff --exit-code`), the problem-bank
-verifier, the voice lint, `pytest`, every profile build strict, the `math-error`
-grep, and `test/run.sh`. Run it once at the end.
+verifier, the voice lint, `pytest` (including the figure-hook and tier-profile
+evaluation), every profile build strict, and the `math-error` grep. Run it once at
+the end.
 
 ## The targeted loop while authoring
 
@@ -26,7 +27,7 @@ grep, and `test/run.sh`. Run it once at the end.
 uv run python -m textbook.scaffold   # the chapter's files must be SKIPPED, not rewritten
 uv run python -m textbook.verify books/<id>/problems/
 uv run python -m textbook.lint
-uv run mkdocs build -f renderers/mkdocs/<book>.<profile>.yml --strict
+uv run python -m textbook.pipeline --book <book> --profile <profile>
 grep -rl 'math-error' site --include='*.html'   # must print nothing
 uv run python -m pytest tests/ -q
 ```

@@ -11,18 +11,29 @@ from __future__ import annotations
 
 import re
 
-import yaml
-
-from textbook import portal, scaffold
-from textbook.book import discover_books, repo_root
+from textbook import pipeline, portal
+from textbook.book import repo_root
 from textbook.hooks import prefs as scheme
+from textbook.themes import default_bundle, ordered_bundles
 
-BASE_YML = repo_root() / "renderers" / "mkdocs" / "base.yml"
+# The palette the Material shell declared, which the shared scheme choice is
+# built from. It is a unit fixture now: the pipeline carries the two schemes in
+# its own page template and has no Material palette to seed.
+PALETTE = (
+    {"media": "(prefers-color-scheme: light)", "scheme": "default"},
+    {"media": "(prefers-color-scheme: dark)", "scheme": "slate"},
+)
 
 
 def base_config() -> dict:
-    """The shared MkDocs config, as MkDocs would hand it to a hook."""
-    return yaml.safe_load(BASE_YML.read_text(encoding="utf-8")) or {}
+    """The shape a hook config has: the palette and the bundle registry."""
+    return {
+        "theme": {"palette": [dict(entry) for entry in PALETTE]},
+        "extra": {
+            "themes": [bundle.id for bundle in ordered_bundles()],
+            "default_theme": default_bundle().id,
+        },
+    }
 
 
 def test_the_shared_key_is_not_scoped_to_a_path():
@@ -68,15 +79,13 @@ def test_bridge_seeds_material_before_material_runs():
     assert "change" in snippet
 
 
-def test_every_book_build_gets_the_bridge():
-    """The hook runs from base.yml, which every generated config inherits."""
-    assert "hooks/entry.py" in BASE_YML.read_text(encoding="utf-8")
-    for book in discover_books():
-        for profile in book.profiles:
-            config = yaml.safe_load(
-                scaffold.config_path(book, profile.id).read_text(encoding="utf-8")
-            )
-            assert config.get("INHERIT") == "base.yml"
+def test_every_book_page_gets_the_bridge():
+    """Every book page applies both preferences before the first paint."""
+    template = pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8")
+    for key in (scheme.SCHEME_KEY, scheme.THEME_KEY):
+        assert key in template, f"the page template does not read {key}"
+    # Before the stylesheets, so the chosen bundle paints with no flash.
+    assert template.index(scheme.SCHEME_KEY) < template.index("themes.css")
 
 
 def test_landing_page_honours_the_same_key():
@@ -110,12 +119,13 @@ def test_landing_control_is_hidden_without_javascript():
 
 def test_every_reader_surface_reads_and_writes_the_key():
     """Books and the landing page must agree on reading and writing."""
-    book_page = scheme.snippet(base_config())
+    book_page = pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8")
     landing = portal.render()
     for surface, name in ((book_page, "a book page"), (landing, "the landing page")):
         assert scheme.SCHEME_KEY in surface, f"{name} does not read the shared key"
-    assert "setItem" in book_page, "a book page does not record the choice"
-    # The landing page records it through the shared runtime, whose writer is
-    # localStorage.setItem; the landed page itself only needs to load it.
-    runtime = (repo_root() / "assets" / "settings" / "settings.js").read_text(encoding="utf-8")
-    assert "localStorage.setItem" in runtime, "the landing runtime never records the choice"
+    # A book page reads the choice; the shared runtime records it, so there is
+    # one writer rather than a second copy that could drift.
+    runtime = (repo_root() / "assets" / "settings" / "settings.js").read_text(
+        encoding="utf-8"
+    )
+    assert "localStorage.setItem" in runtime, "the runtime never records the choice"

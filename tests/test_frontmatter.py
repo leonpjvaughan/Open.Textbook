@@ -2,7 +2,7 @@
 
 The bug this file exists for: a page whose front matter does not parse has no
 `tier`, so the Foundation filter treats it as Foundation content and ships it to
-Foundation readers. `mkdocs build --strict` exited 0 throughout. Six pages of the
+Foundation readers. The build exited 0 throughout. Six pages of the
 first book shipped that way — three of them a Higher-only section.
 
 The corpus-wide tests at the bottom are the ones that would have caught it without

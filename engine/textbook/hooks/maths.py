@@ -14,7 +14,7 @@ import re
 import subprocess
 from pathlib import Path  # noqa: F401  (kept for the renderer path expression)
 
-log = logging.getLogger("mkdocs.hooks.maths")
+log = logging.getLogger("textbook.hooks.maths")
 
 # The renderer ships inside the engine package, so it travels with it.
 RENDERER = Path(__file__).resolve().parents[1] / "js" / "katex-render.mjs"

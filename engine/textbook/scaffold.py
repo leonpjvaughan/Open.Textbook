@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Scaffold a book's docs tree and MkDocs profiles from its curriculum.
+"""Scaffold a book's docs tree and generated assets from its curriculum.
 
 Idempotent: a file is only (re)written when it is missing or still carries the
 `scaffold:stub` marker. Authored content is never overwritten.
@@ -20,12 +20,9 @@ from pathlib import Path
 import yaml
 
 from .book import Book, SCHEME_TOKENS, discover_books, load_collection, repo_root
-from .themes import default_bundle, ordered_bundles
 from .config import book_by_id
 
 STUB_MARKER = "<!-- scaffold:stub -->"
-CONFIG_DIR = repo_root() / "renderers" / "mkdocs"
-SITE_DIR = repo_root() / "site"
 
 # The shared formulae-and-tables widget, loaded only by books that have one.
 BOOKLET_WIDGET = "assets/booklet/booklet.js"
@@ -94,12 +91,13 @@ def generate(path: Path, content: str, dry_run: bool) -> None:
 
 
 def ensure_shared_assets(book: Book, dry_run: bool) -> None:
-    """Make the shared files visible to this book, through symlinks.
+    """Make the shared files visible inside this book's docs tree, through symlinks.
 
-    MkDocs only serves what is under ``docs_dir``, so a shared file has to appear
-    there; a symlink keeps one copy of it. This is created rather than left to
-    whoever adds a book, because a *broken* symlink fails the build — MkDocs
-    copies every file under docs_dir, not only the referenced ones.
+    The shared bytes live once in ``assets/``; a symlink from ``docs/assets/``
+    keeps one copy of them beside the book's own files. This is created rather
+    than left to whoever adds a book, because a *broken* symlink is a broken
+    book: anything that walks the docs tree meets it whether or not a page
+    references it, and the tests check every one resolves.
     """
     pairs = list(SHARED_ASSETS)
     if book.booklet_name:
@@ -577,7 +575,7 @@ def build_curriculum_map(book: Book, strands: list[dict], chapters: list[dict]) 
     return "\n".join(lines)
 
 
-# --- MkDocs config ------------------------------------------------------------
+# --- nav ----------------------------------------------------------------------
 
 
 def build_nav_list(
@@ -612,61 +610,18 @@ def build_nav_list(
     return nav
 
 
-def config_path(book: Book, profile_id: str) -> Path:
-    return CONFIG_DIR / f"{book.id}.{profile_id}.yml"
-
-
 def site_url(book: Book, profile_id: str) -> str:
-    """Absolute URL for this profile, from the collection's base URL."""
+    """Absolute URL for this profile, from the collection's base URL.
+
+    The profile root a reader lands on, and what every page's `<link
+    rel="canonical">` is built from.
+    """
     from .book import load_collection
 
     base = str(load_collection().get("base_url", "")).strip().rstrip("/")
     if not base:
         return ""
     return f"{base}/{book.deploy_path(profile_id)}/"
-
-
-def build_mkdocs_config(book: Book, profile_id: str) -> str:
-    profile = book.profile(profile_id)
-    include_higher = profile.tier_filter != "foundation"
-    bundles = ordered_bundles()
-    config = {
-        "INHERIT": "base.yml",
-        "site_name": f"{book.title} — {profile.name}",
-        "site_description": book.description,
-        "docs_dir": _relative(book.docs),
-        "site_dir": _relative(SITE_DIR / book.deploy_path(profile_id)),
-        "extra": {
-            "book": book.id,
-            "book_dir": book.rel(book.root),
-            "tier_profile": profile.tier_filter,
-            "themes": [bundle.id for bundle in bundles],
-            "default_theme": default_bundle().id,
-            # Titles and descriptions for the Settings panel. The bundles are the
-            # single source of truth, so the panel cannot drift from themes/.
-            "theme_info": {
-                bundle.id: {
-                    "title": bundle.title,
-                    "description": bundle.description,
-                }
-                for bundle in bundles
-            },
-        },
-        "nav": build_nav_list(book.strands, book.chapters, include_higher=include_higher),
-    }
-    # The Settings runtime is on every page; the booklet widget only where there
-    # is a booklet to fetch.
-    config["extra_javascript"] = [SETTINGS_WIDGET]
-    if book.booklet_name:
-        config["extra_javascript"].append(BOOKLET_WIDGET)
-    url = site_url(book, profile_id)
-    if url:
-        config["site_url"] = url
-    return yaml.safe_dump(config, sort_keys=False, allow_unicode=True, width=120)
-
-
-def _relative(path: Path) -> str:
-    return os.path.relpath(path, CONFIG_DIR).replace(os.sep, "/")
 
 
 # --- coverage -----------------------------------------------------------------
@@ -737,14 +692,8 @@ def scaffold(book: Book, dry_run: bool) -> None:
         stylesheets.mkdir(parents=True, exist_ok=True)
         (stylesheets / "book.css").write_text(theme_css(book), encoding="utf-8")
 
-    # MkDocs profiles, one per declared profile.
-    for profile in book.profiles:
-        written.append(config_path(book, profile.id))
-        if not dry_run:
-            CONFIG_DIR.mkdir(parents=True, exist_ok=True)
-            config_path(book, profile.id).write_text(
-                build_mkdocs_config(book, profile.id), encoding="utf-8"
-            )
+    # MkDocs profiles used to be generated here, one per declared profile. The
+    # bespoke pipeline builds from curriculum.yaml directly and needs no config.
 
     map_out = book.root / "CURRICULUM-MAP.md"
     written.append(map_out)

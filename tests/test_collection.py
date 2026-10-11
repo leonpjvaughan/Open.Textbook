@@ -10,10 +10,9 @@ from __future__ import annotations
 import re
 
 import pytest
-import yaml
 
 from textbook import book as books
-from textbook import portal, scaffold
+from textbook import pipeline, portal, scaffold
 
 ALL = books.discover_books()
 IDS = [b.id for b in ALL]
@@ -68,21 +67,14 @@ def test_single_profile_book_has_no_redundant_url_segment():
 
 
 @pytest.mark.parametrize("book", ALL, ids=IDS)
-@pytest.mark.parametrize("layer", ["config", "theme", "map"])
+@pytest.mark.parametrize("layer", ["theme", "map"])
 def test_generated_files_are_in_sync(book, layer):
     """The committed generated files must match what the generators produce.
 
     CI also checks this with ``git diff --exit-code``; doing it here means a
     developer sees the failure before pushing.
     """
-    if layer == "config":
-        for profile in book.profiles:
-            path = scaffold.config_path(book, profile.id)
-            assert path.is_file(), f"missing generated config {path}"
-            assert path.read_text(encoding="utf-8") == scaffold.build_mkdocs_config(
-                book, profile.id
-            ), f"{path} is stale; run `python -m textbook.scaffold`"
-    elif layer == "theme":
+    if layer == "theme":
         path = book.docs / "assets" / "stylesheets" / "book.css"
         assert path.is_file(), f"missing generated theme CSS {path}"
         assert path.read_text(encoding="utf-8") == scaffold.theme_css(book), (
@@ -125,15 +117,12 @@ def test_shared_assets_are_symlinked_not_copied(book):
 @pytest.mark.parametrize("book", ALL, ids=IDS)
 def test_booklet_widget_is_loaded_only_where_there_is_a_booklet(book):
     """A book without a formula sheet must not ship a widget that fetches one."""
-    for profile in book.profiles:
-        config = yaml.safe_load(
-            scaffold.config_path(book, profile.id).read_text(encoding="utf-8")
-        )
-        scripts = config.get("extra_javascript") or []
-        if book.booklet_name:
-            assert scaffold.BOOKLET_WIDGET in scripts
-        else:
-            assert scaffold.BOOKLET_WIDGET not in scripts
+    widget = pipeline.booklet_widget(book, "")
+    if book.booklet_name:
+        assert "assets/booklet/booklet.js" in widget
+        assert "defer" in widget, "an eager script would delay the page"
+    else:
+        assert widget == ""
 
 
 def test_portal_renders_every_book():

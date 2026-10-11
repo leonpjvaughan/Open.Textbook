@@ -56,9 +56,9 @@ runs it:
 
 ```bash
 uv run python -m pytest tests/ -q     # manifest coverage: every slug exists
-uv run mkdocs build -f renderers/mkdocs/<book>.<profile>.yml --strict
+uv run python -m textbook.pipeline --book <book> --profile <profile>
 node scripts/screenshot.cjs site ~/out --schemes light,dark -- \
-  "learn:/<book>/<profile>/Chapter <n>/Section <n.m>/Walkthrough/"
+  "learn:/<book>/<profile>/chapter-<n>/section-<n.m>/learn/"
 ```
 
 Check the capture in both schemes, and check the captures actually differ — a
