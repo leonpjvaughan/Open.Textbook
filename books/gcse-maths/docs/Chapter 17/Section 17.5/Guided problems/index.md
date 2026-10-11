@@ -15,18 +15,21 @@ Attempt each item before opening its help. Recall ideas from earlier chapters fi
 
 ## Warm-up: remember
 
-1. Name a shape with four right angles.
-2. What does a scale of $1$ cm to $2$ m mean?
-3. What angle is a right angle?
+Answer these from memory. Do not look back at the section.
+
+1. Work out $4\times2.5$.
+2. Work out $360-90$.
 
 <details markdown="1">
-<summary>Answers</summary>
+<summary>Check the warm-up</summary>
 
-1. A rectangle (a square is also correct).
-2. Each centimetre on the drawing represents $2$ m in real life.
-3. $90^\circ$.
+1. $10$.
+2. $270$.
+
+If an answer differs, revisit Section 1.2 for decimal multiplication and
+Section 16.1 for angle facts.
+
 </details>
-
 ## Try these with help
 
 **1.** Write the bearing for east.

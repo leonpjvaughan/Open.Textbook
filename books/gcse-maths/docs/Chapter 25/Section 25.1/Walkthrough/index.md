@@ -43,11 +43,15 @@ $12,17.5,21.5,26.5,42$.
 Draw a number line using a consistent scale. Mark the minimum and maximum with
 whiskers, and draw a box from $Q_1$ to $Q_3$. Mark the median inside the box.
 
+**Predict:** predict how the box changes if the upper quartile moves from $26.5$
+to $30$ while the other values stay fixed. Write your prediction down first.
+
 :::figure ch25-boxplot
 
-**Predict → Test → Explain.** Predict how the box changes if the upper quartile
-moves from 26.5 to 30 while the other values stay fixed. Use the control to
-test your prediction. Explain which part represents the middle half of the data.
+**Test:** use the control to test your prediction.
+
+**Explain:** which part represents the middle half of the data? Write your
+explanation before reading on.
 
 > **Watch out.** Do not calculate the IQR as $Q_1-Q_3$. The upper quartile is
 larger, so subtract $Q_1$ from $Q_3$; check that the spread is positive.

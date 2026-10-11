@@ -42,11 +42,15 @@ $$
 
 The movement is 4 units right and 3 units down.
 
+**Predict:** before moving the controls, predict where the point will move when
+the horizontal entry is negative. Write your prediction down first.
+
 :::figure ch22-vector-translation
 
-**Predict → Test → Explain.** Before moving the controls, predict where the point
-will move when the horizontal entry is negative. Test your prediction with the
-figure. Explain how the signs show the direction.
+**Test:** test your prediction with the figure.
+
+**Explain:** how do the signs show the direction? Write your explanation before
+reading on.
 
 ## Column vectors
 

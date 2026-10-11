@@ -14,57 +14,107 @@ kind: guided-problems
 
 # 5.1 Ratio notation, simplifying and sharing — Practise with help
 
+Try each question first. Open a hint if you are stuck, the next step for one
+concrete move, and the full working only to check.
+
 ## Warm-up: remember
 
-1. Without looking back, calculate $\frac{3}{4}+\frac{1}{8}$.
-2. Work out $-4+9$.
+Answer these from memory. Do not look back at the section.
+
+1. Simplify $\frac{12}{18}$.
+2. Work out $-6+15$.
 
 <details markdown="1">
 <summary>Check the warm-up</summary>
 
-$\frac{3}{4}+\frac{1}{8}=\frac{7}{8}$. Also, $-4+9=5$.
+1. $\frac{12}{18}=\frac{2}{3}$.
+2. $-6+15=9$.
+
+If an answer differs, revisit Section 4.1 for simplifying fractions and
+Section 1.3 for working with negative numbers.
 
 </details>
 
-## Try these questions
+## Practise with help
 
-**Question:** Share 72 counters in the ratio $5:7$.
-
-### Hint
-
-Add the ratio parts. Divide the total by their sum to find the value of one part.
+**1.** Simplify the ratio $18:24$.
 
 <details markdown="1">
-<summary>Show a hint</summary>
+<summary>Hint</summary>
 
-There are $5+7=12$ parts. Find the number represented by one part.
-
+Find a number that divides both parts exactly.
 </details>
-
-### One step
-
-Set up the multiplier or ratio parts, then calculate the requested quantity.
 
 <details markdown="1">
-<summary>Show the next step</summary>
+<summary>Next step</summary>
+
+Both parts divide by 6.
+</details>
 
 <details markdown="1">
-<summary>Need one more step?</summary>
+<summary>Full working</summary>
 
-Divide the known amount by its corresponding number of parts. Multiply by the required number of parts.
-
-</details>
+$18:24$ divides by 6 to give $3:4$. Check that $18\div24=3\div4$.
 </details>
 
-### Full working
-
-Use this model on one question from the section, then complete it without help.
+**2.** Share £84 in the ratio $4:3$.
 
 <details markdown="1">
-<summary>Show full working</summary>
+<summary>Hint</summary>
 
-One part is $72\div12=6$. The shares are $5\times6=30$ and $7\times6=42$. Check: $30+42=72$.
-
+Add the ratio parts to find the number of equal parts.
 </details>
 
-At least one later question asks you to connect this method with material from an earlier section.
+<details markdown="1">
+<summary>Next step</summary>
+
+$4+3=7$ parts, so one part is $84\div7=12$.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+The shares are $4\times12=48$ and $3\times12=36$. Check: $48+36=84$.
+</details>
+
+**3.** A recipe mixes flour and sugar in the ratio $5:2$. A baker uses 250 g of
+sugar. How much flour is needed?
+
+<details markdown="1">
+<summary>Hint</summary>
+
+The 2 parts stand for 250 g. Find the value of one part first.
+</details>
+
+<details markdown="1">
+<summary>Next step</summary>
+
+One part is $250\div2=125$ g. Flour is 5 parts.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+Flour is $5\times125=625$ g. Check: $625:250=5:2$.
+</details>
+
+**4. Earlier learning.** In a class of 30 pupils, 12 walk and the rest take the
+bus. What fraction of the class take the bus?
+
+<details markdown="1">
+<summary>Hint</summary>
+
+The fraction is the bus pupils over the total. Find the bus number first.
+</details>
+
+<details markdown="1">
+<summary>Next step</summary>
+
+$30-12=18$ pupils take the bus.
+</details>
+
+<details markdown="1">
+<summary>Full working</summary>
+
+$\frac{18}{30}=\frac{3}{5}$ of the class take the bus.
+</details>

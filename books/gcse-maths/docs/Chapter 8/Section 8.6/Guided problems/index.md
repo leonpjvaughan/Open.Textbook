@@ -15,16 +15,20 @@ Attempt each question before opening a hint. Reveal the full working to check yo
 
 ## Warm-up: remember
 
-Answer from memory before checking.
+Answer these from memory. Do not look back at the section.
 
-1. Simplify $4x+3x$.
-2. Substitute $x=2$ into $x+5$.
-<details markdown="1"><summary>Answers and feedback</summary>
+1. Solve $x+6=10$.
+2. What operation reverses multiplying by 4?
 
-1. $7x$. 2. $7$.
-If an answer differs, review the earlier method before continuing.
+<details markdown="1">
+<summary>Check the warm-up</summary>
+
+1. $x=4$.
+2. Dividing by 4.
+
+If an answer differs, revisit Section 9.1 for solving equations and Section 1.4 for inverse operations.
+
 </details>
-
 ## Practise with help
 
 **1.** Make $x$ the subject of $y=x+7$.

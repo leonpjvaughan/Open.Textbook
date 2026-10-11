@@ -15,18 +15,21 @@ Attempt each item before opening its help. Recall ideas from earlier chapters fi
 
 ## Warm-up: remember
 
-1. Name a shape with four right angles.
-2. What does a scale of $1$ cm to $2$ m mean?
-3. What angle is a right angle?
+Answer these from memory. Do not look back at the section.
+
+1. What does a perpendicular bisector do to a line segment?
+2. What is the distance from the centre of a circle to any point on it called?
 
 <details markdown="1">
-<summary>Answers</summary>
+<summary>Check the warm-up</summary>
 
-1. A rectangle (a square is also correct).
-2. Each centimetre on the drawing represents $2$ m in real life.
-3. $90^\circ$.
+1. It cuts the segment in half at a right angle.
+2. The radius.
+
+If an answer differs, revisit Section 17.3 for the perpendicular bisector and
+for drawing circles with compasses.
+
 </details>
-
 ## Try these with help
 
 **1.** Describe the locus of points 5 cm from point $A$.

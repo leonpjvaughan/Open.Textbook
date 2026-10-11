@@ -13,15 +13,20 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Solve $2x=18$.
-2. Work out $3(4+2)$.
+Answer these from memory. Do not look back at the section.
+
+1. Simplify $5x-2x$.
+2. Solve $3x=21$.
 
 <details markdown="1">
-<summary>Check your answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x=9$. 2. $18$.
+1. $3x$.
+2. $x=7$.
+
+If an answer differs, revisit Section 8.2 for collecting like terms and Section 9.1 for one-step equations.
+
 </details>
-
 ## Practise with help
 
 **1.** Solve $2x+5=17$.

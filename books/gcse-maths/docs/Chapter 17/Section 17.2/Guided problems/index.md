@@ -15,18 +15,20 @@ Attempt each item before opening its help. Recall ideas from earlier chapters fi
 
 ## Warm-up: remember
 
-1. Name a shape with four right angles.
-2. What does a scale of $1$ cm to $2$ m mean?
-3. What angle is a right angle?
+Answer these from memory. Do not look back at the section.
+
+1. How many faces does a cuboid have?
+2. What shape is the front face of a cuboid?
 
 <details markdown="1">
-<summary>Answers</summary>
+<summary>Check the warm-up</summary>
 
-1. A rectangle (a square is also correct).
-2. Each centimetre on the drawing represents $2$ m in real life.
-3. $90^\circ$.
+1. $6$.
+2. A rectangle.
+
+If an answer differs, revisit Section 17.1 for the properties of 3D shapes.
+
 </details>
-
 ## Try these with help
 
 **1.** A cuboid is 6 cm wide, 4 cm deep and 3 cm high. Describe its plan.

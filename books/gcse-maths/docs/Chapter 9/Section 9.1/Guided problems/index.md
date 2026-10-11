@@ -13,15 +13,20 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Solve $2x=18$.
-2. Work out $3(4+2)$.
+Answer these from memory. Do not look back at the section.
+
+1. Work out $3\times4+2$.
+2. Work out $24\div6$.
 
 <details markdown="1">
-<summary>Check your answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x=9$. 2. $18$.
+1. $14$. Multiply before adding.
+2. $4$.
+
+If an answer differs, revisit Section 1.4 for the order of operations and Section 1.2 for multiplication and division facts.
+
 </details>
-
 ## Practise with help
 
 **1.** Solve $x+6=14$.

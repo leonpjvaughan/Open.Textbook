@@ -13,15 +13,20 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-1. Solve $2x=18$.
-2. Work out $3(4+2)$.
+Answer these from memory. Do not look back at the section.
+
+1. Write an expression for 5 more than $n$.
+2. Solve $2x+3=11$.
 
 <details markdown="1">
-<summary>Check your answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x=9$. 2. $18$.
+1. $n+5$.
+2. $x=4$.
+
+If an answer differs, revisit Section 8.1 for writing expressions and Section 9.1 for solving equations.
+
 </details>
-
 ## Practise with help
 
 **1.** Solve $3x+2=14$.

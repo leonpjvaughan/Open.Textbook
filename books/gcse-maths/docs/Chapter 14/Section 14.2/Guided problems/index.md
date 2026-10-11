@@ -15,15 +15,20 @@ Work each question first. Open a hint if you need one, then reveal the working t
 
 ## Warm-up: remember
 
-1. Solve $2x+3=11$.
-2. If $y=3x-2$, find $y$ when $x=4$.
+Answer these from memory. Do not look back at the section.
+
+1. Substitute $x=3$ into $2x+1$.
+2. Solve $5y-4=16$.
 
 <details markdown="1">
-<summary>Answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x=4$. 2. $y=10$.
+1. $7$.
+2. $y=4$.
+
+If an answer differs, revisit Section 8.5 for substitution and Section 9.1 for solving equations.
+
 </details>
-
 ## Practise with help
 
 **1.** Solve $x+y=9$ and $x-y=3$.

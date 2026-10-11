@@ -15,15 +15,20 @@ Work each question first. Open a hint if you need one, then reveal the working t
 
 ## Warm-up: remember
 
-1. Solve $2x+3=11$.
-2. If $y=3x-2$, find $y$ when $x=4$.
+Answer these from memory. Do not look back at the section.
+
+1. How far right and how far down is the point $(3,-2)$ from the origin?
+2. For $y=2x+1$, find $y$ when $x=0$ and when $x=2$.
 
 <details markdown="1">
-<summary>Answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x=4$. 2. $y=10$.
+1. 3 right and 2 down.
+2. $1$ and $5$.
+
+If an answer differs, revisit Section 11.1 for plotting coordinates and drawing straight-line graphs.
+
 </details>
-
 ## Practise with help
 
 **1.** Complete a table for $y=x+1$ when $x=-1,0,1$.

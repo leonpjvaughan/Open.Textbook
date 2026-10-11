@@ -15,16 +15,20 @@ Attempt these from memory before opening the answers. Then try each question bef
 
 ## Warm-up: remember
 
-1. Work out $-3+8$.
-2. Translate $(1,2)$ by $\begin{pmatrix}2\\-1\end{pmatrix}$.
+Answer these from memory. Do not look back at the section.
+
+1. State the sum of the angles in a triangle.
+2. What does it mean for two lengths to be equal?
 
 <details markdown="1">
-<summary>Answers and feedback</summary>
+<summary>Check the warm-up</summary>
 
-1. $5$. Starting at $-3$ and moving $8$ places right gives $5$.
-2. $(3,1)$. Add $2$ to the horizontal coordinate and subtract $1$ from the vertical coordinate.
+1. $180^\circ$.
+2. They have the same length.
+
+If an answer differs, revisit Section 16.3 for triangle angle facts.
+
 </details>
-
 ## Practise with help
 
 **1.** Two triangles have three matching side lengths. Name a criterion.

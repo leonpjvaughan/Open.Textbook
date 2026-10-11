@@ -15,12 +15,17 @@ Try each problem first. Open a hint if you need it, then use the working to chec
 
 ## Warm-up: remember
 
-1. Work out $3^2+4^2$.
-2. State the sum of the angles in a triangle.
+Answer these from memory. Do not look back at the section.
+
+1. Work out $180-40-65$.
+2. Write the sine ratio for an acute angle $\theta$.
 
 <details markdown="1"><summary>Answers</summary>
 
-1. $25$. 2. $180^\circ$.
+1. $75$. 2. $\sin\theta=\frac{\text{opposite}}{\text{hypotenuse}}$.
+
+If an answer differs, revisit Section 16.3 for the angle sum in a triangle and
+Section 20.2 for the sine ratio.
 </details>
 
 ## Practise with help

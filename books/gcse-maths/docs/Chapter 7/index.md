@@ -8,7 +8,13 @@ strand: number
 
 ## The chapter problem
 
-A survey team measures a path on a map, estimates the travel speed, and records a small sample mass. How can you convert the measurements, decide what each rounded value could be, and report very large or small values exactly?
+A survey team records three measurements:
+
+- a path on a map at scale $1:25\,000$ measures $3.2$ cm;
+- a walker takes $10$ minutes to walk the path;
+- a sample mass is $0.0042$ kg to 2 significant figures.
+
+Work out the real length of the path in kilometres. Then work out the walker's average speed in km/h. Then write the range of values the sample mass could have, and write the recorded mass in standard form.
 
 **First contact:** Pick one measurement you would convert or estimate first. You are not expected to solve the whole problem yet.
 

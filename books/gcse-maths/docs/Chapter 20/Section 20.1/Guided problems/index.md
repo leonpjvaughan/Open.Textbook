@@ -15,12 +15,17 @@ Try each problem first. Open a hint if you need it, then use the working to chec
 
 ## Warm-up: remember
 
-1. Work out $3^2+4^2$.
-2. State the sum of the angles in a triangle.
+Answer these from memory. Do not look back at the section.
+
+1. Work out $9^2$.
+2. Work out $\sqrt{144}$.
 
 <details markdown="1"><summary>Answers</summary>
 
-1. $25$. 2. $180^\circ$.
+1. $81$. 2. $12$.
+
+If an answer differs, revisit Section 3.1 for squares and Section 3.2 for
+square roots.
 </details>
 
 ## Practise with help

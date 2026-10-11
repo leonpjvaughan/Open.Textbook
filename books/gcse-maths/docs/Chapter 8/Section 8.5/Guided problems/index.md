@@ -15,16 +15,20 @@ Attempt each question before opening a hint. Reveal the full working to check yo
 
 ## Warm-up: remember
 
-Answer from memory before checking.
+Answer these from memory. Do not look back at the section.
 
-1. Simplify $4x+3x$.
-2. Work out $2^3$.
-<details markdown="1"><summary>Answers and feedback</summary>
+1. Work out $2+3\times4$.
+2. Substitute $x=5$ into $x+3$.
 
-1. $7x$. 2. $8$.
-If an answer differs, review the earlier method before continuing.
+<details markdown="1">
+<summary>Check the warm-up</summary>
+
+1. $14$. Multiply before adding.
+2. $8$.
+
+If an answer differs, revisit Section 1.4 for the order of operations and Section 8.1 for substitution.
+
 </details>
-
 ## Practise with help
 
 **1.** Find $2a+5$ when $a=3$.

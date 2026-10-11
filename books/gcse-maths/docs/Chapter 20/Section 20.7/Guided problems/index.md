@@ -15,12 +15,17 @@ Try each problem first. Open a hint if you need it, then use the working to chec
 
 ## Warm-up: remember
 
-1. Work out $3^2+4^2$.
-2. State the sum of the angles in a triangle.
+Answer these from memory. Do not look back at the section.
+
+1. Work out $\sqrt{169}$.
+2. Make $x$ the subject of $y=3x+2$.
 
 <details markdown="1"><summary>Answers</summary>
 
-1. $25$. 2. $180^\circ$.
+1. $13$. 2. $x=\frac{y-2}{3}$.
+
+If an answer differs, revisit Section 3.2 for square roots and Section 8.6 for
+rearranging formulae.
 </details>
 
 ## Practise with help

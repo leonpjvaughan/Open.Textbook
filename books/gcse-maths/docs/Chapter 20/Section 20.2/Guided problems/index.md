@@ -15,12 +15,17 @@ Try each problem first. Open a hint if you need it, then use the working to chec
 
 ## Warm-up: remember
 
-1. Work out $3^2+4^2$.
-2. State the sum of the angles in a triangle.
+Answer these from memory. Do not look back at the section.
+
+1. Simplify $\frac{8}{12}$.
+2. In a right-angled triangle, which side is opposite the right angle?
 
 <details markdown="1"><summary>Answers</summary>
 
-1. $25$. 2. $180^\circ$.
+1. $\frac{2}{3}$. 2. The hypotenuse.
+
+If an answer differs, revisit Section 4.1 for simplifying fractions and Section
+20.1 for naming the sides of a right-angled triangle.
 </details>
 
 ## Practise with help

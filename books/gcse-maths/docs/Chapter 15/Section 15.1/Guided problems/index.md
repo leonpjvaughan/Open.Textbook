@@ -15,17 +15,20 @@ Work each problem before revealing support.
 
 ## Warm-up: remember
 
-1. Expand $(x+2)(x+3)$.
-2. Factorise $x^2-9$.
-3. Solve $2x+5=13$.
+Answer these from memory. Do not look back at the section.
+
+1. Substitute $x=3$ into $2x+1$.
+2. Solve $x+5=9$.
 
 <details markdown="1">
-<summary>Answers</summary>
+<summary>Check the warm-up</summary>
 
-1. $x^2+5x+6$. 2. $(x-3)(x+3)$. 3. $x=4$.
+1. $7$.
+2. $x=4$.
+
+If an answer differs, revisit Section 8.5 for substitution and Section 9.1 for solving equations.
 
 </details>
-
 ## Practise with help
 
 **1.** Find the inverse of $f(x)=4x-7$.
