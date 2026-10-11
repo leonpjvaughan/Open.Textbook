@@ -6,4 +6,9 @@ installed ``textbook`` package. The hooks themselves, and the order they run in,
 live in ``textbook/hooks/__init__.py``.
 """
 
-from textbook.hooks import on_files, on_page_content, on_page_markdown  # noqa: F401
+from textbook.hooks import (  # noqa: F401
+    on_files,
+    on_page_content,
+    on_page_markdown,
+    on_post_page,
+)

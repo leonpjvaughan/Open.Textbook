@@ -27,6 +27,7 @@ from pathlib import Path
 from string import Template
 
 from . import book as books
+from .hooks.scheme import SHARED_KEY
 
 ROOT = books.repo_root()
 ASSETS = ROOT / "assets"
@@ -112,6 +113,7 @@ def render() -> str:
         description=html.escape(str(collection.get("description", ""))),
         groups=groups_html(all_books),
         year=date.today().year,
+        scheme_key=SHARED_KEY,
     )
 
 

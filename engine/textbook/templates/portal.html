@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" data-scheme="auto">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>$title</title>
 <meta name="description" content="$description">
+<script>
+/* Honour the collection-wide light/dark choice the books record, before paint,
+ * so the landing page never flashes the wrong theme. See SHAPE.md. */
+(function () {
+  try {
+    var scheme = localStorage.getItem("$scheme_key");
+    if (scheme === "slate") document.documentElement.setAttribute("data-scheme", "dark");
+    else if (scheme === "default") document.documentElement.setAttribute("data-scheme", "light");
+  } catch (err) {}
+})();
+</script>
 <link rel="stylesheet" href="assets/stylesheets/portal.css">
 </head>
 <body>

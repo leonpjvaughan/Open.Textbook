@@ -4,9 +4,22 @@
  * load the book stylesheet. The palette values are intentionally mirrored from
  * assets/stylesheets/extra.css — keep them in step if the house theme changes.
  * Per-book identity comes from each card's --card-accent, set from book.yaml.
+ *
+ * Light and dark: a reader's explicit choice is recorded collection-wide by the
+ * books under the "textbooks:scheme" key, and the inline script in the portal
+ * template replays it here as <html data-scheme>. An explicit choice wins over
+ * the system preference.
  */
 
 :root {
+  /* The dark palette, written once and applied by the two blocks below. */
+  --tb-dark-paper: #171614;
+  --tb-dark-ink: #e9e7e1;
+  --tb-dark-ink-soft: #b7b4ac;
+  --tb-dark-rule: #2a2926;
+  --tb-dark-card: #1e1d1a;
+  --tb-dark-accent: #6ea8d8;
+
   --tb-paper: #faf9f5;
   --tb-ink: #1f1e1b;
   --tb-ink-soft: #5c5a54;
@@ -19,15 +32,26 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --tb-paper: #171614;
-    --tb-ink: #e9e7e1;
-    --tb-ink-soft: #b7b4ac;
-    --tb-rule: #2a2926;
-    --tb-card: #1e1d1a;
-    --tb-accent: #6ea8d8;
+  :root:not([data-scheme="light"]) {
+    --tb-paper: var(--tb-dark-paper);
+    --tb-ink: var(--tb-dark-ink);
+    --tb-ink-soft: var(--tb-dark-ink-soft);
+    --tb-rule: var(--tb-dark-rule);
+    --tb-card: var(--tb-dark-card);
+    --tb-accent: var(--tb-dark-accent);
     --tb-shadow: 0 1px 2px rgb(0 0 0 / 40%), 0 8px 24px rgb(0 0 0 / 28%);
   }
+}
+
+/* An explicit choice made in a book wins over the system preference. */
+:root[data-scheme="dark"] {
+  --tb-paper: var(--tb-dark-paper);
+  --tb-ink: var(--tb-dark-ink);
+  --tb-ink-soft: var(--tb-dark-ink-soft);
+  --tb-rule: var(--tb-dark-rule);
+  --tb-card: var(--tb-dark-card);
+  --tb-accent: var(--tb-dark-accent);
+  --tb-shadow: 0 1px 2px rgb(0 0 0 / 40%), 0 8px 24px rgb(0 0 0 / 28%);
 }
 
 * { box-sizing: border-box; }

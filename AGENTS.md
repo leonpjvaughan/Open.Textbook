@@ -229,6 +229,11 @@ calling a chapter done.
 - A per-book theme is data: set tokens in `book.yaml → theme`; the scaffold
   generates `book.css`. Component-level tweaks go in the book's authored
   `book-local.css`. Never fork `extra.css` for one book.
+- The light/dark choice is shared across every book and the landing page through
+  the one origin-wide key `textbooks:scheme`
+  (`engine/textbook/hooks/scheme.py`). Do not reintroduce a per-build key:
+  Material's own storage is scoped to each built site, which is precisely the
+  behaviour the bridge exists to fix.
 
 **Tiers**
 

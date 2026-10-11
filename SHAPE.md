@@ -142,6 +142,36 @@ The rule this protects: **a per-book theme must be expressible as token values.*
 Anything that needs new structure belongs in the shared design system, where
 every book benefits from it.
 
+## Theme preference
+
+The reader's light/dark choice is stored once, under the origin-wide key
+`textbooks:scheme`, and shared by every book profile and by the landing page.
+
+Material does not do this by itself: it scopes its palette storage to the root of
+each built site, so a choice made in GCSE Mathematics Higher is invisible to
+GCSE Mathematics Foundation, to another book, and to the landing page. The bridge
+is `engine/textbook/hooks/scheme.py`, which injects a small inline script into
+the `<head>` of every page. It does two things:
+
+1. **Before Material paints**, it seeds Material's own storage from the shared
+   key, using Material's `__md_set`. The correct theme therefore applies on the
+   first frame — there is no flash to correct afterwards.
+2. On every palette change, it records the chosen scheme under the shared key.
+
+The payload is generated from `theme.palette` in `renderers/mkdocs/base.yml`, so
+editing the palette list cannot silently break the bridge. The key is deliberately
+not namespaced by path: renaming the repository or moving a book must not cost a
+reader their preference.
+
+The landing page is not a Material page, so it does not use that mechanism. The
+portal template replays the same key as `<html data-scheme="dark">` before paint,
+and `portal.css` lets an explicit choice win over the system preference.
+
+This is a second deliberate exception to the no-runtime-JS rule, alongside the
+booklet widget: a few lines of inline script, no request, and nothing that
+matters if JavaScript is unavailable — the reader simply gets their system
+preference, as before.
+
 ## What a new book requires
 
 Adding a book is one directory and one registration:
