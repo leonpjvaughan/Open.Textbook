@@ -294,19 +294,25 @@ test/run.sh                              # figure-hook and tier evaluation
 
 ## Deployment and platform targets
 
-The collection is published as **static files**, served from the apex of
-`open-textbook.org` (registered through Cloudflare Registrar, DNS on Cloudflare).
-Nothing runs on a server. The intended shape of a book's URL is
-`/<qualification>/<subject>/<profile>/` — `gcse/maths/higher/` — so that a new
+The collection is published as **static files** to Cloudflare Workers, served from
+the apex of `open-textbook.org` (registered through Cloudflare Registrar, DNS on
+Cloudflare). Nothing runs on a server. The intended shape of a book's URL is
+`/<qualification>/<subject>/<profile>/` — `gcse/maths/higher/` — so a new
 qualification or subject extends the tree rather than inventing a new one.
+
+`DEPLOY.md` is the runbook: the one-time credential and domain setup, how a deploy
+happens, and how to check one.
 
 Three consequences shape everything else:
 
-- **The host must allow custom response headers.** A progressive web app needs to
-  control how its service worker is cached, and a real content security policy
-  needs to be settable at all. A `_headers` file in the build output provides
-  this. GitHub Pages has no equivalent: it pins `Cache-Control: max-age=600` on
-  every asset and offers no way to change it.
+- **The host must allow custom response headers.** Workers does, through a
+  `_headers` file in the asset directory. We do not ship one yet, deliberately:
+  Workers' default for static assets is `Cache-Control: public, max-age=0,
+  must-revalidate` with an `ETag`, which already gives us what we need — a deploy
+  takes effect immediately and unchanged files come back as `304`. This is also
+  what GitHub Pages would not allow: it pins `max-age=600` on every asset, which
+  is what makes a service worker unsafe to ship there. A `_headers` file becomes
+  worth adding when there is a content security policy and an `sw.js` to protect.
 - **The site is meant to be installable on a phone.** A reader should be able to
   add a book to a home screen and read it offline.
 - **The PWA is a deliberate exception to the Tier-0 no-JS rule**, in the same way
@@ -315,10 +321,10 @@ Three consequences shape everything else:
   unexplained regression.
 
 `site/` is assembled by the engine, so the root of the deployment is ours:
-`site/sw.js` and `site/manifest.webmanifest` sit beside the portal's
-`site/index.html`, which makes the service worker's scope the whole site without
-needing a header at all. `site/_headers` and `site/_redirects` are emitted the
-same way.
+`site/index.html` and `site/404.html` come from `textbook.portal`, with one
+MkDocs build per book profile beside them. A Worker whose static assets are that
+directory therefore serves the whole collection from one place, and the service
+worker's scope will be the whole site without needing a header at all.
 
 Note the interaction with **Deliberate limits** below: third-party MkDocs plugins
 are excluded, and MkDocs 2.0 removes the plugin system entirely. The PWA

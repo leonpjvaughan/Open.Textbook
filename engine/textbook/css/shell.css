@@ -1,0 +1,176 @@
+/* The page shell: everything Material for MkDocs used to provide.
+ *
+ * The shared design system (assets/stylesheets/extra.css) sets the --tb-* tokens
+ * and styles the *content*, but it maps them onto Material's --md-* variables and
+ * relies on Material's own stylesheet to paint html, body, the masthead and the
+ * layout. With Material absent, pages render as unstyled HTML: transparent
+ * background, browser default font, no layout.
+ *
+ * This file closes that gap using the same --tb-* tokens, so the theme bundles
+ * and the colour-scheme switch keep working unchanged.
+ *
+ * Measured: with this file applied, computed styles match the Material build in
+ * both schemes (light #faf9f5 / #1f1e1b, dark #171614 / #e9e7e1) and the
+ * display font resolves identically.
+ */
+
+html {
+  background: var(--tb-paper);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--tb-paper);
+  color: var(--tb-ink);
+  font-family: var(--tb-font-body);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+a { color: var(--tb-link); }
+
+.wrap {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+
+/* masthead ---------------------------------------------------------------- */
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--tb-paper);
+  border-bottom: 1px solid var(--tb-rule);
+}
+
+.masthead__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.5rem;
+}
+
+.masthead__brand {
+  font-family: var(--tb-font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--tb-ink);
+  text-decoration: none;
+}
+
+/* layout ------------------------------------------------------------------ */
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.sidebar {
+  position: sticky;
+  top: 4.5rem;
+  max-height: calc(100vh - 5rem);
+  overflow: auto;
+  padding: 1.25rem 0;
+  font-size: 0.85rem;
+}
+
+.content {
+  min-width: 0;
+  max-width: var(--tb-measure);
+  padding: 2rem 0 4rem;
+}
+
+/* navigation -------------------------------------------------------------- */
+
+.nav__list {
+  list-style: none;
+  margin: 0;
+  padding-left: 0.85rem;
+}
+
+.sidebar > .nav__list { padding-left: 0; }
+
+.nav__link {
+  display: block;
+  padding: 0.15rem 0;
+  color: var(--tb-ink-soft);
+  text-decoration: none;
+}
+
+.nav__link:hover { color: var(--tb-ink); }
+
+.nav__link--current {
+  color: var(--tb-accent);
+  font-weight: 600;
+}
+
+.sidebar summary {
+  cursor: pointer;
+  padding: 0.3rem 0;
+  color: var(--tb-ink);
+  font-weight: 600;
+}
+
+.sidebar summary::marker { color: var(--tb-ink-lighter); }
+
+/* search ------------------------------------------------------------------ */
+
+.search { position: relative; }
+
+.search input {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--tb-rule);
+  border-radius: var(--tb-radius);
+  background: var(--tb-paper);
+  color: var(--tb-ink);
+  font: inherit;
+  font-size: 0.85rem;
+}
+
+.search__results {
+  position: absolute;
+  right: 0;
+  top: 110%;
+  z-index: 10;
+  margin: 0;
+  padding: 0.25rem;
+  list-style: none;
+  min-width: 18rem;
+  max-height: 60vh;
+  overflow: auto;
+  background: var(--tb-paper);
+  border: 1px solid var(--tb-rule);
+  border-radius: var(--tb-radius);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 12%);
+}
+
+.search__results li a {
+  display: block;
+  padding: 0.3rem 0.4rem;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.search__results:empty { display: none; }
+
+/* narrow ------------------------------------------------------------------ */
+
+@media (max-width: 60rem) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar {
+    position: static;
+    max-height: none;
+    border-bottom: 1px solid var(--tb-rule);
+  }
+}

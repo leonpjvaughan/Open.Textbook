@@ -20,6 +20,7 @@ from collections import Counter
 from pathlib import Path
 
 from . import book as books
+from . import frontmatter
 
 ROOT = books.repo_root()
 
@@ -164,6 +165,12 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
         if fix:
             text = fix_text(text)
         rel = str(path.relative_to(ROOT))
+        # Front matter that does not parse silently drops `tier`, which is how a
+        # Higher-only page ends up in a Foundation build. See frontmatter.py.
+        try:
+            frontmatter.split(text, path)
+        except frontmatter.FrontMatterError as err:
+            note("structure:front-matter", f"{rel}: {err.cause}")
         for line_number, raw, stripped in prose_lines(text):
             shown = stripped.replace("\x00", "…").strip()
             where = f"{rel}:{line_number}: {shown[:90]}"

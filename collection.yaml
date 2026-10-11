@@ -14,11 +14,11 @@ description: >-
 # intended to be installable as a PWA on phones. See "Deployment and platform
 # targets" in SHAPE.md for the constraints that follow from both choices.
 #
-# The `base_url` below is still the GitHub Pages placeholder. Moving it to
-# https://open-textbook.org/ belongs with the first deploy, not before: every
-# profile's `site_url`, its canonical links and its sitemap are derived from this
-# value (see `site_url()` in engine/textbook/scaffold.py).
-base_url: https://leonpjvaughan.github.io/GCSE.MATHS/
+# This is the production origin: every profile's `site_url`, its canonical links
+# and its sitemap are derived from it (see `site_url()` in
+# engine/textbook/scaffold.py), so it must match where the site is actually
+# served from. Deploying elsewhere means changing this first.
+base_url: https://open-textbook.org/
 
 # Theme bundles live in themes/. Each is a full light and dark palette plus its
 # typography; a book contributes its subject tint on top. The reader's choice is

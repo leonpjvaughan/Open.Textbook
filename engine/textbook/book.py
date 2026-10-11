@@ -247,6 +247,18 @@ class Book:
         return sum(len(chapter.get("sections", [])) for chapter in self.chapters)
 
 
+# Every loader below is cached for the duration of a process. They are pure
+# functions of files that do not change while a build runs, and they are called
+# very often: resolving the current book goes through ``discover_books``, which
+# reaches ``load_collection`` and ``load_book``.
+#
+# Measured before this was added: a single-page render re-parsed collection.yaml
+# and every book.yaml once per hook, so an 18-page build made 73 ``yaml.safe_load``
+# calls and spent 63% of its time in YAML. Callers only read what these return;
+# none of them mutate it.
+
+
+@lru_cache(maxsize=None)
 def load_book(path: Path) -> Book:
     path = Path(path)
     data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
@@ -278,6 +290,7 @@ def discover_books(root: Path | None = None) -> list[Book]:
     return sorted(books, key=lambda b: (order.get(b.qualification, 99), b.order, b.id))
 
 
+@lru_cache(maxsize=None)
 def qualification_order(root: Path | None = None) -> dict[str, int]:
     """Position of each qualification, as declared in collection.yaml."""
     collection = load_collection(root)
@@ -287,6 +300,7 @@ def qualification_order(root: Path | None = None) -> dict[str, int]:
     }
 
 
+@lru_cache(maxsize=None)
 def load_collection(root: Path | None = None) -> dict:
     path = (root or repo_root()) / COLLECTION_FILE
     if not path.is_file():

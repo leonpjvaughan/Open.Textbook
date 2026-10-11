@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the collection landing page.
+"""Generate the deployment root: the landing page, and the root 404.
 
 One card per book, grouped by qualification, each tinted with the book's accent
 from ``book.yaml``. The page is a single static HTML file at the site root, and
@@ -143,6 +143,55 @@ def theme_menu() -> str:
     )
 
 
+def not_found() -> str:
+    """The root 404 page.
+
+    Each book ships its own 404 from its MkDocs build, so a missing page under a
+    book offers that book's own navigation. This one catches everything else, and
+    its only job is to get the reader to the landing page.
+
+    Link is absolute because a 404 is served from arbitrary depths, where a
+    relative path would point at the wrong place.
+    """
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found</title>
+<script>
+(function () {{
+  try {{
+    var scheme = localStorage.getItem("{SCHEME_KEY}");
+    var theme = localStorage.getItem("{THEME_KEY}");
+    if (scheme === "slate") document.documentElement.setAttribute("data-scheme-pref", "slate");
+    if (theme) document.documentElement.setAttribute("data-theme", theme);
+  }} catch (err) {{}}
+}})();
+</script>
+<link rel="stylesheet" href="/assets/stylesheets/themes.css">
+<link rel="stylesheet" href="/assets/stylesheets/portal.css">
+</head>
+<body>
+<script>
+document.body.setAttribute(
+  "data-md-color-scheme",
+  document.documentElement.getAttribute("data-scheme-pref") === "slate" ? "slate" : "default"
+);
+</script>
+<main class="wrap" id="main">
+  <div class="group">
+    <h1 class="masthead__title">That page is not here</h1>
+    <p class="group__note">The address may be mistyped, or the page may have
+    moved between editions.</p>
+    <p><a href="/">Go to the books</a></p>
+  </div>
+</main>
+</body>
+</html>
+"""
+
+
 def render() -> str:
     collection = books.load_collection()
     all_books = books.discover_books()
@@ -173,6 +222,7 @@ def main() -> int:
 
     SITE.mkdir(parents=True, exist_ok=True)
     (SITE / "index.html").write_text(render(), encoding="utf-8")
+    (SITE / "404.html").write_text(not_found(), encoding="utf-8")
 
     target = SITE / "assets" / "stylesheets"
     target.mkdir(parents=True, exist_ok=True)
@@ -180,7 +230,7 @@ def main() -> int:
     shutil.copyfile(ASSETS / "stylesheets" / "themes.css", target / "themes.css")
     shutil.copyfile(ASSETS / "stylesheets" / "portal.css", target / "portal.css")
 
-    print(f"wrote site/index.html ({len(all_books)} books)")
+    print(f"wrote site/index.html and site/404.html ({len(all_books)} books)")
     return 0
 
 

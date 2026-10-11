@@ -6,6 +6,12 @@ requires-python = ">=3.12"
 dependencies = [
     "PyYAML>=6.0.2",
     "sympy==1.14.0",
+    # Used by textbook.pipeline, which renders Markdown without a site
+    # generator. They arrive today by way of the root project's MkDocs
+    # dependency; declaring them here keeps the engine honest about what it
+    # imports and lets it be installed on its own.
+    "markdown>=3.6",
+    "pymdown-extensions>=10.2",
 ]
 
 [build-system]
@@ -20,5 +26,6 @@ packages = ["textbook"]
 # portal page template. Present in source, so an editable install finds them.
 include = [
     "textbook/js/*.mjs",
+    "textbook/css/*.css",
     "textbook/templates/*.html",
 ]

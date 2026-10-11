@@ -15,9 +15,8 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-import yaml
-
 from .. import config as cfg
+from ..frontmatter import read as read_front_matter
 
 BLOCK = re.compile(r"<!--\s*tier:h\s*-->(.*?)<!--\s*/tier:h\s*-->", re.S | re.I)
 LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
@@ -48,31 +47,14 @@ def profile(config) -> str:
     return cfg.profile(config)
 
 
-def front_matter(path) -> dict:
-    source = Path(path)
-    if source.suffix.lower() != ".md":
-        return {}
-    try:
-        text = source.read_text(encoding="utf-8")
-    except (OSError, UnicodeDecodeError):
-        return {}
-    if not text.startswith("---"):
-        return {}
-    end = text.find("\n---", 3)
-    if end == -1:
-        return {}
-    try:
-        data = yaml.safe_load(text[3:end])
-    except yaml.YAMLError:
-        return {}
-    return data if isinstance(data, dict) else {}
-
-
 def on_files(files, config, **kwargs):
     if profile(config) != "foundation":
         return files
+    # Strict: a page whose front matter does not parse has no tier, and would
+    # otherwise be treated as Foundation content and shipped to Foundation
+    # readers. See engine/textbook/frontmatter.py.
     return files.__class__(
-        f for f in files if front_matter(f.abs_src_path).get("tier") != "H"
+        f for f in files if read_front_matter(Path(f.abs_src_path))[0].get("tier") != "H"
     )
 
 

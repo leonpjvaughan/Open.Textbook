@@ -252,6 +252,8 @@ ranking of methods. Keep the claims to what the briefing supports; see
 | `research/` | `pedagogy.md`, per-book notes, and fetched sources (git-ignored) |
 | `PROBLEMS.md` | Problem-bank schema and verification limits |
 | `BOOKLETS.md` | Formula-and-data booklet contract, and the target set per subject |
+| `DEPLOY.md` | Deployment runbook: credentials, the domain, and how to deploy |
+| `wrangler.jsonc` | The Worker that serves `site/` as static assets |
 | `scripts/` | Thin developer entry points (`check.sh`, `fetch_sources.sh`, `screenshot.cjs`) |
 | `tests/` | Engine, bank and collection-shape tests |
 | `test/` | The figure-hook and tier-profile evaluation (24 assertions) |
@@ -277,6 +279,7 @@ grep -rl 'math-error' site --include='*.html'          # must print nothing
 pytest tests/ -q                          # bank, marker, collection and theme tests
 test/run.sh                               # figure-hook + tier evaluation
 scripts/check.sh                          # everything CI enforces, in one call
+scripts/deploy.sh                         # build, guard, then deploy (see DEPLOY.md)
 ```
 
 ## Watch out for
@@ -408,6 +411,22 @@ calling a chapter done.
   extension therefore 404s — and because every capture then returns the *same*
   404 page, the run looks successful while producing identical images. Check the
   captures differ (byte size or hash) before reviewing them.
+
+## Repository skills
+
+The textbook-writing methodology is available as portable skills under
+`.agents/skills/` (read natively by Pi, Copilot and Codex):
+
+| Skill | Use it for |
+|---|---|
+| `author-textbook-chapter` | planning, authoring or revising a chapter end to end |
+| `write-textbook-prose` | drafting or editing reader-facing prose, and fixing voice findings |
+| `build-practice-set` | Guided problems / Problems pages and the verified banks behind them |
+| `build-guided-figure` | an interactive investigation in a Learn page |
+| `verify-textbook-change` | the definition-of-done gate, including the pedagogy audit |
+
+Claude Code reads skills from `.claude/skills/`; project that directory with the
+`agent-repository-conventions` helper rather than copying skills by hand.
 
 ## Conventions
 

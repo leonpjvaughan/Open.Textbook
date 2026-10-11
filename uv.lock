@@ -685,12 +685,16 @@ name = "textbook"
 version = "0.0.0"
 source = { editable = "engine" }
 dependencies = [
+    { name = "markdown" },
+    { name = "pymdown-extensions" },
     { name = "pyyaml" },
     { name = "sympy" },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "markdown", specifier = ">=3.6" },
+    { name = "pymdown-extensions", specifier = ">=10.2" },
     { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "sympy", specifier = "==1.14.0" },
 ]

@@ -1,0 +1,19 @@
+{
+  // Deployment configuration for open-textbook.org.
+  //
+  // The collection is static files, so the Worker is an asset server with no
+  // script of its own. `compatibility_date` is required by Wrangler and is the
+  // date the runtime behaviour is pinned to; bump it deliberately.
+  //
+  // See DEPLOY.md for the runbook and SHAPE.md, "Deployment and platform
+  // targets", for why the site is hosted this way.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "open-textbook",
+  "compatibility_date": "2026-10-11",
+  "assets": {
+    // Assembled by `python -m textbook.portal` plus one build per book profile.
+    "directory": "./site",
+    // Each book ships its own 404; the portal emits one at the root too.
+    "not_found_handling": "404-page"
+  }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$title — $site_title</title>
+<meta name="description" content="$description">
+<link rel="canonical" href="$canonical">
+<script>
+/* Reader preferences before first paint. Both keys are origin-wide, shared with
+ * every other book and with the landing page, so a choice follows the reader.
+ * See SHAPE.md, "Theme preference" and "Theme bundles". */
+(function () {
+  var store, scheme = "default", theme = "editorial";
+  try { store = window.localStorage; } catch (err) {}
+  try {
+    var s = store ? store.getItem("textbooks:scheme") : null;
+    if (s) scheme = s;
+    var t = store ? store.getItem("textbooks:theme") : null;
+    if (t) theme = t;
+  } catch (err) {}
+  document.documentElement.setAttribute("data-scheme-pref", scheme);
+  document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.setAttribute(
+    "data-md-color-scheme", scheme === "slate" ? "slate" : "default"
+  );
+})();
+</script>
+<link rel="stylesheet" href="${prefix}assets/stylesheets/themes.css">
+<link rel="stylesheet" href="${prefix}assets/stylesheets/extra.css">
+<link rel="stylesheet" href="${prefix}assets/stylesheets/book.css">
+<link rel="stylesheet" href="${prefix}assets/stylesheets/shell.css">
+</head>
+<body>
+<script>
+/* themes.css keys its tokens off body[data-md-color-scheme], which is Material's
+ * own convention and which the shared stylesheet still depends on. Set it here,
+ * before the body paints, so the scheme never flashes. */
+document.body.setAttribute(
+  "data-md-color-scheme",
+  document.documentElement.getAttribute("data-md-color-scheme") === "slate" ? "slate" : "default"
+);
+</script>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="masthead__brand" href="${prefix}">$site_title</a>
+    <div class="search">
+      <input id="search-input" type="search" placeholder="Search" aria-label="Search this book">
+      <ul id="search-results" class="search__results"></ul>
+    </div>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <nav class="sidebar" aria-label="Book contents">
+    $nav
+  </nav>
+
+  <main id="main" class="content md-typeset">
+    $content
+  </main>
+</div>
+
+<script>
+/* Search. The index is built at build time into search.json and fetched on first
+ * use, so no page carries it inline. */
+let index = null;
+const input = document.getElementById("search-input");
+const results = document.getElementById("search-results");
+input.addEventListener("input", async () => {
+  if (!index) index = await (await fetch("${prefix}search.json")).json();
+  const term = input.value.trim().toLowerCase();
+  if (term.length < 2) { results.innerHTML = ""; return; }
+  results.innerHTML = index
+    .filter((page) => page.title.toLowerCase().includes(term) || page.text.toLowerCase().includes(term))
+    .slice(0, 20)
+    .map((page) => '<li><a href="${prefix}' + page.url + '">' + page.title + "</a></li>")
+    .join("");
+});
+</script>
+</body>
+</html>
