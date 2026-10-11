@@ -163,6 +163,7 @@ ranking of methods. Keep the claims to what the briefing supports; see
 | `renderers/mkdocs/` | MkDocs adapter: `base.yml`, the hook entry point, generated per-book configs |
 | `research/` | `pedagogy.md`, per-book notes, and fetched sources (git-ignored) |
 | `PROBLEMS.md` | Problem-bank schema and verification limits |
+| `BOOKLETS.md` | Formula-and-data booklet contract, and the target set per subject |
 | `scripts/` | Thin developer entry points (`check.sh`, `fetch_sources.sh`, `screenshot.cjs`) |
 | `tests/` | Engine, bank and collection-shape tests |
 | `test/` | The figure-hook and tier-profile evaluation (24 assertions) |
@@ -285,9 +286,14 @@ calling a chapter done.
 
 **Booklet**
 
-- `books/<id>/booklet/gcse-maths.yaml` is the source of truth;
+- `BOOKLETS.md` is the contract: one booklet per qualification and subject, built
+  from the board's own document, not from another board's sheet or from memory.
+  Any subject whose board provides a sheet — mathematics, physics, chemistry,
+  combined science — should have one, at GCSE and at A-level.
+- `books/<id>/booklet/<subject>.yaml` is the source of truth;
   `books/<id>/docs/assets/booklet/booklet.json` is generated. Edit the YAML and
-  run `python -m textbook.booklet`.
+  run `python -m textbook.booklet`. A book that declares no booklet ships no
+  widget.
 - Provision is per board and tier. Selecting a board hides every item that board
   does not provide, so a wrong tag is a content bug. Since Ofqual's October 2024
   decision, all boards provide the same DfE-based sheets for 2025–2027; AQA and

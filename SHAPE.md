@@ -117,30 +117,50 @@ books diverge.
 
 ## Per-book theming
 
-**Today every book uses the house theme.** The structure is deliberately open to
-per-book themes, so that a decision to differentiate them later is a data change
-rather than a refactor. The cascade is:
+**Each book carries its own theme, expressed as a light variation and a dark
+variation.** A book names only what makes it itself; everything else stays the
+house default. The cascade is:
 
-1. `assets/stylesheets/extra.css` — the **design system**. Every colour,
-   measure and palette entry is a custom property (`--tb-*`), plus the mapping
-   onto Material's `--md-*` variables. This is the only file that sets house
-   defaults, and it is shared by every book.
+1. `assets/stylesheets/extra.css` — the **design system**. Both schemes are a
+   complete set of tokens (`--tb-*`), and the mapping onto Material's `--md-*`
+   variables is written once, from those tokens. This is the only file that sets
+   house defaults, and it is shared by every book.
 2. `books/<id>/docs/assets/stylesheets/book.css` — **generated** from
-   `book.yaml → theme:` by the scaffold. It overrides the `--tb-*` tokens only.
-   Do not hand-edit it; edit `book.yaml`.
+   `book.yaml → theme:` by the scaffold, as one block per scheme. It overrides
+   tokens only. Do not hand-edit it; edit `book.yaml`.
 3. `books/<id>/docs/assets/stylesheets/book-local.css` — **authored**, loaded
    last, empty by default. The escape hatch for component-level changes that a
    book genuinely needs (a diagram style, a subject-specific block). Keep it
    small: a book should be recognisable, not a different design system.
-4. The portal card reads the same `theme.accent`, so a book's identity is
-   consistent from the front door inwards.
+4. The portal card is tinted from the **same two accents**, so a book's identity
+   holds from the front door inwards, in both schemes, rather than being the
+   light accent darkened.
 
-Token names are subject-neutral (`--tb-paper`, `--tb-accent`, `--tb-fig-warn`),
-because the same sheet now serves physics and A-level as well as GCSE.
+```yaml
+theme:
+  light:
+    accent: "#2f6690"
+    accent_light: "#4a7fae"
+    accent_dark: "#24506f"
+  dark:
+    accent: "#6ea8d8"
+```
+
+The themable tokens are `accent`, `accent_light`, `accent_dark`, `paper`, `ink`,
+`ink_soft`, `rule`, `link`, `code_bg`, `fig_warn`, `fig_good` and `fig_grid`. An
+unknown key is an error rather than a silent no-op, because a typo that changes
+nothing is the worst kind. Token names are subject-neutral (`--tb-paper`,
+`--tb-accent`, `--tb-fig-warn`), because the same sheet serves physics and
+A-level as well as GCSE.
+
+A diagram tints itself by reading the book's accent, so setting one accent per
+scheme re-tints every figure in the book.
 
 The rule this protects: **a per-book theme must be expressible as token values.**
 Anything that needs new structure belongs in the shared design system, where
-every book benefits from it.
+every book benefits from it; anything that is genuinely one book's own belongs in
+its `book-local.css`. Both are supported, and neither forks the design system for
+everyone else.
 
 ## Theme preference
 
@@ -200,6 +220,19 @@ for physics, rather than symbolic equivalence) declares it in
 `book.yaml → oracles`. Adding an oracle is a new module under
 `engine/textbook/verify/oracles/`, registered by check kind — the loader,
 relations, renderer and CLI are shared.
+
+### Booklets are per qualification and subject
+
+One booklet per book, built from the awarding body's own document, because there
+is no shared national booklet: provision differs by subject, qualification and
+tier, and it is set for a period and then reviewed. The target set — GCSE
+mathematics, physics, chemistry and combined science; A-level mathematics,
+further mathematics, physics and chemistry — and the contract every booklet must
+meet are in `BOOKLETS.md`. A periodic table or a table of constants is expressed
+as `tables`, which the widget already renders.
+
+The data belongs to the book; the widget belongs to the collection, and is loaded
+only by books that declare a booklet.
 
 ## Build and verify
 
