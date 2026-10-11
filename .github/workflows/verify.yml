@@ -207,14 +207,15 @@ jobs:
       - name: Tag and release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
           # A UK textbook dated on the UK calendar, not on the runner's UTC.
           TZ: Europe/London
         run: |
-          tag="$(date +%Y.%m.%d)"
-          if gh release view "$tag" >/dev/null 2>&1; then
-            echo "::notice::$tag already exists, so this deploy carries no new release"
-            exit 0
-          fi
+          # yy.<day of year>.<increment>, the increment counting the tags already
+          # released today. A plain date cannot survive a second deploy in a day:
+          # it either overwrites the tag or, as this used to, silently releases
+          # nothing. scripts/next-tag.sh owns the scheme and is tested.
+          tag="$(scripts/next-tag.sh)"
           gh release create "$tag" \
             --target "$GITHUB_SHA" \
             --title "$tag" \

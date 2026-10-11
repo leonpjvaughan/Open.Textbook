@@ -75,19 +75,33 @@ runs the same pipeline on whatever is on `main`.
 
 ### Releases
 
-Tags are dates in `Europe/London`, not the runner's UTC, because this is a UK
-textbook and a release dated tomorrow would be confusing. Each release body
-carries the live URL plus GitHub's generated notes.
+Every push to `main` releases. Tags are `yy.<day of year>.<increment>`:
 
-**One release per day.** A second push the same day deploys but is not released:
-today's tag already points at an earlier commit, and moving a tag to keep up
-would be worse than not tagging. The job says so in its log rather than failing,
-because a skipped release must not skip the deploy. If you would rather have one
-release per deploy, change the tag to something like `$(date +%Y.%m.%d-%H%M)`.
+```
+26.284.0    2026, day 284 — the first release that day
+26.284.1     the second
+26.285.0     the next day, back to zero
+```
+
+The increment is the point. A plain date collides the moment a second deploy lands
+on the same day, and the previous scheme handled that badly: the job skipped when
+the tag already existed, so the second deploy of the day deployed while silently
+releasing nothing. Now every deploy gets its own tag and nothing is ever
+overwritten.
+
+The day is zero-padded to three digits so tags sort as text, and the date comes
+from `Europe/London` rather than the runner's UTC, because a UK textbook dated
+tomorrow is confusing.
+
+`scripts/next-tag.sh` owns the scheme. It reads existing tags from the API rather
+than a local clone, so it needs neither the history nor the tags fetched, and it
+is covered by `tests/test_release.py`. Two consequences worth knowing: re-running
+the workflow for a commit releases it again under a new increment, and deleting a
+tag frees its number, since the count comes from the tags that actually exist.
 
 A release is created *before* the deploy, so a version describes the content
-rather than the hosting. If a deploy fails, the version still exists and you
-re-run the deploy — which, the tag already being there, changes nothing else.
+rather than the hosting. If a deploy fails the version still stands and re-running
+the deploy changes nothing about it.
 
 To release only from tags instead of every push, change the `deploy` job's `if:`
 to start with `startsWith(github.ref, 'refs/tags/')`.
