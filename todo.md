@@ -216,29 +216,47 @@ valid choice, just less friendly. Record the decision in `DEPLOY.md` either way.
 
 ## 4. Zone security settings and response headers
 
-**State (read from the API, 2026-10-11).** The zone is on `ssl: full`,
-`min_tls_version: 1.0`, `always_use_https: off`, `automatic_https_rewrites: on`,
-`tls_1_3: on`, `security_level: medium`, `browser_check: on`, HSTS **disabled**,
-`waf: off`. The site sends **no security headers at all** (no HSTS, no CSP, no
-`nosniff`, no `Referrer-Policy`).
+**State (read from the API, 2026-10-11).** The zone is on `ssl: strict`,
+`min_tls_version: 1.2`, `always_use_https: on`, `automatic_https_rewrites: on`,
+`tls_1_3: on`, `security_level: medium`, `browser_check: on`, HSTS **enabled**
+(`max-age=15552000`, `includeSubDomains`, `nosniff`), `waf: off`, **Bot Fight Mode
+on**. The site still sends no CSP / `Referrer-Policy` / `Permissions-Policy`.
 
-**Verified findings.** `http://open-textbook.org/` returns `200` and serves the
-whole book over plaintext — HTTP is not redirected to HTTPS. Minimum TLS is
-1.0/1.1-eligible. There is a second public origin at
-`open-textbook.leonpjvaughan.workers.dev` (and `*-…workers.dev` previews).
+**Verified findings.** `http://open-textbook.org/` now returns `301` to HTTPS
+(path preserved); HTTPS returns `200`. Minimum TLS is 1.2. The `workers.dev`
+origin is switched off (now `404`). Bot Fight Mode injects Cloudflare's
+`challenge-platform` script into every page.
 
-### Zone settings (dashboard, one click each; SSL/TLS and DNS)
+**Bot Fight Mode — recommend OFF.** It adds no DDoS protection (that is always on
+and separate), it is zone-wide with **no allowlist on the free plan**, and it
+injects a challenge script into every page of a site built to need no runtime JS.
+The threat model is empty: no login, no forms, no origin. It can only challenge
+real students, on school networks and CGNAT, with no way to exempt them.
 
-- [ ] **Always Use HTTPS → ON.** The highest-value fix: stop serving the book
-      over plaintext.
-- [ ] **Minimum TLS version → 1.2** (1.0 and 1.1 are deprecated).
-- [ ] **HSTS → ON**: start at `max-age=15552000` (6 months), `includeSubDomains`
-      on, `preload` off, `nosniff` on. Raise the max-age and consider preload once
-      HTTPS is confirmed on every hostname.
-- [ ] **SSL/TLS mode → Full (strict).** Moot for a Workers-only site (there is no
-      origin), but correct if an origin is ever added.
-- [ ] **DNSSEC → ON** (DNS → Settings). The deploy token cannot read this, so
-      check the dashboard. It prevents DNS spoofing.
+### Zone settings (dashboard, one click each)
+
+**Items 1-3 are all on one page: SSL/TLS → Edge Certificates** (not the Overview
+page, which holds the encryption mode). Direct link:
+`https://dash.cloudflare.com/?to=/:account/open-textbook.org/ssl-tls/edge-certificates`.
+The dashboard quick search jumps straight there by label.
+
+- [x] **Always Use HTTPS → ON.** Done — `always_use_https: "on"`; `http://…`
+      returns `301` to HTTPS, path preserved. Stop serving the book over plaintext.
+- [x] **Minimum TLS version → 1.2.** Done — `min_tls_version: "1.2"`.
+- [x] **HSTS → ON.** Done — enabled at `max-age=15552000`, `includeSubDomains` on,
+      `preload` off, `nosniff` on. Live header:
+      `strict-transport-security: max-age=15552000; includeSubDomains`. Raise the
+      max-age and consider preload once HTTPS is confirmed on every hostname.
+- [x] **SSL/TLS mode → Full (strict).** Done — live value `ssl: "strict"`. Moot
+      for a Workers-only site (there is no origin), but correct if one is added.
+- [ ] **DNSSEC — half-configured; do not tick yet.** The zone is **signed** (its
+      nameservers return `DNSKEY`, 2 answers) but there is **no `DS` in the parent
+      `.org` zone**, so the chain of trust is broken and resolvers fall back to an
+      *insecure delegation* — no protection, no breakage. Compare
+      `leonpjvaughan.com`, which has both `DNSKEY` and a `DS`. Fix: if
+      `open-textbook.org` is not a Cloudflare Registrar domain, add the `DS`
+      (shown on Cloudflare's DNSSEC page) at the registrar; if it is, wait for
+      propagation. Done means `DS@parent` returns an answer, not `0 answers`.
 - [ ] **CAA → restrict issuance** to the CAs Cloudflare actually uses for
       Universal SSL. Check which before writing the record and re-check at the
       next renewal: a CAA that omits the real issuer breaks renewal, which is
@@ -246,54 +264,69 @@ whole book over plaintext — HTTP is not redirected to HTTPS. Minimum TLS is
 - [ ] **Email records, since the domain sends none.** `TXT` `v=spf1 -all` and
       `_dmarc` `TXT` `v=DMARC1; p=reject; rua=mailto:…`. A textbook has no reason
       to send mail, so this closes domain spoofing cheaply.
-- [ ] **Disable the `workers.dev` route** for the Worker, or put Access in front
-      of the preview URLs, so there is one canonical origin.
+- [x] **Disable the `workers.dev` route.** Done — the Worker is now `404` at
+      `open-textbook.leonpjvaughan.workers.dev`, so there is one canonical origin.
 
 Keep `security_level: medium`, `browser_check: on`, `tls_1_3: on`,
 `automatic_https_rewrites: on`. Leave `rocket_loader` off — it injects JavaScript.
 **Check Development Mode is off too**: it disables the edge cache and is easy to
 leave on.
-Skip Bot Fight Mode and Turnstile: there are no forms and no user input, and they
-would challenge real students. WAF managed rules are optional here.
+- [ ] **Turn Bot Fight Mode OFF.** Currently **on**; it injects a challenge
+      script into every page and has no free-plan allowlist. It adds no DDoS
+      protection (that is always on and separate). No login, no forms, no origin —
+      the threat model is empty.
 
-### Response headers
+Skip Turnstile: there are no forms and no user input. WAF managed rules are
+optional here.
 
-Add one `_headers` file at the asset root. `DEPLOY.md` already anticipates it,
-with two caveats that hold: **one splat per rule** (so `/*/assets/main.*.css` is
-invalid), and a header set by two matching rules is **joined with a comma** (which
-would make an invalid `Cache-Control`).
+### Response headers — **implemented**
+
+`engine/textbook/headers.py` emits `site/_headers`, called from
+`python -m textbook.portal`. It declares **no** `Cache-Control` (Workers' default
+is what keeps a deploy immediate; a second rule would be joined with a comma and
+corrupt it) and **no** HSTS (Cloudflare's SSL/TLS toggle already sends it).
+`tests/test_deploy.py` holds the file's shape and its policy, so drift fails
+`scripts/check.sh`.
+
+Emitted content:
 
 ```
 /*
   X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), camera=(), microphone=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
 ```
 
-Notes:
+Three directives were added to the first draft after checking what the site
+actually loads: `worker-src 'self'` (Material's search runs in a same-origin
+worker, so a `blob:` worker never appears), `manifest-src 'self'` (the PWA
+manifest), and `X-Frame-Options` beside `frame-ancestors` for older browsers.
 
-- Set **HSTS in the Cloudflare toggle, not here** — setting it in both sends two
-  `Strict-Transport-Security` headers.
+Other notes:
+
 - `script-src` and `style-src` need `'unsafe-inline'`: the `prefs` hook, the
   landing page and Material all use inline scripts and styles. There is no server
   and no user input, so the XSS surface is small; a nonce/hash CSP is a later
   hardening step, not a blocker.
-- `frame-ancestors 'none'` (with `X-Frame-Options: DENY` for old browsers) is the
-  clickjacking fix.
-- `_headers` must be **emitted by the build**, like every other generated file,
-  so it is drift-checked — not hand-written into `site/`. `site/` is generated.
-  A zone Transform Rule (Modify Response Header) is the no-code alternative, but
-  then the header set lives in the dashboard, not the repository.
+- `frame-ancestors 'none'` is the clickjacking fix.
+- `_headers` is **emitted by the build**, like every other generated file — never
+  hand-written into `site/`. A zone Transform Rule (Modify Response Header) is the
+  no-code alternative, but then the header set lives in the dashboard, not the
+  repository.
 
 **Done means.**
 
-- [ ] `http://open-textbook.org/` returns `301` to the HTTPS URL.
-- [ ] `curl -sI https://open-textbook.org/ | grep -i strict-transport-security`
-      returns a header.
-- [ ] The CSP is present on every HTML response and the site still works with it
-      (maths, search, figures, booklet) — check the browser console.
-- [ ] `scripts/check.sh` covers the header set, so a regression fails CI.
+- [x] `python -m textbook.portal` writes `site/_headers`.
+- [x] `tests/test_deploy.py` holds the shape, the policy and the two exclusions
+      (`Cache-Control`, HSTS), so a regression fails `scripts/check.sh`.
+- [x] The CSP is served on every response and the site still works with it: driven
+      in Chromium with the real header attached — landing page, a book page, a
+      Walkthrough with a figure and the 404 — with **no** `securitypolicyviolation`
+      and Material's search still returning results.
+- [ ] Deployed: `curl -sI https://open-textbook.org/` shows the header set once a
+      build with this change is live.
 
 ---
 
@@ -373,15 +406,162 @@ the rest recoverable, so they belong in the same gate.
 
 ---
 
-## 8. Declare the ready state
 
-**Not a change: the gate.** The site is in a ready state when items 2–7 are closed
+
+## 8. One site, two renderers — decide which is the site
+
+**This is the largest structural item in the file.** There are two ways to build a
+book, and only one of them is deployed.
+
+| | `renderers/mkdocs/` + MkDocs | `engine/textbook/pipeline.py` |
+|---|---|---|
+| Status | **what `main` deploys** | builds 457 pages in 11.6s, deploys nothing |
+| Templates | Material's, plus `overrides/` (which does not exist yet) | `engine/textbook/templates/page.html` |
+| Navigation | generated nav lists in `renderers/mkdocs/<book>.<profile>.yml` | built in code |
+| Link checking | MkDocs `--strict` | `check_links()` |
+| Search | Material's index | Pagefind |
+| Front matter | Material reads it | `textbook/frontmatter.py` |
+
+Everything the pipeline does, MkDocs also does, differently. So each change to
+the shell has two answers, and only one of them is tested by the deploy — the
+pipeline is covered by `tests/test_pipeline.py` but nothing reaches a reader.
+
+**Also unresolved:** MkDocs 2.0 removes the plugin system and rewrites theming, and
+Material 9.7.7 carries a notice that it is unlicensed for production. That was on
+record before the pipeline existed; the pipeline may be its answer, which makes
+this decision more urgent rather than less.
+
+**Decide:** the pipeline replaces MkDocs, or MkDocs stays and the pipeline goes.
+Not both, and not for long — the cost is paid on every change to the page shell.
+
+**Done means.**
+
+- [ ] One renderer is the site, and the other is deleted or explicitly parked with
+      a reason and an owner.
+- [ ] `DEPLOY.md`, `AGENTS.md` and `SHAPE.md` describe that renderer only.
+- [ ] CI builds the site with it.
+
+---
+
+## 9. Nothing says which commit is live
+
+**Verified.** Neither `site/index.html` nor `site/version.json` carries a build
+identity. Asked "what is deployed right now?", the only honest answers are "the
+last push to `main` that deployed" and "check the Cloudflare dashboard" — which
+does not name a commit either.
+
+**Why it matters.** A release named `26.284.3` and a deployed site are two facts
+with no link between them. Diagnosing a reported error means guessing whether the
+reader is seeing the fix.
+
+**Fix.** Emit the release tag and commit SHA into the deployed output from the
+engine — a `version.json` at the site root, and a `<meta name="build" content="…">`
+for the browser — and print it in the footer or the 404 page. Then a screenshot or
+a reader's report identifies a build. `$GITHUB_SHA` and the tag are already known
+to the release job.
+
+**Done means.**
+
+- [ ] `curl https://open-textbook.org/version.json` names the tag and the commit.
+- [ ] The deployed commit can be compared with `main` in one command.
+
+---
+
+## 10. Accessibility: turn the claims into checks
+
+Colour contrast is tested (`tests/test_themes.py`, every bundle × book × scheme).
+Almost nothing else is.
+
+- **Six of the 28 figure modules set no accessible name.** 22 carry
+  `role="img"` with an `aria-label`; the rest are announced as nothing.
+  `assets/figures/figures.js` does not add a role or name to the host element
+  either, so the default is silence.
+- **Nothing tests the no-JavaScript claim.** `AGENTS.md` and SHAPE.md both assert
+  the site is readable without scripting — maths is build-time MathML, so that is
+  probably true — but it is an assertion. The only related test checks that the
+  landing toggle is hidden.
+- **No keyboard or focus audit.** The theme menu in item 1 will be the first
+  interactive chrome; the booklet, the figures and the search all need checking
+  for focus order, focus visibility and Escape behaviour.
+- **Maths read aloud is unresolved.** KaTeX emits MathML, which screen readers
+  support unevenly and without a speech rule engine.
+- **The figure palette is not contrast-checked.** `fig-warn`, `fig-good` and
+  `fig-grid` are outside the invariant in `tests/test_themes.py`.
+
+**Done means.**
+
+- [ ] Every figure has an accessible name, and a test fails if a new one does not.
+- [ ] A test renders a page with scripting disabled and asserts the prose and the
+      maths are present.
+- [ ] Keyboard-only pass over a book page, the booklet, a figure and search.
+- [ ] A recorded position on how maths is read aloud.
+- [ ] Figure tokens are inside the contrast invariant.
+
+---
+
+## 11. Licence, colophon and a way to report an error
+
+**Verified.** There is no `LICENSE`, no licence statement anywhere, no colophon
+page and no contact route. `books/gcse-maths/docs/` has no about page.
+
+**Why it matters.** This is a public, free textbook that reproduces material with
+provenance — the DfE subject content is Crown copyright under the Open Government
+Licence, the specification quotes are the boards', and the formula sheets are
+theirs. `sources.yaml` records where each claim came from, which is most of the
+attribution work, but nothing tells a reader or a reuser what they may do with the
+result. A teacher asking "may I print this and hand it out?" has no answer.
+
+**Fix.** One reader-facing page: what this is, who made it, what licence it is
+under, that answers are machine-checked, how to report a mistake, and the
+attribution the sources require. Then a `LICENSE` file, and a link in the footer.
+
+**Done means.**
+
+- [ ] A licence is chosen, recorded in `LICENSE`, and stated on a reader-facing
+      page that also carries the required attribution.
+- [ ] A reader can report an error without a GitHub account, or the lack of one is
+      a recorded decision.
+
+---
+
+## 12. Installable and printable
+
+**Verified.** There is no `manifest.webmanifest` and no `<link rel="manifest">`, so
+the progressive web app described in SHAPE.md's "Deployment and platform targets"
+does not exist yet. There is no `@media print` rule in any stylesheet, so printing
+a page gives browser defaults.
+
+**Why it matters.** A student on a phone in a classroom with poor signal is the
+reader this describes, and a teacher will print pages whatever we do about it.
+Both are cheap compared with writing the book.
+
+**Fix.** A manifest and a service worker, emitted by the engine like the booklet
+widget — no plugin, as SHAPE.md argues. The service worker's scope is the whole
+site for free, because `site/` is ours. Then a print stylesheet: drop the chrome,
+keep the measure, avoid breaking a worked example across a page.
+
+While there, measure and record a performance budget for one page — weight,
+render-blocking requests, layout shift from the preference script — so it can be
+watched rather than felt.
+
+**Done means.**
+
+- [ ] A book can be added to a phone's home screen and opened offline.
+- [ ] `curl -sI` shows the manifest, and the service worker's caching is
+      deliberate rather than incidental.
+- [ ] Printing a Walkthrough gives a readable page without the sidebar.
+- [ ] A page's weight and request count are recorded in `DEPLOY.md`.
+
+## 13. Declare the ready state
+
+**Not a change: the gate.** The site is in a ready state when items 2–12 are closed
 and their "done means" boxes are ticked, and not before — a checklist that is
 mostly ticked is a checklist that has not been done.
 
 **Done means.**
 
-- [ ] Every box in items 2–7 is ticked.
+- [ ] Every box in items 2–12 is ticked, or the item is explicitly
+      deferred here with a reason.
 - [ ] `curl -sI https://open-textbook.org/` returns `301`/`200` as appropriate
       with `strict-transport-security` present, and the `www` and `workers.dev`
       origins both redirect or refuse.
