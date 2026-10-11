@@ -21,6 +21,9 @@ retrieved: 2026-10-11
 references:
   # ---- DfE subject content --------------------------------------------------
   - id: dfe
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: >-
       GCE AS and A level subject content for biology, chemistry, physics and
       psychology (April 2014)
@@ -38,6 +41,9 @@ references:
       quantitative-skills weighting.
 
   - id: ofqual-gce-science
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: >-
       Ofqual: GCE Subject Level Conditions and Requirements for Science
       (Biology, Chemistry, Physics, Psychology)
@@ -62,6 +68,9 @@ references:
 
   # ---- AQA 7407/7408 -------------------------------------------------------
   - id: aqa-7408
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: "AQA AS and A-level Physics 7407/7408 specification, v1.4, July 2026"
     url: https://cdn.sanity.io/files/p28bar15/green/fa68d54c1a3b8ef17760536c7fb2e3911c29dc73.pdf
     page: https://www.aqa.org.uk/subjects/physics/a-level/physics-7408
@@ -75,6 +84,9 @@ references:
       reference board for the curriculum and the booklet's core transcription.
 
   - id: aqa-7408-data-formulae
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: >-
       AQA A-level Physics data and formulae booklet, version 1.5, for use in
       exams from the June 2017 series onwards
@@ -89,6 +101,9 @@ references:
 
   # ---- Pearson Edexcel 9PH0 ------------------------------------------------
   - id: edexcel-9ph0
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: >-
       Pearson Edexcel Level 3 Advanced GCE in Physics (9PH0) specification,
       Issue 3, November 2018
@@ -111,6 +126,9 @@ references:
 
   # ---- OCR H556 ------------------------------------------------------------
   - id: ocr-h556
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: >-
       Cambridge OCR A Level Physics A H556 specification, Version 3.0,
       March 2026

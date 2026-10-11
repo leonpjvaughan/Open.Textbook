@@ -265,3 +265,28 @@ def test_portal_groups_by_qualification():
 def test_site_urls_are_unique():
     urls = [scaffold.site_url(b, p.id) for b in ALL for p in b.profiles]
     assert len(urls) == len(set(urls)), f"duplicate site_url: {urls}"
+
+
+def test_a_new_book_scaffolds_a_banks_directory(tmp_path):
+    """`test_book_is_well_formed` requires `book.banks` to exist, and the
+    scaffold did not create it — so a new book failed the shape test until
+    somebody made the directory by hand, and A-level Mathematics was standing in
+    with a hand-written `.gitkeep`. SHAPE.md says a new book is "one directory and
+    one registration"; this is that promise, tested.
+    """
+    import shutil
+
+    # A real book's data, copied so the scaffold writes into the temp tree rather
+    # than over the repository.
+    source = books.book_by_id("gcse-maths").root
+    for name in ("book.yaml", "curriculum.yaml", "sources.yaml"):
+        shutil.copyfile(source / name, tmp_path / name)
+    book = books.load_book(tmp_path / "book.yaml")
+
+    banks = book.root / book.banks_name
+    assert not banks.exists(), "the fixture should start with no banks directory"
+
+    scaffold.scaffold(book, dry_run=False)
+
+    assert banks.is_dir(), "the scaffold did not create the banks directory"
+    assert (banks / ".gitkeep").is_file(), "an empty banks directory would not be tracked"

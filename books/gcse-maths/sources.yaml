@@ -11,6 +11,9 @@ retrieved: 2026-10-10
 
 references:
   - id: dfe
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: "Mathematics: GCSE subject content and assessment objectives"
     ref: DFE-00233-2013
     url: https://assets.publishing.service.gov.uk/media/5a7cb5b040f0b6629523b52c/GCSE_mathematics_subject_content_and_assessment_objectives.pdf
@@ -19,6 +22,9 @@ references:
       tier.
 
   - id: aqa-8300
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: "AQA GCSE Mathematics 8300 specification (v1.1, September 2026)"
     url: https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300
     role: >-
@@ -26,6 +32,9 @@ references:
       higher columns.
 
   - id: edexcel-1ma1
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: >-
       Pearson Edexcel Level 1/Level 2 GCSE (9-1) in Mathematics (1MA1)
       specification and Content Guidance
@@ -35,6 +44,9 @@ references:
       exam-style depth.
 
   - id: ocr-j560
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: "Cambridge OCR GCSE (9-1) Mathematics J560 specification (v2.1, August 2026)"
     url: https://www.ocr.org.uk/qualifications/gcse/mathematics-j560-from-2015/
     role: >-
@@ -58,6 +70,9 @@ references:
       the table of contents is not machine-retrievable.
 
   - id: ofqual-formulae-2026
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: "Ofqual: formulae and equations sheets for GCSE mathematics and science, 2025-2027"
     url: https://www.gov.uk/government/publications/gcse-mathematics-and-science-equations-sheets
     role: >-

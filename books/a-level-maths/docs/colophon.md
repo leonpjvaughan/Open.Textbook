@@ -42,6 +42,15 @@ The specification content, and any wording taken from a specification,
 belongs to the awarding bodies. AQA, Pearson Edexcel and OCR publish the specifications
 this book follows.
 
+The claims in this book rest on these documents:
+
+- [Mathematics: AS and A level content (April 2016)](https://www.gov.uk/government/publications/gce-as-and-a-level-mathematics)
+- [AQA A-level Mathematics 7357 specification, version 1.3 (31 January 2018)](https://www.aqa.org.uk/subjects/mathematics/a-level/mathematics-7357)
+- [Pearson Edexcel Level 3 Advanced GCE in Mathematics (9MA0) specification, Issue 4 (February 2020)](https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/mathematics-2017.html)
+- [Cambridge OCR Level 3 Advanced GCE in Mathematics A (H230/H240) specification, version 3.1 (August 2026)](https://www.ocr.org.uk/qualifications/as-and-a-level/mathematics-a-h230-h240-from-2017/)
+- [Ofqual: GCE Subject Level Conditions and Requirements for Mathematics (April 2016)](https://www.gov.uk/government/publications/gce-subject-level-conditions-and-requirements-for-mathematics)
+- [OCR: Notes on the Large Data Set, OCR Mathematics A (H230/H240)](https://www.ocr.org.uk/Images/471937-notes-on-the-large-data-set.docx)
+
 These sources were last checked on 2026-10-11.
 
 No awarding body endorses this book, and the Department for Education

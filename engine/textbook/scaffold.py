@@ -331,36 +331,19 @@ def _join_words(items) -> str:
     return ", ".join(words[:-1]) + " and " + words[-1]
 
 
-# The references a reader is entitled to see linked: the curriculum, the
-# awarding-body specifications and the regulator's decision on formula sheets.
-# A book whose sources.yaml uses other ids simply omits those links. The ids are
-# grouped by book family so that a physics book links its own board documents
-# and a mathematics book links its own.
-ATTRIBUTION_IDS: tuple[str, ...] = (
-    "dfe",
-    "aqa-8300",
-    "edexcel-1ma1",
-    "ocr-j560",
-    "ofqual-formulae-2026",
-    # GCSE Physics
-    "aqa-8463",
-    "edexcel-1ph0",
-    "ocr-j249",
-    "ofqual-equations-2028",
-    # A-level Physics
-    "aqa-7408",
-    "edexcel-9ph0",
-    "ocr-h556",
-)
-
-
+# The references a reader is entitled to see linked, marked in the book's own
+# `sources.yaml` with `attribution: true`.
+#
+# It used to be a global tuple of ids, which meant a new book got no links at all
+# until someone remembered to add its ids to this file: the A-level Mathematics
+# About page listed none of the sources its content rests on. The tag keeps the
+# original intent — the page stays short, and a book links only what it actually
+# rests on — without the book having to match a list kept somewhere else.
 def _attribution_links(book: Book) -> list[str]:
     references = _sources_data(book).get("references", [])
-    by_id = {str(ref.get("id")): ref for ref in references if isinstance(ref, dict)}
-    links = []
-    for source_id in ATTRIBUTION_IDS:
-        reference = by_id.get(source_id)
-        if not reference:
+    links: list[str] = []
+    for reference in references:
+        if not isinstance(reference, dict) or not reference.get("attribution"):
             continue
         title = str(reference.get("title", "")).strip()
         url = str(reference.get("url", "")).strip()
@@ -734,6 +717,18 @@ def scaffold(book: Book, dry_run: bool) -> None:
     written.append(map_out)
     if not dry_run:
         map_out.write_text(build_curriculum_map(book, strands, chapters), encoding="utf-8")
+
+    # The banks directory, so a new book is "one directory and one registration"
+    # as SHAPE.md says. `tests/test_collection.py` requires `book.banks` to exist,
+    # and this used to leave it out — a new book failed the shape test until
+    # somebody created the directory by hand.
+    banks = book.root / book.banks_name
+    if not dry_run:
+        banks.mkdir(parents=True, exist_ok=True)
+        keep = banks / ".gitkeep"
+        if not keep.exists():
+            # Empty, so a checkout keeps a directory with no banks in it yet.
+            keep.write_text("", encoding="utf-8")
 
 
 def main() -> int:

@@ -21,6 +21,9 @@ retrieved: 2026-10-11
 references:
   # ---- DfE subject content --------------------------------------------------
   - id: dfe
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: >-
       Biology, Chemistry and Physics: GCSE subject content (June 2015; updated
       May 2019)
@@ -60,6 +63,9 @@ references:
       Stage 3; Higher not lower than Foundation GCSE Mathematics).
 
   - id: ofqual-equations-2028
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: >-
       Decisions: Proposed changes to the assessment of mathematics, physics and
       combined science GCSEs (published 5 May 2026)
@@ -104,6 +110,9 @@ references:
 
   # ---- AQA 8463 ------------------------------------------------------------
   - id: aqa-8463
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: "AQA GCSE Physics 8463 specification, v1.1, 30 September 2019"
     url: https://cdn.sanity.io/files/p28bar15/green/e96b2cef624c0970b0f90d9678a438580aed0f65.pdf
     page: https://www.aqa.org.uk/subjects/science/gcse/physics-8463
@@ -131,6 +140,9 @@ references:
 
   # ---- Pearson Edexcel 1PH0 -------------------------------------------------
   - id: edexcel-1ph0
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: >-
       Pearson Edexcel Level 1/Level 2 GCSE (9-1) in Physics (1PH0),
       Issue 4, March 2024
@@ -164,6 +176,9 @@ references:
 
   # ---- OCR J249 and J259 ---------------------------------------------------
   - id: ocr-j249
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: >-
       Cambridge OCR GCSE (9-1) Physics A (Gateway Science) J249 specification,
       Version 5.0, July 2026
@@ -189,6 +204,9 @@ references:
       period T = 1/f and magnification.
 
   - id: ocr-j259
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: >-
       Cambridge OCR GCSE (9-1) Physics B (Twenty First Century Science) J259
       specification, Version 5.0, July 2026

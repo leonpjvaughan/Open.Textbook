@@ -143,3 +143,47 @@ def test_a_licence_mapping_links_to_its_terms():
 
 def test_no_placeholder_licence():
     assert not re.search(r"\b(TODO|TBD|FIXME|XXX|placeholder)\b", read_page(), re.I)
+
+
+# --- attribution --------------------------------------------------------------
+
+ALL_BOOKS = books.discover_books()
+IDS = [b.id for b in ALL_BOOKS]
+
+
+@pytest.mark.parametrize("book", ALL_BOOKS, ids=IDS)
+def test_every_book_links_the_sources_it_rests_on(book):
+    """A global list of ids meant a new book got no links until someone remembered.
+
+    The A-level Mathematics page listed **none** of the sources its content rests
+    on, because its ids (`dfe-a-level`, `aqa-7357`, …) matched nothing in a tuple
+    kept in `scaffold.py`. The tag now lives on the reference, so the book's own
+    `sources.yaml` decides — and a new book is right by default rather than by
+    someone else's edit.
+    """
+    links = scaffold._attribution_links(book)
+    assert links, f"{book.id}: About this book links none of its sources"
+
+    tagged = [
+        ref
+        for ref in (scaffold._sources_data(book).get("references") or [])
+        if isinstance(ref, dict) and ref.get("attribution")
+    ]
+    # One link per tagged reference, so a tag that produces nothing is a failure
+    # rather than a silently missing link.
+    assert len(links) == len(tagged), f"{book.id}: {len(tagged)} tagged, {len(links)} linked"
+    for ref in tagged:
+        assert ref.get("title") and ref.get("url"), f"{book.id}: tagged without a title/url"
+
+
+def test_an_untagged_reference_is_not_linked():
+    """The tag is the allowlist; the point of it was keeping the page short.
+
+    `mathsgenie` and `pearson-titles` are market and context sources written down
+    for provenance, not content the book reproduces, so the reader is not sent to
+    them from the About page.
+    """
+    ids = {ref.get("id") for ref in scaffold._sources_data(MATHS).get("references", [])}
+    assert "mathsgenie" in ids, "the fixture this test rests on has moved"
+    linked = " ".join(scaffold._attribution_links(MATHS))
+    assert "mathsgenie" not in linked

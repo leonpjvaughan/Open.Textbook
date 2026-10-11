@@ -49,7 +49,9 @@ provide.
 The claims in this book rest on these documents:
 
 - [GCE AS and A level subject content for biology, chemistry, physics and psychology (April 2014)](https://assets.publishing.service.gov.uk/media/5a807949e5274a2e8ab50599/Science_AS_and_level_formatted.pdf)
+- [Ofqual: GCE Subject Level Conditions and Requirements for Science (Biology, Chemistry, Physics, Psychology)](https://www.gov.uk/government/publications/gce-subject-level-conditions-and-requirements-for-science)
 - [AQA AS and A-level Physics 7407/7408 specification, v1.4, July 2026](https://cdn.sanity.io/files/p28bar15/green/fa68d54c1a3b8ef17760536c7fb2e3911c29dc73.pdf)
+- [AQA A-level Physics data and formulae booklet, version 1.5, for use in exams from the June 2017 series onwards](https://cdn.sanity.io/files/p28bar15/green/892b126c5e5195d391f0d07e735bbc4877bf1831.pdf)
 - [Pearson Edexcel Level 3 Advanced GCE in Physics (9PH0) specification, Issue 3, November 2018](https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/pearsonedexcel-alevel-physics-spec.pdf)
 - [Cambridge OCR A Level Physics A H556 specification, Version 3.0, March 2026](https://www.ocr.org.uk/Images/171726-specification-accredited-a-level-gce-physics-a-h556.pdf)
 

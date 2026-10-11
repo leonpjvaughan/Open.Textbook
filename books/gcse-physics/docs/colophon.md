@@ -49,10 +49,11 @@ provide.
 The claims in this book rest on these documents:
 
 - [Biology, Chemistry and Physics: GCSE subject content (June 2015; updated May 2019)](https://assets.publishing.service.gov.uk/media/5cd2b951ed915d50c208b4d5/GCSE_single_science_updated_May_2019.pdf)
+- [Decisions: Proposed changes to the assessment of mathematics, physics and combined science GCSEs (published 5 May 2026)](https://www.gov.uk/government/consultations/proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses/outcome/decisions-proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses)
 - [AQA GCSE Physics 8463 specification, v1.1, 30 September 2019](https://cdn.sanity.io/files/p28bar15/green/e96b2cef624c0970b0f90d9678a438580aed0f65.pdf)
 - [Pearson Edexcel Level 1/Level 2 GCSE (9-1) in Physics (1PH0), Issue 4, March 2024](https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/Specification/gcse-physics-spec.pdf)
 - [Cambridge OCR GCSE (9-1) Physics A (Gateway Science) J249 specification, Version 5.0, July 2026](https://www.ocr.org.uk/Images/234600-specification-accredited-gcse-gateway-science-suite-physics-a-j249.pdf)
-- [Decisions: Proposed changes to the assessment of mathematics, physics and combined science GCSEs (published 5 May 2026)](https://www.gov.uk/government/consultations/proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses/outcome/decisions-proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses)
+- [Cambridge OCR GCSE (9-1) Physics B (Twenty First Century Science) J259 specification, Version 5.0, July 2026](https://www.ocr.org.uk/Images/234601-specification-accredited-gcse-twenty-first-century-science-suite-physics-b-j259.pdf)
 
 These sources were last checked on 2026-10-11.
 

@@ -15,6 +15,9 @@ retrieved: 2026-10-11
 
 references:
   - id: dfe-a-level
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: "Mathematics: AS and A level content (April 2016)"
     ref: DFE-00706-2014
     url: https://www.gov.uk/government/publications/gce-as-and-a-level-mathematics
@@ -28,6 +31,9 @@ references:
       Document and still the current A-level mathematics content.
 
   - id: aqa-7357
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: "AQA A-level Mathematics 7357 specification, version 1.3 (31 January 2018)"
     url: https://www.aqa.org.uk/subjects/mathematics/a-level/mathematics-7357
     role: >-
@@ -39,6 +45,9 @@ references:
       Large Data Set policy (section 3.21.1).
 
   - id: edexcel-9ma0
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: >-
       Pearson Edexcel Level 3 Advanced GCE in Mathematics (9MA0) specification,
       Issue 4 (February 2020)
@@ -52,6 +61,9 @@ references:
       large data set" — the specification does not name the dataset).
 
   - id: ocr-h240
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: >-
       Cambridge OCR Level 3 Advanced GCE in Mathematics A (H230/H240)
       specification, version 3.1 (August 2026)
@@ -66,6 +78,9 @@ references:
       assessment requirements.
 
   - id: ofqual-mathematics
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: >-
       Ofqual: GCE Subject Level Conditions and Requirements for Mathematics
       (April 2016)
@@ -90,6 +105,9 @@ references:
       findings' "could not establish" section.
 
   - id: ocr-lds
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
     title: "OCR: Notes on the Large Data Set, OCR Mathematics A (H230/H240)"
     url: https://www.ocr.org.uk/Images/471937-notes-on-the-large-data-set.docx
     role: >-

@@ -1795,7 +1795,7 @@ under `references` with a `url`, `retrieved` date and `role`, then write
 
 ---
 
-## 33. The colophon's attribution links are hard-coded to GCSE
+## 33. The colophon's attribution links were hard-coded to GCSE — **done**
 
 `scaffold.ATTRIBUTION_IDS` is a fixed tuple — `dfe`, `aqa-8300`, `edexcel-1ma1`,
 `ocr-j560`, `ofqual-formulae-2026` — so only the GCSE book's `sources.yaml`
@@ -1813,22 +1813,29 @@ same call for `gcse-maths` prints five links.
 id list. The allowlist exists to keep the page short; keep that intent with a
 per-reference tag (`attribution: true`) instead of matching ids.
 
-**Partial progress, 2026-10-11.** The physics ids were added to the tuple
-(`aqa-8463`, `edexcel-1ph0`, `ocr-j249`, `ofqual-equations-2028`, `aqa-7408`,
-`edexcel-9ph0`, `ocr-h556`), so both physics About pages now link their DfE and
-board references. The A-level Mathematics page is still unlinked, because its ids
-(`dfe-a-level`, `aqa-7357`, `edexcel-9ma0`, `ocr-h240`) were not added — the
-proper fix is still the per-reference tag.
+**Done, 2026-10-11.** `ATTRIBUTION_IDS` is gone. A reference carries
+`attribution: true` in the book's own `sources.yaml`, and the About page links
+what it finds. The tag was added to the curriculum, board and regulator
+references of all four books, so **the A-level Mathematics page went from 0 links
+to 6** and the GCSE page still carries its 5 — the same five, because they are
+the same references.
+
+`tests/test_colophon.py` now checks every book links something, that the link
+count matches the tag count, and that a tagged reference without a title or URL
+fails rather than vanishing. A second test pins the other half of the intent: an
+*untagged* reference is not linked, which is how the page stays short.
 
 **Done means.**
 
-- [ ] The A-level About page links its DfE and board references.
-- [ ] The GCSE page is unchanged in substance.
-- [ ] A test covers a book whose board reference ids differ from GCSE's.
+- [x] The A-level About page links its DfE and board references — six of them.
+- [x] The GCSE page is unchanged in substance.
+- [x] A test covers a book whose board reference ids differ from GCSE's: the
+      parametrised test runs over every discovered book, so the next one is
+      covered the day it is added.
 
 ---
 
-## 34. The scaffold does not create `problems/` for a new book
+## 34. The scaffold did not create `problems/` for a new book — **done**
 
 `tests/test_collection.py::test_book_is_well_formed` requires `book.banks` to be a
 directory, but `scaffold.scaffold()` generates only `docs/` and the curriculum
@@ -1839,11 +1846,17 @@ by hand; `books/a-level-maths/problems/.gitkeep` is standing in for that now.
 so a checkout keeps it) the way it creates the docs tree, so "one directory and
 one registration" is true of the scaffold too.
 
+**Done, 2026-10-11.** `scaffold.scaffold()` creates `book.banks_name` and a
+`.gitkeep` when it is missing, so an empty banks directory survives a checkout.
+`test_a_new_book_scaffolds_a_banks_directory` copies a real book's data into a
+temp tree, removes the directory, scaffolds, and asserts both the directory and
+the marker appear — so the promise is tested rather than asserted.
+
 **Done means.**
 
-- [ ] A directory with `book.yaml` and `curriculum.yaml` scaffolds to a tree whose
+- [x] A directory with `book.yaml` and `curriculum.yaml` scaffolds to a tree whose
       `banks` directory exists and is tracked.
-- [ ] `test_book_is_well_formed` passes without any hand-made directory.
+- [x] `test_book_is_well_formed` passes without any hand-made directory.
 
 
 ---
