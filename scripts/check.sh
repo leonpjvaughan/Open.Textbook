@@ -13,7 +13,19 @@ step "generated files are in sync"
 uv run python -m textbook.scaffold
 uv run python -m textbook.booklet
 uv run python -m textbook.portal
-git diff --exit-code --stat
+# Only the files the generators own. Diffing the whole tree would fail on any
+# unrelated edit in progress, which is not what this is checking for.
+mapfile -t generated < <(uv run python -m textbook.plan --generated)
+go=1
+for path in "${generated[@]}"; do
+  [ -e "$path" ] || { echo "missing generated file: $path" >&2; go=0; }
+done
+git diff --exit-code -- "${generated[@]}" || go=0
+if [ "$go" != "1" ]; then
+  echo "a generated file is missing or out of date; re-run the generators" >&2
+  exit 1
+fi
+echo "${#generated[@]} generated files in sync"
 
 step "problem banks"
 uv run python -m textbook.verify

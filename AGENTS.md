@@ -281,6 +281,7 @@ grep -rl 'math-error' site --include='*.html'          # must print nothing
 pytest tests/ -q                          # bank, marker, collection and theme tests
 test/run.sh                               # figure-hook + tier evaluation
 scripts/check.sh                          # everything CI enforces, in one call
+python -m textbook.plan --generated       # the files a drift check should diff
 scripts/deploy.sh                         # build, guard, then deploy (see DEPLOY.md)
 scripts/protect-main.sh                   # require the gate check on main (needs GitHub Pro)
 ```

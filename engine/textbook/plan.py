@@ -6,6 +6,7 @@ derived from ``books/*/book.yaml``.
 
     python -m textbook.plan                     # one row per line, for humans
     python -m textbook.plan --configs           # config paths, one per line
+    python -m textbook.plan --generated         # every generated file's path
     python -m textbook.plan --github-matrix     # {"include": [...]} for CI
 """
 
@@ -37,13 +38,40 @@ def rows() -> list[dict[str, str]]:
     return out
 
 
+def generated_paths() -> list[str]:
+    """Every file the generators own, relative to the repository root.
+
+    A drift check should look at these and nothing else. Diffing the whole working
+    tree conflates "a generator is not reproducible" with "somebody has unsaved
+    edits", and the second is not a failure.
+    """
+    root = repo_root()
+    paths = [root / "assets" / "stylesheets" / "themes.css"]
+    for book in discover_books():
+        paths.append(book.root / "CURRICULUM-MAP.md")
+        paths.append(book.docs / "assets" / "stylesheets" / "book.css")
+        if book.booklet_name:
+            paths.append(book.docs / "assets" / "booklet" / "booklet.json")
+        for profile in book.profiles:
+            paths.append(config_path(book, profile.id))
+    return sorted(str(path.relative_to(root)) for path in paths)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Emit the build matrix.")
     parser.add_argument("--github-matrix", action="store_true")
     parser.add_argument(
         "--configs", action="store_true", help="print one MkDocs config path per line"
     )
+    parser.add_argument(
+        "--generated", action="store_true", help="print every generated file's path"
+    )
     args = parser.parse_args()
+
+    if args.generated:
+        for path in generated_paths():
+            print(path)
+        return 0
 
     matrix = rows()
     if args.configs:
