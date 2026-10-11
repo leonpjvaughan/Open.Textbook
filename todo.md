@@ -21,11 +21,11 @@ in `AGENTS.md` do not apply here, but the engineering rules do.
 - [x] 15. `extra.css` and `portal.css` declare literal colours
 - [x] 16. Material keyboard gaps found by the audit
 - [x] 17. Text drawn on the accent is not AA
-- [ ] 18. Theme bundles — six original light/dark groups; the third-party palettes replaced (see DECISIONS.md)
+- [x] 18. Theme bundles — six original light/dark groups; the third-party palettes replaced (see DECISIONS.md)
 - [x] 19. The pipeline's 404 page declares literal colours
 - [x] 20. The pipeline ships no Formulae booklet and no `book-local.css`
-- [ ] 21. Recheck and verify — what the theme work could not settle
-- [ ] 22. Follow-ups from the MkDocs deletion
+- [x] 21. Recheck and verify — what the theme work could not settle (only the landing-page sample is thin, and it needs a second book)
+- [x] 22. Follow-ups from the MkDocs deletion
 - [x] 23. Stale theme references in the out-of-scope preview files
 - [ ] 24. Animated backgrounds on the vivid themes
 - [ ] 25. Declare the ready state
@@ -1168,7 +1168,12 @@ provenance enforcement and APCA check are still open there.
       and the masthead title from `--tb-ink`, straight from the bundle. The
       `data-md-color-scheme` attribute stays, because `themes.css` keys its tokens
       off `body[data-md-color-scheme]`.
-- [ ] **`--tb-ink-lighter` is below 3:1 on the page for 2 of 18 bundle × scheme
+- [x] **`--tb-ink-lighter` below 3:1 — closed twice over.** It was raised in
+      catppuccin (2.30:1 → 3.50:1) and kanagawa (2.93:1 → 3.36:1), and the
+      loader now refuses the token below 3:1 anywhere. Then both bundles were
+      deleted in the theme replacement, and all six replacements clear it
+      (3.18–5.37). The bullet is kept for the original measurement:
+      (was) **`--tb-ink-lighter` is below 3:1 on the page for 2 of 18 bundle × scheme
       pairs**, and it paints one visible control: `.sidebar summary::marker`
       (`shell.css:164`, and the built sidebar does contain a `<summary>`; `.sidebar`
       paints no background of its own, so the marker is on the paper). The two are
@@ -1190,12 +1195,18 @@ provenance enforcement and APCA check are still open there.
       plainly that this is a limit rather than coverage. Growing the check was
       rejected here: it means reading pseudo-element computed styles and SVG
       presentation attributes as well, which is a separate piece of work.
-- [ ] **Five derived light members have never been looked at by a human**: gruvbox,
+- [x] **Five derived light members never human-reviewed — moot.** All five
+      (gruvbox, arc-blueberry, tokyo-night, synthwave, archwave) were deleted
+      with the third-party palettes; the four new bundles are original work and
+      their light members were designed rather than derived from a dark mode.
+      (was) **Five derived light members have never been looked at by a human**: gruvbox,
       arc-blueberry, tokyo-night, synthwave and archwave. They pass the invariant and
       the page audit, which is not the same as still looking like the family they
       claim to be. 54 screenshots are in `var/theme-preview/` (git-ignored, 7.5 MB).
       *Done means:* someone opens them and either accepts or redraws the light half.
-- [ ] **Archwave makes nine, five of them vivid, and it is a near-duplicate of
+- [x] **Archwave near-duplicate of Synthwave '84 — moot.** Both were deleted in
+      the replacement, which settles the question the bullet asks.
+      (was) **Archwave makes nine, five of them vivid, and it is a near-duplicate of
       Synthwave '84** — magenta-and-cyan on deep aubergine, pastels against neon. No
       measurement prefers either. *Done means:* one is dropped, or the nine are kept
       with the overlap written down as deliberate.
