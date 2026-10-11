@@ -11,7 +11,7 @@ in `AGENTS.md` do not apply here, but the engineering rules do.
 - [x] 5. Worker version URLs closed; rollback is a manual workflow, command recorded
 - [x] 6. Crawlability: our own `robots.txt` and a sitemap index
 - [ ] 7. Account, credential and dependency hygiene (2FA, Dependabot and recovery done; registrar, token rotation and secret scanning left)
-- [ ] 8. One site, two renderers — decide which is the site
+- [x] 8. One site, two renderers — signed off: MkDocs is the site, the pipeline is parked
 - [x] 9. Nothing says which commit is live
 - [x] 10. Accessibility: turn the claims into checks
 - [x] 11. Licence, colophon and a way to report an error
@@ -450,7 +450,7 @@ the rest recoverable, so they belong in the same gate.
 
 
 
-## 8. One site, two renderers — decide which is the site
+## 8. One site, two renderers — **signed off: MkDocs is the site, the pipeline is parked**
 
 **This is the largest structural item in the file.** There are two ways to build a
 book, and only one of them is deployed.
@@ -477,7 +477,7 @@ this decision more urgent rather than less.
 Not both, and not for long — the cost is paid on every change to the page shell.
 
 **Recommendation (2026-10-11) — MkDocs stays for now; the pipeline is parked,
-not deleted.**
+not deleted. Signed off and applied the same day.**
 
 The evidence points one way for the moment. MkDocs is what deploys, and every
 change of the last day — the settings overlay, the PWA, the colophon in the nav,
@@ -508,10 +508,15 @@ migration nobody has budgeted for.
 
 **Done means.**
 
-- [ ] One renderer is the site, and the other is deleted or explicitly parked with
-      a reason and an owner.
-- [ ] `DEPLOY.md`, `AGENTS.md` and `SHAPE.md` describe that renderer only.
-- [ ] CI builds the site with it.
+- [x] One renderer is the site, and the other is explicitly parked with a reason
+      and an owner. MkDocs ships; `pipeline.py` is parked, frozen, with the reason
+      and the re-open trigger recorded here and in SHAPE.md. Owner: the author.
+- [x] `DEPLOY.md`, `AGENTS.md` and `SHAPE.md` describe that renderer only — the map
+      in AGENTS.md marks the pipeline "not the site", and SHAPE.md carries the
+      "MkDocs is the only renderer that ships" note.
+- [x] CI builds the site with it. `verify.yml` builds MkDocs per profile;
+      `tests/test_pipeline.py` runs in the same gate, so a change that breaks the
+      parked renderer still fails rather than rotting quietly.
 
 ---
 

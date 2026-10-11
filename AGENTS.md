@@ -253,7 +253,9 @@ ranking of methods. Keep the claims to what the briefing supports; see
 | `books/<id>/booklet/` | Formulae-and-tables data (source of truth) |
 | `books/<id>/sources.yaml` | Tracked provenance for the curriculum claims |
 | `books/<id>/AGENTS.md` | Book-specific instructions |
-| `renderers/mkdocs/` | MkDocs adapter: `base.yml`, the hook entry point, generated per-book configs |
+| `renderers/mkdocs/` | MkDocs adapter: `base.yml`, the hook entry point, generated per-book configs — **the site** |
+| `engine/textbook/pipeline.py` | A second renderer, **parked**: not the site, not deleted, tests stay green. See SHAPE.md, "MkDocs is the only renderer that ships" |
+| `deploy/dns/` | The importable BIND zone file for the DNS records, and the export it produced |
 | `research/` | `pedagogy.md`, per-book notes, and fetched sources (git-ignored) |
 | `PROBLEMS.md` | Problem-bank schema and verification limits |
 | `BOOKLETS.md` | Formula-and-data booklet contract, and the target set per subject |
