@@ -641,3 +641,23 @@ def test_every_page_links_the_ios_home_screen_icon(subset):
         if not target.resolve().is_file():
             missing.append(f"{page.url} -> {href}")
     assert not missing, f"no working iOS icon link on: {missing[:5]}"
+
+
+def test_every_table_is_in_a_scroll_container(subset):
+    """A wide table must scroll inside its column, not widen the page.
+
+    The reader's Android report traced back to this and to a wide display
+    equation: both made the document wider than the screen, which pushed the
+    masthead's settings button past the right edge. `scripts/check-mobile.cjs`
+    measures the symptom in a browser; this asserts the cause is wrapped on every
+    page of a real build.
+    """
+    assert subset.ok, subset.broken + subset.maths_errors
+    unwrapped = []
+    for page in subset.pages:
+        html = (subset.out / page.output).read_text(encoding="utf-8")
+        tables = html.count("<table")
+        wrapped = html.count('<div class="table-scroll">')
+        if tables != wrapped:
+            unwrapped.append(f"{page.url}: {tables} tables, {wrapped} wrapped")
+    assert not unwrapped, unwrapped

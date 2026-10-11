@@ -330,6 +330,21 @@ class RenderedPage:
         return f"{self.url}index.html"
 
 
+
+TABLE = re.compile(r"<table\b.*?</table>", re.S | re.I)
+
+
+def wrap_tables(html_text: str) -> str:
+    """Put every table in a scroll container.
+
+    A worked example or a data table is routinely wider than a phone. Without a
+    wrapper the table widens the *page* rather than scrolling inside it, and
+    anything pinned to the viewport — the masthead controls, the booklet button —
+    is pushed off the right edge. That is how a reader lost the settings button.
+    """
+    return TABLE.sub(lambda m: f'<div class="table-scroll">{m.group(0)}</div>', html_text)
+
+
 def render_page(
     book: books.Book,
     config: dict,
@@ -349,7 +364,7 @@ def render_page(
 
     content = markdown.markdown(body, extensions=EXTENSIONS, output_format="html5")
     content = maths.on_page_content(content, page, config, [])
-    content = rewrite_source_links(content)
+    content = wrap_tables(rewrite_source_links(content))
 
     title = str(meta.get("title") or md_path)
     prefix = prefix_for(url)
