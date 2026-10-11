@@ -38,7 +38,7 @@ So $|F\cup S|=24$ and 6 students are outside both circles.
 
 ## Progress check
 
-If 8 of 20 people are in both sets, then $P(A\cap B)=\frac8{20}=0.4$ for a randomly chosen person.
+In a survey of 20 spins, 12 land on red, 9 land on an even-numbered sector, and 5 land on both. Draw a Venn diagram and work out the probability that a spin lands on neither red nor even.
 
 ## You should now be able to
 

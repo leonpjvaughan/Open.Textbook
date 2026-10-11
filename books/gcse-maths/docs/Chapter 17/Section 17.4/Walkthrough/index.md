@@ -44,7 +44,7 @@ The perpendicular distance is the shortest distance from a point to a line. A pe
 
 ## Progress check
 
-For the garden bed, points exactly $4$ m from the water point form a circle centred at that point. The construction gives the bed boundary.
+The circular bed is exactly $4$ m from the water point. Describe and sketch the locus of the bed boundary. Then explain why a point $3$ m from the water point is not on the boundary.
 
 ## You should now be able to
 

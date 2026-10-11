@@ -74,7 +74,7 @@ Each move preserves side lengths and angles, so these remain unchanged.
 
 ### Progress check
 
-The mural tile has a corner at $(3,1)$. A half-turn about the origin maps it to $(-3,-1)$. Name the transformation and check the signs.
+The mural tile has a corner at $(3,1)$. Work out its image after a half-turn about the origin, then its image after a reflection in the $y$-axis. Explain how the signs change in each case.
 
 ## You should now be able to
 

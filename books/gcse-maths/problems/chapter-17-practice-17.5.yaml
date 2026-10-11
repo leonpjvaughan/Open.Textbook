@@ -97,3 +97,17 @@ problems:
       rounded: '53'
       to: '1'
     answer_text: '053 degrees'
+  - id: 'ch17-17-5-method'
+    section: '17.5'
+    tier: 'F'
+    dfe:
+      - 'G15'
+    statement: 'A plan uses 1 cm to 5 m. The garden is 20 m by 15 m. Which method finds the real diagonal: scale the drawing, or use Pythagoras on the real lengths? Give a reason, then work it out.'
+    answer_label: 'Method choice: scale or Pythagoras'
+    check:
+      kind: 'all'
+      checks:
+        - {kind: 'evaluate', expression: 'sqrt((20/5)**2 + (15/5)**2)', answer: '5'}
+        - {kind: 'evaluate', expression: 'sqrt(20**2 + 15**2)', answer: '25'}
+        - {kind: 'evaluate', expression: '5 * 5', answer: '25'}
+    answer_text: 'Both methods agree. The plan is 4 cm by 3 cm, so its diagonal is $\sqrt{4^2+3^2}=5$ cm. That represents $5\times5=25$ m, and Pythagoras on the real lengths also gives $\sqrt{20^2+15^2}=25$ m.'

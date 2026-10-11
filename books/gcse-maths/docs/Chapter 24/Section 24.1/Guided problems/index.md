@@ -13,11 +13,11 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-**Closed book:** Work out $3+4$ and write $0.25$ as a fraction.
+**Closed book:** Write $\frac{18}{30}$ in its simplest form, then work out $20\%$ of 150.
 
 <details markdown="1"><summary>Check your answers</summary>
 
-$3+4=7$. Also, $0.25=25/100=1/4$. If either answer differs, revisit number operations and fractions before continuing.
+$\frac{18}{30}=\frac35$, and $20\%$ of 150 is 30. If either answer differs, revisit equivalent fractions and percentages before continuing.
 </details>
 
 ### Question 1

@@ -36,7 +36,7 @@ The ratios match, so the side lengths are proportional.
 
 ### Progress check
 
-A mural is reproduced at a scale factor of $1.5$. A tile edge of $8$ cm becomes $12$ cm. Explain how the ratio confirms the scale.
+A mural is reproduced so that a tile edge of $8$ cm becomes $12$ cm. Work out the scale factor, then the matching length for an edge of $6$ cm on the original. Explain how the ratios confirm the scale.
 
 ## You should now be able to
 

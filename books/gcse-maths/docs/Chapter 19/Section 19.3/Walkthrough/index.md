@@ -49,7 +49,9 @@ So the sector angle is $72^\circ$.
 
 > **Watch out.** The angle fraction must use degrees out of $360^\circ$. Do not use the angle alone as a multiplier.
 
-Progress check: suppose the pond path covers one quarter of the $4$ m radius pond boundary. Work out that arc length in terms of $\pi$.
+## Progress check
+
+A quarter of the pond boundary needs edging. Work out the arc length in terms of $\pi$, then work out the perimeter of that quarter sector.
 
 ## You should now be able to
 

@@ -70,3 +70,16 @@ problems:
   answer_label: 'Three iterations with fractions'
   check: {kind: evaluate, expression: '1 + 2/(1 + 2/(1 + 2/2))', answer: '2'}
   answer_text: '$x_1=2$, $x_2=2$, and $x_3=2$.'
+- id: ch14-14-5-method
+  section: '14.5'
+  tier: H
+  dfe: [A20]
+  statement: 'Which method fits each part, and why? (a) Solve $y=2x+1$ and $y=3x-4$. (b) Use $x_{n+1}=2+1/x_n$ with $x_0=2$ to find $x_2$.'
+  answer_label: 'Method choice: solve or iterate'
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '2*5+1', answer: '11'}
+    - {kind: evaluate, expression: '3*5-4', answer: '11'}
+    - {kind: evaluate, expression: '2+1/(2+1/2)', answer: '12/5'}
+  answer_text: 'Use substitution for (a): the equations are linear, so set $2x+1=3x-4$, giving $x=5$ and $y=11$. Use iteration for (b): the rule defines each term from the last, so $x_1=5/2$ and $x_2=12/5=2.4$.'

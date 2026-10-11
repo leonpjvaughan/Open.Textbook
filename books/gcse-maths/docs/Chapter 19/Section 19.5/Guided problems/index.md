@@ -24,22 +24,7 @@ kind: guided-problems
 
 Attempt each question first. Open the hint, then the next step, when needed.
 
-**1.** A sphere has radius 3 cm. Work out its volume in terms of π.
-
-<details markdown="1"><summary>Hint</summary>
-
-Sphere volume is $\frac43\pi r^3$.
-
-<details markdown="1"><summary>Next step</summary>
-
-Substitute $r=3$ cm and evaluate $3^3$.
-
-<details markdown="1"><summary>Full working</summary>
-
-$V=\frac43\pi\times3^3=\frac43\pi\times27=36\pi\text{ cm}^3$.
-</details></details></details>
-
-**2.** A sphere has radius 5 cm. Work out its surface area in terms of π.
+**1.** A ball has radius 4 cm. Work out its surface area in terms of π.
 
 <details markdown="1"><summary>Hint</summary>
 
@@ -47,26 +32,41 @@ Sphere surface area is $4\pi r^2$.
 
 <details markdown="1"><summary>Next step</summary>
 
-Substitute $r=5$ cm and evaluate $5^2$.
+Substitute $r=4$ cm and evaluate $4^2$.
 
 <details markdown="1"><summary>Full working</summary>
 
-$A=4\pi\times5^2=4\pi\times25=100\pi\text{ cm}^2$.
+$A=4\pi\times4^2=4\pi\times16=64\pi\text{ cm}^2$.
 </details></details></details>
 
-**3.** A cone has radius 3 cm and perpendicular height 8 cm. Work out its volume in terms of π.
+**2.** A cone has radius 4 cm and perpendicular height 9 cm. Work out its volume in terms of π.
 
 <details markdown="1"><summary>Hint</summary>
 
-Cone volume is one third of the circular base area multiplied by perpendicular height.
+Cone volume is one third of the circular base area multiplied by the perpendicular height.
 
 <details markdown="1"><summary>Next step</summary>
 
-Substitute $r=3$ cm and $h=8$ cm into $V=\frac13\pi r^2h$.
+Substitute $r=4$ cm and $h=9$ cm into $V=\frac13\pi r^2h$.
 
 <details markdown="1"><summary>Full working</summary>
 
-$V=\frac13\pi\times3^2\times8=24\pi\text{ cm}^3$.
+$V=\frac13\pi\times4^2\times9=48\pi\text{ cm}^3$.
+</details></details></details>
+
+**3.** A square-based pyramid has base side 5 cm and perpendicular height 6 cm. Work out its volume.
+
+<details markdown="1"><summary>Hint</summary>
+
+Pyramid volume is one third of the base area multiplied by the perpendicular height.
+
+<details markdown="1"><summary>Next step</summary>
+
+Find the square base area first: $5\times5=25\text{ cm}^2$.
+
+<details markdown="1"><summary>Full working</summary>
+
+$V=\frac13\times25\times6=50\text{ cm}^3$.
 </details></details></details>
 
 Try the remaining questions without opening the full working.

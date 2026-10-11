@@ -71,3 +71,11 @@ problems:
     answer_label: 'Closure'
     check: {kind: all, checks: [{kind: evaluate, expression: 'p + q - p - q', answer: '0'}, {kind: evaluate, expression: 'p - p + q - q', answer: '0'}]}
     answer_text: 'The total vector is $\mathbf{p}+\mathbf{q}-\mathbf{p}-\mathbf{q}=\mathbf{0}$, so the route returns to its start.'
+  - id: ch22-223-midpoint-method
+    section: '22.3'
+    tier: H
+    dfe: [G25]
+    statement: 'Point $P$ is the midpoint of $AB$ and point $Q$ is the midpoint of $BC$, where $\overrightarrow{AB}=\mathbf{u}$ and $\overrightarrow{BC}=\mathbf{v}$. Which method finds $\overrightarrow{PQ}$: add the route vectors through $B$, or halve the diagonal $AC$? Give a reason, then find it.'
+    answer_label: 'Method choice: route or diagonal'
+    check: {kind: all, checks: [{kind: evaluate, expression: '-u/2 + v/2', answer: '(v - u)/2'}, {kind: evaluate, expression: '(u + v)/2 - u/2', answer: 'v/2'}]}
+    answer_text: 'Add the route vectors through $B$: $\overrightarrow{PQ}=\overrightarrow{PB}+\overrightarrow{BQ}=-\frac12\mathbf{u}+\frac12\mathbf{v}=\frac12(\mathbf{v}-\mathbf{u})$. Halving the diagonal would give the midpoint of $AC$, not $PQ$.'

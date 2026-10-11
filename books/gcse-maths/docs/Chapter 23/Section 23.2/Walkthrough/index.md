@@ -41,7 +41,7 @@ The expected number is 40 sixes.
 
 ## Progress check
 
-If a spinner lands on red 32 times in 50 spins, its relative frequency is $\frac{32}{50}=0.64$. Use this estimate to predict red in 200 spins: $200\times0.64=128$.
+Suppose the spinner lands on red 32 times in 50 spins. Work out the relative frequency of red. Use it to estimate the number of reds in 200 spins. Does that agree with your first prediction of about half?
 
 ## You should now be able to
 

@@ -120,3 +120,20 @@ problems:
     expression: '1+1'
     answer: '2'
   answer_text: 'Area multiplies two lengths, each by the length factor, so the multiplier is its square.'
+- id: 'ch18-18.6-method'
+  section: '18.6'
+  tier: 'H'
+  dfe:
+  - 'G19'
+  statement: 'A model of a statue is enlarged by length factor $4$. Which scale factor do you need for the paint (surface area), and which for the material (volume)? Give a reason, then find both.'
+  answer_label: 'Method choice: area or volume factor'
+  check:
+    kind: 'all'
+    checks:
+    - kind: 'evaluate'
+      expression: '4**2'
+      answer: '16'
+    - kind: 'evaluate'
+      expression: '4**3'
+      answer: '64'
+  answer_text: 'Paint covers a surface, so use the area factor: $4^2=16$. Material fills a volume, so use the volume factor: $4^3=64$.'

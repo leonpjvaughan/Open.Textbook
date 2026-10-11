@@ -45,7 +45,7 @@ The scale factor is $2.5$.
 
 ### Progress check
 
-If one mural tile side grows from $6$ cm to $9$ cm, the scale factor is $9\div6=1.5$. Every matching length must use that same multiplier.
+One mural tile side grows from $6$ cm to $9$ cm. Work out the scale factor. Then work out the matching length for a side that was $4$ cm on the smaller tile, and explain why the same multiplier applies.
 
 ## You should now be able to
 

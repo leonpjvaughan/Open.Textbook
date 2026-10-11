@@ -33,7 +33,7 @@ Each matching length is multiplied by $5$.
 
 ### Progress check
 
-If the mural's lengths double, predict its area and volume multipliers. They are $2^2=4$ and $2^3=8$.
+The mural's lengths double. Predict the area multiplier and the volume multiplier. Then explain why area and volume use different powers.
 
 ## You should now be able to
 

@@ -55,7 +55,9 @@ So its surface area is $96\text{ cm}^2$.
 
 > **Watch out.** Cone surface area uses slant height; cone volume uses perpendicular height. Label the diagram before substituting.
 
-Progress check: state which height belongs in a cone volume formula.
+## Progress check
+
+A conical cover over the pond has radius $4$ m and perpendicular height $3$ m. Work out its volume in terms of $\pi$. Then state which height the cone volume formula uses.
 
 ## You should now be able to
 

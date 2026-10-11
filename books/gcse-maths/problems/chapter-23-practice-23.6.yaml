@@ -120,3 +120,17 @@ problems:
     expression: '2/4'
     answer: '1/2'
   answer_text: 'The restricted results are 3, 4, 5, 6; two are odd, so $\frac12$.'
+- id: p11-method-representation
+  section: '23.6'
+  tier: 'H'
+  dfe:
+  - 'P9'
+  statement: 'In a group of 30 students, 18 study French and 10 study both French and Spanish. Find $P(\text{Spanish}\mid\text{French})$. Which representation makes the restricted group clearest: a two-way table or a Venn diagram? Give a reason, then find the probability.'
+  answer_label: 'Method choice: table or Venn diagram'
+  check:
+    kind: 'all'
+    checks:
+    - kind: 'evaluate'
+      expression: '10/18'
+      answer: '5/9'
+  answer_text: 'Either works, because both show the overlap of 10 inside the 18 French students. The restricted total is 18, so $P(\text{Spanish}\mid\text{French})=\frac{10}{18}=\frac59$.'

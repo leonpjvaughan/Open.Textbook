@@ -33,7 +33,7 @@ A stepped solid can have a plan that shows its footprint while the elevations sh
 
 ## Progress check
 
-The garden is $24$ m by $18$ m. Its plan is a rectangle. If the scale is $1$ cm for $3$ m, predict the plan dimensions before drawing: they are $8$ cm by $6$ cm.
+The garden is $24$ m by $18$ m. At a scale of $1$ cm for $3$ m, work out the plan dimensions. Then state which view would show the $18$ m side.
 
 ## You should now be able to
 

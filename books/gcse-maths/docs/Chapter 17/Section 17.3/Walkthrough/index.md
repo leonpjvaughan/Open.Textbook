@@ -55,7 +55,7 @@ To bisect an angle, draw an arc from its vertex to meet both arms. From those tw
 
 ## Progress check
 
-The garden centre is halfway across each pair of opposite sides. A perpendicular bisector of each pair of sides locates the centre.
+The garden centre is halfway across the garden in both directions. Describe a construction that finds the centre, and explain why the two bisectors meet there.
 
 ## You should now be able to
 

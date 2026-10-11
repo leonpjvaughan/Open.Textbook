@@ -34,7 +34,7 @@ The image is $(-4,-6)$, twice as far from the origin on the opposite side.
 
 ### Progress check
 
-A tile corner at $(4,2)$ maps to $(-2,-1)$ under scale factor $-\frac12$. Check both coordinates by multiplication.
+A tile corner is at $(4,2)$. Work out its image under scale factor $-\frac12$ about the origin. Check both coordinates, then explain why the image lies on the opposite side of the origin.
 
 ## You should now be able to
 

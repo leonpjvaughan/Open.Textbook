@@ -24,7 +24,7 @@ kind: guided-problems
 
 Attempt each question first. Open the hint, then the next step, when needed.
 
-**1.** A sector has radius 6 cm and angle 60°. Work out its arc length in terms of π.
+**1.** A sector has radius 10 cm and angle 72°. Work out its arc length in terms of π.
 
 <details markdown="1"><summary>Hint</summary>
 
@@ -32,41 +32,41 @@ An arc is the same fraction of the circumference as its angle is of $360^\circ$.
 
 <details markdown="1"><summary>Next step</summary>
 
-Here the fraction is $\frac{60}{360}=\frac16$. The full circumference is $2\pi\times6$.
+Find the fraction $\frac{72}{360}=\frac15$, then take it of $2\pi\times10$.
 
 <details markdown="1"><summary>Full working</summary>
 
-$\frac16\times2\pi\times6=2\pi\text{ cm}$.
+$\frac15\times2\pi\times10=4\pi\text{ cm}$.
 </details></details></details>
 
-**2.** A sector has radius 9 cm and angle 120°. Work out its arc length in terms of π.
+**2.** A sector has radius 6 cm and angle 120°. Work out its area in terms of π.
 
 <details markdown="1"><summary>Hint</summary>
 
-Find $\frac{120}{360}$ of the full circumference.
+Sector area is the same fraction of the circle area as its angle is of $360^\circ$.
 
 <details markdown="1"><summary>Next step</summary>
 
-The fraction is $\frac13$, and the full circumference is $2\pi\times9$.
+Find the fraction $\frac{120}{360}=\frac13$ of $\pi\times6^2$.
 
 <details markdown="1"><summary>Full working</summary>
 
-$\frac13\times2\pi\times9=6\pi\text{ cm}$.
+$\frac13\times\pi\times36=12\pi\text{ cm}^2$.
 </details></details></details>
 
-**3.** A sector has radius 4 cm and angle 90°. Work out its area in terms of π.
+**3.** A sector has radius 5 cm and angle 180°. Work out its perimeter in terms of π.
 
 <details markdown="1"><summary>Hint</summary>
 
-Sector area is the same fraction of the full circle area as its angle is of $360^\circ$.
+The perimeter of a sector includes the arc and both radii.
 
 <details markdown="1"><summary>Next step</summary>
 
-Find $\frac{90}{360}=\frac14$ of $\pi\times4^2$.
+Find the arc as half the circumference, then add the two radii: $5\pi+2\times5$.
 
 <details markdown="1"><summary>Full working</summary>
 
-$\frac14\times\pi\times4^2=4\pi\text{ cm}^2$.
+The arc is $\frac12\times2\pi\times5=5\pi$. The perimeter is $10+5\pi\text{ cm}$.
 </details></details></details>
 
 Try the remaining questions without opening the full working.

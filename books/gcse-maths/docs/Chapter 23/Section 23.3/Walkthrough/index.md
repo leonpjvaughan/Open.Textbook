@@ -48,7 +48,7 @@ $$P(\text{exactly one head})=\frac24=\frac12$$
 
 ## Progress check
 
-A frequency tree starts with 50 people: 28 use a bus and 22 do not. If 16 bus users are adults, then 12 are not adults. Check that each pair of branches adds to its parent count.
+A frequency tree of 50 spins has 28 red and 22 blue. If 16 reds come from the first 25 spins, work out the reds in the second 25. Check each pair of branches adds to its parent count.
 
 ## You should now be able to
 

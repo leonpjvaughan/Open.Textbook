@@ -61,7 +61,7 @@ $$P(\text{not green})=1-\frac45=\frac15$$
 
 ## Progress check
 
-The fair die has probability $\frac13$ of showing more than 4. The opposite event is showing 4 or less, so its probability is $\frac23$.
+The spinner has 10 equal sectors. Suppose 4 of them are red. Write the probability of landing on red, and the probability of not landing on red. Then state how many red sectors would make red impossible.
 
 ## You should now be able to
 

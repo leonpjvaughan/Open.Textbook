@@ -62,9 +62,7 @@ step follows from adding the endpoint position vectors and halving.
 
 ## Progress check
 
-For the chapter problem, both diagonal midpoints are
-$\frac12\mathbf{u}+\frac12\mathbf{v}$. The prediction is true for every
-parallelogram, whatever side vectors you choose.
+For the chapter problem, the midpoint of $AC$ has position vector $\frac12(\mathbf{u}+\mathbf{v})$. Work out the midpoint of $BD$ as a position vector and compare the two. Does this prove that the diagonals bisect each other for every parallelogram? Explain.
 
 ## You should now be able to
 
