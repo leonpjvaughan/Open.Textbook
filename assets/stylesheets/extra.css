@@ -404,16 +404,18 @@
 @media print {
   /* Navigation, search, tabs and footer are for a viewport, not a sheet. The
    * booklet button and panel are fixed overlays, so without this they print
-   * over the text on every page. `!important` beats the `@media screen` rules
-   * that Material leaves in place while printing. */
-  .md-header,
-  .md-tabs,
-  .md-sidebar,
-  .md-search,
-  .md-footer,
-  .md-top,
-  .md-dialog,
-  .md-overlay,
+   * over the text on every page.
+   *
+   * These are the BESPOKE shell's class names (templates/page.html), not
+   * Material's. The MkDocs shell was deleted and its `.md-header`/`.md-sidebar`/
+   * `.md-search` rules quietly stopped matching anything, so printing a page
+   * included the masthead, the sidebar and the search box. `.md-typeset` and
+   * `.md-content` stay because the content column still carries both: the
+   * reader-facing typography is shared with the landing page. */
+  .masthead,
+  .sidebar,
+  .search,
+  .skip,
   .bk-fab,
   .bk-panel {
     display: none !important;
@@ -421,11 +423,8 @@
 
   /* The content column now has the whole width. Give it one measure and centre
    * it, so line length on paper matches the screen rather than the sheet. */
-  .md-main__inner {
+  .layout {
     display: block;
-    margin: 0;
-  }
-  .md-content__inner {
     margin: 0;
     padding: 0;
   }
@@ -436,7 +435,8 @@
 
   /* A table wider than the page must read, not sit inside a scroll box that
    * cannot scroll on paper. */
-  .md-typeset__scrollwrap { overflow: visible; }
+  .md-typeset__scrollwrap,
+  .table-scroll { overflow: visible; }
 
   /* Worked examples should not split across a page break. `break-inside` is a
    * hint: an item taller than a page is still broken by the paginator, so a
