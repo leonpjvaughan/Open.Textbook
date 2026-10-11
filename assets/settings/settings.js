@@ -60,19 +60,12 @@
   function setScheme(scheme) {
     if (scheme !== "default" && scheme !== "slate") return;
     writeShared(SCHEME_KEY, scheme);
-    // Drive Material's own palette input, so Material swaps its variables and
-    // the bridge's change listener records the scheme exactly as a click would
-    // have. The input is hidden but present; the browser does not need to see
-    // it for the event to fire.
-    const input = document.querySelector(
-      'input[name="__palette"][data-md-color-scheme="' + scheme + '"]'
-    );
-    if (input) {
-      input.checked = true;
-      input.dispatchEvent(new Event("change", { bubbles: true }));
-    } else {
-      document.body.setAttribute("data-md-color-scheme", scheme);
-    }
+    // `themes.css` keys every token off `body[data-md-color-scheme]`, which the
+    // before-paint script sets and this keeps in step. There used to be a branch
+    // here that drove Material's hidden palette input instead, so that Material
+    // would swap its own variables; Material is gone with the MkDocs shell, and
+    // nothing has emitted `input[name="__palette"]` since.
+    document.body.setAttribute("data-md-color-scheme", scheme);
   }
 
   function sync() {
