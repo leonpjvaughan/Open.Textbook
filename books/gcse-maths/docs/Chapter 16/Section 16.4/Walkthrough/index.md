@@ -49,8 +49,6 @@ $$
 
 A regular courtyard tile has six sides. Predict each interior angle, then use the formula to check it.
 
-**DfE coverage:** G3. Each item is taught above and appears in the independent practice set.
-
 ## You should now be able to
 
 - use $(n-2)	imes180^\circ$ for an interior angle sum;

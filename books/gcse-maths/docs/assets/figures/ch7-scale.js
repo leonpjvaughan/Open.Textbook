@@ -4,7 +4,7 @@ export function mount(el) {
     <label>Drawing length: <input class="length" type="range" min="1" max="8" step="0.5" value="3"></label>
     <label>Scale denominator: <input class="scale" type="range" min="10000" max="50000" step="10000" value="25000"></label>
     <p class="output" aria-live="polite"></p>
-    <div class="fig-grid" style="height:1rem;border:1px solid currentColor"><div class="bar fig-accent" style="height:100%;width:30%"></div></div>
+    <div class="fig-grid" role="img" aria-label="Scale bar comparing a drawing length with the real distance it represents" style="height:1rem;border:1px solid currentColor"><div class="bar fig-accent" style="height:100%;width:30%"></div></div>
     <p class="text-accent">Drawing distance and real distance keep the same scale ratio.</p>
   </div>`;
   const update=()=>{

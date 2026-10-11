@@ -6,6 +6,12 @@
 > this file is kept only as the record of how that was decided. For the live
 > thing, see `themes/*.yaml` and "Theme bundles" in `SHAPE.md`.
 
+**Where the colour comes from, and what a bundle is allowed to be, is in
+[`theme-groups.md`](theme-groups.md).** That note reviews omarchy.org/themes,
+the upstream palette families, VS Code's paired semantic themes and the
+OpenDesign directions, and proposes the light/dark group model and the bundle
+rename that follows from it. Read it before adding or changing a bundle.
+
 Design exploration for how far the books should diverge. **Nothing here is
 published**; it exists so a direction can be chosen by looking at it rather than
 by describing it.

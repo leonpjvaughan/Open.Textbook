@@ -27,13 +27,18 @@ light:
   accent: "#1e66f5"
   accent_light: "#7287fd"
   accent_dark: "#1a4fc4"
+  # Text on the accent. The paper (#eff1f5) is 4.34:1 here, below AA.
+  accent_ink: "#ffffff"
   # Darkened from catppuccin-latte's #1e66f5, which is 4.34:1 on its own paper —
   # just under the 4.5:1 a link needs. Caught by the contrast invariant.
   link: "#1a58d8"
   code_bg: "#e6e9ef"
-  fig_warn: "#d20f39"
-  fig_good: "#40a02b"
-  fig_grid: "#bcc0cc"
+  # Darkened from #d20f39 so the label colour clears 4.5:1 on the figure panel.
+  fig_warn: "#ca0e37"
+  # Darkened from #40a02b; `fig_good` colours text as well as marks.
+  fig_good: "#2e731f"
+  # Darkened from #bcc0cc for the 3:1 a gridline and axis needs.
+  fig_grid: "#7f818a"
 dark:
   paper: "#1e1e2e"
   ink: "#cdd6f4"
@@ -43,8 +48,9 @@ dark:
   accent: "#89b4fa"
   accent_light: "#b4befe"
   accent_dark: "#74c7ec"
+  accent_ink: "#1e1e2e"
   link: "#89b4fa"
   code_bg: "#181825"
   fig_warn: "#f38ba8"
   fig_good: "#a6e3a1"
-  fig_grid: "#45475a"
+  fig_grid: "#727695"

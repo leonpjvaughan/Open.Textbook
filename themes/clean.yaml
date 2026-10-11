@@ -1,6 +1,6 @@
 # A deliberately colourless bundle.
 #
-# `fixed: [accent, accent_light, accent_dark, link]` means the subject tint is
+# `fixed: [accent, accent_light, accent_dark, accent_ink, link]` means the subject tint is
 # refused: every book looks the same here. That is the point of a clean group —
 # a reader who wants no colour wants it everywhere, not per subject.
 
@@ -13,7 +13,7 @@ typography:
   body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
   display: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
   mono: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
-fixed: [accent, accent_light, accent_dark, link]
+fixed: [accent, accent_light, accent_dark, accent_ink, link]
 light:
   paper: "#ffffff"
   ink: "#101010"
@@ -23,11 +23,14 @@ light:
   accent: "#101010"
   accent_light: "#333333"
   accent_dark: "#000000"
+  accent_ink: "#ffffff"
   link: "#101010"
   code_bg: "#f4f4f4"
   fig_warn: "#8a1f1f"
   fig_good: "#1f6b3a"
-  fig_grid: "#dcdcdc"
+  # Darkened from #dcdcdc: a gridline and axis is a graphical object, and the
+  # panel is a touch darker than the paper. Caught by the contrast invariant.
+  fig_grid: "#868686"
 dark:
   paper: "#0d0d0d"
   ink: "#f2f2f2"
@@ -37,8 +40,9 @@ dark:
   accent: "#f2f2f2"
   accent_light: "#ffffff"
   accent_dark: "#c9c9c9"
+  accent_ink: "#0d0d0d"
   link: "#ffffff"
   code_bg: "#171717"
   fig_warn: "#e08585"
   fig_good: "#86c9a2"
-  fig_grid: "#333333"
+  fig_grid: "#6b6b6b"

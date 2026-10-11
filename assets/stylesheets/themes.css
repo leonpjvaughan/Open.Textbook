@@ -35,6 +35,7 @@ body[data-md-color-scheme="default"] {
   --tb-accent: var(--tb-book-accent, #2f6690);
   --tb-accent-light: var(--tb-book-accent-light, #4a7fae);
   --tb-accent-dark: var(--tb-book-accent-dark, #24506f);
+  --tb-accent-ink: var(--tb-book-accent-ink, #ffffff);
   --tb-paper: var(--tb-book-paper, #faf9f5);
   --tb-ink: var(--tb-book-ink, #1f1e1b);
   --tb-ink-soft: var(--tb-book-ink-soft, #5c5a54);
@@ -43,13 +44,14 @@ body[data-md-color-scheme="default"] {
   --tb-link: var(--tb-book-link, #23577d);
   --tb-code-bg: var(--tb-book-code-bg, #f2f0e9);
   --tb-fig-warn: var(--tb-book-fig-warn, #a3402f);
-  --tb-fig-good: var(--tb-book-fig-good, #2f7d4f);
-  --tb-fig-grid: var(--tb-book-fig-grid, #d8d5cb);
+  --tb-fig-good: var(--tb-book-fig-good, #2c744a);
+  --tb-fig-grid: var(--tb-book-fig-grid, #85837d);
 }
 body[data-md-color-scheme="slate"] {
   --tb-accent: var(--tb-book-accent, #6ea8d8);
   --tb-accent-light: var(--tb-book-accent-light, #8cc0e8);
   --tb-accent-dark: var(--tb-book-accent-dark, #4a7fae);
+  --tb-accent-ink: var(--tb-book-accent-ink, #171614);
   --tb-paper: var(--tb-book-paper, #171614);
   --tb-ink: var(--tb-book-ink, #e9e7e1);
   --tb-ink-soft: var(--tb-book-ink-soft, #b7b4ac);
@@ -59,7 +61,7 @@ body[data-md-color-scheme="slate"] {
   --tb-code-bg: var(--tb-book-code-bg, #201f1c);
   --tb-fig-warn: var(--tb-book-fig-warn, #e08a76);
   --tb-fig-good: var(--tb-book-fig-good, #7fc79b);
-  --tb-fig-grid: var(--tb-book-fig-grid, #3a3833);
+  --tb-fig-grid: var(--tb-book-fig-grid, #757166);
 }
 
 /* 3. Bundles, which win over the fallback. */
@@ -68,6 +70,7 @@ html[data-theme="editorial"] body[data-md-color-scheme="default"] {
   --tb-accent: var(--tb-book-accent, #2f6690);
   --tb-accent-light: var(--tb-book-accent-light, #4a7fae);
   --tb-accent-dark: var(--tb-book-accent-dark, #24506f);
+  --tb-accent-ink: var(--tb-book-accent-ink, #ffffff);
   --tb-paper: var(--tb-book-paper, #faf9f5);
   --tb-ink: var(--tb-book-ink, #1f1e1b);
   --tb-ink-soft: var(--tb-book-ink-soft, #5c5a54);
@@ -76,14 +79,15 @@ html[data-theme="editorial"] body[data-md-color-scheme="default"] {
   --tb-link: var(--tb-book-link, #23577d);
   --tb-code-bg: var(--tb-book-code-bg, #f2f0e9);
   --tb-fig-warn: var(--tb-book-fig-warn, #a3402f);
-  --tb-fig-good: var(--tb-book-fig-good, #2f7d4f);
-  --tb-fig-grid: var(--tb-book-fig-grid, #d8d5cb);
+  --tb-fig-good: var(--tb-book-fig-good, #2c744a);
+  --tb-fig-grid: var(--tb-book-fig-grid, #85837d);
 }
 
 html[data-theme="editorial"] body[data-md-color-scheme="slate"] {
   --tb-accent: var(--tb-book-accent, #6ea8d8);
   --tb-accent-light: var(--tb-book-accent-light, #8cc0e8);
   --tb-accent-dark: var(--tb-book-accent-dark, #4a7fae);
+  --tb-accent-ink: var(--tb-book-accent-ink, #171614);
   --tb-paper: var(--tb-book-paper, #171614);
   --tb-ink: var(--tb-book-ink, #e9e7e1);
   --tb-ink-soft: var(--tb-book-ink-soft, #b7b4ac);
@@ -93,7 +97,7 @@ html[data-theme="editorial"] body[data-md-color-scheme="slate"] {
   --tb-code-bg: var(--tb-book-code-bg, #201f1c);
   --tb-fig-warn: var(--tb-book-fig-warn, #e08a76);
   --tb-fig-good: var(--tb-book-fig-good, #7fc79b);
-  --tb-fig-grid: var(--tb-book-fig-grid, #3a3833);
+  --tb-fig-grid: var(--tb-book-fig-grid, #757166);
 }
 
 /* Omarchy */
@@ -101,6 +105,7 @@ html[data-theme="omarchy"] body[data-md-color-scheme="default"] {
   --tb-accent: var(--tb-book-accent, #1e66f5);
   --tb-accent-light: var(--tb-book-accent-light, #7287fd);
   --tb-accent-dark: var(--tb-book-accent-dark, #1a4fc4);
+  --tb-accent-ink: var(--tb-book-accent-ink, #ffffff);
   --tb-paper: var(--tb-book-paper, #eff1f5);
   --tb-ink: var(--tb-book-ink, #4c4f69);
   --tb-ink-soft: var(--tb-book-ink-soft, #6c6f85);
@@ -108,15 +113,16 @@ html[data-theme="omarchy"] body[data-md-color-scheme="default"] {
   --tb-rule: var(--tb-book-rule, #ccd0da);
   --tb-link: var(--tb-book-link, #1a58d8);
   --tb-code-bg: var(--tb-book-code-bg, #e6e9ef);
-  --tb-fig-warn: var(--tb-book-fig-warn, #d20f39);
-  --tb-fig-good: var(--tb-book-fig-good, #40a02b);
-  --tb-fig-grid: var(--tb-book-fig-grid, #bcc0cc);
+  --tb-fig-warn: var(--tb-book-fig-warn, #ca0e37);
+  --tb-fig-good: var(--tb-book-fig-good, #2e731f);
+  --tb-fig-grid: var(--tb-book-fig-grid, #7f818a);
 }
 
 html[data-theme="omarchy"] body[data-md-color-scheme="slate"] {
   --tb-accent: var(--tb-book-accent, #89b4fa);
   --tb-accent-light: var(--tb-book-accent-light, #b4befe);
   --tb-accent-dark: var(--tb-book-accent-dark, #74c7ec);
+  --tb-accent-ink: var(--tb-book-accent-ink, #1e1e2e);
   --tb-paper: var(--tb-book-paper, #1e1e2e);
   --tb-ink: var(--tb-book-ink, #cdd6f4);
   --tb-ink-soft: var(--tb-book-ink-soft, #a6adc8);
@@ -126,7 +132,7 @@ html[data-theme="omarchy"] body[data-md-color-scheme="slate"] {
   --tb-code-bg: var(--tb-book-code-bg, #181825);
   --tb-fig-warn: var(--tb-book-fig-warn, #f38ba8);
   --tb-fig-good: var(--tb-book-fig-good, #a6e3a1);
-  --tb-fig-grid: var(--tb-book-fig-grid, #45475a);
+  --tb-fig-grid: var(--tb-book-fig-grid, #727695);
 }
 
 /* Gruvbox */
@@ -134,6 +140,7 @@ html[data-theme="gruvbox"] body[data-md-color-scheme="default"] {
   --tb-accent: var(--tb-book-accent, #427b58);
   --tb-accent-light: var(--tb-book-accent-light, #689d6a);
   --tb-accent-dark: var(--tb-book-accent-dark, #2f5a41);
+  --tb-accent-ink: var(--tb-book-accent-ink, #ffffff);
   --tb-paper: var(--tb-book-paper, #fbf1c7);
   --tb-ink: var(--tb-book-ink, #3c3836);
   --tb-ink-soft: var(--tb-book-ink-soft, #665c54);
@@ -142,14 +149,15 @@ html[data-theme="gruvbox"] body[data-md-color-scheme="default"] {
   --tb-link: var(--tb-book-link, #3d7150);
   --tb-code-bg: var(--tb-book-code-bg, #f2e5bc);
   --tb-fig-warn: var(--tb-book-fig-warn, #9d0006);
-  --tb-fig-good: var(--tb-book-fig-good, #79740e);
-  --tb-fig-grid: var(--tb-book-fig-grid, #e0d3a8);
+  --tb-fig-good: var(--tb-book-fig-good, #6b660c);
+  --tb-fig-grid: var(--tb-book-fig-grid, #877f66);
 }
 
 html[data-theme="gruvbox"] body[data-md-color-scheme="slate"] {
   --tb-accent: var(--tb-book-accent, #7daea3);
   --tb-accent-light: var(--tb-book-accent-light, #a9b665);
   --tb-accent-dark: var(--tb-book-accent-dark, #5c8a80);
+  --tb-accent-ink: var(--tb-book-accent-ink, #282828);
   --tb-paper: var(--tb-book-paper, #282828);
   --tb-ink: var(--tb-book-ink, #d4be98);
   --tb-ink-soft: var(--tb-book-ink-soft, #a89984);
@@ -157,9 +165,9 @@ html[data-theme="gruvbox"] body[data-md-color-scheme="slate"] {
   --tb-rule: var(--tb-book-rule, #3c3836);
   --tb-link: var(--tb-book-link, #89b482);
   --tb-code-bg: var(--tb-book-code-bg, #1d2021);
-  --tb-fig-warn: var(--tb-book-fig-warn, #ea6962);
+  --tb-fig-warn: var(--tb-book-fig-warn, #fc7169);
   --tb-fig-good: var(--tb-book-fig-good, #a9b665);
-  --tb-fig-grid: var(--tb-book-fig-grid, #504945);
+  --tb-fig-grid: var(--tb-book-fig-grid, #877c75);
 }
 
 /* Clean */
@@ -167,6 +175,7 @@ html[data-theme="clean"] body[data-md-color-scheme="default"] {
   --tb-accent: #101010;
   --tb-accent-light: #333333;
   --tb-accent-dark: #000000;
+  --tb-accent-ink: #ffffff;
   --tb-paper: var(--tb-book-paper, #ffffff);
   --tb-ink: var(--tb-book-ink, #101010);
   --tb-ink-soft: var(--tb-book-ink-soft, #565656);
@@ -176,13 +185,14 @@ html[data-theme="clean"] body[data-md-color-scheme="default"] {
   --tb-code-bg: var(--tb-book-code-bg, #f4f4f4);
   --tb-fig-warn: var(--tb-book-fig-warn, #8a1f1f);
   --tb-fig-good: var(--tb-book-fig-good, #1f6b3a);
-  --tb-fig-grid: var(--tb-book-fig-grid, #dcdcdc);
+  --tb-fig-grid: var(--tb-book-fig-grid, #868686);
 }
 
 html[data-theme="clean"] body[data-md-color-scheme="slate"] {
   --tb-accent: #f2f2f2;
   --tb-accent-light: #ffffff;
   --tb-accent-dark: #c9c9c9;
+  --tb-accent-ink: #0d0d0d;
   --tb-paper: var(--tb-book-paper, #0d0d0d);
   --tb-ink: var(--tb-book-ink, #f2f2f2);
   --tb-ink-soft: var(--tb-book-ink-soft, #b0b0b0);
@@ -192,5 +202,5 @@ html[data-theme="clean"] body[data-md-color-scheme="slate"] {
   --tb-code-bg: var(--tb-book-code-bg, #171717);
   --tb-fig-warn: var(--tb-book-fig-warn, #e08585);
   --tb-fig-good: var(--tb-book-fig-good, #86c9a2);
-  --tb-fig-grid: var(--tb-book-fig-grid, #333333);
+  --tb-fig-grid: var(--tb-book-fig-grid, #6b6b6b);
 }

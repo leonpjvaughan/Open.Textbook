@@ -43,6 +43,31 @@ FONT_TOKENS = {
 # strokes, so it is held to AA as well rather than the 3:1 a graphic would allow.
 MIN_CONTRAST = {"ink": 7.0, "link": 4.5, "accent": 4.5}
 
+# `accent_ink` is not drawn on the paper like the roles above; it is text drawn
+# *on* the accent surface (the booklet bar's label). Measuring it against the
+# paper would be the wrong surface, and using the paper as the ink is what made
+# the label fail on two stock palettes. So it is checked against `accent`.
+ON_ACCENT_MIN_CONTRAST = {"accent_ink": 4.5}
+
+# Figure tokens are drawn on the maths-figure panel, not the page, so they get
+# their own surface and their own thresholds.
+#
+# * `fig-warn` and `fig-good` colour text as well as marks: `.text-warn` and
+#   `.text-good` are applied to SVG labels and live readouts, and the labels are
+#   small, so they are held to the 4.5:1 WCAG AA minimum for normal text.
+# * `fig-grid` draws axes and gridlines. An axis is a graphical object a reader
+#   needs in order to read the figure, but it is not text, so WCAG 1.4.11's
+#   3:1 for non-text content is the right bar rather than 4.5:1. This matches the
+#   comment above: a figure stroke is a graphic, and 3:1 is what a graphic needs.
+FIGURE_MIN_CONTRAST = {"fig_warn": 4.5, "fig_good": 4.5, "fig_grid": 3.0}
+
+# The maths-figure panel is `color-mix(in srgb, paper 92%, ink 8%)` in
+# assets/stylesheets/extra.css. A token drawn inside a figure sits on that mix,
+# not on the page behind it; the mix is always closer to mid-grey than the paper,
+# so measuring against the panel is the stricter check. The share is mirrored
+# here and pinned to the stylesheet by test_the_figure_surface_matches_the_stylesheet.
+FIGURE_PANEL_INK = 0.08
+
 
 @dataclass(frozen=True)
 class Bundle:
@@ -186,6 +211,20 @@ def effective_tokens(bundle: Bundle, scheme: str, subject: dict[str, str] | None
     }
 
 
+def _mix(overlay: str, base: str, share: float) -> str:
+    """``share`` of ``overlay`` over ``base``, as CSS ``color-mix(in srgb, ...)``
+    interpolates: on the gamma-encoded channels, both opaque."""
+    under, over = _component(base), _component(overlay)
+    return "#%02x%02x%02x" % tuple(
+        round(under[i] * (1 - share) + over[i] * share) for i in range(3)
+    )
+
+
+def figure_panel(tokens: dict[str, str]) -> str:
+    """The surface a figure is drawn on: the maths-figure panel, not the page."""
+    return _mix(tokens["ink"], tokens["paper"], FIGURE_PANEL_INK)
+
+
 def contrast_problems(bundle: Bundle, scheme: str, subject: dict[str, str] | None) -> list[str]:
     tokens = effective_tokens(bundle, scheme, subject)
     problems = []
@@ -197,6 +236,27 @@ def contrast_problems(bundle: Bundle, scheme: str, subject: dict[str, str] | Non
         if ratio < minimum:
             problems.append(
                 f"{bundle.id}/{scheme}: {role} {colour} on paper {tokens['paper']} "
+                f"is {ratio:.2f}:1, below {minimum}:1"
+            )
+    for role, minimum in ON_ACCENT_MIN_CONTRAST.items():
+        colour = tokens.get(role)
+        if not colour:
+            continue
+        ratio = contrast(colour, tokens["accent"])
+        if ratio < minimum:
+            problems.append(
+                f"{bundle.id}/{scheme}: {role} {colour} on the accent "
+                f"{tokens['accent']} is {ratio:.2f}:1, below {minimum}:1"
+            )
+    panel = figure_panel(tokens)
+    for role, minimum in FIGURE_MIN_CONTRAST.items():
+        colour = tokens.get(role)
+        if not colour:
+            continue
+        ratio = contrast(colour, panel)
+        if ratio < minimum:
+            problems.append(
+                f"{bundle.id}/{scheme}: {role} {colour} on the figure panel {panel} "
                 f"is {ratio:.2f}:1, below {minimum}:1"
             )
     return problems

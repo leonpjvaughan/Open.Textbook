@@ -24,13 +24,17 @@ light:
   accent: "#427b58"
   accent_light: "#689d6a"
   accent_dark: "#2f5a41"
+  # Text on the accent. The paper (#fbf1c7) is 4.40:1 here, below AA.
+  accent_ink: "#ffffff"
   # Darkened from the stock #427b58: the stock hue is 4.40:1 on gruvbox's light
   # paper, just under the 4.5:1 a link needs. Caught by the contrast invariant.
   link: "#3d7150"
   code_bg: "#f2e5bc"
   fig_warn: "#9d0006"
-  fig_good: "#79740e"
-  fig_grid: "#e0d3a8"
+  # Darkened from #79740e so the label colour clears 4.5:1 on the figure panel.
+  fig_good: "#6b660c"
+  # Darkened from #e0d3a8 for the 3:1 a gridline and axis needs.
+  fig_grid: "#877f66"
 dark:
   paper: "#282828"
   ink: "#d4be98"
@@ -40,8 +44,10 @@ dark:
   accent: "#7daea3"
   accent_light: "#a9b665"
   accent_dark: "#5c8a80"
+  accent_ink: "#282828"
   link: "#89b482"
   code_bg: "#1d2021"
-  fig_warn: "#ea6962"
+  # Lightened from #ea6962 so the label colour clears 4.5:1 on the dark panel.
+  fig_warn: "#fc7169"
   fig_good: "#a9b665"
-  fig_grid: "#504945"
+  fig_grid: "#877c75"

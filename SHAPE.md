@@ -175,7 +175,8 @@ bundle changes the voice without changing the reading measure.
 Because a bundle and a subject multiply, a subject accent that is comfortable on
 one bundle's paper may be unreadable on another's. That is not left to review:
 `tests/test_themes.py` computes the WCAG ratio for every bundle × book × scheme
-and fails below ink 7:1, link 4.5:1, accent 4.5:1.
+and fails below ink 7:1, link 4.5:1, accent 4.5:1, and `accent_ink` 4.5:1 on the
+accent (text knocked out of the accent uses its own token, not the paper).
 
 It earned its place immediately. It caught catppuccin-latte's own link colour at
 4.34:1 on its own paper and gruvbox's at 4.40:1 — both stock Omarchy palettes,
@@ -306,13 +307,15 @@ happens, and how to check one.
 Three consequences shape everything else:
 
 - **The host must allow custom response headers.** Workers does, through a
-  `_headers` file in the asset directory. We do not ship one yet, deliberately:
+  `_headers` file in the asset directory, and we ship one: `engine/textbook/
+  headers.py` is emitted into `site/_headers` for the content security policy
+  and the baseline headers. It deliberately sets **no** `Cache-Control`.
   Workers' default for static assets is `Cache-Control: public, max-age=0,
   must-revalidate` with an `ETag`, which already gives us what we need — a deploy
   takes effect immediately and unchanged files come back as `304`. This is also
   what GitHub Pages would not allow: it pins `max-age=600` on every asset, which
-  is what makes a service worker unsafe to ship there. A `_headers` file becomes
-  worth adding when there is a content security policy and an `sw.js` to protect.
+  is what makes a service worker unsafe to ship there. What remains for the PWA
+  is `sw.js` itself, with its own cache rule.
 - **The site is meant to be installable on a phone.** A reader should be able to
   add a book to a home screen and read it offline.
 - **The PWA is a deliberate exception to the Tier-0 no-JS rule**, in the same way

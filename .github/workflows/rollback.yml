@@ -1,0 +1,98 @@
+name: rollback
+
+# Roll production back to an earlier Worker version. Manual only, deliberately:
+# a rollback is what you reach for when a deploy is wrong, and that is not the
+# moment to be discovering an automated path for the first time.
+#
+# See DEPLOY.md, "Rolling back". The command is recorded there too, so it can be
+# run from a laptop when GitHub is the thing that is broken.
+on:
+  workflow_dispatch:
+    inputs:
+      version_id:
+        description: >-
+          Worker version id to roll back to. Leave empty to roll back to the
+          previous version. Dispatch once with no input and read the "recent
+          versions" step to get an id.
+        required: false
+        type: string
+      confirm:
+        description: Type rollback to confirm. This changes what readers see.
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+# Never cancel a rollback in flight. A half-applied rollback is worse than either
+# state, and the one thing this workflow must do is finish.
+concurrency:
+  group: rollback
+  cancel-in-progress: false
+
+jobs:
+  rollback:
+    name: roll back production
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: production
+      url: https://open-textbook.org/
+    steps:
+      # A guard against a stray dispatch: the button is one click away in the
+      # Actions tab, and a rollback is not a thing to discover you have done.
+      - name: Refuse an unconfirmed rollback
+        env:
+          CONFIRM: ${{ inputs.confirm }}
+        run: |
+          if [ "$CONFIRM" != "rollback" ]; then
+            echo "confirm must be exactly 'rollback' (got '${CONFIRM}')" >&2
+            exit 1
+          fi
+
+      - uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Recent versions
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler versions list
+
+      - name: Roll back
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          VERSION_ID: ${{ inputs.version_id }}
+        run: |
+          if [ -n "$VERSION_ID" ]; then
+            npx wrangler rollback "$VERSION_ID" -y
+          else
+            npx wrangler rollback -y
+          fi
+
+      - name: Say what this leaves behind
+        run: |
+          {
+            echo "### Rolled back"
+            echo
+            echo "Check what is live:"
+            echo
+            echo '```'
+            echo "curl -s https://open-textbook.org/version.json"
+            echo '```'
+            echo
+            echo "That commit is now **not** the tip of \`main\`. A rollback changes"
+            echo "what is deployed, not what is committed, and the site stays on the"
+            echo "old build until the next push to \`main\` deploys. Fix forward and"
+            echo "push, rather than leaving the release tag and the live site"
+            echo "disagreeing."
+          } >> "$GITHUB_STEP_SUMMARY"

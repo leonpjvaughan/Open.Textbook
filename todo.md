@@ -4,10 +4,25 @@ Working notes for the collection. One item per change. Items are ordered, not
 dated: the first is next. This file is ours, not the reader's — the voice rules
 in `AGENTS.md` do not apply here, but the engineering rules do.
 
-- [ ] 1. Theme menu — reader settings in the header
-- [x] 2. Custom domain — `open-textbook.org` does not resolve
-- [ ] 3. `www` no longer resolves at all (NXDOMAIN) — fix the redirect
-- [ ] 4. Zone security settings and response headers
+- [x] 1. Theme menu — reader settings in the header (book pages and the landing page, one runtime)
+- [x] 2. Custom domain — `open-textbook.org` resolves
+- [x] 3. `www` redirect — DNS imported, rule live, 301 with path and query preserved
+- [ ] 4. Zone security and response headers (zone, headers and DNS shipped; DNSSEC, CAA and Bot Fight Mode left)
+- [x] 5. Worker version URLs closed; rollback is a manual workflow, command recorded
+- [x] 6. Crawlability: our own `robots.txt` and a sitemap index
+- [ ] 7. Account, credential and dependency hygiene (2FA, Dependabot and recovery done; registrar, token rotation and secret scanning left)
+- [ ] 8. One site, two renderers — decide which is the site
+- [x] 9. Nothing says which commit is live
+- [x] 10. Accessibility: turn the claims into checks
+- [x] 11. Licence, colophon and a way to report an error
+- [x] 12. Installable and printable
+- [ ] 13. Improve the maths book content — audits done and partly gated; the fixes are the programme
+- [x] 14. Two figure modules break the figure contract
+- [x] 15. `extra.css` and `portal.css` declare literal colours
+- [x] 16. Material keyboard gaps found by the audit
+- [x] 17. Text drawn on the accent is not AA
+- [ ] 18. Theme bundles: make each one a light/dark group (research done; rename not started)
+- [ ] 19. Declare the ready state
 
 ---
 
@@ -78,15 +93,16 @@ disclosure, dialog patterns), and WCAG 2.2 for dialog focus management.
 ### Done means
 
 - [ ] A labelled, keyboard-reachable Settings control sits at the top right of
-      every book page and the landing page.
-- [ ] Opening it **does not change the URL** (no new path, no hash, no query).
-- [ ] Choosing a bundle updates the page immediately and persists to
+      every book page and the landing page. **Book pages done; the landing page
+      keeps its own `<select>` (see the open questions).**
+- [x] Opening it **does not change the URL** (no new path, no hash, no query).
+- [x] Choosing a bundle updates the page immediately and persists to
       `textbooks:theme`; a new page or tab keeps it.
-- [ ] The panel works in both schemes with **no colour in the markup**: tokens and
+- [x] The panel works in both schemes with **no colour in the markup**: tokens and
       `fig-*` / `text-*` classes only. `tests/test_themes.py` stays green.
-- [ ] With JavaScript off, the site is unchanged and fully readable (the menu is an
+- [x] With JavaScript off, the site is unchanged and fully readable (the menu is an
       enhancement, not a dependency).
-- [ ] The dialog meets the accessibility points above (focus in, focus return,
+- [x] The dialog meets the accessibility points above (focus in, focus return,
       Escape, inert background).
 
 ### Open questions
@@ -161,12 +177,21 @@ reason step 4 is manual. Decide before changing `DEPLOY.md`.
 - [x] The canonical link reads `https://open-textbook.org/...`.
 - [ ] `https://www.open-textbook.org/` redirects to the apex — **not yet, see item 3.**
 - [x] A missing path returns the 404 page, not a connection error.
-- [ ] `DEPLOY.md` still describes the domain step accurately, whatever route we
-      choose.
+- [x] `DEPLOY.md` describes the domain step accurately, whatever route we choose —
+      the `www` redirect is now written up under "DNS: the `www` redirect".
 
 ---
 
-## 3. `www` no longer resolves at all (NXDOMAIN) — fix the redirect
+## 3. `www` no longer resolves at all (NXDOMAIN) — **done**
+
+**Progress (2026-10-11).** The DNS half is written and importable:
+`deploy/dns/open-textbook.org.zone` carries the `www` record with
+`cf_tags=cf-proxied:true` (an import cannot be trusted to keep the orange cloud,
+and a redirect rule cannot fire for a hostname Cloudflare does not proxy), plus
+SPF and DMARC. `DEPLOY.md` → "DNS: the `www` redirect" has the two dashboard
+steps. What remains is the import itself and the redirect rule — both dashboard
+actions. `tests/test_deploy.py` holds the file's two invariants: `www` is proxied,
+and no apex address record is imported.
 
 **Symptom (checked 2026-10-11, after the `www` custom domain was replaced by a
 `*.open-textbook.org/*` route).** `www.open-textbook.org` is **NXDOMAIN** from
@@ -257,13 +282,15 @@ The dashboard quick search jumps straight there by label.
       `open-textbook.org` is not a Cloudflare Registrar domain, add the `DS`
       (shown on Cloudflare's DNSSEC page) at the registrar; if it is, wait for
       propagation. Done means `DS@parent` returns an answer, not `0 answers`.
-- [ ] **CAA → restrict issuance** to the CAs Cloudflare actually uses for
-      Universal SSL. Check which before writing the record and re-check at the
-      next renewal: a CAA that omits the real issuer breaks renewal, which is
-      worse than a permissive one.
-- [ ] **Email records, since the domain sends none.** `TXT` `v=spf1 -all` and
-      `_dmarc` `TXT` `v=DMARC1; p=reject; rua=mailto:…`. A textbook has no reason
-      to send mail, so this closes domain spoofing cheaply.
+- [ ] **CAA → restrict issuance.** Written but deliberately **commented out** in
+      `deploy/dns/open-textbook.org.zone`: the three CAs Cloudflare documents for
+      custom domains are listed there, and the block stays off until they are
+      checked against the issuer of the live certificate. A CAA that omits the
+      real issuer breaks renewal weeks later, which is worse than a permissive
+      one.
+- [ ] **Email records, since the domain sends none.** Written in the same file:
+      `TXT "v=spf1 -all"` and `_dmarc TXT "v=DMARC1; p=reject"` — no `rua`, since
+      nobody is reading reports. Pending the import.
 - [x] **Disable the `workers.dev` route.** Done — the Worker is now `404` at
       `open-textbook.leonpjvaughan.workers.dev`, so there is one canonical origin.
 
@@ -348,14 +375,20 @@ during an incident.
 
 **Done means.**
 
-- [ ] `curl -sI https://open-textbook.leonpjvaughan.workers.dev/` no longer
-      returns `200`.
-- [ ] Version URLs are either disabled or restricted, and `DEPLOY.md` says which.
-- [ ] One rollback has been performed and the command is recorded.
+- [x] `curl -sI https://open-textbook.leonpjvaughan.workers.dev/` no longer
+      returns `200` — it is `404`.
+- [x] Version URLs are disabled in `wrangler.jsonc` (`"preview_urls": false`
+      alongside `"workers_dev": false`) and `DEPLOY.md` says which and why. Held
+      by `tests/test_deploy.py`, because a deploy would otherwise reopen in config
+      what the dashboard closed.
+- [ ] One rollback has been performed. The capability is now a manual workflow
+      (`.github/workflows/rollback.yml`, `workflow_dispatch`, confirm input) and the
+      command is in `DEPLOY.md` under "Rolling back", so this is a dispatch away.
+      It is deliberately not rehearsed against the live site.
 
 ---
 
-## 6. Crawlability: our own `robots.txt` and a sitemap index
+## 6. Crawlability: our own `robots.txt` and a sitemap index — **done**
 
 **What is wrong.**
 
@@ -374,10 +407,13 @@ rather than inheriting a policy by omission.
 
 **Done means.**
 
-- [ ] `/robots.txt` is ours, and includes a `Sitemap:` line.
-- [ ] `/sitemap.xml` resolves and lists both book sitemaps.
-- [ ] The content-signal policy is a decision we recorded, not a default inherited
-      by omission.
+- [x] `/robots.txt` is ours, and includes a `Sitemap:` line — `portal.robots_txt()`,
+      held by `tests/test_deploy.py`.
+- [x] `/sitemap.xml` resolves and lists both book sitemaps —
+      `portal.sitemap_index()`, one entry per profile, derived from the books.
+- [x] The content-signal policy is a decision we recorded, not a default inherited
+      by omission: allow everything, and name the sitemap index. Shipping our own
+      file is what replaces Cloudflare's injected preamble.
 
 ---
 
@@ -386,8 +422,9 @@ rather than inheriting a policy by omission.
 Adjacent to the Worker rather than part of it, but these are the things that make
 the rest recoverable, so they belong in the same gate.
 
-- [ ] **Two-factor authentication on the Cloudflare account and on GitHub.** Both
-      own the deployment path; this is the highest-value item in the file.
+- [x] **Two-factor authentication on the Cloudflare account and on GitHub.** Both
+      own the deployment path; this is the highest-value item in the file. Done —
+      the author confirmed 2FA on both.
 - [ ] **The domain cannot lapse or move**: registrar auto-renew confirmed, and the
       transfer lock on. The address is the product.
 - [ ] **The deploy token**: set an expiry and a rotation date. It is account-scoped
@@ -398,11 +435,16 @@ the rest recoverable, so they belong in the same gate.
       private repository on the Free plan — the same plan decision as branch
       protection (`scripts/protect-main.sh`). Given how nearly `.env` was
       committed, this one has a proven failure mode behind it.
-- [ ] **Dependency updates**: Dependabot for `npm` and `uv`, so the pinned
-      toolchain does not silently age out of support.
-- [ ] **Recovery**: confirm the repository is not the only copy of anything that
-      cannot be regenerated. `site/` is regenerable and drift-checked, so the
-      answer should be yes — verify rather than assume.
+- [x] **Dependency updates**: `.github/dependabot.yml` covers `npm`, `uv` and
+      `github-actions`, weekly and grouped, so the pinned toolchain does not
+      silently age out of support. If GitHub rejects the `uv` ecosystem it will
+      say so in the Dependabot tab; `pip` reads `pyproject.toml` but cannot update
+      `uv.lock`.
+- [x] **Recovery**: `site/` is regenerable and drift-checked, and the authored
+      content — the only thing that cannot be regenerated — lives in git and is
+      pushed to GitHub, so the repository is not a single copy. Residual risk: the
+      remote is one private GitHub repository, so account loss is the exposure; a
+      second remote or a periodic export is the mitigation if that matters.
 
 ---
 
@@ -434,6 +476,36 @@ this decision more urgent rather than less.
 **Decide:** the pipeline replaces MkDocs, or MkDocs stays and the pipeline goes.
 Not both, and not for long — the cost is paid on every change to the page shell.
 
+**Recommendation (2026-10-11) — MkDocs stays for now; the pipeline is parked,
+not deleted.**
+
+The evidence points one way for the moment. MkDocs is what deploys, and every
+change of the last day — the settings overlay, the PWA, the colophon in the nav,
+`accent_ink`, the nav override, the search tab-stop fix, the sitemap and
+`robots.txt` — is built for it. Switching now means paying for all of that twice,
+and the pipeline has no deploy path, no search parity (Pagefind against Material's
+index) and no sitemap of its own.
+
+The pipeline is worth keeping precisely because of the two things that will force
+this decision: `MkDocs 2.0` removes the plugin system and rewrites theming, and
+Material 9.7.7 says it is unlicensed for production. Deleting the pipeline now
+would remove the escape hatch from both.
+
+So "parked" means something specific:
+
+- **MkDocs is the site.** `DEPLOY.md`, `AGENTS.md` and `SHAPE.md` describe it and
+  only it; the pipeline stops being presented as an alternative.
+- **No new features land in the pipeline**, and no bug is fixed twice. It is frozen
+  at `3bc6594`.
+- **It does not rot.** `tests/test_pipeline.py` stays in the gate, so a change to
+  `textbook/` that breaks it still fails CI and someone notices.
+- **A dated review.** Re-open when MkDocs 2.0 has a stable release, or when the
+  Material licence notice becomes an error rather than a warning, whichever is
+  first. Owner: the author.
+
+That resolves the real cost — two answers for every shell change — without a
+migration nobody has budgeted for.
+
 **Done means.**
 
 - [ ] One renderer is the site, and the other is deleted or explicitly parked with
@@ -443,7 +515,7 @@ Not both, and not for long — the cost is paid on every change to the page shel
 
 ---
 
-## 9. Nothing says which commit is live
+## 9. Nothing says which commit is live — **done**
 
 **Verified.** Neither `site/index.html` nor `site/version.json` carries a build
 identity. Asked "what is deployed right now?", the only honest answers are "the
@@ -462,8 +534,14 @@ to the release job.
 
 **Done means.**
 
-- [ ] `curl https://open-textbook.org/version.json` names the tag and the commit.
-- [ ] The deployed commit can be compared with `main` in one command.
+- [x] `curl https://open-textbook.org/version.json` names the tag and the commit.
+      `portal.build_identity()` writes the commit, the short commit, the tag when
+      there is one, and the origin; the landing page and the 404 also carry
+      `<meta name="build">`.
+- [x] The deployed commit can be compared with `main` in one command. CI wires it:
+      the `release` job publishes its tag as an output and the `deploy` job passes
+      `BUILD_TAG` and `BUILD_COMMIT`; git is the local fallback. **Book pages do
+      not carry the meta yet** — `version.json` is the site-wide answer.
 
 ---
 
@@ -472,37 +550,52 @@ to the release job.
 Colour contrast is tested (`tests/test_themes.py`, every bundle × book × scheme).
 Almost nothing else is.
 
-- **Six of the 28 figure modules set no accessible name.** 22 carry
-  `role="img"` with an `aria-label`; the rest are announced as nothing.
+- **Six of the 28 figure modules set no accessible name.** 22 carried
+  `role="img"` with an `aria-label`; the rest were announced as nothing.
   `assets/figures/figures.js` does not add a role or name to the host element
-  either, so the default is silence.
+  either, so the default is silence. **Done:** all 28 now carry a name, and
+  `tests/test_figures.py` discovers every module from the filesystem and fails
+  when one lacks `role="img"` or a plain-English `aria-label`.
 - **Nothing tests the no-JavaScript claim.** `AGENTS.md` and SHAPE.md both assert
   the site is readable without scripting — maths is build-time MathML, so that is
   probably true — but it is an assertion. The only related test checks that the
-  landing toggle is hidden.
+  landing toggle is hidden. **Done:** `tests/test_no_javascript.py` renders a page
+  through the engine, removes every `<script>`, and asserts the prose, the MathML
+  and the `application/x-tex` annotation survive; the browser confirms it with
+  `javaScriptEnabled: false` (39 `<math>`, 1566 words).
 - **No keyboard or focus audit.** The theme menu in item 1 will be the first
   interactive chrome; the booklet, the figures and the search all need checking
-  for focus order, focus visibility and Escape behaviour.
+  for focus order, focus visibility and Escape behaviour. **Done:** the audit in
+  `research/accessibility.md` §2 covers all four. The Settings dialog, the
+  search, the booklet and the figure pass; the two Material-level gaps are
+  item 16.
 - **Maths read aloud is unresolved.** KaTeX emits MathML, which screen readers
-  support unevenly and without a speech rule engine.
+  support unevenly and without a speech rule engine. **Done:** the position is
+  recorded in `research/accessibility.md` §3 — build-time MathML, no runtime SRE,
+  known limitations, not a fix.
 - **The figure palette is not contrast-checked.** `fig-warn`, `fig-good` and
-  `fig-grid` are outside the invariant in `tests/test_themes.py`.
+  `fig-grid` are outside the invariant in `tests/test_themes.py`. Still open; it
+  belongs in `tests/test_themes.py`, which this task does not own.
 
 **Done means.**
 
-- [ ] Every figure has an accessible name, and a test fails if a new one does not.
-- [ ] A test renders a page with scripting disabled and asserts the prose and the
-      maths are present.
-- [ ] Keyboard-only pass over a book page, the booklet, a figure and search.
-- [ ] A recorded position on how maths is read aloud.
-- [ ] Figure tokens are inside the contrast invariant.
+- [x] Every figure has an accessible name, and a test fails if a new one does not.
+- [x] A test renders a page with scripting disabled and asserts the prose and the
+      maths are present (`tests/test_no_javascript.py`).
+- [x] Keyboard-only pass over a book page, the booklet, a figure and search
+      (`research/accessibility.md` §2).
+- [x] A recorded position on how maths is read aloud
+      (`research/accessibility.md` §3).
+- [x] Figure tokens are inside the contrast invariant (`tests/test_themes.py`),
+      along with `accent_ink` on the accent — the two blind spots the audit found.
 
 ---
 
 ## 11. Licence, colophon and a way to report an error
 
-**Verified.** There is no `LICENSE`, no licence statement anywhere, no colophon
-page and no contact route. `books/gcse-maths/docs/` has no about page.
+**Verified before this change.** There was no `LICENSE`, no licence statement
+anywhere, no colophon page and no contact route. `books/gcse-maths/docs/` had no
+about page. The attribution and reporting parts are now done; the licence is not.
 
 **Why it matters.** This is a public, free textbook that reproduces material with
 provenance — the DfE subject content is Crown copyright under the Open Government
@@ -515,12 +608,34 @@ result. A teacher asking "may I print this and hand it out?" has no answer.
 under, that answers are machine-checked, how to report a mistake, and the
 attribution the sources require. Then a `LICENSE` file, and a link in the footer.
 
+**State (2026-10-11).** The reader-facing page landed:
+`books/gcse-maths/docs/colophon.md`, generated by `scaffold.colophon_page()` and
+linked from both profiles' nav as **About this book**. It carries the attribution
+(DfE Crown copyright under the Open Government Licence v3.0; the AQA 8300, Pearson
+Edexcel 1MA1 and OCR J560 specifications; the boards' formulae sheets and the
+Ofqual 2025–2027 decision), states that **Practise** answers are machine-checked
+with SymPy, and gives the reporting route. It reads `licence:` from
+`collection.yaml` and renders a licence section only when that key is set (a
+string, or `{name, url}`), so choosing a licence is a one-line data change rather
+than a content edit. No `LICENSE` file was added, deliberately: the licence is the
+author's decision and no placeholder was written.
+
+**Reporting route — decision.** `open-textbook.org` sends and receives no mail
+(SPF is `v=spf1 -all`), so `mailto:` would be dead. The page uses the GitHub issue
+form (`https://github.com/leonpjvaughan/Open.Textbook/issues/new`), and says
+plainly that it needs a free GitHub account and that the project has no email
+address. A no-account route (a form endpoint or a feedback Worker) is deliberately
+not built yet; adding one means updating the page and this note.
+
 **Done means.**
 
-- [ ] A licence is chosen, recorded in `LICENSE`, and stated on a reader-facing
-      page that also carries the required attribution.
-- [ ] A reader can report an error without a GitHub account, or the lack of one is
-      a recorded decision.
+- [x] A licence is chosen, recorded in `LICENSE`, and stated on a reader-facing
+      page that also carries the required attribution. **CC BY 4.0** for the book;
+      `LICENSE-CODE` (MIT) for the engine, because Creative Commons recommends
+      against its licences for software; third-party material keeps its own terms.
+      The colophon renders the licence from `collection.yaml → licence`.
+- [x] A reader can report an error without a GitHub account, or the lack of one is
+      a recorded decision. The lack is recorded above and on the page.
 
 ---
 
@@ -546,17 +661,327 @@ watched rather than felt.
 
 **Done means.**
 
-- [ ] A book can be added to a phone's home screen and opened offline.
-- [ ] `curl -sI` shows the manifest, and the service worker's caching is
-      deliberate rather than incidental.
-- [ ] Printing a Walkthrough gives a readable page without the sidebar.
-- [ ] A page's weight and request count are recorded in `DEPLOY.md`.
+- [x] A book can be added to a phone's home screen and opened offline.
+      `assets/manifest.webmanifest` and `assets/sw.js` are generated into `site/`
+      by `textbook.portal`; driven in Chromium with the network off, the page still
+      renders with its maths.
+- [x] `curl -sI` shows the manifest, and the service worker's caching is
+      deliberate rather than incidental: network-first for navigations (so a deploy
+      still takes effect immediately), cache-first for static assets, a versioned
+      cache, and the old cache deleted on activation.
+- [x] Printing a Walkthrough gives a readable page without the sidebar. A
+      `@media print` block in `assets/stylesheets/extra.css` hides the chrome,
+      keeps the measure, and keeps a worked example off a page break. Closed
+      `<details>` print closed on purpose: paper cannot be clicked. **Verified by
+      inspection, not in a rendered print preview.**
+- [x] A page's weight and request count are recorded in `DEPLOY.md` — 16 requests,
+      ~1.62 MB, and `search_index.json` at ~917 kB is the bulk of it. That last
+      number is its own follow-up.
 
-## 13. Declare the ready state
+## 13. Improve the maths book content
 
-**Not a change: the gate.** The site is in a ready state when items 2–12 are closed
-and their "done means" boxes are ticked, and not before — a checklist that is
-mostly ticked is a checklist that has not been done.
+**This is the product.** Every other item in this file is about shipping it; this
+one is about the thing being shipped. `AGENTS.md` states the chapter formula,
+`research/pedagogy.md` maps each principle to its evidence, and `.agents/skills/`
+now carries the method as five skills: `author-textbook-chapter`,
+`write-textbook-prose`, `build-practice-set`, `build-guided-figure` and
+`verify-textbook-change`.
+
+**State (checked 2026-10-11).** The book is structurally complete, so this is not
+about coverage:
+
+- 25 chapters, 133 sections, with 133 Walkthrough / Guided problems / Problems
+  pages and 25 Reviews. No `<!-- scaffold:stub -->` markers remain.
+- 138 `:::problems` / `:::answers` marker pairs, 139 verified banks.
+- **`textbook.lint` already enforces the structure.** Every chapter has
+  `## The chapter problem` and `By the end of this chapter`; every Walkthrough has
+  `You should now be able to` and `Watch out`; every Guided problems page has
+  `Warm-up: remember`; every Problems page has both markers.
+- All 133 Walkthroughs do carry a `> **Watch out.**` misconception callout.
+
+So the gap is exactly the part a linter cannot see — the **pedagogy audit** in
+`verify-textbook-change`, which is manual by design.
+
+**What is unchecked, and is the work.**
+
+- **Fade (P1).** Lint proves a hint block exists, not that support *withdraws*:
+  worked example → partial example → hint → independent. It also cannot see a
+  Walkthrough that opens with an unguided task a novice cannot start.
+- **The chapter problem (P2).** Lint proves one is *stated*. It cannot prove it is
+  *returned to* at 2–3 checkpoints and *resolved* on the Review page.
+- **Relevance (P3).** Whether the chapter asks the reader to construct their own
+  connection, or merely asserts the topic is useful.
+- **Interleaving (P5).** Whether later Problems pages mix earlier topics and ask
+  "which method applies, and why?".
+- **Guided figures (P6).** Only **27 `:::figure` uses across 25 chapters** — about
+  one per chapter — and nothing checks the Predict → Test → Explain shape.
+  **`ch5-map-scale` is wired to no `:::figure` directive at all.**
+- **Correctness.** The verifier proves the bank algebra, not the method and not
+  the teaching.
+
+**Method.** Work chapter by chapter, with the skills in order:
+
+1. `verify-textbook-change` — run its pedagogy audit over the chapter, unmodified,
+   and record the findings. The measurement comes before any edit.
+2. `author-textbook-chapter` — revise against the two arcs and the six principles.
+3. `write-textbook-prose` for the voice, `build-practice-set` for the practice and
+   its bank, `build-guided-figure` where a figure is missing or unguided.
+4. Re-run the audit, then `scripts/check.sh`.
+
+**Cheapest first pass:** the audit across all 25 chapters, recorded in one place,
+so the fixes are chosen by evidence rather than by mood. Then rebuild the worst
+chapter end to end as the reference for the rest.
+
+**Where it lands.** This is a programme, not a single change: it re-runs on the
+next book (physics, then A-level). Anything the audit finds more than once should
+become a lint rule or a test, so the floor rises and the manual audit shrinks.
+
+**Done means.**
+
+- [x] The pedagogy audit has been run over all 25 chapters, findings recorded in
+      one place — `research/pedagogy-audit/`, two reports plus a README that ranks
+      the work.
+- [ ] Every finding is fixed, or deferred with a reason. **Deferred, ranked in the
+      audit README:** Chapters 19, 23, 24, 5 and 15 need rewrites; Chapter 7's
+      chapter problem is not solvable as set.
+- [ ] The worst chapter has been rebuilt end to end and stands as the reference.
+- [ ] Every `:::figure` follows Predict → Test → Explain, and `ch5-map-scale` is
+      either wired up or deleted. Five of twelve render above their own Predict
+      prompt.
+- [x] Anything the audit found more than once is now a lint rule or a test: the
+      `DfE coverage` and `Guided problems` leaks are gated by
+      `tests/test_content_hygiene.py`, and a chapter that repeats one warm-up
+      across its sections is reported as `structure:guided-warmup-repeated`.
+
+---
+
+## 14. Two figure modules break the figure contract
+
+**Verified** while adding the accessible names. Two modules in
+`books/gcse-maths/docs/assets/figures/` break rules `AGENTS.md` states plainly,
+and no test catches either.
+
+- **Runtime LaTeX.** `ch3-index-laws.js` builds its readout with
+  `readout.innerHTML = ... $a=${a}$ ...`. The maths hook runs at build time, so a
+  reader sees literal dollar signs rather than rendered mathematics. `AGENTS.md`
+  lists this under "Hooks": never put `$...$` in text a figure injects at runtime.
+  Fix: write the readout in HTML (`<sup>`, `×`, `÷`) or in words.
+- **A hard-coded colour, and it may be invisible.** `ch2-multiples.js` marks the
+  multiples with `<span class="fig-accent" style="color:#fff">`. `.fig-accent`
+  sets only `fill` and `stroke` (`assets/stylesheets/extra.css:109`), which do
+  nothing for text in HTML, so the only highlight is the inline `#fff` — white
+  text on the light scheme's paper. The rule is never a colour in a page or a
+  figure. Fix: use a text-colour class such as `.text-accent` with a contrasting
+  treatment, not an inline colour.
+
+`grep -n 'color:#\|fill="#\|stroke="#' books/gcse-maths/docs/assets/figures/*.js`
+finds both, plus an `#888` in the gradient in `ch16-point.js`.
+
+**Done means.**
+
+- [ ] `ch3-index-laws.js` injects no `$...$` at runtime; a reader sees
+      mathematics, not dollar signs.
+- [ ] No figure module contains an inline colour literal.
+- [ ] `tests/test_figures.py` (or lint) fails on a colour literal in a figure, so
+      the rule is enforced rather than remembered.
+- [ ] Each figure is checked in both schemes.
+
+---
+
+## 15. `extra.css` and `portal.css` declare literal colours
+
+**Found while adding the print rules.** `assets/stylesheets/extra.css` contains
+literal colours — `.math-error { color: #b3261e; }`, and `#fff` / `rgb()` values in
+the booklet widget styles. `AGENTS.md` says a colour declared in this layer is
+exactly the mistake that silently outranks every bundle, and the test meant to
+catch it only checks that no `--tb-*` token *name* appears. So `.math-error` is
+the same red for a reader on `clean`, `gruvbox` or `editorial`, in both schemes,
+and nothing fails.
+
+**Fix.** Move each literal to a bundle token (or a `fig-*` / `text-*` class), then
+strengthen `tests/test_themes.py` to fail on a hex, `rgb()`/`hsl()` or named
+colour in `extra.css` — not only on a token name. The strengthened test is the
+point: the current one passes while the rule is broken.
+
+**Done means.**
+
+- [x] No literal colour in `assets/stylesheets/extra.css`. (Done by del-4; the
+      strengthened scanner below holds it.)
+- [x] `tests/test_themes.py` fails on a hex, `rgb()`/`hsl()` or named colour in
+      `extra.css`.
+- [x] The same class of bug in `assets/stylesheets/portal.css` is fixed: its
+      `--tb-shadow` used a literal `rgb(0 0 0 / …)`, so the landing-page card's
+      elevation was identical under every bundle. It is now `color-mix` over
+      `--tb-ink`, and `test_the_portal_stylesheet_defines_no_colour` holds the
+      file to the same rule.
+- [x] `.math-error` and the booklet widget are checked in every bundle, both
+      schemes.
+
+---
+
+## 16. Material keyboard gaps found by the audit
+
+**Verified** by the keyboard audit in `research/accessibility.md` §2. Both are in
+Material's generated markup and CSS, so they cannot be fixed in the files the
+audit task owns. Both were reproduced on
+`/gcse-maths/higher/Chapter 1/Section 1.1/Walkthrough/` at commit `3bc6594`.
+
+- **An invisible Tab stop in the closed search.** `Tab` x4 lands on
+  `.md-search__scrollwrap` (`tabindex="0"`), whose parent `.md-search__output`
+  has `opacity: 0` while the search is closed. The fix belongs in
+  `assets/stylesheets/extra.css`. The candidate rule below was injected in the
+  browser and verified to remove the stop and keep the 26 results visible when
+  `/` opens the search:
+
+  ```css
+  .md-search__output { visibility: hidden; }
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__output {
+    visibility: visible;
+  }
+  ```
+
+  A naive `visibility: hidden` without the second selector hides the results;
+  that was checked too.
+- **Unnamed sidebar expand/collapse toggles.** Material's
+  `partials/nav-item.html` (the `navigation.indexes` branch) renders an
+  icon-only `<label tabindex="0">` with no text and no `aria-label`; all 133
+  toggles on the page measured an empty accessible name (`ariaSnapshot` returned
+  `""`). The empty label is also the `aria-labelledby` target of the submenu
+  `<nav>`, so this is a WCAG 4.1.2 failure, not only a nicety. The fix is a
+  `renderers/mkdocs/overrides/partials/nav-item.html` override that adds
+  `aria-label="{{ render_title(nav_item) | striptags }}"` to that label.
+
+**Done means.**
+
+- [x] With the search closed, no `.md-search__scrollwrap` (or other transparent
+      child) is reachable by `Tab`; with the search open, results are visible.
+      Re-checked in the browser with the repository's `extra.css`: the baseline
+      lands on `.md-search__scrollwrap` at the fourth `Tab`, the fix skips it,
+      and `/` still returns 26 results
+      (`/tmp/pi-delegate/del-8/search-tabcheck.cjs`, JSON beside it).
+- [x] Every sidebar expand/collapse toggle has a non-empty accessible name, and a
+      check fails if a new one does not. `partials/nav-item.html` is now a
+      faithful override carrying the `aria-label` on the icon-only label;
+      `tests/test_a11y_shell.py` pins the name and fails if the override drifts
+      from the installed Material template.
+- [ ] Both fixes pass the audit in `research/accessibility.md` §5. The search fix
+      was re-run in the browser; the toggle override needs the next shared build
+      before the rendered audit can be re-run, because the check is structural
+      until then.
+
+---
+
+## 17. Text drawn on the accent is not AA
+
+**Verified** by del-4 while fixing the literal colours. The booklet bar knocks its
+label out in `var(--md-default-bg-color)` (the paper). That passes for the
+current book, whose accent the subject tints, but a bundle's *own* accent makes
+the paper 4.34:1 (omarchy light) and 4.40:1 (gruvbox light) on it — below AA for
+text. No token expressed "text on the accent".
+
+**Fix.** Added an `accent_ink` token to `SCHEME_TOKENS` in
+`engine/textbook/book.py`, a value per bundle in both schemes, and used it for
+text drawn on the accent: `extra.css` (`.bk-fab`, `.bk-bar`, the pressed chip)
+and `portal.css` (the card chip). `engine/textbook/themes.py` now checks
+`accent_ink` on the accent at 4.5:1, and `tests/test_themes.py` checks the
+bundle's own accent as well, so the palette is safe with no subject tint.
+
+**Done means.**
+
+- [x] Every bundle names an `accent_ink` in both schemes, and it reads on the
+      accent at ≥4.5:1.
+- [x] Text drawn on the accent uses the token, not the paper.
+- [x] The invariant checks `accent_ink` on the accent, and can fail:
+      reverting omarchy light's `accent_ink` to its paper fails
+      `test_accent_ink_reads_on_the_bundles_own_accent[default-omarchy]` at
+      4.34:1.
+
+---
+
+## 18. Theme bundles: make each one a light/dark group
+
+**Request.** "For the omarchy themes, I meant look up https://omarchy.org/themes/.
+Do not call a theme omarchy but use it for inspiration. Look at VS Code and other
+sources for theme ideas — mostly for ideas about colour. Use OpenDesign skills to
+enhance your knowledge. For now just research and work out how you want to make
+existing styles fit our light/dark group requirement."
+
+**The requirement.** Every bundle must be a complete light *and* dark palette;
+`tests/test_themes.py` already enforces it. The four bundles were assembled from
+sources that do not ship pairs, and one of them is named after the distribution
+rather than the palette.
+
+**Research is written up in [`research/design/theme-groups.md`](research/design/theme-groups.md).**
+The findings that decide the work:
+
+- **Omarchy is a distribution of palettes, not a palette.** 140 themes on the
+gallery page; 22 stock themes on this machine, of which **17 are dark-only and 5
+light-only** (`tomllib` over `/usr/share/omarchy/themes/*/colors.toml`). Each
+`colors.toml` carries one `mode`. So `id: omarchy` names the wrong thing, and the
+gallery can supply at most one member of a pair. The bundle is really
+**Catppuccin** (Latte + Mocha).
+- **A group is two palettes, not one inverted.** VS Code's paired "Light
+Modern"/"Dark Modern" re-picks the accent per mode (`#005FB8` light, `#0078D4`
+dark) and makes the dark link lighter than the dark accent (`#4daafc` vs
+`#0078D4`); APCA is polarity-sensitive for the same reason; the `color-expert`
+references say dark mode wants **less chroma** and **more luminance contrast**.
+- **The contrast invariant is one-sided.** `MIN_CONTRAST` applies the same WCAG
+ratio in both schemes, which is the symmetry APCA exists to criticise — stricter
+than needed in light, weaker than needed in dark.
+- **The families worth drawing from are Solarized, Flexoki, Rosé Pine,
+Everforest, Catppuccin, Gruvbox and Kanagawa**, all of which publish both
+members. Arc Blueberry is dark-only (`mode = "dark"`) and would need a derived
+light.
+
+**The fix, in order.**
+
+1. `themes/omarchy.yaml` → `themes/catppuccin.yaml`; `id`/`title` Catppuccin; the
+   header keeps the provenance (the hexes *were* read from Omarchy's copy).
+2. `themes/gruvbox.yaml`: drop "a second member of the Omarchy family"; Omarchy is
+   a catalogue, not a family.
+3. Add a `group:` block to every bundle — `family`, and per member a `name`,
+   `source` and `observed: true|false`, with a required `note` when a member is
+   derived rather than observed. `gruvbox`'s light member is the only derived one
+   today.
+4. Re-run `python -m textbook.scaffold` (it rewrites `themes.css` **and** the
+   `themes`/`theme_info` blocks in `renderers/mkdocs/<book>.<profile>.yml`) and
+   `python -m textbook.portal`; both are generated and must ride with the rename.
+5. Update `AGENTS.md` (the `--theme omarchy` screenshot example), `SHAPE.md`,
+   `tests/test_themes.py`'s `[default-omarchy]` docstring and item 17 above. The
+   "stock Omarchy palettes" sentences are provenance claims and stay.
+6. Optional, not decided: add **Solarized** and **Flexoki** as new groups, and
+   whether a vivid bundle (Arc Blueberry) is wanted at all. Six groups was the
+   proposal; the menu is a reading choice, so this is a product call.
+
+**Enforcement to add.** `family` and provenance required by `load_bundle`; a
+required `note` when `observed: false`; a test that `omarchy` is not a bundle id;
+and an APCA check on the dark member, written in Python from the published
+formula, as a second opinion beside the WCAG invariant.
+
+**Done means.**
+
+- [ ] No bundle is named after a distribution; the id names the palette family.
+- [ ] Every bundle has a `group.family` and a `name`, `source` and `observed`
+      for each member, and `load_bundle` rejects one that does not.
+- [ ] Every derived member says so in a `note`, and a test fails when it does not.
+- [ ] `themes.css`, the per-book MkDocs configs and the landing page are
+      regenerated in the same commit, and `python -m pytest tests/ -q`
+      and `scripts/check.sh` are green.
+- [ ] The APCA check exists, is documented next to the WCAG thresholds, and its
+      threshold was chosen from what it found on the existing palettes rather
+      than picked in advance.
+
+---
+
+## 19. Declare the ready state
+
+**Not a change: the gate.** The site is ready to publish when items 2–12 are
+closed and their "done means" boxes are ticked, and not before — a checklist that
+is mostly ticked is a checklist that has not been done.
+
+Item 13 (content quality) is a rolling programme rather than a gate: the site can
+be ready while it continues. But a chapter is not *done* until it passes its own
+pedagogy audit.
 
 **Done means.**
 

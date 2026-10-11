@@ -13,6 +13,22 @@ extra:
   - gruvbox
   - clean
   default_theme: editorial
+  theme_info:
+    editorial:
+      title: Editorial
+      description: 'Warm paper, near-black ink, a serif display face. The calm default: built for long reading rather than
+        for looking at.'
+    omarchy:
+      title: Omarchy
+      description: Muted midnight and soft light, one confident accent, monospace labels. The desktop's calm-on-purpose palette,
+        for a technical feel that still reads.
+    gruvbox:
+      title: Gruvbox
+      description: 'Warm retro earth tones: low blue, high comfort, gently loud accents. A second palette from the same desktop
+        family.'
+    clean:
+      title: Clean
+      description: Black on white, one weight of grey, no hue at all. Maximum contrast and nothing to look at but the work.
 nav:
 - Home: index.md
 - Glossary:
@@ -466,6 +482,8 @@ nav:
     - Practise with help: Chapter 25/Section 25.4/Guided problems/index.md
     - Practise: Chapter 25/Section 25.4/Problems/index.md
   - Review: Chapter 25/Review/index.md
+- About this book: colophon.md
 extra_javascript:
+- assets/settings/settings.js
 - assets/booklet/booklet.js
 site_url: https://open-textbook.org/gcse-maths/foundation/

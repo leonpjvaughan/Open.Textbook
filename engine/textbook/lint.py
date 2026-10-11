@@ -86,6 +86,13 @@ INTERNAL_PHRASES = {
     r"\bretrieval starter\b": "Warm-up: remember",
     r"\bDelivers DfE\b[^\n]*": "(delete)",
     r"\bDfE refs?\b": "(delete)",
+    # Found by the 2026-10-11 pedagogy audit: five Chapter 16 Walkthroughs printed
+    # "**DfE coverage:** G3" to the reader. The refs already live in front matter
+    # (`dfe: [G3]`), so this line was a note to us, not to the reader.
+    r"\bDfE coverage\b[^\n]*": "(delete)",
+    # The page names are ours: the navigator and the prose both say "Practise with
+    # help". Four pages still used the internal name.
+    r"\bGuided problems\b": "Practise with help",
     r"\btier [FH]\b": "Foundation / Higher",
     r"\bscaffold\b": "(delete)",
     r"\bfront matter\b": "(delete)",
@@ -130,6 +137,21 @@ CHAPTER_REF = re.compile(r"\bChapter (\d+)\b")
 
 def known_sections(book: books.Book) -> set[str]:
     return {s["id"] for chapter in book.chapters for s in chapter["sections"]}
+
+
+def warm_up_block(text: str) -> str:
+    """The retrieval starter, normalised so two copies compare equal.
+
+    Used to catch a chapter whose sections share one warm-up. The 2026-10-11
+    pedagogy audit found that in eight chapters, and it is not a coincidence: P4
+    asks each section to retrieve the earlier material *that section* depends on,
+    so the same three questions five times measures the chapter rather than the
+    section, and the reader learns to skip it.
+    """
+    match = re.search(r"^## Warm-up: remember\n(.*?)(?=^## |\Z)", text, re.M | re.S)
+    if not match:
+        return ""
+    return re.sub(r"\s+", " ", match.group(1)).strip()
 
 
 # --- run ----------------------------------------------------------------------
@@ -225,6 +247,30 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
         if "/Problems/" in rel_posix:
             if ":::problems" not in text or ":::answers" not in text:
                 note("structure:problems-missing-markers", rel)
+
+    # A retrieval starter repeated across a chapter's sections is a copy-paste, not
+    # a design (P4). Advisory: it reports, and the content pass acts on it.
+    starters: dict[str, list[str]] = {}
+    for path in paths:
+        rel_posix = path.as_posix()
+        if "/Guided problems/" not in rel_posix:
+            continue
+        chapter = re.search(r"Chapter (\d+)/", rel_posix)
+        if not chapter:
+            continue
+        block = warm_up_block(path.read_text(encoding="utf-8"))
+        if block:
+            starters.setdefault(f"Chapter {chapter.group(1)}|{block}", []).append(
+                str(path.relative_to(ROOT))
+            )
+    for key, places in starters.items():
+        if len(places) > 1:
+            chapter = key.split("|", 1)[0]
+            note(
+                "structure:guided-warmup-repeated",
+                f"{chapter}: the same warm-up on {len(places)} sections "
+                f"({', '.join(sorted(places)[:3])}…)",
+            )
 
     # Cross-references must point at real sections and chapters.
     sections = known_sections(book)

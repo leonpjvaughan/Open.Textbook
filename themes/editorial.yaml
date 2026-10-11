@@ -34,11 +34,17 @@ light:
   accent: "#2f6690"
   accent_light: "#4a7fae"
   accent_dark: "#24506f"
+  # Text knocked out of the accent (the booklet bar). Not the paper: the paper
+  # is 4.99:1 on gruvbox's own light accent, below AA for text.
+  accent_ink: "#ffffff"
   link: "#23577d"
   code_bg: "#f2f0e9"
   fig_warn: "#a3402f"
-  fig_good: "#2f7d4f"
-  fig_grid: "#d8d5cb"
+  # Darkened from #2f7d4f: `fig_good` colours text as well as marks, so it is
+  # held to 4.5:1 on the figure panel. Caught by the contrast invariant.
+  fig_good: "#2c744a"
+  # Darkened from #d8d5cb for the 3:1 a gridline and axis needs.
+  fig_grid: "#85837d"
 dark:
   paper: "#171614"
   ink: "#e9e7e1"
@@ -48,8 +54,9 @@ dark:
   accent: "#6ea8d8"
   accent_light: "#8cc0e8"
   accent_dark: "#4a7fae"
+  accent_ink: "#171614"
   link: "#8cc0e8"
   code_bg: "#201f1c"
   fig_warn: "#e08a76"
   fig_good: "#7fc79b"
-  fig_grid: "#3a3833"
+  fig_grid: "#757166"

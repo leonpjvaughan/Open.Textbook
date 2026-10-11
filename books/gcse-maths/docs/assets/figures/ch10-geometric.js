@@ -6,7 +6,7 @@ export function mount(el) {
         <input class="factor" type="range" min="0.5" max="2" step="0.1" value="1.5">
       </label>
       <p class="factor-label" aria-live="polite"></p>
-      <ol class="terms"></ol>
+      <ol class="terms" role="img" aria-label="Five terms of a geometric sequence, each term found by multiplying the one before by the same number"></ol>
       <p class="text-accent">Start at 2, then multiply by the same number.</p>
     </div>`;
   const factor = el.querySelector(".factor");

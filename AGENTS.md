@@ -191,7 +191,10 @@ Nothing in a page, and nothing in a figure, may carry a colour.
 Bundles and subjects multiply, so a subject accent that is comfortable on one
 bundle's paper can be unreadable on another's. This is not left to review.
 `tests/test_themes.py` computes the WCAG ratio for every bundle × book × scheme
-and fails below **ink 7:1, link 4.5:1, accent 4.5:1**.
+    and fails below **ink 7:1, link 4.5:1, accent 4.5:1**, plus **`accent_ink`
+    4.5:1 on the accent** — text knocked out of the accent uses a dedicated
+    `accent_ink` token, never the paper, because a bundle's paper can sit too
+    close to its own accent to read.
 
 When a new bundle or a new book fails it, **fix the palette, not the threshold.**
 The check has already caught two stock Omarchy palettes — catppuccin-latte's own
