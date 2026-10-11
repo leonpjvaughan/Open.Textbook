@@ -243,9 +243,23 @@ def test_two_books_keep_separate_identities(tmp_path):
 
 
 def test_portal_groups_by_qualification():
+    """Every qualification a book declares gets its group heading.
+
+    The heading is the collection's display title for the qualification, which
+    is not always its id: `collection.yaml` declares
+    `{id: A-level, title: A level}`. Reading the id straight into the markup is
+    the bug this widened test protects against now that a second book exists.
+    """
     html = portal.render()
+    declared = {
+        q["id"]: q.get("title", q["id"])
+        for q in books.load_collection().get("qualifications", [])
+    }
     for qualification in {b.qualification for b in ALL}:
-        assert f'<h2 class="group__title">{qualification}</h2>' in html
+        title = declared.get(qualification, qualification)
+        assert f'<h2 class="group__title">{title}</h2>' in html, (
+            f"no group heading for {qualification!r} (expected {title!r})"
+        )
 
 
 def test_site_urls_are_unique():

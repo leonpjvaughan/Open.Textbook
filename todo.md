@@ -1510,7 +1510,7 @@ deployed, and verified against the live site rather than locally.
 
 ---
 
-## 27. A-level Mathematics — research done, book not started
+## 27. A-level Mathematics — scaffolded; booklet and verifier outstanding
 
 `research/curriculum/` holds the picture: the DfE subject content
 (`DFE-00706-2014`), how AQA 7357, Edexcel 9MA0 and OCR H240 split the subject
@@ -1533,8 +1533,32 @@ pretend: proof structure, "show that", method choice, graph work, modelling
 judgement, and critique of data or sampling. The verifier proves the algebra, not
 the argument.
 
-**Done means.** The book exists with a registered booklet and a curriculum plan,
-and the verifier is extended far enough that every bank CI can check passes.
+**Progress, 2026-10-11.** The book exists at `books/a-level-maths/`: 16 chapters,
+108 sections, all 88 DfE items mapped. `book.yaml` declares `qualification:
+A-level`, one `a-level` profile, an explicitly empty `tier_axis`, `oracles:
+[sympy]` and a violet subject tint; `curriculum.yaml`, `sources.yaml` and the
+book's `AGENTS.md` are in place. `python -m textbook.scaffold` generated the docs
+tree, `python -m textbook.portal` put a card on the landing page, and
+`python -m textbook.pipeline --book a-level-maths` built **362 pages** with no
+broken links and no maths errors.
+
+Engine changes landed so that a book with no tier axis can exist at all:
+
+- `tier` is now optional in the scaffold's page front matter — absent means the
+  page belongs to every reader of that book.
+- The scaffold's stub page names use the reader-facing vocabulary (Learn /
+  Practise with help / Practise), and "The chapter problem", not the internal
+  names.
+- The lint scan skips files still carrying `<!-- scaffold:stub -->`: a stub's
+  body is a note to the author, and the marker itself contains the word
+  `scaffold`.
+- The colophon names the **Formulae** booklet only when the book declares one.
+
+**Still open.** The booklet (item 32) and the verifier extension below.
+
+**Done means.** The book exists with a registered booklet — **or a declared
+absence plus item 32** — and a curriculum plan, and the verifier is extended far
+enough that every bank CI can check passes.
 
 ---
 
@@ -1701,3 +1725,79 @@ that is stale.
       root plus `assets/AGENTS.md`, with a mapping table per section.
 - [x] The one stale pointer outside the scope was fixed: `scripts/agent-prompt-1.md`
       sent a reader to `AGENTS.md → "Watch out for"`, which no longer exists there.
+
+---
+
+## 32. A-level Mathematics formulae booklet — retrieve each board's document
+
+`BOOKLETS.md` says A-level Mathematics has a formulae booklet plus a statistical
+tables section, and that a booklet must be built from the awarding body's own
+document. None has been retrieved, so `books/a-level-maths/book.yaml` declares no
+`booklet:` and the book ships no widget.
+
+**Evidence.** `research/sources/a-level-maths/` holds the AQA 7357, Edexcel 9MA0
+and OCR H240 **specifications**, not the exam-room formulae booklet. Their only
+formula lists are DfE Appendix B — the formulae a student must **recall**, which is
+the `know` group, not the sheet. `grep -in "formulae booklet\|formula booklet"
+research/sources/a-level-maths/*.txt` finds only the Appendix B references in the
+specifications and the DfE content. `books/a-level-maths/sources.yaml` therefore
+records no booklet URL.
+
+**Fix.** Retrieve each board's own A-level Mathematics formulae booklet (the
+document printed in the exam room), record it in `books/a-level-maths/sources.yaml`
+under `references` with a `url`, `retrieved` date and `role`, then write
+`books/a-level-maths/booklet/a-level-maths.yaml` against `BOOKLETS.md`, add
+`booklet:` to `book.yaml`, and run `python -m textbook.booklet a-level-maths`.
+
+**Done means.**
+
+- [ ] Each board's own booklet is recorded in `sources.yaml` with a retrieval date.
+- [ ] `book.yaml` declares `booklet:` and `python -m textbook.booklet` validates it.
+- [ ] Every item's `provision` traces to the retrieved document; nothing is invented.
+- [ ] The widget is checked board by board, and `scripts/check.sh` passes.
+
+---
+
+## 33. The colophon's attribution links are hard-coded to GCSE
+
+`scaffold.ATTRIBUTION_IDS` is a fixed tuple — `dfe`, `aqa-8300`, `edexcel-1ma1`,
+`ocr-j560`, `ofqual-formulae-2026` — so only the GCSE book's `sources.yaml`
+produces links on its About page. The A-level book uses `dfe-a-level`, `aqa-7357`,
+`edexcel-9ma0`, `ocr-h240`, none of which match, so its About page lists no source
+links at all. Nothing on the page is false — it still carries the retrieved date —
+but the provenance it rests on is not reachable from the page.
+
+**Evidence.** `uv run python -c "from textbook.book import book_by_id; from
+textbook.scaffold import _attribution_links;
+print(_attribution_links(book_by_id('a-level-maths')))"` prints `[]`, while the
+same call for `gcse-maths` prints five links.
+
+**Fix.** Derive the attribution from the book's own sources rather than a global
+id list. The allowlist exists to keep the page short; keep that intent with a
+per-reference tag (`attribution: true`) instead of matching ids.
+
+**Done means.**
+
+- [ ] The A-level About page links its DfE and board references.
+- [ ] The GCSE page is unchanged in substance.
+- [ ] A test covers a book whose board reference ids differ from GCSE's.
+
+---
+
+## 34. The scaffold does not create `problems/` for a new book
+
+`tests/test_collection.py::test_book_is_well_formed` requires `book.banks` to be a
+directory, but `scaffold.scaffold()` generates only `docs/` and the curriculum
+map. A new book therefore fails the shape test until someone creates `problems/`
+by hand; `books/a-level-maths/problems/.gitkeep` is standing in for that now.
+
+**Fix.** Have `scaffold.scaffold()` create the banks directory (with a `.gitkeep`,
+so a checkout keeps it) the way it creates the docs tree, so "one directory and
+one registration" is true of the scaffold too.
+
+**Done means.**
+
+- [ ] A directory with `book.yaml` and `curriculum.yaml` scaffolds to a tree whose
+      `banks` directory exists and is tracked.
+- [ ] `test_book_is_well_formed` passes without any hand-made directory.
+

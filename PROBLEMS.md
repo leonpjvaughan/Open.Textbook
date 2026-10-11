@@ -42,7 +42,8 @@ problems:
 ```
 
 `check.kind ∈ {evaluate, solve, compare, rounded, between, apply, statistic, all,
-system, inequality, vector, ode, approx, dimensions, convert, sigfigs,
+system, inequality, vector, ode, approx, distribution, hypothesis, correlation,
+regression, dimensions, convert, sigfigs,
 uncertainty, resolve, gradient, intercept, area, structured}`.
 `step_relation ∈ {equivalent, solutions, implies, apply}` (default `equivalent`).
 `all` wraps a list of sub-checks; `between` proves a value lies in an interval;
@@ -50,9 +51,12 @@ uncertainty, resolve, gradient, intercept, area, structured}`.
 names a CAS operation (`diff`, `integrate`, `subs`, `simplify`, ...); `statistic`
 computes an exact summary statistic; `system` solves simultaneous equations;
 `inequality` compares an inequality solution set; `vector` names a vector
-operation; `ode` proves a differential equation's solution by substitution; and
-`approx` proves a value is within an absolute or relative tolerance. The nine
-physics kinds are described under **Physics** below.
+operation; `ode` proves a differential equation's solution by substitution;
+`approx` proves a value is within an absolute or relative tolerance;
+`distribution` proves a named-distribution probability; `hypothesis` proves a
+p-value or critical region and the decision it implies; and `correlation` /
+`regression` prove Pearson's $r$ and a least-squares line. The nine physics kinds
+are described under **Physics** below.
 
 Every `check.kind` is owned by a **verification oracle**. The engine ships two —
 `sympy` for symbolic mathematics and `units` for physics quantities — and a book
@@ -179,11 +183,53 @@ computation, not SymPy solving:
 - probability and combinatorics use exact fractions (`binomial(5,2)/2**5 = 5/16`);
 - finite sample spaces can be **enumerated** and counted, which is a stronger
   oracle than re-applying a formula;
-- work exact arithmetic cannot reach (normal, Poisson, chi-squared) is deferred:
-  `DECISIONS.md` records `sympy.stats` with exact `erf` results plus the `approx`
-  tolerance check, not `scipy`;
+- work exact arithmetic cannot reach (normal, Poisson, chi-squared) is now
+  reached exactly through `sympy.stats`: `distribution` and `hypothesis` are
+  built on it, with exact `erf` results and the `approx` tolerance for a
+  decimal. `DECISIONS.md` records why there is no `scipy`;
 - **conventions must be declared**: quartiles and IQR differ between methods, so
   a statistic is only verifiable once the convention is named.
+
+### Distributions, hypothesis tests and fits
+
+Three kinds cover statistical distributions and bivariate data. All use exact
+arithmetic, and a normal answer is checked to the tolerance the record declares.
+
+- **`distribution`** names a distribution (`binomial` or `normal`), its
+  `parameters` (`n`, `p` or `mu`, `sigma`), a `query` and the `answer`. The query
+  kind is one of
+  - `exactly` — `P(X = k)`, the value in `value`;
+  - `at_most` — `P(X <= k)`, the value in `value`;
+  - `at_least` — `P(X >= k)`, the value in `value`;
+  - `between` — the closed interval `P(low <= X <= high)`.
+
+  A binomial answer is an exact fraction (`63/256`). A normal answer is an exact
+  `erf` expression, so a decimal needs a `tolerance`; without one the answer must
+  be written exactly. The named query and the exact tail are the whole check: a
+  right area on the wrong side fails.
+
+- **`hypothesis`** names the `distribution`, `parameters`, `tail`
+  (`left`, `right` or `two`), the `observed` test statistic, `alpha` and the
+  `decision`. It must also carry a `p_value`, a `critical_region`, or both.
+  The verifier computes the exact tail probability from the distribution and
+  tail, checks the declared `p_value` against it, and checks the `decision`
+  (`reject`, or `retain`/`accept`) against the exact p-value and `alpha`.
+  A `comparison` of `lt` (default: reject when $p < \alpha$) or `le` states the
+  boundary rule; when the exact p-value equals `alpha`, the record must state it
+  explicitly rather than lean on the default. `tail: two` is twice the smaller
+  one-sided tail, capped at 1.
+  A `critical_region` is `{max: c}`, `{min: c}` or both: the maximal level-`alpha`
+  rejection region with probability at most `alpha`. The kind proves the
+  arithmetic and the decision **given the stated distribution and tail**; it can
+  never prove that the test itself was the right one for the context.
+
+- **`correlation`** and **`regression`** take `x` and `y` data. `correlation`
+  checks Pearson's $r$ against `answer`; `regression` checks a least-squares line
+  whose `answer` names `gradient` and `intercept` (for $y = a + bx$). Both are
+  exact over rationals, so a surd answer is compared symbolically
+  (`sqrt(15)/5`). When a decimal answer is wanted, a `tolerance` makes the check
+  tolerant. This proves the least-squares line for the **given** data, not a
+  line drawn by eye.
 
 What remains unverifiable by a CAS: the **logic** of a proof (induction
 scaffolding, epsilon–delta), the **choice** of method, and prose reasoning. The
@@ -312,6 +358,10 @@ is the trap the booklet and the figures have both hit.
 | Numerical answer | `approx` | `Abs(value - target) <= tolerance` (absolute or relative) |
 | Named rewrite | `apply` | `limit`, `sum`, `series`, `rsolve`, `iterate`, `idiff`, ... |
 | Summary statistic | `statistic` | exact rational formula with a named convention |
+| Distribution probability | `distribution` | `sympy.stats` `Binomial`/`Normal`, `P`, exact (or `tolerance`) |
+| Hypothesis test | `hypothesis` | exact tail probability, p-value and decision at `alpha` |
+| Correlation | `correlation` | exact Pearson $r$ from the rational data |
+| Least-squares line | `regression` | exact intercept and gradient for the given data |
 
 Decimals are **rationalised** (`0.65 → 13/20`) before comparison so results are
 exact and `simplify` behaves. This is why the bank keeps units out of the CAS
@@ -321,7 +371,7 @@ form: `£`, `p` and `%` belong in `statement`, not in the expression.
 
 | Check kind | Oracle | Module |
 |---|---|---|
-| `all`, `evaluate`, `solve`, `compare`, `rounded`, `between`, `apply`, `statistic`, `system`, `inequality`, `vector`, `ode`, `approx` | `sympy` | `engine/textbook/verify/oracles/sympy.py` |
+| `all`, `evaluate`, `solve`, `compare`, `rounded`, `between`, `apply`, `statistic`, `system`, `inequality`, `vector`, `ode`, `approx`, `distribution`, `hypothesis`, `correlation`, `regression` | `sympy` | `engine/textbook/verify/oracles/sympy.py` |
 | `dimensions`, `convert`, `sigfigs`, `uncertainty`, `resolve`, `gradient`, `intercept`, `area`, `structured` | `units` | `engine/textbook/verify/oracles/units.py` |
 
 The table is `engine/textbook/verify/oracles/__init__.py → KIND_ORACLE`, and

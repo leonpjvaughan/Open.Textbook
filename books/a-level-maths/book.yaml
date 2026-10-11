@@ -1,0 +1,66 @@
+# Identity and build metadata for this book.
+#
+# Everything a build needs that is not the content itself. The scaffold reads
+# this to generate the docs tree and the book's tint; the portal reads it to build the landing
+# page card; the hooks read the paths through the build's config.
+
+id: a-level-maths
+title: A-level Mathematics
+qualification: A-level
+subject: Mathematics
+order: 2
+description: >-
+  A complete, interactive A-level Mathematics book for England, covering pure
+  mathematics, statistics and mechanics.
+
+boards: [AQA, Pearson Edexcel, OCR]
+
+# One build per profile. A-level has no tiers, so there is no Foundation/Higher
+# pair and no `tier_filter`: the single profile keeps every page. It is declared
+# as a profile anyway, because the pipeline, the portal and the build matrix are
+# all driven by `profiles` and a book with none is not a book they can build.
+profiles:
+  - id: a-level
+    name: A level
+    default: true
+
+# The tier axis for this book, for documentation and for the scaffold's stubs.
+#
+# Empty, and deliberately so: A-level Mathematics has no Foundation/Higher
+# distinction, so there is no F/H to label. Its sections carry no `tier`, every
+# page belongs to every reader, and the tier hook passes the build through
+# untouched. Compare the GCSE books, where this maps F and H to their
+# reader-facing labels.
+tier_axis: {}
+
+# Verification oracles the banks in this book may use.
+oracles: [sympy]
+
+# This book's own theme, one variation per colour scheme. Set only what makes
+# this book itself; everything else stays the house default in
+# assets/stylesheets/extra.css. `accent` also tints the book's landing-page card
+# in both schemes. Themable tokens: accent, accent_light, accent_dark,
+# accent_ink, paper, ink, ink_soft, rule, link, code_bg, fig_warn, fig_good, fig_grid.
+#
+# A violet, chosen to sit clear of GCSE Mathematics' blue so the two cards are
+# tellable apart. Measured against every bundle in both schemes; see
+# `contrast_problems` in engine/textbook/themes.py.
+theme:
+  light:
+    accent: "#633399"
+    accent_light: "#7b52b0"
+    accent_dark: "#4d2878"
+  dark:
+    accent: "#b594db"
+    accent_light: "#cbb3ea"
+    accent_dark: "#9371c4"
+
+# Paths, relative to this directory.
+curriculum: curriculum.yaml
+banks: problems
+sources: sources.yaml
+
+# No `booklet:` yet. A-level Mathematics has a formulae booklet, but the
+# awarding bodies' own documents have not been retrieved and checked, and a
+# booklet written from memory is worse than none. Declaring no booklet ships no
+# widget; see BOOKLETS.md and todo.md.

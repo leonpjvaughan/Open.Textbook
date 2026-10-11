@@ -161,21 +161,32 @@ def front_matter(**fields: object) -> str:
 
 
 def section_stub(chapter: dict, section: dict, kind: str) -> str:
+    # The reader-facing page name for each internal `kind`. The navigator
+    # (build_nav_list) already uses these names, and an authored page carries
+    # one in its title; a stub that used the internal name instead would put
+    # "Guided problems" in front of the reader, which the voice rules forbid.
     titles = {
-        "walkthrough": "Walkthrough",
-        "guided-problems": "Guided problems",
-        "problems": "Problems",
+        "walkthrough": "Learn",
+        "guided-problems": "Practise with help",
+        "problems": "Practise",
     }
-    fm = front_matter(
-        title=f"{section['id']} {section['title']} — {titles[kind]}",
-        chapter=chapter["id"],
-        chapter_title=chapter["title"],
-        section=section["id"],
-        section_title=section["title"],
-        tier=section["tier"],
-        dfe=section.get("dfe", []),
-        kind=kind,
-    )
+    # `tier` is optional. A book with a Foundation/Higher axis declares it on
+    # every section; a book with none (A-level) omits it, and a page that
+    # declares no tier belongs to every reader of that book. The field keeps its
+    # place in the front matter when it is present, so the two kinds of book
+    # produce the same shape for the keys they share.
+    fields: dict[str, object] = {
+        "title": f"{section['id']} {section['title']} — {titles[kind]}",
+        "chapter": chapter["id"],
+        "chapter_title": chapter["title"],
+        "section": section["id"],
+        "section_title": section["title"],
+    }
+    if section.get("tier"):
+        fields["tier"] = section["tier"]
+    fields["dfe"] = section.get("dfe", [])
+    fields["kind"] = kind
+    fm = front_matter(**fields)
     guidance = {
         "walkthrough": (
             "Teaching narrative and fully worked examples. At least one Tier-1 or "
@@ -191,12 +202,13 @@ def section_stub(chapter: dict, section: dict, kind: str) -> str:
             "collapsed block. Mark Higher-only questions explicitly."
         ),
     }
+    tier_note = f"Tier: **{section['tier']}** · " if section.get("tier") else ""
     return (
         f"{fm}\n"
         f"{STUB_MARKER}\n\n"
         f"# {section['id']} {section['title']} — {titles[kind]}\n\n"
-        f"> **Stub.** {guidance[kind]}>\n"
-        f"> Tier: **{section['tier']}** · DfE refs: "
+        f"> **Stub.** {guidance[kind]}\n"
+        f"> {tier_note}DfE refs: "
         f"{', '.join(section.get('dfe', [])) or '—'}\n"
     )
 
@@ -211,7 +223,9 @@ def chapter_stub(chapter: dict) -> str:
     lines.append(f"{chapter['summary']}\n")
     anchor = chapter.get("anchor")
     if anchor:
-        lines.append("## Anchor problem\n")
+        # The reader knows this as "the chapter problem"; "anchor problem" is
+        # our word for it and never reaches a page (see `textbook.lint`).
+        lines.append("## The chapter problem\n")
         lines.append(f"**{anchor['title']}.** {anchor['brief']}\n")
     if chapter.get("application"):
         lines.append(f"**Where it is used:** {chapter['application']}\n")
@@ -219,8 +233,9 @@ def chapter_stub(chapter: dict) -> str:
         lines.append(f"**Your turn to connect it:** {chapter['relevance_prompt']}\n")
     lines.append("## Sections\n")
     for s in chapter["sections"]:
+        tier = f"tier {s['tier']} · " if s.get("tier") else ""
         lines.append(
-            f"- **{s['id']} {s['title']}** — tier {s['tier']} · "
+            f"- **{s['id']} {s['title']}** — {tier}"
             f"DfE {', '.join(s.get('dfe', [])) or '—'}"
         )
     lines.append("")
@@ -235,14 +250,14 @@ def review_stub(chapter: dict) -> str:
     )
     anchor = chapter.get("anchor")
     anchor_line = (
-        f"Resolve the anchor problem — **{anchor['title']}** — now that every section "
+        f"Resolve the chapter problem — **{anchor['title']}** — now that every section "
         "is available.\n"
         if anchor
-        else "Resolve the chapter's anchor problem.\n"
+        else "Resolve the chapter problem.\n"
     )
     return (
         f"{fm}\n{STUB_MARKER}\n\n# Chapter {chapter['id']}: Review\n\n"
-        f"> **Stub.** {anchor_line}>\n"
+        f"> **Stub.** {anchor_line}"
         "> Then set interleaved mixed practice across this chapter and earlier "
         "chapters, with method-selection prompts (\u201cwhich method, and why?\u201d).\n"
     )
@@ -429,12 +444,13 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
             "The specification content, and any wording taken from a specification,",
             "belongs to the awarding bodies.",
         ]
-    lines += [
-        "",
-        "The formulae and tables in the **Formulae** booklet are the awarding",
-        "bodies' own sheets. Ofqual decides which material the boards must",
-        "provide.",
-    ]
+    if book.booklet_name:
+        lines += [
+            "",
+            "The formulae and tables in the **Formulae** booklet are the awarding",
+            "bodies' own sheets. Ofqual decides which material the boards must",
+            "provide.",
+        ]
     links = _attribution_links(book)
     if links:
         lines += [
@@ -482,11 +498,10 @@ def home_stub(book: Book, chapters: list[dict]) -> str:
     total_sections = sum(len(c["sections"]) for c in chapters)
     lines = [fm, f"{STUB_MARKER}\n", f"# {book.title}\n"]
     lines.append(f"{book.description}\n")
-    lines.append(
-        f"- {len(chapters)} chapters, {total_sections} sections\n"
-        f"- Tiers: {', '.join(book.tier_axis.values()) or '—'}\n"
-        f"- Awarding bodies: {', '.join(book.boards) or '—'}\n"
-    )
+    lines.append(f"- {len(chapters)} chapters, {total_sections} sections\n")
+    if book.tier_axis:
+        lines.append(f"- Tiers: {', '.join(book.tier_axis.values())}\n")
+    lines.append(f"- Awarding bodies: {', '.join(book.boards) or '—'}\n")
     lines.append("## Chapters\n")
     for c in chapters:
         lines.append(f"1. [Chapter {c['id']}: {c['title']}](Chapter {c['id']}/index.md)")
@@ -600,7 +615,7 @@ def build_nav_list(
     for c in chapters:
         children = [{"Overview": f"Chapter {c['id']}/index.md"}]
         for s in c["sections"]:
-            if not include_higher and s["tier"] == "H":
+            if not include_higher and s.get("tier") == "H":
                 continue
             base = f"Chapter {c['id']}/Section {s['id']}"
             children.append(

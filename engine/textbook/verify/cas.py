@@ -18,6 +18,7 @@ from sympy.parsing.sympy_parser import (
     standard_transformations,
 )
 from sympy.simplify.fu import fu as _fu
+from sympy.stats import Binomial, Normal, P as Probability
 
 TRANSFORMS = standard_transformations + (
     convert_xor,
@@ -678,3 +679,220 @@ def statistic(data: Iterable, name: str, convention: str | None = None, percenti
             raise ValueError("percentile needs a 'percentile' value")
         return quantile(values, sympy.Rational(percentile, 100), convention)
     raise ValueError(f"unknown statistic {name!r}")
+
+
+# --- distributions and hypothesis tests ---------------------------------------
+#
+# `sympy.stats` gives exact results: a binomial probability is a rational and a
+# normal one is an `erf`. A decimal is therefore never forced, and a normal
+# record declares the tolerance its answer is checked to (see DECISIONS.md:
+# no scipy). A named distribution, a named query and a named tail are all
+# required, because the same numbers mean different things without them.
+
+
+def make_distribution(name: str, parameters: dict, symbols: dict, variable: str = "X"):
+    """A `sympy.stats` distribution from a named distribution and its parameters."""
+    parameters = parameters or {}
+    name = str(name).lower()
+    if name == "binomial":
+        n = parse_expression(parameters["n"], symbols)
+        p = parse_expression(parameters["p"], symbols)
+        return Binomial(variable, n, p)
+    if name == "normal":
+        mu = parse_expression(parameters["mu"], symbols)
+        sigma = parse_expression(parameters["sigma"], symbols)
+        return Normal(variable, mu, sigma)
+    raise ValueError(f"unknown distribution {name!r}; use binomial or normal")
+
+
+QUERY_KINDS = ("exactly", "at_most", "at_least", "between")
+
+
+def distribution_probability(distribution, query: dict, symbols: dict):
+    """The exact probability of a named query on a distribution.
+
+    The four query kinds are `exactly` (`P(X = k)`), `at_most` (`P(X <= k)`),
+    `at_least` (`P(X >= k)`) and `between` (the closed interval
+    `P(a <= X <= b)`). The answer is exact: a rational for a binomial and an
+    `erf` expression for a normal.
+    """
+    if not isinstance(query, dict):
+        raise ValueError("query must be a mapping that names its kind")
+    kind = str(query.get("kind", "")).lower()
+    if kind == "exactly":
+        value = parse_expression(query["value"], symbols)
+        return Probability(Eq(distribution, value))
+    if kind == "at_most":
+        value = parse_expression(query["value"], symbols)
+        return Probability(sympy.Le(distribution, value))
+    if kind == "at_least":
+        value = parse_expression(query["value"], symbols)
+        return Probability(sympy.Ge(distribution, value))
+    if kind == "between":
+        low = parse_expression(query["low"], symbols)
+        high = parse_expression(query["high"], symbols)
+        return Probability(sympy.And(sympy.Ge(distribution, low), sympy.Le(distribution, high)))
+    raise ValueError(f"unknown query kind {kind!r}; use one of {', '.join(QUERY_KINDS)}")
+
+
+def tail_probability(distribution, tail: str, observed, symbols: dict):
+    """The exact tail probability of an observed value.
+
+    `left` is `P(X <= observed)`, `right` is `P(X >= observed)`. `two` is twice
+    the smaller one-sided tail, capped at 1 — the A-level two-tailed convention,
+    stated here so the record does not have to guess it.
+    """
+    observed = parse_expression(observed, symbols)
+    tail = str(tail).lower()
+    if tail == "left":
+        return Probability(sympy.Le(distribution, observed))
+    if tail == "right":
+        return Probability(sympy.Ge(distribution, observed))
+    if tail == "two":
+        left = Probability(sympy.Le(distribution, observed))
+        right = Probability(sympy.Ge(distribution, observed))
+        return sympy.Min(2 * sympy.Min(left, right), 1)
+    raise ValueError(f"unknown tail {tail!r}; use left, right or two")
+
+
+def _binomial_critical_region(n: int, p, tail: str, alpha):
+    distribution = Binomial("X", n, p)
+
+    def cumulative(k):
+        return sympy.simplify(Probability(sympy.Le(distribution, k)))
+
+    def largest_below(limit):
+        chosen = None
+        for k in range(0, n + 1):
+            if cumulative(k) <= limit:
+                chosen = k
+        return chosen
+
+    def smallest_above(limit):
+        chosen = None
+        for k in range(n, -1, -1):
+            if 1 - cumulative(k - 1) <= limit:  # P(X >= k)
+                chosen = k
+        return chosen
+
+    if tail == "left":
+        chosen = largest_below(alpha)
+        return {} if chosen is None else {"max": sympy.Integer(chosen)}
+    if tail == "right":
+        chosen = smallest_above(alpha)
+        return {} if chosen is None else {"min": sympy.Integer(chosen)}
+    if tail == "two":
+        half = alpha / 2
+        region = {}
+        low = largest_below(half)
+        high = smallest_above(half)
+        if low is not None:
+            region["max"] = sympy.Integer(low)
+        if high is not None:
+            region["min"] = sympy.Integer(high)
+        return region
+    raise ValueError(f"unknown tail {tail!r}; use left, right or two")
+
+
+def _normal_critical_region(mu, sigma, tail: str, alpha):
+    root_two = sympy.sqrt(2)
+    if tail == "left":
+        return {"max": mu + sigma * root_two * sympy.erfinv(2 * alpha - 1)}
+    if tail == "right":
+        return {"min": mu + sigma * root_two * sympy.erfinv(1 - 2 * alpha)}
+    if tail == "two":
+        return {
+            "max": mu + sigma * root_two * sympy.erfinv(alpha - 1),
+            "min": mu + sigma * root_two * sympy.erfinv(1 - alpha),
+        }
+    raise ValueError(f"unknown tail {tail!r}; use left, right or two")
+
+
+def critical_region(name: str, parameters: dict, tail: str, alpha, symbols: dict):
+    """The maximal level-`alpha` rejection region for a named tail.
+
+    A left region is ``{max: c}`` meaning ``X <= c``; a right one is
+    ``{min: c}`` meaning ``X >= c``; a two-tailed one names both boundaries.
+    For a discrete binomial the region is the largest set of extreme outcomes
+    whose probability is at most `alpha`; for a normal it is the exact quantile.
+    """
+    alpha = parse_expression(alpha, symbols)
+    name = str(name).lower()
+    if name == "binomial":
+        n = int(parse_expression(parameters["n"], symbols))
+        p = parse_expression(parameters["p"], symbols)
+        return _binomial_critical_region(n, p, str(tail).lower(), alpha)
+    if name == "normal":
+        mu = parse_expression(parameters["mu"], symbols)
+        sigma = parse_expression(parameters["sigma"], symbols)
+        return _normal_critical_region(mu, sigma, str(tail).lower(), alpha)
+    raise ValueError(f"unknown distribution {name!r}; use binomial or normal")
+
+
+def probability_below(value, target, or_equal: bool = False) -> bool:
+    """True when `value` is (at most) `target`, exactly or by evaluation.
+
+    A rational comparison stays exact; an `erf` expression falls back to
+    `evalf`, which is only ever used to decide a significance comparison, where
+    the precision is orders of magnitude below the gap to a stated `alpha`.
+    """
+    difference = sympy.simplify(value - target)
+    relation = sympy.Le(difference, 0) if or_equal else sympy.Lt(difference, 0)
+    if relation == S.true:
+        return True
+    if relation == S.false:
+        return False
+    numeric = difference.evalf()
+    if numeric.is_real is False:
+        raise ValueError(f"cannot compare {value} with {target}")
+    return bool(numeric <= 0) if or_equal else bool(numeric < 0)
+
+
+def _parse_data(values, symbols):
+    return [parse_expression(value, symbols) for value in values]
+
+
+def pearson_r(xs, ys):
+    """Pearson's product-moment correlation coefficient, exact over rationals."""
+    n = len(xs)
+    if n != len(ys):
+        raise ValueError("correlation needs equally many x and y values")
+    if n < 2:
+        raise ValueError("correlation needs at least two pairs")
+    sum_x = sum(xs)
+    sum_y = sum(ys)
+    sum_xx = sum(value * value for value in xs)
+    sum_yy = sum(value * value for value in ys)
+    sum_xy = sum(a * b for a, b in zip(xs, ys))
+    numerator = n * sum_xy - sum_x * sum_y
+    denominator = sympy.sqrt((n * sum_xx - sum_x**2) * (n * sum_yy - sum_y**2))
+    if denominator == 0:
+        raise ValueError("correlation is undefined when a variable is constant")
+    return sympy.simplify(numerator / denominator)
+
+
+def least_squares(xs, ys):
+    """The least-squares line `y = a + b x`; returns `(intercept, gradient)`."""
+    n = len(xs)
+    if n != len(ys):
+        raise ValueError("regression needs equally many x and y values")
+    if n < 2:
+        raise ValueError("regression needs at least two pairs")
+    sum_x = sum(xs)
+    sum_y = sum(ys)
+    sum_xx = sum(value * value for value in xs)
+    sum_xy = sum(a * b for a, b in zip(xs, ys))
+    spread = n * sum_xx - sum_x**2
+    if spread == 0:
+        raise ValueError("regression is undefined when x is constant")
+    gradient = sympy.simplify((n * sum_xy - sum_x * sum_y) / spread)
+    intercept = sympy.simplify((sum_y - gradient * sum_x) / n)
+    return intercept, gradient
+
+
+def correlation(x_values, y_values, symbols: dict):
+    return pearson_r(_parse_data(x_values, symbols), _parse_data(y_values, symbols))
+
+
+def regression(x_values, y_values, symbols: dict):
+    return least_squares(_parse_data(x_values, symbols), _parse_data(y_values, symbols))

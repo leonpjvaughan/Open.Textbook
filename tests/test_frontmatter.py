@@ -159,7 +159,7 @@ def test_every_page_declares_the_tier_its_curriculum_gives_it():
                 for page in sorted(folder.glob("*/index.md")):
                     meta, _ = frontmatter.read(page)
                     declared = meta.get("tier")
-                    if declared != section["tier"]:
+                    if declared != section.get("tier"):
                         disagreements.append(
                             (section["id"], page.relative_to(book.docs).as_posix(), declared)
                         )
@@ -182,6 +182,6 @@ def test_higher_only_sections_are_marked_in_their_pages():
         for book in BOOKS
         for chapter in book.chapters
         for section in chapter["sections"]
-        if section["tier"] == "H"
+        if section.get("tier") == "H"
     ]
     assert higher, "expected at least one Higher-only section, or the filter is untested"

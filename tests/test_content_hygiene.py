@@ -41,6 +41,45 @@ def test_no_internal_words_reach_the_reader():
     )
 
 
+def test_the_gate_still_fires_on_an_authored_page(tmp_path, monkeypatch):
+    """The stub skip must not swallow a real violation.
+
+    The linter skips a page that still carries ``<!-- scaffold:stub -->``: a
+    stub's body is a note to the author, and the marker itself contains the
+    word ``scaffold``. That skip is only sound while an authored page is still
+    gated, so this pins both halves — a page without the marker that says
+    "Guided problems" fails, and the same page with the marker does not.
+    """
+    from textbook.book import Book
+
+    (tmp_path / "curriculum.yaml").write_text("chapters: []\n", encoding="utf-8")
+    docs = tmp_path / "docs"
+    docs.mkdir()
+    (docs / "authored.md").write_text(
+        "# Page\n\nSee the Guided problems page.\n", encoding="utf-8"
+    )
+    (docs / "stub.md").write_text(
+        "<!-- scaffold:stub -->\n\n# Page\n\nSee the Guided problems page.\n",
+        encoding="utf-8",
+    )
+    book = Book(
+        id="fixture",
+        title="Fixture",
+        qualification="GCSE",
+        subject="Mathematics",
+        description="",
+        root=tmp_path,
+    )
+    monkeypatch.setattr(lint, "ROOT", tmp_path)
+
+    findings: Counter = Counter()
+    examples: dict[str, list[str]] = {}
+    lint.lint(book, fix=False, findings=findings, examples=examples)
+
+    assert findings["voice:internal"] == 1
+    assert "authored.md" in examples["voice:internal"][0]
+
+
 @pytest.mark.parametrize(
     "phrase",
     [

@@ -1,0 +1,285 @@
+# A-level Mathematics (England) — chapter and section plan
+#
+# Source of truth for the docs tree and for the scaffold. Copied from
+# research/curriculum/a-level-maths-curriculum.draft.yaml once the book existed;
+# from here on this file is the one the build reads, and research/ is only the
+# evidence behind it.
+#
+# Shape follows books/gcse-maths/curriculum.yaml, with one structural
+# difference — the TIER STORY: A-level has no Foundation/Higher axis. The
+# chapters are a single body of content, so:
+#   book.yaml → tier_axis: {}        (empty; there is no F/H distinction)
+#   book.yaml → profiles: one entry   (a single build; no tier_filter)
+#   section `tier:` is omitted everywhere.
+# `tier` is optional in the curriculum schema for exactly this case: a book
+# with no tier axis omits it, and a section that declares no tier belongs to
+# every reader of that book.
+# The real progression axis is AS (Year 1) versus the full A level (Year 2), so
+# each section carries `year: 1|2` as a planning aid. `year` is ours; the
+# scaffold does not read it, and it is kept because it is the only record of
+# which year a section belongs to.
+#
+# dfe: reference into the DfE subject content "Mathematics: AS and A level
+#      content" (DFE-00706-2014), by strand letter + item number:
+#      A Proof, B Algebra and functions, C Coordinate geometry in the (x,y)
+#      plane, D Sequences and series, E Trigonometry, F Exponentials and
+#      logarithms, G Differentiation, H Integration, I Numerical methods,
+#      J Vectors, K Statistical sampling, L Data presentation and
+#      interpretation, M Probability, N Statistical distributions,
+#      O Statistical hypothesis testing, P Quantities and units in mechanics,
+#      Q Kinematics, R Forces and Newton's laws, S Moments.
+#      The same labels are used by AQA 7357 and understood by OCR H240 and
+#      Pearson Edexcel 9MA0. See research/curriculum/a-level-maths.md.
+#
+# Anchors, learner-constructed relevance prompts and guided investigations are
+# per-chapter authoring decisions (AGENTS.md: anchor thread + one relevance
+# prompt + guided investigation(s) per chapter) and are deliberately not fixed
+# here; this file fixes coverage and sequence.
+
+meta:
+  title: A-level Mathematics
+  jurisdiction: England
+  awarding_bodies: [AQA 7357, Pearson Edexcel 9MA0, OCR H240]
+  tiers: []                      # A-level has no tier axis; see the tier story above
+  years: [AS/Year 1, A level/Year 2]
+  retrieved: 2026-10-11
+  note: >-
+    Papers differ by board (AQA: Pure / Pure+Mechanics / Pure+Statistics;
+    Edexcel: Pure / Pure / Statistics+Mechanics; OCR: Pure / Pure+Statistics /
+    Pure+Mechanics) but the content is common DfE content, so the chapter
+    sequence is board-neutral. The Large Data Set is board-specific and OCR's is
+    the only one named by a reachable primary source; statistics chapters should
+    stay LDS-agnostic until AQA's and Edexcel's are sourced.
+
+# Coverage: the item ranges the scaffold checks and maps to sections.
+# Each group is a DfE strand letter, its area, and its item count.
+coverage:
+  - {prefix: A, strand: pure, items: 1}
+  - {prefix: B, strand: pure, items: 11}
+  - {prefix: C, strand: pure, items: 4}
+  - {prefix: D, strand: pure, items: 6}
+  - {prefix: E, strand: pure, items: 9}
+  - {prefix: F, strand: pure, items: 7}
+  - {prefix: G, strand: pure, items: 6}
+  - {prefix: H, strand: pure, items: 8}
+  - {prefix: I, strand: pure, items: 4}
+  - {prefix: J, strand: pure, items: 5}
+  - {prefix: K, strand: statistics, items: 1}
+  - {prefix: L, strand: statistics, items: 4}
+  - {prefix: M, strand: statistics, items: 3}
+  - {prefix: N, strand: statistics, items: 3}
+  - {prefix: O, strand: statistics, items: 3}
+  - {prefix: P, strand: mechanics, items: 1}
+  - {prefix: Q, strand: mechanics, items: 5}
+  - {prefix: R, strand: mechanics, items: 6}
+  - {prefix: S, strand: mechanics, items: 1}
+
+strands:
+  - {id: pure, title: Pure Mathematics}
+  - {id: statistics, title: Statistics}
+  - {id: mechanics, title: Mechanics}
+
+chapters:
+  - id: 1
+    title: Proof and mathematical argument
+    strand: pure
+    summary: The structure of a proof, and the four methods the content names — deduction, exhaustion, counter example and contradiction.
+    sections:
+      - {id: "1.1", title: "Statements, assumptions and the structure of a proof", year: 1, dfe: [A1, OT1]}
+      - {id: "1.2", title: "Proof by deduction", year: 1, dfe: [A1]}
+      - {id: "1.3", title: "Proof by exhaustion", year: 1, dfe: [A1]}
+      - {id: "1.4", title: "Disproof by counter example", year: 1, dfe: [A1]}
+      - {id: "1.5", title: "Proof by contradiction", year: 2, dfe: [A1]}
+
+  - id: 2
+    title: Algebra and functions
+    strand: pure
+    summary: Indices and surds, quadratics, simultaneous equations, inequalities, polynomials and the factor theorem, rational expressions and partial fractions, functions and graph transformations.
+    sections:
+      - {id: "2.1", title: "Laws of indices for rational exponents", year: 1, dfe: [B1]}
+      - {id: "2.2", title: "Surds and rationalising the denominator", year: 1, dfe: [B2]}
+      - {id: "2.3", title: "Quadratic functions, the discriminant and completing the square", year: 1, dfe: [B3]}
+      - {id: "2.4", title: "Solving quadratic equations, including in a function of the unknown", year: 1, dfe: [B3]}
+      - {id: "2.5", title: "Simultaneous equations by elimination and substitution", year: 1, dfe: [B4]}
+      - {id: "2.6", title: "Linear and quadratic inequalities, and set notation", year: 1, dfe: [B5]}
+      - {id: "2.7", title: "Polynomials, the factor theorem and algebraic division", year: 1, dfe: [B6]}
+      - {id: "2.8", title: "Rational expressions and partial fractions", year: 2, dfe: [B6, B10]}
+      - {id: "2.9", title: "Graphs, the modulus function, asymptotes and intersections", year: 1, dfe: [B7]}
+      - {id: "2.10", title: "Composite and inverse functions", year: 1, dfe: [B8, OT1]}
+      - {id: "2.11", title: "Transformations of graphs", year: 1, dfe: [B9]}
+      - {id: "2.12", title: "Functions in modelling: limitations and refinements", year: 2, dfe: [B11, OT3]}
+
+  - id: 3
+    title: Coordinate geometry
+    strand: pure
+    summary: Straight lines and gradients, the coordinate geometry of the circle, and parametric equations and their conversion to Cartesian form.
+    sections:
+      - {id: "3.1", title: "Straight lines, gradients and straight-line models", year: 1, dfe: [C1]}
+      - {id: "3.2", title: "Parallel and perpendicular lines", year: 1, dfe: [C1]}
+      - {id: "3.3", title: "The equation of a circle and its properties", year: 2, dfe: [C2]}
+      - {id: "3.4", title: "Parametric equations and Cartesian conversion", year: 2, dfe: [C3]}
+      - {id: "3.5", title: "Parametric equations in modelling", year: 2, dfe: [C4, OT3]}
+
+  - id: 4
+    title: Sequences and series
+    strand: pure
+    summary: The binomial expansion, sequences defined by a formula or recurrence, sigma notation, and arithmetic and geometric series.
+    sections:
+      - {id: "4.1", title: "Binomial expansion for positive integer n; n! and nCr", year: 1, dfe: [D1]}
+      - {id: "4.2", title: "Binomial expansion for rational n and approximation", year: 2, dfe: [D1]}
+      - {id: "4.3", title: "Sequences from formulae and recurrences", year: 1, dfe: [D2]}
+      - {id: "4.4", title: "Sigma notation for sums", year: 2, dfe: [D3]}
+      - {id: "4.5", title: "Arithmetic sequences and series", year: 1, dfe: [D4]}
+      - {id: "4.6", title: "Geometric sequences and series, and the sum to infinity", year: 2, dfe: [D5]}
+      - {id: "4.7", title: "Sequences and series in modelling", year: 2, dfe: [D6, OT3]}
+
+  - id: 5
+    title: Trigonometry
+    strand: pure
+    summary: The sine and cosine rules and area, radians, trigonometric graphs and identities, addition and double-angle formulae, the R-form, and trigonometric equations and proofs.
+    sections:
+      - {id: "5.1", title: "The sine and cosine rules and the area of a triangle", year: 1, dfe: [E1]}
+      - {id: "5.2", title: "Radian measure, arc length and sector area", year: 1, dfe: [E1]}
+      - {id: "5.3", title: "The sine, cosine and tangent functions: graphs and periodicity", year: 1, dfe: [E3]}
+      - {id: "5.4", title: "Exact trigonometric values", year: 1, dfe: [E3]}
+      - {id: "5.5", title: "Small-angle approximations", year: 2, dfe: [E2]}
+      - {id: "5.6", title: "Secant, cosecant, cotangent and the inverse trigonometric functions", year: 2, dfe: [E4]}
+      - {id: "5.7", title: "Trigonometric identities", year: 1, dfe: [E5]}
+      - {id: "5.8", title: "Addition and double-angle formulae", year: 2, dfe: [E6]}
+      - {id: "5.9", title: "The forms r cos(theta +/- alpha) and r sin(theta +/- alpha)", year: 2, dfe: [E6]}
+      - {id: "5.10", title: "Solving trigonometric equations in an interval", year: 1, dfe: [E7]}
+      - {id: "5.11", title: "Proofs with trigonometric functions and identities", year: 2, dfe: [E8]}
+      - {id: "5.12", title: "Trigonometry in context: vectors, kinematics and forces", year: 2, dfe: [E9, OT3]}
+
+  - id: 6
+    title: Exponentials and logarithms
+    strand: pure
+    summary: Exponential functions and e, logarithms and their laws, solving exponential equations, logarithmic graphs, and growth and decay models.
+    sections:
+      - {id: "6.1", title: "The functions a^x and e^x", year: 1, dfe: [F1]}
+      - {id: "6.2", title: "The gradient of e^kx and the exponential model", year: 1, dfe: [F2, G2]}
+      - {id: "6.3", title: "Logarithms and the laws of logarithms", year: 1, dfe: [F3, F4]}
+      - {id: "6.4", title: "Solving equations of the form a^x = b", year: 1, dfe: [F5]}
+      - {id: "6.5", title: "Logarithmic graphs and estimating parameters", year: 2, dfe: [F6]}
+      - {id: "6.6", title: "Exponential growth and decay in modelling", year: 1, dfe: [F7, OT3]}
+
+  - id: 7
+    title: Differentiation
+    strand: pure
+    summary: The derivative as a gradient and a rate of change, standard derivatives, stationary points and the second derivative, the product/quotient/chain rules, implicit and parametric differentiation, and forming differential equations.
+    sections:
+      - {id: "7.1", title: "The derivative as a gradient and a rate of change", year: 1, dfe: [G1]}
+      - {id: "7.2", title: "Differentiation from first principles", year: 1, dfe: [G1]}
+      - {id: "7.3", title: "Differentiating x^n, e^kx, a^kx, sin kx, cos kx, tan kx and ln x", year: 1, dfe: [G2]}
+      - {id: "7.4", title: "The second derivative, convexity and points of inflection", year: 2, dfe: [G1]}
+      - {id: "7.5", title: "Tangents, normals, maxima, minima and stationary points", year: 1, dfe: [G3]}
+      - {id: "7.6", title: "Increasing and decreasing functions", year: 1, dfe: [G3]}
+      - {id: "7.7", title: "The product, quotient and chain rules", year: 2, dfe: [G4]}
+      - {id: "7.8", title: "Connected rates of change and inverse functions", year: 2, dfe: [G4]}
+      - {id: "7.9", title: "Implicit and parametric differentiation", year: 2, dfe: [G5]}
+      - {id: "7.10", title: "Constructing differential equations", year: 2, dfe: [G6, OT3]}
+
+  - id: 8
+    title: Integration
+    strand: pure
+    summary: The Fundamental Theorem of Calculus, standard integrals, definite integrals and areas, integration as a limit of a sum, substitution, by parts, partial fractions, and separable differential equations.
+    sections:
+      - {id: "8.1", title: "The Fundamental Theorem of Calculus and standard integrals", year: 1, dfe: [H1, H2]}
+      - {id: "8.2", title: "Definite integrals and the area under a curve", year: 1, dfe: [H3]}
+      - {id: "8.3", title: "The area between two curves", year: 2, dfe: [H3]}
+      - {id: "8.4", title: "Integration as the limit of a sum", year: 2, dfe: [H4]}
+      - {id: "8.5", title: "Integration by substitution and by parts", year: 2, dfe: [H5]}
+      - {id: "8.6", title: "Integrating with partial fractions", year: 2, dfe: [H6]}
+      - {id: "8.7", title: "Separable first-order differential equations", year: 2, dfe: [H7]}
+      - {id: "8.8", title: "Interpreting differential-equation solutions in context", year: 2, dfe: [H8, OT3]}
+
+  - id: 9
+    title: Numerical methods
+    strand: pure
+    summary: Change of sign, iterative methods and Newton–Raphson, the trapezium rule and its bounds, and numerical methods in context.
+    sections:
+      - {id: "9.1", title: "Locating roots by change of sign", year: 2, dfe: [I1]}
+      - {id: "9.2", title: "Simple iterative methods, cobweb and staircase diagrams", year: 2, dfe: [I2]}
+      - {id: "9.3", title: "Newton–Raphson and other recurrence relations", year: 2, dfe: [I2]}
+      - {id: "9.4", title: "The trapezium rule and limits on the estimate", year: 2, dfe: [I3]}
+      - {id: "9.5", title: "Numerical methods in context", year: 2, dfe: [I4, OT2]}
+
+  - id: 10
+    title: Vectors
+    strand: pure
+    summary: Vectors in two and three dimensions, magnitude and direction, vector arithmetic and position vectors, and vectors in geometry, forces and kinematics.
+    sections:
+      - {id: "10.1", title: "Vectors in two and three dimensions", year: 1, dfe: [J1]}
+      - {id: "10.2", title: "Magnitude and direction; component and magnitude/direction form", year: 1, dfe: [J2]}
+      - {id: "10.3", title: "Vector addition and scalar multiplication", year: 1, dfe: [J3]}
+      - {id: "10.4", title: "Position vectors and the distance between two points", year: 1, dfe: [J4]}
+      - {id: "10.5", title: "Vectors in pure mathematics and in context", year: 2, dfe: [J5, OT2]}
+
+  - id: 11
+    title: Statistical sampling and data presentation
+    strand: statistics
+    summary: Population and sample, sampling techniques and their critique, diagrams including the histogram, scatter diagrams and correlation, measures of central tendency and variation, outliers and data cleaning.
+    sections:
+      - {id: "11.1", title: "Population, sample and informal inference", year: 1, dfe: [K1]}
+      - {id: "11.2", title: "Sampling techniques and their critique", year: 1, dfe: [K1]}
+      - {id: "11.3", title: "Diagrams for single-variable data and the histogram", year: 1, dfe: [L1]}
+      - {id: "11.4", title: "Scatter diagrams, regression lines and correlation", year: 1, dfe: [L2]}
+      - {id: "11.5", title: "Measures of central tendency and variation, including standard deviation", year: 1, dfe: [L3]}
+      - {id: "11.6", title: "Outliers, data cleaning and critiquing presentation", year: 1, dfe: [L4]}
+      - {id: "11.7", title: "Working with the large data set", year: 1, dfe: [K1, L1, L2, L3, L4]}
+
+  - id: 12
+    title: Probability
+    strand: statistics
+    summary: Mutually exclusive and independent events, conditional probability with trees, Venn diagrams and two-way tables, and modelling with probability.
+    sections:
+      - {id: "12.1", title: "Mutually exclusive and independent events", year: 1, dfe: [M1]}
+      - {id: "12.2", title: "Conditional probability and the conditional probability formula", year: 2, dfe: [M2]}
+      - {id: "12.3", title: "Modelling with probability and critiquing assumptions", year: 2, dfe: [M3, OT3]}
+
+  - id: 13
+    title: Statistical distributions
+    strand: statistics
+    summary: Discrete distributions and the binomial model, the Normal distribution as a model, and choosing an appropriate distribution with reasoning.
+    sections:
+      - {id: "13.1", title: "Discrete probability distributions and the binomial distribution", year: 1, dfe: [N1]}
+      - {id: "13.2", title: "Calculating binomial probabilities", year: 1, dfe: [N1]}
+      - {id: "13.3", title: "The Normal distribution as a model", year: 2, dfe: [N2]}
+      - {id: "13.4", title: "Links to the binomial, histograms and points of inflection", year: 2, dfe: [N2]}
+      - {id: "13.5", title: "Selecting an appropriate distribution", year: 2, dfe: [N3, OT2]}
+
+  - id: 14
+    title: Statistical hypothesis testing
+    strand: statistics
+    summary: The language of hypothesis testing, binomial tests for a proportion, Normal tests for a mean, and correlation coefficients.
+    sections:
+      - {id: "14.1", title: "The language of hypothesis testing", year: 1, dfe: [O1]}
+      - {id: "14.2", title: "Binomial tests for a proportion, one- and two-tailed", year: 1, dfe: [O1, O2]}
+      - {id: "14.3", title: "Normal tests for a mean and the significance level", year: 2, dfe: [O3]}
+      - {id: "14.4", title: "Interpreting correlation coefficients with p-values and critical values", year: 2, dfe: [O1]}
+
+  - id: 15
+    title: Quantities, units and kinematics
+    strand: mechanics
+    summary: SI and derived units, the language and graphs of kinematics, the constant-acceleration formulae, calculus in kinematics, and projectiles.
+    sections:
+      - {id: "15.1", title: "Fundamental and derived SI quantities and units", year: 1, dfe: [P1]}
+      - {id: "15.2", title: "The language of kinematics", year: 1, dfe: [Q1]}
+      - {id: "15.3", title: "Displacement–time and velocity–time graphs", year: 1, dfe: [Q2]}
+      - {id: "15.4", title: "The constant-acceleration formulae", year: 1, dfe: [Q3]}
+      - {id: "15.5", title: "Calculus in kinematics", year: 2, dfe: [Q4]}
+      - {id: "15.6", title: "Motion under gravity and projectiles using vectors", year: 2, dfe: [Q5, J5]}
+
+  - id: 16
+    title: Forces, Newton's laws and moments
+    strand: mechanics
+    summary: Force and Newton's laws, weight and gravity, equilibrium and connected particles, resultant forces and motion in a plane, friction, and moments.
+    sections:
+      - {id: "16.1", title: "Force and Newton's first law", year: 1, dfe: [R1]}
+      - {id: "16.2", title: "Newton's second law and F = ma", year: 1, dfe: [R2]}
+      - {id: "16.3", title: "Weight and motion under gravity", year: 1, dfe: [R3]}
+      - {id: "16.4", title: "Newton's third law, equilibrium and connected particles", year: 2, dfe: [R4]}
+      - {id: "16.5", title: "Resolving forces and coplanar equilibrium", year: 2, dfe: [R4]}
+      - {id: "16.6", title: "Resultant forces and dynamics in a plane", year: 2, dfe: [R5]}
+      - {id: "16.7", title: "Friction and the F <= mu R model", year: 2, dfe: [R6]}
+      - {id: "16.8", title: "Moments in static contexts", year: 2, dfe: [S1]}

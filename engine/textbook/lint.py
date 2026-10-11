@@ -21,6 +21,7 @@ from pathlib import Path
 
 from . import book as books
 from . import frontmatter
+from .scaffold import STUB_MARKER
 
 ROOT = books.repo_root()
 
@@ -183,6 +184,16 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
     paths = sorted(docs.rglob("*.md"))
     for path in paths:
         text = path.read_text(encoding="utf-8")
+        # A scaffold stub is not reader content. It carries the marker the
+        # generator uses to rewrite it, and its body is a note to the author
+        # (which page kind it is, what to write). Linting it reports the
+        # internal words and missing sections a stub is *supposed* to have, and
+        # that noise hides the findings on authored pages, which is what this
+        # scan is for. The marker also cannot survive into authored content:
+        # `scaffold.emit` rewrites any file that still carries it, and
+        # books/AGENTS.md forbids it on an authored page.
+        if STUB_MARKER in text:
+            continue
         original = text
         if fix:
             text = fix_text(text)

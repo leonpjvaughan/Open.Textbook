@@ -258,6 +258,145 @@ def check_between(check, symbols, report, dispatch):
         )
 
 
+def _declared_matches(actual, declared, tolerance, symbols):
+    """True when a computed value equals a declared one, exactly or by tolerance."""
+    expected = cas.parse_expression(declared, symbols)
+    if tolerance is None:
+        return cas.equivalent(actual, expected)
+    return cas.within_tolerance(
+        actual, expected, cas.parse_expression(tolerance, symbols)
+    )
+
+
+def check_distribution(check, symbols, report, dispatch):
+    try:
+        distribution = cas.make_distribution(
+            check["distribution"], check.get("parameters", {}), symbols
+        )
+        actual = cas.distribution_probability(distribution, check["query"], symbols)
+    except (ValueError, KeyError, TypeError) as err:
+        report.errors.append(f"check: cannot compute the distribution probability: {err}")
+        return
+    if not _declared_matches(actual, check["answer"], check.get("tolerance"), symbols):
+        report.errors.append(
+            f"check: probability is {actual}, expected {check['answer']}"
+        )
+
+
+def check_hypothesis(check, symbols, report, dispatch):
+    name = check.get("distribution")
+    parameters = check.get("parameters", {})
+    tail = check.get("tail")
+    if "p_value" not in check and "critical_region" not in check:
+        report.errors.append("check: hypothesis needs a 'p_value' or a 'critical_region'")
+        return
+    try:
+        distribution = cas.make_distribution(name, parameters, symbols)
+        p_value = cas.tail_probability(distribution, tail, check["observed"], symbols)
+    except (ValueError, KeyError, TypeError) as err:
+        report.errors.append(f"check: cannot compute the hypothesis p-value: {err}")
+        return
+    tolerance = check.get("tolerance")
+    if "p_value" in check and not _declared_matches(
+        p_value, check["p_value"], tolerance, symbols
+    ):
+        report.errors.append(
+            f"check: p-value is {p_value}, expected {check['p_value']}"
+        )
+    if "critical_region" in check:
+        declared_region = check["critical_region"]
+        if not isinstance(declared_region, dict):
+            report.errors.append(
+                "check: critical_region must name 'max' and/or 'min'"
+            )
+            return
+        try:
+            expected_region = cas.critical_region(
+                name, parameters, tail, check["alpha"], symbols
+            )
+        except (ValueError, KeyError, TypeError) as err:
+            report.errors.append(f"check: cannot compute the critical region: {err}")
+            return
+        if set(declared_region) != set(expected_region):
+            report.errors.append(
+                f"check: critical region is {expected_region}, expected {declared_region}"
+            )
+        else:
+            for bound, expected in expected_region.items():
+                if not _declared_matches(
+                    expected, declared_region[bound], tolerance, symbols
+                ):
+                    report.errors.append(
+                        f"check: critical region {bound} is {declared_region[bound]}, "
+                        f"expected {expected}"
+                    )
+    alpha = cas.parse_expression(check["alpha"], symbols)
+    comparison = str(check.get("comparison", "lt")).lower()
+    if "comparison" not in check and cas.equivalent(p_value, alpha):
+        report.errors.append(
+            "check: p-value equals alpha; state 'comparison: lt' or 'le' "
+            "to fix the decision rule"
+        )
+        return
+    if comparison in ("le", "at_most", "less_or_equal"):
+        reject = cas.probability_below(p_value, alpha, or_equal=True)
+    elif comparison in ("lt", "less", "less_than"):
+        reject = cas.probability_below(p_value, alpha, or_equal=False)
+    else:
+        report.errors.append(f"check: unknown comparison {check.get('comparison')!r}")
+        return
+    decision = str(check["decision"]).lower()
+    if decision not in (
+        "reject",
+        "rejected",
+        "retain",
+        "retained",
+        "fail_to_reject",
+        "accept",
+        "do_not_reject",
+    ):
+        report.errors.append(f"check: unknown decision {check['decision']!r}")
+        return
+    rejected = decision in ("reject", "rejected")
+    if rejected != reject:
+        expected = "reject" if reject else "retain"
+        report.errors.append(
+            f"check: p-value {p_value} at alpha {check['alpha']} implies {expected}, "
+            f"not {check['decision']}"
+        )
+
+
+def check_correlation(check, symbols, report, dispatch):
+    try:
+        actual = cas.correlation(check["x"], check["y"], symbols)
+    except (ValueError, KeyError, TypeError) as err:
+        report.errors.append(f"check: cannot compute the correlation: {err}")
+        return
+    if not _declared_matches(actual, check["answer"], check.get("tolerance"), symbols):
+        report.errors.append(f"check: correlation is {actual}, expected {check['answer']}")
+
+
+def check_regression(check, symbols, report, dispatch):
+    try:
+        intercept, gradient = cas.regression(check["x"], check["y"], symbols)
+    except (ValueError, KeyError, TypeError) as err:
+        report.errors.append(f"check: cannot compute the regression: {err}")
+        return
+    answer = check["answer"]
+    if not isinstance(answer, dict):
+        report.errors.append(
+            "check: regression answer must name 'gradient' and 'intercept'"
+        )
+        return
+    tolerance = check.get("tolerance")
+    for name, actual in (("gradient", gradient), ("intercept", intercept)):
+        if name not in answer:
+            report.errors.append(f"check: regression answer needs {name!r}")
+            continue
+        if not _declared_matches(actual, answer[name], tolerance, symbols):
+            report.errors.append(f"check: {name} is {actual}, expected {answer[name]}")
+
+
 def check_compare(check, symbols, report, dispatch):
     relation = cas.RELATIONS.get(check["relation"])
     if relation is None:
@@ -287,4 +426,8 @@ CHECKS = {
     "vector": check_vector,
     "ode": check_ode,
     "approx": check_approx,
+    "distribution": check_distribution,
+    "hypothesis": check_hypothesis,
+    "correlation": check_correlation,
+    "regression": check_regression,
 }

@@ -120,6 +120,7 @@ per-book layout is in `books/AGENTS.md`.
 | `SHAPE.md`, `PLAN.md`, `AGENT-BRIEF.md`, `PROBLEMS.md`, `BOOKLETS.md`, `DEPLOY.md`, `DECISIONS.md`, `todo.md`, `collection.yaml`, `wrangler.jsonc` | shape, plan, brief, banks, booklets, deploy, decisions, queue, collection, Worker |
 | `engine/`, `engine/AGENTS.md`, `assets/`, `assets/AGENTS.md` | the engine and the design system, and their rules |
 | `themes/`, `books/`, `books/AGENTS.md`, `books/gcse-maths/`, `books/gcse-maths/AGENTS.md` | bundles; the books and their rules |
+| `books/a-level-maths/`, `books/a-level-maths/AGENTS.md` | the A-level Mathematics book and its rules |
 | `research/`, `research/AGENTS.md`, `scripts/`, `scripts/AGENTS.md`, `tests/`, `tests/AGENTS.md`, `test/`, `deploy/`, `deploy/AGENTS.md`, `.github/`, `.github/AGENTS.md`, `.agents/`, `.claude/`, `.serena/` | corpus, scripts, tests, deploy, CI, skills |
 
 ## Build and verify

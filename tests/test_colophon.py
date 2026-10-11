@@ -92,6 +92,21 @@ def test_about_page_offers_no_dead_mail_route():
     assert "no email address" in page
 
 
+def test_a_book_without_a_booklet_does_not_claim_one():
+    """The About page names the board's **Formulae** booklet only when the book
+    ships one. A-level Mathematics declares no booklet (BOOKLETS.md: the boards'
+    documents have not been retrieved), so a page that promised one would send a
+    reader looking for a page that is not there.
+    """
+    for book in books.discover_books():
+        page = scaffold.colophon_page(book)
+        claims = "**Formulae** booklet" in page
+        assert claims == bool(book.booklet_name), (
+            f"{book.id}: the About page claims a booklet ({claims}) but "
+            f"booklet_name={book.booklet_name!r}"
+        )
+
+
 # --- the licence seam --------------------------------------------------------
 
 
