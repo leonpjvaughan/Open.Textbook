@@ -46,13 +46,66 @@ account-scoped, with no zone permissions to leak.
 
 ## Deploying
 
-Push to `main`. Every other job must pass first — nothing ships that did not
-verify — and the deploy job then rebuilds the site and runs `wrangler deploy`.
-You can also trigger it by hand from the Actions tab (**Run workflow**), which
-deploys whatever is on `main`.
+Push to `main`. The pipeline runs in order, and nothing later starts until the
+earlier stages succeed:
 
-To release only from tags instead, change the `deploy` job's `if:` to start with
-`startsWith(github.ref, 'refs/tags/')`.
+| Stage | Job | What it does |
+|---|---|---|
+| 1 | `plan`, `generated`, `build`, `content`, `lint workflows` | banks, tests, voice, both tier builds, drift check, actionlint |
+| 2 | **all checks** (`gate`) | one stable check name, so branch protection does not have to track the build matrix |
+| 3 | `tag and release` | tags `YYYY.MM.DD` and publishes a release with generated notes |
+| 4 | `deploy to production` | rebuilds `site/` and runs `wrangler deploy` |
+
+You can also trigger it by hand from the Actions tab (**Run workflow**), which
+runs the same pipeline on whatever is on `main`.
+
+### Releases
+
+Tags are dates in `Europe/London`, not the runner's UTC, because this is a UK
+textbook and a release dated tomorrow would be confusing. Each release body
+carries the live URL plus GitHub's generated notes.
+
+**One release per day.** A second push the same day deploys but is not released:
+today's tag already points at an earlier commit, and moving a tag to keep up
+would be worse than not tagging. The job says so in its log rather than failing,
+because a skipped release must not skip the deploy. If you would rather have one
+release per deploy, change the tag to something like `$(date +%Y.%m.%d-%H%M)`.
+
+A release is created *before* the deploy, so a version describes the content
+rather than the hosting. If a deploy fails, the version still exists and you
+re-run the deploy — which, the tag already being there, changes nothing else.
+
+To release only from tags instead of every push, change the `deploy` job's `if:`
+to start with `startsWith(github.ref, 'refs/tags/')`.
+
+## Protecting `main`
+
+Requiring the **all checks** check, and refusing force pushes and deletions:
+
+```bash
+scripts/protect-main.sh          # apply
+scripts/protect-main.sh --check  # report
+```
+
+**This needs GitHub Pro.** Protected branches are available on public
+repositories with GitHub Free, and on public *and private* repositories with Pro,
+Team or Enterprise. This repository is private on a Free plan, so the API refuses
+and the script says so instead of failing with an HTTP code. Either make the
+repository public — which a free, open textbook probably wants anyway — or upgrade
+the account, then run it.
+
+Two deliberate choices once it is available:
+
+- **Pull requests stay optional.** Their pipeline is built on pushing to `main`,
+  and requiring a PR for every change would break it.
+- **Admins may bypass.** The required check gates pull requests. It does not gate
+  a direct push from an admin, which is what makes the push-triggered pipeline
+  work. If you would rather checks block direct pushes too, set
+  `enforce_admins` to `true` in the script and work through pull requests.
+
+Note what that leaves: on a solo repository, protection mostly buys "no force
+pushes" and "no deletions". The verification itself is enforced by the pipeline
+being ordered, not by the branch rule.
 
 ### Locally
 

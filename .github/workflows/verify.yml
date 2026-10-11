@@ -159,10 +159,68 @@ jobs:
       - uses: actions/checkout@v7
       - uses: rhysd/actionlint@03d0035246f3e81f36aed592ffb4bebf33a03106 # v1.7.7
 
+  # One stable check name for branch protection to require. The build matrix
+  # generates per-book job names, so requiring those would mean editing the
+  # protection rule every time a book is added; requiring this does not.
+  gate:
+    name: all checks
+    needs: [plan, generated, build, content, workflows]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Every required job must have succeeded
+        env:
+          RESULTS: ${{ join(needs.*.result, ',') }}
+        run: |
+          failed=0
+          IFS=',' read -r -a results <<< "$RESULTS"
+          for result in "${results[@]}"; do
+            if [ "$result" != "success" ]; then
+              echo "a required job finished as '$result'"
+              failed=1
+            fi
+          done
+          [ "$failed" = "0" ] || exit 1
+          echo "all required jobs succeeded"
+
+  # A dated release per day. Deliberately always succeeds: a second push on the
+  # same day has nothing new to tag, and skipping would skip the deploy too.
+  release:
+    name: tag and release
+    needs: gate
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Tag and release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # A UK textbook dated on the UK calendar, not on the runner's UTC.
+          TZ: Europe/London
+        run: |
+          tag="$(date +%Y.%m.%d)"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "::notice::$tag already exists, so this deploy carries no new release"
+            exit 0
+          fi
+          gh release create "$tag" \
+            --target "$GITHUB_SHA" \
+            --title "$tag" \
+            --notes "Live at https://open-textbook.org/" \
+            --generate-notes
+          echo "::notice::released $tag"
+
   deploy:
     name: deploy to production
-    # Every other job must pass first: nothing ships that did not verify.
-    needs: [generated, build, content]
+    # Everything must have verified, and the release must exist: nothing ships
+    # that did not verify, and nothing ships unreleased.
+    needs: [release]
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     timeout-minutes: 20

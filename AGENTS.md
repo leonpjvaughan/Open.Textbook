@@ -280,6 +280,7 @@ pytest tests/ -q                          # bank, marker, collection and theme t
 test/run.sh                               # figure-hook + tier evaluation
 scripts/check.sh                          # everything CI enforces, in one call
 scripts/deploy.sh                         # build, guard, then deploy (see DEPLOY.md)
+scripts/protect-main.sh                   # require the gate check on main (needs GitHub Pro)
 ```
 
 ## Watch out for
