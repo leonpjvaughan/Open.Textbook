@@ -13,63 +13,63 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-**Closed book:** Work out $3+4$ and write $0.25$ as a fraction.
+**Closed book:** Find $\frac{12}{48}$ in its simplest form, then work out $\frac14$ of $360^\circ$.
 
 <details markdown="1"><summary>Check your answers</summary>
 
-$3+4=7$. Also, $0.25=25/100=1/4$. If either answer differs, revisit number operations and fractions before continuing.
+$\frac{12}{48}=\frac14$, and $\frac14$ of $360^\circ$ is $90^\circ$. If either answer differs, revisit equivalent fractions and fractions of amounts before continuing.
 </details>
 
 ### Question 1
 
-A class records 8 apples, 5 bananas and 7 pears. What chart compares counts?
+A class records 8 apples, 5 bananas and 7 pears. Which chart compares the counts of separate categories?
 
 <details markdown="1"><summary>Hint</summary>
 
-The categories are separate.
+The categories are separate, so you need a chart with one bar for each fruit.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-A bar chart uses separate bars with gaps.
+Name the chart that uses separate bars with gaps between them.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
 
-A bar chart uses separate bars with gaps.
+A bar chart. Each fruit gets its own bar, and the gaps show the categories are separate.
 </details>
 
 ### Question 2
 
-Find the angle for 12 out of 48 responses.
+Find the pie-chart angle for 12 out of 48 responses.
 
 <details markdown="1"><summary>Hint</summary>
 
-Find the fraction of the whole.
+A full pie chart is $360^\circ$, so find the fraction of the whole first.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Angle $=12/48\times360^\circ=90^\circ$.
+$\frac{12}{48}=\frac14$, so find $\frac14\times360^\circ$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
 
-Angle $=12/48\times360^\circ=90^\circ$.
+$\frac{12}{48}\times360^\circ=\frac14\times360^\circ=90^\circ$.
 </details>
 
 ### Question 3
 
-A symbol represents 4 votes. How many votes do 3 symbols show?
+A pictogram symbol represents 4 votes. How many votes do 3 symbols show?
 
 <details markdown="1"><summary>Hint</summary>
 
-Multiply the symbol count by its value.
+Each whole symbol stands for the same number of votes.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-$3\times4=12$ votes.
+Multiply the number of symbols by the value of one symbol: $3\times4$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>

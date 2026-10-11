@@ -24,49 +24,49 @@ kind: guided-problems
 
 Attempt each question first. Open the hint, then the next step, when needed.
 
-**1.** A cuboid measures 4 cm by 3 cm by 2 cm. Work out its volume.
+**1.** A storage box measures 6 cm by 4 cm by 5 cm. Work out its volume.
 
 <details markdown="1"><summary>Hint</summary>
 
-Multiply the three edge lengths.
+A cuboid's volume is its base area multiplied by its height.
 
 <details markdown="1"><summary>Next step</summary>
 
-Use $V=lwh$ with lengths 4 cm, 3 cm and 2 cm.
+Multiply the three edge lengths: $6\times4\times5$.
 
 <details markdown="1"><summary>Full working</summary>
 
-$V=4\times3\times2=24\text{ cm}^3$.
+$V=6\times4\times5=120\text{ cm}^3$.
 </details></details></details>
 
-**2.** A cuboid measures 5 cm by 4 cm by 3 cm. Work out its surface area.
+**2.** A pipe is a cylinder of radius 2 cm and length 10 cm. Work out its volume in terms of π.
 
 <details markdown="1"><summary>Hint</summary>
 
-There are two faces of each of the three different sizes.
+Use $V=\pi r^2h$ for a cylinder.
 
 <details markdown="1"><summary>Next step</summary>
 
-Use $S=2(lw+lh+wh)$ with lengths 5 cm, 4 cm and 3 cm.
+Substitute $r=2$ cm and $h=10$ cm, then square the radius.
 
 <details markdown="1"><summary>Full working</summary>
 
-$S=2(5\times4+5\times3+4\times3)=2(47)=94\text{ cm}^2$.
+$V=\pi\times2^2\times10=40\pi\text{ cm}^3$.
 </details></details></details>
 
-**3.** A triangular prism has cross-section area 12 cm² and length 8 cm. Work out its volume.
+**3.** A cuboid measures 3 cm by 3 cm by 4 cm. Work out its surface area.
 
 <details markdown="1"><summary>Hint</summary>
 
-Prism volume is cross-section area multiplied by prism length.
+There are two faces of each of the three sizes.
 
 <details markdown="1"><summary>Next step</summary>
 
-Multiply $12\text{ cm}^2$ by the length, 8 cm.
+Substitute into $S=2(lw+lh+wh)$ to get $2(3\times3+3\times4+3\times4)$.
 
 <details markdown="1"><summary>Full working</summary>
 
-$V=12\times8=96\text{ cm}^3$.
+$S=2(9+12+12)=2\times33=66\text{ cm}^2$.
 </details></details></details>
 
 Try the remaining questions without opening the full working.

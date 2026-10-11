@@ -61,9 +61,7 @@ $P(\text{second blue}\mid\text{first red})=\frac24=\frac12$.
 
 ## Progress check
 
-A class has 12 students who cycle, and 9 of them wear helmets. Given that a
-student cycles, the probability they wear a helmet is
-$\frac9{12}=\frac34$.
+Of 30 spins, 18 land on red. Of those 18 red spins, 10 land on an odd-numbered sector. Find the probability that a spin lands on an odd sector, given that it is red. State the restricted total.
 
 ## You should now be able to
 

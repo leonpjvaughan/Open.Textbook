@@ -55,7 +55,9 @@ Add the volumes: $36\pi+18\pi=54\pi\text{ cm}^3$.
 
 > **Watch out.** Adding the surface areas counts the joined faces twice. Remove both copies of every internal face.
 
-Progress check: which measurements would you need to find the volume of a cylinder joined to a hemisphere?
+## Progress check
+
+The pond cover is a cylinder of radius $4$ m and height $1$ m with a hemisphere of radius $4$ m on top. Work out the total volume in terms of $\pi$. Which measurements did you need?
 
 ## You should now be able to
 

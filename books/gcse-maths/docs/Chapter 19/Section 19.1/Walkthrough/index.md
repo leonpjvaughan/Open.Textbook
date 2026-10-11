@@ -55,6 +55,10 @@ So its height is $8\text{ m}$.
 
 At the first progress check, compare a rectangle and triangle with the same base and height. Which has more area, and by how much?
 
+## Progress check
+
+A rectangular lawn beside the pond is $12$ m by $9$ m. Work out its perimeter and its area. State the unit for each answer.
+
 ## You should now be able to
 
 - add the outside side lengths to find perimeter;

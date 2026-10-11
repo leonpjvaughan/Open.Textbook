@@ -72,3 +72,11 @@ problems:
     answer_label: 'Compare two distributions'
     check: {kind: compare, relation: '>', lhs: '30', rhs: '25'}
     answer_text: 'Group X has the higher median. Their IQRs are equal, so their middle-half spreads are equal.'
+  - id: comp10-method-iqr-or-range
+    section: '25.5'
+    tier: H
+    dfe: [S4]
+    statement: 'To compare the spread of two distributions that include an extreme value, which measure is safer: the range or the IQR? Give a reason. Then, for $Q_1=12$, $Q_3=28$ and a maximum of 50, find the IQR and decide whether 50 is an outlier.'
+    answer_label: 'Method choice: range or IQR'
+    check: {kind: all, checks: [{kind: evaluate, expression: '28 - 12', answer: '16'}, {kind: evaluate, expression: '28 + 1.5 * 16', answer: '52'}, {kind: compare, relation: '<', lhs: '50', rhs: '52'}]}
+    answer_text: 'The IQR is safer, because it ignores extreme values that inflate the range. Here IQR $=16$ and the upper fence is $28+1.5\times16=52$. Since $50<52$, 50 is not an outlier.'

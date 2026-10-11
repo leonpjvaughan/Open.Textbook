@@ -41,7 +41,9 @@ So $A=25\pi\text{ m}^2$, approximately $78.5\text{ m}^2$ when $\pi\approx3.14$.
 
 **Explain:** compare the two readouts. Why does area change by a different factor from circumference?
 
-Progress check: return to the pond with radius 4 m. State its exact circumference and area before continuing.
+## Progress check
+
+The pond has radius $4$ m. Work out its exact circumference and its exact area. Then estimate each value using $\pi=3.14$.
 
 ## You should now be able to
 

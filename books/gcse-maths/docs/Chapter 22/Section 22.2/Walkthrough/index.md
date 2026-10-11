@@ -53,9 +53,7 @@ $$
 
 ## Progress check
 
-The chapter route to $C$ is $\mathbf{u}+\mathbf{v}$. The other route to $C$ is
-$\mathbf{v}+\mathbf{u}$. Component addition gives the same result in either
-order, so both routes describe the same displacement.
+For the chapter problem, the route from $A$ to $C$ is $\mathbf{u}+\mathbf{v}$, and the other route is $\mathbf{v}+\mathbf{u}$. Calculate both with $\mathbf{u}=\begin{pmatrix}3\\-2\end{pmatrix}$ and $\mathbf{v}=\begin{pmatrix}-1\\5\end{pmatrix}$. What do you notice, and what does it tell you about the parallelogram?
 
 ## You should now be able to
 

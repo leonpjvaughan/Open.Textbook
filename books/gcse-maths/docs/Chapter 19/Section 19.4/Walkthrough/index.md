@@ -47,7 +47,9 @@ So volume is $63\pi\text{ cm}^3$ and surface area is $60\pi\text{ cm}^2$.
 
 > **Watch out.** Surface area uses square units and volume uses cubic units. A missing face often means you counted an internal join.
 
-Progress check: name the cross-section of a cylinder and the dimensions of its curved rectangle.
+## Progress check
+
+A cylindrical kerb around the pond has radius $0.5$ m and length $6$ m. Work out its volume in terms of $\pi$. Then name its cross-section and the dimensions of its curved surface.
 
 ## You should now be able to
 

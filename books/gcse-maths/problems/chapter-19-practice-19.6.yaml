@@ -89,3 +89,14 @@ problems:
     expression: '72-4**2'
     answer: '56'
   answer_text: '$56\text{ cm}^2$'
+- id: 'ch19-19-6-method'
+  section: '19.6'
+  tier: 'F'
+  dfe: *id001
+  statement: 'A solid is a cuboid 10 cm by 4 cm by 2 cm with a cylindrical hole of radius 2 cm drilled through its 2 cm height. Which method finds the remaining volume: add the volumes, or subtract the hole from the cuboid? Give a reason, then work it out in terms of π.'
+  answer_label: 'Method choice: add or subtract'
+  check:
+    kind: 'evaluate'
+    expression: '10*4*2 - pi*2**2*2'
+    answer: '80 - 8*pi'
+  answer_text: 'Subtract the hole. The cuboid is $80\text{ cm}^3$ and the hole is $\pi\times2^2\times2=8\pi\text{ cm}^3$, so the remaining volume is $80-8\pi\text{ cm}^3$.'

@@ -110,3 +110,16 @@ problems:
       lhs: '4'
       rhs: '3'
     answer_text: 'Series B rises by 4; series A rises by 3.'
+
+  - id: 'ch24-24-5-method'
+    section: '24.5'
+    tier: 'F'
+    dfe: ['S2', 'S4']
+    statement: 'A time series shows a value rising and falling over 6 months. To compare a typical value with the spread, which method applies: a line graph alone, or the mean and range? Give a reason, then find the mean and range of 4, 6, 5, 9, 6, 6.'
+    answer_label: 'Method choice: graph or summary statistics'
+    check:
+      kind: 'all'
+      checks:
+        - {kind: 'statistic', data: [4, 6, 5, 9, 6, 6], stat: 'mean', answer: '6'}
+        - {kind: 'evaluate', expression: '9 - 4', answer: '5'}
+    answer_text: 'Use the mean and range: the line graph shows the trend, but it does not give a single typical value or a spread. The mean is $36\div6=6$ and the range is $9-4=5$.'

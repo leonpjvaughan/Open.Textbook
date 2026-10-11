@@ -24,49 +24,49 @@ kind: guided-problems
 
 Attempt each question first. Open the hint, then the next step, when needed.
 
-**1.** An L-shape is made by removing a 3 cm by 2 cm rectangle from a 9 cm by 6 cm rectangle. Work out its area.
+**1.** A shape is made from a 5 cm by 4 cm rectangle and a 5 cm by 3 cm rectangle joined along a 5 cm side without overlap. Work out its total area.
 
 <details markdown="1"><summary>Hint</summary>
 
-Subtract the area removed from the original rectangle's area.
+Split the shape into its two rectangles and add their areas.
 
 <details markdown="1"><summary>Next step</summary>
 
-Find $9\times6-3\times2$.
+Find $5\times4+5\times3$.
 
 <details markdown="1"><summary>Full working</summary>
 
-$9\times6-3\times2=54-6=48\text{ cm}^2$.
+$5\times4+5\times3=20+15=35\text{ cm}^2$.
 </details></details></details>
 
-**2.** A rectangle 10 cm by 8 cm has a 4 cm by 3 cm rectangle removed. Work out the remaining area.
+**2.** A solid is made from a cuboid 6 cm by 4 cm by 3 cm and a cuboid 2 cm by 4 cm by 3 cm joined without overlap. Work out its total volume.
 
 <details markdown="1"><summary>Hint</summary>
 
-Find the two rectangle areas, then subtract the smaller area.
+Find each cuboid's volume, then add them.
 
 <details markdown="1"><summary>Next step</summary>
 
-Find $10\times8-4\times3$.
+Find $6\times4\times3+2\times4\times3$.
 
 <details markdown="1"><summary>Full working</summary>
 
-$10\times8-4\times3=80-12=68\text{ cm}^2$.
+$6\times4\times3+2\times4\times3=72+24=96\text{ cm}^3$.
 </details></details></details>
 
-**3.** A shape is made from a rectangle 7 cm by 4 cm and a triangle with base 7 cm and height 3 cm. Work out its area.
+**3.** A semicircle of radius 3 cm is joined to a rectangle 6 cm by 4 cm along the 6 cm side. Work out the outside perimeter in terms of π.
 
 <details markdown="1"><summary>Hint</summary>
 
-Add the rectangle area and the triangle area.
+The outside is the arc plus the three straight sides that are not joined.
 
 <details markdown="1"><summary>Next step</summary>
 
-Find $7\times4+\frac12\times7\times3$.
+Find the arc as half the circumference: $\frac12\times2\pi\times3=3\pi$.
 
 <details markdown="1"><summary>Full working</summary>
 
-$7\times4+\frac12\times7\times3=28+10.5=38.5\text{ cm}^2$.
+The straight part is $6+4+4=14$. The outside perimeter is $14+3\pi\text{ cm}$.
 </details></details></details>
 
 Try the remaining questions without opening the full working.

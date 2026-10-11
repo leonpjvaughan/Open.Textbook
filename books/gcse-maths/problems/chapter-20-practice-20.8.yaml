@@ -81,3 +81,12 @@ problems:
     answer_label: 'Question 9'
     check: {kind: 'evaluate', expression: '2*20/(10*sin(pi/6))', answer: '8'}
     answer_text: '8 cm'
+
+  - id: 'ch20-20-8-method'
+    section: '20.8'
+    tier: 'H'
+    dfe: ['G22', 'G23']
+    statement: 'A triangle has sides 8 cm and 11 cm with an included angle of 60°. Which method finds its area: the area formula $\frac12 ab\sin C$, the sine rule, or the cosine rule? Give a reason, then find the area exactly.'
+    answer_label: 'Method choice: which rule'
+    check: {kind: 'evaluate', expression: '(8*11/2)*sin(pi/3)', answer: '22*sqrt(3)'}
+    answer_text: 'Use the area formula $\frac12ab\sin C$: the area is $\frac12\times8\times11\times\sin60^\circ=22\sqrt3\text{ cm}^2$. The sine and cosine rules give a length or angle, not an area.'

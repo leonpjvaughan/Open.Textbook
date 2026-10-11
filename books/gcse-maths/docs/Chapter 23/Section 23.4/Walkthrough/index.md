@@ -43,7 +43,7 @@ These are dependent events: the first draw changes the probability of the second
 
 ## Progress check
 
-For two fair coin tosses, the chance of two tails is $\frac12\times\frac12=\frac14$. The chance of at least one head is the complement, $\frac34$.
+The spinner is spun twice. Draw a tree diagram and work out the probability of red both times. Then work out the probability of at least one blue. Explain how the complement gives the second answer.
 
 ## You should now be able to
 

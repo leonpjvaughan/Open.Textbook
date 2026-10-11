@@ -13,11 +13,11 @@ kind: guided-problems
 
 ## Warm-up: remember
 
-**Closed book:** Work out $3+4$ and write $0.25$ as a fraction.
+**Closed book:** Work out $14-9$, then state which is larger, $3.2$ or $3.15$.
 
 <details markdown="1"><summary>Check your answers</summary>
 
-$3+4=7$. Also, $0.25=25/100=1/4$. If either answer differs, revisit number operations and fractions before continuing.
+$14-9=5$, and $3.2$ is larger than $3.15$. If either answer differs, revisit subtraction and ordering decimals before continuing.
 </details>
 
 ### Question 1
@@ -31,12 +31,12 @@ Use calendar order.
 
 <details markdown="1"><summary>Next step</summary>
 
-January, February, March.
+January comes first, then February.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
 
-January, February, March.
+The order is January, February, March.
 </details>
 
 ### Question 2
@@ -45,12 +45,12 @@ A value changes from 8 to 11. Find the increase.
 
 <details markdown="1"><summary>Hint</summary>
 
-Subtract the starting value.
+Subtract the starting value from the finishing value.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Increase $=11-8=3$.
+Find $11-8$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -64,16 +64,16 @@ Monthly sales are 10, 10, 14. Describe the pattern.
 
 <details markdown="1"><summary>Hint</summary>
 
-Compare consecutive values.
+Compare each value with the one before it.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Sales stay level, then rise by 4.
+From month 1 to month 2 the value does not change.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
 
-Sales stay level, then rise by 4.
+Sales stay the same for two months, then rise by 4.
 </details>
 
