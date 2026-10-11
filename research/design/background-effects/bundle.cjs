@@ -24,6 +24,7 @@ const VARIANTS = {
   dots: { file: "dots.js", call: "mount" },
   "gradient-static": { file: "gradient.js", call: "mountStatic" },
   "gradient-animated": { file: "gradient.js", call: "mountAnimated" },
+  "gradient-transform": { file: "gradient.js", call: "mountTransform" },
 };
 
 function strip(source) {

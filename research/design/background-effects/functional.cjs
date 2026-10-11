@@ -145,7 +145,7 @@ async function main() {
     // Change the reader's bundle and scheme the way the Settings runtime does.
     const before = info.palette;
     await page.evaluate(() => {
-      document.documentElement.dataset.theme = "tokyo-night";
+      document.documentElement.dataset.theme = "neon";
       document.body.dataset.mdColorScheme = "slate";
     });
     await page.waitForTimeout(400);

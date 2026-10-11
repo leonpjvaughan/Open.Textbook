@@ -131,6 +131,7 @@ function parseArgs(argv) {
   const args = {
     variants: null, seconds: 8, gpu: "real", cpu: 1, inject: "bundle", repeat: 5,
     route: null, site: "site", reducedMotion: false, nogl: false, json: null, quiet: false,
+    viewport: "1280x900",
   };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
@@ -142,6 +143,7 @@ function parseArgs(argv) {
     else if (a === "--repeat") args.repeat = Number(argv[++i]);
     else if (a === "--route") args.route = argv[++i];
     else if (a === "--site") args.site = argv[++i];
+    else if (a === "--viewport") args.viewport = argv[++i];
     else if (a === "--json") args.json = argv[++i];
     else if (a === "--reduced-motion") args.reducedMotion = true;
     else if (a === "--nogl") args.nogl = true;
@@ -272,8 +274,9 @@ async function loadOnce(page, url) {
 
 async function measureVariant(browser, args, port, variant, opts = {}) {
   const { reduced = false, nogl = false } = opts;
+  const [vw, vh] = String(args.viewport).split("x").map(Number);
   const context = await browser.newContext({
-    viewport: { width: 1280, height: 900 },
+    viewport: { width: vw || 1280, height: vh || 900 },
     serviceWorkers: "block",
     reducedMotion: reduced ? "reduce" : "no-preference",
   });
@@ -551,6 +554,7 @@ async function main() {
     meta: {
       route: args.route,
       site: siteDir,
+      viewport: args.viewport,
       seconds: args.seconds,
       cpuRate: args.cpu,
       gpu: args.gpu,
