@@ -26,14 +26,14 @@ from __future__ import annotations
 
 import argparse
 import html
-import json
 import logging
 import posixpath
 import re
-import unicodedata
 import shutil
+import subprocess
 import sys
 import time
+import unicodedata
 import urllib.parse
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -83,11 +83,15 @@ SHARED_CSS = ("themes.css", "extra.css", "portal.css")
 # group so url_for can tell 'a/b/index.md' from 'a/b/index'; stripping it here
 # would yield 'a/b/index/' instead of 'a/b/'.
 HTML_LINK = re.compile(r'(href|src)="([^"]+?\.md)(#[^"]*)?"')
-ANNOTATION = re.compile(r"<annotation\b.*?</annotation>", re.S | re.I)
 SCRIPT_STYLE = re.compile(r"<(script|style)\b.*?</\1>", re.S | re.I)
-TAG = re.compile(r"<[^>]+>")
 MATH_ERROR = re.compile(r'<span class="math-error"')
 ATTR_LINK = re.compile(r'(?:href|src)="([^"]+)"')
+
+# Pagefind builds the search index over the rendered HTML after the build. It is
+# installed by npm beside KaTeX, which the build already needs, so it adds no new
+# kind of dependency. Running it is a separate step, and skippable, so tests do
+# not pay for indexing.
+PAGEFIND = books.repo_root() / "node_modules" / ".bin" / "pagefind"
 
 
 # --- paths and URLs -----------------------------------------------------------
@@ -292,11 +296,10 @@ def rewrite_source_links(content: str) -> str:
 
 @dataclass
 class RenderedPage:
-    """One built page, and the entry it contributes to the search index."""
+    """One built page. The search index is built from the HTML itself."""
 
     url: str
     title: str
-    text: str
 
     @property
     def output(self) -> str:
@@ -328,20 +331,22 @@ def render_page(
         nav=render_nav(nav, url),
         prefix=prefix_for(url),
     )
-    entry = RenderedPage(url=url, title=title, text=search_text(content))
-    return rendered, entry, bool(MATH_ERROR.search(content))
+    return rendered, RenderedPage(url=url, title=title), bool(MATH_ERROR.search(content))
 
 
-def search_text(content: str) -> str:
-    """Plain text for the search index.
-
-    MathML carries its LaTeX twice (presentation + annotation), and a page's
-    inline maths would otherwise swamp the prose, so annotations go first.
-    """
-    text = SCRIPT_STYLE.sub(" ", content)
-    text = ANNOTATION.sub(" ", text)
-    text = TAG.sub(" ", text)
-    return re.sub(r"\s+", " ", html.unescape(text)).strip()
+def run_pagefind(out: Path) -> bool:
+    """Build the search index over the rendered HTML. False if unavailable."""
+    if not PAGEFIND.exists():
+        return False
+    finished = subprocess.run(
+        [str(PAGEFIND), "--site", str(out), "--quiet"],
+        capture_output=True,
+        text=True,
+    )
+    if finished.returncode != 0:
+        log.warning("pagefind failed: %s", (finished.stderr or "").strip()[:400])
+        return False
+    return True
 
 
 def canonical_url(book: books.Book, url: str) -> str:
@@ -353,14 +358,6 @@ def canonical_url(book: books.Book, url: str) -> str:
 
 
 # --- outputs ------------------------------------------------------------------
-
-
-def search_index(pages: list[RenderedPage]) -> str:
-    """The search index, as compact JSON."""
-    return json.dumps(
-        [{"url": p.url, "title": p.title, "text": p.text} for p in pages],
-        separators=(",", ":"),
-    )
 
 
 def sitemap(book: books.Book, pages: list[RenderedPage]) -> str:
@@ -500,6 +497,7 @@ class BuildResult:
     broken: list[str] = field(default_factory=list)
     maths_errors: list[str] = field(default_factory=list)
     assets: list[str] = field(default_factory=list)
+    indexed: bool = False
     seconds: float = 0.0
 
     @property
@@ -514,6 +512,7 @@ def build(
     chapter: int | None = None,
     full_nav: bool = False,
     clean: bool = True,
+    index: bool = True,
 ) -> BuildResult:
     """Render a book, or one chapter of it, to a directory of static HTML."""
     started = time.time()
@@ -565,7 +564,7 @@ def build(
             result.maths_errors.append(entry.url)
 
     result.assets = copy_assets(book, out)
-    (out / "search.json").write_text(search_index(result.pages), encoding="utf-8")
+    result.indexed = run_pagefind(out) if index else False
     (out / "404.html").write_text(NOT_FOUND, encoding="utf-8")
     if xml := sitemap(book, result.pages):
         (out / "sitemap.xml").write_text(xml, encoding="utf-8")
@@ -585,6 +584,7 @@ def report(result: BuildResult) -> None:
     print(f"pages      {len(result.pages)}")
     print(f"html       {size / 1024:.0f} KiB")
     print(f"assets     {', '.join(result.assets)}")
+    print(f"search     {'pagefind' if result.indexed else 'not indexed'}")
     print(f"build      {result.seconds:.2f}s")
     if result.maths_errors:
         print(f"maths      {len(result.maths_errors)} page(s) failed to render")
@@ -624,10 +624,17 @@ def serve(book_id: str, profile: str, chapter: int | None, port: int) -> None:
         def log_message(self, *args):
             pass
 
+    class Server(socketserver.ThreadingTCPServer):
+        # Without this, restarting the server within the TIME_WAIT window of the
+        # previous run fails with EADDRINUSE. Threading keeps a slow request from
+        # blocking the rebuild poll.
+        allow_reuse_address = True
+        daemon_threads = True
+
     def stamp() -> float:
         return max((p.stat().st_mtime for p in watch_paths(book_id)), default=0.0)
 
-    with socketserver.TCPServer(("", port), Handler) as httpd:
+    with Server(("", port), Handler) as httpd:
         httpd.timeout = 1.0
         print(f"serving http://localhost:{port}  (ctrl-c to stop)")
         previous = stamp()
@@ -655,6 +662,7 @@ def main() -> int:
         action="store_true",
         help="render every chapter in the sidebar even for a subset build",
     )
+    parser.add_argument("--no-index", action="store_true", help="skip Pagefind")
     parser.add_argument("--serve", action="store_true")
     parser.add_argument("--port", type=int, default=8123)
     args = parser.parse_args()
@@ -666,7 +674,10 @@ def main() -> int:
         return 0
 
     try:
-        result = build(args.book, args.profile, args.out, args.chapter, args.full_nav)
+        result = build(
+            args.book, args.profile, args.out, args.chapter, args.full_nav,
+            index=not args.no_index,
+        )
     except FrontMatterError as err:
         log.error("%s", err)
         log.error(

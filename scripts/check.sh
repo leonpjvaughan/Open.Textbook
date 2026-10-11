@@ -16,15 +16,28 @@ uv run python -m textbook.portal
 # Only the files the generators own. Diffing the whole tree would fail on any
 # unrelated edit in progress, which is not what this is checking for.
 mapfile -t generated < <(uv run python -m textbook.plan --generated)
-go=1
+
+missing=()
 for path in "${generated[@]}"; do
-  [ -e "$path" ] || { echo "missing generated file: $path" >&2; go=0; }
+  [ -e "$path" ] || missing+=("$path")
 done
-git diff --exit-code -- "${generated[@]}" || go=0
-if [ "$go" != "1" ]; then
-  echo "a generated file is missing or out of date; re-run the generators" >&2
+if [ "${#missing[@]}" -gt 0 ]; then
+  printf 'missing generated file: %s\n' "${missing[@]}" >&2
   exit 1
 fi
+
+# Compared against the last commit. A source change (curriculum.yaml, book.yaml,
+# themes/, booklet/) regenerates these, and they belong in the same commit, so
+# this is reported as a difference to commit rather than as a stale file — the
+# earlier wording sent me looking for a generator bug that was not there.
+if ! git diff --quiet -- "${generated[@]}"; then
+  git diff --stat -- "${generated[@]}" >&2
+  echo >&2
+  echo "These are generated, and differ from the last commit. If a source changed," >&2
+  echo "they are its regenerated output and belong in the same commit." >&2
+  exit 1
+fi
+
 echo "${#generated[@]} generated files in sync"
 
 step "problem banks"

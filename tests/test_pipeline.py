@@ -16,6 +16,8 @@ Two of these tests are regressions for bugs this module actually shipped with:
 from __future__ import annotations
 
 import re
+import shutil
+import subprocess
 import urllib.parse
 from pathlib import Path
 from types import SimpleNamespace
@@ -26,7 +28,6 @@ from textbook import pipeline
 from textbook.book import repo_root
 
 BOOK = "gcse-maths"
-BOOKS_BY_ID = pipeline.books.book_by_id(BOOK)
 
 
 # --- URLs ---------------------------------------------------------------------
@@ -224,25 +225,63 @@ def test_rewrite_source_links_does_not_strip_then_append_a_directory():
     assert "index/" not in pipeline.rewrite_source_links('<a href="a/b/index.md">x</a>')
 
 
-# --- search -------------------------------------------------------------------
+# --- search ---
 
 
-def test_search_text_drops_maths_and_tags():
-    content = (
-        '<p>Compare <math><semantics><mrow><mo>&lt;</mo></mrow>'
-        '<annotation encoding="application/x-tex">\\lt</annotation></semantics></math>'
-        " these</p><script>var x = 1;</script>"
-    )
-    text = pipeline.search_text(content)
-    assert "Compare" in text and "these" in text
-    assert "annotation" not in text
-    assert "\\lt" not in text
-    assert "var x" not in text
+def test_search_is_indexed_by_pagefind(subset):
+    """Search is Pagefind's, built over the rendered HTML after the build."""
+    bundle = subset.out / "pagefind"
+    assert subset.indexed, "pagefind did not run"
+    assert (bundle / "pagefind.js").exists()
+    assert (bundle / "pagefind-entry.json").exists()
+    assert any(bundle.glob("*.pf_meta")), "no language metadata written"
 
 
-def test_search_index_is_compact_json():
-    pages = [pipeline.RenderedPage(url="a/", title="A", text="alpha")]
-    assert pipeline.search_index(pages) == '[{"url":"a/","title":"A","text":"alpha"}]'
+def test_indexing_can_be_skipped(subset, tmp_path):
+    """Tests build many times; indexing is opt-out so they do not pay for it."""
+    result = pipeline.build(BOOK, "higher", out=tmp_path / "n", chapter=1, index=False)
+    assert result.indexed is False
+    assert not (result.out / "pagefind").exists()
+
+
+def test_indexing_is_scoped_to_the_page_content(subset):
+    """The sidebar must be excluded, or every search hit matches a chapter title.
+
+    Every page carries the whole navigation. Without data-pagefind-body on the
+    content, Pagefind indexes that navigation 457 times over.
+    """
+    html = (subset.out / "chapter-1/section-1.1/learn/index.html").read_text()
+    assert "data-pagefind-body" in html
+    assert 'class="sidebar" aria-label="Book contents" data-pagefind-ignore' in html
+    assert 'class="masthead" data-pagefind-ignore' in html
+
+
+def test_the_inline_client_script_parses(subset):
+    """Regression: a bad escape shipped '/^\\//', which is not valid JavaScript.
+
+    The script never ran, so search silently did nothing while the build stayed
+    green. Inline JavaScript is only checked if something checks it.
+    """
+    html = (subset.out / "chapter-1/index.html").read_text()
+    blocks = re.findall(
+        r'<script type="module">(.*?)</script>', html, re.S
+    ) + re.findall(r"<script>(.*?)</script>", html, re.S)
+    assert blocks, "no inline scripts found to check"
+    node = shutil.which("node")
+    if node is None:
+        pytest.skip("node is not available to parse the script")
+    for index, block in enumerate(blocks):
+        path = subset.out / f".check-{index}.mjs"
+        path.write_text(block, encoding="utf-8")
+        try:
+            done = subprocess.run(
+                [node, "--check", str(path)], capture_output=True, text=True
+            )
+            assert done.returncode == 0, (
+                f"inline script {index} does not parse: {done.stderr.strip()}"
+            )
+        finally:
+            path.unlink()
 
 
 # --- link checking ------------------------------------------------------------
@@ -256,7 +295,7 @@ def _write(root: Path, relative: str, content: str) -> None:
 
 def test_check_links_reports_a_genuine_break(tmp_path):
     _write(tmp_path, "a/index.html", '<a href="../missing/">gone</a>')
-    page = pipeline.RenderedPage(url="a/", title="A", text="")
+    page = pipeline.RenderedPage(url="a/", title="A")
     assert pipeline.check_links(tmp_path, [page]) == ["a/ -> ../missing/"]
 
 
@@ -268,14 +307,14 @@ def test_check_links_rejects_bare_root_relative_hrefs(tmp_path):
     """
     _write(tmp_path, "deep/page/index.html", '<a href="chapter-1/review/">x</a>')
     _write(tmp_path, "chapter-1/review/index.html", "ok")
-    page = pipeline.RenderedPage(url="deep/page/", title="P", text="")
+    page = pipeline.RenderedPage(url="deep/page/", title="P")
     assert pipeline.check_links(tmp_path, [page]) == ["deep/page/ -> chapter-1/review/"]
 
 
 def test_check_links_accepts_a_leading_slash_from_the_root(tmp_path):
     _write(tmp_path, "page/index.html", '<a href="/shared/">x</a>')
     _write(tmp_path, "shared/index.html", "ok")
-    page = pipeline.RenderedPage(url="page/", title="P", text="")
+    page = pipeline.RenderedPage(url="page/", title="P")
     assert pipeline.check_links(tmp_path, [page]) == []
 
 
@@ -285,19 +324,19 @@ def test_check_links_ignores_the_search_script(tmp_path):
         "page/index.html",
         '<script>el.innerHTML = \'<li><a href="\' + p.url + \'">x</a></li>\';</script>',
     )
-    page = pipeline.RenderedPage(url="page/", title="P", text="")
+    page = pipeline.RenderedPage(url="page/", title="P")
     assert pipeline.check_links(tmp_path, [page]) == []
 
 
 def test_check_links_scope_ignores_pages_outside_a_subset(tmp_path):
     _write(tmp_path, "index.html", '<a href="chapter-9/">unbuilt</a>')
-    page = pipeline.RenderedPage(url="", title="Cover", text="")
+    page = pipeline.RenderedPage(url="", title="Cover")
     assert pipeline.check_links(tmp_path, [page]) == [" -> chapter-9/"]
     assert pipeline.check_links(tmp_path, [page], scope="chapter-1") == []
 
 
 def test_check_links_reports_a_page_that_was_not_written(tmp_path):
-    page = pipeline.RenderedPage(url="gone/", title="Gone", text="")
+    page = pipeline.RenderedPage(url="gone/", title="Gone")
     assert pipeline.check_links(tmp_path, [page]) == ["gone/: page was not written"]
 
 
@@ -321,7 +360,7 @@ def test_build_produces_the_cover_and_the_chapter(subset):
 
 
 def test_build_writes_the_expected_files(subset):
-    for name in ("search.json", "404.html", "robots.txt", "sitemap.xml"):
+    for name in ("404.html", "robots.txt", "sitemap.xml"):
         assert (subset.out / name).exists(), name
     assert (subset.out / "chapter-1" / "index.html").exists()
     assert (subset.out / "assets" / "stylesheets" / "shell.css").exists()
@@ -371,35 +410,25 @@ def test_build_is_deterministic(subset, tmp_path):
 def test_foundation_profile_omits_higher_only_sections(tmp_path):
     """The nav comes from curriculum.yaml, so the pipeline filters by tier there.
 
-    The MkDocs path filters by each page's own front matter, which is how seven
-    Higher-only sections reach Foundation readers. Trusting the curriculum, which
-    AGENTS.md names the source of truth for tier, means the pipeline cannot leak
-    them even where the two disagree.
+    The MkDocs path filters by each page's own front matter, which is how a
+    Higher-only section once reached Foundation readers. Trusting the curriculum,
+    which AGENTS.md names the source of truth for tier, means the pipeline cannot
+    leak one even if the two ever disagree again.
 
-    Chapter 5 is the sharpest case: 5.4 is Higher-only in the curriculum but its
-    pages say `tier: F`, so the page-trusting filter keeps it. Asserted below,
-    so that if the pages are ever corrected this test says why it mattered.
+    Chapter 5 is the case that mattered: 5.6 is Higher-only, and 5.4 was too
+    until the AQA 8300 and OCR J560 tier columns were checked and showed it to be
+    Foundation content. See tests/test_frontmatter.py for the citations.
     """
-    from textbook import frontmatter
-
-    page = BOOKS_BY_ID.docs / "Chapter 5/Section 5.4/Walkthrough/index.md"
-    declared, _ = frontmatter.read(page)
-    assert declared.get("tier") == "F", (
-        "5.4's pages now agree with the curriculum; this test's premise has changed"
-    )
-
     result = pipeline.build(BOOK, "foundation", out=tmp_path / "f", chapter=5)
-    urls = {page_.url for page_ in result.pages}
-    assert not any("section-5.4/" in url for url in urls)
+    urls = {page.url for page in result.pages}
     assert not any("section-5.6/" in url for url in urls)
+    assert any("section-5.4/" in url for url in urls)
     assert any("section-5.1/" in url for url in urls)
-    assert any("section-5.5/" in url for url in urls)
 
 
 def test_higher_profile_keeps_higher_only_sections(tmp_path):
     result = pipeline.build(BOOK, "higher", out=tmp_path / "h", chapter=5)
     urls = {page.url for page in result.pages}
-    assert any("section-5.4/" in url for url in urls)
     assert any("section-5.6/" in url for url in urls)
 
 
