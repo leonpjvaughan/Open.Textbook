@@ -1,0 +1,749 @@
+# GCSE Physics equations and data — source of truth.
+#
+# One item per equation per board spelling, because the boards differ and
+# BOOKLETS.md forbids normalising. The widget shows only the items whose
+# `provision` includes the selected board, so a reader sees exactly their own
+# board's sheet. `group` is one of:
+#   given    - printed on the board's equations sheet
+#   question - supplied inside the relevant question rather than on the sheet
+#   know     - not given; the reader must have it (units, prefixes, symbols,
+#              definitions, and the typical values the board says to recall)
+#
+# For the current specifications no *equation* must be memorised: DfE confirmed
+# on 26 February 2026 that students do not need to memorise equations for GCSE
+# physics for the lifetime of the current specifications, and Ofqual's 5 May 2026
+# decision requires the sheets to keep being provided. So there is no "recall"
+# group of equations. The `know` group is units, prefixes and values.
+#
+# Evidence: research/curriculum/physics-equations-and-data.md and each board's
+# own sheet, recorded in sources.yaml. The sheets are all-rights-reserved; the
+# booklet reproduces what every candidate is given, which is the one use
+# BOOKLETS.md requires.
+meta:
+  title: GCSE Physics — equations and data
+  panel_title: Equations & tables
+  short: Equations
+  tab_label: Equations
+  item_label: equations
+  search_placeholder: Search equations…
+  series: exams in 2026
+  default_board: aqa
+  tiered: true
+  note: >-
+    There is no national booklet: each board prints its own equations sheet, and
+    the boards differ. Provision shown here is taken from the sheets recorded in
+    sources.yaml. AQA's 2026 sheet prints all 35 equations; Edexcel's equation
+    list prints every equation; OCR's 2027 sheet prints every recall and select
+    equation. Because no equation must be memorised, every equation is in the
+    `given` group.
+  provenance:
+    aqa: "AQA Physics Equations Sheet, GCSE Physics (8463), for use in June 2026 only"
+    edexcel: "Pearson Edexcel GCSE Physics Equations List, May–June 2024 (1PH0); a 2026 list was not retrieved"
+    ocr: "OCR GCSE Physics A (J249) Equation Sheet, June 2027"
+  basis: >-
+    DfE confirmed on 26 February 2026 that students do not need to memorise
+    equations for GCSE physics or combined science for the lifetime of the
+    current specifications, and Ofqual decided on 5 May 2026 that boards must
+    keep providing the sheets and must not set questions answerable solely by
+    transferring information from them. The recall/select appendices in the
+    specifications predate the 2022 policy and are not the provision. AQA's and
+    OCR's current sheets were read directly. Edexcel's exam-support page states
+    an equation list is provided in the exam room; the only machine-readable
+    list is the May–June 2024 one, so Edexcel's provision here rests on that
+    document and must be re-verified when Pearson publishes a later list.
+  boards:
+    aqa: {name: AQA, code: "8463"}
+    edexcel: {name: Edexcel, code: "1PH0"}
+    ocr: {name: OCR, code: "J249/J259"}
+  groups:
+    given: {label: "On your equations sheet", chip: Given, tone: accent}
+    question: {label: "May be given in the question", chip: In question, tone: muted}
+    know: {label: "You must know", chip: Must know, tone: warn}
+
+sections:
+  - id: energy
+    title: Energy
+    items:
+      - id: aqa-kinetic-energy
+        name: Kinetic energy
+        latex: 'E_k = \tfrac{1}{2}mv^2'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [kinetic energy, movement, speed]
+      - id: aqa-elastic-pe
+        name: Elastic potential energy
+        latex: 'E_e = \tfrac{1}{2}ke^2'
+        note: e is the extension of the spring.
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [elastic potential energy, spring, extension]
+      - id: aqa-gpe
+        name: Gravitational potential energy
+        latex: 'E_p = mgh'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [gravitational potential energy, height, weight]
+      - id: aqa-thermal-energy
+        name: Change in thermal energy
+        latex: '\Delta E = mc\Delta\theta'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [thermal energy, specific heat capacity, temperature]
+      - id: aqa-power-energy
+        name: Power
+        latex: 'P = \frac{E}{t}'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [power, energy transferred, time]
+      - id: aqa-power-work
+        name: Power
+        latex: 'P = \frac{W}{t}'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [power, work done, time]
+      - id: aqa-efficiency-energy
+        name: Efficiency
+        latex: '\text{efficiency} = \frac{\text{useful output energy transfer}}{\text{total input energy transfer}}'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [efficiency, useful energy, input energy]
+      - id: aqa-efficiency-power
+        name: Efficiency
+        latex: '\text{efficiency} = \frac{\text{useful power output}}{\text{total power input}}'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [efficiency, useful power, input power]
+      - id: aqa-work-done
+        name: Work done
+        latex: 'W = Fs'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [work done, force, distance]
+      - id: aqa-force-spring
+        name: Force exerted by a spring
+        latex: 'F = ke'
+        note: e is the extension of the spring.
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [spring, extension, spring constant, hooke]
+      - id: aqa-thermal-latent
+        name: Thermal energy for a change of state
+        latex: 'E = mL'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [specific latent heat, change of state, melting, boiling]
+
+      - id: edexcel-kinetic-energy
+        name: Kinetic energy
+        latex: 'KE = \tfrac{1}{2}mv^2'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [kinetic energy, movement, speed]
+      - id: edexcel-gpe
+        name: Change in gravitational potential energy
+        latex: '\Delta GPE = mg\Delta h'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [gravitational potential energy, vertical height]
+      - id: edexcel-efficiency
+        name: Efficiency
+        latex: '\text{efficiency} = \frac{\text{useful energy transferred by the device}}{\text{total energy supplied to the device}}'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [efficiency, useful energy, supplied energy]
+      - id: edexcel-power-work
+        name: Power (work done ÷ time taken)
+        latex: 'P = \frac{E}{t}'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [power, work done, time]
+      - id: edexcel-power-energy
+        name: Power (energy transferred ÷ time taken)
+        latex: 'P = \frac{E}{t}'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [power, energy transferred, time]
+      - id: edexcel-work-done
+        name: Work done
+        latex: 'E = Fd'
+        note: d is the distance moved in the direction of the force.
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [work done, force, distance]
+      - id: edexcel-force-spring
+        name: Force exerted on a spring
+        latex: 'F = kx'
+        note: x is the extension of the spring.
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [spring, extension, spring constant, hooke]
+      - id: edexcel-stretching-energy
+        name: Energy transferred in stretching
+        latex: 'E = \tfrac{1}{2}kx^2'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [elastic, spring, extension, energy]
+      - id: edexcel-thermal-energy
+        name: Change in thermal energy
+        latex: '\Delta Q = mc\Delta\theta'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [thermal energy, specific heat capacity, temperature]
+      - id: edexcel-thermal-latent
+        name: Thermal energy for a change of state
+        latex: 'Q = mL'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [specific latent heat, change of state]
+      - id: edexcel-moment
+        name: Moment of a force
+        latex: '\text{moment} = \text{force} \times \text{distance normal to the direction of the force}'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [moment, turning effect, lever]
+      - id: edexcel-pressure
+        name: Pressure
+        latex: 'P = \frac{F}{A}'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [pressure, force, area]
+
+      - id: ocr-kinetic-energy
+        name: Kinetic energy
+        latex: 'E = \tfrac{1}{2}mv^2'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [kinetic energy, movement, speed]
+      - id: ocr-stretching-energy
+        name: Energy transferred in stretching
+        latex: 'E = \tfrac{1}{2}kx^2'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [elastic, spring, extension, energy]
+      - id: ocr-gpe
+        name: Gravitational potential energy
+        latex: 'E = mgh'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [gravitational potential energy, height]
+      - id: ocr-thermal-energy
+        name: Change in thermal energy
+        latex: '\Delta E = mc\Delta\theta'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [thermal energy, specific heat capacity, temperature]
+      - id: ocr-thermal-latent
+        name: Thermal energy for a change of state
+        latex: 'E = ml'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [specific latent heat, change of state]
+      - id: ocr-power-work
+        name: Power
+        latex: 'P = \frac{W}{t}'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [power, work done, time]
+      - id: ocr-efficiency
+        name: Efficiency
+        latex: '\text{efficiency} = \frac{\text{useful output energy transfer}}{\text{input energy transfer}}'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [efficiency, useful energy, input energy]
+      - id: ocr-work-done
+        name: Work done
+        latex: 'W = Fs'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [work done, force, distance]
+      - id: ocr-force-spring
+        name: Force exerted by a spring
+        latex: 'F = kx'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [spring, extension, spring constant, hooke]
+      - id: ocr-moment
+        name: Moment of a force
+        latex: 'M = Fd'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [moment, turning effect, lever]
+      - id: ocr-pressure
+        name: Pressure
+        latex: 'p = \frac{F}{A}'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [pressure, force, area]
+
+  - id: forces-and-motion
+    title: Forces and motion
+    items:
+      - id: aqa-weight
+        name: Weight
+        latex: 'W = mg'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [weight, mass, gravitational field strength]
+      - id: aqa-distance
+        name: Distance travelled
+        latex: 's = vt'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [distance, speed, time]
+      - id: aqa-acceleration
+        name: Acceleration
+        latex: 'a = \frac{\Delta v}{t}'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [acceleration, change in velocity, time]
+      - id: aqa-suvat
+        name: Final and initial velocity
+        latex: 'v^2 - u^2 = 2as'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [velocity, acceleration, distance, suvat]
+      - id: aqa-resultant-force
+        name: Resultant force
+        latex: 'F = ma'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [force, mass, acceleration, newton]
+      - id: aqa-momentum
+        name: Momentum
+        latex: 'p = mv'
+        provision: {aqa: given}
+        tier: [H]
+        keywords: [momentum, mass, velocity]
+      - id: aqa-force-momentum
+        name: Force and change of momentum
+        latex: 'F = \frac{m\Delta v}{\Delta t}'
+        provision: {aqa: given}
+        tier: [H]
+        keywords: [force, momentum, impulse]
+
+      - id: edexcel-distance
+        name: Distance travelled
+        latex: '\text{distance travelled} = \text{average speed} \times \text{time}'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [distance, average speed, time]
+      - id: edexcel-acceleration
+        name: Acceleration
+        latex: 'a = \frac{v - u}{t}'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [acceleration, change in velocity, time]
+      - id: edexcel-force
+        name: Force
+        latex: 'F = m \times a'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [force, mass, acceleration, newton]
+      - id: edexcel-weight
+        name: Weight
+        latex: 'W = m \times g'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [weight, mass, gravitational field strength]
+      - id: edexcel-momentum
+        name: Momentum
+        latex: 'p = m \times v'
+        provision: {edexcel: given}
+        tier: [H]
+        keywords: [momentum, mass, velocity]
+      - id: edexcel-suvat
+        name: Final and initial velocity
+        latex: 'v^2 - u^2 = 2 \times a \times x'
+        note: x is the distance travelled.
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [velocity, acceleration, distance, suvat]
+      - id: edexcel-force-momentum
+        name: Force and change of momentum
+        latex: 'F = \frac{mv - mu}{t}'
+        provision: {edexcel: given}
+        tier: [H]
+        keywords: [force, momentum, impulse]
+
+      - id: ocr-distance
+        name: Distance travelled
+        latex: 's = vt'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [distance, speed, time]
+      - id: ocr-acceleration
+        name: Acceleration
+        latex: 'a = \frac{v - u}{t}'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [acceleration, change in velocity, time]
+      - id: ocr-suvat
+        name: Final and initial velocity
+        latex: 'v^2 - u^2 = 2as'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [velocity, acceleration, distance, suvat]
+      - id: ocr-force
+        name: Force
+        latex: 'F = ma'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [force, mass, acceleration, newton]
+      - id: ocr-momentum
+        name: Momentum
+        latex: 'p = mv'
+        provision: {ocr: given}
+        tier: [H]
+        keywords: [momentum, mass, velocity]
+      - id: ocr-weight
+        name: Gravitational force
+        latex: 'W = mg'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [weight, gravitational force, mass, field strength]
+
+  - id: waves
+    title: Waves
+    items:
+      - id: aqa-wave-speed
+        name: Wave speed
+        latex: 'v = f\lambda'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [wave speed, frequency, wavelength]
+      - id: aqa-period
+        name: Period
+        latex: 'T = \frac{1}{f}'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [period, frequency]
+      - id: aqa-magnification
+        name: Magnification
+        latex: '\text{magnification} = \frac{\text{image height}}{\text{object height}}'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [magnification, image height, object height]
+
+      - id: edexcel-wave-speed
+        name: Wave speed
+        latex: 'v = f \times \lambda'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [wave speed, frequency, wavelength]
+      - id: edexcel-wave-speed-distance
+        name: Wave speed
+        latex: 'v = \frac{x}{t}'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [wave speed, distance, time]
+
+      - id: ocr-wave-speed
+        name: Wave speed
+        latex: 'v = f\lambda'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [wave speed, frequency, wavelength]
+
+  - id: electricity
+    title: Electricity
+    items:
+      - id: aqa-charge
+        name: Charge flow
+        latex: 'Q = It'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [charge, current, time]
+      - id: aqa-potential-difference
+        name: Potential difference
+        latex: 'V = IR'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [potential difference, current, resistance]
+      - id: aqa-power-vi
+        name: Electrical power
+        latex: 'P = VI'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [power, potential difference, current]
+      - id: aqa-power-i2r
+        name: Electrical power
+        latex: 'P = I^2R'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [power, current, resistance]
+      - id: aqa-energy-pt
+        name: Energy transferred
+        latex: 'E = Pt'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [energy transferred, power, time]
+      - id: aqa-energy-qv
+        name: Energy transferred
+        latex: 'E = QV'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [energy transferred, charge, potential difference]
+
+      - id: edexcel-charge
+        name: Charge
+        latex: 'Q = I \times t'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [charge, current, time]
+      - id: edexcel-potential-difference
+        name: Potential difference
+        latex: 'V = I \times R'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [potential difference, current, resistance]
+      - id: edexcel-energy-qv
+        name: Energy transferred
+        latex: 'E = Q \times V'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [energy transferred, charge, potential difference]
+      - id: edexcel-power-vi
+        name: Electrical power
+        latex: 'P = I \times V'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [power, potential difference, current]
+      - id: edexcel-power-i2r
+        name: Electrical power
+        latex: 'P = I^2 \times R'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [power, current, resistance]
+      - id: edexcel-energy-ivt
+        name: Energy transferred
+        latex: 'E = I \times V \times t'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [energy transferred, current, potential difference, time]
+
+      - id: ocr-charge
+        name: Charge flow
+        latex: 'Q = It'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [charge, current, time]
+      - id: ocr-potential-difference
+        name: Potential difference
+        latex: 'V = IR'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [potential difference, current, resistance]
+      - id: ocr-energy-qv
+        name: Energy transferred
+        latex: 'E = QV'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [energy transferred, charge, potential difference]
+      - id: ocr-power-vi
+        name: Power
+        latex: 'P = VI'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [power, potential difference, current]
+      - id: ocr-power-i2r
+        name: Power
+        latex: 'P = I^2R'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [power, current, resistance]
+      - id: ocr-energy-pt
+        name: Energy transferred
+        latex: 'E = Pt'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [energy transferred, power, time]
+
+  - id: magnetism
+    title: Magnetism and electromagnetism
+    items:
+      - id: aqa-force-conductor
+        name: Force on a current-carrying conductor
+        latex: 'F = BIl'
+        note: The conductor is at right angles to the magnetic field.
+        provision: {aqa: given}
+        tier: [H]
+        keywords: [motor effect, magnetic flux density, force, conductor]
+      - id: aqa-transformer-turns
+        name: Transformer turns
+        latex: '\frac{V_p}{V_s} = \frac{n_p}{n_s}'
+        provision: {aqa: given}
+        tier: [H]
+        keywords: [transformer, turns, potential difference]
+      - id: aqa-transformer-power
+        name: Transformer power
+        latex: 'V_pI_p = V_sI_s'
+        provision: {aqa: given}
+        tier: [H]
+        keywords: [transformer, power, current]
+
+      - id: edexcel-force-conductor
+        name: Force on a current-carrying conductor
+        latex: 'F = B \times I \times l'
+        note: The conductor is at right angles to the magnetic field.
+        provision: {edexcel: given}
+        tier: [H]
+        keywords: [motor effect, magnetic flux density, force, conductor]
+      - id: edexcel-transformer-turns
+        name: Transformer turns
+        latex: '\frac{V_P}{V_S} = \frac{N_P}{N_S}'
+        provision: {edexcel: given}
+        tier: [H]
+        keywords: [transformer, turns, potential difference]
+      - id: edexcel-transformer-power
+        name: Transformer power
+        latex: 'V_P \times I_P = V_S \times I_S'
+        note: For a transformer with 100% efficiency.
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [transformer, power, current]
+
+      - id: ocr-force-conductor
+        name: Force on a current-carrying conductor
+        latex: 'F = BIl'
+        note: The conductor is at right angles to the magnetic field.
+        provision: {ocr: given}
+        tier: [H]
+        keywords: [motor effect, magnetic flux density, force, conductor]
+      - id: ocr-transformer-turns
+        name: Transformer turns
+        latex: '\frac{V_p}{V_s} = \frac{N_p}{N_s}'
+        provision: {ocr: given}
+        tier: [H]
+        keywords: [transformer, turns, potential difference]
+      - id: ocr-transformer-power
+        name: Transformer power
+        latex: 'V_pI_p = V_sI_s'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [transformer, power, current]
+
+  - id: particle-model
+    title: Particle model of matter
+    items:
+      - id: aqa-density
+        name: Density
+        latex: '\rho = \frac{m}{V}'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [density, mass, volume]
+      - id: aqa-gas-law
+        name: For gases (constant temperature)
+        latex: 'pV = \text{constant}'
+        provision: {aqa: given}
+        tier: [F, H]
+        keywords: [gas, pressure, volume, boyle]
+      - id: aqa-pressure-liquid
+        name: Pressure due to a column of liquid
+        latex: 'p = h\rho g'
+        provision: {aqa: given}
+        tier: [H]
+        keywords: [pressure, depth, density, liquid]
+
+      - id: edexcel-density
+        name: Density
+        latex: '\rho = \frac{m}{V}'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [density, mass, volume]
+      - id: edexcel-gas-law
+        name: For gases of fixed mass at constant temperature
+        latex: 'P_1 \times V_1 = P_2 \times V_2'
+        provision: {edexcel: given}
+        tier: [F, H]
+        keywords: [gas, pressure, volume, boyle]
+      - id: edexcel-pressure-liquid
+        name: Pressure due to a column of liquid
+        latex: 'P = h \times \rho \times g'
+        provision: {edexcel: given}
+        tier: [H]
+        keywords: [pressure, depth, density, liquid]
+
+      - id: ocr-density
+        name: Density
+        latex: '\rho = \frac{m}{V}'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [density, mass, volume]
+      - id: ocr-gas-law
+        name: For gases at constant temperature
+        latex: 'pV = \text{constant}'
+        provision: {ocr: given}
+        tier: [F, H]
+        keywords: [gas, pressure, volume, boyle]
+      - id: ocr-pressure-liquid
+        name: Pressure due to a column of liquid
+        latex: 'p = h\rho g'
+        provision: {ocr: given}
+        tier: [H]
+        keywords: [pressure, depth, density, liquid]
+
+  - id: values-in-question
+    title: Values supplied in the question
+    items:
+      - id: specific-heat-capacity
+        name: Specific heat capacity
+        latex: 'c'
+        note: The value for the material in the question is given in the question.
+        provision: {aqa: question, edexcel: question, ocr: question}
+        tier: [F, H]
+        keywords: [specific heat capacity, value, given]
+      - id: specific-latent-heat
+        name: Specific latent heat
+        latex: 'L'
+        note: The value for the material in the question is given in the question.
+        provision: {aqa: question, edexcel: question, ocr: question}
+        tier: [F, H]
+        keywords: [specific latent heat, value, given]
+      - id: density-of-material
+        name: Density
+        latex: '\rho'
+        note: Densities of named materials are given in the question where they are needed.
+        provision: {aqa: question, edexcel: question, ocr: question}
+        tier: [F, H]
+        keywords: [density, value, given]
+
+  - id: must-know
+    title: Values to know
+    items:
+      - id: aqa-typical-speeds
+        name: Typical speeds
+        latex: '\text{walking} \approx 1.5\ \text{m/s},\quad \text{running} \approx 3\ \text{m/s},\quad \text{cycling} \approx 6\ \text{m/s}'
+        note: AQA 8463 says these typical values must be recalled.
+        provision: {aqa: know}
+        tier: [F, H]
+        keywords: [typical speed, walking, running, cycling, recall]
+      - id: aqa-speed-of-sound
+        name: Speed of sound in air
+        latex: '\text{speed of sound in air} \approx 330\ \text{m/s}'
+        note: AQA 8463 states this typical value.
+        provision: {aqa: know}
+        tier: [F, H]
+        keywords: [speed of sound, air, typical value, recall]
+
+tables:
+  - id: si-base-units
+    title: SI base units
+    columns: ["Quantity", "Unit", "Symbol"]
+    rows:
+      - ["Length", "metre", "m"]
+      - ["Mass", "kilogram", "kg"]
+      - ["Time", "second", "s"]
+      - ["Electric current", "ampere", "A"]
+      - ["Temperature", "kelvin", "K"]
+      - ["Amount of substance", "mole", "mol"]
+  - id: si-prefixes
+    title: SI prefixes
+    columns: ["Prefix", "Symbol", "Factor"]
+    rows:
+      - ["pico", "p", "10⁻¹²"]
+      - ["nano", "n", "10⁻⁹"]
+      - ["micro", "μ", "10⁻⁶"]
+      - ["milli", "m", "10⁻³"]
+      - ["kilo", "k", "10³"]
+      - ["mega", "M", "10⁶"]
+      - ["giga", "G", "10⁹"]

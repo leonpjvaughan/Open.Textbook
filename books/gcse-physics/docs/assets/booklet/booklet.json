@@ -1,0 +1,2034 @@
+{
+ "meta": {
+  "title": "GCSE Physics — equations and data",
+  "panel_title": "Equations & tables",
+  "short": "Equations",
+  "tab_label": "Equations",
+  "item_label": "equations",
+  "search_placeholder": "Search equations…",
+  "series": "exams in 2026",
+  "default_board": "aqa",
+  "tiered": true,
+  "note": "There is no national booklet: each board prints its own equations sheet, and the boards differ. Provision shown here is taken from the sheets recorded in sources.yaml. AQA's 2026 sheet prints all 35 equations; Edexcel's equation list prints every equation; OCR's 2027 sheet prints every recall and select equation. Because no equation must be memorised, every equation is in the `given` group.",
+  "provenance": {
+   "aqa": "AQA Physics Equations Sheet, GCSE Physics (8463), for use in June 2026 only",
+   "edexcel": "Pearson Edexcel GCSE Physics Equations List, May–June 2024 (1PH0); a 2026 list was not retrieved",
+   "ocr": "OCR GCSE Physics A (J249) Equation Sheet, June 2027"
+  },
+  "basis": "DfE confirmed on 26 February 2026 that students do not need to memorise equations for GCSE physics or combined science for the lifetime of the current specifications, and Ofqual decided on 5 May 2026 that boards must keep providing the sheets and must not set questions answerable solely by transferring information from them. The recall/select appendices in the specifications predate the 2022 policy and are not the provision. AQA's and OCR's current sheets were read directly. Edexcel's exam-support page states an equation list is provided in the exam room; the only machine-readable list is the May–June 2024 one, so Edexcel's provision here rests on that document and must be re-verified when Pearson publishes a later list.",
+  "boards": {
+   "aqa": {
+    "name": "AQA",
+    "code": "8463"
+   },
+   "edexcel": {
+    "name": "Edexcel",
+    "code": "1PH0"
+   },
+   "ocr": {
+    "name": "OCR",
+    "code": "J249/J259"
+   }
+  },
+  "groups": {
+   "given": {
+    "label": "On your equations sheet",
+    "chip": "Given",
+    "tone": "accent"
+   },
+   "question": {
+    "label": "May be given in the question",
+    "chip": "In question",
+    "tone": "muted"
+   },
+   "know": {
+    "label": "You must know",
+    "chip": "Must know",
+    "tone": "warn"
+   }
+  }
+ },
+ "sections": [
+  {
+   "id": "energy",
+   "title": "Energy",
+   "items": [
+    {
+     "id": "aqa-kinetic-energy",
+     "name": "Kinetic energy",
+     "latex": "E_k = \\tfrac{1}{2}mv^2",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "kinetic energy",
+      "movement",
+      "speed"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>E</mi><mi>k</mi></msub><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>m</mi><msup><mi>v</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">E_k = \\tfrac{1}{2}mv^2</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-elastic-pe",
+     "name": "Elastic potential energy",
+     "latex": "E_e = \\tfrac{1}{2}ke^2",
+     "note": "e is the extension of the spring.",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "elastic potential energy",
+      "spring",
+      "extension"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>E</mi><mi>e</mi></msub><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>k</mi><msup><mi>e</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">E_e = \\tfrac{1}{2}ke^2</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-gpe",
+     "name": "Gravitational potential energy",
+     "latex": "E_p = mgh",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "gravitational potential energy",
+      "height",
+      "weight"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>E</mi><mi>p</mi></msub><mo>=</mo><mi>m</mi><mi>g</mi><mi>h</mi></mrow><annotation encoding=\"application/x-tex\">E_p = mgh</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-thermal-energy",
+     "name": "Change in thermal energy",
+     "latex": "\\Delta E = mc\\Delta\\theta",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "thermal energy",
+      "specific heat capacity",
+      "temperature"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi mathvariant=\"normal\">Δ</mi><mi>E</mi><mo>=</mo><mi>m</mi><mi>c</mi><mi mathvariant=\"normal\">Δ</mi><mi>θ</mi></mrow><annotation encoding=\"application/x-tex\">\\Delta E = mc\\Delta\\theta</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-power-energy",
+     "name": "Power",
+     "latex": "P = \\frac{E}{t}",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "power",
+      "energy transferred",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo>=</mo><mfrac><mi>E</mi><mi>t</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">P = \\frac{E}{t}</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-power-work",
+     "name": "Power",
+     "latex": "P = \\frac{W}{t}",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "power",
+      "work done",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo>=</mo><mfrac><mi>W</mi><mi>t</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">P = \\frac{W}{t}</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-efficiency-energy",
+     "name": "Efficiency",
+     "latex": "\\text{efficiency} = \\frac{\\text{useful output energy transfer}}{\\text{total input energy transfer}}",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "efficiency",
+      "useful energy",
+      "input energy"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>efficiency</mtext><mo>=</mo><mfrac><mtext>useful output energy transfer</mtext><mtext>total input energy transfer</mtext></mfrac></mrow><annotation encoding=\"application/x-tex\">\\text{efficiency} = \\frac{\\text{useful output energy transfer}}{\\text{total input energy transfer}}</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-efficiency-power",
+     "name": "Efficiency",
+     "latex": "\\text{efficiency} = \\frac{\\text{useful power output}}{\\text{total power input}}",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "efficiency",
+      "useful power",
+      "input power"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>efficiency</mtext><mo>=</mo><mfrac><mtext>useful power output</mtext><mtext>total power input</mtext></mfrac></mrow><annotation encoding=\"application/x-tex\">\\text{efficiency} = \\frac{\\text{useful power output}}{\\text{total power input}}</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-work-done",
+     "name": "Work done",
+     "latex": "W = Fs",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "work done",
+      "force",
+      "distance"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>W</mi><mo>=</mo><mi>F</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">W = Fs</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-force-spring",
+     "name": "Force exerted by a spring",
+     "latex": "F = ke",
+     "note": "e is the extension of the spring.",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "spring",
+      "extension",
+      "spring constant",
+      "hooke"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mi>k</mi><mi>e</mi></mrow><annotation encoding=\"application/x-tex\">F = ke</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-thermal-latent",
+     "name": "Thermal energy for a change of state",
+     "latex": "E = mL",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "specific latent heat",
+      "change of state",
+      "melting",
+      "boiling"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><mi>L</mi></mrow><annotation encoding=\"application/x-tex\">E = mL</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-kinetic-energy",
+     "name": "Kinetic energy",
+     "latex": "KE = \\tfrac{1}{2}mv^2",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "kinetic energy",
+      "movement",
+      "speed"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>K</mi><mi>E</mi><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>m</mi><msup><mi>v</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">KE = \\tfrac{1}{2}mv^2</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-gpe",
+     "name": "Change in gravitational potential energy",
+     "latex": "\\Delta GPE = mg\\Delta h",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "gravitational potential energy",
+      "vertical height"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi mathvariant=\"normal\">Δ</mi><mi>G</mi><mi>P</mi><mi>E</mi><mo>=</mo><mi>m</mi><mi>g</mi><mi mathvariant=\"normal\">Δ</mi><mi>h</mi></mrow><annotation encoding=\"application/x-tex\">\\Delta GPE = mg\\Delta h</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-efficiency",
+     "name": "Efficiency",
+     "latex": "\\text{efficiency} = \\frac{\\text{useful energy transferred by the device}}{\\text{total energy supplied to the device}}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "efficiency",
+      "useful energy",
+      "supplied energy"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>efficiency</mtext><mo>=</mo><mfrac><mtext>useful energy transferred by the device</mtext><mtext>total energy supplied to the device</mtext></mfrac></mrow><annotation encoding=\"application/x-tex\">\\text{efficiency} = \\frac{\\text{useful energy transferred by the device}}{\\text{total energy supplied to the device}}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-power-work",
+     "name": "Power (work done ÷ time taken)",
+     "latex": "P = \\frac{E}{t}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "power",
+      "work done",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo>=</mo><mfrac><mi>E</mi><mi>t</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">P = \\frac{E}{t}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-power-energy",
+     "name": "Power (energy transferred ÷ time taken)",
+     "latex": "P = \\frac{E}{t}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "power",
+      "energy transferred",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo>=</mo><mfrac><mi>E</mi><mi>t</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">P = \\frac{E}{t}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-work-done",
+     "name": "Work done",
+     "latex": "E = Fd",
+     "note": "d is the distance moved in the direction of the force.",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "work done",
+      "force",
+      "distance"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mi>F</mi><mi>d</mi></mrow><annotation encoding=\"application/x-tex\">E = Fd</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-force-spring",
+     "name": "Force exerted on a spring",
+     "latex": "F = kx",
+     "note": "x is the extension of the spring.",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "spring",
+      "extension",
+      "spring constant",
+      "hooke"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mi>k</mi><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">F = kx</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-stretching-energy",
+     "name": "Energy transferred in stretching",
+     "latex": "E = \\tfrac{1}{2}kx^2",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "elastic",
+      "spring",
+      "extension",
+      "energy"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>k</mi><msup><mi>x</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">E = \\tfrac{1}{2}kx^2</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-thermal-energy",
+     "name": "Change in thermal energy",
+     "latex": "\\Delta Q = mc\\Delta\\theta",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "thermal energy",
+      "specific heat capacity",
+      "temperature"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi mathvariant=\"normal\">Δ</mi><mi>Q</mi><mo>=</mo><mi>m</mi><mi>c</mi><mi mathvariant=\"normal\">Δ</mi><mi>θ</mi></mrow><annotation encoding=\"application/x-tex\">\\Delta Q = mc\\Delta\\theta</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-thermal-latent",
+     "name": "Thermal energy for a change of state",
+     "latex": "Q = mL",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "specific latent heat",
+      "change of state"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>Q</mi><mo>=</mo><mi>m</mi><mi>L</mi></mrow><annotation encoding=\"application/x-tex\">Q = mL</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-moment",
+     "name": "Moment of a force",
+     "latex": "\\text{moment} = \\text{force} \\times \\text{distance normal to the direction of the force}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "moment",
+      "turning effect",
+      "lever"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>moment</mtext><mo>=</mo><mtext>force</mtext><mo>×</mo><mtext>distance normal to the direction of the force</mtext></mrow><annotation encoding=\"application/x-tex\">\\text{moment} = \\text{force} \\times \\text{distance normal to the direction of the force}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-pressure",
+     "name": "Pressure",
+     "latex": "P = \\frac{F}{A}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "pressure",
+      "force",
+      "area"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo>=</mo><mfrac><mi>F</mi><mi>A</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">P = \\frac{F}{A}</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-kinetic-energy",
+     "name": "Kinetic energy",
+     "latex": "E = \\tfrac{1}{2}mv^2",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "kinetic energy",
+      "movement",
+      "speed"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>m</mi><msup><mi>v</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">E = \\tfrac{1}{2}mv^2</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-stretching-energy",
+     "name": "Energy transferred in stretching",
+     "latex": "E = \\tfrac{1}{2}kx^2",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "elastic",
+      "spring",
+      "extension",
+      "energy"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>k</mi><msup><mi>x</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">E = \\tfrac{1}{2}kx^2</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-gpe",
+     "name": "Gravitational potential energy",
+     "latex": "E = mgh",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "gravitational potential energy",
+      "height"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><mi>g</mi><mi>h</mi></mrow><annotation encoding=\"application/x-tex\">E = mgh</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-thermal-energy",
+     "name": "Change in thermal energy",
+     "latex": "\\Delta E = mc\\Delta\\theta",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "thermal energy",
+      "specific heat capacity",
+      "temperature"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi mathvariant=\"normal\">Δ</mi><mi>E</mi><mo>=</mo><mi>m</mi><mi>c</mi><mi mathvariant=\"normal\">Δ</mi><mi>θ</mi></mrow><annotation encoding=\"application/x-tex\">\\Delta E = mc\\Delta\\theta</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-thermal-latent",
+     "name": "Thermal energy for a change of state",
+     "latex": "E = ml",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "specific latent heat",
+      "change of state"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><mi>l</mi></mrow><annotation encoding=\"application/x-tex\">E = ml</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-power-work",
+     "name": "Power",
+     "latex": "P = \\frac{W}{t}",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "power",
+      "work done",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo>=</mo><mfrac><mi>W</mi><mi>t</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">P = \\frac{W}{t}</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-efficiency",
+     "name": "Efficiency",
+     "latex": "\\text{efficiency} = \\frac{\\text{useful output energy transfer}}{\\text{input energy transfer}}",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "efficiency",
+      "useful energy",
+      "input energy"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>efficiency</mtext><mo>=</mo><mfrac><mtext>useful output energy transfer</mtext><mtext>input energy transfer</mtext></mfrac></mrow><annotation encoding=\"application/x-tex\">\\text{efficiency} = \\frac{\\text{useful output energy transfer}}{\\text{input energy transfer}}</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-work-done",
+     "name": "Work done",
+     "latex": "W = Fs",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "work done",
+      "force",
+      "distance"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>W</mi><mo>=</mo><mi>F</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">W = Fs</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-force-spring",
+     "name": "Force exerted by a spring",
+     "latex": "F = kx",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "spring",
+      "extension",
+      "spring constant",
+      "hooke"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mi>k</mi><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">F = kx</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-moment",
+     "name": "Moment of a force",
+     "latex": "M = Fd",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "moment",
+      "turning effect",
+      "lever"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>M</mi><mo>=</mo><mi>F</mi><mi>d</mi></mrow><annotation encoding=\"application/x-tex\">M = Fd</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-pressure",
+     "name": "Pressure",
+     "latex": "p = \\frac{F}{A}",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "pressure",
+      "force",
+      "area"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>p</mi><mo>=</mo><mfrac><mi>F</mi><mi>A</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">p = \\frac{F}{A}</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "forces-and-motion",
+   "title": "Forces and motion",
+   "items": [
+    {
+     "id": "aqa-weight",
+     "name": "Weight",
+     "latex": "W = mg",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "weight",
+      "mass",
+      "gravitational field strength"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>W</mi><mo>=</mo><mi>m</mi><mi>g</mi></mrow><annotation encoding=\"application/x-tex\">W = mg</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-distance",
+     "name": "Distance travelled",
+     "latex": "s = vt",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "distance",
+      "speed",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>s</mi><mo>=</mo><mi>v</mi><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">s = vt</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-acceleration",
+     "name": "Acceleration",
+     "latex": "a = \\frac{\\Delta v}{t}",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "acceleration",
+      "change in velocity",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>a</mi><mo>=</mo><mfrac><mrow><mi mathvariant=\"normal\">Δ</mi><mi>v</mi></mrow><mi>t</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">a = \\frac{\\Delta v}{t}</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-suvat",
+     "name": "Final and initial velocity",
+     "latex": "v^2 - u^2 = 2as",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "velocity",
+      "acceleration",
+      "distance",
+      "suvat"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>v</mi><mn>2</mn></msup><mo>−</mo><msup><mi>u</mi><mn>2</mn></msup><mo>=</mo><mn>2</mn><mi>a</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">v^2 - u^2 = 2as</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-resultant-force",
+     "name": "Resultant force",
+     "latex": "F = ma",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "force",
+      "mass",
+      "acceleration",
+      "newton"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mi>m</mi><mi>a</mi></mrow><annotation encoding=\"application/x-tex\">F = ma</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-momentum",
+     "name": "Momentum",
+     "latex": "p = mv",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "momentum",
+      "mass",
+      "velocity"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>p</mi><mo>=</mo><mi>m</mi><mi>v</mi></mrow><annotation encoding=\"application/x-tex\">p = mv</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-force-momentum",
+     "name": "Force and change of momentum",
+     "latex": "F = \\frac{m\\Delta v}{\\Delta t}",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "force",
+      "momentum",
+      "impulse"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mfrac><mrow><mi>m</mi><mi mathvariant=\"normal\">Δ</mi><mi>v</mi></mrow><mrow><mi mathvariant=\"normal\">Δ</mi><mi>t</mi></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">F = \\frac{m\\Delta v}{\\Delta t}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-distance",
+     "name": "Distance travelled",
+     "latex": "\\text{distance travelled} = \\text{average speed} \\times \\text{time}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "distance",
+      "average speed",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>distance travelled</mtext><mo>=</mo><mtext>average speed</mtext><mo>×</mo><mtext>time</mtext></mrow><annotation encoding=\"application/x-tex\">\\text{distance travelled} = \\text{average speed} \\times \\text{time}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-acceleration",
+     "name": "Acceleration",
+     "latex": "a = \\frac{v - u}{t}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "acceleration",
+      "change in velocity",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>a</mi><mo>=</mo><mfrac><mrow><mi>v</mi><mo>−</mo><mi>u</mi></mrow><mi>t</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">a = \\frac{v - u}{t}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-force",
+     "name": "Force",
+     "latex": "F = m \\times a",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "force",
+      "mass",
+      "acceleration",
+      "newton"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mi>m</mi><mo>×</mo><mi>a</mi></mrow><annotation encoding=\"application/x-tex\">F = m \\times a</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-weight",
+     "name": "Weight",
+     "latex": "W = m \\times g",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "weight",
+      "mass",
+      "gravitational field strength"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>W</mi><mo>=</mo><mi>m</mi><mo>×</mo><mi>g</mi></mrow><annotation encoding=\"application/x-tex\">W = m \\times g</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-momentum",
+     "name": "Momentum",
+     "latex": "p = m \\times v",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "momentum",
+      "mass",
+      "velocity"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>p</mi><mo>=</mo><mi>m</mi><mo>×</mo><mi>v</mi></mrow><annotation encoding=\"application/x-tex\">p = m \\times v</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-suvat",
+     "name": "Final and initial velocity",
+     "latex": "v^2 - u^2 = 2 \\times a \\times x",
+     "note": "x is the distance travelled.",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "velocity",
+      "acceleration",
+      "distance",
+      "suvat"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>v</mi><mn>2</mn></msup><mo>−</mo><msup><mi>u</mi><mn>2</mn></msup><mo>=</mo><mn>2</mn><mo>×</mo><mi>a</mi><mo>×</mo><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">v^2 - u^2 = 2 \\times a \\times x</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-force-momentum",
+     "name": "Force and change of momentum",
+     "latex": "F = \\frac{mv - mu}{t}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "force",
+      "momentum",
+      "impulse"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mfrac><mrow><mi>m</mi><mi>v</mi><mo>−</mo><mi>m</mi><mi>u</mi></mrow><mi>t</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">F = \\frac{mv - mu}{t}</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-distance",
+     "name": "Distance travelled",
+     "latex": "s = vt",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "distance",
+      "speed",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>s</mi><mo>=</mo><mi>v</mi><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">s = vt</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-acceleration",
+     "name": "Acceleration",
+     "latex": "a = \\frac{v - u}{t}",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "acceleration",
+      "change in velocity",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>a</mi><mo>=</mo><mfrac><mrow><mi>v</mi><mo>−</mo><mi>u</mi></mrow><mi>t</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">a = \\frac{v - u}{t}</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-suvat",
+     "name": "Final and initial velocity",
+     "latex": "v^2 - u^2 = 2as",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "velocity",
+      "acceleration",
+      "distance",
+      "suvat"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>v</mi><mn>2</mn></msup><mo>−</mo><msup><mi>u</mi><mn>2</mn></msup><mo>=</mo><mn>2</mn><mi>a</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">v^2 - u^2 = 2as</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-force",
+     "name": "Force",
+     "latex": "F = ma",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "force",
+      "mass",
+      "acceleration",
+      "newton"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mi>m</mi><mi>a</mi></mrow><annotation encoding=\"application/x-tex\">F = ma</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-momentum",
+     "name": "Momentum",
+     "latex": "p = mv",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "momentum",
+      "mass",
+      "velocity"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>p</mi><mo>=</mo><mi>m</mi><mi>v</mi></mrow><annotation encoding=\"application/x-tex\">p = mv</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-weight",
+     "name": "Gravitational force",
+     "latex": "W = mg",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "weight",
+      "gravitational force",
+      "mass",
+      "field strength"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>W</mi><mo>=</mo><mi>m</mi><mi>g</mi></mrow><annotation encoding=\"application/x-tex\">W = mg</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "waves",
+   "title": "Waves",
+   "items": [
+    {
+     "id": "aqa-wave-speed",
+     "name": "Wave speed",
+     "latex": "v = f\\lambda",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "wave speed",
+      "frequency",
+      "wavelength"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>v</mi><mo>=</mo><mi>f</mi><mi>λ</mi></mrow><annotation encoding=\"application/x-tex\">v = f\\lambda</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-period",
+     "name": "Period",
+     "latex": "T = \\frac{1}{f}",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "period",
+      "frequency"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>T</mi><mo>=</mo><mfrac><mn>1</mn><mi>f</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">T = \\frac{1}{f}</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-magnification",
+     "name": "Magnification",
+     "latex": "\\text{magnification} = \\frac{\\text{image height}}{\\text{object height}}",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "magnification",
+      "image height",
+      "object height"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>magnification</mtext><mo>=</mo><mfrac><mtext>image height</mtext><mtext>object height</mtext></mfrac></mrow><annotation encoding=\"application/x-tex\">\\text{magnification} = \\frac{\\text{image height}}{\\text{object height}}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-wave-speed",
+     "name": "Wave speed",
+     "latex": "v = f \\times \\lambda",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "wave speed",
+      "frequency",
+      "wavelength"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>v</mi><mo>=</mo><mi>f</mi><mo>×</mo><mi>λ</mi></mrow><annotation encoding=\"application/x-tex\">v = f \\times \\lambda</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-wave-speed-distance",
+     "name": "Wave speed",
+     "latex": "v = \\frac{x}{t}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "wave speed",
+      "distance",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>v</mi><mo>=</mo><mfrac><mi>x</mi><mi>t</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">v = \\frac{x}{t}</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-wave-speed",
+     "name": "Wave speed",
+     "latex": "v = f\\lambda",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "wave speed",
+      "frequency",
+      "wavelength"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>v</mi><mo>=</mo><mi>f</mi><mi>λ</mi></mrow><annotation encoding=\"application/x-tex\">v = f\\lambda</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "electricity",
+   "title": "Electricity",
+   "items": [
+    {
+     "id": "aqa-charge",
+     "name": "Charge flow",
+     "latex": "Q = It",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "charge",
+      "current",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>Q</mi><mo>=</mo><mi>I</mi><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">Q = It</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-potential-difference",
+     "name": "Potential difference",
+     "latex": "V = IR",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "potential difference",
+      "current",
+      "resistance"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>V</mi><mo>=</mo><mi>I</mi><mi>R</mi></mrow><annotation encoding=\"application/x-tex\">V = IR</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-power-vi",
+     "name": "Electrical power",
+     "latex": "P = VI",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "power",
+      "potential difference",
+      "current"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo>=</mo><mi>V</mi><mi>I</mi></mrow><annotation encoding=\"application/x-tex\">P = VI</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-power-i2r",
+     "name": "Electrical power",
+     "latex": "P = I^2R",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "power",
+      "current",
+      "resistance"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo>=</mo><msup><mi>I</mi><mn>2</mn></msup><mi>R</mi></mrow><annotation encoding=\"application/x-tex\">P = I^2R</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-energy-pt",
+     "name": "Energy transferred",
+     "latex": "E = Pt",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "energy transferred",
+      "power",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mi>P</mi><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">E = Pt</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-energy-qv",
+     "name": "Energy transferred",
+     "latex": "E = QV",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "energy transferred",
+      "charge",
+      "potential difference"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mi>Q</mi><mi>V</mi></mrow><annotation encoding=\"application/x-tex\">E = QV</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-charge",
+     "name": "Charge",
+     "latex": "Q = I \\times t",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "charge",
+      "current",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>Q</mi><mo>=</mo><mi>I</mi><mo>×</mo><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">Q = I \\times t</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-potential-difference",
+     "name": "Potential difference",
+     "latex": "V = I \\times R",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "potential difference",
+      "current",
+      "resistance"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>V</mi><mo>=</mo><mi>I</mi><mo>×</mo><mi>R</mi></mrow><annotation encoding=\"application/x-tex\">V = I \\times R</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-energy-qv",
+     "name": "Energy transferred",
+     "latex": "E = Q \\times V",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "energy transferred",
+      "charge",
+      "potential difference"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mi>Q</mi><mo>×</mo><mi>V</mi></mrow><annotation encoding=\"application/x-tex\">E = Q \\times V</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-power-vi",
+     "name": "Electrical power",
+     "latex": "P = I \\times V",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "power",
+      "potential difference",
+      "current"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo>=</mo><mi>I</mi><mo>×</mo><mi>V</mi></mrow><annotation encoding=\"application/x-tex\">P = I \\times V</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-power-i2r",
+     "name": "Electrical power",
+     "latex": "P = I^2 \\times R",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "power",
+      "current",
+      "resistance"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo>=</mo><msup><mi>I</mi><mn>2</mn></msup><mo>×</mo><mi>R</mi></mrow><annotation encoding=\"application/x-tex\">P = I^2 \\times R</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-energy-ivt",
+     "name": "Energy transferred",
+     "latex": "E = I \\times V \\times t",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "energy transferred",
+      "current",
+      "potential difference",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mi>I</mi><mo>×</mo><mi>V</mi><mo>×</mo><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">E = I \\times V \\times t</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-charge",
+     "name": "Charge flow",
+     "latex": "Q = It",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "charge",
+      "current",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>Q</mi><mo>=</mo><mi>I</mi><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">Q = It</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-potential-difference",
+     "name": "Potential difference",
+     "latex": "V = IR",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "potential difference",
+      "current",
+      "resistance"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>V</mi><mo>=</mo><mi>I</mi><mi>R</mi></mrow><annotation encoding=\"application/x-tex\">V = IR</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-energy-qv",
+     "name": "Energy transferred",
+     "latex": "E = QV",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "energy transferred",
+      "charge",
+      "potential difference"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mi>Q</mi><mi>V</mi></mrow><annotation encoding=\"application/x-tex\">E = QV</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-power-vi",
+     "name": "Power",
+     "latex": "P = VI",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "power",
+      "potential difference",
+      "current"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo>=</mo><mi>V</mi><mi>I</mi></mrow><annotation encoding=\"application/x-tex\">P = VI</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-power-i2r",
+     "name": "Power",
+     "latex": "P = I^2R",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "power",
+      "current",
+      "resistance"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo>=</mo><msup><mi>I</mi><mn>2</mn></msup><mi>R</mi></mrow><annotation encoding=\"application/x-tex\">P = I^2R</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-energy-pt",
+     "name": "Energy transferred",
+     "latex": "E = Pt",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "energy transferred",
+      "power",
+      "time"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>E</mi><mo>=</mo><mi>P</mi><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">E = Pt</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "magnetism",
+   "title": "Magnetism and electromagnetism",
+   "items": [
+    {
+     "id": "aqa-force-conductor",
+     "name": "Force on a current-carrying conductor",
+     "latex": "F = BIl",
+     "note": "The conductor is at right angles to the magnetic field.",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "motor effect",
+      "magnetic flux density",
+      "force",
+      "conductor"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mi>B</mi><mi>I</mi><mi>l</mi></mrow><annotation encoding=\"application/x-tex\">F = BIl</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-transformer-turns",
+     "name": "Transformer turns",
+     "latex": "\\frac{V_p}{V_s} = \\frac{n_p}{n_s}",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "transformer",
+      "turns",
+      "potential difference"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><msub><mi>V</mi><mi>p</mi></msub><msub><mi>V</mi><mi>s</mi></msub></mfrac><mo>=</mo><mfrac><msub><mi>n</mi><mi>p</mi></msub><msub><mi>n</mi><mi>s</mi></msub></mfrac></mrow><annotation encoding=\"application/x-tex\">\\frac{V_p}{V_s} = \\frac{n_p}{n_s}</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-transformer-power",
+     "name": "Transformer power",
+     "latex": "V_pI_p = V_sI_s",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "transformer",
+      "power",
+      "current"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>V</mi><mi>p</mi></msub><msub><mi>I</mi><mi>p</mi></msub><mo>=</mo><msub><mi>V</mi><mi>s</mi></msub><msub><mi>I</mi><mi>s</mi></msub></mrow><annotation encoding=\"application/x-tex\">V_pI_p = V_sI_s</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-force-conductor",
+     "name": "Force on a current-carrying conductor",
+     "latex": "F = B \\times I \\times l",
+     "note": "The conductor is at right angles to the magnetic field.",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "motor effect",
+      "magnetic flux density",
+      "force",
+      "conductor"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mi>B</mi><mo>×</mo><mi>I</mi><mo>×</mo><mi>l</mi></mrow><annotation encoding=\"application/x-tex\">F = B \\times I \\times l</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-transformer-turns",
+     "name": "Transformer turns",
+     "latex": "\\frac{V_P}{V_S} = \\frac{N_P}{N_S}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "transformer",
+      "turns",
+      "potential difference"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><msub><mi>V</mi><mi>P</mi></msub><msub><mi>V</mi><mi>S</mi></msub></mfrac><mo>=</mo><mfrac><msub><mi>N</mi><mi>P</mi></msub><msub><mi>N</mi><mi>S</mi></msub></mfrac></mrow><annotation encoding=\"application/x-tex\">\\frac{V_P}{V_S} = \\frac{N_P}{N_S}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-transformer-power",
+     "name": "Transformer power",
+     "latex": "V_P \\times I_P = V_S \\times I_S",
+     "note": "For a transformer with 100% efficiency.",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "transformer",
+      "power",
+      "current"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>V</mi><mi>P</mi></msub><mo>×</mo><msub><mi>I</mi><mi>P</mi></msub><mo>=</mo><msub><mi>V</mi><mi>S</mi></msub><mo>×</mo><msub><mi>I</mi><mi>S</mi></msub></mrow><annotation encoding=\"application/x-tex\">V_P \\times I_P = V_S \\times I_S</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-force-conductor",
+     "name": "Force on a current-carrying conductor",
+     "latex": "F = BIl",
+     "note": "The conductor is at right angles to the magnetic field.",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "motor effect",
+      "magnetic flux density",
+      "force",
+      "conductor"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mi>B</mi><mi>I</mi><mi>l</mi></mrow><annotation encoding=\"application/x-tex\">F = BIl</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-transformer-turns",
+     "name": "Transformer turns",
+     "latex": "\\frac{V_p}{V_s} = \\frac{N_p}{N_s}",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "transformer",
+      "turns",
+      "potential difference"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><msub><mi>V</mi><mi>p</mi></msub><msub><mi>V</mi><mi>s</mi></msub></mfrac><mo>=</mo><mfrac><msub><mi>N</mi><mi>p</mi></msub><msub><mi>N</mi><mi>s</mi></msub></mfrac></mrow><annotation encoding=\"application/x-tex\">\\frac{V_p}{V_s} = \\frac{N_p}{N_s}</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-transformer-power",
+     "name": "Transformer power",
+     "latex": "V_pI_p = V_sI_s",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "transformer",
+      "power",
+      "current"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>V</mi><mi>p</mi></msub><msub><mi>I</mi><mi>p</mi></msub><mo>=</mo><msub><mi>V</mi><mi>s</mi></msub><msub><mi>I</mi><mi>s</mi></msub></mrow><annotation encoding=\"application/x-tex\">V_pI_p = V_sI_s</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "particle-model",
+   "title": "Particle model of matter",
+   "items": [
+    {
+     "id": "aqa-density",
+     "name": "Density",
+     "latex": "\\rho = \\frac{m}{V}",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "density",
+      "mass",
+      "volume"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>ρ</mi><mo>=</mo><mfrac><mi>m</mi><mi>V</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">\\rho = \\frac{m}{V}</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-gas-law",
+     "name": "For gases (constant temperature)",
+     "latex": "pV = \\text{constant}",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "gas",
+      "pressure",
+      "volume",
+      "boyle"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>p</mi><mi>V</mi><mo>=</mo><mtext>constant</mtext></mrow><annotation encoding=\"application/x-tex\">pV = \\text{constant}</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-pressure-liquid",
+     "name": "Pressure due to a column of liquid",
+     "latex": "p = h\\rho g",
+     "provision": {
+      "aqa": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "pressure",
+      "depth",
+      "density",
+      "liquid"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>p</mi><mo>=</mo><mi>h</mi><mi>ρ</mi><mi>g</mi></mrow><annotation encoding=\"application/x-tex\">p = h\\rho g</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-density",
+     "name": "Density",
+     "latex": "\\rho = \\frac{m}{V}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "density",
+      "mass",
+      "volume"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>ρ</mi><mo>=</mo><mfrac><mi>m</mi><mi>V</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">\\rho = \\frac{m}{V}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-gas-law",
+     "name": "For gases of fixed mass at constant temperature",
+     "latex": "P_1 \\times V_1 = P_2 \\times V_2",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "gas",
+      "pressure",
+      "volume",
+      "boyle"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>P</mi><mn>1</mn></msub><mo>×</mo><msub><mi>V</mi><mn>1</mn></msub><mo>=</mo><msub><mi>P</mi><mn>2</mn></msub><mo>×</mo><msub><mi>V</mi><mn>2</mn></msub></mrow><annotation encoding=\"application/x-tex\">P_1 \\times V_1 = P_2 \\times V_2</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-pressure-liquid",
+     "name": "Pressure due to a column of liquid",
+     "latex": "P = h \\times \\rho \\times g",
+     "provision": {
+      "edexcel": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "pressure",
+      "depth",
+      "density",
+      "liquid"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo>=</mo><mi>h</mi><mo>×</mo><mi>ρ</mi><mo>×</mo><mi>g</mi></mrow><annotation encoding=\"application/x-tex\">P = h \\times \\rho \\times g</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-density",
+     "name": "Density",
+     "latex": "\\rho = \\frac{m}{V}",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "density",
+      "mass",
+      "volume"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>ρ</mi><mo>=</mo><mfrac><mi>m</mi><mi>V</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">\\rho = \\frac{m}{V}</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-gas-law",
+     "name": "For gases at constant temperature",
+     "latex": "pV = \\text{constant}",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "gas",
+      "pressure",
+      "volume",
+      "boyle"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>p</mi><mi>V</mi><mo>=</mo><mtext>constant</mtext></mrow><annotation encoding=\"application/x-tex\">pV = \\text{constant}</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-pressure-liquid",
+     "name": "Pressure due to a column of liquid",
+     "latex": "p = h\\rho g",
+     "provision": {
+      "ocr": "given"
+     },
+     "tier": [
+      "H"
+     ],
+     "keywords": [
+      "pressure",
+      "depth",
+      "density",
+      "liquid"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>p</mi><mo>=</mo><mi>h</mi><mi>ρ</mi><mi>g</mi></mrow><annotation encoding=\"application/x-tex\">p = h\\rho g</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "values-in-question",
+   "title": "Values supplied in the question",
+   "items": [
+    {
+     "id": "specific-heat-capacity",
+     "name": "Specific heat capacity",
+     "latex": "c",
+     "note": "The value for the material in the question is given in the question.",
+     "provision": {
+      "aqa": "question",
+      "edexcel": "question",
+      "ocr": "question"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "specific heat capacity",
+      "value",
+      "given"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>c</mi></mrow><annotation encoding=\"application/x-tex\">c</annotation></semantics></math>"
+    },
+    {
+     "id": "specific-latent-heat",
+     "name": "Specific latent heat",
+     "latex": "L",
+     "note": "The value for the material in the question is given in the question.",
+     "provision": {
+      "aqa": "question",
+      "edexcel": "question",
+      "ocr": "question"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "specific latent heat",
+      "value",
+      "given"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>L</mi></mrow><annotation encoding=\"application/x-tex\">L</annotation></semantics></math>"
+    },
+    {
+     "id": "density-of-material",
+     "name": "Density",
+     "latex": "\\rho",
+     "note": "Densities of named materials are given in the question where they are needed.",
+     "provision": {
+      "aqa": "question",
+      "edexcel": "question",
+      "ocr": "question"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "density",
+      "value",
+      "given"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>ρ</mi></mrow><annotation encoding=\"application/x-tex\">\\rho</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "must-know",
+   "title": "Values to know",
+   "items": [
+    {
+     "id": "aqa-typical-speeds",
+     "name": "Typical speeds",
+     "latex": "\\text{walking} \\approx 1.5\\ \\text{m/s},\\quad \\text{running} \\approx 3\\ \\text{m/s},\\quad \\text{cycling} \\approx 6\\ \\text{m/s}",
+     "note": "AQA 8463 says these typical values must be recalled.",
+     "provision": {
+      "aqa": "know"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "typical speed",
+      "walking",
+      "running",
+      "cycling",
+      "recall"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>walking</mtext><mo>≈</mo><mn>1.5</mn><mtext> m/s</mtext><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mtext>running</mtext><mo>≈</mo><mn>3</mn><mtext> m/s</mtext><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mtext>cycling</mtext><mo>≈</mo><mn>6</mn><mtext> m/s</mtext></mrow><annotation encoding=\"application/x-tex\">\\text{walking} \\approx 1.5\\ \\text{m/s},\\quad \\text{running} \\approx 3\\ \\text{m/s},\\quad \\text{cycling} \\approx 6\\ \\text{m/s}</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-speed-of-sound",
+     "name": "Speed of sound in air",
+     "latex": "\\text{speed of sound in air} \\approx 330\\ \\text{m/s}",
+     "note": "AQA 8463 states this typical value.",
+     "provision": {
+      "aqa": "know"
+     },
+     "tier": [
+      "F",
+      "H"
+     ],
+     "keywords": [
+      "speed of sound",
+      "air",
+      "typical value",
+      "recall"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>speed of sound in air</mtext><mo>≈</mo><mn>330</mn><mtext> m/s</mtext></mrow><annotation encoding=\"application/x-tex\">\\text{speed of sound in air} \\approx 330\\ \\text{m/s}</annotation></semantics></math>"
+    }
+   ]
+  }
+ ],
+ "tables": [
+  {
+   "id": "si-base-units",
+   "title": "SI base units",
+   "columns": [
+    "Quantity",
+    "Unit",
+    "Symbol"
+   ],
+   "rows": [
+    [
+     "Length",
+     "metre",
+     "m"
+    ],
+    [
+     "Mass",
+     "kilogram",
+     "kg"
+    ],
+    [
+     "Time",
+     "second",
+     "s"
+    ],
+    [
+     "Electric current",
+     "ampere",
+     "A"
+    ],
+    [
+     "Temperature",
+     "kelvin",
+     "K"
+    ],
+    [
+     "Amount of substance",
+     "mole",
+     "mol"
+    ]
+   ]
+  },
+  {
+   "id": "si-prefixes",
+   "title": "SI prefixes",
+   "columns": [
+    "Prefix",
+    "Symbol",
+    "Factor"
+   ],
+   "rows": [
+    [
+     "pico",
+     "p",
+     "10⁻¹²"
+    ],
+    [
+     "nano",
+     "n",
+     "10⁻⁹"
+    ],
+    [
+     "micro",
+     "μ",
+     "10⁻⁶"
+    ],
+    [
+     "milli",
+     "m",
+     "10⁻³"
+    ],
+    [
+     "kilo",
+     "k",
+     "10³"
+    ],
+    [
+     "mega",
+     "M",
+     "10⁶"
+    ],
+    [
+     "giga",
+     "G",
+     "10⁹"
+    ]
+   ]
+  }
+ ]
+}

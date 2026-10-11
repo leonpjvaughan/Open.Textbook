@@ -333,13 +333,24 @@ def _join_words(items) -> str:
 
 # The references a reader is entitled to see linked: the curriculum, the
 # awarding-body specifications and the regulator's decision on formula sheets.
-# A book whose sources.yaml uses other ids simply omits those links.
+# A book whose sources.yaml uses other ids simply omits those links. The ids are
+# grouped by book family so that a physics book links its own board documents
+# and a mathematics book links its own.
 ATTRIBUTION_IDS: tuple[str, ...] = (
     "dfe",
     "aqa-8300",
     "edexcel-1ma1",
     "ocr-j560",
     "ofqual-formulae-2026",
+    # GCSE Physics
+    "aqa-8463",
+    "edexcel-1ph0",
+    "ocr-j249",
+    "ofqual-equations-2028",
+    # A-level Physics
+    "aqa-7408",
+    "edexcel-9ph0",
+    "ocr-h556",
 )
 
 

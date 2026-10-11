@@ -1580,6 +1580,29 @@ efficiency).
 
 **Done means.** As item 27, plus a physics oracle.
 
+**Progress, 2026-10-11.** The book exists at `books/gcse-physics/`: 10 chapters,
+37 sections. `book.yaml` declares two profiles (`higher` default, `foundation`),
+the DfE tier axis (`F`/`H`), `oracles: [sympy, units]` and a teal subject tint;
+`curriculum.yaml`, `sources.yaml`, the book's `AGENTS.md` and
+`booklet/gcse-physics.yaml` are in place. The scaffold generated the docs tree,
+the booklet built (`101 formulae, 2 tables`), the portal shows the card, and
+`python -m textbook.pipeline --book gcse-physics` built **142 pages** (Higher)
+and **130 pages** (Foundation) with no broken links and no maths errors. The
+booklet has no recalled-equations group: every equation is `given`, and the
+per-board differences (AQA's period and magnification, Edexcel's `v = x/t` and
+`E = I × V × t`, OCR's explicit density and word-only efficiency) are kept as
+separate board items. `scripts/check.sh` passes.
+
+The tier split is expressible in the existing model, so no engine change was
+needed: the DfE rule is "Higher is a superset, Foundation excludes underlined",
+which is the same shape as mathematics, and the physics-only tag is kept separate
+from the Higher-only tag. Only four sections are wholly Higher-only at AQA 8463
+(momentum, sound/detection, induced potential/transformers, microphones/speakers).
+
+**Still open.** Edexcel's 2026 GCSE equation list was not retrieved (item 35), and
+item 36 covers the A-level option-topic formulae. There is no physics problem bank
+yet, so the units oracle is unused until the content pass.
+
 ---
 
 ## 29. A-level Physics — research done, book not started
@@ -1591,6 +1614,20 @@ them to be recalled, which breaks the clean given/recalled split a booklet would
 otherwise assume.
 
 **Done means.** As item 27, plus a physics oracle at A-level depth.
+
+**Progress, 2026-10-11.** The book exists at `books/a-level-physics/`: 9 chapters,
+30 sections. `book.yaml` declares one `a-level` profile, an explicitly empty
+`tier_axis` with the reason recorded, `oracles: [sympy, units]` and a copper
+subject tint; `curriculum.yaml`, `sources.yaml`, the book's `AGENTS.md` and
+`booklet/a-level-physics.yaml` are in place. The scaffold generated the docs tree,
+the booklet built (`105 formulae, 5 tables`), the portal shows the card, and
+`python -m textbook.pipeline --book a-level-physics` built **119 pages** with no
+broken links and no maths errors. OCR's "also expected to be recalled" equations
+carry that `note`; every equation is `given`. `scripts/check.sh` passes.
+
+**Still open.** The booklet transcribes the common core and constants only; the
+board-specific option-topic formulae are item 36, and Edexcel's printed insert was
+not retrieved (item 35). No physics bank yet, so the units oracle is unused.
 
 ---
 
@@ -1776,6 +1813,13 @@ same call for `gcse-maths` prints five links.
 id list. The allowlist exists to keep the page short; keep that intent with a
 per-reference tag (`attribution: true`) instead of matching ids.
 
+**Partial progress, 2026-10-11.** The physics ids were added to the tuple
+(`aqa-8463`, `edexcel-1ph0`, `ocr-j249`, `ofqual-equations-2028`, `aqa-7408`,
+`edexcel-9ph0`, `ocr-h556`), so both physics About pages now link their DfE and
+board references. The A-level Mathematics page is still unlinked, because its ids
+(`dfe-a-level`, `aqa-7357`, `edexcel-9ma0`, `ocr-h240`) were not added — the
+proper fix is still the per-reference tag.
+
 **Done means.**
 
 - [ ] The A-level About page links its DfE and board references.
@@ -1801,3 +1845,73 @@ one registration" is true of the scaffold too.
       `banks` directory exists and is tracked.
 - [ ] `test_book_is_well_formed` passes without any hand-made directory.
 
+
+---
+
+## 35. Edexcel's current physics equations/inserts were not retrieved
+
+Both physics booklets rest on Edexcel documents that are not the ones a 2026
+candidate sees.
+
+- **GCSE Physics 1PH0.** Pearson's exam-support page still links only the
+  May–June 2024 *Equations List* (`gcse-physics-exam-aid-1ph01sc0.pdf`,
+  `1PH0 1SC0`). The 2024 list prints the whole set and Ofqual requires
+  year-to-year consistency, but it is evidence for the 2024 window, not the 2026
+  provision. `books/gcse-physics/booklet/gcse-physics.yaml` records the caveat in
+  `meta.provenance` and `meta.basis`; `research/curriculum/physics.md` §"What
+  could not be established" records that a school-year-specific 2026 list was not
+  found.
+- **A-level Physics 9PH0.** Pearson exposes no standalone data-and-formulae
+  booklet PDF on a machine-readable page (the exam-materials listing is dynamic,
+  the past-papers area is login-gated). The A-level booklet's Edexcel provision
+  therefore rests on the specification's own Appendix 8 (formulae) and Appendix 9
+  (data), which state in words what is supplied, not on the printed insert.
+
+**Fix.** Retrieve each board's own current document: the 2026-onwards GCSE
+Equations List from Pearson's exam-support page or a 2026 paper, and the A-level
+data-and-formulae insert from a sample assessment material or a past paper.
+Transcribe the per-board spelling where it differs, update `meta.provenance`/
+`meta.basis` and `sources.yaml` with the URL and retrieval date, and re-run
+`python -m textbook.booklet` for the book.
+
+**Done means.**
+
+- [ ] `books/gcse-physics/sources.yaml` names an Edexcel equations list for the
+      current window, with a retrieval date, and the booklet matches it.
+- [ ] `books/a-level-physics/sources.yaml` names the Edexcel printed insert (or
+      records that the appendices are the closest readable evidence), and the
+      booklet's Edexcel items match it.
+- [ ] Any difference from the 2024 list / the appendices is transcribed, not
+      normalised, and `scripts/check.sh` passes.
+
+---
+
+## 36. The A-level physics booklet transcribes the core only
+
+`books/a-level-physics/booklet/a-level-physics.yaml` covers the DfE Appendix 3
+core common to AQA 7408, Edexcel 9PH0 and OCR H556, plus the constants and
+particle data. It does **not** transcribe the board-specific option-topic
+formulae: AQA's insert carries Astrophysics, Medical physics, Engineering
+physics, Turning points in physics and Electronics sections (five pages of the
+seven-page booklet), and Edexcel's and OCR's booklets likewise carry more than the
+common core. `meta.note` says so, and the curriculum omits the option topics
+deliberately (AQA 3.9–3.13).
+
+**Evidence.** `sed -n '/OPTIONS/,$p' research/sources/a-level-physics/aqa_7408_data_formulae.txt`
+(or the fetched copy) shows the five option sections; the booklet YAML's
+`sections:` has no option-topic section and `meta.note` records the gap.
+
+**Fix.** Decide the book's position on options — a board-neutral book cannot
+cover one board's options as common content. Either transcribe the options as
+board-specific booklet sections (so the widget shows them only for the board that
+ships them) and add a board-specific curriculum note, or declare options out of
+scope in `meta.note` and `AGENTS.md` as a deliberate limit.
+
+**Done means.**
+
+- [ ] The book states which board-specific content it covers and which it does
+      not, in `booklet` `meta.note`, `AGENTS.md` and `curriculum.yaml`.
+- [ ] If options are transcribed, they are `provision`-tagged per board and the
+      widget hides the wrong board's; if not, the limit is reader-visible.
+- [ ] `python -m textbook.booklet a-level-physics` validates and
+      `scripts/check.sh` passes.

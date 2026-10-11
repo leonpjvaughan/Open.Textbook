@@ -1,0 +1,85 @@
+# Identity and build metadata for this book.
+#
+# Everything a build needs that is not the content itself. The scaffold reads
+# this to generate the docs tree and the book's tint; the portal reads it to build the landing
+# page card; the hooks read the paths through the build's config.
+
+id: gcse-physics
+title: GCSE Physics (9-1)
+qualification: GCSE
+subject: Physics
+order: 3
+description: >-
+  A complete, interactive GCSE Physics book for England, covering both
+  Foundation and Higher tier.
+
+boards: [AQA, Pearson Edexcel, OCR]
+
+# One build per profile. `tier_filter` selects the tier hook's behaviour;
+# `default` marks the profile the landing page links to first.
+#
+# GCSE Physics has the same two-tier *shape* as GCSE Mathematics — Higher is a
+# superset of Foundation — but not the same split. The DfE subject content
+# marks Higher-only content with an underline, and each board re-expresses that
+# as `(HT only)` (AQA), bold type (Edexcel and OCR). See `curriculum.yaml` for
+# how the sections are tagged and `AGENTS.md` for the tier story.
+profiles:
+  - id: higher
+    name: Higher
+    tier_filter: higher
+    default: true
+  - id: foundation
+    name: Foundation
+    tier_filter: foundation
+
+# The tier axis for this book, for documentation and for the scaffold's stubs.
+# The labels are the reader-facing words, and they are the same as the
+# mathematics books' because the reader-facing meaning is the same: F belongs to
+# both tiers, H to Higher only. What differs is *which* content each label
+# covers, which is a curriculum matter and lives in curriculum.yaml.
+tier_axis:
+  F: Foundation and Higher
+  H: Higher only
+
+# Verification oracles the banks in this book may use. Physics needs both: the
+# SymPy oracle proves the arithmetic and algebra, and the units oracle proves
+# dimensions, significant figures, uncertainty propagation, vector resolution
+# and graph reading. See PROBLEMS.md and engine/textbook/verify/oracles/units.py.
+oracles: [sympy, units]
+
+# This book's own theme, one variation per colour scheme. Set only what makes
+# this book itself; everything else stays the house default in
+# assets/stylesheets/extra.css. `accent` also tints the book's landing-page card
+# in both schemes. Themable tokens: accent, accent_light, accent_dark,
+# accent_ink, paper, ink, ink_soft, rule, link, code_bg, fig_warn, fig_good, fig_grid.
+#
+# A teal, chosen to sit clear of GCSE Mathematics' blue and A-level Mathematics'
+# violet so the cards are tellable apart. Measured against every bundle in both
+# schemes; see `contrast_problems` in engine/textbook/themes.py.
+theme:
+  light:
+    accent: "#0f766e"
+    accent_light: "#2a9d8a"
+    accent_dark: "#0b5c55"
+  dark:
+    accent: "#5eead4"
+    accent_light: "#8ff2e2"
+    accent_dark: "#3fb8a4"
+
+# Paths, relative to this directory.
+curriculum: curriculum.yaml
+banks: problems
+booklet: booklet/gcse-physics.yaml
+sources: sources.yaml
+
+# Animated backgrounds: which one runs where. Nothing ships one — see
+# engine/textbook/backgrounds.py for the scopes and the measured reasons — so
+# every value here is null and the page merely declares what applies.
+#
+# backgrounds:
+#   default: field            # every page of this book
+#   chapters:
+#     "1": field
+#   sections:
+#     "1.3": field            # ...and this one turns it off
+#     "1.4": null

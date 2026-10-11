@@ -1,0 +1,7 @@
+/* Style overrides for GCSE Physics (9-1).
+ *
+ * Loaded after the shared design system and the generated tokens, so a
+ * rule here wins. Prefer setting token values in book.yaml; keep this file
+ * for components that are genuinely specific to this book, and keep it
+ * small — a book should be recognisable, not a different design system.
+ */

@@ -121,6 +121,7 @@ per-book layout is in `books/AGENTS.md`.
 | `engine/`, `engine/AGENTS.md`, `assets/`, `assets/AGENTS.md` | the engine and the design system, and their rules |
 | `themes/`, `books/`, `books/AGENTS.md`, `books/gcse-maths/`, `books/gcse-maths/AGENTS.md` | bundles; the books and their rules |
 | `books/a-level-maths/`, `books/a-level-maths/AGENTS.md` | the A-level Mathematics book and its rules |
+| `books/gcse-physics/`, `books/gcse-physics/AGENTS.md`, `books/a-level-physics/`, `books/a-level-physics/AGENTS.md` | the two physics books and their rules |
 | `research/`, `research/AGENTS.md`, `scripts/`, `scripts/AGENTS.md`, `tests/`, `tests/AGENTS.md`, `test/`, `deploy/`, `deploy/AGENTS.md`, `.github/`, `.github/AGENTS.md`, `.agents/`, `.claude/`, `.serena/` | corpus, scripts, tests, deploy, CI, skills |
 
 ## Build and verify

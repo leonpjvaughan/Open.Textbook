@@ -1,0 +1,146 @@
+# Provenance for every A-level Physics curriculum claim in this book.
+#
+# This is a tracked build input: it is what the chapter plan's references and the
+# board assumptions rest on, so it belongs with the content. The fetched
+# artefacts (PDFs and extracted text) are bulky and regenerable, so they live
+# outside the build tree in research/sources/a-level-physics/ and are git-ignored.
+#
+#   scripts/fetch_sources.sh a-level-physics
+#
+# Split out of research/curriculum/physics.sources.yaml, which is the research
+# manifest and is not consumed by the fetch script. The awarding bodies' own
+# specification and booklet PDFs are all-rights-reserved: we read and cite them,
+# and reproduce only the equations and data they require every candidate to have
+# in the exam (see BOOKLETS.md). Nothing here is copied into prose.
+#
+# Retrieved 2026-10-11 with a browser User-Agent; the boards filter otherwise.
+# The exact fetch commands are recorded in research/curriculum/physics.md.
+
+retrieved: 2026-10-11
+
+references:
+  # ---- DfE subject content --------------------------------------------------
+  - id: dfe
+    title: >-
+      GCE AS and A level subject content for biology, chemistry, physics and
+      psychology (April 2014)
+    ref: DFE-00706-2014 (as published on gov.uk)
+    url: https://assets.publishing.service.gov.uk/media/5a807949e5274a2e8ab50599/Science_AS_and_level_formatted.pdf
+    page: https://www.gov.uk/government/publications/gce-as-and-a-level-for-science
+    role: >-
+      Primary curriculum. Physics is Appendix 3, "physics – knowledge and
+      understanding", numbered as paragraphs 37–45; the AS subset is the
+      non-bold text and must be about 60% of the AS specification. Appendix 5 /
+      5a / 5b are working scientifically and practical skills; Appendix 5c is
+      the apparatus and techniques with a minimum of 12 identified practical
+      activities; Appendix 6c is the mathematical requirements, and the
+      introduction to Appendix 6 states the 20% chemistry / 40% physics
+      quantitative-skills weighting.
+
+  - id: ofqual-gce-science
+    title: >-
+      Ofqual: GCE Subject Level Conditions and Requirements for Science
+      (Biology, Chemistry, Physics, Psychology)
+    url: https://www.gov.uk/government/publications/gce-subject-level-conditions-and-requirements-for-science
+    role: >-
+      The regulatory context for the A-level science qualifications: the
+      assessment objectives and the Practical Endorsement requirement. Read for
+      any condition that changes the physics content or assessment; none was
+      found that changes the content.
+
+  - id: dfe-car-response
+    title: >-
+      Curriculum and Assessment Review Final Report: government response
+      (10 December 2025)
+    url: https://assets.publishing.service.gov.uk/media/690b2a4a14b040dfe82922ea/Government_response_to_the_Curriculum_and_Assessment_Review.pdf
+    page: https://www.gov.uk/government/publications/curriculum-and-assessment-review-final-report-government-response
+    role: >-
+      The live reform context. The 2026 DfE/Ofqual decisions about memorising
+      equations are expressly about GCSE mathematics, physics and combined
+      science, not A-level; no A-level physics data-booklet change was found.
+      Cited so the A-level position is not confused with the GCSE one.
+
+  # ---- AQA 7407/7408 -------------------------------------------------------
+  - id: aqa-7408
+    title: "AQA AS and A-level Physics 7407/7408 specification, v1.4, July 2026"
+    url: https://cdn.sanity.io/files/p28bar15/green/fa68d54c1a3b8ef17760536c7fb2e3911c29dc73.pdf
+    page: https://www.aqa.org.uk/subjects/physics/a-level/physics-7408
+    role: >-
+      Content sections 3.1–3.13 (3.6–3.13 A-level only), with the optional
+      topics 3.9–3.13. Twelve required practicals. Section 6 reproduces the DfE
+      mathematical requirements with AQA's exemplifications. "40% of the overall
+      assessment of A-level Physics will contain mathematical skills equivalent
+      to Level 2 or above", and at least 15% assesses practical work. The
+      Practical Endorsement is separate and non-exam. This is the book's
+      reference board for the curriculum and the booklet's core transcription.
+
+  - id: aqa-7408-data-formulae
+    title: >-
+      AQA A-level Physics data and formulae booklet, version 1.5, for use in
+      exams from the June 2017 series onwards
+    url: https://cdn.sanity.io/files/p28bar15/green/892b126c5e5195d391f0d07e735bbc4877bf1831.pdf
+    page: https://www.aqa.org.uk/subjects/physics/a-level/physics-7408/assessment-resources
+    role: >-
+      The A-level insert. Carries the fundamental constants and values, the
+      quadratic formula, geometrical equations, astronomical data, the particle
+      data tables, and the formulae by topic, including the five option topics.
+      The basis for the booklet's `given` group for AQA. The booklet is used at
+      all three AQA papers.
+
+  # ---- Pearson Edexcel 9PH0 ------------------------------------------------
+  - id: edexcel-9ph0
+    title: >-
+      Pearson Edexcel Level 3 Advanced GCE in Physics (9PH0) specification,
+      Issue 3, November 2018
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/pearsonedexcel-alevel-physics-spec.pdf
+    page: https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/physics-2015.html
+    role: >-
+      Topics 1–13 and the Salters Horners context-led route. Appendix 8 is the
+      formulae sheet: "Students need not memorise formulae for this
+      qualification. The formulae below will be supplied in each examination.
+      Any other formulae that are required will be provided in the question."
+      Appendix 9 is the data sheet and lists the constants supplied. Appendix 10
+      is the board's treatment of uncertainties and practical work. A minimum of
+      40% of the marks across the three papers is awarded for mathematics at
+      Level 2 or above.
+      CAVEAT: Pearson does not expose a standalone data-and-formulae-booklet PDF
+      on a machine-readable page, so the provision here rests on the
+      specification's appendices, which are the board's own document stating
+      what is supplied. The exact printed insert was not retrieved; recorded as
+      outstanding in todo.md.
+
+  # ---- OCR H556 ------------------------------------------------------------
+  - id: ocr-h556
+    title: >-
+      Cambridge OCR A Level Physics A H556 specification, Version 3.0,
+      March 2026
+    url: https://www.ocr.org.uk/Images/171726-specification-accredited-a-level-gce-physics-a-h556.pdf
+    page: https://www.ocr.org.uk/qualifications/as-and-a-level/physics-a-h156-h556-from-2015/
+    role: >-
+      Six modules; Practical Activity Groups PAG1–PAG12 with the 12 practical
+      activities for the Practical Endorsement; Appendix 5c *is* the physics
+      data sheet ("The data, formulae and relationships in this data sheet will
+      be printed for distribution with the examination papers") and is the basis
+      for the booklet's OCR provision; Appendix 5e is the mathematics
+      requirements, including the 40% Level 2 definition and its exclusions.
+      OCR marks some equations "Learners will also be expected to recall this
+      equation" even though the data sheet prints them — the booklet records
+      that in a `note`.
+
+# What scripts/fetch_sources.sh downloads into research/sources/a-level-physics/.
+downloads:
+  - file: dfe_gce_science.pdf
+    url: https://assets.publishing.service.gov.uk/media/5a807949e5274a2e8ab50599/Science_AS_and_level_formatted.pdf
+    text: true
+  - file: aqa_7407_7408_spec.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/fa68d54c1a3b8ef17760536c7fb2e3911c29dc73.pdf
+    text: true
+  - file: aqa_7408_data_formulae.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/892b126c5e5195d391f0d07e735bbc4877bf1831.pdf
+    text: true
+  - file: edexcel_9ph0_spec.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/pearsonedexcel-alevel-physics-spec.pdf
+    text: true
+  - file: ocr_h556_spec.pdf
+    url: https://www.ocr.org.uk/Images/171726-specification-accredited-a-level-gce-physics-a-h556.pdf
+    text: true

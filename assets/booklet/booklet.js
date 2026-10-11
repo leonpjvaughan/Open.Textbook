@@ -1,10 +1,15 @@
-/* GCSE Mathematics "formulae & tables" booklet.
+/* The shared formulae-and-tables widget. Every book that declares a booklet
+ * loads it, and the labels, boards and tier behaviour come from the book's own
+ * booklet.json (`meta`), so one widget serves a mathematics booklet and a
+ * physics one. A data file that sets none of those keys gets the original
+ * mathematics defaults.
  *
  * A non-modal reference panel: a floating action button opens a resizable,
  * draggable panel that can be popped into an always-on-top Document
  * Picture-in-Picture window where the browser supports it. Content is filtered
- * by exam board and tier, so selecting a board hides anything that board does
- * not allow. Data is inline MathML (rendered at build time) plus tables.
+ * by exam board and, where the book is tiered, by tier, so selecting a board
+ * hides anything that board does not allow. Data is inline MathML (rendered at
+ * build time) plus tables.
  *
  * Loaded site-wide via extra_javascript; it renders nothing but the button
  * until first opened, then lazily fetches booklet.json.
@@ -16,7 +21,7 @@
   const dataUrl = script
     ? new URL("booklet.json", script.src).toString()
     : "booklet.json";
-  const STORE_KEY = "gcse-booklet-v1";
+  const STORE_KEY = "textbook-booklet-v1";
   const GROUP_ORDER = ["given", "question", "know"];
 
   const state = {
@@ -83,7 +88,10 @@
   function itemAllowed(item, board, tier, groups, query) {
     const group = (item.provision || {})[board];
     if (!group || !groups.includes(group)) return false;
-    if (!(item.tier || []).includes(tier)) return false;
+    // An item with no tier belongs to every reader (an untiered book, e.g. an
+    // A-level one), so the tier filter must not hide it.
+    const tiers = item.tier || [];
+    if (tiers.length && !tiers.includes(tier)) return false;
     if (!query) return true;
     const hay = [item.name, item.latex, item.note, ...(item.keywords || [])]
       .filter(Boolean)
@@ -134,7 +142,8 @@
         .filter((t) => t.tier === undefined || t.tier.includes(state.tier))
         .map(tableHtml)
         .join("");
-      panel.querySelector(".bk-count").textContent = `${state.data.tables.length} tables`;
+      panel.querySelector(".bk-count").textContent =
+        `${state.data.tables.length} ${meta.table_label || "tables"}`;
       return;
     }
 
@@ -158,11 +167,53 @@
     content.innerHTML =
       html ||
       `<p class="bk-empty">Nothing matches those filters.</p>`;
-    panel.querySelector(".bk-count").textContent = `${count} formulae`;
+    panel.querySelector(".bk-count").textContent =
+      `${count} ${meta.item_label || "formulae"}`;
+  }
+
+  // Labels and controls come from the booklet data, not from this file, so the
+  // shared widget serves a mathematics booklet and a physics one without naming
+  // either. Every override is optional: a data file that sets none behaves as
+  // the widget always did.
+  function applyMeta(meta) {
+    const title = meta.title || "Formulae and tables";
+    panel.setAttribute("aria-label", title);
+    if (meta.panel_title) panel.querySelector(".bk-title").textContent = meta.panel_title;
+    if (meta.short) fab.querySelector(".bk-fab__label").textContent = meta.short;
+    const tab = panel.querySelector('.bk-tab[data-tab="formulae"]');
+    if (tab && meta.tab_label) tab.textContent = meta.tab_label;
+    const search = panel.querySelector(".bk-search");
+    if (search && meta.search_placeholder) search.placeholder = meta.search_placeholder;
+
+    const boardIds = Object.keys(meta.boards || {});
+    if (boardIds.length && !boardIds.includes(state.board)) {
+      state.board =
+        meta.default_board && boardIds.includes(meta.default_board)
+          ? meta.default_board
+          : boardIds[0];
+    }
+
+    const tierField = panel.querySelector(".bk-tier-field");
+    if (tierField) tierField.hidden = meta.tiered === false;
+
+    panel.querySelectorAll(".bk-chip").forEach((chip) => {
+      const group = (meta.groups || {})[chip.dataset.group];
+      if (group && group.chip) chip.textContent = group.chip;
+    });
+
+    const series = panel.querySelector(".bk-series");
+    if (series) {
+      series.textContent = meta.series
+        ? ` · ${meta.series}`
+        : meta.year
+          ? ` · exams in ${meta.year}`
+          : "";
+    }
   }
 
   function renderControls() {
     const meta = state.data.meta;
+    applyMeta(meta);
     const boardSelect = panel.querySelector(".bk-board");
     boardSelect.innerHTML = Object.entries(meta.boards)
       .map(
@@ -346,7 +397,7 @@
           <label class="bk-field">Board
             <select class="bk-board"></select>
           </label>
-          <label class="bk-field">Tier
+          <label class="bk-field bk-tier-field">Tier
             <select class="bk-tier">
               <option value="F">Foundation</option>
               <option value="H">Higher</option>
@@ -370,7 +421,7 @@
         <span class="bk-count" aria-live="polite"></span>
       </div>
       <div class="bk-content" tabindex="0"></div>
-      <footer class="bk-foot"><span class="bk-provenance"></span> · exams in 2026</footer>
+      <footer class="bk-foot"><span class="bk-provenance"></span><span class="bk-series"></span></footer>
       <div class="bk-resize" tabindex="0" role="separator" aria-label="Resize booklet"></div>`;
 
     document.body.append(fab, panel);

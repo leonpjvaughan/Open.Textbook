@@ -1,0 +1,180 @@
+# GCSE Physics (England) — chapter and section plan
+#
+# Single source of truth for the docs tree and for the scaffold.
+#
+# Shape follows books/gcse-maths/curriculum.yaml. The references are DfE
+# references, but the DfE physics content is an *unnumbered* bullet list under
+# named topic headings — not a numbered item list like GCSE Mathematics' N1–S6.
+# The `coverage` groups below are therefore this book's index of the DfE physics
+# topic headings, in the DfE document's own order, and a reference such as
+# `EN1` means "the first heading under Energy". The mapping is:
+#
+#   EN  Energy                                        (2 headings)
+#   FO  Forces and motion                             (7 headings)
+#   WA  Waves                                         (7 headings)
+#   EL  Electricity                                   (5 headings)
+#   MG  Magnetism and electromagnetism                (4 headings)
+#   PM  Particle model of matter                      (3 headings)
+#   AT  Atomic structure                              (4 headings)
+#   SP  Space physics                                 (2 headings)
+#
+# The headings are the DfE's own: e.g. `FO5` is "Speed and velocity, speed as
+# distance over time; acceleration; distance-time and velocity-time graphs".
+# AQA 8463 numbers the same content 4.x.y, Edexcel 1PH0 numbers it by topic, and
+# OCR J249/J259 numbers it P<topic>.<n>; the DfE headings are the one board-neutral
+# index. See sources.yaml for the document and the date it was checked.
+#
+# TIER: the DfE statement is
+#   "Higher tier GCSE physics specifications must assess all the content set out
+#    below, whether it is underlined or is not underlined. Foundation tier GCSE
+#    physics specifications must assess all the content set out below, except for
+#    content which is underlined."
+# So Higher is a superset of Foundation, exactly as in mathematics, but the
+# marker is an underline on individual statements rather than a tier column, and
+# the two tiers are not the mathematics split. A section is tagged `H` only where
+# the reference board (AQA 8463) marks the whole of it `(HT only)`. A section with
+# a mixture carries `F` and marks the Higher-only statements with
+# `<!-- tier:h -->…<!-- /tier:h -->` when it is authored. `(physics only)` is a
+# separate-science tag, NOT a Higher tag, so physics-only content is not tagged H
+# here. Every tag must be checked against AQA 8463's `(HT only)` columns before
+# publishing.
+#
+# Anchors, learner-constructed relevance prompts and guided investigations are
+# per-chapter authoring decisions (see AGENT-BRIEF.md) and are deliberately not
+# fixed here; this file fixes coverage and sequence.
+
+meta:
+  title: GCSE Physics (9-1)
+  jurisdiction: England
+  awarding_bodies: [AQA 8463, Pearson Edexcel 1PH0, OCR J249, OCR J259]
+  tiers: [Foundation, Higher]
+  retrieved: 2026-10-11
+  note: >-
+    The DfE subject content for GCSE physics is an unnumbered bullet list, so the
+    coverage references are this book's index of the DfE's named topic headings,
+    in the DfE document's order. Higher tier is a superset of Foundation: the DfE
+    marks Higher-only statements with an underline, and the boards re-express
+    that as (HT only) (AQA) or bold type (Edexcel, OCR). Physics-only content
+    (the separate-science award's extra topics, e.g. Space physics) is a
+    different tag from Higher-only content and is not tagged H.
+
+# Coverage: the reference ranges the scaffold checks and maps to sections.
+# Each group is a prefix, the strand it belongs to, and how many DfE headings it
+# has. The provenance for these claims lives in sources.yaml.
+coverage:
+  - {prefix: EN, strand: energy, items: 2}
+  - {prefix: FO, strand: forces, items: 7}
+  - {prefix: WA, strand: waves, items: 7}
+  - {prefix: EL, strand: electricity, items: 5}
+  - {prefix: MG, strand: magnetism, items: 4}
+  - {prefix: PM, strand: particles, items: 3}
+  - {prefix: AT, strand: atoms, items: 4}
+  - {prefix: SP, strand: space, items: 2}
+
+strands:
+  - {id: energy, title: Energy}
+  - {id: forces, title: Forces and motion}
+  - {id: waves, title: Waves}
+  - {id: electricity, title: Electricity}
+  - {id: magnetism, title: Magnetism and electromagnetism}
+  - {id: particles, title: Particle model of matter}
+  - {id: atoms, title: Atomic structure}
+  - {id: space, title: Space physics}
+
+chapters:
+  - id: 1
+    title: Energy
+    strand: energy
+    summary: Energy stores and transfers, the equations that quantify them, conservation and dissipation, and the energy resources used on Earth.
+    sections:
+      - {id: "1.1", title: "Energy stores and transfers", tier: F, dfe: [EN1]}
+      - {id: "1.2", title: "Conservation, dissipation and energy resources", tier: F, dfe: [EN2]}
+
+  - id: 2
+    title: Forces and their interactions
+    strand: forces
+    summary: How forces interact, elasticity, work done, pressure in fluids, and moments, levers and gears.
+    sections:
+      - {id: "2.1", title: "Forces and their interactions", tier: F, dfe: [FO1]}
+      - {id: "2.2", title: "Forces and elasticity", tier: F, dfe: [FO1]}
+      - {id: "2.3", title: "Work done and energy transfer", tier: F, dfe: [FO2]}
+      - {id: "2.4", title: "Pressure and pressure differences in fluids", tier: F, dfe: [FO3]}
+      - {id: "2.5", title: "Moments, levers and gears", tier: F, dfe: [FO4]}
+
+  - id: 3
+    title: Forces and motion
+    strand: forces
+    summary: Speed, velocity and motion graphs, Newton's laws, momentum, and the forces involved in road safety.
+    sections:
+      - {id: "3.1", title: "Speed, velocity and motion graphs", tier: F, dfe: [FO5]}
+      - {id: "3.2", title: "Forces, acceleration and Newton's laws of motion", tier: F, dfe: [FO6]}
+      - {id: "3.3", title: "Safety in public transport", tier: F, dfe: [FO7]}
+      - {id: "3.4", title: "Momentum", tier: H, dfe: [FO6]}
+
+  - id: 4
+    title: Waves in matter
+    strand: waves
+    summary: Wave motion, the wave equation, sound, and the use of waves to explore structures.
+    sections:
+      - {id: "4.1", title: "Waves in air, fluids and solids", tier: F, dfe: [WA1]}
+      - {id: "4.2", title: "Sound waves and waves for detection and exploration", tier: H, dfe: [WA1]}
+      - {id: "4.3", title: "Waves at material interfaces", tier: F, dfe: [WA2]}
+
+  - id: 5
+    title: Light and electromagnetic waves
+    strand: waves
+    summary: The electromagnetic spectrum, how electromagnetic radiation interacts with matter, lenses, colour, and black body radiation.
+    sections:
+      - {id: "5.1", title: "The electromagnetic spectrum", tier: F, dfe: [WA3]}
+      - {id: "5.2", title: "Interactions of electromagnetic radiation with matter", tier: F, dfe: [WA4]}
+      - {id: "5.3", title: "Lenses and ray diagrams", tier: F, dfe: [WA5]}
+      - {id: "5.4", title: "Colour and frequency", tier: F, dfe: [WA6]}
+      - {id: "5.5", title: "Black body radiation", tier: F, dfe: [WA7]}
+
+  - id: 6
+    title: Electricity
+    strand: electricity
+    summary: Current, potential difference and resistance, series and parallel circuits, domestic supply and safety, energy transfers and the national grid, and static electricity.
+    sections:
+      - {id: "6.1", title: "Current, potential difference and resistance", tier: F, dfe: [EL1]}
+      - {id: "6.2", title: "Series and parallel circuits", tier: F, dfe: [EL2]}
+      - {id: "6.3", title: "Domestic uses and safety", tier: F, dfe: [EL3]}
+      - {id: "6.4", title: "Energy transfers and the national grid", tier: F, dfe: [EL4]}
+      - {id: "6.5", title: "Static electricity and electric fields", tier: F, dfe: [EL5]}
+
+  - id: 7
+    title: Magnetism and electromagnetism
+    strand: magnetism
+    summary: Permanent and induced magnetism, the magnetic effect of a current and the motor effect, electromagnetic induction and transformers, and microphones and loudspeakers.
+    sections:
+      - {id: "7.1", title: "Permanent and induced magnetism, magnetic forces and fields", tier: F, dfe: [MG1]}
+      - {id: "7.2", title: "Magnetic effects of currents and the motor effect", tier: F, dfe: [MG2]}
+      - {id: "7.3", title: "Induced potential, transformers and the national grid", tier: H, dfe: [MG3]}
+      - {id: "7.4", title: "Microphones and speakers", tier: H, dfe: [MG4]}
+
+  - id: 8
+    title: Particle model of matter
+    strand: particles
+    summary: Changes of state, internal energy and specific heat capacity, and the particle model of gas pressure.
+    sections:
+      - {id: "8.1", title: "Changes of state and the particle model", tier: F, dfe: [PM1]}
+      - {id: "8.2", title: "Internal energy, energy transfers and particle motions", tier: F, dfe: [PM2]}
+      - {id: "8.3", title: "Particle model and pressure", tier: F, dfe: [PM3]}
+
+  - id: 9
+    title: Atomic structure
+    strand: atoms
+    summary: Atoms and isotopes, radioactive decay, the hazards and uses of ionising radiation, and nuclear fission and fusion.
+    sections:
+      - {id: "9.1", title: "Nuclear atom and isotopes", tier: F, dfe: [AT1]}
+      - {id: "9.2", title: "Atoms and nuclear radiation", tier: F, dfe: [AT2]}
+      - {id: "9.3", title: "Hazards and uses of radioactive emissions and background radiation", tier: F, dfe: [AT3]}
+      - {id: "9.4", title: "Nuclear fission and fusion", tier: F, dfe: [AT4]}
+
+  - id: 10
+    title: Space physics
+    strand: space
+    summary: The solar system, orbital motion and satellites, red-shift and the evidence for an expanding universe.
+    sections:
+      - {id: "10.1", title: "The solar system and orbits", tier: F, dfe: [SP1]}
+      - {id: "10.2", title: "Red-shift and the Big Bang", tier: F, dfe: [SP2]}

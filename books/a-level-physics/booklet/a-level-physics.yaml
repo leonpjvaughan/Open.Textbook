@@ -1,0 +1,699 @@
+# A-level Physics data and formulae — source of truth.
+#
+# The three boards all provide a data-and-formulae booklet; no equation or
+# constant must be memorised. `group` is one of:
+#   given    - printed on the board's data-and-formulae booklet or data sheet
+#   question - supplied inside the relevant question rather than on the sheet
+#   know     - not given; the reader must have it (units, prefixes, symbols,
+#              definitions, and the derivations the specification names)
+#
+# TRANSCRIPTION SCOPE. This file transcribes the CORE: the DfE Appendix 3 areas
+# common to all three boards, plus the constants and particle data they all
+# supply. Core equations are `given` for all three boards where the booklet or
+# data sheet prints the same relationship. It does **not** yet transcribe the
+# board-specific option-topic formulae (AQA 3.9–3.13, Edexcel topics 9–12 where
+# they differ, OCR Modules 5–6 extras) or every board-only item; the board
+# booklets are larger than the common core. That gap is recorded in meta.note and
+# in todo.md, and must be closed before this booklet is presented as complete.
+#
+# Evidence: research/curriculum/physics-equations-and-data.md, the AQA insert
+# (version 1.5), Edexcel specification Appendices 8 and 9 ("Students need not
+# memorise formulae … supplied in each examination"), and OCR H556 Appendix 5c.
+# See sources.yaml. The documents are all-rights-reserved; the booklet reproduces
+# only what every candidate is given, which is the one use BOOKLETS.md requires.
+meta:
+  title: A-level Physics — data and formulae
+  panel_title: Data & formulae
+  short: Formulae
+  tab_label: Formulae
+  item_label: formulae
+  search_placeholder: Search formulae…
+  series: exams from 2026
+  default_board: aqa
+  tiered: false
+  note: >-
+    A-level physics has no national booklet: each board supplies its own data and
+    formulae, and the boards' sets share a large common core. This booklet
+    transcribes that core and the constants; it does not yet cover the
+    board-specific option-topic formulae, which is a known gap rather than a
+    claim that the boards provide only this much.
+  provenance:
+    aqa: "AQA A-level Physics data and formulae, version 1.5 (from the June 2017 series)"
+    edexcel: "Pearson Edexcel 9PH0 specification, Appendices 8 (formulae) and 9 (data), Issue 3"
+    ocr: "OCR A Level Physics A H556 specification, Appendix 5c (data sheet), Version 3.0"
+  basis: >-
+    No A-level physics equation or constant has to be memorised. AQA supplies its
+    data-and-formulae insert with every paper; Edexcel states "Students need not
+    memorise formulae for this qualification. The formulae below will be supplied
+    in each examination."; OCR's Appendix 5c states the data sheet "will be
+    printed for distribution with the examination papers". OCR additionally marks
+    some printed equations, such as F = ma and E_k = ½mv², "Learners will also be
+    expected to recall this equation"; those items carry that note. The 2026
+    DfE/Ofqual decisions about memorising equations are GCSE-only and do not
+    apply here.
+  boards:
+    aqa: {name: AQA, code: "7407/7408"}
+    edexcel: {name: Edexcel, code: "9PH0"}
+    ocr: {name: OCR, code: "H556"}
+  groups:
+    given: {label: "On your data and formulae", chip: Given, tone: accent}
+    question: {label: "May be given in the question", chip: In question, tone: muted}
+    know: {label: "You must know", chip: Must know, tone: warn}
+
+sections:
+  - id: mathematical-relationships
+    title: Mathematical relationships
+    items:
+      - id: quadratic-formula
+        name: Quadratic formula
+        latex: 'x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [quadratic, roots, discriminant]
+      - id: arc-length
+        name: Arc length
+        latex: '\text{arc length} = r\theta'
+        note: θ is in radians.
+        provision: {aqa: given, ocr: given}
+        keywords: [arc length, radian, circle]
+      - id: circle-circumference
+        name: Circumference of a circle
+        latex: 'C = 2\pi r'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [circle, circumference]
+      - id: circle-area
+        name: Area of a circle
+        latex: 'A = \pi r^2'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [circle, area]
+      - id: cylinder-surface
+        name: Curved surface area of a cylinder
+        latex: 'A = 2\pi r h'
+        provision: {aqa: given, ocr: given}
+        keywords: [cylinder, surface area]
+      - id: sphere-surface
+        name: Surface area of a sphere
+        latex: 'A = 4\pi r^2'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [sphere, surface area]
+      - id: sphere-volume
+        name: Volume of a sphere
+        latex: 'V = \tfrac{4}{3}\pi r^3'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [sphere, volume]
+
+  - id: photons
+    title: Photons and energy levels
+    items:
+      - id: photon-energy
+        name: Photon energy
+        latex: 'E = hf = \frac{hc}{\lambda}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [photon, planck, frequency, wavelength]
+      - id: photoelectric
+        name: Photoelectric equation
+        latex: 'hf = \phi + E_{k(\text{max})}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [photoelectric, work function, kinetic energy]
+      - id: energy-levels
+        name: Energy levels
+        latex: 'hf = E_1 - E_2'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [energy level, transition, emission, absorption]
+      - id: de-broglie
+        name: de Broglie wavelength
+        latex: '\lambda = \frac{h}{p} = \frac{h}{mv}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [de broglie, wavelength, momentum, matter wave]
+
+  - id: waves
+    title: Waves
+    items:
+      - id: wave-speed
+        name: Wave speed
+        latex: 'c = f\lambda'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [wave speed, frequency, wavelength]
+      - id: period
+        name: Period
+        latex: 'T = \frac{1}{f}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [period, frequency]
+      - id: refractive-index
+        name: Refractive index
+        latex: 'n = \frac{c}{v}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [refractive index, speed of light, medium]
+      - id: snells-law
+        name: Law of refraction
+        latex: 'n_1 \sin\theta_1 = n_2 \sin\theta_2'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [snell, refraction, angle, critical]
+      - id: critical-angle
+        name: Critical angle
+        latex: '\sin\theta_c = \frac{n_2}{n_1}'
+        note: For n₁ > n₂.
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [critical angle, total internal reflection]
+      - id: fringe-spacing
+        name: Fringe spacing
+        latex: 'w = \frac{\lambda D}{s}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [fringe spacing, double slit, interference]
+      - id: diffraction-grating
+        name: Diffraction grating
+        latex: 'd \sin\theta = n\lambda'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [diffraction grating, order, maxima]
+      - id: first-harmonic-string
+        name: First harmonic of a string
+        latex: 'f = \frac{1}{2l}\sqrt{\frac{T}{\mu}}'
+        provision: {aqa: given}
+        keywords: [stationary wave, string, fundamental, tension]
+
+  - id: mechanics
+    title: Mechanics
+    items:
+      - id: moment
+        name: Moment of a force
+        latex: '\text{moment} = Fd'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [moment, turning effect, force, distance]
+      - id: velocity
+        name: Velocity
+        latex: 'v = \frac{\Delta s}{\Delta t}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [velocity, displacement, time]
+      - id: acceleration
+        name: Acceleration
+        latex: 'a = \frac{\Delta v}{\Delta t}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [acceleration, velocity, time]
+      - id: suvat-v
+        name: Equations of motion
+        latex: 'v = u + at'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [equations of motion, suvat, uniform acceleration]
+      - id: suvat-s
+        name: Equations of motion
+        latex: 's = \frac{(u + v)t}{2}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [equations of motion, suvat, displacement]
+      - id: suvat-v2
+        name: Equations of motion
+        latex: 'v^2 = u^2 + 2as'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [equations of motion, suvat]
+      - id: suvat-s2
+        name: Equations of motion
+        latex: 's = ut + \tfrac{1}{2}at^2'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [equations of motion, suvat, displacement, time]
+      - id: force-ma
+        name: Force
+        latex: 'F = ma'
+        provision: {aqa: given, edexcel: given}
+        keywords: [force, mass, acceleration, newton]
+      - id: force-ma-ocr
+        name: Force
+        latex: 'F = ma'
+        note: OCR's data sheet prints this and also expects it to be recalled.
+        provision: {ocr: given}
+        keywords: [force, mass, acceleration, newton, recall]
+      - id: force-momentum
+        name: Force and rate of change of momentum
+        latex: 'F = \frac{\Delta p}{\Delta t}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [force, momentum, rate of change]
+      - id: impulse
+        name: Impulse
+        latex: 'F\Delta t = \Delta(mv)'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [impulse, momentum, force, time]
+      - id: work-done
+        name: Work done
+        latex: 'W = Fs\cos\theta'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [work done, force, distance, angle]
+      - id: kinetic-energy
+        name: Kinetic energy
+        latex: 'E_k = \tfrac{1}{2}mv^2'
+        provision: {aqa: given, edexcel: given}
+        keywords: [kinetic energy, mass, speed]
+      - id: kinetic-energy-ocr
+        name: Kinetic energy
+        latex: 'E_k = \tfrac{1}{2}mv^2'
+        note: OCR's data sheet prints this and also expects it to be recalled.
+        provision: {ocr: given}
+        keywords: [kinetic energy, mass, speed, recall]
+      - id: gpe
+        name: Change in gravitational potential energy
+        latex: '\Delta E_p = mg\Delta h'
+        provision: {aqa: given, edexcel: given}
+        keywords: [gravitational potential energy, height]
+      - id: gpe-ocr
+        name: Change in gravitational potential energy
+        latex: '\Delta E_p = mg\Delta h'
+        note: OCR's data sheet prints this and also expects it to be recalled and derived.
+        provision: {ocr: given}
+        keywords: [gravitational potential energy, height, recall, derive]
+      - id: power
+        name: Power
+        latex: 'P = \frac{\Delta W}{\Delta t},\quad P = Fv'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [power, work done, time, force, velocity]
+      - id: efficiency
+        name: Efficiency
+        latex: '\text{efficiency} = \frac{\text{useful output power}}{\text{total input power}}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [efficiency, useful power, input power]
+
+  - id: circular-and-shm
+    title: Circular motion and oscillations
+    items:
+      - id: angular-speed
+        name: Angular speed
+        latex: '\omega = \frac{v}{r} = 2\pi f'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [angular speed, angular velocity, radian]
+      - id: centripetal-acceleration
+        name: Centripetal acceleration
+        latex: 'a = \frac{v^2}{r} = \omega^2 r'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [centripetal acceleration, circular motion]
+      - id: centripetal-force
+        name: Centripetal force
+        latex: 'F = \frac{mv^2}{r} = m\omega^2 r'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [centripetal force, circular motion]
+      - id: shm-acceleration
+        name: Simple harmonic motion — acceleration
+        latex: 'a = -\omega^2 x'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [simple harmonic motion, shm, acceleration]
+      - id: shm-displacement
+        name: Simple harmonic motion — displacement
+        latex: 'x = A\cos(\omega t)'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [simple harmonic motion, shm, displacement, amplitude]
+      - id: shm-speed
+        name: Simple harmonic motion — speed
+        latex: 'v = \pm \omega\sqrt{A^2 - x^2}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [simple harmonic motion, shm, speed]
+      - id: shm-max-speed
+        name: Maximum speed
+        latex: 'v_{\text{max}} = \omega A'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [shm, maximum speed, amplitude]
+      - id: shm-max-acceleration
+        name: Maximum acceleration
+        latex: 'a_{\text{max}} = \omega^2 A'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [shm, maximum acceleration, amplitude]
+      - id: mass-spring-period
+        name: Period of a mass-spring system
+        latex: 'T = 2\pi\sqrt{\frac{m}{k}}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [mass spring, period, shm]
+      - id: pendulum-period
+        name: Period of a simple pendulum
+        latex: 'T = 2\pi\sqrt{\frac{l}{g}}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [pendulum, period, shm]
+
+  - id: materials
+    title: Materials
+    items:
+      - id: density
+        name: Density
+        latex: '\rho = \frac{m}{V}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [density, mass, volume]
+      - id: hookes-law
+        name: Hooke's law
+        latex: 'F = k\Delta L'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [hooke, spring constant, extension]
+      - id: tensile-stress
+        name: Tensile stress
+        latex: '\text{stress} = \frac{F}{A}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [stress, force, area]
+      - id: tensile-strain
+        name: Tensile strain
+        latex: '\text{strain} = \frac{\Delta L}{L}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [strain, extension, original length]
+      - id: young-modulus
+        name: Young modulus
+        latex: 'E = \frac{\text{stress}}{\text{strain}}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [young modulus, stress, strain]
+      - id: stored-energy
+        name: Energy stored in a stretched material
+        latex: 'E = \tfrac{1}{2}F\Delta L'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [energy stored, elastic, extension]
+
+  - id: electricity
+    title: Electricity
+    items:
+      - id: current
+        name: Electric current
+        latex: 'I = \frac{\Delta Q}{\Delta t}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [current, charge, time]
+      - id: potential-difference
+        name: Potential difference
+        latex: 'V = \frac{W}{Q}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [potential difference, work, charge]
+      - id: resistance
+        name: Resistance
+        latex: 'R = \frac{V}{I}'
+        provision: {aqa: given, edexcel: given}
+        keywords: [resistance, potential difference, current]
+      - id: resistance-ocr
+        name: Resistance
+        latex: 'R = \frac{V}{I}'
+        note: OCR's data sheet prints this and also expects it to be recalled.
+        provision: {ocr: given}
+        keywords: [resistance, potential difference, current, recall]
+      - id: resistivity
+        name: Resistivity
+        latex: '\rho = \frac{RA}{L}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [resistivity, resistance, area, length]
+      - id: resistors-series
+        name: Resistors in series
+        latex: 'R_T = R_1 + R_2 + R_3 + \dots'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [resistors, series]
+      - id: resistors-parallel
+        name: Resistors in parallel
+        latex: '\frac{1}{R_T} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} + \dots'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [resistors, parallel]
+      - id: electrical-power
+        name: Electrical power
+        latex: 'P = VI = I^2R = \frac{V^2}{R}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [power, potential difference, current, resistance]
+      - id: emf
+        name: emf
+        latex: '\varepsilon = \frac{W}{Q},\quad \varepsilon = I(R + r)'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [emf, internal resistance, work, charge]
+      - id: capacitance
+        name: Capacitance
+        latex: 'C = \frac{Q}{V}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [capacitance, charge, potential difference]
+      - id: parallel-plate-capacitance
+        name: Parallel-plate capacitance
+        latex: 'C = \frac{A\varepsilon_0\varepsilon_r}{d}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [capacitor, parallel plate, permittivity]
+      - id: capacitor-energy
+        name: Energy stored in a capacitor
+        latex: 'E = \tfrac{1}{2}QV = \tfrac{1}{2}CV^2 = \frac{Q^2}{2C}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [capacitor, energy, charge, potential difference]
+      - id: capacitor-charging
+        name: Capacitor charging
+        latex: 'Q = Q_0\left(1 - e^{-t/RC}\right)'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [capacitor, charging, time constant]
+      - id: capacitor-discharge
+        name: Capacitor discharge
+        latex: 'Q = Q_0 e^{-t/RC}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [capacitor, discharge, time constant]
+      - id: time-constant
+        name: Time constant
+        latex: '\tau = RC'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [time constant, capacitor, resistance]
+
+  - id: thermal
+    title: Thermal physics
+    items:
+      - id: thermal-energy
+        name: Energy to change temperature
+        latex: 'Q = mc\Delta\theta'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [specific heat capacity, temperature change]
+      - id: latent-heat
+        name: Energy to change state
+        latex: 'Q = mL'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [specific latent heat, change of state]
+      - id: ideal-gas-n
+        name: Ideal gas law
+        latex: 'pV = nRT'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [ideal gas, moles, gas constant]
+      - id: ideal-gas-nk
+        name: Ideal gas law
+        latex: 'pV = NkT'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [ideal gas, molecules, boltzmann]
+      - id: kinetic-theory
+        name: Kinetic theory model
+        latex: 'pV = \tfrac{1}{3}Nm(c_{\text{rms}})^2'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [kinetic theory, rms speed, pressure, volume]
+      - id: kinetic-energy-molecule
+        name: Kinetic energy of a gas molecule
+        latex: '\tfrac{1}{2}m(c_{\text{rms}})^2 = \tfrac{3}{2}kT = \frac{3RT}{2N_A}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [kinetic theory, rms speed, temperature, boltzmann]
+
+  - id: magnetic
+    title: Magnetic fields and electromagnetic induction
+    items:
+      - id: force-on-conductor
+        name: Force on a current-carrying conductor
+        latex: 'F = BIl'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [motor effect, magnetic flux density, force]
+      - id: force-on-charge
+        name: Force on a moving charge
+        latex: 'F = BQv'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [force on charge, magnetic field, velocity]
+      - id: magnetic-flux
+        name: Magnetic flux
+        latex: '\Phi = BA'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [magnetic flux, flux density, area]
+      - id: flux-linkage
+        name: Magnetic flux linkage
+        latex: 'N\Phi = BAN\cos\theta'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [flux linkage, coil, turns, angle]
+      - id: induced-emf
+        name: Magnitude of induced emf
+        latex: '\varepsilon = N\frac{\Delta\Phi}{\Delta t}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [faraday, induced emf, flux linkage, lenz]
+      - id: rotating-coil-emf
+        name: emf induced in a rotating coil
+        latex: '\varepsilon = BAN\omega\sin(\omega t)'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [alternator, rotating coil, emf]
+      - id: rms-current
+        name: Root mean square values
+        latex: 'I_{\text{rms}} = \frac{I_0}{\sqrt{2}},\quad V_{\text{rms}} = \frac{V_0}{\sqrt{2}}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [rms, alternating current, peak]
+      - id: transformer
+        name: Transformer
+        latex: '\frac{N_s}{N_p} = \frac{V_s}{V_p}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [transformer, turns, potential difference]
+      - id: transformer-efficiency
+        name: Transformer efficiency
+        latex: '\text{efficiency} = \frac{I_sV_s}{I_pV_p}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [transformer, efficiency, power]
+
+  - id: nuclear
+    title: Nuclear physics
+    items:
+      - id: inverse-square-gamma
+        name: Inverse square law for gamma radiation
+        latex: 'I = \frac{k}{x^2}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [inverse square, gamma, intensity]
+      - id: decay-rate
+        name: Radioactive decay
+        latex: '\frac{\Delta N}{\Delta t} = -\lambda N,\quad N = N_0 e^{-\lambda t}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [decay constant, exponential decay, activity]
+      - id: activity
+        name: Activity
+        latex: 'A = \lambda N'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [activity, decay constant, nuclei]
+      - id: half-life
+        name: Half-life
+        latex: 'T_{1/2} = \frac{\ln 2}{\lambda}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [half life, decay constant]
+      - id: nuclear-radius
+        name: Nuclear radius
+        latex: 'R = R_0 A^{1/3}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [nuclear radius, nucleon number]
+      - id: mass-energy
+        name: Energy-mass equation
+        latex: 'E = mc^2'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [mass energy, einstein, nuclear]
+
+  - id: gravitational
+    title: Gravitational fields
+    items:
+      - id: gravitational-force
+        name: Force between two masses
+        latex: 'F = \frac{Gm_1m_2}{r^2}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [newton, gravity, inverse square]
+      - id: gravitational-field-strength
+        name: Gravitational field strength
+        latex: 'g = \frac{F}{m}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [field strength, force, mass]
+      - id: gravitational-field-radial
+        name: Gravitational field strength in a radial field
+        latex: 'g = \frac{GM}{r^2}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [radial field, field strength, gravity]
+      - id: gravitational-work
+        name: Work done in a gravitational field
+        latex: '\Delta W = m\Delta V'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [work done, gravitational potential]
+      - id: gravitational-potential
+        name: Gravitational potential
+        latex: 'V = -\frac{GM}{r}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [gravitational potential, negative]
+      - id: gravitational-field-gradient
+        name: Gravitational field strength and potential
+        latex: 'g = -\frac{\Delta V}{\Delta r}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [potential gradient, field strength]
+
+  - id: electric-fields
+    title: Electric fields
+    items:
+      - id: coulomb-force
+        name: Force between two point charges
+        latex: 'F = \frac{1}{4\pi\varepsilon_0}\frac{Q_1Q_2}{r^2}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [coulomb, electric force, permittivity]
+      - id: force-on-charge-field
+        name: Force on a charge in an electric field
+        latex: 'F = EQ'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [electric field, force, charge]
+      - id: uniform-field-strength
+        name: Field strength in a uniform field
+        latex: 'E = \frac{V}{d}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [uniform field, potential difference, separation]
+      - id: electric-work
+        name: Work done on a charge
+        latex: '\Delta W = Q\Delta V'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [work done, charge, potential difference]
+      - id: radial-field-strength
+        name: Field strength in a radial field
+        latex: 'E = \frac{1}{4\pi\varepsilon_0}\frac{Q}{r^2}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [radial field, electric field strength, point charge]
+      - id: electric-potential
+        name: Electric potential
+        latex: 'V = \frac{1}{4\pi\varepsilon_0}\frac{Q}{r}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [electric potential, point charge]
+      - id: electric-field-gradient
+        name: Electric field strength and potential
+        latex: 'E = \frac{\Delta V}{\Delta r}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [potential gradient, field strength]
+
+  - id: values-in-question
+    title: Values supplied in the question
+    items:
+      - id: decay-constant-value
+        name: Decay constant of a named nuclide
+        latex: '\lambda'
+        note: A value not on the data sheet is supplied in the question.
+        provision: {aqa: question, edexcel: question, ocr: question}
+        keywords: [decay constant, value, given]
+      - id: absorption-coefficient
+        name: Absorption coefficient of a named material
+        latex: '\mu'
+        note: A value not on the data sheet is supplied in the question.
+        provision: {aqa: question, edexcel: question, ocr: question}
+        keywords: [absorption coefficient, attenuation, value]
+      - id: refractive-index-value
+        name: Refractive index of a named material
+        latex: 'n'
+        note: A value not on the data sheet is supplied in the question.
+        provision: {aqa: question, edexcel: question, ocr: question}
+        keywords: [refractive index, value, given]
+
+tables:
+  - id: fundamental-constants
+    title: Fundamental constants and values
+    columns: ["Quantity", "Symbol", "Value", "Unit"]
+    rows:
+      - ["speed of light in vacuo", "c", "3.00 × 10⁸", "m s⁻¹"]
+      - ["permittivity of free space", "ε₀", "8.85 × 10⁻¹²", "F m⁻¹"]
+      - ["magnitude of the charge of the electron", "e", "1.60 × 10⁻¹⁹", "C"]
+      - ["the Planck constant", "h", "6.63 × 10⁻³⁴", "J s"]
+      - ["gravitational constant", "G", "6.67 × 10⁻¹¹", "N m² kg⁻²"]
+      - ["the Avogadro constant", "N_A", "6.02 × 10²³", "mol⁻¹"]
+      - ["molar gas constant", "R", "8.31", "J K⁻¹ mol⁻¹"]
+      - ["the Boltzmann constant", "k", "1.38 × 10⁻²³", "J K⁻¹"]
+      - ["the Stefan constant", "σ", "5.67 × 10⁻⁸", "W m⁻² K⁻⁴"]
+      - ["gravitational field strength", "g", "9.81", "N kg⁻¹"]
+      - ["acceleration due to gravity", "g", "9.81", "m s⁻²"]
+  - id: particle-rest-energies
+    title: Particle rest energies
+    columns: ["Class", "Particle", "Symbol", "Rest energy / MeV"]
+    rows:
+      - ["photon", "photon", "γ", "0"]
+      - ["lepton", "neutrino", "ν", "0"]
+      - ["lepton", "electron", "e", "0.511"]
+      - ["lepton", "muon", "μ", "106"]
+      - ["meson", "pion", "π", "140"]
+      - ["meson", "kaon", "K", "494"]
+      - ["baryon", "proton", "p", "938"]
+      - ["baryon", "neutron", "n", "940"]
+  - id: quark-properties
+    title: Properties of quarks
+    columns: ["Quark", "Charge", "Baryon number", "Strangeness"]
+    rows:
+      - ["up", "+⅔ e", "+⅓", "0"]
+      - ["down", "−⅓ e", "+⅓", "0"]
+      - ["strange", "−⅓ e", "+⅓", "−1"]
+  - id: astronomical-data
+    title: Astronomical data
+    columns: ["Body", "Mass / kg", "Mean radius / m"]
+    rows:
+      - ["Sun", "1.99 × 10³⁰", "6.96 × 10⁸"]
+      - ["Earth", "5.97 × 10²⁴", "6.37 × 10⁶"]
+  - id: conversions
+    title: Conversion factors
+    columns: ["Quantity", "Value"]
+    rows:
+      - ["1 astronomical unit", "1.50 × 10¹¹ m"]
+      - ["1 light year", "9.46 × 10¹⁵ m"]
+      - ["1 parsec", "2.06 × 10⁵ AU = 3.08 × 10¹⁶ m = 3.26 ly"]
+      - ["1 electronvolt", "1.60 × 10⁻¹⁹ J"]
+      - ["1 atomic mass unit", "1.66 × 10⁻²⁷ kg = 931.5 MeV"]
