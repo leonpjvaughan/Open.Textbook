@@ -114,7 +114,7 @@ chapters:
       - {id: "5.1", title: "Ratio notation, simplifying and sharing", tier: F, dfe: [R3, R4, R5]}
       - {id: "5.2", title: "Ratio, fractions and linear functions", tier: F, dfe: [R6, R7, R8]}
       - {id: "5.3", title: "Direct proportion", tier: F, dfe: [R10, R13, R14]}
-      - {id: "5.4", title: "Inverse proportion", tier: H, dfe: [R10, R13, R14]}
+      - {id: "5.4", title: "Inverse proportion", tier: F, dfe: [R10, R13, R14]}
       - {id: "5.5", title: "Scale factors, scale diagrams and maps", tier: F, dfe: [R2]}
       - {id: "5.6", title: "Comparing lengths, areas and volumes", tier: H, dfe: [R12]}
 
@@ -127,7 +127,7 @@ chapters:
       - {id: "6.2", title: "Percentage change", tier: F, dfe: [R9]}
       - {id: "6.3", title: "Reverse percentages", tier: F, dfe: [R9]}
       - {id: "6.4", title: "Simple and compound interest", tier: F, dfe: [R9, R16]}
-      - {id: "6.5", title: "Growth, decay and repeated percentage change", tier: H, dfe: [R16]}
+      - {id: "6.5", title: "Growth, decay and repeated percentage change", tier: F, dfe: [R16]}
 
   - id: 7
     title: Measures, accuracy, standard form and surds
@@ -274,9 +274,9 @@ chapters:
     sections:
       - {id: "19.1", title: "Perimeter and area of 2D shapes", tier: F, dfe: [G16]}
       - {id: "19.2", title: "Circumference and area of circles", tier: F, dfe: [G17]}
-      - {id: "19.3", title: "Arc length and sector area", tier: H, dfe: [G18]}
+      - {id: "19.3", title: "Arc length and sector area", tier: F, dfe: [G18]}
       - {id: "19.4", title: "Surface area and volume of prisms and cylinders", tier: F, dfe: [G16, G17]}
-      - {id: "19.5", title: "Surface area and volume of spheres, cones and pyramids", tier: H, dfe: [G17]}
+      - {id: "19.5", title: "Surface area and volume of spheres, cones and pyramids", tier: F, dfe: [G17]}
       - {id: "19.6", title: "Composite shapes and solids", tier: F, dfe: [G17]}
 
   - id: 20
@@ -287,7 +287,7 @@ chapters:
       - {id: "20.1", title: "Pythagoras' theorem", tier: F, dfe: [G20]}
       - {id: "20.2", title: "Trigonometric ratios (SOHCAHTOA)", tier: F, dfe: [G20]}
       - {id: "20.3", title: "Angles of elevation and depression", tier: F, dfe: [G20]}
-      - {id: "20.4", title: "Exact trigonometric values", tier: H, dfe: [G21]}
+      - {id: "20.4", title: "Exact trigonometric values", tier: F, dfe: [G21]}
       - {id: "20.5", title: "3D Pythagoras and trigonometry", tier: H, dfe: [G20]}
       - {id: "20.6", title: "The sine rule", tier: H, dfe: [G22]}
       - {id: "20.7", title: "The cosine rule", tier: H, dfe: [G22]}
@@ -308,8 +308,8 @@ chapters:
     strand: geometry
     summary: Vector notation and arithmetic, column vectors, and vector arguments in geometry.
     sections:
-      - {id: "22.1", title: "Vector notation and column vectors", tier: H, dfe: [G24, G25]}
-      - {id: "22.2", title: "Adding and subtracting vectors", tier: H, dfe: [G25]}
+      - {id: "22.1", title: "Vector notation and column vectors", tier: F, dfe: [G24, G25]}
+      - {id: "22.2", title: "Adding and subtracting vectors", tier: F, dfe: [G25]}
       - {id: "22.3", title: "Vectors in geometric problems and proofs", tier: H, dfe: [G25]}
 
   - id: 23

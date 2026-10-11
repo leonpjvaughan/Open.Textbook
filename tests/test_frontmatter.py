@@ -18,19 +18,32 @@ from textbook.book import discover_books
 
 BOOKS = discover_books()
 
-# Sections whose pages disagree with curriculum.yaml about tier.
+# Sections whose pages once disagreed with curriculum.yaml about tier.
 #
-# AGENTS.md names curriculum.yaml the source of truth for tier, and every one of
-# these is a Higher-only topic carrying a Higher-only DfE reference (G17, G18,
-# G21, G24, G25) — so the *pages* look wrong, not the curriculum. But changing a
-# tier tag changes which students are shown which content, and the repository's
-# own rule is to check every F/H tag against the AQA 8300 tier columns first.
-# That is a content decision, so it is recorded here rather than guessed at.
+# Seven did: 5.4, 6.5, 19.3, 19.5, 20.4, 22.1, 22.2 were marked Higher-only in
+# the curriculum while their pages said F. Checked against the primary sources in
+# books/gcse-maths/sources.yaml, on 2026-10-11:
 #
-# While these stand, the tier filter reads the page, so seven Higher-only
-# sections are built into the Foundation output — reachable by URL, absent from
-# the navigation. Exactly the failure mode of the unparsable front matter above.
-KNOWN_TIER_DISAGREEMENTS = {"5.4", "6.5", "19.3", "19.5", "20.4", "22.1", "22.2"}
+#   AQA 8300 v1.1, "Subject content" preamble:
+#     "The content in the 'basic foundation content' column and 'additional
+#      foundation content' column can be assessed on Foundation tier question
+#      papers. All content can be assessed on Higher tier question papers."
+#
+#   So content is Higher-only if and only if it sits in the "Higher content only"
+#   column. Every one of the seven sits in "basic" or "additional foundation":
+#     G17 spheres/cones/pyramids, G18 arcs/sectors, G21 exact trig values,
+#     G24 translations as vectors, G25 vector arithmetic, R10/R13/R14 inverse
+#     proportion, R16 growth and decay.
+#
+#   OCR J560 v2.1 agrees independently, placing the same items in its
+#   "Foundation tier learners should also be able to…" column (10.04b, 10.04c,
+#   10.02b, 10.03d, 9.03a, 9.03b, 5.02b) and exact trig values in "Initial
+#   learning" (10.05c).
+#
+# The pages were right and the curriculum was wrong, so the curriculum changed.
+# Leaving it would have withheld seven Foundation-assessable topics from
+# Foundation readers — the mirror image of the leak the parser guard prevents.
+KNOWN_TIER_DISAGREEMENTS: set[str] = set()
 
 # An unquoted scalar containing ': ' — valid-looking, invalid YAML. This is the
 # exact shape that shipped: `title: 11.2 Gradient and intercept: y = mx + c`.
