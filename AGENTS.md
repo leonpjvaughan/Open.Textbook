@@ -192,7 +192,10 @@ images drawn in the house ink and paper, because a launcher tile and a tab canno
 follow the reader. They differ only in how much survives at their size: the
 launcher icon keeps the page rules, the tab icon drops them and spends the room on
 the book. `tests/test_pwa.py` pins their palettes together, and both the book
-template and the portal link the tab icon. No other image may hard-code a colour.
+template and the portal link the tab icon. `apple-touch-icon.png` is the
+third: iOS ignores the manifest and wants a PNG it can size itself, so it
+is the one committed raster in the repository — `assets/icons/README.md`
+says why, and a test pins the SVG's hash so it cannot go stale quietly. No other image may hard-code a colour.
 
 ### The contrast invariant
 

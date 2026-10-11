@@ -28,7 +28,7 @@ in `AGENTS.md` do not apply here, but the engineering rules do.
 - [x] 22. Follow-ups from the MkDocs deletion
 - [x] 23. Stale theme references in the out-of-scope preview files
 - [ ] 24. Animated backgrounds on the vivid themes
-- [ ] 25. An iOS home-screen icon (`apple-touch-icon`); today iOS falls back to a page screenshot
+- [x] 25. An iOS home-screen icon (`apple-touch-icon`) — shipped, with the drift guarded
 - [ ] 26. Declare the ready state
 
 ---
@@ -1384,7 +1384,7 @@ opt-in.
 
 ---
 
-## 25. iOS gets a page screenshot, not an icon
+## 25. iOS gets a page screenshot, not an icon — **done**
 
 **What is wrong.** The site ships a tab icon (`assets/icons/favicon.svg`) and a
 launcher icon for Android (`assets/icons/app-icon.svg`, declared in the manifest as
@@ -1422,18 +1422,40 @@ today. Two choices have to be settled first:
    `app-icon.svg`'s shape — a full-bleed ink square — and not the tab icon's:
    nothing is clipped, so there is no safe area to design for.
 
+**Decided, and shipped (2026-10-11).** Option 1, *commit it as an authored asset*,
+with the drift it risks guarded rather than trusted.
+
+A build-time rasteriser needs a direct dependency on a native module (`sharp`,
+present only transitively through `wrangler`) or a runner tool that is not
+guaranteed to be there — and a build step that silently produces a missing or
+blank icon is worse than 2 kB in git. The cost of committing it is that nothing
+regenerates it, so `tests/test_pwa.py` pins the SHA-256 of `app-icon.svg`: change
+the SVG and the test fails with the exact `rsvg-convert` command, rather than
+shipping an icon that no longer matches the home-screen tile.
+`assets/icons/README.md` records the decision and the procedure.
+
+Drawn as option 2 says: `app-icon.svg`'s full-bleed ink square, 180×180, RGB with
+no alpha — iOS applies no mask to this icon, so transparency would leave it
+guessing at the background.
+
 **Done means.**
 
 - [ ] `curl -sI https://open-textbook.org/assets/icons/apple-touch-icon.png` is
-      `200` with `content-type: image/png`, and the image is 180×180.
-- [ ] Every head links it: a nested page (`/gcse-maths/higher/chapter-1/`), the
-      landing page and the 404, with the paths each resolves from.
-- [ ] Both profile builds and the portal ship the file, pinned by a test that also
-      asserts it is the bytes in `assets/icons/`.
+      `200` with `content-type: image/png`, and the image is 180×180. **Pending the
+      next deploy** — it is built and in `site/`, but `dev` is not live.
+- [x] Every head links it — a nested page (which resolves the prefix), the landing
+      page, and the 404, which links both icons root-absolutely because it is
+      served for a request at any depth. `tests/test_pipeline.py` checks that each
+      built page's href actually resolves, not just that the attribute is there.
+- [x] Both profile builds and the portal ship the file, pinned by a test that also
+      asserts its size, its colour type and the source SVG's hash.
 - [ ] Adding the site to the home screen on an iPhone (or the iOS simulator) shows
-      the open book rather than a screenshot of the page.
-- [ ] Whatever produces it can be re-run from a clean checkout: `scripts/check.sh`
-      passes and the generated-file drift check is happy.
+      the open book rather than a screenshot of the page. **Still unverified** — no
+      Apple device here, and it is the one box a desk cannot close.
+- [x] Whatever produces it can be re-run from a clean checkout: `scripts/check.sh`
+      passes and the generated-file drift check is happy. The recipe is in
+      `assets/icons/README.md`.
+
 
 ## 26. Declare the ready state
 

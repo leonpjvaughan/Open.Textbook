@@ -619,3 +619,25 @@ def test_every_page_links_back_to_the_collection(subset):
         if 'class="masthead__home" href="/"' not in (subset.out / page.output).read_text(encoding="utf-8")
     ]
     assert not missing, f"no link home on: {missing[:5]}"
+
+
+def test_every_page_links_the_ios_home_screen_icon(subset):
+    """iOS ignores the manifest, so the link has to be on the page itself.
+
+    The icon is a committed PNG (see assets/icons/README.md) and the prefix is
+    per-page, so this checks the resolved href rather than just the attribute —
+    a wrong prefix would 404 on every page but the shallowest.
+    """
+    assert subset.ok, subset.broken + subset.maths_errors
+    missing = []
+    for page in subset.pages:
+        html = (subset.out / page.output).read_text(encoding="utf-8")
+        if 'rel="apple-touch-icon"' not in html:
+            missing.append(page.url)
+            continue
+        # The target it names must actually exist in the build.
+        href = html.split('rel="apple-touch-icon" href="', 1)[1].split('"', 1)[0]
+        target = (subset.out / page.output).parent / href
+        if not target.resolve().is_file():
+            missing.append(f"{page.url} -> {href}")
+    assert not missing, f"no working iOS icon link on: {missing[:5]}"

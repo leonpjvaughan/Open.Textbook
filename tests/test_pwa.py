@@ -12,6 +12,9 @@ too, because both are easy to regress by accident.
 
 from __future__ import annotations
 
+import hashlib
+import struct
+
 import json
 import re
 from xml.etree import ElementTree
@@ -26,6 +29,12 @@ SW = ASSETS / "sw.js"
 REGISTER = ASSETS / "settings" / "service-worker.js"
 ICON = ASSETS / "icons" / "app-icon.svg"
 FAVICON = ASSETS / "icons" / "favicon.svg"
+APPLE_TOUCH = ASSETS / "icons" / "apple-touch-icon.png"
+
+#: The SHA-256 of `app-icon.svg` when `apple-touch-icon.png` was drawn from it.
+#: A committed raster is the one place a generated file goes stale unnoticed,
+#: so the source is pinned rather than trusted. See assets/icons/README.md.
+APP_ICON_SHA256 = "d72c5fcf1db2d912e78c6ead229d4fa4980b9b6e1cc18fa3b2299bc33dd2803f"
 
 
 def function_body(source: str, name: str) -> str:
@@ -247,3 +256,41 @@ def test_the_portal_copies_the_new_assets_into_the_site():
         assert (SITE / relative).is_file(), f"{relative} is not in site/"
     assert (SITE / "manifest.webmanifest").read_text(encoding="utf-8") == portal.manifest()
     assert (SITE / "sw.js").read_text(encoding="utf-8") == portal.service_worker()
+
+
+# --- the iOS home-screen icon -------------------------------------------------
+
+
+def test_the_ios_icon_is_a_png_ios_will_accept():
+    """180x180, RGB, no alpha — the shape iOS asks for and does not mask.
+
+    Without an `apple-touch-icon`, iOS ignores the manifest and puts a screenshot
+    of the page on the home screen.
+    """
+    assert APPLE_TOUCH.is_file(), (
+        "no apple-touch-icon.png; an iOS home screen falls back to a page "
+        "screenshot. See assets/icons/README.md"
+    )
+    data = APPLE_TOUCH.read_bytes()
+    assert data[:8] == b"\x89PNG\r\n\x1a\n", "not a PNG"
+    width, height = struct.unpack(">II", data[16:24])
+    assert (width, height) == (180, 180), f"{width}x{height}, expected 180x180"
+    # Colour type 2 is truecolour RGB. Alpha (6) would leave iOS guessing at the
+    # background, since it applies no mask to this icon.
+    assert data[25] == 2, "the iOS icon should be RGB with no alpha channel"
+
+
+def test_the_ios_icon_cannot_drift_from_the_svg_it_was_drawn_from():
+    """A committed raster is the one generated file that can go stale quietly.
+
+    Nothing rebuilds it, so the source's hash is pinned here. Change the SVG and
+    this fails with the command that redraws the PNG, instead of shipping an icon
+    that no longer matches the home-screen tile.
+    """
+    digest = hashlib.sha256(ICON.read_bytes()).hexdigest()
+    assert digest == APP_ICON_SHA256, (
+        "app-icon.svg changed, so apple-touch-icon.png is stale. Redraw it with:\n"
+        "  rsvg-convert -w 180 -h 180 assets/icons/app-icon.svg "
+        "-o assets/icons/apple-touch-icon.png\n"
+        "then update APP_ICON_SHA256 in this file."
+    )
