@@ -207,7 +207,8 @@ jobs:
       - name: Chrome is available
         run: google-chrome --version || google-chrome-stable --version
 
-      # Builds every profile and the portal, then runs the 9 x 2 x 3 audit. The
+      # Builds every profile and the portal, then audits every bundle in both schemes
+      # across three routes. The
       # script asserts the route layout first, so a renderer swap fails on a
       # missing route rather than auditing a 404.
       - name: Preview every bundle on the built site
