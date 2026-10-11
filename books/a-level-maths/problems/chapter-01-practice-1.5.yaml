@@ -1,0 +1,147 @@
+# Practice set for 1.5, proof by contradiction. The algebra inside each proof is
+# proven by the verifier. The step where the contradiction is declared — a
+# statement cannot be both true and false — is prose, and a human reads it.
+chapter: 1
+symbols:
+  k: {integer: true}
+  n: {integer: true}
+  x: {real: true, positive: true}
+  r: {real: true}
+  i: {real: true}
+  M: {integer: true, even: true}
+problems:
+  - id: p1-square-of-even
+    section: "1.5"
+    dfe: [A1]
+    statement: 'In the proof that $\sqrt{2}$ is irrational, the number $a$ is even, so $a = 2k$ for a whole number $k$. Show that $a^2$ is a multiple of $4$.'
+    answer_label: 'Show $a^2$ is a multiple of $4$'
+    check:
+      kind: evaluate
+      expression: "(2*k)**2"
+      answer: "4*k**2"
+    answer_text: 'Substitute $a = 2k$ into $a^2$: $a^2 = (2k)^2 = 4k^2$. This has a factor $4$, so $a^2$ is a multiple of $4$.'
+
+  - id: p2-halving
+    section: "1.5"
+    dfe: [A1]
+    statement: 'In the same proof, $4k^2 = 2b^2$. Show that $b^2 = 2k^2$.'
+    answer_label: 'Solve for $b^2$'
+    check:
+      kind: evaluate
+      expression: "(4*k**2) / 2"
+      answer: "2*k**2"
+    answer_text: 'Divide both sides of $4k^2 = 2b^2$ by $2$: $2k^2 = b^2$, so $b^2 = 2k^2$. This says $b^2$ is even, so $b$ is even too.'
+
+  - id: p3-odd-square-is-odd
+    section: "1.5"
+    dfe: [A1]
+    statement: 'Suppose $b$ is odd, so $b = 2k + 1$. Show that $b^2$ is odd.'
+    answer_label: 'Show $b^2$ is odd'
+    check:
+      kind: evaluate
+      expression: "(2*k + 1)**2"
+      answer: "2*(2*k**2 + 2*k) + 1"
+    answer_text: 'Expand: $b^2 = (2k + 1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$. This is one more than a multiple of $2$, so $b^2$ is odd. But $b^2 = 2k^2$ is even. An odd number cannot equal an even number, so the assumption is false.'
+
+  - id: p4-euclid-number
+    section: "1.5"
+    dfe: [A1]
+    statement: 'In Euclid''s proof that there are infinitely many primes, let $N = 2 \times 3 \times 5 \times 7 + 1$. Work out $N$.'
+    answer_label: 'The value of $N$'
+    check:
+      kind: evaluate
+      expression: "2*3*5*7 + 1"
+      answer: "211"
+    answer_text: '$2 \times 3 \times 5 \times 7 = 210$, so $N = 210 + 1 = 211$.'
+
+  - id: p5-remainders
+    section: "1.5"
+    dfe: [A1]
+    statement: 'For $N = 2 \times 3 \times 5 \times 7 + 1 = 211$, show that $N$ leaves remainder $1$ when divided by each of $2$, $3$, $5$ and $7$.'
+    answer_label: 'The four remainders'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "=", lhs: "Mod(211, 2)", rhs: "1"}
+        - {kind: compare, relation: "=", lhs: "Mod(211, 3)", rhs: "1"}
+        - {kind: compare, relation: "=", lhs: "Mod(211, 5)", rhs: "1"}
+        - {kind: compare, relation: "=", lhs: "Mod(211, 7)", rhs: "1"}
+    answer_text: 'Each of $2$, $3$, $5$ and $7$ divides the product $2 \times 3 \times 5 \times 7$, so each leaves remainder $0$ for that product and remainder $1$ for $N$. A number that leaves remainder $1$ cannot be a multiple of that prime, so none of the four primes divides $N$.'
+
+  - id: p6-prime-two-eleven
+    section: "1.5"
+    dfe: [A1]
+    statement: 'Show that $211$ is prime by testing the primes up to $\sqrt{211}$.'
+    answer_label: 'The factor check'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "!=", lhs: "Mod(211, 2)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(211, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(211, 5)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(211, 7)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(211, 11)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(211, 13)", rhs: "0"}
+        - {kind: compare, relation: "<", lhs: "14**2", rhs: "211"}
+    answer_text: 'The primes up to $\sqrt{211} \approx 14.5$ are $2$, $3$, $5$, $7$, $11$ and $13$. None of them divides $211$. If $211$ had a factor, it would have a prime factor no larger than $\sqrt{211}$, so $211$ is prime.'
+
+  - id: p7-odd-is-not-even
+    section: "1.5"
+    dfe: [A1]
+    statement: 'In the proof that $\sqrt{2}$ is irrational, show that the number $2(2k^2 + 2k) + 1$ leaves remainder $1$ when divided by $2$.'
+    answer_label: 'The remainder'
+    check:
+      kind: compare
+      relation: "="
+      lhs: "Mod(2*(2*k**2 + 2*k) + 1, 2)"
+      rhs: "1"
+    answer_text: 'The first part, $2(2k^2 + 2k)$, is a multiple of $2$, so its remainder is $0$. Adding $1$ changes the remainder to $1$. The number is odd, and it cannot equal $2k^2$, which is even.'
+
+  - id: p8-smallest-positive
+    section: "1.5"
+    dfe: [A1]
+    statement: 'Suppose $x > 0$ is the smallest positive real number. Show that $x/2$ is positive and that $x/2 < x$.'
+    answer_label: 'Compare $\frac{x}{2}$ with $x$'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: ">", lhs: "x", rhs: "0"}
+        - {kind: compare, relation: ">", lhs: "x / 2", rhs: "0"}
+        - {kind: compare, relation: "<", lhs: "x / 2", rhs: "x"}
+    answer_text: 'Because $x > 0$, the number $x/2$ is also positive. And $x/2 < x$, because dividing a positive number by $2$ makes it smaller. So $x/2$ is a smaller positive real number, which contradicts the claim that $x$ is the smallest. The assumption is false.'
+
+  - id: p9-rational-minus-rational
+    section: "1.5"
+    dfe: [A1]
+    statement: 'Suppose $r$ is rational and $i$ is irrational, and suppose $r + i$ is rational. Show that $i = (r + i) - r$.'
+    answer_label: 'Make $i$ the subject'
+    check:
+      kind: evaluate
+      expression: "(r + i) - r"
+      answer: "i"
+    answer_text: 'Rearrange $r + i = q$, where $q$ is rational. Then $i = q - r$. The difference of two rational numbers is rational, so $i$ would be rational. But $i$ is irrational, so $i$ cannot be both. The assumption that $r + i$ is rational is false.'
+
+  - id: p10-greatest-even
+    section: "1.5"
+    dfe: [A1]
+    statement: 'Suppose $M$ is the greatest even number. Show that $M + 2$ is even and that $M + 2 > M$.'
+    answer_label: 'The larger even number'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "M + 2", answer: "2*(M/2 + 1)"}
+        - {kind: compare, relation: ">", lhs: "M + 2", rhs: "M"}
+    answer_text: 'The number $M + 2$ is even, because it is the sum of two even numbers. It is also greater than $M$. So $M + 2$ is a larger even number than $M$, which contradicts the claim that $M$ is the greatest. The assumption is false, so there is no greatest even number.'
+
+  - id: p11-method-choice
+    section: "1.5"
+    dfe: [A1]
+    statement: 'Choose the method for each part before you answer, then explain your choice. (a) Prove that $n^2 + n$ is even for every whole number $n$. (b) Decide whether the claim "for all real $x$ and $y$, if $x^2 > y^2$ then $x > y$" is true.'
+    answer_label: 'Which method, and why'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "n**2 + n", answer: "n*(n + 1)"}
+        - {kind: compare, relation: ">", lhs: "(-3)**2", rhs: "2**2"}
+        - {kind: compare, relation: "<", lhs: "-3", rhs: "2"}
+    answer_text: '(a) Deduction. Factorise $n^2 + n = n(n + 1)$; consecutive numbers include one even number, so the product is even. (b) Counter example. Take $x = -3$ and $y = 2$: $x^2 = 9 > 4 = y^2$, yet $x = -3 < 2 = y$. The claim is false. Nothing here needs contradiction: contradiction is for a statement you believe is true but cannot reach directly, and a counter example is quicker when a "for all" claim is false.'

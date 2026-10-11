@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.2 Proof by deduction — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: A1
+Work through these on your own. Begin each proof from the assumption, use a
+general letter throughout, and finish with a sentence in words. Write your
+working out in full: the reader should be able to follow every step.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-01-practice-1.2
+
+:::answers chapter-01-practice-1.2

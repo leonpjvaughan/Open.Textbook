@@ -1,0 +1,141 @@
+# Practice set for 1.4, disproof by counter example. One counter example settles
+# a universal statement; the verifier proves the arithmetic of the example. That
+# the example really is a counter example is read by a human.
+chapter: 1
+symbols:
+  m: {integer: true}
+  n: {integer: true}
+problems:
+  - id: p1-prime-formula
+    section: "1.4"
+    dfe: [A1]
+    statement: 'The claim is "For every whole number $n$, the value of $n^2 + n + 41$ is prime." Find a counter example.'
+    answer_label: 'The counter example'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "40**2 + 40 + 41", answer: "1681"}
+        - {kind: evaluate, expression: "40**2 + 40 + 41", answer: "41**2"}
+        - {kind: evaluate, expression: "41 * 41", answer: "1681"}
+    answer_text: 'Take $n = 40$. Then $n^2 + n + 41 = 1600 + 40 + 41 = 1681 = 41 \times 41$. The value is not prime, so the claim is false.'
+
+  - id: p2-two-is-even
+    section: "1.4"
+    dfe: [A1]
+    statement: 'The claim is "Every prime number is odd." Find a counter example.'
+    answer_label: 'The counter example'
+    check:
+      kind: compare
+      relation: "="
+      lhs: "Mod(2, 2)"
+      rhs: "0"
+    answer_text: 'The number $2$ is prime, because its only factors are $1$ and $2$. It is even, not odd. So the claim is false.'
+
+  - id: p3-mersenne
+    section: "1.4"
+    dfe: [A1]
+    statement: 'The claim is "If $n$ is prime, then $2^n - 1$ is prime." Find a counter example.'
+    answer_label: 'The counter example'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2**11 - 1", answer: "2047"}
+        - {kind: evaluate, expression: "23 * 89", answer: "2047"}
+    answer_text: 'Take $n = 11$, which is prime. Then $2^{11} - 1 = 2048 - 1 = 2047$, and $2047 = 23 \times 89$. A product of two numbers greater than $1$ is not prime, so the claim is false.'
+
+  - id: p4-square-inequality
+    section: "1.4"
+    dfe: [A1]
+    statement: 'The claim is "For every real number $x$, $x^2 > x$." Find a counter example.'
+    answer_label: 'The counter example'
+    check:
+      kind: compare
+      relation: "<"
+      lhs: "(1 / 2)**2"
+      rhs: "1 / 2"
+    answer_text: 'Take $x = \frac{1}{2}$. Then $x^2 = \frac{1}{4}$, and $\frac{1}{4} < \frac{1}{2}$. So $x^2 > x$ fails and the claim is false.'
+
+  - id: p5-square-inequality-two
+    section: "1.4"
+    dfe: [A1]
+    statement: 'The claim is "For all real numbers $x$ and $y$, if $x^2 > y^2$ then $x > y$." Find a counter example.'
+    answer_label: 'The counter example'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: ">", lhs: "(-3)**2", rhs: "2**2"}
+        - {kind: compare, relation: "<", lhs: "-3", rhs: "2"}
+    answer_text: 'Take $x = -3$ and $y = 2$. Then $x^2 = 9 > 4 = y^2$, but $x = -3 < 2 = y$. The claim is false, because squaring hides the sign.'
+
+  - id: p6-six-and-twelve
+    section: "1.4"
+    dfe: [A1]
+    statement: 'The claim is "If a whole number is a multiple of $6$, then it is a multiple of $12$." Find a counter example.'
+    answer_label: 'The counter example'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "=", lhs: "Mod(6, 6)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(6, 12)", rhs: "0"}
+    answer_text: 'Take the number $6$. It is a multiple of $6$, but $6$ is not a multiple of $12$: it leaves remainder $6$. The claim is false.'
+
+  - id: p7-second-prime-formula
+    section: "1.4"
+    dfe: [A1]
+    statement: 'The claim is "For every whole number $n$, the value of $n^2 - n + 11$ is prime." Find a counter example.'
+    answer_label: 'The counter example'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "11**2 - 11 + 11", answer: "121"}
+        - {kind: evaluate, expression: "11**2 - 11 + 11", answer: "11**2"}
+    answer_text: 'Take $n = 11$. Then $n^2 - n + 11 = 121 - 11 + 11 = 121 = 11 \times 11$. The value is not prime, so the claim is false.'
+
+  - id: p8-sum-of-irrationals
+    section: "1.4"
+    dfe: [A1]
+    statement: 'The claim is "The sum of two irrational numbers is irrational." Find a counter example.'
+    answer_label: 'The counter example'
+    check:
+      kind: evaluate
+      expression: "sqrt(2) + (-sqrt(2))"
+      answer: "0"
+    answer_text: 'Take $\sqrt{2}$ and $-\sqrt{2}$. Both are irrational, but their sum is $\sqrt{2} - \sqrt{2} = 0$, and $0$ is rational. The claim is false.'
+
+  - id: p9-sum-of-primes
+    section: "1.4"
+    dfe: [A1]
+    statement: 'The claim is "The sum of two prime numbers is even." Find a counter example.'
+    answer_label: 'The counter example'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2 + 3", answer: "5"}
+        - {kind: compare, relation: "=", lhs: "Mod(5, 2)", rhs: "1"}
+    answer_text: 'Take the primes $2$ and $3$. Their sum is $2 + 3 = 5$, which is odd. The claim fails because one of the primes can be $2$, the only even prime.'
+
+  - id: p10-triangle
+    section: "1.4"
+    dfe: [A1]
+    statement: 'The claim is "Every triangle whose sides are whole numbers has a right angle." Find a counter example.'
+    answer_label: 'The counter example'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2**2 + 3**2", answer: "13"}
+        - {kind: evaluate, expression: "4**2", answer: "16"}
+        - {kind: compare, relation: "!=", lhs: "2**2 + 3**2", rhs: "4**2"}
+    answer_text: 'Take the triangle with sides $2$, $3$ and $4$. For a right angle the longest side would need $4^2 = 2^2 + 3^2$. But $16$ is not $13$, so there is no right angle. The claim is false.'
+
+  - id: p11-method-choice
+    section: "1.4"
+    dfe: [A1]
+    statement: 'Choose the method for each part before you answer, then explain your choice. (a) Prove that the sum of two odd numbers is even. (b) Decide whether every whole number of the form $n^2 + 1$ is prime.'
+    answer_label: 'Which method, and why'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "(2*m + 1) + (2*n + 1)", answer: "2*(m + n + 1)"}
+        - {kind: evaluate, expression: "7**2 + 1", answer: "50"}
+        - {kind: compare, relation: "=", lhs: "Mod(50, 5)", rhs: "0"}
+    answer_text: '(a) Deduction. The statement is "for all" odd numbers, so one example proves nothing. Write them as $2m + 1$ and $2n + 1$; then $(2m + 1) + (2n + 1) = 2(m + n + 1)$, a multiple of $2$. (b) Counter example. The claim is "for all", so one failing value disproves it. Take $n = 7$: $n^2 + 1 = 50 = 2 \times 25$, which is not prime. The method follows from what is being asked: to prove a "for all" statement use deduction, to disprove one look for a counter example.'

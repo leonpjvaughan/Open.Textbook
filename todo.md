@@ -1928,3 +1928,86 @@ scope in `meta.note` and `AGENTS.md` as a deliberate limit.
       widget hides the wrong board's; if not, the limit is reader-visible.
 - [ ] `python -m textbook.booklet a-level-physics` validates and
       `scripts/check.sh` passes.
+
+---
+
+## 37. `kilogram` is reported as a US spelling, and the fix is a no-op
+
+**What is wrong.** `US_SPELLINGS` in `engine/textbook/lint.py` maps
+`\bkilogram(s)?\b` to `kilogram\1`. The replacement is the match, so the rule
+changes nothing, but the reporting loop still tests the pattern. Every page that
+writes "kilogram" or "kilograms" is therefore reported as `style:us-spelling`.
+"kilogram" is the UK spelling the root `AGENTS.md` asks the book to use, so the
+finding is a false positive that cannot be silenced by `--fix`. Measured:
+
+```bash
+$ uv run python -m textbook.lint gcse-physics
+scanned 142 pages
+
+style:us-spelling: 8
+    books/gcse-physics/docs/Chapter 1/Section 1.1/Guided problems/index.md:22: 3. Convert 500 g to kilograms.
+    books/gcse-physics/docs/Chapter 1/Section 1.1/Walkthrough/index.md:16: substitution; the units kilogram, metre, second, joule and watt.
+    ... 6 more, all in Chapter 1
+```
+
+Only the physics book trips it, because it is the first book to write the word.
+
+**Fix.** Delete the `kilogram` row: there is no UK/US difference to enforce, and
+the other unit rows (`metre`, `centre`) show the intended set. If a rule is
+wanted for the obsolete `kilogramme`, write that pattern, not `kilogram`.
+
+**Done means.**
+
+- [ ] `uv run python -m textbook.lint gcse-physics` reports no `style:us-spelling`.
+- [ ] A test in `tests/` pins it: a page containing "kilogram" produces no
+      finding, and a page containing a genuine US spelling still does.
+- [ ] `scripts/check.sh` passes.
+
+---
+
+## 38. A bank record whose check is only `all` renders no answer
+
+**What is wrong.** `engine/textbook/verify/render.py → render_problem` builds the
+reader-facing answer from `answer_text`, then from `_answer_from_check`, then
+falls back to `check["answer"]`. An `all` check has no top-level `answer` (its
+values live in the sub-checks), so a record that carries only `answer_text`-free
+`kind: all` renders as the label and nothing else. The verifier still passes, so
+CI does not see it. Measured:
+
+```bash
+$ uv run python - <<'PY'
+from textbook.verify.render import render_problem
+from textbook.verify.verify import verify_problem
+record = {
+    "id": "demo-all-no-answer-text",
+    "statement": "Decide whether 7 is prime.",
+    "answer_label": "Prime?",
+    "check": {"kind": "all", "checks": [
+        {"kind": "compare", "relation": "!=", "lhs": "Mod(7,2)", "rhs": "0"},
+        {"kind": "compare", "relation": "!=", "lhs": "Mod(7,3)", "rhs": "0"}]},
+}
+print("verifier ok:", verify_problem(record).ok)
+print(render_problem(record, 1))
+PY
+verifier ok: True
+**1.** Prime?
+```
+
+The record verifies and the answers block prints no answer. Every A-level
+Chapter 1 record that uses `all` avoids this only because the author remembered
+`answer_text`; nothing enforces it.
+
+**Fix.** Make the renderer fall back to a composed answer when `kind: all` (join
+the sub-check answers), or fail the verifier for a record that has neither
+`answer_text` nor a renderable `check.answer`, so a page and its proof cannot
+drift. The latter is safer: a composed answer is a second rendering path that can
+disagree with the authored one.
+
+**Done means.**
+
+- [ ] A bank record with `kind: all` and no `answer_text` either fails the
+      verifier with a clear message or renders its sub-check answers.
+- [ ] A test in `tests/` pins whichever behaviour is chosen: an `all`-only record
+      is rejected, or its rendered block contains an answer.
+- [ ] `uv run python -m textbook.verify books/a-level-maths/problems/` still
+      passes and `uv run python -m pytest tests/ -q` is green.

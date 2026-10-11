@@ -1,0 +1,397 @@
+# Worked solutions for Chapter 1 (Energy).
+#
+# These are the numerical worked examples and the guided calculations that the
+# Learn and Practise with help pages show. The pages carry the prose and the
+# reasoning; this bank is the independent check of every number in them, so a
+# slip in a worked example cannot ship. The records are not rendered by a page
+# marker: the pages write their own working, and the `:::answers` blocks come
+# from the practice banks.
+#
+# Each calculation is checked twice: the exact magnitude and dimension by
+# `dimensions`, and the one rounding by `sigfigs`. Efficiency has no unit, so it
+# uses `evaluate` for the exact value with `sigfigs` for the rounding.
+chapter: 1
+problems:
+  # --- Section 1.1, the Learn worked examples ---------------------------------
+  - id: w1-gpe-pupil
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A pupil of mass 65 kg climbs 4.0 m. Take g = 9.8 N/kg. Calculate the energy gained by the gravitational potential store.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g * h"
+          values:
+            m: {value: "65", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "4.0", unit: "m"}
+          answer: {value: "2548", unit: "J"}
+        - {kind: sigfigs, value: "2548", figures: 2, answer: "2500", convention: round-once}
+    answer_text: '$2500\,\text{J}$'
+
+  - id: w2-ke-car
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A car of mass 1200 kg travels at 15 m/s. Calculate the energy in its kinetic store.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * m * v**2"
+          values:
+            m: {value: "1200", unit: "kg"}
+            v: {value: "15", unit: "m/s"}
+          answer: {value: "135000", unit: "J"}
+        - {kind: sigfigs, value: "135000", figures: 2, answer: "1.4e5", convention: round-once}
+    answer_text: '$1.4 \times 10^5\,\text{J}$'
+
+  - id: w3-elastic-spring
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A spring with spring constant 250 N/m is stretched by 0.080 m. Calculate the energy in the elastic potential store.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * k * e**2"
+          values:
+            k: {value: "250", unit: "N/m"}
+            e: {value: "0.080", unit: "m"}
+          answer: {value: "0.8", unit: "J"}
+        - {kind: sigfigs, value: "0.8", figures: 2, answer: "0.80", convention: round-once}
+    answer_text: '$0.80\,\text{J}$'
+
+  - id: w4-thermal-aluminium
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A 2.0 kg block of aluminium is heated from 18 °C to 68 °C. Its specific heat capacity is 900 J/kg°C. Calculate the energy transferred to the block.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "2.0", unit: "kg"}
+            c: {value: "900", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "50", unit: "K"}
+          answer: {value: "90000", unit: "J"}
+        - {kind: sigfigs, value: "90000", figures: 2, answer: "9.0e4", convention: round-once}
+    answer_text: '$9.0 \times 10^4\,\text{J}$'
+
+  - id: w5-power-heater
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A heater transfers 90000 J in 45 s. Calculate its power.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "E / t"
+          values:
+            E: {value: "90000", unit: "J"}
+            t: {value: "45", unit: "s"}
+          answer: {value: "2000", unit: "W"}
+        - {kind: sigfigs, value: "2000", figures: 2, answer: "2.0e3", convention: round-once}
+    answer_text: '$2.0\,\text{kW}$'
+
+  - id: w6-work-trolley
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A force of 120 N moves a trolley 15 m along the line of the force. Calculate the work done.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "120", unit: "N"}
+            s: {value: "15", unit: "m"}
+          answer: {value: "1800", unit: "J"}
+        - {kind: sigfigs, value: "1800", figures: 2, answer: "1800", convention: round-once}
+    answer_text: '$1800\,\text{J}$'
+
+  - id: w6b-appliance-energy
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A 2500 W kettle is switched on for 3.0 minutes. Calculate the energy transferred.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P * t"
+          values:
+            P: {value: "2500", unit: "W"}
+            t: {value: "180", unit: "s"}
+          answer: {value: "450000", unit: "J"}
+        - {kind: sigfigs, value: "450000", figures: 2, answer: "4.5e5", convention: round-once}
+    answer_text: '$4.5 \times 10^5\,\text{J}$'
+
+  # --- Section 1.2, the Learn worked examples ---------------------------------
+  - id: w7-dissipated-machine
+    section: '1.2'
+    tier: F
+    dfe: [EN2]
+    statement: 'A machine is supplied with 2000 J and transfers 800 J usefully. Calculate the energy dissipated.'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2000 - 800", answer: "1200"}
+        - {kind: sigfigs, value: "1200", figures: 2, answer: "1.2e3", convention: round-once}
+    answer_text: '$1200\,\text{J}$'
+
+  - id: w8-efficiency-motor
+    section: '1.2'
+    tier: F
+    dfe: [EN2]
+    statement: 'A motor is supplied with 500 J and transfers 350 J usefully. Calculate its efficiency.'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "350 / 500", answer: "0.7"}
+        - {kind: sigfigs, value: "0.7", figures: 2, answer: "0.70", convention: round-once}
+    answer_text: '$0.70 = 70\%$'
+
+  - id: w9-efficiency-machine-input
+    section: '1.2'
+    tier: F
+    dfe: [EN2]
+    statement: 'A machine is 40% efficient and its useful output is 800 J. Calculate the total input.'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "800 / 0.4", answer: "2000"}
+        - {kind: sigfigs, value: "2000", figures: 2, answer: "2.0e3", convention: round-once}
+    answer_text: '$2000\,\text{J}$'
+
+  # --- Section 1.1, the Practise with help calculations -----------------------
+  - id: g1-gpe-climber
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A climber of mass 75 kg reaches a ledge 8.0 m above the ground. Take g = 9.8 N/kg. Calculate the energy gained by the gravitational potential store.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g * h"
+          values:
+            m: {value: "75", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "8.0", unit: "m"}
+          answer: {value: "5880", unit: "J"}
+        - {kind: sigfigs, value: "5880", figures: 2, answer: "5900", convention: round-once}
+    answer_text: '$5900\,\text{J}$'
+
+  - id: g2-ke-ball
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A ball of mass 0.16 kg is kicked at 20 m/s. Calculate the energy in its kinetic store.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * m * v**2"
+          values:
+            m: {value: "0.16", unit: "kg"}
+            v: {value: "20", unit: "m/s"}
+          answer: {value: "32", unit: "J"}
+        - {kind: sigfigs, value: "32", figures: 2, answer: "32", convention: round-once}
+    answer_text: '$32\,\text{J}$'
+
+  - id: g3-thermal-copper
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A block of copper of mass 1.2 kg is heated from 20 °C to 70 °C. Its specific heat capacity is 390 J/kg°C. Calculate the energy transferred to the block.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "1.2", unit: "kg"}
+            c: {value: "390", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "50", unit: "K"}
+          answer: {value: "23400", unit: "J"}
+        - {kind: sigfigs, value: "23400", figures: 2, answer: "2.3e4", convention: round-once}
+    answer_text: '$2.3 \times 10^4\,\text{J}$'
+
+  - id: g4-power-motor
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A motor transfers 18000 J in 12 s. Calculate its power.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "E / t"
+          values:
+            E: {value: "18000", unit: "J"}
+            t: {value: "12", unit: "s"}
+          answer: {value: "1500", unit: "W"}
+        - {kind: sigfigs, value: "1500", figures: 2, answer: "1500", convention: round-once}
+    answer_text: '$1500\,\text{W}$'
+
+  - id: g5-ke-car
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A car of mass 1000 kg travelling at 12 m/s brakes to rest. Calculate the energy transferred to the thermal store of the brakes.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * m * v**2"
+          values:
+            m: {value: "1000", unit: "kg"}
+            v: {value: "12", unit: "m/s"}
+          answer: {value: "72000", unit: "J"}
+        - {kind: sigfigs, value: "72000", figures: 2, answer: "7.2e4", convention: round-once}
+    answer_text: '$7.2 \times 10^4\,\text{J}$'
+
+  # --- Section 1.2, the Practise with help calculations -----------------------
+  - id: g6-efficiency-motor
+    section: '1.2'
+    tier: F
+    dfe: [EN2]
+    statement: 'A motor takes in 600 J and transfers 450 J usefully. Calculate its efficiency.'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "450 / 600", answer: "0.75"}
+        - {kind: sigfigs, value: "0.75", figures: 2, answer: "0.75", convention: round-once}
+    answer_text: '$0.75 = 75\%$'
+
+  - id: g7-machine-input
+    section: '1.2'
+    tier: F
+    dfe: [EN2]
+    statement: 'A machine is 25% efficient and its useful output is 150 J. Calculate the total input.'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "150 / 0.25", answer: "600"}
+        - {kind: sigfigs, value: "600", figures: 2, answer: "6.0e2", convention: round-once}
+    answer_text: '$600\,\text{J}$'
+
+  - id: g8-wind-turbine
+    section: '1.2'
+    tier: F
+    dfe: [EN2]
+    statement: 'A wind turbine removes 4.0 MW from the kinetic store of the air and gives out 1.6 MW of electrical power. Calculate its efficiency.'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "1.6 / 4.0", answer: "0.4"}
+        - {kind: sigfigs, value: "0.4", figures: 2, answer: "0.40", convention: round-once}
+    answer_text: '$0.40 = 40\%$'
+
+  # --- The warm-up recalls ----------------------------------------------------
+  - id: warmup-1-1-arithmetic
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'Warm-up: work out $0.5 \times 1200 \times 15^2$.'
+    check: {kind: evaluate, expression: "0.5 * 1200 * 15**2", answer: "135000"}
+
+  - id: warmup-1-2-power
+    section: '1.2'
+    tier: F
+    dfe: [EN1]
+    statement: 'Warm-up: a lamp transfers 2000 J in 50 s. Calculate its power.'
+    check: {kind: evaluate, expression: "2000 / 50", answer: "40"}
+
+  # --- The chapter problem, resolved on the Review page -----------------------
+  - id: anchor-gpe
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'The water gives up energy each second: 30 kg falls 12 m, with g = 9.8 N/kg.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g * h"
+          values:
+            m: {value: "30", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "12", unit: "m"}
+          answer: {value: "3528", unit: "J"}
+        - {kind: sigfigs, value: "3528", figures: 2, answer: "3500", convention: round-once}
+    answer_text: '$3500\,\text{J} = 3.5\,\text{kJ}$ each second'
+
+  - id: anchor-efficiency
+    section: Review
+    tier: F
+    dfe: [EN2]
+    statement: 'The generator takes 3528 J each second and gives out 2100 J each second. Calculate its efficiency.'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2100 / 3528", answer: "25/42"}
+        - {kind: sigfigs, value: "25/42", figures: 2, answer: "0.60", convention: round-once}
+    answer_text: '$0.60 = 60\%$'
+
+  - id: anchor-kettle-energy
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'The kettle heats 1.5 kg of water through 80 °C. The specific heat capacity of water is 4200 J/kg°C. Calculate the energy transferred.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "1.5", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "80", unit: "K"}
+          answer: {value: "504000", unit: "J"}
+        - {kind: sigfigs, value: "504000", figures: 2, answer: "5.0e5", convention: round-once}
+    answer_text: '$5.0 \times 10^5\,\text{J}$'
+
+  - id: anchor-kettle-time
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'The kettle needs 504000 J and the generator supplies 2100 W. Calculate the time.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "E / P"
+          values:
+            E: {value: "504000", unit: "J"}
+            P: {value: "2100", unit: "W"}
+          answer: {value: "240", unit: "s"}
+        - {kind: sigfigs, value: "240", figures: 2, answer: "240", convention: round-once}
+    answer_text: '$240\,\text{s} = 4.0$ minutes'
+
+  - id: anchor-halved-flow
+    section: Review
+    tier: F
+    dfe: [EN1, EN2]
+    statement: 'A dry spell halves the flow to 15 kg per second. If the efficiency stays at 60%, calculate the time the kettle needs for 504000 J.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "E / (0.60 * m * g * h)"
+          values:
+            E: {value: "504000", unit: "J"}
+            m: {value: "15", unit: "kg/s"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "12", unit: "m"}
+          answer: {value: "10000/21", unit: "s"}
+        - {kind: sigfigs, value: "10000/21", figures: 2, answer: "480", convention: round-once}
+    answer_text: '$480\,\text{s} = 8.0$ minutes'

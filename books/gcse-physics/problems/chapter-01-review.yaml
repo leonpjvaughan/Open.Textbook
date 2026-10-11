@@ -1,0 +1,217 @@
+# Mixed practice for the Chapter 1 Review.
+#
+# The review interleaves 1.1 (stores and calculations) with 1.2 (conservation,
+# dissipation, efficiency and resources). Each calculation is checked twice: the
+# exact magnitude and dimension by `dimensions`, and the one rounding by
+# `sigfigs`. The two `structured` records at the end stand where a computer
+# cannot go: they prove that a model answer contains the declared ideas and steps
+# in order, and nothing more. The final judgement in the chapter problem and in
+# those two records is a reasoned answer, and the page says so.
+chapter: 1
+problems:
+  - id: r1-gpe-platform
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'Say which equation you will use, then calculate the energy gained by the gravitational potential store when a pupil of mass 70 kg climbs to a platform 5.0 m above the ground. Take $g = 9.8\,\text{N/kg}$.'
+    answer_label: 'Energy gained by the gravitational potential store'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g * h"
+          values:
+            m: {value: "70", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "5.0", unit: "m"}
+          answer: {value: "3430", unit: "J"}
+        - {kind: sigfigs, value: "3430", figures: 2, answer: "3400", convention: round-once}
+    answer_text: 'Use $E_p = mgh = 70 \times 9.8 \times 5.0 = 3430\,\text{J}$, so $3400\,\text{J}$ to 2 significant figures.'
+
+  - id: r2-ke-ball
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'A ball of mass 0.40 kg moves at 25 m/s. Calculate the energy in its kinetic store.'
+    answer_label: 'Energy in the kinetic store'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * m * v**2"
+          values:
+            m: {value: "0.40", unit: "kg"}
+            v: {value: "25", unit: "m/s"}
+          answer: {value: "125", unit: "J"}
+        - {kind: sigfigs, value: "125", figures: 2, answer: "130", convention: round-once}
+    answer_text: '$E_k = \tfrac{1}{2}mv^2 = 0.5 \times 0.40 \times 25^2 = 125\,\text{J}$, so $130\,\text{J}$ to 2 significant figures.'
+
+  - id: r3-thermal-block
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'A 3.0 kg block is heated from 10 °C to 60 °C. Its specific heat capacity is 500 J/kg°C. Calculate the energy transferred to the block.'
+    answer_label: 'Energy transferred to the block'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "3.0", unit: "kg"}
+            c: {value: "500", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "50", unit: "K"}
+          answer: {value: "75000", unit: "J"}
+        - {kind: sigfigs, value: "75000", figures: 2, answer: "7.5e4", convention: round-once}
+    answer_text: '$\Delta E = mc\Delta\theta = 3.0 \times 500 \times 50 = 75000\,\text{J}$, so $7.5 \times 10^4\,\text{J}$ to 2 significant figures.'
+
+  - id: r4-pump-power
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'A pump does 9000 J of work in 30 s. Calculate its power.'
+    answer_label: 'Power of the pump'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "E / t"
+          values:
+            E: {value: "9000", unit: "J"}
+            t: {value: "30", unit: "s"}
+          answer: {value: "300", unit: "W"}
+        - {kind: sigfigs, value: "300", figures: 2, answer: "3.0e2", convention: round-once}
+    answer_text: '$P = \dfrac{E}{t} = \dfrac{9000}{30} = 300\,\text{W} = 3.0 \times 10^2\,\text{W}$ to 2 significant figures.'
+
+  - id: r5-efficiency-input
+    section: Review
+    tier: F
+    dfe: [EN2]
+    statement: 'A device is 60% efficient and its useful output is 900 J. Calculate the total energy supplied.'
+    answer_label: 'Total energy supplied'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "900 / 0.6", answer: "1500"}
+        - {kind: sigfigs, value: "1500", figures: 2, answer: "1500", convention: round-once}
+    answer_text: '$0.60 = \dfrac{900}{\text{total input}}$, so total input $= \dfrac{900}{0.60} = 1500\,\text{J}$.'
+
+  - id: r6-dissipated
+    section: Review
+    tier: F
+    dfe: [EN2]
+    statement: 'A ball gives up 40 J from its gravitational potential store and gains 34 J in its kinetic store. Calculate the energy dissipated.'
+    answer_label: 'Energy dissipated'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "40 - 34", answer: "6"}
+        - {kind: sigfigs, value: "6", figures: 2, answer: "6.0", convention: round-once}
+    answer_text: '$\text{dissipated} = 40 - 34 = 6\,\text{J} = 6.0\,\text{J}$ to 2 significant figures. The energy is transferred to the thermal store of the air and the ball.'
+
+  - id: r7-lamp-efficiency
+    section: Review
+    tier: F
+    dfe: [EN2]
+    statement: 'A lamp takes in 40 J of energy and transfers 8 J as useful light. Calculate the efficiency as a percentage.'
+    answer_label: 'Efficiency of the lamp'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "8 / 40", answer: "0.2"}
+        - {kind: sigfigs, value: "0.2", figures: 2, answer: "0.20", convention: round-once}
+    answer_text: '$\text{efficiency} = \dfrac{8}{40} = 0.20 = 20\%$.'
+
+  - id: r8-spring
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'A spring with spring constant 100 N/m is stretched by 0.30 m. Calculate the energy stored in its elastic potential store.'
+    answer_label: 'Energy in the elastic potential store'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * k * e**2"
+          values:
+            k: {value: "100", unit: "N/m"}
+            e: {value: "0.30", unit: "m"}
+          answer: {value: "4.5", unit: "J"}
+        - {kind: sigfigs, value: "4.5", figures: 2, answer: "4.5", convention: round-once}
+    answer_text: '$E_e = \tfrac{1}{2}ke^2 = 0.5 \times 100 \times 0.30^2 = 4.5\,\text{J}$.'
+
+  - id: r9-kettle-energy
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'In the chapter problem a kettle heats 1.5 kg of water through 80 °C. The specific heat capacity of water is 4200 J/kg°C. Calculate the energy transferred to the water.'
+    answer_label: 'Energy transferred to the water'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "1.5", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "80", unit: "K"}
+          answer: {value: "504000", unit: "J"}
+        - {kind: sigfigs, value: "504000", figures: 2, answer: "5.0e5", convention: round-once}
+    answer_text: '$\Delta E = mc\Delta\theta = 1.5 \times 4200 \times 80 = 504000\,\text{J}$, so $5.0 \times 10^5\,\text{J}$ to 2 significant figures.'
+
+  - id: r10-kettle-time
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'The kettle needs 504000 J and the generator supplies 2100 W. Calculate the time the kettle takes, in seconds and in minutes.'
+    answer_label: 'Time for the kettle'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "E / P"
+          values:
+            E: {value: "504000", unit: "J"}
+            P: {value: "2100", unit: "W"}
+          answer: {value: "240", unit: "s"}
+        - {kind: sigfigs, value: "240", figures: 2, answer: "240", convention: round-once}
+    answer_text: '$t = \dfrac{E}{P} = \dfrac{504000}{2100} = 240\,\text{s} = 4.0\,\text{minutes}$.'
+
+  - id: r11-braking-method
+    section: Review
+    tier: F
+    dfe: [EN1, EN2]
+    statement: 'A cyclist brakes to a stop, and the brakes become warm. Say which store decreases, which store increases, and which equation links them.'
+    answer_label: 'The stores and the equation'
+    check:
+      kind: structured
+      requires: [store-decreases, store-increases, equation]
+      concepts: [kinetic-store, thermal-store, kinetic-energy-equation]
+      points:
+        - id: store-decreases
+          text: 'The kinetic store of the cyclist and bicycle decreases as they slow down.'
+          concepts: [kinetic-store]
+        - id: store-increases
+          text: 'The thermal store of the brakes and the air increases, because friction transfers energy there.'
+          concepts: [thermal-store]
+        - id: equation
+          text: 'The energy transferred is found from the kinetic energy equation $E_k = \tfrac{1}{2}mv^2$, using the speed before braking.'
+          concepts: [kinetic-energy-equation]
+
+  - id: r12-resource-evaluate
+    section: Review
+    tier: F
+    dfe: [EN2]
+    statement: 'In the chapter problem the stream is a renewable resource. Evaluate whether the centre should rely on the stream alone for its electricity. Give one reason for and one reason against.'
+    answer_label: 'Should the centre rely on the stream alone?'
+    check:
+      kind: structured
+      requires: [reason-for, reason-against]
+      concepts: [renewable, reliability]
+      points:
+        - id: reason-for
+          text: 'The stream is renewable, because rain refills it, and it produces no carbon dioxide while it generates.'
+          concepts: [renewable]
+        - id: reason-against
+          text: 'The flow depends on the weather, so in a dry spell the stream may not supply enough power. The centre would need stored energy or a backup generator.'
+          concepts: [reliability]

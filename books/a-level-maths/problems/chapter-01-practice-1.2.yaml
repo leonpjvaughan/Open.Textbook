@@ -1,0 +1,125 @@
+# Practice set for 1.2, proof by deduction. The algebra of each deduction is
+# proven by the verifier; the sentence that turns the algebra into a proof is
+# in the answer text, where a human reads it.
+chapter: 1
+symbols:
+  n: {integer: true}
+  m: {integer: true}
+  x: {real: true}
+problems:
+  - id: p1-sum-of-two-evens
+    section: "1.2"
+    dfe: [A1]
+    statement: 'The sum of any two even numbers is even. Show that $2m + 2n$ is a multiple of $2$.'
+    answer_label: 'Show the sum is a multiple of $2$'
+    steps:
+      - {expr: "2*m + 2*n"}
+      - {expr: "2*(m + n)", relation: apply, apply: {op: factor}}
+    check:
+      kind: evaluate
+      expression: "2*m + 2*n"
+      answer: "2*(m + n)"
+    answer_text: 'Let the two even numbers be $2m$ and $2n$. Their sum is $2m + 2n = 2(m + n)$. The number $m + n$ is a whole number, so the sum has a factor $2$: it is even.'
+
+  - id: p2-sum-of-two-odds
+    section: "1.2"
+    dfe: [A1]
+    statement: 'Show that the sum of two odd numbers is even.'
+    answer_label: 'Show the sum is even'
+    check:
+      kind: evaluate
+      expression: "(2*m + 1) + (2*n + 1)"
+      answer: "2*(m + n + 1)"
+    answer_text: 'Write the odd numbers as $2m + 1$ and $2n + 1$. Their sum is $2m + 1 + 2n + 1 = 2m + 2n + 2 = 2(m + n + 1)$. This is a multiple of $2$, so the sum is even.'
+
+  - id: p3-two-consecutive
+    section: "1.2"
+    dfe: [A1]
+    statement: 'Show that the sum of two consecutive whole numbers is odd.'
+    answer_label: 'Show the sum is odd'
+    check:
+      kind: evaluate
+      expression: "n + (n + 1)"
+      answer: "2*n + 1"
+    answer_text: 'Let the consecutive whole numbers be $n$ and $n + 1$. Their sum is $2n + 1$. This is one more than a multiple of $2$, so it is odd.'
+
+  - id: p4-difference-of-squares
+    section: "1.2"
+    dfe: [A1]
+    statement: 'Show that $(n + 1)^2 - n^2 = 2n + 1$.'
+    answer_label: 'Show the identity'
+    check:
+      kind: evaluate
+      expression: "(n + 1)**2 - n**2"
+      answer: "2*n + 1"
+    answer_text: 'Expand the bracket: $(n + 1)^2 - n^2 = n^2 + 2n + 1 - n^2$. The $n^2$ terms cancel, leaving $2n + 1$.'
+
+  - id: p5-n-squared-plus-n
+    section: "1.2"
+    dfe: [A1]
+    statement: 'Show that $n^2 + n$ is even for every whole number $n$.'
+    answer_label: 'Show $n^2 + n$ is even'
+    steps:
+      - {expr: "n**2 + n"}
+      - {expr: "n*(n + 1)", relation: apply, apply: {op: factor}}
+    check:
+      kind: evaluate
+      expression: "n**2 + n"
+      answer: "n*(n + 1)"
+    answer_text: 'Factorise: $n^2 + n = n(n + 1)$. These are two consecutive whole numbers. One of any two consecutive numbers is even, so the product has a factor $2$ and is even.'
+
+  - id: p6-completing-the-square
+    section: "1.2"
+    dfe: [A1]
+    statement: 'Write $x^2 + 6x + 11$ in the form $(x + a)^2 + b$.'
+    answer_label: 'Complete the square'
+    check:
+      kind: evaluate
+      expression: "x**2 + 6*x + 11"
+      answer: "(x + 3)**2 + 2"
+    answer_text: 'Half of $6$ is $3$, and $(x + 3)^2 = x^2 + 6x + 9$. So $x^2 + 6x + 11 = (x + 3)^2 + 2$.'
+
+  - id: p7-always-positive
+    section: "1.2"
+    dfe: [A1]
+    statement: 'Show that $x^2 - 4x + 7$ is positive for every real number $x$.'
+    answer_label: 'Show the expression is always positive'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "x**2 - 4*x + 7", answer: "(x - 2)**2 + 3"}
+        - {kind: compare, relation: ">", lhs: "3", rhs: "0"}
+    answer_text: 'Complete the square: $x^2 - 4x + 7 = (x - 2)^2 + 3$. A square is never negative, so $(x - 2)^2 \geq 0$. Adding $3$ gives at least $3$, which is positive.'
+
+  - id: p8-expand-brackets
+    section: "1.2"
+    dfe: [A1]
+    statement: 'Show that $(3x + 1)(x - 2) = 3x^2 - 5x - 2$.'
+    answer_label: 'Show the identity'
+    check:
+      kind: evaluate
+      expression: "(3*x + 1)*(x - 2)"
+      answer: "3*x**2 - 5*x - 2"
+    answer_text: 'Expand: $(3x + 1)(x - 2) = 3x^2 - 6x + x - 2 = 3x^2 - 5x - 2$.'
+
+  - id: p9-consecutive-evens-product
+    section: "1.2"
+    dfe: [A1]
+    statement: 'Show that the product of two consecutive even numbers is a multiple of $4$.'
+    answer_label: 'Show the product is a multiple of $4$'
+    check:
+      kind: evaluate
+      expression: "(2*m)*(2*m + 2)"
+      answer: "4*m*(m + 1)"
+    answer_text: 'Write the consecutive even numbers as $2m$ and $2m + 2$. Their product is $4m(m + 1)$. This has a factor $4$, so it is a multiple of $4$.'
+
+  - id: p10-odd-square-is-odd
+    section: "1.2"
+    dfe: [A1]
+    statement: 'Show that the square of an odd number is odd.'
+    answer_label: 'Show the square is odd'
+    check:
+      kind: evaluate
+      expression: "(2*n + 1)**2"
+      answer: "2*(2*n**2 + 2*n) + 1"
+    answer_text: 'Write the odd number as $2n + 1$. Its square is $(2n + 1)^2 = 4n^2 + 4n + 1 = 2(2n^2 + 2n) + 1$. This is one more than a multiple of $2$, so it is odd.'

@@ -1,0 +1,238 @@
+# Practice set for 1.1 (Energy stores and transfers).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]` in book.yaml, so a check may use either.
+#
+# A physics answer is checked as the composition of two claims: the arithmetic
+# and its dimension, and the rounding to a declared number of significant
+# figures. `dimensions` proves the exact magnitude and unit; `sigfigs` proves the
+# one rounding to the figures the data support. The exact value and the rounded
+# answer are both written out, because a rounded answer is never `equivalent` to
+# the exact one.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass. The two
+# `structured` records at the end prove only that a model answer contains the
+# declared ideas, not that the ideas are right.
+chapter: 1
+problems:
+  - id: p1-gpe-wall
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A pupil of mass 45 kg climbs to the top of a 6.0 m climbing wall. Take $g = 9.8\,\text{N/kg}$. Calculate the energy gained by the gravitational potential store.'
+    answer_label: 'Energy gained by the gravitational potential store'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g * h"
+          values:
+            m: {value: "45", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "6.0", unit: "m"}
+          answer: {value: "2646", unit: "J"}
+        - {kind: sigfigs, value: "2646", figures: 2, answer: "2600", convention: round-once}
+    answer_text: '$E_p = mgh = 45 \times 9.8 \times 6.0 = 2646\,\text{J}$, so $2600\,\text{J}$ to 2 significant figures.'
+
+  - id: p2-ke-ball
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A ball of mass 0.25 kg is thrown at 12 m/s. Calculate the energy in its kinetic store.'
+    answer_label: 'Energy in the kinetic store'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * m * v**2"
+          values:
+            m: {value: "0.25", unit: "kg"}
+            v: {value: "12", unit: "m/s"}
+          answer: {value: "18", unit: "J"}
+        - {kind: sigfigs, value: "18", figures: 2, answer: "18", convention: round-once}
+    answer_text: '$E_k = \tfrac{1}{2}mv^2 = 0.5 \times 0.25 \times 12^2 = 18\,\text{J}$.'
+
+  - id: p3-elastic-spring
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A spring with spring constant 150 N/m is stretched by 0.12 m. Calculate the energy stored in the elastic potential store.'
+    answer_label: 'Energy in the elastic potential store'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * k * e**2"
+          values:
+            k: {value: "150", unit: "N/m"}
+            e: {value: "0.12", unit: "m"}
+          answer: {value: "1.08", unit: "J"}
+        - {kind: sigfigs, value: "1.08", figures: 2, answer: "1.1", convention: round-once}
+    answer_text: '$E_e = \tfrac{1}{2}ke^2 = 0.5 \times 150 \times 0.12^2 = 1.08\,\text{J}$, so $1.1\,\text{J}$ to 2 significant figures.'
+
+  - id: p4-thermal-aluminium
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A 2.0 kg block of aluminium is heated from 15 °C to 65 °C. The specific heat capacity of aluminium is 900 J/kg°C. Calculate the energy transferred to the block.'
+    answer_label: 'Energy transferred to the block'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "2.0", unit: "kg"}
+            c: {value: "900", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "50", unit: "K"}
+          answer: {value: "90000", unit: "J"}
+        - {kind: sigfigs, value: "90000", figures: 2, answer: "9.0e4", convention: round-once}
+    answer_text: '$\Delta E = mc\Delta\theta = 2.0 \times 900 \times 50 = 90000\,\text{J}$, so $9.0 \times 10^4\,\text{J}$ to 2 significant figures.'
+
+  - id: p5-power-pump
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A pump transfers 36000 J of energy in 20 s. Calculate its power.'
+    answer_label: 'Power of the pump'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "E / t"
+          values:
+            E: {value: "36000", unit: "J"}
+            t: {value: "20", unit: "s"}
+          answer: {value: "1800", unit: "W"}
+        - {kind: sigfigs, value: "1800", figures: 2, answer: "1800", convention: round-once}
+    answer_text: '$P = \dfrac{E}{t} = \dfrac{36000}{20} = 1800\,\text{W}$. The trailing zeros in 1800 are not significant here: the answer is quoted to 2 significant figures.'
+
+  - id: p6-energy-microwave
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A microwave oven has a power of 1200 W and runs for 90 s. Calculate the energy transferred.'
+    answer_label: 'Energy transferred by the microwave'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P * t"
+          values:
+            P: {value: "1200", unit: "W"}
+            t: {value: "90", unit: "s"}
+          answer: {value: "108000", unit: "J"}
+        - {kind: sigfigs, value: "108000", figures: 2, answer: "1.1e5", convention: round-once}
+    answer_text: '$E = Pt = 1200 \times 90 = 108000\,\text{J}$, so $1.1 \times 10^5\,\text{J}$ to 2 significant figures.'
+
+  - id: p7-work-trolley
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A force of 180 N moves a trolley 4.5 m along the line of the force. Calculate the work done.'
+    answer_label: 'Work done on the trolley'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "180", unit: "N"}
+            s: {value: "4.5", unit: "m"}
+          answer: {value: "810", unit: "J"}
+        - {kind: sigfigs, value: "810", figures: 2, answer: "810", convention: round-once}
+    answer_text: '$W = Fs = 180 \times 4.5 = 810\,\text{J}$.'
+
+  - id: p8-ke-braking
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A car of mass 900 kg slows from 15 m/s to rest. Calculate the energy transferred to the thermal store of the brakes.'
+    answer_label: 'Energy transferred to the brakes'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "0.5 * m * v**2"
+          values:
+            m: {value: "900", unit: "kg"}
+            v: {value: "15", unit: "m/s"}
+          answer: {value: "101250", unit: "J"}
+        - {kind: sigfigs, value: "101250", figures: 2, answer: "1.0e5", convention: round-once}
+    answer_text: '$E_k = \tfrac{1}{2}mv^2 = 0.5 \times 900 \times 15^2 = 101250\,\text{J}$, so $1.0 \times 10^5\,\text{J}$ to 2 significant figures.'
+
+  - id: p9-kettle-power
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A kettle transfers $5.0 \times 10^5\,\text{J}$ of energy in 200 s. Calculate its power.'
+    answer_label: 'Power of the kettle'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "E / t"
+          values:
+            E: {value: "500000", unit: "J"}
+            t: {value: "200", unit: "s"}
+          answer: {value: "2500", unit: "W"}
+        - {kind: sigfigs, value: "2500", figures: 2, answer: "2500", convention: round-once}
+    answer_text: '$P = \dfrac{E}{t} = \dfrac{500000}{200} = 2500\,\text{W}$, quoted to 2 significant figures.'
+
+  - id: p10-anchor-gpe
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'In the chapter problem, 30 kg of water falls 12 m to the wheel each second. Take $g = 9.8\,\text{N/kg}$. Calculate the energy the water gives up from its gravitational potential store each second.'
+    answer_label: 'Energy given up each second'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g * h"
+          values:
+            m: {value: "30", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "12", unit: "m"}
+          answer: {value: "3528", unit: "J"}
+        - {kind: sigfigs, value: "3528", figures: 2, answer: "3500", convention: round-once}
+    answer_text: '$E_p = mgh = 30 \times 9.8 \times 12 = 3528\,\text{J}$ each second, so $3500\,\text{J}$ to 2 significant figures.'
+
+  - id: p11-stores-cyclist
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A cyclist freewheels down a hill and speeds up. Name the store that decreases and the store that increases.'
+    answer_label: 'The two stores that change'
+    check:
+      kind: structured
+      requires: [name-decrease, name-increase]
+      concepts: [gravitational-potential-store, kinetic-store]
+      points:
+        - id: name-decrease
+          text: 'The gravitational potential store decreases, because the cyclist is lower down.'
+          concepts: [gravitational-potential-store]
+        - id: name-increase
+          text: 'The kinetic store increases, because the cyclist speeds up.'
+          concepts: [kinetic-store]
+
+  - id: p12-stores-box
+    section: '1.1'
+    tier: F
+    dfe: [EN1]
+    statement: 'A box is pushed across a rough floor and slows down until it stops. Describe the energy transfer, naming both stores.'
+    answer_label: 'The energy transfer'
+    check:
+      kind: structured
+      requires: [describe-decrease, describe-increase]
+      concepts: [kinetic-store, thermal-store]
+      points:
+        - id: describe-decrease
+          text: 'The kinetic store of the box decreases as the box slows.'
+          concepts: [kinetic-store]
+        - id: describe-increase
+          text: 'Friction transfers energy to the thermal store of the floor and the box, which increases.'
+          concepts: [thermal-store]

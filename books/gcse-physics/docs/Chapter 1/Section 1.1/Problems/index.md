@@ -10,9 +10,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.1 Energy stores and transfers — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: EN1
+Work through these on your own. Keep your working neat: the method matters as
+much as the answer.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-01-practice-1.1
+
+:::answers chapter-01-practice-1.1

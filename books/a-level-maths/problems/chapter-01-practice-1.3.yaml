@@ -1,0 +1,215 @@
+# Practice set for 1.3, proof by exhaustion. Every case is a separate arithmetic
+# fact, and the verifier proves each one. That the cases exhaust the domain is a
+# sentence a human reads, not a CAS check.
+chapter: 1
+symbols:
+  n: {integer: true}
+  m: {integer: true}
+problems:
+  - id: p1-divides-sixty
+    section: "1.3"
+    dfe: [A1]
+    statement: 'Show that every whole number from $1$ to $6$ divides $60$.'
+    answer_label: 'Each case'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "=", lhs: "Mod(60, 1)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(60, 2)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(60, 3)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(60, 4)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(60, 5)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(60, 6)", rhs: "0"}
+    answer_text: '$60 = 1 \times 60$, $2 \times 30$, $3 \times 20$, $4 \times 15$, $5 \times 12$ and $6 \times 10$. Every case leaves remainder $0$, and there are only six cases to check.'
+
+  - id: p2-sum-of-two-primes
+    section: "1.3"
+    dfe: [A1]
+    statement: 'Show that every even number from $4$ to $20$ is the sum of two prime numbers.'
+    answer_label: 'Each case'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "2 + 2", answer: "4"}
+        - {kind: evaluate, expression: "3 + 3", answer: "6"}
+        - {kind: evaluate, expression: "3 + 5", answer: "8"}
+        - {kind: evaluate, expression: "5 + 5", answer: "10"}
+        - {kind: evaluate, expression: "5 + 7", answer: "12"}
+        - {kind: evaluate, expression: "7 + 7", answer: "14"}
+        - {kind: evaluate, expression: "5 + 11", answer: "16"}
+        - {kind: evaluate, expression: "7 + 11", answer: "18"}
+        - {kind: evaluate, expression: "7 + 13", answer: "20"}
+        - {kind: compare, relation: "!=", lhs: "Mod(7, 2)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(7, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(11, 2)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(11, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(13, 2)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(13, 3)", rhs: "0"}
+    answer_text: '$4 = 2 + 2$, $6 = 3 + 3$, $8 = 3 + 5$, $10 = 5 + 5$, $12 = 5 + 7$, $14 = 7 + 7$, $16 = 5 + 11$, $18 = 7 + 11$, $20 = 7 + 13$. The addends $2$, $3$, $5$ and $7$ are prime; $\sqrt{11}$ and $\sqrt{13}$ lie between $3$ and $5$, so checking $2$ and $3$ is enough to show that $11$ and $13$ are prime too. Every even number in the list is covered, so the cases exhaust the range.'
+
+  - id: p3-n-squared-plus-n-even
+    section: "1.3"
+    dfe: [A1]
+    statement: 'Prove by exhaustion that $n^2 + n$ is even for $n = 0, 1, 2, 3, 4$.'
+    answer_label: 'Each case'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "0**2 + 0", answer: "0"}
+        - {kind: evaluate, expression: "1**2 + 1", answer: "2"}
+        - {kind: evaluate, expression: "2**2 + 2", answer: "6"}
+        - {kind: evaluate, expression: "3**2 + 3", answer: "12"}
+        - {kind: evaluate, expression: "4**2 + 4", answer: "20"}
+        - {kind: compare, relation: "=", lhs: "Mod(0, 2)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(2, 2)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(6, 2)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(12, 2)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(20, 2)", rhs: "0"}
+    answer_text: 'The values are $0$, $2$, $6$, $12$ and $20$. Each is a multiple of $2$. The five cases exhaust $n = 0$ to $4$, so the statement is proved for that finite set.'
+
+  - id: p4-seven-is-prime
+    section: "1.3"
+    dfe: [A1]
+    statement: 'Show that $7$ is prime by testing every whole number from $2$ to $6$.'
+    answer_label: 'Each case'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "!=", lhs: "Mod(7, 2)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(7, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(7, 4)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(7, 5)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(7, 6)", rhs: "0"}
+    answer_text: 'None of $2$, $3$, $4$, $5$ or $6$ divides $7$, so $7$ has no factor except $1$ and itself: $7$ is prime.'
+
+  - id: p5-never-a-multiple-of-three
+    section: "1.3"
+    dfe: [A1]
+    statement: 'Show that for $n = 1, 2, 3, 4, 5$, the value of $n^2 + 1$ is never a multiple of $3$.'
+    answer_label: 'Each case'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "!=", lhs: "Mod(1**2 + 1, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(2**2 + 1, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(3**2 + 1, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(4**2 + 1, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(5**2 + 1, 3)", rhs: "0"}
+    answer_text: 'The values are $2$, $5$, $10$, $17$ and $26$. Their remainders on division by $3$ are $2$, $2$, $1$, $2$ and $2$. None is $0$, so none of the five values is a multiple of $3$.'
+
+  - id: p6-check-the-claim
+    section: "1.3"
+    dfe: [A1]
+    statement: 'Check the claim "$n^2 + n + 41$ is prime" for $n = 0, 1, 2, 3$.'
+    answer_label: 'The four values'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "0**2 + 0 + 41", answer: "41"}
+        - {kind: evaluate, expression: "1**2 + 1 + 41", answer: "43"}
+        - {kind: evaluate, expression: "2**2 + 2 + 41", answer: "47"}
+        - {kind: evaluate, expression: "3**2 + 3 + 41", answer: "53"}
+        - {kind: compare, relation: "!=", lhs: "Mod(41, 2)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(43, 2)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(47, 2)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(53, 2)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(41, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(43, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(47, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(53, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(41, 5)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(43, 5)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(47, 5)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(53, 5)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(41, 7)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(43, 7)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(47, 7)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(53, 7)", rhs: "0"}
+    answer_text: 'The values are $41$, $43$, $47$ and $53$, and all four are prime. The check covers four values only; it does not prove the claim for every $n$.'
+
+  - id: p7-ninety-one
+    section: "1.3"
+    dfe: [A1]
+    statement: 'Show that $91$ is not prime by testing the primes whose squares are at most $91$.'
+    answer_label: 'The factor found'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "!=", lhs: "Mod(91, 2)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(91, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(91, 5)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(91, 7)", rhs: "0"}
+        - {kind: evaluate, expression: "7 * 13", answer: "91"}
+    answer_text: '$91 = 7 \times 13$, so $91$ is not prime. The prime $7$ is found by testing $2$, $3$, $5$ and then $7$, and one factor is enough to settle the case.'
+
+  - id: p8-ninety-seven
+    section: "1.3"
+    dfe: [A1]
+    statement: 'Show that $97$ is prime by testing the primes up to $\sqrt{97}$.'
+    answer_label: 'Each case'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: "!=", lhs: "Mod(97, 2)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(97, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(97, 5)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(97, 7)", rhs: "0"}
+        - {kind: compare, relation: "<", lhs: "7**2", rhs: "97"}
+    answer_text: 'The primes up to $\sqrt{97} \approx 9.85$ are $2$, $3$, $5$ and $7$. None of them divides $97$. If $97$ had a factor, it would have a prime factor no larger than $\sqrt{97}$, so no factor exists: $97$ is prime.'
+
+  - id: p9-cube-minus-n
+    section: "1.3"
+    dfe: [A1]
+    statement: 'Show that $n^3 - n$ is a multiple of $6$ for $n = 1, 2, 3, 4$.'
+    answer_label: 'Each case'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "1**3 - 1", answer: "0"}
+        - {kind: evaluate, expression: "2**3 - 2", answer: "6"}
+        - {kind: evaluate, expression: "3**3 - 3", answer: "24"}
+        - {kind: evaluate, expression: "4**3 - 4", answer: "60"}
+        - {kind: compare, relation: "=", lhs: "Mod(0, 6)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(6, 6)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(24, 6)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(60, 6)", rhs: "0"}
+    answer_text: 'The values are $0$, $6$, $24$ and $60$. Each is a multiple of $6$, and the list covers $n = 1$ to $4$.'
+
+  - id: p10-limits-of-exhaustion
+    section: "1.3"
+    dfe: [A1]
+    statement: 'The claim "$n^2 + n + 41$ is prime" holds for every whole number $n$ from $0$ to $39$. Explain why this does not prove the claim.'
+    answer_label: 'The gap in the argument'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "39**2 + 39 + 41", answer: "1601"}
+        - {kind: compare, relation: "!=", lhs: "Mod(1601, 2)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(1601, 3)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(1601, 5)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(1601, 7)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(1601, 11)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(1601, 13)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(1601, 17)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(1601, 19)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(1601, 23)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(1601, 29)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(1601, 31)", rhs: "0"}
+        - {kind: compare, relation: "!=", lhs: "Mod(1601, 37)", rhs: "0"}
+    answer_text: 'The value at $n = 39$ is $1601$, and $1601$ is prime, so the forty cases $n = 0$ to $39$ are all correct. But the claim is about every whole number. Exhaustion proves a statement only when the list of cases is the whole domain, and here it is not: there are infinitely many values of $n$. The claim is in fact false.'
+
+  - id: p11-method-choice
+    section: "1.3"
+    dfe: [A1]
+    statement: 'Choose the method for each part before you answer, then explain your choice. (a) Prove that $n^2 + n$ is even for every whole number $n$. (b) Prove that every whole number from $1$ to $5$ divides $60$.'
+    answer_label: 'Which method, and why'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "n**2 + n", answer: "n*(n + 1)"}
+        - {kind: compare, relation: "=", lhs: "Mod(60, 1)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(60, 2)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(60, 3)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(60, 4)", rhs: "0"}
+        - {kind: compare, relation: "=", lhs: "Mod(60, 5)", rhs: "0"}
+    answer_text: '(a) Deduction. The domain is every whole number, so a list of cases can never cover it. Factorise $n^2 + n = n(n + 1)$; the two factors are consecutive, so one is even, and the product is even. (b) Exhaustion. The domain is the five numbers $1$ to $5$, a finite list. Check each: $60 = 1 \times 60 = 2 \times 30 = 3 \times 20 = 4 \times 15 = 5 \times 12$. The method follows from the size of the domain: infinite needs an argument, finite can be checked.'

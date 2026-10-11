@@ -10,9 +10,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.1 Statements, assumptions and the structure of a proof — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: A1, OT1
+Work through these on your own. For each item, write down whether you are
+proving a "for all" statement, disproving it, or showing "there is". The method
+matters as much as the answer.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-01-practice-1.1
+
+:::answers chapter-01-practice-1.1

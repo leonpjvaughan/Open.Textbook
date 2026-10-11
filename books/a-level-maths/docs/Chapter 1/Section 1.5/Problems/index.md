@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.5 Proof by contradiction — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: A1
+Work through these on your own. Write the assumption first, and say which
+sentence it conflicts with before you write your conclusion. The last item asks
+you to choose the method: say which one fits and why before you start.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-01-practice-1.5
+
+:::answers chapter-01-practice-1.5
