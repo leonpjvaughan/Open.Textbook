@@ -45,6 +45,11 @@ themes:
   - neon
   - phosphor
   - glass
+# Animated backgrounds for the landing pages, and the default a book inherits.
+# Nothing ships one; the seam is in engine/textbook/backgrounds.py.
+backgrounds:
+  site: null
+
 # Set to false to withdraw the theme menu from the landing page while keeping the
 # reader's choice working. Useful once a default has been settled on.
 theme_selector: true

@@ -341,6 +341,7 @@ def not_found() -> str:
 <title>Page not found</title>
 {meta}
 {prefs_snippet(prefs_config())}
+<link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
 <link rel="stylesheet" href="/assets/stylesheets/themes.css">
 <link rel="stylesheet" href="/assets/stylesheets/portal.css">
 </head>
@@ -526,7 +527,8 @@ def main() -> int:
 
     icons_target = SITE / "assets" / "icons"
     icons_target.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(ASSETS / "icons" / "app-icon.svg", icons_target / "app-icon.svg")
+    for name in ("app-icon.svg", "favicon.svg"):
+        shutil.copyfile(ASSETS / "icons" / name, icons_target / name)
 
     label = build_label() or "no build identity"
     print(

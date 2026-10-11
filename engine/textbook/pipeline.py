@@ -43,6 +43,7 @@ from types import SimpleNamespace
 import markdown
 from pymdownx.arithmatex import ArithmatexExtension
 
+from . import backgrounds
 from . import book as books
 from . import config as cfg
 from . import portal
@@ -371,6 +372,11 @@ def render_page(
         settings_dialog=dialog,
         booklet_script=booklet,
         prefs_script=prefs.snippet(config),
+        background=backgrounds.resolve(
+            books.load_collection(), book.backgrounds, section=str(meta.get("section") or "") or None,
+            chapter=meta.get("chapter"),
+        )
+        or "",
     )
     return rendered, RenderedPage(url=url, title=title), bool(MATH_ERROR.search(content))
 
@@ -479,12 +485,17 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
     (out / "sw.js").write_text(portal.service_worker(), encoding="utf-8")
     copied.append("sw.js")
 
-    icon = assets / "icons" / "app-icon.svg"
-    if icon.exists():
-        icons_dir = out / "assets" / "icons"
-        icons_dir.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(icon, icons_dir / "app-icon.svg")
-        copied.append("app-icon.svg")
+    # The tab icon and the home-screen icon: two files, one motif (see
+    # assets/icons/). The tab icon is declared in the page shell, which reaches
+    # it by the same prefix-relative path the stylesheets use.
+    icons = assets / "icons"
+    for name in ("app-icon.svg", "favicon.svg"):
+        source = icons / name
+        if source.exists():
+            dest = out / "assets" / "icons" / name
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, dest)
+            copied.append(name)
 
     loader = assets / "figures" / "figures.js"
     if loader.exists():
@@ -598,6 +609,15 @@ def build(
 
     if clean and out.exists():
         shutil.rmtree(out)
+
+    # A configured animation id that is not registered is a typo, and a typo
+    # that renders nothing is exactly the failure the registry exists to catch.
+    # Checked here, beside the build, rather than at render time per page.
+    problems = backgrounds.validate(
+        books.load_collection().get("backgrounds"), "collection.yaml"
+    ) + backgrounds.validate(book.backgrounds, "book.yaml")
+    if problems:
+        raise ValueError("backgrounds: " + "; ".join(problems))
 
     subset = f"Chapter {chapter}" if chapter else None
     full = nav_for(book, include_higher)

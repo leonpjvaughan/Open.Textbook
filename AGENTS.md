@@ -186,6 +186,14 @@ Nothing in a page, and nothing in a figure, may carry a colour.
 - Never put `$...$` in text a figure injects at runtime: the maths hook runs at
   build time, so runtime LaTeX is not rendered. Use plain text or HTML.
 
+The two icons are the exception, and the only one. `assets/icons/app-icon.svg`
+(the home-screen icon) and `assets/icons/favicon.svg` (the browser tab) are fixed
+images drawn in the house ink and paper, because a launcher tile and a tab cannot
+follow the reader. They differ only in how much survives at their size: the
+launcher icon keeps the page rules, the tab icon drops them and spends the room on
+the book. `tests/test_pwa.py` pins their palettes together, and both the book
+template and the portal link the tab icon. No other image may hard-code a colour.
+
 ### The contrast invariant
 
 Bundles and subjects multiply, so a subject accent that is comfortable on one

@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- data-background is the resolved animated-background id for this page, or
+     empty. Nothing reads it yet: no animation ships (see textbook/backgrounds.py).
+     It is the declaration a runtime will mount from, so the mapping is data
+     before it is behaviour. -->
+<html lang="en" data-background="$background">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +12,7 @@
 <meta name="build" content="$build">
 <link rel="canonical" href="$canonical">
 <link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="${prefix}assets/icons/favicon.svg">
 $prefs_script
 <link rel="stylesheet" href="${prefix}assets/stylesheets/themes.css">
 <link rel="stylesheet" href="${prefix}assets/stylesheets/extra.css">
@@ -33,6 +38,11 @@ document.body.setAttribute(
   <div class="wrap masthead__inner">
     <a class="masthead__brand" href="${prefix}">$site_title</a>
     <div class="masthead__actions">
+      <!-- Root-absolute, like the 404's link and the manifest: a book is served
+           from a subpath, so a relative link home would be wrong at every depth.
+           The landing page is where a reader changes book or qualification, and
+           before this there was no way back to it from inside a book. -->
+      <a class="masthead__home" href="/">All books</a>
       <div class="search">
         <input id="search-input" type="search" placeholder="Search" aria-label="Search this book">
         <ul id="search-results" class="search__results"></ul>

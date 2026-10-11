@@ -526,6 +526,7 @@ def test_every_page_carries_the_build_identity(subset):
 def test_every_page_links_the_manifest_and_the_shared_runtimes(subset):
     html = (subset.out / "chapter-1/index.html").read_text()
     assert '<link rel="manifest" href="/manifest.webmanifest">' in html
+    assert 'rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg"' in html
     assert "/assets/settings/service-worker.js" in html
     assert "assets/settings/settings.js" in html
     assert "assets/stylesheets/settings.css" in html
@@ -537,6 +538,7 @@ def test_build_copies_the_settings_and_pwa_assets(subset):
         "assets/settings/settings.js",
         "assets/settings/service-worker.js",
         "assets/icons/app-icon.svg",
+        "assets/icons/favicon.svg",
         "manifest.webmanifest",
         "sw.js",
     ):
@@ -599,3 +601,21 @@ def test_a_page_the_build_did_not_write_fails_the_build(tmp_path):
 
     result = pipeline.BuildResult(out=out, pages=pages, broken=broken)
     assert not result.ok, "a page the build did not write must fail the build"
+
+
+def test_every_page_links_back_to_the_collection(subset):
+    """A book is served from a subpath, so there was no way back to the front door.
+
+    The link is root-absolute, like the 404's and the manifest's: a relative one
+    would point at the wrong place at every depth. The landing page is where a
+    reader changes book or qualification, so a book that cannot reach it is a dead
+    end. Asserted on every built page rather than one, because the masthead is
+    shared and a regression would be shared too.
+    """
+    assert subset.ok, subset.broken + subset.maths_errors
+    missing = [
+        page.url
+        for page in subset.pages
+        if 'class="masthead__home" href="/"' not in (subset.out / page.output).read_text(encoding="utf-8")
+    ]
+    assert not missing, f"no link home on: {missing[:5]}"
