@@ -4,6 +4,27 @@ A dated, appendable log of decisions that need to be findable. It is a record,
 not an essay: newest entries at the top, each one short and specific. Anything
 that is work rather than a decision belongs in `todo.md`.
 
+## 2026-10-11 — No `scipy`: `sympy.stats` and an explicit tolerance
+
+**Decision.** The verifier's distribution, hypothesis-test and regression checks
+will be built on `sympy.stats` with exact results and `evalf` where a decimal is
+needed, plus a new `approx` check with an absolute or relative tolerance. `scipy`
+is not added.
+
+**Why.** `scipy.stats` would be a genuinely *independent* oracle, which is the
+stronger verification, and the A-level gap analysis names it as the candidate.
+Against that: it is a new dependency with a compiled extension, it answers in
+floating point where SymPy answers exactly, and a textbook's answers are usually
+required to a stated accuracy rather than to machine precision — which is what
+`approx` is for. `sympy.stats` already gives `Binomial`, `Normal` (through `erf`),
+`P`, `cdf`, `E` and `variance`, so nothing here is blocked.
+
+The honest cost: `erf` expressions for normal probabilities are exact but
+unfamiliar, and an exact-result oracle is not independent of the algebra engine
+that everything else uses. If a future check needs genuine independence — a
+hypothesis test where the risk of a shared bug matters — revisit this and pin
+`scipy` for that check alone.
+
 ---
 
 ## 2026-10-11 — Background effects are opt-in, and never a CSS animation

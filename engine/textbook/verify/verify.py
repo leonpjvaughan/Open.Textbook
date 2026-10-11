@@ -9,17 +9,25 @@ has a worked solution, a chain of ``steps``. The verifier proves:
 
 It returns a report rather than raising, so the caller decides whether a failure
 is a test failure or an authoring warning.
+
+Which oracle proves a check is chosen by its ``kind``: the registry in
+:mod:`textbook.verify.oracles` owns that table, and ``book.yaml → oracles`` (or a
+bank's own ``oracles``) says which oracles a bank may use. This module keeps the
+reports, the step relations and the delegation.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 import yaml
 
+from ..book import book_for_bank
 from . import cas
+from .oracles import select as select_oracles
+from .oracles import verify_check
 
 
 @dataclass
@@ -127,7 +135,7 @@ def _verify_steps(problem: dict, symbols: dict, report: Report) -> None:
                         report.errors.append(f"{label}: is not an antiderivative of the previous step")
                 else:
                     result = cas.apply_operation(a, spec, symbols)
-                    if not cas.equivalent(result, b):
+                    if not cas.matches(result, b):
                         report.errors.append(
                             f"{label}: applying {spec} does not give the next step"
                         )
@@ -141,109 +149,44 @@ def _verify_steps(problem: dict, symbols: dict, report: Report) -> None:
                 report.errors.append(f"{label}: expressions are not equivalent")
 
 
-def _verify_check(problem: dict, symbols: dict, report: Report) -> None:
+def _verify_check(problem: dict, symbols: dict, report: Report, selection) -> None:
     check = problem.get("check")
     if not check:
         report.warnings.append("no independent check declared")
         return
-    kind = check.get("kind")
-    if kind == "all":
-        for index, sub in enumerate(check.get("checks", [])):
-            sub_report = Report(problem_id=f"{report.problem_id} #{index + 1}")
-            _verify_check({"check": sub, "symbols": problem.get("symbols")}, symbols, sub_report)
-            report.errors.extend(sub_report.errors)
-            report.warnings.extend(sub_report.warnings)
-        return
-    if kind == "evaluate":
-        lhs = cas.parse_expression(check["expression"], symbols)
-        rhs = cas.parse_expression(check["answer"], symbols)
-        if not cas.equivalent(lhs, rhs):
-            report.errors.append(
-                f"check: {check['expression']} is not equal to {check['answer']}"
-            )
-    elif kind == "solve":
-        variable = symbols.get(check["variable"])
-        if variable is None:
-            report.errors.append(f"check: unknown variable {check['variable']!r}")
-            return
-        equation = cas.parse_equation(check["equation"], symbols)
-        expected = cas.value_set(check["answer"], symbols)
-        actual = cas.solution_set(equation, variable)
-        if actual != expected:
-            report.errors.append(
-                f"check: solutions are {actual}, expected {expected}"
-            )
-    elif kind == "rounded":
-        value = cas.parse_expression(check["value"], symbols)
-        rounded = cas.parse_expression(check["rounded"], symbols)
-        step = cas.parse_expression(check["to"], symbols)
-        if not cas.is_nearest_multiple(value, rounded, step):
-            report.errors.append(
-                f"check: {check['rounded']} is not {check['value']} rounded to {check['to']}"
-            )
-    elif kind == "apply":
-        # A check that names its operation, e.g. differentiate x**3 to get 3x**2.
-        expression = cas.parse_expression(check["expression"], symbols)
-        answer = cas.parse_expression(check["answer"], symbols)
-        spec = check["apply"]
-        if cas.is_indefinite_integral(spec):
-            variable = symbols.get(check["variable"])
-            if variable is None:
-                report.errors.append("check: integrate needs a variable")
-                return
-            if not cas.is_antiderivative(answer, expression, variable):
-                report.errors.append(
-                    f"check: {check['answer']} is not an antiderivative of {check['expression']}"
-                )
-        elif not cas.equivalent(cas.apply_operation(expression, spec, symbols), answer):
-            report.errors.append(
-                f"check: applying {spec} to {check['expression']} does not give {check['answer']}"
-            )
-    elif kind == "statistic":
-        actual = cas.statistic(check["data"], check["stat"])
-        expected = cas.parse_expression(check["answer"], symbols)
-        if not cas.is_zero(actual - expected):
-            report.errors.append(
-                f"check: {check['stat']} is {actual}, expected {expected}"
-            )
-    elif kind == "between":
-        low = cas.parse_expression(check["low"], symbols)
-        value = cas.parse_expression(check["value"], symbols)
-        high = cas.parse_expression(check["high"], symbols)
-        if not (low < value < high):
-            report.errors.append(
-                f"check: {check['value']} is not between {check['low']} and {check['high']}"
-            )
-    elif kind == "compare":
-        relation = cas.RELATIONS.get(check["relation"])
-        if relation is None:
-            report.errors.append(f"check: unknown relation {check['relation']!r}")
-            return
-        result = relation(
-            cas.parse_expression(check["lhs"], symbols),
-            cas.parse_expression(check["rhs"], symbols),
-        )
-        if result != True:  # SymPy returns S.true, not the Python singleton
-            report.errors.append(
-                f"check: {check['lhs']} {check['relation']} {check['rhs']} is not true"
-            )
-    else:
-        report.errors.append(f"check: unknown kind {kind!r}")
+    verify_check(check, symbols, report, selection)
 
 
-def verify_problem(problem: dict) -> Report:
+def _verify_problem(problem: dict, selection) -> Report:
     report = Report(problem_id=problem.get("id", "<unknown>"))
     symbols = cas.make_symbols(problem.get("symbols"))
     _verify_steps(problem, symbols, report)
-    _verify_check(problem, symbols, report)
+    _verify_check(problem, symbols, report, selection)
     return report
 
 
-def verify_bank(path: Path) -> BankReport:
-    data: dict[str, Any] = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
+def verify_problem(problem: dict, oracles: Iterable[str] = ("sympy",)) -> Report:
+    return _verify_problem(problem, select_oracles(oracles))
+
+
+def _declared_oracles(data: dict, path: Path, override: Iterable[str] | None):
+    """A bank's own ``oracles`` override, else its book's, else SymPy."""
+    if override is not None:
+        return override
+    declared = data.get("oracles")
+    if declared:
+        return declared
+    book = book_for_bank(path)
+    return book.oracles if book is not None else ("sympy",)
+
+
+def verify_bank(path: Path, oracles: Iterable[str] | None = None) -> BankReport:
+    path = Path(path)
+    data: dict[str, Any] = yaml.safe_load(path.read_text(encoding="utf-8"))
+    selection = select_oracles(_declared_oracles(data, path, oracles))
     bank = BankReport(bank=str(path))
     for problem in data.get("problems", []):
         merged = dict(problem)
         merged.setdefault("symbols", data.get("symbols"))
-        bank.reports.append(verify_problem(merged))
+        bank.reports.append(_verify_problem(merged, selection))
     return bank

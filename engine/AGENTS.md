@@ -22,7 +22,7 @@ file adds what is particular to the engine, and it now owns the **Maths** and
 | `engine/textbook/booklet.py` | Validates booklet data, emits JSON and MathML |
 | `engine/textbook/portal.py` | The collection landing page |
 | `engine/textbook/lint.py` | The voice, style and structure checks |
-| `engine/textbook/verify/` | The SymPy boundary, schema, verifier and renderer |
+| `engine/textbook/verify/` | The verifier, its oracle registry (`oracles/`), SymPy boundary and renderer |
 | `engine/textbook/plan.py` | The build matrix: book × profile |
 
 ## Maths
@@ -66,7 +66,10 @@ Moved from the root's `## Watch out for`.
 - **Generated output is diffed.** `scaffold`, `booklet` and `portal` produce
   committed files; `scripts/check.sh` regenerates them and fails on a diff.
 - **The verifier proves the algebra, not the argument.** Its limits are the
-  contract in `PROBLEMS.md`; do not present a proof of method as verified.
+  contract in `PROBLEMS.md`; do not present a proof of method as verified. A
+  general solution of a differential equation or recurrence is verified by
+  substitution (`checkodesol`, `rsolve`), because the arbitrary constant makes
+  its form non-unique.
 
 ## Common tasks
 
@@ -76,6 +79,9 @@ Moved from the root's `## Watch out for`.
   `engine/textbook/js/katex-render.mjs`; the toolchain test pins the renderer.
 - **Changing the page shell** — `engine/textbook/templates/page.html` and
   `engine/textbook/css/`; check both schemes and the reader preferences script.
+- **Adding a verification oracle** — a module under
+  `engine/textbook/verify/oracles/` and its name in `ORACLE_MODULES`, plus the
+  kinds it owns in `KIND_ORACLE`; `tests/test_verify_oracles.py` pins the table.
 - **Adding a generated file** — teach `scaffold.py`, then extend
   `python -m textbook.plan --generated` so the drift check covers it.
 

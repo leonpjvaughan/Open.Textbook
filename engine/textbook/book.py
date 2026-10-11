@@ -298,6 +298,19 @@ def discover_books(root: Path | None = None) -> list[Book]:
     return sorted(books, key=lambda b: (order.get(b.qualification, 99), b.order, b.id))
 
 
+def book_for_bank(path: Path) -> Book | None:
+    """The book whose banks directory contains ``path``, or ``None``.
+
+    Verification reads ``book.yaml → oracles`` to know which oracles a bank may
+    use, so a bank path is traced back to the book that owns it.
+    """
+    path = Path(path).resolve()
+    for book in discover_books():
+        if book.banks.resolve() in path.parents:
+            return book
+    return None
+
+
 @lru_cache(maxsize=None)
 def qualification_order(root: Path | None = None) -> dict[str, int]:
     """Position of each qualification, as declared in collection.yaml."""

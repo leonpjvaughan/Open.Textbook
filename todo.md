@@ -1570,21 +1570,32 @@ otherwise assume.
 
 ---
 
-## 30. A physics oracle — the seam does not exist yet
+## 30. A physics oracle — the seam exists, the oracle does not
 
-**`engine/textbook/verify/oracles/` is not there.** `SHAPE.md` describes it as
-where a new oracle lives, and `book.yaml → oracles` is parsed into
-`Book.oracles` and read by **nothing** — no registry, no dispatch. The real
-dispatch is two hard-coded `if`-chains in `engine/textbook/verify/verify.py`. So
-this is a subsystem to build, not a path to follow;
-`research/curriculum/physics-verifier-gaps.md` gives an order that makes the seam
-real first.
+**Done, 2026-10-11: `research/curriculum/physics-verifier-gaps.md` §5 steps 1–2.**
+`engine/textbook/verify/oracles/` now exists: `__init__.py` owns the
+check-kind → oracle table and the loader, `sympy.py` holds the moved chain and
+imports `cas.py` unchanged, and `verify.py` keeps the reports, the step
+relations and the delegation (it shrank 249 → 192 lines). `book.yaml → oracles`
+is read, with a per-bank `oracles:` override; an unknown oracle, a kind owned by
+an unselected oracle, or a kind registered to a module that does not exist all
+fail loudly. `tests/test_verify_oracles.py` pins the table and the loud
+failures; the 139-bank `python -m textbook.verify` output is byte-identical
+before and after.
 
-**What a physics oracle must do**, none of which a symbolic CAS gives you:
-unit-carrying quantities and dimensional checks, significant figures and
-round-once conventions, uncertainty propagation, and vector resolution. **What it
-cannot do**, and the book must not pretend otherwise: explain a graph's shape,
-describe a method, evaluate a conclusion.
+**Still to do is the oracle itself** (§5 steps 3–6). **What a physics oracle
+must do**, none of which a symbolic CAS gives you: unit-carrying quantities and
+dimensional checks, significant figures and round-once conventions, uncertainty
+propagation, and vector resolution. **What it cannot do**, and the book must not
+pretend otherwise: explain a graph's shape, describe a method, evaluate a
+conclusion.
+
+**One seam caveat for step 3.** The `all` kind is owned by `sympy`, and
+`verify_check` already dispatches its sub-checks to *their* owners. A
+physics-only bank that composes with `all` would still have to declare `sympy`.
+When the units oracle lands, move `all`'s ownership to the composition layer
+(it is a combinator, not a subject kind) or accept `oracles: [sympy, units]`
+for every physics book, and update `KIND_ORACLE` and the pinned test together.
 
 `scipy` is **not installed**, and the maths gap analysis wants it for the normal,
 Poisson and chi-squared distributions — so that dependency decision comes first.
