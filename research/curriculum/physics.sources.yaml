@@ -1,0 +1,319 @@
+# Provenance for every curriculum claim in the physics research notes.
+#
+# Shaped like books/gcse-maths/sources.yaml, but this manifest is a research
+# artefact and is NOT consumed by scripts/fetch_sources.sh: that script reads
+# books/<id>/sources.yaml, and no physics book exists yet (deliberately — a
+# half-built books/<id>/ would be picked up by discover_books()).
+#
+# When books/gcse-physics/ and books/a-level-physics/ are created, the relevant
+# references and downloads below move into each book's own sources.yaml.
+#
+# Retrieved with a browser User-Agent (the boards filter otherwise); see the
+# notes in research/curriculum/physics.md for the exact commands.
+
+retrieved: 2026-10-11
+
+references:
+  # ---- DfE subject content --------------------------------------------------
+  - id: dfe-gcse-single-science
+    title: >-
+      Biology, Chemistry and Physics: GCSE subject content (June 2015; updated
+      May 2019)
+    ref: DFE-00093-2015 (as published on gov.uk)
+    url: https://assets.publishing.service.gov.uk/media/5cd2b951ed915d50c208b4d5/GCSE_single_science_updated_May_2019.pdf
+    page: https://www.gov.uk/government/publications/gcse-single-science
+    role: >-
+      The primary GCSE curriculum for physics, chemistry and biology. Physics is
+      eight topics; underlined content is Higher-only; Appendix 1 splits physics
+      equations into recall (a) and select-from-a-list (b); Appendix 3 is the
+      mathematical skills by subject; Appendix 4 is the apparatus and techniques.
+
+  - id: dfe-gcse-combined-science
+    title: "GCSE subject content for combined science (June 2015; updated May 2019)"
+    url: https://assets.publishing.service.gov.uk/media/5cd2b8b4ed915d50b6c44ffa/Combined_science_GCSE_updated_May_2019.pdf
+    page: https://www.gov.uk/government/publications/gcse-combined-science
+    role: >-
+      The combined-science curriculum, which the separate-science physics course
+      is co-taught with. Relevant only to equations provision (the combined
+      equation sheet is a different document from the physics-only sheet).
+
+  - id: dfe-gce-science
+    title: >-
+      GCE AS and A level subject content for biology, chemistry, physics and
+      psychology (April 2014)
+    url: https://assets.publishing.service.gov.uk/media/5a807949e5274a2e8ab50599/Science_AS_and_level_formatted.pdf
+    page: https://www.gov.uk/government/publications/gce-as-and-a-level-for-science
+    role: >-
+      The primary A-level curriculum. Appendix 3 is physics knowledge and
+      understanding; Appendix 5 / 5a / 5b are practical skills; Appendix 5c is
+      the physics apparatus and techniques with the 12-practical minimum;
+      Appendix 6c is the mathematical requirements, and the introduction to
+      Appendix 6 states the 40% quantitative-skills weighting for physics.
+
+  # ---- Ofqual (assessment rules) -------------------------------------------
+  - id: ofqual-gcse-single-science
+    title: >-
+      GCSE Subject Level Conditions and Requirements for Single Science
+      (Biology, Chemistry, Physics), July 2015
+    ref: Ofqual/15/5687
+    url: https://assets.publishing.service.gov.uk/media/5d35b66c40f0b604d4769320/gcse-subject-level-conditions-and-requirements-for-single-science.pdf
+    page: https://www.gov.uk/government/publications/gcse-9-to-1-subject-level-conditions-and-requirements-for-single-science
+    role: >-
+      The regulatory source for the GCSE maths weighting (physics 30%, chemistry
+      20%, biology 10% of the marks for AO1-AO3) and the 15% practical weighting.
+
+  - id: ofqual-gcse-combined-science
+    title: >-
+      GCSE Subject Level Conditions and Requirements for Combined Science,
+      July 2015
+    url: https://assets.publishing.service.gov.uk/media/5d35b71aed915d0d083f29b7/gcse-subject-level-conditions-and-requirements-for-combined-science.pdf
+    page: https://www.gov.uk/government/publications/gcse-9-to-1-subject-level-conditions-and-requirements-for-combined-science
+    role: >-
+      The combined-science equivalent of the above; the maths weighting is 20%
+      for the whole award.
+
+  - id: ofqual-equations-2028
+    title: >-
+      Decisions: Proposed changes to the assessment of mathematics, physics and
+      combined science GCSEs (published 5 May 2026; page updated 6 May 2026)
+    url: https://www.gov.uk/government/consultations/proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses/outcome/decisions-proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses
+    consultation: https://www.gov.uk/government/consultations/proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses
+    role: >-
+      The decision that exam boards must keep providing formulae and equations
+      sheets for GCSE physics and combined science for the lifetime of the
+      current specifications (exams from 2028 onwards), publish them by
+      1 September the year before, supply clean copies with the papers, and not
+      set questions answerable solely by transferring information from a sheet.
+
+  - id: ofqual-equations-2025-2027
+    title: >-
+      Proposed changes to the assessment of mathematics, physics and combined
+      science GCSEs in 2025, 2026 and 2027 (original decision, 3 October 2024)
+    url: https://www.gov.uk/government/consultations/proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses-in-2025-2026-and-2027
+    role: >-
+      The earlier three-year provision of revised equations sheets (2025-2027)
+      that the 2026 decision extends.
+
+  - id: ofqual-letter-2026-02-26
+    title: >-
+      Letter in response to DfE policy decision on formulae and equations sheets
+      (Ofqual to the Minister for School Standards, 26 February 2026)
+    url: https://assets.publishing.service.gov.uk/media/69a16b427c38c872a3cd4779/Letter_to_Minister_Gould_from_Sir_Ian_Bauckham_26.02.26.pdf
+    page: https://www.gov.uk/government/publications/letter-in-response-to-dfe-policy-decision-on-formulae-and-equations-sheets
+    role: >-
+      Records the DfE subject-content change: students do not need to memorise
+      equations for GCSE physics or combined science for the lifetime of the
+      current specifications.
+
+  - id: dfe-car-response
+    title: >-
+      Curriculum and Assessment Review Final Report: government response
+      (published 10 December 2025)
+    url: https://assets.publishing.service.gov.uk/media/690b2a4a14b040dfe82922ea/Government_response_to_the_Curriculum_and_Assessment_Review.pdf
+    page: https://www.gov.uk/government/publications/curriculum-and-assessment-review-final-report-government-response
+    role: >-
+      Sets the reform timeline the physics equation-sheet decision depends on:
+      reformed GCSEs first taught in 2029 or 2030.
+
+  # ---- GCSE physics specifications -----------------------------------------
+  - id: aqa-8463
+    title: "AQA GCSE Physics 8463 specification, v1.1, 30 September 2019"
+    url: https://cdn.sanity.io/files/p28bar15/green/e96b2cef624c0970b0f90d9678a438580aed0f65.pdf
+    page: https://www.aqa.org.uk/subjects/science/gcse/physics-8463
+    role: >-
+      Eight topics; 10 required practicals (2 physics-only); Appendix A lists 23
+      equations as "recall and apply" and 12 more as "select and apply ... from
+      the Physics equation sheet"; the specimen equation sheet is Appendix 1 of
+      the 2026 insert.
+
+  - id: aqa-8463-equations-2026
+    title: "AQA Physics Equations Sheet, GCSE Physics (8463), for use in June 2026 only"
+    url: https://cdn.sanity.io/files/p28bar15/green/6b5358e1159b1b6cc2d622fc5eb894320d6fb763.pdf
+    page: https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/assessment-resources
+    role: >-
+      The sheet actually provided in 2026: it prints all 35 equations, so the
+      spec's recall/select split is no longer the provision. Basis for the
+      booklet's `given` group for AQA GCSE Physics.
+
+  - id: edexcel-1ph0
+    title: >-
+      Pearson Edexcel Level 1/Level 2 GCSE (9-1) in Physics (1PH0), Issue 4,
+      March 2024
+    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/Specification/gcse-physics-spec.pdf
+    page: https://qualifications.pearson.com/en/qualifications/edexcel-gcses/sciences-2016.html
+    role: >-
+      Fifteen topics; eight mandatory core practicals; Appendix 1 maths skills;
+      Appendix 2 splits equations into list a (recall) and list b (given on a
+      formulae sheet, plus three equations Edexcel adds); Appendix 3 SI units;
+      Appendix 4 command words.
+
+  - id: edexcel-gcse-equations-2024
+    title: >-
+      Pearson Edexcel GCSE (9-1) Physics and Combined Science (Physics)
+      Equations List, May-June 2024 assessment window (1PH0, 1SC0)
+    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/gcse-physics-exam-aid-1ph01sc0.pdf
+    page: https://qualifications.pearson.com/en/qualifications/edexcel-gcses/sciences-2016/exam-support.html
+    role: >-
+      The only Edexcel equation list that was machine-retrievable. It prints the
+      whole list (a and b), so from 2024 candidates receive every equation. The
+      exam-support page states an equation list is provided in the exam room.
+      NOTE: the page still links summer 2024; a 2026-specific list was not
+      retrieved.
+
+  - id: ocr-j249
+    title: >-
+      Cambridge OCR GCSE (9-1) Physics A (Gateway Science) J249 specification,
+      Version 5.0, July 2026
+    url: https://www.ocr.org.uk/Images/234600-specification-accredited-gcse-gateway-science-suite-physics-a-j249.pdf
+    page: https://www.ocr.org.uk/qualifications/gcse/gateway-science-suite-physics-a-j249-from-2016/
+    role: >-
+      Nine topics P1-P9 (P9 is practical skills); Appendix 5d splits equations
+      into "recall and apply" and "select and apply"; Appendix 5g is the maths
+      requirement, including "at least 30% mathematical skills at the
+      appropriate tier".
+
+  - id: ocr-j249-equations-2027
+    title: >-
+      OCR GCSE (9-1) Physics A (Gateway Science) J249 Equation Sheet, June 2027
+    url: https://www.ocr.org.uk/Images/760265-equation-sheet-physics-a.pdf
+    page: https://www.ocr.org.uk/qualifications/gcse/gateway-science-suite-physics-a-j249-from-2016/assessment/
+    role: >-
+      The sheet provided from 2022 onwards: it prints every recall and select
+      equation, so OCR's Appendix 5d split is no longer the provision.
+
+  - id: ocr-j259
+    title: >-
+      Cambridge OCR GCSE (9-1) Physics B (Twenty First Century Science) J259
+      specification, Version 5.0, July 2026
+    url: https://www.ocr.org.uk/Images/234601-specification-accredited-gcse-twenty-first-century-science-suite-physics-b-j259.pdf
+    page: https://www.ocr.org.uk/qualifications/gcse/twenty-first-century-science-suite-physics-b-j259-from-2016/
+    role: >-
+      The other OCR GCSE physics route; same 30% maths requirement, different
+      topic ordering.
+
+  - id: ocr-j259-equations-2027
+    title: >-
+      OCR GCSE (9-1) Physics B (Twenty First Century Science) J259 Equation
+      Sheet, June 2027
+    url: https://www.ocr.org.uk/Images/760268-data-sheet-physics-b.pdf
+    page: https://www.ocr.org.uk/qualifications/gcse/twenty-first-century-science-suite-physics-b-j259-from-2016/assessment/
+    role: "The J259 equation sheet; same approach as J249."
+
+  # ---- GCSE combined science (adjacent; needed only if a combined book is added)
+  - id: aqa-8464-equations-2026
+    title: >-
+      AQA GCSE Combined Science: Synergy and Trilogy - Insert: equations sheet -
+      2026
+    url: https://cdn.sanity.io/files/p28bar15/green/c4fac749855e8fefcd6ff58bd7b9cb701309df9b.pdf
+    page: https://www.aqa.org.uk/subjects/science/gcse/combined-science-trilogy-8464/assessment-resources
+    role: >-
+      Evidence that the combined-science equations sheet is a different document
+      from the physics-only 8463 sheet. Not used by a GCSE Physics book.
+
+  # ---- A-level physics specifications --------------------------------------
+  - id: aqa-7408
+    title: "AQA AS and A-level Physics 7407/7408 specification, v1.4, July 2026"
+    url: https://cdn.sanity.io/files/p28bar15/green/fa68d54c1a3b8ef17760536c7fb2e3911c29dc73.pdf
+    page: https://www.aqa.org.uk/subjects/physics/a-level/physics-7408
+    role: >-
+      Content in sections 3.1-3.13 (3.6-3.13 A-level only) with five optional
+      topics; 12 required practicals; section 6 is the maths requirements; "40%
+      of the overall assessment of A-level Physics will contain mathematical
+      skills equivalent to Level 2 or above".
+
+  - id: aqa-7408-data-formulae
+    title: >-
+      AQA A-level Physics Data and Formulae booklet, version 1.5, for use in
+      exams from the June 2017 series onwards
+    url: https://cdn.sanity.io/files/p28bar15/green/892b126c5e5195d391f0d07e735bbc4877bf1831.pdf
+    page: https://www.aqa.org.uk/subjects/physics/a-level/physics-7408/assessment-resources
+    role: >-
+      The A-level insert ("Insert (A-level): data and formulae"). Carries
+      constants, algebraic and geometrical equations, astronomical data,
+      particle data, and formulae by topic, including the five options. Basis
+      for the A-level booklet's `given` group for AQA.
+
+  - id: edexcel-9ph0
+    title: >-
+      Pearson Edexcel Level 3 Advanced GCE in Physics (9PH0), Issue 3,
+      November 2018
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/pearsonedexcel-alevel-physics-spec.pdf
+    page: https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/physics-2015.html
+    role: >-
+      Topics 1-13; Appendix 8 is the formulae sheet ("Students need not memorise
+      formulae for this qualification. The formulae below will be supplied in
+      each examination. Any other formulae that are required will be provided in
+      the question."); Appendix 9 is the data sheet; Appendix 10 is uncertainties
+      and practical work; 40% maths across the three papers.
+
+  - id: ocr-h556
+    title: >-
+      Cambridge OCR A Level Physics A H556 specification, Version 3.0,
+      March 2026
+    url: https://www.ocr.org.uk/Images/171726-specification-accredited-a-level-gce-physics-a-h556.pdf
+    page: https://www.ocr.org.uk/qualifications/as-and-a-level/physics-a-h156-h556-from-2015/
+    role: >-
+      Six modules; Practical Activity Groups PAG1-PAG12 with 12 practical
+      activities for the Practical Endorsement; Appendix 5c is the physics data
+      sheet (data, conversion factors, mathematical equations, formulae and
+      relationships) with the statement it is printed with the papers;
+      Appendix 5e is the maths requirements with the 40% definition of Level 2.
+
+  - id: ocr-h556-data-sheet-dependent
+    title: >-
+      OCR A Level Physics A H556 sample assessment materials (for the data
+      sheet as printed in a paper)
+    url: https://www.ocr.org.uk/qualifications/as-and-a-level/physics-a-h156-h556-from-2015/
+    role: >-
+      Pointer only: OCR prints the data sheet inside the specification
+      (Appendix 5c), so no separate data-sheet PDF is needed.
+
+# What scripts/fetch_sources.sh would download, if a physics book existed.
+# The manuscript's own fetch commands (curl with a browser User-Agent) are
+# recorded in research/curriculum/physics.md.
+downloads:
+  - file: dfe_gcse_single_science.pdf
+    url: https://assets.publishing.service.gov.uk/media/5cd2b951ed915d50c208b4d5/GCSE_single_science_updated_May_2019.pdf
+    text: true
+  - file: dfe_gce_science.pdf
+    url: https://assets.publishing.service.gov.uk/media/5a807949e5274a2e8ab50599/Science_AS_and_level_formatted.pdf
+    text: true
+  - file: ofqual_gcse_single_science.pdf
+    url: https://assets.publishing.service.gov.uk/media/5d35b66c40f0b604d4769320/gcse-subject-level-conditions-and-requirements-for-single-science.pdf
+    text: true
+  - file: aqa_8463_spec.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/e96b2cef624c0970b0f90d9678a438580aed0f65.pdf
+    text: true
+  - file: aqa_8463_equations_2026.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/6b5358e1159b1b6cc2d622fc5eb894320d6fb763.pdf
+    text: true
+  - file: edexcel_1ph0_spec.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/Specification/gcse-physics-spec.pdf
+    text: true
+  - file: edexcel_gcse_equations.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/gcse-physics-exam-aid-1ph01sc0.pdf
+    text: true
+  - file: ocr_j249_spec.pdf
+    url: https://www.ocr.org.uk/Images/234600-specification-accredited-gcse-gateway-science-suite-physics-a-j249.pdf
+    text: true
+  - file: ocr_j249_equations_2027.pdf
+    url: https://www.ocr.org.uk/Images/760265-equation-sheet-physics-a.pdf
+    text: true
+  - file: ocr_j259_spec.pdf
+    url: https://www.ocr.org.uk/Images/234601-specification-accredited-gcse-twenty-first-century-science-suite-physics-b-j259.pdf
+    text: true
+  - file: ocr_j259_equations_2027.pdf
+    url: https://www.ocr.org.uk/Images/760268-data-sheet-physics-b.pdf
+    text: true
+  - file: aqa_7407_7408_spec.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/fa68d54c1a3b8ef17760536c7fb2e3911c29dc73.pdf
+    text: true
+  - file: aqa_7408_data_formulae.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/892b126c5e5195d391f0d07e735bbc4877bf1831.pdf
+    text: true
+  - file: edexcel_9ph0_spec.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/pearsonedexcel-alevel-physics-spec.pdf
+    text: true
+  - file: ocr_h556_spec.pdf
+    url: https://www.ocr.org.uk/Images/171726-specification-accredited-a-level-gce-physics-a-h556.pdf
+    text: true

@@ -16,6 +16,28 @@ Read this file first for the cross-cutting rules. Then read the book's own
 tier axis, and its subject pitfalls. The rules below hold for every book in the
 collection.
 
+## Where to look
+
+The root holds the rules that hold for every book. The table below routes a task
+to the two or three files that matter, and to the portable skill to load from
+`.agents/skills/`. A nested `AGENTS.md` is additive: it does not repeat the root,
+and the closest file wins.
+
+| If you are… | Read | Load |
+|---|---|---|
+| Writing or revising a chapter | `AGENTS.md`, `books/gcse-maths/AGENTS.md`, `AGENT-BRIEF.md` | `.agents/skills/author-textbook-chapter/SKILL.md` |
+| Editing book content | `books/AGENTS.md`, `books/gcse-maths/AGENTS.md`, `AGENTS.md` | `.agents/skills/write-textbook-prose/SKILL.md` |
+| Writing a problem bank | `books/AGENTS.md`, `PROBLEMS.md`, `books/gcse-maths/AGENTS.md` | `.agents/skills/build-practice-set/SKILL.md` |
+| Building a figure | `assets/AGENTS.md`, `books/AGENTS.md` | `.agents/skills/build-guided-figure/SKILL.md` |
+| Editing a booklet | `books/AGENTS.md`, `BOOKLETS.md`, `assets/AGENTS.md` | — |
+| Changing the shell or the renderer | `engine/AGENTS.md`, `SHAPE.md` | — |
+| Theming and CSS | `assets/AGENTS.md`, `AGENTS.md`, `themes/` | — |
+| Verification and the test suite | `tests/AGENTS.md`, `scripts/AGENTS.md`, `scripts/check.sh` | `.agents/skills/verify-textbook-change/SKILL.md` |
+| The deploy and DNS | `deploy/AGENTS.md`, `DEPLOY.md`, `.github/AGENTS.md` | — |
+| The research corpus | `research/AGENTS.md`, `research/pedagogy.md` | — |
+| Adding a book | `SHAPE.md`, `books/AGENTS.md`, `collection.yaml` | — |
+| Changing CI | `.github/AGENTS.md`, `scripts/check.sh`, `SHAPE.md` | — |
+
 ## The chapter formula
 
 The evidence briefing (`../edu-research/summary/build/pedagogy.pdf`) finds that
@@ -252,33 +274,46 @@ ranking of methods. Keep the claims to what the briefing supports; see
 
 ## Repository map
 
+Every top-level directory is listed, so nothing in the tree is a surprise. The
+per-book layout is in `books/AGENTS.md`.
+
 | Path | Role |
 |---|---|
+| `AGENTS.md` | This file: the cross-cutting rules, the routing table and the repository map |
 | `SHAPE.md` | Repository shape, theme bundles, what a new book requires |
-| `collection.yaml` | Collection title, deployment base URL, qualification order |
-| `engine/textbook/` | The shared engine: hooks, scaffold, booklet build, portal, lint, verifier |
-| `themes/<id>.yaml` | A theme bundle: a full light and dark palette, plus typography |
-| `assets/` | Shared design system and runtime widgets (CSS, figure loader, booklet widget) |
-| `books/<id>/book.yaml` | A book's identity, profiles, tier axis, subject tint and paths |
-| `books/<id>/curriculum.yaml` | Source of truth: chapters, sections, tier, curriculum refs |
-| `books/<id>/docs/` | Canonical content (marimo markdown). Never edit generated files by hand |
-| `books/<id>/problems/` | Verifiable problem banks, one YAML per practice set |
-| `books/<id>/booklet/` | Formulae-and-tables data (source of truth) |
-| `books/<id>/sources.yaml` | Tracked provenance for the curriculum claims |
-| `books/<id>/AGENTS.md` | Book-specific instructions |
-| `engine/textbook/pipeline.py` | **The site.** Renders a book to static HTML: nav, Pagefind search, link checking, sitemap, 404 |
-| `deploy/dns/` | The importable BIND zone file for the DNS records, and the export it produced |
-| `research/` | `pedagogy.md`, per-book notes, and fetched sources (git-ignored) |
+| `PLAN.md` | The authoring plan |
+| `AGENT-BRIEF.md` | Per-chapter sub-agent brief |
 | `PROBLEMS.md` | Problem-bank schema and verification limits |
 | `BOOKLETS.md` | Formula-and-data booklet contract, and the target set per subject |
 | `DEPLOY.md` | Deployment runbook: credentials, the domain, and how to deploy |
+| `collection.yaml` | Collection title, deployment base URL, qualification order |
 | `wrangler.jsonc` | The Worker that serves `site/` as static assets |
-| `scripts/` | Thin developer entry points (`check.sh`, `fetch_sources.sh`, `screenshot.cjs`) |
-| `tests/` | Engine, bank and collection-shape tests |
-| `test/` | The figure-hook and tier-profile evaluation (24 assertions) |
-| `AGENT-BRIEF.md` | Per-chapter sub-agent brief |
 | `DECISIONS.md` | Dated log of decisions that need to be findable, not a todo |
 | `todo.md` | The work queue. Anything noticed and not fixed now belongs here |
+| `engine/AGENTS.md` | Rules for the shared engine |
+| `engine/textbook/` | The shared engine: hooks, scaffold, booklet build, portal, lint, verifier |
+| `engine/textbook/pipeline.py` | **The site.** Renders a book to static HTML: nav, Pagefind search, link checking, sitemap, 404 |
+| `assets/AGENTS.md` | Rules for the shared design system and runtime widgets |
+| `assets/` | Shared design system and runtime widgets (CSS, figure loader, booklet widget) |
+| `themes/` | Theme bundles: a full light and dark palette, plus typography |
+| `books/AGENTS.md` | Rules common to every book |
+| `books/` | One self-contained book per directory |
+| `books/gcse-maths/` | The first book: curriculum, content, banks, booklet, sources |
+| `books/gcse-maths/AGENTS.md` | Book-specific instructions |
+| `research/AGENTS.md` | Rules for the evidence corpus |
+| `research/` | `pedagogy.md`, per-book notes, and fetched sources (git-ignored) |
+| `scripts/AGENTS.md` | Rules for the developer entry points |
+| `scripts/` | Thin developer entry points (`check.sh`, `fetch_sources.sh`, `screenshot.cjs`) |
+| `tests/AGENTS.md` | Rules for the pytest suite |
+| `tests/` | Engine, bank and collection-shape tests |
+| `test/` | The figure-hook and tier-profile evaluation (24 assertions) |
+| `deploy/AGENTS.md` | Rules for deployment and DNS |
+| `deploy/dns/` | The importable BIND zone file for the DNS records, and the export it produced |
+| `.github/AGENTS.md` | Rules for CI |
+| `.github/` | CI workflows and dependabot |
+| `.agents/` | The portable textbook-writing skills |
+| `.claude/` | Claude Code settings |
+| `.serena/` | Serena semantic-code project configuration |
 
 ## Build and verify
 
@@ -370,117 +405,22 @@ Then:
 Issues found while building the shell and the Chapter 1 slice. Check these before
 calling a chapter done.
 
-**Maths**
+The area-specific traps have moved to the file that owns them, so a task loads
+only the rules it needs. Follow the pointer, or the routing table above.
 
-- Markdown escapes `<`, `>` and `&` inside `$…$`; the maths hook unescapes before
-  KaTeX. If you bypass the hook you will see `&lt;` and broken maths.
-- KaTeX runs with `throwOnError`, so a bad expression becomes a `.math-error`
-  span and the build **still exits 0**. Always grep for `math-error` after a
-  build; the exit code does not catch it.
-- Prefer `\pounds` or write currency outside maths; a raw `£` in an equation is
-  a trap. `aligned` works; `latex2mathml` does not — do not reintroduce it.
+| Group | Now lives in |
+|---|---|
+| Maths | `engine/AGENTS.md` — the maths hook and its KaTeX renderer own these |
+| Hooks | `engine/AGENTS.md` |
+| Layout | `assets/AGENTS.md` |
+| Tiers | `books/AGENTS.md` |
+| Generated files | `books/AGENTS.md` |
+| Content | `books/AGENTS.md` |
+| Problem bank | `books/AGENTS.md` |
+| Booklet (data) | `books/AGENTS.md` |
+| Booklet (widget) | `assets/AGENTS.md` |
 
-**Hooks**
-
-- Never name a hook parameter `html`; it shadows the `html` module.
-- Hooks resolve every path from the build's `config.extra` block, through
-  `textbook/config.py` — never from `__file__`. A hook that guesses its own
-  location works for one book and silently breaks for the next.
-- Hook order is declared once, in `engine/textbook/hooks/__init__.py`, and the
-  pipeline reads the same order from `pipeline.MARKDOWN_HOOKS`. Adding a hook
-  means adding it to both, and the tests pin the two together.
-- Figure slugs are auto-discovered from `books/<id>/docs/assets/figures/*.js`.
-  The filename must equal the slug, and an unknown `:::figure` slug fails the
-  build.
-- Use the `:::figure` directive, not raw `<maths-figure>` HTML: only the
-  directive triggers the per-page loader injection. Modules export `mount(el)`.
-
-**Layout**
-
-- Shared CSS and runtime widgets reach each book by symlink:
-  `books/<id>/docs/assets/{stylesheets/extra.css,stylesheets/themes.css,figures/figures.js,booklet/booklet.js}`
-  point into the root `assets/`. Edit the file in `assets/` — never replace a
-  symlink with a copy, or the books drift apart. The scaffold creates these, so a
-  new book gets them by running it.
-- A broken symlink under `docs_dir` breaks the book: the scaffold creates the
-  shared symlinks and the tests check they resolve, because a tool that walks the
-  tree meets them whether or not a page references them.
-- Anything to do with colour, fonts or bundles: see **Theming** above.
-
-**Tiers**
-
-- Foundation drops `tier: H` pages; a plain markdown link from an `F` page to an
-  `H` page breaks the strict build. Wrap such links in
-  `<!-- tier:h -->…<!-- /tier:h -->` or omit them.
-- Verify every `F`/`H` tag against the AQA 8300 tier columns before publishing.
-
-**Generated files**
-
-- `books/<id>/docs/**` stubs, `books/<id>/docs/assets/stylesheets/book.css`
-  and
-  `books/<id>/CURRICULUM-MAP.md` are generated. Never hand-edit them; edit
-  `book.yaml` or `curriculum.yaml` and re-run `python -m textbook.scaffold`.
-- A stub is rewritten only while it carries `<!-- scaffold:stub -->`; authored
-  pages must never contain that marker.
-
-**Content**
-
-- The build checks links, maths and structure — **not** mathematical correctness.
-  Re-derive every answer and check the arithmetic in worked examples.
-- `<details>` blocks need `markdown="1"` (via `md_in_html`) or the inner
-  markdown renders literally.
-- The anchor problem must be genuinely solvable by the chapter's end; keep hooks,
-  applications and tools within the ~¼ budget.
-- Figures must use the `fig-*` classes (`fig-accent`, `fig-warn`, `fig-good`,
-  `fig-ink`, `fig-grid`) and the `text-*` classes, never hard-coded colours, so
-  they adapt to dark mode.
-- Never put `$...$` in text a figure injects at runtime: the maths hook runs at
-  build time, so runtime LaTeX is not rendered. Use plain text or HTML.
-
-**Problem bank**
-
-- Keep units, words and `%` out of the CAS fields; they belong in `statement`.
-  `£`, `p` and commas will not parse.
-- Declare assumptions (`symbols: {x: {real: true}}`) or the verifier will reject
-  valid steps such as `sqrt(x**2) -> x` when `x` can be negative.
-- Decimals are rationalised before checking, so write exact values rather than
-  rounded ones. Rounding needs an interval check, not equality.
-- Squaring both sides or multiplying by a variable can add roots; those steps
-  need a weaker relation and an explicit extraneous-root check. See PROBLEMS.md.
-- A step that is not an equivalence (differentiate, substitute, integrate) must
-  declare `relation: apply` with the operation. Do not fake calculus as an
-  `equivalent` step. The verifier proves the algebra, not the argument.
-- Markers are fence-aware. A real `:::answers` or `:::figure` marker inside a
-  code fence is left alone, so never rely on a fenced marker expanding.
-- The verifier proves the mathematics, not the method. A correct answer reached
-  by an unexpected route still passes.
-
-**Booklet**
-
-- `BOOKLETS.md` is the contract: one booklet per qualification and subject, built
-  from the board's own document, not from another board's sheet or from memory.
-  Any subject whose board provides a sheet — mathematics, physics, chemistry,
-  combined science — should have one, at GCSE and at A-level.
-- `books/<id>/booklet/<subject>.yaml` is the source of truth;
-  `books/<id>/docs/assets/booklet/booklet.json` is generated. Edit the YAML and
-  run `python -m textbook.booklet`. A book that declares no booklet ships no
-  widget.
-- Provision is per board and tier. Selecting a board hides every item that board
-  does not provide, so a wrong tag is a content bug. Since Ofqual's October 2024
-  decision, all boards provide the same DfE-based sheets for 2025–2027; AQA and
-  OCR 2026 sheets were checked directly, and Edexcel follows the same set.
-- The page's answer blocks come from the bank. Write `:::answers <bank>` (or
-  `:::answers <bank>#<id>`) instead of hand-writing answers, so the reader sees
-  exactly what CI verified. `engine/textbook/verify/render.py` builds the block.
-- The booklet renders formulae from build-time MathML, so never put `$...$` into
-  it at runtime. Tables are plain text and data.
-- Pop-out uses the Document Picture-in-Picture API, which is Chromium-only; the
-  button is hidden elsewhere and the in-page panel is the baseline.
-- The widget is site-wide runtime JS, a deliberate exception to the Tier-0
-  no-JS rule. Keep it deferred and lazy: nothing beyond the button loads until a
-  reader opens it.
-
-**Toolchain**
+**Toolchain** — this group stays in the root: it is about the whole repository.
 
 - The build needs `uv sync` (the engine, Markdown and PyYAML) and `npm install`
   (KaTeX and Pagefind). Without Node, maths silently degrades to `.math-error`

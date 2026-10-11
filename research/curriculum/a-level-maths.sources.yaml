@@ -1,0 +1,194 @@
+# Provenance for every A-level Mathematics (England) curriculum claim.
+#
+# Same shape as books/gcse-maths/sources.yaml: the tracked manifest is this file;
+# the fetched PDFs and extracted text live outside the build tree in
+# research/sources/a-level-maths/ and are git-ignored. No book directory is
+# created here on purpose — discover_books() globs books/*/book.yaml, so a
+# half-built books/a-level-maths/ would break or be silently skipped.
+#
+# Fetch pattern (mirrors scripts/fetch_sources.sh, but run ad hoc because there
+# is no books/a-level-maths/sources.yaml yet):
+#
+#   UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
+#   curl -fsSL -m 240 -A "$UA" <url> -o research/sources/a-level-maths/<file>
+#   pdftotext -layout research/sources/a-level-maths/<file>.pdf research/sources/a-level-maths/<file>.txt
+#
+# AQA returned 404 on /subjects/mathematics/as-and-a-level/... but works at
+# /subjects/mathematics/a-level/mathematics-7357 (which redirects to
+# .../specification). Its specification PDF is served from filestore.aqa.org.uk.
+
+retrieved: 2026-10-11
+
+references:
+  - id: dfe-a-level
+    title: "Mathematics: AS and A level content (April 2016)"
+    ref: DFE-00706-2014
+    url: https://www.gov.uk/government/publications/gce-as-and-a-level-mathematics
+    role: >-
+      Primary curriculum. AS and A level subject content for mathematics for
+      first teaching from 2017. Overarching themes OT1-OT3 (mathematical
+      argument/proof, problem solving, modelling); detailed content A-S
+      (A Proof ... S Moments); AS content shown in bold inside square brackets;
+      UK conventions for notation (Appendix A) and formulae that must be
+      recalled (Appendix B). This is the document Ofqual names as the Content
+      Document and still the current A-level mathematics content.
+
+  - id: aqa-7357
+    title: "AQA A-level Mathematics 7357 specification, version 1.3 (31 January 2018)"
+    url: https://www.aqa.org.uk/subjects/mathematics/a-level/mathematics-7357
+    role: >-
+      Assessment structure: three written papers of 2 hours and 100 marks each,
+      each 33 1/3% of the A level. Paper 1 pure (A-I); Paper 2 pure plus
+      mechanics (J, P-S), any Paper 1 content may also appear; Paper 3 pure
+      plus statistics (K-O), any Paper 1 content may also appear. Also the
+      per-paper assessment-objective table (AO1 50 / AO2 25 / AO3 25) and the
+      Large Data Set policy (section 3.21.1).
+
+  - id: edexcel-9ma0
+    title: >-
+      Pearson Edexcel Level 3 Advanced GCE in Mathematics (9MA0) specification,
+      Issue 4 (February 2020)
+    url: https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/mathematics-2017.html
+    role: >-
+      Assessment structure: Paper 1 and Paper 2 Pure Mathematics 1 and 2, and
+      Paper 3 Statistics and Mechanics (Section A statistics, Section B
+      mechanics). Each 2 hours, 100 marks, 33.33%. Pure content is assumed
+      knowledge for Paper 3 and may be tested there. Also the assessment
+      objective ranges and the Large Data Set policy ("Pearson has provided a
+      large data set" — the specification does not name the dataset).
+
+  - id: ocr-h240
+    title: >-
+      Cambridge OCR Level 3 Advanced GCE in Mathematics A (H230/H240)
+      specification, version 3.1 (August 2026)
+    url: https://www.ocr.org.uk/qualifications/as-and-a-level/mathematics-a-h230-h240-from-2017/
+    role: >-
+      Assessment structure: Paper 1 Pure Mathematics (100 marks), Paper 2 Pure
+      Mathematics and Statistics (two sections of about 50 marks each), Paper 3
+      Pure Mathematics and Mechanics (two sections of about 50 marks each),
+      each 2-hour and 33 1/3%. Also the assessment-objective mark ranges and the
+      Large Data Set section (2b). Version 3.1's only change is to delete
+      wording about the Large Data Set in section 1b; it makes no change to
+      assessment requirements.
+
+  - id: ofqual-mathematics
+    title: >-
+      Ofqual: GCE Subject Level Conditions and Requirements for Mathematics
+      (April 2016)
+    url: https://www.gov.uk/government/publications/gce-subject-level-conditions-and-requirements-for-mathematics
+    role: >-
+      Regulator's requirements. Assessment objectives and their weightings
+      (A-level AO1 50%, AO2 25%, AO3 25%; AS 60/20/20; +/-2%). Names the DfE
+      "Mathematics AS and A level content" (DFE-00706-2014) as the subject
+      content and requires full coverage of the detailed content statements in
+      as few assessment sets as practicable. It does not itself prescribe the
+      three-paper split; that is the awarding bodies' common structure.
+
+  - id: aqa-lds-page
+    title: "AQA: 3.21 Use of data in statistics / 3.21.1 Large data set"
+    url: https://www.aqa.org.uk/subjects/mathematics/a-level/mathematics-7357/specification/subject-content/use-of-data-in-statistics
+    role: >-
+      AQA's Large Data Set policy as published. Names only the 2018-2019
+      dataset (an extract of DEFRA "Family Food 2014"); states that from 2020
+      there is a new dataset "also only available on the AQA website" but does
+      NOT name it, and points to aqa.org.uk/7357. The 2020-onwards dataset
+      therefore cannot be named from a primary source reachable here — see the
+      findings' "could not establish" section.
+
+  - id: ocr-lds
+    title: "OCR: Notes on the Large Data Set, OCR Mathematics A (H230/H240)"
+    url: https://www.ocr.org.uk/Images/471937-notes-on-the-large-data-set.docx
+    role: >-
+      Names OCR's Large Data Set: 2001 and 2011 Census data for England and
+      Wales on Method of Travel to Work and Age Structure, organised by Local
+      Authority. Also the teaching activities OCR suggests: sampling, creating
+      diagrams, calculations, hypothesis testing, repeated sampling, modelling,
+      exploratory data analysis.
+
+  - id: edexcel-transition
+    title: >-
+      Pearson Edexcel: Making the transition from GCSE to A level Mathematics
+      (June 2024)
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/Misc/making-the-transition-from-gcse-to-a-level-mathematics-july-2022.pdf
+    role: >-
+      Pearson's account of the GCSE-to-A-level assumed knowledge it supports
+      (transition worksheets and baseline tests "assess key concepts that
+      learners are required to know"). Evidence that boards treat the whole
+      GCSE content as assumed prior knowledge; it does not enumerate the
+      GCSE topics.
+
+  - id: dfe-gcse
+    title: "Mathematics: GCSE subject content and assessment objectives"
+    ref: DFE-00233-2013
+    url: https://assets.publishing.service.gov.uk/media/5a7cb5b040f0b6629523b52c/GCSE_mathematics_subject_content_and_assessment_objectives.pdf
+    role: >-
+      The assumed prior knowledge. The DfE A-level content states A-level
+      "must build on the skills, knowledge and understanding set out in the
+      whole GCSE subject content for mathematics for first teaching from 2015";
+      OCR states the assumption as "GCSE (9-1) Mathematics for first teaching
+      from 2015". Same document the GCSE book cites.
+
+  - id: car-final
+    title: >-
+      Curriculum and Assessment Review Final Report: Building a world-class
+      curriculum for all (10 December 2025)
+    url: https://www.gov.uk/government/publications/curriculum-and-assessment-review-final-report
+    role: >-
+      The live curriculum-reform context for 2026-2028. Read for any
+      recommendation that changes A-level mathematics content or assessment.
+      None was found that changes A-level Mathematics subject content; the
+      mathematics recommendations concern GCSE, 16-19 Maths/English for
+      learners below level 2, and a new level 3 pathway. Cited so the 2026-2028
+      statement rests on what the report actually says.
+
+  - id: car-response
+    title: >-
+      Curriculum and Assessment Review Final Report: government response
+      (10 December 2025)
+    url: https://www.gov.uk/government/publications/curriculum-and-assessment-review-final-report-government-response
+    role: >-
+      Government's accepted actions. Mathematics actions are GCSE-focused plus
+      the Higher Level Maths Achievement Programme and a planned level 3 data
+      science and AI qualification; no action to change A-level Mathematics
+      subject content.
+
+  - id: ofqual-updates
+    title: "Ofqual: Latest updates from Ofqual (updated 7 September 2026)"
+    url: https://www.gov.uk/guidance/latest-updates-from-ofqual
+    role: >-
+      Current Ofqual decisions. Confirms the GCSE mathematics formulae-sheet
+      decision (boards continue to provide formulae and equations sheets for
+      GCSE mathematics/physics/combined science for the remaining lifetime of
+      the current specifications, expected to cover exams up to 2030 or 2031).
+      This is GCSE only and is recorded here so the A-level position is not
+      confused with it.
+
+# What was downloaded into research/sources/a-level-maths/.
+downloads:
+  - file: dfe_a_level_content.pdf
+    url: https://assets.publishing.service.gov.uk/media/5a7f273a40f0b62305b85670/GCE_AS_and_A_level_subject_content_for_mathematics_with_appendices.pdf
+    text: true
+  - file: aqa_7357_spec.pdf
+    url: https://filestore.aqa.org.uk/resources/mathematics/specifications/AQA-7357-SP-2017.PDF
+    text: true
+  - file: edexcel_9ma0_spec.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-mathematics-specification-issue4.pdf
+    text: true
+  - file: ocr_h240_spec.pdf
+    url: https://www.ocr.org.uk/Images/308723-specification-accredited-a-level-gce-mathematics-a-h240.pdf
+    text: true
+  - file: ofqual_conditions_maths.pdf
+    url: https://assets.publishing.service.gov.uk/media/5a7f153ae5274a2e8ab4a018/gce-subject-level-conditions-and-requirements-for-mathematics.pdf
+    text: true
+  - file: edexcel_transition.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/Misc/making-the-transition-from-gcse-to-a-level-mathematics-july-2022.pdf
+    text: true
+  - file: car_final.pdf
+    url: https://assets.publishing.service.gov.uk/media/690b96bbc22e4ed8b051854d/Curriculum_and_Assessment_Review_final_report_-_Building_a_world-class_curriculum_for_all.pdf
+    text: true
+  - file: car_response.pdf
+    url: https://assets.publishing.service.gov.uk/media/690b2a4a14b040dfe82922ea/Government_response_to_the_Curriculum_and_Assessment_Review.pdf
+    text: true
+  - file: ocr_lds.docx
+    url: https://www.ocr.org.uk/Images/471937-notes-on-the-large-data-set.docx
+    text: false

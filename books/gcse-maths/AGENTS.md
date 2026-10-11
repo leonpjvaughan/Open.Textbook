@@ -1,9 +1,15 @@
 # AGENTS.md — GCSE Mathematics
 
-Book-specific instructions. The repository-wide conventions — the chapter
-formula, the voice and language rules, and the cross-cutting watch-outs — live in
-the root `AGENTS.md`; read that first. This file covers what is particular to
-**this** book.
+Book-specific instructions. Three layers apply, and the closest file wins:
+
+1. the root `AGENTS.md` — the chapter formula, the voice rules, the cross-cutting
+   traps;
+2. `books/AGENTS.md` — the rules for **any** book: tiers, generated files, content,
+   problem banks, booklet data. It is one directory up, so it is easy to miss, and
+   it is not optional;
+3. this file — what is particular to **this** book.
+
+Read the root and `books/AGENTS.md` first, then this one.
 
 ## Identity
 

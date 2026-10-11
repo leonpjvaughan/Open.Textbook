@@ -1507,3 +1507,141 @@ deployed, and verified against the live site rather than locally.
 | Item 24, animated backgrounds | Decided and measured, deliberately not built: no topic needs one, and motion distracts a reader reading mathematics. The mapping seam is in place with nothing consuming it. |
 | Item 21's landing-page sample | One book means 14 text elements on the whole landing page, so the card is a single sample. It closes when a second book exists. |
 
+
+---
+
+## 27. A-level Mathematics — research done, book not started
+
+`research/curriculum/` holds the picture: the DfE subject content
+(`DFE-00706-2014`), how AQA 7357, Edexcel 9MA0 and OCR H240 split the subject
+across papers, the assessment objectives, the Large Data Set, and a **draft
+chapter plan of 16 chapters and 108 sections** with all 88 DfE items placed.
+
+Two findings decide the work:
+
+- **A-level has no tier axis.** Every book so far has one; this one does not, so
+  `book.yaml → tier_axis` needs a story, or an explicitly empty one.
+- **The verifier needs real extension, not a tweak.** The gap analysis names what
+  is missing per topic: `system`, `inequality`, `distribution`, `hypothesis`,
+  `approx`, `correlation`/`regression`, `ode`, and the ops `limit`, `sum`,
+  `series`, `rsolve`, `iterate`, `idiff`, `parametric_diff`, `invert`, `compose`,
+  `eliminate`, `div`/`rem`, `expand_log`, `logcombine`, `expand_trig`, `harmonic`.
+  `statistic` has no standard deviation, quartiles or IQR.
+
+**Cannot be verified by a CAS at all**, and the book should say so rather than
+pretend: proof structure, "show that", method choice, graph work, modelling
+judgement, and critique of data or sampling. The verifier proves the algebra, not
+the argument.
+
+**Done means.** The book exists with a registered booklet and a curriculum plan,
+and the verifier is extended far enough that every bank CI can check passes.
+
+---
+
+## 28. GCSE Physics — research done, book not started
+
+`research/curriculum/physics.md` covers AQA 8463, Edexcel 1PH0 and OCR
+J249/J259, the required practicals, the tier story and the maths-mark
+percentages.
+
+**The finding that changes the design.** Every GCSE specification's
+recall-versus-given appendix is **stale**: all three predate the 2022 policy, and
+from 2026 the equation sheets print *every* equation. DfE confirmed in February
+2026 that GCSE physics equations need not be memorised for the lifetime of the
+current specifications. A booklet with a "recalled" group would misteach —
+`research/curriculum/physics-equations-and-data.md` has the detail, including the
+per-board differences a booklet must not normalise (AQA prints period and
+magnification; Edexcel prints `v = x/t`; OCR prints density and words its
+efficiency).
+
+**Done means.** As item 27, plus a physics oracle.
+
+---
+
+## 29. A-level Physics — research done, book not started
+
+AQA 7408, Edexcel 9PH0 and OCR H556, with the practical endorsement and the
+data-and-formulae provision. Worth knowing before the booklet is built: OCR's
+data sheet prints `F = ma`, `W = mg`, `E_k`, `E_p` and `R = V/I` **and** expects
+them to be recalled, which breaks the clean given/recalled split a booklet would
+otherwise assume.
+
+**Done means.** As item 27, plus a physics oracle at A-level depth.
+
+---
+
+## 30. A physics oracle — the seam does not exist yet
+
+**`engine/textbook/verify/oracles/` is not there.** `SHAPE.md` describes it as
+where a new oracle lives, and `book.yaml → oracles` is parsed into
+`Book.oracles` and read by **nothing** — no registry, no dispatch. The real
+dispatch is two hard-coded `if`-chains in `engine/textbook/verify/verify.py`. So
+this is a subsystem to build, not a path to follow;
+`research/curriculum/physics-verifier-gaps.md` gives an order that makes the seam
+real first.
+
+**What a physics oracle must do**, none of which a symbolic CAS gives you:
+unit-carrying quantities and dimensional checks, significant figures and
+round-once conventions, uncertainty propagation, and vector resolution. **What it
+cannot do**, and the book must not pretend otherwise: explain a graph's shape,
+describe a method, evaluate a conclusion.
+
+`scipy` is **not installed**, and the maths gap analysis wants it for the normal,
+Poisson and chi-squared distributions — so that dependency decision comes first.
+
+**Done means.** A registered oracle, a bank that uses it, and a documented answer
+to what physics verification cannot reach.
+
+---
+
+## 31. `books/gcse-maths/AGENTS.md` can shadow the new `books/AGENTS.md`
+
+The nested-file convention is that the closest file wins. This change moved the
+content-area watch-outs — **Tiers**, **Generated files**, **Content**, **Problem
+bank** and **booklet data** — out of the root and into `books/AGENTS.md`, so an
+agent working in `books/gcse-maths/` that loads only the nearest file plus the
+root would miss them.
+
+**Evidence.** `grep -n "books/AGENTS.md" books/gcse-maths/AGENTS.md` prints
+nothing. The book file names only the root `AGENTS.md`; it predates the new
+parent file, so the routing table and `books/AGENTS.md` itself are the only
+pointers to it.
+
+**Fix.** Add one line to `books/gcse-maths/AGENTS.md`: the shared book rules live
+in `books/AGENTS.md`, read it before this file. Then pin it, so a second book
+cannot repeat the gap: in `tests/test_agent_context.py`, assert that every
+`books/<id>/AGENTS.md` names `books/AGENTS.md`.
+
+**Done means.**
+
+- [ ] `books/gcse-maths/AGENTS.md` names `books/AGENTS.md`.
+- [ ] `tests/test_agent_context.py` fails when a `books/<id>/AGENTS.md` does not.
+- [ ] `scripts/check.sh` passes.
+
+---
+
+## 31. The root `AGENTS.md` is still 26 KB — a second pass
+
+**Measured, 2026-10-11.** Splitting the `## Watch out for` groups by area and
+adding the routing table took the root from 29 KB to **25.8 KB**: the 34 area
+bullets left, the routing table arrived, and the nested files now carry 2–6 KB
+each. So the *routing* is solved — an agent editing `assets/` reads 4 KB of
+targeted rules instead of everything — but an agent still reads the whole root
+first, and most of it will not be about the task.
+
+The remaining bulk is three sections that are **already skills**:
+
+| Root section | Lines | Why it can shrink |
+|---|---|---|
+| Theming | 102 | `assets/AGENTS.md` owns the cascade and the tokens; the root needs only the cross-cutting rule — never a colour in a page or a figure. |
+| The chapter formula | 71 | `.agents/skills/author-textbook-chapter/SKILL.md` is the same material, and the router already sends chapter work there. |
+| Voice and language | 51 | `.agents/skills/write-textbook-prose/SKILL.md` likewise. |
+
+**Fix:** each becomes a short statement of the rule plus a pointer, and the detail
+stays in the one place that already owns it. The rule of thumb: if a section is a
+skill, the root should name it rather than restate it — two copies drift, and the
+copy an agent reads may be the one that is stale.
+
+**Done means.** The root is under about 12 KB, `tests/test_agent_context.py`
+still passes, and nothing that was only in the root has been lost — the same
+before-and-after mapping the first pass produced.

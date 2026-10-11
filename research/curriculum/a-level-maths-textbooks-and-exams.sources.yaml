@@ -1,0 +1,738 @@
+# Provenance for every claim in a-level-maths-textbooks-and-exams.md.
+#
+# Same shape as physics-textbooks-and-exams.sources.yaml: a tracked manifest;
+# the fetched PDFs and extracted text live outside the build tree, in
+# /tmp/pi-delegate/del-25/src and /tmp/pi-delegate/del-27 (this pass). No book
+# directory is created here on purpose.
+#
+# This manifest does NOT duplicate all of the specification-level provenance.
+# The DfE subject content, the Ofqual conditions and the three board
+# specifications are cited in research/curriculum/a-level-maths.sources.yaml;
+# they are repeated here (marked `cross_reference: true`) so that every `[id]`
+# used in a-level-maths-textbooks-and-exams.md resolves from this one file.
+# What this file adds is the *assessment-material* provenance: the question
+# papers, mark schemes, examiner reports, exemplar booklets and the Pearson
+# data set, plus the open resources surveyed for structure and voice.
+#
+# Fetch pattern (mirrors scripts/fetch_sources.sh):
+#
+#   UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+#   curl -fsSL -m 200 -A "$UA" -L <url> -o <file>.pdf
+#   pdftotext -layout <file>.pdf <file>.txt
+#
+# A browser User-Agent is required: AQA, OCR and Pearson all refuse a bare curl.
+# These routes were used and are worth reusing because the plain URL is not
+# discoverable:
+#   * AQA 2023 mark schemes are at www.aqa.org.uk/files/<repo-path>/<sha>.pdf
+#     even though filestore.aqa.org.uk/.../-W-MS-/ 404s.
+#   * Pearson's exam materials are enumerated by the public Algolia index its
+#     own course-materials page queries (see `pearson-content-api`); the DAM
+#     path copied from it downloads freely from qualifications.pearson.com. The
+#     June 2026 series is only under /content/dam/secure/silver/... and needs a
+#     login; the June 2025 and earlier series are at the non-secure path.
+#   * OCR links every paper, mark scheme and examiners' report directly from
+#     its JavaScript-rendered assessment page; the DOM must be read to get the
+#     Image IDs.
+#
+# `read: opened` means the document itself was opened (PDF converted with
+# pdftotext -layout) and the claim is taken from its text. The two documents
+# marked `verified: re-fetched` were downloaded again in the retry pass
+# (2026-10-11, /tmp/pi-delegate/del-27) and are byte-identical (sha256) to the
+# copies read in the first pass — so the extraction behind the load-bearing
+# command-word and mark-scheme claims is confirmed against the live URL, not
+# merely against a cached copy.
+#
+# Copyright: the boards' papers, mark schemes, examiner reports and data set
+# are commercial, all-rights-reserved documents and are NOT redistributed here.
+# The findings file summarises and cites them; it does not reproduce them.
+
+retrieved: 2026-10-11
+
+references:
+  # ---- Cross-references to a-level-maths.sources.yaml ----------------------
+  - id: dfe-a-level
+    cross_reference: true
+    title: "Mathematics: AS and A level content (April 2016)"
+    ref: DFE-00706-2014
+    url: https://www.gov.uk/government/publications/gce-as-and-a-level-mathematics
+    role: >-
+      The national subject content. Used here only for the AS/A-level content
+      split (AS content in square brackets) and the requirement to recall
+      Appendix B formulae. Full provenance in a-level-maths.sources.yaml.
+
+  - id: aqa-7357
+    cross_reference: true
+    title: "AQA A-level Mathematics 7357 specification, version 1.3 (31 January 2018)"
+    url: https://www.aqa.org.uk/subjects/mathematics/a-level/mathematics-7357
+    role: >-
+      The paper structure and the Large Data Set statements. Searched directly
+      for a command-word table: there is none. Full provenance in
+      a-level-maths.sources.yaml.
+
+  - id: edexcel-9ma0
+    cross_reference: true
+    title: "Pearson Edexcel A level Mathematics 9MA0 specification, Issue 4 (February 2020)"
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-mathematics-specification-issue4.pdf
+    role: >-
+      The paper structure and the "Pearson has provided a large data set"
+      statement. Searched directly for a command-word glossary: there is none.
+      Full provenance in a-level-maths.sources.yaml.
+
+  - id: ocr-h240
+    cross_reference: true
+    title: "OCR A Level Mathematics A H240 specification, v3.1 (August 2026)"
+    url: https://www.ocr.org.uk/Images/308723-specification-accredited-a-level-gce-mathematics-a-h240.pdf
+    role: >-
+      The source for the command-word definitions (§2d, printed pages 10-12):
+      Exact, Prove, Show that, Verify, Find/Solve/Calculate, Determine,
+      Give/State/Write down, and "In this question you must show detailed
+      reasoning". Also the simplification requirement and the four final-form
+      conventions. Re-opened in the retry pass (see research/sources/a-level-maths/ocr_h240_spec.txt);
+      the definitions were read verbatim.
+
+  # ---- AQA 7357: assessment materials --------------------------------------
+  - id: aqa-7357-resources
+    title: "AQA A-level Mathematics 7357 — assessment resources"
+    url: https://www.aqa.org.uk/subjects/mathematics/a-level/mathematics-7357/assessment-resources
+    read: opened (rendered DOM; static HTML carries no file links)
+    role: >-
+      The landing page that lists every AQA 7357 question paper, mark scheme,
+      examiner report and sample set. Read here for two facts: what AQA
+      publishes freely (2018, 2019, November 2020, 2022, June 2023) and that
+      the 2021-onwards bundles carrying the Large Data Set appear as ZIPs marked
+      "Log in to myAQA". The page is JavaScript-rendered, so the file list was
+      taken from the rendered DOM, not the HTML source.
+
+  - id: aqa-7357-01-qp-2019
+    title: "AQA A-level Mathematics 7357/1 Paper 1, June 2019: question paper"
+    url: https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2019/june/AQA-73571-QP-JUN19.PDF
+    read: opened
+    role: >-
+      The AQA pure paper read in full: 16 questions, opening with three
+      multiple-choice items; the "hence", "show that" and "Comment on the
+      validity of the model" question shapes; the front-page calculator and
+      3 s.f. conventions; the command-word occurrence counts in §3.3.
+
+  - id: aqa-7357-03-qp-2019
+    title: "AQA A-level Mathematics 7357/3 Paper 3, June 2019: question paper"
+    url: https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2019/june/AQA-73573-QP-JUN19.PDF
+    read: opened
+    role: >-
+      The statistics paper. The source for the Large Data Set question wording
+      in practice ("based upon the Large Data Set"; "Using your knowledge of
+      the Large Data Set, give two reasons why ...") when AQA's data set itself
+      is not obtainable.
+
+  - id: aqa-7357-ms-2019
+    title: "AQA A-level Mathematics 7357/1 Paper 1, June 2019: mark scheme"
+    url: https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2019/june/AQA-73571-W-MS-JUN19.PDF
+    read: opened
+    verified: re-fetched 2026-10-11 (sha256 f4944ae20299b9c5b9cc206674dac617da9d1b506704de919e103bd9f9982c3a)
+    role: >-
+      The source for the AQA mark types (M, R, A, B, E, F), the abbreviation
+      list (CAO, CSO, ft, AWFW, AWRT, ACF, AG, SC, OE, NMS, PI, SCA, sf, dp),
+      the AO codes on each row, and the "show that" mechanism read verbatim:
+      the row "Completes rigorous argument with correct algebraic manipulation
+      to show required result" marked R1 with "Must see at least one line of
+      simplification after 8(2a+15d)=260 before given answer."
+
+  - id: aqa-7357-ms-2023
+    title: "AQA A-level Mathematics 7357/1 Paper 1, June 2023: mark scheme"
+    url: https://www.aqa.org.uk/files/sample-papers-and-mark-schemes.2023.june.AQA-73571-MS-JUN23_PDF/e79e15aa274dc5df317d425a5f0f3f04c5d2c8e4.pdf
+    read: exists (URL confirmed 200; file not opened in this pass)
+    role: >-
+      Evidence for the retrieval route: the 2023 mark schemes are not on
+      filestore (AQA-73571-W-MS-JUN23.PDF 404s) but are served from
+      www.aqa.org.uk/files/<repo-path>/<sha>.pdf. Listed so the route is
+      reproducible; no claim in the findings rests on its contents.
+
+  - id: aqa-7357-p1-er-2019
+    title: "AQA A-level Mathematics 7357/1 Paper 1, June 2019: report on the examination"
+    url: https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2019/june/AQA-73571-WRE-JUN19.PDF
+    read: opened
+    role: >-
+      Examiner report. The sources for the "Fully justify your answer ... is a
+      clear indication that a step needs to be explained or justified"
+      statement, the calculator-bounds sentence, the nth-term/sum confusion,
+      and the "part (a) ... intended to help students get started" scaffolding
+      note. Carries the AQA copyright notice quoted in §10.
+
+  - id: aqa-7357-p1-er-2023
+    title: "AQA A-level Mathematics 7357/1 Paper 1, June 2023: report on the examination"
+    url: https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2023/june/AQA-73571-WRE-JUN23.PDF
+    read: opened
+    role: >-
+      The single richest misconception source. Read verbatim for: "a required
+      concluding statement gets missed out"; "A long decimal is not an exact
+      value"; the vague-pronoun example ("They all meet at a point"); "poor use
+      of brackets"; "multiplying out a log"; the degree/radian errors; the
+      "questions 5, 9, 13, 14 and 16 were all broken into parts that built
+      towards later answers" scaffolding note; and the multiple-choice on-ramp.
+
+  - id: aqa-7357-p2-er-2023
+    title: "AQA A-level Mathematics 7357/2 Paper 2, June 2023: report on the examination"
+    url: https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2023/june/AQA-73572-WRE-JUN23.PDF
+    read: opened
+    role: >-
+      The source for the mechanics and trigonometry misconceptions: mass and
+      weight confused ("being given the weight of the particle, rather than its
+      mass"), the obtuse-angle/cot sign error, and the inverse function's
+      domain-and-range error.
+
+  - id: aqa-7357-p3-er-2023
+    title: "AQA A-level Mathematics 7357/3 Paper 3, June 2023: report on the examination"
+    url: https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2023/june/AQA-73573-WRE-JUN23.PDF
+    read: opened
+    role: >-
+      The statistics misconception source, read verbatim for: "Common errors
+      included using 0.05, rather than 0.025"; the null hypothesis stated with
+      the wrong parameter; and the Large Data Set error "the LDS as being
+      biased or not random. A common error was to state that it is not
+      representative."
+
+  - id: aqa-7357-sqp
+    title: "AQA A-level Mathematics 7357/1 Paper 1, sample question paper (SQP)"
+    url: https://filestore.aqa.org.uk/resources/mathematics/AQA-73571-SQP.PDF
+    read: opened
+    role: "The accredited specimen question paper; used to check the paper shape predates the live series."
+
+  - id: aqa-7357-sms
+    title: "AQA A-level Mathematics 7357/1 Paper 1, sample mark scheme (SMS)"
+    url: https://filestore.aqa.org.uk/resources/mathematics/AQA-73571-SMS.PDF
+    read: opened
+    role: "The accredited specimen mark scheme; the mark-type and abbreviation conventions repeat from it."
+
+  - id: aqa-lds-guidance
+    title: "AQA Notes and guidance: large data set"
+    url: https://www.aqa.org.uk/resources/mathematics/as-and-a-level/assess/large-data-set
+    read: opened (page title 'AQA | Notes and guidance - large data set')
+    role: >-
+      AQA's own Large Data Set guidance. Read for the techniques it lists
+      (sampling, histograms, scatter graphs, measures of spread, data
+      cleansing, probability, modelling) and the two sample-assessment
+      questions it prints as exemplars of "material advantage". It names NO
+      dataset, which is the evidence for the escalation in §12.
+
+  # ---- OCR H240: assessment materials --------------------------------------
+  - id: ocr-h240-assessment
+    title: "OCR A Level Mathematics A H230/H240 — assessment page"
+    url: https://www.ocr.org.uk/qualifications/as-and-a-level/mathematics-a-h230-h240-from-2017/assessment/
+    read: opened (rendered DOM)
+    role: >-
+      Lists every OCR H240 question paper, printed answer booklet, mark scheme
+      and examiners' report as a direct link with no login. The route used to
+      find the Image IDs below.
+
+  - id: ocr-h240-01-qp-2025
+    title: "OCR A Level Mathematics A H240/01 Pure Mathematics, June 2025: question paper"
+    url: https://www.ocr.org.uk/Images/752329-question-paper-pure-mathematics.pdf
+    read: opened
+    role: >-
+      The OCR pure paper read in full. The source for the paper shape (12
+      questions in 38 scored parts; the tariff breakdown in §5), the "hence"
+      and "hence or otherwise" wording, and the command-word occurrence counts.
+
+  - id: ocr-h240-01-ms-2025
+    title: "OCR A Level Mathematics A H240/01 Pure Mathematics, June 2025: mark scheme"
+    url: https://www.ocr.org.uk/Images/752469-mark-scheme-pure-mathematics.pdf
+    read: opened
+    verified: re-fetched 2026-10-11 (sha256 6d8afc9af87311c6b09aa83d561b88ea41ead36e1851e40aaef73f28860c8809)
+    role: >-
+      The source for the OCR mark types read verbatim: "A method mark may
+      usually be implied by a correct answer unless the question includes the
+      DR statement, the command words 'Determine' or 'Show that'"; "Accuracy
+      marks cannot be given unless the associated Method mark is earned (or
+      implied). Therefore M0 A1 cannot ever be awarded."; the abbreviation list
+      including DR; the 3 s.f. accuracy default; the g = 9.8 penalisation; and
+      the subject-specific marking instructions (general quadratic; gradient
+      and equation of a straight line).
+
+  - id: ocr-h240-01-er-2025
+    title: "OCR A Level Mathematics A H240/01 Pure Mathematics, June 2025: examiners' report"
+    url: https://www.ocr.org.uk/Images/751977-examiners-report-pure-mathematics.pdf
+    read: opened
+    role: >-
+      The source for the context/standard-learnt-answer complaint, the
+      "state explicitly any expressions ... they use a calculator to evaluate"
+      advice, the formula-booklet expectation ("be aware of the formulae given
+      at the start of the question paper"), the rounding/exact decimal error,
+      and the binomial-index misconception.
+
+  - id: ocr-h240-02-qp-2025
+    title: "OCR A Level Mathematics A H240/02 Pure Mathematics and Statistics, June 2025: question paper"
+    url: https://www.ocr.org.uk/Images/752331-question-paper-pure-mathematics-and-statistics.pdf
+    read: opened
+    role: >-
+      The statistics paper: the "hence or otherwise" wording and the Large Data
+      Set excerpt question (question 13, Age Structure 2001 and 2011).
+
+  - id: ocr-h240-02-ms-2025
+    title: "OCR A Level Mathematics A H240/02 Pure Mathematics and Statistics, June 2025: mark scheme"
+    url: https://www.ocr.org.uk/Images/752470-mark-scheme-pure-mathematics-and-statistics.pdf
+    read: opened
+    role: "Second OCR scheme; used to confirm the mark-type and command-word conventions are not paper-specific."
+
+  - id: ocr-h240-02-er-2025
+    title: "OCR A Level Mathematics A H240/02 Pure Mathematics and Statistics, June 2025: examiners' report"
+    url: https://www.ocr.org.uk/Images/751976-examiners-report-pure-mathematics-and-statistics.pdf
+    read: opened
+    role: >-
+      The source for the proof-quality complaints: "a clear, convincing
+      argument ... without any skipped steps or 'fudges'"; the "start from one
+      side and work sequentially" advice; the "when an answer is given ...
+      provide a logical argument that shows how that answer is reached" line;
+      the proof-by-contradiction set-up error; and the binomial-conditions and
+      sigma/sigma-squared misconceptions.
+
+  - id: ocr-h240-03-qp-2025
+    title: "OCR A Level Mathematics A H240/03 Pure Mathematics and Mechanics, June 2025: question paper"
+    url: https://www.ocr.org.uk/Images/752333-question-paper-pure-mathematics-and-mechanics.pdf
+    read: opened
+    role: "The mechanics paper; used for the command-word counts and the shape of the applied questions."
+
+  - id: ocr-h240-03-ms-2025
+    title: "OCR A Level Mathematics A H240/03 Pure Mathematics and Mechanics, June 2025: mark scheme"
+    url: https://www.ocr.org.uk/Images/752471-mark-scheme-pure-mathematics-and-mechanics.pdf
+    read: opened
+    role: "Third OCR scheme; used to confirm stability across the pure, statistics and mechanics papers."
+
+  - id: ocr-h240-03-er-2025
+    title: "OCR A Level Mathematics A H240/03 Pure Mathematics and Mechanics, June 2025: examiners' report"
+    url: https://www.ocr.org.uk/Images/751975-examiners-report-pure-mathematics-and-mechanics.pdf
+    read: opened
+    role: >-
+      The source for: the "show that" definition in the report's own words
+      ("an explanation that has enough detail to cover every step of their
+      working"); the "determine" command-word list; the calculator-notation
+      advice; the g = 10 versus 9.8 complaint; the moments errors; the
+      completing-the-square bracket error; and the sin/cos and resolved-force
+      misconceptions.
+
+  - id: ocr-h240-01-qp-2024
+    title: "OCR A Level Mathematics A H240/01 Pure Mathematics, June 2024: question paper"
+    url: https://www.ocr.org.uk/Images/726654-question-paper-pure-mathematics.pdf
+    read: opened
+    role: "Second sitting; used to check the paper shape is the convention, not a single-series accident."
+
+  - id: ocr-h240-01-ms-2024
+    title: "OCR A Level Mathematics A H240/01 Pure Mathematics, June 2024: mark scheme"
+    url: https://www.ocr.org.uk/Images/726795-mark-scheme-pure-mathematics.pdf
+    read: opened
+    role: "Second sitting's scheme; confirms the mark-type conventions are stable year on year."
+
+  - id: ocr-h240-01-er-2024
+    title: "OCR A Level Mathematics A H240/01 Pure Mathematics, June 2024: examiners' report"
+    url: https://www.ocr.org.uk/Images/726298-examiners-report-pure-mathematics.pdf
+    read: opened
+    role: "Second sitting's report; used to check the misconceptions recur rather than being one-off."
+
+  - id: ocr-lds
+    cross_reference: true
+    title: "OCR Notes on the Large Data Set (H240)"
+    url: https://www.ocr.org.uk/Images/471937-notes-on-the-large-data-set.docx
+    read: opened (docx; word/document.xml stripped of tags)
+    role: >-
+      Names OCR's data set (2001 and 2011 Census for England and Wales: Method
+      of Travel to Work; Age Structure, by Local Authority) and lists the
+      teaching activities expected. Also carried by a-level-maths.sources.yaml.
+
+  # ---- Pearson Edexcel 9MA0 / 8MA0: assessment materials --------------------
+  - id: pearson-content-api
+    title: "Pearson UK Algolia content index (the index the Edexcel course-materials page queries)"
+    url: https://l639t95u5a-dsn.algolia.net/1/indexes/qualifications-uk_LIVE_master-content/browse
+    read: opened (JSON API; POST with a filter on the qualification code)
+    role: >-
+      The retrieval route for Pearson's exam materials. Browsing the index with
+      `filters=category:"Pearson-UK:Specification-Code/maths-2017-as-al"`
+      returns every exam material with its DAM path; 815 records were returned,
+      712 of them outside /dam/secure/. The DAM path copied into
+      qualifications.pearson.com downloads the non-secure PDFs without a login.
+      This is a board-hosted index, not a third-party mirror.
+
+  - id: pearson-9ma0-01-qp-2025
+    title: "Pearson Edexcel A level Mathematics 9MA0/01 Pure Mathematics 1, June 2025: question paper"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-01-que-20250605.pdf
+    read: opened
+    role: >-
+      The Pearson pure paper read in full: 16 questions with totals from 3 to
+      9 marks; the "hence" and "show that" shapes; the calculator rule on the
+      front page; the command-word occurrence counts in §3.3.
+
+  - id: pearson-9ma0-01-ms-2025
+    title: "Pearson Edexcel A level Mathematics 9MA0/01 Pure Mathematics 1, June 2025: mark scheme"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-01-rms-20250814.pdf
+    read: opened
+    role: >-
+      The source for the Pearson mark types read verbatim: "M marks: method
+      marks are awarded for 'knowing a method and attempting to apply it'";
+      "Accuracy marks can only be awarded if the relevant method (M) marks have
+      been earned"; "B marks are unconditional accuracy marks (independent of M
+      marks)"; "Marks should not be subdivided"; cso ("There must be no errors
+      in this part of the question to obtain this mark"); and the A1* "given
+      answer with no errors seen including use of invisible brackets" rule with
+      the "minimal overall conclusion eg. Proven, QED, tick" requirement.
+
+  - id: pearson-9ma0-01-er-2025
+    title: "Pearson Edexcel A level Mathematics 9MA0/01 Pure Mathematics 1, June 2025: examiner report"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-01-pef-20250814.pdf
+    read: opened
+    role: >-
+      The misconception source for the pure paper: function notation on
+      composite/inverse functions; the transformation-direction error; log-law
+      errors; the missing +c and the post-substitution coefficient; the modulus
+      error; and the modelling-beyond-the-model error.
+
+  - id: pearson-9ma0-01-qp-2018
+    title: "Pearson Edexcel A level Mathematics 9MA0/01 Pure Mathematics 1, June 2018: question paper"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-01-que-2018.pdf
+    read: opened
+    role: "First sitting of the current specification; used to check the paper shape is stable."
+
+  - id: pearson-9ma0-01-ms-2019
+    title: "Pearson Edexcel A level Mathematics 9MA0/01 Pure Mathematics 1, June 2019: mark scheme"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9MA0_01_msc_20190815.pdf
+    read: opened
+    role: "Second year of the Pearson mark-type conventions; used to check the A1* wording predates 2025."
+
+  - id: pearson-9ma0-01-er-2018
+    title: "Pearson Edexcel A level Mathematics 9MA0/01 Pure Mathematics 1, June 2018: examiner report"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9MA0_01_pef_20180815.pdf
+    read: opened
+    role: "Earliest Pearson report; used to check the misconception categories recur."
+
+  - id: pearson-9ma0-01-er-2019
+    title: "Pearson Edexcel A level Mathematics 9MA0/01 Pure Mathematics 1, June 2019: examiner report"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9MA0_01_pef_20190815.pdf
+    read: opened
+    role: "Second Pearson report; a stability check on the misconception categories."
+
+  - id: pearson-9ma0-02-qp-2025
+    title: "Pearson Edexcel A level Mathematics 9MA0/02 Pure Mathematics 2, June 2025: question paper"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-02-que-20250613.pdf
+    read: opened
+    role: "The second pure paper; used for the question-shape and taper checks."
+
+  - id: pearson-9ma0-02-ms-2025
+    title: "Pearson Edexcel A level Mathematics 9MA0/02 Pure Mathematics 2, June 2025: mark scheme"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-02-rms-20250814.pdf
+    read: opened
+    role: >-
+      Second pure scheme; the source for the "invisible brackets" note in the
+      Pearson context.
+
+  - id: pearson-9ma0-02-er-2025
+    title: "Pearson Edexcel A level Mathematics 9MA0/02 Pure Mathematics 2, June 2025: examiner report"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-02-pef-20250814.pdf
+    read: opened
+    role: >-
+      The source for the invisible-brackets, dividing-out-a-common-factor and
+      quotient/remainder misconceptions, and the vector-reading errors.
+
+  - id: pearson-9ma0-31-qp-2025
+    title: "Pearson Edexcel A level Mathematics 9MA0/31 Statistics, June 2025: question paper"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-31-que-20250620.pdf
+    read: opened
+    role: >-
+      The Large Data Set question in practice: works from "the large data set
+      for Leeming in 2015" and asks how a teacher "might need to clean" the
+      data, plus a comparison — i.e. the exam supplies the extract and tests
+      knowledge of the data's character.
+
+  - id: pearson-9ma0-31-ms-2025
+    title: "Pearson Edexcel A level Mathematics 9MA0/31 Statistics, June 2025: mark scheme"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-31-rms-20250814.pdf
+    read: opened
+    role: "The statistics scheme; the source for the conclusion-in-context mark and the LDS marking notes."
+
+  - id: pearson-9ma0-31-er-2025
+    title: "Pearson Edexcel A level Mathematics 9MA0/31 Statistics, June 2025: examiner report"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-31-pef-20250814.pdf
+    read: opened
+    role: >-
+      The statistics misconception source: the "at least" oversight
+      (P(X=8) rather than P(X>=8)), the loosely described population, and the
+      unstated hypotheses.
+
+  - id: pearson-31-er-2025
+    title: "Alias of pearson-9ma0-31-er-2025 (same document)"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-31-pef-20250814.pdf
+    read: opened
+    role: "Kept so any `[pearson-31-er-2025]` tag in the findings resolves; prefer `pearson-9ma0-31-er-2025`."
+
+  - id: pearson-9ma0-32-qp-2025
+    title: "Pearson Edexcel A level Mathematics 9MA0/32 Mechanics, June 2025: question paper"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-32-que-20250620.pdf
+    read: opened
+    role: "The mechanics paper; used for the applied question shapes (projectiles, moments, connected particles)."
+
+  - id: pearson-9ma0-32-ms-2025
+    title: "Pearson Edexcel A level Mathematics 9MA0/32 Mechanics, June 2025: mark scheme"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-32-rms-20250814.pdf
+    read: opened
+    role: "The mechanics scheme; used for the resolution and sign-convention marking rules."
+
+  - id: pearson-9ma0-32-er-2025
+    title: "Pearson Edexcel A level Mathematics 9MA0/32 Mechanics, June 2025: examiner report"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-32-pef-20250814.pdf
+    read: opened
+    role: >-
+      The mechanics misconception source, read verbatim for "used a mass of 800
+      in their calculations possibly due to confusion of mass and weight", the
+      friction-modelled-as-a = mu*g error, the moments errors, and the
+      bearings/vector-resolution errors.
+
+  - id: pearson-9ma0-03-qp-2018
+    title: "Pearson Edexcel A level Mathematics 9MA0/03 Statistics and Mechanics, June 2018: question paper"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-03-que-2018.pdf
+    read: opened
+    role: "The first sitting of the combined applied paper; used to check the section structure."
+
+  - id: pearson-9ma0-03-ms-2018
+    title: "Pearson Edexcel A level Mathematics 9MA0/03 Statistics and Mechanics, June 2018: mark scheme"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-03-ms-2018.pdf
+    read: opened
+    role: "The first applied scheme; a stability check on the Statistics and Mechanics section split."
+
+  - id: pearson-9ma0-03-er-2018
+    title: "Pearson Edexcel A level Mathematics 9MA0/03 Statistics and Mechanics, June 2018: examiner report"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-03-2018-pef.pdf
+    read: opened
+    role: "The earliest applied report; a stability check on the applied misconception categories."
+
+  - id: pearson-8ma0-01-qp-2025
+    title: "Pearson Edexcel AS Mathematics 8MA0/01 Pure Mathematics, June 2025: question paper"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/8ma0-01-que-20250516.pdf
+    read: opened
+    role: >-
+      The AS comparison: 2 hours, 100 marks, "15 questions" against the A-level
+      paper's 16. The source for the finding that the AS/A-level difference is
+      content, not paper shape.
+
+  - id: pearson-8ma0-01-ms-2025
+    title: "Pearson Edexcel AS Mathematics 8MA0/01 Pure Mathematics, June 2025: mark scheme"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/8ma0-01-rms-20250814.pdf
+    read: opened
+    role: "The AS scheme; confirms the mark-type conventions are identical at AS and A-level."
+
+  - id: pearson-8ma0-01-er-2025
+    title: "Pearson Edexcel AS Mathematics 8MA0/01 Pure Mathematics, June 2025: examiner report"
+    url: https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/8ma0-01-pef-20250814.pdf
+    read: opened
+    role: "The AS report; used to check which misconceptions are A-level-only."
+
+  - id: pearson-sam-exemplars-pure
+    title: "Pearson Edexcel AS and A level Mathematics — SAMs exemplar answers with examiner comments: Pure Mathematics"
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/Teaching%20and%20learning%20materials/AS_and_A_level_Maths_SAMs_Exemplar_answers_with_examiner_comments_Pure.pdf
+    read: opened
+    role: >-
+      The published student responses with the mark scheme and the examiner's
+      comment side by side. The single most useful source for what a "show
+      that" answer's shape must be: a student who writes the right final line
+      but errs two lines earlier loses the final mark, and the comment says
+      "In a 'show that' question it is important that all lines are correct";
+      another response loses the final mark for "no conclusion". Also carries
+      the Pearson copyright notice quoted in §10.
+
+  - id: pearson-sam-exemplars-applied
+    title: "Pearson Edexcel AS and A level Mathematics — SAMs exemplar answers with examiner comments: Statistics and Mechanics"
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/Teaching%20and%20learning%20materials/AS_and_A_level_Maths_SAMs_Exemplar_answers_with_examiner_comments_Applied.pdf
+    read: opened
+    role: >-
+      The applied exemplars. The source for the "correct conclusion in
+      context" accuracy mark and for the comment-mark criterion ("a suitable
+      reason", "a comment that supports the idea that the sampling method was
+      not a good one").
+
+  - id: pearson-lds
+    title: "Pearson Edexcel GCE AS and A level Mathematics data set, Issue 1 (.xls)"
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/Pearson%20Edexcel%20GCE%20AS%20and%20AL%20Mathematics%20data%20set%20-%20Issue%201%20(1).xls
+    read: opened (17 sheets read with python-calamine)
+    role: >-
+      The primary source that names Pearson's Large Data Set. The Information
+      sheet states: "The data set consists of weather data samples provided by
+      the Met Office for five UK weather stations and three overseas weather
+      stations in the time periods May to October 1987 and May to October
+      2015"; the stations are Camborne, Heathrow, Hurn, Leeming and Leuchars
+      (UK) and Beijing, Jacksonville and Perth (overseas); the sheet names
+      confirm the sixteen station-period tables. The same sheet lists the tasks
+      students must carry out and the eleven variables. Closes the open gap in
+      a-level-maths.md §9.
+
+  - id: pearson-formulae-book
+    title: "Pearson Edexcel A level GCE in Mathematics Formulae Book"
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/pearson-edexcel-a-level-gce-in-mathematics-formulae-book.pdf
+    read: exists (URL confirmed; the 9MA0/32 June 2025 paper was also fetched under this name by a copy error in the first pass, so its contents were not separately read)
+    role: >-
+      The "Mathematical Formulae and Statistical Tables (Green)" booklet
+      referred to in §5. Listed for provenance; the formulae-provision claim
+      rests on the question papers' front matter and on a-level-maths.md §8.
+
+  # ---- Open resources surveyed (structure and voice) -----------------------
+  - id: openstax-precalculus-2e
+    title: "OpenStax, Precalculus 2e"
+    url: https://openstax.org/details/books/precalculus-2e
+    read: opened (a section rendered)
+    license: "CC BY-NC-SA 4.0 per the site footer"
+    role: >-
+      The open textbook whose section furniture was read: Learning Objectives
+      -> narrative -> "Forms of ..." -> "How To" numbered procedure -> worked
+      Example -> Solution -> "Try It" clone -> exercises. The model for a
+      worked example's furniture; not a model for proof or modelling. Not a
+      source of text.
+
+  - id: ck12-calculus
+    title: "CK-12 FlexBooks, Calculus"
+    url: https://www.ck12.org/book/ck-12-calculus/
+    read: opened (a lesson rendered)
+    license: "not established; an Attribution guide is linked but a CC statement was not found on the page read — treat as all-rights-reserved"
+    role: >-
+      A compact lesson: Guidance narrative -> numbered Examples with Solutions
+      -> Review set -> Review (Answers). Useful as a model for a single-screen
+      "Learn" page; not a chapter model.
+
+  - id: khan-precalculus
+    title: "Khan Academy, Precalculus"
+    url: https://www.khanacademy.org/math/precalculus
+    read: opened (course page rendered)
+    role: >-
+      Course -> Unit -> lesson -> item (video, article, exercise). Lesson
+      headings phrased as skills, including "Verifying inverse functions by
+      composition". Described for structure only; nothing about its teaching
+      quality is asserted.
+
+  - id: underground-maths
+    title: "Underground Mathematics"
+    url: https://undergroundmathematics.org/
+    read: opened (home page and the Quadratics station)
+    license: "not stated on the pages read — check before reuse"
+    role: >-
+      The closest open resource designed for post-16 UK mathematics. Stations
+      -> rich resources (essays, problems, interactives) -> Review questions,
+      plus Pervasive ideas and Making connections. The best existing model for
+      our guided-investigation (P6) pages: a task that requires a decision,
+      with teacher notes rather than a stated answer.
+
+  - id: nrich
+    title: "NRICH (University of Cambridge)"
+    url: https://nrich.maths.org/
+    read: opened (home page and terms of use)
+    license: "restrictive: private study and single copies for teaching permitted; text-and-data-mining and AI-training expressly prohibited without written permission"
+    role: >-
+      Rich problem-solving tasks with teacher notes. Cited for the licence
+      warning in §10: do not fetch NRICH content into any pipeline of ours.
+
+  - id: mei
+    title: "MEI (Mathematics in Education and Industry)"
+    url: https://mei.org.uk/
+    read: opened (public pages only)
+    role: >-
+      The charity behind the MEI specifications and Integral. Its public
+      curriculum-support and transition pages are a source of pedagogical
+      positions; the A-level question bank (Integral) is subscription-based.
+
+  - id: amsp
+    title: "Advanced Mathematics Support Programme (AMSP)"
+    url: https://amsp.org.uk/
+    read: opened
+    role: >-
+      DfE-funded, led by MEI. Free teacher CPD and A-level Mathematics support
+      materials; a legitimate source for the "where it is used" framing and for
+      transition support.
+
+  - id: pmt
+    title: "Physics & Maths Tutor — A-level Mathematics"
+    url: https://www.physicsandmathstutor.com/past-papers/a-level-maths/
+    read: opened
+    role: >-
+      A third-party index of past papers, questions by topic, notes and
+      solution banks. Two signals: it indexes by the DfE strand names (the
+      words a student will meet in a topic search), and it treats
+      questions-by-topic and notes as separate products — which is what our
+      :::problems banks and our Learn pages are. It is a route to materials,
+      not a licence; the copyright in any mirrored paper remains the board's.
+      No board paper is cited here through this mirror.
+
+  - id: mathsgenie
+    title: "Maths Genie — A Level"
+    url: https://www.mathsgenie.co.uk/a-level.html
+    read: opened
+    role: >-
+      Cited as a caution: its free "A Level Old Maths" page is the pre-2017
+      specification (C1-C4, S1, M1), not the current A-level. A resource that
+      says "A-level" may be the previous qualification.
+
+  - id: drfrost
+    title: "Dr Frost Maths"
+    url: https://www.drfrost.org/
+    read: opened (landing page only; lesson resources are registration-gated)
+    role: >-
+      The landing page advertises "Lesson Resources", "Auto-Marking
+      Worksheets", "Real Exam Questions" and "Video Explainers". No claim is
+      made about the internal structure of a lesson, because no lesson page
+      could be opened.
+
+# What was downloaded for the two passes. The PDFs and extracted text are
+# outside the build tree: the first pass used /tmp/pi-delegate/del-25, the
+# retry pass /tmp/pi-delegate/del-27. `text: true` means pdftotext -layout
+# produced a text file that was read.
+downloads:
+  # First pass (del-25) — AQA
+  - {file: aqa_73571-qp-jun19.pdf, url: "https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2019/june/AQA-73571-QP-JUN19.PDF", text: true}
+  - {file: aqa_73571-ms-jun19.pdf, url: "https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2019/june/AQA-73571-W-MS-JUN19.PDF", text: true}
+  - {file: aqa_73571-wre-jun19.pdf, url: "https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2019/june/AQA-73571-WRE-JUN19.PDF", text: true}
+  - {file: aqa_73571-wre-jun23.pdf, url: "https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2023/june/AQA-73571-WRE-JUN23.PDF", text: true}
+  - {file: aqa_73572-ms-jun19.pdf, url: "https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2019/june/AQA-73572-W-MS-JUN19.PDF", text: true}
+  - {file: aqa_73572-qp-jun19.pdf, url: "https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2019/june/AQA-73572-QP-JUN19.PDF", text: true}
+  - {file: aqa_73572-wre-jun19.pdf, url: "https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2019/june/AQA-73572-WRE-JUN19.PDF", text: true}
+  - {file: aqa_73572-wre-jun23.pdf, url: "https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2023/june/AQA-73572-WRE-JUN23.PDF", text: true}
+  - {file: aqa_73573-qp-jun19.pdf, url: "https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2019/june/AQA-73573-QP-JUN19.PDF", text: true}
+  - {file: aqa_73573-ms-jun19.pdf, url: "https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2019/june/AQA-73573-W-MS-JUN19.PDF", text: true}
+  - {file: aqa_73573-wre-jun19.pdf, url: "https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2019/june/AQA-73573-WRE-JUN19.PDF", text: true}
+  - {file: aqa_73573-wre-jun23.pdf, url: "https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2023/june/AQA-73573-WRE-JUN23.PDF", text: true}
+  - {file: aqa_73571-sqp.pdf, url: "https://filestore.aqa.org.uk/resources/mathematics/AQA-73571-SQP.PDF", text: true}
+  - {file: aqa_73571-sms.pdf, url: "https://filestore.aqa.org.uk/resources/mathematics/AQA-73571-SMS.PDF", text: true}
+  - {file: aqa_73571-ms-jun23.pdf, url: "https://www.aqa.org.uk/files/sample-papers-and-mark-schemes.2023.june.AQA-73571-MS-JUN23_PDF/e79e15aa274dc5df317d425a5f0f3f04c5d2c8e4.pdf", text: true}
+  # First pass — OCR
+  - {file: ocr_h240-01-qp-2025.pdf, url: "https://www.ocr.org.uk/Images/752329-question-paper-pure-mathematics.pdf", text: true}
+  - {file: ocr_h240-01-ms-2025.pdf, url: "https://www.ocr.org.uk/Images/752469-mark-scheme-pure-mathematics.pdf", text: true}
+  - {file: ocr_h240-01-er-2025.pdf, url: "https://www.ocr.org.uk/Images/751977-examiners-report-pure-mathematics.pdf", text: true}
+  - {file: ocr_h240-02-qp-2025.pdf, url: "https://www.ocr.org.uk/Images/752331-question-paper-pure-mathematics-and-statistics.pdf", text: true}
+  - {file: ocr_h240-02-ms-2025.pdf, url: "https://www.ocr.org.uk/Images/752470-mark-scheme-pure-mathematics-and-statistics.pdf", text: true}
+  - {file: ocr_h240-02-er-2025.pdf, url: "https://www.ocr.org.uk/Images/751976-examiners-report-pure-mathematics-and-statistics.pdf", text: true}
+  - {file: ocr_h240-03-qp-2025.pdf, url: "https://www.ocr.org.uk/Images/752333-question-paper-pure-mathematics-and-mechanics.pdf", text: true}
+  - {file: ocr_h240-03-ms-2025.pdf, url: "https://www.ocr.org.uk/Images/752471-mark-scheme-pure-mathematics-and-mechanics.pdf", text: true}
+  - {file: ocr_h240-03-er-2025.pdf, url: "https://www.ocr.org.uk/Images/751975-examiners-report-pure-mathematics-and-mechanics.pdf", text: true}
+  - {file: ocr_h240-01-qp-2024.pdf, url: "https://www.ocr.org.uk/Images/726654-question-paper-pure-mathematics.pdf", text: true}
+  - {file: ocr_h240-01-ms-2024.pdf, url: "https://www.ocr.org.uk/Images/726795-mark-scheme-pure-mathematics.pdf", text: true}
+  - {file: ocr_h240-01-er-2024.pdf, url: "https://www.ocr.org.uk/Images/726298-examiners-report-pure-mathematics.pdf", text: true}
+  # First pass — Pearson
+  - {file: pearson_9ma0-01-qp-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-01-que-20250605.pdf", text: true}
+  - {file: pearson_9ma0-01-ms-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-01-rms-20250814.pdf", text: true}
+  - {file: pearson_9ma0-01-er-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-01-pef-20250814.pdf", text: true}
+  - {file: pearson_9ma0-01-qp-2018.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-01-que-2018.pdf", text: true}
+  - {file: pearson_9ma0-01-ms-2019.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9MA0_01_msc_20190815.pdf", text: true}
+  - {file: pearson_9ma0-01-er-2018.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9MA0_01_pef_20180815.pdf", text: true}
+  - {file: pearson_9ma0-01-er-2019.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9MA0_01_pef_20190815.pdf", text: true}
+  - {file: pearson_9ma0-02-qp-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-02-que-20250613.pdf", text: true}
+  - {file: pearson_9ma0-02-ms-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-02-rms-20250814.pdf", text: true}
+  - {file: pearson_9ma0-02-er-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-02-pef-20250814.pdf", text: true}
+  - {file: pearson_9ma0-31-qp-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-31-que-20250620.pdf", text: true}
+  - {file: pearson_9ma0-31-ms-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-31-rms-20250814.pdf", text: true}
+  - {file: pearson_9ma0-31-er-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-31-pef-20250814.pdf", text: true}
+  - {file: pearson_9ma0-32-qp-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-32-que-20250620.pdf", text: true}
+  - {file: pearson_9ma0-32-ms-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-32-rms-20250814.pdf", text: true}
+  - {file: pearson_9ma0-32-er-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-32-pef-20250814.pdf", text: true}
+  - {file: pearson_9ma0-03-qp-2018.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-03-que-2018.pdf", text: true}
+  - {file: pearson_9ma0-03-ms-2018.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-03-ms-2018.pdf", text: true}
+  - {file: pearson_9ma0-03-er-2018.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9ma0-03-2018-pef.pdf", text: true}
+  - {file: pearson_8ma0-01-qp-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/8ma0-01-que-20250516.pdf", text: true}
+  - {file: pearson_8ma0-01-ms-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/8ma0-01-rms-20250814.pdf", text: true}
+  - {file: pearson_8ma0-01-er-2025.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/8ma0-01-pef-20250814.pdf", text: true}
+  - {file: pearson_sam-exemplars-pure.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/Teaching%20and%20learning%20materials/AS_and_A_level_Maths_SAMs_Exemplar_answers_with_examiner_comments_Pure.pdf", text: true}
+  - {file: pearson_sam-exemplars-applied.pdf, url: "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/Teaching%20and%20learning%20materials/AS_and_A_level_Maths_SAMs_Exemplar_answers_with_examiner_comments_Applied.pdf", text: true}
+  - {file: pearson_lds.xls, url: "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/Pearson%20Edexcel%20GCE%20AS%20and%20AL%20Mathematics%20data%20set%20-%20Issue%201%20(1).xls", text: true}
+
+  # Retry pass (del-27) — independent re-fetches that confirm the two
+  # load-bearing documents are unchanged at the live URL (sha256 match).
+  - {file: aqa_ms.pdf, url: "https://filestore.aqa.org.uk/sample-papers-and-mark-schemes/2019/june/AQA-73571-W-MS-JUN19.PDF", text: true, verified_sha256: f4944ae20299b9c5b9cc206674dac617da9d1b506704de919e103bd9f9982c3a}
+  - {file: ocr_ms.pdf, url: "https://www.ocr.org.uk/Images/752469-mark-scheme-pure-mathematics.pdf", text: true, verified_sha256: 6d8afc9af87311c6b09aa83d561b88ea41ead36e1851e40aaef73f28860c8809}

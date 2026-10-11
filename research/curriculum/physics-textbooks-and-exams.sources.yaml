@@ -1,0 +1,650 @@
+# Provenance for every claim in physics-textbooks-and-exams.md.
+#
+# Same shape as physics.sources.yaml: a tracked manifest, with the fetched PDFs
+# and extracted text kept outside the build tree in /tmp (this pass) and
+# research/sources/ (where the sibling manifests put theirs). No book directory
+# is created here on purpose.
+#
+# This manifest does NOT duplicate the specification-level provenance. The board
+# specifications, the DfE subject content, the Ofqual conditions and the
+# equation sheets are in research/curriculum/physics.sources.yaml. This file
+# adds the *assessment-material* provenance: question papers, mark schemes,
+# examiner reports, command-word guidance and the existing open resources.
+#
+# Fetch pattern (mirrors scripts/fetch_sources.sh):
+#
+#   UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+#   curl -fsSL -A "$UA" -m 200 <url> -o <file>.pdf && pdftotext -layout <file>.pdf <file>.txt
+#
+# AQA pairs a resource title with its PDF URL in an embedded JSON blob on the
+# assessment-resources page; OCR links the PDFs directly from the assessment
+# page. The extraction commands are in physics-textbooks-and-exams.md.
+#
+# Edexcel's own copies of its papers and mark schemes are behind examWizard /
+# Edexcel Online. The 9PH0 and 1PH0 mark schemes below were read from the
+# Physics & Maths Tutor mirror and are marked `retrieved_via: mirror`. No
+# Edexcel examiner report was read anywhere in this pass.
+#
+# Copyright: the boards' papers and mark schemes are commercial,
+# all-rights-reserved documents and are NOT redistributed here. See the
+# "Copyright and licences" section of the findings.
+
+retrieved: 2026-10-11
+
+references:
+  # ---- AQA: GCSE Physics 8463 ----------------------------------------------
+  - id: aqa-8463-assessment-resources
+    title: "AQA GCSE Physics 8463 — assessment resources"
+    url: https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/assessment-resources
+    role: >-
+      The landing page that lists every AQA 8463 question paper, mark scheme,
+      examiner report, insert and sample set. The PDF URLs live in an embedded
+      JSON blob; the extraction command is in the findings document.
+
+  - id: aqa-8463-p1h-2025
+    title: "AQA GCSE Physics 8463/1H Paper 1 Higher Tier, June 2025: question paper, mark scheme, report on the examination"
+    url: https://cdn.sanity.io/files/p28bar15/green/c08bff2dd77ec7384f09d3a6db77a4bde9435176.pdf
+    page: https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/assessment-resources
+    role: >-
+      The primary source for the GCSE mark-scheme conventions: the level-of-
+      response instructions and the two-marks-per-level structure, the
+      "right + wrong = wrong" list principle, the error-carried-forward rule
+      (ecf), "full marks … for a correct numerical answer, without any working
+      shown", the 6-mark specific-heat-capacity method item tagged RPA1, and the
+      "you are reminded of the need for good English" instruction with no QWC
+      mark. The report supplies misconceptions (environmental claims needing the
+      flow speed; the list principle in practice).
+
+  - id: aqa-8463-h2h-2025
+    title: "AQA GCSE Physics 8463/2H Paper 2 Higher Tier, June 2025: question paper, mark scheme, report on the examination"
+    url: https://cdn.sanity.io/files/p28bar15/green/2168c314f32da38190567e26d7139a99e94b28df.pdf
+    page: https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/assessment-resources
+    role: >-
+      The source for the two most useful GCSE calculation misconceptions:
+      squared units making students square the substituted number, and equation
+      triangles being used incorrectly after the equation was written correctly.
+      Its mark scheme also tags RPA6, so it carries the paper-2 practical
+      activities.
+
+  - id: aqa-8463-f1-2025
+    title: "AQA GCSE Physics 8463/1F Paper 1 Foundation Tier, June 2025: question paper, mark scheme, report on the examination"
+    url: https://cdn.sanity.io/files/p28bar15/green/bcbcf930aed8d994ab5331c2819c84c4a9a224de.pdf
+    page: https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/assessment-resources
+    role: >-
+      The Foundation comparison to the Higher paper: the same required
+      practicals (RPA1 and RPA4) with more scaffolding, which is the check that
+      the tier difference is in support, not in content.
+
+  - id: aqa-8463-h2h-2024
+    title: "AQA GCSE Physics 8463/2H Paper 2 Higher Tier, June 2024: question paper and mark scheme"
+    url: https://cdn.sanity.io/files/p28bar15/green/2609e931025b6c3fbb82b127bc95de301de739b7.pdf
+    page: https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/assessment-resources
+    role: "Tags RPA7 and RPA9, so it covers the spring-extension and light practicals."
+
+  - id: aqa-8463-sample-mark-schemes
+    title: "AQA GCSE Physics 8463 sample-set mark schemes (Paper 1 and Paper 2, Higher)"
+    url: https://cdn.sanity.io/files/p28bar15/green/d9909eb3abb53ebed21eaf534f3f74195c4002a9.pdf
+    page: https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/assessment-resources
+    role: >-
+      The accredited specimen mark schemes. Used to check that the level-of-
+      response structure is stable across the specimen and live papers.
+
+  - id: aqa-gcse-science-our-exams-explained
+    title: "AQA Notes and guidance: Our exams explained — GCSE science exams from summer 2018 (v2.0)"
+    url: https://cdn.sanity.io/files/p28bar15/green/8e496b826e157a0df530bd27751e7b769d9b506c.pdf
+    page: https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/assessment-resources
+    role: >-
+      AQA's own account of what an extended response is (quoting the Ofqual
+      definition), the assessment objectives and their weightings, the
+      Foundation/Higher ramping, the calculation-demand ladder, the graph
+      question types including "estimate the area under a curve", the practical
+      skills section, and the accessibility principles ("put command words at
+      the beginning of a sentence"). Its "Equations" section still prints the
+      stale recall/select split — a reminder to use the 2026 sheet, not this
+      booklet, for provision.
+
+  - id: aqa-gcse-science-making-questions-clear
+    title: "AQA Notes and guidance: Making questions clear (GCSE science)"
+    url: https://cdn.sanity.io/files/p28bar15/green/f6251dea255868ccb974faf9157192227850e2f5.pdf
+    page: https://www.aqa.org.uk/subjects/physics/gcse/physics-8463/assessment-resources
+    role: "The longer companion to the accessibility section above."
+
+  # ---- AQA: A-level Physics 7407/7408 --------------------------------------
+  - id: aqa-7408-assessment-resources
+    title: "AQA A-level Physics 7408 — assessment resources"
+    url: https://www.aqa.org.uk/subjects/physics/a-level/physics-7408/assessment-resources
+    role: "The landing page for every 7408 paper, mark scheme, insert and report."
+
+  - id: aqa-7408-specification
+    title: "AQA AS and A-level Physics 7407/7408 specification, v1.4, July 2026"
+    url: https://cdn.sanity.io/files/p28bar15/green/fa68d54c1a3b8ef17760536c7fb2e3911c29dc73.pdf
+    page: https://www.aqa.org.uk/subjects/physics/a-level/physics-7408
+    role: >-
+      The paper structure stated precisely: Paper 1 and Paper 2 are 85 marks
+      each, "60 marks of short and long answer questions and 25 multiple choice
+      questions"; Paper 3 is 80 marks, Section A 45 marks of practical skills
+      and data analysis and Section B one 35-mark option.
+
+  - id: aqa-7408-p1-2024
+    title: "AQA A-level Physics 7408/1 Paper 1, June 2024: question paper, mark scheme, report on the examination"
+    url: https://cdn.sanity.io/files/p28bar15/green/e19ec98fc07a77128b826a931e5276a6162f7dde.pdf
+    page: https://www.aqa.org.uk/subjects/physics/a-level/physics-7408/assessment-resources
+    role: >-
+      The source for the A-level mark-scheme instructions: significant-figure
+      penalties (§3.8, including the `show that` one-more-sf rule and the surd
+      rule), unit penalties (§3.9, "the most commonly agreed form … strings of
+      fundamental (base) units would not"), errors carried forward and
+      arithmetic errors (§3.4), and the level-of-response instructions (§3.10).
+      The report supplies A-level particle-physics and stationary-wave
+      misconceptions.
+
+  - id: aqa-7408-p2-2024
+    title: "AQA A-level Physics 7408/2 Paper 2, June 2024: question paper, mark scheme, report on the examination"
+    url: https://cdn.sanity.io/files/p28bar15/green/26a8e3c30e8e94cfabcf131427232fa8fedd3d40.pdf
+    page: https://www.aqa.org.uk/subjects/physics/a-level/physics-7408/assessment-resources
+    role: "Second A-level paper; the section structure and the level-of-response conventions repeat."
+
+  - id: aqa-7408-p3a-2024
+    title: "AQA A-level Physics 7408/3A Paper 3 Section A, June 2024: question paper, mark scheme, report on the examination"
+    url: https://cdn.sanity.io/files/p28bar15/green/31c5a047948c1faa2de84387de2586ea0c0d410c.pdf
+    page: https://www.aqa.org.uk/subjects/physics/a-level/physics-7408/assessment-resources
+    role: >-
+      The practical paper (45 marks; 70 minutes advised of the 2 hours). The
+      report is the richest single source on practical misconceptions: the
+      micrometer ratchet, the "state and explain" split, the lines of maximum
+      and minimum gradient through error bars, the left-hand-rule force
+      direction, and the base-unit deduction for k. It also records that the
+      paper tags questions to required practical activities (RPA 5 and RPA 10 in
+      2024).
+
+  - id: aqa-7408-p3b-astrophysics-2024
+    title: "AQA A-level Physics 7408/3B Paper 3 Section B Option A Astrophysics, June 2024: question paper"
+    url: https://cdn.sanity.io/files/p28bar15/green/ba7fda2b546331987bacd084c8ff0233505f0e31.pdf
+    page: https://www.aqa.org.uk/subjects/physics/a-level/physics-7408/assessment-resources
+    role: "Confirms the Section B option is 35 marks and that the two sections together are 2 hours."
+
+  - id: aqa-7408-p1-2025-report
+    title: "AQA A-level Physics 7408/1 Paper 1, June 2025: report on the examination"
+    url: https://cdn.sanity.io/files/p28bar15/green/472493df63d26241c5990b27814cff232b58dfb6.pdf
+    page: https://www.aqa.org.uk/subjects/physics/a-level/physics-7408/assessment-resources
+    role: "A second year of A-level examiner feedback; used to check the misconceptions are recurring, not one-off."
+
+  # ---- OCR: GCSE Physics A J249 --------------------------------------------
+  - id: ocr-j249-assessment
+    title: "OCR GCSE (9-1) Physics A (Gateway Science) J249 — assessment page"
+    url: https://www.ocr.org.uk/qualifications/gcse/gateway-science-suite-physics-a-j249-from-2016/assessment/
+    role: >-
+      Lists every past paper, mark scheme and examiner report as a direct link,
+      and the equation sheets. OCR does not gate these behind Interchange.
+
+  - id: ocr-j249-p3-2025
+    title: "OCR GCSE Physics A J249/03 Paper 3 (Higher Tier), June 2025: question paper, mark scheme, examiners' report"
+    url: https://www.ocr.org.uk/Images/753493-mark-scheme-paper-3.pdf
+    page: https://www.ocr.org.uk/qualifications/gcse/gateway-science-suite-physics-a-j249-from-2016/assessment/
+    role: >-
+      The source for OCR's GCSE level-of-response convention: three levels, two
+      marks each, the level from the science and the mark within the level from
+      the italicised communication statement, and the asterisk flag. Question 22
+      is the 6-mark velocity-time level-of-response item. The report names the
+      distance-time/velocity-time confusion and the omitted rectangular section.
+
+  - id: ocr-j249-p4-2025
+    title: "OCR GCSE Physics A J249/04 Paper 4 (Higher Tier), June 2025: question paper, mark scheme, examiners' report"
+    url: https://www.ocr.org.uk/Images/753494-mark-scheme-paper-4.pdf
+    page: https://www.ocr.org.uk/qualifications/gcse/gateway-science-suite-physics-a-j249-from-2016/assessment/
+    role: "Paper 4 is the synoptic paper; the level-of-response and practical shapes repeat."
+
+  - id: ocr-j249-p3-2024
+    title: "OCR GCSE Physics A J249/03 Paper 3 (Higher Tier), June 2024: question paper, mark scheme, examiners' report"
+    url: https://www.ocr.org.uk/Images/727755-mark-scheme-paper-3.pdf
+    page: https://www.ocr.org.uk/qualifications/gcse/gateway-science-suite-physics-a-j249-from-2016/assessment/
+    role: "Second year of the same conventions; used to check stability."
+
+  - id: ocr-j249-sample-assessment
+    title: "OCR GCSE Physics A J249/03 Higher tier paper 3 — sample question paper and mark scheme"
+    url: https://www.ocr.org.uk/Images/234629-unit-j249-03-physics-higher-tier-paper-3-sample-assessment-material.pdf
+    page: https://www.ocr.org.uk/qualifications/gcse/gateway-science-suite-physics-a-j249-from-2016/assessment/
+    role: "The accredited specimen; confirms the level-of-response wording predates the live papers."
+
+  - id: ocr-gateway-exploring-question-papers
+    title: "OCR Exploring our question papers — GCSE (9-1) Gateway Science"
+    url: https://www.ocr.org.uk/Images/462559-exploring-our-question-papers-gateway-science.pdf
+    page: https://www.ocr.org.uk/qualifications/gcse/gateway-science-suite-physics-a-j249-from-2016/assessment/
+    role: >-
+      The source for the OCR GCSE paper structure (Section A 15 MCQs, Section B
+      up to 69 short-answer marks plus one 6-mark level-of-response item; 90
+      marks, 1 h 45), the synoptic rule for Paper 2/4, the MCQ design rules, the
+      calculation-marking guidance, the practical-skills assessment, and the
+      full GCSE command-word table including the describe/explain contrast.
+
+  - id: ocr-gcse-exam-hints
+    title: "OCR Exam hints for students (A4) — J247, J257, J248, J258, J249, J259, J250, J260"
+    url: https://www.ocr.org.uk/Images/594807-exam-hints-for-students-a4-.pdf
+    page: https://www.ocr.org.uk/qualifications/gcse/gateway-science-suite-physics-a-j249-from-2016/assessment/
+    role: "OCR's student-facing advice; used only to confirm the board publishes exam-technique guidance openly."
+
+  - id: ocr-gcse-equations-to-recall
+    title: "OCR Equations to recall and apply — Combined Science A (J250) and Physics A (J249)"
+    url: https://www.ocr.org.uk/Images/655783-equations-to-recall-and-apply.docx
+    page: https://www.ocr.org.uk/qualifications/gcse/gateway-science-suite-physics-a-j249-from-2016/assessment/
+    role: >-
+      The recall-and-apply list as OCR still labels it. Cross-checked against
+      physics-equations-and-data.md: the label is historical, because the 2027
+      equation sheet prints every one of the equations.
+
+  - id: ocr-gcse-quantities-units
+    title: "OCR Quantities, symbols, units and abbreviations (J249/J250)"
+    url: https://www.ocr.org.uk/Images/655787-quantities-symbols-units-and-abbreviations.docx
+    page: https://www.ocr.org.uk/qualifications/gcse/gateway-science-suite-physics-a-j249-from-2016/assessment/
+    role: "OCR's units-and-symbols reference; the GCSE analogue of the DfE SI units appendix."
+
+  # ---- OCR: A Level Physics A H556 -----------------------------------------
+  - id: ocr-h556-assessment
+    title: "OCR A Level Physics A H156/H556 — assessment page"
+    url: https://www.ocr.org.uk/qualifications/as-and-a-level/physics-a-h156-h556-from-2015/assessment/
+    role: "The landing page for every H556 past paper, mark scheme and examiners' report."
+
+  - id: ocr-h556-p1-2024
+    title: "OCR A Level Physics A H556/01 Modelling physics, June 2024: question paper, mark scheme, examiners' report"
+    url: https://www.ocr.org.uk/Images/726829-mark-scheme-modelling-physics.pdf
+    page: https://www.ocr.org.uk/qualifications/as-and-a-level/physics-a-h156-h556-from-2015/assessment/
+    role: >-
+      The A-level mark-scheme conventions: the annotation glossary (AE, BOD,
+      CON, ECF, L1/L2/L3 with L1^/L2^/L3^, POT, SF, TE, XP), the MACB mark
+      categorisation, the significant-figures rule ("2 or more sf … penalise
+      once only in the entire paper"), and the level-of-response descriptors
+      with the communication statement.
+
+  - id: ocr-h556-p3-2024
+    title: "OCR A Level Physics A H556/03 Unified physics, June 2024: question paper, mark scheme, examiners' report"
+    url: https://www.ocr.org.uk/Images/726831-mark-scheme-unified-physics.pdf
+    page: https://www.ocr.org.uk/qualifications/as-and-a-level/physics-a-h156-h556-from-2015/assessment/
+    role: >-
+      The A-level practical and synoptic paper. The report is the source for the
+      precision-versus-significant-figures misconception, the "use points on the
+      line of best fit, not the table" gradient point, the large-triangle
+      expectation, the `show that` working requirement, and the graph-plotting
+      and POT complaints in the "candidates who did less well" column.
+
+  - id: ocr-h556-p1-2025
+    title: "OCR A Level Physics A H556/01 Modelling physics, June 2025: question paper, mark scheme, examiners' report"
+    url: https://www.ocr.org.uk/Images/752503-mark-scheme-modelling-physics.pdf
+    page: https://www.ocr.org.uk/qualifications/as-and-a-level/physics-a-h156-h556-from-2015/assessment/
+    role: "Second year of the A-level conventions; used to check stability."
+
+  - id: ocr-h556-sample-assessment
+    title: "OCR A Level Physics A H556/01 and H556/03 sample question paper and mark scheme"
+    url: https://www.ocr.org.uk/Images/171727-unit-h556-01-modelling-physics-sample-assessment-materials.pdf
+    page: https://www.ocr.org.uk/qualifications/as-and-a-level/physics-a-h156-h556-from-2015/assessment/
+    role: "The accredited specimen; H556/03 sample shows the design question shape."
+
+  - id: ocr-h556-assessment-story
+    title: "OCR A Level Physics A — Assessment story: exploring our question papers (v1.1, 2024)"
+    url: https://www.ocr.org.uk/Images/assessment-story-exploring-our-question-papers-physicsa.pdf
+    page: https://www.ocr.org.uk/qualifications/as-and-a-level/physics-a-h156-h556-from-2015/assessment/
+    role: >-
+      The source for the A-level paper structure (Paper 1/2: Section A 15 MCQs
+      and Section B 85 marks with two 6-mark level-of-response items; Paper 3:
+      70 marks with two level-of-response items), the practical-skills table
+      split Planning/Implementing/Analysis/Evaluation, the MACB explanation, the
+      level-of-response marking diagram with the three communication statements,
+      and the A-level command-word table including `show that` and `suggest`.
+
+  - id: ocr-h556-exam-hints
+    title: "OCR Exam hints for students H556"
+    url: https://www.ocr.org.uk/Images/598164-exam-hints-for-students.pdf
+    page: https://www.ocr.org.uk/qualifications/as-and-a-level/physics-a-h156-h556-from-2015/assessment/
+    role: "OCR's student-facing A-level exam-technique advice."
+
+  # ---- Pearson Edexcel: public documents -----------------------------------
+  - id: edexcel-1ph0-spec-command-words
+    title: "Pearson Edexcel GCSE (9-1) Physics 1PH0, Specification Issue 4, March 2024 — Appendix 4: Taxonomy"
+    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/Specification/gcse-physics-spec.pdf
+    page: https://qualifications.pearson.com/en/qualifications/edexcel-gcses/sciences-2016.html
+    role: >-
+      The GCSE command-word taxonomy (Calculate, Describe, Explain, Compare,
+      Evaluate, Determine, Deduce, Show that, Suggest a …, …). Also the paper
+      structure (two 100-mark papers, 1 h 45, "extended open-response
+      questions") and the eight mandatory core practicals. NOTE: this
+      specification is also cited as `edexcel-1ph0` in physics.sources.yaml;
+      the id here is for the assessment-material claims.
+
+  - id: edexcel-9ph0-spec-command-words-uncertainties
+    title: "Pearson Edexcel A level Physics 9PH0, Specification Issue 3, November 2018 — Appendix 7 command words, Appendix 10 uncertainties"
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/pearsonedexcel-alevel-physics-spec.pdf
+    page: https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/physics-2015.html
+    role: >-
+      The A-level command-word taxonomy (adding Derive and Criticise, with the
+      `show that` "at least 1 more significant figure" rule), the paper
+      structure (90/90/120 marks; Paper 3 is 2 h 30 and draws on the core
+      practicals), and Appendix 10, the board's own treatment of uncertainty on
+      the authority of the ASE's The Language of Measurement (half-range,
+      furthest-from-mean, resolution; percentage uncertainty; the recorded
+      accuracy/precision/repeatability/reproducibility glossary). Also cited as
+      `edexcel-9ph0` in physics.sources.yaml.
+
+  - id: edexcel-gcse-sciences-eor-guidance
+    title: "Pearson Edexcel GCSE (9-1) Sciences — Guidance for Extended Open Response questions"
+    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/pearson-edexcel-gcse-sciences-extended-open-response-guidance.pdf
+    page: https://qualifications.pearson.com/en/qualifications/edexcel-gcses/sciences-2016.html
+    role: >-
+      The public source for Edexcel's GCSE extended-response convention: one
+      6-mark EOR per combined-science paper and two per separate-science paper;
+      "no longer a requirement to test the quality of written communication …
+      however, there is a requirement to test candidates' ability to construct a
+      sustained line of reasoning"; the asterisk; the generic three-level /
+      three-section mark scheme (indicative content, level descriptors,
+      additional guidance); and worked candidate responses with examiner
+      commentary, including physics examples from measurement-of-power and
+      measurement-of-resistance items.
+
+  - id: edexcel-al-physics-subject-guide
+    title: "Pearson Edexcel A level Physics — subject guide"
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/teaching-and-learning-materials/Edexcal_A_level_Physics_subject_guide_WEB.pdf
+    page: https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/physics-2015.html
+    role: "Pearson's own overview of the 9PH0 course; used only to confirm what the board itself treats as core."
+
+  - id: edexcel-al-physics-transition-guide
+    title: "Pearson Edexcel — transition guide: Physics (GCSE to A level)"
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/teaching-and-learning-materials/transition-guide-physics.pdf
+    page: https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/physics-2015.html
+    role: >-
+      Pearson's account of the assumed GCSE knowledge at the start of the
+      A-level; useful for the prerequisites a Section's Learn page can assume.
+
+  - id: edexcel-exam-materials-gate
+    title: "Pearson Edexcel A level Physics — Assessment and tracking progress (the exam-materials route)"
+    url: https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/physics-2015/teaching-support/assessment-and-tracking-progress.html
+    page: https://qualifications.pearson.com/en/support/support-topics/exams/past-papers.html
+    role: >-
+      The evidence for the escalation: the page describes examWizard as the tool
+      that "helps you search for past papers, mark schemes and examiner reports",
+      and "Examination feedback … after each exam series". Pearson's own copies
+      of the papers and mark schemes are therefore behind examWizard / Edexcel
+      Online, not on a public URL.
+
+  # ---- Pearson Edexcel: board PDFs read via the Physics & Maths Tutor mirror -
+  - id: edexcel-9ph0-p1-ms-2025-mirror
+    title: "Pearson Edexcel A level Physics 9PH0 Paper 01 Advanced Physics I, June 2025: mark scheme"
+    retrieved_via: "mirror: https://www.physicsandmathstutor.com/past-papers/a-level-physics/edexcel-paper-1/"
+    url: https://pmt.physicsandmathstutor.com/download/Physics/A-level/Past-Papers/Edexcel/Paper-1/MS/June%202025%20MS.pdf
+    page: https://www.physicsandmathstutor.com/past-papers/a-level-physics/edexcel-paper-1/
+    role: >-
+      The source for the Edexcel A-level mark-scheme conventions: unit-error
+      penalties (§2), significant figures including the g = 10 penalty (§3),
+      calculations and the `show that` reverse-working rule (§4), Quality of
+      Written Expression (§5, asterisked questions marked on indicative content
+      plus structure), and the asterisked question's indicative-content points
+      table with a separate 2-mark structure/linkage mark.
+
+  - id: edexcel-9ph0-p3-ms-2025-mirror
+    title: "Pearson Edexcel A level Physics 9PH0 Paper 03 General and Practical Principles in Physics, June 2025: mark scheme"
+    retrieved_via: "mirror: https://www.physicsandmathstutor.com/past-papers/a-level-physics/edexcel-paper-3/"
+    url: https://pmt.physicsandmathstutor.com/download/Physics/A-level/Past-Papers/Edexcel/Paper-3/MS/June%202025%20MS.pdf
+    page: https://www.physicsandmathstutor.com/past-papers/a-level-physics/edexcel-paper-3/
+    role: >-
+      The source for Edexcel's Graph section in the mark scheme (axes labelled
+      with quantity and unit, scale covering more than half the axis and not
+      awkward, points within 1 mm, thin continuous best-fit line), and for the
+      practical shapes: circuit suitability, and the four-mark
+      precision-versus-accuracy item.
+
+  - id: edexcel-9ph0-p1-ms-specimen-mirror
+    title: "Pearson Edexcel A level Physics 9PH0 Paper 01, specimen: mark scheme"
+    retrieved_via: "mirror: https://www.physicsandmathstutor.com/past-papers/a-level-physics/edexcel-paper-1/"
+    url: https://pmt.physicsandmathstutor.com/download/Physics/A-level/Past-Papers/Edexcel/Paper-1/MS/Specimen%20MS.pdf
+    page: https://www.physicsandmathstutor.com/past-papers/a-level-physics/edexcel-paper-1/
+    role: "The specimen mark scheme; confirms the conventions are not a one-year artefact."
+
+  - id: edexcel-9ph0-p1-qp-2025-mirror
+    title: "Pearson Edexcel A level Physics 9PH0 Paper 01, June 2025: question paper"
+    retrieved_via: "mirror: https://www.physicsandmathstutor.com/past-papers/a-level-physics/edexcel-paper-1/"
+    url: https://pmt.physicsandmathstutor.com/download/Physics/A-level/Past-Papers/Edexcel/Paper-1/QP/June%202025%20QP.pdf
+    page: https://www.physicsandmathstutor.com/past-papers/a-level-physics/edexcel-paper-1/
+    role: >-
+      The source for the candidate instruction on the asterisked question: marks
+      are awarded for the ability to organise the answer logically and to show
+      how the points are related or follow on from each other where appropriate.
+
+  - id: edexcel-1ph0-p1h-ms-2025-mirror
+    title: "Pearson Edexcel GCSE Physics 1PH0 Paper 1H, June 2025: mark scheme"
+    retrieved_via: "mirror: https://www.physicsandmathstutor.com/past-papers/gcse-physics/edexcel-paper-1/"
+    url: https://pmt.physicsandmathstutor.com/download/Physics/GCSE/Past-Papers/Edexcel/Paper-1H/June%202025%20MS%20-%20Paper%201%20(H)%20Edexcel%20Physics%20GCSE.pdf
+    page: https://www.physicsandmathstutor.com/past-papers/gcse-physics/edexcel-paper-1/
+    role: >-
+      The source for the GCSE command-word-to-marks table (the Describe/Explain
+      distinction by assessment objective), the asterisk and the 15% rule for
+      knowledge in isolation, the "award full marks for the correct answer
+      without working" instruction, the ecf allowances, the unit folded into the
+      evaluation mark, and the 6-mark level table with its "decision within
+      levels" additional guidance.
+
+  - id: edexcel-1ph0-p1h-qp-2025-mirror
+    title: "Pearson Edexcel GCSE Physics 1PH0 Paper 1H, June 2025: question paper"
+    retrieved_via: "mirror: https://www.physicsandmathstutor.com/past-papers/gcse-physics/edexcel-paper-1/"
+    url: https://pmt.physicsandmathstutor.com/download/Physics/GCSE/Past-Papers/Edexcel/Paper-1H/June%202025%20QP%20-%20Paper%201%20(H)%20Edexcel%20Physics%20GCSE.pdf
+    page: https://www.physicsandmathstutor.com/past-papers/gcse-physics/edexcel-paper-1/
+    role: "The candidate instruction on the asterisked question, for comparison with the A-level wording."
+
+  # ---- Textbooks and open resources ----------------------------------------
+  - id: openstax-physics
+    title: "OpenStax, Physics (high-school / Texas Education Agency adaptation)"
+    url: https://openstax.org/details/books/physics
+    page: https://openstax.org/details/books/physics
+    license: "CC BY-NC-SA in the book's own reuse statement (the CMS API reports CC BY 4.0); attributes Texas Education Agency; forbids LLM ingestion without written permission"
+    role: >-
+      The only full open physics textbook that could be opened. Read for
+      structure (Section Learning Objectives, Section Key Terms, Teacher
+      Support, Worked Example, Grasp Check / Check Your Understanding, Watch
+      Physics, Practice Problems, Conceptual Questions, Problems) and for voice
+      and derivation style. NOT a source of text: the reuse statement forbids
+      both commercial reuse and LLM ingestion. See the copyright section.
+
+  - id: openstax-cms-api
+    title: "OpenStax CMS API — book metadata (title, licence, PDF URL)"
+    url: https://openstax.org/apps/cms/api/v2/pages/?type=books.Book&fields=title,slug,license_name,license_version,license_url,book_state,high_resolution_pdf_url&limit=200
+    role: >-
+      The licence evidence for the three physics books: Physics is reported as
+      CC BY 4.0, College Physics 2e and University Physics Volume 1 as CC BY-NC-SA
+      4.0. Contradicts the Physics book's own footer, which states NC-SA; the
+      footer is the operative caution in the findings.
+
+  - id: openstax-physics-section
+    title: "OpenStax, Physics, §2.1 Relative Motion, Distance and Displacement"
+    url: https://openstax.org/books/physics/pages/2-1-relative-motion-distance-and-displacement
+    role: "The section whose structure and voice the findings describe; read, not copied."
+
+  - id: bbc-bitesize-gcse-physics-aqa
+    title: "BBC Bitesize — GCSE Physics (Single Science), AQA"
+    url: https://www.bbc.co.uk/bitesize/examspecs/zsc9rdm
+    page: https://www.bbc.co.uk/bitesize/subjects/zpm6fg8
+    role: >-
+      The source for the Bitesize structure: the AQA topic index, video
+      playlists per topic, the exam-style quiz by topic, exam-style questions,
+      quick-fire questions, "using past papers effectively", flashcards, and the
+      outbound links to Isaac Physics. Content is © BBC and is not reusable.
+
+  - id: pmt-past-papers-a-level
+    title: "Physics & Maths Tutor — A-level Physics past papers"
+    url: https://www.physicsandmathstutor.com/past-papers/a-level-physics/
+    role: >-
+      A third-party mirror of AQA, OCR and Edexcel past papers with mark schemes
+      and some model answers. It is the public route to the gated Edexcel
+      materials, and it is a route, not a licence: the copyright in the mirrored
+      PDFs remains the boards'.
+
+  - id: isaac-physics
+    title: "Isaac Physics / Isaac Science"
+    url: https://isaacphysics.org/
+    sitemap: https://isaacphysics.org/sitemap.xml
+    role: >-
+      Described only: a JavaScript single-page application that serves a 3.2 KB
+      shell without JavaScript. Its sitemap exposes /concepts/<slug>,
+      /books/… (physics_skills_19, phys_book_gcse, solve_physics_problems,
+      step_into_phys, step_up_phys, linking_concepts) and
+      /<subject>/<level>/question_decks. No claim is made about how it teaches.
+
+  - id: khan-academy-physics
+    title: "Khan Academy — Physics"
+    url: https://www.khanacademy.org/science/physics
+    role: "Described only: a plain fetch returns a JavaScript-disabled notice. Nothing about its content is asserted."
+
+  - id: ck12
+    title: "CK-12 — student home"
+    url: https://www.ck12.org/student/
+    sitemap: https://www.ck12.org/sitemap.xml
+    role: "Described only: a plain fetch returns a shell; the sitemap lists marketing and per-state school pages, not lessons."
+
+# What was downloaded for this pass. The PDFs and text are outside the build
+# tree (this pass used /tmp/pi-delegate/del-26/fetched).
+downloads:
+  - file: aqa_gcse_h_p1_2025_qp.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/c08bff2dd77ec7384f09d3a6db77a4bde9435176.pdf
+    text: true
+  - file: aqa_gcse_h_p1_2025_ms.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/964eb4c945ed6fdd78535806be65d1963b6396cf.pdf
+    text: true
+  - file: aqa_gcse_h_p1_2025_er.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/cd42c0df21fbd75ace17ba1882e968a91582e4a5.pdf
+    text: true
+  - file: aqa_gcse_h_p2_2025_qp.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/c7fea85a8a1fbd9c801e6f075bf3919a721d4d82.pdf
+    text: true
+  - file: aqa_gcse_h_p2_2025_ms.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/3079bd0b0bf255ac16e714fa5ce29db1a8ed5ee8.pdf
+    text: true
+  - file: aqa_gcse_h_p2_2025_er.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/2168c314f32da38190567e26d7139a99e94b28df.pdf
+    text: true
+  - file: aqa_gcse_h_p2_2024_qp.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/88dead88a2f67d2ef4e871edeec476e011774e40.pdf
+    text: true
+  - file: aqa_gcse_h_p2_2024_ms.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/2609e931025b6c3fbb82b127bc95de301de739b7.pdf
+    text: true
+  - file: aqa_gcse_sample_h_p1_ms.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/d9909eb3abb53ebed21eaf534f3f74195c4002a9.pdf
+    text: true
+  - file: aqa_gcse_sample_h_p2_ms.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/b0aff9b8aa97b2c74b1ddd1cecdeab08991975fe.pdf
+    text: true
+  - file: aqa_gcse_notes_our_exams_explained.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/8e496b826e157a0df530bd27751e7b769d9b506c.pdf
+    text: true
+  - file: aqa_gcse_notes_making_questions_clear.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/f6251dea255868ccb974faf9157192227850e2f5.pdf
+    text: true
+  - file: aqa_7408_spec.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/fa68d54c1a3b8ef17760536c7fb2e3911c29dc73.pdf
+    text: true
+  - file: aqa_al_p1_2024_ms.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/e19ec98fc07a77128b826a931e5276a6162f7dde.pdf
+    text: true
+  - file: aqa_al_p1_2024_er.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/d760433d65075f5e5b872fee94c3f3c4a9c10b0e.pdf
+    text: true
+  - file: aqa_al_p2_2024_ms.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/26a8e3c30e8e94cfabcf131427232fa8fedd3d40.pdf
+    text: true
+  - file: aqa_al_p3a_2024_ms.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/31c5a047948c1faa2de84387de2586ea0c0d410c.pdf
+    text: true
+  - file: aqa_al_p3a_2024_er.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/4cb3f5732061853a42ae528ec7d01865ce44c7b5.pdf
+    text: true
+  - file: aqa_al_p3b_astro_2024_qp.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/ba7fda2b546331987bacd084c8ff0233505f0e31.pdf
+    text: true
+  - file: aqa_al_p1_2025_er.pdf
+    url: https://cdn.sanity.io/files/p28bar15/green/472493df63d26241c5990b27814cff232b58dfb6.pdf
+    text: true
+  - file: ocr_j249_2025_p3_qp.pdf
+    url: https://www.ocr.org.uk/Images/753465-question-paper-paper-3.pdf
+    text: true
+  - file: ocr_j249_2025_p3_ms.pdf
+    url: https://www.ocr.org.uk/Images/753493-mark-scheme-paper-3.pdf
+    text: true
+  - file: ocr_j249_2025_p3_er.pdf
+    url: https://www.ocr.org.uk/Images/753197-examiners-report-paper-3.pdf
+    text: true
+  - file: ocr_j249_2025_p4_ms.pdf
+    url: https://www.ocr.org.uk/Images/753494-mark-scheme-paper-4.pdf
+    text: true
+  - file: ocr_j249_2024_p3_ms.pdf
+    url: https://www.ocr.org.uk/Images/727755-mark-scheme-paper-3.pdf
+    text: true
+  - file: ocr_j249_sam_p3.pdf
+    url: https://www.ocr.org.uk/Images/234629-unit-j249-03-physics-higher-tier-paper-3-sample-assessment-material.pdf
+    text: true
+  - file: ocr_j249_exploring_qp.pdf
+    url: https://www.ocr.org.uk/Images/462559-exploring-our-question-papers-gateway-science.pdf
+    text: true
+  - file: ocr_j249_exam_hints.pdf
+    url: https://www.ocr.org.uk/Images/594807-exam-hints-for-students-a4-.pdf
+    text: true
+  - file: ocr_gcse_equations_recall.docx
+    url: https://www.ocr.org.uk/Images/655783-equations-to-recall-and-apply.docx
+    text: false
+  - file: ocr_gcse_quantities_units.docx
+    url: https://www.ocr.org.uk/Images/655787-quantities-symbols-units-and-abbreviations.docx
+    text: false
+  - file: ocr_h556_2024_p1_ms.pdf
+    url: https://www.ocr.org.uk/Images/726829-mark-scheme-modelling-physics.pdf
+    text: true
+  - file: ocr_h556_2024_p3_ms.pdf
+    url: https://www.ocr.org.uk/Images/726831-mark-scheme-unified-physics.pdf
+    text: true
+  - file: ocr_h556_2024_p3_er.pdf
+    url: https://www.ocr.org.uk/Images/726280-examiners-report-unified-physics.pdf
+    text: true
+  - file: ocr_h556_2025_p1_ms.pdf
+    url: https://www.ocr.org.uk/Images/752503-mark-scheme-modelling-physics.pdf
+    text: true
+  - file: ocr_h556_sam_p1.pdf
+    url: https://www.ocr.org.uk/Images/171727-unit-h556-01-modelling-physics-sample-assessment-materials.pdf
+    text: true
+  - file: ocr_h556_assessment_story.pdf
+    url: https://www.ocr.org.uk/Images/assessment-story-exploring-our-question-papers-physicsa.pdf
+    text: true
+  - file: ocr_h556_exam_hints.pdf
+    url: https://www.ocr.org.uk/Images/598164-exam-hints-for-students.pdf
+    text: true
+  - file: edexcel_1ph0_spec.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/Specification/gcse-physics-spec.pdf
+    text: true
+  - file: edexcel_9ph0_spec.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/pearsonedexcel-alevel-physics-spec.pdf
+    text: true
+  - file: edexcel_gcse_eor_guidance.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/pearson-edexcel-gcse-sciences-extended-open-response-guidance.pdf
+    text: true
+  - file: edexcel_al_subject_guide.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/teaching-and-learning-materials/Edexcal_A_level_Physics_subject_guide_WEB.pdf
+    text: true
+  - file: edexcel_al_transition_guide.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/teaching-and-learning-materials/transition-guide-physics.pdf
+    text: true
+  - file: edexcel_al_p1_2025_ms.pdf
+    url: https://pmt.physicsandmathstutor.com/download/Physics/A-level/Past-Papers/Edexcel/Paper-1/MS/June%202025%20MS.pdf
+    text: true
+    retrieved_via: mirror
+  - file: edexcel_al_p3_2025_ms.pdf
+    url: https://pmt.physicsandmathstutor.com/download/Physics/A-level/Past-Papers/Edexcel/Paper-3/MS/June%202025%20MS.pdf
+    text: true
+    retrieved_via: mirror
+  - file: edexcel_al_p1_spec_ms.pdf
+    url: https://pmt.physicsandmathstutor.com/download/Physics/A-level/Past-Papers/Edexcel/Paper-1/MS/Specimen%20MS.pdf
+    text: true
+    retrieved_via: mirror
+  - file: edexcel_al_p1_2025_qp.pdf
+    url: https://pmt.physicsandmathstutor.com/download/Physics/A-level/Past-Papers/Edexcel/Paper-1/QP/June%202025%20QP.pdf
+    text: true
+    retrieved_via: mirror
+  - file: edexcel_gcse_p1h_2025_ms.pdf
+    url: https://pmt.physicsandmathstutor.com/download/Physics/GCSE/Past-Papers/Edexcel/Paper-1H/June%202025%20MS%20-%20Paper%201%20(H)%20Edexcel%20Physics%20GCSE.pdf
+    text: true
+    retrieved_via: mirror
+  - file: edexcel_gcse_p1h_2025_qp.pdf
+    url: https://pmt.physicsandmathstutor.com/download/Physics/GCSE/Past-Papers/Edexcel/Paper-1H/June%202025%20QP%20-%20Paper%201%20(H)%20Edexcel%20Physics%20GCSE.pdf
+    text: true
+    retrieved_via: mirror
