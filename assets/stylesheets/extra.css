@@ -39,6 +39,31 @@
   --md-code-bg-color: var(--tb-code-bg);
 }
 
+/* Two of those have to be restated one notch more specifically, and this is the
+ * trap that made it necessary.
+ *
+ * Material's palette.css carries per-scheme-and-primary rules such as
+ * `[data-md-color-scheme=slate][data-md-color-primary=indigo]` — specificity
+ * (0,2,0), which beats the bare `[data-md-color-scheme]` above. Left alone,
+ * `--md-typeset-a-color` stayed Material's indigo (#5488e8) in dark mode for
+ * every bundle, so the bundle's link colour was ignored exactly where it
+ * matters: #5488e8 is 4.26:1 on gruvbox's dark page and 4.41:1 on Synthwave's,
+ * both under the AA minimum, and it also colours the active nav item. The
+ * assertion that catches it is the page audit in test/theme-preview.cjs.
+ *
+ * extra.css is loaded after palette.css, so tying Material at (0,2,0) is
+ * enough — no `!important` and no invented element names.
+ *
+ * The second is `--md-primary-bg-color`, which Material leaves white. White is
+ * 2.54:1 on a light accent, and the dark scheme's subject tint is exactly that:
+ * the header's own title, unreadable. `accent_ink` is the token for text drawn
+ * on the accent — the same defect item 17 fixed for the booklet bar. */
+[data-md-color-scheme][data-md-color-primary] {
+  --md-typeset-a-color: var(--tb-link);
+  --md-primary-bg-color: var(--tb-accent-ink);
+  --md-primary-bg-color--light: color-mix(in srgb, var(--tb-accent-ink) 72%, transparent);
+}
+
 /* The closed search overlay is transparent but still in the tab order: the
  * scroll wrapper inside it has `tabindex="0"`, so Tab lands in an invisible box
  * and the next Tab closes the overlay under the reader. `visibility: hidden`

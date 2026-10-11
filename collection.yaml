@@ -32,12 +32,20 @@ base_url: https://open-textbook.org/
 # shared across every book and the landing page, and switching subject never
 # switches theme.
 default_theme: editorial
-# Menu order. Any bundle not listed follows, alphabetically.
+# Menu order. Any bundle not listed follows, alphabetically. The first four are
+# the calm groups (quiet paper, restrained colour, built for long reading); the
+# last four are the vivid groups (high chroma, chosen when colour is wanted).
 themes:
+  # calm
   - editorial
-  - omarchy
-  - gruvbox
   - clean
+  - catppuccin
+  - gruvbox
+  # vivid
+  - arc-blueberry
+  - tokyo-night
+  - synthwave
+  - kanagawa
 # Set to false to withdraw the theme menu from the landing page while keeping the
 # reader's choice working. Useful once a default has been settled on.
 theme_selector: true

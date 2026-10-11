@@ -21,6 +21,23 @@ title: Editorial
 description: >-
   Warm paper, near-black ink, a serif display face. The calm default: built for
   long reading rather than for looking at.
+
+mood: calm
+family: Editorial
+provenance:
+  light:
+    name: Paper
+    source: house
+    observed: false
+    note: >-
+      Authored in this repository. There is no upstream palette; both variations
+      are tuned here and checked by the contrast invariant.
+  dark:
+    name: Ink
+    source: house
+    observed: false
+    note: >-
+      Authored in this repository, as the dark half of the same pair.
 typography:
   body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
   display: 'Georgia, "Iowan Old Style", "Times New Roman", serif'

@@ -1,0 +1,68 @@
+# Synthwave '84: eighties neon on a purple-black page. A **vivid** group.
+#
+# The dark variation is **Synthwave '84** as its own repository publishes it,
+# read from `themes/synthwave-color-theme.json`. It is a VS Code theme first and
+# the Omarchy gallery is one of the places it has been ported to.
+#
+# The light variation is **derived** here from the same hue set, because the
+# theme publishes no light member — a neon palette is dark by nature, and this is
+# the honest way to give it a group. It is labelled `observed: false`.
+
+id: synthwave
+title: Synthwave '84
+description: >-
+  Eighties neon: magenta, cyan and warm pink on a purple-black page, or the same
+  colours held down to a pale one. High colour and high contrast.
+
+mood: vivid
+family: Synthwave '84
+provenance:
+  light:
+    name: Dawn
+    source: https://github.com/robb0wen/synthwave-vscode
+    observed: false
+    note: >-
+      The theme publishes a dark variation only. This light member is derived
+      here from the same hue set, and is not an upstream palette.
+  dark:
+    name: Synthwave '84
+    source: https://github.com/robb0wen/synthwave-vscode
+    observed: true
+
+typography:
+  body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  display: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  mono: '"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+light:
+  paper: "#fdf6fb"
+  ink: "#241b2f"
+  ink_soft: "#5b4f6b"
+  ink_lighter: "#8a7d9c"
+  rule: "#eadcf0"
+  accent: "#b81f8c"
+  accent_light: "#d94fb0"
+  accent_dark: "#8e1468"
+  accent_ink: "#ffffff"
+  link: "#b3305c"
+  code_bg: "#f6ecf6"
+  fig_warn: "#c22a34"
+  # Darkened from the theme's #72f1b8, which is 1.13:1 on the light panel.
+  fig_good: "#137557"
+  fig_grid: "#8d7f94"
+dark:
+  paper: "#262335"
+  ink: "#f4f1ff"
+  ink_soft: "#b6b1b1"
+  ink_lighter: "#8b8bbd"
+  rule: "#3b2f57"
+  # The theme's magenta, unmodified: 6.74:1 on the page.
+  accent: "#ff7edb"
+  accent_light: "#ffa8e6"
+  accent_dark: "#d94fb0"
+  accent_ink: "#262335"
+  link: "#f97e72"
+  code_bg: "#1e1b2a"
+  # Lightened from the theme's #fe4450, which is 3.59:1 on the figure panel.
+  fig_warn: "#fe6f78"
+  fig_good: "#72f1b8"
+  fig_grid: "#7f7b96"
