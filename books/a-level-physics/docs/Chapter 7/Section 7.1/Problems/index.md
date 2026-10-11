@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.1 Internal energy and specific heat capacity — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: AP7
+Work through these on your own. Change every mass to kilograms before you
+substitute, and write the unit of every answer. In the questions that ask for a
+reason, write your answer in full sentences.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-07-practice-7.1
+
+:::answers chapter-07-practice-7.1

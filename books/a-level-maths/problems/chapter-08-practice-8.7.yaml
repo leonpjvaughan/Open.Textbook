@@ -1,0 +1,177 @@
+# Practice set for 8.7, separable first-order differential equations.
+#
+# A differential equation's solution is not unique up to the arbitrary constant,
+# so each answer is verified by substitution into the equation (checkodesol) and,
+# where one is given, by the initial condition. The independent variable must be
+# declared in `symbols` so the equation and the answer use the same symbol.
+chapter: 8
+symbols:
+  x: {real: true}
+  t: {real: true}
+  y: {real: true}
+  v: {real: true}
+  P: {real: true}
+  m: {real: true}
+  A: {real: true}
+problems:
+  - id: y1-separable-xy
+    section: "8.7"
+    dfe: [H7]
+    statement: 'Solve $\dfrac{dy}{dx} = xy$, giving the general solution.'
+    answer_label: 'The general solution'
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = x*y(x)"
+      answer: "A*exp(x**2/2)"
+    answer_text: 'Separate: $\displaystyle\int \dfrac{1}{y}\,dy = \int x\,dx$, so $\ln|y| = \dfrac{x^2}{2} + C$ and $y = Ae^{x^2/2}$.'
+
+  - id: y2-separable-3xy
+    section: "8.7"
+    dfe: [H7]
+    statement: 'Solve $\dfrac{dy}{dx} = 3xy$, giving the general solution.'
+    answer_label: 'The general solution'
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = 3*x*y(x)"
+      answer: "A*exp(3*x**2/2)"
+    answer_text: 'Separate: $\ln|y| = \dfrac{3x^2}{2} + C$, so $y = Ae^{3x^2/2}$.'
+
+  - id: y3-separable-x-over-y
+    section: "8.7"
+    dfe: [H7]
+    statement: 'Solve $\dfrac{dy}{dx} = \dfrac{x}{y}$, giving the general solution.'
+    answer_label: 'The general solution'
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = x/y(x)"
+      answer: "sqrt(x**2 + A)"
+    answer_text: 'Separate: $y\,dy = x\,dx$, so $\dfrac{y^2}{2} = \dfrac{x^2}{2} + C$ and $y^2 = x^2 + A$. Hence $y = \pm\sqrt{x^2 + A}$.'
+
+  - id: y4-separable-exponential
+    section: "8.7"
+    dfe: [H7]
+    statement: 'Solve $\dfrac{dy}{dx} = e^{x-y}$, giving the general solution.'
+    answer_label: 'The general solution'
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = exp(x - y(x))"
+      answer: "ln(exp(x) + A)"
+    answer_text: 'Write $e^{x-y} = e^xe^{-y}$, then $e^y\,dy = e^x\,dx$. Integrating gives $e^y = e^x + A$, so $y = \ln(e^x + A)$.'
+
+  - id: y5-particular-double-x
+    section: "8.7"
+    dfe: [H7]
+    statement: 'Find the particular solution of $\dfrac{dy}{dx} = 2xy$ for which $y = 3$ when $x = 0$.'
+    answer_label: 'The particular solution'
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = 2*x*y(x)"
+      answer: "3*exp(x**2)"
+      initial: [[0, "3"]]
+    answer_text: 'The general solution is $y = Ae^{x^2}$. Substituting $x = 0$, $y = 3$ gives $A = 3$, so $y = 3e^{x^2}$.'
+
+  - id: y6-particular-square-root
+    section: "8.7"
+    dfe: [H7]
+    statement: 'Find the particular solution of $\dfrac{dy}{dx} = \dfrac{x}{y}$ for which $y = 2$ when $x = 0$.'
+    answer_label: 'The particular solution'
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = x/y(x)"
+      answer: "sqrt(x**2 + 4)"
+      initial: [[0, "2"]]
+    answer_text: 'Separating and integrating gives $y^2 = x^2 + A$. Substituting $x = 0$, $y = 2$ gives $A = 4$. The initial value is positive, so $y = \sqrt{x^2 + 4}$.'
+
+  - id: y7-factorising
+    section: "8.7"
+    dfe: [H7]
+    statement: 'Solve $\dfrac{dy}{dx} = xy - x$, giving the general solution.'
+    answer_label: 'The general solution'
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = x*y(x) - x"
+      answer: "1 + A*exp(x**2/2)"
+    answer_text: 'Factorise: $\dfrac{dy}{dx} = x(y - 1)$. Then $\ln|y - 1| = \dfrac{x^2}{2} + C$, so $y = 1 + Ae^{x^2/2}$.'
+
+  - id: y8-y-over-x
+    section: "8.7"
+    dfe: [H7]
+    statement: 'Solve $\dfrac{dy}{dx} = \dfrac{y}{x}$ for $x > 0$, giving the general solution.'
+    answer_label: 'The general solution'
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = y(x)/x"
+      answer: "A*x"
+    answer_text: 'Separate: $\displaystyle\int \dfrac{1}{y}\,dy = \int \dfrac{1}{x}\,dx$, so $\ln|y| = \ln x + C$ and $y = Ax$.'
+
+  - id: y9-kinematics
+    section: "8.7"
+    dfe: [H7]
+    statement: 'A body moves so that $\dfrac{dv}{dt} = 2 - v$ and $v = 0$ when $t = 0$. Find $v$ in terms of $t$.'
+    answer_label: 'The velocity'
+    check:
+      kind: ode
+      dependent: v
+      independent: t
+      equation: "Derivative(v(t), t) = 2 - v(t)"
+      answer: "2 - 2*exp(-t)"
+      initial: [[0, "0"]]
+    answer_text: 'Separate to $-\ln|2 - v| = t + C$, so $2 - v = Ae^{-t}$. The condition $v(0) = 0$ gives $A = 2$, so $v = 2 - 2e^{-t}$. The velocity approaches the terminal value $2$.'
+
+  - id: y10-population
+    section: "8.7"
+    dfe: [H7]
+    statement: 'A population $P$ grows so that $\dfrac{dP}{dt} = 0.05P$ and $P = 200$ when $t = 0$. Find $P$ in terms of $t$.'
+    answer_label: 'The population'
+    check:
+      kind: ode
+      dependent: P
+      independent: t
+      equation: "Derivative(P(t), t) = 0.05*P(t)"
+      answer: "200*exp(0.05*t)"
+      initial: [[0, "200"]]
+    answer_text: 'Separate and integrate: $\ln P = 0.05t + C$, so $P = Ae^{0.05t}$. The condition $P(0) = 200$ gives $A = 200$, so $P = 200e^{0.05t}$.'
+
+  - id: y11-decay
+    section: "8.7"
+    dfe: [H7]
+    statement: 'A mass $m$ decays so that $\dfrac{dm}{dt} = -0.05m$ and $m = 200$ when $t = 0$. Find $m$ in terms of $t$.'
+    answer_label: 'The mass'
+    check:
+      kind: ode
+      dependent: m
+      independent: t
+      equation: "Derivative(m(t), t) = -0.05*m(t)"
+      answer: "200*exp(-0.05*t)"
+      initial: [[0, "200"]]
+    answer_text: 'Separate and integrate: $\ln m = -0.05t + C$, so $m = Ae^{-0.05t}$. The condition $m(0) = 200$ gives $A = 200$, so $m = 200e^{-0.05t}$.'
+
+  - id: y12-factor-particular
+    section: "8.7"
+    dfe: [H7]
+    statement: 'Find the particular solution of $\dfrac{dy}{dx} = xy - x$ for which $y = 3$ when $x = 0$.'
+    answer_label: 'The particular solution'
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = x*y(x) - x"
+      answer: "1 + 2*exp(x**2/2)"
+      initial: [[0, "3"]]
+    answer_text: 'Factorise to $\dfrac{dy}{dx} = x(y - 1)$. The general solution is $y = 1 + Ae^{x^2/2}$. Substituting $x = 0$, $y = 3$ gives $A = 2$, so $y = 1 + 2e^{x^2/2}$.'

@@ -10,9 +10,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.1 The Fundamental Theorem of Calculus and standard integrals — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: H1, H2
+Work through these on your own. For each indefinite integral, add the constant
+of integration, then check by differentiating your answer.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-08-practice-8.1
+
+:::answers chapter-08-practice-8.1

@@ -10,9 +10,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.3 Particle model and pressure — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: PM3
+Work through these on your own. Keep the units with your numbers. Some questions
+ask for an explanation rather than a number, so use the particle model in your
+answer.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
+:::problems chapter-08-practice-8.3
+
+:::answers chapter-08-practice-8.3

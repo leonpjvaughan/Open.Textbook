@@ -2203,3 +2203,47 @@ narrowed pattern is the better fix.
       page that writes "the problem bank" still is.
 - [ ] `tests/test_content_hygiene.py::test_no_internal_words_reach_the_reader`
       passes on the current a-level-maths content.
+
+## 43. A-level Mathematics Chapter 6 is missing, and the plan thinks it is built
+
+**What is wrong.** The commit `a25b5e8` adds the whole of a-level-maths
+**Chapter 7** (Differentiation) — 32 pages, 11 banks, 4 figures — but its summary
+reads `**A-level Mathematics Chapter 6** — 32 pages.` A plan read from that
+summary concludes "1–6 done, 7 next", so it schedules Chapter 7 (already built)
+and Chapter 8 (in progress), and **Chapter 6 has no delegate at all**. Measured
+on `a25b5e8`:
+
+```console
+$ for c in 6 7; do n=$(grep -rl 'scaffold:stub' "books/a-level-maths/docs/Chapter $c" | wc -l); \
+    tot=$(find "books/a-level-maths/docs/Chapter $c" -name index.md | wc -l); \
+    printf "Chapter %s stubs=%s pages=%s\n" "$c" "$n" "$tot"; done
+Chapter 6 stubs=20 pages=20
+Chapter 7 stubs=0 pages=32
+$ ls books/a-level-maths/problems/ | grep chapter-06 | wc -l
+0
+```
+
+It is a dependency, not only a numbering slip: `docs/Chapter 7/Section 7.3/Walkthrough/index.md:15`
+names "the graphs of $e^x$ and $\ln x$ from Chapter 6" as a prerequisite, and
+Chapter 8 (Integration) needs $\int \tfrac{1}{x}\,dx$. Chapter 7 already points
+forward at content that does not exist. The a-level-maths glossary strand pages
+(`docs/Glossary/{pure,mechanics,statistics}.md`) are also all still stubs, so
+none of the new terms is defined.
+
+**Fix.** Author Chapter 6 (Exponentials and logarithms, 6.1–6.6, DfE F1–F7, OT3)
+to the Chapters 1–5 and 7 standard — opener, Learn / Practise with help / Practise
+per section, Review, one bank per practice set, figures where they earn their keep
+— and define its terms on `docs/Glossary/pure.md` (which is still a stub). Correct
+the chapter number in the commit-summary/plan so a future batch does not schedule
+Chapter 7 again.
+
+**Done means.**
+
+- [ ] `grep -rl 'scaffold:stub' "books/a-level-maths/docs/Chapter 6"` prints
+      nothing, and `ls books/a-level-maths/problems/ | grep -c chapter-06` is at
+      least 7.
+- [ ] `uv run python -m textbook.verify books/a-level-maths/problems/` passes.
+- [ ] `uv run python -m textbook.lint a-level-maths` exits 0 with no
+      `voice:internal` and no `structure:*` finding in Chapter 6.
+- [ ] `docs/Glossary/pure.md` defines the terms Section 6.3 and Section 7.3
+      share, alphabetically, and the Chapter 6 pages link to them.

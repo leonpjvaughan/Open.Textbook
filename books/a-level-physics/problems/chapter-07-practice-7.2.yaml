@@ -1,0 +1,180 @@
+# Practice set for 7.2 (Ideal gases and molecular kinetic theory).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]`, so a check may use either.
+#
+# A value that is exact and carries a unit is checked by `dimensions`, which
+# keeps the unit arithmetic exact. A value that needs a square root is checked by
+# `approx` against a stated tolerance. A gradient read from a straight-line graph
+# is a measurement, so the `gradient` kind checks a declared interval. A reason
+# is a `structured` record: presence, order and coverage only, never physics.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 7
+problems:
+  - id: p1-kelvin
+    section: '7.2'
+    dfe: [AP7]
+    statement: 'Write these temperatures in kelvin: (a) -23 C; (b) 27 C.'
+    answer_label: 'The temperatures in kelvin'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "-23 + 273", answer: "250"}
+        - {kind: evaluate, expression: "27 + 273", answer: "300"}
+    answer_text: '(a) $T = -23 + 273 = 250\,\text{K}$. (b) $T = 27 + 273 = 300\,\text{K}$.'
+
+  - id: p2-boyle
+    section: '7.2'
+    dfe: [AP7]
+    statement: 'A gas at a pressure of 1.2e5 Pa occupies 3.0e-3 m3. It is compressed at constant temperature to 1.5e-3 m3. Find the new pressure.'
+    answer_label: 'The new pressure'
+    check:
+      kind: dimensions
+      expression: "p1 * V1 / V2"
+      values:
+        p1: {value: "1.2e5", unit: "Pa"}
+        V1: {value: "3.0e-3", unit: "m^3"}
+        V2: {value: "1.5e-3", unit: "m^3"}
+      answer: {value: "2.4e5", unit: "Pa"}
+    answer_text: '$p_2 = \dfrac{p_1V_1}{V_2} = \dfrac{1.2 \times 10^{5} \times 3.0 \times 10^{-3}}{1.5 \times 10^{-3}} = 2.4 \times 10^{5}\,\text{Pa}$.'
+
+  - id: p3-charles
+    section: '7.2'
+    dfe: [AP7]
+    statement: 'A fixed mass of gas occupies 250 cm3 at 290 K. It is heated at constant pressure to 348 K. Find its new volume.'
+    answer_label: 'The new volume'
+    check:
+      kind: dimensions
+      expression: "V1 * T2 / T1"
+      values:
+        V1: {value: "250", unit: "cm^3"}
+        T2: {value: "348", unit: "K"}
+        T1: {value: "290", unit: "K"}
+      answer: {value: "300", unit: "cm^3"}
+    answer_text: '$V_2 = \dfrac{V_1T_2}{T_1} = \dfrac{250 \times 348}{290} = 300\,\text{cm}^{3}$.'
+
+  - id: p4-pressure-law
+    section: '7.2'
+    dfe: [AP7]
+    statement: 'A sealed rigid container holds gas at 1.0e5 Pa and 300 K. The gas is heated to 360 K. Find the new pressure.'
+    answer_label: 'The new pressure'
+    check:
+      kind: dimensions
+      expression: "p1 * T2 / T1"
+      values:
+        p1: {value: "1.0e5", unit: "Pa"}
+        T2: {value: "360", unit: "K"}
+        T1: {value: "300", unit: "K"}
+      answer: {value: "1.2e5", unit: "Pa"}
+    answer_text: 'At constant volume $\dfrac{p_1}{T_1} = \dfrac{p_2}{T_2}$, so $p_2 = \dfrac{1.0 \times 10^{5} \times 360}{300} = 1.2 \times 10^{5}\,\text{Pa}$.'
+
+  - id: p5-moles
+    section: '7.2'
+    dfe: [AP7]
+    statement: 'Find the number of moles in 0.050 m3 of gas at 1.0e5 Pa and 290 K. R = 8.31 J/K/mol.'
+    answer_label: 'The number of moles'
+    check: {kind: approx, value: "1.0e5 * 0.050 / (8.31 * 290)", target: "2.07", tolerance: "0.01"}
+    answer_text: '$n = \dfrac{pV}{RT} = \dfrac{1.0 \times 10^{5} \times 0.050}{8.31 \times 290} = 2.07\,\text{mol}$.'
+
+  - id: p6-molecules
+    section: '7.2'
+    dfe: [AP7]
+    statement: 'Find the number of molecules in the gas in the previous question. Use n = 2.07 mol and N_A = 6.02e23 /mol.'
+    answer_label: 'The number of molecules'
+    check: {kind: approx, value: "2.07 * 6.02e23", target: "1.25e24", tolerance: "0.02e24"}
+    answer_text: '$N = nN_A = 2.07 \times 6.02 \times 10^{23} = 1.25 \times 10^{24}$.'
+
+  - id: p7-average-ke
+    section: '7.2'
+    dfe: [AP7]
+    statement: 'Find the average random kinetic energy of a molecule of a gas at 27 C. k = 1.38e-23 J/K.'
+    answer_label: 'The average kinetic energy'
+    check: {kind: approx, value: "1.5 * 1.38e-23 * 300", target: "6.21e-21", tolerance: "0.05e-21"}
+    answer_text: 'The temperature is $27 + 273 = 300\,\text{K}$. Then $\tfrac{3}{2}kT = 1.5 \times 1.38 \times 10^{-23} \times 300 = 6.21 \times 10^{-21}\,\text{J}$.'
+
+  - id: p8-rms-oxygen
+    section: '7.2'
+    dfe: [AP7]
+    statement: 'Find the rms speed of oxygen molecules at 300 K. The molar mass of oxygen is 0.032 kg/mol and R = 8.31 J/K/mol.'
+    answer_label: 'The rms speed'
+    check: {kind: approx, value: "sqrt(3 * 8.31 * 300 / 0.032)", target: "483", tolerance: "2"}
+    answer_text: '$c_{\text{rms}} = \sqrt{\dfrac{3RT}{M}} = \sqrt{\dfrac{3 \times 8.31 \times 300}{0.032}} = 483\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: p9-kinetic-theory
+    section: '7.2'
+    dfe: [AP7]
+    statement: 'A gas in a container of volume 1.5e-3 m3 has 8.0e22 molecules, each of mass 3.2e-26 kg. The rms speed is 600 m/s. Use pV = (1/3)Nm(c_rms)^2 to find the pressure.'
+    answer_label: 'The pressure'
+    check:
+      kind: dimensions
+      expression: "N * m * c**2 / (3 * V)"
+      values:
+        N: {value: "8.0e22", unit: ""}
+        m: {value: "3.2e-26", unit: "kg"}
+        c: {value: "600", unit: "m s^-1"}
+        V: {value: "1.5e-3", unit: "m^3"}
+      answer: {value: "2.048e5", unit: "Pa"}
+    answer_text: '$p = \dfrac{Nm(c_{\text{rms}})^2}{3V} = \dfrac{8.0 \times 10^{22} \times 3.2 \times 10^{-26} \times 600^{2}}{3 \times 1.5 \times 10^{-3}} = 2.0 \times 10^{5}\,\text{Pa}$.'
+
+  - id: p10-graph-gradient
+    section: '7.2'
+    dfe: [AP7]
+    statement: 'A student measures the pressure p of a fixed mass of gas for several values of 1/V at constant temperature. The points are (1/V in 1e3 m-3, p in 1e5 Pa): (1.0, 1.02), (2.0, 1.96), (3.0, 3.05), (4.0, 3.98). Find the gradient of the graph and say what the gradient represents.'
+    answer_label: 'The gradient and its meaning'
+    check:
+      kind: gradient
+      series: [[1.0, 1.02], [2.0, 1.96], [3.0, 3.05], [4.0, 3.98]]
+      between: ["0.95", "1.05"]
+    answer_text: 'The gradient is about 1.0. The graph is a straight line through the origin, so p is proportional to 1/V, which is Boyle''s law. The gradient is the constant pV.'
+
+  - id: p11-boyle-reason
+    section: '7.2'
+    dfe: [AP7]
+    statement: 'A weather balloon rises, where the temperature is constant but the pressure is lower. Explain, in terms of the molecules, why the balloon expands.'
+    answer_label: 'A model answer'
+    check:
+      kind: structured
+      requires: [fewer-collisions-outside, net-outward-force, expands, boyle]
+      concepts: [pressure, kinetic-theory]
+      points:
+        - id: fewer-collisions-outside
+          text: 'Outside the balloon there are fewer molecules per unit volume, so they hit the outside surface less often.'
+          concepts: [pressure]
+        - id: net-outward-force
+          text: 'The molecules inside still hit the inside surface at the same rate, so the force per unit area inside is larger than outside.'
+          concepts: [kinetic-theory]
+        - id: expands
+          text: 'The greater pressure inside pushes the surface outwards, so the balloon expands.'
+          concepts: [pressure]
+        - id: boyle
+          text: 'At constant temperature this is Boyle''s law: as the pressure outside falls, the volume increases so that pV stays constant.'
+          concepts: [pressure]
+    answer_text: 'At lower pressure there are fewer collisions on the outside surface. The collisions inside are unchanged, so the pressure inside is greater and pushes the balloon outwards. At constant temperature, pV is constant, so V increases as p falls.'
+
+  - id: p12-pressure-reason
+    section: '7.2'
+    dfe: [AP7]
+    statement: 'Explain, in terms of the molecules, why heating a gas at constant volume increases its pressure.'
+    answer_label: 'A model answer'
+    check:
+      kind: structured
+      requires: [faster-molecules, harder-collisions, more-collisions, pressure-rises]
+      concepts: [pressure, kinetic-theory, temperature]
+      points:
+        - id: faster-molecules
+          text: 'Heating raises the average random kinetic energy, so the molecules move faster.'
+          concepts: [temperature]
+        - id: harder-collisions
+          text: 'Each molecule hits the wall with more momentum, so the change in momentum is larger and the force from each collision is larger.'
+          concepts: [kinetic-theory]
+        - id: more-collisions
+          text: 'The faster molecules also hit the walls more often.'
+          concepts: [kinetic-theory]
+        - id: pressure-rises
+          text: 'More forceful and more frequent collisions give a larger force per unit area, so the pressure rises.'
+          concepts: [pressure]
+    answer_text: 'Heating makes the molecules move faster. Each collision with the wall changes momentum by more, and the collisions are more frequent, so the force on each unit of area increases. The pressure rises.'

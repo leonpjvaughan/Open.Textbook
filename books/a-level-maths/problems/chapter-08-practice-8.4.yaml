@@ -1,0 +1,154 @@
+# Practice set for 8.4, integration as the limit of a sum.
+#
+# The sum and limit steps are checked by the CAS operations that produce them.
+# The integrals that the sums approach are evaluated exactly, so the final value
+# is proved even where the summation route is written out in answer_text.
+chapter: 8
+symbols:
+  x: {real: true}
+  a: {positive: true}
+  n: {positive: true, integer: true}
+  r: {positive: true, integer: true}
+problems:
+  - id: v1-sum-i
+    section: "8.4"
+    dfe: [H4]
+    statement: 'Write down the value of $\displaystyle\sum_{i=1}^{n} i$ in terms of $n$.'
+    answer_label: 'The sum'
+    check:
+      kind: apply
+      expression: "r"
+      apply: {op: sum, args: [r, "1", n]}
+      answer: "n*(n+1)/2"
+    answer_text: '$\displaystyle\sum_{i=1}^{n} i = \dfrac{n(n+1)}{2}$. This is the standard sum used for the height $x_i$ when the function is $y = x$.'
+
+  - id: v2-sum-i2
+    section: "8.4"
+    dfe: [H4]
+    statement: 'Write down the value of $\displaystyle\sum_{i=1}^{n} i^2$ in terms of $n$.'
+    answer_label: 'The sum'
+    check:
+      kind: apply
+      expression: "r**2"
+      apply: {op: sum, args: [r, "1", n]}
+      answer: "n*(n+1)*(2*n+1)/6"
+    answer_text: '$\displaystyle\sum_{i=1}^{n} i^2 = \dfrac{n(n+1)(2n+1)}{6}$. This is the standard sum used for the height $x_i$ when the function is $y = x^2$.'
+
+  - id: v3-limit-half
+    section: "8.4"
+    dfe: [H4]
+    statement: 'Find $\displaystyle\lim_{n \to \infty} \frac{n+1}{2n}$.'
+    answer_label: 'The limit'
+    check:
+      kind: apply
+      expression: "(n+1)/(2*n)"
+      apply: {op: limit, args: [n, "oo"]}
+      answer: "1/2"
+    answer_text: 'Divide top and bottom by $n$: $\dfrac{1 + 1/n}{2} \to \dfrac{1}{2}$ as $n \to \infty$. This is the limit that gives $\displaystyle\int_0^1 x\,dx = \dfrac{1}{2}$.'
+
+  - id: v4-limit-thirds
+    section: "8.4"
+    dfe: [H4]
+    statement: 'Find $\displaystyle\lim_{n \to \infty} \frac{4(n+1)(2n+1)}{3n^2}$.'
+    answer_label: 'The limit'
+    check:
+      kind: apply
+      expression: "4*(n+1)*(2*n+1)/(3*n**2)"
+      apply: {op: limit, args: [n, "oo"]}
+      answer: "8/3"
+    answer_text: 'The top expands to $8n^2 + 12n + 4$. Dividing by $n^2$ and letting $n \to \infty$ leaves $\dfrac{8}{3}$. This is the limit that gives $\displaystyle\int_0^2 x^2\,dx = \dfrac{8}{3}$.'
+
+  - id: v5-integral-x
+    section: "8.4"
+    dfe: [H4]
+    statement: 'Use a limit of a sum to evaluate $\displaystyle\int_0^1 x\,dx$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: "x"
+      apply: {op: integrate, args: [x, "0", "1"]}
+      answer: "1/2"
+    answer_text: 'With $n$ strips, $S_n = \dfrac{n(n+1)}{2n^2} = \dfrac{n+1}{2n}$, which tends to $\dfrac{1}{2}$. So the integral is $\dfrac{1}{2}$.'
+
+  - id: v6-integral-x2
+    section: "8.4"
+    dfe: [H4]
+    statement: 'Use a limit of a sum to evaluate $\displaystyle\int_0^2 x^2\,dx$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: "x**2"
+      apply: {op: integrate, args: [x, "0", "2"]}
+      answer: "8/3"
+    answer_text: 'With $n$ strips, $S_n = \dfrac{4(n+1)(2n+1)}{3n^2}$, which tends to $\dfrac{8}{3}$. So the integral is $\dfrac{8}{3}$.'
+
+  - id: v7-integral-linear
+    section: "8.4"
+    dfe: [H4]
+    statement: 'Use a limit of a sum to evaluate $\displaystyle\int_0^3 (x + 1)\,dx$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: "x + 1"
+      apply: {op: integrate, args: [x, "0", "3"]}
+      answer: "15/2"
+    answer_text: 'With $n$ strips, $S_n = \dfrac{9(n+1)}{2n} + 3$, which tends to $\dfrac{9}{2} + 3 = \dfrac{15}{2}$. So the integral is $\dfrac{15}{2}$.'
+
+  - id: v8-integral-quadratic-plus-one
+    section: "8.4"
+    dfe: [H4]
+    statement: 'Use a limit of a sum to evaluate $\displaystyle\int_0^2 (x^2 + 1)\,dx$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: "x**2 + 1"
+      apply: {op: integrate, args: [x, "0", "2"]}
+      answer: "14/3"
+    answer_text: 'The $x^2$ part tends to $\dfrac{8}{3}$ and the constant part contributes $2$, so the integral is $\dfrac{8}{3} + 2 = \dfrac{14}{3}$.'
+
+  - id: v9-integral-symbolic
+    section: "8.4"
+    dfe: [H4]
+    statement: 'Use a limit of a sum to show that $\displaystyle\int_0^a x^2\,dx = \frac{a^3}{3}$ for $a > 0$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: "x**2"
+      apply: {op: integrate, args: [x, "0", "a"]}
+      answer: "a**3/3"
+    answer_text: 'With $n$ strips, $S_n = \dfrac{a^3(n+1)(2n+1)}{6n^2}$, which tends to $\dfrac{a^3 \times 2}{6} = \dfrac{a^3}{3}$. So the integral is $\dfrac{a^3}{3}$.'
+
+  - id: v10-integral-offset
+    section: "8.4"
+    dfe: [H4]
+    statement: 'Evaluate $\displaystyle\int_1^2 x\,dx$ by any method.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: "x"
+      apply: {op: integrate, args: [x, "1", "2"]}
+      answer: "3/2"
+    answer_text: 'Using the Fundamental Theorem of Calculus, $\displaystyle\int_1^2 x\,dx = \left[\dfrac{x^2}{2}\right]_1^2 = 2 - \dfrac{1}{2} = \dfrac{3}{2}$. A limit of a sum gives the same value with $x_i = 1 + \dfrac{i}{n}$.'
+
+  - id: v11-sum-of-constant
+    section: "8.4"
+    dfe: [H4]
+    statement: 'Write down the value of $\displaystyle\sum_{i=1}^{n} 1$.'
+    answer_label: 'The sum'
+    check:
+      kind: evaluate
+      expression: "n"
+      answer: "n"
+    answer_text: '$\displaystyle\sum_{i=1}^{n} 1 = n$, because the number $1$ is added $n$ times. This is the constant part of a strip sum.'
+
+  - id: v12-limit-of-sum-with-cube
+    section: "8.4"
+    dfe: [H4]
+    statement: 'Evaluate $\displaystyle\int_0^1 x^3\,dx$ using a limit of a sum, given that $\displaystyle\sum_{i=1}^{n} i^3 = \frac{n^2(n+1)^2}{4}$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "r**3", apply: {op: sum, args: [r, "1", n]}, answer: "n**2*(n+1)**2/4"}
+        - {kind: apply, expression: "x**3", apply: {op: integrate, args: [x, "0", "1"]}, answer: "1/4"}
+    answer_text: 'With $n$ strips, $S_n = \dfrac{1}{n^4}\sum i^3 = \dfrac{n^2(n+1)^2}{4n^4} = \dfrac{(n+1)^2}{4n^2}$, which tends to $\dfrac{1}{4}$. So $\displaystyle\int_0^1 x^3\,dx = \dfrac{1}{4}$.'

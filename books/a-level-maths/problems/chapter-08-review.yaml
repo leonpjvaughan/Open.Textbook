@@ -1,0 +1,185 @@
+# Review bank for Chapter 8. The items mix this chapter with Chapters 1 to 7, so
+# the reader chooses a method before calculating. Each check proves the algebra;
+# the method choice and the reason for it are human review.
+chapter: 8
+symbols:
+  x: {real: true}
+  t: {real: true}
+  y: {real: true}
+  T: {real: true}
+  n: {positive: true, integer: true}
+  k: {real: true}
+problems:
+  - id: q1-standard-integral
+    section: "8.1"
+    dfe: [H2]
+    statement: 'Find $\displaystyle\int \left(6x^2 - 4x + 1\right)dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "6*x**2 - 4*x + 1"
+      apply: {op: integrate, args: [x]}
+      answer: "2*x**3 - 2*x**2 + x"
+      variable: x
+    answer_text: 'Integrate term by term: $6 \times \dfrac{x^3}{3} - 4 \times \dfrac{x^2}{2} + x + C = 2x^3 - 2x^2 + x + C$.'
+
+  - id: q2-definite-polynomial
+    section: "8.2"
+    dfe: [H3]
+    statement: 'Evaluate $\displaystyle\int_0^1 \left(3x^2 + 2x\right)dx$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: "3*x**2 + 2*x"
+      apply: {op: integrate, args: [x, "0", "1"]}
+      answer: "2"
+    answer_text: '$\Big[x^3 + x^2\Big]_0^1 = (1 + 1) - 0 = 2$.'
+
+  - id: q3-definite-logarithm
+    section: "8.2"
+    dfe: [H3]
+    statement: 'Evaluate $\displaystyle\int_1^{e} \frac{1}{x}\,dx$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: "1/x"
+      apply: {op: integrate, args: [x, "1", "E"]}
+      answer: "1"
+    answer_text: '$\Big[\ln x\Big]_1^{e} = \ln e - \ln 1 = 1 - 0 = 1$.'
+
+  - id: q4-area-under-curve
+    section: "8.2"
+    dfe: [H3]
+    statement: 'Find the area under the curve $y = 9 - x^2$ between $x = 0$ and $x = 3$.'
+    answer_label: 'The area'
+    check:
+      kind: apply
+      expression: "9 - x**2"
+      apply: {op: integrate, args: [x, "0", "3"]}
+      answer: "18"
+    answer_text: 'The curve is above the axis, so the area is $\displaystyle\int_0^3 (9 - x^2)\,dx = \left[9x - \dfrac{x^3}{3}\right]_0^3 = 27 - 9 = 18$ square units.'
+
+  - id: q5-area-between-curves
+    section: "8.3"
+    dfe: [H3]
+    statement: 'Find the area enclosed between the curve $y = x^2$ and the line $y = 2x + 3$.'
+    answer_label: 'The area'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: "x**2 = 2*x + 3", variable: x, answer: ["-1", "3"]}
+        - {kind: apply, expression: "2*x + 3 - x**2", apply: {op: integrate, args: [x, "-1", "3"]}, answer: "32/3"}
+    answer_text: 'Set $x^2 = 2x + 3$: $x^2 - 2x - 3 = 0$, so $(x - 3)(x + 1) = 0$ and $x = -1$ or $x = 3$. The line is above the curve, so the area is $\displaystyle\int_{-1}^{3}(2x + 3 - x^2)\,dx = \dfrac{32}{3}$ square units.'
+
+  - id: q6-limit-of-sum
+    section: "8.4"
+    dfe: [H4]
+    statement: 'Find $\displaystyle\lim_{n \to \infty} \frac{3n + 1}{n}$.'
+    answer_label: 'The limit'
+    check:
+      kind: apply
+      expression: "(3*n + 1)/n"
+      apply: {op: limit, args: [n, "oo"]}
+      answer: "3"
+    answer_text: 'Divide top and bottom by $n$: $\dfrac{3 + 1/n}{1} \to 3$ as $n \to \infty$.'
+
+  - id: q7-substitution
+    section: "8.5"
+    dfe: [H5]
+    statement: 'Find $\displaystyle\int xe^{x^2}\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "x*exp(x**2)"
+      apply: {op: integrate, args: [x]}
+      answer: "exp(x**2)/2"
+      variable: x
+    answer_text: 'Let $u = x^2$, so $du = 2x\,dx$. Then $\dfrac{1}{2}\displaystyle\int e^u\,du = \dfrac{1}{2}e^{x^2} + C$. A substitution, because the derivative of the inside appears.'
+
+  - id: q8-parts
+    section: "8.5"
+    dfe: [H5]
+    statement: 'Find $\displaystyle\int x\cos 2x\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "x*cos(2*x)"
+      apply: {op: integrate, args: [x]}
+      answer: "x*sin(2*x)/2 + cos(2*x)/4"
+      variable: x
+    answer_text: 'By parts with $u = x$ and $v = \dfrac{1}{2}\sin 2x$: $\dfrac{x}{2}\sin 2x - \displaystyle\int \dfrac{1}{2}\sin 2x\,dx = \dfrac{x}{2}\sin 2x + \dfrac{1}{4}\cos 2x + C$. Integration by parts, because the integrand is a product.'
+
+  - id: q9-partial-fractions
+    section: "8.6"
+    dfe: [H6]
+    statement: 'Find $\displaystyle\int \frac{1}{(x + 2)(x - 1)}\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "1/((x + 2)*(x - 1))"
+      apply: {op: integrate, args: [x]}
+      answer: "-ln(x + 2)/3 + ln(x - 1)/3"
+      variable: x
+    answer_text: 'The split is $-\dfrac{1}{3(x + 2)} + \dfrac{1}{3(x - 1)}$, so the integral is $-\dfrac{1}{3}\ln|x + 2| + \dfrac{1}{3}\ln|x - 1| + C$. Partial fractions, because the denominator is a product of linear factors.'
+
+  - id: q10-separable
+    section: "8.7"
+    dfe: [H7]
+    statement: 'Solve $\dfrac{dy}{dx} = 2y$ for which $y = 5$ when $x = 0$.'
+    answer_label: 'The particular solution'
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = 2*y(x)"
+      answer: "5*exp(2*x)"
+      initial: [[0, "5"]]
+    answer_text: 'Separate to $\ln|y| = 2x + C$, so $y = Ae^{2x}$. The condition $y(0) = 5$ gives $A = 5$, so $y = 5e^{2x}$. A separable differential equation.'
+
+  - id: q11-context
+    section: "8.8"
+    dfe: [H8]
+    statement: 'A cooling model gives $T = 25 + 55e^{-0.2t}$. Find the initial temperature and the limiting temperature.'
+    answer_label: 'The initial and limiting temperatures'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "25 + 55*exp(-0.2*t)", apply: {op: subs, args: [t, "0"]}, answer: "80"}
+        - {kind: apply, expression: "25 + 55*exp(-0.2*t)", apply: {op: limit, args: [t, "oo"]}, answer: "25"}
+    answer_text: 'At $t = 0$, $T = 25 + 55 = 80$°C. As $t \to \infty$ the exponential term tends to $0$, so the limiting temperature is $25$°C, the surrounding temperature.'
+
+  - id: q12-differentiate
+    section: "7.7"
+    dfe: [G4]
+    statement: 'Differentiate $y = x^2\ln x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: "x**2*ln(x)"
+      apply: {op: diff, args: [x]}
+      answer: "2*x*ln(x) + x"
+    answer_text: 'A product, so use the product rule: $2x\ln x + x^2 \times \dfrac{1}{x} = 2x\ln x + x$. This comes from Chapter 7.'
+
+  - id: q13-exponential-equation
+    section: "6.4"
+    dfe: [F5]
+    statement: 'Solve $3^x = 20$, giving an exact answer for $x$.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: "3**x = 20"
+      variable: "x"
+      answer: ["ln(20)/ln(3)"]
+    answer_text: 'Take logarithms of both sides: $x\ln 3 = \ln 20$, so $x = \dfrac{\ln 20}{\ln 3} \approx 2.73$. This uses the logarithms from Chapter 6.'
+
+  - id: q14-definite-trigonometric
+    section: "8.2"
+    dfe: [H3]
+    statement: 'Evaluate $\displaystyle\int_0^{\pi/2} \sin 2x\,dx$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: "sin(2*x)"
+      apply: {op: integrate, args: [x, "0", "pi/2"]}
+      answer: "1"
+    answer_text: '$\displaystyle\int_0^{\pi/2} \sin 2x\,dx = \left[-\dfrac{1}{2}\cos 2x\right]_0^{\pi/2} = \dfrac{1}{2} - \left(-\dfrac{1}{2}\right) = 1$.'

@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.7 Separable first-order differential equations — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: H7
+Work through these on your own. Separate the variables, integrate both sides, and
+add one constant. For a particular solution, substitute the initial condition.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-08-practice-8.7
+
+:::answers chapter-08-practice-8.7

@@ -1,0 +1,216 @@
+# Mixed practice for the Chapter 7 Review.
+#
+# The first ten records resolve the chapter problem of the pressure cooker. The
+# rest interleave the chapter with Chapters 1 and 3: an uncertainty propagation,
+# a rounding, a molecule's kinetic energy, a momentum change and a method-choice
+# prompt. Every numeric record is checked by the `units` or `sympy` oracle, and a
+# `structured` record stands where a computer cannot go: it proves that a model
+# answer contains the declared ideas in order, and nothing more.
+#
+# The chapter numbers: 1.50 kg of water is heated from 20 C to 121 C with
+# E = mc(theta) = 6.36e5 J; 0.050 kg of water boils with E = mL = 1.13e5 J, so
+# the total is 7.49e5 J; the boiling stage runs at 157 W; the steam in the space
+# is 0.122 mol, or 7.36e22 molecules; the average molecular kinetic energy is
+# 8.16e-21 J and the rms speed is 739 m/s.
+chapter: 7
+problems:
+  - id: r1-anchor-heat-water
+    section: Review
+    dfe: [AP7]
+    statement: 'The pressure cooker holds 1.50 kg of water at 20 C and the water boils at 121 C. Find the energy needed to heat the water to boiling. c = 4200 J/kg/K.'
+    answer_label: 'The energy to heat the water'
+    check:
+      kind: dimensions
+      expression: "m * c * dtheta"
+      values:
+        m: {value: "1.50", unit: "kg"}
+        c: {value: "4200", unit: "J kg^-1 K^-1"}
+        dtheta: {value: "101", unit: "K"}
+      answer: {value: "636300", unit: "J"}
+    answer_text: '$E = mc\Delta\theta = 1.50 \times 4200 \times 101 = 6.36 \times 10^{5}\,\text{J}$.'
+
+  - id: r2-anchor-boil
+    section: Review
+    dfe: [AP7]
+    statement: 'Find the energy needed to turn 0.050 kg of boiling water into steam. L = 2.26e6 J/kg.'
+    answer_label: 'The energy to boil the water'
+    check:
+      kind: dimensions
+      expression: "m * L"
+      values:
+        m: {value: "0.050", unit: "kg"}
+        L: {value: "2.26e6", unit: "J kg^-1"}
+      answer: {value: "113000", unit: "J"}
+    answer_text: '$E = mL = 0.050 \times 2.26 \times 10^{6} = 1.13 \times 10^{5}\,\text{J}$.'
+
+  - id: r3-anchor-total
+    section: Review
+    dfe: [AP7]
+    statement: 'Find the total energy supplied to heat the water and to turn 0.050 kg of it into steam.'
+    answer_label: 'The total energy'
+    check:
+      kind: dimensions
+      expression: "m1 * c * dtheta + m2 * L"
+      values:
+        m1: {value: "1.50", unit: "kg"}
+        c: {value: "4200", unit: "J kg^-1 K^-1"}
+        dtheta: {value: "101", unit: "K"}
+        m2: {value: "0.050", unit: "kg"}
+        L: {value: "2.26e6", unit: "J kg^-1"}
+      answer: {value: "749300", unit: "J"}
+    answer_text: '$E = 6.36 \times 10^{5} + 1.13 \times 10^{5} = 7.49 \times 10^{5}\,\text{J}$.'
+
+  - id: r4-anchor-rate
+    section: Review
+    dfe: [AP7]
+    statement: 'The cooker boils for 12 minutes, and 0.050 kg of water turns to steam in that time. Find the average rate at which energy is used for boiling.'
+    answer_label: 'The average rate'
+    check: {kind: approx, value: "113000 / 720", target: "157", tolerance: "2"}
+    answer_text: 'The time is $12 \times 60 = 720\,\text{s}$. The rate is $\dfrac{1.13 \times 10^{5}}{720} = 157\,\text{W}$.'
+
+  - id: r5-anchor-moles
+    section: Review
+    dfe: [AP7]
+    statement: 'The steam above the water is at 2.00e5 Pa and 121 C, in a volume of 2.00e-3 m3. Treat it as an ideal gas and find the number of moles. R = 8.31 J/K/mol.'
+    answer_label: 'The number of moles of steam'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          consistency: "p * V = n * R * T"
+          units: {p: Pa, V: "m^3", n: mol, R: "J K^-1 mol^-1", T: K}
+        - {kind: approx, value: "2.00e5 * 2.00e-3 / (8.31 * 394)", target: "0.1222", tolerance: "0.0005"}
+    answer_text: '$n = \dfrac{pV}{RT} = \dfrac{2.00 \times 10^{5} \times 2.00 \times 10^{-3}}{8.31 \times 394} = 0.122\,\text{mol}$.'
+
+  - id: r6-anchor-molecules
+    section: Review
+    dfe: [AP7]
+    statement: 'Find the number of molecules in the steam. Use n = 0.1222 mol and N_A = 6.02e23 /mol.'
+    answer_label: 'The number of molecules'
+    check: {kind: approx, value: "0.1222 * 6.02e23", target: "7.36e22", tolerance: "0.05e22"}
+    answer_text: '$N = nN_A = 0.1222 \times 6.02 \times 10^{23} = 7.36 \times 10^{22}$.'
+
+  - id: r7-anchor-average-ke
+    section: Review
+    dfe: [AP7]
+    statement: 'Find the average random kinetic energy of a steam molecule at 121 C. k = 1.38e-23 J/K.'
+    answer_label: 'The average molecular kinetic energy'
+    check: {kind: approx, value: "1.5 * 1.38e-23 * 394", target: "8.16e-21", tolerance: "0.05e-21"}
+    answer_text: '$\tfrac{3}{2}kT = 1.5 \times 1.38 \times 10^{-23} \times 394 = 8.16 \times 10^{-21}\,\text{J}$.'
+
+  - id: r8-anchor-rms
+    section: Review
+    dfe: [AP7]
+    statement: 'Find the rms speed of a steam molecule at 121 C. The molar mass of water is 0.018 kg/mol and R = 8.31 J/K/mol.'
+    answer_label: 'The rms speed'
+    check: {kind: approx, value: "sqrt(3 * 8.31 * 394 / 0.018)", target: "739", tolerance: "2"}
+    answer_text: '$c_{\text{rms}} = \sqrt{\dfrac{3RT}{M}} = \sqrt{\dfrac{3 \times 8.31 \times 394}{0.018}} = 739\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: r9-anchor-pressure-reason
+    section: Review
+    dfe: [AP7]
+    statement: 'Explain, in terms of the steam molecules, why the steam exerts a pressure on the inside of the cooker.'
+    answer_label: 'A model answer'
+    check:
+      kind: structured
+      requires: [random-motion, collide-walls, momentum-change, force, steady-pressure]
+      concepts: [pressure, kinetic-theory, momentum]
+      points:
+        - id: random-motion
+          text: 'The steam molecules move quickly and at random.'
+          concepts: [kinetic-theory]
+        - id: collide-walls
+          text: 'They collide with the inside surface of the cooker.'
+          concepts: [kinetic-theory]
+        - id: momentum-change
+          text: 'Each molecule rebounds, so its momentum changes.'
+          concepts: [momentum]
+        - id: force
+          text: 'The change in momentum means the surface feels a force.'
+          concepts: [momentum]
+        - id: steady-pressure
+          text: 'Very many collisions each second give a steady force on each unit of area, which is the pressure.'
+          concepts: [pressure]
+    answer_text: 'The molecules move at random and strike the surface. Each collision changes a molecule''s momentum, so the surface feels a force. Very many collisions each second give a steady force per unit area, which is the pressure.'
+
+  - id: r10-anchor-prediction
+    section: Review
+    dfe: [AP7]
+    statement: 'At the start, the lid is clamped shut and the water is heated. Explain why the pressure rises and why the water can reach 121 C before it boils.'
+    answer_label: 'A model answer'
+    check:
+      kind: structured
+      requires: [temperature-rises, pressure-rises, boiling-point-rises]
+      concepts: [ideal-gas, pressure]
+      points:
+        - id: temperature-rises
+          text: 'The temperature of the water and the steam rises as energy is supplied.'
+          concepts: [ideal-gas]
+        - id: pressure-rises
+          text: 'The volume is fixed and the temperature rises, so pV = NkT means the pressure rises.'
+          concepts: [ideal-gas]
+        - id: boiling-point-rises
+          text: 'Water boils when its saturated vapour pressure equals the pressure above it, so a higher pressure means a higher boiling temperature.'
+          concepts: [pressure]
+    answer_text: 'At constant volume, a higher temperature means a higher pressure. Water boils when its vapour pressure matches the pressure above it, so a higher pressure raises the boiling temperature to 121 C.'
+
+  - id: r11-interleave-uncertainty
+    section: Review
+    dfe: [AP7]
+    statement: 'A 2.0 kg metal block is heated through 25.0 K. The mass has a percentage uncertainty of 0.5% and the temperature change 0.8%. The specific heat capacity is taken as exact. Find the energy supplied and its absolute uncertainty.'
+    answer_label: 'The energy and its uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: "2.0", percentage: "0.5", power: 1}
+        - {value: "4200", percentage: "0", power: 1}
+        - {value: "25.0", percentage: "0.8", power: 1}
+      result: "210000"
+      uncertainty: "2730"
+    answer_text: 'The energy is $E = mc\Delta\theta = 2.0 \times 4200 \times 25.0 = 2.1 \times 10^{5}\,\text{J}$. The percentage uncertainties add: $0.5\% + 0.8\% = 1.3\%$. The absolute uncertainty is $210000 \times \dfrac{1.3}{100} = 2700\,\text{J}$.'
+
+  - id: r12-interleave-sigfigs
+    section: Review
+    dfe: [AP7]
+    statement: 'An experiment gives an energy of 210000 J. Write this value to two significant figures.'
+    answer_label: 'The energy to two significant figures'
+    check: {kind: sigfigs, value: "210000", figures: 2, answer: "2.1e5", convention: round-once}
+    answer_text: '$210000\,\text{J} = 2.1 \times 10^{5}\,\text{J}$ to two significant figures.'
+
+  - id: r13-interleave-kinetic-energy
+    section: Review
+    dfe: [AP7]
+    statement: 'A molecule of mass 4.8e-26 kg moves at 500 m/s. Find its kinetic energy.'
+    answer_label: 'The kinetic energy'
+    check: {kind: evaluate, expression: "0.5 * 4.8e-26 * 500**2", answer: "6.0e-21"}
+    answer_text: '$E_k = \tfrac{1}{2}mv^{2} = \tfrac{1}{2} \times 4.8 \times 10^{-26} \times 500^{2} = 6.0 \times 10^{-21}\,\text{J}$.'
+
+  - id: r14-interleave-momentum
+    section: Review
+    dfe: [AP7]
+    statement: 'A molecule of mass 4.8e-26 kg hits a wall at 500 m/s and rebounds at 500 m/s. Find the change in its momentum.'
+    answer_label: 'The change in momentum'
+    check: {kind: evaluate, expression: "2 * 4.8e-26 * 500", answer: "4.8e-23"}
+    answer_text: 'The velocity reverses, so the change in momentum is $2mv = 2 \times 4.8 \times 10^{-26} \times 500 = 4.8 \times 10^{-23}\,\text{kg}\,\text{m}\,\text{s}^{-1}$.'
+
+  - id: r15-interleave-method-choice
+    section: Review
+    dfe: [AP7]
+    statement: 'Choose the equation to use for each situation, and give a reason. (a) Heating water in a kettle with no boiling. (b) Melting ice at 0 C. (c) Finding the number of moles of steam in a sealed space.'
+    answer_label: 'A model answer'
+    check:
+      kind: structured
+      requires: [kettle-uses-mc, ice-uses-ml, steam-uses-pv]
+      concepts: [specific-heat-capacity, specific-latent-heat, ideal-gas]
+      points:
+        - id: kettle-uses-mc
+          text: 'For heating the water, use E = mc(theta). The temperature changes but the water does not change state.'
+          concepts: [specific-heat-capacity]
+        - id: ice-uses-ml
+          text: 'For melting the ice, use E = mL. The state changes at a constant temperature, so the energy goes into breaking bonds.'
+          concepts: [specific-latent-heat]
+        - id: steam-uses-pv
+          text: 'For the steam, use pV = nRT. It is an ideal gas, and the equation links the pressure, volume, temperature and number of moles.'
+          concepts: [ideal-gas]
+    answer_text: '(a) E = mc(theta), because the temperature changes. (b) E = mL, because the state changes at constant temperature. (c) pV = nRT, because the steam is an ideal gas.'

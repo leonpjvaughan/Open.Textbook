@@ -1,0 +1,266 @@
+# Mixed practice for the Chapter 9 Review.
+#
+# The review interleaves Chapter 9 with earlier chapters: energy transfers from
+# Chapter 1, waves from Chapter 4, and electrical power from Chapter 6. Each
+# calculation is checked twice where a quantity is reported: the exact magnitude
+# and dimension by `dimensions`, and the one rounding by `sigfigs`. The
+# `structured` records stand where a computer cannot go: they prove that a model
+# answer contains the declared ideas, in order, and nothing more.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# proves arithmetic and dimensions, not physics.
+chapter: 9
+problems:
+  - id: r1-chapter-atom
+    section: Review
+    tier: F
+    dfe: [AT1]
+    statement: 'In the chapter problem the tracer isotope has 43 protons and 56 neutrons. State its atomic number, its mass number and the number of electrons in a neutral atom.'
+    answer_label: 'Atomic number, mass number and electrons'
+    check: {kind: evaluate, expression: '43 + 56', answer: '99'}
+    answer_text: 'Atomic number $Z = 43$. Mass number $A = 43 + 56 = 99$. A neutral atom has 43 electrons.'
+
+  - id: r2-half-life-12h
+    section: Review
+    tier: F
+    dfe: [AT2]
+    statement: 'The tracer has a half-life of 6.0 hours and a starting count rate of 800 counts per second. Say which method you will use, then calculate the count rate after 12 hours.'
+    answer_label: 'Count rate after 12 hours'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '12 / 6', answer: '2'}
+        - {kind: evaluate, expression: '800 / 2**2', answer: '200'}
+    answer_text: 'Count the half-lives: $\dfrac{12}{6.0} = 2$. Halve the count rate twice: $\dfrac{800}{2^2} = 200$ counts per second.'
+
+  - id: r3-half-life-24h
+    section: Review
+    tier: F
+    dfe: [AT2]
+    statement: 'The tracer is now 24 hours old. Its half-life is 6.0 hours and its starting count rate was 800 counts per second. Calculate the count rate now.'
+    answer_label: 'Count rate after 24 hours'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '24 / 6', answer: '4'}
+        - {kind: evaluate, expression: '800 / 2**4', answer: '50'}
+    answer_text: '$\dfrac{24}{6.0} = 4$ half-lives. $\dfrac{800}{2^4} = 50$ counts per second.'
+
+  - id: r4-net-decline
+    section: Review
+    tier: H
+    dfe: [AT2]
+    statement: 'After four half-lives, calculate the net decline in the emission from the tracer as a ratio.'
+    answer_label: 'Net decline after four half-lives'
+    check: {kind: evaluate, expression: '1 - (1/2)**4', answer: '15/16'}
+    answer_text: 'The fraction remaining is $\left(\dfrac{1}{2}\right)^4 = \dfrac{1}{16}$. The net decline is $1 - \dfrac{1}{16} = \dfrac{15}{16}$, a ratio of $15:16$ of the original emission.'
+
+  - id: r5-background
+    section: Review
+    tier: F
+    dfe: [AT3]
+    statement: 'A detector near the stored tracer reads 70 counts per second. The background count rate is 20 counts per second. Calculate the count rate from the tracer alone, and compare it with the value predicted after four half-lives.'
+    answer_label: 'Corrected count rate'
+    check: {kind: evaluate, expression: '70 - 20', answer: '50'}
+    answer_text: 'Correct the reading by subtracting the background: $70 - 20 = 50$ counts per second. This matches the predicted value of 50 counts per second after four half-lives.'
+
+  - id: r6-tracer-choice
+    section: Review
+    tier: F
+    dfe: [AT3]
+    statement: 'Explain why a tracer for exploring an internal organ should emit gamma radiation and have a half-life of a few hours.'
+    answer_label: 'Why the tracer is a gamma emitter with a short half-life'
+    check:
+      kind: structured
+      requires: [gamma-penetrates, detected, short-half-life]
+      concepts: [tracer, gamma, half-life]
+      points:
+        - id: gamma-penetrates
+          text: 'Gamma radiation passes through the body instead of being stopped by it.'
+          concepts: [gamma]
+        - id: detected
+          text: 'A detector outside the body can measure the gamma radiation, so the organ can be imaged. An alpha or beta emitter would be stopped before the radiation reached the detector.'
+          concepts: [tracer]
+        - id: short-half-life
+          text: 'A half-life of a few hours means the activity falls to a low level soon after the scan, so the patient receives a small dose.'
+          concepts: [half-life]
+
+  - id: r7-radiation-properties
+    section: Review
+    tier: F
+    dfe: [AT2]
+    statement: 'Compare alpha, beta and gamma radiation in terms of their ionising power and their range in air.'
+    answer_label: 'Ionising power and range'
+    check:
+      kind: structured
+      requires: [ionising-order, range-order]
+      concepts: [alpha, beta, gamma, ionising]
+      points:
+        - id: ionising-order
+          text: 'Alpha is the most strongly ionising, beta is less ionising, and gamma is the least ionising.'
+          concepts: [alpha, beta, gamma, ionising]
+        - id: range-order
+          text: 'Alpha has the shortest range in air, a few centimetres. Beta travels about a metre, and gamma has a very long range.'
+          concepts: [alpha, beta, gamma]
+
+  - id: r8-alpha-equation
+    section: Review
+    tier: F
+    dfe: [AT2]
+    statement: 'A nucleus of radon-222, $^{222}_{86}\text{Rn}$, emits an alpha particle. Write the balanced nuclear equation.'
+    answer_label: 'The balanced alpha decay equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '222 - 4', answer: '218'}
+        - {kind: evaluate, expression: '86 - 2', answer: '84'}
+    answer_text: 'An alpha particle is $^{4}_{2}\alpha$. The mass number falls by 4 and the atomic number falls by 2, giving $^{222}_{86}\text{Rn} \rightarrow {}^{218}_{84}\text{Po} + {}^{4}_{2}\alpha$.'
+
+  - id: r9-fission
+    section: Review
+    tier: F
+    dfe: [AT4]
+    statement: 'Describe how nuclear fission in a reactor releases energy, and how a chain reaction is controlled.'
+    answer_label: 'Fission and the controlled chain reaction'
+    check:
+      kind: structured
+      requires: [fission-process, chain-reaction, control]
+      concepts: [fission, chain-reaction, nuclear-reactor]
+      points:
+        - id: fission-process
+          text: 'A large unstable nucleus absorbs a neutron and splits into two smaller nuclei, releasing two or three neutrons and gamma rays. Energy is released.'
+          concepts: [fission]
+        - id: chain-reaction
+          text: 'The released neutrons can cause more fissions, so the reaction can spread through the fuel.'
+          concepts: [chain-reaction]
+        - id: control
+          text: 'In a reactor the reaction is controlled so that on average one neutron from each fission causes the next one, releasing energy at a steady rate.'
+          concepts: [nuclear-reactor]
+
+  - id: r10-fusion
+    section: Review
+    tier: F
+    dfe: [AT4]
+    statement: 'Describe nuclear fusion and explain where it happens naturally.'
+    answer_label: 'Fusion and where it happens'
+    check:
+      kind: structured
+      requires: [fusion-process, mass-to-energy, star]
+      concepts: [fusion, star]
+      points:
+        - id: fusion-process
+          text: 'Fusion joins two light nuclei to form a heavier nucleus.'
+          concepts: [fusion]
+        - id: mass-to-energy
+          text: 'Some of the mass is converted into the energy of radiation.'
+          concepts: [fusion]
+        - id: star
+          text: 'Fusion happens naturally in the core of a star such as the Sun.'
+          concepts: [star]
+
+  - id: r11-thermal-interleave
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'A 2.0 kg block of iron is heated from 20 °C to 50 °C. The specific heat capacity of iron is 450 J/kg°C. Say which equation you will use, then calculate the energy transferred to the block.'
+    answer_label: 'Energy transferred to the iron block'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 'm * c * dtheta'
+          values:
+            m: {value: '2.0', unit: 'kg'}
+            c: {value: '450', unit: 'J kg^-1 K^-1'}
+            dtheta: {value: '30', unit: 'K'}
+          answer: {value: '27000', unit: 'J'}
+        - {kind: sigfigs, value: '27000', figures: 2, answer: '2.7e4', convention: round-once}
+    answer_text: 'Use $\Delta E = mc\Delta\theta = 2.0 \times 450 \times 30 = 27000\,\text{J}$, so $2.7 \times 10^4\,\text{J}$ to 2 significant figures.'
+
+  - id: r12-kinetic-interleave
+    section: Review
+    tier: F
+    dfe: [EN1]
+    statement: 'A car of mass 1200 kg travels at 8.0 m/s. Calculate the energy in its kinetic store.'
+    answer_label: 'Energy in the kinetic store'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: '0.5 * m * v**2'
+          values:
+            m: {value: '1200', unit: 'kg'}
+            v: {value: '8.0', unit: 'm/s'}
+          answer: {value: '38400', unit: 'J'}
+        - {kind: sigfigs, value: '38400', figures: 2, answer: '3.8e4', convention: round-once}
+    answer_text: '$E_k = \tfrac{1}{2}mv^2 = 0.5 \times 1200 \times 8.0^2 = 38400\,\text{J}$, so $3.8 \times 10^4\,\text{J}$ to 2 significant figures.'
+
+  - id: r13-wave-interleave
+    section: Review
+    tier: F
+    dfe: [WA1]
+    statement: 'A wave has a frequency of 50 Hz and a wavelength of 0.40 m. Calculate its speed.'
+    answer_label: 'Speed of the wave'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 'f * lam'
+          values:
+            f: {value: '50', unit: 'Hz'}
+            lam: {value: '0.40', unit: 'm'}
+          answer: {value: '20', unit: 'm/s'}
+        - {kind: sigfigs, value: '20', figures: 2, answer: '2.0e1', convention: round-once}
+    answer_text: '$v = f\lambda = 50 \times 0.40 = 20\,\text{m/s}$.'
+
+  - id: r14-power-interleave
+    section: Review
+    tier: F
+    dfe: [EL4]
+    statement: 'A lamp is connected to a 230 V supply and takes a current of 0.20 A. Calculate the power of the lamp.'
+    answer_label: 'Power of the lamp'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 'V * I'
+          values:
+            V: {value: '230', unit: 'V'}
+            I: {value: '0.20', unit: 'A'}
+          answer: {value: '46', unit: 'W'}
+        - {kind: sigfigs, value: '46', figures: 2, answer: '46', convention: round-once}
+    answer_text: '$P = VI = 230 \times 0.20 = 46\,\text{W}$.'
+
+  - id: r15-efficiency-interleave
+    section: Review
+    tier: F
+    dfe: [EN2]
+    statement: 'A motor is supplied with 500 J of energy and transfers 350 J usefully. Calculate its efficiency as a decimal.'
+    answer_label: 'Efficiency of the motor'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '350 / 500', answer: '0.7'}
+        - {kind: sigfigs, value: '0.7', figures: 2, answer: '0.70', convention: round-once}
+    answer_text: '$\text{efficiency} = \dfrac{350}{500} = 0.70$.'
+
+  - id: r16-method-choice
+    section: Review
+    tier: F
+    dfe: [AT2, AT3]
+    statement: 'A hospital needs a tracer. Say which type of radiation the tracer should emit and what its half-life should be, and explain each choice.'
+    answer_label: 'Choosing a tracer, and why'
+    check:
+      kind: structured
+      requires: [radiation-type, half-life-choice, reasons]
+      concepts: [tracer, gamma, half-life]
+      points:
+        - id: radiation-type
+          text: 'The tracer should emit gamma radiation.'
+          concepts: [tracer, gamma]
+        - id: half-life-choice
+          text: 'It should have a half-life of a few hours.'
+          concepts: [half-life]
+        - id: reasons
+          text: 'Gamma radiation passes out through the body, so a detector outside can measure it. A half-life of a few hours is long enough for the scan but short enough that the patient receives only a small dose.'
+          concepts: [tracer, gamma, half-life]

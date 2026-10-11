@@ -1,0 +1,164 @@
+# Practice set for 8.1, the Fundamental Theorem of Calculus and standard
+# integrals.
+#
+# Every indefinite integral is verified by differentiating the stated answer:
+# the constant of integration is free, so the check proves the antiderivative
+# rather than an equality of expressions. The definite integral is evaluated
+# exactly.
+chapter: 8
+symbols:
+  x: {real: true}
+problems:
+  - id: s1-power
+    section: "8.1"
+    dfe: [H2]
+    statement: 'Find $\displaystyle\int x^5\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "x**5"
+      apply: {op: integrate, args: [x]}
+      answer: "x**6/6"
+      variable: x
+    answer_text: 'Raise the power by one and divide by the new power: $\displaystyle\int x^5\,dx = \dfrac{x^6}{6} + C$.'
+
+  - id: s2-constant-multiple
+    section: "8.1"
+    dfe: [H2]
+    statement: 'Find $\displaystyle\int 3x^2\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "3*x**2"
+      apply: {op: integrate, args: [x]}
+      answer: "x**3"
+      variable: x
+    answer_text: 'The constant multiple stays outside: $3 \times \dfrac{x^3}{3} + C = x^3 + C$.'
+
+  - id: s3-sum-difference
+    section: "8.1"
+    dfe: [H2]
+    statement: 'Find $\displaystyle\int \left(4x^3 - 2x\right)dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "4*x**3 - 2*x"
+      apply: {op: integrate, args: [x]}
+      answer: "x**4 - x**2"
+      variable: x
+    answer_text: 'Integrate term by term: $4 \times \dfrac{x^4}{4} - 2 \times \dfrac{x^2}{2} + C = x^4 - x^2 + C$.'
+
+  - id: s4-negative-power
+    section: "8.1"
+    dfe: [H2]
+    statement: 'Find $\displaystyle\int \frac{1}{x^2}\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "x**(-2)"
+      apply: {op: integrate, args: [x]}
+      answer: "-1/x"
+      variable: x
+    answer_text: 'Write $\dfrac{1}{x^2} = x^{-2}$. Then $\displaystyle\int x^{-2}\,dx = \dfrac{x^{-1}}{-1} + C = -\dfrac{1}{x} + C$.'
+
+  - id: s5-surd-power
+    section: "8.1"
+    dfe: [H2]
+    statement: 'Find $\displaystyle\int \sqrt{x}\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "sqrt(x)"
+      apply: {op: integrate, args: [x]}
+      answer: "(2/3)*x**(3/2)"
+      variable: x
+    answer_text: 'Write $\sqrt{x} = x^{1/2}$. Then $\displaystyle\int x^{1/2}\,dx = \dfrac{x^{3/2}}{3/2} + C = \dfrac{2}{3}x^{3/2} + C$.'
+
+  - id: s6-reciprocal
+    section: "8.1"
+    dfe: [H2]
+    statement: 'Find $\displaystyle\int \frac{1}{x}\,dx$ for $x > 0$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "1/x"
+      apply: {op: integrate, args: [x]}
+      answer: "ln(x)"
+      variable: x
+    answer_text: 'The power rule does not cover $n = -1$, so use the standard result $\displaystyle\int \dfrac{1}{x}\,dx = \ln x + C$.'
+
+  - id: s7-exponential
+    section: "8.1"
+    dfe: [H2]
+    statement: 'Find $\displaystyle\int e^{3x}\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "exp(3*x)"
+      apply: {op: integrate, args: [x]}
+      answer: "exp(3*x)/3"
+      variable: x
+    answer_text: 'The factor is $\dfrac{1}{k} = \dfrac{1}{3}$, so $\displaystyle\int e^{3x}\,dx = \dfrac{1}{3}e^{3x} + C$.'
+
+  - id: s8-sine
+    section: "8.1"
+    dfe: [H2]
+    statement: 'Find $\displaystyle\int \sin 2x\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "sin(2*x)"
+      apply: {op: integrate, args: [x]}
+      answer: "-cos(2*x)/2"
+      variable: x
+    answer_text: 'The integral of sine is minus cosine, with the factor $\dfrac{1}{2}$: $\displaystyle\int \sin 2x\,dx = -\dfrac{1}{2}\cos 2x + C$.'
+
+  - id: s9-cosine
+    section: "8.1"
+    dfe: [H2]
+    statement: 'Find $\displaystyle\int \cos 4x\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "cos(4*x)"
+      apply: {op: integrate, args: [x]}
+      answer: "sin(4*x)/4"
+      variable: x
+    answer_text: 'The integral of cosine is sine, with the factor $\dfrac{1}{4}$: $\displaystyle\int \cos 4x\,dx = \dfrac{1}{4}\sin 4x + C$.'
+
+  - id: s10-mixed-sum
+    section: "8.1"
+    dfe: [H2]
+    statement: 'Find $\displaystyle\int \left(e^{2x} + \sin x\right)dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "exp(2*x) + sin(x)"
+      apply: {op: integrate, args: [x]}
+      answer: "exp(2*x)/2 - cos(x)"
+      variable: x
+    answer_text: 'Integrate each term: $\dfrac{1}{2}e^{2x} - \cos x + C$. The sign of the cosine term changes because the integral of sine is minus cosine.'
+
+  - id: s11-constant-from-point
+    section: "8.1"
+    dfe: [H1, H2]
+    statement: 'The gradient of a curve is $\dfrac{dy}{dx} = 3x^2$, and the curve passes through $(1, 5)$. Find the equation of the curve.'
+    answer_label: 'The equation of the curve'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "3*x**2", apply: {op: integrate, args: [x]}, answer: "x**3 + 4", variable: x}
+        - {kind: apply, expression: "x**3 + 4", apply: {op: subs, args: [x, "1"]}, answer: "5"}
+    answer_text: 'Integrating gives $y = x^3 + C$. Substituting the point $(1, 5)$ gives $5 = 1 + C$, so $C = 4$ and $y = x^3 + 4$.'
+
+  - id: s12-definite-ftc
+    section: "8.1"
+    dfe: [H1]
+    statement: 'Use the Fundamental Theorem of Calculus to evaluate $\displaystyle\int_0^2 3x^2\,dx$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: "3*x**2"
+      apply: {op: integrate, args: [x, "0", "2"]}
+      answer: "8"
+    answer_text: 'An antiderivative is $x^3$, so $\displaystyle\int_0^2 3x^2\,dx = \Big[x^3\Big]_0^2 = 8 - 0 = 8$.'

@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.4 Integration as the limit of a sum — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: H4
+Work through these on your own. Write the strip sum first, simplify it to a
+fraction in $n$, and only then take the limit. Check the final integral against
+the Fundamental Theorem of Calculus.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-08-practice-8.4
+
+:::answers chapter-08-practice-8.4

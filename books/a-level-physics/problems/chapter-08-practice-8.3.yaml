@@ -1,0 +1,209 @@
+# Practice set for 8.3 (Radioactive decay and half-life).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]`, so a check may use either.
+#
+# A whole-number-of-half-lives step and an A = lambda N step have exact SI units,
+# so they are proved by `dimensions`. An exponential or logarithmic value is
+# proved by `approx` with a stated tolerance. A nuclear equation and a reason are
+# `structured` records: presence, order and coverage only, never physics.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 8
+problems:
+  - id: p1-half-lives
+    section: '8.3'
+    dfe: [AP8]
+    statement: 'A source has an activity of 640 Bq and a half-life of 5.0 days. Find its activity after 15 days.'
+    answer_label: 'The activity'
+    check:
+      kind: dimensions
+      expression: "A0 / 2**3"
+      values:
+        A0: {value: "640", unit: "Bq"}
+      answer: {value: "80", unit: "Bq"}
+    answer_text: '15 days is three half-lives, so $A = \dfrac{640}{2^3} = 80\,\text{Bq}$.'
+
+  - id: p2-decay-constant
+    section: '8.3'
+    dfe: [AP8]
+    statement: 'A radioisotope has a half-life of 6.0 hours. Find its decay constant in s^-1.'
+    answer_label: 'The decay constant'
+    check: {kind: approx, value: "ln(2) / (6.0 * 3600)", target: "3.21e-5", tolerance: "5e-8"}
+    answer_text: '$T_{1/2} = 6.0 \times 3600 = 2.16 \times 10^{4}\,\text{s}$, so $\lambda = \dfrac{\ln 2}{T_{1/2}} = 3.2 \times 10^{-5}\,\text{s}^{-1}$.'
+
+  - id: p3-activity-from-nuclei
+    section: '8.3'
+    dfe: [AP8]
+    statement: 'A sample contains 4.0e15 nuclei of a radioisotope whose decay constant is 1.2e-5 s^-1. Find its activity.'
+    answer_label: 'The activity'
+    check:
+      kind: dimensions
+      expression: "lam * N"
+      values:
+        lam: {value: "1.2e-5", unit: "s^-1"}
+        N: {value: "4.0e15"}
+      answer: {value: "4.8e10", unit: "Bq"}
+    answer_text: '$A = \lambda N = 1.2 \times 10^{-5} \times 4.0 \times 10^{15} = 4.8 \times 10^{10}\,\text{Bq}$.'
+
+  - id: p4-nuclei-from-activity
+    section: '8.3'
+    dfe: [AP8]
+    statement: 'A source has an activity of 2.0e6 Bq and a decay constant of 5.0e-7 s^-1. Find the number of radioactive nuclei.'
+    answer_label: 'The number of nuclei'
+    check:
+      kind: dimensions
+      expression: "A / lam"
+      values:
+        A: {value: "2.0e6", unit: "Bq"}
+        lam: {value: "5.0e-7", unit: "s^-1"}
+      answer: {value: "4.0e12"}
+    answer_text: '$N = \dfrac{A}{\lambda} = \dfrac{2.0 \times 10^{6}}{5.0 \times 10^{-7}} = 4.0 \times 10^{12}$.'
+
+  - id: p5-exponential-decay
+    section: '8.3'
+    dfe: [AP8]
+    statement: 'A source has an initial activity of 8.0e8 Bq and a decay constant of 1.05e-4 s^-1. Find its activity after 3300 s.'
+    answer_label: 'The activity'
+    check: {kind: approx, value: "8.0e8 * exp(-1.05e-4 * 3300)", target: "5.66e8", tolerance: "1e7"}
+    answer_text: '$A = A_0 e^{-\lambda t} = 8.0 \times 10^{8} \times e^{-0.3465} = 5.7 \times 10^{8}\,\text{Bq}$.'
+
+  - id: p6-time-to-fraction
+    section: '8.3'
+    dfe: [AP8]
+    statement: 'A source has a half-life of 8.0 days. Find the time for its activity to fall to one sixteenth of its initial value.'
+    answer_label: 'The time'
+    check:
+      kind: dimensions
+      expression: "T * n"
+      values:
+        T: {value: "8.0", unit: "day"}
+        n: {value: "4"}
+      answer: {value: "32", unit: "day"}
+    answer_text: 'One sixteenth is $\left(\tfrac{1}{2}\right)^4$, so four half-lives pass: $4 \times 8.0 = 32\,\text{days}$.'
+
+  - id: p7-beta-plus-equation
+    section: '8.3'
+    dfe: [AP8]
+    statement: 'Fluorine-18, $^{18}_{9}\text{F}$, decays by beta-plus emission. Write the balanced nuclear equation.'
+    check:
+      kind: structured
+      requires: [parent, daughter, positron, neutrino]
+      concepts: [beta-plus]
+      points:
+        - id: parent
+          text: 'The parent nucleus is $^{18}_{9}\text{F}$.'
+          concepts: [beta-plus]
+        - id: daughter
+          text: 'The daughter has 18 nucleons and $9 - 1 = 8$ protons, which is oxygen-18.'
+          concepts: [beta-plus]
+        - id: positron
+          text: 'A positron $^{0}_{+1}\text{e}$ is emitted.'
+          concepts: [beta-plus]
+        - id: neutrino
+          text: 'The equation is $^{18}_{9}\text{F} \rightarrow {}^{18}_{8}\text{O} + {}^{0}_{+1}\text{e} + \nu$, with a neutrino to conserve energy and momentum.'
+          concepts: [beta-plus]
+
+  - id: p8-alpha-equation
+    section: '8.3'
+    dfe: [AP8]
+    statement: 'Americium-241, $^{241}_{95}\text{Am}$, decays by alpha emission. Write the balanced nuclear equation.'
+    check:
+      kind: structured
+      requires: [parent, alpha, daughter, balance]
+      concepts: [alpha-decay]
+      points:
+        - id: parent
+          text: 'The parent nucleus is $^{241}_{95}\text{Am}$.'
+          concepts: [alpha-decay]
+        - id: alpha
+          text: 'An alpha particle $^{4}_{2}\text{He}$ is emitted.'
+          concepts: [alpha-decay]
+        - id: daughter
+          text: 'The daughter has $241 - 4 = 237$ nucleons and $95 - 2 = 93$ protons, which is neptunium-237.'
+          concepts: [alpha-decay]
+        - id: balance
+          text: 'The equation is $^{241}_{95}\text{Am} \rightarrow {}^{237}_{93}\text{Np} + {}^{4}_{2}\text{He}$.'
+          concepts: [alpha-decay]
+
+  - id: p9-corrected-count-rate
+    section: '8.3'
+    dfe: [AP8]
+    statement: 'A detector records 720 counts in 60 s from a source. The background is 60 counts in 60 s. Find the corrected count rate.'
+    answer_label: 'The corrected count rate'
+    check:
+      kind: dimensions
+      expression: "(C - B) / t"
+      values:
+        C: {value: "720"}
+        B: {value: "60"}
+        t: {value: "60", unit: "s"}
+      answer: {value: "11", unit: "Bq"}
+    answer_text: 'The corrected count rate is $\dfrac{720 - 60}{60} = 11\,\text{counts per second}$, or 11 Bq.'
+
+  - id: p10-sigfigs
+    section: '8.3'
+    dfe: [AP8]
+    statement: 'A half-life is measured as 5.348 days. Write it to two significant figures.'
+    answer_label: 'The half-life'
+    check: {kind: sigfigs, value: "5.348", figures: 2, answer: "5.3", convention: round-once}
+    answer_text: 'To two significant figures the half-life is 5.3 days.'
+
+  - id: p11-convert-minutes
+    section: '8.3'
+    dfe: [AP8]
+    statement: 'Write a half-life of 110 minutes in seconds.'
+    answer_label: 'The half-life'
+    check: {kind: convert, value: "110", from: "min", to: "s", answer: "6600"}
+    answer_text: '$110 \times 60 = 6600\,\text{s}$.'
+
+  - id: p12-half-life-from-gradient
+    section: '8.3'
+    dfe: [AP8]
+    statement: 'A graph of ln A against t has a gradient of -1.05e-4 s^-1. Find the half-life.'
+    answer_label: 'The half-life'
+    check: {kind: approx, value: "ln(2) / 1.05e-4", target: "6600", tolerance: "50"}
+    answer_text: 'The gradient is $-\lambda$, so $T_{1/2} = \dfrac{\ln 2}{1.05 \times 10^{-4}} = 6.6 \times 10^{3}\,\text{s}$.'
+
+  - id: p13-random-nature
+    section: '8.3'
+    dfe: [AP8]
+    statement: 'Explain why the activity of a sample is predictable even though the decay of a single nucleus is random.'
+    check:
+      kind: structured
+      requires: [random-single, probability, large-numbers, smooth-curve]
+      concepts: [random, activity]
+      points:
+        - id: random-single
+          text: 'The decay of one nucleus is random: there is a fixed probability each second that it decays, but no way to say when.'
+          concepts: [random]
+        - id: probability
+          text: 'The decay constant is that probability per second.'
+          concepts: [random]
+        - id: large-numbers
+          text: 'A real sample contains a very large number of nuclei, and the average behaviour of a large number is steady.'
+          concepts: [activity]
+        - id: smooth-curve
+          text: 'The activity is an average over all the nuclei, so it follows a smooth exponential curve even though each decay is unpredictable.'
+          concepts: [activity]
+
+  - id: p14-method-choice
+    section: '8.3'
+    dfe: [AP8]
+    statement: 'A source has an activity of 640 Bq, which falls to 40 Bq in 20 days. State how you would find the half-life before you calculate it.'
+    answer_label: 'The method and the half-life'
+    check:
+      kind: structured
+      requires: [count-halvings, find-time-per-step]
+      concepts: [half-life, method-choice]
+      points:
+        - id: count-halvings
+          text: 'Find how many times the activity halves. From 640 Bq to 40 Bq is four halvings: 320, 160, 80, then 40.'
+          concepts: [half-life]
+        - id: find-time-per-step
+          text: 'Divide the total time by the number of halvings: 20 days divided by 4 gives a half-life of 5 days.'
+          concepts: [method-choice]
+    answer_text: 'Count the halvings: 640 to 40 is four halvings. Then divide 20 days by 4 to get a half-life of 5.0 days.'

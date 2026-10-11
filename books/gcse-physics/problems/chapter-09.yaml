@@ -1,0 +1,239 @@
+# Worked solutions for Chapter 9 (Atomic structure).
+#
+# These are the numerical worked examples and the guided answers that the Learn
+# and Practise with help pages show. The pages carry the prose and the reasoning;
+# this bank is the independent check of every number in them, so a slip in a
+# worked example cannot ship. The records are not rendered by a page marker: the
+# pages write their own working, and the `:::answers` blocks come from the
+# practice banks.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# proves arithmetic and dimensions, not physics. The `structured` records prove
+# only that a model answer contains the declared ideas, in order.
+chapter: 9
+problems:
+  # --- Section 9.1 -----------------------------------------------------------
+  - id: w1-atom-counts
+    section: '9.1'
+    tier: F
+    dfe: [AT1]
+    statement: 'An atom has 11 protons and 12 neutrons. State its atomic number, its mass number and the number of electrons in the neutral atom.'
+    answer_label: 'Atomic number, mass number and electrons'
+    check: {kind: evaluate, expression: '11 + 12', answer: '23'}
+    answer_text: 'The atomic number is the number of protons, so $Z = 11$. The mass number is $A = 11 + 12 = 23$. A neutral atom has the same number of electrons as protons, so it has 11 electrons.'
+
+  - id: w2-isotope-carbon
+    section: '9.1'
+    tier: F
+    dfe: [AT1]
+    statement: 'Carbon-12 and carbon-14 are isotopes of carbon. Explain what they have in common and what is different.'
+    answer_label: 'Isotopes of carbon'
+    check:
+      kind: structured
+      requires: [same-protons, different-neutrons]
+      concepts: [isotope]
+      points:
+        - id: same-protons
+          text: 'Both have 6 protons, because both are atoms of carbon.'
+          concepts: [isotope]
+        - id: different-neutrons
+          text: 'Carbon-12 has 6 neutrons and carbon-14 has 8 neutrons, so their mass numbers are different.'
+          concepts: [isotope]
+
+  - id: w3-alpha-scattering
+    section: '9.1'
+    tier: F
+    dfe: [AT1]
+    statement: 'Explain how the results of the alpha particle scattering experiment changed the model of the atom.'
+    answer_label: 'The alpha scattering conclusion'
+    check:
+      kind: structured
+      requires: [most-particles-through, some-repelled, mass-concentrated]
+      concepts: [alpha-scattering, nuclear-model]
+      points:
+        - id: most-particles-through
+          text: 'Most alpha particles passed straight through the gold foil, so most of the atom is empty space.'
+          concepts: [alpha-scattering]
+        - id: some-repelled
+          text: 'A few alpha particles were repelled back, so the positive charge is concentrated in a very small volume.'
+          concepts: [alpha-scattering]
+        - id: mass-concentrated
+          text: 'The results showed that almost all of the mass and the positive charge are concentrated in a tiny central nucleus. This replaced the plum pudding model.'
+          concepts: [nuclear-model]
+
+  - id: w4-nucleus-ratio
+    section: '9.1'
+    tier: F
+    dfe: [AT1]
+    statement: 'The radius of a nucleus is about $1 \times 10^{-14}\,\text{m}$. The radius of an atom is about $1 \times 10^{-10}\,\text{m}$. Work out how many times smaller the radius of the nucleus is.'
+    answer_label: 'How many times smaller the nucleus is'
+    check: {kind: evaluate, expression: '1e-14 / 1e-10', answer: '1e-4'}
+    answer_text: '$\dfrac{1 \times 10^{-14}}{1 \times 10^{-10}} = 1 \times 10^{-4}$. The nucleus is about 10 000 times smaller than the atom.'
+
+  # --- Section 9.2 -----------------------------------------------------------
+  - id: w5-half-life-table
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'A count rate falls from 400 to 50 counts per second over three half-lives. Calculate the count rate after three half-lives.'
+    answer_label: 'Count rate after three half-lives'
+    check: {kind: evaluate, expression: '400 / 2**3', answer: '50'}
+    answer_text: 'After one half-life the count rate is 200, after two it is 100, and after three it is 50 counts per second. The count rate halves at every step.'
+
+  - id: w6-half-life-count
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'A tracer has a half-life of 6.0 hours and an initial count rate of 800 counts per second. Calculate the count rate after 24 hours.'
+    answer_label: 'Count rate after 24 hours'
+    check: {kind: evaluate, expression: '800 / 2**4', answer: '50'}
+    answer_text: '$24\,\text{h} \div 6.0\,\text{h} = 4$ half-lives. The count rate is $\dfrac{800}{2^4} = 50$ counts per second.'
+
+  - id: w7-net-decline
+    section: '9.2'
+    tier: H
+    dfe: [AT2]
+    statement: 'After four half-lives, calculate the net decline in a radioactive emission as a ratio.'
+    answer_label: 'Net decline after four half-lives'
+    check: {kind: evaluate, expression: '1 - (1/2)**4', answer: '15/16'}
+    answer_text: 'After four half-lives the fraction remaining is $\left(\dfrac{1}{2}\right)^4 = \dfrac{1}{16}$. The net decline is $1 - \dfrac{1}{16} = \dfrac{15}{16}$, a ratio of $15:16$ of the original emission.'
+
+  - id: w8-alpha-equation
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'Radon-222 decays by alpha emission. Balance the equation $^{222}_{86}\text{Rn} \rightarrow {}^{A}_{Z}\text{X} + {}^{4}_{2}\alpha$.'
+    answer_label: 'The balanced alpha decay equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '222 - 4', answer: '218'}
+        - {kind: evaluate, expression: '86 - 2', answer: '84'}
+    answer_text: 'The mass numbers must balance, so $A = 222 - 4 = 218$. The atomic numbers must balance, so $Z = 86 - 2 = 84$. The equation is $^{222}_{86}\text{Rn} \rightarrow {}^{218}_{84}\text{Po} + {}^{4}_{2}\alpha$.'
+
+  - id: w9-beta-equation
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'Carbon-14 decays by beta emission. Balance the equation $^{14}_{6}\text{C} \rightarrow {}^{A}_{Z}\text{X} + {}^{0}_{-1}\beta$.'
+    answer_label: 'The balanced beta decay equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '14 - 0', answer: '14'}
+        - {kind: evaluate, expression: '6 + 1', answer: '7'}
+    answer_text: 'The mass number does not change, so $A = 14$. The atomic number increases by 1, so $Z = 6 + 1 = 7$. The equation is $^{14}_{6}\text{C} \rightarrow {}^{14}_{7}\text{N} + {}^{0}_{-1}\beta$.'
+
+  - id: w10-contamination
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'Explain the difference between contamination and irradiation.'
+    answer_label: 'Contamination and irradiation'
+    check:
+      kind: structured
+      requires: [contamination, irradiation, does-not-become]
+      concepts: [contamination, irradiation]
+      points:
+        - id: contamination
+          text: 'Contamination is the unwanted presence of radioactive atoms on or in another material.'
+          concepts: [contamination]
+        - id: irradiation
+          text: 'Irradiation is exposing an object to nuclear radiation.'
+          concepts: [irradiation]
+        - id: does-not-become
+          text: 'An irradiated object does not become radioactive, because the radiation passes through it or is absorbed.'
+          concepts: [irradiation]
+
+  # --- Section 9.3 -----------------------------------------------------------
+  - id: w11-background-correction
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'A detector measures a count rate of 260 counts per minute near a source. The background count rate is 20 counts per minute. Calculate the corrected count rate from the source.'
+    answer_label: 'Corrected count rate'
+    check: {kind: evaluate, expression: '260 - 20', answer: '240'}
+    answer_text: 'Subtract the background count rate: $260 - 20 = 240$ counts per minute. The background comes from sources other than the sample.'
+
+  - id: w12-tracer-choice
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'A hospital needs a tracer to explore an internal organ. Explain why the tracer should emit gamma radiation and have a short half-life.'
+    answer_label: 'Choosing a tracer'
+    check:
+      kind: structured
+      requires: [gamma-penetrates, detected-outside, short-half-life]
+      concepts: [tracer, gamma]
+      points:
+        - id: gamma-penetrates
+          text: 'Gamma radiation passes through the body instead of being stopped by it, so it can reach a detector outside the body.'
+          concepts: [gamma, tracer]
+        - id: detected-outside
+          text: 'An alpha or beta emitter would be stopped inside the body, so its radiation could not be detected from outside.'
+          concepts: [tracer]
+        - id: short-half-life
+          text: 'A short half-life means the activity falls quickly after the scan, so the patient receives a smaller dose.'
+          concepts: [tracer]
+
+  - id: w13-half-life-storage
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'Source A has a half-life of 8 days and source B has a half-life of 8 years. Explain which source is the greater hazard to store for a long time, and give a reason.'
+    answer_label: 'Which source is the greater long-term hazard'
+    check:
+      kind: structured
+      requires: [long-half-life, remains-active]
+      concepts: [half-life, hazard]
+      points:
+        - id: long-half-life
+          text: 'Source B is the greater long-term hazard, because it has the much longer half-life.'
+          concepts: [half-life, hazard]
+        - id: remains-active
+          text: 'Source B stays radioactive for years, so it keeps emitting radiation and must be shielded and stored safely for a long time. Source A becomes much less active within weeks.'
+          concepts: [half-life, hazard]
+
+  # --- Section 9.4 -----------------------------------------------------------
+  - id: w14-fission-equation
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'Check that the mass numbers and the atomic numbers balance in the fission equation $^{235}_{92}\text{U} + {}^{1}_{0}\text{n} \rightarrow {}^{141}_{56}\text{Ba} + {}^{92}_{36}\text{Kr} + 3{}^{1}_{0}\text{n}$.'
+    answer_label: 'Balancing the fission equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '235 + 1', answer: '141 + 92 + 3'}
+        - {kind: evaluate, expression: '56 + 36', answer: '92'}
+    answer_text: 'Total mass number on the left is $235 + 1 = 236$. On the right it is $141 + 92 + 3 = 236$. Total atomic number on the left is 92, and on the right it is $56 + 36 = 92$. Both balance.'
+
+  - id: w15-neutron-generations
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'Each fission releases 3 neutrons, and every neutron causes one more fission. Calculate how many neutrons are released in the third generation after the first fission.'
+    answer_label: 'Neutrons in the third generation'
+    check: {kind: evaluate, expression: '3**3', answer: '27'}
+    answer_text: 'The first fission releases 3 neutrons. Each of those causes a fission, so the second generation releases $3 \times 3 = 9$ neutrons. The third generation releases $3^3 = 27$ neutrons. This is a chain reaction.'
+
+  - id: w16-fission-fusion
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'Compare nuclear fission and nuclear fusion, and say where each one happens.'
+    answer_label: 'Fission compared with fusion'
+    check:
+      kind: structured
+      requires: [fission-definition, fusion-definition, places]
+      concepts: [fission, fusion]
+      points:
+        - id: fission-definition
+          text: 'Fission is the splitting of a large unstable nucleus into two smaller nuclei, usually after it absorbs a neutron. It releases energy.'
+          concepts: [fission]
+        - id: fusion-definition
+          text: 'Fusion is the joining of two light nuclei to form a heavier nucleus. Some mass is converted into the energy of radiation.'
+          concepts: [fusion]
+        - id: places
+          text: 'Fission happens in a nuclear power station, and fusion happens in the core of a star such as the Sun.'
+          concepts: [fission, fusion]

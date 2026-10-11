@@ -1,0 +1,212 @@
+# Practice set for 9.3 (Hazards and uses of radioactive emissions and of
+# background radiation). AQA 8463 marks this topic (physics only), which is a
+# separate-science tag, not a Higher tag, so every record is tier F.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# proves arithmetic and dimensions, not physics. The `structured` records prove
+# only that a model answer contains the declared ideas, in order.
+chapter: 9
+problems:
+  - id: p1-background-sources
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'Name two natural sources and two man-made sources of background radiation.'
+    answer_label: 'Sources of background radiation'
+    check:
+      kind: structured
+      requires: [natural-sources, man-made-sources]
+      concepts: [background-radiation]
+      points:
+        - id: natural-sources
+          text: 'Natural sources include rocks and soil that contain radioactive atoms, and cosmic rays from space.'
+          concepts: [background-radiation]
+        - id: man-made-sources
+          text: 'Man-made sources include the fallout from nuclear weapon tests and releases from nuclear accidents.'
+          concepts: [background-radiation]
+
+  - id: p2-dose-convert
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'A worker receives a radiation dose of 2.5 mSv. Convert this dose to sieverts.'
+    answer_label: 'The dose in sieverts'
+    check: {kind: convert, value: '2.5', from: 'mSv', to: 'Sv', answer: '0.0025'}
+    answer_text: 'The prefix milli means $\dfrac{1}{1000}$, so $2.5\,\text{mSv} = \dfrac{2.5}{1000} = 0.0025\,\text{Sv}$.'
+
+  - id: p3-dose-factors
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'Explain how a person\u2019s occupation and location can change the radiation dose they receive in a year.'
+    answer_label: 'Occupation, location and dose'
+    check:
+      kind: structured
+      requires: [occupation, location]
+      concepts: [background-radiation, dose]
+      points:
+        - id: occupation
+          text: 'Some jobs bring a person close to radioactive sources. A radiographer or a nuclear worker receives a larger dose than an office worker.'
+          concepts: [dose]
+        - id: location
+          text: 'Some rocks release more radon than others, and height above sea level changes the cosmic-ray dose. A person who lives in a high-radon area receives a larger dose.'
+          concepts: [background-radiation, dose]
+
+  - id: p4-background-correction
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'A detector records a count rate of 180 counts per minute near a source. The background count rate is 20 counts per minute. Calculate the corrected count rate from the source.'
+    answer_label: 'Corrected count rate'
+    check: {kind: evaluate, expression: '180 - 20', answer: '160'}
+    answer_text: 'The corrected count rate is $180 - 20 = 160$ counts per minute. The background comes from sources other than the sample, so it must be subtracted.'
+
+  - id: p5-alpha-inside
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'Explain why an alpha source is a serious hazard if it is taken into the body, but a small hazard if it is held outside the body.'
+    answer_label: 'Alpha radiation inside and outside the body'
+    check:
+      kind: structured
+      requires: [strongly-ionising, stopped-outside, inside-damage]
+      concepts: [alpha, hazard, ionising]
+      points:
+        - id: strongly-ionising
+          text: 'An alpha particle is strongly ionising, so it transfers a great deal of energy to the material it passes through.'
+          concepts: [alpha, ionising]
+        - id: stopped-outside
+          text: 'Outside the body the alpha particles are stopped by the dead outer layer of skin, or by the air, so they do not reach living cells.'
+          concepts: [alpha, hazard]
+        - id: inside-damage
+          text: 'Inside the body the alpha particles are in contact with living cells. Their strong ionising effect can damage those cells.'
+          concepts: [hazard, ionising]
+
+  - id: p6-tracer-choice
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'A tracer is used to explore an internal organ. Explain why the tracer emits gamma radiation and has a half-life of a few hours.'
+    answer_label: 'Choosing a tracer'
+    check:
+      kind: structured
+      requires: [gamma-penetrates, short-half-life]
+      concepts: [tracer, gamma, half-life]
+      points:
+        - id: gamma-penetrates
+          text: 'Gamma radiation passes out through the body, so a detector outside the body can measure it. An alpha or beta emitter would be stopped before it reached the detector.'
+          concepts: [tracer, gamma]
+        - id: short-half-life
+          text: 'A half-life of a few hours means the activity falls to a low level soon after the scan, so the patient stays radioactive for only a short time.'
+          concepts: [tracer, half-life]
+
+  - id: p7-radiotherapy
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'Explain how nuclear radiation is used to control or destroy unwanted tissue.'
+    answer_label: 'Using radiation on unwanted tissue'
+    check:
+      kind: structured
+      requires: [target-tissue, ionising-damage, controlled-dose]
+      concepts: [radiotherapy, ionising]
+      points:
+        - id: target-tissue
+          text: 'A beam of radiation is aimed at the unwanted tissue, such as a tumour.'
+          concepts: [radiotherapy]
+        - id: ionising-damage
+          text: 'The radiation is strongly ionising, so it damages the cells in the tissue and stops them dividing.'
+          concepts: [ionising]
+        - id: controlled-dose
+          text: 'The dose and the direction of the beam are chosen to give the tissue enough damage while keeping the dose to healthy tissue as small as possible.'
+          concepts: [radiotherapy]
+
+  - id: p8-long-half-life
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'Two radioactive sources are spilled. Source A has a half-life of 14 days and source B has a half-life of 14 years. Explain why source B is the greater long-term hazard.'
+    answer_label: 'Which spill is the greater long-term hazard'
+    check:
+      kind: structured
+      requires: [longer-half-life, stays-hazardous]
+      concepts: [half-life, contamination, hazard]
+      points:
+        - id: longer-half-life
+          text: 'Source B has a much longer half-life, so it stays radioactive for far longer.'
+          concepts: [half-life]
+        - id: stays-hazardous
+          text: 'After a few months the activity of source A has fallen by many half-lives. Source B is still active years later, so it remains a contamination hazard for much longer.'
+          concepts: [contamination, hazard]
+
+  - id: p9-risk-benefit
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'A patient is offered a scan with a radioactive tracer. Evaluate the benefits and the risks of the scan.'
+    answer_label: 'Benefits and risks of a tracer scan'
+    check:
+      kind: structured
+      requires: [benefit, risk, judgement]
+      concepts: [tracer, risk, benefit]
+      points:
+        - id: benefit
+          text: 'The scan can show how an organ is working. This can find a problem that other tests would miss, so the patient can be treated sooner.'
+          concepts: [tracer, benefit]
+        - id: risk
+          text: 'The tracer gives the patient a dose of ionising radiation, which can damage cells. The dose is kept as small as possible by using a short half-life.'
+          concepts: [risk]
+        - id: judgement
+          text: 'The benefit of finding and treating the problem is usually much greater than the small risk from the dose. This is a reasoned judgement, so compare your reasons with a classmate.'
+          concepts: [tracer]
+
+  - id: p10-number-of-half-lives
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'A sample has a count rate of 800 counts per second. After 24 hours the count rate is 50 counts per second. The half-life is 6.0 hours. Work out how many half-lives have passed.'
+    answer_label: 'Number of half-lives'
+    check: {kind: evaluate, expression: '800 / 50', answer: '16'}
+    answer_text: '$\dfrac{800}{50} = 16$. Since $2^4 = 16$, the count rate has halved four times, so four half-lives have passed. This also matches $\dfrac{24}{6.0} = 4$.'
+
+  - id: p11-compare-sources
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'A hospital must choose between a gamma source with a half-life of 6 hours and an alpha source with a half-life of 10 years, to explore an internal organ. Say which source is suitable and why.'
+    answer_label: 'Choosing a source to explore an organ'
+    check:
+      kind: structured
+      requires: [gamma-chosen, gamma-penetration, alpha-unsuitable]
+      concepts: [gamma, tracer, half-life]
+      points:
+        - id: gamma-chosen
+          text: 'Choose the gamma source. Gamma radiation passes out through the body and can be detected outside it.'
+          concepts: [gamma, tracer]
+        - id: gamma-penetration
+          text: 'Its half-life of a few hours is long enough for the scan, but short enough that the activity falls to a low level soon afterwards.'
+          concepts: [tracer, half-life]
+        - id: alpha-unsuitable
+          text: 'The alpha source is not suitable. Alpha particles are stopped inside the body, so the detector outside could not measure them, and a 10-year half-life would leave the patient radioactive for a long time.'
+          concepts: [gamma, tracer]
+
+  - id: p12-precautions
+    section: '9.3'
+    tier: F
+    dfe: [AT3]
+    statement: 'State three precautions that reduce the dose a technician receives while working near a radioactive source.'
+    answer_label: 'Precautions that reduce dose'
+    check:
+      kind: structured
+      requires: [distance, time, shielding]
+      concepts: [dose, hazard]
+      points:
+        - id: distance
+          text: 'Keep as far from the source as possible, using tongs to handle it. The dose falls quickly with distance.'
+          concepts: [dose]
+        - id: time
+          text: 'Spend as little time near the source as possible.'
+          concepts: [dose]
+        - id: shielding
+          text: 'Put lead or another thick shield between the source and the technician.'
+          concepts: [hazard]

@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.3 The area between two curves — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: H3
+Work through these on your own. For each question, find the intersections first,
+then sketch the region and decide on the order of subtraction.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-08-practice-8.3
+
+:::answers chapter-08-practice-8.3

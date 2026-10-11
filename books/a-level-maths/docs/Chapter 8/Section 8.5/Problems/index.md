@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.5 Integration by substitution and by parts — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: H5
+Work through these on your own. For each integral, decide first whether a
+substitution or parts is needed, then name the parts you will use. Check each
+indefinite integral by differentiating your answer.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-08-practice-8.5
+
+:::answers chapter-08-practice-8.5

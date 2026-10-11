@@ -9,9 +9,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.1 Photons and the photoelectric effect — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: AP8
+Work through these on your own. Change nanometres to metres and electronvolts to
+joules before you substitute, and write the unit of every answer. In the
+questions that ask for a reason, write your answer in full sentences.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-08-practice-8.1
+
+:::answers chapter-08-practice-8.1

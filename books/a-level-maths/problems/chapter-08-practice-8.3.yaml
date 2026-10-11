@@ -1,0 +1,153 @@
+# Practice set for 8.3, the area between two curves.
+#
+# The integral of upper minus lower is checked exactly. Where the limits come
+# from solving an equation, a solve sub-check proves the intersections as well,
+# so the whole route from equation to area is verified.
+chapter: 8
+symbols:
+  x: {real: true}
+problems:
+  - id: u1-curve-line
+    section: "8.3"
+    dfe: [H3]
+    statement: 'Find the area enclosed between the curve $y = x^2$ and the line $y = x + 2$.'
+    answer_label: 'The area'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: "x**2 = x + 2", variable: x, answer: ["-1", "2"]}
+        - {kind: apply, expression: "x + 2 - x**2", apply: {op: integrate, args: [x, "-1", "2"]}, answer: "9/2"}
+    answer_text: 'Set $x^2 = x + 2$: $x^2 - x - 2 = 0$, so $(x - 2)(x + 1) = 0$ and $x = -1$ or $x = 2$. The line is above the curve, so the area is $\displaystyle\int_{-1}^{2}(x + 2 - x^2)\,dx = \left[\dfrac{x^2}{2} + 2x - \dfrac{x^3}{3}\right]_{-1}^{2} = \dfrac{9}{2}$ square units.'
+
+  - id: u2-parabola-line
+    section: "8.3"
+    dfe: [H3]
+    statement: 'Find the area enclosed between the curve $y = x^2$ and the line $y = 4$.'
+    answer_label: 'The area'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: "x**2 = 4", variable: x, answer: ["2", "-2"]}
+        - {kind: apply, expression: "4 - x**2", apply: {op: integrate, args: [x, "-2", "2"]}, answer: "32/3"}
+    answer_text: 'The intersections are $x = \pm 2$. The line is above the curve, so the area is $\displaystyle\int_{-2}^{2}(4 - x^2)\,dx = \left[4x - \dfrac{x^3}{3}\right]_{-2}^{2} = \dfrac{32}{3}$ square units.'
+
+  - id: u3-parabola-line-origin
+    section: "8.3"
+    dfe: [H3]
+    statement: 'Find the area enclosed between the curve $y = x^2$ and the line $y = 2x$.'
+    answer_label: 'The area'
+    check:
+      kind: apply
+      expression: "2*x - x**2"
+      apply: {op: integrate, args: [x, "0", "2"]}
+      answer: "4/3"
+    answer_text: 'Set $x^2 = 2x$: $x(x - 2) = 0$, so $x = 0$ or $x = 2$. The line is above the curve, so the area is $\displaystyle\int_0^2 (2x - x^2)\,dx = \left[x^2 - \dfrac{x^3}{3}\right]_0^2 = \dfrac{4}{3}$ square units.'
+
+  - id: u4-cubic-line
+    section: "8.3"
+    dfe: [H3]
+    statement: 'Find the area between the curve $y = x^3$ and the line $y = x$, from $x = 0$ to $x = 1$.'
+    answer_label: 'The area'
+    check:
+      kind: apply
+      expression: "x - x**3"
+      apply: {op: integrate, args: [x, "0", "1"]}
+      answer: "1/4"
+    answer_text: 'Between $0$ and $1$ the line is above the curve, so the area is $\displaystyle\int_0^1 (x - x^3)\,dx = \left[\dfrac{x^2}{2} - \dfrac{x^4}{4}\right]_0^1 = \dfrac{1}{4}$ square units.'
+
+  - id: u5-root-line
+    section: "8.3"
+    dfe: [H3]
+    statement: 'Find the area enclosed between the curve $y = \sqrt{x}$ and the line $y = x$.'
+    answer_label: 'The area'
+    check:
+      kind: apply
+      expression: "sqrt(x) - x"
+      apply: {op: integrate, args: [x, "0", "1"]}
+      answer: "1/6"
+    answer_text: 'The intersections are $x = 0$ and $x = 1$. The square root curve is above the line, so the area is $\displaystyle\int_0^1 \left(x^{1/2} - x\right)dx = \left[\dfrac{2}{3}x^{3/2} - \dfrac{x^2}{2}\right]_0^1 = \dfrac{1}{6}$ square units.'
+
+  - id: u6-parabola-axis
+    section: "8.3"
+    dfe: [H3]
+    statement: 'Find the area enclosed between the curve $y = x^2 - 4$ and the horizontal axis.'
+    answer_label: 'The area'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "x**2 - 4", apply: {op: integrate, args: [x, "-2", "2"]}, answer: "-32/3"}
+        - {kind: evaluate, expression: "0 - (-32/3)", answer: "32/3"}
+    answer_text: 'The curve crosses the axis at $x = \pm 2$ and lies below it between them. The integral is $\displaystyle\int_{-2}^{2}(x^2 - 4)\,dx = -\dfrac{32}{3}$, so the area is $\dfrac{32}{3}$ square units.'
+
+  - id: u7-downward-parabola-line
+    section: "8.3"
+    dfe: [H3]
+    statement: 'Find the area enclosed between the curve $y = 6 - x^2$ and the line $y = 2$.'
+    answer_label: 'The area'
+    check:
+      kind: apply
+      expression: "4 - x**2"
+      apply: {op: integrate, args: [x, "-2", "2"]}
+      answer: "32/3"
+    answer_text: 'Set $6 - x^2 = 2$: $x^2 = 4$, so $x = \pm 2$. The curve is above the line, so the area is $\displaystyle\int_{-2}^{2}(4 - x^2)\,dx = \dfrac{32}{3}$ square units.'
+
+  - id: u8-parabola-tangentish
+    section: "8.3"
+    dfe: [H3]
+    statement: 'Find the area enclosed between the curve $y = x^2$ and the line $y = 4x - 3$.'
+    answer_label: 'The area'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: "x**2 = 4*x - 3", variable: x, answer: ["1", "3"]}
+        - {kind: apply, expression: "4*x - 3 - x**2", apply: {op: integrate, args: [x, "1", "3"]}, answer: "4/3"}
+    answer_text: 'Set $x^2 = 4x - 3$: $x^2 - 4x + 3 = 0$, so $(x - 1)(x - 3) = 0$ and $x = 1$ or $x = 3$. The line is above the curve, so the area is $\displaystyle\int_1^3 (4x - 3 - x^2)\,dx = \dfrac{4}{3}$ square units.'
+
+  - id: u9-parabola-line-crossing
+    section: "8.3"
+    dfe: [H3]
+    statement: 'Find the area enclosed between the curve $y = x^2 - 2x$ and the line $y = x$.'
+    answer_label: 'The area'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: "x**2 - 2*x = x", variable: x, answer: ["0", "3"]}
+        - {kind: apply, expression: "x - (x**2 - 2*x)", apply: {op: integrate, args: [x, "0", "3"]}, answer: "9/2"}
+    answer_text: 'Set $x^2 - 2x = x$: $x^2 - 3x = 0$, so $x(x - 3) = 0$ and $x = 0$ or $x = 3$. The line is above the curve, so the area is $\displaystyle\int_0^3 (3x - x^2)\,dx = \left[\dfrac{3x^2}{2} - \dfrac{x^3}{3}\right]_0^3 = \dfrac{9}{2}$ square units.'
+
+  - id: u10-cubic-axis-split
+    section: "8.3"
+    dfe: [H3]
+    statement: 'Find the total area enclosed between the curve $y = x^3 - 4x$ and the horizontal axis.'
+    answer_label: 'The total area'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "x**3 - 4*x", apply: {op: integrate, args: [x, "0", "2"]}, answer: "-4"}
+        - {kind: apply, expression: "x**3 - 4*x", apply: {op: integrate, args: [x, "-2", "0"]}, answer: "4"}
+        - {kind: evaluate, expression: "4 + 4", answer: "8"}
+    answer_text: 'Factorising gives $x(x - 2)(x + 2)$, so the crossings are at $x = -2$, $0$ and $2$. The two regions have equal size. Each has area $4$, so the total area is $8$ square units.'
+
+  - id: u11-line-above-parabola
+    section: "8.3"
+    dfe: [H3]
+    statement: 'Find the area enclosed between the curve $y = 4 - x^2$ and the line $y = x + 2$.'
+    answer_label: 'The area'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: "4 - x**2 = x + 2", variable: x, answer: ["-2", "1"]}
+        - {kind: apply, expression: "(4 - x**2) - (x + 2)", apply: {op: integrate, args: [x, "-2", "1"]}, answer: "9/2"}
+    answer_text: 'Set $4 - x^2 = x + 2$: $x^2 + x - 2 = 0$, so $(x + 2)(x - 1) = 0$ and $x = -2$ or $x = 1$. The curve is above the line, so the area is $\displaystyle\int_{-2}^{1}(2 - x - x^2)\,dx = \dfrac{9}{2}$ square units.'
+
+  - id: u12-symmetry
+    section: "8.3"
+    dfe: [H3]
+    statement: 'Find the area enclosed between the curve $y = 4 - x^2$ and the line $y = 1$.'
+    answer_label: 'The area'
+    check:
+      kind: apply
+      expression: "3 - x**2"
+      apply: {op: integrate, args: [x, "-sqrt(3)", "sqrt(3)"]}
+      answer: "4*sqrt(3)"
+    answer_text: 'Set $4 - x^2 = 1$: $x^2 = 3$, so $x = \pm\sqrt{3}$. The curve is above the line, so the area is $\displaystyle\int_{-\sqrt{3}}^{\sqrt{3}}(3 - x^2)\,dx = \left[3x - \dfrac{x^3}{3}\right]_{-\sqrt{3}}^{\sqrt{3}} = 4\sqrt{3}$ square units.'

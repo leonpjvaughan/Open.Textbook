@@ -1,0 +1,871 @@
+# Worked solutions for Chapter 8 (Particle model of matter).
+#
+# These are the numerical worked examples and the guided calculations that the
+# Learn and Practise with help pages show. The pages carry the prose and the
+# reasoning; this bank is the independent check of every number in them, so a
+# slip in a worked example cannot ship. The records are not rendered by a page
+# marker: the pages write their own working, and the `:::answers` blocks come
+# from the practice banks.
+#
+# Each calculation is checked twice: the exact magnitude and dimension by
+# `dimensions`, and the one rounding by `sigfigs`. Where a quantity has no unit
+# (a comparison), the check uses `evaluate` with `sigfigs` for the rounding.
+# Explanations use `structured`, which proves what the model answer contains,
+# not that the physics is right.
+chapter: 8
+symbols: {}
+problems:
+  # --- Section 8.1, the Learn worked examples ---------------------------------
+  - id: w1-ice-mass
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A block of ice has a volume of 2.5 x 10^-3 m^3. The density of ice is 920 kg/m^3. Calculate the mass of the block.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "rho * V"
+          values:
+            rho: {value: "920", unit: "kg/m^3"}
+            V: {value: "2.5e-3", unit: "m^3"}
+          answer: {value: "2.3", unit: "kg"}
+        - {kind: sigfigs, value: "2.3", figures: 2, answer: "2.3", convention: round-once}
+    answer_text: '$2.3\,\text{kg}$'
+
+  - id: w2-metal-density
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A piece of metal has a mass of 67.5 g and a volume of 25 cm^3. Calculate its density in g/cm^3.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m / V"
+          values:
+            m: {value: "67.5", unit: "g"}
+            V: {value: "25", unit: "cm^3"}
+          answer: {value: "2.7", unit: "g/cm^3"}
+        - {kind: sigfigs, value: "2.7", figures: 2, answer: "2.7", convention: round-once}
+    answer_text: '$2.7\,\text{g/cm}^3 = 2700\,\text{kg/m}^3$'
+
+  - id: w3-liquid-density
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'An empty beaker has a mass of 120 g. With 100 cm^3 of liquid in it the total mass is 204 g. Calculate the density of the liquid in g/cm^3.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "(m_total - m_beaker) / V"
+          values:
+            m_total: {value: "204", unit: "g"}
+            m_beaker: {value: "120", unit: "g"}
+            V: {value: "100", unit: "cm^3"}
+          answer: {value: "0.84", unit: "g/cm^3"}
+        - {kind: sigfigs, value: "0.84", figures: 2, answer: "0.84", convention: round-once}
+    answer_text: '$0.84\,\text{g/cm}^3 = 840\,\text{kg/m}^3$'
+
+  - id: w4-states-particles
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'Describe the difference between a solid and a gas using the particle model.'
+    check:
+      kind: structured
+      requires: [solid, gas]
+      concepts: [particle-model]
+      points:
+        - id: solid
+          text: 'In a solid the particles are close together in a regular pattern and only vibrate about fixed positions.'
+          concepts: [particle-model]
+        - id: gas
+          text: 'In a gas the particles are far apart and move quickly in random directions.'
+          concepts: [particle-model]
+
+  - id: w5-melt-mass-conserved
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A 2.3 kg block of ice melts completely. Explain what happens to the mass and to the volume, and why.'
+    check:
+      kind: structured
+      requires: [mass, volume]
+      concepts: [conservation-of-mass, particle-model]
+      points:
+        - id: mass
+          text: 'The mass stays at 2.3 kg because the same particles are present before and after melting.'
+          concepts: [conservation-of-mass]
+        - id: volume
+          text: 'The volume decreases because the particles in liquid water are packed a little more closely than in the open ice pattern.'
+          concepts: [particle-model]
+
+  # --- Section 8.1, the Practise with help calculations -----------------------
+  - id: g1-density-800
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A block of metal has a mass of 0.60 kg and a volume of 0.75 x 10^-3 m^3. Calculate its density.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m / V"
+          values:
+            m: {value: "0.60", unit: "kg"}
+            V: {value: "0.75e-3", unit: "m^3"}
+          answer: {value: "800", unit: "kg/m^3"}
+        - {kind: sigfigs, value: "800", figures: 2, answer: "8.0e2", convention: round-once}
+    answer_text: '$800\,\text{kg/m}^3$'
+
+  - id: g2-concrete-mass
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A block of concrete has a density of 2400 kg/m^3 and a volume of 0.25 m^3. Calculate its mass.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "rho * V"
+          values:
+            rho: {value: "2400", unit: "kg/m^3"}
+            V: {value: "0.25", unit: "m^3"}
+          answer: {value: "600", unit: "kg"}
+        - {kind: sigfigs, value: "600", figures: 2, answer: "6.0e2", convention: round-once}
+    answer_text: '$600\,\text{kg}$'
+
+  - id: g3-water-volume
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A bottle holds 1.2 kg of water. The density of water is 1000 kg/m^3. Calculate the volume of the water.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m / rho"
+          values:
+            m: {value: "1.2", unit: "kg"}
+            rho: {value: "1000", unit: "kg/m^3"}
+          answer: {value: "1.2e-3", unit: "m^3"}
+        - {kind: sigfigs, value: "1.2e-3", figures: 2, answer: "1.2e-3", convention: round-once}
+    answer_text: '$1.2 \times 10^{-3}\,\text{m}^3$'
+
+  - id: g4-stone-density
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A stone of mass 64.8 g raises the water level in a measuring cylinder from 50 cm^3 to 74 cm^3. Calculate its density in g/cm^3.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m / (V2 - V1)"
+          values:
+            m: {value: "64.8", unit: "g"}
+            V2: {value: "74", unit: "cm^3"}
+            V1: {value: "50", unit: "cm^3"}
+          answer: {value: "2.7", unit: "g/cm^3"}
+        - {kind: sigfigs, value: "2.7", figures: 2, answer: "2.7", convention: round-once}
+    answer_text: '$2.7\,\text{g/cm}^3$'
+
+  - id: g5-gas-density
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'Explain, using the particle model, why a gas has a much lower density than the same mass of a solid.'
+    check:
+      kind: structured
+      requires: [spacing, volume]
+      concepts: [particle-model, density]
+      points:
+        - id: spacing
+          text: 'In a gas the particles are far apart, with large empty spaces between them; in a solid they are packed closely together.'
+          concepts: [particle-model]
+        - id: volume
+          text: 'The same mass of gas fills a much larger volume, so its density is much lower.'
+          concepts: [density]
+
+  - id: g6-melting-mass
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A student says that when ice melts some of the ice is lost, so the mass of the water is less than the mass of the ice. Explain why the student is wrong.'
+    check:
+      kind: structured
+      requires: [particles, mass]
+      concepts: [conservation-of-mass]
+      points:
+        - id: particles
+          text: 'Melting is a change of state, not a chemical change, so the same particles are present before and after.'
+          concepts: [conservation-of-mass]
+        - id: mass
+          text: 'No particles are created or destroyed, so the mass of the water equals the mass of the ice.'
+          concepts: [conservation-of-mass]
+
+  - id: g7-stone-method
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A small irregular stone has a mass of 39 g and raises the water level in a measuring cylinder from 20 cm^3 to 35 cm^3. Describe how to find its density and calculate the value.'
+    answer_label: 'Method and density of the stone'
+    check:
+      kind: structured
+      requires: [mass, volume, divide]
+      concepts: [density, displacement]
+      points:
+        - id: mass
+          text: 'Measure the mass of the stone on a balance.'
+          concepts: [density]
+        - id: volume
+          text: 'Find the volume by displacement: lower the stone into water in a measuring cylinder and read the rise in the water level.'
+          concepts: [displacement]
+        - id: divide
+          text: 'Use density = mass / volume: 39 / 15 = 2.6 g/cm^3.'
+          concepts: [density]
+
+  # --- The Section 8.1 warm-up recalls ----------------------------------------
+  - id: warmup-8-1-convert
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'Warm-up: change 250 cm^3 into cubic metres.'
+    check:
+      kind: all
+      checks:
+        - {kind: convert, value: "250", from: "cm^3", to: "m^3", answer: "0.00025"}
+        - {kind: sigfigs, value: "0.00025", figures: 2, answer: "2.5e-4", convention: round-once}
+    answer_text: '$2.5 \times 10^{-4}\,\text{m}^3$'
+
+  - id: warmup-8-1-lift
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'Warm-up: a worker lifts a box of mass 20 kg through 1.5 m. Take g = 9.8 N/kg. Calculate the energy gained by the gravitational potential store.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * g * h"
+          values:
+            m: {value: "20", unit: "kg"}
+            g: {value: "9.8", unit: "N/kg"}
+            h: {value: "1.5", unit: "m"}
+          answer: {value: "294", unit: "J"}
+        - {kind: sigfigs, value: "294", figures: 2, answer: "290", convention: round-once}
+    answer_text: '$294\,\text{J}$'
+
+  # --- Section 8.2, the Learn worked examples ---------------------------------
+  - id: w6-water-heat
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'A student heats 2.0 kg of water from 20 °C to 50 °C. The specific heat capacity of water is 4200 J/kg°C. Calculate the energy transferred to the water.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "2.0", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "30", unit: "K"}
+          answer: {value: "252000", unit: "J"}
+        - {kind: sigfigs, value: "252000", figures: 2, answer: "2.5e5", convention: round-once}
+    answer_text: '$2.5 \times 10^5\,\text{J}$'
+
+  - id: w7-metal-c
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'A block of metal of mass 2.0 kg gains 46200 J when its temperature rises by 55 °C. Calculate the specific heat capacity of the metal.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "E / (m * dtheta)"
+          values:
+            E: {value: "46200", unit: "J"}
+            m: {value: "2.0", unit: "kg"}
+            dtheta: {value: "55", unit: "K"}
+          answer: {value: "420", unit: "J kg^-1 K^-1"}
+        - {kind: sigfigs, value: "420", figures: 2, answer: "4.2e2", convention: round-once}
+    answer_text: '$420\,\text{J/kg}\,^\circ\text{C}$'
+
+  - id: w8-melt-ice
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'Calculate the energy needed to melt 0.50 kg of ice at 0 °C. The specific latent heat of fusion of ice is 3.3 x 10^5 J/kg.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * L"
+          values:
+            m: {value: "0.50", unit: "kg"}
+            L: {value: "3.3e5", unit: "J/kg"}
+          answer: {value: "165000", unit: "J"}
+        - {kind: sigfigs, value: "165000", figures: 2, answer: "1.7e5", convention: round-once}
+    answer_text: '$1.65 \times 10^5\,\text{J}$, which is $1.7 \times 10^5\,\text{J}$ to 2 significant figures.'
+
+  - id: w9-boil-water
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'Calculate the energy needed to boil away 0.20 kg of water at 100 °C. The specific latent heat of vaporisation of water is 2.3 x 10^6 J/kg.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * L"
+          values:
+            m: {value: "0.20", unit: "kg"}
+            L: {value: "2.3e6", unit: "J/kg"}
+          answer: {value: "460000", unit: "J"}
+        - {kind: sigfigs, value: "460000", figures: 2, answer: "4.6e5", convention: round-once}
+    answer_text: '$4.6 \times 10^5\,\text{J}$'
+
+  - id: w10-graph-flat
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'A heating graph has a flat part at 0 °C and another at 100 °C. Explain what is happening on each flat part.'
+    check:
+      kind: structured
+      requires: [melting, boiling]
+      concepts: [change-of-state, latent-heat]
+      points:
+        - id: melting
+          text: 'At 0 °C the substance is melting. The energy supplied breaks the forces between the particles, so the state changes and the temperature stays the same.'
+          concepts: [change-of-state, latent-heat]
+        - id: boiling
+          text: 'At 100 °C the substance is boiling. The energy supplied separates the particles completely, so the state changes again and the temperature stays the same.'
+          concepts: [change-of-state, latent-heat]
+
+  # --- Section 8.2, the Practise with help calculations -----------------------
+  - id: g8-copper-heat
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'A block of copper of mass 0.50 kg is heated through 80 °C. The specific heat capacity of copper is 390 J/kg°C. Calculate the energy transferred to the copper.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "0.50", unit: "kg"}
+            c: {value: "390", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "80", unit: "K"}
+          answer: {value: "15600", unit: "J"}
+        - {kind: sigfigs, value: "15600", figures: 2, answer: "1.6e4", convention: round-once}
+    answer_text: '$1.56 \times 10^4\,\text{J}$'
+
+  - id: g9-liquid-c
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'A liquid of mass 1.5 kg gains 13500 J when its temperature rises by 20 °C. Calculate the specific heat capacity of the liquid.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "E / (m * dtheta)"
+          values:
+            E: {value: "13500", unit: "J"}
+            m: {value: "1.5", unit: "kg"}
+            dtheta: {value: "20", unit: "K"}
+          answer: {value: "450", unit: "J kg^-1 K^-1"}
+        - {kind: sigfigs, value: "450", figures: 2, answer: "4.5e2", convention: round-once}
+    answer_text: '$450\,\text{J/kg}\,^\circ\text{C}$'
+
+  - id: g10-melt-080
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'Calculate the energy needed to melt 0.80 kg of ice at 0 °C. The specific latent heat of fusion of ice is 3.3 x 10^5 J/kg.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * L"
+          values:
+            m: {value: "0.80", unit: "kg"}
+            L: {value: "3.3e5", unit: "J/kg"}
+          answer: {value: "264000", unit: "J"}
+        - {kind: sigfigs, value: "264000", figures: 2, answer: "2.6e5", convention: round-once}
+    answer_text: '$2.64 \times 10^5\,\text{J}$'
+
+  - id: g11-boil-0050
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'Calculate the energy needed to boil away 0.050 kg of water at 100 °C. The specific latent heat of vaporisation of water is 2.3 x 10^6 J/kg.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * L"
+          values:
+            m: {value: "0.050", unit: "kg"}
+            L: {value: "2.3e6", unit: "J/kg"}
+          answer: {value: "115000", unit: "J"}
+        - {kind: sigfigs, value: "115000", figures: 2, answer: "1.2e5", convention: round-once}
+    answer_text: '$1.15 \times 10^5\,\text{J}$'
+
+  - id: g12-compare-melt-warm
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'Compare the energy needed to melt 1.0 kg of ice at 0 °C with the energy needed to warm 1.0 kg of water from 0 °C to 45 °C. Use L = 3.3 x 10^5 J/kg and c = 4200 J/kg°C.'
+    answer_label: 'The two energies and which is larger'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * L"
+          values:
+            m: {value: "1.0", unit: "kg"}
+            L: {value: "3.3e5", unit: "J/kg"}
+          answer: {value: "330000", unit: "J"}
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "1.0", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "45", unit: "K"}
+          answer: {value: "189000", unit: "J"}
+    answer_text: 'Melting: $E = mL = 1.0 \times 3.3 \times 10^5 = 3.3 \times 10^5\,\text{J}$. Warming: $\Delta E = mc\Delta\theta = 1.0 \times 4200 \times 45 = 1.89 \times 10^5\,\text{J}$. Melting needs more energy.'
+
+  - id: g13-graph-flat-explain
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'A heating graph for a pure substance has a flat part. Explain what is happening to the particles and what happens to the temperature.'
+    check:
+      kind: structured
+      requires: [state, forces, temperature]
+      concepts: [change-of-state, internal-energy]
+      points:
+        - id: state
+          text: 'On the flat part the substance is changing state.'
+          concepts: [change-of-state]
+        - id: forces
+          text: 'The energy supplied does work against the forces between the particles, so their potential energy increases.'
+          concepts: [internal-energy]
+        - id: temperature
+          text: 'The average kinetic energy of the particles does not change, so the temperature stays constant.'
+          concepts: [internal-energy]
+
+  - id: g14-two-stage
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'Calculate the total energy needed to warm 0.20 kg of water from 20 °C to 100 °C and then boil it all away. Use c = 4200 J/kg°C and L = 2.3 x 10^6 J/kg.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "0.20", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "80", unit: "K"}
+          answer: {value: "67200", unit: "J"}
+        - kind: dimensions
+          expression: "m * L"
+          values:
+            m: {value: "0.20", unit: "kg"}
+            L: {value: "2.3e6", unit: "J/kg"}
+          answer: {value: "460000", unit: "J"}
+        - kind: dimensions
+          expression: "m * c * dtheta + m * L"
+          values:
+            m: {value: "0.20", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "80", unit: "K"}
+            L: {value: "2.3e6", unit: "J/kg"}
+          answer: {value: "527200", unit: "J"}
+        - {kind: sigfigs, value: "527200", figures: 2, answer: "5.3e5", convention: round-once}
+    answer_text: 'Warming: $67\,200\,\text{J}$. Boiling: $460\,000\,\text{J}$. Total: $527\,200\,\text{J} = 5.3 \times 10^5\,\text{J}$.'
+
+  # --- The Section 8.2 warm-up recalls ----------------------------------------
+  - id: warmup-8-2-density
+    section: '8.2'
+    tier: F
+    dfe: [PM1]
+    statement: 'Warm-up: a block has a mass of 1.2 kg and a volume of 1.5 x 10^-3 m^3. Calculate its density.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m / V"
+          values:
+            m: {value: "1.2", unit: "kg"}
+            V: {value: "1.5e-3", unit: "m^3"}
+          answer: {value: "800", unit: "kg/m^3"}
+        - {kind: sigfigs, value: "800", figures: 2, answer: "8.0e2", convention: round-once}
+    answer_text: '$800\,\text{kg/m}^3$'
+
+  - id: warmup-8-2-power
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'Warm-up: a heater transfers 30000 J of energy in 20 s. Calculate its power.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "E / t"
+          values:
+            E: {value: "30000", unit: "J"}
+            t: {value: "20", unit: "s"}
+          answer: {value: "1500", unit: "W"}
+        - {kind: sigfigs, value: "1500", figures: 2, answer: "1.5e3", convention: round-once}
+    answer_text: '$1500\,\text{W}$'
+
+  # --- Section 8.3, the Learn worked examples ---------------------------------
+  - id: w11-pv-pressure
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'A fixed mass of gas at 100 kPa fills 0.30 m^3. It is compressed at constant temperature to 0.10 m^3. Calculate the new pressure.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p1 * V1 / V2"
+          values:
+            p1: {value: "100", unit: "kPa"}
+            V1: {value: "0.30", unit: "m^3"}
+            V2: {value: "0.10", unit: "m^3"}
+          answer: {value: "300", unit: "kPa"}
+        - {kind: sigfigs, value: "300", figures: 2, answer: "3.0e2", convention: round-once}
+    answer_text: '$300\,\text{kPa}$'
+
+  - id: w12-pv-volume
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'A fixed mass of gas at 100 kPa fills 0.60 m^3. It expands at constant temperature to 150 kPa. Calculate the new volume.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p1 * V1 / p2"
+          values:
+            p1: {value: "100", unit: "kPa"}
+            V1: {value: "0.60", unit: "m^3"}
+            p2: {value: "150", unit: "kPa"}
+          answer: {value: "0.40", unit: "m^3"}
+        - {kind: sigfigs, value: "0.40", figures: 2, answer: "0.40", convention: round-once}
+    answer_text: '$0.40\,\text{m}^3$'
+
+  - id: w13-force-from-pressure
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'A gas pushes on a window of area 0.015 m^2 with a force of 3000 N. Calculate the pressure of the gas on the window.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / A"
+          values:
+            F: {value: "3000", unit: "N"}
+            A: {value: "0.015", unit: "m^2"}
+          answer: {value: "200000", unit: "Pa"}
+        - {kind: sigfigs, value: "200000", figures: 2, answer: "2.0e5", convention: round-once}
+    answer_text: '$200\,000\,\text{Pa} = 200\,\text{kPa}$'
+
+  - id: w14-cooling-can
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'A sealed metal can of air is placed in a freezer. Explain what happens to the motion of the air particles and to the pressure inside the can.'
+    check:
+      kind: structured
+      requires: [motion, collisions, pressure]
+      concepts: [gas-pressure, particle-model]
+      points:
+        - id: motion
+          text: 'The air particles cool, so their average kinetic energy falls and they move more slowly.'
+          concepts: [particle-model]
+        - id: collisions
+          text: 'They collide with the walls of the can less often and with less force.'
+          concepts: [gas-pressure]
+        - id: pressure
+          text: 'The pressure inside the can therefore decreases.'
+          concepts: [gas-pressure]
+
+  - id: w15-bicycle-pump
+    section: '8.3'
+    tier: H
+    dfe: [PM3]
+    statement: 'A student pushes the handle of a bicycle pump quickly. The air inside the pump gets warm. Explain why, using energy ideas.'
+    check:
+      kind: structured
+      requires: [work, internal-energy, temperature]
+      concepts: [work-done, internal-energy]
+      points:
+        - id: work
+          text: 'Pushing the handle does work on the air inside the pump, because a force moves through a distance.'
+          concepts: [work-done]
+        - id: internal-energy
+          text: 'The work done is transferred to the internal energy of the air.'
+          concepts: [internal-energy]
+        - id: temperature
+          text: 'The particles of air gain kinetic energy, so the temperature of the air rises.'
+          concepts: [internal-energy]
+
+  # --- Section 8.3, the Practise with help calculations -----------------------
+  - id: g15-pv-pressure
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'A fixed mass of gas at 100 kPa fills 1.2 m^3. It is compressed at constant temperature to 0.40 m^3. Calculate the new pressure.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p1 * V1 / V2"
+          values:
+            p1: {value: "100", unit: "kPa"}
+            V1: {value: "1.2", unit: "m^3"}
+            V2: {value: "0.40", unit: "m^3"}
+          answer: {value: "300", unit: "kPa"}
+        - {kind: sigfigs, value: "300", figures: 2, answer: "3.0e2", convention: round-once}
+    answer_text: '$300\,\text{kPa}$'
+
+  - id: g16-pv-volume
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'A fixed mass of gas at 100 kPa fills 0.30 m^3. It expands at constant temperature to 120 kPa. Calculate the new volume.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p1 * V1 / p2"
+          values:
+            p1: {value: "100", unit: "kPa"}
+            V1: {value: "0.30", unit: "m^3"}
+            p2: {value: "120", unit: "kPa"}
+          answer: {value: "0.25", unit: "m^3"}
+        - {kind: sigfigs, value: "0.25", figures: 2, answer: "0.25", convention: round-once}
+    answer_text: '$0.25\,\text{m}^3$'
+
+  - id: g17-plate-force
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'A gas exerts a pressure of 250 kPa on a flat plate of area 0.040 m^2. Calculate the force on the plate.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p * A"
+          values:
+            p: {value: "250", unit: "kPa"}
+            A: {value: "0.040", unit: "m^2"}
+          answer: {value: "10000", unit: "N"}
+        - {kind: sigfigs, value: "10000", figures: 2, answer: "1.0e4", convention: round-once}
+    answer_text: '$10\,000\,\text{N} = 10\,\text{kN}$'
+
+  - id: g18-compress-explain
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'Explain, using the particle model, why the pressure of a gas rises when the gas is compressed at a constant temperature.'
+    check:
+      kind: structured
+      requires: [crowding, collisions]
+      concepts: [gas-pressure, particle-model]
+      points:
+        - id: crowding
+          text: 'The same number of particles is squeezed into a smaller volume, so the particles are closer together and closer to the walls.'
+          concepts: [particle-model]
+        - id: collisions
+          text: 'Each particle hits the walls more often, and the average kinetic energy does not change, so the walls receive more collisions each second and the pressure rises.'
+          concepts: [gas-pressure]
+
+  - id: g19-heat-sealed
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'A sealed metal container holding a gas is warmed. The volume does not change. Explain what happens to the speed of the particles and to the pressure of the gas.'
+    check:
+      kind: structured
+      requires: [speed, collisions, pressure]
+      concepts: [gas-pressure, particle-model]
+      points:
+        - id: speed
+          text: 'The particles gain kinetic energy and move faster.'
+          concepts: [particle-model]
+        - id: collisions
+          text: 'They hit the walls more often, and each collision is harder.'
+          concepts: [gas-pressure]
+        - id: pressure
+          text: 'The pressure of the gas therefore rises.'
+          concepts: [gas-pressure]
+
+  - id: g20-method-choice-pv
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'Say which relationship you will use, then calculate the pressure when 0.80 m^3 of gas at 100 kPa is compressed to 0.20 m^3 at a constant temperature.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p1 * V1 / V2"
+          values:
+            p1: {value: "100", unit: "kPa"}
+            V1: {value: "0.80", unit: "m^3"}
+            V2: {value: "0.20", unit: "m^3"}
+          answer: {value: "400", unit: "kPa"}
+        - {kind: sigfigs, value: "400", figures: 2, answer: "4.0e2", convention: round-once}
+    answer_text: '$p_1V_1 = p_2V_2$, so $p_2 = \dfrac{100 \times 0.80}{0.20} = 400\,\text{kPa}$.'
+
+  - id: g21-pump-explain
+    section: '8.3'
+    tier: H
+    dfe: [PM3]
+    statement: 'A student pushes the handle of a bicycle pump quickly. Explain why the air inside the pump becomes warmer.'
+    check:
+      kind: structured
+      requires: [work, internal-energy, particles]
+      concepts: [work-done, internal-energy]
+      points:
+        - id: work
+          text: 'Pushing the handle does work on the trapped air, because the force moves through a distance.'
+          concepts: [work-done]
+        - id: internal-energy
+          text: 'The work done is transferred to the internal energy of the air.'
+          concepts: [internal-energy]
+        - id: particles
+          text: 'The particles gain kinetic energy, so the air becomes warmer.'
+          concepts: [internal-energy]
+
+  # --- The Section 8.3 warm-up recalls ----------------------------------------
+  - id: warmup-8-3-heat
+    section: '8.3'
+    tier: F
+    dfe: [PM2]
+    statement: 'Warm-up: calculate the energy needed to warm 0.50 kg of water by 40 °C. The specific heat capacity of water is 4200 J/kg°C.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "0.50", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "40", unit: "K"}
+          answer: {value: "84000", unit: "J"}
+        - {kind: sigfigs, value: "84000", figures: 2, answer: "8.4e4", convention: round-once}
+    answer_text: '$84\,000\,\text{J}$'
+
+  - id: warmup-8-3-pressure
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'Warm-up: a force of 60 N acts on an area of 0.020 m^2. Calculate the pressure.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / A"
+          values:
+            F: {value: "60", unit: "N"}
+            A: {value: "0.020", unit: "m^2"}
+          answer: {value: "3000", unit: "Pa"}
+        - {kind: sigfigs, value: "3000", figures: 2, answer: "3.0e3", convention: round-once}
+    answer_text: '$3000\,\text{Pa}$'
+
+  # --- The chapter problem, resolved on the Review page -----------------------
+  - id: anchor-ice-mass
+    section: Review
+    tier: F
+    dfe: [PM1]
+    statement: 'The block of ice has a volume of 2.5 x 10^-3 m^3 and the density of ice is 920 kg/m^3. Calculate its mass.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "rho * V"
+          values:
+            rho: {value: "920", unit: "kg/m^3"}
+            V: {value: "2.5e-3", unit: "m^3"}
+          answer: {value: "2.3", unit: "kg"}
+        - {kind: sigfigs, value: "2.3", figures: 2, answer: "2.3", convention: round-once}
+    answer_text: '$2.3\,\text{kg}$'
+
+  - id: anchor-melt
+    section: Review
+    tier: F
+    dfe: [PM2]
+    statement: 'The 2.3 kg of ice melts. The specific latent heat of fusion of ice is 3.3 x 10^5 J/kg. Calculate the energy needed.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * L"
+          values:
+            m: {value: "2.3", unit: "kg"}
+            L: {value: "3.3e5", unit: "J/kg"}
+          answer: {value: "759000", unit: "J"}
+        - {kind: sigfigs, value: "759000", figures: 2, answer: "7.6e5", convention: round-once}
+    answer_text: '$7.6 \times 10^5\,\text{J}$'
+
+  - id: anchor-warm
+    section: Review
+    tier: F
+    dfe: [PM2]
+    statement: 'The 2.3 kg of meltwater is warmed from 0 °C to 45 °C. The specific heat capacity of water is 4200 J/kg°C. Calculate the energy needed.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "2.3", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "45", unit: "K"}
+          answer: {value: "434700", unit: "J"}
+        - {kind: sigfigs, value: "434700", figures: 2, answer: "4.3e5", convention: round-once}
+    answer_text: '$4.3 \times 10^5\,\text{J}$'
+
+  - id: anchor-total
+    section: Review
+    tier: F
+    dfe: [PM2]
+    statement: 'Add the energy to melt the ice, 759000 J, to the energy to warm the water, 434700 J.'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "759000 + 434700", answer: "1193700"}
+        - {kind: sigfigs, value: "1193700", figures: 2, answer: "1.2e6", convention: round-once}
+    answer_text: '$1\,193\,700\,\text{J} = 1.2 \times 10^6\,\text{J}$'
+
+  - id: anchor-balloon
+    section: Review
+    tier: F
+    dfe: [PM3]
+    statement: 'The weather balloon holds 2.0 m^3 of gas at 100 kPa in the valley. At altitude the pressure is 25 kPa and the temperature is the same. Calculate the volume at altitude.'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p1 * V1 / p2"
+          values:
+            p1: {value: "100", unit: "kPa"}
+            V1: {value: "2.0", unit: "m^3"}
+            p2: {value: "25", unit: "kPa"}
+          answer: {value: "8.0", unit: "m^3"}
+        - {kind: sigfigs, value: "8.0", figures: 2, answer: "8.0", convention: round-once}
+    answer_text: '$8.0\,\text{m}^3$'

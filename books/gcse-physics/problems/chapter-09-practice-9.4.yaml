@@ -1,0 +1,228 @@
+# Practice set for 9.4 (Nuclear fission and fusion). AQA 8463 marks this topic
+# (physics only), which is a separate-science tag, not a Higher tag, so every
+# record is tier F.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# proves arithmetic and dimensions, not physics. The `structured` records prove
+# only that a model answer contains the declared ideas, in order.
+chapter: 9
+problems:
+  - id: p1-fission-definition
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'Define nuclear fission.'
+    answer_label: 'Definition of nuclear fission'
+    check:
+      kind: structured
+      requires: [large-nucleus, splits]
+      concepts: [fission]
+      points:
+        - id: large-nucleus
+          text: 'Nuclear fission is the splitting of a large and unstable nucleus, such as uranium or plutonium.'
+          concepts: [fission]
+        - id: splits
+          text: 'The nucleus splits into two smaller nuclei that are roughly equal in size, and energy is released.'
+          concepts: [fission]
+
+  - id: p2-fission-process
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'Describe what happens when a uranium-235 nucleus absorbs a neutron and undergoes fission.'
+    answer_label: 'What happens in fission'
+    check:
+      kind: structured
+      requires: [absorbs-neutron, two-smaller-nuclei, neutrons-and-gamma, energy-released]
+      concepts: [fission, chain-reaction]
+      points:
+        - id: absorbs-neutron
+          text: 'The unstable nucleus absorbs a neutron, which makes it even less stable.'
+          concepts: [fission]
+        - id: two-smaller-nuclei
+          text: 'The nucleus splits into two smaller nuclei that are roughly equal in size.'
+          concepts: [fission]
+        - id: neutrons-and-gamma
+          text: 'Two or three neutrons are released, along with gamma rays.'
+          concepts: [chain-reaction]
+        - id: energy-released
+          text: 'Energy is released in the reaction. The fission products carry away most of it as kinetic energy.'
+          concepts: [fission]
+
+  - id: p3-chain-reaction
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'Explain how a chain reaction can happen in a sample of uranium-235.'
+    answer_label: 'How a chain reaction happens'
+    check:
+      kind: structured
+      requires: [neutrons-released, cause-fission, repeats]
+      concepts: [chain-reaction]
+      points:
+        - id: neutrons-released
+          text: 'Each fission releases two or three neutrons.'
+          concepts: [chain-reaction]
+        - id: cause-fission
+          text: 'Those neutrons can be absorbed by other uranium-235 nuclei, causing them to fission too.'
+          concepts: [chain-reaction]
+        - id: repeats
+          text: 'The number of fissions grows with each generation, so the reaction can spread through the sample.'
+          concepts: [chain-reaction]
+
+  - id: p4-controlled
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'Explain why the chain reaction in a nuclear reactor must be controlled, and what happens if it is not.'
+    answer_label: 'Why the chain reaction is controlled'
+    check:
+      kind: structured
+      requires: [controlled, released-gradually, uncontrolled-explosion]
+      concepts: [chain-reaction, nuclear-reactor]
+      points:
+        - id: controlled
+          text: 'In a reactor the chain reaction is controlled so that on average only one neutron from each fission causes another fission.'
+          concepts: [nuclear-reactor]
+        - id: released-gradually
+          text: 'This keeps the energy released steady, so the reactor produces useful power without overheating.'
+          concepts: [nuclear-reactor]
+        - id: uncontrolled-explosion
+          text: 'In an uncontrolled chain reaction the number of fissions grows very quickly. This releases a huge amount of energy in a very short time, as in a nuclear weapon.'
+          concepts: [chain-reaction]
+
+  - id: p5-fission-equation
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'Check that the mass numbers and the atomic numbers balance in the fission equation $^{235}_{92}\text{U} + {}^{1}_{0}\text{n} \rightarrow {}^{141}_{56}\text{Ba} + {}^{92}_{36}\text{Kr} + 3{}^{1}_{0}\text{n}$.'
+    answer_label: 'Balancing the fission equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '235 + 1', answer: '141 + 92 + 3'}
+        - {kind: evaluate, expression: '56 + 36', answer: '92'}
+    answer_text: 'The total mass number on the left is $235 + 1 = 236$, and on the right it is $141 + 92 + 3 = 236$. The total atomic number on the left is 92, and on the right it is $56 + 36 = 92$. Both balance.'
+
+  - id: p6-fusion-definition
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'Define nuclear fusion, and state what happens to some of the mass in the reaction.'
+    answer_label: 'Definition of nuclear fusion'
+    check:
+      kind: structured
+      requires: [light-nuclei-join, heavier-nucleus, mass-to-energy]
+      concepts: [fusion]
+      points:
+        - id: light-nuclei-join
+          text: 'Nuclear fusion is the joining of two light nuclei, such as hydrogen nuclei.'
+          concepts: [fusion]
+        - id: heavier-nucleus
+          text: 'They form a single heavier nucleus.'
+          concepts: [fusion]
+        - id: mass-to-energy
+          text: 'Some of the mass of the nuclei is converted into the energy of radiation.'
+          concepts: [fusion]
+
+  - id: p7-fission-vs-fusion
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'Compare fission and fusion. Give one thing they have in common and one way they are different.'
+    answer_label: 'Fission compared with fusion'
+    check:
+      kind: structured
+      requires: [common, difference]
+      concepts: [fission, fusion]
+      points:
+        - id: common
+          text: 'Both reactions release a great deal of energy from the nucleus.'
+          concepts: [fission, fusion]
+        - id: difference
+          text: 'Fission splits a large nucleus into smaller ones. Fusion joins light nuclei into a heavier one.'
+          concepts: [fission, fusion]
+
+  - id: p8-where
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'State where nuclear fission is used to generate electricity, and where nuclear fusion takes place naturally.'
+    answer_label: 'Where fission and fusion happen'
+    check:
+      kind: structured
+      requires: [reactor, star]
+      concepts: [fission, fusion, star]
+      points:
+        - id: reactor
+          text: 'Fission is used in the nuclear reactors of a power station to generate electricity.'
+          concepts: [fission]
+        - id: star
+          text: 'Fusion takes place in the core of a star, such as the Sun, where light nuclei join together.'
+          concepts: [fusion, star]
+
+  - id: p9-kinetic-energy
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'In a fission reaction, energy is released. Explain which particles carry away most of this energy.'
+    answer_label: 'Which particles carry the energy'
+    check:
+      kind: structured
+      requires: [fission-products, kinetic]
+      concepts: [fission, kinetic-energy]
+      points:
+        - id: fission-products
+          text: 'The two smaller nuclei that are produced, and the neutrons, carry away most of the released energy.'
+          concepts: [fission]
+        - id: kinetic
+          text: 'They move away at high speed, so they carry the energy in their kinetic store.'
+          concepts: [kinetic-energy]
+
+  - id: p10-neutron-count
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'Each fission releases 3 neutrons, and every neutron causes one more fission. Calculate the number of neutrons released in the third generation after the first fission.'
+    answer_label: 'Neutrons in the third generation'
+    check: {kind: evaluate, expression: '3**3', answer: '27'}
+    answer_text: 'The first fission releases $3$ neutrons. The second generation releases $3 \times 3 = 9$, and the third generation releases $3^3 = 27$ neutrons.'
+
+  - id: p11-fusion-stars
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'Explain why fusion needs extremely high temperatures, and why this makes it hard to use fusion in a power station.'
+    answer_label: 'Why fusion needs high temperatures'
+    check:
+      kind: structured
+      requires: [repulsion, high-energy, containment]
+      concepts: [fusion]
+      points:
+        - id: repulsion
+          text: 'Nuclei are positively charged, so they repel each other.'
+          concepts: [fusion]
+        - id: high-energy
+          text: 'The nuclei must be moving very fast to get close enough to join, and a very high temperature gives them that energy.'
+          concepts: [fusion]
+        - id: containment
+          text: 'It is difficult to reach and hold such a high temperature in a power station, so fusion is not yet used to generate electricity.'
+          concepts: [fusion]
+
+  - id: p12-method
+    section: '9.4'
+    tier: F
+    dfe: [AT4]
+    statement: 'A country is choosing how to generate electricity. Say whether a fission power station or a fusion power station can be built today, and give a reason.'
+    answer_label: 'Choosing fission or fusion for a power station'
+    check:
+      kind: structured
+      requires: [fission-chosen, reason]
+      concepts: [fission, fusion]
+      points:
+        - id: fission-chosen
+          text: 'A fission power station can be built today, because fission reactors are already used to generate electricity.'
+          concepts: [fission]
+        - id: reason
+          text: 'Fusion has not yet been made to work as a reliable source of power, because the very high temperature is hard to reach and to contain.'
+          concepts: [fusion]

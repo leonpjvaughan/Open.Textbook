@@ -1,0 +1,234 @@
+# Practice set for 8.1 (Changes of state and the particle model).
+#
+# Both the questions and the answers on the page are rendered from these
+# records. Each calculation is checked twice: the exact magnitude and dimension
+# by `dimensions`, and the one rounding by `sigfigs`. The last few records
+# interleave volume and process skills from earlier chapters.
+chapter: 8
+symbols: {}
+problems:
+  - id: p1-density-basic
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A block of metal has a mass of 0.80 kg and a volume of 1.0 x 10^-3 m^3. Calculate its density.'
+    answer_label: 'Density of the metal'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m / V"
+          values:
+            m: {value: "0.80", unit: "kg"}
+            V: {value: "1.0e-3", unit: "m^3"}
+          answer: {value: "800", unit: "kg/m^3"}
+        - {kind: sigfigs, value: "800", figures: 2, answer: "8.0e2", convention: round-once}
+    answer_text: '$\rho = \dfrac{m}{V} = \dfrac{0.80}{1.0 \times 10^{-3}} = 800\,\text{kg/m}^3$.'
+
+  - id: p2-mass-from-density
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A block of concrete has a density of 2700 kg/m^3 and a volume of 2.0 x 10^-3 m^3. Calculate its mass.'
+    answer_label: 'Mass of the concrete'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "rho * V"
+          values:
+            rho: {value: "2700", unit: "kg/m^3"}
+            V: {value: "2.0e-3", unit: "m^3"}
+          answer: {value: "5.4", unit: "kg"}
+        - {kind: sigfigs, value: "5.4", figures: 2, answer: "5.4", convention: round-once}
+    answer_text: '$m = \rho V = 2700 \times 2.0 \times 10^{-3} = 5.4\,\text{kg}$.'
+
+  - id: p3-volume-from-density
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A liquid has a density of 900 kg/m^3. A sample of the liquid has a mass of 0.90 kg. Calculate the volume of the sample.'
+    answer_label: 'Volume of the liquid'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m / rho"
+          values:
+            m: {value: "0.90", unit: "kg"}
+            rho: {value: "900", unit: "kg/m^3"}
+          answer: {value: "1.0e-3", unit: "m^3"}
+        - {kind: sigfigs, value: "1.0e-3", figures: 2, answer: "1.0e-3", convention: round-once}
+    answer_text: '$V = \dfrac{m}{\rho} = \dfrac{0.90}{900} = 1.0 \times 10^{-3}\,\text{m}^3$.'
+
+  - id: p4-displacement
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'An irregular piece of metal has a mass of 84 g. It raises the water level in a measuring cylinder from 30 cm^3 to 62 cm^3. Calculate its density in g/cm^3.'
+    answer_label: 'Density of the metal'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m / (V2 - V1)"
+          values:
+            m: {value: "84", unit: "g"}
+            V2: {value: "62", unit: "cm^3"}
+            V1: {value: "30", unit: "cm^3"}
+          answer: {value: "2.625", unit: "g/cm^3"}
+        - {kind: sigfigs, value: "2.625", figures: 2, answer: "2.6", convention: round-once}
+    answer_text: 'The volume is $62 - 30 = 32\,\text{cm}^3$. Then $\rho = \dfrac{84}{32} = 2.625\,\text{g/cm}^3 = 2.6\,\text{g/cm}^3$ to 2 significant figures.'
+
+  - id: p5-explain-states
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'Describe the arrangement and the motion of the particles in a solid, a liquid and a gas.'
+    answer_label: 'The three states of matter'
+    check:
+      kind: structured
+      requires: [solid, liquid, gas]
+      concepts: [particle-model]
+      points:
+        - id: solid
+          text: 'In a solid the particles are close together in a regular pattern and vibrate about fixed positions.'
+          concepts: [particle-model]
+        - id: liquid
+          text: 'In a liquid the particles are close together but not in a fixed pattern, so they can move around each other.'
+          concepts: [particle-model]
+        - id: gas
+          text: 'In a gas the particles are far apart and move quickly in random directions.'
+          concepts: [particle-model]
+
+  - id: p6-mass-conserved
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'Explain why the mass of a substance is conserved when it melts. Give a reason in terms of the particles.'
+    answer_label: 'Why the mass is conserved'
+    check:
+      kind: structured
+      requires: [physical, particles]
+      concepts: [conservation-of-mass, change-of-state]
+      points:
+        - id: physical
+          text: 'Melting is a physical change, not a chemical change, so no new substance is made.'
+          concepts: [change-of-state]
+        - id: particles
+          text: 'The same particles are present before and after melting. None are created or destroyed, so the mass does not change.'
+          concepts: [conservation-of-mass]
+
+  - id: p7-regular-block
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A rectangular block measures 2.0 cm by 5.0 cm by 10.0 cm. Its mass is 270 g. Calculate its density in g/cm^3.'
+    answer_label: 'Density of the block'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m / (a * b * c)"
+          values:
+            m: {value: "270", unit: "g"}
+            a: {value: "2.0", unit: "cm"}
+            b: {value: "5.0", unit: "cm"}
+            c: {value: "10.0", unit: "cm"}
+          answer: {value: "2.7", unit: "g/cm^3"}
+        - {kind: sigfigs, value: "2.7", figures: 2, answer: "2.7", convention: round-once}
+    answer_text: 'Volume $= 2.0 \times 5.0 \times 10.0 = 100\,\text{cm}^3$. Then $\rho = \dfrac{270}{100} = 2.7\,\text{g/cm}^3$.'
+
+  - id: p8-liquid-density
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'An empty beaker has a mass of 85 g. When 200 cm^3 of a liquid is added, the total mass is 245 g. Calculate the density of the liquid in g/cm^3.'
+    answer_label: 'Density of the liquid'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "(m_total - m_beaker) / V"
+          values:
+            m_total: {value: "245", unit: "g"}
+            m_beaker: {value: "85", unit: "g"}
+            V: {value: "200", unit: "cm^3"}
+          answer: {value: "0.80", unit: "g/cm^3"}
+        - {kind: sigfigs, value: "0.80", figures: 2, answer: "0.80", convention: round-once}
+    answer_text: 'Mass of liquid $= 245 - 85 = 160\,\text{g}$. Then $\rho = \dfrac{160}{200} = 0.80\,\text{g/cm}^3$.'
+
+  - id: p9-liquid-method
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'Describe how to measure the density of a liquid. Say which measurements you would take and how you would calculate the density.'
+    answer_label: 'Measuring the density of a liquid'
+    check:
+      kind: structured
+      requires: [mass, volume, divide]
+      concepts: [density]
+      points:
+        - id: mass
+          text: 'Measure the mass of an empty container, then measure the mass of the container with the liquid in it. The difference is the mass of the liquid.'
+          concepts: [density]
+        - id: volume
+          text: 'Measure the volume of the liquid with a measuring cylinder.'
+          concepts: [density]
+        - id: divide
+          text: 'Divide the mass of the liquid by its volume to find the density.'
+          concepts: [density]
+
+  - id: p10-ice-mass
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A block of ice has a volume of 1.5 x 10^-3 m^3. The density of ice is 920 kg/m^3. Calculate its mass.'
+    answer_label: 'Mass of the ice'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "rho * V"
+          values:
+            rho: {value: "920", unit: "kg/m^3"}
+            V: {value: "1.5e-3", unit: "m^3"}
+          answer: {value: "1.38", unit: "kg"}
+        - {kind: sigfigs, value: "1.38", figures: 2, answer: "1.4", convention: round-once}
+    answer_text: '$m = \rho V = 920 \times 1.5 \times 10^{-3} = 1.38\,\text{kg} = 1.4\,\text{kg}$ to 2 significant figures.'
+
+  - id: p11-cube
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A metal cube has sides of length 4.0 cm. Its mass is 512 g. Calculate its density in g/cm^3.'
+    answer_label: 'Density of the cube'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m / a**3"
+          values:
+            m: {value: "512", unit: "g"}
+            a: {value: "4.0", unit: "cm"}
+          answer: {value: "8.0", unit: "g/cm^3"}
+        - {kind: sigfigs, value: "8.0", figures: 2, answer: "8.0", convention: round-once}
+    answer_text: 'Volume $= 4.0^3 = 64\,\text{cm}^3$. Then $\rho = \dfrac{512}{64} = 8.0\,\text{g/cm}^3$.'
+
+  - id: p12-method-choice
+    section: '8.1'
+    tier: F
+    dfe: [PM1]
+    statement: 'A student has a regular metal block and an irregular stone. Say how the method to find the volume differs for the two objects, then explain why.'
+    answer_label: 'Finding the volume of the two objects'
+    check:
+      kind: structured
+      requires: [regular, irregular]
+      concepts: [density, displacement]
+      points:
+        - id: regular
+          text: 'For the regular block, measure its length, width and height with a ruler and multiply them to find the volume.'
+          concepts: [density]
+        - id: irregular
+          text: 'For the irregular stone there are no simple lengths to measure, so find the volume by displacement in water instead.'
+          concepts: [displacement]

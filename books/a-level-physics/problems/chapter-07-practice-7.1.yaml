@@ -1,0 +1,200 @@
+# Practice set for 7.1 (Internal energy and specific heat capacity).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]`, so a check may use either.
+#
+# A value that is exact and carries a unit is checked by `dimensions`, which
+# keeps the unit arithmetic exact. A value that needs a square root is checked by
+# `approx` against a stated tolerance. An uncertainty is checked by the
+# `uncertainty` kind against the rule the record names. An energy read from a
+# graph is a measurement, so the `area` kind checks a declared interval. A reason
+# is a `structured` record: presence, order and coverage only, never physics.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 7
+problems:
+  - id: p1-internal-energy
+    section: '7.1'
+    dfe: [AP7]
+    statement: 'A student says that temperature measures the energy stored in an object. Explain why this is not correct, and say what internal energy is.'
+    answer_label: 'A model answer'
+    check:
+      kind: structured
+      requires: [definition, temperature-average, bigger-mass, comparison]
+      concepts: [internal-energy, temperature]
+      points:
+        - id: definition
+          text: 'Internal energy is the total kinetic energy plus the total potential energy of all the particles of the object.'
+          concepts: [internal-energy]
+        - id: temperature-average
+          text: 'Temperature measures the average random kinetic energy of the particles, not the total energy stored.'
+          concepts: [temperature]
+        - id: bigger-mass
+          text: 'A large object at a low temperature can store more internal energy than a small object at a high temperature, because it has many more particles.'
+          concepts: [internal-energy]
+        - id: comparison
+          text: 'A full bath of warm water therefore stores far more internal energy than a cup of boiling water, even though the bath is cooler.'
+          concepts: [internal-energy]
+    answer_text: 'Temperature measures the average random kinetic energy of the particles. Internal energy is the total kinetic and potential energy of all the particles, so it also depends on how many particles there are. A large cool object can store more internal energy than a small hot one.'
+
+  - id: p2-heat-oil
+    section: '7.1'
+    dfe: [AP7]
+    statement: 'A tank contains 2.5 kg of oil. The specific heat capacity of the oil is 2100 J/kg/K. The oil is heated from 20 C to 80 C. Find the energy supplied.'
+    answer_label: 'The energy supplied'
+    check:
+      kind: dimensions
+      expression: "m * c * dtheta"
+      values:
+        m: {value: "2.5", unit: "kg"}
+        c: {value: "2100", unit: "J kg^-1 K^-1"}
+        dtheta: {value: "60", unit: "K"}
+      answer: {value: "315000", unit: "J"}
+    answer_text: '$E = mc\Delta\theta = 2.5 \times 2100 \times 60 = 3.15 \times 10^{5}\,\text{J}$.'
+
+  - id: p3-find-c
+    section: '7.1'
+    dfe: [AP7]
+    statement: 'A 3.0 kg block gains 78000 J of energy. Its temperature rises by 40 K. Find its specific heat capacity.'
+    answer_label: 'The specific heat capacity'
+    check:
+      kind: dimensions
+      expression: "E / (m * dtheta)"
+      values:
+        E: {value: "78000", unit: "J"}
+        m: {value: "3.0", unit: "kg"}
+        dtheta: {value: "40", unit: "K"}
+      answer: {value: "650", unit: "J kg^-1 K^-1"}
+    answer_text: '$c = \dfrac{E}{m\Delta\theta} = \dfrac{78000}{3.0 \times 40} = 650\,\text{J}\,\text{kg}^{-1}\,\text{K}^{-1}$.'
+
+  - id: p4-melt-ice
+    section: '7.1'
+    dfe: [AP7]
+    statement: 'Find the energy needed to melt 0.30 kg of ice at 0 C. The specific latent heat of fusion of ice is 3.34e5 J/kg.'
+    answer_label: 'The energy supplied'
+    check:
+      kind: dimensions
+      expression: "m * L"
+      values:
+        m: {value: "0.30", unit: "kg"}
+        L: {value: "3.34e5", unit: "J kg^-1"}
+      answer: {value: "100200", unit: "J"}
+    answer_text: '$E = mL = 0.30 \times 3.34 \times 10^{5} = 1.00 \times 10^{5}\,\text{J}$.'
+
+  - id: p5-boil-water
+    section: '7.1'
+    dfe: [AP7]
+    statement: 'Find the energy needed to turn 0.15 kg of water at 100 C into steam at 100 C. The specific latent heat of vaporisation of water is 2.26e6 J/kg.'
+    answer_label: 'The energy supplied'
+    check:
+      kind: dimensions
+      expression: "m * L"
+      values:
+        m: {value: "0.15", unit: "kg"}
+        L: {value: "2.26e6", unit: "J kg^-1"}
+      answer: {value: "339000", unit: "J"}
+    answer_text: '$E = mL = 0.15 \times 2.26 \times 10^{6} = 3.39 \times 10^{5}\,\text{J}$.'
+
+  - id: p6-two-stage
+    section: '7.1'
+    dfe: [AP7]
+    statement: 'A kettle heats 1.2 kg of water from 15 C to 100 C, then boils off 0.050 kg of water. Use c = 4200 J/kg/K and L = 2.26e6 J/kg. Find the total energy supplied.'
+    answer_label: 'The total energy'
+    check:
+      kind: dimensions
+      expression: "m1 * c * dtheta + m2 * L"
+      values:
+        m1: {value: "1.2", unit: "kg"}
+        c: {value: "4200", unit: "J kg^-1 K^-1"}
+        dtheta: {value: "85", unit: "K"}
+        m2: {value: "0.050", unit: "kg"}
+        L: {value: "2.26e6", unit: "J kg^-1"}
+      answer: {value: "541400", unit: "J"}
+    answer_text: 'Heating the water needs $E_1 = 1.2 \times 4200 \times 85 = 4.28 \times 10^{5}\,\text{J}$. Boiling needs $E_2 = 0.050 \times 2.26 \times 10^{6} = 1.13 \times 10^{5}\,\text{J}$. The total is $E_1 + E_2 = 5.41 \times 10^{5}\,\text{J}$.'
+
+  - id: p7-temperature-rise
+    section: '7.1'
+    dfe: [AP7]
+    statement: 'A 500 W heater warms 2.0 kg of water for 672 s. Find the temperature rise. The specific heat capacity of water is 4200 J/kg/K.'
+    answer_label: 'The temperature rise'
+    check:
+      kind: dimensions
+      expression: "P * t / (m * c)"
+      values:
+        P: {value: "500", unit: "W"}
+        t: {value: "672", unit: "s"}
+        m: {value: "2.0", unit: "kg"}
+        c: {value: "4200", unit: "J kg^-1 K^-1"}
+      answer: {value: "40", unit: "K"}
+    answer_text: 'The energy supplied is $E = Pt = 500 \times 672 = 3.36 \times 10^{5}\,\text{J}$. Then $\Delta\theta = \dfrac{E}{mc} = \dfrac{3.36 \times 10^{5}}{2.0 \times 4200} = 40\,\text{K}$.'
+
+  - id: p8-uncertainty
+    section: '7.1'
+    dfe: [AP7]
+    statement: 'In a heating experiment the mass is 0.500 kg with a percentage uncertainty of 0.4%, and the temperature rise is 40.0 K with a percentage uncertainty of 0.5%. The specific heat capacity is taken as exact. Find the energy supplied and the absolute uncertainty in it.'
+    answer_label: 'The energy and its uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: "0.500", percentage: "0.4", power: 1}
+        - {value: "4200", percentage: "0", power: 1}
+        - {value: "40.0", percentage: "0.5", power: 1}
+      result: "84000"
+      uncertainty: "756"
+    answer_text: 'The energy is $E = mc\Delta\theta = 0.500 \times 4200 \times 40.0 = 84000\,\text{J}$. For a product the percentage uncertainties add: $0.4\% + 0.5\% = 0.9\%$. The absolute uncertainty is $84000 \times \dfrac{0.9}{100} = 760\,\text{J}$.'
+
+  - id: p9-sigfigs
+    section: '7.1'
+    dfe: [AP7]
+    statement: 'A heating experiment gives an energy of 636300 J. Write this energy to three significant figures.'
+    answer_label: 'The energy to three significant figures'
+    check: {kind: sigfigs, value: "636300", figures: 3, answer: "6.36e5", convention: round-once}
+    answer_text: '$636300\,\text{J} = 6.36 \times 10^{5}\,\text{J}$ to three significant figures.'
+
+  - id: p10-convert
+    section: '7.1'
+    dfe: [AP7]
+    statement: 'A block of mass 250 g is heated. Write this mass in kilograms.'
+    answer_label: 'The mass'
+    check: {kind: convert, value: "250", from: "g", to: "kg", answer: "0.25"}
+    answer_text: '$250\,\text{g} = 0.25\,\text{kg}$.'
+
+  - id: p11-area-energy
+    section: '7.1'
+    dfe: [AP7]
+    statement: 'The power supplied to a heater rises steadily from 100 W to 500 W over 40 s. Find the energy transferred.'
+    answer_label: 'The energy transferred'
+    check:
+      kind: area
+      series: [[0, 100], [40, 500]]
+      answer: "12000"
+      tolerance: "1"
+    answer_text: 'The energy transferred is the area under the power-time graph. The area is a trapezium: $\tfrac{1}{2}(100 + 500) \times 40 = 12000\,\text{J}$.'
+
+  - id: p12-method-choice
+    section: '7.1'
+    dfe: [AP7]
+    statement: 'For each change, say whether to use E = mc(theta) or E = mL, and give a reason. (a) Heating water from 20 C to 60 C. (b) Melting ice at 0 C.'
+    answer_label: 'A model answer'
+    check:
+      kind: structured
+      requires: [heating-uses-mc, reason-temperature, melting-uses-ml, reason-state]
+      concepts: [specific-heat-capacity, specific-latent-heat]
+      points:
+        - id: heating-uses-mc
+          text: 'For heating water from 20 C to 60 C, use E = mc(theta).'
+          concepts: [specific-heat-capacity]
+        - id: reason-temperature
+          text: 'The temperature of the water changes, and no change of state happens, so the energy goes into raising the average kinetic energy of the particles.'
+          concepts: [specific-heat-capacity]
+        - id: melting-uses-ml
+          text: 'For melting ice at 0 C, use E = mL.'
+          concepts: [specific-latent-heat]
+        - id: reason-state
+          text: 'The temperature stays constant while the ice melts, so the energy goes into breaking bonds and raising the potential energy of the particles.'
+          concepts: [specific-latent-heat]
+    answer_text: 'Use E = mc(theta) to heat the water, because its temperature changes. Use E = mL to melt the ice, because its state changes at a constant temperature.'

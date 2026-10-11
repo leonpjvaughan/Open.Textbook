@@ -10,9 +10,15 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.8 Interpreting differential-equation solutions in context — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: H8, OT3
+Work through these on your own. For each context, write the differential
+equation, solve it, then answer the question about the quantity or the time.
+Give one limitation of the model where a question asks for it.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-08-practice-8.8
+
+:::answers chapter-08-practice-8.8

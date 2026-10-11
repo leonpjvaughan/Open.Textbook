@@ -1,0 +1,173 @@
+# Practice set for 8.1 (Photons and the photoelectric effect).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]`, so a check may use either.
+#
+# A quantity whose unit arithmetic is exact in SI (J, m, Hz, kg m s^-1) is proved
+# by `dimensions`. A value that depends on the electronvolt, or on a square root,
+# is proved by `approx` against a stated tolerance, because the units oracle keeps
+# the exact constant 1.602176634e-19 while the book teaches 1.60e-19. A reason is
+# a `structured` record: presence, order and coverage only, never physics.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 8
+problems:
+  - id: p1-photon-energy-frequency
+    section: '8.1'
+    dfe: [AP8]
+    statement: 'A photon has a frequency of 5.0e14 Hz. Find its energy.'
+    answer_label: 'The photon energy'
+    check:
+      kind: dimensions
+      expression: "h * f"
+      values:
+        h: {value: "6.63e-34", unit: "J s"}
+        f: {value: "5.0e14", unit: "Hz"}
+      answer: {value: "3.315e-19", unit: "J"}
+    answer_text: '$E = hf = 6.63 \times 10^{-34} \times 5.0 \times 10^{14} = 3.3 \times 10^{-19}\,\text{J}$.'
+
+  - id: p2-photon-energy-wavelength
+    section: '8.1'
+    dfe: [AP8]
+    statement: 'Find the energy of a photon of wavelength 400 nm, in joules and in electronvolts.'
+    answer_label: 'The photon energy'
+    check:
+      kind: dimensions
+      expression: "h * c / lam"
+      values:
+        h: {value: "6.63e-34", unit: "J s"}
+        c: {value: "3.00e8", unit: "m s^-1"}
+        lam: {value: "4.00e-7", unit: "m"}
+      answer: {value: "4.9725e-19", unit: "J"}
+    answer_text: '$E = \dfrac{hc}{\lambda} = 4.97 \times 10^{-19}\,\text{J} = 3.11\,\text{eV}$.'
+
+  - id: p3-frequency-from-energy
+    section: '8.1'
+    dfe: [AP8]
+    statement: 'A photon has an energy of 2.0 eV. Find its frequency.'
+    answer_label: 'The frequency'
+    check: {kind: approx, value: "2.0 * 1.60e-19 / 6.63e-34", target: "4.83e14", tolerance: "1e13"}
+    answer_text: '$E = 2.0 \times 1.60 \times 10^{-19} = 3.2 \times 10^{-19}\,\text{J}$, so $f = \dfrac{E}{h} = \dfrac{3.2 \times 10^{-19}}{6.63 \times 10^{-34}} = 4.8 \times 10^{14}\,\text{Hz}$.'
+
+  - id: p4-wavelength-from-energy
+    section: '8.1'
+    dfe: [AP8]
+    statement: 'Find the wavelength of a photon of energy 3.0e-19 J.'
+    answer_label: 'The wavelength'
+    check:
+      kind: dimensions
+      expression: "h * c / E"
+      values:
+        h: {value: "6.63e-34", unit: "J s"}
+        c: {value: "3.00e8", unit: "m s^-1"}
+        E: {value: "3.0e-19", unit: "J"}
+      answer: {value: "6.63e-7", unit: "m"}
+    answer_text: '$\lambda = \dfrac{hc}{E} = \dfrac{6.63 \times 10^{-34} \times 3.00 \times 10^{8}}{3.0 \times 10^{-19}} = 6.6 \times 10^{-7}\,\text{m}$, or 660 nm.'
+
+  - id: p5-threshold-wavelength
+    section: '8.1'
+    dfe: [AP8]
+    statement: 'A metal has a work function of 2.30 eV. Find its threshold wavelength.'
+    answer_label: 'The threshold wavelength'
+    check: {kind: approx, value: "6.63e-34 * 3.00e8 / (2.30 * 1.60e-19)", target: "5.40e-7", tolerance: "5e-9"}
+    answer_text: '$\phi = 2.30 \times 1.60 \times 10^{-19} = 3.68 \times 10^{-19}\,\text{J}$, so $\lambda_0 = \dfrac{hc}{\phi} = 5.4 \times 10^{-7}\,\text{m}$, or 540 nm.'
+
+  - id: p6-max-kinetic-energy
+    section: '8.1'
+    dfe: [AP8]
+    statement: 'Light of wavelength 300 nm falls on a metal of work function 2.00 eV. Find the maximum kinetic energy of the emitted electrons, in eV.'
+    answer_label: 'The maximum kinetic energy'
+    check: {kind: approx, value: "6.63e-34 * 3.00e8 / 300e-9 / 1.60e-19 - 2.00", target: "2.14", tolerance: "0.02"}
+    answer_text: 'The photon energy is $\dfrac{hc}{\lambda} = 6.63 \times 10^{-19}\,\text{J} = 4.14\,\text{eV}$. Then $E_{k(\text{max})} = 4.14 - 2.00 = 2.14\,\text{eV}$.'
+
+  - id: p7-stopping-potential
+    section: '8.1'
+    dfe: [AP8]
+    statement: 'Light of wavelength 250 nm falls on a metal of work function 2.00 eV. Find the stopping potential.'
+    answer_label: 'The stopping potential'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "6.63e-34 * 3.00e8 / 250e-9 / 1.60e-19 - 2.00", target: "2.97", tolerance: "0.02"}
+        - kind: dimensions
+          consistency: "V = E / Q"
+          units: {V: "V", E: "eV", Q: "C"}
+    answer_text: 'The photon energy is 4.97 eV, so $E_{k(\text{max})} = 2.97\,\text{eV}$. Then $V_s = \dfrac{E_{k(\text{max})}}{e} = 2.97\,\text{V}$.'
+
+  - id: p8-below-threshold-intensity
+    section: '8.1'
+    dfe: [AP8]
+    statement: 'Explain why increasing the intensity of light below the threshold frequency releases no photoelectrons, however bright the light is.'
+    check:
+      kind: structured
+      requires: [photon-energy, work-function, one-photon, more-photons-same-energy]
+      concepts: [photoelectric, work-function]
+      points:
+        - id: photon-energy
+          text: 'Each photon carries an energy $hf$, which is fixed by the frequency.'
+          concepts: [photoelectric]
+        - id: work-function
+          text: 'One electron needs at least the work function to escape.'
+          concepts: [work-function]
+        - id: one-photon
+          text: 'One photon is absorbed by one electron, so the electron cannot combine the energy of two photons.'
+          concepts: [photoelectric]
+        - id: more-photons-same-energy
+          text: 'A brighter beam has more photons, but each one still carries too little energy, so no electrons escape.'
+          concepts: [photoelectric]
+
+  - id: p9-intensity-and-kinetic-energy
+    section: '8.1'
+    dfe: [AP8]
+    statement: 'Explain why the maximum kinetic energy of the photoelectrons does not depend on the intensity of the light.'
+    check:
+      kind: structured
+      requires: [one-photon-one-electron, photon-energy-fixed, work-function-fixed, kinetic-fixed]
+      concepts: [photoelectric, photon]
+      points:
+        - id: one-photon-one-electron
+          text: 'A photoelectron is released when it absorbs one photon.'
+          concepts: [photon]
+        - id: photon-energy-fixed
+          text: 'The energy of a photon is $hf$, which depends only on the frequency, not on the intensity.'
+          concepts: [photon]
+        - id: work-function-fixed
+          text: 'The work function is a property of the metal and does not change with the light.'
+          concepts: [photoelectric]
+        - id: kinetic-fixed
+          text: 'So the maximum kinetic energy, $hf - \phi$, is also fixed. A brighter beam releases more electrons, not faster ones.'
+          concepts: [photoelectric]
+
+  - id: p10-work-function
+    section: '8.1'
+    dfe: [AP8]
+    statement: 'A metal releases electrons only when the light has a wavelength shorter than 620 nm. Find its work function in eV.'
+    answer_label: 'The work function'
+    check: {kind: approx, value: "6.63e-34 * 3.00e8 / 620e-9 / 1.60e-19", target: "2.00", tolerance: "0.03"}
+    answer_text: '$\phi = \dfrac{hc}{\lambda_0} = \dfrac{6.63 \times 10^{-34} \times 3.00 \times 10^{8}}{620 \times 10^{-9}} = 3.2 \times 10^{-19}\,\text{J} = 2.0\,\text{eV}$.'
+
+  - id: p11-photons-per-second
+    section: '8.1'
+    dfe: [AP8]
+    statement: 'A laser of wavelength 633 nm emits light with a power of 2.0 mW. Find the number of photons it emits each second.'
+    answer_label: 'The number of photons each second'
+    check: {kind: approx, value: "2.0e-3 / (6.63e-34 * 3.00e8 / 633e-9)", target: "6.4e15", tolerance: "1e14"}
+    answer_text: 'Each photon carries $\dfrac{hc}{\lambda} = 3.14 \times 10^{-19}\,\text{J}$. The number each second is $\dfrac{2.0 \times 10^{-3}}{3.14 \times 10^{-19}} = 6.4 \times 10^{15}$.'
+
+  - id: p12-kinetic-energy-uncertainty
+    section: '8.1'
+    dfe: [AP8]
+    statement: 'In an experiment the photon energy is 3.00 eV with an uncertainty of 0.5%, and the work function is 2.00 eV with an uncertainty of 1.0%. Find the maximum kinetic energy and its absolute uncertainty.'
+    answer_label: 'The kinetic energy and its uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-absolutes
+      terms:
+        - {value: "3.00", absolute: "0.015"}
+        - {value: "-2.00", absolute: "0.020"}
+      result: "1.00"
+      uncertainty: "0.035"
+    answer_text: 'The kinetic energy is $3.00 - 2.00 = 1.00\,\text{eV}$. For a difference the absolute uncertainties add: $0.015 + 0.020 = 0.035\,\text{eV}$. So the answer is $1.00 \pm 0.035\,\text{eV}$, a percentage uncertainty of 3.5%.'

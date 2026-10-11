@@ -1,0 +1,170 @@
+# Practice set for 8.8, interpreting differential-equation solutions.
+#
+# A context question has a mathematical answer and a written interpretation. The
+# check proves the mathematics (the solution, the value or the limit); the
+# interpretation and the limitation are prose, carried in answer_text and not
+# claimed as verified.
+chapter: 8
+symbols:
+  t: {real: true}
+  T: {real: true}
+  P: {real: true}
+  m: {real: true}
+  v: {real: true}
+  k: {real: true}
+  A: {real: true}
+problems:
+  - id: z1-cooling
+    section: "8.8"
+    dfe: [H8]
+    statement: 'A liquid cools so that $\dfrac{dT}{dt} = -0.1(T - 20)$, with $T = 90$°C when $t = 0$ and $t$ in minutes. Find $T$ in terms of $t$.'
+    answer_label: 'The temperature'
+    check:
+      kind: ode
+      dependent: T
+      independent: t
+      equation: "Derivative(T(t), t) = -0.1*(T(t) - 20)"
+      answer: "20 + 70*exp(-0.1*t)"
+      initial: [[0, "90"]]
+    answer_text: 'Separating gives $\ln|T - 20| = -0.1t + C$, so $T = 20 + Ae^{-0.1t}$. The condition $T(0) = 90$ gives $A = 70$, so $T = 20 + 70e^{-0.1t}$. The temperature approaches the room temperature of $20$°C.'
+
+  - id: z2-cooling-halving
+    section: "8.8"
+    dfe: [H8]
+    statement: 'A drink cools so that $\dfrac{dT}{dt} = -k(T - 20)$, with $T = 90$°C when $t = 0$. After $20$ minutes the temperature is $55$°C. Show that $k = \dfrac{\ln 2}{20}$ and find $T$ in terms of $t$.'
+    answer_label: 'The temperature'
+    check:
+      kind: ode
+      dependent: T
+      independent: t
+      equation: "Derivative(T(t), t) = -(ln(2)/20)*(T(t) - 20)"
+      answer: "20 + 70*exp(-ln(2)*t/20)"
+      initial: [[0, "90"]]
+    answer_text: 'The solution is $T = 20 + 70e^{-kt}$. At $t = 20$, $55 = 20 + 70e^{-20k}$, so $e^{-20k} = \dfrac{1}{2}$ and $k = \dfrac{\ln 2}{20}$. Hence $T = 20 + 70e^{-(\ln 2)t/20}$. The excess above room temperature halves every $20$ minutes.'
+
+  - id: z3-population
+    section: "8.8"
+    dfe: [H8]
+    statement: 'A population $P$ grows so that $\dfrac{dP}{dt} = 0.02P$, with $P = 5000$ when $t = 0$ and $t$ in years. Find $P$ in terms of $t$.'
+    answer_label: 'The population'
+    check:
+      kind: ode
+      dependent: P
+      independent: t
+      equation: "Derivative(P(t), t) = 0.02*P(t)"
+      answer: "5000*exp(0.02*t)"
+      initial: [[0, "5000"]]
+    answer_text: 'Separating gives $\ln P = 0.02t + C$, so $P = Ae^{0.02t}$. The condition $P(0) = 5000$ gives $P = 5000e^{0.02t}$. The model predicts unlimited growth at $2\%$ per year.'
+
+  - id: z4-population-doubling
+    section: "8.8"
+    dfe: [H8]
+    statement: 'For the population $P = 5000e^{0.02t}$, find the time taken for the population to double, giving an exact answer in years.'
+    answer_label: 'The doubling time'
+    check:
+      kind: solve
+      equation: "5000*exp(0.02*t) = 10000"
+      variable: "t"
+      answer: ["50*ln(2)"]
+    answer_text: 'Set $P = 10000$: $2 = e^{0.02t}$, so $0.02t = \ln 2$ and $t = \dfrac{\ln 2}{0.02} = 50\ln 2 \approx 34.7$ years.'
+
+  - id: z5-decay
+    section: "8.8"
+    dfe: [H8]
+    statement: 'A radioactive mass $m$ decays so that $\dfrac{dm}{dt} = -0.05m$, with $m = 200$ g when $t = 0$ and $t$ in years. Find $m$ in terms of $t$.'
+    answer_label: 'The mass'
+    check:
+      kind: ode
+      dependent: m
+      independent: t
+      equation: "Derivative(m(t), t) = -0.05*m(t)"
+      answer: "200*exp(-0.05*t)"
+      initial: [[0, "200"]]
+    answer_text: 'Separating gives $\ln m = -0.05t + C$, so $m = Ae^{-0.05t}$. The condition $m(0) = 200$ gives $m = 200e^{-0.05t}$. The mass falls towards zero but never reaches it in the model.'
+
+  - id: z6-decay-half-life
+    section: "8.8"
+    dfe: [H8]
+    statement: 'For the mass $m = 200e^{-0.05t}$, find the half-life, giving an exact answer in years.'
+    answer_label: 'The half-life'
+    check:
+      kind: solve
+      equation: "200*exp(-0.05*t) = 100"
+      variable: "t"
+      answer: ["20*ln(2)"]
+    answer_text: 'Set $m = 100$: $\dfrac{1}{2} = e^{-0.05t}$, so $-0.05t = -\ln 2$ and $t = \dfrac{\ln 2}{0.05} = 20\ln 2 \approx 13.9$ years.'
+
+  - id: z7-kinematics
+    section: "8.8"
+    dfe: [H8]
+    statement: 'A ball falls through a fluid so that $\dfrac{dv}{dt} = 9.8 - 2v$, with $v = 0$ when $t = 0$ and $t$ in seconds. Find $v$ in terms of $t$.'
+    answer_label: 'The velocity'
+    check:
+      kind: ode
+      dependent: v
+      independent: t
+      equation: "Derivative(v(t), t) = 9.8 - 2*v(t)"
+      answer: "4.9*(1 - exp(-2*t))"
+      initial: [[0, "0"]]
+    answer_text: 'Separating gives $-\dfrac{1}{2}\ln|9.8 - 2v| = t + C$, so $9.8 - 2v = Ae^{-2t}$. The condition $v(0) = 0$ gives $A = 9.8$, so $v = 4.9\left(1 - e^{-2t}\right)$.'
+
+  - id: z8-terminal-velocity
+    section: "8.8"
+    dfe: [H8]
+    statement: 'For the velocity $v = 4.9\left(1 - e^{-2t}\right)$, find the terminal velocity, that is the limit of $v$ as $t \to \infty$.'
+    answer_label: 'The terminal velocity'
+    check:
+      kind: apply
+      expression: "4.9*(1 - exp(-2*t))"
+      apply: {op: limit, args: [t, "oo"]}
+      answer: "4.9"
+    answer_text: 'As $t \to \infty$, $e^{-2t} \to 0$, so $v \to 4.9$. The terminal velocity is $4.9$ m/s, where the drag balances gravity.'
+
+  - id: z9-cooling-general
+    section: "8.8"
+    dfe: [H8]
+    statement: 'A body cools so that $\dfrac{dT}{dt} = -k(T - 20)$, where $k > 0$. Find the general solution for $T$.'
+    answer_label: 'The general solution'
+    check:
+      kind: ode
+      dependent: T
+      independent: t
+      equation: "Derivative(T(t), t) = -k*(T(t) - 20)"
+      answer: "20 + A*exp(-k*t)"
+    answer_text: 'Separating gives $\ln|T - 20| = -kt + C$, so $T = 20 + Ae^{-kt}$. The value $20$ is the limiting temperature, and $A$ is set by the initial temperature.'
+
+  - id: z10-initial-and-limit
+    section: "8.8"
+    dfe: [H8]
+    statement: 'A cooling model gives $T = 20 + 70e^{-0.1t}$. Find the initial temperature and the limiting temperature.'
+    answer_label: 'The initial and limiting temperatures'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "20 + 70*exp(-0.1*t)", apply: {op: subs, args: [t, "0"]}, answer: "90"}
+        - {kind: apply, expression: "20 + 70*exp(-0.1*t)", apply: {op: limit, args: [t, "oo"]}, answer: "20"}
+    answer_text: 'At $t = 0$, $T = 20 + 70 = 90$°C. As $t \to \infty$ the exponential term tends to $0$, so the limiting temperature is $20$°C.'
+
+  - id: z11-decay-value
+    section: "8.8"
+    dfe: [H8]
+    statement: 'For the mass $m = 50e^{-0.02t}$, find the mass after $10$ years, giving an exact answer in grams.'
+    answer_label: 'The mass'
+    check:
+      kind: apply
+      expression: "50*exp(-0.02*t)"
+      apply: {op: subs, args: [t, "10"]}
+      answer: "50*exp(-1/5)"
+    answer_text: 'Substitute $t = 10$: $m = 50e^{-0.2} \approx 40.9$ g to three significant figures.'
+
+  - id: z12-interpretation
+    section: "8.8"
+    dfe: [H8, OT3]
+    statement: 'A model for a population is $P = 5000e^{0.02t}$. Find the rate of change of the population at $t = 0$, and give one limitation of the model.'
+    answer_label: 'The rate of change at $t = 0$'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "5000*exp(0.02*t)", apply: {op: diff, args: [t]}, answer: "100*exp(0.02*t)"}
+        - {kind: apply, expression: "100*exp(0.02*t)", apply: {op: subs, args: [t, "0"]}, answer: "100"}
+    answer_text: 'The rate of change is $\dfrac{dP}{dt} = 100e^{0.02t}$, which is $100$ per year at $t = 0$. One limitation is that the model predicts unlimited growth: it ignores limits on food, space and disease, so it is only reliable while those resources are plentiful.'

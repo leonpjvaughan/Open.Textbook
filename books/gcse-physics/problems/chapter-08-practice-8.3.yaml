@@ -1,0 +1,201 @@
+# Practice set for 8.3 (Particle model and pressure).
+#
+# Both the questions and the answers on the page are rendered from these
+# records. Each calculation is checked twice: the exact magnitude and dimension
+# by `dimensions`, and the one rounding by `sigfigs`. The two `tier: H` records
+# are the Higher-only work-on-a-gas content, marked **H** on the page.
+chapter: 8
+symbols: {}
+problems:
+  - id: p1-pv-pressure
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'A fixed mass of gas at 100 kPa fills 0.50 m^3. It is compressed at constant temperature to 0.25 m^3. Calculate the new pressure.'
+    answer_label: 'New pressure of the gas'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p1 * V1 / V2"
+          values:
+            p1: {value: "100", unit: "kPa"}
+            V1: {value: "0.50", unit: "m^3"}
+            V2: {value: "0.25", unit: "m^3"}
+          answer: {value: "200", unit: "kPa"}
+        - {kind: sigfigs, value: "200", figures: 2, answer: "2.0e2", convention: round-once}
+    answer_text: '$p_1V_1 = p_2V_2$, so $p_2 = \dfrac{100 \times 0.50}{0.25} = 200\,\text{kPa}$.'
+
+  - id: p2-pv-volume
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'A fixed mass of gas at 100 kPa fills 0.90 m^3. It expands at constant temperature to 150 kPa. Calculate the new volume.'
+    answer_label: 'New volume of the gas'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p1 * V1 / p2"
+          values:
+            p1: {value: "100", unit: "kPa"}
+            V1: {value: "0.90", unit: "m^3"}
+            p2: {value: "150", unit: "kPa"}
+          answer: {value: "0.60", unit: "m^3"}
+        - {kind: sigfigs, value: "0.60", figures: 2, answer: "0.60", convention: round-once}
+    answer_text: '$V_2 = \dfrac{p_1V_1}{p_2} = \dfrac{100 \times 0.90}{150} = 0.60\,\text{m}^3$.'
+
+  - id: p3-force-from-pressure
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'A gas exerts a pressure of 120 kPa on a plate of area 0.025 m^2. Calculate the force on the plate.'
+    answer_label: 'Force on the plate'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p * A"
+          values:
+            p: {value: "120", unit: "kPa"}
+            A: {value: "0.025", unit: "m^2"}
+          answer: {value: "3000", unit: "N"}
+        - {kind: sigfigs, value: "3000", figures: 2, answer: "3.0e3", convention: round-once}
+    answer_text: '$F = pA = 120\,000 \times 0.025 = 3000\,\text{N}$.'
+
+  - id: p4-collisions
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'Explain, using the particle model, why a gas exerts a pressure on the walls of its container.'
+    answer_label: 'Why a gas exerts a pressure'
+    check:
+      kind: structured
+      requires: [motion, collisions, pressure]
+      concepts: [gas-pressure, particle-model]
+      points:
+        - id: motion
+          text: 'The particles of the gas are in constant random motion and move quickly.'
+          concepts: [particle-model]
+        - id: collisions
+          text: 'When a particle hits a wall it changes direction, so the wall feels a force. There are very many collisions each second.'
+          concepts: [gas-pressure]
+        - id: pressure
+          text: 'The total force on each unit of area is the pressure of the gas.'
+          concepts: [gas-pressure]
+
+  - id: p5-constant-volume
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'A gas is sealed in a rigid container and then warmed. The volume does not change. Explain what happens to the pressure of the gas.'
+    answer_label: 'Pressure when the gas is warmed'
+    check:
+      kind: structured
+      requires: [speed, collisions, pressure]
+      concepts: [gas-pressure, particle-model]
+      points:
+        - id: speed
+          text: 'The particles gain kinetic energy and move faster.'
+          concepts: [particle-model]
+        - id: collisions
+          text: 'They hit the walls more often, and each collision is harder.'
+          concepts: [gas-pressure]
+        - id: pressure
+          text: 'The pressure of the gas therefore increases.'
+          concepts: [gas-pressure]
+
+  - id: p6-pressure-basic
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'A force of 45 N acts at right angles on an area of 0.015 m^2. Calculate the pressure.'
+    answer_label: 'Pressure on the area'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F / A"
+          values:
+            F: {value: "45", unit: "N"}
+            A: {value: "0.015", unit: "m^2"}
+          answer: {value: "3000", unit: "Pa"}
+        - {kind: sigfigs, value: "3000", figures: 2, answer: "3.0e3", convention: round-once}
+    answer_text: '$p = \dfrac{F}{A} = \dfrac{45}{0.015} = 3000\,\text{Pa}$.'
+
+  - id: p7-method-choice
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'Say which relationship you will use, then calculate the pressure when 0.60 m^3 of gas at 100 kPa is compressed to 0.15 m^3 at a constant temperature.'
+    answer_label: 'New pressure after compression'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p1 * V1 / V2"
+          values:
+            p1: {value: "100", unit: "kPa"}
+            V1: {value: "0.60", unit: "m^3"}
+            V2: {value: "0.15", unit: "m^3"}
+          answer: {value: "400", unit: "kPa"}
+        - {kind: sigfigs, value: "400", figures: 2, answer: "4.0e2", convention: round-once}
+    answer_text: 'Use $p_1V_1 = p_2V_2$: $p_2 = \dfrac{100 \times 0.60}{0.15} = 400\,\text{kPa}$.'
+
+  - id: p8-work-on-gas
+    section: '8.3'
+    tier: H
+    dfe: [PM3]
+    statement: 'A student pushes the handle of a bicycle pump. Explain how doing work on the trapped air can raise its temperature.'
+    answer_label: 'Work done on a gas'
+    check:
+      kind: structured
+      requires: [work, internal-energy, temperature]
+      concepts: [work-done, internal-energy]
+      points:
+        - id: work
+          text: 'Pushing the handle does work on the trapped air, because a force moves through a distance.'
+          concepts: [work-done]
+        - id: internal-energy
+          text: 'The work done is transferred to the internal energy of the air.'
+          concepts: [internal-energy]
+        - id: temperature
+          text: 'The particles gain kinetic energy, so the temperature of the air rises.'
+          concepts: [internal-energy]
+
+  - id: p9-work-done
+    section: '8.3'
+    tier: H
+    dfe: [PM3]
+    statement: 'A force of 20 N pushes a piston through 0.25 m. Calculate the work done on the gas. Assume all of the work increases the internal energy of the gas.'
+    answer_label: 'Work done on the gas'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "20", unit: "N"}
+            s: {value: "0.25", unit: "m"}
+          answer: {value: "5.0", unit: "J"}
+        - {kind: sigfigs, value: "5.0", figures: 2, answer: "5.0", convention: round-once}
+    answer_text: '$W = Fs = 20 \times 0.25 = 5.0\,\text{J}$. This becomes 5.0 J of internal energy in the gas.'
+
+  - id: p10-pv-double
+    section: '8.3'
+    tier: F
+    dfe: [PM3]
+    statement: 'A fixed mass of gas at 100 kPa fills 2.0 m^3 at a constant temperature. The gas expands until its pressure is 50 kPa. Calculate the new volume.'
+    answer_label: 'New volume of the gas'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p1 * V1 / p2"
+          values:
+            p1: {value: "100", unit: "kPa"}
+            V1: {value: "2.0", unit: "m^3"}
+            p2: {value: "50", unit: "kPa"}
+          answer: {value: "4.0", unit: "m^3"}
+        - {kind: sigfigs, value: "4.0", figures: 2, answer: "4.0", convention: round-once}
+    answer_text: '$V_2 = \dfrac{p_1V_1}{p_2} = \dfrac{100 \times 2.0}{50} = 4.0\,\text{m}^3$. The pressure halves, so the volume doubles.'

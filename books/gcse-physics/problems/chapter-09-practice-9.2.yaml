@@ -1,0 +1,199 @@
+# Practice set for 9.2 (Atoms and nuclear radiation).
+#
+# Both the questions and the answers on the page are rendered from these records.
+# The book declares `oracles: [sympy, units]`, so a check may use either. The two
+# records tagged tier H are the (HT only) net-decline work; the Foundation reader
+# still meets them in the list, marked H, which is the book's existing practice.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): the verifier
+# proves arithmetic and dimensions, not physics.
+chapter: 9
+problems:
+  - id: p1-activity
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'Define activity, and state the unit in which it is measured.'
+    answer_label: 'Activity and its unit'
+    check:
+      kind: structured
+      requires: [rate-of-decay, unit]
+      concepts: [activity]
+      points:
+        - id: rate-of-decay
+          text: 'Activity is the rate at which the unstable nuclei in a source decay.'
+          concepts: [activity]
+        - id: unit
+          text: 'Activity is measured in the becquerel, Bq. One becquerel is one decay each second.'
+          concepts: [activity]
+
+  - id: p2-radiation-types
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'Describe an alpha particle, a beta particle and a gamma ray, and say where each one comes from.'
+    answer_label: 'Alpha, beta and gamma radiation'
+    check:
+      kind: structured
+      requires: [alpha, beta, gamma]
+      concepts: [alpha, beta, gamma]
+      points:
+        - id: alpha
+          text: 'An alpha particle is two protons and two neutrons, the same as a helium nucleus. It is emitted from the nucleus.'
+          concepts: [alpha]
+        - id: beta
+          text: 'A beta particle is a fast electron ejected from the nucleus when a neutron turns into a proton.'
+          concepts: [beta]
+        - id: gamma
+          text: 'A gamma ray is electromagnetic radiation emitted from the nucleus, with no mass and no charge.'
+          concepts: [gamma]
+
+  - id: p3-penetration
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'State which type of radiation is stopped by a sheet of paper, and which type needs thick lead to stop it.'
+    answer_label: 'Stopping alpha and gamma radiation'
+    check:
+      kind: structured
+      requires: [alpha-stopped, gamma-stopped]
+      concepts: [alpha, gamma]
+      points:
+        - id: alpha-stopped
+          text: 'Alpha radiation is stopped by a sheet of paper. It has a range of only a few centimetres in air and is strongly ionising.'
+          concepts: [alpha]
+        - id: gamma-stopped
+          text: 'Gamma radiation needs thick lead, or thick concrete, to reduce it. It has a very long range in air and is weakly ionising.'
+          concepts: [gamma]
+
+  - id: p4-alpha-equation
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'A nucleus of radon-222, $^{222}_{86}\text{Rn}$, emits an alpha particle. Write the balanced nuclear equation for the decay.'
+    answer_label: 'The balanced alpha decay equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '222 - 4', answer: '218'}
+        - {kind: evaluate, expression: '86 - 2', answer: '84'}
+    answer_text: 'An alpha particle is $^{4}_{2}\alpha$. The mass number falls by 4 to give 218, and the atomic number falls by 2 to give 84. The equation is $^{222}_{86}\text{Rn} \rightarrow {}^{218}_{84}\text{Po} + {}^{4}_{2}\alpha$.'
+
+  - id: p5-beta-equation
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'A nucleus of carbon-14, $^{14}_{6}\text{C}$, emits a beta particle. Write the balanced nuclear equation for the decay.'
+    answer_label: 'The balanced beta decay equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '14 - 0', answer: '14'}
+        - {kind: evaluate, expression: '6 + 1', answer: '7'}
+    answer_text: 'A beta particle is $^{0}_{-1}\beta$. The mass number does not change, so it stays at 14. The atomic number rises by 1 to give 7. The equation is $^{14}_{6}\text{C} \rightarrow {}^{14}_{7}\text{N} + {}^{0}_{-1}\beta$.'
+
+  - id: p6-half-life-count
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'A source has a half-life of 4.0 minutes and starts with a count rate of 640 counts per second. Calculate the count rate after 12 minutes.'
+    answer_label: 'Count rate after 12 minutes'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '12 / 4', answer: '3'}
+        - {kind: evaluate, expression: '640 / 2**3', answer: '80'}
+    answer_text: '$12\,\text{min} \div 4.0\,\text{min} = 3$ half-lives. The count rate is $\dfrac{640}{2^3} = 80$ counts per second.'
+
+  - id: p7-half-life-find
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'A source has a count rate of 200 counts per second. After 30 minutes the count rate is 50 counts per second. Work out the half-life of the source.'
+    answer_label: 'Half-life of the source'
+    check: {kind: evaluate, expression: '30 / 2', answer: '15'}
+    answer_text: 'The count rate falls from 200 to 100, and then from 100 to 50. That is two half-lives in 30 minutes, so the half-life is $\dfrac{30}{2} = 15$ minutes.'
+
+  - id: p8-random-decay
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'Explain why the count rate from a source does not fall to exactly half after one half-life.'
+    answer_label: 'Why the count rate is only about half'
+    check:
+      kind: structured
+      requires: [random, average]
+      concepts: [random, half-life]
+      points:
+        - id: random
+          text: 'Radioactive decay is a random process. You cannot predict which nucleus will decay next, or when.'
+          concepts: [random]
+        - id: average
+          text: 'The half-life is the average time for half of the nuclei to decay. A real measurement follows this average only roughly.'
+          concepts: [half-life]
+
+  - id: p9-beta-mass-number
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'Explain why the mass number of a nucleus does not change when the nucleus emits a beta particle.'
+    answer_label: 'Why beta decay leaves the mass number unchanged'
+    check:
+      kind: structured
+      requires: [neutron-to-proton, electron-emitted]
+      concepts: [beta, mass-number]
+      points:
+        - id: neutron-to-proton
+          text: 'In beta decay a neutron in the nucleus turns into a proton, so the number of nucleons does not change.'
+          concepts: [beta, mass-number]
+        - id: electron-emitted
+          text: 'A fast electron is ejected, but an electron has no protons and no neutrons, so the mass number stays the same.'
+          concepts: [beta, mass-number]
+
+  - id: p10-contamination
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'Compare the hazards of contamination and irradiation, and state one precaution that protects against each.'
+    answer_label: 'Contamination compared with irradiation'
+    check:
+      kind: structured
+      requires: [contamination-hazard, irradiation-hazard, precautions]
+      concepts: [contamination, irradiation]
+      points:
+        - id: contamination-hazard
+          text: 'Contamination is the unwanted presence of radioactive atoms on or in a material. The hazard lasts as long as the source stays there, because it keeps decaying inside or on the material.'
+          concepts: [contamination]
+        - id: irradiation-hazard
+          text: 'Irradiation is exposing an object to radiation. The hazard lasts only while the source is nearby, and the object does not become radioactive.'
+          concepts: [irradiation]
+        - id: precautions
+          text: 'Protect against contamination with gloves and by keeping sources sealed. Protect against irradiation by keeping sources at a distance, limiting the time near them and using shielding.'
+          concepts: [contamination, irradiation]
+
+  - id: p11-convert-kbq
+    section: '9.2'
+    tier: F
+    dfe: [AT2]
+    statement: 'A source has an activity of 2.5 kBq. Convert this to becquerels.'
+    answer_label: 'The activity in becquerels'
+    check: {kind: convert, value: '2.5', from: 'kBq', to: 'Bq', answer: '2500'}
+    answer_text: 'The prefix kilo means $1000$, so $2.5\,\text{kBq} = 2.5 \times 1000 = 2500\,\text{Bq}$.'
+
+  - id: p12-fraction-remaining
+    section: '9.2'
+    tier: H
+    dfe: [AT2]
+    statement: 'After four half-lives, state the fraction of the original activity that remains.'
+    answer_label: 'Fraction of activity remaining'
+    check: {kind: evaluate, expression: '(1/2)**4', answer: '1/16'}
+    answer_text: 'Each half-life halves the activity, so after four half-lives the fraction remaining is $\left(\dfrac{1}{2}\right)^4 = \dfrac{1}{16}$.'
+
+  - id: p13-net-decline
+    section: '9.2'
+    tier: H
+    dfe: [AT2]
+    statement: 'After three half-lives, calculate the net decline in a radioactive emission as a ratio.'
+    answer_label: 'Net decline after three half-lives'
+    check: {kind: evaluate, expression: '1 - (1/2)**3', answer: '7/8'}
+    answer_text: 'After three half-lives the fraction remaining is $\left(\dfrac{1}{2}\right)^3 = \dfrac{1}{8}$. The net decline is $1 - \dfrac{1}{8} = \dfrac{7}{8}$, a ratio of $7:8$ of the original emission.'

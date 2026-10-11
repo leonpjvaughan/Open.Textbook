@@ -1,0 +1,255 @@
+# Review practice for Chapter 8 (Particle model of matter).
+#
+# Mixed practice across the chapter and earlier topics. The page asks the reader
+# to choose the method before calculating. Each calculation is checked twice: the
+# exact magnitude and dimension by `dimensions`, and the one rounding by
+# `sigfigs`. The `tier: H` record is the Higher-only work-on-a-gas content.
+chapter: 8
+symbols: {}
+problems:
+  - id: r1-density
+    section: Review
+    tier: F
+    dfe: [PM1]
+    statement: 'A block has a mass of 3.6 kg and a volume of 4.0 x 10^-3 m^3. Calculate its density.'
+    answer_label: 'Density of the block'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m / V"
+          values:
+            m: {value: "3.6", unit: "kg"}
+            V: {value: "4.0e-3", unit: "m^3"}
+          answer: {value: "900", unit: "kg/m^3"}
+        - {kind: sigfigs, value: "900", figures: 2, answer: "9.0e2", convention: round-once}
+    answer_text: '$\rho = \dfrac{m}{V} = \dfrac{3.6}{4.0 \times 10^{-3}} = 900\,\text{kg/m}^3$.'
+
+  - id: r2-specific-heat
+    section: Review
+    tier: F
+    dfe: [PM2]
+    statement: 'Calculate the energy needed to warm 1.5 kg of water by 25 °C. The specific heat capacity of water is 4200 J/kg°C.'
+    answer_label: 'Energy transferred to the water'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "1.5", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "25", unit: "K"}
+          answer: {value: "157500", unit: "J"}
+        - {kind: sigfigs, value: "157500", figures: 2, answer: "1.6e5", convention: round-once}
+    answer_text: '$\Delta E = mc\Delta\theta = 1.5 \times 4200 \times 25 = 157\,500\,\text{J} = 1.6 \times 10^5\,\text{J}$.'
+
+  - id: r3-latent
+    section: Review
+    tier: F
+    dfe: [PM2]
+    statement: 'Calculate the energy needed to melt 0.40 kg of ice at 0 °C. The specific latent heat of fusion of ice is 3.3 x 10^5 J/kg. This is a change of state, so choose the relationship carefully.'
+    answer_label: 'Energy needed to melt the ice'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * L"
+          values:
+            m: {value: "0.40", unit: "kg"}
+            L: {value: "3.3e5", unit: "J/kg"}
+          answer: {value: "132000", unit: "J"}
+        - {kind: sigfigs, value: "132000", figures: 2, answer: "1.3e5", convention: round-once}
+    answer_text: '$E = mL = 0.40 \times 3.3 \times 10^5 = 132\,000\,\text{J} = 1.3 \times 10^5\,\text{J}$.'
+
+  - id: r4-pv
+    section: Review
+    tier: F
+    dfe: [PM3]
+    statement: 'A fixed mass of gas at 100 kPa fills 1.5 m^3. It is compressed at constant temperature to 0.50 m^3. Calculate the new pressure.'
+    answer_label: 'New pressure of the gas'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p1 * V1 / V2"
+          values:
+            p1: {value: "100", unit: "kPa"}
+            V1: {value: "1.5", unit: "m^3"}
+            V2: {value: "0.50", unit: "m^3"}
+          answer: {value: "300", unit: "kPa"}
+        - {kind: sigfigs, value: "300", figures: 2, answer: "3.0e2", convention: round-once}
+    answer_text: '$p_1V_1 = p_2V_2$, so $p_2 = \dfrac{100 \times 1.5}{0.50} = 300\,\text{kPa}$.'
+
+  - id: r5-pressure-force
+    section: Review
+    tier: F
+    dfe: [PM3]
+    statement: 'A gas exerts a pressure of 150 kPa on a surface of area 0.020 m^2. Calculate the force on the surface. This uses pressure from Section 2.4.'
+    answer_label: 'Force on the surface'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p * A"
+          values:
+            p: {value: "150", unit: "kPa"}
+            A: {value: "0.020", unit: "m^2"}
+          answer: {value: "3000", unit: "N"}
+        - {kind: sigfigs, value: "3000", figures: 2, answer: "3.0e3", convention: round-once}
+    answer_text: '$F = pA = 150\,000 \times 0.020 = 3000\,\text{N}$.'
+
+  - id: r6-efficiency
+    section: Review
+    tier: F
+    dfe: [PM2]
+    statement: 'A device is supplied with 800 J of energy and transfers 600 J usefully. Calculate its efficiency. This uses efficiency from Chapter 1.'
+    answer_label: 'Efficiency of the device'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: "600 / 800", answer: "0.75"}
+        - {kind: sigfigs, value: "0.75", figures: 2, answer: "0.75", convention: round-once}
+    answer_text: 'efficiency $= \dfrac{600}{800} = 0.75$, which is 75%.'
+
+  - id: r7-power
+    section: Review
+    tier: F
+    dfe: [PM2]
+    statement: 'A heater has a power of 1200 W and runs for 3.0 minutes. Calculate the energy it transfers. This uses power from Chapter 1.'
+    answer_label: 'Energy transferred by the heater'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P * t"
+          values:
+            P: {value: "1200", unit: "W"}
+            t: {value: "180", unit: "s"}
+          answer: {value: "216000", unit: "J"}
+        - {kind: sigfigs, value: "216000", figures: 2, answer: "2.2e5", convention: round-once}
+    answer_text: '$E = Pt$, with $3.0\,\text{minutes} = 180\,\text{s}$: $E = 1200 \times 180 = 216\,000\,\text{J} = 2.2 \times 10^5\,\text{J}$.'
+
+  - id: r8-work-done
+    section: Review
+    tier: F
+    dfe: [PM2]
+    statement: 'A force of 80 N moves an object 6.0 m along the line of the force. Calculate the work done. This uses work done from Chapter 2.'
+    answer_label: 'Work done on the object'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "80", unit: "N"}
+            s: {value: "6.0", unit: "m"}
+          answer: {value: "480", unit: "J"}
+        - {kind: sigfigs, value: "480", figures: 2, answer: "4.8e2", convention: round-once}
+    answer_text: '$W = Fs = 80 \times 6.0 = 480\,\text{J}$.'
+
+  - id: r9-change-state
+    section: Review
+    tier: F
+    dfe: [PM2]
+    statement: 'Explain what happens to the energy supplied to a substance while it is changing state, and what happens to the temperature.'
+    answer_label: 'Energy during a change of state'
+    check:
+      kind: structured
+      requires: [energy, temperature]
+      concepts: [latent-heat, change-of-state]
+      points:
+        - id: energy
+          text: 'The energy supplied increases the internal energy by breaking the forces between the particles, so their potential energy increases.'
+          concepts: [latent-heat]
+        - id: temperature
+          text: 'The average kinetic energy of the particles does not change, so the temperature stays constant.'
+          concepts: [change-of-state]
+
+  - id: r10-work-on-gas
+    section: Review
+    tier: H
+    dfe: [PM3]
+    statement: 'A force of 25 N pushes a piston through 0.20 m. Calculate the work done on the gas. Explain what happens to the internal energy of the gas. This is Higher tier only.'
+    answer_label: 'Work done on the gas and its effect'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "F * s"
+          values:
+            F: {value: "25", unit: "N"}
+            s: {value: "0.20", unit: "m"}
+          answer: {value: "5.0", unit: "J"}
+        - {kind: sigfigs, value: "5.0", figures: 2, answer: "5.0", convention: round-once}
+    answer_text: '$W = Fs = 25 \times 0.20 = 5.0\,\text{J}$. The work done increases the internal energy of the gas, so the particles move faster and the temperature can rise.'
+
+  - id: r11-two-stage
+    section: Review
+    tier: F
+    dfe: [PM2]
+    statement: 'Say which relationships you will use, then calculate the total energy needed to warm 0.50 kg of water from 20 °C to 100 °C and then boil it all away. Use c = 4200 J/kg°C and L = 2.3 x 10^6 J/kg.'
+    answer_label: 'Total energy for warming and boiling'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "0.50", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "80", unit: "K"}
+          answer: {value: "168000", unit: "J"}
+        - kind: dimensions
+          expression: "m * L"
+          values:
+            m: {value: "0.50", unit: "kg"}
+            L: {value: "2.3e6", unit: "J/kg"}
+          answer: {value: "1150000", unit: "J"}
+        - kind: dimensions
+          expression: "m * c * dtheta + m * L"
+          values:
+            m: {value: "0.50", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "80", unit: "K"}
+            L: {value: "2.3e6", unit: "J/kg"}
+          answer: {value: "1318000", unit: "J"}
+        - {kind: sigfigs, value: "1318000", figures: 2, answer: "1.3e6", convention: round-once}
+    answer_text: 'Warming uses $\Delta E = mc\Delta\theta = 0.50 \times 4200 \times 80 = 168\,000\,\text{J}$. Boiling uses $E = mL = 0.50 \times 2.3 \times 10^6 = 1\,150\,000\,\text{J}$. Total: $1\,318\,000\,\text{J} = 1.3 \times 10^6\,\text{J}$.'
+
+  - id: r12-float
+    section: Review
+    tier: F
+    dfe: [PM1]
+    statement: 'A material has a density of 900 kg/m^3. The density of water is 1000 kg/m^3. State whether the material floats on water, and explain your answer using the particle model.'
+    answer_label: 'Whether the material floats'
+    check:
+      kind: structured
+      requires: [floats, particles]
+      concepts: [density, particle-model]
+      points:
+        - id: floats
+          text: 'The material floats, because its density is less than the density of water.'
+          concepts: [density]
+        - id: particles
+          text: 'The material has fewer particles, or less mass, in each unit of volume than water does, so it is less dense and floats.'
+          concepts: [particle-model]
+
+  - id: r13-method-choice
+    section: Review
+    tier: F
+    dfe: [PM3]
+    statement: 'A fixed mass of gas at 120 kPa fills 0.80 m^3 at a constant temperature. Say which relationship you will use, then calculate the volume when the pressure is 60 kPa.'
+    answer_label: 'New volume of the gas'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "p1 * V1 / p2"
+          values:
+            p1: {value: "120", unit: "kPa"}
+            V1: {value: "0.80", unit: "m^3"}
+            p2: {value: "60", unit: "kPa"}
+          answer: {value: "1.6", unit: "m^3"}
+        - {kind: sigfigs, value: "1.6", figures: 2, answer: "1.6", convention: round-once}
+    answer_text: 'Use $p_1V_1 = p_2V_2$: $V_2 = \dfrac{120 \times 0.80}{60} = 1.6\,\text{m}^3$.'

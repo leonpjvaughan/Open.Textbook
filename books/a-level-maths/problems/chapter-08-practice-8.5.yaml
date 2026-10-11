@@ -1,0 +1,162 @@
+# Practice set for 8.5, integration by substitution and by parts.
+#
+# A substitution or a parts move is not an equivalence of expressions, so the
+# final answer is verified by differentiation: the verifier proves the stated
+# antiderivative, and the constant is free. Definite integrals are exact.
+chapter: 8
+symbols:
+  x: {real: true}
+problems:
+  - id: w1-sub-power
+    section: "8.5"
+    dfe: [H5]
+    statement: 'Find $\displaystyle\int 2x(x^2 + 1)^4\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "2*x*(x**2 + 1)**4"
+      apply: {op: integrate, args: [x]}
+      answer: "(x**2 + 1)**5/5"
+      variable: x
+    answer_text: 'Let $u = x^2 + 1$, so $du = 2x\,dx$. Then $\displaystyle\int u^4\,du = \dfrac{u^5}{5} + C = \dfrac{(x^2 + 1)^5}{5} + C$.'
+
+  - id: w2-sub-exponential
+    section: "8.5"
+    dfe: [H5]
+    statement: 'Find $\displaystyle\int 3x^2e^{x^3}\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "3*x**2*exp(x**3)"
+      apply: {op: integrate, args: [x]}
+      answer: "exp(x**3)"
+      variable: x
+    answer_text: 'Let $u = x^3$, so $du = 3x^2\,dx$. Then $\displaystyle\int e^u\,du = e^u + C = e^{x^3} + C$.'
+
+  - id: w3-sub-logarithm
+    section: "8.5"
+    dfe: [H5]
+    statement: 'Find $\displaystyle\int \frac{2x}{x^2 + 1}\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "2*x/(x**2 + 1)"
+      apply: {op: integrate, args: [x]}
+      answer: "ln(x**2 + 1)"
+      variable: x
+    answer_text: 'Let $u = x^2 + 1$, so $du = 2x\,dx$. Then $\displaystyle\int \dfrac{1}{u}\,du = \ln u + C = \ln(x^2 + 1) + C$.'
+
+  - id: w4-sub-with-factor
+    section: "8.5"
+    dfe: [H5]
+    statement: 'Find $\displaystyle\int x(x^2 + 3)^5\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "x*(x**2 + 3)**5"
+      apply: {op: integrate, args: [x]}
+      answer: "(x**2 + 3)**6/12"
+      variable: x
+    answer_text: 'Let $u = x^2 + 3$, so $x\,dx = \dfrac{1}{2}du$. Then $\dfrac{1}{2}\displaystyle\int u^5\,du = \dfrac{u^6}{12} + C$.'
+
+  - id: w5-parts-exponential
+    section: "8.5"
+    dfe: [H5]
+    statement: 'Find $\displaystyle\int xe^{2x}\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "x*exp(2*x)"
+      apply: {op: integrate, args: [x]}
+      answer: "exp(2*x)*(2*x - 1)/4"
+      variable: x
+    answer_text: 'By parts with $u = x$ and $v = \dfrac{1}{2}e^{2x}$: $uv - \displaystyle\int v\,du = \dfrac{1}{2}xe^{2x} - \dfrac{1}{4}e^{2x} + C = \dfrac{e^{2x}(2x - 1)}{4} + C$.'
+
+  - id: w6-parts-sine
+    section: "8.5"
+    dfe: [H5]
+    statement: 'Find $\displaystyle\int x\sin x\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "x*sin(x)"
+      apply: {op: integrate, args: [x]}
+      answer: "-x*cos(x) + sin(x)"
+      variable: x
+    answer_text: 'By parts with $u = x$ and $v = -\cos x$: $-x\cos x + \displaystyle\int \cos x\,dx = -x\cos x + \sin x + C$.'
+
+  - id: w7-parts-logarithm
+    section: "8.5"
+    dfe: [H5]
+    statement: 'Find $\displaystyle\int x\ln x\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "x*ln(x)"
+      apply: {op: integrate, args: [x]}
+      answer: "x**2*ln(x)/2 - x**2/4"
+      variable: x
+    answer_text: 'By parts with $u = \ln x$ and $v = \dfrac{x^2}{2}$: $\dfrac{x^2}{2}\ln x - \displaystyle\int \dfrac{x}{2}\,dx = \dfrac{x^2}{2}\ln x - \dfrac{x^2}{4} + C$.'
+
+  - id: w8-parts-ln-x
+    section: "8.5"
+    dfe: [H5]
+    statement: 'Find $\displaystyle\int \ln x\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "ln(x)"
+      apply: {op: integrate, args: [x]}
+      answer: "x*ln(x) - x"
+      variable: x
+    answer_text: 'Write $\ln x$ as $\ln x \times 1$, and use parts with $u = \ln x$ and $v = x$: $x\ln x - \displaystyle\int 1\,dx = x\ln x - x + C$.'
+
+  - id: w9-parts-twice
+    section: "8.5"
+    dfe: [H5]
+    statement: 'Find $\displaystyle\int x^2e^x\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "x**2*exp(x)"
+      apply: {op: integrate, args: [x]}
+      answer: "exp(x)*(x**2 - 2*x + 2)"
+      variable: x
+    answer_text: 'Apply parts twice. First $\displaystyle\int x^2e^x\,dx = x^2e^x - 2\displaystyle\int xe^x\,dx$, and then $\displaystyle\int xe^x\,dx = xe^x - e^x$. So the integral is $e^x(x^2 - 2x + 2) + C$.'
+
+  - id: w10-definite-parts
+    section: "8.5"
+    dfe: [H5]
+    statement: 'Evaluate $\displaystyle\int_0^1 xe^x\,dx$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: "x*exp(x)"
+      apply: {op: integrate, args: [x, "0", "1"]}
+      answer: "1"
+    answer_text: 'By parts, an antiderivative is $xe^x - e^x$. Then $\Big[xe^x - e^x\Big]_0^1 = (e - e) - (0 - 1) = 1$.'
+
+  - id: w11-definite-substitution
+    section: "8.5"
+    dfe: [H5]
+    statement: 'Evaluate $\displaystyle\int_0^1 2x(x^2 + 1)^3\,dx$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: "2*x*(x**2 + 1)**3"
+      apply: {op: integrate, args: [x, "0", "1"]}
+      answer: "15/4"
+    answer_text: 'Let $u = x^2 + 1$, so the limits become $u = 1$ and $u = 2$. Then $\displaystyle\int_1^2 u^3\,du = \left[\dfrac{u^4}{4}\right]_1^2 = \dfrac{15}{4}$.'
+
+  - id: w12-sub-trigonometric
+    section: "8.5"
+    dfe: [H5]
+    statement: 'Find $\displaystyle\int \cos^3 x\sin x\,dx$.'
+    answer_label: 'The integral'
+    check:
+      kind: apply
+      expression: "cos(x)**3*sin(x)"
+      apply: {op: integrate, args: [x]}
+      answer: "-cos(x)**4/4"
+      variable: x
+    answer_text: 'Let $u = \cos x$, so $du = -\sin x\,dx$. Then $-\displaystyle\int u^3\,du = -\dfrac{u^4}{4} + C = -\dfrac{\cos^4 x}{4} + C$.'

@@ -1,0 +1,125 @@
+// Tier-1 guided investigation: the heating curve of water.
+//
+// Guided, not a sandbox: the page asks the reader to predict before moving a
+// control. Two sliders set the mass of water and the power of the heater, and the
+// figure draws the temperature against the time. The two flat plateaus are the
+// change of state at melting and at boiling. The boiling plateau is far longer
+// than the melting one, because the specific latent heat of vaporisation is much
+// larger than the specific latent heat of fusion.
+//
+// Colours come from CSS classes, so the figure adapts to every bundle and to
+// both schemes. No colour literal appears here, and no runtime LaTeX: the readout
+// is plain HTML.
+export function mount(el) {
+  el.innerHTML = `
+    <div class="fig-heating-curve" style="font:14px system-ui;max-width:640px">
+      <svg viewBox="0 0 640 340" width="100%" height="340" role="img"
+           aria-label="Temperature against time for water heated at a steady rate, showing a short melting plateau and a much longer boiling plateau"></svg>
+      <label style="display:block;margin:.5rem 0">Mass of water (kg)
+        <input class="mass" type="range" min="0.10" max="2.00" step="0.05" value="1.00">
+        <output class="mass-out">1.00</output>
+      </label>
+      <label style="display:block;margin:.3rem 0">Heater power (W)
+        <input class="power" type="range" min="200" max="1000" step="50" value="500">
+        <output class="power-out">500</output>
+      </label>
+      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
+    </div>`;
+
+  const svg = el.querySelector("svg");
+  const mass = el.querySelector(".mass");
+  const power = el.querySelector(".power");
+  const massOut = el.querySelector(".mass-out");
+  const powerOut = el.querySelector(".power-out");
+  const readout = el.querySelector(".readout");
+
+  // The specific heat capacities and latent heats of water.
+  const C_ICE = 2100;
+  const L_FUSION = 3.34e5;
+  const C_WATER = 4200;
+  const L_VAPOUR = 2.26e6;
+  const C_STEAM = 2000;
+  const T_START = -20;
+  const T_MELT = 0;
+  const T_BOIL = 100;
+  const T_END = 120;
+
+  const LEFT = 64;
+  const RIGHT = 620;
+  const TOP = 24;
+  const BOTTOM = 296;
+  const Y_MIN = -40;
+  const Y_MAX = 140;
+
+  function update() {
+    const m = Number(mass.value);
+    const p = Number(power.value);
+    massOut.textContent = m.toFixed(2);
+    powerOut.textContent = String(p);
+
+    const q1 = m * C_ICE * (T_MELT - T_START);
+    const q2 = m * L_FUSION;
+    const q3 = m * C_WATER * (T_BOIL - T_MELT);
+    const q4 = m * L_VAPOUR;
+    const q5 = m * C_STEAM * (T_END - T_BOIL);
+    const t1 = q1 / p;
+    const t2 = q2 / p;
+    const t3 = q3 / p;
+    const t4 = q4 / p;
+    const t5 = q5 / p;
+    const total = t1 + t2 + t3 + t4 + t5;
+
+    const xFor = (time) => LEFT + (time / total) * (RIGHT - LEFT);
+    const yFor = (temp) =>
+      BOTTOM - ((temp - Y_MIN) / (Y_MAX - Y_MIN)) * (BOTTOM - TOP);
+
+    const marks = [T_START, T_MELT, T_BOIL, T_END];
+    let grid = "";
+    let labels = "";
+    for (const temp of marks) {
+      const y = yFor(temp);
+      grid += `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid" stroke-dasharray="3 4"></line>`;
+      labels += `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="11" class="fig-ink" text-anchor="end">${temp}</text>`;
+    }
+    grid += `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-ink" stroke-width="2"></line>`;
+    grid += `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink" stroke-width="2"></line>`;
+    labels += `<text x="${(LEFT + RIGHT) / 2}" y="${BOTTOM + 34}" font-size="12" class="fig-ink" text-anchor="middle">time / s</text>`;
+    labels += `<text x="20" y="${(TOP + BOTTOM) / 2}" font-size="12" class="fig-ink" text-anchor="middle" transform="rotate(-90 20 ${(TOP + BOTTOM) / 2})">temperature / °C</text>`;
+
+    const points = [
+      [0, T_START],
+      [t1, T_MELT],
+      [t1 + t2, T_MELT],
+      [t1 + t2 + t3, T_BOIL],
+      [t1 + t2 + t3 + t4, T_BOIL],
+      [total, T_END],
+    ];
+    const curve = points
+      .map(([time, temp]) => `${xFor(time).toFixed(1)},${yFor(temp).toFixed(1)}`)
+      .join(" ");
+
+    const meltingX = xFor(t1 + t2 / 2);
+    const boilingX = xFor(t1 + t2 + t3 + t4 / 2);
+    const plateauLabels =
+      `<text x="${meltingX.toFixed(1)}" y="${(yFor(T_MELT) - 8).toFixed(1)}" font-size="11" class="fig-good" text-anchor="middle">melting</text>` +
+      `<text x="${boilingX.toFixed(1)}" y="${(yFor(T_BOIL) - 8).toFixed(1)}" font-size="11" class="fig-warn" text-anchor="middle">boiling</text>`;
+
+    svg.innerHTML =
+      grid +
+      labels +
+      `<polyline points="${curve}" class="fig-accent" fill="none" stroke-width="3"></polyline>` +
+      plateauLabels;
+
+    const minutes = total / 60;
+    readout.innerHTML =
+      `For ${m.toFixed(2)} kg and ${p} W: ice warms for <strong>${t1.toFixed(0)} s</strong>, ` +
+      `melting takes <strong>${t2.toFixed(0)} s</strong>, the water warms for <strong>${t3.toFixed(0)} s</strong>, ` +
+      `boiling takes <strong>${t4.toFixed(0)} s</strong>, and the steam warms for <strong>${t5.toFixed(0)} s</strong>. ` +
+      `The total is ${total.toFixed(0)} s, about ${minutes.toFixed(1)} minutes. ` +
+      `<em>Why does the graph stay flat while the water is boiling?</em>`;
+  }
+
+  mass.addEventListener("input", update);
+  power.addEventListener("input", update);
+  update();
+}

@@ -1,0 +1,195 @@
+# Practice set for 8.4 (Nuclear energy and E = mc^2).
+#
+# Both the questions and the answers on the page are rendered from these records:
+# `:::problems` prints the numbered list, `:::answers` the solutions. The book
+# declares `oracles: [sympy, units]`, so a check may use either.
+#
+# A mass in kilograms converted by E = mc^2 has exact SI units, so it is proved
+# by `dimensions`. A mass in atomic mass units, or an energy in MeV, is proved by
+# `approx` against a stated tolerance, because the units oracle keeps the exact
+# constants while the book teaches the rounded ones. A reason is a `structured`
+# record: presence, order and coverage only, never physics.
+#
+# Honest limit (research/curriculum/physics-verifier-gaps.md §6): this proves the
+# arithmetic and the dimensions, not the physics. A dimensionally consistent,
+# arithmetically correct, physically absurd answer would pass.
+chapter: 8
+problems:
+  - id: p1-mass-to-energy
+    section: '8.4'
+    dfe: [AP8]
+    statement: 'A reaction converts a mass of 2.0e-30 kg into energy. Find the energy released.'
+    answer_label: 'The energy released'
+    check:
+      kind: dimensions
+      expression: "m * c**2"
+      values:
+        m: {value: "2.0e-30", unit: "kg"}
+        c: {value: "3.00e8", unit: "m s^-1"}
+      answer: {value: "1.8e-13", unit: "J"}
+    answer_text: '$E = mc^2 = 2.0 \times 10^{-30} \times (3.00 \times 10^{8})^2 = 1.8 \times 10^{-13}\,\text{J}$.'
+
+  - id: p2-mass-defect-mev
+    section: '8.4'
+    dfe: [AP8]
+    statement: 'A nucleus has a mass defect of 0.050 u. Find its binding energy in MeV.'
+    answer_label: 'The binding energy'
+    check: {kind: approx, value: "0.050 * 931.5", target: "46.6", tolerance: "0.05"}
+    answer_text: 'The energy equivalent of one atomic mass unit is 931.5 MeV, so $E = 0.050 \times 931.5 = 46.6\,\text{MeV}$.'
+
+  - id: p3-kg-to-mev
+    section: '8.4'
+    dfe: [AP8]
+    statement: 'A nuclear reaction has a mass defect of 3.0e-29 kg. Find the energy released, in MeV.'
+    answer_label: 'The energy released'
+    check: {kind: approx, value: "3.0e-29 * (3.00e8)**2 / 1.60e-13", target: "16.9", tolerance: "0.1"}
+    answer_text: '$E = mc^2 = 3.0 \times 10^{-29} \times 9.00 \times 10^{16} = 2.7 \times 10^{-12}\,\text{J} = \dfrac{2.7 \times 10^{-12}}{1.60 \times 10^{-13}} = 16.9\,\text{MeV}$.'
+
+  - id: p4-binding-energy-per-nucleon
+    section: '8.4'
+    dfe: [AP8]
+    statement: 'A helium-4 nucleus has a mass defect of 0.0304 u. Find its binding energy in MeV and its binding energy per nucleon.'
+    answer_label: 'The binding energy and its value per nucleon'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "0.0304 * 931.5", target: "28.3", tolerance: "0.05"}
+        - {kind: approx, value: "0.0304 * 931.5 / 4", target: "7.08", tolerance: "0.02"}
+    answer_text: 'The binding energy is $0.0304 \times 931.5 = 28.3\,\text{MeV}$. The nucleus has 4 nucleons, so the binding energy per nucleon is $\dfrac{28.3}{4} = 7.08\,\text{MeV}$.'
+
+  - id: p5-mass-defect-kg
+    section: '8.4'
+    dfe: [AP8]
+    statement: 'A fission reaction releases 200 MeV. Find the mass defect in kilograms.'
+    answer_label: 'The mass defect'
+    check: {kind: approx, value: "200e6 * 1.60e-19 / (3.00e8)**2", target: "3.56e-28", tolerance: "1e-29"}
+    answer_text: '$E = 200 \times 10^{6} \times 1.60 \times 10^{-19} = 3.20 \times 10^{-11}\,\text{J}$, so $\Delta m = \dfrac{E}{c^2} = 3.6 \times 10^{-28}\,\text{kg}$.'
+
+  - id: p6-annihilation-energy
+    section: '8.4'
+    dfe: [AP8]
+    statement: 'An electron and a positron annihilate. Each has a rest energy of 0.511 MeV. Find the total energy released, in MeV and in joules.'
+    answer_label: 'The total energy'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "2 * 0.511", target: "1.022", tolerance: "0.001"}
+        - {kind: approx, value: "2 * 0.511 * 1.60e-13", target: "1.64e-13", tolerance: "1e-15"}
+    answer_text: '$E_{\text{total}} = 2 \times 0.511 = 1.022\,\text{MeV} = 1.022 \times 1.60 \times 10^{-13} = 1.64 \times 10^{-13}\,\text{J}$.'
+
+  - id: p7-annihilation-photon
+    section: '8.4'
+    dfe: [AP8]
+    statement: 'In the annihilation, two identical photons are produced. Find the energy of each photon in joules and its wavelength.'
+    answer_label: 'The photon energy and wavelength'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: "0.511 * 1.60e-13", target: "8.18e-14", tolerance: "1e-15"}
+        - {kind: approx, value: "6.63e-34 * 3.00e8 / (0.511 * 1.60e-13)", target: "2.43e-12", tolerance: "1e-14"}
+    answer_text: 'Each photon carries $0.511\,\text{MeV} = 8.18 \times 10^{-14}\,\text{J}$. Then $\lambda = \dfrac{hc}{E} = \dfrac{6.63 \times 10^{-34} \times 3.00 \times 10^{8}}{8.18 \times 10^{-14}} = 2.43 \times 10^{-12}\,\text{m}$.'
+
+  - id: p8-fusion-energy
+    section: '8.4'
+    dfe: [AP8]
+    statement: 'In a fusion reaction, 2.0e-29 kg of mass becomes energy. Find the energy released, in MeV.'
+    answer_label: 'The energy released'
+    check: {kind: approx, value: "2.0e-29 * (3.00e8)**2 / 1.60e-13", target: "11.3", tolerance: "0.1"}
+    answer_text: '$E = mc^2 = 2.0 \times 10^{-29} \times 9.00 \times 10^{16} = 1.8 \times 10^{-12}\,\text{J} = 11.3\,\text{MeV}$.'
+
+  - id: p9-fission-explanation
+    section: '8.4'
+    dfe: [AP8]
+    statement: 'Explain why energy is released when a very heavy nucleus undergoes fission.'
+    check:
+      kind: structured
+      requires: [heavy-nucleus-low, products-near-peak, higher-per-nucleon, less-mass, kinetic-energy]
+      concepts: [binding-energy, fission]
+      points:
+        - id: heavy-nucleus-low
+          text: 'A very heavy nucleus has a lower binding energy per nucleon than a nucleus near the peak of the curve.'
+          concepts: [binding-energy]
+        - id: products-near-peak
+          text: 'Its fission products are closer to the peak, near iron-56.'
+          concepts: [binding-energy]
+        - id: higher-per-nucleon
+          text: 'The products therefore have a higher binding energy per nucleon.'
+          concepts: [binding-energy]
+        - id: less-mass
+          text: 'A more tightly bound set of nucleons has less mass.'
+          concepts: [fission]
+        - id: kinetic-energy
+          text: 'The missing mass is released as the kinetic energy of the products, through $E = mc^2$.'
+          concepts: [fission]
+
+  - id: p10-fusion-explanation
+    section: '8.4'
+    dfe: [AP8]
+    statement: 'Explain why energy is released when two light nuclei fuse.'
+    check:
+      kind: structured
+      requires: [light-nuclei-low, product-higher, less-mass, energy-released]
+      concepts: [binding-energy, fusion]
+      points:
+        - id: light-nuclei-low
+          text: 'Two light nuclei have a low binding energy per nucleon, on the steep left-hand side of the curve.'
+          concepts: [binding-energy]
+        - id: product-higher
+          text: 'The heavier product is closer to the peak, so it has a higher binding energy per nucleon.'
+          concepts: [binding-energy]
+        - id: less-mass
+          text: 'The nucleons are more tightly bound in the product, so the product has less mass than the two nuclei together.'
+          concepts: [fusion]
+        - id: energy-released
+          text: 'The mass difference appears as energy, through $E = mc^2$.'
+          concepts: [fusion]
+
+  - id: p11-sigfigs
+    section: '8.4'
+    dfe: [AP8]
+    statement: 'A mass defect is calculated as 0.030376 u. Write it to three significant figures.'
+    answer_label: 'The mass defect'
+    check: {kind: sigfigs, value: "0.030376", figures: 3, answer: "0.0304", convention: round-once}
+    answer_text: 'To three significant figures the mass defect is 0.0304 u.'
+
+  - id: p12-energy-uncertainty
+    section: '8.4'
+    dfe: [AP8]
+    statement: 'A mass defect is 3.0e-29 kg with an uncertainty of 4.0%. Find the percentage uncertainty in the energy released.'
+    answer_label: 'The percentage uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: "3.0e-29", percentage: "4.0", power: 1}
+      result: "3.0e-29"
+      uncertainty: "1.2e-30"
+    answer_text: 'The energy is $E = mc^2$. The speed of light is exact, so the percentage uncertainty in the energy is the same as the mass: 4.0%. The absolute uncertainty is $3.0 \times 10^{-29} \times \dfrac{4.0}{100} = 1.2 \times 10^{-30}\,\text{kg}$.'
+
+  - id: p13-rest-mass
+    section: '8.4'
+    dfe: [AP8]
+    statement: 'The rest energy of a proton is 938 MeV. Find its mass in kilograms.'
+    answer_label: 'The mass'
+    check: {kind: approx, value: "938e6 * 1.60e-19 / (3.00e8)**2", target: "1.67e-27", tolerance: "1e-29"}
+    answer_text: '$E = 938 \times 10^{6} \times 1.60 \times 10^{-19} = 1.50 \times 10^{-10}\,\text{J}$, so $m = \dfrac{E}{c^2} = \dfrac{1.50 \times 10^{-10}}{9.00 \times 10^{16}} = 1.67 \times 10^{-27}\,\text{kg}$.'
+
+  - id: p14-method-choice
+    section: '8.4'
+    dfe: [AP8]
+    statement: 'A nuclear reaction has a mass defect of 0.020 u. State which equation you would use to find the energy released in joules, and why.'
+    check:
+      kind: structured
+      requires: [mass-defect, mc2, convert-units]
+      concepts: [mass-energy, method-choice]
+      points:
+        - id: mass-defect
+          text: 'Find the mass defect in kilograms, or use the energy equivalent of the atomic mass unit to get the energy in MeV first.'
+          concepts: [method-choice]
+        - id: mc2
+          text: 'Use $E = mc^2$ with the mass in kilograms.'
+          concepts: [mass-energy]
+        - id: convert-units
+          text: 'If you found the energy in MeV, change it to joules by multiplying by $1.60 \times 10^{-13}$.'
+          concepts: [method-choice]
+    answer_text: 'Use $E = mc^2$ with the mass defect in kilograms, or find the energy in MeV from the 931.5 MeV per atomic mass unit and change it to joules.'

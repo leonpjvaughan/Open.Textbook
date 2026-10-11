@@ -9,9 +9,16 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.2 Ideal gases and molecular kinetic theory — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: AP7
+Work through these on your own. Convert every temperature to kelvin and every
+volume to cubic metres before you use a gas equation. Write the unit of every
+answer. In the questions that ask for a reason, write your answer in full
+sentences.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-07-practice-7.2
+
+:::answers chapter-07-practice-7.2

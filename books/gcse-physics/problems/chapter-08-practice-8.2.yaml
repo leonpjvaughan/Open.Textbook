@@ -1,0 +1,269 @@
+# Practice set for 8.2 (Internal energy, energy transfers and particle motions).
+#
+# Both the questions and the answers on the page are rendered from these
+# records. Each calculation is checked twice: the exact magnitude and dimension
+# by `dimensions`, and the one rounding by `sigfigs`. The last few records
+# interleave power from Chapter 1 with the two-stage energy transfers of this
+# section.
+chapter: 8
+symbols: {}
+problems:
+  - id: p1-water-heat
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'A tank contains 2.5 kg of water. The water is heated through 40 °C. The specific heat capacity of water is 4200 J/kg°C. Calculate the energy transferred to the water.'
+    answer_label: 'Energy transferred to the water'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "2.5", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "40", unit: "K"}
+          answer: {value: "420000", unit: "J"}
+        - {kind: sigfigs, value: "420000", figures: 2, answer: "4.2e5", convention: round-once}
+    answer_text: '$\Delta E = mc\Delta\theta = 2.5 \times 4200 \times 40 = 420\,000\,\text{J} = 4.2 \times 10^5\,\text{J}$.'
+
+  - id: p2-find-c
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'A block of metal of mass 1.0 kg gains 23400 J when its temperature rises by 60 °C. Calculate its specific heat capacity.'
+    answer_label: 'Specific heat capacity of the metal'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "E / (m * dtheta)"
+          values:
+            E: {value: "23400", unit: "J"}
+            m: {value: "1.0", unit: "kg"}
+            dtheta: {value: "60", unit: "K"}
+          answer: {value: "390", unit: "J kg^-1 K^-1"}
+        - {kind: sigfigs, value: "390", figures: 2, answer: "3.9e2", convention: round-once}
+    answer_text: '$c = \dfrac{\Delta E}{m\Delta\theta} = \dfrac{23\,400}{1.0 \times 60} = 390\,\text{J/kg}\,^\circ\text{C}$.'
+
+  - id: p3-melt-ice
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'Calculate the energy needed to melt 1.5 kg of ice at 0 °C. The specific latent heat of fusion of ice is 3.3 x 10^5 J/kg.'
+    answer_label: 'Energy needed to melt the ice'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * L"
+          values:
+            m: {value: "1.5", unit: "kg"}
+            L: {value: "3.3e5", unit: "J/kg"}
+          answer: {value: "495000", unit: "J"}
+        - {kind: sigfigs, value: "495000", figures: 2, answer: "5.0e5", convention: round-once}
+    answer_text: '$E = mL = 1.5 \times 3.3 \times 10^5 = 495\,000\,\text{J} = 5.0 \times 10^5\,\text{J}$ to 2 significant figures.'
+
+  - id: p4-boil-water
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'Calculate the energy needed to boil away 0.30 kg of water at 100 °C. The specific latent heat of vaporisation of water is 2.3 x 10^6 J/kg.'
+    answer_label: 'Energy needed to boil the water'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * L"
+          values:
+            m: {value: "0.30", unit: "kg"}
+            L: {value: "2.3e6", unit: "J/kg"}
+          answer: {value: "690000", unit: "J"}
+        - {kind: sigfigs, value: "690000", figures: 2, answer: "6.9e5", convention: round-once}
+    answer_text: '$E = mL = 0.30 \times 2.3 \times 10^6 = 690\,000\,\text{J} = 6.9 \times 10^5\,\text{J}$.'
+
+  - id: p5-internal-energy
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'Explain what is meant by the internal energy of a system, and state two things that can happen when the system is heated.'
+    answer_label: 'Internal energy and heating'
+    check:
+      kind: structured
+      requires: [definition, outcomes]
+      concepts: [internal-energy]
+      points:
+        - id: definition
+          text: 'Internal energy is the total kinetic energy and the total potential energy of all the particles in the system.'
+          concepts: [internal-energy]
+        - id: outcomes
+          text: 'Heating can raise the temperature of the system, or it can produce a change of state without changing the temperature.'
+          concepts: [internal-energy]
+
+  - id: p6-plateau
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'A heating graph for a pure substance has a flat part at 0 °C. Explain what is happening during this flat part, and why the temperature does not change.'
+    answer_label: 'The flat part of the heating graph'
+    check:
+      kind: structured
+      requires: [state, energy, temperature]
+      concepts: [change-of-state, latent-heat]
+      points:
+        - id: state
+          text: 'The substance is changing state, in this case melting.'
+          concepts: [change-of-state]
+        - id: energy
+          text: 'The energy supplied breaks the forces between the particles, so their potential energy increases.'
+          concepts: [latent-heat]
+        - id: temperature
+          text: 'The average kinetic energy of the particles does not change, so the temperature stays constant.'
+          concepts: [latent-heat]
+
+  - id: p7-distinguish
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'Distinguish between specific heat capacity and specific latent heat. Include the unit of each and when each one is used.'
+    answer_label: 'Specific heat capacity and specific latent heat'
+    check:
+      kind: structured
+      requires: [specific-heat-capacity, specific-latent-heat]
+      concepts: [specific-heat-capacity, specific-latent-heat]
+      points:
+        - id: specific-heat-capacity
+          text: 'Specific heat capacity is the energy needed to raise the temperature of one kilogram of a substance by one degree Celsius. It is measured in joules per kilogram per degree Celsius, and it is used when the temperature changes.'
+          concepts: [specific-heat-capacity]
+        - id: specific-latent-heat
+          text: 'Specific latent heat is the energy needed to change the state of one kilogram of a substance with no change in temperature. It is measured in joules per kilogram, and it is used during a change of state.'
+          concepts: [specific-latent-heat]
+
+  - id: p8-temperature-change
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'A block of mass 1.2 kg is given 50400 J of energy. The specific heat capacity of the block is 4200 J/kg°C. Calculate the temperature rise.'
+    answer_label: 'Temperature rise of the block'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "E / (m * c)"
+          values:
+            E: {value: "50400", unit: "J"}
+            m: {value: "1.2", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+          answer: {value: "10", unit: "K"}
+        - {kind: sigfigs, value: "10", figures: 2, answer: "1.0e1", convention: round-once}
+    answer_text: '$\Delta\theta = \dfrac{\Delta E}{mc} = \dfrac{50\,400}{1.2 \times 4200} = 10\,^\circ\text{C}$.'
+
+  - id: p9-two-stage
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'Calculate the total energy needed to warm 0.50 kg of water from 0 °C to 100 °C and then boil it all away. Use c = 4200 J/kg°C and L = 2.3 x 10^6 J/kg.'
+    answer_label: 'Total energy for the two stages'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "0.50", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "100", unit: "K"}
+          answer: {value: "210000", unit: "J"}
+        - kind: dimensions
+          expression: "m * L"
+          values:
+            m: {value: "0.50", unit: "kg"}
+            L: {value: "2.3e6", unit: "J/kg"}
+          answer: {value: "1150000", unit: "J"}
+        - kind: dimensions
+          expression: "m * c * dtheta + m * L"
+          values:
+            m: {value: "0.50", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "100", unit: "K"}
+            L: {value: "2.3e6", unit: "J/kg"}
+          answer: {value: "1360000", unit: "J"}
+        - {kind: sigfigs, value: "1360000", figures: 2, answer: "1.4e6", convention: round-once}
+    answer_text: 'Warming: $\Delta E = 0.50 \times 4200 \times 100 = 210\,000\,\text{J}$. Boiling: $E = 0.50 \times 2.3 \times 10^6 = 1\,150\,000\,\text{J}$. Total: $1\,360\,000\,\text{J} = 1.4 \times 10^6\,\text{J}$.'
+
+  - id: p10-compare
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'Compare the energy needed to melt 1.0 kg of ice at 0 °C with the energy needed to boil away 1.0 kg of water at 100 °C. Which is larger, and by roughly how many times?'
+    answer_label: 'The two latent heats compared'
+    check:
+      kind: structured
+      requires: [melt, boil]
+      concepts: [latent-heat]
+      points:
+        - id: melt
+          text: 'Melting 1.0 kg of ice needs E = mL = 1.0 x 3.3 x 10^5 = 3.3 x 10^5 J.'
+          concepts: [latent-heat]
+        - id: boil
+          text: 'Boiling away 1.0 kg of water needs E = mL = 1.0 x 2.3 x 10^6 = 2.3 x 10^6 J, which is about seven times larger.'
+          concepts: [latent-heat]
+
+  - id: p11-power-interleave
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'A heater transfers energy at a rate of 1500 W for 4.0 minutes. The energy is transferred to 2.0 kg of water. Calculate the temperature rise of the water. The specific heat capacity of water is 4200 J/kg°C. This uses power from Chapter 1.'
+    answer_label: 'Temperature rise of the water'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "P * t"
+          values:
+            P: {value: "1500", unit: "W"}
+            t: {value: "240", unit: "s"}
+          answer: {value: "360000", unit: "J"}
+        - kind: dimensions
+          expression: "P * t / (m * c)"
+          values:
+            P: {value: "1500", unit: "W"}
+            t: {value: "240", unit: "s"}
+            m: {value: "2.0", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+          answer: {value: "300/7", unit: "K"}
+        - {kind: sigfigs, value: "300/7", figures: 2, answer: "43", convention: round-once}
+    answer_text: 'Energy $= Pt = 1500 \times 240 = 360\,000\,\text{J}$. Then $\Delta\theta = \dfrac{\Delta E}{mc} = \dfrac{360\,000}{2.0 \times 4200} = 42.9\,^\circ\text{C} = 43\,^\circ\text{C}$ to 2 significant figures.'
+
+  - id: p12-method-choice
+    section: '8.2'
+    tier: F
+    dfe: [PM2]
+    statement: 'Say which relationships you will use, then calculate the total energy needed to melt 0.25 kg of ice at 0 °C and warm the meltwater to 30 °C. Use L = 3.3 x 10^5 J/kg and c = 4200 J/kg°C.'
+    answer_label: 'Total energy for melting and warming'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: "m * L"
+          values:
+            m: {value: "0.25", unit: "kg"}
+            L: {value: "3.3e5", unit: "J/kg"}
+          answer: {value: "82500", unit: "J"}
+        - kind: dimensions
+          expression: "m * c * dtheta"
+          values:
+            m: {value: "0.25", unit: "kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "30", unit: "K"}
+          answer: {value: "31500", unit: "J"}
+        - kind: dimensions
+          expression: "m * L + m * c * dtheta"
+          values:
+            m: {value: "0.25", unit: "kg"}
+            L: {value: "3.3e5", unit: "J/kg"}
+            c: {value: "4200", unit: "J kg^-1 K^-1"}
+            dtheta: {value: "30", unit: "K"}
+          answer: {value: "114000", unit: "J"}
+        - {kind: sigfigs, value: "114000", figures: 2, answer: "1.1e5", convention: round-once}
+    answer_text: 'Melting uses $E = mL = 0.25 \times 3.3 \times 10^5 = 82\,500\,\text{J}$. Warming uses $\Delta E = mc\Delta\theta = 0.25 \times 4200 \times 30 = 31\,500\,\text{J}$. Total: $114\,000\,\text{J} = 1.1 \times 10^5\,\text{J}$.'

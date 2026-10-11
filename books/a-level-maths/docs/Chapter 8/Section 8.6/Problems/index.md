@@ -9,9 +9,14 @@ dfe:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.6 Integrating with partial fractions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> DfE refs: H6
+Work through these on your own. Factorise the denominator, split the fraction,
+then integrate each part. Check any improper fraction for division first.
+
+The questions and the answers below come from a set that is checked by computer
+every time the book is built.
+
+:::problems chapter-08-practice-8.6
+
+:::answers chapter-08-practice-8.6
