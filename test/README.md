@@ -101,6 +101,37 @@ portable interface is the front matter (`tier: H`) plus the HTML-comment block;
 both survive the other renderers (the comment degrades to visible content, which
 a port codemod strips).
 
+## 3. Theme preview
+
+`theme-preview.cjs` previews every bundle on the **built** site, in both schemes,
+and checks the two things a screenshot cannot: that the reader's preference
+actually reached the page, and that the text on it has enough contrast.
+
+```bash
+# The whole matrix, with a full-page text audit per route
+node test/theme-preview.cjs --audit --out /tmp/theme-preview -- \
+  "landing:/" \
+  "learn:/gcse-maths/higher/Chapter%201/Section%201.1/Walkthrough/"
+
+# One bundle, dark only, no images
+node test/theme-preview.cjs --themes synthwave --schemes dark --no-shots -- \
+  "learn:/gcse-maths/higher/Chapter%201/Section%201.1/Walkthrough/"
+```
+
+It seeds **both** origin-wide keys (`textbooks:theme`, `textbooks:scheme`) before
+the first paint, then asserts `data-theme` on `<html>` and
+`data-md-color-scheme` on `<body>`. Ratios are read twice: from the `--tb-*`
+tokens, and from real elements against the first ancestor that painted a
+background, so a token that is defined but not *applied* cannot pass.
+
+`--audit` walks every element that paints text — 582 of them on a Walkthrough —
+and reports any below WCAG AA, with the element, its colours and the ratio. This
+is what found the four defects recorded in `todo.md` item 18, including Material's
+palette stylesheet out-ranking our link mapping in dark mode, and the header's
+white-on-accent title. Both were invisible to the palette tests. The script exits
+non-zero on any failure, so it can be wired into CI; it needs Chrome, so it is not
+part of `test/run.sh`.
+
 ## Risks noted
 
 - `mkdocs-material` prints a banner warning that **MkDocs 2.0 will break plugins

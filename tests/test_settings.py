@@ -9,6 +9,7 @@ both schemes; and it is inert without JavaScript.
 
 from __future__ import annotations
 
+from html import escape
 import re
 from pathlib import Path
 
@@ -258,7 +259,8 @@ def test_the_landing_page_offers_both_preferences():
     assert 'name="tb-theme"' in html
     for bundle in ordered_bundles():
         assert f'value="{bundle.id}"' in html, f"{bundle.id} missing from the landing dialog"
-        assert bundle.title in html
+        # `_radio` escapes the title, so compare the escaped form.
+        assert escape(bundle.title) in html
 
 
 def test_the_landing_settings_markup_declares_no_colour():

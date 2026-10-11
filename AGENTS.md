@@ -226,7 +226,7 @@ preferences.
 ### Previewing a bundle
 
 ```bash
-node scripts/screenshot.cjs site ~/out --schemes light,dark --theme omarchy -- \
+node scripts/screenshot.cjs site ~/out --schemes light,dark --theme catppuccin -- \
   "chapter:/gcse-maths/higher/Chapter 6/Section 6.4/Walkthrough/" "landing:/"
 ```
 

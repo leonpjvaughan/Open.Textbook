@@ -21,7 +21,7 @@ in `AGENTS.md` do not apply here, but the engineering rules do.
 - [x] 15. `extra.css` and `portal.css` declare literal colours
 - [x] 16. Material keyboard gaps found by the audit
 - [x] 17. Text drawn on the accent is not AA
-- [ ] 18. Theme bundles: make each one a light/dark group (research done; rename not started)
+- [ ] 18. Theme bundles — eight light/dark groups, four calm and four vivid (shipped; provenance enforcement and the APCA check left)
 - [ ] 19. Declare the ready state
 
 ---
@@ -938,43 +938,73 @@ Everforest, Catppuccin, Gruvbox and Kanagawa**, all of which publish both
 members. Arc Blueberry is dark-only (`mode = "dark"`) and would need a derived
 light.
 
-**The fix, in order.**
+**What landed** (all of the above except the enforcement, which is still to do).
 
-1. `themes/omarchy.yaml` → `themes/catppuccin.yaml`; `id`/`title` Catppuccin; the
-   header keeps the provenance (the hexes *were* read from Omarchy's copy).
-2. `themes/gruvbox.yaml`: drop "a second member of the Omarchy family"; Omarchy is
-   a catalogue, not a family.
-3. Add a `group:` block to every bundle — `family`, and per member a `name`,
-   `source` and `observed: true|false`, with a required `note` when a member is
-   derived rather than observed. `gruvbox`'s light member is the only derived one
-   today.
-4. Re-run `python -m textbook.scaffold` (it rewrites `themes.css` **and** the
-   `themes`/`theme_info` blocks in `renderers/mkdocs/<book>.<profile>.yml`) and
-   `python -m textbook.portal`; both are generated and must ride with the rename.
-5. Update `AGENTS.md` (the `--theme omarchy` screenshot example), `SHAPE.md`,
-   `tests/test_themes.py`'s `[default-omarchy]` docstring and item 17 above. The
-   "stock Omarchy palettes" sentences are provenance claims and stay.
-6. Optional, not decided: add **Solarized** and **Flexoki** as new groups, and
-   whether a vivid bundle (Arc Blueberry) is wanted at all. Six groups was the
-   proposal; the menu is a reading choice, so this is a product call.
+1. `themes/omarchy.yaml` → `themes/catppuccin.yaml`; `id`/`title` Catppuccin, with
+   the provenance kept (the hexes *were* read from Omarchy's copy).
+2. `themes/gruvbox.yaml`: "a second member of the Omarchy family" is gone; Omarchy
+   is a catalogue, not a family.
+3. Every bundle now carries `mood: calm|vivid`, `family:`, and a `provenance:`
+   block with a `name`, `source` and `observed: true|false` per variation, plus a
+   `note` on every derived member. (Landing as `family`/`provenance` rather than a
+   nested `group:`, which is flatter to read.)
+4. Eight groups: **calm** — Editorial, Clean, Catppuccin, Gruvbox; **vivid** — Arc
+   Blueberry, Tokyo Night, Synthwave '84, Kanagawa. `collection.yaml` orders them
+   calm first and says so. Solarized and Flexoki were the near misses and are the
+   first candidates if a calm group is swapped; three of the four vivid lights are
+   **derived**, because that is what those projects publish.
+5. `themes.css`, both per-book MkDocs configs and the landing page regenerated in
+   the same change.
 
-**Enforcement to add.** `family` and provenance required by `load_bundle`; a
-required `note` when `observed: false`; a test that `omarchy` is not a bundle id;
-and an APCA check on the dark member, written in Python from the published
-formula, as a second opinion beside the WCAG invariant.
+**Four defects the preview found, all fixed.** The palette tests could not see
+any of them, which is the point of running the built page:
+
+1. An accent that fails only with **no subject tint** — catppuccin light 4.34:1,
+   gruvbox light 4.40:1. Fixed in the palettes; guarded by the new
+   `test_every_bundle_is_readable_with_no_subject_tint`.
+2. **`ink_soft` on the landing card** (`color-mix(ink 4%, paper)`) — catppuccin
+   light 4.13:1, kanagawa light 4.24:1. Fixed in the palettes; `contrast_problems`
+   now measures `ink_soft` against the card, pinned to `portal.css`.
+3. **Material's palette CSS beat our link mapping in dark mode**.
+   `[data-md-color-scheme=slate][data-md-color-primary=indigo]` is (0,2,0) and our
+   `[data-md-color-scheme]` is (0,1,0), so `--md-typeset-a-color` stayed Material's
+   indigo `#5488e8` for every bundle — 4.26:1 on gruvbox's dark page, 4.41:1 on
+   Synthwave's — and the bundle's `link` token was ignored. Fixed in `extra.css`
+   by tying at (0,2,0), which `extra.css` wins on load order.
+4. **The header title was white on the accent** (2.54:1 on a light accent, which
+   the dark scheme's subject tint is). `--md-primary-bg-color` now maps to
+   `accent_ink` — the token item 17 added for text drawn on the accent, which the
+   header had never been given.
+
+**The preview harness** is `test/theme-preview.cjs` (documented in `test/README.md`).
+It seeds both origin-wide keys, asserts `data-theme` and `data-md-color-scheme`
+reached the page, checks the token ratios, and with `--audit` walks **every text
+element on the page** against the first ancestor that painted a background.
+Current result: 8 themes × 2 schemes × 2 routes, 582 text elements per book page,
+zero below WCAG AA.
+
+**Still to do.** `load_bundle` does not yet *require* the provenance fields, so a
+`note` can be dropped silently; `omarchy` is not yet asserted absent; and the APCA
+check on the dark member is not written.
 
 **Done means.**
 
-- [ ] No bundle is named after a distribution; the id names the palette family.
-- [ ] Every bundle has a `group.family` and a `name`, `source` and `observed`
-      for each member, and `load_bundle` rejects one that does not.
-- [ ] Every derived member says so in a `note`, and a test fails when it does not.
-- [ ] `themes.css`, the per-book MkDocs configs and the landing page are
-      regenerated in the same commit, and `python -m pytest tests/ -q`
-      and `scripts/check.sh` are green.
+- [x] No bundle is named after a distribution; the id names the palette family.
+- [x] Every bundle has a `family` and a `name`/`source`/`observed` per variation,
+      and every derived member says so in a `note`.
+- [x] The palettes are readable with no subject tint, on the card, and with the
+      book composed in — the first two are newly checked.
+- [x] The built page is clean: links and the header use the bundle's own tokens,
+      and the whole-page text audit passes in both schemes for all eight.
+- [x] `themes.css`, the per-book MkDocs configs and the landing page are
+      regenerated in the same change.
+- [ ] `load_bundle` rejects a bundle with no `family`/`provenance`, and rejects a
+      derived member with no `note`.
+- [ ] A test asserts `omarchy` is not a bundle id.
 - [ ] The APCA check exists, is documented next to the WCAG thresholds, and its
       threshold was chosen from what it found on the existing palettes rather
       than picked in advance.
+- [ ] `python -m pytest tests/ -q` and `scripts/check.sh` are green.
 
 ---
 

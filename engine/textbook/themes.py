@@ -68,6 +68,21 @@ FIGURE_MIN_CONTRAST = {"fig_warn": 4.5, "fig_good": 4.5, "fig_grid": 3.0}
 # here and pinned to the stylesheet by test_the_figure_surface_matches_the_stylesheet.
 FIGURE_PANEL_INK = 0.08
 
+# The landing page's card is `color-mix(in srgb, ink N%, paper)` — 4% in light
+# and 7% in dark — in assets/stylesheets/portal.css (`--tb-card`). `ink_soft`
+# carries the card's body, subject and fact lines, so it is text on a tinted
+# surface, and the card is always the stricter surface: the mix moves *towards*
+# the ink in both schemes, so a soft ink that reads on the page can still fail on
+# the card. Mirrored here and pinned to the stylesheet by
+# test_the_card_surface_matches_the_stylesheet.
+CARD_INK = {"default": 0.04, "slate": 0.07}
+
+# `ink_soft` is not a decorative tone. It is Material's
+# `--md-default-fg-color--light` and it colours real text on both surfaces — the
+# landing card's body, and secondary text in the books — so it is held to the AA
+# minimum for normal text rather than the 3:1 a graphic would allow.
+SOFT_MIN_CONTRAST = {"ink_soft": 4.5}
+
 
 @dataclass(frozen=True)
 class Bundle:
@@ -225,6 +240,12 @@ def figure_panel(tokens: dict[str, str]) -> str:
     return _mix(tokens["ink"], tokens["paper"], FIGURE_PANEL_INK)
 
 
+def card_surface(tokens: dict[str, str], scheme: str) -> str:
+    """The landing page's card, on which `ink_soft` text sits."""
+    attr = SCHEME_ATTR.get(scheme, scheme)
+    return _mix(tokens["ink"], tokens["paper"], CARD_INK.get(attr, CARD_INK["default"]))
+
+
 def contrast_problems(bundle: Bundle, scheme: str, subject: dict[str, str] | None) -> list[str]:
     tokens = effective_tokens(bundle, scheme, subject)
     problems = []
@@ -257,6 +278,17 @@ def contrast_problems(bundle: Bundle, scheme: str, subject: dict[str, str] | Non
         if ratio < minimum:
             problems.append(
                 f"{bundle.id}/{scheme}: {role} {colour} on the figure panel {panel} "
+                f"is {ratio:.2f}:1, below {minimum}:1"
+            )
+    card = card_surface(tokens, scheme)
+    for role, minimum in SOFT_MIN_CONTRAST.items():
+        colour = tokens.get(role)
+        if not colour:
+            continue
+        ratio = contrast(colour, card)
+        if ratio < minimum:
+            problems.append(
+                f"{bundle.id}/{scheme}: {role} {colour} on the card {card} "
                 f"is {ratio:.2f}:1, below {minimum}:1"
             )
     return problems

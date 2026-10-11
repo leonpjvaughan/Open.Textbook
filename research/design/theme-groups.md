@@ -27,6 +27,53 @@ The direction the repository already took in `SHAPE.md` ("Theme bundles") answer
 subject tint, and the two multiply. This note keeps that and tightens only what a
 bundle is allowed to be.
 
+## What landed
+
+The collection now ships **eight** bundles: four calm and four vivid. Each is a
+light/dark group with a `family` and a `provenance` block naming each member's
+source and whether it is observed or derived.
+
+| Group | Light / dark | Source | Member states |
+|---|---|---|---|
+| Editorial | Paper / Ink | house | both authored here |
+| Clean | White / Black | house | both authored here; `fixed:` refuses the tint |
+| Catppuccin | Latte / Mocha | catppuccin/catppuccin | both observed |
+| Gruvbox | Light / Dark | morhetz/gruvbox, read via Omarchy | dark observed, light derived |
+| Arc Blueberry | Daybreak / Arc Blueberry | vale-c/omarchy-arc-blueberry | dark observed, light derived |
+| Tokyo Night | Day / Night | folke/tokyonight.nvim | dark observed, light derived |
+| Synthwave '84 | Dawn / Synthwave '84 | robb0wen/synthwave-vscode | dark observed, light derived |
+| Kanagawa | Lotus / Wave | rebelot/kanagawa.nvim | both observed |
+
+`id: omarchy` is gone. The examples below are the research that produced this;
+the "Candidates" section is kept as the record of the shortlist and what was not
+taken.
+
+The preview run (`test/theme-preview.cjs`) then found four defects that the
+palette tests could not, all of which are fixed:
+
+1. **An accent that only fails where no subject tint replaces it.** catppuccin
+   light (`#1e66f5`, 4.34:1) and gruvbox light (`#427b58`, 4.40:1) were only ever
+   measured *composed* with a book's tint, which replaces the accent. The landing
+   page has no tint, so it showed the bundle's own, under AA. Fixed in the
+   palettes, and guarded by `test_every_bundle_is_readable_with_no_subject_tint`.
+2. **`ink_soft` on the landing card.** The card is `color-mix(ink 4%, paper)`
+   and carries its body text in `ink_soft`; catppuccin light was 4.13:1 and
+   kanagawa light 4.24:1 there. `ink_soft` was not checked against any surface.
+   Fixed in the palettes, and `contrast_problems` now measures it against the
+   card, pinned to `portal.css` by `test_the_card_surface_matches_the_stylesheet`.
+3. **Material's palette stylesheet beat our link mapping.** In dark mode
+   `--md-typeset-a-color` stayed Material's indigo `#5488e8` for every bundle,
+   because `[data-md-color-scheme=slate][data-md-color-primary=indigo]` is
+   (0,2,0) and our bare `[data-md-color-scheme]` is (0,1,0). So the bundle's
+   `link` token was ignored in dark mode — 4.26:1 on gruvbox's page, 4.41:1 on
+   Synthwave's, both under AA — and it also coloured the active nav item. Fixed
+   in `extra.css` by tying at (0,2,0), which wins on load order.
+4. **The header's title was white on the accent.** `--md-primary-bg-color` was
+   Material's white, which is 2.54:1 on a light accent — and the dark scheme's
+   subject tint is exactly that. Fixed by mapping it to `accent_ink`, the token
+   item 17 introduced for text drawn on the accent, but which the header had
+   never been given.
+
 ## Sources reviewed
 
 ### A. omarchy.org/themes is a gallery, not a palette
@@ -260,24 +307,32 @@ translation, and it is worth writing down once:
 
 ## Candidates
 
-Proposed menu, in order. Six groups is a reading choice, not a catalogue; each
-one costs a line in `collection.yaml` and multiplies by book × scheme in the
-contrast test (cheap), but costs the reader attention (not cheap).
+The shortlist the eight were drawn from, and what was not taken. The menu is a
+reading choice, not a catalogue: each group costs a line in `collection.yaml`
+and multiplies by book × scheme in the contrast test (cheap), but it also costs
+the reader attention (not cheap). Eight was the ceiling agreed for now.
 
-| # | Group | Light / dark members | Status | Why |
-|---|---|---|---|---|
-| 1 | **Editorial** | house pair, authored together | already a group | the calm default, serif display |
-| 2 | **Clean** | house pair, authored together | already a group | monochrome by design; `fixed:` refuses the tint |
-| 3 | **Catppuccin** | Latte / Mocha | **rename of `omarchy`** | already the palette; just named wrong |
-| 4 | **Gruvbox** | Light (derived) / Dark | already a group, label the derivation | warm earth, a second serif family |
-| 5 | **Solarized** | Light / Dark | new; both observed | designed for sustained reading, low chroma — the most "textbook" family available |
-| 6 | **Flexoki** | Light / Dark | new; both observed | inky, warm paper, one ramp per hue — cheap to maintain, and it reads like print |
+| Group | Light / dark members | Status | Why |
+|---|---|---|---|
+| **Editorial** | house pair | taken — calm | the calm default, serif display |
+| **Clean** | house pair | taken — calm | monochrome by design; `fixed:` refuses the tint |
+| **Catppuccin** | Latte / Mocha | taken — calm | the rename of `omarchy`; low chroma, gentle rules |
+| **Gruvbox** | Light (derived) / Dark | taken — calm | warm earth, a second serif family |
+| **Arc Blueberry** | Daybreak (derived) / Arc Blueberry | taken — vivid | the user's example; one bright accent on midnight navy |
+| **Tokyo Night** | Day (derived) / Night | taken — vivid | blue and violet; upstream's own light is generated, not authored |
+| **Synthwave '84** | Dawn (derived) / Synthwave '84 | taken — vivid | the loudest of the four; magenta on purple-black |
+| **Kanagawa** | Lotus / Wave | taken — vivid | the only new group whose two members are both the family's own |
+| Solarized | Light / Dark | **not taken** | both observed and designed for sustained reading, but the six-group plan became 4 calm + 4 vivid, and Catppuccin and Gruvbox already occupy the low-chroma calm slot |
+| Flexoki | Light / Dark | **not taken** | the cheapest group to maintain (one ramp per hue), and the best remaining candidate if a calm group is swapped |
+| Rosé Pine | Dawn / Moon | **not taken** | softer and cooler; would overlap Kanagawa |
+| Everforest | Light / Dark | **not taken** | deliberately soft green; overlaps Gruvbox |
 
-One optional seventh: **Rosé Pine** (Dawn / Moon) for a softer, cooler option, or
-**Arc Blueberry** with a derived light if a vivid, high-chroma bundle is wanted.
-I would not add either until the six are settled, and Arc Blueberry in particular
-is a *different* position — vivid cyberpunk rather than calm reading — so it is a
-product decision, not a palette decision.
+Three of the four vivid lights are **derived**, which is the honest consequence
+of what the upstream projects publish: vivid palettes are usually dark-only, and
+an inversion is not a palette. Each says so in a `note`. If a vivid group whose
+light is genuinely observed is wanted, Kanagawa is the one that already has it —
+and Solarized, Flexoki and Everforest are the observed-pair groups still on the
+table.
 
 ## What to do about the existing bundles
 

@@ -1,0 +1,77 @@
+# Catppuccin: a muted base with one confident accent and soft secondary hues.
+#
+# The family publishes four flavours; we take two, one per scheme — **Mocha**
+# for the dark variation and **Latte** for the light one. The hexes were read
+# from Omarchy's copies of the stock themes
+# (/usr/share/omarchy/themes/{catppuccin,catppuccin-latte}), which is where this
+# bundle started, but the palette is the Catppuccin project's. Omarchy is a
+# catalogue of single-mode palettes, not a palette and not a family, so it is a
+# provenance note rather than the name.
+#
+# Typography carries the same voice: a sans body with a monospace label face, so
+# captions and section markers read as instrument labels rather than prose.
+
+id: catppuccin
+title: Catppuccin
+description: >-
+  Soft, muted and even-tempered: Latte on paper, Mocha on midnight. Low colour
+  and gentle rules, which is what keeps it comfortable over a long chapter.
+
+mood: calm
+family: Catppuccin
+provenance:
+  light:
+    name: Latte
+    source: https://github.com/catppuccin/catppuccin
+    observed: true
+  dark:
+    name: Mocha
+    source: https://github.com/catppuccin/catppuccin
+    observed: true
+typography:
+  body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  display: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  mono: '"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
+light:
+  paper: "#eff1f5"
+  ink: "#4c4f69"
+  ink_soft: "#66697e"
+  # Darkened from catppuccin-latte's #6c6f85, which is 4.13:1 on the card
+  # surface the landing page draws (`color-mix(ink 4%, paper)`), below the 4.5:1
+  # its body text needs. Caught by the soft-ink check in `contrast_problems`.
+  ink_lighter: "#9ca0b0"
+  rule: "#ccd0da"
+  # Darkened from catppuccin-latte's #1e66f5, which is 4.34:1 on its own paper —
+  # below the 4.5:1 the collection holds an accent to. It only shows where no
+  # subject tint replaces it, which is the landing page, so the composed check
+  # never saw it. Caught by test_every_bundle_is_readable_with_no_subject_tint.
+  accent: "#1962f5"
+  accent_light: "#7287fd"
+  accent_dark: "#1a4fc4"
+  # Text on the accent. The paper (#eff1f5) is 4.34:1 here, below AA.
+  accent_ink: "#ffffff"
+  # Darkened from catppuccin-latte's #1e66f5, which is 4.34:1 on its own paper —
+  # just under the 4.5:1 a link needs. Caught by the contrast invariant.
+  link: "#1a58d8"
+  code_bg: "#e6e9ef"
+  # Darkened from #d20f39 so the label colour clears 4.5:1 on the figure panel.
+  fig_warn: "#ca0e37"
+  # Darkened from #40a02b; `fig_good` colours text as well as marks.
+  fig_good: "#2e731f"
+  # Darkened from #bcc0cc for the 3:1 a gridline and axis needs.
+  fig_grid: "#7f818a"
+dark:
+  paper: "#1e1e2e"
+  ink: "#cdd6f4"
+  ink_soft: "#a6adc8"
+  ink_lighter: "#6c7086"
+  rule: "#313244"
+  accent: "#89b4fa"
+  accent_light: "#b4befe"
+  accent_dark: "#74c7ec"
+  accent_ink: "#1e1e2e"
+  link: "#89b4fa"
+  code_bg: "#181825"
+  fig_warn: "#f38ba8"
+  fig_good: "#a6e3a1"
+  fig_grid: "#727695"

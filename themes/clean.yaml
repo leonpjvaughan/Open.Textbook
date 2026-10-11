@@ -9,6 +9,23 @@ title: Clean
 description: >-
   Black on white, one weight of grey, no hue at all. Maximum contrast and nothing
   to look at but the work.
+
+mood: calm
+family: Clean
+provenance:
+  light:
+    name: White
+    source: house
+    observed: false
+    note: >-
+      Authored in this repository, and deliberately refuses the subject tint
+      (`fixed:`) so every book is monochrome here.
+  dark:
+    name: Black
+    source: house
+    observed: false
+    note: >-
+      Authored in this repository, as the dark half of the same pair.
 typography:
   body: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
   display: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'

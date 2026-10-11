@@ -8,6 +8,7 @@ every combination.
 
 from __future__ import annotations
 
+from html import escape
 import re
 
 import pytest
@@ -16,12 +17,15 @@ import yaml
 from textbook import portal
 from textbook.book import SCHEME_TOKENS, discover_books, load_collection, repo_root
 from textbook.themes import (
+    CARD_INK,
     FIGURE_MIN_CONTRAST,
     FIGURE_PANEL_INK,
     MIN_CONTRAST,
     ON_ACCENT_MIN_CONTRAST,
     SCHEMES,
+    SOFT_MIN_CONTRAST,
     bundle_by_id,
+    card_surface,
     contrast,
     contrast_problems,
     default_bundle,
@@ -161,6 +165,22 @@ def test_every_bundle_and_subject_pair_is_readable(bundle, book):
         assert not problems, "; ".join(problems)
 
 
+@pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
+@pytest.mark.parametrize("scheme", ("default", "slate"))
+def test_every_bundle_is_readable_with_no_subject_tint(bundle, scheme):
+    """The bundle alone, with no book composed in, must be legible too.
+
+    This is the landing page, and any page of a book that states no tint. It is
+    a different measurement from the composed one above: the subject's accent
+    *replaces* the bundle's own wherever a book provides one, so a bundle accent
+    that fails can pass every composed check. gruvbox's light accent (4.40:1 on
+    its own paper) and catppuccin's (4.34:1) did exactly that until this test
+    existed — the same defect class as item 17's `accent_ink`.
+    """
+    problems = contrast_problems(bundle, scheme, None)
+    assert not problems, "; ".join(problems)
+
+
 def test_the_contrast_check_can_actually_fail():
     """A guard on the guard: a pale accent on pale paper must be reported."""
     editorial = bundle_by_id("editorial")
@@ -198,6 +218,44 @@ def test_the_figure_thresholds_follow_what_the_token_draws():
 def test_the_on_accent_threshold_is_a_text_minimum():
     """`accent_ink` is text, so it is held to AA like link and accent."""
     assert ON_ACCENT_MIN_CONTRAST == {"accent_ink": 4.5}
+
+
+def test_the_soft_ink_threshold_is_a_text_minimum():
+    """`ink_soft` is secondary text, not a tone: it carries the landing card."""
+    assert SOFT_MIN_CONTRAST == {"ink_soft": 4.5}
+
+
+def test_the_card_surface_matches_the_stylesheet():
+    """The card `ink_soft` sits on is mirrored from `portal.css`.
+
+    If one moves without the other every ratio this file computes for
+    `ink_soft` is measured against the wrong surface — the same trap the figure
+    panel test guards against.
+    """
+    css = (repo_root() / "assets" / "stylesheets" / "portal.css").read_text(encoding="utf-8")
+    found = {
+        selector: float(share)
+        for selector, share in re.findall(
+            r"(?s)(:root|\[data-md-color-scheme=\"slate\"\])\s*\{[^}]*?--tb-card:\s*"
+            r"color-mix\(\s*in srgb,\s*var\(--tb-ink\)\s*([\d.]+)%,\s*var\(--tb-paper\)\s*\)",
+            css,
+        )
+    }
+    assert found, (
+        "portal.css no longer defines --tb-card as `color-mix(in srgb, ink N%, paper)`; "
+        "update CARD_INK and card_surface() to match"
+    )
+    assert found.get(":root") == pytest.approx(CARD_INK["default"] * 100, abs=0.01)
+    assert found.get('[data-md-color-scheme="slate"]') == pytest.approx(CARD_INK["slate"] * 100, abs=0.01)
+
+
+def test_the_soft_ink_check_can_actually_fail():
+    """A guard on the guard: the card surface, not the page, is the measure."""
+    editorial = bundle_by_id("editorial")
+    card = card_surface(editorial.palette("default"), "default")
+    assert contrast_problems(editorial, "default", {"ink_soft": card})
+    assert contrast_problems(editorial, "default", {"ink_soft": editorial.palette("default")["paper"]})
+    assert not contrast_problems(editorial, "default", None)
 
 
 @pytest.mark.parametrize("bundle", BUNDLES, ids=IDS)
@@ -378,7 +436,9 @@ def test_the_landing_page_offers_every_bundle():
     assert 'id="theme-menu"' in html
     for bundle in BUNDLES:
         assert f'value="{bundle.id}"' in html
-        assert bundle.title in html
+        # The title goes through `html.escape`, so compare the escaped form: a
+        # palette name with an apostrophe (Synthwave '84) is escaped in the page.
+        assert escape(bundle.title) in html
 
 
 def test_the_landing_page_applies_the_theme_before_paint():
