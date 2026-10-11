@@ -60,34 +60,40 @@ Stages 3 and 4 require `refs/heads/main`, so they cannot run anywhere else. That
 is what makes any other branch a safe place to push: you get the whole gate and
 neither of the side effects.
 
-### Merging a pull request does not always deploy
+### A merged pull request deploys — about two minutes later
 
-A push to `main` runs the pipeline, and the pipeline deploys. A **pull request
-merged through the API may not produce that push event**: `gh pr merge --rebase`
-on 2026-10-11 updated `main` and started no run at all, so the release was never
-tagged and the site was never deployed while `main` already held the commits. It
-was noticed because `gh run list --branch main` showed nothing newer than the
-merge, and `Actions → verify → Run workflow` on `main` then ran the whole thing —
-gate, tag, deploy — exactly as a push would have.
+Merging a pull request **does** trigger the pipeline, but not immediately: on
+2026-10-11 a rebase merge updated `main` at 17:16:54 and the push run appeared at
+17:18:53. That delay is long enough to look like nothing happened, and it has
+already cost two confused minutes twice.
 
-So after any merge, check that a run started:
+**Do not dispatch the workflow to hurry it along.** Both runs share the
+concurrency group `verify-refs/heads/main` with `cancel-in-progress: true`, so the
+delayed push run cancels a manual dispatch that started first — including one that
+was already mid-deploy. The dispatch then reads as failed while the *push* run
+quietly does the work, which is exactly the confusing pair of runs the second
+merge produced.
+
+So after merging:
 
 ```bash
+# Give it two minutes, then look.
 gh run list --branch main --limit 3
 ```
 
-If nothing did, dispatch it by hand, which is what `workflow_dispatch` is for:
+A `push` run should be there. If nothing has appeared after a few minutes, then
+dispatch — that is what `workflow_dispatch` is for:
 
 ```bash
 gh workflow run verify.yml --ref main
 ```
 
-**Then confirm the site agrees with `main`**, because this is the failure that
-looks like success: `main` moves, nothing deploys, and the release tag and the
-live site describe different commits.
+**Then confirm the site agrees with `main`**, because the failure worth fearing is
+the one that looks like success — `main` moves, nothing deploys, and the release
+tag and the live site describe different commits:
 
 ```bash
-curl -s https://open-textbook.org/version.json   # the commit that is actually live
+curl -s https://open-textbook.org/version.json   # the commit actually live
 git log --oneline -1 origin/main
 ```
 
