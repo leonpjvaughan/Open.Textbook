@@ -11,6 +11,7 @@ import sys
 from pathlib import Path
 
 from ..book import discover_books
+from .. import book as books
 from .verify import verify_bank
 
 
@@ -40,6 +41,26 @@ def main() -> int:
         for warning in report.warnings:
             print(f"      warn:  {warning}")
         failed += 0 if report.ok else 1
+
+    # The equations-coverage state, which is advisory on purpose: the check proves
+    # that a *declared* equation is one the reader is shown, and cannot prove that
+    # every equation is declared — measurement says most expressions are numeric
+    # substitutions with nothing in them to match. Printing the gap keeps it a
+    # number rather than an assumption. See `textbook.verify.coverage`.
+    if not args.paths:
+        from . import coverage
+
+        for book in books.discover_books():
+            bad = coverage.check_book(book)
+            for problem in bad:
+                print(f"      coverage: {problem}")
+            failed += 1 if bad else 0
+            gap = coverage.undeclared(book)
+            if gap:
+                print(
+                    f"coverage {book.id}: {len(gap)} record(s) carry symbols and "
+                    f"declare no booklet equation"
+                )
     return 1 if failed else 0
 
 

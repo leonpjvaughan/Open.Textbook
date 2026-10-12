@@ -11,6 +11,7 @@ dependencies = [
     # imports and lets it be installed on its own.
     "markdown>=3.6",
     "pymdown-extensions>=10.2",
+    "antlr4-python3-runtime==4.11",
 ]
 
 [build-system]

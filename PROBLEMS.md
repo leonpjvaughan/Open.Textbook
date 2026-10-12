@@ -320,6 +320,34 @@ check:
 > and conclusion are structural checks plus human review. A bank cannot be
 > trusted just because it verifies.
 
+## Does a question need an equation the reader is not shown?
+
+A physics question must not need an equation the booklet does not provide. A record
+says which booklet item it plays:
+
+```yaml
+- id: p6-planck-units
+  plays: aqa-planck            # also allowed inside `check:`
+```
+
+`python -m textbook.verify` checks it: the id must exist in the book's booklet, and
+**some board the book follows must provide it**. `given` means printed on that
+board's insert, `question` means supplied in the question — either way the reader is
+not asked to recall it. `know` means they are, so a record that plays a `know` item
+for every supported board is an error.
+
+**What this check cannot prove, and does not pretend to.** Completeness. It reads
+declarations; it does not find missing ones, and it cannot. Measured on the two
+finished physics books: of the expressions the banks print, **0 of 34** resolve
+against the GCSE booklet and **53 of 176** against the A-level one, because the rest
+are *substituted* forms — `0.5 * 1200 * 15**2` is kinetic energy and nothing in the
+expression says so. An inferred match would as happily call it potential energy, so
+it would pass by accident.
+
+`python -m textbook.verify` therefore prints how many records carry symbols and
+declare nothing. That number is the gap, and it is a number rather than an
+assumption.
+
 ## Rendering the problems and answers
 
 No page restates a problem or an answer by hand. The page carries two markers:
