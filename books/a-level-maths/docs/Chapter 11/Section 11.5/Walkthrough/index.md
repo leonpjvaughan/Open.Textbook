@@ -192,6 +192,23 @@ happens to the mean and the standard deviation.
 Adding 10 moves every value up by 10, so the mean rises by 10. The distances from
 the mean do not change, so the standard deviation is unchanged.
 
+## 7. Try it: what moves when the data change
+
+**Predict first.** The figure shows five readings, their mean and a bar one
+standard deviation wide either side of the mean. Before you touch the controls,
+predict which of the two changes more when you move the fifth reading a long way
+from the others: the mean or the standard deviation. Write your prediction down.
+
+:::figure ch11-mean-standard-deviation
+
+**Test.** Move the slider for the fifth reading and watch the marker for the mean
+and the bar for the standard deviation. Then move the slider that adds the same
+amount to every reading, and watch both again.
+
+**Explain.** Write two sentences. The first explains why the mean moves by only
+one-fifth of the change in one reading. The second explains why adding the same
+amount to every reading leaves the standard deviation unchanged.
+
 > **Watch out.** Three mistakes are common.
 >
 > **Forgetting to square the deviations.** The formula uses $\sum(x - \bar{x})^2$,

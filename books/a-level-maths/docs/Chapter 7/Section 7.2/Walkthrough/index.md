@@ -89,6 +89,8 @@ $$
 f'(x) = 3x^2.
 $$
 
+:::prove power-rule
+
 ## 2. A constant multiple and a sum
 
 The method works just as well when the function has more than one term.

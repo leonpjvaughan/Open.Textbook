@@ -113,6 +113,8 @@ $$
 The symbol $\Longleftrightarrow$ means the two statements hold together: each one
 implies the other.
 
+:::prove factor-theorem
+
 **Example 3.** Show that $x - 2$ is a factor of $p(x) = x^3 - 3x^2 + 4x - 4$.
 
 Substitute $x = 2$:

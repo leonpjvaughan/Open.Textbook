@@ -17,6 +17,8 @@ kind: walkthrough
 
 When perpendicular height is unknown, use $\text{Area}=\frac12 ab\sin C$. The angle $C$ must lie between the known sides $a$ and $b$.
 
+:::prove triangle-area-sinc
+
 **Example 1.** Find the area when two sides are $8$ cm and $5$ cm, with included angle $30^\circ$.
 
 $$\text{Area}=\frac12(8)(5)\sin30^\circ$$

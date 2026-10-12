@@ -5,7 +5,7 @@ claim about one: the script loads each figure in a browser, in both schemes, ask
 for the computed paint of every element the figure draws, and measures each one
 against the panel behind it.
 
-> **161 figures in 5 books, 322 measurements, every one passing.** The tables
+> **174 figures in 5 books, 348 measurements, every one passing.** The tables
 > below are generated —
 > reproduce them with
 > `node scripts/audit-figures.cjs site --json out.json --table research/design/figure-audit.md`.
@@ -68,12 +68,17 @@ that is finished:
 - **Both physics books are complete** — 37 of 37 and 30 of 30. Every *Learn* page
   in them has something for the reader to move, which is what a physics page
   teaching a relationship should have.
-- The two mathematics books are **partly** there, at 37 of 133 and 56 of 108. That
-  is a real gap and a large one, and it is a number here rather than an impression.
-  It is also closing: eighteen figures were added to these two books in one pass,
-  chosen for the sections where movement teaches something a still picture cannot —
-  a graph transforming, a locus obeying a rule, a solution *set* rather than a
-  single answer.
+- The two mathematics books are **partly** there, at 39 of 133 and 58 of 108. That
+  is a real gap and it is a number here rather than an impression — but **it is not
+  a target.** Eight of the sections without a figure were examined one at a time and
+  four were deliberately left alone: distance–time gradients (a ratio, taught as
+  well by one labelled still graph, and Chapter 11 already carries two gradient
+  figures), the three unrelated graph families in one section (a selector is not a
+  parameter, so it would be a sandbox), function modelling (a procedure, and the
+  projectile is already interactive in Chapter 15), and trigonometric identities
+  (plotting both sides is a finite numerical check, and the page exists to correct
+  exactly the misconception a "the curves coincide" figure would reinforce).
+  The count is a gap to close where it is worth closing, not a quota.
 
 ## The standard
 
@@ -99,12 +104,12 @@ so the tests ask what a class *does*, not that one is present.
 
 | Book | Walkthroughs with a figure | Without |
 |---|---|---|
-| GCSE Mathematics (9-1) | 37 of 133 | 96 |
+| GCSE Mathematics (9-1) | 39 of 133 | 94 |
 | GCSE Physics (9-1) | 37 of 37 | none |
-| A-level Mathematics | 56 of 108 | 52 |
+| A-level Mathematics | 58 of 108 | 50 |
 | A-level Physics | 30 of 30 | none |
 
-## GCSE Mathematics (9-1) — 37 figures
+## GCSE Mathematics (9-1) — 39 figures
 
 | Figure | Page | Paints with | Light | Dark |
 |---|---|---|---|---|
@@ -121,7 +126,9 @@ so the tests ask what a class *does*, not that one is present.
 | `ch14-lines` | `gcse-maths/chapter-14/section-14.3/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good` | 4.60:1 | 5.89:1 |
 | `ch15-functions` | `gcse-maths/chapter-15/section-15.1/learn` | `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
 | `ch16-point` | `gcse-maths/chapter-16/section-16.1/learn` | `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
+| `ch17-bearing-dial` | `gcse-maths/chapter-17/section-17.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-ink` | 3.08:1 | 3.07:1 |
 | `ch17-construction` | `gcse-maths/chapter-17/section-17.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 4.60:1 | 5.75:1 |
+| `ch18-similarity-scale` | `gcse-maths/chapter-18/section-18.6/learn` | `fig-ink`, `fig-grid`, `fig-line`, `text-accent`, `text-warn`, `text-ink` | 3.08:1 | 3.07:1 |
 | `ch18-transform` | `gcse-maths/chapter-18/section-18.2/learn` | `fig-accent`, `fig-good`, `fig-grid`, `text-accent`, `text-good` | 3.08:1 | 3.07:1 |
 | `ch19-circle-measures` | `gcse-maths/chapter-19/section-19.2/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-good` | 3.08:1 | 3.07:1 |
 | `ch2-multiples` | `gcse-maths/chapter-2/section-2.1/learn` | `fig-ink`, `text-accent` | 4.98:1 | 5.89:1 |
@@ -186,13 +193,14 @@ so the tests ask what a class *does*, not that one is present.
 | `wave-parameters` | `gcse-physics/all/chapter-4/section-4.1/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
 | `work-done` | `gcse-physics/all/chapter-2/section-2.3/learn` | `fig-accent`, `fig-ink`, `text-ink` | 4.82:1 | 10.13:1 |
 
-## A-level Mathematics — 56 figures
+## A-level Mathematics — 58 figures
 
 | Figure | Page | Paints with | Light | Dark |
 |---|---|---|---|---|
 | `ch10-vector-addition` | `a-level-maths/chapter-10/section-10.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `ch10-vector-components` | `a-level-maths/chapter-10/section-10.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good`, `text-ink` | 3.08:1 | 3.07:1 |
 | `ch11-histogram-density` | `a-level-maths/chapter-11/section-11.3/learn` | `fig-accent`, `fig-ink` | 6.92:1 | 5.87:1 |
+| `ch11-mean-standard-deviation` | `a-level-maths/chapter-11/section-11.5/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good` | 3.08:1 | 3.07:1 |
 | `ch11-sampling-variability` | `a-level-maths/chapter-11/section-11.1/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `ch11-scatter-explorer` | `a-level-maths/chapter-11/section-11.4/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 5.12:1 | 5.75:1 |
 | `ch12-conditional-reverse` | `a-level-maths/chapter-12/section-12.2/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 5.12:1 | 5.75:1 |
@@ -222,6 +230,7 @@ so the tests ask what a class *does*, not that one is present.
 | `ch3-line-explorer` | `a-level-maths/chapter-3/section-3.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
 | `ch3-parametric-explorer` | `a-level-maths/chapter-3/section-3.4/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `ch4-arithmetic-total` | `a-level-maths/chapter-4/section-4.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `text-ink` | 3.08:1 | 3.07:1 |
+| `ch4-binomial-approximation` | `a-level-maths/chapter-4/section-4.2/learn` | `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `ch4-binomial-explorer` | `a-level-maths/chapter-4/section-4.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `ch4-model-explorer` | `a-level-maths/chapter-4/section-4.7/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 5.12:1 | 5.75:1 |
 | `ch4-series-explorer` | `a-level-maths/chapter-4/section-4.6/learn` | `fig-accent`, `fig-good`, `fig-ink` | 4.60:1 | 5.87:1 |
@@ -282,15 +291,25 @@ so the tests ask what a class *does*, not that one is present.
 | `vector-components` | `a-level-physics/chapter-2/section-2.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `work-force-displacement` | `a-level-physics/chapter-3/section-3.3/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 3.08:1 | 3.07:1 |
 
-## Proofs — 3 figures
+## Proofs — 12 figures
 
 | Figure | Page | Paints with | Light | Dark |
 |---|---|---|---|---|
+| `angle-at-the-centre` | `proofs/angle-at-the-centre` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-warn`, `text-good` | 3.08:1 | 3.07:1 |
 | `angles-on-a-line` | `proofs/angles-in-a-triangle` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `binomial-choices` | `proofs/binomial-theorem` | `fig-good`, `fig-ink`, `text-accent`, `text-warn`, `text-ink` | 4.60:1 | 5.75:1 |
+| `completing-the-square` | `proofs/completing-the-square` | `fig-accent`, `fig-warn`, `fig-good`, `fig-line`, `text-warn`, `text-good`, `text-ink` | 4.60:1 | 5.75:1 |
+| `discriminant-graph` | `proofs/the-discriminant` | `fig-accent`, `fig-warn`, `fig-good`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
 | `polygon-triangulation` | `proofs/angles-in-a-polygon` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink` | 4.60:1 | 5.75:1 |
+| `product-rule-rectangle` | `proofs/product-rule` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `text-accent`, `text-warn`, `text-good`, `text-ink` | 4.60:1 | 5.75:1 |
+| `pythagoras-rearrangement` | `proofs/pythagoras` | `fig-accent`, `fig-warn`, `fig-ink` | 4.98:1 | 5.75:1 |
+| `semicircle-angle` | `proofs/angle-in-a-semicircle` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-good` | 3.08:1 | 3.07:1 |
 | `sine-rule-perpendicular` | `proofs/sine-rule` | `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `trapezium-double` | `proofs/trapezium-area` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `triangle-area-sinc` | `proofs/triangle-area-sinc` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good` | 3.08:1 | 3.07:1 |
 
 <!-- /generated:tables -->
+
 
 
 

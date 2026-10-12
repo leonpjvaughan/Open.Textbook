@@ -104,6 +104,8 @@ $$
 The powers of $a$ fall from $n$ to $0$ and the powers of $b$ rise from $0$ to
 $n$. The coefficients are the entries of row $n$ of Pascal's triangle.
 
+:::prove binomial-theorem
+
 **Example 2.** Expand $(1 + 2x)^5$.
 
 Here $a = 1$ and $b = 2x$, and $n = 5$. The coefficients are $1, 5, 10, 10, 5, 1$.

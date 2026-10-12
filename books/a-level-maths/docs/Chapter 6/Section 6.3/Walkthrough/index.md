@@ -86,6 +86,8 @@ $$
 \log_a\left(x^k\right) = k\log_a x.
 $$
 
+:::prove laws-of-logarithms
+
 The first law says that adding logarithms multiplies the inputs. The second says
 that subtracting logarithms divides the inputs. The third says that a multiplier
 becomes a power. The power law holds for every real $k$, including $k = -1$ and

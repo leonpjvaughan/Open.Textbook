@@ -2433,6 +2433,54 @@ declares it. Worth one look at the question.
 reviewed with a reason, and `python -m textbook.verify` prints counts that match
 this table.
 
+### Closed, 2026-10-12 — all 273 A-level Mathematics records classified
+
+The claim "they are recall items and manipulation" was an assertion until it was
+run as a classification over every record. It now is one, and **the check that
+matters is the bucket that came back empty**: no record among the 273 could be
+licensed by a booklet item any board provides.
+
+| Why no declaration | Records | % |
+|---|---|---|
+| Uses a **recall-only** formula (DfE Appendix B) | **133** | 48.7 |
+| Algebraic work — an identity, an expansion, a simplification | 61 | 22.3 |
+| Substituting into an expression | 13 | 4.8 |
+| Fixed-point iteration or a recurrence | 11 | 4.0 |
+| Eliminating a parameter | 8 | 2.9 |
+| Solving a differential equation | 8 | 2.9 |
+| A sum the sheet does not cover (of powers) | 7 | 2.6 |
+| Composing or inverting a function | 6 | 2.2 |
+| Partial fractions | 5 | 1.8 |
+| A limit | 5 | 1.8 |
+| The remainder theorem | 4 | 1.5 |
+| Cancelling, expanding or dividing polynomials | 10 | 3.7 |
+| Adding algebraic fractions | 2 | 0.7 |
+
+**The first row is the interesting one, and it is not a gap.** 133 records need
+`standard-derivatives`, `standard-integrals`, `differentiation-rules`,
+`laws-of-logarithms` or `pythagorean-identities` — every one of which the booklet
+records as `know` for **all three boards**, because the booklet's own header says
+its `know` items are DfE `DFE-00706-2014` Appendix B: "the formulae and identities
+that must be used *without* these formulae and identities being provided". A
+question that needs the power rule is one the reader is *required* to know, so
+declaring it is an error rather than a fix. See the A-level section below.
+
+**What is left undeclared cannot be declared**, and that was checked rather than
+argued: re-running the declaration rules over all 273 and keeping only the ids some
+board *provides* returns **zero**. Nothing declarable was left undeclared, so the
+count of 273 is the honest remainder rather than a backlog.
+
+**Across all five books:**
+
+| Book | Undeclared | State |
+|---|---|---|
+| GCSE Mathematics | 126 | 28 declared by rule; the rest algebra, not booklet formulae |
+| GCSE Physics | 0 | its expressions are substituted numbers, so nothing to name |
+| A-level Mathematics | **273** | classified above; 35 declared, nothing declarable left |
+| A-level Physics | 20 | reviewed: not booklet items, or derived combinations |
+| Proofs | 0 | no banks |
+
+
 ### A-level Mathematics — done, and the check proved its worth first
 
 **35 declarations, 0 invalid, 307 → 273.** The pass is small and that is the

@@ -31,6 +31,8 @@ $$
 In words: differentiate the first and keep the second, then keep the first and
 differentiate the second, and add the two results.
 
+:::prove product-rule
+
 **Example 1.** Differentiate $y = x^2\sin x$.
 
 Take $u = x^2$ and $v = \sin x$, so $\dfrac{du}{dx} = 2x$ and
@@ -94,6 +96,8 @@ $$
 $$
 
 where $u$ is the inside function.
+
+:::prove chain-rule
 
 **Example 5.** Differentiate $y = (3x + 1)^5$.
 

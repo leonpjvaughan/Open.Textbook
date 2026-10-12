@@ -27,6 +27,20 @@ A **bearing** gives a direction as an angle measured clockwise from north. Write
 
 For a hand-drawn direction, place the protractor centre at the start and align zero with north. Measure clockwise.
 
+## Investigate a bearing and its back bearing
+
+**Predict:** The bearing of B from A is measured at A, turning clockwise from the
+north line. Before you move the slider, predict the bearing of A from B when the
+bearing of B from A is $090^\circ$.
+
+**Test:** Move the bearing slider and watch the arc at A. Then look at the second
+north line, which is drawn at B, and compare the two bearings.
+
+:::figure ch17-bearing-dial
+
+> **Explain:** The north line at A and the north line at B point the same way. Use
+> that to explain why the two bearings always differ by $180^\circ$.
+
 ## Scale drawings
 
 A **scale** compares a drawing length with a real length. At scale $1$ cm represents $3$ m, divide real lengths by $3$ to find centimetres on the plan.

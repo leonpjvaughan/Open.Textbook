@@ -14,6 +14,8 @@ kind: walkthrough
 **Prerequisites:** function notation from 2.10; the graph of $y = x^2$ and
 $y = x^3$; completing the square from 2.3.
 
+:::prove completing-the-square
+
 **By the end of this section you can:** apply the transformations $y = af(x)$,
 $y = f(x) + a$, $y = f(x + a)$ and $y = f(ax)$; say whether a transformation
 acts on the input or on the output; and combine transformations in the right

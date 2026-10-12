@@ -19,6 +19,8 @@ kind: walkthrough
 
 An angle at the **centre** has its vertex at the circle's centre. An angle at the **circumference** has its vertex on the circle. When both angles stand on the same arc, the centre angle is twice the circumference angle.
 
+:::prove angle-at-the-centre
+
 **Example 1.** The angle at the circumference is $38^\circ$. Work out the angle at the centre standing on the same arc.
 
 The centre angle is twice the circumference angle.

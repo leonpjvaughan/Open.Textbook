@@ -188,6 +188,23 @@ $$
 so the gift is worth about £2313.63 after $2\frac{1}{2}$ years. The expansion is
 valid because $|0.06| < 1$.
 
+## 6. Try it: how far does the approximation reach?
+
+**Predict first.** The figure draws the true curve of $(1 + x)^n$ and the sum of
+the first few terms of its expansion. Before you touch the controls, predict
+what happens to the gap between the two curves as you add more terms, both
+inside the range $|x| < 1$ and just outside it. Write your prediction down.
+
+:::figure ch4-binomial-approximation
+
+**Test.** Move the slider for the number of terms and watch the dashed curve.
+Then move the marker to different values of $x$ and read the true value and the
+approximation in the readout. Choose a negative power and a fractional power from
+the list and compare them.
+
+**Explain.** Write two sentences saying why adding terms makes the approximation
+better inside the range $|x| < 1$ but worse outside it.
+
 > **Watch out.** Two mistakes appear again and again.
 >
 > **Dropping the factor $a^n$.** For $\sqrt{4 + x}$ the answer starts at $2$,

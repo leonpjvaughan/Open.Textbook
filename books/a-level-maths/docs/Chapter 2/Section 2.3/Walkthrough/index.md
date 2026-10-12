@@ -119,6 +119,8 @@ $$
 The third row is the reason a negative discriminant is useful: it proves that a
 quadratic equation cannot be solved with real numbers, and it shows why.
 
+:::prove the-discriminant
+
 ## 5. Try it: the parabola explorer
 
 **Predict first.** For $y = x^2 + bx + c$, the vertex moves as $b$ changes and

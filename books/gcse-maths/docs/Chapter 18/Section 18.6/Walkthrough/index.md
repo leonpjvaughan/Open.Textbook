@@ -23,6 +23,23 @@ Area scale factor $=3^2$.
 $3^2=9$.
 An area of $7$ cm$^2$ becomes $7\times9=63$ cm$^2$.
 
+## Investigate the scale factors
+
+Each small square in the figure is a copy of the original square.
+
+**Predict:** Before you move the slider, write down the area multiplier and the
+volume multiplier when the length scale factor doubles from $1$ to $2$.
+
+**Test:** Move the length scale factor slider and count the small squares inside
+the big square. Then look at the big cube and use its front face and its depth to
+find how many small cubes it holds.
+
+:::figure ch18-similarity-scale
+
+> **Explain:** Why does the area multiplier grow faster than the length multiplier,
+> and the volume multiplier faster still? Write about how many lengths each
+> quantity uses.
+
 **Example.** A similar solid has volume scale factor $125$.
 
 Length scale factor $=\sqrt[3]{125}$.

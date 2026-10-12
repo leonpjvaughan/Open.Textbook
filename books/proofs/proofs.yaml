@@ -62,6 +62,91 @@ proofs:
     qualifications: [GCSE, A-level]
     strand: trigonometry
 
+  - id: triangle-area-sinc
+    title: The area of a triangle is half a b sin C
+    summary: >-
+      Drop a perpendicular and the triangle's area is half its base times its
+      height. The height is what the sine ratio turns into b sin C.
+    qualifications: [GCSE, A-level]
+    strand: trigonometry
+    figure: triangle-area-sinc
+
+  - id: angle-at-the-centre
+    title: The angle at the centre is twice the angle at the circumference
+    summary: >-
+      Join the two points to the centre. Two isosceles triangles appear whose base
+      angles must add up to half the straight angle at the centre.
+    qualifications: [GCSE]
+    strand: geometry
+    figure: angle-at-the-centre
+
+  - id: completing-the-square
+    title: Completing the square
+    summary: >-
+      Why half the coefficient of x, squared, is the number to add: it is the
+      corner of the same square drawn as a picture.
+    qualifications: [GCSE, A-level]
+    strand: algebra
+    figure: completing-the-square
+
+  - id: the-discriminant
+    title: The discriminant decides how many roots there are
+    summary: >-
+      Read it off the completed square. The square root is the whole story, and the
+      graph shows the same thing.
+    qualifications: [GCSE, A-level]
+    strand: algebra
+    figure: discriminant-graph
+
+  - id: power-rule
+    title: Differentiating x to the n from first principles
+    summary: >-
+      Expand (x + h) to the n, subtract, divide by h, and let h go to zero. The
+      terms that survive are the ones the rule names.
+    qualifications: [A-level]
+    strand: calculus
+
+  - id: product-rule
+    title: The product rule
+    summary: >-
+      The area of a rectangle whose sides both grow: the change is the two strips
+      plus a corner that vanishes in the limit.
+    qualifications: [A-level]
+    strand: calculus
+    figure: product-rule-rectangle
+
+  - id: chain-rule
+    title: The chain rule
+    summary: >-
+      Rates multiply. If y changes twice as fast as u and u three times as fast as
+      x, y changes six times as fast as x.
+    qualifications: [A-level]
+    strand: calculus
+
+  - id: binomial-theorem
+    title: The binomial theorem for a positive whole number n
+    summary: >-
+      Count the ways each term can be made. The coefficients are the number of
+      choices, which is why they are the numbers in Pascal's triangle.
+    qualifications: [A-level]
+    strand: algebra
+    figure: binomial-choices
+
+  - id: factor-theorem
+    title: The factor theorem
+    summary: >-
+      Dividing a polynomial by (x - a) leaves a remainder you can find by
+      substituting. If that remainder is zero, the division came out exactly.
+    qualifications: [A-level]
+    strand: algebra
+
+  - id: laws-of-logarithms
+    title: The laws of logarithms
+    summary: >-
+      A logarithm is an index, so every log law is an index law read backwards.
+    qualifications: [A-level]
+    strand: algebra
+
   - id: trapezium-area
     title: The area of a trapezium
     summary: >-
