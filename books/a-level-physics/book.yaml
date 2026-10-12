@@ -55,7 +55,7 @@ oracles: [sympy, units]
 # `contrast_problems` in engine/textbook/themes.py.
 theme:
   light:
-    accent: "#b45309"
+    accent: "#a34b08"
     accent_light: "#d97706"
     accent_dark: "#8a3f07"
   dark:

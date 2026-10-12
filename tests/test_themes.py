@@ -401,17 +401,49 @@ def test_the_figure_contrast_check_can_actually_fail():
 
 
 def test_the_figure_thresholds_follow_what_the_token_draws():
-    """Why the two figures differ, recorded where a change must argue with it.
+    """Why the thresholds differ, recorded where a change must argue with it.
 
-    `fig-warn` and `fig-good` colour text (`.text-warn`, `.text-good`, and SVG
-    labels), so they are held to the 4.5:1 WCAG AA minimum for normal text.
-    `fig-grid` draws axes and gridlines: a graphical object a reader needs, but
-    not text, so WCAG 1.4.11's 3:1 applies. Both are below ink's AAA 7:1, which
-    is body text on plain paper.
+    `fig-accent`, `fig-warn` and `fig-good` colour text (`.text-accent`,
+    `.text-warn`, `.text-good`, and SVG labels), so they are held to the 4.5:1
+    WCAG AA minimum for normal text. `fig-grid` draws axes and gridlines: a
+    graphical object a reader needs, but not text, so WCAG 1.4.11's 3:1 applies.
+    All are below ink's AAA 7:1, which is body text on plain paper.
+
+    `fig-accent` was missing until the figure audit measured every module in a
+    browser (`scripts/audit-figures.cjs`). It was checked as `accent` against the
+    *paper*, which it clears everywhere, and never against the figure panel —
+    where twelve book-and-bundle pairs sat between 3.90:1 and 4.43:1. The accent
+    is also the stroke of a curve, and 3:1 would be right for that; but one token
+    cannot be two colours, and text is the stricter use of it.
     """
-    assert FIGURE_MIN_CONTRAST == {"fig_warn": 4.5, "fig_good": 4.5, "fig_grid": 3.0}
+    assert FIGURE_MIN_CONTRAST == {
+        "fig_accent": 4.5,
+        "fig_warn": 4.5,
+        "fig_good": 4.5,
+        "fig_grid": 3.0,
+    }
     assert FIGURE_MIN_CONTRAST["fig_grid"] < FIGURE_MIN_CONTRAST["fig_warn"]
     assert FIGURE_MIN_CONTRAST["fig_warn"] < MIN_CONTRAST["ink"]
+
+
+def test_the_figure_roles_all_resolve_to_a_token():
+    """A role that names no token is skipped, not reported, so it must be checked.
+
+    `fig_accent` is the one role that is not a bundle token: `extra.css` defines
+    `--tb-fig-accent` as `var(--tb-accent)`. `contrast_problems` looks the role up
+    in `tokens` and `continue`s when it finds nothing — so a role added to the
+    dict without an alias, or an alias naming a token no bundle declares, would
+    delete the check while leaving the threshold in place. That is the failure
+    mode this file exists to prevent, so it is asserted directly.
+    """
+    from textbook.themes import FIGURE_TOKEN_ALIAS
+
+    for role in FIGURE_MIN_CONTRAST:
+        token = FIGURE_TOKEN_ALIAS.get(role, role)
+        assert token in SCHEME_TOKENS, (
+            f"figure role {role!r} resolves to {token!r}, which is not a token any "
+            "bundle declares, so its threshold would never be applied"
+        )
 
 
 def test_the_on_accent_threshold_is_a_text_minimum():

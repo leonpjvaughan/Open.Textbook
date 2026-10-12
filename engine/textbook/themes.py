@@ -55,11 +55,27 @@ ON_ACCENT_MIN_CONTRAST = {"accent_ink": 4.5}
 # * `fig-warn` and `fig-good` colour text as well as marks: `.text-warn` and
 #   `.text-good` are applied to SVG labels and live readouts, and the labels are
 #   small, so they are held to the 4.5:1 WCAG AA minimum for normal text.
+# * `fig-accent` is here for the same reason and was missing. `.text-accent`
+#   colours SVG labels — `ch11-coordinate-line`, `ch19-circle-measures` and
+#   others put axis names and annotations in it — so the accent is text in a
+#   figure, at the text bar. It was absent from this dict while the audit that
+#   found it was being written, and the omission is exactly the shape of bug the
+#   dict exists to catch: the accent was checked against the *paper* (where it
+#   passed everywhere) and never against the panel a figure is drawn on, where
+#   twelve book-and-bundle pairs came out between 3.90:1 and 4.43:1.
+#   It is the accent as a *shape* that is fine at 3:1 — the stroke of a curve —
+#   but one token cannot be two colours, and text is the stricter use.
 # * `fig-grid` draws axes and gridlines. An axis is a graphical object a reader
 #   needs in order to read the figure, but it is not text, so WCAG 1.4.11's
 #   3:1 for non-text content is the right bar rather than 4.5:1. This matches the
 #   comment above: a figure stroke is a graphic, and 3:1 is what a graphic needs.
-FIGURE_MIN_CONTRAST = {"fig_warn": 4.5, "fig_good": 4.5, "fig_grid": 3.0}
+FIGURE_MIN_CONTRAST = {"fig_accent": 4.5, "fig_warn": 4.5, "fig_good": 4.5, "fig_grid": 3.0}
+
+# `fig_accent` is not a token a bundle declares: assets/stylesheets/extra.css
+# defines `--tb-fig-accent` as `var(--tb-accent)`, so the role resolves to the
+# accent. Kept beside the thresholds it serves, because a role here that resolves
+# to nothing is silently skipped rather than reported.
+FIGURE_TOKEN_ALIAS = {"fig_accent": "accent"}
 
 # The maths-figure panel is `color-mix(in srgb, paper 92%, ink 8%)` in
 # assets/stylesheets/extra.css. A token drawn inside a figure sits on that mix,
@@ -452,7 +468,11 @@ def contrast_problems(bundle: Bundle, scheme: str, subject: dict[str, str] | Non
             )
     panel = figure_panel(tokens)
     for role, minimum in FIGURE_MIN_CONTRAST.items():
-        colour = tokens.get(role)
+        # `fig_accent` is not a bundle token. extra.css defines `--tb-fig-accent`
+        # as `var(--tb-accent)`, so it resolves to the accent, and without this
+        # alias the lookup would find nothing, the loop would `continue`, and the
+        # threshold would never be applied — a check that cannot fail.
+        colour = tokens.get(FIGURE_TOKEN_ALIAS.get(role, role))
         if not colour:
             continue
         ratio = contrast(colour, panel)

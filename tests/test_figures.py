@@ -19,7 +19,7 @@ import re
 
 import pytest
 
-from textbook.book import discover_books
+from textbook.book import discover_books, repo_root
 
 BOOKS = discover_books()
 
@@ -226,3 +226,111 @@ def test_no_figure_module_injects_runtime_latex(book, path):
         f"{book.id}/{path.name}: a figure injects LaTeX, which is not rendered "
         f"at runtime: {offenders!r}. Write the readout in HTML or plain text."
     )
+
+
+# --------------------------------------------------------------------------- #
+# The colour contract: what a figure may paint with, and how
+# --------------------------------------------------------------------------- #
+#
+# A figure carries no colour of its own (the test above). It paints with a class,
+# and the class resolves through a `--tb-*` token, so the drawing follows the
+# reader's bundle and scheme. Two things can still go wrong, and both did:
+#
+# * a `text-*` class that sets only `color`. SVG text is painted with `fill`,
+#   whose initial value is black, so `<text class="text-accent">` rendered black
+#   — 1.4:1 against the dark panel, which is invisible. `.text-ink` did not exist
+#   at all, so a module using it got black in every scheme.
+# * a class a bundle never defines, which is silently not applied.
+#
+# `scripts/audit-figures.cjs` measures the built result in a browser, which is how
+# this was found. These tests are the cheap guard that stops it coming back, and
+# they run without a browser.
+
+STYLESHEET = repo_root() / "assets" / "stylesheets" / "extra.css"
+
+# The classes that mean "paint with this token". `fig-*` is a shape — it sets
+# `fill` and `stroke` — and `text-*` is words. A module may also use a class of
+# its own to find an element again (`fig-readout`, `fig-controls`); those style
+# nothing, so they are not colour classes and are not checked here.
+FIGURE_CLASS = re.compile(
+    r"""class\s*=\s*["'][^"']*\b((?:fig|text)-(?:accent|warn|good|ink|grid|line))\b"""
+)
+FIGURE_CLASSLIST = re.compile(
+    r"""classList\.(?:add|remove|toggle)\(\s*["']((?:fig|text)-(?:accent|warn|good|ink|grid|line))["']"""
+)
+
+
+def text_classes_in(text: str) -> set[str]:
+    """Every `text-*` colour class a module applies, from either spelling."""
+    found = set(FIGURE_CLASS.findall(text)) | set(FIGURE_CLASSLIST.findall(text))
+    return {name for name in found if name.startswith("text-")}
+
+
+def css_rules(css: str) -> dict[str, str]:
+    """`class` -> declaration block, for the simple single-class rules here."""
+    body = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    return {
+        match.group(1): match.group(2)
+        for match in re.finditer(r"\.([a-z][\w-]*)\s*\{([^}]*)\}", body)
+    }
+
+
+@pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
+def test_every_text_class_a_figure_uses_is_defined(book, path):
+    """A class no stylesheet defines is a class that does nothing."""
+    style = css_rules(STYLESHEET.read_text(encoding="utf-8"))
+    used = text_classes_in(code_only(path.read_text(encoding="utf-8")))
+    missing = sorted(name for name in used if name not in style)
+    assert not missing, (
+        f"{book.id}/{path.name}: {missing!r} is not defined in extra.css, so the "
+        "label silently falls back to the SVG default fill, which is black."
+    )
+
+
+@pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
+def test_every_text_class_a_figure_uses_paints_svg_text(book, path):
+    """`color` alone does not paint an SVG `<text>`; `fill` does.
+
+    This is the bug the browser audit found: `.text-accent` set `color` only, so
+    every SVG label using it rendered black — invisible at 1.4:1 on the dark
+    scheme. `fill: currentColor` makes the class mean the same thing in HTML and
+    in SVG, and `.fig-ink` had it all along.
+    """
+    style = css_rules(STYLESHEET.read_text(encoding="utf-8"))
+    used = text_classes_in(code_only(path.read_text(encoding="utf-8")))
+    for name in sorted(used):
+        block = style.get(name, "")
+        fill = re.search(r"(?<![\w-])fill\s*:\s*([^;]+)", block)
+        assert fill and fill.group(1).strip() == "currentColor", (
+            f".{name} does not set `fill: currentColor`, so an SVG <text> using it "
+            f"is painted with its initial fill — black — and vanishes on the dark "
+            f"scheme. Found: {block.strip()!r}"
+        )
+
+
+def test_the_figure_colour_classes_are_all_defined():
+    """The contract in one place, so a new class is a deliberate act.
+
+    `text-*` paints words, `fig-*` paints shapes, and each has to set the property
+    SVG actually uses. A class added to a page without a rule here would be a
+    figure that quietly draws in the wrong colour on some bundles only.
+    """
+    style = css_rules(STYLESHEET.read_text(encoding="utf-8"))
+    expected = {
+        "fig-accent": ("fill", "stroke"),
+        "fig-warn": ("fill", "stroke"),
+        "fig-good": ("fill", "stroke"),
+        "fig-ink": ("fill", "stroke"),
+        "fig-grid": ("fill", "stroke"),
+        "fig-line": ("fill", "stroke"),
+        "text-accent": ("color", "fill"),
+        "text-warn": ("color", "fill"),
+        "text-good": ("color", "fill"),
+        "text-ink": ("color", "fill"),
+    }
+    for name, properties in expected.items():
+        assert name in style, f"{name} is not defined in extra.css"
+        for prop in properties:
+            assert re.search(rf"(?<![\w-]){prop}\s*:", style[name]), (
+                f".{name} does not set `{prop}`, so it does not paint what it names"
+            )

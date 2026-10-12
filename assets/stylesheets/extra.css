@@ -23,6 +23,22 @@
   --tb-fig-accent: var(--tb-accent);
 }
 
+/* Tell the browser which way round the native widgets are, so a `<select>`, a
+ * range track and a scrollbar are drawn for the scheme the reader chose. Without
+ * it the platform default is light, and a figure's own control rendered as a
+ * white box with black text on a dark page — measured, not assumed: every
+ * `<select>` inside a figure computed `color: rgb(0, 0, 0)` and
+ * `background-color: rgb(239, 239, 239)` in both schemes.
+ *
+ * `color-scheme` is the standard switch for this, and it is set from the same
+ * attribute `prefs.py` writes before the first paint, so it never flashes. */
+[data-md-color-scheme="default"] {
+  color-scheme: light;
+}
+[data-md-color-scheme="slate"] {
+  color-scheme: dark;
+}
+
 /* Map the tokens onto Material's variable names. Deliberately
  * scheme-independent: anything that differs between light and dark is a token,
  * set by a bundle.
@@ -146,14 +162,26 @@
   stroke: var(--tb-fig-accent);
   stroke-width: 2;
 }
+/* A `text-*` class is for words, and SVG text is painted with `fill`, not
+   `color`. Setting only `color` left every `<text class="text-accent">` painted
+   black — its initial fill — which is invisible on the dark scheme at 1.4:1.
+   Both properties are set, so the class means the same thing in HTML and in SVG.
+   `.fig-*` is for shapes: it sets `fill` and `stroke` for a line or an area. */
 .text-accent {
   color: var(--tb-fig-accent);
+  fill: currentColor;
 }
 .text-warn {
   color: var(--tb-fig-warn);
+  fill: currentColor;
 }
 .text-good {
   color: var(--tb-fig-good);
+  fill: currentColor;
+}
+.text-ink {
+  color: var(--tb-ink);
+  fill: currentColor;
 }
 
 /* ------------------------------------------------------------------ */

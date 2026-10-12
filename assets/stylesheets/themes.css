@@ -217,7 +217,7 @@ html[data-theme="neon"] body[data-md-color-scheme="slate"] {
 
 /* Phosphor */
 html[data-theme="phosphor"] body[data-md-color-scheme="default"] {
-  --tb-accent: #9a5b00;
+  --tb-accent: #925600;
   --tb-accent-light: #c47d1a;
   --tb-accent-dark: #744300;
   --tb-accent-ink: #ffffff;
@@ -252,7 +252,7 @@ html[data-theme="phosphor"] body[data-md-color-scheme="slate"] {
 
 /* Glass */
 html[data-theme="glass"] body[data-md-color-scheme="default"] {
-  --tb-accent: #0f7a5a;
+  --tb-accent: #0e7254;
   --tb-accent-light: #2fa27c;
   --tb-accent-dark: #0a5c43;
   --tb-accent-ink: #ffffff;

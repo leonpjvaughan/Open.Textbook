@@ -7,7 +7,7 @@
 
 /* default variation */
 body[data-md-color-scheme="default"] {
-  --tb-book-accent: #0f766e;
+  --tb-book-accent: #0e7069;
   --tb-book-accent-light: #2a9d8a;
   --tb-book-accent-dark: #0b5c55;
 }
