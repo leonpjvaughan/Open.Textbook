@@ -10,5 +10,7 @@ dfe:
 kind: problems
 ---
 
+# 5.6 Comparing lengths, areas and volumes — Practise
+
 :::problems chapter-5-practice-5.6
 :::answers chapter-5-practice-5.6

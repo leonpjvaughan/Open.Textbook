@@ -9,6 +9,8 @@ dfe: [A17]
 kind: problems
 ---
 
+# 9.2 Equations with unknowns on both sides — Practise
+
 :::problems chapter-9-practice-9.2
 
 :::answers chapter-9-practice-9.2

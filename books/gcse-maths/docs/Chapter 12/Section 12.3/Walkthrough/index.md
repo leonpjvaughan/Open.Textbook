@@ -11,13 +11,11 @@ dfe:
 kind: walkthrough
 ---
 
-<!-- Curriculum coverage: A11, A12 -->
-
 # 12.3 Quadratic graphs and their features — Learn
 
 **Prerequisites:** plotting coordinates, substituting values into expressions, and recognising roots of a graph.
 
-**Objectives:** sketch a quadratic graph from a table or its factors, and identify roots, intercepts, and the turning point. This covers A11 and A12.
+**Objectives:** sketch a quadratic graph from a table or its factors, and identify roots, intercepts, and the turning point.
 
 ## Shape and features
 

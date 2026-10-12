@@ -11,13 +11,11 @@ dfe:
 kind: walkthrough
 ---
 
-<!-- Curriculum coverage: A11, A18 -->
-
 # 12.6 Completing the square — Learn
 
 **Prerequisites:** expanding brackets, collecting terms, and solving equations by square roots.
 
-**Objectives:** rewrite a quadratic by completing the square, solve it, and use the form to find the turning point. This covers A11 and A18 at Higher level.
+**Objectives:** rewrite a quadratic by completing the square, solve it, and use the form to find the turning point.
 
 ## Build a square
 

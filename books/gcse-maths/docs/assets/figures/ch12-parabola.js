@@ -1,7 +1,7 @@
 // Guided family y = (x - p)^2 - 4; compare roots and turning point as p changes.
 export function mount(el) {
   el.innerHTML = `<div style="max-width:520px">
-    <svg viewBox="0 0 520 290" width="100%" role="img" aria-label="Coordinate graph of a movable quadratic curve with marked roots and turning point"></svg>
+    <svg viewBox="0 0 520 330" width="100%" role="img" aria-label="Coordinate graph of a movable quadratic curve with marked roots and turning point"></svg>
     <label>Horizontal shift p <input class="shift" type="range" min="-3" max="3" step="1" value="0"></label>
     <p class="readout" aria-live="polite"></p>
   </div>`;
@@ -17,7 +17,7 @@ export function mount(el) {
     }
     const rootL=p-2, rootR=p+2, turnX=p, turnY=-4;
     svg.innerHTML = `<line x1="40" y1="${sy(0)}" x2="480" y2="${sy(0)}" class="fig-ink" />
-      <line x1="${sx(0)}" y1="25" x2="${sx(0)}" y2="260" class="fig-ink" />
+      <line x1="${sx(0)}" y1="25" x2="${sx(0)}" y2="320" class="fig-ink" />
       <polyline points="${points.join(' ')}" fill="none" stroke="currentColor" stroke-width="3" class="fig-accent" />
       <circle cx="${sx(rootL)}" cy="${sy(0)}" r="6" class="fig-good" /><circle cx="${sx(rootR)}" cy="${sy(0)}" r="6" class="fig-good" />
       <circle cx="${sx(turnX)}" cy="${sy(turnY)}" r="7" class="fig-warn" />

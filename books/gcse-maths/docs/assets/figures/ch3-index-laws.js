@@ -3,12 +3,13 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-indices" style="font:14px system-ui;max-width:560px">
+      <p class="text-ink" style="margin:0 0 .6rem">Change the base, m and n, then compare the two powers.</p>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem">
         <label>base <input class="a" type="range" min="2" max="5" step="1" value="2"></label>
         <label>m <input class="m" type="range" min="1" max="5" step="1" value="3"></label>
         <label>n <input class="n" type="range" min="1" max="5" step="1" value="2"></label>
       </div>
-      <p class="readout" aria-live="polite" role="img" aria-label="A product and a quotient of powers written as a single power of the same base" style="margin:.6rem 0 0"></p>
+      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
     </div>`;
 
   const readout = el.querySelector(".readout");

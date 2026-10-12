@@ -261,13 +261,20 @@ def test_every_profile_url_sits_under_the_base(book):
         assert url.endswith("/"), url
 
 
-def test_the_site_url_matches_the_canonical_url_used_on_every_page():
-    """`site_url` and a page's canonical are derived from the one base URL."""
+def test_every_profiles_canonical_url_is_its_own_site_url():
+    """A canonical names the profile a page was built for, not the default.
+
+    The earlier version of this test compared the canonical only with the
+    *default* profile's `site_url`, so it passed while every non-default profile
+    published the default profile's URL as its canonical — the Foundation books
+    were declaring themselves duplicates of the Higher ones. Iterating every
+    profile is what makes the assertion catch that.
+    """
     for book in BOOKS:
-        default = book.default_profile
-        assert pipeline.canonical_url(book, "") == scaffold.site_url(book, default.id), (
-            f"{book.id}: the canonical URL has drifted from the profile's site_url"
-        )
+        for profile in book.profiles:
+            assert pipeline.canonical_url(book, profile.id, "") == scaffold.site_url(
+                book, profile.id
+            ), f"{book.id}/{profile.id}: the canonical URL has drifted from site_url"
 
 
 # --- the deploy script --------------------------------------------------------

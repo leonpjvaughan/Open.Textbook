@@ -15,8 +15,6 @@ kind: walkthrough
 
 **Objectives:** solve equations with the unknown on both sides, including brackets and decimals; recognise identities and contradictions.
 
-This section covers equations with the unknown on both sides, including brackets, within AQA reference A17.
-
 Collecting like terms means combining terms with the same unknown part. First expand brackets, then collect unknown terms on one side and constants on the other.
 
 **Example 1.** Solve $5x+3=2x+18$.

@@ -9,6 +9,8 @@ dfe: [A17]
 kind: problems
 ---
 
+# 9.1 Solving linear equations — Practise
+
 :::problems chapter-9-practice-9.1
 
 :::answers chapter-9-practice-9.1

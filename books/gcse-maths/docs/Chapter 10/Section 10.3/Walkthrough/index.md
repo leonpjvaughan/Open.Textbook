@@ -15,7 +15,7 @@ kind: walkthrough
 **Prerequisites:** times tables, substitution, and position-to-term rules.
 
 **Objectives:** find an expression for the nth term of a linear sequence and
-use it to find a specified term. This section covers A25.
+use it to find a specified term.
 
 ## The common difference
 

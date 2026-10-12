@@ -30,11 +30,12 @@ A **Formulae** button sits at the bottom right of every page. It opens a
 searchable booklet of the formulae and tables you are given in the exam. Choose
 your exam board and tier, and it shows only what that board allows.
 
-## Computer-checked answers
+## Checked answers
 
-Every answer in this book is checked by a computer algebra system when the book
-is built. If a worked step were wrong, the build would fail. The questions and
-the answers are printed from the same checked source, so they cannot disagree.
+The questions and the answers in every **Practise** set are printed from the same
+source, so they cannot disagree. A computer checks the algebra of each answer
+when the book is built. It cannot check the worked examples, so read the
+reasoning in **Learn** as well.
 
 ## Chapters
 

@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** measure a line segment and recognise a right angle.
 
-**Objectives:** construct a perpendicular bisector, a perpendicular through or from a point, an angle bisector and a $60^\circ$ angle. This page covers G2.
+**Objectives:** construct a perpendicular bisector, a perpendicular through or from a point, an angle bisector and a $60^\circ$ angle.
 
 ## Perpendicular bisector
 

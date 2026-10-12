@@ -35,8 +35,7 @@ clear. If a page is confusing, report it, even when the answer is correct.
 
 The curriculum follows the subject content published by the Department for
 Education. That material is Crown copyright, and it is used here under the
-[Open Government Licence v3.0]
-(https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+[Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
 
 The specification content, and any wording taken from a specification,
 belongs to the awarding bodies. AQA, Pearson Edexcel and OCR publish the specifications

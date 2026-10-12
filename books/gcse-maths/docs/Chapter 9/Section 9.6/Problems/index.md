@@ -9,6 +9,8 @@ dfe: [A22]
 kind: problems
 ---
 
+# 9.6 Quadratic inequalities — Practise
+
 :::problems chapter-9-practice-9.6
 
 :::answers chapter-9-practice-9.6

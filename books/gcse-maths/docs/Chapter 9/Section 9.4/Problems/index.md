@@ -9,6 +9,8 @@ dfe: [A22]
 kind: problems
 ---
 
+# 9.4 Inequalities on a number line and set notation — Practise
+
 :::problems chapter-9-practice-9.4
 
 :::answers chapter-9-practice-9.4

@@ -15,7 +15,6 @@ kind: walkthrough
 **Prerequisites:** multiplication, square numbers, and term-to-term rules.
 
 **Objectives:** recognise square, cube, triangular and Fibonacci sequences.
-This section covers A24.
 
 ## Square and cube numbers
 

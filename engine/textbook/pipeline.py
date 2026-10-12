@@ -248,10 +248,17 @@ def nav_for(book: books.Book, include_higher: bool) -> list:
     )
 
 
-def chapter_subset(book: books.Book, chapter: int) -> list:
-    """Only one chapter's nav entry, so a subset build has a small sidebar."""
+def chapter_subset(book: books.Book, chapter: int, include_higher: bool = True) -> list:
+    """Only one chapter's nav entry, so a subset build has a small sidebar.
+
+    ``include_higher`` follows the build's tier. A Foundation subset must not
+    list Higher-only sections it does not build: the sidebar would link to
+    pages that are not there, and once the link check actually ran that showed
+    up as a broken link on every page of the subset. The default keeps a
+    standalone caller (a test rendering one page without a build) permissive.
+    """
     wanted = f"Chapter {chapter}:"
-    for entry in nav_for(book, include_higher=True):
+    for entry in nav_for(book, include_higher=include_higher):
         for title, child in pairs(entry):
             if title.startswith(wanted):
                 return [{title: child}]
@@ -380,6 +387,7 @@ def wrap_tables(html_text: str) -> str:
 
 def render_page(
     book: books.Book,
+    profile: str,
     config: dict,
     nav,
     md_path: str,
@@ -387,7 +395,14 @@ def render_page(
     settings: tuple[str, str] = ("", ""),
     build: str = "",
 ) -> tuple[str, RenderedPage, bool]:
-    """Render one page. Returns (html, index entry, had a maths error)."""
+    """Render one page of one profile. Returns (html, index entry, maths error).
+
+    ``profile`` is the build's own profile id, passed in rather than read back
+    out of ``config``: it is what the page's canonical URL is built from, and a
+    page must declare the profile it was actually built for. A Foundation page
+    that names the Higher URL as its canonical tells a crawler the Foundation
+    edition is a duplicate of the Higher one.
+    """
     meta, body = read_page(book.docs / md_path)
     url = url_for(md_path)
     page = make_page(md_path, url)
@@ -411,7 +426,7 @@ def render_page(
         title=html.escape(title),
         description=html.escape(str(meta.get("description") or book.description)),
         site_title=html.escape(book.title),
-        canonical=canonical_url(book, url),
+        canonical=canonical_url(book, profile, url),
         content=content,
         nav=render_nav(nav, url),
         prefix=prefix,
@@ -444,23 +459,32 @@ def run_pagefind(out: Path) -> bool:
     return True
 
 
-def canonical_url(book: books.Book, url: str) -> str:
-    """Absolute URL for a page, from the collection's base URL."""
-    base = str(books.load_collection().get("base_url", "")).strip().rstrip("/")
-    if not base:
-        return ""
-    return f"{base}/{book.deploy_path(book.default_profile.id)}/{href(url)}"
+def canonical_url(book: books.Book, profile: str, url: str) -> str:
+    """Absolute URL for a page of one profile, from the collection's base URL.
+
+    The profile is the one *being built*, never the book's default: a tiered
+    book is one build per profile, so a Foundation page must canonicalise to
+    the Foundation URL or the whole edition reads as a duplicate. The prefix is
+    ``scaffold.site_url``, the same derivation the profile's landing URL uses,
+    so a page's canonical and its profile's ``site_url`` cannot drift apart.
+    """
+    root = scaffold.site_url(book, profile)
+    return f"{root}{href(url)}" if root else ""
 
 
 # --- outputs ------------------------------------------------------------------
 
 
-def sitemap(book: books.Book, pages: list[RenderedPage]) -> str:
-    """An XML sitemap, or an empty string when no base URL is configured."""
-    base = str(books.load_collection().get("base_url", "")).strip().rstrip("/")
-    if not base:
+def sitemap(book: books.Book, profile: str, pages: list[RenderedPage]) -> str:
+    """An XML sitemap for one profile, or empty when no base URL is configured.
+
+    The ``<loc>``s must name the profile this build wrote: a sitemap that lists
+    the default profile's URLs from every profile's directory advertises the
+    wrong pages for all but the default.
+    """
+    root = scaffold.site_url(book, profile)
+    if not root:
         return ""
-    root = f"{base}/{book.deploy_path(book.default_profile.id)}/"
     urls = "".join(f"<url><loc>{root}{href(p.url)}</loc></url>" for p in pages)
     return (
         '<?xml version="1.0" encoding="UTF-8"?>'
@@ -686,7 +710,11 @@ def build(
     book = books.book_by_id(book_id)
     profile = profile or book.default_profile.id
     out = out or Path(books.repo_root()) / "site" / book.deploy_path(profile)
-    include_higher = profile != "foundation"
+    # The declared `tier_filter`, not the literal profile id: a book may name
+    # its Foundation profile anything, and keying on the id shipped Higher-only
+    # sections to Foundation readers whenever the two differed. See
+    # `Book.tier_filter_for`.
+    include_higher = book.tier_filter_for(profile) != "foundation"
     config = make_config(book, profile)
     template = Template(PAGE_TEMPLATE.read_text(encoding="utf-8"))
     # The Settings control is the one the landing page uses: same trigger, same
@@ -706,10 +734,17 @@ def build(
     if problems:
         raise ValueError("backgrounds: " + "; ".join(problems))
 
+    # Two forms of "the chapter being built", for two consumers that work on
+    # different names. `nav_paths` walks source paths, so it wants the source
+    # prefix; `check_links` walks slugged output paths, so it wants the URL
+    # prefix. Passing the source form to both was the bug: no output path can
+    # start with `Chapter 1/`, so a subset build skipped every link and still
+    # reported `broken 0`.
     subset = f"Chapter {chapter}" if chapter else None
+    link_scope = url_for(f"Chapter {chapter}/index.md").rstrip("/") if chapter else None
     full = nav_for(book, include_higher)
     paths = nav_paths(full, subset=subset)
-    nav = full if (full_nav or not subset) else chapter_subset(book, chapter)
+    nav = full if (full_nav or not subset) else chapter_subset(book, chapter, include_higher)
 
     # The masthead links to the book's cover, and every chapter links back to it,
     # so a subset build must still emit it or those links 404. A full build picks
@@ -736,7 +771,7 @@ def build(
             result.broken.append(f"{md_path}: listed in the nav but not on disk")
             continue
         rendered, entry, maths_failed = render_page(
-            book, config, nav, md_path, template, settings=settings, build=build_label
+            book, profile, config, nav, md_path, template, settings=settings, build=build_label
         )
         destination = out / entry.output
         destination.parent.mkdir(parents=True, exist_ok=True)
@@ -755,7 +790,7 @@ def build(
     # what make that safe at any depth, which is why the page carries no linked
     # stylesheet of its own.
     (out / "404.html").write_text(portal.not_found(), encoding="utf-8")
-    if xml := sitemap(book, result.pages):
+    if xml := sitemap(book, profile, result.pages):
         (out / "sitemap.xml").write_text(xml, encoding="utf-8")
     (out / "robots.txt").write_text("User-agent: *\nAllow: /\n", encoding="utf-8")
 
@@ -763,7 +798,7 @@ def build(
         check_links(
             out,
             result.pages,
-            scope=subset,
+            scope=link_scope,
             siblings=sibling_roots(exclude=book.id),
         )
     )

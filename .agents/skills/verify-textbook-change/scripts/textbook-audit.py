@@ -189,14 +189,27 @@ def audit(book_dir: Path, findings: list[str], notes: list[str]) -> None:
             f"{len(relevance_headings)} headings: {dict(relevance_headings)}"
         )
 
-    # 5. Curriculum codes must not be printed to the reader.
+    # 5. Curriculum codes must not be printed to the reader. They belong in
+    #    front matter (`dfe: [...]`). The check used to look for one literal
+    #    spelling, `**Covers:**`, so it missed every code written into an
+    #    Objectives line ("This section covers N6.") or a Practise page
+    #    ("**DfE practice:** G3"). It now looks for the code itself, in prose
+    #    only: front matter and comments are flattened first, because neither
+    #    reaches the reader.
     covers = []
+    code = re.compile(r"(?<![A-Za-z0-9])[ANGPR]\d{1,2}(?![A-Za-z0-9])")
+
+    def blank(match: re.Match) -> str:
+        return "\n" * match.group(0).count("\n")
+
     for path in pages:
-        for line_number, line in enumerate(
-            path.read_text(encoding="utf-8").splitlines(), 1
-        ):
-            if re.search(r"\*\*Covers:\*\*", line):
-                covers.append(f"{path.relative_to(REPO)}:{line_number}: {line.strip()[:80]}")
+        text = path.read_text(encoding="utf-8")
+        body = COMMENT.sub(blank, FRONT.sub(blank, text))
+        for line_number, line in enumerate(body.splitlines(), 1):
+            if code.search(line) or re.search(r"\*\*Covers:\*\*", line):
+                covers.append(
+                    f"{path.relative_to(REPO)}:{line_number}: {line.strip()[:80]}"
+                )
     if covers:
         notes.append(
             f"covers-in-prose: {len(covers)} page(s) print curriculum codes to the "

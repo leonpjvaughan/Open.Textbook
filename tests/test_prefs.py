@@ -51,7 +51,7 @@ def book_page() -> str:
     nav = pipeline.chapter_subset(book, 1)
     template = Template(pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8"))
     html, _entry, maths_failed = pipeline.render_page(
-        book, config, nav, PAGE, template
+        book, PROFILE, config, nav, PAGE, template
     )
     assert not maths_failed, "the page did not render, so it cannot pin the script"
     return html

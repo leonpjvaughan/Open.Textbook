@@ -11,8 +11,6 @@ kind: problems
 
 # 16.2 Angles in parallel lines — Practise
 
-**DfE practice:** G3. The questions below practise these items.
-
 Work independently first. If you make an error, return to the Learn page and use it to guide your next attempt.
 
 :::problems chapter-16-practice-16.2

@@ -64,10 +64,14 @@ export function mount(el) {
     const sine = `<polyline points="${curve((t) => b * Math.sin(t))}" class="fig-grid"></polyline>`;
     const sum = `<polyline points="${curve((t) => a * Math.cos(t) + b * Math.sin(t))}" class="fig-accent"></polyline>`;
 
+    // atan2 returns a phase in (-pi, pi], but the plot runs from 0 to 2pi, so a
+    // negative phase has to be shifted by a whole turn before it is drawn.
+    const peakT = ((alpha % TAU) + TAU) % TAU;
+
     let peak = "";
     if (R > 0) {
       peak =
-        `<circle cx="${xToPx(alpha).toFixed(1)}" cy="${yToPx(R).toFixed(1)}" r="4" class="fig-warn"></circle>`;
+        `<circle cx="${xToPx(peakT).toFixed(1)}" cy="${yToPx(R).toFixed(1)}" r="4" class="fig-warn"></circle>`;
     }
 
     svg.innerHTML = axes + cosine + sine + sum + peak;

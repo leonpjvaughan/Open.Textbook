@@ -19,7 +19,7 @@ powers; evaluate negative fractional indices.
 By the end of this section, you can interpret and calculate with fractional
 and negative fractional indices.
 
-This section covers the Higher content in N7. A fractional index connects
+A fractional index connects
 powers with roots.
 
 ## Unit fractions as roots

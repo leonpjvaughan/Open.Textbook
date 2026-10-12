@@ -9,5 +9,7 @@ dfe: [G25]
 kind: problems
 ---
 
+# 22.3 Vectors in geometric problems and proofs — Practise
+
 :::problems chapter-22-practice-22.3
 :::answers chapter-22-practice-22.3

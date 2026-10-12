@@ -54,7 +54,12 @@ export function mount(el) {
     const lambdaM = lambdaNm * 1e-9;
     const dM = 1 / (lines * 1000);
     const ratio = lambdaM / dM;
-    const highest = Math.floor(ratio);
+    // Orders satisfy d sin(theta) = n lambda, so n lambda <= d. The highest order
+    // is therefore the largest whole number n with n * lambdaNm * lines <= 1e6,
+    // which is exact integer arithmetic on the slider's own values. Computing
+    // floor(1 / ratio) in floating point instead lands a hair below a whole
+    // number at the settings whose order sits at 90 degrees.
+    const highest = Math.floor(1e6 / (lambdaNm * lines));
 
     let arcPath = "";
     for (let step = -LIMIT_DEG; step <= LIMIT_DEG; step += 2) {
@@ -98,7 +103,9 @@ export function mount(el) {
     readout.innerHTML =
       `Wavelength ${lambdaNm} nm, grating ${lines} lines per millimetre. ` +
       `The slit spacing is <strong>${dMicrometres.toFixed(2)} &micro;m</strong>. ` +
-      `The highest order is <strong>${highest}</strong>, so ${count} maxima are drawn. ` +
+      `The highest order is <strong>${highest}</strong>. ` +
+      `${count} ${count === 1 ? "maximum is" : "maxima are"} drawn, within ` +
+      `${LIMIT_DEG}&deg; of the straight-through direction. ` +
       `The first-order maximum is at ${firstAngle} from the straight-through direction. ` +
       `<em>Increase the number of lines per millimetre: does the pattern spread out or pack together?</em>`;
   }

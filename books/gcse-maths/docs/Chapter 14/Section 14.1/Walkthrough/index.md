@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** Solve linear equations and collect like terms.
 
-**Objectives:** Solve two linear equations by adding or subtracting them to remove a variable. This page covers A19.
+**Objectives:** Solve two linear equations by adding or subtracting them to remove a variable.
 
 ## Remove one variable
 

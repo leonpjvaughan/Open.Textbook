@@ -15,7 +15,7 @@ kind: walkthrough
 **Prerequisites:** multiplication, division, and substitution into a rule.
 
 **Objectives:** recognise a geometric sequence and find its term-to-term
-multiplier. This section develops the Higher content in A24.
+multiplier.
 
 ## A constant multiplier
 

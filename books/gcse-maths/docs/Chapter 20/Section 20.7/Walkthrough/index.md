@@ -17,6 +17,8 @@ kind: walkthrough
 
 The **cosine rule** finds a side from two sides and their included angle: $a^2=b^2+c^2-2bc\cos A$. It can also find an angle by rearranging the formula.
 
+:::prove cosine-rule
+
 **Example 1.** Two sides are $5$ cm and $7$ cm, with included angle $60^\circ$. Find the opposite side $a$.
 
 $$a^2=5^2+7^2-2(5)(7)\cos60^\circ$$

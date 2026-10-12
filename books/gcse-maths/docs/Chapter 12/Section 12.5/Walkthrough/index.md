@@ -10,13 +10,11 @@ dfe:
 kind: walkthrough
 ---
 
-<!-- Curriculum coverage: A18 -->
-
 # 12.5 The quadratic formula — Learn
 
 **Prerequisites:** rearranging equations, square roots, and substituting values into a formula.
 
-**Objectives:** solve a quadratic equation using the quadratic formula and interpret its discriminant. This covers A18 at Higher level.
+**Objectives:** solve a quadratic equation using the quadratic formula and interpret its discriminant.
 
 ## The formula
 

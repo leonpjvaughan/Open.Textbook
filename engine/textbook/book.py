@@ -205,6 +205,21 @@ class Book:
                 return profile
         raise KeyError(f"{self.id}: no profile '{profile_id}'")
 
+    def tier_filter_for(self, profile_id: str) -> str:
+        """The tier behaviour of a build, from the profile's declared filter.
+
+        Read from ``tier_filter`` and never from the profile's id. A book may
+        name its Foundation profile anything, so keying behaviour on the
+        literal ``"foundation"`` is the same fact written twice: a rename, or a
+        book whose id differs from its filter, would silently ship Higher-only
+        content to Foundation readers. An id with no declared profile — the
+        development ``toggle`` build — is its own filter.
+        """
+        try:
+            return self.profile(profile_id).tier_filter
+        except KeyError:
+            return profile_id
+
     def deploy_path(self, profile_id: str) -> str:
         """Where a profile is deployed, relative to the site root.
 

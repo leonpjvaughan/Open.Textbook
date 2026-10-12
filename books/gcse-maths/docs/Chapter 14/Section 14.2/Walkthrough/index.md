@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** Solve linear equations and substitute values into expressions.
 
-**Objectives:** Solve pairs of linear equations by replacing a variable with an equal expression. This page covers A19.
+**Objectives:** Solve pairs of linear equations by replacing a variable with an equal expression.
 
 ## Replace a variable
 

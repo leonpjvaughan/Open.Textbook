@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** use angle facts from Sections 16.1–16.4 and solve linear equations.
 
-**Objectives:** construct a clear geometrical argument, state the fact used at each step, and prove angle results. This Higher-only section covers G6.
+**Objectives:** construct a clear geometrical argument, state the fact used at each step, and prove angle results.
 
 ## Build an argument from known facts
 

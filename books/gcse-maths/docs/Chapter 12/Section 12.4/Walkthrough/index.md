@@ -10,13 +10,11 @@ dfe:
 kind: walkthrough
 ---
 
-<!-- Curriculum coverage: A18 -->
-
 # 12.4 Solving quadratic equations by factorising — Learn
 
 **Prerequisites:** factorising monic quadratics and solving linear equations.
 
-**Objectives:** solve quadratic equations by factorising and using the zero-product rule. This covers A18.
+**Objectives:** solve quadratic equations by factorising and using the zero-product rule.
 
 ## Use the zero-product rule
 

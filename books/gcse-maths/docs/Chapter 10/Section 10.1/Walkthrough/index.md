@@ -16,7 +16,7 @@ kind: walkthrough
 an expression.
 
 **Objectives:** describe how terms change and use a position number to find a
-term directly. This section covers A23.
+term directly.
 
 ## Term-to-term rules
 

@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** recognise a right angle and measure an angle in degrees. An angle measures a turn between two lines.
 
-**Objectives:** use angles on a straight line, angles around a point, and vertically opposite angles. These are the G3 facts for this section.
+**Objectives:** use angles on a straight line, angles around a point, and vertically opposite angles.
 
 ## Angles on lines and at points
 

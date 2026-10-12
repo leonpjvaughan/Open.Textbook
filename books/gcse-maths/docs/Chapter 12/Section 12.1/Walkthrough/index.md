@@ -11,13 +11,11 @@ dfe:
 kind: walkthrough
 ---
 
-<!-- Curriculum coverage: A4, A18 -->
-
 # 12.1 Expanding and factorising quadratics — Learn
 
 **Prerequisites:** collecting like terms, multiplying terms, and taking out a common factor.
 
-**Objectives:** expand two brackets and reverse the process to factorise a monic quadratic. These methods cover A4 and the expression work in A18.
+**Objectives:** expand two brackets and reverse the process to factorise a monic quadratic.
 
 ## Expand two brackets
 

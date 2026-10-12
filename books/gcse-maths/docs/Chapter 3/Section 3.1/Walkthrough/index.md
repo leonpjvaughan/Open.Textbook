@@ -19,8 +19,6 @@ connect a root to the power that reverses it.
 By the end of this section, you can calculate integer powers, find roots, and
 check a root by using its matching power.
 
-This section covers N6.
-
 ## Powers
 
 A power is a short way to write repeated multiplication. In $3^4$, the base is

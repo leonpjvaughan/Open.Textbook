@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** use straight-line and vertically opposite angle facts. Parallel lines never meet, however far they extend.
 
-**Objectives:** identify corresponding, alternate and co-interior angles and use their facts to calculate unknown angles. This covers G3.
+**Objectives:** identify corresponding, alternate and co-interior angles and use their facts to calculate unknown angles.
 
 ## A transversal crosses parallel lines
 

@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** Plot coordinates and draw straight-line graphs from tables or equations.
 
-**Objectives:** Solve a pair of linear equations by finding the intersection of their graphs. This page covers A19.
+**Objectives:** Solve a pair of linear equations by finding the intersection of their graphs.
 
 ## The intersection is the solution
 

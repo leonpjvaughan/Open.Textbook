@@ -62,6 +62,8 @@ $$
 S_n = \frac{n}{2}\bigl(2a + (n - 1)d\bigr).
 $$
 
+:::prove arithmetic-series
+
 There is a neat reason. Pair the first term with the last, the second with the
 second last, and so on. Every pair has the same total, $a + l$, where $l$ is the
 last term. There are $n$ terms, so there are $\frac{n}{2}$ pairs:

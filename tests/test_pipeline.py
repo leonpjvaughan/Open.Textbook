@@ -482,14 +482,103 @@ def test_higher_profile_keeps_higher_only_sections(tmp_path):
 def test_sitemap_is_omitted_when_no_base_url_is_configured(monkeypatch, subset):
     """The sitemap must follow the collection's base URL, and nothing else."""
     monkeypatch.setattr(pipeline.books, "load_collection", lambda root=None: {})
-    assert pipeline.sitemap(pipeline.books.book_by_id(BOOK), subset.pages) == ""
+    assert pipeline.sitemap(pipeline.books.book_by_id(BOOK), "higher", subset.pages) == ""
 
 
-def test_canonical_url_uses_the_collection_base_url():
-    url = pipeline.canonical_url(pipeline.books.book_by_id(BOOK), "chapter-1/")
+@pytest.mark.parametrize("profile", ["higher", "foundation"])
+def test_canonical_url_names_the_profile_being_built(profile):
+    """The canonical is the profile's own URL under the collection base URL."""
+    url = pipeline.canonical_url(pipeline.books.book_by_id(BOOK), profile, "chapter-1/")
     assert url.startswith("http")
-    assert "gcse-maths" in url
-    assert url.endswith("/chapter-1/")
+    assert f"/gcse-maths/{profile}/chapter-1/" in url
+
+
+def test_each_profile_publishes_its_own_canonical_and_sitemap(tmp_path, subset):
+    """Regression for the live defect: every profile declared the default one.
+
+    Both profiles of a tiered book are built. The Foundation page told a crawler
+    its canonical was the Higher URL, and the Foundation sitemap listed the
+    Higher pages, so the whole Foundation edition read as a duplicate of the
+    Higher one and could be dropped from search results.
+    """
+    foundation = pipeline.build(
+        BOOK, "foundation", out=tmp_path / "foundation", chapter=1, index=False
+    )
+    for result, profile in ((subset, "higher"), (foundation, "foundation")):
+        page = (result.out / "chapter-1" / "index.html").read_text(encoding="utf-8")
+        canonical = re.search(r'<link rel="canonical" href="([^"]+)"', page).group(1)
+        assert f"/gcse-maths/{profile}/" in canonical, canonical
+        locs = re.findall(
+            r"<loc>([^<]+)</loc>", (result.out / "sitemap.xml").read_text(encoding="utf-8")
+        )
+        assert locs, f"{profile}: the sitemap lists nothing"
+        assert all(f"/gcse-maths/{profile}/" in loc for loc in locs), locs[:3]
+
+
+def test_a_chapter_build_reports_a_broken_link_inside_that_chapter(tmp_path, monkeypatch):
+    """Regression: a subset build checked no links and still printed `broken 0`.
+
+    `build` passed the source prefix (`Chapter 1`) as `scope`, but `check_links`
+    compares slugged output paths, so no candidate matched and every link was
+    skipped. This puts a genuinely broken link inside the built chapter and
+    requires the build to name it.
+    """
+    real_render_page = pipeline.render_page
+
+    def render_with_a_broken_link(book, profile, config, nav, md_path, template, **kwargs):
+        html, entry, maths_failed = real_render_page(
+            book, profile, config, nav, md_path, template, **kwargs
+        )
+        if md_path == "Chapter 1/index.md":
+            html = html.replace("</main>", '<a href="no-such-page/">broken</a></main>')
+        return html, entry, maths_failed
+
+    monkeypatch.setattr(pipeline, "render_page", render_with_a_broken_link)
+    result = pipeline.build(BOOK, "higher", out=tmp_path / "broken", chapter=1, index=False)
+    assert any("no-such-page" in entry for entry in result.broken), result.broken
+
+
+def test_tier_behaviour_follows_the_declared_filter_not_the_profile_id(monkeypatch):
+    """A book may name its Foundation profile something other than `foundation`.
+
+    Both the nav filter and the in-page tier hook keyed on the literal id, so a
+    book declaring `id: learner, tier_filter: foundation` would have shipped
+    Higher-only content to Foundation readers with no error. Both now read the
+    declared filter through one resolver, `Book.tier_filter_for`.
+    """
+    from dataclasses import replace
+
+    from textbook import config as cfg
+    from textbook.hooks import tier
+
+    book = pipeline.books.book_by_id(BOOK)
+    renamed = replace(
+        book,
+        profiles=(
+            replace(book.default_profile, id="core", tier_filter="higher", default=True),
+            replace(book.profile("foundation"), id="learner", tier_filter="foundation"),
+        ),
+    )
+    assert renamed.tier_filter_for("learner") == "foundation"
+    assert renamed.tier_filter_for("core") == "higher"
+
+    # The nav filter drops the Higher-only section under the renamed profile.
+    filtered = pipeline.nav_for(
+        renamed, include_higher=renamed.tier_filter_for("learner") != "foundation"
+    )
+    assert "Section 5.6" not in str(filtered)
+    assert "Section 5.6" in str(pipeline.nav_for(renamed, include_higher=True))
+
+    # And the hook strips the in-page block under that profile id.
+    monkeypatch.setattr(cfg, "book_by_id", lambda _id: renamed)
+    out = tier.on_page_markdown(
+        "Before.\n\n<!-- tier:h -->Higher only.<!-- /tier:h -->\n\nAfter.\n",
+        pipeline.make_page("Chapter 1/index.md", "chapter-1/"),
+        {"extra": {"book": BOOK, "tier_profile": "learner"}},
+        [],
+    )
+    assert "Higher only." not in out
+    assert "Before." in out and "After." in out
 
 
 # --- the page shell: settings, PWA and build identity -------------------------

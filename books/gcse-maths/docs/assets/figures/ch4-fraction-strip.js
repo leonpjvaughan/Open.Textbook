@@ -17,12 +17,18 @@ export function mount(el) {
     const partial=shaded-whole;
     const cells=[];
     for(let i=0;i<n;i++){
-      const fill=i<whole?'fig-accent':(i===whole&&partial>0?'fig-warn':'fig-ink');
-      const opacity=i<whole?'1':(i===whole&&partial>0?String(partial):'0.16');
-      cells.push(`<span class="${fill}" style="display:block;height:2rem;opacity:${opacity};border:1px solid currentColor"></span>`);
+      // A `fig-*` class only sets `fill`/`stroke`, which paint nothing on an HTML
+      // box, so each cell takes its background from the same token.
+      const counted=i<whole;
+      const part=i===whole&&partial>0;
+      const background=counted?'var(--tb-fig-accent)'
+        :part?'var(--tb-fig-warn)'
+        :'color-mix(in srgb, var(--tb-ink) 12%, transparent)';
+      const opacity=part?String(partial):'1';
+      cells.push(`<span style="display:block;height:2rem;opacity:${opacity};border:1px solid currentColor;background:${background}"></span>`);
     }
     strip.style.display='grid'; strip.style.gridTemplateColumns=`repeat(${n}, minmax(0,1fr))`; strip.innerHTML=cells.join('');
-    readout.textContent=`${n} equal parts: two thirds corresponds to ${shaded} parts.`;
+    readout.textContent=`${n} equal parts: two thirds corresponds to ${Number(shaded.toFixed(2))} parts.`;
   }
   el.querySelector('.parts').addEventListener('input',draw); draw();
 }

@@ -46,8 +46,9 @@ $$
 p_1, p_2, p_3, \ldots, p_n.
 $$
 
-Form $N = p_1 p_2 \cdots p_n + 1$. Each prime $p_i$ divides the product, so each
-leaves remainder $1$ on division by $N$. No prime in the list divides $N$. But
+Form $N = p_1 p_2 \cdots p_n + 1$. Each prime $p_i$ divides the product, so $N$
+leaves remainder $1$ when divided by each $p_i$. No prime in the list divides
+$N$. But
 $N > 1$, so $N$ has a prime factor, and that factor must be in the complete list
 of primes. This is a contradiction. Claim C is **false**: there is no largest
 prime.

@@ -12,5 +12,7 @@ dfe:
 kind: problems
 ---
 
+# 5.4 Inverse proportion — Practise
+
 :::problems chapter-5-practice-5.4
 :::answers chapter-5-practice-5.4

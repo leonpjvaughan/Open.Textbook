@@ -15,8 +15,6 @@ kind: walkthrough
 
 **Objectives:** define an unknown, form an equation from words, solve it, and interpret the answer in context.
 
-This section covers forming and solving equations from simple situations, within AQA reference A21.
-
 Choose a letter for the unknown and state what it represents. Translate each relationship into an expression. Use the equality in the question to form an equation, then check that your answer fits the situation.
 
 **Example 1.** A number and the next integer total $31$. Find the numbers.

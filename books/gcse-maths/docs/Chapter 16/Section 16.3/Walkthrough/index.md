@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** use straight-line and parallel-line facts, and solve one-step equations.
 
-**Objectives:** use triangle and quadrilateral angle sums, including the exterior angle of a triangle. This covers G3 and G4.
+**Objectives:** use triangle and quadrilateral angle sums, including the exterior angle of a triangle.
 
 ## Triangles
 

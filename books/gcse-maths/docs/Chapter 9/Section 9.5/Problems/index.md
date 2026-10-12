@@ -9,6 +9,8 @@ dfe: [A22]
 kind: problems
 ---
 
+# 9.5 Solving linear inequalities — Practise
+
 :::problems chapter-9-practice-9.5
 
 :::answers chapter-9-practice-9.5

@@ -20,7 +20,7 @@ raised to a power; use zero and negative integer indices.
 By the end of this section, you can use index laws to simplify products,
 quotients and powers, including zero and negative integer indices.
 
-This section covers A4 and N7. An index is the small number that tells how
+An index is the small number that tells how
 many equal factors a power contains.
 
 ## Multiply and divide powers

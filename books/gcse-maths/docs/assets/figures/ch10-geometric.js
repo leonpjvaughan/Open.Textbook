@@ -6,7 +6,7 @@ export function mount(el) {
         <input class="factor" type="range" min="0.5" max="2" step="0.1" value="1.5">
       </label>
       <p class="factor-label" aria-live="polite"></p>
-      <ol class="terms" role="img" aria-label="Five terms of a geometric sequence, each term found by multiplying the one before by the same number"></ol>
+      <ol class="terms"></ol>
       <p class="text-accent">Start at 2, then multiply by the same number.</p>
     </div>`;
   const factor = el.querySelector(".factor");
@@ -18,7 +18,8 @@ export function mount(el) {
     list.innerHTML = "";
     for (let n = 1; n <= 5; n += 1) {
       const item = document.createElement("li");
-      item.className = n === 5 ? "fig-good" : "fig-ink";
+      item.className = n === 5 ? "text-good" : "text-ink";
+      item.style.fontWeight = n === 5 ? "700" : "";
       item.textContent = `Term ${n}: ${Number(term.toFixed(4))}`;
       list.append(item);
       term *= ratio;

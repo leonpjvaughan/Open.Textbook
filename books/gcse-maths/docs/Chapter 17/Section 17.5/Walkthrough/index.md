@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** use a protractor, measure a line segment and multiply or divide with decimals.
 
-**Objectives:** measure lengths and angles, interpret and draw scale plans, use compass directions, and write three-figure bearings. This page covers G15.
+**Objectives:** measure lengths and angles, interpret and draw scale plans, use compass directions, and write three-figure bearings.
 
 ## Bearings
 

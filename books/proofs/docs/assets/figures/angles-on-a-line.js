@@ -67,14 +67,20 @@ export function mount(el) {
     const toC = Math.atan2(C.y - A.y, C.x - A.x); // down and right
 
     // The parallel line runs left (180 degrees) and right (0 degrees). The three
-    // angles at the top corner are: the parallel line to AB, then AB to AC, then
-    // AC to the parallel line.
-    const left = 180 - angle(toB);
-    const apex = angle(toB - toC);
-    const right = angle(toC);
-
+    // angles at the top corner are the parallel line to AB, then AB to AC, then
+    // AC to the parallel line. Alternate angles make the top-corner outer angles
+    // equal to the base angles at B and C, which is what the picture shows.
     const atB = between(B, A, C);
     const atC = between(C, A, B);
+
+    // Show one decimal place, and give the apex whatever is left after rounding
+    // the two base angles, so the three numbers the reader can see add to exactly
+    // 180. Rounding each of the three separately made them add to 179 or 181 at
+    // about a third of the slider positions, in a proof whose whole page is this
+    // sum. The base angles are the same angles the top corner repeats.
+    const shownLeft = Number(atB.toFixed(1));
+    const shownRight = Number(atC.toFixed(1));
+    const shownApex = Number((180 - shownLeft - shownRight).toFixed(1));
 
     const midLeft = (Math.PI + toB) / 2;
     const midApex = (toB + toC) / 2;
@@ -96,22 +102,20 @@ export function mount(el) {
       <path d="${arc(C.x, C.y, 34, Math.atan2(A.y - C.y, A.x - C.x), -Math.PI)}"
             fill="none" stroke-width="3" class="fig-good"></path>
 
-      ${text(A.x + R * 1.9 * Math.cos(midLeft), A.y + R * 1.5 * Math.sin(midLeft), `${left.toFixed(0)}°`)}
-      ${text(A.x + R * 1.5 * Math.cos(midApex), A.y + R * 1.7 * Math.sin(midApex) + 18, `${apex.toFixed(0)}°`)}
-      ${text(A.x + R * 1.9 * Math.cos(midRight), A.y + R * 1.5 * Math.sin(midRight), `${right.toFixed(0)}°`)}
-      ${text(B.x + 26, B.y - 12, `${atB.toFixed(0)}°`)}
-      ${text(C.x - 26, C.y - 12, `${atC.toFixed(0)}°`)}
+      ${text(A.x + R * 1.9 * Math.cos(midLeft), A.y + R * 1.5 * Math.sin(midLeft), `${shownLeft.toFixed(1)}°`)}
+      ${text(A.x + R * 1.5 * Math.cos(midApex), A.y + R * 1.7 * Math.sin(midApex) + 18, `${shownApex.toFixed(1)}°`)}
+      ${text(A.x + R * 1.9 * Math.cos(midRight), A.y + R * 1.5 * Math.sin(midRight), `${shownRight.toFixed(1)}°`)}
+      ${text(B.x + 26, B.y - 12, `${shownLeft.toFixed(1)}°`)}
+      ${text(C.x - 26, C.y - 12, `${shownRight.toFixed(1)}°`)}
       ${text(A.x, A.y - 13, "A")}
       ${text(B.x - 14, B.y + 20, "B")}
       ${text(C.x + 14, C.y + 20, "C")}`;
 
-    // The angles are simplified to whole degrees for the labels, so the displayed
-    // three sometimes add to 179 or 181. The claim is about the exact angles, so
-    // the readout reports the one being made rather than the drawing.
     readout.textContent =
-      `Angle B is ${atB.toFixed(0)}°, angle A is ${apex.toFixed(0)}° and angle C is ` +
-      `${atC.toFixed(0)}°. At the top corner those same three angles lie on the ` +
-      `straight line, and the line is straight, so they add to 180°.`;
+      `Angle B is ${shownLeft.toFixed(1)}°, angle A is ${shownApex.toFixed(1)}° and angle C is ` +
+      `${shownRight.toFixed(1)}°. At the top corner those same three angles lie on the ` +
+      `straight line, and the line is straight, so they add to ` +
+      `${(shownLeft + shownApex + shownRight).toFixed(1)}°.`;
   }
 
   slider.addEventListener("input", draw);

@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** construct a perpendicular bisector and draw a circle with compasses.
 
-**Objectives:** describe and construct loci, combine conditions, and use the shortest distance from a point to a line. This page covers the loci and shortest-distance parts of G2.
+**Objectives:** describe and construct loci, combine conditions, and use the shortest distance from a point to a line.
 
 ## What is a locus?
 

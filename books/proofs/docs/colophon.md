@@ -5,37 +5,26 @@
 
 ## What this book is
 
-This is a complete Reference Mathematics book for England.
-You can read the whole book in a browser, and there is nothing to
-install.
+This is a reference book of proofs. Every page shows why one fact is
+true, in the shortest way a reader can follow rather than the shortest
+way there is. Most of them have something you can move, so the reason
+is visible rather than only readable.
 
-Every section has three pages. **Learn** teaches the ideas and the method.
-**Practise with help** gives questions with hints you can reveal.
-**Practise** gives independent questions, with the answers at the end. Each
-chapter opens with a problem you can solve by the end, and closes with a
-**Review**.
+This is not a course. There are no chapters and no questions to
+practise. You can read a proof on its own, or follow a link to it from
+the page that stated the fact.
 
 ## Who made it
 
 This book is part of **Open.Textbook**, an independent project by Leon
 Vaughan, who wrote and assembled it.
 
-## Answers are checked by a computer
-
-The questions and answers in **Practise** come from one set of data. Before
-the book is published, a computer checks that data with SymPy, a computer
-algebra system. The check tests each step against the claim it makes, so a
-page cannot show an answer the check did not pass.
-
-The check proves the mathematics. It cannot judge whether an explanation is
-clear. If a page is confusing, report it, even when the answer is correct.
-
 ## Where the content comes from
 
-The curriculum follows the subject content published by the Department for
-Education. That material is Crown copyright, and it is used here under the
-[Open Government Licence v3.0]
-(https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+The claims about which course a proof belongs to rest on the subject
+content published by the Department for Education. That material is Crown
+copyright, and it is used here under the
+[Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
 
 The specification content, and any wording taken from a specification,
 belongs to the awarding bodies.

@@ -43,12 +43,20 @@ def strip_higher_links(markdown: str, higher: set[str]) -> str:
     return LINK.sub(repl, markdown)
 
 
-def profile(config) -> str:
-    return cfg.profile(config)
+def tier_filter(config) -> str:
+    """The build's tier behaviour, from the profile's declared ``tier_filter``.
+
+    Not the profile id. The two happen to be equal for the GCSE books, but a
+    book may name its Foundation profile anything, and keying behaviour on the
+    literal id is the same fact written twice. `Book.tier_filter_for` is the
+    one place that resolves it, so this hook and the pipeline's nav filter
+    cannot disagree.
+    """
+    return cfg.book(config).tier_filter_for(cfg.profile(config))
 
 
 def on_files(files, config, **kwargs):
-    if profile(config) != "foundation":
+    if tier_filter(config) != "foundation":
         return files
     # Strict: a page whose front matter does not parse has no tier, and would
     # otherwise be treated as Foundation content and shipped to Foundation
@@ -59,7 +67,7 @@ def on_files(files, config, **kwargs):
 
 
 def on_page_markdown(markdown, page, config, files):
-    current = profile(config)
+    current = tier_filter(config)
     if current == "foundation":
         return strip_higher_links(BLOCK.sub("", markdown), higher_sections(config))
     if current == "toggle":

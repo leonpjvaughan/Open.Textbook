@@ -10,13 +10,11 @@ dfe:
 kind: walkthrough
 ---
 
-<!-- Curriculum coverage: A4 -->
-
 # 12.2 Factorising harder quadratics — Learn
 
 **Prerequisites:** expanding brackets and factorising monic quadratics.
 
-**Objectives:** factorise $ax^2+bx+c$ when $a$ is not $1$, including cases where the leading coefficient is negative. This extends A4.
+**Objectives:** factorise $ax^2+bx+c$ when $a$ is not $1$, including cases where the leading coefficient is negative.
 
 ## Split the middle term
 

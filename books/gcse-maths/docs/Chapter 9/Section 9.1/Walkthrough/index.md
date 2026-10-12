@@ -15,8 +15,6 @@ kind: walkthrough
 
 **Objectives:** solve one-step and multi-step linear equations, including brackets and fractional coefficients.
 
-This section covers solving linear equations in one unknown, including brackets, as set out in AQA reference A17.
-
 An equation says that two expressions have the same value. The solution is the value of the unknown that makes the statement true. Keep the equation balanced: whatever operation you apply to one side, apply to the other.
 
 **Example 1.** Solve $3x+5=20$.

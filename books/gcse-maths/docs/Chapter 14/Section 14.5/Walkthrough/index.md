@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** Substitute into formulae, use a calculator accurately, and round to a stated accuracy.
 
-**Objectives:** Use an iteration rule repeatedly and report the required approximation. This page covers A20.
+**Objectives:** Use an iteration rule repeatedly and report the required approximation.
 
 ## Repeat a rule
 

@@ -4,6 +4,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-rounding" style="font:14px system-ui;max-width:560px">
+      <p class="text-ink" style="margin:0 0 .6rem">Change the number, the rule and the amount, then read the rounded value.</p>
       <label>Number
         <input class="value" type="number" step="0.001" value="3.14159" style="width:9rem">
       </label>
@@ -17,7 +18,7 @@ export function mount(el) {
         <input class="places" type="range" min="1" max="4" step="1" value="2">
         <output class="placesOut">2</output>
       </label>
-      <p class="readout" aria-live="polite" role="img" aria-label="A number rounded to a chosen number of decimal places or significant figures" style="margin:.6rem 0 0"></p>
+      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
     </div>`;
 
   const num = el.querySelector(".value");

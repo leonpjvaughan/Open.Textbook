@@ -128,9 +128,25 @@ def test_the_discovery_is_sound():
         assert loader not in [path for _, path in FIGURES]
 
 
+# A text element: its purpose is words. `role="img"` on one replaces those
+# words with the accessible name, so a figure that puts it here is hiding its own
+# text from a screen reader. Found in four modules — a live readout wearing
+# `role="img"` could never announce a value, and a list of five terms was never
+# read out at all. The first fix moved the attribute to a prompt paragraph, which
+# passes a "has role=img" test and is the same mistake one element along.
+TEXT_ELEMENT = re.compile(
+    r"""<(p|label|span|li|h[1-6]|em|strong|output)\b[^>]*\brole\s*=\s*["']img["']""",
+    re.I,
+)
+DRAWS = re.compile(r"<svg|<canvas|createElementNS", re.I)
+
+
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
-def test_every_figure_has_role_img(book, path):
+def test_a_figure_that_draws_gives_its_drawing_a_name(book, path):
+    """A drawing is silent to a screen reader without `role="img"` and a name."""
     text = path.read_text(encoding="utf-8")
+    if not DRAWS.search(text):
+        pytest.skip("this figure draws nothing; see the test below")
     assert ROLE_ATTRIBUTE.search(text) or ROLE_SET_CALL.search(text), (
         f"{book.id}/{path.name}: give the drawing role=\"img\" so a screen "
         "reader treats it as one image"
@@ -138,8 +154,35 @@ def test_every_figure_has_role_img(book, path):
 
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
+def test_no_figure_hides_its_own_text_behind_role_img(book, path):
+    """Text is not an image, and marking it as one is how it disappears.
+
+    The rule is derived rather than a list of exemptions: whatever a module draws
+    with, `role="img"` belongs on the thing that is a picture — an `<svg>`, a
+    `<canvas>`, or a container the script fills with marks — and never on an
+    element whose job is to carry words.
+    """
+    offenders = [
+        line.strip()
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if TEXT_ELEMENT.search(line)
+    ]
+    assert not offenders, (
+        f"{book.id}/{path.name}: `role=\"img\"` on a text element. It replaces "
+        "that element's words with the accessible name, so the text is never read "
+        f"and a live region can never announce anything: {offenders}"
+    )
+
+
+@pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_every_figure_has_a_meaningful_accessible_name(book, path):
-    names = [name.strip() for name in accessible_names(path.read_text("utf-8"))]
+    text = path.read_text("utf-8")
+    if not DRAWS.search(text):
+        # Nothing is drawn, so there is no image to name. What carries the meaning
+        # is the figure's own text — a prompt, a list of terms, a live readout —
+        # and that is read directly rather than summarised into a label.
+        pytest.skip("this figure draws nothing, so it has no accessible name to set")
+    names = [name.strip() for name in accessible_names(text)]
     names = [name for name in names if name]
     assert names, (
         f"{book.id}/{path.name}: set a plain-English aria-label on the drawing"

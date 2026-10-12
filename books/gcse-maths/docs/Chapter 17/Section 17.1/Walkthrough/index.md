@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** name familiar shapes and count their sides.
 
-**Objectives:** use conventional geometry words, label a triangle, draw from a written description, and identify faces, surfaces, edges and vertices on common solids. This page covers G1 and G12.
+**Objectives:** use conventional geometry words, label a triangle, draw from a written description, and identify faces, surfaces, edges and vertices on common solids.
 
 ## Shape language and diagrams
 

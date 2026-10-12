@@ -75,7 +75,7 @@ export function mount(el) {
         </label>
       </p>
       <svg viewBox="0 0 460 190" width="100%" role="img"
-           aria-label="A Normal curve for the sample mean with the tail beyond the test statistic shaded"></svg>
+           aria-label="A Normal curve for the sample mean with the critical region for the chosen significance level shaded"></svg>
       <p class="readout" aria-live="polite"></p>
     </div>`;
 
@@ -107,7 +107,11 @@ export function mount(el) {
     const plotBottom = 140;
     const plotTop = 24;
     const maxHeight = plotBottom - plotTop;
-    const span = 4 * standardError;
+    // The axis must show the observed mean as well as the curve, or the "seen"
+    // marker leaves the frame whenever the sample mean is more than four standard
+    // errors from the null mean. Four standard errors is the floor, so the two
+    // critical regions stay in view.
+    const span = Math.max(4 * standardError, Math.abs(xbar - NULL_MEAN) * 1.15);
     const low = NULL_MEAN - span;
     const high = NULL_MEAN + span;
     const toPx = (value) => plotLeft + ((value - low) / (high - low)) * (plotRight - plotLeft);
@@ -189,13 +193,17 @@ export function mount(el) {
       `At the ${(alpha * 100).toFixed(0)}% level the test ` +
       `${reject ? "rejects" : "retains"} the null hypothesis that the mean is 500.`;
 
+    const level = (alpha * 100).toFixed(0);
+    const tailPhrase =
+      tail === "left" ? "the lower tail" : tail === "right" ? "the upper tail" : "both tails";
     svg.setAttribute(
       "aria-label",
       `A Normal curve for the sample mean, centred on the null mean of 500. ` +
         `The observed sample mean is ${xbar.toFixed(1)}, which standardises to ` +
-        `z equals ${z.toFixed(2)}. The shaded tail has probability ${pv.toFixed(4)}, ` +
-        `so at the ${(alpha * 100).toFixed(0)}% level the test ` +
-        `${reject ? "rejects" : "retains"} the null hypothesis.`
+        `z equals ${z.toFixed(2)}. The shaded region is the critical region for a ` +
+        `${level}% test, in ${tailPhrase}, so its total probability is ${alpha}. ` +
+        `The observed mean lies ${reject ? "inside" : "outside"} the critical region, ` +
+        `so the test ${reject ? "rejects" : "retains"} the null hypothesis.`
     );
   }
 

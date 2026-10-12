@@ -162,10 +162,18 @@ export function mount(el) {
       `${map.shape}: starting at ${start.toFixed(1)}, the iterates are ` +
       values.map(short).join(", ") + ".";
 
-    const converged = values.length > 2 && Math.abs(values[values.length - 1] - PHI) < 0.01;
-    verdict.textContent = converged
-      ? "This rearrangement is closing on the fixed point, at about 1.618."
-      : "This rearrangement is moving away from the fixed point, not towards it.";
+    // Whether the iteration settles is decided by the gradient of g at the
+    // fixed point: a size below 1 pulls the iterates in, a size above 1 pushes
+    // them away. Counting how close a few iterates got is not the test — with
+    // x = 1 + 1 / x the fifth iterate is still 1.8% away, so the picture shows a
+    // cobweb closing in while four iterates alone would call it divergent.
+    const gPrime = (map.g(PHI + 1e-6) - map.g(PHI - 1e-6)) / 2e-6;
+    const converged = Math.abs(gPrime) < 1;
+    verdict.textContent =
+      `The gradient of g at the fixed point has size ${Math.abs(gPrime).toFixed(2)}, ` +
+      (converged
+        ? "which is less than 1, so this rearrangement is closing on the fixed point, at about 1.618."
+        : "which is greater than 1, so this rearrangement is moving away from the fixed point, not towards it.");
   }
 
   select.addEventListener("change", draw);

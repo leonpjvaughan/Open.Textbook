@@ -9,6 +9,8 @@ dfe: [A21]
 kind: problems
 ---
 
+# 9.3 Forming and solving equations — Practise
+
 :::problems chapter-9-practice-9.3
 
 :::answers chapter-9-practice-9.3

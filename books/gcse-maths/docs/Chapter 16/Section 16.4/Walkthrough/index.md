@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** use triangle and quadrilateral angle sums and collect like terms.
 
-**Objectives:** calculate the interior sum of an $n$-sided polygon, its regular interior angle, and the exterior angle sum. This covers G3.
+**Objectives:** calculate the interior sum of an $n$-sided polygon, its regular interior angle, and the exterior angle sum.
 
 ## Interior angle sums
 

@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** Expand and factorise quadratics, solve quadratic equations, and substitute into expressions.
 
-**Objectives:** Combine a linear equation and a quadratic equation by substitution, then find every solution pair. This page covers A19.
+**Objectives:** Combine a linear equation and a quadratic equation by substitution, then find every solution pair.
 
 ## Substitute, then solve the quadratic
 

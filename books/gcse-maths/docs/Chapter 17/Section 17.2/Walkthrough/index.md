@@ -13,7 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** recognise rectangles, triangles and cuboids; use a square grid.
 
-**Objectives:** interpret a plan and elevations, then construct these views from a 3D shape. This page covers G13.
+**Objectives:** interpret a plan and elevations, then construct these views from a 3D shape.
 
 ## Views of a solid
 

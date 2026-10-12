@@ -15,7 +15,6 @@ kind: walkthrough
 **Prerequisites:** square numbers, linear sequences, and collecting like terms.
 
 **Objectives:** use constant second differences to find a quadratic nth term.
-This section develops the Higher content in A25.
 
 ## First and second differences
 

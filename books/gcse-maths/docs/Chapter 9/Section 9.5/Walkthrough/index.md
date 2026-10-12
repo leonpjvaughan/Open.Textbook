@@ -15,8 +15,6 @@ kind: walkthrough
 
 **Objectives:** solve linear inequalities, preserve the inequality direction under addition, subtraction and positive division, and reverse it when multiplying or dividing by a negative.
 
-This section covers solving linear inequalities in one variable, within AQA reference A22.
-
 Solve an inequality using the balance method. Adding or subtracting the same value keeps its direction. Multiplying or dividing by a negative reverses the direction because the order of numbers reverses.
 
 **Example 1.** Solve $3x+2\leq14$.

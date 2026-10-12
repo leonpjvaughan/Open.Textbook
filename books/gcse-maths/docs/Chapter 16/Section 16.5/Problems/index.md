@@ -11,8 +11,6 @@ kind: problems
 
 # 16.5 Geometrical reasoning and proof — Practise
 
-**DfE practice:** G6. The questions below practise these items.
-
 Work independently first. If you make an error, return to the Learn page and use it to guide your next attempt.
 
 :::problems chapter-16-practice-16.5

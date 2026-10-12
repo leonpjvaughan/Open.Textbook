@@ -19,8 +19,6 @@ comparing nearby values.
 By the end of this section, you can estimate powers and roots and explain why
 your estimate is reasonable.
 
-This section covers N6.
-
 ## Compare with known values
 
 To estimate a root, find two nearby powers you know. The root lies between the
