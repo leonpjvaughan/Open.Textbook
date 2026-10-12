@@ -19,7 +19,7 @@ the scripts.
 | `scripts/protect-main.sh` | Require the gate check on `main` (needs GitHub Pro) |
 | `scripts/fetch_sources.sh` | Fetch the tracked primary sources into `research/sources/` |
 | `scripts/screenshot.cjs` | Capture built pages to images for review |
-| `scripts/audit-figures.cjs` | Measure every figure's paint in both schemes, and capture it |
+| `scripts/audit-figures.cjs` | Measure every figure's paint in both schemes, capture it, and write the audit table |
 | `scripts/check-mobile.cjs` | Check the mobile layout |
 | `scripts/measure-budget.cjs` | Measure a page against the extras budget |
 | `scripts/preview-themes.sh` | Preview the theme bundles |

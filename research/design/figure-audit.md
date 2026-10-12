@@ -5,6 +5,15 @@ claim about one: the script loads each figure in a browser, in both schemes, ask
 for the computed paint of every element the figure draws, and measures each one
 against the panel behind it.
 
+> **131 figures in 5 books, 262 measurements.** The tables below are generated —
+> reproduce them with
+> `node scripts/audit-figures.cjs site --json out.json --table research/design/figure-audit.md`.
+> The prose around them is written by hand, and the script replaces only what is
+> between the two markers, because a generator that rewrote the whole file would
+> either delete the argument or force it into a script. The five books include
+> **Proofs**, the collection's reference work, which is a book because that is how
+> the collection publishes a body of pages and for no other reason.
+
 ## Why a browser
 
 The static checks were necessary and not sufficient, and three of them were wrong
@@ -48,7 +57,7 @@ box on a dark page in both schemes.
 | Light / Dark | The **lowest** contrast ratio of any paint in that scheme, against the figure panel. Text must clear 4.5:1 and a shape 3:1; the lowest is reported because it is the one that fails |
 
 Every figure passes. A number below 4.5:1 is a shape rather than text — `fig-grid`
-drawing an axis, which is held to 3:1.
+drawing an axis, which is held to 3:1, and it is the floor in most rows.
 
 ## The standard
 
@@ -68,151 +77,165 @@ A new figure cannot repeat any of this:
 A figure that paints nothing at all is legitimate — two do, and inherit the ink —
 so the tests ask what a class *does*, not that one is present.
 
+<!-- generated:tables -->
 
-## GCSE Mathematics — 28 figures
-
-| Figure | Page | Paints with | Light | Dark |
-|---|---|---|---|---|
-| `ch10-geometric` | `chapter-10/section-10.5/learn` | `fig-good`, `fig-ink`, `text-accent` | 4.98:1 | 5.89:1 |
-| `ch11-coordinate-line` | `chapter-11/section-11.1/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `text-accent` | 4.60:1 | 5.75:1 |
-| `ch12-parabola` | `chapter-12/section-12.3/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `text-warn`, `text-good` | 4.60:1 | 5.75:1 |
-| `ch13-trig` | `chapter-13/section-13.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-warn`, `text-good` | 3.08:1 | 3.07:1 |
-| `ch14-lines` | `chapter-14/section-14.3/learn/ (+1)` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good` | 4.60:1 | 5.89:1 |
-| `ch15-functions` | `chapter-15/section-15.1/learn` | `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
-| `ch16-point` | `chapter-16/section-16.1/learn/ (+1)` | `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
-| `ch17-construction` | `chapter-17/section-17.3/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 4.60:1 | 5.75:1 |
-| `ch18-transform` | `chapter-18/section-18.2/learn/ (+1)` | `fig-accent`, `fig-good`, `fig-grid`, `text-accent`, `text-good` | 3.08:1 | 3.07:1 |
-| `ch19-circle-measures` | `chapter-19/section-19.2/learn/ (+1)` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-good` | 3.08:1 | 3.07:1 |
-| `ch2-multiples` | `chapter-2/section-2.1/learn/ (+1)` | `fig-ink`, `text-accent` | 4.98:1 | 5.89:1 |
-| `ch20-right-triangle` | `chapter-20/section-20.1/learn/ (+1)` | `fig-accent`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good` | 3.08:1 | 3.07:1 |
-| `ch21-centre-angle` | `chapter-21/section-21.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good`, `text-ink` | 3.08:1 | 3.07:1 |
-| `ch22-vector-translation` | `chapter-22/section-22.1/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 3.08:1 | 3.07:1 |
-| `ch23-spinner` | `chapter-23/section-23.1/learn/ (+1)` | `fig-accent`, `fig-grid`, `text-accent`, `text-ink` | 3.08:1 | 3.07:1 |
-| `ch24-chart-choice` | `chapter-24/section-24.2/learn/ (+1)` | `fig-accent`, `fig-good` | 13.53:1 | 12.11:1 |
-| `ch25-boxplot` | `chapter-25/section-25.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `text-accent`, `text-warn` | 4.98:1 | 5.75:1 |
-| `ch3-index-laws` | `chapter-3/section-3.3/learn/ (+1)` | — (inherits ink) | 13.53:1 | 12.11:1 |
-| `ch4-fraction-strip` | `chapter-4/section-4.1/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
-| `ch5-map-scale` | `chapter-5/section-5.5/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `text-accent`, `text-good` | 3.08:1 | 3.07:1 |
-| `ch5-proportion` | `chapter-5/section-5.3/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink` | 4.98:1 | 5.75:1 |
-| `ch6-interest` | `chapter-6/section-6.4/learn/ (+1)` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch7-scale` | `chapter-7/section-7.1/learn/ (+1)` | `fig-accent`, `fig-good`, `fig-grid`, `text-accent` | 4.98:1 | 5.89:1 |
-| `ch8-frame-area` | `chapter-8/section-8.3/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink`, `text-good` | 4.60:1 | 5.75:1 |
-| `ch9-inequality-line` | `chapter-9/section-9.4/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good` | 3.08:1 | 3.07:1 |
-| `number-line` | `chapter-1/section-1.1/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink` | 4.98:1 | 5.75:1 |
-| `profit-slider` | `chapter-1/section-1.3/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink`, `text-warn`, `text-good` | 4.60:1 | 5.75:1 |
-| `rounding-slider` | `chapter-1/section-1.5/learn/ (+1)` | — (inherits ink) | 13.53:1 | 12.11:1 |
-
-## GCSE Physics — 31 figures
+## GCSE Mathematics (9-1) — 28 figures
 
 | Figure | Page | Paints with | Light | Dark |
 |---|---|---|---|---|
-| `atom-builder` | `chapter-9/section-9.1/learn/ (+1)` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `black-body-curve` | `chapter-5/section-5.5/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `circuit-current` | `chapter-6/section-6.1/learn/ (+1)` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `crash-force` | `chapter-3/section-3.4/learn` | `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `density-mass-volume` | `chapter-8/section-8.1/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
-| `echo-timing` | `chapter-4/section-4.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `efficiency` | `chapter-1/section-1.2/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `electromagnet-strength` | `chapter-7/section-7.2/learn/ (+1)` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `em-spectrum` | `chapter-5/section-5.1/learn/ (+1)` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `energy-drop` | `chapter-1/section-1.1/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `force-acceleration` | `chapter-3/section-3.2/learn/ (+1)` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `gas-pressure-volume` | `chapter-8/section-8.3/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
-| `half-life-curve` | `chapter-9/section-9.2/learn/ (+1)` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `lens-image` | `chapter-5/section-5.3/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `lever-moment` | `chapter-2/section-2.5/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `loudspeaker-cone` | `chapter-7/section-7.4/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
-| `magnetic-field-compass` | `chapter-7/section-7.1/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `motion-graph` | `chapter-3/section-3.1/learn/ (+1)` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `power-energy` | `chapter-6/section-6.4/learn/ (+1)` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `pressure-area` | `chapter-2/section-2.4/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `radiation-penetration` | `chapter-9/section-9.3/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `redshift-spectrum` | `chapter-10/section-10.2/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `reflection-angles` | `chapter-4/section-4.3/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `reflection-refraction` | `chapter-5/section-5.2/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `resultant-forces` | `chapter-2/section-2.1/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `series-parallel` | `chapter-6/section-6.2/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `spring-extension` | `chapter-2/section-2.2/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `star-equilibrium` | `chapter-10/section-10.1/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink` | 4.60:1 | 5.75:1 |
-| `stopping-distance` | `chapter-3/section-3.3/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
-| `transformer-turns` | `chapter-7/section-7.3/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
-| `wave-parameters` | `chapter-4/section-4.1/learn/ (+1)` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
+| `ch10-geometric` | `gcse-maths/chapter-10/section-10.5/learn` | `fig-good`, `fig-ink`, `text-accent` | 4.98:1 | 5.89:1 |
+| `ch11-coordinate-line` | `gcse-maths/chapter-11/section-11.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `text-accent` | 4.60:1 | 5.75:1 |
+| `ch12-parabola` | `gcse-maths/chapter-12/section-12.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `text-warn`, `text-good` | 4.60:1 | 5.75:1 |
+| `ch13-trig` | `gcse-maths/chapter-13/section-13.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-warn`, `text-good` | 3.08:1 | 3.07:1 |
+| `ch14-lines` | `gcse-maths/chapter-14/section-14.3/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good` | 4.60:1 | 5.89:1 |
+| `ch15-functions` | `gcse-maths/chapter-15/section-15.1/learn` | `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
+| `ch16-point` | `gcse-maths/chapter-16/section-16.1/learn` | `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
+| `ch17-construction` | `gcse-maths/chapter-17/section-17.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 4.60:1 | 5.75:1 |
+| `ch18-transform` | `gcse-maths/chapter-18/section-18.2/learn` | `fig-accent`, `fig-good`, `fig-grid`, `text-accent`, `text-good` | 3.08:1 | 3.07:1 |
+| `ch19-circle-measures` | `gcse-maths/chapter-19/section-19.2/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-good` | 3.08:1 | 3.07:1 |
+| `ch2-multiples` | `gcse-maths/chapter-2/section-2.1/learn` | `fig-ink`, `text-accent` | 4.98:1 | 5.89:1 |
+| `ch20-right-triangle` | `gcse-maths/chapter-20/section-20.1/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good` | 3.08:1 | 3.07:1 |
+| `ch21-centre-angle` | `gcse-maths/chapter-21/section-21.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good`, `text-ink` | 3.08:1 | 3.07:1 |
+| `ch22-vector-translation` | `gcse-maths/chapter-22/section-22.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 3.08:1 | 3.07:1 |
+| `ch23-spinner` | `gcse-maths/chapter-23/section-23.1/learn` | `fig-accent`, `fig-grid`, `text-accent`, `text-ink` | 3.08:1 | 3.07:1 |
+| `ch24-chart-choice` | `gcse-maths/chapter-24/section-24.2/learn` | `fig-accent`, `fig-good` | 13.53:1 | 12.11:1 |
+| `ch25-boxplot` | `gcse-maths/chapter-25/section-25.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `text-accent`, `text-warn` | 4.98:1 | 5.75:1 |
+| `ch3-index-laws` | `gcse-maths/chapter-3/section-3.3/learn` | — (inherits ink) | 13.53:1 | 12.11:1 |
+| `ch4-fraction-strip` | `gcse-maths/chapter-4/section-4.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
+| `ch5-map-scale` | `gcse-maths/chapter-5/section-5.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `text-accent`, `text-good` | 3.08:1 | 3.07:1 |
+| `ch5-proportion` | `gcse-maths/chapter-5/section-5.3/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.98:1 | 5.75:1 |
+| `ch6-interest` | `gcse-maths/chapter-6/section-6.4/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch7-scale` | `gcse-maths/chapter-7/section-7.1/learn` | `fig-accent`, `fig-good`, `fig-grid`, `text-accent` | 4.98:1 | 5.89:1 |
+| `ch8-frame-area` | `gcse-maths/chapter-8/section-8.3/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `text-good` | 4.60:1 | 5.75:1 |
+| `ch9-inequality-line` | `gcse-maths/chapter-9/section-9.4/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good` | 3.08:1 | 3.07:1 |
+| `number-line` | `gcse-maths/chapter-1/section-1.1/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.98:1 | 5.75:1 |
+| `profit-slider` | `gcse-maths/chapter-1/section-1.3/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `text-warn`, `text-good` | 4.60:1 | 5.75:1 |
+| `rounding-slider` | `gcse-maths/chapter-1/section-1.5/learn` | — (inherits ink) | 13.53:1 | 12.11:1 |
+
+## GCSE Physics (9-1) — 31 figures
+
+| Figure | Page | Paints with | Light | Dark |
+|---|---|---|---|---|
+| `atom-builder` | `gcse-physics/chapter-9/section-9.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `black-body-curve` | `gcse-physics/chapter-5/section-5.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `circuit-current` | `gcse-physics/chapter-6/section-6.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `crash-force` | `gcse-physics/chapter-3/section-3.4/learn` | `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `density-mass-volume` | `gcse-physics/chapter-8/section-8.1/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
+| `echo-timing` | `gcse-physics/chapter-4/section-4.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `efficiency` | `gcse-physics/chapter-1/section-1.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `electromagnet-strength` | `gcse-physics/chapter-7/section-7.2/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `em-spectrum` | `gcse-physics/chapter-5/section-5.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `energy-drop` | `gcse-physics/chapter-1/section-1.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `force-acceleration` | `gcse-physics/chapter-3/section-3.2/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `gas-pressure-volume` | `gcse-physics/chapter-8/section-8.3/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
+| `half-life-curve` | `gcse-physics/chapter-9/section-9.2/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `lens-image` | `gcse-physics/chapter-5/section-5.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `lever-moment` | `gcse-physics/chapter-2/section-2.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `loudspeaker-cone` | `gcse-physics/chapter-7/section-7.4/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
+| `magnetic-field-compass` | `gcse-physics/chapter-7/section-7.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `motion-graph` | `gcse-physics/chapter-3/section-3.1/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `power-energy` | `gcse-physics/chapter-6/section-6.4/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `pressure-area` | `gcse-physics/chapter-2/section-2.4/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `radiation-penetration` | `gcse-physics/chapter-9/section-9.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `redshift-spectrum` | `gcse-physics/chapter-10/section-10.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `reflection-angles` | `gcse-physics/chapter-4/section-4.3/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `reflection-refraction` | `gcse-physics/chapter-5/section-5.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `resultant-forces` | `gcse-physics/chapter-2/section-2.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `series-parallel` | `gcse-physics/chapter-6/section-6.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `spring-extension` | `gcse-physics/chapter-2/section-2.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `star-equilibrium` | `gcse-physics/chapter-10/section-10.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink` | 4.60:1 | 5.75:1 |
+| `stopping-distance` | `gcse-physics/chapter-3/section-3.3/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
+| `transformer-turns` | `gcse-physics/chapter-7/section-7.3/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
+| `wave-parameters` | `gcse-physics/chapter-4/section-4.1/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
 
 ## A-level Mathematics — 47 figures
 
 | Figure | Page | Paints with | Light | Dark |
 |---|---|---|---|---|
-| `ch10-vector-addition` | `chapter-10/section-10.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch11-histogram-density` | `chapter-11/section-11.3/learn` | `fig-accent`, `fig-ink` | 6.92:1 | 5.87:1 |
-| `ch11-sampling-variability` | `chapter-11/section-11.1/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch11-scatter-explorer` | `chapter-11/section-11.4/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 5.12:1 | 5.75:1 |
-| `ch12-conditional-reverse` | `chapter-12/section-12.2/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 5.12:1 | 5.75:1 |
-| `ch12-independence` | `chapter-12/section-12.1/learn` | `fig-accent`, `fig-good`, `fig-ink` | 4.60:1 | 5.87:1 |
-| `ch12-model-sensitivity` | `chapter-12/section-12.3/learn` | `fig-warn`, `fig-good`, `fig-ink` | 4.60:1 | 5.75:1 |
-| `ch13-binomial-cumulative` | `chapter-13/section-13.2/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch13-binomial-explorer` | `chapter-13/section-13.1/learn` | `fig-accent`, `fig-ink` | 6.92:1 | 5.87:1 |
-| `ch13-binomial-normal` | `chapter-13/section-13.4/learn` | `fig-accent`, `fig-ink` | 6.92:1 | 5.87:1 |
-| `ch13-normal-explorer` | `chapter-13/section-13.3/learn` | `fig-accent`, `fig-ink` | 6.92:1 | 5.87:1 |
-| `ch14-binomial-tail` | `chapter-14/section-14.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
-| `ch14-normal-test` | `chapter-14/section-14.3/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
-| `ch15-distance-displacement` | `chapter-15/section-15.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch15-projectile` | `chapter-15/section-15.6/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch15-velocity-time` | `chapter-15/section-15.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch16-force-balance` | `chapter-16/section-16.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch16-friction` | `chapter-16/section-16.7/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch16-inclined-plane` | `chapter-16/section-16.5/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch16-moments` | `chapter-16/section-16.8/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch2-quadratic-explorer` | `chapter-2/section-2.3/learn` | `fig-accent`, `fig-ink` | 6.92:1 | 5.87:1 |
-| `ch2-transform-explorer` | `chapter-2/section-2.11/learn` | `fig-accent`, `fig-ink` | 6.92:1 | 5.87:1 |
-| `ch3-circle-explorer` | `chapter-3/section-3.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
-| `ch3-line-explorer` | `chapter-3/section-3.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
-| `ch3-parametric-explorer` | `chapter-3/section-3.4/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch4-binomial-explorer` | `chapter-4/section-4.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch4-model-explorer` | `chapter-4/section-4.7/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 5.12:1 | 5.75:1 |
-| `ch4-series-explorer` | `chapter-4/section-4.6/learn` | `fig-accent`, `fig-good`, `fig-ink` | 4.60:1 | 5.87:1 |
-| `ch5-r-form` | `chapter-5/section-5.9/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch5-unit-circle` | `chapter-5/section-5.2/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 5.12:1 | 5.75:1 |
-| `ch5-wave-explorer` | `chapter-5/section-5.3/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch6-exponential-explorer` | `chapter-6/section-6.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch6-log-linear` | `chapter-6/section-6.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch7-gradient-explorer` | `chapter-7/section-7.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
-| `ch7-implicit-tangent` | `chapter-7/section-7.9/learn` | `fig-warn`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
-| `ch7-power-rule` | `chapter-7/section-7.3/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
-| `ch7-stationary-explorer` | `chapter-7/section-7.5/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
-| `ch8-antiderivative-family` | `chapter-8/section-8.1/learn` | `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
-| `ch8-between-curves` | `chapter-8/section-8.3/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
-| `ch8-definite-area` | `chapter-8/section-8.2/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
-| `ch8-riemann` | `chapter-8/section-8.4/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
-| `ch8-solution-curves` | `chapter-8/section-8.7/learn` | `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
-| `ch9-change-of-sign` | `chapter-9/section-9.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch9-cobweb` | `chapter-9/section-9.2/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch9-newton-raphson` | `chapter-9/section-9.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ch9-trapezium` | `chapter-9/section-9.4/learn` | `fig-accent`, `fig-good`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `proof-prime-search` | `chapter-1/section-1.3/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch10-vector-addition` | `a-level-maths/chapter-10/section-10.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch11-histogram-density` | `a-level-maths/chapter-11/section-11.3/learn` | `fig-accent`, `fig-ink` | 6.92:1 | 5.87:1 |
+| `ch11-sampling-variability` | `a-level-maths/chapter-11/section-11.1/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch11-scatter-explorer` | `a-level-maths/chapter-11/section-11.4/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 5.12:1 | 5.75:1 |
+| `ch12-conditional-reverse` | `a-level-maths/chapter-12/section-12.2/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 5.12:1 | 5.75:1 |
+| `ch12-independence` | `a-level-maths/chapter-12/section-12.1/learn` | `fig-accent`, `fig-good`, `fig-ink` | 4.60:1 | 5.87:1 |
+| `ch12-model-sensitivity` | `a-level-maths/chapter-12/section-12.3/learn` | `fig-warn`, `fig-good`, `fig-ink` | 4.60:1 | 5.75:1 |
+| `ch13-binomial-cumulative` | `a-level-maths/chapter-13/section-13.2/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch13-binomial-explorer` | `a-level-maths/chapter-13/section-13.1/learn` | `fig-accent`, `fig-ink` | 6.92:1 | 5.87:1 |
+| `ch13-binomial-normal` | `a-level-maths/chapter-13/section-13.4/learn` | `fig-accent`, `fig-ink` | 6.92:1 | 5.87:1 |
+| `ch13-normal-explorer` | `a-level-maths/chapter-13/section-13.3/learn` | `fig-accent`, `fig-ink` | 6.92:1 | 5.87:1 |
+| `ch14-binomial-tail` | `a-level-maths/chapter-14/section-14.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
+| `ch14-normal-test` | `a-level-maths/chapter-14/section-14.3/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
+| `ch15-distance-displacement` | `a-level-maths/chapter-15/section-15.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch15-projectile` | `a-level-maths/chapter-15/section-15.6/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch15-velocity-time` | `a-level-maths/chapter-15/section-15.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch16-force-balance` | `a-level-maths/chapter-16/section-16.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch16-friction` | `a-level-maths/chapter-16/section-16.7/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch16-inclined-plane` | `a-level-maths/chapter-16/section-16.5/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch16-moments` | `a-level-maths/chapter-16/section-16.8/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch2-quadratic-explorer` | `a-level-maths/chapter-2/section-2.3/learn` | `fig-accent`, `fig-ink` | 6.92:1 | 5.87:1 |
+| `ch2-transform-explorer` | `a-level-maths/chapter-2/section-2.11/learn` | `fig-accent`, `fig-ink` | 6.92:1 | 5.87:1 |
+| `ch3-circle-explorer` | `a-level-maths/chapter-3/section-3.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
+| `ch3-line-explorer` | `a-level-maths/chapter-3/section-3.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
+| `ch3-parametric-explorer` | `a-level-maths/chapter-3/section-3.4/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch4-binomial-explorer` | `a-level-maths/chapter-4/section-4.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch4-model-explorer` | `a-level-maths/chapter-4/section-4.7/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 5.12:1 | 5.75:1 |
+| `ch4-series-explorer` | `a-level-maths/chapter-4/section-4.6/learn` | `fig-accent`, `fig-good`, `fig-ink` | 4.60:1 | 5.87:1 |
+| `ch5-r-form` | `a-level-maths/chapter-5/section-5.9/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch5-unit-circle` | `a-level-maths/chapter-5/section-5.2/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 5.12:1 | 5.75:1 |
+| `ch5-wave-explorer` | `a-level-maths/chapter-5/section-5.3/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch6-exponential-explorer` | `a-level-maths/chapter-6/section-6.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch6-log-linear` | `a-level-maths/chapter-6/section-6.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch7-gradient-explorer` | `a-level-maths/chapter-7/section-7.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
+| `ch7-implicit-tangent` | `a-level-maths/chapter-7/section-7.9/learn` | `fig-warn`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
+| `ch7-power-rule` | `a-level-maths/chapter-7/section-7.3/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
+| `ch7-stationary-explorer` | `a-level-maths/chapter-7/section-7.5/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
+| `ch8-antiderivative-family` | `a-level-maths/chapter-8/section-8.1/learn` | `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
+| `ch8-between-curves` | `a-level-maths/chapter-8/section-8.3/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
+| `ch8-definite-area` | `a-level-maths/chapter-8/section-8.2/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
+| `ch8-riemann` | `a-level-maths/chapter-8/section-8.4/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
+| `ch8-solution-curves` | `a-level-maths/chapter-8/section-8.7/learn` | `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
+| `ch9-change-of-sign` | `a-level-maths/chapter-9/section-9.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch9-cobweb` | `a-level-maths/chapter-9/section-9.2/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch9-newton-raphson` | `a-level-maths/chapter-9/section-9.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ch9-trapezium` | `a-level-maths/chapter-9/section-9.4/learn` | `fig-accent`, `fig-good`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `proof-prime-search` | `a-level-maths/chapter-1/section-1.3/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 
 ## A-level Physics — 22 figures
 
 | Figure | Page | Paints with | Light | Dark |
 |---|---|---|---|---|
-| `binding-energy` | `chapter-8/section-8.4/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `capacitor-discharge` | `chapter-5/section-5.4/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `charged-particle-path` | `chapter-9/section-9.3/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `circular-motion` | `chapter-3/section-3.5/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `de-broglie` | `chapter-8/section-8.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `decay-curve` | `chapter-8/section-8.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `electric-field` | `chapter-9/section-9.2/learn/ (+2)` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 4.60:1 | 7.52:1 |
-| `force-extension` | `chapter-4/section-4.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `grating-orders` | `chapter-6/section-6.2/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `gravitational-field` | `chapter-9/section-9.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `heating-curve` | `chapter-7/section-7.1/learn/ (+2)` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `i-v-characteristics` | `chapter-5/section-5.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `ideal-gas` | `chapter-7/section-7.2/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.78:1 | 5.75:1 |
-| `interference-2source` | `chapter-6/section-6.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `motion-graphs` | `chapter-3/section-3.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `motional-emf` | `chapter-9/section-9.4/learn` | `fig-accent`, `fig-good`, `fig-ink` | 4.60:1 | 7.52:1 |
-| `photoelectric-effect` | `chapter-8/section-8.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `projectile-motion` | `chapter-3/section-3.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `shm-graphs` | `chapter-3/section-3.6/learn` | `fig-accent`, `fig-good`, `fig-ink` | 4.60:1 | 7.52:1 |
-| `stationary-waves` | `chapter-6/section-6.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `timing-uncertainty` | `chapter-1/section-1.3/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
-| `vector-components` | `chapter-2/section-2.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `binding-energy` | `a-level-physics/chapter-8/section-8.4/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `capacitor-discharge` | `a-level-physics/chapter-5/section-5.4/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `charged-particle-path` | `a-level-physics/chapter-9/section-9.3/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `circular-motion` | `a-level-physics/chapter-3/section-3.5/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `de-broglie` | `a-level-physics/chapter-8/section-8.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `decay-curve` | `a-level-physics/chapter-8/section-8.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `electric-field` | `a-level-physics/chapter-9/section-9.2/learn` | `fig-accent`, `fig-good`, `fig-ink` | 4.60:1 | 7.52:1 |
+| `force-extension` | `a-level-physics/chapter-4/section-4.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `grating-orders` | `a-level-physics/chapter-6/section-6.2/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `gravitational-field` | `a-level-physics/chapter-9/section-9.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `heating-curve` | `a-level-physics/chapter-7/section-7.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `i-v-characteristics` | `a-level-physics/chapter-5/section-5.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ideal-gas` | `a-level-physics/chapter-7/section-7.2/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.78:1 | 5.75:1 |
+| `interference-2source` | `a-level-physics/chapter-6/section-6.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `motion-graphs` | `a-level-physics/chapter-3/section-3.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `motional-emf` | `a-level-physics/chapter-9/section-9.4/learn` | `fig-accent`, `fig-good`, `fig-ink` | 4.60:1 | 7.52:1 |
+| `photoelectric-effect` | `a-level-physics/chapter-8/section-8.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `projectile-motion` | `a-level-physics/chapter-3/section-3.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `shm-graphs` | `a-level-physics/chapter-3/section-3.6/learn` | `fig-accent`, `fig-good`, `fig-ink` | 4.60:1 | 7.52:1 |
+| `stationary-waves` | `a-level-physics/chapter-6/section-6.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `timing-uncertainty` | `a-level-physics/chapter-1/section-1.3/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
+| `vector-components` | `a-level-physics/chapter-2/section-2.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+
+## Proofs — 3 figures
+
+| Figure | Page | Paints with | Light | Dark |
+|---|---|---|---|---|
+| `angles-on-a-line` | `proofs/angles-in-a-triangle` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `polygon-triangulation` | `proofs/angles-in-a-polygon` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink` | 4.60:1 | 5.75:1 |
+| `sine-rule-perpendicular` | `proofs/sine-rule` | `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+
+<!-- /generated:tables -->
+
+
+

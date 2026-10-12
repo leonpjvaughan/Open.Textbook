@@ -2747,11 +2747,17 @@ be present, and a test fails on an omission so that "deliberately in no course" 
    | angles in a polygon | 3 | gcse-maths |
    | angles in a triangle | 2 | gcse-maths |
 
-   Three of these are already proved in the prose and only need lifting out: the
-   quadratic formula and Pythagoras by rearrangement are *derived* in a
-   Walkthrough, and the sine rule follows from a dropped perpendicular. The
-   bounding rule: **a proof is expected where a reader can name the result; not
-   for a definition, and not for a convention.**
+   The bounding rule: **a proof is expected where a reader can name the result;
+   not for a definition, and not for a convention.**
+
+   **A claim written here first and then checked was wrong.** This item said three
+   of the twenty — the quadratic formula, Pythagoras, the sine rule — were "already
+   proved in the prose and only need lifting out". Reading the pages says
+   otherwise: all three are **stated**. §20.6 opens "The sine rule *is*
+   $a/\sin A = b/\sin B$", §20.1 introduces Pythagoras as a theorem to use, and
+   §2.3 gives the quadratic formula without completing the square. So there is no
+   cheap set; each proof is written or it is not, and the count above is the whole
+   work.
 
    The full inventory is a scan of the built pages rather than the source, so a
    result that is only named in a caption or a readout is not missed. It is not

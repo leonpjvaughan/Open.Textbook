@@ -52,6 +52,150 @@ const TYPES = {
   ".ico": "image/x-icon",
 };
 
+// --- the table, for research/design/figure-audit.md ---------------------------
+//
+// The document's prose is hand-written and its tables are not, so the tables are
+// spliced between two markers rather than regenerating the file. A generator that
+// rewrote the whole document would either delete the argument or force it into a
+// script, and a document that *claims* to be generated and is not is worse than
+// one that admits it is written by hand.
+const TABLE_START = "<!-- generated:tables -->";
+const TABLE_END = "<!-- /generated:tables -->";
+
+const COLOUR_CLASSES = [
+  "fig-accent", "fig-warn", "fig-good", "fig-ink", "fig-grid", "fig-line",
+  "text-accent", "text-warn", "text-good", "text-ink",
+];
+
+function bookDirs(repoRoot) {
+  const base = path.join(repoRoot, "books");
+  if (!fs.existsSync(base)) return [];
+
+  // The collection's own order, read from `collection.yaml` by scanning the
+  // `qualifications:` block for `- id:` lines. A YAML library for two fields would
+  // be a dependency the rest of the repository does not have, and sorting by
+  // directory name instead would file A level before GCSE and Proofs in the middle.
+  const order = new Map();
+  const collection = path.join(repoRoot, "collection.yaml");
+  if (fs.existsSync(collection)) {
+    const text = fs.readFileSync(collection, "utf8");
+    const at = text.indexOf("\nqualifications:");
+    if (at >= 0) {
+      // Start after the `qualifications:` line itself, or the search for the next
+      // top-level key matches at once and the block comes back empty — which is
+      // silent: every book then sorts equal and the file is simply in the wrong
+      // order, with nothing to say so.
+      const rest = text.slice(at + 1);
+      const block = rest.slice(rest.indexOf("\n") + 1);
+      const end = block.search(/^[a-z_]+:/m);
+      let index = 0;
+      for (const line of (end < 0 ? block : block.slice(0, end)).split("\n")) {
+        const match = line.match(/^\s+-\s+id:\s*(\S+)/);
+        if (match) order.set(match[1].replace(/["']/g, ""), index++);
+      }
+    }
+  }
+
+  return fs
+    .readdirSync(base)
+    .filter((id) => fs.existsSync(path.join(base, id, "book.yaml")))
+    .map((id) => {
+      const yaml = fs.readFileSync(path.join(base, id, "book.yaml"), "utf8");
+      const field = (name, fallback) => {
+        const match = yaml.match(new RegExp(`^${name}:\\s*(.+)$`, "m"));
+        return match ? match[1].replace(/["']/g, "").trim() : fallback;
+      };
+      return {
+        id,
+        title: field("title", id),
+        qualification: field("qualification", ""),
+        order: Number(field("order", "0")) || 0,
+        figures: path.join(base, id, "docs", "assets", "figures"),
+      };
+    })
+    .sort((a, b) =>
+      (order.get(a.qualification) ?? 99) - (order.get(b.qualification) ?? 99)
+      || a.order - b.order
+      || a.id.localeCompare(b.id)
+    );
+}
+
+/** Which classes a module applies, comments removed so a mention is not a use. */
+function classesUsed(file) {
+  const body = fs.readFileSync(file, "utf8").replace(/^\s*\/\/.*$/gm, "");
+  return COLOUR_CLASSES.filter((name) => new RegExp(`\\b${name}\\b`).test(body));
+}
+
+function markdownTables(report, siteDir) {
+  const repoRoot = path.dirname(path.resolve(siteDir));
+  const books = bookDirs(repoRoot);
+  const owner = new Map();
+  for (const book of books) {
+    if (!fs.existsSync(book.figures)) continue;
+    for (const file of fs.readdirSync(book.figures)) {
+      if (!file.endsWith(".js") || file === "figures.js") continue;
+      owner.set(file.slice(0, -3), { book, file: path.join(book.figures, file) });
+    }
+  }
+
+  const label = (url) => {
+    const parts = url.split("/").filter(Boolean);
+    return parts.filter((p) => p !== "higher" && p !== "foundation").join("/");
+  };
+  const lowest = (result) => {
+    if (!result || result.error) return "—";
+    if (!result.paints.length) return "—";
+    return `${Math.min(...result.paints.map((p) => p.ratio)).toFixed(2)}:1`;
+  };
+
+  const lines = [TABLE_START];
+  const byBook = new Map(books.map((b) => [b.id, []]));
+  for (const slug of Object.keys(report).sort()) {
+    const where = owner.get(slug);
+    if (!where) continue;
+    byBook.get(where.book.id).push({
+      slug,
+      tokens: classesUsed(where.file),
+      page: (report[slug].page || "").replace(/\/$/, "") + "/",
+      light: lowest(report[slug].schemes.light),
+      dark: lowest(report[slug].schemes.dark),
+    });
+  }
+
+  for (const book of books) {
+    const rows = byBook.get(book.id) || [];
+    if (!rows.length) continue;
+    lines.push("", `## ${book.title} — ${rows.length} figures`, "");
+    lines.push("| Figure | Page | Paints with | Light | Dark |");
+    lines.push("|---|---|---|---|---|");
+    for (const row of rows) {
+      const tokens = row.tokens.length
+        ? row.tokens.map((t) => `\`${t}\``).join(", ")
+        : "— (inherits ink)";
+      lines.push(`| \`${row.slug}\` | \`${label(row.page)}\` | ${tokens} | ${row.light} | ${row.dark} |`);
+    }
+  }
+  lines.push("", TABLE_END, "");
+  return lines.join("\n");
+}
+
+function writeTable(file, tables) {
+  if (!fs.existsSync(file)) {
+    fs.writeFileSync(file, `${tables}\n`);
+    return;
+  }
+  const text = fs.readFileSync(file, "utf8");
+  const from = text.indexOf(TABLE_START);
+  const to = text.indexOf(TABLE_END);
+  if (from < 0 || to < 0) {
+    throw new Error(
+      `${file} has no ${TABLE_START} ... ${TABLE_END} region, so the tables cannot `
+        + "be replaced without discarding whatever is there"
+    );
+  }
+  fs.writeFileSync(file, text.slice(0, from) + tables + text.slice(to + TABLE_END.length));
+}
+
 // WCAG 2.1 relative luminance and contrast ratio, run inside the page.
 const MEASURE = `
 (function (slug) {
@@ -225,6 +369,7 @@ async function main() {
   let shots = null;
   let jsonOut = null;
   let only = null;
+  let table = null;
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === "--schemes") schemes = argv[(i += 1)].split(",");
     else if (argv[i] === "--theme") theme = argv[(i += 1)];
@@ -232,6 +377,7 @@ async function main() {
     else if (argv[i] === "--shots") shots = path.resolve(argv[(i += 1)]);
     else if (argv[i] === "--json") jsonOut = path.resolve(argv[(i += 1)]);
     else if (argv[i] === "--only") only = argv[(i += 1)];
+    else if (argv[i] === "--table") table = path.resolve(argv[(i += 1)]);
   }
   if (shots) fs.mkdirSync(shots, { recursive: true });
 
@@ -336,6 +482,10 @@ async function main() {
   await browser.close();
 
   if (jsonOut) fs.writeFileSync(jsonOut, JSON.stringify(report, null, 1));
+  if (table) {
+    writeTable(table, markdownTables(report, siteDir));
+    console.log(`wrote ${path.relative(process.cwd(), table)}`);
+  }
 
   // Summary.
   let bad = 0, errs = 0, taken = 0;

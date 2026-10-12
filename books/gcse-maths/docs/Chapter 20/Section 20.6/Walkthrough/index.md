@@ -17,6 +17,8 @@ kind: walkthrough
 
 A side and its opposite angle form a pair. The **sine rule** is $\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}$, where lower-case letters are opposite their matching capital angles.
 
+:::prove sine-rule
+
 **Example 1.** In a triangle, $A=30^\circ$, $B=45^\circ$, and $a=8$ cm. Find $b$.
 
 $$\frac{b}{\sin45^\circ}=\frac{8}{\sin30^\circ}$$
