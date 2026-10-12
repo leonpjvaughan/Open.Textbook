@@ -40,6 +40,21 @@ A scale compares drawing and real lengths in the same units. Scale $1:50$ means 
 
 > **Watch out.** Do not compare 9 m with 6 cm before converting units. Write both lengths in centimetres, then simplify the ratio.
 
+## Try it: read a map
+
+**Predict first.** The map uses a scale of 1 cm for 1 m. Without moving the
+slider, write down the real distance for a map length of 7 cm. Then move the
+slider and check your prediction.
+
+:::figure ch5-map-scale
+
+**Test.** Add 1 cm at a time and watch the readout. By how much does the real
+distance change each time?
+
+**Explain.** Write one sentence saying why the real distance is found by
+multiplying the map length rather than adding to it, and what would change if the
+scale were 1 cm for 5 m.
+
 ## You should now be able to
 
 - I can convert lengths into matching units before using a scale.

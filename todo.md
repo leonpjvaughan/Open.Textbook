@@ -757,12 +757,17 @@ become a lint rule or a test, so the floor rises and the manual audit shrinks.
 - [x] The pedagogy audit has been run over all 25 chapters, findings recorded in
       one place — `research/pedagogy-audit/`, two reports plus a README that ranks
       the work.
-- [ ] Every finding is fixed, or deferred with a reason. **Deferred, ranked in the
-      audit README:** Chapters 19, 23, 24, 5 and 15 need rewrites; Chapter 7's
+- [x] Every finding is fixed, or deferred with a reason. Chapter 7's chapter
+      problem, the fade in Chapters 19, 23 and 24, Chapter 5's Guided pages, all
+      nine repeated warm-ups, eleven answer-printing checks and the five
+      mis-ordered figures are fixed. **Deferred, ranked in the audit README:** Chapters 19, 23, 24, 5 and 15 need rewrites; Chapter 7's
       chapter problem is not solvable as set.
-- [ ] The worst chapter has been rebuilt end to end and stands as the reference.
-- [ ] Every `:::figure` follows Predict → Test → Explain, and `ch5-map-scale` is
-      either wired up or deleted. Five of twelve render above their own Predict
+- [x] The worst chapters have been rebuilt end to end and stand as the reference:
+      Chapters 7, 19, 23 and 24.
+- [x] Every `:::figure` follows Predict → Test → Explain, and `ch5-map-scale`
+      **wired up**: it is a scale-diagram investigation that matched no page, and
+      Section 5.5 — scale factors, diagrams and maps — had no figure. It now has a
+      Predict / Test / Explain section, and the book has no unused figure module. Five of twelve render above their own Predict
       prompt.
 - [x] Anything the audit found more than once is now a lint rule or a test: the
       `DfE coverage` and `Guided problems` leaks are gated by
@@ -1634,7 +1639,7 @@ not retrieved (item 35). No physics bank yet, so the units oracle is unused.
 
 ---
 
-## 30. A physics oracle — **done**
+## 30. A physics oracle — **done, and in use**
 
 **Done, 2026-10-11: §5 steps 1–6 of `research/curriculum/physics-verifier-gaps.md`.**
 Steps 1–2 built the seam (below). Steps 3–6 are
@@ -1696,14 +1701,16 @@ Poisson and chi-squared distributions — so that dependency decision comes firs
       `tests/test_verify_oracles.py`.
 - [x] A failing record per kind in `tests/test_verify_units.py`.
 - [x] The §6 limit written in `PROBLEMS.md` and in the oracle module.
-- [ ] A physics bank that uses it — deferred with the book (items 28 and 29).
-- [ ] The equations-sheet coverage test (§3.6), which needs that book's booklet
+- [x] A physics bank that uses it — **157 physics banks across two complete books**,
+      every one verified by the `units` oracle.
+- [ ] The equations-sheet coverage test (§3.6) — **moved to item 44**, because it
+      cannot be made honest without a declaration the banks do not carry.
       (`books/<id>/booklet/*.yaml`) as data; it was not in the mission's build
       order and cannot run without the book.
 
 ---
 
-## 31. `books/gcse-maths/AGENTS.md` can shadow the new `books/AGENTS.md`
+## 31. A book's `AGENTS.md` could shadow its parent's — **done**
 
 The nested-file convention is that the closest file wins. This change moved the
 content-area watch-outs — **Tiers**, **Generated files**, **Content**, **Problem
@@ -1723,9 +1730,9 @@ cannot repeat the gap: in `tests/test_agent_context.py`, assert that every
 
 **Done means.**
 
-- [ ] `books/gcse-maths/AGENTS.md` names `books/AGENTS.md`.
-- [ ] `tests/test_agent_context.py` fails when a `books/<id>/AGENTS.md` does not.
-- [ ] `scripts/check.sh` passes.
+- [x] `books/gcse-maths/AGENTS.md` names `books/AGENTS.md`.
+- [x] `tests/test_agent_context.py` fails when a `books/<id>/AGENTS.md` does not.
+- [x] `scripts/check.sh` passes.
 
 ---
 
@@ -1817,7 +1824,7 @@ show them to AQA readers, who are given none.
 - [x] Each board's own booklet is recorded in `sources.yaml` with a retrieval date.
 - [x] `book.yaml` declares `booklet:` and `python -m textbook.booklet` validates it.
 - [x] Every item's `provision` traces to the retrieved document; nothing invented.
-- [ ] The widget is checked board by board — it cannot filter a **table** by board,
+- [x] The widget is checked board by board — it cannot filter a **table** by board,
       so Edexcel's large tables are omitted. Recorded in
       `research/curriculum/a-level-maths.md` §11.
 
@@ -1924,10 +1931,10 @@ the document URL is not.
 
 - [x] `books/gcse-physics/sources.yaml` names an Edexcel equations list for the
       current window, with a retrieval date, and the booklet matches it.
-- [ ] `books/a-level-physics/sources.yaml` names the Edexcel printed insert (or
+- [x] `books/a-level-physics/sources.yaml` names the Edexcel printed insert (or
       records that the appendices are the closest readable evidence), and the
       booklet's Edexcel items match it.
-- [ ] Any difference from the 2024 list / the appendices is transcribed, not
+- [x] Any difference from the 2024 list / the appendices is transcribed, not
       normalised, and `scripts/check.sh` passes.
 
 ---
@@ -1955,11 +1962,11 @@ scope in `meta.note` and `AGENTS.md` as a deliberate limit.
 
 **Done means.**
 
-- [ ] The book states which board-specific content it covers and which it does
+- [x] The book states which board-specific content it covers and which it does
       not, in `booklet` `meta.note`, `AGENTS.md` and `curriculum.yaml`.
-- [ ] If options are transcribed, they are `provision`-tagged per board and the
+- [x] If options are transcribed, they are `provision`-tagged per board and the
       widget hides the wrong board's; if not, the limit is reader-visible.
-- [ ] `python -m textbook.booklet a-level-physics` validates and
+- [x] `python -m textbook.booklet a-level-physics` validates and
       `scripts/check.sh` passes.
 
 ---
@@ -2179,9 +2186,9 @@ fails a genuine injection — checked by mutation.
 
 **Done means.**
 
-- [ ] `uv run python -m pytest tests/ -q` passes, with no
+- [x] `uv run python -m pytest tests/ -q` passes, with no
       `test_no_figure_module_injects_runtime_latex` failure.
-- [ ] The figure still mounts, and its runtime text stays plain text.
+- [x] The figure still mounts, and its runtime text stays plain text.
 
 ## 41. `dimensions` could not check a magnitude needing a square root — **done**
 
@@ -2224,10 +2231,10 @@ declares m"*.
 
 - [x] `dimensions` verifies a unit-carrying magnitude written as
       `sqrt(x**2 + y**2)`, and a wrong magnitude still fails.
-- [ ] `tests/test_verify_units.py` pins it, and
+- [x] `tests/test_verify_units.py` pins it, and
       `uv run python -m textbook.verify books/*/problems/` passes.
 
-## 42. The internal-words lint flags the literal phrase "the bank"
+## 42. The internal-words lint flagged the literal phrase "the bank" — **done**
 
 **What is wrong.** `engine/textbook/lint.py` maps `\bthe (?:problem )?bank\b`
 to `(delete)` in `INTERNAL_PHRASES`, so any page that uses the ordinary English
@@ -2256,10 +2263,10 @@ narrowed pattern is the better fix.
 
 **Done means.**
 
-- [ ] `uv run python -m pytest tests/test_content_hygiene.py -q` passes.
-- [ ] A page that writes "the bank adds interest" is no longer reported, and a
+- [x] `uv run python -m pytest tests/test_content_hygiene.py -q` passes.
+- [x] A page that writes "the bank adds interest" is no longer reported, and a
       page that writes "the problem bank" still is.
-- [ ] `tests/test_content_hygiene.py::test_no_internal_words_reach_the_reader`
+- [x] `tests/test_content_hygiene.py::test_no_internal_words_reach_the_reader`
       passes on the current a-level-maths content.
 
 ## 43. A-level Mathematics Chapter 6 was missing, and the plan thought it was built — **done**
@@ -2297,13 +2304,13 @@ Chapter 7 again.
 
 **Done means.**
 
-- [ ] `grep -rl 'scaffold:stub' "books/a-level-maths/docs/Chapter 6"` prints
+- [x] `grep -rl 'scaffold:stub' "books/a-level-maths/docs/Chapter 6"` prints
       nothing, and `ls books/a-level-maths/problems/ | grep -c chapter-06` is at
       least 7.
-- [ ] `uv run python -m textbook.verify books/a-level-maths/problems/` passes.
-- [ ] `uv run python -m textbook.lint a-level-maths` exits 0 with no
+- [x] `uv run python -m textbook.verify books/a-level-maths/problems/` passes.
+- [x] `uv run python -m textbook.lint a-level-maths` exits 0 with no
       `voice:internal` and no `structure:*` finding in Chapter 6.
-- [ ] `docs/Glossary/pure.md` defines the terms Section 6.3 and Section 7.3
+- [x] `docs/Glossary/pure.md` defines the terms Section 6.3 and Section 7.3
       share, alphabetically, and the Chapter 6 pages link to them.
 
 ---
