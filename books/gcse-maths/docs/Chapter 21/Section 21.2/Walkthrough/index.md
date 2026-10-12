@@ -29,6 +29,8 @@ So the centre angle is $76^\circ$.
 
 An angle in a semicircle is always $90^\circ$. This follows because a straight angle at the centre is $180^\circ$, and the circumference angle is half of it.
 
+:::prove angle-in-a-semicircle
+
 Angles in the same segment are equal. They stand on the same chord and lie in the same part of the circle.
 
 **Example 2.** Two angles stand on the same chord in the same segment. One is $51^\circ$. Find the other.

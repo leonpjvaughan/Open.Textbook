@@ -18,6 +18,16 @@ is visible rather than only readable.
   and then, from the same picture, what the angles in any polygon add to.
 - **[The angles in a polygon add to (n − 2) × 180°](angles-in-a-polygon/index.md)** —
   why the number of triangles is always two fewer than the number of sides.
+- **[Pythagoras' theorem](pythagoras/index.md)** —
+  four copies of the triangle make a square with a hole in it.
+- **[The sine rule](sine-rule/index.md)** —
+  one perpendicular, written two ways.
+- **[The cosine rule](cosine-rule/index.md)** —
+  Pythagoras, with a correction for the angle that is not a right angle.
+- **[The quadratic formula](quadratic-formula/index.md)** —
+  completing the square, done once with letters.
+- **[The angle in a semicircle is 90°](angle-in-a-semicircle/index.md)** —
+  two isosceles triangles and a straight line.
 - **[The sum of the first n squares](sum-of-the-first-n-squares/index.md)** —
   why $1^2 + 2^2 + \dots + n^2$ is $\dfrac{n(n+1)(2n+1)}{6}$.
 

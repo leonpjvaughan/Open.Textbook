@@ -45,6 +45,40 @@ proofs:
     strand: trigonometry
     figure: sine-rule-perpendicular
 
+  - id: pythagoras
+    title: Pythagoras' theorem
+    summary: >-
+      Four copies of the triangle make a square with a hole in it, and the hole is
+      the square on the hypotenuse.
+    qualifications: [GCSE, A-level]
+    strand: geometry
+    figure: pythagoras-rearrangement
+
+  - id: cosine-rule
+    title: The cosine rule
+    summary: >-
+      Pythagoras twice, with a dropped perpendicular. The correction term is what
+      an angle that is not a right angle costs.
+    qualifications: [GCSE, A-level]
+    strand: trigonometry
+
+  - id: quadratic-formula
+    title: The quadratic formula
+    summary: >-
+      Complete the square on ax² + bx + c and solve for x. The formula is what is
+      left when the algebra is done.
+    qualifications: [GCSE, A-level]
+    strand: algebra
+
+  - id: angle-in-a-semicircle
+    title: The angle in a semicircle is 90°
+    summary: >-
+      Join the corner to the centre. Two isosceles triangles appear, and their
+      angles must fill a straight line.
+    qualifications: [GCSE]
+    strand: geometry
+    figure: semicircle-angle
+
   - id: angles-in-a-polygon
     title: The angles in a polygon add to (n − 2) × 180°
     summary: >-

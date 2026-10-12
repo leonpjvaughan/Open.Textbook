@@ -17,6 +17,8 @@ kind: walkthrough
 
 A **hypotenuse** is the longest side, opposite the right angle. If the shorter sides are $a$ and $b$, and the hypotenuse is $c$, then $a^2+b^2=c^2$.
 
+:::prove pythagoras
+
 **Example 1.** A right-angled triangle has shorter sides $6$ cm and $8$ cm. Find its hypotenuse.
 
 $$c^2=6^2+8^2$$

@@ -369,3 +369,22 @@ def test_the_note_is_absent_in_the_built_page_when_the_proof_is_in_course(built)
     # The proof's own page links onward, and the page it links to is in the same
     # course — so nothing on it is marked.
     assert "Beyond your course" not in text
+
+
+def test_the_index_lists_every_proof_and_nothing_else():
+    """The landing page is written by hand, so nothing stops it drifting.
+
+    It listed three proofs while the registry held four, and then named a
+    `cosine-rule` page that did not exist yet — both in the same session, and
+    neither noticed until a person read it. The links are checked by the build;
+    *completeness* is not, and a reader looking for a proof that is not on the
+    list has no way to know it exists.
+    """
+    index = (REFERENCE.docs / "index.md").read_text(encoding="utf-8")
+    listed = set(re.findall(r"\]\(([a-z0-9-]+)/index\.md\)", index))
+    registered = {proof["id"] for proof in registry()["proofs"]}
+
+    missing = sorted(registered - listed)
+    extra = sorted(listed - registered)
+    assert not missing, f"the index does not list: {missing}"
+    assert not extra, f"the index links to proofs that do not exist: {extra}"

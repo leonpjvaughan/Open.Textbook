@@ -101,6 +101,8 @@ $$
 x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
 $$
 
+:::prove quadratic-formula
+
 Everything about the roots is decided by the expression under the square root.
 It is called the **discriminant**, written $\Delta$:
 
