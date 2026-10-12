@@ -24,11 +24,11 @@ A geometrical proof is a chain of statements where each step follows from a know
 Let the unknown angle be $x$.
 
 $$
-x + 64 = 180 \qquad 	ext{co-interior angles sum to }180^\circ
+x + 64 = 180 \qquad \text{co-interior angles sum to }180^\circ
 $$
 
 $$
-x = 180 - 64 = 116^\circ \qquad 	ext{subtract }64^\circ	ext{ from both sides}
+x = 180 - 64 = 116^\circ \qquad \text{subtract }64^\circ\text{ from both sides}
 $$
 
 **Example 2.** Explain why the exterior angle of a triangle equals the sum of its opposite interior angles.

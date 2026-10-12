@@ -19,6 +19,8 @@ kind: walkthrough
 
 The interior angles of a triangle add to $180^\circ$. An exterior angle is formed by extending one side. It equals the sum of the two opposite interior angles.
 
+:::prove angles-in-a-triangle
+
 **Example 1.** A triangle has angles $48^\circ$, $73^\circ$ and $x^\circ$.
 
 $$

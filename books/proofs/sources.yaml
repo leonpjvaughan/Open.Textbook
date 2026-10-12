@@ -1,0 +1,57 @@
+# Provenance for the proof book.
+#
+# Two different kinds of claim live here and they are not the same claim:
+#
+#   * **Who is examined on a proof.** `proofs.yaml → qualifications` says whether a
+#     proof is in a reader's course. That is a claim about a specification, and it
+#     rests on the documents below.
+#   * **The proof itself.** Where a proof is the standard one it is the standard
+#     one, and no document is cited for the wording because the wording is ours.
+#     What is cited is the claim it justifies.
+#
+# Written for this collection rather than copied from a board document — see
+# `research/` for how the source material is used.
+
+retrieved: 2026-10-12
+
+references:
+  - id: dfe-gcse
+    attribution: true
+    title: "Mathematics: GCSE subject content (November 2013)"
+    ref: DFE-00295-2013
+    url: https://www.gov.uk/government/publications/gcse-mathematics-subject-content-and-assessment-objectives
+    role: >-
+      Primary curriculum for GCSE Mathematics. Geometry and measures G3-G6 state
+      the angle facts a reader is expected to know and use, including the angles
+      of a triangle and the interior angles of a polygon — which is the claim
+      `angles-in-a-triangle` and `angles-in-a-polygon` rest on for their `GCSE`
+      qualification.
+
+  - id: dfe-a-level
+    attribution: true
+    title: "Mathematics: AS and A level content (April 2016)"
+    ref: DFE-00706-2014
+    url: https://www.gov.uk/government/publications/gce-as-and-a-level-mathematics
+    role: >-
+      Primary curriculum for A-level Mathematics. Overarching theme OT1 is
+      mathematical argument and proof, so proof is inside the course rather than
+      beside it; sequences and series are where `sum-of-the-first-n-squares`
+      belongs. Its Appendix B is also the list of formulae a reader must recall,
+      which is what makes a proof worth offering at all.
+
+  - id: aqa-8300
+    attribution: true
+    title: "AQA GCSE Mathematics 8300 specification"
+    url: https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300
+    role: >-
+      Board-level confirmation that the angle facts are examined at GCSE and at
+      which tier, for the two geometry proofs.
+
+  - id: aqa-7357
+    attribution: true
+    title: "AQA A-level Mathematics 7357 specification"
+    url: https://www.aqa.org.uk/subjects/mathematics/as-and-a-level/mathematics-7357
+    role: >-
+      Board-level confirmation that proof is assessed at A-level (AO2) and that
+      the sum of the first n squares is not required knowledge — it is offered
+      here as a proof a reader can follow, not as a result to learn.

@@ -61,3 +61,9 @@ qualifications:
   - id: A-level
     title: A level
     note: Full A-level courses.
+  # Not a qualification. Proofs are not taught by one course or examined by one
+  # board, and a proof book belongs to no subject — so it needs a group of its own
+  # rather than being filed under one of the courses that links to it.
+  - id: Reference
+    title: Reference
+    note: Material that belongs to more than one course.

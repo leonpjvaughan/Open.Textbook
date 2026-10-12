@@ -294,3 +294,36 @@ def test_the_profiles_agree_with_the_tier_axis(tmp_path, profile, higher_only_pr
     present = any("section-5.6/" in url for url in urls)
     assert present is higher_only_present
     assert result.ok, result.broken + result.maths_errors
+
+
+def test_the_hook_chain_is_defined_once_and_the_pipeline_uses_that_one():
+    """Two lists with no test between them is how `:::prove` silently did nothing.
+
+    `hooks/__init__.py` said the order was "stated once, here, and tested"; the
+    pipeline kept its own tuple and ran that instead, so adding a hook to the
+    documented chain changed nothing at all. The order now lives in one place and
+    this is what says so.
+    """
+    from textbook import hooks
+
+    assert pipeline.MARKDOWN_HOOKS is hooks.MARKDOWN_HOOKS, (
+        "the pipeline has its own hook chain again; a hook added to hooks/__init__.py "
+        "would not run"
+    )
+    order = [module.__name__.rsplit(".", 1)[-1] for module in hooks.MARKDOWN_HOOKS]
+    # `maths` is not in the list: it runs on rendered HTML rather than markdown, in
+    # `render_page`, and it must stay last or the maths a hook emits is not rendered.
+    assert order == ["tier", "toc", "figures", "proofs", "problems"], order
+
+
+def test_tier_runs_before_everything_that_expands():
+    """Why the order is not arbitrary: `tier` deletes blocks, so it goes first.
+
+    A `<!-- tier:h -->` block containing a `:::figure` would otherwise be expanded
+    and then removed, which is wasted work — or, if the removal came after the
+    loader was injected, a page carrying a loader for a figure it does not show.
+    """
+    from textbook import hooks
+
+    names = [module.__name__.rsplit(".", 1)[-1] for module in hooks.MARKDOWN_HOOKS]
+    assert names[0] == "tier"

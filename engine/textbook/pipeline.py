@@ -51,7 +51,7 @@ from . import scaffold
 from .frontmatter import FrontMatterError
 from .frontmatter import read as read_page
 from .frontmatter import split as split_front_matter
-from .hooks import figures, maths, prefs, problems, tier, toc
+from .hooks import MARKDOWN_HOOKS, maths, prefs
 from .themes import default_bundle, ordered_bundles
 
 log = logging.getLogger("textbook.pipeline")
@@ -64,7 +64,11 @@ SHELL_CSS = CSS / "shell.css"
 # The hooks that transform page Markdown, in order. This is the same order as
 # hooks/__init__.py, which cannot express it by listing files because several
 # hooks want the same event.
-MARKDOWN_HOOKS = (tier, toc, figures, problems)
+# The markdown hook chain, re-exported so a caller can inspect what runs without
+# importing the package. Defined in `hooks/__init__.py` because that is where the
+# order belongs, and importing it here rather than repeating it is what makes the
+# docstring there true. `tests/test_render_hooks.py` asserts they are one object.
+MARKDOWN_HOOKS = MARKDOWN_HOOKS
 
 # Only the extensions the content actually uses. The retired MkDocs shell also
 # declared admonition, attr_list, pymdownx.details and pymdownx.superfences;
@@ -235,9 +239,12 @@ def render_nav(nav, current_url: str) -> str:
 
 
 def nav_for(book: books.Book, include_higher: bool) -> list:
-    """The nav, built from curriculum.yaml."""
+    """The nav, built from a book's own registry — a curriculum or a proof list."""
     return scaffold.build_nav_list(
-        book.strands, book.chapters, include_higher=include_higher
+        book.strands,
+        book.chapters,
+        include_higher=include_higher,
+        proofs=book.proofs,
     )
 
 
@@ -276,11 +283,37 @@ def make_config(book: books.Book, profile: str) -> dict:
             "book": book.id,
             "book_dir": book.rel(book.root),
             "tier_profile": profile,
+            # The `:::prove` hook needs three things the book itself does not
+            # hold: which course the reader is in, and where the shared proof book
+            # lives. Passing them here rather than letting the hook find them keeps
+            # every hook resolving its paths the same way, so it works for any
+            # book and a test can drive it with a hand-written config.
+            "qualification": book.qualification,
+            "proofs_dir": proofs_dir(book),
+            "proofs_url": proofs_base_url(),
             "themes": [bundle.id for bundle in ordered_bundles()],
             "default_theme": default_bundle().id,
         },
         "docs_dir": str(book.docs),
     }
+
+
+def proofs_dir(book: books.Book) -> str:
+    """The reference work's directory, relative to the repository root.
+
+    Empty when there is no reference work, and the hook then falls back to
+    discovery — but a build knows, so it says.
+    """
+    reference = books.reference_book()
+    return book.rel(reference.root) if reference else ""
+
+
+def proofs_base_url() -> str:
+    """Where the proof book publishes, root-absolute, so any book can link to it."""
+    reference = books.reference_book()
+    if reference is None:
+        return "/proofs"
+    return "/" + reference.deploy_path(reference.default_profile.id)
 
 
 def make_page(md_path: str, url: str) -> SimpleNamespace:
@@ -531,7 +564,36 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
     return copied
 
 
-def check_links(out: Path, pages: list[RenderedPage], scope: str | None = None) -> list[str]:
+def sibling_roots(exclude: str | None = None) -> tuple[str, ...]:
+    """Where the collection's *other* books publish, root-relative.
+
+    The collection is one site: every book is a separate build with its own output
+    directory, and they are published side by side under one origin. So a link
+    from a page in one book to a page in another is a real link that this build
+    cannot verify — the files are not in this output directory and never will be.
+
+    Skipping such a link is not the same as assuming it works. The other book's own
+    build checks its own links, and the directive that writes these hrefs resolves
+    its target against a registry, so an id that names no page fails a build rather
+    than producing a dead link. What this cannot catch is a book removed from the
+    collection while a page still links to it, and `tests/test_proofs.py` is what
+    covers that.
+    """
+    roots = []
+    for other in books.discover_books():
+        if other.id == exclude:
+            continue
+        for profile in other.profiles:
+            roots.append(other.deploy_path(profile.id))
+    return tuple(roots)
+
+
+def check_links(
+    out: Path,
+    pages: list[RenderedPage],
+    scope: str | None = None,
+    siblings: tuple[str, ...] = (),
+) -> list[str]:
     """Every internal link in every built page must resolve to a built file.
 
     This replaces ``mkdocs build --strict``. ``<script>`` bodies are excluded
@@ -541,6 +603,10 @@ def check_links(out: Path, pages: list[RenderedPage], scope: str | None = None) 
     to all 25 chapters and the sidebar to the built one, so without it a subset
     build reports every unbuilt chapter as broken. Links to the site root are
     always checked, since the cover is built by every build.
+
+    ``siblings`` are the other books' deploy roots. A link into one of them is
+    outside this build and is skipped — see `sibling_roots` for why that is not
+    the same as assuming it works.
 
     Every page carries the whole sidebar, so a full book is around 200,000 link
     targets. Resolution is therefore done lexically against one listing of the
@@ -565,7 +631,13 @@ def check_links(out: Path, pages: list[RenderedPage], scope: str | None = None) 
             # Only a leading slash means "from the site root". Treating every
             # href as if it did would silently accept bare root-relative links,
             # which break as soon as a page is nested.
-            joined = path.lstrip("/") if path.startswith("/") else posixpath.join(base, path)
+            root_relative = path.lstrip("/")
+            if path.startswith("/") and any(
+                root_relative == root or root_relative.startswith(f"{root}/")
+                for root in siblings
+            ):
+                continue  # another book of the collection, built separately
+            joined = root_relative if path.startswith("/") else posixpath.join(base, path)
             candidate = posixpath.normpath(joined)
             if candidate.startswith(".."):
                 broken.append(f"{page.url} -> {target} (escapes the output directory)")
@@ -687,7 +759,14 @@ def build(
         (out / "sitemap.xml").write_text(xml, encoding="utf-8")
     (out / "robots.txt").write_text("User-agent: *\nAllow: /\n", encoding="utf-8")
 
-    result.broken.extend(check_links(out, result.pages, scope=subset))
+    result.broken.extend(
+        check_links(
+            out,
+            result.pages,
+            scope=subset,
+            siblings=sibling_roots(exclude=book.id),
+        )
+    )
     result.seconds = time.time() - started
     return result
 

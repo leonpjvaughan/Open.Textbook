@@ -1,0 +1,58 @@
+# The proofs this collection can show, and who is examined on them.
+#
+# This is the source of truth the `:::prove` directive reads. A proof listed here
+# has a page at `docs/<id>/index.md` and a URL at `/proofs/<id>/`; a directive
+# naming an id that is not here fails the build, the same way an unknown
+# `:::figure` slug does.
+#
+# `qualifications` is the whole point of the file. The same fact sits differently
+# in different courses: a reader on GCSE Mathematics meets the angles of a
+# triangle every year, and meets the sum of the first n squares never. So the
+# directive compares this list against the qualification of the book the reader is
+# in, and **marks the link when the proof is not in their course**. Nothing else
+# in the collection can say that, because nothing else knows which course the
+# reader came from.
+#
+# A proof with no `qualifications` is not in any course, which is a mistake unless
+# it is deliberate — `tests/test_proofs.py` fails on an empty list.
+
+meta:
+  title: Proofs
+  # Kept for the same reason a book's curriculum records it.
+  retrieved: 2026-10-12
+  note: >-
+    Written for this collection rather than copied from a board document. Where a
+    proof is the standard one, it is the version a reader can follow rather than
+    the shortest one — and each is checked against the source recorded in
+    sources.yaml for the claim it justifies, not for its wording.
+
+proofs:
+  - id: angles-in-a-triangle
+    title: The angles in a triangle add to 180°
+    summary: >-
+      Draw the line through one corner parallel to the opposite side, and the
+      three angles fall onto a straight line.
+    qualifications: [GCSE, A-level]
+    strand: geometry
+    figure: angles-on-a-line
+
+  - id: angles-in-a-polygon
+    title: The angles in a polygon add to (n − 2) × 180°
+    summary: >-
+      Cut the polygon into triangles from one corner. Count how many, and the
+      triangle proof does the rest.
+    qualifications: [GCSE, A-level]
+    strand: geometry
+    figure: polygon-triangulation
+
+  # In no course at this collection's level, which is a fact about the curriculum
+  # rather than an omission: the sum of the first n squares is Further Mathematics.
+  # An A-level reader meeting it here is offered it, not set it, and the empty list
+  # is what makes the link say so.
+  - id: sum-of-the-first-n-squares
+    title: The sum of the first n squares
+    summary: >-
+      Why 1² + 2² + … + n² is n(n + 1)(2n + 1)/6, proved by induction so the
+      formula arrives rather than appears.
+    qualifications: []
+    strand: sequences

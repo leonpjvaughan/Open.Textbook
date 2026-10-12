@@ -17,12 +17,14 @@ kind: walkthrough
 
 ## Interior angle sums
 
-A polygon is a closed shape made from straight sides. An $n$-sided polygon can be split from one vertex into $n-2$ triangles. Therefore its interior angle sum is $(n-2)	imes180^\circ$.
+A polygon is a closed shape made from straight sides. An $n$-sided polygon can be split from one vertex into $n-2$ triangles. Therefore its interior angle sum is $(n-2)\times180^\circ$.
+
+:::prove angles-in-a-polygon
 
 **Example 1.** Find the interior angle sum of a hexagon.
 
 $$
-(6-2)	imes180 = 4	imes180 = 720^\circ
+(6-2)\times180 = 4\times180 = 720^\circ
 $$
 
 A regular polygon has equal sides and equal angles. Divide its angle sum by its number of angles to find one interior angle.
@@ -43,7 +45,7 @@ $$
 360\div8=45^\circ
 $$
 
-> **Watch out.** The interior angle sum is not $360^\circ$ for every polygon. A quadrilateral has $360^\circ$, but a pentagon has $(5-2)	imes180=540^\circ$. Check the number of triangles, $n-2$.
+> **Watch out.** The interior angle sum is not $360^\circ$ for every polygon. A quadrilateral has $360^\circ$, but a pentagon has $(5-2)\times180=540^\circ$. Check the number of triangles, $n-2$.
 
 ## Progress check
 
@@ -51,6 +53,6 @@ A regular courtyard tile has six sides. Predict each interior angle, then use th
 
 ## You should now be able to
 
-- use $(n-2)	imes180^\circ$ for an interior angle sum;
+- use $(n-2)\times180^\circ$ for an interior angle sum;
 - find one interior angle of a regular polygon;
 - use the $360^\circ$ exterior angle sum for regular or irregular polygons.

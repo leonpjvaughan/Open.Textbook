@@ -597,15 +597,28 @@ def build_curriculum_map(book: Book, strands: list[dict], chapters: list[dict]) 
 
 
 def build_nav_list(
-    strands: list[dict], chapters: list[dict], include_higher: bool = True
+    strands: list[dict],
+    chapters: list[dict],
+    include_higher: bool = True,
+    proofs: list[dict] | None = None,
 ) -> list[dict]:
+    """The sidebar and page list.
+
+    Two shapes, and a book is one or the other. A course has strands, a glossary
+    and chapters of three kinds of page. A **reference work** has none of those:
+    it declares no chapters, so it is listed from its own registry and every page
+    under `docs/` is authored. The glossary is emitted only when there are
+    strands, because a glossary of nothing is a page a reader has to walk past.
+    """
     nav: list[dict] = [{"Home": "index.md"}]
-    glossary_children = [{"Overview": "Glossary/index.md"}]
-    strand_titles = {s["id"]: s["title"] for s in strands}
-    for strand in strands:
-        filename = STRAND_FILES.get(strand["id"], f"{strand['id']}.md")
-        glossary_children.append({strand["title"]: f"Glossary/{filename}"})
-    nav.append({"Glossary": glossary_children})
+    if strands:
+        glossary_children = [{"Overview": "Glossary/index.md"}]
+        for strand in strands:
+            filename = STRAND_FILES.get(strand["id"], f"{strand['id']}.md")
+            glossary_children.append({strand["title"]: f"Glossary/{filename}"})
+        nav.append({"Glossary": glossary_children})
+    for proof in proofs or []:
+        nav.append({proof["title"]: f"{proof['id']}/index.md"})
     for c in chapters:
         children = [{"Overview": f"Chapter {c['id']}/index.md"}]
         for s in c["sections"]:
@@ -667,15 +680,23 @@ def check_full_coverage(book: Book) -> list[str]:
 
 def scaffold(book: Book, dry_run: bool) -> None:
     data = book.curriculum_data
-    strands, chapters = data["strands"], data["chapters"]
+    # A reference work has no syllabus: `books/proofs/` is a book because that is
+    # how the collection publishes, navigates and themes a body of pages, and for
+    # no other reason. It declares no strands and no chapters, so everything that
+    # assumes a syllabus is skipped rather than stubbed empty — the alternative
+    # would grow it an empty glossary, an empty curriculum map and a home page
+    # listing no chapters, which is noise a reader would have to walk past.
+    strands = data.get("strands", [])
+    chapters = data.get("chapters", [])
     docs = book.docs
 
     emit(docs / "index.md", home_stub(book, chapters), dry_run)
     generate(docs / COLOPHON_FILE, colophon_page(book), dry_run)
-    emit(docs / "Glossary" / "index.md", glossary_stub(strands), dry_run)
-    for strand in strands:
-        filename = STRAND_FILES.get(strand["id"], f"{strand['id']}.md")
-        emit(docs / "Glossary" / filename, strand_glossary_stub(strand), dry_run)
+    if strands:
+        emit(docs / "Glossary" / "index.md", glossary_stub(strands), dry_run)
+        for strand in strands:
+            filename = STRAND_FILES.get(strand["id"], f"{strand['id']}.md")
+            emit(docs / "Glossary" / filename, strand_glossary_stub(strand), dry_run)
 
     for c in chapters:
         chapter_dir = docs / f"Chapter {c['id']}"
@@ -717,7 +738,6 @@ def scaffold(book: Book, dry_run: bool) -> None:
     written.append(map_out)
     if not dry_run:
         map_out.write_text(build_curriculum_map(book, strands, chapters), encoding="utf-8")
-
     # The banks directory, so a new book is "one directory and one registration"
     # as SHAPE.md says. `tests/test_collection.py` requires `book.banks` to exist,
     # and this used to leave it out — a new book failed the shape test until

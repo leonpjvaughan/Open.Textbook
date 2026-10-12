@@ -100,3 +100,45 @@ def test_the_gate_covers_the_reader_facing_page_names(phrase):
     """
     patterns = " ".join(lint.INTERNAL_PHRASES)
     assert phrase.split()[0] in patterns, f"{phrase!r} is no longer gated"
+
+
+# --- a lost backslash renders silently ----------------------------------------
+#
+# Found while writing the proof book, in three pages nobody had looked at.
+# `\times`, `\text` and `\tan` had each lost their `\t` to a literal tab, so
+# `(n-2)\times180` was rendering as `(n-2) imes180` — and `\text{co-interior
+# angles}` as `ext{...}`.
+#
+# **KaTeX does not error on any of it.** `i`, `m`, `e`, `s` are all valid maths
+# tokens, so the page renders a wrong answer cheerfully, `throwOnError` is never
+# reached, and the `math-error` grep the gate runs reports nothing. The build
+# checks links, maths *errors* and structure; it cannot tell that a formula is
+# wrong.
+#
+# So the check is on the input rather than the output: a tab in a content file is
+# never wanted. Markdown does not need one for indentation, and the only way one
+# has arrived so far is by eating the `\t` of a LaTeX command.
+
+TAB_FILES = sorted(
+    path
+    for book in books.discover_books()
+    for path in book.docs.rglob("*.md")
+)
+
+
+@pytest.mark.parametrize("path", TAB_FILES, ids=[str(p.name) for p in TAB_FILES])
+def test_no_content_file_contains_a_tab(path):
+    text = path.read_text(encoding="utf-8")
+    if "\t" not in text:
+        return
+    offenders = [
+        f"line {number}: {line[:70]!r}"
+        for number, line in enumerate(text.splitlines(), 1)
+        if "\t" in line
+    ]
+    assert not offenders, (
+        f"{path}: a literal tab. In prose it is unwanted; backslash-t in a LaTeX "
+        f"command it turns into one and the maths then renders *wrongly* without "
+        f"erroring, which no check downstream can see. Restore the command "
+        f"({offenders[0]})."
+    )

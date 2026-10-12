@@ -106,6 +106,8 @@ $$
 \sum_{r=1}^{n} r^3 = \left(\frac{n(n+1)}{2}\right)^2.
 $$
 
+:::prove sum-of-the-first-n-squares
+
 **Example 3.** Use the standard results to work out
 $\sum_{r=1}^{20}(4r^2 - 2r)$.
 

@@ -97,6 +97,20 @@ disclosure, dialog patterns), and WCAG 2.2 for dialog focus management.
 - Mark the menu chrome `data-pagefind-ignore` so it never enters the search
   index.
 
+### What is left of this item
+
+The mechanism, the label and three proofs are done. The rest is content and
+breadth, and none of it is blocked:
+
+- **The inventory is twenty named results** (above) and three proofs exist. The
+  remaining seventeen are written one at a time.
+- **The three already derived in the prose** — the quadratic formula, Pythagoras by
+  rearrangement, the sine rule from a dropped perpendicular — are the cheapest
+  next, because the argument exists and only needs lifting onto its own page.
+- **A proof-count check**: nothing yet fails if a book states a fact the registry
+  happens to cover and does not link to it. That is the same shape of gap as
+  equations coverage, with the same limit — it cannot be proved, only counted.
+
 ### Done means
 
 - [x] A labelled, keyboard-reachable Settings control sits at the top right of
@@ -2594,6 +2608,81 @@ about what they assert.
 - `tests/test_figures.py` is the contract to copy for the new component: no colour
   literal, an accessible name, no runtime LaTeX, and the class-paints-correctly
   rule that item 46 cost real defects to learn.
+
+### Built, 2026-10-12 — the first slice
+
+The author answered the boundary question: a **fifth book that is not really a
+book**, holding proofs shared across qualifications. Everything below follows from
+that and from the collection's own rules.
+
+**The reference work.** `books/proofs/` is a book because that is how the
+collection publishes, navigates and themes a body of pages. It declares no
+chapters, no strands, no boards, no tier axis, no booklet and no banks — and four
+of those are now asserted by `tests/test_proofs.py`, so it cannot quietly grow
+them. Its `curriculum:` points at `proofs.yaml`, a **registry** rather than a
+chapter plan, and three things changed to let a book be that:
+
+- the scaffold skips the chapter and glossary machinery instead of stubbing it
+  empty, so the book has no empty glossary, no empty curriculum map and no home
+  page listing no chapters;
+- the nav is built from the registry when a book has no chapters, so its pages are
+  reachable at all — without this the build produced **two pages** and reported
+  every proof as missing;
+- `book.reference_book()` finds it by the `Reference` qualification rather than by
+  directory name, and fails if two books claim it.
+
+`Reference` is now a third group in `collection.yaml` ("Material that belongs to
+more than one course"), so the landing page has somewhere honest to file it. The
+card counts **proofs** rather than chapters, and its subject line reads
+"Mathematics" rather than the invented "Reference Mathematics".
+
+**Three proofs**, written for this collection and cited in `sources.yaml` for the
+claims they justify rather than for their wording: angles in a triangle, angles in
+a polygon, and the sum of the first *n* squares by induction. Two figures come with
+them — a slider that moves the apex and shows the three angles on the straight
+line, and a slider for the number of sides with a toggle for the fan of diagonals.
+Both follow Predict → Test → Explain and report through an `aria-live` readout.
+
+**The directive is a link, and only a link.** `:::prove <id>` expands to an
+`<a href="/proofs/<id>/">`. There is no script and no custom element, so the whole
+affordance works with scripting off — which is the Tier-0 rule, and the reason a
+dialog was the wrong answer to "make it clickable". The interactive part of the
+author's request lives in the *proofs*, as figures, which is where the sliders
+belong.
+
+**The label is the point, and it works.** `proofs.yaml` records the qualifications
+examined on each proof, and the directive compares that with the qualification of
+the book the reader is in. The same proof therefore reads differently in two books:
+
+| Where | Proof | Rendered |
+|---|---|---|
+| GCSE Mathematics §16.3 | angles in a triangle | *Prove it to me →* |
+| GCSE Mathematics §16.4 | angles in a polygon | *Prove it to me →* |
+| A-level Mathematics §4.4 | the sum of the first n squares | *Prove it to me →* **Beyond your course** |
+
+The last row is a real finding rather than a demonstration: the sum of the first
+*n* squares is **Further Mathematics**, not A-level, so it is in no course at this
+collection's level. A proof in no course is marked in every book, which is why
+`qualifications: []` is a decision the registry asks for explicitly — the key must
+be present, and a test fails on an omission so that "deliberately in no course" and
+"nobody filled this in" cannot look alike.
+
+### Two defects found while building it
+
+- **A lost backslash was rendering wrong maths in three pages, silently.** A
+  literal tab had replaced the `\t` of `\times`, `\text` and `\tan`, so
+  `(n-2)\times180` rendered as `(n-2) imes180` and `\text{co-interior angles}` as
+  `ext{...}`. **KaTeX does not error on any of it** — `i`, `m`, `e`, `s` are valid
+  maths tokens — so the page renders a wrong formula cheerfully, `throwOnError` is
+  never reached, and the `math-error` grep the gate runs reports nothing. Nine
+  occurrences in three pages, fixed, and `tests/test_content_hygiene.py` now fails
+  on a tab in any content file. Verified by reintroducing one.
+- **The hook chain was stated twice.** `hooks/__init__.py` said the order was
+  "stated once, here, and tested"; the pipeline kept its own tuple and ran that
+  instead. Adding `proofs` to the documented chain changed nothing, and the
+  directive passed through the build as literal text. The order now lives in one
+  place, `pipeline.MARKDOWN_HOOKS` is that object, and two tests pin it —
+  including *why* `tier` runs first.
 
 ### Open questions the work must settle before it starts
 

@@ -74,20 +74,34 @@ def card(book: books.Book) -> str:
             f"{html.escape(profile.name)}</a>"
         )
 
-    facts = [
-        f"{book.chapter_count} chapters",
-        f"{book.section_count} sections",
-    ]
+    # What the card counts depends on what the book is. A course counts chapters
+    # and sections; a reference work has neither, and "0 chapters" is not a fact
+    # about it — the proofs are.
+    if book.proofs:
+        facts = [f"{len(book.proofs)} proofs"]
+    else:
+        facts = [
+            f"{book.chapter_count} chapters",
+            f"{book.section_count} sections",
+        ]
     if book.boards:
         facts.append(" · ".join(html.escape(b) for b in book.boards))
+
+    # "Reference Mathematics" is not a phrase a reader says. A reference work is
+    # filed under Reference on the landing page, so repeating it here as though it
+    # were a level of study reads as a mistake; the subject alone is the fact.
+    subject_line = (
+        html.escape(book.subject)
+        if book.qualification == books.REFERENCE
+        else f"{html.escape(book.qualification)} {html.escape(book.subject)}"
+    )
 
     return "\n".join(
         [
             f'<article class="card" style="{styles}">',
             '  <h3 class="card__title">'
             f'<a href="{href}">{title}</a></h3>',
-            f'  <p class="card__subject">{html.escape(book.qualification)} '
-            f"{html.escape(book.subject)}</p>",
+            f'  <p class="card__subject">{subject_line}</p>',
             f'  <p class="card__body">{html.escape(book.description)}</p>',
             '  <ul class="card__facts">',
             *[f"    <li>{fact}</li>" for fact in facts],

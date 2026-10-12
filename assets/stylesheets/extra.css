@@ -185,6 +185,62 @@
 }
 
 /* ------------------------------------------------------------------ */
+/* The "Prove it to me" affordance                                     */
+/* ------------------------------------------------------------------ */
+
+/* A claim the book states without proving links to the proof. The element is an
+   `<a>` and nothing else: the proof is a page, so the affordance works with
+   scripting off, and no dialog or panel is needed to reach it. The left border is
+   the accent rather than a colour of its own, so it follows the reader's bundle
+   and the subject tint, and `--tb-rule` keeps the rest quiet. */
+.prove {
+  margin: 1.3rem 0;
+  padding: 0.7rem 0.95rem;
+  border: 1px solid var(--tb-rule);
+  border-left: 3px solid var(--tb-fig-accent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--tb-accent) 6%, transparent);
+}
+.prove__link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+.prove__ask {
+  font-weight: 600;
+  color: var(--tb-fig-accent);
+  white-space: nowrap;
+}
+/* The arrow is drawn from the text rather than an icon file, so it cannot go
+   missing from a book's asset tree and it inherits the accent. */
+.prove__ask::after {
+  content: "\2192";
+  margin-left: 0.3rem;
+  display: inline-block;
+}
+.prove__title {
+  color: var(--tb-ink-soft);
+}
+.prove__link:hover .prove__ask,
+.prove__link:focus-visible .prove__ask {
+  text-decoration: underline;
+}
+.prove__note {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  color: var(--tb-ink-soft);
+}
+.prove__badge {
+  font-weight: 600;
+  color: var(--tb-fig-warn);
+}
+.prove__badge::after {
+  content: " —";
+}
+
+/* ------------------------------------------------------------------ */
 /* Formulae & tables booklet                                           */
 /* ------------------------------------------------------------------ */
 

@@ -236,6 +236,19 @@ class Book:
         return self.curriculum_data.get("strands", [])
 
     @property
+    def proofs(self) -> list[dict]:
+        """The proof registry a reference work declares, in nav order.
+
+        Empty for a course. This is what makes a reference work navigable without
+        a syllabus: it has no chapters to list, so its nav comes from here and its
+        pages are authored rather than generated. It is also the registry
+        `textbook.proofs` serves to the `:::prove` directive, which reads it
+        through `config.extra` so a book and the hook cannot disagree about what
+        exists.
+        """
+        return list(self.curriculum_data.get("proofs", []) or [])
+
+    @property
     def higher_sections(self) -> frozenset[str]:
         """Section ids (e.g. '12.5') that are Higher-only."""
         return frozenset(
@@ -334,6 +347,29 @@ def book_by_id(book_id: str, root: Path | None = None) -> Book:
         if book.id == book_id:
             return book
     raise KeyError(f"no book '{book_id}' under {BOOKS_DIR}/")
+
+
+#: The qualification a book declares when it is a reference work rather than a
+#: course. `collection.yaml` lists it as a group on the landing page. A reference
+#: work has no syllabus, no boards and no tier axis, and is the only kind of book
+#: the shared proof registry can live in.
+REFERENCE = "Reference"
+
+
+def reference_book(root: Path | None = None) -> Book | None:
+    """The collection's reference work, if it has one.
+
+    Found by the qualification it declares rather than by its id, so renaming the
+    directory is a rename and not a silent break: a second reference work would be
+    ambiguous, and `tests/test_proofs.py` fails on that rather than picking one.
+    """
+    found = [b for b in discover_books(root) if b.qualification == REFERENCE]
+    if len(found) > 1:
+        raise ValueError(
+            f"{len(found)} books declare the {REFERENCE!r} qualification "
+            f"({', '.join(b.id for b in found)}); there must be at most one"
+        )
+    return found[0] if found else None
 
 
 @lru_cache(maxsize=None)

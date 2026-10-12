@@ -22,7 +22,7 @@ A **bearing** gives a direction as an angle measured clockwise from north. Write
 **Worked example.** A path goes from the south-west corner of a rectangle to its north-east corner. Find its bearing from the start if the rectangle is $24$ m east-west and $18$ m north-south.
 
 - The path's eastward component is $24$ m and its northward component is $18$ m.
-- The angle east of north is $	an^{-1}(24/18)$, about $53.1^\circ$.
+- The angle east of north is $\tan^{-1}(24/18)$, about $53.1^\circ$.
 - A bearing turns clockwise from north, so the bearing is about $053^\circ$.
 
 For a hand-drawn direction, place the protractor centre at the start and align zero with north. Measure clockwise.

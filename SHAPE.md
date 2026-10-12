@@ -234,11 +234,11 @@ Adding a book is one directory and one registration:
 ```
 books/<id>/
 ├── book.yaml                 # identity, profiles, tier axis, theme, paths
-├── books/gcse-maths/curriculum.yaml           # the chapter plan (source of truth)
+├── curriculum.yaml           # the chapter plan (source of truth)
 ├── sources.yaml              # tracked provenance manifest
 ├── AGENTS.md                 # subject-specific conventions and pitfalls
 ├── docs/                     # content; assets/ symlinked to the shared tree
-├── books/gcse-maths/problems/                 # verified problem banks
+├── problems/                 # verified problem banks
 └── booklet/                  # formulae and tables data
 ```
 
@@ -249,6 +249,31 @@ Then:
    the book's tint and the curriculum map.
 3. Run `python -m textbook.portal` — the landing page picks the card up.
 4. CI discovers the new build automatically; there is no workflow to edit.
+
+### A reference work is not a course
+
+`books/proofs/` is a book because that is how the collection publishes, navigates
+and themes a body of pages, and for no other reason. It declares:
+
+- **no chapters and no strands**, so the scaffold generates no stub pages, no
+  glossary and no curriculum map, and every page under `docs/` is authored;
+- **no tier axis and no boards**, because a proof belongs to no tier and to no
+  awarding body;
+- **no booklet and no banks**, because nothing here is given to a reader or
+  practised by one.
+
+Its `curriculum:` points at a **registry** rather than a chapter plan — the list of
+proofs, each with the qualifications examined on it. That list is what two things
+read: the nav, which is otherwise built from chapters, and the `:::prove`
+directive, which compares it against the qualification of the book the reader is in
+and marks the link when the proof is not in their course. The reference work is
+found by the `Reference` qualification rather than by its directory name, so
+renaming the directory is a rename.
+
+A book linking into it emits a root-absolute href, `/proofs/<id>/`. That link is
+outside the linking book's own build, so `check_links` skips it by design — the
+other book's build checks its own links, and `tests/test_proofs.py` covers what the
+skip leaves open.
 
 A book that uses a different verification oracle (units and significant figures
 for physics, rather than symbolic equivalence) declares it in

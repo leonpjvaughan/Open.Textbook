@@ -1,0 +1,51 @@
+# The shared proof book — a reference work, not a course.
+#
+# It is a book to the build because that is how the collection publishes,
+# navigates and themes a body of pages: `discover_books` finds it, `plan` gives it
+# a profile, the pipeline builds it to `site/proofs/`, the portal lists it and it
+# inherits every bundle. It is **not** a book in the sense the other four are:
+#
+#   * no tier axis — nothing here is Foundation or Higher
+#   * no exam boards — a proof is not a board's property
+#   * no problem banks — it is not practised, it is consulted
+#   * no chapters — see `proofs.yaml`, which is a proof registry rather than a
+#     chapter plan, so `scaffold` generates no stub pages and every page under
+#     `docs/` is authored
+#
+# What it exists for: a reader who meets a fact stated as fact — the angles of a
+# triangle add to 180°, Pythagoras — can follow it to the proof, once, wherever
+# in the collection they met it. One page, one URL, referenced from every book.
+
+id: proofs
+title: Proofs
+# Not a qualification. `collection.yaml` lists it so the landing page has a group
+# to put this in and the sort order is deliberate rather than accidental.
+qualification: Reference
+subject: Mathematics
+# After the four courses: a reader reaches this from a page, not from the shelf.
+order: 1
+description: >-
+  Why the formulas work. One page per fact, with the proof a reader can follow
+  and, where it helps, something to move so the reason is visible.
+
+profiles:
+  - id: all
+    name: Proofs
+    tier_filter: all
+    default: true
+
+# Empty by design, and stated so a reader of this file does not go looking.
+tier_axis: {}
+
+# The proofs contain no verifiable computation of their own; their figures are
+# figures. A bank added here later would need an oracle, not a special case.
+oracles: []
+
+# The house accent. A proof book belongs to no subject, so it takes the bundle's
+# own colour rather than tinting it — and `clean` refuses the tint anyway.
+theme: {}
+
+# Paths, relative to this directory.
+curriculum: proofs.yaml
+banks: problems
+sources: sources.yaml
