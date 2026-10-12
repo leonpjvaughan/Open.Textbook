@@ -15,6 +15,7 @@
 chapter: 7
 problems:
   - id: r1-anchor-heat-water
+    plays: thermal-energy
     section: Review
     dfe: [AP7]
     statement: 'The pressure cooker holds 1.50 kg of water at 20 C and the water boils at 121 C. Find the energy needed to heat the water to boiling. c = 4200 J/kg/K.'
@@ -30,6 +31,7 @@ problems:
     answer_text: '$E = mc\Delta\theta = 1.50 \times 4200 \times 101 = 6.36 \times 10^{5}\,\text{J}$.'
 
   - id: r2-anchor-boil
+    plays: latent-heat
     section: Review
     dfe: [AP7]
     statement: 'Find the energy needed to turn 0.050 kg of boiling water into steam. L = 2.26e6 J/kg.'

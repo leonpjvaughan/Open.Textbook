@@ -24,6 +24,7 @@ problems:
     answer_text: '$p = mv = 1.82 \times 10^{-24}\,\text{kg}\,\text{m}\,\text{s}^{-1}$, so $\lambda = \dfrac{h}{p} = 3.6 \times 10^{-10}\,\text{m}$.'
 
   - id: p2-momentum-from-wavelength
+    plays: de-broglie
     section: '8.2'
     dfe: [AP8]
     statement: 'An electron has a de Broglie wavelength of 1.0e-10 m. Find its momentum.'
@@ -117,6 +118,7 @@ problems:
     answer_text: '$\lambda = \dfrac{h}{mv} = \dfrac{6.63 \times 10^{-34}}{1.67 \times 10^{-27} \times 1.0 \times 10^{6}} = 4.0 \times 10^{-13}\,\text{m}$. It is much shorter than an electron wavelength at the same speed, because the proton is heavier.'
 
   - id: p9-photon-momentum
+    plays: de-broglie
     section: '8.2'
     dfe: [AP8]
     statement: 'Find the momentum of a photon of wavelength 500 nm.'

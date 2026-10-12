@@ -16,6 +16,7 @@
 chapter: 6
 problems:
   - id: r1-anchor-sound-wavelength
+    plays: wave-speed
     section: Review
     dfe: [AP6]
     statement: 'The loudspeakers are driven at 1.00 kHz and the speed of sound is 340 m/s. Find the wavelength of the sound.'

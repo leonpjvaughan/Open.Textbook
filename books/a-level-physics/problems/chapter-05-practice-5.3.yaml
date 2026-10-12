@@ -10,6 +10,7 @@
 chapter: 5
 problems:
   - id: p1-series
+    plays: resistors-series
     section: '5.3'
     dfe: [AP5]
     statement: 'A $4.0\,\Omega$ and a $6.0\,\Omega$ resistor are connected in series. Find the equivalent resistance.'
@@ -48,6 +49,7 @@ problems:
     answer_text: '$V_{\text{out}} = 12 \times \dfrac{1.0}{3.0 + 1.0} = 12 \times \dfrac{1.0}{4.0} = 3.0\,\text{V}$.'
 
   - id: p5-internal
+    plays: emf
     section: '5.3'
     dfe: [AP5]
     statement: 'A battery has an emf of $6.0\,\text{V}$ and an internal resistance of $0.50\,\Omega$. It is connected to a $2.5\,\Omega$ resistor. Find the current and the terminal potential difference.'
@@ -87,6 +89,7 @@ problems:
     answer_text: '$V_{\text{out}} = 9.0 \times \dfrac{4.0}{2.0 + 4.0} = 9.0 \times \dfrac{4.0}{6.0} = 6.0\,\text{V}$.'
 
   - id: p9-internal-resistance
+    plays: emf
     section: '5.3'
     dfe: [AP5]
     statement: 'A cell has an emf of $1.5\,\text{V}$ and an internal resistance of $0.40\,\Omega$. It drives a current of $0.30\,\text{A}$. Find the terminal potential difference and the external resistance.'

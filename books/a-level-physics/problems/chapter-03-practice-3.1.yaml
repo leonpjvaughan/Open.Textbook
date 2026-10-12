@@ -39,6 +39,7 @@ problems:
     answer_text: 'From rest, $v = u + at = 0 + 2.5 \times 6.0 = 15\,\text{m}\,\text{s}^{-1}$. The distance is $s = ut + \tfrac{1}{2}at^2 = 0 + \tfrac{1}{2} \times 2.5 \times 6.0^2 = 45\,\text{m}$.'
 
   - id: p2-train-decelerate
+    plays: suvat-v2
     section: '3.1'
     dfe: [AP3]
     statement: 'A train slows from $40\,\text{m}\,\text{s}^{-1}$ to $15\,\text{m}\,\text{s}^{-1}$ over a distance of 500 m. Find its acceleration.'

@@ -13,6 +13,7 @@
 chapter: 3
 problems:
   - id: p1-work-along
+    plays: work-done
     section: '3.3'
     dfe: [AP3]
     statement: 'A force of 120 N moves a trolley 6.0 m along the direction of the force. Find the work done.'
@@ -57,6 +58,7 @@ problems:
     answer_text: 'The lifting force is perpendicular to the horizontal displacement, so it does no work. The height does not change, so the gravitational potential energy does not change either.'
 
   - id: p4-kinetic-energy
+    plays: kinetic-energy
     section: '3.3'
     dfe: [AP3]
     statement: 'A car of mass 1200 kg travels at $15\,\text{m}\,\text{s}^{-1}$. Find its kinetic energy.'
@@ -71,6 +73,7 @@ problems:
     answer_text: '$E_k = \tfrac{1}{2}mv^2 = \tfrac{1}{2} \times 1200 \times 15^2 = 1.35 \times 10^5\,\text{J} = 135\,\text{kJ}$.'
 
   - id: p5-potential-energy
+    plays: gpe
     section: '3.3'
     dfe: [AP3]
     statement: 'A mass of 5.0 kg is lifted through 8.0 m. Find the gravitational potential energy gained. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
@@ -98,6 +101,7 @@ problems:
     answer_text: '$mg\Delta h = \tfrac{1}{2}mv^2$, so $v = \sqrt{2g\Delta h} = \sqrt{2 \times 9.81 \times 20} = 19.8\,\text{m}\,\text{s}^{-1}$. The mass cancels, so the speed does not depend on it.'
 
   - id: p7-work-energy-car
+    plays: kinetic-energy
     section: '3.3'
     dfe: [AP3]
     statement: 'A car of mass 800 kg speeds up from $5.0\,\text{m}\,\text{s}^{-1}$ to $15\,\text{m}\,\text{s}^{-1}$. Find the work done by the resultant force.'
@@ -113,6 +117,7 @@ problems:
     answer_text: 'The work done equals the gain in kinetic energy: $W = \tfrac{1}{2} \times 800 \times (15^2 - 5.0^2) = 400 \times 200 = 80000\,\text{J} = 80\,\text{kJ}$.'
 
   - id: p8-power-work-time
+    plays: power
     section: '3.3'
     dfe: [AP3]
     statement: 'A machine does 3000 J of useful work in 6.0 s. Find its useful power.'
@@ -127,6 +132,7 @@ problems:
     answer_text: '$P = \dfrac{W}{t} = \dfrac{3000}{6.0} = 500\,\text{W}$.'
 
   - id: p9-power-force-velocity
+    plays: power
     section: '3.3'
     dfe: [AP3]
     statement: 'A car travels at a constant $12\,\text{m}\,\text{s}^{-1}$ against a resistive force of 500 N. Find the useful power developed by the engine.'

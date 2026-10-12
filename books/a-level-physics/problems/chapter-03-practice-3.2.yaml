@@ -13,6 +13,7 @@
 chapter: 3
 problems:
   - id: p1-resultant-force
+    plays: force-ma
     section: '3.2'
     dfe: [AP3]
     statement: 'A resultant force of 45 N acts on an object of mass 15 kg. Find the acceleration.'
@@ -27,6 +28,7 @@ problems:
     answer_text: '$a = \dfrac{F}{m} = \dfrac{45}{15} = 3.0\,\text{m}\,\text{s}^{-2}$. The acceleration is in the direction of the resultant force.'
 
   - id: p2-car-resultant
+    plays: force-ma
     section: '3.2'
     dfe: [AP3]
     statement: 'A car of mass 600 kg has a driving force of 2000 N. A drag force of 800 N acts against the motion. Find the acceleration.'
@@ -42,6 +44,7 @@ problems:
     answer_text: 'The resultant is $2000 - 800 = 1200\,\text{N}$, so $a = \dfrac{1200}{600} = 2.0\,\text{m}\,\text{s}^{-2}$.'
 
   - id: p3-balanced-forces
+    plays: force-ma
     section: '3.2'
     dfe: [AP3]
     statement: 'Two horizontal forces act on a 5.0 kg trolley: 20 N to the right and 35 N to the left. Find the resultant force and the acceleration.'
@@ -57,6 +60,7 @@ problems:
     answer_text: 'Taking right as positive, the resultant is $20 - 35 = -15\,\text{N}$, so it is 15 N to the left. The acceleration is $a = \dfrac{-15}{5.0} = -3.0\,\text{m}\,\text{s}^{-2}$, so it is $3.0\,\text{m}\,\text{s}^{-2}$ to the left.'
 
   - id: p4-lift-up
+    plays: force-ma
     section: '3.2'
     dfe: [AP3]
     statement: 'A passenger of mass 60 kg stands in a lift that accelerates upwards at $2.0\,\text{m}\,\text{s}^{-2}$. Find the normal reaction on the passenger. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
@@ -72,6 +76,7 @@ problems:
     answer_text: 'The resultant is upwards, so $N - mg = ma$ and $N = m(g + a) = 60 \times 11.81 = 709\,\text{N}$ to three significant figures. The weight is 589 N, so the passenger feels heavier.'
 
   - id: p5-lift-down
+    plays: force-ma
     section: '3.2'
     dfe: [AP3]
     statement: 'A passenger of mass 70 kg stands in a lift that accelerates downwards at $1.5\,\text{m}\,\text{s}^{-2}$. Find the normal reaction on the passenger. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
@@ -143,6 +148,7 @@ problems:
     answer_text: 'The vertical component is $u_y = 18\sin 35^\circ = 10.3\,\text{m}\,\text{s}^{-1}$, so the time of flight is $t = \dfrac{2u_y}{g} = \dfrac{20.6}{9.81} = 2.10\,\text{s}$. The horizontal component is $u_x = 18\cos 35^\circ = 14.7\,\text{m}\,\text{s}^{-1}$, so the range is $u_x t = 14.7 \times 2.10 = 30.9\,\text{m} \approx 31\,\text{m}$.'
 
   - id: p10-skydiver-drag
+    plays: force-ma
     section: '3.2'
     dfe: [AP3]
     statement: 'A skydiver of mass 90 kg falls downwards with an acceleration of $1.5\,\text{m}\,\text{s}^{-2}$. Find the drag force on the skydiver. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'

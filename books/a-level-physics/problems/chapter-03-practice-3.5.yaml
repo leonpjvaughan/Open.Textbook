@@ -36,6 +36,7 @@ problems:
     answer_text: '$\omega = 2\pi f = 2\pi \times 2.5 = 15.7\,\text{rad}\,\text{s}^{-1}$.'
 
   - id: p3-v-omega-r
+    plays: angular-speed
     section: '3.5'
     dfe: [AP3]
     statement: 'An object moves in a circle of radius 0.40 m with an angular velocity of $20\,\text{rad}\,\text{s}^{-1}$. Find its speed.'
@@ -50,6 +51,7 @@ problems:
     answer_text: '$v = \omega r = 20 \times 0.40 = 8.0\,\text{m}\,\text{s}^{-1}$.'
 
   - id: p4-centripetal-acceleration
+    plays: centripetal-acceleration
     section: '3.5'
     dfe: [AP3]
     statement: 'An object moves at $6.0\,\text{m}\,\text{s}^{-1}$ in a circle of radius 12 m. Find its centripetal acceleration.'
@@ -64,6 +66,7 @@ problems:
     answer_text: '$a = \dfrac{v^2}{r} = \dfrac{6.0^2}{12} = 3.0\,\text{m}\,\text{s}^{-2}$, directed towards the centre of the circle.'
 
   - id: p5-centripetal-force
+    plays: centripetal-force
     section: '3.5'
     dfe: [AP3]
     statement: 'An object of mass 0.60 kg moves at $4.0\,\text{m}\,\text{s}^{-1}$ in a circle of radius 0.80 m. Find the centripetal force on it.'
@@ -103,6 +106,7 @@ problems:
     answer_text: 'At the minimum speed the weight provides the whole centripetal force: $mg = \dfrac{mv^2}{r}$, so $v = \sqrt{gr} = \sqrt{9.81 \times 1.2} = 3.4\,\text{m}\,\text{s}^{-1}$.'
 
   - id: p8-tension-bottom
+    plays: centripetal-force
     section: '3.5'
     dfe: [AP3]
     statement: 'A bucket of mass 0.40 kg is swung in a vertical circle of radius 0.50 m. At the bottom of the circle its speed is $4.0\,\text{m}\,\text{s}^{-1}$. Find the tension in the string. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'

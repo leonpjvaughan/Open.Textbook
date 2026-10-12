@@ -15,6 +15,7 @@
 chapter: 5
 problems:
   - id: p1-charge
+    plays: current
     section: '5.1'
     dfe: [AP5]
     statement: 'A current of $0.40\,\text{A}$ flows for $25\,\text{s}$. Find the charge that flows.'
@@ -51,6 +52,7 @@ problems:
     answer_text: 'Each electron carries $1.60 \times 10^{-19}\,\text{C}$, so $n = \dfrac{1.6}{1.60 \times 10^{-19}} = 1.0 \times 10^{19}$ electrons.'
 
   - id: p4-terminal-pd
+    plays: emf
     section: '5.1'
     dfe: [AP5]
     statement: 'A battery has an emf of $6.0\,\text{V}$ and an internal resistance of $0.20\,\Omega$. It drives a current of $0.50\,\text{A}$. Find the terminal potential difference.'
@@ -74,6 +76,7 @@ problems:
     answer_text: '$P = VI = 12 \times 0.25 = 3.0\,\text{W}$ and $W = VIt = 12 \times 0.25 \times 60 = 180\,\text{J}$.'
 
   - id: p6-circuit
+    plays: emf
     section: '5.1'
     dfe: [AP5]
     statement: 'A cell of emf $1.5\,\text{V}$ and internal resistance $0.30\,\Omega$ is connected to a $1.2\,\Omega$ resistor. Find the current and the terminal potential difference.'
@@ -89,6 +92,7 @@ problems:
     answer_text: '$I = \dfrac{1.5}{1.2 + 0.30} = \dfrac{1.5}{1.50} = 1.0\,\text{A}$ and $V = 1.5 - (1.0 \times 0.30) = 1.2\,\text{V}$.'
 
   - id: p7-charge-time
+    plays: current
     section: '5.1'
     dfe: [AP5]
     statement: 'A current of $2.0\,\text{A}$ flows for $5.0$ minutes. Find the charge that flows.'
@@ -111,6 +115,7 @@ problems:
     answer_text: '$n = \dfrac{Q}{e} = \dfrac{0.32}{1.60 \times 10^{-19}} = 2.0 \times 10^{18}$ electrons.'
 
   - id: p9-internal
+    plays: emf
     section: '5.1'
     dfe: [AP5]
     statement: 'A battery has an emf of $24\,\text{V}$ and an internal resistance of $0.50\,\Omega$. It drives a current of $4.0\,\text{A}$. Find the terminal potential difference and the external resistance.'

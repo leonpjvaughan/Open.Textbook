@@ -28,6 +28,7 @@ problems:
     answer_text: '$p = mv = 0.25 \times 20 = 5.0\,\text{kg}\,\text{m}\,\text{s}^{-1}$, in the direction of motion.'
 
   - id: p2-impulse
+    plays: impulse
     section: '3.4'
     dfe: [AP3]
     statement: 'A force of 600 N acts for 0.20 s. Find the impulse.'
@@ -54,6 +55,7 @@ problems:
     answer_text: '$\Delta p = m(v - u) = 0.10(-15 - 20) = -3.5\,\text{kg}\,\text{m}\,\text{s}^{-1}$, so the change is $3.5\,\text{kg}\,\text{m}\,\text{s}^{-1}$ away from the wall.'
 
   - id: p4-force-from-momentum
+    plays: force-momentum
     section: '3.4'
     dfe: [AP3]
     statement: 'The momentum of a ball increases from $1.2\,\text{kg}\,\text{m}\,\text{s}^{-1}$ to $3.6\,\text{kg}\,\text{m}\,\text{s}^{-1}$ in 0.30 s. Find the average force on the ball.'

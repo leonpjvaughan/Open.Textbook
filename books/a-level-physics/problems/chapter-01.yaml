@@ -93,6 +93,7 @@ problems:
     answer_text: 'All three terms are metres.'
 
   - id: g4-planck-units
+    plays: photon-energy
     section: '1.1'
     dfe: [AP1]
     statement: 'Find the unit of the Planck constant from E = h f.'
@@ -113,6 +114,7 @@ problems:
     answer_text: '$7.8 \times 10^{3}\,\text{kg}\,\text{m}^{-3}$'
 
   - id: g6-spring-constant-units
+    plays: hookes-law
     section: '1.1'
     dfe: [AP1]
     statement: 'Find the unit of the spring constant k from F = k x.'

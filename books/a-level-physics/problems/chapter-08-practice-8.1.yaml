@@ -16,6 +16,7 @@
 chapter: 8
 problems:
   - id: p1-photon-energy-frequency
+    plays: photon-energy
     section: '8.1'
     dfe: [AP8]
     statement: 'A photon has a frequency of 5.0e14 Hz. Find its energy.'
@@ -30,6 +31,7 @@ problems:
     answer_text: '$E = hf = 6.63 \times 10^{-34} \times 5.0 \times 10^{14} = 3.3 \times 10^{-19}\,\text{J}$.'
 
   - id: p2-photon-energy-wavelength
+    plays: photon-energy
     section: '8.1'
     dfe: [AP8]
     statement: 'Find the energy of a photon of wavelength 400 nm, in joules and in electronvolts.'
@@ -53,6 +55,7 @@ problems:
     answer_text: '$E = 2.0 \times 1.60 \times 10^{-19} = 3.2 \times 10^{-19}\,\text{J}$, so $f = \dfrac{E}{h} = \dfrac{3.2 \times 10^{-19}}{6.63 \times 10^{-34}} = 4.8 \times 10^{14}\,\text{Hz}$.'
 
   - id: p4-wavelength-from-energy
+    plays: photon-energy
     section: '8.1'
     dfe: [AP8]
     statement: 'Find the wavelength of a photon of energy 3.0e-19 J.'

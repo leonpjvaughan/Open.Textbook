@@ -41,6 +41,7 @@ problems:
     answer_text: 'Temperature measures the average random kinetic energy of the particles. Internal energy is the total kinetic and potential energy of all the particles, so it also depends on how many particles there are. A large cool object can store more internal energy than a small hot one.'
 
   - id: p2-heat-oil
+    plays: thermal-energy
     section: '7.1'
     dfe: [AP7]
     statement: 'A tank contains 2.5 kg of oil. The specific heat capacity of the oil is 2100 J/kg/K. The oil is heated from 20 C to 80 C. Find the energy supplied.'
@@ -56,6 +57,7 @@ problems:
     answer_text: '$E = mc\Delta\theta = 2.5 \times 2100 \times 60 = 3.15 \times 10^{5}\,\text{J}$.'
 
   - id: p3-find-c
+    plays: thermal-energy
     section: '7.1'
     dfe: [AP7]
     statement: 'A 3.0 kg block gains 78000 J of energy. Its temperature rises by 40 K. Find its specific heat capacity.'
@@ -71,6 +73,7 @@ problems:
     answer_text: '$c = \dfrac{E}{m\Delta\theta} = \dfrac{78000}{3.0 \times 40} = 650\,\text{J}\,\text{kg}^{-1}\,\text{K}^{-1}$.'
 
   - id: p4-melt-ice
+    plays: latent-heat
     section: '7.1'
     dfe: [AP7]
     statement: 'Find the energy needed to melt 0.30 kg of ice at 0 C. The specific latent heat of fusion of ice is 3.34e5 J/kg.'
@@ -85,6 +88,7 @@ problems:
     answer_text: '$E = mL = 0.30 \times 3.34 \times 10^{5} = 1.00 \times 10^{5}\,\text{J}$.'
 
   - id: p5-boil-water
+    plays: latent-heat
     section: '7.1'
     dfe: [AP7]
     statement: 'Find the energy needed to turn 0.15 kg of water at 100 C into steam at 100 C. The specific latent heat of vaporisation of water is 2.26e6 J/kg.'
@@ -116,6 +120,7 @@ problems:
     answer_text: 'Heating the water needs $E_1 = 1.2 \times 4200 \times 85 = 4.28 \times 10^{5}\,\text{J}$. Boiling needs $E_2 = 0.050 \times 2.26 \times 10^{6} = 1.13 \times 10^{5}\,\text{J}$. The total is $E_1 + E_2 = 5.41 \times 10^{5}\,\text{J}$.'
 
   - id: p7-temperature-rise
+    plays: thermal-energy
     section: '7.1'
     dfe: [AP7]
     statement: 'A 500 W heater warms 2.0 kg of water for 672 s. Find the temperature rise. The specific heat capacity of water is 4200 J/kg/K.'

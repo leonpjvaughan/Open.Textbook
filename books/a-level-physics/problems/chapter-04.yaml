@@ -17,6 +17,7 @@ chapter: 4
 problems:
   # --- Section 4.1, the Learn worked examples and the guided problems ---------
   - id: w1-stress-240
+    plays: tensile-stress
     section: '4.1'
     dfe: [AP4]
     statement: 'A wire of cross-sectional area 1.5e-5 m^2 carries a tensile force of 240 N. Find the stress.'
@@ -75,6 +76,7 @@ problems:
     answer_text: 'The stress is $\dfrac{60}{4.0 \times 10^{-7}} = 1.5 \times 10^{8}\,\text{Pa}$. The strain is $\dfrac{1.5 \times 10^{8}}{2.0 \times 10^{11}} = 7.5 \times 10^{-4}$. The extension is $7.5 \times 10^{-4} \times 2.00 = 1.5 \times 10^{-3}\,\text{m}$, or $1.5\,\text{mm}$.'
 
   - id: w5-find-E
+    plays: young-modulus
     section: '4.1'
     dfe: [AP4]
     statement: 'A wire 2.00 m long and of area 1.0e-7 m^2 extends by 2.0 mm under a force of 20 N. Find the Young modulus.'
@@ -91,6 +93,7 @@ problems:
     answer_text: '$E = \dfrac{FL}{A\,\Delta L} = \dfrac{20 \times 2.00}{1.0 \times 10^{-7} \times 2.0 \times 10^{-3}} = \dfrac{40}{2.0 \times 10^{-10}} = 2.0 \times 10^{11}\,\text{Pa}$, the Young modulus of steel.'
 
   - id: w6-young-unit
+    plays: tensile-stress
     section: '4.1'
     dfe: [AP4]
     statement: 'Use E = stress / strain to show that the base units of the Young modulus are kg m^-1 s^-2.'
@@ -105,6 +108,7 @@ problems:
     answer_text: 'Strain has no unit, so the Young modulus has the same unit as stress. Stress is a force over an area: $\dfrac{\text{kg}\,\text{m}\,\text{s}^{-2}}{\text{m}^2} = \text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$, which is the pascal.'
 
   - id: g1-stress-guided
+    plays: tensile-stress
     section: '4.1'
     dfe: [AP4]
     statement: 'A wire of cross-sectional area 4.0e-6 m^2 carries a force of 80 N. Find the stress.'
@@ -127,6 +131,7 @@ problems:
     answer_text: 'The extension is $1.2 \times 10^{-3}\,\text{m}$, so the strain is $\dfrac{1.2 \times 10^{-3}}{2.00} = 6.0 \times 10^{-4}$.'
 
   - id: g3-E-guided
+    plays: young-modulus
     section: '4.1'
     dfe: [AP4]
     statement: 'A material has a stress of 9.0e7 Pa and a strain of 4.5e-4. Find its Young modulus.'
@@ -149,6 +154,7 @@ problems:
     answer_text: 'The radius is $2.5 \times 10^{-4}\,\text{m}$, so the area is $\pi (2.5 \times 10^{-4})^2 = 1.96 \times 10^{-7}\,\text{m}^2$. The stress is $\dfrac{20}{1.96 \times 10^{-7}} = 1.0 \times 10^{8}\,\text{Pa}$.'
 
   - id: g5-extension-guided
+    plays: young-modulus
     section: '4.1'
     dfe: [AP4]
     statement: 'A copper wire has E = 1.2e11 Pa, length 1.50 m and area 3.0e-7 m^2. A force of 36 N stretches it. Find the extension.'
@@ -206,6 +212,7 @@ problems:
 
   # --- Section 4.2, the Learn worked examples and the guided problems ---------
   - id: w7-hooke-k
+    plays: hookes-law
     section: '4.2'
     dfe: [AP4]
     statement: 'A spring extends by 0.040 m when a force of 8.0 N acts on it. Find the spring constant.'
@@ -231,6 +238,7 @@ problems:
     answer_text: 'The gradient is $\dfrac{16 - 4.0}{0.040 - 0.010} = \dfrac{12}{0.030} = 400\,\text{N}\,\text{m}^{-1}$.'
 
   - id: w9-energy-straight
+    plays: stored-energy
     section: '4.2'
     dfe: [AP4]
     statement: 'A spring of spring constant 200 N/m is stretched by 0.040 m. Find the energy stored.'
@@ -245,6 +253,7 @@ problems:
     answer_text: 'The force is $F = k\Delta L = 200 \times 0.040 = 8.0\,\text{N}$. The energy stored is $\tfrac{1}{2}F\Delta L = \tfrac{1}{2} \times 8.0 \times 0.040 = 0.16\,\text{J}$.'
 
   - id: w10-energy-graph
+    plays: stored-energy
     section: '4.2'
     dfe: [AP4]
     statement: 'A straight-line force-extension graph reaches 16 N at an extension of 0.040 m. Find the energy stored, from the area under the graph.'
@@ -270,6 +279,7 @@ problems:
     answer_text: 'The graph is not a straight line, so use strips. The trapezium areas are $0.035$, $0.11$, $0.205$ and $0.33\,\text{J}$, and their sum is $0.68\,\text{J}$.'
 
   - id: w12-gradient-to-E
+    plays: young-modulus
     section: '4.2'
     dfe: [AP4]
     statement: 'A wire of length 1.50 m and area 2.0e-7 m^2 has a force-extension graph of gradient 2.0e4 N/m. Find the Young modulus.'
@@ -285,6 +295,7 @@ problems:
     answer_text: 'The gradient of a wire''s force-extension graph is $k = \dfrac{EA}{L}$, so $E = \dfrac{kL}{A} = \dfrac{2.0 \times 10^{4} \times 1.50}{2.0 \times 10^{-7}} = 1.5 \times 10^{11}\,\text{Pa}$.'
 
   - id: g7-hooke-guided
+    plays: hookes-law
     section: '4.2'
     dfe: [AP4]
     statement: 'A spring extends by 0.060 m under a force of 12 N. Find the spring constant.'
@@ -426,6 +437,7 @@ problems:
 
   # --- The chapter problem, resolved on the Review page -----------------------
   - id: anchor-crane-stress
+    plays: tensile-stress
     section: Review
     dfe: [AP4]
     statement: 'The beam has mass 2500 kg and the cable has area 1.5e-4 m^2. Find the stress in the cable.'
@@ -440,6 +452,7 @@ problems:
     answer_text: 'The weight is $mg = 2500 \times 9.81 = 24\,525\,\text{N}$. The stress is $\dfrac{24\,525}{1.5 \times 10^{-4}} = 1.635 \times 10^{8}\,\text{Pa}$, about $1.64 \times 10^{8}\,\text{Pa}$.'
 
   - id: anchor-crane-strain
+    plays: young-modulus
     section: Review
     dfe: [AP4]
     statement: 'The cable stress is 1.635e8 Pa and the steel has E = 2.0e11 Pa. Find the strain.'
@@ -453,6 +466,7 @@ problems:
     answer_text: 'The strain is $\dfrac{1.635 \times 10^{8}}{2.0 \times 10^{11}} = 8.175 \times 10^{-4}$, about $8.18 \times 10^{-4}$.'
 
   - id: anchor-crane-extension
+    plays: tensile-strain
     section: Review
     dfe: [AP4]
     statement: 'The cable is 20.0 m long and the strain is 8.175e-4. Find the extension.'
@@ -474,6 +488,7 @@ problems:
     answer_text: 'The energy stored is $\tfrac{1}{2}F\Delta L = \tfrac{1}{2} \times 24\,525 \times 1.635 \times 10^{-2} = 200\,\text{J}$ to three significant figures.'
 
   - id: anchor-crane-spring-constant
+    plays: young-modulus
     section: Review
     dfe: [AP4]
     statement: 'Use E = 2.0e11 Pa, area 1.5e-4 m^2 and length 20.0 m to find the stiffness of the cable.'

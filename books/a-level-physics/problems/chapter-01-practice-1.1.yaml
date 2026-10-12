@@ -80,6 +80,7 @@ problems:
     answer_text: 'The left side has base units $(\text{m}\,\text{s}^{-1})^2 = \text{m}^2\,\text{s}^{-2}$. On the right, $u^2$ is also $\text{m}^2\,\text{s}^{-2}$, and $as$ is $\text{m}\,\text{s}^{-2} \times \text{m} = \text{m}^2\,\text{s}^{-2}$. All three terms match, so the equation is homogeneous.'
 
   - id: p6-planck-units
+    plays: photon-energy
     section: '1.1'
     dfe: [AP1]
     statement: 'The energy of a photon is $E = hf$, where $f$ is the frequency. Use base units to find the unit of the Planck constant $h$.'

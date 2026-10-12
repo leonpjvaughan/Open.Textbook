@@ -12,6 +12,7 @@
 chapter: 5
 problems:
   - id: p1-resistance
+    plays: resistance
     section: '5.2'
     dfe: [AP5]
     statement: 'A resistor has a potential difference of $4.5\,\text{V}$ across it and a current of $0.15\,\text{A}$ through it. Find its resistance.'
@@ -26,6 +27,7 @@ problems:
     answer_text: 'The resistance is $R = \dfrac{V}{I} = \dfrac{4.5}{0.15} = 30\,\Omega$.'
 
   - id: p2-wire-resistance
+    plays: resistivity
     section: '5.2'
     dfe: [AP5]
     statement: 'A wire of resistivity $1.7 \times 10^{-8}\,\Omega\,\text{m}$ has length $5.0\,\text{m}$ and cross-sectional area $1.0 \times 10^{-6}\,\text{m}^2$. Find its resistance.'
@@ -41,6 +43,7 @@ problems:
     answer_text: '$R = \dfrac{\rho L}{A} = \dfrac{1.7 \times 10^{-8} \times 5.0}{1.0 \times 10^{-6}} = 0.085\,\Omega$.'
 
   - id: p3-resistivity
+    plays: resistivity
     section: '5.2'
     dfe: [AP5]
     statement: 'A wire of length $1.5\,\text{m}$ and cross-sectional area $2.0 \times 10^{-7}\,\text{m}^2$ has a resistance of $3.0\,\Omega$. Find the resistivity of the material.'
@@ -95,6 +98,7 @@ problems:
     answer_text: 'The resistance is proportional to $\dfrac{L}{A}$. Tripling the length triples $R$, and doubling the diameter makes the area four times larger, dividing $R$ by four. The factor is $\dfrac{3}{4} = 0.75$, so the first wire has three quarters of the resistance of the second.'
 
   - id: p8-power
+    plays: electrical-power
     section: '5.2'
     dfe: [AP5]
     statement: 'A current of $0.50\,\text{A}$ flows through a $20\,\Omega$ resistor. Find the power dissipated in the resistor.'

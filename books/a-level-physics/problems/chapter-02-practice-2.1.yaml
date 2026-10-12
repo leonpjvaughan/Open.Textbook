@@ -48,6 +48,7 @@ problems:
     answer_text: 'The two displacements are along the same line but in opposite directions, so subtract: $4.2 - 1.7 = 2.5\,\text{km}$ north.'
 
   - id: p3-velocity-dimensions
+    plays: velocity
     section: '2.1'
     dfe: [AP2]
     statement: 'A car travels $1.2\,\text{km}$ east in $60\,\text{s}$. Find its average velocity.'

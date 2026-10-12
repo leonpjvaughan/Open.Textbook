@@ -2350,3 +2350,32 @@ measures nothing is worse than no check.
 **Done means.** One route is chosen; the check fails on a problem whose equation
 the booklet does not provide; and `PROBLEMS.md` says what the check proves —
 coverage, never correct use, which is the `units` oracle's business.
+
+---
+
+## 45. The remaining undeclared records, book by book
+
+**Measured after the declaration pass, 2026-10-12.** `python -m textbook.verify`
+prints how many records carry symbols and declare no booklet equation. A-level
+Physics fell from **182 to 20** when its declarations were added, with **0 invalid
+ones** — every declaration resolves to a real booklet item that some supported
+board provides.
+
+| Book | Undeclared | State |
+|---|---|---|
+| A-level Physics | 20 | Reviewed: genuinely not booklet items, or derived combinations. |
+| A-level Mathematics | 307 | Not attempted. |
+| GCSE Mathematics | 126 | Not attempted. |
+| GCSE Physics | **0** | Not a gap: its expressions carry no symbols at all, only substituted numbers, so there is nothing a declaration could name. That is itself the reason the check cannot prove completeness. |
+
+**The 20 are a judgement, not an omission.** They are a difference (`a - b`),
+a division by a count (`d / n`), a two-stage sum, or a derived result; and one is
+genuinely interesting — a question uses $p = mv$ and **the booklet has no
+`momentum` item**, only `force-momentum` ($F = \Delta p/\Delta t$). That may be
+right if the equation is printed in the question, which is what the `question`
+provision means, or it may be a coverage gap the check cannot see because nothing
+declares it. Worth one look at the question.
+
+**Done means.** Each book's remaining count is either declared or recorded as
+reviewed with a reason, and `python -m textbook.verify` prints counts that match
+this table.

@@ -19,6 +19,7 @@ chapter: 7
 problems:
   # --- Section 7.1, the Learn worked examples --------------------------------
   - id: w1-heating-water
+    plays: thermal-energy
     section: '7.1'
     dfe: [AP7]
     statement: 'A pressure cooker holds 1.50 kg of water at 20 C. The specific heat capacity of water is 4200 J/kg/K. Find the energy needed to heat the water to 121 C.'
@@ -34,6 +35,7 @@ problems:
     answer_text: '$E = mc\Delta\theta = 1.50 \times 4200 \times 101 = 6.36 \times 10^{5}\,\text{J}$.'
 
   - id: w2-vaporisation
+    plays: latent-heat
     section: '7.1'
     dfe: [AP7]
     statement: 'The specific latent heat of vaporisation of water is 2.26e6 J/kg. Find the energy needed to turn 0.050 kg of boiling water into steam at the same temperature.'
@@ -65,6 +67,7 @@ problems:
     answer_text: '$E = mc\Delta\theta + mL = 6.36 \times 10^{5} + 1.13 \times 10^{5} = 7.49 \times 10^{5}\,\text{J}$.'
 
   - id: w4-practical-c
+    plays: thermal-energy
     section: '7.1'
     dfe: [AP7]
     statement: 'An aluminium block of mass 1.0 kg is heated by a 12 V, 2.0 A heater for 300 s. Its temperature rises by 8.0 K. Find the specific heat capacity of the aluminium.'
@@ -82,6 +85,7 @@ problems:
     answer_text: 'The energy supplied is $E = IVt = 2.0 \times 12 \times 300 = 7200\,\text{J}$. Then $c = \dfrac{E}{m\Delta\theta} = \dfrac{7200}{1.0 \times 8.0} = 900\,\text{J}\,\text{kg}^{-1}\,\text{K}^{-1}$.'
 
   - id: w5-temperature-rise
+    plays: thermal-energy
     section: '7.1'
     dfe: [AP7]
     statement: 'A 700 W heater warms 2.0 kg of water for 300 s. Find the temperature rise. The specific heat capacity of water is 4200 J/kg/K.'
@@ -99,6 +103,7 @@ problems:
 
   # --- Section 7.1, the Practise with help problems --------------------------
   - id: g1-copper-block
+    plays: thermal-energy
     section: '7.1'
     dfe: [AP7]
     statement: 'A 0.80 kg copper block is heated from 20 C to 45 C. The specific heat capacity of copper is 390 J/kg/K. Find the energy supplied.'
@@ -114,6 +119,7 @@ problems:
     answer_text: '$E = mc\Delta\theta = 0.80 \times 390 \times 25 = 7800\,\text{J}$.'
 
   - id: g2-melt-ice
+    plays: latent-heat
     section: '7.1'
     dfe: [AP7]
     statement: 'Find the energy needed to melt 0.20 kg of ice at 0 C. The specific latent heat of fusion of ice is 3.34e5 J/kg.'
@@ -128,6 +134,7 @@ problems:
     answer_text: '$E = mL = 0.20 \times 3.34 \times 10^{5} = 6.68 \times 10^{4}\,\text{J}$.'
 
   - id: g3-find-c
+    plays: thermal-energy
     section: '7.1'
     dfe: [AP7]
     statement: 'A 2.0 kg block gains 45000 J of energy and its temperature rises by 50 K. Find its specific heat capacity.'
@@ -160,6 +167,7 @@ problems:
     answer_text: 'Heating the water needs $E_1 = mc\Delta\theta = 0.50 \times 4200 \times 80 = 1.68 \times 10^{5}\,\text{J}$. Boiling needs $E_2 = mL = 0.10 \times 2.26 \times 10^{6} = 2.26 \times 10^{5}\,\text{J}$. The total is $E_1 + E_2 = 3.94 \times 10^{5}\,\text{J}$.'
 
   - id: g5-practical-c
+    plays: thermal-energy
     section: '7.1'
     dfe: [AP7]
     statement: 'A heater of 6.0 V and 3.0 A runs for 200 s in 1.5 kg of liquid. The temperature of the liquid rises by 4.0 K. Find the specific heat capacity of the liquid.'
@@ -234,6 +242,7 @@ problems:
     answer_text: '$T = 121 + 273 = 394\,\text{K}$.'
 
   - id: w7-boyle
+    plays: ideal-gas-n
     section: '7.2'
     dfe: [AP7]
     statement: 'A gas at a pressure of 1.0e5 Pa occupies a volume of 200 cm3. It is compressed at constant temperature to 50 cm3. Find the new pressure.'
@@ -303,6 +312,7 @@ problems:
     answer_text: '$p = \dfrac{Nm(c_{\text{rms}})^2}{3V} = \dfrac{5.0 \times 10^{22} \times 4.8 \times 10^{-26} \times 500^{2}}{3 \times 2.0 \times 10^{-3}} = 1.0 \times 10^{5}\,\text{Pa}$.'
 
   - id: w13-charles
+    plays: ideal-gas-n
     section: '7.2'
     dfe: [AP7]
     statement: 'A fixed mass of gas occupies 300 cm3 at 300 K. It is heated at constant pressure to 450 K. Find its new volume.'
@@ -319,6 +329,7 @@ problems:
 
   # --- Section 7.2, the Practise with help problems --------------------------
   - id: g7-boyle
+    plays: ideal-gas-n
     section: '7.2'
     dfe: [AP7]
     statement: 'A gas occupies 4.0e-3 m3 at a pressure of 1.0e5 Pa. It is compressed at constant temperature to 1.0e-3 m3. Find the new pressure.'
@@ -334,6 +345,7 @@ problems:
     answer_text: '$p_2 = \dfrac{p_1V_1}{V_2} = \dfrac{1.0 \times 10^{5} \times 4.0 \times 10^{-3}}{1.0 \times 10^{-3}} = 4.0 \times 10^{5}\,\text{Pa}$.'
 
   - id: g8-charles
+    plays: ideal-gas-n
     section: '7.2'
     dfe: [AP7]
     statement: 'A fixed mass of gas at 290 K occupies 2.0e-3 m3. At constant pressure it is warmed to 348 K. Find its new volume.'
@@ -433,6 +445,7 @@ problems:
 
   # --- Chapter problem, the Progress checks and the Review -------------------
   - id: anchor-heat-water
+    plays: thermal-energy
     section: '7.1'
     dfe: [AP7]
     statement: 'The pressure cooker holds 1.50 kg of water at 20 C. It boils at 121 C. Find the energy needed to heat the water to boiling. c = 4200 J/kg/K.'
@@ -448,6 +461,7 @@ problems:
     answer_text: '$E = mc\Delta\theta = 1.50 \times 4200 \times 101 = 6.36 \times 10^{5}\,\text{J}$.'
 
   - id: anchor-boil-water
+    plays: latent-heat
     section: '7.1'
     dfe: [AP7]
     statement: 'Find the energy to turn 0.050 kg of boiling water into steam. L = 2.26e6 J/kg.'

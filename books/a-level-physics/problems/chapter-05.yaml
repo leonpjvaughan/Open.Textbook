@@ -21,6 +21,7 @@ chapter: 5
 problems:
   # --- Section 5.1, the Learn worked examples and the guided problems ---------
   - id: w1-charge
+    plays: current
     section: '5.1'
     dfe: [AP5]
     statement: 'A current of 0.50 A flows through a lamp for 30 s. Find the charge.'
@@ -57,6 +58,7 @@ problems:
     answer_text: 'The energy is $\varepsilon Q = 12 \times 15 = 180\,\text{J}$.'
 
   - id: w4-terminal-pd
+    plays: emf
     section: '5.1'
     dfe: [AP5]
     statement: 'A battery of emf 12 V and internal resistance 0.15 ohm drives a current of 2.0 A. Find the terminal potential difference.'
@@ -72,6 +74,7 @@ problems:
     answer_text: 'The lost volts are $Ir = 2.0 \times 0.15 = 0.30\,\text{V}$, so $V = 12 - 0.30 = 11.7\,\text{V}$.'
 
   - id: w5-external-resistance
+    plays: resistance
     section: '5.1'
     dfe: [AP5]
     statement: 'A battery has an emf of 12 V, an internal resistance of 0.15 ohm and a terminal pd of 11.7 V. Find the external resistance.'
@@ -125,6 +128,7 @@ problems:
     answer_text: '$n = \dfrac{Q}{e} = \dfrac{4.8}{1.60 \times 10^{-19}} = 3.0 \times 10^{19}$ electrons.'
 
   - id: g4-5.1-terminal-pd
+    plays: emf
     section: '5.1'
     dfe: [AP5]
     statement: 'A battery of emf 9.0 V and internal resistance 0.50 ohm drives a current of 1.5 A. Find the terminal pd.'
@@ -148,6 +152,7 @@ problems:
     answer_text: '$P = VI = 6.0 \times 0.50 = 3.0\,\text{W}$ and $W = P\Delta t = 3.0 \times 20 = 60\,\text{J}$.'
 
   - id: g6-5.1-circuit
+    plays: emf
     section: '5.1'
     dfe: [AP5]
     statement: 'A battery of emf 12 V and internal resistance 0.20 ohm is connected to a 5.80 ohm resistor. Find the current and the terminal pd.'
@@ -164,6 +169,7 @@ problems:
 
   # --- Section 5.2, the Learn worked examples and the guided problems ---------
   - id: w1-resistance
+    plays: resistance
     section: '5.2'
     dfe: [AP5]
     statement: 'A resistor has a pd of 6.0 V across it and a current of 0.40 A through it. Find its resistance.'
@@ -178,6 +184,7 @@ problems:
     answer_text: 'The resistance is $R = \dfrac{V}{I} = \dfrac{6.0}{0.40} = 15\,\Omega$$.'
 
   - id: w2-lamp-resistance
+    plays: resistance
     section: '5.2'
     dfe: [AP5]
     statement: 'A filament lamp has a pd of 12 V across it and a current of 0.50 A through it. Find its resistance.'
@@ -192,6 +199,7 @@ problems:
     answer_text: 'The resistance is $R = \dfrac{12}{0.50} = 24\,\Omega$. The hot filament has a much larger resistance than the cold filament.'
 
   - id: w3-copper-resistance
+    plays: resistivity
     section: '5.2'
     dfe: [AP5]
     statement: 'A copper wire has length 2.0 m and cross-sectional area 1.0e-6 m^2. Resistivity 1.7e-8 ohm m. Find its resistance.'
@@ -207,6 +215,7 @@ problems:
     answer_text: 'The resistance is $R = \dfrac{\rho L}{A} = \dfrac{1.7 \times 10^{-8} \times 2.0}{1.0 \times 10^{-6}} = 3.4 \times 10^{-2}\,\Omega$$.'
 
   - id: w4-resistivity
+    plays: resistivity
     section: '5.2'
     dfe: [AP5]
     statement: 'A wire has resistance 4.0 ohm, length 1.0 m and area 2.0e-7 m^2. Find the resistivity.'
@@ -222,6 +231,7 @@ problems:
     answer_text: 'The resistivity is $\rho = \dfrac{RA}{L} = \dfrac{4.0 \times 2.0 \times 10^{-7}}{1.0} = 8.0 \times 10^{-7}\,\Omega\,\text{m}$.'
 
   - id: g1-5.2-resistance
+    plays: resistance
     section: '5.2'
     dfe: [AP5]
     statement: 'A resistor has a pd of 9.0 V and a current of 0.30 A. Find its resistance.'
@@ -236,6 +246,7 @@ problems:
     answer_text: 'The resistance is $R = \dfrac{9.0}{0.30} = 30\,\Omega$.'
 
   - id: g2-5.2-wire
+    plays: resistivity
     section: '5.2'
     dfe: [AP5]
     statement: 'A wire of resistivity 1.7e-8 ohm m has length 3.0 m and area 5.0e-7 m^2. Find its resistance.'
@@ -251,6 +262,7 @@ problems:
     answer_text: '$R = \dfrac{1.7 \times 10^{-8} \times 3.0}{5.0 \times 10^{-7}} = 0.102\,\Omega$, about $0.10\,\Omega$$.'
 
   - id: g3-5.2-resistivity
+    plays: resistivity
     section: '5.2'
     dfe: [AP5]
     statement: 'A wire of length 2.0 m and area 4.0e-7 m^2 has a resistance of 6.0 ohm. Find the resistivity.'
@@ -295,6 +307,7 @@ problems:
 
   # --- Section 5.3, the Learn worked examples and the guided problems ---------
   - id: w1-series
+    plays: resistors-series
     section: '5.3'
     dfe: [AP5]
     statement: 'A 4.0 ohm and a 6.0 ohm resistor are in series. Find the equivalent resistance and the current from a 10 V supply.'
@@ -325,6 +338,7 @@ problems:
     answer_text: 'The current leaving equals the current entering: $I_3 = 1.0 - 0.30 - 0.20 = 0.50\,\text{A}$.'
 
   - id: w4-internal
+    plays: emf
     section: '5.3'
     dfe: [AP5]
     statement: 'A battery of emf 12 V and internal resistance 0.15 ohm is joined to 5.85 ohm. Find the current and the terminal pd.'
@@ -372,6 +386,7 @@ problems:
     answer_text: '$V_{\text{out}} = 12 \times \dfrac{2.0}{6.0} = 4.0\,\text{V}$.'
 
   - id: g4-5.3-internal
+    plays: emf
     section: '5.3'
     dfe: [AP5]
     statement: 'A battery of emf 9.0 V and internal resistance 0.25 ohm is connected to 4.25 ohm. Find the current and the terminal pd.'
@@ -430,6 +445,7 @@ problems:
     answer_text: '$C = \dfrac{\varepsilon_0 \varepsilon_r A}{d} = \dfrac{8.85 \times 10^{-12} \times 2.0 \times 0.030}{1.0 \times 10^{-4}} = 5.3 \times 10^{-9}\,\text{F}$.'
 
   - id: w3-energy
+    plays: capacitor-energy
     section: '5.4'
     dfe: [AP5]
     statement: 'A 100 microfarad capacitor is charged to 2000 V. Find the energy stored.'
@@ -444,6 +460,7 @@ problems:
     answer_text: '$E = \tfrac{1}{2}CV^2 = \tfrac{1}{2} \times 100 \times 10^{-6} \times (2000)^2 = 200\,\text{J}$.'
 
   - id: w4-time-constant
+    plays: time-constant
     section: '5.4'
     dfe: [AP5]
     statement: 'A 100 microfarad capacitor is discharged through a 50 ohm resistor. Find the time constant.'

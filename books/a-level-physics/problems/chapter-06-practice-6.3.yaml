@@ -127,6 +127,7 @@ problems:
           concepts: [harmonic, node, antinode]
 
   - id: p11-spring-energy
+    plays: stored-energy
     section: '6.3'
     dfe: [AP4, AP6]
     statement: 'A spring of force constant 250 N/m is stretched by 0.080 m. Find the energy stored in it.'

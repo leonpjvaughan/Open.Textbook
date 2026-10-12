@@ -16,6 +16,7 @@
 chapter: 8
 problems:
   - id: p1-mass-to-energy
+    plays: mass-energy
     section: '8.4'
     dfe: [AP8]
     statement: 'A reaction converts a mass of 2.0e-30 kg into energy. Find the energy released.'

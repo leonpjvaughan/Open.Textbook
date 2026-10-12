@@ -15,6 +15,7 @@
 chapter: 5
 problems:
   - id: r1-anchor-charge
+    plays: capacitance
     section: Review
     dfe: [AP5]
     statement: 'A defibrillator capacitor of capacitance $100\,\mu\text{F}$ is charged to $2000\,\text{V}$. Find the charge stored.'
@@ -29,6 +30,7 @@ problems:
     answer_text: 'The charge is $Q = CV = 100 \times 10^{-6} \times 2000 = 0.200\,\text{C}$.'
 
   - id: r2-anchor-energy
+    plays: capacitor-energy
     section: Review
     dfe: [AP5]
     statement: 'A defibrillator capacitor of capacitance $100\,\mu\text{F}$ is charged to $2000\,\text{V}$. Find the energy stored.'
@@ -51,6 +53,7 @@ problems:
     answer_text: 'The radius is $1.0 \times 10^{-3}\,\text{m}$, so $A = \pi (1.0 \times 10^{-3})^2 = 3.14 \times 10^{-6}\,\text{m}^2$. Then $R = \dfrac{1.7 \times 10^{-8} \times 1.2}{3.14 \times 10^{-6}} = 6.5 \times 10^{-3}\,\Omega$.'
 
   - id: r4-anchor-current
+    plays: resistance
     section: Review
     dfe: [AP5]
     statement: 'A capacitor charged to $2000\,\text{V}$ is discharged through a total resistance of $50\,\Omega$. Find the current at the first instant.'
@@ -65,6 +68,7 @@ problems:
     answer_text: 'The initial current is $I_0 = \dfrac{V_0}{R} = \dfrac{2000}{50} = 40\,\text{A}$.'
 
   - id: r5-anchor-time-constant
+    plays: time-constant
     section: Review
     dfe: [AP5]
     statement: 'A $100\,\mu\text{F}$ capacitor discharges through a total resistance of $50\,\Omega$. Find the time constant.'
@@ -87,6 +91,7 @@ problems:
     answer_text: 'After one time constant the pd is $V = V_0 e^{-1} = 2000 \times 0.368 = 7.4 \times 10^{2}\,\text{V}$.'
 
   - id: r7-anchor-battery
+    plays: emf
     section: Review
     dfe: [AP5]
     statement: 'The unit draws $2.0\,\text{A}$ from a battery of emf $12\,\text{V}$ and internal resistance $0.15\,\Omega$. Find the terminal potential difference.'
@@ -166,6 +171,7 @@ problems:
     answer_text: 'The horizontal component is $800\cos 40^\circ = 613\,\text{N}$. The vertical component is $800\sin 40^\circ = 514\,\text{N}$. The horizontal component is the larger one.'
 
   - id: r13-work-power
+    plays: work-done
     section: Review
     dfe: [AP3, AP5]
     statement: 'A force of $250\,\text{N}$ moves a crate $12\,\text{m}$ along its line of action in $15\,\text{s}$. Find the work done and the power.'
@@ -180,6 +186,7 @@ problems:
     answer_text: 'The work done is $W = Fs = 250 \times 12 = 3000\,\text{J}$. The power is $P = \dfrac{W}{t} = \dfrac{3000}{15} = 200\,\text{W}$.'
 
   - id: r14-density
+    plays: density
     section: Review
     dfe: [AP4, AP5]
     statement: 'A copper block has a volume of $1.5 \times 10^{-4}\,\text{m}^3$ and a mass of $1.35\,\text{kg}$. Find its density.'

@@ -16,6 +16,7 @@
 chapter: 4
 problems:
   - id: r1-crane-stress
+    plays: tensile-stress
     section: Review
     dfe: [AP4]
     statement: 'The beam has mass $2500\,\text{kg}$ and the cable has area $1.5 \times 10^{-4}\,\text{m}^2$. Find the stress in the cable.'
@@ -31,6 +32,7 @@ problems:
     answer_text: 'The load is $mg = 2500 \times 9.81 = 24\,525\,\text{N}$. The stress is $\dfrac{24\,525}{1.5 \times 10^{-4}} = 1.64 \times 10^{8}\,\text{Pa}$.'
 
   - id: r2-crane-strain
+    plays: young-modulus
     section: Review
     dfe: [AP4]
     statement: 'The cable stress is $1.635 \times 10^{8}\,\text{Pa}$ and $E = 2.0 \times 10^{11}\,\text{Pa}$. Find the strain.'
@@ -45,6 +47,7 @@ problems:
     answer_text: 'The strain is $\dfrac{1.635 \times 10^{8}}{2.0 \times 10^{11}} = 8.18 \times 10^{-4}$. It has no unit.'
 
   - id: r3-crane-extension
+    plays: tensile-strain
     section: Review
     dfe: [AP4]
     statement: 'The cable is $20.0\,\text{m}$ long and the strain is $8.175 \times 10^{-4}$. Find the extension.'
@@ -104,6 +107,7 @@ problems:
     answer_text: '$4.0\,\text{mm}^2 = 4.0 \times 10^{-6}\,\text{m}^2$. The millimetre is squared, so the factor is $10^{-6}$.'
 
   - id: r8-homogeneity-stress
+    plays: tensile-stress
     section: Review
     dfe: [AP1, AP4]
     statement: 'Show that a stress has the base units $\text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$.'
@@ -167,6 +171,7 @@ problems:
     answer_text: 'Plot force against extension and find the gradient, which is the stiffness k. Measure the original length and the cross-sectional area, then use $E = \dfrac{kL}{A}$.'
 
   - id: r12-density
+    plays: density
     section: Review
     dfe: [AP4]
     statement: 'A steel block has a volume of $2.5 \times 10^{-4}\,\text{m}^3$ and a mass of $1.96\,\text{kg}$. Find its density.'

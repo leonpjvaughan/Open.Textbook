@@ -34,6 +34,7 @@ problems:
     answer_text: '$Q = CV = 100 \times 10^{-6} \times 12 = 1.2 \times 10^{-3}\,\text{C}$.'
 
   - id: p3-energy
+    plays: capacitor-energy
     section: '5.4'
     dfe: [AP5]
     statement: 'A capacitor of capacitance $50\,\mu\text{F}$ is charged to a potential difference of $100\,\text{V}$. Find the energy stored.'
@@ -48,6 +49,7 @@ problems:
     answer_text: '$E = \tfrac{1}{2}CV^2 = \tfrac{1}{2} \times 50 \times 10^{-6} \times 100^2 = 0.25\,\text{J}$.'
 
   - id: p4-time-constant
+    plays: time-constant
     section: '5.4'
     dfe: [AP5]
     statement: 'A capacitor of capacitance $10\,\mu\text{F}$ is discharged through a $10\,\text{k}\Omega$ resistor. Find the time constant.'
@@ -102,6 +104,7 @@ problems:
     answer_text: 'From $E = \tfrac{1}{2}CV^2$, $C = \dfrac{2E}{V^2} = \dfrac{2 \times 0.10}{50^2} = 8.0 \times 10^{-5}\,\text{F} = 80\,\mu\text{F}$.'
 
   - id: p10-initial-current
+    plays: resistance
     section: '5.4'
     dfe: [AP5]
     statement: 'A capacitor is charged to $2000\,\text{V}$ and discharged through a total resistance of $50\,\Omega$. Find the current at the first instant of the discharge.'

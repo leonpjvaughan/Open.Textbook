@@ -13,6 +13,7 @@
 chapter: 4
 problems:
   - id: p1-spring-constant
+    plays: hookes-law
     section: '4.2'
     dfe: [AP4]
     statement: 'A spring extends by $0.050\,\text{m}$ under a force of $10\,\text{N}$. Find the spring constant.'
@@ -27,6 +28,7 @@ problems:
     answer_text: 'From Hooke''s law, $k = \dfrac{F}{\Delta L} = \dfrac{10}{0.050} = 200\,\text{N}\,\text{m}^{-1}$.'
 
   - id: p2-force
+    plays: hookes-law
     section: '4.2'
     dfe: [AP4]
     statement: 'A spring of constant $250\,\text{N}\,\text{m}^{-1}$ is stretched by $0.080\,\text{m}$. Find the force.'
@@ -41,6 +43,7 @@ problems:
     answer_text: 'The force is $F = k\Delta L = 250 \times 0.080 = 20\,\text{N}$.'
 
   - id: p3-energy
+    plays: stored-energy
     section: '4.2'
     dfe: [AP4]
     statement: 'A spring of constant $250\,\text{N}\,\text{m}^{-1}$ is stretched by $0.080\,\text{m}$ by a force of $20\,\text{N}$. Find the energy stored.'
@@ -77,6 +80,7 @@ problems:
     answer_text: 'The area is a triangle, so the energy stored is $\tfrac{1}{2} \times 8.0 \times 0.040 = 0.16\,\text{J}$.'
 
   - id: p6-gradient-to-E
+    plays: young-modulus
     section: '4.2'
     dfe: [AP4]
     statement: 'A wire of length $1.50\,\text{m}$ and area $2.0 \times 10^{-7}\,\text{m}^2$ has a force-extension graph of gradient $2.0 \times 10^{4}\,\text{N}\,\text{m}^{-1}$. Find the Young modulus.'
@@ -92,6 +96,7 @@ problems:
     answer_text: 'The gradient of a wire''s force-extension graph is $k = \dfrac{EA}{L}$, so $E = \dfrac{kL}{A} = \dfrac{2.0 \times 10^{4} \times 1.50}{2.0 \times 10^{-7}} = 1.5 \times 10^{11}\,\text{Pa}$.'
 
   - id: p7-energy-kx
+    plays: stored-energy
     section: '4.2'
     dfe: [AP4]
     statement: 'A spring of constant $400\,\text{N}\,\text{m}^{-1}$ is stretched by $0.10\,\text{m}$. Find the energy stored.'
@@ -106,6 +111,7 @@ problems:
     answer_text: 'The energy stored is $\tfrac{1}{2}k(\Delta L)^2 = \tfrac{1}{2} \times 400 \times 0.10^2 = 2.0\,\text{J}$.'
 
   - id: p8-energy-force-extension
+    plays: stored-energy
     section: '4.2'
     dfe: [AP4]
     statement: 'A wire carries a force of $60\,\text{N}$ and extends by $25\,\text{mm}$. Find the energy stored in the wire.'
@@ -131,6 +137,7 @@ problems:
     answer_text: 'The graph is not a straight line, so use strips. The trapezium areas are $0.035$, $0.11$, $0.205$ and $0.33\,\text{J}$, and their sum is $0.68\,\text{J}$.'
 
   - id: p10-force-from-energy
+    plays: stored-energy
     section: '4.2'
     dfe: [AP4]
     statement: 'A spring stores $0.36\,\text{J}$ when it is extended by $0.060\,\text{m}$. The graph is a straight line through the origin. Find the final force.'

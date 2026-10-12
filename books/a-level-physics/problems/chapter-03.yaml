@@ -39,6 +39,7 @@ problems:
     answer_text: '$a = \dfrac{v - u}{t} = \dfrac{20 - 8.0}{4.0} = 3.0\,\text{m}\,\text{s}^{-2}$ and $s = \dfrac{(u + v)t}{2} = \dfrac{(8.0 + 20) \times 4.0}{2} = 56\,\text{m}$.'
 
   - id: w2-train-decelerate
+    plays: suvat-v2
     section: '3.1'
     dfe: [AP3]
     statement: 'A train slows from 30 m/s to rest over 450 m. Find its deceleration.'
@@ -197,6 +198,7 @@ problems:
 
   # --- Section 3.2, the Learn worked examples and the guided problems ---------
   - id: w5-resultant-force
+    plays: force-ma
     section: '3.2'
     dfe: [AP3]
     statement: 'A car of mass 1200 kg accelerates at 2.0 m/s^2. Find the resultant force on it.'
@@ -234,6 +236,7 @@ problems:
     answer_text: 'The weight is $mg = 30 \times 9.81 = 294\,\text{N}$. The normal reaction is $W\cos 20^\circ = 276\,\text{N}$ and the along-slope component is $W\sin 20^\circ = 101\,\text{N}$.'
 
   - id: w8-lift-passenger
+    plays: force-ma
     section: '3.2'
     dfe: [AP3]
     statement: 'A passenger of mass 70 kg stands in a lift that accelerates upwards at 1.2 m/s^2. Find the normal reaction on the passenger. Take g = 9.81 m/s^2.'
@@ -349,6 +352,7 @@ problems:
     answer_text: '$a = g\sin 15^\circ = 2.5\,\text{m}\,\text{s}^{-2}$ and $N = mg\cos 15^\circ = 190\,\text{N}$.'
 
   - id: g10-lift-down
+    plays: force-ma
     section: '3.2'
     dfe: [AP3]
     statement: 'A passenger of mass 80 kg stands in a lift that accelerates downwards at 0.80 m/s^2. Find the normal reaction. Take g = 9.81 m/s^2.'
@@ -399,6 +403,7 @@ problems:
 
   # --- Section 3.3, the Learn worked examples and the guided problems ---------
   - id: w11-work-force
+    plays: work-done
     section: '3.3'
     dfe: [AP3]
     statement: 'A force of 40 N pushes a box 5.0 m along a floor. Find the work done.'
@@ -425,6 +430,7 @@ problems:
     answer_text: '$W = Fs\cos 30^\circ = 250 \times 12 \times 0.866 = 2600\,\text{J}$. Only the horizontal component of the pull does work.'
 
   - id: w13-car-work
+    plays: kinetic-energy
     section: '3.3'
     dfe: [AP3]
     statement: 'A car of mass 1500 kg speeds up from 10 m/s to 20 m/s. Find the work done by the resultant force.'
@@ -440,6 +446,7 @@ problems:
     answer_text: '$E_k(\text{initial}) = 75000\,\text{J}$ and $E_k(\text{final}) = 300000\,\text{J}$, so the work done is $300000 - 75000 = 225000\,\text{J} = 225\,\text{kJ}$.'
 
   - id: w14-book-pe
+    plays: gpe
     section: '3.3'
     dfe: [AP3]
     statement: 'A book of mass 2.0 kg is lifted through 1.5 m. Find the gravitational potential energy gained. Take g = 9.81 m/s^2.'
@@ -467,6 +474,7 @@ problems:
     answer_text: '$mgh = \tfrac{1}{2}mv^2$, so $v = \sqrt{2gh} = \sqrt{2 \times 9.81 \times 5.0} = 9.9\,\text{m}\,\text{s}^{-1}$. The mass cancels.'
 
   - id: w16-pump-power
+    plays: power
     section: '3.3'
     dfe: [AP3]
     statement: 'A pump raises 200 kg of water through 15 m in 30 s. Find the useful power. Take g = 9.81 m/s^2.'
@@ -483,6 +491,7 @@ problems:
     answer_text: '$W = mg\Delta h = 29430\,\text{J}$, so $P = \dfrac{W}{t} = \dfrac{29430}{30} = 981\,\text{W}$.'
 
   - id: w17-power-fv
+    plays: power
     section: '3.3'
     dfe: [AP3]
     statement: 'A car travels at a constant 25 m/s with a driving force of 2000 N. Find the useful power.'
@@ -533,6 +542,7 @@ problems:
     answer_text: '$a = 4.0\,\text{m}\,\text{s}^{-2}$ and $s = \dfrac{(u + v)t}{2} = 64\,\text{m}$.'
 
   - id: warmup-3-3-lift
+    plays: force-ma
     section: '3.3'
     dfe: [AP3]
     statement: 'Warm-up: a person of mass 60 kg stands in a lift that accelerates downwards at 2.0 m/s^2. Find the normal reaction. Take g = 9.81 m/s^2.'
@@ -804,6 +814,7 @@ problems:
     answer_text: '$a = \dfrac{v^2}{r} = \dfrac{12^2}{40} = 3.6\,\text{m}\,\text{s}^{-2}$ and $F = ma = 1200 \times 3.6 = 4320\,\text{N}$. The friction from the road provides the centripetal force.'
 
   - id: w27-ball-string
+    plays: centripetal-force
     section: '3.5'
     dfe: [AP3]
     statement: 'A ball of mass 0.50 kg is whirled in a horizontal circle of radius 0.80 m at 3.0 m/s. Find the tension in the string.'

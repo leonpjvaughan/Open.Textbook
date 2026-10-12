@@ -86,6 +86,7 @@ problems:
 
   # --- Section 6.1, the guided problems --------------------------------------
   - id: g1-wavelength
+    plays: wave-speed
     section: '6.1'
     dfe: [AP6]
     statement: 'A sound wave has a frequency of 425 Hz and travels at 340 m/s. Find its wavelength.'
@@ -100,6 +101,7 @@ problems:
     answer_text: '$\lambda = \dfrac{v}{f} = \dfrac{340}{425} = 0.80\,\text{m}$.'
 
   - id: g2-speed
+    plays: wave-speed
     section: '6.1'
     dfe: [AP6]
     statement: 'A wave has a wavelength of 0.25 m and a frequency of 680 Hz. Find its speed.'
@@ -179,6 +181,7 @@ problems:
 
   # --- Section 6.1, the warm-up recalls --------------------------------------
   - id: warmup-6-1-period
+    plays: period
     section: '6.1'
     dfe: [AP6]
     statement: 'Warm-up: a wave has a frequency of 250 Hz. Find its period.'
@@ -198,6 +201,7 @@ problems:
     answer_text: '$0.60\,\text{mm} = 6.0 \times 10^{-4}\,\text{m}$.'
 
   - id: warmup-6-1-speed
+    plays: velocity
     section: '6.1'
     dfe: [AP6]
     statement: 'Warm-up: a car travels 150 m in 6.0 s. Find its average speed.'
@@ -321,6 +325,7 @@ problems:
 
   # --- Section 6.2, the warm-up recalls --------------------------------------
   - id: warmup-6-2-speed
+    plays: wave-speed
     section: '6.2'
     dfe: [AP6]
     statement: 'Warm-up: a wave has a wavelength of 0.60 m and a frequency of 550 Hz. Find its speed.'
@@ -455,6 +460,7 @@ problems:
 
   # --- Section 6.3, the warm-up recalls --------------------------------------
   - id: warmup-6-3-period
+    plays: period
     section: '6.3'
     dfe: [AP6]
     statement: 'Warm-up: a wave has a frequency of 0.50 kHz. Find its period.'
@@ -467,6 +473,7 @@ problems:
     answer_text: '$T = \dfrac{1}{f} = \dfrac{1}{500} = 2.0 \times 10^{-3}\,\text{s}$.'
 
   - id: warmup-6-3-hooke
+    plays: hookes-law
     section: '6.3'
     dfe: [AP6]
     statement: 'Warm-up: a spring of force constant 200 N/m is stretched by a force of 10 N. Find the extension.'
@@ -488,6 +495,7 @@ problems:
 
   # --- The chapter problem, resolved on the Review page -----------------------
   - id: anchor-sound-wavelength
+    plays: wave-speed
     section: Review
     dfe: [AP6]
     statement: 'The two loudspeakers are driven at 1.00 kHz and the speed of sound is 340 m/s. Find the wavelength of the sound.'

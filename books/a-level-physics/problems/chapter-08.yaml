@@ -91,6 +91,7 @@ problems:
     answer_text: '$E_k = eV = 8.0 \times 10^{-18}\,\text{J}$.'
 
   - id: g4-photon-energy-frequency
+    plays: photon-energy
     section: '8.1'
     dfe: [AP8]
     statement: 'A photon has a frequency of 5.0e14 Hz. Find its energy.'
@@ -105,6 +106,7 @@ problems:
     answer_text: '$E = hf = 3.3 \times 10^{-19}\,\text{J}$.'
 
   - id: g5-photon-400nm
+    plays: photon-energy
     section: '8.1'
     dfe: [AP8]
     statement: 'Find the energy of a photon of wavelength 400 nm.'
@@ -231,6 +233,7 @@ problems:
     answer_text: '$p = mv = 0.60\,\text{kg}\,\text{m}\,\text{s}^{-1}$.'
 
   - id: g12-photon-500nm
+    plays: photon-energy
     section: '8.2'
     dfe: [AP8]
     statement: 'Find the energy of a photon of wavelength 500 nm.'
@@ -270,6 +273,7 @@ problems:
     answer_text: '$\lambda = 4.0 \times 10^{-13}\,\text{m}$.'
 
   - id: g16-momentum-from-wavelength
+    plays: de-broglie
     section: '8.2'
     dfe: [AP8]
     statement: 'An electron has a de Broglie wavelength of 1.0e-10 m. Find its momentum.'
@@ -340,6 +344,7 @@ problems:
 
   # --- Section 8.3, the Learn worked examples --------------------------------
   - id: w8-tracer-activity
+    plays: decay-rate
     section: '8.3'
     dfe: [AP8]
     statement: 'A source of half-life 110 min starts at 8.0e8 Bq. Find its activity after 330 min.'
@@ -422,6 +427,7 @@ problems:
     answer_text: '$A = \lambda N = 1.0 \times 10^{15}\,\text{Bq}$.'
 
   - id: g23-activity-15-days
+    plays: decay-rate
     section: '8.3'
     dfe: [AP8]
     statement: 'A source of 640 Bq has a half-life of 5.0 days. Find its activity after 15 days.'
@@ -457,6 +463,7 @@ problems:
     answer_text: '$A = 4.8 \times 10^{10}\,\text{Bq}$.'
 
   - id: g26-nuclei-from-activity
+    plays: activity
     section: '8.3'
     dfe: [AP8]
     statement: 'A source of 2.0e6 Bq has decay constant 5.0e-7 s^-1. Find the number of nuclei.'
@@ -587,6 +594,7 @@ problems:
     answer_text: '$2.0 \times 10^{6} \times 1.60 \times 10^{-19} = 3.2 \times 10^{-13}\,\text{J}$.'
 
   - id: g32-mass-to-energy
+    plays: mass-energy
     section: '8.4'
     dfe: [AP8]
     statement: 'A mass of 1.0e-30 kg becomes energy. Find the energy released.'
@@ -609,6 +617,7 @@ problems:
     answer_text: '$0.511 \times 10^{6} \times 1.60 \times 10^{-19} = 8.18 \times 10^{-14}\,\text{J}$.'
 
   - id: g34-mass-to-energy-3e-29
+    plays: mass-energy
     section: '8.4'
     dfe: [AP8]
     statement: 'A reaction converts 3.0e-29 kg into energy. Find the energy released.'
@@ -703,6 +712,7 @@ problems:
           concepts: [fusion]
 
   - id: g41-sun
+    plays: mass-energy
     section: '8.4'
     dfe: [AP8]
     statement: 'The Sun converts 4.3e9 kg of mass each second. Find the energy released each second.'

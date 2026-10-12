@@ -48,6 +48,7 @@ problems:
     answer_text: '$E_k = 4.0 \times 10^{-17}\,\text{J}$, then $p = \sqrt{2mE_k} = 8.54 \times 10^{-24}\,\text{kg}\,\text{m}\,\text{s}^{-1}$, so $\lambda = 7.8 \times 10^{-11}\,\text{m}$.'
 
   - id: r5-half-lives
+    plays: decay-rate
     section: '8.3'
     dfe: [AP8]
     statement: 'A source has an activity of 1200 Bq and a half-life of 8.0 days. Find its activity after 32 days.'

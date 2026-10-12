@@ -28,6 +28,7 @@ problems:
     answer_text: '(a) $T = -23 + 273 = 250\,\text{K}$. (b) $T = 27 + 273 = 300\,\text{K}$.'
 
   - id: p2-boyle
+    plays: ideal-gas-n
     section: '7.2'
     dfe: [AP7]
     statement: 'A gas at a pressure of 1.2e5 Pa occupies 3.0e-3 m3. It is compressed at constant temperature to 1.5e-3 m3. Find the new pressure.'
@@ -43,6 +44,7 @@ problems:
     answer_text: '$p_2 = \dfrac{p_1V_1}{V_2} = \dfrac{1.2 \times 10^{5} \times 3.0 \times 10^{-3}}{1.5 \times 10^{-3}} = 2.4 \times 10^{5}\,\text{Pa}$.'
 
   - id: p3-charles
+    plays: ideal-gas-n
     section: '7.2'
     dfe: [AP7]
     statement: 'A fixed mass of gas occupies 250 cm3 at 290 K. It is heated at constant pressure to 348 K. Find its new volume.'
@@ -58,6 +60,7 @@ problems:
     answer_text: '$V_2 = \dfrac{V_1T_2}{T_1} = \dfrac{250 \times 348}{290} = 300\,\text{cm}^{3}$.'
 
   - id: p4-pressure-law
+    plays: ideal-gas-n
     section: '7.2'
     dfe: [AP7]
     statement: 'A sealed rigid container holds gas at 1.0e5 Pa and 300 K. The gas is heated to 360 K. Find the new pressure.'
