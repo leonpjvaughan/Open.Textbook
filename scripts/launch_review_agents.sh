@@ -3,12 +3,12 @@
 #
 # Usage:
 #   scripts/launch_review_agents.sh 1 2 3 ...
-#   TEMPLATE=scripts/glossary-prompt.md scripts/launch_review_agents.sh glossary
+#   TEMPLATE=.agents/prompts/glossary-prompt.md scripts/launch_review_agents.sh glossary
 set -uo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.." || exit 1
 mkdir -p agent-runs
-TEMPLATE="${TEMPLATE:-scripts/review-prompt.md}"
+TEMPLATE="${TEMPLATE:-.agents/prompts/review-prompt.md}"
 
 launch() {
   local n="$1"

@@ -4,7 +4,7 @@
 # dfe: reference into the DfE subject content, using the strand letter + item number
 #      (N = Number, A = Algebra, R = Ratio/proportion/rates of change,
 #       G = Geometry and measures, P = Probability, S = Statistics).
-#      The same references are used by AQA 8300. See PLAN.md for the mapping method.
+#      The same references are used by AQA 8300. See .agents/planning/plan.md for the mapping method.
 
 meta:
   title: GCSE Mathematics (9-1)

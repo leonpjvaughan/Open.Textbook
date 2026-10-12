@@ -373,7 +373,7 @@ Concretely, in order:
 6. Update the places that name the old id: `AGENTS.md` (the screenshot example
    `--theme omarchy`, and the "stock Omarchy palettes" sentence — that one is a
    *provenance* claim and stays), `SHAPE.md` (same), `tests/test_themes.py` (the
-   `[default-omarchy]` id in a docstring), `todo.md` item 17.
+   `[default-omarchy]` id in a docstring), `.agents/todo.md` item 17.
 7. When a new family is added, record its licence and attribution. The palette
    projects are permissively licensed, but the collection credits upstreams, and
    item 11 (colophon) is where that belongs.

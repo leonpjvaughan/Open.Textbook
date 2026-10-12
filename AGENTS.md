@@ -5,8 +5,8 @@ textbooks** sharing one engine. GCSE Mathematics is the first book; GCSE Physics
 and A-level Mathematics and Physics are planned. It is **Open.Textbook**
 (https://github.com/leonpjvaughan/Open.Textbook).
 
-`SHAPE.md` holds the repository shape and what a new book requires, `PLAN.md` the
-authoring plan, `research/pedagogy.md` the evidence, `AGENT-BRIEF.md` the
+`SHAPE.md` holds the repository shape and what a new book requires, `.agents/planning/plan.md` the
+authoring plan, `research/pedagogy.md` the evidence, `.agents/chapter-brief.md` the
 per-chapter contract. Read this file first, then `books/<id>/AGENTS.md` for a
 book's exam boards, tier axis and pitfalls.
 
@@ -19,7 +19,7 @@ reads them from `.claude/skills/`, projected with the
 
 | If you are… | Read | Load |
 |---|---|---|
-| Writing or revising a chapter | `books/gcse-maths/AGENTS.md`, `AGENT-BRIEF.md` | `.agents/skills/author-textbook-chapter/SKILL.md` |
+| Writing or revising a chapter | `books/gcse-maths/AGENTS.md`, `.agents/chapter-brief.md` | `.agents/skills/author-textbook-chapter/SKILL.md` |
 | Editing book content | `books/AGENTS.md`, `books/gcse-maths/AGENTS.md` | `.agents/skills/write-textbook-prose/SKILL.md` |
 | Writing a problem bank | `books/AGENTS.md`, `PROBLEMS.md`, `books/gcse-maths/AGENTS.md` | `.agents/skills/build-practice-set/SKILL.md` |
 | Building a figure | `assets/AGENTS.md`, `books/AGENTS.md` | `.agents/skills/build-guided-figure/SKILL.md` |
@@ -64,6 +64,36 @@ line, a misconception callout, ≤1 guided figure, DfE refs in front matter.
 working. *Practise*: 8–15 items, method-choice prompts later, Higher-only marked
 **H**, answers in one collapsed block. *Review*: resolve the chapter problem,
 mixed practice, a reflection.
+
+### A theorem stated without proof is a promise to write one
+
+Teaching a result and proving it are different jobs, and a book that stopped to
+prove everything would have no room to practise anything. So a result may be
+**stated** — and every result that is stated and not proved must have a page in
+the shared proof book, linked from the line that states it.
+
+```markdown
+A polygon can be split from one vertex into $n-2$ triangles, so its interior
+angle sum is $(n-2)\times180^\circ$.
+
+:::prove angles-in-a-polygon
+```
+
+The directive is on its own line and expands to a **Prove it to me** link. It is
+a link and nothing else — no script, no dialog — because a proof is a page and a
+reader with scripting off must still reach it.
+
+**Why this is a rule and not a preference.** A stated result is the one place a
+reader is asked to take something on trust, in books that are otherwise careful to
+show why. The proof book exists so that "because I said so" is never the last word
+available, and the link is what makes it reachable at the moment the reader
+wonders. `books/proofs/proofs.yaml` records who is examined on each proof, so the
+same page reads *Prove it to me* in the course that teaches it and **Beyond your
+course** in one that does not.
+
+**Procedure:** `.agents/chapter-brief.md` — the four steps, the registry fields
+and the label. A definition is not a theorem and a convention is not a theorem;
+the test is whether a reader could reasonably ask *why*.
 
 ## Voice and language
 
@@ -127,12 +157,33 @@ per-book layout is in `books/AGENTS.md`.
 | Path | Role |
 |---|---|
 | `AGENTS.md` | cross-cutting rules, routing and map |
-| `SHAPE.md`, `PLAN.md`, `AGENT-BRIEF.md`, `PROBLEMS.md`, `BOOKLETS.md`, `DEPLOY.md`, `DECISIONS.md`, `todo.md`, `collection.yaml`, `wrangler.jsonc` | shape, plan, brief, banks, booklets, deploy, decisions, queue, collection, Worker |
+| `SHAPE.md`, `.agents/planning/plan.md`, `.agents/chapter-brief.md`, `PROBLEMS.md`, `BOOKLETS.md`, `DEPLOY.md`, `DECISIONS.md`, `.agents/todo.md`, `collection.yaml`, `wrangler.jsonc` | shape, plan, brief, banks, booklets, deploy, decisions, queue, collection, Worker |
 | `engine/`, `engine/AGENTS.md`, `assets/`, `assets/AGENTS.md` | the engine and the design system, and their rules |
 | `themes/`, `books/`, `books/AGENTS.md`, `books/gcse-maths/`, `books/gcse-maths/AGENTS.md` | bundles; the books and their rules |
 | `books/a-level-maths/`, `books/a-level-maths/AGENTS.md` | the A-level Mathematics book and its rules |
 | `books/gcse-physics/`, `books/gcse-physics/AGENTS.md`, `books/a-level-physics/`, `books/a-level-physics/AGENTS.md` | the two physics books and their rules |
-| `research/`, `research/AGENTS.md`, `scripts/`, `scripts/AGENTS.md`, `tests/`, `tests/AGENTS.md`, `test/`, `deploy/`, `deploy/AGENTS.md`, `.github/`, `.github/AGENTS.md`, `.agents/`, `.claude/`, `.serena/` | corpus, scripts, tests, deploy, CI, skills |
+| `research/`, `research/AGENTS.md`, `scripts/`, `scripts/AGENTS.md`, `tests/`, `tests/AGENTS.md`, `test/`, `deploy/`, `deploy/AGENTS.md`, `.github/`, `.github/AGENTS.md`, `.claude/`, `.serena/` | corpus, scripts, tests, deploy, CI |
+| `.agents/`, `.agents/skills/`, `.agents/prompts/`, `.agents/planning/` | agent context: the portable skills; the chapter and review prompts the launch scripts feed to sub-agents; the dated planning record; `.agents/todo.md`; `.agents/chapter-brief.md` |
+
+## Where the agent files live
+
+The root holds **project contracts** plus this file: `SHAPE.md`, `PROBLEMS.md`,
+`BOOKLETS.md`, `DECISIONS.md`, `DEPLOY.md`. They describe the system, a person
+reads them as often as an agent does, and they stay put. Everything that exists
+*only* to brief an agent is under `.agents/`, so the root is not a pile of files
+whose audience is unclear:
+
+| Path | What it is |
+|---|---|
+| `AGENTS.md` | the rules. At the root because every harness looks for it there |
+| `.agents/todo.md` | the work queue |
+| `.agents/chapter-brief.md` | the per-chapter authoring contract |
+| `.agents/prompts/` | the templates `scripts/launch_*.sh` feed to sub-agents |
+| `.agents/planning/` | the dated record of how the work was planned, kept for the reasoning |
+| `.agents/skills/` | the portable skills; Claude Code reads `.claude/skills/` |
+
+A nested `AGENTS.md` stays beside what it governs — `engine/`, `assets/`,
+`books/`, `tests/` — because it is read when that directory is opened.
 
 ## Build and verify
 
@@ -174,10 +225,10 @@ runbook for credentials, the domain, each stage and checking a deploy.
 
 ## Capturing work
 
-`todo.md` is the work queue: one item per change, ordered, the first being next.
+`.agents/todo.md` is the work queue: one item per change, ordered, the first being next.
 It is ours, not the reader's, so the voice rules do not apply — but these do.
 
-**Anything you notice and are not going to fix now goes in `todo.md` before you
+**Anything you notice and are not going to fix now goes in `.agents/todo.md` before you
 finish** — not in a commit message, a reply that scrolls away, or your head. That
 includes the small things: a setting nobody verified, a dead link, a false claim,
 a test that would have caught the bug you just fixed by hand.

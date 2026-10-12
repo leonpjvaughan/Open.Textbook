@@ -87,7 +87,7 @@ pages that need it. `mkdocs-macros-plugin` is dropped.
 
 Portability of the substrate itself is **expected from the renderers' documented
 handling of raw HTML, but not CI-verified** — that remains the job of the
-`HANDOFF.md` D4 port work. What *is* verified: the directive expands, the hook
+`.agents/planning/handoff.md` D4 port work. What *is* verified: the directive expands, the hook
 fails loudly on an unknown slug, and Tier-0 pages get no figure JS.
 
 ## 2. Tier strategies
@@ -190,6 +190,6 @@ controlled navigation would fail instead of measuring.
 
 `--audit` reports any element below WCAG AA with its colours and ratio — 730
 elements on a Learn page. This is what found the four defects recorded in
-`todo.md` item 18, including Material's palette stylesheet out-ranking our link
+`.agents/todo.md` item 18, including Material's palette stylesheet out-ranking our link
 mapping in dark mode, and the header's white-on-accent title. Both were invisible
 to the palette tests. The script exits non-zero on any failure.

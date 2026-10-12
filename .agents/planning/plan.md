@@ -4,8 +4,8 @@
 **Date:** 2026-10-10
 **Repo:** `/home/leon/Work/maths-site` (not yet a git repository)
 
-This plan supersedes the "no mathematical content" clause of `HANDOFF.md`. The
-stack decisions in `HANDOFF.md` (marimo-markdown canonical format, a static
+This plan supersedes the "no mathematical content" clause of `.agents/planning/handoff.md`. The
+stack decisions in `.agents/planning/handoff.md` (marimo-markdown canonical format, a static
 backend-free site, interactivity tiers) still hold; the renderer is now the
 bespoke `engine/textbook/pipeline.py` rather than MkDocs — see `SHAPE.md`,
 "The bespoke renderer is the site". What changes is that we now have a concrete
@@ -148,7 +148,7 @@ kind: walkthrough  # walkthrough | guided-problems | problems
   screen-reader navigable.
 - Interleaves at least one item that revisits the previous section (spacing).
 - Answers are numeric or structured; avoid free-text symbolic equivalence checks
-  (see `HANDOFF.md` §4).
+  (see `.agents/planning/handoff.md` §4).
 
 **Problems** — independent practice.
 - Homework-style set, roughly 8–15 items, ordered by difficulty.
@@ -170,7 +170,7 @@ and export `mount(el)`. See `test/README.md` for the evaluation behind this.
 
 ## 6. Interactivity policy for GCSE
 
-Default to the cheapest tier that earns its keep (`HANDOFF.md` §3). For this book:
+Default to the cheapest tier that earns its keep (`.agents/planning/handoff.md` §3). For this book:
 
 - **Tier 0** (prose + KaTeX) is the default for every page.
 - **Tier 1** (pure JS) is the expected figure on most Walkthrough pages: sliders for
@@ -205,7 +205,7 @@ Default to the cheapest tier that earns its keep (`HANDOFF.md` §3). For this bo
 3. **Long run: one sub-agent per chapter.** Chapters 2–25 dispatched in parallel
    or in small batches, each bounded to its chapter folder, its glossary strand
    page, and `books/gcse-maths/docs/assets/figures/` / `figures/py/` additions it needs. See
-   `AGENT-BRIEF.md` for the per-chapter brief.
+   `.agents/chapter-brief.md` for the per-chapter brief.
 4. **Integration and verification.** the pipeline's link check, no-JS check on
    Tier-0 pages, Tier-2 determinism check, links and maths render check, tier-tag
    audit against AQA columns.
@@ -227,7 +227,7 @@ Default to the cheapest tier that earns its keep (`HANDOFF.md` §3). For this bo
   two-site build is the product; the toggle is a third config from the same
   source. Evidence: `test/` (24/24 assertions).
 - **D10 — Portability of D8/D9 to Quarto/MyST/MDX** remains CI work under
-  `HANDOFF.md` D4; only the pipeline is verified so far.
+  `.agents/planning/handoff.md` D4; only the pipeline is verified so far.
 - **D11 — Reading theme.** Warm off-white paper (`#faf9f5`) with warm near-black
   ink, not pure white/black; dark-on-light default (positive polarity reads
   better — Buchner & Baumgartner 2007), with a `prefers-color-scheme` dark mode

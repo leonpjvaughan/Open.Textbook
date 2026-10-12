@@ -110,7 +110,7 @@ trap, `\pounds` and `latex2mathml` — are the maths hook's, so they now live in
 ## Common tasks
 
 - **Authoring a chapter** — load the `author-textbook-chapter` skill and read
-  `AGENT-BRIEF.md`.
+  `.agents/chapter-brief.md`.
 - **Editing prose** — load `write-textbook-prose`; the voice rules in the root
   are binding.
 - **Writing a bank** — load `build-practice-set` and read `PROBLEMS.md`.

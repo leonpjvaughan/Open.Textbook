@@ -24,8 +24,9 @@ the scripts.
 | `scripts/measure-budget.cjs` | Measure a page against the extras budget |
 | `scripts/preview-themes.sh` | Preview the theme bundles |
 
-The `*.md` prompts (`agent-prompt.md`, `review-prompt.md`, `glossary-prompt.md`)
-are the briefs the launch scripts feed to sub-agents.
+The `*.md` prompts that used to live here are now `.agents/prompts/` — the
+launch scripts read them from there. Nothing in this directory is agent context
+any more except this file.
 
 ## Rules local to the scripts
 

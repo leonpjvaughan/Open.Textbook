@@ -2,7 +2,7 @@
 
 A dated, appendable log of decisions that need to be findable. It is a record,
 not an essay: newest entries at the top, each one short and specific. Anything
-that is work rather than a decision belongs in `todo.md`.
+that is work rather than a decision belongs in `.agents/todo.md`.
 
 ## 2026-10-11 — No `scipy`: `sympy.stats` and an explicit tolerance
 

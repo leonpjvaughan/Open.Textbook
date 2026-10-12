@@ -349,7 +349,7 @@ worker's scope will be the whole site without needing a header at all.
 to static HTML — nav, Pagefind search, link checking, a sitemap and a 404 per
 profile — and it is the only renderer. It is the one we control: no third-party
 theming to be rewritten under us, no plugin system to lose, no licence notice, and
-one place to change the shell. It replaced MkDocs in October 2026; see `todo.md`
+one place to change the shell. It replaced MkDocs in October 2026; see `.agents/todo.md`
 item 8 for the migration record.
 
 ## Deliberate limits

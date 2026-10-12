@@ -124,7 +124,7 @@ particular to A level:
 statistical tables section, so this book should have one. But a booklet must be
 built from the awarding body's own document (`BOOKLETS.md`), and no board's A-level
 Mathematics formulae booklet has been retrieved and checked. Declaring no booklet
-was the only honest choice; the work is recorded as outstanding in `todo.md`. When
+was the only honest choice; the work is recorded as outstanding in `.agents/todo.md`. When
 it is retrieved, record it in `sources.yaml` under `references` with a `url`,
 `retrieved` date and `role`, then write `booklet/a-level-maths.yaml` and add
 `booklet:` to `book.yaml`.

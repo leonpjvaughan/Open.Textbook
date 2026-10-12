@@ -11,12 +11,12 @@ Invoke with `CHAPTER_ID=<n>` (1–25). Read, in order:
 1. `AGENTS.md` — the operative **chapter formula** (six principles, page
    contracts, budget). This is binding.
 2. `research/pedagogy.md` — the evidence and its limits, so you do not overclaim.
-3. `PLAN.md` §4–§6 — folder conventions, content contract, interactivity policy.
+3. `.agents/planning/plan.md` §4–§6 — folder conventions, content contract, interactivity policy.
 4. `books/gcse-maths/curriculum.yaml` — find `chapters[?id=<n>]`. This is your scope: every section,
    its `tier`, its `dfe` references, and the chapter's `anchor`, `application`,
    `relevance_prompt` and `tool` metadata.
 5. `CURRICULUM-MAP.md` — confirm exactly which DfE items you must deliver.
-6. `HANDOFF.md` §3–§4 — interactivity tiers and the client-side compute constraints.
+6. `.agents/planning/handoff.md` §3–§4 — interactivity tiers and the client-side compute constraints.
 7. The primary sources in `sources/` (run `scripts/fetch_sources.sh` if empty):
    `dfe_content.txt`, `aqa_spec.txt`, `edexcel_spec.txt`, `ocr_spec.txt`. Use them
    to confirm scope and tier; quote nothing.
@@ -55,7 +55,7 @@ why). Also:
 - Render the questions and answers with `:::problems <bank>` and
   `:::answers <bank>` instead of hand-writing them, so the reader sees exactly
   what CI verified. See PROBLEMS.md.
-- Do **not** edit `books/gcse-maths/curriculum.yaml`, `nav.yml`, `CURRICULUM-MAP.md`, `PLAN.md`, or
+- Do **not** edit `books/gcse-maths/curriculum.yaml`, `nav.yml`, `CURRICULUM-MAP.md`, `.agents/planning/plan.md`, or
   any other chapter. `nav.yml` and the map are generated.
 
 ## Coverage — non-negotiable
@@ -126,3 +126,56 @@ GCSE; if you reach for Pyodide, justify it in the chapter overview first.
 - the figure hook you were told to use does not exist or does not work;
 - a tier tag conflicts with the AQA columns;
 - covering a section honestly would require content outside the curriculum.
+
+---
+
+## A theorem you state without proof
+
+The rule is in `AGENTS.md`: a result you state and do not prove must have a page
+in the shared proof book, linked from the line that states it. This is the
+procedure.
+
+**1. Add it to `books/proofs/proofs.yaml`.**
+
+```yaml
+  - id: angles-in-a-polygon
+    title: The angles in a polygon add to (n − 2) × 180°
+    summary: >-
+      Cut the polygon into triangles from one corner. Count how many, and the
+      triangle proof does the rest.
+    qualifications: [GCSE, A-level]
+    strand: geometry
+    figure: polygon-triangulation
+```
+
+- `id` is the directory name and the URL segment, so it is a slug.
+- `qualifications` lists the courses **examined** on the proof. Write
+  `qualifications: []` when it is in no course at this level — that is a real
+  answer, and it makes the link say **Beyond your course** in every book. The key
+  must be present: an empty list is a decision, a missing key is an oversight, and
+  a test enforces the difference.
+- `figure` only if you write one.
+
+**2. Write `books/proofs/docs/<id>/index.md`.**
+
+The proof a reader can follow, not the shortest one there is. Open with what they
+need first, and where the result is beyond the course, say so in the prose as well
+as in the label. If the proof needs a case you would rather skip — an obtuse
+triangle, a negative number — prove it or say why it does not arise; a proof that
+quietly only covers half the cases is not a proof.
+
+**3. Put `:::prove <id>` on its own line where the result is stated.**
+
+An id that is in no registry fails the build, the same way an unknown figure slug
+does, so a typo is caught rather than rendering nothing.
+
+**4. Where the proof is visual, add a figure.**
+
+Sliders and toggles are welcome, and **Predict → Test → Explain** applies to a
+proof as much as to any investigation: the page asks the reader to predict before
+they move anything, and to explain what they saw afterwards. See
+`.agents/skills/build-guided-figure/SKILL.md`.
+
+**A definition is not a theorem. A convention is not a theorem.** The test is
+whether a reader could reasonably ask *why*. If they could, the answer belongs in
+the proof book rather than in a sentence they have to accept.

@@ -1,6 +1,6 @@
 # ACCESSIBILITY — the checks behind the claims
 
-This document is the evidence for `todo.md` item 10 ("Accessibility: turn the
+This document is the evidence for `.agents/todo.md` item 10 ("Accessibility: turn the
 claims into checks"). Colour contrast was already tested
 (`tests/test_themes.py`); the figure accessible names were already tested
 (`tests/test_figures.py`). This records the rest of the work: the

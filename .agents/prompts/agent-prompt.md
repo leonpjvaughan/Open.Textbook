@@ -3,7 +3,7 @@ repository /home/leon/Work/maths-site. Do not ask questions. Complete the work.
 
 FIRST, read these files and follow them exactly:
 - AGENTS.md        (the chapter formula and the "Voice and language" standard — binding)
-- AGENT-BRIEF.md   (your deliverables and definition of done)
+- .agents/chapter-brief.md   (your deliverables and definition of done)
 - research/pedagogy.md      (the evidence behind the formula; do not overclaim)
 - PROBLEMS.md      (problem-bank schema and the :::problems / :::answers markers)
 - books/gcse-maths/curriculum.yaml  (the chapter with id: CHAPTER — its sections, tiers, DfE refs,
@@ -17,8 +17,8 @@ SCOPE — edit ONLY these paths, nothing else:
 - "books/gcse-maths/docs/Chapter CHAPTER/**"
 - books/gcse-maths/problems/chapter-CHAPTER-*.yaml
 - books/gcse-maths/docs/assets/figures/chCHAPTER-*.js   (slug prefix chCHAPTER-)
-Do NOT touch books/gcse-maths/curriculum.yaml, AGENTS.md, AGENT-BRIEF.md, PROBLEMS.md, research/pedagogy.md,
-PLAN.md, HANDOFF.md, renderers/**, scripts/**, test/**, books/gcse-maths/docs/Glossary/**, or any
+Do NOT touch books/gcse-maths/curriculum.yaml, AGENTS.md, .agents/chapter-brief.md, PROBLEMS.md, research/pedagogy.md,
+.agents/planning/plan.md, .agents/planning/handoff.md, renderers/**, scripts/**, test/**, books/gcse-maths/docs/Glossary/**, or any
 other chapter. Do NOT run `mkdocs build` or `engine/textbook/scaffold.py`; the
 orchestrator runs those.
 

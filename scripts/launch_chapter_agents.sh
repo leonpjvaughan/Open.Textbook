@@ -3,7 +3,7 @@
 #
 # Usage: scripts/launch_chapter_agents.sh <chapter> [<chapter> ...]
 #
-# Each agent is bounded by scripts/agent-prompt.md, writes a log under
+# Each agent is bounded by .agents/prompts/agent-prompt.md, writes a log under
 # agent-runs/, and is told not to run the build (the orchestrator does).
 set -uo pipefail
 
@@ -12,8 +12,8 @@ mkdir -p agent-runs
 
 launch() {
   local n="$1"
-  local template="scripts/agent-prompt.md"
-  [ -f "scripts/agent-prompt-${n}.md" ] && template="scripts/agent-prompt-${n}.md"
+  local template=".agents/prompts/agent-prompt.md"
+  [ -f ".agents/prompts/agent-prompt-${n}.md" ] && template=".agents/prompts/agent-prompt-${n}.md"
   local prompt
   prompt=$(sed "s/CHAPTER/${n}/g" "$template")
   printf '%s' "$prompt" | codex exec -s workspace-write - \

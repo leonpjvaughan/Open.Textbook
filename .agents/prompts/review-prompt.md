@@ -4,7 +4,7 @@ the teaching and structure, fix what is wrong.
 
 READ FIRST, and follow exactly:
 - AGENTS.md        (chapter formula and the "Voice and language" standard — binding)
-- AGENT-BRIEF.md   (the content contract)
+- .agents/chapter-brief.md   (the content contract)
 - research/pedagogy.md      (do not overclaim)
 - PROBLEMS.md      (bank schema)
 - sources/aqa_spec.txt and sources/dfe_content.txt (tier and coverage truth)

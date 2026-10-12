@@ -40,7 +40,7 @@
 # publishing.
 #
 # Anchors, learner-constructed relevance prompts and guided investigations are
-# per-chapter authoring decisions (see AGENT-BRIEF.md) and are deliberately not
+# per-chapter authoring decisions (see .agents/chapter-brief.md) and are deliberately not
 # fixed here; this file fixes coverage and sequence.
 
 meta:

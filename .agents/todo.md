@@ -1801,7 +1801,7 @@ that is stale.
 - [x] `tests/test_agent_context.py` still passes, and `scripts/check.sh` is green.
 - [x] Nothing lost — a phrase-level audit of the before-file against the final
       root plus `assets/AGENTS.md`, with a mapping table per section.
-- [x] The one stale pointer outside the scope was fixed: `scripts/agent-prompt-1.md`
+- [x] The one stale pointer outside the scope was fixed: `.agents/prompts/agent-prompt-1.md`
       sent a reader to `AGENTS.md → "Watch out for"`, which no longer exists there.
 
 ---

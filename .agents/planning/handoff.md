@@ -201,7 +201,7 @@ Observable, checkable completion criteria:
    is **idempotent** (running twice changes nothing), and round-trips back.
 7. `tests/` proves criteria 5 and 6 and fails loudly if either regresses.
 8. A GitHub Actions workflow deploys `site/` to Pages from the default branch.
-9. `HANDOFF.md`'s D1–D7 are upheld: no backend, no PDF target, no threaded Pyodide.
+9. `.agents/planning/handoff.md`'s D1–D7 are upheld: no backend, no PDF target, no threaded Pyodide.
 
 ---
 

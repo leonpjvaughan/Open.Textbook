@@ -443,7 +443,7 @@ record that must fail.
 - **Data, not code.** The bank is YAML; authors add problems without touching
   Python. CI runs the verifier; a planted error fails the build (tested).
 - **Same answer, two consumers.** The build-time bank is the oracle; a future
-  client-side checker (mathjs/nerdamer, per `HANDOFF.md` §4) can consume the same
+  client-side checker (mathjs/nerdamer, per `.agents/planning/handoff.md` §4) can consume the same
   `answer`, with the bank as the authority rather than the browser.
 
 ## Integration with the book
@@ -465,7 +465,7 @@ Phase 3: drive client-side input checking from the same answers.
   "unknown" is distinguishable from "wrong"; the assumptions system makes domain
   handling explicit.
 - **Prior art** for marking, with the same server constraint as us: STACK (Maxima)
-  and WeBWorK are server-side and are ruled out by `HANDOFF.md` D1; **Numbas 10**
+  and WeBWorK are server-side and are ruled out by `.agents/planning/handoff.md` D1; **Numbas 10**
   marks mathematical expressions client-side with its own CAS and is the closest
   published model for a static site, at the cost of a large runtime.
 - **`mathsteps`** generates human-readable solution steps in JS; useful as a
