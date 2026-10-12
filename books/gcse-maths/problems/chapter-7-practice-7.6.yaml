@@ -123,3 +123,15 @@ problems:
     expression: sqrt(45)/sqrt(5)+sqrt(20)
     answer: 3+2*sqrt(5)
   answer_text: '$3+2\sqrt5$.'
+- id: ch7-76-method-surd
+  section: '7.6'
+  tier: 'H'
+  dfe: [N8]
+  statement: 'Work out $\sqrt{12}\times\sqrt{3}$. Which method is quicker: simplify each surd first, or multiply under one root? Give a reason.'
+  answer_label: 'Method choice: one root or simplify first'
+  check:
+    kind: all
+    checks:
+      - {kind: evaluate, expression: 'sqrt(12)*sqrt(3)', answer: '6'}
+      - {kind: evaluate, expression: 'sqrt(12*3)', answer: '6'}
+  answer_text: 'Multiply under one root: $\sqrt{12}\times\sqrt3=\sqrt{36}=6$. Simplifying first gives $2\sqrt3\times\sqrt3=6$ as well, but the one-root method is shorter.'

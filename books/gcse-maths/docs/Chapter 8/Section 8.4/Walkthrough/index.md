@@ -15,8 +15,6 @@ kind: walkthrough
 
 **By the end of this section you can:** factorise an expression by taking out its common factor and check by expanding.
 
-**Covers:** A4.
-
 ## Learn the method
 
 Factorising reverses expanding. It writes a sum as a product.

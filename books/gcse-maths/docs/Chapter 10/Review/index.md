@@ -36,7 +36,7 @@ $17$ tiles and Pattern B has $32$.
 ## Mixed practice: choose a method and explain why
 
 For each question, name the type of rule or calculation you will use before
-working it out.
+working it out, and say why it fits.
 
 1. Continue the sequence $3,8,13,18,\ldots$ by two terms.
 2. Find the 20th term of the sequence with nth term $5n-2$.
@@ -73,7 +73,7 @@ working it out.
 - find linear, quadratic, and geometric rules;
 - choose a method and check whether it fits the terms.
 
-## Return to your connection
+## Your relevance reflection
 
 Return to the pattern you described at the chapter start. Can you write a rule
 for it now? Explain what the position number would mean in your example.

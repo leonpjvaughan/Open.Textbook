@@ -28,6 +28,6 @@ A school is drawing a model of a garden. The path is 18 m long, and a scale draw
 
 At each progress check, return to the garden path. By the end, you can choose and use its scale accurately.
 
-## Your connection
+## Your turn to connect it
 
 Ratios compare quantities in many settings. Write one place where you or someone you know compares quantities, such as a recipe, journey or model. What quantities are compared?

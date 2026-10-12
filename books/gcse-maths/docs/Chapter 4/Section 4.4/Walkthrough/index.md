@@ -48,5 +48,3 @@ The discount is $\frac14=0.25=25\%$. The reduced price is $75\%$ of £48: $0.75\
 - convert a fraction to a terminating decimal;
 - recognise when a fraction has a terminating decimal;
 - order decimals and fractions.
-
-**Covers:** [N10].

@@ -40,7 +40,7 @@ Undo addition, then multiplication.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Subtract $2$, then divide by $3$.
 </details>
 
 <details markdown="1">
@@ -60,7 +60,7 @@ Let the number be $n$ and write an equation.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Write $n+9=23$.
 </details>
 
 <details markdown="1">
@@ -80,7 +80,7 @@ Let the smaller integer be $n$; the next is $n+1$.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Write $n+(n+1)=25$.
 </details>
 
 <details markdown="1">
@@ -100,7 +100,7 @@ Use perimeter = two widths + two lengths.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Write $2w+2(w+2)=28$.
 </details>
 
 <details markdown="1">
@@ -120,7 +120,7 @@ Let $v$ be the visit count.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Write $4+3v=25$.
 </details>
 
 <details markdown="1">

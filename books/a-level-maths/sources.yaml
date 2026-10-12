@@ -11,7 +11,7 @@
 # /subjects/mathematics/a-level/mathematics-7357 (which redirects to
 # .../specification). Its specification PDF is served from filestore.aqa.org.uk.
 
-retrieved: 2026-10-11
+retrieved: 2026-10-12
 
 references:
   - id: dfe-a-level
@@ -164,6 +164,82 @@ references:
       science and AI qualification; no action to change A-level Mathematics
       subject content.
 
+  - id: aqa-formulae
+    # The reader is entitled to reach this one: it is content the book
+    # reproduces, so About this book links it.
+    attribution: true
+    retrieved: 2026-10-12
+    title: >-
+      AQA Formulae for A-level Mathematics, AS Mathematics (7356) and A-level
+      Mathematics (7357), v1.2 (first issued August 2017)
+    url: https://filestore.aqa.org.uk/resources/mathematics/AQA-AS-A-MATHS-FORMULAE.PDF
+    role: >-
+      AQA's exam-room formulae booklet for A-level Mathematics. Six pages:
+      Pure mathematics (binomial series; arithmetic and geometric series;
+      small-angle approximations; trigonometric identities; the derivatives of
+      tan, cosec, sec and cot and the quotient rule; differentiation from first
+      principles; integration by parts and the integrals of tan and cot;
+      Newton-Raphson; the trapezium rule), Mechanics (constant acceleration),
+      and Probability and statistics (union and intersection rules, standard
+      deviation, the binomial distribution, the sampling distribution of the
+      mean). It carries no statistical tables: the larger formulae-and-tables
+      booklet belongs to Further Mathematics. Reached from AQA's filestore; AQA
+      prints the booklet as required for all AS and A-level Mathematics exams
+      (a June 2023 7357/1 question paper says "You must have the AQA Formulae
+      for A-level Mathematics booklet").
+
+  - id: edexcel-formulae
+    # The reader is entitled to reach this one: it is content the book
+    # reproduces, so About this book links it.
+    attribution: true
+    retrieved: 2026-10-12
+    title: >-
+      Pearson Edexcel Mathematical Formulae and Statistical Tables, Issue 1
+      (July 2017), for Advanced Subsidiary and Advanced GCE Mathematics
+      (8MA0/9MA0) and Further Mathematics (8FM0/9FM0)
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/pearson-edexcel-a-level-gce-in-mathematics-formulae-book.pdf
+    role: >-
+      Edexcel's exam-room booklet, arranged by qualification. Section 2 is the
+      A Level Mathematics provision used here: mensuration; arithmetic,
+      binomial and geometric series; logarithms and exponentials; the
+      trigonometric addition formulae and the sum-to-product formulae;
+      small-angle approximations; the derivatives of tan kx, sec kx, cot kx and
+      cosec kx, the quotient rule and first principles; the integrals of
+      sec^2 kx, tan kx, cot kx, cosec kx and sec kx, and integration by parts;
+      the trapezium rule and Newton-Raphson; probability, standard deviation
+      and the binomial and sampling distributions; and constant-acceleration
+      kinematics. Section 5 carries the statistical tables the booklet marks as
+      required for A Level Mathematics: the binomial cumulative distribution
+      function, the percentage points of the Normal distribution, the critical
+      values for correlation coefficients (product moment) and random numbers.
+      A 2020 Edexcel Paper 31 cover names the booklet "Mathematical Formulae
+      and Statistical Tables (Green)", confirming it is the exam-room document.
+
+  - id: ocr-formulae
+    # The reader is entitled to reach this one: it is content the book
+    # reproduces, so About this book links it.
+    attribution: true
+    retrieved: 2026-10-12
+    title: >-
+      OCR A Level Mathematics A (H240) formulae sheet, printed in every
+      question paper; H240/01 June 2025 question paper, and the specification
+      v3.1 (August 2026) appendix
+    url: https://www.ocr.org.uk/Images/752329-question-paper-pure-mathematics.pdf
+    role: >-
+      OCR has no separate examination-room booklet: the formulae sheet is
+      printed on pages 2-3 of each question paper. The H240/01 Pure Mathematics
+      paper sat in June 2025 prints it, and the specification v3.1 (August 2026)
+      reproduces the sheet after its "Learners will be given the following
+      formulae sheet in each question paper" statement, so the two agree. It
+      covers arithmetic, geometric and binomial series; the derivatives of
+      tan kx, sec x, cot x and cosec x, the quotient rule and first principles;
+      integration by parts and the integrals of f'/f and f'(f)^n; small-angle
+      approximations; the trigonometric addition formulae; the trapezium rule
+      and Newton-Raphson; probability; standard deviation; the binomial
+      distribution; a hypothesis test for the mean of a Normal distribution;
+      the percentage points of the Normal distribution; and constant-
+      acceleration kinematics in one and two dimensions.
+
   - id: ofqual-updates
     title: "Ofqual: Latest updates from Ofqual (updated 7 September 2026)"
     url: https://www.gov.uk/guidance/latest-updates-from-ofqual
@@ -204,3 +280,12 @@ downloads:
   - file: ocr_lds.docx
     url: https://www.ocr.org.uk/Images/471937-notes-on-the-large-data-set.docx
     text: false
+  - file: aqa_formulae.pdf
+    url: https://filestore.aqa.org.uk/resources/mathematics/AQA-AS-A-MATHS-FORMULAE.PDF
+    text: true
+  - file: edexcel_formulae.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/pearson-edexcel-a-level-gce-in-mathematics-formulae-book.pdf
+    text: true
+  - file: ocr_h240_qp_jun25.pdf
+    url: https://www.ocr.org.uk/Images/752329-question-paper-pure-mathematics.pdf
+    text: true

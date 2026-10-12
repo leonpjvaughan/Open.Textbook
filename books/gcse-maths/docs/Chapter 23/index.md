@@ -9,7 +9,7 @@ strand: probability
 Probability measures how likely an event is. You will describe chance, use data,
 count outcomes and combine events.
 
-## By the end of this chapter
+## By the end of this chapter you will be able to
 
 You will be able to:
 

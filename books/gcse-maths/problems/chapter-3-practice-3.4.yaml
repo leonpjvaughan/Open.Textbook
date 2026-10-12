@@ -68,3 +68,15 @@ problems:
     answer_label: 'Rewrite a radical using indices'
     check: {kind: evaluate, expression: '1/root(b**2,3)', answer: 'b**(-2/3)'}
     answer_text: '$b^{-2/3}$'
+  - id: ch3-34-method-index
+    section: '3.4'
+    tier: 'H'
+    dfe: [N7]
+    statement: 'Two methods evaluate $64^{2/3}$: find the cube root first, or raise to the power $2$ first. Which is easier, and why? Use your chosen method to evaluate $64^{2/3}$.'
+    answer_label: 'Method choice: root first or power first'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'root(64,3)**2', answer: '16'}
+        - {kind: evaluate, expression: '64**(2/3)', answer: '16'}
+    answer_text: 'Find the cube root first: $\sqrt[3]{64}=4$, then square it to get $16$. Raising to the power $2$ first gives $4096$, so the numbers are larger and harder to handle.'

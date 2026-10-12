@@ -94,3 +94,14 @@ problems:
     check: {kind: 'solve', equation: '2*x + 1 - 17 = 0', variable: 'x', answer: ['8']}
     symbols: {'x': {real: true}}
     answer_text: '$x=8$, since the perpendicular from the centre bisects the chord.'
+  - id: ch21-214-method-cyclic
+    section: '21.4'
+    tier: 'H'
+    dfe: [G10]
+    statement: 'In a cyclic quadrilateral, one angle is $(3x)^\circ$ and its opposite angle is $x^\circ$. Which method fits: the cyclic-quadrilateral theorem or the triangle angle sum? Give a reason. Then find $x$.'
+    answer_label: 'Method choice: cyclic-quadrilateral theorem'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3*45+45', answer: '180'}
+    answer_text: 'Use the cyclic-quadrilateral theorem: opposite angles total $180^\circ$, so $3x+x=180$ and $x=45$. The triangle angle sum applies to a triangle, not to a quadrilateral.'

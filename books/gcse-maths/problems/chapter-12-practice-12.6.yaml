@@ -122,3 +122,15 @@ problems:
         - '-1+2*sqrt(2)'
         - '-1-2*sqrt(2)'
     answer_text: '$x=-1\pm2\sqrt2$.'
+  -
+    id: ch12-126-method-square
+    section: '12.6'
+    tier: 'H'
+    dfe: [A18]
+    statement: 'Solve $x^2+6x+5=0$. Which method fits better: factorising or completing the square? Give a reason. Then solve it, and state the minimum value of $x^2+6x+5$.'
+    answer_label: 'Method choice: factorise or complete the square'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '5-36/4', answer: '-4'}
+    answer_text: 'Complete the square: $x^2+6x+5=(x+3)^2-4$, so the roots are $x=-1$ and $x=-5$, and the minimum value is $-4$. Factorising also finds the roots quickly, but it does not give the minimum.'

@@ -120,3 +120,15 @@ problems:
     lhs: 12/(1/2)
     rhs: 18/(3/4)
   answer_text: Both 24 km/h
+
+- id: ch11-115-method-speed
+  section: '11.5'
+  tier: H
+  dfe: [A14, R14]
+  statement: 'On a distance-time graph, the line rises 30 km in 0.5 h. To find the speed, which method applies: the gradient, or the area? Give a reason, then find the speed.'
+  answer_label: 'Method choice: gradient or area'
+  check:
+    kind: all
+    checks:
+      - {kind: evaluate, expression: '30/0.5', answer: '60'}
+  answer_text: 'Use the gradient: speed is the change in distance divided by the change in time, $30\div0.5=60$ km/h. The area under a distance-time graph has no meaning.'

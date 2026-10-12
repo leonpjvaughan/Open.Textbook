@@ -35,12 +35,12 @@ If an answer differs, revisit Section 8.2 for collecting like terms and Section 
 
 <details markdown="1"><summary>Hint</summary>
 
-Apply the outside factor to both terms inside the bracket.
+The $2$ multiplies both $x$ and $3$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
+Work out $2\times x$ and $2\times3$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -52,12 +52,12 @@ $2x+6$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Apply the outside factor to both terms inside the bracket.
+The minus sign applies to the $2$ as well.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
+Work out $4\times a$ and $4\times(-2)$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -69,12 +69,12 @@ $4a-8$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Apply the outside factor to both terms inside the bracket.
+A negative factor changes the sign of both terms.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
+Work out $-3\times y$ and $-3\times5$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -86,12 +86,12 @@ $-3y-15$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Apply the outside factor to both terms inside the bracket.
+Expand the bracket first, then collect the $x$ terms.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
+Write $2x+8+3x$, then add $2x+3x$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -103,12 +103,12 @@ $2x+8+3x=5x+8$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Apply the outside factor to both terms inside the bracket.
+Expand the bracket, then subtract $3p$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
+Write $10p-5-3p$, then work out $10p-3p$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -120,12 +120,12 @@ $10p-5-3p=7p-5$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Apply the outside factor to both terms inside the bracket.
+Multiply $3$ by both terms inside.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
+Work out $3\times4k$ and $3\times(-2)$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -137,12 +137,12 @@ $12k-6$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Apply the outside factor to both terms inside the bracket.
+The $6$ multiplies the $2r$ term and the $1$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
+Work out $6\times2r$ and $6\times1$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -154,12 +154,12 @@ $12r+6$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Apply the outside factor to both terms inside the bracket.
+Both signs flip because the factor is negative.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Multiply the outside number by each term inside the brackets. Then collect like terms if needed.
+Work out $-2\times3w$ and $-2\times(-4)$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>

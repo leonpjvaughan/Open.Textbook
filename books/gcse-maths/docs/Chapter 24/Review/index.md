@@ -6,13 +6,13 @@ kind: review
 
 # Chapter 24: Review
 
-## Resolve the chapter problem
+## The chapter problem, solved
 
 Plan a survey across the whole school, using a sample that includes different year groups and travel methods. Ask a neutral question such as “How did you travel to school today?” Record answers in a frequency table. A bar chart compares the travel categories. If you repeat the survey monthly, a time-series line graph can show changes. State that a sample estimate may differ from the full population.
 
 Compare your first prediction with a suitable survey result. The prediction was a starting idea, not a test score.
 
-## Mixed practice
+## Mixed practice: choose a method and explain why
 
 For each item, choose the method and explain why it fits.
 
@@ -24,6 +24,8 @@ For each item, choose the method and explain why it fits.
 6. A bag contains 3 red and 5 blue counters. Find the probability of red. **Method:** favourable outcomes over total outcomes.
 7. A rectangle has length 8 cm and width 3 cm. Find its area. **Method:** area of a rectangle.
 
-## Reflect
+## Your relevance reflection
 
 Which measure or chart can you now choose with a reason? Name one point you would check before trusting a sample or graph.
+
+Return to your example from the start. Which chart or average would answer the question you named? Write one sentence.

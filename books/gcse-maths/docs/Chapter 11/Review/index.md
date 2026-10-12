@@ -20,7 +20,7 @@ the horizontal axis and distance from home on the vertical axis. Use the points
 $(0,0)$ and $(30,2)$, then draw the straight line that models a constant speed.
 Its gradient is $2/30=1/15$ km per minute.
 
-## Mixed practice: choose a method
+## Mixed practice: choose a method and explain why
 
 For each item, name the graph method you will use and explain why before
 calculating. Questions marked **H** are Higher only.
@@ -41,7 +41,7 @@ calculating. Questions marked **H** are Higher only.
 - compare parallel and perpendicular lines;
 - read rates from real-life graphs and interpret area under a graph.
 
-## Your reflection
+## Your relevance reflection
 
 Return to your example from the chapter opener. What could the graph help you
 predict or compare? Write one thing you can now explain using a graph.

@@ -15,8 +15,6 @@ kind: walkthrough
 
 **By the end of this section you can:** use algebraic notation and identify variables, terms, coefficients, constants, expressions, equations, identities and formulae.
 
-**Covers:** A1, A3.
-
 ## Learn the method
 
 A variable is a letter that stands for a number. A term is a number, a letter, or numbers and letters multiplied together.

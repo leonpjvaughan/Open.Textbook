@@ -40,7 +40,7 @@ Collect the constant, then divide.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Subtract $5$ to get $2x$ alone.
 </details>
 
 <details markdown="1">
@@ -60,7 +60,7 @@ Move one unknown term by subtracting it on both sides.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Subtract $2x$ from both sides.
 </details>
 
 <details markdown="1">
@@ -80,7 +80,7 @@ Expand before collecting unknown terms.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Expand the bracket to $3x+3$ first.
 </details>
 
 <details markdown="1">
@@ -100,7 +100,7 @@ Collect unknowns on one side.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Subtract $2x$ from both sides.
 </details>
 
 <details markdown="1">
@@ -120,7 +120,7 @@ Expand and compare both sides.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Expand the left side, then compare with the right.
 </details>
 
 <details markdown="1">

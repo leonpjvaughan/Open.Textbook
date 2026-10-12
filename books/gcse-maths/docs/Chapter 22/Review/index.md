@@ -17,10 +17,9 @@ $\frac12(\mathbf{u}+\mathbf{v})$. The midpoint of $BD$ has position vector
 $\frac12(\mathbf{u}+\mathbf{v})$ too. The midpoints are the same point, so the
 diagonals bisect each other. The prediction from the chapter opener was correct.
 
-## Mixed practice — choose the method first
+## Mixed practice: choose a method and explain why
 
-For each item, name the method before you work it out. Where asked, explain why
-that method applies.
+For each item, name the method before you work it out. Explain why that method applies.
 
 1. Point $P=(-2,4)$ is translated by $\begin{pmatrix}5\\-3\end{pmatrix}$. Give its image coordinates.
 2. Find the vector from $A=(3,-1)$ to $B=(-2,5)$.

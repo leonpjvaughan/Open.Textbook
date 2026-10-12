@@ -48,5 +48,3 @@ One keyboard costs £48 and the discount is one quarter of that price. Work out 
 - divide by multiplying by the reciprocal;
 - calculate with mixed numbers;
 - interpret fraction division as the number of groups.
-
-**Covers:** [N2].

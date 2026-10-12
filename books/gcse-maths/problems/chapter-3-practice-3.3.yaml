@@ -80,3 +80,16 @@ problems:
     answer_label: 'Simplify and use positive indices'
     check: {kind: evaluate, expression: '6*a**5*b**2/(3*a**2*b**5)', answer: '2*a**3/b**3'}
     answer_text: '$\\frac{2a^3}{b^3}$'
+
+  - id: ch3-33-method-indices
+    section: '3.3'
+    tier: H
+    dfe: [A4, N7]
+    statement: 'Simplify $a^3\times a^4$ and $(a^3)^4$. Which index law applies to each, and why? Then write each in its simplest form.'
+    answer_label: 'Method choice: add or multiply the indices'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'a**(3+4)', answer: 'a**7'}
+        - {kind: evaluate, expression: 'a**(3*4)', answer: 'a**12'}
+    answer_text: 'Multiplying powers of the same base adds the indices: $a^3\times a^4=a^7$. A power of a power multiplies the indices: $(a^3)^4=a^{12}$. The position of the brackets decides which law to use.'

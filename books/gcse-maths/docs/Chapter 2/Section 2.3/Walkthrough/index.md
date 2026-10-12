@@ -15,8 +15,6 @@ kind: walkthrough
 
 **Objectives:** list possibilities without repetition or omission; use a table or organised list to solve a counting problem.
 
-**Covers:** N5 (systematic listing strategies).
-
 ## Organised lists
 
 A **systematic list** follows a fixed order. You choose one part, record every possible partner, then move to the next part. This makes omissions easier to spot.

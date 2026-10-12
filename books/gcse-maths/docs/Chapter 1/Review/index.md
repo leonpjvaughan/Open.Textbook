@@ -36,9 +36,9 @@ $$
 Notice that the same answer comes from $50 + 39.20 = £89.20$: the cash box is the
 float plus the profit.
 
-## Mixed practice — choose the method first
+## Mixed practice: choose a method and explain why
 
-For each question, say which method you will use *before* you calculate.
+For each question, say which method you will use *before* you calculate, and explain why it fits.
 
 1. Write the value of the digit $4$ in $6\,048.2$.
 

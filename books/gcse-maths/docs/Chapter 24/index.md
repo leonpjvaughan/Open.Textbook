@@ -14,9 +14,7 @@ A school wants to describe how pupils travel to school and whether the pattern c
 
 **First contact:** Predict which travel method might be most common. You are not being marked; record your prediction and revisit it after learning about samples and charts.
 
-## By the end of this chapter
-
-You will be able to:
+## By the end of this chapter you will be able to
 
 - plan data collection, choose a sample, and identify limits in what it can show;
 - organise categorical and discrete data in tables and suitable charts;
@@ -24,7 +22,7 @@ You will be able to:
 - find averages from a frequency table;
 - read and construct line graphs for data collected over time.
 
-## Where this could connect to your life
+## Your turn to connect it
 
 A survey, club register or team record can use these methods. Where might you or someone you know collect information? Write one example and say what question the data could answer.
 

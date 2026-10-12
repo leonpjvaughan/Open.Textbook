@@ -52,5 +52,3 @@ The discount is $\frac{1}{4}$ of £48. Subtract it from £48: $48-\frac14(48)=48
 - simplify a fraction answer;
 - calculate with mixed numbers;
 - use a negative answer when subtracting fractions.
-
-**Covers:** [N2].

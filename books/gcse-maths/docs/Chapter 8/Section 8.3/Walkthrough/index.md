@@ -15,8 +15,6 @@ kind: walkthrough
 
 **By the end of this section you can:** expand a single bracket, including when the factor is negative, then collect like terms.
 
-**Covers:** A4.
-
 ## Learn the method
 
 Expanding means multiplying each term inside brackets by the factor outside. This uses the distributive law.

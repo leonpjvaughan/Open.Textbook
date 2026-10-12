@@ -35,12 +35,12 @@ If an answer differs, revisit Section 1.3 for adding with negative numbers and S
 
 <details markdown="1"><summary>Hint</summary>
 
-Group terms with the same letter part, then collect constants.
+Both terms contain the letter $a$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Group the terms with the same letter, then add their coefficients.
+Add the coefficients $4$ and $3$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -52,12 +52,12 @@ $7a$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Group terms with the same letter part, then collect constants.
+Only $9y$ and $2y$ are like terms.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Group the terms with the same letter, then add their coefficients.
+Subtract $2y$ from $9y$, then keep the $+5$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -69,12 +69,12 @@ $7y+5$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Group terms with the same letter part, then collect constants.
+Collect the $p$ terms and the numbers separately.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Group the terms with the same letter, then add their coefficients.
+Add $3p$ and $2p$, then work out $4-9$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -86,12 +86,12 @@ $5p-5$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Group terms with the same letter part, then collect constants.
+The $m$ terms are $7m$ and $2m$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Group the terms with the same letter, then add their coefficients.
+Add $7m+2m$, then add $-3+8$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -103,12 +103,12 @@ $9m+5$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Group terms with the same letter part, then collect constants.
+There are two pairs of like terms here.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Group the terms with the same letter, then add their coefficients.
+Collect $4x+2x$ and $3y-y$ separately.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -120,12 +120,12 @@ $6x+2y$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Group terms with the same letter part, then collect constants.
+Every term has the same letter $r$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Group the terms with the same letter, then add their coefficients.
+Add and subtract the coefficients $2$, $7$ and $3$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -137,12 +137,12 @@ $6r$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Group terms with the same letter part, then collect constants.
+There is no other number term to collect with $-4$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Group the terms with the same letter, then add their coefficients.
+Add $5b+2b$, then write the $-4$ after it.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -154,12 +154,12 @@ $7b-4$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Group terms with the same letter part, then collect constants.
+Collect the $c$ terms and the numbers separately.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Group the terms with the same letter, then add their coefficients.
+Work out $6c-2c$, then add $3+8$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>

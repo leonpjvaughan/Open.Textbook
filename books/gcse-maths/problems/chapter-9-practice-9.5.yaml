@@ -120,3 +120,16 @@ problems:
     lhs: '5'
     rhs: '14'
   answer_text: '$x\geq-3$'
+
+- id: ch9-95-method-inequality
+  section: '9.5'
+  tier: F
+  dfe: [A22]
+  statement: 'Solve $-2x+5\geq11$. Which method finds the solution faster: rearrange the inequality, or test values in a table? Give a reason, then solve it and check the boundary.'
+  answer_label: 'Method choice: rearrange or test values'
+  check:
+    kind: all
+    checks:
+      - {kind: evaluate, expression: '-2*(-3)+5', answer: '11'}
+      - {kind: evaluate, expression: '-2*(-4)+5', answer: '13'}
+  answer_text: 'Rearrange: subtract 5 to get $-2x\geq6$, then divide by $-2$ and reverse the sign, so $x\leq-3$. Check the boundary $x=-3$: $-2(-3)+5=11$, which satisfies $\geq11$, and $x=-4$ gives 13.'

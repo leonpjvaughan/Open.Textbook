@@ -35,12 +35,12 @@ If an answer differs, revisit Section 1.4 for the order of operations and Sectio
 
 <details markdown="1"><summary>Hint</summary>
 
-Substitute the values in brackets, then follow the order of operations.
+Replace $a$ with $3$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Replace each letter with its stated value in brackets. Evaluate powers before other operations.
+Write $2(3)+5$, then multiply before adding.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -52,12 +52,12 @@ $2(3)+5=11$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Substitute the values in brackets, then follow the order of operations.
+The power applies to the whole value $-3$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Replace each letter with its stated value in brackets. Evaluate powers before other operations.
+Write $(-3)^2+4$ and keep the brackets.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -69,12 +69,12 @@ $(-3)^2+4=13$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Substitute the values in brackets, then follow the order of operations.
+Two letters need two substitutions.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Replace each letter with its stated value in brackets. Evaluate powers before other operations.
+Write $3(4)-2(5)$, then work out each product.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -86,12 +86,12 @@ $12-10=2$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Substitute the values in brackets, then follow the order of operations.
+$lw$ means $l$ multiplied by $w$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Replace each letter with its stated value in brackets. Evaluate powers before other operations.
+Write $A=8\times3.5$, then multiply.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -103,12 +103,12 @@ $A=8(3.5)=28$ square units.
 
 <details markdown="1"><summary>Hint</summary>
 
-Substitute the values in brackets, then follow the order of operations.
+$at$ means $a$ multiplied by $t$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Replace each letter with its stated value in brackets. Evaluate powers before other operations.
+Write $v=4+3(5)$, then multiply before adding.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -120,12 +120,12 @@ $v=4+3(5)=19$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Substitute the values in brackets, then follow the order of operations.
+Square $x$ before multiplying by $3$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Replace each letter with its stated value in brackets. Evaluate powers before other operations.
+Write $3(-2)^2-2$ and evaluate the power first.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -137,12 +137,12 @@ $3(-2)^2-2=10$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Substitute the values in brackets, then follow the order of operations.
+Replace $r$ with $6$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Replace each letter with its stated value in brackets. Evaluate powers before other operations.
+Write $5(6)-2$, then multiply before subtracting.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -154,12 +154,12 @@ $5(6)-2=28$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Substitute the values in brackets, then follow the order of operations.
+There are two terms to substitute.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Replace each letter with its stated value in brackets. Evaluate powers before other operations.
+Write $P=2(7)+2(3)$, then work out each product.
 </details>
 
 <details markdown="1"><summary>Full working</summary>

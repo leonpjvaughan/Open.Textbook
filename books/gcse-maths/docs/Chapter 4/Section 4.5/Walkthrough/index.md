@@ -55,5 +55,3 @@ The keyboard discount is $\frac14$. As a decimal this is $0.25$, so it is not re
 - convert a recurring decimal to a fraction;
 - convert a recurring decimal with a non-recurring part to a fraction;
 - use subtraction to remove a repeating tail.
-
-**Covers:** [N10].

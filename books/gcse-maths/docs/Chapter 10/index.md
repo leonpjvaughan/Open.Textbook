@@ -28,7 +28,7 @@ B first has more tiles.
 - recognise square, cube, triangular and Fibonacci sequences;
 - find and use rules for linear, quadratic and geometric sequences.
 
-## Your route through the chapter
+## Roadmap
 
 1. [10.1 Term-to-term and position-to-term rules](Section 10.1/Walkthrough/index.md)
 2. [10.2 Special sequences](Section 10.2/Walkthrough/index.md)
@@ -37,7 +37,7 @@ B first has more tiles.
 5. [10.5 Geometric sequences](Section 10.5/Walkthrough/index.md)
 6. [Review](Review/index.md)
 
-## Make a connection
+## Your turn to connect it
 
 Where have you seen a pattern that grows in steps, such as tile designs, savings,
 or points in a game? Describe one pattern and say how a rule could help.

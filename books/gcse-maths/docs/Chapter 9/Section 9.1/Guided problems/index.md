@@ -40,7 +40,7 @@ Undo the addition.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Subtract $6$ from both sides.
 </details>
 
 <details markdown="1">
@@ -60,7 +60,7 @@ Undo multiplication by $4$.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Divide both sides by $4$.
 </details>
 
 <details markdown="1">
@@ -80,7 +80,7 @@ Undo addition before multiplication.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Subtract $3$ first to leave $2x$ alone.
 </details>
 
 <details markdown="1">
@@ -100,7 +100,7 @@ Remove the outside factor first.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Divide both sides by $3$ before removing the bracket.
 </details>
 
 <details markdown="1">
@@ -120,7 +120,7 @@ Add $1$, then undo division by $4$.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Add $1$ to both sides first.
 </details>
 
 <details markdown="1">

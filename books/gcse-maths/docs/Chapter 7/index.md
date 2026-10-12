@@ -36,6 +36,6 @@ Work out the real length of the path in kilometres. Then work out the walker's a
 
 At each Progress check, return to the survey measurements and decide which method now helps.
 
-## Your connection
+## Your turn to connect it
 
 Where have you or someone you know used a map scale, compared travel speeds, measured a quantity, or handled very large or small numbers? Write one example. You can return to it after studying the chapter.

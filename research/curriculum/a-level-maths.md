@@ -1,6 +1,6 @@
 # A-level Mathematics (England) — curriculum findings
 
-**Retrieved:** 2026-10-11 (all sources fetched on this date; see `a-level-maths.sources.yaml`).
+**Retrieved:** 2026-10-11 for the curriculum sources, and 2026-10-12 for the exam-room formulae booklets in §11 (see `a-level-maths.sources.yaml`).
 **Scope:** the DfE subject content for A-level Mathematics, how AQA 7357, Pearson
 Edexcel 9MA0 and OCR H240 divide it across papers, the assessment objectives, the
 Large Data Set, the assumed prior knowledge, and what changes for 2026–2028.
@@ -681,3 +681,50 @@ generically and record the gap.
   block in the draft records the item count per letter.
 - Paper structures were taken from each board's "Assessment" or "Forms of
   assessment" section, not from a revision website.
+
+---
+
+## 11. The exam-room formulae booklets (added 2026-10-12)
+
+The book now declares a formulae booklet, so the three awarding bodies' own
+exam-room documents were retrieved and recorded in
+`books/a-level-maths/sources.yaml` (the authoritative manifest) and in this
+file's `sources.yaml`. All three were reached from the awarding body, not a
+revision site. The data is `books/a-level-maths/booklet/a-level-maths.yaml` and
+`python -m textbook.booklet` validates it.
+
+| Board | Document retrieved | Statistical tables on it |
+|---|---|---|
+| **AQA 7357** | *Formulae for A-level Mathematics*, v1.2 (first issued August 2017), `AQA-AS-A-MATHS-FORMULAE.PDF` on `filestore.aqa.org.uk` `[aqa-formulae]` | **None.** The larger formulae-and-tables booklet belongs to Further Mathematics. |
+| **Pearson Edexcel 9MA0** | *Mathematical Formulae and Statistical Tables*, Issue 1 (July 2017), for 8MA0/9MA0/8FM0/9FM0 `[edexcel-formulae]` | Binomial cumulative distribution function; percentage points of the Normal distribution; critical values for correlation coefficients (product moment); random numbers. |
+| **OCR H240** | The formulae sheet printed on pages 2–3 of every question paper, confirmed against H240/01 June 2025 `[ocr-formulae]` | Percentage points of the Normal distribution. |
+
+Three findings a later pass should not have to rediscover:
+
+- **AQA's booklet is not linked from the subject page.** The 7357 subject page
+  lists only the specification; the booklet lives on `filestore.aqa.org.uk` and
+  had to be found from a search engine. A June 2023 7357/1 question paper proves
+  it is the exam-room document ("You must have the AQA Formulae for A-level
+  Mathematics booklet"), which is why the specification's Appendix B — a recall
+  list with no booklet in sight — is *not* the provision.
+- **OCR has no separate booklet.** The sheet is part of the question paper, and
+  the specification v3.1 appendix reproduces it after saying learners will be
+  given it. Here the appendix is not stale: the June 2025 paper and the appendix
+  agree. This is luck rather than a rule — check the question paper when both
+  exist.
+- **The `know` group is DfE Appendix B, not the boards' sheets.** The two lists
+  barely overlap: the booklets give, for example, the sum of an arithmetic series
+  and the derivatives of `tan`, `sec`, `cot` and `cosec`, while Appendix B
+  requires recall of the nth term, the elementary derivatives, the quadratic
+  formula, the log laws, the mensuration formulae and the mechanics laws. The
+  booklet data keeps them apart with `provision`.
+
+**Recorded gap.** The widget's **Tables** tab filters tables by tier only, not by
+exam board (`assets/booklet/booklet.js`). Edexcel's statistical tables and OCR's
+Normal percentage points must therefore be carried as board-filtered *items*
+(which is how the Normal and correlation tables are represented), and the large
+machine-generated tables — Edexcel's binomial cumulative distribution function
+and random-numbers grid — are not reproduced in the widget. Making the Tables tab
+board-aware, or allowing `provision` on a table, would let the booklet carry
+them; that is an engine/widget change, not a data change. AQA provides no
+statistical tables, so it must not be shown Edexcel's.

@@ -6,7 +6,7 @@ kind: review
 
 # Chapter 2: Review
 
-## Resolve the chapter problem
+## The chapter problem, solved
 
 To make identical packs from 24 blue and 36 red counters, the number of packs must be a common factor of 24 and 36.
 
@@ -14,7 +14,7 @@ $$24=2^3\times3,\qquad36=2^2\times3^2$$
 
 The HCF is $2^2\times3=12$. The greatest possible number is **12 packs**, each with 2 blue counters and 3 red counters.
 
-## Mixed practice
+## Mixed practice: choose a method and explain why
 
 Work without looking back. For each question, choose a method and give a reason for your choice.
 
@@ -25,6 +25,8 @@ Work without looking back. For each question, choose a method and give a reason 
 5. **Recall from Chapter 1:** work out $18-25$ and estimate $398\times21$ by rounding each number first.
 6. **Recall from Chapter 1:** round 6.284 to two decimal places. Explain which digit decides the rounding.
 
-## Reflect
+## Your relevance reflection
 
 Which method can you now use with more confidence: factor pairs, prime factorisation, an organised list, or the product rule? Write one question you could solve with it, and name a check for your answer.
+
+Return to the example you wrote at the start. Which factor or counting method from this chapter would help in it? Write one sentence.

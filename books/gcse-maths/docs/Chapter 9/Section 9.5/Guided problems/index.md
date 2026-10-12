@@ -40,7 +40,7 @@ Subtract 4 from both sides.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Subtract $4$ to leave $x$ alone.
 </details>
 
 <details markdown="1">
@@ -60,7 +60,7 @@ Divide by positive 2.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Divide both sides by $2$.
 </details>
 
 <details markdown="1">
@@ -80,7 +80,7 @@ Divide by negative 3 and reverse the sign.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Divide both sides by $-3$.
 </details>
 
 <details markdown="1">
@@ -100,7 +100,7 @@ Add 5, then divide by 4.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Add $5$ to both sides, then divide by $4$.
 </details>
 
 <details markdown="1">
@@ -120,7 +120,7 @@ Translate “triple” and “less than” into an inequality.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Write $3n<18$, then divide by $3$.
 </details>
 
 <details markdown="1">

@@ -35,12 +35,12 @@ If an answer differs, revisit Section 9.1 for solving equations and Section 1.4 
 
 <details markdown="1"><summary>Hint</summary>
 
-Undo the operation affecting the required subject, in reverse order.
+The $7$ is added to $x$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Use the inverse operation on both sides to isolate the named letter.
+Subtract $7$ from both sides.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -52,12 +52,12 @@ $x=y-7$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Undo the operation affecting the required subject, in reverse order.
+$x$ is multiplied by $4$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Use the inverse operation on both sides to isolate the named letter.
+Divide both sides by $4$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -69,12 +69,12 @@ $x=\frac{y}{4}$. Check: $4(y/4)=y$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Undo the operation affecting the required subject, in reverse order.
+$a$ is added to $b$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Use the inverse operation on both sides to isolate the named letter.
+Subtract $a$ from both sides.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -86,12 +86,12 @@ $b=A-a$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Undo the operation affecting the required subject, in reverse order.
+$r$ is multiplied by $2$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Use the inverse operation on both sides to isolate the named letter.
+Divide both sides by $2$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -103,12 +103,12 @@ $r=\frac{C}{2}$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Undo the operation affecting the required subject, in reverse order.
+First remove the division by $2$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Use the inverse operation on both sides to isolate the named letter.
+Multiply both sides by $2$, then divide by $b$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -120,12 +120,12 @@ $h=\frac{2V}{b}$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Undo the operation affecting the required subject, in reverse order.
+$9$ is subtracted from $t$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Use the inverse operation on both sides to isolate the named letter.
+Add $9$ to both sides.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -137,12 +137,12 @@ $t=s+9$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Undo the operation affecting the required subject, in reverse order.
+Start by removing the $2l$ term.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Use the inverse operation on both sides to isolate the named letter.
+Subtract $2l$ from both sides, then divide by $2$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -164,7 +164,7 @@ Subtract $4$ from both sides of $x=y+4$.
 
 <details markdown="1"><summary>Full working</summary>
 
-$x=x$ — start with the given equation $x=y+4$.
+$x=y+4$ — start with the given equation.
 
 $x-4=y$ — subtract $4$ from both sides.
 

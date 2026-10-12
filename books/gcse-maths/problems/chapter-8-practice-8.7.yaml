@@ -97,3 +97,15 @@ problems:
       expression: '(x-3)*(x+1)*(x+2)'
       answer: 'x**3-7*x-6'
     answer_text: '$x^3-7x-6$.'
+  - id: ch8-87-method-pairing
+    section: '8.7'
+    tier: 'H'
+    dfe: [A4]
+    statement: 'Expand $(x+1)(x-1)(x+2)$. Which method is quicker: pair the difference of squares $(x+1)(x-1)$ first, or expand the first two brackets directly? Give a reason.'
+    answer_label: 'Method choice: pair the difference of squares'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(x+1)*(x-1)*(x+2)', answer: 'x**3+2*x**2-x-2'}
+        - {kind: evaluate, expression: '(x**2-1)*(x+2)', answer: 'x**3+2*x**2-x-2'}
+    answer_text: 'Pair the difference of squares: $(x+1)(x-1)=x^2-1$, then $(x^2-1)(x+2)=x^3+2x^2-x-2$. Expanding $(x+1)(x-1)$ directly first gives the same product but with more terms to collect.'

@@ -124,3 +124,15 @@ problems:
     rounded: '69.6'
     to: '0.1'
   answer_text: about 69.6%
+- id: ch6-65-method-multiplier
+  section: '6.5'
+  tier: 'F'
+  dfe: [R16]
+  statement: '£500 earns $4\%$ compound interest each year for 2 years. Which method is quicker: one multiplier, or working year by year? Give a reason. Then work out the final amount.'
+  answer_label: 'Method choice: one multiplier or yearly steps'
+  check:
+    kind: all
+    checks:
+      - {kind: evaluate, expression: '500*(1.04)**2', answer: '540.8'}
+      - {kind: evaluate, expression: '500*1.0816', answer: '540.8'}
+  answer_text: 'Use one multiplier: $1.04^2=1.0816$, so the amount is $1.0816\times£500=£540.80$. Working year by year gives the same total but takes an extra calculation.'

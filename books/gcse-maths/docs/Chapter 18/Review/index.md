@@ -6,13 +6,13 @@ kind: review
 
 # Chapter 18: Review
 
-## Resolve the chapter problem
+## The chapter problem, solved
 
 Enlarge each coordinate of the mural tile by $2$ about the origin. The image corners are $(2,2)$, $(6,2)$ and $(2,4)$. The corner $(3,1)$ is farthest from the origin before and after enlargement: its squared distance changes from $3^2+1^2=10$ to $6^2+2^2=40$, so its distance doubles.
 
 For the smaller reversed copy, use scale factor $-\frac12$ on the original corners. The images are $(-0.5,-0.5)$, $(-1.5,-0.5)$ and $(-0.5,-1)$. The negative sign places each point across the origin; the magnitude halves each length.
 
-## Mixed practice
+## Mixed practice: choose a method and explain why
 
 For each item, choose a method and explain why it applies.
 
@@ -38,6 +38,8 @@ For each item, choose a method and explain why it applies.
 8. $1:4$; take the cube root of the volume ratio.
 </details>
 
-## Reflect
+## Your relevance reflection
 
 Write one sentence about a method you can now choose confidently. Name one question you would like to practise again.
+
+Return to your example from the start. Say which transformation or scale factor would change the measurement you named.

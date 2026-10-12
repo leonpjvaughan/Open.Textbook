@@ -35,12 +35,12 @@ If an answer differs, revisit Section 8.3 for expanding brackets and Section 2.1
 
 <details markdown="1"><summary>Hint</summary>
 
-Check which number or letter divides every term.
+Both terms are multiples of $6$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Find the greatest factor shared by every term, then divide each term by it.
+Take $6$ outside: write $6(\quad)$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -52,12 +52,12 @@ $6(x+2)$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Check which number or letter divides every term.
+The highest common factor is $5$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Find the greatest factor shared by every term, then divide each term by it.
+Divide $10y$ and $15$ by $5$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -69,12 +69,12 @@ $5(2y-3)$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Check which number or letter divides every term.
+The common factor is a number, not a letter.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Find the greatest factor shared by every term, then divide each term by it.
+Take $4$ outside, then divide each term by $4$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -86,12 +86,12 @@ $4(2a+3b)$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Check which number or letter divides every term.
+Both terms share a number and an $x$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Find the greatest factor shared by every term, then divide each term by it.
+The common factor is $3x$; divide each term by $3x$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -103,12 +103,12 @@ $3x(3x+2)$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Check which number or letter divides every term.
+Both terms share $7$ and $m$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Find the greatest factor shared by every term, then divide each term by it.
+Take $7m$ outside, then divide each term by $7m$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -120,12 +120,12 @@ $7m(2-3n)$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Check which number or letter divides every term.
+The highest common factor is $6$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Find the greatest factor shared by every term, then divide each term by it.
+Divide $18x$ and $24$ by $6$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -137,12 +137,12 @@ $6(3x+4)$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Check which number or letter divides every term.
+Both terms are multiples of $4$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Find the greatest factor shared by every term, then divide each term by it.
+Take $4$ outside, then divide each term by $4$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -154,12 +154,12 @@ $4(3x-2)$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Check which number or letter divides every term.
+The common factor is $5$; there is no shared letter.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Find the greatest factor shared by every term, then divide each term by it.
+Take $5$ outside, then divide each term by $5$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>

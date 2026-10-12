@@ -6,11 +6,11 @@ kind: review
 
 # Chapter 19: Review
 
-## Return to the pond
+## The chapter problem, solved
 
 The pond has radius $4$ m. Its circumference is $2\pi r=8\pi$ m, about $25.1$ m. Its area is $\pi r^2=16\pi$ m², about $50.3$ m². The first estimate should be close to these values. A path border needs the circumference; a cover over the water needs the area.
 
-## Mixed practice
+## Mixed practice: choose a method and explain why
 
 For each question, choose a method first. Say why it applies, then calculate. Check the units in your answer.
 
@@ -29,6 +29,8 @@ For each question, choose a method first. Say why it applies, then calculate. Ch
 1. Area $17.5$ m²; perimeter $17$ m. 2. $1.2\pi$ m. 3. $12\pi$ cm². 4. $216$ cm³. 5. $16\pi$ cm². 6. $74$ cm². 7. $14$ m; use scale and multiplication. 8. $2400$ cm³.
 </details>
 
-## Reflect
+## Your relevance reflection
 
 Which formula can you now choose without a prompt? Which measurement still needs a labelled sketch? Note a next step for your practice.
+
+Return to your example from the start. Which formula from this chapter would find the measurement you named? Write it out.

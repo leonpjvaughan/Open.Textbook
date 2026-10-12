@@ -60,7 +60,10 @@ curriculum: curriculum.yaml
 banks: problems
 sources: sources.yaml
 
-# No `booklet:` yet. A-level Mathematics has a formulae booklet, but the
-# awarding bodies' own documents have not been retrieved and checked, and a
-# booklet written from memory is worse than none. Declaring no booklet ships no
-# widget; see BOOKLETS.md and todo.md.
+# The awarding bodies' own exam-room formulae documents were retrieved on
+# 2026-10-12 and are recorded in sources.yaml. AQA and Pearson Edexcel each
+# give out a booklet and OCR prints its formulae sheet in every question paper,
+# so the three provisions differ; `booklet/a-level-maths.yaml` is the source of
+# truth for what each board gives and what the DfE Appendix B requires students
+# to recall. Declaring the booklet is what ships the widget; see BOOKLETS.md.
+booklet: booklet/a-level-maths.yaml

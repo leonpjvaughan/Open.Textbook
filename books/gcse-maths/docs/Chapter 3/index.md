@@ -17,7 +17,7 @@ You do not need an exact answer yet.
 By the end of this chapter, you will use powers and index laws to find and
 estimate the size.
 
-## By the end of this chapter
+## By the end of this chapter you will be able to
 
 You will be able to:
 

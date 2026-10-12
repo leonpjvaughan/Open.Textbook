@@ -15,8 +15,6 @@ kind: walkthrough
 
 **By the end of this section you can:** rearrange a formula by using inverse operations to make a named letter the subject.
 
-**Covers:** A5.
-
 ## Learn the method
 
 A formula can be rearranged to make a different letter the subject. The subject is the letter alone on one side.

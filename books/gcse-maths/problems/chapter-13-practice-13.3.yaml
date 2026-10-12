@@ -75,3 +75,16 @@ problems:
     answer_label: 'Combined transformations'
     check: {kind: evaluate, expression: -(2**2)+2, answer: '-2'}
     answer_text: '$y=-f(x-3)+2$.'
+
+  - id: ch13-133-method-transform
+    section: '13.3'
+    tier: H
+    dfe: [A13]
+    statement: 'The graph of $y=x^2$ moves 3 units right and 2 units down. Which method finds the new equation: track the turning point, or substitute $x-3$ and subtract 2? Give a reason. Then write the new equation and the turning point.'
+    answer_label: 'Method choice: track the turning point or substitute'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(3-3)**2-2', answer: '-2'}
+        - {kind: evaluate, expression: '(x-3)**2-2-(x**2-6*x+7)', answer: '0'}
+    answer_text: 'Substitute $x-3$ and subtract 2: the new equation is $y=(x-3)^2-2$, which expands to $y=x^2-6x+7$. The turning point is $(3,-2)$. Tracking the point gives the same answer but not the equation.'

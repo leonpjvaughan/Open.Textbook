@@ -18,7 +18,7 @@ A school records the travel time, in minutes, for 20 pupils:
 times lies in a narrow or wide interval. Which value might make the data look
 less typical?
 
-## By the end of this chapter
+## By the end of this chapter you will be able to
 
 You will be able to:
 

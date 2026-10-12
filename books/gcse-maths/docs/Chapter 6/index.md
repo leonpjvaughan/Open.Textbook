@@ -10,7 +10,7 @@ strand: ratio
 
 An account starts with £600 and earns 4% compound interest each year. Predict its balance after two years. Will it be more than £640? Make a prediction before calculating.
 
-## By the end of this chapter
+## By the end of this chapter you will be able to
 
 - Find a percentage of an amount and calculate a percentage change.
 - Recover an original amount after a percentage change.

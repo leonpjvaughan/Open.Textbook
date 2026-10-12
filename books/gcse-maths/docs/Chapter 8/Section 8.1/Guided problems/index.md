@@ -31,12 +31,12 @@ If an answer differs, review the earlier method before continuing.
 
 <details markdown="1"><summary>Hint</summary>
 
-Identify the letter, coefficient and constant in the written expression.
+The number in front of $x$ tells you how many copies to add.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Write $x$ three times as a sum, then name the number multiplying $x$.
+Write $x$ seven times as a sum, then name the number multiplying $x$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -48,7 +48,7 @@ Seven groups of $x$; coefficient $7$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Identify the letter, coefficient and constant in the written expression.
+Start with $n$ and add $5$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
@@ -65,7 +65,7 @@ $n+5$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Identify the letter, coefficient and constant in the written expression.
+Put $3$ in place of $x$ wherever $x$ appears.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
@@ -82,7 +82,7 @@ $3(3)+2=11$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Identify the letter, coefficient and constant in the written expression.
+Terms are the parts joined by plus signs.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
@@ -99,7 +99,7 @@ Terms $4a$ and $4b$; each coefficient is $4$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Identify the letter, coefficient and constant in the written expression.
+The letter $n$ stands for the number of items.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
@@ -116,7 +116,7 @@ $C=5(6)=£30$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Identify the letter, coefficient and constant in the written expression.
+Replace $m$ with $4$, then use the order of operations.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
@@ -133,7 +133,7 @@ The expression $2m+1$ becomes $2(4)+1=9$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Identify the letter, coefficient and constant in the written expression.
+Fewer than means subtract from $t$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
@@ -150,7 +150,7 @@ $t-3$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Identify the letter, coefficient and constant in the written expression.
+Look for an equals sign.
 </details>
 
 <details markdown="1"><summary>Next step</summary>

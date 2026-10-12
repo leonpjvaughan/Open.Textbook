@@ -9,9 +9,6 @@ dfe: [N3]
 kind: problems
 ---
 
-Work through these on your own. Keep your working neat: the method matters as
-much as the answer. Questions marked **H** are for Higher tier.
-
 # 1.4 Priority of operations and inverse operations — Practise
 
 Work through these on your own. Keep your working neat: the method matters as

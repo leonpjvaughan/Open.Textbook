@@ -14,7 +14,7 @@ A school mural uses a triangular tile with corners at $(1,1)$, $(3,1)$ and $(1,2
 
 Progress checks will help you track how transformations move the tile and how scale factors change its measurements. The Review resolves both copies.
 
-**By the end of this chapter you will be able to:**
+## By the end of this chapter you will be able to
 
 - reflect, rotate, translate and enlarge shapes on a coordinate grid;
 - use fractional and negative scale factors;

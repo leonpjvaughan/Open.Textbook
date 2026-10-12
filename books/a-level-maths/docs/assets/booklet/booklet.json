@@ -1,0 +1,1526 @@
+{
+ "meta": {
+  "title": "A-level Mathematics — formulae and tables",
+  "panel_title": "Formulae & tables",
+  "short": "Formulae",
+  "tab_label": "Formulae",
+  "item_label": "formulae",
+  "search_placeholder": "Search formulae…",
+  "series": "current specifications",
+  "default_board": "aqa",
+  "tiered": false,
+  "note": "There is no national A-level booklet. Each board supplies its own, and the three are not the same list: AQA gives out \"Formulae for A-level Mathematics\", Pearson Edexcel gives \"Mathematical Formulae and Statistical Tables\", and OCR prints its formulae sheet on pages 2-3 of each question paper. Provision shown here is taken from those documents, recorded with their retrieval date in sources.yaml, and a board's selector hides anything that board does not allow. Items a board does not print are marked \"You must know\" where the DfE Appendix B requires them to be recalled without being provided. AQA prints no statistical tables in its Mathematics booklet; Edexcel prints binomial, normal, correlation and random-number tables; OCR prints the percentage points of the normal distribution.",
+  "provenance": {
+   "aqa": "AQA, Formulae for A-level Mathematics, v1.2 (first issued August 2017)",
+   "edexcel": "Pearson Edexcel, Mathematical Formulae and Statistical Tables, Issue 1 (July 2017)",
+   "ocr": "OCR A Level Mathematics A (H240) formulae sheet, printed in each question paper"
+  },
+  "basis": "Two documents decide what a reader may use. Each awarding body's exam-room booklet or sheet is the \"On your formula sheet\" group, retrieved by scripts/fetch_sources.sh and listed in sources.yaml. The DfE's \"Mathematics: AS and A level content\" (DFE-00706-2014) Appendix B is the \"You must know\" group: it lists the formulae and identities students must use without their being provided, in these forms or equivalent forms, except where they are the starting point of a proof. The two lists barely overlap, so the boards' booklets give the additional formulae and Appendix B is common to all three. This is why, for example, the sum of an arithmetic series is given but its nth term is not, and why no board prints the quadratic formula. The boards' booklets are not interchangeable: AQA's is one folded sheet with no tables, Edexcel's is a 48-page booklet carrying statistical tables, and OCR's is two pages inside the question paper.",
+  "boards": {
+   "aqa": {
+    "name": "AQA",
+    "code": "7357"
+   },
+   "edexcel": {
+    "name": "Edexcel",
+    "code": "9MA0"
+   },
+   "ocr": {
+    "name": "OCR",
+    "code": "H240"
+   }
+  },
+  "groups": {
+   "given": {
+    "label": "On your formula sheet",
+    "chip": "Given",
+    "tone": "accent"
+   },
+   "question": {
+    "label": "May be given in the question",
+    "chip": "In question",
+    "tone": "muted"
+   },
+   "know": {
+    "label": "You must know",
+    "chip": "Must know",
+    "tone": "warn"
+   }
+  }
+ },
+ "sections": [
+  {
+   "id": "algebra",
+   "title": "Algebra and functions",
+   "items": [
+    {
+     "id": "quadratic-formula",
+     "name": "Quadratic formula",
+     "latex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+     "note": "The roots of ax^2 + bx + c = 0, where a is not 0.",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "quadratic formula",
+      "roots",
+      "discriminant"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mo>−</mo><mi>b</mi><mo>±</mo><msqrt><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}</annotation></semantics></math>"
+    },
+    {
+     "id": "laws-of-indices",
+     "name": "Laws of indices",
+     "latex": "a^x a^y = a^{x+y} \\qquad a^x \\div a^y = a^{x-y} \\qquad (a^x)^y = a^{xy}",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "indices",
+      "index laws",
+      "powers"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>a</mi><mi>x</mi></msup><msup><mi>a</mi><mi>y</mi></msup><mo>=</mo><msup><mi>a</mi><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></msup><mspace width=\"2em\"/><msup><mi>a</mi><mi>x</mi></msup><mo>÷</mo><msup><mi>a</mi><mi>y</mi></msup><mo>=</mo><msup><mi>a</mi><mrow><mi>x</mi><mo>−</mo><mi>y</mi></mrow></msup><mspace width=\"2em\"/><mo stretchy=\"false\">(</mo><msup><mi>a</mi><mi>x</mi></msup><msup><mo stretchy=\"false\">)</mo><mi>y</mi></msup><mo>=</mo><msup><mi>a</mi><mrow><mi>x</mi><mi>y</mi></mrow></msup></mrow><annotation encoding=\"application/x-tex\">a^x a^y = a^{x+y} \\qquad a^x \\div a^y = a^{x-y} \\qquad (a^x)^y = a^{xy}</annotation></semantics></math>"
+    },
+    {
+     "id": "log-definition",
+     "name": "Definition of a logarithm",
+     "latex": "x = a^n \\iff n = \\log_a x",
+     "note": "For a > 0 and x > 0.",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "logarithm",
+      "log",
+      "index",
+      "inverse"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>x</mi><mo>=</mo><msup><mi>a</mi><mi>n</mi></msup><mtext>  </mtext><mo>⟺</mo><mtext>  </mtext><mi>n</mi><mo>=</mo><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>a</mi></msub><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">x = a^n \\iff n = \\log_a x</annotation></semantics></math>"
+    },
+    {
+     "id": "laws-of-logarithms",
+     "name": "Laws of logarithms",
+     "latex": "\\log_a x + \\log_a y = \\log_a (xy) \\qquad \\log_a x - \\log_a y = \\log_a \\left(\\frac{x}{y}\\right) \\qquad k \\log_a x = \\log_a (x^k)",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "logarithm",
+      "log laws",
+      "product",
+      "quotient",
+      "power"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>a</mi></msub><mi>x</mi><mo>+</mo><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>a</mi></msub><mi>y</mi><mo>=</mo><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>a</mi></msub><mo stretchy=\"false\">(</mo><mi>x</mi><mi>y</mi><mo stretchy=\"false\">)</mo><mspace width=\"2em\"/><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>a</mi></msub><mi>x</mi><mo>−</mo><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>a</mi></msub><mi>y</mi><mo>=</mo><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>a</mi></msub><mrow><mo fence=\"true\">(</mo><mfrac><mi>x</mi><mi>y</mi></mfrac><mo fence=\"true\">)</mo></mrow><mspace width=\"2em\"/><mi>k</mi><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>a</mi></msub><mi>x</mi><mo>=</mo><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>a</mi></msub><mo stretchy=\"false\">(</mo><msup><mi>x</mi><mi>k</mi></msup><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\log_a x + \\log_a y = \\log_a (xy) \\qquad \\log_a x - \\log_a y = \\log_a \\left(\\frac{x}{y}\\right) \\qquad k \\log_a x = \\log_a (x^k)</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-change-of-base",
+     "name": "Change of base of a logarithm",
+     "latex": "\\log_a x = \\frac{\\log_b x}{\\log_b a}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "logarithm",
+      "change of base"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>a</mi></msub><mi>x</mi><mo>=</mo><mfrac><mrow><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>b</mi></msub><mi>x</mi></mrow><mrow><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mi>b</mi></msub><mi>a</mi></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">\\log_a x = \\frac{\\log_b x}{\\log_b a}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-exponential-in-base-e",
+     "name": "Exponential written in base e",
+     "latex": "e^{x \\ln a} = a^x",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "exponential",
+      "logarithm",
+      "base e",
+      "ln"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>e</mi><mrow><mi>x</mi><mi>ln</mi><mo>⁡</mo><mi>a</mi></mrow></msup><mo>=</mo><msup><mi>a</mi><mi>x</mi></msup></mrow><annotation encoding=\"application/x-tex\">e^{x \\ln a} = a^x</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "coordinate-geometry",
+   "title": "Coordinate geometry",
+   "items": [
+    {
+     "id": "straight-line",
+     "name": "Equation of a straight line",
+     "latex": "y - y_1 = m(x - x_1)",
+     "note": "A line with gradient m passing through (x1, y1).",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "straight line",
+      "gradient",
+      "coordinate geometry"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>y</mi><mo>−</mo><msub><mi>y</mi><mn>1</mn></msub><mo>=</mo><mi>m</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo>−</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">y - y_1 = m(x - x_1)</annotation></semantics></math>"
+    },
+    {
+     "id": "perpendicular-gradients",
+     "name": "Perpendicular gradients",
+     "latex": "m_1 m_2 = -1",
+     "note": "Two straight lines with gradients m1 and m2 are perpendicular when their product is -1.",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "perpendicular",
+      "gradient",
+      "coordinate geometry"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>m</mi><mn>1</mn></msub><msub><mi>m</mi><mn>2</mn></msub><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding=\"application/x-tex\">m_1 m_2 = -1</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "sequences",
+   "title": "Sequences and series",
+   "items": [
+    {
+     "id": "aqa-arithmetic-series",
+     "name": "Sum of an arithmetic series",
+     "latex": "S_n = \\tfrac{1}{2} n (a + l) = \\tfrac{1}{2} n [2a + (n - 1)d]",
+     "provision": {
+      "aqa": "given"
+     },
+     "keywords": [
+      "arithmetic series",
+      "sum",
+      "nth term"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>S</mi><mi>n</mi></msub><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>n</mi><mo stretchy=\"false\">(</mo><mi>a</mi><mo>+</mo><mi>l</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>n</mi><mo stretchy=\"false\">[</mo><mn>2</mn><mi>a</mi><mo>+</mo><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo><mi>d</mi><mo stretchy=\"false\">]</mo></mrow><annotation encoding=\"application/x-tex\">S_n = \\tfrac{1}{2} n (a + l) = \\tfrac{1}{2} n [2a + (n - 1)d]</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-arithmetic-series",
+     "name": "Sum of an arithmetic series",
+     "latex": "S_n = \\tfrac{1}{2} n (a + l) = \\tfrac{1}{2} n [2a + (n - 1)d]",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "arithmetic series",
+      "sum",
+      "nth term"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>S</mi><mi>n</mi></msub><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>n</mi><mo stretchy=\"false\">(</mo><mi>a</mi><mo>+</mo><mi>l</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>n</mi><mo stretchy=\"false\">[</mo><mn>2</mn><mi>a</mi><mo>+</mo><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo><mi>d</mi><mo stretchy=\"false\">]</mo></mrow><annotation encoding=\"application/x-tex\">S_n = \\tfrac{1}{2} n (a + l) = \\tfrac{1}{2} n [2a + (n - 1)d]</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-arithmetic-series",
+     "name": "Sum of an arithmetic series",
+     "latex": "S_n = \\tfrac{1}{2} n (a + l) = \\tfrac{1}{2} n \\{2a + (n - 1)d\\}",
+     "provision": {
+      "ocr": "given"
+     },
+     "keywords": [
+      "arithmetic series",
+      "sum",
+      "nth term"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>S</mi><mi>n</mi></msub><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>n</mi><mo stretchy=\"false\">(</mo><mi>a</mi><mo>+</mo><mi>l</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>n</mi><mo stretchy=\"false\">{</mo><mn>2</mn><mi>a</mi><mo>+</mo><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo><mi>d</mi><mo stretchy=\"false\">}</mo></mrow><annotation encoding=\"application/x-tex\">S_n = \\tfrac{1}{2} n (a + l) = \\tfrac{1}{2} n \\{2a + (n - 1)d\\}</annotation></semantics></math>"
+    },
+    {
+     "id": "arithmetic-nth-term",
+     "name": "nth term of an arithmetic progression",
+     "latex": "u_n = a + (n - 1)d",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "arithmetic progression",
+      "nth term",
+      "sequence"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>u</mi><mi>n</mi></msub><mo>=</mo><mi>a</mi><mo>+</mo><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo><mi>d</mi></mrow><annotation encoding=\"application/x-tex\">u_n = a + (n - 1)d</annotation></semantics></math>"
+    },
+    {
+     "id": "geometric-series",
+     "name": "Sum of a geometric series",
+     "latex": "S_n = \\frac{a(1 - r^n)}{1 - r}",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "geometric series",
+      "sum",
+      "progression"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>S</mi><mi>n</mi></msub><mo>=</mo><mfrac><mrow><mi>a</mi><mo stretchy=\"false\">(</mo><mn>1</mn><mo>−</mo><msup><mi>r</mi><mi>n</mi></msup><mo stretchy=\"false\">)</mo></mrow><mrow><mn>1</mn><mo>−</mo><mi>r</mi></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">S_n = \\frac{a(1 - r^n)}{1 - r}</annotation></semantics></math>"
+    },
+    {
+     "id": "geometric-sum-infinity",
+     "name": "Sum to infinity of a geometric series",
+     "latex": "S_\\infty = \\frac{a}{1 - r} \\quad \\text{for } |r| < 1",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "geometric series",
+      "sum to infinity",
+      "convergent"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>S</mi><mi mathvariant=\"normal\">∞</mi></msub><mo>=</mo><mfrac><mi>a</mi><mrow><mn>1</mn><mo>−</mo><mi>r</mi></mrow></mfrac><mspace width=\"1em\"/><mtext>for </mtext><mi mathvariant=\"normal\">∣</mi><mi>r</mi><mi mathvariant=\"normal\">∣</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding=\"application/x-tex\">S_\\infty = \\frac{a}{1 - r} \\quad \\text{for } |r| &lt; 1</annotation></semantics></math>"
+    },
+    {
+     "id": "geometric-nth-term",
+     "name": "nth term of a geometric progression",
+     "latex": "u_n = a r^{n-1}",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "geometric progression",
+      "nth term",
+      "sequence"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>u</mi><mi>n</mi></msub><mo>=</mo><mi>a</mi><msup><mi>r</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding=\"application/x-tex\">u_n = a r^{n-1}</annotation></semantics></math>"
+    },
+    {
+     "id": "binomial-series",
+     "name": "Binomial series for a positive integer n",
+     "latex": "(a + b)^n = a^n + \\binom{n}{1} a^{n-1} b + \\binom{n}{2} a^{n-2} b^2 + \\dots + \\binom{n}{r} a^{n-r} b^r + \\dots + b^n \\quad (n \\in \\mathbb{N})",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "binomial series",
+      "expansion",
+      "positive integer"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo stretchy=\"false\">(</mo><mi>a</mi><mo>+</mo><mi>b</mi><msup><mo stretchy=\"false\">)</mo><mi>n</mi></msup><mo>=</mo><msup><mi>a</mi><mi>n</mi></msup><mo>+</mo><mrow><mo fence=\"true\">(</mo><mfrac linethickness=\"0px\"><mi>n</mi><mn>1</mn></mfrac><mo fence=\"true\">)</mo></mrow><msup><mi>a</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mi>b</mi><mo>+</mo><mrow><mo fence=\"true\">(</mo><mfrac linethickness=\"0px\"><mi>n</mi><mn>2</mn></mfrac><mo fence=\"true\">)</mo></mrow><msup><mi>a</mi><mrow><mi>n</mi><mo>−</mo><mn>2</mn></mrow></msup><msup><mi>b</mi><mn>2</mn></msup><mo>+</mo><mo>⋯</mo><mo>+</mo><mrow><mo fence=\"true\">(</mo><mfrac linethickness=\"0px\"><mi>n</mi><mi>r</mi></mfrac><mo fence=\"true\">)</mo></mrow><msup><mi>a</mi><mrow><mi>n</mi><mo>−</mo><mi>r</mi></mrow></msup><msup><mi>b</mi><mi>r</mi></msup><mo>+</mo><mo>⋯</mo><mo>+</mo><msup><mi>b</mi><mi>n</mi></msup><mspace width=\"1em\"/><mo stretchy=\"false\">(</mo><mi>n</mi><mo>∈</mo><mi mathvariant=\"double-struck\">N</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">(a + b)^n = a^n + \\binom{n}{1} a^{n-1} b + \\binom{n}{2} a^{n-2} b^2 + \\dots + \\binom{n}{r} a^{n-r} b^r + \\dots + b^n \\quad (n \\in \\mathbb{N})</annotation></semantics></math>"
+    },
+    {
+     "id": "binomial-coefficient",
+     "name": "Binomial coefficient",
+     "latex": "\\binom{n}{r} = {}^n C_r = \\frac{n!}{r!\\,(n - r)!}",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "binomial coefficient",
+      "nCr",
+      "factorial"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mrow><mo fence=\"true\">(</mo><mfrac linethickness=\"0px\"><mi>n</mi><mi>r</mi></mfrac><mo fence=\"true\">)</mo></mrow><mo>=</mo><msup><mrow></mrow><mi>n</mi></msup><msub><mi>C</mi><mi>r</mi></msub><mo>=</mo><mfrac><mrow><mi>n</mi><mo stretchy=\"false\">!</mo></mrow><mrow><mi>r</mi><mo stretchy=\"false\">!</mo><mtext> </mtext><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mi>r</mi><mo stretchy=\"false\">)</mo><mo stretchy=\"false\">!</mo></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">\\binom{n}{r} = {}^n C_r = \\frac{n!}{r!\\,(n - r)!}</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-binomial-general",
+     "name": "Binomial series for a rational n",
+     "latex": "(1 + x)^n = 1 + nx + \\frac{n(n - 1)}{1 \\cdot 2} x^2 + \\dots + \\frac{n(n - 1) \\dots (n - r + 1)}{1 \\cdot 2 \\cdots r} x^r + \\dots \\quad (|x| < 1,\\ n \\in \\mathbb{R})",
+     "note": "AQA prints the denominator as 1.2, meaning 1 times 2.",
+     "provision": {
+      "aqa": "given"
+     },
+     "keywords": [
+      "binomial series",
+      "rational n",
+      "approximation",
+      "expansion"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo stretchy=\"false\">(</mo><mn>1</mn><mo>+</mo><mi>x</mi><msup><mo stretchy=\"false\">)</mo><mi>n</mi></msup><mo>=</mo><mn>1</mn><mo>+</mo><mi>n</mi><mi>x</mi><mo>+</mo><mfrac><mrow><mi>n</mi><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow><mrow><mn>1</mn><mo>⋅</mo><mn>2</mn></mrow></mfrac><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mo>⋯</mo><mo>+</mo><mfrac><mrow><mi>n</mi><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo><mo>…</mo><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mi>r</mi><mo>+</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow><mrow><mn>1</mn><mo>⋅</mo><mn>2</mn><mo>⋯</mo><mi>r</mi></mrow></mfrac><msup><mi>x</mi><mi>r</mi></msup><mo>+</mo><mo>…</mo><mspace width=\"1em\"/><mo stretchy=\"false\">(</mo><mi mathvariant=\"normal\">∣</mi><mi>x</mi><mi mathvariant=\"normal\">∣</mi><mo>&lt;</mo><mn>1</mn><mo separator=\"true\">,</mo><mtext> </mtext><mi>n</mi><mo>∈</mo><mi mathvariant=\"double-struck\">R</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">(1 + x)^n = 1 + nx + \\frac{n(n - 1)}{1 \\cdot 2} x^2 + \\dots + \\frac{n(n - 1) \\dots (n - r + 1)}{1 \\cdot 2 \\cdots r} x^r + \\dots \\quad (|x| &lt; 1,\\ n \\in \\mathbb{R})</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-binomial-general",
+     "name": "Binomial series for a rational n",
+     "latex": "(1 + x)^n = 1 + nx + \\frac{n(n - 1)}{1 \\times 2} x^2 + \\dots + \\frac{n(n - 1) \\dots (n - r + 1)}{1 \\times 2 \\times \\dots \\times r} x^r + \\dots \\quad (|x| < 1,\\ n \\in \\mathbb{R})",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "binomial series",
+      "rational n",
+      "approximation",
+      "expansion"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo stretchy=\"false\">(</mo><mn>1</mn><mo>+</mo><mi>x</mi><msup><mo stretchy=\"false\">)</mo><mi>n</mi></msup><mo>=</mo><mn>1</mn><mo>+</mo><mi>n</mi><mi>x</mi><mo>+</mo><mfrac><mrow><mi>n</mi><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow><mrow><mn>1</mn><mo>×</mo><mn>2</mn></mrow></mfrac><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mo>⋯</mo><mo>+</mo><mfrac><mrow><mi>n</mi><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo><mo>…</mo><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mi>r</mi><mo>+</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow><mrow><mn>1</mn><mo>×</mo><mn>2</mn><mo>×</mo><mo>⋯</mo><mo>×</mo><mi>r</mi></mrow></mfrac><msup><mi>x</mi><mi>r</mi></msup><mo>+</mo><mo>…</mo><mspace width=\"1em\"/><mo stretchy=\"false\">(</mo><mi mathvariant=\"normal\">∣</mi><mi>x</mi><mi mathvariant=\"normal\">∣</mi><mo>&lt;</mo><mn>1</mn><mo separator=\"true\">,</mo><mtext> </mtext><mi>n</mi><mo>∈</mo><mi mathvariant=\"double-struck\">R</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">(1 + x)^n = 1 + nx + \\frac{n(n - 1)}{1 \\times 2} x^2 + \\dots + \\frac{n(n - 1) \\dots (n - r + 1)}{1 \\times 2 \\times \\dots \\times r} x^r + \\dots \\quad (|x| &lt; 1,\\ n \\in \\mathbb{R})</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-binomial-general",
+     "name": "Binomial series for a rational n",
+     "latex": "(1 + x)^n = 1 + nx + \\frac{n(n - 1)}{2!} x^2 + \\dots + \\frac{n(n - 1) \\dots (n - r + 1)}{r!} x^r + \\dots \\quad (|x| < 1,\\ n \\in \\mathbb{R})",
+     "provision": {
+      "ocr": "given"
+     },
+     "keywords": [
+      "binomial series",
+      "rational n",
+      "approximation",
+      "expansion"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo stretchy=\"false\">(</mo><mn>1</mn><mo>+</mo><mi>x</mi><msup><mo stretchy=\"false\">)</mo><mi>n</mi></msup><mo>=</mo><mn>1</mn><mo>+</mo><mi>n</mi><mi>x</mi><mo>+</mo><mfrac><mrow><mi>n</mi><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow><mrow><mn>2</mn><mo stretchy=\"false\">!</mo></mrow></mfrac><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mo>⋯</mo><mo>+</mo><mfrac><mrow><mi>n</mi><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo><mo>…</mo><mo stretchy=\"false\">(</mo><mi>n</mi><mo>−</mo><mi>r</mi><mo>+</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow><mrow><mi>r</mi><mo stretchy=\"false\">!</mo></mrow></mfrac><msup><mi>x</mi><mi>r</mi></msup><mo>+</mo><mo>…</mo><mspace width=\"1em\"/><mo stretchy=\"false\">(</mo><mi mathvariant=\"normal\">∣</mi><mi>x</mi><mi mathvariant=\"normal\">∣</mi><mo>&lt;</mo><mn>1</mn><mo separator=\"true\">,</mo><mtext> </mtext><mi>n</mi><mo>∈</mo><mi mathvariant=\"double-struck\">R</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">(1 + x)^n = 1 + nx + \\frac{n(n - 1)}{2!} x^2 + \\dots + \\frac{n(n - 1) \\dots (n - r + 1)}{r!} x^r + \\dots \\quad (|x| &lt; 1,\\ n \\in \\mathbb{R})</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "trigonometry",
+   "title": "Trigonometry",
+   "items": [
+    {
+     "id": "small-angle-approximations",
+     "name": "Small-angle approximations",
+     "latex": "\\sin \\theta \\approx \\theta \\qquad \\cos \\theta \\approx 1 - \\frac{\\theta^2}{2} \\qquad \\tan \\theta \\approx \\theta",
+     "note": "For a small angle θ measured in radians.",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "small angle",
+      "approximation",
+      "radians"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>sin</mi><mo>⁡</mo><mi>θ</mi><mo>≈</mo><mi>θ</mi><mspace width=\"2em\"/><mi>cos</mi><mo>⁡</mo><mi>θ</mi><mo>≈</mo><mn>1</mn><mo>−</mo><mfrac><msup><mi>θ</mi><mn>2</mn></msup><mn>2</mn></mfrac><mspace width=\"2em\"/><mi>tan</mi><mo>⁡</mo><mi>θ</mi><mo>≈</mo><mi>θ</mi></mrow><annotation encoding=\"application/x-tex\">\\sin \\theta \\approx \\theta \\qquad \\cos \\theta \\approx 1 - \\frac{\\theta^2}{2} \\qquad \\tan \\theta \\approx \\theta</annotation></semantics></math>"
+    },
+    {
+     "id": "sine-addition",
+     "name": "Sine of a sum or difference",
+     "latex": "\\sin (A \\pm B) = \\sin A \\cos B \\pm \\cos A \\sin B",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "sine",
+      "addition formula",
+      "compound angle"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>sin</mi><mo>⁡</mo><mo stretchy=\"false\">(</mo><mi>A</mi><mo>±</mo><mi>B</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mi>sin</mi><mo>⁡</mo><mi>A</mi><mi>cos</mi><mo>⁡</mo><mi>B</mi><mo>±</mo><mi>cos</mi><mo>⁡</mo><mi>A</mi><mi>sin</mi><mo>⁡</mo><mi>B</mi></mrow><annotation encoding=\"application/x-tex\">\\sin (A \\pm B) = \\sin A \\cos B \\pm \\cos A \\sin B</annotation></semantics></math>"
+    },
+    {
+     "id": "cosine-addition",
+     "name": "Cosine of a sum or difference",
+     "latex": "\\cos (A \\pm B) = \\cos A \\cos B \\mp \\sin A \\sin B",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "cosine",
+      "addition formula",
+      "compound angle"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>cos</mi><mo>⁡</mo><mo stretchy=\"false\">(</mo><mi>A</mi><mo>±</mo><mi>B</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mi>cos</mi><mo>⁡</mo><mi>A</mi><mi>cos</mi><mo>⁡</mo><mi>B</mi><mo>∓</mo><mi>sin</mi><mo>⁡</mo><mi>A</mi><mi>sin</mi><mo>⁡</mo><mi>B</mi></mrow><annotation encoding=\"application/x-tex\">\\cos (A \\pm B) = \\cos A \\cos B \\mp \\sin A \\sin B</annotation></semantics></math>"
+    },
+    {
+     "id": "tangent-addition",
+     "name": "Tangent of a sum or difference",
+     "latex": "\\tan (A \\pm B) = \\frac{\\tan A \\pm \\tan B}{1 \\mp \\tan A \\tan B} \\quad \\left(A \\pm B \\ne \\left(k + \\tfrac{1}{2}\\right)\\pi\\right)",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "tangent",
+      "addition formula",
+      "compound angle"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>tan</mi><mo>⁡</mo><mo stretchy=\"false\">(</mo><mi>A</mi><mo>±</mo><mi>B</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mfrac><mrow><mi>tan</mi><mo>⁡</mo><mi>A</mi><mo>±</mo><mi>tan</mi><mo>⁡</mo><mi>B</mi></mrow><mrow><mn>1</mn><mo>∓</mo><mi>tan</mi><mo>⁡</mo><mi>A</mi><mi>tan</mi><mo>⁡</mo><mi>B</mi></mrow></mfrac><mspace width=\"1em\"/><mrow><mo fence=\"true\">(</mo><mi>A</mi><mo>±</mo><mi>B</mi><mo mathvariant=\"normal\">≠</mo><mrow><mo fence=\"true\">(</mo><mi>k</mi><mo>+</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo fence=\"true\">)</mo></mrow><mi>π</mi><mo fence=\"true\">)</mo></mrow></mrow><annotation encoding=\"application/x-tex\">\\tan (A \\pm B) = \\frac{\\tan A \\pm \\tan B}{1 \\mp \\tan A \\tan B} \\quad \\left(A \\pm B \\ne \\left(k + \\tfrac{1}{2}\\right)\\pi\\right)</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-sum-to-product",
+     "name": "Sums and differences of sines and cosines",
+     "latex": "\\sin A + \\sin B = 2 \\sin \\frac{A + B}{2} \\cos \\frac{A - B}{2} \\qquad \\sin A - \\sin B = 2 \\cos \\frac{A + B}{2} \\sin \\frac{A - B}{2} \\qquad \\cos A + \\cos B = 2 \\cos \\frac{A + B}{2} \\cos \\frac{A - B}{2} \\qquad \\cos A - \\cos B = -2 \\sin \\frac{A + B}{2} \\sin \\frac{A - B}{2}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "sum to product",
+      "factor formulae",
+      "sine",
+      "cosine"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>sin</mi><mo>⁡</mo><mi>A</mi><mo>+</mo><mi>sin</mi><mo>⁡</mo><mi>B</mi><mo>=</mo><mn>2</mn><mi>sin</mi><mo>⁡</mo><mfrac><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow><mn>2</mn></mfrac><mi>cos</mi><mo>⁡</mo><mfrac><mrow><mi>A</mi><mo>−</mo><mi>B</mi></mrow><mn>2</mn></mfrac><mspace width=\"2em\"/><mi>sin</mi><mo>⁡</mo><mi>A</mi><mo>−</mo><mi>sin</mi><mo>⁡</mo><mi>B</mi><mo>=</mo><mn>2</mn><mi>cos</mi><mo>⁡</mo><mfrac><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow><mn>2</mn></mfrac><mi>sin</mi><mo>⁡</mo><mfrac><mrow><mi>A</mi><mo>−</mo><mi>B</mi></mrow><mn>2</mn></mfrac><mspace width=\"2em\"/><mi>cos</mi><mo>⁡</mo><mi>A</mi><mo>+</mo><mi>cos</mi><mo>⁡</mo><mi>B</mi><mo>=</mo><mn>2</mn><mi>cos</mi><mo>⁡</mo><mfrac><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow><mn>2</mn></mfrac><mi>cos</mi><mo>⁡</mo><mfrac><mrow><mi>A</mi><mo>−</mo><mi>B</mi></mrow><mn>2</mn></mfrac><mspace width=\"2em\"/><mi>cos</mi><mo>⁡</mo><mi>A</mi><mo>−</mo><mi>cos</mi><mo>⁡</mo><mi>B</mi><mo>=</mo><mo>−</mo><mn>2</mn><mi>sin</mi><mo>⁡</mo><mfrac><mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow><mn>2</mn></mfrac><mi>sin</mi><mo>⁡</mo><mfrac><mrow><mi>A</mi><mo>−</mo><mi>B</mi></mrow><mn>2</mn></mfrac></mrow><annotation encoding=\"application/x-tex\">\\sin A + \\sin B = 2 \\sin \\frac{A + B}{2} \\cos \\frac{A - B}{2} \\qquad \\sin A - \\sin B = 2 \\cos \\frac{A + B}{2} \\sin \\frac{A - B}{2} \\qquad \\cos A + \\cos B = 2 \\cos \\frac{A + B}{2} \\cos \\frac{A - B}{2} \\qquad \\cos A - \\cos B = -2 \\sin \\frac{A + B}{2} \\sin \\frac{A - B}{2}</annotation></semantics></math>"
+    },
+    {
+     "id": "pythagorean-identities",
+     "name": "Pythagorean identities",
+     "latex": "\\cos^2 A + \\sin^2 A = 1 \\qquad \\sec^2 A = 1 + \\tan^2 A \\qquad \\operatorname{cosec}^2 A = 1 + \\cot^2 A",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "pythagorean identities",
+      "sec",
+      "cosec",
+      "cot",
+      "tan"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mrow><mi>cos</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>A</mi><mo>+</mo><msup><mrow><mi>sin</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>A</mi><mo>=</mo><mn>1</mn><mspace width=\"2em\"/><msup><mrow><mi>sec</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>A</mi><mo>=</mo><mn>1</mn><mo>+</mo><msup><mrow><mi>tan</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>A</mi><mspace width=\"2em\"/><msup><mrow><mi mathvariant=\"normal\">cosec</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>A</mi><mo>=</mo><mn>1</mn><mo>+</mo><msup><mrow><mi>cot</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>A</mi></mrow><annotation encoding=\"application/x-tex\">\\cos^2 A + \\sin^2 A = 1 \\qquad \\sec^2 A = 1 + \\tan^2 A \\qquad \\operatorname{cosec}^2 A = 1 + \\cot^2 A</annotation></semantics></math>"
+    },
+    {
+     "id": "double-angle-identities",
+     "name": "Double-angle identities",
+     "latex": "\\sin 2A = 2 \\sin A \\cos A \\qquad \\cos 2A = \\cos^2 A - \\sin^2 A \\qquad \\tan 2A = \\frac{2 \\tan A}{1 - \\tan^2 A}",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "double angle",
+      "sin 2A",
+      "cos 2A",
+      "tan 2A"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>sin</mi><mo>⁡</mo><mn>2</mn><mi>A</mi><mo>=</mo><mn>2</mn><mi>sin</mi><mo>⁡</mo><mi>A</mi><mi>cos</mi><mo>⁡</mo><mi>A</mi><mspace width=\"2em\"/><mi>cos</mi><mo>⁡</mo><mn>2</mn><mi>A</mi><mo>=</mo><msup><mrow><mi>cos</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>A</mi><mo>−</mo><msup><mrow><mi>sin</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>A</mi><mspace width=\"2em\"/><mi>tan</mi><mo>⁡</mo><mn>2</mn><mi>A</mi><mo>=</mo><mfrac><mrow><mn>2</mn><mi>tan</mi><mo>⁡</mo><mi>A</mi></mrow><mrow><mn>1</mn><mo>−</mo><msup><mrow><mi>tan</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>A</mi></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">\\sin 2A = 2 \\sin A \\cos A \\qquad \\cos 2A = \\cos^2 A - \\sin^2 A \\qquad \\tan 2A = \\frac{2 \\tan A}{1 - \\tan^2 A}</annotation></semantics></math>"
+    },
+    {
+     "id": "sine-cosine-rule",
+     "name": "Sine rule and cosine rule",
+     "latex": "\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} \\qquad a^2 = b^2 + c^2 - 2bc \\cos A",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "sine rule",
+      "cosine rule",
+      "triangle"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mi>a</mi><mrow><mi>sin</mi><mo>⁡</mo><mi>A</mi></mrow></mfrac><mo>=</mo><mfrac><mi>b</mi><mrow><mi>sin</mi><mo>⁡</mo><mi>B</mi></mrow></mfrac><mo>=</mo><mfrac><mi>c</mi><mrow><mi>sin</mi><mo>⁡</mo><mi>C</mi></mrow></mfrac><mspace width=\"2em\"/><msup><mi>a</mi><mn>2</mn></msup><mo>=</mo><msup><mi>b</mi><mn>2</mn></msup><mo>+</mo><msup><mi>c</mi><mn>2</mn></msup><mo>−</mo><mn>2</mn><mi>b</mi><mi>c</mi><mi>cos</mi><mo>⁡</mo><mi>A</mi></mrow><annotation encoding=\"application/x-tex\">\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} \\qquad a^2 = b^2 + c^2 - 2bc \\cos A</annotation></semantics></math>"
+    },
+    {
+     "id": "triangle-area",
+     "name": "Area of a triangle",
+     "latex": "A = \\tfrac{1}{2} ab \\sin C",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "area of a triangle",
+      "sine"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>A</mi><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>a</mi><mi>b</mi><mi>sin</mi><mo>⁡</mo><mi>C</mi></mrow><annotation encoding=\"application/x-tex\">A = \\tfrac{1}{2} ab \\sin C</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "mensuration",
+   "title": "Mensuration",
+   "items": [
+    {
+     "id": "circle-circumference-area",
+     "name": "Circumference and area of a circle",
+     "latex": "C = 2\\pi r = \\pi d \\qquad A = \\pi r^2",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "circle",
+      "circumference",
+      "area",
+      "radius",
+      "diameter"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>C</mi><mo>=</mo><mn>2</mn><mi>π</mi><mi>r</mi><mo>=</mo><mi>π</mi><mi>d</mi><mspace width=\"2em\"/><mi>A</mi><mo>=</mo><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">C = 2\\pi r = \\pi d \\qquad A = \\pi r^2</annotation></semantics></math>"
+    },
+    {
+     "id": "pythagoras",
+     "name": "Pythagoras' theorem",
+     "latex": "c^2 = a^2 + b^2",
+     "note": "In a right-angled triangle, c is the hypotenuse.",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "pythagoras",
+      "hypotenuse",
+      "right-angled"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>c</mi><mn>2</mn></msup><mo>=</mo><msup><mi>a</mi><mn>2</mn></msup><mo>+</mo><msup><mi>b</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">c^2 = a^2 + b^2</annotation></semantics></math>"
+    },
+    {
+     "id": "trapezium-area",
+     "name": "Area of a trapezium",
+     "latex": "A = \\tfrac{1}{2} (a + b) h",
+     "note": "a and b are the parallel sides; h is their perpendicular separation.",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "trapezium",
+      "area"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>A</mi><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo stretchy=\"false\">(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo stretchy=\"false\">)</mo><mi>h</mi></mrow><annotation encoding=\"application/x-tex\">A = \\tfrac{1}{2} (a + b) h</annotation></semantics></math>"
+    },
+    {
+     "id": "prism-volume",
+     "name": "Volume of a prism",
+     "latex": "V = \\text{area of cross-section} \\times \\text{length}",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "prism",
+      "volume"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>V</mi><mo>=</mo><mtext>area of cross-section</mtext><mo>×</mo><mtext>length</mtext></mrow><annotation encoding=\"application/x-tex\">V = \\text{area of cross-section} \\times \\text{length}</annotation></semantics></math>"
+    },
+    {
+     "id": "arc-length-sector-area",
+     "name": "Arc length and sector area",
+     "latex": "s = r\\theta \\qquad A = \\tfrac{1}{2} r^2 \\theta",
+     "note": "For an angle θ measured in radians.",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "arc length",
+      "sector area",
+      "radians"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>s</mi><mo>=</mo><mi>r</mi><mi>θ</mi><mspace width=\"2em\"/><mi>A</mi><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><msup><mi>r</mi><mn>2</mn></msup><mi>θ</mi></mrow><annotation encoding=\"application/x-tex\">s = r\\theta \\qquad A = \\tfrac{1}{2} r^2 \\theta</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-sphere-surface-area",
+     "name": "Surface area of a sphere",
+     "latex": "A = 4\\pi r^2",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "sphere",
+      "surface area"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>A</mi><mo>=</mo><mn>4</mn><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">A = 4\\pi r^2</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-cone-curved-surface",
+     "name": "Curved surface area of a cone",
+     "latex": "A = \\pi r \\times \\text{slant height}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "cone",
+      "curved surface area",
+      "slant height"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>A</mi><mo>=</mo><mi>π</mi><mi>r</mi><mo>×</mo><mtext>slant height</mtext></mrow><annotation encoding=\"application/x-tex\">A = \\pi r \\times \\text{slant height}</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "differentiation",
+   "title": "Differentiation",
+   "items": [
+    {
+     "id": "aqa-reciprocal-derivatives",
+     "name": "Derivatives of tan, cosec, sec and cot",
+     "latex": "\\tan x \\to \\sec^2 x \\qquad \\operatorname{cosec} x \\to -\\operatorname{cosec} x \\cot x \\qquad \\sec x \\to \\sec x \\tan x \\qquad \\cot x \\to -\\operatorname{cosec}^2 x",
+     "note": "AQA prints these as a table of f(x) and f'(x).",
+     "provision": {
+      "aqa": "given"
+     },
+     "keywords": [
+      "derivative",
+      "tan",
+      "cosec",
+      "sec",
+      "cot"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>tan</mi><mo>⁡</mo><mi>x</mi><mo>→</mo><msup><mrow><mi>sec</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>x</mi><mspace width=\"2em\"/><mi mathvariant=\"normal\">cosec</mi><mo>⁡</mo><mi>x</mi><mo>→</mo><mo>−</mo><mi mathvariant=\"normal\">cosec</mi><mo>⁡</mo><mi>x</mi><mi>cot</mi><mo>⁡</mo><mi>x</mi><mspace width=\"2em\"/><mi>sec</mi><mo>⁡</mo><mi>x</mi><mo>→</mo><mi>sec</mi><mo>⁡</mo><mi>x</mi><mi>tan</mi><mo>⁡</mo><mi>x</mi><mspace width=\"2em\"/><mi>cot</mi><mo>⁡</mo><mi>x</mi><mo>→</mo><mo>−</mo><msup><mrow><mi mathvariant=\"normal\">cosec</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">\\tan x \\to \\sec^2 x \\qquad \\operatorname{cosec} x \\to -\\operatorname{cosec} x \\cot x \\qquad \\sec x \\to \\sec x \\tan x \\qquad \\cot x \\to -\\operatorname{cosec}^2 x</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-reciprocal-derivatives",
+     "name": "Derivatives of tan, sec, cot and cosec",
+     "latex": "\\tan kx \\to k \\sec^2 kx \\qquad \\sec kx \\to k \\sec kx \\tan kx \\qquad \\cot kx \\to -k \\operatorname{cosec}^2 kx \\qquad \\operatorname{cosec} kx \\to -k \\operatorname{cosec} kx \\cot kx",
+     "note": "The board prints these as a table of f(x) and f'(x).",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "derivative",
+      "tan",
+      "sec",
+      "cot",
+      "cosec"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>tan</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mo>→</mo><mi>k</mi><msup><mrow><mi>sec</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>k</mi><mi>x</mi><mspace width=\"2em\"/><mi>sec</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mo>→</mo><mi>k</mi><mi>sec</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mi>tan</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mspace width=\"2em\"/><mi>cot</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mo>→</mo><mo>−</mo><mi>k</mi><msup><mrow><mi mathvariant=\"normal\">cosec</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>k</mi><mi>x</mi><mspace width=\"2em\"/><mi mathvariant=\"normal\">cosec</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mo>→</mo><mo>−</mo><mi>k</mi><mi mathvariant=\"normal\">cosec</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mi>cot</mi><mo>⁡</mo><mi>k</mi><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">\\tan kx \\to k \\sec^2 kx \\qquad \\sec kx \\to k \\sec kx \\tan kx \\qquad \\cot kx \\to -k \\operatorname{cosec}^2 kx \\qquad \\operatorname{cosec} kx \\to -k \\operatorname{cosec} kx \\cot kx</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-reciprocal-derivatives",
+     "name": "Derivatives of tan, sec, cot and cosec",
+     "latex": "\\tan kx \\to k \\sec^2 kx \\qquad \\sec x \\to \\sec x \\tan x \\qquad \\cot x \\to -\\operatorname{cosec}^2 x \\qquad \\operatorname{cosec} x \\to -\\operatorname{cosec} x \\cot x",
+     "note": "The board prints these as a table of f(x) and f'(x).",
+     "provision": {
+      "ocr": "given"
+     },
+     "keywords": [
+      "derivative",
+      "tan",
+      "sec",
+      "cot",
+      "cosec"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>tan</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mo>→</mo><mi>k</mi><msup><mrow><mi>sec</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>k</mi><mi>x</mi><mspace width=\"2em\"/><mi>sec</mi><mo>⁡</mo><mi>x</mi><mo>→</mo><mi>sec</mi><mo>⁡</mo><mi>x</mi><mi>tan</mi><mo>⁡</mo><mi>x</mi><mspace width=\"2em\"/><mi>cot</mi><mo>⁡</mo><mi>x</mi><mo>→</mo><mo>−</mo><msup><mrow><mi mathvariant=\"normal\">cosec</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>x</mi><mspace width=\"2em\"/><mi mathvariant=\"normal\">cosec</mi><mo>⁡</mo><mi>x</mi><mo>→</mo><mo>−</mo><mi mathvariant=\"normal\">cosec</mi><mo>⁡</mo><mi>x</mi><mi>cot</mi><mo>⁡</mo><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">\\tan kx \\to k \\sec^2 kx \\qquad \\sec x \\to \\sec x \\tan x \\qquad \\cot x \\to -\\operatorname{cosec}^2 x \\qquad \\operatorname{cosec} x \\to -\\operatorname{cosec} x \\cot x</annotation></semantics></math>"
+    },
+    {
+     "id": "quotient-rule",
+     "name": "Quotient rule",
+     "latex": "\\frac{f(x)}{g(x)} \\to \\frac{f^{\\prime}(x) g(x) - f(x) g^{\\prime}(x)}{(g(x))^2}",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given"
+     },
+     "keywords": [
+      "quotient rule",
+      "derivative",
+      "fraction"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mrow><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo></mrow><mrow><mi>g</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo></mrow></mfrac><mo>→</mo><mfrac><mrow><msup><mi>f</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mi>g</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>−</mo><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><msup><mi>g</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo></mrow><mrow><mo stretchy=\"false\">(</mo><mi>g</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><msup><mo stretchy=\"false\">)</mo><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">\\frac{f(x)}{g(x)} \\to \\frac{f^{\\prime}(x) g(x) - f(x) g^{\\prime}(x)}{(g(x))^2}</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-quotient-rule",
+     "name": "Quotient rule",
+     "latex": "y = \\frac{u}{v}, \\qquad \\frac{dy}{dx} = \\frac{v \\frac{du}{dx} - u \\frac{dv}{dx}}{v^2}",
+     "provision": {
+      "ocr": "given"
+     },
+     "keywords": [
+      "quotient rule",
+      "derivative",
+      "fraction"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>y</mi><mo>=</mo><mfrac><mi>u</mi><mi>v</mi></mfrac><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mfrac><mrow><mi>d</mi><mi>y</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>v</mi><mfrac><mrow><mi>d</mi><mi>u</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mo>−</mo><mi>u</mi><mfrac><mrow><mi>d</mi><mi>v</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac></mrow><msup><mi>v</mi><mn>2</mn></msup></mfrac></mrow><annotation encoding=\"application/x-tex\">y = \\frac{u}{v}, \\qquad \\frac{dy}{dx} = \\frac{v \\frac{du}{dx} - u \\frac{dv}{dx}}{v^2}</annotation></semantics></math>"
+    },
+    {
+     "id": "first-principles",
+     "name": "Differentiation from first principles",
+     "latex": "f^{\\prime}(x) = \\lim_{h \\to 0} \\frac{f(x + h) - f(x)}{h}",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "first principles",
+      "limit",
+      "gradient",
+      "definition"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>f</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>=</mo><msub><mrow><mi>lim</mi><mo>⁡</mo></mrow><mrow><mi>h</mi><mo>→</mo><mn>0</mn></mrow></msub><mfrac><mrow><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo>+</mo><mi>h</mi><mo stretchy=\"false\">)</mo><mo>−</mo><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo></mrow><mi>h</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">f^{\\prime}(x) = \\lim_{h \\to 0} \\frac{f(x + h) - f(x)}{h}</annotation></semantics></math>"
+    },
+    {
+     "id": "standard-derivatives",
+     "name": "Standard derivatives",
+     "latex": "x^n \\to n x^{n-1} \\qquad \\sin kx \\to k \\cos kx \\qquad \\cos kx \\to -k \\sin kx \\qquad e^{kx} \\to k e^{kx} \\qquad \\ln x \\to \\frac{1}{x}",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "derivative",
+      "power",
+      "sine",
+      "cosine",
+      "exponential",
+      "logarithm"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>x</mi><mi>n</mi></msup><mo>→</mo><mi>n</mi><msup><mi>x</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mspace width=\"2em\"/><mi>sin</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mo>→</mo><mi>k</mi><mi>cos</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mspace width=\"2em\"/><mi>cos</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mo>→</mo><mo>−</mo><mi>k</mi><mi>sin</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mspace width=\"2em\"/><msup><mi>e</mi><mrow><mi>k</mi><mi>x</mi></mrow></msup><mo>→</mo><mi>k</mi><msup><mi>e</mi><mrow><mi>k</mi><mi>x</mi></mrow></msup><mspace width=\"2em\"/><mi>ln</mi><mo>⁡</mo><mi>x</mi><mo>→</mo><mfrac><mn>1</mn><mi>x</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">x^n \\to n x^{n-1} \\qquad \\sin kx \\to k \\cos kx \\qquad \\cos kx \\to -k \\sin kx \\qquad e^{kx} \\to k e^{kx} \\qquad \\ln x \\to \\frac{1}{x}</annotation></semantics></math>"
+    },
+    {
+     "id": "differentiation-rules",
+     "name": "Sum, product and chain rules",
+     "latex": "f(x) + g(x) \\to f^{\\prime}(x) + g^{\\prime}(x) \\qquad f(x) g(x) \\to f^{\\prime}(x) g(x) + f(x) g^{\\prime}(x) \\qquad f(g(x)) \\to f^{\\prime}(g(x)) g^{\\prime}(x)",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "product rule",
+      "chain rule",
+      "sum rule",
+      "derivative"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>+</mo><mi>g</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>→</mo><msup><mi>f</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>+</mo><msup><mi>g</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mspace width=\"2em\"/><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mi>g</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>→</mo><msup><mi>f</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mi>g</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>+</mo><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><msup><mi>g</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mspace width=\"2em\"/><mi>f</mi><mo stretchy=\"false\">(</mo><mi>g</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo stretchy=\"false\">)</mo><mo>→</mo><msup><mi>f</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>g</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo stretchy=\"false\">)</mo><msup><mi>g</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">f(x) + g(x) \\to f^{\\prime}(x) + g^{\\prime}(x) \\qquad f(x) g(x) \\to f^{\\prime}(x) g(x) + f(x) g^{\\prime}(x) \\qquad f(g(x)) \\to f^{\\prime}(g(x)) g^{\\prime}(x)</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "integration",
+   "title": "Integration",
+   "items": [
+    {
+     "id": "integration-by-parts",
+     "name": "Integration by parts",
+     "latex": "\\int u \\frac{dv}{dx}\\, dx = uv - \\int v \\frac{du}{dx}\\, dx",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "integration by parts",
+      "product rule"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo>∫</mo><mi>u</mi><mfrac><mrow><mi>d</mi><mi>v</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mtext> </mtext><mi>d</mi><mi>x</mi><mo>=</mo><mi>u</mi><mi>v</mi><mo>−</mo><mo>∫</mo><mi>v</mi><mfrac><mrow><mi>d</mi><mi>u</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mtext> </mtext><mi>d</mi><mi>x</mi></mrow><annotation encoding=\"application/x-tex\">\\int u \\frac{dv}{dx}\\, dx = uv - \\int v \\frac{du}{dx}\\, dx</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-integration-f-over-f",
+     "name": "Integral of a fraction with the derivative on top",
+     "latex": "\\int \\frac{f^{\\prime}(x)}{f(x)}\\, dx = \\ln |f(x)| + c",
+     "provision": {
+      "aqa": "given"
+     },
+     "keywords": [
+      "integration",
+      "logarithm",
+      "natural log",
+      "modulus"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo>∫</mo><mfrac><mrow><msup><mi>f</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo></mrow><mrow><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo></mrow></mfrac><mtext> </mtext><mi>d</mi><mi>x</mi><mo>=</mo><mi>ln</mi><mo>⁡</mo><mi mathvariant=\"normal\">∣</mi><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mi mathvariant=\"normal\">∣</mi><mo>+</mo><mi>c</mi></mrow><annotation encoding=\"application/x-tex\">\\int \\frac{f^{\\prime}(x)}{f(x)}\\, dx = \\ln |f(x)| + c</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-integration-f-over-f",
+     "name": "Integral of a fraction with the derivative on top",
+     "latex": "\\int \\frac{f^{\\prime}(x)}{f(x)}\\, dx = \\ln f(x) + c",
+     "provision": {
+      "ocr": "given"
+     },
+     "keywords": [
+      "integration",
+      "logarithm",
+      "natural log"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo>∫</mo><mfrac><mrow><msup><mi>f</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo></mrow><mrow><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo></mrow></mfrac><mtext> </mtext><mi>d</mi><mi>x</mi><mo>=</mo><mi>ln</mi><mo>⁡</mo><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>+</mo><mi>c</mi></mrow><annotation encoding=\"application/x-tex\">\\int \\frac{f^{\\prime}(x)}{f(x)}\\, dx = \\ln f(x) + c</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-integration-power",
+     "name": "Integral of a function of a function",
+     "latex": "\\int f^{\\prime}(x) (f(x))^n\\, dx = \\frac{1}{n + 1} (f(x))^{n+1} + c",
+     "provision": {
+      "ocr": "given"
+     },
+     "keywords": [
+      "integration",
+      "substitution",
+      "chain rule",
+      "function of a function"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo>∫</mo><msup><mi>f</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo stretchy=\"false\">(</mo><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><msup><mo stretchy=\"false\">)</mo><mi>n</mi></msup><mtext> </mtext><mi>d</mi><mi>x</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></mfrac><mo stretchy=\"false\">(</mo><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><msup><mo stretchy=\"false\">)</mo><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>+</mo><mi>c</mi></mrow><annotation encoding=\"application/x-tex\">\\int f^{\\prime}(x) (f(x))^n\\, dx = \\frac{1}{n + 1} (f(x))^{n+1} + c</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-integration-tan",
+     "name": "Integral of tan x",
+     "latex": "\\int \\tan x\\, dx = \\ln |\\sec x| + c",
+     "provision": {
+      "aqa": "given"
+     },
+     "keywords": [
+      "integration",
+      "tan",
+      "sec",
+      "logarithm"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo>∫</mo><mi>tan</mi><mo>⁡</mo><mi>x</mi><mtext> </mtext><mi>d</mi><mi>x</mi><mo>=</mo><mi>ln</mi><mo>⁡</mo><mi mathvariant=\"normal\">∣</mi><mi>sec</mi><mo>⁡</mo><mi>x</mi><mi mathvariant=\"normal\">∣</mi><mo>+</mo><mi>c</mi></mrow><annotation encoding=\"application/x-tex\">\\int \\tan x\\, dx = \\ln |\\sec x| + c</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-integration-cot",
+     "name": "Integral of cot x",
+     "latex": "\\int \\cot x\\, dx = \\ln |\\sin x| + c",
+     "provision": {
+      "aqa": "given"
+     },
+     "keywords": [
+      "integration",
+      "cot",
+      "sin",
+      "logarithm"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo>∫</mo><mi>cot</mi><mo>⁡</mo><mi>x</mi><mtext> </mtext><mi>d</mi><mi>x</mi><mo>=</mo><mi>ln</mi><mo>⁡</mo><mi mathvariant=\"normal\">∣</mi><mi>sin</mi><mo>⁡</mo><mi>x</mi><mi mathvariant=\"normal\">∣</mi><mo>+</mo><mi>c</mi></mrow><annotation encoding=\"application/x-tex\">\\int \\cot x\\, dx = \\ln |\\sin x| + c</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-integration-sec-squared",
+     "name": "Integral of sec squared",
+     "latex": "\\int \\sec^2 kx\\, dx = \\frac{1}{k} \\tan kx + c",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "integration",
+      "sec squared",
+      "tan"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo>∫</mo><msup><mrow><mi>sec</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>k</mi><mi>x</mi><mtext> </mtext><mi>d</mi><mi>x</mi><mo>=</mo><mfrac><mn>1</mn><mi>k</mi></mfrac><mi>tan</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mo>+</mo><mi>c</mi></mrow><annotation encoding=\"application/x-tex\">\\int \\sec^2 kx\\, dx = \\frac{1}{k} \\tan kx + c</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-integration-tan",
+     "name": "Integral of tan kx",
+     "latex": "\\int \\tan kx\\, dx = \\frac{1}{k} \\ln |\\sec kx| + c",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "integration",
+      "tan",
+      "sec",
+      "logarithm"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo>∫</mo><mi>tan</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mtext> </mtext><mi>d</mi><mi>x</mi><mo>=</mo><mfrac><mn>1</mn><mi>k</mi></mfrac><mi>ln</mi><mo>⁡</mo><mi mathvariant=\"normal\">∣</mi><mi>sec</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mi mathvariant=\"normal\">∣</mi><mo>+</mo><mi>c</mi></mrow><annotation encoding=\"application/x-tex\">\\int \\tan kx\\, dx = \\frac{1}{k} \\ln |\\sec kx| + c</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-integration-cot",
+     "name": "Integral of cot kx",
+     "latex": "\\int \\cot kx\\, dx = \\frac{1}{k} \\ln |\\sin kx| + c",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "integration",
+      "cot",
+      "sin",
+      "logarithm"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo>∫</mo><mi>cot</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mtext> </mtext><mi>d</mi><mi>x</mi><mo>=</mo><mfrac><mn>1</mn><mi>k</mi></mfrac><mi>ln</mi><mo>⁡</mo><mi mathvariant=\"normal\">∣</mi><mi>sin</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mi mathvariant=\"normal\">∣</mi><mo>+</mo><mi>c</mi></mrow><annotation encoding=\"application/x-tex\">\\int \\cot kx\\, dx = \\frac{1}{k} \\ln |\\sin kx| + c</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-integration-cosec",
+     "name": "Integral of cosec kx",
+     "latex": "\\int \\operatorname{cosec} kx\\, dx = -\\frac{1}{k} \\ln |\\operatorname{cosec} kx + \\cot kx| + c = \\frac{1}{k} \\ln \\left| \\tan \\left(\\tfrac{1}{2} kx\\right) \\right| + c",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "integration",
+      "cosec",
+      "cot",
+      "logarithm"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo>∫</mo><mi mathvariant=\"normal\">cosec</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mtext> </mtext><mi>d</mi><mi>x</mi><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mi>k</mi></mfrac><mi>ln</mi><mo>⁡</mo><mi mathvariant=\"normal\">∣</mi><mi mathvariant=\"normal\">cosec</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mo>+</mo><mi>cot</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mi mathvariant=\"normal\">∣</mi><mo>+</mo><mi>c</mi><mo>=</mo><mfrac><mn>1</mn><mi>k</mi></mfrac><mi>ln</mi><mo>⁡</mo><mrow><mo fence=\"true\">∣</mo><mi>tan</mi><mo>⁡</mo><mrow><mo fence=\"true\">(</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>k</mi><mi>x</mi><mo fence=\"true\">)</mo></mrow><mo fence=\"true\">∣</mo></mrow><mo>+</mo><mi>c</mi></mrow><annotation encoding=\"application/x-tex\">\\int \\operatorname{cosec} kx\\, dx = -\\frac{1}{k} \\ln |\\operatorname{cosec} kx + \\cot kx| + c = \\frac{1}{k} \\ln \\left| \\tan \\left(\\tfrac{1}{2} kx\\right) \\right| + c</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-integration-sec",
+     "name": "Integral of sec kx",
+     "latex": "\\int \\sec kx\\, dx = \\frac{1}{k} \\ln |\\sec kx + \\tan kx| + c = \\frac{1}{k} \\ln \\left| \\tan \\left(\\tfrac{1}{2} kx + \\tfrac{1}{4} \\pi\\right) \\right| + c",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "integration",
+      "sec",
+      "tan",
+      "logarithm"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mo>∫</mo><mi>sec</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mtext> </mtext><mi>d</mi><mi>x</mi><mo>=</mo><mfrac><mn>1</mn><mi>k</mi></mfrac><mi>ln</mi><mo>⁡</mo><mi mathvariant=\"normal\">∣</mi><mi>sec</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mo>+</mo><mi>tan</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mi mathvariant=\"normal\">∣</mi><mo>+</mo><mi>c</mi><mo>=</mo><mfrac><mn>1</mn><mi>k</mi></mfrac><mi>ln</mi><mo>⁡</mo><mrow><mo fence=\"true\">∣</mo><mi>tan</mi><mo>⁡</mo><mrow><mo fence=\"true\">(</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>k</mi><mi>x</mi><mo>+</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>4</mn></mfrac></mstyle><mi>π</mi><mo fence=\"true\">)</mo></mrow><mo fence=\"true\">∣</mo></mrow><mo>+</mo><mi>c</mi></mrow><annotation encoding=\"application/x-tex\">\\int \\sec kx\\, dx = \\frac{1}{k} \\ln |\\sec kx + \\tan kx| + c = \\frac{1}{k} \\ln \\left| \\tan \\left(\\tfrac{1}{2} kx + \\tfrac{1}{4} \\pi\\right) \\right| + c</annotation></semantics></math>"
+    },
+    {
+     "id": "standard-integrals",
+     "name": "Standard integrals",
+     "latex": "x^n \\to \\frac{x^{n+1}}{n + 1} + c\\ (n \\ne -1) \\qquad \\cos kx \\to \\frac{1}{k} \\sin kx + c \\qquad \\sin kx \\to -\\frac{1}{k} \\cos kx + c \\qquad e^{kx} \\to \\frac{1}{k} e^{kx} + c \\qquad \\frac{1}{x} \\to \\ln x + c\\ (x \\ne 0)",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "integration",
+      "power",
+      "sine",
+      "cosine",
+      "exponential",
+      "logarithm"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>x</mi><mi>n</mi></msup><mo>→</mo><mfrac><msup><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></mfrac><mo>+</mo><mi>c</mi><mtext> </mtext><mo stretchy=\"false\">(</mo><mi>n</mi><mo mathvariant=\"normal\">≠</mo><mo>−</mo><mn>1</mn><mo stretchy=\"false\">)</mo><mspace width=\"2em\"/><mi>cos</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mo>→</mo><mfrac><mn>1</mn><mi>k</mi></mfrac><mi>sin</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mo>+</mo><mi>c</mi><mspace width=\"2em\"/><mi>sin</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mo>→</mo><mo>−</mo><mfrac><mn>1</mn><mi>k</mi></mfrac><mi>cos</mi><mo>⁡</mo><mi>k</mi><mi>x</mi><mo>+</mo><mi>c</mi><mspace width=\"2em\"/><msup><mi>e</mi><mrow><mi>k</mi><mi>x</mi></mrow></msup><mo>→</mo><mfrac><mn>1</mn><mi>k</mi></mfrac><msup><mi>e</mi><mrow><mi>k</mi><mi>x</mi></mrow></msup><mo>+</mo><mi>c</mi><mspace width=\"2em\"/><mfrac><mn>1</mn><mi>x</mi></mfrac><mo>→</mo><mi>ln</mi><mo>⁡</mo><mi>x</mi><mo>+</mo><mi>c</mi><mtext> </mtext><mo stretchy=\"false\">(</mo><mi>x</mi><mo mathvariant=\"normal\">≠</mo><mn>0</mn><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">x^n \\to \\frac{x^{n+1}}{n + 1} + c\\ (n \\ne -1) \\qquad \\cos kx \\to \\frac{1}{k} \\sin kx + c \\qquad \\sin kx \\to -\\frac{1}{k} \\cos kx + c \\qquad e^{kx} \\to \\frac{1}{k} e^{kx} + c \\qquad \\frac{1}{x} \\to \\ln x + c\\ (x \\ne 0)</annotation></semantics></math>"
+    },
+    {
+     "id": "integration-rules",
+     "name": "Sum and function-of-a-function integrals",
+     "latex": "f^{\\prime}(x) + g^{\\prime}(x) \\to f(x) + g(x) + c \\qquad f^{\\prime}(g(x)) g^{\\prime}(x) \\to f(g(x)) + c",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "integration",
+      "substitution",
+      "chain rule",
+      "sum"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>f</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>+</mo><msup><mi>g</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>→</mo><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>+</mo><mi>g</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>+</mo><mi>c</mi><mspace width=\"2em\"/><msup><mi>f</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>g</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo stretchy=\"false\">)</mo><msup><mi>g</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>→</mo><mi>f</mi><mo stretchy=\"false\">(</mo><mi>g</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo stretchy=\"false\">)</mo><mo>+</mo><mi>c</mi></mrow><annotation encoding=\"application/x-tex\">f^{\\prime}(x) + g^{\\prime}(x) \\to f(x) + g(x) + c \\qquad f^{\\prime}(g(x)) g^{\\prime}(x) \\to f(g(x)) + c</annotation></semantics></math>"
+    },
+    {
+     "id": "area-under-curve",
+     "name": "Area under a curve",
+     "latex": "\\text{area under a curve} = \\int_a^b y\\, dx \\quad (y \\ge 0)",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "definite integral",
+      "area under a curve"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>area under a curve</mtext><mo>=</mo><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mi>y</mi><mtext> </mtext><mi>d</mi><mi>x</mi><mspace width=\"1em\"/><mo stretchy=\"false\">(</mo><mi>y</mi><mo>≥</mo><mn>0</mn><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\text{area under a curve} = \\int_a^b y\\, dx \\quad (y \\ge 0)</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "numerical-methods",
+   "title": "Numerical methods",
+   "items": [
+    {
+     "id": "trapezium-rule",
+     "name": "Trapezium rule",
+     "latex": "\\int_a^b y\\, dx \\approx \\tfrac{1}{2} h \\left\\{ (y_0 + y_n) + 2(y_1 + y_2 + \\dots + y_{n-1}) \\right\\}, \\quad \\text{where } h = \\frac{b - a}{n}",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "trapezium rule",
+      "numerical integration",
+      "ordinates"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mi>y</mi><mtext> </mtext><mi>d</mi><mi>x</mi><mo>≈</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>h</mi><mrow><mo fence=\"true\">{</mo><mo stretchy=\"false\">(</mo><msub><mi>y</mi><mn>0</mn></msub><mo>+</mo><msub><mi>y</mi><mi>n</mi></msub><mo stretchy=\"false\">)</mo><mo>+</mo><mn>2</mn><mo stretchy=\"false\">(</mo><msub><mi>y</mi><mn>1</mn></msub><mo>+</mo><msub><mi>y</mi><mn>2</mn></msub><mo>+</mo><mo>⋯</mo><mo>+</mo><msub><mi>y</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy=\"false\">)</mo><mo fence=\"true\">}</mo></mrow><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mtext>where </mtext><mi>h</mi><mo>=</mo><mfrac><mrow><mi>b</mi><mo>−</mo><mi>a</mi></mrow><mi>n</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">\\int_a^b y\\, dx \\approx \\tfrac{1}{2} h \\left\\{ (y_0 + y_n) + 2(y_1 + y_2 + \\dots + y_{n-1}) \\right\\}, \\quad \\text{where } h = \\frac{b - a}{n}</annotation></semantics></math>"
+    },
+    {
+     "id": "newton-raphson",
+     "name": "Newton-Raphson iteration",
+     "latex": "x_{n+1} = x_n - \\frac{f(x_n)}{f^{\\prime}(x_n)}",
+     "note": "For solving f(x) = 0.",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "newton raphson",
+      "iteration",
+      "numerical solution",
+      "root"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>x</mi><mi>n</mi></msub><mo>−</mo><mfrac><mrow><mi>f</mi><mo stretchy=\"false\">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy=\"false\">)</mo></mrow><mrow><msup><mi>f</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy=\"false\">)</mo></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">x_{n+1} = x_n - \\frac{f(x_n)}{f^{\\prime}(x_n)}</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "vectors",
+   "title": "Vectors",
+   "items": [
+    {
+     "id": "vector-magnitude",
+     "name": "Magnitude of a vector",
+     "latex": "\\left| x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k} \\right| = \\sqrt{x^2 + y^2 + z^2}",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "vector",
+      "magnitude",
+      "modulus",
+      "components"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mrow><mo fence=\"true\">∣</mo><mi>x</mi><mi mathvariant=\"bold\">i</mi><mo>+</mo><mi>y</mi><mi mathvariant=\"bold\">j</mi><mo>+</mo><mi>z</mi><mi mathvariant=\"bold\">k</mi><mo fence=\"true\">∣</mo></mrow><mo>=</mo><msqrt><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><msup><mi>y</mi><mn>2</mn></msup><mo>+</mo><msup><mi>z</mi><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding=\"application/x-tex\">\\left| x\\mathbf{i} + y\\mathbf{j} + z\\mathbf{k} \\right| = \\sqrt{x^2 + y^2 + z^2}</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "mechanics",
+   "title": "Mechanics",
+   "items": [
+    {
+     "id": "suvat-velocity",
+     "name": "Velocity from acceleration",
+     "latex": "v = u + at",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "constant acceleration",
+      "suvat",
+      "velocity"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>v</mi><mo>=</mo><mi>u</mi><mo>+</mo><mi>a</mi><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">v = u + at</annotation></semantics></math>"
+    },
+    {
+     "id": "suvat-displacement-initial",
+     "name": "Displacement using initial velocity",
+     "latex": "s = ut + \\tfrac{1}{2} a t^2",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "constant acceleration",
+      "suvat",
+      "displacement"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>s</mi><mo>=</mo><mi>u</mi><mi>t</mi><mo>+</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>a</mi><msup><mi>t</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">s = ut + \\tfrac{1}{2} a t^2</annotation></semantics></math>"
+    },
+    {
+     "id": "suvat-displacement-final",
+     "name": "Displacement using final velocity",
+     "latex": "s = vt - \\tfrac{1}{2} a t^2",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "constant acceleration",
+      "suvat",
+      "displacement"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>s</mi><mo>=</mo><mi>v</mi><mi>t</mi><mo>−</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mi>a</mi><msup><mi>t</mi><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">s = vt - \\tfrac{1}{2} a t^2</annotation></semantics></math>"
+    },
+    {
+     "id": "suvat-average-velocity",
+     "name": "Displacement from average velocity",
+     "latex": "s = \\tfrac{1}{2} (u + v) t",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "constant acceleration",
+      "suvat",
+      "displacement",
+      "average velocity"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>s</mi><mo>=</mo><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mo stretchy=\"false\">(</mo><mi>u</mi><mo>+</mo><mi>v</mi><mo stretchy=\"false\">)</mo><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">s = \\tfrac{1}{2} (u + v) t</annotation></semantics></math>"
+    },
+    {
+     "id": "suvat-velocity-squared",
+     "name": "Velocity, acceleration and displacement",
+     "latex": "v^2 = u^2 + 2as",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "constant acceleration",
+      "suvat",
+      "velocity"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msup><mi>v</mi><mn>2</mn></msup><mo>=</mo><msup><mi>u</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn><mi>a</mi><mi>s</mi></mrow><annotation encoding=\"application/x-tex\">v^2 = u^2 + 2as</annotation></semantics></math>"
+    },
+    {
+     "id": "variable-acceleration-kinematics",
+     "name": "Kinematics with variable acceleration",
+     "latex": "v = \\frac{dr}{dt}, \\quad a = \\frac{dv}{dt} = \\frac{d^2 r}{dt^2}, \\quad r = \\int v\\, dt, \\quad v = \\int a\\, dt",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "variable acceleration",
+      "kinematics",
+      "calculus",
+      "velocity"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>v</mi><mo>=</mo><mfrac><mrow><mi>d</mi><mi>r</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>a</mi><mo>=</mo><mfrac><mrow><mi>d</mi><mi>v</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><msup><mi>d</mi><mn>2</mn></msup><mi>r</mi></mrow><mrow><mi>d</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></mfrac><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>r</mi><mo>=</mo><mo>∫</mo><mi>v</mi><mtext> </mtext><mi>d</mi><mi>t</mi><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>v</mi><mo>=</mo><mo>∫</mo><mi>a</mi><mtext> </mtext><mi>d</mi><mi>t</mi></mrow><annotation encoding=\"application/x-tex\">v = \\frac{dr}{dt}, \\quad a = \\frac{dv}{dt} = \\frac{d^2 r}{dt^2}, \\quad r = \\int v\\, dt, \\quad v = \\int a\\, dt</annotation></semantics></math>"
+    },
+    {
+     "id": "newton-second-law",
+     "name": "Newton's second law",
+     "latex": "F = ma",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "newton second law",
+      "force",
+      "mass",
+      "acceleration"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>=</mo><mi>m</mi><mi>a</mi></mrow><annotation encoding=\"application/x-tex\">F = ma</annotation></semantics></math>"
+    },
+    {
+     "id": "weight",
+     "name": "Weight",
+     "latex": "\\text{weight} = \\text{mass} \\times g",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "weight",
+      "mass",
+      "gravity",
+      "g"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>weight</mtext><mo>=</mo><mtext>mass</mtext><mo>×</mo><mi>g</mi></mrow><annotation encoding=\"application/x-tex\">\\text{weight} = \\text{mass} \\times g</annotation></semantics></math>"
+    },
+    {
+     "id": "friction",
+     "name": "Friction",
+     "latex": "F \\le \\mu R",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "friction",
+      "coefficient",
+      "normal reaction",
+      "limiting"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>F</mi><mo>≤</mo><mi>μ</mi><mi>R</mi></mrow><annotation encoding=\"application/x-tex\">F \\le \\mu R</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "probability-statistics",
+   "title": "Probability and statistics",
+   "items": [
+    {
+     "id": "probability-union",
+     "name": "Addition rule",
+     "latex": "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "probability",
+      "union",
+      "mutually exclusive",
+      "addition"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mo>∪</mo><mi>B</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mo stretchy=\"false\">)</mo><mo>+</mo><mi>P</mi><mo stretchy=\"false\">(</mo><mi>B</mi><mo stretchy=\"false\">)</mo><mo>−</mo><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">P(A \\cup B) = P(A) + P(B) - P(A \\cap B)</annotation></semantics></math>"
+    },
+    {
+     "id": "probability-intersection",
+     "name": "Multiplication rule",
+     "latex": "P(A \\cap B) = P(A) P(B \\mid A)",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "probability",
+      "intersection",
+      "conditional",
+      "multiplication"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mo stretchy=\"false\">)</mo><mi>P</mi><mo stretchy=\"false\">(</mo><mi>B</mi><mo>∣</mo><mi>A</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">P(A \\cap B) = P(A) P(B \\mid A)</annotation></semantics></math>"
+    },
+    {
+     "id": "conditional-probability",
+     "name": "Conditional probability",
+     "latex": "P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}",
+     "provision": {
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "conditional probability",
+      "intersection"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mo>∣</mo><mi>B</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mfrac><mrow><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo stretchy=\"false\">)</mo></mrow><mrow><mi>P</mi><mo stretchy=\"false\">(</mo><mi>B</mi><mo stretchy=\"false\">)</mo></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-complement",
+     "name": "Complement",
+     "latex": "P(A^{\\prime}) = 1 - P(A)",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "probability",
+      "complement",
+      "not"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo stretchy=\"false\">(</mo><msup><mi>A</mi><mo mathvariant=\"normal\" lspace=\"0em\" rspace=\"0em\">′</mo></msup><mo stretchy=\"false\">)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">P(A^{\\prime}) = 1 - P(A)</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-independent-events",
+     "name": "Independent events",
+     "latex": "P(A \\cap B) = P(A) P(B)",
+     "note": "For independent events A and B.",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "independent events",
+      "probability",
+      "multiplication"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mo>∩</mo><mi>B</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mi>P</mi><mo stretchy=\"false\">(</mo><mi>A</mi><mo stretchy=\"false\">)</mo><mi>P</mi><mo stretchy=\"false\">(</mo><mi>B</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">P(A \\cap B) = P(A) P(B)</annotation></semantics></math>"
+    },
+    {
+     "id": "aqa-ocr-standard-deviation",
+     "name": "Standard deviation",
+     "latex": "\\frac{\\sum (x - \\bar{x})^2}{n} = \\frac{\\sum x^2}{n} - \\bar{x}^2",
+     "note": "The board prints this expression under the heading Standard deviation.",
+     "provision": {
+      "aqa": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "variance",
+      "standard deviation",
+      "mean"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mrow><mo>∑</mo><mo stretchy=\"false\">(</mo><mi>x</mi><mo>−</mo><mover accent=\"true\"><mi>x</mi><mo>ˉ</mo></mover><msup><mo stretchy=\"false\">)</mo><mn>2</mn></msup></mrow><mi>n</mi></mfrac><mo>=</mo><mfrac><mrow><mo>∑</mo><msup><mi>x</mi><mn>2</mn></msup></mrow><mi>n</mi></mfrac><mo>−</mo><msup><mover accent=\"true\"><mi>x</mi><mo>ˉ</mo></mover><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">\\frac{\\sum (x - \\bar{x})^2}{n} = \\frac{\\sum x^2}{n} - \\bar{x}^2</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-variance-frequency",
+     "name": "Standard deviation from a frequency table",
+     "latex": "\\frac{\\sum f (x - \\bar{x})^2}{\\sum f} = \\frac{\\sum f x^2}{\\sum f} - \\bar{x}^2",
+     "provision": {
+      "ocr": "given"
+     },
+     "keywords": [
+      "variance",
+      "standard deviation",
+      "frequency table"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mrow><mo>∑</mo><mi>f</mi><mo stretchy=\"false\">(</mo><mi>x</mi><mo>−</mo><mover accent=\"true\"><mi>x</mi><mo>ˉ</mo></mover><msup><mo stretchy=\"false\">)</mo><mn>2</mn></msup></mrow><mrow><mo>∑</mo><mi>f</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mo>∑</mo><mi>f</mi><msup><mi>x</mi><mn>2</mn></msup></mrow><mrow><mo>∑</mo><mi>f</mi></mrow></mfrac><mo>−</mo><msup><mover accent=\"true\"><mi>x</mi><mo>ˉ</mo></mover><mn>2</mn></msup></mrow><annotation encoding=\"application/x-tex\">\\frac{\\sum f (x - \\bar{x})^2}{\\sum f} = \\frac{\\sum f x^2}{\\sum f} - \\bar{x}^2</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-standard-deviation",
+     "name": "Standard deviation",
+     "latex": "\\sigma = \\sqrt{\\frac{S_{xx}}{n}} = \\sqrt{\\frac{\\sum x^2}{n} - \\bar{x}^2}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "standard deviation",
+      "variance",
+      "sigma"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>σ</mi><mo>=</mo><msqrt><mfrac><msub><mi>S</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub><mi>n</mi></mfrac></msqrt><mo>=</mo><msqrt><mrow><mfrac><mrow><mo>∑</mo><msup><mi>x</mi><mn>2</mn></msup></mrow><mi>n</mi></mfrac><mo>−</mo><msup><mover accent=\"true\"><mi>x</mi><mo>ˉ</mo></mover><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding=\"application/x-tex\">\\sigma = \\sqrt{\\frac{S_{xx}}{n}} = \\sqrt{\\frac{\\sum x^2}{n} - \\bar{x}^2}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-sxx",
+     "name": "Sum of squared deviations",
+     "latex": "S_{xx} = \\sum (x_i - \\bar{x})^2 = \\sum x_i^2 - \\frac{\\left(\\sum x_i\\right)^2}{n}",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "Sxx",
+      "variance",
+      "sum of squares"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><msub><mi>S</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub><mo>=</mo><mo>∑</mo><mo stretchy=\"false\">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><mover accent=\"true\"><mi>x</mi><mo>ˉ</mo></mover><msup><mo stretchy=\"false\">)</mo><mn>2</mn></msup><mo>=</mo><mo>∑</mo><msubsup><mi>x</mi><mi>i</mi><mn>2</mn></msubsup><mo>−</mo><mfrac><msup><mrow><mo fence=\"true\">(</mo><mo>∑</mo><msub><mi>x</mi><mi>i</mi></msub><mo fence=\"true\">)</mo></mrow><mn>2</mn></msup><mi>n</mi></mfrac></mrow><annotation encoding=\"application/x-tex\">S_{xx} = \\sum (x_i - \\bar{x})^2 = \\sum x_i^2 - \\frac{\\left(\\sum x_i\\right)^2}{n}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-iqr",
+     "name": "Interquartile range",
+     "latex": "\\text{IQR} = Q_3 - Q_1",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "interquartile range",
+      "quartile",
+      "IQR"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mtext>IQR</mtext><mo>=</mo><msub><mi>Q</mi><mn>3</mn></msub><mo>−</mo><msub><mi>Q</mi><mn>1</mn></msub></mrow><annotation encoding=\"application/x-tex\">\\text{IQR} = Q_3 - Q_1</annotation></semantics></math>"
+    },
+    {
+     "id": "binomial-distribution",
+     "name": "The binomial distribution",
+     "latex": "X \\sim B(n, p) \\Rightarrow P(X = x) = \\binom{n}{x} p^x (1 - p)^{n-x}, \\qquad \\text{mean} = np, \\qquad \\text{variance} = np(1 - p)",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "binomial distribution",
+      "mean",
+      "variance",
+      "probability"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>X</mi><mo>∼</mo><mi>B</mi><mo stretchy=\"false\">(</mo><mi>n</mi><mo separator=\"true\">,</mo><mi>p</mi><mo stretchy=\"false\">)</mo><mo>⇒</mo><mi>P</mi><mo stretchy=\"false\">(</mo><mi>X</mi><mo>=</mo><mi>x</mi><mo stretchy=\"false\">)</mo><mo>=</mo><mrow><mo fence=\"true\">(</mo><mfrac linethickness=\"0px\"><mi>n</mi><mi>x</mi></mfrac><mo fence=\"true\">)</mo></mrow><msup><mi>p</mi><mi>x</mi></msup><mo stretchy=\"false\">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><msup><mo stretchy=\"false\">)</mo><mrow><mi>n</mi><mo>−</mo><mi>x</mi></mrow></msup><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mtext>mean</mtext><mo>=</mo><mi>n</mi><mi>p</mi><mo separator=\"true\">,</mo><mspace width=\"2em\"/><mtext>variance</mtext><mo>=</mo><mi>n</mi><mi>p</mi><mo stretchy=\"false\">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">X \\sim B(n, p) \\Rightarrow P(X = x) = \\binom{n}{x} p^x (1 - p)^{n-x}, \\qquad \\text{mean} = np, \\qquad \\text{variance} = np(1 - p)</annotation></semantics></math>"
+    },
+    {
+     "id": "sampling-distribution",
+     "name": "Sampling distribution of the mean",
+     "latex": "\\frac{\\bar{X} - \\mu}{\\sigma / \\sqrt{n}} \\sim N(0, 1)",
+     "note": "For a random sample of n observations from N(μ, σ²).",
+     "provision": {
+      "aqa": "given",
+      "edexcel": "given",
+      "ocr": "given"
+     },
+     "keywords": [
+      "sampling distribution",
+      "central limit",
+      "normal",
+      "mean"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mfrac><mrow><mover accent=\"true\"><mi>X</mi><mo>ˉ</mo></mover><mo>−</mo><mi>μ</mi></mrow><mrow><mi>σ</mi><mi mathvariant=\"normal\">/</mi><msqrt><mi>n</mi></msqrt></mrow></mfrac><mo>∼</mo><mi>N</mi><mo stretchy=\"false\">(</mo><mn>0</mn><mo separator=\"true\">,</mo><mn>1</mn><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">\\frac{\\bar{X} - \\mu}{\\sigma / \\sqrt{n}} \\sim N(0, 1)</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-sample-mean-distribution",
+     "name": "Distribution of the sample mean",
+     "latex": "X \\sim N(\\mu, \\sigma^2) \\Rightarrow \\bar{X} \\sim N\\left(\\mu, \\frac{\\sigma^2}{n}\\right)",
+     "provision": {
+      "ocr": "given"
+     },
+     "keywords": [
+      "sample mean",
+      "normal distribution",
+      "variance"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>X</mi><mo>∼</mo><mi>N</mi><mo stretchy=\"false\">(</mo><mi>μ</mi><mo separator=\"true\">,</mo><msup><mi>σ</mi><mn>2</mn></msup><mo stretchy=\"false\">)</mo><mo>⇒</mo><mover accent=\"true\"><mi>X</mi><mo>ˉ</mo></mover><mo>∼</mo><mi>N</mi><mrow><mo fence=\"true\">(</mo><mi>μ</mi><mo separator=\"true\">,</mo><mfrac><msup><mi>σ</mi><mn>2</mn></msup><mi>n</mi></mfrac><mo fence=\"true\">)</mo></mrow></mrow><annotation encoding=\"application/x-tex\">X \\sim N(\\mu, \\sigma^2) \\Rightarrow \\bar{X} \\sim N\\left(\\mu, \\frac{\\sigma^2}{n}\\right)</annotation></semantics></math>"
+    },
+    {
+     "id": "mean-of-data",
+     "name": "Mean of a set of data",
+     "latex": "\\bar{x} = \\frac{\\sum x}{n} = \\frac{\\sum f x}{\\sum f}",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "mean",
+      "average",
+      "grouped data"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mover accent=\"true\"><mi>x</mi><mo>ˉ</mo></mover><mo>=</mo><mfrac><mrow><mo>∑</mo><mi>x</mi></mrow><mi>n</mi></mfrac><mo>=</mo><mfrac><mrow><mo>∑</mo><mi>f</mi><mi>x</mi></mrow><mrow><mo>∑</mo><mi>f</mi></mrow></mfrac></mrow><annotation encoding=\"application/x-tex\">\\bar{x} = \\frac{\\sum x}{n} = \\frac{\\sum f x}{\\sum f}</annotation></semantics></math>"
+    },
+    {
+     "id": "standard-normal-variable",
+     "name": "The standard Normal variable",
+     "latex": "Z = \\frac{X - \\mu}{\\sigma} \\quad \\text{where } X \\sim N(\\mu, \\sigma^2)",
+     "provision": {
+      "aqa": "know",
+      "edexcel": "know",
+      "ocr": "know"
+     },
+     "keywords": [
+      "standard normal",
+      "z",
+      "standardising",
+      "normal distribution"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>Z</mi><mo>=</mo><mfrac><mrow><mi>X</mi><mo>−</mo><mi>μ</mi></mrow><mi>σ</mi></mfrac><mspace width=\"1em\"/><mtext>where </mtext><mi>X</mi><mo>∼</mo><mi>N</mi><mo stretchy=\"false\">(</mo><mi>μ</mi><mo separator=\"true\">,</mo><msup><mi>σ</mi><mn>2</mn></msup><mo stretchy=\"false\">)</mo></mrow><annotation encoding=\"application/x-tex\">Z = \\frac{X - \\mu}{\\sigma} \\quad \\text{where } X \\sim N(\\mu, \\sigma^2)</annotation></semantics></math>"
+    }
+   ]
+  },
+  {
+   "id": "statistical-tables",
+   "title": "Statistical tables",
+   "items": [
+    {
+     "id": "edexcel-normal-percentage-points",
+     "name": "Percentage points of the Normal distribution",
+     "latex": "\\begin{array}{rr} p & z \\\\ 0.5000 & 0.0000 \\\\ 0.4000 & 0.2533 \\\\ 0.3000 & 0.5244 \\\\ 0.2000 & 0.8416 \\\\ 0.1500 & 1.0364 \\\\ 0.1000 & 1.2816 \\\\ 0.0500 & 1.6449 \\\\ 0.0250 & 1.9600 \\\\ 0.0100 & 2.3263 \\\\ 0.0050 & 2.5758 \\\\ 0.0010 & 3.0902 \\\\ 0.0005 & 3.2905 \\end{array}",
+     "note": "The value z that Z ~ N(0, 1) exceeds with probability p, so P(Z > z) = p.",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "normal distribution",
+      "percentage points",
+      "z",
+      "table",
+      "critical value"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mtable rowspacing=\"0.16em\" columnalign=\"right right\" columnspacing=\"1em\"><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mi>p</mi></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mi>z</mi></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5000</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.0000</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4000</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2533</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3000</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5244</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2000</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.8416</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.1500</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>1.0364</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.1000</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>1.2816</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.0500</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>1.6449</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.0250</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>1.9600</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.0100</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>2.3263</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.0050</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>2.5758</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.0010</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>3.0902</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.0005</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>3.2905</mn></mstyle></mtd></mtr></mtable><annotation encoding=\"application/x-tex\">\\begin{array}{rr} p &amp; z \\\\ 0.5000 &amp; 0.0000 \\\\ 0.4000 &amp; 0.2533 \\\\ 0.3000 &amp; 0.5244 \\\\ 0.2000 &amp; 0.8416 \\\\ 0.1500 &amp; 1.0364 \\\\ 0.1000 &amp; 1.2816 \\\\ 0.0500 &amp; 1.6449 \\\\ 0.0250 &amp; 1.9600 \\\\ 0.0100 &amp; 2.3263 \\\\ 0.0050 &amp; 2.5758 \\\\ 0.0010 &amp; 3.0902 \\\\ 0.0005 &amp; 3.2905 \\end{array}</annotation></semantics></math>"
+    },
+    {
+     "id": "ocr-normal-percentage-points",
+     "name": "Percentage points of the Normal distribution",
+     "latex": "\\begin{array}{rr} p & z \\\\ 0.75 & 0.674 \\\\ 0.90 & 1.282 \\\\ 0.95 & 1.645 \\\\ 0.975 & 1.960 \\\\ 0.99 & 2.326 \\\\ 0.995 & 2.576 \\\\ 0.9975 & 2.807 \\\\ 0.999 & 3.090 \\\\ 0.9995 & 3.291 \\end{array}",
+     "note": "The value z such that P(Z ≤ z) = p, where Z has a Normal distribution with mean 0 and variance 1.",
+     "provision": {
+      "ocr": "given"
+     },
+     "keywords": [
+      "normal distribution",
+      "percentage points",
+      "z",
+      "table",
+      "critical value"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mtable rowspacing=\"0.16em\" columnalign=\"right right\" columnspacing=\"1em\"><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mi>p</mi></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mi>z</mi></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.75</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.674</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.90</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>1.282</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.95</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>1.645</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.975</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>1.960</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.99</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>2.326</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.995</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>2.576</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.9975</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>2.807</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.999</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>3.090</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.9995</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>3.291</mn></mstyle></mtd></mtr></mtable><annotation encoding=\"application/x-tex\">\\begin{array}{rr} p &amp; z \\\\ 0.75 &amp; 0.674 \\\\ 0.90 &amp; 1.282 \\\\ 0.95 &amp; 1.645 \\\\ 0.975 &amp; 1.960 \\\\ 0.99 &amp; 2.326 \\\\ 0.995 &amp; 2.576 \\\\ 0.9975 &amp; 2.807 \\\\ 0.999 &amp; 3.090 \\\\ 0.9995 &amp; 3.291 \\end{array}</annotation></semantics></math>"
+    },
+    {
+     "id": "edexcel-correlation-critical-values",
+     "name": "Critical values for correlation coefficients",
+     "latex": "\\begin{array}{r|rrrrr} n & 0.10 & 0.05 & 0.025 & 0.01 & 0.005 \\\\ 4 & 0.8000 & 0.9000 & 0.9500 & 0.9800 & 0.9900 \\\\ 5 & 0.6870 & 0.8054 & 0.8783 & 0.9343 & 0.9587 \\\\ 6 & 0.6084 & 0.7293 & 0.8114 & 0.8822 & 0.9172 \\\\ 7 & 0.5509 & 0.6694 & 0.7545 & 0.8329 & 0.8745 \\\\ 8 & 0.5067 & 0.6215 & 0.7067 & 0.7887 & 0.8343 \\\\ 9 & 0.4716 & 0.5822 & 0.6664 & 0.7498 & 0.7977 \\\\ 10 & 0.4428 & 0.5494 & 0.6319 & 0.7155 & 0.7646 \\\\ 11 & 0.4187 & 0.5214 & 0.6021 & 0.6851 & 0.7348 \\\\ 12 & 0.3981 & 0.4973 & 0.5760 & 0.6581 & 0.7079 \\\\ 13 & 0.3802 & 0.4762 & 0.5529 & 0.6339 & 0.6835 \\\\ 14 & 0.3646 & 0.4575 & 0.5324 & 0.6120 & 0.6614 \\\\ 15 & 0.3507 & 0.4409 & 0.5140 & 0.5923 & 0.6411 \\\\ 16 & 0.3383 & 0.4259 & 0.4973 & 0.5742 & 0.6226 \\\\ 17 & 0.3271 & 0.4124 & 0.4821 & 0.5577 & 0.6055 \\\\ 18 & 0.3170 & 0.4000 & 0.4683 & 0.5425 & 0.5897 \\\\ 19 & 0.3077 & 0.3887 & 0.4555 & 0.5285 & 0.5751 \\\\ 20 & 0.2992 & 0.3783 & 0.4438 & 0.5155 & 0.5614 \\\\ 21 & 0.2914 & 0.3687 & 0.4329 & 0.5034 & 0.5487 \\\\ 22 & 0.2841 & 0.3598 & 0.4227 & 0.4921 & 0.5368 \\\\ 23 & 0.2774 & 0.3515 & 0.4133 & 0.4815 & 0.5256 \\\\ 24 & 0.2711 & 0.3438 & 0.4044 & 0.4716 & 0.5151 \\\\ 25 & 0.2653 & 0.3365 & 0.3961 & 0.4622 & 0.5052 \\\\ 26 & 0.2598 & 0.3297 & 0.3882 & 0.4534 & 0.4958 \\\\ 27 & 0.2546 & 0.3233 & 0.3809 & 0.4451 & 0.4869 \\\\ 28 & 0.2497 & 0.3172 & 0.3739 & 0.4372 & 0.4785 \\\\ 29 & 0.2451 & 0.3115 & 0.3673 & 0.4297 & 0.4705 \\\\ 30 & 0.2407 & 0.3061 & 0.3610 & 0.4226 & 0.4629 \\\\ 40 & 0.2070 & 0.2638 & 0.3120 & 0.3665 & 0.4026 \\\\ 50 & 0.1843 & 0.2353 & 0.2787 & 0.3281 & 0.3610 \\\\ 60 & 0.1678 & 0.2144 & 0.2542 & 0.2997 & 0.3301 \\\\ 70 & 0.1550 & 0.1982 & 0.2352 & 0.2776 & 0.3060 \\\\ 80 & 0.1448 & 0.1852 & 0.2199 & 0.2597 & 0.2864 \\\\ 90 & 0.1364 & 0.1745 & 0.2072 & 0.2449 & 0.2702 \\\\ 100 & 0.1292 & 0.1654 & 0.1966 & 0.2324 & 0.2565 \\end{array}",
+     "note": "Product moment coefficient. The table gives the smallest sample correlation coefficient that is significant at the level shown, on a one-tailed test of a population correlation of 0.",
+     "provision": {
+      "edexcel": "given"
+     },
+     "keywords": [
+      "correlation",
+      "product moment",
+      "critical values",
+      "significance",
+      "table"
+     ],
+     "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mtable rowspacing=\"0.16em\" columnalign=\"right right right right right right\" columnlines=\"solid none none none none\" columnspacing=\"1em\"><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mi>n</mi></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.10</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.05</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.025</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.01</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.005</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>4</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.8000</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.9000</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.9500</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.9800</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.9900</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>5</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6870</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.8054</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.8783</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.9343</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.9587</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>6</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6084</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.7293</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.8114</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.8822</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.9172</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>7</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5509</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6694</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.7545</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.8329</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.8745</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>8</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5067</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6215</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.7067</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.7887</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.8343</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>9</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4716</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5822</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6664</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.7498</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.7977</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>10</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4428</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5494</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6319</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.7155</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.7646</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>11</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4187</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5214</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6021</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6851</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.7348</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>12</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3981</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4973</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5760</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6581</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.7079</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>13</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3802</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4762</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5529</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6339</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6835</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>14</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3646</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4575</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5324</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6120</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6614</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>15</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3507</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4409</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5140</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5923</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6411</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>16</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3383</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4259</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4973</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5742</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6226</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>17</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3271</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4124</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4821</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5577</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.6055</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>18</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3170</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4000</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4683</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5425</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5897</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>19</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3077</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3887</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4555</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5285</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5751</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>20</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2992</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3783</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4438</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5155</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5614</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>21</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2914</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3687</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4329</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5034</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5487</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>22</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2841</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3598</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4227</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4921</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5368</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>23</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2774</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3515</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4133</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4815</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5256</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>24</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2711</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3438</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4044</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4716</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5151</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>25</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2653</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3365</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3961</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4622</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.5052</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>26</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2598</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3297</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3882</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4534</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4958</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>27</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2546</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3233</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3809</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4451</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4869</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>28</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2497</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3172</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3739</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4372</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4785</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>29</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2451</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3115</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3673</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4297</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4705</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>30</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2407</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3061</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3610</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4226</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4629</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>40</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2070</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2638</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3120</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3665</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.4026</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>50</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.1843</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2353</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2787</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3281</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3610</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>60</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.1678</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2144</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2542</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2997</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3301</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>70</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.1550</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.1982</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2352</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2776</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.3060</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>80</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.1448</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.1852</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2199</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2597</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2864</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>90</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.1364</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.1745</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2072</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2449</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2702</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>100</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.1292</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.1654</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.1966</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2324</mn></mstyle></mtd><mtd><mstyle scriptlevel=\"0\" displaystyle=\"false\"><mn>0.2565</mn></mstyle></mtd></mtr></mtable><annotation encoding=\"application/x-tex\">\\begin{array}{r|rrrrr} n &amp; 0.10 &amp; 0.05 &amp; 0.025 &amp; 0.01 &amp; 0.005 \\\\ 4 &amp; 0.8000 &amp; 0.9000 &amp; 0.9500 &amp; 0.9800 &amp; 0.9900 \\\\ 5 &amp; 0.6870 &amp; 0.8054 &amp; 0.8783 &amp; 0.9343 &amp; 0.9587 \\\\ 6 &amp; 0.6084 &amp; 0.7293 &amp; 0.8114 &amp; 0.8822 &amp; 0.9172 \\\\ 7 &amp; 0.5509 &amp; 0.6694 &amp; 0.7545 &amp; 0.8329 &amp; 0.8745 \\\\ 8 &amp; 0.5067 &amp; 0.6215 &amp; 0.7067 &amp; 0.7887 &amp; 0.8343 \\\\ 9 &amp; 0.4716 &amp; 0.5822 &amp; 0.6664 &amp; 0.7498 &amp; 0.7977 \\\\ 10 &amp; 0.4428 &amp; 0.5494 &amp; 0.6319 &amp; 0.7155 &amp; 0.7646 \\\\ 11 &amp; 0.4187 &amp; 0.5214 &amp; 0.6021 &amp; 0.6851 &amp; 0.7348 \\\\ 12 &amp; 0.3981 &amp; 0.4973 &amp; 0.5760 &amp; 0.6581 &amp; 0.7079 \\\\ 13 &amp; 0.3802 &amp; 0.4762 &amp; 0.5529 &amp; 0.6339 &amp; 0.6835 \\\\ 14 &amp; 0.3646 &amp; 0.4575 &amp; 0.5324 &amp; 0.6120 &amp; 0.6614 \\\\ 15 &amp; 0.3507 &amp; 0.4409 &amp; 0.5140 &amp; 0.5923 &amp; 0.6411 \\\\ 16 &amp; 0.3383 &amp; 0.4259 &amp; 0.4973 &amp; 0.5742 &amp; 0.6226 \\\\ 17 &amp; 0.3271 &amp; 0.4124 &amp; 0.4821 &amp; 0.5577 &amp; 0.6055 \\\\ 18 &amp; 0.3170 &amp; 0.4000 &amp; 0.4683 &amp; 0.5425 &amp; 0.5897 \\\\ 19 &amp; 0.3077 &amp; 0.3887 &amp; 0.4555 &amp; 0.5285 &amp; 0.5751 \\\\ 20 &amp; 0.2992 &amp; 0.3783 &amp; 0.4438 &amp; 0.5155 &amp; 0.5614 \\\\ 21 &amp; 0.2914 &amp; 0.3687 &amp; 0.4329 &amp; 0.5034 &amp; 0.5487 \\\\ 22 &amp; 0.2841 &amp; 0.3598 &amp; 0.4227 &amp; 0.4921 &amp; 0.5368 \\\\ 23 &amp; 0.2774 &amp; 0.3515 &amp; 0.4133 &amp; 0.4815 &amp; 0.5256 \\\\ 24 &amp; 0.2711 &amp; 0.3438 &amp; 0.4044 &amp; 0.4716 &amp; 0.5151 \\\\ 25 &amp; 0.2653 &amp; 0.3365 &amp; 0.3961 &amp; 0.4622 &amp; 0.5052 \\\\ 26 &amp; 0.2598 &amp; 0.3297 &amp; 0.3882 &amp; 0.4534 &amp; 0.4958 \\\\ 27 &amp; 0.2546 &amp; 0.3233 &amp; 0.3809 &amp; 0.4451 &amp; 0.4869 \\\\ 28 &amp; 0.2497 &amp; 0.3172 &amp; 0.3739 &amp; 0.4372 &amp; 0.4785 \\\\ 29 &amp; 0.2451 &amp; 0.3115 &amp; 0.3673 &amp; 0.4297 &amp; 0.4705 \\\\ 30 &amp; 0.2407 &amp; 0.3061 &amp; 0.3610 &amp; 0.4226 &amp; 0.4629 \\\\ 40 &amp; 0.2070 &amp; 0.2638 &amp; 0.3120 &amp; 0.3665 &amp; 0.4026 \\\\ 50 &amp; 0.1843 &amp; 0.2353 &amp; 0.2787 &amp; 0.3281 &amp; 0.3610 \\\\ 60 &amp; 0.1678 &amp; 0.2144 &amp; 0.2542 &amp; 0.2997 &amp; 0.3301 \\\\ 70 &amp; 0.1550 &amp; 0.1982 &amp; 0.2352 &amp; 0.2776 &amp; 0.3060 \\\\ 80 &amp; 0.1448 &amp; 0.1852 &amp; 0.2199 &amp; 0.2597 &amp; 0.2864 \\\\ 90 &amp; 0.1364 &amp; 0.1745 &amp; 0.2072 &amp; 0.2449 &amp; 0.2702 \\\\ 100 &amp; 0.1292 &amp; 0.1654 &amp; 0.1966 &amp; 0.2324 &amp; 0.2565 \\end{array}</annotation></semantics></math>"
+    }
+   ]
+  }
+ ],
+ "tables": []
+}

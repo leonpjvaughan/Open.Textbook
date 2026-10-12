@@ -15,8 +15,6 @@ kind: walkthrough
 
 **Objectives:** count combined choices by multiplying the number of options at each stage; use the rule when choices have restrictions.
 
-**Covers:** N5 (the product rule for counting; Higher only).
-
 ## Multiply choices across stages
 
 The **product rule** says that if one choice has $a$ options and a following choice has $b$ options for each first choice, there are $a\times b$ combined outcomes.

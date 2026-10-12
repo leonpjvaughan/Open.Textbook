@@ -6,7 +6,7 @@ strand: number
 
 # Chapter 2: Factors, multiples and primes
 
-## By the end of this chapter
+## By the end of this chapter you will be able to
 
 You will be able to:
 

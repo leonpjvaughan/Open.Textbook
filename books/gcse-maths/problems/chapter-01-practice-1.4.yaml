@@ -127,3 +127,16 @@ problems:
     answer_label: '$3 + 4 \times (7 - 2^2)$'
     check: {kind: evaluate, expression: "3 + 4 * (7 - 2**2)", answer: "15"}
     answer_text: '$2^2 = 4$, $7 - 4 = 3$, $4 \times 3 = 12$, $3 + 12 = 15$.'
+
+  - id: ch1-14-method-order
+    section: '1.4'
+    tier: F
+    dfe: [N3]
+    statement: 'Work out $8-3+2$. Which method is correct: work left to right, or do the addition before the subtraction? Give a reason. Then work out $8-3+2$ and $8-(3+2)$.'
+    answer_label: 'Method choice: left to right or brackets first'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '8-3+2', answer: '7'}
+        - {kind: evaluate, expression: '8-(3+2)', answer: '3'}
+    answer_text: 'Addition and subtraction have equal priority, so work left to right: $8-3+2=7$. The brackets make the addition happen first, giving $8-5=3$, so brackets change the answer.'

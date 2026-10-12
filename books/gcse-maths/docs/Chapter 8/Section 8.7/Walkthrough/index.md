@@ -15,8 +15,6 @@ kind: walkthrough
 
 **By the end of this section you can:** expand and simplify a product of three binomials.
 
-**Covers:** A4.
-
 ## Learn the method
 
 A binomial has two terms. For three brackets, expand two brackets first, then multiply every resulting term by the third bracket.

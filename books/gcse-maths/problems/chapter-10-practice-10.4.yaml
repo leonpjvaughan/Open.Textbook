@@ -74,3 +74,16 @@ problems:
     answer_label: '**H** The nth term is $n^2+4n$. Find $n$ when the term is 45.'
     check: {"kind":"evaluate","expression":"5**2+4*5","answer":"45"}
     answer_text: '$n=5$.'
+
+  - id: ch10-104-method-quadratic
+    section: '10.4'
+    tier: H
+    dfe: [A25]
+    statement: 'The sequence $2,7,16,29,\ldots$ has second difference $4$. Which method finds its nth term: the difference method for quadratic sequences, or guess the $an^2$ formula? Give a reason. Then find the nth term and the 10th term.'
+    answer_label: 'Method choice: difference method or formula'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2*10**2-10+1', answer: '191'}
+        - {kind: evaluate, expression: '2*4**2-4+1', answer: '29'}
+    answer_text: 'Use the difference method: the second difference of 4 means $a=2$, so compare $2n^2$ with the terms to get $2n^2-n+1$. The 10th term is $2(100)-10+1=191$.'

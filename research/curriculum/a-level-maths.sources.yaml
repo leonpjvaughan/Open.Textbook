@@ -7,7 +7,9 @@
 # half-built books/a-level-maths/ would break or be silently skipped.
 #
 # Fetch pattern (mirrors scripts/fetch_sources.sh, but run ad hoc because there
-# is no books/a-level-maths/sources.yaml yet):
+# was no books/a-level-maths/sources.yaml when the research pass ran; the book
+# now exists, and its own sources.yaml is the tracked manifest for the chapters
+# and the booklet, so `scripts/fetch_sources.sh a-level-maths` now works):
 #
 #   UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
 #   curl -fsSL -m 240 -A "$UA" <url> -o research/sources/a-level-maths/<file>
@@ -163,6 +165,53 @@ references:
       This is GCSE only and is recorded here so the A-level position is not
       confused with it.
 
+  - id: aqa-formulae
+    retrieved: 2026-10-12
+    title: >-
+      AQA Formulae for A-level Mathematics, AS Mathematics (7356) and A-level
+      Mathematics (7357), v1.2 (first issued August 2017)
+    url: https://filestore.aqa.org.uk/resources/mathematics/AQA-AS-A-MATHS-FORMULAE.PDF
+    role: >-
+      AQA's exam-room formulae booklet. Six pages, no statistical tables; the
+      larger formulae-and-tables booklet belongs to Further Mathematics. AQA's
+      filestore path is not linked from the subject page, which lists only the
+      specification; the booklet was reached from the filestore path recorded
+      by a search. A June 2023 7357/1 question paper confirms it is required in
+      every paper: "You must have the AQA Formulae for A-level Mathematics
+      booklet." Appendix B of AQA's specification (the recall list) is not this
+      booklet and was not used as one.
+
+  - id: edexcel-formulae
+    retrieved: 2026-10-12
+    title: >-
+      Pearson Edexcel Mathematical Formulae and Statistical Tables, Issue 1
+      (July 2017), for 8MA0/9MA0 and 8FM0/9FM0
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/pearson-edexcel-a-level-gce-in-mathematics-formulae-book.pdf
+    role: >-
+      Edexcel's exam-room booklet, arranged by qualification. Section 2 is the
+      A Level Mathematics provision; section 5 carries the statistical tables
+      the booklet marks as required for A Level Mathematics (binomial cumulative
+      distribution function, percentage points of the Normal distribution,
+      critical values for correlation coefficients, random numbers). A 2020
+      Paper 31 cover names it "Mathematical Formulae and Statistical Tables
+      (Green)".
+
+  - id: ocr-formulae
+    retrieved: 2026-10-12
+    title: >-
+      OCR A Level Mathematics A (H240) formulae sheet, printed in every question
+      paper; H240/01 June 2025 question paper and specification v3.1 (August
+      2026) appendix
+    url: https://www.ocr.org.uk/Images/752329-question-paper-pure-mathematics.pdf
+    role: >-
+      OCR has no separate booklet: the formulae sheet is printed on pages 2-3 of
+      each question paper. The H240/01 Pure Mathematics paper sat in June 2025
+      prints it, and the specification v3.1 (August 2026) reproduces the sheet
+      after its "Learners will be given the following formulae sheet in each
+      question paper" statement; the two agree, so the appendix is not stale.
+      The specification's own recall list (5d) is separate and is the `know`
+      group, not the sheet.
+
 # What was downloaded into research/sources/a-level-maths/.
 downloads:
   - file: dfe_a_level_content.pdf
@@ -192,3 +241,12 @@ downloads:
   - file: ocr_lds.docx
     url: https://www.ocr.org.uk/Images/471937-notes-on-the-large-data-set.docx
     text: false
+  - file: aqa_formulae.pdf
+    url: https://filestore.aqa.org.uk/resources/mathematics/AQA-AS-A-MATHS-FORMULAE.PDF
+    text: true
+  - file: edexcel_formulae.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/pearson-edexcel-a-level-gce-in-mathematics-formulae-book.pdf
+    text: true
+  - file: ocr_h240_qp_jun25.pdf
+    url: https://www.ocr.org.uk/Images/752329-question-paper-pure-mathematics.pdf
+    text: true

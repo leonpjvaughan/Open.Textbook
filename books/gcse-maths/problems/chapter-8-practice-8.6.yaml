@@ -97,3 +97,15 @@ problems:
       expression: 'x-4'
       answer: 'x-4'
     answer_text: '$y=x-4$.'
+
+  - id: ch8-86-method-rearrange
+    section: '8.6'
+    tier: F
+    dfe: [A5]
+    statement: 'Make $x$ the subject of $y=3x+2$. Which method fits: undo the $+2$ first, or undo the $\times3$ first? Give a reason, then rearrange.'
+    answer_label: 'Method choice: reverse the order of operations'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3*((y-2)/3)+2', answer: 'y'}
+    answer_text: 'Undo the operations in reverse order: subtract 2, then divide by 3, giving $x=\frac{y-2}{3}$. Dividing first would leave $x$ beside the 2, so that step does not isolate $x$.'

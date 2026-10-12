@@ -1765,7 +1765,7 @@ that is stale.
 
 ---
 
-## 32. A-level Mathematics formulae booklet — retrieve each board's document
+## 32. A-level Mathematics formulae booklet — **done**
 
 `BOOKLETS.md` says A-level Mathematics has a formulae booklet plus a statistical
 tables section, and that a booklet must be built from the awarding body's own
@@ -1786,12 +1786,37 @@ under `references` with a `url`, `retrieved` date and `role`, then write
 `books/a-level-maths/booklet/a-level-maths.yaml` against `BOOKLETS.md`, add
 `booklet:` to `book.yaml`, and run `python -m textbook.booklet a-level-maths`.
 
+**Done, 2026-10-12.** All three boards' exam-room documents were retrieved — AQA's
+*Formulae for A-level Mathematics* (v1.2), Pearson Edexcel's *Mathematical
+Formulae and Statistical Tables* (Issue 1, July 2017) and OCR's H240 sheet, which
+is printed on pages 2–3 of every paper rather than published separately.
+
+**88 items**: 29 from each board's sheet, plus a shared 29-item `know` group which
+is **DfE Appendix B** — the formulae that must be used without being provided. The
+two lists barely overlap: the sheets give the sum of a series but not its $n$th
+term, and the $	an/\sec/\cot/\cosec$ derivatives but not the elementary ones.
+Board differences are preserved rather than normalised — AQA's `1.2` denominator,
+Edexcel's scaled derivatives and sum-to-product formulae, OCR's quotient rule.
+
+AQA needed finding: its subject page links only the specification, and the booklet
+lives on the filestore. The specification's own Appendix B is a **recall** list, so
+using it as the provision would have been the stale-appendix trap the physics
+research warned about — a June 2023 paper confirms the filestore document is what
+the exam room uses.
+
+**One thing the widget cannot express**, recorded rather than worked around:
+Edexcel's large statistical tables (binomial CDF, random numbers) need a table
+tagged by **board**, and the Tables tab filters by tier only. Carrying them would
+show them to AQA readers, who are given none.
+
 **Done means.**
 
-- [ ] Each board's own booklet is recorded in `sources.yaml` with a retrieval date.
-- [ ] `book.yaml` declares `booklet:` and `python -m textbook.booklet` validates it.
-- [ ] Every item's `provision` traces to the retrieved document; nothing is invented.
-- [ ] The widget is checked board by board, and `scripts/check.sh` passes.
+- [x] Each board's own booklet is recorded in `sources.yaml` with a retrieval date.
+- [x] `book.yaml` declares `booklet:` and `python -m textbook.booklet` validates it.
+- [x] Every item's `provision` traces to the retrieved document; nothing invented.
+- [ ] The widget is checked board by board — it cannot filter a **table** by board,
+      so Edexcel's large tables are omitted. Recorded in
+      `research/curriculum/a-level-maths.md` §11.
 
 ---
 
@@ -2272,3 +2297,41 @@ Chapter 7 again.
       `voice:internal` and no `structure:*` finding in Chapter 6.
 - [ ] `docs/Glossary/pure.md` defines the terms Section 6.3 and Section 7.3
       share, alphabetically, and the Chapter 6 pages link to them.
+
+---
+
+## 44. An equations-coverage check needs a declaration the banks do not carry
+
+**Measured before building, and not built.** `physics-verifier-gaps.md` §3.6
+describes a coverage check: every equation a question needs must be one the
+booklet provides. The mechanism it assumes is a declaration on the problem —
+`plays: aqa-8463-eq-kinetic-energy` — and then the check is trivial: resolve each
+reference against `books/<id>/booklet/*.yaml` and fail if it is absent or is a
+`know` item.
+
+**The declaration does not exist.** `0` of 1879 physics problems in 105 bank files
+carry `plays:`. Of 769 `dimensions` checks, 21 state an equation; the other 748
+carry an expression and values, and those reduce to **165 distinct formulae**
+written as SymPy strings — `c/f`, `m*g*h`, `0.5*m*v**2`, `v*t/2`, `u**2/(2*s)` —
+which are rearrangements and sub-expressions, not the booklet's items.
+
+**Inferring the mapping is the thing that cannot be made honest.** A relabelling
+matcher maps `s/t` to both `v=s/t` and `a=(v-u)/t`, so it passes by accident; a
+name-strict one misses board variants (`E_p = mgh` against `ΔGPE = mgΔh`); and
+many formulae are derived or special-case (`v*t/2`, `m(g-a)`, `emf - I*r`), so it
+would need an exemption list whose omissions nothing can verify. A check that
+measures nothing is worse than no check.
+
+**Two routes, and it is the author's call.**
+
+- **A — declare it, and check it (recommended).** Add `plays:` to the problems
+  that play a booklet equation, and a verifier function that validates each
+  reference resolves and is `given` for every board the book supports. The
+  declaration sits beside the question, where an author can see it is right.
+- **B — a verifier-side mapping table.** No bank edits, but it duplicates the
+  declaration away from the question and needs ~165 curated entries plus an
+  exemption list whose gaps are unverifiable. Not §3.6.
+
+**Done means.** One route is chosen; the check fails on a problem whose equation
+the booklet does not provide; and `PROBLEMS.md` says what the check proves —
+coverage, never correct use, which is the `units` oracle's business.

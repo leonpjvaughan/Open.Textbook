@@ -72,3 +72,15 @@ problems:
     answer_label: 'A geometric sequence has first term 7 and common multiplier 2. Fi'
     check: {"kind":"evaluate","expression":"7*2**5","answer":"224"}
     answer_text: '$224$.'
+  - id: ch10-105-method-nth
+    section: '10.5'
+    tier: 'H'
+    dfe: [A24]
+    statement: 'A geometric sequence starts at 5 with multiplier 3. Which method finds the 8th term: multiply repeatedly, or use $ar^{n-1}$? Give a reason. Then find the 8th term.'
+    answer_label: 'Method choice: repeat or use the formula'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '5*3**7', answer: '10935'}
+        - {kind: evaluate, expression: '5*3**(8-1)', answer: '10935'}
+    answer_text: 'Use the formula $ar^{n-1}$: the 8th term is $5\times3^7=10935$. Multiplying repeatedly gives the same value but takes seven steps and invites an arithmetic slip.'

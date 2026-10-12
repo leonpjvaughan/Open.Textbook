@@ -9,9 +9,6 @@ dfe: [N1, N2]
 kind: problems
 ---
 
-Work through these on your own. Keep your working neat: the method matters as
-much as the answer. Questions marked **H** are for Higher tier.
-
 # 1.3 Negative numbers — Practise
 
 Work through these on your own. Keep your working neat: the method matters as

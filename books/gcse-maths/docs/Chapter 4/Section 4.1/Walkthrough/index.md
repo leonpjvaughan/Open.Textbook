@@ -54,5 +54,3 @@ The keyboard discount is $\frac{1}{4}$. Write it as a percentage. Since $\frac{1
 - make equivalent fractions;
 - order fractions and decimals using a common representation;
 - compare positive and negative fractions on a number line.
-
-**Covers:** [N1, N10].

@@ -54,5 +54,3 @@ The first shop's discounted price is $£48\times(1-\frac14)=£36$. Compare it wi
 - calculate percentage increases and decreases with multipliers;
 - find an original amount from a changed amount;
 - compare prices after a discount.
-
-**Covers:** [N11, N12].

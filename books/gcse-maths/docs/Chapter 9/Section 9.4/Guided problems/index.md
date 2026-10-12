@@ -40,7 +40,7 @@ Use their positions on a number line.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Mark both values on a number line.
 </details>
 
 <details markdown="1">
@@ -60,7 +60,7 @@ Use a strict inequality symbol.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Write $x$ first, then the symbol.
 </details>
 
 <details markdown="1">
@@ -80,7 +80,7 @@ Say whether 2 is included and which direction works.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Draw a filled circle at $2$ and shade to the right.
 </details>
 
 <details markdown="1">
@@ -100,7 +100,7 @@ Choose an open boundary at $-1$ and a filled one at 3.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Use an open circle at $-1$ and a filled circle at $3$.
 </details>
 
 <details markdown="1">
@@ -120,7 +120,7 @@ Start at the included lower boundary and stop before 4.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+List the whole numbers from $0$ up to $4$, but not $4$.
 </details>
 
 <details markdown="1">

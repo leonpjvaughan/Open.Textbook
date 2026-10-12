@@ -34,7 +34,7 @@ write a number; there is no mark for your first answer.
 5. [15.5 Algebraic proof](Section 15.5/Walkthrough/index.md)
 6. [Review](Review/index.md)
 
-## Your turn to connect
+## Your turn to connect it
 
 Where have you seen a rule applied in stages, such as changing a price or
 converting a measurement? Write one example and explain how reversing the stages

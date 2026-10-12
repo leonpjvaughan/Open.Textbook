@@ -118,3 +118,14 @@ problems:
     expression: (6*12)/2+4*12
     answer: '84'
   answer_text: 36+48=84 m
+- id: ch11-116-method-area
+  section: '11.6'
+  tier: 'H'
+  dfe: [A15, R15]
+  statement: 'A velocity-time graph rises from 0 to 9 m/s over 3 s, then falls to 0 m/s over 6 s. To find the total distance, which method applies: the gradient or the area? Give a reason, then work out the distance.'
+  answer_label: 'Method choice: gradient or area'
+  check:
+    kind: all
+    checks:
+      - {kind: evaluate, expression: '(3*9)/2+(6*9)/2', answer: '40.5'}
+  answer_text: 'Use the area: the area under a velocity-time graph is distance. The two triangles give $\frac12\times3\times9+\frac12\times6\times9=13.5+27=40.5$ m. The gradient would give acceleration instead.'

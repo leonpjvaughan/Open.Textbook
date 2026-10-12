@@ -42,6 +42,10 @@ The specification content, and any wording taken from a specification,
 belongs to the awarding bodies. AQA, Pearson Edexcel and OCR publish the specifications
 this book follows.
 
+The formulae and tables in the **Formulae** booklet are the awarding
+bodies' own sheets. Ofqual decides which material the boards must
+provide.
+
 The claims in this book rest on these documents:
 
 - [Mathematics: AS and A level content (April 2016)](https://www.gov.uk/government/publications/gce-as-and-a-level-mathematics)
@@ -50,8 +54,11 @@ The claims in this book rest on these documents:
 - [Cambridge OCR Level 3 Advanced GCE in Mathematics A (H230/H240) specification, version 3.1 (August 2026)](https://www.ocr.org.uk/qualifications/as-and-a-level/mathematics-a-h230-h240-from-2017/)
 - [Ofqual: GCE Subject Level Conditions and Requirements for Mathematics (April 2016)](https://www.gov.uk/government/publications/gce-subject-level-conditions-and-requirements-for-mathematics)
 - [OCR: Notes on the Large Data Set, OCR Mathematics A (H230/H240)](https://www.ocr.org.uk/Images/471937-notes-on-the-large-data-set.docx)
+- [AQA Formulae for A-level Mathematics, AS Mathematics (7356) and A-level Mathematics (7357), v1.2 (first issued August 2017)](https://filestore.aqa.org.uk/resources/mathematics/AQA-AS-A-MATHS-FORMULAE.PDF)
+- [Pearson Edexcel Mathematical Formulae and Statistical Tables, Issue 1 (July 2017), for Advanced Subsidiary and Advanced GCE Mathematics (8MA0/9MA0) and Further Mathematics (8FM0/9FM0)](https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/pearson-edexcel-a-level-gce-in-mathematics-formulae-book.pdf)
+- [OCR A Level Mathematics A (H240) formulae sheet, printed in every question paper; H240/01 June 2025 question paper, and the specification v3.1 (August 2026) appendix](https://www.ocr.org.uk/Images/752329-question-paper-pure-mathematics.pdf)
 
-These sources were last checked on 2026-10-11.
+These sources were last checked on 2026-10-12.
 
 No awarding body endorses this book, and the Department for Education
 does not supply it.

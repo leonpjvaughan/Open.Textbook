@@ -12,7 +12,7 @@ The signal crosses its middle value while rising, then reaches a maximum and min
 
 ## Mixed practice: choose a method and explain why
 
-For each item, name the graph feature or method you will use before answering.
+For each item, name the graph feature or method you will use before answering, and say why it fits.
 
 1. Sketch the key features of $y=x^3-4x$. Find its intercepts.
 2. State the centre and radius of $(x-3)^2+(y+1)^2=16$.

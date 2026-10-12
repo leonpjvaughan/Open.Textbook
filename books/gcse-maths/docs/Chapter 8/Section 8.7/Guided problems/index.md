@@ -35,12 +35,12 @@ If an answer differs, revisit Section 8.3 for expanding brackets and Section 8.2
 
 <details markdown="1"><summary>Hint</summary>
 
-Expand two brackets first, then distribute the third bracket.
+Expand $(x+1)(x+2)$ first.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Expand two brackets first. Then multiply every term by both terms in the final bracket.
+Write $(x^2+3x+2)(x+3)$, then multiply each term by $x$ and by $3$.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -52,12 +52,12 @@ $x^3+6x^2+11x+6$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Expand two brackets first, then distribute the third bracket.
+The first two brackets are a difference of two squares.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Expand two brackets first. Then multiply every term by both terms in the final bracket.
+Write $(x^2-1)(x+2)$, then multiply out.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -69,12 +69,12 @@ $x^3+2x^2-x-2$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Expand two brackets first, then distribute the third bracket.
+Write $(x+2)(x+2)$ as $(x+2)^2$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Expand two brackets first. Then multiply every term by both terms in the final bracket.
+Write $(x^2+4x+4)(x-1)$, then multiply out.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -86,12 +86,12 @@ $x^3+3x^2-4$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Expand two brackets first, then distribute the third bracket.
+Start with $(x+1)(x-1)$.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Expand two brackets first. Then multiply every term by both terms in the final bracket.
+Write $(2x+1)(x^2-1)$, then multiply out.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -103,29 +103,29 @@ $2x^3+x^2-2x-1$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Expand two brackets first, then distribute the third bracket.
+Expand $(x+3)(x+4)$ first.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Expand two brackets first. Then multiply every term by both terms in the final bracket.
+Write $(x-2)(x^2+7x+12)$, then multiply out.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
 
-$x^3+5x^2+2x-24$.
+$x^3+5x^2-2x-24$.
 </details>
 
 **6.** Expand $(x+2)(x-2)(x+1)$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Expand two brackets first, then distribute the third bracket.
+$(x+2)(x-2)$ is a difference of two squares.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Expand two brackets first. Then multiply every term by both terms in the final bracket.
+Write $(x^2-4)(x+1)$, then multiply out.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -137,12 +137,12 @@ $x^3+x^2-4x-4$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Expand two brackets first, then distribute the third bracket.
+Expand $(x-2)(x+4)$ first.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Expand two brackets first. Then multiply every term by both terms in the final bracket.
+Write $(x+1)(x^2+2x-8)$, then multiply out.
 </details>
 
 <details markdown="1"><summary>Full working</summary>
@@ -154,12 +154,12 @@ $x^3+3x^2-6x-8$.
 
 <details markdown="1"><summary>Hint</summary>
 
-Expand two brackets first, then distribute the third bracket.
+Expand $(x+1)(x+2)$ first.
 </details>
 
 <details markdown="1"><summary>Next step</summary>
 
-Expand two brackets first. Then multiply every term by both terms in the final bracket.
+Write $(x-3)(x^2+3x+2)$, then multiply out.
 </details>
 
 <details markdown="1"><summary>Full working</summary>

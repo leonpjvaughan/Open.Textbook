@@ -7,7 +7,7 @@ anchor: The school-fair stall
 
 # Chapter 1: Number skills
 
-## By the end of this chapter
+## By the end of this chapter you will be able to
 
 You will be able to:
 

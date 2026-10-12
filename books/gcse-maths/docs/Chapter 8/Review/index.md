@@ -6,7 +6,7 @@ kind: review
 
 # Chapter 8: Review
 
-## Resolve the chapter problem
+## The chapter problem, solved
 
 The outer area is $(x+6)(x+4)=x^2+10x+24$. The opening area is $x(x+2)=x^2+2x$.
 
@@ -14,7 +14,7 @@ Subtract the opening area from the outer area: $x^2+10x+24-(x^2+2x)=8x+24$ squar
 
 The expression can also be factorised as $8(x+3)$, which provides a check by expansion.
 
-## Mixed practice
+## Mixed practice: choose a method and explain why
 
 For each question, choose a method and explain why it applies. Check by reversing the operation when possible.
 
@@ -26,6 +26,8 @@ For each question, choose a method and explain why it applies. Check by reversin
 6. **Higher only:** expand $(x-1)(x+2)(x+4)$.
 7. Estimate then calculate the value of $8x+24$ when $x=5$.
 
-## Reflect
+## Your relevance reflection
 
 Write one algebraic skill you can now use with more confidence. Name one question you would like to practise again.
+
+Return to your example from the start. Write it again as an expression or formula, and say what each letter stands for.

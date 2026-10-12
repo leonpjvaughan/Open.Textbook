@@ -104,6 +104,18 @@ problems:
     answer:
     - '55'
   answer_text: $x=55$; base angles are $55^\circ$ and $75^\circ$, and the third is $50^\circ$.
+- id: mixed-method-polygon
+  section: '16.5'
+  tier: 'H'
+  dfe: [G6]
+  statement: 'A regular polygon has 12 sides. Which method finds each exterior angle: $360\div n$, or $180^\circ$ minus each interior angle? Give a reason, then find one exterior angle and one interior angle.'
+  answer_label: 'Method choice: exterior angle or interior formula'
+  check:
+    kind: all
+    checks:
+      - {kind: evaluate, expression: '360/12', answer: '30'}
+      - {kind: evaluate, expression: '180-360/12', answer: '150'}
+  answer_text: 'Use $360\div n$: each exterior angle is $360\div12=30^\circ$, so each interior angle is $180-30=150^\circ$. The interior-angle formula reaches the same values but needs the interior sum first.'
 symbols:
   x:
     real: true

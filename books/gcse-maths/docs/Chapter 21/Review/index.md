@@ -6,7 +6,7 @@ kind: review
 
 # Chapter 21: Review
 
-## Return to the chapter problem
+## The chapter problem, solved
 
 The chord could fit in the window. Its diameter is $2(7)=14$ cm, and a chord cannot be longer than the diameter. Since $13<14$, this chord is possible.
 
@@ -16,7 +16,7 @@ The two points on the circumference lie in the same segment and see the same cho
 The radius meets the chord at right angles. A perpendicular from the centre bisects a chord, so each half is equal. If the chord length is $c$, each half is $c/2$. The radius and tangent theorem is not needed here because the line meets a chord, not a tangent.
 <!-- /tier:h -->
 
-## Mixed practice
+## Mixed practice: choose a method and explain why
 
 Work without notes first. For each question, state which method applies and why.
 
@@ -46,6 +46,10 @@ Work without notes first. For each question, state which method applies and why.
 8. Triangle angle sum: $180-52-52=76^\circ$. The given shape is a triangle, so its angle sum applies.
 </details>
 
-## What can you now do?
+## What you can now do
 
 Write one circle fact you can use confidently. Write one fact you want to practise again, and name a question that would help.
+
+## Your relevance reflection
+
+Return to your example from the start. Which circle fact from this chapter could help there? Write one sentence.

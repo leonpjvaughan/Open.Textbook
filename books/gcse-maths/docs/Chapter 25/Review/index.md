@@ -25,9 +25,9 @@ $26.5+1.5\times9=40$, so 42 is a possible outlier. The data are not grouped,
 so you can make a box plot directly. Grouped data would give estimates from a
 cumulative frequency graph or histogram.
 
-## Mixed practice — choose the method first
+## Mixed practice: choose a method and explain why
 
-For each question, name the method before working.
+For each question, name the method and say why it fits before working.
 
 1. A list has 24 values. At what cumulative frequencies would you estimate the lower quartile, median and upper quartile?
 2. A class has width 8 and frequency 28. Find its histogram density.

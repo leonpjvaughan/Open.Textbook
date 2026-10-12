@@ -133,3 +133,15 @@ problems:
     answer_label: 'Estimate the quotient'
     check: {kind: evaluate, expression: "6 * 20 / 3", answer: "40"}
     answer_text: '$\dfrac{6 \times 20}{3} = 40$.'
+  - id: ch1-15-method-estimate
+    section: '1.5'
+    tier: 'F'
+    dfe: [N14, N15]
+    statement: 'A shop sells 19 boxes at £6.20 each. Which is the better first step: estimate the total, or calculate it exactly? Give a reason. Then estimate by rounding each number to 1 significant figure, and work out the exact total.'
+    answer_label: 'Method choice: estimate or calculate exactly'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '20*6', answer: '120'}
+        - {kind: evaluate, expression: '19*6.2', answer: '117.8'}
+    answer_text: 'Estimate first: it gives about $20\times6=£120$, close to the exact $19\times£6.20=£117.80$, so the exact answer is easy to check.'

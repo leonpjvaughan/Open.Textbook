@@ -15,8 +15,6 @@ kind: walkthrough
 
 **Objectives:** express an integer as a product of primes; find the highest common factor (HCF) and lowest common multiple (LCM).
 
-**Covers:** N4.
-
 ## Prime factorisation
 
 A **prime factorisation** writes a number as a product of prime numbers. Divide by small primes repeatedly until every factor is prime.

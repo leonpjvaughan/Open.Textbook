@@ -6,7 +6,7 @@ kind: review
 
 # Chapter 7: Review
 
-## The chapter problem, resolved
+## The chapter problem, solved
 
 The map uses scale $1:25\,000$, and the path measures $3.2$ cm. Its real length is
 
@@ -22,9 +22,9 @@ $$
 
 A sample recorded as $0.0042$ kg to 2 significant figures lies from $0.00415$ kg up to, but not including, $0.00425$ kg. In standard form, the recorded value is $4.2\times10^{-3}$ kg. These steps show how conversion, compound measures, rounding and standard form connect.
 
-## Mixed practice: choose the method first
+## Mixed practice: choose a method and explain why
 
-For each question, name the method before working.
+For each question, name the method and say why it fits before working.
 
 1. Convert $2.7$ m to mm.
 2. A cyclist travels $36$ km in $1.5$ hours. Find the average speed.
@@ -55,6 +55,6 @@ For each question, name the method before working.
 - interpret rounded values through intervals and bounds;
 - work exactly with standard form and surds.
 
-## Your connection
+## Your relevance reflection
 
 Return to your example from the opening page. Which method from this chapter could help with it? Write one new connection you noticed while learning.

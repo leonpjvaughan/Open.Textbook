@@ -40,7 +40,7 @@ Use the inverse operation.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Subtract $4$ from both sides.
 </details>
 
 <details markdown="1">
@@ -60,7 +60,7 @@ A product is zero when either factor is zero.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Set each factor equal to zero.
 </details>
 
 <details markdown="1">
@@ -80,7 +80,7 @@ Substitute 0 into both factors.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Substitute $0$ into $(x-2)(x+2)$.
 </details>
 
 <details markdown="1">
@@ -100,7 +100,7 @@ Use roots $-2,2$ and test the middle and outer intervals.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Test a value in the middle interval and one outside.
 </details>
 
 <details markdown="1">
@@ -120,7 +120,7 @@ Factorise and include roots because equality is allowed.
 <details markdown="1">
 <summary>Next step</summary>
 
-Try the first operation or write the equation before opening the full solution.
+Factorise to $(x-1)(x-3)$, then test between the roots.
 </details>
 
 <details markdown="1">

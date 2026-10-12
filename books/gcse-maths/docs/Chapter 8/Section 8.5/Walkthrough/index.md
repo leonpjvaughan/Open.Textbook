@@ -15,8 +15,6 @@ kind: walkthrough
 
 **By the end of this section you can:** substitute positive and negative values into expressions and formulae, then calculate accurately.
 
-**Covers:** A2.
-
 ## Learn the method
 
 Substitution means replacing a letter with its given value. Put a negative value in brackets to protect its sign.

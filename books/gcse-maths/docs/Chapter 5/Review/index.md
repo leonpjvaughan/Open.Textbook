@@ -6,11 +6,11 @@ kind: review
 
 # Chapter 5: Review
 
-## Resolve the chapter problem
+## The chapter problem, solved
 
 The garden path is 18 m long. At 1 cm for each metre, its drawing length is 18 cm, so it fits on a 30 cm page. If the page uses a different scale, convert metres to centimetres first, then apply the scale factor. The drawing and real path keep the same length ratio.
 
-## Mixed practice
+## Mixed practice: choose a method and explain why
 
 Choose a method before calculating. Say why it fits.
 
@@ -35,6 +35,6 @@ Choose a method before calculating. Say why it fits.
 
 </details>
 
-## Look back
+## Your relevance reflection
 
 Write one method you can now use with confidence. Name one question type you want to practise again. Return to your connection from the chapter opener: did you notice another use for ratios?

@@ -16,14 +16,14 @@ A circular pond has radius $4$ m. A path will run around its edge. First, estima
 A circle's distance around it is a little more than three diameters. Its area is a little more than three times the square of its radius.
 </details>
 
-**By the end of this chapter you will be able to:**
+## By the end of this chapter you will be able to
 
 - calculate perimeters and areas of 2D shapes;
 - find circumference, circle area, arc length and sector area;
 - calculate surface area and volume of common prisms and curved solids;
 - split composite shapes and solids into known parts.
 
-## Where the maths can appear
+## Where it is used
 
 A garden border needs a perimeter measurement. Covering a floor needs an area, and a container's capacity relates to its volume.
 

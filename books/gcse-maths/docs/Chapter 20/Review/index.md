@@ -6,7 +6,7 @@ kind: review
 
 # Chapter 20: Review
 
-## Return to the garden problem
+## The chapter problem, solved
 
 The garden is $9$ m by $12$ m. The path is the hypotenuse of a right-angled triangle.
 
@@ -18,7 +18,7 @@ $$d=15\text{ m}$$
 
 The estimate should have been near $15$ m. The result is longer than either side and shorter than going around two edges, so it is plausible.
 
-## Mixed practice
+## Mixed practice: choose a method and explain why
 
 For each question, name the method and explain why it fits before calculating.
 
@@ -37,3 +37,7 @@ For each question, name the method and explain why it fits before calculating.
 
 **Reflection:** Which measurements help you choose between Pythagoras, a trigonometric ratio, the sine rule, the cosine rule, and the area formula? Which method can you now explain without notes?
 </details>
+
+## Your relevance reflection
+
+Return to your example from the start. Which method from this chapter would find the distance or height you described? Write one sentence.

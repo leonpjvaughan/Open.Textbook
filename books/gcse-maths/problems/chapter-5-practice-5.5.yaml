@@ -156,3 +156,17 @@
   'answer_text': '1 km. First convert the map length to 100,000 cm, then convert centimetres to kilometres.'
   'steps': []
   'section': '5.5'
+
+- 'id': 'ch5-5-5-method-units'
+  'section': '5.5'
+  'tier': 'F'
+  'dfe': ['R2']
+  'statement': 'A map uses scale $1:50\,000$. Two towns are 6 cm apart on the map. Which method is safer: change the scale to kilometres first, or multiply and then convert? Give a reason, then find the real distance in km.'
+  'answer_label': 'Method choice: convert first or multiply first'
+  'check':
+    'kind': 'all'
+    'checks':
+    - {'kind': 'evaluate', 'expression': '6*50000/100000', 'answer': '3'}
+    - {'kind': 'evaluate', 'expression': '6*0.5', 'answer': '3'}
+  'answer_text': 'Change the scale to a real unit first: 1 cm represents 0.5 km, so 6 cm represents $6\times0.5=3$ km. Multiplying first gives 300 000 cm, which still needs converting and invites a slip.'
+  'steps': []

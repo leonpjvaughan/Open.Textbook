@@ -15,8 +15,6 @@ kind: walkthrough
 
 **By the end of this section you can:** simplify expressions by collecting like terms and constants.
 
-**Covers:** A4.
-
 ## Learn the method
 
 Like terms have the same variable part. For example, $3x$ and $8x$ are like terms, but $3x$ and $3y$ are not.

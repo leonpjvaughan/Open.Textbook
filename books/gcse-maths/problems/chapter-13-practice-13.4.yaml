@@ -75,3 +75,16 @@ problems:
     answer_label: 'Tangent gradient at the left side'
     check: {kind: evaluate, expression: -(-3)/4, answer: '3/4'}
     answer_text: 'The radius gradient from $(0,0)$ to $(-3,4)$ is $-4/3$. The tangent gradient is its negative reciprocal, $3/4$.'
+  - id: ch13-134-method-centre
+    section: '13.4'
+    tier: 'H'
+    dfe: [A16]
+    statement: 'A circle has equation $x^2+y^2-6x+8y-11=0$. Which method finds its centre and radius: completing the square, or using the formula? Give a reason, then find both.'
+    answer_label: 'Method choice: complete the square or use the formula'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '6/2', answer: '3'}
+        - {kind: evaluate, expression: '-8/2', answer: '-4'}
+        - {kind: evaluate, expression: 'sqrt(3**2+(-4)**2+11)', answer: '6'}
+    answer_text: 'Complete the square: $(x-3)^2+(y+4)^2=36$, so the centre is $(3,-4)$ and the radius is $6$. The formula gives the same values, but completing the square shows where the centre comes from.'

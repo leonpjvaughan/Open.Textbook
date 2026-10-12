@@ -15,7 +15,7 @@ hour. What information would help you draw a graph of the journey?
 Make an estimate first. You can revise it as you learn about coordinates,
 gradient and real-life graphs.
 
-## By the end of this chapter
+## By the end of this chapter you will be able to
 
 - plot coordinates and draw straight-line graphs from tables and equations;
 - find and interpret the gradient and intercept of a straight line;
@@ -23,7 +23,7 @@ gradient and real-life graphs.
 - interpret distance-time graphs and other real-life linear graphs;
 - use gradient and area to describe rates and totals on graphs.
 
-## Where might this help you?
+## Your turn to connect it
 
 Graphs can describe travel, phone costs, water filling a container, or changing
 temperatures. Which situation have you seen, and what could a graph help you

@@ -23,7 +23,7 @@ Two points on the circumference lie in the same segment of the circle. They see 
 - construct clear proofs that use circle theorems and known angle facts.
 <!-- /tier:h -->
 
-## Route through the chapter
+## Roadmap
 
 1. [21.1 Parts of a circle](Section 21.1/Walkthrough/index.md) introduces the language and parts of a circle.
 <!-- tier:h -->
@@ -36,6 +36,6 @@ Two points on the circumference lie in the same segment of the circle. They see 
 At the marked Progress checks, return to the window problem and use the new facts you have learned.
 <!-- /tier:h -->
 
-## Make a connection
+## Your turn to connect it
 
 Circles appear in a wheel, a round window, a clock, and many other designs. Choose one example that matters to you or someone you know. Write one sentence explaining where a circle fact from this chapter could help.

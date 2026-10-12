@@ -73,3 +73,15 @@ problems:
     answer_label: 'Passwords'
     check: {kind: evaluate, expression: "3*10*10", answer: "300"}
     answer_text: '$3\\times10\\times10=300$ passwords.'
+  - id: c2-24-method-count
+    section: '2.4'
+    tier: 'H'
+    dfe: [N5]
+    statement: 'A cafe offers 4 starters and 6 main courses. Which method counts the two-course meals faster: an organised list or the product rule? Give a reason. Then work out how many two-course meals are possible, and the total cost if each costs £9.'
+    answer_label: 'Method choice: list or product rule'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '4*6', answer: '24'}
+        - {kind: evaluate, expression: '24*9', answer: '216'}
+    answer_text: 'Use the product rule: $4\times6=24$ meals. At $£9$ each, the total is $24\times9=£216$. A list works for small numbers but becomes slow as the choices grow.'

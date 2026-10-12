@@ -15,8 +15,6 @@ kind: walkthrough
 
 **Objectives:** find factors and multiples; recognise prime and composite numbers; explain why 1 is not prime.
 
-**Covers:** N4.
-
 ## Factors and multiples
 
 A **factor** of a number divides it exactly, with no remainder. A **multiple** is the result of multiplying a number by a whole number.

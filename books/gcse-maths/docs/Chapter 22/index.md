@@ -24,7 +24,7 @@ halfway along each diagonal? Say what you think, or sketch a parallelogram.
 
 By the end, you will use vectors to give a proof and check your prediction.
 
-## By the end of this chapter
+## By the end of this chapter you will be able to
 
 You will be able to:
 

@@ -121,3 +121,22 @@ problems:
       expression: '(-4)**2-4*2*5'
       answer: '-24'
     answer_text: 'The discriminant is $-24$, so there are no real roots.'
+
+  -
+    id: ch12-125-method-formula
+    section: '12.5'
+    tier: H
+    dfe: [A18]
+    statement: 'Solve $x^2-5x+6=0$. Which method fits better: factorising or the quadratic formula? Give a reason. Then solve it, and state the discriminant.'
+    answer_label: 'Method choice: factorise or use the formula'
+    check:
+      kind: all
+      checks:
+        - kind: solve
+          equation: x**2-5*x+6 = 0
+          variable: x
+          answer:
+          - '2'
+          - '3'
+        - {kind: evaluate, expression: '(-5)**2-4*1*6', answer: '1'}
+    answer_text: 'Factorising is quicker here: $(x-2)(x-3)=0$, so $x=2$ or $x=3$. The discriminant is $(-5)^2-4(1)(6)=1$, which is a perfect square, so the roots are rational.'

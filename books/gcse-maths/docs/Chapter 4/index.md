@@ -30,6 +30,6 @@ A music shop offers a £48 keyboard with a discount of $\frac{1}{4}$. A second s
 6. [4.6 Fractions and percentages as operators](Section 4.6/Walkthrough/index.md)
 7. [Review](Review/index.md)
 
-## Your connection
+## Your turn to connect it
 
 A fraction or percentage can appear in a price, a recipe, a score or a journey. Where have you or someone you know used one recently? Write one example and say what the number described.

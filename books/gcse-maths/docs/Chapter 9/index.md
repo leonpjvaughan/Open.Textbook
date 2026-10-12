@@ -34,6 +34,6 @@ Before calculating, predict whether the equal point is before or after two hours
 <!-- /tier:h -->
 7. [Review](Review/index.md)
 
-## Your connection
+## Your turn to connect it
 
 A fixed fee plus a cost for each unit appears in many situations. Where might you or someone you know compare two such costs? Write your own example and say what the unknown would represent.

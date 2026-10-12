@@ -9,9 +9,6 @@ dfe: [N14, N15]
 kind: problems
 ---
 
-Work through these on your own. Keep your working neat: the method matters as
-much as the answer. Questions marked **H** are for Higher tier.
-
 # 1.5 Rounding and estimation — Practise
 
 Work through these on your own. Keep your working neat: the method matters as

@@ -1,0 +1,590 @@
+# A-level Mathematics formulae and tables — data source of truth.
+#
+# Provision is per board, taken from the awarding bodies' own exam-room
+# documents (recorded in sources.yaml):
+#
+#   aqa      AQA, "Formulae for A-level Mathematics", v1.2, first issued
+#            August 2017, for AS Mathematics (7356) and A-level Mathematics
+#            (7357). AQA gives out this booklet in every mathematics exam and
+#            prints no statistical tables in it; its larger formulae-and-tables
+#            booklet belongs to Further Mathematics.
+#   edexcel  Pearson Edexcel, "Mathematical Formulae and Statistical Tables",
+#            Issue 1, July 2017, for 8MA0/9MA0. The committee-designed booklet
+#            printed on coloured paper ("Green" on the 2020 Paper 31 cover). Its
+#            A-level Mathematics section is reproduced here, together with the
+#            statistical tables the booklet marks as required for A-level
+#            Mathematics.
+#   ocr      OCR A Level Mathematics A (H240) formulae sheet, printed on pages
+#            2-3 of every question paper; confirmed against H240/01 June 2025
+#            and reproduced in the specification v3.1 appendix. OCR supplies no
+#            booklet separate from the question paper.
+#
+# `group` is one of:
+#   given    - printed on the board's formula sheet or booklet
+#   question - may be given inside the relevant question
+#   know     - not given; the student is expected to recall or derive it
+#
+# The `know` items are DfE "Mathematics: AS and A level content"
+# (DFE-00706-2014) Appendix B, the formulae and identities that must be used
+# "without these formulae and identities being provided". Each board does not
+# reprint them, so they are common to all three boards. A formula appears only
+# where a board prints it or where the DfE requires recall of it; the boards'
+# lists are not the same and have not been normalised.
+meta:
+  title: A-level Mathematics — formulae and tables
+  panel_title: Formulae & tables
+  short: Formulae
+  tab_label: Formulae
+  item_label: formulae
+  search_placeholder: Search formulae…
+  series: current specifications
+  default_board: aqa
+  tiered: false
+  note: >-
+    There is no national A-level booklet. Each board supplies its own, and the
+    three are not the same list: AQA gives out "Formulae for A-level
+    Mathematics", Pearson Edexcel gives "Mathematical Formulae and Statistical
+    Tables", and OCR prints its formulae sheet on pages 2-3 of each question
+    paper. Provision shown here is taken from those documents, recorded with
+    their retrieval date in sources.yaml, and a board's selector hides anything
+    that board does not allow. Items a board does not print are marked "You must
+    know" where the DfE Appendix B requires them to be recalled without being
+    provided. AQA prints no statistical tables in its Mathematics booklet;
+    Edexcel prints binomial, normal, correlation and random-number tables; OCR
+    prints the percentage points of the normal distribution.
+  provenance:
+    aqa: "AQA, Formulae for A-level Mathematics, v1.2 (first issued August 2017)"
+    edexcel: "Pearson Edexcel, Mathematical Formulae and Statistical Tables, Issue 1 (July 2017)"
+    ocr: "OCR A Level Mathematics A (H240) formulae sheet, printed in each question paper"
+  basis: >-
+    Two documents decide what a reader may use. Each awarding body's exam-room
+    booklet or sheet is the "On your formula sheet" group, retrieved by
+    scripts/fetch_sources.sh and listed in sources.yaml. The DfE's "Mathematics:
+    AS and A level content" (DFE-00706-2014) Appendix B is the "You must know"
+    group: it lists the formulae and identities students must use without their
+    being provided, in these forms or equivalent forms, except where they are
+    the starting point of a proof. The two lists barely overlap, so the boards'
+    booklets give the additional formulae and Appendix B is common to all three.
+    This is why, for example, the sum of an arithmetic series is given but its
+    nth term is not, and why no board prints the quadratic formula. The boards'
+    booklets are not interchangeable: AQA's is one folded sheet with no tables,
+    Edexcel's is a 48-page booklet carrying statistical tables, and OCR's is two
+    pages inside the question paper.
+  boards:
+    aqa: {name: AQA, code: "7357"}
+    edexcel: {name: Edexcel, code: "9MA0"}
+    ocr: {name: OCR, code: "H240"}
+  groups:
+    given: {label: "On your formula sheet", chip: Given, tone: accent}
+    question: {label: "May be given in the question", chip: In question, tone: muted}
+    know: {label: "You must know", chip: Must know, tone: warn}
+
+sections:
+  - id: algebra
+    title: Algebra and functions
+    items:
+      - id: quadratic-formula
+        name: Quadratic formula
+        latex: 'x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}'
+        note: The roots of ax^2 + bx + c = 0, where a is not 0.
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [quadratic formula, roots, discriminant]
+      - id: laws-of-indices
+        name: Laws of indices
+        latex: 'a^x a^y = a^{x+y} \qquad a^x \div a^y = a^{x-y} \qquad (a^x)^y = a^{xy}'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [indices, index laws, powers]
+      - id: log-definition
+        name: Definition of a logarithm
+        latex: 'x = a^n \iff n = \log_a x'
+        note: For a > 0 and x > 0.
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [logarithm, log, index, inverse]
+      - id: laws-of-logarithms
+        name: Laws of logarithms
+        latex: '\log_a x + \log_a y = \log_a (xy) \qquad \log_a x - \log_a y = \log_a \left(\frac{x}{y}\right) \qquad k \log_a x = \log_a (x^k)'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [logarithm, log laws, product, quotient, power]
+      - id: edexcel-change-of-base
+        name: Change of base of a logarithm
+        latex: '\log_a x = \frac{\log_b x}{\log_b a}'
+        provision: {edexcel: given}
+        keywords: [logarithm, change of base]
+      - id: edexcel-exponential-in-base-e
+        name: Exponential written in base e
+        latex: 'e^{x \ln a} = a^x'
+        provision: {edexcel: given}
+        keywords: [exponential, logarithm, base e, ln]
+
+  - id: coordinate-geometry
+    title: Coordinate geometry
+    items:
+      - id: straight-line
+        name: Equation of a straight line
+        latex: 'y - y_1 = m(x - x_1)'
+        note: A line with gradient m passing through (x1, y1).
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [straight line, gradient, coordinate geometry]
+      - id: perpendicular-gradients
+        name: Perpendicular gradients
+        latex: 'm_1 m_2 = -1'
+        note: Two straight lines with gradients m1 and m2 are perpendicular when their product is -1.
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [perpendicular, gradient, coordinate geometry]
+
+  - id: sequences
+    title: Sequences and series
+    items:
+      - id: aqa-arithmetic-series
+        name: Sum of an arithmetic series
+        latex: 'S_n = \tfrac{1}{2} n (a + l) = \tfrac{1}{2} n [2a + (n - 1)d]'
+        provision: {aqa: given}
+        keywords: [arithmetic series, sum, nth term]
+      - id: edexcel-arithmetic-series
+        name: Sum of an arithmetic series
+        latex: 'S_n = \tfrac{1}{2} n (a + l) = \tfrac{1}{2} n [2a + (n - 1)d]'
+        provision: {edexcel: given}
+        keywords: [arithmetic series, sum, nth term]
+      - id: ocr-arithmetic-series
+        name: Sum of an arithmetic series
+        latex: 'S_n = \tfrac{1}{2} n (a + l) = \tfrac{1}{2} n \{2a + (n - 1)d\}'
+        provision: {ocr: given}
+        keywords: [arithmetic series, sum, nth term]
+      - id: arithmetic-nth-term
+        name: nth term of an arithmetic progression
+        latex: 'u_n = a + (n - 1)d'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [arithmetic progression, nth term, sequence]
+      - id: geometric-series
+        name: Sum of a geometric series
+        latex: 'S_n = \frac{a(1 - r^n)}{1 - r}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [geometric series, sum, progression]
+      - id: geometric-sum-infinity
+        name: Sum to infinity of a geometric series
+        latex: 'S_\infty = \frac{a}{1 - r} \quad \text{for } |r| < 1'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [geometric series, sum to infinity, convergent]
+      - id: geometric-nth-term
+        name: nth term of a geometric progression
+        latex: 'u_n = a r^{n-1}'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [geometric progression, nth term, sequence]
+      - id: binomial-series
+        name: Binomial series for a positive integer n
+        latex: '(a + b)^n = a^n + \binom{n}{1} a^{n-1} b + \binom{n}{2} a^{n-2} b^2 + \dots + \binom{n}{r} a^{n-r} b^r + \dots + b^n \quad (n \in \mathbb{N})'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [binomial series, expansion, positive integer]
+      - id: binomial-coefficient
+        name: Binomial coefficient
+        latex: '\binom{n}{r} = {}^n C_r = \frac{n!}{r!\,(n - r)!}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [binomial coefficient, nCr, factorial]
+      - id: aqa-binomial-general
+        name: Binomial series for a rational n
+        latex: '(1 + x)^n = 1 + nx + \frac{n(n - 1)}{1 \cdot 2} x^2 + \dots + \frac{n(n - 1) \dots (n - r + 1)}{1 \cdot 2 \cdots r} x^r + \dots \quad (|x| < 1,\ n \in \mathbb{R})'
+        note: AQA prints the denominator as 1.2, meaning 1 times 2.
+        provision: {aqa: given}
+        keywords: [binomial series, rational n, approximation, expansion]
+      - id: edexcel-binomial-general
+        name: Binomial series for a rational n
+        latex: '(1 + x)^n = 1 + nx + \frac{n(n - 1)}{1 \times 2} x^2 + \dots + \frac{n(n - 1) \dots (n - r + 1)}{1 \times 2 \times \dots \times r} x^r + \dots \quad (|x| < 1,\ n \in \mathbb{R})'
+        provision: {edexcel: given}
+        keywords: [binomial series, rational n, approximation, expansion]
+      - id: ocr-binomial-general
+        name: Binomial series for a rational n
+        latex: '(1 + x)^n = 1 + nx + \frac{n(n - 1)}{2!} x^2 + \dots + \frac{n(n - 1) \dots (n - r + 1)}{r!} x^r + \dots \quad (|x| < 1,\ n \in \mathbb{R})'
+        provision: {ocr: given}
+        keywords: [binomial series, rational n, approximation, expansion]
+
+  - id: trigonometry
+    title: Trigonometry
+    items:
+      - id: small-angle-approximations
+        name: Small-angle approximations
+        latex: '\sin \theta \approx \theta \qquad \cos \theta \approx 1 - \frac{\theta^2}{2} \qquad \tan \theta \approx \theta'
+        note: For a small angle θ measured in radians.
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [small angle, approximation, radians]
+      - id: sine-addition
+        name: Sine of a sum or difference
+        latex: '\sin (A \pm B) = \sin A \cos B \pm \cos A \sin B'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [sine, addition formula, compound angle]
+      - id: cosine-addition
+        name: Cosine of a sum or difference
+        latex: '\cos (A \pm B) = \cos A \cos B \mp \sin A \sin B'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [cosine, addition formula, compound angle]
+      - id: tangent-addition
+        name: Tangent of a sum or difference
+        latex: '\tan (A \pm B) = \frac{\tan A \pm \tan B}{1 \mp \tan A \tan B} \quad \left(A \pm B \ne \left(k + \tfrac{1}{2}\right)\pi\right)'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [tangent, addition formula, compound angle]
+      - id: edexcel-sum-to-product
+        name: Sums and differences of sines and cosines
+        latex: '\sin A + \sin B = 2 \sin \frac{A + B}{2} \cos \frac{A - B}{2} \qquad \sin A - \sin B = 2 \cos \frac{A + B}{2} \sin \frac{A - B}{2} \qquad \cos A + \cos B = 2 \cos \frac{A + B}{2} \cos \frac{A - B}{2} \qquad \cos A - \cos B = -2 \sin \frac{A + B}{2} \sin \frac{A - B}{2}'
+        provision: {edexcel: given}
+        keywords: [sum to product, factor formulae, sine, cosine]
+      - id: pythagorean-identities
+        name: Pythagorean identities
+        latex: '\cos^2 A + \sin^2 A = 1 \qquad \sec^2 A = 1 + \tan^2 A \qquad \operatorname{cosec}^2 A = 1 + \cot^2 A'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [pythagorean identities, sec, cosec, cot, tan]
+      - id: double-angle-identities
+        name: Double-angle identities
+        latex: '\sin 2A = 2 \sin A \cos A \qquad \cos 2A = \cos^2 A - \sin^2 A \qquad \tan 2A = \frac{2 \tan A}{1 - \tan^2 A}'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [double angle, sin 2A, cos 2A, tan 2A]
+      - id: sine-cosine-rule
+        name: Sine rule and cosine rule
+        latex: '\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C} \qquad a^2 = b^2 + c^2 - 2bc \cos A'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [sine rule, cosine rule, triangle]
+      - id: triangle-area
+        name: Area of a triangle
+        latex: 'A = \tfrac{1}{2} ab \sin C'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [area of a triangle, sine]
+
+  - id: mensuration
+    title: Mensuration
+    items:
+      - id: circle-circumference-area
+        name: Circumference and area of a circle
+        latex: 'C = 2\pi r = \pi d \qquad A = \pi r^2'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [circle, circumference, area, radius, diameter]
+      - id: pythagoras
+        name: Pythagoras' theorem
+        latex: 'c^2 = a^2 + b^2'
+        note: In a right-angled triangle, c is the hypotenuse.
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [pythagoras, hypotenuse, right-angled]
+      - id: trapezium-area
+        name: Area of a trapezium
+        latex: 'A = \tfrac{1}{2} (a + b) h'
+        note: a and b are the parallel sides; h is their perpendicular separation.
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [trapezium, area]
+      - id: prism-volume
+        name: Volume of a prism
+        latex: 'V = \text{area of cross-section} \times \text{length}'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [prism, volume]
+      - id: arc-length-sector-area
+        name: Arc length and sector area
+        latex: 's = r\theta \qquad A = \tfrac{1}{2} r^2 \theta'
+        note: For an angle θ measured in radians.
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [arc length, sector area, radians]
+      - id: edexcel-sphere-surface-area
+        name: Surface area of a sphere
+        latex: 'A = 4\pi r^2'
+        provision: {edexcel: given}
+        keywords: [sphere, surface area]
+      - id: edexcel-cone-curved-surface
+        name: Curved surface area of a cone
+        latex: 'A = \pi r \times \text{slant height}'
+        provision: {edexcel: given}
+        keywords: [cone, curved surface area, slant height]
+
+  - id: differentiation
+    title: Differentiation
+    items:
+      - id: aqa-reciprocal-derivatives
+        name: Derivatives of tan, cosec, sec and cot
+        latex: '\tan x \to \sec^2 x \qquad \operatorname{cosec} x \to -\operatorname{cosec} x \cot x \qquad \sec x \to \sec x \tan x \qquad \cot x \to -\operatorname{cosec}^2 x'
+        note: AQA prints these as a table of f(x) and f'(x).
+        provision: {aqa: given}
+        keywords: [derivative, tan, cosec, sec, cot]
+      - id: edexcel-reciprocal-derivatives
+        name: Derivatives of tan, sec, cot and cosec
+        latex: '\tan kx \to k \sec^2 kx \qquad \sec kx \to k \sec kx \tan kx \qquad \cot kx \to -k \operatorname{cosec}^2 kx \qquad \operatorname{cosec} kx \to -k \operatorname{cosec} kx \cot kx'
+        note: The board prints these as a table of f(x) and f'(x).
+        provision: {edexcel: given}
+        keywords: [derivative, tan, sec, cot, cosec]
+      - id: ocr-reciprocal-derivatives
+        name: Derivatives of tan, sec, cot and cosec
+        latex: '\tan kx \to k \sec^2 kx \qquad \sec x \to \sec x \tan x \qquad \cot x \to -\operatorname{cosec}^2 x \qquad \operatorname{cosec} x \to -\operatorname{cosec} x \cot x'
+        note: The board prints these as a table of f(x) and f'(x).
+        provision: {ocr: given}
+        keywords: [derivative, tan, sec, cot, cosec]
+      - id: quotient-rule
+        name: Quotient rule
+        latex: '\frac{f(x)}{g(x)} \to \frac{f^{\prime}(x) g(x) - f(x) g^{\prime}(x)}{(g(x))^2}'
+        provision: {aqa: given, edexcel: given}
+        keywords: [quotient rule, derivative, fraction]
+      - id: ocr-quotient-rule
+        name: Quotient rule
+        latex: 'y = \frac{u}{v}, \qquad \frac{dy}{dx} = \frac{v \frac{du}{dx} - u \frac{dv}{dx}}{v^2}'
+        provision: {ocr: given}
+        keywords: [quotient rule, derivative, fraction]
+      - id: first-principles
+        name: Differentiation from first principles
+        latex: 'f^{\prime}(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [first principles, limit, gradient, definition]
+      - id: standard-derivatives
+        name: Standard derivatives
+        latex: 'x^n \to n x^{n-1} \qquad \sin kx \to k \cos kx \qquad \cos kx \to -k \sin kx \qquad e^{kx} \to k e^{kx} \qquad \ln x \to \frac{1}{x}'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [derivative, power, sine, cosine, exponential, logarithm]
+      - id: differentiation-rules
+        name: Sum, product and chain rules
+        latex: 'f(x) + g(x) \to f^{\prime}(x) + g^{\prime}(x) \qquad f(x) g(x) \to f^{\prime}(x) g(x) + f(x) g^{\prime}(x) \qquad f(g(x)) \to f^{\prime}(g(x)) g^{\prime}(x)'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [product rule, chain rule, sum rule, derivative]
+
+  - id: integration
+    title: Integration
+    items:
+      - id: integration-by-parts
+        name: Integration by parts
+        latex: '\int u \frac{dv}{dx}\, dx = uv - \int v \frac{du}{dx}\, dx'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [integration by parts, product rule]
+      - id: aqa-integration-f-over-f
+        name: Integral of a fraction with the derivative on top
+        latex: '\int \frac{f^{\prime}(x)}{f(x)}\, dx = \ln |f(x)| + c'
+        provision: {aqa: given}
+        keywords: [integration, logarithm, natural log, modulus]
+      - id: ocr-integration-f-over-f
+        name: Integral of a fraction with the derivative on top
+        latex: '\int \frac{f^{\prime}(x)}{f(x)}\, dx = \ln f(x) + c'
+        provision: {ocr: given}
+        keywords: [integration, logarithm, natural log]
+      - id: ocr-integration-power
+        name: Integral of a function of a function
+        latex: '\int f^{\prime}(x) (f(x))^n\, dx = \frac{1}{n + 1} (f(x))^{n+1} + c'
+        provision: {ocr: given}
+        keywords: [integration, substitution, chain rule, function of a function]
+      - id: aqa-integration-tan
+        name: Integral of tan x
+        latex: '\int \tan x\, dx = \ln |\sec x| + c'
+        provision: {aqa: given}
+        keywords: [integration, tan, sec, logarithm]
+      - id: aqa-integration-cot
+        name: Integral of cot x
+        latex: '\int \cot x\, dx = \ln |\sin x| + c'
+        provision: {aqa: given}
+        keywords: [integration, cot, sin, logarithm]
+      - id: edexcel-integration-sec-squared
+        name: Integral of sec squared
+        latex: '\int \sec^2 kx\, dx = \frac{1}{k} \tan kx + c'
+        provision: {edexcel: given}
+        keywords: [integration, sec squared, tan]
+      - id: edexcel-integration-tan
+        name: Integral of tan kx
+        latex: '\int \tan kx\, dx = \frac{1}{k} \ln |\sec kx| + c'
+        provision: {edexcel: given}
+        keywords: [integration, tan, sec, logarithm]
+      - id: edexcel-integration-cot
+        name: Integral of cot kx
+        latex: '\int \cot kx\, dx = \frac{1}{k} \ln |\sin kx| + c'
+        provision: {edexcel: given}
+        keywords: [integration, cot, sin, logarithm]
+      - id: edexcel-integration-cosec
+        name: Integral of cosec kx
+        latex: '\int \operatorname{cosec} kx\, dx = -\frac{1}{k} \ln |\operatorname{cosec} kx + \cot kx| + c = \frac{1}{k} \ln \left| \tan \left(\tfrac{1}{2} kx\right) \right| + c'
+        provision: {edexcel: given}
+        keywords: [integration, cosec, cot, logarithm]
+      - id: edexcel-integration-sec
+        name: Integral of sec kx
+        latex: '\int \sec kx\, dx = \frac{1}{k} \ln |\sec kx + \tan kx| + c = \frac{1}{k} \ln \left| \tan \left(\tfrac{1}{2} kx + \tfrac{1}{4} \pi\right) \right| + c'
+        provision: {edexcel: given}
+        keywords: [integration, sec, tan, logarithm]
+      - id: standard-integrals
+        name: Standard integrals
+        latex: 'x^n \to \frac{x^{n+1}}{n + 1} + c\ (n \ne -1) \qquad \cos kx \to \frac{1}{k} \sin kx + c \qquad \sin kx \to -\frac{1}{k} \cos kx + c \qquad e^{kx} \to \frac{1}{k} e^{kx} + c \qquad \frac{1}{x} \to \ln x + c\ (x \ne 0)'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [integration, power, sine, cosine, exponential, logarithm]
+      - id: integration-rules
+        name: Sum and function-of-a-function integrals
+        latex: 'f^{\prime}(x) + g^{\prime}(x) \to f(x) + g(x) + c \qquad f^{\prime}(g(x)) g^{\prime}(x) \to f(g(x)) + c'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [integration, substitution, chain rule, sum]
+      - id: area-under-curve
+        name: Area under a curve
+        latex: '\text{area under a curve} = \int_a^b y\, dx \quad (y \ge 0)'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [definite integral, area under a curve]
+
+  - id: numerical-methods
+    title: Numerical methods
+    items:
+      - id: trapezium-rule
+        name: Trapezium rule
+        latex: '\int_a^b y\, dx \approx \tfrac{1}{2} h \left\{ (y_0 + y_n) + 2(y_1 + y_2 + \dots + y_{n-1}) \right\}, \quad \text{where } h = \frac{b - a}{n}'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [trapezium rule, numerical integration, ordinates]
+      - id: newton-raphson
+        name: Newton-Raphson iteration
+        latex: 'x_{n+1} = x_n - \frac{f(x_n)}{f^{\prime}(x_n)}'
+        note: For solving f(x) = 0.
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [newton raphson, iteration, numerical solution, root]
+
+  - id: vectors
+    title: Vectors
+    items:
+      - id: vector-magnitude
+        name: Magnitude of a vector
+        latex: '\left| x\mathbf{i} + y\mathbf{j} + z\mathbf{k} \right| = \sqrt{x^2 + y^2 + z^2}'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [vector, magnitude, modulus, components]
+
+  - id: mechanics
+    title: Mechanics
+    items:
+      - id: suvat-velocity
+        name: Velocity from acceleration
+        latex: 'v = u + at'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [constant acceleration, suvat, velocity]
+      - id: suvat-displacement-initial
+        name: Displacement using initial velocity
+        latex: 's = ut + \tfrac{1}{2} a t^2'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [constant acceleration, suvat, displacement]
+      - id: suvat-displacement-final
+        name: Displacement using final velocity
+        latex: 's = vt - \tfrac{1}{2} a t^2'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [constant acceleration, suvat, displacement]
+      - id: suvat-average-velocity
+        name: Displacement from average velocity
+        latex: 's = \tfrac{1}{2} (u + v) t'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [constant acceleration, suvat, displacement, average velocity]
+      - id: suvat-velocity-squared
+        name: Velocity, acceleration and displacement
+        latex: 'v^2 = u^2 + 2as'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [constant acceleration, suvat, velocity]
+      - id: variable-acceleration-kinematics
+        name: Kinematics with variable acceleration
+        latex: 'v = \frac{dr}{dt}, \quad a = \frac{dv}{dt} = \frac{d^2 r}{dt^2}, \quad r = \int v\, dt, \quad v = \int a\, dt'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [variable acceleration, kinematics, calculus, velocity]
+      - id: newton-second-law
+        name: Newton's second law
+        latex: 'F = ma'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [newton second law, force, mass, acceleration]
+      - id: weight
+        name: Weight
+        latex: '\text{weight} = \text{mass} \times g'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [weight, mass, gravity, g]
+      - id: friction
+        name: Friction
+        latex: 'F \le \mu R'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [friction, coefficient, normal reaction, limiting]
+
+  - id: probability-statistics
+    title: Probability and statistics
+    items:
+      - id: probability-union
+        name: Addition rule
+        latex: 'P(A \cup B) = P(A) + P(B) - P(A \cap B)'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [probability, union, mutually exclusive, addition]
+      - id: probability-intersection
+        name: Multiplication rule
+        latex: 'P(A \cap B) = P(A) P(B \mid A)'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [probability, intersection, conditional, multiplication]
+      - id: conditional-probability
+        name: Conditional probability
+        latex: 'P(A \mid B) = \frac{P(A \cap B)}{P(B)}'
+        provision: {edexcel: given, ocr: given}
+        keywords: [conditional probability, intersection]
+      - id: edexcel-complement
+        name: Complement
+        latex: 'P(A^{\prime}) = 1 - P(A)'
+        provision: {edexcel: given}
+        keywords: [probability, complement, not]
+      - id: edexcel-independent-events
+        name: Independent events
+        latex: 'P(A \cap B) = P(A) P(B)'
+        note: For independent events A and B.
+        provision: {edexcel: given}
+        keywords: [independent events, probability, multiplication]
+      - id: aqa-ocr-standard-deviation
+        name: Standard deviation
+        latex: '\frac{\sum (x - \bar{x})^2}{n} = \frac{\sum x^2}{n} - \bar{x}^2'
+        note: The board prints this expression under the heading Standard deviation.
+        provision: {aqa: given, ocr: given}
+        keywords: [variance, standard deviation, mean]
+      - id: ocr-variance-frequency
+        name: Standard deviation from a frequency table
+        latex: '\frac{\sum f (x - \bar{x})^2}{\sum f} = \frac{\sum f x^2}{\sum f} - \bar{x}^2'
+        provision: {ocr: given}
+        keywords: [variance, standard deviation, frequency table]
+      - id: edexcel-standard-deviation
+        name: Standard deviation
+        latex: '\sigma = \sqrt{\frac{S_{xx}}{n}} = \sqrt{\frac{\sum x^2}{n} - \bar{x}^2}'
+        provision: {edexcel: given}
+        keywords: [standard deviation, variance, sigma]
+      - id: edexcel-sxx
+        name: Sum of squared deviations
+        latex: 'S_{xx} = \sum (x_i - \bar{x})^2 = \sum x_i^2 - \frac{\left(\sum x_i\right)^2}{n}'
+        provision: {edexcel: given}
+        keywords: [Sxx, variance, sum of squares]
+      - id: edexcel-iqr
+        name: Interquartile range
+        latex: '\text{IQR} = Q_3 - Q_1'
+        provision: {edexcel: given}
+        keywords: [interquartile range, quartile, IQR]
+      - id: binomial-distribution
+        name: The binomial distribution
+        latex: 'X \sim B(n, p) \Rightarrow P(X = x) = \binom{n}{x} p^x (1 - p)^{n-x}, \qquad \text{mean} = np, \qquad \text{variance} = np(1 - p)'
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [binomial distribution, mean, variance, probability]
+      - id: sampling-distribution
+        name: Sampling distribution of the mean
+        latex: '\frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim N(0, 1)'
+        note: For a random sample of n observations from N(μ, σ²).
+        provision: {aqa: given, edexcel: given, ocr: given}
+        keywords: [sampling distribution, central limit, normal, mean]
+      - id: ocr-sample-mean-distribution
+        name: Distribution of the sample mean
+        latex: 'X \sim N(\mu, \sigma^2) \Rightarrow \bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right)'
+        provision: {ocr: given}
+        keywords: [sample mean, normal distribution, variance]
+      - id: mean-of-data
+        name: Mean of a set of data
+        latex: '\bar{x} = \frac{\sum x}{n} = \frac{\sum f x}{\sum f}'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [mean, average, grouped data]
+      - id: standard-normal-variable
+        name: The standard Normal variable
+        latex: 'Z = \frac{X - \mu}{\sigma} \quad \text{where } X \sim N(\mu, \sigma^2)'
+        provision: {aqa: know, edexcel: know, ocr: know}
+        keywords: [standard normal, z, standardising, normal distribution]
+
+  - id: statistical-tables
+    title: Statistical tables
+    items:
+      - id: edexcel-normal-percentage-points
+        name: Percentage points of the Normal distribution
+        latex: '\begin{array}{rr} p & z \\ 0.5000 & 0.0000 \\ 0.4000 & 0.2533 \\ 0.3000 & 0.5244 \\ 0.2000 & 0.8416 \\ 0.1500 & 1.0364 \\ 0.1000 & 1.2816 \\ 0.0500 & 1.6449 \\ 0.0250 & 1.9600 \\ 0.0100 & 2.3263 \\ 0.0050 & 2.5758 \\ 0.0010 & 3.0902 \\ 0.0005 & 3.2905 \end{array}'
+        note: The value z that Z ~ N(0, 1) exceeds with probability p, so P(Z > z) = p.
+        provision: {edexcel: given}
+        keywords: [normal distribution, percentage points, z, table, critical value]
+      - id: ocr-normal-percentage-points
+        name: Percentage points of the Normal distribution
+        latex: '\begin{array}{rr} p & z \\ 0.75 & 0.674 \\ 0.90 & 1.282 \\ 0.95 & 1.645 \\ 0.975 & 1.960 \\ 0.99 & 2.326 \\ 0.995 & 2.576 \\ 0.9975 & 2.807 \\ 0.999 & 3.090 \\ 0.9995 & 3.291 \end{array}'
+        note: The value z such that P(Z ≤ z) = p, where Z has a Normal distribution with mean 0 and variance 1.
+        provision: {ocr: given}
+        keywords: [normal distribution, percentage points, z, table, critical value]
+      - id: edexcel-correlation-critical-values
+        name: Critical values for correlation coefficients
+        latex: '\begin{array}{r|rrrrr} n & 0.10 & 0.05 & 0.025 & 0.01 & 0.005 \\ 4 & 0.8000 & 0.9000 & 0.9500 & 0.9800 & 0.9900 \\ 5 & 0.6870 & 0.8054 & 0.8783 & 0.9343 & 0.9587 \\ 6 & 0.6084 & 0.7293 & 0.8114 & 0.8822 & 0.9172 \\ 7 & 0.5509 & 0.6694 & 0.7545 & 0.8329 & 0.8745 \\ 8 & 0.5067 & 0.6215 & 0.7067 & 0.7887 & 0.8343 \\ 9 & 0.4716 & 0.5822 & 0.6664 & 0.7498 & 0.7977 \\ 10 & 0.4428 & 0.5494 & 0.6319 & 0.7155 & 0.7646 \\ 11 & 0.4187 & 0.5214 & 0.6021 & 0.6851 & 0.7348 \\ 12 & 0.3981 & 0.4973 & 0.5760 & 0.6581 & 0.7079 \\ 13 & 0.3802 & 0.4762 & 0.5529 & 0.6339 & 0.6835 \\ 14 & 0.3646 & 0.4575 & 0.5324 & 0.6120 & 0.6614 \\ 15 & 0.3507 & 0.4409 & 0.5140 & 0.5923 & 0.6411 \\ 16 & 0.3383 & 0.4259 & 0.4973 & 0.5742 & 0.6226 \\ 17 & 0.3271 & 0.4124 & 0.4821 & 0.5577 & 0.6055 \\ 18 & 0.3170 & 0.4000 & 0.4683 & 0.5425 & 0.5897 \\ 19 & 0.3077 & 0.3887 & 0.4555 & 0.5285 & 0.5751 \\ 20 & 0.2992 & 0.3783 & 0.4438 & 0.5155 & 0.5614 \\ 21 & 0.2914 & 0.3687 & 0.4329 & 0.5034 & 0.5487 \\ 22 & 0.2841 & 0.3598 & 0.4227 & 0.4921 & 0.5368 \\ 23 & 0.2774 & 0.3515 & 0.4133 & 0.4815 & 0.5256 \\ 24 & 0.2711 & 0.3438 & 0.4044 & 0.4716 & 0.5151 \\ 25 & 0.2653 & 0.3365 & 0.3961 & 0.4622 & 0.5052 \\ 26 & 0.2598 & 0.3297 & 0.3882 & 0.4534 & 0.4958 \\ 27 & 0.2546 & 0.3233 & 0.3809 & 0.4451 & 0.4869 \\ 28 & 0.2497 & 0.3172 & 0.3739 & 0.4372 & 0.4785 \\ 29 & 0.2451 & 0.3115 & 0.3673 & 0.4297 & 0.4705 \\ 30 & 0.2407 & 0.3061 & 0.3610 & 0.4226 & 0.4629 \\ 40 & 0.2070 & 0.2638 & 0.3120 & 0.3665 & 0.4026 \\ 50 & 0.1843 & 0.2353 & 0.2787 & 0.3281 & 0.3610 \\ 60 & 0.1678 & 0.2144 & 0.2542 & 0.2997 & 0.3301 \\ 70 & 0.1550 & 0.1982 & 0.2352 & 0.2776 & 0.3060 \\ 80 & 0.1448 & 0.1852 & 0.2199 & 0.2597 & 0.2864 \\ 90 & 0.1364 & 0.1745 & 0.2072 & 0.2449 & 0.2702 \\ 100 & 0.1292 & 0.1654 & 0.1966 & 0.2324 & 0.2565 \end{array}'
+        note: Product moment coefficient. The table gives the smallest sample correlation coefficient that is significant at the level shown, on a one-tailed test of a population correlation of 0.
+        provision: {edexcel: given}
+        keywords: [correlation, product moment, critical values, significance, table]
+
+tables: []

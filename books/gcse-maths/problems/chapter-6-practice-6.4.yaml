@@ -127,3 +127,16 @@ problems:
     rounded: '143.35'
     to: '0.01'
   answer_text: £143.35
+
+- id: ch6-64-method-interest
+  section: '6.4'
+  tier: F
+  dfe: [R9, R16]
+  statement: '£200 earns 5% per year for 2 years. Which method fits each part, and why? (a) simple interest. (b) compound interest. Then work out the final amount for each.'
+  answer_label: 'Method choice: simple or compound interest'
+  check:
+    kind: all
+    checks:
+      - {kind: evaluate, expression: '200*(1+0.05*2)', answer: '220'}
+      - {kind: evaluate, expression: '200*1.05**2', answer: '220.5'}
+  answer_text: 'Simple interest is calculated once on the original amount: $200\times(1+0.05\times2)=£220$. Compound interest earns interest on interest: $200\times1.05^2=£220.50$. The extra 50p is the interest earned in the first year on £10.'

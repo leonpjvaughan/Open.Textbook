@@ -73,3 +73,16 @@ problems:
     answer_label: 'Meals with salad and fruit'
     check: {kind: all, checks: [{kind: evaluate, expression: "2", answer: "2"}]}
     answer_text: 'Salad-rice-fruit and salad-pasta-fruit.'
+
+  - id: c2-23-method-list
+    section: '2.3'
+    tier: F
+    dfe: [N5]
+    statement: 'A cafe offers 2 soups and 3 salads. Which method lists every two-course meal without missing any: a table or a tree diagram? Give a reason. Then count the meals, and the number that use soup 2.'
+    answer_label: 'Method choice: table or tree diagram'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2*3', answer: '6'}
+        - {kind: evaluate, expression: '6/2', answer: '3'}
+    answer_text: 'Use a table: put soups down the side and salads across the top, and fill every cell. There are $2\times3=6$ meals, and soup 2 forms one row, so it uses 3 of them.'
