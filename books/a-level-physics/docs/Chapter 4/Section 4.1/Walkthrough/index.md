@@ -178,6 +178,34 @@ That is the pascal. The check is the same as the homogeneity argument from
 Section 1.1: the two sides of $E = \sigma/\varepsilon$ must have the same base
 units.
 
+## 6. Try it: the gradient of a stress–strain graph
+
+A stress–strain graph shows the Young modulus directly. The line passes through
+the origin while the stress is proportional to the strain, so its gradient is
+
+$$ E = \frac{\text{stress}}{\text{strain}} $$
+
+**Predict first.** Do not move the sliders yet. Write down your answers.
+
+1. The table gives steel as stiffer than aluminium. On the same axes, which line
+   is steeper?
+2. A wire is made thicker but the force is kept the same. Does the gradient of
+   the stress–strain line change?
+3. The point on the line marks one force and one area. If the force is doubled
+   at the same area, does the point stay on the same line or move to a new line?
+
+**Test.** Set the material to steel and the force to $40\,\text{N}$. Move the
+area slider from $0.3\,\text{mm}^2$ to $1.2\,\text{mm}^2$ and watch the point.
+Then change the material to copper and to aluminium, and watch the line. Check
+that the gradient matches the Young modulus in the table.
+
+**Explain.** Why does changing the thickness of the wire move the point along
+the line but leave the gradient alone? Write two or three sentences. Use the idea
+that both the stress and the strain depend on the sample, but their ratio is the
+Young modulus of the material.
+
+:::figure stress-strain-graph
+
 ## Progress check
 
 Return to the chapter problem. The beam has a mass of $2500\,\text{kg}$, and the

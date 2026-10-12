@@ -64,7 +64,32 @@ scalar, even though it flows in a direction.
 > triangle rule. Check each quantity by asking: if I put two of these end to end,
 > does the triangle rule give the combined effect?
 
-## 3. Writing a vector
+## 3. Try it: adding two vectors
+
+The figure places two forces tip to tail and draws the resultant. Three sliders
+set the two magnitudes and the angle between them.
+
+**Predict first.** Do not move the sliders yet. Write down your answers.
+
+1. Force A is $6\,\text{N}$ and force B is $8\,\text{N}$. The angle between
+   them is $90^\circ$. Is the resultant $2\,\text{N}$, $10\,\text{N}$ or
+   $14\,\text{N}$?
+2. What happens to the resultant when the two forces point in opposite
+   directions?
+3. The forces have magnitudes $6\,\text{N}$ and $8\,\text{N}$. Can the resultant
+   ever be longer than $14\,\text{N}$?
+
+**Test.** Set A to $6\,\text{N}$, B to $8\,\text{N}$ and the angle to
+$90^\circ$, then read the resultant. Move the angle to $0^\circ$ and then to
+$180^\circ$, and watch the resultant. Check your second and third predictions.
+
+**Explain.** Why is the resultant shorter than the two magnitudes added when the
+forces point in different directions? Write two or three sentences. Use the idea
+that the second force starts at the tip of the first.
+
+:::figure vector-addition
+
+## 4. Writing a vector
 
 A vector is written as a magnitude and a direction. The direction can be given in
 several ways.
@@ -80,7 +105,7 @@ In printed work a vector is often shown in bold, such as $\mathbf{v}$, or with a
 arrow, such as $\vec{v}$. Its magnitude is written $v$ or $|\mathbf{v}|$. In
 handwriting an underline, $\underline{v}$, is common.
 
-## 4. Vectors along one line
+## 5. Vectors along one line
 
 When two vectors act along the same line, choose one direction as positive. A
 vector in the opposite direction then has a negative sign. Adding the signed
@@ -128,7 +153,7 @@ $$
 The two velocities are along the same line, so the signed numbers add. With the
 current the two speeds add, and against it they subtract.
 
-## 5. Multiplying a vector by a scalar
+## 6. Multiplying a vector by a scalar
 
 Multiplying a vector by a positive scalar changes its magnitude and leaves its
 direction unchanged. Multiplying by a negative scalar reverses the direction.
@@ -141,7 +166,7 @@ $$ 3 \times 20\,\text{N} = 60\,\text{N}\ \text{east} $$
 Multiplying by $-1$ would give 20 N west. Doubling a displacement doubles its
 length but keeps it pointing the same way.
 
-## 6. Speed and velocity round a bend
+## 7. Speed and velocity round a bend
 
 A car on a roundabout can keep a steady speed while its velocity changes. The
 speed is the magnitude of the velocity. The direction of the velocity changes as

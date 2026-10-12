@@ -145,7 +145,34 @@ $$
 The rifle recoils at $2.0\,\text{m}\,\text{s}^{-1}$ in the opposite direction to
 the bullet.
 
-## 4. Collisions and kinetic energy
+## 4. Try it: the total momentum before and after
+
+The figure shows two trolleys on a line. It stacks their momenta end to end, so
+you can see the total before the collision and after it. Four sliders set the two
+masses and the two velocities, and a menu chooses whether the trolleys stick
+together or bounce apart.
+
+**Predict first.** Do not move the controls yet. Trolley A is $2\,\text{kg}$ and
+moves at $3\,\text{m}\,\text{s}^{-1}$ to the right. Trolley B is $4\,\text{kg}$
+and is at rest. The trolleys stick together. Write down your answers.
+
+1. Find the total momentum before the collision.
+2. Is the total momentum after the collision larger, smaller or the same?
+3. The trolleys move together after the collision. Do they move to the right, to
+   the left, or not at all?
+
+**Test.** Set the four controls to your prediction, and read the two totals.
+Check each value against Worked example 4. Now change one control at a time and
+watch the two totals. Then choose the option where the trolleys bounce apart, and
+check the two totals again.
+
+**Explain.** Why is the total momentum the same before and after, when the
+velocity of each trolley changes? Write two or three sentences. Use Newton's
+third law and the impulse–momentum relation.
+
+:::figure momentum-collision
+
+## 5. Collisions and kinetic energy
 
 Momentum is conserved in every collision, but kinetic energy is not always
 conserved.

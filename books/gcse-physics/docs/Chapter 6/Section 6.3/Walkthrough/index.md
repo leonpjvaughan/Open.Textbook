@@ -70,7 +70,28 @@ there is instead a low-resistance path to earth, so a large current flows to
 earth and the case does not stay at 230 V. This is why the metal case of an
 appliance is always connected to the earth wire.
 
-## 4. Worked example
+## 4. Try it: a fault and the fuse
+
+The figure shows the live, neutral and earth wires of an appliance, with a fuse
+in the live wire. You can switch between normal use and a fault, where the live
+wire touches the metal case.
+
+**Predict first.** Do not change the switch yet. Write down your answers.
+
+1. In normal use, which wires carry a current?
+2. When the live wire touches the metal case, which wire carries the large
+   current?
+3. Which wire does the fuse protect?
+
+**Test.** Switch on the fault. Watch the current in each wire and the fuse.
+
+:::figure mains-fault-current
+
+**Explain.** The metal case is joined to the earth wire. Explain why the case is
+safe to touch, and why the fuse is placed in the live wire. Write your answer in
+two or three sentences.
+
+## 5. Worked example
 
 **Worked example 1.** A mains appliance takes a current of 5.0 A for 2.0 minutes.
 Calculate the charge that flows through it.
@@ -87,7 +108,7 @@ $$
 The same 600 C flows through the live wire and back through the neutral wire.
 The current is not used up by the appliance.
 
-## 5. Comparing direct and alternating
+## 6. Comparing direct and alternating
 
 The table compares the two supplies you are most likely to meet.
 
@@ -106,7 +127,7 @@ The table compares the two supplies you are most likely to meet.
 > connected to the supply. Re-check which wire carries the current in normal use
 > before you describe a circuit.
 
-## 6. Progress check
+## 7. Progress check
 
 Return to the chapter problem. The cabin heater and lamp are connected to the
 mains supply.

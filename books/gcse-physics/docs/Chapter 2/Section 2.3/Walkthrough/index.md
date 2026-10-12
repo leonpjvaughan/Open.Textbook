@@ -68,6 +68,27 @@ s &= \frac{W}{F} \\
 \end{aligned}
 $$
 
+### Try it: force, distance and work done
+
+The figure shows the work done as the area of a rectangle on a force-distance
+graph.
+
+**Predict first.** Do not move the sliders yet. Write down your answers.
+
+1. A force of 60 N pushes a box 4.0 m. What is the work done?
+2. If the force doubles and the distance stays the same, what happens to the
+   work done?
+3. If the distance doubles instead, what happens to the work done?
+
+**Test.** Move the force slider and the distance slider. Watch the area of the
+rectangle and the value of the work done. Check your three predictions.
+
+:::figure work-done
+
+**Explain.** The work done is the product of the force and the distance. Why does
+doubling either one double the work done? Write your answer in two or three
+sentences.
+
 ## 2. Work done and energy transfer
 
 Doing work transfers energy from one store to another. The work done is the

@@ -97,7 +97,29 @@ $$
 > $10^{6}$: the centimetre was not cubed. Check by asking whether the answer
 > should be much smaller or much larger than the original number.
 
-## 3. Checking an equation with base units
+## 3. Try it: the size of a prefix
+
+A prefix is a step on a scale, and the steps are not all the same size.
+
+**Predict first.** A human hair is about 70 µm across. Do not move the slider
+yet. Write down your answers.
+
+1. Which prefix marks a single micrometre?
+2. Where on the ruler do you expect the mark for a micrometre to sit: near the
+   water molecule, near the bacterium or near the person?
+3. Giga is two steps of a thousand above kilo. How many times larger than kilo
+   is giga?
+
+**Test.** Move the slider through the prefixes. Watch the marker and the object
+that labels it.
+
+:::figure si-prefix-scale
+
+**Explain.** Two neighbouring marks are usually a factor of 1000 apart, but
+milli and centi are only ten apart. Explain why, in two or three sentences. Then
+write the factor for micro and for nano as powers of ten.
+
+## 4. Checking an equation with base units
 
 An equation is **homogeneous** when both sides have the same base units. Every
 valid physical equation is homogeneous, so this is a quick check on a formula
@@ -133,7 +155,7 @@ $$
 The number $6\pi$ is a pure number, so it has no unit and does not appear in the
 base units.
 
-## 4. Using units to predict a unit
+## 5. Using units to predict a unit
 
 Homogeneity works in the other direction too. If you know an equation, you can
 find the unit of any one quantity in it.

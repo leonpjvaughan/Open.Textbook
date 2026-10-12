@@ -147,6 +147,29 @@ Three limits appear in every experiment.
 Repeating a measurement is the main tool against the second limit. Choosing a
 better instrument is the main tool against the first.
 
+## 6. Try it: which error does repeating remove?
+
+Eight repeated readings of one length are plotted below. The mean is the result
+that is quoted, and the uncertainty shown covers the range the readings span.
+
+**Predict first.** Do not move either slider yet. Write down your answers.
+
+1. If you increase the zero error, does the stated range get wider, narrower or
+   stay the same width?
+2. Does the zero error move the mean?
+3. If the readings sit close together but all to one side of the true value, are
+   they accurate?
+
+**Test.** Move the zero-error slider first, then the spread slider. Watch the
+group of readings, the stated range and the true length.
+
+:::figure repeated-readings
+
+**Explain.** Why does repeating a reading and taking the mean reduce a random
+error but not a systematic error? Write two or three sentences. Use the idea
+that a random error shifts each reading by a different amount, and a systematic
+error shifts every reading by the same amount.
+
 ## Progress check
 
 Return to the chapter problem. Before measuring, estimate the period of the

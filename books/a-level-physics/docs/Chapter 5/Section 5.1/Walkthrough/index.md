@@ -77,7 +77,30 @@ About $9.4 \times 10^{19}$ electrons pass the point. That is a very large number
 which is why the charge on one electron is measured in tiny fractions of a
 coulomb.
 
-## 3. emf and potential difference
+## 3. Try it: charge, current and time
+
+The figure draws a rectangle. Its height is the current and its width is the
+time, so its area is the charge that flows. The readout also gives the number of
+electrons in that charge.
+
+**Predict first.** Do not move the sliders yet. Write down your answers.
+
+1. If you double the current and keep the time the same, what happens to the
+   charge?
+2. If you double the time instead, what happens to the charge?
+3. A charge of $1\,\text{C}$ is carried by many electrons. Is that number larger
+   or smaller than a million?
+
+**Test.** Set the time to $30\,\text{s}$ and move the current slider from
+$0.5\,\text{A}$ to $5.0\,\text{A}$. Then keep the current at $2.0\,\text{A}$
+and move the time slider. Watch the rectangle and the number of electrons.
+
+**Explain.** Explain why the area of the rectangle is measured in coulombs when
+the axes are in amperes and seconds. Write two or three sentences.
+
+:::figure charge-flow
+
+## 4. emf and potential difference
 
 A cell or battery is a source of energy. It does work on the charge that passes
 through it. The **electromotive force** (emf) of a source is the energy
@@ -107,7 +130,7 @@ $$ W = \varepsilon Q = 12 \times 15 = 180\,\text{J} $$
 
 The battery transfers $180\,\text{J}$ of energy to the charge.
 
-## 4. Internal resistance and terminal pd
+## 5. Internal resistance and terminal pd
 
 A real source has some resistance inside it. This is its **internal
 resistance**, $r$. When a current flows, some energy is wasted inside the source.
@@ -148,7 +171,7 @@ The external resistance is $R = \dfrac{V}{I} = \dfrac{11.7}{2.0} = 5.85\,\Omega$
 > smaller. Check the order: the emf is fixed by the source, and the terminal pd
 > depends on the current.
 
-## 5. Energy, work and power
+## 6. Energy, work and power
 
 The energy transferred by a component is the charge that passes through it
 multiplied by the potential difference across it.

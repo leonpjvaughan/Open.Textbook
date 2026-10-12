@@ -48,6 +48,25 @@ $$
 A violet wave of the same speed has a shorter wavelength, so its frequency is
 higher.
 
+### Try it: colour and frequency
+
+The figure shows the visible spectrum as a band. The marker shows the colour of
+the wavelength you choose.
+
+**Predict first.** Do not move the slider yet. Write down your answers.
+
+1. Which light has the longer wavelength: red light or violet light?
+2. As the wavelength gets longer, does the frequency get higher or lower?
+
+**Test.** Move the wavelength slider from one end of the band to the other.
+Watch the colour name and the frequency. Stop when the readout says "green".
+
+:::figure colour-frequency
+
+**Explain.** The speed of light in a vacuum is the same for every colour. Why
+does a longer wavelength mean a lower frequency? Write your answer in two or
+three sentences.
+
 ## 2. Dispersion
 
 A prism can split white light into the colours of the spectrum. This is

@@ -166,6 +166,34 @@ useful power is the rate at which the engine works against them.
 > displacement are at right angles. Check that the force has a component along
 > the displacement before you use $W = Fs$.
 
+## 5. Try it: work from a force–displacement graph
+
+A force–displacement graph turns work into an area. Put the component of the
+force along the displacement on the vertical axis and the displacement on the
+horizontal axis. The area under the graph is the work done. For a constant force
+the graph is a horizontal line, so the area is a rectangle with height
+$F\cos\theta$ and width $s$.
+
+**Predict first.** Do not move the sliders yet. Write down your answers.
+
+1. A force of $100\,\text{N}$ pulls at $60^\circ$ to the displacement. Is the
+   work done more or less than $100 \times s$?
+2. As the angle rises from $0^\circ$ to $90^\circ$, does the work done rise,
+   fall, or stay the same?
+3. At $90^\circ$ the force is as large as before. What is the work done, and
+   why?
+
+**Test.** Set the force to $250\,\text{N}$, the distance to $12\,\text{m}$ and
+the angle to $30^\circ$, and check the readout against Worked example 2. Then
+keep the force and the distance fixed and move the angle through $0^\circ$,
+$60^\circ$ and $90^\circ$. Watch the height of the rectangle and its area.
+
+**Explain.** Why does the height of the rectangle fall as the angle grows, when
+the applied force does not change? Write two or three sentences. Use the idea of
+the component of the force along the displacement.
+
+:::figure work-force-displacement
+
 ## Progress check
 
 Return to the chapter problem. The car and riders have a mass of 500 kg and are

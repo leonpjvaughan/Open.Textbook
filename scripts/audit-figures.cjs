@@ -149,6 +149,32 @@ function markdownTables(report, siteDir) {
   };
 
   const lines = [TABLE_START];
+
+  // Coverage first, because it is the one number the per-figure tables cannot
+  // show: a book with 30 figures in 120 Walkthroughs looks well served in a list
+  // of 30 and is not. A gap is a number here rather than an impression.
+  lines.push("", "## Coverage", "", "| Book | Walkthroughs with a figure | Without |", "|---|---|---|");
+  for (const book of books) {
+    const walks = [];
+    const walk = (dir) => {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) walk(full);
+        else if (entry.name === "index.md" && path.basename(dir) === "Walkthrough") walks.push(full);
+      }
+    };
+    // `book.figures` is `<book>/docs/assets/figures`, so the docs tree is two
+    // levels up. Joining `..`/`docs` onto the assets directory gives
+    // `docs/docs`, which exists nowhere and produces an empty table silently —
+    // the count is the only thing that would have said so.
+    const docs = path.resolve(book.figures, "..", "..");
+    if (fs.existsSync(docs)) walk(docs);
+    const withFigure = walks.filter((f) => /^:::figure /m.test(fs.readFileSync(f, "utf8")));
+    if (!walks.length) continue;
+    const missing = walks.length - withFigure.length;
+    lines.push(`| ${book.title} | ${withFigure.length} of ${walks.length} | ${missing || "none"} |`);
+  }
+
   const byBook = new Map(books.map((b) => [b.id, []]));
   for (const slug of Object.keys(report).sort()) {
     const where = owner.get(slug);
@@ -365,7 +391,13 @@ async function main() {
   const siteDir = path.resolve(argv.shift());
   let schemes = ["light", "dark"];
   let theme = null;
-  let maps = "/tmp/figure-pages.json";
+  // Derived from the built site by default. There is deliberately **no** fallback
+  // path: an earlier version defaulted to `/tmp/figure-pages.json`, which meant a
+  // file left over from a previous run was used silently and the audit measured a
+  // build that no longer existed — the figures added after it were simply absent
+  // from the report, which read as "they are not there" rather than "the map is
+  // stale". A stale input to a measurement is worse than no measurement.
+  let maps = null;
   let shots = null;
   let jsonOut = null;
   let only = null;
@@ -385,7 +417,7 @@ async function main() {
   // Deriving it here rather than asking a caller to write it means the audit
   // cannot be pointed at a stale map and silently measure last week's build.
   let pages;
-  if (fs.existsSync(maps)) {
+  if (maps) {
     pages = JSON.parse(fs.readFileSync(maps, "utf8"));
   } else {
     pages = {};

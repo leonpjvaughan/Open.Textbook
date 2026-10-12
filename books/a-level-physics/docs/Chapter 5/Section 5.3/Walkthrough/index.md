@@ -68,7 +68,31 @@ $$
 For two equal resistors in parallel, the equivalent resistance is half of one of
 them. The value is $50\,\Omega$.
 
-## 3. Kirchhoff's laws
+## 3. Try it: current in parallel branches
+
+The figure shows two resistors in parallel across an ideal $12\,\text{V}$
+supply. Each wire is drawn thicker where the current is larger, and every current
+is also written out.
+
+**Predict first.** Do not move the controls yet. Write down your answers.
+
+1. The two branches start at $10\,\Omega$ and $20\,\Omega$. Which branch
+   carries the larger current, and is it twice as large?
+2. When you change the resistance in one branch, does the current in the other
+   branch change?
+3. Is the current from the supply larger than the current in either branch?
+
+**Test.** Read the three currents and the equivalent resistance. Move one
+slider from $20\,\Omega$ to $2\,\Omega$ and watch all four values. Then set both
+branches to $2\,\Omega$.
+
+**Explain.** Explain why the current in branch 1 depends on the supply potential
+difference and $R_1$ only, and not on $R_2$. Then explain why the current from
+the supply is the sum of the two branch currents. Write two or three sentences.
+
+:::figure parallel-branch-current
+
+## 4. Kirchhoff's laws
 
 Two rules follow from the conservation of charge and of energy.
 
@@ -92,7 +116,7 @@ $$ I_3 = 1.0 - 0.30 - 0.20 = 0.50\,\text{A} $$
 
 The third branch carries $0.50\,\text{A}$.
 
-## 4. Circuits with a source of internal resistance
+## 5. Circuits with a source of internal resistance
 
 A real source has an internal resistance $r$. The emf drives the current through
 the internal resistance and through the external circuit. So the current is
@@ -120,7 +144,7 @@ $$
 The current is $2.0\,\text{A}$, the terminal pd is $11.7\,\text{V}$, and
 $0.60\,\text{W}$ is wasted as heat inside the battery.
 
-## 5. The potential divider
+## 6. The potential divider
 
 Two resistors in series divide the supply potential difference between them. The
 potential difference across one resistor is called the **output** potential
