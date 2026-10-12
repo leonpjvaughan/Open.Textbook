@@ -2401,3 +2401,56 @@ declares it. Worth one look at the question.
 **Done means.** Each book's remaining count is either declared or recorded as
 reviewed with a reason, and `python -m textbook.verify` prints counts that match
 this table.
+
+---
+
+## 46. Every figure, measured — and the two defects it found
+
+**Done, 2026-10-12.** Added at the author's request: list every figure, capture it
+in both schemes, and check the colours are visible.
+
+`scripts/audit-figures.cjs` loads each figure in a browser, in both schemes, asks
+for the computed paint of every element it draws, and measures it against the panel
+behind it. **128 figures, 256 measurements, 938 distinct paints.** The table is
+`research/design/figure-audit.md`; the captures and a gallery are in the
+git-ignored `var/figure-audit/`.
+
+**Two real defects, neither visible in the source.**
+
+1. **18 SVG labels across 13 figures were painted black.** `.text-accent`,
+   `.text-warn` and `.text-good` set `color`; **SVG `<text>` is painted with
+   `fill`**, whose initial value is black. Legible on the light scheme by luck and
+   **1.4:1 on the dark panel**. `.text-ink` did not exist at all, so a module using
+   it got black in both schemes. Fixed with `fill: currentColor` on each, so the
+   class means the same thing in HTML and in SVG.
+2. **`fig_accent` had no threshold against the figure panel.** It was checked as
+   `accent` against the *paper*, where it passes everywhere, and never against the
+   surface a figure is drawn on — though it colours labels and is therefore text.
+   Adding it at 4.5:1 found **twelve book-and-bundle pairs between 3.90:1 and
+   4.43:1**. Four palettes moved (`glass` `#0f7a5a`→`#0e7254`, `phosphor`
+   `#9a5b00`→`#925600`, gcse-physics `#0f766e`→`#0e7069`, a-level-physics
+   `#b45309`→`#a34b08`) and no threshold did.
+3. **Also found:** `color-scheme` was never declared, so a `<select>` inside a
+   figure was `rgb(0,0,0)` on `rgb(239,239,239)` — a white box on a dark page — in
+   both schemes. Now set from the attribute `prefs.py` writes before first paint.
+
+**Why nothing had caught it.** `test_themes.py` pins the tokens and their
+thresholds; `test_figures.py` pins that no module hard-codes a colour. Both passed
+and both were right: the module used the class correctly and the token was fine.
+Nothing asked **what the class actually paints**, which is a browser's answer.
+
+**Result:** 0 contrast failures across 128 figures × 2 schemes. Verified against
+editorial, neon, glass and phosphor: every one passes, and no two bundles produce
+the same paints, so the sweep is not vacuous.
+
+**The standard, so it cannot come back.** Three tests in `test_figures.py` — a
+`text-*` class a module uses must be defined, must set `fill: currentColor`, and
+the whole class contract is asserted in one place — each verified to fail when the
+fix is reverted. Plus the audit in `scripts/preview-themes.sh`, so CI runs it.
+
+**Left undone, deliberately.** The browser audit sweeps figures under the *default*
+bundle only; the other five are covered by the static token check, which is
+exhaustive across all six bundles, all four books and both schemes. Running the
+browser sweep six times would cost twelve minutes in CI to re-prove what the static
+check proves. A figure that paints nothing is legitimate — two do, and inherit the
+ink — so the tests ask what a class *does*, not that one is present.
