@@ -829,3 +829,83 @@ def test_the_bundles_are_valid_yaml_with_one_file_each():
     for bundle in BUNDLES:
         assert bundle.source and bundle.source.suffix == ".yaml"
         assert yaml.safe_load(bundle.source.read_text(encoding="utf-8"))["id"] == bundle.id
+
+
+# --- form controls inside a figure --------------------------------------------
+#
+# A form control is a user-agent widget. Without a rule it takes the platform's
+# colours, and `color-scheme` only makes it follow light or dark — not our light or
+# our dark. Measured in Chromium before the rules below existed:
+#
+#   <select>          rgb(0,0,0)   on rgb(239,239,239)  light
+#                     white        on rgb(107,107,107)  dark
+#   <input number>    grey         on a white box       light
+#   <input range>     track rgb(157,150,142), the UA's own grey, in both schemes
+#
+# None of it failed a contrast check and all of it looked like a different website,
+# which is the failure mode a check cannot see. The `<option>` matters most: a
+# transparent background there means the platform paints the dropdown list, which is
+# how black text ends up on a dark list.
+
+
+def figure_control_rules() -> dict[str, str]:
+    """Every rule whose selector mentions a figure, keyed per selector.
+
+    A rule may group several selectors — `select, input, button { … }` — so the
+    group is split and each one keyed separately. Keying the group as a whole made
+    this helper look for a selector that never appears verbatim, which is how the
+    first version of the test below failed on a stylesheet that was correct.
+    """
+    css = (repo_root() / "assets" / "stylesheets" / "extra.css").read_text(encoding="utf-8")
+    body = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    out = {}
+    for match in re.finditer(r"([^{}]*?)\{([^}]*)\}", body):
+        for one in match.group(1).split(","):
+            selector = " ".join(one.split())
+            if "maths-figure" in selector:
+                out[selector] = match.group(2)
+    return out
+
+
+def test_a_figures_form_controls_are_painted_from_tokens():
+    """Every control a figure can contain must follow the reader's theme.
+
+    A control left to the platform is not merely off-theme: the text and the
+    background are chosen by two different authorities — ours for the text, the
+    platform's for the box — and on some combinations that is black on black.
+    """
+    rules = figure_control_rules()
+    joined = "\n".join(f"{sel} {{ {decl} }}" for sel, decl in rules.items())
+
+    for what, needle in [
+        ("a select", "maths-figure select"),
+        ("an option", "maths-figure option"),
+        ("a button", "maths-figure button"),
+        ("a range input", 'maths-figure input[type="range"]'),
+        ("a checkbox", 'maths-figure input[type="checkbox"]'),
+    ]:
+        assert needle in joined, (
+            f"{what} inside a figure has no rule in extra.css, so it takes the "
+            "platform's colours while the text around it takes ours"
+        )
+
+    # The two that decide whether text is readable at all.
+    for needle in ("maths-figure select", "maths-figure option"):
+        block = rules[needle]
+        assert re.search(r"(?<![\w-])color\s*:\s*var\(--tb-", block), (
+            f"{needle} does not set its text colour from a token, so the platform "
+            "chooses it — which is how a dropdown list becomes black on dark"
+        )
+        assert re.search(r"(?<![\w-])background-color\s*:\s*var\(--tb-", block), (
+            f"{needle} does not set its background from a token"
+        )
+
+
+def test_the_figure_control_check_can_actually_fail():
+    """A guard on the guard: the scanner must see a selector and its block."""
+    css = "maths-figure select { color: var(--tb-ink); background-color: var(--tb-paper); }"
+    body = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    match = re.search(r"([^{}]*?)\{([^}]*)\}", body)
+    assert match and "maths-figure select" in " ".join(match.group(1).split())
+    # And a control left with no token is not accepted.
+    assert not re.search(r"(?<![\w-])color\s*:\s*var\(--tb-", "color: black;")

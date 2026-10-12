@@ -185,6 +185,64 @@
 }
 
 /* ------------------------------------------------------------------ */
+/* Form controls inside a figure                                       */
+/* ------------------------------------------------------------------ */
+
+/* A form control is a user-agent widget: without a rule it takes the platform's
+   colours, not the reader's theme. `color-scheme` (above) makes it follow light or
+   dark, which is not the same thing as following *our* light or dark — it gave a
+   figure's `<select>` `rgb(0, 0, 0)` on `rgb(239, 239, 239)` in the light scheme,
+   white on `rgb(107, 107, 107)` in the dark one, and a `<input type="number">`
+   that was a white box sitting on a dark panel. None of it was wrong enough to
+   fail a contrast check and all of it looked like a different website.
+
+   So the controls are painted from the same tokens as everything else. `--tb-ink`
+   on `--tb-paper` is the same pairing as body text, so a control cannot be less
+   readable than the prose around it, in any bundle or either scheme. */
+maths-figure select,
+maths-figure input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+maths-figure button {
+  font: inherit;
+  color: var(--tb-ink);
+  background-color: var(--tb-paper);
+  border: 1px solid var(--tb-rule);
+  border-radius: 4px;
+  padding: 0.15rem 0.35rem;
+}
+
+/* The dropdown list is painted by the platform from the option's own colours, and
+   a transparent background there means the platform picks — which is how black
+   text ends up on a dark list. */
+maths-figure option {
+  color: var(--tb-ink);
+  background-color: var(--tb-paper);
+}
+
+/* A range draws its track in `color` and its filled part in `accent-color`, so
+   both are set: the track is a gridline, and the filled part is the accent. */
+maths-figure input[type="range"] {
+  accent-color: var(--tb-fig-accent);
+  color: var(--tb-fig-grid);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+maths-figure input[type="checkbox"],
+maths-figure input[type="radio"] {
+  accent-color: var(--tb-fig-accent);
+}
+
+/* A figure's own label is plain text with no class of its own, so it is given the
+   panel's ink here. `.readout` is deliberately *not* set: several figures colour
+   theirs with `text-accent`, and a rule in this file would out-rank that class and
+   repaint them all the same. */
+maths-figure label {
+  color: var(--tb-ink);
+}
+
+/* ------------------------------------------------------------------ */
 /* The "Prove it to me" affordance                                     */
 /* ------------------------------------------------------------------ */
 
