@@ -62,6 +62,31 @@ proofs:
     qualifications: [GCSE, A-level]
     strand: trigonometry
 
+  - id: trapezium-area
+    title: The area of a trapezium
+    summary: >-
+      Two copies, one turned upside down, make a parallelogram. One trapezium is
+      half of it.
+    qualifications: [GCSE, A-level]
+    strand: mensuration
+    figure: trapezium-double
+
+  - id: arithmetic-series
+    title: The sum of an arithmetic series
+    summary: >-
+      Write the sum down twice, once backwards, and add. Every pair makes the same
+      total.
+    qualifications: [A-level]
+    strand: sequences
+
+  - id: geometric-series
+    title: The sum of a geometric series
+    summary: >-
+      Multiply the sum by the common ratio and subtract. Everything cancels except
+      the two ends.
+    qualifications: [A-level]
+    strand: sequences
+
   - id: quadratic-formula
     title: The quadratic formula
     summary: >-

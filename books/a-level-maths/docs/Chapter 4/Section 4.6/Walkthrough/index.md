@@ -44,6 +44,8 @@ $$
 S_n = \frac{a(1 - r^n)}{1 - r}, \qquad r \ne 1.
 $$
 
+:::prove geometric-series
+
 **Example 1.** For $3, 6, 12, \dots$, work out the 10th term and the sum of the
 first 10 terms.
 

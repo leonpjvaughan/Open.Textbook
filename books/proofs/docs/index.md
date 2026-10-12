@@ -28,6 +28,12 @@ is visible rather than only readable.
   completing the square, done once with letters.
 - **[The angle in a semicircle is 90°](angle-in-a-semicircle/index.md)** —
   two isosceles triangles and a straight line.
+- **[The area of a trapezium](trapezium-area/index.md)** —
+  two copies make a parallelogram.
+- **[The sum of an arithmetic series](arithmetic-series/index.md)** —
+  write it down twice, once backwards.
+- **[The sum of a geometric series](geometric-series/index.md)** —
+  multiply by the ratio and subtract.
 - **[The sum of the first n squares](sum-of-the-first-n-squares/index.md)** —
   why $1^2 + 2^2 + \dots + n^2$ is $\dfrac{n(n+1)(2n+1)}{6}$.
 

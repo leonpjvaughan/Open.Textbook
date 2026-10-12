@@ -21,6 +21,8 @@ Perimeter is the distance around a flat shape. Add every outside side. Area meas
 
 For a rectangle, $P=2l+2w$ and $A=lw$. For a triangle, $A=\frac12 bh$, where $h$ meets the base at a right angle. A parallelogram uses $A=bh$. A trapezium uses the average of its parallel sides times its perpendicular height.
 
+:::prove trapezium-area
+
 **Example 1.** A rectangle is 8 cm long and 3 cm wide. Work out its perimeter and area.
 
 Add the four outside sides: $8+3+8+3=22$.

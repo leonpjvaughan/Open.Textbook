@@ -55,3 +55,56 @@ references:
       Board-level confirmation that proof is assessed at A-level (AO2) and that
       the sum of the first n squares is not required knowledge — it is offered
       here as a proof a reader can follow, not as a result to learn.
+
+
+# --------------------------------------------------------------------------- #
+# How the proofs themselves were checked
+# --------------------------------------------------------------------------- #
+#
+# Two checks, because they catch different things. Neither replaces reading a
+# proof, and saying so is the point of writing this down.
+#
+#  1. `tests/test_proof_maths.py` asserts the algebra of every proof that ends in
+#     an identity: the quadratic formula satisfies its equation and is what
+#     completing the square gives; the cosine rule is Pythagoras applied twice and
+#     collapses to Pythagoras at a right angle; the sine rule holds over a thousand
+#     constructed triangles; the two series identities are checked both by SymPy's
+#     summation and term by term; the induction step for the sum of squares holds
+#     and the formula matches the sum for n up to 200; the polygon count and the
+#     trapezium construction are checked arithmetically. It runs in CI.
+#
+#     It cannot tell that a proof has skipped a case, that the prose and the symbols
+#     disagree, or that a result is right for the wrong reason. What it catches is
+#     the class of error that reads perfectly well: a sign, a subscript, a `4ac`
+#     that should be `-4ac`.
+#
+#  2. The **statements** were checked against external sources, because a proof of
+#     the wrong statement is a correct proof of something nobody needed. Wikipedia
+#     was used as a convenient secondary reference for the standard form of each
+#     result, on 2026-10-12:
+#
+#       Pythagorean theorem ........ a^2 + b^2 = c^2, and the rearrangement proof
+#       Quadratic formula .......... x = (-b +- sqrt(b^2 - 4ac)) / 2a, "completing
+#                                    the square" named as the derivation
+#       Law of sines ............... a / sin A = b / sin B = c / sin C
+#       Law of cosines ............. c^2 = a^2 + b^2 - 2ab cos(gamma), the same
+#                                    relation as the page's with the vertices
+#                                    relabelled
+#       Geometric series ........... a / (1 - r) for the infinite sum; the finite
+#                                    sum stated as a(1 - r^(n+1)) / (1 - r)
+#       Arithmetic progression ..... S_n = n/2 [2a + (n-1)d]
+#       Square pyramidal number .... n(n+1)(2n+1)/6
+#       Thales's theorem ........... the angle in a semicircle is a right angle
+#       Trapezoid .................. area = (a + b)/2 * h
+#
+#     **One difference found, and it is a convention rather than an error.** The
+#     finite geometric sum is stated as `a(1 - r^n)/(1 - r)` here and as
+#     `a(1 - r^(n+1))/(1 - r)` on that page: the second sums from `k = 0` to `n`,
+#     which is `n + 1` terms, where this book sums `n` terms. Both are right, the
+#     page says which it is doing, and the form used here is the one the awarding
+#     bodies' own formulae booklets print (`books/a-level-maths/booklet/`), which is
+#     the version a reader will meet in an exam.
+#
+# The five proofs with no algebra to check are named in
+# `tests/test_proof_maths.py::test_the_geometric_proofs_say_what_is_not_machine_checked`
+# so that what is taken on reading is written down rather than assumed.
