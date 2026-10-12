@@ -1886,7 +1886,7 @@ the marker appear — so the promise is tested rather than asserted.
 
 ---
 
-## 35. Edexcel's current physics equations/inserts were not retrieved
+## 35. Edexcel's current physics equations/inserts were not retrieved — **done**
 
 Both physics booklets rest on Edexcel documents that are not the ones a 2026
 candidate sees.
@@ -1912,9 +1912,14 @@ Transcribe the per-board spelling where it differs, update `meta.provenance`/
 `meta.basis` and `sources.yaml` with the URL and retrieval date, and re-run
 `python -m textbook.booklet` for the book.
 
+**Done, 2026-10-12.** The May–June **2026** list was reached directly and its
+equations are identical to the 2024 and 2025 lists, so the provision is unchanged
+and now rests on the current document. Pearson's listing pages remain unusable;
+the document URL is not.
+
 **Done means.**
 
-- [ ] `books/gcse-physics/sources.yaml` names an Edexcel equations list for the
+- [x] `books/gcse-physics/sources.yaml` names an Edexcel equations list for the
       current window, with a retrieval date, and the booklet matches it.
 - [ ] `books/a-level-physics/sources.yaml` names the Edexcel printed insert (or
       records that the appendices are the closest readable evidence), and the
@@ -1924,7 +1929,7 @@ Transcribe the per-board spelling where it differs, update `meta.provenance`/
 
 ---
 
-## 36. The A-level physics booklet transcribes the core only
+## 36. The A-level physics booklet transcribes the core only — **done**
 
 `books/a-level-physics/booklet/a-level-physics.yaml` covers the DfE Appendix 3
 core common to AQA 7408, Edexcel 9PH0 and OCR H556, plus the constants and
