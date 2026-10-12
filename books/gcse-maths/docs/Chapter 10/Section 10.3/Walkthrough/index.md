@@ -35,6 +35,20 @@ $$
 
 Check position $1$: $4(1)+3=7$. Check position $2$: $4(2)+3=11$.
 
+## Investigate the rule
+
+**Predict:** the figure starts with the rule for $7,11,15,19,\ldots$. Before you
+move a slider, predict the term at position $10$, and predict what happens to the
+gaps between neighbouring terms when the common difference changes.
+
+**Test:** move the common difference slider, then the constant slider. Watch the
+term at position $1$ and the gaps between neighbouring terms.
+
+:::figure ch10-nth-term
+
+> **Explain:** Which slider moves every term, and which slider changes the gaps?
+> Explain why. Then explain why the points always lie on a straight line.
+
 ## A decreasing sequence
 
 The common difference can be negative.

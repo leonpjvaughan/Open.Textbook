@@ -72,9 +72,20 @@ async function main() {
   for (const scheme of schemes) {
     const context = await browser.newContext({
       viewport: { width: 1440, height: 1000 },
+      // `colorScheme` sets the *media* preference. The site does not read it: the
+      // reader's scheme lives in `localStorage` under `textbooks:scheme`, which
+      // `hooks/prefs.py` applies before the first paint. Setting only the media
+      // query produced two byte-identical captures for every route — a light and a
+      // dark image that were the same image, which looks like a successful run and
+      // would pass a figure that is invisible on the dark scheme. Both are set.
       colorScheme: scheme,
       deviceScaleFactor: 2,
     });
+    await context.addInitScript((chosen) => {
+      try {
+        localStorage.setItem("textbooks:scheme", chosen);
+      } catch (err) {}
+    }, scheme === "dark" ? "slate" : "default");
     if (theme) {
       await context.addInitScript((chosen) => {
         try {
@@ -108,6 +119,29 @@ async function main() {
     await context.close();
   }
   await browser.close();
+
+  // The guard, and the reason AGENTS.md says to check the captures differ: a run
+  // where every image is the same image reports success. It happened here by two
+  // different routes — a 404 served for every route, and a scheme preference the
+  // site never read — so the check is on the bytes rather than on the method.
+  if (schemes.length > 1) {
+    const identical = [];
+    for (const { name } of entries) {
+      const first = Buffer.from(fs.readFileSync(path.join(outDir, `${name}.png`)));
+      for (const scheme of schemes.slice(1)) {
+        const other = Buffer.from(fs.readFileSync(path.join(outDir, `${name}-${scheme}.png`)));
+        if (first.equals(other)) identical.push(`${name} (light and ${scheme})`);
+      }
+    }
+    if (identical.length) {
+      console.error(
+        `\nwarning: these captures are byte-identical across schemes: ${identical.join(", ")}. `
+          + "Either the scheme never reached the page or the route did not render — "
+          + "a reader on the dark scheme is seeing something these images do not show."
+      );
+      process.exitCode = 1;
+    }
+  }
 }
 
 main().catch((err) => {

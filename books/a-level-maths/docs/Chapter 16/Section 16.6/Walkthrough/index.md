@@ -162,6 +162,27 @@ $$
 a = \frac{24.5}{10} = 2.45 \text{ m s}^{-2}.
 $$
 
+## 3. Try it: a crate pulled at an angle
+
+The sliders set the tension in the rope, the angle of the rope, the mass of the
+crate and the resistance. The figure draws the pull of the rope and its two
+components, together with the weight and the normal reaction.
+
+**Predict first.** The rope lifts the crate a little, so the floor pushes with
+less than the full weight. Before you move a control, predict what happens to
+the acceleration as you raise the rope from $0^\circ$ towards $60^\circ$. Write
+down your prediction and your reason.
+
+:::figure ch16-pull-at-an-angle
+
+**Test.** Move the angle slider and watch the forward component, the normal
+reaction and the acceleration. Then set the angle to $0^\circ$ and compare the
+normal reaction with the weight.
+
+**Explain.** Write two sentences. The first says why the normal reaction falls
+as the rope rises. The second says why that smaller normal reaction leaves the
+acceleration unchanged in this model.
+
 > **Watch out.** Three mistakes are common.
 >
 > **Writing $R = mg$ when a force has a vertical component.** In Example 2 the

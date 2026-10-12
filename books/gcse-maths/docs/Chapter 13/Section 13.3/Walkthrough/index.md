@@ -21,6 +21,12 @@ A **transformation** changes a graph's position, direction or shape. Write the o
 
 In $y=f(x)+a$, each output rises by $a$. In $y=f(x-a)$, the graph moves right by $a$. The sign inside the input appears opposite to the direction.
 
+Before you move the slider, predict which way the graph moves when $a$ is positive. Write your prediction down first.
+
+:::figure graph-shift
+
+Now move the slider and check your prediction. Then explain why a plus sign inside the bracket moves the graph to the left.
+
 **Example 1.** Translate $y=x^2$ three units right and two units down.
 
 Replace $x$ by $x-3$ to move right:

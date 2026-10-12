@@ -35,6 +35,14 @@ $$
 
 The middle terms combine because both contain $x$.
 
+## A guided area investigation
+
+A rectangle with width $x+3$ and height $x+4$ splits into four smaller rectangles. The four areas are the four terms of the expansion.
+
+**Predict:** before you move the controls, predict which two areas of the rectangle will combine to give the term $7x$. **Test:** change the two numbers and watch how the four areas change. **Explain:** why do the two middle areas always combine into one term?
+
+:::figure ch12-expand-factorise
+
 ## Factorise a quadratic
 
 A quadratic expression has a highest power of $x$ equal to two. To factorise $x^2+bx+c$, find two numbers whose sum is $b$ and product is $c$.

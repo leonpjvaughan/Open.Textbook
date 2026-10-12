@@ -148,6 +148,27 @@ $$
 
 The new vector is parallel to $\mathbf{a}$ and points the opposite way.
 
+## 5. Try it: one vector, drawn anywhere
+
+The sliders set the two components of $\mathbf{a}$ and the point where
+$\mathbf{a}$ starts. The second arrow is the multiple $k\mathbf{a}$, drawn
+from the origin.
+
+**Predict first.** Before you touch a control, predict what happens to the
+column vector of $\mathbf{a}$ when you move its starting point across the grid.
+Then predict which value of $k$ makes the second arrow equal to $\mathbf{a}$.
+Write down both answers.
+
+:::figure ch10-vector-components
+
+**Test.** Move the two start sliders and watch the column vector and the length.
+Then set the components to $3$ and $4$, and set $k$ to $1$, then to $-1$, then
+to $2$. Watch the second arrow each time.
+
+**Explain.** Write two sentences. The first says why two arrows that start at
+different points are still the same vector. The second says why a negative $k$
+gives an arrow that is parallel to $\mathbf{a}$ and points the other way.
+
 > **Watch out.** Three slips are common on this page.
 >
 > **A point is not a vector.** The pair $(3, 4)$ is a place when it names a

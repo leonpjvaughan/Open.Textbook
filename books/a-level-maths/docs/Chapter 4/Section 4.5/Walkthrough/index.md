@@ -104,7 +104,25 @@ $$
 The sum is $903$. Finding $n$ first is the whole of the work in a question like
 this one.
 
-## 4. The chapter problem
+## 4. Try it: adding the terms one at a time
+
+**Predict first.** The bars show the running total of the series. Before you
+touch the sliders, predict what the running total does when $d$ is negative, and
+what it does when $d = 0$. Write both predictions down.
+
+:::figure ch4-arithmetic-total
+
+**Test.** Set $a = 5$ and $d = 4$, then move the slider for $n$ from $1$ up to
+$8$ and watch the bars grow. Now set $d$ to a negative value and move $n$ again.
+
+The line marks the individual terms. Each bar is taller than the bar before it
+by the height of the term above it.
+
+**Explain.** Write two sentences saying why each bar grows by the height of the
+term beside it, and why the running total after $n$ terms is much larger than
+the $n$th term alone.
+
+## 5. The chapter problem
 
 The quiz night raises £150 in month 1 and £50 more each month. Its income is an
 arithmetic sequence with $a = 150$ and $d = 50$.

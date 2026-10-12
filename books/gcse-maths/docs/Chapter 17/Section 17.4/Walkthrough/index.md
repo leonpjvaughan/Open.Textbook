@@ -24,6 +24,12 @@ A **locus** is the set of all points that satisfy a stated condition. One point 
 - Points equally distant from two points lie on the perpendicular bisector of the segment joining them.
 - Points equally distant from two intersecting lines lie on the angle bisectors.
 
+Now picture a straight wall. Before you move the slider, predict what the path of points a fixed distance from the wall does at each end: does it turn a sharp corner or curve? Write your prediction down first.
+
+:::figure locus-distance
+
+Now move the slider and check. Then explain why each end of the path is a semi-circle and not a corner.
+
 **Worked example.** Mark points exactly $4$ cm from point $P$.
 
 - Every point at distance $4$ cm from $P$ lies on a circle centred at $P$.

@@ -86,7 +86,25 @@ $$
 In set notation, $x \in (-4, 2)$. Change $<$ to $>$ and the answer changes to the
 two intervals outside: $x < -4$ or $x > 2$.
 
-## 3. Asymptotes
+## 3. Try it: the modulus fold
+
+**Predict first.** The figure draws $y = |x - a|$ together with a horizontal
+line $y = b$. Before you touch the sliders, predict how many solutions the
+equation $|x - a| = b$ has when $b > 0$, when $b = 0$, and when $b < 0$. Write
+all three answers down.
+
+:::figure ch2-modulus-fold
+
+**Test.** Move the slider for $a$ and watch the point of the $V$ slide along the
+$x$-axis. Then move the slider for $b$ and watch the horizontal line and the
+points where it meets the $V$. Take $b$ above zero first, then set it to zero,
+then push it below zero.
+
+**Explain.** The dashed line is $y = x - a$, drawn only where that line is
+negative. Write two sentences saying how it becomes the left arm of the $V$, and
+why a value of $b$ below zero leaves the equation with no solutions.
+
+## 4. Asymptotes
 
 An **asymptote** is a line that a curve approaches but never reaches. The
 reciprocal graphs are the standard examples.
@@ -118,7 +136,7 @@ $$
 
 The horizontal asymptote is $y = 1$.
 
-## 4. Intersections
+## 5. Intersections
 
 The points where two graphs meet are the solutions of the two equations taken
 together.

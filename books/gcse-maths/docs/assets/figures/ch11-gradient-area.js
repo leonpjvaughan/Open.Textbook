@@ -1,0 +1,106 @@
+// Guided investigation: the gradient and the area under a velocity-time graph.
+//
+// Guided, not a sandbox: the page asks the reader to predict what happens to the
+// acceleration and to the distance when the time doubles, then to explain why one
+// can fall while the other rises. The shaded triangle is the area under the line,
+// so the distance is a picture. Colours come from CSS classes, so the figure
+// adapts to every bundle and both schemes.
+export function mount(el) {
+  const LEFT = 64;
+  const RIGHT = 520;
+  const TOP = 26;
+  const BASE = 232;
+  const MAX_TIME = 10;
+  const MAX_SPEED = 20;
+
+  el.innerHTML = `
+    <div style="max-width:580px">
+      <svg viewBox="0 0 560 280" width="100%" height="280" role="img"
+           aria-label="A velocity-time graph for a straight rising line, with the triangle under the line shaded to show the distance travelled"></svg>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
+        <label>Top speed in m/s
+          <input class="speed" type="range" min="2" max="20" step="2" value="8">
+        </label>
+        <label>Time in s
+          <input class="time" type="range" min="1" max="10" step="1" value="4">
+        </label>
+      </div>
+      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
+    </div>`;
+
+  const svg = el.querySelector("svg");
+  const speedInput = el.querySelector(".speed");
+  const timeInput = el.querySelector(".time");
+  const readout = el.querySelector(".readout");
+
+  const format = (value) =>
+    Number.isInteger(value) ? String(value) : String(Math.round(value * 100) / 100);
+
+  const xFor = (seconds) => LEFT + (seconds / MAX_TIME) * (RIGHT - LEFT);
+  const yFor = (speed) => BASE - (speed / MAX_SPEED) * (BASE - TOP);
+
+  function update() {
+    const speed = Number(speedInput.value);
+    const time = Number(timeInput.value);
+    const acceleration = speed / time;
+    const distance = 0.5 * time * speed;
+
+    let grid = "";
+    for (let seconds = 0; seconds <= MAX_TIME; seconds += 2) {
+      const x = xFor(seconds);
+      grid +=
+        `<line x1="${x.toFixed(1)}" y1="${TOP}" x2="${x.toFixed(1)}" y2="${BASE}" class="fig-grid"></line>` +
+        `<text x="${x.toFixed(1)}" y="${BASE + 18}" font-size="11" text-anchor="middle" ` +
+        `class="text-ink">${seconds}</text>`;
+    }
+    for (let value = 0; value <= MAX_SPEED; value += 4) {
+      const y = yFor(value);
+      grid +=
+        `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
+        `<text x="${(LEFT - 9).toFixed(1)}" y="${(y + 4).toFixed(1)}" font-size="11" ` +
+        `text-anchor="end" class="text-ink">${value}</text>`;
+    }
+
+    const cornerX = xFor(time);
+    const cornerY = yFor(speed);
+    const triangle =
+      `<polygon points="${LEFT},${BASE} ${cornerX.toFixed(1)},${BASE} ` +
+      `${cornerX.toFixed(1)},${cornerY.toFixed(1)}" class="fig-accent" ` +
+      `fill-opacity="0.22" stroke-width="0"></polygon>`;
+
+    const width = cornerX - LEFT;
+    const height = BASE - cornerY;
+    const areaLabel =
+      width > 70 && height > 40
+        ? `<text x="${(LEFT + width / 2).toFixed(1)}" y="${(BASE - height / 3).toFixed(1)}" ` +
+          `font-size="13" text-anchor="middle" class="text-accent">${format(distance)} m</text>`
+        : "";
+
+    svg.innerHTML =
+      grid +
+      triangle +
+      `<line x1="${LEFT}" y1="${BASE}" x2="${RIGHT}" y2="${BASE}" class="fig-ink" stroke-width="2"></line>` +
+      `<line x1="${LEFT}" y1="${BASE}" x2="${LEFT}" y2="${TOP}" class="fig-ink" stroke-width="2"></line>` +
+      `<line x1="${LEFT}" y1="${BASE}" x2="${cornerX.toFixed(1)}" y2="${cornerY.toFixed(1)}" ` +
+      `class="fig-line" stroke-width="2.5"></line>` +
+      areaLabel +
+      `<circle cx="${cornerX.toFixed(1)}" cy="${cornerY.toFixed(1)}" r="5" class="fig-warn"></circle>` +
+      `<text x="${((LEFT + RIGHT) / 2).toFixed(1)}" y="${BASE + 36}" font-size="11" ` +
+      `text-anchor="middle" class="text-ink">time in seconds</text>` +
+      `<text x="16" y="${((TOP + BASE) / 2).toFixed(1)}" font-size="11" text-anchor="middle" ` +
+      `class="text-ink" transform="rotate(-90 16 ${((TOP + BASE) / 2).toFixed(1)})">velocity in m/s</text>`;
+
+    readout.innerHTML =
+      `The velocity rises from <strong>0 m/s</strong> to <strong>${format(speed)} m/s</strong> ` +
+      `in <strong>${format(time)} s</strong>. ` +
+      `Gradient = ${format(speed)} ÷ ${format(time)} = <strong>${format(acceleration)} m/s²</strong>, ` +
+      `so the acceleration is <strong>${format(acceleration)} m/s²</strong>. ` +
+      `Area = ½ × ${format(time)} × ${format(speed)} = <strong>${format(distance)} m</strong>, ` +
+      `so the distance travelled is <strong>${format(distance)} m</strong>.`;
+  }
+
+  el.querySelectorAll("input").forEach((input) =>
+    input.addEventListener("input", update),
+  );
+  update();
+}

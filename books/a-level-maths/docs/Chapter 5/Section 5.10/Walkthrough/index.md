@@ -120,6 +120,23 @@ $\theta = \dfrac{\pi}{2}$.
 The solutions are $\dfrac{\pi}{2}$, $\dfrac{7\pi}{6}$ and
 $\dfrac{11\pi}{6}$.
 
+## 5. Try it: counting the solutions
+
+**Predict first.** For $\sin\theta = k$ with $k$ between $-1$ and $1$, how many
+solutions lie in the interval $0 \le \theta < 2\pi$? How many does
+$\sin 2\theta = k$ have in the same interval? Write your prediction down before
+you touch the controls.
+
+:::figure ch5-trig-solution-set
+
+**Test.** Choose a function and move the slider for $k$. Each dot marks a
+crossing of the horizontal line with the curve, and the panel lists the angles.
+
+**Explain.** Set the function to $\sin\theta$ and then to $\sin 2\theta$ with the
+same $k$. Why does the second equation have more solutions in the same interval?
+Write two sentences linking the number of solutions to the number of turns of the
+curve.
+
 > **Watch out.** Three mistakes are common when solving these equations.
 >
 > **Stopping at the principal value.** The calculator gives one angle. In a full

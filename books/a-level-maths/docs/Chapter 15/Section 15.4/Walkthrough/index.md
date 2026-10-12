@@ -167,6 +167,26 @@ $$
 
 The greatest height is $10$ m.
 
+## 5. Try it: a ball thrown upwards
+
+The two sliders set the launch speed $u$ and the time $t$ since the throw. The
+figure draws the ball at its height above the launch point, with the greatest
+height marked.
+
+**Predict first.** Take $u = 14$ m/s and $a = -9.8$ m/s$^2$. Before you move
+the time slider, predict the greatest height the ball reaches and the velocity
+at that highest point. Write down both predictions.
+
+:::figure ch15-thrown-ball
+
+**Test.** Move the time slider from $t = 0$ to the end of the flight and watch
+the ball, the velocity arrow and the height. Then set the launch speed to
+$20$ m/s and run the flight again.
+
+**Explain.** Write two sentences. The first says why the velocity is zero at the
+greatest height while the acceleration stays at $-9.8$ m/s$^2$. The second says
+why the ball is at the same height at two different times.
+
 ## Progress check
 
 Return to the free kick. For the vertical motion, take upwards as positive. The

@@ -75,6 +75,12 @@ $$
 
 > **Watch out.** The equation in this section is for a circle centred at the origin. Check that both squared terms are $x^2$ and $y^2$ before reading off the radius.
 
+## A guided tangent investigation
+
+**Predict:** before you move the controls, predict the tangent gradient at $(3,4)$ on the circle $x^2+y^2=25$. **Test:** set the radius to $5$, put the point at $x=3$, and read the two gradients. **Explain:** why do the radius and the tangent meet at a right angle? What changes when the radius is vertical?
+
+:::figure ch13-circle-tangent
+
 ## Progress check
 
 A circle has centre $(1,2)$ and a radius with gradient $2$. Predict the tangent gradient and check that their product is $-1$.

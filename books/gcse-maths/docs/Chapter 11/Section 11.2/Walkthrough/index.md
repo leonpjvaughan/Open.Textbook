@@ -37,6 +37,20 @@ The line rises 9 units while moving 3 units right, so its gradient is 3. In $y=-
 
 > **Watch out.** Keep the order consistent in both differences. If you calculate $11-2$ in the numerator, use $4-1$ in the denominator.
 
+## Investigate the gradient and the intercept
+
+**Predict:** the figure starts with $y=2x+1$. Before you move a slider, predict
+how the line changes when $m$ is negative, and predict what changes when $c$
+changes.
+
+**Test:** move the gradient slider, then the intercept slider. Watch the rise and
+run triangle and the marked point on the $y$-axis.
+
+:::figure ch11-gradient-intercept
+
+> **Explain:** Why does changing $c$ move the line up or down without changing how
+> steep it is? Write your answer using the words gradient, rise and run.
+
 ## Progress check
 
 The walker travels 2 km in 30 minutes. Its gradient is $2/30=1/15$ km per minute.

@@ -23,6 +23,12 @@ A transversal is a line that crosses two other lines. When those lines are paral
 - alternate angles are equal;
 - co-interior angles on the same side of the transversal add to $180^\circ$.
 
+Before you move the sliders, predict which angles at the lower crossing stay equal to the angle marked a. Write your prediction down first.
+
+:::figure parallel-line-angles
+
+Now slide and tilt the transversal and check. Then explain why the corresponding and alternate angles stay equal, and why the co-interior angles add to $180^\circ$.
+
 **Example 1.** A corresponding angle is $71^\circ$. Find its matching angle.
 
 Corresponding angles are equal for parallel lines, so the angle is $71^\circ$.

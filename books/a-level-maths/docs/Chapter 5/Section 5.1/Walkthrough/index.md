@@ -148,7 +148,25 @@ $$
 = 35 \times 0.7660 \approx 26.8 \text{ cm}^2.
 $$
 
-## 5. Progress check
+## 5. Try it: does the information fit one triangle or two?
+
+**Predict first.** Sometimes two different triangles share the same two sides
+and the same non-included angle. In a triangle you know angle $A$, side $a$ and
+side $b$. For which values of $a$ do two triangles fit these measurements, and
+for which values does none fit? Write your prediction down before you touch the
+sliders.
+
+:::figure ch5-ambiguous-case
+
+**Test.** Move the sliders for angle $A$ and side $a$. The circle has radius $a$
+and centre $C$, so each place it meets the ray from $A$ is a possible position of
+$B$. The panel reports the height and how many triangles fit.
+
+**Explain.** Find a setting where the circle meets the ray twice. What do the two
+angles at $B$ add up to, and why can the calculator give only one of them? Write
+two sentences.
+
+## Progress check
 
 Return to the chapter problem. The survey gives $SL = 10$ km, with angle
 $30^\circ$ at $S$ and angle $105^\circ$ at $L$.

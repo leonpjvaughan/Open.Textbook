@@ -154,6 +154,22 @@ reverse rule would not know whether to return $2$ or $-2$.
 > **Re-check:** after finding an inverse, compose both ways. Both compositions
 > must give $x$ on the allowed domain.
 
+## 5. Try it: reflecting a graph in $y = x$
+
+**Predict first.** The figure draws the line $y = f(x)$ and its reflection in
+the line $y = x$. Before you touch the sliders, choose a point on the line, read
+its two coordinates, and predict the coordinates of its image. Write the
+prediction down.
+
+:::figure ch2-inverse-reflection
+
+**Test.** Move the slider for the position of $P$ along the graph, and watch the
+image. Then change the gradient and the intercept of $f$, and watch both lines
+move together.
+
+**Explain.** Write two sentences saying why the image of the point $(p, q)$ is
+$(q, p)$, and why the reflected graph is the graph of the inverse function.
+
 ## Progress check
 
 Return to the chapter problem. The height of the arch at a distance $x$ from the

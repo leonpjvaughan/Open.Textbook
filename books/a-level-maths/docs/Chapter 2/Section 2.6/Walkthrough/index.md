@@ -151,6 +151,24 @@ range of $x$.
 For $y > x + 1$, the point $(0, 0)$ gives $0 > 1$, which is false, so the region
 above the line is the solution and $(0, 0)$ is not in it.
 
+## 5. Try it: reading the solution set
+
+**Predict first.** For the roots $x = -2$ and $x = 3$, the inequality
+$x^2 - x - 6 > 0$ is solved outside the roots and $x^2 - x - 6 < 0$ is solved
+between them. Which one gives a single interval, and which gives a union of two
+intervals? Write your prediction down before you touch the controls.
+
+:::figure ch2-inequality-region
+
+**Test.** Move the two roots and choose the inequality. The number line marks the
+solution set, with an open circle at a value the set leaves out and a filled
+circle at a value it includes.
+
+**Explain.** Keep the roots fixed and switch between $f(x) > 0$ and $f(x) < 0$.
+Why does one inequality give a single interval and the other give two separate
+pieces? Write two sentences referring to where the parabola sits above and below
+the $x$-axis.
+
 > **Watch out.** Two errors are common.
 >
 > **Forgetting to reverse the sign.** Dividing $-2x > 8$ by $-2$ gives $x < -4$,

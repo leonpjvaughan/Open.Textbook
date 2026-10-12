@@ -35,6 +35,20 @@ The units are seconds multiplied by metres per second, which gives metres.
 
 > **Watch out.** The gradient and area answer different questions. The gradient gives acceleration in m/s²; the area gives distance in metres. Check the requested quantity and units.
 
+## Investigate the gradient and the area
+
+**Predict:** the figure starts with a velocity that rises from 0 m/s to 8 m/s in
+4 s. Predict what happens to the acceleration and to the distance travelled when
+you double the time to 8 s.
+
+**Test:** move the time slider and read both results. Then move the top speed
+slider and predict each result before you read it.
+
+:::figure ch11-gradient-area
+
+> **Explain:** Why can the acceleration go down while the distance travelled goes
+> up? Write about the gradient and about the shaded triangle.
+
 ## Progress check
 
 The station walk is constant speed, so its distance-time graph is a straight line. At 60 minutes, the distance is 4 km.

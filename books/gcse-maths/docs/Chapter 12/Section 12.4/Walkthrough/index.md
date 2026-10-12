@@ -48,6 +48,12 @@ $$
 $$
 Therefore $x=7$ or $x=-2$.
 
+## A guided product investigation
+
+**Predict:** for $(x+2)(x+3)=0$, predict the two solutions before you move a control. Then predict what happens to each solution when you change its bracket number. **Test:** change the two bracket numbers and watch where the factor lines and the product curve meet the axis. **Explain:** why is each solution the opposite sign to the number inside its bracket?
+
+:::figure ch12-zero-product
+
 > **Watch out.** From $ab=0$, do not divide by $a$ or $b$. Either factor could be zero, so set each factor equal to zero.
 
 ## You should now be able to
