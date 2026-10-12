@@ -1246,10 +1246,13 @@ provenance enforcement and APCA check are still open there.
       concurrent edit. `tests/test_pipeline.py` now tests the invariant directly —
       a page the build did not write fails the build — so a second sighting is a
       regression rather than a mystery.
-- [ ] **The landing-page audit is thin.** One book means 14 text elements on the
-      whole page, so the card's body, subject and facts are one sample each. The
-      card is where the `ink_soft` fix landed, so it is the sample that matters most.
-      *Done means:* re-run once a second book exists.
+- [x] **The landing-page audit is thin — re-run with four books.** The sample went
+      from **14 text elements to 38**, because each book's card carries a title,
+      subject, description and facts. It passes for all six bundles in both
+      schemes, including the card's `ink_soft` body, which is where that fix
+      landed. It stays a small sample in absolute terms — a landing page is small —
+      but it now covers four cards rather than one, and it grows with the next
+      book without anyone remembering to do anything.
 
 ---
 
