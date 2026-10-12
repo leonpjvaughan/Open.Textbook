@@ -3,7 +3,8 @@
 Input to `books/gcse-physics/booklet/physics.yaml` and
 `books/a-level-physics/booklet/physics.yaml`. `BOOKLETS.md` is the contract; this
 document is the evidence it requires, per qualification and board. **Retrieved
-2026-10-11.**
+2026-10-11**; the two Edexcel documents were re-retrieved on **2026-10-12** and
+the Pearson Edexcel sections below record what was found and what changed.
 
 The distinction the booklet must get right is `given` / `question` / `know`
 (`BOOKLETS.md` § "The three groups"). In physics this maps to:
@@ -103,16 +104,28 @@ be available as an additional insert on the day of the examination. Students are
 prohibited from bringing their own copy of the equation sheet into the
 examination room."
 
-- List retrieved: *Equations List, May–June 2024 Assessment Window*, codes
-  `1PH0 1SC0`.
-  `https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/gcse-physics-exam-aid-1ph01sc0.pdf`
+- List retrieved: *Equations List, May–June 2026 Assessment Window*, codes
+  `1PH0 1SC0`, code W84389RA.
+  `https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/w84389a-gcse-physics-exam-aid-1ph0-1sc0-2nd-proof.pdf`
+- Also machine-retrievable, with the same equations: the May–June 2025 list
+  (`.../gcse-physics-exam-aid-1ph0-1sc0-june-2025.pdf`) and the May–June 2027
+  *Equation Booklet*
+  (`.../90647-2706-1ph0-1sc0-1hv2x6l-resource-booklet-qp-50f5.pdf`, code W90647A).
+  The 2027 booklet changes only the title (from "Equations List" to "Equation
+  Booklet") and the HT key (from "HT = higher tier" to "HT = higher tier
+  equations are in bold"); every equation is the same.
 - Landing page: `https://qualifications.pearson.com/en/qualifications/edexcel-gcses/sciences-2016/exam-support.html`
 
-**Caveat (escalate, do not fill from memory).** Pearson's page still links the
-2024 list only; a 2026-specific list was not retrieved. The 2024 list prints the
-whole set (below), and Ofqual requires year-to-year consistency, but this is
-`given` evidence for the 2024 window, not for 2026. Re-verify before shipping a
-booklet.
+**Retrieved, not inferred.** The exam-support page still links only the
+May–June 2024 list, so the 2026 list cannot be reached by following the page. It
+was found through Pearson's own resource search index — the algolia servlet
+behind `...coursematerials.html` — where the record carries
+`category: Pearson-UK:Document-Type/Summer-2026-support`. The 2026 list (code
+W84389RA, ©2026) prints the whole set, and its equations are **identical** to
+the 2024 and 2025 lists; only the assessment window, the document code
+(W84389A to W84389RA) and the copyright year change. The booklet therefore needs
+no equation change, and its Edexcel `given` provision now rests on the current
+window rather than on 2024.
 
 **What is on the 2024 list.** It prints the separate-science and
 combined-science equations together, then a physics-only block, and marks
@@ -315,18 +328,44 @@ Source: *Pearson Edexcel Level 3 Advanced GCE in Physics (9PH0) specification*,
 Issue 3, November 2018, Appendix 8 and Appendix 9.
 `https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/pearsonedexcel-alevel-physics-spec.pdf`
 
-**What must be recalled rather than given.** Per the board's own sentence, no
-formula needs to be memorised; anything not on the sheet "will be provided in
-the question". `know` is the definitions and units. Edexcel's **Appendix 10:
-Uncertainties and practical work** is the board's own treatment of uncertainties
-and is the right citation for a Chapter on practical skills.
+**The printed insert, retrieved.** The document students actually receive is the
+*List of data, formulae and relationships*, Issue 3, November 2022 (code
+P57019RRA), 8 pages:
+`https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/a-level-physics-data-formulae-relationships.pdf`.
+It was found through Pearson's resource search index after the exam-materials
+listing and the past-papers area proved unusable. It carries the same constants
+as Appendix 9 and the same formulae as Appendix 8, with one difference:
+Appendix 8 lists "Pressure p = F/A" under Materials; the printed insert does
+not. The booklet has no pressure item, so that difference changes no equation,
+but it is recorded here because a difference between the appendix and the insert
+must not be normalised away.
 
-**Could not establish (escalate).** Pearson does not expose a standalone
-"data and formulae booklet" PDF on a machine-readable page — the exam-materials
-listing is dynamic and the past-papers area is login-gated. The provision above
-is the board's own *specification text*, which is a primary source, but it is
-not the printed insert. If the book needs the exact printed layout, retrieve the
-insert from a sample assessment material or a past paper.
+**What the insert does not print, and why the booklet now says so.** Several
+core relationships the booklet carries are **not** on the Edexcel insert: the
+quadratic formula and the circle and sphere formulae; `hf = E₁ − E₂`; fringe
+spacing; the SHM speed and maxima; series and parallel resistors; emf; the
+parallel-plate capacitor and the charging curve; the time constant; `pV = nRT`;
+magnetic flux and flux linkage; the rotating-coil emf; the transformer
+equations; the inverse-square law for gamma radiation; the nuclear radius; and
+the gravitational and electric potential-gradient and work equations. Edexcel
+says "Any other formulae that are required will be provided in the question", so
+the booklet marks those `question` for Edexcel; the two definitions a reader must
+hold, `v = Δs/Δt` and `a = Δv/Δt`, are `know`. The AQA and OCR values are
+unchanged. This corrects a normalisation that treated the DfE core as if every
+board printed all of it. `know` remains the definitions and units; Edexcel's
+**Appendix 10: Uncertainties and practical work** is the board's own treatment of
+uncertainties and is the right citation for a Chapter on practical skills.
+
+**Still to check: the shared core is not perfectly shared.** Some relationships
+the booklet treats as common are not in Edexcel's specification content at all —
+`transformer` and `transformer-efficiency`, the rotating-coil emf and the nuclear
+radius (`R = R₀A^{1/3}`) have no hit in the Edexcel 9PH0 specification, so for an
+Edexcel reader `question` is a placeholder for "not printed here", not a claim
+that the topic is examined. A per-board audit of *content* coverage, not just of
+what each insert prints, is still outstanding; the booklet's `meta.note` and
+reader-visible provenance now say the booklet is the board-neutral core and that
+board-only topics are not covered, so the limit is stated even though the audit
+is not finished.
 
 ## OCR — A Level Physics A H556
 

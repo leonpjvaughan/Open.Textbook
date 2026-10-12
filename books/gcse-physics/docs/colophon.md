@@ -55,7 +55,7 @@ The claims in this book rest on these documents:
 - [Cambridge OCR GCSE (9-1) Physics A (Gateway Science) J249 specification, Version 5.0, July 2026](https://www.ocr.org.uk/Images/234600-specification-accredited-gcse-gateway-science-suite-physics-a-j249.pdf)
 - [Cambridge OCR GCSE (9-1) Physics B (Twenty First Century Science) J259 specification, Version 5.0, July 2026](https://www.ocr.org.uk/Images/234601-specification-accredited-gcse-twenty-first-century-science-suite-physics-b-j259.pdf)
 
-These sources were last checked on 2026-10-11.
+These sources were last checked on 2026-10-12.
 
 No awarding body endorses this book, and the Department for Education
 does not supply it.

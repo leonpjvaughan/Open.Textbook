@@ -16,7 +16,7 @@
 # Retrieved 2026-10-11 with a browser User-Agent; the boards filter otherwise.
 # The exact fetch commands are recorded in research/curriculum/physics.md.
 
-retrieved: 2026-10-11
+retrieved: 2026-10-12
 
 references:
   # ---- DfE subject content --------------------------------------------------
@@ -118,11 +118,32 @@ references:
       is the board's treatment of uncertainties and practical work. A minimum of
       40% of the marks across the three papers is awarded for mathematics at
       Level 2 or above.
-      CAVEAT: Pearson does not expose a standalone data-and-formulae-booklet PDF
-      on a machine-readable page, so the provision here rests on the
-      specification's appendices, which are the board's own document stating
-      what is supplied. The exact printed insert was not retrieved; recorded as
-      outstanding in todo.md.
+      The printed insert that students actually receive is a separate document,
+      `edexcel-9ph0-data-formulae` below; the appendix and the insert carry the
+      same constants and formulae.
+
+  # ---- Pearson Edexcel 9PH0 printed insert ---------------------------------
+  - id: edexcel-9ph0-data-formulae
+    # The reader is entitled to reach this one: it is content the book
+    # rests on or reproduces, so About this book links it.
+    attribution: true
+    title: >-
+      Pearson Edexcel Level 3 Advanced Level GCE in Physics (9PH0) List of
+      data, formulae and relationships, Issue 3, November 2022
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/a-level-physics-data-formulae-relationships.pdf
+    page: https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/physics-2015.coursematerials.html
+    role: >-
+      The Edexcel printed insert (code P57019RRA), retrieved 2026-10-12. It is
+      the document supplied with every 9PH0 paper, and it carries the same
+      constants as Appendix 9 and the same formulae as Appendix 8, with one
+      difference: Appendix 8 lists "Pressure p = F/A" under Materials, the
+      printed insert does not. It was located through Pearson's own resource
+      search index after the exam-materials listing and past-papers area proved
+      unusable. It is the basis for the Edexcel provision in the A-level
+      booklet. The booklet marks as `given` only the relationships this insert
+      prints; relationships the insert omits are `question` (Edexcel: "Any other
+      formulae that are required will be provided in the question") or, for the
+      two definitions, `know`.
 
   # ---- OCR H556 ------------------------------------------------------------
   - id: ocr-h556
@@ -158,6 +179,9 @@ downloads:
     text: true
   - file: edexcel_9ph0_spec.pdf
     url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/pearsonedexcel-alevel-physics-spec.pdf
+    text: true
+  - file: edexcel_9ph0_data_formulae.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/a-level-physics-data-formulae-relationships.pdf
     text: true
   - file: ocr_h556_spec.pdf
     url: https://www.ocr.org.uk/Images/171726-specification-accredited-a-level-gce-physics-a-h556.pdf

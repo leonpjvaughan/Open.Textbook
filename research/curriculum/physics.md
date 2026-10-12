@@ -4,8 +4,9 @@ Research note for the two planned physics books (`books/gcse-physics/`,
 `books/a-level-physics/`). Every claim below names the document it came from.
 The provenance manifest is `research/curriculum/physics.sources.yaml`.
 
-**Retrieved 2026-10-11.** All three awarding bodies were reachable once a
-browser `User-Agent` was set. The AQA pages are reachable at
+**Retrieved 2026-10-11; the two Edexcel documents re-retrieved 2026-10-12.**
+All three awarding bodies were reachable once a browser `User-Agent` was set. The
+AQA pages are reachable at
 `https://www.aqa.org.uk/...`; the specification PDFs now live on
 `cdn.sanity.io` and are linked from the AQA subject pages. AQA has moved two of
 its paths since the repository's maths book was written:
@@ -51,20 +52,29 @@ PY
 
 ## What could not be established
 
-Stated here so it is not filled in from memory later.
+Stated here so it is not filled in from memory later. Items 1 and 2 were
+resolved on 2026-10-12; the record of what was tried is kept.
 
-1. **A school-year-specific Edexcel GCSE equation list for 2026 (or later).**
+1. **A school-year-specific Edexcel GCSE equation list for 2026 — resolved.**
    Pearson's GCSE science exam-support page still links only the May–June 2024
-   list. The 2024 list prints every equation, and Ofqual's May 2026 decision
-   requires consistency between years, but the 2026 document itself was not
-   retrieved. Treat the 2024 list as the closest readable evidence, not as the
-   2026 provision.
-2. **A standalone Edexcel A-level "data and formulae booklet" PDF.** Pearson's
-   exam-materials listing is not machine-readable and the "past papers" area is
-   login-gated. Edexcel's provision is established instead from the
-   specification's own Appendix 8 (formulae sheet) and Appendix 9 (data sheet),
-   which state in words what is supplied, plus the "Students need not memorise
-   formulae" sentence. Candidates are quoted in
+   list, and following it does not reach 2026. The 2026 list was found instead
+   through Pearson's own resource search index — the algolia servlet behind
+   `...coursematerials.html` — where the record carries
+   `category: Pearson-UK:Document-Type/Summer-2026-support`. It is the
+   *Equations List, May–June 2026 Assessment Window*, code W84389RA:
+   `https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/w84389a-gcse-physics-exam-aid-1ph0-1sc0-2nd-proof.pdf`.
+   Every equation is identical to the 2024 list; only the window, code and
+   copyright year change. Recorded in `books/gcse-physics/sources.yaml`.
+2. **A standalone Edexcel A-level "data and formulae booklet" PDF — resolved.**
+   Pearson's exam-materials listing is not machine-readable and the "past
+   papers" area is login-gated. The printed insert was found in the same search
+   index: *List of data, formulae and relationships*, Issue 3, November 2022,
+   code P57019RRA:
+   `https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/a-level-physics-data-formulae-relationships.pdf`.
+   It matches Appendix 8/9 except that Appendix 8 prints "Pressure p = F/A" and
+   the insert does not. It does not print the whole DfE core, which is why the
+   A-level booklet marks the omitted core relationships `question` and the two
+   definitions `know`. Recorded in `books/a-level-physics/sources.yaml` and
    `physics-equations-and-data.md`.
 3. **AQA's original 2015 specification for 8463 is not what AQA serves now.**
    The PDF AQA links is `AQA-8463-SP-2016` republished as version 1.1,

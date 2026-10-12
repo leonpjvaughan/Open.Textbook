@@ -11,7 +11,7 @@
 # Retrieved with a browser User-Agent (the boards filter otherwise); see the
 # notes in research/curriculum/physics.md for the exact commands.
 
-retrieved: 2026-10-11
+retrieved: 2026-10-12
 
 references:
   # ---- DfE subject content --------------------------------------------------
@@ -147,18 +147,19 @@ references:
       formulae sheet, plus three equations Edexcel adds); Appendix 3 SI units;
       Appendix 4 command words.
 
-  - id: edexcel-gcse-equations-2024
+  - id: edexcel-gcse-equations-2026
     title: >-
       Pearson Edexcel GCSE (9-1) Physics and Combined Science (Physics)
-      Equations List, May-June 2024 assessment window (1PH0, 1SC0)
-    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/gcse-physics-exam-aid-1ph01sc0.pdf
+      Equations List, May-June 2026 assessment window (1PH0, 1SC0), W84389RA
+    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/w84389a-gcse-physics-exam-aid-1ph0-1sc0-2nd-proof.pdf
     page: https://qualifications.pearson.com/en/qualifications/edexcel-gcses/sciences-2016/exam-support.html
     role: >-
-      The only Edexcel equation list that was machine-retrievable. It prints the
-      whole list (a and b), so from 2024 candidates receive every equation. The
-      exam-support page states an equation list is provided in the exam room.
-      NOTE: the page still links summer 2024; a 2026-specific list was not
-      retrieved.
+      The Edexcel equation list for the current window, retrieved 2026-10-12
+      through Pearson's resource search index (the exam-support page links only
+      the 2024 file). It prints the whole list (a and b), and its equations are
+      identical to the 2024 and 2025 lists; only the window, code and copyright
+      year change. The exam-support page states an equation list is provided in
+      the exam room.
 
   - id: ocr-j249
     title: >-
@@ -244,7 +245,22 @@ references:
       formulae for this qualification. The formulae below will be supplied in
       each examination. Any other formulae that are required will be provided in
       the question."); Appendix 9 is the data sheet; Appendix 10 is uncertainties
-      and practical work; 40% maths across the three papers.
+      and practical work; 40% maths across the three papers. The printed insert
+      is `edexcel-9ph0-data-formulae` below.
+
+  - id: edexcel-9ph0-data-formulae
+    title: >-
+      Pearson Edexcel Level 3 Advanced Level GCE in Physics (9PH0) List of
+      data, formulae and relationships, Issue 3, November 2022, P57019RRA
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/a-level-physics-data-formulae-relationships.pdf
+    page: https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/physics-2015.coursematerials.html
+    role: >-
+      The Edexcel printed insert, retrieved 2026-10-12 through Pearson's
+      resource search index. Same constants as Appendix 9 and same formulae as
+      Appendix 8, except Appendix 8 lists "Pressure p = F/A" under Materials and
+      the insert does not. The insert does not print the whole DfE core, so the
+      booklet marks the omitted core relationships `question` (supplied in the
+      question) and the two definitions `know`.
 
   - id: ocr-h556
     title: >-
@@ -290,8 +306,8 @@ downloads:
   - file: edexcel_1ph0_spec.pdf
     url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/Specification/gcse-physics-spec.pdf
     text: true
-  - file: edexcel_gcse_equations.pdf
-    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/gcse-physics-exam-aid-1ph01sc0.pdf
+  - file: edexcel_gcse_equations_2026.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/w84389a-gcse-physics-exam-aid-1ph0-1sc0-2nd-proof.pdf
     text: true
   - file: ocr_j249_spec.pdf
     url: https://www.ocr.org.uk/Images/234600-specification-accredited-gcse-gateway-science-suite-physics-a-j249.pdf
@@ -313,6 +329,9 @@ downloads:
     text: true
   - file: edexcel_9ph0_spec.pdf
     url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/pearsonedexcel-alevel-physics-spec.pdf
+    text: true
+  - file: edexcel_9ph0_data_formulae.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/A%20Level/Physics/2015/Specification%20and%20sample%20assessments/a-level-physics-data-formulae-relationships.pdf
     text: true
   - file: ocr_h556_spec.pdf
     url: https://www.ocr.org.uk/Images/171726-specification-accredited-a-level-gce-physics-a-h556.pdf

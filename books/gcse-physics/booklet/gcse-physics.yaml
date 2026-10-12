@@ -38,7 +38,7 @@ meta:
     `given` group.
   provenance:
     aqa: "AQA Physics Equations Sheet, GCSE Physics (8463), for use in June 2026 only"
-    edexcel: "Pearson Edexcel GCSE Physics Equations List, May–June 2024 (1PH0); a 2026 list was not retrieved"
+    edexcel: "Pearson Edexcel GCSE Physics and Combined Science (Physics) Equations List, May–June 2026 (1PH0, 1SC0)"
     ocr: "OCR GCSE Physics A (J249) Equation Sheet, June 2027"
   basis: >-
     DfE confirmed on 26 February 2026 that students do not need to memorise
@@ -46,11 +46,11 @@ meta:
     current specifications, and Ofqual decided on 5 May 2026 that boards must
     keep providing the sheets and must not set questions answerable solely by
     transferring information from them. The recall/select appendices in the
-    specifications predate the 2022 policy and are not the provision. AQA's and
-    OCR's current sheets were read directly. Edexcel's exam-support page states
-    an equation list is provided in the exam room; the only machine-readable
-    list is the May–June 2024 one, so Edexcel's provision here rests on that
-    document and must be re-verified when Pearson publishes a later list.
+    specifications predate the 2022 policy and are not the provision. AQA's,
+    OCR's and Edexcel's current sheets were read directly. The Edexcel
+    May–June 2026 list was retrieved on 2026-10-12; its equations are identical
+    to the May–June 2024 and 2025 lists, so the Edexcel provision below is
+    unchanged, and the 2026 window is now the document it rests on.
   boards:
     aqa: {name: AQA, code: "8463"}
     edexcel: {name: Edexcel, code: "1PH0"}

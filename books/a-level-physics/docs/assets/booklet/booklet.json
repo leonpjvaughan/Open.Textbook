@@ -9,13 +9,13 @@
   "series": "exams from 2026",
   "default_board": "aqa",
   "tiered": false,
-  "note": "A-level physics has no national booklet: each board supplies its own data and formulae, and the boards' sets share a large common core. This booklet transcribes that core and the constants; it does not yet cover the board-specific option-topic formulae, which is a known gap rather than a claim that the boards provide only this much.",
+  "note": "A-level physics has no national booklet: each board supplies its own data and formulae. This booklet is the board-neutral core: the relationships all three boards provide, plus the constants and data they share. It does not reproduce every board-only item. AQA's five options (Astrophysics, Medical physics, Engineering physics, Turning points in physics and Electronics) are not here, and neither is every formula that appears on only one board's insert (for example OCR's medical physics and astrophysics, or Edexcel's lens and space equations). Where the boards differ, use your own board's insert. To keep the physics accurate, no board's formula has been put where another board's belongs.",
   "provenance": {
-   "aqa": "AQA A-level Physics data and formulae, version 1.5 (from the June 2017 series)",
-   "edexcel": "Pearson Edexcel 9PH0 specification, Appendices 8 (formulae) and 9 (data), Issue 3",
-   "ocr": "OCR A Level Physics A H556 specification, Appendix 5c (data sheet), Version 3.0"
+   "aqa": "AQA A-level Physics data and formulae, version 1.5 (from the June 2017 series). Core common to the three boards; AQA's optional topics are not included.",
+   "edexcel": "Pearson Edexcel 9PH0 List of data, formulae and relationships, Issue 3 (November 2022), the printed insert. Core common to the three boards; board-only formulae are not included.",
+   "ocr": "OCR A Level Physics A H556 specification, Appendix 5c (data sheet), Version 3.0. Core common to the three boards; board-only formulae are not included."
   },
-  "basis": "No A-level physics equation or constant has to be memorised. AQA supplies its data-and-formulae insert with every paper; Edexcel states \"Students need not memorise formulae for this qualification. The formulae below will be supplied in each examination.\"; OCR's Appendix 5c states the data sheet \"will be printed for distribution with the examination papers\". OCR additionally marks some printed equations, such as F = ma and E_k = ½mv², \"Learners will also be expected to recall this equation\"; those items carry that note. The 2026 DfE/Ofqual decisions about memorising equations are GCSE-only and do not apply here.",
+  "basis": "No A-level physics equation or constant has to be memorised. AQA supplies its data-and-formulae insert with every paper; Edexcel supplies the printed \"List of data, formulae and relationships\" (Issue 3, November 2022) and states \"Students need not memorise formulae for this qualification. The formulae below will be supplied in each examination. Any other formulae that are required will be provided in the question.\"; OCR's Appendix 5c states the data sheet \"will be printed for distribution with the examination papers\". Because Edexcel does not print every core relationship, items it does not print are `question` (supplied in the question), not `given`; the two definitions that must be held are `know`. OCR additionally marks some printed equations, such as F = ma and E_k = ½mv², \"Learners will also be expected to recall this equation\"; those items carry that note. The 2026 DfE/Ofqual decisions about memorising equations are GCSE-only and do not apply here.",
   "boards": {
    "aqa": {
     "name": "AQA",
@@ -59,7 +59,7 @@
      "latex": "x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -91,7 +91,7 @@
      "latex": "C = 2\\pi r",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -106,7 +106,7 @@
      "latex": "A = \\pi r^2",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -135,7 +135,7 @@
      "latex": "A = 4\\pi r^2",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -150,7 +150,7 @@
      "latex": "V = \\tfrac{4}{3}\\pi r^3",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -204,7 +204,7 @@
      "latex": "hf = E_1 - E_2",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -324,7 +324,7 @@
      "latex": "w = \\frac{\\lambda D}{s}",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -394,7 +394,7 @@
      "latex": "v = \\frac{\\Delta s}{\\Delta t}",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "know",
       "ocr": "given"
      },
      "keywords": [
@@ -410,7 +410,7 @@
      "latex": "a = \\frac{\\Delta v}{\\Delta t}",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "know",
       "ocr": "given"
      },
      "keywords": [
@@ -753,7 +753,7 @@
      "latex": "v = \\pm \\omega\\sqrt{A^2 - x^2}",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -769,7 +769,7 @@
      "latex": "v_{\\text{max}} = \\omega A",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -785,7 +785,7 @@
      "latex": "a_{\\text{max}} = \\omega^2 A",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1021,7 +1021,7 @@
      "latex": "R_T = R_1 + R_2 + R_3 + \\dots",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1036,7 +1036,7 @@
      "latex": "\\frac{1}{R_T} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\frac{1}{R_3} + \\dots",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1068,7 +1068,7 @@
      "latex": "\\varepsilon = \\frac{W}{Q},\\quad \\varepsilon = I(R + r)",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1101,7 +1101,7 @@
      "latex": "C = \\frac{A\\varepsilon_0\\varepsilon_r}{d}",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1134,7 +1134,7 @@
      "latex": "Q = Q_0\\left(1 - e^{-t/RC}\\right)",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1166,7 +1166,7 @@
      "latex": "\\tau = RC",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1218,7 +1218,7 @@
      "latex": "pV = nRT",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1322,7 +1322,7 @@
      "latex": "\\Phi = BA",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1338,7 +1338,7 @@
      "latex": "N\\Phi = BAN\\cos\\theta",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1372,7 +1372,7 @@
      "latex": "\\varepsilon = BAN\\omega\\sin(\\omega t)",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1404,7 +1404,7 @@
      "latex": "\\frac{N_s}{N_p} = \\frac{V_s}{V_p}",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1420,7 +1420,7 @@
      "latex": "\\text{efficiency} = \\frac{I_sV_s}{I_pV_p}",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1442,7 +1442,7 @@
      "latex": "I = \\frac{k}{x^2}",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1505,7 +1505,7 @@
      "latex": "R = R_0 A^{1/3}",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1590,7 +1590,7 @@
      "latex": "\\Delta W = m\\Delta V",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1620,7 +1620,7 @@
      "latex": "g = -\\frac{\\Delta V}{\\Delta r}",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1689,7 +1689,7 @@
      "latex": "\\Delta W = Q\\Delta V",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [
@@ -1736,7 +1736,7 @@
      "latex": "E = \\frac{\\Delta V}{\\Delta r}",
      "provision": {
       "aqa": "given",
-      "edexcel": "given",
+      "edexcel": "question",
       "ocr": "given"
      },
      "keywords": [

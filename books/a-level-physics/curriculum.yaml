@@ -37,9 +37,12 @@
 #
 # Board-specific *option* topics (AQA 3.9–3.13 Astrophysics, Medical physics,
 # Engineering physics, Turning points in physics, Electronics) sit outside the
-# common DfE core and are not in this plan; they are recorded as outstanding in
-# todo.md. The boards' required practicals and the Practical Endorsement are
-# documented in AGENTS.md.
+# common DfE core. They are deliberately out of scope for this board-neutral
+# book and its shared booklet: a single common booklet must not present one
+# board's option as another's. The limit is stated in this file, in the
+# booklet's `meta.note` and in the reader-visible provenance strings, so the
+# reader knows to use their own board's insert for an option. The boards'
+# required practicals and the Practical Endorsement are documented in AGENTS.md.
 #
 # Anchors, learner-constructed relevance prompts and guided investigations are
 # per-chapter authoring decisions (see AGENT-BRIEF.md) and are deliberately not
@@ -55,11 +58,13 @@ meta:
     The DfE A-level physics content is a framework: Appendix 3 is nine numbered
     areas, and each board adds its own depth, breadth, contexts and optional
     topics. The chapter sequence here follows the DfE areas and is
-    board-neutral. No `year` tag is asserted, because the DfE marks the AS
-    subset in non-bold type and the boards' AS/A-level divisions differ. The
-    DfE's 40% quantitative-skills weighting (physics) and the 15% practical
-    weighting are assessment rules, not content; they are recorded in
-    sources.yaml and AGENTS.md.
+    board-neutral. AQA's optional topics (3.9–3.13) and every board-only item
+    are deliberately out of scope; the booklet carries the common core only, and
+    says so in its `meta.note` and provenance. No `year` tag is asserted, because
+    the DfE marks the AS subset in non-bold type and the boards' AS/A-level
+    divisions differ. The DfE's 40% quantitative-skills weighting (physics) and
+    the 15% practical weighting are assessment rules, not content; they are
+    recorded in sources.yaml and AGENTS.md.
 
 # Coverage: the reference ranges the scaffold checks and maps to sections.
 # Each group is a DfE Appendix 3 paragraph number and its area.

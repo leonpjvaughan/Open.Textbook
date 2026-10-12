@@ -59,8 +59,11 @@ Level 2, which is a direct instruction about how demanding the practice must be.
 
 AQA's optional topics (3.9 Astrophysics, 3.10 Medical physics, 3.11 Engineering
 physics, 3.12 Turning points in physics, 3.13 Electronics) are **board-specific
-and not in this book's common-core plan**. They are recorded as outstanding in
-`todo.md`. Do not add one board's option to the common curriculum.
+and deliberately out of scope for this book's common-core plan**. The limit is
+stated in `curriculum.yaml`, in the booklet's `meta.note` and in the
+reader-visible provenance strings, so a reader on an option topic knows to use
+their own board's insert. Do not add one board's option to the common
+curriculum.
 
 ## Required practicals and the Practical Endorsement
 
@@ -85,12 +88,18 @@ not as background.
 
 **No A-level physics equation must be memorised, and the boards provide the
 booklets.** AQA supplies its data-and-formulae insert at all three papers; Edexcel
-states "Students need not memorise formulae for this qualification. The formulae
-below will be supplied in each examination. Any other formulae that are required
-will be provided in the question."; OCR prints its data sheet with the papers. So:
+supplies the printed "List of data, formulae and relationships" and states
+"Students need not memorise formulae for this qualification. The formulae below
+will be supplied in each examination. Any other formulae that are required will
+be provided in the question."; OCR prints its data sheet with the papers. So:
 
-- The booklet's `given` group is the whole of the equations; a `know` group of
-  "equations to memorise" would be wrong at A-level too.
+- `given` means **printed on that board's own insert**. AQA's and OCR's inserts
+  print the core relationships; Edexcel's printed insert does not print every one,
+  so the booklet marks the core relationships it omits `question` (they are
+  supplied in the question, which is what Edexcel's own sentence promises) and
+  the two definitions a reader must hold (`v = Δs/Δt`, `a = Δv/Δt`) `know`.
+  Because no equation must be memorised, the point of the group is *where* the
+  reader can look, never *whether* to learn it.
 - **OCR is the exception that must not be normalised away.** OCR marks some
   equations "Learners will also be expected to recall this equation" *even though
   the data sheet prints them* — `F = ma`, `W = mg`, `E_k = ½mv²`,
@@ -101,15 +110,16 @@ will be provided in the question."; OCR prints its data sheet with the papers. S
   prefixes, the meaning of every symbol, and the derivations the specification
   asks for (AQA requires the equations of motion and the kinetic-theory model).
 - The AQA booklet is versioned ("version 1.5", "from the June 2017 series
-  onwards") and OCR's data sheet is embedded in a specification whose version
-  changes (H556 v3.0, March 2026). Record the version and re-verify when either is
-  reissued.
+  onwards"), the Edexcel insert is versioned ("Issue 3, November 2022") and OCR's
+  data sheet is embedded in a specification whose version changes (H556 v3.0,
+  March 2026). Record the version and re-verify when any is reissued.
 
 `booklet/a-level-physics.yaml` is the source of truth;
 `docs/assets/booklet/booklet.json` is generated. It transcribes the **core** (the
-DfE areas common to the three boards) and the constants; board-specific
-option-topic formulae and some board-only items are not yet transcribed, and that
-is recorded in `meta.note` and in `todo.md`. Read `BOOKLETS.md` and
+DfE areas common to the three boards) and the constants. The board-only items and
+AQA's five optional topics are a **deliberate limit**, stated in `meta.note`, in
+`curriculum.yaml` and in the reader-visible provenance strings; they are not a
+promise to transcribe them into this shared booklet. Read `BOOKLETS.md` and
 `research/curriculum/physics-equations-and-data.md` before changing provision.
 
 ## Curriculum and coverage

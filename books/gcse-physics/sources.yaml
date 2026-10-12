@@ -16,7 +16,7 @@
 # Retrieved 2026-10-11 with a browser User-Agent; the boards filter otherwise.
 # The exact fetch commands are recorded in research/curriculum/physics.md.
 
-retrieved: 2026-10-11
+retrieved: 2026-10-12
 
 references:
   # ---- DfE subject content --------------------------------------------------
@@ -157,22 +157,28 @@ references:
       named derived units where the DfE Appendix 2 prints nine. Appendix 4 is
       the command-word taxonomy.
 
-  - id: edexcel-gcse-equations-2024
+  - id: edexcel-gcse-equations-2026
     title: >-
       Pearson Edexcel GCSE (9-1) Physics and Combined Science (Physics)
-      Equations List, May–June 2024 assessment window (1PH0, 1SC0)
-    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/gcse-physics-exam-aid-1ph01sc0.pdf
+      Equations List, May–June 2026 assessment window (1PH0, 1SC0)
+    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/w84389a-gcse-physics-exam-aid-1ph0-1sc0-2nd-proof.pdf
     page: https://qualifications.pearson.com/en/qualifications/edexcel-gcses/sciences-2016/exam-support.html
     role: >-
-      The only Edexcel equation list that was machine-retrievable. It prints the
-      whole set (lists a and b), so candidates receive every equation, and the
-      exam-support page states an equation list is provided in the exam room.
-      CAVEAT: Pearson's page still links summer 2024; a 2026-specific list was
-      not retrieved. Treat this as evidence for the 2024 window, not as the 2026
-      provision. It is the basis for the Edexcel `given` provision in the
-      booklet, including the two equations Edexcel alone prints (wave speed
-      v = x/t and energy transferred E = I × V × t). Re-verify before shipping;
-      recorded as outstanding in todo.md.
+      The Edexcel equation list for the current window, retrieved 2026-10-12.
+      Headed "May–June 2026 Assessment Window", code W84389RA, and valid when
+      downloaded from the Pearson Qualifications website. The exam-support page
+      still links only the May–June 2024 file; this file was located through
+      Pearson's own resource search index (the algolia servlet behind
+      `...coursematerials.html`), which is why the page appeared to be stuck on
+      2024. It prints the whole set (lists a and b), so candidates receive every
+      equation, and the exam-support page states an equation list is provided
+      in the exam room. The equations are identical to the May–June 2025 and
+      May–June 2024 lists; only the window, document code (W84389A to W84389RA)
+      and copyright year change. It is the basis for the Edexcel `given`
+      provision in the booklet, including the two equations Edexcel alone
+      prints (wave speed v = x/t and energy transferred E = I × V × t). The
+      2025 list (`gcse-physics-exam-aid-1ph0-1sc0-june-2025.pdf`) and the 2027
+      Equation Booklet (`W90647A`) carry the same equations.
 
   # ---- OCR J249 and J259 ---------------------------------------------------
   - id: ocr-j249
@@ -245,8 +251,8 @@ downloads:
   - file: edexcel_1ph0_spec.pdf
     url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/Specification/gcse-physics-spec.pdf
     text: true
-  - file: edexcel_gcse_equations.pdf
-    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/gcse-physics-exam-aid-1ph01sc0.pdf
+  - file: edexcel_gcse_equations_2026.pdf
+    url: https://qualifications.pearson.com/content/dam/pdf/GCSE/Science/2016/teaching-and-learning-materials/w84389a-gcse-physics-exam-aid-1ph0-1sc0-2nd-proof.pdf
     text: true
   - file: ocr_j249_spec.pdf
     url: https://www.ocr.org.uk/Images/234600-specification-accredited-gcse-gateway-science-suite-physics-a-j249.pdf
