@@ -26,3 +26,17 @@ textbook = { workspace = true }
 # work even when the venv has not been synced.
 pythonpath = ["engine"]
 testpaths = ["tests"]
+# `browser` tests drive a real browser over the built site. Measuring every figure
+# under one bundle takes about two minutes; all six take twelve, which is the whole
+# rest of the gate. They are deselected here rather than left out, so the coverage
+# exists and is one flag away:
+#
+#     scripts/check.sh && uv run python -m pytest -m browser
+#
+# The default gate still measures every figure once, in `scripts/preview-themes.sh`.
+# This is the sweep across every bundle, which is the part that is too slow to run
+# on every push.
+addopts = "-m 'not browser'"
+markers = [
+  "browser: drives a real browser over the built site; slow, deselected by default",
+]

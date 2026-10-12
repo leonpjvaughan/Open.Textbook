@@ -2454,3 +2454,152 @@ exhaustive across all six bundles, all four books and both schemes. Running the
 browser sweep six times would cost twelve minutes in CI to re-prove what the static
 check proves. A figure that paints nothing is legitimate — two do, and inherit the
 ink — so the tests ask what a class *does*, not that one is present.
+
+---
+
+## 47. "Prove it to me" — a proof behind every unproved claim
+
+**Requested by the author, 2026-10-12.** Wherever a book states a mathematical fact
+as fact — the angles of a triangle sum to 180°, the quadratic formula, the sine
+rule, the sum of an arithmetic series — the reader should be able to ask **why**
+without leaving the page. A small affordance beneath the statement opens a proof,
+and a central proof book holds it.
+
+### The request, in the author's words
+
+- A **"Prove it to me"** component beneath any fact presented without proof, linking
+  to a **central proofs page**.
+- A **shared proof book** — one proof, referenced from wherever it is needed,
+  across books.
+- **Extensions**: the same proof should offer the general case, so "angles in a
+  triangle" extends to "angles in an *n*-sided polygon".
+- **The proof a teenager can follow**, not the shortest one.
+- **Dynamic components** — toggles and sliders — so the reader can change the
+  thing and see the proof hold.
+- **Say when it is not in the curriculum.** An extension is offered *and marked*,
+  so a reader never mistakes it for something their exam will ask.
+
+### Why this is a real gap, not a nicety
+
+The chapter formula is explicit that **P1 — teach first, then fade the support** —
+and that a novice must never meet an unguided task. A fact asserted without
+justification is the same failure in the other direction: it is the one place a
+reader is asked to take something on trust, and the books are otherwise careful to
+show *why*. The review pages already ask the learner to explain; this gives them
+somewhere to have found out.
+
+It also lands on the collection's own rule about claims: `research/pedagogy.md` is
+careful about what the evidence supports, and the books should be equally careful
+about what they assert.
+
+### What already exists to build on
+
+- **The figure pipeline is the precedent**: a line-anchored directive
+  (`:::figure <slug>`) expands to a custom element and injects a loader only on
+  pages that need it, and modules live per book with a shared loader. A proof can
+  follow the same shape — the component is `maths-figure`'s sibling, not a new
+  subsystem.
+- **The proofs are already half-written**, in the prose. A Walkthrough that
+  *derives* the quadratic formula, or proves Pythagoras by rearrangement, is a
+  proof sitting inside a page where nothing else can reuse it.
+- `tests/test_figures.py` is the contract to copy for the new component: no colour
+  literal, an accessible name, no runtime LaTeX, and the class-paints-correctly
+  rule that item 46 cost real defects to learn.
+
+### Open questions the work must settle before it starts
+
+1. **Where does the proof book live?** A fifth `books/<id>/` stretches the model —
+   every book today has a curriculum, a tier axis and profiles. The alternatives are
+   a reference book with an explicitly empty tier axis, or a shared proof *corpus*
+   rendered into each book's docs. This is a boundary decision and the `architect`
+   skill is the right tool for it, not a guess made while writing content.
+2. **Which component? — decided, and not by the `frontend` skill.** That skill's
+   stack is Next.js, React, TypeScript and shadcn/ui, and it says of itself: treat
+   this as the default *when the repository has no established stack, not as a
+   requirement to migrate an existing one*. This repository is deliberately
+   framework-free — a custom element, a loader injected only on pages that use it,
+   and a module per book — and it has a **Tier-0 rule**: the page must be complete
+   and readable with scripting off. A React dialog is the wrong answer to that, and
+   a slide-over built in JS would put the proof behind a script.
+
+   So the affordance is **a link first, enhanced second**: the proof lives at a real
+   URL and the page reaches it with no script at all, and a small module upgrades it
+   in place — inline disclosure for a short proof, a side panel for one with
+   sliders — using the same `<details markdown="1">` disclosure the hints already
+   use. What the `frontend` skill contributes is its *qualities*, not its stack:
+   a typed component contract, the design system defined once and composed rather
+   than restyled per page, and an explicit payload contract between the page and the
+   module.
+
+   One accessibility question stays open for the module: a slider that re-draws a
+   proof must announce what changed, which is what the figures already solve with an
+   `aria-live` readout (`ch11-sampling-variability`). Copy that, do not reinvent it.
+3. **How is "not in the curriculum" said?** The words are constrained: the internal
+   vocabulary for a tier is `Foundation and Higher` / `Higher only`, the docs forbid
+   internal words reaching the reader, and `obviously`/`simply` are banned. A badge
+   reading "Beyond the specification" is a decision to record, not invent per page.
+4. **Which facts?** A proof for every assertion would be unbounded, and a phrasing
+   scan is the wrong instrument: searching the four books for *the fact that*,
+   *we know that* and *it can be shown* finds **six** hits in total, because these
+   books rarely assert without deriving.
+
+   What a reader can ask *why* about is a **named result**. Scanning for those
+   gives a real inventory — twenty, with the books that use them:
+
+   | Named result | Mentions | Books |
+   |---|---|---|
+   | exponential function and its laws | 349 | a-level-maths, a-level-physics, gcse-physics |
+   | standard deviation | 111 | a-level-maths |
+   | product, quotient and chain rule | 96 | a-level-maths, gcse-maths |
+   | sine rule | 88 | a-level-maths, gcse-maths |
+   | Pythagoras' theorem | 86 | a-level-maths, a-level-physics, gcse-maths |
+   | trapezium area | 59 | a-level-maths, a-level-physics, gcse-maths |
+   | the discriminant | 51 | a-level-maths, gcse-maths |
+   | cosine rule | 49 | a-level-maths, gcse-maths |
+   | completing the square | 43 | a-level-maths, gcse-maths |
+   | circle theorems | 41 | gcse-maths |
+   | conservation of energy and momentum | 36 | a-level-physics, gcse-physics |
+   | binomial theorem | 30 | a-level-maths |
+   | factor and remainder theorem | 29 | a-level-maths |
+   | fundamental theorem of calculus | 21 | a-level-maths |
+   | normal distribution | 19 | a-level-maths |
+   | geometric series | 15 | a-level-maths |
+   | quadratic formula | 15 | a-level-maths, gcse-maths |
+   | arithmetic series | 8 | a-level-maths |
+   | angles in a polygon | 3 | gcse-maths |
+   | angles in a triangle | 2 | gcse-maths |
+
+   Three of these are already proved in the prose and only need lifting out: the
+   quadratic formula and Pythagoras by rearrangement are *derived* in a
+   Walkthrough, and the sine rule follows from a dropped perpendicular. The
+   bounding rule: **a proof is expected where a reader can name the result; not
+   for a definition, and not for a convention.**
+
+   The full inventory is a scan of the built pages rather than the source, so a
+   result that is only named in a caption or a readout is not missed. It is not
+   built yet; the twenty above come from the source and are the starting bound.
+
+### The non-negotiables it inherits
+
+- **No colour** in the component or a proof figure: `fig-*`/`text-*` classes and
+  `--tb-*` tokens, both schemes, every bundle.
+- **Predict → Test → Explain** for every interactive proof, per P6: the explanation
+  is prompted, never shown.
+- **The extras budget**: hooks, applications and tools are about a quarter of a
+  chapter. The *affordance* is small and belongs in a page; a proof with sliders is
+  an investigation and is budgeted like one.
+- **Evidence**: `research/pedagogy.md` governs what may be claimed for it.
+
+### Done means
+
+- A directive places the affordance beneath any statement the author names, and a
+  page with none is unchanged.
+- One proof, one page, referenced from every book that needs it — no second copy.
+- Each proof names whether it is **in the specification or an extension**, in the
+  reader's words, and the mark is tested.
+- Every proof that can be interactive is, with the interaction following
+  Predict → Test → Explain.
+- The component passes the figure contract's tests: no colour literal, an accessible
+  name, no runtime LaTeX, and correct painting in both schemes.
+- The inventory of asserted-without-proof facts exists, and each one is either
+  written or recorded as deliberately not.
