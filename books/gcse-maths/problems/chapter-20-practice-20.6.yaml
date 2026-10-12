@@ -16,6 +16,7 @@ problems:
     dfe: ['G22']
     statement: 'In a triangle, A=60°, a=10 cm and B=30°. Find b.'
     answer_label: 'Question 2'
+    plays: sine-rule
     check: {kind: 'evaluate', expression: '10*sin(pi/6)/sin(pi/3)', answer: '10*sqrt(3)/3'}
     answer_text: '10√3/3 cm'
 
@@ -34,6 +35,7 @@ problems:
     dfe: ['G22']
     statement: 'In a triangle, A=90°, a=14 cm and B=30°. Find b.'
     answer_label: 'Question 4'
+    plays: sine-rule
     check: {kind: 'evaluate', expression: '14*sin(pi/6)/sin(pi/2)', answer: '7'}
     answer_text: '7 cm'
 
@@ -43,6 +45,7 @@ problems:
     dfe: ['G22']
     statement: 'In a triangle, side a=5 cm opposite 30° and side b is opposite 90°. Find b.'
     answer_label: 'Question 5'
+    plays: sine-rule
     check: {kind: 'evaluate', expression: '5*sin(pi/2)/sin(pi/6)', answer: '10'}
     answer_text: '10 cm'
 
@@ -52,6 +55,7 @@ problems:
     dfe: ['G22']
     statement: 'In triangle ABC, A=45°, B=60°, and a=10 cm. Find c, where C is the remaining angle.'
     answer_label: 'Question 6'
+    plays: sine-rule
     check: {kind: 'evaluate', expression: '10*sin(75*pi/180)/sin(pi/4)', answer: '(sqrt(3)+1)*5'}
     answer_text: '5(√3 + 1) cm'
 

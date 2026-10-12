@@ -7,6 +7,7 @@ problems:
     dfe: ['G20']
     statement: 'A point is 10 m from a tower. The elevation angle is 45°. Find the height above eye level.'
     answer_label: 'Question 1'
+    plays: trig-ratios
     check: {kind: 'evaluate', expression: '10*tan(pi/4)', answer: '10'}
     answer_text: '10 m'
 
@@ -16,6 +17,7 @@ problems:
     dfe: ['G20']
     statement: 'A building is 20 m high. The angle of elevation from a point is 30°. Find the horizontal distance.'
     answer_label: 'Question 2'
+    plays: trig-ratios
     check: {kind: 'evaluate', expression: '20/tan(pi/6)', answer: '20*sqrt(3)'}
     answer_text: '20√3 m'
 
@@ -25,6 +27,7 @@ problems:
     dfe: ['G20']
     statement: 'A kite string is 50 m long and makes a 30° angle with the ground. Find its vertical height.'
     answer_label: 'Question 3'
+    plays: trig-ratios
     check: {kind: 'evaluate', expression: '50*sin(pi/6)', answer: '25'}
     answer_text: '25 m'
 
@@ -43,6 +46,7 @@ problems:
     dfe: ['G20']
     statement: 'From a cliff top 30 m above sea level, the depression angle to a boat is 45°. Find the horizontal distance.'
     answer_label: 'Question 5'
+    plays: trig-ratios
     check: {kind: 'evaluate', expression: '30/tan(pi/4)', answer: '30'}
     answer_text: '30 m'
 
@@ -52,6 +56,7 @@ problems:
     dfe: ['G20']
     statement: 'A tree casts a 6 m shadow when the sun elevation is 60°. Find its height.'
     answer_label: 'Question 6'
+    plays: trig-ratios
     check: {kind: 'evaluate', expression: '6*tan(pi/3)', answer: '6*sqrt(3)'}
     answer_text: '6√3 m'
 

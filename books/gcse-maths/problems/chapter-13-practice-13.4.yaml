@@ -33,6 +33,7 @@ problems:
     dfe: [A16]
     statement: 'Show that $(3,4)$ lies on $x^2+y^2=25$.'
     answer_label: 'Check a point on a circle'
+    plays: pythagoras
     check: {kind: evaluate, expression: 3**2+4**2, answer: '25'}
     answer_text: '$3^2+4^2=9+16=25$, so the point lies on the circle.'
   - id: circle-x-axis

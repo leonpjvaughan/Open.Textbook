@@ -2365,10 +2365,32 @@ board provides.
 |---|---|---|
 | A-level Physics | 20 | Reviewed: genuinely not booklet items, or derived combinations. |
 | A-level Mathematics | 307 | Not attempted. |
-| GCSE Mathematics | 126 | Not attempted. |
+| GCSE Mathematics | 126 | **28 declared by rule**; the rest are algebra, not booklet formulae. |
 | GCSE Physics | **0** | Not a gap: its expressions carry no symbols at all, only substituted numbers, so there is nothing a declaration could name. That is itself the reason the check cannot prove completeness. |
 
-**The 20 are a judgement, not an omission.** They are a difference (`a - b`),
+**GCSE Mathematics: 28 declarations, by rule rather than by shape.** Its booklet has
+only 24 items — geometry, measure and proportion — while its 126 symbolic records are
+mostly *algebraic manipulation*: expanding `(x+3)(x+5)`, factorising `x^2+8x+15`,
+solving `3((x-5)/3)+5`. So the declarations are made one rule at a time, each
+requiring the expression to be an instance of **that** item:
+
+| Item | Records | The form |
+|---|---|---|
+| `pythagoras` | 8 | `a^2 + b^2`, or `sqrt(a^2 + b^2)` for the hypotenuse |
+| `trig-ratios` | 9 | `k sin A`, `k / cos A`, `k tan A` — one ratio, not a combination |
+| `triangle-area-sinc` | 5 | `(ab/2) sin C` |
+| `sine-rule` | 4 | `k sin A / sin B` |
+| `cosine-rule` | 2 | `a^2 + b^2 - 2ab cos C` |
+
+**A first attempt at this declared 33 and was wrong, and catching it is the point.**
+It matched any expression containing a trig function, so `x sin x` — a product-rule
+differentiation from a calculus bank — was declared `trig-ratios`, and three records
+that merely *evaluate* exact values (`sin(pi/4) cos(pi/4)`) were declared too. Every
+one of those would have passed the check, because the check proves the item is
+*provided*, not that it is *the right item*. The declarations were withdrawn and
+re-made by rule; the 28 above are each an instance of the item they name.
+
+**The 20 in A-level Physics are a judgement, not an omission.** They are a difference (`a - b`),
 a division by a count (`d / n`), a two-stage sum, or a derived result; and one is
 genuinely interesting — a question uses $p = mv$ and **the booklet has no
 `momentum` item**, only `force-momentum` ($F = \Delta p/\Delta t$). That may be

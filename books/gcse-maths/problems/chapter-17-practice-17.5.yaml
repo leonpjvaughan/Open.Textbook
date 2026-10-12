@@ -79,6 +79,7 @@ problems:
       - 'G15'
     statement: 'A rectangle is 24 m by 18 m. Work out its diagonal.'
     answer_label: 'A rectangle is 24 m by 18 m. Work out its diagonal.'
+    plays: pythagoras
     check:
       kind: 'evaluate'
       expression: 'sqrt(24**2 + 18**2)'

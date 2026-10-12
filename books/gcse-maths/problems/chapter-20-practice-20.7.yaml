@@ -7,6 +7,7 @@ problems:
     dfe: ['G22']
     statement: 'Two sides are 5 cm and 7 cm with included angle 60°. Find the third side exactly.'
     answer_label: 'Question 1'
+    plays: cosine-rule
     check: {kind: 'evaluate', expression: '5**2+7**2-2*5*7*cos(pi/3)', answer: '39'}
     answer_text: '√39 cm'
 
@@ -16,6 +17,7 @@ problems:
     dfe: ['G22']
     statement: 'Two sides are 6 cm and 8 cm with included angle 90°. Find the third side.'
     answer_label: 'Question 2'
+    plays: cosine-rule
     check: {kind: 'evaluate', expression: '6**2+8**2-2*6*8*cos(pi/2)', answer: '100'}
     answer_text: '10 cm'
 

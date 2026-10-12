@@ -7,6 +7,7 @@ problems:
     dfe: ['G23']
     statement: 'Find the area of a triangle with sides 8 cm and 5 cm and included angle 30°.'
     answer_label: 'Question 1'
+    plays: triangle-area-sinc
     check: {kind: 'evaluate', expression: '(8*5/2)*sin(pi/6)', answer: '10'}
     answer_text: '10 cm^2'
 
@@ -16,6 +17,7 @@ problems:
     dfe: ['G23']
     statement: 'Find the area when sides 6 cm and 10 cm include an angle of 90°.'
     answer_label: 'Question 2'
+    plays: triangle-area-sinc
     check: {kind: 'evaluate', expression: '(6*10/2)*sin(pi/2)', answer: '30'}
     answer_text: '30 cm^2'
 
@@ -34,6 +36,7 @@ problems:
     dfe: ['G23']
     statement: 'Two sides are 12 cm and 8 cm, with included angle 60°. Find the area exactly.'
     answer_label: 'Question 4'
+    plays: triangle-area-sinc
     check: {kind: 'evaluate', expression: '(12*8/2)*sin(pi/3)', answer: '24*sqrt(3)'}
     answer_text: '24√3 cm^2'
 
@@ -43,6 +46,7 @@ problems:
     dfe: ['G23']
     statement: 'A triangle has sides 5 cm and 11 cm with included angle 120°. Find its area.'
     answer_label: 'Question 5'
+    plays: triangle-area-sinc
     check: {kind: 'evaluate', expression: '(5*11/2)*sin(2*pi/3)', answer: '55*sqrt(3)/4'}
     answer_text: '55√3/4 cm^2'
 
@@ -88,5 +92,6 @@ problems:
     dfe: ['G22', 'G23']
     statement: 'A triangle has sides 8 cm and 11 cm with an included angle of 60°. Which method finds its area: the area formula $\frac12 ab\sin C$, the sine rule, or the cosine rule? Give a reason, then find the area exactly.'
     answer_label: 'Method choice: which rule'
+    plays: triangle-area-sinc
     check: {kind: 'evaluate', expression: '(8*11/2)*sin(pi/3)', answer: '22*sqrt(3)'}
     answer_text: 'Use the area formula $\frac12ab\sin C$: the area is $\frac12\times8\times11\times\sin60^\circ=22\sqrt3\text{ cm}^2$. The sine and cosine rules give a length or angle, not an area.'

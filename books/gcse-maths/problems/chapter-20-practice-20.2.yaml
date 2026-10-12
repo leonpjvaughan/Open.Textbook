@@ -7,6 +7,7 @@ problems:
     dfe: ['G20']
     statement: 'A right triangle has angle 30° and hypotenuse 14 cm. Find the opposite side.'
     answer_label: 'Question 1'
+    plays: trig-ratios
     check: {kind: 'evaluate', expression: '14*sin(pi/6)', answer: '7'}
     answer_text: '7 cm'
 
@@ -16,6 +17,7 @@ problems:
     dfe: ['G20']
     statement: 'A right triangle has angle 60° and hypotenuse 10 cm. Find the adjacent side.'
     answer_label: 'Question 2'
+    plays: trig-ratios
     check: {kind: 'evaluate', expression: '10*cos(pi/3)', answer: '5'}
     answer_text: '5 cm'
 
@@ -52,6 +54,7 @@ problems:
     dfe: ['G20']
     statement: 'A right triangle has angle 30° and adjacent side 6 cm. Find the hypotenuse.'
     answer_label: 'Question 6'
+    plays: trig-ratios
     check: {kind: 'evaluate', expression: '6/cos(pi/6)', answer: '4*sqrt(3)'}
     answer_text: '4√3 cm'
 
@@ -61,6 +64,7 @@ problems:
     dfe: ['G20']
     statement: 'Find the opposite side when the hypotenuse is 20 cm and angle is 30°.'
     answer_label: 'Question 7'
+    plays: trig-ratios
     check: {kind: 'evaluate', expression: '20*sin(pi/6)', answer: '10'}
     answer_text: '10 cm'
 
@@ -70,6 +74,7 @@ problems:
     dfe: ['G20']
     statement: 'A right triangle has opposite 9 cm and adjacent 12 cm. Find the hypotenuse.'
     answer_label: 'Question 8'
+    plays: pythagoras
     check: {kind: 'evaluate', expression: 'sqrt(9**2+12**2)', answer: '15'}
     answer_text: '15 cm'
 
