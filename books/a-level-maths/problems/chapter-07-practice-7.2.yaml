@@ -13,6 +13,7 @@ problems:
     dfe: [G1]
     statement: 'Differentiate $f(x) = x^2$ from first principles.'
     answer_label: 'The derivative'
+    plays: first-principles
     check:
       kind: apply
       expression: "((x + h)**2 - x**2)/h"
@@ -25,6 +26,7 @@ problems:
     dfe: [G1]
     statement: 'Use first principles to find the gradient of $y = x^2$ at $x = 3$.'
     answer_label: 'The gradient at $x = 3$'
+    plays: first-principles
     check:
       kind: apply
       expression: "((3 + h)**2 - 3**2)/h"
@@ -37,6 +39,7 @@ problems:
     dfe: [G1]
     statement: 'Differentiate $f(x) = x^2 + 2x$ from first principles.'
     answer_label: 'The derivative'
+    plays: first-principles
     check:
       kind: apply
       expression: "((x + h)**2 + 2*(x + h) - (x**2 + 2*x))/h"
@@ -49,6 +52,7 @@ problems:
     dfe: [G1]
     statement: 'Differentiate $f(x) = 3x^2$ from first principles.'
     answer_label: 'The derivative'
+    plays: first-principles
     check:
       kind: apply
       expression: "(3*(x + h)**2 - 3*x**2)/h"
@@ -61,6 +65,7 @@ problems:
     dfe: [G1]
     statement: 'Differentiate $f(x) = x^3$ from first principles.'
     answer_label: 'The derivative'
+    plays: first-principles
     check:
       kind: apply
       expression: "((x + h)**3 - x**3)/h"
@@ -73,6 +78,7 @@ problems:
     dfe: [G1]
     statement: 'Differentiate $f(x) = x^3 - x$ from first principles.'
     answer_label: 'The derivative'
+    plays: first-principles
     check:
       kind: apply
       expression: "((x + h)**3 - (x + h) - (x**3 - x))/h"
@@ -85,6 +91,7 @@ problems:
     dfe: [G1]
     statement: 'Differentiate $f(x) = x^2 + 5$ from first principles.'
     answer_label: 'The derivative'
+    plays: first-principles
     check:
       kind: apply
       expression: "((x + h)**2 + 5 - (x**2 + 5))/h"
@@ -97,6 +104,7 @@ problems:
     dfe: [G1]
     statement: 'Differentiate $f(x) = 2x + 1$ from first principles.'
     answer_label: 'The derivative'
+    plays: first-principles
     check:
       kind: apply
       expression: "(2*(x + h) + 1 - (2*x + 1))/h"
@@ -109,6 +117,7 @@ problems:
     dfe: [G1]
     statement: 'Differentiate $f(x) = x^3 + x^2$ from first principles.'
     answer_label: 'The derivative'
+    plays: first-principles
     check:
       kind: apply
       expression: "((x + h)**3 + (x + h)**2 - (x**3 + x**2))/h"
@@ -121,6 +130,7 @@ problems:
     dfe: [G1]
     statement: 'Show, from first principles, that the gradient of $y = x^2$ at $x = -2$ is $-4$.'
     answer_label: 'The gradient at $x = -2$'
+    plays: first-principles
     check:
       kind: apply
       expression: "((-2 + h)**2 - (-2)**2)/h"

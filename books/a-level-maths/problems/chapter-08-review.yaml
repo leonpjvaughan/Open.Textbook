@@ -101,6 +101,7 @@ problems:
     dfe: [H5]
     statement: 'Find $\displaystyle\int x\cos 2x\,dx$.'
     answer_label: 'The integral'
+    plays: integration-by-parts
     check:
       kind: apply
       expression: "x*cos(2*x)"

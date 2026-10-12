@@ -92,3 +92,71 @@ def test_infer_suggests_but_never_decides():
     suggested = coverage.infer({"check": {"expression": "m * a"}}, items)
     assert suggested, "a literal booklet side should be suggested"
     assert coverage.infer({"check": {"expression": "0.5 * 1200 * 15**2"}}, items) == []
+
+
+# --- a record may need more than one booklet item -----------------------------
+#
+# "Differentiate $x^2\sin x$" needs the derivative of a power *and* the product
+# rule, and the booklet supplies them as two items. Naming one would let the check
+# pass while the other was missing, which is the failure it exists to catch.
+
+
+def test_a_record_may_name_several_items_and_all_are_read():
+    items = {
+        "standard-derivatives": {"id": "standard-derivatives", "provision": {"aqa": "given"}},
+        "differentiation-rules": {"id": "differentiation-rules", "provision": {"aqa": "given"}},
+    }
+    record = {"id": "r", "plays": ["standard-derivatives", "differentiation-rules"]}
+    assert coverage.declared_all(record) == ["standard-derivatives", "differentiation-rules"]
+    assert coverage.errors(record, items, ("aqa",)) == []
+
+
+def test_a_bad_id_in_a_list_is_reported_even_when_the_others_are_fine():
+    """The whole point of allowing a list: one good id must not cover a bad one."""
+    items = {"standard-derivatives": {"id": "standard-derivatives", "provision": {"aqa": "given"}}}
+    record = {"id": "r", "plays": ["standard-derivatives", "nope"]}
+    errors = coverage.errors(record, items, ("aqa",))
+    assert len(errors) == 1
+    assert "nope" in errors[0]
+
+
+def test_a_list_may_not_hide_a_recall_item():
+    """The second id is held to the same provision rule as the first."""
+    items = {
+        "standard-derivatives": {"id": "standard-derivatives", "provision": {"aqa": "given"}},
+        "memorised": {"id": "memorised", "provision": {"aqa": "know"}},
+    }
+    record = {"id": "r", "plays": ["standard-derivatives", "memorised"]}
+    errors = coverage.errors(record, items, ("aqa",))
+    assert errors and "memorised" in errors[0]
+
+
+def test_a_repeated_id_is_read_once():
+    """A declaration reads as prose, so repetition is tolerated and deduplicated."""
+    items = {"a": {"id": "a", "provision": {"aqa": "given"}}}
+    assert coverage.declared_all({"id": "r", "plays": ["a", "a"]}) == ["a"]
+
+
+def test_a_single_string_still_declares_one_item():
+    """The list form is additive: every existing declaration keeps its meaning."""
+    assert coverage.declared_all({"id": "r", "plays": "a"}) == ["a"]
+    assert coverage.declared({"id": "r", "plays": "a"}) == "a"
+    assert coverage.declared({"id": "r"}) is None
+    assert coverage.declared_all({"id": "r"}) == []
+
+
+def test_a_list_inside_the_check_block_counts_too():
+    items = {"a": {"id": "a", "provision": {"aqa": "given"}}}
+    record = {"id": "r", "check": {"kind": "apply", "plays": ["a"]}}
+    assert coverage.declared_all(record) == ["a"]
+
+
+def test_an_empty_declaration_is_not_a_declaration():
+    """`plays: []` and `plays: ""` mean nothing was declared, not an invalid id.
+
+    A blank declaration must not read as "declared, and fine" — `undeclared()`
+    counts on `declared_all` being empty for a record that says nothing.
+    """
+    assert coverage.declared_all({"id": "r", "plays": []}) == []
+    assert coverage.declared_all({"id": "r", "plays": ""}) == []
+    assert coverage.declared_all({"id": "r", "plays": ["", "  "]}) == []

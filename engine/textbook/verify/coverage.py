@@ -24,8 +24,15 @@ than no check at all.
 So the declaration is the truth and the check verifies it:
 
     plays: aqa-kinetic-energy      # on the record, or inside its `check:`
+    plays: [standard-derivatives, differentiation-rules]
 
-and the check proves the id exists in the book's booklet and that **some board the
+A record may name **several** items, because a question can need several: to
+differentiate $x^2\\sin x$ a reader needs the derivative of a power *and* the
+product rule, and the booklet supplies them separately. Naming one of the two
+would let the check pass while the other was missing, which is the failure it
+exists to catch. Every named id is verified.
+
+and the check proves each id exists in the book's booklet and that **some board the
 book follows provides it**. `given` means printed on that board's insert,
 `question` means supplied in the question — either way the reader is not asked to
 recall it. `know` means they are, so a record that plays a `know` item for every
@@ -82,13 +89,31 @@ def booklet_items(book: books.Book) -> dict[str, dict]:
     return items
 
 
-def declared(problem: dict) -> str | None:
-    """The booklet item a record says it plays, if it says."""
+def declared_all(problem: dict) -> list[str]:
+    """Every booklet item a record says it plays, in order, without repeats.
+
+    A record may name one — `plays: standard-derivatives` — or several, because a
+    question can need more than one. "Differentiate $x^2\\sin x$" needs the
+    derivative of a power *and* the product rule, and the booklet provides them as
+    two items; recording only one would leave the check able to pass while the
+    other was missing, which is the failure it exists to catch. The order is the
+    author's and is not used for anything, so it reads as prose.
+    """
     for source in (problem, problem.get("check") or {}):
         value = source.get("plays")
-        if value:
-            return str(value).strip()
-    return None
+        if value is None:
+            continue
+        values = value if isinstance(value, (list, tuple)) else [value]
+        found = [str(item).strip() for item in values if str(item).strip()]
+        if found:
+            return list(dict.fromkeys(found))
+    return []
+
+
+def declared(problem: dict) -> str | None:
+    """The first booklet item a record plays, for callers that want one."""
+    found = declared_all(problem)
+    return found[0] if found else None
 
 
 def supported_boards(book: books.Book) -> tuple[str, ...]:
@@ -106,10 +131,17 @@ def supported_boards(book: books.Book) -> tuple[str, ...]:
 
 
 def errors(problem: dict, items: dict[str, dict], boards: tuple[str, ...]) -> list[str]:
-    """Why a record's declared equation is not one the reader is shown."""
-    item_id = declared(problem)
-    if item_id is None:
-        return []
+    """Why each equation a record declares is not one the reader is shown."""
+    problems: list[str] = []
+    for item_id in declared_all(problem):
+        problems.extend(_errors_for(item_id, items, boards))
+    return problems
+
+
+def _errors_for(
+    item_id: str, items: dict[str, dict], boards: tuple[str, ...]
+) -> list[str]:
+    """Why one declared id is not a booklet item the reader is given."""
     if item_id not in items:
         return [
             f"plays {item_id!r}, which is not in this book's booklet. "

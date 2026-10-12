@@ -64,6 +64,7 @@ problems:
     dfe: [H5]
     statement: 'Find $\displaystyle\int xe^{2x}\,dx$.'
     answer_label: 'The integral'
+    plays: integration-by-parts
     check:
       kind: apply
       expression: "x*exp(2*x)"
@@ -77,6 +78,7 @@ problems:
     dfe: [H5]
     statement: 'Find $\displaystyle\int x\sin x\,dx$.'
     answer_label: 'The integral'
+    plays: integration-by-parts
     check:
       kind: apply
       expression: "x*sin(x)"
@@ -90,6 +92,7 @@ problems:
     dfe: [H5]
     statement: 'Find $\displaystyle\int x\ln x\,dx$.'
     answer_label: 'The integral'
+    plays: integration-by-parts
     check:
       kind: apply
       expression: "x*ln(x)"
@@ -103,6 +106,7 @@ problems:
     dfe: [H5]
     statement: 'Find $\displaystyle\int \ln x\,dx$.'
     answer_label: 'The integral'
+    plays: integration-by-parts
     check:
       kind: apply
       expression: "ln(x)"
@@ -116,6 +120,7 @@ problems:
     dfe: [H5]
     statement: 'Find $\displaystyle\int x^2e^x\,dx$.'
     answer_label: 'The integral'
+    plays: integration-by-parts
     check:
       kind: apply
       expression: "x**2*exp(x)"
@@ -129,6 +134,7 @@ problems:
     dfe: [H5]
     statement: 'Evaluate $\displaystyle\int_0^1 xe^x\,dx$.'
     answer_label: 'The value of the integral'
+    plays: integration-by-parts
     check:
       kind: apply
       expression: "x*exp(x)"

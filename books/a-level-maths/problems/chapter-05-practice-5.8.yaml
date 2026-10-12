@@ -100,6 +100,7 @@ problems:
     dfe: [E6]
     statement: 'Show that $\sin(A + B) + \sin(A - B) \equiv 2\sin A\cos B$.'
     answer_label: 'The identity'
+    plays: sine-addition
     check:
       kind: evaluate
       expression: "sin(x + y) + sin(x - y)"

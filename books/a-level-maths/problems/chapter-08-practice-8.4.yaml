@@ -15,6 +15,7 @@ problems:
     dfe: [H4]
     statement: 'Write down the value of $\displaystyle\sum_{i=1}^{n} i$ in terms of $n$.'
     answer_label: 'The sum'
+    plays: aqa-arithmetic-series
     check:
       kind: apply
       expression: "r"

@@ -147,6 +147,7 @@ problems:
     dfe: [I2]
     statement: 'For $f(x) = x^3 - 2x + 2$ with $x_0 = 0$, find $x_2$.'
     answer_label: 'The value of x2'
+    plays: newton-raphson
     check:
       kind: apply
       expression: "x - (x**3 - 2*x + 2)/(3*x**2 - 2)"

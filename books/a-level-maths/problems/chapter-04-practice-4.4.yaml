@@ -14,6 +14,7 @@ problems:
     dfe: [D3]
     statement: 'Evaluate $\sum_{r=1}^{4}(5r - 2)$.'
     answer_label: 'The sum'
+    plays: aqa-arithmetic-series
     check:
       kind: apply
       expression: "5*r - 2"
@@ -26,6 +27,7 @@ problems:
     dfe: [D3]
     statement: 'Evaluate $\sum_{r=1}^{5}2^r$.'
     answer_label: 'The sum'
+    plays: geometric-series
     check:
       kind: apply
       expression: "2**r"
@@ -38,6 +40,7 @@ problems:
     dfe: [D3]
     statement: 'Evaluate $\sum_{r=1}^{8}(3r - 2)$.'
     answer_label: 'The sum'
+    plays: aqa-arithmetic-series
     check:
       kind: apply
       expression: "3*r - 2"
@@ -62,6 +65,7 @@ problems:
     dfe: [D3]
     statement: 'Write $5 + 10 + 15 + \dots + 60$ in sigma notation, and work out the sum.'
     answer_label: 'The sum'
+    plays: aqa-arithmetic-series
     check:
       kind: apply
       expression: "5*r"
@@ -74,6 +78,7 @@ problems:
     dfe: [D3]
     statement: 'Use the standard results to work out $\sum_{r=1}^{12}(2r + 3)$.'
     answer_label: 'The sum'
+    plays: aqa-arithmetic-series
     check:
       kind: apply
       expression: "2*r + 3"
@@ -122,6 +127,7 @@ problems:
     dfe: [D3]
     statement: 'Use the standard results to work out $\sum_{r=4}^{9}r$.'
     answer_label: 'The sum'
+    plays: aqa-arithmetic-series
     check:
       kind: apply
       expression: "r"
@@ -146,6 +152,7 @@ problems:
     dfe: [D3]
     statement: 'Work out $\sum_{r=1}^{n}(3r + 1)$ in terms of $n$.'
     answer_label: 'The sum in terms of n'
+    plays: aqa-arithmetic-series
     check:
       kind: apply
       expression: "3*r + 1"

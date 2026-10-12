@@ -15,6 +15,7 @@ problems:
     dfe: [D1]
     statement: 'Expand $(1 + x)^{-1}$ up to and including the term in $x^3$, and state the range of validity.'
     answer_label: 'The expansion and the range'
+    plays: binomial-series
     check:
       kind: apply
       expression: "(1 + x)**(-1)"
@@ -27,6 +28,7 @@ problems:
     dfe: [D1]
     statement: 'Expand $(1 + 3x)^{-1}$ up to and including the term in $x^3$, and state the range of validity.'
     answer_label: 'The expansion and the range'
+    plays: binomial-series
     check:
       kind: apply
       expression: "(1 + 3*x)**(-1)"
@@ -39,6 +41,7 @@ problems:
     dfe: [D1]
     statement: 'Expand $(1 - x)^{\frac{1}{2}}$ up to and including the term in $x^3$.'
     answer_label: 'The expansion'
+    plays: binomial-series
     check:
       kind: apply
       expression: "(1 - x)**(1/2)"
@@ -51,6 +54,7 @@ problems:
     dfe: [D1]
     statement: 'Expand $\sqrt{9 + x}$ up to and including the term in $x^3$, and state the range of validity.'
     answer_label: 'The expansion and the range'
+    plays: binomial-series
     check:
       kind: apply
       expression: "(9 + x)**(1/2)"
@@ -63,6 +67,7 @@ problems:
     dfe: [D1]
     statement: 'Find the first three terms, up to $x^2$, in the expansion of $\dfrac{1}{\sqrt{1 + 4x}}$.'
     answer_label: 'The first three terms'
+    plays: binomial-series
     check:
       kind: apply
       expression: "(1 + 4*x)**(-1/2)"
@@ -75,6 +80,7 @@ problems:
     dfe: [D1]
     statement: 'Expand $(1 + x)^{-3}$ up to and including the term in $x^3$.'
     answer_label: 'The expansion'
+    plays: binomial-series
     check:
       kind: apply
       expression: "(1 + x)**(-3)"
@@ -87,6 +93,7 @@ problems:
     dfe: [D1]
     statement: 'Find the first three terms, up to $x^2$, in the expansion of $(2 + 3x)^{\frac{1}{2}}$. Give the answer with exact surds.'
     answer_label: 'The first three terms'
+    plays: binomial-series
     check:
       kind: apply
       expression: "(2 + 3*x)**(1/2)"
@@ -146,6 +153,7 @@ problems:
     dfe: [D1]
     statement: 'Show that the first two terms in the expansion of $\sqrt{4 + 2x}$ are $2 + \frac{x}{2}$.'
     answer_label: 'The first two terms'
+    plays: binomial-series
     check:
       kind: apply
       expression: "(4 + 2*x)**(1/2)"

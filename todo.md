@@ -370,6 +370,15 @@ Other notes:
 
 ## 5. Worker version URLs are public, and rollback is untested
 
+**Deferred by the author, 2026-10-12.** Not because it is not worth doing — a
+rollback that has never been run is a plan, not a capability — but because it is a
+live production act and there is no rush while the site is one release old and
+traffic is nil. The window for doing it cheaply is the next deploy that is not the
+first: two versions in the Worker's history makes a rollback drill a one-command
+test rather than an exercise in creating a bad version on purpose. Recorded as a
+decision so it is not rediscovered as an oversight.
+
+
 **Why item 4's checkbox is worth doing rather than a preference.** Cloudflare's
 own documentation, on Version URLs (formerly preview URLs): *"If Version URLs are
 enabled, the URL is public and available after version creation."* Every version
@@ -1366,6 +1375,14 @@ runnable; `scripts/preview-themes.sh` still passes on the six bundles.
 ---
 
 ## 24. Animated backgrounds on the vivid themes
+
+**Deferred indefinitely by the author, 2026-10-12.** The design work stands and is
+recorded in `DECISIONS.md` and `research/design/background-effects.md`; the seam is
+built (`engine/textbook/backgrounds.py`) so an effect is a registry entry rather
+than a change to the shell. Nothing ships one, and nothing will until a topic needs
+one. Not a gap to close: the honest reading of the measurements is that motion
+competes with a reader's attention on a page whose job is to make them think, and
+the collection's own rule is that decoration is inside the practice budget.
 
 **Decided, not built.** `DECISIONS.md` (2026-10-11) and the measurements in
 `research/design/background-effects.md` settle the shape: opt-in, remembered per
@@ -2401,6 +2418,78 @@ declares it. Worth one look at the question.
 **Done means.** Each book's remaining count is either declared or recorded as
 reviewed with a reason, and `python -m textbook.verify` prints counts that match
 this table.
+
+### A-level Mathematics — done, and the check proved its worth first
+
+**35 declarations, 0 invalid, 307 → 273.** The pass is small and that is the
+finding, not a shortfall.
+
+**An operation-based rule would have written 147 invalid declarations, and the
+check refused all of them.** The reasoning looked sound: a question that
+differentiates needs `standard-derivatives`, one that integrates needs
+`standard-integrals`, one that expands `(1+x)^n` needs the binomial series. The
+booklet records the first two — and `differentiation-rules`, `laws-of-logarithms`
+and `pythagorean-identities` — as **`know` for every board**, and `errors()` rejects
+a declaration that every supported board expects the reader to recall.
+
+The booklet's own header says why, and it is not an error in the data:
+
+> The `know` items are DfE "Mathematics: AS and A level content" (DFE-00706-2014)
+> **Appendix B**, the formulae and identities that must be used "without these
+> formulae and identities being provided".
+
+So a question needing the power rule is **not** a coverage gap — the specification
+requires the reader to know it. The rule that would have declared it was the
+mistake, and it was caught before a line was written rather than after a review.
+That is the check working, and it is the strongest argument for the
+declaration-first shape `research/curriculum/physics-verifier-gaps.md` §3.6
+proposed being built the other way round.
+
+**What is declarable is what a board actually prints**, so only 35 records have
+one:
+
+| Item | Records | How it was recognised |
+|---|---|---|
+| `first-principles` | 10 | a difference quotient — `/h` with `h` in it |
+| `binomial-series` | 8 | `series` of `(1+x)^n` or `(a+bx)^n` |
+| `aqa-arithmetic-series` | 7 | a finite sum with a **linear** summand |
+| `integration-by-parts` | 7 | a polynomial times a transcendental of a **linear** argument |
+| `geometric-series` | 1 | `2**r` — the variable in the *exponent* |
+| `sine-addition` | 1 | `sin(x+y) + sin(x−y)` |
+| `newton-raphson` | 1 | a step of the form `x − f(x)/f′(x)` |
+
+**Two errors were caught by reading the rule's output rather than trusting it**,
+which is where the last two books' mistakes were found too:
+
+- **`r**2` is not a geometric series.** `Σr²` is a sum of *powers*; a geometric term
+  has the variable in the exponent. The first version of the rule had the test
+  backwards and would have declared `p4-sum-of-squares`, `p7-square-standard-result`,
+  `p9-sum-of-cubes` and `Σr²` as geometric. The sheet has no sum-of-powers formula,
+  so those four are correctly undeclared.
+- **A by-parts integrand is not any polynomial times any exponential.**
+  `3x²e^{x³}` matches that shape and is a *substitution*. Requiring the
+  transcendental's argument to be linear excludes it, and the rule now separates
+  all seven genuine parts integrals from all five substitutions.
+
+**A schema wart, recorded rather than hidden.** `aqa-arithmetic-series`,
+`edexcel-arithmetic-series` and `ocr-arithmetic-series` are three ids for one
+formula, differing only in bracket style (`[2a + (n-1)d]` against `\{2a + (n-1)d\}`),
+because each board's sheet is reproduced in its own rendering and an item carries
+one `latex`. The check accepts a declaration when **some** supported board provides
+the formula, so naming one is true in substance — every reader is given it — but
+the id named is arbitrary among three. A `variants:` field would say it properly.
+Not worth a booklet rewrite for seven records; worth knowing about.
+
+**Two changes to the check itself**, both small and both tested:
+
+- **A record may name several items.** `plays: [standard-integrals, integration-by-parts]`
+  is now accepted beside the single-id form, because "differentiate $x^2\sin x$"
+  genuinely needs two and naming one would let the check pass while the other was
+  missing. 7 new tests, including that a bad id is reported even when the others
+  are fine and that a blank declaration is not a declaration.
+- The 273 that remain are the honest remainder: algebraic manipulation, proof,
+  partial fractions, elimination, differential equations — and every question whose
+  working rests on a DfE Appendix B formula the reader is required to know.
 
 ---
 
