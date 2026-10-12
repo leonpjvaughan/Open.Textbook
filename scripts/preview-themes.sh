@@ -46,6 +46,14 @@ done < <(uv run python -m textbook.plan --configs)
 # few seconds and it is why the gate must not be built around a desktop browser.
 node scripts/check-mobile.cjs site
 
+# Every figure, measured in the browser in both schemes, before the bundle sweep.
+# The sweep audits three routes; this audits all of them — every figure the books
+# contain, wherever it lives — and asks what each one actually paints. It is the
+# only check that sees the difference between a `text-*` class setting `color`
+# (which paints HTML) and `fill` (which paints SVG), which is how eighteen SVG
+# labels were found rendering black at 1.4:1 on the dark scheme.
+node scripts/audit-figures.cjs site --json "${TMPDIR:-/tmp}/figure-audit.json"
+
 # The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages. Adding a book means
 # adding its landing route and one of its chapter routes here.
 exec node test/theme-preview.cjs \

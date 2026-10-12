@@ -235,7 +235,34 @@ async function main() {
   }
   if (shots) fs.mkdirSync(shots, { recursive: true });
 
-  const pages = JSON.parse(fs.readFileSync(maps, "utf8"));
+  // The figure -> page map is derived from the built site when it is not given.
+  // Deriving it here rather than asking a caller to write it means the audit
+  // cannot be pointed at a stale map and silently measure last week's build.
+  let pages;
+  if (fs.existsSync(maps)) {
+    pages = JSON.parse(fs.readFileSync(maps, "utf8"));
+  } else {
+    pages = {};
+    const walk = (dir) => {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) walk(full);
+        else if (entry.name.endsWith(".html")) {
+          const html = fs.readFileSync(full, "utf8");
+          const rel = path.relative(siteDir, full);
+          const url = full.endsWith(`index.html`)
+            ? "/" + path.dirname(rel).split(path.sep).join("/") + "/"
+            : "/" + rel.split(path.sep).join("/");
+          for (const m of html.matchAll(/data-figure="([^"]+)"/g)) {
+            (pages[m[1]] = pages[m[1]] || new Set()).add(url);
+          }
+        }
+      }
+    };
+    walk(siteDir);
+    for (const slug of Object.keys(pages)) pages[slug] = [...pages[slug]].sort();
+  }
+
   let slugs = Object.keys(pages).sort();
   if (only) slugs = slugs.filter((s) => s === only);
 
@@ -311,10 +338,11 @@ async function main() {
   if (jsonOut) fs.writeFileSync(jsonOut, JSON.stringify(report, null, 1));
 
   // Summary.
-  let bad = 0, errs = 0;
+  let bad = 0, errs = 0, taken = 0;
   for (const [slug, entry] of Object.entries(report)) {
     for (const [scheme, res] of Object.entries(entry.schemes)) {
       if (res.error) { errs += 1; continue; }
+      taken += 1;
       if (res.problems.length) {
         bad += 1;
         console.log(`\n${slug} [${scheme}]  panel rgb(${res.panel.r},${res.panel.g},${res.panel.b})`);
@@ -324,9 +352,21 @@ async function main() {
       }
     }
   }
-  console.log(`\nfigures: ${slugs.length}  schemes: ${schemes.join(",")}`);
-  console.log(`  measurements with a contrast failure: ${bad}`);
-  console.log(`  figures that could not be measured: ${errs}`);
+  // A measurement that could not be taken is a failure, not a skip: the point of
+  // this script is that it does not read the source, so "I could not look" and
+  // "I looked and it was fine" must not exit the same way. `missing` catches a
+  // measurement that never ran at all — a slug whose page failed to load a figure
+  // is reported by the page itself, but one that was never attempted is not.
+  const expected = slugs.length * schemes.length;
+  const missing = expected - taken - errs;
+  console.log(`  measurements taken: ${taken} of ${expected}`);
+  if (bad || errs || missing || expected === 0) {
+    console.error(
+      `\nfigure audit failed: ${bad} contrast failure(s), ${errs} unmeasured figure(s), ` +
+        `${missing} measurement(s) not attempted`
+    );
+    process.exit(1);
+  }
 }
 
 main().catch((err) => {

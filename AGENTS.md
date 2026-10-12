@@ -98,10 +98,20 @@ applied to **every book**; a book contributes only its **subject tint**
 put a surface or a font in a book, and never a subject's identity in a bundle.
 
 **Nothing in a page, and nothing in a figure, may carry a colour.** Use the
-`fig-*` and `text-*` classes and read the `--tb-*` tokens. Never put `$...$` in
-runtime figure text; the maths hook runs at build time. The icons are the one
-fixed-colour exception. The cascade, the contrast invariant, reader preferences
-and adding or previewing a bundle are in `assets/AGENTS.md`.
+`fig-*` and `text-*` classes and read the `--tb-*` tokens. **`fig-*` paints a shape
+and `text-*` paints words**, and in SVG that is the difference between `fill` and
+`stroke` on one hand and `color` on the other: an SVG `<text>` is painted with
+`fill`, so a class that sets only `color` leaves it the initial black. Never put
+`$...$` in runtime figure text; the maths hook runs at build time. The icons are
+the one fixed-colour exception.
+
+Every figure is measured in a browser, in both schemes, by
+`scripts/audit-figures.cjs` — the panel behind it, the computed paint of every
+element it draws, and the ratio between them. `research/design/figure-audit.md`
+is the result, table and all. `tests/test_figures.py` pins the contract so a new
+figure cannot repeat a defect the measurement found. The cascade, the contrast
+invariant, reader preferences and adding or previewing a bundle are in
+`assets/AGENTS.md`.
 
 ## Evidence
 
