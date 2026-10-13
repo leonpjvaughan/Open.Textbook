@@ -30,6 +30,7 @@ To construct the views, keep the same scale and align corresponding edges. Label
 A stepped solid can have a plan that shows its footprint while the elevations show different heights. Read a plan square by square, then transfer each height to the matching position in the elevation.
 
 > **Watch out.** The plan does not show height. A $2$-cm-high block and a $5$-cm-high block can have the same plan. Use the elevations to recover height.
+> **Re-check:** compare the plan with the elevations and ask whether the height you used matches.
 
 ## Progress check
 

@@ -35,7 +35,7 @@ The rounding step is $10$ g, so the half-step is $5$ g.
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 Subtract $5$ g for the lower bound and add $5$ g for the upper boundary.
 </details>
@@ -55,7 +55,7 @@ Use the upper boundary for each positive length.
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 The upper boundaries are $6.25$ cm and $3.45$ cm. Multiply them.
 </details>

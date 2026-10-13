@@ -98,3 +98,10 @@ The same argument, with the diameter replaced by a chord, proves the more genera
 result that the angle at the centre is twice the angle at the circumference. The
 semicircle case is the one to understand first, because the two isosceles triangles
 are visible in the picture.
+
+## A common error
+
+The error is to use the right angle when the longest side is not a diameter. The
+result needs the two ends of a diameter, each joined to a third point on the
+circle. If the longest side of the triangle is a chord rather than a diameter,
+the angle at the third point is not $90^\circ$.

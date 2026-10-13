@@ -54,7 +54,7 @@ to $30$ while the other values stay fixed. Write your prediction down first.
 explanation before reading on.
 
 > **Watch out.** Do not calculate the IQR as $Q_1-Q_3$. The upper quartile is
-larger, so subtract $Q_1$ from $Q_3$; check that the spread is positive.
+> larger, so subtract $Q_1$ from $Q_3$; check that the spread is positive.
 
 ## Progress check
 

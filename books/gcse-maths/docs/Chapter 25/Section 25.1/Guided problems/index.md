@@ -34,7 +34,7 @@ $2,4,5,7,8,10,12,14$.
 Split the ordered list into two equal halves. Find each half's median.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 The median is the mean of positions 4 and 5. The lower and upper halves each have four values.
 </details>
@@ -51,7 +51,7 @@ Median $=(7+8)/2=7.5$. Lower quartile $=(4+5)/2=4.5$. Upper quartile $=(10+12)/2
 Subtract the lower quartile from the upper quartile.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 Use $Q_3-Q_1=11-4.5$.
 </details>
@@ -68,7 +68,7 @@ The IQR is $11-4.5=6.5$.
 Range means maximum minus minimum.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 Calculate $9-(-3)$.
 </details>

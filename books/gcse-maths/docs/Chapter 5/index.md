@@ -28,6 +28,13 @@ A school is drawing a model of a garden. The path is 18 m long, and a scale draw
 
 At each progress check, return to the garden path. By the end, you can choose and use its scale accurately.
 
+## Where it is used
+
+Ratios compare quantities and keep the comparison the same when both change.
+Recipes, mixing paint, currency exchange and map scales all use ratios. Direct
+and inverse proportion describe how one quantity changes when another changes,
+such as pay with hours worked, or travel time with speed.
+
 ## Your turn to connect it
 
 Ratios compare quantities in many settings. Write one place where you or someone you know compares quantities, such as a recipe, journey or model. What quantities are compared?

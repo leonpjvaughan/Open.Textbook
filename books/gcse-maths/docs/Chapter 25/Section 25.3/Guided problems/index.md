@@ -30,7 +30,7 @@ kind: guided-problems
 Divide frequency by width.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 Use $15/5$.
 </details>
@@ -47,7 +47,7 @@ Frequency density $=15/5=3$.
 Subtract boundaries, then divide the frequency by the width.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 Width $=30-10=20$. Density $=24/20$.
 </details>
@@ -64,7 +64,7 @@ Width $20$; frequency density $1.2$.
 Subtract consecutive cumulative totals to recover each frequency.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 The first frequency is 6. The next is 9.
 </details>

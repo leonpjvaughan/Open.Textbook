@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. What is the distance from the centre of a circle to any point on it called?
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. It cuts the segment in half at a right angle.
 2. The radius.
@@ -46,7 +46,7 @@ Use a fixed radius centred at $A$.
 A fixed distance from a point traces a circle.
 
 <details markdown="1">
-<summary>Full answer</summary>
+<summary>Full working</summary>
 
 A circle centred at $A$ with radius 5 cm.
 </details>
@@ -66,7 +66,7 @@ Think about the angle made with the line.
 The shortest segment meets the line at a right angle.
 
 <details markdown="1">
-<summary>Full answer</summary>
+<summary>Full working</summary>
 
 The perpendicular distance, measured at $90^\circ$.
 </details>

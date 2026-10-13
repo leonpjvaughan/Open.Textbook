@@ -14,18 +14,13 @@ kind: walkthrough
 
 # 5.1 Ratio notation, simplifying and sharing — Learn
 
-## Prerequisites
-
-You should be able to multiply and divide whole numbers and fractions. Check units before comparing quantities.
+**Prerequisites:** multiply and divide whole numbers and fractions. Check units before comparing quantities.
 
 ## Key terms
 
 A **ratio** compares quantities by division. The **unitary method** finds the value of one equal part.
 
-## Objectives
-
-- Write equivalent ratios, simplify them and share a total in a given ratio.
-- Check that the result matches the units and direction of change.
+**Objectives:** write equivalent ratios, simplify them and share a total in a given ratio; check that the result matches the units and direction of change.
 
 ## Learn the method
 
@@ -63,6 +58,6 @@ A **unitary method** finds the value of one part first. For example, 24 counters
 
 ## You should now be able to
 
-- I can simplify ratios by multiplying or dividing each part by the same factor.
-- I can find one part and share a total in a given ratio.
-- I can check that my shares add to the original total.
+- simplify ratios by multiplying or dividing each part by the same factor.
+- find one part and share a total in a given ratio.
+- check that my shares add to the original total.

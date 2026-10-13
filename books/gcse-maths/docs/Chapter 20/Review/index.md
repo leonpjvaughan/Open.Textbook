@@ -18,7 +18,7 @@ $$d=15\text{ m}$$
 
 The estimate should have been near $15$ m. The result is longer than either side and shorter than going around two edges, so it is plausible.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 For each question, name the method and explain why it fits before calculating.
 
@@ -34,9 +34,16 @@ For each question, name the method and explain why it fits before calculating.
 <details markdown="1"><summary>Answers and checks</summary>
 
 1. Pythagoras: $5$ m. 2. Tangent: $45^\circ$. 3. Cosine rule: $\sqrt{67}$ cm. 4. $22$ cm$^2$. 5. Two triangles; $13$ cm. 6. $6\sqrt2$ cm. 7. $3/4$. 8. Cosine rule: about $92.9^\circ$.
+</details>
 
 **Reflection:** Which measurements help you choose between Pythagoras, a trigonometric ratio, the sine rule, the cosine rule, and the area formula? Which method can you now explain without notes?
-</details>
+
+## What you can now do
+
+- use Pythagoras' theorem and trigonometric ratios in right-angled triangles;
+- model elevation and depression angles;
+- use exact trigonometric values and solve 3D triangle problems;
+- choose the sine rule, cosine rule, or triangle area formula when appropriate.
 
 ## Your relevance reflection
 

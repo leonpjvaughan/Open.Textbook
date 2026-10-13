@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. Simplify $4y-2y$.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $x=4$.
 2. $2y$.

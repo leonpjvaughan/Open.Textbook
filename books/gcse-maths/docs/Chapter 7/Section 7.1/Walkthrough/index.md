@@ -20,11 +20,7 @@ kind: walkthrough
 
 You should know decimal place value and how to multiply and divide by 10.
 
-## Objectives
-
-- Convert between metric units for length, mass, capacity and area.
-- Use scale drawings and map scales to find real distances and lengths.
-- Read and use bearings measured clockwise from north.
+**Objectives:** convert between metric units for length, mass, capacity and area; use scale drawings and map scales to find real distances and lengths; and read and use bearings measured clockwise from north.
 
 ## Metric conversions
 
@@ -57,6 +53,7 @@ $$
 So the area is $24\,000\text{ cm}^2$.
 
 > **Watch out.** A common error is to multiply a square measure by $100$. Area has two length dimensions, so use $100^2$. For example, $1\text{ m}^2=10\,000\text{ cm}^2$.
+> **Re-check:** ask whether the measure is a length, an area or a volume before you choose the power of $100$.
 
 ## Scale drawings
 

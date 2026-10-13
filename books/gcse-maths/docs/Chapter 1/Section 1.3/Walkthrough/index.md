@@ -48,6 +48,7 @@ $$
 > **Watch out.** "Two negatives make a positive" applies to **multiplying and
 > dividing**, not to adding. $(-3) + (-5) = -8$, not $+8$. And $-3 - 5 = -8$: you
 > move 5 further left, not right.
+> **Re-check:** say which operation the negative signs belong to before you answer.
 
 ## 3. Multiplying and dividing
 
@@ -87,17 +88,10 @@ words? Why is a negative profit called a loss?
 
 ## 5. Progress check
 
-With 60 cans sold:
-
-$$
-\text{revenue} = 60 \times 1.20 + 6 \times 3.00 = 72 + 18 = £90
-$$
-
-$$
-\text{profit} = 90 - 92.80 = -£2.80
-$$
-
-The stall would have made a **loss of £2.80**. A negative profit is a loss.
+With 60 cans sold, work out the revenue from $60 \times 1.20 + 6 \times 3.00$.
+Then find the profit by subtracting the stock cost from Section 1.2, and decide
+whether the stall makes a profit or a loss. Write down what a negative profit
+would mean.
 
 ## You should now be able to
 

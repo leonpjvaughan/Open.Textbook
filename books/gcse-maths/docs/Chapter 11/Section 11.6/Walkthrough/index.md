@@ -13,9 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** calculate triangle and rectangle areas and interpret graph axes.
 
-## Objectives
-
-By the end of this section, you can calculate gradients and areas under graphs, then interpret each result with units.
+**Objectives:** calculate gradients and areas under graphs, then interpret each result with units.
 
 ## Gradient and area on rate graphs
 
@@ -51,7 +49,8 @@ slider and predict each result before you read it.
 
 ## Progress check
 
-The station walk is constant speed, so its distance-time graph is a straight line. At 60 minutes, the distance is 4 km.
+The station walk is at constant speed. Sketch its distance-time graph, and work
+out the distance after 60 minutes. Explain why the graph is a straight line.
 
 
 ## You should now be able to

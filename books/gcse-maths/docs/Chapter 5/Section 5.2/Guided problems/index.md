@@ -25,7 +25,7 @@ Answer these from memory. Do not look back at the section.
 2. Share £56 into 7 equal parts. Work out the value of one part.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $\frac{5}{6}=\frac{15}{18}$.
 2. $56\div7=8$, so one part is £8.

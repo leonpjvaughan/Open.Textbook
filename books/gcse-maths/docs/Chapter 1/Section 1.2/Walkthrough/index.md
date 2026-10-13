@@ -38,6 +38,7 @@ So $78 + 14.8 = 92.80$.
 > **Watch out.** If you line up the final digits, you may put the $8$ in $14.8$
 > under the $8$ ones in $78$. That treats eight tenths as eight ones. Align the
 > decimal points instead: $78.00 + 14.80 = 92.80$.
+> **Re-check:** line up the decimal points and ask whether each digit sits in the units, tenths or hundredths column.
 
 ## 2. Multiplication
 
@@ -98,6 +99,7 @@ $120 \times 0.7 = 84$, and $78$ is reasonable.
 > **Watch out.** In long multiplication, forgetting that the second partial
 > product represents tens (not ones) shifts every following column and makes the
 > answer ten times too small.
+> **Re-check:** add the partial products back and ask whether the answer is about ten times the first partial product.
 
 ## 5. Progress check
 

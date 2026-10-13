@@ -13,9 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** read graph axes and calculate with units.
 
-## Objectives
-
-By the end of this section, you can interpret real-life graphs and use gradient as a rate of change, including speed on a distance-time graph.
+**Objectives:** interpret real-life graphs and use gradient as a rate of change, including speed on a distance-time graph.
 
 ## Read a real-life graph
 
@@ -34,14 +32,16 @@ $$
 Kilometres divided by hours gives kilometres per hour.
 
 > **Watch out.** Convert time units before dividing. For example, 30 minutes is 0.5 hours, not 30 hours.
+> **Re-check:** ask whether your time is in the same unit as the speed before you divide.
 
 ## Progress check
 
-The walker covers 2 km in 0.5 hours, so the speed is $2/0.5=4$ km/h. In one hour, the walker is 4 km from home.
+The walker covers 2 km in 0.5 hours. Work out the walker's speed in km/h, then
+explain how the gradient of the distance-time graph gives that speed.
 
 
 ## You should now be able to
 
-- interpret real-life graphs and use gradient as a rate of change, including speed on a distance-time graph.;
+- interpret real-life graphs and use gradient as a rate of change, including speed on a distance-time graph;
 - check your result by substitution or by interpreting the graph;
 - explain the method in your own words.

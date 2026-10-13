@@ -35,7 +35,7 @@ Try each question before opening a hint. Open the next part only when you need i
 Write the angle fact that fits the diagram or shape.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 An $n$-sided polygon has interior angle sum $(n-2)\times180^\circ$.
 
@@ -60,7 +60,7 @@ The pentagon has $5-2=3$ triangles, so its interior angle sum is $3\times180=540
 Mark the known angles and identify their relationship before calculating.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 Find the pentagon's interior sum, then divide by its five equal angles.
 
@@ -87,7 +87,7 @@ Each interior angle is $108^\circ$.
 Use the order of operations.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 Calculate $5\times3$ before adding.
 

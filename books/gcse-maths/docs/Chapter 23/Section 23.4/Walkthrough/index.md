@@ -40,6 +40,7 @@ The second probability changes because the first counter is not replaced.
 These are dependent events: the first draw changes the probability of the second.
 
 > **Watch out.** For “at least one”, do not count only HH. Include every path with one or more heads.
+> **Re-check:** list every outcome with at least one head and count the list again.
 
 ## Progress check
 

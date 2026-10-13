@@ -52,6 +52,7 @@ A **scale** compares a drawing length with a real length. At scale $1$ cm repres
 - Measure the diagonal: $\sqrt{8^2+6^2}=10$ cm, representing $30$ m.
 
 > **Watch out.** A bearing is not measured from the nearest compass direction. Start at north and turn clockwise; write three digits, such as $053^\circ$.
+> **Re-check:** read the bearing clockwise from north and confirm that it has three digits.
 
 ## Progress check
 

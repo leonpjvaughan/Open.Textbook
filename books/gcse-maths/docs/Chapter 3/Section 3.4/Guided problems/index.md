@@ -34,7 +34,7 @@ kind: guided-problems
 An index of $\frac12$ means square root.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $81^{1/2}=\sqrt{81}$.
 
@@ -55,7 +55,7 @@ $81^{1/2}=\sqrt{81}=9$.
 Take the cube root, then square the result.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $125^{2/3}=(\sqrt[3]{125})^2=5^2$.
 
@@ -76,7 +76,7 @@ $125^{2/3}=(\sqrt[3]{125})^2=5^2=25$.
 Find $8^{4/3}$, then take its reciprocal.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $8^{4/3}=(\sqrt[3]{8})^4=2^4=16$.
 

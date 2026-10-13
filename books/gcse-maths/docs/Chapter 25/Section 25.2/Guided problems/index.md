@@ -32,7 +32,7 @@ Use this table: classes $0<t\leq5$, $5<t\leq10$, $10<t\leq15$ have frequencies $
 Keep a running total, starting from the first frequency.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 The totals are $3$, then $3+6$, then $3+6+5$.
 </details>
@@ -49,7 +49,7 @@ The cumulative frequencies are $3,9,14$.
 Pair each upper boundary with its cumulative frequency.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 Start at $(0,0)$, then use boundaries $5,10,15$.
 </details>
@@ -66,7 +66,7 @@ Plot $(0,0),(5,3),(10,9),(15,14)$, then draw a smooth increasing curve.
 Compare the three frequencies, not their running totals.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 The largest frequency is $6$.
 </details>

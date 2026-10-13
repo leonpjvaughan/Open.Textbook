@@ -12,18 +12,13 @@ kind: walkthrough
 
 # 5.5 Scale factors, scale diagrams and maps — Learn
 
-## Prerequisites
-
-You should be able to multiply and divide whole numbers and fractions. Check units before comparing quantities.
+**Prerequisites:** multiply and divide whole numbers and fractions. Check units before comparing quantities.
 
 ## Key terms
 
 A **scale** compares a drawing length with a real length. The **scale factor** is the multiplier between corresponding lengths.
 
-## Objectives
-
-- Convert units and use scales to find map, drawing and real lengths.
-- Check that the result matches the units and direction of change.
+**Objectives:** convert units and use scales to find map, drawing and real lengths; check that the result matches the units and direction of change.
 
 ## Learn the method
 
@@ -39,6 +34,7 @@ A scale compares drawing and real lengths in the same units. Scale $1:50$ means 
 **Progress check:** at 1 cm for 1 m, an 18 m path needs 18 cm.
 
 > **Watch out.** Do not compare 9 m with 6 cm before converting units. Write both lengths in centimetres, then simplify the ratio.
+> **Re-check:** write both amounts in the same unit before you simplify.
 
 ## Try it: read a map
 
@@ -57,6 +53,6 @@ scale were 1 cm for 5 m.
 
 ## You should now be able to
 
-- I can convert lengths into matching units before using a scale.
-- I can find drawing lengths and real distances from a scale.
-- I can check units and the size of the result.
+- convert lengths into matching units before using a scale.
+- find drawing lengths and real distances from a scale.
+- check units and the size of the result.

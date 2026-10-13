@@ -121,3 +121,10 @@ $\frac12 ab\sin C$, and the sine is largest when $C=90^\circ$. So a triangle wit
 two fixed sides has its largest area when those sides meet at a right angle. You
 can watch that happen in the figure: slide toward $90^\circ$ and the height is at
 its longest.
+
+## A common error
+
+The error is to use an angle that is not between the two sides. The formula
+$\tfrac12 ab\sin C$ needs $C$ to be the angle between the sides $a$ and $b$. If
+the angle you have is opposite one of those sides, the formula does not apply.
+Find the angle where the two sides meet.

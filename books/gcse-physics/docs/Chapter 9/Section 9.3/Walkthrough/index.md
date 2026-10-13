@@ -62,7 +62,7 @@ whether the source is inside or outside the body.
 
 - **Alpha radiation** is the most strongly ionising, but it is stopped by paper
   or by the outer layer of skin. Outside the body it is a small hazard. Inside
-  the body, it transfers a lot of energy to a short range of living cells, so it
+  the body, it transfers a large amount of energy to a short range of living cells, so it
   is a serious hazard.
 - **Beta radiation** penetrates further and is less ionising. It can pass into
   the body and can burn the skin.

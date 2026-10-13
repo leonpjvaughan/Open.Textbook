@@ -35,6 +35,7 @@ $\frac{5}{6}=\frac{15}{18}$ and $\frac{7}{9}=\frac{14}{18}$.
 Therefore $\frac{7}{9}<\frac{5}{6}$.
 
 > **Watch out.** Do not compare fractions by looking only at their denominators. A larger denominator can mean smaller parts, but the numerator matters too. Compare using a common denominator: $\frac{3}{5}=\frac{12}{20}$ and $\frac{7}{10}=\frac{14}{20}$, so $\frac{3}{5}<\frac{7}{10}$.
+> **Re-check:** rewrite both fractions with the same denominator and compare the numerators.
 
 ## Investigate equivalent fractions
 
@@ -46,7 +47,8 @@ Therefore $\frac{7}{9}<\frac{5}{6}$.
 
 ## Progress check
 
-The keyboard discount is $\frac{1}{4}$. Write it as a percentage. Since $\frac{1}{4}=\frac{25}{100}$, the discount is $25\%$.
+The keyboard discount is $\frac{1}{4}$. Write it as a percentage, and explain
+how the equivalent fraction out of $100$ gives the percentage.
 
 ## You should now be able to
 

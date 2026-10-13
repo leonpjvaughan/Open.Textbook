@@ -84,8 +84,8 @@ where $\Delta E$ is the change in thermal energy in joules, $m$ is the mass in
 kilograms, $c$ is the specific heat capacity and $\Delta\theta$ is the
 temperature change in degrees Celsius.
 
-A material with a large specific heat capacity needs a lot of energy for a small
-temperature rise. Water has a large value, $4200\,\text{J/kg}\,^\circ\text{C}$.
+A material with a large specific heat capacity needs a large amount of energy
+for a small temperature rise. Water has a large value, $4200\,\text{J/kg}\,^\circ\text{C}$.
 That is why water is used to store thermal energy in a central heating system.
 
 **Worked example 2.** A block of metal of mass $2.0\,\text{kg}$ gains

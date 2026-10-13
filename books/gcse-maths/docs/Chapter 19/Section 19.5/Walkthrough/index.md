@@ -54,6 +54,7 @@ Add the base area and four triangular face areas: $6^2+4\times\frac12\times6\tim
 So its surface area is $96\text{ cm}^2$.
 
 > **Watch out.** Cone surface area uses slant height; cone volume uses perpendicular height. Label the diagram before substituting.
+> **Re-check:** say which height you substituted and confirm that it matches the formula you chose.
 
 ## Progress check
 

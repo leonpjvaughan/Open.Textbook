@@ -30,7 +30,7 @@ kind: guided-problems
 Look at whether the second value tends to rise as the first rises.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 The second values generally increase.
 </details>
@@ -47,7 +47,7 @@ The data show positive correlation. Plot the pairs to see the upward pattern.
 Find the increase per unit of $x$.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 The increase is $20$ over 5 units, or 4 per unit.
 </details>
@@ -64,7 +64,7 @@ Estimate $40+3\times4=52$ units.
 Compare the two values.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 Since $18>12$, the second median is greater.
 </details>

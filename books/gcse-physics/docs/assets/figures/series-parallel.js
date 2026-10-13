@@ -84,7 +84,6 @@ export function mount(el) {
 
   function drawParallel(removed) {
     const leftLit = true;
-    const rightLit = !removed;
     const paths = [
       "M 90 60 L 470 60",
       "M 90 170 L 470 170",
@@ -98,17 +97,22 @@ export function mount(el) {
     figure += `<text x="80" y="115" font-size="16" text-anchor="end" class="fig-ink">6.0 V</text>`;
     figure += battery(90, 115);
     figure += lamp(230, 100, leftLit);
-    figure += lamp(390, 100, rightLit);
+    if (removed) {
+      // The right-hand branch is broken: the two wire ends stop short of each
+      // other and no lamp is drawn, so the branch is an open gap rather than a
+      // lamp that is merely unlit. The left-hand branch is untouched and stays
+      // lit.
+      figure +=
+        `<text x="404" y="105" font-size="16" class="fig-warn">removed</text>`;
+    } else {
+      figure += lamp(390, 100, true);
+    }
     // Junction dots where the branches meet the rails.
     figure +=
       `<circle cx="230" cy="60" r="3" class="fig-ink"></circle>` +
       `<circle cx="390" cy="60" r="3" class="fig-ink"></circle>` +
       `<circle cx="230" cy="170" r="3" class="fig-ink"></circle>` +
       `<circle cx="390" cy="170" r="3" class="fig-ink"></circle>`;
-    if (removed) {
-      figure +=
-        `<text x="390" y="54" font-size="16" text-anchor="middle" class="fig-warn">removed</text>`;
-    }
     return figure;
   }
 
@@ -124,17 +128,20 @@ export function mount(el) {
         ? `The gap breaks the single loop, so <strong>no current flows</strong> and ` +
           `<strong>both lamps are off</strong>. ` +
           `<em>In a series circuit, removing one lamp switches off every lamp in the loop.</em>`
-        : `Each lamp has <strong>0.25 A</strong> through it and <strong>3.0 V</strong> across it. ` +
-          `The 6.0 V of the battery is shared between the two lamps. ` +
+        : `Each lamp has a resistance of <strong>12 &Omega;</strong>. The 6.0 V of the ` +
+          `battery is shared between the two lamps, so each lamp has ` +
+          `<strong>3.0 V</strong> across it and <strong>0.25 A</strong> through it. ` +
           `<em>What happens to the other lamp when this one is removed?</em>`;
     } else {
       readout.innerHTML = removed
         ? `The remaining lamp still has the full <strong>6.0 V</strong> across it, so ` +
-          `<strong>it stays lit</strong>, with <strong>0.50 A</strong> through it. ` +
+          `with its <strong>12 &Omega;</strong> resistance it still has ` +
+          `<strong>0.50 A</strong> through it and <strong>stays lit</strong>. ` +
           `<em>The branches are independent, so one lamp does not affect the other.</em>`
-        : `Each lamp has the full <strong>6.0 V</strong> across it and ` +
-          `<strong>0.50 A</strong> through it. The total current from the battery is ` +
-          `<strong>1.0 A</strong>. <em>Which arrangement makes the lamps brighter, and why?</em>`;
+        : `Each lamp has the full <strong>6.0 V</strong> across it, so each ` +
+          `<strong>12 &Omega;</strong> lamp has <strong>0.50 A</strong> through it. ` +
+          `The total current from the battery is <strong>1.0 A</strong>. ` +
+          `<em>Which arrangement makes the lamps brighter, and why?</em>`;
     }
   }
 

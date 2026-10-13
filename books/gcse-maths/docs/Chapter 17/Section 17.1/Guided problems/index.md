@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. How many sides does a hexagon have?
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. 6 faces and 8 vertices.
 2. 6 sides.
@@ -45,7 +45,7 @@ A prism has one rectangular face for each side of its end shape.
 The triangular end has three sides.
 
 <details markdown="1">
-<summary>Full answer</summary>
+<summary>Full working</summary>
 
 It has three rectangular faces.
 </details>
@@ -65,7 +65,7 @@ Count the joins and corners.
 A cube has 12 edges and 8 vertices.
 
 <details markdown="1">
-<summary>Full answer</summary>
+<summary>Full working</summary>
 
 12 edges and 8 vertices.
 </details>

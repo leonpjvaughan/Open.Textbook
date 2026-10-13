@@ -43,6 +43,7 @@ internal energy.
 > is at a lower temperature, but it stores far more. Temperature measures the
 > average kinetic energy of one particle. Internal energy is the total over all
 > the particles.
+> **Re-check:** ask whether the question is about the average energy per particle or the total energy stored.
 
 ## 2. Specific heat capacity
 
@@ -114,7 +115,7 @@ E &= mL \\
 $$
 
 Boiling 0.050 kg of water needs $1.13 \times 10^{5}\,\text{J}$. Notice that this
-is a lot of energy for a small mass. Breaking the bonds between water molecules
+is a large amount of energy for a small mass. Breaking the bonds between water molecules
 takes much more energy than warming them.
 
 ## 4. Heating and changing state together
@@ -194,6 +195,7 @@ water needs about seven times as much energy to boil as to melt.
 > still rising. The temperature is constant because the energy is changing the
 > arrangement of the particles, not their average speed. If you read the plateau
 > as "no energy", every later calculation will be too small.
+> **Re-check:** ask whether energy is still being supplied during the plateau, even though the temperature is steady.
 
 ## 6. Try it: the heating curve
 

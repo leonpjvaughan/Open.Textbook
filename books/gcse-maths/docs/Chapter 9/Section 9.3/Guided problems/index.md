@@ -19,7 +19,7 @@ Answer these from memory. Do not look back at the section.
 2. Solve $2x+3=11$.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $n+5$.
 2. $x=4$.

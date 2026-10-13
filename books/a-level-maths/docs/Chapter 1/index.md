@@ -27,9 +27,9 @@ argument that covers every case at once.
 <summary>If you are not sure where to start</summary>
 
 Substitute each value of $n$ into the expression. For $n = 2$ the value is
-$2^2 + 2 + 41 = 4 + 2 + 41 = 47$. Now test Claim A for $n = 3$ and $n = 4$, and
-write down the first six prime numbers. Does the list of primes look as if it
-stops?
+$2^2 + 2 + 41 = 4 + 2 + 41 = 47$. Try $n = 3$ and $n = 4$ as well. Then ask
+what a single value that is not prime would mean for Claim B, and whether a
+short list of successes is enough to trust the claim.
 </details>
 
 ## By the end of this chapter you will be able to
@@ -53,8 +53,8 @@ carry a quarter of the marks, across all three papers.
 ## Your turn to connect it
 
 Think of a rule that seemed true in every example you tried, but turned out to
-have an exception. It could be a rule of thumb about money, travel, games or
-sport. Write two examples: one from outside mathematics, and one from
+have an exception. It could be a rough rule you use about money, travel,
+games or sport. Write two examples: one from outside mathematics, and one from
 mathematics.
 
 ## Roadmap

@@ -106,6 +106,7 @@ colours have been absorbed.
 > a different colour under a different lamp, and it can look black if the light
 > has no colour that the object reflects. Also keep the order straight: red has
 > the longest wavelength of the visible colours, not the shortest.
+> **Re-check:** ask what colours the light contains before you decide what colour the object looks.
 
 ## 5. Progress check
 

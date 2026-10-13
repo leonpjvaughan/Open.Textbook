@@ -6,13 +6,19 @@
 // that opposes the motion, and the mechanical and electrical power. The two
 // powers are equal, because energy is conserved.
 //
+// Every control changes the drawing: a stronger field is drawn with the field
+// marks closer together, a longer rod means the rails are further apart, a
+// faster rod gets a longer velocity arrow, and a larger current makes the wires
+// thicker. A drawing that ignored the controls could not be used to test a
+// prediction.
+//
 // Colours come from the fig-* classes. The readout is plain HTML, never runtime
 // maths.
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-motional-emf" style="font:14px system-ui;max-width:620px">
       <svg viewBox="0 0 620 300" width="100%" role="img"
-           aria-label="A conducting rod sliding along two rails through a magnetic field, with the induced current and the opposing force shown"></svg>
+           aria-label="A conducting rod sliding along two rails through a magnetic field, with the induced current and the opposing force shown. The field marks, the rail spacing, the velocity arrow and the wire thickness change with the controls."></svg>
       <label style="display:block;margin:.5rem 0">Flux density (tesla)
         <input class="field" type="range" min="0.05" max="0.5" step="0.01" value="0.25">
         <output class="field-out">0.25</output>
@@ -59,30 +65,42 @@ export function mount(el) {
     const mechanical = force * v;
     const electrical = emf * current;
 
-    const TOP = 90;
-    const BOTTOM = 220;
+    const TOP_PAD = 40;
+    const CY = 155;
     const LEFT = 70;
     const RIGHT = 560;
+    const ROD_X = 330;
+    // The rod length is the distance between the rails, so a longer rod means
+    // the rails are further apart and the rod is drawn longer.
+    const gap = 40 + ((L - 0.2) / 1.8) * 160;
+    const TOP = CY - gap / 2;
+    const BOTTOM = CY + gap / 2;
+    // A stronger field is drawn with the field marks closer together, and a
+    // larger current is drawn with thicker wires. The values are in the readout
+    // too, so neither is the only signal.
+    const step = 90 - 120 * B;
+    const vLength = 24 + ((v - 1) / 9) * 76;
+    const wire = (2 + 4 * Math.sqrt(current / 20)).toFixed(1);
 
     let dots = "";
-    for (let x = LEFT; x < RIGHT; x += 42) {
-      for (let y = TOP - 40; y < BOTTOM + 40; y += 42) {
-        dots += `<circle cx="${x}" cy="${y}" r="2.5" class="fig-ink"></circle>`;
+    for (let x = LEFT; x < RIGHT; x += step) {
+      for (let y = TOP - TOP_PAD; y < BOTTOM + TOP_PAD; y += step) {
+        dots += `<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="2.5" class="fig-ink"></circle>`;
       }
     }
 
-    const rodX = 330;
+    const vTip = ROD_X + 8 + vLength;
     const drawing =
       dots +
-      `<line x1="${LEFT}" y1="${TOP}" x2="${RIGHT}" y2="${TOP}" class="fig-ink" stroke-width="4"></line>` +
-      `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink" stroke-width="4"></line>` +
-      `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-accent" stroke-width="4"></line>` +
-      `<line x1="${rodX}" y1="${TOP}" x2="${rodX}" y2="${BOTTOM}" class="fig-good" stroke-width="6"></line>` +
-      `<line x1="${rodX + 8}" y1="${TOP - 30}" x2="${rodX + 70}" y2="${TOP - 30}" class="fig-good" stroke-width="3"></line>` +
-      `<polygon points="${rodX + 70},${TOP - 35} ${rodX + 70},${TOP - 25} ${rodX + 82},${TOP - 30}" class="fig-good"></polygon>` +
-      `<text x="${rodX + 88}" y="${TOP - 26}" font-size="18" class="fig-ink">v</text>` +
-      `<text x="${LEFT - 10}" y="${(TOP + BOTTOM) / 2}" font-size="18" class="fig-ink" text-anchor="end">R</text>` +
-      `<text x="${(LEFT + rodX) / 2}" y="${TOP + 20}" font-size="18" class="fig-ink" text-anchor="middle">current</text>`;
+      `<line x1="${LEFT}" y1="${TOP}" x2="${RIGHT}" y2="${TOP}" class="fig-ink" stroke-width="${wire}"></line>` +
+      `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink" stroke-width="${wire}"></line>` +
+      `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-accent" stroke-width="${wire}"></line>` +
+      `<line x1="${ROD_X}" y1="${TOP}" x2="${ROD_X}" y2="${BOTTOM}" class="fig-good" stroke-width="8"></line>` +
+      `<line x1="${ROD_X + 8}" y1="${TOP - 30}" x2="${vTip.toFixed(0)}" y2="${TOP - 30}" class="fig-good" stroke-width="3"></line>` +
+      `<polygon points="${vTip.toFixed(0)},${TOP - 35} ${vTip.toFixed(0)},${TOP - 25} ${(vTip + 12).toFixed(0)},${TOP - 30}" class="fig-good"></polygon>` +
+      `<text x="${(vTip + 18).toFixed(0)}" y="${TOP - 26}" font-size="18" class="fig-ink">v</text>` +
+      `<text x="${LEFT - 10}" y="${CY}" font-size="18" class="fig-ink" text-anchor="end">R</text>` +
+      `<text x="${(LEFT + ROD_X) / 2}" y="${TOP + 22}" font-size="18" class="fig-ink" text-anchor="middle">current</text>`;
 
     svg.innerHTML = drawing;
 

@@ -171,7 +171,8 @@ say what that means for how much it emits.
 <details markdown="1">
 <summary>Full working</summary>
 
-The black surface absorbs a lot of infrared radiation, and it also emits a lot.
+The black surface absorbs a large amount of infrared radiation, and it also
+emits a large amount.
 The shiny surface absorbs very little, because it reflects most of the radiation,
 and it also emits very little. The black surface is the better absorber and the
 better emitter.

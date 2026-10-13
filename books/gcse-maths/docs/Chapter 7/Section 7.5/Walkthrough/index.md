@@ -18,12 +18,7 @@ kind: walkthrough
 
 You should be able to multiply and divide decimals and use powers of ten.
 
-## Objectives
-
-- Write numbers in standard form.
-- Compare numbers in standard form.
-- Multiply and divide numbers in standard form.
-- Add or subtract after matching powers of ten.
+**Objectives:** write and compare numbers in standard form; multiply and divide them; and add or subtract after matching powers of ten.
 
 ## Writing standard form
 
@@ -68,6 +63,7 @@ $$
 $$
 
 > **Watch out.** A common error is to leave the first number outside the range $1\leq a<10$. Rewrite $12\times10^3$ as $1.2\times10^4$.
+> **Re-check:** ask whether the first factor is at least 1 and less than 10.
 
 > **Progress check.** Which is greater: $8.1\times10^4$ or $7.9\times10^5$? Compare powers first.
 

@@ -10,7 +10,7 @@ anchor: Parallelogram diagonals
 Vectors describe both a direction and a distance. You can use them to describe
 translations, calculate journeys, and explain why geometric facts are true.
 
-## The chapter problem
+## The chapter problem: the parallelogram diagonals
 
 ### Diagonals of a parallelogram
 
@@ -39,6 +39,12 @@ You will be able to:
 2. [22.2 Adding and subtracting vectors](Section 22.2/Walkthrough/index.md) — combine journeys and scale a vector.
 3. [22.3 Vectors in geometric problems and proofs](Section 22.3/Walkthrough/index.md) — express points in terms of vectors and prove geometric facts.
 4. [Review](Review/index.md) — return to the parallelogram and mix the methods.
+
+## Where it is used
+
+A vector carries a size and a direction together. Navigation systems, video
+games and weather maps all use vectors to describe movement. Adding vectors
+gives the single journey that has the same effect as two or more.
 
 ## Your turn to connect it
 

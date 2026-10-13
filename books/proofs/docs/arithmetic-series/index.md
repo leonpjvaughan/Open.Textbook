@@ -66,3 +66,10 @@ $S = \tfrac{1}{2} \times 100 \times 101 = 5050$.
 3. The second form, because $l$ is not given. Computing $l = 5 + 29 \times 4 = 121$
    first would also work.
 </details>
+
+## A common error
+
+The error is to halve the wrong quantity. The value $n(a+l)$ is twice the sum,
+because the sum was written down twice. So the sum is $\tfrac{1}{2}n(a+l)$.
+Checking the rule on $1+2+\dots+100$, where the answer is $5050$, catches a
+missing or extra factor of $2$.

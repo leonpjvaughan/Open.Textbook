@@ -34,6 +34,7 @@ Add $4$ to both sides: $x=9$.
 Check: $2(9-4)=10$.
 
 > **Watch out.** Dividing only one term breaks the balance. In $2x+6=14$, subtract $6$ first to get $2x=8$, then divide to get $x=4$.
+> **Re-check:** substitute your value back into the original equation and check both sides.
 
 A fractional coefficient works in the same way. For $x/3+2=7$, subtract $2$ to get $x/3=5$, then multiply both sides by $3$ to get $x=15$.
 

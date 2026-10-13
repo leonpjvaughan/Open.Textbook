@@ -157,7 +157,7 @@ $\Delta\theta$ is the temperature change in degrees Celsius.
 
 The specific heat capacity of a substance is the energy needed to raise the
 temperature of one kilogram of it by one degree Celsius. For water,
-$c = 4200\,\text{J/kg°C}$. A large value means the substance takes a lot of
+$c = 4200\,\text{J/kg°C}$. A large value means the substance needs a large amount of
 energy to warm up.
 
 **Worked example 4.** A 2.0 kg block of aluminium is heated from 18 °C to 68 °C.

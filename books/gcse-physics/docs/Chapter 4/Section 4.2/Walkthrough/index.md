@@ -190,6 +190,7 @@ in the Earth's core and in deep water.
 > one-way trip, which makes the distance twice as large. Always halve the time
 > before you multiply by the speed. Also keep every quantity in SI units: convert
 > kilometres to metres and megahertz to hertz before you calculate.
+> **Re-check:** halve the echo time before multiplying by the speed, and confirm that your units are SI.
 
 ## Progress check
 

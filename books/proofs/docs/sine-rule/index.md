@@ -111,3 +111,10 @@ acute triangles would not be a proof of the sine rule.
    The rule relates *two* pairs, so the height has to be written twice and the two
    expressions set equal. Without the second triangle there is nothing to equate.
 </details>
+
+## A common error
+
+The error is to pair a side with the wrong angle. In $\dfrac{a}{\sin A} =
+\dfrac{b}{\sin B}$, the side $a$ is opposite the angle $A$. Pairing a side with
+an angle that is not opposite it gives a wrong answer. Check each pair on the
+diagram before substituting.

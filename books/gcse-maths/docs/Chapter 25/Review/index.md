@@ -25,7 +25,7 @@ $26.5+1.5\times9=40$, so 42 is a possible outlier. The data are not grouped,
 so you can make a box plot directly. Grouped data would give estimates from a
 cumulative frequency graph or histogram.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 For each question, name the method and say why it fits before working.
 

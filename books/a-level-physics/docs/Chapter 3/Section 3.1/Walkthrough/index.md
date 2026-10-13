@@ -164,6 +164,7 @@ $$
 > initial velocity of the next. Also fix the positive direction before you
 > substitute: mixing a positive upward velocity with a positive downward
 > acceleration is the most common sign error here.
+> **Re-check:** split the journey at each change of acceleration and check that the final speed of one stage becomes the initial speed of the next.
 
 ## 5. Try it: the velocity–time graph
 

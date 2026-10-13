@@ -16,7 +16,7 @@ export function mount(el) {
     const c = 360 - a - b;
     readout.textContent = `Known angles: ${a} and ${b} degrees. The remaining angle is ${c} degrees.`;
     bar.style.height = '1rem';
-    bar.style.background = `linear-gradient(90deg, var(--tb-accent) 0 ${a/3.6}%, var(--tb-ink-lighter) ${a/3.6}% ${(a+b)/3.6}%, currentColor ${(a+b)/3.6}% 100%)`;
+    bar.style.background = `linear-gradient(90deg, var(--tb-fig-accent) 0 ${a/3.6}%, var(--tb-fig-grid) ${a/3.6}% ${(a+b)/3.6}%, var(--tb-ink) ${(a+b)/3.6}% 100%)`;
     bar.setAttribute('aria-label', `Angle amounts ${a}, ${b}, and ${c} degrees total 360 degrees`);
   }
   el.querySelectorAll('input').forEach(input => input.addEventListener('input', draw));

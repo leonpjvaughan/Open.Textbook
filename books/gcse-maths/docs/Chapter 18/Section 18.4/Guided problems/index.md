@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. What does it mean for two lengths to be equal?
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $180^\circ$.
 2. They have the same length.

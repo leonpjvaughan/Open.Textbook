@@ -16,7 +16,7 @@ $$
 
 The balance is £648.96, which is more than £640. The estimate was close enough to predict the direction, and the exact method gives the balance.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 For each question, choose a method and explain why it fits before calculating. The practice mixes percentages with methods from earlier chapters.
 

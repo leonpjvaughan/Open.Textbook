@@ -19,7 +19,7 @@ Answer these from memory. Do not look back at the section.
 2. List the integers that satisfy $-1<x\le2$.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $x<4$.
 2. $0$, $1$ and $2$.

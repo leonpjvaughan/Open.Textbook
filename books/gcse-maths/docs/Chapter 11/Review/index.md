@@ -20,7 +20,7 @@ the horizontal axis and distance from home on the vertical axis. Use the points
 $(0,0)$ and $(30,2)$, then draw the straight line that models a constant speed.
 Its gradient is $2/30=1/15$ km per minute.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 For each item, name the graph method you will use and explain why before
 calculating. Questions marked **H** are Higher only.

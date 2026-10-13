@@ -148,3 +148,10 @@ rule with one number filled in.
 There is a second consequence. If two points $P$ and $P'$ both lie on the same arc
 $AB$, then each of $\angle APB$ and $\angle AP'B$ is half of the same angle at the
 centre, so the two angles are equal. That is the **same segment** rule.
+
+## A common error
+
+The error is to double the wrong angle at $O$. The rule names the angle at the
+centre that stands on the same arc as $\angle APB$. When $P$ is on the near arc,
+that angle is the reflex angle, and the ordinary angle between the two radii is
+not twice $\angle APB$. Before doubling, check which arc the two angles share.

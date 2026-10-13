@@ -32,6 +32,7 @@ Use the radius in $A=\pi r^2$: $A=\pi\times5^2$.
 So $A=25\pi\text{ m}^2$, approximately $78.5\text{ m}^2$ when $\pi\approx3.14$.
 
 > **Watch out.** Squaring the diameter gives the wrong area. Find the radius first, then square it.
+> **Re-check:** ask whether you started from the diameter or the radius before you squared.
 
 ### Investigate how radius changes circle measures
 

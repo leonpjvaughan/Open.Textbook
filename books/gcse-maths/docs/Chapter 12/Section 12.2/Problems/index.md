@@ -12,6 +12,12 @@ kind: problems
 
 # 12.2 Factorising harder quadratics — Practise
 
+Work through these on your own. Keep your working neat: the method matters as
+much as the answer. Questions marked **H** are for Higher tier.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
 :::problems chapter-12-practice-12.2
 
 :::answers chapter-12-practice-12.2

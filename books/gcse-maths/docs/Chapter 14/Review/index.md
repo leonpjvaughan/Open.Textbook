@@ -34,7 +34,7 @@ Subtracting gives $4r_B=8$, so $r_B=2$. Then $f_B+4(2)=16$, so $f_B=8$.
 
 Both companies charge £2 per kilometre. Company A has a £6 fixed fee; Company B has an £8 fixed fee. This confirms the opening prediction can be checked by comparing the rates.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 For each question, name a method before working. Give a reason for your choice.
 

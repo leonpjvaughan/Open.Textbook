@@ -42,6 +42,7 @@ To bisect an angle, draw an arc from its vertex to meet both arms. From those tw
 4. Since $AB=BC=CA$, triangle $ABC$ is equilateral and each angle is $60^\circ$.
 
 > **Watch out.** Changing the compass width between paired arcs breaks the equal-distance argument. Keep one setting until the intersections are marked.
+> **Re-check:** measure the same distance from both intersection points before marking the next arc.
 
 ## Guided investigation: where do the arcs meet?
 

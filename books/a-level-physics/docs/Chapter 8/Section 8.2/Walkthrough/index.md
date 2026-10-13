@@ -150,6 +150,7 @@ The electrons were accelerated through about 600 V.
 > quantity to SI before you divide. A second error is to use the accelerating
 > potential difference in volts as if it were an energy. Multiply the potential
 > difference by the charge to get the kinetic energy in joules.
+> **Re-check:** list every quantity in SI units before you substitute into the de Broglie equation.
 
 ## 4. Try it: the electron wavelength
 

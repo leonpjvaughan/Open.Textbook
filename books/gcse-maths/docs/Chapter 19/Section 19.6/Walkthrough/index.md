@@ -54,6 +54,7 @@ Find the hemisphere volume: $\frac12\times\frac43\pi\times3^3=18\pi$.
 Add the volumes: $36\pi+18\pi=54\pi\text{ cm}^3$.
 
 > **Watch out.** Adding the surface areas counts the joined faces twice. Remove both copies of every internal face.
+> **Re-check:** count the internal faces you removed and check that the total matches the shape.
 
 ## Progress check
 

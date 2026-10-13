@@ -40,6 +40,7 @@ Therefore $x_3\approx2.449$. Keep enough digits during the working, then round t
 An iteration can also solve an equation after rearranging it into a suitable form $x=g(x)$. Different rearrangements can behave differently, so follow the rule given in the question.
 
 > **Watch out.** The subscript tells you the step number. Do not reuse $x_0$ each time: calculate $x_1$, then use that result to calculate $x_2$, and continue.
+> **Re-check:** substitute your finished value back into the original equation.
 
 ## Progress check
 

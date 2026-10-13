@@ -24,6 +24,13 @@ How many packs could it make? First, make a low-stakes prediction: do you think 
 You will use common factors to find the greatest possible number of packs.
 You will also use organised lists and the product rule to count other choices.
 
+## Where it is used
+
+Factors, multiples and primes appear wherever numbers are shared out or kept
+secure. A factory packs items into equal boxes, so it needs a factor of the
+total. Online banking uses large primes to keep messages secret. Timetables
+repeat at common multiples, such as every 12 minutes and every 18 minutes.
+
 ## Your turn to connect it
 
 Where have you or someone you know had to split items into equal groups, or count choices across several decisions? Describe one example and say where factors or systematic counting might help.

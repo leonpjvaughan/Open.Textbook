@@ -50,6 +50,7 @@ Their HCF is $12$, so the greatest possible count is 12 packs.
 Each pack then has $24\div12=2$ blue and $36\div12=3$ red counters.
 
 > **Watch out.** You may use the LCM when a problem asks for the greatest equal group size. A group size must divide each total, so use common factors and choose the greatest.
+> **Re-check:** ask whether the problem wants a group size that divides the totals, which needs a factor and not a multiple.
 
 ## Progress check
 

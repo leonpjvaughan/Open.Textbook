@@ -51,6 +51,7 @@ A vertical line chart has heights 1, 2 and 1 above 2, 5 and 7.
 **Explain:** why can the counts grow while the proportions stay the same? Write one sentence before reading on.
 
 > **Watch out.** A pictogram must state the value of one symbol. If one symbol means four pupils, a half-symbol means two pupils.
+> **Re-check:** read the key and ask what a whole symbol or a half symbol represents.
 
 ## Progress check
 

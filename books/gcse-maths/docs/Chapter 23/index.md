@@ -20,7 +20,7 @@ You will be able to:
 - use Venn diagrams and set notation to describe groups and events;
 - calculate conditional probabilities from a restricted group using tables, tree diagrams and Venn diagrams.
 
-## The chapter problem
+## The chapter problem: the spinner
 
 A spinner has equal-sized red and blue regions. You will investigate the chance
 of landing on red, then compare a prediction with results from repeated spins.
@@ -38,6 +38,13 @@ score for this prediction.
 5. [23.5 Venn diagrams and set notation](Section 23.5/Walkthrough/index.md)
 6. [23.6 Conditional probability](Section 23.6/Walkthrough/index.md)
 7. [Review](Review/index.md)
+
+## Where it is used
+
+Probability measures how likely an event is. Weather forecasts, insurance,
+medical tests and games of chance all use it. Tree diagrams, Venn diagrams and
+tables organise the outcomes so that a probability can be calculated from the
+counts.
 
 ## Your turn to connect it
 

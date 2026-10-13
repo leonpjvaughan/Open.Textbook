@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. List the common factors of 12 and 18 that are greater than 1.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $3x+12$.
 2. $2$, $3$ and $6$.

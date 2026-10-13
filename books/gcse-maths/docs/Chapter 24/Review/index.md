@@ -12,7 +12,7 @@ Plan a survey across the whole school, using a sample that includes different ye
 
 Compare your first prediction with a suitable survey result. The prediction was a starting idea, not a test score.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 For each item, choose the method and explain why it fits.
 
@@ -23,6 +23,14 @@ For each item, choose the method and explain why it fits.
 5. A temperature record is 12°C, 15°C, 13°C over three days. Describe its time pattern. **Method:** read consecutive changes on a line graph.
 6. A bag contains 3 red and 5 blue counters. Find the probability of red. **Method:** favourable outcomes over total outcomes.
 7. A rectangle has length 8 cm and width 3 cm. Find its area. **Method:** area of a rectangle.
+
+## What you can now do
+
+- plan data collection, choose a sample, and identify limits in what it can show;
+- organise categorical and discrete data in tables and suitable charts;
+- calculate and compare the mean, median, mode and range;
+- find averages from a frequency table;
+- read and construct line graphs for data collected over time.
 
 ## Your relevance reflection
 

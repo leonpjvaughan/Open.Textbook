@@ -25,7 +25,7 @@ Answer these from memory. Do not look back at the section.
 2. Find the value of $k$ when $12=4k$.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $5^2=25$.
 2. Since $12\div4=3$, $k=3$.

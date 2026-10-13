@@ -38,6 +38,13 @@ point can lie.
 5. [17.5 Bearings and scale drawings](Section 17.5/Walkthrough/index.md)
 6. [Review](Review/index.md)
 
+## Where it is used
+
+Drawings and directions are part of design and navigation. An architect
+draws plans and elevations, a gardener sets out a centre with compasses, and a
+pilot or a walker follows a bearing. Constructions build accurate figures with
+only a straight edge and compasses.
+
 ## Your turn to connect it
 
 Where might you or someone you know use a plan, a direction, or a measured

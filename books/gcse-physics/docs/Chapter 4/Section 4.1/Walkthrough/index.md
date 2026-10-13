@@ -199,6 +199,7 @@ is twice the measured distance.
 > wave speed is fixed, doubling the frequency halves the wavelength, because
 > $v = f\lambda$. Also, a wave carries energy and not the medium, so the water
 > in a ripple tank does not travel across the tank with the ripples.
+> **Re-check:** use $v=f\lambda$ to test whether your frequency and wavelength give the stated speed.
 
 ## Progress check
 

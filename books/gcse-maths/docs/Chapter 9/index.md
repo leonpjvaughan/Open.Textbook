@@ -6,7 +6,7 @@ strand: algebra
 
 # Chapter 9: Equations and inequalities
 
-## The chapter problem
+## The chapter problem: the two hall prices
 
 A community hall hires a room for a fixed fee of £18, then charges £6 per hour. Another hall charges £10 plus £8 per hour. How many hours make the prices equal?
 
@@ -33,6 +33,13 @@ Before calculating, predict whether the equal point is before or after two hours
 6. [9.6 Quadratic inequalities](Section 9.6/Walkthrough/index.md) (Higher only)
 <!-- /tier:h -->
 7. [Review](Review/index.md)
+
+## Where it is used
+
+Equations and inequalities answer questions with a condition. They find the
+break-even point for two prices, the range of speeds that keeps a journey on
+time, and the set of values that satisfies a constraint. Solving them is the
+step from describing a situation to deciding about it.
 
 ## Your turn to connect it
 

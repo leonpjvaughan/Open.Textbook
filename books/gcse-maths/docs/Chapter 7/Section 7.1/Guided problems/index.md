@@ -37,7 +37,7 @@ There are $1000$ metres in one kilometre.
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 Write $1$ km $=1000$ m, then multiply the number of kilometres by $1000$.
 </details>
@@ -57,7 +57,7 @@ First convert metres to centimetres. Then square that conversion factor.
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 Use $1\text{ m}^2=10\,000\text{ cm}^2$.
 </details>
@@ -77,7 +77,7 @@ First find the real distance in centimetres. Then convert centimetres to kilomet
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 Multiply the map distance by $50\,000$ and divide by $100\,000$.
 </details>
@@ -97,7 +97,7 @@ Add or subtract $180^\circ$ to find the direction back.
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 Subtract $180^\circ$, because the bearing is greater than $180^\circ$.
 </details>

@@ -12,7 +12,7 @@ Enlarge each coordinate of the mural tile by $2$ about the origin. The image cor
 
 For the smaller reversed copy, use scale factor $-\frac12$ on the original corners. The images are $(-0.5,-0.5)$, $(-1.5,-0.5)$ and $(-0.5,-1)$. The negative sign places each point across the origin; the magnitude halves each length.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 For each item, choose a method and explain why it applies.
 
@@ -37,6 +37,14 @@ For each item, choose a method and explain why it applies.
 7. $(-4,-10)$; multiply both coordinates by $-2$.
 8. $1:4$; take the cube root of the volume ratio.
 </details>
+
+## What you can now do
+
+- reflect, rotate, translate and enlarge shapes on a coordinate grid;
+- use fractional and negative scale factors;
+- prove triangles congruent using valid criteria;
+- find missing lengths in similar shapes;
+- relate length, area and volume scale factors.
 
 ## Your relevance reflection
 

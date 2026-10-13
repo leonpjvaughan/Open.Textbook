@@ -13,9 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** read and plot coordinates, and divide integers.
 
-## Objectives
-
-By the end of this section, you can calculate the gradient between two points and identify the gradient and vertical intercept in $y=mx+c$.
+**Objectives:** calculate the gradient between two points and identify the gradient and vertical intercept in $y=mx+c$.
 
 ## Gradient and intercept
 
@@ -53,7 +51,8 @@ run triangle and the marked point on the $y$-axis.
 
 ## Progress check
 
-The walker travels 2 km in 30 minutes. Its gradient is $2/30=1/15$ km per minute.
+The walker travels 2 km in 30 minutes. Work out the gradient of the
+distance-time graph in km per minute, and explain what the gradient measures.
 
 
 ## You should now be able to

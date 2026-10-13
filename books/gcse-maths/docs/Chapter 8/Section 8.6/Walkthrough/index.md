@@ -35,9 +35,11 @@ $x=\frac{y+2}{5}$ — divide both sides by $5$.
 
 ## Progress check
 
-The chapter frame has outer area $(x+6)(x+4)$ and inner area $x(x+2)$. In the next section, you will expand these products to find the frame area.
+The chapter frame has outer area $(x+6)(x+4)$ and inner area $x(x+2)$. In the
+next section, you will expand these products to find the frame area.
 
-The frame area will be closer to $10x$ than $12x$ for large $x$.
+Predict whether the frame area is closer to $10x$ or $12x$ when $x$ is large,
+and give a reason. Keep your prediction for the Review.
 
 ## You should now be able to
 

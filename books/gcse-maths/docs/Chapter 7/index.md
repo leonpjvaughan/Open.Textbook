@@ -6,7 +6,7 @@ strand: number
 
 # Chapter 7: Measures, accuracy, standard form and surds
 
-## The chapter problem
+## The chapter problem: the survey measurements
 
 A survey team records three measurements:
 
@@ -35,6 +35,13 @@ Work out the real length of the path in kilometres. Then work out the walker's a
 6. **7.6** Surds and exact calculations
 
 At each Progress check, return to the survey measurements and decide which method now helps.
+
+## Where it is used
+
+Measurements are never exact, so the accuracy of a value matters as much as
+the value itself. Engineers state bounds on a measurement, scientists write very
+large and very small numbers in standard form, and builders convert between
+units. Surds keep an exact answer when a decimal would only be a rounded one.
 
 ## Your turn to connect it
 

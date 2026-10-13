@@ -44,7 +44,8 @@ $\frac{15}{20}-\frac{8}{20}=\frac{7}{20}$.
 
 ## Progress check
 
-The discount is $\frac{1}{4}$ of £48. Subtract it from £48: $48-\frac14(48)=48-12=£36$.
+The discount is $\frac{1}{4}$ of £48. Work out the discount, then subtract it
+from £48 to find the price paid. Keep your answer for Section 4.6.
 
 ## You should now be able to
 

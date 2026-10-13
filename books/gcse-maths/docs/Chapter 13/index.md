@@ -31,6 +31,12 @@ You will be able to:
 
 Graphs can describe signals, growth and circular paths. As you learn, notice which examples connect with your own interests.
 
+## Where it is used
+
+Many real patterns are not straight lines. A cooling drink, a swinging
+pendulum and a radio signal all repeat or curve. Recognising the shape of a
+graph helps you predict what happens between the points you measured.
+
 ## Your turn to connect it
 
 Where do you meet something that repeats, grows, or follows a curved path? Write one example and say which graph might describe it.

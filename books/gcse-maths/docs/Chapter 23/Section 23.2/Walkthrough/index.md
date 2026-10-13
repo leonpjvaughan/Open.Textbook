@@ -38,6 +38,7 @@ $$240\times\frac16=40$$
 The expected number is 40 sixes.
 
 > **Watch out.** An expected frequency can be fractional, and an observed count can differ. For 10 trials with probability $\frac14$, the expectation is 2.5, not a guaranteed count.
+> **Re-check:** ask whether the question wants an expectation or an actual count.
 
 ## Progress check
 

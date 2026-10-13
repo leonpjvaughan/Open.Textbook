@@ -19,7 +19,7 @@ Answer these from memory. Do not look back at the section.
 2. Which is greater, $-5$ or $-2$?
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $-3$, then $2$.
 2. $-2$.

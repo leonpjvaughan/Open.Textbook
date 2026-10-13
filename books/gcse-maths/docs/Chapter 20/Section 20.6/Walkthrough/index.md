@@ -36,6 +36,7 @@ $$\sin A=0.6$$
 $$A=\sin^{-1}(0.6)\approx36.9^\circ$$
 
 > **Watch out.** Pair each side with its opposite angle. A wrong pairing changes the equation; mark opposite pairs on the diagram first.
+> **Re-check:** point to the side and its opposite angle in the diagram before you write the equation.
 
 ## Progress check
 

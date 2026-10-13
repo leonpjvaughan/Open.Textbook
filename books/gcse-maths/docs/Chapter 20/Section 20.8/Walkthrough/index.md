@@ -56,6 +56,7 @@ $$20=\frac52b$$
 $$b=8\text{ cm}$$
 
 > **Watch out.** The angle must be between the two given sides. If it is opposite one of them, mark the included angle before using the formula.
+> **Re-check:** mark the angle between the two known sides and confirm that it is the one in the formula.
 
 ## Progress check
 

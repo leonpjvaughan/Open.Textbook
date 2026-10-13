@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. Work out $360-90$.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $10$.
 2. $270$.
@@ -46,7 +46,7 @@ Bearings start at north and turn clockwise.
 East is a quarter-turn clockwise from north.
 
 <details markdown="1">
-<summary>Full answer</summary>
+<summary>Full working</summary>
 
 East has bearing $090^\circ$.
 </details>
@@ -66,7 +66,7 @@ Multiply drawing length by the real distance per centimetre.
 $3.2 \times 5 = 16$.
 
 <details markdown="1">
-<summary>Full answer</summary>
+<summary>Full working</summary>
 
 $16$ km.
 </details>

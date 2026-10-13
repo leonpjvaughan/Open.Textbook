@@ -35,7 +35,7 @@ Try each question before opening a hint. Open the next part only when you need i
 Co-interior angles on parallel lines total $180^\circ$.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 Let the co-interior angle be $x$.
 
@@ -64,7 +64,7 @@ The angle is $116^\circ$.
 Mark the known angles and identify their relationship before calculating.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 The interior angles of a triangle total $180^\circ$. Use this fact to form an equation.
 
@@ -99,7 +99,7 @@ $$
 Use the order of operations.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 Calculate $5\times3$ before adding.
 

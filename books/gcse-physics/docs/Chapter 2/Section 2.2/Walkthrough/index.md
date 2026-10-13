@@ -104,6 +104,7 @@ line curves upwards, because each extra newton gives a larger extra extension.
 > length. A spring that is 12 cm long and stretches to 15 cm has an extension of
 > 3 cm, which is 0.030 m. Put every length in metres before you use $F = ke$, and
 > do not add the natural length to the extension.
+> **Re-check:** subtract the natural length from the stretched length and convert the metres.
 
 ### Try it: force and extension
 

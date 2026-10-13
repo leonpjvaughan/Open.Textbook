@@ -34,6 +34,13 @@ By the end, you will find a simplified expression for the frame area and calcula
 7. [8.7 Expanding products of three binomials](Section 8.7/Walkthrough/index.md) (Higher only)
 8. [Review](Review/index.md)
 
+## Where it is used
+
+Algebra writes a rule for a whole family of numbers at once. A formula for a
+phone bill, a spreadsheet column, and a rule for the cost of a journey are all
+expressions. Simplifying, expanding and factorising make those rules easier to
+use.
+
 ## Your turn to connect it
 
 Where might you use a formula or a letter to describe an unknown amount? Give one example from your own life, then say what each letter could represent.

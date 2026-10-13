@@ -40,6 +40,7 @@ The middle pair is 4 and 7, so median $=(4+7)/2=5.5$.
 The large value raises the mean more than the median.
 
 > **Watch out.** The median is not always one of the data values. With an even count, average the two middle values.
+> **Re-check:** count the values and ask whether the middle lies on a value or between two values.
 
 ## Progress check
 

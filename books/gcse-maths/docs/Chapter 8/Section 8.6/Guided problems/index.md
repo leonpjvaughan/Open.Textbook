@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. What operation reverses multiplying by 4?
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $x=4$.
 2. Dividing by 4.

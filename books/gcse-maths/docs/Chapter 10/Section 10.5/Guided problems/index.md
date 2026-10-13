@@ -39,7 +39,7 @@ Try each item before opening its hints. Reveal the full working when you want to
 Divide adjacent terms to find the multiplier.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $36\times3=108$, then $108\times3=324$.
 
@@ -61,7 +61,7 @@ The next terms are $108,324$.
 Divide a term by the one before it.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $32\div64=\frac12$. Check: $16\div32=\frac12$.
 
@@ -83,7 +83,7 @@ The multiplier is $\frac12$.
 Multiply by 2 four times after the first term.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $5,10,20,40,80$.
 

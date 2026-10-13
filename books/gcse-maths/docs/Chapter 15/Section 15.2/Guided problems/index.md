@@ -41,7 +41,7 @@ Factorise the numerator and denominator before cancelling.
 </details>
 
 <details markdown="1">
-<summary>First step</summary>
+<summary>Next step</summary>
 
 $\frac{(x-2)(x+2)}{(x+2)(x+2)}$.
 

@@ -12,6 +12,12 @@ kind: problems
 
 # 7.3 Rounding and error intervals — Practise
 
+Work through these on your own. Keep your working neat: the method matters as
+much as the answer. Questions marked **H** are for Higher tier.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
 :::problems chapter-7-practice-7.3
 
 :::answers chapter-7-practice-7.3

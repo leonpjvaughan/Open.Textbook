@@ -102,3 +102,11 @@ Once you can split a shape into triangles, this fact does a great deal of work.
 The next proof uses it to say what the angles inside a polygon add to, however many
 sides the polygon has — see
 **[the angles in a polygon add to (n − 2) × 180°](../angles-in-a-polygon/index.md)**.
+
+## A common error
+
+The error is to use the equal alternate angles without checking that the lines
+are parallel. The two angles are equal only because the line through the top
+corner is drawn parallel to the opposite side. If the lines are not parallel,
+the angles are not equal, and the three angles are not forced to add to
+$180^\circ$.

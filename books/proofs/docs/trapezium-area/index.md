@@ -55,3 +55,10 @@ $$A = \tfrac{1}{2}(a + b)h$$
 3. Both parallel sides are $L$, and the distance between them is $W$, so
    $\tfrac{1}{2}(L + L)W = LW$, which is the rectangle's area.
 </details>
+
+## A common error
+
+The error is to use a sloping side as the height. The height in the formula is
+the perpendicular distance between the two parallel sides, not the length of
+either sloping side. Mark the right angle between the parallel sides before
+substituting.

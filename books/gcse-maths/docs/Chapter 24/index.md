@@ -6,7 +6,7 @@ strand: statistics
 
 # Chapter 24: Statistics: representing and analysing data
 
-## The chapter problem
+## The chapter problem: the school travel survey
 
 A school travel survey
 
@@ -21,6 +21,12 @@ A school wants to describe how pupils travel to school and whether the pattern c
 - calculate and compare the mean, median, mode and range;
 - find averages from a frequency table;
 - read and construct line graphs for data collected over time.
+
+## Where it is used
+
+Data is collected constantly, in shops, schools and hospitals. Charts and
+averages turn a list of numbers into a picture that a reader can act on. The way
+the data is collected and shown decides whether the conclusion is fair.
 
 ## Your turn to connect it
 

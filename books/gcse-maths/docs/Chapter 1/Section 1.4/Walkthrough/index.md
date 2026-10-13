@@ -42,6 +42,7 @@ $(3 + 2) \times 4 = 20$.
 > equal priority, so work left to right: $12 \div 4 \times 3 = 3 \times 3 = 9$,
 > not $12 \div 12 = 1$. Addition and subtraction behave the same way:
 > $10 - 4 + 2 = 8$.
+> **Re-check:** work left to right and confirm that the operation on the right has not jumped ahead.
 
 ## 2. Indices, roots and reciprocals
 
@@ -81,17 +82,11 @@ The number was $6$. Check forwards: $6 \times 4 + 7 = 24 + 7 = 31$. ✓
 ## 4. Progress check
 
 Write the stall's profit as a **single expression**, then evaluate it in the
-correct order.
+correct order. Bracket the stock cost so that it is worked out first. Keep your
+answer for the Review.
 
-$$
-\underbrace{95 \times 1.20}_{\text{drinks}} + \underbrace{6 \times 3.00}_{\text{cakes}} - \underbrace{(120 \times 0.65 + 8 \times 1.85)}_{\text{stock}}
-$$
-
-Brackets first for the stock, then the multiplications, then add and subtract:
-
-$$
-114 + 18 - (78 + 14.80) = 132 - 92.80 = £39.20
-$$
+Remember the order: brackets first, then the multiplications, then add and
+subtract.
 
 ## You should now be able to
 

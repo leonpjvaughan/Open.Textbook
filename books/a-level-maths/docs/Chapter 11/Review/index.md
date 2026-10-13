@@ -112,6 +112,10 @@ explanatory variable among several.
 The sample mean of 24.97 minutes supports the claim of 25 minutes. On this
 evidence, the group cannot say that the claim is wrong.
 
+At the first contact you predicted how many of the 30 journeys took longer
+than 30 minutes. The data give 5 such journeys. Compare that number with your
+prediction, and say whether the count changes your view of the service.
+
 The conclusion is limited in four ways. The sample has only 30 journeys. It comes
 from one week, so a school holiday or an accident would change it. The sample was
 taken by the group at the stop, which is an opportunity sample, so it may miss

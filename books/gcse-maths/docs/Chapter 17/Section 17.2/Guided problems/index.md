@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. What shape is the front face of a cuboid?
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $6$.
 2. A rectangle.
@@ -45,7 +45,7 @@ A plan is viewed from above.
 The plan records width and depth, not height.
 
 <details markdown="1">
-<summary>Full answer</summary>
+<summary>Full working</summary>
 
 A rectangle measuring 6 cm by 4 cm.
 </details>
@@ -65,7 +65,7 @@ A front elevation shows width and height.
 The front elevation is 4 cm by 2 cm.
 
 <details markdown="1">
-<summary>Full answer</summary>
+<summary>Full working</summary>
 
 The front elevation shows 4 cm width and 2 cm height.
 </details>

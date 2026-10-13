@@ -39,7 +39,7 @@ Try each item before opening its hints. Reveal the full working when you want to
 Square the positions 1 to 5.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $1^2=1$, $2^2=4$, $3^2=9$, $4^2=16$, $5^2=25$.
 
@@ -61,7 +61,7 @@ $1,4,9,16,25$.
 Add the next row size each time.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $10+5=15$, then $15+6=21$.
 
@@ -83,7 +83,7 @@ The next terms are $15,21$.
 Add the previous two terms.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $11+18=29$, then $18+29=47$.
 

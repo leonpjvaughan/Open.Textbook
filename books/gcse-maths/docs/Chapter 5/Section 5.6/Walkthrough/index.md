@@ -12,18 +12,13 @@ kind: walkthrough
 
 # 5.6 Comparing lengths, areas and volumes — Learn
 
-## Prerequisites
-
-You should be able to multiply and divide whole numbers and fractions. Check units before comparing quantities.
+**Prerequisites:** multiply and divide whole numbers and fractions. Check units before comparing quantities.
 
 ## Key terms
 
 **Similar shapes** have equal angles and proportional corresponding lengths. A **scale factor** compares their matching lengths.
 
-## Objectives
-
-- Convert a length scale factor into area and volume scale factors, in both directions.
-- Check that the result matches the units and direction of change.
+**Objectives:** convert a length scale factor into area and volume scale factors, in both directions; check that the result matches the units and direction of change.
 
 ## Learn the method
 
@@ -41,6 +36,6 @@ To work backwards, divide by the area or volume factor.
 
 ## You should now be able to
 
-- I can square a length scale factor to find an area factor.
-- I can cube a length scale factor to find a volume factor.
-- I can work backwards from area or volume factors.
+- square a length scale factor to find an area factor.
+- cube a length scale factor to find a volume factor.
+- work backwards from area or volume factors.

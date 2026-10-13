@@ -58,6 +58,7 @@ Given red first, 2 blue counters remain among 4. Therefore,
 $P(\text{second blue}\mid\text{first red})=\frac24=\frac12$.
 
 > **Watch out.** Do not divide by the whole group after a condition is given. “Given bus” makes 18 the denominator in the example, not the full school roll.
+> **Re-check:** ask which group the condition fixes before you choose the denominator.
 
 ## Progress check
 

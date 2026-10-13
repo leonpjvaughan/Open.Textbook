@@ -6,7 +6,7 @@ strand: geometry
 
 # Chapter 21: Circle geometry and circle theorems
 
-## The chapter problem
+## The chapter problem: the circular window
 
 A circular window has a straight line across it, from one edge to another. This chord is $13$ cm long, and the radius is $7$ cm. Predict whether the chord could fit in the window. Give one reason for your prediction.
 
@@ -35,6 +35,13 @@ Two points on the circumference lie in the same segment of the circle. They see 
 <!-- tier:h -->
 At the marked Progress checks, return to the window problem and use the new facts you have learned.
 <!-- /tier:h -->
+
+## Where it is used
+
+Circles appear in wheels, pipes, arches and fields. Circle theorems let you
+find an angle from another angle in the same figure, without measuring. They
+also show why a construction gives a true result, rather than only a plausible
+one.
 
 ## Your turn to connect it
 

@@ -36,6 +36,7 @@ $$\tan60^\circ\times\tan30^\circ=\sqrt3\times\frac{1}{\sqrt3}$$
 $$=1$$
 
 > **Watch out.** $\tan90^\circ$ is undefined because its cosine denominator is zero. Do not copy a large calculator value as an exact answer.
+> **Re-check:** ask whether the value you wrote is an exact angle or a rounded calculator display.
 
 ## Progress check
 

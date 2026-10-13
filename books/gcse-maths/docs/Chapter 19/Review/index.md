@@ -10,7 +10,7 @@ kind: review
 
 The pond has radius $4$ m. Its circumference is $2\pi r=8\pi$ m, about $25.1$ m. Its area is $\pi r^2=16\pi$ m², about $50.3$ m². The first estimate should be close to these values. A path border needs the circumference; a cover over the water needs the area.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 For each question, choose a method first. Say why it applies, then calculate. Check the units in your answer.
 
@@ -28,6 +28,13 @@ For each question, choose a method first. Say why it applies, then calculate. Ch
 
 1. Area $17.5$ m²; perimeter $17$ m. 2. $1.2\pi$ m. 3. $12\pi$ cm². 4. $216$ cm³. 5. $16\pi$ cm². 6. $74$ cm². 7. $14$ m; use scale and multiplication. 8. $2400$ cm³.
 </details>
+
+## What you can now do
+
+- calculate perimeters and areas of 2D shapes;
+- find circumference, circle area, arc length and sector area;
+- calculate surface area and volume of common prisms and curved solids;
+- split composite shapes and solids into known parts.
 
 ## Your relevance reflection
 

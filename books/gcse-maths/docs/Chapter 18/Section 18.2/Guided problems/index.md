@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. What are the coordinates of the point 2 right and 3 up from $(1,1)$?
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $12$.
 2. $(3,4)$.

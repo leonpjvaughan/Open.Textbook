@@ -6,7 +6,7 @@ strand: algebra
 
 # Chapter 11: Straight-line graphs and rates of change
 
-## The chapter problem
+## The chapter problem: the walker's journey
 
 A route planner shows that a walker is 2 km from home after 30 minutes. The
 walker continues at the same rate. Predict the distance from home after one
@@ -22,6 +22,13 @@ gradient and real-life graphs.
 - find equations of lines, including parallel and perpendicular lines;
 - interpret distance-time graphs and other real-life linear graphs;
 - use gradient and area to describe rates and totals on graphs.
+
+## Where it is used
+
+A straight-line graph turns a steady rate into a picture. Distance-time
+graphs show journeys, conversion graphs change currency, and a fixed charge plus
+a rate gives a line. The gradient is the rate of change, and the vertical
+intercept is the starting value.
 
 ## Your turn to connect it
 

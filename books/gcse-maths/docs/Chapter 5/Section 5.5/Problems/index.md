@@ -12,5 +12,11 @@ kind: problems
 
 # 5.5 Scale factors, scale diagrams and maps — Practise
 
+Work through these on your own. Keep your working neat: the method matters as
+much as the answer. Questions marked **H** are for Higher tier.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
 :::problems chapter-5-practice-5.5
 :::answers chapter-5-practice-5.5

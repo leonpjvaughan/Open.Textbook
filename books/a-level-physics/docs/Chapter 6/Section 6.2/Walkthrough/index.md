@@ -43,6 +43,7 @@ far smaller than the doorway, so the light travels almost straight on.
 > opposite is true. The larger the gap compared with the wavelength, the less the
 > wave spreads. The clearest spreading happens when the gap is about one
 > wavelength wide.
+> **Re-check:** compare the gap with the wavelength and ask which is larger.
 
 ## 2. The single-slit pattern
 
@@ -168,6 +169,7 @@ polarisation of the broadcast signal.
 > fringes are seen. A grating has thousands of slits, and its maxima are narrow
 > and sharp. Use the grating equation with the slit spacing $d = 1/N$, and
 > remember that the order $n$ can only be a whole number.
+> **Re-check:** ask whether the order $n$ in your answer is a whole number.
 
 **Worked example 3.** Plane-polarised light of amplitude $40\,\text{V}\,\text{m}^{-1}$
 falls on an analyser whose axis is at $60^\circ$ to the plane of polarisation.

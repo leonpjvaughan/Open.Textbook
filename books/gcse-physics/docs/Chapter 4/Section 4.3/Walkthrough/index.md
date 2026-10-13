@@ -178,6 +178,7 @@ something about the material on each side.
 > normal is the dashed line at right angles to the surface. Also remember that
 > the frequency does not change when a wave crosses a boundary: only the speed
 > and the wavelength can change.
+> **Re-check:** draw the normal and measure both angles from it, not from the surface.
 
 ## Progress check
 

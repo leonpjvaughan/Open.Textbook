@@ -189,6 +189,7 @@ The amplitude then falls over time. This is **damping**.
 > Use the SHM equations, not $s = ut + \tfrac{1}{2}at^2$. Also remember that
 > the period of SHM does not depend on the amplitude; a larger amplitude means a
 > larger maximum speed, but the same time for one oscillation.
+> **Re-check:** ask whether the acceleration is constant before you choose an equation of motion.
 
 ## 7. Try it: the three graphs
 

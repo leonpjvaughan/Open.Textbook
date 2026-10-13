@@ -12,7 +12,7 @@ For a spinner with equal-sized red and blue regions, each spin has probability $
 
 If the spinner is spun 80 times and lands on red 47 times, the relative frequency is $\frac{47}{80}=0.5875$. This result does not prove that the spinner is unfair. More trials may move the estimate nearer or further from $\frac12$.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 Choose a method before working. For each question, state which method applies and why.
 
@@ -23,6 +23,15 @@ Choose a method before working. For each question, state which method applies an
 5. In a group of 30, 12 wear glasses. Of those wearing glasses, 8 travel by bus. Find the probability that a student travels by bus given that they wear glasses.
 6. A temperature changes from $-4^\circ\text{C}$ to $3^\circ\text{C}$. Work out the increase. Which earlier number method applies?
 7. A recipe uses 250 g of flour for 10 biscuits. Work out the flour needed for 16 biscuits. Explain which method applies.
+
+## What you can now do
+
+- place probabilities on a scale and calculate probabilities for equally likely outcomes;
+- use relative frequency to estimate probability and expected outcomes;
+- organise outcomes in tables, frequency trees, lists and possibility spaces;
+- calculate probabilities for independent and dependent combined events using tree diagrams;
+- use Venn diagrams and set notation to describe groups and events;
+- calculate conditional probabilities from a restricted group using tables, tree diagrams and Venn diagrams.
 
 ## Your relevance reflection
 

@@ -76,6 +76,9 @@ export function mount(el) {
     const text = Math.abs(value).toFixed(1);
     return value < 0 ? "\u2212" + text : text;
   };
+  // The same rounding as one(), as a number, so two printed momenta can be made
+  // to add to the exact total.
+  const toOnePlace = (value) => Math.round(value * 10) / 10;
   const signed = (value) =>
     value < 0 ? "\u2212" + Math.abs(value) : String(value);
 
@@ -191,10 +194,17 @@ export function mount(el) {
       return;
     }
 
+    // The final velocities are rounded for the outcome sentence, so this line
+    // gives the two momenta directly instead of multiplying a rounded velocity
+    // by a mass: 4 kg x 2.7 m s-1 is 10.8, while the momentum rounds to 10.9.
+    // The two printed momenta are rounded so that they add to the exact total,
+    // which is an integer here, so the line checks out at the printed precision.
+    const pAShown = toOnePlace(pAAfter);
+    const pBShown = toOnePlace(totalAfter) - pAShown;
     const afterLine =
-      `After: (${mA} kg &times; ${signed(vA)} m s\u207b\u00b9) + ` +
-      `(${mB} kg &times; ${signed(vB)} m s\u207b\u00b9) = ` +
-      `${one(pAAfter)} + ${one(pBAfter)} = <strong>${one(totalAfter)} ${UNIT}</strong>.`;
+      `After: trolley A has momentum <strong>${one(pAShown)} ${UNIT}</strong> and ` +
+      `trolley B has <strong>${one(pBShown)} ${UNIT}</strong>, a total of ` +
+      `<strong>${one(totalAfter)} ${UNIT}</strong>.`;
 
     const outcome = sticky
       ? `The trolleys move together at <strong>${one(vA)} m s\u207b\u00b9</strong>.`

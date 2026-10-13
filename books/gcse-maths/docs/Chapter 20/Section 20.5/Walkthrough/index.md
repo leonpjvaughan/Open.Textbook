@@ -40,6 +40,7 @@ $$\theta=\tan^{-1}\left(\frac{12}{5}\right)$$
 $$\theta\approx67.4^\circ$$
 
 > **Watch out.** A face diagonal is not the space diagonal. Draw the second right-angled triangle and use the face diagonal as one of its sides.
+> **Re-check:** name the triangle you used and confirm that its hypotenuse is the space diagonal.
 
 ## Progress check
 

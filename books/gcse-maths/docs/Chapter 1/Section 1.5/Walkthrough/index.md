@@ -56,6 +56,7 @@ first two are $4$ and $3$, giving $0.004\,4$.
 
 > **Watch out.** Treating leading zeros as significant figures.
 > $0.004\,367$ to 2 s.f. is $0.004\,4$, not $0.004\,37$.
+> **Re-check:** count significant figures from the first non-zero digit, not from the decimal point.
 
 ## 4. Estimation
 
@@ -80,12 +81,13 @@ single digit decides whether you round up or down? Why?
 
 ## 5. Progress check
 
-The stall's profit was $£39.20$. Round it to the nearest pound for a poster:
-$£39.20 \approx £39$.
+Use the profit you worked out in Section 1.4.
 
-Now estimate as a check: revenue is about $95 \times 1.20 + 6 \times 3 \approx
-100 \times 1.2 + 18 = 138$; cost is about $120 \times 0.65 + 8 \times 2 = 78 + 16 =
-94$; so the profit should be about $138 - 94 = £44$. The exact $£39.20$ is a little lower, but it is the same size, so the answer is reasonable.
+1. Round it to the nearest pound for a poster.
+2. Estimate the profit by rounding each price, and say whether your exact value
+   is reasonable.
+3. Compare your rounded value with your estimate. Does the comparison show the
+   same size of answer?
 
 ## You should now be able to
 

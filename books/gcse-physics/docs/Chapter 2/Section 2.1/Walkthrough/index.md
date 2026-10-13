@@ -121,6 +121,7 @@ $$ 35 + 50 = 85\,\text{N} $$
 > same straight line. Two forces at an angle do not add in the same way. A force
 > of 3 N and a force of 4 N at right angles give a resultant of 5 N, not 7 N. Use a
 > vector diagram, and see the Higher tier part below.
+> **Re-check:** draw the two forces tip to tail and measure the resultant on the diagram.
 
 ### Try it: forces in a line
 

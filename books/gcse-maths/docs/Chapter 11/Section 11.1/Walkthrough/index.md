@@ -13,9 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** read ordered pairs and calculate with positive and negative integers.
 
-## Objectives
-
-By the end of this section, you can plot points in four quadrants and plot a straight-line graph from a rule.
+**Objectives:** plot points in four quadrants and plot a straight-line graph from a rule.
 
 ## Coordinates and straight-line graphs
 

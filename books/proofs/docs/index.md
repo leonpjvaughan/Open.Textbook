@@ -38,7 +38,7 @@ is visible rather than only readable.
 
 ## About the label
 
-A proof that is not in your course carries a **Beyond the course** note. That is
+A proof that is not in your course carries a **Beyond your course** note. That is
 not a warning. It means you can read it, enjoy it and use it, and that no exam
 paper will ask you to reproduce it. A proof without the note is one your course
 does expect — often it is a fact you are asked to use without being shown why.

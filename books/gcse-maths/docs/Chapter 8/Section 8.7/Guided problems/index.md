@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. Simplify $x^2+3x+x^2$.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $2x+10$.
 2. $2x^2+3x$.

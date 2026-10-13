@@ -36,6 +36,7 @@ $=x^3+3x^2+3x^2+9x+2x+6$ — multiply each term by each term.
 $=x^3+6x^2+11x+6$ — collect like terms.
 
 > **Watch out.** A common error is to multiply only some terms by the third bracket. Multiply every term by each term, then collect matching powers.
+> **Re-check:** multiply out your answer and compare it with the original expression term by term.
 
 ## You should now be able to
 

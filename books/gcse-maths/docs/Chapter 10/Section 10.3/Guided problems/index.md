@@ -39,7 +39,7 @@ Try each item before opening its hints. Reveal the full working when you want to
 The common difference is $3$, so start with $3n$.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 The first term is 6; $3(1)=3$, so add 3.
 
@@ -61,7 +61,7 @@ The rule is $3n+3$.
 Substitute $n=12$.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $4(12)-1=48-1$.
 
@@ -83,7 +83,7 @@ The 12th term is $47$.
 The common difference is $-4$, so start with $-4n$.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 At position 1 this gives $-4$; add 18 to reach 14.
 

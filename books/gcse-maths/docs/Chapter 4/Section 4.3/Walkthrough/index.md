@@ -40,7 +40,9 @@ $\frac{3}{4}\times\frac{5}{2}=\frac{15}{8}=1\frac{7}{8}$.
 
 ## Progress check
 
-One keyboard costs £48 and the discount is one quarter of that price. Work out the discounted price: $48\times\frac34=£36$.
+One keyboard costs £48 and the discount is one quarter of that price. Work out
+the discounted price, and explain why multiplying by $\frac34$ gives the same
+answer as subtracting one quarter.
 
 ## You should now be able to
 

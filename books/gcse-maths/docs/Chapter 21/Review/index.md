@@ -16,7 +16,7 @@ The two points on the circumference lie in the same segment and see the same cho
 The radius meets the chord at right angles. A perpendicular from the centre bisects a chord, so each half is equal. If the chord length is $c$, each half is $c/2$. The radius and tangent theorem is not needed here because the line meets a chord, not a tangent.
 <!-- /tier:h -->
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 Work without notes first. For each question, state which method applies and why.
 

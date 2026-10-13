@@ -120,6 +120,7 @@ speed make the ray bend? Write your answer in two or three sentences.
 > angle of incidence. Also keep reflection and refraction apart: reflection
 > bounces off the surface, while refraction passes into the new material and
 > bends.
+> **Re-check:** draw the normal and check that each angle is measured from it.
 
 ## 5. Uses and dangers
 

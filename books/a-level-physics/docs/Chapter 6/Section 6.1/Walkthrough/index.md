@@ -163,6 +163,7 @@ quiet, because 0.34 m is half a wavelength.
 > difference of 0.68 m with the frequency of 500 Hz. Those numbers cannot be
 > compared. Divide the path difference by the wavelength to get a number of
 > wavelengths: $\dfrac{0.68}{0.68} = 1$, so the waves are in phase.
+> **Re-check:** divide the path difference by the wavelength and confirm that both are in the same unit.
 
 ## 5. Coherence
 

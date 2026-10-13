@@ -18,11 +18,7 @@ kind: walkthrough
 
 You should be able to write error intervals and substitute values into a formula.
 
-## Objectives
-
-- Identify the lower and upper bounds of a rounded measurement.
-- Use bounds to find possible limits for a calculated quantity.
-- State whether an endpoint can be reached.
+**Objectives:** identify the lower and upper bounds of a rounded measurement; use bounds to find possible limits for a calculated quantity; and state whether an endpoint can be reached.
 
 ## Bounds of one measurement
 
@@ -49,6 +45,7 @@ $$
 The speed is less than $120.5\div1.95\approx61.7949$ km/h. To 3 significant figures, this is about $61.8$ km/h.
 
 > **Watch out.** A common error is to divide the upper distance by the upper time. For the greatest speed, use the upper distance and lower time: a smaller positive denominator makes the quotient larger.
+> **Re-check:** ask which bound makes the speed larger and confirm that you used that pair.
 
 > **Progress check.** A rectangle has length $5.2$ m and width $3.1$ m, each rounded to the nearest $0.1$ m. Which bounds give its maximum area?
 

@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. Two similar shapes have length scale factor 2. What is the ratio of matching lengths?
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $9$ and $27$.
 2. $1:2$.

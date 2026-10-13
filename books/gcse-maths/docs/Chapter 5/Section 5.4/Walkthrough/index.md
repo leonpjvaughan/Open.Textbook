@@ -14,18 +14,13 @@ kind: walkthrough
 
 # 5.4 Inverse proportion — Learn
 
-## Prerequisites
-
-You should be able to multiply and divide whole numbers and fractions. Check units before comparing quantities.
+**Prerequisites:** multiply and divide whole numbers and fractions. Check units before comparing quantities.
 
 ## Key terms
 
 **Inverse proportion** means the product of two quantities stays fixed. The **constant of proportionality** is written $k$.
 
-## Objectives
-
-- Find equations and values in inverse and inverse-square proportion.
-- Check that the result matches the units and direction of change.
+**Objectives:** find equations and values in inverse and inverse-square proportion; check that the result matches the units and direction of change.
 
 ## Learn the method
 
@@ -49,6 +44,6 @@ Inverse proportion means the product stays fixed. For $y\propto1/x$, write $y=k/
 
 ## You should now be able to
 
-- I can find $k$ in an inverse or inverse-square relationship.
-- I can use a fixed product to find a missing value.
-- I can check that the product stays constant.
+- find $k$ in an inverse or inverse-square relationship.
+- use a fixed product to find a missing value.
+- check that the product stays constant.

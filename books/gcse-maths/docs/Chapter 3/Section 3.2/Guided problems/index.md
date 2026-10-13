@@ -34,7 +34,7 @@ kind: guided-problems
 Find the two consecutive square numbers around 45.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $6^2=36$ and $7^2=49$. The midpoint is $42.5$.
 
@@ -55,7 +55,7 @@ $45$ is between $36$ and $49$, and is above their midpoint, $42.5$. Therefore $\
 Compare 300 with $6^3$ and $7^3$.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $6^3=216$ and $7^3=343$. The midpoint is $279.5$.
 
@@ -76,7 +76,7 @@ $300$ is above the midpoint of $216$ and $343$. Therefore $\sqrt[3]{300}$ rounds
 Round 31 first, then square the rounded number.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $31\approx30$.
 

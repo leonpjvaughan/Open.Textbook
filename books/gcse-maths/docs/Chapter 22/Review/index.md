@@ -17,7 +17,7 @@ $\frac12(\mathbf{u}+\mathbf{v})$. The midpoint of $BD$ has position vector
 $\frac12(\mathbf{u}+\mathbf{v})$ too. The midpoints are the same point, so the
 diagonals bisect each other. The prediction from the chapter opener was correct.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 For each item, name the method before you work it out. Explain why that method applies.
 

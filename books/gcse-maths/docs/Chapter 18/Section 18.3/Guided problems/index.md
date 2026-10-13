@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. Work out $-2\times3$.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $4$.
 2. $-6$.

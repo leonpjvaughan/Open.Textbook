@@ -35,7 +35,7 @@ Move the decimal point so one non-zero digit stays before it.
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 Count four places from $83\,000$ to $8.3$.
 </details>
@@ -55,7 +55,7 @@ Multiply the first numbers and add the powers.
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 Work out $6\times10^3$, then check the first number is between $1$ and $10$.
 </details>

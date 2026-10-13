@@ -48,6 +48,7 @@ There are 5 counters, so the probability of green is $\frac45$.
 $$P(\text{not green})=1-\frac45=\frac15$$
 
 > **Watch out.** Do not count colours as equally likely when there are different numbers of counters. One yellow counter among five gives probability $\frac15$, not $\frac12$.
+> **Re-check:** ask how many counters of that colour there are and how many counters there are in total.
 
 ## Investigate the spinner
 

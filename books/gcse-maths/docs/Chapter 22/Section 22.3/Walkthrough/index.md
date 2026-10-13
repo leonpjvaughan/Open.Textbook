@@ -59,6 +59,7 @@ step follows from adding the endpoint position vectors and halving.
 
 > **Watch out.** Equal lengths alone do not prove that two segments have the same
 > midpoint. Compare both midpoint position vectors, including both components.
+> **Re-check:** find both components of each midpoint and compare them one at a time.
 
 ## Progress check
 

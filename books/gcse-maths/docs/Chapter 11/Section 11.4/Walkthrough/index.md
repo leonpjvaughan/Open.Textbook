@@ -13,9 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** identify the gradient and vertical intercept in $y=mx+c$.
 
-## Objectives
-
-By the end of this section, you can use gradients to identify parallel and perpendicular lines and find their equations.
+**Objectives:** use gradients to identify parallel and perpendicular lines and find their equations.
 
 ## Parallel and perpendicular gradients
 
@@ -26,10 +24,12 @@ Parallel lines have equal gradients. Perpendicular lines meet at a right angle. 
 The given gradient is 2. The perpendicular gradient is $-1/2$, because $2\\times(-1/2)=-1$. The point $(0,4)$ gives the vertical intercept 4. Therefore, the equation is $y=-\\frac12x+4$.
 
 > **Watch out.** Do not change only the sign of the gradient. For gradient 2, the perpendicular gradient is $-1/2$, and their product is $-1$.
+> **Re-check:** multiply the two gradients together and check that the product is $-1$.
 
 ## Progress check
 
-A line with gradient $1/15$ is perpendicular to a line with gradient $-15$, since $(1/15)(-15)=-1$.
+Predict the gradient of a line perpendicular to one with gradient $1/15$. Then
+multiply the two gradients and check that the product is $-1$.
 
 
 ## You should now be able to

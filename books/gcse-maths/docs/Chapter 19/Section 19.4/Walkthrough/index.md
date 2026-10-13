@@ -46,6 +46,7 @@ Add the curved area and two ends: $2\pi\times3\times7+2\pi\times3^2=60\pi$.
 So volume is $63\pi\text{ cm}^3$ and surface area is $60\pi\text{ cm}^2$.
 
 > **Watch out.** Surface area uses square units and volume uses cubic units. A missing face often means you counted an internal join.
+> **Re-check:** add up the faces you counted and compare with the faces you can see on the shape.
 
 ## Progress check
 

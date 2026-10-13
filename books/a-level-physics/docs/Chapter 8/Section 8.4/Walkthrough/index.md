@@ -159,6 +159,7 @@ annihilation.
 > equivalent of 1 u (931.5 MeV) when the mass is in atomic mass units, and use
 > $E = mc^2$ when the mass is in kilograms. Mixing them gives an answer that is
 > wrong by a large factor.
+> **Re-check:** ask whether the total mass and energy are conserved when you compare the two sides.
 
 ## 5. Try it: the binding energy curve
 

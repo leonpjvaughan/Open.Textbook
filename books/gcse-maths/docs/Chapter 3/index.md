@@ -6,7 +6,7 @@ strand: number
 
 # Chapter 3: Powers, roots and indices
 
-## The chapter problem
+## The chapter problem: the doubling file
 
 ### Repeated doubling
 
@@ -33,6 +33,14 @@ You will be able to:
 3. [3.3 Laws of indices](Section 3.3/Walkthrough/index.md)
 4. [3.4 Negative and fractional indices](Section 3.4/Walkthrough/index.md) (Higher only)
 5. [Review](Review/index.md)
+
+## Where it is used
+
+Powers describe anything that grows or shrinks by a fixed multiplier. A
+computer file doubles in size each round, and a population or a debt can grow by
+a fixed percentage each year. Roots and index laws let engineers work back from
+a measurement to the size that produced it, and they keep very large and very
+small numbers manageable.
 
 ## Your turn to connect it
 

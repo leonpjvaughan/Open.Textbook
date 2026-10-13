@@ -19,7 +19,7 @@ Answer these from memory. Do not look back at the section.
 2. Work out $24\div6$.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $14$. Multiply before adding.
 2. $4$.

@@ -65,3 +65,10 @@ and they get as close as you like.
 3. With $r = 2$ the terms grow without limit, so the partial sums do too. The
    formula's derivation needs $r^n \to 0$, which is false here.
 </details>
+
+## A common error
+
+The error is to use the sum to infinity for a series that does not have one. The
+formula $S_\infty = \dfrac{a}{1-r}$ needs $|r| < 1$, so that $r^n$ shrinks
+towards zero. If $|r| \ge 1$ the terms do not shrink and the partial sums do not
+settle. Check the size of $r$ before using the infinite formula.

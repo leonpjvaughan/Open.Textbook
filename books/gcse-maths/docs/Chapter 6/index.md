@@ -6,7 +6,7 @@ strand: ratio
 
 # Chapter 6: Percentages and financial mathematics
 
-## The chapter problem
+## The chapter problem: the savings account
 
 An account starts with £600 and earns 4% compound interest each year. Predict its balance after two years. Will it be more than £640? Make a prediction before calculating.
 
@@ -25,6 +25,13 @@ An account starts with £600 and earns 4% compound interest each year. Predict i
 4. [6.4 Simple and compound interest](Section 6.4/Walkthrough/index.md)
 5. [6.5 Growth, decay and repeated percentage change](Section 6.5/Walkthrough/index.md)
 6. [Review](Review/index.md)
+
+## Where it is used
+
+Percentages describe interest, tax, discounts and growth. A savings account,
+a loan and a phone contract all use a rate that is applied again and again.
+Understanding compound change helps you compare offers and see how a balance
+grows or falls over time.
 
 ## Your turn to connect it
 

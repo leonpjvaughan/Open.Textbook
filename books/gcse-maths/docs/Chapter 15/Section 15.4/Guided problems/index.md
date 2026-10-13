@@ -41,7 +41,7 @@ Multiply each term in the first bracket by each term in the second.
 </details>
 
 <details markdown="1">
-<summary>First step</summary>
+<summary>Next step</summary>
 
 $(x+5)(x+5)$.
 

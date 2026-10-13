@@ -14,18 +14,13 @@ kind: walkthrough
 
 # 5.3 Direct proportion — Learn
 
-## Prerequisites
-
-You should be able to multiply and divide whole numbers and fractions. Check units before comparing quantities.
+**Prerequisites:** multiply and divide whole numbers and fractions. Check units before comparing quantities.
 
 ## Key terms
 
 **Direct proportion** means one quantity is a fixed multiple of another. The **constant of proportionality** is written $k$.
 
-## Objectives
-
-- Find equations and values in direct proportion, including square and cube relationships.
-- Check that the result matches the units and direction of change.
+**Objectives:** find equations and values in direct proportion, including square and cube relationships; check that the result matches the units and direction of change.
 
 ## Learn the method
 
@@ -61,6 +56,6 @@ In direct proportion, one quantity is a fixed multiple of another: $y=kx$. For $
 
 ## You should now be able to
 
-- I can find $k$ in $y=kx$, $y=kx^2$ or $y=kx^3$.
-- I can use the model to find a missing value.
-- I can check the scaling factor and the answer.
+- find $k$ in $y=kx$, $y=kx^2$ or $y=kx^3$.
+- use the model to find a missing value.
+- check the scaling factor and the answer.

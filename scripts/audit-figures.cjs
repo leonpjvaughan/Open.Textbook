@@ -402,6 +402,7 @@ async function main() {
   let jsonOut = null;
   let only = null;
   let table = null;
+  let mobile = false;
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === "--schemes") schemes = argv[(i += 1)].split(",");
     else if (argv[i] === "--theme") theme = argv[(i += 1)];
@@ -410,6 +411,7 @@ async function main() {
     else if (argv[i] === "--json") jsonOut = path.resolve(argv[(i += 1)]);
     else if (argv[i] === "--only") only = argv[(i += 1)];
     else if (argv[i] === "--table") table = path.resolve(argv[(i += 1)]);
+    else if (argv[i] === "--mobile") mobile = true;
   }
   if (shots) fs.mkdirSync(shots, { recursive: true });
 
@@ -453,6 +455,15 @@ async function main() {
   } catch (err) {
     delete launch.channel;
     browser = await chromium.launch(launch);
+  }
+
+  // `--mobile` answers a different question from the contrast audit: not "is this
+  // readable?" but "can a reader on a phone read it at all?". A module's
+  // `font-size` does not say, because the SVG scales by rendered width over
+  // viewBox width, so a 560-unit viewBox in a 358px panel draws a 14px label at
+  // 8px. Measured, not inferred: 70 figures were once below 7px.
+  if (mobile) {
+    return runMobile(browser, siteDir, pages, jsonOut);
   }
 
   const SCHEME_VALUE = { light: "default", dark: "slate" };
@@ -547,6 +558,77 @@ async function main() {
       `\nfigure audit failed: ${bad} contrast failure(s), ${errs} unmeasured figure(s), ` +
         `${missing} measurement(s) not attempted`
     );
+    process.exit(1);
+  }
+}
+
+/** The smallest rendered label per figure at a phone viewport. */
+async function runMobile(browser, dir, pages, outFile) {
+  const routes = [...new Set(Object.values(pages).flat())];
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  await context.route("**/*", (route) => {
+    const url = new URL(route.request().url());
+    let rel = decodeURIComponent(url.pathname);
+    if (rel.endsWith("/")) rel += "index.html";
+    const file = path.join(dir, rel);
+    if (!file.startsWith(dir) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
+      return route.fulfill({ status: 404, body: "not found" });
+    }
+    return route.fulfill({
+      status: 200,
+      contentType: TYPES[path.extname(file)] || "application/octet-stream",
+      body: fs.readFileSync(file),
+    });
+  });
+  const page = await context.newPage();
+  const measured = {};
+  for (const route of routes) {
+    try {
+      await page.goto(`http://figures.local${route}`, { waitUntil: "load" });
+      await page.waitForTimeout(300);
+      const found = await page.evaluate(`(function () {
+        const out = [];
+        for (const fig of document.querySelectorAll("maths-figure[data-figure]")) {
+          let smallest = Infinity;
+          for (const el of fig.querySelectorAll("text, tspan")) {
+            const rect = el.getBoundingClientRect();
+            if (rect.width === 0 && rect.height === 0) continue;
+            const svg = el.ownerSVGElement;
+            const vb = svg && svg.viewBox && svg.viewBox.baseVal;
+            const scale = vb && vb.width ? svg.getBoundingClientRect().width / vb.width : 1;
+            smallest = Math.min(smallest, parseFloat(getComputedStyle(el).fontSize) * scale);
+          }
+          if (smallest !== Infinity) out.push({ slug: fig.dataset.figure, px: smallest });
+        }
+        return out;
+      })()`);
+      for (const one of found) {
+        if (!(one.slug in measured) || one.px < measured[one.slug]) measured[one.slug] = one.px;
+      }
+    } catch (err) {
+      /* a page that will not load is reported by the contrast pass */
+    }
+  }
+  await context.close();
+  // The browser is closed here too: returning from `main` would otherwise leave it
+  // running and the process would never exit, which looks like a hang rather than
+  // a finished check.
+  await browser.close();
+
+  if (outFile) fs.writeFileSync(outFile, JSON.stringify(measured, null, 1));
+  const slugs = Object.keys(measured).sort((a, b) => measured[a] - measured[b]);
+  const tooSmall = slugs.filter((s) => measured[s] < 9);
+  const median = slugs.length ? measured[slugs[Math.floor(slugs.length / 2)]] : 0;
+  console.log(`\nfigures measured at 390px: ${slugs.length}`);
+  console.log(`  below 9px: ${tooSmall.length}   below 7px: ${slugs.filter((s) => measured[s] < 7).length}`);
+  console.log(`  median smallest label: ${median.toFixed(1)}px`);
+  if (tooSmall.length) {
+    console.error("\nfigure legibility failed: these draw a label too small to read:");
+    for (const slug of tooSmall.slice(0, 20)) console.error(`   ${measured[slug].toFixed(1)}px  ${slug}`);
+    process.exit(1);
+  }
+  if (slugs.length < 10) {
+    console.error(`\nfigure legibility failed: only ${slugs.length} figures measured`);
     process.exit(1);
   }
 }

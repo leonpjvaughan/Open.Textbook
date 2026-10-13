@@ -134,7 +134,7 @@ so the tests ask what a class *does*, not that one is present.
 | `ch13-trig` | `gcse-maths/chapter-13/section-13.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-warn`, `text-good` | 3.08:1 | 3.07:1 |
 | `ch14-lines` | `gcse-maths/chapter-14/section-14.3/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good` | 4.60:1 | 5.89:1 |
 | `ch15-functions` | `gcse-maths/chapter-15/section-15.1/learn` | `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
-| `ch16-point` | `gcse-maths/chapter-16/section-16.1/learn` | `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
+| `ch16-point` | `gcse-maths/chapter-16/section-16.1/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
 | `ch17-bearing-dial` | `gcse-maths/chapter-17/section-17.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-ink` | 3.08:1 | 3.07:1 |
 | `ch17-construction` | `gcse-maths/chapter-17/section-17.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 4.60:1 | 5.75:1 |
 | `ch18-similarity-scale` | `gcse-maths/chapter-18/section-18.6/learn` | `fig-ink`, `fig-grid`, `fig-line`, `text-accent`, `text-warn`, `text-ink` | 3.08:1 | 3.07:1 |
@@ -144,12 +144,12 @@ so the tests ask what a class *does*, not that one is present.
 | `ch20-right-triangle` | `gcse-maths/chapter-20/section-20.1/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good` | 3.08:1 | 3.07:1 |
 | `ch21-centre-angle` | `gcse-maths/chapter-21/section-21.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good`, `text-ink` | 3.08:1 | 3.07:1 |
 | `ch22-vector-translation` | `gcse-maths/chapter-22/section-22.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 3.08:1 | 3.07:1 |
-| `ch23-spinner` | `gcse-maths/chapter-23/section-23.1/learn` | `fig-accent`, `fig-grid`, `text-accent`, `text-ink` | 3.08:1 | 3.07:1 |
-| `ch24-chart-choice` | `gcse-maths/chapter-24/section-24.2/learn` | `fig-accent`, `fig-good` | 13.53:1 | 12.11:1 |
-| `ch25-boxplot` | `gcse-maths/chapter-25/section-25.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `text-accent`, `text-warn` | 4.98:1 | 5.75:1 |
+| `ch23-spinner` | `gcse-maths/chapter-23/section-23.1/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
+| `ch24-chart-choice` | `gcse-maths/chapter-24/section-24.2/learn` | `text-accent`, `text-good` | 4.60:1 | 5.89:1 |
+| `ch25-boxplot` | `gcse-maths/chapter-25/section-25.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `text-accent`, `text-warn`, `text-ink` | 4.98:1 | 5.75:1 |
 | `ch3-index-laws` | `gcse-maths/chapter-3/section-3.3/learn` | `text-ink` | 13.53:1 | 12.11:1 |
 | `ch4-fraction-strip` | `gcse-maths/chapter-4/section-4.1/learn` | `fig-accent`, `fig-warn`, `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
-| `ch5-map-scale` | `gcse-maths/chapter-5/section-5.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `text-accent`, `text-good` | 3.08:1 | 3.07:1 |
+| `ch5-map-scale` | `gcse-maths/chapter-5/section-5.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `text-accent`, `text-good`, `text-ink` | 4.60:1 | 5.75:1 |
 | `ch5-proportion` | `gcse-maths/chapter-5/section-5.3/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.98:1 | 5.75:1 |
 | `ch6-interest` | `gcse-maths/chapter-6/section-6.4/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `ch7-scale` | `gcse-maths/chapter-7/section-7.1/learn` | `fig-accent`, `fig-good`, `fig-grid`, `text-accent` | 4.98:1 | 5.89:1 |
@@ -320,6 +320,8 @@ so the tests ask what a class *does*, not that one is present.
 | `triangle-area-sinc` | `proofs/triangle-area-sinc` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good` | 3.08:1 | 3.07:1 |
 
 <!-- /generated:tables -->
+
+
 
 
 

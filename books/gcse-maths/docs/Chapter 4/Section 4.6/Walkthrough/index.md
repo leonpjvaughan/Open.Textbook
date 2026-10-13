@@ -46,7 +46,9 @@ $72\div0.8=£90$.
 
 ## Progress check
 
-The first shop's discounted price is $£48\times(1-\frac14)=£36$. Compare it with £37.50: $37.50-36=£1.50$, so the first shop costs £1.50 less.
+The first shop's discounted price is $£48\times(1-\frac14)$. Work it out, then
+compare it with the second shop's £37.50. State which shop costs less, and by
+how much.
 
 ## You should now be able to
 

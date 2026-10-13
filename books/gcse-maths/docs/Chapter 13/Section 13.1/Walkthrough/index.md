@@ -70,6 +70,7 @@ $$
 The graph passes through $(0,1)$ and increases by a factor of two each step right.
 
 > **Watch out.** The reciprocal rule is undefined at $x=0$. Leave a gap there; joining the branches would include points that do not satisfy the rule.
+> **Re-check:** put $x=0$ into the rule and ask whether the expression can be worked out.
 
 ## Progress check
 

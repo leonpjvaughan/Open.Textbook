@@ -30,6 +30,13 @@ Two taxi companies charge a fixed fee plus a price for each kilometre. A 4 km tr
 
 Each section has a **Learn** page, **Practise with help**, and **Practise**. The Review page returns to the taxi fares and mixes methods from this chapter.
 
+## Where it is used
+
+Two conditions at once appear when two prices or two plans must agree.
+Simultaneous equations find the point where two rules give the same value.
+Iteration finds an answer to a rule that cannot be solved directly, one step at
+a time.
+
 ## Your turn to connect it
 
 Where might someone need to find two unknown amounts from two pieces of information? Write one example from your life, a job, or a subject you study. Say what the two unknowns would represent.

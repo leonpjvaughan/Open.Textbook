@@ -107,6 +107,7 @@ in a certain distance. A greater braking force gives a greater deceleration.
 > it. Braking distance depends on the square of the speed, so doubling the speed
 > makes it four times as large. If a question doubles the speed, do not double
 > the whole stopping distance. Work out the two parts separately.
+> **Re-check:** separate the two distances and ask which one depends on the square of the speed.
 
 <!-- tier:h -->
 ## 4. Estimating the force in a large deceleration

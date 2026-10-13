@@ -44,6 +44,7 @@ $$
 
 > **Watch out.** "Add a zero." Adding a zero changes the number: $4.35 \times 10
 > = 43.5$, not $4.350$. Move the digits; do not decorate the number with zeros.
+> **Re-check:** ask whether the decimal point moved so that the value keeps its size.
 
 ## 3. Comparing and ordering
 
@@ -73,6 +74,7 @@ $$
 > **Watch out.** A longer decimal is **not** always larger. $0.4 = 0.40 >
 > 0.35$, even though "0.35" has more digits. Compare place value, not length of
 > writing.
+> **Re-check:** compare the two numbers digit by digit from the decimal point, not by counting digits.
 
 ## 4. Negative numbers
 

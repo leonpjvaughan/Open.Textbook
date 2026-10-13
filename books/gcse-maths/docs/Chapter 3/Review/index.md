@@ -17,7 +17,7 @@ The size is $1,048,576$ units. It is about $1,000,000$ units and far from
 $1,000$ units, so it is nearer one million. The estimate from 3.2 was
 reasonable.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 Work through the questions without notes first. For each one, choose the method
 and give a reason for your choice.
@@ -30,6 +30,13 @@ and give a reason for your choice.
 6. Work out $125^{2/3}$. Which root should you find first?
 7. A rectangle has area $144\text{ cm}^2$. Work out its side length if it is a square.
 8. A sequence starts at 3 and doubles five times. Write its final value as a power product and evaluate it.
+
+## What you can now do
+
+- calculate powers and roots, including square roots and cube roots;
+- estimate powers and roots by comparing with nearby known values;
+- use index laws to simplify products, quotients and powers;
+- work with zero, negative and fractional indices.
 
 ## Your relevance reflection
 

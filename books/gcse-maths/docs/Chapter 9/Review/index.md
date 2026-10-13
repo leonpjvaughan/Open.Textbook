@@ -18,7 +18,7 @@ Divide by $2$: $h=4$.
 
 At four hours, both halls cost £42. The equal point is after two hours, as you predicted or revised in the opener.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 For each item, name the method before you work. After calculating, say why that method fits.
 

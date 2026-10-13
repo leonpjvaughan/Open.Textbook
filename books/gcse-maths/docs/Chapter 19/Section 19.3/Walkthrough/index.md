@@ -48,6 +48,7 @@ Find one fifth of $360^\circ$: $\frac15\times360^\circ=72^\circ$.
 So the sector angle is $72^\circ$.
 
 > **Watch out.** The angle fraction must use degrees out of $360^\circ$. Do not use the angle alone as a multiplier.
+> **Re-check:** ask whether your fraction is the angle out of $360^\circ$ before you multiply.
 
 ## Progress check
 

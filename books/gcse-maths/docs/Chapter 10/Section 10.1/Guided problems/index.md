@@ -39,7 +39,7 @@ Try each item before opening its hints. Reveal the full working when you want to
 Find the change between adjacent terms.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 Add $4$ each time: $14+4=18$, then $18+4=22$.
 
@@ -61,7 +61,7 @@ The terms are $18,22$.
 Substitute $n=4$.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $5(4)+1=20+1$.
 
@@ -83,7 +83,7 @@ The 4th term is $21$.
 The change is $5$, so begin with $5n$.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 At position 1, $5n=5$ but the term is 8, so add 3.
 

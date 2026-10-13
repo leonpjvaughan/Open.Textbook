@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. For $y=2x+1$, find $y$ when $x=0$ and when $x=2$.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. 3 right and 2 down.
 2. $1$ and $5$.

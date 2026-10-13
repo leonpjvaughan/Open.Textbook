@@ -10,7 +10,7 @@ kind: review
 
 The signal crosses its middle value while rising, then reaches a maximum and minimum before repeating. This matches $y=\sin x$ over one cycle, where $0^\circ\leq x\leq360^\circ$. The maximum occurs at $90^\circ$, the minimum at $270^\circ$, and the pattern repeats every $360^\circ$. A vertical shift changes its middle value; a vertical scale changes its height.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 For each item, name the graph feature or method you will use before answering, and say why it fits.
 

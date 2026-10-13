@@ -34,7 +34,7 @@ kind: guided-problems
 Write four factors of 3.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $3^4=3\times3\times3\times3$.
 
@@ -55,7 +55,7 @@ $3^4=3\times3\times3\times3=81$.
 Which positive integer squared gives 169?
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $13^2=169$.
 
@@ -76,7 +76,7 @@ $\sqrt{169}=13$, because $13^2=169$.
 Find the number whose cube is $-64$.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $(-4)^3=-64$.
 

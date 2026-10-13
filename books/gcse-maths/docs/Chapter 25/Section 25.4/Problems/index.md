@@ -11,5 +11,11 @@ kind: problems
 
 # 25.4 Scatter graphs and correlation — Practise
 
+Work through these on your own. Keep your working neat: the method matters as
+much as the answer. Questions marked **H** are for Higher tier.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
 :::problems chapter-25-practice-25.4
 :::answers chapter-25-practice-25.4

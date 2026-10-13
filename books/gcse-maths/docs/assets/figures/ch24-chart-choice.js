@@ -15,7 +15,7 @@ export function mount(el) {
     bars.innerHTML = '';
     values.forEach(([name, count], index) => {
       const row = document.createElement('p');
-      row.className = index === 1 ? 'fig-good' : 'fig-accent';
+      row.className = index === 1 ? 'text-good' : 'text-accent';
       row.textContent = `${name}: ${count} ${'▰'.repeat(count / 5)}`;
       bars.append(row);
     });

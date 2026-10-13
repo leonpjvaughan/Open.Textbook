@@ -36,6 +36,7 @@ Upper fence $=26.5+1.5\times9=40$.
 The value 42 is above 40, so it is a possible outlier. Check the original record before deciding what it means.
 
 > **Watch out.** A larger range can come from one unusual value. Compare the IQR as well, and explain what each measure says about the data.
+> **Re-check:** compare the IQR as well as the range and say what each one shows.
 
 ## Progress check
 

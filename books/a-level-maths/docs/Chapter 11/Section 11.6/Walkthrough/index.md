@@ -153,6 +153,16 @@ the rise. Starting the axis at 0 would show three almost equal bars.
 > **Re-check:** after cleaning, report the number of values removed or changed,
 > and the original total, so the effect is visible.
 
+## Progress check
+
+Return to the chapter problem. The 30 journey times contain the value 58. The
+quartiles are $Q_1 = 19.75$ and $Q_3 = 28.25$.
+
+1. Find the two fences.
+2. Is 58 a possible outlier? Explain your answer.
+3. What should the group do with 58, and what must they report if they change
+   the data set?
+
 ## You should now be able to
 
 - identify a possible outlier using the interquartile-range fences;

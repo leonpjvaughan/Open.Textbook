@@ -99,6 +99,7 @@ The temperature rises by a factor of 1.5, so the volume rises by the same factor
 > Celsius. A temperature of 20 °C is 293 K, not 20. If you put 20 into a gas
 > equation you will get an answer that is wrong by more than a factor of ten.
 > Convert first: add 273.
+> **Re-check:** convert the temperature to kelvin and confirm that it is above $273$.
 
 ## 3. Absolute zero and the kelvin scale
 
@@ -229,6 +230,7 @@ speed of sound in air.
 > When you square the speeds, the fastest molecules count for more, so the mean
 > of the squares is larger than the square of the mean. Use $c_{\text{rms}}$ in
 > the kinetic theory equation, not an ordinary average speed.
+> **Re-check:** ask whether the equation needs the rms speed or an ordinary average speed.
 
 ## 6. Testing Boyle's law
 

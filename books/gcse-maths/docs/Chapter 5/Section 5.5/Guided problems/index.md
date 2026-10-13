@@ -23,7 +23,7 @@ Answer these from memory. Do not look back at the section.
 2. Simplify the ratio $4:12$.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $6\times1000=6000$.
 2. $4:12=1:3$.

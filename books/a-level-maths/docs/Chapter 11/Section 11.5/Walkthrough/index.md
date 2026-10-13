@@ -225,6 +225,16 @@ amount to every reading leaves the standard deviation unchanged.
 > **Re-check:** the standard deviation cannot be negative, and it is zero only
 > when every value is the same.
 
+## Progress check
+
+Return to the chapter problem. The 30 journey times are in the chapter opener.
+Do not add them all up yet.
+
+1. By looking at the middle of the list, estimate the mean.
+2. Two of the values are 12 and 58. Which one pulls the mean more, and why?
+3. Would you expect the standard deviation of these times to be small or large?
+   Give a reason.
+
 ## You should now be able to
 
 - choose the mean, median or mode for a data set and say why;

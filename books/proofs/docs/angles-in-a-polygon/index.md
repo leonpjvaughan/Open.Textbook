@@ -95,3 +95,10 @@ $$\frac{(n - 2) \times 180^\circ}{n}$$
 
 For a regular hexagon that is $\dfrac{4 \times 180^\circ}{6} = 120^\circ$. You can
 check that against the hexagon at the top of the page.
+
+## A common error
+
+The error is to count $n$ triangles instead of $n-2$. From one corner you can
+draw only $n-3$ diagonals, because the corner itself and its two neighbours are
+not joined. Those diagonals make $n-2$ triangles. Counting the triangles in a
+square, where the answer is 2, is a quick guard.

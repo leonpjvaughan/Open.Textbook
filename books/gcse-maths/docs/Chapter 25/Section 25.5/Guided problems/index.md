@@ -30,7 +30,7 @@ kind: guided-problems
 Compare medians for typical values and IQRs for middle-half spread.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 Compare $15$ with $12$, then compare $7$ with $4$.
 </details>
@@ -47,7 +47,7 @@ Group B has the higher median and the larger IQR. Its typical value is higher, a
 First calculate the IQR. Then subtract or add 1.5 IQR.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 IQR $=8$; $1.5\times8=12$.
 </details>
@@ -64,7 +64,7 @@ Lower fence $=10-12=-2$. Upper fence $=18+12=30$.
 The list is ordered. Choose the middle value.
 </details>
 
-<details markdown="1"><summary>Step</summary>
+<details markdown="1"><summary>Next step</summary>
 
 The third value is in the middle.
 </details>

@@ -35,7 +35,7 @@ Try each question before opening a hint. Open the next part only when you need i
 Write the angle fact that fits the diagram or shape.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 Set up an equation using the straight-line angle total.
 
@@ -64,7 +64,7 @@ $$
 Mark the known angles and identify their relationship before calculating.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 Angles around a point total $360^\circ$. Write an equation with that total.
 
@@ -93,7 +93,7 @@ $$
 Use the order of operations.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 Calculate $5\times3$ before adding.
 

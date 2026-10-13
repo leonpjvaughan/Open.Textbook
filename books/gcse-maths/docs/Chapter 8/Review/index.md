@@ -14,7 +14,7 @@ Subtract the opening area from the outer area: $x^2+10x+24-(x^2+2x)=8x+24$ squar
 
 The expression can also be factorised as $8(x+3)$, which provides a check by expansion.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 For each question, choose a method and explain why it applies. Check by reversing the operation when possible.
 
@@ -25,6 +25,15 @@ For each question, choose a method and explain why it applies. Check by reversin
 5. Make $t$ the subject of $v=u+at$.
 6. **Higher only:** expand $(x-1)(x+2)(x+4)$.
 7. Estimate then calculate the value of $8x+24$ when $x=5$.
+
+## What you can now do
+
+- use algebraic notation and name variables, terms, coefficients and constants;
+- simplify expressions by collecting like terms;
+- expand brackets and factorise using common factors;
+- substitute values into expressions and formulae;
+- rearrange formulae to change the subject;
+- expand a product of three binomials (Higher only).
 
 ## Your relevance reflection
 

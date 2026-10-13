@@ -18,11 +18,7 @@ kind: walkthrough
 
 You should know how to round numbers to a stated number of decimal places or significant figures.
 
-## Objectives
-
-- Round to a stated degree of accuracy.
-- Write an error interval for a rounded value.
-- Interpret interval endpoints in context.
+**Objectives:** round to a stated degree of accuracy; write an error interval for a rounded value; and interpret interval endpoints in context.
 
 ## Rounding and intervals
 
@@ -51,6 +47,7 @@ $$
 $$
 
 > **Watch out.** A common error is to include the upper endpoint. For $4.7$ cm to the nearest $0.1$ cm, $4.75$ cm rounds to $4.8$ cm, so write $L<4.75$.
+> **Re-check:** ask whether your interval includes the endpoint or stops just before it.
 
 > **Progress check.** A distance is $8.2$ km to the nearest $0.1$ km. Predict the two interval endpoints.
 

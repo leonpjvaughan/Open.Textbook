@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. Which instrument measures an angle in degrees?
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $90^\circ$.
 2. A protractor.
@@ -45,7 +45,7 @@ Keep the compass wider than half the segment.
 Draw equal arcs from both endpoints, then join their crossings.
 
 <details markdown="1">
-<summary>Full answer</summary>
+<summary>Full working</summary>
 
 The line through the two arc intersections is the perpendicular bisector.
 </details>
@@ -65,7 +65,7 @@ Use equal arcs from the two points where an arc meets the arms.
 Join the angle vertex to the crossing of the equal arcs.
 
 <details markdown="1">
-<summary>Full answer</summary>
+<summary>Full working</summary>
 
 The bisector divides the angle into two angles of $40^\circ$.
 </details>

@@ -19,7 +19,7 @@ Answer these from memory. Do not look back at the section.
 2. Solve $3x=21$.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $3x$.
 2. $x=7$.

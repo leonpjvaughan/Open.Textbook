@@ -81,18 +81,6 @@ That is why step 1 is not a formality. It is the anchor: it is the one place the
 formula is checked against reality, and the link in step 2 carries that check
 onward through every number.
 
-## A common error
-
-Watch for this one, because it is easy to do in an exam and it costs the mark.
-
-When you write "suppose the statement is true for $n$", you must then **use** that
-supposition. A proof that subtracts the two sides and gets zero has usually assumed
-the very thing it was asked to prove.
-
-The safe structure is the one above: start from the left side, put the assumption
-in, and arrive at the right side of the $n+1$ statement. The direction of the work
-is what makes it a proof rather than a check.
-
 ## Check your understanding
 
 1. Use the formula to work out $1^2 + 2^2 + \dots + 10^2$.
@@ -112,3 +100,15 @@ is what makes it a proof rather than a check.
    when the first is. Starting from $n = 1$, which is a whole number, the step
    carries that along: the sum of the first $n$ squares is always a whole number.
 </details>
+
+## A common error
+
+Watch for this one, because it is easy to do in an exam and it costs the mark.
+
+When you write "suppose the statement is true for $n$", you must then **use** that
+supposition. A proof that subtracts the two sides and gets zero has usually assumed
+the very thing it was asked to prove.
+
+The safe structure is the one above: start from the left side, put the assumption
+in, and arrive at the right side of the $n+1$ statement. The direction of the work
+is what makes it a proof rather than a check.

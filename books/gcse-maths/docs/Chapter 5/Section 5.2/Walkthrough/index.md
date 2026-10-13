@@ -14,18 +14,13 @@ kind: walkthrough
 
 # 5.2 Ratio, fractions and linear functions — Learn
 
-## Prerequisites
-
-You should be able to multiply and divide whole numbers and fractions. Check units before comparing quantities.
+**Prerequisites:** multiply and divide whole numbers and fractions. Check units before comparing quantities.
 
 ## Key terms
 
 A **linear relationship** has a constant rate of change. A **constant of proportionality** is the multiplier in a relationship $y=kx$.
 
-## Objectives
-
-- Express ratio parts as fractions of a total and identify proportional linear relationships.
-- Check that the result matches the units and direction of change.
+**Objectives:** express ratio parts as fractions of a total and identify proportional linear relationships; check that the result matches the units and direction of change.
 
 ## Learn the method
 
@@ -50,6 +45,6 @@ If $n$ is the number of cakes and $f$ is flour in grams, the relationship is $f=
 
 ## You should now be able to
 
-- I can write each ratio part as a fraction of the total.
-- I can use a constant multiplier to complete a proportional relationship.
-- I can explain why a non-zero intercept is not direct proportion.
+- write each ratio part as a fraction of the total.
+- use a constant multiplier to complete a proportional relationship.
+- explain why a non-zero intercept is not direct proportion.

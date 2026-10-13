@@ -31,6 +31,7 @@ The hypotenuses match, and one other side matches.
 Therefore RHS proves congruence.
 
 > **Watch out.** Three equal angles show the same shape, but not the same size. For example, triangles with sides $3,4,5$ and $6,8,10$ have equal angles but are not congruent.
+> **Re-check:** compare a side length as well as the angles before you say the shapes are congruent.
 
 ### Progress check
 

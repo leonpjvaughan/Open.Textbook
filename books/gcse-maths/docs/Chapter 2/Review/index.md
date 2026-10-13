@@ -14,7 +14,7 @@ $$24=2^3\times3,\qquad36=2^2\times3^2$$
 
 The HCF is $2^2\times3=12$. The greatest possible number is **12 packs**, each with 2 blue counters and 3 red counters.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 Work without looking back. For each question, choose a method and give a reason for your choice.
 
@@ -24,6 +24,13 @@ Work without looking back. For each question, choose a method and give a reason 
 4. A two-digit code uses digits 1 to 5 without repetition. How many codes are possible? Explain why the product rule applies.
 5. **Recall from Chapter 1:** work out $18-25$ and estimate $398\times21$ by rounding each number first.
 6. **Recall from Chapter 1:** round 6.284 to two decimal places. Explain which digit decides the rounding.
+
+## What you can now do
+
+- find factors and multiples, and identify prime numbers;
+- write a number as a product of prime factors, then use it to find HCF and LCM;
+- list possible outcomes in a complete, organised way;
+- use the product rule to count choices across several stages.
 
 ## Your relevance reflection
 

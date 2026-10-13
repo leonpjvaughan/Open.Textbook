@@ -204,6 +204,7 @@ missing 6.0 J has been transferred to thermal stores and sound.
 > subtracting, you find the change as if the object had stopped. Also remember
 > that momentum is conserved only when the **resultant external force** is zero;
 > friction from the ground or a push from outside breaks the conservation.
+> **Re-check:** write the final and initial momenta with their signs and subtract them.
 
 ## Progress check
 

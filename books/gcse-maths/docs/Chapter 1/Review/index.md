@@ -36,7 +36,7 @@ $$
 Notice that the same answer comes from $50 + 39.20 = £89.20$: the cash box is the
 float plus the profit.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 For each question, say which method you will use *before* you calculate, and explain why it fits.
 

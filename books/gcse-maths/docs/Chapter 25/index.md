@@ -6,7 +6,7 @@ strand: statistics
 
 # Chapter 25: Statistics: spread, grouped data and correlation
 
-## The chapter problem
+## The chapter problem: the travel times
 
 ### Travel times
 
@@ -36,6 +36,13 @@ You will be able to:
 4. [25.4 Scatter graphs and correlation](Section 25.4/Walkthrough/index.md)
 5. [25.5 Comparing distributions and outliers](Section 25.5/Walkthrough/index.md)
 6. [Review](Review/index.md)
+
+## Where it is used
+
+Two data sets can share an average and still be very different. Spread,
+quartiles and standard deviation show how consistent the data are. Scatter
+diagrams describe whether two quantities move together, and whether one might
+explain the other.
 
 ## Your turn to connect it
 

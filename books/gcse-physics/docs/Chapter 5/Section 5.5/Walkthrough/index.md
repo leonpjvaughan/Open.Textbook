@@ -97,6 +97,7 @@ Write your answer in two or three sentences.
 > think that an object must be hot to emit anything. Also remember that a good
 > absorber is a good emitter, so a black object cools quickly as well as warming
 > quickly. A white or shiny surface is a poor absorber and a poor emitter.
+> **Re-check:** ask whether the surface is a good absorber and then whether it is a good emitter.
 
 ## 5. Progress check
 

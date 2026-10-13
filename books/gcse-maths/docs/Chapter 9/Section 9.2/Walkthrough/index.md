@@ -38,6 +38,7 @@ Subtract $6$: $2x=8$.
 Divide by $2$: $x=4$.
 
 > **Watch out.** Do not change a term's sign without doing the same operation to both sides. From $3x+6=x+14$, subtracting $x$ and $6$ gives $2x=8$.
+> **Re-check:** substitute your value back into the original equation and check both sides.
 
 For example, $2x+4=2x+4$ is true for every value of $x$. In contrast, $2x+4=2x+5$ has no solution because it reduces to $4=5$.
 

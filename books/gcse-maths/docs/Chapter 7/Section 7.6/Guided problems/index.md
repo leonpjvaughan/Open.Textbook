@@ -35,7 +35,7 @@ Find the largest square factor of $48$.
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 Write $48=16\times3$ under the root.
 </details>
@@ -55,7 +55,7 @@ Simplify each root before adding.
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 Write $\sqrt{12}=2\sqrt3$ and $\sqrt{27}=3\sqrt3$.
 </details>

@@ -45,6 +45,7 @@ Two of four outcomes contain exactly one head: HT and TH.
 $$P(\text{exactly one head})=\frac24=\frac12$$
 
 > **Watch out.** In a possibility space, HT and TH are different outcomes because the first and second tosses are distinct.
+> **Re-check:** ask whether swapping the two tosses would change the outcome.
 
 ## Progress check
 

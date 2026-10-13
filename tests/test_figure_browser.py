@@ -207,3 +207,45 @@ def test_the_bundle_sweep_is_not_the_same_measurement_six_times(sweeps):
         "A bundle that resolves to another bundle's colours means the theme never "
         "reached the page, and this sweep is six copies of one measurement."
     )
+
+
+# --- phone legibility ---------------------------------------------------------
+#
+# These books are read on phones, and 70 of the figures once rendered their
+# smallest label below 7px at a 390px viewport — median 6.9px, worst 4.4px. The
+# cause was one shared habit: about 60 modules pinned a pixel `height` equal to
+# their viewBox height, so at phone width the *drawing* scaled down while the box
+# did not. Nothing failed; the labels were simply too small to read.
+#
+# The check lives in `scripts/audit-figures.cjs --mobile`, which already drives a
+# browser over every page carrying a figure. It has to be a browser measurement: a
+# module's `font-size` says nothing on its own, because the SVG scales by
+# `rendered width / viewBox width`, so a 560-unit viewBox in a 358px panel draws a
+# 14px label at 8px.
+
+
+@pytest.mark.browser
+def test_every_figure_label_is_readable_at_phone_width(tmp_path):
+    """No figure draws a label below 9px at a 390px viewport.
+
+    Nine is a floor rather than a target. Browser default text is about 16px and a
+    prose minimum would be 12, but these are diagrams, where an axis tick may
+    reasonably be smaller than a sentence. Nine is where a reader stops being able
+    to read it at all.
+    """
+    _require_environment()
+    result = subprocess.run(
+        ["node", str(AUDIT), str(SITE), "--mobile", "--json", str(tmp_path / "mobile.json")],
+        capture_output=True,
+        text=True,
+        check=False,
+        cwd=repo_root(),
+    )
+    assert result.returncode == 0, (
+        "a figure draws a label too small to read at 390px.\n"
+        f"{result.stdout[-3000:]}\n{result.stderr[-2000:]}"
+    )
+    measured = json.loads((tmp_path / "mobile.json").read_text(encoding="utf-8"))
+    assert len(measured) > 100, (
+        f"only {len(measured)} figures measured; the sweep is too narrow to mean anything"
+    )

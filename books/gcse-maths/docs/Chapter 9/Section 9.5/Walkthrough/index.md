@@ -30,6 +30,7 @@ Divide both sides by $-2$ and reverse the sign: $x>-4$.
 Check with $x=0$: $0<8$, so the solution direction is plausible.
 
 > **Watch out.** Dividing by a negative without reversing the sign gives the wrong side. Since $-2<1$, dividing both sides by $-1$ gives $2>-1$.
+> **Re-check:** substitute a value from your solution into the inequality and confirm that it is true.
 
 Show the final solution on a number line when asked. Use the boundary style that matches strict or inclusive inequality.
 

@@ -36,6 +36,7 @@ So the middle pair is 2 and 2, and the median is $2$.
 Mode $=2$ because its frequency is greatest. Range $=3-1=2$.
 
 > **Watch out.** Do not divide the weighted total by the number of rows. Divide by the total frequency.
+> **Re-check:** add the frequencies and confirm that you divided by that total.
 
 ## Progress check
 

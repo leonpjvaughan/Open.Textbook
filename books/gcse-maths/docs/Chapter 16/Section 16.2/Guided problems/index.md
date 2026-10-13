@@ -35,7 +35,7 @@ Try each question before opening a hint. Open the next part only when you need i
 Write the angle fact that fits the diagram or shape.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 Corresponding angles are equal when the lines are parallel.
 
@@ -58,7 +58,7 @@ The corresponding angle fact gives an angle of $72^\circ$.
 Mark the known angles and identify their relationship before calculating.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 Co-interior angles on parallel lines total $180^\circ$. Write an equation.
 
@@ -87,7 +87,7 @@ $$
 Use the order of operations.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 Calculate $5\times3$ before adding.
 

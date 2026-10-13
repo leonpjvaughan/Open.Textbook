@@ -28,6 +28,7 @@ The line graph shows a rise followed by a fall.
 When a scale does not begin at zero, show a clear break. The line graph still shows change over time, but the vertical scale affects how steep the changes look.
 
 > **Watch out.** Do not join points in a different order. The horizontal positions represent time, so keep the dates in sequence.
+> **Re-check:** read the horizontal axis and confirm that the dates are still in order.
 
 ## Progress check
 

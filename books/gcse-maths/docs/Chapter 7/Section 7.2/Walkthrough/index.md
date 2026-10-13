@@ -19,12 +19,7 @@ kind: walkthrough
 
 You should be able to convert units and rearrange a formula by using inverse operations.
 
-## Objectives
-
-- Calculate speed, distance and time.
-- Calculate density, mass and volume.
-- Calculate pressure, force and area.
-- Choose units that match the quantities.
+**Objectives:** calculate speed, distance and time; density, mass and volume; and pressure, force and area; and choose units that match the quantities.
 
 ## Speed
 
@@ -63,6 +58,7 @@ $$
 One pascal, written Pa, is one newton per square metre. Check that all units agree before substituting.
 
 > **Watch out.** A common error is to multiply distance by time when finding speed. For $150$ km in $2.5$ hours, divide: $150\div2.5=60$ km/h. Multiplying gives $375$ km hours, which is not a speed.
+> **Re-check:** use the units to confirm the operation: distance divided by time gives speed.
 
 > **Progress check.** A runner covers $400$ m in $80$ seconds. Which formula gives the speed, and what units will the answer use?
 

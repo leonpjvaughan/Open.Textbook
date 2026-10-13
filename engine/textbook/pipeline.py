@@ -208,19 +208,31 @@ def render_nav(
     nav,
     current_url: str,
     leaf_cache: dict[int, set[str]] | None = None,
+    subtree_cache: dict[tuple[int, str], str] | None = None,
 ) -> str:
     """Nested ``<ul>``, sections collapsible with ``<details>``.
 
-    The open/closed decision precomputes the leaf set once per node, so rendering
-    a 25-chapter sidebar is linear rather than quadratic. ``leaf_cache`` carries
-    that memo *across* pages: the nav is one object shared by every page of a
-    build, and only the current-page marking changes between pages, so rebuilding
-    each node's leaf set per page re-slugged the whole sidebar 458 times —
-    measured at 3.4s of a 17s build before the cache was shared. A caller that
-    renders one page omits it and gets a cache private to the call.
+    Two memos carry work *across* pages, because the nav is one object shared by
+    every page of a build and only the current-page marking differs between them.
+
+    ``leaf_cache`` precomputes each node's leaf set once per build, so the
+    open/closed decision is linear rather than quadratic and is not redone for
+    every page. Without it, each of the 458 pages re-slugged the whole sidebar —
+    measured at 3.4s of a 17s build.
+
+    ``subtree_cache`` precomputes the rendered HTML of every subtree that does
+    *not* contain the current page. That HTML is identical on every page, so
+    rebuilding it re-slugged and re-quoted all 60 KiB of the sidebar for each
+    page. Only the path from the root to the current page is rebuilt; its
+    siblings come from the memo. The root is part of the key because hrefs are
+    qualified with the page's ``../`` prefix, and depth varies across a book.
+
+    A caller that renders one page omits both and gets caches private to the
+    call.
     """
     root = prefix_for(current_url)
     cache: dict[int, set[str]] = {} if leaf_cache is None else leaf_cache
+    rendered: dict[tuple[int, str], str] = {} if subtree_cache is None else subtree_cache
 
     def leaf_urls(node) -> set[str]:
         key = id(node)
@@ -228,7 +240,11 @@ def render_nav(
             cache[key] = {url_for(path) for path in leaves(node)}
         return cache[key]
 
-    def render(node) -> str:
+    def render(node, inside: bool) -> str:
+        # ``inside`` is true only along the root-to-current-page path, the one
+        # part of the tree whose HTML changes from page to page.
+        if not inside and (cached := rendered.get((id(node), root))) is not None:
+            return cached
         items = []
         for title, child in pairs(node):
             if isinstance(child, str):
@@ -241,14 +257,18 @@ def render_nav(
                     f"{html.escape(title)}</a></li>"
                 )
             else:
-                open_ = " open" if current_url in leaf_urls(child) else ""
+                child_inside = current_url in leaf_urls(child)
+                open_ = " open" if child_inside else ""
                 items.append(
                     f"<li><details{open_}><summary>{html.escape(title)}</summary>"
-                    f"<ul class='nav__list'>{render(child)}</ul></details></li>"
+                    f"<ul class='nav__list'>{render(child, child_inside)}</ul></details></li>"
                 )
-        return "".join(items)
+        markup = "".join(items)
+        if not inside:
+            rendered[(id(node), root)] = markup
+        return markup
 
-    return f"<ul class='nav__list'>{render(nav)}</ul>"
+    return f"<ul class='nav__list'>{render(nav, True)}</ul>"
 
 
 def nav_for(book: books.Book, include_higher: bool) -> list:
@@ -408,6 +428,7 @@ def render_page(
     settings: tuple[str, str] = ("", ""),
     build: str = "",
     leaf_cache: dict[int, set[str]] | None = None,
+    subtree_cache: dict[tuple[int, str], str] | None = None,
 ) -> tuple[str, RenderedPage, bool]:
     """Render one page of one profile. Returns (html, index entry, maths error).
 
@@ -442,7 +463,7 @@ def render_page(
         site_title=html.escape(book.title),
         canonical=canonical_url(book, profile, url),
         content=content,
-        nav=render_nav(nav, url, leaf_cache),
+        nav=render_nav(nav, url, leaf_cache, subtree_cache),
         prefix=prefix,
         build=html.escape(build, quote=True),
         settings_trigger=trigger,
@@ -827,10 +848,11 @@ def build(
         seen[url] = md_path
 
     result = BuildResult(out=out)
-    # One nav, one leaf-set memo, shared by every page: the sidebar is the same
-    # object on all of them, so its slugs are computed once per build rather than
-    # once per page. See `render_nav`.
+    # One nav, two memos, shared by every page: the sidebar is the same object on
+    # all of them, so its leaf sets and its unchanged subtrees are computed once
+    # per build rather than once per page. See `render_nav`.
     nav_cache: dict[int, set[str]] = {}
+    nav_render_cache: dict[tuple[int, str], str] = {}
     for md_path in paths:
         source = book.docs / md_path
         if not source.exists():
@@ -846,6 +868,7 @@ def build(
             settings=settings,
             build=build_label,
             leaf_cache=nav_cache,
+            subtree_cache=nav_render_cache,
         )
         destination = out / entry.output
         destination.parent.mkdir(parents=True, exist_ok=True)

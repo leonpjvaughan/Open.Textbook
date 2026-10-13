@@ -10,7 +10,7 @@ kind: review
 
 The garden path is 18 m long. At 1 cm for each metre, its drawing length is 18 cm, so it fits on a 30 cm page. If the page uses a different scale, convert metres to centimetres first, then apply the scale factor. The drawing and real path keep the same length ratio.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 Choose a method before calculating. Say why it fits.
 
@@ -34,6 +34,13 @@ Choose a method before calculating. Say why it fits.
 7. $5^\circ$C; add a positive integer to a negative number.
 
 </details>
+
+## What you can now do
+
+- write, simplify and use ratios to share amounts;
+- connect ratios with fractions, tables and straight-line relationships;
+- model direct and inverse proportion;
+- use scale drawings and compare lengths, areas and volumes of similar shapes.
 
 ## Your relevance reflection
 

@@ -1,6 +1,9 @@
 // Guided investigation for 11.1: sampling variability.
 // A fixed population with a stable, deterministic shape, and a random sample
-// drawn from it. The reader changes the sample size and draws again.
+// drawn from it. The reader changes the sample size and draws again. Changing
+// the size draws a fresh sample of that size, so the drawing responds to the
+// slider as every other figure does, and the values in the latest sample are
+// drawn along the axis so the size of the sample can be seen as well as read.
 // Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
 // carry the theme. Runtime text is plain text, never TeX.
 
@@ -34,11 +37,14 @@ function xToPx(value) {
 }
 
 function drawSample(size) {
+  const values = [];
   let total = 0;
   for (let i = 0; i < size; i += 1) {
-    total += POPULATION[Math.floor(Math.random() * POPULATION.length)];
+    const value = POPULATION[Math.floor(Math.random() * POPULATION.length)];
+    values.push(value);
+    total += value;
   }
-  return total / size;
+  return { mean: total / size, values };
 }
 
 export function mount(el) {
@@ -81,10 +87,23 @@ export function mount(el) {
   }
 
   function render() {
+    const latest = history.length ? history[history.length - 1] : null;
     const populationLine =
       `<line x1="${xToPx(POPULATION_MEAN).toFixed(1)}" y1="25" ` +
       `x2="${xToPx(POPULATION_MEAN).toFixed(1)}" y2="115" class="fig-good" ` +
       `stroke-dasharray="4 3"></line>`;
+
+    // The values in the latest sample, drawn as marks along the axis, so a
+    // larger sample is visibly more marks rather than only a different reading.
+    const sampleMarks = latest
+      ? latest.values
+          .map(
+            (value) =>
+              `<line x1="${xToPx(value).toFixed(1)}" y1="122" ` +
+              `x2="${xToPx(value).toFixed(1)}" y2="130" class="fig-accent"></line>`
+          )
+          .join("")
+      : "";
 
     const dots = history
       .map(
@@ -94,9 +113,8 @@ export function mount(el) {
       )
       .join("");
 
-    svg.innerHTML = axis() + populationLine + dots;
+    svg.innerHTML = axis() + populationLine + sampleMarks + dots;
 
-    const latest = history.length ? history[history.length - 1] : null;
     const spread = history.length > 1
       ? Math.max(...history.map((item) => item.mean)) -
         Math.min(...history.map((item) => item.mean))
@@ -104,7 +122,8 @@ export function mount(el) {
     readout.textContent =
       `The population mean is ${POPULATION_MEAN.toFixed(1)} minutes. ` +
       (latest
-        ? `Your sample of ${latest.size} has mean ${latest.mean.toFixed(1)} minutes. `
+        ? `Your sample of ${latest.size} has mean ${latest.mean.toFixed(1)} minutes, ` +
+          `and the ${latest.values.length} values in it are marked along the bottom. `
         : "No sample has been taken yet. ") +
       (history.length > 1
         ? `So far the sample means range over ${spread.toFixed(1)} minutes.`
@@ -115,23 +134,28 @@ export function mount(el) {
       `A number line from 0 to 60 minutes. The population mean is ` +
       `${POPULATION_MEAN.toFixed(1)} minutes.` +
       (latest
-        ? ` The sample mean is ${latest.mean.toFixed(1)} minutes.`
+        ? ` The sample of ${latest.size} has mean ${latest.mean.toFixed(1)} minutes, ` +
+          `and its ${latest.values.length} values are drawn along the bottom.`
         : " No sample has been drawn yet.")
     );
   }
 
   function takeSample() {
     const size = Number(nInput.value);
-    history.push({ size, mean: drawSample(size) });
+    history.push({ size, ...drawSample(size) });
     if (history.length > 24) {
       history = history.slice(-24);
     }
     render();
   }
 
+  // Moving the sample-size slider draws a sample of the new size, so the drawing
+  // changes with the slider and the reader sees a sample of the size they set.
+  // The button below draws further samples of the same size.
   nInput.addEventListener("input", () => {
     nOut.value = nInput.value;
     nOut.textContent = nInput.value;
+    takeSample();
   });
   drawButton.addEventListener("click", takeSample);
   resetButton.addEventListener("click", () => {

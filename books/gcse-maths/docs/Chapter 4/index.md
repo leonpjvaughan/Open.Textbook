@@ -7,7 +7,7 @@ chapter_title: Fractions, decimals and percentages
 
 Fractions, decimals and percentages can describe the same amount in different forms.
 
-## The chapter problem
+## The chapter problem: the keyboard discount
 
 A music shop offers a £48 keyboard with a discount of $\frac{1}{4}$. A second shop lists the same keyboard at £37.50. Which price is lower, and by how much?
 
@@ -29,6 +29,13 @@ A music shop offers a £48 keyboard with a discount of $\frac{1}{4}$. A second s
 5. [4.5 Recurring decimals](Section 4.5/Walkthrough/index.md) — Higher only
 6. [4.6 Fractions and percentages as operators](Section 4.6/Walkthrough/index.md)
 7. [Review](Review/index.md)
+
+## Where it is used
+
+Fractions, decimals and percentages all describe a part of a whole. Shops use
+percentages for discounts, recipes use fractions for amounts, and measurements
+are often given as decimals. Choosing the form that suits the calculation makes
+the arithmetic simpler.
 
 ## Your turn to connect it
 

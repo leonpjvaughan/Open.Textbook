@@ -34,7 +34,7 @@ kind: guided-problems
 Write the factors and count them.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $a^3a^5=a^{3+5}$.
 
@@ -55,7 +55,7 @@ $a^3a^5=a^8$, because the product contains eight factors of $a$.
 The whole group $b^2$ appears four times.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $(b^2)^4=b^{2\times4}$.
 
@@ -76,7 +76,7 @@ $(b^2)^4=b^8$, because there are four groups of two factors of $b$.
 A negative index means take the reciprocal.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 $4^{-2}=\frac{1}{4^2}$.
 

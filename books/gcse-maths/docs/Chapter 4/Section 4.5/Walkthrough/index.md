@@ -48,7 +48,8 @@ $90x=11$, so $x=\frac{11}{90}$.
 
 ## Progress check
 
-The keyboard discount is $\frac14$. As a decimal this is $0.25$, so it is not recurring. Convert $0.\dot{2}$ to a fraction: $x=0.222\ldots$, so $10x-x=2$, $9x=2$, and $x=\frac29$.
+The keyboard discount is $\frac14$. Write it as a decimal, and decide whether
+it recurs. Then convert $0.\dot{2}$ to a fraction, showing each step.
 
 ## You should now be able to
 

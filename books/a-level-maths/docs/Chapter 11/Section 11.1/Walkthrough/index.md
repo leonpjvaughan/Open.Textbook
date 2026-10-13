@@ -37,6 +37,7 @@ mean of the sample is the best estimate it has.
 > journeys, but they are chosen to stand in for the whole service. When you
 > write a conclusion, say which group it describes. "The mean of the sample is
 > 25 minutes" and "the mean of all journeys is 25 minutes" are different claims.
+> **Re-check:** ask whether your sentence names the sample or the whole population.
 
 ## 2. Why we use a sample
 
@@ -188,6 +189,17 @@ a mean closer to the population mean.
 >
 > **Re-check:** after any estimate, ask whether it is a count, a proportion or a
 > total, and whether the units match the question.
+
+## Progress check
+
+Return to the chapter problem. The passenger group timed 30 journeys on the
+07:30 service.
+
+1. What is the population, and what is the sample?
+2. The company claims a mean of 25 minutes. What does the sample mean estimate,
+   and what does it not measure?
+3. The group times a second week of 30 journeys. Predict whether its mean will
+   be exactly the same as the first, and explain your answer.
 
 ## You should now be able to
 

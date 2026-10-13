@@ -39,7 +39,7 @@ Try each item before opening its hints. Reveal the full working when you want to
 First differences are $4,6,8$; second differences are $2,2$. Start with $n^2$.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 Subtract square numbers: $1,2,3,4$ remain.
 
@@ -61,7 +61,7 @@ The remainder is $n$, so the rule is $n^2+n$.
 Second differences are $4$, so start with $2n^2$.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 Subtract $2,8,18,32$: the remainders are $1,2,3,4$.
 
@@ -83,7 +83,7 @@ The rule is $2n^2+n+1$.
 Substitute positions 1 through 4.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 The values are $3,8,15,24$.
 

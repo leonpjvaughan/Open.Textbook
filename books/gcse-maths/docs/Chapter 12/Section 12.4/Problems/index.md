@@ -12,6 +12,12 @@ kind: problems
 
 # 12.4 Solving quadratic equations by factorising — Practise
 
+Work through these on your own. Keep your working neat: the method matters as
+much as the answer. Questions marked **H** are for Higher tier.
+
+Both the questions and the answers below come from a set that is checked by
+computer every time the book is built.
+
 :::problems chapter-12-practice-12.4
 
 :::answers chapter-12-practice-12.4

@@ -155,3 +155,10 @@ $$\log_2 10 = \frac{\ln 10}{\ln 2} \approx \frac{2.3026}{0.6931} \approx 3.322.$
 
 You may use any base for the quotient. The two logarithms change together as the
 base changes, so the ratio stays the same.
+
+## A common error
+
+The error is to write $\log_a(x+y) = \log_a x + \log_a y$. The laws apply to a
+product and a quotient, not to a sum, and there is no simple rule for the
+logarithm of a sum. Testing with numbers shows the difference: $\log_{10}(10+10)
+\approx 1.30$, while $\log_{10}10 + \log_{10}10 = 2$.

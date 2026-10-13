@@ -41,7 +41,7 @@ Write $y=4x-7$, swap $x$ and $y$, then make $y$ the subject.
 </details>
 
 <details markdown="1">
-<summary>First step</summary>
+<summary>Next step</summary>
 
 After swapping, $x=4y-7$. Add $7$ to both sides.
 

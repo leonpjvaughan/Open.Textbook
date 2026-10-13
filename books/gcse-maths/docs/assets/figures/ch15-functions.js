@@ -1,4 +1,10 @@
 // Guided investigation: predict how two linear functions compose, then test.
+
+// A signed term, so the rule reads `2x + 3` and `2x - 5`, never `2x + (-5)`.
+function signed(value) {
+  return value < 0 ? `- ${Math.abs(value)}` : `+ ${value}`;
+}
+
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-grid" style="max-width:520px">
@@ -11,7 +17,8 @@ export function mount(el) {
     const a = Number(el.querySelector('.a').value);
     const b = Number(el.querySelector('.b').value);
     el.querySelector('.readout').textContent =
-      `For f(x) = ${a}x + (${b}), the inverse rule is f⁻¹(x) = (x − (${b})) / ${a}.`;
+      `For f(x) = ${a}x ${signed(b)}, the inverse rule is ` +
+      `f⁻¹(x) = (x ${signed(-b)}) / ${a}.`;
   };
   el.querySelectorAll('input').forEach(input => input.addEventListener('input', update));
   update();

@@ -31,6 +31,7 @@ Multiply $3$ by $-2$: $-6$.
 The image is $(-4,-6)$, twice as far from the origin on the opposite side.
 
 > **Watch out.** A negative scale factor does not make the image lengths negative. Lengths use the positive magnitude $|k|$; the negative sign changes direction through the centre.
+> **Re-check:** ask whether you used $|k|$ for the length and the sign only for the direction.
 
 ### Progress check
 

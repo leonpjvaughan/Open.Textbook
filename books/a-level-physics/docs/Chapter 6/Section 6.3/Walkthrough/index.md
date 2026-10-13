@@ -171,6 +171,7 @@ end, where the air cannot move.
 > other. Do not use $v = f\lambda$ with the distance between a node and an
 > antinode as if it were a wavelength. A node-to-antinode distance is a quarter
 > of a wavelength, so multiply it by four to get $\lambda$.
+> **Re-check:** convert the node-to-antinode distance to a full wavelength before you use $v=f\lambda$.
 
 ## 4. Try it: harmonics on a string
 

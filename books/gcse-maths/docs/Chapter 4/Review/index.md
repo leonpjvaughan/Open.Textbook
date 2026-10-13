@@ -18,7 +18,7 @@ $£48-£12=£36$.
 
 The first shop charges £36. The second shop charges £37.50. The first shop is cheaper by $37.50-36=£1.50$.
 
-## Mixed practice: choose a method and explain why
+## Mixed practice — choose the method first
 
 1. Which is larger, $\frac{5}{8}$ or $0.6$? State the representation you chose.
 2. Work out $\frac{2}{3}+\frac{3}{10}$.

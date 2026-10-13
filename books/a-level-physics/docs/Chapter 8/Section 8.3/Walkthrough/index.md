@@ -179,6 +179,7 @@ half-life follows from $T_{1/2} = \dfrac{\ln 2}{\lambda}$.
 > half-life is in minutes, convert the time to minutes, or convert both to
 > seconds. A third trap is to think that a temperature change alters the
 > half-life. It does not: the decay is a property of the nucleus.
+> **Re-check:** ask how much of the sample remains after each half-life, not how much has decayed.
 
 ## 7. Try it: the decay curve
 

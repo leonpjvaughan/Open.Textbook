@@ -152,7 +152,7 @@ Two words describe two different hazards.
 
 Alpha contamination inside the body is very serious, because alpha particles
 have a short range and are strongly ionising. In that short range, they transfer
-a lot of energy to living cells. Gamma irradiation from a source outside the
+a large amount of energy to living cells. Gamma irradiation from a source outside the
 body is the opposite case: gamma rays penetrate the body, so they can reach
 living cells from outside.
 

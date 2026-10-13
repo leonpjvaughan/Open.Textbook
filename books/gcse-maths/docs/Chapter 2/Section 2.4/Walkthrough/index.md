@@ -36,6 +36,7 @@ So there are $4\times3=12$ codes.
 The restriction changes the second number of choices, so it is not $4\times4$.
 
 > **Watch out.** Multiplying the same number at every stage can ignore restrictions. When digits cannot repeat, count the remaining options after the first choice.
+> **Re-check:** count the options again after each choice and confirm that you never used the same digit twice.
 
 ## Guided check: predict, test, explain
 

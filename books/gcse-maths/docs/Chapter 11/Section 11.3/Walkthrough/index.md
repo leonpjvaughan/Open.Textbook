@@ -13,9 +13,7 @@ kind: walkthrough
 
 **Prerequisites:** identify gradient and vertical intercept in $y=mx+c$.
 
-## Objectives
-
-By the end of this section, you can find the equation of a line through two points or through one point with a given gradient.
+**Objectives:** find the equation of a line through two points, or through one point with a given gradient.
 
 ## Find an equation from a point and gradient
 
@@ -38,10 +36,13 @@ Check: when $x=2$, $y=3(2)-5=1$.
 To find a line through two points, first calculate the gradient, then substitute one point to find $c$.
 
 > **Watch out.** The vertical intercept is not the $y$-coordinate of every point. Substitute the known point into $y=mx+c$ before stating $c$.
+> **Re-check:** substitute your line back into $y=mx+c$ and ask whether the point really lies on it.
 
 ## Progress check
 
-The station walk starts at distance 0, so $c=0$. With gradient $1/15$ km per minute, its model is $d=t/15$.
+The station walk starts at distance 0. Use the gradient from Section 11.2 to
+write the model for the station walk in the form $d=mt+c$. Explain why $c=0$ for
+this walk.
 
 
 ## You should now be able to

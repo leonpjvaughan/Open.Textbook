@@ -35,7 +35,7 @@ The value is rounded to the nearest $0.1$ cm. Find half of $0.1$.
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 Subtract and add $0.05$ to $7.3$.
 </details>
@@ -55,7 +55,7 @@ Half of $10$ g is $5$ g.
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 Subtract and add $5$ g. The upper endpoint is excluded.
 </details>

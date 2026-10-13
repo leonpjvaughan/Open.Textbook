@@ -25,7 +25,7 @@ Answer these from memory. Do not look back at the section.
 2. Work out $-6+15$.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $\frac{12}{18}=\frac{2}{3}$.
 2. $-6+15=9$.

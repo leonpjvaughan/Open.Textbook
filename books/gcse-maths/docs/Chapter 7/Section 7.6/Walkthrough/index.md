@@ -18,12 +18,7 @@ kind: walkthrough
 
 You should be confident with square numbers, factors and simplifying fractions.
 
-## Objectives
-
-- Simplify surds by taking square factors outside the root.
-- Add and subtract like surds.
-- Multiply and divide surds.
-- Rationalise a denominator in a simple exact calculation.
+**Objectives:** simplify surds by taking square factors outside the root; add and subtract like surds; multiply and divide surds; and rationalise a denominator in a simple exact calculation.
 
 ## Simplifying surds
 
@@ -64,6 +59,7 @@ $$
 $$
 
 > **Watch out.** A common error is to write $\sqrt a+\sqrt b=\sqrt{a+b}$. For example, $\sqrt9+\sqrt{16}=7$, but $\sqrt{25}=5$. Simplify each root first, then combine only matching surds.
+> **Re-check:** work out each root separately and ask whether the sum is one of them.
 
 > **Progress check.** Before simplifying $\sqrt{50}+\sqrt8$, identify the square factor in each radicand.
 

@@ -41,7 +41,7 @@ Represent the integers as $n$ and $n+1$.
 </details>
 
 <details markdown="1">
-<summary>First step</summary>
+<summary>Next step</summary>
 
 Their sum is $n+(n+1)$. Collect the terms.
 

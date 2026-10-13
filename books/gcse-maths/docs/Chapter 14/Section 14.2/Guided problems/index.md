@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. Solve $5y-4=16$.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $7$.
 2. $y=4$.

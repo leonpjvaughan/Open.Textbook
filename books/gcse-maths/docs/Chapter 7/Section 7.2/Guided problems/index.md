@@ -36,7 +36,7 @@ Speed is distance divided by time.
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 Divide $180$ km by $3$ hours.
 </details>
@@ -56,7 +56,7 @@ Rearrange density $=\text{mass}\div\text{volume}$.
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 Mass $=\text{density}\times\text{volume}$.
 </details>
@@ -76,7 +76,7 @@ Pressure is force divided by area.
 </details>
 
 <details markdown="1">
-<summary>Choose a step</summary>
+<summary>Next step</summary>
 
 Divide $450$ N by $0.15$ m$^2$.
 </details>

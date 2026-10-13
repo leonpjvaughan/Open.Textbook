@@ -35,7 +35,7 @@ Try each question before opening a hint. Open the next part only when you need i
 Write the angle fact that fits the diagram or shape.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 The interior angles of a triangle total $180^\circ$. Write an equation.
 
@@ -66,7 +66,7 @@ Use the relevant angle sum and subtract the known angles. State the angle fact i
 Mark the known angles and identify their relationship before calculating.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 The interior angles of a quadrilateral total $360^\circ$. Write an equation.
 
@@ -95,7 +95,7 @@ $$
 Use the order of operations.
 
 <details markdown="1">
-<summary>One step</summary>
+<summary>Next step</summary>
 
 Calculate $5\times3$ before adding.
 

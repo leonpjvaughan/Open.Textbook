@@ -40,7 +40,8 @@ $\frac{125}{1000}=\frac{1}{8}$.
 
 ## Progress check
 
-The discount is $\frac14=0.25=25\%$. The reduced price is $75\%$ of £48: $0.75\times48=£36$.
+The discount is $\frac14$. Write it as a decimal and as a percentage. Then work
+out the reduced price as a percentage of £48, and calculate it.
 
 ## You should now be able to
 

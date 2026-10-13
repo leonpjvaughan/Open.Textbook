@@ -21,7 +21,7 @@ Answer these from memory. Do not look back at the section.
 2. Write an expression for 7 more than $x$.
 
 <details markdown="1">
-<summary>Check the warm-up</summary>
+<summary>Answers</summary>
 
 1. $3$.
 2. $x+7$.
