@@ -893,3 +893,53 @@ def test_the_yaml_loader_prefers_the_fast_parser():
     assert yamlio.load("") is None
     with pytest.raises(yaml.YAMLError):
         yamlio.load("!!python/object/apply:os.system ['true']")
+
+
+def test_the_shared_figure_files_are_copied_from_assets_not_through_a_symlink(tmp_path):
+    """A checkout where symlinks are plain text files must still build a working site.
+
+    `git clone` on Windows without developer mode writes a symlink out as a *text
+    file* holding its target. The build used to read the book's `assets/figures/`
+    directory and copy whatever was there, so it copied a 36-byte file containing
+    the string `../../../../../assets/figures/kit.js` into the site — reported
+    success, counted it as a figure module, and left every figure in the browser
+    failing to import its kit. A green build over a broken site.
+
+    So the two shared files are copied from `assets/` directly, and anything in the
+    book's directory that is a symlink is skipped: on a platform that does not
+    materialise them as links it is not a module either, and on one that does it is
+    a shared file already copied.
+    """
+    import os
+
+    book = book_by_id("gcse-maths")
+    out = tmp_path / "site"
+
+    # The Windows shape: replace each shared symlink with a text file naming it.
+    saved = {}
+    try:
+        for link in (book.docs / "assets").rglob("*"):
+            if link.is_symlink():
+                saved[link] = os.readlink(link)
+                link.unlink()
+                link.write_text(saved[link])
+        pipeline.build(book.id, book.default_profile.id, out=out, index=False)
+    finally:
+        for link, target in saved.items():
+            link.unlink(missing_ok=True)
+            link.symlink_to(target)
+
+    figures = out / "assets" / "figures"
+    kit = (figures / "kit.js").read_text(encoding="utf-8")
+    assert "export function panel" in kit, (
+        "the built kit.js is not the kit — on a platform that checks symlinks out as "
+        f"text files the site would serve a path instead: {kit[:80]!r}"
+    )
+    assert "customElements" in (figures / "figures.js").read_text(encoding="utf-8"), (
+        "the built loader is not the loader"
+    )
+    modules = [p.name for p in figures.glob("*.js")]
+    assert "kit.js" in modules and "figures.js" in modules
+    assert not any(
+        p.stat().st_size < 200 for p in figures.glob("*.js")
+    ), f"a build output is a path, not a program: {[p.name for p in figures.glob('*.js') if p.stat().st_size < 200]}"

@@ -623,20 +623,36 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
             shutil.copy2(source, dest)
             copied.append(name)
 
-    loader = assets / "figures" / "figures.js"
-    if loader.exists():
-        dest = out / "assets" / "figures" / "figures.js"
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(loader, dest)
-        copied.append("figures.js")
+    # The two shared figure files come from `assets/`, **not** through the book's
+    # symlinks — the same way every other shared asset in this function is read.
+    #
+    # Reading them through the symlink worked on Linux and broke on Windows, where
+    # `git clone` without developer mode checks a symlink out as a *text file*
+    # containing its target. The build then copied a 36-byte `kit.js` holding the
+    # string `../../../../../assets/figures/kit.js` into the site, reported success
+    # and counted it as a figure module — a green build, a broken browser, and
+    # nothing in the output to say so.
+    figures_dir = out / "assets" / "figures"
+    for name in scaffold.SHARED_FIGURE_FILES:
+        source = assets / "figures" / name
+        if source.exists():
+            figures_dir.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, figures_dir / name)
+            copied.append(name)
 
     modules = book.docs / "assets" / "figures"
     if modules.is_dir():
-        dest = out / "assets" / "figures"
-        dest.mkdir(parents=True, exist_ok=True)
+        figures_dir.mkdir(parents=True, exist_ok=True)
+        skipped = 0
         count = 0
         for module in sorted(modules.glob("*.js")):
-            shutil.copy2(module, dest / module.name)
+            # A symlink here is a shared file, and it may be a plain text file on a
+            # platform that does not check symlinks out as links. Either way it is
+            # not a figure, and copying it would put its target path in the site.
+            if module.is_symlink() or module.name in scaffold.SHARED_FIGURE_FILES:
+                skipped += 1
+                continue
+            shutil.copy2(module, figures_dir / module.name)
             count += 1
         copied.append(f"{count} figure modules")
     return copied
