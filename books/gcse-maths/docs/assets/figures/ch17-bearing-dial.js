@@ -5,8 +5,13 @@
 // and hides the turn; the slider is the turn.
 //
 // Predict -> Test -> Explain per AGENTS.md P6: the page asks for the back bearing
-// before the slider is moved. Colours come from CSS classes, so the figure adapts
-// to every bundle and both schemes, and the readout is `aria-live`.
+// before the slider is moved. The scaffolding — the surface, its accessible name,
+// the slider, the live readout, the redraw — comes from `kit.js`. What is left
+// here is the drawing and the sentence, which differ from every other figure.
+// Colours come from CSS classes, so the figure adapts to every bundle and both
+// schemes.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
   const AX = 180;
   const AY = 175;
@@ -17,21 +22,13 @@ export function mount(el) {
   const BACK_ARROW = 42;
   const D2R = Math.PI / 180;
 
-  el.innerHTML = `
-    <div class="fig-bearing-dial" style="max-width:520px">
-      <svg viewBox="0 0 460 320" width="100%" role="img"
-           aria-label="A dial that measures the bearing of B from A clockwise from north, beside the reversed north line at B that gives the back bearing"></svg>
-      <label style="display:block;margin:.6rem 0 .2rem">
-        Bearing of B from A:
-        <input class="bearing" type="range" min="0" max="359" step="1" value="53"
-               aria-label="Bearing of B from A, in degrees">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
-
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".bearing");
-  const readout = el.querySelector(".readout");
+  const { svg, readout } = panel(el, {
+    label:
+      "A dial that measures the bearing of B from A clockwise from north, beside the reversed north line at B that gives the back bearing",
+    width: 460,
+    height: 320,
+    max: 520,
+  });
 
   const pointAt = (cx, cy, r, deg) => [
     cx + r * Math.sin(deg * D2R),
@@ -80,8 +77,17 @@ export function mount(el) {
     );
   }
 
+  const bearingInput = slider(el, {
+    id: "bearing",
+    label: "Bearing of B from A",
+    min: 0,
+    max: 359,
+    step: 1,
+    value: 53,
+  });
+
   function draw() {
-    const bearing = Number(slider.value);
+    const bearing = Number(bearingInput.value);
     const back = (bearing + 180) % 360;
     const [bx, by] = pointAt(AX, AY, L, bearing);
     const ux = (bx - AX) / L;
@@ -115,6 +121,5 @@ export function mount(el) {
       `The two bearings differ by 180°.`;
   }
 
-  slider.addEventListener("input", draw);
-  draw();
+  react(bearingInput, draw);
 }

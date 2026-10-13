@@ -6,19 +6,28 @@
 // fixed; only the time can change. This is the idea behind crumple zones, seat
 // belts and air bags.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-crash-force" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 170" width="100%" role="img"
-           aria-label="A car hitting a barrier, with a force arrow whose length shows the force on the car"></svg>
-      <div style="display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Collision time (s) <input class="time" type="range" min="0.05" max="0.50" step="0.05" value="0.20"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A car hitting a barrier, with a force arrow whose length shows the force on the car",
+    width: 560,
+    height: 170,
+  });
+
+  const timeInput = slider(el, {
+    id: "time",
+    label: "Collision time (s)",
+    min: 0.05,
+    max: 0.5,
+    step: 0.05,
+    value: 0.2,
+  });
   const MASS = 1200; // kg
   const SPEED = 15; // m/s
   const MOMENTUM_CHANGE = MASS * SPEED;
@@ -28,7 +37,7 @@ export function mount(el) {
   const BARRIER = 430;
 
   function update() {
-    const time = Number(el.querySelector(".time").value);
+    const time = Number(timeInput.value);
     const force = MOMENTUM_CHANGE / time;
 
     const carWidth = 130;
@@ -55,8 +64,5 @@ export function mount(el) {
       `<em>Double the collision time. What happens to the force? Why can the momentum change stay the same?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react(timeInput, update);
 }

@@ -1,14 +1,28 @@
 // Guided box plot: adjust the upper quartile and observe the middle-half box.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which differ from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <svg viewBox="0 0 560 150" width="100%" role="img" aria-label="Box plot for travel times from 12 to 42 minutes"></svg>
-      <label>Upper quartile <input class="upper" type="range" min="24" max="34" step="1" value="27"></label>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
-  const svg = el.querySelector('svg');
+  const { svg, readout } = panel(el, {
+    label: "Box plot for travel times from 12 to 42 minutes",
+    width: 560,
+    height: 150,
+    max: 560,
+  });
+
+  const upper = slider(el, {
+    id: "upper",
+    label: "Upper quartile",
+    min: 24,
+    max: 34,
+    value: 27,
+  });
+
   function update() {
-    const q3 = Number(el.querySelector('.upper').value);
+    const q3 = Number(upper.value);
     const x = value => 55 + value * 10;
     const q1 = 17.5;
     svg.innerHTML = `
@@ -25,8 +39,8 @@ export function mount(el) {
       <text x="${x(q3)}" y="120" class="text-ink" text-anchor="middle">${q3}</text>
       <text x="${x(42)}" y="120" class="text-ink" text-anchor="middle">42</text>
       <text x="${(x(q1) + x(q3)) / 2}" y="28" class="text-accent" text-anchor="middle">middle half</text>`;
-    el.querySelector('.readout').textContent = `The box runs from ${q1} to ${q3}; its width is ${q3 - q1} minutes.`;
+    readout.textContent = `The box runs from ${q1} to ${q3}; its width is ${q3 - q1} minutes.`;
   }
-  el.querySelector('.upper').addEventListener('input', update);
-  update();
+
+  react(upper, update);
 }

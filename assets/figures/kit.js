@@ -105,7 +105,15 @@ export function panel(el, options = {}) {
 
   const controls = document.createElement("div");
   controls.className = "fig-controls";
-  controls.style.cssText = "display:grid;gap:.35rem .9rem;margin-top:.5rem";
+  // Two columns when there is room, one when there is not — `auto-fit` with a
+  // minimum, rather than a fixed `repeat(2, …)`. Modules used to write the fixed
+  // two-column grid themselves, so a single column here silently stacked every
+  // two-slider figure and grew its box by a row. On a phone a fixed two columns
+  // would be the wrong answer anyway, so the responsive form is the one that was
+  // wanted all along.
+  controls.style.cssText =
+    "display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));" +
+    "gap:.35rem .9rem;margin-top:.5rem";
 
   root.append(controls, readout);
   el.replaceChildren(root);
@@ -194,11 +202,19 @@ export function fmt(value, places = 2) {
   return String(rounded);
 }
 
-/** A signed number, so a negative reads as "−5" rather than a bracketed addend. */
+/**
+ * A signed number, spaced for use as a term: `+ 3`, `− 3`.
+ *
+ * The space is part of the output because this is meant to be interpolated
+ * straight into an expression — ``y = ${m}x ${signed(c)}`` — and a caller that has
+ * to remember the space is a caller that will forget it. A converted module
+ * produced `y = 2x +1` for a positive intercept where the page read `y = 2x + 1`
+ * before, while correctly fixing `+ -3` to `− 3`; both were the same missing space.
+ */
 export function signed(value, places = 2) {
   if (!Number.isFinite(value)) return "—";
   const n = Number(value.toFixed(places));
-  return `${n < 0 ? "−" : "+"}${Math.abs(n)}`;
+  return `${n < 0 ? "−" : "+"} ${Math.abs(n)}`;
 }
 
 /**

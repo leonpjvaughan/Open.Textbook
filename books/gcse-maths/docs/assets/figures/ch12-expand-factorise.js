@@ -5,27 +5,41 @@
 // combine. One rectangle carries both forms, because expanding and factorising
 // are inverse operations on it. A shape paints with fig-* and a word paints with
 // text-*, so the figure adapts to every bundle and both schemes.
+//
+// The scaffolding — the surface, its accessible name, the two sliders, the live
+// readout, the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
   const UNIT = 26;
   const X_DRAWN = 140;
   const LEFT = 90;
   const TOP = 40;
 
-  el.innerHTML = `
-    <div style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 520 360" width="100%" role="img"
-           aria-label="A rectangle split into four smaller rectangles whose areas are the four terms of an expanded product"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>First number <input class="a" type="range" min="1" max="6" step="1" value="3"></label>
-        <label>Second number <input class="b" type="range" min="1" max="6" step="1" value="4"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A rectangle split into four smaller rectangles whose areas are the four terms of an expanded product",
+    width: 520,
+    height: 360,
+    max: 600,
+  });
 
-  const svg = el.querySelector("svg");
-  const aSlider = el.querySelector(".a");
-  const bSlider = el.querySelector(".b");
-  const readout = el.querySelector(".readout");
+  const aSlider = slider(el, {
+    id: "a",
+    label: "First number",
+    min: 1,
+    max: 6,
+    step: 1,
+    value: 3,
+  });
+  const bSlider = slider(el, {
+    id: "b",
+    label: "Second number",
+    min: 1,
+    max: 6,
+    step: 1,
+    value: 4,
+  });
 
   function update() {
     const a = Number(aSlider.value);
@@ -81,7 +95,5 @@ export function mount(el) {
       `The same rectangle shows the product and its two factors.`;
   }
 
-  aSlider.addEventListener("input", update);
-  bSlider.addEventListener("input", update);
-  update();
+  react([aSlider, bSlider], update);
 }

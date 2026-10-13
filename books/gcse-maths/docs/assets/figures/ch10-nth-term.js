@@ -6,6 +6,11 @@
 // against their positions and joins them with a straight line, so a change to
 // the rule is a visible change to the picture. Colours come from CSS classes, so
 // the figure adapts to every bundle and both schemes.
+//
+// The scaffolding — the surface, its accessible name, the two sliders, the live
+// readout, the redraw — comes from `kit.js`.
+import { panel, slider, fmt, react } from "./kit.js";
+
 export function mount(el) {
   const AXIS_X = 44;
   const LEFT = 62;
@@ -15,28 +20,30 @@ export function mount(el) {
   const FIRST = 1;
   const LAST = 6;
 
-  el.innerHTML = `
-    <div style="max-width:580px">
-      <svg viewBox="0 0 560 250" width="100%" role="img"
-           aria-label="The first six terms of a linear sequence plotted against their positions and joined by a straight line"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Common difference
-          <input class="difference" type="range" min="-2" max="5" step="1" value="4">
-        </label>
-        <label>Constant
-          <input class="constant" type="range" min="-4" max="10" step="1" value="3">
-        </label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "The first six terms of a linear sequence plotted against their positions and joined by a straight line",
+    width: 560,
+    height: 250,
+    max: 580,
+  });
 
-  const svg = el.querySelector("svg");
-  const difference = el.querySelector(".difference");
-  const constant = el.querySelector(".constant");
-  const readout = el.querySelector(".readout");
-
-  const format = (value) =>
-    Number.isInteger(value) ? String(value) : String(Math.round(value * 100) / 100);
+  const difference = slider(el, {
+    id: "difference",
+    label: "Common difference",
+    min: -2,
+    max: 5,
+    step: 1,
+    value: 4,
+  });
+  const constant = slider(el, {
+    id: "constant",
+    label: "Constant",
+    min: -4,
+    max: 10,
+    step: 1,
+    value: 3,
+  });
 
   const xFor = (position) =>
     LEFT + ((position - 0.5) / LAST) * (RIGHT - LEFT);
@@ -77,7 +84,7 @@ export function mount(el) {
         `<line x1="${AXIS_X}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" ` +
         `class="${lineClass}" stroke-width="${lineWidth}"></line>` +
         `<text x="${(AXIS_X - 8).toFixed(1)}" y="${(y + 4).toFixed(1)}" font-size="16" ` +
-        `text-anchor="end" class="text-ink">${format(value)}</text>`;
+        `text-anchor="end" class="text-ink">${fmt(value)}</text>`;
     }
 
     const positionTicks = [];
@@ -101,7 +108,7 @@ export function mount(el) {
         return (
           `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" class="fig-accent"></circle>` +
           `<text x="${x.toFixed(1)}" y="${(y - 11).toFixed(1)}" font-size="18" ` +
-          `text-anchor="middle" class="text-accent">${format(term)}</text>`
+          `text-anchor="middle" class="text-accent">${fmt(term)}</text>`
         );
       })
       .join("");
@@ -117,12 +124,12 @@ export function mount(el) {
       `<text x="${RIGHT}" y="${BASE + 34}" font-size="16" text-anchor="end" class="text-ink">position</text>`;
 
     const rule =
-      `term = ${format(step)} × position ` +
+      `term = ${fmt(step)} × position ` +
       (constantTerm < 0 ? `- ${Math.abs(constantTerm)}` : `+ ${constantTerm}`);
 
     let change = "";
     if (step > 0) {
-      change = `Neighbouring terms go up by ${format(step)}, so the points lie on a straight line.`;
+      change = `Neighbouring terms go up by ${fmt(step)}, so the points lie on a straight line.`;
     } else if (step < 0) {
       change = `Neighbouring terms go down by ${Math.abs(step)}, so the points lie on a straight line.`;
     } else {
@@ -132,13 +139,10 @@ export function mount(el) {
     const lastTerm = terms[terms.length - 1];
     readout.innerHTML =
       `The rule is <strong>${rule}</strong>. ` +
-      `Position ${LAST} has <strong>${format(step)} × ${LAST} ` +
-      `${constantTerm < 0 ? "−" : "+"} ${Math.abs(constantTerm)} = ${format(lastTerm)}</strong>. ` +
+      `Position ${LAST} has <strong>${fmt(step)} × ${LAST} ` +
+      `${constantTerm < 0 ? "−" : "+"} ${Math.abs(constantTerm)} = ${fmt(lastTerm)}</strong>. ` +
       change;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([difference, constant], update);
 }

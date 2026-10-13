@@ -1,18 +1,32 @@
 // Guided sequence investigation: predict how the multiplier changes later terms.
+//
+// The scaffolding — the slider, the live readout, the redraw — comes from
+// `kit.js`. This module draws nothing: its terms are a list, not an image, so it
+// asks the kit for a frame with no drawing surface, and has no drawing to name.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Multiplier
-        <input class="factor" type="range" min="0.5" max="2" step="0.1" value="1.5">
-      </label>
-      <p class="factor-label" aria-live="polite"></p>
-      <ol class="terms"></ol>
-      <p class="text-accent">Start at 2, then multiply by the same number.</p>
-    </div>`;
-  const factor = el.querySelector(".factor");
-  const label = el.querySelector(".factor-label");
-  const list = el.querySelector(".terms");
-  function update() {
+  const { root, readout } = panel(el, { drawing: false, max: 520 });
+
+  const list = document.createElement("ol");
+  list.className = "terms";
+
+  const caption = document.createElement("p");
+  caption.className = "text-accent";
+  caption.textContent = "Start at 2, then multiply by the same number.";
+
+  root.append(list, caption);
+
+  const factor = slider(el, {
+    id: "factor",
+    label: "Multiplier",
+    min: 0.5,
+    max: 2,
+    step: 0.1,
+    value: 1.5,
+  });
+
+  react(factor, () => {
     const ratio = Number(factor.value);
     let term = 2;
     list.innerHTML = "";
@@ -24,8 +38,6 @@ export function mount(el) {
       list.append(item);
       term *= ratio;
     }
-    label.textContent = `Common multiplier: ${ratio}`;
-  }
-  factor.addEventListener("input", update);
-  update();
+    readout.textContent = `Common multiplier: ${ratio}`;
+  });
 }

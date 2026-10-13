@@ -11,24 +11,37 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and both
 // schemes. No colour is the only signal: every value is printed as text and the
 // current is written in the readout.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-circuit-current" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 560 250" width="100%" role="img"
-           aria-label="A series circuit with a cell, a resistor and an ammeter, with a current meter below it. The reading changes with the potential difference and the resistance."></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Potential difference (V)
-          <input class="pd" type="range" min="1" max="12" step="1" value="6"></label>
-        <label>Resistance (&Omega;)
-          <input class="resistance" type="range" min="1" max="12" step="1" value="3"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const pd = el.querySelector(".pd");
-  const resistance = el.querySelector(".resistance");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A series circuit with a cell, a resistor and an ammeter, with a current meter below it. The reading changes with the potential difference and the resistance.",
+    width: 560,
+    height: 250,
+    max: 600,
+  });
+
+  const pdInput = slider(el, {
+    id: "pd",
+    label: "Potential difference (V)",
+    min: 1,
+    max: 12,
+    step: 1,
+    value: 6,
+  });
+  const resistanceInput = slider(el, {
+    id: "resistance",
+    label: "Resistance (Ω)",
+    min: 1,
+    max: 12,
+    step: 1,
+    value: 3,
+  });
 
   // The current meter below the circuit. The scale runs from zero to the largest
   // current the controls can make: 12 V across 1 ohm.
@@ -42,8 +55,8 @@ export function mount(el) {
   const widthFor = (amps) => (2 + 4 * Math.sqrt(amps / PEAK)).toFixed(1);
 
   function update() {
-    const volts = Number(pd.value);
-    const ohms = Number(resistance.value);
+    const volts = Number(pdInput.value);
+    const ohms = Number(resistanceInput.value);
     const amps = volts / ohms;
     const wire = widthFor(amps);
     const fraction = Math.min(amps / PEAK, 1);
@@ -87,8 +100,5 @@ export function mount(el) {
       `What happens to the current if the resistance doubles?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([pdInput, resistanceInput], update);
 }

@@ -6,27 +6,32 @@
 // event; the chart counts the neutrons released in each generation as the reader
 // moves the slider. Colours come from CSS classes, so the figure adapts to every
 // bundle and both schemes, and every shape is also labelled in words.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-fission-chain" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 370" width="100%" role="img"
-           aria-label="One neutron striking a uranium-235 nucleus, which splits into two smaller nuclei and releases three neutrons, above a chart of the neutrons released in each generation"></svg>
-      <label style="display:block;margin:.6rem 0 .3rem">
-        Neutrons from each fission that cause the next fission:
-        <input class="multiply" type="range" min="0" max="3" step="1" value="2">
-        <output class="value">2</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const multiply = el.querySelector(".multiply");
-  const value = el.querySelector(".value");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "One neutron striking a uranium-235 nucleus, which splits into two smaller nuclei and releases three neutrons, above a chart of the neutrons released in each generation",
+    width: 620,
+    height: 370,
+    max: 620,
+  });
+
+  const multiplyInput = slider(el, {
+    id: "multiply",
+    label: "Neutrons from each fission that cause the next fission:",
+    min: 0,
+    max: 3,
+    step: 1,
+    value: 2,
+  });
 
   function update() {
-    const r = Number(multiply.value);
-    value.textContent = String(r);
+    const r = Number(multiplyInput.value);
 
     // Generation 1 is the first fission. With r neutrons continuing, the
     // neutrons released are 3, 3r, 3r squared for the first three generations.
@@ -110,6 +115,5 @@ export function mount(el) {
         : `<em>Move the slider to one. What happens to the chain reaction?</em>`);
   }
 
-  multiply.addEventListener("input", update);
-  update();
+  react(multiplyInput, update);
 }

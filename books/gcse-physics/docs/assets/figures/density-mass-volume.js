@@ -7,29 +7,55 @@
 //
 // Colours come from CSS classes, so the figure adapts to every bundle and both
 // schemes. No maths is injected at runtime: every value is plain text.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-density-mass-volume" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 190" width="100%" role="img"
-           aria-label="A bar whose length shows the density of a chosen mass and volume, with a marked line for the density of water"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Mass (kg)
-          <input class="mass" type="range" min="0.2" max="5.0" step="0.1" value="2.3"></label>
-        <label>Volume (cm cubed)
-          <input class="volume" type="range" min="200" max="6000" step="100" value="2500"></label>
-      </div>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0">
-        <button type="button" class="preset-ice">Set the ice block</button>
-        <button type="button" class="preset-water">Set liquid water</button>
-        <button type="button" class="preset-aluminium">Set aluminium</button>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. The three preset buttons are not
+// one of the kit's controls, so they are built here inside the kit's control
+// column. What is left is the drawing and the sentences, which are the parts that
+// differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const massSlider = el.querySelector(".mass");
-  const volumeSlider = el.querySelector(".volume");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A bar whose length shows the density of a chosen mass and volume, with a marked line for the density of water",
+    width: 560,
+    height: 190,
+  });
+
+  const massInput = slider(el, {
+    id: "mass",
+    label: "Mass (kg)",
+    min: 0.2,
+    max: 5,
+    step: 0.1,
+    value: 2.3,
+  });
+  const volumeInput = slider(el, {
+    id: "volume",
+    label: "Volume (cm cubed)",
+    min: 200,
+    max: 6000,
+    step: 100,
+    value: 2500,
+  });
+
+  // The presets sit in the same control column the kit's sliders use.
+  const controls = el.querySelector(".fig-controls");
+  const presets = document.createElement("div");
+  presets.style.cssText = "display:flex;gap:.5rem;flex-wrap:wrap";
+  const preset = (id, text) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = id;
+    button.textContent = text;
+    presets.append(button);
+    return button;
+  };
+  const iceButton = preset("preset-ice", "Set the ice block");
+  const waterButton = preset("preset-water", "Set liquid water");
+  const aluminiumButton = preset("preset-aluminium", "Set aluminium");
+  controls.append(presets);
 
   const WATER = 1000;
   const MAX_DENSITY = 3000;
@@ -62,26 +88,22 @@ export function mount(el) {
   }
 
   function update() {
-    draw(Number(massSlider.value), Number(volumeSlider.value));
+    draw(Number(massInput.value), Number(volumeInput.value));
   }
 
-  el.querySelector(".preset-ice").addEventListener("click", () => {
-    massSlider.value = "2.3";
-    volumeSlider.value = "2500";
-    update();
-  });
-  el.querySelector(".preset-water").addEventListener("click", () => {
-    massSlider.value = "1.0";
-    volumeSlider.value = "1000";
-    update();
-  });
-  el.querySelector(".preset-aluminium").addEventListener("click", () => {
-    massSlider.value = "2.7";
-    volumeSlider.value = "1000";
-    update();
-  });
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  // Setting a slider's value in script does not fire `input`, so the kit's own
+  // number display would keep the old value. Dispatching it redraws and refreshes
+  // the display in one step.
+  const apply = (mass, volume) => {
+    massInput.value = String(mass);
+    volumeInput.value = String(volume);
+    massInput.dispatchEvent(new Event("input"));
+    volumeInput.dispatchEvent(new Event("input"));
+  };
+
+  iceButton.addEventListener("click", () => apply(2.3, 2500));
+  waterButton.addEventListener("click", () => apply(1.0, 1000));
+  aluminiumButton.addEventListener("click", () => apply(2.7, 1000));
+
+  react([massInput, volumeInput], update);
 }

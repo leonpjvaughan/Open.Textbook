@@ -1,16 +1,38 @@
 // Guided table-to-graph investigation for y = mx + c.
+//
+// The scaffolding — the surface, its accessible name, the two sliders, the live
+// readout, the redraw — comes from `kit.js`, and a signed term from `signed()`,
+// so a negative intercept reads as a signed number, never a bracketed addend.
+import { panel, slider, signed, react } from "./kit.js";
+
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Gradient m <input class="gradient" type="range" min="-3" max="3" step="1" value="2"></label>
-      <label>Intercept c <input class="intercept" type="range" min="-3" max="3" step="1" value="1"></label>
-      <svg viewBox="0 0 360 250" width="100%" role="img" aria-label="Coordinate grid with a straight line and three plotted points"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
-  const svg = el.querySelector("svg");
+  const { svg, readout } = panel(el, {
+    label: "Coordinate grid with a straight line and three plotted points",
+    width: 360,
+    height: 250,
+    max: 520,
+  });
+
+  const gradient = slider(el, {
+    id: "gradient",
+    label: "Gradient m",
+    min: -3,
+    max: 3,
+    step: 1,
+    value: 2,
+  });
+  const intercept = slider(el, {
+    id: "intercept",
+    label: "Intercept c",
+    min: -3,
+    max: 3,
+    step: 1,
+    value: 1,
+  });
+
   function update() {
-    const m = Number(el.querySelector(".gradient").value);
-    const c = Number(el.querySelector(".intercept").value);
+    const m = Number(gradient.value);
+    const c = Number(intercept.value);
     // The plotted points reach y = 3 x 2 + 3 = 9 and y = -3 x 2 - 3 = -9, so
     // the vertical scale is set for that range: every marker stays in the frame.
     const px = (x) => 180 + x * 28;
@@ -25,8 +47,8 @@ export function mount(el) {
       ${dots}<circle cx="${px(0)}" cy="${py(c)}" r="8" fill="none" class="fig-warn"></circle>
       <text x="330" y="145" class="text-accent">x</text><text x="190" y="24" class="text-accent">y</text>
       <text x="12" y="245" class="fig-ink">Points at x = -2, 0, 2</text>`;
-    el.querySelector(".readout").textContent = `y = ${m}x + ${c}; the highlighted intercept is ${c}.`;
+    readout.textContent = `y = ${m}x ${signed(c)}; the highlighted intercept is ${c}.`;
   }
-  el.querySelectorAll("input").forEach((input) => input.addEventListener("input", update));
-  update();
+
+  react([gradient, intercept], update);
 }

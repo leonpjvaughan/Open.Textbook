@@ -5,6 +5,11 @@
 // can fall while the other rises. The shaded triangle is the area under the line,
 // so the distance is a picture. Colours come from CSS classes, so the figure
 // adapts to every bundle and both schemes.
+//
+// The scaffolding — the surface, its accessible name, the two sliders, the live
+// readout, the redraw, the number formatting — comes from `kit.js`.
+import { panel, slider, fmt, react } from "./kit.js";
+
 export function mount(el) {
   const LEFT = 64;
   const RIGHT = 520;
@@ -13,28 +18,30 @@ export function mount(el) {
   const MAX_TIME = 10;
   const MAX_SPEED = 20;
 
-  el.innerHTML = `
-    <div style="max-width:580px">
-      <svg viewBox="0 0 560 280" width="100%" role="img"
-           aria-label="A velocity-time graph for a straight rising line, with the triangle under the line shaded to show the distance travelled"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Top speed in m/s
-          <input class="speed" type="range" min="2" max="20" step="2" value="8">
-        </label>
-        <label>Time in s
-          <input class="time" type="range" min="1" max="10" step="1" value="4">
-        </label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A velocity-time graph for a straight rising line, with the triangle under the line shaded to show the distance travelled",
+    width: 560,
+    height: 280,
+    max: 580,
+  });
 
-  const svg = el.querySelector("svg");
-  const speedInput = el.querySelector(".speed");
-  const timeInput = el.querySelector(".time");
-  const readout = el.querySelector(".readout");
-
-  const format = (value) =>
-    Number.isInteger(value) ? String(value) : String(Math.round(value * 100) / 100);
+  const speedInput = slider(el, {
+    id: "speed",
+    label: "Top speed in m/s",
+    min: 2,
+    max: 20,
+    step: 2,
+    value: 8,
+  });
+  const timeInput = slider(el, {
+    id: "time",
+    label: "Time in s",
+    min: 1,
+    max: 10,
+    step: 1,
+    value: 4,
+  });
 
   const xFor = (seconds) => LEFT + (seconds / MAX_TIME) * (RIGHT - LEFT);
   const yFor = (speed) => BASE - (speed / MAX_SPEED) * (BASE - TOP);
@@ -73,7 +80,7 @@ export function mount(el) {
     const areaLabel =
       width > 70 && height > 40
         ? `<text x="${(LEFT + width / 2).toFixed(1)}" y="${(BASE - height / 3).toFixed(1)}" ` +
-          `font-size="19" text-anchor="middle" class="text-accent">${format(distance)} m</text>`
+          `font-size="19" text-anchor="middle" class="text-accent">${fmt(distance)} m</text>`
         : "";
 
     svg.innerHTML =
@@ -91,16 +98,13 @@ export function mount(el) {
       `class="text-ink" transform="rotate(-90 16 ${((TOP + BASE) / 2).toFixed(1)})">velocity in m/s</text>`;
 
     readout.innerHTML =
-      `The velocity rises from <strong>0 m/s</strong> to <strong>${format(speed)} m/s</strong> ` +
-      `in <strong>${format(time)} s</strong>. ` +
-      `Gradient = ${format(speed)} ÷ ${format(time)} = <strong>${format(acceleration)} m/s²</strong>, ` +
-      `so the acceleration is <strong>${format(acceleration)} m/s²</strong>. ` +
-      `Area = ½ × ${format(time)} × ${format(speed)} = <strong>${format(distance)} m</strong>, ` +
-      `so the distance travelled is <strong>${format(distance)} m</strong>.`;
+      `The velocity rises from <strong>0 m/s</strong> to <strong>${fmt(speed)} m/s</strong> ` +
+      `in <strong>${fmt(time)} s</strong>. ` +
+      `Gradient = ${fmt(speed)} ÷ ${fmt(time)} = <strong>${fmt(acceleration)} m/s²</strong>, ` +
+      `so the acceleration is <strong>${fmt(acceleration)} m/s²</strong>. ` +
+      `Area = ½ × ${fmt(time)} × ${fmt(speed)} = <strong>${fmt(distance)} m</strong>, ` +
+      `so the distance travelled is <strong>${fmt(distance)} m</strong>.`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([speedInput, timeInput], update);
 }

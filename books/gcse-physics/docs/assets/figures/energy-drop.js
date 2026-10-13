@@ -5,20 +5,36 @@
 // not double the speed. Mass and height are the two parameters; the gravitational
 // potential store and the kinetic store are shown side by side.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-energy-drop" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 170" width="100%" role="img"
-           aria-label="A ball on a drop with two bars showing gravitational potential energy at the top and kinetic energy at the bottom"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Mass (kg) <input class="mass" type="range" min="0.5" max="5" step="0.1" value="2"></label>
-        <label>Height (m) <input class="height" type="range" min="0.5" max="5" step="0.1" value="1"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A ball on a drop with two bars showing gravitational potential energy at the top and kinetic energy at the bottom",
+    width: 560,
+    height: 170,
+  });
+
+  const massInput = slider(el, {
+    id: "mass",
+    label: "Mass (kg)",
+    min: 0.5,
+    max: 5,
+    step: 0.1,
+    value: 2,
+  });
+  const heightInput = slider(el, {
+    id: "height",
+    label: "Height (m)",
+    min: 0.5,
+    max: 5,
+    step: 0.1,
+    value: 1,
+  });
   const g = 9.8;
   const GROUND = 140;
   const TOP = 24;
@@ -26,8 +42,8 @@ export function mount(el) {
   const ENERGY_MAX = 5 * g * 5;
 
   function update() {
-    const mass = Number(el.querySelector(".mass").value);
-    const height = Number(el.querySelector(".height").value);
+    const mass = Number(massInput.value);
+    const height = Number(heightInput.value);
     const energy = mass * g * height;
     const speed = Math.sqrt(2 * g * height);
 
@@ -62,8 +78,5 @@ export function mount(el) {
       `<em>Now double the height: which of the two numbers doubles, and which does not?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([massInput, heightInput], update);
 }

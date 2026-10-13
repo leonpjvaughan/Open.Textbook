@@ -8,6 +8,12 @@
 // curve's height rises with temperature to show that a hotter object emits more.
 // Colours come from CSS classes so the figure adapts to dark mode and every
 // bundle; the peak and the visible band are also labelled.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
   const H = 6.626e-34;
   const C = 3.0e8;
@@ -19,19 +25,22 @@ export function mount(el) {
   const BASE = 240;
   const TOP = 30;
 
-  el.innerHTML = `
-    <div class="fig-black-body-curve" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 280" width="100%" role="img"
-           aria-label="A curve of emitted intensity against wavelength for a hot object, with a peak that moves to shorter wavelengths as the temperature rises"></svg>
-      <label style="display:block;margin:.6rem 0 .3rem">
-        Temperature: <input class="temperature" type="range" min="1000" max="6000" step="100" value="3000">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A curve of emitted intensity against wavelength for a hot object, with a peak that moves to shorter wavelengths as the temperature rises",
+    width: 620,
+    height: 280,
+    max: 620,
+  });
 
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".temperature");
-  const readout = el.querySelector(".readout");
+  const temperatureInput = slider(el, {
+    id: "temperature",
+    label: "Temperature",
+    min: 1000,
+    max: 6000,
+    step: 100,
+    value: 3000,
+  });
 
   function intensity(wavelength, temperature) {
     const x = (H * C) / (wavelength * K * temperature);
@@ -45,7 +54,7 @@ export function mount(el) {
   }
 
   function update() {
-    const temperature = Number(slider.value);
+    const temperature = Number(temperatureInput.value);
     const samples = [];
     let peak = 0;
     const steps = 240;
@@ -114,6 +123,5 @@ export function mount(el) {
       `wavelengths?</em>`;
   }
 
-  slider.addEventListener("input", update);
-  update();
+  react(temperatureInput, update);
 }

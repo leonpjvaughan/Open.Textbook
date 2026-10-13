@@ -6,6 +6,12 @@
 // the colour and gives the frequency. The colour name is always written, so
 // colour is never the only signal. Colours come from CSS classes, so the figure
 // adapts to every bundle and both schemes.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
   const BANDS = [
     { name: "violet", min: 400, max: 450 },
@@ -22,19 +28,22 @@ export function mount(el) {
   const BAND_TOP = 40;
   const BAND_HEIGHT = 44;
 
-  el.innerHTML = `
-    <div class="fig-colour-frequency" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 600 160" width="100%" role="img"
-           aria-label="A band of the visible spectrum from violet at short wavelengths to red at long wavelengths, with a marker at the chosen colour"></svg>
-      <label style="display:block;margin:.6rem 0 .3rem">
-        Wavelength: <input class="wavelength" type="range" min="400" max="700" step="5" value="550">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A band of the visible spectrum from violet at short wavelengths to red at long wavelengths, with a marker at the chosen colour",
+    width: 600,
+    height: 160,
+    max: 620,
+  });
 
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".wavelength");
-  const readout = el.querySelector(".readout");
+  const wavelengthInput = slider(el, {
+    id: "wavelength",
+    label: "Wavelength",
+    min: 400,
+    max: 700,
+    step: 5,
+    value: 550,
+  });
 
   const xFor = (nm) => LEFT + ((nm - MIN) / (MAX - MIN)) * (RIGHT - LEFT);
 
@@ -52,7 +61,7 @@ export function mount(el) {
   }
 
   function update() {
-    const wavelength = Number(slider.value);
+    const wavelength = Number(wavelengthInput.value);
     const frequency = 3.0e8 / (wavelength * 1e-9);
     const current = bandFor(wavelength);
 
@@ -103,6 +112,5 @@ export function mount(el) {
       `the wavelength gets longer.</em>`;
   }
 
-  slider.addEventListener("input", update);
-  update();
+  react(wavelengthInput, update);
 }

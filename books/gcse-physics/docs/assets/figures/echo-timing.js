@@ -5,27 +5,43 @@
 // with the trip there and back. The reader sets the depth and the speed of the
 // wave; the figure draws the down-and-back path and reports the echo time.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-echo-timing" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 240" width="100%" role="img"
-           aria-label="A boat sends a sound pulse down to a boundary and the reflection returns. The depth and the speed of the wave can be changed"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Depth (m) <input class="depth" type="range" min="10" max="60" step="5" value="30"></label>
-        <label>Speed of the wave (m/s) <input class="speed" type="range" min="1000" max="3000" step="100" value="1500"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A boat sends a sound pulse down to a boundary and the reflection returns. The depth and the speed of the wave can be changed",
+    width: 560,
+    height: 240,
+  });
+
+  const depthInput = slider(el, {
+    id: "depth",
+    label: "Depth (m)",
+    min: 10,
+    max: 60,
+    step: 5,
+    value: 30,
+  });
+  const speedInput = slider(el, {
+    id: "speed",
+    label: "Speed of the wave (m/s)",
+    min: 1000,
+    max: 3000,
+    step: 100,
+    value: 1500,
+  });
   const BOAT_Y = 45;
   const SEABED_Y = 200;
   const CENTRE_X = 280;
 
   function update() {
-    const depth = Number(el.querySelector(".depth").value);
-    const speed = Number(el.querySelector(".speed").value);
+    const depth = Number(depthInput.value);
+    const speed = Number(speedInput.value);
     const time = (2 * depth) / speed;
 
     const boat =
@@ -64,8 +80,5 @@ export function mount(el) {
       `<em>Now double the depth. What happens to the echo time?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([depthInput, speedInput], update);
 }

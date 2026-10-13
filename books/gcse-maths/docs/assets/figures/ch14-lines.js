@@ -1,14 +1,28 @@
 // Guided graph investigation for a pair of linear equations.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout, the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <svg viewBox="0 0 520 260" width="100%" role="img" aria-label="Two straight lines crossing at a marked point"></svg>
-      <label>Test x value <input class="xvalue" type="range" min="0" max="4" step="1" value="2"></label>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
-  const svg = el.querySelector("svg");
+  const { svg, readout } = panel(el, {
+    label: "Two straight lines crossing at a marked point",
+    width: 520,
+    height: 260,
+    max: 520,
+  });
+
+  const xvalue = slider(el, {
+    id: "xvalue",
+    label: "Test x value",
+    min: 0,
+    max: 4,
+    step: 1,
+    value: 2,
+  });
+
   function update() {
-    const x = Number(el.querySelector(".xvalue").value);
+    const x = Number(xvalue.value);
     const y1 = 2 * x + 1;
     const y2 = -x + 7;
     const px = 70 + x * 90;
@@ -29,10 +43,9 @@ export function mount(el) {
       <text x="80" y="25" class="text-accent">y = 2x + 1</text>
       <text x="330" y="25" class="text-good">y = -x + 7</text>
       <text x="440" y="238" class="fig-ink">x</text>`;
-    const out = el.querySelector(".readout");
-    out.className = `readout ${y1 === y2 ? "text-good" : "text-warn"}`;
-    out.textContent = `At x = ${x}: first line y = ${y1}; second line y = ${y2}${y1 === y2 ? ". The values match." : ". The values do not match yet."}`;
+    readout.className = `readout ${y1 === y2 ? "text-good" : "text-warn"}`;
+    readout.textContent = `At x = ${x}: first line y = ${y1}; second line y = ${y2}${y1 === y2 ? ". The values match." : ". The values do not match yet."}`;
   }
-  el.querySelector("input").addEventListener("input", update);
-  update();
+
+  react(xvalue, update);
 }

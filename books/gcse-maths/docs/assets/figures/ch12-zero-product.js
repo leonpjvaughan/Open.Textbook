@@ -5,6 +5,12 @@
 // straight lines are the factors and the curve is their product, so the product
 // is zero exactly where a factor line meets the horizontal axis. A shape paints
 // with fig-* and a word paints with text-*.
+//
+// The scaffolding — the surface, its accessible name, the two sliders, the live
+// readout, the redraw — comes from `kit.js`. The legend is a line of prose the
+// module adds between the controls and the readout.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
   const CX = 280;
   const CY = 165;
@@ -13,23 +19,35 @@ export function mount(el) {
   const XMIN = -8;
   const XMAX = 8;
 
-  el.innerHTML = `
-    <div style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 560 320" width="100%" role="img"
-           aria-label="Two straight lines for the factors and a curve for their product, meeting the horizontal axis at the two solutions"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>First bracket number <input class="m" type="range" min="-6" max="6" step="1" value="2"></label>
-        <label>Second bracket number <input class="n" type="range" min="-6" max="6" step="1" value="3"></label>
-      </div>
-      <p class="legend" style="margin:.4rem 0 0"></p>
-      <p class="readout" aria-live="polite" style="margin:.3rem 0 0"></p>
-    </div>`;
+  const { root, svg, readout } = panel(el, {
+    label:
+      "Two straight lines for the factors and a curve for their product, meeting the horizontal axis at the two solutions",
+    width: 560,
+    height: 320,
+    max: 620,
+  });
 
-  const svg = el.querySelector("svg");
-  const mSlider = el.querySelector(".m");
-  const nSlider = el.querySelector(".n");
-  const legend = el.querySelector(".legend");
-  const readout = el.querySelector(".readout");
+  const mSlider = slider(el, {
+    id: "m",
+    label: "First bracket number",
+    min: -6,
+    max: 6,
+    step: 1,
+    value: 2,
+  });
+  const nSlider = slider(el, {
+    id: "n",
+    label: "Second bracket number",
+    min: -6,
+    max: 6,
+    step: 1,
+    value: 3,
+  });
+
+  const legend = document.createElement("p");
+  legend.className = "legend";
+  legend.style.cssText = "margin:.4rem 0 0";
+  root.insertBefore(legend, readout);
 
   const cx = (x) => CX + x * UX;
   const cy = (y) => CY - y * UY;
@@ -103,7 +121,5 @@ export function mount(el) {
       `Expanding the factors gives <strong>${expanded(m, n)}</strong>.`;
   }
 
-  mSlider.addEventListener("input", update);
-  nSlider.addEventListener("input", update);
-  update();
+  react([mSlider, nSlider], update);
 }

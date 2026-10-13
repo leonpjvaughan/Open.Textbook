@@ -1,13 +1,29 @@
 // Guided family y = (x - p)^2 - 4; compare roots and turning point as p changes.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout, the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
-  el.innerHTML = `<div style="max-width:520px">
-    <svg viewBox="0 0 520 330" width="100%" role="img" aria-label="Coordinate graph of a movable quadratic curve with marked roots and turning point"></svg>
-    <label>Horizontal shift p <input class="shift" type="range" min="-3" max="3" step="1" value="0"></label>
-    <p class="readout" aria-live="polite"></p>
-  </div>`;
-  const svg = el.querySelector('svg');
+  const { svg, readout } = panel(el, {
+    label:
+      "Coordinate graph of a movable quadratic curve with marked roots and turning point",
+    width: 520,
+    height: 330,
+    max: 520,
+  });
+
+  const shift = slider(el, {
+    id: "shift",
+    label: "Horizontal shift p",
+    min: -3,
+    max: 3,
+    step: 1,
+    value: 0,
+  });
+
   function update() {
-    const p = Number(el.querySelector('.shift').value);
+    const p = Number(shift.value);
     const sx = x => 260 + x * 38;
     const sy = y => 205 - y * 24;
     const points = [];
@@ -25,8 +41,8 @@ export function mount(el) {
       <text x="${sx(rootR)}" y="${sy(0)-12}" text-anchor="middle" class="text-good">right root</text>
       <text x="${sx(turnX)+8}" y="${sy(turnY)+18}" class="text-warn">turning point</text>
       <text x="485" y="${sy(0)-5}" class="fig-ink">x</text><text x="${sx(0)+5}" y="22" class="fig-ink">y</text>`;
-    el.querySelector('.readout').textContent = `p = ${p}; roots x = ${p-2} and x = ${p+2}; turning point (${p}, -4).`;
+    readout.textContent = `p = ${p}; roots x = ${p-2} and x = ${p+2}; turning point (${p}, -4).`;
   }
-  el.querySelector('.shift').addEventListener('input', update);
-  update();
+
+  react(shift, update);
 }

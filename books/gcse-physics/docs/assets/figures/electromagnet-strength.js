@@ -5,28 +5,42 @@
 // then to explain why more turns strengthen the field. The figure reports a
 // relative field strength, not a measured one, so the numbers teach proportion
 // without pretending to be tesla. Colours come from CSS classes.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-electromagnet-strength" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 180" width="100%" role="img"
-           aria-label="A solenoid coil wound on an iron core. The current and the number of turns can be changed, and a bar shows the relative field strength"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Current (A) <input class="current" type="range" min="0" max="5" step="0.5" value="1"></label>
-        <label>Turns <input class="turns" type="range" min="100" max="1000" step="100" value="400"></label>
-      </div>
-      <label style="display:block;margin:.3rem 0 0">
-        <input class="switch" type="checkbox" checked> current on
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the controls, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, toggle, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A solenoid coil wound on an iron core. The current and the number of turns can be changed, and a bar shows the relative field strength",
+    width: 560,
+    height: 180,
+  });
+
+  const currentInput = slider(el, {
+    id: "current",
+    label: "Current (A)",
+    min: 0,
+    max: 5,
+    step: 0.5,
+    value: 1,
+  });
+  const turnsInput = slider(el, {
+    id: "turns",
+    label: "Turns",
+    min: 100,
+    max: 1000,
+    step: 100,
+    value: 400,
+  });
+  const switchInput = toggle(el, { id: "switch", label: "current on", checked: true });
 
   function update() {
-    const current = Number(el.querySelector(".current").value);
-    const turns = Number(el.querySelector(".turns").value);
-    const on = el.querySelector(".switch").checked;
+    const current = Number(currentInput.value);
+    const turns = Number(turnsInput.value);
+    const on = switchInput.checked;
     const strength = on ? turns * current : 0;
     const ratio = strength / 100;
 
@@ -61,8 +75,5 @@ export function mount(el) {
         `crane would drop its load. <em>Switch the current on and watch the field return.</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([currentInput, turnsInput, switchInput], update);
 }

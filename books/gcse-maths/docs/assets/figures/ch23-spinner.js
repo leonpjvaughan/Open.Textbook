@@ -1,4 +1,10 @@
 // Guided probability scale: predict and test how changing red regions changes chance.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which differ from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 const SECTORS = 10;
 const CENTRE = 100;
 const OUTER = 88;
@@ -26,21 +32,28 @@ function sectors(red) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <section class="fig-grid" style="padding:1rem;max-width:320px">
-      <p class="text-accent">A spinner has 10 equal sectors. Change how many are red.</p>
-      <label>Red sectors: <input class="red" type="range" min="0" max="10" step="1" value="4"></label>
-      <p class="readout text-ink" aria-live="polite"></p>
-      <svg class="spinner" width="100%" viewBox="0 0 200 200" role="img" aria-label="A spinner divided into ten equal sectors"></svg>
-    </section>`;
-  const readout = el.querySelector('.readout');
-  const spinner = el.querySelector('.spinner');
+  const { svg, readout } = panel(el, {
+    label: "A spinner divided into ten equal sectors",
+    prompt: "A spinner has 10 equal sectors. Change how many are red.",
+    width: 200,
+    height: 200,
+    max: 320,
+  });
+
+  const redInput = slider(el, {
+    id: "red",
+    label: "Red sectors",
+    min: 0,
+    max: 10,
+    value: 4,
+  });
+
   function draw() {
-    const red = Number(el.querySelector('.red').value);
-    spinner.innerHTML = sectors(red);
-    spinner.setAttribute('aria-label', `A spinner divided into ten equal sectors, ${red} of them red`);
+    const red = Number(redInput.value);
+    svg.innerHTML = sectors(red);
+    svg.setAttribute('aria-label', `A spinner divided into ten equal sectors, ${red} of them red`);
     readout.textContent = `Red sectors: ${red} out of 10. Probability of red: ${red}/10.`;
   }
-  el.querySelector('.red').addEventListener('input', draw);
-  draw();
+
+  react(redInput, draw);
 }

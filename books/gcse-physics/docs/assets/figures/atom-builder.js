@@ -5,6 +5,12 @@
 // not when a neutron is. Protons and neutrons draw as different shapes as well as
 // different classes, so the figure does not rely on colour alone.
 // Colours come from CSS classes so the figure adapts to dark mode.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
   const ELEMENTS = {
     1: "hydrogen",
@@ -15,19 +21,30 @@ export function mount(el) {
     6: "carbon",
   };
 
-  el.innerHTML = `
-    <div class="fig-atom-builder" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 360 230" width="100%" role="img"
-           aria-label="An atom drawn from protons, neutrons and electrons, changing as the sliders move"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Protons <input class="protons" type="range" min="1" max="6" step="1" value="3"></label>
-        <label>Neutrons <input class="neutrons" type="range" min="0" max="8" step="1" value="4"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "An atom drawn from protons, neutrons and electrons, changing as the sliders move",
+    width: 360,
+    height: 230,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+  const protonsInput = slider(el, {
+    id: "protons",
+    label: "Protons",
+    min: 1,
+    max: 6,
+    step: 1,
+    value: 3,
+  });
+  const neutronsInput = slider(el, {
+    id: "neutrons",
+    label: "Neutrons",
+    min: 0,
+    max: 8,
+    step: 1,
+    value: 4,
+  });
+
   const CENTRE = { x: 150, y: 105 };
 
   function nucleonPositions(count) {
@@ -51,8 +68,8 @@ export function mount(el) {
   }
 
   function update() {
-    const protons = Number(el.querySelector(".protons").value);
-    const neutrons = Number(el.querySelector(".neutrons").value);
+    const protons = Number(protonsInput.value);
+    const neutrons = Number(neutronsInput.value);
     const massNumber = protons + neutrons;
     const element = ELEMENTS[protons];
 
@@ -103,8 +120,5 @@ export function mount(el) {
       `<em>Add a neutron. Which of the two numbers changes, and which stays the same?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([protonsInput, neutronsInput], update);
 }

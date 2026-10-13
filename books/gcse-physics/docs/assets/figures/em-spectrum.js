@@ -6,6 +6,14 @@
 // a logarithmic scale, and the strip highlights the group it falls in.
 // Colours come from CSS classes so the figure adapts to dark mode and every
 // bundle; the group name is always shown, so colour is never the only signal.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. The two jump buttons are not one
+// of the kit's controls, so they are built here inside the kit's control column.
+// What is left is the drawing and the sentences, which are the parts that differ
+// from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
   const GROUPS = [
     { name: "radio", min: 0, max: 3e8 },
@@ -17,23 +25,38 @@ export function mount(el) {
     { name: "gamma", min: 3e19, max: Infinity },
   ];
 
-  el.innerHTML = `
-    <div class="fig-em-spectrum" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 120" width="100%" role="img"
-           aria-label="A strip of the seven groups of the electromagnetic spectrum, with the group chosen by the slider highlighted"></svg>
-      <label style="display:block;margin:.6rem 0 .3rem">
-        Frequency: <input class="freq" type="range" min="5" max="19" step="0.02" value="7">
-      </label>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-        <button type="button" class="go-radio">Go to radio waves</button>
-        <button type="button" class="go-visible">Go to visible light</button>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A strip of the seven groups of the electromagnetic spectrum, with the group chosen by the slider highlighted",
+    width: 600,
+    height: 120,
+    max: 600,
+  });
 
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".freq");
-  const readout = el.querySelector(".readout");
+  const freqInput = slider(el, {
+    id: "freq",
+    label: "Frequency",
+    min: 5,
+    max: 19,
+    step: 0.02,
+    value: 7,
+  });
+
+  // The jump buttons sit in the same control column the kit's slider uses.
+  const controls = el.querySelector(".fig-controls");
+  const jumps = document.createElement("div");
+  jumps.style.cssText = "display:flex;gap:.5rem;flex-wrap:wrap";
+  const jump = (id, text) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = id;
+    button.textContent = text;
+    jumps.append(button);
+    return button;
+  };
+  const radioButton = jump("go-radio", "Go to radio waves");
+  const visibleButton = jump("go-visible", "Go to visible light");
+  controls.append(jumps);
 
   function groupFor(frequency) {
     return GROUPS.find((g) => frequency >= g.min && frequency < g.max) || GROUPS[0];
@@ -57,7 +80,7 @@ export function mount(el) {
   }
 
   function update() {
-    const frequency = Math.pow(10, Number(slider.value));
+    const frequency = Math.pow(10, Number(freqInput.value));
     const wavelength = 3.0e8 / frequency;
     const current = groupFor(frequency).name;
 
@@ -83,14 +106,14 @@ export function mount(el) {
       `wavelength as the frequency goes up?</em>`;
   }
 
-  slider.addEventListener("input", update);
-  el.querySelector(".go-radio").addEventListener("click", () => {
-    slider.value = "7";
-    update();
-  });
-  el.querySelector(".go-visible").addEventListener("click", () => {
-    slider.value = "14.85";
-    update();
-  });
-  update();
+  const go = (value) => {
+    freqInput.value = value;
+    // Setting a slider's value in script does not fire `input`, so the kit's own
+    // number display would keep the old value.
+    freqInput.dispatchEvent(new Event("input"));
+  };
+  radioButton.addEventListener("click", () => go("7"));
+  visibleButton.addEventListener("click", () => go("14.85"));
+
+  react(freqInput, update);
 }

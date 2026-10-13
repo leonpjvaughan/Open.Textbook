@@ -6,6 +6,11 @@
 // the rise and the run as a triangle, so the gradient is a picture rather than a
 // formula. Colours come from CSS classes, so the figure adapts to every bundle
 // and both schemes.
+//
+// The scaffolding — the surface, its accessible name, the two sliders, the live
+// readout, the redraw, the number formatting — comes from `kit.js`.
+import { panel, slider, fmt, react } from "./kit.js";
+
 export function mount(el) {
   const ORIGIN_X = 210;
   const ORIGIN_Y = 200;
@@ -15,28 +20,30 @@ export function mount(el) {
   const Y_MIN = -6;
   const Y_MAX = 6;
 
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <svg viewBox="0 0 420 420" width="100%" role="img"
-           aria-label="A straight line on a coordinate grid with a rise and run triangle showing the gradient and a marked point where the line crosses the y-axis"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Gradient m
-          <input class="gradient" type="range" min="-3" max="3" step="1" value="2">
-        </label>
-        <label>Intercept c
-          <input class="intercept" type="range" min="-2" max="2" step="1" value="1">
-        </label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A straight line on a coordinate grid with a rise and run triangle showing the gradient and a marked point where the line crosses the y-axis",
+    width: 420,
+    height: 420,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const gradient = el.querySelector(".gradient");
-  const intercept = el.querySelector(".intercept");
-  const readout = el.querySelector(".readout");
-
-  const format = (value) =>
-    Number.isInteger(value) ? String(value) : String(Math.round(value * 100) / 100);
+  const gradient = slider(el, {
+    id: "gradient",
+    label: "Gradient m",
+    min: -3,
+    max: 3,
+    step: 1,
+    value: 2,
+  });
+  const intercept = slider(el, {
+    id: "intercept",
+    label: "Intercept c",
+    min: -2,
+    max: 2,
+    step: 1,
+    value: 1,
+  });
 
   const px = (x) => ORIGIN_X + x * UNIT;
   const py = (y) => ORIGIN_Y - y * UNIT;
@@ -112,11 +119,11 @@ export function mount(el) {
       `font-size="13" text-anchor="middle" class="text-ink">run 1</text>`;
     const riseLabel =
       `<text x="${(px(1) + 8).toFixed(1)}" y="${(py(c + m / 2) + 4).toFixed(1)}" ` +
-      `font-size="13" text-anchor="start" class="text-ink">rise ${format(m)}</text>`;
+      `font-size="13" text-anchor="start" class="text-ink">rise ${fmt(m)}</text>`;
 
     const interceptLabel =
       `<text x="${(px(0) - 10).toFixed(1)}" y="${(py(c) - 10).toFixed(1)}" font-size="13" ` +
-      `text-anchor="end" class="text-warn">c = ${format(c)}</text>`;
+      `text-anchor="end" class="text-warn">c = ${fmt(c)}</text>`;
 
     svg.innerHTML =
       grid +
@@ -138,16 +145,16 @@ export function mount(el) {
 
     let equation = "";
     if (m === 0) {
-      equation = `y = ${format(c)}`;
+      equation = `y = ${fmt(c)}`;
     } else {
-      const coefficient = m === 1 ? "" : m === -1 ? "-" : format(m);
+      const coefficient = m === 1 ? "" : m === -1 ? "-" : fmt(m);
       equation =
         `y = ${coefficient}x ` + (c < 0 ? `- ${Math.abs(c)}` : `+ ${c}`);
     }
 
     let meaning = "";
     if (m > 0) {
-      meaning = `Each step of 1 to the right lifts the line by ${format(m)}.`;
+      meaning = `Each step of 1 to the right lifts the line by ${fmt(m)}.`;
     } else if (m < 0) {
       meaning = `Each step of 1 to the right drops the line by ${Math.abs(m)}.`;
     } else {
@@ -157,18 +164,15 @@ export function mount(el) {
     const riseRoute =
       m === 0
         ? ""
-        : ` The rise ${format(m)} divided by the run 1 gives m = ${format(m)}.`;
+        : ` The rise ${fmt(m)} divided by the run 1 gives m = ${fmt(m)}.`;
 
     readout.innerHTML =
-      `m = <strong>${format(m)}</strong> and c = <strong>${format(c)}</strong>, ` +
+      `m = <strong>${fmt(m)}</strong> and c = <strong>${fmt(c)}</strong>, ` +
       `so the rule is <strong>${equation}</strong>. ` +
-      `The line crosses the y-axis at <strong>(0, ${format(c)})</strong>. ` +
+      `The line crosses the y-axis at <strong>(0, ${fmt(c)})</strong>. ` +
       meaning +
       riseRoute;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([gradient, intercept], update);
 }

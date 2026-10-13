@@ -5,8 +5,13 @@
 // the slider is the growth.
 //
 // Predict -> Test -> Explain per AGENTS.md P6: the page asks for both multipliers
-// before the slider is moved. Colours come from CSS classes, so the figure adapts
-// to every bundle and both schemes, and the readout is `aria-live`.
+// before the slider is moved. The scaffolding — the surface, its accessible name,
+// the slider, the live readout, the redraw — comes from `kit.js`. What is left
+// here is the drawing and the sentence, which differ from every other figure.
+// Colours come from CSS classes, so the figure adapts to every bundle and both
+// schemes.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
   const S = 24;
   const SQ_X = 70;
@@ -15,21 +20,13 @@ export function mount(el) {
   const DX = 9;
   const DY = -7;
 
-  el.innerHTML = `
-    <div class="fig-similarity-scale" style="max-width:560px">
-      <svg viewBox="0 0 520 300" width="100%" role="img"
-           aria-label="A square and a cube grow with the length scale factor; the square is divided into small squares and the cube into small cubes"></svg>
-      <label style="display:block;margin:.6rem 0 .2rem">
-        Length scale factor:
-        <input class="factor" type="range" min="1" max="3" step="1" value="1"
-               aria-label="Length scale factor, from 1 to 3">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
-
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".factor");
-  const readout = el.querySelector(".readout");
+  const { svg, readout } = panel(el, {
+    label:
+      "A square and a cube grow with the length scale factor; the square is divided into small squares and the cube into small cubes",
+    width: 520,
+    height: 300,
+    max: 560,
+  });
 
   const seg = (x1, y1, x2, y2, cls, width) =>
     `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" class="${cls}" stroke-width="${width}"></line>`;
@@ -98,14 +95,21 @@ export function mount(el) {
     );
   }
 
+  const factorInput = slider(el, {
+    id: "factor",
+    label: "Length scale factor",
+    min: 1,
+    max: 3,
+    value: 1,
+  });
+
   function draw() {
-    const k = Number(slider.value);
+    const k = Number(factorInput.value);
     svg.innerHTML = squarePanel(k) + cubePanel(k);
     readout.textContent =
       `Length scale factor ${k}. Area scale factor ${k} × ${k} = ${k * k}, so the big square holds ${k * k} small squares. ` +
       `Volume scale factor ${k} × ${k} × ${k} = ${k * k * k}, so the big cube holds ${k * k * k} small cubes.`;
   }
 
-  slider.addEventListener("input", draw);
-  draw();
+  react(factorInput, draw);
 }

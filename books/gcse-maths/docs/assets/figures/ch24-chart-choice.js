@@ -1,16 +1,31 @@
 // Guided chart-choice investigation: compare category counts and proportions.
+//
+// This figure draws no shapes: the "chart" is a list of counts with a bar of
+// blocks, so the kit supplies the frame, the control and the live readout, and
+// `drawing: false` keeps it from claiming to be an image when there is no
+// surface to name. The bars keep their own `role="img"` and label, as before.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Sample size <input class="size" type="range" min="20" max="100" step="20" value="40"></label>
-      <p class="readout" aria-live="polite"></p>
-      <div class="bars" role="img" aria-label="Bar chart showing walking, bus and car counts"></div>
-    </div>`;
-  const slider = el.querySelector('.size');
-  const bars = el.querySelector('.bars');
-  const readout = el.querySelector('.readout');
+  const { root, readout } = panel(el, { drawing: false, max: 520 });
+
+  const bars = document.createElement("div");
+  bars.className = "bars";
+  bars.setAttribute("role", "img");
+  bars.setAttribute("aria-label", "Bar chart showing walking, bus and car counts");
+  root.append(bars);
+
+  const size = slider(el, {
+    id: "size",
+    label: "Sample size",
+    min: 20,
+    max: 100,
+    step: 20,
+    value: 40,
+  });
+
   function update() {
-    const total = Number(slider.value);
+    const total = Number(size.value);
     const values = [['Walk', total / 4], ['Bus', total / 2], ['Car', total / 4]];
     bars.innerHTML = '';
     values.forEach(([name, count], index) => {
@@ -22,6 +37,6 @@ export function mount(el) {
     bars.setAttribute('aria-label', values.map(([name, count]) => `${name}: ${count}`).join(', '));
     readout.textContent = `Sample size ${total}. Compare the category counts.`;
   }
-  slider.addEventListener('input', update);
-  update();
+
+  react(size, update);
 }

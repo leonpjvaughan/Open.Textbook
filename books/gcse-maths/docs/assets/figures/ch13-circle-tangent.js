@@ -5,37 +5,55 @@
 // afterwards. The reader picks the radius and the point, and the figure draws the
 // radius and the tangent at that point. A shape paints with fig-* and a word
 // paints with text-*.
+//
+// The scaffolding — the surface, its accessible name, the two sliders, the
+// checkbox, the live readout, the redraw, the number formatting — comes from
+// `kit.js`. The legend is a line of prose the module adds between the controls
+// and the readout.
+import { panel, slider, toggle, fmt, react } from "./kit.js";
+
 export function mount(el) {
   const CX = 260;
   const CY = 200;
   const SCALE = 15;
 
-  el.innerHTML = `
-    <div style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 520 400" width="100%" role="img"
-           aria-label="A circle centred on the origin with a radius drawn to a point on it and the tangent line touching the circle at that point"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Radius <input class="r" type="range" min="2" max="10" step="1" value="5"></label>
-        <label>Point x-coordinate <input class="px" type="range" min="-4" max="4" step="1" value="3"></label>
-        <label style="grid-column:1 / -1"><input class="above" type="checkbox" checked> Point above the horizontal axis</label>
-      </div>
-      <p class="legend" style="margin:.4rem 0 0"></p>
-      <p class="readout" aria-live="polite" style="margin:.3rem 0 0"></p>
-    </div>`;
+  const { root, svg, readout } = panel(el, {
+    label:
+      "A circle centred on the origin with a radius drawn to a point on it and the tangent line touching the circle at that point",
+    width: 520,
+    height: 400,
+    max: 560,
+  });
 
-  const svg = el.querySelector("svg");
-  const rSlider = el.querySelector(".r");
-  const xSlider = el.querySelector(".px");
-  const above = el.querySelector(".above");
-  const legend = el.querySelector(".legend");
-  const readout = el.querySelector(".readout");
+  const rSlider = slider(el, {
+    id: "r",
+    label: "Radius",
+    min: 2,
+    max: 10,
+    step: 1,
+    value: 5,
+  });
+  const xSlider = slider(el, {
+    id: "px",
+    label: "Point x-coordinate",
+    min: -4,
+    max: 4,
+    step: 1,
+    value: 3,
+  });
+  const above = toggle(el, {
+    id: "above",
+    label: "Point above the horizontal axis",
+    checked: true,
+  });
+
+  const legend = document.createElement("p");
+  legend.className = "legend";
+  legend.style.cssText = "margin:.4rem 0 0";
+  root.insertBefore(legend, readout);
 
   const cx = (x) => CX + x * SCALE;
   const cy = (y) => CY - y * SCALE;
-  const fmt = (v) => {
-    const round = Math.round(v * 100) / 100;
-    return Object.is(round, -0) ? "0" : String(round);
-  };
   const minus = (v) => (v >= 0 ? `- ${fmt(v)}` : `+ ${fmt(-v)}`);
 
   function update() {
@@ -124,8 +142,5 @@ export function mount(el) {
     }
   }
 
-  rSlider.addEventListener("input", update);
-  xSlider.addEventListener("input", update);
-  above.addEventListener("input", update);
-  update();
+  react([rSlider, xSlider, above], update);
 }
