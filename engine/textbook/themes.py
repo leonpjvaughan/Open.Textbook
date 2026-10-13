@@ -25,6 +25,8 @@ from pathlib import Path
 
 import yaml
 
+from . import yamlio
+
 from .book import SCHEME_TOKENS, repo_root
 
 THEMES_DIR = "themes"
@@ -240,7 +242,7 @@ def _variation(scheme: str, data: dict | None, where: str) -> dict:
 
 
 def load_bundle(path: Path) -> Bundle:
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    data = yamlio.load_file(path) or {}
     where = path.name
     family = str(data.get("family", "")).strip()
     if not family:

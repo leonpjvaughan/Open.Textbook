@@ -19,6 +19,8 @@ from pathlib import Path
 
 import yaml
 
+from . import yamlio
+
 from . import book as books
 
 KATEX = Path(__file__).resolve().parent / "js" / "katex-render.mjs"
@@ -77,7 +79,7 @@ def validate(data: dict) -> None:
 
 
 def build(source: Path) -> dict:
-    data = yaml.safe_load(source.read_text(encoding="utf-8"))
+    data = yamlio.load_file(source)
     validate(data)
 
     latex = [item["latex"] for section in data["sections"] for item in section["items"]]

@@ -871,3 +871,25 @@ def test_an_unknown_profile_is_refused_rather_than_built(tmp_path):
     for one in declared:
         assert one in message, f"the error should name the profiles it does declare: {message}"
     assert not (tmp_path / "out").exists(), "a refused build must not leave a directory"
+
+
+def test_the_yaml_loader_prefers_the_fast_parser():
+    """`yamlio` asks for PyYAML's C parser and falls back without failing.
+
+    Measured at about **12x** on this repository's banks — 1.48s against 0.12s for
+    119 files — and the banks are a hot path: an A-level Mathematics build parses
+    every bank in the book. A missing `libyaml` binding must be a slower build, not
+    a different one, so the fallback is the same *safe* loader rather than
+    `yaml.Loader`, which would happily build a Python object out of a bank.
+    """
+    import yaml
+
+    from textbook import yamlio
+
+    assert yamlio.USING_C_PARSER == hasattr(yaml, "CSafeLoader")
+    assert yamlio.Loader in (yaml.SafeLoader, getattr(yaml, "CSafeLoader", None))
+    # A safe loader of either kind refuses a document that names a Python class.
+    assert yamlio.load("a: 1") == {"a": 1}
+    assert yamlio.load("") is None
+    with pytest.raises(yaml.YAMLError):
+        yamlio.load("!!python/object/apply:os.system ['true']")

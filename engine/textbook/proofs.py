@@ -28,6 +28,8 @@ from __future__ import annotations
 from functools import lru_cache
 from pathlib import Path
 
+from . import yamlio
+
 from . import book as books
 from . import config as cfg
 
@@ -97,12 +99,10 @@ def _cached_entries(path: str, base: str) -> dict[str, dict]:
     Strings rather than a `Path` and a config dict, because a cache key must be
     hashable and a `dict` is not.
     """
-    import yaml
-
     registry_file = Path(path)
     if not registry_file.is_file():
         return {}
-    data = yaml.safe_load(registry_file.read_text(encoding="utf-8")) or {}
+    data = yamlio.load_file(registry_file) or {}
     out: dict[str, dict] = {}
     for proof in data.get("proofs", []) or []:
         if not isinstance(proof, dict) or not proof.get("id"):

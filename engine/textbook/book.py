@@ -19,6 +19,8 @@ from pathlib import Path
 
 import yaml
 
+from . import yamlio
+
 COLLECTION_FILE = "collection.yaml"
 BOOKS_DIR = "books"
 
@@ -296,7 +298,7 @@ class Book:
 @lru_cache(maxsize=None)
 def load_book(path: Path) -> Book:
     path = Path(path)
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    data = yamlio.load_file(path) or {}
     return Book(
         id=data["id"],
         title=data["title"],
@@ -354,7 +356,7 @@ def load_collection(root: Path | None = None) -> dict:
     path = (root or repo_root()) / COLLECTION_FILE
     if not path.is_file():
         return {}
-    return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    return yamlio.load_file(path) or {}
 
 
 def book_by_id(book_id: str, root: Path | None = None) -> Book:
@@ -389,7 +391,7 @@ def reference_book(root: Path | None = None) -> Book | None:
 
 @lru_cache(maxsize=None)
 def _curriculum(path: str) -> dict:
-    return yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
+    return yamlio.load_file(path) or {}
 
 
 def load_curriculum(book: Book) -> dict:

@@ -24,6 +24,8 @@ from typing import Any, Iterable
 
 import yaml
 
+from .. import yamlio
+
 from ..book import book_for_bank
 from . import cas, render
 from .oracles import select as select_oracles
@@ -205,7 +207,7 @@ def _declared_oracles(data: dict, path: Path, override: Iterable[str] | None):
 
 def verify_bank(path: Path, oracles: Iterable[str] | None = None) -> BankReport:
     path = Path(path)
-    data: dict[str, Any] = yaml.safe_load(path.read_text(encoding="utf-8"))
+    data: dict[str, Any] = yamlio.load_file(path)
     selection = select_oracles(_declared_oracles(data, path, oracles))
     bank = BankReport(bank=str(path))
     for problem in data.get("problems", []):

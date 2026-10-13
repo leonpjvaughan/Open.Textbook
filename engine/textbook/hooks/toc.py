@@ -10,6 +10,8 @@ import re
 
 import yaml
 
+from .. import yamlio
+
 from .. import config as cfg
 from ._fences import transform_outside_fences
 
@@ -19,7 +21,7 @@ MARKER = re.compile(r"^:::[ \t]*chapters[ \t]*$", re.M)
 def on_page_markdown(markdown, page, config, files):
     if ":::chapters" not in markdown:
         return markdown
-    data = yaml.safe_load(cfg.curriculum_path(config).read_text(encoding="utf-8")) or {}
+    data = yamlio.load_file(cfg.curriculum_path(config)) or {}
     lines = []
     for chapter in data.get("chapters", []):
         higher = any(s.get("tier") == "H" for s in chapter.get("sections", []))

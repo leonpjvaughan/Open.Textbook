@@ -58,6 +58,7 @@ import re
 from pathlib import Path
 
 from .. import book as books
+from .. import yamlio
 
 #: Provision values a booklet item may carry, from `BOOKLETS.md`.
 GIVEN = "given"
@@ -78,9 +79,7 @@ def booklet_items(book: books.Book) -> dict[str, dict]:
     path = book.root / book.booklet_name
     if not path.is_file():
         return {}
-    import yaml
-
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    data = yamlio.load_file(path) or {}
     items: dict[str, dict] = {}
     for section in data.get("sections", []) or []:
         for item in section.get("items", []) or []:
@@ -230,11 +229,9 @@ def undeclared(book: books.Book) -> list[str]:
     Not an error — this is the completeness gap, reported so it is countable. It is
     the reason the module docstring says the check cannot prove coverage.
     """
-    import yaml
-
     out: list[str] = []
     for path in sorted(book.banks.glob("*.yaml")):
-        data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        data = yamlio.load_file(path) or {}
         for record in data.get("problems", []) or []:
             if declared(record):
                 continue
@@ -254,13 +251,11 @@ def undeclared(book: books.Book) -> list[str]:
 
 def check_book(book: books.Book) -> list[str]:
     """Every invalid declaration in a book's banks, ready to be an assertion."""
-    import yaml
-
     items = booklet_items(book)
     boards = supported_boards(book)
     problems: list[str] = []
     for path in sorted(book.banks.glob("*.yaml")):
-        data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        data = yamlio.load_file(path) or {}
         for record in data.get("problems", []) or []:
             for error in errors(record, items, boards):
                 problems.append(f"{path.name}:{record.get('id')}: {error}")

@@ -24,6 +24,8 @@ from pathlib import Path
 
 import yaml
 
+from . import yamlio
+
 DELIMITER = "---"
 
 
@@ -51,7 +53,7 @@ def split(text: str, path: Path | str = "<unknown>") -> tuple[dict, str]:
         return {}, text
     block = text[len(DELIMITER) : end]
     try:
-        meta = yaml.safe_load(block)
+        meta = yamlio.load(block)
     except yaml.YAMLError as err:
         raise FrontMatterError(path, err) from err
     return (meta if isinstance(meta, dict) else {}), text[end + len(DELIMITER) + 1 :].lstrip("\n")

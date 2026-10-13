@@ -19,6 +19,8 @@ from pathlib import Path
 
 import yaml
 
+from . import yamlio
+
 from .book import (
     REFERENCE,
     Book,
@@ -325,7 +327,7 @@ def _sources_data(book: Book) -> dict:
     """The book's sources.yaml, or an empty mapping when it has none."""
     if not book.sources.is_file():
         return {}
-    return yaml.safe_load(book.sources.read_text(encoding="utf-8")) or {}
+    return yamlio.load_file(book.sources) or {}
 
 
 def _join_words(items) -> str:
