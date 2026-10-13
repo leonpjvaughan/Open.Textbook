@@ -77,7 +77,7 @@ export function mount(el) {
     );
   }
 
-  const bearingInput = slider(el, {
+  const bearingInput = slider(el, { show: false,
     id: "bearing",
     label: "Bearing of B from A",
     min: 0,

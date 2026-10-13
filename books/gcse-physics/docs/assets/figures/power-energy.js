@@ -7,28 +7,56 @@
 //
 // Colours come from CSS classes, so the figure adapts to every bundle and both
 // schemes. Every value is printed as text.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-power-energy" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 560 170" width="100%" role="img"
-           aria-label="A bar whose height shows the energy transferred by a device, for a chosen power and time."></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Power (kW)
-          <input class="power" type="range" min="0.1" max="3" step="0.1" value="2"></label>
-        <label>Time (minutes)
-          <input class="time" type="range" min="1" max="60" step="1" value="1"></label>
-      </div>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0">
-        <button type="button" class="preset-lamp">Set the lamp (0.10 kW, 30 minutes)</button>
-        <button type="button" class="preset-heater">Set the heater (2.0 kW, 1.0 minute)</button>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. The two preset buttons are not
+// one of the kit's controls, so they are built here inside the kit's control
+// column. What is left is the drawing and the sentence, which are the parts that
+// differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const powerSlider = el.querySelector(".power");
-  const timeSlider = el.querySelector(".time");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout, controls } = panel(el, {
+    label:
+      "A bar whose height shows the energy transferred by a device, for a chosen power and time.",
+    width: 560,
+    height: 170,
+    max: 600,
+  });
+
+  const powerInput = slider(el, { show: false,
+    id: "power",
+    label: "Power (kW)",
+    min: 0.1,
+    max: 3,
+    step: 0.1,
+    value: 2,
+    show: false,
+  });
+  const timeInput = slider(el, { show: false,
+    id: "time",
+    label: "Time (minutes)",
+    min: 1,
+    max: 60,
+    step: 1,
+    value: 1,
+    show: false,
+  });
+
+  // The presets sit in the same control column the kit's sliders use.
+  const presets = document.createElement("div");
+  presets.style.cssText = "display:flex;gap:.5rem;flex-wrap:wrap";
+  const preset = (id, text) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = id;
+    button.textContent = text;
+    presets.append(button);
+    return button;
+  };
+  const lampButton = preset("preset-lamp", "Set the lamp (0.10 kW, 30 minutes)");
+  const heaterButton = preset("preset-heater", "Set the heater (2.0 kW, 1.0 minute)");
+  controls.append(presets);
 
   // The bar is scaled so the largest setting still fits.
   const MAX_ENERGY = 3000 * 3600;
@@ -40,8 +68,8 @@ export function mount(el) {
   }
 
   function update() {
-    const kilowatts = Number(powerSlider.value);
-    const minutes = Number(timeSlider.value);
+    const kilowatts = Number(powerInput.value);
+    const minutes = Number(timeInput.value);
     const watts = kilowatts * 1000;
     const seconds = minutes * 60;
     const energy = watts * seconds;
@@ -70,18 +98,17 @@ export function mount(el) {
       `Which transfers the most energy, and why?</em>`;
   }
 
-  el.querySelector(".preset-lamp").addEventListener("click", () => {
-    powerSlider.value = "0.1";
-    timeSlider.value = "30";
-    update();
-  });
-  el.querySelector(".preset-heater").addEventListener("click", () => {
-    powerSlider.value = "2";
-    timeSlider.value = "1";
-    update();
-  });
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  // Setting a slider's value in script does not fire `input`, so dispatching it
+  // redraws through the kit's own listeners.
+  const apply = (power, minutes) => {
+    powerInput.value = String(power);
+    timeInput.value = String(minutes);
+    powerInput.dispatchEvent(new Event("input"));
+    timeInput.dispatchEvent(new Event("input"));
+  };
+
+  lampButton.addEventListener("click", () => apply(0.1, 30));
+  heaterButton.addEventListener("click", () => apply(2, 1));
+
+  react([powerInput, timeInput], update);
 }

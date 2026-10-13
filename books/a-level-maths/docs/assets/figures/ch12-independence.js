@@ -34,7 +34,7 @@ export function mount(el) {
     max: 640,
   });
 
-  const overlap = slider(el, {
+  const overlap = slider(el, { show: false,
     id: "overlap",
     label: "Number in both A and B",
     min: 0,

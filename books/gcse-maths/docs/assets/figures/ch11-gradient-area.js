@@ -26,7 +26,7 @@ export function mount(el) {
     max: 580,
   });
 
-  const speedInput = slider(el, {
+  const speedInput = slider(el, { show: false,
     id: "speed",
     label: "Top speed in m/s",
     min: 2,
@@ -34,7 +34,7 @@ export function mount(el) {
     step: 2,
     value: 8,
   });
-  const timeInput = slider(el, {
+  const timeInput = slider(el, { show: false,
     id: "time",
     label: "Time in s",
     min: 1,

@@ -13,7 +13,7 @@ export function mount(el) {
     max: 520,
   });
 
-  const horizontal = slider(el, {
+  const horizontal = slider(el, { show: false,
     id: "horizontal",
     label: "Horizontal change",
     min: -4,
@@ -21,7 +21,7 @@ export function mount(el) {
     value: 3,
   });
 
-  const vertical = slider(el, {
+  const vertical = slider(el, { show: false,
     id: "vertical",
     label: "Vertical change",
     min: -4,

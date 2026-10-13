@@ -33,7 +33,7 @@ export function mount(el) {
     max: 600,
   });
 
-  const freqInput = slider(el, {
+  const freqInput = slider(el, { show: false,
     id: "freq",
     label: "Frequency",
     min: 5,

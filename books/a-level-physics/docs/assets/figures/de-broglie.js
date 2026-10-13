@@ -24,7 +24,7 @@ export function mount(el) {
     max: 620,
   });
 
-  const voltage = slider(el, {
+  const voltage = slider(el, { show: false,
     id: "voltage",
     label: "Accelerating voltage (volts)",
     min: 50,

@@ -75,7 +75,7 @@ export function mount(el) {
   });
 
   const inputs = {
-    mass: slider(el, {
+    mass: slider(el, { show: false,
       id: "mass",
       label: "Mass of the block, in kilograms",
       min: 20,
@@ -83,7 +83,7 @@ export function mount(el) {
       step: 5,
       value: 60,
     }),
-    angle: slider(el, {
+    angle: slider(el, { show: false,
       id: "angle",
       label: "Angle of the slope, in degrees",
       min: 0,

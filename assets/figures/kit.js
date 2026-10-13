@@ -185,14 +185,14 @@ export function slider(parent, options = {}) {
 
 /** A checkbox, with a visible label and an accessible name. */
 export function toggle(parent, options = {}) {
-  const { id = "", label = "", checked = false } = options;
+  const { id = "", label = "", name = "", checked = false } = options;
   const holder = document.createElement("label");
   holder.className = "fig-control";
   const input = document.createElement("input");
   input.type = "checkbox";
   input.checked = checked;
   if (id) input.className = id;
-  input.setAttribute("aria-label", label || id);
+  input.setAttribute("aria-label", name || label || id);
   holder.append(input, document.createTextNode(label ? ` ${label}` : ""));
   (parent.querySelector(".fig-controls") || parent).append(holder);
   return input;
@@ -200,13 +200,13 @@ export function toggle(parent, options = {}) {
 
 /** A drop-down, with a visible label and an accessible name. */
 export function chooser(parent, options = {}) {
-  const { id = "", label = "", choices = [], value } = options;
+  const { id = "", label = "", name = "", choices = [], value } = options;
   const holder = document.createElement("label");
   holder.className = "fig-control";
   holder.textContent = label ? `${label} ` : "";
   const select = document.createElement("select");
   if (id) select.className = id;
-  select.setAttribute("aria-label", label || id);
+  select.setAttribute("aria-label", name || label || id);
   for (const choice of choices) {
     const option = document.createElement("option");
     option.value = choice.value;

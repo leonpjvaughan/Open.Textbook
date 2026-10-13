@@ -22,7 +22,7 @@ export function mount(el) {
       <text x="24" y="68" class="text-ink" font-size="16">Map length</text>
       <text x="24" y="90" class="text-good" font-size="16">Scale 1 cm : 1 m</text>`;
 
-  const input = slider(el, {
+  const input = slider(el, { show: false,
     id: "length",
     label: "Map length in cm",
     min: 1,

@@ -4,22 +4,24 @@
 // then to explain the sign of the result. Exposes one parameter family
 // (quantity / cost / price / sold) so the mathematics stays visible.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-profit" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 320 120" width="100%" role="img"
-           aria-label="Bar chart comparing revenue and cost, and the resulting profit or loss"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Bought <input class="bought" type="range" min="0" max="200" step="5" value="120"></label>
-        <label>Cost each (£) <input class="cost" type="range" min="0" max="2" step="0.05" value="0.65"></label>
-        <label>Price each (£) <input class="price" type="range" min="0" max="3" step="0.05" value="1.20"></label>
-        <label>Sold <input class="sold" type="range" min="0" max="200" step="5" value="95"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the four sliders, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label: "Bar chart comparing revenue and cost, and the resulting profit or loss",
+    width: 320,
+    height: 120,
+    max: 560,
+  });
+
+  const bought = slider(el, { show: false, id: "bought", label: "Bought", min: 0, max: 200, step: 5, value: 120, show: false });
+  const costEach = slider(el, { show: false, id: "cost", label: "Cost each (£)", min: 0, max: 2, step: 0.05, value: 0.65, show: false });
+  const priceEach = slider(el, { show: false, id: "price", label: "Price each (£)", min: 0, max: 3, step: 0.05, value: 1.20, show: false });
+  const sold = slider(el, { show: false, id: "sold", label: "Sold", min: 0, max: 200, step: 5, value: 95, show: false });
 
   function bar(x, w, h, cls, label, value) {
     const base = 100;
@@ -28,14 +30,14 @@ export function mount(el) {
       <text x="${x + w / 2}" y="${base - h - 4}" text-anchor="middle" font-size="10" class="fig-ink">${value}</text>`;
   }
 
-  function update() {
-    const bought = +el.querySelector(".bought").value;
-    const costEach = +el.querySelector(".cost").value;
-    const priceEach = +el.querySelector(".price").value;
-    const sold = +el.querySelector(".sold").value;
+  react([bought, costEach, priceEach, sold], () => {
+    const boughtValue = +bought.value;
+    const costValue = +costEach.value;
+    const priceValue = +priceEach.value;
+    const soldValue = +sold.value;
 
-    const cost = bought * costEach;
-    const revenue = sold * priceEach;
+    const cost = boughtValue * costValue;
+    const revenue = soldValue * priceValue;
     const profit = revenue - cost;
 
     const scale = Math.max(cost, revenue, 1);
@@ -51,10 +53,5 @@ export function mount(el) {
       `Profit = revenue − cost = £${revenue.toFixed(2)} − £${cost.toFixed(2)} = ` +
       `<strong class="${cls}">£${profit.toFixed(2)}</strong> ` +
       `(${isLoss ? "a loss" : "a profit"}). <em>Why does a negative number mean a loss?</em>`;
-  }
-
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  });
 }

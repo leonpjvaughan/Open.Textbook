@@ -28,7 +28,7 @@ export function mount(el) {
     max: 580,
   });
 
-  const difference = slider(el, {
+  const difference = slider(el, { show: false,
     id: "difference",
     label: "Common difference",
     min: -2,
@@ -36,7 +36,7 @@ export function mount(el) {
     step: 1,
     value: 4,
   });
-  const constant = slider(el, {
+  const constant = slider(el, { show: false,
     id: "constant",
     label: "Constant",
     min: -4,

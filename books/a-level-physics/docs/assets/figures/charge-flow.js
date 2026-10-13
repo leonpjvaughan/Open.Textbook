@@ -29,7 +29,7 @@ export function mount(el) {
     max: 600,
   });
 
-  const current = slider(el, {
+  const current = slider(el, { show: false,
     id: "current",
     label: "Current (A)",
     min: 0.5,
@@ -37,7 +37,7 @@ export function mount(el) {
     step: 0.1,
     value: 2,
   });
-  const time = slider(el, {
+  const time = slider(el, { show: false,
     id: "time",
     label: "Time (s)",
     min: 5,

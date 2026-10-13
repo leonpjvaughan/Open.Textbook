@@ -7,23 +7,46 @@
 //
 // Colours come from CSS classes, so the figure adapts to every bundle and both
 // schemes. No maths is injected at runtime: every value is plain text.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-gas-pressure-volume" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 170" width="100%" role="img"
-           aria-label="A cylinder of gas with a movable piston, showing more particles per unit volume and a higher pressure as the gas is compressed"></svg>
-      <label style="display:block;margin:.3rem 0">Volume (m cubed)
-        <input class="volume" type="range" min="0.20" max="2.00" step="0.05" value="1.00"></label>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.3rem 0">
-        <button type="button" class="preset-start">Start (1.00 m3)</button>
-        <button type="button" class="preset-half">Half the volume (0.50 m3)</button>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. The two preset buttons are not
+// one of the kit's controls, so they are built here inside the kit's control
+// column. What is left is the drawing and the sentence, which are the parts that
+// differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const volumeSlider = el.querySelector(".volume");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout, controls } = panel(el, {
+    label:
+      "A cylinder of gas with a movable piston, showing more particles per unit volume and a higher pressure as the gas is compressed",
+    width: 560,
+    height: 170,
+  });
+
+  const volumeSlider = slider(el, { show: false,
+    id: "volume",
+    label: "Volume (m cubed)",
+    min: 0.2,
+    max: 2,
+    step: 0.05,
+    value: 1,
+    show: false,
+  });
+
+  // The presets sit in the same control column the kit's slider uses.
+  const presets = document.createElement("div");
+  presets.style.cssText = "display:flex;gap:.5rem;flex-wrap:wrap";
+  const preset = (id, text) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = id;
+    button.textContent = text;
+    presets.append(button);
+    return button;
+  };
+  const startButton = preset("preset-start", "Start (1.00 m3)");
+  const halfButton = preset("preset-half", "Half the volume (0.50 m3)");
+  controls.append(presets);
 
   const PV = 100; // the value of pV in kPa times cubic metres
   const V_MAX = 2.0;
@@ -69,16 +92,15 @@ export function mount(el) {
       `Why does the pressure change, and why does pV stay the same?</em>`;
   }
 
-  el.querySelector(".preset-start").addEventListener("click", () => {
-    volumeSlider.value = "1.00";
-    update();
-  });
-  el.querySelector(".preset-half").addEventListener("click", () => {
-    volumeSlider.value = "0.50";
-    update();
-  });
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  // Setting a slider's value in script does not fire `input`, so dispatching it
+  // redraws through the kit's own listener.
+  const apply = (volume) => {
+    volumeSlider.value = String(volume);
+    volumeSlider.dispatchEvent(new Event("input"));
+  };
+
+  startButton.addEventListener("click", () => apply(1.0));
+  halfButton.addEventListener("click", () => apply(0.5));
+
+  react(volumeSlider, update);
 }

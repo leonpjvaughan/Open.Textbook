@@ -59,7 +59,7 @@ export function mount(el) {
     max: 600,
   });
 
-  const hInput = slider(el, {
+  const hInput = slider(el, { show: false,
     id: "h",
     label: "Height of the far point",
     min: 1,

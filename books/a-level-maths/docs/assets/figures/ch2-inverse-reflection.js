@@ -11,6 +11,10 @@
 // --tb-* tokens, so the figure follows the reader's bundle and both schemes, and
 // the readout is aria-live so a reader who cannot see the drawing is told what
 // changed. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -8;
 const X_MAX = 8;
@@ -108,30 +112,45 @@ function grid() {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label style="display:block">Gradient of f
-        <input class="m" type="range" min="0.5" max="2" step="0.5" value="2"
-               aria-label="Gradient of the function f">
-      </label>
-      <label style="display:block">Intercept of f
-        <input class="c" type="range" min="-2" max="2" step="1" value="1"
-               aria-label="Vertical intercept of the function f">
-      </label>
-      <label style="display:block">Position of the tracked point
-        <input class="t" type="range" min="-3" max="3" step="0.5" value="2"
-               aria-label="Horizontal position of the tracked point on the graph of f">
-      </label>
-      <svg viewBox="0 0 320 320" width="100%" role="img"
-           aria-label="A straight line and its reflection in the line y equals x, with a marked point and its image"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A straight line and its reflection in the line y equals x, with a marked " +
+      "point and its image",
+    width: 320,
+    height: 320,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const mInput = el.querySelector(".m");
-  const cInput = el.querySelector(".c");
-  const tInput = el.querySelector(".t");
+  const mInput = slider(el, {
+    id: "m",
+    label: "Gradient of f",
+    name: "Gradient of the function f",
+    min: 0.5,
+    max: 2,
+    step: 0.5,
+    value: 2,
+    show: false,
+  });
+  const cInput = slider(el, {
+    id: "c",
+    label: "Intercept of f",
+    name: "Vertical intercept of the function f",
+    min: -2,
+    max: 2,
+    step: 1,
+    value: 1,
+    show: false,
+  });
+  const tInput = slider(el, {
+    id: "t",
+    label: "Position of the tracked point",
+    name: "Horizontal position of the tracked point on the graph of f",
+    min: -3,
+    max: 3,
+    step: 0.5,
+    value: 2,
+    show: false,
+  });
 
   function update() {
     const m = Number(mInput.value);
@@ -202,8 +221,5 @@ export function mount(el) {
     );
   }
 
-  for (const input of [mInput, cInput, tInput]) {
-    input.addEventListener("input", update);
-  }
-  update();
+  react([mInput, cInput, tInput], update);
 }

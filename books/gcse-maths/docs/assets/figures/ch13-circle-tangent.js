@@ -25,7 +25,7 @@ export function mount(el) {
     max: 560,
   });
 
-  const rSlider = slider(el, {
+  const rSlider = slider(el, { show: false,
     id: "r",
     label: "Radius",
     min: 2,
@@ -33,7 +33,7 @@ export function mount(el) {
     step: 1,
     value: 5,
   });
-  const xSlider = slider(el, {
+  const xSlider = slider(el, { show: false,
     id: "px",
     label: "Point x-coordinate",
     min: -4,

@@ -78,7 +78,7 @@ export function mount(el) {
     max: 640,
   });
 
-  const nInput = slider(el, {
+  const nInput = slider(el, { show: false,
     id: "n",
     label: "Number of trials n",
     min: 10,
@@ -86,7 +86,7 @@ export function mount(el) {
     step: 5,
     value: 20,
   });
-  const pInput = slider(el, {
+  const pInput = slider(el, { show: false,
     id: "p",
     label: "Null probability p",
     min: 0.05,
@@ -95,7 +95,7 @@ export function mount(el) {
     value: 0.25,
     format: (value) => value.toFixed(2),
   });
-  const observInput = slider(el, {
+  const observInput = slider(el, { show: false,
     id: "observ",
     label: "Observed count",
     min: 0,

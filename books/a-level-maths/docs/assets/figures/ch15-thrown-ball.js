@@ -77,14 +77,14 @@ export function mount(el) {
   });
   readout.classList.add("text-ink");
 
-  const uInput = slider(el, {
+  const uInput = slider(el, { show: false,
     id: "u",
     label: "Launch speed u, in metres per second",
     min: 5,
     max: 20,
     value: 14,
   });
-  const tInput = slider(el, {
+  const tInput = slider(el, { show: false,
     id: "t",
     label: "Time t, in seconds",
     min: 0,

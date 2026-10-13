@@ -1,18 +1,33 @@
 // Guided number-line investigation for strict and inclusive inequalities.
+//
+// The scaffolding — the surface, its accessible name, the controls, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, toggle, react } from "./kit.js";
+
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <svg viewBox="0 0 520 90" width="100%" role="img" aria-label="Number line with a movable boundary and solution direction"></svg>
-      <label>Boundary <input class="bound" type="range" min="-5" max="5" step="1" value="2"></label>
-      <label><input class="inclusive" type="checkbox"> Include the boundary</label>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
-  const svg = el.querySelector("svg");
-  function update() {
-    const b = Number(el.querySelector(".bound").value);
-    const inclusive = el.querySelector(".inclusive").checked;
+  const { svg, readout } = panel(el, {
+    label: "Number line with a movable boundary and solution direction",
+    width: 520,
+    height: 90,
+    max: 520,
+  });
+
+  const bound = slider(el, {
+    id: "bound",
+    label: "Boundary",
+    min: -5,
+    max: 5,
+    value: 2,
+    show: false,
+  });
+  const inclusive = toggle(el, { id: "inclusive", label: "Include the boundary" });
+
+  react([bound, inclusive], () => {
+    const b = Number(bound.value);
+    const isInclusive = inclusive.checked;
     const x = 260 + b * 35;
-    const circle = inclusive
+    const circle = isInclusive
       ? `<circle cx="${x}" cy="42" r="7" class="fig-good"></circle>`
       : `<circle cx="${x}" cy="42" r="7" class="fig-warn"></circle>`;
     svg.innerHTML = `<line x1="45" y1="42" x2="475" y2="42" class="fig-ink"></line>
@@ -21,10 +36,7 @@ export function mount(el) {
       ${circle}<text x="${x}" y="72" text-anchor="middle" class="fig-ink">${b}</text>
       <text x="55" y="25" class="text-accent">values greater than boundary</text>
       <text x="55" y="80" class="fig-ink">open: excluded · filled: included</text>`;
-    const readout = el.querySelector(".readout");
-    readout.className = `readout ${inclusive ? "text-good" : "text-warn"}`;
-    readout.textContent = `x ${inclusive ? "≥" : ">"} ${b}`;
-  }
-  el.querySelectorAll("input").forEach((control) => control.addEventListener("input", update));
-  update();
+    readout.className = `readout ${isInclusive ? "text-good" : "text-warn"}`;
+    readout.textContent = `x ${isInclusive ? "≥" : ">"} ${b}`;
+  });
 }

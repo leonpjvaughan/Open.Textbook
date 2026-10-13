@@ -13,7 +13,7 @@ export function mount(el) {
     max: 560,
   });
 
-  const upper = slider(el, {
+  const upper = slider(el, { show: false,
     id: "upper",
     label: "Upper quartile",
     min: 24,

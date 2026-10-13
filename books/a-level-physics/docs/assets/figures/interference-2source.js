@@ -24,7 +24,7 @@ export function mount(el) {
     max: 600,
   });
 
-  const wavelength = slider(el, {
+  const wavelength = slider(el, { show: false,
     id: "wavelength",
     label: "Wavelength (nanometres)",
     min: 400,
@@ -32,7 +32,7 @@ export function mount(el) {
     step: 10,
     value: 600,
   });
-  const separation = slider(el, {
+  const separation = slider(el, { show: false,
     id: "separation",
     label: "Source separation (millimetres)",
     min: 0.05,
@@ -41,7 +41,7 @@ export function mount(el) {
     value: 0.25,
     format: (value) => value.toFixed(2),
   });
-  const distance = slider(el, {
+  const distance = slider(el, { show: false,
     id: "distance",
     label: "Distance to the screen (metres)",
     min: 0.5,

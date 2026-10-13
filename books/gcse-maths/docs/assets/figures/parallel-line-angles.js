@@ -7,28 +7,39 @@
 // (every angle changes together), and the readout reports the four values rather
 // than naming the rule. Colours come from CSS classes, so the figure adapts to
 // every bundle and both schemes.
-export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <svg viewBox="0 0 500 250" width="100%" role="img"
-           aria-label="Two parallel lines crossed by a transversal, with the four angles at the two crossings marked"></svg>
-      <label style="display:block;margin:.5rem 0 .2rem">
-        Tilt the transversal:
-        <input class="tilt" type="range" min="35" max="75" step="1" value="62"
-               aria-label="Tilt of the transversal in degrees">
-      </label>
-      <label style="display:block;margin:0 0 .2rem">
-        Slide the transversal:
-        <input class="slide" type="range" min="110" max="280" step="2" value="180"
-               aria-label="Position where the transversal crosses the top line">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the two sliders, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const tilt = el.querySelector(".tilt");
-  const slide = el.querySelector(".slide");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label: "Two parallel lines crossed by a transversal, with the four angles at the two crossings marked",
+    width: 500,
+    height: 250,
+    max: 520,
+  });
+
+  const tilt = slider(el, {
+    id: "tilt",
+    label: "Tilt the transversal:",
+    name: "Tilt of the transversal in degrees",
+    min: 35,
+    max: 75,
+    value: 62,
+    show: false,
+  });
+  const slide = slider(el, {
+    id: "slide",
+    label: "Slide the transversal:",
+    name: "Position where the transversal crosses the top line",
+    min: 110,
+    max: 280,
+    step: 2,
+    value: 180,
+    show: false,
+  });
 
   const TOP_Y = 80;
   const BOTTOM_Y = 180;
@@ -44,7 +55,7 @@ export function mount(el) {
     return `M ${at(from)} A ${r} ${r} 0 ${large} 1 ${at(to)}`;
   }
 
-  function draw() {
+  react([tilt, slide], () => {
     const degrees = Number(tilt.value);
     const theta = (degrees * Math.PI) / 180;
     const tx = Number(slide.value);
@@ -99,9 +110,5 @@ export function mount(el) {
       `The angle marked a is ${degrees}°. The corresponding angle b is ${degrees}° ` +
       `and the alternate angle c is ${degrees}°. The co-interior angle d is ` +
       `${180 - degrees}°, and ${degrees} + ${180 - degrees} = 180°.`;
-  }
-
-  tilt.addEventListener("input", draw);
-  slide.addEventListener("input", draw);
-  draw();
+  });
 }

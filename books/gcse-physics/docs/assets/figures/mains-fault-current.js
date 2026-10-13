@@ -6,24 +6,29 @@
 // use and a live-to-case fault. Colours come from CSS classes, so the figure
 // adapts to every bundle and both schemes; every wire and shape is also labelled
 // in words, so colour is never the only signal.
+//
+// The scaffolding — the surface, its accessible name, the toggle, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, toggle, react } from "./kit.js";
+
 export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A mains cable with live, neutral and earth wires, a fuse in the live wire and a metal case, showing the current path in normal use and when the live wire touches the case",
+    width: 620,
+    height: 320,
+    max: 620,
+  });
+
+  const fault = toggle(el, {
+    id: "fault",
+    label: "The live wire comes loose and touches the metal case",
+  });
+
   const SUPPLY = 230; // volts
   const ELEMENT = 46; // ohms
   const EARTH_PATH = 2.3; // ohms, the low-resistance path to earth
-
-  el.innerHTML = `
-    <div class="fig-mains-fault-current" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 320" width="100%" role="img"
-           aria-label="A mains cable with live, neutral and earth wires, a fuse in the live wire and a metal case, showing the current path in normal use and when the live wire touches the case"></svg>
-      <label style="display:block;margin:.6rem 0 .3rem">
-        <input class="fault" type="checkbox"> The live wire comes loose and touches the metal case
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
-
-  const svg = el.querySelector("svg");
-  const fault = el.querySelector(".fault");
-  const readout = el.querySelector(".readout");
 
   // A wire is drawn thicker when it carries more current, so the path that
   // carries the fault current stands out. The values are also written in the
@@ -108,6 +113,5 @@ export function mount(el) {
     }
   }
 
-  fault.addEventListener("change", update);
-  update();
+  react(fault, update);
 }

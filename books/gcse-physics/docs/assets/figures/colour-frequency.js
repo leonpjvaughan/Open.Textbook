@@ -36,7 +36,7 @@ export function mount(el) {
     max: 620,
   });
 
-  const wavelengthInput = slider(el, {
+  const wavelengthInput = slider(el, { show: false,
     id: "wavelength",
     label: "Wavelength",
     min: 400,

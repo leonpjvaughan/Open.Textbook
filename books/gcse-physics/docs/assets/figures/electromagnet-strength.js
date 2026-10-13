@@ -19,7 +19,7 @@ export function mount(el) {
     height: 180,
   });
 
-  const currentInput = slider(el, {
+  const currentInput = slider(el, { show: false,
     id: "current",
     label: "Current (A)",
     min: 0,
@@ -27,7 +27,7 @@ export function mount(el) {
     step: 0.5,
     value: 1,
   });
-  const turnsInput = slider(el, {
+  const turnsInput = slider(el, { show: false,
     id: "turns",
     label: "Turns",
     min: 100,

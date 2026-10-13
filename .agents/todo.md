@@ -2835,3 +2835,48 @@ be present, and a test fails on an omission so that "deliberately in no course" 
   name, no runtime LaTeX, and correct painting in both schemes.
 - The inventory of asserted-without-proof facts exists, and each one is either
   written or recorded as deliberately not.
+
+## 48. Eleven converted GCSE Physics figures gained a slider value display the page never had
+
+**What is wrong.** The shared kit's `slider()` emits a value `<output>` unless it
+is told `show: false`. Eleven of the twelve GCSE Physics modules converted in the
+round before that option existed call `slider(...)` with no `show: false`, so each
+now prints a number beside its slider that the original module did not display.
+Measured against the pre-conversion commit, `d680551`:
+
+```
+for f in atom-builder black-body-curve circuit-current colour-frequency \
+         crash-force density-mass-volume echo-timing efficiency \
+         electromagnet-strength em-spectrum energy-drop fission-chain-reaction; do
+  git show d680551:books/gcse-physics/docs/assets/figures/$f.js \
+    | grep -q "<output" && echo "$f had one" || echo "$f had none"
+done
+# eleven print "had none"; only fission-chain-reaction had a value display
+```
+
+The kit's own JSDoc already records this as a defect its first users found —
+"`slider()` always emitted a value display, so a module whose slider had none
+gained one" — and `show: false` is the documented fix. The twelve modules
+converted in the current round use `show: false` where the original had none.
+
+The same question applies to the other modules converted in that earlier round.
+A scan for `<output>` in the pre-conversion commit suggests many A-level
+Mathematics and GCSE Mathematics figures also gained a display, while most
+A-level Physics originals already had one; but an `<output>` scan is not proof:
+an original may have shown the value in a `<span>` or an `aria-live` element.
+Each affected module's original has to be read before it is edited. Only the GCSE
+Physics list below was read in full, so it is the only one that is certain.
+
+**The fix.** Add `show: false` to each `slider(...)` call in those modules whose
+original had no value display. Leave `fission-chain-reaction` as it is.
+
+**Done means**
+
+- Each slider in the affected modules carries `show: false` unless its original
+  displayed a value, checked one module at a time against `d680551`.
+- The modules from the same round in the other books are read the same way first,
+  so the list is complete before any edit.
+- `node scripts/check-figure-kit.cjs site` still prints `contract kept`.
+- `uv run python -m pytest tests/test_figures.py -q` passes with 18 skipped.
+- A before/after browser measurement of one affected figure shows the value
+  display gone and every painted colour unchanged.

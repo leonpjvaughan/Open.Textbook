@@ -1,6 +1,10 @@
 // Guided investigation for parametric equations and eliminating the parameter.
 // Pure HTML and SVG, an ES module, no framework and no colour of its own: the
 // fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the chooser and slider,
+// the live readout and the redraw — comes from `kit.js`.
+import { panel, slider, chooser, react } from "./kit.js";
 
 const VIEW = 10; // both axes run from -VIEW to VIEW
 const SCALE = 18; // pixels per unit
@@ -39,27 +43,31 @@ function yToPx(y) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Curve
-        <select class="curve">
-          <option value="parabola">x = 2t, y = t^2</option>
-          <option value="line">x = 2 + t, y = 5 - 3t</option>
-          <option value="circle">x = 5 cos t, y = 5 sin t</option>
-        </select>
-      </label>
-      <label>Parameter t
-        <input class="t" type="range" min="-3" max="3" step="0.05" value="1">
-      </label>
-      <svg viewBox="0 0 ${SIZE} ${SIZE}" width="100%" role="img"
-           aria-label="A parametric curve with a point at the current value of the parameter"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "A parametric curve with a point at the current value of the parameter",
+    width: SIZE,
+    height: SIZE,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const curveInput = el.querySelector(".curve");
-  const tInput = el.querySelector(".t");
+  const curveInput = chooser(el, {
+    id: "curve",
+    label: "Curve",
+    choices: [
+      { value: "parabola", label: "x = 2t, y = t^2" },
+      { value: "line", label: "x = 2 + t, y = 5 - 3t" },
+      { value: "circle", label: "x = 5 cos t, y = 5 sin t" },
+    ],
+  });
+  const tInput = slider(el, {
+    id: "t",
+    label: "Parameter t",
+    min: -3,
+    max: 3,
+    step: 0.05,
+    value: 1,
+    show: false,
+  });
 
   function grid() {
     let lines = "";
@@ -123,12 +131,12 @@ export function mount(el) {
     );
   }
 
+  // The parameter range follows the chosen curve before the drawing is redrawn.
   curveInput.addEventListener("change", () => {
     applyCurveRange();
     update();
   });
-  tInput.addEventListener("input", update);
 
   applyCurveRange();
-  update();
+  react(tInput, update);
 }

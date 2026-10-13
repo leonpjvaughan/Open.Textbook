@@ -7,30 +7,41 @@
 // the reader to use it.
 // Colours come from CSS classes so the figure adapts to dark mode and every
 // bundle; the object, image and rays are also labelled.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A convex lens forming a real, inverted image of an arrow, with two rays drawn from the top of the object",
+    width: 640,
+    height: 300,
+    max: 620,
+  });
+
+  const distanceInput = slider(el, {
+    id: "distance",
+    label: "Object distance:",
+    min: 12,
+    max: 60,
+    step: 1,
+    value: 24,
+    show: false,
+  });
+
   const FOCAL = 8;      // cm
   const SCALE = 4;      // pixels per cm
   const LENS_X = 360;
   const AXIS_Y = 150;
   const OBJECT_HEIGHT = 5; // cm
 
-  el.innerHTML = `
-    <div class="fig-lens-image" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 640 300" width="100%" role="img"
-           aria-label="A convex lens forming a real, inverted image of an arrow, with two rays drawn from the top of the object"></svg>
-      <label style="display:block;margin:.6rem 0 .3rem">
-        Object distance: <input class="distance" type="range" min="12" max="60" step="1" value="24">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
-
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".distance");
-  const readout = el.querySelector(".readout");
   const px = (cm) => cm * SCALE;
 
   function update() {
-    const u = Number(slider.value);
+    const u = Number(distanceInput.value);
     const v = (u * FOCAL) / (u - FOCAL);
     const magnification = v / u;
 
@@ -82,6 +93,5 @@ export function mount(el) {
       `<em>Move the object closer to the lens. Does the image get bigger or smaller?</em>`;
   }
 
-  slider.addEventListener("input", update);
-  update();
+  react(distanceInput, update);
 }

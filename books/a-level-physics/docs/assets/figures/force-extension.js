@@ -25,7 +25,7 @@ export function mount(el) {
     max: 600,
   });
 
-  const stiffness = slider(el, {
+  const stiffness = slider(el, { show: false,
     id: "stiffness",
     label: "Stiffness (N/m)",
     min: 100,
@@ -33,7 +33,7 @@ export function mount(el) {
     step: 50,
     value: 200,
   });
-  const force = slider(el, {
+  const force = slider(el, { show: false,
     id: "force",
     label: "Force (N)",
     min: 0,

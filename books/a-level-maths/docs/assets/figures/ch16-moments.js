@@ -44,7 +44,7 @@ export function mount(el) {
   });
 
   const inputs = {
-    load: slider(el, {
+    load: slider(el, { show: false,
       id: "load",
       label: "Load mass, in kilograms",
       min: 0,
@@ -52,7 +52,7 @@ export function mount(el) {
       step: 5,
       value: 45,
     }),
-    place: slider(el, {
+    place: slider(el, { show: false,
       id: "place",
       label: "Distance of the load from support A, in metres",
       min: 0.4,

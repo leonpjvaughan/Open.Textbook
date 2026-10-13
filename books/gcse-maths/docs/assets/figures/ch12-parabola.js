@@ -13,7 +13,7 @@ export function mount(el) {
     max: 520,
   });
 
-  const shift = slider(el, {
+  const shift = slider(el, { show: false,
     id: "shift",
     label: "Horizontal shift p",
     min: -3,

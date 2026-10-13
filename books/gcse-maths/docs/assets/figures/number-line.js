@@ -2,29 +2,32 @@
 // Predict → Test → Explain: the page asks which is greater before the reader
 // moves the sliders, then asks why a "longer" decimal is not always bigger.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-numberline" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 90" width="100%" role="img"
-           aria-label="Number line from minus ten to ten with two marked values"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>a <input class="a" type="range" min="-10" max="10" step="0.1" value="-2.5"></label>
-        <label>b <input class="b" type="range" min="-10" max="10" step="0.1" value="1.8"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the two sliders, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label: "Number line from minus ten to ten with two marked values",
+    width: 560,
+    height: 90,
+    max: 560,
+  });
+
+  const a = slider(el, { id: "a", label: "a", min: -10, max: 10, step: 0.1, value: -2.5, show: false });
+  const b = slider(el, { id: "b", label: "b", min: -10, max: 10, step: 0.1, value: 1.8, show: false });
+
   const min = -10;
   const max = 10;
   const width = 560;
   const pad = 24;
   const X = (v) => pad + ((v - min) / (max - min)) * (width - 2 * pad);
 
-  function update() {
-    const a = Number(el.querySelector(".a").value);
-    const b = Number(el.querySelector(".b").value);
+  react([a, b], () => {
+    const av = Number(a.value);
+    const bv = Number(b.value);
     const ticks = [];
     for (let v = min; v <= max; v += 2) {
       ticks.push(
@@ -38,17 +41,12 @@ export function mount(el) {
     svg.innerHTML =
       `<line x1="${pad}" y1="34" x2="${width - pad}" y2="34" class="fig-ink"></line>` +
       ticks.join("") +
-      mark(a, "a", "fig-accent") +
-      mark(b, "b", "fig-warn");
+      mark(av, "a", "fig-accent") +
+      mark(bv, "b", "fig-warn");
 
-    const rel = a === b ? "=" : a < b ? "<" : ">";
+    const rel = av === bv ? "=" : av < bv ? "<" : ">";
     readout.innerHTML =
-      `a ${rel} b — because ${Math.min(a, b)} is to the left of ${Math.max(a, b)}. ` +
+      `a ${rel} b — because ${Math.min(av, bv)} is to the left of ${Math.max(av, bv)}. ` +
       `<em>Now try a = 0.3 and b = 0.29: why is the shorter decimal bigger?</em>`;
-  }
-
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  });
 }

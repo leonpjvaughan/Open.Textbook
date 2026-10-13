@@ -2,6 +2,10 @@
 // step) with a geometric model (multiply by a fixed factor each step).
 // Pure HTML and SVG, an ES module, no framework and no colour of its own: the
 // fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const STEPS = 10;
 
@@ -14,23 +18,33 @@ function geometricSeries(start, factor) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <label>Amount added each step
-        <input class="d" type="range" min="0" max="10" step="1" value="4">
-      </label>
-      <label>Factor each step
-        <input class="r" type="range" min="1" max="1.3" step="0.05" value="1.1">
-      </label>
-      <svg viewBox="0 0 440 240" width="100%" role="img"
-           aria-label="Two models over ten steps: one adds a fixed amount, one multiplies by a fixed factor"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "Two models over ten steps: one adds a fixed amount, one multiplies by a " +
+      "fixed factor",
+    width: 440,
+    height: 240,
+    max: 560,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const dInput = el.querySelector(".d");
-  const rInput = el.querySelector(".r");
+  const dInput = slider(el, {
+    id: "d",
+    label: "Amount added each step",
+    min: 0,
+    max: 10,
+    step: 1,
+    value: 4,
+    show: false,
+  });
+  const rInput = slider(el, {
+    id: "r",
+    label: "Factor each step",
+    min: 1,
+    max: 1.3,
+    step: 0.05,
+    value: 1.1,
+    show: false,
+  });
 
   function update() {
     const added = Number(dInput.value);
@@ -97,7 +111,5 @@ export function mount(el) {
     );
   }
 
-  dInput.addEventListener("input", update);
-  rInput.addEventListener("input", update);
-  update();
+  react([dInput, rInput], update);
 }

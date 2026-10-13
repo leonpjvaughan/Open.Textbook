@@ -5,21 +5,48 @@
 // grow as it moves closer to the pivot. The reader sets the load and the two
 // distances; the figure works out the effort that balances the lever.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-lever-moment" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 180" width="100%" role="img"
-           aria-label="A lever turning about a pivot, with a load on the left and the balancing effort on the right"></svg>
-      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Load (N) <input class="load" type="range" min="100" max="600" step="50" value="300"></label>
-        <label>Load distance (m) <input class="load-d" type="range" min="0.20" max="1.00" step="0.05" value="1.00"></label>
-        <label>Effort distance (m) <input class="effort-d" type="range" min="0.20" max="1.50" step="0.05" value="1.00"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A lever turning about a pivot, with a load on the left and the balancing effort on the right",
+    width: 560,
+    height: 180,
+  });
+
+  const loadInput = slider(el, { show: false,
+    id: "load",
+    label: "Load (N)",
+    min: 100,
+    max: 600,
+    step: 50,
+    value: 300,
+    show: false,
+  });
+  const loadDistanceInput = slider(el, { show: false,
+    id: "load-d",
+    label: "Load distance (m)",
+    min: 0.2,
+    max: 1.0,
+    step: 0.05,
+    value: 1.0,
+    show: false,
+  });
+  const effortDistanceInput = slider(el, { show: false,
+    id: "effort-d",
+    label: "Effort distance (m)",
+    min: 0.2,
+    max: 1.5,
+    step: 0.05,
+    value: 1.0,
+    show: false,
+  });
+
   const PIVOT = 280;
   const BEAM = 60;
   const SCALE = 130; // pixels per metre, so 1.5 m reaches 195 px
@@ -33,9 +60,9 @@ export function mount(el) {
   }
 
   function update() {
-    const load = Number(el.querySelector(".load").value);
-    const loadDistance = Number(el.querySelector(".load-d").value);
-    const effortDistance = Number(el.querySelector(".effort-d").value);
+    const load = Number(loadInput.value);
+    const loadDistance = Number(loadDistanceInput.value);
+    const effortDistance = Number(effortDistanceInput.value);
     const loadMoment = load * loadDistance;
     const effort = loadMoment / effortDistance;
 
@@ -65,8 +92,5 @@ export function mount(el) {
       `<em>Move the effort closer to the pivot. Why does the effort needed grow?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([loadInput, loadDistanceInput, effortDistanceInput], update);
 }

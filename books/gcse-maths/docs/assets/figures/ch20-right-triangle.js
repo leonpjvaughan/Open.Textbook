@@ -13,7 +13,7 @@ export function mount(el) {
     max: 520,
   });
 
-  const secondLeg = slider(el, {
+  const secondLeg = slider(el, { show: false,
     id: "second-leg",
     label: "Second shorter side",
     min: 1,

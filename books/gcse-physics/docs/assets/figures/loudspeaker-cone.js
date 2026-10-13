@@ -4,22 +4,32 @@
 // current, then to reverse the current, then to explain why a changing current
 // makes the cone vibrate. The figure shows the force and the cone position, not
 // a real sound. Colours come from CSS classes.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-loudspeaker-cone" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 220" width="100%" role="img"
-           aria-label="A cross-section of a moving-coil loudspeaker. A coil sits in the gap of a magnet and is joined to a cone. The current can be changed, and the cone moves with the force"></svg>
-      <label style="display:block;margin:.5rem 0 0">
-        Current in the coil (A) <input class="current" type="range" min="-2" max="2" step="0.5" value="1.5">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A cross-section of a moving-coil loudspeaker. A coil sits in the gap of a magnet and is joined to a cone. The current can be changed, and the cone moves with the force",
+    width: 560,
+    height: 220,
+  });
+
+  const currentInput = slider(el, { show: false,
+    id: "current",
+    label: "Current in the coil (A)",
+    min: -2,
+    max: 2,
+    step: 0.5,
+    value: 1.5,
+    show: false,
+  });
 
   function update() {
-    const current = Number(el.querySelector(".current").value);
+    const current = Number(currentInput.value);
     const shift = (current / 2) * 30;
     const base = 230 + shift;
 
@@ -62,8 +72,5 @@ export function mount(el) {
       `<em>Now reverse the current. Which way does the cone move?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react(currentInput, update);
 }

@@ -43,21 +43,21 @@ export function mount(el) {
     max: 620,
   });
 
-  const muInput = slider(el, {
+  const muInput = slider(el, { show: false,
     id: "mu",
     label: "Mean",
     min: 20,
     max: 80,
     value: 50,
   });
-  const sigmaInput = slider(el, {
+  const sigmaInput = slider(el, { show: false,
     id: "sigma",
     label: "Standard deviation",
     min: 2,
     max: 20,
     value: 10,
   });
-  const xInput = slider(el, {
+  const xInput = slider(el, { show: false,
     id: "x",
     label: "Value x",
     min: 0,

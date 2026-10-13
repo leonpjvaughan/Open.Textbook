@@ -11,6 +11,10 @@
 // --tb-* tokens, so the figure follows the reader's bundle and both schemes, and
 // the readout is aria-live so a reader who cannot see the drawing is told what
 // changed. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -9;
 const X_MAX = 9;
@@ -62,25 +66,33 @@ function grid() {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label style="display:block">Point of the V, at x = a
-        <input class="a" type="range" min="-4" max="4" step="1" value="0"
-               aria-label="Horizontal position of the point of the V">
-      </label>
-      <label style="display:block">Height of the cutting line, y = b
-        <input class="b" type="range" min="-2" max="5" step="0.5" value="2"
-               aria-label="Height of the horizontal line">
-      </label>
-      <svg viewBox="0 0 360 240" width="100%" role="img"
-           aria-label="A V shaped modulus graph with a horizontal line across it"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "A V shaped modulus graph with a horizontal line across it",
+    width: 360,
+    height: 240,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const aInput = el.querySelector(".a");
-  const bInput = el.querySelector(".b");
+  const aInput = slider(el, {
+    id: "a",
+    label: "Point of the V, at x = a",
+    name: "Horizontal position of the point of the V",
+    min: -4,
+    max: 4,
+    step: 1,
+    value: 0,
+    show: false,
+  });
+  const bInput = slider(el, {
+    id: "b",
+    label: "Height of the cutting line, y = b",
+    name: "Height of the horizontal line",
+    min: -2,
+    max: 5,
+    step: 0.5,
+    value: 2,
+    show: false,
+  });
 
   function update() {
     const a = Number(aInput.value);
@@ -167,7 +179,5 @@ export function mount(el) {
     );
   }
 
-  aInput.addEventListener("input", update);
-  bInput.addEventListener("input", update);
-  update();
+  react([aInput, bInput], update);
 }

@@ -35,7 +35,7 @@ export function mount(el) {
     max: 620,
   });
 
-  const nInput = slider(el, {
+  const nInput = slider(el, { show: false,
     id: "n",
     label: "Number of trials n",
     min: 1,
@@ -43,7 +43,7 @@ export function mount(el) {
     step: 1,
     value: 10,
   });
-  const pInput = slider(el, {
+  const pInput = slider(el, { show: false,
     id: "p",
     label: "Probability of success p",
     min: 5,

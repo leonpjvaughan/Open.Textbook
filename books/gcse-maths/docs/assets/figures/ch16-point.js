@@ -23,7 +23,7 @@ export function mount(el) {
   );
   root.append(bar);
 
-  const first = slider(el, {
+  const first = slider(el, { show: false,
     id: "first",
     label: "First angle:",
     min: 30,
@@ -31,7 +31,7 @@ export function mount(el) {
     step: 10,
     value: 90,
   });
-  const second = slider(el, {
+  const second = slider(el, { show: false,
     id: "second",
     label: "Second angle:",
     min: 30,

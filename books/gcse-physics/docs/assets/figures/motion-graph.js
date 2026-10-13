@@ -6,20 +6,39 @@
 // and a time; the graph draws the straight line, the gradient triangle and the
 // area under the line.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-motion-graph" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 200" width="100%" role="img"
-           aria-label="A velocity-time graph of a straight line from the origin, with the gradient and the area under the line marked"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Acceleration (m/s&sup2;) <input class="accel" type="range" min="0.5" max="4" step="0.5" value="2"></label>
-        <label>Time (s) <input class="time" type="range" min="1" max="10" step="1" value="4"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A velocity-time graph of a straight line from the origin, with the gradient and the area under the line marked",
+    width: 560,
+    height: 200,
+  });
+
+  const accelInput = slider(el, { show: false,
+    id: "accel",
+    label: "Acceleration (m/s²)",
+    min: 0.5,
+    max: 4,
+    step: 0.5,
+    value: 2,
+    show: false,
+  });
+  const timeInput = slider(el, { show: false,
+    id: "time",
+    label: "Time (s)",
+    min: 1,
+    max: 10,
+    step: 1,
+    value: 4,
+    show: false,
+  });
+
   const LEFT = 52;
   const BOTTOM = 158;
   const WIDTH = 470;
@@ -30,8 +49,8 @@ export function mount(el) {
   const yScale = HEIGHT / VELOCITY_MAX;
 
   function update() {
-    const accel = Number(el.querySelector(".accel").value);
-    const time = Number(el.querySelector(".time").value);
+    const accel = Number(accelInput.value);
+    const time = Number(timeInput.value);
     const velocity = accel * time;
     const distance = 0.5 * accel * time * time;
 
@@ -62,8 +81,5 @@ export function mount(el) {
       `<em>Double the time: which number doubles, and which becomes four times as large?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([accelInput, timeInput], update);
 }

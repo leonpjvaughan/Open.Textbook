@@ -33,14 +33,14 @@ export function mount(el) {
     height: 300,
   });
 
-  const speedInput = slider(el, {
+  const speedInput = slider(el, { show: false,
     id: "speed",
     label: "Launch speed, m/s",
     min: 5,
     max: 40,
     value: 20,
   });
-  const angleInput = slider(el, {
+  const angleInput = slider(el, { show: false,
     id: "angle",
     label: "Launch angle, degrees",
     min: 10,

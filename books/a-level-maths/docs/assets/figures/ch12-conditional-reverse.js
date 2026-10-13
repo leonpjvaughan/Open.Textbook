@@ -34,7 +34,7 @@ export function mount(el) {
     max: 640,
   });
 
-  const base = slider(el, {
+  const base = slider(el, { show: false,
     id: "base",
     label: "Probability of a fire on a morning",
     min: 1,
@@ -43,7 +43,7 @@ export function mount(el) {
     value: 1,
     format: (value) => (value / 1000).toFixed(3),
   });
-  const fpr = slider(el, {
+  const fpr = slider(el, { show: false,
     id: "fpr",
     label: "Probability the alarm sounds with no fire",
     min: 1,

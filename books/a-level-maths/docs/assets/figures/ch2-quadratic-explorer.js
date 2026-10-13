@@ -1,6 +1,10 @@
 // Guided investigation for completing the square and the discriminant.
 // Pure HTML and SVG, an ES module, no framework and no colour of its own: the
 // fig-* classes carry the theme. Runtime text is plain text, never $...$.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -8;
 const X_MAX = 8;
@@ -22,23 +26,31 @@ function signed(value) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Value of b
-        <input class="b" type="range" min="-8" max="8" step="1" value="0">
-      </label>
-      <label>Value of c
-        <input class="c" type="range" min="-9" max="9" step="1" value="-4">
-      </label>
-      <svg viewBox="0 0 360 240" width="100%" role="img"
-           aria-label="The parabola y = x squared plus b x plus c"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "The parabola y = x squared plus b x plus c",
+    width: 360,
+    height: 240,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const bInput = el.querySelector(".b");
-  const cInput = el.querySelector(".c");
+  const bInput = slider(el, {
+    id: "b",
+    label: "Value of b",
+    min: -8,
+    max: 8,
+    step: 1,
+    value: 0,
+    show: false,
+  });
+  const cInput = slider(el, {
+    id: "c",
+    label: "Value of c",
+    min: -9,
+    max: 9,
+    step: 1,
+    value: -4,
+    show: false,
+  });
 
   let path = "";
 
@@ -104,7 +116,5 @@ export function mount(el) {
     );
   }
 
-  bInput.addEventListener("input", update);
-  cInput.addEventListener("input", update);
-  update();
+  react([bInput, cInput], update);
 }

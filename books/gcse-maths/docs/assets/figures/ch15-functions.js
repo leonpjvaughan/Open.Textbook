@@ -19,7 +19,7 @@ export function mount(el) {
   });
   readout.classList.add("text-accent");
 
-  const a = slider(el, {
+  const a = slider(el, { show: false,
     id: "a",
     label: "a",
     min: 1,
@@ -27,7 +27,7 @@ export function mount(el) {
     step: 1,
     value: 2,
   });
-  const b = slider(el, {
+  const b = slider(el, { show: false,
     id: "b",
     label: "b",
     min: -5,

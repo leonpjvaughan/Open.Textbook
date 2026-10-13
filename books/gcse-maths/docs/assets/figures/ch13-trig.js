@@ -13,7 +13,7 @@ export function mount(el) {
     max: 560,
   });
 
-  const amp = slider(el, {
+  const amp = slider(el, { show: false,
     id: "amp",
     label: "Amplitude",
     min: 1,

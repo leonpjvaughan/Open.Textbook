@@ -8,23 +8,47 @@
 //
 // Colours come from CSS classes, so the figure adapts to every bundle and both
 // schemes. No maths is injected at runtime: every value is plain text.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-heating-curve" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 230" width="100%" role="img"
-           aria-label="A heating graph of temperature against time for water, with two sloped parts and two flat parts where the substance changes state"></svg>
-      <label style="display:block;margin:.3rem 0">Heater power (W)
-        <input class="power" type="range" min="200" max="2000" step="50" value="500"></label>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.3rem 0">
-        <button type="button" class="preset-low">Low power (200 W)</button>
-        <button type="button" class="preset-high">High power (2000 W)</button>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. The two preset buttons are not
+// one of the kit's controls, so they are built here inside the kit's control
+// column. What is left is the drawing and the sentence, which are the parts that
+// differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const powerSlider = el.querySelector(".power");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout, controls } = panel(el, {
+    label:
+      "A heating graph of temperature against time for water, with two sloped parts and two flat parts where the substance changes state",
+    width: 600,
+    height: 230,
+    max: 600,
+  });
+
+  const powerSlider = slider(el, { show: false,
+    id: "power",
+    label: "Heater power (W)",
+    min: 200,
+    max: 2000,
+    step: 50,
+    value: 500,
+    show: false,
+  });
+
+  // The presets sit in the same control column the kit's slider uses.
+  const presets = document.createElement("div");
+  presets.style.cssText = "display:flex;gap:.5rem;flex-wrap:wrap";
+  const preset = (id, text) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = id;
+    button.textContent = text;
+    presets.append(button);
+    return button;
+  };
+  const lowButton = preset("preset-low", "Low power (200 W)");
+  const highButton = preset("preset-high", "High power (2000 W)");
+  controls.append(presets);
 
   // 1.0 kg of water, in four stages. The energies in joules are fixed.
   const STAGES = [
@@ -90,16 +114,15 @@ export function mount(el) {
       `Compare a low power with a high power: what changes, and what stays the same?</em>`;
   }
 
-  el.querySelector(".preset-low").addEventListener("click", () => {
-    powerSlider.value = "200";
-    update();
-  });
-  el.querySelector(".preset-high").addEventListener("click", () => {
-    powerSlider.value = "2000";
-    update();
-  });
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  // Setting a slider's value in script does not fire `input`, so dispatching it
+  // redraws through the kit's own listener.
+  const apply = (power) => {
+    powerSlider.value = String(power);
+    powerSlider.dispatchEvent(new Event("input"));
+  };
+
+  lowButton.addEventListener("click", () => apply(200));
+  highButton.addEventListener("click", () => apply(2000));
+
+  react(powerSlider, update);
 }

@@ -30,7 +30,7 @@ export function mount(el) {
     max: 600,
   });
 
-  const resistance = slider(el, {
+  const resistance = slider(el, { show: false,
     id: "resistance",
     label: "Resistance (ohm)",
     min: 100,
@@ -38,7 +38,7 @@ export function mount(el) {
     step: 50,
     value: 200,
   });
-  const capacitance = slider(el, {
+  const capacitance = slider(el, { show: false,
     id: "capacitance",
     label: "Capacitance (microfarad)",
     min: 100,

@@ -1,6 +1,10 @@
 // Guided investigation for the gradient and intercept of a straight line.
 // Pure HTML and SVG, an ES module, no framework and no colour of its own: the
 // fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -6;
 const X_MAX = 6;
@@ -40,23 +44,31 @@ function formatGeneral(m, c) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Gradient m
-        <input class="m" type="range" min="-4" max="4" step="1" value="2">
-      </label>
-      <label>Intercept c
-        <input class="c" type="range" min="-6" max="6" step="1" value="3">
-      </label>
-      <svg viewBox="0 0 360 300" width="100%" role="img"
-           aria-label="A straight line on axes, with its gradient and intercept"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "A straight line on axes, with its gradient and intercept",
+    width: 360,
+    height: 300,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const mInput = el.querySelector(".m");
-  const cInput = el.querySelector(".c");
+  const mInput = slider(el, {
+    id: "m",
+    label: "Gradient m",
+    min: -4,
+    max: 4,
+    step: 1,
+    value: 2,
+    show: false,
+  });
+  const cInput = slider(el, {
+    id: "c",
+    label: "Intercept c",
+    min: -6,
+    max: 6,
+    step: 1,
+    value: 3,
+    show: false,
+  });
 
   function grid() {
     let lines = "";
@@ -143,7 +155,5 @@ export function mount(el) {
     );
   }
 
-  mInput.addEventListener("input", update);
-  cInput.addEventListener("input", update);
-  update();
+  react([mInput, cInput], update);
 }

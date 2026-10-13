@@ -20,7 +20,7 @@ export function mount(el) {
     max: 620,
   });
 
-  const radius = slider(el, {
+  const radius = slider(el, { show: false,
     id: "radius",
     label: "Distance from the centre (megametres)",
     min: 6.4,

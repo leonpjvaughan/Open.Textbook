@@ -15,7 +15,7 @@ export function mount(el) {
   bars.setAttribute("aria-label", "Bar chart showing walking, bus and car counts");
   root.append(bars);
 
-  const size = slider(el, {
+  const size = slider(el, { show: false,
     id: "size",
     label: "Sample size",
     min: 20,

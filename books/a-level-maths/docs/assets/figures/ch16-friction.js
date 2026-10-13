@@ -40,7 +40,7 @@ export function mount(el) {
   });
 
   const inputs = {
-    push: slider(el, {
+    push: slider(el, { show: false,
       id: "push",
       label: "Push on the block, in newtons",
       min: 0,
@@ -48,7 +48,7 @@ export function mount(el) {
       step: 5,
       value: 80,
     }),
-    mu: slider(el, {
+    mu: slider(el, { show: false,
       id: "mu",
       label: "Coefficient of friction",
       min: 0,

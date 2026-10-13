@@ -24,7 +24,7 @@ export function mount(el) {
     max: 600,
   });
 
-  const readingInput = slider(el, {
+  const readingInput = slider(el, { show: false,
     id: "reading",
     label: "The fifth reading",
     min: 0,
@@ -33,7 +33,7 @@ export function mount(el) {
     value: 10,
     format: (value) => value.toFixed(1),
   });
-  const shiftInput = slider(el, {
+  const shiftInput = slider(el, { show: false,
     id: "shift",
     label: "Added to every reading",
     min: -2,

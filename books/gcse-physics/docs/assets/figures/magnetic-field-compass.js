@@ -6,20 +6,38 @@
 // poles, and the same field decides the needle direction, so the drawing and the
 // needle cannot disagree. Colours come from CSS classes, so the figure adapts to
 // every bundle and both colour schemes.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-magnetic-field-compass" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 320" width="100%" role="img"
-           aria-label="A bar magnet with curved magnetic field lines from the north pole to the south pole, and a plotting compass that can be moved around the magnet"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Compass across <input class="pos-x" type="range" min="80" max="480" step="5" value="150"></label>
-        <label>Compass down <input class="pos-y" type="range" min="30" max="290" step="5" value="80"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A bar magnet with curved magnetic field lines from the north pole to the south pole, and a plotting compass that can be moved around the magnet",
+    width: 560,
+    height: 320,
+  });
+
+  const posXInput = slider(el, {
+    id: "pos-x",
+    label: "Compass across",
+    min: 80,
+    max: 480,
+    step: 5,
+    value: 150,
+    show: false,
+  });
+  const posYInput = slider(el, {
+    id: "pos-y",
+    label: "Compass down",
+    min: 30,
+    max: 290,
+    step: 5,
+    value: 80,
+    show: false,
+  });
 
   // The magnet is a rectangle. The north pole is on the left, the south on the
   // right. Each pole is treated as a point source of field.
@@ -70,8 +88,8 @@ export function mount(el) {
   }
 
   function update() {
-    const cx = Number(el.querySelector(".pos-x").value);
-    const cy = Number(el.querySelector(".pos-y").value);
+    const cx = Number(posXInput.value);
+    const cy = Number(posYInput.value);
     const [bx, by] = field(cx, cy);
     const mag = Math.hypot(bx, by) + 1e-9;
     const ux = bx / mag;
@@ -102,8 +120,5 @@ export function mount(el) {
       `<em>Now move the compass near a pole. Does the needle turn?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([posXInput, posYInput], update);
 }

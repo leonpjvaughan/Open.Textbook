@@ -19,7 +19,7 @@ export function mount(el) {
     height: 120,
   });
 
-  const inputControl = slider(el, {
+  const inputControl = slider(el, { show: false,
     id: "input",
     label: "Total input power (W)",
     min: 10,
@@ -27,7 +27,7 @@ export function mount(el) {
     step: 5,
     value: 120,
   });
-  const usefulControl = slider(el, {
+  const usefulControl = slider(el, { show: false,
     id: "useful",
     label: "Useful output power (W)",
     min: 0,

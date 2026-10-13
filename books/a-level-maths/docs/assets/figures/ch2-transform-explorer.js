@@ -1,6 +1,10 @@
 // Guided investigation for transformations of graphs: y = a f(k(x - h)) + v
 // with f(x) = x^2. Pure HTML and SVG, an ES module, no framework and no colour
 // of its own: the fig-* classes carry the theme. Runtime text is plain text.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -8;
 const X_MAX = 8;
@@ -20,31 +24,49 @@ function signed(value) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Vertical stretch a
-        <input class="a" type="range" min="0.5" max="3" step="0.5" value="1">
-      </label>
-      <label>Horizontal scale k
-        <input class="k" type="range" min="0.5" max="2" step="0.5" value="1">
-      </label>
-      <label>Horizontal shift h
-        <input class="h" type="range" min="-4" max="4" step="1" value="0">
-      </label>
-      <label>Vertical shift v
-        <input class="v" type="range" min="-5" max="5" step="1" value="0">
-      </label>
-      <svg viewBox="0 0 360 240" width="100%" role="img"
-           aria-label="A transformed parabola"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "A transformed parabola",
+    width: 360,
+    height: 240,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const aInput = el.querySelector(".a");
-  const kInput = el.querySelector(".k");
-  const hInput = el.querySelector(".h");
-  const vInput = el.querySelector(".v");
+  const aInput = slider(el, {
+    id: "a",
+    label: "Vertical stretch a",
+    min: 0.5,
+    max: 3,
+    step: 0.5,
+    value: 1,
+    show: false,
+  });
+  const kInput = slider(el, {
+    id: "k",
+    label: "Horizontal scale k",
+    min: 0.5,
+    max: 2,
+    step: 0.5,
+    value: 1,
+    show: false,
+  });
+  const hInput = slider(el, {
+    id: "h",
+    label: "Horizontal shift h",
+    min: -4,
+    max: 4,
+    step: 1,
+    value: 0,
+    show: false,
+  });
+  const vInput = slider(el, {
+    id: "v",
+    label: "Vertical shift v",
+    min: -5,
+    max: 5,
+    step: 1,
+    value: 0,
+    show: false,
+  });
 
   function update() {
     const a = Number(aInput.value);
@@ -90,8 +112,5 @@ export function mount(el) {
     );
   }
 
-  for (const input of [aInput, kInput, hInput, vInput]) {
-    input.addEventListener("input", update);
-  }
-  update();
+  react([aInput, kInput, hInput, vInput], update);
 }

@@ -18,7 +18,7 @@ export function mount(el) {
         <circle class="fig-accent" cx="100" cy="160" r="5" fill="currentColor" />
         <text x="94" y="156" class="text-accent" text-anchor="end">P</text>`;
 
-  const input = slider(el, {
+  const input = slider(el, { show: false,
     id: "scale",
     label: "Scale factor",
     min: 1,

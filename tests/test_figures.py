@@ -411,3 +411,30 @@ def test_the_figure_colour_classes_are_all_defined():
             assert re.search(rf"(?<![\w-]){prop}\s*:", style[name]), (
                 f".{name} does not set `{prop}`, so it does not paint what it names"
             )
+
+
+def slider_calls(text: str) -> list[str]:
+    """Every `slider(...)` call in a module, as written."""
+    return re.findall(r"\bslider\([^;]*?\)", text, re.S)
+
+
+@pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
+def test_every_slider_says_whether_it_shows_its_value(book, path):
+    """`show:` must be explicit, because the default is a reader-visible decision.
+
+    `slider()` adds a value display unless told not to. That is a sensible default
+    for a new figure and the wrong one for a refactor: converting the collection
+    silently added a number beside **84 sliders** that had never shown one, which is
+    the one thing the refactor promised not to do. The check could only be written
+    afterwards, once the mistake had happened — and what it enforces is not a
+    particular choice but that the choice is made.
+
+    A module with no sliders has nothing to say and is skipped.
+    """
+    calls = slider_calls(path.read_text(encoding="utf-8"))
+    silent = [call for call in calls if "show:" not in call]
+    assert not silent, (
+        f"{book.id}/{path.name}: {len(silent)} slider call(s) do not say whether the "
+        "value is shown. `show: true` or `show: false` — the reader sees the "
+        f"difference, so it is stated at the call: {silent[0][:70]!r}"
+    )

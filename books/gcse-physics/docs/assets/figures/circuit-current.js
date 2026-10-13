@@ -26,7 +26,7 @@ export function mount(el) {
     max: 600,
   });
 
-  const pdInput = slider(el, {
+  const pdInput = slider(el, { show: false,
     id: "pd",
     label: "Potential difference (V)",
     min: 1,
@@ -34,7 +34,7 @@ export function mount(el) {
     step: 1,
     value: 6,
   });
-  const resistanceInput = slider(el, {
+  const resistanceInput = slider(el, { show: false,
     id: "resistance",
     label: "Resistance (Ω)",
     min: 1,

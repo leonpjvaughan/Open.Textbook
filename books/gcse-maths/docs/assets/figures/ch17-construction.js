@@ -25,7 +25,7 @@ export function mount(el) {
       <circle cx="250" cy="95" r="4" class="fig-ink" fill="currentColor" />
       <text x="58" y="118" class="text-ink">A</text><text x="254" y="118" class="text-ink">B</text>`;
 
-  const input = slider(el, {
+  const input = slider(el, { show: false,
     id: "width",
     label: "Compass width",
     min: 60,

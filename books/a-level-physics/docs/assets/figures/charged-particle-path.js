@@ -22,7 +22,7 @@ export function mount(el) {
     max: 620,
   });
 
-  const field = slider(el, {
+  const field = slider(el, { show: false,
     id: "field",
     label: "Flux density (tesla)",
     min: 0.05,
@@ -31,7 +31,7 @@ export function mount(el) {
     value: 0.2,
     format: (value) => value.toFixed(2),
   });
-  const speed = slider(el, {
+  const speed = slider(el, { show: false,
     id: "speed",
     label: "Speed (millions of metres per second)",
     min: 0.5,

@@ -5,28 +5,47 @@
 // rate, then to explain why the curve never reaches zero. The smooth curve is the
 // expected average: a real count is random, and the page makes that point.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-half-life" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 540 250" width="100%" role="img"
-           aria-label="A decay curve of count rate against time, with a marker at each half-life"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Half-life (hours) <input class="halflife" type="range" min="1" max="12" step="1" value="6"></label>
-        <label>Starting count rate (per second) <input class="rate" type="range" min="200" max="1000" step="100" value="800"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A decay curve of count rate against time, with a marker at each half-life",
+    width: 540,
+    height: 250,
+  });
+
+  const halfLifeInput = slider(el, { show: false,
+    id: "halflife",
+    label: "Half-life (hours)",
+    min: 1,
+    max: 12,
+    step: 1,
+    value: 6,
+    show: false,
+  });
+  const rateInput = slider(el, { show: false,
+    id: "rate",
+    label: "Starting count rate (per second)",
+    min: 200,
+    max: 1000,
+    step: 100,
+    value: 800,
+    show: false,
+  });
+
   const LEFT = 62;
   const RIGHT = 522;
   const TOP = 22;
   const BOTTOM = 196;
 
   function update() {
-    const halfLife = Number(el.querySelector(".halflife").value);
-    const start = Number(el.querySelector(".rate").value);
+    const halfLife = Number(halfLifeInput.value);
+    const start = Number(rateInput.value);
     const totalTime = 6 * halfLife;
 
     const x = (time) => LEFT + (time / totalTime) * (RIGHT - LEFT);
@@ -82,8 +101,5 @@ export function mount(el) {
       `Why does the curve get close to zero but never reach it?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([halfLifeInput, rateInput], update);
 }

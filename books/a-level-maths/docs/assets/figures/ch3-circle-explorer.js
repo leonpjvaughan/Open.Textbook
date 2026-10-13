@@ -1,6 +1,10 @@
 // Guided investigation for the circle, its equation, and a chord.
 // Pure HTML and SVG, an ES module, no framework and no colour of its own: the
 // fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -4;
 const X_MAX = 16;
@@ -22,27 +26,40 @@ function fixed(value, places) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Centre x: a
-        <input class="a" type="range" min="0" max="12" step="1" value="6">
-      </label>
-      <label>Centre y: b
-        <input class="b" type="range" min="0" max="14" step="1" value="8">
-      </label>
-      <label>Radius r
-        <input class="r" type="range" min="1" max="8" step="1" value="5">
-      </label>
-      <svg viewBox="0 0 360 360" width="100%" role="img"
-           aria-label="A circle with its centre and radius, and the line x plus y equals 19"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "A circle with its centre and radius, and the line x plus y equals 19",
+    width: 360,
+    height: 360,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const aInput = el.querySelector(".a");
-  const bInput = el.querySelector(".b");
-  const rInput = el.querySelector(".r");
+  const aInput = slider(el, {
+    id: "a",
+    label: "Centre x: a",
+    min: 0,
+    max: 12,
+    step: 1,
+    value: 6,
+    show: false,
+  });
+  const bInput = slider(el, {
+    id: "b",
+    label: "Centre y: b",
+    min: 0,
+    max: 14,
+    step: 1,
+    value: 8,
+    show: false,
+  });
+  const rInput = slider(el, {
+    id: "r",
+    label: "Radius r",
+    min: 1,
+    max: 8,
+    step: 1,
+    value: 5,
+    show: false,
+  });
 
   function grid() {
     let lines = "";
@@ -127,8 +144,5 @@ export function mount(el) {
     );
   }
 
-  aInput.addEventListener("input", update);
-  bInput.addEventListener("input", update);
-  rInput.addEventListener("input", update);
-  update();
+  react([aInput, bInput, rInput], update);
 }

@@ -24,7 +24,7 @@ export function mount(el) {
     max: 640,
   });
 
-  const temp = slider(el, {
+  const temp = slider(el, { show: false,
     id: "temp",
     label: "Temperature (K)",
     min: 100,
@@ -32,7 +32,7 @@ export function mount(el) {
     step: 10,
     value: 300,
   });
-  const vol = slider(el, {
+  const vol = slider(el, { show: false,
     id: "vol",
     label: "Volume (10^-3 m^3)",
     min: 1.0,

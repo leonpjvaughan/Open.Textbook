@@ -10,42 +10,57 @@
 // do before a control is touched, and asks for the reason afterwards. Colours
 // come from CSS classes, so the figure adapts to every bundle and both schemes;
 // the readout is `aria-live`.
-export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <label style="display:block;margin:.2rem 0">
-        Power n
-        <select class="n" aria-label="Power n in the expansion of (1 + x) to the power n">
-          <option value="0.5">1/2</option>
-          <option value="-0.5">-1/2</option>
-          <option value="-1">-1</option>
-          <option value="1.5">3/2</option>
-        </select>
-      </label>
-      <label style="display:block;margin:.2rem 0">
-        Terms used
-        <input class="terms" type="range" min="1" max="10" step="1" value="4"
-               aria-label="Number of terms of the expansion to add">
-        <output class="terms-out">4</output>
-      </label>
-      <label style="display:block;margin:.2rem 0 .4rem">
-        Position x
-        <input class="x" type="range" min="-0.9" max="1.4" step="0.05" value="0.5"
-               aria-label="Value of x at which the expansion is measured">
-        <output class="x-out">0.50</output>
-      </label>
-      <svg viewBox="0 0 520 320" width="100%" role="img"
-           aria-label="A graph of the curve (1 + x) to the power n, the first few terms of its binomial expansion, and the range where the expansion is valid"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the chooser and sliders,
+// the live readout and the redraw — comes from `kit.js`.
+import { panel, slider, chooser, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const nSelect = el.querySelector(".n");
-  const termsInput = el.querySelector(".terms");
-  const termsOut = el.querySelector(".terms-out");
-  const xInput = el.querySelector(".x");
-  const xOut = el.querySelector(".x-out");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A graph of the curve (1 + x) to the power n, the first few terms of its " +
+      "binomial expansion, and the range where the expansion is valid",
+    width: 520,
+    height: 320,
+    max: 560,
+  });
+
+  const nSelect = chooser(el, {
+    id: "n",
+    label: "Power n",
+    choices: [
+      { value: "0.5", label: "1/2" },
+      { value: "-0.5", label: "-1/2" },
+      { value: "-1", label: "-1" },
+      { value: "1.5", label: "3/2" },
+    ],
+  });
+  // `chooser()` has no `name` option, so the longer accessible name the module
+  // carried is kept here.
+  nSelect.setAttribute(
+    "aria-label",
+    "Power n in the expansion of (1 + x) to the power n"
+  );
+
+  const termsInput = slider(el, { show: true,
+    id: "terms",
+    label: "Terms used",
+    name: "Number of terms of the expansion to add",
+    min: 1,
+    max: 10,
+    step: 1,
+    value: 4,
+  });
+  const xInput = slider(el, { show: true,
+    id: "x",
+    label: "Position x",
+    name: "Value of x at which the expansion is measured",
+    min: -0.9,
+    max: 1.4,
+    step: 0.05,
+    value: 0.5,
+    format: (value) => value.toFixed(2),
+  });
 
   const WIDTH = 520;
   const HEIGHT = 320;
@@ -200,17 +215,5 @@ export function mount(el) {
     );
   }
 
-  nSelect.addEventListener("change", render);
-  termsInput.addEventListener("input", () => {
-    termsOut.value = termsInput.value;
-    termsOut.textContent = termsInput.value;
-    render();
-  });
-  xInput.addEventListener("input", () => {
-    xOut.value = Number(xInput.value).toFixed(2);
-    xOut.textContent = Number(xInput.value).toFixed(2);
-    render();
-  });
-
-  render();
+  react([nSelect, termsInput, xInput], render);
 }

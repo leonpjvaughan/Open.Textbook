@@ -13,6 +13,10 @@
 // follows the reader's bundle and both schemes, and the readout is aria-live so
 // a reader who cannot see the drawing is told what changed. Runtime text is
 // plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const LEFT = 44;
 const RIGHT = 344;
@@ -29,23 +33,20 @@ function text(x, y, label, cls, anchor) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label style="display:block">First term a
-        <input class="a" type="range" min="-5" max="10" step="1" value="5"
-               aria-label="First term of the sequence">
-      </label>
-      <label style="display:block">Common difference d
-        <input class="d" type="range" min="-5" max="5" step="1" value="4"
-               aria-label="Common difference of the sequence">
-      </label>
-      <label style="display:block">Number of terms n
-        <input class="n" type="range" min="1" max="12" step="1" value="5"
-               aria-label="Number of terms in the series">
-      </label>
-      <svg viewBox="0 0 360 250" width="100%" role="img"
-           aria-label="Bars showing the running total of an arithmetic series after each term, with the terms themselves marked"></svg>
-      <p class="legend" style="display:flex;gap:1.2rem;font-size:.9rem;margin:.5rem 0 0">
+  const { svg, readout, controls } = panel(el, {
+    label:
+      "Bars showing the running total of an arithmetic series after each term, " +
+      "with the terms themselves marked",
+    width: 360,
+    height: 250,
+    max: 520,
+  });
+
+  // The key to the two series, kept directly under the drawing it explains.
+  const legend = document.createElement("p");
+  legend.className = "legend";
+  legend.style.cssText = "display:flex;gap:1.2rem;font-size:.9rem;margin:.5rem 0 0";
+  legend.innerHTML = `
         <span>
           <svg width="14" aria-hidden="true" style="vertical-align:-2px">
             <rect x="2" y="2" width="10" height="10" class="fig-accent"></rect>
@@ -58,16 +59,39 @@ export function mount(el) {
             <circle cx="7" cy="7" r="3" class="fig-warn"></circle>
           </svg>
           term
-        </span>
-      </p>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+        </span>`;
+  controls.before(legend);
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const aInput = el.querySelector(".a");
-  const dInput = el.querySelector(".d");
-  const nInput = el.querySelector(".n");
+  const aInput = slider(el, {
+    id: "a",
+    label: "First term a",
+    name: "First term of the sequence",
+    min: -5,
+    max: 10,
+    step: 1,
+    value: 5,
+    show: false,
+  });
+  const dInput = slider(el, {
+    id: "d",
+    label: "Common difference d",
+    name: "Common difference of the sequence",
+    min: -5,
+    max: 5,
+    step: 1,
+    value: 4,
+    show: false,
+  });
+  const nInput = slider(el, {
+    id: "n",
+    label: "Number of terms n",
+    name: "Number of terms in the series",
+    min: 1,
+    max: 12,
+    step: 1,
+    value: 5,
+    show: false,
+  });
 
   function update() {
     const a = Number(aInput.value);
@@ -168,8 +192,5 @@ export function mount(el) {
     );
   }
 
-  for (const input of [aInput, dInput, nInput]) {
-    input.addEventListener("input", update);
-  }
-  update();
+  react([aInput, dInput, nInput], update);
 }

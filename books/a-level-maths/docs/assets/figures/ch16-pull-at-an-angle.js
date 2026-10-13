@@ -90,7 +90,7 @@ export function mount(el) {
   readout.classList.add("text-ink");
 
   const inputs = {
-    tension: slider(el, {
+    tension: slider(el, { show: false,
       id: "tension",
       label: "Tension T in the rope, in newtons",
       min: 50,
@@ -98,7 +98,7 @@ export function mount(el) {
       step: 10,
       value: 200,
     }),
-    angle: slider(el, {
+    angle: slider(el, { show: false,
       id: "angle",
       label: "Angle of the rope above the floor, in degrees",
       min: 0,
@@ -106,7 +106,7 @@ export function mount(el) {
       step: 5,
       value: 25,
     }),
-    mass: slider(el, {
+    mass: slider(el, { show: false,
       id: "mass",
       label: "Mass of the crate, in kilograms",
       min: 10,
@@ -114,7 +114,7 @@ export function mount(el) {
       step: 5,
       value: 45,
     }),
-    drag: slider(el, {
+    drag: slider(el, { show: false,
       id: "drag",
       label: "Resistance to the motion, in newtons",
       min: 0,

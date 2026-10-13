@@ -17,7 +17,7 @@ export function mount(el) {
 
   root.append(list, caption);
 
-  const factor = slider(el, {
+  const factor = slider(el, { show: false,
     id: "factor",
     label: "Multiplier",
     min: 0.5,

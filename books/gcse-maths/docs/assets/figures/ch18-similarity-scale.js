@@ -95,7 +95,7 @@ export function mount(el) {
     );
   }
 
-  const factorInput = slider(el, {
+  const factorInput = slider(el, { show: false,
     id: "factor",
     label: "Length scale factor",
     min: 1,

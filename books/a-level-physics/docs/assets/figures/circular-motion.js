@@ -36,7 +36,7 @@ export function mount(el) {
     max: 600,
   });
 
-  const speed = slider(el, {
+  const speed = slider(el, { show: false,
     id: "speed",
     label: "Speed (metres per second)",
     min: 1,
@@ -45,7 +45,7 @@ export function mount(el) {
     value: 6,
     format: (value) => value.toFixed(1),
   });
-  const radius = slider(el, {
+  const radius = slider(el, { show: false,
     id: "radius",
     label: "Radius (metres)",
     min: 0.5,

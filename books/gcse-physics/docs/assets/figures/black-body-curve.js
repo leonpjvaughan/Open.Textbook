@@ -33,7 +33,7 @@ export function mount(el) {
     max: 620,
   });
 
-  const temperatureInput = slider(el, {
+  const temperatureInput = slider(el, { show: false,
     id: "temperature",
     label: "Temperature",
     min: 1000,

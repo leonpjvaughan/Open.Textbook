@@ -5,27 +5,46 @@
 // result with F = ma. The reader sets a resultant force and a mass; the figure
 // shows the trolley, the force arrow and the acceleration.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-force-acceleration" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 160" width="100%" role="img"
-           aria-label="A trolley with a force arrow pushing it, and the acceleration produced by the force and the mass"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Resultant force (N) <input class="force" type="range" min="2" max="20" step="1" value="8"></label>
-        <label>Mass (kg) <input class="mass" type="range" min="2" max="10" step="1" value="4"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A trolley with a force arrow pushing it, and the acceleration produced by the force and the mass",
+    width: 560,
+    height: 160,
+  });
+
+  const forceInput = slider(el, { show: false,
+    id: "force",
+    label: "Resultant force (N)",
+    min: 2,
+    max: 20,
+    step: 1,
+    value: 8,
+    show: false,
+  });
+  const massInput = slider(el, { show: false,
+    id: "mass",
+    label: "Mass (kg)",
+    min: 2,
+    max: 10,
+    step: 1,
+    value: 4,
+    show: false,
+  });
+
   const GROUND = 118;
   const CENTRE = 300;
   const FORCE_SCALE = 7; // pixels per newton, so 20 N reaches 140 px
 
   function update() {
-    const force = Number(el.querySelector(".force").value);
-    const mass = Number(el.querySelector(".mass").value);
+    const force = Number(forceInput.value);
+    const mass = Number(massInput.value);
     const acceleration = force / mass;
 
     // A heavier trolley is drawn a little taller, so the mass is visible.
@@ -56,8 +75,5 @@ export function mount(el) {
       `<em>Double the force: what happens to the acceleration? Then raise the mass: what happens now?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([forceInput, massInput], update);
 }

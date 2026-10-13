@@ -46,7 +46,7 @@ export function mount(el) {
     max: 600,
   });
 
-  const wInput = slider(el, {
+  const wInput = slider(el, { show: false,
     id: "w",
     label: "Class width",
     min: 0,

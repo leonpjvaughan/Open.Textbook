@@ -40,7 +40,7 @@ export function mount(el) {
     max: 320,
   });
 
-  const redInput = slider(el, {
+  const redInput = slider(el, { show: false,
     id: "red",
     label: "Red sectors",
     min: 0,

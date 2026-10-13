@@ -40,7 +40,7 @@ export function mount(el) {
     height: 200,
   });
 
-  const turnInput = slider(el, {
+  const turnInput = slider(el, { show: false,
     id: "turn",
     label: "Turning point, metres",
     min: 10,
@@ -48,7 +48,7 @@ export function mount(el) {
     step: 10,
     value: 60,
   });
-  const finishInput = slider(el, {
+  const finishInput = slider(el, { show: false,
     id: "finish",
     label: "Finishing point, metres",
     min: 0,

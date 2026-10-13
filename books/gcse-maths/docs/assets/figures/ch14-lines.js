@@ -12,7 +12,7 @@ export function mount(el) {
     max: 520,
   });
 
-  const xvalue = slider(el, {
+  const xvalue = slider(el, { show: false,
     id: "xvalue",
     label: "Test x value",
     min: 0,

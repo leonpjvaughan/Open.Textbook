@@ -7,6 +7,10 @@
 //
 // Pure HTML and SVG, an ES module, no colour of its own: the fig-* classes carry
 // the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the chooser,
+// the live readout and the redraw — comes from `kit.js`.
+import { panel, slider, chooser, react } from "./kit.js";
 
 const WIDTH = 460;
 const HEIGHT = 330;
@@ -75,37 +79,49 @@ function intervalText(iv) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <label style="display:block;margin:.2rem 0">
-        First root:
-        <input class="r1" type="range" min="-6" max="6" step="1" value="-2"
-               aria-label="First root">
-      </label>
-      <label style="display:block;margin:.2rem 0">
-        Second root:
-        <input class="r2" type="range" min="-6" max="6" step="1" value="3"
-               aria-label="Second root">
-      </label>
-      <label style="display:block;margin:.2rem 0 .6rem">
-        Inequality:
-        <select class="mode" aria-label="Inequality direction">
-          <option value="gt">f(x) &gt; 0</option>
-          <option value="ge">f(x) ≥ 0</option>
-          <option value="lt">f(x) &lt; 0</option>
-          <option value="le">f(x) ≤ 0</option>
-        </select>
-      </label>
-      <svg viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" role="img"
-           aria-label="A parabola crossing the x axis at its two roots, with the part that satisfies the inequality highlighted and the solution set marked on a number line below"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A parabola crossing the x axis at its two roots, with the part that " +
+      "satisfies the inequality highlighted and the solution set marked on a " +
+      "number line below",
+    width: WIDTH,
+    height: HEIGHT,
+    max: 560,
+  });
 
-  const svg = el.querySelector("svg");
-  const r1Input = el.querySelector(".r1");
-  const r2Input = el.querySelector(".r2");
-  const modeInput = el.querySelector(".mode");
-  const readout = el.querySelector(".readout");
+  const r1Input = slider(el, {
+    id: "r1",
+    label: "First root:",
+    name: "First root",
+    min: -6,
+    max: 6,
+    step: 1,
+    value: -2,
+    show: false,
+  });
+  const r2Input = slider(el, {
+    id: "r2",
+    label: "Second root:",
+    name: "Second root",
+    min: -6,
+    max: 6,
+    step: 1,
+    value: 3,
+    show: false,
+  });
+  const modeInput = chooser(el, {
+    id: "mode",
+    label: "Inequality:",
+    choices: [
+      { value: "gt", label: "f(x) > 0" },
+      { value: "ge", label: "f(x) ≥ 0" },
+      { value: "lt", label: "f(x) < 0" },
+      { value: "le", label: "f(x) ≤ 0" },
+    ],
+  });
+  // `chooser()` has no `name` option, so the longer accessible name the module
+  // carried is kept here.
+  modeInput.setAttribute("aria-label", "Inequality direction");
 
   function draw() {
     const r1 = Number(r1Input.value);
@@ -217,8 +233,5 @@ export function mount(el) {
     );
   }
 
-  r1Input.addEventListener("input", draw);
-  r2Input.addEventListener("input", draw);
-  modeInput.addEventListener("change", draw);
-  draw();
+  react([r1Input, r2Input, modeInput], draw);
 }

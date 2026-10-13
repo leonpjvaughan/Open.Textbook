@@ -19,7 +19,7 @@ export function mount(el) {
     height: 170,
   });
 
-  const massInput = slider(el, {
+  const massInput = slider(el, { show: false,
     id: "mass",
     label: "Mass (kg)",
     min: 0.5,
@@ -27,7 +27,7 @@ export function mount(el) {
     step: 0.1,
     value: 2,
   });
-  const heightInput = slider(el, {
+  const heightInput = slider(el, { show: false,
     id: "height",
     label: "Height (m)",
     min: 0.5,

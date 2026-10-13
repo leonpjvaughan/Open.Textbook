@@ -58,7 +58,7 @@ export function mount(el) {
   });
 
   const inputs = {
-    aMag: slider(el, {
+    aMag: slider(el, { show: false,
       id: "a-mag",
       label: "Force A, size in newtons",
       min: 0,
@@ -66,7 +66,7 @@ export function mount(el) {
       step: 0.5,
       value: 8,
     }),
-    aDir: slider(el, {
+    aDir: slider(el, { show: false,
       id: "a-dir",
       label: "Force A, direction in degrees",
       min: 0,
@@ -74,7 +74,7 @@ export function mount(el) {
       step: 5,
       value: 30,
     }),
-    bMag: slider(el, {
+    bMag: slider(el, { show: false,
       id: "b-mag",
       label: "Force B, size in newtons",
       min: 0,
@@ -82,7 +82,7 @@ export function mount(el) {
       step: 0.5,
       value: 8,
     }),
-    bDir: slider(el, {
+    bDir: slider(el, { show: false,
       id: "b-dir",
       label: "Force B, direction in degrees",
       min: 0,

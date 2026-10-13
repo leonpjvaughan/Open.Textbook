@@ -52,7 +52,7 @@ export function mount(el) {
     max: 640,
   });
 
-  const xbarInput = slider(el, {
+  const xbarInput = slider(el, { show: false,
     id: "xbar",
     label: "Sample mean",
     min: 494,
@@ -61,7 +61,7 @@ export function mount(el) {
     value: 497,
     format: (value) => value.toFixed(1),
   });
-  const sigmaInput = slider(el, {
+  const sigmaInput = slider(el, { show: false,
     id: "sigma",
     label: "Known standard deviation",
     min: 2,
@@ -70,7 +70,7 @@ export function mount(el) {
     value: 4,
     format: (value) => value.toFixed(1),
   });
-  const nInput = slider(el, {
+  const nInput = slider(el, { show: false,
     id: "n",
     label: "Sample size n",
     min: 4,

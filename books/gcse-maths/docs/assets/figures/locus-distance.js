@@ -5,29 +5,37 @@
 // explain why. One control changes the distance, and the readout reports what the
 // path is made of rather than stating the rule. Colours come from CSS classes, so
 // the figure adapts to every bundle and both schemes.
-export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <svg viewBox="0 0 500 320" width="100%" role="img"
-           aria-label="A straight wall with a dashed path around it: two parallel sides joined by a semi-circular end at each corner"></svg>
-      <label style="display:block;margin:.5rem 0 .3rem">
-        Distance from the wall:
-        <input class="gap" type="range" min="1" max="5" step="0.5" value="3"
-               aria-label="Distance from the wall in metres">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".gap");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label: "A straight wall with a dashed path around it: two parallel sides joined by a semi-circular end at each corner",
+    width: 500,
+    height: 320,
+    max: 520,
+  });
+
+  const gap = slider(el, {
+    id: "gap",
+    label: "Distance from the wall:",
+    name: "Distance from the wall in metres",
+    min: 1,
+    max: 5,
+    step: 0.5,
+    value: 3,
+    show: false,
+  });
 
   const A = { x: 160, y: 160 };
   const B = { x: 336, y: 160 };
   const PX_PER_METRE = 22;
 
-  function draw() {
-    const metres = Number(slider.value);
+  react(gap, () => {
+    const metres = Number(gap.value);
     const r = metres * PX_PER_METRE;
 
     // Two straight sides plus a semi-circular end about each endpoint. The arcs
@@ -55,8 +63,5 @@ export function mount(el) {
       `The wall is 8 m long. Every point on the dashed path is ${metres} m from ` +
       `the wall: the two straight sides stay ${metres} m away, and each end ` +
       `curves around the end of the wall as a semi-circle of radius ${metres} m.`;
-  }
-
-  slider.addEventListener("input", draw);
-  draw();
+  });
 }

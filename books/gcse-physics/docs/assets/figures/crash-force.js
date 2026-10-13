@@ -20,7 +20,7 @@ export function mount(el) {
     height: 170,
   });
 
-  const timeInput = slider(el, {
+  const timeInput = slider(el, { show: false,
     id: "time",
     label: "Collision time (s)",
     min: 0.05,

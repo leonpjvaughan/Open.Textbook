@@ -55,7 +55,7 @@ export function mount(el) {
   });
 
   const inputs = {
-    a1: slider(el, {
+    a1: slider(el, { show: false,
       id: "a1",
       label: "a across",
       min: -4,
@@ -63,7 +63,7 @@ export function mount(el) {
       step: 1,
       value: 3,
     }),
-    a2: slider(el, {
+    a2: slider(el, { show: false,
       id: "a2",
       label: "a up",
       min: -4,
@@ -71,7 +71,7 @@ export function mount(el) {
       step: 1,
       value: 4,
     }),
-    b1: slider(el, {
+    b1: slider(el, { show: false,
       id: "b1",
       label: "b across",
       min: -4,
@@ -79,7 +79,7 @@ export function mount(el) {
       step: 1,
       value: 4,
     }),
-    b2: slider(el, {
+    b2: slider(el, { show: false,
       id: "b2",
       label: "b up",
       min: -4,
@@ -87,7 +87,7 @@ export function mount(el) {
       step: 1,
       value: -3,
     }),
-    k: slider(el, {
+    k: slider(el, { show: false,
       id: "k",
       label: "scaler k",
       min: -2,

@@ -122,7 +122,7 @@ export function mount(el) {
   });
 
   const inputs = {
-    ax: slider(el, {
+    ax: slider(el, { show: false,
       id: "ax",
       label: "a across, in units",
       min: -4,
@@ -131,7 +131,7 @@ export function mount(el) {
       value: 3,
       format: num,
     }),
-    ay: slider(el, {
+    ay: slider(el, { show: false,
       id: "ay",
       label: "a up, in units",
       min: -4,
@@ -140,7 +140,7 @@ export function mount(el) {
       value: 4,
       format: num,
     }),
-    sx: slider(el, {
+    sx: slider(el, { show: false,
       id: "sx",
       label: "a starts, across",
       min: -5,
@@ -149,7 +149,7 @@ export function mount(el) {
       value: -1,
       format: num,
     }),
-    sy: slider(el, {
+    sy: slider(el, { show: false,
       id: "sy",
       label: "a starts, up",
       min: -5,
@@ -158,7 +158,7 @@ export function mount(el) {
       value: -3,
       format: num,
     }),
-    k: slider(el, {
+    k: slider(el, { show: false,
       id: "k",
       label: "the multiple k",
       min: -2,

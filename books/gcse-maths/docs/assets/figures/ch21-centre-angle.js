@@ -15,7 +15,7 @@ export function mount(el) {
     max: 520,
   });
 
-  const angle = slider(el, {
+  const angle = slider(el, { show: false,
     id: "angle",
     label: "Circumference angle",
     min: 10,

@@ -24,14 +24,14 @@ export function mount(el) {
     max: 620,
   });
 
-  const halfLife = slider(el, {
+  const halfLife = slider(el, { show: false,
     id: "half-life",
     label: "Half-life (hours)",
     min: 1,
     max: 20,
     value: 8,
   });
-  const activity = slider(el, {
+  const activity = slider(el, { show: false,
     id: "activity",
     label: "Starting activity (becquerels)",
     min: 100,
@@ -39,7 +39,7 @@ export function mount(el) {
     step: 50,
     value: 800,
   });
-  const time = slider(el, {
+  const time = slider(el, { show: false,
     id: "time",
     label: "Time (half-lives)",
     min: 0,

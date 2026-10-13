@@ -27,7 +27,7 @@ export function mount(el) {
     max: 620,
   });
 
-  const mSlider = slider(el, {
+  const mSlider = slider(el, { show: false,
     id: "m",
     label: "First bracket number",
     min: -6,
@@ -35,7 +35,7 @@ export function mount(el) {
     step: 1,
     value: 2,
   });
-  const nSlider = slider(el, {
+  const nSlider = slider(el, { show: false,
     id: "n",
     label: "Second bracket number",
     min: -6,

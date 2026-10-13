@@ -28,7 +28,7 @@ export function mount(el) {
     height: 230,
   });
 
-  const protonsInput = slider(el, {
+  const protonsInput = slider(el, { show: false,
     id: "protons",
     label: "Protons",
     min: 1,
@@ -36,7 +36,7 @@ export function mount(el) {
     step: 1,
     value: 3,
   });
-  const neutronsInput = slider(el, {
+  const neutronsInput = slider(el, { show: false,
     id: "neutrons",
     label: "Neutrons",
     min: 0,

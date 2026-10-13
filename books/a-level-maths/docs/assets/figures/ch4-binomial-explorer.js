@@ -2,6 +2,10 @@
 // triangle, and the term each one produces in (1 + x)^n.
 // Pure HTML and SVG, an ES module, no framework and no colour of its own: the
 // fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 function pascalRow(n) {
   const row = [1];
@@ -28,23 +32,31 @@ function expansionText(n) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <label>Power n
-        <input class="n" type="range" min="1" max="6" step="1" value="4">
-      </label>
-      <label>Term number r
-        <input class="r" type="range" min="0" max="4" step="1" value="2">
-      </label>
-      <svg viewBox="0 0 420 150" width="100%" role="img"
-           aria-label="A row of Pascal's triangle with one entry highlighted"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "A row of Pascal's triangle with one entry highlighted",
+    width: 420,
+    height: 150,
+    max: 560,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const nInput = el.querySelector(".n");
-  const rInput = el.querySelector(".r");
+  const nInput = slider(el, {
+    id: "n",
+    label: "Power n",
+    min: 1,
+    max: 6,
+    step: 1,
+    value: 4,
+    show: false,
+  });
+  const rInput = slider(el, {
+    id: "r",
+    label: "Term number r",
+    min: 0,
+    max: 4,
+    step: 1,
+    value: 2,
+    show: false,
+  });
 
   function update() {
     const n = Number(nInput.value);
@@ -93,7 +105,5 @@ export function mount(el) {
     );
   }
 
-  nInput.addEventListener("input", update);
-  rInput.addEventListener("input", update);
-  update();
+  react([nInput, rInput], update);
 }

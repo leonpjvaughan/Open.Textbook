@@ -23,7 +23,7 @@ export function mount(el) {
     height: 190,
   });
 
-  const massInput = slider(el, {
+  const massInput = slider(el, { show: false,
     id: "mass",
     label: "Mass (kg)",
     min: 0.2,
@@ -31,7 +31,7 @@ export function mount(el) {
     step: 0.1,
     value: 2.3,
   });
-  const volumeInput = slider(el, {
+  const volumeInput = slider(el, { show: false,
     id: "volume",
     label: "Volume (cm cubed)",
     min: 200,

@@ -23,7 +23,7 @@ export function mount(el) {
     max: 600,
   });
 
-  const wavelength = slider(el, {
+  const wavelength = slider(el, { show: false,
     id: "wavelength",
     label: "Wavelength (nanometres)",
     min: 400,
@@ -31,7 +31,7 @@ export function mount(el) {
     step: 10,
     value: 600,
   });
-  const density = slider(el, {
+  const density = slider(el, { show: false,
     id: "density",
     label: "Grating lines per millimetre",
     min: 100,

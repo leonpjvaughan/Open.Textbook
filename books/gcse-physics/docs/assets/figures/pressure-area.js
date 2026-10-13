@@ -5,26 +5,45 @@
 // cuts better than a blunt one. The reader sets the force and the contact area;
 // the figure shows the pressure in pascals.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-pressure-area" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 170" width="100%" role="img"
-           aria-label="A block pressing on the ground, with a contact area that widens or narrows as the area changes"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Force (N) <input class="force" type="range" min="100" max="1000" step="50" value="400"></label>
-        <label>Area (m&sup2;) <input class="area" type="range" min="0.05" max="0.50" step="0.05" value="0.20"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A block pressing on the ground, with a contact area that widens or narrows as the area changes",
+    width: 560,
+    height: 170,
+  });
+
+  const forceInput = slider(el, { show: false,
+    id: "force",
+    label: "Force (N)",
+    min: 100,
+    max: 1000,
+    step: 50,
+    value: 400,
+    show: false,
+  });
+  const areaInput = slider(el, { show: false,
+    id: "area",
+    label: "Area (m²)",
+    min: 0.05,
+    max: 0.5,
+    step: 0.05,
+    value: 0.2,
+    show: false,
+  });
+
   const CENTRE = 280;
   const GROUND = 120;
 
   function update() {
-    const force = Number(el.querySelector(".force").value);
-    const area = Number(el.querySelector(".area").value);
+    const force = Number(forceInput.value);
+    const area = Number(areaInput.value);
     const pressure = force / area;
 
     // The block is drawn wider for a larger contact area, so the reader can see
@@ -56,8 +75,5 @@ export function mount(el) {
       `<em>Keep the force at ${force} N and halve the area. What happens to the pressure?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([forceInput, areaInput], update);
 }

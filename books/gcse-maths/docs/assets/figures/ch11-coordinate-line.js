@@ -13,7 +13,7 @@ export function mount(el) {
     max: 520,
   });
 
-  const gradient = slider(el, {
+  const gradient = slider(el, { show: false,
     id: "gradient",
     label: "Gradient m",
     min: -3,
@@ -21,7 +21,7 @@ export function mount(el) {
     step: 1,
     value: 2,
   });
-  const intercept = slider(el, {
+  const intercept = slider(el, { show: false,
     id: "intercept",
     label: "Intercept c",
     min: -3,

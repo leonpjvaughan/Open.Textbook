@@ -46,14 +46,14 @@ export function mount(el) {
   });
 
   const inputs = {
-    u: slider(el, {
+    u: slider(el, { show: false,
       id: "u",
       label: "Initial velocity u, m/s",
       min: -10,
       max: 20,
       value: 4,
     }),
-    a: slider(el, {
+    a: slider(el, { show: false,
       id: "a",
       label: "Acceleration a, m/s squared",
       min: -5,
@@ -61,7 +61,7 @@ export function mount(el) {
       step: 0.5,
       value: 3,
     }),
-    t: slider(el, {
+    t: slider(el, { show: false,
       id: "t",
       label: "Time T, seconds",
       min: 1,

@@ -24,7 +24,7 @@ export function mount(el) {
     max: 620,
   });
 
-  const mass = slider(el, {
+  const mass = slider(el, { show: false,
     id: "mass",
     label: "Nucleon number",
     min: 1,

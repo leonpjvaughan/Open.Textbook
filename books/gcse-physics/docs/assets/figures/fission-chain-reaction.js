@@ -21,7 +21,7 @@ export function mount(el) {
     max: 620,
   });
 
-  const multiplyInput = slider(el, {
+  const multiplyInput = slider(el, { show: false,
     id: "multiply",
     label: "Neutrons from each fission that cause the next fission:",
     min: 0,

@@ -61,7 +61,7 @@ export function mount(el) {
     max: 600,
   });
 
-  const nInput = slider(el, {
+  const nInput = slider(el, { show: false,
     id: "n",
     label: "Sample size n",
     min: 5,

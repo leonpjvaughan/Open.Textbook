@@ -13,7 +13,7 @@ export function mount(el) {
     max: 560,
   });
 
-  const radius = slider(el, {
+  const radius = slider(el, { show: false,
     id: "radius",
     label: "Radius in units",
     min: 1,

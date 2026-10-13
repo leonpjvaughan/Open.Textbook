@@ -24,7 +24,7 @@ export function mount(el) {
     max: 600,
   });
 
-  const aSlider = slider(el, {
+  const aSlider = slider(el, { show: false,
     id: "a",
     label: "First number",
     min: 1,
@@ -32,7 +32,7 @@ export function mount(el) {
     step: 1,
     value: 3,
   });
-  const bSlider = slider(el, {
+  const bSlider = slider(el, { show: false,
     id: "b",
     label: "Second number",
     min: 1,

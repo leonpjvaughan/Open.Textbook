@@ -34,7 +34,7 @@ export function mount(el) {
     max: 680,
   });
 
-  const prevalence = slider(el, {
+  const prevalence = slider(el, { show: false,
     id: "prevalence",
     label: "How common the condition is",
     min: 1,
@@ -43,7 +43,7 @@ export function mount(el) {
     value: 5,
     format: (value) => `${(value / 10).toFixed(1)}%`,
   });
-  const fpr = slider(el, {
+  const fpr = slider(el, { show: false,
     id: "fpr",
     label: "False-positive rate",
     min: 1,

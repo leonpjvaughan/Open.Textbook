@@ -19,7 +19,7 @@ export function mount(el) {
     height: 240,
   });
 
-  const depthInput = slider(el, {
+  const depthInput = slider(el, { show: false,
     id: "depth",
     label: "Depth (m)",
     min: 10,
@@ -27,7 +27,7 @@ export function mount(el) {
     step: 5,
     value: 30,
   });
-  const speedInput = slider(el, {
+  const speedInput = slider(el, { show: false,
     id: "speed",
     label: "Speed of the wave (m/s)",
     min: 1000,
