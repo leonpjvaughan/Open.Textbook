@@ -55,6 +55,10 @@ SHARED_ASSETS: tuple[tuple[str, str], ...] = (
     ("stylesheets/settings.css", "assets/stylesheets/settings.css"),
     ("settings/settings.js", SETTINGS_WIDGET),
     ("figures/figures.js", "assets/figures/figures.js"),
+    # The shared scaffolding every figure imports. A symlink like the loader, for
+    # the same reason: one copy in `assets/`, and a book's `docs/` describes what
+    # it uses. Discovery skips both by name — see `SHARED_FIGURE_FILES`.
+    ("figures/kit.js", "assets/figures/kit.js"),
 )
 
 #: The three page kinds of a section, in the order a reader meets them.
@@ -74,6 +78,13 @@ PAGE_KINDS: tuple[tuple[str, str, str, str], ...] = (
     ("Guided problems", "guided-problems", "Practise with help", "practise-with-help"),
     ("Problems", "problems", "Practise", "practise"),
 )
+
+#: Files that live in a book's `docs/assets/figures/` but are not figures. The
+#: loader mounts a module by slug and the kit is imported by one, so neither is a
+#: slug a `:::figure` directive may name. One tuple, because four places need to
+#: agree: the directive's slug registry, the figure tests, the audit and the
+#: coverage table.
+SHARED_FIGURE_FILES: tuple[str, ...] = ("figures.js", "kit.js")
 
 STRAND_FILES = {
     "number": "number.md",

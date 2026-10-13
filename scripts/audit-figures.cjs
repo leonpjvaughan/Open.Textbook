@@ -67,6 +67,8 @@ const COLOUR_CLASSES = [
   "text-accent", "text-warn", "text-good", "text-ink",
 ];
 
+const SHARED_FIGURE_FILES = ["figures.js", "kit.js"];
+
 function bookDirs(repoRoot) {
   const base = path.join(repoRoot, "books");
   if (!fs.existsSync(base)) return [];
@@ -133,7 +135,7 @@ function markdownTables(report, siteDir) {
   for (const book of books) {
     if (!fs.existsSync(book.figures)) continue;
     for (const file of fs.readdirSync(book.figures)) {
-      if (!file.endsWith(".js") || file === "figures.js") continue;
+      if (!file.endsWith(".js") || SHARED_FIGURE_FILES.includes(file)) continue;
       owner.set(file.slice(0, -3), { book, file: path.join(book.figures, file) });
     }
   }

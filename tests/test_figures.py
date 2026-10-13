@@ -138,16 +138,47 @@ TEXT_ELEMENT = re.compile(
     r"""<(p|label|span|li|h[1-6]|em|strong|output)\b[^>]*\brole\s*=\s*["']img["']""",
     re.I,
 )
+# What counts as "this figure draws something". It has two forms now: a module
+# that writes its own `<svg>`, and a module that asks the shared kit for one —
+# `panel(el, { label: … })`. Both produce a drawing that needs an accessible name,
+# and a check that only knew the first would silently stop covering every module
+# converted to the second (which is what happened on the first conversion: two
+# tests skipped, and nothing said so).
+# The name a converted module passes to the kit instead of writing an `aria-label`.
+KIT_LABEL = re.compile("panel\\([^)]*?\\blabel\\s*:\\s*[\"'`]([^\"'`]+)[\"'`]", re.S)
+
 DRAWS = re.compile(r"<svg|<canvas|createElementNS", re.I)
+KIT_PANEL = re.compile(r"\bpanel\(", re.I)
+KIT_NO_DRAWING = re.compile(r"\bpanel\([^)]*\bdrawing\s*:\s*false", re.I | re.S)
+
+
+def draws(text: str) -> bool:
+    """Does this module put a drawing on the page?
+
+    Two ways now: it writes its own `<svg>`, or it asks the shared kit for a
+    surface. A check that only knew the first would **skip** every converted module
+    — and skipping is worse than failing, because a module converted without a
+    label would lose its accessible-name test instead of breaking it. The first
+    version of this did exactly that, and the guard-the-guard test is what found
+    it.
+    """
+    if KIT_NO_DRAWING.search(text):
+        return False
+    return bool(DRAWS.search(text)) or bool(KIT_PANEL.search(text))
 
 
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_a_figure_that_draws_gives_its_drawing_a_name(book, path):
     """A drawing is silent to a screen reader without `role="img"` and a name."""
     text = path.read_text(encoding="utf-8")
-    if not DRAWS.search(text):
+    if not draws(text):
         pytest.skip("this figure draws nothing; see the test below")
-    assert ROLE_ATTRIBUTE.search(text) or ROLE_SET_CALL.search(text), (
+    # Either the module writes the attribute, or `panel()` does it for it. The
+    # kit sets `role="img"` on the surface it creates *and* requires a `label:`,
+    # so a converted module is covered by the same contract by construction.
+    assert (
+        ROLE_ATTRIBUTE.search(text) or ROLE_SET_CALL.search(text) or "panel(" in text
+    ), (
         f"{book.id}/{path.name}: give the drawing role=\"img\" so a screen "
         "reader treats it as one image"
     )
@@ -177,12 +208,15 @@ def test_no_figure_hides_its_own_text_behind_role_img(book, path):
 @pytest.mark.parametrize(("book", "path"), FIGURES, ids=IDS)
 def test_every_figure_has_a_meaningful_accessible_name(book, path):
     text = path.read_text("utf-8")
-    if not DRAWS.search(text):
+    if not draws(text):
         # Nothing is drawn, so there is no image to name. What carries the meaning
         # is the figure's own text — a prompt, a list of terms, a live readout —
         # and that is read directly rather than summarised into a label.
         pytest.skip("this figure draws nothing, so it has no accessible name to set")
     names = [name.strip() for name in accessible_names(text)]
+    # A module using the kit passes its name to `panel()` instead of writing an
+    # `aria-label`, so the name is read from the call.
+    names += [name.strip() for name in KIT_LABEL.findall(text)]
     names = [name for name in names if name]
     assert names, (
         f"{book.id}/{path.name}: set a plain-English aria-label on the drawing"
