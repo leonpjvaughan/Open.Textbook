@@ -1,0 +1,35 @@
+# Provenance for every curriculum claim in this book.
+#
+# This is a tracked build input: it is what the chapter plan and the tier split rest
+# on, so it belongs with the content. The fetched artefacts (PDFs and extracted
+# text) are bulky and regenerable, so they live outside the build tree in
+# research/sources/<book>/ and are git-ignored.
+#
+#   scripts/fetch_sources.sh <book>
+#
+# Retrieved: 2026-10-13. Read alongside research/curriculum/ie-curriculum.md, which
+# records what each document says and which ones are superseded.
+
+references:
+  - id: ncca-lc-maths
+    attribution: true
+    title: "Leaving Certificate Mathematics syllabus, for examination from 2015"
+    url: https://www.curriculumonline.ie/getmedia/f6f2e822-2b0c-461e-bcd4-dfcde6decc0c/SCSEC25_Maths_syllabus_examination-2015_English.pdf
+    role: >-
+      Primary curriculum. Five strands; Foundation, Ordinary and Higher level, with
+      the levels nested. Section B is the shared course "Geometry for Post-primary
+      School Mathematics" — axioms, theorems, corollaries and 22 constructions.
+
+  - id: sec
+    title: "State Examinations Commission"
+    url: https://www.examinations.ie/
+    role: >-
+      Two papers at Ordinary and Higher level, each with Section A (core) and
+      Section B (context-based applications); one written paper at Foundation level.
+      Its past-paper archive is behind a bot challenge and could not be read while
+      planning this book.
+
+downloads:
+  - file: SCSEC25_Maths_syllabus_examination-2015_English.pdf
+    url: https://www.curriculumonline.ie/getmedia/f6f2e822-2b0c-461e-bcd4-dfcde6decc0c/SCSEC25_Maths_syllabus_examination-2015_English.pdf
+    text: true

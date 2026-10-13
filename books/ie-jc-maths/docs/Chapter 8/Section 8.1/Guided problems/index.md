@@ -1,0 +1,18 @@
+---
+title: 8.1 Sets and set notation — Practise with help
+chapter: 8
+chapter_title: Sets
+section: '8.1'
+section_title: Sets and set notation
+tier: O
+refs:
+- N.5
+kind: guided-problems
+---
+
+<!-- scaffold:stub -->
+
+# 8.1 Sets and set notation — Practise with help
+
+> **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
+> Tier: **O** · DfE refs: N.5

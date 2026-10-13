@@ -1,0 +1,51 @@
+# Identity and build metadata for this book.
+#
+# Leaving Certificate Physics, following the specification introduced for fifth year
+# students in September 2025. That specification replaces the syllabus whose last
+# examination was June 2026, so the superseded document is not what this book
+# teaches — see research/curriculum/ie-curriculum.md §2.
+#
+# 40% of the assessment is a Physics In Practice Investigation on a common SEC brief;
+# 60% is a written examination at Higher or Ordinary level. The weighting is the
+# reason this book carries a strand on investigation in its own right rather than
+# leaving experiments to the end of each chapter.
+
+id: ie-lc-physics
+title: Leaving Certificate Physics
+qualification: Leaving Certificate
+subject: Physics
+order: 3
+description: >-
+  A complete, interactive Leaving Certificate Physics book for Ireland, covering
+  Ordinary and Higher level, including the Physics In Practice Investigation.
+
+boards: [SEC]
+
+profiles:
+  - id: higher
+    name: Higher
+    tier_filter: H
+    default: true
+  - id: ordinary
+    name: Ordinary
+    tier_filter: O
+
+tier_axis:
+  O: Ordinary and Higher
+  H: Higher only
+
+oracles: [sympy]
+
+theme:
+  light:
+    accent: "#0b6e8f"
+    accent_light: "#1a8bab"
+    accent_dark: "#08576f"
+  dark:
+    accent: "#67d4f0"
+    accent_light: "#8ee3f7"
+    accent_dark: "#1a8bab"
+
+curriculum: curriculum.yaml
+banks: problems
+sources: sources.yaml

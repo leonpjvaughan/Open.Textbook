@@ -49,6 +49,24 @@ meta:
   awarding_bodies: [AQA 8463, Pearson Edexcel 1PH0, OCR J249, OCR J259]
   tiers: [Foundation, Higher]
   retrieved: 2026-10-11
+  # Where this book is for, the word that jurisdiction uses for its levels, and who
+  # publishes the curriculum it follows. The About page reads all four, so a new
+  # book states them rather than inheriting a default that would be another
+  # country's.
+  level_word: tier
+  curriculum_body: Department for Education
+  # Who owns the specification and who examines it. England's awarding bodies do
+  # both, so this names them.
+  specification_note: >-
+    The specification content, and any wording taken from a specification, belongs
+    to the awarding bodies. AQA, Pearson Edexcel and OCR publish the specifications
+    this book follows.
+  curriculum_licence:
+    name: Open Government Licence v3.0
+    url: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+    # What the material is, in the words the licence uses. Data, because a
+    # second jurisdiction will not call it Crown copyright.
+    notice: Crown copyright
   note: >-
     The DfE subject content for GCSE physics is an unnumbered bullet list, so the
     coverage references are this book's index of the DfE's named topic headings,
@@ -87,94 +105,94 @@ chapters:
     strand: energy
     summary: Energy stores and transfers, the equations that quantify them, conservation and dissipation, and the energy resources used on Earth.
     sections:
-      - {id: "1.1", title: "Energy stores and transfers", tier: F, dfe: [EN1]}
-      - {id: "1.2", title: "Conservation, dissipation and energy resources", tier: F, dfe: [EN2]}
+      - {id: "1.1", title: "Energy stores and transfers", tier: F, refs: [EN1]}
+      - {id: "1.2", title: "Conservation, dissipation and energy resources", tier: F, refs: [EN2]}
 
   - id: 2
     title: Forces and their interactions
     strand: forces
     summary: How forces interact, elasticity, work done, pressure in fluids, and moments, levers and gears.
     sections:
-      - {id: "2.1", title: "Forces and their interactions", tier: F, dfe: [FO1]}
-      - {id: "2.2", title: "Forces and elasticity", tier: F, dfe: [FO1]}
-      - {id: "2.3", title: "Work done and energy transfer", tier: F, dfe: [FO2]}
-      - {id: "2.4", title: "Pressure and pressure differences in fluids", tier: F, dfe: [FO3]}
-      - {id: "2.5", title: "Moments, levers and gears", tier: F, dfe: [FO4]}
+      - {id: "2.1", title: "Forces and their interactions", tier: F, refs: [FO1]}
+      - {id: "2.2", title: "Forces and elasticity", tier: F, refs: [FO1]}
+      - {id: "2.3", title: "Work done and energy transfer", tier: F, refs: [FO2]}
+      - {id: "2.4", title: "Pressure and pressure differences in fluids", tier: F, refs: [FO3]}
+      - {id: "2.5", title: "Moments, levers and gears", tier: F, refs: [FO4]}
 
   - id: 3
     title: Forces and motion
     strand: forces
     summary: Speed, velocity and motion graphs, Newton's laws, momentum, and the forces involved in road safety.
     sections:
-      - {id: "3.1", title: "Speed, velocity and motion graphs", tier: F, dfe: [FO5]}
-      - {id: "3.2", title: "Forces, acceleration and Newton's laws of motion", tier: F, dfe: [FO6]}
-      - {id: "3.3", title: "Safety in public transport", tier: F, dfe: [FO7]}
-      - {id: "3.4", title: "Momentum", tier: H, dfe: [FO6]}
+      - {id: "3.1", title: "Speed, velocity and motion graphs", tier: F, refs: [FO5]}
+      - {id: "3.2", title: "Forces, acceleration and Newton's laws of motion", tier: F, refs: [FO6]}
+      - {id: "3.3", title: "Safety in public transport", tier: F, refs: [FO7]}
+      - {id: "3.4", title: "Momentum", tier: H, refs: [FO6]}
 
   - id: 4
     title: Waves in matter
     strand: waves
     summary: Wave motion, the wave equation, sound, and the use of waves to explore structures.
     sections:
-      - {id: "4.1", title: "Waves in air, fluids and solids", tier: F, dfe: [WA1]}
-      - {id: "4.2", title: "Sound waves and waves for detection and exploration", tier: H, dfe: [WA1]}
-      - {id: "4.3", title: "Waves at material interfaces", tier: F, dfe: [WA2]}
+      - {id: "4.1", title: "Waves in air, fluids and solids", tier: F, refs: [WA1]}
+      - {id: "4.2", title: "Sound waves and waves for detection and exploration", tier: H, refs: [WA1]}
+      - {id: "4.3", title: "Waves at material interfaces", tier: F, refs: [WA2]}
 
   - id: 5
     title: Light and electromagnetic waves
     strand: waves
     summary: The electromagnetic spectrum, how electromagnetic radiation interacts with matter, lenses, colour, and black body radiation.
     sections:
-      - {id: "5.1", title: "The electromagnetic spectrum", tier: F, dfe: [WA3]}
-      - {id: "5.2", title: "Interactions of electromagnetic radiation with matter", tier: F, dfe: [WA4]}
-      - {id: "5.3", title: "Lenses and ray diagrams", tier: F, dfe: [WA5]}
-      - {id: "5.4", title: "Colour and frequency", tier: F, dfe: [WA6]}
-      - {id: "5.5", title: "Black body radiation", tier: F, dfe: [WA7]}
+      - {id: "5.1", title: "The electromagnetic spectrum", tier: F, refs: [WA3]}
+      - {id: "5.2", title: "Interactions of electromagnetic radiation with matter", tier: F, refs: [WA4]}
+      - {id: "5.3", title: "Lenses and ray diagrams", tier: F, refs: [WA5]}
+      - {id: "5.4", title: "Colour and frequency", tier: F, refs: [WA6]}
+      - {id: "5.5", title: "Black body radiation", tier: F, refs: [WA7]}
 
   - id: 6
     title: Electricity
     strand: electricity
     summary: Current, potential difference and resistance, series and parallel circuits, domestic supply and safety, energy transfers and the national grid, and static electricity.
     sections:
-      - {id: "6.1", title: "Current, potential difference and resistance", tier: F, dfe: [EL1]}
-      - {id: "6.2", title: "Series and parallel circuits", tier: F, dfe: [EL2]}
-      - {id: "6.3", title: "Domestic uses and safety", tier: F, dfe: [EL3]}
-      - {id: "6.4", title: "Energy transfers and the national grid", tier: F, dfe: [EL4]}
-      - {id: "6.5", title: "Static electricity and electric fields", tier: F, dfe: [EL5]}
+      - {id: "6.1", title: "Current, potential difference and resistance", tier: F, refs: [EL1]}
+      - {id: "6.2", title: "Series and parallel circuits", tier: F, refs: [EL2]}
+      - {id: "6.3", title: "Domestic uses and safety", tier: F, refs: [EL3]}
+      - {id: "6.4", title: "Energy transfers and the national grid", tier: F, refs: [EL4]}
+      - {id: "6.5", title: "Static electricity and electric fields", tier: F, refs: [EL5]}
 
   - id: 7
     title: Magnetism and electromagnetism
     strand: magnetism
     summary: Permanent and induced magnetism, the magnetic effect of a current and the motor effect, electromagnetic induction and transformers, and microphones and loudspeakers.
     sections:
-      - {id: "7.1", title: "Permanent and induced magnetism, magnetic forces and fields", tier: F, dfe: [MG1]}
-      - {id: "7.2", title: "Magnetic effects of currents and the motor effect", tier: F, dfe: [MG2]}
-      - {id: "7.3", title: "Induced potential, transformers and the national grid", tier: H, dfe: [MG3]}
-      - {id: "7.4", title: "Microphones and speakers", tier: H, dfe: [MG4]}
+      - {id: "7.1", title: "Permanent and induced magnetism, magnetic forces and fields", tier: F, refs: [MG1]}
+      - {id: "7.2", title: "Magnetic effects of currents and the motor effect", tier: F, refs: [MG2]}
+      - {id: "7.3", title: "Induced potential, transformers and the national grid", tier: H, refs: [MG3]}
+      - {id: "7.4", title: "Microphones and speakers", tier: H, refs: [MG4]}
 
   - id: 8
     title: Particle model of matter
     strand: particles
     summary: Changes of state, internal energy and specific heat capacity, and the particle model of gas pressure.
     sections:
-      - {id: "8.1", title: "Changes of state and the particle model", tier: F, dfe: [PM1]}
-      - {id: "8.2", title: "Internal energy, energy transfers and particle motions", tier: F, dfe: [PM2]}
-      - {id: "8.3", title: "Particle model and pressure", tier: F, dfe: [PM3]}
+      - {id: "8.1", title: "Changes of state and the particle model", tier: F, refs: [PM1]}
+      - {id: "8.2", title: "Internal energy, energy transfers and particle motions", tier: F, refs: [PM2]}
+      - {id: "8.3", title: "Particle model and pressure", tier: F, refs: [PM3]}
 
   - id: 9
     title: Atomic structure
     strand: atoms
     summary: Atoms and isotopes, radioactive decay, the hazards and uses of ionising radiation, and nuclear fission and fusion.
     sections:
-      - {id: "9.1", title: "Nuclear atom and isotopes", tier: F, dfe: [AT1]}
-      - {id: "9.2", title: "Atoms and nuclear radiation", tier: F, dfe: [AT2]}
-      - {id: "9.3", title: "Hazards and uses of radioactive emissions and background radiation", tier: F, dfe: [AT3]}
-      - {id: "9.4", title: "Nuclear fission and fusion", tier: F, dfe: [AT4]}
+      - {id: "9.1", title: "Nuclear atom and isotopes", tier: F, refs: [AT1]}
+      - {id: "9.2", title: "Atoms and nuclear radiation", tier: F, refs: [AT2]}
+      - {id: "9.3", title: "Hazards and uses of radioactive emissions and background radiation", tier: F, refs: [AT3]}
+      - {id: "9.4", title: "Nuclear fission and fusion", tier: F, refs: [AT4]}
 
   - id: 10
     title: Space physics
     strand: space
     summary: The solar system, orbital motion and satellites, red-shift and the evidence for an expanding universe.
     sections:
-      - {id: "10.1", title: "The solar system and orbits", tier: F, dfe: [SP1]}
-      - {id: "10.2", title: "Red-shift and the Big Bang", tier: F, dfe: [SP2]}
+      - {id: "10.1", title: "The solar system and orbits", tier: F, refs: [SP1]}
+      - {id: "10.2", title: "Red-shift and the Big Bang", tier: F, refs: [SP2]}

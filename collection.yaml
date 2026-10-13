@@ -61,6 +61,17 @@ qualifications:
   - id: A-level
     title: A level
     note: Full A-level courses.
+  # The Irish qualifications. A qualification is a group on the landing page and a
+  # label on a card; it carries no tier behaviour of its own. The levels differ by
+  # jurisdiction — Foundation/Higher in England, Ordinary/Higher in Ireland, and
+  # Foundation/Ordinary/Higher for Leaving Certificate Mathematics — so each book
+  # declares its own axis in `book.yaml` and nothing here assumes one.
+  - id: Junior Cycle
+    title: Junior Cycle
+    note: The Irish lower secondary programme. Ordinary and Higher level.
+  - id: Leaving Certificate
+    title: Leaving Certificate
+    note: The Irish upper secondary programme. Ordinary and Higher level, and Foundation level in Mathematics.
   # Not a qualification. Proofs are not taught by one course or examined by one
   # board, and a proof book belongs to no subject — so it needs a group of its own
   # rather than being filed under one of the courses that links to it.

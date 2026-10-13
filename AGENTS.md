@@ -149,6 +149,40 @@ Do not overclaim. The synthesis says its causal evidence is mostly US, secondary
 science or early-secondary maths, and that effects are not a ranking of methods;
 keep claims to what the briefing supports. See `research/pedagogy.md`.
 
+## The Irish books
+
+Four books, added 2026-10-13, published under the `Junior Cycle` and
+`Leaving Certificate` qualifications in `collection.yaml`:
+
+| Book | Levels | Notes |
+|---|---|---|
+| `ie-jc-maths` | Ordinary, Higher | One two-hour paper; two Classroom-Based Assessments |
+| `ie-lc-maths` | **Foundation, Ordinary, Higher** | Three nested levels — the only book with three |
+| `ie-lc-applied-maths` | Ordinary, Higher | Networks and dynamics; 20% modelling project |
+| `ie-lc-physics` | Ordinary, Higher | **40% is an investigation**, not a written paper |
+
+Three things about them are not like the English books and are worth knowing before
+touching one.
+
+- **The tier axis is ordered and may have more than two codes.** `tier_axis` is a
+  list, lowest level first: `F`/`H` in England, `O`/`H` in Ireland, and
+  `F`/`O`/`H` for Leaving Certificate Mathematics. A profile's `tier_filter` is the
+  tier code it builds, and a build includes **every level at or below its own**. A
+  filter that names neither a tier code nor `all`/`toggle` now raises: it used to
+  fall through to "include everything", so a typo shipped higher-only pages to the
+  lower-tier reader and the build stayed green.
+- **A section's references are `refs:`, not `dfe:`.** The Irish documents are the
+  NCCA specifications, and the reference names the learning outcome or the strand.
+  The field is neutral because it points at a different document per jurisdiction.
+- **The Unifying strand is not a strand of chapters.** Junior Cycle Mathematics and
+  Leaving Certificate Physics each have one — a set of processes, not content. It is
+  delivered by the chapter formula and referenced from the sections that exercise
+  it, never turned into a chapter that would misrepresent it.
+
+`research/curriculum/ie-curriculum.md` holds the evidence: what each specification
+says, which Physics specification is current and why, and where the content
+overlaps what the collection already had.
+
 ## Repository map
 
 Every top-level directory is listed, so nothing in the tree is a surprise. The
@@ -162,6 +196,7 @@ per-book layout is in `books/AGENTS.md`.
 | `themes/`, `books/`, `books/AGENTS.md`, `books/gcse-maths/`, `books/gcse-maths/AGENTS.md` | bundles; the books and their rules |
 | `books/a-level-maths/`, `books/a-level-maths/AGENTS.md` | the A-level Mathematics book and its rules |
 | `books/gcse-physics/`, `books/gcse-physics/AGENTS.md`, `books/a-level-physics/`, `books/a-level-physics/AGENTS.md` | the two physics books and their rules |
+| `books/ie-jc-maths/`, `books/ie-lc-maths/`, `books/ie-lc-applied-maths/`, `books/ie-lc-physics/` | the four Irish books |
 | `research/`, `research/AGENTS.md`, `scripts/`, `scripts/AGENTS.md`, `tests/`, `tests/AGENTS.md`, `test/`, `deploy/`, `deploy/AGENTS.md`, `.github/`, `.github/AGENTS.md`, `.claude/`, `.serena/` | corpus, scripts, tests, deploy, CI |
 | `.agents/`, `.agents/skills/`, `.agents/prompts/`, `.agents/planning/` | agent context: the portable skills; the chapter and review prompts the launch scripts feed to sub-agents; the dated planning record; `.agents/todo.md`; `.agents/chapter-brief.md` |
 

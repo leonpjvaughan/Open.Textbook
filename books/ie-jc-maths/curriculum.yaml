@@ -1,0 +1,382 @@
+# Junior Cycle Mathematics (Ireland) — chapter and section plan
+#
+# Source of truth for the docs scaffold and for per-chapter authoring briefs.
+#
+# Tier: O = Ordinary and Higher level; H = Higher level only.
+# refs: the NCCA learning outcome, as printed in the specification. The document is
+#       JC_Mathematics_Specification.pdf (2018). Outcomes are numbered within each
+#       strand, and the assessment guidelines are Assessment_Guidelines_Mathematics.pdf.
+#
+# The Unifying strand (U.1–U.13) is NOT a strand of chapters. It is the set of
+# mathematical processes — understanding, communicating, applying and problem
+# solving, reasoning, connecting — that the other four strands are taught through.
+# Making it a chapter would misrepresent it, so it is delivered by the chapter
+# formula itself (P1–P6) and referenced from the sections that exercise it.
+#
+# Assessment: two Classroom-Based Assessments at common level, an Assessment Task
+# worth 10% of the SEC grade, and one two-hour written paper in June of third year.
+# Any year examines a SAMPLE of the outcomes, so no outcome may be skipped.
+#
+# See research/curriculum/ie-curriculum.md §4.
+
+meta:
+  title: Junior Cycle Mathematics
+  jurisdiction: Ireland
+  awarding_bodies: [SEC]
+  tiers: [Ordinary, Higher]
+  retrieved: 2026-10-13
+  # Where this book is for, the word that jurisdiction uses for its levels, and who
+  # publishes the curriculum it follows. Ireland calls its levels levels, not tiers.
+  #
+  # There is no `curriculum_licence`: the NCCA's re-use terms could not be read while
+  # this book was planned (ncca.ie is behind a bot challenge), and a licence claim
+  # that has not been verified must not be written. The About page says the material
+  # belongs to the NCCA and is referred to rather than reproduced.
+  level_word: level
+  curriculum_body: National Council for Curriculum and Assessment (NCCA)
+  # Who owns the specification and who examines it. In Ireland these are two
+  # different bodies — the NCCA writes the specification, the SEC sets and marks the
+  # examination — so this cannot be composed from the awarding bodies.
+  specification_note: >-
+    The specification content, and any wording taken from a specification, belongs
+    to the National Council for Curriculum and Assessment, which publishes it. The
+    State Examinations Commission sets and marks the examinations.
+  note: >-
+    The final examination is a single two-hour paper. The Classroom-Based
+    Assessments and the Assessment Task are school-assessed and are described
+    rather than drilled.
+
+# Coverage: the four content strands. The Unifying strand is deliberately absent —
+# it is process, not content, and has no item that a section can "deliver". The
+# chapter formula delivers it.
+coverage:
+  - prefix: "N."
+    strand: number
+    items: 5
+  - prefix: "GT."
+    strand: geometry-trigonometry
+    items: 6
+  - prefix: "AF."
+    strand: algebra-functions
+    items: 7
+  - prefix: "SP."
+    strand: statistics-probability
+    items: 3
+
+strands:
+  - id: number
+    title: Number
+  - id: geometry-trigonometry
+    title: Geometry and Trigonometry
+  - id: algebra-functions
+    title: Algebra and Functions
+  - id: statistics-probability
+    title: Statistics and Probability
+
+chapters:
+  - id: 1
+    title: Number systems and the four operations
+    strand: number
+    summary: >-
+      The number systems, the four operations on them, and the properties those
+      operations obey.
+    anchor:
+      title: The class trip budget
+      brief: >-
+        Your year group is planning a trip. You will work with the numbers on the
+        quotes — totals, deposits, per-person shares and a few negative balances —
+        and by the end of the chapter you can say what the trip really costs and
+        whether the money works out.
+    application: Budgets, quotes, invoices, and any calculation you check twice.
+    relevance_prompt: Where in your own week do you use a negative number, or need to be sure a total is right?
+    sections:
+      - {id: "1.1", title: "The number systems ℕ, ℤ and ℚ", tier: O, refs: ["N.1"]}
+      - {id: "1.2", title: "Adding and subtracting integers", tier: O, refs: ["N.1"]}
+      - {id: "1.3", title: "Multiplying and dividing integers", tier: O, refs: ["N.1"]}
+      - {id: "1.4", title: "The order of operations and brackets", tier: O, refs: ["N.1"]}
+      - {id: "1.5", title: "Commutative, associative and distributive properties", tier: O, refs: ["N.1"]}
+      - {id: "1.6", title: "Surds and irrational numbers", tier: H, refs: ["N.1"]}
+
+  - id: 2
+    title: Powers and index laws
+    strand: number
+    summary: Index form, the laws of indices, and roots as fractional powers.
+    sections:
+      - {id: "2.1", title: "Index form and powers", tier: O, refs: ["N.1"]}
+      - {id: "2.2", title: "The laws of indices", tier: O, refs: ["N.1"]}
+      - {id: "2.3", title: "Zero and negative indices", tier: O, refs: ["N.1"]}
+      - {id: "2.4", title: "Fractional indices and roots", tier: O, refs: ["N.1"]}
+
+  - id: 3
+    title: Factors, multiples and primes
+    strand: number
+    summary: Divisibility, prime factorisation, the highest common factor and the lowest common multiple.
+    sections:
+      - {id: "3.1", title: "Factors, multiples and divisibility", tier: O, refs: ["N.1"]}
+      - {id: "3.2", title: "Prime numbers and prime factorisation", tier: O, refs: ["N.1"]}
+      - {id: "3.3", title: "The highest common factor and the lowest common multiple", tier: O, refs: ["N.1"]}
+
+  - id: 4
+    title: Accuracy and standard form
+    strand: number
+    summary: Rounding to a required degree of accuracy, and writing very large and very small numbers in index form.
+    sections:
+      - {id: "4.1", title: "Rounding and significant figures", tier: O, refs: ["N.1"]}
+      - {id: "4.2", title: "Estimating and checking a result", tier: O, refs: ["N.1"]}
+      - {id: "4.3", title: "Standard form", tier: O, refs: ["N.1"]}
+
+  - id: 5
+    title: Fractions, decimals and percentages
+    strand: number
+    summary: Moving fluently between the three forms, and the four operations on fractions.
+    sections:
+      - {id: "5.1", title: "Equivalent fractions and ordering", tier: O, refs: ["N.2"]}
+      - {id: "5.2", title: "Adding and subtracting fractions", tier: O, refs: ["N.2"]}
+      - {id: "5.3", title: "Multiplying and dividing fractions", tier: O, refs: ["N.2"]}
+      - {id: "5.4", title: "Fractions, decimals and percentages", tier: O, refs: ["N.2"]}
+      - {id: "5.5", title: "Percentage increase and decrease", tier: O, refs: ["N.2"]}
+
+  - id: 6
+    title: Ratio, proportion and rates
+    strand: number
+    summary: Ratio notation and sharing, direct and inverse proportion, and the rates met in everyday life.
+    sections:
+      - {id: "6.1", title: "Ratio notation and simplifying", tier: O, refs: ["N.2"]}
+      - {id: "6.2", title: "Dividing a quantity in a given ratio", tier: O, refs: ["N.2"]}
+      - {id: "6.3", title: "Direct proportion", tier: O, refs: ["N.3"]}
+      - {id: "6.4", title: "Inverse proportion", tier: O, refs: ["N.3"]}
+      - {id: "6.5", title: "Absolute and relative comparison", tier: O, refs: ["N.3"]}
+      - {id: "6.6", title: "Speed, distance and time", tier: O, refs: ["N.3"]}
+
+  - id: 7
+    title: Money and financial mathematics
+    strand: number
+    summary: Bills, VAT, profit and loss, mark-up and margin, income tax, net pay, and compound interest.
+    anchor:
+      title: The first payslip
+      brief: >-
+        You will take a gross wage and work all the way down to what actually
+        reaches a bank account — deductions, tax, and the difference between
+        mark-up and margin on the way. By the end of the chapter you can read a
+        payslip and say where each figure came from.
+    application: Payslips, bills, savings, borrowing and buying.
+    relevance_prompt: Where would understanding interest or a payslip help you or someone you know in the next two years?
+    sections:
+      - {id: "7.1", title: "Profit, loss and percentage profit", tier: O, refs: ["N.2"]}
+      - {id: "7.2", title: "Mark-up and margin", tier: O, refs: ["N.2"]}
+      - {id: "7.3", title: "VAT and bills", tier: O, refs: ["N.2"]}
+      - {id: "7.4", title: "Income tax and net pay", tier: O, refs: ["N.2"]}
+      - {id: "7.5", title: "Simple and compound interest", tier: O, refs: ["N.2"]}
+      - {id: "7.6", title: "Value for money and comparing offers", tier: O, refs: ["N.2"]}
+      - {id: "7.7", title: "Currency conversion", tier: O, refs: ["N.3"]}
+
+  - id: 8
+    title: Sets
+    strand: number
+    summary: Sets as well-defined collections, set notation, Venn diagrams, and the algebra of set operations.
+    sections:
+      - {id: "8.1", title: "Sets and set notation", tier: O, refs: ["N.5"]}
+      - {id: "8.2", title: "Subsets, the universal set and the null set", tier: O, refs: ["N.5"]}
+      - {id: "8.3", title: "Intersection, union and set difference", tier: O, refs: ["N.5"]}
+      - {id: "8.4", title: "Venn diagrams with two and three sets", tier: O, refs: ["N.5"]}
+      - {id: "8.5", title: "Order of operations on sets", tier: O, refs: ["N.5"]}
+      - {id: "8.6", title: "Commutative and associative set operations", tier: H, refs: ["N.5"]}
+
+  - id: 9
+    title: Patterns and sequences
+    strand: algebra-functions
+    summary: Numerical patterns in tables and graphs, generalised expressions, and telling linear, quadratic and exponential patterns apart.
+    sections:
+      - {id: "9.1", title: "Repeating patterns and tables", tier: O, refs: ["N.4", "AF.1"]}
+      - {id: "9.2", title: "The general term of a linear pattern", tier: O, refs: ["AF.1"]}
+      - {id: "9.3", title: "Quadratic patterns and their general term", tier: O, refs: ["AF.1"]}
+      - {id: "9.4", title: "Linear, quadratic and exponential growth", tier: O, refs: ["AF.1"]}
+      - {id: "9.5", title: "Converting between representations", tier: O, refs: ["AF.1"]}
+
+  - id: 10
+    title: Expressions and substitution
+    strand: algebra-functions
+    summary: Letters standing for numbers, evaluating expressions, and using equality to build equations.
+    sections:
+      - {id: "10.1", title: "Generating and interpreting expressions", tier: O, refs: ["AF.2"]}
+      - {id: "10.2", title: "Substituting values into expressions", tier: O, refs: ["AF.2"]}
+      - {id: "10.3", title: "Equality and the meaning of an equation", tier: O, refs: ["AF.2"]}
+
+  - id: 11
+    title: Expanding, factorising and simplifying
+    strand: algebra-functions
+    summary: Equivalent expressions — adding, multiplying, dividing, expanding and factorising.
+    sections:
+      - {id: "11.1", title: "Adding and subtracting algebraic expressions", tier: O, refs: ["AF.3"]}
+      - {id: "11.2", title: "Multiplying out a single bracket", tier: O, refs: ["AF.3"]}
+      - {id: "11.3", title: "Multiplying two brackets", tier: O, refs: ["AF.3"]}
+      - {id: "11.4", title: "Common factors and factorising", tier: O, refs: ["AF.3"]}
+      - {id: "11.5", title: "Factorising quadratic expressions", tier: O, refs: ["AF.3"]}
+      - {id: "11.6", title: "The difference of two squares", tier: O, refs: ["AF.3"]}
+      - {id: "11.7", title: "Dividing a cubic or quadratic by a linear expression", tier: H, refs: ["AF.3"]}
+
+  - id: 12
+    title: Equations and inequalities
+    strand: algebra-functions
+    summary: Solving linear equations and inequalities, and choosing a method that fits the problem.
+    sections:
+      - {id: "12.1", title: "Solving linear equations", tier: O, refs: ["AF.4"]}
+      - {id: "12.2", title: "Equations with brackets and fractions", tier: O, refs: ["AF.4"]}
+      - {id: "12.3", title: "Simultaneous equations by substitution", tier: O, refs: ["AF.4"]}
+      - {id: "12.4", title: "Simultaneous equations by elimination", tier: O, refs: ["AF.4"]}
+      - {id: "12.5", title: "Linear inequalities", tier: O, refs: ["AF.4"]}
+      - {id: "12.6", title: "Graphing the solution set of an inequality", tier: O, refs: ["AF.4"]}
+      - {id: "12.7", title: "Choosing a method: graphic, numeric or algebraic", tier: O, refs: ["AF.4"]}
+
+  - id: 13
+    title: Formulae
+    strand: algebra-functions
+    summary: Substituting into formulae and changing the subject, including where the variable appears twice.
+    sections:
+      - {id: "13.1", title: "Using formulae", tier: O, refs: ["AF.6"]}
+      - {id: "13.2", title: "Changing the subject of a formula", tier: O, refs: ["AF.6"]}
+      - {id: "13.3", title: "Formulae with brackets and fractions", tier: O, refs: ["AF.6"]}
+
+  - id: 14
+    title: Functions and graphs
+    strand: algebra-functions
+    summary: Functions as a rule that assigns one output to each input, and the graphs that show them.
+    sections:
+      - {id: "14.1", title: "The idea of a function", tier: O, refs: ["AF.7"]}
+      - {id: "14.2", title: "Function notation and evaluating functions", tier: O, refs: ["AF.7"]}
+      - {id: "14.3", title: "Graphing linear functions", tier: O, refs: ["AF.7"]}
+      - {id: "14.4", title: "Graphing quadratic functions", tier: O, refs: ["AF.7", "AF.5"]}
+      - {id: "14.5", title: "Interpreting graphs in context", tier: O, refs: ["AF.7"]}
+
+  - id: 15
+    title: Units of measure and time
+    strand: geometry-trigonometry
+    summary: Choosing and converting units, and calculating with time and timetables.
+    sections:
+      - {id: "15.1", title: "Units of length, mass and capacity", tier: O, refs: ["GT.1"]}
+      - {id: "15.2", title: "Converting between units", tier: O, refs: ["GT.1"]}
+      - {id: "15.3", title: "Time, timetables and time zones", tier: O, refs: ["GT.1"]}
+      - {id: "15.4", title: "Choosing sensible units and estimating", tier: O, refs: ["GT.1"]}
+
+  - id: 16
+    title: Perimeter, area and volume
+    strand: geometry-trigonometry
+    summary: The perimeter and area of plane figures, the volume and surface area of solids, and nets.
+    sections:
+      - {id: "16.1", title: "Perimeter and area of rectangles and triangles", tier: O, refs: ["GT.2"]}
+      - {id: "16.2", title: "The circumference and area of a circle", tier: O, refs: ["GT.2"]}
+      - {id: "16.3", title: "Areas of composite figures", tier: O, refs: ["GT.2"]}
+      - {id: "16.4", title: "Nets of solids", tier: O, refs: ["GT.2"]}
+      - {id: "16.5", title: "Volume of prisms, cylinders and spheres", tier: O, refs: ["GT.2"]}
+      - {id: "16.6", title: "Surface area and curved surface area", tier: O, refs: ["GT.2"]}
+      - {id: "16.7", title: "Volume and surface area of composite solids", tier: O, refs: ["GT.2"]}
+
+  - id: 17
+    title: Coordinate geometry
+    strand: geometry-trigonometry
+    summary: Distance, midpoint and slope in the coordinate plane, and the equation of a line.
+    sections:
+      - {id: "17.1", title: "The coordinate plane and plotting points", tier: O, refs: ["GT.5"]}
+      - {id: "17.2", title: "Distance and midpoint", tier: O, refs: ["GT.5"]}
+      - {id: "17.3", title: "Slope of a line", tier: O, refs: ["GT.5"]}
+      - {id: "17.4", title: "Parallel and perpendicular lines", tier: O, refs: ["GT.5"]}
+      - {id: "17.5", title: "The equation of a line", tier: O, refs: ["GT.5"]}
+      - {id: "17.6", title: "The general form ax + by + c = 0", tier: O, refs: ["GT.5"]}
+      - {id: "17.7", title: "Graphs in context and rate of change", tier: O, refs: ["GT.5"]}
+
+  - id: 18
+    title: Pythagoras and trigonometry
+    strand: geometry-trigonometry
+    summary: Pythagoras' theorem, the trigonometric ratios, and solving right-angled triangles.
+    anchor:
+      title: How tall is the school building?
+      brief: >-
+        You cannot climb it, so you will measure it from the ground — using an angle
+        and a distance. By the end of the chapter you can choose between Pythagoras
+        and a ratio, and say why you chose it.
+    application: Surveying, construction, navigation, and any height or distance you cannot reach.
+    relevance_prompt: Where would being able to work out an unmeasurable distance be useful?
+    sections:
+      - {id: "18.1", title: "Pythagoras' theorem", tier: O, refs: ["GT.4"]}
+      - {id: "18.2", title: "Finding a missing side", tier: O, refs: ["GT.4"]}
+      - {id: "18.3", title: "The trigonometric ratios", tier: O, refs: ["GT.4"]}
+      - {id: "18.4", title: "Finding a missing side using a ratio", tier: O, refs: ["GT.4"]}
+      - {id: "18.5", title: "Finding a missing angle", tier: O, refs: ["GT.4"]}
+      - {id: "18.6", title: "Angles of elevation and depression", tier: O, refs: ["GT.4"]}
+      - {id: "18.7", title: "Choosing Pythagoras or trigonometry", tier: O, refs: ["GT.4"]}
+
+  - id: 19
+    title: Transformations and symmetry
+    strand: geometry-trigonometry
+    summary: Translation, central symmetry, axial symmetry, rotation, and the symmetry of shapes.
+    sections:
+      - {id: "19.1", title: "Translation", tier: O, refs: ["GT.6"]}
+      - {id: "19.2", title: "Axial symmetry and reflection", tier: O, refs: ["GT.6"]}
+      - {id: "19.3", title: "Central symmetry", tier: O, refs: ["GT.6"]}
+      - {id: "19.4", title: "Rotation", tier: O, refs: ["GT.6"]}
+      - {id: "19.5", title: "Axes of symmetry", tier: O, refs: ["GT.6"]}
+      - {id: "19.6", title: "Combining transformations", tier: H, refs: ["GT.6"]}
+
+  - id: 20
+    title: Synthetic geometry, constructions and proof
+    strand: geometry-trigonometry
+    summary: >-
+      The axioms, theorems and corollaries of the shared geometry course, the
+      constructions that go with them, and what a proof is.
+    anchor:
+      title: Why do the angles of a triangle add to 180°?
+      brief: >-
+        You have used this fact for years. You will prove it, from the axioms and
+        the theorems that come before it, and by the end of the chapter you can say
+        what a proof is and what it is not.
+    application: Construction, design, and the reasoning behind every geometrical fact you use.
+    relevance_prompt: Which geometrical fact do you use most often without being able to say why it is true?
+    sections:
+      - {id: "20.1", title: "Axioms, theorems, corollaries and converses", tier: O, refs: ["GT.3"]}
+      - {id: "20.2", title: "The constructions", tier: O, refs: ["GT.3"]}
+      - {id: "20.3", title: "Angles and parallel lines", tier: O, refs: ["GT.3"]}
+      - {id: "20.4", title: "Congruent triangles", tier: O, refs: ["GT.3"]}
+      - {id: "20.5", title: "The isosceles triangle and its converse", tier: O, refs: ["GT.3"]}
+      - {id: "20.6", title: "Parallelograms and their corollaries", tier: O, refs: ["GT.3"]}
+      - {id: "20.7", title: "Similar triangles and proportionality", tier: O, refs: ["GT.3"]}
+      - {id: "20.8", title: "The theorem of Pythagoras as a theorem", tier: O, refs: ["GT.3"]}
+      - {id: "20.9", title: "Circles and their theorems", tier: H, refs: ["GT.3"]}
+      - {id: "20.10", title: "Constructing a proof", tier: O, refs: ["GT.3"]}
+      - {id: "20.11", title: "Evaluating someone else's proof", tier: O, refs: ["GT.3"]}
+
+  - id: 21
+    title: Probability
+    strand: statistics-probability
+    summary: Listing outcomes, the probability of equally likely events, and combining probabilities.
+    sections:
+      - {id: "21.1", title: "Listing outcomes and the sample space", tier: O, refs: ["SP.1"]}
+      - {id: "21.2", title: "Probability as a number from 0 to 1", tier: O, refs: ["SP.2"]}
+      - {id: "21.3", title: "Equally likely outcomes", tier: O, refs: ["SP.2"]}
+      - {id: "21.4", title: "The complement of an event", tier: O, refs: ["SP.2"]}
+      - {id: "21.5", title: "Two events and the addition rule", tier: O, refs: ["SP.2"]}
+      - {id: "21.6", title: "Independent events and the multiplication rule", tier: O, refs: ["SP.2"]}
+      - {id: "21.7", title: "Probability from a table or a diagram", tier: O, refs: ["SP.2"]}
+      - {id: "21.8", title: "Expected frequency", tier: H, refs: ["SP.2"]}
+
+  - id: 22
+    title: Statistics
+    strand: statistics-probability
+    summary: Collecting data, representing it, and drawing conclusions that the data can actually support.
+    anchor:
+      title: Is the school getting enough sleep?
+      brief: >-
+        You will design a survey, collect the data, and present what you find. By the
+        end of the chapter you can say what your data supports, and — just as
+        importantly — what it does not.
+    application: Surveys, reports, news claims, and any number someone wants you to believe.
+    relevance_prompt: Where have you seen a graph used to persuade someone, and did it tell the whole story?
+    sections:
+      - {id: "22.1", title: "Populations, samples and surveys", tier: O, refs: ["SP.3"]}
+      - {id: "22.2", title: "Choosing a sample and avoiding bias", tier: O, refs: ["SP.3"]}
+      - {id: "22.3", title: "Tallying and frequency tables", tier: O, refs: ["SP.3"]}
+      - {id: "22.4", title: "Bar charts, line plots and histograms", tier: O, refs: ["SP.3"]}
+      - {id: "22.5", title: "Measures of centre: mean, median and mode", tier: O, refs: ["SP.3"]}
+      - {id: "22.6", title: "Measures of spread: range and interquartile range", tier: O, refs: ["SP.3"]}
+      - {id: "22.7", title: "Scatter graphs and correlation", tier: O, refs: ["SP.3"]}
+      - {id: "22.8", title: "Interpreting data and questioning a claim", tier: O, refs: ["SP.3"]}
+      - {id: "22.9", title: "Misleading graphs and how to spot them", tier: O, refs: ["SP.3"]}

@@ -1,0 +1,52 @@
+# Identity and build metadata for this book.
+#
+# Junior Cycle Mathematics, the Irish lower secondary programme. Three years, ages
+# 12–15, examined at Ordinary and Higher level by one two-hour paper in June of
+# third year. The certificate is reported by the school, not the SEC.
+
+id: ie-jc-maths
+title: Junior Cycle Mathematics
+qualification: Junior Cycle
+subject: Mathematics
+order: 1
+description: >-
+  A complete, interactive Junior Cycle Mathematics book for Ireland, covering both
+  Ordinary and Higher level.
+
+boards: [SEC]
+
+# One build per profile. `tier_filter` names the tier level this profile builds —
+# `O` for the reader who studies only the content common to both levels, `H` for the
+# reader who studies all of it. The filter is not the profile id, so the profile may
+# be named anything (see `Book.tier_filter_for`).
+profiles:
+  - id: ordinary
+    name: Ordinary
+    tier_filter: O
+    default: true
+  - id: higher
+    name: Higher
+    tier_filter: H
+
+# The tier axis, lowest level first. `O` is the content every reader studies; `H` is
+# studied only by Higher level. Unlike England, where the lower code is `F` for
+# "Foundation and Higher", the Irish lower code is `O` for "Ordinary and Higher".
+tier_axis:
+  O: Ordinary and Higher
+  H: Higher only
+
+oracles: [sympy]
+
+theme:
+  light:
+    accent: "#14603e"
+    accent_light: "#2a7d54"
+    accent_dark: "#0f4a30"
+  dark:
+    accent: "#6ee7a8"
+    accent_light: "#8ff0be"
+    accent_dark: "#2a7d54"
+
+curriculum: curriculum.yaml
+banks: problems
+sources: sources.yaml

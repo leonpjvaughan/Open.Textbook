@@ -1,0 +1,370 @@
+# Leaving Certificate Mathematics (Ireland) — chapter and section plan
+#
+# Source of truth for the docs scaffold and for per-chapter authoring briefs.
+#
+# Tier: F = Foundation, Ordinary and Higher; O = Ordinary and Higher; H = Higher only.
+#       THE THREE LEVELS ARE NESTED — Foundation ⊂ Ordinary ⊂ Higher — so a build
+#       includes every tier at or below its own. This is the only book in the
+#       collection with three, and the reason `tier_axis` is an ordered list.
+# refs: the syllabus strand section number, e.g. 3.2. The document is
+#       SCSEC25_Maths_syllabus_examination-2015_English.pdf, for examination from 2015.
+#
+# Section B of the syllabus — "Geometry for Post-primary School Mathematics" — is a
+# numbered course of axioms, theorems, corollaries and 22 constructions, and it is a
+# distinct body of proof. It is delivered across chapters 15–17 and cross-referenced
+# to the collection's own proof book with `:::prove`, which is what that book is for.
+#
+# Assessment: at Ordinary and Higher level, two papers, each containing Section A
+# (core concepts and skills) and Section B (context-based applications). At
+# Foundation level, one written paper set in meaningful contexts.
+#
+# See research/curriculum/ie-curriculum.md §3 and §7.2.
+
+meta:
+  title: Leaving Certificate Mathematics
+  jurisdiction: Ireland
+  awarding_bodies: [SEC]
+  tiers: [Foundation, Ordinary, Higher]
+  retrieved: 2026-10-13
+  # Where this book is for, the word that jurisdiction uses for its levels, and who
+  # publishes the curriculum it follows. Ireland calls its levels levels, not tiers.
+  #
+  # There is no `curriculum_licence`: the NCCA's re-use terms could not be read while
+  # this book was planned (ncca.ie is behind a bot challenge), and a licence claim
+  # that has not been verified must not be written. The About page says the material
+  # belongs to the NCCA and is referred to rather than reproduced.
+  level_word: level
+  curriculum_body: National Council for Curriculum and Assessment (NCCA)
+  # Who owns the specification and who examines it. In Ireland these are two
+  # different bodies — the NCCA writes the specification, the SEC sets and marks the
+  # examination — so this cannot be composed from the awarding bodies.
+  specification_note: >-
+    The specification content, and any wording taken from a specification, belongs
+    to the National Council for Curriculum and Assessment, which publishes it. The
+    State Examinations Commission sets and marks the examinations.
+  note: >-
+    Strands 1–5 are the whole syllabus. Section B of the syllabus document is the
+    shared synthetic geometry course, delivered by chapters 15–17 and not a strand.
+
+coverage:
+  - prefix: "1."
+    strand: statistics-probability
+    items: 7
+  - prefix: "2."
+    strand: geometry-trigonometry
+    items: 4
+  - prefix: "3."
+    strand: number
+    items: 4
+  - prefix: "4."
+    strand: algebra
+    items: 4
+  - prefix: "5."
+    strand: functions
+    items: 2
+
+strands:
+  - id: statistics-probability
+    title: Statistics and Probability
+  - id: geometry-trigonometry
+    title: Geometry and Trigonometry
+  - id: number
+    title: Number
+  - id: algebra
+    title: Algebra
+  - id: functions
+    title: Functions
+
+chapters:
+  - id: 1
+    title: Number systems and arithmetic
+    strand: number
+    summary: >-
+      The number systems and the arithmetic on them — indices and surds, absolute
+      value, and the accuracy to which an answer should be given.
+    anchor:
+      title: The error that cost a contract
+      brief: >-
+        A quotation was rounded at the wrong point and the final figure was out by
+        more than the profit. You will follow the calculation, find where the
+        rounding should have happened, and by the end of the chapter say how much
+        precision a chain of calculations actually needs.
+    application: Quotations, measurements, financial calculations and any chained arithmetic.
+    relevance_prompt: Where has a rounded number changed a decision for you or someone you know?
+    sections:
+      - {id: "1.1", title: "The number systems ℕ, ℤ, ℚ and ℝ", tier: F, refs: ["3.1"]}
+      - {id: "1.2", title: "Irrational numbers and surds", tier: O, refs: ["3.1"]}
+      - {id: "1.3", title: "Geometric construction of √2 and √3", tier: H, refs: ["3.1"]}
+      - {id: "1.4", title: "Absolute value", tier: O, refs: ["3.1"]}
+      - {id: "1.5", title: "Indices and the rules of indices", tier: F, refs: ["3.2"]}
+      - {id: "1.6", title: "Solving problems with indices", tier: O, refs: ["3.2"]}
+      - {id: "1.7", title: "Scientific notation and accuracy", tier: F, refs: ["3.1"]}
+
+  - id: 2
+    title: Arithmetic in context
+    strand: number
+    summary: >-
+      The arithmetic an adult actually meets — profit and loss, VAT, income tax,
+      present value, percentages and proportional reasoning.
+    sections:
+      - {id: "2.1", title: "Percentages and percentage change", tier: F, refs: ["3.3"]}
+      - {id: "2.2", title: "Profit, loss and mark-up", tier: F, refs: ["3.3"]}
+      - {id: "2.3", title: "Income tax, USC and net pay", tier: O, refs: ["3.3"]}
+      - {id: "2.4", title: "Simple and compound interest", tier: F, refs: ["3.3"]}
+      - {id: "2.5", title: "Present value", tier: H, refs: ["3.3"]}
+      - {id: "2.6", title: "Checking whether a result is reasonable", tier: F, refs: ["3.3"]}
+
+  - id: 3
+    title: Length, area and volume
+    strand: number
+    summary: The measurement of plane figures and solids, including the nets of prisms, cylinders and spheres.
+    sections:
+      - {id: "3.1", title: "Perimeter and area of plane figures", tier: F, refs: ["3.4"]}
+      - {id: "3.2", title: "The circle: circumference and area", tier: F, refs: ["3.4"]}
+      - {id: "3.3", title: "Volume of prisms and cylinders", tier: F, refs: ["3.4"]}
+      - {id: "3.4", title: "Nets of prisms, cylinders and spheres", tier: O, refs: ["3.4"]}
+      - {id: "3.5", title: "Surface area and curved surface area", tier: F, refs: ["3.4"]}
+      - {id: "3.6", title: "Similar figures: length, area and volume ratios", tier: H, refs: ["3.4"]}
+      - {id: "3.7", title: "The volume and surface area of a sphere", tier: O, refs: ["3.4"]}
+
+  - id: 4
+    title: "Algebra: expressions and equations"
+    strand: algebra
+    summary: >-
+      Generating, representing and manipulating algebraic expressions, and solving
+      the equations and inequalities that come from them.
+    anchor:
+      title: The break-even point
+      brief: >-
+        A small business has a fixed cost and a cost per item. You will build the
+        expressions, solve for the point where the money in equals the money out,
+        and by the end of the chapter say what happens either side of it.
+    application: Pricing, break-even, planning and any relationship you can write as a formula.
+    relevance_prompt: Where would being able to write a relationship as a formula save you time?
+    sections:
+      - {id: "4.1", title: "Generating expressions from patterns", tier: F, refs: ["4.1"]}
+      - {id: "4.2", title: "Representing relations in tables and graphs", tier: F, refs: ["4.1"]}
+      - {id: "4.3", title: "Finding a formula from a pattern", tier: F, refs: ["4.1"]}
+      - {id: "4.4", title: "Features of linear relationships", tier: F, refs: ["4.1"]}
+      - {id: "4.5", title: "Evaluating and simplifying expressions", tier: F, refs: ["4.1"]}
+      - {id: "4.6", title: "Solving linear equations", tier: F, refs: ["4.2"]}
+      - {id: "4.7", title: "Simultaneous equations in two variables", tier: O, refs: ["4.2"]}
+      - {id: "4.8", title: "Solving quadratic equations", tier: O, refs: ["4.2"]}
+      - {id: "4.9", title: "Linear inequalities", tier: F, refs: ["4.3"]}
+      - {id: "4.10", title: "Inequalities and the modulus", tier: H, refs: ["4.3"]}
+
+  - id: 5
+    title: Complex numbers
+    strand: algebra
+    summary: The arithmetic of complex numbers, their representation on the Argand diagram, and the conjugate root theorem.
+    sections:
+      - {id: "5.1", title: "The imaginary unit and complex numbers", tier: O, refs: ["4.4"]}
+      - {id: "5.2", title: "Arithmetic with complex numbers", tier: O, refs: ["4.4"]}
+      - {id: "5.3", title: "The complex conjugate and division", tier: O, refs: ["4.4"]}
+      - {id: "5.4", title: "The Argand diagram and modulus", tier: O, refs: ["4.4"]}
+      - {id: "5.5", title: "Cubic equations and the conjugate root theorem", tier: H, refs: ["4.4"]}
+
+  - id: 6
+    title: Functions
+    strand: functions
+    summary: Functions as a special kind of relation, their graphs, and the properties that distinguish them.
+    sections:
+      - {id: "6.1", title: "Relations and functions", tier: F, refs: ["5.1"]}
+      - {id: "6.2", title: "Domain, range and notation", tier: F, refs: ["5.1"]}
+      - {id: "6.3", title: "Composite and inverse functions", tier: O, refs: ["5.1"]}
+      - {id: "6.4", title: "Injective, surjective and bijective functions", tier: H, refs: ["5.1"]}
+      - {id: "6.5", title: "Graphing functions and transformations", tier: O, refs: ["5.1"]}
+      - {id: "6.6", title: "Exponential and logarithmic functions", tier: O, refs: ["5.1"]}
+
+  - id: 7
+    title: Differentiation
+    strand: functions
+    summary: The derivative as a rate of change, the rules of differentiation, and what the derivative tells you about a graph.
+    anchor:
+      title: When is the tank filling fastest?
+      brief: >-
+        You will model the amount in a tank as a function of time, differentiate it,
+        and use the derivative to answer a question about the rate. By the end of
+        the chapter the derivative is a tool you reach for, not a procedure you
+        remember.
+    application: Rates, optimisation, motion, growth and any quantity that changes.
+    relevance_prompt: Where would knowing how fast something is changing right now be more useful than knowing its value?
+    sections:
+      - {id: "7.1", title: "The derivative from first principles", tier: O, refs: ["5.2"]}
+      - {id: "7.2", title: "Differentiating powers and polynomials", tier: O, refs: ["5.2"]}
+      - {id: "7.3", title: "The product rule", tier: O, refs: ["5.2"]}
+      - {id: "7.4", title: "The quotient rule", tier: O, refs: ["5.2"]}
+      - {id: "7.5", title: "The chain rule", tier: O, refs: ["5.2"]}
+      - {id: "7.6", title: "The second derivative and concavity", tier: O, refs: ["5.2"]}
+      - {id: "7.7", title: "Rates of change in context", tier: O, refs: ["5.2"]}
+      - {id: "7.8", title: "Stationary points, maxima and minima", tier: O, refs: ["5.2"]}
+      - {id: "7.9", title: "Curve sketching", tier: O, refs: ["5.2"]}
+      - {id: "7.10", title: "Differentiating exponential and trigonometric functions", tier: H, refs: ["5.2"]}
+
+  - id: 8
+    title: Integration
+    strand: functions
+    summary: The integral as the reverse of differentiation and as an area, and the fundamental theorem of calculus.
+    sections:
+      - {id: "8.1", title: "Antiderivatives", tier: O, refs: ["5.2"]}
+      - {id: "8.2", title: "The definite integral and area", tier: O, refs: ["5.2"]}
+      - {id: "8.3", title: "The fundamental theorem of calculus", tier: H, refs: ["5.2"]}
+      - {id: "8.4", title: "Area between a curve and the x-axis", tier: O, refs: ["5.2"]}
+      - {id: "8.5", title: "Integration by substitution", tier: H, refs: ["5.2"]}
+      - {id: "8.6", title: "Average value and accumulated change", tier: O, refs: ["5.2"]}
+
+  - id: 9
+    title: Sequences and series
+    strand: algebra
+    summary: Arithmetic and geometric sequences, their sums, and using them to model growth and decay.
+    sections:
+      - {id: "9.1", title: "Arithmetic sequences", tier: O, refs: ["4.1"]}
+      - {id: "9.2", title: "Arithmetic series", tier: O, refs: ["4.1"]}
+      - {id: "9.3", title: "Geometric sequences and series", tier: O, refs: ["4.1"]}
+      - {id: "9.4", title: "Infinite geometric series", tier: H, refs: ["4.1"]}
+      - {id: "9.5", title: "Recurrence relations", tier: O, refs: ["4.1"]}
+      - {id: "9.6", title: "Proof by induction", tier: H, refs: ["4.1"]}
+
+  - id: 10
+    title: Counting and probability
+    strand: statistics-probability
+    summary: Counting arrangements and selections, the axioms of probability, and the rules for combining events.
+    sections:
+      - {id: "10.1", title: "Counting outcomes and the fundamental principle", tier: F, refs: ["1.1"]}
+      - {id: "10.2", title: "Permutations", tier: O, refs: ["1.1"]}
+      - {id: "10.3", title: "Combinations", tier: O, refs: ["1.1"]}
+      - {id: "10.4", title: "Sample spaces and set theory", tier: O, refs: ["1.2"]}
+      - {id: "10.5", title: "Axioms of probability", tier: F, refs: ["1.2"]}
+      - {id: "10.6", title: "Conditional probability", tier: O, refs: ["1.2"]}
+      - {id: "10.7", title: "Independent events", tier: F, refs: ["1.3"]}
+      - {id: "10.8", title: "Bernoulli trials and the binomial distribution", tier: H, refs: ["1.3"]}
+
+  - id: 11
+    title: Statistics
+    strand: statistics-probability
+    summary: Collecting, representing and analysing data, and the sampling variability that limits what a sample can tell you.
+    anchor:
+      title: The poll that got it wrong
+      brief: >-
+        A poll predicted one result and the vote gave another. You will work out how
+        a sample of that size could be that far out, and by the end of the chapter
+        you can say what a margin of error does and does not promise.
+    application: Surveys, polls, quality control, and every claim made from a sample.
+    relevance_prompt: Where have you seen a percentage from a survey used to argue for something?
+    sections:
+      - {id: "11.1", title: "Populations and samples", tier: F, refs: ["1.5"]}
+      - {id: "11.2", title: "Sampling methods and bias", tier: O, refs: ["1.5"]}
+      - {id: "11.3", title: "Representing data: charts and histograms", tier: F, refs: ["1.6"]}
+      - {id: "11.4", title: "Measures of centre and spread", tier: F, refs: ["1.7"]}
+      - {id: "11.5", title: "The standard deviation", tier: O, refs: ["1.7"]}
+      - {id: "11.6", title: "The normal distribution", tier: O, refs: ["1.7"]}
+      - {id: "11.7", title: "Sampling variability and the margin of error", tier: H, refs: ["1.7"]}
+      - {id: "11.8", title: "The central limit theorem", tier: H, refs: ["1.7"]}
+      - {id: "11.9", title: "Hypothesis testing and confidence intervals", tier: H, refs: ["1.7"]}
+      - {id: "11.10", title: "Correlation and regression", tier: O, refs: ["1.7"]}
+      - {id: "11.11", title: "Statistical reasoning and misused statistics", tier: F, refs: ["1.4"]}
+
+  - id: 12
+    title: Trigonometry
+    strand: geometry-trigonometry
+    summary: The trigonometric ratios and their extension to any angle, the identities, and solving triangles.
+    sections:
+      - {id: "12.1", title: "The trigonometric ratios in a right triangle", tier: F, refs: ["2.3"]}
+      - {id: "12.2", title: "Pythagoras' theorem", tier: F, refs: ["2.3"]}
+      - {id: "12.3", title: "Radians and degrees", tier: O, refs: ["2.3"]}
+      - {id: "12.4", title: "The unit circle and trigonometric functions of any angle", tier: O, refs: ["2.3"]}
+      - {id: "12.5", title: "Graphs of the trigonometric functions", tier: O, refs: ["2.3"]}
+      - {id: "12.6", title: "The sine and cosine rules", tier: O, refs: ["2.3"]}
+      - {id: "12.7", title: "Area of a triangle", tier: O, refs: ["2.3"]}
+      - {id: "12.8", title: "Trigonometric identities", tier: H, refs: ["2.3"]}
+      - {id: "12.9", title: "Solving trigonometric equations", tier: H, refs: ["2.3"]}
+      - {id: "12.10", title: "Bearings and three-dimensional problems", tier: O, refs: ["2.3"]}
+
+  - id: 13
+    title: Coordinate geometry
+    strand: geometry-trigonometry
+    summary: Lines and circles in the coordinate plane, and the algebra that describes them.
+    sections:
+      - {id: "13.1", title: "Distance, midpoint and slope", tier: F, refs: ["2.2"]}
+      - {id: "13.2", title: "The equation of a line", tier: F, refs: ["2.2"]}
+      - {id: "13.3", title: "Parallel and perpendicular lines", tier: F, refs: ["2.2"]}
+      - {id: "13.4", title: "The equation of a circle", tier: O, refs: ["2.2"]}
+      - {id: "13.5", title: "Tangents to a circle", tier: O, refs: ["2.2"]}
+      - {id: "13.6", title: "Intersection of a line and a circle", tier: H, refs: ["2.2"]}
+      - {id: "13.7", title: "Dividing a line segment in a given ratio", tier: H, refs: ["2.2"]}
+
+  - id: 14
+    title: Transformation geometry
+    strand: geometry-trigonometry
+    summary: Translations, central and axial symmetry, rotations, and enlargement — and what each one preserves.
+    sections:
+      - {id: "14.1", title: "Translations", tier: F, refs: ["2.4"]}
+      - {id: "14.2", title: "Axial symmetry and reflection", tier: F, refs: ["2.4"]}
+      - {id: "14.3", title: "Central symmetry and rotation", tier: F, refs: ["2.4"]}
+      - {id: "14.4", title: "Enlargements and the scale factor", tier: O, refs: ["2.4"]}
+      - {id: "14.5", title: "Transformations and symmetry in the plane", tier: O, refs: ["2.4"]}
+      - {id: "14.6", title: "Composing transformations", tier: H, refs: ["2.4"]}
+
+  - id: 15
+    title: "Synthetic geometry: foundations"
+    strand: geometry-trigonometry
+    summary: >-
+      The axioms, the first theorems, angles, congruent triangles and parallels —
+      the beginning of the shared geometry course every paper draws on.
+    anchor:
+      title: A proof you can build on
+      brief: >-
+        You will prove that the angles of a triangle add to 180°, using only what
+        comes before it. Every later theorem in this course will rest on results
+        like this one, and by the end of the chapter you can say exactly what it
+        rests on.
+    application: Every geometrical fact in the course, and the reasoning behind it.
+    relevance_prompt: Which geometrical fact do you rely on most without knowing why it is true?
+    sections:
+      - {id: "15.1", title: "Axioms and the rules of deduction", tier: O, refs: ["2.1"]}
+      - {id: "15.2", title: "The first theorems on angles", tier: O, refs: ["2.1"]}
+      - {id: "15.3", title: "Congruent triangles", tier: O, refs: ["2.1"]}
+      - {id: "15.4", title: "Parallel lines", tier: O, refs: ["2.1"]}
+      - {id: "15.5", title: "The isosceles triangle and its converse", tier: O, refs: ["2.1"]}
+      - {id: "15.6", title: "Perpendicular lines and right angles", tier: O, refs: ["2.1"]}
+      - {id: "15.7", title: "Constructions 1–6", tier: O, refs: ["2.1"]}
+      - {id: "15.8", title: "Writing a formal proof", tier: O, refs: ["2.1"]}
+
+  - id: 16
+    title: "Synthetic geometry: quadrilaterals, similarity and area"
+    strand: geometry-trigonometry
+    summary: Parallelograms and their corollaries, similar triangles, Pythagoras as a theorem, and area.
+    sections:
+      - {id: "16.1", title: "Quadrilaterals and parallelograms", tier: O, refs: ["2.1"]}
+      - {id: "16.2", title: "Corollaries of the parallelogram theorems", tier: O, refs: ["2.1"]}
+      - {id: "16.3", title: "Similar triangles", tier: O, refs: ["2.1"]}
+      - {id: "16.4", title: "Proportionality and ratios in triangles", tier: H, refs: ["2.1"]}
+      - {id: "16.5", title: "Pythagoras' theorem proved", tier: O, refs: ["2.1"]}
+      - {id: "16.6", title: "Area and the area of a triangle", tier: O, refs: ["2.1"]}
+      - {id: "16.7", title: "Constructions 7–15", tier: O, refs: ["2.1"]}
+
+  - id: 17
+    title: "Synthetic geometry: circles"
+    strand: geometry-trigonometry
+    summary: The theorems of the circle — chords, tangents, arcs and angles — and the constructions that go with them.
+    sections:
+      - {id: "17.1", title: "Chords and the centre", tier: O, refs: ["2.1"]}
+      - {id: "17.2", title: "The angle in a semicircle and related theorems", tier: O, refs: ["2.1"]}
+      - {id: "17.3", title: "Cyclic quadrilaterals", tier: O, refs: ["2.1"]}
+      - {id: "17.4", title: "Tangents to a circle", tier: O, refs: ["2.1"]}
+      - {id: "17.5", title: "The special points of a triangle", tier: O, refs: ["2.1"]}
+      - {id: "17.6", title: "Constructions 16–22", tier: O, refs: ["2.1"]}
+      - {id: "17.7", title: "Proving a circle theorem", tier: H, refs: ["2.1"]}
+      - {id: "17.8", title: "Enlargements and similar triangles in the circle", tier: H, refs: ["2.1"]}
+
+  - id: 18
+    title: Vectors
+    strand: geometry-trigonometry
+    summary: Vectors in two and three dimensions, the dot product, and their geometric applications.
+    sections:
+      - {id: "18.1", title: "Vectors and their representation", tier: O, refs: ["2.2"]}
+      - {id: "18.2", title: "Vector arithmetic", tier: O, refs: ["2.2"]}
+      - {id: "18.3", title: "The dot product", tier: O, refs: ["2.2"]}
+      - {id: "18.4", title: "Perpendicularity and the angle between vectors", tier: O, refs: ["2.2"]}
+      - {id: "18.5", title: "Vectors in three dimensions", tier: H, refs: ["2.2"]}
+      - {id: "18.6", title: "Geometric applications of vectors", tier: H, refs: ["2.2"]}

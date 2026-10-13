@@ -1,0 +1,18 @@
+---
+title: 3.2 Motion with constant acceleration — Practise
+chapter: 3
+chapter_title: Describing motion
+section: '3.2'
+section_title: Motion with constant acceleration
+tier: O
+refs:
+- S3
+kind: problems
+---
+
+<!-- scaffold:stub -->
+
+# 3.2 Motion with constant acceleration — Practise
+
+> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
+> Tier: **O** · DfE refs: S3

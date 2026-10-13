@@ -12,6 +12,7 @@ import yaml
 
 from .. import yamlio
 
+from .. import book as book_module
 from .. import config as cfg
 from ._fences import transform_outside_fences
 
@@ -24,7 +25,9 @@ def on_page_markdown(markdown, page, config, files):
     data = yamlio.load_file(cfg.curriculum_path(config)) or {}
     lines = []
     for chapter in data.get("chapters", []):
-        higher = any(s.get("tier") == "H" for s in chapter.get("sections", []))
+        higher = any(
+            s.get("tier") == book_module.HIGHER_CODE for s in chapter.get("sections", [])
+        )
         suffix = " _Higher only sections_" if higher else ""
         lines.append(
             f"{chapter['id']}. [{chapter['title']}](Chapter {chapter['id']}/index.md){suffix}"

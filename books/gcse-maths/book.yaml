@@ -15,16 +15,19 @@ description: >-
 
 boards: [AQA, Pearson Edexcel, OCR]
 
-# One build per profile. `tier_filter` selects the tier hook's behaviour;
+# One build per profile, and `tier_filter` is the tier level it builds: `F` for the
+# reader who studies only the content common to both tiers, `H` for the reader who
+# studies all of it. The filter is not the profile id, so the profile may be named
+# anything (see `Book.tier_filter_for`);
 # `default` marks the profile the landing page links to first.
 profiles:
   - id: higher
     name: Higher
-    tier_filter: higher
+    tier_filter: H
     default: true
   - id: foundation
     name: Foundation
-    tier_filter: foundation
+    tier_filter: F
 
 # The tier axis for this book, for documentation and for the scaffold's stubs.
 tier_axis:

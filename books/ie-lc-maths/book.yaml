@@ -1,0 +1,58 @@
+# Identity and build metadata for this book.
+#
+# Leaving Certificate Mathematics. Two years, examined in June of sixth year.
+# Foundation, Ordinary and Higher level — the only book in the collection with
+# three levels, and the reason `tier_axis` is an *ordered* list rather than a pair.
+
+id: ie-lc-maths
+title: Leaving Certificate Mathematics
+qualification: Leaving Certificate
+subject: Mathematics
+order: 1
+description: >-
+  A complete, interactive Leaving Certificate Mathematics book for Ireland,
+  covering Foundation, Ordinary and Higher level.
+
+boards: [SEC]
+
+# One build per profile, and the profile's `tier_filter` is the tier code it builds.
+# The levels are nested — Foundation ⊂ Ordinary ⊂ Higher — so a build includes every
+# level at or below its own: the Foundation build keeps `F` content, the Ordinary
+# build keeps `F` and `O`, the Higher build keeps all three.
+#
+# Two papers at Ordinary and Higher level, each with Section A (core) and Section B
+# (context-based applications). One written paper at Foundation level.
+profiles:
+  - id: higher
+    name: Higher
+    tier_filter: H
+    default: true
+  - id: ordinary
+    name: Ordinary
+    tier_filter: O
+  - id: foundation
+    name: Foundation
+    tier_filter: F
+
+# The tier axis, lowest level first. The order *is* the nesting, so it is read from
+# this list and never inferred from the labels.
+tier_axis:
+  F: Foundation, Ordinary and Higher
+  O: Ordinary and Higher
+  H: Higher only
+
+oracles: [sympy]
+
+theme:
+  light:
+    accent: "#3b3fa8"
+    accent_light: "#5b5fc4"
+    accent_dark: "#2c2f85"
+  dark:
+    accent: "#a9b0f5"
+    accent_light: "#c3c8fa"
+    accent_dark: "#7b83e8"
+
+curriculum: curriculum.yaml
+banks: problems
+sources: sources.yaml

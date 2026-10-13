@@ -279,27 +279,29 @@ def render_nav(
     return f"<ul class='nav__list'>{render(nav, True)}</ul>"
 
 
-def nav_for(book: books.Book, include_higher: bool) -> list:
+def nav_for(book: books.Book, included_tiers: frozenset[str]) -> list:
     """The nav, built from a book's own registry — a curriculum or a proof list."""
     return scaffold.build_nav_list(
         book.strands,
         book.chapters,
-        include_higher=include_higher,
+        included_tiers=included_tiers,
         proofs=book.proofs,
     )
 
 
-def chapter_subset(book: books.Book, chapter: int, include_higher: bool = True) -> list:
+def chapter_subset(book: books.Book, chapter: int, included_tiers=None) -> list:
     """Only one chapter's nav entry, so a subset build has a small sidebar.
 
-    ``include_higher`` follows the build's tier. A Foundation subset must not
-    list Higher-only sections it does not build: the sidebar would link to
-    pages that are not there, and once the link check actually ran that showed
-    up as a broken link on every page of the subset. The default keeps a
-    standalone caller (a test rendering one page without a build) permissive.
+    ``included_tiers`` follows the build's tier. A lower-tier subset must not list
+    sections it does not build: the sidebar would link to pages that are not there,
+    and once the link check actually ran that showed up as a broken link on every
+    page of the subset. The default keeps a standalone caller — a test rendering one
+    page without a build — permissive.
     """
+    if included_tiers is None:
+        included_tiers = frozenset(book.tier_codes)
     wanted = f"Chapter {chapter}:"
-    for entry in nav_for(book, include_higher=include_higher):
+    for entry in nav_for(book, included_tiers):
         for title, child in pairs(entry):
             if title.startswith(wanted):
                 return [{title: child}]
@@ -840,11 +842,11 @@ def build(
             f"{book.id} has no profile {profile!r}; it declares {', '.join(declared)}"
         )
     out = out or Path(books.repo_root()) / "site" / book.deploy_path(profile)
-    # The declared `tier_filter`, not the literal profile id: a book may name
-    # its Foundation profile anything, and keying on the id shipped Higher-only
-    # sections to Foundation readers whenever the two differed. See
-    # `Book.tier_filter_for`.
-    include_higher = book.tier_filter_for(profile) != "foundation"
+    # Which sections this build writes, from the declared `tier_filter` and never
+    # from the literal profile id: a book may name its lower-tier profile anything,
+    # and keying on the id shipped higher-only sections to the wrong reader whenever
+    # the two differed. See `Book.tiers_included`.
+    included_tiers = book.tiers_included(book.tier_filter_for(profile))
     config = make_config(book, profile)
     template = Template(PAGE_TEMPLATE.read_text(encoding="utf-8"))
     # The Settings control is the one the landing page uses: same trigger, same
@@ -872,9 +874,9 @@ def build(
     # reported `broken 0`.
     subset = f"Chapter {chapter}" if chapter else None
     link_scope = url_for(f"Chapter {chapter}/index.md").rstrip("/") if chapter else None
-    full = nav_for(book, include_higher)
+    full = nav_for(book, included_tiers)
     paths = nav_paths(full, subset=subset)
-    nav = full if (full_nav or not subset) else chapter_subset(book, chapter, include_higher)
+    nav = full if (full_nav or not subset) else chapter_subset(book, chapter, included_tiers)
 
     # The masthead links to the book's cover, and every chapter links back to it,
     # so a subset build must still emit it or those links 404. A full build picks

@@ -54,6 +54,24 @@ meta:
   awarding_bodies: [AQA 7408, Pearson Edexcel 9PH0, OCR H556]
   tiers: []                      # A-level has no tier axis; see the tier story above
   retrieved: 2026-10-11
+  # Where this book is for, the word that jurisdiction uses for its levels, and who
+  # publishes the curriculum it follows. The About page reads all four, so a new
+  # book states them rather than inheriting a default that would be another
+  # country's.
+  level_word: tier
+  curriculum_body: Department for Education
+  # Who owns the specification and who examines it. England's awarding bodies do
+  # both, so this names them.
+  specification_note: >-
+    The specification content, and any wording taken from a specification, belongs
+    to the awarding bodies. AQA, Pearson Edexcel and OCR publish the specifications
+    this book follows.
+  curriculum_licence:
+    name: Open Government Licence v3.0
+    url: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+    # What the material is, in the words the licence uses. Data, because a
+    # second jurisdiction will not call it Crown copyright.
+    notice: Crown copyright
   note: >-
     The DfE A-level physics content is a framework: Appendix 3 is nine numbered
     areas, and each board adds its own depth, breadth, contexts and optional
@@ -87,81 +105,81 @@ chapters:
     strand: foundations
     summary: SI units and prefixes, estimation, the limits of measurement, and the treatment of readings and uncertainties.
     sections:
-      - {id: "1.1", title: "SI units and prefixes", dfe: [AP1]}
-      - {id: "1.2", title: "Estimation and the limitations of measurement", dfe: [AP1]}
-      - {id: "1.3", title: "Measurements and uncertainties", dfe: [AP1]}
+      - {id: "1.1", title: "SI units and prefixes", refs: [AP1]}
+      - {id: "1.2", title: "Estimation and the limitations of measurement", refs: [AP1]}
+      - {id: "1.3", title: "Measurements and uncertainties", refs: [AP1]}
 
   - id: 2
     title: Vectors and scalars
     strand: mechanics
     summary: The vector-scalar distinction, resolving a vector into perpendicular components, and adding two vectors.
     sections:
-      - {id: "2.1", title: "Scalars and vectors", dfe: [AP2]}
-      - {id: "2.2", title: "Resolving and adding vectors", dfe: [AP2]}
+      - {id: "2.1", title: "Scalars and vectors", refs: [AP2]}
+      - {id: "2.2", title: "Resolving and adding vectors", refs: [AP2]}
 
   - id: 3
     title: Mechanics
     strand: mechanics
     summary: Kinematics and motion graphs, Newton's laws, work, energy and power, momentum, circular motion, and oscillations.
     sections:
-      - {id: "3.1", title: "Kinematics and motion graphs", dfe: [AP3]}
-      - {id: "3.2", title: "Dynamics and Newton's laws of motion", dfe: [AP3]}
-      - {id: "3.3", title: "Work, energy and power", dfe: [AP3]}
-      - {id: "3.4", title: "Momentum", dfe: [AP3]}
-      - {id: "3.5", title: "Circular motion", dfe: [AP3]}
-      - {id: "3.6", title: "Oscillations and simple harmonic motion", dfe: [AP3]}
+      - {id: "3.1", title: "Kinematics and motion graphs", refs: [AP3]}
+      - {id: "3.2", title: "Dynamics and Newton's laws of motion", refs: [AP3]}
+      - {id: "3.3", title: "Work, energy and power", refs: [AP3]}
+      - {id: "3.4", title: "Momentum", refs: [AP3]}
+      - {id: "3.5", title: "Circular motion", refs: [AP3]}
+      - {id: "3.6", title: "Oscillations and simple harmonic motion", refs: [AP3]}
 
   - id: 4
     title: Materials
     strand: materials
     summary: Stress, strain and the Young modulus, force-extension graphs, and the energy stored in a stretched material.
     sections:
-      - {id: "4.1", title: "Stress, strain and the Young modulus", dfe: [AP4]}
-      - {id: "4.2", title: "Force-extension graphs and stored energy", dfe: [AP4]}
+      - {id: "4.1", title: "Stress, strain and the Young modulus", refs: [AP4]}
+      - {id: "4.2", title: "Force-extension graphs and stored energy", refs: [AP4]}
 
   - id: 5
     title: Electric circuits
     strand: electricity
     summary: Current and charge, emf and internal resistance, resistance and resistivity, direct-current circuits, and capacitance.
     sections:
-      - {id: "5.1", title: "Current, charge and emf", dfe: [AP5]}
-      - {id: "5.2", title: "Resistance and resistivity", dfe: [AP5]}
-      - {id: "5.3", title: "Direct-current circuits", dfe: [AP5]}
-      - {id: "5.4", title: "Capacitance", dfe: [AP5]}
+      - {id: "5.1", title: "Current, charge and emf", refs: [AP5]}
+      - {id: "5.2", title: "Resistance and resistivity", refs: [AP5]}
+      - {id: "5.3", title: "Direct-current circuits", refs: [AP5]}
+      - {id: "5.4", title: "Capacitance", refs: [AP5]}
 
   - id: 6
     title: Waves
     strand: waves
     summary: Superposition and interference, path difference and coherence, diffraction and polarisation, and stationary waves.
     sections:
-      - {id: "6.1", title: "Superposition and interference", dfe: [AP6]}
-      - {id: "6.2", title: "Diffraction and polarisation", dfe: [AP6]}
-      - {id: "6.3", title: "Stationary waves", dfe: [AP6]}
+      - {id: "6.1", title: "Superposition and interference", refs: [AP6]}
+      - {id: "6.2", title: "Diffraction and polarisation", refs: [AP6]}
+      - {id: "6.3", title: "Stationary waves", refs: [AP6]}
 
   - id: 7
     title: Thermal physics and matter
     strand: matter
     summary: Internal energy and specific heat capacity, changes of state, and the molecular kinetic theory of ideal gases.
     sections:
-      - {id: "7.1", title: "Internal energy and specific heat capacity", dfe: [AP7]}
-      - {id: "7.2", title: "Ideal gases and molecular kinetic theory", dfe: [AP7]}
+      - {id: "7.1", title: "Internal energy and specific heat capacity", refs: [AP7]}
+      - {id: "7.2", title: "Ideal gases and molecular kinetic theory", refs: [AP7]}
 
   - id: 8
     title: Quantum and nuclear physics
     strand: quantum
     summary: The photon model and the photoelectric effect, wave-particle duality, radioactive decay and half-life, and nuclear energy.
     sections:
-      - {id: "8.1", title: "Photons and the photoelectric effect", dfe: [AP8]}
-      - {id: "8.2", title: "Wave-particle duality", dfe: [AP8]}
-      - {id: "8.3", title: "Radioactive decay and half-life", dfe: [AP8]}
-      - {id: "8.4", title: "Nuclear energy and E = mc²", dfe: [AP8]}
+      - {id: "8.1", title: "Photons and the photoelectric effect", refs: [AP8]}
+      - {id: "8.2", title: "Wave-particle duality", refs: [AP8]}
+      - {id: "8.3", title: "Radioactive decay and half-life", refs: [AP8]}
+      - {id: "8.4", title: "Nuclear energy and E = mc²", refs: [AP8]}
 
   - id: 9
     title: Fields
     strand: fields
     summary: Gravitational fields, electric fields and capacitors, magnetic fields, and electromagnetic induction.
     sections:
-      - {id: "9.1", title: "Gravitational fields", dfe: [AP9]}
-      - {id: "9.2", title: "Electric fields", dfe: [AP9]}
-      - {id: "9.3", title: "Magnetic fields", dfe: [AP9]}
-      - {id: "9.4", title: "Electromagnetic induction", dfe: [AP9]}
+      - {id: "9.1", title: "Gravitational fields", refs: [AP9]}
+      - {id: "9.2", title: "Electric fields", refs: [AP9]}
+      - {id: "9.3", title: "Magnetic fields", refs: [AP9]}
+      - {id: "9.4", title: "Electromagnetic induction", refs: [AP9]}

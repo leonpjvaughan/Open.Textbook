@@ -33,13 +33,10 @@ clear. If a page is confusing, report it, even when the answer is correct.
 
 ## Where the content comes from
 
-The curriculum follows the subject content published by the Department for
-Education. That material is Crown copyright, and it is used here under the
-[Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+The curriculum follows the subject content published by Department for Education.
+That material is Crown copyright, and it is used here under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
 
-The specification content, and any wording taken from a specification,
-belongs to the awarding bodies. AQA, Pearson Edexcel and OCR publish the specifications
-this book follows.
+The specification content, and any wording taken from a specification, belongs to the awarding bodies. AQA, Pearson Edexcel and OCR publish the specifications this book follows.
 
 The formulae and tables in the **Formulae** booklet are the awarding
 bodies' own sheets. Ofqual decides which material the boards must
@@ -57,8 +54,7 @@ The claims in this book rest on these documents:
 
 These sources were last checked on 2026-10-12.
 
-No awarding body endorses this book, and the Department for Education
-does not supply it.
+No awarding body endorses this book, and no curriculum body supplies it.
 
 ## Reporting a mistake
 

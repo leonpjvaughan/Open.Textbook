@@ -16,13 +16,18 @@ description: >-
 boards: [AQA, Pearson Edexcel, OCR]
 
 # One build per profile. A-level has no tiers, so there is no Foundation/Higher
-# pair and no `tier_filter`: the single profile keeps every page. It is declared
-# as a profile anyway, because the pipeline, the portal and the build matrix are
-# all driven by `profiles` and a book with none is not a book they can build.
+# pair and no tier axis: the single profile keeps every page, and says so with
+# `tier_filter: all`. It is declared as a profile anyway, because the pipeline, the
+# portal and the build matrix are all driven by `profiles`, and a book with none is
+# not a book they can build.
 profiles:
   - id: a-level
     name: A level
     default: true
+    # No tier axis in this book, so every page ships. Declared rather than left
+    # to default to the profile id, which worked only because an unrecognised
+    # filter happens to keep everything.
+    tier_filter: all
 
 # The tier axis for this book, for documentation and for the scaffold's stubs.
 #

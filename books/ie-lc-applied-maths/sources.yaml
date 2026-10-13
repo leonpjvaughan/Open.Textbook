@@ -1,0 +1,45 @@
+# Provenance for every curriculum claim in this book.
+#
+# This is a tracked build input: it is what the chapter plan and the tier split rest
+# on, so it belongs with the content. The fetched artefacts (PDFs and extracted
+# text) are bulky and regenerable, so they live outside the build tree in
+# research/sources/<book>/ and are git-ignored.
+#
+#   scripts/fetch_sources.sh <book>
+#
+# Retrieved: 2026-10-13. Read alongside research/curriculum/ie-curriculum.md, which
+# records what each document says and which ones are superseded.
+
+references:
+  - id: ncca-lc-applied-maths
+    attribution: true
+    title: "Leaving Certificate Applied Mathematics curriculum specification (2019)"
+    url: https://www.curriculumonline.ie/senior-cycle/senior-cycle-subjects/applied-mathematics/
+    role: >-
+      Primary curriculum. Four strands: mathematical modelling; modelling with
+      networks and graphs; modelling the physical world (kinematics and dynamics);
+      modelling a changing world. 180 hours of class contact.
+
+  - id: ncca-lc-applied-maths-modelling
+    attribution: true
+    title: "Leaving Certificate Applied Mathematics — Guidance for Modelling"
+    url: https://www.curriculumonline.ie/getmedia/8f2d896c-d95f-47a6-b41a-af045cffc851/21042-Leaving-Cert-Applied-Maths-Guidance-for-Modelling-v3.pdf
+    role: >-
+      The modelling process in detail, and the shape of the modelling project: 20% of
+      the assessment, set on an annual SEC brief common to both levels with
+      differentiated marking.
+
+  - id: sec
+    title: "State Examinations Commission"
+    url: https://www.examinations.ie/
+    role: >-
+      Written examination 80% plus modelling project 20%. Its past-paper archive is
+      behind a bot challenge and could not be read while planning this book.
+
+downloads:
+  - file: Leaving-Certificate-Specification-Applied-Mathematics_EN.pdf
+    url: https://www.curriculumonline.ie/getmedia/46931efd-8fa6-4c31-9ec3-dfb9e870fa1a/Leaving-Certificate-Specification-Applied-Mathematics_EN_1.pdf
+    text: true
+  - file: Guidance-for-Modelling.pdf
+    url: https://www.curriculumonline.ie/getmedia/8f2d896c-d95f-47a6-b41a-af045cffc851/21042-Leaving-Cert-Applied-Maths-Guidance-for-Modelling-v3.pdf
+    text: true

@@ -14,6 +14,8 @@ from __future__ import annotations
 
 import html as html_lib
 
+from .. import book as book_module
+
 #: The units-oracle kinds whose answer is a quantity rather than an expression.
 _QUANTITY_KINDS = frozenset(
     {"dimensions", "convert", "sigfigs", "uncertainty", "resolve", "gradient", "intercept", "area"}
@@ -124,7 +126,7 @@ def render_problem_list(problems: list[dict]) -> str:
     """Numbered problem list, marked **H** for Higher-only questions."""
     lines = []
     for index, problem in enumerate(problems, 1):
-        marker = " **H**" if problem.get("tier") == "H" else ""
+        marker = " **H**" if problem.get("tier") == book_module.HIGHER_CODE else ""
         statement = problem.get("statement", "").strip().replace("\n", "\n   ")
         lines.append(f"{index}.{marker} {statement}")
     return "\n".join(lines) + "\n"

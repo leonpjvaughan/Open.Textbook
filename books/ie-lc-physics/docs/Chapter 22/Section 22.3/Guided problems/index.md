@@ -1,0 +1,19 @@
+---
+title: 22.3 Designing the investigation and gathering primary data — Practise with
+  help
+chapter: 22
+chapter_title: The Physics In Practice Investigation
+section: '22.3'
+section_title: Designing the investigation and gathering primary data
+tier: O
+refs:
+- '1.4'
+kind: guided-problems
+---
+
+<!-- scaffold:stub -->
+
+# 22.3 Designing the investigation and gathering primary data — Practise with help
+
+> **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
+> Tier: **O** · DfE refs: 1.4

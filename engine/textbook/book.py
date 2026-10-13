@@ -219,12 +219,17 @@ class Book:
     def tier_filter_for(self, profile_id: str) -> str:
         """The tier behaviour of a build, from the profile's declared filter.
 
-        Read from ``tier_filter`` and never from the profile's id. A book may
-        name its Foundation profile anything, so keying behaviour on the
-        literal ``"foundation"`` is the same fact written twice: a rename, or a
-        book whose id differs from its filter, would silently ship Higher-only
-        content to Foundation readers. An id with no declared profile — the
-        development ``toggle`` build — is its own filter.
+        Read from ``tier_filter`` and never from the profile's id. A book may name
+        its lower-tier profile anything — `foundation` in England, `ordinary` in
+        Ireland — so keying behaviour on a literal id is the same fact written
+        twice: a rename, or a book whose id differs from its filter, would silently
+        ship Higher-only content to the wrong reader.
+
+        The behaviours are `both` (the reader who studies only the content common
+        to both tiers), `higher` (the higher tier, which studies everything),
+        `all` (a book with no tier axis) and `toggle` (the development build that
+        keeps everything and switches in the browser). An id with no declared
+        profile is its own filter.
         """
         try:
             return self.profile(profile_id).tier_filter
@@ -275,13 +280,68 @@ class Book:
         return list(self.curriculum_data.get("proofs", []) or [])
 
     @property
-    def higher_sections(self) -> frozenset[str]:
-        """Section ids (e.g. '12.5') that are Higher-only."""
+    def tier_codes(self) -> tuple[str, ...]:
+        """The tier codes this book uses, ordered **lowest level first**.
+
+        The order is the whole of the tier model, so it is read from the document
+        rather than inferred from the labels: a code's position is its rank, and
+        content is studied by every reader at or above that rank.
+        """
+        return tuple(self.tier_axis)
+
+    @property
+    def lower_code(self) -> str:
+        """The lowest tier code — the label of which names every level.
+
+        `Foundation and Higher` in England, `Foundation, Ordinary and Higher` in
+        Ireland. Read from the front of the order rather than looked up by a
+        literal `F`, so a book using `O` for its common content works.
+        """
+        codes = self.tier_codes
+        if not codes:
+            raise ValueError(f"{self.id}: tier_axis is empty, so it has no lower code")
+        return codes[0]
+
+    def tiers_included(self, tier_filter: str) -> frozenset[str]:
+        """The tier codes a build includes, given a profile's declared filter.
+
+        A filter that names a tier code includes every level **up to and including
+        its own**, because content at a lower level is studied by every reader above
+        it. `all` and any unrecognised filter include everything — which is what a
+        book with no tier axis wants, and what keeps `toggle` a whole-book build.
+        """
+        codes = self.tier_codes
+        # The two whole-book behaviours. `all` is a book with no tier axis; `toggle`
+        # is the development build, which keeps everything and switches in the
+        # browser. Both are declared, not inferred.
+        if tier_filter in ("all", "toggle"):
+            return frozenset(codes)
+        if tier_filter not in codes:
+            # Loudly, because the alternative is what this code did first: an
+            # unrecognised filter fell through to "include everything", so a typo in
+            # `tier_filter` shipped every higher-only page to the lower-tier reader
+            # and the build stayed green. The declared values are the tier codes in
+            # `tier_axis`, plus `all` and `toggle`.
+            raise ValueError(
+                f"{self.id}: profile filter {tier_filter!r} is not a tier code "
+                f"({', '.join(codes) or 'none declared'}), nor 'all' nor 'toggle'"
+            )
+        return frozenset(codes[: codes.index(tier_filter) + 1])
+
+    def sections_above(self, tier_filter: str) -> frozenset[str]:
+        """Section ids (e.g. '12.5') a build leaves out.
+
+        Used to unlink links to pages that will not exist, so a build does not
+        dangle. See `hooks.tier.strip_excluded_links`.
+        """
+        included = self.tiers_included(tier_filter)
         return frozenset(
             section["id"]
             for chapter in self.chapters
             for section in chapter.get("sections", [])
-            if section.get("tier") == "H"
+            if section.get("tier")
+            and section["tier"] in self.tier_codes
+            and section["tier"] not in included
         )
 
     @property
@@ -380,6 +440,14 @@ def book_by_id(book_id: str, root: Path | None = None) -> Book:
 #: work has no syllabus, no boards and no tier axis, and is the only kind of book
 #: the shared proof registry can live in.
 REFERENCE = "Reference"
+
+#: The tier code that marks content only the higher tier or level studies.
+#:
+#: One code for the whole collection, because it means the same thing in each
+#: jurisdiction: Higher tier in England, Higher level in Ireland. Only the *other*
+#: code differs — `F` for "Foundation and Higher", `O` for "Ordinary and Higher" —
+#: and a book declares that one in `tier_axis`.
+HIGHER_CODE = "H"
 
 
 def reference_book(root: Path | None = None) -> Book | None:

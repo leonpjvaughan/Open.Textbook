@@ -17,6 +17,12 @@ from textbook.verify import coverage
 PHYSICS = [b for b in books.discover_books() if b.subject == "Physics"]
 IDS = [b.id for b in PHYSICS]
 
+# The booklet tests are about booklets, so they select the books that declare one.
+# Selecting by subject instead assumed every physics book has a formula sheet — true
+# of the English pair, and not yet true of the Irish one.
+WITH_BOOKLET = [b for b in books.discover_books() if b.booklet_name]
+BOOKLET_IDS = [b.id for b in WITH_BOOKLET]
+
 
 def test_a_declared_item_the_reader_is_given_passes():
     items = {"sim-eq": {"id": "sim-eq", "provision": {"aqa": "given", "ocr": "given"}}}
@@ -68,16 +74,64 @@ def test_every_declaration_in_the_real_books_is_valid(book):
     assert coverage.check_book(book) == []
 
 
-@pytest.mark.parametrize("book", PHYSICS, ids=IDS)
+#: Booklet items whose LaTeX `sympy.parsing.latex` cannot read, and why.
+#:
+#: `coverage._sides` returns nothing for these, so a problem that declares one gets
+#: **no coverage check** — the check cannot see the relation. That is a real gap in
+#: what this project verifies, so it is written down and counted rather than left
+#: inside a percentage. `test_the_booklet_parses_and_the_gap_is_countable` fails when
+#: an item appears here that is not in this map, which is the point: a new one is a
+#: decision for a person, not for a threshold.
+#:
+#: This map was written after the test was found to be parametrised over the books
+#: whose *subject* is Physics, so it had never run on either mathematics booklet at
+#: all. The nine entries below had been silently unchecked.
+UNPARSABLE_NOTATION = {
+    # `{}^n C_r` — prescript notation.
+    "binomial-coefficient": "prescript notation {}^{n}C_{r}",
+    # `\left| … \right|` — the parser wants \langle / \rangle.
+    "vector-magnitude": "absolute value as \\left| … \\right|",
+    # A `\sum` with no limits under it: `\sum x`, `\sum (x - \bar{x})^2`.
+    "aqa-ocr-standard-deviation": "a \\sum with no limits",
+    "ocr-variance-frequency": "a \\sum with no limits",
+    "edexcel-standard-deviation": "a \\sum with no limits",
+    "edexcel-sxx": "a \\sum with no limits",
+    "mean-of-data": "a \\sum with no limits",
+    # An `array` of values is a table, not a relation. `_sides` splitting it on `=`
+    # was never going to mean anything.
+    "edexcel-normal-percentage-points": "an array: a table of values, not a relation",
+    "ocr-normal-percentage-points": "an array: a table of values, not a relation",
+}
+
+
+@pytest.mark.parametrize("book", WITH_BOOKLET, ids=BOOKLET_IDS)
 def test_the_booklet_parses_and_the_gap_is_countable(book):
     """The tooling works on the real booklets, and the gap is a number not a guess."""
     items = coverage.booklet_items(book)
     assert items, f"{book.id} declares a booklet but no items were read"
 
-    parsable = sum(1 for item in items.values() if coverage._sides(item))
-    assert parsable > len(items) * 0.9, (
-        f"only {parsable} of {len(items)} booklet items parse; "
-        "antlr4-python3-runtime is what makes sympy.parsing.latex work"
+    # An item that will not parse is only a failure when it had a symbolic relation
+    # to parse. A word formula — `speed = distance / time`, with the words in
+    # `\text{}` — has none, so `_sides` returning nothing is the right answer for it.
+    #
+    # This was a percentage threshold, which was wrong twice over: it let a real
+    # parse failure hide inside the 10% it allowed, and the booklets' own word
+    # formulae are the items that filled that allowance.
+    unparsable = []
+    for item_id, item in items.items():
+        if coverage._sides(item):
+            continue
+        if "\\text{" in str(item.get("latex") or ""):
+            continue  # a word formula: nothing symbolic to check
+        unparsable.append(item_id)
+
+    assert sorted(unparsable) == sorted(
+        i for i in UNPARSABLE_NOTATION if i in items
+    ), (
+        "the set of booklet items `sympy.parsing.latex` cannot read has changed. "
+        f"Unreadable now: {sorted(unparsable)}. Recorded as unreadable: "
+        f"{sorted(i for i in UNPARSABLE_NOTATION if i in items)}. "
+        "Add the new one to UNPARSABLE_NOTATION with a reason, or fix the LaTeX."
     )
 
     # Undeclared symbolic records are reported, not failed.

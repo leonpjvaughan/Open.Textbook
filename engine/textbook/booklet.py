@@ -25,7 +25,7 @@ from . import book as books
 
 KATEX = Path(__file__).resolve().parent / "js" / "katex-render.mjs"
 
-TIERS = {"F", "H"}
+TIERS = {"F", "O", "H"}
 
 
 def fail(message: str) -> None:

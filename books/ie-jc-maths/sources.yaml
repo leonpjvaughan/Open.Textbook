@@ -1,0 +1,49 @@
+# Provenance for every curriculum claim in this book.
+#
+# This is a tracked build input: it is what the chapter plan and the tier split rest
+# on, so it belongs with the content. The fetched artefacts (PDFs and extracted
+# text) are bulky and regenerable, so they live outside the build tree in
+# research/sources/<book>/ and are git-ignored.
+#
+#   scripts/fetch_sources.sh <book>
+#
+# Retrieved: 2026-10-13. Read alongside research/curriculum/ie-curriculum.md, which
+# records what each document says and which ones are superseded.
+
+references:
+  - id: ncca-jc-maths
+    # The reader is entitled to reach this one: it is content the book rests on, so
+    # About this book links it.
+    attribution: true
+    title: "Junior Cycle Mathematics specification (2018)"
+    url: https://www.curriculumonline.ie/getmedia/6a7f1ff5-9b9e-4d71-8e1f-6d4f932191db/JC_Mathematics_Specification.pdf
+    role: >-
+      Primary curriculum. Four strands — Number, Geometry and trigonometry, Algebra
+      and functions, Statistics and probability — plus a Unifying strand of 13
+      process outcomes. 34 learning outcomes in total, numbered within each strand;
+      the Higher-level outcomes are printed in bold.
+
+  - id: ncca-jc-maths-assessment
+    attribution: true
+    title: "Junior Cycle Mathematics — Assessment Guidelines"
+    url: https://www.curriculumonline.ie/getmedia/f5af815d-5916-4dc9-bfda-4f3d73bc4787/Assessment_Guidelines_Mathematics.pdf
+    role: >-
+      The assessment model: two Classroom-Based Assessments at common level, an
+      Assessment Task worth 10% of the SEC grade, and a final written examination.
+
+  - id: sec
+    title: "State Examinations Commission"
+    url: https://www.examinations.ie/
+    role: >-
+      Sets and marks the final examination. Its past-paper archive is behind a bot
+      challenge and could not be read while planning this book; the examination
+      format recorded here comes from the specification and the assessment
+      guidelines, which state it authoritatively.
+
+downloads:
+  - file: JC_Mathematics_Specification.pdf
+    url: https://www.curriculumonline.ie/getmedia/6a7f1ff5-9b9e-4d71-8e1f-6d4f932191db/JC_Mathematics_Specification.pdf
+    text: true
+  - file: Assessment_Guidelines_Mathematics.pdf
+    url: https://www.curriculumonline.ie/getmedia/f5af815d-5916-4dc9-bfda-4f3d73bc4787/Assessment_Guidelines_Mathematics.pdf
+    text: true

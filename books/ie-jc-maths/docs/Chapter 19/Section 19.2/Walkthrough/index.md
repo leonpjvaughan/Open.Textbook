@@ -1,0 +1,18 @@
+---
+title: 19.2 Axial symmetry and reflection — Learn
+chapter: 19
+chapter_title: Transformations and symmetry
+section: '19.2'
+section_title: Axial symmetry and reflection
+tier: O
+refs:
+- GT.6
+kind: walkthrough
+---
+
+<!-- scaffold:stub -->
+
+# 19.2 Axial symmetry and reflection — Learn
+
+> **Stub.** Teaching narrative and fully worked examples. At least one Tier-1 or Tier-2 interactive figure where a parameter is worth manipulating. State prerequisites and learning objectives at the top.
+> Tier: **O** · DfE refs: GT.6

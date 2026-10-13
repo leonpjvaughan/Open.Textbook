@@ -1,0 +1,324 @@
+# Leaving Certificate Physics (Ireland) — chapter and section plan
+#
+# Source of truth for the docs scaffold and for per-chapter authoring briefs.
+#
+# Tier: O = Ordinary and Higher level; H = Higher level only.
+# refs: the NCCA specification outcome, numbered <strand>.<item>. The document is
+#       SC-PHYSICS-Spec-EN.pdf, introduced for fifth year students in September 2025.
+#       It replaced the syllabus whose last examination was June 2026, so the older
+#       numbering (found in past papers) is NOT what these references point at.
+#
+# The Unifying strand — the Nature of Science — is not a strand of content. It is
+# the investigative process that the other four strands are taught through, and it
+# is assessed directly: 40% of the mark is a Physics In Practice Investigation on a
+# common SEC brief, against 60% for the written paper. Chapter 1 carries it, and
+# every other chapter's investigations feed it.
+#
+# See research/curriculum/ie-curriculum.md §6 for the evidence behind both points.
+
+meta:
+  title: Leaving Certificate Physics
+  jurisdiction: Ireland
+  awarding_bodies: [SEC]
+  tiers: [Ordinary, Higher]
+  retrieved: 2026-10-13
+  # Where this book is for, the word that jurisdiction uses for its levels, and who
+  # publishes the curriculum it follows. Ireland calls its levels levels, not tiers.
+  #
+  # There is no `curriculum_licence`: the NCCA's re-use terms could not be read while
+  # this book was planned (ncca.ie is behind a bot challenge), and a licence claim
+  # that has not been verified must not be written. The About page says the material
+  # belongs to the NCCA and is referred to rather than reproduced.
+  level_word: level
+  curriculum_body: National Council for Curriculum and Assessment (NCCA)
+  # Who owns the specification and who examines it. In Ireland these are two
+  # different bodies — the NCCA writes the specification, the SEC sets and marks the
+  # examination — so this cannot be composed from the awarding bodies.
+  specification_note: >-
+    The specification content, and any wording taken from a specification, belongs
+    to the National Council for Curriculum and Assessment, which publishes it. The
+    State Examinations Commission sets and marks the examinations.
+  note: >-
+    Assessment: Physics In Practice Investigation 40% (common brief), written
+    examination 60% at Ordinary and Higher level. Two years.
+
+# Coverage: the specification's outcomes, by strand. Every one must have a home —
+# the scaffold reports any item no section teaches.
+coverage:
+  - prefix: "1."
+    strand: forces-motion
+    items: 6
+  - prefix: "2."
+    strand: waves-energy
+    items: 7
+  - prefix: "3."
+    strand: electricity-magnetism
+    items: 6
+  - prefix: "4."
+    strand: modern-physics
+    items: 6
+
+strands:
+  - id: forces-motion
+    title: Forces and Motion
+  - id: waves-energy
+    title: Wave Motion and Energy Transfer
+  - id: electricity-magnetism
+    title: Electric and Magnetic Fields
+  - id: modern-physics
+    title: Modern Physics
+
+chapters:
+  - id: 1
+    title: Measuring, modelling and investigating
+    strand: forces-motion
+    summary: >-
+      Units and measurement, uncertainty, the difference between a model and the
+      thing it describes, and how to plan, record and evaluate an investigation.
+    anchor:
+      title: How fast does a dropped ball actually fall?
+      brief: >-
+        You will drop a ball and time it, then compare what you measured with what
+        the simplest model predicts. By the end of the chapter you can say which
+        parts of the difference are the model's fault and which are your
+        measurement's.
+    application: Every experiment in the course, and the Physics In Practice Investigation.
+    relevance_prompt: Where have you seen a number quoted as if it were exact, when it was really a measurement with a range?
+    sections:
+      - {id: "1.1", title: "Physical quantities and SI units", tier: O, refs: ["1.1"]}
+      - {id: "1.2", title: "Measuring, accuracy and uncertainty", tier: O, refs: ["1.1"]}
+      - {id: "1.3", title: "Scientific models and the Nature of Science", tier: O, refs: ["1.1"]}
+      - {id: "1.4", title: "Planning and evaluating an investigation", tier: O, refs: ["1.6"]}
+      - {id: "1.5", title: "Graphs, gradients and the language of data", tier: O, refs: ["1.1", "1.4"]}
+
+  - id: 2
+    title: Describing motion
+    strand: forces-motion
+    summary: Kinematics in a straight line — displacement, velocity, acceleration, and the graphs that carry them.
+    sections:
+      - {id: "2.1", title: "Displacement, velocity and acceleration", tier: O, refs: ["1.1"]}
+      - {id: "2.2", title: "Motion graphs", tier: O, refs: ["1.1"]}
+      - {id: "2.3", title: "The equations of motion for constant acceleration", tier: O, refs: ["1.1"]}
+      - {id: "2.4", title: "Motion under gravity", tier: O, refs: ["1.1", "1.5"]}
+      - {id: "2.5", title: "Deriving the equations of motion from a graph", tier: H, refs: ["1.1"]}
+
+  - id: 3
+    title: Forces and Newton's laws
+    strand: forces-motion
+    summary: Force as an interaction, free-body diagrams, and Newton's three laws applied to real situations.
+    sections:
+      - {id: "3.1", title: "Forces and free-body diagrams", tier: O, refs: ["1.2"]}
+      - {id: "3.2", title: "Newton's first and second laws", tier: O, refs: ["1.2"]}
+      - {id: "3.3", title: "Newton's third law and momentum", tier: O, refs: ["1.2"]}
+      - {id: "3.4", title: "Friction and resistive forces", tier: O, refs: ["1.2"]}
+      - {id: "3.5", title: "Connected objects and systems", tier: H, refs: ["1.2"]}
+
+  - id: 4
+    title: Work, energy and power
+    strand: forces-motion
+    summary: The work-energy model, conservation of energy, and the difference between a scalar and a vector account of motion.
+    sections:
+      - {id: "4.1", title: "Work and energy", tier: O, refs: ["1.4"]}
+      - {id: "4.2", title: "Kinetic and potential energy", tier: O, refs: ["1.4"]}
+      - {id: "4.3", title: "Conservation of energy", tier: O, refs: ["1.4"]}
+      - {id: "4.4", title: "Power and efficiency", tier: O, refs: ["1.4"]}
+      - {id: "4.5", title: "Solving problems with the work-energy model", tier: H, refs: ["1.4"]}
+
+  - id: 5
+    title: Stretching and compressing
+    strand: forces-motion
+    summary: Hooke's law, springs in series and parallel, and elastic potential energy.
+    sections:
+      - {id: "5.1", title: "Hooke's law", tier: O, refs: ["1.3"]}
+      - {id: "5.2", title: "The spring constant and combinations of springs", tier: O, refs: ["1.3"]}
+      - {id: "5.3", title: "Elastic potential energy", tier: O, refs: ["1.3"]}
+      - {id: "5.4", title: "Investigating Hooke's law", tier: O, refs: ["1.3"]}
+
+  - id: 6
+    title: Gravity and gravitational fields
+    strand: forces-motion
+    summary: Weight and mass, gravitational field strength, and Newton's law of universal gravitation.
+    sections:
+      - {id: "6.1", title: "Weight, mass and gravitational field strength", tier: O, refs: ["1.5"]}
+      - {id: "6.2", title: "Newton's law of universal gravitation", tier: O, refs: ["1.5"]}
+      - {id: "6.3", title: "Gravitational potential energy in a field", tier: H, refs: ["1.5"]}
+      - {id: "6.4", title: "Orbits and satellites", tier: O, refs: ["1.5", "1.6"]}
+
+  - id: 7
+    title: Circular motion
+    strand: forces-motion
+    summary: Angular velocity, centripetal acceleration and centripetal force.
+    sections:
+      - {id: "7.1", title: "Angular velocity and period", tier: O, refs: ["1.6"]}
+      - {id: "7.2", title: "Centripetal acceleration", tier: O, refs: ["1.6"]}
+      - {id: "7.3", title: "Centripetal force and its sources", tier: O, refs: ["1.6"]}
+      - {id: "7.4", title: "Circular motion problems", tier: H, refs: ["1.6"]}
+
+  - id: 8
+    title: Heat, temperature and energy transfer
+    strand: waves-energy
+    summary: Temperature and heat as distinct ideas, specific heat capacity, latent heat, and the three mechanisms of transfer.
+    sections:
+      - {id: "8.1", title: "Temperature, heat and thermal equilibrium", tier: O, refs: ["2.1"]}
+      - {id: "8.2", title: "Specific heat capacity", tier: O, refs: ["2.1"]}
+      - {id: "8.3", title: "Latent heat and changes of state", tier: O, refs: ["2.1"]}
+      - {id: "8.4", title: "Conduction, convection and radiation", tier: O, refs: ["2.1"]}
+
+  - id: 9
+    title: Waves
+    strand: waves-energy
+    summary: Waves as travelling disturbances — the wave equation, transverse and longitudinal waves, and superposition.
+    sections:
+      - {id: "9.1", title: "What a wave is", tier: O, refs: ["2.2"]}
+      - {id: "9.2", title: "Frequency, wavelength and wave speed", tier: O, refs: ["2.2"]}
+      - {id: "9.3", title: "Transverse and longitudinal waves", tier: O, refs: ["2.2"]}
+      - {id: "9.4", title: "The principle of superposition", tier: O, refs: ["2.6"]}
+      - {id: "9.5", title: "Stationary waves and resonance", tier: O, refs: ["2.6"]}
+
+  - id: 10
+    title: Reflection, refraction and diffraction
+    strand: waves-energy
+    summary: What happens when a wave meets matter — reflection, refraction, Snell's law, total internal reflection, diffraction and interference.
+    sections:
+      - {id: "10.1", title: "Reflection of waves", tier: O, refs: ["2.3"]}
+      - {id: "10.2", title: "Refraction and Snell's law", tier: O, refs: ["2.3"]}
+      - {id: "10.3", title: "Total internal reflection and the critical angle", tier: O, refs: ["2.3"]}
+      - {id: "10.4", title: "Diffraction and interference", tier: O, refs: ["2.3"]}
+      - {id: "10.5", title: "The diffraction grating", tier: H, refs: ["2.3"]}
+
+  - id: 11
+    title: Sound
+    strand: waves-energy
+    summary: Sound as a longitudinal wave, speed in different media, loudness and pitch, and the Doppler effect.
+    sections:
+      - {id: "11.1", title: "Sound as a wave", tier: O, refs: ["2.5"]}
+      - {id: "11.2", title: "The speed of sound and its measurement", tier: O, refs: ["2.5"]}
+      - {id: "11.3", title: "Pitch, loudness and quality", tier: O, refs: ["2.5"]}
+      - {id: "11.4", title: "The Doppler effect", tier: O, refs: ["2.7"]}
+      - {id: "11.5", title: "Calculating with the Doppler effect", tier: H, refs: ["2.7"]}
+
+  - id: 12
+    title: Light and electromagnetic radiation
+    strand: waves-energy
+    summary: The electromagnetic spectrum, the speed of light, and the energy carried by electromagnetic radiation.
+    sections:
+      - {id: "12.1", title: "The electromagnetic spectrum", tier: O, refs: ["2.4"]}
+      - {id: "12.2", title: "The speed of light", tier: O, refs: ["2.4"]}
+      - {id: "12.3", title: "Energy in electromagnetic radiation", tier: O, refs: ["2.4"]}
+      - {id: "12.4", title: "Lenses and images", tier: O, refs: ["2.3"]}
+
+  - id: 13
+    title: Charge and electric fields
+    strand: electricity-magnetism
+    summary: Electric charge, Coulomb's law, and the electric field as the way charge acts at a distance.
+    sections:
+      - {id: "13.1", title: "Electric charge and charging", tier: O, refs: ["3.1"]}
+      - {id: "13.2", title: "Coulomb's law", tier: O, refs: ["3.1"]}
+      - {id: "13.3", title: "Electric fields and field lines", tier: O, refs: ["3.2"]}
+      - {id: "13.4", title: "Electric field strength and potential", tier: H, refs: ["3.2"]}
+
+  - id: 14
+    title: Electric circuits
+    strand: electricity-magnetism
+    summary: Current, potential difference, resistance, Ohm's law, and the rules for series and parallel circuits.
+    sections:
+      - {id: "14.1", title: "Current, potential difference and resistance", tier: O, refs: ["3.3"]}
+      - {id: "14.2", title: "Ohm's law and resistors", tier: O, refs: ["3.3"]}
+      - {id: "14.3", title: "Series and parallel circuits", tier: O, refs: ["3.3"]}
+      - {id: "14.4", title: "Electrical power and energy", tier: O, refs: ["3.3"]}
+      - {id: "14.5", title: "Internal resistance and emf", tier: H, refs: ["3.3"]}
+
+  - id: 15
+    title: Magnetism and the force on a current
+    strand: electricity-magnetism
+    summary: Magnetic fields, the force a magnetic field exerts on a moving charge and on a current-carrying conductor, and the motor effect.
+    sections:
+      - {id: "15.1", title: "Magnetic fields and magnetic materials", tier: O, refs: ["3.4"]}
+      - {id: "15.2", title: "The magnetic field of a current", tier: O, refs: ["3.4"]}
+      - {id: "15.3", title: "The force on a current-carrying conductor", tier: O, refs: ["3.5"]}
+      - {id: "15.4", title: "The force on a moving charge", tier: H, refs: ["3.5"]}
+      - {id: "15.5", title: "The electric motor", tier: O, refs: ["3.5"]}
+
+  - id: 16
+    title: Electromagnetic induction
+    strand: electricity-magnetism
+    summary: Magnetic flux, Faraday's law, Lenz's law, the generator, the transformer and the national grid.
+    sections:
+      - {id: "16.1", title: "Magnetic flux and flux density", tier: O, refs: ["3.6"]}
+      - {id: "16.2", title: "Faraday's law of induction", tier: O, refs: ["3.6"]}
+      - {id: "16.3", title: "Lenz's law and conservation of energy", tier: O, refs: ["3.6"]}
+      - {id: "16.4", title: "A.C. and D.C. generators", tier: O, refs: ["3.6"]}
+      - {id: "16.5", title: "Transformers and the transmission of electricity", tier: O, refs: ["3.6"]}
+      - {id: "16.6", title: "R.M.S. values of alternating current", tier: H, refs: ["3.6"]}
+
+  - id: 17
+    title: The electron
+    strand: modern-physics
+    summary: The discovery of the electron, thermionic emission, and measuring the charge-to-mass ratio.
+    sections:
+      - {id: "17.1", title: "Evidence for the electron", tier: O, refs: ["4.1"]}
+      - {id: "17.2", title: "Thermionic emission and the electron gun", tier: O, refs: ["4.1"]}
+      - {id: "17.3", title: "The charge-to-mass ratio of the electron", tier: H, refs: ["4.1"]}
+
+  - id: 18
+    title: The photoelectric effect and X-rays
+    strand: modern-physics
+    summary: Photons, the photoelectric effect, Einstein's equation, and the production of X-rays.
+    sections:
+      - {id: "18.1", title: "The photon and the quantum idea", tier: O, refs: ["4.2"]}
+      - {id: "18.2", title: "The photoelectric effect", tier: O, refs: ["4.2"]}
+      - {id: "18.3", title: "Einstein's photoelectric equation", tier: O, refs: ["4.2"]}
+      - {id: "18.4", title: "X-ray production", tier: O, refs: ["4.2"]}
+
+  - id: 19
+    title: Models of the atom
+    strand: modern-physics
+    summary: How the model of the atom changed as evidence arrived — Thomson, Rutherford, Bohr — and atomic spectra.
+    sections:
+      - {id: "19.1", title: "From Thomson to Rutherford", tier: O, refs: ["4.3"]}
+      - {id: "19.2", title: "The Bohr model and energy levels", tier: O, refs: ["4.3"]}
+      - {id: "19.3", title: "Emission and absorption spectra", tier: O, refs: ["4.3"]}
+
+  - id: 20
+    title: Radioactivity
+    strand: modern-physics
+    summary: Alpha, beta and gamma radiation, decay, half-life, and the effects of radiation on matter and on people.
+    sections:
+      - {id: "20.1", title: "Radioactive decay and the three emissions", tier: O, refs: ["4.4"]}
+      - {id: "20.2", title: "Half-life and activity", tier: O, refs: ["4.4"]}
+      - {id: "20.3", title: "Nuclear equations", tier: O, refs: ["4.4"]}
+      - {id: "20.4", title: "Uses and hazards of radiation", tier: O, refs: ["4.4"]}
+
+  - id: 21
+    title: Mass and energy
+    strand: modern-physics
+    summary: Mass-energy equivalence, binding energy, and the Cockcroft and Walton experiment.
+    sections:
+      - {id: "21.1", title: "Mass-energy equivalence", tier: O, refs: ["4.5"]}
+      - {id: "21.2", title: "Binding energy and the mass defect", tier: O, refs: ["4.5"]}
+      - {id: "21.3", title: "Fission and fusion", tier: O, refs: ["4.6"]}
+      - {id: "21.4", title: "Nuclear power and its alternatives", tier: O, refs: ["4.6"]}
+
+  - id: 22
+    title: The Physics In Practice Investigation
+    strand: modern-physics
+    summary: >-
+      The 40% investigative component: choosing a question, researching it, gathering
+      and processing primary data, and giving an authentic account of how the work
+      unfolded.
+    anchor:
+      title: Your investigation
+      brief: >-
+        You will choose an issue, research it, gather your own data on it, and write
+        an honest account of what happened — including what you would change. This
+        chapter is the guide to doing that well, and it is worth more of your mark
+        than any other single piece of work in the course.
+    application: Research, experiment design, data handling and scientific writing.
+    relevance_prompt: What have you wondered about in physics this year that nobody has given you a number for?
+    sections:
+      - {id: "22.1", title: "Reading the brief and choosing a question", tier: O, refs: ["1.3"]}
+      - {id: "22.2", title: "Researching from secondary sources", tier: O, refs: ["1.3"]}
+      - {id: "22.3", title: "Designing the investigation and gathering primary data", tier: O, refs: ["1.4"]}
+      - {id: "22.4", title: "Processing and evaluating your data", tier: O, refs: ["1.4"]}
+      - {id: "22.5", title: "Writing the report", tier: O, refs: ["1.3"]}
+      - {id: "22.6", title: "Reviewing the whole course", tier: O, refs: ["1.1", "1.2", "2.1", "3.1", "4.1"]}

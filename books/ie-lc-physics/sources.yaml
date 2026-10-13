@@ -1,0 +1,53 @@
+# Provenance for every curriculum claim in this book.
+#
+# This is a tracked build input: it is what the chapter plan and the tier split rest
+# on, so it belongs with the content. The fetched artefacts (PDFs and extracted
+# text) are bulky and regenerable, so they live outside the build tree in
+# research/sources/<book>/ and are git-ignored.
+#
+#   scripts/fetch_sources.sh <book>
+#
+# Retrieved: 2026-10-13. Read alongside research/curriculum/ie-curriculum.md, which
+# records what each document says and which ones are superseded.
+#
+# This book follows the specification introduced in September 2025, not the syllabus
+# it replaced. The old syllabus's last examination was June 2026, four months before
+# this book was planned; it is recorded here because a reader may still meet it, and
+# because the difference is the whole reason the Physics In Practice Investigation
+# has a strand of its own.
+
+references:
+  - id: ncca-lc-physics-2025
+    attribution: true
+    title: "Leaving Certificate Physics specification (introduced September 2025)"
+    url: https://www.curriculumonline.ie/getmedia/aec702a9-4818-45f1-917e-497c3a9a2466/SC-PHYSICS-Spec-EN.pdf
+    role: >-
+      Primary curriculum. A Unifying strand (the Nature of Science) and four content
+      strands: Forces and Motion; Wave Motion and Energy Transfer; Electric and
+      Magnetic Fields and their Interactions; Modern Physics. Replaces the syllabus
+      whose last examination was June 2026.
+
+  - id: ncca-lc-physics-superseded
+    attribution: true
+    title: "Leaving Certificate Physics syllabus (for examination to June 2026) — superseded"
+    url: https://www.curriculumonline.ie/getmedia/fe400d39-9ea0-46ee-927b-ce570bddad76/SCSEC27_Physics_syllabus_eng.pdf
+    role: >-
+      Superseded. Recorded, not followed: the past papers a reader may find online
+      were set from this document, so knowing what it said is how the book can say
+      which material has moved.
+
+  - id: sec
+    title: "State Examinations Commission"
+    url: https://www.examinations.ie/
+    role: >-
+      Physics In Practice Investigation 40% on a common brief, written examination
+      60% at Higher and Ordinary level. Its past-paper archive is behind a bot
+      challenge and could not be read while planning this book.
+
+downloads:
+  - file: SC-PHYSICS-Spec-EN.pdf
+    url: https://www.curriculumonline.ie/getmedia/aec702a9-4818-45f1-917e-497c3a9a2466/SC-PHYSICS-Spec-EN.pdf
+    text: true
+  - file: SCSEC27_Physics_syllabus_eng.pdf
+    url: https://www.curriculumonline.ie/getmedia/fe400d39-9ea0-46ee-927b-ce570bddad76/SCSEC27_Physics_syllabus_eng.pdf
+    text: true

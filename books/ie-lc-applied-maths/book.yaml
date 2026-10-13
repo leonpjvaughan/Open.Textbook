@@ -1,0 +1,50 @@
+# Identity and build metadata for this book.
+#
+# Leaving Certificate Applied Mathematics (2019 specification). 180 hours of class
+# contact. Assessed by a written examination worth 80% and a modelling project worth
+# 20%, the latter set on an annual brief issued by the SEC and common to both levels
+# with differentiated marking.
+#
+# Strand 1 is not content but the modelling process itself, and Strands 2–4 apply
+# it. Strand 2 — networks, spanning trees, shortest paths, dynamic programming — has
+# no counterpart anywhere else in this collection.
+
+id: ie-lc-applied-maths
+title: Leaving Certificate Applied Mathematics
+qualification: Leaving Certificate
+subject: Applied Mathematics
+order: 2
+description: >-
+  A complete, interactive Leaving Certificate Applied Mathematics book for Ireland,
+  covering Ordinary and Higher level, with the modelling process at its centre.
+
+boards: [SEC]
+
+profiles:
+  - id: higher
+    name: Higher
+    tier_filter: H
+    default: true
+  - id: ordinary
+    name: Ordinary
+    tier_filter: O
+
+tier_axis:
+  O: Ordinary and Higher
+  H: Higher only
+
+oracles: [sympy]
+
+theme:
+  light:
+    accent: "#a01a3c"
+    accent_light: "#c4405f"
+    accent_dark: "#7d1430"
+  dark:
+    accent: "#f8a5b8"
+    accent_light: "#fbc0cd"
+    accent_dark: "#e06e88"
+
+curriculum: curriculum.yaml
+banks: problems
+sources: sources.yaml

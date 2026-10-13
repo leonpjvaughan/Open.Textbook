@@ -4,7 +4,7 @@
 
 _GCSE Mathematics (9-1) · generated 2026-10-10_
 
-The subject content is the authoritative coverage target. Every item is mapped below to at least one section; the scaffold fails loudly if any item has no home.
+The authoritative document is named in `sources.yaml`. Every item is mapped below to at least one section; the scaffold fails loudly if any item has no home.
 
 ## N — Number
 

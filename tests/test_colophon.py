@@ -16,6 +16,7 @@ import pytest
 from textbook import book as books
 from textbook import scaffold
 
+BOOKS = books.discover_books()
 MATHS = books.book_by_id("gcse-maths")
 PAGE = MATHS.docs / scaffold.COLOPHON_FILE
 
@@ -42,9 +43,9 @@ def test_about_page_is_in_sync_with_its_generator():
 
 @pytest.mark.parametrize("profile", [p.id for p in MATHS.profiles])
 def test_about_page_is_in_the_navigation(profile):
-    include_higher = MATHS.profile(profile).tier_filter != "foundation"
+    included_tiers = MATHS.tiers_included(MATHS.profile(profile).tier_filter)
     nav = scaffold.build_nav_list(
-        MATHS.strands, MATHS.chapters, include_higher=include_higher
+        MATHS.strands, MATHS.chapters, included_tiers=included_tiers
     )
     entries = {key: value for entry in nav for key, value in entry.items()}
     assert scaffold.COLOPHON_TITLE in entries, f"{profile}: About page is not in the nav"
@@ -187,3 +188,76 @@ def test_an_untagged_reference_is_not_linked():
     assert "mathsgenie" in ids, "the fixture this test rests on has moved"
     linked = " ".join(scaffold._attribution_links(MATHS))
     assert "mathsgenie" not in linked
+
+
+# ── the book's own jurisdiction ────────────────────────────────────────────────
+#
+# The About page once ended its opening sentence with a hardcoded "for England", so
+# every Irish book was published claiming to be an English one, and it credited the
+# Department for Education and the Open Government Licence for material owned by the
+# NCCA. A generator that asserts a country is a generator that will be wrong the
+# first time the collection leaves that country, so the country is now declared and
+# these tests are what keep it honest.
+
+
+def _about_page(book):
+    from textbook import scaffold
+
+    return scaffold.colophon_page(book, licence=None)
+
+
+NON_REFERENCE = [b for b in BOOKS if b.qualification != "Reference"]
+IDS = [b.id for b in NON_REFERENCE]
+
+
+@pytest.mark.parametrize("book", NON_REFERENCE, ids=IDS)
+def test_every_course_declares_where_it_is_for(book):
+    """No default: a book with no declared jurisdiction is refused, not guessed."""
+    meta = book.curriculum_data.get("meta", {})
+    assert str(meta.get("jurisdiction") or "").strip(), (
+        f"{book.id} declares no meta.jurisdiction, so its About page cannot say "
+        "which country it is for"
+    )
+    assert str(meta.get("level_word") or "").strip(), (
+        f"{book.id} declares no meta.level_word, so its About page would guess "
+        "whether the jurisdiction says 'tier' or 'level'"
+    )
+    assert str(meta.get("curriculum_body") or "").strip(), (
+        f"{book.id} declares no meta.curriculum_body, so its About page cannot say "
+        "whose curriculum it follows"
+    )
+
+
+@pytest.mark.parametrize("book", NON_REFERENCE, ids=IDS)
+def test_the_about_page_names_only_this_books_jurisdiction(book):
+    """The sentence is built from the declaration, not from a literal."""
+    meta = book.curriculum_data["meta"]
+    page = _about_page(book)
+    assert f"book for {meta['jurisdiction']}." in page, page[:400]
+
+    # And it names no other. These are the two jurisdictions in the collection;
+    # adding a third means adding it here, which is the point.
+    others = {"England", "Ireland"} - {meta["jurisdiction"]}
+    for other in others:
+        assert f"book for {other}" not in page, (
+            f"{book.id} is for {meta['jurisdiction']} but its About page says "
+            f"{other}"
+        )
+
+
+@pytest.mark.parametrize("book", NON_REFERENCE, ids=IDS)
+def test_the_about_page_does_not_claim_another_countrys_licence(book):
+    """Crown copyright and the OGL are England's. A book that has not been given
+    terms it can cite says so by not making a claim."""
+    meta = book.curriculum_data["meta"]
+    page = _about_page(book)
+    if meta.get("curriculum_licence"):
+        return
+    for phrase in ("Crown copyright", "Open Government Licence", "Department for Education"):
+        assert phrase not in page, (
+            f"{book.id} declares no curriculum licence, so its About page must not "
+            f"claim {phrase!r}"
+        )
+    assert meta["curriculum_body"] in page, (
+        f"{book.id} must name whose curriculum it follows"
+    )

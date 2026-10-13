@@ -640,8 +640,8 @@ def test_tier_behaviour_follows_the_declared_filter_not_the_profile_id(monkeypat
     """A book may name its Foundation profile something other than `foundation`.
 
     Both the nav filter and the in-page tier hook keyed on the literal id, so a
-    book declaring `id: learner, tier_filter: foundation` would have shipped
-    Higher-only content to Foundation readers with no error. Both now read the
+    book declaring `id: learner, tier_filter: both` would have shipped
+    Higher-only content to that reader with no error. Both now read the
     declared filter through one resolver, `Book.tier_filter_for`.
     """
     from dataclasses import replace
@@ -653,19 +653,17 @@ def test_tier_behaviour_follows_the_declared_filter_not_the_profile_id(monkeypat
     renamed = replace(
         book,
         profiles=(
-            replace(book.default_profile, id="core", tier_filter="higher", default=True),
-            replace(book.profile("foundation"), id="learner", tier_filter="foundation"),
+            replace(book.default_profile, id="core", tier_filter="H", default=True),
+            replace(book.profile("foundation"), id="learner", tier_filter="F"),
         ),
     )
-    assert renamed.tier_filter_for("learner") == "foundation"
-    assert renamed.tier_filter_for("core") == "higher"
+    assert renamed.tier_filter_for("learner") == "F"
+    assert renamed.tier_filter_for("core") == "H"
 
-    # The nav filter drops the Higher-only section under the renamed profile.
-    filtered = pipeline.nav_for(
-        renamed, include_higher=renamed.tier_filter_for("learner") != "foundation"
-    )
-    assert "Section 5.6" not in str(filtered)
-    assert "Section 5.6" in str(pipeline.nav_for(renamed, include_higher=True))
+    # The nav filter drops the Higher-only section under the renamed profile, and
+    # keeps it under the other — from the declared filter, not from either id.
+    assert "Section 5.6" not in str(pipeline.nav_for(renamed, renamed.tiers_included("F")))
+    assert "Section 5.6" in str(pipeline.nav_for(renamed, renamed.tiers_included("H")))
 
     # And the hook strips the in-page block under that profile id.
     monkeypatch.setattr(cfg, "book_by_id", lambda _id: renamed)

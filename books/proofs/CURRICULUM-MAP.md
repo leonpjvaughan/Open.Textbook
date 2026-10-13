@@ -4,6 +4,6 @@
 
 _Proofs · generated 2026-10-12_
 
-The subject content is the authoritative coverage target. Every item is mapped below to at least one section; the scaffold fails loudly if any item has no home.
+The authoritative document is named in `sources.yaml`. Every item is mapped below to at least one section; the scaffold fails loudly if any item has no home.
 
 Written for this collection rather than copied from a board document. Where a proof is the standard one, it is the version a reader can follow rather than the shortest one — and each is checked against the source recorded in sources.yaml for the claim it justifies, not for its wording.

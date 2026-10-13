@@ -192,7 +192,7 @@ def section_stub(chapter: dict, section: dict, kind: str) -> str:
     }
     if section.get("tier"):
         fields["tier"] = section["tier"]
-    fields["dfe"] = section.get("dfe", [])
+    fields["refs"] = section.get("refs", [])
     fields["kind"] = kind
     fm = front_matter(**fields)
     guidance = {
@@ -217,7 +217,7 @@ def section_stub(chapter: dict, section: dict, kind: str) -> str:
         f"# {section['id']} {section['title']} — {titles[kind]}\n\n"
         f"> **Stub.** {guidance[kind]}\n"
         f"> {tier_note}DfE refs: "
-        f"{', '.join(section.get('dfe', [])) or '—'}\n"
+        f"{', '.join(section.get('refs', [])) or '—'}\n"
     )
 
 
@@ -244,7 +244,7 @@ def chapter_stub(chapter: dict) -> str:
         tier = f"tier {s['tier']} · " if s.get("tier") else ""
         lines.append(
             f"- **{s['id']} {s['title']}** — {tier}"
-            f"DfE {', '.join(s.get('dfe', [])) or '—'}"
+            f"refs {', '.join(s.get('refs', [])) or '—'}"
         )
     lines.append("")
     return "\n".join(lines)
@@ -378,9 +378,28 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
 
     sources = _sources_data(book)
     retrieved = str(sources.get("retrieved") or "").strip()
-    # `tier_axis` maps F and H to their reader-facing labels; F's label already
-    # names both tiers ("Foundation and Higher").
-    tiers = str(book.tier_axis.get("F", "")).strip()
+    # Where this book is for, and who publishes what it follows. Read from the
+    # curriculum's `meta`, never assumed: this page said "for England" in a hardcoded
+    # string, so all four Irish books were published claiming to be English ones. A
+    # book that declares neither is a mistake, not a default.
+    meta = book.curriculum_data.get("meta", {})
+    jurisdiction = str(meta.get("jurisdiction") or "").strip()
+    if not jurisdiction and book.qualification != REFERENCE:
+        raise ValueError(
+            f"{book.id}: curriculum.yaml has no meta.jurisdiction, so the About page "
+            "cannot say which country this book is for"
+        )
+    # England calls its levels tiers; Ireland calls them levels.
+    level_word = str(meta.get("level_word") or "level").strip()
+    curriculum_body = str(meta.get("curriculum_body") or "").strip()
+    curriculum_licence = meta.get("curriculum_licence") or None
+    # The label for the code both tiers study already names both of them
+    # ("Foundation and Higher", "Ordinary and Higher"), so the course description
+    # reads it rather than listing the axis. The code itself is the book's — `F` in
+    # England, `O` in Ireland — and is never assumed here.
+    tiers = ""
+    if book.tier_axis:
+        tiers = str(book.tier_axis.get(book.lower_code, "")).strip()
     boards = _join_words(book.boards)
 
     # A reference work is not a course. It has no syllabus, no chapters and no
@@ -400,15 +419,20 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
         ]
     else:
         what_it_is = [
-            f"This is a complete {book.qualification} {book.subject} book for England."
+            f"This is a complete {book.qualification} {book.subject} book for "
+            f"{jurisdiction}."
         ]
-        if tiers and boards:
+        # `tiers` is the label of the code both levels study, and it already names
+        # them all — "Foundation and Higher", "Foundation, Ordinary and Higher" — so
+        # the word after it belongs to the jurisdiction. England calls them tiers;
+        # Ireland calls them levels.
+        levels = f"{tiers} {level_word}" if tiers else ""
+        if levels and boards:
             what_it_is.append(
-                f"It covers {tiers} tier, and it follows the specifications of "
-                f"{boards}."
+                f"It covers {levels}, and it follows the specifications of {boards}."
             )
-        elif tiers:
-            what_it_is.append(f"It covers {tiers} tier.")
+        elif levels:
+            what_it_is.append(f"It covers {levels}.")
         elif boards:
             what_it_is.append(f"It follows the specifications of {boards}.")
         what_it_is += [
@@ -460,32 +484,54 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
         "",
     ]
     if book.qualification == REFERENCE:
+        # A reference work is not one country's. It is linked from every course in
+        # the collection, and now that two of those are Irish, the claim has to be
+        # about the sources rather than about one curriculum body.
         lines += [
-            "The claims about which course a proof belongs to rest on the subject",
-            "content published by the Department for Education. That material is Crown",
-            "copyright, and it is used here under the",
-            "[Open Government Licence v3.0]"
-            "(https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).",
+            "Every claim about which course a proof belongs to rests on a published",
+            "specification, and each one is named below.",
+        ]
+    elif curriculum_licence:
+        name = str(curriculum_licence.get("name", "")).strip()
+        url = str(curriculum_licence.get("url", "")).strip()
+        notice = str(curriculum_licence.get("notice", "")).strip()
+        holder = f"That material is {notice}, and it is used here" if notice else (
+            "That material is used here"
+        )
+        lines += [
+            f"The curriculum follows the subject content published by "
+            f"{curriculum_body}.",
+            f"{holder} under the [{name}]({url}).",
+        ]
+    elif curriculum_body:
+        # No licence claim. A body's terms are stated only when they have been read;
+        # the alternative is an invented permission, which is worse than a cautious
+        # sentence.
+        lines += [
+            f"The curriculum follows the subject content published by "
+            f"{curriculum_body}.",
+            "That material remains the property of that body, and is referred to here",
+            "rather than reproduced.",
         ]
     else:
         lines += [
-            "The curriculum follows the subject content published by the Department for",
-            "Education. That material is Crown copyright, and it is used here under the",
-            "[Open Government Licence v3.0]"
-            "(https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).",
+            "The curriculum this book follows is named in the list of sources below.",
         ]
-    if boards:
+    # Who owns the specification, and who examines it. Declared whole rather than
+    # composed from `boards`, because the split differs: England's awarding bodies
+    # publish their own specifications and examine them, while in Ireland the NCCA
+    # publishes the specification and the State Examinations Commission examines.
+    # Composing it from `boards` produced "SEC publish the specifications this book
+    # follows" for all four Irish books, which is false.
+    specification_note = str(meta.get("specification_note") or "").strip()
+    if specification_note:
+        lines += ["", *specification_note.splitlines()]
+    elif boards:
         lines += [
             "",
             "The specification content, and any wording taken from a specification,",
             f"belongs to the awarding bodies. {boards} publish the specifications",
             "this book follows.",
-        ]
-    else:
-        lines += [
-            "",
-            "The specification content, and any wording taken from a specification,",
-            "belongs to the awarding bodies.",
         ]
     if book.booklet_name:
         lines += [
@@ -509,8 +555,7 @@ def colophon_page(book: Book, licence: object = _USE_COLLECTION) -> str:
         ]
     lines += [
         "",
-        "No awarding body endorses this book, and the Department for Education",
-        "does not supply it.",
+        "No awarding body endorses this book, and no curriculum body supplies it.",
         "",
         "## Reporting a mistake",
         "",
@@ -609,7 +654,7 @@ def build_curriculum_map(book: Book, strands: list[dict], chapters: list[dict]) 
     rev: dict[str, list[str]] = {}
     for c in chapters:
         for s in c["sections"]:
-            for ref in s.get("dfe", []):
+            for ref in s.get("refs", []):
                 rev.setdefault(ref, []).append(f"{s['id']} {s['title']}")
     lines = [
         "<!-- GENERATED by `python -m textbook.scaffold` from curriculum.yaml. "
@@ -619,7 +664,7 @@ def build_curriculum_map(book: Book, strands: list[dict], chapters: list[dict]) 
         "",
         f"_{meta.get('title', book.title)} · generated {meta.get('retrieved', '')}_",
         "",
-        "The subject content is the authoritative coverage target. Every item is "
+        "The authoritative document is named in `sources.yaml`. Every item is "
         "mapped below to at least one section; the scaffold fails loudly if any "
         "item has no home.",
         "",
@@ -648,7 +693,7 @@ def build_curriculum_map(book: Book, strands: list[dict], chapters: list[dict]) 
 def build_nav_list(
     strands: list[dict],
     chapters: list[dict],
-    include_higher: bool = True,
+    included_tiers: frozenset[str] | None = None,
     proofs: list[dict] | None = None,
 ) -> list[dict]:
     """The sidebar and page list.
@@ -671,7 +716,7 @@ def build_nav_list(
     for c in chapters:
         children = [{"Overview": f"Chapter {c['id']}/index.md"}]
         for s in c["sections"]:
-            if not include_higher and s.get("tier") == "H":
+            if s.get("tier") and s["tier"] not in included_tiers:
                 continue
             base = f"Chapter {c['id']}/Section {s['id']}"
             children.append(
@@ -713,7 +758,7 @@ def check_full_coverage(book: Book) -> list[str]:
         ref
         for c in book.chapters
         for s in c.get("sections", [])
-        for ref in s.get("dfe", [])
+        for ref in s.get("refs", [])
     }
     return [
         f"{group['prefix']}{i}"
