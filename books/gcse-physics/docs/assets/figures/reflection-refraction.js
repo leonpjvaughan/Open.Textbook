@@ -8,25 +8,34 @@
 // reader to use it.
 // Colours come from CSS classes so the figure adapts to dark mode and every
 // bundle; each ray is also labelled.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
   const GLASS = 1.5;
   const originX = 300;
   const originY = 150;
   const reach = 130;
 
-  el.innerHTML = `
-    <div class="fig-reflection-refraction" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 300" width="100%" role="img"
-           aria-label="A ray of light meeting a horizontal glass surface, with the reflected and refracted rays shown against the normal"></svg>
-      <label style="display:block;margin:.6rem 0 .3rem">
-        Angle of incidence: <input class="angle" type="range" min="5" max="85" step="1" value="40">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A ray of light meeting a horizontal glass surface, with the reflected and refracted rays shown against the normal",
+    width: 600,
+    height: 300,
+    max: 600,
+  });
 
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".angle");
-  const readout = el.querySelector(".readout");
+  const angleInput = slider(el, { show: false,
+    id: "angle",
+    label: "Angle of incidence:",
+    min: 5,
+    max: 85,
+    step: 1,
+    value: 40,
+  });
 
   function point(angleDeg, down) {
     const angle = (angleDeg * Math.PI) / 180;
@@ -36,7 +45,7 @@ export function mount(el) {
   }
 
   function update() {
-    const incidence = Number(slider.value);
+    const incidence = Number(angleInput.value);
     const refraction = (Math.asin(Math.sin((incidence * Math.PI) / 180) / GLASS) * 180) / Math.PI;
 
     const incidentStart = point(incidence, false);
@@ -78,6 +87,5 @@ export function mount(el) {
       `the normal.</em>`;
   }
 
-  slider.addEventListener("input", update);
-  update();
+  react(angleInput, update);
 }

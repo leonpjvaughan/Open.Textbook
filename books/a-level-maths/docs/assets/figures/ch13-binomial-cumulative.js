@@ -55,7 +55,13 @@ export function mount(el) {
     value: 40,
     format: (value) => (value / 100).toFixed(2),
   });
-  const rInput = slider(el, { show: false,
+  // `show: true`, because this module writes the value itself: it clamps `r` when
+  // `n` shrinks, and a programmatic change fires no `input`, so the display is
+  // refreshed in `render`. With `show: false` the kit creates no `<output>` and
+  // `rInput.parentElement.querySelector("output")` below was null — which threw,
+  // took the whole figure down, and left the reader looking at the loader's
+  // "Figure failed to load" where a chart should be.
+  const rInput = slider(el, { show: true,
     id: "r",
     label: "Value r",
     min: 0,

@@ -11,6 +11,12 @@
 // Colours come from CSS classes, so the figure follows every bundle and both
 // schemes. No colour literal appears here, and no runtime LaTeX: the readout is
 // plain HTML with Unicode superscripts.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
   const PREFIXES = [
     {
@@ -93,31 +99,36 @@ export function mount(el) {
   const RIGHT = 620;
   const AXIS = 150;
 
-  el.innerHTML = `
-    <div class="fig-si-prefix-scale" style="font:14px system-ui;max-width:660px">
-      <svg viewBox="0 0 660 220" width="100%" role="img"
-           aria-label="A logarithmic ruler of length in metres from a nanometre to a gigametre, with a marker that moves to the prefix you choose and a familiar object at every prefix"></svg>
-      <label style="display:block;margin:.6rem 0 .3rem">Prefix
-        <input class="prefix" type="range" min="0" max="7" step="1" value="4"
-               aria-label="Choose an SI prefix">
-        <output class="prefix-out">no prefix</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A logarithmic ruler of length in metres from a nanometre to a gigametre, with a marker that moves to the prefix you choose and a familiar object at every prefix",
+    width: 660,
+    height: 220,
+    max: 660,
+  });
 
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".prefix");
-  const sliderOut = el.querySelector(".prefix-out");
-  const readout = el.querySelector(".readout");
+  const prefixInput = slider(el, { show: true,
+    id: "prefix",
+    label: "Prefix",
+    name: "Choose an SI prefix",
+    min: 0,
+    max: 7,
+    step: 1,
+    value: 4,
+    format: (value) => {
+      const chosen = PREFIXES[Number(value)];
+      return Number(value) === 4
+        ? "the metre itself"
+        : `${chosen.name} (${chosen.symbol})`;
+    },
+  });
 
   const xFor = (exponent) =>
     LEFT + ((exponent - E_MIN) / (E_MAX - E_MIN)) * (RIGHT - LEFT);
 
   function update() {
-    const selected = Number(slider.value);
+    const selected = Number(prefixInput.value);
     const chosen = PREFIXES[selected];
-    sliderOut.textContent =
-      selected === 4 ? "the metre itself" : `${chosen.name} (${chosen.symbol})`;
 
     // A faint mark on every decade, so the uneven spacing of the prefixes is
     // visible: milli to centi is one step but only one decade.
@@ -179,6 +190,5 @@ export function mount(el) {
       ` <em>Which two neighbouring marks differ by a factor of 10, not 1000?</em>`;
   }
 
-  slider.addEventListener("input", update);
-  update();
+  react(prefixInput, update);
 }

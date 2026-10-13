@@ -1,8 +1,12 @@
 // Guided investigation for the Fundamental Theorem of Calculus.
 // The gradient of an antiderivative F at x equals the height of f at x, and it
 // does not change when the constant C changes.
-// Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
-// carry the theme. Runtime text is plain text, never TeX.
+// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
+// fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -2.2;
 const X_MAX = 2.2;
@@ -30,23 +34,30 @@ function parabolaPoints(c) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <label>Constant C
-        <input class="c" type="range" min="-3" max="3" step="0.5" value="0">
-      </label>
-      <label>Point x
-        <input class="x" type="range" min="-1.8" max="1.8" step="0.1" value="1">
-      </label>
-      <svg viewBox="0 0 420 300" width="100%" role="img"
-           aria-label="A straight line for the gradient function and a parabola for its antiderivative family, with sliders for the constant and the point"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A straight line for the gradient function and a parabola for its " +
+      "antiderivative family, with sliders for the constant and the point",
+    width: 420,
+    height: 300,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const cInput = el.querySelector(".c");
-  const xInput = el.querySelector(".x");
+  const cInput = slider(el, { show: false,
+    id: "c",
+    label: "Constant C",
+    min: -3,
+    max: 3,
+    step: 0.5,
+    value: 0,
+  });
+  const xInput = slider(el, { show: false,
+    id: "x",
+    label: "Point x",
+    min: -1.8,
+    max: 1.8,
+    step: 0.1,
+    value: 1,
+  });
 
   function grid() {
     let lines = "";
@@ -106,7 +117,5 @@ export function mount(el) {
     );
   }
 
-  cInput.addEventListener("input", update);
-  xInput.addEventListener("input", update);
-  update();
+  react([cInput, xInput], update);
 }

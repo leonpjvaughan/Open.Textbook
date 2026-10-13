@@ -8,30 +8,43 @@
 // Predict -> Test -> Explain per AGENTS.md P6: the page asks what shape the two
 // copies will make before the toggle is pressed. Colours come from CSS classes, so
 // the figure adapts to every bundle and both schemes; the readout is `aria-live`.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-trapezium-double" style="max-width:520px">
-      <svg viewBox="0 0 420 250" width="100%" role="img"
-           aria-label="A trapezium, and a second copy turned upside down to make a parallelogram whose base is the sum of the two parallel sides"></svg>
-      <label style="display:block;margin:.5rem 0 .2rem">
-        Top side: <input class="top" type="range" min="20" max="100" step="5" value="60"
-               aria-label="Length of the shorter parallel side">
-      </label>
-      <label style="display:block;margin:.2rem 0 .2rem">
-        Height: <input class="height" type="range" min="50" max="130" step="5" value="100"
-               aria-label="Distance between the parallel sides">
-      </label>
-      <label style="display:block;margin:.2rem 0 .4rem">
-        <input class="add" type="checkbox"> Add the second copy
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.3rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the controls, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, toggle, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const top = el.querySelector(".top");
-  const height = el.querySelector(".height");
-  const add = el.querySelector(".add");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A trapezium, and a second copy turned upside down to make a parallelogram whose base is the sum of the two parallel sides",
+    width: 420,
+    height: 250,
+    max: 520,
+  });
+
+  const top = slider(el, { show: false,
+    id: "top",
+    label: "Top side:",
+    name: "Length of the shorter parallel side",
+    min: 20,
+    max: 100,
+    step: 5,
+    value: 60,
+  });
+  const height = slider(el, { show: false,
+    id: "height",
+    label: "Height:",
+    name: "Distance between the parallel sides",
+    min: 50,
+    max: 130,
+    step: 5,
+    value: 100,
+  });
+  const add = toggle(el, {
+    id: "add",
+    label: "Add the second copy",
+  });
 
   // The longer parallel side is fixed so the picture stays still, and the shorter
   // one is the slider. `LEFT` and `BASE` are chosen so the joined parallelogram
@@ -101,8 +114,5 @@ export function mount(el) {
             stroke-width="2" class="fig-ink"></line>`;
   }
 
-  top.addEventListener("input", draw);
-  height.addEventListener("input", draw);
-  add.addEventListener("change", draw);
-  draw();
+  react([top, height, add], draw);
 }

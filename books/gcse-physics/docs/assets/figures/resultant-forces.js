@@ -5,20 +5,37 @@
 // two forces are equal. The reader sets a force pulling to the left and a force
 // pulling to the right; the figure shows both and the resultant.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-resultant-forces" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 170" width="100%" role="img"
-           aria-label="A trolley pulled to the left and to the right, with an arrow below showing the resultant force"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Force to the left (N) <input class="left" type="range" min="0" max="200" step="10" value="100"></label>
-        <label>Force to the right (N) <input class="right" type="range" min="0" max="200" step="10" value="100"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A trolley pulled to the left and to the right, with an arrow below showing the resultant force",
+    width: 560,
+    height: 170,
+  });
+
+  const leftInput = slider(el, { show: false,
+    id: "left",
+    label: "Force to the left (N)",
+    min: 0,
+    max: 200,
+    step: 10,
+    value: 100,
+  });
+  const rightInput = slider(el, { show: false,
+    id: "right",
+    label: "Force to the right (N)",
+    min: 0,
+    max: 200,
+    step: 10,
+    value: 100,
+  });
+
   const CENTRE = 280;
   const MID = 62;
   const SCALE = 0.65; // pixels per newton, so 200 N reaches 130 px
@@ -36,8 +53,8 @@ export function mount(el) {
   }
 
   function update() {
-    const left = Number(el.querySelector(".left").value);
-    const right = Number(el.querySelector(".right").value);
+    const left = Number(leftInput.value);
+    const right = Number(rightInput.value);
     const resultant = right - left;
     const magnitude = Math.abs(resultant);
 
@@ -76,8 +93,5 @@ export function mount(el) {
     }
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([leftInput, rightInput], update);
 }

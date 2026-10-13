@@ -13,24 +13,30 @@
 //
 // No colour is written here: the shapes use fig-* classes and the words use
 // text-* classes, so the figure adapts to every bundle and both schemes.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-completing-the-square" style="max-width:520px">
-      <svg viewBox="0 0 340 340" width="100%" role="img"
-           aria-label="A square of side x with two strips of width b over two added along the right and the bottom, leaving a corner square"></svg>
-      <label style="display:block;margin:.5rem 0 .2rem">
-        Coefficient of x, b:
-        <input class="b" type="range" min="2" max="8" step="2" value="6"
-               aria-label="Coefficient of x">
-        <output class="b-value">6</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".b");
-  const bValue = el.querySelector(".b-value");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A square of side x with two strips of width b over two added along the right and the bottom, leaving a corner square",
+    width: 340,
+    height: 340,
+    max: 520,
+  });
+
+  const bInput = slider(el, { show: true,
+    id: "b",
+    label: "Coefficient of x, b:",
+    name: "Coefficient of x",
+    min: 2,
+    max: 8,
+    step: 2,
+    value: 6,
+  });
 
   const X = 4; // the side of the starting square, in units
   const SCALE = 33; // pixels per unit
@@ -47,8 +53,7 @@ export function mount(el) {
     `font-size="${size || 14}" class="${cls}">${label}</text>`;
 
   function draw() {
-    const b = Number(slider.value);
-    bValue.textContent = String(b);
+    const b = Number(bInput.value);
 
     const strip = (b / 2) * SCALE;
     const total = SIDE + strip;
@@ -84,6 +89,5 @@ export function mount(el) {
       `x² + ${b}x + ${corner} = (x + ${half})².`;
   }
 
-  slider.addEventListener("input", draw);
-  draw();
+  react(bInput, draw);
 }

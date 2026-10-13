@@ -7,19 +7,29 @@
 // pattern, moved towards the red end. Colours come from CSS classes, so the
 // figure adapts to dark mode and every bundle, and each row is labelled in words
 // as well as by its position.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-redshift-spectrum" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 600 220" width="100%" role="img"
-           aria-label="Two rows of a spectrum with dark lines; the laboratory row is fixed and the galaxy row moves towards longer wavelengths as the galaxy speeds up"></svg>
-      <label style="display:block;margin:.6rem 0 .3rem">
-        Speed of the galaxy away from us: <input class="speed" type="range" min="0" max="100" step="1" value="40">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "Two rows of a spectrum with dark lines; the laboratory row is fixed and the galaxy row moves towards longer wavelengths as the galaxy speeds up",
+    width: 600,
+    height: 220,
+    max: 620,
+  });
+
+  const speedInput = slider(el, { show: false,
+    id: "speed",
+    label: "Speed of the galaxy away from us:",
+    min: 0,
+    max: 100,
+    step: 1,
+    value: 40,
+  });
 
   const LEFT = 54;
   const RIGHT = 546;
@@ -43,7 +53,7 @@ export function mount(el) {
   }
 
   function update() {
-    const speed = Number(el.querySelector(".speed").value);
+    const speed = Number(speedInput.value);
     const shift = (speed / 100) * 0.12;
     const galaxyLines = LINES.map((fraction) => fraction + shift);
 
@@ -78,6 +88,5 @@ export function mount(el) {
       `<em>A real galaxy's light is a measurement, not a slider. Why does moving away stretch the wavelength?</em>`;
   }
 
-  el.querySelector(".speed").addEventListener("input", update);
-  update();
+  react(speedInput, update);
 }

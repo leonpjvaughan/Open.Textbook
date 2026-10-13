@@ -11,22 +11,30 @@
 // conclude. Colours come from CSS classes so the figure adapts to every bundle
 // and both schemes, and the readout is `aria-live` so a reader who cannot see the
 // drawing is told what changed.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-angles-on-a-line" style="max-width:520px">
-      <svg viewBox="0 0 400 220" width="100%" role="img"
-           aria-label="A triangle with a line drawn through its top corner parallel to the base, showing the three angles at the top corner lying on a straight line"></svg>
-      <label style="display:block;margin:.6rem 0 .3rem">
-        Move the top corner:
-        <input class="apex" type="range" min="120" max="280" step="2" value="200"
-               aria-label="Position of the top corner">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".apex");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A triangle with a line drawn through its top corner parallel to the base, showing the three angles at the top corner lying on a straight line",
+    width: 400,
+    height: 220,
+    max: 520,
+  });
+
+  const apex = slider(el, { show: false,
+    id: "apex",
+    label: "Move the top corner:",
+    name: "Position of the top corner",
+    min: 120,
+    max: 280,
+    step: 2,
+    value: 200,
+  });
 
   const TOP_Y = 54;
   const BASE_Y = 178;
@@ -60,7 +68,7 @@ export function mount(el) {
     `font-size="13" class="fig-ink">${label}</text>`;
 
   function draw() {
-    const A = { x: Number(slider.value), y: TOP_Y };
+    const A = { x: Number(apex.value), y: TOP_Y };
 
     // Directions from the top corner, in the SVG's own coordinates.
     const toB = Math.atan2(B.y - A.y, B.x - A.x); // down and left
@@ -118,6 +126,5 @@ export function mount(el) {
       `${(shownLeft + shownApex + shownRight).toFixed(1)}°.`;
   }
 
-  slider.addEventListener("input", draw);
-  draw();
+  react(apex, draw);
 }

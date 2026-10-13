@@ -10,6 +10,11 @@
 // Plain HTML, SVG and two range inputs, so it is keyboard-operable with no
 // framework, and no colour of its own: the fig-* classes carry the theme. Runtime
 // text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. The verdict line is the figure's
+// own text, so it stays here.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -2.5;
 const X_MAX = 2.5;
@@ -52,32 +57,38 @@ function short(v) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-controls">
-      <label class="fig-field">Left end, a
-        <input data-role="a" type="range" min="-2.4" max="2.2" step="0.1" value="-2">
-      </label>
-      <label class="fig-field">Right end, b
-        <input data-role="b" type="range" min="-2.2" max="2.4" step="0.1" value="2">
-      </label>
-    </div>
-    <svg viewBox="0 0 400 366" width="100%" role="img"
-         aria-label="Curve of x cubed minus three x plus one, with an interval marked between two movable ends and the sign of the function shown at each end"></svg>
-    <p class="fig-readout" data-role="readout" aria-live="polite"></p>
-    <p class="fig-note" data-role="verdict"></p>
-  `;
+  const { root, svg, readout } = panel(el, {
+    label:
+      "Curve of x cubed minus three x plus one, with an interval marked " +
+      "between two movable ends and the sign of the function shown at each end",
+    width: 400,
+    height: 366,
+  });
 
-  const sliders = {
-    a: el.querySelector('[data-role="a"]'),
-    b: el.querySelector('[data-role="b"]'),
-  };
-  const readout = el.querySelector('[data-role="readout"]');
-  const verdict = el.querySelector('[data-role="verdict"]');
-  const svg = el.querySelector("svg");
+  const aInput = slider(el, { show: false,
+    id: "a",
+    label: "Left end, a",
+    min: -2.4,
+    max: 2.2,
+    step: 0.1,
+    value: -2,
+  });
+  const bInput = slider(el, { show: false,
+    id: "b",
+    label: "Right end, b",
+    min: -2.2,
+    max: 2.4,
+    step: 0.1,
+    value: 2,
+  });
+
+  const verdict = document.createElement("p");
+  verdict.className = "fig-note";
+  root.append(verdict);
 
   function draw() {
-    let a = Number(sliders.a.value);
-    let b = Number(sliders.b.value);
+    let a = Number(aInput.value);
+    let b = Number(bInput.value);
     if (a > b) [a, b] = [b, a];
 
     const fa = f(a);
@@ -134,7 +145,5 @@ export function mount(el) {
     verdict.textContent = message;
   }
 
-  sliders.a.addEventListener("input", draw);
-  sliders.b.addEventListener("input", draw);
-  draw();
+  react([aInput, bInput], draw);
 }

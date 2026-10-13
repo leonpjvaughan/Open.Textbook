@@ -1,8 +1,12 @@
 // Guided investigation for integration as a limit of a sum.
 // Right-endpoint rectangles under y = x^2 on [0, 2]; as the number of strips
 // grows, their total area approaches the exact integral 8/3.
-// Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
-// carry the theme. Runtime text is plain text, never TeX.
+// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
+// fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = 0;
 const X_MAX = 2.15;
@@ -30,19 +34,22 @@ function curvePoints() {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <label>Number of strips n
-        <input class="n" type="range" min="1" max="40" step="1" value="4">
-      </label>
-      <svg viewBox="0 0 420 300" width="100%" role="img"
-           aria-label="Rectangles under the curve y equals x squared, with a slider for the number of strips"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "Rectangles under the curve y equals x squared, with a slider for the " +
+      "number of strips",
+    width: 420,
+    height: 300,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const nInput = el.querySelector(".n");
+  const nInput = slider(el, { show: false,
+    id: "n",
+    label: "Number of strips n",
+    min: 1,
+    max: 40,
+    step: 1,
+    value: 4,
+  });
 
   function grid() {
     let lines = "";
@@ -97,6 +104,5 @@ export function mount(el) {
     );
   }
 
-  nInput.addEventListener("input", update);
-  update();
+  react(nInput, update);
 }

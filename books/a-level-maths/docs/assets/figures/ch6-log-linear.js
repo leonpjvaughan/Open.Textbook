@@ -1,6 +1,11 @@
 // Guided investigation for straightening y = k b^x with logarithms.
 // Pure HTML and SVG, an ES module, no framework and no colour of its own: the
 // fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. The kit has no button helper, so
+// the view button stays here.
+import { panel, slider, react } from "./kit.js";
 
 const X_MAX = 4;
 const K = 10;
@@ -34,21 +39,35 @@ function logLinePoints(base) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Growth factor b
-        <input class="b" type="range" min="0.5" max="2" step="0.1" value="1.5">
-      </label>
-      <p><button class="toggle" type="button">Show ln y against x</button></p>
-      <svg viewBox="0 0 400 280" width="100%" role="img"
-           aria-label="Data that follows y equals k times b to the power x, shown either as a curve of y against x or as a straight line of ln y against x"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "Data that follows y equals k times b to the power x, shown either as a " +
+      "curve of y against x or as a straight line of ln y against x",
+    width: 400,
+    height: 280,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const slider = el.querySelector(".b");
-  const button = el.querySelector(".toggle");
+  const bInput = slider(el, { show: false,
+    id: "b",
+    label: "Growth factor b",
+    min: 0.5,
+    max: 2,
+    step: 0.1,
+    value: 1.5,
+  });
+
+  // The kit has no button helper, so the control that is an action rather than a
+  // state is built here, beside the control column.
+  const actions = document.createElement("p");
+  actions.style.cssText = "margin:0;grid-column:1/-1";
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "toggle";
+  button.textContent = "Show ln y against x";
+  actions.append(button);
+  el.querySelector(".fig-controls").append(actions);
+
   let logMode = false;
 
   function axes(yMax, step) {
@@ -67,7 +86,7 @@ export function mount(el) {
   }
 
   function update() {
-    const b = Number(slider.value);
+    const b = Number(bInput.value);
     const yMax = logMode ? 6 : 160;
     const step = logMode ? 1 : 40;
 
@@ -112,7 +131,6 @@ export function mount(el) {
     update();
   }
 
-  slider.addEventListener("input", update);
+  react(bInput, update);
   button.addEventListener("click", toggle);
-  update();
 }

@@ -2,6 +2,10 @@
 // added, and the value it settles on when the common ratio is below one.
 // Pure HTML and SVG, an ES module, no framework and no colour of its own: the
 // fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const TERMS = 10;
 
@@ -23,19 +27,21 @@ function limitOf(r) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Common ratio r
-        <input class="r" type="range" min="-1.4" max="1.4" step="0.1" value="0.6">
-      </label>
-      <svg viewBox="0 0 400 220" width="100%" role="img"
-           aria-label="The running total of a geometric series as terms are added"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "The running total of a geometric series as terms are added",
+    width: 400,
+    height: 220,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const rInput = el.querySelector(".r");
+  const rInput = slider(el, { show: false,
+    id: "r",
+    label: "Common ratio r",
+    min: -1.4,
+    max: 1.4,
+    step: 0.1,
+    value: 0.6,
+  });
 
   function update() {
     const r = Number(rInput.value);
@@ -97,6 +103,5 @@ export function mount(el) {
     );
   }
 
-  rInput.addEventListener("input", update);
-  update();
+  react(rInput, update);
 }

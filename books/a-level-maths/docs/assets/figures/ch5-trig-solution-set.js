@@ -8,6 +8,10 @@
 //
 // Pure HTML and SVG, an ES module, no colour of its own: the fig-* classes carry
 // the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the chooser, the slider,
+// the live readout and the redraw — comes from `kit.js`.
+import { panel, slider, chooser, react } from "./kit.js";
 
 const PI = Math.PI;
 const WIDTH = 460;
@@ -93,31 +97,35 @@ function solutions(f, k) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <label style="display:block;margin:.2rem 0">
-        Function:
-        <select class="fn" aria-label="Trigonometric function">
-          <option value="sin">sin x</option>
-          <option value="cos">cos x</option>
-          <option value="sin2">sin 2x</option>
-          <option value="cos2">cos 2x</option>
-        </select>
-      </label>
-      <label style="display:block;margin:.2rem 0 .6rem">
-        Value of k:
-        <input class="k" type="range" min="-1" max="1" step="0.05" value="0.5"
-               aria-label="Value of k">
-      </label>
-      <svg viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" role="img"
-           aria-label="The graph of a trigonometric function from 0 to 2 pi with a horizontal line at k, and a dot at every solution in the interval"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "The graph of a trigonometric function from 0 to 2 pi with a horizontal " +
+      "line at k, and a dot at every solution in the interval",
+    width: WIDTH,
+    height: HEIGHT,
+    max: 560,
+  });
 
-  const svg = el.querySelector("svg");
-  const fnInput = el.querySelector(".fn");
-  const kInput = el.querySelector(".k");
-  const readout = el.querySelector(".readout");
+  const fnInput = chooser(el, {
+    id: "fn",
+    label: "Function:",
+    name: "Trigonometric function",
+    choices: [
+      { value: "sin", label: "sin x" },
+      { value: "cos", label: "cos x" },
+      { value: "sin2", label: "sin 2x" },
+      { value: "cos2", label: "cos 2x" },
+    ],
+  });
+  const kInput = slider(el, { show: false,
+    id: "k",
+    label: "Value of k:",
+    name: "Value of k",
+    min: -1,
+    max: 1,
+    step: 0.05,
+    value: 0.5,
+  });
 
   function draw() {
     const fn = FUNCTIONS[fnInput.value];
@@ -188,7 +196,5 @@ export function mount(el) {
     );
   }
 
-  fnInput.addEventListener("change", draw);
-  kInput.addEventListener("input", draw);
-  draw();
+  react([fnInput, kInput], draw);
 }

@@ -9,22 +9,30 @@
 // Predict -> Test -> Explain per AGENTS.md P6: the page asks for a prediction about
 // the hole before the slider is touched. Colours come from CSS classes, so the
 // figure adapts to every bundle and both schemes, and the readout is `aria-live`.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-pythagoras-rearrangement" style="max-width:520px">
-      <svg viewBox="0 0 420 380" width="100%" role="img"
-           aria-label="Four copies of a right-angled triangle arranged inside a square frame, leaving a tilted square hole whose side is the hypotenuse"></svg>
-      <label style="display:block;margin:.6rem 0 .3rem">
-        Change the triangle (the short side):
-        <input class="leg" type="range" min="60" max="220" step="2" value="110"
-               aria-label="Length of the shorter side of the triangle">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".leg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "Four copies of a right-angled triangle arranged inside a square frame, leaving a tilted square hole whose side is the hypotenuse",
+    width: 420,
+    height: 380,
+    max: 520,
+  });
+
+  const leg = slider(el, { show: false,
+    id: "leg",
+    label: "Change the triangle (the short side):",
+    name: "Length of the shorter side of the triangle",
+    min: 60,
+    max: 220,
+    step: 2,
+    value: 110,
+  });
 
   const FRAME = 280; // the side of the outer square, a + b
   const ORIGIN = 60; // where it sits in the viewBox
@@ -34,7 +42,7 @@ export function mount(el) {
     `font-size="13" class="fig-ink">${label}</text>`;
 
   function draw() {
-    const a = Number(slider.value);
+    const a = Number(leg.value);
     const b = FRAME - a;
     const S = FRAME;
     const o = ORIGIN;
@@ -73,6 +81,5 @@ export function mount(el) {
       `triangles plus the hole, and that is why the two numbers agree.`;
   }
 
-  slider.addEventListener("input", draw);
-  draw();
+  react(leg, draw);
 }

@@ -62,6 +62,11 @@
  *   controls: HTMLElement}} `controls` is the column a module can append its own
  *   buttons to; the kit has no button helper.
  */
+//: The UI font, for controls and readouts. **Not** applied to the drawing: an SVG
+//: `<text>` with no `font-size` of its own inherits whatever its container sets, so
+//: putting this on the figure's root dropped five figures below the 9px phone floor.
+const UI_FONT = "font:14px system-ui";
+
 export function panel(el, options = {}) {
   const {
     label = "",
@@ -74,12 +79,18 @@ export function panel(el, options = {}) {
 
   const root = document.createElement("div");
   root.className = "fig";
-  root.style.cssText = `font:14px system-ui;max-width:${max}px`;
+  // **No font on this element.** It contains the drawing, and an SVG `<text>` with
+  // no `font-size` of its own inherits whatever is set here. The UI font belongs on
+  // the controls and the readout — where it is set below — not on the surface the
+  // drawing is on. Setting `font:14px` here dropped five figures below the 9px
+  // phone floor (14 × a 0.617 scale is 8.6px) while every module's own attributes
+  // stayed correct, so it looked like a drawing problem and was a container one.
+  root.style.cssText = `max-width:${max}px`;
 
   if (prompt) {
     const line = document.createElement("p");
     line.className = "text-ink";
-    line.style.cssText = "margin:0 0 .6rem";
+    line.style.cssText = `${UI_FONT};margin:0 0 .6rem`;
     line.textContent = prompt;
     root.append(line);
   }
@@ -103,7 +114,7 @@ export function panel(el, options = {}) {
   const readout = document.createElement("p");
   readout.className = "readout";
   readout.setAttribute("aria-live", "polite");
-  readout.style.cssText = "margin:.6rem 0 0";
+  readout.style.cssText = `${UI_FONT};margin:.6rem 0 0`;
 
   const controls = document.createElement("div");
   controls.className = "fig-controls";
@@ -114,7 +125,8 @@ export function panel(el, options = {}) {
   // would be the wrong answer anyway, so the responsive form is the one that was
   // wanted all along.
   controls.style.cssText =
-    "display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));" +
+    `${UI_FONT};display:grid;` +
+    "grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));" +
     "gap:.35rem .9rem;margin-top:.5rem";
 
   root.append(controls, readout);
@@ -149,6 +161,7 @@ export function slider(parent, options = {}) {
   } = options;
   const holder = document.createElement("label");
   holder.className = "fig-control";
+  holder.style.cssText = UI_FONT;
   holder.textContent = label ? `${label} ` : "";
 
   const input = document.createElement("input");
@@ -188,6 +201,7 @@ export function toggle(parent, options = {}) {
   const { id = "", label = "", name = "", checked = false } = options;
   const holder = document.createElement("label");
   holder.className = "fig-control";
+  holder.style.cssText = UI_FONT;
   const input = document.createElement("input");
   input.type = "checkbox";
   input.checked = checked;
@@ -203,6 +217,7 @@ export function chooser(parent, options = {}) {
   const { id = "", label = "", name = "", choices = [], value } = options;
   const holder = document.createElement("label");
   holder.className = "fig-control";
+  holder.style.cssText = UI_FONT;
   holder.textContent = label ? `${label} ` : "";
   const select = document.createElement("select");
   if (id) select.className = id;

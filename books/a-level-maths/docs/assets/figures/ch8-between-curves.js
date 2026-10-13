@@ -1,8 +1,12 @@
 // Guided investigation for the area between two curves.
 // The curve y = x^2 and the line y = kx enclose a region shaded between their
 // intersections, with the exact area read from an antiderivative.
-// Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
-// carry the theme. Runtime text is plain text, never TeX.
+// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
+// fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -0.5;
 const X_MAX = 3.3;
@@ -30,19 +34,22 @@ function curvePoints() {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <label>Gradient k of the line
-        <input class="k" type="range" min="0.5" max="3" step="0.1" value="1">
-      </label>
-      <svg viewBox="0 0 420 300" width="100%" role="img"
-           aria-label="The curve y equals x squared and the line y equals k x, with the region between them shaded"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "The curve y equals x squared and the line y equals k x, with the region " +
+      "between them shaded",
+    width: 420,
+    height: 300,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const kInput = el.querySelector(".k");
+  const kInput = slider(el, { show: false,
+    id: "k",
+    label: "Gradient k of the line",
+    min: 0.5,
+    max: 3,
+    step: 0.1,
+    value: 1,
+  });
 
   function grid() {
     let lines = "";
@@ -99,6 +106,5 @@ export function mount(el) {
     );
   }
 
-  kInput.addEventListener("input", update);
-  update();
+  react(kInput, update);
 }

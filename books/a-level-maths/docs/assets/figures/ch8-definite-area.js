@@ -1,8 +1,12 @@
 // Guided investigation for a definite integral as an area.
 // The shaded region under y = 4 - x^2 between two movable limits, with the
 // exact area read from an antiderivative.
-// Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
-// carry the theme. Runtime text is plain text, never TeX.
+// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
+// fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -2.2;
 const X_MAX = 2.2;
@@ -30,23 +34,30 @@ function antiderivative(x) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <label>Lower limit a
-        <input class="a" type="range" min="-2" max="2" step="0.1" value="0">
-      </label>
-      <label>Upper limit b
-        <input class="b" type="range" min="-2" max="2" step="0.1" value="2">
-      </label>
-      <svg viewBox="0 0 420 300" width="100%" role="img"
-           aria-label="The curve y equals four minus x squared with a shaded region between two movable limits"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "The curve y equals four minus x squared with a shaded region between two " +
+      "movable limits",
+    width: 420,
+    height: 300,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const aInput = el.querySelector(".a");
-  const bInput = el.querySelector(".b");
+  const aInput = slider(el, { show: false,
+    id: "a",
+    label: "Lower limit a",
+    min: -2,
+    max: 2,
+    step: 0.1,
+    value: 0,
+  });
+  const bInput = slider(el, { show: false,
+    id: "b",
+    label: "Upper limit b",
+    min: -2,
+    max: 2,
+    step: 0.1,
+    value: 2,
+  });
 
   function grid() {
     let lines = "";
@@ -112,7 +123,5 @@ export function mount(el) {
     );
   }
 
-  aInput.addEventListener("input", update);
-  bInput.addEventListener("input", update);
-  update();
+  react([aInput, bInput], update);
 }

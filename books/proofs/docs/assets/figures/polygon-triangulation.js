@@ -10,29 +10,35 @@
 // Colours come from CSS classes so the figure adapts to every bundle and both
 // schemes, and the readout is `aria-live` so the count reaches a reader who
 // cannot see the drawing.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-polygon-triangulation" style="max-width:520px">
-      <svg viewBox="0 0 400 250" width="100%" role="img"
-           aria-label="A regular polygon with lines drawn from one corner to every corner it is not already joined to, cutting it into triangles"></svg>
-      <label style="display:block;margin:.5rem 0 .2rem">
-        Number of sides:
-        <input class="sides" type="range" min="3" max="12" step="1" value="6"
-               aria-label="Number of sides">
-        <output class="sides-value">6</output>
-      </label>
-      <label style="display:block;margin:.2rem 0 .3rem">
-        <input class="show-diagonals" type="checkbox" checked>
-        Draw the triangles
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the controls, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, toggle, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const sides = el.querySelector(".sides");
-  const sidesValue = el.querySelector(".sides-value");
-  const toggle = el.querySelector(".show-diagonals");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A regular polygon with lines drawn from one corner to every corner it is not already joined to, cutting it into triangles",
+    width: 400,
+    height: 250,
+    max: 520,
+  });
+
+  const sides = slider(el, { show: true,
+    id: "sides",
+    label: "Number of sides:",
+    name: "Number of sides",
+    min: 3,
+    max: 12,
+    step: 1,
+    value: 6,
+  });
+  const showDiagonals = toggle(el, {
+    id: "show-diagonals",
+    label: "Draw the triangles",
+    checked: true,
+  });
 
   const CX = 200;
   const CY = 122;
@@ -41,7 +47,6 @@ export function mount(el) {
 
   function draw() {
     const n = Number(sides.value);
-    sidesValue.textContent = String(n);
 
     // A regular polygon, first corner at the top so the fan opens downwards.
     const point = (k) => {
@@ -54,7 +59,7 @@ export function mount(el) {
     // Fan from corner 0. Corners 1 and n-1 are already joined to it by a side, so
     // the diagonals go to corners 2 ... n-2, and there are n - 2 triangles.
     let fan = "";
-    if (toggle.checked) {
+    if (showDiagonals.checked) {
       for (let k = 1; k <= n - 2; k += 1) {
         const a = corners[0];
         const b = corners[k];
@@ -79,14 +84,12 @@ export function mount(el) {
     const total = triangles * 180;
     const shape = ["", "", "triangle", "quadrilateral", "pentagon", "hexagon", "heptagon",
       "octagon", "nonagon", "decagon", "hendecagon", "dodecagon"][n] || `${n}-sided polygon`;
-    readout.textContent = toggle.checked
+    readout.textContent = showDiagonals.checked
       ? `A ${shape} has ${n} sides. The fan makes ${triangles} triangles, and each ` +
         `triangle's angles add to 180°, so the polygon's angles add to ` +
         `${triangles} × 180° = ${total}°.`
       : `A ${shape} has ${n} sides. Tick the box to cut it into triangles.`;
   }
 
-  sides.addEventListener("input", draw);
-  toggle.addEventListener("change", draw);
-  draw();
+  react([sides, showDiagonals], draw);
 }

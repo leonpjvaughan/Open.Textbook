@@ -8,6 +8,10 @@
 //
 // Pure HTML and SVG, an ES module, no colour of its own: the fig-* classes carry
 // the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const SIDE_B = 5; // the fixed side AC, opposite angle B
 const WIDTH = 460;
@@ -21,27 +25,33 @@ const CASE_TEXT = {
 };
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <label style="display:block;margin:.2rem 0">
-        Angle A in degrees:
-        <input class="angle" type="range" min="15" max="165" step="1" value="40"
-               aria-label="Angle A in degrees">
-      </label>
-      <label style="display:block;margin:.2rem 0 .6rem">
-        Side a, opposite angle A:
-        <input class="side" type="range" min="1" max="11" step="0.5" value="4"
-               aria-label="Side a, opposite angle A">
-      </label>
-      <svg viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" role="img"
-           aria-label="A fixed side from A to C and a ray from A at the chosen angle, with a circle that marks every possible position of the opposite vertex"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A fixed side from A to C and a ray from A at the chosen angle, with a " +
+      "circle that marks every possible position of the opposite vertex",
+    width: WIDTH,
+    height: HEIGHT,
+    max: 560,
+  });
 
-  const svg = el.querySelector("svg");
-  const angleInput = el.querySelector(".angle");
-  const sideInput = el.querySelector(".side");
-  const readout = el.querySelector(".readout");
+  const angleInput = slider(el, { show: false,
+    id: "angle",
+    label: "Angle A in degrees:",
+    name: "Angle A in degrees",
+    min: 15,
+    max: 165,
+    step: 1,
+    value: 40,
+  });
+  const sideInput = slider(el, { show: false,
+    id: "side",
+    label: "Side a, opposite angle A:",
+    name: "Side a, opposite angle A",
+    min: 1,
+    max: 11,
+    step: 0.5,
+    value: 4,
+  });
 
   // The angle at B of the triangle with vertex B at p and the third vertex at C.
   function angleAtB(p, C) {
@@ -196,7 +206,5 @@ export function mount(el) {
     );
   }
 
-  angleInput.addEventListener("input", draw);
-  sideInput.addEventListener("input", draw);
-  draw();
+  react([angleInput, sideInput], draw);
 }

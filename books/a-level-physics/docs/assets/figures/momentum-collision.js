@@ -11,47 +11,63 @@
 // because the figure computes the second one from the first. Colours come from
 // CSS classes, so the figure adapts to every bundle and to both schemes. No
 // colour literal appears here, and no runtime LaTeX: the readout is plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-momentum-collision" style="font:14px system-ui;max-width:660px">
-      <svg viewBox="0 0 660 260" width="100%" role="img"
-           aria-label="Bars that stack the momentum of two trolleys before and after a collision, with the two totals drawn underneath for comparison"></svg>
-      <label style="display:block;margin:.5rem 0">Mass of trolley A in kilograms
-        <input class="mass-a" type="range" min="1" max="4" step="1" value="2">
-        <output class="mass-a-out">2</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Mass of trolley B in kilograms
-        <input class="mass-b" type="range" min="1" max="4" step="1" value="4">
-        <output class="mass-b-out">4</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Velocity of A in metres per second
-        <input class="velocity-a" type="range" min="-3" max="3" step="1" value="3">
-        <output class="velocity-a-out">3</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Velocity of B in metres per second
-        <input class="velocity-b" type="range" min="-3" max="3" step="1" value="0">
-        <output class="velocity-b-out">0</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">The collision
-        <select class="mode">
-          <option value="stick">The trolleys stick together</option>
-          <option value="bounce">The trolleys bounce apart</option>
-        </select>
-      </label>
-      <p class="readout text-ink" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, chooser, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const massA = el.querySelector(".mass-a");
-  const massAOut = el.querySelector(".mass-a-out");
-  const massB = el.querySelector(".mass-b");
-  const massBOut = el.querySelector(".mass-b-out");
-  const velocityA = el.querySelector(".velocity-a");
-  const velocityAOut = el.querySelector(".velocity-a-out");
-  const velocityB = el.querySelector(".velocity-b");
-  const velocityBOut = el.querySelector(".velocity-b-out");
-  const mode = el.querySelector(".mode");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "Bars that stack the momentum of two trolleys before and after a collision, with the two totals drawn underneath for comparison",
+    width: 660,
+    height: 260,
+    max: 660,
+  });
+  readout.classList.add("text-ink");
+
+  const massA = slider(el, { show: true,
+    id: "mass-a",
+    label: "Mass of trolley A in kilograms",
+    min: 1,
+    max: 4,
+    step: 1,
+    value: 2,
+  });
+  const massB = slider(el, { show: true,
+    id: "mass-b",
+    label: "Mass of trolley B in kilograms",
+    min: 1,
+    max: 4,
+    step: 1,
+    value: 4,
+  });
+  const velocityA = slider(el, { show: true,
+    id: "velocity-a",
+    label: "Velocity of A in metres per second",
+    min: -3,
+    max: 3,
+    step: 1,
+    value: 3,
+  });
+  const velocityB = slider(el, { show: true,
+    id: "velocity-b",
+    label: "Velocity of B in metres per second",
+    min: -3,
+    max: 3,
+    step: 1,
+    value: 0,
+  });
+  const mode = chooser(el, {
+    id: "mode",
+    label: "The collision",
+    choices: [
+      { value: "stick", label: "The trolleys stick together" },
+      { value: "bounce", label: "The trolleys bounce apart" },
+    ],
+    value: "stick",
+  });
 
   const VIEW_W = 660;
   const VIEW_H = 260;
@@ -111,10 +127,6 @@ export function mount(el) {
     const uA = Number(velocityA.value);
     const uB = Number(velocityB.value);
     const sticky = mode.value === "stick";
-    massAOut.textContent = String(mA);
-    massBOut.textContent = String(mB);
-    velocityAOut.textContent = String(uA);
-    velocityBOut.textContent = String(uB);
 
     const pA = mA * uA;
     const pB = mB * uB;
@@ -225,9 +237,5 @@ export function mount(el) {
       `${energy} <em>Which quantity stayed the same, and which one changed?</em>`;
   }
 
-  [massA, massB, velocityA, velocityB].forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  mode.addEventListener("change", update);
-  update();
+  react([massA, massB, velocityA, velocityB, mode], update);
 }

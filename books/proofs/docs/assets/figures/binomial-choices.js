@@ -9,32 +9,43 @@
 //
 // Colours come from CSS classes so the figure adapts to every bundle and both
 // schemes. The readout is `aria-live`, and every control is a native input.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-binomial-choices" style="max-width:560px">
-      <svg viewBox="0 0 560 220" width="100%" role="img"
-           aria-label="Every way to choose a or b from the brackets, grouped by how many b choices each pattern makes"></svg>
-      <label style="display:block;margin:.5rem 0 .2rem">
-        Number of brackets:
-        <input class="brackets" type="range" min="2" max="4" step="1" value="3"
-               aria-label="Number of brackets">
-        <output class="brackets-value">3</output>
-      </label>
-      <label style="display:block;margin:.2rem 0 .3rem">
-        Number of b choices in the term:
-        <input class="term" type="range" min="0" max="3" step="1" value="2"
-               aria-label="Number of b choices in the term">
-        <output class="term-value">2</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const brackets = el.querySelector(".brackets");
-  const bracketsValue = el.querySelector(".brackets-value");
-  const term = el.querySelector(".term");
-  const termValue = el.querySelector(".term-value");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "Every way to choose a or b from the brackets, grouped by how many b choices each pattern makes",
+    width: 560,
+    height: 220,
+    max: 560,
+  });
+
+  const brackets = slider(el, { show: true,
+    id: "brackets",
+    label: "Number of brackets:",
+    name: "Number of brackets",
+    min: 2,
+    max: 4,
+    step: 1,
+    value: 3,
+  });
+  const term = slider(el, { show: true,
+    id: "term",
+    label: "Number of b choices in the term:",
+    name: "Number of b choices in the term",
+    min: 0,
+    max: 3,
+    step: 1,
+    value: 2,
+  });
+
+  // A smaller number of brackets can clamp the term, and a programmatic change
+  // does not fire `input`, so the term's readout is refreshed in `draw`.
+  const termOut = term.parentElement.querySelector("output");
 
   const CELL = 24;
   const GAP = 4;
@@ -49,8 +60,7 @@ export function mount(el) {
     const k = Math.min(Number(term.value), n);
     term.value = String(k);
 
-    bracketsValue.textContent = String(n);
-    termValue.textContent = String(k);
+    termOut.textContent = String(k);
 
     const total = 2 ** n;
     const cols = Math.min(4, total);
@@ -107,7 +117,5 @@ export function mount(el) {
       `${termText}. So the coefficient of that term is ${count}.`;
   }
 
-  brackets.addEventListener("input", draw);
-  term.addEventListener("input", draw);
-  draw();
+  react([brackets, term], draw);
 }

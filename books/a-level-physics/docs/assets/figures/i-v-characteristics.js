@@ -10,30 +10,41 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to
 // both schemes. No colour literal appears here, and no runtime LaTeX: the
 // readout is plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-i-v" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 300" width="100%" role="img"
-           aria-label="A current against potential difference graph for a resistor, a filament lamp or a diode, with a marked working point"></svg>
-      <label style="display:block;margin:.5rem 0">Component
-        <select class="component">
-          <option value="resistor">Fixed resistor (5 ohm)</option>
-          <option value="lamp">Filament lamp</option>
-          <option value="diode">Diode</option>
-        </select>
-      </label>
-      <label style="display:block;margin:.3rem 0">Potential difference
-        <input class="pd" type="range" min="-4" max="4" step="0.1" value="2">
-        <output class="pd-out">2.0</output> V
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, chooser, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const component = el.querySelector(".component");
-  const pd = el.querySelector(".pd");
-  const pdOut = el.querySelector(".pd-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A current against potential difference graph for a resistor, a filament lamp or a diode, with a marked working point",
+    width: 600,
+    height: 300,
+    max: 600,
+  });
+
+  const component = chooser(el, {
+    id: "component",
+    label: "Component",
+    choices: [
+      { value: "resistor", label: "Fixed resistor (5 ohm)" },
+      { value: "lamp", label: "Filament lamp" },
+      { value: "diode", label: "Diode" },
+    ],
+    value: "resistor",
+  });
+  const pd = slider(el, { show: true,
+    id: "pd",
+    label: "Potential difference",
+    min: -4,
+    max: 4,
+    step: 0.1,
+    value: 2,
+    unit: "V",
+    format: (value) => value.toFixed(1),
+  });
 
   const LEFT = 60;
   const RIGHT = 560;
@@ -55,7 +66,6 @@ export function mount(el) {
   function update() {
     const name = component.value;
     const v = Number(pd.value);
-    pdOut.textContent = v.toFixed(1);
 
     // Axes, grid and labels.
     let axes =
@@ -103,7 +113,5 @@ export function mount(el) {
     readout.innerHTML = `${message} <em>Which component gives a straight line, and why?</em>`;
   }
 
-  component.addEventListener("change", update);
-  pd.addEventListener("input", update);
-  update();
+  react([component, pd], update);
 }

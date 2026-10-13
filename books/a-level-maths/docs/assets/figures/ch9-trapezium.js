@@ -10,6 +10,11 @@
 // Plain HTML, SVG, a select and one range input, so it is keyboard-operable with
 // no framework, and no colour of its own: the fig-* classes carry the theme.
 // Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the controls, the live
+// readout and the redraw — comes from `kit.js`. The verdict line is the figure's
+// own text, so it stays here.
+import { panel, slider, chooser, react } from "./kit.js";
 
 const MAPS = [
   {
@@ -69,28 +74,31 @@ function trapezium(map, n) {
 }
 
 export function mount(el) {
-  const options = MAPS.map((m) => `<option value="${m.id}">${m.label}</option>`).join("");
+  const { root, svg, readout } = panel(el, {
+    label:
+      "Curve with straight-topped trapezia drawn beneath it, and a readout of " +
+      "the estimate and the true area",
+    width: 400,
+    height: 320,
+  });
 
-  el.innerHTML = `
-    <div class="fig-controls">
-      <label class="fig-field">Curve
-        <select data-role="map">${options}</select>
-      </label>
-      <label class="fig-field">Number of strips
-        <input data-role="strips" type="range" min="2" max="16" step="1" value="4">
-      </label>
-    </div>
-    <svg viewBox="0 0 400 320" width="100%" role="img"
-         aria-label="Curve with straight-topped trapezia drawn beneath it, and a readout of the estimate and the true area"></svg>
-    <p class="fig-readout" data-role="readout" aria-live="polite"></p>
-    <p class="fig-note" data-role="verdict"></p>
-  `;
+  const select = chooser(el, {
+    id: "map",
+    label: "Curve",
+    choices: MAPS.map((m) => ({ value: m.id, label: m.label })),
+  });
+  const stripsInput = slider(el, { show: false,
+    id: "strips",
+    label: "Number of strips",
+    min: 2,
+    max: 16,
+    step: 1,
+    value: 4,
+  });
 
-  const select = el.querySelector('[data-role="map"]');
-  const slider = el.querySelector('[data-role="strips"]');
-  const readout = el.querySelector('[data-role="readout"]');
-  const verdict = el.querySelector('[data-role="verdict"]');
-  const svg = el.querySelector("svg");
+  const verdict = document.createElement("p");
+  verdict.className = "fig-note";
+  root.append(verdict);
 
   function currentMap() {
     return MAPS.find((m) => m.id === select.value) || MAPS[0];
@@ -98,7 +106,7 @@ export function mount(el) {
 
   function draw() {
     const map = currentMap();
-    const n = Number(slider.value);
+    const n = Number(stripsInput.value);
     const h = (map.b - map.a) / n;
     const px = (x) => LEFT + ((x - map.xMin) / (map.xMax - map.xMin)) * (RIGHT - LEFT);
     const py = (y) => BOTTOM - (y / map.yMax) * (BOTTOM - TOP);
@@ -157,7 +165,5 @@ export function mount(el) {
     }
   }
 
-  select.addEventListener("change", draw);
-  slider.addEventListener("input", draw);
-  draw();
+  react([select, stripsInput], draw);
 }

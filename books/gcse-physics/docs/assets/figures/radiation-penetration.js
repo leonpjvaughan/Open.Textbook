@@ -5,6 +5,13 @@
 // least penetrating. The controls are native buttons, so they work with a
 // keyboard, and the readout is announced politely.
 // Colours come from CSS classes so the figure adapts to dark mode.
+//
+// The scaffolding — the surface, its accessible name and the live readout — comes
+// from `kit.js`. The source buttons are not one of the kit's controls, so they
+// are built here inside the kit's control column. What is left is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel } from "./kit.js";
+
 export function mount(el) {
   const SOURCES = {
     alpha: {
@@ -48,20 +55,29 @@ export function mount(el) {
     },
   };
 
-  el.innerHTML = `
-    <div class="fig-radiation-penetration" style="font:14px system-ui;max-width:560px">
-      <div style="display:flex;gap:.4rem;margin-bottom:.4rem">
-        <button type="button" class="source" data-source="alpha" aria-pressed="true">Alpha</button>
-        <button type="button" class="source" data-source="beta" aria-pressed="false">Beta</button>
-        <button type="button" class="source" data-source="gamma" aria-pressed="false">Gamma</button>
-      </div>
-      <svg viewBox="0 0 560 165" width="100%" role="img"
-           aria-label="A source firing alpha, beta or gamma radiation at paper, aluminium and lead barriers"></svg>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+  const { svg, readout, controls } = panel(el, {
+    label:
+      "A source firing alpha, beta or gamma radiation at paper, aluminium and lead barriers",
+    width: 560,
+    height: 165,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+  const sourceRow = document.createElement("div");
+  sourceRow.style.cssText = "display:flex;gap:.4rem";
+  const sourceButton = (name, text, pressed) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "source";
+    button.dataset.source = name;
+    button.setAttribute("aria-pressed", pressed);
+    button.textContent = text;
+    sourceRow.append(button);
+    return button;
+  };
+  sourceButton("alpha", "Alpha", "true");
+  sourceButton("beta", "Beta", "false");
+  sourceButton("gamma", "Gamma", "false");
+  controls.append(sourceRow);
 
   function draw(sourceName) {
     const source = SOURCES[sourceName];

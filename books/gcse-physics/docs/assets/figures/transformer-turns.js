@@ -4,21 +4,44 @@
 // lower the output, then to test, then to explain why the potential difference
 // per turn is the same in both coils. The figure assumes a 100% efficient
 // transformer, which the page states. Colours come from CSS classes.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-transformer-turns" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 260" width="100%" role="img"
-           aria-label="A transformer with a primary coil and a secondary coil on a closed iron core. The turns and the primary potential difference can be changed, and the secondary potential difference is shown"></svg>
-      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem .8rem">
-        <label>Primary turns <input class="np" type="range" min="100" max="1000" step="100" value="400"></label>
-        <label>Secondary turns <input class="ns" type="range" min="100" max="1000" step="100" value="100"></label>
-        <label>Primary p.d. (V) <input class="vp" type="range" min="12" max="240" step="12" value="240"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A transformer with a primary coil and a secondary coil on a closed iron core. The turns and the primary potential difference can be changed, and the secondary potential difference is shown",
+    width: 560,
+    height: 260,
+  });
+
+  const npInput = slider(el, { show: false,
+    id: "np",
+    label: "Primary turns",
+    min: 100,
+    max: 1000,
+    step: 100,
+    value: 400,
+  });
+  const nsInput = slider(el, { show: false,
+    id: "ns",
+    label: "Secondary turns",
+    min: 100,
+    max: 1000,
+    step: 100,
+    value: 100,
+  });
+  const vpInput = slider(el, { show: false,
+    id: "vp",
+    label: "Primary p.d. (V)",
+    min: 12,
+    max: 240,
+    step: 12,
+    value: 240,
+  });
 
   function formatVolts(value) {
     const rounded = Math.round(value * 10) / 10;
@@ -26,9 +49,9 @@ export function mount(el) {
   }
 
   function update() {
-    const np = Number(el.querySelector(".np").value);
-    const ns = Number(el.querySelector(".ns").value);
-    const vp = Number(el.querySelector(".vp").value);
+    const np = Number(npInput.value);
+    const ns = Number(nsInput.value);
+    const vp = Number(vpInput.value);
     const vs = (vp * ns) / np;
 
     const core = `
@@ -72,8 +95,5 @@ export function mount(el) {
       `<em>Now make the secondary turns larger than the primary turns.</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([npInput, nsInput, vpInput], update);
 }

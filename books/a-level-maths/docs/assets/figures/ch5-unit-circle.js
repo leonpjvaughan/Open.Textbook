@@ -1,6 +1,10 @@
 // Guided investigation for radian measure and the arc of a unit circle.
 // Pure HTML and SVG, an ES module, no framework and no colour of its own: the
 // fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const CENTRE = 160;
 const RADIUS = 112;
@@ -37,19 +41,22 @@ function fixedSpecial(degrees) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Angle in degrees
-        <input class="angle" type="range" min="0" max="360" step="5" value="30">
-      </label>
-      <svg viewBox="0 0 320 320" width="100%" role="img"
-           aria-label="A unit circle with a radius at the chosen angle and the matching arc marked"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A unit circle with a radius at the chosen angle and the matching arc marked",
+    width: 320,
+    height: 320,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const angleInput = el.querySelector(".angle");
+  const angleInput = slider(el, { show: false,
+    id: "angle",
+    label: "Angle in degrees",
+    min: 0,
+    max: 360,
+    step: 5,
+    value: 30,
+  });
 
   function update() {
     const degrees = Number(angleInput.value);
@@ -95,6 +102,5 @@ export function mount(el) {
     );
   }
 
-  angleInput.addEventListener("input", update);
-  update();
+  react(angleInput, update);
 }

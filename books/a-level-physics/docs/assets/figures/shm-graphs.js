@@ -10,28 +10,39 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to both
 // schemes. No colour literal appears here, and no runtime LaTeX: the readout is
 // plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-shm-graphs" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 300" width="100%" role="img"
-           aria-label="Two graphs of simple harmonic motion: displacement against time, and acceleration against displacement"></svg>
-      <label style="display:block;margin:.5rem 0">Amplitude (metres)
-        <input class="amplitude" type="range" min="0.01" max="0.10" step="0.01" value="0.05">
-        <output class="amplitude-out">0.05</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Period (seconds)
-        <input class="period" type="range" min="0.5" max="3" step="0.1" value="1">
-        <output class="period-out">1.0</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const amplitude = el.querySelector(".amplitude");
-  const period = el.querySelector(".period");
-  const amplitudeOut = el.querySelector(".amplitude-out");
-  const periodOut = el.querySelector(".period-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "Two graphs of simple harmonic motion: displacement against time, and acceleration against displacement",
+    width: 600,
+    height: 300,
+    max: 600,
+  });
+
+  const amplitude = slider(el, { show: true,
+    id: "amplitude",
+    label: "Amplitude (metres)",
+    min: 0.01,
+    max: 0.1,
+    step: 0.01,
+    value: 0.05,
+    format: (value) => value.toFixed(2),
+  });
+  const period = slider(el, { show: true,
+    id: "period",
+    label: "Period (seconds)",
+    min: 0.5,
+    max: 3,
+    step: 0.1,
+    value: 1,
+    format: (value) => value.toFixed(1),
+  });
 
   const LX0 = 70;
   const LX1 = 280;
@@ -43,8 +54,6 @@ export function mount(el) {
   function update() {
     const A = Number(amplitude.value);
     const T = Number(period.value);
-    amplitudeOut.textContent = A.toFixed(2);
-    periodOut.textContent = T.toFixed(1);
 
     const omega = (2 * Math.PI) / T;
     const vMax = A * omega;
@@ -102,7 +111,5 @@ export function mount(el) {
       `<em>Double the period: what happens to omega, and to the gradient of the line?</em>`;
   }
 
-  amplitude.addEventListener("input", update);
-  period.addEventListener("input", update);
-  update();
+  react([amplitude, period], update);
 }

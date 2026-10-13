@@ -12,22 +12,30 @@
 // doubled angle before the reader moves P. The readout is `aria-live` so the
 // numbers reach a reader who cannot see the drawing, and every colour comes from
 // a CSS class, so the figure adapts to every bundle and scheme.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-angle-at-the-centre" style="max-width:520px">
-      <svg viewBox="0 0 420 320" width="100%" role="img"
-           aria-label="A circle with fixed points A and B, a moving point P on the circumference, and the angles at P and at the centre that stand on the same arc"></svg>
-      <label style="display:block;margin:.5rem 0 .3rem">
-        Move the point P around the circle:
-        <input class="where" type="range" min="5" max="355" step="2" value="265"
-               aria-label="Position of the point P on the circle in degrees">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.3rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".where");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A circle with fixed points A and B, a moving point P on the circumference, and the angles at P and at the centre that stand on the same arc",
+    width: 420,
+    height: 320,
+    max: 520,
+  });
+
+  const where = slider(el, { show: false,
+    id: "where",
+    label: "Move the point P around the circle:",
+    name: "Position of the point P on the circle in degrees",
+    min: 5,
+    max: 355,
+    step: 2,
+    value: 265,
+  });
 
   const O = { x: 210, y: 160 };
   const R = 110;
@@ -62,7 +70,7 @@ export function mount(el) {
   function draw() {
     // The slider only lands on odd degrees, and A and B sit on even ones, so P
     // never reaches a position that would flatten the triangle.
-    const pDeg = Number(slider.value);
+    const pDeg = Number(where.value);
     const P = on(pDeg);
     const A = on(A_DEG);
     const B = on(B_DEG);
@@ -139,6 +147,5 @@ export function mount(el) {
       `angle is twice the angle at P. ${which}`;
   }
 
-  slider.addEventListener("input", draw);
-  draw();
+  react(where, draw);
 }

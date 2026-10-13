@@ -5,25 +5,35 @@
 // are measured from the normal. The reader sets the angle of incidence; the
 // figure draws the incident ray, the normal and the reflected ray.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-reflection-angles" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 240" width="100%" role="img"
-           aria-label="A ray of light meeting a flat surface. The normal is drawn as a dashed line, and the angles of incidence and reflection are marked"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Angle of incidence (degrees) <input class="angle" type="range" min="0" max="80" step="5" value="40"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A ray of light meeting a flat surface. The normal is drawn as a dashed line, and the angles of incidence and reflection are marked",
+    width: 560,
+    height: 240,
+  });
+
+  const angleInput = slider(el, { show: false,
+    id: "angle",
+    label: "Angle of incidence (degrees)",
+    min: 0,
+    max: 80,
+    step: 5,
+    value: 40,
+  });
+
   const P = { x: 280, y: 180 };
   const RAY = 120;
   const NORMAL_TOP = { x: 280, y: 55 };
 
   function update() {
-    const angle = Number(el.querySelector(".angle").value);
+    const angle = Number(angleInput.value);
     const radians = (angle * Math.PI) / 180;
     const dx = Math.sin(radians);
     const dy = Math.cos(radians);
@@ -80,8 +90,5 @@ export function mount(el) {
       `<em>Now set the angle to 0&deg;. Where does the reflected ray go?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react(angleInput, update);
 }

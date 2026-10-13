@@ -9,34 +9,47 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to
 // both schemes. No colour literal appears here, and no runtime LaTeX: the
 // readout is plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-stationary-waves" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 300" width="100%" role="img"
-           aria-label="The shape of a stationary wave on a string fixed at both ends, with nodes and antinodes marked"></svg>
-      <label style="display:block;margin:.5rem 0">Harmonic
-        <input class="harmonic" type="range" min="1" max="6" step="1" value="1">
-        <output class="harmonic-out">1</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">String length (metres)
-        <input class="length" type="range" min="0.20" max="1.50" step="0.05" value="0.65">
-        <output class="length-out">0.65</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Phase of the motion
-        <input class="phase" type="range" min="0" max="1" step="0.02" value="0">
-        <output class="phase-out">0.00</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const harmonic = el.querySelector(".harmonic");
-  const length = el.querySelector(".length");
-  const phase = el.querySelector(".phase");
-  const harmonicOut = el.querySelector(".harmonic-out");
-  const lengthOut = el.querySelector(".length-out");
-  const phaseOut = el.querySelector(".phase-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "The shape of a stationary wave on a string fixed at both ends, with nodes and antinodes marked",
+    width: 600,
+    height: 300,
+    max: 600,
+  });
+
+  const harmonic = slider(el, { show: true,
+    id: "harmonic",
+    label: "Harmonic",
+    min: 1,
+    max: 6,
+    step: 1,
+    value: 1,
+  });
+  const length = slider(el, { show: true,
+    id: "length",
+    label: "String length (metres)",
+    min: 0.2,
+    max: 1.5,
+    step: 0.05,
+    value: 0.65,
+    format: (value) => value.toFixed(2),
+  });
+  const phase = slider(el, { show: true,
+    id: "phase",
+    label: "Phase of the motion",
+    min: 0,
+    max: 1,
+    step: 0.02,
+    value: 0,
+    format: (value) => value.toFixed(2),
+  });
 
   const MID_Y = 150;
   const AMPLITUDE = 80;
@@ -47,9 +60,6 @@ export function mount(el) {
     const n = Number(harmonic.value);
     const lengthM = Number(length.value);
     const phaseValue = Number(phase.value);
-    harmonicOut.textContent = String(n);
-    lengthOut.textContent = lengthM.toFixed(2);
-    phaseOut.textContent = phaseValue.toFixed(2);
 
     const x1 = X0;
     const x2 = X0 + (lengthM / 1.5) * 380;
@@ -111,8 +121,5 @@ export function mount(el) {
       `<em>Drag the phase: which points never move, and why?</em>`;
   }
 
-  harmonic.addEventListener("input", update);
-  length.addEventListener("input", update);
-  phase.addEventListener("input", update);
-  update();
+  react([harmonic, length, phase], update);
 }

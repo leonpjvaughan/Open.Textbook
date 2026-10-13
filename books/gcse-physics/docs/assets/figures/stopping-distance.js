@@ -6,20 +6,37 @@
 // sets the speed and the braking deceleration; the figure draws the thinking
 // distance and the braking distance as two parts of one road.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-stopping-distance" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 170" width="100%" role="img"
-           aria-label="A road bar split into a thinking distance and a braking distance, with the total stopping distance"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Speed (m/s) <input class="speed" type="range" min="5" max="20" step="1" value="10"></label>
-        <label>Braking deceleration (m/s&sup2;) <input class="decel" type="range" min="4" max="10" step="1" value="8"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A road bar split into a thinking distance and a braking distance, with the total stopping distance",
+    width: 560,
+    height: 170,
+  });
+
+  const speedInput = slider(el, { show: false,
+    id: "speed",
+    label: "Speed (m/s)",
+    min: 5,
+    max: 20,
+    step: 1,
+    value: 10,
+  });
+  const decelInput = slider(el, { show: false,
+    id: "decel",
+    label: "Braking deceleration (m/s²)",
+    min: 4,
+    max: 10,
+    step: 1,
+    value: 8,
+  });
+
   const REACTION = 0.60; // seconds, fixed
   const BAR_LEFT = 60;
   const BAR_WIDTH = 440;
@@ -28,8 +45,8 @@ export function mount(el) {
   const MAX_DISTANCE = 62; // metres the bar can show
 
   function update() {
-    const speed = Number(el.querySelector(".speed").value);
-    const decel = Number(el.querySelector(".decel").value);
+    const speed = Number(speedInput.value);
+    const decel = Number(decelInput.value);
     const thinking = speed * REACTION;
     const braking = (speed * speed) / (2 * decel);
     const total = thinking + braking;
@@ -56,8 +73,5 @@ export function mount(el) {
       `<em>Now double the speed: which part doubles, and which becomes four times as large?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([speedInput, decelInput], update);
 }

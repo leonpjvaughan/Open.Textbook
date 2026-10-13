@@ -14,50 +14,63 @@
 //
 // Colours come from the fig-* classes. The readout is plain HTML, never runtime
 // maths.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-motional-emf" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 300" width="100%" role="img"
-           aria-label="A conducting rod sliding along two rails through a magnetic field, with the induced current and the opposing force shown. The field marks, the rail spacing, the velocity arrow and the wire thickness change with the controls."></svg>
-      <label style="display:block;margin:.5rem 0">Flux density (tesla)
-        <input class="field" type="range" min="0.05" max="0.5" step="0.01" value="0.25">
-        <output class="field-out">0.25</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Length of the rod (metres)
-        <input class="length" type="range" min="0.2" max="2" step="0.1" value="1">
-        <output class="length-out">1.0</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Speed (metres per second)
-        <input class="speed" type="range" min="1" max="10" step="0.5" value="4">
-        <output class="speed-out">4.0</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Circuit resistance (ohms)
-        <input class="resistance" type="range" min="0.5" max="5" step="0.1" value="2">
-        <output class="resistance-out">2.0</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const field = el.querySelector(".field");
-  const length = el.querySelector(".length");
-  const speed = el.querySelector(".speed");
-  const resistance = el.querySelector(".resistance");
-  const fieldOut = el.querySelector(".field-out");
-  const lengthOut = el.querySelector(".length-out");
-  const speedOut = el.querySelector(".speed-out");
-  const resistanceOut = el.querySelector(".resistance-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A conducting rod sliding along two rails through a magnetic field, with the induced current and the opposing force shown. The field marks, the rail spacing, the velocity arrow and the wire thickness change with the controls.",
+    width: 620,
+    height: 300,
+    max: 620,
+  });
+
+  const field = slider(el, { show: true,
+    id: "field",
+    label: "Flux density (tesla)",
+    min: 0.05,
+    max: 0.5,
+    step: 0.01,
+    value: 0.25,
+    format: (value) => value.toFixed(2),
+  });
+  const length = slider(el, { show: true,
+    id: "length",
+    label: "Length of the rod (metres)",
+    min: 0.2,
+    max: 2,
+    step: 0.1,
+    value: 1,
+    format: (value) => value.toFixed(1),
+  });
+  const speed = slider(el, { show: true,
+    id: "speed",
+    label: "Speed (metres per second)",
+    min: 1,
+    max: 10,
+    step: 0.5,
+    value: 4,
+    format: (value) => value.toFixed(1),
+  });
+  const resistance = slider(el, { show: true,
+    id: "resistance",
+    label: "Circuit resistance (ohms)",
+    min: 0.5,
+    max: 5,
+    step: 0.1,
+    value: 2,
+    format: (value) => value.toFixed(1),
+  });
 
   function update() {
     const B = Number(field.value);
     const L = Number(length.value);
     const v = Number(speed.value);
     const R = Number(resistance.value);
-    fieldOut.textContent = B.toFixed(2);
-    lengthOut.textContent = L.toFixed(1);
-    speedOut.textContent = v.toFixed(1);
-    resistanceOut.textContent = R.toFixed(1);
 
     const emf = B * L * v;
     const current = emf / R;
@@ -113,8 +126,5 @@ export function mount(el) {
       `<em>Compare the two powers. Why must you keep pulling the rod?</em>`;
   }
 
-  for (const control of [field, length, speed, resistance]) {
-    control.addEventListener("input", update);
-  }
-  update();
+  react([field, length, speed, resistance], update);
 }

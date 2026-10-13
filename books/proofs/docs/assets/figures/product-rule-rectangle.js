@@ -12,32 +12,41 @@
 // strips are the whole change before a slider is touched. Colours are CSS classes,
 // so the figure adapts to every bundle and both schemes, and the readout is
 // `aria-live` so the numbers reach a reader who cannot see the drawing.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-product-rule-rectangle" style="max-width:520px">
-      <svg viewBox="0 0 500 320" width="100%" role="img"
-           aria-label="A rectangle whose width and height both grow, with the two new strips drawn along the right and the top and the small corner they leave drawn separately"></svg>
-      <label style="display:block;margin:.5rem 0 .2rem">
-        Grow the width:
-        <input class="grow-u" type="range" min="0" max="2" step="0.05" value="0.8"
-               aria-label="How much the width grows">
-        <output class="grow-u-value">0.80</output>
-      </label>
-      <label style="display:block;margin:.2rem 0 .5rem">
-        Grow the height:
-        <input class="grow-v" type="range" min="0" max="2" step="0.05" value="0.6"
-               aria-label="How much the height grows">
-        <output class="grow-v-value">0.60</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.3rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const growU = el.querySelector(".grow-u");
-  const growV = el.querySelector(".grow-v");
-  const growUValue = el.querySelector(".grow-u-value");
-  const growVValue = el.querySelector(".grow-v-value");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A rectangle whose width and height both grow, with the two new strips drawn along the right and the top and the small corner they leave drawn separately",
+    width: 500,
+    height: 320,
+    max: 520,
+  });
+
+  const growU = slider(el, { show: true,
+    id: "grow-u",
+    label: "Grow the width:",
+    name: "How much the width grows",
+    min: 0,
+    max: 2,
+    step: 0.05,
+    value: 0.8,
+    format: (value) => value.toFixed(2),
+  });
+  const growV = slider(el, { show: true,
+    id: "grow-v",
+    label: "Grow the height:",
+    name: "How much the height grows",
+    min: 0,
+    max: 2,
+    step: 0.05,
+    value: 0.6,
+    format: (value) => value.toFixed(2),
+  });
 
   const UNIT = 40; // pixels per unit of length
   const ORIGIN_X = 60;
@@ -52,8 +61,6 @@ export function mount(el) {
   function draw() {
     const du = Number(growU.value); // how much the width grows
     const dv = Number(growV.value); // how much the height grows
-    growUValue.textContent = du.toFixed(2);
-    growVValue.textContent = dv.toFixed(2);
 
     const left = ORIGIN_X;
     const right = ORIGIN_X + U * UNIT;
@@ -93,7 +100,5 @@ export function mount(el) {
       `of two small lengths, so it shrinks faster and its share falls towards zero.`;
   }
 
-  growU.addEventListener("input", draw);
-  growV.addEventListener("input", draw);
-  draw();
+  react([growU, growV], draw);
 }

@@ -9,28 +9,38 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to
 // both schemes. No colour literal appears here, and no runtime LaTeX: the
 // readout is plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-photoelectric-effect" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 300" width="100%" role="img"
-           aria-label="Photon energy and maximum kinetic energy against wavelength for a photocell, with a marked threshold"></svg>
-      <label style="display:block;margin:.5rem 0">Wavelength (nanometres)
-        <input class="wavelength" type="range" min="200" max="800" step="10" value="250">
-        <output class="wavelength-out">250</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Work function (electronvolts)
-        <input class="work" type="range" min="1" max="4" step="0.1" value="2">
-        <output class="work-out">2.0</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const wavelength = el.querySelector(".wavelength");
-  const work = el.querySelector(".work");
-  const wavelengthOut = el.querySelector(".wavelength-out");
-  const workOut = el.querySelector(".work-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "Photon energy and maximum kinetic energy against wavelength for a photocell, with a marked threshold",
+    width: 620,
+    height: 300,
+    max: 620,
+  });
+
+  const wavelength = slider(el, { show: true,
+    id: "wavelength",
+    label: "Wavelength (nanometres)",
+    min: 200,
+    max: 800,
+    step: 10,
+    value: 250,
+  });
+  const work = slider(el, { show: true,
+    id: "work",
+    label: "Work function (electronvolts)",
+    min: 1,
+    max: 4,
+    step: 0.1,
+    value: 2,
+    format: (value) => value.toFixed(1),
+  });
 
   const LEFT = 70;
   const RIGHT = 580;
@@ -47,8 +57,6 @@ export function mount(el) {
   function update() {
     const lam = Number(wavelength.value);
     const phi = Number(work.value);
-    wavelengthOut.textContent = String(lam);
-    workOut.textContent = phi.toFixed(1);
 
     const photon = HC / lam;
     const threshold = HC / phi;
@@ -112,7 +120,5 @@ export function mount(el) {
       `<em>Find the wavelength where the two lines cross. What happens below it?</em>`;
   }
 
-  wavelength.addEventListener("input", update);
-  work.addEventListener("input", update);
-  update();
+  react([wavelength, work], update);
 }

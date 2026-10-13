@@ -14,32 +14,39 @@
 //
 // No colour is written here: the drawing uses fig-* classes and the labels use
 // text-* classes, so the figure adapts to every bundle and both schemes.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-discriminant-graph" style="max-width:520px">
-      <svg viewBox="0 0 360 320" width="100%" role="img"
-           aria-label="A parabola on axes, with the points where it crosses the x-axis marked for the current values of b and c"></svg>
-      <label style="display:block;margin:.4rem 0 .2rem">
-        b:
-        <input class="b" type="range" min="-6" max="6" step="1" value="-2"
-               aria-label="Coefficient of x">
-        <output class="b-value">-2</output>
-      </label>
-      <label style="display:block;margin:.2rem 0 .3rem">
-        c:
-        <input class="c" type="range" min="-6" max="6" step="1" value="-3"
-               aria-label="Constant term">
-        <output class="c-value">-3</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const bInput = el.querySelector(".b");
-  const cInput = el.querySelector(".c");
-  const bValue = el.querySelector(".b-value");
-  const cValue = el.querySelector(".c-value");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A parabola on axes, with the points where it crosses the x-axis marked for the current values of b and c",
+    width: 360,
+    height: 320,
+    max: 520,
+  });
+
+  const bInput = slider(el, { show: true,
+    id: "b",
+    label: "b:",
+    name: "Coefficient of x",
+    min: -6,
+    max: 6,
+    step: 1,
+    value: -2,
+  });
+  const cInput = slider(el, { show: true,
+    id: "c",
+    label: "c:",
+    name: "Constant term",
+    min: -6,
+    max: 6,
+    step: 1,
+    value: -3,
+  });
 
   const LEFT = 30;
   const TOP = 20;
@@ -63,8 +70,6 @@ export function mount(el) {
   function draw() {
     const b = Number(bInput.value);
     const c = Number(cInput.value);
-    bValue.textContent = String(b);
-    cValue.textContent = String(c);
 
     const delta = b * b - 4 * c;
 
@@ -130,7 +135,5 @@ export function mount(el) {
       `and the equation has ${count}.`;
   }
 
-  bInput.addEventListener("input", draw);
-  cInput.addEventListener("input", draw);
-  draw();
+  react([bInput, cInput], draw);
 }

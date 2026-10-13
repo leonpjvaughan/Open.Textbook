@@ -9,22 +9,29 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to both
 // schemes. No colour literal appears here, and no runtime LaTeX: the readout is
 // plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-timing-uncertainty" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 240" width="100%" role="img"
-           aria-label="A graph of the percentage uncertainty in the period against the number of oscillations timed in one measurement"></svg>
-      <label style="display:block;margin:.5rem 0">Oscillations timed in one measurement
-        <input class="count" type="range" min="1" max="50" step="1" value="20">
-        <output class="count-out">20</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const count = el.querySelector(".count");
-  const countOut = el.querySelector(".count-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A graph of the percentage uncertainty in the period against the number of oscillations timed in one measurement",
+    width: 600,
+    height: 240,
+    max: 600,
+  });
+
+  const count = slider(el, { show: true,
+    id: "count",
+    label: "Oscillations timed in one measurement",
+    min: 1,
+    max: 50,
+    step: 1,
+    value: 20,
+  });
 
   // The chapter problem values: a 0.800 m pendulum has a period of 1.795 s, and
   // a single hand timing carries an uncertainty of about 0.2 s.
@@ -42,7 +49,6 @@ export function mount(el) {
 
   function update() {
     const n = Number(count.value);
-    countOut.textContent = String(n);
     const percentT = periodPercentage(n);
     const percentG = 2 * percentT;
     const yMax = periodPercentage(1) * 1.1;
@@ -96,6 +102,5 @@ export function mount(el) {
       `<em>How many oscillations do you need before the uncertainty in g falls below 0.5%?</em>`;
   }
 
-  count.addEventListener("input", update);
-  update();
+  react(count, update);
 }

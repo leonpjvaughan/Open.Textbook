@@ -7,26 +7,41 @@
 //
 // Colours come from CSS classes, so the figure adapts to every bundle and both
 // schemes. Lit and unlit are shown by a word and by rays, not by colour alone.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-series-parallel" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 560 220" width="100%" role="img"
-           aria-label="Two lamps connected to a battery, either in series or in parallel, with the right-hand lamp able to be removed."></svg>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0">
-        <button type="button" class="mode-series" aria-pressed="true">Series</button>
-        <button type="button" class="mode-parallel" aria-pressed="false">Parallel</button>
-        <label style="display:flex;align-items:center;gap:.3rem">
-          <input class="remove-right" type="checkbox"> Remove the right-hand lamp
-        </label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the checkbox, the live
+// readout and the redraw — comes from `kit.js`. The two mode buttons are not one
+// of the kit's controls, so they are built here inside the kit's control column.
+// What is left is the drawing and the sentences.
+import { panel, toggle, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const seriesButton = el.querySelector(".mode-series");
-  const parallelButton = el.querySelector(".mode-parallel");
-  const removeBox = el.querySelector(".remove-right");
+export function mount(el) {
+  const { svg, readout, controls } = panel(el, {
+    label:
+      "Two lamps connected to a battery, either in series or in parallel, with the right-hand lamp able to be removed.",
+    width: 560,
+    height: 220,
+    max: 600,
+  });
+
+  const modeRow = document.createElement("div");
+  modeRow.style.cssText = "display:flex;gap:.5rem;flex-wrap:wrap";
+  const modeButton = (cls, text, pressed) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = cls;
+    button.setAttribute("aria-pressed", pressed);
+    button.textContent = text;
+    modeRow.append(button);
+    return button;
+  };
+  const seriesButton = modeButton("mode-series", "Series", "true");
+  const parallelButton = modeButton("mode-parallel", "Parallel", "false");
+  controls.append(modeRow);
+
+  const removeBox = toggle(el, {
+    id: "remove-right",
+    label: "Remove the right-hand lamp",
+  });
 
   let mode = "series";
 
@@ -153,6 +168,5 @@ export function mount(el) {
     mode = "parallel";
     update();
   });
-  removeBox.addEventListener("change", update);
-  update();
+  react(removeBox, update);
 }

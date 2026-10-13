@@ -1,8 +1,12 @@
 // Guided investigation for separable equations of the form dy/dx = k y.
 // The family y = A e to the power kx, with a slider for the rate constant k.
 // Positive k grows, negative k decays, and A sets the starting height.
-// Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
-// carry the theme. Runtime text is plain text, never TeX.
+// Pure HTML and SVG, an ES module, no framework and no colour of its own: the
+// fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -1.5;
 const X_MAX = 1.5;
@@ -34,19 +38,22 @@ function curveFor(k, a) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <label>Rate constant k
-        <input class="k" type="range" min="-1" max="1" step="0.1" value="1">
-      </label>
-      <svg viewBox="0 0 420 300" width="100%" role="img"
-           aria-label="A family of exponential solution curves for dy by dx equals k y, with a slider for k"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A family of exponential solution curves for dy by dx equals k y, with a " +
+      "slider for k",
+    width: 420,
+    height: 300,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const kInput = el.querySelector(".k");
+  const kInput = slider(el, { show: false,
+    id: "k",
+    label: "Rate constant k",
+    min: -1,
+    max: 1,
+    step: 0.1,
+    value: 1,
+  });
 
   function grid() {
     let lines = "";
@@ -93,6 +100,5 @@ export function mount(el) {
     );
   }
 
-  kInput.addEventListener("input", update);
-  update();
+  react(kInput, update);
 }

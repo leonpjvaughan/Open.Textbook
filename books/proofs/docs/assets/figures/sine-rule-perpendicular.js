@@ -11,28 +11,39 @@
 // whether the equality was a property of that line. Predict -> Test -> Explain per
 // AGENTS.md P6, and the readout is `aria-live` so the numbers reach a reader who
 // cannot see the drawing. Colours are CSS classes, so it adapts to every bundle.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-sine-rule-perpendicular" style="max-width:540px">
-      <svg viewBox="0 0 400 230" width="100%" role="img"
-           aria-label="A triangle with a perpendicular dropped from the top corner to the base, splitting it into two right-angled triangles that both contain the same height"></svg>
-      <label style="display:block;margin:.5rem 0 .2rem">
-        Move the top corner sideways:
-        <input class="across" type="range" min="120" max="280" step="2" value="200"
-               aria-label="Horizontal position of the top corner">
-      </label>
-      <label style="display:block;margin:.2rem 0 .5rem">
-        Move it up and down:
-        <input class="up" type="range" min="50" max="150" step="2" value="70"
-               aria-label="Height of the top corner">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.3rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const across = el.querySelector(".across");
-  const up = el.querySelector(".up");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A triangle with a perpendicular dropped from the top corner to the base, splitting it into two right-angled triangles that both contain the same height",
+    width: 400,
+    height: 230,
+    max: 540,
+  });
+
+  const across = slider(el, { show: false,
+    id: "across",
+    label: "Move the top corner sideways:",
+    name: "Horizontal position of the top corner",
+    min: 120,
+    max: 280,
+    step: 2,
+    value: 200,
+  });
+  const up = slider(el, { show: false,
+    id: "up",
+    label: "Move it up and down:",
+    name: "Height of the top corner",
+    min: 50,
+    max: 150,
+    step: 2,
+    value: 70,
+  });
 
   const BASE_Y = 196;
   const A = { x: 56, y: BASE_Y };
@@ -97,7 +108,5 @@ export function mount(el) {
       `gives b / sin B = a / sin A.`;
   }
 
-  across.addEventListener("input", draw);
-  up.addEventListener("input", draw);
-  draw();
+  react([across, up], draw);
 }

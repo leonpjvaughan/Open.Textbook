@@ -1,6 +1,10 @@
 // Guided investigation for the power rule: the gradient of y = x^n.
 // Pure HTML and SVG, an ES module, no framework and no colour of its own: the
 // fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MAX = 2;
 const Y_MAX = 16;
@@ -26,23 +30,31 @@ function curvePoints(n) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Power n
-        <input class="n" type="range" min="0.5" max="4" step="0.5" value="2">
-      </label>
-      <label>Point x
-        <input class="x" type="range" min="0.25" max="2" step="0.05" value="1">
-      </label>
-      <svg viewBox="0 0 400 300" width="100%" role="img"
-           aria-label="A power curve with sliders for the power and the point, showing the gradient of the tangent"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A power curve with sliders for the power and the point, showing the " +
+      "gradient of the tangent",
+    width: 400,
+    height: 300,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const nInput = el.querySelector(".n");
-  const xInput = el.querySelector(".x");
+  const nInput = slider(el, { show: false,
+    id: "n",
+    label: "Power n",
+    min: 0.5,
+    max: 4,
+    step: 0.5,
+    value: 2,
+  });
+  const xInput = slider(el, { show: false,
+    id: "x",
+    label: "Point x",
+    min: 0.25,
+    max: 2,
+    step: 0.05,
+    value: 1,
+  });
 
   function axes() {
     return (
@@ -96,7 +108,5 @@ export function mount(el) {
     );
   }
 
-  nInput.addEventListener("input", update);
-  xInput.addEventListener("input", update);
-  update();
+  react([nInput, xInput], update);
 }

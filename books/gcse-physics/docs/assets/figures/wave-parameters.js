@@ -6,20 +6,37 @@
 // figure draws a snapshot of the wave with one wavelength marked and reports
 // the period.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-wave-parameters" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 220" width="100%" role="img"
-           aria-label="A snapshot of a transverse wave. One wavelength is marked with an arrow, and the frequency and wave speed can be changed"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Frequency (Hz) <input class="frequency" type="range" min="1" max="4" step="0.5" value="2"></label>
-        <label>Wave speed (m/s) <input class="speed" type="range" min="2" max="8" step="1" value="4"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A snapshot of a transverse wave. One wavelength is marked with an arrow, and the frequency and wave speed can be changed",
+    width: 560,
+    height: 220,
+  });
+
+  const frequencyInput = slider(el, { show: false,
+    id: "frequency",
+    label: "Frequency (Hz)",
+    min: 1,
+    max: 4,
+    step: 0.5,
+    value: 2,
+  });
+  const speedInput = slider(el, { show: false,
+    id: "speed",
+    label: "Wave speed (m/s)",
+    min: 2,
+    max: 8,
+    step: 1,
+    value: 4,
+  });
+
   const LEFT = 40;
   const WIDTH = 480;
   const AXIS = 130;
@@ -28,8 +45,8 @@ export function mount(el) {
   const PIXELS_PER_METRE = WIDTH / WINDOW;
 
   function update() {
-    const frequency = Number(el.querySelector(".frequency").value);
-    const speed = Number(el.querySelector(".speed").value);
+    const frequency = Number(frequencyInput.value);
+    const speed = Number(speedInput.value);
     const wavelength = speed / frequency;
     const period = 1 / frequency;
 
@@ -75,8 +92,5 @@ export function mount(el) {
       `<em>Now double the frequency to ${Math.min(frequency * 2, 4).toFixed(1)} Hz. What happens to the wavelength?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([frequencyInput, speedInput], update);
 }

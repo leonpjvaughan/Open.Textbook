@@ -1,6 +1,10 @@
 // Guided investigation for the graphs of sine and cosine waves: amplitude,
 // period, phase and vertical shift. Pure HTML and SVG, an ES module, no
 // framework and no colour of its own: the fig-* classes carry the theme.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const WIDTH = 400;
 const HEIGHT = 260;
@@ -33,32 +37,48 @@ function wavePoints(A, B, C, D) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <label>Amplitude A
-        <input class="a" type="range" min="-3" max="3" step="0.5" value="1">
-      </label>
-      <label>Wave number B
-        <input class="b" type="range" min="0.5" max="4" step="0.5" value="1">
-      </label>
-      <label>Phase C in degrees
-        <input class="c" type="range" min="-180" max="180" step="15" value="0">
-      </label>
-      <label>Vertical shift D
-        <input class="d" type="range" min="-2" max="2" step="0.5" value="0">
-      </label>
-      <svg viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" role="img"
-           aria-label="A sine wave on axes whose amplitude, period, phase and vertical shift follow the controls"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A sine wave on axes whose amplitude, period, phase and vertical shift " +
+      "follow the controls",
+    width: WIDTH,
+    height: HEIGHT,
+    max: 560,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
   const inputs = {
-    a: el.querySelector(".a"),
-    b: el.querySelector(".b"),
-    c: el.querySelector(".c"),
-    d: el.querySelector(".d"),
+    a: slider(el, { show: false,
+      id: "a",
+      label: "Amplitude A",
+      min: -3,
+      max: 3,
+      step: 0.5,
+      value: 1,
+    }),
+    b: slider(el, { show: false,
+      id: "b",
+      label: "Wave number B",
+      min: 0.5,
+      max: 4,
+      step: 0.5,
+      value: 1,
+    }),
+    c: slider(el, { show: false,
+      id: "c",
+      label: "Phase C in degrees",
+      min: -180,
+      max: 180,
+      step: 15,
+      value: 0,
+    }),
+    d: slider(el, { show: false,
+      id: "d",
+      label: "Vertical shift D",
+      min: -2,
+      max: 2,
+      step: 0.5,
+      value: 0,
+    }),
   };
 
   function grid() {
@@ -114,8 +134,5 @@ export function mount(el) {
     );
   }
 
-  Object.values(inputs).forEach((input) =>
-    input.addEventListener("input", update)
-  );
-  update();
+  react(Object.values(inputs), update);
 }

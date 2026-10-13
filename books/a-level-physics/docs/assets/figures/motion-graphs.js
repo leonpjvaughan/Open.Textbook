@@ -9,28 +9,38 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to both
 // schemes. No colour literal appears here, and no runtime LaTeX: the readout is
 // plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-motion-graphs" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 300" width="100%" role="img"
-           aria-label="A velocity-time graph with the area under the line shaded and a marker at the end of the interval"></svg>
-      <label style="display:block;margin:.5rem 0">Initial velocity, u (metres per second)
-        <input class="u" type="range" min="0" max="10" step="1" value="4">
-        <output class="u-out">4</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Acceleration, a (metres per second squared)
-        <input class="a" type="range" min="-2" max="3" step="0.5" value="2">
-        <output class="a-out">2</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const uInput = el.querySelector(".u");
-  const aInput = el.querySelector(".a");
-  const uOut = el.querySelector(".u-out");
-  const aOut = el.querySelector(".a-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A velocity-time graph with the area under the line shaded and a marker at the end of the interval",
+    width: 600,
+    height: 300,
+    max: 600,
+  });
+
+  const uInput = slider(el, { show: true,
+    id: "u",
+    label: "Initial velocity, u (metres per second)",
+    min: 0,
+    max: 10,
+    step: 1,
+    value: 4,
+  });
+  const aInput = slider(el, { show: true,
+    id: "a",
+    label: "Acceleration, a (metres per second squared)",
+    min: -2,
+    max: 3,
+    step: 0.5,
+    value: 2,
+    format: (value) => value.toFixed(1),
+  });
 
   const LEFT = 70;
   const RIGHT = 560;
@@ -51,8 +61,6 @@ export function mount(el) {
   function update() {
     const u = Number(uInput.value);
     const a = Number(aInput.value);
-    uOut.textContent = String(u);
-    aOut.textContent = a.toFixed(1);
 
     const vEnd = u + a * T_MAX;
     const displacement = u * T_MAX + 0.5 * a * T_MAX * T_MAX;
@@ -101,7 +109,5 @@ export function mount(el) {
       `<em>Set a = 0. What is the gradient, and why is the area still the displacement?</em>`;
   }
 
-  uInput.addEventListener("input", update);
-  aInput.addEventListener("input", update);
-  update();
+  react([uInput, aInput], update);
 }

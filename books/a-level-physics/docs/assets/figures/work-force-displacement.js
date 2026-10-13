@@ -7,7 +7,21 @@
 // the component of the force along the displacement, F cos(theta), so the area
 // of the rectangle is the work done. Colours come from CSS classes, so the
 // figure adapts to every bundle and to both schemes.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A force-displacement graph with the area under the graph shaded as a rectangle, whose height is the force along the displacement and whose width is the displacement",
+    width: 560,
+    height: 262,
+    max: 600,
+  });
+
   const LEFT = 64;
   const RIGHT = 520;
   const BASE = 224;
@@ -15,23 +29,30 @@ export function mount(el) {
   const MAX_FORCE = 300; // newtons
   const MAX_DISTANCE = 15; // metres
 
-  el.innerHTML = `
-    <div class="fig-work-force-displacement" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 560 262" width="100%" role="img"
-           aria-label="A force-displacement graph with the area under the graph shaded as a rectangle, whose height is the force along the displacement and whose width is the displacement"></svg>
-      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem .8rem">
-        <label>Force / N <input class="force" type="range" min="0" max="300" step="10" value="100"></label>
-        <label>Distance / m <input class="distance" type="range" min="0" max="15" step="0.5" value="6"></label>
-        <label>Angle / ° <input class="angle" type="range" min="0" max="90" step="5" value="0"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
-
-  const svg = el.querySelector("svg");
-  const forceSlider = el.querySelector(".force");
-  const distanceSlider = el.querySelector(".distance");
-  const angleSlider = el.querySelector(".angle");
-  const readout = el.querySelector(".readout");
+  const forceSlider = slider(el, { show: false,
+    id: "force",
+    label: "Force / N",
+    min: 0,
+    max: 300,
+    step: 10,
+    value: 100,
+  });
+  const distanceSlider = slider(el, { show: false,
+    id: "distance",
+    label: "Distance / m",
+    min: 0,
+    max: 15,
+    step: 0.5,
+    value: 6,
+  });
+  const angleSlider = slider(el, { show: false,
+    id: "angle",
+    label: "Angle / °",
+    min: 0,
+    max: 90,
+    step: 5,
+    value: 0,
+  });
 
   const xFor = (metres) => LEFT + (metres / MAX_DISTANCE) * (RIGHT - LEFT);
   const yFor = (newtons) => BASE - (newtons / MAX_FORCE) * (BASE - TOP);
@@ -97,8 +118,5 @@ export function mount(el) {
       `angle rises from 0° to 90°.</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([forceSlider, distanceSlider, angleSlider], update);
 }

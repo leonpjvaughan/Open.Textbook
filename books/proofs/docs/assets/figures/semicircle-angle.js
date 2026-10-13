@@ -8,22 +8,30 @@
 // This is the one place a slider matters most: the claim is that *nothing* changes,
 // and a reader who only sees one picture cannot tell that from a coincidence.
 // Predict -> Test -> Explain per AGENTS.md P6, and the readout is `aria-live`.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-semicircle-angle" style="max-width:520px">
-      <svg viewBox="0 0 420 260" width="100%" role="img"
-           aria-label="A circle with a diameter and a point on the circumference joined to both ends, showing the angle at that point staying a right angle as it moves"></svg>
-      <label style="display:block;margin:.6rem 0 .3rem">
-        Move the point around the circle:
-        <input class="where" type="range" min="8" max="172" step="1" value="60"
-               aria-label="Position of the point on the circle">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.4rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".where");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A circle with a diameter and a point on the circumference joined to both ends, showing the angle at that point staying a right angle as it moves",
+    width: 420,
+    height: 260,
+    max: 520,
+  });
+
+  const where = slider(el, { show: false,
+    id: "where",
+    label: "Move the point around the circle:",
+    name: "Position of the point on the circle",
+    min: 8,
+    max: 172,
+    step: 1,
+    value: 60,
+  });
 
   const CX = 210;
   const CY = 130;
@@ -39,7 +47,7 @@ export function mount(el) {
     // The slider gives a position along the upper half of the circle, in degrees
     // measured from the left. The point stays on the same semicircle as the angle
     // being measured, which is what makes it a semicircle angle.
-    const t = (Number(slider.value) * Math.PI) / 180;
+    const t = (Number(where.value) * Math.PI) / 180;
     const P = { x: CX + R * Math.cos(Math.PI - t), y: CY - R * Math.sin(Math.PI - t) };
 
     const A = { x: CX - R, y: CY };
@@ -91,6 +99,5 @@ export function mount(el) {
       `that OP makes.`;
   }
 
-  slider.addEventListener("input", draw);
-  draw();
+  react(where, draw);
 }

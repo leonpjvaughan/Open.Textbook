@@ -10,28 +10,38 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to
 // both schemes. No colour literal appears here, and no runtime LaTeX: the readout
 // is plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-heating-curve" style="font:14px system-ui;max-width:640px">
-      <svg viewBox="0 0 640 340" width="100%" role="img"
-           aria-label="Temperature against time for water heated at a steady rate, showing a short melting plateau and a much longer boiling plateau"></svg>
-      <label style="display:block;margin:.5rem 0">Mass of water (kg)
-        <input class="mass" type="range" min="0.10" max="2.00" step="0.05" value="1.00">
-        <output class="mass-out">1.00</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Heater power (W)
-        <input class="power" type="range" min="200" max="1000" step="50" value="500">
-        <output class="power-out">500</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const mass = el.querySelector(".mass");
-  const power = el.querySelector(".power");
-  const massOut = el.querySelector(".mass-out");
-  const powerOut = el.querySelector(".power-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "Temperature against time for water heated at a steady rate, showing a short melting plateau and a much longer boiling plateau",
+    width: 640,
+    height: 340,
+    max: 640,
+  });
+
+  const mass = slider(el, { show: true,
+    id: "mass",
+    label: "Mass of water (kg)",
+    min: 0.1,
+    max: 2,
+    step: 0.05,
+    value: 1,
+    format: (value) => value.toFixed(2),
+  });
+  const power = slider(el, { show: true,
+    id: "power",
+    label: "Heater power (W)",
+    min: 200,
+    max: 1000,
+    step: 50,
+    value: 500,
+  });
 
   // The specific heat capacities and latent heats of water.
   const C_ICE = 2100;
@@ -54,8 +64,6 @@ export function mount(el) {
   function update() {
     const m = Number(mass.value);
     const p = Number(power.value);
-    massOut.textContent = m.toFixed(2);
-    powerOut.textContent = String(p);
 
     const q1 = m * C_ICE * (T_MELT - T_START);
     const q2 = m * L_FUSION;
@@ -119,7 +127,5 @@ export function mount(el) {
       `<em>Why does the graph stay flat while the water is boiling?</em>`;
   }
 
-  mass.addEventListener("input", update);
-  power.addEventListener("input", update);
-  update();
+  react([mass, power], update);
 }

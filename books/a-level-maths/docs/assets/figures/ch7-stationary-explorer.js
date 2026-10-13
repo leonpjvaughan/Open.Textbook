@@ -1,6 +1,10 @@
 // Guided investigation for stationary points, the gradient and the second
 // derivative. Pure HTML and SVG, an ES module, no framework and no colour of
 // its own: the fig-* classes carry the theme. Runtime text is plain text.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -1;
 const X_MAX = 3;
@@ -40,19 +44,23 @@ function curvePoints() {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Point x
-        <input class="a" type="range" min="-1" max="3" step="0.05" value="0.5">
-      </label>
-      <svg viewBox="0 0 400 300" width="100%" role="img"
-           aria-label="A cubic curve with a movable point, showing its value, gradient and second derivative"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A cubic curve with a movable point, showing its value, gradient and " +
+      "second derivative",
+    width: 400,
+    height: 300,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const aInput = el.querySelector(".a");
+  const aInput = slider(el, { show: false,
+    id: "a",
+    label: "Point x",
+    min: -1,
+    max: 3,
+    step: 0.05,
+    value: 0.5,
+  });
 
   function axes() {
     return (
@@ -127,6 +135,5 @@ export function mount(el) {
     );
   }
 
-  aInput.addEventListener("input", update);
-  update();
+  react(aInput, update);
 }

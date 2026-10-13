@@ -6,20 +6,37 @@
 // reader sets the force and the spring constant; the figure shows the spring,
 // the force-extension graph and the energy stored.
 // Colours come from CSS classes so the figure adapts to dark mode.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-spring-extension" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 230" width="100%" role="img"
-           aria-label="A hanging spring stretching under a force, beside a force-extension graph with a straight part and a curved part"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Force (N) <input class="force" type="range" min="0" max="40" step="1" value="10"></label>
-        <label>Spring constant (N/m) <input class="spring" type="range" min="100" max="400" step="20" value="200"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A hanging spring stretching under a force, beside a force-extension graph with a straight part and a curved part",
+    width: 560,
+    height: 230,
+  });
+
+  const forceInput = slider(el, { show: false,
+    id: "force",
+    label: "Force (N)",
+    min: 0,
+    max: 40,
+    step: 1,
+    value: 10,
+  });
+  const springInput = slider(el, { show: false,
+    id: "spring",
+    label: "Spring constant (N/m)",
+    min: 100,
+    max: 400,
+    step: 20,
+    value: 200,
+  });
+
   const LIMIT = 30; // force at the limit of proportionality, in newtons
   const E_MAX = 0.40;
   const F_MAX = 42;
@@ -59,8 +76,8 @@ export function mount(el) {
   }
 
   function update() {
-    const force = Number(el.querySelector(".force").value);
-    const k = Number(el.querySelector(".spring").value);
+    const force = Number(forceInput.value);
+    const k = Number(springInput.value);
     const e = extension(force, k);
     const stored = energy(force, k);
     const beyond = force > LIMIT;
@@ -106,8 +123,5 @@ export function mount(el) {
         : `<em>Now double the force to ${Math.min(force * 2, 40)} N. What happens to the extension?</em>`);
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([forceInput, springInput], update);
 }

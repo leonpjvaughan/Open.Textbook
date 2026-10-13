@@ -5,6 +5,12 @@
 // explain why. The rectangle on the force-distance graph is the product F s, so
 // its area is the work done. Colours come from CSS classes, so the figure adapts
 // to every bundle and both schemes.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
   const LEFT = 64;
   const RIGHT = 520;
@@ -13,28 +19,37 @@ export function mount(el) {
   const MAX_FORCE = 200;
   const MAX_DISTANCE = 10;
 
-  el.innerHTML = `
-    <div class="fig-work-done" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 560 260" width="100%" role="img"
-           aria-label="A rectangle on a force-distance graph. Its width is the distance and its height is the force, so its area is the work done"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Force (N) <input class="force" type="range" min="0" max="200" step="10" value="60"></label>
-        <label>Distance (m) <input class="distance" type="range" min="0" max="10" step="0.5" value="4"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A rectangle on a force-distance graph. Its width is the distance and its height is the force, so its area is the work done",
+    width: 560,
+    height: 260,
+    max: 600,
+  });
 
-  const svg = el.querySelector("svg");
-  const forceSlider = el.querySelector(".force");
-  const distanceSlider = el.querySelector(".distance");
-  const readout = el.querySelector(".readout");
+  const forceInput = slider(el, { show: false,
+    id: "force",
+    label: "Force (N)",
+    min: 0,
+    max: 200,
+    step: 10,
+    value: 60,
+  });
+  const distanceInput = slider(el, { show: false,
+    id: "distance",
+    label: "Distance (m)",
+    min: 0,
+    max: 10,
+    step: 0.5,
+    value: 4,
+  });
 
   const xFor = (metres) => LEFT + (metres / MAX_DISTANCE) * (RIGHT - LEFT);
   const yFor = (newtons) => BASE - (newtons / MAX_FORCE) * (BASE - TOP);
 
   function update() {
-    const force = Number(forceSlider.value);
-    const distance = Number(distanceSlider.value);
+    const force = Number(forceInput.value);
+    const distance = Number(distanceInput.value);
     const work = force * distance;
 
     const rectY = yFor(force);
@@ -86,8 +101,5 @@ export function mount(el) {
       `double the force. Then predict what happens if you double the distance.</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([forceInput, distanceInput], update);
 }

@@ -11,22 +11,30 @@
 // perpendicular lands before the reader touches the control. The readout is
 // `aria-live` so the numbers reach a reader who cannot see the drawing, and every
 // colour comes from a CSS class, so the figure adapts to every bundle and scheme.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-triangle-area-sinc" style="max-width:540px">
-      <svg viewBox="0 0 420 240" width="100%" role="img"
-           aria-label="A triangle with sides a and b meeting at C, a perpendicular from B to the line through A and C, and a slider that opens the angle at C"></svg>
-      <label style="display:block;margin:.5rem 0 .3rem">
-        Open or close the angle at C:
-        <input class="corner" type="range" min="30" max="150" step="1" value="60"
-               aria-label="Size of the angle at C in degrees">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.3rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const slider = el.querySelector(".corner");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A triangle with sides a and b meeting at C, a perpendicular from B to the line through A and C, and a slider that opens the angle at C",
+    width: 420,
+    height: 240,
+    max: 540,
+  });
+
+  const cornerInput = slider(el, { show: false,
+    id: "corner",
+    label: "Open or close the angle at C:",
+    name: "Size of the angle at C in degrees",
+    min: 30,
+    max: 150,
+    step: 1,
+    value: 60,
+  });
 
   const BASE_Y = 195;
   const C = { x: 160, y: BASE_Y };
@@ -57,7 +65,7 @@ export function mount(el) {
   }
 
   function draw() {
-    const Cdeg = Number(slider.value);
+    const Cdeg = Number(cornerInput.value);
     const t = rad(Cdeg);
 
     // B sits above C, at the angle the slider gives, a side-length away.
@@ -110,6 +118,5 @@ export function mount(el) {
       `numbers agree. ${where}`;
   }
 
-  slider.addEventListener("input", draw);
-  draw();
+  react(cornerInput, draw);
 }

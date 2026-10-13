@@ -11,29 +11,42 @@
 //
 // Colours come from CSS classes, so the figure adapts to every bundle and to both
 // schemes. No colour literal appears here, and no runtime LaTeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
   const SUPPLY = 12; // volts, held constant by an ideal supply
   const R_MIN = 2; // ohms
   const R_MAX = 20; // ohms
   const PEAK = SUPPLY / R_MIN + SUPPLY / R_MIN; // the largest total current, in amperes
 
-  el.innerHTML = `
-    <div class="fig-parallel-branch-current" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 330" width="100%" role="img"
-           aria-label="Two resistors in parallel across a twelve volt supply, with the current in each branch, the total current from the supply, and the equivalent resistance"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Resistance in branch 1 (&Omega;)
-          <input class="r1" type="range" min="${R_MIN}" max="${R_MAX}" step="1" value="10"></label>
-        <label>Resistance in branch 2 (&Omega;)
-          <input class="r2" type="range" min="${R_MIN}" max="${R_MAX}" step="1" value="20"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "Two resistors in parallel across a twelve volt supply, with the current in each branch, the total current from the supply, and the equivalent resistance",
+    width: 600,
+    height: 330,
+    max: 600,
+  });
 
-  const svg = el.querySelector("svg");
-  const r1 = el.querySelector(".r1");
-  const r2 = el.querySelector(".r2");
-  const readout = el.querySelector(".readout");
+  const r1 = slider(el, { show: false,
+    id: "r1",
+    label: "Resistance in branch 1 (\u03a9)",
+    min: R_MIN,
+    max: R_MAX,
+    step: 1,
+    value: 10,
+  });
+  const r2 = slider(el, { show: false,
+    id: "r2",
+    label: "Resistance in branch 2 (\u03a9)",
+    min: R_MIN,
+    max: R_MAX,
+    step: 1,
+    value: 20,
+  });
 
   // A wire is drawn thicker when it carries more current, so the path that
   // carries the total current stands out from a branch. The values are printed
@@ -107,7 +120,5 @@ export function mount(el) {
       `<em>Change one resistance. Does the current in the other branch change?</em>`;
   }
 
-  r1.addEventListener("input", update);
-  r2.addEventListener("input", update);
-  update();
+  react([r1, r2], update);
 }

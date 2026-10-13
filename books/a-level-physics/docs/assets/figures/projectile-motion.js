@@ -9,28 +9,37 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to both
 // schemes. No colour literal appears here, and no runtime LaTeX: the readout is
 // plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-projectile-motion" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 300" width="100%" role="img"
-           aria-label="The curved path of a projectile launched from the ground, with its range and maximum height marked"></svg>
-      <label style="display:block;margin:.5rem 0">Launch speed (metres per second)
-        <input class="speed" type="range" min="10" max="30" step="1" value="20">
-        <output class="speed-out">20</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Launch angle (degrees above the horizontal)
-        <input class="angle" type="range" min="10" max="80" step="5" value="45">
-        <output class="angle-out">45</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const speed = el.querySelector(".speed");
-  const angle = el.querySelector(".angle");
-  const speedOut = el.querySelector(".speed-out");
-  const angleOut = el.querySelector(".angle-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "The curved path of a projectile launched from the ground, with its range and maximum height marked",
+    width: 600,
+    height: 300,
+    max: 600,
+  });
+
+  const speed = slider(el, { show: true,
+    id: "speed",
+    label: "Launch speed (metres per second)",
+    min: 10,
+    max: 30,
+    step: 1,
+    value: 20,
+  });
+  const angle = slider(el, { show: true,
+    id: "angle",
+    label: "Launch angle (degrees above the horizontal)",
+    min: 10,
+    max: 80,
+    step: 5,
+    value: 45,
+  });
 
   const G = 9.81;
   const LEFT = 70;
@@ -41,8 +50,6 @@ export function mount(el) {
   function update() {
     const u = Number(speed.value);
     const degrees = Number(angle.value);
-    speedOut.textContent = String(u);
-    angleOut.textContent = String(degrees);
 
     const radians = (degrees * Math.PI) / 180;
     const ux = u * Math.cos(radians);
@@ -114,7 +121,5 @@ export function mount(el) {
       `<em>At the highest point, what is the vertical velocity, and what is the horizontal velocity?</em>`;
   }
 
-  speed.addEventListener("input", update);
-  angle.addEventListener("input", update);
-  update();
+  react([speed, angle], update);
 }

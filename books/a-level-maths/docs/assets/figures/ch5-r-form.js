@@ -1,6 +1,10 @@
 // Guided investigation for the single-wave form a cos t + b sin t = R cos(t - a).
 // Pure HTML and SVG, an ES module, no framework and no colour of its own: the
 // fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const WIDTH = 420;
 const HEIGHT = 240;
@@ -32,23 +36,30 @@ function curve(fn) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <label>a, the cosine coefficient
-        <input class="a" type="range" min="-5" max="5" step="1" value="3">
-      </label>
-      <label>b, the sine coefficient
-        <input class="b" type="range" min="-5" max="5" step="1" value="4">
-      </label>
-      <svg viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" role="img"
-           aria-label="The sum of a cosine wave and a sine wave drawn as a single combined wave"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "The sum of a cosine wave and a sine wave drawn as a single combined wave",
+    width: WIDTH,
+    height: HEIGHT,
+    max: 560,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const aInput = el.querySelector(".a");
-  const bInput = el.querySelector(".b");
+  const aInput = slider(el, { show: false,
+    id: "a",
+    label: "a, the cosine coefficient",
+    min: -5,
+    max: 5,
+    step: 1,
+    value: 3,
+  });
+  const bInput = slider(el, { show: false,
+    id: "b",
+    label: "b, the sine coefficient",
+    min: -5,
+    max: 5,
+    step: 1,
+    value: 4,
+  });
 
   function update() {
     const a = Number(aInput.value);
@@ -90,7 +101,5 @@ export function mount(el) {
     );
   }
 
-  aInput.addEventListener("input", update);
-  bInput.addEventListener("input", update);
-  update();
+  react([aInput, bInput], update);
 }

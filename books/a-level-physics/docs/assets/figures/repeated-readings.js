@@ -12,6 +12,12 @@
 // Colours come from CSS classes, so the figure follows every bundle and both
 // schemes. No colour literal appears here, and no runtime LaTeX: the readout is
 // plain HTML.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
   // A fixed shape with a mean of exactly zero, so the mean of the readings is
   // the true value plus the zero error, whatever the spread.
@@ -25,25 +31,32 @@ export function mount(el) {
   const TOP = 95;
   const DOT = 130;
 
-  el.innerHTML = `
-    <div class="fig-repeated-readings" style="font:14px system-ui;max-width:640px">
-      <svg viewBox="0 0 640 230" width="100%" role="img"
-           aria-label="Eight repeated readings of one length drawn on a scale in millimetres, with the mean, the stated range and the true length marked"></svg>
-      <label style="display:block;margin:.5rem 0">Spread of the readings
-        <input class="spread" type="range" min="0.002" max="0.02" step="0.002" value="0.008"
-               aria-label="Spread of the repeated readings, in millimetres">
-      </label>
-      <label style="display:block;margin:.3rem 0">Zero error
-        <input class="zero" type="range" min="-0.05" max="0.05" step="0.005" value="0.02"
-               aria-label="Systematic zero error, in millimetres">
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "Eight repeated readings of one length drawn on a scale in millimetres, with the mean, the stated range and the true length marked",
+    width: 640,
+    height: 230,
+    max: 640,
+  });
 
-  const svg = el.querySelector("svg");
-  const spread = el.querySelector(".spread");
-  const zero = el.querySelector(".zero");
-  const readout = el.querySelector(".readout");
+  const spread = slider(el, { show: false,
+    id: "spread",
+    label: "Spread of the readings",
+    name: "Spread of the repeated readings, in millimetres",
+    min: 0.002,
+    max: 0.02,
+    step: 0.002,
+    value: 0.008,
+  });
+  const zero = slider(el, { show: false,
+    id: "zero",
+    label: "Zero error",
+    name: "Systematic zero error, in millimetres",
+    min: -0.05,
+    max: 0.05,
+    step: 0.005,
+    value: 0.02,
+  });
 
   const xFor = (value) => LEFT + ((value - MIN) / (MAX - MIN)) * (RIGHT - LEFT);
 
@@ -115,7 +128,5 @@ export function mount(el) {
       `<em>Does moving the zero error change the width of the range?</em>`;
   }
 
-  spread.addEventListener("input", update);
-  zero.addEventListener("input", update);
-  update();
+  react([spread, zero], update);
 }

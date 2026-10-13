@@ -12,34 +12,46 @@
 // on screen at every setting. Colours come from CSS classes, so the figure
 // adapts to every bundle and to both schemes. No colour literal appears here,
 // and no runtime LaTeX: the readout is plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-vector-addition" style="font:14px system-ui;max-width:640px">
-      <svg viewBox="0 0 640 300" width="100%" role="img"
-           aria-label="Two force arrows placed tip to tail, with the resultant arrow drawn from the tail of the first to the tip of the second"></svg>
-      <label style="display:block;margin:.5rem 0">Force A in newtons
-        <input class="force-a" type="range" min="1" max="10" step="1" value="6">
-        <output class="force-a-out">6</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Force B in newtons
-        <input class="force-b" type="range" min="1" max="10" step="1" value="8">
-        <output class="force-b-out">8</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Angle between the forces in degrees
-        <input class="angle" type="range" min="0" max="180" step="5" value="90">
-        <output class="angle-out">90</output>
-      </label>
-      <p class="readout text-ink" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const forceA = el.querySelector(".force-a");
-  const forceAOut = el.querySelector(".force-a-out");
-  const forceB = el.querySelector(".force-b");
-  const forceBOut = el.querySelector(".force-b-out");
-  const angle = el.querySelector(".angle");
-  const angleOut = el.querySelector(".angle-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "Two force arrows placed tip to tail, with the resultant arrow drawn from the tail of the first to the tip of the second",
+    width: 640,
+    height: 300,
+    max: 640,
+  });
+  readout.classList.add("text-ink");
+
+  const forceA = slider(el, { show: true,
+    id: "force-a",
+    label: "Force A in newtons",
+    min: 1,
+    max: 10,
+    step: 1,
+    value: 6,
+  });
+  const forceB = slider(el, { show: true,
+    id: "force-b",
+    label: "Force B in newtons",
+    min: 1,
+    max: 10,
+    step: 1,
+    value: 8,
+  });
+  const angle = slider(el, { show: true,
+    id: "angle",
+    label: "Angle between the forces in degrees",
+    min: 0,
+    max: 180,
+    step: 5,
+    value: 90,
+  });
 
   // A fixed frame, so a force of 10 N is the same length on screen at every
   // setting and the reader can compare one setting with another. The frame holds
@@ -100,9 +112,6 @@ export function mount(el) {
     const a = Number(forceA.value);
     const b = Number(forceB.value);
     const degrees = Number(angle.value);
-    forceAOut.textContent = String(a);
-    forceBOut.textContent = String(b);
-    angleOut.textContent = String(degrees);
 
     const radians = (degrees * Math.PI) / 180;
     const cos = Math.cos(radians);
@@ -158,8 +167,5 @@ export function mount(el) {
       `the two magnitudes added?</em>`;
   }
 
-  forceA.addEventListener("input", update);
-  forceB.addEventListener("input", update);
-  angle.addEventListener("input", update);
-  update();
+  react([forceA, forceB, angle], update);
 }

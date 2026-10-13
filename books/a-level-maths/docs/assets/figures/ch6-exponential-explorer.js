@@ -1,6 +1,10 @@
 // Guided investigation for the graphs of y = a^x and y = e^x.
 // Pure HTML and SVG, an ES module, no framework and no colour of its own: the
 // fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -3;
 const X_MAX = 3;
@@ -27,19 +31,23 @@ function curve(base) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Base a
-        <input class="a" type="range" min="0.2" max="4" step="0.1" value="2">
-      </label>
-      <svg viewBox="0 0 400 280" width="100%" role="img"
-           aria-label="The graph of y equals a to the power x, with a slider for the base and the graph of y equals e to the power x for comparison"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "The graph of y equals a to the power x, with a slider for the base and " +
+      "the graph of y equals e to the power x for comparison",
+    width: 400,
+    height: 280,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const slider = el.querySelector(".a");
+  const baseInput = slider(el, { show: false,
+    id: "a",
+    label: "Base a",
+    min: 0.2,
+    max: 4,
+    step: 0.1,
+    value: 2,
+  });
 
   function grid() {
     let lines = "";
@@ -57,7 +65,7 @@ export function mount(el) {
   }
 
   function update() {
-    const a = Number(slider.value);
+    const a = Number(baseInput.value);
 
     const axes =
       `<line x1="${xToPx(X_MIN)}" y1="${yToPx(0)}" x2="${xToPx(X_MAX)}" y2="${yToPx(0)}" class="fig-ink"></line>` +
@@ -91,6 +99,5 @@ export function mount(el) {
     );
   }
 
-  slider.addEventListener("input", update);
-  update();
+  react(baseInput, update);
 }

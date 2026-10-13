@@ -10,28 +10,37 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to
 // both schemes. No colour literal appears here, and no runtime LaTeX: the
 // readout is plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-vector-components" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 540 280" width="100%" role="img"
-           aria-label="A vector arrow on axes, with dashed lines to its horizontal and vertical components"></svg>
-      <label style="display:block;margin:.5rem 0">Magnitude
-        <input class="magnitude" type="range" min="0" max="20" step="1" value="10">
-        <output class="magnitude-out">10</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Angle from the horizontal
-        <input class="angle" type="range" min="0" max="180" step="1" value="40">
-        <output class="angle-out">40</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const magnitude = el.querySelector(".magnitude");
-  const magnitudeOut = el.querySelector(".magnitude-out");
-  const angle = el.querySelector(".angle");
-  const angleOut = el.querySelector(".angle-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A vector arrow on axes, with dashed lines to its horizontal and vertical components",
+    width: 540,
+    height: 280,
+    max: 600,
+  });
+
+  const magnitude = slider(el, { show: true,
+    id: "magnitude",
+    label: "Magnitude",
+    min: 0,
+    max: 20,
+    step: 1,
+    value: 10,
+  });
+  const angle = slider(el, { show: true,
+    id: "angle",
+    label: "Angle from the horizontal",
+    min: 0,
+    max: 180,
+    step: 1,
+    value: 40,
+  });
 
   const ORIGIN_X = 270;
   const ORIGIN_Y = 230;
@@ -68,8 +77,6 @@ export function mount(el) {
   function update() {
     const m = Number(magnitude.value);
     const degrees = Number(angle.value);
-    magnitudeOut.textContent = String(m);
-    angleOut.textContent = String(degrees);
 
     const { x, y } = components(m, degrees);
     const tipX = ORIGIN_X + x * SCALE;
@@ -102,7 +109,5 @@ export function mount(el) {
       `<em>At what angle are the two components equal? Set the magnitude to 10 and check.</em>`;
   }
 
-  magnitude.addEventListener("input", update);
-  angle.addEventListener("input", update);
-  update();
+  react([magnitude, angle], update);
 }

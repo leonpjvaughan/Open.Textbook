@@ -1,6 +1,10 @@
 // Guided investigation for the derivative as the gradient of the tangent.
 // Pure HTML and SVG, an ES module, no framework and no colour of its own: the
 // fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = -2.5;
 const X_MAX = 2.5;
@@ -81,23 +85,31 @@ function clipSegment(x1, y1, x2, y2) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Point x
-        <input class="a" type="range" min="-2.4" max="2.4" step="0.1" value="1">
-      </label>
-      <label>Chord length h
-        <input class="h" type="range" min="0.05" max="1.5" step="0.05" value="1">
-      </label>
-      <svg viewBox="0 0 400 300" width="100%" role="img"
-           aria-label="A cubic curve with a movable point, a shrinking chord and the tangent at the point"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A cubic curve with a movable point, a shrinking chord and the tangent at " +
+      "the point",
+    width: 400,
+    height: 300,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const aInput = el.querySelector(".a");
-  const hInput = el.querySelector(".h");
+  const aInput = slider(el, { show: false,
+    id: "a",
+    label: "Point x",
+    min: -2.4,
+    max: 2.4,
+    step: 0.1,
+    value: 1,
+  });
+  const hInput = slider(el, { show: false,
+    id: "h",
+    label: "Chord length h",
+    min: 0.05,
+    max: 1.5,
+    step: 0.05,
+    value: 1,
+  });
 
   function axes() {
     return (
@@ -161,7 +173,5 @@ export function mount(el) {
     );
   }
 
-  aInput.addEventListener("input", update);
-  hInput.addEventListener("input", update);
-  update();
+  react([aInput, hInput], update);
 }

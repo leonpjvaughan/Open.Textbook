@@ -8,23 +8,35 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and both
 // schemes. The arrow direction and the strength are both printed as text, so
 // neither is carried by colour alone.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-electric-field" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 220" width="100%" role="img"
-           aria-label="Radial electric field lines around a charged sphere, with arrows showing the direction and a test point that can be moved away from the sphere."></svg>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.5rem 0">
-        <button type="button" class="sign">Change the sign of the charge</button>
-        <label style="display:flex;align-items:center;gap:.4rem">Distance from the sphere
-          <input class="distance" type="range" min="1" max="4" step="0.5" value="1"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. The sign button is not one of
+// the kit's controls, so it is built here inside the kit's control column. What
+// is left is the drawing and the sentences.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const signButton = el.querySelector(".sign");
-  const distanceSlider = el.querySelector(".distance");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout, controls } = panel(el, {
+    label:
+      "Radial electric field lines around a charged sphere, with arrows showing the direction and a test point that can be moved away from the sphere.",
+    width: 560,
+    height: 220,
+  });
+
+  const signButton = document.createElement("button");
+  signButton.type = "button";
+  signButton.className = "sign";
+  signButton.textContent = "Change the sign of the charge";
+  controls.append(signButton);
+
+  const distanceInput = slider(el, { show: false,
+    id: "distance",
+    label: "Distance from the sphere",
+    min: 1,
+    max: 4,
+    step: 0.5,
+    value: 1,
+  });
 
   const CX = 180;
   const CY = 110;
@@ -50,7 +62,7 @@ export function mount(el) {
   }
 
   function update() {
-    const distance = Number(distanceSlider.value);
+    const distance = Number(distanceInput.value);
     const testX = CX + 28 + (distance - 1) * 26;
     const relative = (1 / (distance * distance)) * 100;
 
@@ -88,6 +100,5 @@ export function mount(el) {
     positive = !positive;
     update();
   });
-  distanceSlider.addEventListener("input", update);
-  update();
+  react(distanceInput, update);
 }

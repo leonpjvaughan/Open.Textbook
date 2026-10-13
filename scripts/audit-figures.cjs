@@ -277,6 +277,15 @@ const MEASURE = `
   }
   const box = document.querySelector('maths-figure[data-figure="' + slug + '"]');
   if (!box) return { error: "not on this page" };
+  // A figure that mounted nothing passes every contrast check, because there is no
+  // paint to measure. The loader writes "Figure failed to load" when a module
+  // throws, and a module that throws took the **whole collection** down once — a
+  // one-line scope mistake in the kit, 176 figures rendering an error sentence and
+  // this audit reporting 352 clean measurements. An empty figure is a failure.
+  const mounted = box.querySelector("svg, canvas, input, select, button, .fig");
+  if (!mounted) {
+    return { error: "mounted nothing: " + (box.textContent || "").trim().slice(0, 60) };
+  }
 
   // The panel the figure is drawn on: the nearest opaque background above it.
   function panel(node) {
@@ -588,7 +597,12 @@ async function runMobile(browser, dir, pages, outFile) {
     try {
       await page.goto(`http://figures.local${route}`, { waitUntil: "load" });
       await page.waitForTimeout(300);
-      const found = await page.evaluate(`(function () {
+      // A **function**, not a string. `page.evaluate` with a multi-line IIFE string
+      // silently returned `[]` here: the same code as a function found the figure
+      // and as a string found none, on the same page at the same moment. That made
+      // this pass measure one figure of 176 and then report "0 below 9px", which
+      // reads as a pass and is the opposite of one.
+      const found = await page.evaluate(() => {
         const out = [];
         for (const fig of document.querySelectorAll("maths-figure[data-figure]")) {
           let smallest = Infinity;
@@ -603,12 +617,11 @@ async function runMobile(browser, dir, pages, outFile) {
           if (smallest !== Infinity) out.push({ slug: fig.dataset.figure, px: smallest });
         }
         return out;
-      })()`);
+      });
       for (const one of found) {
         if (!(one.slug in measured) || one.px < measured[one.slug]) measured[one.slug] = one.px;
       }
     } catch (err) {
-      /* a page that will not load is reported by the contrast pass */
     }
   }
   await context.close();

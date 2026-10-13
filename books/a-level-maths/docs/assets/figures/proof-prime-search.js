@@ -1,6 +1,11 @@
 // Guided investigation for proof by exhaustion: check n squared + n + 41 for
 // n = 0 to 45 and watch the first composite value appear. Pure HTML and ES
 // module, no framework, no colour of its own: the fig-* classes carry the theme.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
+
 const N_MAX = 45;
 
 function isPrime(value) {
@@ -19,24 +24,27 @@ function firstFactor(value) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:520px">
-      <label>Value of n
-        <input class="n" type="range" min="0" max="${N_MAX}" step="1" value="0">
-      </label>
-      <svg viewBox="0 0 360 80" width="100%" role="img"
-           aria-label="A strip of the values of n from 0 to 45, with the current value marked"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "A strip of the values of n from 0 to 45, with the current value marked",
+    width: 360,
+    height: 80,
+    max: 520,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const input = el.querySelector(".n");
+  const nInput = slider(el, { show: false,
+    id: "n",
+    label: "Value of n",
+    min: 0,
+    max: N_MAX,
+    step: 1,
+    value: 0,
+  });
+
   const visited = new Set();
   const cellW = 360 / (N_MAX + 1);
 
   function update() {
-    const n = Number(input.value);
+    const n = Number(nInput.value);
     const value = n * n + n + 41;
     const prime = isPrime(value);
     visited.add(n);
@@ -72,6 +80,5 @@ export function mount(el) {
     }
   }
 
-  input.addEventListener("input", update);
-  update();
+  react(nInput, update);
 }

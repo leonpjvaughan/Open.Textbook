@@ -10,6 +10,11 @@
 // Plain HTML, SVG and a select, so it is keyboard-operable with no framework, and
 // no colour of its own: the fig-* classes carry the theme. Runtime text is plain
 // text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the controls, the live
+// readout and the redraw — comes from `kit.js`. The verdict line is the figure's
+// own text, so it stays here.
+import { panel, slider, chooser, react } from "./kit.js";
 
 const X_MIN = 0;
 const X_MAX = 3;
@@ -106,32 +111,35 @@ function short(value) {
 }
 
 export function mount(el) {
-  const options = MAPS.map((m) => `<option value="${m.id}">${m.label}</option>`).join("");
+  const { root, svg, readout } = panel(el, {
+    label:
+      "Graph of y equals g of x and y equals x, with the first four iterates " +
+      "drawn as a staircase, a cobweb or a diverging path",
+    width: 400,
+    height: 368,
+  });
 
-  el.innerHTML = `
-    <div class="fig-controls">
-      <label class="fig-field">Rearrangement
-        <select data-role="map">${options}</select>
-      </label>
-      <label class="fig-field">Starting value
-        <input data-role="start" type="range" min="0.4" max="2.9" step="0.1" value="1">
-      </label>
-    </div>
-    <svg viewBox="0 0 400 368" width="100%" role="img"
-         aria-label="Graph of y equals g of x and y equals x, with the first four iterates drawn as a staircase, a cobweb or a diverging path"></svg>
-    <p class="fig-readout" data-role="readout" aria-live="polite"></p>
-    <p class="fig-note" data-role="verdict"></p>
-  `;
+  const select = chooser(el, {
+    id: "map",
+    label: "Rearrangement",
+    choices: MAPS.map((m) => ({ value: m.id, label: m.label })),
+  });
+  const startInput = slider(el, { show: false,
+    id: "start",
+    label: "Starting value",
+    min: 0.4,
+    max: 2.9,
+    step: 0.1,
+    value: 1,
+  });
 
-  const select = el.querySelector('[data-role="map"]');
-  const slider = el.querySelector('[data-role="start"]');
-  const readout = el.querySelector('[data-role="readout"]');
-  const verdict = el.querySelector('[data-role="verdict"]');
-  const svg = el.querySelector("svg");
+  const verdict = document.createElement("p");
+  verdict.className = "fig-note";
+  root.append(verdict);
 
   function draw() {
     const map = MAPS.find((m) => m.id === select.value) || MAPS[0];
-    const start = Number(slider.value);
+    const start = Number(startInput.value);
     const values = iterates(map.g, start, 4);
 
     const axes =
@@ -176,7 +184,5 @@ export function mount(el) {
         : "which is greater than 1, so this rearrangement is moving away from the fixed point, not towards it.");
   }
 
-  select.addEventListener("change", draw);
-  slider.addEventListener("input", draw);
-  draw();
+  react([select, startInput], draw);
 }

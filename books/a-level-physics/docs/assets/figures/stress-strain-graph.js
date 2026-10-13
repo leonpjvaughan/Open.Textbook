@@ -7,7 +7,21 @@
 // force and the area move the point along that line but never change it, while a
 // different material changes the line. Colours come from CSS classes, so the
 // figure adapts to every bundle and to both schemes.
+//
+// The scaffolding — the surface, its accessible name, the controls, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, chooser, react } from "./kit.js";
+
 export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A stress-strain graph for a wire. The line is straight through the origin, and its gradient is the Young modulus of the material",
+    width: 560,
+    height: 262,
+    max: 600,
+  });
+
   const LEFT = 64;
   const RIGHT = 520;
   const BASE = 224;
@@ -21,27 +35,27 @@ export function mount(el) {
   ];
   const SUPERSCRIPT = "⁰¹²³⁴⁵⁶⁷⁸⁹";
 
-  el.innerHTML = `
-    <div class="fig-stress-strain-graph" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 560 262" width="100%" role="img"
-           aria-label="A stress-strain graph for a wire. The line is straight through the origin, and its gradient is the Young modulus of the material"></svg>
-      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem .8rem">
-        <label>Material
-          <select class="material">
-            ${MATERIALS.map((m) => `<option value="${m.name}">${m.name}</option>`).join("")}
-          </select>
-        </label>
-        <label>Force / N <input class="force" type="range" min="0" max="100" step="5" value="40"></label>
-        <label>Area / mm² <input class="area" type="range" min="0.3" max="1.2" step="0.1" value="0.4"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
-
-  const svg = el.querySelector("svg");
-  const select = el.querySelector(".material");
-  const forceSlider = el.querySelector(".force");
-  const areaSlider = el.querySelector(".area");
-  const readout = el.querySelector(".readout");
+  const select = chooser(el, {
+    id: "material",
+    label: "Material",
+    choices: MATERIALS.map((m) => ({ value: m.name, label: m.name })),
+  });
+  const forceSlider = slider(el, { show: false,
+    id: "force",
+    label: "Force / N",
+    min: 0,
+    max: 100,
+    step: 5,
+    value: 40,
+  });
+  const areaSlider = slider(el, { show: false,
+    id: "area",
+    label: "Area / mm²",
+    min: 0.3,
+    max: 1.2,
+    step: 0.1,
+    value: 0.4,
+  });
 
   const xFor = (strain) => LEFT + (strain / MAX_STRAIN) * (RIGHT - LEFT);
   const yFor = (stress) => BASE - (stress / MAX_STRESS) * (BASE - TOP);
@@ -140,9 +154,5 @@ export function mount(el) {
       `the gradient.</em>`;
   }
 
-  el.querySelectorAll("input, select").forEach((control) => {
-    control.addEventListener("input", update);
-    control.addEventListener("change", update);
-  });
-  update();
+  react([select, forceSlider, areaSlider], update);
 }

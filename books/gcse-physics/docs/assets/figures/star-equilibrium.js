@@ -6,20 +6,36 @@
 // balance. The drawing is schematic: it shows the two tendencies and the size
 // that results, not a measured rate. Colours come from CSS classes, so the
 // figure adapts to dark mode and every bundle.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-star-equilibrium" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 540 240" width="100%" role="img"
-           aria-label="A star with an outward arrow for the pressure from fusion and an inward arrow for the pull of gravity"></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Outward pressure from fusion <input class="fusion" type="range" min="10" max="100" step="1" value="60"></label>
-        <label>Inward pull of gravity <input class="gravity" type="range" min="10" max="100" step="1" value="60"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A star with an outward arrow for the pressure from fusion and an inward arrow for the pull of gravity",
+    width: 540,
+    height: 240,
+  });
+
+  const fusionInput = slider(el, { show: false,
+    id: "fusion",
+    label: "Outward pressure from fusion",
+    min: 10,
+    max: 100,
+    step: 1,
+    value: 60,
+  });
+  const gravityInput = slider(el, { show: false,
+    id: "gravity",
+    label: "Inward pull of gravity",
+    min: 10,
+    max: 100,
+    step: 1,
+    value: 60,
+  });
 
   function rightArrowhead(x, y, cls) {
     // The tip is at (x, y); the triangle points to the right.
@@ -27,8 +43,8 @@ export function mount(el) {
   }
 
   function update() {
-    const fusion = Number(el.querySelector(".fusion").value);
-    const gravity = Number(el.querySelector(".gravity").value);
+    const fusion = Number(fusionInput.value);
+    const gravity = Number(gravityInput.value);
     const balance = fusion - gravity;
     const cx = 270;
     const cy = 120;
@@ -81,8 +97,5 @@ export function mount(el) {
       `<em>Why does a star stay the same size when the two are equal?</em>`;
   }
 
-  el.querySelectorAll("input").forEach((input) =>
-    input.addEventListener("input", update),
-  );
-  update();
+  react([fusionInput, gravityInput], update);
 }

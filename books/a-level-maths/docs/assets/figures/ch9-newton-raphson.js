@@ -9,6 +9,11 @@
 // Plain HTML, SVG, a select and one range input, so it is keyboard-operable with
 // no framework, and no colour of its own: the fig-* classes carry the theme.
 // Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the controls, the live
+// readout and the redraw — comes from `kit.js`. The verdict line is the figure's
+// own text, so it stays here.
+import { panel, slider, chooser, react } from "./kit.js";
 
 const MAPS = [
   {
@@ -81,28 +86,32 @@ function short(value) {
 }
 
 export function mount(el) {
-  const options = MAPS.map((m) => `<option value="${m.id}">${m.label}</option>`).join("");
+  const { root, svg, readout } = panel(el, {
+    label:
+      "Graph of a function with the tangent at the current estimate, the " +
+      "crossing of the tangent with the axis, and the first few Newton-Raphson " +
+      "estimates",
+    width: 400,
+    height: 320,
+  });
 
-  el.innerHTML = `
-    <div class="fig-controls">
-      <label class="fig-field">Equation
-        <select data-role="map">${options}</select>
-      </label>
-      <label class="fig-field">Starting value, x0
-        <input data-role="start" type="range" min="0" max="1" step="0.01" value="0.5">
-      </label>
-    </div>
-    <svg viewBox="0 0 400 320" width="100%" role="img"
-         aria-label="Graph of a function with the tangent at the current estimate, the crossing of the tangent with the axis, and the first few Newton-Raphson estimates"></svg>
-    <p class="fig-readout" data-role="readout" aria-live="polite"></p>
-    <p class="fig-note" data-role="verdict"></p>
-  `;
+  const select = chooser(el, {
+    id: "map",
+    label: "Equation",
+    choices: MAPS.map((m) => ({ value: m.id, label: m.label })),
+  });
+  const startInput = slider(el, { show: false,
+    id: "start",
+    label: "Starting value, x0",
+    min: 0,
+    max: 1,
+    step: 0.01,
+    value: 0.5,
+  });
 
-  const select = el.querySelector('[data-role="map"]');
-  const slider = el.querySelector('[data-role="start"]');
-  const readout = el.querySelector('[data-role="readout"]');
-  const verdict = el.querySelector('[data-role="verdict"]');
-  const svg = el.querySelector("svg");
+  const verdict = document.createElement("p");
+  verdict.className = "fig-note";
+  root.append(verdict);
 
   function currentMap() {
     return MAPS.find((m) => m.id === select.value) || MAPS[0];
@@ -118,7 +127,7 @@ export function mount(el) {
   // The slider is a fraction of the map's starting range, so one control fits
   // every equation.
   function startValue(map) {
-    const t = Number(slider.value);
+    const t = Number(startInput.value);
     return map.startMin + t * (map.startMax - map.startMin);
   }
 
@@ -215,15 +224,15 @@ export function mount(el) {
 
   select.addEventListener("change", () => {
     const map = currentMap();
-    slider.value = String(
+    startInput.value = String(
       (map.startDefault - map.startMin) / (map.startMax - map.startMin),
     );
     draw();
   });
-  slider.addEventListener("input", draw);
+  react(startInput, draw, { initial: false });
 
   const first = currentMap();
-  slider.value = String(
+  startInput.value = String(
     (first.startDefault - first.startMin) / (first.startMax - first.startMin),
   );
   draw();

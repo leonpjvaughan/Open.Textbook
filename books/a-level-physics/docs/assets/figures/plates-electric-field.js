@@ -8,36 +8,44 @@
 //
 // Colours come from the fig-* classes. The readout is plain HTML, never runtime
 // maths.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-electric-field" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 300" width="100%" role="img"
-           aria-label="Two parallel plates with a uniform electric field between them and a positive ion crossing the gap"></svg>
-      <label style="display:block;margin:.5rem 0">Potential difference (volts)
-        <input class="volts" type="range" min="200" max="2000" step="10" value="1200">
-        <output class="volts-out">1200</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Separation (millimetres)
-        <input class="gap" type="range" min="0.5" max="5" step="0.1" value="1.5">
-        <output class="gap-out">1.5</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const volts = el.querySelector(".volts");
-  const gap = el.querySelector(".gap");
-  const voltsOut = el.querySelector(".volts-out");
-  const gapOut = el.querySelector(".gap-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "Two parallel plates with a uniform electric field between them and a positive ion crossing the gap",
+    width: 620,
+    height: 300,
+    max: 620,
+  });
+
+  const volts = slider(el, { show: true,
+    id: "volts",
+    label: "Potential difference (volts)",
+    min: 200,
+    max: 2000,
+    step: 10,
+    value: 1200,
+  });
+  const gap = slider(el, { show: true,
+    id: "gap",
+    label: "Separation (millimetres)",
+    min: 0.5,
+    max: 5,
+    step: 0.1,
+    value: 1.5,
+    format: (value) => value.toFixed(1),
+  });
 
   const Q = 1.60e-19; // charge on a xenon ion, C
 
   function update() {
     const V = Number(volts.value);
     const d = Number(gap.value) * 1e-3;
-    voltsOut.textContent = String(V);
-    gapOut.textContent = Number(gap.value).toFixed(1);
 
     const E = V / d;
     const F = Q * E;
@@ -86,7 +94,5 @@ export function mount(el) {
       `<em>Change the separation but keep the potential difference. What happens to the energy gained?</em>`;
   }
 
-  volts.addEventListener("input", update);
-  gap.addEventListener("input", update);
-  update();
+  react([volts, gap], update);
 }
