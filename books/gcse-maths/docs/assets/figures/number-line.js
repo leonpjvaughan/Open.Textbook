@@ -5,7 +5,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-numberline" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 90" width="100%" height="90" role="img"
+      <svg viewBox="0 0 560 90" width="100%" role="img"
            aria-label="Number line from minus ten to ten with two marked values"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>a <input class="a" type="range" min="-10" max="10" step="0.1" value="-2.5"></label>
@@ -29,12 +29,12 @@ export function mount(el) {
     for (let v = min; v <= max; v += 2) {
       ticks.push(
         `<line x1="${X(v)}" y1="44" x2="${X(v)}" y2="52" class="fig-ink"></line>` +
-          `<text x="${X(v)}" y="68" font-size="10" text-anchor="middle" class="fig-ink">${v}</text>`,
+          `<text x="${X(v)}" y="68" font-size="16" text-anchor="middle" class="fig-ink">${v}</text>`,
       );
     }
     const mark = (v, label, cls) =>
       `<circle cx="${X(v)}" cy="34" r="6" class="${cls}"></circle>` +
-      `<text x="${X(v)}" y="20" font-size="11" text-anchor="middle" class="fig-ink">${label} = ${v}</text>`;
+      `<text x="${X(v)}" y="20" font-size="18" text-anchor="middle" class="fig-ink">${label} = ${v}</text>`;
     svg.innerHTML =
       `<line x1="${pad}" y1="34" x2="${width - pad}" y2="34" class="fig-ink"></line>` +
       ticks.join("") +

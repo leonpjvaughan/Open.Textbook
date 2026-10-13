@@ -4,7 +4,10 @@
 // SVG, no framework and no colour of its own: the fig-* classes carry the
 // theme. Runtime text is plain text, never TeX.
 
-const SCALE = 12; // pixels per newton
+// Pixels per newton. The two forces can align, so the resultant reaches 24 N;
+// at 6 px per newton that is 144 px from the origin, which stays inside the
+// 460-wide, 330-high frame above and below as well as left and right.
+const SCALE = 6;
 const ORIGIN_X = 230;
 const ORIGIN_Y = 165;
 const W = 460;

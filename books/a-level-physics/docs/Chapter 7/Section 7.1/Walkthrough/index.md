@@ -216,7 +216,7 @@ the heater is still supplying energy? Write two or three sentences. Use the idea
 that the energy is breaking bonds between the particles, so the potential energy
 rises while the average kinetic energy stays the same.
 
-:::figure heating-curve
+:::figure water-heating-curve
 
 ## Progress check
 

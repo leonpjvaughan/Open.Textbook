@@ -12,7 +12,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-projectile-motion" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 600 300" width="100%" role="img"
            aria-label="The curved path of a projectile launched from the ground, with its range and maximum height marked"></svg>
       <label style="display:block;margin:.5rem 0">Launch speed (metres per second)
         <input class="speed" type="range" min="10" max="30" step="1" value="20">
@@ -67,20 +67,20 @@ export function mount(el) {
       const x = xFor((step / 4) * xMax);
       grid +=
         `<line x1="${x.toFixed(1)}" y1="${TOP}" x2="${x.toFixed(1)}" y2="${BOTTOM}" class="fig-grid"></line>` +
-        `<text x="${x.toFixed(1)}" y="${BOTTOM + 18}" font-size="10" class="fig-ink" text-anchor="middle">${((step / 4) * xMax).toFixed(0)}</text>`;
+        `<text x="${x.toFixed(1)}" y="${BOTTOM + 18}" font-size="17" class="fig-ink" text-anchor="middle">${((step / 4) * xMax).toFixed(0)}</text>`;
     }
     for (let step = 0; step <= 4; step += 1) {
       const y = yFor((step / 4) * yMax);
       grid +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="10" class="fig-ink" text-anchor="end">${((step / 4) * yMax).toFixed(0)}</text>`;
+        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="17" class="fig-ink" text-anchor="end">${((step / 4) * yMax).toFixed(0)}</text>`;
     }
 
     const axes =
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="11" class="fig-ink" text-anchor="end">range (m)</text>` +
-      `<text x="${LEFT - 60}" y="${TOP - 8}" font-size="11" class="fig-ink">height (m)</text>`;
+      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="19" class="fig-ink" text-anchor="end">range (m)</text>` +
+      `<text x="${LEFT - 60}" y="${TOP - 8}" font-size="19" class="fig-ink">height (m)</text>`;
 
     let path = "";
     const steps = 60;

@@ -8,7 +8,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-reflection-angles" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 240" width="100%" height="240" role="img"
+      <svg viewBox="0 0 560 240" width="100%" role="img"
            aria-label="A ray of light meeting a flat surface. The normal is drawn as a dashed line, and the angles of incidence and reflection are marked"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Angle of incidence (degrees) <input class="angle" type="range" min="0" max="80" step="5" value="40"></label>
@@ -34,17 +34,17 @@ export function mount(el) {
     const surface =
       `<line x1="60" y1="${P.y}" x2="500" y2="${P.y}" class="fig-ink" stroke-width="2"></line>` +
       `<line x1="${NORMAL_TOP.x}" y1="${NORMAL_TOP.y}" x2="${P.x}" y2="${P.y}" class="fig-grid" stroke-dasharray="5 4" stroke-width="2"></line>` +
-      `<text x="${NORMAL_TOP.x + 6}" y="${NORMAL_TOP.y + 4}" font-size="11" class="fig-ink">normal</text>`;
+      `<text x="${NORMAL_TOP.x + 6}" y="${NORMAL_TOP.y + 4}" font-size="16" class="fig-ink">normal</text>`;
 
     const incident =
       `<line x1="${source.x.toFixed(1)}" y1="${source.y.toFixed(1)}" x2="${P.x}" y2="${P.y}" class="fig-accent" stroke-width="2.5"></line>` +
       `<polygon points="${P.x},${P.y} ${(P.x - 12 * dx + 6 * dy).toFixed(1)},${(P.y - 12 * dy - 6 * dx).toFixed(1)} ` +
       `${(P.x - 12 * dx - 6 * dy).toFixed(1)},${(P.y - 12 * dy + 6 * dx).toFixed(1)}" class="fig-accent"></polygon>` +
-      `<text x="${source.x.toFixed(1)}" y="${(source.y - 6).toFixed(1)}" font-size="11" class="fig-ink">incident ray</text>`;
+      `<text x="${source.x.toFixed(1)}" y="${(source.y - 6).toFixed(1)}" font-size="16" class="fig-ink">incident ray</text>`;
 
     const reflectedRay =
       `<line x1="${P.x}" y1="${P.y}" x2="${reflected.x.toFixed(1)}" y2="${reflected.y.toFixed(1)}" class="fig-warn" stroke-width="2.5"></line>` +
-      `<text x="${reflected.x.toFixed(1)}" y="${(reflected.y - 6).toFixed(1)}" font-size="11" text-anchor="end" class="fig-ink">reflected ray</text>`;
+      `<text x="${reflected.x.toFixed(1)}" y="${(reflected.y - 6).toFixed(1)}" font-size="16" text-anchor="end" class="fig-ink">reflected ray</text>`;
 
     // A small arc from the normal to each ray, drawn as a short polyline so the
     // direction of sweep does not depend on the SVG arc conventions.
@@ -67,7 +67,7 @@ export function mount(el) {
       return (
         `<polyline points="${points.join(" ")}" class="fig-ink" fill="none" stroke-width="1.5"></polyline>` +
         `<text x="${labelX.toFixed(1)}" y="${labelY.toFixed(1)}" ` +
-        `font-size="11" text-anchor="middle" class="fig-ink">${angle}&deg;</text>`
+        `font-size="16" text-anchor="middle" class="fig-ink">${angle}&deg;</text>`
       );
     };
 

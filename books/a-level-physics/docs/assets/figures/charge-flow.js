@@ -18,7 +18,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div class="fig-charge-flow" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 340" width="100%" height="340" role="img"
+      <svg viewBox="0 0 600 340" width="100%" role="img"
            aria-label="A graph of current against time. The shaded rectangle has a height equal to the current and a width equal to the time, so its area is the charge transferred."></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Current (A)
@@ -62,16 +62,16 @@ export function mount(el) {
     for (let tick = 0; tick <= TIME_MAX; tick += 10) {
       drawing +=
         `<line x1="${px(tick).toFixed(1)}" y1="${TOP}" x2="${px(tick).toFixed(1)}" y2="${BOTTOM}" class="fig-grid"></line>` +
-        `<text x="${px(tick).toFixed(1)}" y="${BOTTOM + 18}" font-size="10" text-anchor="middle" class="text-ink">${tick}</text>`;
+        `<text x="${px(tick).toFixed(1)}" y="${BOTTOM + 18}" font-size="17" text-anchor="middle" class="text-ink">${tick}</text>`;
     }
     for (let tick = 0; tick <= CURRENT_MAX; tick += 1) {
       drawing +=
         `<line x1="${LEFT}" y1="${py(tick).toFixed(1)}" x2="${RIGHT}" y2="${py(tick).toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(py(tick) + 4).toFixed(1)}" font-size="10" text-anchor="end" class="text-ink">${tick}</text>`;
+        `<text x="${LEFT - 8}" y="${(py(tick) + 4).toFixed(1)}" font-size="17" text-anchor="end" class="text-ink">${tick}</text>`;
     }
     drawing +=
-      `<text x="${RIGHT}" y="${BOTTOM + 36}" font-size="11" text-anchor="end" class="text-ink">time / s</text>` +
-      `<text x="${LEFT}" y="${TOP - 14}" font-size="11" class="text-ink">current / A</text>`;
+      `<text x="${RIGHT}" y="${BOTTOM + 36}" font-size="19" text-anchor="end" class="text-ink">time / s</text>` +
+      `<text x="${LEFT}" y="${TOP - 14}" font-size="19" class="text-ink">current / A</text>`;
 
     // The rectangle whose area is the charge: current times time.
     const top = py(amps);
@@ -85,7 +85,7 @@ export function mount(el) {
     const nearRight = px(seconds) > RIGHT - 110;
     drawing +=
       `<text x="${(px(seconds) + (nearRight ? -8 : 8)).toFixed(1)}" y="${(top + 4).toFixed(1)}" ` +
-      `font-size="12" text-anchor="${nearRight ? "end" : "start"}" class="text-ink">${charge.toFixed(1)} C</text>`;
+      `font-size="21" text-anchor="${nearRight ? "end" : "start"}" class="text-ink">${charge.toFixed(1)} C</text>`;
 
     svg.innerHTML = drawing;
 

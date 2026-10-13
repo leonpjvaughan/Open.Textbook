@@ -12,7 +12,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-binomial-choices" style="max-width:560px">
-      <svg viewBox="0 0 560 220" width="100%" height="220" role="img"
+      <svg viewBox="0 0 560 220" width="100%" role="img"
            aria-label="Every way to choose a or b from the brackets, grouped by how many b choices each pattern makes"></svg>
       <label style="display:block;margin:.5rem 0 .2rem">
         Number of brackets:
@@ -83,13 +83,13 @@ export function mount(el) {
           `class="fig-ink" style="fill:none" stroke-width="1.5"></rect>`;
         shapes +=
           `<text x="${x + CELL / 2}" y="${y0 + CELL / 2 + 5}" text-anchor="middle" ` +
-          `font-size="15" class="${bits[j] ? "text-warn" : "text-accent"}">` +
+          `font-size="19" class="${bits[j] ? "text-warn" : "text-accent"}">` +
           `${bits[j] ? "b" : "a"}</text>`;
       }
     }
 
     const heading =
-      `<text x="${LEFT}" y="22" font-size="13" class="text-ink">` +
+      `<text x="${LEFT}" y="22" font-size="16" class="text-ink">` +
       `Each row is one way to fill the ${n} brackets</text>`;
 
     svg.innerHTML = heading + shapes;

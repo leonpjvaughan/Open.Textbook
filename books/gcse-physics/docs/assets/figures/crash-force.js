@@ -9,7 +9,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-crash-force" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 170" width="100%" height="170" role="img"
+      <svg viewBox="0 0 560 170" width="100%" role="img"
            aria-label="A car hitting a barrier, with a force arrow whose length shows the force on the car"></svg>
       <div style="display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:.4rem .9rem">
         <label>Collision time (s) <input class="time" type="range" min="0.05" max="0.50" step="0.05" value="0.20"></label>
@@ -43,8 +43,8 @@ export function mount(el) {
       `<rect x="${BARRIER}" y="${GROUND - 74}" width="18" height="74" class="fig-ink"></rect>` +
       `<line x1="${carLeft + carWidth}" y1="${GROUND - 25}" x2="${carLeft + carWidth + length}" y2="${GROUND - 25}" class="fig-warn" stroke-width="4"></line>` +
       `<polygon points="${(carLeft + carWidth + length).toFixed(1)},${GROUND - 25} ${(carLeft + carWidth + length - 12).toFixed(1)},${GROUND - 31} ${(carLeft + carWidth + length - 12).toFixed(1)},${GROUND - 19}" class="fig-warn"></polygon>` +
-      `<text x="${carLeft}" y="${GROUND - 56}" font-size="11" class="fig-ink">mass ${MASS} kg at ${SPEED} m/s</text>` +
-      `<text x="${carLeft + carWidth + length + 6}" y="${GROUND - 20}" font-size="11" class="fig-ink">${Math.round(force)} N</text>`;
+      `<text x="${carLeft}" y="${GROUND - 56}" font-size="16" class="fig-ink">mass ${MASS} kg at ${SPEED} m/s</text>` +
+      `<text x="${carLeft + carWidth + length + 6}" y="${GROUND - 20}" font-size="16" class="fig-ink">${Math.round(force)} N</text>`;
 
     readout.innerHTML =
       `The change in momentum is fixed: ${MASS} kg &times; ${SPEED} m/s = ` +

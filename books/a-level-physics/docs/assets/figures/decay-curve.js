@@ -12,7 +12,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-decay-curve" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 620 300" width="100%" role="img"
            aria-label="Activity of a radioactive source against time in half-lives, with the working point marked"></svg>
       <label style="display:block;margin:.4rem 0">Half-life (hours)
         <input class="half-life" type="range" min="1" max="20" step="1" value="8">
@@ -62,20 +62,20 @@ export function mount(el) {
     let axes =
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${LEFT}" y2="${TOP}" class="fig-ink"></line>` +
-      `<text x="${LEFT}" y="${TOP - 12}" font-size="11" class="fig-ink">activity / fraction of start</text>` +
-      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="11" class="fig-ink" text-anchor="end">time / half-lives</text>`;
+      `<text x="${LEFT}" y="${TOP - 12}" font-size="20" class="fig-ink">activity / fraction of start</text>` +
+      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="20" class="fig-ink" text-anchor="end">time / half-lives</text>`;
 
     for (let tick = 0; tick <= T_MAX; tick += 1) {
       const x = px(tick);
       axes +=
         `<line x1="${x.toFixed(1)}" y1="${BOTTOM}" x2="${x.toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${x.toFixed(1)}" y="${BOTTOM + 16}" font-size="10" class="fig-ink" text-anchor="middle">${tick}</text>`;
+        `<text x="${x.toFixed(1)}" y="${BOTTOM + 16}" font-size="18" class="fig-ink" text-anchor="middle">${tick}</text>`;
     }
     for (let tick = 0; tick <= 4; tick += 1) {
       const y = py(tick / 4);
       axes +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="10" class="fig-ink" text-anchor="end">${(tick / 4).toFixed(2)}</text>`;
+        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="18" class="fig-ink" text-anchor="end">${(tick / 4).toFixed(2)}</text>`;
     }
 
     let curve = "";

@@ -10,7 +10,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-charged-particle-path" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 320" width="100%" height="320" role="img"
+      <svg viewBox="0 0 620 320" width="100%" role="img"
            aria-label="A proton entering a magnetic field out of the page and following a circular path"></svg>
       <label style="display:block;margin:.5rem 0">Flux density (tesla)
         <input class="field" type="range" min="0.05" max="0.5" step="0.01" value="0.2">
@@ -79,8 +79,8 @@ export function mount(el) {
       `<path d="M ${entryX} ${entryY} A ${rPx.toFixed(1)} ${rPx.toFixed(1)} 0 0 1 ${endX.toFixed(1)} ${endY.toFixed(1)}" class="fig-accent" fill="none" stroke-width="3"></path>` +
       `<circle cx="${endX.toFixed(1)}" cy="${endY.toFixed(1)}" r="6" class="fig-good"></circle>` +
       `<circle cx="${entryX}" cy="${entryY}" r="6" class="fig-ink"></circle>` +
-      `<text x="${entryX + 12}" y="${entryY + 4}" font-size="11" class="fig-ink">proton in</text>` +
-      `<text x="${RIGHT - 10}" y="${TOP + 18}" font-size="11" class="fig-ink" text-anchor="end">field out of the page</text>`;
+      `<text x="${entryX + 12}" y="${entryY + 4}" font-size="18" class="fig-ink">proton in</text>` +
+      `<text x="${RIGHT - 10}" y="${TOP + 18}" font-size="18" class="fig-ink" text-anchor="end">field out of the page</text>`;
 
     svg.innerHTML = dots + circle + arc;
 

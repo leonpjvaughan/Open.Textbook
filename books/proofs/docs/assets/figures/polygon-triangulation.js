@@ -13,7 +13,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-polygon-triangulation" style="max-width:520px">
-      <svg viewBox="0 0 400 250" width="100%" height="250" role="img"
+      <svg viewBox="0 0 400 250" width="100%" role="img"
            aria-label="A regular polygon with lines drawn from one corner to every corner it is not already joined to, cutting it into triangles"></svg>
       <label style="display:block;margin:.5rem 0 .2rem">
         Number of sides:

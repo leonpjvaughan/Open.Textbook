@@ -95,7 +95,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div class="fig-si-prefix-scale" style="font:14px system-ui;max-width:660px">
-      <svg viewBox="0 0 660 220" width="100%" height="220" role="img"
+      <svg viewBox="0 0 660 220" width="100%" role="img"
            aria-label="A logarithmic ruler of length in metres from a nanometre to a gigametre, with a marker that moves to the prefix you choose and a familiar object at every prefix"></svg>
       <label style="display:block;margin:.6rem 0 .3rem">Prefix
         <input class="prefix" type="range" min="0" max="7" step="1" value="4"
@@ -138,8 +138,8 @@ export function mount(el) {
       const state = index === selected ? "text-accent" : "text-ink";
       marks +=
         `<line x1="${x}" y1="${AXIS - 8}" x2="${x}" y2="${AXIS + 8}" class="fig-ink" stroke-width="1.5"></line>` +
-        `<text x="${x}" y="${AXIS + 22}" text-anchor="middle" font-size="11" class="${state}">${prefix.symbol}</text>` +
-        `<text x="${x}" y="${row}" text-anchor="middle" font-size="10.5" class="${state}">${prefix.object}</text>`;
+        `<text x="${x}" y="${AXIS + 22}" text-anchor="middle" font-size="23" class="${state}">${prefix.symbol}</text>` +
+        `<text x="${x}" y="${row}" text-anchor="middle" font-size="22" class="${state}">${prefix.object}</text>`;
     });
 
     // The factor between each pair of neighbours.
@@ -151,7 +151,7 @@ export function mount(el) {
       const power = PREFIXES[index + 1].exponent - PREFIXES[index].exponent;
       const text = power === 1 ? "×10" : power === 2 ? "×100" : "×1000";
       gaps +=
-        `<text x="${mid}" y="${AXIS + 40}" text-anchor="middle" font-size="9" class="text-ink">${text}</text>`;
+        `<text x="${mid}" y="${AXIS + 40}" text-anchor="middle" font-size="19" class="text-ink">${text}</text>`;
     }
 
     const markerX = xFor(chosen.exponent).toFixed(1);
@@ -167,7 +167,7 @@ export function mount(el) {
       marks +
       gaps +
       marker +
-      `<text x="${RIGHT}" y="${AXIS + 62}" text-anchor="end" font-size="10" class="text-ink">length in metres, on a logarithmic scale</text>`;
+      `<text x="${RIGHT}" y="${AXIS + 62}" text-anchor="end" font-size="21" class="text-ink">length in metres, on a logarithmic scale</text>`;
 
     const sentence =
       selected === 4

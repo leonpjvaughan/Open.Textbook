@@ -8,7 +8,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-lever-moment" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 180" width="100%" height="180" role="img"
+      <svg viewBox="0 0 560 180" width="100%" role="img"
            aria-label="A lever turning about a pivot, with a load on the left and the balancing effort on the right"></svg>
       <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem .9rem">
         <label>Load (N) <input class="load" type="range" min="100" max="600" step="50" value="300"></label>
@@ -28,7 +28,7 @@ export function mount(el) {
     return (
       `<line x1="${x.toFixed(1)}" y1="${BEAM}" x2="${x.toFixed(1)}" y2="${BEAM + 70}" class="${cls}" stroke-width="3"></line>` +
       `<polygon points="${x.toFixed(1)},${BEAM + 80} ${(x - 6).toFixed(1)},${BEAM + 68} ${(x + 6).toFixed(1)},${BEAM + 68}" class="${cls}"></polygon>` +
-      `<text x="${x.toFixed(1)}" y="${BEAM + 96}" font-size="11" text-anchor="middle" class="fig-ink">${label}</text>`
+      `<text x="${x.toFixed(1)}" y="${BEAM + 96}" font-size="18" text-anchor="middle" class="fig-ink">${label}</text>`
     );
   }
 
@@ -47,8 +47,8 @@ export function mount(el) {
       `<polygon points="${PIVOT},${BEAM + 6} ${PIVOT - 14},${BEAM + 30} ${PIVOT + 14},${BEAM + 30}" class="fig-grid"></polygon>` +
       `<line x1="${loadX.toFixed(1)}" y1="${BEAM - 24}" x2="${PIVOT}" y2="${BEAM - 24}" class="fig-grid" stroke-dasharray="3 3"></line>` +
       `<line x1="${PIVOT}" y1="${BEAM - 44}" x2="${effortX.toFixed(1)}" y2="${BEAM - 44}" class="fig-grid" stroke-dasharray="3 3"></line>` +
-      `<text x="${((loadX + PIVOT) / 2).toFixed(1)}" y="${BEAM - 28}" font-size="10" text-anchor="middle" class="fig-ink">${loadDistance.toFixed(2)} m</text>` +
-      `<text x="${((PIVOT + effortX) / 2).toFixed(1)}" y="${BEAM - 48}" font-size="10" text-anchor="middle" class="fig-ink">${effortDistance.toFixed(2)} m</text>` +
+      `<text x="${((loadX + PIVOT) / 2).toFixed(1)}" y="${BEAM - 28}" font-size="16" text-anchor="middle" class="fig-ink">${loadDistance.toFixed(2)} m</text>` +
+      `<text x="${((PIVOT + effortX) / 2).toFixed(1)}" y="${BEAM - 48}" font-size="16" text-anchor="middle" class="fig-ink">${effortDistance.toFixed(2)} m</text>` +
       forceArrow(loadX, `${load} N`, "fig-warn") +
       forceArrow(effortX, `${Math.round(effort)} N`, "fig-accent");
 

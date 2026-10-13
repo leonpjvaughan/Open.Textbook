@@ -8,7 +8,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-pressure-area" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 170" width="100%" height="170" role="img"
+      <svg viewBox="0 0 560 170" width="100%" role="img"
            aria-label="A block pressing on the ground, with a contact area that widens or narrows as the area changes"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Force (N) <input class="force" type="range" min="100" max="1000" step="50" value="400"></label>
@@ -47,8 +47,8 @@ export function mount(el) {
       `<rect x="${(CENTRE - halfWidth).toFixed(1)}" y="60" width="${width.toFixed(1)}" height="60" class="fig-grid"></rect>` +
       `<line x1="60" y1="${GROUND}" x2="500" y2="${GROUND}" class="fig-ink" stroke-width="3"></line>` +
       `<line x1="${(CENTRE - halfWidth).toFixed(1)}" y1="${GROUND}" x2="${(CENTRE + halfWidth).toFixed(1)}" y2="${GROUND}" class="fig-warn" stroke-width="7"></line>` +
-      `<text x="${CENTRE}" y="150" font-size="11" text-anchor="middle" class="fig-ink">contact area = ${area.toFixed(2)} m&sup2;</text>` +
-      `<text x="${CENTRE}" y="18" font-size="11" text-anchor="middle" class="fig-ink">force = ${force} N</text>`;
+      `<text x="${CENTRE}" y="150" font-size="16" text-anchor="middle" class="fig-ink">contact area = ${area.toFixed(2)} m&sup2;</text>` +
+      `<text x="${CENTRE}" y="18" font-size="16" text-anchor="middle" class="fig-ink">force = ${force} N</text>`;
 
     readout.innerHTML =
       `Pressure = force &divide; area = ${force} N &divide; ${area.toFixed(2)} m&sup2; = ` +

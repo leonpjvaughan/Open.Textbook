@@ -55,7 +55,7 @@ export function mount(el) {
         <button type="button" class="source" data-source="beta" aria-pressed="false">Beta</button>
         <button type="button" class="source" data-source="gamma" aria-pressed="false">Gamma</button>
       </div>
-      <svg viewBox="0 0 560 165" width="100%" height="165" role="img"
+      <svg viewBox="0 0 560 165" width="100%" role="img"
            aria-label="A source firing alpha, beta or gamma radiation at paper, aluminium and lead barriers"></svg>
       <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
     </div>`;
@@ -75,27 +75,27 @@ export function mount(el) {
       .map(
         (barrier) =>
           `<line x1="${barrier.x}" y1="42" x2="${barrier.x}" y2="112" class="fig-ink" stroke-width="3"></line>` +
-          `<text x="${barrier.x}" y="130" font-size="11" text-anchor="middle" class="fig-ink">${barrier.label}</text>`,
+          `<text x="${barrier.x}" y="130" font-size="16" text-anchor="middle" class="fig-ink">${barrier.label}</text>`,
       )
       .join("");
 
     const travel = `<line x1="40" y1="77" x2="${source.travelTo}" y2="77" class="fig-grid" stroke-dasharray="4 4"></line>`;
     const emitter =
       `<circle cx="40" cy="77" r="9" class="fig-accent"></circle>` +
-      `<text x="40" y="103" font-size="11" text-anchor="middle" class="fig-ink">source</text>`;
+      `<text x="40" y="103" font-size="16" text-anchor="middle" class="fig-ink">source</text>`;
 
     const marker = source.passes
       ? `<circle cx="${source.travelTo}" cy="77" r="8" class="fig-good"></circle>` +
-        `<text x="${source.travelTo}" y="60" font-size="11" text-anchor="middle" class="fig-ink">passes</text>`
+        `<text x="${source.travelTo}" y="60" font-size="16" text-anchor="middle" class="fig-ink">passes</text>`
       : `<circle cx="${source.travelTo}" cy="77" r="8" class="fig-warn"></circle>` +
-        `<text x="${source.travelTo}" y="60" font-size="11" text-anchor="middle" class="fig-ink">stopped</text>`;
+        `<text x="${source.travelTo}" y="60" font-size="16" text-anchor="middle" class="fig-ink">stopped</text>`;
 
     const barWidth = 100 * source.fraction;
     const ionising =
-      `<text x="352" y="20" font-size="11" class="fig-ink">ionising power:</text>` +
+      `<text x="352" y="20" font-size="16" class="fig-ink">ionising power:</text>` +
       `<rect x="352" y="27" width="${barWidth.toFixed(1)}" height="12" class="fig-warn"></rect>` +
       `<rect x="352" y="27" width="100" height="12" class="fig-grid" fill="none"></rect>` +
-      `<text x="458" y="37" font-size="11" class="fig-ink">${source.ionising}</text>`;
+      `<text x="458" y="37" font-size="16" class="fig-ink">${source.ionising}</text>`;
 
     svg.innerHTML = walls + travel + emitter + marker + ionising;
   }

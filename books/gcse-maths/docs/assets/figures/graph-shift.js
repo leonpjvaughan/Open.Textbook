@@ -53,27 +53,27 @@ export function mount(el) {
         ? ""
         : `<line x1="${px(0)}" y1="${ORIGIN_Y}" x2="${px(-a)}" y2="${ORIGIN_Y}" ` +
           `style="fill:none" class="fig-warn" stroke-width="2" stroke-dasharray="5 4"></line>` +
-          `<text x="${(px(0) + px(-a)) / 2}" y="${ORIGIN_Y - 12}" font-size="12" ` +
+          `<text x="${(px(0) + px(-a)) / 2}" y="${ORIGIN_Y - 12}" font-size="17" ` +
           `text-anchor="middle" class="text-warn">${moved} ${direction}</text>`;
 
     const shiftVertex =
       a === 0
-        ? `<text x="${px(0) + 10}" y="${py(0) - 10}" font-size="12" class="text-ink">turning point</text>`
+        ? `<text x="${px(0) + 10}" y="${py(0) - 10}" font-size="17" class="text-ink">turning point</text>`
         : `<circle cx="${px(-a)}" cy="${py(0)}" r="6" class="fig-good"></circle>` +
-          `<text x="${px(-a) + 10}" y="${py(0) - 10}" font-size="12" class="text-good">(${-a}, 0)</text>`;
+          `<text x="${px(-a) + 10}" y="${py(0) - 10}" font-size="17" class="text-good">(${-a}, 0)</text>`;
 
     svg.innerHTML =
       `<line x1="40" y1="${ORIGIN_Y}" x2="580" y2="${ORIGIN_Y}" class="fig-ink" stroke-width="2"></line>` +
       `<line x1="${ORIGIN_X}" y1="40" x2="${ORIGIN_X}" y2="272" class="fig-ink" stroke-width="2"></line>` +
-      `<text x="586" y="${ORIGIN_Y - 8}" font-size="12" text-anchor="end" class="text-ink">x</text>` +
-      `<text x="${ORIGIN_X + 10}" y="52" font-size="12" class="text-ink">y</text>` +
+      `<text x="586" y="${ORIGIN_Y - 8}" font-size="17" text-anchor="end" class="text-ink">x</text>` +
+      `<text x="${ORIGIN_X + 10}" y="52" font-size="17" class="text-ink">y</text>` +
       curve((x) => x * x, "fig-grid", -3.4, 3.4) +
       curve((x) => (x + a) * (x + a), "fig-accent", -3.4, 3.4) +
       shiftLine +
       `<circle cx="${px(0)}" cy="${py(0)}" r="4" class="fig-ink"></circle>` +
       shiftVertex +
-      `<text x="${px(2.4)}" y="${py(6.4)}" font-size="12" class="text-ink">y = f(x)</text>` +
-      `<text x="${px(1.4 - a)}" y="${py(2.2)}" font-size="12" class="text-accent">y = f(x + a)</text>`;
+      `<text x="${px(2.4)}" y="${py(6.4)}" font-size="17" class="text-ink">y = f(x)</text>` +
+      `<text x="${px(1.4 - a)}" y="${py(2.2)}" font-size="17" class="text-accent">y = f(x + a)</text>`;
 
     readout.textContent =
       a === 0

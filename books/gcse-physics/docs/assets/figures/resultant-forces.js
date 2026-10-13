@@ -8,7 +8,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-resultant-forces" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 170" width="100%" height="170" role="img"
+      <svg viewBox="0 0 560 170" width="100%" role="img"
            aria-label="A trolley pulled to the left and to the right, with an arrow below showing the resultant force"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Force to the left (N) <input class="left" type="range" min="0" max="200" step="10" value="100"></label>
@@ -31,7 +31,7 @@ export function mount(el) {
       `<line x1="${x}" y1="${y}" x2="${end - head}" y2="${y}" class="${cls}" ` +
       `stroke-width="3"></line>` +
       `<polygon points="${end},${y} ${end - head},${y - 6} ${end - head},${y + 6}" class="${cls}"></polygon>` +
-      (label ? `<text x="${(x + end) / 2}" y="${y - 12}" font-size="11" text-anchor="middle" class="fig-ink">${label}</text>` : "")
+      (label ? `<text x="${(x + end) / 2}" y="${y - 12}" font-size="16" text-anchor="middle" class="fig-ink">${label}</text>` : "")
     );
   }
 
@@ -62,7 +62,7 @@ export function mount(el) {
       leftArrow +
       rightArrow +
       resultantArrow +
-      `<text x="${CENTRE}" y="158" font-size="11" text-anchor="middle" class="fig-ink">${resultantLabel}</text>`;
+      `<text x="${CENTRE}" y="158" font-size="16" text-anchor="middle" class="fig-ink">${resultantLabel}</text>`;
 
     if (magnitude === 0) {
       readout.innerHTML =

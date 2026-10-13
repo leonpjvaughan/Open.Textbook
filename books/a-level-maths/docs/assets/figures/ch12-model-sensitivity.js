@@ -16,7 +16,7 @@ function bar(y, count, className) {
     `<rect x="${LEFT}" y="${y}" width="${width}" height="${BAR_H}" ` +
     `class="${className}" rx="3"></rect>` +
     `<text x="${LEFT + BAR_W + 8}" y="${y + BAR_H - 8}" class="fig-ink" ` +
-    `font-size="12">${Math.round(count)}</text>`
+    `font-size="16">${Math.round(count)}</text>`
   );
 }
 
@@ -64,9 +64,9 @@ export function mount(el) {
     const posterior = positives > 0 ? truePositives / positives : 0;
 
     svg.innerHTML =
-      `<text x="0" y="18" class="fig-ink" font-size="12">Have it, test positive</text>` +
+      `<text x="0" y="18" class="fig-ink" font-size="16">Have it, test positive</text>` +
       bar(4, truePositives, "fig-good") +
-      `<text x="0" y="60" class="fig-ink" font-size="12">Healthy, test positive</text>` +
+      `<text x="0" y="60" class="fig-ink" font-size="16">Healthy, test positive</text>` +
       bar(46, falsePositives, "fig-warn");
 
     readout.textContent =

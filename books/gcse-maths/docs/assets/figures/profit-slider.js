@@ -7,7 +7,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-profit" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 320 120" width="100%" height="110" role="img"
+      <svg viewBox="0 0 320 120" width="100%" role="img"
            aria-label="Bar chart comparing revenue and cost, and the resulting profit or loss"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Bought <input class="bought" type="range" min="0" max="200" step="5" value="120"></label>

@@ -27,7 +27,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div class="fig-repeated-readings" style="font:14px system-ui;max-width:640px">
-      <svg viewBox="0 0 640 230" width="100%" height="230" role="img"
+      <svg viewBox="0 0 640 230" width="100%" role="img"
            aria-label="Eight repeated readings of one length drawn on a scale in millimetres, with the mean, the stated range and the true length marked"></svg>
       <label style="display:block;margin:.5rem 0">Spread of the readings
         <input class="spread" type="range" min="0.002" max="0.02" step="0.002" value="0.008"
@@ -75,7 +75,7 @@ export function mount(el) {
         `<line x1="${x}" y1="${AXIS}" x2="${x}" y2="${isLabel ? AXIS + 6 : AXIS + 3}" class="fig-grid"></line>`;
       if (isLabel) {
         grid +=
-          `<text x="${x}" y="${AXIS + 20}" text-anchor="middle" font-size="10" class="text-ink">${value.toFixed(2)}</text>`;
+          `<text x="${x}" y="${AXIS + 20}" text-anchor="middle" font-size="18" class="text-ink">${value.toFixed(2)}</text>`;
       }
     }
 
@@ -97,10 +97,10 @@ export function mount(el) {
       `<rect x="${bandX}" y="${TOP}" width="${bandWidth}" height="${AXIS - TOP}" class="fig-ink" opacity="0.12"></rect>` +
       dots +
       `<line x1="${meanX}" y1="${TOP - 10}" x2="${meanX}" y2="${AXIS}" class="fig-ink" stroke-width="2"></line>` +
-      `<text x="${(Number(meanX) + 8).toFixed(1)}" y="${TOP - 2}" font-size="11" class="text-ink">mean</text>` +
+      `<text x="${(Number(meanX) + 8).toFixed(1)}" y="${TOP - 2}" font-size="20" class="text-ink">mean</text>` +
       `<line x1="${trueX}" y1="${TOP - 20}" x2="${trueX}" y2="${AXIS}" class="fig-warn" stroke-dasharray="4 3"></line>` +
-      `<text x="${(Number(trueX) - 8).toFixed(1)}" y="${TOP - 24}" text-anchor="end" font-size="11" class="text-warn">true length</text>` +
-      `<text x="${RIGHT}" y="${AXIS + 40}" text-anchor="end" font-size="10" class="text-ink">measured length / mm</text>`;
+      `<text x="${(Number(trueX) - 8).toFixed(1)}" y="${TOP - 24}" text-anchor="end" font-size="20" class="text-warn">true length</text>` +
+      `<text x="${RIGHT}" y="${AXIS + 40}" text-anchor="end" font-size="18" class="text-ink">measured length / mm</text>`;
 
     const uncertainty = oneSigFig(half);
     const inside = Math.abs(mean - TRUE) <= half + 1e-9;

@@ -55,7 +55,7 @@ export function mount(el) {
 
   const text = (x, y, label, anchor = "middle", cls = "fig-ink") =>
     `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anchor}" ` +
-    `font-size="12" class="${cls}">${label}</text>`;
+    `font-size="16" class="${cls}">${label}</text>`;
 
   function render() {
     const reading = Number(readingInput.value);

@@ -11,8 +11,10 @@ export function mount(el) {
   function update() {
     const m = Number(el.querySelector(".gradient").value);
     const c = Number(el.querySelector(".intercept").value);
+    // The plotted points reach y = 3 x 2 + 3 = 9 and y = -3 x 2 - 3 = -9, so
+    // the vertical scale is set for that range: every marker stays in the frame.
     const px = (x) => 180 + x * 28;
-    const py = (y) => 125 - y * 24;
+    const py = (y) => 125 - y * 12;
     const dots = [-2, 0, 2].map((x) => {
       const y = m * x + c;
       return `<circle cx="${px(x)}" cy="${py(y)}" r="5" class="fig-good"></circle>`;

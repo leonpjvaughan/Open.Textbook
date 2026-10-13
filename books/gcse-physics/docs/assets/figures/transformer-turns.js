@@ -7,7 +7,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-transformer-turns" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 260" width="100%" height="260" role="img"
+      <svg viewBox="0 0 560 260" width="100%" role="img"
            aria-label="A transformer with a primary coil and a secondary coil on a closed iron core. The turns and the primary potential difference can be changed, and the secondary potential difference is shown"></svg>
       <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem .8rem">
         <label>Primary turns <input class="np" type="range" min="100" max="1000" step="100" value="400"></label>
@@ -36,7 +36,7 @@ export function mount(el) {
       <rect x="180" y="196" width="200" height="14" class="fig-ink" opacity="0.2"></rect>
       <rect x="180" y="50" width="14" height="160" class="fig-ink" opacity="0.2"></rect>
       <rect x="366" y="50" width="14" height="160" class="fig-ink" opacity="0.2"></rect>
-      <text x="280" y="38" font-size="11" text-anchor="middle" class="fig-ink">iron core</text>`;
+      <text x="280" y="38" font-size="16" text-anchor="middle" class="fig-ink">iron core</text>`;
 
     function coil(x, turns, cls) {
       const loops = Math.max(1, Math.round(turns / 100));
@@ -54,10 +54,10 @@ export function mount(el) {
     const secondary = coil(344, ns, "fig-warn");
 
     const labels = `
-      <text x="150" y="222" font-size="12" text-anchor="middle" class="fig-accent">primary ${np} turns</text>
-      <text x="410" y="222" font-size="12" text-anchor="middle" class="fig-warn">secondary ${ns} turns</text>
-      <text x="150" y="240" font-size="12" text-anchor="middle" class="fig-ink">${vp} V</text>
-      <text x="410" y="240" font-size="12" text-anchor="middle" class="fig-ink">${formatVolts(vs)} V</text>`;
+      <text x="150" y="222" font-size="18" text-anchor="middle" class="fig-accent">primary ${np} turns</text>
+      <text x="410" y="222" font-size="18" text-anchor="middle" class="fig-warn">secondary ${ns} turns</text>
+      <text x="150" y="240" font-size="18" text-anchor="middle" class="fig-ink">${vp} V</text>
+      <text x="410" y="240" font-size="18" text-anchor="middle" class="fig-ink">${formatVolts(vs)} V</text>`;
 
     svg.innerHTML = core + primary + secondary + labels;
 

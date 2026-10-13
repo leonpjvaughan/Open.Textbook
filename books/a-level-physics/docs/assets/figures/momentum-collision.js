@@ -14,7 +14,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-momentum-collision" style="font:14px system-ui;max-width:660px">
-      <svg viewBox="0 0 660 260" width="100%" height="260" role="img"
+      <svg viewBox="0 0 660 260" width="100%" role="img"
            aria-label="Bars that stack the momentum of two trolleys before and after a collision, with the two totals drawn underneath for comparison"></svg>
       <label style="display:block;margin:.5rem 0">Mass of trolley A in kilograms
         <input class="mass-a" type="range" min="1" max="4" step="1" value="2">
@@ -98,7 +98,7 @@ export function mount(el) {
     const mid = ZERO_X + ((start + end) / 2) * SCALE;
     return (
       `<text x="${mid.toFixed(1)}" y="${(centreY - BAR_H / 2 - 7).toFixed(1)}" ` +
-      `font-size="12" text-anchor="middle" class="text-ink">${letter}</text>`
+      `font-size="19" text-anchor="middle" class="text-ink">${letter}</text>`
     );
   }
 
@@ -142,25 +142,25 @@ export function mount(el) {
 
     const legend =
       `<rect x="${GUTTER + 10}" y="8" width="12" height="12" class="fig-accent"></rect>` +
-      `<text x="${GUTTER + 28}" y="19" font-size="12" class="text-ink">A</text>` +
+      `<text x="${GUTTER + 28}" y="19" font-size="19" class="text-ink">A</text>` +
       `<rect x="${GUTTER + 52}" y="8" width="12" height="12" class="fig-warn"></rect>` +
-      `<text x="${GUTTER + 70}" y="19" font-size="12" class="text-ink">B</text>` +
+      `<text x="${GUTTER + 70}" y="19" font-size="19" class="text-ink">B</text>` +
       `<rect x="${GUTTER + 118}" y="8" width="12" height="12" class="fig-good"></rect>` +
-      `<text x="${GUTTER + 136}" y="19" font-size="12" class="text-ink">total</text>`;
+      `<text x="${GUTTER + 136}" y="19" font-size="19" class="text-ink">total</text>`;
 
     const axis =
       `<line x1="${ZERO_X}" y1="32" x2="${ZERO_X}" y2="214" class="fig-grid"></line>` +
-      `<text x="${ZERO_X}" y="236" font-size="12" text-anchor="middle" ` +
+      `<text x="${ZERO_X}" y="236" font-size="19" text-anchor="middle" ` +
       `class="text-ink">momentum / ${UNIT}</text>`;
 
     const gutter =
-      `<text x="${GUTTER - 14}" y="${ROW.objectsBefore + 4}" font-size="12" ` +
+      `<text x="${GUTTER - 14}" y="${ROW.objectsBefore + 4}" font-size="19" ` +
       `text-anchor="end" class="text-ink">before</text>` +
-      `<text x="${GUTTER - 14}" y="${ROW.totalBefore + 4}" font-size="12" ` +
+      `<text x="${GUTTER - 14}" y="${ROW.totalBefore + 4}" font-size="19" ` +
       `text-anchor="end" class="text-ink">total ${one(total)}</text>` +
-      `<text x="${GUTTER - 14}" y="${ROW.objectsAfter + 4}" font-size="12" ` +
+      `<text x="${GUTTER - 14}" y="${ROW.objectsAfter + 4}" font-size="19" ` +
       `text-anchor="end" class="text-ink">after</text>` +
-      `<text x="${GUTTER - 14}" y="${ROW.totalAfter + 4}" font-size="12" ` +
+      `<text x="${GUTTER - 14}" y="${ROW.totalAfter + 4}" font-size="19" ` +
       `text-anchor="end" class="text-ink">total ${one(totalAfter)}</text>`;
 
     svg.innerHTML =

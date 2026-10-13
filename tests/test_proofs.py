@@ -316,7 +316,14 @@ def built(tmp_path_factory) -> tuple[dict, dict]:
     """
     root = tmp_path_factory.mktemp("proofs")
     out = {}
-    for book_id, profile in (("proofs", "all"), ("a-level-maths", "all")):
+    # Each book's **own** default profile, read from book.yaml rather than written
+    # here: this fixture used to pass "all" for both, which A-level Mathematics
+    # does not declare. It built anyway until `build` began refusing an unknown
+    # profile, so the tests were exercising an edition of the book that no profile
+    # owns — and a real one, since the tier filter read anything but "foundation"
+    # as Higher.
+    for book_id in ("proofs", "a-level-maths"):
+        profile = books.book_by_id(book_id).default_profile.id
         result = pipeline.build(book_id, profile, out=root / book_id, index=False)
         assert not result.broken, result.broken
         out[book_id] = result

@@ -8,7 +8,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-half-life" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 540 250" width="100%" height="250" role="img"
+      <svg viewBox="0 0 540 250" width="100%" role="img"
            aria-label="A decay curve of count rate against time, with a marker at each half-life"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Half-life (hours) <input class="halflife" type="range" min="1" max="12" step="1" value="6"></label>
@@ -42,9 +42,9 @@ export function mount(el) {
     const axes =
       `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `<text x="${LEFT - 6}" y="${TOP + 4}" font-size="11" text-anchor="end" class="fig-ink">${start}</text>` +
-      `<text x="${LEFT - 6}" y="${BOTTOM + 4}" font-size="11" text-anchor="end" class="fig-ink">0</text>` +
-      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="11" text-anchor="end" class="fig-ink">time (hours)</text>`;
+      `<text x="${LEFT - 6}" y="${TOP + 4}" font-size="16" text-anchor="end" class="fig-ink">${start}</text>` +
+      `<text x="${LEFT - 6}" y="${BOTTOM + 4}" font-size="16" text-anchor="end" class="fig-ink">0</text>` +
+      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="16" text-anchor="end" class="fig-ink">time (hours)</text>`;
 
     let guides = "";
     let ticks = "";
@@ -54,12 +54,12 @@ export function mount(el) {
       const rate = start / 2 ** n;
       ticks +=
         `<line x1="${x(time).toFixed(1)}" y1="${BOTTOM}" x2="${x(time).toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${x(time).toFixed(1)}" y="${BOTTOM + 17}" font-size="11" text-anchor="middle" class="fig-ink">${time}</text>`;
+        `<text x="${x(time).toFixed(1)}" y="${BOTTOM + 17}" font-size="16" text-anchor="middle" class="fig-ink">${time}</text>`;
       if (n > 0) {
         guides +=
           `<line x1="${LEFT}" y1="${y(rate).toFixed(1)}" x2="${x(time).toFixed(1)}" y2="${y(rate).toFixed(1)}" class="fig-grid" stroke-dasharray="4 4"></line>` +
           `<line x1="${x(time).toFixed(1)}" y1="${y(rate).toFixed(1)}" x2="${x(time).toFixed(1)}" y2="${BOTTOM}" class="fig-grid" stroke-dasharray="4 4"></line>` +
-          `<text x="${LEFT + 4}" y="${(y(rate) - 4).toFixed(1)}" font-size="11" class="fig-ink">${rate}</text>`;
+          `<text x="${LEFT + 4}" y="${(y(rate) - 4).toFixed(1)}" font-size="16" class="fig-ink">${rate}</text>`;
         readings.push(`${n} half-life${n === 1 ? "" : "s"}: ${rate} per second`);
       }
       const cx = x(time).toFixed(1);

@@ -107,7 +107,7 @@ export function mount(el) {
         const px = toX(marker.value).toFixed(1);
         return (
           `<line x1="${px}" y1="${base}" x2="${px}" y2="${base + 6}" class="fig-ink"></line>` +
-          `<text x="${px}" y="${base + 18}" text-anchor="middle" class="fig-ink" font-size="9">${marker.label}</text>`
+          `<text x="${px}" y="${base + 18}" text-anchor="middle" class="fig-ink" font-size="13">${marker.label}</text>`
         );
       })
       .join("");

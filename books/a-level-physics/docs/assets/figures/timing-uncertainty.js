@@ -12,7 +12,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-timing-uncertainty" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 240" width="100%" height="240" role="img"
+      <svg viewBox="0 0 600 240" width="100%" role="img"
            aria-label="A graph of the percentage uncertainty in the period against the number of oscillations timed in one measurement"></svg>
       <label style="display:block;margin:.5rem 0">Oscillations timed in one measurement
         <input class="count" type="range" min="1" max="50" step="1" value="20">
@@ -51,22 +51,22 @@ export function mount(el) {
     let axes = `
       <line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-ink"></line>
       <line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>
-      <text x="${LEFT}" y="${TOP - 8}" font-size="11" class="fig-ink">uncertainty in the period (%)</text>
-      <text x="${RIGHT}" y="${BOTTOM + 18}" font-size="11" class="fig-ink" text-anchor="end">oscillations timed</text>`;
+      <text x="${LEFT}" y="${TOP - 8}" font-size="19" class="fig-ink">uncertainty in the period (%)</text>
+      <text x="${RIGHT}" y="${BOTTOM + 18}" font-size="19" class="fig-ink" text-anchor="end">oscillations timed</text>`;
 
     for (let tick = 0; tick <= 4; tick += 1) {
       const y = BOTTOM - (tick / 4) * (BOTTOM - TOP);
       const value = (tick / 4) * yMax;
       axes +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="10" class="fig-ink" text-anchor="end">${value.toFixed(1)}</text>`;
+        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="17" class="fig-ink" text-anchor="end">${value.toFixed(1)}</text>`;
     }
     for (let tick = 0; tick <= 5; tick += 1) {
       const x = LEFT + (tick / 5) * (RIGHT - LEFT);
       const value = Math.round((tick / 5) * N_MAX);
       axes +=
         `<line x1="${x.toFixed(1)}" y1="${BOTTOM}" x2="${x.toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${x.toFixed(1)}" y="${BOTTOM + 18}" font-size="10" class="fig-ink" text-anchor="middle">${value}</text>`;
+        `<text x="${x.toFixed(1)}" y="${BOTTOM + 18}" font-size="17" class="fig-ink" text-anchor="middle">${value}</text>`;
     }
 
     const point = (value) => {

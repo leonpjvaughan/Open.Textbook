@@ -5,7 +5,7 @@ claim about one: the script loads each figure in a browser, in both schemes, ask
 for the computed paint of every element the figure draws, and measures each one
 against the panel behind it.
 
-> **174 figures in 5 books, 348 measurements, every one passing.** The tables
+> **176 figures in 5 books, 352 measurements, every one passing.** The tables
 > below are generated —
 > reproduce them with
 > `node scripts/audit-figures.cjs site --json out.json --table research/design/figure-audit.md`.
@@ -60,6 +60,15 @@ box on a dark page in both schemes.
 Every figure passes. A number below 4.5:1 is a shape rather than text — `fig-grid`
 drawing an axis, which is held to 3:1, and it is the floor in most rows.
 
+**Every label clears 9px at phone width.** These are read on phones, and 70 of the
+figures used to render their smallest label below 7px — median 6.9px, worst 4.4px —
+because about 60 modules pinned a pixel `height` equal to their viewBox height, so
+at 390px the drawing scaled down while the box did not. Measured after removing the
+attribute and lifting the smallest sizes: **0 figures below 9px, median 9.2px**. The
+measurement was itself wrong once — a stale `site/gcse-physics/all/` directory, from
+a build with a profile that book does not declare, reported 35 figures still below
+7px. The stale directory is gone and `build` now refuses an unknown profile.
+
 **Why a coverage table, and not only a list.** A list of 47 figures does not say
 whether that is all of them. The first table counts Walkthroughs with and without a
 figure, so a book that looks well served in the list below is not mistaken for one
@@ -113,7 +122,7 @@ so the tests ask what a class *does*, not that one is present.
 
 | Figure | Page | Paints with | Light | Dark |
 |---|---|---|---|---|
-| `ch10-geometric` | `gcse-maths/chapter-10/section-10.5/learn` | `fig-good`, `fig-ink`, `text-accent` | 4.98:1 | 5.89:1 |
+| `ch10-geometric` | `gcse-maths/chapter-10/section-10.5/learn` | `text-accent`, `text-good`, `text-ink` | 4.60:1 | 5.89:1 |
 | `ch10-nth-term` | `gcse-maths/chapter-10/section-10.3/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `fig-line`, `text-accent`, `text-ink` | 3.08:1 | 3.07:1 |
 | `ch11-coordinate-line` | `gcse-maths/chapter-11/section-11.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `text-accent` | 4.60:1 | 5.75:1 |
 | `ch11-gradient-area` | `gcse-maths/chapter-11/section-11.6/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `fig-line`, `text-accent`, `text-ink` | 3.08:1 | 3.07:1 |
@@ -138,8 +147,8 @@ so the tests ask what a class *does*, not that one is present.
 | `ch23-spinner` | `gcse-maths/chapter-23/section-23.1/learn` | `fig-accent`, `fig-grid`, `text-accent`, `text-ink` | 3.08:1 | 3.07:1 |
 | `ch24-chart-choice` | `gcse-maths/chapter-24/section-24.2/learn` | `fig-accent`, `fig-good` | 13.53:1 | 12.11:1 |
 | `ch25-boxplot` | `gcse-maths/chapter-25/section-25.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `text-accent`, `text-warn` | 4.98:1 | 5.75:1 |
-| `ch3-index-laws` | `gcse-maths/chapter-3/section-3.3/learn` | — (inherits ink) | 13.53:1 | 12.11:1 |
-| `ch4-fraction-strip` | `gcse-maths/chapter-4/section-4.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
+| `ch3-index-laws` | `gcse-maths/chapter-3/section-3.3/learn` | `text-ink` | 13.53:1 | 12.11:1 |
+| `ch4-fraction-strip` | `gcse-maths/chapter-4/section-4.1/learn` | `fig-accent`, `fig-warn`, `fig-grid`, `text-accent`, `text-ink` | 4.98:1 | 5.89:1 |
 | `ch5-map-scale` | `gcse-maths/chapter-5/section-5.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `text-accent`, `text-good` | 3.08:1 | 3.07:1 |
 | `ch5-proportion` | `gcse-maths/chapter-5/section-5.3/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.98:1 | 5.75:1 |
 | `ch6-interest` | `gcse-maths/chapter-6/section-6.4/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
@@ -151,47 +160,49 @@ so the tests ask what a class *does*, not that one is present.
 | `number-line` | `gcse-maths/chapter-1/section-1.1/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.98:1 | 5.75:1 |
 | `parallel-line-angles` | `gcse-maths/chapter-16/section-16.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `text-accent`, `text-warn` | 4.98:1 | 5.75:1 |
 | `profit-slider` | `gcse-maths/chapter-1/section-1.3/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `text-warn`, `text-good` | 4.60:1 | 5.75:1 |
-| `rounding-slider` | `gcse-maths/chapter-1/section-1.5/learn` | — (inherits ink) | 13.53:1 | 12.11:1 |
+| `rounding-slider` | `gcse-maths/chapter-1/section-1.5/learn` | `text-ink` | 13.53:1 | 12.11:1 |
 
-## GCSE Physics (9-1) — 35 figures
+## GCSE Physics (9-1) — 37 figures
 
 | Figure | Page | Paints with | Light | Dark |
 |---|---|---|---|---|
-| `atom-builder` | `gcse-physics/all/chapter-9/section-9.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `black-body-curve` | `gcse-physics/all/chapter-5/section-5.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `circuit-current` | `gcse-physics/all/chapter-6/section-6.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `colour-frequency` | `gcse-physics/all/chapter-5/section-5.4/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `text-warn` | 3.08:1 | 3.07:1 |
-| `crash-force` | `gcse-physics/all/chapter-3/section-3.4/learn` | `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `density-mass-volume` | `gcse-physics/all/chapter-8/section-8.1/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
-| `echo-timing` | `gcse-physics/all/chapter-4/section-4.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `efficiency` | `gcse-physics/all/chapter-1/section-1.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `electromagnet-strength` | `gcse-physics/all/chapter-7/section-7.2/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `em-spectrum` | `gcse-physics/all/chapter-5/section-5.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `energy-drop` | `gcse-physics/all/chapter-1/section-1.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `fission-chain-reaction` | `gcse-physics/all/chapter-9/section-9.4/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-ink` | 3.08:1 | 3.07:1 |
-| `force-acceleration` | `gcse-physics/all/chapter-3/section-3.2/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `gas-pressure-volume` | `gcse-physics/all/chapter-8/section-8.3/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
-| `half-life-curve` | `gcse-physics/all/chapter-9/section-9.2/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `lens-image` | `gcse-physics/all/chapter-5/section-5.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `lever-moment` | `gcse-physics/all/chapter-2/section-2.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `loudspeaker-cone` | `gcse-physics/all/chapter-7/section-7.4/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
-| `magnetic-field-compass` | `gcse-physics/all/chapter-7/section-7.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `mains-fault-current` | `gcse-physics/all/chapter-6/section-6.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-warn`, `text-good`, `text-ink` | 3.08:1 | 3.07:1 |
-| `motion-graph` | `gcse-physics/all/chapter-3/section-3.1/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `power-energy` | `gcse-physics/all/chapter-6/section-6.4/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `pressure-area` | `gcse-physics/all/chapter-2/section-2.4/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `radiation-penetration` | `gcse-physics/all/chapter-9/section-9.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `redshift-spectrum` | `gcse-physics/all/chapter-10/section-10.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `reflection-angles` | `gcse-physics/all/chapter-4/section-4.3/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `reflection-refraction` | `gcse-physics/all/chapter-5/section-5.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `resultant-forces` | `gcse-physics/all/chapter-2/section-2.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `series-parallel` | `gcse-physics/all/chapter-6/section-6.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `spring-extension` | `gcse-physics/all/chapter-2/section-2.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `star-equilibrium` | `gcse-physics/all/chapter-10/section-10.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink` | 4.60:1 | 5.75:1 |
-| `stopping-distance` | `gcse-physics/all/chapter-3/section-3.3/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
-| `transformer-turns` | `gcse-physics/all/chapter-7/section-7.3/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
-| `wave-parameters` | `gcse-physics/all/chapter-4/section-4.1/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
-| `work-done` | `gcse-physics/all/chapter-2/section-2.3/learn` | `fig-accent`, `fig-ink`, `text-ink` | 4.82:1 | 10.13:1 |
+| `atom-builder` | `gcse-physics/chapter-9/section-9.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `black-body-curve` | `gcse-physics/chapter-5/section-5.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `circuit-current` | `gcse-physics/chapter-6/section-6.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `colour-frequency` | `gcse-physics/chapter-5/section-5.4/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `text-warn` | 3.08:1 | 3.07:1 |
+| `crash-force` | `gcse-physics/chapter-3/section-3.4/learn` | `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `density-mass-volume` | `gcse-physics/chapter-8/section-8.1/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
+| `echo-timing` | `gcse-physics/chapter-4/section-4.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `efficiency` | `gcse-physics/chapter-1/section-1.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `electromagnet-strength` | `gcse-physics/chapter-7/section-7.2/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `em-spectrum` | `gcse-physics/chapter-5/section-5.1/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `energy-drop` | `gcse-physics/chapter-1/section-1.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `fission-chain-reaction` | `gcse-physics/chapter-9/section-9.4/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-ink` | 3.08:1 | 3.07:1 |
+| `force-acceleration` | `gcse-physics/chapter-3/section-3.2/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `gas-pressure-volume` | `gcse-physics/chapter-8/section-8.3/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
+| `half-life-curve` | `gcse-physics/chapter-9/section-9.2/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `ice-heating-curve` | `gcse-physics/chapter-8/section-8.2/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `lens-image` | `gcse-physics/chapter-5/section-5.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `lever-moment` | `gcse-physics/chapter-2/section-2.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `loudspeaker-cone` | `gcse-physics/chapter-7/section-7.4/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
+| `magnetic-field-compass` | `gcse-physics/chapter-7/section-7.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `mains-fault-current` | `gcse-physics/chapter-6/section-6.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-warn`, `text-good`, `text-ink` | 3.08:1 | 3.07:1 |
+| `motion-graph` | `gcse-physics/chapter-3/section-3.1/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `power-energy` | `gcse-physics/chapter-6/section-6.4/learn` | `fig-accent`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `pressure-area` | `gcse-physics/chapter-2/section-2.4/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `radiation-penetration` | `gcse-physics/chapter-9/section-9.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `redshift-spectrum` | `gcse-physics/chapter-10/section-10.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `reflection-angles` | `gcse-physics/chapter-4/section-4.3/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `reflection-refraction` | `gcse-physics/chapter-5/section-5.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `resultant-forces` | `gcse-physics/chapter-2/section-2.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `series-parallel` | `gcse-physics/chapter-6/section-6.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `sphere-electric-field` | `gcse-physics/chapter-6/section-6.5/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `spring-extension` | `gcse-physics/chapter-2/section-2.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `star-equilibrium` | `gcse-physics/chapter-10/section-10.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink` | 4.60:1 | 5.75:1 |
+| `stopping-distance` | `gcse-physics/chapter-3/section-3.3/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
+| `transformer-turns` | `gcse-physics/chapter-7/section-7.3/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
+| `wave-parameters` | `gcse-physics/chapter-4/section-4.1/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.82:1 | 5.75:1 |
+| `work-done` | `gcse-physics/chapter-2/section-2.3/learn` | `fig-accent`, `fig-ink`, `text-ink` | 4.82:1 | 10.13:1 |
 
 ## A-level Mathematics — 58 figures
 
@@ -267,11 +278,9 @@ so the tests ask what a class *does*, not that one is present.
 | `circular-motion` | `a-level-physics/chapter-3/section-3.5/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `de-broglie` | `a-level-physics/chapter-8/section-8.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `decay-curve` | `a-level-physics/chapter-8/section-8.3/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `electric-field` | `a-level-physics/chapter-9/section-9.2/learn` | `fig-accent`, `fig-good`, `fig-ink` | 4.60:1 | 7.52:1 |
 | `force-extension` | `a-level-physics/chapter-4/section-4.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `grating-orders` | `a-level-physics/chapter-6/section-6.2/learn` | `fig-accent`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `gravitational-field` | `a-level-physics/chapter-9/section-9.1/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
-| `heating-curve` | `a-level-physics/chapter-7/section-7.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `i-v-characteristics` | `a-level-physics/chapter-5/section-5.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `ideal-gas` | `a-level-physics/chapter-7/section-7.2/learn` | `fig-accent`, `fig-warn`, `fig-ink` | 4.78:1 | 5.75:1 |
 | `interference-2source` | `a-level-physics/chapter-6/section-6.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
@@ -280,6 +289,7 @@ so the tests ask what a class *does*, not that one is present.
 | `motional-emf` | `a-level-physics/chapter-9/section-9.4/learn` | `fig-accent`, `fig-good`, `fig-ink` | 4.60:1 | 7.52:1 |
 | `parallel-branch-current` | `a-level-physics/chapter-5/section-5.3/learn` | `fig-accent`, `fig-ink`, `text-ink` | 4.78:1 | 10.39:1 |
 | `photoelectric-effect` | `a-level-physics/chapter-8/section-8.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `plates-electric-field` | `a-level-physics/chapter-9/section-9.2/learn` | `fig-accent`, `fig-good`, `fig-ink` | 4.60:1 | 7.52:1 |
 | `projectile-motion` | `a-level-physics/chapter-3/section-3.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `repeated-readings` | `a-level-physics/chapter-1/section-1.2/learn` | `fig-accent`, `fig-warn`, `fig-ink`, `fig-grid`, `text-warn`, `text-ink` | 3.08:1 | 3.07:1 |
 | `shm-graphs` | `a-level-physics/chapter-3/section-3.6/learn` | `fig-accent`, `fig-good`, `fig-ink` | 4.60:1 | 7.52:1 |
@@ -289,6 +299,7 @@ so the tests ask what a class *does*, not that one is present.
 | `timing-uncertainty` | `a-level-physics/chapter-1/section-1.3/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `fig-line` | 3.08:1 | 3.07:1 |
 | `vector-addition` | `a-level-physics/chapter-2/section-2.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-grid`, `fig-line`, `text-accent`, `text-warn`, `text-good`, `text-ink` | 3.08:1 | 3.07:1 |
 | `vector-components` | `a-level-physics/chapter-2/section-2.2/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
+| `water-heating-curve` | `a-level-physics/chapter-7/section-7.1/learn` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid` | 3.08:1 | 3.07:1 |
 | `work-force-displacement` | `a-level-physics/chapter-3/section-3.3/learn` | `fig-accent`, `fig-ink`, `fig-grid`, `text-accent`, `text-ink` | 3.08:1 | 3.07:1 |
 
 ## Proofs — 12 figures
@@ -309,6 +320,7 @@ so the tests ask what a class *does*, not that one is present.
 | `triangle-area-sinc` | `proofs/triangle-area-sinc` | `fig-accent`, `fig-warn`, `fig-good`, `fig-ink`, `fig-grid`, `text-accent`, `text-warn`, `text-good` | 3.08:1 | 3.07:1 |
 
 <!-- /generated:tables -->
+
 
 
 

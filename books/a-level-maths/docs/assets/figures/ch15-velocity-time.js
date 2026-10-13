@@ -28,7 +28,7 @@ function toPy(v) {
 function label(text, x, y) {
   return (
     `<text class="fig-ink" x="${x.toFixed(1)}" y="${y.toFixed(1)}" ` +
-    `font-size="12">${text}</text>`
+    `font-size="14">${text}</text>`
   );
 }
 

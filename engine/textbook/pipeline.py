@@ -48,6 +48,7 @@ from . import book as books
 from . import config as cfg
 from . import portal
 from . import scaffold
+from . import themes
 from .frontmatter import FrontMatterError
 from .frontmatter import read as read_page
 from .frontmatter import split as split_front_matter
@@ -95,6 +96,9 @@ HTML_LINK = re.compile(r'(href|src)="([^"]+?\.md)(#[^"]*)?"')
 SCRIPT_STYLE = re.compile(r"<(script|style)\b.*?</\1>", re.S | re.I)
 MATH_ERROR = re.compile(r'<span class="math-error"')
 ATTR_LINK = re.compile(r'(?:href|src)="([^"]+)"')
+# The anchor targets in a rendered page. Fragments are resolved against these,
+# so a link to an anchor that was deleted or renamed fails the build.
+ID_ATTR = re.compile(r'\bid="([^"]*)"')
 
 # Pagefind builds the search index over the rendered HTML after the build. It is
 # installed by npm beside KaTeX, which the build already needs, so it adds no new
@@ -200,14 +204,23 @@ def leaves(node) -> list[str]:
     return out
 
 
-def render_nav(nav, current_url: str) -> str:
+def render_nav(
+    nav,
+    current_url: str,
+    leaf_cache: dict[int, set[str]] | None = None,
+) -> str:
     """Nested ``<ul>``, sections collapsible with ``<details>``.
 
     The open/closed decision precomputes the leaf set once per node, so rendering
-    a 25-chapter sidebar is linear rather than quadratic.
+    a 25-chapter sidebar is linear rather than quadratic. ``leaf_cache`` carries
+    that memo *across* pages: the nav is one object shared by every page of a
+    build, and only the current-page marking changes between pages, so rebuilding
+    each node's leaf set per page re-slugged the whole sidebar 458 times —
+    measured at 3.4s of a 17s build before the cache was shared. A caller that
+    renders one page omits it and gets a cache private to the call.
     """
     root = prefix_for(current_url)
-    cache: dict[int, set[str]] = {}
+    cache: dict[int, set[str]] = {} if leaf_cache is None else leaf_cache
 
     def leaf_urls(node) -> set[str]:
         key = id(node)
@@ -394,6 +407,7 @@ def render_page(
     template: Template,
     settings: tuple[str, str] = ("", ""),
     build: str = "",
+    leaf_cache: dict[int, set[str]] | None = None,
 ) -> tuple[str, RenderedPage, bool]:
     """Render one page of one profile. Returns (html, index entry, maths error).
 
@@ -428,7 +442,7 @@ def render_page(
         site_title=html.escape(book.title),
         canonical=canonical_url(book, profile, url),
         content=content,
-        nav=render_nav(nav, url),
+        nav=render_nav(nav, url, leaf_cache),
         prefix=prefix,
         build=html.escape(build, quote=True),
         settings_trigger=trigger,
@@ -620,8 +634,21 @@ def check_links(
 ) -> list[str]:
     """Every internal link in every built page must resolve to a built file.
 
-    This replaces ``mkdocs build --strict``. ``<script>`` bodies are excluded
-    because the search client builds its hrefs at runtime.
+    This replaces ``mkdocs build --strict``, and it goes one step beyond it: a
+    link's *fragment* must name an ``id`` in the target file. MkDocs discarded
+    the fragment, so ``page/#handle`` was checked as ``page/`` and passed whether
+    or not the anchor existed — a check that could not fail. Here the resolved
+    target's ids are read and the fragment must be one of them, so a deleted
+    anchor or a heading whose slug changed is reported.
+
+    The ids accepted are those already in the output. Headings carry none (the
+    Markdown ``toc`` extension is not enabled), so a fragment naming a heading
+    slug is reported rather than silently accepted: at the moment the link is
+    written, that anchor cannot take the reader to the section. A page that wants
+    a target writes one explicitly as ``<a id="…"></a>``.
+
+    ``<script>`` bodies are excluded because the search client builds its hrefs
+    at runtime.
 
     ``scope`` limits checking to one chapter, for subset builds: the cover links
     to all 25 chapters and the sidebar to the built one, so without it a subset
@@ -636,9 +663,20 @@ def check_links(
     targets. Resolution is therefore done lexically against one listing of the
     output directory. Calling ``Path.resolve()`` per link instead walks the
     filesystem a component at a time, which measured as the single largest cost
-    of a whole build.
+    of a whole build. Target ids are cached per file, so a page linked to from a
+    hundred fragments is read once.
     """
     built = {path.relative_to(out).as_posix() for path in out.rglob("*")}
+    ids_by_file: dict[str, set[str]] = {}
+
+    def ids_of(relative: str) -> set[str]:
+        if relative not in ids_by_file:
+            html_text = SCRIPT_STYLE.sub(
+                "", (out / relative).read_text(encoding="utf-8")
+            )
+            ids_by_file[relative] = set(ID_ATTR.findall(html_text))
+        return ids_by_file[relative]
+
     broken: list[str] = []
     for page in pages:
         if page.output not in built:
@@ -649,7 +687,9 @@ def check_links(
         for target in ATTR_LINK.findall(text):
             if target.startswith(("http://", "https://", "mailto:", "#", "data:")):
                 continue
-            path = urllib.parse.unquote(target.split("#")[0].split("?")[0])
+            path, _, fragment = target.partition("#")
+            path = urllib.parse.unquote(path.split("?")[0])
+            fragment = urllib.parse.unquote(fragment)
             if not path:
                 continue
             # Only a leading slash means "from the site root". Treating every
@@ -668,11 +708,23 @@ def check_links(
                 continue
             if scope and candidate != "." and not candidate.startswith(f"{scope}/"):
                 continue  # outside this subset build, not a broken link
-            if candidate in built or f"{candidate.rstrip('/')}/index.html" in built:
+            # The file a fragment is resolved against: the exact file, or the
+            # index of a directory. A path that resolves to neither is broken
+            # whatever the fragment says.
+            target_file = None
+            if f"{candidate.rstrip('/')}/index.html" in built:
+                target_file = f"{candidate.rstrip('/')}/index.html"
+            elif candidate in built and (out / candidate).is_file():
+                target_file = candidate
+            elif candidate == "." and "index.html" in built:
+                target_file = "index.html"
+            if target_file is None and candidate not in built:
+                broken.append(f"{page.url} -> {target}")
                 continue
-            if candidate == "." and "index.html" in built:
-                continue
-            broken.append(f"{page.url} -> {target}")
+            if fragment and (
+                target_file is None or fragment not in ids_of(target_file)
+            ):
+                broken.append(f"{page.url} -> {target} (no #{fragment})")
     return broken
 
 
@@ -709,6 +761,16 @@ def build(
     started = time.time()
     book = books.book_by_id(book_id)
     profile = profile or book.default_profile.id
+    # An unknown profile used to be accepted: it built to a new directory and,
+    # because the tier filter read `profile != "foundation"`, built it as Higher.
+    # A typo in a CI matrix then published a whole extra edition of a book rather
+    # than failing. Found by noticing `site/gcse-physics/all/` — a directory no
+    # profile owns — while measuring figures.
+    declared = [p.id for p in book.profiles]
+    if profile not in declared:
+        raise ValueError(
+            f"{book.id} has no profile {profile!r}; it declares {', '.join(declared)}"
+        )
     out = out or Path(books.repo_root()) / "site" / book.deploy_path(profile)
     # The declared `tier_filter`, not the literal profile id: a book may name
     # its Foundation profile anything, and keying on the id shipped Higher-only
@@ -765,13 +827,25 @@ def build(
         seen[url] = md_path
 
     result = BuildResult(out=out)
+    # One nav, one leaf-set memo, shared by every page: the sidebar is the same
+    # object on all of them, so its slugs are computed once per build rather than
+    # once per page. See `render_nav`.
+    nav_cache: dict[int, set[str]] = {}
     for md_path in paths:
         source = book.docs / md_path
         if not source.exists():
             result.broken.append(f"{md_path}: listed in the nav but not on disk")
             continue
         rendered, entry, maths_failed = render_page(
-            book, profile, config, nav, md_path, template, settings=settings, build=build_label
+            book,
+            profile,
+            config,
+            nav,
+            md_path,
+            template,
+            settings=settings,
+            build=build_label,
+            leaf_cache=nav_cache,
         )
         destination = out / entry.output
         destination.parent.mkdir(parents=True, exist_ok=True)
@@ -831,13 +905,57 @@ def report(result: BuildResult) -> None:
 
 
 def watch_paths(book_id: str):
-    """Everything that should trigger a rebuild."""
+    """Every file whose change should trigger a rebuild.
+
+    Wider than the page sources on purpose. A build also reads the curriculum
+    (the navigation and which pages exist), ``book.yaml`` (the tier axis, theme,
+    profiles and booklet), ``collection.yaml`` (base URL, backgrounds, licence),
+    the theme bundles (the before-paint tokens and the bundle list), the book's
+    own assets (its figure modules and ``book-local.css``, which `copy_assets`
+    ships), and the engine's own templates and CSS. Watching only the Markdown
+    made ``--serve`` silently stale after a figure or a curriculum edit: the
+    change produced no rebuild, so it looked like the edit had done nothing.
+    """
+    root = Path(books.repo_root())
     book = books.book_by_id(book_id)
     yield from book.docs.rglob("*.md")
-    yield from (Path(books.repo_root()) / "assets").rglob("*")
-    yield from (Path(__file__).resolve().parent).rglob("*.py")
-    yield from (Path(__file__).resolve().parent).rglob("*.html")
-    yield from (Path(__file__).resolve().parent).rglob("*.css")
+    # The files a build reads directly. Guarded by `is_file`, because a book
+    # without a booklet names a path that is not there, and `serve` stats every
+    # watched path.
+    for single in (
+        book.curriculum,
+        book.root / "book.yaml",
+        book.booklet,
+        root / "collection.yaml",
+    ):
+        if single.is_file():
+            yield single
+    docs_assets = book.docs / "assets"
+    if docs_assets.is_dir():
+        yield from docs_assets.rglob("*")
+    for directory in (root / "assets", root / "themes"):
+        if directory.is_dir():
+            yield from directory.rglob("*")
+    engine = Path(__file__).resolve().parent
+    yield from engine.rglob("*.py")
+    yield from engine.rglob("*.html")
+    yield from engine.rglob("*.css")
+
+
+def _drop_caches() -> None:
+    """Forget the parsed configuration so a rebuild reads the changed files.
+
+    ``book`` and ``themes`` cache their parses for the length of a process (see
+    ``book.py``). A one-shot build pays nothing for that, but ``--serve`` would
+    otherwise rebuild from the values read at startup, so a watched
+    ``book.yaml``, ``curriculum.yaml`` or theme bundle would trigger a rebuild
+    that changed nothing.
+    """
+    books.load_book.cache_clear()
+    books.qualification_order.cache_clear()
+    books.load_collection.cache_clear()
+    books._curriculum.cache_clear()
+    themes._bundles.cache_clear()
 
 
 def serve(book_id: str, profile: str, chapter: int | None, port: int) -> None:
@@ -875,6 +993,7 @@ def serve(book_id: str, profile: str, chapter: int | None, port: int) -> None:
             if current > previous:
                 previous = current
                 print("change detected, rebuilding")
+                _drop_caches()
                 report(build(book_id, profile, chapter=chapter))
                 previous = stamp()
 

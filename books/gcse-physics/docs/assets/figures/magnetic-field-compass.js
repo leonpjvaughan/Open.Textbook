@@ -9,7 +9,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-magnetic-field-compass" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 320" width="100%" height="320" role="img"
+      <svg viewBox="0 0 560 320" width="100%" role="img"
            aria-label="A bar magnet with curved magnetic field lines from the north pole to the south pole, and a plotting compass that can be moved around the magnet"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Compass across <input class="pos-x" type="range" min="80" max="480" step="5" value="150"></label>
@@ -80,8 +80,8 @@ export function mount(el) {
 
     const magnet = `
       <rect x="${NX}" y="${PY - 22}" width="${SX - NX}" height="44" rx="6" class="fig-ink" opacity="0.15"></rect>
-      <text x="${NX - 12}" y="${PY + 5}" font-size="15" text-anchor="end" class="fig-accent">N</text>
-      <text x="${SX + 12}" y="${PY + 5}" font-size="15" text-anchor="start" class="fig-warn">S</text>`;
+      <text x="${NX - 12}" y="${PY + 5}" font-size="16" text-anchor="end" class="fig-accent">N</text>
+      <text x="${SX + 12}" y="${PY + 5}" font-size="16" text-anchor="start" class="fig-warn">S</text>`;
 
     const tipX = cx + r * 0.7 * ux;
     const tipY = cy + r * 0.7 * uy;

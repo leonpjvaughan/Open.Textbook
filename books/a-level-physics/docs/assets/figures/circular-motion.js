@@ -9,10 +9,22 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to both
 // schemes. No colour literal appears here, and no runtime LaTeX: the readout is
 // plain HTML.
+// How far a ray from (x, y) in direction (ux, uy) travels before it meets the
+// 600 by 300 frame, keeping a margin clear for the arrowhead.
+function reach(x, y, ux, uy) {
+  const margin = 8;
+  let t = Infinity;
+  if (ux > 1e-9) t = Math.min(t, (600 - margin - x) / ux);
+  if (ux < -1e-9) t = Math.min(t, (margin - x) / ux);
+  if (uy > 1e-9) t = Math.min(t, (300 - margin - y) / uy);
+  if (uy < -1e-9) t = Math.min(t, (margin - y) / uy);
+  return Math.max(0, t);
+}
+
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-circular-motion" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 600 300" width="100%" role="img"
            aria-label="An object moving in a horizontal circle, with its velocity along the tangent and the centripetal force towards the centre"></svg>
       <label style="display:block;margin:.5rem 0">Speed (metres per second)
         <input class="speed" type="range" min="1" max="15" step="0.5" value="6">
@@ -40,6 +52,7 @@ export function mount(el) {
   function arrow(x1, y1, x2, y2, cls, width) {
     const head = 9;
     const length = Math.hypot(x2 - x1, y2 - y1);
+    if (length < 1) return "";
     const ux = (x2 - x1) / length;
     const uy = (y2 - y1) / length;
     const baseX = x2 - ux * head;
@@ -75,7 +88,13 @@ export function mount(el) {
     const tx = -oy;
     const ty = ox;
 
-    const arrowLength = 40 + acceleration * 1.5;
+    // The acceleration can reach 450 m/s^2 at the smallest radius, so an arrow
+    // length proportional to it would leave the canvas. Clamp each arrow: the
+    // velocity arrow to the frame edge, and the force arrow to the radius, so it
+    // never passes through the centre.
+    const rawLength = 40 + acceleration * 1.5;
+    const arrowLength = Math.min(rawLength, reach(px, py, tx, ty));
+    const forceLength = Math.min(rawLength, pixels);
 
     const circle = `<circle cx="${CX}" cy="${CY}" r="${pixels.toFixed(1)}" class="fig-grid" fill="none" stroke-width="2"></circle>`;
     const radiusLine = `<line x1="${CX}" y1="${CY}" x2="${px.toFixed(1)}" y2="${py.toFixed(1)}" class="fig-ink" stroke-dasharray="4 4"></line>`;
@@ -91,8 +110,8 @@ export function mount(el) {
     const forceArrow = arrow(
       px,
       py,
-      px - ox * arrowLength,
-      py - oy * arrowLength,
+      px - ox * forceLength,
+      py - oy * forceLength,
       "fig-good",
       3
     );

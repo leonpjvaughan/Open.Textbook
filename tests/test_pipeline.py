@@ -26,7 +26,7 @@ import pytest
 
 from textbook import pipeline
 from textbook import portal
-from textbook.book import repo_root
+from textbook.book import book_by_id, repo_root
 from textbook.hooks import prefs
 from textbook.themes import ordered_bundles
 
@@ -206,6 +206,42 @@ def test_nav_escapes_titles():
     assert "A &amp; B &lt;x&gt;" in markup
 
 
+def test_render_nav_computes_each_nodes_leaves_once_per_build(monkeypatch):
+    """The nav is one object shared by every page, so its leaf sets are too.
+
+    Without the shared cache each of the 458 pages re-slugged the whole
+    sidebar; the nav's own comment claimed linear rendering and the repetition
+    across pages was the cost (measured at 3.4s of a 17s build).
+    """
+    nav = [
+        {"Chapter 1": [{"Review": "Chapter 1/Review/index.md"}]},
+        {"Chapter 2": [{"Review": "Chapter 2/Review/index.md"}]},
+    ]
+    calls: list[object] = []
+    real = pipeline.leaves
+
+    def counting(node):
+        calls.append(node)
+        return real(node)
+
+    monkeypatch.setattr(pipeline, "leaves", counting)
+    cache: dict[int, set[str]] = {}
+    first = pipeline.render_nav(nav, "chapter-1/review/", cache)
+    second = pipeline.render_nav(nav, "chapter-2/review/", cache)
+    assert len(calls) == 2, calls
+    assert "nav__link--current" in first
+    assert first != second
+
+
+def test_render_nav_without_a_cache_still_works():
+    """A standalone caller (a test rendering one page) needs no cache argument."""
+    markup = pipeline.render_nav(
+        [{"Chapter 1": [{"Review": "Chapter 1/Review/index.md"}]}],
+        "chapter-1/review/",
+    )
+    assert "nav__link--current" in markup
+
+
 # --- links --------------------------------------------------------------------
 
 
@@ -341,6 +377,68 @@ def test_check_links_scope_ignores_pages_outside_a_subset(tmp_path):
 def test_check_links_reports_a_page_that_was_not_written(tmp_path):
     page = pipeline.RenderedPage(url="gone/", title="Gone")
     assert pipeline.check_links(tmp_path, [page]) == ["gone/: page was not written"]
+
+
+def test_check_links_reports_a_missing_fragment(tmp_path):
+    """Regression: the fragment was discarded, so the link always passed.
+
+    ``page/#handle`` was checked as ``page/`` and resolved whenever the page
+    existed, whatever the anchor. A reader following it landed at the top of the
+    page with no sign of the section they were sent to.
+    """
+    _write(tmp_path, "a/index.html", '<a href="../b/#gone">x</a>')
+    _write(tmp_path, "b/index.html", '<h2 id="here">B</h2>')
+    page = pipeline.RenderedPage(url="a/", title="A")
+    assert pipeline.check_links(tmp_path, [page]) == ["a/ -> ../b/#gone (no #gone)"]
+
+
+def test_check_links_accepts_a_present_fragment(tmp_path):
+    _write(tmp_path, "a/index.html", '<a href="../b/#here">x</a>')
+    _write(tmp_path, "b/index.html", '<h2 id="here">B</h2>')
+    page = pipeline.RenderedPage(url="a/", title="A")
+    assert pipeline.check_links(tmp_path, [page]) == []
+
+
+def test_check_links_does_not_treat_a_script_string_as_an_anchor(tmp_path):
+    """An ``id="…"`` inside a script is not a target a reader can land on."""
+    _write(tmp_path, "a/index.html", '<a href="../b/#ghost">x</a>')
+    _write(tmp_path, "b/index.html", '<script>const marker = \'id="ghost"\';</script>')
+    page = pipeline.RenderedPage(url="a/", title="A")
+    assert pipeline.check_links(tmp_path, [page]) == ["a/ -> ../b/#ghost (no #ghost)"]
+
+
+def test_check_links_checks_the_fragment_of_a_root_relative_link(tmp_path):
+    _write(tmp_path, "page/index.html", '<a href="/shared/#top">x</a>')
+    _write(tmp_path, "shared/index.html", '<a id="top"></a>')
+    page = pipeline.RenderedPage(url="page/", title="P")
+    assert pipeline.check_links(tmp_path, [page]) == []
+    _write(tmp_path, "page/index.html", '<a href="/shared/#nope">x</a>')
+    assert pipeline.check_links(tmp_path, [page]) == ["page/ -> /shared/#nope (no #nope)"]
+
+
+# --- serve --------------------------------------------------------------------
+
+
+def test_serve_watches_every_input_that_changes_the_build():
+    """`--serve` watched the Markdown and nothing else that a build reads.
+
+    A figure module, the curriculum, book.yaml, collection.yaml or a theme
+    bundle all change what a build produces. Under the old watch set an edit to
+    any of them produced no rebuild, so the developer concluded it had done
+    nothing. `watch_paths` has no other test.
+    """
+    book = pipeline.books.book_by_id(BOOK)
+    watched = [p for p in pipeline.watch_paths(BOOK)]
+    resolved = {p.resolve() for p in watched}
+    assert all(p.exists() for p in watched), "serve stats every watched path"
+    assert book.curriculum.resolve() in resolved
+    assert (book.root / "book.yaml").resolve() in resolved
+    assert (repo_root() / "collection.yaml").resolve() in resolved
+    theme = next((repo_root() / "themes").glob("*.yaml"))
+    assert theme.resolve() in resolved
+    figure = next((book.docs / "assets" / "figures").glob("*.js"), None)
+    assert figure is not None, "this test assumes the book has figure modules"
+    assert figure.resolve() in resolved
 
 
 # --- end to end ---------------------------------------------------------------
@@ -750,3 +848,26 @@ def test_every_table_is_in_a_scroll_container(subset):
         if tables != wrapped:
             unwrapped.append(f"{page.url}: {tables} tables, {wrapped} wrapped")
     assert not unwrapped, unwrapped
+
+
+def test_an_unknown_profile_is_refused_rather_than_built(tmp_path):
+    """A profile id the book does not declare must fail, not publish an edition.
+
+    It used to build. `out` came from `book.deploy_path(profile)`, so a typo wrote
+    a whole new directory — and because the tier filter read `profile !=
+    "foundation"`, the new edition was built as **Higher**, so a Foundation typo
+    would have shipped Higher-only pages to Foundation readers.
+
+    Found by noticing `site/gcse-physics/all/` — a directory no profile owns —
+    while measuring figures at phone width. Nothing had failed; the output was
+    simply there, and a stale copy of it silently polluted the measurement.
+    """
+    book = book_by_id("gcse-physics")
+    declared = [p.id for p in book.profiles]
+    with pytest.raises(ValueError) as caught:
+        pipeline.build(book.id, "bogus", out=tmp_path / "out", index=False)
+    message = str(caught.value)
+    assert "bogus" in message
+    for one in declared:
+        assert one in message, f"the error should name the profiles it does declare: {message}"
+    assert not (tmp_path / "out").exists(), "a refused build must not leave a directory"

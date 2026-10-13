@@ -11,7 +11,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-trapezium-double" style="max-width:520px">
-      <svg viewBox="0 0 420 250" width="100%" height="250" role="img"
+      <svg viewBox="0 0 420 250" width="100%" role="img"
            aria-label="A trapezium, and a second copy turned upside down to make a parallelogram whose base is the sum of the two parallel sides"></svg>
       <label style="display:block;margin:.5rem 0 .2rem">
         Top side: <input class="top" type="range" min="20" max="100" step="5" value="60"

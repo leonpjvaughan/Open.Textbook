@@ -12,7 +12,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-capacitor-discharge" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 280" width="100%" height="280" role="img"
+      <svg viewBox="0 0 600 280" width="100%" role="img"
            aria-label="A potential difference against time graph for a discharging capacitor, with the working point marked at one time constant"></svg>
       <label style="display:block;margin:.5rem 0">Resistance
         <input class="resistance" type="range" min="100" max="1000" step="50" value="200">
@@ -52,21 +52,21 @@ export function mount(el) {
     let axes =
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${LEFT}" y2="${TOP}" class="fig-ink"></line>` +
-      `<text x="${LEFT}" y="${TOP - 8}" font-size="11" class="fig-ink">pd / V</text>` +
-      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="11" class="fig-ink" text-anchor="end">time</text>`;
+      `<text x="${LEFT}" y="${TOP - 8}" font-size="19" class="fig-ink">pd / V</text>` +
+      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="19" class="fig-ink" text-anchor="end">time</text>`;
 
     for (let tick = 0; tick <= 5; tick += 1) {
       const x = px(tick * tau, tMax);
       axes +=
         `<line x1="${x.toFixed(1)}" y1="${BOTTOM}" x2="${x.toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${x.toFixed(1)}" y="${BOTTOM + 16}" font-size="10" class="fig-ink" text-anchor="middle">${tick}</text>`;
+        `<text x="${x.toFixed(1)}" y="${BOTTOM + 16}" font-size="17" class="fig-ink" text-anchor="middle">${tick}</text>`;
     }
     for (let tick = 0; tick <= 4; tick += 1) {
       const value = (tick / 4) * V0;
       const y = py(value);
       axes +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="10" class="fig-ink" text-anchor="end">${value}</text>`;
+        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="17" class="fig-ink" text-anchor="end">${value}</text>`;
     }
 
     let points = "";

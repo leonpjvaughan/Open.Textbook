@@ -9,7 +9,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-fission-chain" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 370" width="100%" height="370" role="img"
+      <svg viewBox="0 0 620 370" width="100%" role="img"
            aria-label="One neutron striking a uranium-235 nucleus, which splits into two smaller nuclei and releases three neutrons, above a chart of the neutrons released in each generation"></svg>
       <label style="display:block;margin:.6rem 0 .3rem">
         Neutrons from each fission that cause the next fission:
@@ -49,11 +49,11 @@ export function mount(el) {
         const y = BOTTOM - height;
         const centre = x + barWidth / 2;
         return (
-          `<text x="${centre.toFixed(1)}" y="${(y - 6).toFixed(1)}" font-size="12" ` +
+          `<text x="${centre.toFixed(1)}" y="${(y - 6).toFixed(1)}" font-size="19" ` +
           `text-anchor="middle" class="text-ink">${count}</text>` +
           `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barWidth.toFixed(1)}" ` +
           `height="${Math.max(height, 0).toFixed(1)}" class="fig-accent"></rect>` +
-          `<text x="${centre.toFixed(1)}" y="${BOTTOM + 18}" font-size="11" ` +
+          `<text x="${centre.toFixed(1)}" y="${BOTTOM + 18}" font-size="18" ` +
           `text-anchor="middle" class="text-ink">${names[i]}</text>`
         );
       })
@@ -64,33 +64,33 @@ export function mount(el) {
     const schematic =
       // The incoming neutron and the nucleus it strikes.
       `<circle cx="34" cy="65" r="7" class="fig-warn"></circle>` +
-      `<text x="34" y="90" font-size="11" text-anchor="middle" class="text-ink">neutron</text>` +
+      `<text x="34" y="90" font-size="18" text-anchor="middle" class="text-ink">neutron</text>` +
       `<line x1="46" y1="65" x2="72" y2="65" class="fig-ink" stroke-width="2"></line>` +
       `<polygon points="76,65 66,59 66,71" class="fig-ink"></polygon>` +
       `<circle cx="112" cy="65" r="24" class="fig-accent"></circle>` +
-      `<text x="112" y="104" font-size="12" text-anchor="middle" class="text-ink">U-235</text>` +
+      `<text x="112" y="104" font-size="19" text-anchor="middle" class="text-ink">U-235</text>` +
       // The split into two smaller nuclei.
       `<line x1="138" y1="65" x2="168" y2="42" class="fig-ink" stroke-width="2"></line>` +
       `<line x1="138" y1="65" x2="168" y2="88" class="fig-ink" stroke-width="2"></line>` +
       `<circle cx="196" cy="38" r="16" class="fig-good"></circle>` +
-      `<text x="196" y="18" font-size="11" text-anchor="middle" class="text-ink">Ba</text>` +
+      `<text x="196" y="18" font-size="18" text-anchor="middle" class="text-ink">Ba</text>` +
       `<circle cx="196" cy="92" r="16" class="fig-good"></circle>` +
-      `<text x="196" y="122" font-size="11" text-anchor="middle" class="text-ink">Kr</text>` +
+      `<text x="196" y="122" font-size="18" text-anchor="middle" class="text-ink">Kr</text>` +
       // The three neutrons released.
       `<circle cx="288" cy="24" r="7" class="fig-warn"></circle>` +
       `<circle cx="288" cy="65" r="7" class="fig-warn"></circle>` +
       `<circle cx="288" cy="106" r="7" class="fig-warn"></circle>` +
-      `<text x="306" y="69" font-size="11" class="text-ink">three neutrons</text>` +
-      `<text x="30" y="160" font-size="12" class="text-ink">A neutron strikes the nucleus. The nucleus splits and releases three neutrons.</text>`;
+      `<text x="306" y="69" font-size="18" class="text-ink">three neutrons</text>` +
+      `<text x="30" y="160" font-size="19" class="text-ink">A neutron strikes the nucleus. The nucleus splits and releases three neutrons.</text>`;
 
     const chart =
       `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `<text x="${LEFT - 8}" y="${TOP + 4}" font-size="11" text-anchor="end" class="text-ink">neutrons</text>` +
-      `<text x="${RIGHT}" y="${BOTTOM + 36}" font-size="11" text-anchor="end" class="text-ink">generation</text>` +
+      `<text x="${LEFT - 8}" y="${TOP + 4}" font-size="18" text-anchor="end" class="text-ink">neutrons</text>` +
+      `<text x="${RIGHT}" y="${BOTTOM + 36}" font-size="18" text-anchor="end" class="text-ink">generation</text>` +
       `<line x1="${LEFT}" y1="${steadyY.toFixed(1)}" x2="${RIGHT}" y2="${steadyY.toFixed(1)}" ` +
       `class="fig-grid" stroke-dasharray="4 4"></line>` +
-      `<text x="${RIGHT + 4}" y="${(steadyY + 4).toFixed(1)}" font-size="11" class="text-ink">steady</text>` +
+      `<text x="${RIGHT + 4}" y="${(steadyY + 4).toFixed(1)}" font-size="18" class="text-ink">steady</text>` +
       bars;
 
     svg.innerHTML = schematic + chart;

@@ -9,7 +9,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-stopping-distance" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 170" width="100%" height="170" role="img"
+      <svg viewBox="0 0 560 170" width="100%" role="img"
            aria-label="A road bar split into a thinking distance and a braking distance, with the total stopping distance"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Speed (m/s) <input class="speed" type="range" min="5" max="20" step="1" value="10"></label>
@@ -39,13 +39,13 @@ export function mount(el) {
     const brakingWidth = Math.min(braking * scale, BAR_WIDTH - thinkingWidth);
 
     svg.innerHTML =
-      `<text x="14" y="${BAR_Y + 18}" font-size="12" class="fig-ink">road</text>` +
+      `<text x="14" y="${BAR_Y + 18}" font-size="18" class="fig-ink">road</text>` +
       `<rect x="${BAR_LEFT}" y="${BAR_Y}" width="${thinkingWidth.toFixed(1)}" height="${BAR_HEIGHT}" class="fig-warn"></rect>` +
       `<rect x="${(BAR_LEFT + thinkingWidth).toFixed(1)}" y="${BAR_Y}" width="${brakingWidth.toFixed(1)}" height="${BAR_HEIGHT}" class="fig-accent"></rect>` +
       `<line x1="${BAR_LEFT}" y1="${BAR_Y + BAR_HEIGHT}" x2="${BAR_LEFT + BAR_WIDTH}" y2="${BAR_Y + BAR_HEIGHT}" class="fig-ink" stroke-width="2"></line>` +
-      `<text x="${BAR_LEFT}" y="${BAR_Y - 10}" font-size="11" class="fig-ink">thinking ${thinking.toFixed(1)} m</text>` +
-      `<text x="${(BAR_LEFT + thinkingWidth + 6).toFixed(1)}" y="${BAR_Y - 10}" font-size="11" class="fig-ink">braking ${braking.toFixed(1)} m</text>` +
-      `<text x="${BAR_LEFT}" y="${BAR_Y + BAR_HEIGHT + 20}" font-size="12" class="fig-ink">total stopping distance = ${total.toFixed(1)} m</text>`;
+      `<text x="${BAR_LEFT}" y="${BAR_Y - 10}" font-size="16" class="fig-ink">thinking ${thinking.toFixed(1)} m</text>` +
+      `<text x="${(BAR_LEFT + thinkingWidth + 6).toFixed(1)}" y="${BAR_Y - 10}" font-size="16" class="fig-ink">braking ${braking.toFixed(1)} m</text>` +
+      `<text x="${BAR_LEFT}" y="${BAR_Y + BAR_HEIGHT + 20}" font-size="18" class="fig-ink">total stopping distance = ${total.toFixed(1)} m</text>`;
 
     readout.innerHTML =
       `Speed ${speed} m/s, reaction time ${REACTION.toFixed(2)} s, braking deceleration ` +

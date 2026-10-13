@@ -47,13 +47,13 @@ export function mount(el) {
            aria-label="Bars showing the running total of an arithmetic series after each term, with the terms themselves marked"></svg>
       <p class="legend" style="display:flex;gap:1.2rem;font-size:.9rem;margin:.5rem 0 0">
         <span>
-          <svg width="14" height="14" aria-hidden="true" style="vertical-align:-2px">
+          <svg width="14" aria-hidden="true" style="vertical-align:-2px">
             <rect x="2" y="2" width="10" height="10" class="fig-accent"></rect>
           </svg>
           running total
         </span>
         <span>
-          <svg width="14" height="14" aria-hidden="true" style="vertical-align:-2px">
+          <svg width="14" aria-hidden="true" style="vertical-align:-2px">
             <line x1="1" y1="7" x2="13" y2="7" class="fig-warn" stroke-width="2"></line>
             <circle cx="7" cy="7" r="3" class="fig-warn"></circle>
           </svg>

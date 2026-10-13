@@ -15,7 +15,7 @@ function bar(y, value, className) {
     `<rect x="${LEFT}" y="${y}" width="${width}" height="${BAR_H}" ` +
     `class="${className}" rx="3"></rect>` +
     `<text x="${LEFT + BAR_W + 8}" y="${y + BAR_H - 7}" class="fig-ink" ` +
-    `font-size="12">${(value * 100).toFixed(1)}%</text>`
+    `font-size="15">${(value * 100).toFixed(1)}%</text>`
   );
 }
 
@@ -60,7 +60,7 @@ export function mount(el) {
   }
 
   function label(x, y, text) {
-    return `<text x="${x}" y="${y}" class="fig-ink" font-size="11">${text}</text>`;
+    return `<text x="${x}" y="${y}" class="fig-ink" font-size="14">${text}</text>`;
   }
 
   function render() {

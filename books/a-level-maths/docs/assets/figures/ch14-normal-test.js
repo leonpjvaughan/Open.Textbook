@@ -167,16 +167,16 @@ export function mount(el) {
       `<line x1="${centre.toFixed(1)}" y1="${plotTop}" x2="${centre.toFixed(1)}" ` +
       `y2="${plotBottom}" class="fig-grid" stroke-dasharray="4 3"></line>` +
       `<text x="${centre.toFixed(1)}" y="${(plotBottom + 26).toFixed(1)}" ` +
-      `text-anchor="middle" class="fig-ink" font-size="11">null mean 500</text>`;
+      `text-anchor="middle" class="fig-ink" font-size="13">null mean 500</text>`;
 
     const marker =
       `<line x1="${toPx(xbar).toFixed(1)}" y1="${plotTop}" ` +
       `x2="${toPx(xbar).toFixed(1)}" y2="${plotBottom}" class="fig-line"></line>` +
       `<text x="${toPx(xbar).toFixed(1)}" y="${(plotTop - 8).toFixed(1)}" ` +
-      `text-anchor="middle" class="fig-accent" font-size="11">seen</text>`;
+      `text-anchor="middle" class="fig-accent" font-size="13">seen</text>`;
 
     const caption =
-      `<text x="230" y="14" text-anchor="middle" class="fig-ink" font-size="12">` +
+      `<text x="230" y="14" text-anchor="middle" class="fig-ink" font-size="15">` +
       `Sampling distribution of the sample mean</text>`;
 
     svg.innerHTML =

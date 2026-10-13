@@ -25,6 +25,7 @@ rejected rather than read as "everyone".
 
 from __future__ import annotations
 
+from functools import lru_cache
 from pathlib import Path
 
 from . import book as books
@@ -78,14 +79,30 @@ def entries(config=None) -> dict[str, dict]:
     The URL is derived from the id rather than stored, because the id *is* the
     directory name — `docs/<id>/index.md` — so a stored copy could disagree with
     the page that exists.
+
+    Cached per registry path. The registry is a pure function of a file that does
+    not change while a build runs, and the hook asks for it once per page: the
+    uncached version cost **12.2s of a 34.3s build** for A-level Mathematics,
+    re-parsing the same YAML 362 times and rebuilding the same URLs. Found by
+    profiling the build, not by reading it — the review had attributed the cost to
+    the navigation, which was already computed once.
+    """
+    return dict(_cached_entries(str(registry_path(config)), base_url(config)))
+
+
+@lru_cache(maxsize=None)
+def _cached_entries(path: str, base: str) -> dict[str, dict]:
+    """The parsed registry, keyed by the two strings the result depends on.
+
+    Strings rather than a `Path` and a config dict, because a cache key must be
+    hashable and a `dict` is not.
     """
     import yaml
 
-    path = registry_path(config)
-    if not path.is_file():
+    registry_file = Path(path)
+    if not registry_file.is_file():
         return {}
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
-    base = base_url(config)
+    data = yaml.safe_load(registry_file.read_text(encoding="utf-8")) or {}
     out: dict[str, dict] = {}
     for proof in data.get("proofs", []) or []:
         if not isinstance(proof, dict) or not proof.get("id"):

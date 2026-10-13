@@ -9,7 +9,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-spring-extension" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 230" width="100%" height="230" role="img"
+      <svg viewBox="0 0 560 230" width="100%" role="img"
            aria-label="A hanging spring stretching under a force, beside a force-extension graph with a straight part and a curved part"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Force (N) <input class="force" type="range" min="0" max="40" step="1" value="10"></label>
@@ -73,7 +73,7 @@ export function mount(el) {
       `<path d="${zigzag(440, 30, length, 9)}" class="fig-accent" fill="none" stroke-width="2"></path>` +
       `<line x1="440" y1="${30 + length}" x2="440" y2="${30 + length + 22}" class="fig-grid" stroke-dasharray="3 3"></line>` +
       `<polygon points="440,${30 + length + 30} 432,${30 + length + 16} 448,${30 + length + 16}" class="fig-warn"></polygon>` +
-      `<text x="470" y="${30 + length / 2}" font-size="11" class="fig-ink">spring</text>`;
+      `<text x="470" y="${30 + length / 2}" font-size="18" class="fig-ink">spring</text>`;
 
     // The force-extension graph: a straight line up to the limit, then a curve.
     const points = [];
@@ -86,9 +86,9 @@ export function mount(el) {
       `<line x1="70" y1="200" x2="310" y2="200" class="fig-ink"></line>` +
       `<line x1="70" y1="200" x2="70" y2="30" class="fig-ink"></line>` +
       `<line x1="70" y1="${yPixel(LIMIT).toFixed(1)}" x2="310" y2="${yPixel(LIMIT).toFixed(1)}" class="fig-grid" stroke-dasharray="3 3"></line>` +
-      `<text x="185" y="222" font-size="11" text-anchor="middle" class="fig-ink">extension (m)</text>` +
-      `<text x="14" y="120" font-size="11" class="fig-ink" transform="rotate(-90 14 120)">force (N)</text>` +
-      `<text x="300" y="${(yPixel(LIMIT) - 5).toFixed(1)}" font-size="10" text-anchor="end" class="fig-ink">limit</text>`;
+      `<text x="185" y="222" font-size="18" text-anchor="middle" class="fig-ink">extension (m)</text>` +
+      `<text x="14" y="120" font-size="18" class="fig-ink" transform="rotate(-90 14 120)">force (N)</text>` +
+      `<text x="300" y="${(yPixel(LIMIT) - 5).toFixed(1)}" font-size="16" text-anchor="end" class="fig-ink">limit</text>`;
     const graph =
       axis +
       `<path d="${path(straight)}" class="fig-accent" fill="none" stroke-width="3"></path>` +

@@ -13,7 +13,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-vector-components" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 540 280" width="100%" height="280" role="img"
+      <svg viewBox="0 0 540 280" width="100%" role="img"
            aria-label="A vector arrow on axes, with dashed lines to its horizontal and vertical components"></svg>
       <label style="display:block;margin:.5rem 0">Magnitude
         <input class="magnitude" type="range" min="0" max="20" step="1" value="10">
@@ -80,8 +80,8 @@ export function mount(el) {
     const axes =
       `<line x1="${LEFT}" y1="${ORIGIN_Y}" x2="${RIGHT}" y2="${ORIGIN_Y}" class="fig-ink"></line>` +
       `<line x1="${ORIGIN_X}" y1="${ORIGIN_Y}" x2="${ORIGIN_X}" y2="${TOP}" class="fig-ink"></line>` +
-      `<text x="${RIGHT + 6}" y="${ORIGIN_Y + 4}" font-size="12" class="fig-ink">x</text>` +
-      `<text x="${ORIGIN_X - 4}" y="${TOP - 6}" font-size="12" class="fig-ink" text-anchor="end">y</text>`;
+      `<text x="${RIGHT + 6}" y="${ORIGIN_Y + 4}" font-size="16" class="fig-ink">x</text>` +
+      `<text x="${ORIGIN_X - 4}" y="${TOP - 6}" font-size="16" class="fig-ink" text-anchor="end">y</text>`;
 
     // Dashed guides from the tip of the vector to the two component tips.
     const guides =

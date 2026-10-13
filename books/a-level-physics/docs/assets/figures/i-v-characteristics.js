@@ -13,7 +13,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-i-v" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 600 300" width="100%" role="img"
            aria-label="A current against potential difference graph for a resistor, a filament lamp or a diode, with a marked working point"></svg>
       <label style="display:block;margin:.5rem 0">Component
         <select class="component">
@@ -61,19 +61,19 @@ export function mount(el) {
     let axes =
       `<line x1="${LEFT}" y1="${(TOP + BOTTOM) / 2}" x2="${RIGHT}" y2="${(TOP + BOTTOM) / 2}" class="fig-ink"></line>` +
       `<line x1="${px(0).toFixed(1)}" y1="${TOP}" x2="${px(0).toFixed(1)}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `<text x="${RIGHT}" y="${(TOP + BOTTOM) / 2 - 8}" font-size="11" class="fig-ink" text-anchor="end">pd / V</text>` +
-      `<text x="${px(0) + 8}" y="${TOP - 4}" font-size="11" class="fig-ink">current / A</text>`;
+      `<text x="${RIGHT}" y="${(TOP + BOTTOM) / 2 - 8}" font-size="19" class="fig-ink" text-anchor="end">pd / V</text>` +
+      `<text x="${px(0) + 8}" y="${TOP - 4}" font-size="19" class="fig-ink">current / A</text>`;
 
     for (let tick = -4; tick <= 4; tick += 2) {
       axes +=
         `<line x1="${px(tick).toFixed(1)}" y1="${TOP}" x2="${px(tick).toFixed(1)}" y2="${BOTTOM}" class="fig-grid"></line>` +
-        `<text x="${px(tick).toFixed(1)}" y="${BOTTOM + 16}" font-size="10" class="fig-ink" text-anchor="middle">${tick}</text>`;
+        `<text x="${px(tick).toFixed(1)}" y="${BOTTOM + 16}" font-size="17" class="fig-ink" text-anchor="middle">${tick}</text>`;
     }
     for (let tick = -1; tick <= 1; tick += 0.5) {
       if (tick === 0) continue;
       axes +=
         `<line x1="${LEFT}" y1="${py(tick).toFixed(1)}" x2="${RIGHT}" y2="${py(tick).toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 6}" y="${(py(tick) + 4).toFixed(1)}" font-size="10" class="fig-ink" text-anchor="end">${tick}</text>`;
+        `<text x="${LEFT - 6}" y="${(py(tick) + 4).toFixed(1)}" font-size="17" class="fig-ink" text-anchor="end">${tick}</text>`;
     }
 
     // The characteristic, sampled across the range.

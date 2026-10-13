@@ -94,7 +94,7 @@ export function mount(el) {
     for (let r = 0; r <= n; r += Math.max(1, Math.round(n / 10))) {
       ticks.push(
         `<text x="${toX(r).toFixed(1)}" y="${base + 15}" text-anchor="middle" ` +
-          `class="fig-ink" font-size="9">${r}</text>`
+          `class="fig-ink" font-size="14">${r}</text>`
       );
     }
 

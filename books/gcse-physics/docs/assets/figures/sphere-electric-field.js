@@ -11,7 +11,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-electric-field" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 220" width="100%" height="220" role="img"
+      <svg viewBox="0 0 560 220" width="100%" role="img"
            aria-label="Radial electric field lines around a charged sphere, with arrows showing the direction and a test point that can be moved away from the sphere."></svg>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.5rem 0">
         <button type="button" class="sign">Change the sign of the charge</button>
@@ -70,11 +70,11 @@ export function mount(el) {
     svg.innerHTML =
       lines.join("") +
       `<circle cx="${CX}" cy="${CY}" r="16" class="${positive ? "fig-accent" : "fig-warn"}" style="fill:none" stroke-width="3"></circle>` +
-      `<text x="${CX}" y="${CY + 5}" font-size="14" text-anchor="middle" class="fig-ink">${positive ? "+" : "&minus;"}</text>` +
+      `<text x="${CX}" y="${CY + 5}" font-size="19" text-anchor="middle" class="fig-ink">${positive ? "+" : "&minus;"}</text>` +
       `<line x1="${testX}" y1="40" x2="${testX}" y2="180" class="fig-grid" stroke-width="1" stroke-dasharray="3 3"></line>` +
       `<circle cx="${testX}" cy="${CY}" r="6" class="fig-warn"></circle>` +
-      `<text x="${testX}" y="200" font-size="12" text-anchor="middle" class="fig-ink">test point</text>` +
-      `<text x="${CX}" y="205" font-size="12" text-anchor="middle" class="fig-ink">charged sphere</text>`;
+      `<text x="${testX}" y="200" font-size="16" text-anchor="middle" class="fig-ink">test point</text>` +
+      `<text x="${CX}" y="205" font-size="16" text-anchor="middle" class="fig-ink">charged sphere</text>`;
 
     readout.innerHTML =
       `The sphere carries a <strong>${positive ? "positive" : "negative"}</strong> charge, so the ` +

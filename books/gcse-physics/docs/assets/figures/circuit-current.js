@@ -11,7 +11,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-circuit-current" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 560 200" width="100%" height="200" role="img"
+      <svg viewBox="0 0 560 200" width="100%" role="img"
            aria-label="A series circuit with a cell, a resistor and an ammeter. The current readout changes with the potential difference and the resistance."></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Potential difference (V)
@@ -46,14 +46,14 @@ export function mount(el) {
       `<line x1="60" y1="108" x2="80" y2="108" class="fig-ink" stroke-width="6"></line>` +
       // Resistor block on the top wire.
       `<rect x="230" y="28" width="100" height="24" class="fig-accent"></rect>` +
-      `<text x="280" y="24" font-size="12" text-anchor="middle" class="fig-ink">resistor</text>` +
+      `<text x="280" y="24" font-size="16" text-anchor="middle" class="fig-ink">resistor</text>` +
       // Ammeter.
       `<circle cx="490" cy="100" r="18" class="fig-grid" stroke-width="2"></circle>` +
-      `<text x="490" y="105" font-size="13" text-anchor="middle" class="fig-ink">A</text>` +
+      `<text x="490" y="105" font-size="18" text-anchor="middle" class="fig-ink">A</text>` +
       // Conventional-current arrow on the top wire.
       `<polygon points="440,40 420,32 420,48" class="fig-accent"></polygon>` +
-      `<text x="352" y="26" font-size="12" text-anchor="middle" class="fig-ink">current</text>` +
-      `<text x="70" y="180" font-size="12" text-anchor="start" class="fig-ink">cell</text>`;
+      `<text x="352" y="26" font-size="16" text-anchor="middle" class="fig-ink">current</text>` +
+      `<text x="70" y="180" font-size="16" text-anchor="start" class="fig-ink">cell</text>`;
 
     readout.innerHTML =
       `Potential difference <strong>${volts} V</strong>. ` +

@@ -69,7 +69,7 @@ function guide(x2, y2) {
 
 function label(x, y, text, cls, anchor) {
   return (
-    `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="12" ` +
+    `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="14" ` +
     `text-anchor="${anchor}" class="${cls}">${text}</text>`
   );
 }

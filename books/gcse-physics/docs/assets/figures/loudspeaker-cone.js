@@ -7,7 +7,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-loudspeaker-cone" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 220" width="100%" height="220" role="img"
+      <svg viewBox="0 0 560 220" width="100%" role="img"
            aria-label="A cross-section of a moving-coil loudspeaker. A coil sits in the gap of a magnet and is joined to a cone. The current can be changed, and the cone moves with the force"></svg>
       <label style="display:block;margin:.5rem 0 0">
         Current in the coil (A) <input class="current" type="range" min="-2" max="2" step="0.5" value="1.5">
@@ -26,15 +26,15 @@ export function mount(el) {
     const magnet = `
       <rect x="300" y="55" width="60" height="45" rx="6" class="fig-ink" opacity="0.2"></rect>
       <rect x="300" y="120" width="60" height="45" rx="6" class="fig-ink" opacity="0.2"></rect>
-      <text x="330" y="45" font-size="11" text-anchor="middle" class="fig-ink">magnet</text>`;
+      <text x="330" y="45" font-size="16" text-anchor="middle" class="fig-ink">magnet</text>`;
 
     const cone = `
       <polygon points="70,25 70,195 ${base - 12},120" class="fig-ink" opacity="0.15"></polygon>
-      <text x="80" y="18" font-size="11" class="fig-ink">cone</text>`;
+      <text x="80" y="18" font-size="16" class="fig-ink">cone</text>`;
 
     const coil = `
       <rect x="${base - 12}" y="100" width="24" height="40" rx="6" class="fig-accent"></rect>
-      <text x="${base}" y="160" font-size="11" text-anchor="middle" class="fig-accent">coil</text>`;
+      <text x="${base}" y="160" font-size="16" text-anchor="middle" class="fig-accent">coil</text>`;
 
     let arrow = "";
     if (current > 0) {

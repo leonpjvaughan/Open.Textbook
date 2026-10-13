@@ -5,7 +5,7 @@ export function mount(el) {
       <p class="text-accent">A spinner has 10 equal sectors. Change how many are red.</p>
       <label>Red sectors: <input class="red" type="range" min="0" max="10" step="1" value="4"></label>
       <p class="readout text-ink" aria-live="polite"></p>
-      <svg class="spinner" width="100%" height="32" viewBox="0 0 200 32" role="img" aria-label="Ten equal spinner sectors">
+      <svg class="spinner" width="100%" viewBox="0 0 200 32" role="img" aria-label="Ten equal spinner sectors">
         ${Array.from({ length: 10 }, (_, i) => `<rect class="${i < 4 ? 'fig-accent' : 'fig-grid'}" x="${i * 20}" y="0" width="20" height="32"></rect>`).join('')}
       </svg>
     </section>`;

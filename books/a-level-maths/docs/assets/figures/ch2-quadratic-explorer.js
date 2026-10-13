@@ -4,7 +4,9 @@
 
 const X_MIN = -8;
 const X_MAX = 8;
-const Y_MIN = -12;
+// The vertex sits at y = c - b^2/4, which reaches -9 - 64/4 = -25, so the
+// window opens far enough down for the marker to stay on the drawing.
+const Y_MIN = -26;
 const Y_MAX = 32;
 
 function xToPx(x) {

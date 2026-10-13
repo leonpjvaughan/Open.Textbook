@@ -1,4 +1,4 @@
-"""The units oracle: dimensions, prefixes, figures, uncertainty and structure.
+r"""The units oracle: dimensions, prefixes, figures, uncertainty and structure.
 
 The SymPy oracle proves symbolic equivalence. Physics marking needs five things
 it cannot give: a quantity's *dimensions*, a value reported to the right number

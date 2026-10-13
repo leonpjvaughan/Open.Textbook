@@ -21,7 +21,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div class="fig-black-body-curve" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 280" width="100%" height="280" role="img"
+      <svg viewBox="0 0 620 280" width="100%" role="img"
            aria-label="A curve of emitted intensity against wavelength for a hot object, with a peak that moves to shorter wavelengths as the temperature rises"></svg>
       <label style="display:block;margin:.6rem 0 .3rem">
         Temperature: <input class="temperature" type="range" min="1000" max="6000" step="100" value="3000">
@@ -76,22 +76,22 @@ export function mount(el) {
       // Axes.
       `<line x1="${LEFT}" y1="${BASE}" x2="${RIGHT}" y2="${BASE}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BASE}" x2="${LEFT}" y2="${TOP}" class="fig-ink"></line>` +
-      `<text x="${LEFT - 10}" y="${TOP + 8}" font-size="11" text-anchor="end" ` +
+      `<text x="${LEFT - 10}" y="${TOP + 8}" font-size="18" text-anchor="end" ` +
       `class="fig-ink">intensity</text>` +
-      `<text x="${RIGHT}" y="${BASE + 34}" font-size="11" text-anchor="end" ` +
+      `<text x="${RIGHT}" y="${BASE + 34}" font-size="18" text-anchor="end" ` +
       `class="fig-ink">wavelength / micrometres</text>` +
       // The visible band.
       `<rect x="${visibleLeft}" y="${TOP}" width="${(visibleRight - visibleLeft).toFixed(1)}" ` +
       `height="${BASE - TOP}" class="fig-grid"></rect>` +
       `<text x="${((visibleLeft + visibleRight) / 2).toFixed(1)}" y="${TOP + 14}" ` +
-      `font-size="11" text-anchor="middle" class="fig-ink">visible</text>` +
+      `font-size="18" text-anchor="middle" class="fig-ink">visible</text>` +
       // X ticks.
       [0, 1, 2, 3, 4].map((mark) => {
         const x = xFor(mark === 0 ? MIN_WAVELENGTH : mark * 1e-6);
         return (
           `<line x1="${x.toFixed(1)}" y1="${BASE}" x2="${x.toFixed(1)}" y2="${BASE + 5}" ` +
           `class="fig-ink"></line>` +
-          `<text x="${x.toFixed(1)}" y="${BASE + 18}" font-size="11" text-anchor="middle" ` +
+          `<text x="${x.toFixed(1)}" y="${BASE + 18}" font-size="18" text-anchor="middle" ` +
           `class="fig-ink">${mark}</text>`
         );
       }).join("") +
@@ -100,7 +100,7 @@ export function mount(el) {
       `style="fill:none"></polyline>` +
       `<line x1="${peakX.toFixed(1)}" y1="${TOP}" x2="${peakX.toFixed(1)}" y2="${BASE}" ` +
       `class="fig-warn" stroke-dasharray="4 4"></line>` +
-      `<text x="${peakX.toFixed(1)}" y="${TOP - 6}" font-size="11" ` +
+      `<text x="${peakX.toFixed(1)}" y="${TOP - 6}" font-size="18" ` +
       `text-anchor="middle" class="fig-ink">peak</text>`;
 
     const peakText =

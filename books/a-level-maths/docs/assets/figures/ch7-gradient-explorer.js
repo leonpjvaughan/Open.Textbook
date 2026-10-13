@@ -44,6 +44,42 @@ function lineThrough(x, y, gradient, half) {
   );
 }
 
+// The plot is 400 by 300. A chord from the point at a to the point at a + h can
+// reach x = 3.9, past the right edge, so the segment is clipped to the frame and
+// the end marker is drawn where the chord leaves it. Liang-Barsky, in pixels.
+const FRAME_W = 400;
+const FRAME_H = 300;
+const FRAME_M = 3;
+
+function clipSegment(x1, y1, x2, y2) {
+  let t0 = 0;
+  let t1 = 1;
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const p = [-dx, dx, -dy, dy];
+  const q = [x1 - FRAME_M, FRAME_W - FRAME_M - x1, y1 - FRAME_M, FRAME_H - FRAME_M - y1];
+  for (let i = 0; i < 4; i += 1) {
+    if (p[i] === 0) {
+      if (q[i] < 0) return null;
+    } else {
+      const r = q[i] / p[i];
+      if (p[i] < 0) {
+        if (r > t1) return null;
+        if (r > t0) t0 = r;
+      } else {
+        if (r < t0) return null;
+        if (r < t1) t1 = r;
+      }
+    }
+  }
+  return {
+    x1: x1 + t0 * dx,
+    y1: y1 + t0 * dy,
+    x2: x1 + t1 * dx,
+    y2: y1 + t1 * dy,
+  };
+}
+
 export function mount(el) {
   el.innerHTML = `
     <div style="max-width:520px">
@@ -94,11 +130,17 @@ export function mount(el) {
     const tangent = df(a);
 
     const tangentLine = lineThrough(a, fa, tangent, 1);
-    const chordLine =
-      `<line x1="${xToPx(a).toFixed(1)}" y1="${yToPx(fa).toFixed(1)}" ` +
-      `x2="${xToPx(a + h).toFixed(1)}" y2="${yToPx(fb).toFixed(1)}" class="fig-warn"></line>`;
+    // The chord is clipped to the frame, and Q is drawn at the clipped end, so
+    // a chord that runs off the plot never puts its marker outside it.
+    const chordClip = clipSegment(xToPx(a), yToPx(fa), xToPx(a + h), yToPx(fb));
+    const chordLine = chordClip
+      ? `<line x1="${chordClip.x1.toFixed(1)}" y1="${chordClip.y1.toFixed(1)}" ` +
+        `x2="${chordClip.x2.toFixed(1)}" y2="${chordClip.y2.toFixed(1)}" class="fig-warn"></line>`
+      : "";
     const pointP = `<circle cx="${xToPx(a).toFixed(1)}" cy="${yToPx(fa).toFixed(1)}" r="4" class="fig-ink"></circle>`;
-    const pointQ = `<circle cx="${xToPx(a + h).toFixed(1)}" cy="${yToPx(fb).toFixed(1)}" r="4" class="fig-warn"></circle>`;
+    const pointQ = chordClip
+      ? `<circle cx="${chordClip.x2.toFixed(1)}" cy="${chordClip.y2.toFixed(1)}" r="4" class="fig-warn"></circle>`
+      : "";
     const curve = `<polyline points="${curvePoints()}" class="fig-line"></polyline>`;
 
     svg.innerHTML = grid() + axes() + curve + chordLine + tangentLine + pointQ + pointP;

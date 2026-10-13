@@ -8,7 +8,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-force-acceleration" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 160" width="100%" height="160" role="img"
+      <svg viewBox="0 0 560 160" width="100%" role="img"
            aria-label="A trolley with a force arrow pushing it, and the acceleration produced by the force and the mass"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Resultant force (N) <input class="force" type="range" min="2" max="20" step="1" value="8"></label>
@@ -42,13 +42,13 @@ export function mount(el) {
     const arrow =
       `<line x1="${x0 - length}" y1="${GROUND - height / 2}" x2="${x0 - 12}" y2="${GROUND - height / 2}" class="fig-accent" stroke-width="4"></line>` +
       `<polygon points="${x0},${GROUND - height / 2} ${x0 - 12},${GROUND - height / 2 - 6} ${x0 - 12},${GROUND - height / 2 + 6}" class="fig-accent"></polygon>` +
-      `<text x="${x0 - length - 4}" y="${GROUND - height / 2 - 8}" font-size="11" class="fig-ink">F = ${force} N</text>`;
+      `<text x="${x0 - length - 4}" y="${GROUND - height / 2 - 8}" font-size="16" class="fig-ink">F = ${force} N</text>`;
 
     svg.innerHTML =
       trolley +
       arrow +
-      `<text x="${CENTRE}" y="${GROUND - height - 12}" font-size="11" text-anchor="middle" class="fig-ink">m = ${mass} kg</text>` +
-      `<text x="${CENTRE}" y="${GROUND + 42}" font-size="12" text-anchor="middle" class="fig-ink">a = F &divide; m = ${force} &divide; ${mass} = ${acceleration.toFixed(2)} m/s&sup2;</text>`;
+      `<text x="${CENTRE}" y="${GROUND - height - 12}" font-size="16" text-anchor="middle" class="fig-ink">m = ${mass} kg</text>` +
+      `<text x="${CENTRE}" y="${GROUND + 42}" font-size="18" text-anchor="middle" class="fig-ink">a = F &divide; m = ${force} &divide; ${mass} = ${acceleration.toFixed(2)} m/s&sup2;</text>`;
 
     readout.innerHTML =
       `Resultant force ${force} N, mass ${mass} kg, so the acceleration is ` +

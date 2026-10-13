@@ -12,7 +12,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-photoelectric-effect" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 620 300" width="100%" role="img"
            aria-label="Photon energy and maximum kinetic energy against wavelength for a photocell, with a marked threshold"></svg>
       <label style="display:block;margin:.5rem 0">Wavelength (nanometres)
         <input class="wavelength" type="range" min="200" max="800" step="10" value="250">
@@ -58,20 +58,20 @@ export function mount(el) {
     let axes =
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${LEFT}" y2="${TOP}" class="fig-ink"></line>` +
-      `<text x="${LEFT}" y="${TOP - 12}" font-size="11" class="fig-ink">energy / eV</text>` +
-      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="11" class="fig-ink" text-anchor="end">wavelength / nm</text>`;
+      `<text x="${LEFT}" y="${TOP - 12}" font-size="20" class="fig-ink">energy / eV</text>` +
+      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="20" class="fig-ink" text-anchor="end">wavelength / nm</text>`;
 
     for (let tick = LAM_MIN; tick <= LAM_MAX; tick += 100) {
       const x = px(tick);
       axes +=
         `<line x1="${x.toFixed(1)}" y1="${BOTTOM}" x2="${x.toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${x.toFixed(1)}" y="${BOTTOM + 16}" font-size="10" class="fig-ink" text-anchor="middle">${tick}</text>`;
+        `<text x="${x.toFixed(1)}" y="${BOTTOM + 16}" font-size="18" class="fig-ink" text-anchor="middle">${tick}</text>`;
     }
     for (let tick = 0; tick <= 5; tick += 1) {
       const y = py(tick);
       axes +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="10" class="fig-ink" text-anchor="end">${tick}</text>`;
+        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="18" class="fig-ink" text-anchor="end">${tick}</text>`;
     }
 
     let photonCurve = "";
@@ -89,13 +89,13 @@ export function mount(el) {
       `<polyline points="${photonCurve.trim()}" class="fig-accent" fill="none" stroke-width="3"></polyline>` +
       `<polyline points="${kineticCurve.trim()}" class="fig-good" fill="none" stroke-width="3"></polyline>` +
       `<line x1="${LEFT}" y1="${py(phi).toFixed(1)}" x2="${RIGHT}" y2="${py(phi).toFixed(1)}" class="fig-warn" stroke-width="2" stroke-dasharray="6 4"></line>` +
-      `<text x="${LEFT + 6}" y="${(py(phi) - 6).toFixed(1)}" font-size="10" class="fig-ink">work function</text>`;
+      `<text x="${LEFT + 6}" y="${(py(phi) - 6).toFixed(1)}" font-size="18" class="fig-ink">work function</text>`;
 
     let marker = "";
     if (threshold >= LAM_MIN && threshold <= LAM_MAX) {
       marker =
         `<line x1="${px(threshold).toFixed(1)}" y1="${TOP}" x2="${px(threshold).toFixed(1)}" y2="${BOTTOM}" class="fig-ink" stroke-dasharray="4 3"></line>` +
-        `<text x="${(px(threshold) + 4).toFixed(1)}" y="${TOP + 12}" font-size="10" class="fig-ink">threshold</text>`;
+        `<text x="${(px(threshold) + 4).toFixed(1)}" y="${TOP + 12}" font-size="18" class="fig-ink">threshold</text>`;
     }
 
     svg.innerHTML = axes + marker + curves;

@@ -13,8 +13,19 @@ from .. import cas
 
 
 def check_all(check, symbols, report, dispatch):
-    """Compose sub-checks; each is dispatched to its own oracle."""
-    for sub in check.get("checks", []):
+    """Compose sub-checks; each is dispatched to its own oracle.
+
+    An empty composite asserts nothing, so it is an error rather than a pass —
+    the same rule ``check_structured`` applies, because a check that cannot fail
+    is not a check.
+    """
+    subs = check.get("checks") or []
+    if not subs:
+        report.errors.append(
+            "check: 'all' needs 'checks'; a check that asserts nothing is not a check"
+        )
+        return
+    for sub in subs:
         dispatch(sub)
 
 

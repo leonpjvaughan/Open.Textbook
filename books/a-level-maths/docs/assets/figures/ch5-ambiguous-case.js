@@ -33,7 +33,7 @@ export function mount(el) {
         <input class="side" type="range" min="1" max="11" step="0.5" value="4"
                aria-label="Side a, opposite angle A">
       </label>
-      <svg viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" height="320" role="img"
+      <svg viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" role="img"
            aria-label="A fixed side from A to C and a ray from A at the chosen angle, with a circle that marks every possible position of the opposite vertex"></svg>
       <p class="readout" aria-live="polite"></p>
     </div>`;
@@ -136,7 +136,7 @@ export function mount(el) {
       const name = points.length === 2 ? (index === 0 ? "B" : "B\u2032") : "B";
       labels +=
         `<text x="${(bx + (index === 0 ? 10 : -22)).toFixed(0)}" y="${(by - 10).toFixed(0)}" ` +
-        `font-size="13" class="text-ink">${name}</text>`;
+        `font-size="14" class="text-ink">${name}</text>`;
     });
 
     svg.innerHTML =
@@ -145,9 +145,9 @@ export function mount(el) {
       ray +
       knownSide +
       triangles +
-      `<text x="${(ax - 14).toFixed(0)}" y="${(ay + 18).toFixed(0)}" font-size="13" class="text-ink">A</text>` +
-      `<text x="${(cx + 6).toFixed(0)}" y="${(cy + 18).toFixed(0)}" font-size="13" class="text-ink">C</text>` +
-      `<text x="${(fx + 8).toFixed(0)}" y="${(fy + 16).toFixed(0)}" font-size="12" class="text-ink">h = ${height.toFixed(1)}</text>` +
+      `<text x="${(ax - 14).toFixed(0)}" y="${(ay + 18).toFixed(0)}" font-size="14" class="text-ink">A</text>` +
+      `<text x="${(cx + 6).toFixed(0)}" y="${(cy + 18).toFixed(0)}" font-size="14" class="text-ink">C</text>` +
+      `<text x="${(fx + 8).toFixed(0)}" y="${(fy + 16).toFixed(0)}" font-size="13" class="text-ink">h = ${height.toFixed(1)}</text>` +
       labels;
 
     const footOnRay = base > 1e-6;

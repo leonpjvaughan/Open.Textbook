@@ -11,7 +11,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-heating-curve" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 230" width="100%" height="230" role="img"
+      <svg viewBox="0 0 600 230" width="100%" role="img"
            aria-label="A heating graph of temperature against time for water, with two sloped parts and two flat parts where the substance changes state"></svg>
       <label style="display:block;margin:.3rem 0">Heater power (W)
         <input class="power" type="range" min="200" max="2000" step="50" value="500"></label>
@@ -74,13 +74,13 @@ export function mount(el) {
       `<line x1="70" y1="200" x2="70" y2="20" class="fig-ink" stroke-width="2"></line>` +
       `<line x1="70" y1="${yPixel(0).toFixed(1)}" x2="555" y2="${yPixel(0).toFixed(1)}" class="fig-grid" stroke-dasharray="4 4"></line>` +
       `<line x1="70" y1="${yPixel(100).toFixed(1)}" x2="555" y2="${yPixel(100).toFixed(1)}" class="fig-grid" stroke-dasharray="4 4"></line>` +
-      `<text x="10" y="${yPixel(0).toFixed(1)}" font-size="10" class="fig-ink">0</text>` +
-      `<text x="4" y="${yPixel(100).toFixed(1)}" font-size="10" class="fig-ink">100</text>` +
-      `<text x="300" y="222" font-size="11" text-anchor="middle" class="fig-ink">time (s)</text>` +
-      `<text x="14" y="110" font-size="11" class="fig-ink" transform="rotate(-90 14 110)">temperature (C)</text>` +
+      `<text x="10" y="${yPixel(0).toFixed(1)}" font-size="17" class="fig-ink">0</text>` +
+      `<text x="4" y="${yPixel(100).toFixed(1)}" font-size="17" class="fig-ink">100</text>` +
+      `<text x="300" y="222" font-size="19" text-anchor="middle" class="fig-ink">time (s)</text>` +
+      `<text x="14" y="110" font-size="19" class="fig-ink" transform="rotate(-90 14 110)">temperature (C)</text>` +
       `<path d="${line}" class="fig-accent" fill="none" stroke-width="3"></path>` +
-      `<text x="150" y="${(yPixel(0) - 8).toFixed(1)}" font-size="10" class="fig-ink">melting</text>` +
-      `<text x="300" y="${(yPixel(100) - 8).toFixed(1)}" font-size="10" class="fig-ink">boiling</text>`;
+      `<text x="150" y="${(yPixel(0) - 8).toFixed(1)}" font-size="17" class="fig-ink">melting</text>` +
+      `<text x="300" y="${(yPixel(100) - 8).toFixed(1)}" font-size="17" class="fig-ink">boiling</text>`;
 
     readout.innerHTML =
       `Heater power <strong>${power} W</strong>. ` +

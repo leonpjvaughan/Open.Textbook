@@ -12,7 +12,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-binding-energy" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 620 300" width="100%" role="img"
            aria-label="Schematic curve of binding energy per nucleon against nucleon number, with the chosen nuclide marked"></svg>
       <label style="display:block;margin:.5rem 0">Nucleon number
         <input class="mass" type="range" min="1" max="250" step="1" value="56">
@@ -73,20 +73,20 @@ export function mount(el) {
     let axes =
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${LEFT}" y2="${TOP}" class="fig-ink"></line>` +
-      `<text x="${LEFT}" y="${TOP - 12}" font-size="11" class="fig-ink">binding energy per nucleon / MeV</text>` +
-      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="11" class="fig-ink" text-anchor="end">nucleon number</text>`;
+      `<text x="${LEFT}" y="${TOP - 12}" font-size="20" class="fig-ink">binding energy per nucleon / MeV</text>` +
+      `<text x="${RIGHT}" y="${BOTTOM + 18}" font-size="20" class="fig-ink" text-anchor="end">nucleon number</text>`;
 
     for (let tick = 0; tick <= 250; tick += 50) {
       const x = px(tick);
       axes +=
         `<line x1="${x.toFixed(1)}" y1="${BOTTOM}" x2="${x.toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${x.toFixed(1)}" y="${BOTTOM + 16}" font-size="10" class="fig-ink" text-anchor="middle">${tick}</text>`;
+        `<text x="${x.toFixed(1)}" y="${BOTTOM + 16}" font-size="18" class="fig-ink" text-anchor="middle">${tick}</text>`;
     }
     for (let tick = 0; tick <= 10; tick += 2) {
       const y = py(tick);
       axes +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="10" class="fig-ink" text-anchor="end">${tick}</text>`;
+        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="18" class="fig-ink" text-anchor="end">${tick}</text>`;
     }
 
     let curve = "";
@@ -102,7 +102,7 @@ export function mount(el) {
 
     const peak =
       `<line x1="${px(56).toFixed(1)}" y1="${TOP}" x2="${px(56).toFixed(1)}" y2="${BOTTOM}" class="fig-ink" stroke-dasharray="4 3"></line>` +
-      `<text x="${(px(56) + 4).toFixed(1)}" y="${TOP + 12}" font-size="10" class="fig-ink">iron-56</text>`;
+      `<text x="${(px(56) + 4).toFixed(1)}" y="${TOP + 12}" font-size="18" class="fig-ink">iron-56</text>`;
 
     svg.innerHTML = axes + line + peak + marker;
 

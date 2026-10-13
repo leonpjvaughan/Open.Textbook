@@ -19,7 +19,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div class="fig-bearing-dial" style="max-width:520px">
-      <svg viewBox="0 0 460 320" width="100%" height="320" role="img"
+      <svg viewBox="0 0 460 320" width="100%" role="img"
            aria-label="A dial that measures the bearing of B from A clockwise from north, beside the reversed north line at B that gives the back bearing"></svg>
       <label style="display:block;margin:.6rem 0 .2rem">
         Bearing of B from A:

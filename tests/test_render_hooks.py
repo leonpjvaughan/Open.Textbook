@@ -1,4 +1,4 @@
-"""The figure hook and the tier strategies, evaluated without a site generator.
+"""The figure and maths hooks and the tier strategies, without a site generator.
 
 This replaces ``test/run.sh`` and ``test/configs/``. That harness built the same
 fixture content under several renderer configurations to compare three ways of
@@ -19,6 +19,8 @@ hook functions the pipeline calls:
 * an unknown slug fails the build rather than rendering nothing;
 * a template marker from another system is left alone (the hook does not
   hijack it);
+* a renderer reply that is not one result per item becomes ``.math-error`` spans
+  rather than leaving ``\x00MATHn\x00`` placeholders in the page;
 * Foundation drops Higher-only pages and strips in-page Higher blocks while
   keeping shared content; Higher keeps both; the toggle profile tags the block.
 
@@ -327,3 +329,42 @@ def test_tier_runs_before_everything_that_expands():
 
     names = [module.__name__.rsplit(".", 1)[-1] for module in hooks.MARKDOWN_HOOKS]
     assert names[0] == "tier"
+
+
+# --- the maths hook -----------------------------------------------------------
+
+MATH_CONTENT = (
+    '<span class="arithmatex">\\(a+b\\)</span> and '
+    '<div class="arithmatex">\\[c+d\\]</div>'
+)
+
+
+def test_a_short_renderer_reply_becomes_error_spans_not_placeholders(monkeypatch):
+    """The renderer's protocol is one MathML result per item.
+
+    A short reply would leave ``\x00MATHn\x00`` placeholders literally in the
+    page: not a `.math-error`, so the gate's grep misses it, and not a link, so
+    `check_links` misses it. The hook must fall back to error spans instead, which
+    the pipeline reports as a page whose maths failed.
+    """
+    from textbook.hooks import maths
+
+    monkeypatch.setattr(maths, "render", lambda items: ["<math>only one</math>"])
+    html = maths.on_page_content(MATH_CONTENT, None, None, [])
+
+    assert "\x00MATH" not in html
+    assert html.count('class="math-error"') == 2
+
+
+def test_a_full_renderer_reply_substitutes_every_expression(monkeypatch):
+    """The happy path, so the guard above is not pinning a hook that never works."""
+    from textbook.hooks import maths
+
+    monkeypatch.setattr(
+        maths, "render", lambda items: [f"<math>{item['tex']}</math>" for item in items]
+    )
+    html = maths.on_page_content(MATH_CONTENT, None, None, [])
+
+    assert "arithmatex" not in html
+    assert "\x00MATH" not in html
+    assert html.count("<math>") == 2

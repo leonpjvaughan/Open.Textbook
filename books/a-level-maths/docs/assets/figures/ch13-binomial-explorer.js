@@ -84,7 +84,7 @@ export function mount(el) {
         const x = left + (r + 0.5) * (plotW / (n + 1));
         return (
           `<text x="${x.toFixed(1)}" y="${base + 15}" text-anchor="middle" ` +
-          `class="fig-ink" font-size="10">${r}</text>`
+          `class="fig-ink" font-size="13">${r}</text>`
         );
       })
       .join("");

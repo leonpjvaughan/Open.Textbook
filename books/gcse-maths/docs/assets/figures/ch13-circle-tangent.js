@@ -12,7 +12,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 520 400" width="100%" height="380" role="img"
+      <svg viewBox="0 0 520 400" width="100%" role="img"
            aria-label="A circle centred on the origin with a radius drawn to a point on it and the tangent line touching the circle at that point"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Radius <input class="r" type="range" min="2" max="10" step="1" value="5"></label>
@@ -80,8 +80,8 @@ export function mount(el) {
       `class="fig-ink" stroke-width="1.5"></line>` +
       `<line x1="${originX.toFixed(1)}" y1="36" x2="${originX.toFixed(1)}" y2="376" ` +
       `class="fig-ink" stroke-width="1.5"></line>` +
-      `<text x="500" y="${(originY - 7).toFixed(1)}" font-size="12" class="text-ink">x</text>` +
-      `<text x="${(originX + 7).toFixed(1)}" y="46" font-size="12" class="text-ink">y</text>` +
+      `<text x="500" y="${(originY - 7).toFixed(1)}" font-size="15" class="text-ink">x</text>` +
+      `<text x="${(originX + 7).toFixed(1)}" y="46" font-size="15" class="text-ink">y</text>` +
       `<g clip-path="url(#ct-clip)">` +
       `<circle cx="${originX.toFixed(1)}" cy="${originY.toFixed(1)}" ` +
       `r="${(r * SCALE).toFixed(1)}" class="fig-accent" fill="none" stroke-width="2"></circle>` +
@@ -94,7 +94,7 @@ export function mount(el) {
       `</g>` +
       `<circle cx="${originX.toFixed(1)}" cy="${originY.toFixed(1)}" r="3.5" class="fig-ink"></circle>` +
       `<circle cx="${xPix.toFixed(1)}" cy="${yPix.toFixed(1)}" r="5" class="fig-warn"></circle>` +
-      `<text x="${(xPix + 9).toFixed(1)}" y="${(yPix - 9).toFixed(1)}" font-size="12" ` +
+      `<text x="${(xPix + 9).toFixed(1)}" y="${(yPix - 9).toFixed(1)}" font-size="15" ` +
       `class="text-accent">P (${fmt(x)}, ${fmt(y)})</text>`;
 
     legend.innerHTML =

@@ -8,7 +8,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-efficiency" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 120" width="100%" height="120" role="img"
+      <svg viewBox="0 0 560 120" width="100%" role="img"
            aria-label="A horizontal power bar split into a useful output part and a wasted part, with the efficiency shown as a fraction"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Total input power (W) <input class="input" type="range" min="10" max="200" step="5" value="120"></label>
@@ -41,12 +41,12 @@ export function mount(el) {
     const wastedWidth = width(wasted);
 
     svg.innerHTML =
-      `<text x="${BAR_X}" y="28" font-size="11" class="fig-ink">Input ${input} W</text>` +
+      `<text x="${BAR_X}" y="28" font-size="16" class="fig-ink">Input ${input} W</text>` +
       `<rect x="${BAR_X}" y="40" width="${width(input)}" height="34" class="fig-grid"></rect>` +
       `<rect x="${BAR_X}" y="40" width="${usefulWidth}" height="34" class="fig-accent"></rect>` +
       `<rect x="${(BAR_X + Number(usefulWidth)).toFixed(1)}" y="40" width="${wastedWidth}" height="34" class="fig-warn"></rect>` +
-      `<text x="${BAR_X}" y="96" font-size="11" class="fig-ink">Useful output ${useful} W</text>` +
-      `<text x="${BAR_X + 190}" y="96" font-size="11" class="fig-ink">Wasted ${wasted} W</text>`;
+      `<text x="${BAR_X}" y="96" font-size="16" class="fig-ink">Useful output ${useful} W</text>` +
+      `<text x="${BAR_X + 190}" y="96" font-size="16" class="fig-ink">Wasted ${wasted} W</text>`;
 
     readout.innerHTML =
       `Efficiency = useful output ÷ total input = ${useful} W ÷ ${input} W = ` +

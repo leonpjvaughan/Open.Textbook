@@ -3,7 +3,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-proportion" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 300 200" width="100%" height="190" role="img"
+      <svg viewBox="0 0 300 200" width="100%" role="img"
            aria-label="Graph of y against x for direct or inverse proportion"></svg>
       <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
         <label>k <input class="k" type="range" min="1" max="10" step="1" value="3"> <output class="kOut">3</output></label>

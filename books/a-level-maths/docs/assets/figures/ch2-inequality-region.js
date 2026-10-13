@@ -96,7 +96,7 @@ export function mount(el) {
           <option value="le">f(x) ≤ 0</option>
         </select>
       </label>
-      <svg viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" height="330" role="img"
+      <svg viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" role="img"
            aria-label="A parabola crossing the x axis at its two roots, with the part that satisfies the inequality highlighted and the solution set marked on a number line below"></svg>
       <p class="readout" aria-live="polite"></p>
     </div>`;
@@ -166,7 +166,7 @@ export function mount(el) {
         `<line x1="${px.toFixed(1)}" y1="${NL_Y - 4}" x2="${px.toFixed(1)}" y2="${NL_Y + 4}" ` +
         `class="fig-ink"></line>` +
         `<text x="${px.toFixed(1)}" y="${NL_Y + 20}" text-anchor="middle" ` +
-        `font-size="11" class="text-ink">${x}</text>`;
+        `font-size="13" class="text-ink">${x}</text>`;
     }
     for (const iv of intervals) {
       const a = iv.a === -Infinity ? X_MIN : Math.max(iv.a, X_MIN);

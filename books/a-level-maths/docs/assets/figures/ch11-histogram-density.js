@@ -80,7 +80,7 @@ export function mount(el) {
       .map(
         (group, index) =>
           `<text x="${(left + index * barW + barW / 2).toFixed(1)}" y="${base + 16}" ` +
-          `text-anchor="middle" class="fig-ink" font-size="10">` +
+          `text-anchor="middle" class="fig-ink" font-size="13">` +
           `${group.lo}–${group.hi}</text>`
       )
       .join("");

@@ -11,7 +11,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-electric-field" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 620 300" width="100%" role="img"
            aria-label="Two parallel plates with a uniform electric field between them and a positive ion crossing the gap"></svg>
       <label style="display:block;margin:.5rem 0">Potential difference (volts)
         <input class="volts" type="range" min="200" max="2000" step="10" value="1200">
@@ -51,8 +51,8 @@ export function mount(el) {
     let drawing =
       `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-accent" stroke-width="6"></line>` +
       `<line x1="${RIGHT}" y1="${TOP}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-accent" stroke-width="6"></line>` +
-      `<text x="${LEFT}" y="${TOP - 12}" font-size="11" class="fig-ink" text-anchor="middle">+ plate</text>` +
-      `<text x="${RIGHT}" y="${TOP - 12}" font-size="11" class="fig-ink" text-anchor="middle">- plate</text>`;
+      `<text x="${LEFT}" y="${TOP - 12}" font-size="20" class="fig-ink" text-anchor="middle">+ plate</text>` +
+      `<text x="${RIGHT}" y="${TOP - 12}" font-size="20" class="fig-ink" text-anchor="middle">- plate</text>`;
 
     const arrows = Math.max(
       2,
@@ -70,10 +70,10 @@ export function mount(el) {
     const ionY = (TOP + BOTTOM) / 2;
     drawing +=
       `<circle cx="${ionX}" cy="${ionY}" r="8" class="fig-good"></circle>` +
-      `<text x="${ionX}" y="${ionY + 4}" font-size="10" class="fig-ink" text-anchor="middle">+</text>` +
+      `<text x="${ionX}" y="${ionY + 4}" font-size="18" class="fig-ink" text-anchor="middle">+</text>` +
       `<line x1="${ionX + 12}" y1="${ionY}" x2="${ionX + 70}" y2="${ionY}" class="fig-good" stroke-width="2"></line>` +
       `<polygon points="${ionX + 70},${ionY - 5} ${ionX + 70},${ionY + 5} ${ionX + 80},${ionY}" class="fig-good"></polygon>` +
-      `<text x="${LEFT + 30}" y="${BOTTOM + 28}" font-size="11" class="fig-ink">gap ${Number(gap.value).toFixed(1)} mm</text>`;
+      `<text x="${LEFT + 30}" y="${BOTTOM + 28}" font-size="20" class="fig-ink">gap ${Number(gap.value).toFixed(1)} mm</text>`;
 
     svg.innerHTML = drawing;
 

@@ -13,7 +13,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-heating-curve" style="font:14px system-ui;max-width:640px">
-      <svg viewBox="0 0 640 340" width="100%" height="340" role="img"
+      <svg viewBox="0 0 640 340" width="100%" role="img"
            aria-label="Temperature against time for water heated at a steady rate, showing a short melting plateau and a much longer boiling plateau"></svg>
       <label style="display:block;margin:.5rem 0">Mass of water (kg)
         <input class="mass" type="range" min="0.10" max="2.00" step="0.05" value="1.00">
@@ -79,12 +79,12 @@ export function mount(el) {
     for (const temp of marks) {
       const y = yFor(temp);
       grid += `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid" stroke-dasharray="3 4"></line>`;
-      labels += `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="11" class="fig-ink" text-anchor="end">${temp}</text>`;
+      labels += `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="18" class="fig-ink" text-anchor="end">${temp}</text>`;
     }
     grid += `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-ink" stroke-width="2"></line>`;
     grid += `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink" stroke-width="2"></line>`;
-    labels += `<text x="${(LEFT + RIGHT) / 2}" y="${BOTTOM + 34}" font-size="12" class="fig-ink" text-anchor="middle">time / s</text>`;
-    labels += `<text x="20" y="${(TOP + BOTTOM) / 2}" font-size="12" class="fig-ink" text-anchor="middle" transform="rotate(-90 20 ${(TOP + BOTTOM) / 2})">temperature / °C</text>`;
+    labels += `<text x="${(LEFT + RIGHT) / 2}" y="${BOTTOM + 34}" font-size="20" class="fig-ink" text-anchor="middle">time / s</text>`;
+    labels += `<text x="20" y="${(TOP + BOTTOM) / 2}" font-size="20" class="fig-ink" text-anchor="middle" transform="rotate(-90 20 ${(TOP + BOTTOM) / 2})">temperature / °C</text>`;
 
     const points = [
       [0, T_START],
@@ -101,8 +101,8 @@ export function mount(el) {
     const meltingX = xFor(t1 + t2 / 2);
     const boilingX = xFor(t1 + t2 + t3 + t4 / 2);
     const plateauLabels =
-      `<text x="${meltingX.toFixed(1)}" y="${(yFor(T_MELT) - 8).toFixed(1)}" font-size="11" class="fig-good" text-anchor="middle">melting</text>` +
-      `<text x="${boilingX.toFixed(1)}" y="${(yFor(T_BOIL) - 8).toFixed(1)}" font-size="11" class="fig-warn" text-anchor="middle">boiling</text>`;
+      `<text x="${meltingX.toFixed(1)}" y="${(yFor(T_MELT) - 8).toFixed(1)}" font-size="18" class="fig-good" text-anchor="middle">melting</text>` +
+      `<text x="${boilingX.toFixed(1)}" y="${(yFor(T_BOIL) - 8).toFixed(1)}" font-size="18" class="fig-warn" text-anchor="middle">boiling</text>`;
 
     svg.innerHTML =
       grid +

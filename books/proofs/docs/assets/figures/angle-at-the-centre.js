@@ -15,7 +15,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-angle-at-the-centre" style="max-width:520px">
-      <svg viewBox="0 0 420 320" width="100%" height="320" role="img"
+      <svg viewBox="0 0 420 320" width="100%" role="img"
            aria-label="A circle with fixed points A and B, a moving point P on the circumference, and the angles at P and at the centre that stand on the same arc"></svg>
       <label style="display:block;margin:.5rem 0 .3rem">
         Move the point P around the circle:

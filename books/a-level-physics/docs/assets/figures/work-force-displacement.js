@@ -17,7 +17,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div class="fig-work-force-displacement" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 560 262" width="100%" height="262" role="img"
+      <svg viewBox="0 0 560 262" width="100%" role="img"
            aria-label="A force-displacement graph with the area under the graph shaded as a rectangle, whose height is the force along the displacement and whose width is the displacement"></svg>
       <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem .8rem">
         <label>Force / N <input class="force" type="range" min="0" max="300" step="10" value="100"></label>
@@ -53,7 +53,7 @@ export function mount(el) {
         const y = yFor(value);
         return (
           `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-          `<text x="${LEFT - 9}" y="${(y + 4).toFixed(1)}" font-size="11" text-anchor="end" class="text-ink">${value}</text>`
+          `<text x="${LEFT - 9}" y="${(y + 4).toFixed(1)}" font-size="16" text-anchor="end" class="text-ink">${value}</text>`
         );
       })
       .join("");
@@ -63,7 +63,7 @@ export function mount(el) {
         const x = xFor(value);
         return (
           `<line x1="${x.toFixed(1)}" y1="${BASE}" x2="${x.toFixed(1)}" y2="${BASE + 5}" class="fig-ink"></line>` +
-          `<text x="${x.toFixed(1)}" y="${BASE + 18}" font-size="11" text-anchor="middle" class="text-ink">${value}</text>`
+          `<text x="${x.toFixed(1)}" y="${BASE + 18}" font-size="16" text-anchor="middle" class="text-ink">${value}</text>`
         );
       })
       .join("");
@@ -72,7 +72,7 @@ export function mount(el) {
       rectWidth > 62 && rectHeight > 22
         ? `<text x="${(LEFT + rectWidth / 2).toFixed(1)}" ` +
           `y="${(rectTop + rectHeight / 2 + 4).toFixed(1)}" ` +
-          `font-size="13" text-anchor="middle" class="text-accent">${Math.round(work)} J</text>`
+          `font-size="19" text-anchor="middle" class="text-accent">${Math.round(work)} J</text>`
         : "";
 
     svg.innerHTML =
@@ -80,8 +80,8 @@ export function mount(el) {
       `<line x1="${LEFT}" y1="${BASE}" x2="${RIGHT}" y2="${BASE}" class="fig-ink" stroke-width="2"></line>` +
       `<line x1="${LEFT}" y1="${BASE}" x2="${LEFT}" y2="${TOP}" class="fig-ink" stroke-width="2"></line>` +
       distanceTicks +
-      `<text x="${(LEFT + RIGHT) / 2}" y="${BASE + 38}" font-size="11" text-anchor="middle" class="text-ink">displacement / m</text>` +
-      `<text x="18" y="${(TOP + BASE) / 2}" font-size="11" text-anchor="middle" class="text-ink" ` +
+      `<text x="${(LEFT + RIGHT) / 2}" y="${BASE + 38}" font-size="16" text-anchor="middle" class="text-ink">displacement / m</text>` +
+      `<text x="18" y="${(TOP + BASE) / 2}" font-size="16" text-anchor="middle" class="text-ink" ` +
       `transform="rotate(-90 18 ${(TOP + BASE) / 2})">force along displacement / N</text>` +
       `<rect x="${LEFT}" y="${rectTop.toFixed(1)}" width="${rectWidth.toFixed(1)}" ` +
       `height="${rectHeight.toFixed(1)}" class="fig-accent" fill-opacity="0.18" stroke-width="2"></rect>` +

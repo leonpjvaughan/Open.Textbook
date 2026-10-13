@@ -13,7 +13,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-shm-graphs" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 600 300" width="100%" role="img"
            aria-label="Two graphs of simple harmonic motion: displacement against time, and acceleration against displacement"></svg>
       <label style="display:block;margin:.5rem 0">Amplitude (metres)
         <input class="amplitude" type="range" min="0.01" max="0.10" step="0.01" value="0.05">
@@ -58,10 +58,10 @@ export function mount(el) {
     const leftAxes =
       `<line x1="${LX0}" y1="${leftMid.toFixed(1)}" x2="${LX1}" y2="${leftMid.toFixed(1)}" class="fig-ink"></line>` +
       `<line x1="${LX0}" y1="${TOP}" x2="${LX0}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `<text x="${LX0}" y="${TOP - 12}" font-size="11" class="fig-ink">displacement x</text>` +
-      `<text x="${LX1}" y="${BOTTOM + 18}" font-size="11" class="fig-ink" text-anchor="end">time t</text>` +
-      `<text x="${LX0 - 6}" y="${TOP + 4}" font-size="10" class="fig-ink" text-anchor="end">+A</text>` +
-      `<text x="${LX0 - 6}" y="${BOTTOM + 4}" font-size="10" class="fig-ink" text-anchor="end">-A</text>`;
+      `<text x="${LX0}" y="${TOP - 12}" font-size="19" class="fig-ink">displacement x</text>` +
+      `<text x="${LX1}" y="${BOTTOM + 18}" font-size="19" class="fig-ink" text-anchor="end">time t</text>` +
+      `<text x="${LX0 - 6}" y="${TOP + 4}" font-size="17" class="fig-ink" text-anchor="end">+A</text>` +
+      `<text x="${LX0 - 6}" y="${BOTTOM + 4}" font-size="17" class="fig-ink" text-anchor="end">-A</text>`;
 
     let leftCurve = "";
     for (let index = 0; index <= 120; index += 1) {
@@ -71,7 +71,7 @@ export function mount(el) {
     }
     const leftLine =
       `<polyline points="${leftCurve.trim()}" class="fig-accent" fill="none" stroke-width="3"></polyline>` +
-      `<text x="${LX0 + 4}" y="${BOTTOM - 4}" font-size="10" class="fig-ink">x = A cos(omega t)</text>`;
+      `<text x="${LX0 + 4}" y="${BOTTOM - 4}" font-size="17" class="fig-ink">x = A cos(omega t)</text>`;
 
     // Right panel: acceleration against displacement, a straight line a = -omega^2 x.
     const rightMid = (TOP + BOTTOM) / 2;
@@ -81,14 +81,14 @@ export function mount(el) {
     const rightAxes =
       `<line x1="${RX0}" y1="${rightMid.toFixed(1)}" x2="${RX1}" y2="${rightMid.toFixed(1)}" class="fig-ink"></line>` +
       `<line x1="${(RX0 + RX1) / 2}" y1="${TOP}" x2="${(RX0 + RX1) / 2}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `<text x="${RX0}" y="${TOP - 12}" font-size="11" class="fig-ink">acceleration a</text>` +
-      `<text x="${RX1}" y="${BOTTOM + 18}" font-size="11" class="fig-ink" text-anchor="end">displacement x</text>` +
-      `<text x="${RX0 - 4}" y="${TOP + 4}" font-size="10" class="fig-ink" text-anchor="end">+a max</text>` +
-      `<text x="${RX0 - 4}" y="${BOTTOM + 4}" font-size="10" class="fig-ink" text-anchor="end">-a max</text>`;
+      `<text x="${RX0}" y="${TOP - 12}" font-size="19" class="fig-ink">acceleration a</text>` +
+      `<text x="${RX1}" y="${BOTTOM + 18}" font-size="19" class="fig-ink" text-anchor="end">displacement x</text>` +
+      `<text x="${RX0 - 4}" y="${TOP + 4}" font-size="17" class="fig-ink" text-anchor="end">+a max</text>` +
+      `<text x="${RX0 - 4}" y="${BOTTOM + 4}" font-size="17" class="fig-ink" text-anchor="end">-a max</text>`;
 
     const rightLine =
       `<line x1="${rxFor(-A).toFixed(1)}" y1="${ryFor(aMax).toFixed(1)}" x2="${rxFor(A).toFixed(1)}" y2="${ryFor(-aMax).toFixed(1)}" class="fig-good" stroke-width="3"></line>` +
-      `<text x="${RX0 + 6}" y="${BOTTOM - 4}" font-size="10" class="fig-ink">a = -omega squared x</text>`;
+      `<text x="${RX0 + 6}" y="${BOTTOM - 4}" font-size="17" class="fig-ink">a = -omega squared x</text>`;
 
     svg.innerHTML = leftAxes + leftLine + rightAxes + rightLine;
 

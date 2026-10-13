@@ -17,7 +17,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div class="fig-atom-builder" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 360 230" width="100%" height="230" role="img"
+      <svg viewBox="0 0 360 230" width="100%" role="img"
            aria-label="An atom drawn from protons, neutrons and electrons, changing as the sliders move"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Protons <input class="protons" type="range" min="1" max="6" step="1" value="3"></label>
@@ -79,18 +79,18 @@ export function mount(el) {
       const y = CENTRE.y + orbitRadius * Math.sin(angle);
       electrons.push(
         `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" class="fig-ink" fill="none" stroke-width="2"></circle>` +
-          `<text x="${x.toFixed(1)}" y="${(y + 3.5).toFixed(1)}" font-size="10" text-anchor="middle" class="fig-ink">-</text>`,
+          `<text x="${x.toFixed(1)}" y="${(y + 3.5).toFixed(1)}" font-size="11" text-anchor="middle" class="fig-ink">-</text>`,
       );
     }
     const orbit = `<circle cx="${CENTRE.x}" cy="${CENTRE.y}" r="${orbitRadius}" class="fig-grid" fill="none" stroke-dasharray="3 3"></circle>`;
 
     const legend =
       `<circle cx="286" cy="24" r="6" class="fig-accent"></circle>` +
-      `<text x="298" y="28" font-size="11" class="fig-ink">proton</text>` +
+      `<text x="298" y="28" font-size="12" class="fig-ink">proton</text>` +
       `<circle cx="286" cy="48" r="6" class="fig-grid" fill="none" stroke-width="2"></circle>` +
-      `<text x="298" y="52" font-size="11" class="fig-ink">neutron</text>` +
+      `<text x="298" y="52" font-size="12" class="fig-ink">neutron</text>` +
       `<circle cx="286" cy="72" r="6" class="fig-ink" fill="none" stroke-width="2"></circle>` +
-      `<text x="298" y="76" font-size="11" class="fig-ink">electron</text>`;
+      `<text x="298" y="76" font-size="12" class="fig-ink">electron</text>`;
 
     svg.innerHTML = legend + orbit + nucleus + nucleons + electrons.join("");
 

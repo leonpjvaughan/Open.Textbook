@@ -10,7 +10,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-power-energy" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 560 170" width="100%" height="170" role="img"
+      <svg viewBox="0 0 560 170" width="100%" role="img"
            aria-label="A bar whose height shows the energy transferred by a device, for a chosen power and time."></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Power (kW)
@@ -52,14 +52,14 @@ export function mount(el) {
     svg.innerHTML =
       `<line x1="60" y1="140" x2="500" y2="140" class="fig-ink" stroke-width="2"></line>` +
       `<rect x="180" y="${barY.toFixed(1)}" width="90" height="${barHeight.toFixed(1)}" class="fig-accent"></rect>` +
-      `<text x="225" y="${(barY - 8).toFixed(1)}" font-size="12" text-anchor="middle" class="fig-ink">${formatEnergy(energy)}</text>` +
-      `<text x="225" y="158" font-size="12" text-anchor="middle" class="fig-ink">your setting</text>` +
+      `<text x="225" y="${(barY - 8).toFixed(1)}" font-size="16" text-anchor="middle" class="fig-ink">${formatEnergy(energy)}</text>` +
+      `<text x="225" y="158" font-size="16" text-anchor="middle" class="fig-ink">your setting</text>` +
       `<line x1="360" y1="140" x2="360" y2="20" class="fig-grid" stroke-width="2" stroke-dasharray="4 4"></line>` +
-      `<text x="366" y="36" font-size="12" class="fig-ink">lamp: 0.10 kW for 30 min</text>` +
-      `<text x="366" y="52" font-size="12" class="fig-ink">= 180 kJ</text>` +
+      `<text x="366" y="36" font-size="16" class="fig-ink">lamp: 0.10 kW for 30 min</text>` +
+      `<text x="366" y="52" font-size="16" class="fig-ink">= 180 kJ</text>` +
       `<line x1="360" y1="80" x2="530" y2="80" class="fig-grid" stroke-width="2" stroke-dasharray="4 4"></line>` +
-      `<text x="366" y="96" font-size="12" class="fig-ink">heater: 2.0 kW for 1.0 min</text>` +
-      `<text x="366" y="112" font-size="12" class="fig-ink">= 120 kJ</text>`;
+      `<text x="366" y="96" font-size="16" class="fig-ink">heater: 2.0 kW for 1.0 min</text>` +
+      `<text x="366" y="112" font-size="16" class="fig-ink">= 120 kJ</text>`;
 
     readout.innerHTML =
       `Power <strong>${kilowatts.toFixed(2)} kW = ${watts} W</strong>. ` +

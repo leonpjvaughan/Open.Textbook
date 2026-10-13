@@ -15,7 +15,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-product-rule-rectangle" style="max-width:520px">
-      <svg viewBox="0 0 500 320" width="100%" height="320" role="img"
+      <svg viewBox="0 0 500 320" width="100%" role="img"
            aria-label="A rectangle whose width and height both grow, with the two new strips drawn along the right and the top and the small corner they leave drawn separately"></svg>
       <label style="display:block;margin:.5rem 0 .2rem">
         Grow the width:
@@ -47,7 +47,7 @@ export function mount(el) {
 
   const text = (x, y, label, cls, anchor = "middle") =>
     `<text x="${x.toFixed(0)}" y="${y.toFixed(0)}" text-anchor="${anchor}" ` +
-    `font-size="13" class="${cls}">${label}</text>`;
+    `font-size="15" class="${cls}">${label}</text>`;
 
   function draw() {
     const du = Number(growU.value); // how much the width grows

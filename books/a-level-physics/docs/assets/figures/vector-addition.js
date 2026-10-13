@@ -15,7 +15,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-vector-addition" style="font:14px system-ui;max-width:640px">
-      <svg viewBox="0 0 640 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 640 300" width="100%" role="img"
            aria-label="Two force arrows placed tip to tail, with the resultant arrow drawn from the tail of the first to the tip of the second"></svg>
       <label style="display:block;margin:.5rem 0">Force A in newtons
         <input class="force-a" type="range" min="1" max="10" step="1" value="6">
@@ -91,7 +91,7 @@ export function mount(el) {
     const x = (x1 + x2) / 2 + (-dy / length) * 16 * side;
     const y = (y1 + y2) / 2 + (dx / length) * 16 * side + 5;
     return (
-      `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="13" ` +
+      `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="18" ` +
       `text-anchor="middle" class="${cls}">${text}</text>`
     );
   }
@@ -136,7 +136,7 @@ export function mount(el) {
         `A ${radius} ${radius} 0 0 0 ${endX.toFixed(1)} ${endY.toFixed(1)}" class="fig-line"></path>` +
         `<text x="${(tipAX + (radius + 16) * Math.cos(radians / 2)).toFixed(1)}" ` +
         `y="${(tipAY - (radius + 16) * Math.sin(radians / 2) + 5).toFixed(1)}" ` +
-        `font-size="13" text-anchor="middle" class="text-ink">&theta;</text>`;
+        `font-size="18" text-anchor="middle" class="text-ink">&theta;</text>`;
     }
 
     svg.innerHTML =

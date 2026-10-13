@@ -9,7 +9,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-wave-parameters" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 220" width="100%" height="220" role="img"
+      <svg viewBox="0 0 560 220" width="100%" role="img"
            aria-label="A snapshot of a transverse wave. One wavelength is marked with an arrow, and the frequency and wave speed can be changed"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Frequency (Hz) <input class="frequency" type="range" min="1" max="4" step="0.5" value="2"></label>
@@ -53,14 +53,14 @@ export function mount(el) {
           `<line x1="${(LEFT + secondCrest * PIXELS_PER_METRE).toFixed(1)}" y1="34" ` +
           `x2="${(LEFT + secondCrest * PIXELS_PER_METRE).toFixed(1)}" y2="46" class="fig-warn" stroke-width="2"></line>` +
           `<text x="${(LEFT + ((firstCrest + secondCrest) / 2) * PIXELS_PER_METRE).toFixed(1)}" ` +
-          `y="30" font-size="11" text-anchor="middle" class="fig-ink">one wavelength = ${wavelength.toFixed(2)} m</text>`
-        : `<text x="${(LEFT + WIDTH / 2).toFixed(1)}" y="30" font-size="11" text-anchor="middle" class="fig-ink">one wavelength is wider than the drawing</text>`;
+          `y="30" font-size="16" text-anchor="middle" class="fig-ink">one wavelength = ${wavelength.toFixed(2)} m</text>`
+        : `<text x="${(LEFT + WIDTH / 2).toFixed(1)}" y="30" font-size="16" text-anchor="middle" class="fig-ink">one wavelength is wider than the drawing</text>`;
 
     const axes =
       `<line x1="${LEFT}" y1="${AXIS}" x2="${LEFT + WIDTH}" y2="${AXIS}" class="fig-ink" stroke-width="2"></line>` +
       `<line x1="${LEFT}" y1="50" x2="${LEFT}" y2="200" class="fig-ink" stroke-width="2"></line>` +
-      `<text x="${LEFT + WIDTH / 2}" y="215" font-size="11" text-anchor="middle" class="fig-ink">distance (m)</text>` +
-      `<text x="14" y="${AXIS}" font-size="11" class="fig-ink" transform="rotate(-90 14 ${AXIS})">displacement</text>`;
+      `<text x="${LEFT + WIDTH / 2}" y="215" font-size="16" text-anchor="middle" class="fig-ink">distance (m)</text>` +
+      `<text x="14" y="${AXIS}" font-size="16" class="fig-ink" transform="rotate(-90 14 ${AXIS})">displacement</text>`;
 
     svg.innerHTML =
       axes +

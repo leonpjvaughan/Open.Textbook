@@ -11,7 +11,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-semicircle-angle" style="max-width:520px">
-      <svg viewBox="0 0 420 260" width="100%" height="260" role="img"
+      <svg viewBox="0 0 420 260" width="100%" role="img"
            aria-label="A circle with a diameter and a point on the circumference joined to both ends, showing the angle at that point staying a right angle as it moves"></svg>
       <label style="display:block;margin:.6rem 0 .3rem">
         Move the point around the circle:

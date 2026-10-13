@@ -15,7 +15,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div style="max-width:580px">
-      <svg viewBox="0 0 560 280" width="100%" height="280" role="img"
+      <svg viewBox="0 0 560 280" width="100%" role="img"
            aria-label="A velocity-time graph for a straight rising line, with the triangle under the line shaded to show the distance travelled"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Top speed in m/s
@@ -50,14 +50,14 @@ export function mount(el) {
       const x = xFor(seconds);
       grid +=
         `<line x1="${x.toFixed(1)}" y1="${TOP}" x2="${x.toFixed(1)}" y2="${BASE}" class="fig-grid"></line>` +
-        `<text x="${x.toFixed(1)}" y="${BASE + 18}" font-size="11" text-anchor="middle" ` +
+        `<text x="${x.toFixed(1)}" y="${BASE + 18}" font-size="16" text-anchor="middle" ` +
         `class="text-ink">${seconds}</text>`;
     }
     for (let value = 0; value <= MAX_SPEED; value += 4) {
       const y = yFor(value);
       grid +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${(LEFT - 9).toFixed(1)}" y="${(y + 4).toFixed(1)}" font-size="11" ` +
+        `<text x="${(LEFT - 9).toFixed(1)}" y="${(y + 4).toFixed(1)}" font-size="16" ` +
         `text-anchor="end" class="text-ink">${value}</text>`;
     }
 
@@ -73,7 +73,7 @@ export function mount(el) {
     const areaLabel =
       width > 70 && height > 40
         ? `<text x="${(LEFT + width / 2).toFixed(1)}" y="${(BASE - height / 3).toFixed(1)}" ` +
-          `font-size="13" text-anchor="middle" class="text-accent">${format(distance)} m</text>`
+          `font-size="19" text-anchor="middle" class="text-accent">${format(distance)} m</text>`
         : "";
 
     svg.innerHTML =
@@ -85,9 +85,9 @@ export function mount(el) {
       `class="fig-line" stroke-width="2.5"></line>` +
       areaLabel +
       `<circle cx="${cornerX.toFixed(1)}" cy="${cornerY.toFixed(1)}" r="5" class="fig-warn"></circle>` +
-      `<text x="${((LEFT + RIGHT) / 2).toFixed(1)}" y="${BASE + 36}" font-size="11" ` +
+      `<text x="${((LEFT + RIGHT) / 2).toFixed(1)}" y="${BASE + 36}" font-size="16" ` +
       `text-anchor="middle" class="text-ink">time in seconds</text>` +
-      `<text x="16" y="${((TOP + BASE) / 2).toFixed(1)}" font-size="11" text-anchor="middle" ` +
+      `<text x="16" y="${((TOP + BASE) / 2).toFixed(1)}" font-size="16" text-anchor="middle" ` +
       `class="text-ink" transform="rotate(-90 16 ${((TOP + BASE) / 2).toFixed(1)})">velocity in m/s</text>`;
 
     readout.innerHTML =

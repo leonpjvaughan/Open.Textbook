@@ -17,7 +17,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div class="fig-similarity-scale" style="max-width:560px">
-      <svg viewBox="0 0 520 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 520 300" width="100%" role="img"
            aria-label="A square and a cube grow with the length scale factor; the square is divided into small squares and the cube into small cubes"></svg>
       <label style="display:block;margin:.6rem 0 .2rem">
         Length scale factor:
@@ -45,8 +45,8 @@ export function mount(el) {
     return (
       grid.join("") +
       `<rect x="${SQ_X}" y="${top}" width="${side}" height="${side}" class="fig-line"></rect>` +
-      `<text x="${SQ_X}" y="44" class="text-ink" font-size="14">Area</text>` +
-      `<text x="${SQ_X}" y="${BASE + 26}" class="text-accent" font-size="13">area × ${k * k}</text>`
+      `<text x="${SQ_X}" y="44" class="text-ink" font-size="16">Area</text>` +
+      `<text x="${SQ_X}" y="${BASE + 26}" class="text-accent" font-size="15">area × ${k * k}</text>`
     );
   }
 
@@ -93,8 +93,8 @@ export function mount(el) {
     return (
       grid.join("") +
       ink +
-      `<text x="${CUBE_X}" y="44" class="text-ink" font-size="14">Volume</text>` +
-      `<text x="${CUBE_X}" y="${BASE + 26}" class="text-warn" font-size="13">volume × ${k * k * k}</text>`
+      `<text x="${CUBE_X}" y="44" class="text-ink" font-size="16">Volume</text>` +
+      `<text x="${CUBE_X}" y="${BASE + 26}" class="text-warn" font-size="15">volume × ${k * k * k}</text>`
     );
   }
 

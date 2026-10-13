@@ -13,7 +13,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 520 360" width="100%" height="340" role="img"
+      <svg viewBox="0 0 520 360" width="100%" role="img"
            aria-label="A rectangle split into four smaller rectangles whose areas are the four terms of an expanded product"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>First number <input class="a" type="range" min="1" max="6" step="1" value="3"></label>
@@ -46,7 +46,7 @@ export function mount(el) {
 
     // A word is painted with text-*; the shape behind it is painted with fig-*.
     const text = (x, y, value, cls, anchor = "middle") =>
-      `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="13" ` +
+      `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="15" ` +
       `text-anchor="${anchor}" class="text-${cls}">${value}</text>`;
 
     const region = (rx, ry, rw, rh, value, cls) =>

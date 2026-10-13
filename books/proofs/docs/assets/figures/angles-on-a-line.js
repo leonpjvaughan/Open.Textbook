@@ -14,7 +14,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-angles-on-a-line" style="max-width:520px">
-      <svg viewBox="0 0 400 220" width="100%" height="220" role="img"
+      <svg viewBox="0 0 400 220" width="100%" role="img"
            aria-label="A triangle with a line drawn through its top corner parallel to the base, showing the three angles at the top corner lying on a straight line"></svg>
       <label style="display:block;margin:.6rem 0 .3rem">
         Move the top corner:

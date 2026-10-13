@@ -12,7 +12,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-ideal-gas" style="font:14px system-ui;max-width:640px">
-      <svg viewBox="0 0 640 280" width="100%" height="280" role="img"
+      <svg viewBox="0 0 640 280" width="100%" role="img"
            aria-label="A box of gas molecules with a piston, showing how temperature and volume change the pressure"></svg>
       <label style="display:block;margin:.5rem 0">Temperature (K)
         <input class="temp" type="range" min="100" max="600" step="10" value="300">
@@ -77,8 +77,8 @@ export function mount(el) {
     const frame =
       `<rect x="${BOX_LEFT}" y="${BOX_TOP}" width="${width.toFixed(1)}" height="${BOX_BOTTOM - BOX_TOP}" fill="none" class="fig-ink" stroke-width="3"></rect>` +
       `<line x1="${boxRight}" y1="${BOX_TOP}" x2="${boxRight}" y2="${BOX_BOTTOM}" class="fig-ink" stroke-width="6"></line>` +
-      `<text x="${(BOX_LEFT + boxRight) / 2}" y="${BOX_BOTTOM + 26}" font-size="12" class="fig-ink" text-anchor="middle">volume</text>` +
-      `<text x="${(boxRight + 6).toFixed(1)}" y="${BOX_TOP - 8}" font-size="11" class="fig-ink">piston</text>`;
+      `<text x="${(BOX_LEFT + boxRight) / 2}" y="${BOX_BOTTOM + 26}" font-size="20" class="fig-ink" text-anchor="middle">volume</text>` +
+      `<text x="${(boxRight + 6).toFixed(1)}" y="${BOX_TOP - 8}" font-size="18" class="fig-ink">piston</text>`;
 
     svg.innerHTML = frame + dots;
 

@@ -19,7 +19,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div class="fig-em-spectrum" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 120" width="100%" height="120" role="img"
+      <svg viewBox="0 0 600 120" width="100%" role="img"
            aria-label="A strip of the seven groups of the electromagnetic spectrum, with the group chosen by the slider highlighted"></svg>
       <label style="display:block;margin:.6rem 0 .3rem">
         Frequency: <input class="freq" type="range" min="5" max="19" step="0.02" value="7">
@@ -68,7 +68,7 @@ export function mount(el) {
       return (
         `<rect x="${x}" y="30" width="${width - 2}" height="34" class="${cls}" ` +
         `stroke-width="1"></rect>` +
-        `<text x="${x + width / 2}" y="82" font-size="11" text-anchor="middle" ` +
+        `<text x="${x + width / 2}" y="82" font-size="17" text-anchor="middle" ` +
         `class="fig-ink">${group.name}</text>`
       );
     }).join("");

@@ -19,7 +19,7 @@ import yaml
 
 from textbook import book as book_mod
 from textbook.verify import oracles
-from textbook.verify.verify import verify_bank
+from textbook.verify.verify import Report, verify_bank, verify_problem
 
 #: The table an author (``PROBLEMS.md``) and CI read. Changing a check kind or
 #: moving one between oracles must change this file in the same commit.
@@ -94,6 +94,74 @@ def test_an_unknown_check_kind_is_an_error_not_a_pass():
     report = _Report()
     oracles.verify_check({"kind": "ghost"}, {}, report, oracles.select())
     assert report.errors and "ghost" in report.errors[0]
+
+
+# --- malformed records report, they do not raise ------------------------------
+
+
+#: A check whose handler reads a key the record does not have. The verifier's
+#: contract is a report, so each must produce an error, not a traceback that
+#: names no record. ``hypothesis`` guards its own keys already; it is here so the
+#: list covers the reviewer's five reproductions.
+MALFORMED_CHECKS = [
+    {"kind": "evaluate"},
+    {"kind": "rounded", "value": "1.2"},
+    {"kind": "compare", "lhs": "1", "rhs": "2"},
+    {"kind": "between", "low": "0"},
+    {"kind": "hypothesis", "distribution": "binomial"},
+]
+
+
+@pytest.mark.parametrize(
+    "check", MALFORMED_CHECKS, ids=[c["kind"] for c in MALFORMED_CHECKS]
+)
+def test_a_malformed_check_is_a_report_not_a_traceback(check):
+    report = verify_problem({"id": "typo", "check": check})
+    assert isinstance(report, Report)
+    assert report.errors, f"{check['kind']} with missing keys was accepted"
+
+
+def test_the_report_names_what_is_malformed():
+    report = verify_problem({"id": "typo", "check": {"kind": "evaluate"}})
+    assert any("malformed" in error for error in report.errors), report.errors
+
+
+# --- an `all` that asserts nothing is not a check -----------------------------
+
+
+def test_an_all_with_no_sub_checks_is_an_error():
+    """The same rule as ``structured``: a check that cannot fail is not a check."""
+    report = verify_problem({"id": "empty", "check": {"kind": "all"}})
+    assert not report.ok
+    assert any("asserts nothing" in error for error in report.errors), report.errors
+
+
+def test_an_all_with_sub_checks_can_still_fail():
+    """The guard must not turn a working composite into a pass."""
+    report = verify_problem(
+        {
+            "id": "composite",
+            "check": {
+                "kind": "all",
+                "checks": [
+                    {"kind": "evaluate", "expression": "1 + 1", "answer": "2"},
+                    {"kind": "evaluate", "expression": "1 + 1", "answer": "3"},
+                ],
+            },
+        }
+    )
+    assert not report.ok
+
+
+def test_an_unselected_oracle_inside_an_all_still_fails_loudly():
+    """The malformed-check guard must not swallow the deliberate loud failures."""
+    with pytest.raises(oracles.UnknownCheck, match="units"):
+        oracles.verify_check(
+            {"kind": "all", "checks": [{"kind": "dimensions"}]},
+            {},
+            Report(problem_id="case"),
+            oracles.select(["sympy"]),
+        )
 
 
 def test_a_book_declares_the_oracles_its_banks_may_use():

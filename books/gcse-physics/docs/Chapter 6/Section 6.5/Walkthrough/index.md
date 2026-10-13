@@ -106,7 +106,7 @@ change the sign of the charge and the distance from the sphere.
 **Test.** Press the button to change the sign of the charge. Watch the arrows on
 the field lines. Then move the distance slider and watch the strength readout.
 
-:::figure electric-field
+:::figure sphere-electric-field
 
 **Explain.** A charged sphere can attract a small charged object without
 touching it. Use the idea of an electric field to explain how the force acts at

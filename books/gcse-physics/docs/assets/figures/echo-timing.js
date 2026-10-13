@@ -8,7 +8,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-echo-timing" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 240" width="100%" height="240" role="img"
+      <svg viewBox="0 0 560 240" width="100%" role="img"
            aria-label="A boat sends a sound pulse down to a boundary and the reflection returns. The depth and the speed of the wave can be changed"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Depth (m) <input class="depth" type="range" min="10" max="60" step="5" value="30"></label>
@@ -31,11 +31,11 @@ export function mount(el) {
     const boat =
       `<polygon points="${CENTRE_X - 40},${BOAT_Y} ${CENTRE_X + 40},${BOAT_Y} ` +
       `${CENTRE_X + 26},${BOAT_Y + 18} ${CENTRE_X - 26},${BOAT_Y + 18}" class="fig-ink"></polygon>` +
-      `<text x="${CENTRE_X}" y="${BOAT_Y - 10}" font-size="11" text-anchor="middle" class="fig-ink">survey boat</text>`;
+      `<text x="${CENTRE_X}" y="${BOAT_Y - 10}" font-size="16" text-anchor="middle" class="fig-ink">survey boat</text>`;
 
     const seabed =
       `<line x1="60" y1="${SEABED_Y}" x2="500" y2="${SEABED_Y}" class="fig-ink" stroke-width="3"></line>` +
-      `<text x="505" y="${SEABED_Y + 4}" font-size="11" text-anchor="end" class="fig-ink">boundary</text>`;
+      `<text x="505" y="${SEABED_Y + 4}" font-size="16" text-anchor="end" class="fig-ink">boundary</text>`;
 
     const down =
       `<line x1="${CENTRE_X - 12}" y1="${BOAT_Y + 20}" x2="${CENTRE_X - 12}" y2="${SEABED_Y - 8}" ` +
@@ -50,10 +50,10 @@ export function mount(el) {
       `${CENTRE_X + 18},${BOAT_Y + 28}" class="fig-warn"></polygon>`;
 
     const labels =
-      `<text x="${CENTRE_X - 22}" y="${(BOAT_Y + SEABED_Y) / 2}" font-size="11" text-anchor="end" class="fig-ink">going down</text>` +
-      `<text x="${CENTRE_X + 22}" y="${(BOAT_Y + SEABED_Y) / 2}" font-size="11" class="fig-ink">reflection</text>` +
+      `<text x="${CENTRE_X - 22}" y="${(BOAT_Y + SEABED_Y) / 2}" font-size="16" text-anchor="end" class="fig-ink">going down</text>` +
+      `<text x="${CENTRE_X + 22}" y="${(BOAT_Y + SEABED_Y) / 2}" font-size="16" class="fig-ink">reflection</text>` +
       `<line x1="150" y1="${BOAT_Y + 18}" x2="150" y2="${SEABED_Y}" class="fig-grid" stroke-dasharray="3 3"></line>` +
-      `<text x="158" y="${(BOAT_Y + SEABED_Y) / 2}" font-size="11" class="fig-ink">depth = ${depth} m</text>`;
+      `<text x="158" y="${(BOAT_Y + SEABED_Y) / 2}" font-size="16" class="fig-ink">depth = ${depth} m</text>`;
 
     svg.innerHTML = boat + seabed + down + up + labels;
 

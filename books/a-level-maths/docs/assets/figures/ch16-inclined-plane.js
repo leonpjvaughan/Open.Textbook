@@ -11,6 +11,9 @@ const SLOPE_LEN = 330;
 const G = 9.8;
 
 function arrow(x1, y1, x2, y2, cls, dash) {
+  // A component along the slope is zero at 0 degrees; drawing it would leave a
+  // stray arrowhead sitting on the block.
+  if (Math.hypot(x2 - x1, y2 - y1) < 1) return "";
   const angle = Math.atan2(y2 - y1, x2 - x1);
   const size = 9;
   const spread = 0.42;
@@ -38,6 +41,23 @@ function line(x1, y1, x2, y2, cls, dash) {
     `x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" class="${cls}" ` +
     `fill="none" stroke-width="1"${dashAttr}></line>`
   );
+}
+
+// Keep an arrow inside the 460 by 330 frame. Scaling the whole vector keeps its
+// direction — the weight still points straight down, the components keep their
+// angles — and only the length gives way. At 0 degrees the block sits 52 px
+// above the bottom, and the weight arrow is longer than that.
+function fitArrow(x1, y1, x2, y2) {
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const margin = 8;
+  let k = 1;
+  if (dx > 1e-9) k = Math.min(k, (460 - margin - x1) / dx);
+  if (dx < -1e-9) k = Math.min(k, (margin - x1) / dx);
+  if (dy > 1e-9) k = Math.min(k, (330 - margin - y1) / dy);
+  if (dy < -1e-9) k = Math.min(k, (margin - y1) / dy);
+  k = Math.max(0, Math.min(1, k));
+  return [x1 + dx * k, y1 + dy * k];
 }
 
 export function mount(el) {
@@ -86,14 +106,17 @@ export function mount(el) {
     const alongY = by - along * SCALE * upy;
     const intoX = bx - into * SCALE * outx;
     const intoY = by - into * SCALE * outy;
+    const [wx, wy] = fitArrow(bx, by, weightX, weightY);
+    const [alx, aly] = fitArrow(bx, by, alongX, alongY);
+    const [inx, iny] = fitArrow(bx, by, intoX, intoY);
 
     const ground = line(PIVOT_X, BASE_Y, 430, BASE_Y, "fig-ink", false);
     const slope = line(PIVOT_X, BASE_Y, topX, topY, "fig-ink", false);
     const corner = line(topX, topY, topX, BASE_Y, "fig-grid", true);
 
     const parallelogram =
-      line(weightX, weightY, alongX, alongY, "fig-grid", true) +
-      line(weightX, weightY, intoX, intoY, "fig-grid", true);
+      line(wx, wy, alx, aly, "fig-grid", true) +
+      line(wx, wy, inx, iny, "fig-grid", true);
 
     // A short tick marks the surface the block rests on.
     const tickX = bx + 26 * outx;
@@ -105,9 +128,9 @@ export function mount(el) {
       corner +
       line(bx, by, tickX, tickY, "fig-ink", false) +
       parallelogram +
-      arrow(bx, by, weightX, weightY, "fig-warn") +
-      arrow(bx, by, alongX, alongY, "fig-accent") +
-      arrow(bx, by, intoX, intoY, "fig-good");
+      arrow(bx, by, wx, wy, "fig-warn") +
+      arrow(bx, by, alx, aly, "fig-accent") +
+      arrow(bx, by, inx, iny, "fig-good");
 
     const angleDeg = Number(inputs.angle.value);
     readout.textContent =

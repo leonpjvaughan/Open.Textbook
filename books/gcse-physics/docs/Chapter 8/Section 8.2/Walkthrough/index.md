@@ -196,7 +196,7 @@ $-20\,^\circ\text{C}$ and ending as steam. You can change the power of the heate
 **Test.** Move the power slider. Watch how long each stage takes. Compare a low
 power with a high power.
 
-:::figure heating-curve
+:::figure ice-heating-curve
 
 **Explain.** The energy needed to melt the ice is the same whatever the power of
 the heater. Explain why a higher power makes the flat part shorter in time but

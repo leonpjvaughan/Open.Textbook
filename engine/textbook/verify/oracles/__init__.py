@@ -153,15 +153,28 @@ def verify_check(
 
     ``all`` composes sub-checks through the same dispatch, so a composite can
     mix kinds from different oracles.
+
+    A malformed check is a report, not an exception: the module's contract is a
+    report rather than a raise, so an author's typo must reach them as a named
+    error rather than a traceback that names no record. The oracles read a check
+    as it is written and raise ``KeyError``/``TypeError``/``ValueError`` while
+    doing so; this is the one place that turns those into ``report.errors``.
+    ``UnknownOracle``/``UnknownCheck`` are deliberate loud failures and pass
+    through.
     """
     kind = check.get("kind")
     handler = selection.handler(kind)
     if handler is None:
         report.errors.append(f"check: unknown kind {kind!r}")
         return
-    handler(
-        check,
-        symbols,
-        report,
-        lambda sub: verify_check(sub, symbols, report, selection),
-    )
+    try:
+        handler(
+            check,
+            symbols,
+            report,
+            lambda sub: verify_check(sub, symbols, report, selection),
+        )
+    except (UnknownOracle, UnknownCheck):
+        raise
+    except (KeyError, TypeError, ValueError) as err:
+        report.errors.append(f"check: malformed ({err})")

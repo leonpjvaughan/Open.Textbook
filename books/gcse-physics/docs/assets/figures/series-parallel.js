@@ -10,7 +10,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-series-parallel" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 560 220" width="100%" height="220" role="img"
+      <svg viewBox="0 0 560 220" width="100%" role="img"
            aria-label="Two lamps connected to a battery, either in series or in parallel, with the right-hand lamp able to be removed."></svg>
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0">
         <button type="button" class="mode-series" aria-pressed="true">Series</button>
@@ -69,12 +69,12 @@ export function mount(el) {
       "M 90 100 L 90 60",
     ];
     let figure = wires(paths);
-    figure += `<text x="80" y="115" font-size="12" text-anchor="end" class="fig-ink">6.0 V</text>`;
+    figure += `<text x="80" y="115" font-size="16" text-anchor="end" class="fig-ink">6.0 V</text>`;
     figure += battery(90, 115);
     figure += lamp(200, 60, !removed);
     if (removed) {
       figure +=
-        `<text x="320" y="72" font-size="12" text-anchor="middle" class="fig-warn">removed</text>` +
+        `<text x="320" y="72" font-size="16" text-anchor="middle" class="fig-warn">removed</text>` +
         `<line x1="300" y1="60" x2="340" y2="60" class="fig-warn" stroke-width="2" stroke-dasharray="4 4"></line>`;
     } else {
       figure += lamp(320, 60, true);
@@ -95,7 +95,7 @@ export function mount(el) {
       "M 90 100 L 90 60",
     ];
     let figure = wires(paths);
-    figure += `<text x="80" y="115" font-size="12" text-anchor="end" class="fig-ink">6.0 V</text>`;
+    figure += `<text x="80" y="115" font-size="16" text-anchor="end" class="fig-ink">6.0 V</text>`;
     figure += battery(90, 115);
     figure += lamp(230, 100, leftLit);
     figure += lamp(390, 100, rightLit);
@@ -107,7 +107,7 @@ export function mount(el) {
       `<circle cx="390" cy="170" r="3" class="fig-ink"></circle>`;
     if (removed) {
       figure +=
-        `<text x="390" y="54" font-size="12" text-anchor="middle" class="fig-warn">removed</text>`;
+        `<text x="390" y="54" font-size="16" text-anchor="middle" class="fig-warn">removed</text>`;
     }
     return figure;
   }

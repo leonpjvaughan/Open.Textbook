@@ -10,7 +10,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-gas-pressure-volume" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 170" width="100%" height="170" role="img"
+      <svg viewBox="0 0 560 170" width="100%" role="img"
            aria-label="A cylinder of gas with a movable piston, showing more particles per unit volume and a higher pressure as the gas is compressed"></svg>
       <label style="display:block;margin:.3rem 0">Volume (m cubed)
         <input class="volume" type="range" min="0.20" max="2.00" step="0.05" value="1.00"></label>
@@ -58,7 +58,7 @@ export function mount(el) {
       `<rect x="${LEFT}" y="${TOP}" width="${width.toFixed(1)}" height="${HEIGHT}" class="fig-ink" fill="none" stroke-width="2"></rect>` +
       `<line x1="${(LEFT + width).toFixed(1)}" y1="${TOP - 18}" x2="${(LEFT + width).toFixed(1)}" y2="${TOP + HEIGHT + 18}" class="fig-warn" stroke-width="5"></line>` +
       `<line x1="${LEFT}" y1="${TOP + HEIGHT + 30}" x2="${LEFT + WIDTH_MAX}" y2="${TOP + HEIGHT + 30}" class="fig-ink" stroke-width="2"></line>` +
-      `<text x="${(LEFT + width / 2).toFixed(1)}" y="${TOP + HEIGHT + 48}" font-size="10" text-anchor="middle" class="fig-ink">piston</text>` +
+      `<text x="${(LEFT + width / 2).toFixed(1)}" y="${TOP + HEIGHT + 48}" font-size="16" text-anchor="middle" class="fig-ink">piston</text>` +
       dots;
 
     readout.innerHTML =

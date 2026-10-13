@@ -14,7 +14,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-sine-rule-perpendicular" style="max-width:540px">
-      <svg viewBox="0 0 400 230" width="100%" height="230" role="img"
+      <svg viewBox="0 0 400 230" width="100%" role="img"
            aria-label="A triangle with a perpendicular dropped from the top corner to the base, splitting it into two right-angled triangles that both contain the same height"></svg>
       <label style="display:block;margin:.5rem 0 .2rem">
         Move the top corner sideways:

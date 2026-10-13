@@ -35,15 +35,21 @@ LINK_URL = re.compile(r"\]\([^)]+\)")
 
 
 def prose_lines(text: str):
-    """Yield (line_number, raw, prose) with code and maths replaced by a token.
+    r"""Yield (line_number, raw, prose) with code and maths replaced by a token.
 
     The token has no spaces, so removing maths cannot create phantom double
     spaces or repeated words.
+
+    Display maths is removed *before* the text is split into lines: a
+    ``$$ … $$`` block spans lines, so linting it a line at a time read the LaTeX
+    as prose, and ``\color`` was reported as a US spelling and ``\,`` as a
+    missing space. Each match is replaced with the token plus the newlines it
+    contained, so the line numbers a finding cites still point at the same line.
     """
     text = FENCE.sub(lambda m: "\n" * m.group(0).count("\n"), text)
+    text = DISPLAY_MATH.sub(lambda m: "\x00" + "\n" * m.group(0).count("\n"), text)
     for number, line in enumerate(text.splitlines(), 1):
-        stripped = DISPLAY_MATH.sub("\x00", line)
-        stripped = INLINE_MATH.sub("\x00", stripped)
+        stripped = INLINE_MATH.sub("\x00", line)
         stripped = CODE_SPAN.sub("\x00", stripped)
         stripped = LINK_URL.sub("]", stripped)
         yield number, line, stripped

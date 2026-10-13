@@ -17,7 +17,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div style="max-width:580px">
-      <svg viewBox="0 0 560 250" width="100%" height="250" role="img"
+      <svg viewBox="0 0 560 250" width="100%" role="img"
            aria-label="The first six terms of a linear sequence plotted against their positions and joined by a straight line"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Common difference
@@ -76,7 +76,7 @@ export function mount(el) {
       valueLines +=
         `<line x1="${AXIS_X}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" ` +
         `class="${lineClass}" stroke-width="${lineWidth}"></line>` +
-        `<text x="${(AXIS_X - 8).toFixed(1)}" y="${(y + 4).toFixed(1)}" font-size="11" ` +
+        `<text x="${(AXIS_X - 8).toFixed(1)}" y="${(y + 4).toFixed(1)}" font-size="16" ` +
         `text-anchor="end" class="text-ink">${format(value)}</text>`;
     }
 
@@ -85,7 +85,7 @@ export function mount(el) {
       const x = xFor(position);
       positionTicks.push(
         `<line x1="${x.toFixed(1)}" y1="${BASE}" x2="${x.toFixed(1)}" y2="${BASE + 5}" class="fig-ink"></line>` +
-          `<text x="${x.toFixed(1)}" y="${BASE + 19}" font-size="11" text-anchor="middle" ` +
+          `<text x="${x.toFixed(1)}" y="${BASE + 19}" font-size="16" text-anchor="middle" ` +
           `class="text-ink">${position}</text>`,
       );
     }
@@ -100,7 +100,7 @@ export function mount(el) {
         const y = yFor(term);
         return (
           `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" class="fig-accent"></circle>` +
-          `<text x="${x.toFixed(1)}" y="${(y - 11).toFixed(1)}" font-size="12" ` +
+          `<text x="${x.toFixed(1)}" y="${(y - 11).toFixed(1)}" font-size="18" ` +
           `text-anchor="middle" class="text-accent">${format(term)}</text>`
         );
       })
@@ -113,8 +113,8 @@ export function mount(el) {
       positionTicks.join("") +
       `<polyline points="${points}" class="fig-line"></polyline>` +
       dots +
-      `<text x="${AXIS_X + 4}" y="${TOP - 10}" font-size="11" text-anchor="start" class="text-ink">term</text>` +
-      `<text x="${RIGHT}" y="${BASE + 34}" font-size="11" text-anchor="end" class="text-ink">position</text>`;
+      `<text x="${AXIS_X + 4}" y="${TOP - 10}" font-size="16" text-anchor="start" class="text-ink">term</text>` +
+      `<text x="${RIGHT}" y="${BASE + 34}" font-size="16" text-anchor="end" class="text-ink">position</text>`;
 
     const rule =
       `term = ${format(step)} × position ` +

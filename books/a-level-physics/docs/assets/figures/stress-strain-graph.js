@@ -23,7 +23,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div class="fig-stress-strain-graph" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 560 262" width="100%" height="262" role="img"
+      <svg viewBox="0 0 560 262" width="100%" role="img"
            aria-label="A stress-strain graph for a wire. The line is straight through the origin, and its gradient is the Young modulus of the material"></svg>
       <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem .8rem">
         <label>Material
@@ -81,7 +81,7 @@ export function mount(el) {
         const y = yFor(value * 1e8);
         return (
           `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-          `<text x="${LEFT - 9}" y="${(y + 4).toFixed(1)}" font-size="11" text-anchor="end" class="text-ink">${value * 100}</text>`
+          `<text x="${LEFT - 9}" y="${(y + 4).toFixed(1)}" font-size="16" text-anchor="end" class="text-ink">${value * 100}</text>`
         );
       })
       .join("");
@@ -91,7 +91,7 @@ export function mount(el) {
         const x = xFor(value * 1e-3);
         return (
           `<line x1="${x.toFixed(1)}" y1="${BASE}" x2="${x.toFixed(1)}" y2="${BASE + 5}" class="fig-ink"></line>` +
-          `<text x="${x.toFixed(1)}" y="${BASE + 18}" font-size="11" text-anchor="middle" class="text-ink">${value}</text>`
+          `<text x="${x.toFixed(1)}" y="${BASE + 18}" font-size="16" text-anchor="middle" class="text-ink">${value}</text>`
         );
       })
       .join("");
@@ -117,14 +117,14 @@ export function mount(el) {
       `<line x1="${LEFT}" y1="${BASE}" x2="${RIGHT}" y2="${BASE}" class="fig-ink" stroke-width="2"></line>` +
       `<line x1="${LEFT}" y1="${BASE}" x2="${LEFT}" y2="${TOP}" class="fig-ink" stroke-width="2"></line>` +
       strainTicks +
-      `<text x="${(LEFT + RIGHT) / 2}" y="${BASE + 38}" font-size="11" text-anchor="middle" class="text-ink">strain / 10⁻³</text>` +
-      `<text x="18" y="${(TOP + BASE) / 2}" font-size="11" text-anchor="middle" class="text-ink" ` +
+      `<text x="${(LEFT + RIGHT) / 2}" y="${BASE + 38}" font-size="16" text-anchor="middle" class="text-ink">strain / 10⁻³</text>` +
+      `<text x="18" y="${(TOP + BASE) / 2}" font-size="16" text-anchor="middle" class="text-ink" ` +
       `transform="rotate(-90 18 ${(TOP + BASE) / 2})">stress / MPa</text>` +
       triangle +
       `<line x1="${LEFT}" y1="${BASE}" x2="${xFor(exitStrain).toFixed(1)}" ` +
       `y2="${yFor(exitStress).toFixed(1)}" class="fig-accent" stroke-width="3"></line>` +
       `<text x="${(xFor(exitStrain) - 6).toFixed(1)}" y="${(yFor(exitStress) + 16).toFixed(1)}" ` +
-      `font-size="11" text-anchor="end" class="text-accent">gradient = E</text>` +
+      `font-size="16" text-anchor="end" class="text-accent">gradient = E</text>` +
       marker;
 
     readout.innerHTML =

@@ -12,7 +12,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-motion-graphs" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 600 300" width="100%" role="img"
            aria-label="A velocity-time graph with the area under the line shaded and a marker at the end of the interval"></svg>
       <label style="display:block;margin:.5rem 0">Initial velocity, u (metres per second)
         <input class="u" type="range" min="0" max="10" step="1" value="4">
@@ -62,21 +62,21 @@ export function mount(el) {
       const y = yFor(v);
       grid +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="10" class="fig-ink" text-anchor="end">${v}</text>`;
+        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="17" class="fig-ink" text-anchor="end">${v}</text>`;
     }
     for (let t = 0; t <= T_MAX; t += 1) {
       const x = xFor(t);
       grid +=
         `<line x1="${x.toFixed(1)}" y1="${BOTTOM}" x2="${x.toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${x.toFixed(1)}" y="${BOTTOM + 18}" font-size="10" class="fig-ink" text-anchor="middle">${t}</text>`;
+        `<text x="${x.toFixed(1)}" y="${BOTTOM + 18}" font-size="17" class="fig-ink" text-anchor="middle">${t}</text>`;
     }
 
     const axisY = yFor(0);
     const axes =
       `<line x1="${LEFT}" y1="${axisY.toFixed(1)}" x2="${RIGHT}" y2="${axisY.toFixed(1)}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${TOP}" x2="${LEFT}" y2="${BOTTOM}" class="fig-ink"></line>` +
-      `<text x="${RIGHT}" y="${(axisY + 18).toFixed(1)}" font-size="11" class="fig-ink" text-anchor="end">time (s)</text>` +
-      `<text x="${LEFT}" y="${TOP - 10}" font-size="11" class="fig-ink">velocity (m/s)</text>`;
+      `<text x="${RIGHT}" y="${(axisY + 18).toFixed(1)}" font-size="19" class="fig-ink" text-anchor="end">time (s)</text>` +
+      `<text x="${LEFT}" y="${TOP - 10}" font-size="19" class="fig-ink">velocity (m/s)</text>`;
 
     const x0 = xFor(0);
     const y0 = yFor(u);

@@ -13,7 +13,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div class="fig-mains-fault-current" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 320" width="100%" height="320" role="img"
+      <svg viewBox="0 0 620 320" width="100%" role="img"
            aria-label="A mains cable with live, neutral and earth wires, a fuse in the live wire and a metal case, showing the current path in normal use and when the live wire touches the case"></svg>
       <label style="display:block;margin:.6rem 0 .3rem">
         <input class="fault" type="checkbox"> The live wire comes loose and touches the metal case
@@ -47,10 +47,10 @@ export function mount(el) {
     svg.innerHTML =
       // The supply and the metal case.
       `<rect x="20" y="60" width="76" height="180" rx="6" class="fig-grid"></rect>` +
-      `<text x="58" y="146" font-size="12" text-anchor="middle" class="text-ink">supply</text>` +
-      `<text x="58" y="163" font-size="12" text-anchor="middle" class="text-ink">230 V</text>` +
+      `<text x="58" y="146" font-size="19" text-anchor="middle" class="text-ink">supply</text>` +
+      `<text x="58" y="163" font-size="19" text-anchor="middle" class="text-ink">230 V</text>` +
       `<rect x="470" y="60" width="120" height="180" rx="6" class="fig-grid"></rect>` +
-      `<text x="530" y="76" font-size="12" text-anchor="middle" class="text-ink">metal case</text>` +
+      `<text x="530" y="76" font-size="19" text-anchor="middle" class="text-ink">metal case</text>` +
       // The live, earth and neutral wires.
       `<line x1="96" y1="80" x2="280" y2="80" class="fig-warn" stroke-width="${widthFor(live, peak).toFixed(1)}"></line>` +
       `<line x1="340" y1="80" x2="470" y2="80" class="fig-warn" stroke-width="${widthFor(live, peak).toFixed(1)}"></line>` +
@@ -60,36 +60,36 @@ export function mount(el) {
       `<rect x="280" y="66" width="60" height="28" rx="4" class="fig-grid"></rect>` +
       `<line x1="288" y1="80" x2="332" y2="80" class="fig-warn" stroke-width="3"></line>` +
       (on
-        ? `<text x="310" y="60" font-size="11" text-anchor="middle" class="text-warn">13 A fuse melts</text>`
-        : `<text x="310" y="60" font-size="11" text-anchor="middle" class="text-ink">fuse 13 A</text>`) +
+        ? `<text x="310" y="60" font-size="18" text-anchor="middle" class="text-warn">13 A fuse melts</text>`
+        : `<text x="310" y="60" font-size="18" text-anchor="middle" class="text-ink">fuse 13 A</text>`) +
       // The wire names and their potentials.
-      `<text x="104" y="72" font-size="11" class="text-warn">live</text>` +
-      `<text x="104" y="142" font-size="11" class="text-good">earth</text>` +
-      `<text x="104" y="212" font-size="11" class="text-ink">neutral</text>` +
-      `<text x="462" y="72" font-size="11" text-anchor="end" class="text-warn">about 230 V</text>` +
-      `<text x="462" y="142" font-size="11" text-anchor="end" class="text-good">0 V</text>` +
-      `<text x="462" y="212" font-size="11" text-anchor="end" class="text-ink">about 0 V</text>` +
+      `<text x="104" y="72" font-size="18" class="text-warn">live</text>` +
+      `<text x="104" y="142" font-size="18" class="text-good">earth</text>` +
+      `<text x="104" y="212" font-size="18" class="text-ink">neutral</text>` +
+      `<text x="462" y="72" font-size="18" text-anchor="end" class="text-warn">about 230 V</text>` +
+      `<text x="462" y="142" font-size="18" text-anchor="end" class="text-good">0 V</text>` +
+      `<text x="462" y="212" font-size="18" text-anchor="end" class="text-ink">about 0 V</text>` +
       // The heating element inside the case.
       `<line x1="470" y1="80" x2="520" y2="80" class="fig-ink" stroke-width="2"></line>` +
       `<line x1="520" y1="80" x2="520" y2="120" class="fig-ink" stroke-width="2"></line>` +
       `<rect x="500" y="120" width="40" height="60" rx="4" class="fig-accent"></rect>` +
       `<line x1="520" y1="180" x2="520" y2="220" class="fig-ink" stroke-width="2"></line>` +
       `<line x1="520" y1="220" x2="470" y2="220" class="fig-ink" stroke-width="2"></line>` +
-      `<text x="548" y="148" font-size="11" class="text-ink">element</text>` +
-      `<text x="548" y="164" font-size="11" class="text-ink">46 &Omega;</text>` +
+      `<text x="548" y="148" font-size="18" class="text-ink">element</text>` +
+      `<text x="548" y="164" font-size="18" class="text-ink">46 &Omega;</text>` +
       // The current path: live in, then the return path.
       arrow(400, 80, true) +
       (on
         ? arrow(400, 150, false) +
           `<line x1="450" y1="80" x2="470" y2="106" class="fig-warn" stroke-width="4"></line>` +
           `<circle cx="470" cy="106" r="5" class="fig-warn"></circle>` +
-          `<text x="446" y="52" font-size="11" text-anchor="end" class="text-warn">live touches case</text>`
+          `<text x="446" y="52" font-size="18" text-anchor="end" class="text-warn">live touches case</text>`
         : arrow(400, 220, false)) +
       // The current in each wire, written out.
-      `<text x="200" y="64" font-size="11" text-anchor="middle" class="text-ink">${liveText}</text>` +
+      `<text x="200" y="64" font-size="18" text-anchor="middle" class="text-ink">${liveText}</text>` +
       (on
-        ? `<text x="200" y="134" font-size="11" text-anchor="middle" class="text-ink">${surge.toFixed(0)} A</text>`
-        : `<text x="200" y="204" font-size="11" text-anchor="middle" class="text-ink">${normal.toFixed(1)} A</text>`);
+        ? `<text x="200" y="134" font-size="18" text-anchor="middle" class="text-ink">${surge.toFixed(0)} A</text>`
+        : `<text x="200" y="204" font-size="18" text-anchor="middle" class="text-ink">${normal.toFixed(1)} A</text>`);
 
     if (on) {
       readout.innerHTML =

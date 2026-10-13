@@ -12,7 +12,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-grating-orders" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 330" width="100%" height="330" role="img"
+      <svg viewBox="0 0 600 330" width="100%" role="img"
            aria-label="A diffraction grating with rays at each order, drawn on an arc"></svg>
       <label style="display:block;margin:.5rem 0">Wavelength (nanometres)
         <input class="wavelength" type="range" min="400" max="700" step="10" value="600">
@@ -69,9 +69,9 @@ export function mount(el) {
 
     const grating =
       `<line x1="${GX - 120}" y1="${GY}" x2="${GX + 120}" y2="${GY}" class="fig-ink" stroke-width="4"></line>` +
-      `<text x="${GX - 124}" y="${GY + 16}" font-size="11" class="fig-ink" text-anchor="end">grating</text>` +
+      `<text x="${GX - 124}" y="${GY + 16}" font-size="19" class="fig-ink" text-anchor="end">grating</text>` +
       `<line x1="${GX}" y1="${GY}" x2="${GX}" y2="${GY - RADIUS}" class="fig-grid" stroke-dasharray="4 4"></line>` +
-      `<text x="${GX + 4}" y="${GY - RADIUS + 12}" font-size="10" class="fig-ink">n = 0</text>`;
+      `<text x="${GX + 4}" y="${GY - RADIUS + 12}" font-size="17" class="fig-ink">n = 0</text>`;
 
     const arc = `<path d="${arcPath.trim()}" fill="none" class="fig-ink"></path>`;
 
@@ -90,7 +90,7 @@ export function mount(el) {
         `<line x1="${GX}" y1="${GY}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" class="${cls}" stroke-width="2"></line>` +
         `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" class="${cls}"></circle>` +
         `<text x="${(GX + (x - GX) * 1.03).toFixed(1)}" y="${(GY + (y - GY) * 1.03).toFixed(1)}" ` +
-        `font-size="11" class="fig-ink" text-anchor="middle">${n}</text>`;
+        `font-size="19" class="fig-ink" text-anchor="middle">${n}</text>`;
     }
 
     svg.innerHTML = arc + grating + rays;

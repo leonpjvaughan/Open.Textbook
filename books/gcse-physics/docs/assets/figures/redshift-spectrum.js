@@ -10,7 +10,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-redshift-spectrum" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 600 220" width="100%" height="220" role="img"
+      <svg viewBox="0 0 600 220" width="100%" role="img"
            aria-label="Two rows of a spectrum with dark lines; the laboratory row is fixed and the galaxy row moves towards longer wavelengths as the galaxy speeds up"></svg>
       <label style="display:block;margin:.6rem 0 .3rem">
         Speed of the galaxy away from us: <input class="speed" type="range" min="0" max="100" step="1" value="40">
@@ -48,7 +48,7 @@ export function mount(el) {
     const galaxyLines = LINES.map((fraction) => fraction + shift);
 
     const caption = (y, text) =>
-      `<text x="${LEFT}" y="${y}" font-size="12" class="fig-ink">${text}</text>`;
+      `<text x="${LEFT}" y="${y}" font-size="19" class="fig-ink">${text}</text>`;
 
     const reference = band(30, 34, LINES, "fig-ink");
     const galaxy = band(100, 34, galaxyLines, "fig-warn");
@@ -60,13 +60,13 @@ export function mount(el) {
       `<line x1="${from.toFixed(1)}" y1="170" x2="${to.toFixed(1)}" y2="170" ` +
       `class="fig-accent" stroke-width="2"></line>` +
       `<polygon points="${(to - 8).toFixed(1)},166 ${(to - 8).toFixed(1)},174 ${to.toFixed(1)},170" class="fig-accent"></polygon>` +
-      `<text x="${from.toFixed(1)}" y="188" font-size="11" class="fig-ink">the pattern moves this way</text>`;
+      `<text x="${from.toFixed(1)}" y="188" font-size="17" class="fig-ink">the pattern moves this way</text>`;
 
     const ends =
       caption(80, "laboratory: the same light at rest") +
       caption(150, "galaxy: the same lines, shifted") +
-      `<text x="${LEFT}" y="212" font-size="11" class="fig-ink">shorter wavelength (blue end)</text>` +
-      `<text x="${RIGHT}" y="212" font-size="11" text-anchor="end" class="fig-ink">longer wavelength (red end)</text>`;
+      `<text x="${LEFT}" y="212" font-size="17" class="fig-ink">shorter wavelength (blue end)</text>` +
+      `<text x="${RIGHT}" y="212" font-size="17" text-anchor="end" class="fig-ink">longer wavelength (red end)</text>`;
 
     svg.innerHTML = reference + galaxy + shiftArrow + ends;
 

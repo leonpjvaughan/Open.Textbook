@@ -17,7 +17,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-discriminant-graph" style="max-width:520px">
-      <svg viewBox="0 0 360 320" width="100%" height="320" role="img"
+      <svg viewBox="0 0 360 320" width="100%" role="img"
            aria-label="A parabola on axes, with the points where it crosses the x-axis marked for the current values of b and c"></svg>
       <label style="display:block;margin:.4rem 0 .2rem">
         b:
@@ -46,7 +46,9 @@ export function mount(el) {
   const WIDTH = 300;
   const HEIGHT = 270;
   const XMIN = -6;
-  const YMIN = -10;
+  // The vertex sits at y = c - b^2/4, which reaches -6 - 36/4 = -15, so the
+  // window opens far enough down for the marker to stay on the drawing.
+  const YMIN = -17;
   const YMAX = 20;
   const SX = WIDTH / 12; // x runs from -6 to 6
   const SY = HEIGHT / (YMAX - YMIN);

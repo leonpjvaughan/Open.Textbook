@@ -16,7 +16,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div class="fig-lens-image" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 640 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 640 300" width="100%" role="img"
            aria-label="A convex lens forming a real, inverted image of an arrow, with two rays drawn from the top of the object"></svg>
       <label style="display:block;margin:.6rem 0 .3rem">
         Object distance: <input class="distance" type="range" min="12" max="60" step="1" value="24">
@@ -47,23 +47,23 @@ export function mount(el) {
       // The principal foci.
       `<circle cx="${LENS_X - px(FOCAL)}" cy="${AXIS_Y}" r="3" class="fig-grid"></circle>` +
       `<circle cx="${LENS_X + px(FOCAL)}" cy="${AXIS_Y}" r="3" class="fig-grid"></circle>` +
-      `<text x="${LENS_X - px(FOCAL) - 6}" y="${AXIS_Y + 18}" font-size="11" ` +
+      `<text x="${LENS_X - px(FOCAL) - 6}" y="${AXIS_Y + 18}" font-size="18" ` +
       `class="fig-ink">F</text>` +
-      `<text x="${LENS_X + px(FOCAL) - 2}" y="${AXIS_Y + 18}" font-size="11" ` +
+      `<text x="${LENS_X + px(FOCAL) - 2}" y="${AXIS_Y + 18}" font-size="18" ` +
       `class="fig-ink">F</text>` +
       // The object arrow: a vertical line with an arrowhead.
       `<line x1="${objectX}" y1="${AXIS_Y}" x2="${objectX}" y2="${objectTop}" ` +
       `class="fig-accent" stroke-width="2"></line>` +
       `<polygon points="${objectX - 4},${objectTop + 8} ${objectX + 4},${objectTop + 8} ` +
       `${objectX},${objectTop}" class="fig-accent"></polygon>` +
-      `<text x="${objectX - 18}" y="${objectTop - 8}" font-size="11" ` +
+      `<text x="${objectX - 18}" y="${objectTop - 8}" font-size="18" ` +
       `class="fig-ink">object</text>` +
       // The image arrow, inverted and on the other side.
       `<line x1="${imageX}" y1="${AXIS_Y}" x2="${imageX}" y2="${imageTop}" ` +
       `class="fig-warn" stroke-width="2"></line>` +
       `<polygon points="${imageX - 4},${imageTop - 8} ${imageX + 4},${imageTop - 8} ` +
       `${imageX},${imageTop}" class="fig-warn"></polygon>` +
-      `<text x="${imageX - 16}" y="${imageTop + 20}" font-size="11" ` +
+      `<text x="${imageX - 16}" y="${imageTop + 20}" font-size="18" ` +
       `class="fig-ink">image</text>` +
       // The ray parallel to the axis, then through the far focus.
       `<line x1="${objectX}" y1="${objectTop}" x2="${LENS_X}" y2="${objectTop}" ` +

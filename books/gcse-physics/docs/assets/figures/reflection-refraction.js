@@ -16,7 +16,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div class="fig-reflection-refraction" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 600 300" width="100%" role="img"
            aria-label="A ray of light meeting a horizontal glass surface, with the reflected and refracted rays shown against the normal"></svg>
       <label style="display:block;margin:.6rem 0 .3rem">
         Angle of incidence: <input class="angle" type="range" min="5" max="85" step="1" value="40">
@@ -50,7 +50,7 @@ export function mount(el) {
       // The normal.
       `<line x1="${originX}" y1="20" x2="${originX}" y2="280" class="fig-grid" ` +
       `stroke-dasharray="5 5"></line>` +
-      `<text x="${originX + 6}" y="28" font-size="11" class="fig-ink">normal</text>` +
+      `<text x="${originX + 6}" y="28" font-size="17" class="fig-ink">normal</text>` +
       // The three rays.
       `<line x1="${incidentStart.x}" y1="${incidentStart.y}" x2="${originX}" y2="${originY}" ` +
       `class="fig-accent" stroke-width="2"></line>` +
@@ -59,14 +59,14 @@ export function mount(el) {
       `<line x1="${originX}" y1="${originY}" x2="${refractedEnd.x}" y2="${refractedEnd.y}" ` +
       `class="fig-good" stroke-width="2"></line>` +
       // Labels.
-      `<text x="${incidentStart.x + 4}" y="${incidentStart.y - 4}" font-size="11" ` +
+      `<text x="${incidentStart.x + 4}" y="${incidentStart.y - 4}" font-size="17" ` +
       `class="fig-ink">incident</text>` +
-      `<text x="${reflectedEnd.x - 60}" y="${reflectedEnd.y - 4}" font-size="11" ` +
+      `<text x="${reflectedEnd.x - 60}" y="${reflectedEnd.y - 4}" font-size="17" ` +
       `class="fig-ink">reflected</text>` +
-      `<text x="${refractedEnd.x + 4}" y="${refractedEnd.y + 12}" font-size="11" ` +
+      `<text x="${refractedEnd.x + 4}" y="${refractedEnd.y + 12}" font-size="17" ` +
       `class="fig-ink">refracted</text>` +
-      `<text x="${originX + 4}" y="46" font-size="11" class="fig-ink">i = ${incidence}\u00b0</text>` +
-      `<text x="${originX + 4}" y="60" font-size="11" class="fig-ink">r = ${refraction.toFixed(0)}\u00b0</text>`;
+      `<text x="${originX + 4}" y="46" font-size="17" class="fig-ink">i = ${incidence}\u00b0</text>` +
+      `<text x="${originX + 4}" y="60" font-size="17" class="fig-ink">r = ${refraction.toFixed(0)}\u00b0</text>`;
 
     readout.innerHTML =
       `Angle of incidence <strong>${incidence}\u00b0</strong>. ` +

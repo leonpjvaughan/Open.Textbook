@@ -23,7 +23,7 @@ function tick(value) {
     `<line class="fig-grid" x1="${toPx(value).toFixed(1)}" y1="${AXIS_Y - 6}" ` +
     `x2="${toPx(value).toFixed(1)}" y2="${AXIS_Y + 6}" stroke-width="1"></line>` +
     `<text class="fig-ink" x="${toPx(value).toFixed(1)}" y="${AXIS_Y + 22}" ` +
-    `text-anchor="middle" font-size="12">${value}</text>`
+    `text-anchor="middle" font-size="14">${value}</text>`
   );
 }
 

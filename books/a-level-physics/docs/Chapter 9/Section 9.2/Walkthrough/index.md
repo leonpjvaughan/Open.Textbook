@@ -300,7 +300,7 @@ gains the same energy. Explain why, using the idea that the work done is the
 charge multiplied by the potential difference, and that the ion also travels
 twice as far through a weaker field. Write two or three sentences.
 
-:::figure electric-field
+:::figure plates-electric-field
 
 ## Progress check
 

@@ -16,7 +16,7 @@ function bar(y, value, className) {
     `<rect x="${LEFT}" y="${y}" width="${width}" height="${BAR_H}" ` +
     `class="${className}" rx="3"></rect>` +
     `<text x="${LEFT + BAR_W + 8}" y="${y + BAR_H - 8}" class="fig-ink" ` +
-    `font-size="12">${Math.round(value * 100)}%</text>`
+    `font-size="15">${Math.round(value * 100)}%</text>`
   );
 }
 
@@ -71,9 +71,9 @@ export function mount(el) {
     const product = pA * pB;
 
     svg.innerHTML =
-      `<text x="0" y="17" class="fig-ink" font-size="12">P(A given B)</text>` +
+      `<text x="0" y="17" class="fig-ink" font-size="15">P(A given B)</text>` +
       bar(4, pAGivenB, "fig-accent") +
-      `<text x="0" y="57" class="fig-ink" font-size="12">P(A)</text>` +
+      `<text x="0" y="57" class="fig-ink" font-size="15">P(A)</text>` +
       bar(44, pA, "fig-good");
 
     readout.textContent =

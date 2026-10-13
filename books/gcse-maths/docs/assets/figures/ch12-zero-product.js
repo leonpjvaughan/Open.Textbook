@@ -15,7 +15,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 560 320" width="100%" height="300" role="img"
+      <svg viewBox="0 0 560 320" width="100%" role="img"
            aria-label="Two straight lines for the factors and a curve for their product, meeting the horizontal axis at the two solutions"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>First bracket number <input class="m" type="range" min="-6" max="6" step="1" value="2"></label>
@@ -65,7 +65,7 @@ export function mount(el) {
       `<circle cx="${cx(value).toFixed(1)}" cy="${cy(0).toFixed(1)}" r="5" ` +
       `class="fig-accent"></circle>` +
       `<text x="${cx(value).toFixed(1)}" y="${(cy(0) + side).toFixed(1)}" ` +
-      `font-size="12" text-anchor="middle" class="text-accent">x = ${value}</text>`;
+      `font-size="16" text-anchor="middle" class="text-accent">x = ${value}</text>`;
 
     const roots =
       m === n
@@ -84,8 +84,8 @@ export function mount(el) {
       `<polyline points="${curve.join(" ")}" class="fig-accent" fill="none" stroke-width="2.5"></polyline>` +
       `</g>` +
       roots +
-      `<text x="526" y="${(cy(0) - 6).toFixed(1)}" font-size="12" class="text-ink">x</text>` +
-      `<text x="${(cx(0) + 8).toFixed(1)}" y="52" font-size="12" class="text-ink">y</text>`;
+      `<text x="526" y="${(cy(0) - 6).toFixed(1)}" font-size="16" class="text-ink">x</text>` +
+      `<text x="${(cx(0) + 8).toFixed(1)}" y="52" font-size="16" class="text-ink">y</text>`;
 
     legend.innerHTML =
       `<span class="text-good">${bracket(m)}</span> is the solid factor line and ` +

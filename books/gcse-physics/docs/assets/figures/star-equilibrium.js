@@ -9,7 +9,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-star-equilibrium" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 540 240" width="100%" height="240" role="img"
+      <svg viewBox="0 0 540 240" width="100%" role="img"
            aria-label="A star with an outward arrow for the pressure from fusion and an inward arrow for the pull of gravity"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Outward pressure from fusion <input class="fusion" type="range" min="10" max="100" step="1" value="60"></label>
@@ -54,7 +54,7 @@ export function mount(el) {
     const star =
       `<circle cx="${cx}" cy="${cy}" r="${radius.toFixed(1)}" class="fig-accent" ` +
       `fill-opacity="0.25" stroke-width="2"></circle>` +
-      `<text x="${cx}" y="${cy + 4}" font-size="12" text-anchor="middle" class="fig-ink">star</text>`;
+      `<text x="${cx}" y="${cy + 4}" font-size="17" text-anchor="middle" class="fig-ink">star</text>`;
 
     // Gravity acts inwards, so its arrow points towards the star from the left.
     const gravityStart = cx - radius - gravityLength;
@@ -62,7 +62,7 @@ export function mount(el) {
       `<line x1="${gravityStart.toFixed(1)}" y1="${cy}" x2="${cx - radius - 10}" y2="${cy}" ` +
       `class="fig-warn" stroke-width="4"></line>` +
       rightArrowhead(cx - radius, cy, "fig-warn") +
-      `<text x="${gravityStart.toFixed(1)}" y="${cy + 22}" font-size="11" class="fig-ink">gravity pulls in</text>`;
+      `<text x="${gravityStart.toFixed(1)}" y="${cy + 22}" font-size="16" class="fig-ink">gravity pulls in</text>`;
 
     // Fusion acts outwards, so its arrow points away from the star to the right.
     const fusionEnd = cx + radius + fusionLength;
@@ -70,7 +70,7 @@ export function mount(el) {
       `<line x1="${cx + radius + 10}" y1="${cy}" x2="${fusionEnd.toFixed(1)}" y2="${cy}" ` +
       `class="fig-good" stroke-width="4"></line>` +
       rightArrowhead(fusionEnd, cy, "fig-good") +
-      `<text x="${(cx + radius + 10).toFixed(1)}" y="${cy + 22}" font-size="11" class="fig-ink">fusion pushes out</text>`;
+      `<text x="${(cx + radius + 10).toFixed(1)}" y="${cy + 22}" font-size="16" class="fig-ink">fusion pushes out</text>`;
 
     svg.innerHTML = star + gravityArrow + fusionArrow;
 

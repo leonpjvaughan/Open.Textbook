@@ -28,8 +28,8 @@ export function mount(el) {
       <circle cx="157" cy="${peak}" r="5" class="fig-good" />
       <circle cx="391" cy="${trough}" r="5" class="fig-warn" />
       <text x="35" y="215" class="fig-ink">0°</text><text x="490" y="215" class="fig-ink">360°</text>
-      <text x="164" y="${peak - 9}" font-size="12" class="text-good">maximum</text>
-      <text x="395" y="${trough + 14}" font-size="12" class="text-warn">minimum</text>`;
+      <text x="164" y="${peak - 9}" font-size="16" class="text-good">maximum</text>
+      <text x="395" y="${trough + 14}" font-size="16" class="text-warn">minimum</text>`;
     el.querySelector('.readout').textContent = `Amplitude ${a}; maximum ${a}; minimum ${-a}; period 360 degrees.`;
   }
   el.querySelector('.amp').addEventListener('input', update);

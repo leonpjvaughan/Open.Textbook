@@ -12,7 +12,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-stationary-waves" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 600 300" width="100%" role="img"
            aria-label="The shape of a stationary wave on a string fixed at both ends, with nodes and antinodes marked"></svg>
       <label style="display:block;margin:.5rem 0">Harmonic
         <input class="harmonic" type="range" min="1" max="6" step="1" value="1">
@@ -91,8 +91,8 @@ export function mount(el) {
       `<line x1="${X0 - 30}" y1="${MID_Y}" x2="${X0 + 420}" y2="${MID_Y}" class="fig-grid" stroke-dasharray="4 4"></line>` +
       `<line x1="${x1}" y1="${MID_Y - 110}" x2="${x1}" y2="${MID_Y + 110}" class="fig-ink" stroke-width="3"></line>` +
       `<line x1="${x2}" y1="${MID_Y - 110}" x2="${x2}" y2="${MID_Y + 110}" class="fig-ink" stroke-width="3"></line>` +
-      `<text x="${x1 - 6}" y="${MID_Y - 116}" font-size="10" class="fig-ink" text-anchor="middle">fixed end</text>` +
-      `<text x="${x2 + 6}" y="${MID_Y - 116}" font-size="10" class="fig-ink" text-anchor="middle">fixed end</text>`;
+      `<text x="${x1 - 6}" y="${MID_Y - 116}" font-size="17" class="fig-ink" text-anchor="middle">fixed end</text>` +
+      `<text x="${x2 + 6}" y="${MID_Y - 116}" font-size="17" class="fig-ink" text-anchor="middle">fixed end</text>`;
 
     svg.innerHTML =
       frame +

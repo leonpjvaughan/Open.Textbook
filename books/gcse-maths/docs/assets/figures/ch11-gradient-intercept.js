@@ -17,7 +17,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div style="max-width:520px">
-      <svg viewBox="0 0 420 420" width="100%" height="420" role="img"
+      <svg viewBox="0 0 420 420" width="100%" role="img"
            aria-label="A straight line on a coordinate grid with a rise and run triangle showing the gradient and a marked point where the line crosses the y-axis"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Gradient m
@@ -83,13 +83,13 @@ export function mount(el) {
     for (let value = X_MIN + 1; value <= X_MAX - 1; value += 2) {
       if (value === 0) continue;
       labels +=
-        `<text x="${px(value).toFixed(1)}" y="${(py(0) + 15).toFixed(1)}" font-size="11" ` +
+        `<text x="${px(value).toFixed(1)}" y="${(py(0) + 15).toFixed(1)}" font-size="12" ` +
         `text-anchor="middle" class="text-ink">${value}</text>`;
     }
     for (let value = Y_MIN + 1; value <= Y_MAX - 1; value += 2) {
       if (value === 0) continue;
       labels +=
-        `<text x="${(px(0) - 8).toFixed(1)}" y="${(py(value) + 4).toFixed(1)}" font-size="11" ` +
+        `<text x="${(px(0) - 8).toFixed(1)}" y="${(py(value) + 4).toFixed(1)}" font-size="12" ` +
         `text-anchor="end" class="text-ink">${value}</text>`;
     }
 
@@ -109,13 +109,13 @@ export function mount(el) {
 
     const runLabel =
       `<text x="${px(0.5).toFixed(1)}" y="${(py(c) + (m >= 0 ? 16 : -8)).toFixed(1)}" ` +
-      `font-size="12" text-anchor="middle" class="text-ink">run 1</text>`;
+      `font-size="13" text-anchor="middle" class="text-ink">run 1</text>`;
     const riseLabel =
       `<text x="${(px(1) + 8).toFixed(1)}" y="${(py(c + m / 2) + 4).toFixed(1)}" ` +
-      `font-size="12" text-anchor="start" class="text-ink">rise ${format(m)}</text>`;
+      `font-size="13" text-anchor="start" class="text-ink">rise ${format(m)}</text>`;
 
     const interceptLabel =
-      `<text x="${(px(0) - 10).toFixed(1)}" y="${(py(c) - 10).toFixed(1)}" font-size="12" ` +
+      `<text x="${(px(0) - 10).toFixed(1)}" y="${(py(c) - 10).toFixed(1)}" font-size="13" ` +
       `text-anchor="end" class="text-warn">c = ${format(c)}</text>`;
 
     svg.innerHTML =
@@ -131,9 +131,9 @@ export function mount(el) {
       riseLabel +
       `<circle cx="${px(0).toFixed(1)}" cy="${py(c).toFixed(1)}" r="6" class="fig-warn"></circle>` +
       interceptLabel +
-      `<text x="${(px(X_MAX) - 4).toFixed(1)}" y="${(py(0) + 16).toFixed(1)}" font-size="12" ` +
+      `<text x="${(px(X_MAX) - 4).toFixed(1)}" y="${(py(0) + 16).toFixed(1)}" font-size="13" ` +
       `text-anchor="end" class="text-accent">x</text>` +
-      `<text x="${(px(0) + 10).toFixed(1)}" y="${(py(Y_MAX) + 6).toFixed(1)}" font-size="12" ` +
+      `<text x="${(px(0) + 10).toFixed(1)}" y="${(py(Y_MAX) + 6).toFixed(1)}" font-size="13" ` +
       `class="text-accent">y</text>`;
 
     let equation = "";

@@ -16,7 +16,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-completing-the-square" style="max-width:520px">
-      <svg viewBox="0 0 340 340" width="100%" height="340" role="img"
+      <svg viewBox="0 0 340 340" width="100%" role="img"
            aria-label="A square of side x with two strips of width b over two added along the right and the bottom, leaving a corner square"></svg>
       <label style="display:block;margin:.5rem 0 .2rem">
         Coefficient of x, b:

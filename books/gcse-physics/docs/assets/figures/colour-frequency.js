@@ -24,7 +24,7 @@ export function mount(el) {
 
   el.innerHTML = `
     <div class="fig-colour-frequency" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 600 160" width="100%" height="160" role="img"
+      <svg viewBox="0 0 600 160" width="100%" role="img"
            aria-label="A band of the visible spectrum from violet at short wavelengths to red at long wavelengths, with a marker at the chosen colour"></svg>
       <label style="display:block;margin:.6rem 0 .3rem">
         Wavelength: <input class="wavelength" type="range" min="400" max="700" step="5" value="550">
@@ -65,7 +65,7 @@ export function mount(el) {
         `class="${highlight ? "fig-accent" : "fig-grid"}" ` +
         `${highlight ? 'fill-opacity="0.35" ' : ""}stroke-width="1"></rect>` +
         `<text x="${(x + width / 2).toFixed(1)}" y="${BAND_TOP + BAND_HEIGHT + 16}" ` +
-        `font-size="11" text-anchor="middle" class="fig-ink">${band.name}</text>`
+        `font-size="17" text-anchor="middle" class="fig-ink">${band.name}</text>`
       );
     }).join("");
 
@@ -73,7 +73,7 @@ export function mount(el) {
     const marker =
       `<line x1="${markerX.toFixed(1)}" y1="${BAND_TOP - 8}" x2="${markerX.toFixed(1)}" ` +
       `y2="${BAND_TOP + BAND_HEIGHT + 4}" class="fig-warn" stroke-width="2"></line>` +
-      `<text x="${markerX.toFixed(1)}" y="${BAND_TOP - 14}" font-size="11" ` +
+      `<text x="${markerX.toFixed(1)}" y="${BAND_TOP - 14}" font-size="17" ` +
       `text-anchor="middle" class="text-warn">${wavelength} nm</text>`;
 
     const ticks = [400, 500, 600, 700]
@@ -82,7 +82,7 @@ export function mount(el) {
         return (
           `<line x1="${x.toFixed(1)}" y1="${BAND_TOP + BAND_HEIGHT}" x2="${x.toFixed(1)}" ` +
           `y2="${BAND_TOP + BAND_HEIGHT + 5}" class="fig-ink"></line>` +
-          `<text x="${x.toFixed(1)}" y="${BAND_TOP + BAND_HEIGHT + 34}" font-size="11" ` +
+          `<text x="${x.toFixed(1)}" y="${BAND_TOP + BAND_HEIGHT + 34}" font-size="17" ` +
           `text-anchor="middle" class="fig-ink">${nm}</text>`
         );
       })
@@ -92,7 +92,7 @@ export function mount(el) {
       cells +
       marker +
       ticks +
-      `<text x="${(LEFT + RIGHT) / 2}" y="152" font-size="11" text-anchor="middle" class="fig-ink">wavelength (nm)</text>`;
+      `<text x="${(LEFT + RIGHT) / 2}" y="152" font-size="17" text-anchor="middle" class="fig-ink">wavelength (nm)</text>`;
 
     readout.innerHTML =
       `Wavelength <strong>${wavelength} nm</strong>. All visible light travels at ` +

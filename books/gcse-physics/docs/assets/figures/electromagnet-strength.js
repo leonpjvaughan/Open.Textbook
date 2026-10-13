@@ -8,7 +8,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-electromagnet-strength" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 180" width="100%" height="180" role="img"
+      <svg viewBox="0 0 560 180" width="100%" role="img"
            aria-label="A solenoid coil wound on an iron core. The current and the number of turns can be changed, and a bar shows the relative field strength"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Current (A) <input class="current" type="range" min="0" max="5" step="0.5" value="1"></label>
@@ -32,7 +32,7 @@ export function mount(el) {
 
     const core = `
       <rect x="120" y="70" width="320" height="30" rx="5" class="fig-ink" opacity="0.18"></rect>
-      <text x="112" y="92" font-size="11" text-anchor="end" class="fig-ink">iron core</text>`;
+      <text x="112" y="92" font-size="16" text-anchor="end" class="fig-ink">iron core</text>`;
 
     const loops = Math.max(1, Math.round(turns / 100));
     const gap = 280 / loops;
@@ -47,7 +47,7 @@ export function mount(el) {
     const bar = `
       <rect x="80" y="145" width="400" height="18" rx="4" class="fig-grid" opacity="0.4"></rect>
       <rect x="80" y="145" width="${barWidth.toFixed(1)}" height="18" rx="4" class="fig-accent"></rect>
-      <text x="80" y="138" font-size="11" class="fig-ink">field strength</text>`;
+      <text x="80" y="138" font-size="16" class="fig-ink">field strength</text>`;
 
     svg.innerHTML = core + coil + bar;
 

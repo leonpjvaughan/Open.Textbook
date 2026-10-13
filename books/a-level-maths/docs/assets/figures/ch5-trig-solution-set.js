@@ -109,7 +109,7 @@ export function mount(el) {
         <input class="k" type="range" min="-1" max="1" step="0.05" value="0.5"
                aria-label="Value of k">
       </label>
-      <svg viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" height="280" role="img"
+      <svg viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" role="img"
            aria-label="The graph of a trigonometric function from 0 to 2 pi with a horizontal line at k, and a dot at every solution in the interval"></svg>
       <p class="readout" aria-live="polite"></p>
     </div>`;
@@ -146,7 +146,7 @@ export function mount(el) {
         `<line x1="${px.toFixed(1)}" y1="${yToPx(0).toFixed(1)}" x2="${px.toFixed(1)}" ` +
         `y2="${(yToPx(0) + 5).toFixed(1)}" class="fig-ink"></line>` +
         `<text x="${px.toFixed(1)}" y="${(HEIGHT - 12).toFixed(1)}" text-anchor="middle" ` +
-        `font-size="12" class="text-ink">${label}</text>`;
+        `font-size="13" class="text-ink">${label}</text>`;
     }
 
     let dots = "";

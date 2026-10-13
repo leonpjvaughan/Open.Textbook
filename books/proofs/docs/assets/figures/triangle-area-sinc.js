@@ -14,7 +14,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-triangle-area-sinc" style="max-width:540px">
-      <svg viewBox="0 0 420 240" width="100%" height="240" role="img"
+      <svg viewBox="0 0 420 240" width="100%" role="img"
            aria-label="A triangle with sides a and b meeting at C, a perpendicular from B to the line through A and C, and a slider that opens the angle at C"></svg>
       <label style="display:block;margin:.5rem 0 .3rem">
         Open or close the angle at C:

@@ -155,19 +155,19 @@ export function mount(el) {
             `width="${(barWidth + 2).toFixed(1)}" height="${(height + 2).toFixed(1)}" ` +
             `class="fig-line"></rect>` +
             `<text x="${(x + barWidth / 2).toFixed(1)}" y="${(plotBottom + 12).toFixed(1)}" ` +
-            `text-anchor="middle" class="fig-accent" font-size="10">seen</text>`
+            `text-anchor="middle" class="fig-accent" font-size="13">seen</text>`
           : "")
     });
 
     const axis =
       `<line x1="${plotLeft}" y1="${plotBottom}" x2="${plotRight}" y2="${plotBottom}" ` +
       `class="fig-ink"></line>` +
-      `<text x="${plotLeft}" y="${plotBottom + 26}" class="fig-ink" font-size="11">0</text>` +
+      `<text x="${plotLeft}" y="${plotBottom + 26}" class="fig-ink" font-size="15">0</text>` +
       `<text x="${plotRight}" y="${plotBottom + 26}" text-anchor="end" ` +
-      `class="fig-ink" font-size="11">${n}</text>`;
+      `class="fig-ink" font-size="15">${n}</text>`;
 
     const caption =
-      `<text x="230" y="18" text-anchor="middle" class="fig-ink" font-size="12">` +
+      `<text x="230" y="18" text-anchor="middle" class="fig-ink" font-size="16">` +
       `Binomial distribution, n = ${n}, p = ${p.toFixed(2)}</text>`;
 
     svg.innerHTML = caption + axis + bars;

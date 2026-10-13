@@ -8,7 +8,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-energy-drop" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 170" width="100%" height="170" role="img"
+      <svg viewBox="0 0 560 170" width="100%" role="img"
            aria-label="A ball on a drop with two bars showing gravitational potential energy at the top and kinetic energy at the bottom"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Mass (kg) <input class="mass" type="range" min="0.5" max="5" step="0.1" value="2"></label>
@@ -39,15 +39,15 @@ export function mount(el) {
       `<line x1="70" y1="${y}" x2="70" y2="${GROUND}" class="fig-grid" ` +
       `stroke-dasharray="3 3"></line>` +
       `<line x1="40" y1="${GROUND}" x2="150" y2="${GROUND}" class="fig-ink"></line>` +
-      `<text x="84" y="${(y + GROUND) / 2}" font-size="11" class="fig-ink">` +
+      `<text x="84" y="${(y + GROUND) / 2}" font-size="16" class="fig-ink">` +
       `h = ${height.toFixed(1)} m</text>`;
 
     // Two bars sharing one scale, so a taller drop visibly stores more energy.
     const barWidth = (energy / ENERGY_MAX) * 330;
     const bar = (top, cls, label, value) =>
-      `<text x="170" y="${top - 5}" font-size="11" class="fig-ink">${label}</text>` +
+      `<text x="170" y="${top - 5}" font-size="16" class="fig-ink">${label}</text>` +
       `<rect x="170" y="${top}" width="${barWidth.toFixed(1)}" height="20" class="${cls}"></rect>` +
-      `<text x="${(178 + barWidth).toFixed(1)}" y="${top + 15}" font-size="11" class="fig-ink">${value}</text>`;
+      `<text x="${(178 + barWidth).toFixed(1)}" y="${top + 15}" font-size="16" class="fig-ink">${value}</text>`;
 
     svg.innerHTML =
       ball +

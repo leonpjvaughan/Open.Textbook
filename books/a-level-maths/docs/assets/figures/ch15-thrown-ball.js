@@ -43,7 +43,11 @@ function velocityArrow(ballY, v) {
     );
   }
   const cls = v > 0 ? "fig-good" : "fig-warn";
-  const tipY = v > 0 ? ballY - 10 - length : ballY + 10 + length;
+  // Near the top of the time slider the ball is close to the ground and the
+  // speed is large, so the downward arrowhead would fall below the track.
+  // Clamp the tip to the frame.
+  let tipY = v > 0 ? ballY - 10 - length : ballY + 10 + length;
+  tipY = v > 0 ? Math.max(tipY, 4) : Math.min(tipY, HEIGHT - 4);
   const baseY = v > 0 ? ballY - 10 : ballY + 10;
   const size = 10;
   const direction = v > 0 ? 1 : -1;
@@ -89,14 +93,14 @@ export function mount(el) {
         `<line x1="${AXIS_X - 6}" y1="${y.toFixed(1)}" ` +
         `x2="${AXIS_X + 6}" y2="${y.toFixed(1)}" ` +
         `class="fig-ink" stroke-width="1"></line>` +
-        `<text x="${AXIS_X - 12}" y="${(y + 4).toFixed(1)}" font-size="12" ` +
+        `<text x="${AXIS_X - 12}" y="${(y + 4).toFixed(1)}" font-size="13" ` +
         `text-anchor="end" class="text-ink">${metres}</text>`;
     }
     return (
       lines +
       `<line x1="${AXIS_X}" y1="${toPy(24).toFixed(1)}" x2="${AXIS_X}" ` +
       `y2="${GROUND_Y}" class="fig-ink" stroke-width="1"></line>` +
-      `<text x="${AXIS_X + 14}" y="${toPy(24) + 4}" font-size="12" ` +
+      `<text x="${AXIS_X + 14}" y="${toPy(24) + 4}" font-size="13" ` +
       `class="text-ink">up is positive</text>`
     );
   }
@@ -134,21 +138,21 @@ export function mount(el) {
       `<line x1="${BALL_X - 70}" y1="${topY.toFixed(1)}" ` +
       `x2="${WIDTH - 20}" y2="${topY.toFixed(1)}" class="fig-ink" ` +
       `stroke-width="1" stroke-dasharray="6 4"></line>` +
-      `<text x="${WIDTH - 20}" y="${(topY - 8).toFixed(1)}" font-size="12" ` +
+      `<text x="${WIDTH - 20}" y="${(topY - 8).toFixed(1)}" font-size="13" ` +
       `text-anchor="end" class="text-ink">greatest height ` +
       `${one(sMax)} m</text>`;
     const ball =
       `<circle cx="${BALL_X}" cy="${ballY.toFixed(1)}" r="8" ` +
       `class="fig-accent"></circle>` +
-      `<text x="${BALL_X + 16}" y="${(ballY + 5).toFixed(1)}" font-size="12" ` +
+      `<text x="${BALL_X + 16}" y="${(ballY + 5).toFixed(1)}" font-size="13" ` +
       `class="text-ink">s = ${one(s)} m</text>`;
 
     const moving = velocityArrow(ballY, v);
     const movingLabel = Math.abs(v) < 0.05
       ? `<text x="${BALL_X + 16}" y="${(ballY - 22).toFixed(1)}" ` +
-        `font-size="12" class="text-ink">v = 0 here</text>`
+        `font-size="13" class="text-ink">v = 0 here</text>`
       : `<text x="${BALL_X + 16}" ` +
-        `y="${(v > 0 ? ballY - 24 : ballY + 34).toFixed(1)}" font-size="12" ` +
+        `y="${(v > 0 ? ballY - 24 : ballY + 34).toFixed(1)}" font-size="13" ` +
         `class="${v > 0 ? "text-good" : "text-warn"}">` +
         `v = ${one(v)} m/s ${v > 0 ? "upwards" : "downwards"}</text>`;
 

@@ -12,7 +12,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-pythagoras-rearrangement" style="max-width:520px">
-      <svg viewBox="0 0 420 380" width="100%" height="380" role="img"
+      <svg viewBox="0 0 420 380" width="100%" role="img"
            aria-label="Four copies of a right-angled triangle arranged inside a square frame, leaving a tilted square hole whose side is the hypotenuse"></svg>
       <label style="display:block;margin:.6rem 0 .3rem">
         Change the triangle (the short side):

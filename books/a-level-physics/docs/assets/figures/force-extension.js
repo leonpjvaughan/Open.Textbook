@@ -13,7 +13,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-force-extension" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 270" width="100%" height="270" role="img"
+      <svg viewBox="0 0 600 270" width="100%" role="img"
            aria-label="A force-extension graph for a spring, with a straight line through the origin and the area under the line shaded as the energy stored"></svg>
       <label style="display:block;margin:.5rem 0">Stiffness
         <input class="stiffness" type="range" min="100" max="500" step="50" value="200">
@@ -57,22 +57,22 @@ export function mount(el) {
     let axes =
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${LEFT}" y2="${TOP}" class="fig-ink"></line>` +
-      `<text x="${LEFT}" y="${TOP - 8}" font-size="11" class="fig-ink">force / N</text>` +
-      `<text x="${RIGHT}" y="${BOTTOM + 20}" font-size="11" class="fig-ink" text-anchor="end">extension / m</text>`;
+      `<text x="${LEFT}" y="${TOP - 8}" font-size="19" class="fig-ink">force / N</text>` +
+      `<text x="${RIGHT}" y="${BOTTOM + 20}" font-size="19" class="fig-ink" text-anchor="end">extension / m</text>`;
 
     for (let tick = 0; tick <= 4; tick += 1) {
       const y = BOTTOM - (tick / 4) * (BOTTOM - TOP);
       const value = (tick / 4) * Y_MAX;
       axes +=
         `<line x1="${LEFT}" y1="${y.toFixed(1)}" x2="${RIGHT}" y2="${y.toFixed(1)}" class="fig-grid"></line>` +
-        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="10" class="fig-ink" text-anchor="end">${value}</text>`;
+        `<text x="${LEFT - 8}" y="${(y + 4).toFixed(1)}" font-size="17" class="fig-ink" text-anchor="end">${value}</text>`;
     }
     for (let tick = 0; tick <= 4; tick += 1) {
       const xTick = LEFT + (tick / 4) * (RIGHT - LEFT);
       const value = (tick / 4) * X_MAX;
       axes +=
         `<line x1="${xTick.toFixed(1)}" y1="${BOTTOM}" x2="${xTick.toFixed(1)}" y2="${BOTTOM + 5}" class="fig-ink"></line>` +
-        `<text x="${xTick.toFixed(1)}" y="${BOTTOM + 18}" font-size="10" class="fig-ink" text-anchor="middle">${value.toFixed(2)}</text>`;
+        `<text x="${xTick.toFixed(1)}" y="${BOTTOM + 18}" font-size="17" class="fig-ink" text-anchor="middle">${value.toFixed(2)}</text>`;
     }
 
     // The straight line runs from the origin to the top of the graph, or to the

@@ -11,7 +11,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-motional-emf" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 300" width="100%" height="300" role="img"
+      <svg viewBox="0 0 620 300" width="100%" role="img"
            aria-label="A conducting rod sliding along two rails through a magnetic field, with the induced current and the opposing force shown"></svg>
       <label style="display:block;margin:.5rem 0">Flux density (tesla)
         <input class="field" type="range" min="0.05" max="0.5" step="0.01" value="0.25">
@@ -80,9 +80,9 @@ export function mount(el) {
       `<line x1="${rodX}" y1="${TOP}" x2="${rodX}" y2="${BOTTOM}" class="fig-good" stroke-width="6"></line>` +
       `<line x1="${rodX + 8}" y1="${TOP - 30}" x2="${rodX + 70}" y2="${TOP - 30}" class="fig-good" stroke-width="3"></line>` +
       `<polygon points="${rodX + 70},${TOP - 35} ${rodX + 70},${TOP - 25} ${rodX + 82},${TOP - 30}" class="fig-good"></polygon>` +
-      `<text x="${rodX + 88}" y="${TOP - 26}" font-size="11" class="fig-ink">v</text>` +
-      `<text x="${LEFT - 10}" y="${(TOP + BOTTOM) / 2}" font-size="11" class="fig-ink" text-anchor="end">R</text>` +
-      `<text x="${(LEFT + rodX) / 2}" y="${TOP + 20}" font-size="11" class="fig-ink" text-anchor="middle">current</text>`;
+      `<text x="${rodX + 88}" y="${TOP - 26}" font-size="18" class="fig-ink">v</text>` +
+      `<text x="${LEFT - 10}" y="${(TOP + BOTTOM) / 2}" font-size="18" class="fig-ink" text-anchor="end">R</text>` +
+      `<text x="${(LEFT + rodX) / 2}" y="${TOP + 20}" font-size="18" class="fig-ink" text-anchor="middle">current</text>`;
 
     svg.innerHTML = drawing;
 

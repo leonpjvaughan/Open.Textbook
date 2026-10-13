@@ -12,7 +12,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-interference-2source" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 320" width="100%" height="320" role="img"
+      <svg viewBox="0 0 600 320" width="100%" role="img"
            aria-label="Two coherent sources, the rays to the first bright fringe, and the bright fringes on a screen"></svg>
       <label style="display:block;margin:.5rem 0">Wavelength (nanometres)
         <input class="wavelength" type="range" min="400" max="700" step="10" value="600">
@@ -62,12 +62,12 @@ export function mount(el) {
     const frame =
       `<line x1="${SLIT_X}" y1="20" x2="${SLIT_X}" y2="300" class="fig-ink" stroke-width="2"></line>` +
       `<line x1="${screenX}" y1="20" x2="${screenX}" y2="300" class="fig-ink" stroke-width="2"></line>` +
-      `<text x="${SLIT_X - 6}" y="14" font-size="11" class="fig-ink" text-anchor="end">two slits</text>` +
-      `<text x="${screenX + 6}" y="14" font-size="11" class="fig-ink">screen</text>` +
+      `<text x="${SLIT_X - 6}" y="14" font-size="19" class="fig-ink" text-anchor="end">two slits</text>` +
+      `<text x="${screenX + 6}" y="14" font-size="19" class="fig-ink">screen</text>` +
       `<circle cx="${SLIT_X}" cy="${yTop}" r="4" class="fig-good"></circle>` +
       `<circle cx="${SLIT_X}" cy="${yBottom}" r="4" class="fig-good"></circle>` +
       `<line x1="${SLIT_X + 8}" y1="${yTop}" x2="${SLIT_X + 8}" y2="${yBottom}" class="fig-warn" stroke-width="2"></line>` +
-      `<text x="${SLIT_X + 12}" y="${(MID_Y).toFixed(1)}" font-size="10" class="fig-warn">s</text>`;
+      `<text x="${SLIT_X + 12}" y="${(MID_Y).toFixed(1)}" font-size="17" class="fig-warn">s</text>`;
 
     // The bright fringes: equally spaced bands on the screen, spaced w apart.
     let fringes = "";
@@ -87,11 +87,11 @@ export function mount(el) {
       rays =
         `<line x1="${SLIT_X}" y1="${yTop}" x2="${screenX - 14}" y2="${y1.toFixed(1)}" class="fig-grid" stroke-dasharray="3 3"></line>` +
         `<line x1="${SLIT_X}" y1="${yBottom}" x2="${screenX - 14}" y2="${y1.toFixed(1)}" class="fig-grid" stroke-dasharray="3 3"></line>` +
-        `<text x="${screenX + 16}" y="${y1.toFixed(1)}" font-size="10" class="fig-ink">n = 1</text>`;
+        `<text x="${screenX + 16}" y="${y1.toFixed(1)}" font-size="17" class="fig-ink">n = 1</text>`;
     }
 
     const centreLabel =
-      `<text x="${screenX - 6}" y="${MID_Y + 4}" font-size="10" class="fig-ink" text-anchor="end">centre</text>`;
+      `<text x="${screenX - 6}" y="${MID_Y + 4}" font-size="17" class="fig-ink" text-anchor="end">centre</text>`;
 
     svg.innerHTML = frame + fringes + rays + centreLabel;
 

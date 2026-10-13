@@ -71,7 +71,7 @@ export function mount(el) {
         `<line x1="${xToPx(value).toFixed(1)}" y1="20" ` +
         `x2="${xToPx(value).toFixed(1)}" y2="120" class="fig-grid"></line>` +
         `<text x="${xToPx(value).toFixed(1)}" y="138" text-anchor="middle" ` +
-        `class="fig-ink" font-size="11">${value}</text>`;
+        `class="fig-ink" font-size="13">${value}</text>`;
     }
     return (
       marks +

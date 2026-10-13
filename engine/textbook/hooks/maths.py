@@ -80,6 +80,20 @@ def on_page_content(content, page, config, files):
         return content
 
     rendered = render(items)
+    # The renderer's protocol is one result per item. A short (or non-list) reply
+    # would leave `\x00MATHn\x00` placeholders literally in the page, which no later
+    # check can see: not a `.math-error`, so the gate's grep misses it, and not a
+    # link, so `check_links` misses it. Fall back to error spans, exactly as
+    # `render` does when KaTeX is unavailable, so the build reports the page.
+    if not isinstance(rendered, list) or len(rendered) != len(items):
+        log.warning(
+            "maths: KaTeX renderer returned %s for %d item(s); maths left as LaTeX",
+            f"{len(rendered)} result(s)"
+            if isinstance(rendered, list)
+            else type(rendered).__name__,
+            len(items),
+        )
+        rendered = [f'<span class="math-error">{item["tex"]}</span>' for item in items]
     for index, mathml in enumerate(rendered):
         templated = templated.replace(f"\x00MATH{index}\x00", mathml)
     return templated

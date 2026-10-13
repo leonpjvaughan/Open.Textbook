@@ -10,7 +10,7 @@
 export function mount(el) {
   el.innerHTML = `
     <div class="fig-density-mass-volume" style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 560 190" width="100%" height="190" role="img"
+      <svg viewBox="0 0 560 190" width="100%" role="img"
            aria-label="A bar whose length shows the density of a chosen mass and volume, with a marked line for the density of water"></svg>
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
         <label>Mass (kg)
@@ -46,10 +46,10 @@ export function mount(el) {
       `<line x1="70" y1="70" x2="70" y2="30" class="fig-ink" stroke-width="2"></line>` +
       `<rect x="70" y="46" width="${barWidth.toFixed(1)}" height="24" class="fig-accent"></rect>` +
       `<line x1="${waterX.toFixed(1)}" y1="24" x2="${waterX.toFixed(1)}" y2="86" class="fig-warn" stroke-width="2" stroke-dasharray="4 4"></line>` +
-      `<text x="${waterX.toFixed(1)}" y="18" font-size="11" text-anchor="middle" class="fig-ink">water 1000</text>` +
-      `<text x="70" y="108" font-size="12" class="fig-ink">density (kg/m3)</text>` +
-      `<text x="70" y="132" font-size="13" class="fig-ink">${Math.round(density)} kg/m3</text>` +
-      `<text x="70" y="156" font-size="13" class="fig-ink">${
+      `<text x="${waterX.toFixed(1)}" y="18" font-size="16" text-anchor="middle" class="fig-ink">water 1000</text>` +
+      `<text x="70" y="108" font-size="18" class="fig-ink">density (kg/m3)</text>` +
+      `<text x="70" y="132" font-size="19" class="fig-ink">${Math.round(density)} kg/m3</text>` +
+      `<text x="70" y="156" font-size="19" class="fig-ink">${
         floats ? "floats in water" : "sinks in water"
       }</text>`;
 
