@@ -19,9 +19,14 @@ import re
 
 import pytest
 
+from textbook import scaffold
 from textbook.book import discover_books, repo_root
 
 BOOKS = discover_books()
+
+#: The two files in a figures directory that are not figures: the loader and the
+#: kit. Read from the scaffold, which is also what the build and the directive read.
+SHARED_FIGURE_FILES = tuple(scaffold.SHARED_FIGURE_FILES)
 
 # A figure is a module the loader can mount, and the loader is not a figure.
 MOUNT = re.compile(r"export\s+(?:async\s+)?function\s+mount\s*\(")
@@ -93,7 +98,7 @@ def figure_modules() -> list:
     for book in BOOKS:
         figures = book.docs / "assets" / "figures"
         for path in sorted(figures.glob("*.js")):
-            if not path.is_symlink():  # the shared loader is a symlink
+            if path.name not in SHARED_FIGURE_FILES:
                 found.append((book, path))
     return found
 
@@ -110,22 +115,29 @@ def accessible_names(text: str) -> list[str]:
 
 
 def test_the_discovery_is_sound():
-    """A sanity check on the rule that excludes the loader: every regular .js in
-    a figure directory is a figure, and the symlinked loader is not counted."""
+    """A sanity check on the rule that excludes the two shared files.
+
+    Every `.js` in a figure directory is a figure except `figures.js` and `kit.js` —
+    the loader and the scaffolding. Those used to be symlinked in, and the rule was
+    "a symlink is not a figure"; they are not in the tree at all now, so the rule is
+    their names, and this checks that a book's directory holds nothing else that is
+    not a figure.
+    """
     assert FIGURES, "no figure modules discovered"
     for book, path in FIGURES:
-        assert not path.is_symlink(), f"{book.id}/{path.name} is a symlink"
         assert MOUNT.search(path.read_text(encoding="utf-8")), (
             f"{book.id}/{path.name} sits in the figure directory but does not "
-            "export mount()"
+            f"export mount()"
         )
     for book in BOOKS:
-        loader = book.docs / "assets" / "figures" / "figures.js"
-        assert loader.is_symlink(), (
-            f"{book.id}: the shared loader is expected to be a symlink, so the "
-            "file-type rule excludes it"
+        figures = book.docs / "assets" / "figures"
+        present = {p.name for p in figures.glob("*.js")}
+        assert not (present & set(SHARED_FIGURE_FILES)), (
+            f"{book.id}: {sorted(present & set(SHARED_FIGURE_FILES))} are shared "
+            "files, and the build puts them in the site from assets/ — a copy or a "
+            "link in the book's tree would be a second source of truth"
         )
-        assert loader not in [path for _, path in FIGURES]
+        assert not [p for p in figures.rglob("*") if p.is_symlink()]
 
 
 # A text element: its purpose is words. `role="img"` on one replaces those

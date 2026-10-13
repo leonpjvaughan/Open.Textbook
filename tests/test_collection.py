@@ -12,6 +12,7 @@ import re
 import pytest
 
 from textbook import book as books
+from textbook.book import repo_root
 from textbook import pipeline, portal, scaffold
 
 ALL = books.discover_books()
@@ -97,28 +98,33 @@ def test_book_has_an_author_local_stylesheet(book):
 
 
 @pytest.mark.parametrize("book", ALL, ids=IDS)
-def test_shared_assets_are_symlinked_not_copied(book):
-    """CSS, the figure loader and the booklet widget are shared. A copy would
-    drift; the point is that there is one truth.
+def test_the_shared_files_have_one_copy_and_every_book_ships_it(book):
+    """One truth, and the build puts it in the site.
 
-    The pipeline reads the shared bytes from ``assets/`` directly, so these links
-    are the book's self-describing view rather than the build's source. Keeping
-    them is a deliberate decision — see ``scaffold.ensure_shared_assets`` — and
-    this test is what keeps one from going stale now that no build walks
-    ``docs_dir``.
+    These files used to be symlinked into each book's `docs/assets/` so a book's
+    tree showed which shared files it used. That was MkDocs's requirement — it
+    served only `docs_dir` — and the bespoke pipeline reads `assets/` directly, so
+    the links became decoration. Decoration that **breaks on Windows**, where git
+    checks a symlink out as a small plain file containing its target; a build then
+    copied a 36-byte `kit.js` holding a path into the site.
+
+    So there is no link anywhere now. The sharing is declared in one list and the
+    build materialises it, and this checks the two halves: the files exist once, in
+    `assets/`, and a build of this book contains them.
     """
-    assets = book.docs / "assets"
-    relative_paths = [
-        "stylesheets/extra.css",
-        "stylesheets/themes.css",
-        "figures/figures.js",
-    ]
-    if book.booklet_name:
-        relative_paths.append("booklet/booklet.js")
-    for relative in relative_paths:
-        path = assets / relative
-        assert path.is_symlink(), f"{book.id}: {relative} should be a symlink"
-        assert path.resolve().is_file(), f"{book.id}: {relative} is a broken symlink"
+    from textbook import scaffold
+
+    assert scaffold.SHARED_FILES, "nothing is declared shared"
+    for relative in scaffold.SHARED_FILES:
+        assert (repo_root() / relative).is_file(), f"{relative} is not in assets/"
+
+    # No links anywhere in a book's tree: the whole point of the change.
+    links = [p for p in (book.docs / "assets").rglob("*") if p.is_symlink()]
+    assert not links, (
+        f"{book.id}: {[str(p.relative_to(book.docs)) for p in links]} are symlinks. "
+        "Sharing is declared in scaffold.SHARED_FILES and materialised by the build, "
+        "so nothing in the repository needs to be a link."
+    )
 
 
 @pytest.mark.parametrize("book", ALL, ids=IDS)
@@ -292,22 +298,17 @@ def test_a_new_book_scaffolds_a_banks_directory(tmp_path):
     assert (banks / ".gitkeep").is_file(), "an empty banks directory would not be tracked"
 
 
-def test_the_scaffolds_symlinks_are_assets_the_build_actually_ships(tmp_path):
-    """The two lists of "the shared assets" must not drift apart.
+def test_every_declared_shared_file_is_one_the_build_writes(tmp_path):
+    """The declaration and the build must agree, and now they are the same thing.
 
-    `scaffold.SHARED_ASSETS` decides which links a book's `docs/assets/` carries;
-    `pipeline.copy_assets` decides what the built site actually contains. Nothing
-    tied them together, so an asset added to one and not the other is either a
-    broken symlink or a file the pages request and the build never copies.
+    `scaffold.SHARED_FILES` is read by `copy_assets`, so a file added to it is
+    shipped by construction. This is the check that the wiring holds — it was two
+    lists before, and an asset added to one and not the other was either a broken
+    link or a file the pages requested and the build never wrote.
 
-    The build's link check catches an asset a *page* references. It cannot catch one
-    reached only at runtime — a stylesheet that imports another, a font, a worker
-    chunk — which is what this test is for.
-
-    It builds rather than reading the source: the first version scanned
-    `copy_assets` for literal file names and missed every file copied inside a loop
-    (`for name in SHARED_CSS`), which is to say it missed the ones it was written to
-    check.
+    The build's link check cannot catch this: an asset reached only at runtime — a
+    stylesheet that imports another, a worker chunk, the figure kit a module imports
+    — is not a link on any page.
     """
     from textbook import pipeline, scaffold
 
@@ -315,12 +316,18 @@ def test_the_scaffolds_symlinks_are_assets_the_build_actually_ships(tmp_path):
     out = tmp_path / "site"
     pipeline.build(book.id, book.default_profile.id, out=out, index=False)
 
-    built = {path.relative_to(out).as_posix() for path in out.rglob("*")}
-    linked = {name for _, name in scaffold.SHARED_ASSETS}
-    assert linked, "the scaffold links nothing"
-
-    missing = sorted(name for name in linked if name not in built)
-    assert not missing, (
-        f"the scaffold symlinks {missing}, which the build does not write — the "
-        "book would carry a link to a file the built site does not contain"
+    missing = sorted(
+        relative
+        for relative in scaffold.SHARED_FILES
+        if not (out / relative).is_file()
     )
+    assert not missing, (
+        f"the build does not write {missing}, which the scaffold declares shared — "
+        "either `copy_assets` stopped reading `SHARED_FILES`, or these are declared "
+        "and never shipped"
+    )
+    # And byte-identical, because the point of one copy is that it is one copy.
+    for relative in scaffold.SHARED_FILES:
+        assert (out / relative).read_bytes() == (repo_root() / relative).read_bytes(), (
+            f"{relative} differs between assets/ and the built site"
+        )

@@ -1,1 +1,0 @@
-../../../../../assets/booklet/booklet.js

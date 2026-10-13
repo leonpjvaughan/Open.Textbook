@@ -731,10 +731,16 @@ def colour_literals(css: str, python: bool = False) -> list[str]:
 
 
 @pytest.mark.parametrize("book", BOOKS, ids=[b.id for b in BOOKS])
-def test_each_book_sees_the_shared_stylesheet(book):
-    link = book.docs / "assets" / "stylesheets" / "themes.css"
-    assert link.is_symlink(), f"{book.id}: themes.css should be a symlink"
-    assert link.resolve() == THEMES_CSS, f"{book.id}: themes.css points elsewhere"
+def test_each_book_ships_the_shared_stylesheet(book):
+    """From `assets/`, through the build — not through a link in the book's tree."""
+    from textbook import scaffold
+
+    assert "assets/stylesheets/themes.css" in scaffold.SHARED_FILES
+    assert THEMES_CSS.is_file(), "the generated stylesheet is missing"
+    assert not (book.docs / "assets" / "stylesheets" / "themes.css").exists(), (
+        f"{book.id}: themes.css is inside the book's tree; it is shared, so it "
+        "belongs in assets/ and is copied by the build"
+    )
 
 
 def test_the_base_stylesheet_defines_no_colour():

@@ -550,16 +550,28 @@ def sitemap(book: books.Book, profile: str, pages: list[RenderedPage]) -> str:
 def copy_assets(book: books.Book, out: Path) -> list[str]:
     """Copy the shared design system, the shell, and this book's figure modules."""
     copied: list[str] = []
-    assets = Path(books.repo_root()) / "assets"
+    root = Path(books.repo_root())
+    assets = root / "assets"
     sheets = out / "assets" / "stylesheets"
-    sheets.mkdir(parents=True, exist_ok=True)
 
-    shared = assets / "stylesheets"
-    for name in SHARED_CSS:
-        source = shared / name
-        if source.exists():
-            shutil.copy2(source, sheets / name)
-            copied.append(name)
+    # Every shared file, from the one list that declares them — repository path and
+    # site path are the same string, so there is nothing to map. This replaces a
+    # hardcoded `SHARED_CSS` loop that had to be kept in step with the symlinks the
+    # scaffold created, which is the pair of lists the engine review flagged: an
+    # asset added to one and not the other was either a broken link or a file the
+    # pages requested and the build never wrote.
+    for relative in scaffold.SHARED_FILES:
+        source = root / relative
+        if not source.exists():
+            continue
+        target = out / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, target)
+        copied.append(Path(relative).name)
+
+    # The shell is the engine's own stylesheet, not a shared asset: it is part of
+    # the renderer rather than the design system a book composes.
+    sheets.mkdir(parents=True, exist_ok=True)
     shutil.copy2(SHELL_CSS, sheets / "shell.css")
     copied.append("shell.css")
 
@@ -595,7 +607,9 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
     # the output a profile served on its own would 404 on that request.
     settings_dir = out / "assets" / "settings"
     settings_dir.mkdir(parents=True, exist_ok=True)
-    for name in ("settings.js", "service-worker.js"):
+    # `settings.js` is a shared file and arrives with `SHARED_FILES` above; only the
+    # registration script is this build's own.
+    for name in ("service-worker.js",):
         source = assets / "settings" / name
         if source.exists():
             shutil.copy2(source, settings_dir / name)
@@ -632,13 +646,11 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
     # string `../../../../../assets/figures/kit.js` into the site, reported success
     # and counted it as a figure module — a green build, a broken browser, and
     # nothing in the output to say so.
+    # `figures.js` and `kit.js` arrive with `SHARED_FILES` above. What is left is
+    # this book's own modules — and nothing in the book's directory that is a
+    # symlink, because on a platform that does not check symlinks out as links it is
+    # not a module either; it is a text file naming its target.
     figures_dir = out / "assets" / "figures"
-    for name in scaffold.SHARED_FIGURE_FILES:
-        source = assets / "figures" / name
-        if source.exists():
-            figures_dir.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(source, figures_dir / name)
-            copied.append(name)
 
     modules = book.docs / "assets" / "figures"
     if modules.is_dir():

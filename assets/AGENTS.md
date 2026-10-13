@@ -130,14 +130,15 @@ node scripts/screenshot.cjs site ~/out --schemes light,dark --theme neon -- \
 
 Moved from the root's `## Watch out for`.
 
-- Shared CSS and runtime widgets reach each book by symlink:
-  `books/<id>/docs/assets/{stylesheets/extra.css,stylesheets/themes.css,figures/figures.js,booklet/booklet.js}`
-  point into the root `assets/`. Edit the file in `assets/` — never replace a
-  symlink with a copy, or the books drift apart. The scaffold creates these, so a
-  new book gets them by running it.
-- A broken symlink under `docs_dir` breaks the book: the scaffold creates the
-  shared symlinks and the tests check they resolve, because a tool that walks the
-  tree meets them whether or not a page references them.
+- Shared CSS and runtime widgets live **once**, in `assets/`, and are listed in
+  `scaffold.SHARED_FILES`. The build copies each one to the same path in the
+  output, so a book never holds a copy and cannot drift from the shared file. Edit
+  the file in `assets/`; there is nothing in a book's tree to edit.
+- **Nothing in this repository is a symlink**, deliberately. A link is checked out
+  as a small plain file holding its target wherever `core.symlinks` is false — a
+  Windows clone without developer mode — which shipped a 36-byte `kit.js` to the
+  site and broke every figure while the build stayed green. If you are tempted to
+  add one, add the file to `SHARED_FILES` instead and let the build place it.
 - Anything to do with colour, fonts or bundles: see **The theme model** above.
 
 ## The booklet widget

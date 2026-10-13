@@ -47,19 +47,35 @@ SETTINGS_WIDGET = "assets/settings/settings.js"
 COLOPHON_FILE = "colophon.md"
 COLOPHON_TITLE = "About this book"
 
-# Shared files every book sees through a symlink, so there is one copy. Kept as
-# the book's self-describing view; see ``ensure_shared_assets``.
-SHARED_ASSETS: tuple[tuple[str, str], ...] = (
-    ("stylesheets/extra.css", "assets/stylesheets/extra.css"),
-    ("stylesheets/themes.css", "assets/stylesheets/themes.css"),
-    ("stylesheets/settings.css", "assets/stylesheets/settings.css"),
-    ("settings/settings.js", SETTINGS_WIDGET),
-    ("figures/figures.js", "assets/figures/figures.js"),
-    # The shared scaffolding every figure imports. A symlink like the loader, for
-    # the same reason: one copy in `assets/`, and a book's `docs/` describes what
-    # it uses. Discovery skips both by name — see `SHARED_FIGURE_FILES`.
-    ("figures/kit.js", "assets/figures/kit.js"),
+# The files every book ships, as **repository paths** — which are also their paths
+# in the built site. One list, read by `pipeline.copy_assets`.
+#
+# These used to be symlinked into each book's `docs/assets/`, so a book's tree
+# showed which shared files it used. That was MkDocs's requirement: it served only
+# `docs_dir`, so anything a page linked had to be inside it. The bespoke pipeline
+# reads `assets/` directly, so the links became decoration — and decoration that
+# **breaks on Windows**, where git checks a symlink out as a small plain file
+# containing its target (see `core.symlinks` in git-config). A build then copied a
+# 36-byte `kit.js` holding a path into the site, reported success, and left every
+# figure in the book unable to import its scaffolding.
+#
+# So the sharing is declared once, here, and **materialised by the build** — the
+# shape Hugo calls a directory *mount* and Eleventy calls *passthrough copy*: say
+# what is shared and let the tool place it. Nothing in the repository is a link.
+SHARED_FILES: tuple[str, ...] = (
+    "assets/stylesheets/themes.css",
+    "assets/stylesheets/extra.css",
+    "assets/stylesheets/settings.css",
+    "assets/settings/settings.js",
+    "assets/figures/figures.js",
+    "assets/figures/kit.js",
 )
+
+# Files that live in a book's `docs/assets/figures/` but are not figures. The
+# loader mounts a module by slug and the kit is imported by one, so neither is a
+# slug a `:::figure` directive may name. Read by the directive's slug registry and
+# by `pipeline.copy_assets`, so there is one list rather than two.
+SHARED_FIGURE_FILES: tuple[str, ...] = ("figures.js", "kit.js")
 
 #: The three page kinds of a section, in the order a reader meets them.
 #:
@@ -78,13 +94,6 @@ PAGE_KINDS: tuple[tuple[str, str, str, str], ...] = (
     ("Guided problems", "guided-problems", "Practise with help", "practise-with-help"),
     ("Problems", "problems", "Practise", "practise"),
 )
-
-#: Files that live in a book's `docs/assets/figures/` but are not figures. The
-#: loader mounts a module by slug and the kit is imported by one, so neither is a
-#: slug a `:::figure` directive may name. One tuple, because four places need to
-#: agree: the directive's slug registry, the figure tests, the audit and the
-#: coverage table.
-SHARED_FIGURE_FILES: tuple[str, ...] = ("figures.js", "kit.js")
 
 STRAND_FILES = {
     "number": "number.md",
@@ -127,41 +136,6 @@ def generate(path: Path, content: str, dry_run: bool) -> None:
     if not dry_run:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content, encoding="utf-8")
-
-
-def ensure_shared_assets(book: Book, dry_run: bool) -> None:
-    """Make the shared files visible inside this book's docs tree, through symlinks.
-
-    The shared bytes live once in ``assets/``, and ``pipeline.copy_assets`` reads
-    them from there directly — MkDocs was the last build that needed them inside
-    ``docs_dir``. They are kept deliberately, as the book's self-describing view:
-    ``docs/assets/`` shows which shared stylesheets, figure loader, settings
-    runtime and booklet widget a book uses, beside its own files. The links are
-    the contract that ``tests/test_themes.py``, ``tests/test_figures.py`` and
-    ``tests/test_settings.py`` read, and ``tests/test_collection.py`` checks each
-    one resolves.
-
-    A *broken* symlink no longer fails a build, because nothing walks
-    ``docs_dir`` any more, so that test is what holds it. Creating the links here
-    rather than leaving them to whoever adds a book is what keeps a new book from
-    starting with a broken one.
-    """
-    pairs = list(SHARED_ASSETS)
-    if book.booklet_name:
-        pairs.append(("booklet/booklet.js", BOOKLET_WIDGET))
-
-    for relative, target in pairs:
-        link = book.docs / "assets" / relative
-        destination = repo_root() / target
-        if link.is_symlink() and link.resolve() == destination:
-            continue
-        written.append(link)
-        if dry_run:
-            continue
-        link.parent.mkdir(parents=True, exist_ok=True)
-        if link.is_symlink() or link.exists():
-            link.unlink()
-        link.symlink_to(os.path.relpath(destination, link.parent))
 
 
 def write_shared_stylesheets(dry_run: bool) -> None:
@@ -781,7 +755,6 @@ def scaffold(book: Book, dry_run: bool) -> None:
                 emit(base / directory / "index.md", section_stub(c, s, kind), dry_run)
         emit(chapter_dir / "Review" / "index.md", review_stub(c), dry_run)
 
-    ensure_shared_assets(book, dry_run)
 
     # The book's own theme layer. `book.css` is generated, so it is rewritten
     # on every run — a theme change must reach the stylesheet.

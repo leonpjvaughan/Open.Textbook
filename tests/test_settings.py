@@ -109,22 +109,24 @@ def test_every_book_offers_every_bundle_and_loads_the_runtime(book):
 
 
 @pytest.mark.parametrize("book", BOOKS, ids=IDS)
-def test_every_book_sees_the_settings_assets(book):
-    assets = book.docs / "assets"
-    for relative, target in (
-        ("stylesheets/settings.css", SETTINGS_CSS),
-        ("settings/settings.js", SETTINGS_JS),
+def test_the_settings_assets_are_declared_shared(book):
+    """They are shipped because they are declared, not because a link exists."""
+    from textbook import scaffold
+
+    for relative in (
+        "assets/stylesheets/settings.css",
+        "assets/settings/settings.js",
     ):
-        link = assets / relative
-        assert link.is_symlink(), f"{book.id}: {relative} should be a symlink"
-        assert link.resolve() == target.resolve(), f"{book.id}: {relative} points elsewhere"
+        assert relative in scaffold.SHARED_FILES, f"{relative} is not declared shared"
+        assert (repo_root() / relative).is_file(), f"{relative} is missing from assets/"
+    assert not [p for p in (book.docs / "assets").rglob("*") if p.is_symlink()], (
+        f"{book.id}: a symlink survives; sharing is declared, not linked"
+    )
 
 
 def test_the_assets_are_declared_shared_and_loaded():
-    assert ("stylesheets/settings.css", "assets/stylesheets/settings.css") in (
-        scaffold.SHARED_ASSETS
-    )
-    assert ("settings/settings.js", scaffold.SETTINGS_WIDGET) in scaffold.SHARED_ASSETS
+    assert "assets/stylesheets/settings.css" in scaffold.SHARED_FILES
+    assert "assets/settings/settings.js" in scaffold.SHARED_FILES
     assert SETTINGS_CSS.is_file() and SETTINGS_JS.is_file()
     template = pipeline.PAGE_TEMPLATE.read_text(encoding="utf-8")
     assert "assets/stylesheets/settings.css" in template

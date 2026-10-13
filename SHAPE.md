@@ -71,12 +71,22 @@ Two consequences worth knowing:
 
 ### Shared assets and hooks
 
-- **Shared assets** reach each book through a symlink from
-  `books/<id>/docs/assets/…` into `assets/`. The scaffold creates the symlinks and
-  the tests check they resolve; the pipeline copies the shared bytes from
-  `assets/` into the build output. Caveat: Git stores the symlink, so a checkout
-  needs `core.symlinks` (true on Linux and macOS) and CI must run on a platform
-  that honours it.
+- **Shared assets** are declared once, in `scaffold.SHARED_FILES`, and
+  **materialised by the build**: `pipeline.copy_assets` copies each one from
+  `assets/` to the same path in the output. Nothing in the repository is a
+  symlink.
+
+  They used to be symlinked into each book's `docs/assets/`, so a book's tree
+  showed which shared files it used. That was MkDocs's requirement — it served
+  only `docs_dir` — and the bespoke pipeline reads `assets/` directly, so the
+  links became decoration. Decoration that breaks: **git checks a symlink out as
+  a small plain file containing its target** wherever `core.symlinks` is false
+  (Windows without developer mode, FAT), so a build copied a 36-byte `kit.js`
+  holding a path into the site, reported success, and left every figure unable to
+  import its scaffolding.
+
+  The shape is the one Hugo calls a directory *mount* and Eleventy calls
+  *passthrough copy*: say what is shared, let the tool place it.
 - **Shared hooks** live in `engine/textbook/hooks/` and are composed in one
   place. `engine/textbook/hooks/__init__.py` states the order, and the pipeline
   reads the same order from `pipeline.MARKDOWN_HOOKS`; a test pins the two
@@ -237,7 +247,7 @@ books/<id>/
 ├── curriculum.yaml           # the chapter plan (source of truth)
 ├── sources.yaml              # tracked provenance manifest
 ├── AGENTS.md                 # subject-specific conventions and pitfalls
-├── docs/                     # content; assets/ symlinked to the shared tree
+├── docs/                     # content; shared assets come from assets/ at build time
 ├── problems/                 # verified problem banks
 └── booklet/                  # formulae and tables data
 ```
