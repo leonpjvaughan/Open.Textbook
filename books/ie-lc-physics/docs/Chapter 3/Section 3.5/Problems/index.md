@@ -15,4 +15,4 @@ kind: problems
 # 3.5 Connected objects and systems — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 1.2
+> Tier: **H** · refs: 1.2

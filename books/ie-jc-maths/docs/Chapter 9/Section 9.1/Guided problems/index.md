@@ -16,4 +16,4 @@ kind: guided-problems
 # 9.1 Repeating patterns and tables — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: N.4, AF.1
+> Tier: **O** · refs: N.4, AF.1

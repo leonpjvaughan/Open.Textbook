@@ -7,7 +7,7 @@ chapter: 10
 problems:
   - id: p1-add-two-vectors
     section: "10.3"
-    dfe: [J3]
+    refs: [J3]
     statement: 'Add $\mathbf{a} = 2\mathbf{i} + 5\mathbf{j}$ and $\mathbf{b} = 3\mathbf{i} - 4\mathbf{j}$.'
     answer_label: 'The sum'
     check:
@@ -19,7 +19,7 @@ problems:
 
   - id: p2-add-three-dimensions
     section: "10.3"
-    dfe: [J3]
+    refs: [J3]
     statement: 'Add $\mathbf{a} = \mathbf{i} - 2\mathbf{j} + 3\mathbf{k}$ and $\mathbf{b} = 2\mathbf{i} + 2\mathbf{j} - 5\mathbf{k}$.'
     answer_label: 'The sum'
     check:
@@ -31,7 +31,7 @@ problems:
 
   - id: p3-negative-scalar
     section: "10.3"
-    dfe: [J3]
+    refs: [J3]
     statement: 'Multiply $\mathbf{a} = 2\mathbf{i} - 5\mathbf{j}$ by $-3$.'
     answer_label: 'The vector $-3\mathbf{a}$'
     check:
@@ -43,7 +43,7 @@ problems:
 
   - id: p4-combine-two-scalars
     section: "10.3"
-    dfe: [J3]
+    refs: [J3]
     statement: 'For $\mathbf{a} = 3\mathbf{i} - \mathbf{j}$ and $\mathbf{b} = \mathbf{i} + 4\mathbf{j}$, find $2\mathbf{a} + 3\mathbf{b}$.'
     answer_label: 'The vector'
     check:
@@ -65,7 +65,7 @@ problems:
 
   - id: p5-subtract-two-scalars
     section: "10.3"
-    dfe: [J3]
+    refs: [J3]
     statement: 'For $\mathbf{a} = \mathbf{i} + 2\mathbf{j}$ and $\mathbf{b} = 2\mathbf{i} - 3\mathbf{j}$, find $4\mathbf{a} - 2\mathbf{b}$.'
     answer_label: 'The vector'
     check:
@@ -87,7 +87,7 @@ problems:
 
   - id: p6-resultant-force
     section: "10.3"
-    dfe: [J3]
+    refs: [J3]
     statement: 'Two forces $\mathbf{F}_1 = 3\mathbf{i} + 4\mathbf{j}$ N and $\mathbf{F}_2 = 4\mathbf{i} - 3\mathbf{j}$ N act at a point. Find the resultant force, its magnitude and its direction from the positive $x$-axis.'
     answer_label: 'The resultant, its magnitude and direction'
     check:
@@ -103,7 +103,7 @@ problems:
 
   - id: p7-equilibrium-third-force
     section: "10.3"
-    dfe: [J3]
+    refs: [J3]
     statement: 'Forces $\mathbf{A} = 5\mathbf{i} - 2\mathbf{j}$ N and $\mathbf{B} = -3\mathbf{i} + 7\mathbf{j}$ N act at a point. Find the force $\mathbf{C}$ that keeps the point still.'
     answer_label: 'The third force'
     check:
@@ -121,7 +121,7 @@ problems:
 
   - id: p8-three-vectors-balance
     section: "10.3"
-    dfe: [J3]
+    refs: [J3]
     statement: 'Show that $\mathbf{a} = 2\mathbf{i} - \mathbf{j}$, $\mathbf{b} = -\mathbf{i} + 4\mathbf{j}$ and $\mathbf{c} = -\mathbf{i} - 3\mathbf{j}$ are in equilibrium.'
     answer_label: 'The total'
     check:
@@ -133,7 +133,7 @@ problems:
 
   - id: p9-total-displacement
     section: "10.3"
-    dfe: [J3]
+    refs: [J3]
     statement: 'A ship has displacements $3\mathbf{i} - 4\mathbf{j}$ km, $-\mathbf{i} + 2\mathbf{j}$ km and $2\mathbf{i} + \mathbf{j}$ km. Find the single displacement from the start and the distance from the start.'
     answer_label: 'The displacement and the distance'
     check:
@@ -148,7 +148,7 @@ problems:
 
   - id: p10-mixed-scalars
     section: "10.3"
-    dfe: [J3]
+    refs: [J3]
     statement: 'For $\mathbf{a} = 2\mathbf{i} - \mathbf{j}$ and $\mathbf{b} = -\mathbf{i} + 2\mathbf{j}$, find $3\mathbf{a} - 4\mathbf{b}$.'
     answer_label: 'The vector'
     check:
@@ -170,7 +170,7 @@ problems:
 
   - id: p11-boat-and-current
     section: "10.3"
-    dfe: [J3]
+    refs: [J3]
     statement: 'A boat can move at $3\mathbf{i} + 4\mathbf{j}$ m/s in still water. A current of $-\mathbf{i} + 2\mathbf{j}$ m/s flows. Find the boat''s resultant velocity, its speed and its direction from the positive $x$-axis.'
     answer_label: 'The velocity, the speed and the direction'
     check:
@@ -186,7 +186,7 @@ problems:
 
   - id: p12-three-legs
     section: "10.3"
-    dfe: [J3]
+    refs: [J3]
     statement: 'A drone flies displacement $6\mathbf{i} + \mathbf{j}$ m, then $-4\mathbf{i} + 3\mathbf{j}$ m, then $\mathbf{i} - \mathbf{j}$ m. Find its single displacement and its distance from the start.'
     answer_label: 'The displacement and the distance'
     check:

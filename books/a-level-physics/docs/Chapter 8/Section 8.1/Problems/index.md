@@ -4,7 +4,7 @@ chapter: 8
 chapter_title: Quantum and nuclear physics
 section: '8.1'
 section_title: Photons and the photoelectric effect
-dfe:
+refs:
 - AP8
 kind: problems
 ---

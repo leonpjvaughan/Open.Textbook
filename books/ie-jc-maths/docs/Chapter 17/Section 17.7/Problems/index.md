@@ -15,4 +15,4 @@ kind: problems
 # 17.7 Graphs in context and rate of change — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: GT.5
+> Tier: **O** · refs: GT.5

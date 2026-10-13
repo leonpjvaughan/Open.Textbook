@@ -15,4 +15,4 @@ kind: problems
 # 3.5 The fundamental theorem of calculus — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: S3
+> Tier: **O** · refs: S3

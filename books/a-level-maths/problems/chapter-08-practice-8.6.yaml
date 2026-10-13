@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: x1-distinct
     section: "8.6"
-    dfe: [H6]
+    refs: [H6]
     statement: 'Find $\displaystyle\int \frac{1}{(x - 1)(x + 2)}\,dx$.'
     answer_label: 'The integral'
     check:
@@ -22,7 +22,7 @@ problems:
 
   - id: x2-numerator-linear
     section: "8.6"
-    dfe: [H6]
+    refs: [H6]
     statement: 'Find $\displaystyle\int \frac{5x + 1}{(x - 1)(x + 2)}\,dx$.'
     answer_label: 'The integral'
     check:
@@ -35,7 +35,7 @@ problems:
 
   - id: x3-unit-coefficients
     section: "8.6"
-    dfe: [H6]
+    refs: [H6]
     statement: 'Find $\displaystyle\int \frac{2x + 3}{(x + 1)(x + 2)}\,dx$.'
     answer_label: 'The integral'
     check:
@@ -48,7 +48,7 @@ problems:
 
   - id: x4-negative-coefficient
     section: "8.6"
-    dfe: [H6]
+    refs: [H6]
     statement: 'Find $\displaystyle\int \frac{x + 4}{(x - 2)(x + 1)}\,dx$.'
     answer_label: 'The integral'
     check:
@@ -61,7 +61,7 @@ problems:
 
   - id: x5-fractional-coefficients
     section: "8.6"
-    dfe: [H6]
+    refs: [H6]
     statement: 'Find $\displaystyle\int \frac{3x - 2}{(x + 1)(x - 3)}\,dx$.'
     answer_label: 'The integral'
     check:
@@ -74,7 +74,7 @@ problems:
 
   - id: x6-repeated
     section: "8.6"
-    dfe: [H6]
+    refs: [H6]
     statement: 'Find $\displaystyle\int \frac{1}{x(x - 1)^2}\,dx$.'
     answer_label: 'The integral'
     check:
@@ -87,7 +87,7 @@ problems:
 
   - id: x7-definite
     section: "8.6"
-    dfe: [H6]
+    refs: [H6]
     statement: 'Evaluate $\displaystyle\int_2^3 \frac{1}{(x - 1)(x + 2)}\,dx$, giving an exact answer.'
     answer_label: 'The value of the integral'
     check:
@@ -99,7 +99,7 @@ problems:
 
   - id: x8-improper
     section: "8.6"
-    dfe: [H6]
+    refs: [H6]
     statement: 'Find $\displaystyle\int \frac{x^2 + 1}{x(x - 1)}\,dx$.'
     answer_label: 'The integral'
     check:
@@ -112,7 +112,7 @@ problems:
 
   - id: x9-simple-sum
     section: "8.6"
-    dfe: [H6]
+    refs: [H6]
     statement: 'Find $\displaystyle\int \frac{1}{(x + 1)(x + 3)}\,dx$.'
     answer_label: 'The integral'
     check:
@@ -125,7 +125,7 @@ problems:
 
   - id: x10-repeated-shifted
     section: "8.6"
-    dfe: [H6]
+    refs: [H6]
     statement: 'Find $\displaystyle\int \frac{1}{x(x + 1)^2}\,dx$.'
     answer_label: 'The integral'
     check:
@@ -138,7 +138,7 @@ problems:
 
   - id: x11-degree-equal
     section: "8.6"
-    dfe: [H6]
+    refs: [H6]
     statement: 'Find $\displaystyle\int \frac{x^2}{x^2 - 1}\,dx$.'
     answer_label: 'The integral'
     check:
@@ -151,7 +151,7 @@ problems:
 
   - id: x12-definite-simple
     section: "8.6"
-    dfe: [H6]
+    refs: [H6]
     statement: 'Evaluate $\displaystyle\int_0^1 \frac{1}{(x + 1)(x + 2)}\,dx$, giving an exact answer.'
     answer_label: 'The value of the integral'
     check:

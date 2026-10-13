@@ -4,7 +4,7 @@ chapter: 9
 chapter_title: Numerical methods
 section: '9.5'
 section_title: Numerical methods in context
-dfe:
+refs:
 - I4
 - OT2
 kind: guided-problems

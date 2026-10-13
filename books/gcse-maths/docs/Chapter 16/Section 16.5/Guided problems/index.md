@@ -5,7 +5,7 @@ chapter_title: Angles, polygons and geometrical reasoning
 section: '16.5'
 section_title: Geometrical reasoning and proof
 tier: H
-dfe: [G6]
+refs: [G6]
 kind: guided-problems
 ---
 

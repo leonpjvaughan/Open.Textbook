@@ -16,7 +16,7 @@ chapter: 9
 problems:
   - id: p1-force-two-masses
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Two spheres, each of mass 1000 kg, are 2.0 m apart. Find the gravitational force between them.'
     answer_label: 'The gravitational force'
     check:
@@ -30,7 +30,7 @@ problems:
 
   - id: p2-field-strength-mars
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Mars has a mass of 6.42e23 kg and a radius of 3.39e6 m. Find the gravitational field strength at its surface.'
     answer_label: 'The field strength'
     check: {kind: approx, value: "6.67e-11 * 6.42e23 / 3.39e6**2", target: "3.73", tolerance: "0.02"}
@@ -38,7 +38,7 @@ problems:
 
   - id: p3-field-strength-ratio
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'The gravitational field strength at the Earth''s surface is 9.81 N/kg. Find its value at a distance of 3R from the centre, where R is the Earth''s radius.'
     answer_label: 'The field strength'
     check: {kind: approx, value: "9.81 / 3**2", target: "1.09", tolerance: "0.01"}
@@ -46,7 +46,7 @@ problems:
 
   - id: p4-potential-mars
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Using the mass and radius of Mars in question 2, find the gravitational potential at its surface.'
     answer_label: 'The gravitational potential'
     check: {kind: approx, value: "-6.67e-11 * 6.42e23 / 3.39e6", target: "-1.26e7", tolerance: "1e5"}
@@ -54,7 +54,7 @@ problems:
 
   - id: p5-orbital-speed
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A satellite orbits the Earth in a circle of radius 7.0e6 m. Find its orbital speed.'
     answer_label: 'The orbital speed'
     check: {kind: approx, value: "sqrt(6.67e-11 * 5.97e24 / 7.0e6)", target: "7.54e3", tolerance: "10"}
@@ -62,7 +62,7 @@ problems:
 
   - id: p6-orbital-period
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the orbital period of the satellite in question 5.'
     answer_label: 'The period'
     check: {kind: approx, value: "2 * pi * 7.0e6 / sqrt(6.67e-11 * 5.97e24 / 7.0e6)", target: "5.83e3", tolerance: "20"}
@@ -70,7 +70,7 @@ problems:
 
   - id: p7-kepler-ratio
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Two satellites orbit the same planet. Their orbital radii are in the ratio 4:1. Find the ratio of their periods.'
     answer_label: 'The ratio of the periods'
     check:
@@ -84,7 +84,7 @@ problems:
 
   - id: p8-escape-speed-mars
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the escape speed from the surface of Mars. Use its mass 6.42e23 kg and radius 3.39e6 m.'
     answer_label: 'The escape speed'
     check: {kind: approx, value: "sqrt(2 * 6.67e-11 * 6.42e23 / 3.39e6)", target: "5.03e3", tolerance: "20"}
@@ -92,7 +92,7 @@ problems:
 
   - id: p9-energy-between-potentials
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A 500 kg probe moves from a point where the gravitational potential is -4.0e7 J/kg to a point where it is -2.0e7 J/kg. Find the energy needed.'
     answer_label: 'The energy needed'
     check: {kind: approx, value: "500 * ((-2.0e7) - (-4.0e7))", target: "1.0e10", tolerance: "1e8"}
@@ -100,7 +100,7 @@ problems:
 
   - id: p10-method-orbital-speed
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A satellite moves in a circular orbit of radius r around a planet of mass M. State which equation you would use to find its speed, and why.'
     check:
       kind: structured
@@ -122,7 +122,7 @@ problems:
 
   - id: p11-uncertainty-potential-difference
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'The gravitational potential at the surface of the Earth is -6.25e7 J/kg with an uncertainty of 5.0e5 J/kg. At the orbit it is -5.88e7 J/kg with an uncertainty of 5.0e5 J/kg. Find the potential difference and its absolute uncertainty.'
     answer_label: 'The potential difference and its uncertainty'
     check:
@@ -137,7 +137,7 @@ problems:
 
   - id: p12-escape-speed-2sf
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'The escape speed from Mars is 5026 m/s. Write it to two significant figures.'
     answer_label: 'The escape speed to two significant figures'
     check:
@@ -150,7 +150,7 @@ problems:
 
   - id: p13-convert-height
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'The spacecraft orbits at a height of 400 km. Write this height in metres.'
     answer_label: 'The height in metres'
     check: {kind: convert, value: "400", from: "km", to: "m", answer: "4.0e5"}
@@ -158,7 +158,7 @@ problems:
 
   - id: p14-energy-lift-satellite
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A 1200 kg satellite is lifted from the Earth''s surface, where the potential is -6.25e7 J/kg, to a higher orbit where the potential is -5.88e7 J/kg. Find the energy needed.'
     answer_label: 'The energy needed'
     check: {kind: approx, value: "1200 * ((-5.88e7) - (-6.25e7))", target: "4.44e9", tolerance: "1e8"}

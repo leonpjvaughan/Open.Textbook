@@ -15,4 +15,4 @@ kind: problems
 # 18.6 Angles of elevation and depression — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: GT.4
+> Tier: **O** · refs: GT.4

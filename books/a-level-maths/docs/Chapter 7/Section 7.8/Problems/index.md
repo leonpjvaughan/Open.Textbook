@@ -4,7 +4,7 @@ chapter: 7
 chapter_title: Differentiation
 section: '7.8'
 section_title: Connected rates of change and inverse functions
-dfe:
+refs:
 - G4
 kind: problems
 ---

@@ -15,4 +15,4 @@ kind: problems
 # 21.2 Probability as a number from 0 to 1 — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: SP.2
+> Tier: **O** · refs: SP.2

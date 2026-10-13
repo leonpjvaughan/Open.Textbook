@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: p1-gradient-positive
     section: "11.4"
-    dfe: [L2]
+    refs: [L2]
     statement: 'A line of best fit passes through the points $(2, 10)$ and $(6, 22)$. Find its gradient.'
     answer_label: 'The gradient'
     check:
@@ -20,7 +20,7 @@ problems:
 
   - id: p2-predict
     section: "11.4"
-    dfe: [L2]
+    refs: [L2]
     statement: 'A regression line is $y = 3x + 4$. Use it to predict $y$ when $x = 10$.'
     answer_label: 'The predicted value'
     check:
@@ -31,7 +31,7 @@ problems:
 
   - id: p3-gradient-negative
     section: "11.4"
-    dfe: [L2]
+    refs: [L2]
     statement: 'A line of best fit passes through $(1, 20)$ and $(5, 4)$. Find its gradient and state whether the correlation is positive or negative.'
     answer_label: 'The gradient'
     check:
@@ -42,7 +42,7 @@ problems:
 
   - id: p4-intercept-negative
     section: "11.4"
-    dfe: [L2]
+    refs: [L2]
     statement: 'A line of best fit passes through $(0, 25)$ and $(5, 5)$. Find its gradient and its intercept.'
     answer_label: 'The gradient and intercept'
     check:
@@ -54,7 +54,7 @@ problems:
 
   - id: p5-predict-small
     section: "11.4"
-    dfe: [L2]
+    refs: [L2]
     statement: 'A regression line is $y = 2x + 5$. Predict $y$ when $x = 4$.'
     answer_label: 'The predicted value'
     check:
@@ -65,7 +65,7 @@ problems:
 
   - id: p6-two-groups-intercept-difference
     section: "11.4"
-    dfe: [L2]
+    refs: [L2]
     statement: 'A scatter diagram has two distinct sections. The first section has line $y = 2x + 1$ and the second has line $y = 2x + 6$. Find the difference between the two intercepts.'
     answer_label: 'The difference'
     check:
@@ -76,7 +76,7 @@ problems:
 
   - id: p7-extrapolate
     section: "11.4"
-    dfe: [L2]
+    refs: [L2]
     statement: 'A regression line from data with $x$ between 1 and 12 is $y = 3x + 4$. Predict $y$ when $x = 100$, and state whether the prediction is an interpolation or an extrapolation.'
     answer_label: 'The predicted value'
     check:
@@ -87,7 +87,7 @@ problems:
 
   - id: p8-above-line
     section: "11.4"
-    dfe: [L2]
+    refs: [L2]
     statement: 'The line $y = 2x + 1$ is drawn on a scatter diagram. The points are $(1, 2)$, $(2, 3)$, $(3, 9)$ and $(4, 8)$. Find how many points lie above the line.'
     answer_label: 'The number of points above the line'
     check:
@@ -101,7 +101,7 @@ problems:
 
   - id: p9-means-on-line
     section: "11.4"
-    dfe: [L2]
+    refs: [L2]
     statement: 'The points $(1, 2)$, $(2, 4)$, $(3, 6)$, $(4, 8)$ and $(5, 10)$ all lie on the line $y = 2x$. Find the mean of the $x$-values and the mean of the $y$-values.'
     answer_label: 'The two means'
     check:
@@ -113,7 +113,7 @@ problems:
 
   - id: p10-best-line-between-two
     section: "11.4"
-    dfe: [L2]
+    refs: [L2]
     statement: 'A line of best fit is drawn through $(10, 30)$ and $(30, 50)$. Find its gradient.'
     answer_label: 'The gradient'
     check:
@@ -124,7 +124,7 @@ problems:
 
   - id: p11-difference-predicted
     section: "11.4"
-    dfe: [L2]
+    refs: [L2]
     statement: 'Two lines of best fit are $y = 2x + 5$ and $y = 2x + 1$ for two distinct sections of a population. Find the difference between their predictions at $x = 4$.'
     answer_label: 'The difference'
     check:
@@ -135,7 +135,7 @@ problems:
 
   - id: p12-method-choice
     section: "11.4"
-    dfe: [L2]
+    refs: [L2]
     statement: 'The line of best fit for a scatter diagram is $y = 0.8x + 12$. Predict $y$ when $x = 15$. Say which variable is the explanatory variable if $x$ is the number of hours of sunshine and $y$ is the temperature.'
     answer_label: 'The predicted value'
     check:

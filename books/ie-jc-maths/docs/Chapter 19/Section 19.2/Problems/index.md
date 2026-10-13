@@ -15,4 +15,4 @@ kind: problems
 # 19.2 Axial symmetry and reflection — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: GT.6
+> Tier: **O** · refs: GT.6

@@ -7,7 +7,7 @@ chapter: 10
 problems:
   - id: p1-column-displacement
     section: "10.1"
-    dfe: [J1]
+    refs: [J1]
     statement: 'Write the displacement from $A(1, 2)$ to $B(5, 7)$ as a column vector, and in $\mathbf{i}$, $\mathbf{j}$ form.'
     answer_label: 'The displacement'
     check:
@@ -19,7 +19,7 @@ problems:
 
   - id: p2-reverse-displacement
     section: "10.1"
-    dfe: [J1]
+    refs: [J1]
     statement: 'Write the displacement from $B(5, 7)$ to $A(1, 2)$ as a column vector.'
     answer_label: 'The displacement'
     check:
@@ -31,7 +31,7 @@ problems:
 
   - id: p3-scalar-multiple
     section: "10.1"
-    dfe: [J1]
+    refs: [J1]
     statement: 'A vector is $\mathbf{a} = 2\mathbf{i} + 3\mathbf{j}$. Write down $3\mathbf{a}$ in column form.'
     answer_label: 'The vector $3\mathbf{a}$'
     check:
@@ -43,7 +43,7 @@ problems:
 
   - id: p4-negative-in-three-dimensions
     section: "10.1"
-    dfe: [J1]
+    refs: [J1]
     statement: 'A vector is $\mathbf{w} = 4\mathbf{i} - \mathbf{j} + 2\mathbf{k}$. Write down $-\mathbf{w}$ in column form.'
     answer_label: 'The vector $-\mathbf{w}$'
     check:
@@ -55,7 +55,7 @@ problems:
 
   - id: p5-parallel-multiple
     section: "10.1"
-    dfe: [J1]
+    refs: [J1]
     statement: 'Show that $\mathbf{v} = 6\mathbf{i} - 3\mathbf{j}$ is parallel to $\mathbf{u} = 2\mathbf{i} - \mathbf{j}$, and state the multiplier.'
     answer_label: 'The multiplier $k$'
     check:
@@ -67,7 +67,7 @@ problems:
 
   - id: p6-equal-displacement
     section: "10.1"
-    dfe: [J1]
+    refs: [J1]
     statement: 'The points are $P(1, 5)$ and $Q(4, 3)$. Show that $\vec{PQ}$ equals $\mathbf{a} = 3\mathbf{i} - 2\mathbf{j}$.'
     answer_label: 'The displacement $\vec{PQ}$'
     check:
@@ -79,7 +79,7 @@ problems:
 
   - id: p7-three-dimensional-displacement
     section: "10.1"
-    dfe: [J1]
+    refs: [J1]
     statement: 'Write the displacement from $P(1, 0, 2)$ to $Q(4, 3, -2)$ in column form.'
     answer_label: 'The displacement'
     check:
@@ -91,7 +91,7 @@ problems:
 
   - id: p8-half-vector-three-dimensions
     section: "10.1"
-    dfe: [J1]
+    refs: [J1]
     statement: 'A vector is $\mathbf{w} = 4\mathbf{i} - \mathbf{j} + 2\mathbf{k}$. Write down $\frac{1}{2}\mathbf{w}$ in column form.'
     answer_label: 'The vector $\frac{1}{2}\mathbf{w}$'
     check:
@@ -103,7 +103,7 @@ problems:
 
   - id: p9-column-from-unit-vectors
     section: "10.1"
-    dfe: [J1]
+    refs: [J1]
     statement: 'Write $6\mathbf{i} - 5\mathbf{j}$ as a column vector. State the top number and the bottom number.'
     answer_label: 'The two components'
     check:
@@ -115,7 +115,7 @@ problems:
 
   - id: p10-repeated-step-on-a-line
     section: "10.1"
-    dfe: [J1]
+    refs: [J1]
     statement: 'The points are $A(2, 3)$, $B(5, 8)$ and $C(8, 13)$. Show that $\vec{AB}$ and $\vec{BC}$ are equal.'
     answer_label: 'Both displacements'
     check:
@@ -133,7 +133,7 @@ problems:
 
   - id: p11-parallel-opposite
     section: "10.1"
-    dfe: [J1]
+    refs: [J1]
     statement: 'Show that $\mathbf{b} = -4\mathbf{i} - 6\mathbf{j}$ is parallel to $\mathbf{a} = 2\mathbf{i} + 3\mathbf{j}$, and state the multiplier.'
     answer_label: 'The multiplier $k$'
     check:
@@ -145,7 +145,7 @@ problems:
 
   - id: p12-doubling-a-displacement
     section: "10.1"
-    dfe: [J1]
+    refs: [J1]
     statement: 'A displacement is $\vec{AB} = 3\mathbf{i} - 4\mathbf{j}$. Write down $\vec{BA}$ and $2\vec{AB}$.'
     answer_label: 'Both vectors'
     check:

@@ -5,7 +5,7 @@ chapter_title: Probability
 section: '23.6'
 section_title: Conditional probability
 tier: H
-dfe:
+refs:
 - P9
 kind: problems
 ---

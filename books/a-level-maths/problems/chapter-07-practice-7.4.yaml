@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: p1-second-polynomial
     section: "7.4"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Find $f''''(x)$ for $f(x) = x^4 - 6x^2$.'
     answer_label: 'The second derivative'
     check:
@@ -20,7 +20,7 @@ problems:
 
   - id: p2-second-quintic
     section: "7.4"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Find the second derivative of $y = 3x^5$.'
     answer_label: 'The second derivative'
     check:
@@ -31,7 +31,7 @@ problems:
 
   - id: p3-second-sine
     section: "7.4"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Find $\dfrac{d^2y}{dx^2}$ for $y = \sin 2x$.'
     answer_label: 'The second derivative'
     check:
@@ -42,7 +42,7 @@ problems:
 
   - id: p4-second-exponential
     section: "7.4"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Find the second derivative of $y = e^{-x}$.'
     answer_label: 'The second derivative'
     check:
@@ -53,7 +53,7 @@ problems:
 
   - id: p5-candidate-inflection
     section: "7.4"
-    dfe: [G1]
+    refs: [G1]
     statement: 'For $f(x) = x^3 - 3x^2 + 2x$, find the value of $x$ where $f''''(x) = 0$.'
     answer_label: 'The value of $x$'
     check:
@@ -65,7 +65,7 @@ problems:
 
   - id: p6-classify-turning
     section: "7.4"
-    dfe: [G1]
+    refs: [G1]
     statement: 'The curve $y = x^2 - 4x + 1$ has a turning point at $x = 2$. Use the second derivative to classify it.'
     answer_label: 'The classification'
     check:
@@ -77,7 +77,7 @@ problems:
 
   - id: p7-convex-quadratic
     section: "7.4"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Find the second derivative of $f(x) = 3x^2 - 6x + 1$, and state whether the curve is convex or concave everywhere.'
     answer_label: 'The second derivative'
     check:
@@ -88,7 +88,7 @@ problems:
 
   - id: p8-inflection-signs
     section: "7.4"
-    dfe: [G1]
+    refs: [G1]
     statement: 'For $f(x) = x^3 - 6x^2$, show that $f''''(x) = 0$ at $x = 2$ and that the second derivative changes sign there.'
     answer_label: 'The two signs'
     check:
@@ -101,7 +101,7 @@ problems:
 
   - id: p9-no-inflection
     section: "7.4"
-    dfe: [G1]
+    refs: [G1]
     statement: 'For $f(x) = x^4$, show that $f''''(0) = 0$ but the second derivative does not change sign at $x = 0$.'
     answer_label: 'The two signs'
     check:
@@ -114,7 +114,7 @@ problems:
 
   - id: p10-second-log
     section: "7.4"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Find the second derivative of $y = \ln x$ for $x > 0$.'
     answer_label: 'The second derivative'
     check:

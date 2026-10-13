@@ -6,7 +6,7 @@ chapter: 13
 problems:
   - id: p1-standard-at-most-one-point-five
     section: "13.3"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $Z \sim N(0, 1)$. Find $P(Z < 1.5)$.'
     answer_label: 'The probability'
     check:
@@ -20,7 +20,7 @@ problems:
 
   - id: p2-standard-at-least-two
     section: "13.3"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $Z \sim N(0, 1)$. Find $P(Z > 2)$.'
     answer_label: 'The probability'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: p3-standard-at-most-minus-one
     section: "13.3"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $Z \sim N(0, 1)$. Find $P(Z < -1)$.'
     answer_label: 'The probability'
     check:
@@ -48,7 +48,7 @@ problems:
 
   - id: p4-standard-between
     section: "13.3"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $Z \sim N(0, 1)$. Find $P(-0.5 < Z < 1.5)$.'
     answer_label: 'The probability'
     check:
@@ -62,7 +62,7 @@ problems:
 
   - id: p5-standardise-a-value
     section: "13.3"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim N(30, 4^2)$. Work out the standardised value $z$ for $x = 36$.'
     answer_label: 'The value of $z$'
     check:
@@ -73,7 +73,7 @@ problems:
 
   - id: p6-general-at-most
     section: "13.3"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The mass of a bag of sugar is modelled as $X \sim N(20, 5^2)$ grams. Find $P(X < 26)$.'
     answer_label: 'The probability'
     check:
@@ -87,7 +87,7 @@ problems:
 
   - id: p7-general-at-least-below-mean
     section: "13.3"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The mass of a bag of sugar is modelled as $X \sim N(20, 5^2)$ grams. Find $P(X > 12)$.'
     answer_label: 'The probability'
     check:
@@ -101,7 +101,7 @@ problems:
 
   - id: p8-chapter-taller-than-fifty-two
     section: "13.3"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The height of a mature sunflower is modelled as $X \sim N(45, 6^2)$ cm. Find the probability that a plant is taller than 52 cm.'
     answer_label: 'The probability'
     check:
@@ -115,7 +115,7 @@ problems:
 
   - id: p9-general-between
     section: "13.3"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The height of a mature sunflower is modelled as $X \sim N(45, 6^2)$ cm. Find $P(39 < X < 51)$.'
     answer_label: 'The probability'
     check:
@@ -129,7 +129,7 @@ problems:
 
   - id: p10-score-at-most
     section: "13.3"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The score in a test is modelled as $X \sim N(100, 10^2)$. Find $P(X < 120)$.'
     answer_label: 'The probability'
     check:
@@ -143,7 +143,7 @@ problems:
 
   - id: p11-find-a-value
     section: "13.3"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim N(50, 6^2)$. Find the value $a$ such that $P(X < a) = 0.90$.'
     answer_label: 'The value of $a$'
     check:
@@ -157,7 +157,7 @@ problems:
 
   - id: p12-weights-above
     section: "13.3"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The mass of a jar is modelled as $X \sim N(500, 8^2)$ grams. Find the probability that a jar has mass greater than 512 grams.'
     answer_label: 'The probability'
     check:

@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Electric circuits
 section: '5.3'
 section_title: Direct-current circuits
-dfe:
+refs:
 - AP5
 kind: walkthrough
 ---

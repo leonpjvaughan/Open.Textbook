@@ -5,7 +5,7 @@ chapter_title: Quadratic expressions, equations and graphs
 section: '12.6'
 section_title: Completing the square
 tier: H
-dfe:
+refs:
 - A11
 - A18
 kind: walkthrough

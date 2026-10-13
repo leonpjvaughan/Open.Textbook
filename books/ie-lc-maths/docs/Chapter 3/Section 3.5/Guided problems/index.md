@@ -15,4 +15,4 @@ kind: guided-problems
 # 3.5 Surface area and curved surface area — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **F** · DfE refs: 3.4
+> Tier: **F** · refs: 3.4

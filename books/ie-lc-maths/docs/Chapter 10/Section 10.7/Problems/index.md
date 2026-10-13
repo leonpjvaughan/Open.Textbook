@@ -15,4 +15,4 @@ kind: problems
 # 10.7 Independent events — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 1.3
+> Tier: **F** · refs: 1.3

@@ -15,4 +15,4 @@ kind: guided-problems
 # 6.4 Injective, surjective and bijective functions — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **H** · DfE refs: 5.1
+> Tier: **H** · refs: 5.1

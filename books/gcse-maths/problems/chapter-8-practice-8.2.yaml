@@ -12,7 +12,7 @@ problems:
   - id: ch8-8-2-1
     section: '8.2'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Simplify $4a+3a$.'
     answer_label: 'Simplify $4a+3a$.'
     check:
@@ -23,7 +23,7 @@ problems:
   - id: ch8-8-2-2
     section: '8.2'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Simplify $9y-2y+5$.'
     answer_label: 'Simplify $9y-2y+5$.'
     check:
@@ -34,7 +34,7 @@ problems:
   - id: ch8-8-2-3
     section: '8.2'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Simplify $3p+4+2p-9$.'
     answer_label: 'Simplify $3p+4+2p-9$.'
     check:
@@ -45,7 +45,7 @@ problems:
   - id: ch8-8-2-4
     section: '8.2'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Simplify $7m-3+2m+8$.'
     answer_label: 'Simplify $7m-3+2m+8$.'
     check:
@@ -56,7 +56,7 @@ problems:
   - id: ch8-8-2-5
     section: '8.2'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Simplify $4x+3y+2x-y$.'
     answer_label: 'Simplify $4x+3y+2x-y$.'
     check:
@@ -67,7 +67,7 @@ problems:
   - id: ch8-8-2-6
     section: '8.2'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Simplify $2r+7r-3r$.'
     answer_label: 'Simplify $2r+7r-3r$.'
     check:
@@ -78,7 +78,7 @@ problems:
   - id: ch8-8-2-7
     section: '8.2'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Simplify $5b+2b-4$.'
     answer_label: 'Simplify $5b+2b-4$.'
     check:
@@ -89,7 +89,7 @@ problems:
   - id: ch8-8-2-8
     section: '8.2'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Simplify $6c+3-2c+8$.'
     answer_label: 'Simplify $6c+3-2c+8$.'
     check:

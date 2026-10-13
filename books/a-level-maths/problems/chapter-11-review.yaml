@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: r1-mean
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the mean of $12, 15, 16, 18, 20, 21$.'
     answer_label: 'The mean'
     check:
@@ -21,7 +21,7 @@ problems:
 
   - id: r2-standard-deviation
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the standard deviation of $12, 15, 16, 18, 20, 21$, dividing by $n$.'
     answer_label: 'The standard deviation'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: r3-interquartile-range
     section: "11.6"
-    dfe: [L4]
+    refs: [L4]
     statement: 'Find the interquartile range of $12, 15, 16, 18, 20, 21$, using the $(n + 1)$ positions.'
     answer_label: 'The interquartile range'
     check:
@@ -47,7 +47,7 @@ problems:
 
   - id: r4-frequency-density
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A class of width 10 contains 45 values. Find the frequency density.'
     answer_label: 'The frequency density'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: r5-stratified-sample
     section: "11.2"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A population has 450 members in one stratum and 150 in another. A stratified sample of 60 is taken. Find the number from the 450 stratum.'
     answer_label: 'The sample size from the 450 stratum'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: r6-population-total
     section: "11.1"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A sample of 40 pupils has a mean of $2.5$ hours of sport each week. Estimate the total number of hours of sport each week for 800 pupils.'
     answer_label: 'The estimated total'
     check:
@@ -80,7 +80,7 @@ problems:
 
   - id: r7-gradient
     section: "11.4"
-    dfe: [L2]
+    refs: [L2]
     statement: 'A line of best fit passes through $(3, 11)$ and $(7, 23)$. Find its gradient.'
     answer_label: 'The gradient'
     check:
@@ -91,7 +91,7 @@ problems:
 
   - id: r8-histogram-probability
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A histogram of 150 values has frequency density $2.5$ in the class $10$–$30$. Estimate the probability that a value lies in the class.'
     answer_label: 'The estimated probability'
     check:
@@ -103,7 +103,7 @@ problems:
 
   - id: r9-variance-summary
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'A data set has $n = 12$, $\sum x = 96$ and $\sum x^2 = 1000$. Find the variance, dividing by $n$.'
     answer_label: 'The variance'
     check:
@@ -114,7 +114,7 @@ problems:
 
   - id: r10-arithmetic-series
     section: "4.5"
-    dfe: [D4]
+    refs: [D4]
     statement: 'A survey runs for 12 weeks. It gets 40 responses in week 1, and each later week gets 6 more responses than the week before. Find the total number of responses over the 12 weeks.'
     answer_label: 'The total number of responses'
     check:
@@ -126,7 +126,7 @@ problems:
 
   - id: r11-quadratic
     section: "2.4"
-    dfe: [B3]
+    refs: [B3]
     statement: 'Solve $x^2 - 5x + 6 = 0$.'
     answer_label: 'The solutions'
     check:
@@ -138,7 +138,7 @@ problems:
 
   - id: r12-line-equation
     section: "3.1"
-    dfe: [C1]
+    refs: [C1]
     statement: 'A straight line passes through $(1, 4)$ and $(5, 16)$. Find its gradient and its intercept on the $y$-axis.'
     answer_label: 'The gradient and intercept'
     check:
@@ -150,7 +150,7 @@ problems:
 
   - id: r13-simultaneous
     section: "2.5"
-    dfe: [B4]
+    refs: [B4]
     statement: 'Solve the simultaneous equations $2x + y = 11$ and $x - y = 1$.'
     answer_label: 'The solution'
     check:
@@ -163,7 +163,7 @@ problems:
 
   - id: r14-index-laws
     section: "2.1"
-    dfe: [B1]
+    refs: [B1]
     statement: 'Work out $27^{2/3}$.'
     answer_label: 'The value'
     check:

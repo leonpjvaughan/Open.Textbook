@@ -15,4 +15,4 @@ kind: problems
 # 3.6 Similar figures: length, area and volume ratios — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 3.4
+> Tier: **H** · refs: 3.4

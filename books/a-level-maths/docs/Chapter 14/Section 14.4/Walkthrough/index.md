@@ -4,7 +4,7 @@ chapter: 14
 chapter_title: Statistical hypothesis testing
 section: '14.4'
 section_title: Interpreting correlation coefficients with p-values and critical values
-dfe:
+refs:
 - O1
 kind: walkthrough
 ---

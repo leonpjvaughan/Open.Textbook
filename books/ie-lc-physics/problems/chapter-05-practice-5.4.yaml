@@ -1,0 +1,66 @@
+# Leaving Certificate Physics, Chapter 5, section 5.4 (strand 1 outcome 1.3).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The two `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 5
+problems:
+- id: p5-4-graph-gradient
+  section: '5.4'
+  tier: O
+  refs:
+  - '1.3'
+  statement: In an experiment, a force of 2.0 N gives an extension of 0.05 m and a force of 6.0 N gives
+    0.15 m. Calculate the spring constant from these two readings.
+  answer_label: Spring constant from the gradient
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: (F2 - F1) / (x2 - x1)
+      values:
+        F1:
+          value: '2.0'
+          unit: N
+        F2:
+          value: '6.0'
+          unit: N
+        x1:
+          value: '0.05'
+          unit: m
+        x2:
+          value: '0.15'
+          unit: m
+      answer:
+        value: '40'
+        unit: N/m
+    - kind: sigfigs
+      value: '40'
+      figures: 2
+      answer: 4.0e1
+      convention: round-once
+  answer_text: '$k = \dfrac{6.0 - 2.0}{0.15 - 0.05} = \dfrac{4.0}{0.10} = 40\,\text{N/m}$. The spring
+    constant is the gradient of the force-extension graph, so a graph is a better way to find it than
+    a single pair of readings: a straight line through every point shows that the spring stayed within
+    its limit of proportionality.'
+- id: p5-4-uncertainty
+  section: '5.4'
+  tier: H
+  refs:
+  - '1.3'
+  statement: An extension is measured as 0.050 m on a metre stick read to the nearest millimetre. Calculate
+    the percentage uncertainty in the extension.
+  answer_label: Percentage uncertainty
+  check:
+    kind: evaluate
+    expression: (0.001 / 0.050) * 100
+    answer: '2'
+  answer_text: The reading uncertainty is $\pm 0.001\,\text{m}$, since the stick is read to the nearest
+    millimetre. So the percentage uncertainty is $\dfrac{0.001}{0.050}\times100\% = 2\%$.

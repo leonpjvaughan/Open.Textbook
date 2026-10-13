@@ -5,7 +5,7 @@ chapter_title: 'Statistics: spread, grouped data and correlation'
 section: '25.3'
 section_title: Histograms
 tier: H
-dfe: [S3]
+refs: [S3]
 kind: walkthrough
 ---
 

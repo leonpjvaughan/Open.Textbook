@@ -5,7 +5,7 @@ chapter_title: Straight-line graphs and rates of change
 section: '11.2'
 section_title: "Gradient and intercept: y = mx + c"
 tier: F
-dfe: [A9, A10]
+refs: [A9, A10]
 kind: guided-problems
 ---
 

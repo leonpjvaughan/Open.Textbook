@@ -5,7 +5,7 @@ chapter_title: 'Statistics: representing and analysing data'
 section: '24.2'
 section_title: Tables, bar charts, pie charts and pictograms
 tier: F
-dfe: [S2]
+refs: [S2]
 kind: guided-problems
 ---
 

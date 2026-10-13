@@ -15,4 +15,4 @@ kind: problems
 # 21.5 Two events and the addition rule — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: SP.2
+> Tier: **O** · refs: SP.2

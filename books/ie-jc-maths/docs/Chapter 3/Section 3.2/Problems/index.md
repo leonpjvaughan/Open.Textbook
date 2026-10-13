@@ -5,14 +5,17 @@ chapter_title: Factors, multiples and primes
 section: '3.2'
 section_title: Prime numbers and prime factorisation
 tier: O
-refs:
-- N.1
+refs: [N.1]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.2 Prime numbers and prime factorisation — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: N.1
+Work independently. The questions and answers are shown together at the end.
+
+Give every factorisation in **index form**, and check each one by multiplying it back
+out before you move on.
+
+:::problems chapter-03-practice-3.2
+
+:::answers chapter-03-practice-3.2

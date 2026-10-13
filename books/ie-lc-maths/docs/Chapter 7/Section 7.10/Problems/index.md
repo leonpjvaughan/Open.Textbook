@@ -15,4 +15,4 @@ kind: problems
 # 7.10 Differentiating exponential and trigonometric functions — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 5.2
+> Tier: **H** · refs: 5.2

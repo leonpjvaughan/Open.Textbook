@@ -15,7 +15,7 @@ chapter: 3
 problems:
   - id: r1-drop-acceleration
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'The first drop is at 60° to the horizontal. Find the acceleration of the car down the slope. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The acceleration down the slope'
     check: {kind: approx, value: "9.81 * sin(60 * pi / 180)", target: "8.50", tolerance: "0.01"}
@@ -23,7 +23,7 @@ problems:
 
   - id: r2-slope-length
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'The car descends 45 m vertically along a straight slope at 60° to the horizontal. Find the length of the slope.'
     answer_label: 'The slope length'
     check: {kind: approx, value: "45 / sin(60 * pi / 180)", target: "51.96", tolerance: "0.01"}
@@ -31,7 +31,7 @@ problems:
 
   - id: r3-bottom-speed
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'Use $v^2 = u^2 + 2as$ from rest with $a = 8.50\,\text{m}\,\text{s}^{-2}$ and $s = 52.0\,\text{m}$ to find the speed at the bottom of the drop.'
     answer_label: 'The speed at the bottom'
     check: {kind: approx, value: "sqrt(2 * 8.50 * 52.0)", target: "29.7", tolerance: "0.1"}
@@ -39,7 +39,7 @@ problems:
 
   - id: r4-drop-time
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'From rest, the car reaches $29.7\,\text{m}\,\text{s}^{-1}$ down the slope with acceleration $8.50\,\text{m}\,\text{s}^{-2}$. Find the time it takes.'
     answer_label: 'The time down the slope'
     check: {kind: approx, value: "29.7 / 8.50", target: "3.49", tolerance: "0.01"}
@@ -47,7 +47,7 @@ problems:
 
   - id: r5-gpe-top
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'The car and riders have a mass of 500 kg and start 45 m above the bottom. Find the gravitational potential energy relative to the bottom. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The gravitational potential energy'
     check: {kind: approx, value: "500 * 9.81 * 45", target: "220725", tolerance: "1"}
@@ -55,7 +55,7 @@ problems:
 
   - id: r6-slope-forces
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'Find the weight of the 500 kg car and riders, and the components of the weight along and perpendicular to the 60° slope. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The weight and its two components'
     check:
@@ -68,7 +68,7 @@ problems:
 
   - id: r7-loop-centripetal
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'The car passes the top of the 12 m loop at $20.3\,\text{m}\,\text{s}^{-1}$. Find the centripetal acceleration.'
     answer_label: 'The centripetal acceleration'
     check: {kind: approx, value: "20.3**2 / 12", target: "34.3", tolerance: "0.1"}
@@ -76,7 +76,7 @@ problems:
 
   - id: r8-loop-force
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'The 500 kg car passes the top of the loop with centripetal acceleration $34.3\,\text{m}\,\text{s}^{-2}$. Find the force the track exerts on the car. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The force from the track'
     check: {kind: approx, value: "500 * (34.3 - 9.81)", target: "12245", tolerance: "10"}
@@ -84,7 +84,7 @@ problems:
 
   - id: r9-min-speed-top
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'Find the minimum speed the car needs at the top of the 12 m loop to stay on the track. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The minimum speed at the top'
     check: {kind: approx, value: "sqrt(9.81 * 12)", target: "10.8", tolerance: "0.1"}
@@ -92,7 +92,7 @@ problems:
 
   - id: r10-min-height
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'Find the least height above the bottom of the loop from which the car can be released and still stay on the track. The loop radius is 12 m.'
     answer_label: 'The least release height'
     check: {kind: approx, value: "2.5 * 12", target: "30", tolerance: "0.001"}
@@ -100,7 +100,7 @@ problems:
 
   - id: r11-braking
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'The car and riders of mass 500 kg are brought to rest from $29.7\,\text{m}\,\text{s}^{-1}$ in 3.0 s. Find the momentum at the bottom and the average braking force.'
     answer_label: 'The momentum and the braking force'
     check:
@@ -112,7 +112,7 @@ problems:
 
   - id: r12-judgement
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'The ride is designed so that the car stays on the track with a large margin. State the minimum release height for the loop, whether the actual drop is enough, and one reason a real loop is not a circle.'
     answer_label: 'The judgement'
     check:
@@ -133,7 +133,7 @@ problems:
 
   - id: r13-resolve-velocity
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A ball is thrown at $25\,\text{m}\,\text{s}^{-1}$ at 35° above the horizontal. Find the horizontal and vertical components of its velocity.'
     answer_label: 'The two components'
     check:
@@ -146,7 +146,7 @@ problems:
 
   - id: r14-timing-uncertainty
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A student times 20 oscillations three times and records $32.40\,\text{s}$, $32.30\,\text{s}$ and $32.50\,\text{s}$. Find the mean time and its uncertainty using the half-range convention.'
     answer_label: 'The mean time and its uncertainty'
     check:
@@ -159,7 +159,7 @@ problems:
 
   - id: r15-sigfigs
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'The acceleration down the first drop is $8.4957\,\text{m}\,\text{s}^{-2}$. Write it to three significant figures.'
     answer_label: 'The acceleration to three significant figures'
     check:
@@ -172,7 +172,7 @@ problems:
 
   - id: r16-vector-momentum
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A ball of mass 0.10 kg moves due east at $8.0\,\text{m}\,\text{s}^{-1}$. A second ball of mass 0.20 kg moves due north at $3.0\,\text{m}\,\text{s}^{-1}$. Find the magnitude of the total momentum of the two balls.'
     answer_label: 'The magnitude of the total momentum'
     check:
@@ -184,7 +184,7 @@ problems:
 
   - id: r17-method-choice
     section: Review
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A stone is thrown upwards at an angle. Say which method you would use to find the greatest height it reaches, and why.'
     answer_label: 'The method and the reason'
     check:

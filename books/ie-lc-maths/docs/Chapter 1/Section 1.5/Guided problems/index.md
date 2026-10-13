@@ -15,4 +15,4 @@ kind: guided-problems
 # 1.5 Indices and the rules of indices — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **F** · DfE refs: 3.2
+> Tier: **F** · refs: 3.2

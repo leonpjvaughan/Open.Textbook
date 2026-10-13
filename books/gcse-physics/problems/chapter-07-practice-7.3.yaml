@@ -13,7 +13,7 @@ problems:
   - id: p1-generator-effect
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'Describe the generator effect, including what the induced current does to the magnetic field around it.'
     answer_label: 'The generator effect'
     check:
@@ -34,7 +34,7 @@ problems:
   - id: p2-increase-induced
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'State three factors that increase the size of an induced potential difference.'
     answer_label: 'Factors that increase the induced p.d.'
     check:
@@ -55,7 +55,7 @@ problems:
   - id: p3-alternator-dynamo
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'Explain how an alternator generates a.c. and a dynamo generates d.c.'
     answer_label: 'Alternator and dynamo'
     check:
@@ -76,7 +76,7 @@ problems:
   - id: p4-turns-down
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'A transformer has 400 turns on the primary coil and 100 turns on the secondary coil. The primary potential difference is 12 V. Calculate the secondary potential difference.'
     answer_label: 'Secondary potential difference'
     check:
@@ -91,7 +91,7 @@ problems:
   - id: p5-turns-up
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'A transformer has 800 turns on the primary coil and 40 turns on the secondary coil. The primary potential difference is 240 V. Calculate the secondary potential difference.'
     answer_label: 'Secondary potential difference'
     check:
@@ -106,7 +106,7 @@ problems:
   - id: p6-turns-find-ns
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'A step-up transformer changes 12 V to 240 V. The primary coil has 100 turns. Calculate the number of turns on the secondary coil.'
     answer_label: 'Number of turns on the secondary coil'
     check:
@@ -121,7 +121,7 @@ problems:
   - id: p7-power-current
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'A transformer has a primary potential difference of 240 V and a primary current of 0.25 A. The secondary potential difference is 12 V. Assume the transformer is 100% efficient. Calculate the secondary current.'
     answer_label: 'Secondary current'
     check:
@@ -136,7 +136,7 @@ problems:
   - id: p8-dc-supply
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'Explain why a transformer does not work when it is connected to a steady direct current supply.'
     answer_label: 'A transformer on d.c.'
     check:
@@ -154,7 +154,7 @@ problems:
   - id: p9-grid-high-voltage
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'Explain why the national grid transmits electrical power at a very high potential difference.'
     answer_label: 'Why the grid uses high voltage'
     check:
@@ -172,7 +172,7 @@ problems:
   - id: p10-method
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'Say which equation you would use to find the secondary current of a transformer, and name the quantities you need.'
     answer_label: 'Choosing the method'
     check:
@@ -190,7 +190,7 @@ problems:
   - id: p11-induced-direction
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'State two ways to reverse the direction of an induced potential difference.'
     answer_label: 'Reversing the induced p.d.'
     check:
@@ -208,7 +208,7 @@ problems:
   - id: p12-transmission-current
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'A transmission line carries 5.0 MW of power at a potential difference of 25 000 V. Calculate the current in the line.'
     answer_label: 'Current in the transmission line'
     check:

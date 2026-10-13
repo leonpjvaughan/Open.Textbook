@@ -5,7 +5,7 @@ chapter_title: Energy
 section: '1.2'
 section_title: Conservation, dissipation and energy resources
 tier: F
-dfe:
+refs:
 - EN2
 kind: problems
 ---

@@ -15,4 +15,4 @@ kind: problems
 # 11.5 Factorising quadratic expressions — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: AF.3
+> Tier: **O** · refs: AF.3

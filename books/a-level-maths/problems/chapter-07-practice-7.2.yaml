@@ -10,7 +10,7 @@ symbols:
 problems:
   - id: p1-first-principles-square
     section: "7.2"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Differentiate $f(x) = x^2$ from first principles.'
     answer_label: 'The derivative'
     plays: first-principles
@@ -23,7 +23,7 @@ problems:
 
   - id: p2-first-principles-value
     section: "7.2"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Use first principles to find the gradient of $y = x^2$ at $x = 3$.'
     answer_label: 'The gradient at $x = 3$'
     plays: first-principles
@@ -36,7 +36,7 @@ problems:
 
   - id: p3-first-principles-sum
     section: "7.2"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Differentiate $f(x) = x^2 + 2x$ from first principles.'
     answer_label: 'The derivative'
     plays: first-principles
@@ -49,7 +49,7 @@ problems:
 
   - id: p4-first-principles-multiple
     section: "7.2"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Differentiate $f(x) = 3x^2$ from first principles.'
     answer_label: 'The derivative'
     plays: first-principles
@@ -62,7 +62,7 @@ problems:
 
   - id: p5-first-principles-cube
     section: "7.2"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Differentiate $f(x) = x^3$ from first principles.'
     answer_label: 'The derivative'
     plays: first-principles
@@ -75,7 +75,7 @@ problems:
 
   - id: p6-first-principles-cube-minus-x
     section: "7.2"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Differentiate $f(x) = x^3 - x$ from first principles.'
     answer_label: 'The derivative'
     plays: first-principles
@@ -88,7 +88,7 @@ problems:
 
   - id: p7-first-principles-constant
     section: "7.2"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Differentiate $f(x) = x^2 + 5$ from first principles.'
     answer_label: 'The derivative'
     plays: first-principles
@@ -101,7 +101,7 @@ problems:
 
   - id: p8-first-principles-linear
     section: "7.2"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Differentiate $f(x) = 2x + 1$ from first principles.'
     answer_label: 'The derivative'
     plays: first-principles
@@ -114,7 +114,7 @@ problems:
 
   - id: p9-first-principles-quadratic-cubic
     section: "7.2"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Differentiate $f(x) = x^3 + x^2$ from first principles.'
     answer_label: 'The derivative'
     plays: first-principles
@@ -127,7 +127,7 @@ problems:
 
   - id: p10-first-principles-show
     section: "7.2"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Show, from first principles, that the gradient of $y = x^2$ at $x = -2$ is $-4$.'
     answer_label: 'The gradient at $x = -2$'
     plays: first-principles

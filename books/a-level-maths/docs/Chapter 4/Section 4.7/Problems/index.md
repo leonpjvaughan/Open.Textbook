@@ -4,7 +4,7 @@ chapter: 4
 chapter_title: Sequences and series
 section: '4.7'
 section_title: Sequences and series in modelling
-dfe:
+refs:
 - D6
 - OT3
 kind: problems

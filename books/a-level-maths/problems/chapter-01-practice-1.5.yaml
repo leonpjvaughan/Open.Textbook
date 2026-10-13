@@ -12,7 +12,7 @@ symbols:
 problems:
   - id: p1-square-of-even
     section: "1.5"
-    dfe: [A1]
+    refs: [A1]
     statement: 'In the proof that $\sqrt{2}$ is irrational, the number $a$ is even, so $a = 2k$ for a whole number $k$. Show that $a^2$ is a multiple of $4$.'
     answer_label: 'Show $a^2$ is a multiple of $4$'
     check:
@@ -23,7 +23,7 @@ problems:
 
   - id: p2-halving
     section: "1.5"
-    dfe: [A1]
+    refs: [A1]
     statement: 'In the same proof, $4k^2 = 2b^2$. Show that $b^2 = 2k^2$.'
     answer_label: 'Solve for $b^2$'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: p3-odd-square-is-odd
     section: "1.5"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Suppose $b$ is odd, so $b = 2k + 1$. Show that $b^2$ is odd.'
     answer_label: 'Show $b^2$ is odd'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: p4-euclid-number
     section: "1.5"
-    dfe: [A1]
+    refs: [A1]
     statement: 'In Euclid''s proof that there are infinitely many primes, let $N = 2 \times 3 \times 5 \times 7 + 1$. Work out $N$.'
     answer_label: 'The value of $N$'
     check:
@@ -56,7 +56,7 @@ problems:
 
   - id: p5-remainders
     section: "1.5"
-    dfe: [A1]
+    refs: [A1]
     statement: 'For $N = 2 \times 3 \times 5 \times 7 + 1 = 211$, show that $N$ leaves remainder $1$ when divided by each of $2$, $3$, $5$ and $7$.'
     answer_label: 'The four remainders'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: p6-prime-two-eleven
     section: "1.5"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that $211$ is prime by testing the primes up to $\sqrt{211}$.'
     answer_label: 'The factor check'
     check:
@@ -87,7 +87,7 @@ problems:
 
   - id: p7-odd-is-not-even
     section: "1.5"
-    dfe: [A1]
+    refs: [A1]
     statement: 'In the proof that $\sqrt{2}$ is irrational, show that the number $2(2k^2 + 2k) + 1$ leaves remainder $1$ when divided by $2$.'
     answer_label: 'The remainder'
     check:
@@ -99,7 +99,7 @@ problems:
 
   - id: p8-smallest-positive
     section: "1.5"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Suppose $x > 0$ is the smallest positive real number. Show that $x/2$ is positive and that $x/2 < x$.'
     answer_label: 'Compare $\frac{x}{2}$ with $x$'
     check:
@@ -112,7 +112,7 @@ problems:
 
   - id: p9-rational-minus-rational
     section: "1.5"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Suppose $r$ is rational and $i$ is irrational, and suppose $r + i$ is rational. Show that $i = (r + i) - r$.'
     answer_label: 'Make $i$ the subject'
     check:
@@ -123,7 +123,7 @@ problems:
 
   - id: p10-greatest-even
     section: "1.5"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Suppose $M$ is the greatest even number. Show that $M + 2$ is even and that $M + 2 > M$.'
     answer_label: 'The larger even number'
     check:
@@ -135,7 +135,7 @@ problems:
 
   - id: p11-method-choice
     section: "1.5"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Choose the method for each part before you answer, then explain your choice. (a) Prove that $n^2 + n$ is even for every whole number $n$. (b) Decide whether the claim "for all real $x$ and $y$, if $x^2 > y^2$ then $x > y$" is true.'
     answer_label: 'Which method, and why'
     check:

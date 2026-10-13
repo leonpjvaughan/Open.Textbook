@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: p1-sum-of-two-evens
     section: "1.2"
-    dfe: [A1]
+    refs: [A1]
     statement: 'The sum of any two even numbers is even. Show that $2m + 2n$ is a multiple of $2$.'
     answer_label: 'Show the sum is a multiple of $2$'
     steps:
@@ -23,7 +23,7 @@ problems:
 
   - id: p2-sum-of-two-odds
     section: "1.2"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that the sum of two odd numbers is even.'
     answer_label: 'Show the sum is even'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: p3-two-consecutive
     section: "1.2"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that the sum of two consecutive whole numbers is odd.'
     answer_label: 'Show the sum is odd'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: p4-difference-of-squares
     section: "1.2"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that $(n + 1)^2 - n^2 = 2n + 1$.'
     answer_label: 'Show the identity'
     check:
@@ -56,7 +56,7 @@ problems:
 
   - id: p5-n-squared-plus-n
     section: "1.2"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that $n^2 + n$ is even for every whole number $n$.'
     answer_label: 'Show $n^2 + n$ is even'
     steps:
@@ -70,7 +70,7 @@ problems:
 
   - id: p6-completing-the-square
     section: "1.2"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Write $x^2 + 6x + 11$ in the form $(x + a)^2 + b$.'
     answer_label: 'Complete the square'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-always-positive
     section: "1.2"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that $x^2 - 4x + 7$ is positive for every real number $x$.'
     answer_label: 'Show the expression is always positive'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p8-expand-brackets
     section: "1.2"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that $(3x + 1)(x - 2) = 3x^2 - 5x - 2$.'
     answer_label: 'Show the identity'
     check:
@@ -104,7 +104,7 @@ problems:
 
   - id: p9-consecutive-evens-product
     section: "1.2"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that the product of two consecutive even numbers is a multiple of $4$.'
     answer_label: 'Show the product is a multiple of $4$'
     check:
@@ -115,7 +115,7 @@ problems:
 
   - id: p10-odd-square-is-odd
     section: "1.2"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that the square of an odd number is odd.'
     answer_label: 'Show the square is odd'
     check:

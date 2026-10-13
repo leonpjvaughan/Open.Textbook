@@ -5,7 +5,7 @@ chapter_title: Properties, constructions, loci and bearings
 section: "17.4"
 section_title: Loci
 tier: F
-dfe: [G2]
+refs: [G2]
 kind: problems
 ---
 

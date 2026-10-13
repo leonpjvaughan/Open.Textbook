@@ -5,7 +5,7 @@ chapter_title: Probability
 section: '23.3'
 section_title: Frequency trees, tables and possibility spaces
 tier: F
-dfe:
+refs:
 - P1
 - P6
 - P7

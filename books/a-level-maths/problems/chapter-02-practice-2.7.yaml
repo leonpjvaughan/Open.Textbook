@@ -11,7 +11,7 @@ symbols:
 problems:
   - id: p1-division-quotient
     section: "2.7"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Divide $x^3 - 2x^2 + 4x - 7$ by $x - 1$ and give the quotient.'
     answer_label: 'The quotient'
     check:
@@ -23,7 +23,7 @@ problems:
 
   - id: p2-division-remainder
     section: "2.7"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Find the remainder when $x^3 - 2x^2 + 4x - 7$ is divided by $x - 1$.'
     answer_label: 'The remainder'
     check:
@@ -35,7 +35,7 @@ problems:
 
   - id: p3-remainder-theorem
     section: "2.7"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Use the remainder theorem to find the remainder when $x^3 + 2x^2 - 5x + 1$ is divided by $x - 2$.'
     answer_label: 'The remainder'
     check:
@@ -47,7 +47,7 @@ problems:
 
   - id: p4-factor-theorem-zero
     section: "2.7"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Show that $x - 2$ is a factor of $p(x) = x^3 - 3x^2 + 4x - 4$.'
     answer_label: 'The value at the root'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: p5-factorise-cubic
     section: "2.7"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Factorise $x^3 - 6x^2 + 11x - 6$ completely.'
     answer_label: 'Factorised'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: p6-factorise-cubic-two
     section: "2.7"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Factorise $x^3 + 2x^2 - x - 2$ completely.'
     answer_label: 'Factorised'
     check:
@@ -80,7 +80,7 @@ problems:
 
   - id: p7-division-non-zero
     section: "2.7"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Divide $2x^3 + 3x^2 - 8x + 3$ by $x + 3$. Give the quotient and state whether $x + 3$ is a factor.'
     answer_label: 'The quotient'
     check:
@@ -92,7 +92,7 @@ problems:
 
   - id: p8-solve-cubic
     section: "2.7"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Solve $x^3 - 4x^2 + x + 6 = 0$.'
     answer_label: 'The solutions'
     check:
@@ -104,7 +104,7 @@ problems:
 
   - id: p9-remainder-quartic
     section: "2.7"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Find the remainder when $x^4 - 3x + 2$ is divided by $x + 1$.'
     answer_label: 'The remainder'
     check:
@@ -116,7 +116,7 @@ problems:
 
   - id: p10-find-the-constant
     section: "2.7"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Given that $x - 2$ is a factor of $x^3 + kx^2 - 4$, find $k$.'
     answer_label: 'The value of $k$'
     check:
@@ -128,7 +128,7 @@ problems:
 
   - id: p11-factorise-three-roots
     section: "2.7"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Factorise $x^3 - 2x^2 - 5x + 6$ completely.'
     answer_label: 'Factorised'
     check:
@@ -139,7 +139,7 @@ problems:
 
   - id: p12-factor-then-divide
     section: "2.7"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Given that $x = 1$ is a root of $x^3 - 7x + 6 = 0$, divide to find the other two roots.'
     answer_label: 'The quotient, then the roots'
     check:

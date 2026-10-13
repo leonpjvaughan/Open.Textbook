@@ -5,7 +5,7 @@ chapter_title: 'Statistics: spread, grouped data and correlation'
 section: '25.2'
 section_title: Cumulative frequency
 tier: H
-dfe: [S3]
+refs: [S3]
 kind: problems
 ---
 

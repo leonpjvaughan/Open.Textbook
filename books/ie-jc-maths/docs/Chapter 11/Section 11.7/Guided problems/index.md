@@ -15,4 +15,4 @@ kind: guided-problems
 # 11.7 Dividing a cubic or quadratic by a linear expression — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **H** · DfE refs: AF.3
+> Tier: **H** · refs: AF.3

@@ -6,7 +6,7 @@ problems:
 - id: ch9-9-4-read-strict
   section: '9.4'
   tier: F
-  dfe:
+  refs:
   - A22
   statement: 'Write $x<4$ in words. Is 4 included?'
   answer_label: 'Write $x<4$ in words. Is 4 included?'
@@ -19,7 +19,7 @@ problems:
 - id: ch9-9-4-read-inclusive
   section: '9.4'
   tier: F
-  dfe:
+  refs:
   - A22
   statement: 'Write $x\geq -2$ in words. Is $-2$ included?'
   answer_label: 'Write $x\geq -2$ in words. Is $-2$ included?'
@@ -32,7 +32,7 @@ problems:
 - id: ch9-9-4-notation-open
   section: '9.4'
   tier: F
-  dfe:
+  refs:
   - A22
   statement: 'Write “$x$ is greater than 3” as an inequality.'
   answer_label: 'Write “$x$ is greater than 3” as an inequality.'
@@ -45,7 +45,7 @@ problems:
 - id: ch9-9-4-notation-closed
   section: '9.4'
   tier: F
-  dfe:
+  refs:
   - A22
   statement: 'Write “$x$ is at most 7” as an inequality.'
   answer_label: 'Write “$x$ is at most 7” as an inequality.'
@@ -58,7 +58,7 @@ problems:
 - id: ch9-9-4-interval
   section: '9.4'
   tier: F
-  dfe:
+  refs:
   - A22
   statement: 'Write the solution set $-1\leq x<5$ in set-builder notation.'
   answer_label: 'Set-builder notation'
@@ -71,7 +71,7 @@ problems:
 - id: ch9-9-4-number-line
   section: '9.4'
   tier: F
-  dfe:
+  refs:
   - A22
   statement: 'On a number line, describe $x>-3$.'
   answer_label: 'On a number line, describe $x>-3$.'
@@ -84,7 +84,7 @@ problems:
 - id: ch9-9-4-integer-values
   section: '9.4'
   tier: F
-  dfe:
+  refs:
   - A22
   statement: 'List the integer values satisfying $-2<x\leq2$.'
   answer_label: 'List the integer values satisfying $-2<x\leq2$.'
@@ -97,7 +97,7 @@ problems:
 - id: ch9-9-4-compare-boundaries
   section: '9.4'
   tier: F
-  dfe:
+  refs:
   - A22
   statement: '''Which includes its boundary: $x<6$ or $x\leq6$?'''
   answer_label: '''Which includes its boundary: $x<6$ or $x\leq6$?'''
@@ -110,7 +110,7 @@ problems:
 - id: ch9-9-4-compound
   section: '9.4'
   tier: F
-  dfe:
+  refs:
   - A22
   statement: 'Write “at least 2 and less than 8” using inequality symbols.'
   answer_label: 'Write “at least 2 and less than 8” using inequality symbols.'

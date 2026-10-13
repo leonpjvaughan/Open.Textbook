@@ -15,4 +15,4 @@ kind: problems
 # 7.7 Currency conversion — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: N.3
+> Tier: **O** · refs: N.3

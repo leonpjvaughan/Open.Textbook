@@ -5,7 +5,7 @@ chapter_title: Equations and inequalities
 section: "9.2"
 section_title: Equations with unknowns on both sides
 tier: F
-dfe: [A17]
+refs: [A17]
 kind: walkthrough
 ---
 

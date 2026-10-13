@@ -4,7 +4,7 @@ problems:
   - id: ch10-102-squares
     section: '10.2'
     tier: F
-    dfe: [A24]
+    refs: [A24]
     statement: 'Write the first six square numbers.'
     answer_label: 'Write the first six square numbers.'
     check: {"kind":"all","checks":[{"kind":"evaluate","expression":"1**2","answer":"1"},{"kind":"evaluate","expression":"2**2","answer":"4"},{"kind":"evaluate","expression":"3**2","answer":"9"},{"kind":"evaluate","expression":"4**2","answer":"16"},{"kind":"evaluate","expression":"5**2","answer":"25"},{"kind":"evaluate","expression":"6**2","answer":"36"}]}
@@ -13,7 +13,7 @@ problems:
   - id: ch10-102-cubes
     section: '10.2'
     tier: F
-    dfe: [A24]
+    refs: [A24]
     statement: 'Work out $4^3$.'
     answer_label: 'Work out $4^3$.'
     check: {"kind":"evaluate","expression":"4**3","answer":"64"}
@@ -22,7 +22,7 @@ problems:
   - id: ch10-102-triangular-next
     section: '10.2'
     tier: F
-    dfe: [A24]
+    refs: [A24]
     statement: 'Continue the triangular numbers $1,3,6,10,15,\ldots$ by two terms.'
     answer_label: 'Continue the triangular numbers $1,3,6,10,15,\ldots$ by two terms'
     check: {"kind":"all","checks":[{"kind":"evaluate","expression":"15+6","answer":"21"},{"kind":"evaluate","expression":"21+7","answer":"28"}]}
@@ -31,7 +31,7 @@ problems:
   - id: ch10-102-fibonacci
     section: '10.2'
     tier: F
-    dfe: [A24]
+    refs: [A24]
     statement: 'Continue $1,1,2,3,5,8,\ldots$ by two terms.'
     answer_label: 'Continue $1,1,2,3,5,8,\ldots$ by two terms.'
     check: {"kind":"all","checks":[{"kind":"evaluate","expression":"5+8","answer":"13"},{"kind":"evaluate","expression":"8+13","answer":"21"}]}
@@ -40,7 +40,7 @@ problems:
   - id: ch10-102-identify-square
     section: '10.2'
     tier: F
-    dfe: [A24]
+    refs: [A24]
     statement: 'Which is a square number: $30,36,40$? Give its square root.'
     answer_label: 'Which is a square number: $30,36,40$? Give its square root.'
     check: {"kind":"evaluate","expression":"6**2","answer":"36"}
@@ -49,7 +49,7 @@ problems:
   - id: ch10-102-identify-cube
     section: '10.2'
     tier: F
-    dfe: [A24]
+    refs: [A24]
     statement: 'Is 125 a cube number? State the whole number cubed.'
     answer_label: 'Is 125 a cube number? State the whole number cubed.'
     check: {"kind":"evaluate","expression":"5**3","answer":"125"}
@@ -58,7 +58,7 @@ problems:
   - id: ch10-102-triangular-10
     section: '10.2'
     tier: F
-    dfe: [A24]
+    refs: [A24]
     statement: 'Work out the 6th triangular number.'
     answer_label: 'Work out the 6th triangular number.'
     check: {"kind":"evaluate","expression":"1+2+3+4+5+6","answer":"21"}
@@ -67,7 +67,7 @@ problems:
   - id: ch10-102-higher-classify
     section: '10.2'
     tier: H
-    dfe: [A24]
+    refs: [A24]
     statement: '**H** The sequence is $1,4,9,16,25$. Give its name and the next term.'
     answer_label: '**H** The sequence is $1,4,9,16,25$. Give its name and the next t'
     check: {"kind":"evaluate","expression":"6**2","answer":"36"}

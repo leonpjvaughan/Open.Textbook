@@ -4,7 +4,7 @@ chapter: 6
 chapter_title: Waves
 section: '6.3'
 section_title: Stationary waves
-dfe:
+refs:
 - AP6
 kind: problems
 ---

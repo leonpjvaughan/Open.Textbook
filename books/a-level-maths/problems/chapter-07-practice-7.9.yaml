@@ -11,7 +11,7 @@ symbols:
 problems:
   - id: p1-implicit-circle
     section: "7.9"
-    dfe: [G5]
+    refs: [G5]
     statement: 'Find $\dfrac{dy}{dx}$ for $x^2 + y^2 = 25$.'
     answer_label: 'The derivative'
     check:
@@ -23,7 +23,7 @@ problems:
 
   - id: p2-implicit-circle-point
     section: "7.9"
-    dfe: [G5]
+    refs: [G5]
     statement: 'Find the gradient of $x^2 + y^2 = 100$ at the point $(6, 8)$.'
     answer_label: 'The gradient'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: p3-implicit-product
     section: "7.9"
-    dfe: [G5]
+    refs: [G5]
     statement: 'Find $\dfrac{dy}{dx}$ for $xy = 12$.'
     answer_label: 'The derivative'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: p4-implicit-sum-product
     section: "7.9"
-    dfe: [G5]
+    refs: [G5]
     statement: 'Find $\dfrac{dy}{dx}$ for $x^2 + xy = 6$.'
     answer_label: 'The derivative'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: p5-implicit-mixed
     section: "7.9"
-    dfe: [G5]
+    refs: [G5]
     statement: 'Find $\dfrac{dy}{dx}$ for $x^2 + 3xy - y^2 = 5$.'
     answer_label: 'The derivative'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: p6-implicit-cubes
     section: "7.9"
-    dfe: [G5]
+    refs: [G5]
     statement: 'Find $\dfrac{dy}{dx}$ for $x^3 + y^3 = 9$.'
     answer_label: 'The derivative'
     check:
@@ -82,7 +82,7 @@ problems:
 
   - id: p7-parametric-square-quartic
     section: "7.9"
-    dfe: [G5]
+    refs: [G5]
     statement: 'A curve is given by $x = t^2$, $y = t^3$. Find $\dfrac{dy}{dx}$.'
     answer_label: 'The derivative'
     check:
@@ -94,7 +94,7 @@ problems:
 
   - id: p8-parametric-quartic
     section: "7.9"
-    dfe: [G5]
+    refs: [G5]
     statement: 'A curve is given by $x = t^2$, $y = t^4$. Find $\dfrac{dy}{dx}$.'
     answer_label: 'The derivative'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: p9-parametric-trig
     section: "7.9"
-    dfe: [G5]
+    refs: [G5]
     statement: 'A curve is given by $x = \cos t$, $y = \sin t$. Find $\dfrac{dy}{dx}$.'
     answer_label: 'The derivative'
     check:
@@ -118,7 +118,7 @@ problems:
 
   - id: p10-parametric-line
     section: "7.9"
-    dfe: [G5]
+    refs: [G5]
     statement: 'A curve is given by $x = 2t$, $y = t^2$. Find $\dfrac{dy}{dx}$.'
     answer_label: 'The derivative'
     check:
@@ -130,7 +130,7 @@ problems:
 
   - id: p11-implicit-tangent
     section: "7.9"
-    dfe: [G5]
+    refs: [G5]
     statement: 'Find the gradient of the tangent to $x^2 + y^2 = 25$ at the point $(4, 3)$.'
     answer_label: 'The gradient'
     check:
@@ -141,7 +141,7 @@ problems:
 
   - id: p12-parametric-cubic
     section: "7.9"
-    dfe: [G5]
+    refs: [G5]
     statement: 'A curve is given by $x = t + 1$, $y = t^3$. Find $\dfrac{dy}{dx}$.'
     answer_label: 'The derivative'
     check:

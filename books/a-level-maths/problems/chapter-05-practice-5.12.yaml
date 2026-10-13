@@ -7,7 +7,7 @@ chapter: 5
 problems:
   - id: p1-resolve-force
     section: "5.12"
-    dfe: [E9, OT3]
+    refs: [E9, OT3]
     statement: 'A force of $50$ N acts at $30^\circ$ above the horizontal. Find its horizontal and vertical components.'
     answer_label: 'The two components'
     check:
@@ -19,7 +19,7 @@ problems:
 
   - id: p2-resultant-right-angle
     section: "5.12"
-    dfe: [E9]
+    refs: [E9]
     statement: 'Two forces of $5$ N and $9$ N act at $90^\circ$ to each other. Find the magnitude of the resultant.'
     answer_label: 'The resultant'
     check:
@@ -30,7 +30,7 @@ problems:
 
   - id: p3-resultant-60
     section: "5.12"
-    dfe: [E9]
+    refs: [E9]
     statement: 'Two forces of $6$ N and $8$ N act at $60^\circ$ to each other. Find the magnitude of the resultant.'
     answer_label: 'The resultant'
     check:
@@ -41,7 +41,7 @@ problems:
 
   - id: p4-resultant-50
     section: "5.12"
-    dfe: [E9]
+    refs: [E9]
     statement: 'Two forces of $4$ N and $7$ N act at $50^\circ$ to each other. Find the magnitude of the resultant, to three significant figures.'
     answer_label: 'The resultant'
     check:
@@ -53,7 +53,7 @@ problems:
 
   - id: p5-velocity-current
     section: "5.12"
-    dfe: [E9]
+    refs: [E9]
     statement: 'A swimmer heads due east at $1.2$ m s$^{-1}$ in a current of $0.5$ m s$^{-1}$ due south. Find the size of the resultant velocity.'
     answer_label: 'The resultant speed'
     check:
@@ -64,7 +64,7 @@ problems:
 
   - id: p6-slope-component
     section: "5.12"
-    dfe: [E9]
+    refs: [E9]
     statement: 'A block of weight $120$ N is on a slope of $20^\circ$. Find the component of the weight down the slope.'
     answer_label: 'The component down the slope'
     check:
@@ -76,7 +76,7 @@ problems:
 
   - id: p7-direction
     section: "5.12"
-    dfe: [E9]
+    refs: [E9]
     statement: 'A boat moves $4$ m s$^{-1}$ due east with a current of $3$ m s$^{-1}$ due north. Find the angle of the resultant velocity north of east, in degrees to three significant figures.'
     answer_label: 'The direction'
     check:
@@ -88,7 +88,7 @@ problems:
 
   - id: p8-vertical-component
     section: "5.12"
-    dfe: [E9]
+    refs: [E9]
     statement: 'A force of $100$ N acts at $65^\circ$ above the horizontal. Find its vertical component, to three significant figures.'
     answer_label: 'The vertical component'
     check:
@@ -100,7 +100,7 @@ problems:
 
   - id: p9-resultant-pythagorean
     section: "5.12"
-    dfe: [E9]
+    refs: [E9]
     statement: 'Two perpendicular displacements of $3$ m and $4$ m act from the same point. Find the magnitude of the resultant displacement.'
     answer_label: 'The resultant'
     check:
@@ -111,7 +111,7 @@ problems:
 
   - id: p10-slope-normal
     section: "5.12"
-    dfe: [E9]
+    refs: [E9]
     statement: 'A block of weight $200$ N is on a slope of $25^\circ$. Find the component of the weight into the slope, to three significant figures.'
     answer_label: 'The component into the slope'
     check:

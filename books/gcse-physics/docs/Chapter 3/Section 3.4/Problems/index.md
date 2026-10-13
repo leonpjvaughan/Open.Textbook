@@ -5,7 +5,7 @@ chapter_title: Forces and motion
 section: '3.4'
 section_title: Momentum
 tier: H
-dfe:
+refs:
 - FO6
 kind: problems
 ---

@@ -7,7 +7,7 @@ chapter: 15
 problems:
   - id: p1-convert-kilometres
     section: "15.1"
-    dfe: [P1]
+    refs: [P1]
     statement: 'Convert $2.5$ km to metres.'
     answer_label: 'The length in metres'
     check:
@@ -18,7 +18,7 @@ problems:
 
   - id: p2-convert-centimetres
     section: "15.1"
-    dfe: [P1]
+    refs: [P1]
     statement: 'Convert $340$ cm to metres.'
     answer_label: 'The length in metres'
     check:
@@ -29,7 +29,7 @@ problems:
 
   - id: p3-kilometres-per-hour
     section: "15.1"
-    dfe: [P1]
+    refs: [P1]
     statement: 'Convert $90$ km/h to m/s.'
     answer_label: 'The speed in m/s'
     check:
@@ -40,7 +40,7 @@ problems:
 
   - id: p4-metres-per-second
     section: "15.1"
-    dfe: [P1]
+    refs: [P1]
     statement: 'Convert $15$ m/s to km/h.'
     answer_label: 'The speed in km/h'
     check:
@@ -51,7 +51,7 @@ problems:
 
   - id: p5-weight-of-a-mass
     section: "15.1"
-    dfe: [P1]
+    refs: [P1]
     statement: 'Find the weight of a mass of $7.5$ kg. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The weight'
     check:
@@ -62,7 +62,7 @@ problems:
 
   - id: p6-moment-of-a-force
     section: "15.1"
-    dfe: [P1]
+    refs: [P1]
     statement: 'Find the moment of a force of $36$ N acting at a perpendicular distance of $0.25$ m from a pivot.'
     answer_label: 'The moment'
     check:
@@ -73,7 +73,7 @@ problems:
 
   - id: p7-force-from-mass-and-acceleration
     section: "15.1"
-    dfe: [P1]
+    refs: [P1]
     statement: 'A mass of $8$ kg accelerates at $2.5$ m/s$^2$. Find the force that acts on it.'
     answer_label: 'The force'
     check:
@@ -84,7 +84,7 @@ problems:
 
   - id: p8-acceleration-from-force
     section: "15.1"
-    dfe: [P1]
+    refs: [P1]
     statement: 'A force of $45$ N acts on a mass of $9$ kg. Find the acceleration.'
     answer_label: 'The acceleration'
     check:
@@ -95,7 +95,7 @@ problems:
 
   - id: p9-milliseconds
     section: "15.1"
-    dfe: [P1]
+    refs: [P1]
     statement: 'Convert $250$ ms to seconds.'
     answer_label: 'The time in seconds'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: p10-mass-and-weight
     section: "15.1"
-    dfe: [P1]
+    refs: [P1]
     statement: 'A bag has a mass of $2$ kg $400$ g. Write the mass in kilograms, and find its weight. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The mass in kg and the weight'
     check:
@@ -118,7 +118,7 @@ problems:
 
   - id: p11-average-speed
     section: "15.1"
-    dfe: [P1]
+    refs: [P1]
     statement: 'A cyclist travels $3.6$ km in $5$ minutes. Find the average speed in m/s.'
     answer_label: 'The average speed'
     check:
@@ -129,7 +129,7 @@ problems:
 
   - id: p12-force-from-a-moment
     section: "15.1"
-    dfe: [P1]
+    refs: [P1]
     statement: 'A force produces a moment of $18$ N m at a perpendicular distance of $0.6$ m from the pivot. Find the force.'
     answer_label: 'The force'
     check:

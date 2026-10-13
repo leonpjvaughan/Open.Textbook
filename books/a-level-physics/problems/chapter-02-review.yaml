@@ -18,7 +18,7 @@ chapter: 2
 problems:
   - id: r1-ferry-velocity
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'The ferry points straight across at $4.0\,\text{m}\,\text{s}^{-1}$ and the current is $3.0\,\text{m}\,\text{s}^{-1}$ downstream. Find the magnitude and direction of the velocity over the ground.'
     answer_label: 'The velocity over the ground'
     check:
@@ -32,7 +32,7 @@ problems:
   - id: r2-ferry-time
     plays: velocity
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'The river is $120\,\text{m}$ wide and the across component of the velocity is $4.0\,\text{m}\,\text{s}^{-1}$. Find the crossing time.'
     answer_label: 'The crossing time'
     check:
@@ -47,7 +47,7 @@ problems:
   - id: r3-ferry-downstream
     plays: velocity
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'The current is $3.0\,\text{m}\,\text{s}^{-1}$ and the crossing takes $30\,\text{s}$. Find how far downstream the ferry lands.'
     answer_label: 'The distance downstream'
     check:
@@ -61,7 +61,7 @@ problems:
 
   - id: r4-ferry-heading
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Find the angle upstream, from the straight-across direction, at which the ferry must head so that the current is exactly cancelled.'
     answer_label: 'The heading'
     check: {kind: approx, value: "asin(3.0 / 4.0) * 180 / pi", target: "48.59", tolerance: "0.01"}
@@ -69,7 +69,7 @@ problems:
 
   - id: r5-ferry-direct-time
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'With the heading at $48.59^\circ$ upstream, find the crossing time for the $120\,\text{m}$ river.'
     answer_label: 'The crossing time with the heading upstream'
     check: {kind: approx, value: "120 / (4.0 * cos(asin(3.0 / 4.0)))", target: "45.36", tolerance: "0.01"}
@@ -77,7 +77,7 @@ problems:
 
   - id: r6-ferry-judgement
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'State the heading needed to land directly opposite, the crossing time it gives, and a reason an operator might still choose to point straight across.'
     answer_label: 'The judgement'
     check:
@@ -98,7 +98,7 @@ problems:
 
   - id: r7-ferry-time-reason
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Explain why the current does not change the time the ferry takes to cross the river.'
     answer_label: 'Why the current does not change the crossing time'
     check:
@@ -116,7 +116,7 @@ problems:
 
   - id: r8-convert-speed
     section: Review
-    dfe: [AP1, AP2]
+    refs: [AP1, AP2]
     statement: 'Write $15\,\text{m}\,\text{s}^{-1}$ in $\text{km}\,\text{h}^{-1}$.'
     answer_label: 'The speed in kilometres per hour'
     check: {kind: convert, value: "15", from: "m s^-1", to: "km h^-1", answer: "54"}
@@ -124,7 +124,7 @@ problems:
 
   - id: r9-homogeneity
     section: Review
-    dfe: [AP1, AP2]
+    refs: [AP1, AP2]
     statement: 'Show that the equation of motion $v^2 = u^2 + 2as$ is homogeneous.'
     answer_label: 'A homogeneity check'
     check:
@@ -135,7 +135,7 @@ problems:
 
   - id: r10-uncertainty-speed
     section: Review
-    dfe: [AP1, AP2]
+    refs: [AP1, AP2]
     statement: 'A trolley travels $25.0 \pm 0.1\,\text{m}$ in $5.0 \pm 0.2\,\text{s}$. Find the speed and its absolute uncertainty.'
     answer_label: 'The speed and its uncertainty'
     check:
@@ -150,7 +150,7 @@ problems:
 
   - id: r11-quote-result
     section: Review
-    dfe: [AP1, AP2]
+    refs: [AP1, AP2]
     statement: 'A measurement gives $3.14159\,\text{m}$ with an uncertainty of $0.02\,\text{m}$. Write the result in the correct form.'
     answer_label: 'The result in the correct form'
     check: {kind: sigfigs, value: "3.14159", figures: 3, answer: "3.14", convention: round-once}
@@ -158,7 +158,7 @@ problems:
 
   - id: r12-method-choice
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Two forces of $9.0\,\text{N}$ and $12\,\text{N}$ act at right angles. State which method you would use, and why, before you calculate the resultant.'
     answer_label: 'The method and its reason'
     check:
@@ -176,7 +176,7 @@ problems:
 
   - id: r13-resolve-80n
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Resolve a force of $80\,\text{N}$ at $25^\circ$ to the horizontal into horizontal and vertical components.'
     answer_label: 'The two components'
     check:
@@ -189,7 +189,7 @@ problems:
 
   - id: r14-resultant-5-12
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Two perpendicular displacements are $5.0\,\text{m}$ and $12\,\text{m}$. Find the magnitude and direction of the resultant displacement.'
     answer_label: 'The resultant displacement'
     check:
@@ -202,7 +202,7 @@ problems:
 
   - id: r15-slope-1200
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A car of weight $1200\,\text{N}$ rests on a slope at $12^\circ$ to the horizontal. Find the component of the weight along the slope and the component perpendicular to it.'
     answer_label: 'The two components of the weight'
     check:

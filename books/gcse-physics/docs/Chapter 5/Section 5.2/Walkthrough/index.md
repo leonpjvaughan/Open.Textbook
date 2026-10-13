@@ -5,7 +5,7 @@ chapter_title: Light and electromagnetic waves
 section: '5.2'
 section_title: Interactions of electromagnetic radiation with matter
 tier: F
-dfe:
+refs:
 - WA4
 kind: walkthrough
 ---

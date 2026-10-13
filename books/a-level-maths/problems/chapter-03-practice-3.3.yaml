@@ -13,7 +13,7 @@ symbols:
 problems:
   - id: p1-equation-from-centre-and-radius
     section: "3.3"
-    dfe: [C2]
+    refs: [C2]
     statement: 'Write the equation of the circle with centre $(3, -2)$ and radius $4$, in expanded form.'
     answer_label: 'The equation'
     check:
@@ -25,7 +25,7 @@ problems:
 
   - id: p2-complete-the-square
     section: "3.3"
-    dfe: [C2]
+    refs: [C2]
     statement: 'Find the centre and the radius of the circle $x^2 + y^2 - 12x - 16y + 75 = 0$.'
     answer_label: 'The centre and the radius'
     check:
@@ -38,7 +38,7 @@ problems:
 
   - id: p3-complete-the-square-signs
     section: "3.3"
-    dfe: [C2]
+    refs: [C2]
     statement: 'Find the centre and the radius of the circle $x^2 + y^2 + 4x - 6y - 12 = 0$.'
     answer_label: 'The centre and the radius'
     check:
@@ -51,7 +51,7 @@ problems:
 
   - id: p4-inside-the-circle
     section: "3.3"
-    dfe: [C2]
+    refs: [C2]
     statement: 'Decide whether the point $(5, 4)$ is inside, on, or outside the circle $(x - 1)^2 + (y - 2)^2 = 25$.'
     answer_label: 'The decision'
     check:
@@ -63,7 +63,7 @@ problems:
 
   - id: p5-radius-through-a-point
     section: "3.3"
-    dfe: [C2]
+    refs: [C2]
     statement: 'A circle has centre $(2, 3)$ and passes through $(6, 6)$. Find its equation.'
     answer_label: 'The equation'
     check:
@@ -74,7 +74,7 @@ problems:
 
   - id: p6-tangent-at-a-point
     section: "3.3"
-    dfe: [C2]
+    refs: [C2]
     statement: 'Find the tangent to the circle $x^2 + y^2 = 169$ at the point $(5, 12)$. Give the equation and show that the distance from the centre to your line equals the radius.'
     answer_label: 'The tangent and the distance check'
     check:
@@ -86,7 +86,7 @@ problems:
 
   - id: p7-horizontal-chord
     section: "3.3"
-    dfe: [C2]
+    refs: [C2]
     statement: 'Find the two points where the line $y = 3$ meets the circle $x^2 + y^2 = 25$.'
     answer_label: 'The two points'
     check:
@@ -98,7 +98,7 @@ problems:
 
   - id: p8-chord-endpoints
     section: "3.3"
-    dfe: [C2]
+    refs: [C2]
     statement: 'Find the two points where the line $x + y = 19$ meets the circle $(x - 6)^2 + (y - 8)^2 = 25$.'
     answer_label: 'The two points'
     check:
@@ -110,7 +110,7 @@ problems:
 
   - id: p9-chord-length
     section: "3.3"
-    dfe: [C2]
+    refs: [C2]
     statement: 'The line $x + y = 19$ cuts the circle $(x - 6)^2 + (y - 8)^2 = 25$ at $(6, 13)$ and $(11, 8)$. Work out the length of the chord.'
     answer_label: 'The chord length'
     check:
@@ -121,7 +121,7 @@ problems:
 
   - id: p10-chord-bisected
     section: "3.3"
-    dfe: [C2]
+    refs: [C2]
     statement: 'For the chord of $(x - 6)^2 + (y - 8)^2 = 25$ on the line $x + y = 19$, with endpoints $(6, 13)$ and $(11, 8)$, show that the perpendicular from the centre passes through the midpoint of the chord.'
     answer_label: 'The midpoint and the perpendicular'
     check:
@@ -134,7 +134,7 @@ problems:
 
   - id: p11-angle-in-a-semicircle
     section: "3.3"
-    dfe: [C2]
+    refs: [C2]
     statement: 'The circle $x^2 + y^2 = 25$ has $A(-5, 0)$, $B(5, 0)$ and $C(-3, 4)$ on it. Show that angle $ACB$ is a right angle.'
     answer_label: 'The gradient product'
     check:
@@ -145,7 +145,7 @@ problems:
 
   - id: p12-tangent-condition
     section: "3.3"
-    dfe: [C2]
+    refs: [C2]
     statement: 'Show that the line $y = 2x + 5$ is a tangent to the circle $(x - 1)^2 + (y - 2)^2 = 5$ by comparing the distance from the centre to the line with the radius.'
     answer_label: 'The distance and the conclusion'
     check:
@@ -156,7 +156,7 @@ problems:
 
   - id: p13-line-misses-a-circle
     section: "3.3"
-    dfe: [C2]
+    refs: [C2]
     statement: 'Decide whether the line $y = 10$ meets the circle $x^2 + y^2 = 25$. Use the discriminant of the quadratic you get.'
     answer_label: 'The decision and the discriminant'
     check:

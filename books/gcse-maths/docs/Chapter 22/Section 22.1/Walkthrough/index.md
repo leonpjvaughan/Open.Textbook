@@ -5,7 +5,7 @@ chapter_title: Vectors
 section: '22.1'
 section_title: Vector notation and column vectors
 tier: F
-dfe: [G24, G25]
+refs: [G24, G25]
 kind: walkthrough
 ---
 

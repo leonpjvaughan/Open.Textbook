@@ -8,7 +8,7 @@ symbols:
 problems:
   - id: p1-mean-list
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the mean of $4, 7, 9, 12, 13, 15$.'
     answer_label: 'The mean'
     check:
@@ -20,7 +20,7 @@ problems:
 
   - id: p2-median-list
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the median of $3, 5, 8, 10, 12, 14$.'
     answer_label: 'The median'
     check:
@@ -32,7 +32,7 @@ problems:
 
   - id: p3-range
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the range of $2, 5, 9, 14$.'
     answer_label: 'The range'
     check:
@@ -44,7 +44,7 @@ problems:
 
   - id: p4-variance-population
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the variance of $2, 4, 6, 8, 10$, using the convention that divides by $n$.'
     answer_label: 'The variance'
     check:
@@ -57,7 +57,7 @@ problems:
 
   - id: p5-std-population
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the standard deviation of $2, 4, 6, 8, 10$, dividing by $n$.'
     answer_label: 'The standard deviation'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: p6-std-summary
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'A data set has $n = 10$, $\sum x = 60$ and $\sum x^2 = 800$. Find the standard deviation, dividing by $n$.'
     answer_label: 'The standard deviation'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-iqr-linear
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the interquartile range of $1, 3, 4, 6, 8, 9, 11, 14$, using the $(n + 1)$ position method.'
     answer_label: 'The interquartile range'
     check:
@@ -94,7 +94,7 @@ problems:
 
   - id: p8-q3-linear
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the upper quartile of $1, 3, 4, 6, 8, 9, 11, 14$, using the $(n + 1)$ position method.'
     answer_label: 'The upper quartile'
     check:
@@ -107,7 +107,7 @@ problems:
 
   - id: p9-std-outlier
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the standard deviation, dividing by $n$, of $10, 12, 14, 16, 18$, and then of $10, 12, 14, 16, 18, 30$.'
     answer_label: 'The two standard deviations'
     check:
@@ -119,7 +119,7 @@ problems:
 
   - id: p10-median-mean-outlier
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the median and the mean of $5, 6, 6, 7, 100$.'
     answer_label: 'The median and the mean'
     check:
@@ -131,7 +131,7 @@ problems:
 
   - id: p11-compare-spread
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Two data sets both have mean 17. Set A is $12, 15, 17, 18, 23$ and set B is $5, 15, 17, 19, 29$. Find the standard deviation of each, dividing by $n$.'
     answer_label: 'The two standard deviations'
     check:
@@ -143,7 +143,7 @@ problems:
 
   - id: p12-method-choice
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the mean and the median of $6, 7, 7, 8, 9, 9, 10, 12$. State which average you would report, and why.'
     answer_label: 'The mean and the median'
     check:

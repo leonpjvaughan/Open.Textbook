@@ -15,4 +15,4 @@ kind: guided-problems
 # 18.3 The trigonometric ratios — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: GT.4
+> Tier: **O** · refs: GT.4

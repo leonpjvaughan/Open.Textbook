@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: p1-product-polynomial-sine
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = x^2\sin x$.'
     answer_label: 'The derivative'
     check:
@@ -21,7 +21,7 @@ problems:
 
   - id: p2-product-cosine
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = x\cos x$.'
     answer_label: 'The derivative'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-product-exponential
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = xe^{3x}$.'
     answer_label: 'The derivative'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: p4-quotient-linear
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = \dfrac{x}{x - 2}$.'
     answer_label: 'The derivative'
     check:
@@ -57,7 +57,7 @@ problems:
 
   - id: p5-quotient-sine
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = \dfrac{\sin x}{x}$.'
     answer_label: 'The derivative'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: p6-quotient-exponential
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = \dfrac{e^{2x}}{x}$.'
     answer_label: 'The derivative'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-chain-bracket
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = (3x + 1)^5$.'
     answer_label: 'The derivative'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p8-chain-sine
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = \sin(x^3)$.'
     answer_label: 'The derivative'
     check:
@@ -105,7 +105,7 @@ problems:
 
   - id: p9-chain-exponential
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = e^{x^2}$.'
     answer_label: 'The derivative'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: p10-chain-logarithm
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = \ln(4x + 3)$.'
     answer_label: 'The derivative'
     check:
@@ -129,7 +129,7 @@ problems:
 
   - id: p11-product-logarithm
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = x^2\ln x$.'
     answer_label: 'The derivative'
     check:
@@ -141,7 +141,7 @@ problems:
 
   - id: p12-quotient-linear-second
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = \dfrac{3x + 1}{x + 2}$.'
     answer_label: 'The derivative'
     check:

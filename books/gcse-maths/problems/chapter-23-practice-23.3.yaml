@@ -3,7 +3,7 @@ problems:
 - id: p1-frequency-total
   section: '23.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'P1'
   statement: 'A survey has 38 people. 23 use a car and the rest use public transport. Find the public transport count.'
   answer_label: 'A survey has 38 people. 23 use a car and the rest use public transport. Find the public transport count.'
@@ -15,7 +15,7 @@ problems:
 - id: p2-table-cell
   section: '23.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'P6'
   statement: 'In a two-way table, 17 students are in a group and 9 are girls. How many are boys?'
   answer_label: 'In a two-way table, 17 students are in a group and 9 are girls. How many are boys?'
@@ -27,7 +27,7 @@ problems:
 - id: p3-coin-die-space
   section: '23.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'P7'
   statement: 'A coin is tossed and a four-sided die is rolled. How many outcomes are possible?'
   answer_label: 'A coin is tossed and a four-sided die is rolled. How many outcomes are possible?'
@@ -39,7 +39,7 @@ problems:
 - id: p4-two-dice-six
   section: '23.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'P7'
   statement: 'Two fair dice are rolled. Find the probability that both show 6.'
   answer_label: 'Two fair dice are rolled. Find the probability that both show 6.'
@@ -51,7 +51,7 @@ problems:
 - id: p5-frequency-tree
   section: '23.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'P1'
   statement: 'Of 50 visitors, 28 are adults. Find the number who are children.'
   answer_label: 'Of 50 visitors, 28 are adults. Find the number who are children.'
@@ -63,7 +63,7 @@ problems:
 - id: p6-two-way-sum
   section: '23.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'P6'
   statement: 'A table has four counts: 8, 7, 5 and 10. Find the total surveyed.'
   answer_label: 'A table has four counts: 8, 7, 5 and 10. Find the total surveyed.'
@@ -75,7 +75,7 @@ problems:
 - id: p7-possibility-even
   section: '23.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'P7'
   statement: 'A fair coin and a fair coin are tossed. List the outcomes with different results.'
   answer_label: 'A fair coin and a fair coin are tossed. List the outcomes with different results.'
@@ -87,7 +87,7 @@ problems:
 - id: p8-three-colour
   section: '23.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'P7'
   statement: 'A fair six-sided die is rolled. Find the probability of a result in $\{2,4,6\}$.'
   answer_label: 'A fair six-sided die is rolled. Find the probability of a result in $\{2,4,6\}$.'
@@ -99,7 +99,7 @@ problems:
 - id: p9-table-remainder
   section: '23.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'P6'
   statement: 'A group contains 42 people. 19 are in one category and 13 in a second disjoint category. How many are in neither?'
   answer_label: 'A group contains 42 people. 19 are in one category and 13 in a second disjoint category. How many are in neither?'
@@ -111,7 +111,7 @@ problems:
 - id: p10-systematic-pairs
   section: '23.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'P7'
   statement: 'A meal has 3 mains and 2 desserts. How many different main-dessert pairs are possible?'
   answer_label: 'A meal has 3 mains and 2 desserts. How many different main-dessert pairs are possible?'

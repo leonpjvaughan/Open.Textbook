@@ -12,7 +12,7 @@ symbols:
 problems:
   - id: p1-nth-term-geometric
     section: "4.6"
-    dfe: [D5]
+    refs: [D5]
     statement: 'A geometric sequence begins $5, 15, 45, \dots$. Work out the 6th term.'
     answer_label: 'The term'
     check:
@@ -23,7 +23,7 @@ problems:
 
   - id: p2-finite-sum
     section: "4.6"
-    dfe: [D5]
+    refs: [D5]
     statement: 'Work out the sum of the first 8 terms of $2, 6, 18, \dots$.'
     answer_label: 'The sum'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: p3-find-the-ratio
     section: "4.6"
-    dfe: [D5]
+    refs: [D5]
     statement: 'A geometric sequence has first term $5$ and third term $20$. Find the possible values of the common ratio.'
     answer_label: 'The values of r'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: p4-sum-to-infinity
     section: "4.6"
-    dfe: [D5]
+    refs: [D5]
     statement: 'Work out the sum to infinity of $24 + 6 + 1.5 + \dots$.'
     answer_label: 'The sum to infinity'
     check:
@@ -57,7 +57,7 @@ problems:
 
   - id: p5-sum-to-infinity-large-ratio
     section: "4.6"
-    dfe: [D5]
+    refs: [D5]
     statement: 'Work out the sum to infinity of the geometric series with first term $100$ and common ratio $0.9$.'
     answer_label: 'The sum to infinity'
     check:
@@ -68,7 +68,7 @@ problems:
 
   - id: p6-recurring-decimal
     section: "4.6"
-    dfe: [D5]
+    refs: [D5]
     statement: 'Write $0.444\dots$ as a fraction in its simplest form.'
     answer_label: 'The fraction'
     check:
@@ -79,7 +79,7 @@ problems:
 
   - id: p7-shrinking-term
     section: "4.6"
-    dfe: [D5]
+    refs: [D5]
     statement: 'A geometric sequence begins $100, 20, 4, \dots$. Work out the 10th term, as an exact fraction.'
     answer_label: 'The term'
     check:
@@ -90,7 +90,7 @@ problems:
 
   - id: p8-large-finite-sum
     section: "4.6"
-    dfe: [D5]
+    refs: [D5]
     statement: 'Work out the sum of the first 10 terms of $4, 12, 36, \dots$.'
     answer_label: 'The sum'
     check:
@@ -101,7 +101,7 @@ problems:
 
   - id: p9-negative-ratio
     section: "4.6"
-    dfe: [D5]
+    refs: [D5]
     statement: 'Work out the sum to infinity of $8 - 4 + 2 - 1 + \dots$.'
     answer_label: 'The sum to infinity'
     check:
@@ -112,7 +112,7 @@ problems:
 
   - id: p10-divergent-series
     section: "4.6"
-    dfe: [D5]
+    refs: [D5]
     statement: 'For the series $2 + 4 + 8 + \dots$, work out the common ratio and the sum of the first 10 terms. Explain why the series has no sum to infinity.'
     answer_label: 'The ratio, the sum and the reason'
     check:
@@ -124,7 +124,7 @@ problems:
 
   - id: p11-least-number-of-terms
     section: "4.6"
-    dfe: [D5]
+    refs: [D5]
     statement: 'A geometric series has first term $100$ and common ratio $1.1$. Find the smallest number of terms for which the sum exceeds $1000$.'
     answer_label: 'The number of terms'
     check:
@@ -136,7 +136,7 @@ problems:
 
   - id: p12-appeal-totals
     section: "4.6"
-    dfe: [D5]
+    refs: [D5]
     statement: 'The online appeal raises $600$ pounds in month 1 and 80% of that each month after. Work out the total after 12 months, to the nearest penny, and the sum to infinity.'
     answer_label: 'The 12-month total and the sum to infinity'
     check:

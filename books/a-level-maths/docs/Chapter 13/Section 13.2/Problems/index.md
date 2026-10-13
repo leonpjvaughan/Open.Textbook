@@ -4,7 +4,7 @@ chapter: 13
 chapter_title: Statistical distributions
 section: '13.2'
 section_title: Calculating binomial probabilities
-dfe:
+refs:
 - N1
 kind: problems
 ---

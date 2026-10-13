@@ -19,4 +19,4 @@ kind: guided-problems
 # 22.6 Reviewing the whole course — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: 1.1, 1.2, 2.1, 3.1, 4.1
+> Tier: **O** · refs: 1.1, 1.2, 2.1, 3.1, 4.1

@@ -12,7 +12,7 @@ problems:
   - id: r1-gpe-platform
     section: Review
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'Say which equation you will use, then calculate the energy gained by the gravitational potential store when a pupil of mass 70 kg climbs to a platform 5.0 m above the ground. Take $g = 9.8\,\text{N/kg}$.'
     answer_label: 'Energy gained by the gravitational potential store'
     check:
@@ -31,7 +31,7 @@ problems:
   - id: r2-ke-ball
     section: Review
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A ball of mass 0.40 kg moves at 25 m/s. Calculate the energy in its kinetic store.'
     answer_label: 'Energy in the kinetic store'
     check:
@@ -49,7 +49,7 @@ problems:
   - id: r3-thermal-block
     section: Review
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A 3.0 kg block is heated from 10 °C to 60 °C. Its specific heat capacity is 500 J/kg°C. Calculate the energy transferred to the block.'
     answer_label: 'Energy transferred to the block'
     check:
@@ -68,7 +68,7 @@ problems:
   - id: r4-pump-power
     section: Review
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A pump does 9000 J of work in 30 s. Calculate its power.'
     answer_label: 'Power of the pump'
     check:
@@ -86,7 +86,7 @@ problems:
   - id: r5-efficiency-input
     section: Review
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A device is 60% efficient and its useful output is 900 J. Calculate the total energy supplied.'
     answer_label: 'Total energy supplied'
     check:
@@ -99,7 +99,7 @@ problems:
   - id: r6-dissipated
     section: Review
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A ball gives up 40 J from its gravitational potential store and gains 34 J in its kinetic store. Calculate the energy dissipated.'
     answer_label: 'Energy dissipated'
     check:
@@ -112,7 +112,7 @@ problems:
   - id: r7-lamp-efficiency
     section: Review
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A lamp takes in 40 J of energy and transfers 8 J as useful light. Calculate the efficiency as a percentage.'
     answer_label: 'Efficiency of the lamp'
     check:
@@ -125,7 +125,7 @@ problems:
   - id: r8-spring
     section: Review
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A spring with spring constant 100 N/m is stretched by 0.30 m. Calculate the energy stored in its elastic potential store.'
     answer_label: 'Energy in the elastic potential store'
     check:
@@ -143,7 +143,7 @@ problems:
   - id: r9-kettle-energy
     section: Review
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'In the chapter problem a kettle heats 1.5 kg of water through 80 °C. The specific heat capacity of water is 4200 J/kg°C. Calculate the energy transferred to the water.'
     answer_label: 'Energy transferred to the water'
     check:
@@ -162,7 +162,7 @@ problems:
   - id: r10-kettle-time
     section: Review
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'The kettle needs 504000 J and the generator supplies 2100 W. Calculate the time the kettle takes, in seconds and in minutes.'
     answer_label: 'Time for the kettle'
     check:
@@ -180,7 +180,7 @@ problems:
   - id: r11-braking-method
     section: Review
     tier: F
-    dfe: [EN1, EN2]
+    refs: [EN1, EN2]
     statement: 'A cyclist brakes to a stop, and the brakes become warm. Say which store decreases, which store increases, and which equation links them.'
     answer_label: 'The stores and the equation'
     check:
@@ -201,7 +201,7 @@ problems:
   - id: r12-resource-evaluate
     section: Review
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'In the chapter problem the stream is a renewable resource. Evaluate whether the centre should rely on the stream alone for its electricity. Give one reason for and one reason against.'
     answer_label: 'Should the centre rely on the stream alone?'
     check:

@@ -4,7 +4,7 @@ chapter: 6
 chapter_title: Waves
 section: '6.2'
 section_title: Diffraction and polarisation
-dfe:
+refs:
 - AP6
 kind: problems
 ---

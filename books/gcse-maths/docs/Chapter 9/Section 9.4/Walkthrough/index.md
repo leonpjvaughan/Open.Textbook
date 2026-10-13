@@ -5,7 +5,7 @@ chapter_title: Equations and inequalities
 section: "9.4"
 section_title: Inequalities on a number line and set notation
 tier: F
-dfe: [A22]
+refs: [A22]
 kind: walkthrough
 ---
 

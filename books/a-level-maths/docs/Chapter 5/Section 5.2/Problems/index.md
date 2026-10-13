@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Trigonometry
 section: '5.2'
 section_title: Radian measure, arc length and sector area
-dfe:
+refs:
 - E1
 kind: problems
 ---

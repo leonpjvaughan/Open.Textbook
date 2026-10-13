@@ -15,4 +15,4 @@ kind: guided-problems
 # 11.9 Hypothesis testing and confidence intervals — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **H** · DfE refs: 1.7
+> Tier: **H** · refs: 1.7

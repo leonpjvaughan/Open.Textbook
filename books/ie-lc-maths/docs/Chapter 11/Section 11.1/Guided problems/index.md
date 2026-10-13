@@ -15,4 +15,4 @@ kind: guided-problems
 # 11.1 Populations and samples — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **F** · DfE refs: 1.5
+> Tier: **F** · refs: 1.5

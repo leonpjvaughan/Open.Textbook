@@ -5,7 +5,7 @@ chapter_title: Particle model of matter
 section: '8.1'
 section_title: Changes of state and the particle model
 tier: F
-dfe:
+refs:
 - PM1
 kind: walkthrough
 ---

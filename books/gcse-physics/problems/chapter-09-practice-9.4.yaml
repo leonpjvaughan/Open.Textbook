@@ -10,7 +10,7 @@ problems:
   - id: p1-fission-definition
     section: '9.4'
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'Define nuclear fission.'
     answer_label: 'Definition of nuclear fission'
     check:
@@ -28,7 +28,7 @@ problems:
   - id: p2-fission-process
     section: '9.4'
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'Describe what happens when a uranium-235 nucleus absorbs a neutron and undergoes fission.'
     answer_label: 'What happens in fission'
     check:
@@ -52,7 +52,7 @@ problems:
   - id: p3-chain-reaction
     section: '9.4'
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'Explain how a chain reaction can happen in a sample of uranium-235.'
     answer_label: 'How a chain reaction happens'
     check:
@@ -73,7 +73,7 @@ problems:
   - id: p4-controlled
     section: '9.4'
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'Explain why the chain reaction in a nuclear reactor must be controlled, and what happens if it is not.'
     answer_label: 'Why the chain reaction is controlled'
     check:
@@ -94,7 +94,7 @@ problems:
   - id: p5-fission-equation
     section: '9.4'
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'Check that the mass numbers and the atomic numbers balance in the fission equation $^{235}_{92}\text{U} + {}^{1}_{0}\text{n} \rightarrow {}^{141}_{56}\text{Ba} + {}^{92}_{36}\text{Kr} + 3{}^{1}_{0}\text{n}$.'
     answer_label: 'Balancing the fission equation'
     check:
@@ -107,7 +107,7 @@ problems:
   - id: p6-fusion-definition
     section: '9.4'
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'Define nuclear fusion, and state what happens to some of the mass in the reaction.'
     answer_label: 'Definition of nuclear fusion'
     check:
@@ -128,7 +128,7 @@ problems:
   - id: p7-fission-vs-fusion
     section: '9.4'
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'Compare fission and fusion. Give one thing they have in common and one way they are different.'
     answer_label: 'Fission compared with fusion'
     check:
@@ -146,7 +146,7 @@ problems:
   - id: p8-where
     section: '9.4'
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'State where nuclear fission is used to generate electricity, and where nuclear fusion takes place naturally.'
     answer_label: 'Where fission and fusion happen'
     check:
@@ -164,7 +164,7 @@ problems:
   - id: p9-kinetic-energy
     section: '9.4'
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'In a fission reaction, energy is released. Explain which particles carry away most of this energy.'
     answer_label: 'Which particles carry the energy'
     check:
@@ -182,7 +182,7 @@ problems:
   - id: p10-neutron-count
     section: '9.4'
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'Each fission releases 3 neutrons, and every neutron causes one more fission. Calculate the number of neutrons released in the third generation after the first fission.'
     answer_label: 'Neutrons in the third generation'
     check: {kind: evaluate, expression: '3**3', answer: '27'}
@@ -191,7 +191,7 @@ problems:
   - id: p11-fusion-stars
     section: '9.4'
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'Explain why fusion needs extremely high temperatures, and why this makes it hard to use fusion in a power station.'
     answer_label: 'Why fusion needs high temperatures'
     check:
@@ -212,7 +212,7 @@ problems:
   - id: p12-method
     section: '9.4'
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'A country is choosing how to generate electricity. Say whether a fission power station or a fusion power station can be built today, and give a reason.'
     answer_label: 'Choosing fission or fusion for a power station'
     check:

@@ -5,7 +5,7 @@ chapter_title: Angles, polygons and geometrical reasoning
 section: '16.1'
 section_title: Angle facts at a point and on a line
 tier: F
-dfe: [G3]
+refs: [G3]
 kind: walkthrough
 ---
 

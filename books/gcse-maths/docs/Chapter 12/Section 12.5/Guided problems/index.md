@@ -5,7 +5,7 @@ chapter_title: Quadratic expressions, equations and graphs
 section: '12.5'
 section_title: The quadratic formula
 tier: H
-dfe:
+refs:
 - A18
 kind: guided-problems
 ---

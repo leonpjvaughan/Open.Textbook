@@ -3,7 +3,7 @@ problems:
 - id: 'ch18-18.3-half'
   section: '18.3'
   tier: 'H'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Enlarge $(6,-4)$ by scale factor $1/2$ about the origin.'
   answer_label: 'Enlarge $(6,-4)$ by scale factor $1/2$ about the origin.'
@@ -20,7 +20,7 @@ problems:
 - id: 'ch18-18.3-negative'
   section: '18.3'
   tier: 'H'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Enlarge $(2,3)$ by scale factor $-2$ about the origin.'
   answer_label: 'Enlarge $(2,3)$ by scale factor $-2$ about the origin.'
@@ -37,7 +37,7 @@ problems:
 - id: 'ch18-18.3-negative-half'
   section: '18.3'
   tier: 'H'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Enlarge $(-8,4)$ by scale factor $-1/2$ about the origin.'
   answer_label: 'Enlarge $(-8,4)$ by scale factor $-1/2$ about the origin.'
@@ -54,7 +54,7 @@ problems:
 - id: 'ch18-18.3-fraction-shape'
   section: '18.3'
   tier: 'H'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Triangle vertices are $(2,0),(0,4),(2,4)$. Enlarge by factor $-1/2$ about the origin.'
   answer_label: 'Triangle vertices are $(2,0),(0,4),(2,4)$. Enlarge by factor $-1/2$ about the origin.'
@@ -83,7 +83,7 @@ problems:
 - id: 'ch18-18.3-factor'
   section: '18.3'
   tier: 'H'
-  dfe:
+  refs:
   - 'G7'
   statement: 'A length of $12$ cm maps to $3$ cm. Give the positive scale factor.'
   answer_label: 'A length of $12$ cm maps to $3$ cm. Give the positive scale factor.'
@@ -95,7 +95,7 @@ problems:
 - id: 'ch18-18.3-negative-image'
   section: '18.3'
   tier: 'H'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Point $(-3,5)$ maps to $(6,-10)$. Give the scale factor for an enlargement centred at the origin.'
   answer_label: 'Point $(-3,5)$ maps to $(6,-10)$. Give the scale factor for an enlargement centred at the origin.'
@@ -112,7 +112,7 @@ problems:
 - id: 'ch18-18.3-distance'
   section: '18.3'
   tier: 'H'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Point $(4,0)$ maps to $(-2,0)$ under an enlargement centred at the origin. Find the scale factor.'
   answer_label: 'Point $(4,0)$ maps to $(-2,0)$ under an enlargement centred at the origin. Find the scale factor.'
@@ -124,7 +124,7 @@ problems:
 - id: 'ch18-18.3-meaning'
   section: '18.3'
   tier: 'H'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Explain what the negative sign in scale factor $-3$ tells you.'
   answer_label: 'Explain what the negative sign in scale factor $-3$ tells you.'
@@ -136,7 +136,7 @@ problems:
 - id: 'ch18-18.3-quarter'
   section: '18.3'
   tier: 'H'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Enlarge $(12,8)$ by scale factor $-1/4$ about the origin.'
   answer_label: 'Enlarge $(12,8)$ by scale factor $-1/4$ about the origin.'
@@ -153,7 +153,7 @@ problems:
 - id: 'ch18-18.3-mixed'
   section: '18.3'
   tier: 'H'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Which method maps $(4,6)$ to $(2,3)$ about the origin: translation or enlargement? Give a reason.'
   answer_label: 'Which method maps $(4,6)$ to $(2,3)$ about the origin: translation or enlargement? Give a reason.'

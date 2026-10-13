@@ -10,7 +10,7 @@ symbols:
 problems:
   - id: q1-add-vectors
     section: "10.3"
-    dfe: [J3]
+    refs: [J3]
     statement: 'Add $\mathbf{a} = 3\mathbf{i} - 2\mathbf{j}$ and $\mathbf{b} = -2\mathbf{i} + 5\mathbf{j}$.'
     answer_label: 'The sum'
     check:
@@ -22,7 +22,7 @@ problems:
 
   - id: q2-magnitude-and-direction
     section: "10.2"
-    dfe: [J2]
+    refs: [J2]
     statement: 'Find the magnitude and the direction of $\mathbf{c} = 8\mathbf{i} - 6\mathbf{j}$, giving the direction from the positive $x$-axis.'
     answer_label: 'The magnitude and the direction'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: q3-three-dimensional-distance
     section: "10.4"
-    dfe: [J4]
+    refs: [J4]
     statement: 'Find the distance between $A(1, 2, 3)$ and $B(4, 6, 15)$.'
     answer_label: 'The distance'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: q4-position-and-displacement
     section: "10.4"
-    dfe: [J4]
+    refs: [J4]
     statement: 'For $A(2, 3)$ and $B(7, 9)$, find $\vec{AB}$ and the distance $AB$.'
     answer_label: 'The displacement and the distance'
     check:
@@ -61,7 +61,7 @@ problems:
 
   - id: q5-collinear
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'Show that $A(2, 1)$, $B(5, 7)$ and $C(8, 13)$ are collinear.'
     answer_label: 'The two displacements'
     check:
@@ -79,7 +79,7 @@ problems:
 
   - id: q6-divide-ratio
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'The points are $A(1, 2)$ and $B(11, 7)$. Find the point $P$ on $AB$ with $AP : PB = 2 : 3$.'
     answer_label: 'The position vector of $P$'
     check:
@@ -101,7 +101,7 @@ problems:
 
   - id: q7-equilibrium
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'Forces $\mathbf{F}_1 = 4\mathbf{i} - 3\mathbf{j}$ N and $\mathbf{F}_2 = -\mathbf{i} + 5\mathbf{j}$ N act at a point. Find the third force that keeps the point still, and its magnitude.'
     answer_label: 'The third force and its magnitude'
     check:
@@ -120,7 +120,7 @@ problems:
 
   - id: q8-motion
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'A particle starts at $\mathbf{r}_0 = \mathbf{i} - 2\mathbf{j}$ m and moves with velocity $\mathbf{v} = 4\mathbf{i} + 3\mathbf{j}$ m/s. Find its position after $2$ s and its distance from the origin then.'
     answer_label: 'The position and the distance'
     check:
@@ -135,7 +135,7 @@ problems:
 
   - id: q9-quadratic
     section: "2.4"
-    dfe: [B3]
+    refs: [B3]
     statement: 'Solve $2x^2 - 7x + 3 = 0$.'
     answer_label: 'The solutions'
     check:
@@ -147,7 +147,7 @@ problems:
 
   - id: q10-exponential-equation
     section: "6.4"
-    dfe: [F5]
+    refs: [F5]
     statement: 'Solve $3^x = 20$, giving an exact answer for $x$.'
     answer_label: 'The value of $x$'
     check:
@@ -159,7 +159,7 @@ problems:
 
   - id: q11-differentiate
     section: "7.3"
-    dfe: [G2]
+    refs: [G2]
     statement: 'Differentiate $y = 3x^2 - 4x + 1$.'
     answer_label: 'The derivative'
     check:
@@ -171,7 +171,7 @@ problems:
 
   - id: q12-integrate
     section: "8.1"
-    dfe: [H2]
+    refs: [H2]
     statement: 'Find $\displaystyle\int \left(6x^2 + 2x\right)dx$.'
     answer_label: 'The integral'
     check:
@@ -184,7 +184,7 @@ problems:
 
   - id: q13-trigonometric-equation
     section: "5.10"
-    dfe: [E7]
+    refs: [E7]
     statement: 'Solve $\sin x = \dfrac{1}{2}$ for $0 \le x \le 2\pi$.'
     answer_label: 'The solutions'
     check:
@@ -197,7 +197,7 @@ problems:
 
   - id: q14-proof-by-deduction
     section: "1.2"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Prove that the sum of two consecutive odd numbers is a multiple of $4$.'
     answer_label: 'The algebra of the proof'
     check:
@@ -208,7 +208,7 @@ problems:
 
   - id: q15-trapezium-rule
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'Use the trapezium rule with two strips to estimate $\displaystyle\int_0^2 x^2\,dx$.'
     answer_label: 'The estimate'
     check:
@@ -219,7 +219,7 @@ problems:
 
   - id: q16-speed-and-distance
     section: "10.2"
-    dfe: [J2]
+    refs: [J2]
     statement: 'A drone moves with velocity $6\mathbf{i} + 8\mathbf{j}$ km/h for $1.5$ hours. Find its speed and the distance travelled.'
     answer_label: 'The speed and the distance'
     check:

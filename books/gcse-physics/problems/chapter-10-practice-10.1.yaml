@@ -17,7 +17,7 @@ problems:
   - id: p1-solar-system-features
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'State the main features of our solar system.'
     answer_label: 'The main features of the solar system'
     check:
@@ -44,7 +44,7 @@ problems:
   - id: p2-moon-and-satellite
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'Give one similarity and one distinction between a moon and an artificial satellite.'
     answer_label: 'A moon compared with an artificial satellite'
     check:
@@ -62,7 +62,7 @@ problems:
   - id: p3-gravity-keeps-orbit
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'Explain what keeps a planet in a circular orbit around the Sun.'
     answer_label: 'What keeps a planet in its orbit'
     check:
@@ -83,7 +83,7 @@ problems:
   - id: p4-sun-formation
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'Describe how the Sun formed.'
     answer_label: 'How the Sun formed'
     check:
@@ -104,7 +104,7 @@ problems:
   - id: p5-sun-equilibrium
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'Explain why the Sun stays the same size.'
     answer_label: 'Why the Sun is stable'
     check:
@@ -125,7 +125,7 @@ problems:
   - id: p6-lifecycle-sun-sized
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'Describe the life cycle of a star that has about the same mass as the Sun.'
     answer_label: 'The life cycle of a Sun-sized star'
     check:
@@ -149,7 +149,7 @@ problems:
   - id: p7-lifecycle-massive
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'Describe the life cycle of a star much more massive than the Sun. State where the elements heavier than iron are made.'
     answer_label: 'The life cycle of a massive star'
     check:
@@ -176,7 +176,7 @@ problems:
   - id: p8-signal-time
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'The telescope orbits 540 km above the Earth. A radio signal from the telescope travels at $3.0 \times 10^{8}\,\text{m/s}$. Say which equation you will use, then calculate the time for the signal to reach the ground. Give your answer to 2 significant figures.'
     answer_label: 'Time for the radio signal to reach the ground'
     check:
@@ -194,7 +194,7 @@ problems:
   - id: p9-sunlight-time
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'The Sun is $1.5 \times 10^{11}\,\text{m}$ from the Earth. Light travels at $3.0 \times 10^{8}\,\text{m/s}$. Calculate how long light takes to travel from the Sun to the Earth. Give your answer to 2 significant figures.'
     answer_label: 'Time for light to reach the Earth from the Sun'
     check:
@@ -212,7 +212,7 @@ problems:
   - id: p10-moonlight-time
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'The Moon is $3.84 \times 10^{8}\,\text{m}$ from the Earth. Calculate how long light takes to travel from the Moon to the Earth. Give your answer to 3 significant figures.'
     answer_label: 'Time for light to travel from the Moon'
     check:
@@ -230,7 +230,7 @@ problems:
   - id: p11-jupiter-ratio
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'Jupiter is $7.8 \times 10^{11}\,\text{m}$ from the Sun. The Earth is $1.5 \times 10^{11}\,\text{m}$ from the Sun. Work out how many times further from the Sun Jupiter is than the Earth.'
     answer_label: 'How many times further Jupiter is'
     check: {kind: evaluate, expression: '7.8e11 / 1.5e11', answer: '5.2'}
@@ -239,7 +239,7 @@ problems:
   - id: p12-no-gravity-misconception
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'A pupil says that the telescope floats because there is no gravity in space. Explain what is wrong with this statement.'
     answer_label: 'Why the telescope does not float because of no gravity'
     check:
@@ -260,7 +260,7 @@ problems:
   - id: p13-ht-changing-velocity
     section: '10.1'
     tier: H
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'The telescope moves at a constant speed in a circular orbit, but its velocity changes. Explain how this is possible.'
     answer_label: 'How the velocity changes while the speed stays the same'
     check:
@@ -281,7 +281,7 @@ problems:
   - id: p14-ht-stable-orbit
     section: '10.1'
     tier: H
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'Explain, for a stable orbit, why the radius must change if the speed of the object changes.'
     answer_label: 'Why the radius must change with the speed'
     check:

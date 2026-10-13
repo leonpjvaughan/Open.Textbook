@@ -15,4 +15,4 @@ kind: guided-problems
 # 20.7 Similar triangles and proportionality — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: GT.3
+> Tier: **O** · refs: GT.3

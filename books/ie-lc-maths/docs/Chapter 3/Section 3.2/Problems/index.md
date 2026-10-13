@@ -15,4 +15,4 @@ kind: problems
 # 3.2 The circle: circumference and area — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 3.4
+> Tier: **F** · refs: 3.4

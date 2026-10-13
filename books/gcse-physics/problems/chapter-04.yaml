@@ -20,7 +20,7 @@ problems:
   - id: w1-period
     section: '4.1'
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A wave has a frequency of 4.0 Hz. Calculate its period.'
     check:
       kind: all
@@ -36,7 +36,7 @@ problems:
   - id: w2-ripple-speed
     section: '4.1'
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A ripple tank makes water waves with a frequency of 2.5 Hz and a wavelength of 0.20 m. Calculate the wave speed.'
     check:
       kind: all
@@ -53,7 +53,7 @@ problems:
   - id: w3-sound-wavelength
     section: '4.1'
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A sound wave in air has a frequency of 440 Hz. The speed of sound in air is 330 m/s. Calculate the wavelength.'
     check:
       kind: all
@@ -70,7 +70,7 @@ problems:
   - id: w4-spring-frequency
     section: '4.1'
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A wave travels along a spring at 6.0 m/s. Its wavelength is 0.40 m. Calculate the frequency.'
     check:
       kind: all
@@ -87,7 +87,7 @@ problems:
   - id: w5-anchor-ripple
     section: '4.1'
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'In the chapter problem the ripple tank makes waves with a frequency of 5.0 Hz and a wavelength of 0.12 m. Calculate the wave speed.'
     check:
       kind: all
@@ -104,7 +104,7 @@ problems:
   - id: w6-steel-wavelength
     section: '4.1'
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A sound wave travels through a steel rail at 5000 m/s. Its frequency is 1000 Hz. Calculate the wavelength.'
     check:
       kind: all
@@ -122,7 +122,7 @@ problems:
   - id: g1-speed
     section: '4.1'
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A water wave has a frequency of 2.0 Hz and a wavelength of 0.30 m. Calculate the wave speed.'
     check:
       kind: all
@@ -139,7 +139,7 @@ problems:
   - id: g2-wavelength
     section: '4.1'
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A sound wave in air has a frequency of 155 Hz. The speed of sound in air is 310 m/s. Calculate the wavelength.'
     check:
       kind: all
@@ -156,7 +156,7 @@ problems:
   - id: g3-frequency
     section: '4.1'
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A wave travels along a rope at 15 m/s. The wavelength is 3.0 m. Calculate the frequency.'
     check:
       kind: all
@@ -173,7 +173,7 @@ problems:
   - id: g4-period
     section: '4.1'
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A wave has a frequency of 2.0 Hz. Calculate its period.'
     check:
       kind: all
@@ -189,7 +189,7 @@ problems:
   - id: g5-wavelength
     section: '4.1'
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A wave travels at 1200 m/s with a frequency of 400 Hz. Calculate the wavelength.'
     check:
       kind: all
@@ -206,7 +206,7 @@ problems:
   - id: g6-frequency-count
     section: '4.1'
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'Twenty waves pass a point in 5.0 s. Calculate the frequency of the waves.'
     check:
       kind: all
@@ -224,7 +224,7 @@ problems:
   - id: warmup-4-1-speed
     section: '4.1'
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A runner covers 400 m in 50 s. Calculate her average speed.'
     check:
       kind: all
@@ -241,7 +241,7 @@ problems:
   - id: warmup-4-1-time
     section: '4.1'
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A train travels 900 m at a steady speed of 25 m/s. Calculate the time taken.'
     check:
       kind: all
@@ -259,7 +259,7 @@ problems:
   - id: w7-hearing-period
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'The lowest frequency a healthy young person can hear is 20 Hz. Calculate the period of this sound wave.'
     check:
       kind: all
@@ -275,7 +275,7 @@ problems:
   - id: w8-echo-tissue
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A pulse of ultrasound travels through tissue at 1500 m/s. The reflection returns to the detector after 0.00012 s. Calculate the distance to the boundary.'
     check:
       kind: all
@@ -292,7 +292,7 @@ problems:
   - id: w9-anchor-depth
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'In the chapter problem the echo sounder sends a pulse through sea water at 1500 m/s. The reflection returns after 0.020 s. Calculate the depth of the sea floor.'
     check:
       kind: all
@@ -309,7 +309,7 @@ problems:
   - id: w10-ultrasound-wavelength
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A medical scanner uses ultrasound at a frequency of 2.0 MHz. The speed of sound in tissue is 1500 m/s. Calculate the wavelength.'
     check:
       kind: all
@@ -326,7 +326,7 @@ problems:
   - id: w11-seismic-speed
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A seismic P-wave travels 60 km in 12 s. Calculate its speed.'
     check:
       kind: all
@@ -344,7 +344,7 @@ problems:
   - id: g7-echo-distance
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A pulse of ultrasound travels through tissue at 1500 m/s. The reflection returns after 0.00020 s. Calculate the distance to the boundary.'
     check:
       kind: all
@@ -361,7 +361,7 @@ problems:
   - id: g8-ship-depth
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A ship sends a pulse of sound down through water at 1500 m/s. The reflection returns after 0.040 s. Calculate the depth of the water.'
     check:
       kind: all
@@ -378,7 +378,7 @@ problems:
   - id: g9-seismic-speed
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'An earthquake P-wave travels 45 km in 15 s. Calculate the speed of the P-wave.'
     check:
       kind: all
@@ -395,7 +395,7 @@ problems:
   - id: g10-ultrasound-wavelength
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'An ultrasound scanner works at a frequency of 2.5 MHz. The speed of sound in tissue is 1500 m/s. Calculate the wavelength of the ultrasound.'
     check:
       kind: all
@@ -413,7 +413,7 @@ problems:
   - id: warmup-4-2-speed
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A wave has a frequency of 2.0 Hz and a wavelength of 1.5 m. Calculate the wave speed.'
     check:
       kind: all
@@ -430,7 +430,7 @@ problems:
   - id: warmup-4-2-period
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A sound wave has a frequency of 500 Hz. Calculate its period.'
     check:
       kind: all
@@ -447,7 +447,7 @@ problems:
   - id: w12-law-of-reflection
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A ray of light meets a mirror at an angle of incidence of 35 degrees. State the angle of reflection, and say what line the angles are measured from.'
     check:
       kind: structured
@@ -464,7 +464,7 @@ problems:
   - id: w13-boundary-wavelengths
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A sound wave of frequency 500 Hz passes from air into water. The speed of sound is 330 m/s in air and 1500 m/s in water. Calculate the wavelength in each material.'
     check:
       kind: all
@@ -488,7 +488,7 @@ problems:
   - id: w14-transmitted
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'When a wave meets a boundary, 15% of its energy is reflected and 25% is absorbed. Calculate the percentage of the energy that is transmitted.'
     check:
       kind: evaluate
@@ -499,7 +499,7 @@ problems:
   - id: w15-echo-time
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A water wave travels at 4.0 m/s and reflects from a wall 30 m away. Calculate the time taken for the wave to travel to the wall and back.'
     check:
       kind: all
@@ -516,7 +516,7 @@ problems:
   - id: w16-convert-depth
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A ripple tank contains water to a depth of 25 cm. Convert this depth to metres.'
     check:
       kind: convert
@@ -529,7 +529,7 @@ problems:
   - id: w17-echo-distance
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A person claps and hears the echo from a wall after 0.80 s. The speed of sound in air is 330 m/s. Calculate the distance from the person to the wall.'
     check:
       kind: all
@@ -547,7 +547,7 @@ problems:
   - id: g11-law-of-reflection
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'State the law of reflection for a wave at a surface.'
     check:
       kind: structured
@@ -564,7 +564,7 @@ problems:
   - id: g12-echo-time
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A water wave travels at 2.0 m/s and reflects from a wall 18 m away. Calculate the time taken for the wave to travel to the wall and back.'
     check:
       kind: all
@@ -581,7 +581,7 @@ problems:
   - id: g13-interface-wavelengths
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A wave of frequency 250 Hz passes from one material into another. Its speed changes from 5.0 m/s to 8.0 m/s. The frequency does not change. Calculate the wavelength in each material.'
     check:
       kind: all
@@ -605,7 +605,7 @@ problems:
   - id: g14-transmitted
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'When a wave meets a boundary, 20% of its energy is reflected and 30% is absorbed. Calculate the percentage of the energy that is transmitted.'
     check:
       kind: evaluate
@@ -616,7 +616,7 @@ problems:
   - id: g15-three-effects
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'Describe what can happen to a wave when it meets the boundary between two different materials.'
     check:
       kind: structured
@@ -636,7 +636,7 @@ problems:
   - id: g16-why-normal
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'Explain why the angles in a reflection diagram are measured from the normal and not from the surface.'
     answer_label: 'Why the normal is used'
     check:
@@ -654,7 +654,7 @@ problems:
   - id: g17-echo-distance
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A person claps and hears the echo from a wall after 0.50 s. The speed of sound in air is 340 m/s. Calculate the distance from the person to the wall.'
     check:
       kind: all
@@ -672,7 +672,7 @@ problems:
   - id: warmup-4-3-speed
     section: '4.3'
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A wave has a frequency of 5.0 Hz and a wavelength of 0.40 m. Calculate the wave speed.'
     check:
       kind: all
@@ -689,7 +689,7 @@ problems:
   - id: warmup-4-3-convert
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'Convert 40 cm to metres.'
     check:
       kind: convert

@@ -5,7 +5,7 @@ chapter_title: Probability
 section: '23.4'
 section_title: Combined events and tree diagrams
 tier: F
-dfe:
+refs:
 - P8
 kind: guided-problems
 ---

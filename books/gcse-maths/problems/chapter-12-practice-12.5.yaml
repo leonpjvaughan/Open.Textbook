@@ -9,7 +9,7 @@ problems:
     id: 'ch12-12.5-formula-1'
     section: '12.5'
     tier: 'H'
-    dfe:
+    refs:
       - 'A18'
     statement: 'Solve $x^2-5x+2=0$ using the quadratic formula.'
     answer_label: 'Solve $x^2-5x+2=0$ using the quadratic formula.'
@@ -25,7 +25,7 @@ problems:
     id: 'ch12-12.5-formula-2'
     section: '12.5'
     tier: 'H'
-    dfe:
+    refs:
       - 'A18'
     statement: 'Solve $2x^2+3x-2=0$ using the quadratic formula.'
     answer_label: 'Solve $2x^2+3x-2=0$ using the quadratic formula.'
@@ -41,7 +41,7 @@ problems:
     id: 'ch12-12.5-disc-positive'
     section: '12.5'
     tier: 'H'
-    dfe:
+    refs:
       - 'A18'
     statement: 'State the number of real roots of $x^2+2x-3=0$.'
     answer_label: 'State the number of real roots of $x^2+2x-3=0$.'
@@ -54,7 +54,7 @@ problems:
     id: 'ch12-12.5-disc-zero'
     section: '12.5'
     tier: 'H'
-    dfe:
+    refs:
       - 'A18'
     statement: 'State the number of real roots of $x^2-6x+9=0$.'
     answer_label: 'State the number of real roots of $x^2-6x+9=0$.'
@@ -67,7 +67,7 @@ problems:
     id: 'ch12-12.5-disc-negative'
     section: '12.5'
     tier: 'H'
-    dfe:
+    refs:
       - 'A18'
     statement: 'State the number of real roots of $x^2+1=0$.'
     answer_label: 'State the number of real roots of $x^2+1=0$.'
@@ -80,7 +80,7 @@ problems:
     id: 'ch12-12.5-formula-6'
     section: '12.5'
     tier: 'H'
-    dfe:
+    refs:
       - 'A18'
     statement: 'Solve $3x^2-2x-1=0$ using the quadratic formula.'
     answer_label: 'Solve $3x^2-2x-1=0$ using the quadratic formula.'
@@ -96,7 +96,7 @@ problems:
     id: 'ch12-12.5-formula-7'
     section: '12.5'
     tier: 'H'
-    dfe:
+    refs:
       - 'A18'
     statement: 'Solve $x^2+4x-1=0$ using the quadratic formula.'
     answer_label: 'Solve $x^2+4x-1=0$ using the quadratic formula.'
@@ -112,7 +112,7 @@ problems:
     id: 'ch12-12.5-formula-8'
     section: '12.5'
     tier: 'H'
-    dfe:
+    refs:
       - 'A18'
     statement: 'Find the discriminant of $2x^2-4x+5=0$ and state the number of real roots.'
     answer_label: 'Find the discriminant of $2x^2-4x+5=0$ and state the number of real roots.'
@@ -126,7 +126,7 @@ problems:
     id: ch12-125-method-formula
     section: '12.5'
     tier: H
-    dfe: [A18]
+    refs: [A18]
     statement: 'Solve $x^2-5x+6=0$. Which method fits better: factorising or the quadratic formula? Give a reason. Then solve it, and state the discriminant.'
     answer_label: 'Method choice: factorise or use the formula'
     check:

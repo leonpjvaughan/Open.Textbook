@@ -4,7 +4,7 @@ chapter: 8
 chapter_title: Integration
 section: '8.8'
 section_title: Interpreting differential-equation solutions in context
-dfe:
+refs:
 - H8
 - OT3
 kind: walkthrough

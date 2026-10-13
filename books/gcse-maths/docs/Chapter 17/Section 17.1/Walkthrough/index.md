@@ -5,7 +5,7 @@ chapter_title: Properties, constructions, loci and bearings
 section: "17.1"
 section_title: Properties of 2D and 3D shapes
 tier: F
-dfe: [G1, G12]
+refs: [G1, G12]
 kind: walkthrough
 ---
 

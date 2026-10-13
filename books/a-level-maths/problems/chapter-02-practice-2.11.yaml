@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: p1-translate-right
     section: "2.11"
-    dfe: [B9]
+    refs: [B9]
     statement: 'The curve $y = f(x)$ is translated $3$ units to the right. Write the equation of the new curve when $f(x) = x^2$.'
     answer_label: 'The new equation'
     check:
@@ -21,7 +21,7 @@ problems:
 
   - id: p2-translate-up
     section: "2.11"
-    dfe: [B9]
+    refs: [B9]
     statement: 'The curve $y = x^2$ is translated $2$ units upwards. Write the new equation.'
     answer_label: 'The new equation'
     check:
@@ -32,7 +32,7 @@ problems:
 
   - id: p3-stretch-vertical
     section: "2.11"
-    dfe: [B9]
+    refs: [B9]
     statement: 'The curve $y = x^2$ is stretched vertically by a factor of $3$. Write the new equation.'
     answer_label: 'The new equation'
     check:
@@ -43,7 +43,7 @@ problems:
 
   - id: p4-stretch-horizontal
     section: "2.11"
-    dfe: [B9]
+    refs: [B9]
     statement: 'The curve $y = x^2$ is stretched horizontally by a factor of $\frac{1}{2}$. Write the new equation in expanded form.'
     answer_label: 'The new equation'
     check:
@@ -55,7 +55,7 @@ problems:
 
   - id: p5-combination
     section: "2.11"
-    dfe: [B9]
+    refs: [B9]
     statement: 'Given $f(x) = x^3$, write the equation of $y = 2f(x - 1) + 3$ in expanded form.'
     answer_label: 'The new equation'
     check:
@@ -66,7 +66,7 @@ problems:
 
   - id: p6-compose-left
     section: "2.11"
-    dfe: [B9]
+    refs: [B9]
     statement: 'Given $f(x) = \sqrt{x}$, write the equation of $y = f(x + 4)$ and state its domain.'
     answer_label: 'The new equation and the domain'
     check:
@@ -78,7 +78,7 @@ problems:
 
   - id: p7-reflection-x-axis
     section: "2.11"
-    dfe: [B9]
+    refs: [B9]
     statement: 'The point $(2, 8)$ is on the curve $y = x^3$. Write the equation of the curve after a reflection in the $x$-axis, and state the image of the point.'
     answer_label: 'The new equation'
     check:
@@ -89,7 +89,7 @@ problems:
 
   - id: p8-reflection-y-axis
     section: "2.11"
-    dfe: [B9]
+    refs: [B9]
     statement: 'Given $f(x) = 2x + 1$, write the equation of $y = f(-x)$.'
     answer_label: 'The new equation'
     check:
@@ -101,7 +101,7 @@ problems:
 
   - id: p9-order-of-stretches
     section: "2.11"
-    dfe: [B9]
+    refs: [B9]
     statement: 'Given $f(x) = x^2 + 1$, write $y = f(2x) + 1$ and $y = 2f(x) + 1$ in expanded form and explain why they differ.'
     answer_label: 'Both equations'
     check:
@@ -115,7 +115,7 @@ problems:
 
   - id: p10-describe-transformation
     section: "2.11"
-    dfe: [B9]
+    refs: [B9]
     statement: 'The curve $y = x^2$ is transformed into $y = (3x)^2$. Describe the transformation in words, and give the transformed equation in expanded form.'
     answer_label: 'The description and the equation'
     check:
@@ -127,7 +127,7 @@ problems:
 
   - id: p11-combined-transform
     section: "2.11"
-    dfe: [B9]
+    refs: [B9]
     statement: 'The curve $y = x^2$ is translated $2$ units to the right and then $5$ units downwards. Write the equation of the new curve in completed-square form and state its vertex.'
     answer_label: 'The equation and the vertex'
     check:
@@ -140,7 +140,7 @@ problems:
 
   - id: p12-state-the-transformation
     section: "2.11"
-    dfe: [B9]
+    refs: [B9]
     statement: 'Compare $y = x^3$ and $y = -x^3 + 4$. State the two transformations and the effect on the point $(1, 1)$.'
     answer_label: 'The transformations and the image'
     check:

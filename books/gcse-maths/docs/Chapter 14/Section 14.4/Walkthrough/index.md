@@ -5,7 +5,7 @@ chapter_title: Simultaneous equations and iteration
 section: "14.4"
 section_title: Linear and quadratic simultaneous equations
 tier: H
-dfe: [A19]
+refs: [A19]
 kind: walkthrough
 ---
 

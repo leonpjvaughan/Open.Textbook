@@ -5,7 +5,7 @@ chapter_title: Light and electromagnetic waves
 section: '5.5'
 section_title: Black body radiation
 tier: F
-dfe:
+refs:
 - WA7
 kind: guided-problems
 ---

@@ -15,4 +15,4 @@ kind: problems
 # 15.2 The magnetic field of a current — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 3.4
+> Tier: **O** · refs: 3.4

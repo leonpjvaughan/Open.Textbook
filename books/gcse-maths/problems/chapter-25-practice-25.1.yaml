@@ -3,7 +3,7 @@ problems:
   - id: p1-quartiles-list
     section: '25.1'
     tier: H
-    dfe: [S4]
+    refs: [S4]
     statement: 'Find the median, lower quartile and upper quartile of $3, 5, 7, 8, 10, 12, 14, 18$.'
     answer_label: 'Quartiles of the list'
     check: {kind: all, checks: [{kind: statistic, data: [3, 5, 7, 8, 10, 12, 14, 18], stat: median, answer: '9'}, {kind: evaluate, expression: '(5 + 7) / 2', answer: '6'}, {kind: evaluate, expression: '(12 + 14) / 2', answer: '13'}]}
@@ -11,7 +11,7 @@ problems:
   - id: p2-iqr
     section: '25.1'
     tier: H
-    dfe: [S4]
+    refs: [S4]
     statement: 'The quartiles are $Q_1=14$ and $Q_3=26$. Work out the interquartile range.'
     answer_label: 'Interquartile range'
     check: {kind: evaluate, expression: '26 - 14', answer: '12'}
@@ -19,7 +19,7 @@ problems:
   - id: p3-five-number
     section: '25.1'
     tier: H
-    dfe: [S4]
+    refs: [S4]
     statement: 'For $4, 6, 8, 9, 11, 13, 15, 20$, write the five-number summary using the median-of-halves convention.'
     answer_label: 'Five-number summary'
     check: {kind: all, checks: [{kind: statistic, data: [4, 6, 8, 9, 11, 13, 15, 20], stat: min, answer: '4'}, {kind: statistic, data: [4, 6, 8, 9, 11, 13, 15, 20], stat: median, answer: '10'}, {kind: statistic, data: [4, 6, 8, 9, 11, 13, 15, 20], stat: max, answer: '20'}, {kind: evaluate, expression: '(6 + 8) / 2', answer: '7'}, {kind: evaluate, expression: '(13 + 15) / 2', answer: '14'}]}
@@ -27,7 +27,7 @@ problems:
   - id: p4-boxplot-read
     section: '25.1'
     tier: H
-    dfe: [S4]
+    refs: [S4]
     statement: 'A box plot has minimum $5$, lower quartile $9$, median $12$, upper quartile $18$ and maximum $23$. Work out its IQR and range.'
     answer_label: 'IQR and range'
     check: {kind: all, checks: [{kind: evaluate, expression: '18 - 9', answer: '9'}, {kind: evaluate, expression: '23 - 5', answer: '18'}]}
@@ -35,7 +35,7 @@ problems:
   - id: p5-compare-iqr
     section: '25.1'
     tier: H
-    dfe: [S4]
+    refs: [S4]
     statement: 'Group A has $Q_1=11$ and $Q_3=19$. Group B has $Q_1=8$ and $Q_3=21$. Which group has the larger middle-half spread?'
     answer_label: 'Compare middle-half spread'
     check: {kind: all, checks: [{kind: evaluate, expression: '19 - 11', answer: '8'}, {kind: evaluate, expression: '21 - 8', answer: '13'}, {kind: compare, relation: '<', lhs: '8', rhs: '13'}]}
@@ -43,7 +43,7 @@ problems:
   - id: p6-quartile-check
     section: '25.1'
     tier: H
-    dfe: [S4]
+    refs: [S4]
     statement: 'For $2, 4, 5, 7, 9, 10, 12, 16, 18, 20$, find the median and quartiles using the median-of-halves convention.'
     answer_label: 'Median and quartiles'
     check: {kind: all, checks: [{kind: evaluate, expression: '(9 + 10) / 2', answer: '19/2'}, {kind: evaluate, expression: '5', answer: '5'}, {kind: evaluate, expression: '16', answer: '16'}]}
@@ -51,7 +51,7 @@ problems:
   - id: p7-iqr-from-data
     section: '25.1'
     tier: H
-    dfe: [S4]
+    refs: [S4]
     statement: 'The lower quartile is $32$ and the IQR is $15$. Work out the upper quartile.'
     answer_label: 'Upper quartile'
     check: {kind: evaluate, expression: '32 + 15', answer: '47'}
@@ -59,7 +59,7 @@ problems:
   - id: p8-boxplot-interpret
     section: '25.1'
     tier: H
-    dfe: [S4]
+    refs: [S4]
     statement: 'The middle half of one group lies between $24$ and $38$. Work out the IQR and state what it measures.'
     answer_label: 'Interpret the IQR'
     check: {kind: evaluate, expression: '38 - 24', answer: '14'}
@@ -67,7 +67,7 @@ problems:
   - id: p9-chart-scale
     section: '25.1'
     tier: H
-    dfe: [S4]
+    refs: [S4]
     statement: 'A box plot uses a scale from $0$ to $50$. Its median is at $30$, and its quartiles are $18$ and $36$. Work out the IQR.'
     answer_label: 'IQR from quartiles'
     check: {kind: evaluate, expression: '36 - 18', answer: '18'}

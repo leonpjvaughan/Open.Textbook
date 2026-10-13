@@ -14,7 +14,7 @@ problems:
   - id: r1-chapter-atom
     section: Review
     tier: F
-    dfe: [AT1]
+    refs: [AT1]
     statement: 'In the chapter problem the tracer isotope has 43 protons and 56 neutrons. State its atomic number, its mass number and the number of electrons in a neutral atom.'
     answer_label: 'Atomic number, mass number and electrons'
     check: {kind: evaluate, expression: '43 + 56', answer: '99'}
@@ -23,7 +23,7 @@ problems:
   - id: r2-half-life-12h
     section: Review
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'The tracer has a half-life of 6.0 hours and a starting count rate of 800 counts per second. Say which method you will use, then calculate the count rate after 12 hours.'
     answer_label: 'Count rate after 12 hours'
     check:
@@ -36,7 +36,7 @@ problems:
   - id: r3-half-life-24h
     section: Review
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'The tracer is now 24 hours old. Its half-life is 6.0 hours and its starting count rate was 800 counts per second. Calculate the count rate now.'
     answer_label: 'Count rate after 24 hours'
     check:
@@ -49,7 +49,7 @@ problems:
   - id: r4-net-decline
     section: Review
     tier: H
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'After four half-lives, calculate the net decline in the emission from the tracer as a ratio.'
     answer_label: 'Net decline after four half-lives'
     check: {kind: evaluate, expression: '1 - (1/2)**4', answer: '15/16'}
@@ -58,7 +58,7 @@ problems:
   - id: r5-background
     section: Review
     tier: F
-    dfe: [AT3]
+    refs: [AT3]
     statement: 'A detector near the stored tracer reads 70 counts per second. The background count rate is 20 counts per second. Calculate the count rate from the tracer alone, and compare it with the value predicted after four half-lives.'
     answer_label: 'Corrected count rate'
     check: {kind: evaluate, expression: '70 - 20', answer: '50'}
@@ -67,7 +67,7 @@ problems:
   - id: r6-tracer-choice
     section: Review
     tier: F
-    dfe: [AT3]
+    refs: [AT3]
     statement: 'Explain why a tracer for exploring an internal organ should emit gamma radiation and have a half-life of a few hours.'
     answer_label: 'Why the tracer is a gamma emitter with a short half-life'
     check:
@@ -88,7 +88,7 @@ problems:
   - id: r7-radiation-properties
     section: Review
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'Compare alpha, beta and gamma radiation in terms of their ionising power and their range in air.'
     answer_label: 'Ionising power and range'
     check:
@@ -106,7 +106,7 @@ problems:
   - id: r8-alpha-equation
     section: Review
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'A nucleus of radon-222, $^{222}_{86}\text{Rn}$, emits an alpha particle. Write the balanced nuclear equation.'
     answer_label: 'The balanced alpha decay equation'
     check:
@@ -119,7 +119,7 @@ problems:
   - id: r9-fission
     section: Review
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'Describe how nuclear fission in a reactor releases energy, and how a chain reaction is controlled.'
     answer_label: 'Fission and the controlled chain reaction'
     check:
@@ -140,7 +140,7 @@ problems:
   - id: r10-fusion
     section: Review
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'Describe nuclear fusion and explain where it happens naturally.'
     answer_label: 'Fusion and where it happens'
     check:
@@ -161,7 +161,7 @@ problems:
   - id: r11-thermal-interleave
     section: Review
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A 2.0 kg block of iron is heated from 20 °C to 50 °C. The specific heat capacity of iron is 450 J/kg°C. Say which equation you will use, then calculate the energy transferred to the block.'
     answer_label: 'Energy transferred to the iron block'
     check:
@@ -180,7 +180,7 @@ problems:
   - id: r12-kinetic-interleave
     section: Review
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A car of mass 1200 kg travels at 8.0 m/s. Calculate the energy in its kinetic store.'
     answer_label: 'Energy in the kinetic store'
     check:
@@ -198,7 +198,7 @@ problems:
   - id: r13-wave-interleave
     section: Review
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A wave has a frequency of 50 Hz and a wavelength of 0.40 m. Calculate its speed.'
     answer_label: 'Speed of the wave'
     check:
@@ -216,7 +216,7 @@ problems:
   - id: r14-power-interleave
     section: Review
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A lamp is connected to a 230 V supply and takes a current of 0.20 A. Calculate the power of the lamp.'
     answer_label: 'Power of the lamp'
     check:
@@ -234,7 +234,7 @@ problems:
   - id: r15-efficiency-interleave
     section: Review
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A motor is supplied with 500 J of energy and transfers 350 J usefully. Calculate its efficiency as a decimal.'
     answer_label: 'Efficiency of the motor'
     check:
@@ -247,7 +247,7 @@ problems:
   - id: r16-method-choice
     section: Review
     tier: F
-    dfe: [AT2, AT3]
+    refs: [AT2, AT3]
     statement: 'A hospital needs a tracer. Say which type of radiation the tracer should emit and what its half-life should be, and explain each choice.'
     answer_label: 'Choosing a tracer, and why'
     check:

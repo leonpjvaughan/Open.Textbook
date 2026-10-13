@@ -6,7 +6,7 @@ chapter: 12
 problems:
   - id: p1-fair-spinner-model
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'A five-sided spinner is modelled as fair. State the probability that the spinner lands on a given side under this model. Give one reason the model may not be suitable.'
     answer_label: 'The model probability'
     check:
@@ -17,7 +17,7 @@ problems:
 
   - id: p2-expected-defects
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'A model says that the probability a component is defective is $0.03$. In a batch of 800 components, find the expected number that are defective.'
     answer_label: 'The expected number of defective components'
     check:
@@ -28,7 +28,7 @@ problems:
 
   - id: p3-expected-sixes
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'A biased die has probability $0.2$ of showing a 6. In 50 rolls, find the expected number of sixes.'
     answer_label: 'The expected number of sixes'
     check:
@@ -39,7 +39,7 @@ problems:
 
   - id: p4-base-rate-effect
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'A screening test detects a condition with probability $0.9$ and wrongly gives a positive result for a healthy person with probability $0.05$. Find the probability that a person has the condition, given a positive result, when the condition affects (a) 1 in 1000 people, and (b) 5 in 100 people. Comment on the effect of the base rate.'
     answer_label: 'The two conditional probabilities'
     check:
@@ -51,7 +51,7 @@ problems:
 
   - id: p5-shared-cause
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'A model assumes that two components fail independently. Each fails with probability $0.02$. The components share a power supply that fails with probability $0.005$, and the components both fail when the supply fails. Show that the independence model underestimates the probability that both components fail.'
     answer_label: 'The two probabilities'
     check:
@@ -63,7 +63,7 @@ problems:
 
   - id: p6-expected-wins
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'A game is modelled so that the probability of a win on one play is $0.02$. Find the expected number of wins in 500 plays.'
     answer_label: 'The expected number of wins'
     check:
@@ -74,7 +74,7 @@ problems:
 
   - id: p7-refine-false-alarm
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'A warehouse fire detector sounds when there is a fire with probability $0.95$. On a morning with no fire it sounds with probability $0.01$. The probability of a fire on a morning is $0.001$. Find the probability of a fire, given that the detector sounds.'
     answer_label: 'The probability of a fire, given that the detector sounds'
     check:
@@ -85,7 +85,7 @@ problems:
 
   - id: p8-model-check-return
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'A model predicts that $15\%$ of 200 customers will return an item. In fact 24 customers return an item. Find the number the model predicts and describe one way to refine the model.'
     answer_label: 'The predicted number'
     check:
@@ -96,7 +96,7 @@ problems:
 
   - id: p9-birthday-assumption
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'A model assumes that a birthday is equally likely on each of the 12 months. State the model probability that a randomly chosen person has a birthday in June. Give one reason the assumption may fail.'
     answer_label: 'The model probability'
     check:
@@ -107,7 +107,7 @@ problems:
 
   - id: p10-two-machines
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'Machine A makes 60% of a factory output and machine B makes 40%. The defect rate is 2% for machine A and 5% for machine B. A defective item is found. Find the probability that it came from machine B.'
     answer_label: 'The probability that the item came from machine B'
     check:
@@ -118,7 +118,7 @@ problems:
 
   - id: p11-rapid-test
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'A rapid test has sensitivity $0.95$ and specificity $0.98$, so the false-positive rate is $0.02$. The condition affects 1% of the population. Find the probability that a person has the condition, given a positive result, to 3 decimal places.'
     answer_label: 'The probability of the condition, given a positive result'
     check:
@@ -130,7 +130,7 @@ problems:
 
   - id: p12-die-model-plausible
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'A fair six-sided die is rolled 600 times. A model predicts 100 of each face. The observed counts are 96, 104, 99, 101, 98 and 102. Find the total observed count and state whether the model looks plausible. Describe one refinement.'
     answer_label: 'The total observed count and the judgement'
     check:

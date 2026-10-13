@@ -11,7 +11,7 @@ problems:
   - id: p1-water-heat
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'A tank contains 2.5 kg of water. The water is heated through 40 °C. The specific heat capacity of water is 4200 J/kg°C. Calculate the energy transferred to the water.'
     answer_label: 'Energy transferred to the water'
     check:
@@ -30,7 +30,7 @@ problems:
   - id: p2-find-c
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'A block of metal of mass 1.0 kg gains 23400 J when its temperature rises by 60 °C. Calculate its specific heat capacity.'
     answer_label: 'Specific heat capacity of the metal'
     check:
@@ -49,7 +49,7 @@ problems:
   - id: p3-melt-ice
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Calculate the energy needed to melt 1.5 kg of ice at 0 °C. The specific latent heat of fusion of ice is 3.3 x 10^5 J/kg.'
     answer_label: 'Energy needed to melt the ice'
     check:
@@ -67,7 +67,7 @@ problems:
   - id: p4-boil-water
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Calculate the energy needed to boil away 0.30 kg of water at 100 °C. The specific latent heat of vaporisation of water is 2.3 x 10^6 J/kg.'
     answer_label: 'Energy needed to boil the water'
     check:
@@ -85,7 +85,7 @@ problems:
   - id: p5-internal-energy
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Explain what is meant by the internal energy of a system, and state two things that can happen when the system is heated.'
     answer_label: 'Internal energy and heating'
     check:
@@ -103,7 +103,7 @@ problems:
   - id: p6-plateau
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'A heating graph for a pure substance has a flat part at 0 °C. Explain what is happening during this flat part, and why the temperature does not change.'
     answer_label: 'The flat part of the heating graph'
     check:
@@ -124,7 +124,7 @@ problems:
   - id: p7-distinguish
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Distinguish between specific heat capacity and specific latent heat. Include the unit of each and when each one is used.'
     answer_label: 'Specific heat capacity and specific latent heat'
     check:
@@ -142,7 +142,7 @@ problems:
   - id: p8-temperature-change
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'A block of mass 1.2 kg is given 50400 J of energy. The specific heat capacity of the block is 4200 J/kg°C. Calculate the temperature rise.'
     answer_label: 'Temperature rise of the block'
     check:
@@ -161,7 +161,7 @@ problems:
   - id: p9-two-stage
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Calculate the total energy needed to warm 0.50 kg of water from 0 °C to 100 °C and then boil it all away. Use c = 4200 J/kg°C and L = 2.3 x 10^6 J/kg.'
     answer_label: 'Total energy for the two stages'
     check:
@@ -194,7 +194,7 @@ problems:
   - id: p10-compare
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Compare the energy needed to melt 1.0 kg of ice at 0 °C with the energy needed to boil away 1.0 kg of water at 100 °C. Which is larger, and by roughly how many times?'
     answer_label: 'The two latent heats compared'
     check:
@@ -212,7 +212,7 @@ problems:
   - id: p11-power-interleave
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'A heater transfers energy at a rate of 1500 W for 4.0 minutes. The energy is transferred to 2.0 kg of water. Calculate the temperature rise of the water. The specific heat capacity of water is 4200 J/kg°C. This uses power from Chapter 1.'
     answer_label: 'Temperature rise of the water'
     check:
@@ -238,7 +238,7 @@ problems:
   - id: p12-method-choice
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Say which relationships you will use, then calculate the total energy needed to melt 0.25 kg of ice at 0 °C and warm the meltwater to 30 °C. Use L = 3.3 x 10^5 J/kg and c = 4200 J/kg°C.'
     answer_label: 'Total energy for melting and warming'
     check:

@@ -4,7 +4,7 @@ chapter: 8
 chapter_title: Integration
 section: '8.4'
 section_title: Integration as the limit of a sum
-dfe:
+refs:
 - H4
 kind: guided-problems
 ---

@@ -15,4 +15,4 @@ kind: guided-problems
 # 16.1 Perimeter and area of rectangles and triangles — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: GT.2
+> Tier: **O** · refs: GT.2

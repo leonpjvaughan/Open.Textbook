@@ -4,7 +4,7 @@ chapter: 4
 chapter_title: Sequences and series
 section: '4.4'
 section_title: Sigma notation for sums
-dfe:
+refs:
 - D3
 kind: guided-problems
 ---

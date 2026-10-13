@@ -5,7 +5,7 @@ chapter_title: Quadratic expressions, equations and graphs
 section: '12.3'
 section_title: Quadratic graphs and their features
 tier: F
-dfe:
+refs:
 - A11
 - A12
 kind: guided-problems

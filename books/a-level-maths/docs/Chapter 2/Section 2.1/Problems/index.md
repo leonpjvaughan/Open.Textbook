@@ -4,7 +4,7 @@ chapter: 2
 chapter_title: Algebra and functions
 section: '2.1'
 section_title: Laws of indices for rational exponents
-dfe:
+refs:
 - B1
 kind: problems
 ---

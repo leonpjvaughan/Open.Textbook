@@ -7,7 +7,7 @@ symbols:
 problems:
   - id: p1-estimate-total
     section: "11.1"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A sample of 40 students spends a mean of $3.5$ hours per week on homework. Estimate the total number of hours spent on homework each week by the 1200 students in the school.'
     answer_label: 'The estimated total'
     check:
@@ -18,7 +18,7 @@ problems:
 
   - id: p2-faulty-count
     section: "11.1"
-    dfe: [K1]
+    refs: [K1]
     statement: 'In a sample of 200 components, 12 are faulty. Estimate the number of faulty components in a batch of 5000.'
     answer_label: 'The estimated number of faulty components'
     check:
@@ -29,7 +29,7 @@ problems:
 
   - id: p3-proportion
     section: "11.1"
-    dfe: [K1]
+    refs: [K1]
     statement: 'In a sample of 80 shoppers, 52 prefer brand A. Estimate the proportion of all shoppers who prefer brand A.'
     answer_label: 'The estimated proportion'
     check:
@@ -40,7 +40,7 @@ problems:
 
   - id: p4-sample-mean
     section: "11.1"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A sample of six trees has heights, in metres, $14, 16, 18, 20, 22, 24$. Find the sample mean.'
     answer_label: 'The sample mean'
     check:
@@ -51,7 +51,7 @@ problems:
 
   - id: p5-two-samples
     section: "11.1"
-    dfe: [K1]
+    refs: [K1]
     statement: 'Two samples of size 20 are taken from the same population. Their means are 24 and 27. Use the two sample means to estimate the population mean.'
     answer_label: 'The estimate of the population mean'
     check:
@@ -62,7 +62,7 @@ problems:
 
   - id: p6-village-bicycles
     section: "11.1"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A sample of 40 adults in a village finds that 15 own a bicycle. The village has 840 adults. Estimate how many adults in the village own a bicycle.'
     answer_label: 'The estimated number of adults'
     check:
@@ -73,7 +73,7 @@ problems:
 
   - id: p7-apple-mass
     section: "11.1"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A sample of 25 apples has a mean mass of 180 g. Estimate the total mass, in grams, of 400 apples.'
     answer_label: 'The estimated total mass'
     check:
@@ -84,7 +84,7 @@ problems:
 
   - id: p8-bus-percentage
     section: "11.1"
-    dfe: [K1]
+    refs: [K1]
     statement: 'In a sample of 250 people, 90 use the bus every day. Estimate the percentage of the population who use the bus every day.'
     answer_label: 'The estimated percentage'
     check:
@@ -95,7 +95,7 @@ problems:
 
   - id: p9-difference
     section: "11.1"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A company claims a mean delivery time of 40 minutes. A sample of 30 deliveries has a mean of 43.2 minutes. Find the difference between the sample mean and the claim.'
     answer_label: 'The difference'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: p10-outlier-means
     section: "11.1"
-    dfe: [K1]
+    refs: [K1]
     statement: 'Find the mean of $4, 5, 6, 7, 8$ and the mean of $4, 5, 6, 7, 30$.'
     answer_label: 'The two means'
     check:
@@ -118,7 +118,7 @@ problems:
 
   - id: p11-trees
     section: "11.1"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A sample of 30 trees has a mean height of $8.4$ m. Estimate the total height of 150 trees.'
     answer_label: 'The estimated total height'
     check:
@@ -129,7 +129,7 @@ problems:
 
   - id: p12-method-choice
     section: "11.1"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A sample of 400 voters finds that 220 support a plan. Estimate the percentage of the population who support the plan. Say whether your answer is a mean, a proportion or a total.'
     answer_label: 'The estimated percentage'
     check:

@@ -4,7 +4,7 @@ chapter: 10
 chapter_title: Vectors
 section: '10.5'
 section_title: Vectors in pure mathematics and in context
-dfe:
+refs:
 - J5
 - OT2
 kind: problems

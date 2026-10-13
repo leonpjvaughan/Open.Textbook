@@ -8,7 +8,7 @@ chapter: 16
 problems:
   - id: p1-weight-crate
     section: "16.3"
-    dfe: [R3]
+    refs: [R3]
     statement: 'Find the weight of a crate of mass $45$ kg. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The weight'
     check: {kind: evaluate, expression: "45 * 9.8", answer: "441"}
@@ -16,7 +16,7 @@ problems:
 
   - id: p2-weight-person
     section: "16.3"
-    dfe: [R3]
+    refs: [R3]
     statement: 'Find the weight of a person of mass $70$ kg. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The weight'
     check: {kind: evaluate, expression: "70 * 9.8", answer: "686"}
@@ -24,7 +24,7 @@ problems:
 
   - id: p3-mass-from-weight
     section: "16.3"
-    dfe: [R3]
+    refs: [R3]
     statement: 'A body has a weight of $588$ N. Find its mass. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The mass'
     check: {kind: evaluate, expression: "588 / 9.8", answer: "60"}
@@ -32,7 +32,7 @@ problems:
 
   - id: p4-small-mass
     section: "16.3"
-    dfe: [R3]
+    refs: [R3]
     statement: 'Find the weight of a book of mass $2.5$ kg. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The weight'
     check: {kind: evaluate, expression: "2.5 * 9.8", answer: "24.5"}
@@ -40,7 +40,7 @@ problems:
 
   - id: p5-falling-ball
     section: "16.3"
-    dfe: [R3]
+    refs: [R3]
     statement: 'A ball of mass $0.5$ kg is released and falls. Air resistance is negligible. Find the resultant force on the ball and its acceleration. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The resultant force and the acceleration'
     check: {kind: evaluate, expression: "0.5 * 9.8", answer: "4.9"}
@@ -48,7 +48,7 @@ problems:
 
   - id: p6-air-resistance
     section: "16.3"
-    dfe: [R3]
+    refs: [R3]
     statement: 'A skydiver of mass $60$ kg falls with an air resistance of $200$ N. Find the acceleration. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The acceleration'
     check:
@@ -60,7 +60,7 @@ problems:
 
   - id: p7-terminal-velocity
     section: "16.3"
-    dfe: [R3]
+    refs: [R3]
     statement: 'A skydiver of mass $60$ kg falls at terminal velocity. Find the air resistance. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The air resistance'
     check: {kind: evaluate, expression: "60 * 9.8", answer: "588"}
@@ -68,7 +68,7 @@ problems:
 
   - id: p8-lift-up
     section: "16.3"
-    dfe: [R3]
+    refs: [R3]
     statement: 'A person of mass $70$ kg stands on the floor of a lift. The lift accelerates upwards at $1.5$ m s$^{-2}$. Find the normal reaction from the floor. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The normal reaction'
     check: {kind: evaluate, expression: "70 * (9.8 + 1.5)", answer: "791"}
@@ -76,7 +76,7 @@ problems:
 
   - id: p9-lift-down
     section: "16.3"
-    dfe: [R3]
+    refs: [R3]
     statement: 'A person of mass $70$ kg stands on the floor of a lift. The lift accelerates downwards at $1.5$ m s$^{-2}$. Find the normal reaction from the floor. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The normal reaction'
     check: {kind: evaluate, expression: "70 * (9.8 - 1.5)", answer: "581"}
@@ -84,7 +84,7 @@ problems:
 
   - id: p10-lift-constant
     section: "16.3"
-    dfe: [R3]
+    refs: [R3]
     statement: 'A person of mass $70$ kg stands on the floor of a lift moving at a constant velocity. Find the normal reaction from the floor. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The normal reaction'
     check: {kind: evaluate, expression: "70 * 9.8", answer: "686"}
@@ -92,7 +92,7 @@ problems:
 
   - id: p11-moon-weight
     section: "16.3"
-    dfe: [R3]
+    refs: [R3]
     statement: 'An astronaut of mass $45$ kg is on the Moon, where $g = 1.6$ m s$^{-2}$. Find the astronaut''s weight on the Moon.'
     answer_label: 'The weight on the Moon'
     check: {kind: evaluate, expression: "45 * 1.6", answer: "72"}
@@ -100,7 +100,7 @@ problems:
 
   - id: p12-drag-acceleration
     section: "16.3"
-    dfe: [R3]
+    refs: [R3]
     statement: 'A ball of mass $0.2$ kg falls with an air resistance of $0.5$ N. Find its acceleration. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The acceleration'
     check: {kind: evaluate, expression: "(0.2*9.8 - 0.5) / 0.2", answer: "7.3"}

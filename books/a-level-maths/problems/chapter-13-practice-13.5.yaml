@@ -6,7 +6,7 @@ chapter: 13
 problems:
   - id: p1-coin-count
     section: "13.5"
-    dfe: [N3, OT2]
+    refs: [N3, OT2]
     statement: 'A fair coin is tossed 20 times. The random variable $X$ is the number of heads. State which model fits, and find $P(X = 10)$.'
     answer_label: 'The model and the probability'
     check:
@@ -19,7 +19,7 @@ problems:
 
   - id: p2-apple-mass
     section: "13.5"
-    dfe: [N3, OT2]
+    refs: [N3, OT2]
     statement: 'The mass of an apple is modelled as $X \sim N(120, 15^2)$ grams. Find $P(X > 140)$.'
     answer_label: 'The probability'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-faulty-none
     section: "13.5"
-    dfe: [N3, OT2]
+    refs: [N3, OT2]
     statement: 'A machine produces faulty items with probability 0.04. A sample of 25 items is checked. The random variable $X$ is the number of faulty items. State which model fits, and find $P(X = 0)$.'
     answer_label: 'The model and the probability'
     check:
@@ -47,7 +47,7 @@ problems:
 
   - id: p4-race-time
     section: "13.5"
-    dfe: [N3, OT2]
+    refs: [N3, OT2]
     statement: 'The time taken by a runner to finish a race is modelled as $X \sim N(60, 10^2)$ minutes. Find $P(X < 70)$.'
     answer_label: 'The probability'
     check:
@@ -61,7 +61,7 @@ problems:
 
   - id: p5-without-replacement-none
     section: "13.5"
-    dfe: [N3, OT2]
+    refs: [N3, OT2]
     statement: 'A bag holds 6 red counters and 4 blue counters. Three counters are taken without replacement. The random variable $X$ is the number of red counters. Explain why neither the binomial nor the Normal model fits, and find $P(X = 0)$.'
     answer_label: 'The probability'
     check:
@@ -72,7 +72,7 @@ problems:
 
   - id: p6-free-throws
     section: "13.5"
-    dfe: [N3, OT2]
+    refs: [N3, OT2]
     statement: 'A basketball player scores a free throw with probability 0.9. She takes 10 free throws. The random variable $X$ is the number she scores. State which model fits, and find $P(X \ge 9)$.'
     answer_label: 'The model and the probability'
     check:
@@ -86,7 +86,7 @@ problems:
 
   - id: p7-measurement-between
     section: "13.5"
-    dfe: [N3, OT2]
+    refs: [N3, OT2]
     statement: 'A measurement is modelled as $X \sim N(30, 5^2)$. Find $P(25 < X < 35)$.'
     answer_label: 'The probability'
     check:
@@ -100,7 +100,7 @@ problems:
 
   - id: p8-sixes-at-least-one
     section: "13.5"
-    dfe: [N3, OT2]
+    refs: [N3, OT2]
     statement: 'A fair die is rolled 6 times. The random variable $X$ is the number of sixes. State which model fits, and find $P(X \ge 1)$.'
     answer_label: 'The model and the probability'
     check:
@@ -113,7 +113,7 @@ problems:
 
   - id: p9-jar-mass
     section: "13.5"
-    dfe: [N3, OT2]
+    refs: [N3, OT2]
     statement: 'The mass of a jar is modelled as $X \sim N(500, 20^2)$ grams. Find $P(X > 540)$.'
     answer_label: 'The probability'
     check:
@@ -127,7 +127,7 @@ problems:
 
   - id: p10-fish-mass
     section: "13.5"
-    dfe: [N3, OT2]
+    refs: [N3, OT2]
     statement: 'The mass of a fish is modelled as $X \sim N(2.4, 0.3^2)$ kilograms. Find $P(2.1 < X < 2.7)$.'
     answer_label: 'The probability'
     check:
@@ -141,7 +141,7 @@ problems:
 
   - id: p11-true-false-quiz
     section: "13.5"
-    dfe: [N3, OT2]
+    refs: [N3, OT2]
     statement: 'A quiz has 10 questions, each answered true or false. A student guesses every answer. The random variable $X$ is the number correct. State which model fits, and find $P(X \le 2)$.'
     answer_label: 'The model and the probability'
     check:
@@ -154,7 +154,7 @@ problems:
 
   - id: p12-fault-rate-none
     section: "13.5"
-    dfe: [N3, OT2]
+    refs: [N3, OT2]
     statement: 'A machine produces faulty items with probability 0.03. A sample of 40 items is checked. The random variable $X$ is the number of faulty items. State which model fits, and find $P(X = 0)$.'
     answer_label: 'The model and the probability'
     check:

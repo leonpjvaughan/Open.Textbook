@@ -8,7 +8,7 @@ chapter: 15
 problems:
   - id: p1-resolve-20-at-30
     section: "15.6"
-    dfe: [Q5, J5]
+    refs: [Q5, J5]
     statement: 'A ball is projected at $20$ m/s at $30^\circ$ to the horizontal. Find the horizontal and vertical components of its initial velocity.'
     answer_label: 'The two components'
     check:
@@ -20,7 +20,7 @@ problems:
 
   - id: p2-resolve-14-at-45
     section: "15.6"
-    dfe: [Q5, J5]
+    refs: [Q5, J5]
     statement: 'A particle is projected at $14$ m/s at $45^\circ$ to the horizontal. Find the horizontal and vertical components of its initial velocity.'
     answer_label: 'The two components'
     check:
@@ -32,7 +32,7 @@ problems:
 
   - id: p3-time-to-the-top
     section: "15.6"
-    dfe: [Q5]
+    refs: [Q5]
     statement: 'A ball is projected at $20$ m/s at $45^\circ$ to the horizontal. Find the time to its greatest height. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The time to the greatest height'
     check:
@@ -43,7 +43,7 @@ problems:
 
   - id: p4-range-at-45
     section: "15.6"
-    dfe: [Q5]
+    refs: [Q5]
     statement: 'A ball is projected at $20$ m/s at $45^\circ$ from level ground. Find its range. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The range'
     check:
@@ -54,7 +54,7 @@ problems:
 
   - id: p5-greatest-height-at-45
     section: "15.6"
-    dfe: [Q5]
+    refs: [Q5]
     statement: 'A ball is projected at $20$ m/s at $45^\circ$. Find its greatest height. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The greatest height'
     check:
@@ -65,7 +65,7 @@ problems:
 
   - id: p6-time-of-flight-24
     section: "15.6"
-    dfe: [Q5]
+    refs: [Q5]
     statement: 'A ball is projected at $24$ m/s at $30^\circ$ from level ground. Find its time of flight. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The time of flight'
     check:
@@ -76,7 +76,7 @@ problems:
 
   - id: p7-range-24
     section: "15.6"
-    dfe: [Q5]
+    refs: [Q5]
     statement: 'A ball is projected at $24$ m/s at $30^\circ$ from level ground. Find its range. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The range'
     check:
@@ -87,7 +87,7 @@ problems:
 
   - id: p8-greatest-height-24
     section: "15.6"
-    dfe: [Q5]
+    refs: [Q5]
     statement: 'A ball is projected at $24$ m/s at $30^\circ$. Find its greatest height. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The greatest height'
     check:
@@ -98,7 +98,7 @@ problems:
 
   - id: p9-horizontal-projection
     section: "15.6"
-    dfe: [Q5]
+    refs: [Q5]
     statement: 'A ball is hit horizontally at $15$ m/s from the top of a cliff $20$ m high. Find the time to reach the ground and the horizontal distance travelled. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The time and the horizontal distance'
     check:
@@ -110,7 +110,7 @@ problems:
 
   - id: p10-height-at-a-distance
     section: "15.6"
-    dfe: [Q5]
+    refs: [Q5]
     statement: 'A ball is kicked from the ground at $20$ m/s at $45^\circ$. Find its height after it has travelled $20$ m horizontally. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The height'
     check:
@@ -121,7 +121,7 @@ problems:
 
   - id: p11-vertical-velocity
     section: "15.6"
-    dfe: [Q5]
+    refs: [Q5]
     statement: 'A ball is projected at $20$ m/s at $45^\circ$. Find its vertical velocity after $1$ s. Take $g = 9.8$ m/s$^2$ and upwards as positive.'
     answer_label: 'The vertical velocity'
     check:
@@ -133,7 +133,7 @@ problems:
 
   - id: p12-projectile-and-method-choice
     section: "15.6"
-    dfe: [Q5, J5]
+    refs: [Q5, J5]
     statement: 'A stone is thrown horizontally at $8$ m/s from a height of $45$ m. Find the time to reach the ground and the horizontal distance travelled. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The time and the horizontal distance'
     check:

@@ -4,7 +4,7 @@ chapter: 7
 chapter_title: Differentiation
 section: '7.1'
 section_title: The derivative as a gradient and a rate of change
-dfe:
+refs:
 - G1
 kind: guided-problems
 ---

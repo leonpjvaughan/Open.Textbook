@@ -13,7 +13,7 @@ problems:
   - id: r1-anchor-depth
     section: Review
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'In the chapter problem a survey boat sends a sound pulse down at 1500 m/s. The reflection returns after 0.020 s. Calculate the depth of the sea floor.'
     answer_label: 'Depth of the sea floor'
     check:
@@ -31,7 +31,7 @@ problems:
   - id: r2-anchor-wavelength
     section: Review
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'The echo sounder in the chapter problem sends sound at a frequency of 50 kHz. The speed of sound in sea water is 1500 m/s. Calculate the wavelength.'
     answer_label: 'Wavelength of the echo sounder'
     check:
@@ -49,7 +49,7 @@ problems:
   - id: r3-anchor-ripple-speed
     section: Review
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'In the chapter problem a ripple tank makes waves with a frequency of 5.0 Hz and a wavelength of 0.12 m. Calculate the wave speed.'
     answer_label: 'Speed of the ripples'
     check:
@@ -67,7 +67,7 @@ problems:
   - id: r4-anchor-ripple-period
     section: Review
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'The ripple tank in the chapter problem has a frequency of 5.0 Hz. Calculate the period of the waves.'
     answer_label: 'Period of the ripples'
     check:
@@ -84,7 +84,7 @@ problems:
   - id: r5-anchor-ultrasound
     section: Review
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A medical scanner uses ultrasound at a frequency of 2.0 MHz. The speed of sound in tissue is 1500 m/s. Calculate the wavelength.'
     answer_label: 'Wavelength of the ultrasound'
     check:
@@ -102,7 +102,7 @@ problems:
   - id: r6-anchor-seismic
     section: Review
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A seismic P-wave travels 60 km in 12 s. Calculate its speed.'
     answer_label: 'Speed of the P-wave'
     check:
@@ -120,7 +120,7 @@ problems:
   - id: r7-reflection-law
     section: Review
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A ray of light meets a mirror at an angle of incidence of 35 degrees. State the angle of reflection, and say what line the angles are measured from.'
     answer_label: 'The angle of reflection'
     check:
@@ -138,7 +138,7 @@ problems:
   - id: r8-interface-describe
     section: Review
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'Describe what happens to a wave at the boundary between two different materials.'
     answer_label: 'A wave at a boundary'
     check:
@@ -159,7 +159,7 @@ problems:
   - id: r9-speed-train
     section: Review
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A train travels 360 m in 20 s. Calculate its average speed.'
     answer_label: 'Average speed of the train'
     check:
@@ -177,7 +177,7 @@ problems:
   - id: r10-kinetic-energy
     section: Review
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A ball of mass 2.0 kg moves at 3.0 m/s. Calculate the energy in its kinetic store.'
     answer_label: 'Kinetic energy of the ball'
     check:
@@ -195,7 +195,7 @@ problems:
   - id: r11-weight
     section: Review
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A pupil has a mass of 50 kg. Take g = 9.8 N/kg. Calculate the weight of the pupil.'
     answer_label: 'Weight of the pupil'
     check:
@@ -213,7 +213,7 @@ problems:
   - id: r12-force-acceleration
     section: Review
     tier: F
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A resultant force acts on a trolley of mass 800 kg and gives it an acceleration of 2.0 m/s squared. Calculate the resultant force.'
     answer_label: 'Resultant force on the trolley'
     check:
@@ -231,7 +231,7 @@ problems:
   - id: r13-work-done
     section: Review
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A force of 60 N moves a box 4.0 m along the line of the force. Calculate the work done.'
     answer_label: 'Work done on the box'
     check:
@@ -249,7 +249,7 @@ problems:
   - id: r14-method-choice
     section: Review
     tier: F
-    dfe: [WA1, WA2]
+    refs: [WA1, WA2]
     statement: 'A sound wave passes from air into water. Say which ideas you would use to find the wavelength in the water, and name the quantities you need.'
     answer_label: 'Choosing the method'
     check:
@@ -270,7 +270,7 @@ problems:
   - id: r15-ultrasound-depth
     section: Review
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A pulse of ultrasound travels through tissue at 1500 m/s. The reflection returns after 0.00016 s. Calculate the distance to the boundary.'
     answer_label: 'Distance to the boundary'
     check:
@@ -288,7 +288,7 @@ problems:
   - id: r16-compare-seismic
     section: Review
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'Compare the P-waves and the S-waves produced by an earthquake, and explain how they give evidence about the Earth.'
     answer_label: 'P-waves, S-waves and the Earth'
     check:

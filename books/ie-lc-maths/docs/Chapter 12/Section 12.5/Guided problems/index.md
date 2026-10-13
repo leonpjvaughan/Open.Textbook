@@ -15,4 +15,4 @@ kind: guided-problems
 # 12.5 Graphs of the trigonometric functions — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: 2.3
+> Tier: **O** · refs: 2.3

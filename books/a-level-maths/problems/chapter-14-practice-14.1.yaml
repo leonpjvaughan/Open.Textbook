@@ -5,7 +5,7 @@ chapter: 14
 problems:
   - id: p1-voucher-lower-tail
     section: "14.1"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A packet contains a voucher with probability $0.25$. A sample of 20 packets is checked. Find $P(X \le 1)$, where $X$ is the number of vouchers, to 4 decimal places.'
     answer_label: 'The lower tail probability'
     check:
@@ -18,7 +18,7 @@ problems:
 
   - id: p2-voucher-test
     section: "14.1"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A company claims that 1 packet in 4 contains a voucher. A customer buys 20 packets and finds 1 voucher. Test the claim at the 5% level against the alternative that fewer packets contain a voucher.'
     answer_label: 'The p-value and the decision'
     check:
@@ -35,7 +35,7 @@ problems:
 
   - id: p3-voucher-two-vouchers
     section: "14.1"
-    dfe: [O1]
+    refs: [O1]
     statement: 'Use the same claim and sample of 20 packets, but suppose the customer finds 2 vouchers. Test the claim at the 5% level against the alternative that fewer packets contain a voucher.'
     answer_label: 'The p-value and the decision'
     check:
@@ -52,7 +52,7 @@ problems:
 
   - id: p4-coin-upper-tail
     section: "14.1"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A coin is tossed 20 times. Find $P(X \ge 15)$ for the number of heads $X$ when the coin is fair, to 4 decimal places.'
     answer_label: 'The upper tail probability'
     check:
@@ -65,7 +65,7 @@ problems:
 
   - id: p5-coin-two-tailed
     section: "14.1"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A coin is tossed 20 times and shows 15 heads. Test at the 5% level whether the coin is fair, using a two-tailed test.'
     answer_label: 'The two-tailed p-value and the decision'
     check:
@@ -82,7 +82,7 @@ problems:
 
   - id: p6-coin-other-side
     section: "14.1"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A coin is tossed 20 times and shows 5 heads. Test at the 5% level whether the coin is fair, using a two-tailed test.'
     answer_label: 'The two-tailed p-value and the decision'
     check:
@@ -99,7 +99,7 @@ problems:
 
   - id: p7-compare-five
     section: "14.1"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A test gives a p-value of $0.032$. State, with a symbol, how this p-value compares with the 5% significance level.'
     answer_label: 'The comparison'
     check: {kind: compare, lhs: "0.032", relation: "<", rhs: "0.05"}
@@ -107,7 +107,7 @@ problems:
 
   - id: p8-compare-one
     section: "14.1"
-    dfe: [O1]
+    refs: [O1]
     statement: 'The same test gives a p-value of $0.032$. State, with a symbol, how this p-value compares with the 1% significance level.'
     answer_label: 'The comparison'
     check: {kind: compare, lhs: "0.032", relation: ">", rhs: "0.01"}
@@ -115,7 +115,7 @@ problems:
 
   - id: p9-significance-level
     section: "14.1"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A test uses the 1% significance level. Write down the probability of incorrectly rejecting $H_0$ when $H_0$ is true.'
     answer_label: 'The probability'
     check: {kind: evaluate, expression: "1/100", answer: "0.01"}
@@ -123,7 +123,7 @@ problems:
 
   - id: p10-two-tail-split
     section: "14.1"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A two-tailed test uses the 5% significance level. Find the probability placed in each tail.'
     answer_label: 'The probability in each tail'
     check: {kind: evaluate, expression: "0.05/2", answer: "1/40"}
@@ -131,7 +131,7 @@ problems:
 
   - id: p11-walk-upper-tail
     section: "14.1"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A company claims that 30% of students walk to school. In a sample of 25 students, 12 walk. Find $P(X \ge 12)$ under the claim, to 4 decimal places.'
     answer_label: 'The upper tail probability'
     check:
@@ -144,7 +144,7 @@ problems:
 
   - id: p12-walk-upper-test
     section: "14.1"
-    dfe: [O1]
+    refs: [O1]
     statement: 'Test the claim that 30% of students walk to school at the 5% level, against the alternative that the proportion is higher. Use the sample of 25 students in which 12 walk.'
     answer_label: 'The p-value and the decision'
     check:

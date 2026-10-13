@@ -5,7 +5,7 @@ chapter_title: Quadratic expressions, equations and graphs
 section: '12.1'
 section_title: Expanding and factorising quadratics
 tier: F
-dfe:
+refs:
 - A4
 - A18
 kind: guided-problems

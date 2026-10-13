@@ -4,7 +4,7 @@ chapter: 6
 chapter_title: Exponentials and logarithms
 section: '6.1'
 section_title: The functions a^x and e^x
-dfe:
+refs:
 - F1
 kind: guided-problems
 ---

@@ -15,4 +15,4 @@ kind: problems
 # 11.11 Statistical reasoning and misused statistics — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 1.4
+> Tier: **F** · refs: 1.4

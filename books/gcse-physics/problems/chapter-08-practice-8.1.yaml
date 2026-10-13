@@ -10,7 +10,7 @@ problems:
   - id: p1-density-basic
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A block of metal has a mass of 0.80 kg and a volume of 1.0 x 10^-3 m^3. Calculate its density.'
     answer_label: 'Density of the metal'
     check:
@@ -28,7 +28,7 @@ problems:
   - id: p2-mass-from-density
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A block of concrete has a density of 2700 kg/m^3 and a volume of 2.0 x 10^-3 m^3. Calculate its mass.'
     answer_label: 'Mass of the concrete'
     check:
@@ -46,7 +46,7 @@ problems:
   - id: p3-volume-from-density
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A liquid has a density of 900 kg/m^3. A sample of the liquid has a mass of 0.90 kg. Calculate the volume of the sample.'
     answer_label: 'Volume of the liquid'
     check:
@@ -64,7 +64,7 @@ problems:
   - id: p4-displacement
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'An irregular piece of metal has a mass of 84 g. It raises the water level in a measuring cylinder from 30 cm^3 to 62 cm^3. Calculate its density in g/cm^3.'
     answer_label: 'Density of the metal'
     check:
@@ -83,7 +83,7 @@ problems:
   - id: p5-explain-states
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'Describe the arrangement and the motion of the particles in a solid, a liquid and a gas.'
     answer_label: 'The three states of matter'
     check:
@@ -104,7 +104,7 @@ problems:
   - id: p6-mass-conserved
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'Explain why the mass of a substance is conserved when it melts. Give a reason in terms of the particles.'
     answer_label: 'Why the mass is conserved'
     check:
@@ -122,7 +122,7 @@ problems:
   - id: p7-regular-block
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A rectangular block measures 2.0 cm by 5.0 cm by 10.0 cm. Its mass is 270 g. Calculate its density in g/cm^3.'
     answer_label: 'Density of the block'
     check:
@@ -142,7 +142,7 @@ problems:
   - id: p8-liquid-density
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'An empty beaker has a mass of 85 g. When 200 cm^3 of a liquid is added, the total mass is 245 g. Calculate the density of the liquid in g/cm^3.'
     answer_label: 'Density of the liquid'
     check:
@@ -161,7 +161,7 @@ problems:
   - id: p9-liquid-method
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'Describe how to measure the density of a liquid. Say which measurements you would take and how you would calculate the density.'
     answer_label: 'Measuring the density of a liquid'
     check:
@@ -182,7 +182,7 @@ problems:
   - id: p10-ice-mass
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A block of ice has a volume of 1.5 x 10^-3 m^3. The density of ice is 920 kg/m^3. Calculate its mass.'
     answer_label: 'Mass of the ice'
     check:
@@ -200,7 +200,7 @@ problems:
   - id: p11-cube
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A metal cube has sides of length 4.0 cm. Its mass is 512 g. Calculate its density in g/cm^3.'
     answer_label: 'Density of the cube'
     check:
@@ -218,7 +218,7 @@ problems:
   - id: p12-method-choice
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A student has a regular metal block and an irregular stone. Say how the method to find the volume differs for the two objects, then explain why.'
     answer_label: 'Finding the volume of the two objects'
     check:

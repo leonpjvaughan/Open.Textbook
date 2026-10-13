@@ -6,7 +6,7 @@ problems:
   - id: sine-key-values
     section: '13.2'
     tier: H
-    dfe: [A12]
+    refs: [A12]
     statement: 'For $y=\sin x$, give the values at $x=0^\circ,90^\circ,180^\circ,270^\circ,360^\circ$.'
     answer_label: 'Sine key values'
     check:
@@ -21,7 +21,7 @@ problems:
   - id: cosine-key-values
     section: '13.2'
     tier: H
-    dfe: [A12]
+    refs: [A12]
     statement: 'For $y=\cos x$, give the values at $x=0^\circ,90^\circ,180^\circ,270^\circ,360^\circ$.'
     answer_label: 'Cosine key values'
     check:
@@ -36,7 +36,7 @@ problems:
   - id: sine-period
     section: '13.2'
     tier: H
-    dfe: [A12]
+    refs: [A12]
     statement: 'State the period of $y=\sin x$ and $y=\cos x$ in degrees.'
     answer_label: 'Sine and cosine periods'
     check: {kind: evaluate, expression: '360', answer: '360'}
@@ -44,7 +44,7 @@ problems:
   - id: tangent-period
     section: '13.2'
     tier: H
-    dfe: [A12]
+    refs: [A12]
     statement: 'State the period of $y=\tan x$ and its vertical asymptotes between $-180^\circ$ and $180^\circ$.'
     answer_label: 'Tangent period and asymptotes'
     check: {kind: evaluate, expression: '180', answer: '180'}
@@ -52,7 +52,7 @@ problems:
   - id: solve-sine-half
     section: '13.2'
     tier: H
-    dfe: [A12]
+    refs: [A12]
     statement: 'Solve $\sin x=1/2$ for $0^\circ\leq x\leq360^\circ$.'
     answer_label: 'Sine intersections'
     check: {kind: all, checks: [{kind: evaluate, expression: sin(pi/6), answer: '1/2'}, {kind: evaluate, expression: sin(5*pi/6), answer: '1/2'}]}
@@ -60,7 +60,7 @@ problems:
   - id: solve-cos-zero
     section: '13.2'
     tier: H
-    dfe: [A12]
+    refs: [A12]
     statement: 'Solve $\cos x=0$ for $0^\circ\leq x\leq360^\circ$.'
     answer_label: 'Cosine intersections'
     check: {kind: all, checks: [{kind: evaluate, expression: cos(pi/2), answer: '0'}, {kind: evaluate, expression: cos(3*pi/2), answer: '0'}]}
@@ -68,7 +68,7 @@ problems:
   - id: solve-sine-zero
     section: '13.2'
     tier: H
-    dfe: [A12]
+    refs: [A12]
     statement: 'Solve $\sin x=0$ for $0^\circ\leq x\leq360^\circ$.'
     answer_label: 'Sine axis intersections'
     check: {kind: all, checks: [{kind: evaluate, expression: sin(0), answer: '0'}, {kind: evaluate, expression: sin(pi), answer: '0'}, {kind: evaluate, expression: sin(2*pi), answer: '0'}]}
@@ -76,7 +76,7 @@ problems:
   - id: amplitude-investigation
     section: '13.2'
     tier: H
-    dfe: [A12]
+    refs: [A12]
     statement: 'For $y=3\sin x$, state the maximum, minimum and period in degrees.'
     answer_label: 'Sine amplitude features'
     check: {kind: all, checks: [{kind: evaluate, expression: 3*sin(pi/2), answer: '3'}, {kind: evaluate, expression: 3*sin(3*pi/2), answer: '-3'}, {kind: evaluate, expression: sin(2*pi), answer: '0'}]}
@@ -84,7 +84,7 @@ problems:
   - id: tangent-zeros
     section: '13.2'
     tier: H
-    dfe: [A12]
+    refs: [A12]
     statement: 'Give the zeros of $y=\tan x$ from $-180^\circ$ to $180^\circ$.'
     answer_label: 'Tangent zeros'
     check: {kind: all, checks: [{kind: evaluate, expression: tan(-pi), answer: '0'}, {kind: evaluate, expression: tan(0), answer: '0'}, {kind: evaluate, expression: tan(pi), answer: '0'}]}

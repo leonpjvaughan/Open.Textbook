@@ -16,7 +16,7 @@ problems:
 - id: ch14-14-3-01
   section: '14.3'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'For $y=2x+1$ and $y=-x+7$, find the intersection.'
   answer_label: 'For $y=2x+1$ and $y=-x+7$, find the intersection.'
@@ -37,7 +37,7 @@ problems:
 - id: ch14-14-3-02
   section: '14.3'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'For $y=x-2$ and $y=-2x+7$, find the intersection.'
   answer_label: 'For $y=x-2$ and $y=-2x+7$, find the intersection.'
@@ -58,7 +58,7 @@ problems:
 - id: ch14-14-3-03
   section: '14.3'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'For $y=3x-4$ and $y=x+2$, find the intersection.'
   answer_label: 'For $y=3x-4$ and $y=x+2$, find the intersection.'
@@ -79,7 +79,7 @@ problems:
 - id: ch14-14-3-04
   section: '14.3'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'For $y=-x+4$ and $y=2x-5$, find the intersection.'
   answer_label: 'For $y=-x+4$ and $y=2x-5$, find the intersection.'
@@ -100,7 +100,7 @@ problems:
 - id: ch14-14-3-05
   section: '14.3'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'For $y=0.5x+2$ and $y=-x+8$, find the intersection.'
   answer_label: 'For $y=0.5x+2$ and $y=-x+8$, find the intersection.'
@@ -121,7 +121,7 @@ problems:
 - id: ch14-14-3-06
   section: '14.3'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'For $y=4-x$ and $y=2x-5$, find the intersection.'
   answer_label: 'For $y=4-x$ and $y=2x-5$, find the intersection.'
@@ -142,7 +142,7 @@ problems:
 - id: ch14-14-3-07
   section: '14.3'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'For $y=2x-6$ and $y=-x+3$, find the intersection.'
   answer_label: 'For $y=2x-6$ and $y=-x+3$, find the intersection.'
@@ -163,7 +163,7 @@ problems:
 - id: ch14-14-3-08
   section: '14.3'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'The lines $y=x+1$ and $y=5-x$ cross. State the coordinates of the crossing point.'
   answer_label: 'The lines $y=x+1$ and $y=5-x$ cross. State the coordinates of the cros'
@@ -184,7 +184,7 @@ problems:
 - id: ch14-14-3-09
   section: '14.3'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Explain why the intersection of $y=2x+1$ and $y=-x+7$ solves both equations.'
   answer_label: 'Explain why the intersection of $y=2x+1$ and $y=-x+7$ solves both equa'
@@ -205,7 +205,7 @@ problems:
 - id: ch14-14-3-10
   section: '14.3'
   tier: H
-  dfe:
+  refs:
   - A19
   statement: 'For $y=3x-2$ and $y=x+4$, find the intersection and the gradient of each line.'
   answer_label: 'For $y=3x-2$ and $y=x+4$, find the intersection and the gradient of ea'

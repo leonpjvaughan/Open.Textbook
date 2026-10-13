@@ -5,7 +5,7 @@ chapter_title: Algebraic expressions and manipulation
 section: "8.1"
 section_title: Algebraic notation and vocabulary
 tier: F
-dfe: [A1, A3]
+refs: [A1, A3]
 kind: walkthrough
 ---
 

@@ -3,7 +3,7 @@ problems:
 - id: 'ch19-19-3-01'
   section: '19.3'
   tier: 'F'
-  dfe: &id001
+  refs: &id001
   - 'G18'
   statement: 'A sector has radius 6 cm and angle 60°. Work out its arc length in terms of π.'
   answer_label: 'Arc length'
@@ -15,7 +15,7 @@ problems:
 - id: 'ch19-19-3-02'
   section: '19.3'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A sector has radius 9 cm and angle 120°. Work out its arc length in terms of π.'
   answer_label: 'Arc length'
   check:
@@ -26,7 +26,7 @@ problems:
 - id: 'ch19-19-3-03'
   section: '19.3'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A sector has radius 4 cm and angle 90°. Work out its area in terms of π.'
   answer_label: 'Sector area'
   check:
@@ -37,7 +37,7 @@ problems:
 - id: 'ch19-19-3-04'
   section: '19.3'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A sector has radius 6 cm and angle 150°. Work out its area in terms of π.'
   answer_label: 'Sector area'
   check:
@@ -48,7 +48,7 @@ problems:
 - id: 'ch19-19-3-05'
   section: '19.3'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A sector has radius 3 cm and angle 120°. Work out its perimeter in terms of π.'
   answer_label: 'Sector perimeter'
   check:
@@ -59,7 +59,7 @@ problems:
 - id: 'ch19-19-3-06'
   section: '19.3'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A sector is one quarter of a circle with radius 8 cm. Work out its area in terms of π.'
   answer_label: 'Quarter-circle sector area'
   check:
@@ -70,7 +70,7 @@ problems:
 - id: 'ch19-19-3-07'
   section: '19.3'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'An arc of a circle with radius 12 cm subtends 60°. Work out its length in terms of π.'
   answer_label: 'Arc length'
   check:
@@ -81,7 +81,7 @@ problems:
 - id: 'ch19-19-3-08'
   section: '19.3'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A sector has area 20π cm² in a circle of radius 10 cm. Work out its angle.'
   answer_label: 'Sector angle'
   check:

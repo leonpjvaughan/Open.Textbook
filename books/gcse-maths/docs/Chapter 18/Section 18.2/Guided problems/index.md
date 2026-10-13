@@ -5,7 +5,7 @@ chapter_title: Transformations, congruence and similarity
 section: "18.2"
 section_title: Enlargement
 tier: F
-dfe: [G7]
+refs: [G7]
 kind: guided-problems
 ---
 

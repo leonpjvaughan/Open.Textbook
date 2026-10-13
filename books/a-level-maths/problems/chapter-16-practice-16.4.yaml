@@ -10,7 +10,7 @@ symbols:
 problems:
   - id: p1-atwood-acceleration
     section: "16.4"
-    dfe: [R4]
+    refs: [R4]
     statement: 'Masses of $3$ kg and $5$ kg hang from the ends of a light inextensible string that passes over a smooth pulley. The system is released from rest. Find the acceleration. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The acceleration'
     check: {kind: evaluate, expression: "2 * 9.8 / (3 + 5)", answer: "2.45"}
@@ -18,7 +18,7 @@ problems:
 
   - id: p2-atwood-tension
     section: "16.4"
-    dfe: [R4]
+    refs: [R4]
     statement: 'For the $3$ kg and $5$ kg masses of the previous question, find the tension in the string. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The tension'
     check: {kind: evaluate, expression: "2 * 3 * 5 * 9.8 / (3 + 5)", answer: "36.75"}
@@ -26,7 +26,7 @@ problems:
 
   - id: p3-atwood-second
     section: "16.4"
-    dfe: [R4]
+    refs: [R4]
     statement: 'Masses of $4$ kg and $6$ kg hang over a smooth pulley on a light inextensible string and are released. Find the acceleration. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The acceleration'
     check: {kind: evaluate, expression: "2 * 9.8 / (4 + 6)", answer: "1.96"}
@@ -34,7 +34,7 @@ problems:
 
   - id: p4-atwood-second-tension
     section: "16.4"
-    dfe: [R4]
+    refs: [R4]
     statement: 'Masses of $4$ kg and $6$ kg hang over a smooth pulley on a light inextensible string and are released. Find the tension in the string. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The tension'
     check: {kind: evaluate, expression: "2 * 4 * 6 * 9.8 / (4 + 6)", answer: "47.04"}
@@ -42,7 +42,7 @@ problems:
 
   - id: p5-table-acceleration
     section: "16.4"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A block of mass $4$ kg rests on a smooth horizontal table. It is joined by a light inextensible string over a smooth pulley at the table edge to a hanging mass of $1$ kg. The system is released from rest. Find the acceleration. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The acceleration'
     check: {kind: evaluate, expression: "1 * 9.8 / (4 + 1)", answer: "1.96"}
@@ -50,7 +50,7 @@ problems:
 
   - id: p6-table-tension
     section: "16.4"
-    dfe: [R4]
+    refs: [R4]
     statement: 'For the $4$ kg block on the table and the $1$ kg hanging mass, find the tension in the string. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The tension'
     check: {kind: evaluate, expression: "4 * 1.96", answer: "7.84"}
@@ -58,7 +58,7 @@ problems:
 
   - id: p7-table-second
     section: "16.4"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A block of mass $5$ kg on a smooth table is joined over a smooth pulley to a hanging mass of $2$ kg. Find the acceleration. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The acceleration'
     check: {kind: evaluate, expression: "2 * 9.8 / (5 + 2)", answer: "2.8"}
@@ -66,7 +66,7 @@ problems:
 
   - id: p8-table-second-tension
     section: "16.4"
-    dfe: [R4]
+    refs: [R4]
     statement: 'For the $5$ kg block on the table and the $2$ kg hanging mass, find the tension in the string. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The tension'
     check: {kind: evaluate, expression: "5 * 2.8", answer: "14"}
@@ -74,7 +74,7 @@ problems:
 
   - id: p9-table-third
     section: "16.4"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A block of mass $8$ kg on a smooth table is joined over a smooth pulley to a hanging mass of $2$ kg. Find the acceleration. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The acceleration'
     check: {kind: evaluate, expression: "2 * 9.8 / (8 + 2)", answer: "1.96"}
@@ -82,7 +82,7 @@ problems:
 
   - id: p10-table-third-tension
     section: "16.4"
-    dfe: [R4]
+    refs: [R4]
     statement: 'For the $8$ kg block on the table and the $2$ kg hanging mass, find the tension in the string. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The tension'
     check: {kind: evaluate, expression: "8 * 1.96", answer: "15.68"}
@@ -90,7 +90,7 @@ problems:
 
   - id: p11-unknown-mass
     section: "16.4"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A block of mass $m$ kg on a smooth table is joined over a smooth pulley to a hanging mass of $2$ kg. The system is released and the acceleration is $1.96$ m s$^{-2}$. Find $m$. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The mass'
     check:
@@ -102,7 +102,7 @@ problems:
 
   - id: p12-pulley-pair
     section: "16.4"
-    dfe: [R4]
+    refs: [R4]
     statement: 'Masses of $2$ kg and $3$ kg hang over a smooth pulley on a light inextensible string and are released. Find the tension in the string. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The tension'
     check: {kind: evaluate, expression: "2 * 2 * 3 * 9.8 / (2 + 3)", answer: "23.52"}

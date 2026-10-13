@@ -5,7 +5,7 @@ chapter_title: Quadratic expressions, equations and graphs
 section: '12.4'
 section_title: Solving quadratic equations by factorising
 tier: F
-dfe:
+refs:
 - A18
 kind: problems
 ---

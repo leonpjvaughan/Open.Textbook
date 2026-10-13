@@ -4,7 +4,7 @@ chapter: 4
 chapter_title: Sequences and series
 section: '4.2'
 section_title: Binomial expansion for rational n and approximation
-dfe:
+refs:
 - D1
 kind: guided-problems
 ---

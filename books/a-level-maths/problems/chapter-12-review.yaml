@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: r1-greater-than-four-or-odd
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'A fair six-sided die is rolled once. Find the probability of a number greater than 4 or an odd number.'
     answer_label: 'The probability'
     check:
@@ -20,7 +20,7 @@ problems:
 
   - id: r2-independent-product
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'Events $A$ and $B$ are independent with $P(A) = 0.6$ and $P(B) = 0.5$. Find $P(A \text{ and } B)$.'
     answer_label: 'The probability of A and B'
     check:
@@ -31,7 +31,7 @@ problems:
 
   - id: r3-conditional-basic
     section: "12.2"
-    dfe: [M2]
+    refs: [M2]
     statement: 'For two events $A$ and $B$, $P(A \text{ and } B) = 0.12$ and $P(B) = 0.4$. Find $P(A \mid B)$.'
     answer_label: 'The conditional probability'
     check:
@@ -42,7 +42,7 @@ problems:
 
   - id: r4-different-colours
     section: "12.2"
-    dfe: [M2]
+    refs: [M2]
     statement: 'A bag has 4 white counters and 6 black counters. Two counters are taken at random, without replacement. Find the probability that the two counters are different colours.'
     answer_label: 'The probability that the counters are different colours'
     check:
@@ -53,7 +53,7 @@ problems:
 
   - id: r5-test-reverse
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'A test for a fault has sensitivity $0.9$ and false-positive rate $0.08$. The fault affects 5% of items. Find the probability that an item has the fault, given a positive result.'
     answer_label: 'The probability that the item has the fault'
     check:
@@ -64,7 +64,7 @@ problems:
 
   - id: r6-expected-faults
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'A model gives a probability of $0.04$ that a machine produces a faulty part in one hour. Find the expected number of faulty parts in 250 hours.'
     answer_label: 'The expected number of faulty parts'
     check:
@@ -75,7 +75,7 @@ problems:
 
   - id: r7-mean
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the mean of $12, 15, 16, 18, 20, 21$.'
     answer_label: 'The mean'
     check:
@@ -87,7 +87,7 @@ problems:
 
   - id: r8-standard-deviation
     section: "11.5"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the standard deviation of $12, 15, 16, 18, 20, 21$, dividing by $n$.'
     answer_label: 'The standard deviation'
     check:
@@ -100,7 +100,7 @@ problems:
 
   - id: r9-frequency-density
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A class of width 10 contains 45 values. Find the frequency density.'
     answer_label: 'The frequency density'
     check:
@@ -111,7 +111,7 @@ problems:
 
   - id: r10-stratified-sample
     section: "11.2"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A population has 450 members in one stratum and 150 in another. A stratified sample of 60 is taken. Find the number from the 450 stratum.'
     answer_label: 'The sample size from the 450 stratum'
     check:
@@ -122,7 +122,7 @@ problems:
 
   - id: r11-gradient
     section: "11.4"
-    dfe: [L2]
+    refs: [L2]
     statement: 'A line of best fit passes through the points $(2, 10)$ and $(6, 22)$. Find its gradient.'
     answer_label: 'The gradient'
     check:
@@ -133,7 +133,7 @@ problems:
 
   - id: r12-histogram-probability
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A histogram of 200 values has frequency density 6 in a class of width 10. Estimate the probability that a value lies in this class.'
     answer_label: 'The estimated probability'
     check:
@@ -144,7 +144,7 @@ problems:
 
   - id: r13-heart-or-king
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'A card is drawn at random from a standard pack of 52. Event $A$ is a heart. Event $B$ is a king. Find $P(A \text{ or } B)$.'
     answer_label: 'The probability'
     check:
@@ -155,7 +155,7 @@ problems:
 
   - id: r14-die-model-difference
     section: "12.3"
-    dfe: [M3, OT3]
+    refs: [M3, OT3]
     statement: 'A six-sided die is rolled 300 times. A model predicts 50 of each face. The observed count of sixes is 72. Find the model prediction for sixes and the difference from the observed count.'
     answer_label: 'The prediction and the difference'
     check:

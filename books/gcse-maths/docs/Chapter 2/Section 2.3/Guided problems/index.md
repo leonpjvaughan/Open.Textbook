@@ -5,7 +5,7 @@ chapter_title: Factors, multiples and primes
 section: '2.3'
 section_title: Systematic listing strategies
 tier: F
-dfe: [N5]
+refs: [N5]
 kind: guided-problems
 ---
 

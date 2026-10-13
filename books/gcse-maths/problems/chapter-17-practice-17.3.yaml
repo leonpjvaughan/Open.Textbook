@@ -3,7 +3,7 @@ problems:
   - id: 'ch17-17-3-perp-bisector-mid'
     section: '17.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'A segment is 10 cm long. How far is its midpoint from either endpoint?'
     answer_label: 'A segment is 10 cm long. How far is its midpoint from either endpoint?'
@@ -15,7 +15,7 @@ problems:
   - id: 'ch17-17-3-perpendicular-angle'
     section: '17.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'What angle does a perpendicular make with a line?'
     answer_label: 'What angle does a perpendicular make with a line?'
@@ -27,7 +27,7 @@ problems:
   - id: 'ch17-17-3-angle-bisect'
     section: '17.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'An angle is 74 degrees. What is each angle after bisecting it?'
     answer_label: 'An angle is 74 degrees. What is each angle after bisecting it?'
@@ -39,7 +39,7 @@ problems:
   - id: 'ch17-17-3-construct-60'
     section: '17.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'A compass construction makes an equilateral triangle. State each interior angle.'
     answer_label: 'A compass construction makes an equilateral triangle. State each interior angle.'
@@ -51,7 +51,7 @@ problems:
   - id: 'ch17-17-3-arc-radius'
     section: '17.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'For a perpendicular bisector construction, should the compass radius be greater or less than half the segment?'
     answer_label: 'For a perpendicular bisector construction, should the compass radius be greater or less than half the segment?'
@@ -64,7 +64,7 @@ problems:
   - id: 'ch17-17-3-equal-distance'
     section: '17.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'Two points are both 7 cm from A and B. What locus contains them?'
     answer_label: 'Two points are both 7 cm from A and B. What locus contains them?'
@@ -76,7 +76,7 @@ problems:
   - id: 'ch17-17-3-construction-check'
     section: '17.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'Two endpoints are 8 cm apart. The crossing point of equal arcs is 3 cm from each endpoint. Is this possible?'
     answer_label: 'Two endpoints are 8 cm apart. The crossing point of equal arcs is 3 cm from each endpoint. Is this possible?'
@@ -89,7 +89,7 @@ problems:
   - id: 'ch17-17-3-angle-construct'
     section: '17.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'An angle of 96 degrees is bisected. Work out the two resulting angles.'
     answer_label: 'An angle of 96 degrees is bisected. Work out the two resulting angles.'

@@ -4,7 +4,7 @@ chapter: 2
 chapter_title: Algebra and functions
 section: '2.11'
 section_title: Transformations of graphs
-dfe:
+refs:
 - B9
 kind: walkthrough
 ---

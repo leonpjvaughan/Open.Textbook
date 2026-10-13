@@ -8,7 +8,7 @@ problems:
   - id: solve-by-completing-the-root
     section: "12.5"
     tier: H
-    dfe: [A18]
+    refs: [A18]
     statement: 'Solve $\sqrt{x} = 4$.'
     step_relation: implies
     check: {kind: solve, equation: "sqrt(x) = 4", variable: x, answer: ["16"]}
@@ -19,7 +19,7 @@ problems:
   - id: squaring-both-sides
     section: "12.5"
     tier: H
-    dfe: [A18]
+    refs: [A18]
     statement: 'Solve $x^2 = 16$.'
     step_relation: implies
     check: {kind: solve, equation: "x**2 = 16", variable: x, answer: ["4", "-4"]}
@@ -30,7 +30,7 @@ problems:
   - id: extraneous-root
     section: "12.5"
     tier: H
-    dfe: [A18]
+    refs: [A18]
     statement: 'Explain why $\sqrt{x} = -1$ has no real solution.'
     step_relation: implies
     answer_text: "There is no real solution. A square root is never negative, so the solution set is empty."

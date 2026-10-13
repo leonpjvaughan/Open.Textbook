@@ -4,7 +4,7 @@ problems:
   - id: 'ch24-24-4-weighted-mean'
     section: '24.4'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Values 1, 2, 3 have frequencies 2, 3, 1. Find the mean.'
     answer_label: 'Values 1, 2, 3 have frequencies 2, 3, 1. Find the mean.'
     check:
@@ -16,7 +16,7 @@ problems:
   - id: 'ch24-24-4-frequency-median'
     section: '24.4'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Values 2 and 5 have frequencies 3 and 2. Find the median.'
     answer_label: 'Values 2 and 5 have frequencies 3 and 2. Find the median.'
     check:
@@ -29,7 +29,7 @@ problems:
   - id: 'ch24-24-4-table-mode'
     section: '24.4'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Values 4, 6 and 8 have frequencies 2, 5 and 1. Find the mode.'
     answer_label: 'Values 4, 6 and 8 have frequencies 2, 5 and 1. Find the mode.'
     check:
@@ -42,7 +42,7 @@ problems:
   - id: 'ch24-24-4-table-range'
     section: '24.4'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Values 3, 7 and 9 have frequencies 4, 2 and 1. Find the range.'
     answer_label: 'Values 3, 7 and 9 have frequencies 4, 2 and 1. Find the range.'
     check:
@@ -54,7 +54,7 @@ problems:
   - id: 'ch24-24-4-weighted-mean-two'
     section: '24.4'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Values 10 and 20 have frequencies 3 and 2. Find the mean.'
     answer_label: 'Values 10 and 20 have frequencies 3 and 2. Find the mean.'
     check:
@@ -66,7 +66,7 @@ problems:
   - id: 'ch24-24-4-frequency-total-mean'
     section: '24.4'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Values 0, 1, 2 have frequencies 1, 4, 3. Find the mean.'
     answer_label: 'Values 0, 1, 2 have frequencies 1, 4, 3. Find the mean.'
     check:
@@ -78,7 +78,7 @@ problems:
   - id: 'ch24-24-4-median-even-frequency'
     section: '24.4'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Values 1 and 4 have frequencies 2 and 2. Find the median.'
     answer_label: 'Values 1 and 4 have frequencies 2 and 2. Find the median.'
     check:
@@ -90,7 +90,7 @@ problems:
   - id: 'ch24-24-4-frequency-range'
     section: '24.4'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Values 12, 15 and 18 have frequencies 2, 7 and 1. Find the range.'
     answer_label: 'Values 12, 15 and 18 have frequencies 2, 7 and 1. Find the range.'
     check:
@@ -102,7 +102,7 @@ problems:
   - id: 'ch24-24-4-compare-frequency-mean'
     section: '24.4'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Values 2 and 8 occur 3 and 1 times. Find the mean and compare it with the median.'
     answer_label: 'Values 2 and 8 occur 3 and 1 times. Find the mean and compare it with the median.'
     check:

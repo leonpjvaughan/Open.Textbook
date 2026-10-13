@@ -4,7 +4,7 @@ problems:
   - id: 'ch20-20-8-01'
     section: '20.8'
     tier: 'H'
-    dfe: ['G23']
+    refs: ['G23']
     statement: 'Find the area of a triangle with sides 8 cm and 5 cm and included angle 30°.'
     answer_label: 'Question 1'
     plays: triangle-area-sinc
@@ -14,7 +14,7 @@ problems:
   - id: 'ch20-20-8-02'
     section: '20.8'
     tier: 'H'
-    dfe: ['G23']
+    refs: ['G23']
     statement: 'Find the area when sides 6 cm and 10 cm include an angle of 90°.'
     answer_label: 'Question 2'
     plays: triangle-area-sinc
@@ -24,7 +24,7 @@ problems:
   - id: 'ch20-20-8-03'
     section: '20.8'
     tier: 'H'
-    dfe: ['G23']
+    refs: ['G23']
     statement: 'Find the area when sides 7 cm and 9 cm include an angle of 40°, to 1 decimal place.'
     answer_label: 'Question 3'
     check: {kind: 'rounded', value: '(7*9/2)*sin(40*pi/180)', rounded: '20.2', to: '0.1'}
@@ -33,7 +33,7 @@ problems:
   - id: 'ch20-20-8-04'
     section: '20.8'
     tier: 'H'
-    dfe: ['G23']
+    refs: ['G23']
     statement: 'Two sides are 12 cm and 8 cm, with included angle 60°. Find the area exactly.'
     answer_label: 'Question 4'
     plays: triangle-area-sinc
@@ -43,7 +43,7 @@ problems:
   - id: 'ch20-20-8-05'
     section: '20.8'
     tier: 'H'
-    dfe: ['G23']
+    refs: ['G23']
     statement: 'A triangle has sides 5 cm and 11 cm with included angle 120°. Find its area.'
     answer_label: 'Question 5'
     plays: triangle-area-sinc
@@ -53,7 +53,7 @@ problems:
   - id: 'ch20-20-8-06'
     section: '20.8'
     tier: 'H'
-    dfe: ['G23']
+    refs: ['G23']
     statement: 'Find the area for sides 9 cm and 10 cm with included angle 25°, to 1 decimal place.'
     answer_label: 'Question 6'
     check: {kind: 'rounded', value: '(9*10/2)*sin(25*pi/180)', rounded: '19.0', to: '0.1'}
@@ -62,7 +62,7 @@ problems:
   - id: 'ch20-20-8-07'
     section: '20.8'
     tier: 'H'
-    dfe: ['G23']
+    refs: ['G23']
     statement: 'A triangle has sides 13 cm and 17 cm and included angle 35°. Find the area to 1 decimal place.'
     answer_label: 'Question 7'
     check: {kind: 'rounded', value: '(13*17/2)*sin(35*pi/180)', rounded: '63.4', to: '0.1'}
@@ -71,7 +71,7 @@ problems:
   - id: 'ch20-20-8-08'
     section: '20.8'
     tier: 'H'
-    dfe: ['G23']
+    refs: ['G23']
     statement: 'The area is 20 cm². Two sides are 8 cm and 10 cm. Find the included angle, taking the acute solution.'
     answer_label: 'Question 8'
     check: {kind: 'rounded', value: 'asin(2*20/(8*10))*180/pi', rounded: '30.0', to: '0.1'}
@@ -80,7 +80,7 @@ problems:
   - id: 'ch20-20-8-09'
     section: '20.8'
     tier: 'H'
-    dfe: ['G23']
+    refs: ['G23']
     statement: 'The area is 20 cm^2. One side is 10 cm and the included angle is 30°. Find the other side.'
     answer_label: 'Question 9'
     check: {kind: 'evaluate', expression: '2*20/(10*sin(pi/6))', answer: '8'}
@@ -89,7 +89,7 @@ problems:
   - id: 'ch20-20-8-method'
     section: '20.8'
     tier: 'H'
-    dfe: ['G22', 'G23']
+    refs: ['G22', 'G23']
     statement: 'A triangle has sides 8 cm and 11 cm with an included angle of 60°. Which method finds its area: the area formula $\frac12 ab\sin C$, the sine rule, or the cosine rule? Give a reason, then find the area exactly.'
     answer_label: 'Method choice: which rule'
     plays: triangle-area-sinc

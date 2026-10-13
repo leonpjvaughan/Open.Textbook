@@ -15,4 +15,4 @@ kind: guided-problems
 # 21.2 Binding energy and the mass defect — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: 4.5
+> Tier: **O** · refs: 4.5

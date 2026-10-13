@@ -4,7 +4,7 @@ chapter: 8
 chapter_title: Quantum and nuclear physics
 section: '8.4'
 section_title: Nuclear energy and E = mc²
-dfe:
+refs:
 - AP8
 kind: walkthrough
 ---

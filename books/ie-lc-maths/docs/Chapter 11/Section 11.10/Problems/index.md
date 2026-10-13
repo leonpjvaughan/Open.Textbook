@@ -15,4 +15,4 @@ kind: problems
 # 11.10 Correlation and regression — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 1.7
+> Tier: **O** · refs: 1.7

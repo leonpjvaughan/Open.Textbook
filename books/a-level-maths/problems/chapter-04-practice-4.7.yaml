@@ -13,7 +13,7 @@ symbols:
 problems:
   - id: p1-choose-the-model
     section: "4.7"
-    dfe: [D6, OT3]
+    refs: [D6, OT3]
     statement: 'One list is $300, 330, 363, \dots$ and another is $300, 340, 380, \dots$. For each list, decide whether an arithmetic or a geometric model fits, and give the common difference or common ratio.'
     answer_label: 'The two models'
     check:
@@ -25,7 +25,7 @@ problems:
 
   - id: p2-geometric-term
     section: "4.7"
-    dfe: [D6, OT3]
+    refs: [D6, OT3]
     statement: 'A quantity follows the geometric model $u_n = 300(1.1)^{n-1}$. Work out the 8th value, to 2 decimal places.'
     answer_label: 'The value'
     check:
@@ -37,7 +37,7 @@ problems:
 
   - id: p3-arithmetic-term
     section: "4.7"
-    dfe: [D6, OT3]
+    refs: [D6, OT3]
     statement: 'A quantity follows the arithmetic model $u_n = 300 + (n - 1)40$. Work out the 15th value.'
     answer_label: 'The value'
     check:
@@ -48,7 +48,7 @@ problems:
 
   - id: p4-declining-population
     section: "4.7"
-    dfe: [D6, OT3]
+    refs: [D6, OT3]
     statement: 'A town has $25{,}000$ people at the start of year 1, and the population falls by 4% each year. Work out the population at the start of year 10, to the nearest person.'
     answer_label: 'The population'
     check:
@@ -60,7 +60,7 @@ problems:
 
   - id: p5-settling-level
     section: "4.7"
-    dfe: [D6, OT3]
+    refs: [D6, OT3]
     statement: 'A recurrence model is $u_{n+1} = 0.7u_n + 90$. Find the level the terms settle on.'
     answer_label: 'The settling level'
     check:
@@ -71,7 +71,7 @@ problems:
 
   - id: p6-depreciation
     section: "4.7"
-    dfe: [D6, OT3]
+    refs: [D6, OT3]
     statement: 'A van costs £18,000. Its value falls by 12% each year. Work out its value after 4 years, to the nearest penny.'
     answer_label: 'The value'
     check:
@@ -83,7 +83,7 @@ problems:
 
   - id: p7-savings-with-deposits
     section: "4.7"
-    dfe: [D6, OT3]
+    refs: [D6, OT3]
     statement: 'A saver starts with £500. Each year the balance grows by 5%, then £200 is deposited. The balance just after a deposit follows $u_{n+1} = 1.05u_n + 200$ with $u_1 = 500$. Work out the balance just after the 4th deposit, to the nearest penny.'
     answer_label: 'The balance'
     check:
@@ -95,7 +95,7 @@ problems:
 
   - id: p8-when-a-target-is-passed
     section: "4.7"
-    dfe: [D6, OT3]
+    refs: [D6, OT3]
     statement: 'A village has $4000$ people at the start of year 1 and grows by 2% each year, so $P_n = 4000(1.02)^{n-1}$. Use trial and improvement to find when the population first passes $4500$.'
     answer_label: 'The year it passes 4500'
     check:
@@ -107,7 +107,7 @@ problems:
 
   - id: p9-compare-two-plans
     section: "4.7"
-    dfe: [D6, OT3]
+    refs: [D6, OT3]
     statement: 'A fund has two plans. Plan A pays £1000 in month 1 and £60 more each month. Plan B pays £1500 in month 1 and 5% more each month. Work out the total paid by each plan over the first 5 months, and state which is larger.'
     answer_label: 'The two totals'
     check:
@@ -119,7 +119,7 @@ problems:
 
   - id: p10-growth-factor
     section: "4.7"
-    dfe: [D6, OT3]
+    refs: [D6, OT3]
     statement: 'An investment of £1200 grows by 7% each year. Work out its value after 5 years, to the nearest penny.'
     answer_label: 'The value'
     check:
@@ -131,7 +131,7 @@ problems:
 
   - id: p11-refine-the-model
     section: "4.7"
-    dfe: [D6, OT3]
+    refs: [D6, OT3]
     statement: 'A population model is $P_n = 4000(1.02)^{n-1}$. Measurements suggest that the growth rate was too high, so the model is refined to $P_n = 4000(1.015)^{n-1}$. Work out $P_7$ under the refined model, to the nearest whole number, and compare it with the original.'
     answer_label: 'The refined value'
     check:
@@ -143,7 +143,7 @@ problems:
 
   - id: p12-fund-passes-target
     section: "4.7"
-    dfe: [D6, OT3]
+    refs: [D6, OT3]
     statement: 'The roof fund has a quiz total of $25n^2 + 125n$ pounds and an appeal total of $3000(1 - 0.8^n)$ pounds after $n$ months. Show that the fund passes £9,000 during month 14.'
     answer_label: 'The two totals either side of the target'
     check:

@@ -4,7 +4,7 @@ chapter: 2
 chapter_title: Vectors and scalars
 section: '2.2'
 section_title: Resolving and adding vectors
-dfe:
+refs:
 - AP2
 kind: guided-problems
 ---

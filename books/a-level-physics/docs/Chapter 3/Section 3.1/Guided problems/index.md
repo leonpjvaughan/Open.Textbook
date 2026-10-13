@@ -4,7 +4,7 @@ chapter: 3
 chapter_title: Mechanics
 section: '3.1'
 section_title: Kinematics and motion graphs
-dfe:
+refs:
 - AP3
 kind: guided-problems
 ---

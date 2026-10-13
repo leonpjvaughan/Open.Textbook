@@ -5,7 +5,7 @@ chapter_title: Magnetism and electromagnetism
 section: '7.4'
 section_title: Microphones and speakers
 tier: H
-dfe:
+refs:
 - MG4
 kind: walkthrough
 ---

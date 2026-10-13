@@ -20,7 +20,7 @@ chapter: 2
 problems:
   - id: p1-resolve-50n-30
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A force of $50\,\text{N}$ acts at $30^\circ$ to the horizontal. Find its horizontal and vertical components.'
     answer_label: 'The two perpendicular components'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p2-resolve-100-75
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A projectile is launched at $100\,\text{m}\,\text{s}^{-1}$ at $75^\circ$ above the horizontal. Find the horizontal and vertical components of its velocity.'
     answer_label: 'The two components of the velocity'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: p3-components-to-vector
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A vector has an $x$-component of $-5.0\,\text{m}$ and a $y$-component of $-12.0\,\text{m}$. Find its magnitude and its direction, measured anticlockwise from the positive $x$-axis.'
     answer_label: 'The magnitude and direction'
     check:
@@ -59,7 +59,7 @@ problems:
 
   - id: p4-resultant-9-40
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Two forces act at right angles. One force is $9.0\,\text{N}$ and the other is $40\,\text{N}$. Find the magnitude and direction of the resultant force.'
     answer_label: 'The resultant force'
     check:
@@ -72,7 +72,7 @@ problems:
 
   - id: p5-slope-600n
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A block of weight $600\,\text{N}$ rests on a slope that makes $15^\circ$ with the horizontal. Resolve the weight into a component along the slope and a component perpendicular to the slope.'
     answer_label: 'The two components of the weight'
     check:
@@ -85,7 +85,7 @@ problems:
 
   - id: p6-resolve-200-135
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A force of $200\,\text{N}$ acts at $135^\circ$ from the positive $x$-axis. Find its $x$-component and its $y$-component, including the sign of each.'
     answer_label: 'The two components, with signs'
     check:
@@ -98,7 +98,7 @@ problems:
 
   - id: p7-ferry-resultant
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A ferry points straight across a river at $4.0\,\text{m}\,\text{s}^{-1}$. The current flows at $3.0\,\text{m}\,\text{s}^{-1}$ at right angles to the crossing. Find the ferry velocity over the ground, as a magnitude and a direction.'
     answer_label: 'The velocity over the ground'
     check:
@@ -111,7 +111,7 @@ problems:
 
   - id: p8-find-the-angle
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A force of $12\,\text{N}$ has a horizontal component of $8.0\,\text{N}$ and an upward vertical component. Find the angle the force makes with the horizontal, and the vertical component.'
     answer_label: 'The angle and the vertical component'
     check:
@@ -124,7 +124,7 @@ problems:
 
   - id: p9-plane-ground-velocity
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A plane flies due east through the air at $60\,\text{m}\,\text{s}^{-1}$. A wind blows due north at $20\,\text{m}\,\text{s}^{-1}$. Find the velocity of the plane over the ground, as a magnitude and a direction.'
     answer_label: 'The velocity over the ground'
     check:
@@ -137,7 +137,7 @@ problems:
 
   - id: p10-scalar-multiple
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A displacement is $(4.0, -2.0)\,\text{m}$. Find the displacement $3.0$ times larger in the same direction.'
     answer_label: 'The scaled displacement'
     check:
@@ -149,7 +149,7 @@ problems:
 
   - id: p11-method-choice
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Two forces act on a point at $50^\circ$ to each other. Explain which method you would use to find the resultant, and why a calculation with Pythagoras on its own is not enough.'
     answer_label: 'The method and its reason'
     check:
@@ -167,7 +167,7 @@ problems:
 
   - id: p12-magnitude-direction
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A displacement has components $5.0\,\text{m}$ east and $12.0\,\text{m}$ north. Find its magnitude and the angle it makes with the eastward direction.'
     answer_label: 'The magnitude and the angle'
     check:

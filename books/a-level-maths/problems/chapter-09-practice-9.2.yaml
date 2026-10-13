@@ -10,7 +10,7 @@ symbols:
 problems:
   - id: v1-iterate-third
     section: "9.2"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Use $x_{n+1} = \dfrac{x_n + 2}{3}$ with $x_0 = 0$. Find $x_3$.'
     answer_label: 'The value of x3'
     check:
@@ -22,7 +22,7 @@ problems:
 
   - id: v2-iterate-fourth
     section: "9.2"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Use $x_{n+1} = \dfrac{x_n + 2}{3}$ with $x_0 = 0$. Find $x_4$.'
     answer_label: 'The value of x4'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: v3-iterate-reciprocal
     section: "9.2"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Use $x_{n+1} = \dfrac{1}{x_n + 1}$ with $x_0 = 1$. Find $x_3$.'
     answer_label: 'The value of x3'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: v4-iterate-rearranged
     section: "9.2"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Use $x_{n+1} = \dfrac{1}{x_n^2 + 1}$ with $x_0 = 1$. Find $x_3$.'
     answer_label: 'The value of x3'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: v5-fixed-point-linear
     section: "9.2"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Find the fixed point of the recurrence $x_{n+1} = \dfrac{x_n + 2}{3}$.'
     answer_label: 'The fixed point'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: v6-fixed-point-reciprocal
     section: "9.2"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Find the fixed points of the recurrence $x_{n+1} = \dfrac{1}{x_n + 1}$. Give the answers in surd form.'
     answer_label: 'The fixed points'
     check:
@@ -82,7 +82,7 @@ problems:
 
   - id: v7-gradient-linear
     section: "9.2"
-    dfe: [I2]
+    refs: [I2]
     statement: 'For $g(x) = \dfrac{x + 2}{3}$, find $g''(x)$.'
     answer_label: 'The derivative'
     check:
@@ -94,7 +94,7 @@ problems:
 
   - id: v8-gradient-reciprocal
     section: "9.2"
-    dfe: [I2]
+    refs: [I2]
     statement: 'For $g(x) = \dfrac{1}{x + 1}$, find $g''(x)$.'
     answer_label: 'The derivative'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: v9-divergent
     section: "9.2"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Use $x_{n+1} = 3x_n - 2$ with $x_0 = 0$. Find $x_3$.'
     answer_label: 'The value of x3'
     check:
@@ -118,7 +118,7 @@ problems:
 
   - id: v10-within-tolerance
     section: "9.2"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Use $x_{n+1} = \dfrac{x_n + 2}{3}$ with $x_0 = 0$. Find $x_5$, and state whether it is within $0.01$ of the fixed point $1$.'
     answer_label: 'The value of x5'
     check:
@@ -130,7 +130,7 @@ problems:
 
   - id: v11-rearranged-step
     section: "9.2"
-    dfe: [I2]
+    refs: [I2]
     statement: 'The equation $x^3 + 2x - 5 = 0$ can be rearranged to $x = \dfrac{5}{x^2 + 2}$. Starting from $x_0 = 1$, find $x_1$.'
     answer_label: 'The value of x1'
     check:
@@ -142,7 +142,7 @@ problems:
 
   - id: v12-cobweb-gradient
     section: "9.2"
-    dfe: [I2]
+    refs: [I2]
     statement: 'For $g(x) = 2 - \dfrac{x}{2}$, find $g''(x)$ and state whether the iteration gives a cobweb or a staircase.'
     answer_label: 'The derivative'
     check:

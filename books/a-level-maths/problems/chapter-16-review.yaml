@@ -6,7 +6,7 @@ chapter: 16
 problems:
   - id: q1-perpendicular-resultant
     section: "16.1"
-    dfe: [R1]
+    refs: [R1]
     statement: 'Forces of $9$ N and $12$ N act at right angles at a point. Find the size of the resultant and its direction from the $12$ N force.'
     answer_label: 'The size and the direction'
     check:
@@ -18,7 +18,7 @@ problems:
 
   - id: q2-second-law
     section: "16.2"
-    dfe: [R2]
+    refs: [R2]
     statement: 'A car of mass $1500$ kg has a resultant force of $3000$ N along the road. Find its acceleration.'
     answer_label: 'The acceleration'
     check: {kind: evaluate, expression: "3000 / 1500", answer: "2"}
@@ -26,7 +26,7 @@ problems:
 
   - id: q3-weight
     section: "16.3"
-    dfe: [R3]
+    refs: [R3]
     statement: 'Find the weight of a person of mass $75$ kg. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The weight'
     check: {kind: evaluate, expression: "75 * 9.8", answer: "735"}
@@ -34,7 +34,7 @@ problems:
 
   - id: q4-kinematics-and-force
     section: "16.2"
-    dfe: [R2]
+    refs: [R2]
     statement: 'A car of mass $1200$ kg accelerates from rest to $30$ m s$^{-1}$ in $6$ s. Find its acceleration and the resultant force on it.'
     answer_label: 'The acceleration and the resultant force'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: q5-atwood
     section: "16.4"
-    dfe: [R4]
+    refs: [R4]
     statement: 'Masses of $5$ kg and $3$ kg hang over a smooth pulley on a light inextensible string and are released. Find the acceleration and the tension. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The acceleration and the tension'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: q6-resolve-force
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'Resolve a force of $90$ N acting at $35^\circ$ above the horizontal into horizontal and vertical components, each to $2$ d.p.'
     answer_label: 'The two components'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: q7-weight-on-slope
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A weight of $294$ N acts on a body on a slope of $20^\circ$. Find the components along and perpendicular to the slope, each to $2$ d.p.'
     answer_label: 'The two components'
     check:
@@ -82,7 +82,7 @@ problems:
 
   - id: q8-limiting-force
     section: "16.7"
-    dfe: [R6]
+    refs: [R6]
     statement: 'A block of mass $25$ kg rests on a rough horizontal floor. The coefficient of friction is $0.4$. Find the smallest horizontal force that will start it moving. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The smallest force'
     check: {kind: evaluate, expression: "0.4 * 25 * 9.8", answer: "98"}
@@ -90,7 +90,7 @@ problems:
 
   - id: q9-rough-slope
     section: "16.7"
-    dfe: [R6]
+    refs: [R6]
     statement: 'A block of mass $8$ kg is released on a rough slope of $30^\circ$. The coefficient of friction is $0.25$. Show that the block slides, and find its acceleration, to $2$ d.p. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The acceleration'
     check:
@@ -102,7 +102,7 @@ problems:
 
   - id: q10-beam-support
     section: "16.8"
-    dfe: [S1]
+    refs: [S1]
     statement: 'A uniform beam $AB$ has length $4$ m and mass $25$ kg. It rests on supports at $A$ and $B$. A load of mass $40$ kg rests $1$ m from $A$. Find the reaction at each support. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The two reactions'
     check:
@@ -114,7 +114,7 @@ problems:
 
   - id: q11-moment-angle
     section: "16.8"
-    dfe: [S1]
+    refs: [S1]
     statement: 'A force of $30$ N acts at the end of a rod of length $0.8$ m. The force makes an angle of $50^\circ$ with the rod. Find the moment about the other end, to $2$ d.p.'
     answer_label: 'The moment'
     check:
@@ -126,7 +126,7 @@ problems:
 
   - id: q12-pull-at-angle
     section: "16.6"
-    dfe: [R5]
+    refs: [R5]
     statement: 'A body of mass $25$ kg is pulled along a smooth horizontal floor by a rope at $30^\circ$ to the horizontal with a tension of $120$ N. Find the normal reaction and the acceleration, each to $2$ d.p.'
     answer_label: 'The normal reaction and the acceleration'
     check:
@@ -138,7 +138,7 @@ problems:
 
   - id: q13-table-connected
     section: "16.4"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A block of mass $7$ kg rests on a smooth horizontal table. It is joined by a light inextensible string over a smooth pulley to a hanging mass of $3$ kg. Find the acceleration and the tension. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The acceleration and the tension'
     check:
@@ -150,7 +150,7 @@ problems:
 
   - id: q14-free-fall-speed
     section: "16.3"
-    dfe: [R3]
+    refs: [R3]
     statement: 'A stone is released from rest and falls $20$ m. Air resistance is negligible. Find its speed when it has fallen $20$ m, to $2$ d.p. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The speed'
     check:
@@ -162,7 +162,7 @@ problems:
 
   - id: q15-equilibrium-surd
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A particle is in equilibrium under three forces. Two of them are $(6, 0)$ N and $(-2, 5)$ N. Find the third force and its size, to $3$ d.p.'
     answer_label: 'The third force and its size'
     check:
@@ -177,7 +177,7 @@ problems:
 
   - id: q16-rope-on-rough-slope
     section: "16.7"
-    dfe: [R6]
+    refs: [R6]
     statement: 'A crate of mass $20$ kg rests on a rough slope of $25^\circ$. The coefficient of friction is $0.3$. A light rope parallel to the slope holds the crate. Show that the crate would slide without the rope, and find the tension needed to hold it in equilibrium, to $2$ d.p. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The tension'
     check:

@@ -10,7 +10,7 @@ problems:
   - id: p1-convert-minutes
     section: '6.3'
     tier: F
-    dfe: [EL3]
+    refs: [EL3]
     statement: 'Express a time of 1.5 minutes in seconds.'
     answer_label: '1.5 minutes in seconds'
     check:
@@ -24,7 +24,7 @@ problems:
   - id: p2-charge-kettle
     section: '6.3'
     tier: F
-    dfe: [EL3]
+    refs: [EL3]
     statement: 'A mains kettle takes a current of 8.0 A for 90 s. Calculate the charge that flows through it.'
     answer_label: 'Charge that flows through the kettle'
     check:
@@ -42,7 +42,7 @@ problems:
   - id: p3-ac-dc
     section: '6.3'
     tier: F
-    dfe: [EL3]
+    refs: [EL3]
     statement: 'State the frequency and the potential difference of the UK domestic supply, and describe the difference between direct and alternating current.'
     answer_label: 'The UK supply and the two kinds of current'
     check:
@@ -63,7 +63,7 @@ problems:
   - id: p4-three-wires
     section: '6.3'
     tier: F
-    dfe: [EL3]
+    refs: [EL3]
     statement: 'Describe the job of the live wire, the neutral wire and the earth wire in a mains cable.'
     answer_label: 'The three wires and their jobs'
     check:
@@ -84,7 +84,7 @@ problems:
   - id: p5-live-danger
     section: '6.3'
     tier: F
-    dfe: [EL3]
+    refs: [EL3]
     statement: 'Explain why a live wire can be dangerous even when a switch in the mains circuit is open.'
     answer_label: 'Why the live wire is still dangerous'
     check:
@@ -102,7 +102,7 @@ problems:
   - id: p6-earth-wire
     section: '6.3'
     tier: F
-    dfe: [EL3]
+    refs: [EL3]
     statement: 'Explain why the metal case of a mains appliance is connected to the earth wire.'
     answer_label: 'Why the metal case is earthed'
     check:
@@ -120,7 +120,7 @@ problems:
   - id: p7-current-live-neutral
     section: '6.3'
     tier: F
-    dfe: [EL3]
+    refs: [EL3]
     statement: 'A mains lamp is switched on. Explain why the current in the live wire equals the current in the neutral wire.'
     answer_label: 'Why the live and neutral currents are equal'
     check:
@@ -138,7 +138,7 @@ problems:
   - id: p8-live-earth-pd
     section: '6.3'
     tier: F
-    dfe: [EL3]
+    refs: [EL3]
     statement: 'State the potential difference between the live wire and earth in a mains circuit, and state the potential of the earth wire.'
     answer_label: 'The two potential differences'
     check:
@@ -156,7 +156,7 @@ problems:
   - id: p9-resistance-interleaved
     section: '6.3'
     tier: F
-    dfe: [EL3]
+    refs: [EL3]
     statement: 'A mains appliance has a potential difference of 230 V across it and a current of 0.40 A through it. Calculate its resistance.'
     answer_label: 'Resistance of the appliance'
     check:
@@ -174,7 +174,7 @@ problems:
   - id: p10-series-interleaved
     section: '6.3'
     tier: F
-    dfe: [EL3]
+    refs: [EL3]
     statement: 'Two resistors of 6.0 Ω and 18 Ω are connected in series. Calculate the total resistance.'
     answer_label: 'Total resistance of the series pair'
     check:
@@ -192,7 +192,7 @@ problems:
   - id: p11-charge-interleaved
     section: '6.3'
     tier: F
-    dfe: [EL3]
+    refs: [EL3]
     statement: 'A current of 4.0 A flows for 3.0 minutes. Calculate the charge that flows.'
     answer_label: 'Charge that flows'
     check:
@@ -210,7 +210,7 @@ problems:
   - id: p12-method-choice
     section: '6.3'
     tier: F
-    dfe: [EL3]
+    refs: [EL3]
     statement: 'A mains appliance carries a current of 2.5 A for 4.0 minutes. Say which relationship you will use, then calculate the charge that flows.'
     answer_label: 'Charge that flows'
     check:

@@ -12,7 +12,7 @@ problems:
   - id: ch8-8-4-1
     section: '8.4'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Factorise $6x+12$.'
     answer_label: 'Factorise $6x+12$.'
     check:
@@ -23,7 +23,7 @@ problems:
   - id: ch8-8-4-2
     section: '8.4'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Factorise $10y-15$.'
     answer_label: 'Factorise $10y-15$.'
     check:
@@ -34,7 +34,7 @@ problems:
   - id: ch8-8-4-3
     section: '8.4'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Factorise $8a+12b$.'
     answer_label: 'Factorise $8a+12b$.'
     check:
@@ -45,7 +45,7 @@ problems:
   - id: ch8-8-4-4
     section: '8.4'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Factorise $9x^2+6x$.'
     answer_label: 'Factorise $9x^2+6x$.'
     check:
@@ -56,7 +56,7 @@ problems:
   - id: ch8-8-4-5
     section: '8.4'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Factorise $14m-21mn$.'
     answer_label: 'Factorise $14m-21mn$.'
     check:
@@ -67,7 +67,7 @@ problems:
   - id: ch8-8-4-6
     section: '8.4'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Factorise $18x+24$.'
     answer_label: 'Factorise $18x+24$.'
     check:
@@ -78,7 +78,7 @@ problems:
   - id: ch8-8-4-7
     section: '8.4'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Factorise $12x-8$.'
     answer_label: 'Factorise $12x-8$.'
     check:
@@ -89,7 +89,7 @@ problems:
   - id: ch8-8-4-8
     section: '8.4'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Factorise $15a+25b$.'
     answer_label: 'Factorise $15a+25b$.'
     check:

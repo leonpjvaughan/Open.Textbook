@@ -10,7 +10,7 @@ problems:
   - id: p1-momentum-car
     section: '3.4'
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A car of mass 900 kg travels at 25 m/s. Calculate its momentum.'
     answer_label: 'Momentum of the car'
     check:
@@ -28,7 +28,7 @@ problems:
   - id: p2-momentum-ball
     section: '3.4'
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A ball of mass 0.20 kg moves at 30 m/s. Calculate its momentum.'
     answer_label: 'Momentum of the ball'
     check:
@@ -46,7 +46,7 @@ problems:
   - id: p3-conservation-trolleys
     section: '3.4'
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A trolley of mass 5.0 kg moves at 4.0 m/s and hits a stationary trolley of mass 3.0 kg. The two trolleys stick together. Calculate their common velocity.'
     answer_label: 'Common velocity of the trolleys'
     check:
@@ -65,7 +65,7 @@ problems:
   - id: p4-conservation-bus-van
     section: '3.4'
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'In the chapter problem the bus of mass 12000 kg travels at 12 m/s and hits the stationary van of mass 8000 kg. The two move off together. Calculate their common velocity.'
     answer_label: 'Common velocity of the bus and van'
     check:
@@ -84,7 +84,7 @@ problems:
   - id: p5-force-momentum-car
     section: '3.4'
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A car of mass 1500 kg travels at 20 m/s and stops in 0.50 s. Calculate the force on the car.'
     answer_label: 'Force on the car'
     check:
@@ -103,7 +103,7 @@ problems:
   - id: p6-force-crumple-zone
     section: '3.4'
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'In a crash test, a car of mass 1500 kg travelling at 20 m/s stops in 1.5 s because the front of the car crumples. Calculate the force on the car.'
     answer_label: 'Force on the car with the crumple zone'
     check:
@@ -122,7 +122,7 @@ problems:
   - id: p7-explosion-trolley
     section: '3.4'
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'Two trolleys are pushed apart. Before the push both are stationary. The trolley of mass 2.0 kg moves to the left at 3.0 m/s. Calculate the speed of the trolley of mass 1.0 kg.'
     answer_label: 'Speed of the second trolley'
     check:
@@ -141,7 +141,7 @@ problems:
   - id: p8-crumple-zone-explain
     section: '3.4'
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'Explain how a crumple zone on the front of a car reduces the force on the passengers in a crash.'
     answer_label: 'How a crumple zone helps'
     check:
@@ -159,7 +159,7 @@ problems:
   - id: p9-conservation-explain
     section: '3.4'
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'Explain why the total momentum of two colliding objects is conserved.'
     answer_label: 'Why momentum is conserved'
     check:
@@ -177,7 +177,7 @@ problems:
   - id: p10-equations
     section: '3.4'
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'State the equation for the momentum of an object, and the equation for the force from a rate of change of momentum. Name each quantity and its unit.'
     answer_label: 'The two equations'
     check:
@@ -195,7 +195,7 @@ problems:
   - id: p11-head-on
     section: '3.4'
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A trolley of mass 4.0 kg moves to the right at 3.0 m/s. It collides head-on with a trolley of mass 2.0 kg moving to the left at 3.0 m/s. The two trolleys stick together. Calculate their common velocity, taking the right as positive.'
     answer_label: 'Common velocity after the head-on collision'
     check:
@@ -215,7 +215,7 @@ problems:
   - id: p12-momentum-skater
     section: '3.4'
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A skater of mass 60 kg moves at 2.0 m/s. Calculate the momentum of the skater.'
     answer_label: 'Momentum of the skater'
     check:
@@ -233,7 +233,7 @@ problems:
   - id: p13-force-momentum-van
     section: '3.4'
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A van of mass 800 kg travels at 15 m/s and stops in 0.30 s. Calculate the force on the van.'
     answer_label: 'Force on the van'
     check:

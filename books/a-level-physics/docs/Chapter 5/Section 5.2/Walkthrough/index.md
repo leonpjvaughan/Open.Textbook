@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Electric circuits
 section: '5.2'
 section_title: Resistance and resistivity
-dfe:
+refs:
 - AP5
 kind: walkthrough
 ---

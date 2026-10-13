@@ -15,4 +15,4 @@ kind: problems
 # 10.4 Sample spaces and set theory — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 1.2
+> Tier: **O** · refs: 1.2

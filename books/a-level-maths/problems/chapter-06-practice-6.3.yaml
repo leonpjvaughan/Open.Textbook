@@ -10,7 +10,7 @@ symbols:
 problems:
   - id: p1-log-base-2
     section: "6.3"
-    dfe: [F3]
+    refs: [F3]
     statement: 'Work out $\log_2 16$.'
     answer_label: 'The value'
     check:
@@ -21,7 +21,7 @@ problems:
 
   - id: p2-log-reciprocal
     section: "6.3"
-    dfe: [F3]
+    refs: [F3]
     statement: 'Work out $\log_3 \dfrac{1}{27}$.'
     answer_label: 'The value'
     check:
@@ -32,7 +32,7 @@ problems:
 
   - id: p3-log-base-10
     section: "6.3"
-    dfe: [F3]
+    refs: [F3]
     statement: 'Work out $\log_{10} 10000$.'
     answer_label: 'The value'
     check:
@@ -43,7 +43,7 @@ problems:
 
   - id: p4-natural-log-values
     section: "6.3"
-    dfe: [F3]
+    refs: [F3]
     statement: 'Write down the values of $\ln e$, $\ln 1$ and $\ln e^4$.'
     answer_label: 'The three values'
     check:
@@ -56,7 +56,7 @@ problems:
 
   - id: p5-to-log-form
     section: "6.3"
-    dfe: [F3]
+    refs: [F3]
     statement: 'Write $5^3 = 125$ in logarithmic form.'
     answer_label: 'The value'
     check:
@@ -67,7 +67,7 @@ problems:
 
   - id: p6-solve-log
     section: "6.3"
-    dfe: [F3]
+    refs: [F3]
     statement: 'Solve $\log_2 x = 5$.'
     answer_label: 'The value of $x$'
     check:
@@ -79,7 +79,7 @@ problems:
 
   - id: p7-solve-log-domain
     section: "6.3"
-    dfe: [F3]
+    refs: [F3]
     statement: 'Solve $\log_3 x = -1$, stating the domain you use.'
     answer_label: 'The value of $x$'
     check:
@@ -92,7 +92,7 @@ problems:
 
   - id: p8-product-law
     section: "6.3"
-    dfe: [F4]
+    refs: [F4]
     statement: 'Write $\ln x + \ln y$ as a single logarithm.'
     answer_label: 'The single logarithm'
     check:
@@ -104,7 +104,7 @@ problems:
 
   - id: p9-quotient-law
     section: "6.3"
-    dfe: [F4]
+    refs: [F4]
     statement: 'Write $\ln x - \ln y$ as a single logarithm.'
     answer_label: 'The single logarithm'
     check:
@@ -116,7 +116,7 @@ problems:
 
   - id: p10-power-law
     section: "6.3"
-    dfe: [F4]
+    refs: [F4]
     statement: 'Write $3\ln x$ as a single logarithm.'
     answer_label: 'The single logarithm'
     check:
@@ -128,7 +128,7 @@ problems:
 
   - id: p11-power-law-negative
     section: "6.3"
-    dfe: [F4]
+    refs: [F4]
     statement: 'Write $-\dfrac{1}{2}\ln x$ as a single logarithm.'
     answer_label: 'The single logarithm'
     check:
@@ -140,7 +140,7 @@ problems:
 
   - id: p12-expand-log
     section: "6.3"
-    dfe: [F4]
+    refs: [F4]
     statement: 'Expand $\ln\left(x^2y\right)$ using the laws of logarithms.'
     answer_label: 'The expanded form'
     check:
@@ -152,7 +152,7 @@ problems:
 
   - id: p13-solve-natural-log
     section: "6.3"
-    dfe: [F3, F4]
+    refs: [F3, F4]
     statement: 'Solve $\ln x = 3$, giving $x$ exactly.'
     answer_label: 'The value of $x$'
     check:

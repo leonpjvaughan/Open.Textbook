@@ -6,7 +6,7 @@ problems:
   - id: circle-centre-radius
     section: '13.4'
     tier: H
-    dfe: [A16]
+    refs: [A16]
     statement: 'State the centre and radius of $x^2+y^2=25$.'
     answer_label: 'Circle centre and radius'
     check: {kind: evaluate, expression: sqrt(25), answer: '5'}
@@ -14,7 +14,7 @@ problems:
   - id: circle-equation-origin
     section: '13.4'
     tier: H
-    dfe: [A16]
+    refs: [A16]
     statement: 'Write the equation of a circle with centre $(0,0)$ and radius $4$.'
     answer_label: 'Circle at the origin'
     check: {kind: evaluate, expression: 4**2, answer: '16'}
@@ -22,7 +22,7 @@ problems:
   - id: circle-equation-shifted
     section: '13.4'
     tier: H
-    dfe: [A16]
+    refs: [A16]
     statement: 'Find the equation of a circle centred at the origin with radius $3$.'
     answer_label: 'Circle at the origin with radius 3'
     check: {kind: evaluate, expression: 3**2, answer: '9'}
@@ -30,7 +30,7 @@ problems:
   - id: circle-point-check
     section: '13.4'
     tier: H
-    dfe: [A16]
+    refs: [A16]
     statement: 'Show that $(3,4)$ lies on $x^2+y^2=25$.'
     answer_label: 'Check a point on a circle'
     plays: pythagoras
@@ -39,7 +39,7 @@ problems:
   - id: circle-x-axis
     section: '13.4'
     tier: H
-    dfe: [A16]
+    refs: [A16]
     statement: 'Find the $x$-coordinates where $x^2+y^2=25$ meets the $x$-axis.'
     answer_label: 'Circle and axis intersections'
     check: {kind: solve, equation: 'x**2=25', variable: x, answer: ['-5', '5']}
@@ -47,7 +47,7 @@ problems:
   - id: tangent-gradient
     section: '13.4'
     tier: H
-    dfe: [A16]
+    refs: [A16]
     statement: 'A radius has gradient $2$. Find the tangent gradient.'
     answer_label: 'Tangent gradient'
     check: {kind: evaluate, expression: -1/2, answer: '-1/2'}
@@ -55,7 +55,7 @@ problems:
   - id: tangent-at-3-4
     section: '13.4'
     tier: H
-    dfe: [A16]
+    refs: [A16]
     statement: 'Find the equation of the tangent at $(3,4)$ to $x^2+y^2=25$.'
     answer_label: 'Tangent equation at $(3,4)$'
     check: {kind: all, checks: [{kind: evaluate, expression: (-3/4)*3+25/4, answer: '4'}, {kind: evaluate, expression: (-3/4)*0+25/4, answer: '25/4'}]}
@@ -63,7 +63,7 @@ problems:
   - id: tangent-at-top
     section: '13.4'
     tier: H
-    dfe: [A16]
+    refs: [A16]
     statement: 'Find the tangent equation at $(0,5)$ to the circle $x^2+y^2=25$.'
     answer_label: 'Tangent at top of circle'
     check: {kind: evaluate, expression: '5', answer: '5'}
@@ -71,7 +71,7 @@ problems:
   - id: tangent-at-left
     section: '13.4'
     tier: H
-    dfe: [A16]
+    refs: [A16]
     statement: '**H** Find the tangent gradient at $(-3,4)$ to $x^2+y^2=25$.'
     answer_label: 'Tangent gradient at the left side'
     check: {kind: evaluate, expression: -(-3)/4, answer: '3/4'}
@@ -79,7 +79,7 @@ problems:
   - id: ch13-134-method-centre
     section: '13.4'
     tier: 'H'
-    dfe: [A16]
+    refs: [A16]
     statement: 'A circle has equation $x^2+y^2-6x+8y-11=0$. Which method finds its centre and radius: completing the square, or using the formula? Give a reason, then find both.'
     answer_label: 'Method choice: complete the square or use the formula'
     check:

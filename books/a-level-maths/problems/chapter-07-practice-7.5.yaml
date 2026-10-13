@@ -10,7 +10,7 @@ symbols:
 problems:
   - id: p1-stationary-quadratic
     section: "7.5"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the value of $x$ at the stationary point of $y = x^2 - 8x + 3$.'
     answer_label: 'The value of $x$'
     check:
@@ -22,7 +22,7 @@ problems:
 
   - id: p2-stationary-cubic
     section: "7.5"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the two values of $x$ at the stationary points of $y = 2x^3 - 6x$.'
     answer_label: 'The two values of $x$'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: p3-classify-cubic
     section: "7.5"
-    dfe: [G3]
+    refs: [G3]
     statement: 'The curve $y = x^3 - 3x^2 + 2$ has stationary points at $x = 0$ and $x = 2$. Use the second derivative $6x - 6$ to classify them.'
     answer_label: 'The sign at each point'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: p4-tangent-quadratic
     section: "7.5"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the gradient of the tangent to $y = x^2 + 3x$ at $x = 1$.'
     answer_label: 'The gradient'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: p5-normal-gradient
     section: "7.5"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the gradient of the normal to $y = x^2$ at $x = 1$.'
     answer_label: 'The gradient'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: p6-tangent-cubic
     section: "7.5"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the gradient of the tangent to $y = x^3 - 3x$ at $x = 2$.'
     answer_label: 'The gradient'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-box-stationary
     section: "7.5"
-    dfe: [G3]
+    refs: [G3]
     statement: 'The volume of an open box is $V = x(16 - 2x)(10 - 2x)$. Find the two values of $x$ for which $\dfrac{dV}{dx} = 12x^2 - 104x + 160$ is zero.'
     answer_label: 'The two values of $x$'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p8-box-second-derivative
     section: "7.5"
-    dfe: [G3]
+    refs: [G3]
     statement: 'For the box with $V = 4x^3 - 52x^2 + 160x$, work out the value of $\dfrac{d^2V}{dx^2}$ at $x = 2$.'
     answer_label: 'The second derivative'
     check:
@@ -105,7 +105,7 @@ problems:
 
   - id: p9-rectangle-area
     section: "7.5"
-    dfe: [G3]
+    refs: [G3]
     statement: 'A rectangle has perimeter $20$ cm. Its area is $A = x(10 - x)$ for a side $x$. Find the value of $x$ that gives the greatest area.'
     answer_label: 'The value of $x$'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: p10-exponential-minimum
     section: "7.5"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the value of $x$ at the stationary point of $y = e^x - x$.'
     answer_label: 'The value of $x$'
     check:
@@ -129,7 +129,7 @@ problems:
 
   - id: p11-ball-height
     section: "7.5"
-    dfe: [G3]
+    refs: [G3]
     statement: 'A ball is thrown so that its height after $t$ seconds is $h = 20t - 5t^2$ metres. Find the time at which the height is greatest.'
     answer_label: 'The time'
     check:
@@ -141,7 +141,7 @@ problems:
 
   - id: p12-stationary-inflection
     section: "7.5"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the value of $x$ at the stationary point of $y = x^3$, and state the gradient there.'
     answer_label: 'The value of $x$ and the gradient'
     check:

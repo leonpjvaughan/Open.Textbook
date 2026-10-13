@@ -15,4 +15,4 @@ kind: problems
 # 10.2 Refraction and Snell's law — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 2.3
+> Tier: **O** · refs: 2.3

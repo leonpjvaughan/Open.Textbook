@@ -12,7 +12,7 @@ problems:
   - id: p1-series-total-resistance
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A 3.0 Ω resistor and a 5.0 Ω resistor are connected in series. Calculate the total resistance.'
     answer_label: 'Total resistance of the series pair'
     check:
@@ -30,7 +30,7 @@ problems:
   - id: p2-series-current
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'The series pair of question 1 is connected to a 4.0 V supply. Calculate the current in the circuit.'
     answer_label: 'Current in the series circuit'
     check:
@@ -48,7 +48,7 @@ problems:
   - id: p3-series-potential-difference
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A current of 0.50 A flows through a 5.0 Ω resistor. Calculate the potential difference across it.'
     answer_label: 'Potential difference across the 5.0 Ω resistor'
     check:
@@ -66,7 +66,7 @@ problems:
   - id: p4-series-current-two
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A 2.0 Ω resistor and a 4.0 Ω resistor are connected in series to a 6.0 V battery. Calculate the current.'
     answer_label: 'Current in the circuit'
     check:
@@ -85,7 +85,7 @@ problems:
   - id: p5-series-pd-two
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A current of 1.0 A flows through a 4.0 Ω resistor. Calculate the potential difference across it.'
     answer_label: 'Potential difference across the 4.0 Ω resistor'
     check:
@@ -103,7 +103,7 @@ problems:
   - id: p6-parallel-branch-currents
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A 6.0 Ω resistor and a 24 Ω resistor are connected in parallel across a 12 V supply. Calculate the current through each resistor.'
     answer_label: 'Currents in the two branches'
     check:
@@ -126,7 +126,7 @@ problems:
   - id: p7-parallel-total-current
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'The two resistors of question 6 draw 2.0 A and 0.50 A. Calculate the total current from the supply.'
     answer_label: 'Total current from the supply'
     check:
@@ -144,7 +144,7 @@ problems:
   - id: p8-parallel-same-pd
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'Two resistors are connected in parallel across a 12 V supply. State the potential difference across each resistor, and give a reason.'
     answer_label: 'Potential difference across each parallel resistor'
     check:
@@ -162,7 +162,7 @@ problems:
   - id: p9-parallel-total-resistance
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'Two resistors of 6.0 Ω and 24 Ω are connected in parallel. Explain why the total resistance of the pair is less than 6.0 Ω.'
     answer_label: 'Why the total resistance is less than the smallest resistor'
     check:
@@ -180,7 +180,7 @@ problems:
   - id: p10-compare-series-parallel
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'Describe the difference between a series circuit and a parallel circuit. Include what is the same and what is shared in each.'
     answer_label: 'The difference between series and parallel circuits'
     check:
@@ -198,7 +198,7 @@ problems:
   - id: p11-resistance-interleaved
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'The potential difference across a component is 24 V and the current through it is 0.60 A. Calculate its resistance. This uses the equation from Section 6.1.'
     answer_label: 'Resistance of the component'
     check:
@@ -216,7 +216,7 @@ problems:
   - id: p12-charge-interleaved
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A current of 0.50 A flows through a circuit for 90 s. Calculate the charge that flows. This uses the equation from Section 6.1.'
     answer_label: 'Charge that flows'
     check:
@@ -234,7 +234,7 @@ problems:
   - id: p13-mixed-series-parallel
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A parallel pair draws a current of 0.60 A from a 9.0 V supply. The pair is connected in series with a 5.0 Ω resistor. Calculate the potential difference across the 5.0 Ω resistor, then the potential difference across the parallel pair.'
     answer_label: 'Potential differences across the resistor and the parallel pair'
     check:
@@ -258,7 +258,7 @@ problems:
   - id: p14-method-choice
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A 9.0 V supply is connected in series with a 12 Ω resistor and an unknown resistor. The potential difference across the 12 Ω resistor is 3.0 V. Say which relationship you will use, then calculate the current and the resistance of the unknown resistor.'
     answer_label: 'Current and the unknown resistance'
     check:

@@ -5,7 +5,7 @@ chapter_title: Number skills
 section: "1.1"
 section_title: Place value and ordering numbers
 tier: F
-dfe: [N1, N2]
+refs: [N1, N2]
 kind: guided-problems
 ---
 

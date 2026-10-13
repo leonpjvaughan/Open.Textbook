@@ -18,7 +18,7 @@ problems:
   - id: p1-photon-energy-frequency
     plays: photon-energy
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A photon has a frequency of 5.0e14 Hz. Find its energy.'
     answer_label: 'The photon energy'
     check:
@@ -33,7 +33,7 @@ problems:
   - id: p2-photon-energy-wavelength
     plays: photon-energy
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Find the energy of a photon of wavelength 400 nm, in joules and in electronvolts.'
     answer_label: 'The photon energy'
     check:
@@ -48,7 +48,7 @@ problems:
 
   - id: p3-frequency-from-energy
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A photon has an energy of 2.0 eV. Find its frequency.'
     answer_label: 'The frequency'
     check: {kind: approx, value: "2.0 * 1.60e-19 / 6.63e-34", target: "4.83e14", tolerance: "1e13"}
@@ -57,7 +57,7 @@ problems:
   - id: p4-wavelength-from-energy
     plays: photon-energy
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Find the wavelength of a photon of energy 3.0e-19 J.'
     answer_label: 'The wavelength'
     check:
@@ -72,7 +72,7 @@ problems:
 
   - id: p5-threshold-wavelength
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A metal has a work function of 2.30 eV. Find its threshold wavelength.'
     answer_label: 'The threshold wavelength'
     check: {kind: approx, value: "6.63e-34 * 3.00e8 / (2.30 * 1.60e-19)", target: "5.40e-7", tolerance: "5e-9"}
@@ -80,7 +80,7 @@ problems:
 
   - id: p6-max-kinetic-energy
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Light of wavelength 300 nm falls on a metal of work function 2.00 eV. Find the maximum kinetic energy of the emitted electrons, in eV.'
     answer_label: 'The maximum kinetic energy'
     check: {kind: approx, value: "6.63e-34 * 3.00e8 / 300e-9 / 1.60e-19 - 2.00", target: "2.14", tolerance: "0.02"}
@@ -88,7 +88,7 @@ problems:
 
   - id: p7-stopping-potential
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Light of wavelength 250 nm falls on a metal of work function 2.00 eV. Find the stopping potential.'
     answer_label: 'The stopping potential'
     check:
@@ -102,7 +102,7 @@ problems:
 
   - id: p8-below-threshold-intensity
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Explain why increasing the intensity of light below the threshold frequency releases no photoelectrons, however bright the light is.'
     check:
       kind: structured
@@ -124,7 +124,7 @@ problems:
 
   - id: p9-intensity-and-kinetic-energy
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Explain why the maximum kinetic energy of the photoelectrons does not depend on the intensity of the light.'
     check:
       kind: structured
@@ -146,7 +146,7 @@ problems:
 
   - id: p10-work-function
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A metal releases electrons only when the light has a wavelength shorter than 620 nm. Find its work function in eV.'
     answer_label: 'The work function'
     check: {kind: approx, value: "6.63e-34 * 3.00e8 / 620e-9 / 1.60e-19", target: "2.00", tolerance: "0.03"}
@@ -154,7 +154,7 @@ problems:
 
   - id: p11-photons-per-second
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A laser of wavelength 633 nm emits light with a power of 2.0 mW. Find the number of photons it emits each second.'
     answer_label: 'The number of photons each second'
     check: {kind: approx, value: "2.0e-3 / (6.63e-34 * 3.00e8 / 633e-9)", target: "6.4e15", tolerance: "1e14"}
@@ -162,7 +162,7 @@ problems:
 
   - id: p12-kinetic-energy-uncertainty
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'In an experiment the photon energy is 3.00 eV with an uncertainty of 0.5%, and the work function is 2.00 eV with an uncertainty of 1.0%. Find the maximum kinetic energy and its absolute uncertainty.'
     answer_label: 'The kinetic energy and its uncertainty'
     check:

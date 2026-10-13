@@ -8,7 +8,7 @@ symbols:
 problems:
   - id: p1-sample-count
     section: "11.7"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A large data set holds 4000 days of weather records. A simple random sample of 200 days contains 50 wet days. Estimate the number of wet days in the whole data set.'
     answer_label: 'The estimated number of wet days'
     check:
@@ -19,7 +19,7 @@ problems:
 
   - id: p2-stratified
     section: "11.7"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A data set contains 1200 days from station A and 800 days from station B. A stratified sample of 100 days is taken. Find the number of days from station A.'
     answer_label: 'The sample size from station A'
     check:
@@ -30,7 +30,7 @@ problems:
 
   - id: p3-frequency-density
     section: "11.7"
-    dfe: [L1]
+    refs: [L1]
     statement: 'An extract groups daily rainfall into $0$–$2$ mm with frequency 30 and $2$–$10$ mm with frequency 40. Find the frequency density of the $2$–$10$ mm class.'
     answer_label: 'The frequency density'
     check:
@@ -41,7 +41,7 @@ problems:
 
   - id: p4-frequency-from-density
     section: "11.7"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A histogram of daily sunshine has frequency density 6 in the class $10$–$20$ hours. Find the frequency in the class.'
     answer_label: 'The frequency'
     check:
@@ -52,7 +52,7 @@ problems:
 
   - id: p5-part-class
     section: "11.7"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A histogram of daily rainfall has frequency density 3 in the class $0$–$10$ mm. Find the number of days with rainfall between $4$ mm and $10$ mm.'
     answer_label: 'The number of days'
     check:
@@ -63,7 +63,7 @@ problems:
 
   - id: p6-mean
     section: "11.7"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Six daily maximum temperatures, in degrees Celsius, are $18, 20, 22, 19, 21, 20$. Find the mean.'
     answer_label: 'The mean'
     check:
@@ -75,7 +75,7 @@ problems:
 
   - id: p7-standard-deviation
     section: "11.7"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the standard deviation of $18, 20, 22, 19, 21, 20$, dividing by $n$.'
     answer_label: 'The standard deviation'
     check:
@@ -88,7 +88,7 @@ problems:
 
   - id: p8-interquartile-range
     section: "11.7"
-    dfe: [L3]
+    refs: [L3]
     statement: 'Find the interquartile range of $18, 20, 22, 19, 21, 20$, using the $(n + 1)$ positions.'
     answer_label: 'The interquartile range'
     check:
@@ -101,7 +101,7 @@ problems:
 
   - id: p9-outlier-fences
     section: "11.7"
-    dfe: [L4]
+    refs: [L4]
     statement: 'A data set has $Q_1 = 18.75$, $Q_3 = 21.25$ and IQR $= 2.5$. Find the two fences for a possible outlier.'
     answer_label: 'The two fences'
     check:
@@ -113,7 +113,7 @@ problems:
 
   - id: p10-missing-value
     section: "11.7"
-    dfe: [L4]
+    refs: [L4]
     statement: 'One day in an extract has a missing rainfall value. The five known values are $12, 15, 14, 16, 13$ mm. Find the mean of the known values.'
     answer_label: 'The mean of the known values'
     check:
@@ -125,7 +125,7 @@ problems:
 
   - id: p11-unit-conversion
     section: "11.7"
-    dfe: [L4]
+    refs: [L4]
     statement: 'A temperature is recorded as $68$ degrees Fahrenheit, but the rest of the data are in degrees Celsius. Convert $68$ degrees Fahrenheit to degrees Celsius.'
     answer_label: 'The temperature in degrees Celsius'
     check:
@@ -136,7 +136,7 @@ problems:
 
   - id: p12-method-choice
     section: "11.7"
-    dfe: [L2]
+    refs: [L2]
     statement: 'A scatter diagram from a large data set plots hours of sunshine against temperature, and a line of best fit passes through $(2, 12)$ and $(6, 20)$. Find the gradient of the line.'
     answer_label: 'The gradient'
     check:

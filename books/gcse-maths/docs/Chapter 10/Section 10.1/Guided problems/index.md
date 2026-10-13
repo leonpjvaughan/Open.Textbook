@@ -5,7 +5,7 @@ chapter_title: Sequences
 section: '10.1'
 section_title: Term-to-term and position-to-term rules
 tier: F
-dfe:
+refs:
 - A23
 kind: guided-problems
 ---

@@ -10,7 +10,7 @@ symbols:
 problems:
   - id: p1-diff-e-3x
     section: "6.2"
-    dfe: [F2, G2]
+    refs: [F2, G2]
     statement: 'Differentiate $y = e^{3x}$.'
     answer_label: 'The derivative'
     check:
@@ -22,7 +22,7 @@ problems:
 
   - id: p2-diff-e-negative
     section: "6.2"
-    dfe: [F2, G2]
+    refs: [F2, G2]
     statement: 'Differentiate $y = e^{-x}$.'
     answer_label: 'The derivative'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: p3-diff-multiple
     section: "6.2"
-    dfe: [F2, G2]
+    refs: [F2, G2]
     statement: 'Differentiate $y = 5e^{2x}$.'
     answer_label: 'The derivative'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: p4-diff-base-2
     section: "6.2"
-    dfe: [F2, G2]
+    refs: [F2, G2]
     statement: 'Differentiate $y = 2^x$.'
     answer_label: 'The derivative'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: p5-diff-base-4k
     section: "6.2"
-    dfe: [F2, G2]
+    refs: [F2, G2]
     statement: 'Differentiate $y = 4^{3x}$.'
     answer_label: 'The derivative'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: p6-gradient-at-zero
     section: "6.2"
-    dfe: [F2, G2]
+    refs: [F2, G2]
     statement: 'Find the gradient of $y = e^{2x}$ at the point where $x = 0$.'
     answer_label: 'The gradient'
     check:
@@ -82,7 +82,7 @@ problems:
 
   - id: p7-gradient-negative
     section: "6.2"
-    dfe: [F2, G2]
+    refs: [F2, G2]
     statement: 'Find the gradient of $y = 3e^{-x}$ at the point where $x = 0$.'
     answer_label: 'The gradient'
     check:
@@ -94,7 +94,7 @@ problems:
 
   - id: p8-satisfies-equation
     section: "6.2"
-    dfe: [F2, G2]
+    refs: [F2, G2]
     statement: 'Show that $y = e^{3x}$ satisfies the equation $\dfrac{dy}{dx} = 3y$.'
     answer_label: 'The derivative'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: p9-growth-rate
     section: "6.2"
-    dfe: [F2, G2]
+    refs: [F2, G2]
     statement: 'A population is modelled by $P = 200e^{0.05t}$, where $t$ is in years. Find $\dfrac{dP}{dt}$ when $t = 0$.'
     answer_label: 'The rate at $t = 0$'
     check:
@@ -118,7 +118,7 @@ problems:
 
   - id: p10-decay-rate
     section: "6.2"
-    dfe: [F2, G2]
+    refs: [F2, G2]
     statement: 'A mass is modelled by $m = 80e^{-0.2t}$, where $t$ is in hours. Find $\dfrac{dm}{dt}$ when $t = 0$.'
     answer_label: 'The rate at $t = 0$'
     check:
@@ -130,7 +130,7 @@ problems:
 
   - id: p11-gradient-half
     section: "6.2"
-    dfe: [F2, G2]
+    refs: [F2, G2]
     statement: 'Find the gradient of $y = e^{x/2}$ at the point where $x = 0$.'
     answer_label: 'The gradient'
     check:
@@ -142,7 +142,7 @@ problems:
 
   - id: p12-compare-gradients
     section: "6.2"
-    dfe: [F2, G2]
+    refs: [F2, G2]
     statement: 'Compare the gradients of $y = e^x$ and $y = e^{2x}$ at $x = 0$.'
     answer_label: 'The difference in gradient'
     check:

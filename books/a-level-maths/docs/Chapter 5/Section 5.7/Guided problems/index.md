@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Trigonometry
 section: '5.7'
 section_title: Trigonometric identities
-dfe:
+refs:
 - E5
 kind: guided-problems
 ---

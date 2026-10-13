@@ -4,7 +4,7 @@ chapter: 8
 chapter_title: Integration
 section: '8.2'
 section_title: Definite integrals and the area under a curve
-dfe:
+refs:
 - H3
 kind: problems
 ---

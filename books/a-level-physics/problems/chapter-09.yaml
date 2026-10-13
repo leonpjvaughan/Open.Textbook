@@ -20,7 +20,7 @@ problems:
   # --- Section 9.1, the Learn worked examples --------------------------------
   - id: w1-earth-moon-force
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'The Earth and the Moon: find the gravitational force between them.'
     answer_label: 'The gravitational force'
     check: {kind: approx, value: "6.67e-11 * 5.97e24 * 7.35e22 / (3.84e8)**2", target: "1.98e20", tolerance: "1e18"}
@@ -28,7 +28,7 @@ problems:
 
   - id: w2-field-strength-orbit
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the gravitational field strength at a height of 400 km above the Earth''s surface.'
     answer_label: 'The field strength'
     check: {kind: approx, value: "6.67e-11 * 5.97e24 / (6.37e6 + 4.00e5)**2", target: "8.69", tolerance: "0.02"}
@@ -36,7 +36,7 @@ problems:
 
   - id: w3-potential-and-energy
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the gravitational potential at the Earth''s surface and at the orbit, and the energy to lift an 800 kg spacecraft between them.'
     answer_label: 'The two potentials and the energy'
     check:
@@ -49,7 +49,7 @@ problems:
 
   - id: w4-orbital-speed-and-period
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the orbital speed and period of the spacecraft at r = 6.77e6 m.'
     answer_label: 'The speed and the period'
     check:
@@ -61,7 +61,7 @@ problems:
 
   - id: w5-escape-speed-earth
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the escape speed from the Earth''s surface.'
     answer_label: 'The escape speed'
     check: {kind: approx, value: "sqrt(2 * 6.67e-11 * 5.97e24 / 6.37e6)", target: "1.12e4", tolerance: "20"}
@@ -70,7 +70,7 @@ problems:
   # --- Section 9.1, the Practise with help problems --------------------------
   - id: g1-force-two-masses
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Two 1000 kg spheres 2.0 m apart: find the force between them.'
     answer_label: 'The force'
     check: {kind: approx, value: "6.67e-11 * 1000 * 1000 / 2.0**2", target: "1.67e-5", tolerance: "1e-7"}
@@ -78,7 +78,7 @@ problems:
 
   - id: g2-field-strength-mars
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the gravitational field strength at the surface of Mars.'
     answer_label: 'The field strength'
     check: {kind: approx, value: "6.67e-11 * 6.42e23 / (3.39e6)**2", target: "3.73", tolerance: "0.02"}
@@ -86,7 +86,7 @@ problems:
 
   - id: g3-field-strength-at-2r
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the field strength at 2R from the centre, given 9.81 N/kg at the surface.'
     answer_label: 'The field strength'
     check: {kind: approx, value: "9.81 / 2**2", target: "2.45", tolerance: "0.01"}
@@ -94,7 +94,7 @@ problems:
 
   - id: g4-potential-mars
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the gravitational potential at the surface of Mars.'
     answer_label: 'The potential'
     check: {kind: approx, value: "-6.67e-11 * 6.42e23 / 3.39e6", target: "-1.26e7", tolerance: "1e5"}
@@ -102,7 +102,7 @@ problems:
 
   - id: g5-orbital-speed-and-period
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A satellite orbits at r = 7.0e6 m: find its speed and period.'
     answer_label: 'The speed and the period'
     check:
@@ -114,7 +114,7 @@ problems:
 
   - id: g6-escape-speed-moon
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the escape speed from the Moon.'
     answer_label: 'The escape speed'
     check: {kind: approx, value: "sqrt(2 * 6.67e-11 * 7.35e22 / 1.74e6)", target: "2.37e3", tolerance: "20"}
@@ -122,7 +122,7 @@ problems:
 
   - id: g7-energy-between-potentials
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the energy to move a 200 kg satellite from -6.25e7 J/kg to -5.00e7 J/kg.'
     answer_label: 'The energy needed'
     check: {kind: approx, value: "200 * ((-5.00e7) - (-6.25e7))", target: "2.5e9", tolerance: "1e8"}
@@ -130,7 +130,7 @@ problems:
 
   - id: g8-astronaut-weight
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the weight at the orbit of a 70 kg astronaut, where g = 8.69 N/kg.'
     answer_label: 'The weight'
     check: {kind: approx, value: "70 * 8.69", target: "608", tolerance: "2"}
@@ -139,7 +139,7 @@ problems:
   # --- Section 9.2, the Learn worked examples --------------------------------
   - id: w1-coulomb-force
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Two +2.0 microcoulomb charges 0.30 m apart: find the force between them.'
     answer_label: 'The force'
     check: {kind: approx, value: "8.99e9 * 2.0e-6 * 2.0e-6 / 0.30**2", target: "0.40", tolerance: "0.005"}
@@ -147,7 +147,7 @@ problems:
 
   - id: w2-field-and-potential
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the field strength and the potential at 0.30 m from a +2.0 microcoulomb charge.'
     answer_label: 'The field strength and the potential'
     check:
@@ -159,7 +159,7 @@ problems:
 
   - id: w3-uniform-field-and-force
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: '1200 V across grids 1.5 mm apart: find the field strength and the force on a xenon ion.'
     answer_label: 'The field strength and the force'
     check:
@@ -171,7 +171,7 @@ problems:
 
   - id: w4-ion-energy-and-speed
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the kinetic energy and speed of a xenon ion accelerated through 1.20 kV.'
     answer_label: 'The kinetic energy and the speed'
     check:
@@ -184,7 +184,7 @@ problems:
   # --- Section 9.2, the Practise with help problems --------------------------
   - id: g1-coulomb-force-opposite
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Charges +3.0 and -2.0 microcoulombs 0.50 m apart: find the force.'
     answer_label: 'The force'
     check: {kind: approx, value: "8.99e9 * 3.0e-6 * 2.0e-6 / 0.50**2", target: "0.22", tolerance: "0.005"}
@@ -192,7 +192,7 @@ problems:
 
   - id: g2-field-point-charge
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the field strength at 0.20 m from a +5.0 nC charge.'
     answer_label: 'The field strength'
     check: {kind: approx, value: "8.99e9 * 5.0e-9 / 0.20**2", target: "1.1e3", tolerance: "50"}
@@ -200,7 +200,7 @@ problems:
 
   - id: g3-uniform-field-electron
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: '240 V across plates 4.0 mm apart: find the field strength and the force on an electron.'
     answer_label: 'The field strength and the force'
     check:
@@ -212,7 +212,7 @@ problems:
 
   - id: g4-potential-point-charge
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the potential at 0.20 m from a +5.0 nC charge.'
     answer_label: 'The potential'
     check: {kind: approx, value: "8.99e9 * 5.0e-9 / 0.20", target: "2.25e2", tolerance: "2"}
@@ -220,7 +220,7 @@ problems:
 
   - id: g5-electron-energy-and-speed
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'An electron is accelerated from rest through 250 V: find its kinetic energy and speed.'
     answer_label: 'The kinetic energy and the speed'
     check:
@@ -232,7 +232,7 @@ problems:
 
   - id: g6-work-done-charge
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the work done moving +4.0 microcoulombs through 500 V.'
     answer_label: 'The work done'
     check: {kind: approx, value: "4.0e-6 * 500", target: "2.0e-3", tolerance: "1e-5"}
@@ -240,7 +240,7 @@ problems:
 
   - id: g7-electric-gravity-ratio
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Compare the electric force between two electrons with the gravitational force between them.'
     answer_label: 'The ratio'
     check: {kind: approx, value: "8.99e9 * (1.60e-19)**2 / (6.67e-11 * (9.11e-31)**2)", target: "4.2e42", tolerance: "1e41"}
@@ -248,7 +248,7 @@ problems:
 
   - id: g8-charged-particle-path
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A positive charge enters a uniform electric field at right angles: describe its path and the force on it.'
     check:
       kind: structured
@@ -271,7 +271,7 @@ problems:
   # --- Section 9.3, the Learn worked examples --------------------------------
   - id: w1-force-on-wire
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A 0.20 m wire carrying 3.0 A at right angles to 0.15 T: find the force, and at 30 degrees.'
     answer_label: 'The force at right angles and at 30 degrees'
     check:
@@ -283,7 +283,7 @@ problems:
 
   - id: w2-force-on-electron
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'An electron at 5.0e6 m/s at right angles to 0.20 T: find the force.'
     answer_label: 'The force'
     check: {kind: approx, value: "0.20 * 1.60e-19 * 5.0e6", target: "1.6e-13", tolerance: "1e-15"}
@@ -291,7 +291,7 @@ problems:
 
   - id: w3-radius-and-period
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the radius and period of the electron in the 0.20 T field.'
     answer_label: 'The radius and the period'
     check:
@@ -303,7 +303,7 @@ problems:
 
   - id: w4-flux-and-linkage
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A 200-turn coil of area 4.0e-3 m^2 at right angles to 0.25 T: find the flux and the flux linkage.'
     answer_label: 'The flux and the flux linkage'
     check:
@@ -316,7 +316,7 @@ problems:
   # --- Section 9.3, the Practise with help problems --------------------------
   - id: g1-force-on-wire
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A 0.50 m wire carrying 2.0 A at right angles to 0.40 T: find the force.'
     answer_label: 'The force'
     check: {kind: approx, value: "0.40 * 2.0 * 0.50", target: "0.40", tolerance: "0.005"}
@@ -324,7 +324,7 @@ problems:
 
   - id: g2-force-on-wire-angle
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'The same wire at 40 degrees to the field: find the force.'
     answer_label: 'The force'
     check: {kind: approx, value: "0.40 * 2.0 * 0.50 * sin(40 * pi / 180)", target: "0.26", tolerance: "0.005"}
@@ -332,7 +332,7 @@ problems:
 
   - id: g3-force-on-proton
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A proton at 2.0e6 m/s at right angles to 0.30 T: find the force.'
     answer_label: 'The force'
     check: {kind: approx, value: "0.30 * 1.60e-19 * 2.0e6", target: "9.6e-14", tolerance: "1e-15"}
@@ -340,7 +340,7 @@ problems:
 
   - id: g4-radius-of-proton
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the radius of the path of the proton in the 0.30 T field.'
     answer_label: 'The radius'
     check: {kind: approx, value: "1.67e-27 * 2.0e6 / (0.30 * 1.60e-19)", target: "0.070", tolerance: "0.001"}
@@ -348,7 +348,7 @@ problems:
 
   - id: g5-flux-and-linkage
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A 150-turn coil of area 3.0e-3 m^2 at right angles to 0.20 T: find the flux and the flux linkage.'
     answer_label: 'The flux and the flux linkage'
     check:
@@ -360,7 +360,7 @@ problems:
 
   - id: g6-speed-stays-constant
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Explain why the speed of a charged particle in a magnetic field stays constant.'
     check:
       kind: structured
@@ -382,7 +382,7 @@ problems:
 
   - id: g7-mass-spectrometer
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Explain how a mass spectrometer separates isotopes.'
     check:
       kind: structured
@@ -404,7 +404,7 @@ problems:
 
   - id: g8-force-at-an-angle
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Explain how to find the force on a wire at 35 degrees to a magnetic field.'
     check:
       kind: structured
@@ -427,7 +427,7 @@ problems:
   # --- Section 9.4, the Learn worked examples --------------------------------
   - id: w1-faraday-emf
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A 50-turn coil of area 0.020 m^2: the field rises from 0.10 T to 0.50 T in 0.20 s. Find the emf.'
     answer_label: 'The induced emf'
     check: {kind: approx, value: "50 * 0.020 * (0.50 - 0.10) / 0.20", target: "2.0", tolerance: "0.05"}
@@ -435,7 +435,7 @@ problems:
 
   - id: w2-tether-emf-power-force
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'The 20 m tether at 7.67e3 m/s in 3.0e-5 T: find the emf, the power and the opposing force at 0.80 A.'
     answer_label: 'The emf, the power and the force'
     check:
@@ -448,7 +448,7 @@ problems:
 
   - id: w3-peak-emf
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A 200-turn coil of area 4.0e-3 m^2 turns at 50 rad/s in 0.25 T: find the peak emf.'
     answer_label: 'The peak emf'
     check: {kind: approx, value: "200 * 4.0e-3 * 0.25 * 50", target: "10", tolerance: "0.1"}
@@ -456,7 +456,7 @@ problems:
 
   - id: w4-search-coil
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A 2000-turn search coil of area 1.5e-4 m^2 in a field changing at 0.20 T/s: find the emf.'
     answer_label: 'The emf'
     check: {kind: approx, value: "2000 * 1.5e-4 * 0.20", target: "0.060", tolerance: "0.001"}
@@ -465,7 +465,7 @@ problems:
   # --- Section 9.4, the Practise with help problems --------------------------
   - id: g1-faraday-emf
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A 100-turn coil of area 0.015 m^2: the field rises from 0.20 T to 0.60 T in 0.40 s. Find the emf.'
     answer_label: 'The emf'
     check: {kind: approx, value: "100 * 0.015 * (0.60 - 0.20) / 0.40", target: "1.5", tolerance: "0.02"}
@@ -473,7 +473,7 @@ problems:
 
   - id: g2-motional-emf
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A 0.25 m rod at 6.0 m/s at right angles to 0.40 T: find the emf.'
     answer_label: 'The emf'
     check: {kind: approx, value: "0.40 * 0.25 * 6.0", target: "0.60", tolerance: "0.005"}
@@ -481,7 +481,7 @@ problems:
 
   - id: g3-current-and-force
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'With a total resistance of 2.0 ohms, find the current and the opposing force for the 0.60 V rod.'
     answer_label: 'The current and the force'
     check:
@@ -493,7 +493,7 @@ problems:
 
   - id: g4-search-coil
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A 500-turn search coil of area 2.0e-4 m^2 in a field changing at 0.30 T/s: find the emf.'
     answer_label: 'The emf'
     check: {kind: approx, value: "500 * 2.0e-4 * 0.30", target: "0.030", tolerance: "0.001"}
@@ -501,7 +501,7 @@ problems:
 
   - id: g5-peak-emf
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A 150-turn coil of area 5.0e-3 m^2 turns at 60 rad/s in 0.20 T: find the peak emf.'
     answer_label: 'The peak emf'
     check: {kind: approx, value: "150 * 5.0e-3 * 0.20 * 60", target: "9.0", tolerance: "0.05"}
@@ -509,7 +509,7 @@ problems:
 
   - id: g6-lenz-conservation
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Explain why an induced current opposes the change that produced it.'
     check:
       kind: structured
@@ -531,7 +531,7 @@ problems:
 
   - id: g7-transformer
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A transformer has 1200 primary turns and 100 secondary turns on a 240 V supply. Find the secondary voltage.'
     answer_label: 'The secondary voltage'
     check: {kind: approx, value: "240 * 100 / 1200", target: "20", tolerance: "0.1"}
@@ -539,7 +539,7 @@ problems:
 
   - id: g8-copper-tube
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Explain why a magnet falls slowly down a vertical copper tube.'
     check:
       kind: structured

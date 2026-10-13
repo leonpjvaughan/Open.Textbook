@@ -16,7 +16,7 @@ problems:
   - id: w1-signal-time
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'The telescope orbits 540 km above the Earth. A radio signal travels at $3.0 \times 10^{8}\,\text{m/s}$. Calculate the time for a signal from the telescope to reach the ground.'
     answer_label: 'Time for the radio signal to reach the ground'
     check:
@@ -34,7 +34,7 @@ problems:
   - id: w2-sunlight-time
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'The Sun is $1.5 \times 10^{11}\,\text{m}$ from the Earth. Light travels at $3.0 \times 10^{8}\,\text{m/s}$. Calculate how long light takes to travel from the Sun to the Earth.'
     answer_label: 'Time for light to reach the Earth'
     check:
@@ -52,7 +52,7 @@ problems:
   - id: w3-moonlight-time
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'The Moon is $3.84 \times 10^{8}\,\text{m}$ from the Earth. Calculate how long light takes to travel from the Moon to the Earth.'
     answer_label: 'Time for light to travel from the Moon'
     check:
@@ -70,7 +70,7 @@ problems:
   - id: w4-jupiter-ratio
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'Jupiter is $7.8 \times 10^{11}\,\text{m}$ from the Sun and the Earth is $1.5 \times 10^{11}\,\text{m}$ from the Sun. Work out how many times further from the Sun Jupiter is.'
     answer_label: 'How many times further Jupiter is'
     check: {kind: evaluate, expression: '7.8e11 / 1.5e11', answer: '5.2'}
@@ -79,7 +79,7 @@ problems:
   - id: w5-gravity-keeps-orbit
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'Explain what keeps the telescope in a circular orbit around the Earth.'
     answer_label: 'What keeps the telescope in orbit'
     check:
@@ -100,7 +100,7 @@ problems:
   - id: w6-sun-equilibrium
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'Explain why the Sun stays the same size instead of collapsing or exploding.'
     answer_label: 'Why the Sun is stable'
     check:
@@ -121,7 +121,7 @@ problems:
   - id: w7-star-lifecycle
     section: '10.1'
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'Describe the life cycle of a star much more massive than the Sun.'
     answer_label: 'The life cycle of a massive star'
     check:
@@ -148,7 +148,7 @@ problems:
   - id: w8-ht-changing-velocity
     section: '10.1'
     tier: H
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'The telescope moves at a constant speed but its velocity changes. Explain how.'
     answer_label: 'How the velocity changes while the speed stays the same'
     check:
@@ -169,7 +169,7 @@ problems:
   - id: w9-ht-stable-orbit
     section: '10.1'
     tier: H
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'For a stable orbit, explain why the radius must change if the speed of the object changes.'
     answer_label: 'Why the radius must change with the speed'
     check:
@@ -191,7 +191,7 @@ problems:
   - id: w10-distant-galaxy
     section: '10.2'
     tier: F
-    dfe: [SP2]
+    refs: [SP2]
     statement: 'A distant galaxy is $2.4 \times 10^{25}\,\text{m}$ from the Earth. Light travels at $3.0 \times 10^{8}\,\text{m/s}$. Calculate how long the light has taken to reach the Earth.'
     answer_label: 'Time for the light from a distant galaxy'
     check:
@@ -210,7 +210,7 @@ problems:
   - id: w11-andromeda
     section: '10.2'
     tier: F
-    dfe: [SP2]
+    refs: [SP2]
     statement: 'The Andromeda galaxy is $2.4 \times 10^{22}\,\text{m}$ from the Earth. Calculate how long light takes to travel from Andromeda to the Earth.'
     answer_label: 'Light-travel time from Andromeda'
     check:
@@ -229,7 +229,7 @@ problems:
   - id: w12-redshift-explanation
     section: '10.2'
     tier: F
-    dfe: [SP2]
+    refs: [SP2]
     statement: 'Explain what the red-shift of a galaxy shows.'
     answer_label: 'What red-shift shows'
     check:
@@ -250,7 +250,7 @@ problems:
   - id: w13-big-bang
     section: '10.2'
     tier: F
-    dfe: [SP2]
+    refs: [SP2]
     statement: 'Describe the Big Bang model and explain how red-shift supports it.'
     answer_label: 'The Big Bang model and the evidence for it'
     check:

@@ -5,7 +5,7 @@ chapter_title: 'Statistics: spread, grouped data and correlation'
 section: '25.5'
 section_title: Comparing distributions and outliers
 tier: H
-dfe: [S4]
+refs: [S4]
 kind: problems
 ---
 

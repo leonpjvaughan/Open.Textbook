@@ -15,4 +15,4 @@ kind: problems
 # 14.6 Composing transformations — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 2.4
+> Tier: **H** · refs: 2.4

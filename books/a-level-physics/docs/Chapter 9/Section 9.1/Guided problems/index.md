@@ -4,7 +4,7 @@ chapter: 9
 chapter_title: Fields
 section: '9.1'
 section_title: Gravitational fields
-dfe:
+refs:
 - AP9
 kind: guided-problems
 ---

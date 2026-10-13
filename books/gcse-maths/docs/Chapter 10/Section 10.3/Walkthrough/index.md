@@ -5,7 +5,7 @@ chapter_title: Sequences
 section: '10.3'
 section_title: The nth term of a linear sequence
 tier: F
-dfe:
+refs:
 - A25
 kind: walkthrough
 ---

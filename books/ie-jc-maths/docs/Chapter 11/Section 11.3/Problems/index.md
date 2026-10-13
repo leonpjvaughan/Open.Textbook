@@ -15,4 +15,4 @@ kind: problems
 # 11.3 Multiplying two brackets — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: AF.3
+> Tier: **O** · refs: AF.3

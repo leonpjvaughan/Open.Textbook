@@ -12,7 +12,7 @@ problems:
   - id: p1-activity
     section: '9.2'
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'Define activity, and state the unit in which it is measured.'
     answer_label: 'Activity and its unit'
     check:
@@ -30,7 +30,7 @@ problems:
   - id: p2-radiation-types
     section: '9.2'
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'Describe an alpha particle, a beta particle and a gamma ray, and say where each one comes from.'
     answer_label: 'Alpha, beta and gamma radiation'
     check:
@@ -51,7 +51,7 @@ problems:
   - id: p3-penetration
     section: '9.2'
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'State which type of radiation is stopped by a sheet of paper, and which type needs thick lead to stop it.'
     answer_label: 'Stopping alpha and gamma radiation'
     check:
@@ -69,7 +69,7 @@ problems:
   - id: p4-alpha-equation
     section: '9.2'
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'A nucleus of radon-222, $^{222}_{86}\text{Rn}$, emits an alpha particle. Write the balanced nuclear equation for the decay.'
     answer_label: 'The balanced alpha decay equation'
     check:
@@ -82,7 +82,7 @@ problems:
   - id: p5-beta-equation
     section: '9.2'
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'A nucleus of carbon-14, $^{14}_{6}\text{C}$, emits a beta particle. Write the balanced nuclear equation for the decay.'
     answer_label: 'The balanced beta decay equation'
     check:
@@ -95,7 +95,7 @@ problems:
   - id: p6-half-life-count
     section: '9.2'
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'A source has a half-life of 4.0 minutes and starts with a count rate of 640 counts per second. Calculate the count rate after 12 minutes.'
     answer_label: 'Count rate after 12 minutes'
     check:
@@ -108,7 +108,7 @@ problems:
   - id: p7-half-life-find
     section: '9.2'
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'A source has a count rate of 200 counts per second. After 30 minutes the count rate is 50 counts per second. Work out the half-life of the source.'
     answer_label: 'Half-life of the source'
     check: {kind: evaluate, expression: '30 / 2', answer: '15'}
@@ -117,7 +117,7 @@ problems:
   - id: p8-random-decay
     section: '9.2'
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'Explain why the count rate from a source does not fall to exactly half after one half-life.'
     answer_label: 'Why the count rate is only about half'
     check:
@@ -135,7 +135,7 @@ problems:
   - id: p9-beta-mass-number
     section: '9.2'
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'Explain why the mass number of a nucleus does not change when the nucleus emits a beta particle.'
     answer_label: 'Why beta decay leaves the mass number unchanged'
     check:
@@ -153,7 +153,7 @@ problems:
   - id: p10-contamination
     section: '9.2'
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'Compare the hazards of contamination and irradiation, and state one precaution that protects against each.'
     answer_label: 'Contamination compared with irradiation'
     check:
@@ -174,7 +174,7 @@ problems:
   - id: p11-convert-kbq
     section: '9.2'
     tier: F
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'A source has an activity of 2.5 kBq. Convert this to becquerels.'
     answer_label: 'The activity in becquerels'
     check: {kind: convert, value: '2.5', from: 'kBq', to: 'Bq', answer: '2500'}
@@ -183,7 +183,7 @@ problems:
   - id: p12-fraction-remaining
     section: '9.2'
     tier: H
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'After four half-lives, state the fraction of the original activity that remains.'
     answer_label: 'Fraction of activity remaining'
     check: {kind: evaluate, expression: '(1/2)**4', answer: '1/16'}
@@ -192,7 +192,7 @@ problems:
   - id: p13-net-decline
     section: '9.2'
     tier: H
-    dfe: [AT2]
+    refs: [AT2]
     statement: 'After three half-lives, calculate the net decline in a radioactive emission as a ratio.'
     answer_label: 'Net decline after three half-lives'
     check: {kind: evaluate, expression: '1 - (1/2)**3', answer: '7/8'}

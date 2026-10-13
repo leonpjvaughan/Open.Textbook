@@ -19,4 +19,4 @@ kind: walkthrough
 # 22.6 Reviewing the whole course — Learn
 
 > **Stub.** Teaching narrative and fully worked examples. At least one Tier-1 or Tier-2 interactive figure where a parameter is worth manipulating. State prerequisites and learning objectives at the top.
-> Tier: **O** · DfE refs: 1.1, 1.2, 2.1, 3.1, 4.1
+> Tier: **O** · refs: 1.1, 1.2, 2.1, 3.1, 4.1

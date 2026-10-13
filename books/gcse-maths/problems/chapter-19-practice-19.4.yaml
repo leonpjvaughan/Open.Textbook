@@ -3,7 +3,7 @@ problems:
 - id: 'ch19-19-4-01'
   section: '19.4'
   tier: 'F'
-  dfe: &id001
+  refs: &id001
   - 'G16'
   - 'G17'
   statement: 'A cuboid measures 4 cm by 3 cm by 2 cm. Work out its volume.'
@@ -16,7 +16,7 @@ problems:
 - id: 'ch19-19-4-02'
   section: '19.4'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A cuboid measures 5 cm by 4 cm by 3 cm. Work out its surface area.'
   answer_label: 'Cuboid surface area'
   check:
@@ -27,7 +27,7 @@ problems:
 - id: 'ch19-19-4-03'
   section: '19.4'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A triangular prism has cross-section area 12 cm² and length 8 cm. Work out its volume.'
   answer_label: 'Prism volume'
   check:
@@ -38,7 +38,7 @@ problems:
 - id: 'ch19-19-4-04'
   section: '19.4'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A triangular prism has a triangular cross-section with base 6 cm and perpendicular height 4 cm. Its length is 10 cm. Work out its volume and state which area formula you use.'
   answer_label: 'Prism volume'
   check:
@@ -49,7 +49,7 @@ problems:
 - id: 'ch19-19-4-05'
   section: '19.4'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A cylinder has radius 3 cm and height 5 cm. Work out its volume in terms of π.'
   answer_label: 'Cylinder volume'
   check:
@@ -60,7 +60,7 @@ problems:
 - id: 'ch19-19-4-06'
   section: '19.4'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A cylinder has radius 2 cm and height 7 cm. Work out its curved surface area in terms of π.'
   answer_label: 'Curved surface area'
   check:
@@ -71,7 +71,7 @@ problems:
 - id: 'ch19-19-4-07'
   section: '19.4'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A cylinder has radius 4 cm and height 6 cm. Work out its total surface area in terms of π.'
   answer_label: 'Cylinder surface area'
   check:
@@ -82,7 +82,7 @@ problems:
 - id: 'ch19-19-4-08'
   section: '19.4'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A prism has volume 180 cm³ and length 12 cm. Work out its cross-section area. Explain why you divide by the length.'
   answer_label: 'Cross-section area'
   check:

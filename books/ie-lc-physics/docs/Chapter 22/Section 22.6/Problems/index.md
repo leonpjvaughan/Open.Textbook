@@ -19,4 +19,4 @@ kind: problems
 # 22.6 Reviewing the whole course — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 1.1, 1.2, 2.1, 3.1, 4.1
+> Tier: **O** · refs: 1.1, 1.2, 2.1, 3.1, 4.1

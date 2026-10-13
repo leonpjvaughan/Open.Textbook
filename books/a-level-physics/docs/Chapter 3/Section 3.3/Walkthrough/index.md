@@ -4,7 +4,7 @@ chapter: 3
 chapter_title: Mechanics
 section: '3.3'
 section_title: Work, energy and power
-dfe:
+refs:
 - AP3
 kind: walkthrough
 ---

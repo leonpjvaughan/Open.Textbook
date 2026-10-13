@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: r1-bracket-exponential
     section: "9.1"
-    dfe: [I1]
+    refs: [I1]
     statement: 'Show that $e^{-x} = x$ has a root between $0$ and $1$.'
     answer_label: 'The two values'
     check:
@@ -21,7 +21,7 @@ problems:
 
   - id: r2-derivative-cubic
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'For $f(x) = x^3 - 4x + 1$, write down $f''(x)$.'
     answer_label: 'The derivative'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: r3-newton-cubic
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Use Newton–Raphson on $x^3 - 4x + 1 = 0$ with $x_0 = 0.3$. Find $x_2$ to four decimal places.'
     answer_label: 'The value of x2'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: r4-simple-iteration
     section: "9.2"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Use $x_{n+1} = \dfrac{1}{2}\left(x_n + \dfrac{3}{x_n}\right)$ with $x_0 = 2$ to find $x_2$.'
     answer_label: 'The value of x2'
     check:
@@ -57,7 +57,7 @@ problems:
 
   - id: r5-trapezium-cubic
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'Use the trapezium rule with four strips to estimate $\displaystyle\int_0^1 (x^3 + 1)\,dx$.'
     answer_label: 'The estimate'
     check:
@@ -68,7 +68,7 @@ problems:
 
   - id: r6-trapezium-exact
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'Find the exact value of $\displaystyle\int_0^1 (x^3 + 1)\,dx$.'
     answer_label: 'The exact value'
     check:
@@ -80,7 +80,7 @@ problems:
 
   - id: r7-trapezium-overestimate
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'State whether the four-strip estimate $1.265625$ for $\displaystyle\int_0^1 (x^3 + 1)\,dx$ is too large or too small.'
     answer_label: 'The comparison'
     check:
@@ -92,7 +92,7 @@ problems:
 
   - id: r8-trapezium-bounds
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'Using four strips and rectangles, give a lower limit and an upper limit for $\displaystyle\int_0^1 (x^3 + 1)\,dx$.'
     answer_label: 'The limits'
     check:
@@ -104,7 +104,7 @@ problems:
 
   - id: r9-differentiate-logarithm
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Differentiate $y = x^2 \ln x$. This uses Chapter 7.'
     answer_label: 'The derivative'
     check:
@@ -116,7 +116,7 @@ problems:
 
   - id: r10-definite-integral
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'Evaluate $\displaystyle\int_0^1 \left(3x^2 + 2x\right)dx$. This uses Chapter 8.'
     answer_label: 'The value of the integral'
     check:
@@ -128,7 +128,7 @@ problems:
 
   - id: r11-solve-exponential
     section: "9.5"
-    dfe: [I4]
+    refs: [I4]
     statement: 'Solve $2^x = 10$, giving an exact answer for $x$. This uses Chapter 6.'
     answer_label: 'The value of x'
     check:
@@ -140,7 +140,7 @@ problems:
 
   - id: r12-speed-context
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'A van''s speed is recorded every two seconds: $0, 6, 10, 12, 12$ metres per second at $t = 0, 2, 4, 6, 8$ seconds. Estimate the distance travelled.'
     answer_label: 'The distance'
     check:
@@ -151,7 +151,7 @@ problems:
 
   - id: r13-bracket-logarithm
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'Show that $x + \ln x = 3$ has a root between $2$ and $3$.'
     answer_label: 'The two values'
     check:
@@ -163,7 +163,7 @@ problems:
 
   - id: r14-root-logarithm
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'For $f(x) = x + \ln x - 3$, state the root to three decimal places.'
     answer_label: 'The root'
     check:

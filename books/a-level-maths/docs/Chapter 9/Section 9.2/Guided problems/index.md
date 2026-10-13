@@ -5,7 +5,7 @@ chapter: 9
 chapter_title: Numerical methods
 section: '9.2'
 section_title: Simple iterative methods, cobweb and staircase diagrams
-dfe:
+refs:
 - I2
 kind: guided-problems
 ---

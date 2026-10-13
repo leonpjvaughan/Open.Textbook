@@ -5,7 +5,7 @@ chapter_title: Straight-line graphs and rates of change
 section: '11.1'
 section_title: Coordinates and plotting graphs
 tier: F
-dfe: [A8, A9, G11]
+refs: [A8, A9, G11]
 kind: guided-problems
 ---
 

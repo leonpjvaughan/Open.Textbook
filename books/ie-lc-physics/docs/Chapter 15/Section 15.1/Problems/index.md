@@ -15,4 +15,4 @@ kind: problems
 # 15.1 Magnetic fields and magnetic materials — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 3.4
+> Tier: **O** · refs: 3.4

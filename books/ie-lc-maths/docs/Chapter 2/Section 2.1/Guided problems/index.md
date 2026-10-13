@@ -15,4 +15,4 @@ kind: guided-problems
 # 2.1 Percentages and percentage change — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **F** · DfE refs: 3.3
+> Tier: **F** · refs: 3.3

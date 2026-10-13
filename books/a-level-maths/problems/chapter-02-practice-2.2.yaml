@@ -7,7 +7,7 @@ chapter: 2
 problems:
   - id: p1-simplify-50
     section: "2.2"
-    dfe: [B2]
+    refs: [B2]
     statement: 'Simplify $\sqrt{50}$.'
     answer_label: 'Simplified'
     check:
@@ -18,7 +18,7 @@ problems:
 
   - id: p2-difference
     section: "2.2"
-    dfe: [B2]
+    refs: [B2]
     statement: 'Simplify $\sqrt{72} - \sqrt{32}$.'
     answer_label: 'Simplified'
     check:
@@ -29,7 +29,7 @@ problems:
 
   - id: p3-sum
     section: "2.2"
-    dfe: [B2]
+    refs: [B2]
     statement: 'Simplify $\sqrt{12} + \sqrt{75}$.'
     answer_label: 'Simplified'
     check:
@@ -40,7 +40,7 @@ problems:
 
   - id: p4-product
     section: "2.2"
-    dfe: [B2]
+    refs: [B2]
     statement: 'Work out $\sqrt{8} \times \sqrt{18}$.'
     answer_label: 'The value'
     check:
@@ -51,7 +51,7 @@ problems:
 
   - id: p5-conjugate-product
     section: "2.2"
-    dfe: [B2]
+    refs: [B2]
     statement: 'Expand and simplify $\left(2 + \sqrt{3}\right)\left(2 - \sqrt{3}\right)$.'
     answer_label: 'Simplified'
     check:
@@ -62,7 +62,7 @@ problems:
 
   - id: p6-rationalise-simple
     section: "2.2"
-    dfe: [B2]
+    refs: [B2]
     statement: 'Write $\dfrac{6}{\sqrt{3}}$ with a rational denominator.'
     answer_label: 'Rationalised'
     check:
@@ -73,7 +73,7 @@ problems:
 
   - id: p7-rationalise-conjugate
     section: "2.2"
-    dfe: [B2]
+    refs: [B2]
     statement: 'Write $\dfrac{1}{3 + \sqrt{2}}$ with a rational denominator.'
     answer_label: 'Rationalised'
     check:
@@ -84,7 +84,7 @@ problems:
 
   - id: p8-rationalise-conjugate-two
     section: "2.2"
-    dfe: [B2]
+    refs: [B2]
     statement: 'Write $\dfrac{5}{\sqrt{7} - 2}$ with a rational denominator.'
     answer_label: 'Rationalised'
     check:
@@ -95,7 +95,7 @@ problems:
 
   - id: p9-square-of-a-sum
     section: "2.2"
-    dfe: [B2]
+    refs: [B2]
     statement: 'Expand and simplify $\left(\sqrt{5} + 2\right)^2$.'
     answer_label: 'Simplified'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: p10-compare-surds
     section: "2.2"
-    dfe: [B2]
+    refs: [B2]
     statement: 'Explain why $\sqrt{2} + \sqrt{3} > \sqrt{5}$.'
     answer_label: 'A valid reason'
     check:
@@ -118,7 +118,7 @@ problems:
 
   - id: p11-fraction-times-surd
     section: "2.2"
-    dfe: [B2]
+    refs: [B2]
     statement: 'Write $\dfrac{2}{3\sqrt{2}}$ with a rational denominator.'
     answer_label: 'Rationalised'
     check:
@@ -129,7 +129,7 @@ problems:
 
   - id: p12-rationalise-numerator-surd
     section: "2.2"
-    dfe: [B2]
+    refs: [B2]
     statement: 'Write $\dfrac{2 + \sqrt{3}}{1 - \sqrt{3}}$ with a rational denominator.'
     answer_label: 'Rationalised'
     check:

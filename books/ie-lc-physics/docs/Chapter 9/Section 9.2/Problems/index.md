@@ -15,4 +15,4 @@ kind: problems
 # 9.2 Frequency, wavelength and wave speed — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 2.2
+> Tier: **O** · refs: 2.2

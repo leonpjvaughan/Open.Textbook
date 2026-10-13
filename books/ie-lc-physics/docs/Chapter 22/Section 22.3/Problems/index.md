@@ -15,4 +15,4 @@ kind: problems
 # 22.3 Designing the investigation and gathering primary data — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 1.4
+> Tier: **O** · refs: 1.4

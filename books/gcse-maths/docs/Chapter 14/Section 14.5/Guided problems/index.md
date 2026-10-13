@@ -5,7 +5,7 @@ chapter_title: Simultaneous equations and iteration
 section: "14.5"
 section_title: Iteration and numerical methods
 tier: H
-dfe: [A20]
+refs: [A20]
 kind: guided-problems
 ---
 

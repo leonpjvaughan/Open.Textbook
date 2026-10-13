@@ -5,7 +5,7 @@ chapter_title: Probability
 section: '23.1'
 section_title: The probability scale and equally likely outcomes
 tier: F
-dfe:
+refs:
 - P2
 - P3
 - P4

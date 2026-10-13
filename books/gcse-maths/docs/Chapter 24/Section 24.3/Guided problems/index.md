@@ -5,7 +5,7 @@ chapter_title: 'Statistics: representing and analysing data'
 section: '24.3'
 section_title: Averages and range
 tier: F
-dfe: [S4]
+refs: [S4]
 kind: guided-problems
 ---
 

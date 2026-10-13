@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: p1-index-powers
     section: "6.1"
-    dfe: [F1]
+    refs: [F1]
     statement: 'Work out $2^5 \times 2^{-2}$.'
     answer_label: 'The value'
     check:
@@ -20,7 +20,7 @@ problems:
 
   - id: p2-y-intercept
     section: "6.1"
-    dfe: [F1]
+    refs: [F1]
     statement: 'The curve $y = 7^x$ crosses the $y$-axis at one point. Write down the $y$-coordinate of that point.'
     answer_label: 'The $y$-coordinate'
     check:
@@ -31,7 +31,7 @@ problems:
 
   - id: p3-negative-power
     section: "6.1"
-    dfe: [F1]
+    refs: [F1]
     statement: 'Work out $\left(\dfrac{1}{2}\right)^{-3}$.'
     answer_label: 'The value'
     check:
@@ -42,7 +42,7 @@ problems:
 
   - id: p4-fractional-power
     section: "6.1"
-    dfe: [F1]
+    refs: [F1]
     statement: 'Work out $16^{3/4}$.'
     answer_label: 'The value'
     check:
@@ -53,7 +53,7 @@ problems:
 
   - id: p5-base-e
     section: "6.1"
-    dfe: [F1]
+    refs: [F1]
     statement: 'Use $e \approx 2.71828$ to write $e^2$ to three significant figures.'
     answer_label: 'The value'
     check:
@@ -65,7 +65,7 @@ problems:
 
   - id: p6-e-as-a-power
     section: "6.1"
-    dfe: [F1]
+    refs: [F1]
     statement: 'Show that $2^x = e^{x\ln 2}$.'
     answer_label: 'The difference'
     check:
@@ -76,7 +76,7 @@ problems:
 
   - id: p7-compare-growth
     section: "6.1"
-    dfe: [F1]
+    refs: [F1]
     statement: 'Work out $3^4$ and $4^3$, and state which is larger.'
     answer_label: 'The two values'
     check:
@@ -88,7 +88,7 @@ problems:
 
   - id: p8-simplify-quotient
     section: "6.1"
-    dfe: [F1]
+    refs: [F1]
     statement: 'Simplify $2^{x+3} \div 2^{x-1}$.'
     answer_label: 'The value'
     check:
@@ -99,7 +99,7 @@ problems:
 
   - id: p9-decreasing-base
     section: "6.1"
-    dfe: [F1]
+    refs: [F1]
     statement: 'For $y = (0.4)^x$, work out $y$ when $x = 2$ and when $x = -1$.'
     answer_label: 'The two values'
     check:
@@ -111,7 +111,7 @@ problems:
 
   - id: p10-solve-by-recognition
     section: "6.1"
-    dfe: [F1]
+    refs: [F1]
     statement: 'The curve $y = 3^x$ meets the line $y = 81$ once. Find the $x$-coordinate of the meeting point.'
     answer_label: 'The value of $x$'
     check:
@@ -123,7 +123,7 @@ problems:
 
   - id: p11-sum-of-e-powers
     section: "6.1"
-    dfe: [F1]
+    refs: [F1]
     statement: 'Work out $e^0 + e^1$ to three significant figures.'
     answer_label: 'The value'
     check:

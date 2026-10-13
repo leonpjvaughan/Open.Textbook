@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Trigonometry
 section: '5.9'
 section_title: The forms r cos(theta +/- alpha) and r sin(theta +/- alpha)
-dfe:
+refs:
 - E6
 kind: guided-problems
 ---

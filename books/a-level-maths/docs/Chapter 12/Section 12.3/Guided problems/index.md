@@ -4,7 +4,7 @@ chapter: 12
 chapter_title: Probability
 section: '12.3'
 section_title: Modelling with probability and critiquing assumptions
-dfe:
+refs:
 - M3
 - OT3
 kind: guided-problems

@@ -15,4 +15,4 @@ kind: problems
 # 9.3 Testing the model against data — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: S1
+> Tier: **O** · refs: S1

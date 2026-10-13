@@ -15,4 +15,4 @@ kind: problems
 # 9.1 Arithmetic sequences — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 4.1
+> Tier: **O** · refs: 4.1

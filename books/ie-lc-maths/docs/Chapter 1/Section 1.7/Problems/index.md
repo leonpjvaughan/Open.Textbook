@@ -15,4 +15,4 @@ kind: problems
 # 1.7 Scientific notation and accuracy — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 3.1
+> Tier: **F** · refs: 3.1

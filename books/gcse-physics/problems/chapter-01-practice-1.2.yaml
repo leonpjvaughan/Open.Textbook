@@ -16,7 +16,7 @@ problems:
   - id: p1-efficiency-600
     section: '1.2'
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A device takes in 800 J of energy and transfers 600 J usefully. Calculate its efficiency as a decimal and as a percentage.'
     answer_label: 'Efficiency of the device'
     check:
@@ -29,7 +29,7 @@ problems:
   - id: p2-lamp-efficiency
     section: '1.2'
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A lamp is supplied with 50 J of energy and transfers 10 J of it as useful light. Calculate the efficiency as a percentage.'
     answer_label: 'Efficiency of the lamp'
     check:
@@ -42,7 +42,7 @@ problems:
   - id: p3-motor-input
     section: '1.2'
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A motor is 80% efficient and its useful output is 320 J. Calculate the total energy supplied to the motor.'
     answer_label: 'Total energy supplied'
     check:
@@ -55,7 +55,7 @@ problems:
   - id: p4-kettle-useful
     section: '1.2'
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A kettle is 90% efficient and takes in $6.0 \times 10^5\,\text{J}$ of energy. Calculate the energy transferred usefully to the water.'
     answer_label: 'Useful energy transferred to the water'
     check:
@@ -68,7 +68,7 @@ problems:
   - id: p5-bounce-explain
     section: '1.2'
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A ball is dropped from a height of 2.0 m and bounces back to 1.5 m. Explain the energy changes, in terms of stores.'
     answer_label: 'The energy changes in the bounce'
     check:
@@ -89,7 +89,7 @@ problems:
   - id: p6-insulate-tank
     section: '1.2'
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A hot water tank loses energy to its surroundings. Describe two ways to reduce this unwanted energy transfer.'
     answer_label: 'Two ways to reduce the transfer'
     check:
@@ -107,7 +107,7 @@ problems:
   - id: p7-resources-wind-coal
     section: '1.2'
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'Give one advantage of using wind rather than coal to generate electricity, one advantage of using coal rather than wind, and one disadvantage of a wind farm.'
     answer_label: 'Comparing wind and coal'
     check:
@@ -128,7 +128,7 @@ problems:
   - id: p8-trends-renewables
     section: '1.2'
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'Explain why the share of electricity generated from renewable resources has increased in many countries.'
     answer_label: 'Why the renewable share has increased'
     check:
@@ -146,7 +146,7 @@ problems:
   - id: p9-anchor-efficiency
     section: '1.2'
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'In the chapter problem the falling water gives up 3528 J each second and the generator gives out 2100 J each second. Calculate the efficiency of the generator.'
     answer_label: 'Efficiency of the generator'
     check:
@@ -159,7 +159,7 @@ problems:
   - id: p10-dissipated-energy
     section: '1.2'
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A device takes in 1500 J of energy and transfers 600 J usefully. Calculate the energy dissipated, and name the store that receives it.'
     answer_label: 'Energy dissipated'
     check:
@@ -172,7 +172,7 @@ problems:
   - id: p11-method-choice-heater
     section: '1.2'
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A 2000 W heater runs for 300 s. The water gains 480000 J of useful energy. Work out the efficiency. Say which two quantities you need first, and why.'
     answer_label: 'Efficiency of the heater'
     check:
@@ -185,7 +185,7 @@ problems:
   - id: p12-conservation-statement
     section: '1.2'
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'State the principle of conservation of energy for a closed system.'
     answer_label: 'The principle of conservation of energy'
     check:

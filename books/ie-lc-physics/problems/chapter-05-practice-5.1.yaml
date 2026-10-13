@@ -1,0 +1,135 @@
+# Leaving Certificate Physics, Chapter 5, section 5.1 (strand 1 outcome 1.3).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The two `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 5
+problems:
+- id: p5-1-hooke-force
+  section: '5.1'
+  tier: O
+  refs:
+  - '1.3'
+  statement: A spring has a spring constant of 40 N/m. Calculate the force needed to stretch it by 0.15
+    m.
+  answer_label: Force needed
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: k * x
+      values:
+        k:
+          value: '40'
+          unit: N/m
+        x:
+          value: '0.15'
+          unit: m
+      answer:
+        value: '6'
+        unit: N
+    - kind: sigfigs
+      value: '6'
+      figures: 2
+      answer: '6.0'
+      convention: round-once
+  answer_text: $F = kx = 40 \times 0.15 = 6\,\text{N}$.
+- id: p5-1-hooke-extension
+  section: '5.1'
+  tier: O
+  refs:
+  - '1.3'
+  statement: A force of 12 N stretches a spring by 0.04 m. Calculate its spring constant.
+  answer_label: Spring constant
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F / x
+      values:
+        F:
+          value: '12'
+          unit: N
+        x:
+          value: '0.04'
+          unit: m
+      answer:
+        value: '300'
+        unit: N/m
+    - kind: sigfigs
+      value: '300'
+      figures: 2
+      answer: 3.0e2
+      convention: round-once
+  answer_text: $k = \dfrac{F}{x} = \dfrac{12}{0.04} = 300\,\text{N/m}$.
+- id: p5-1-hooke-extension-2
+  section: '5.1'
+  tier: O
+  refs:
+  - '1.3'
+  statement: A spring of spring constant 250 N/m is pulled with a force of 8.0 N. Calculate its extension.
+  answer_label: Extension
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F / k
+      values:
+        F:
+          value: '8.0'
+          unit: N
+        k:
+          value: '250'
+          unit: N/m
+      answer:
+        value: '0.032'
+        unit: m
+    - kind: sigfigs
+      value: '0.032'
+      figures: 2
+      answer: '0.032'
+      convention: round-once
+  answer_text: $x = \dfrac{F}{k} = \dfrac{8.0}{250} = 0.032\,\text{m}$, which is 32 mm.
+- id: p5-1-hooke-limit
+  section: '5.1'
+  tier: O
+  refs:
+  - '1.3'
+  statement: State what is meant by the limit of proportionality of a spring, and describe what is observed
+    beyond it.
+  answer_label: Limit of proportionality
+  check:
+    kind: structured
+    requires:
+    - limit
+    - below
+    - beyond
+    concepts:
+    - straight-line
+    - proportional
+    - curves
+    points:
+    - id: limit
+      text: the point beyond which the force-extension graph is no longer a straight line through the
+        origin
+      concepts:
+      - straight-line
+    - id: below
+      text: below it, force is directly proportional to extension, so doubling the force doubles the extension
+      concepts:
+      - proportional
+    - id: beyond
+      text: beyond it the graph curves, and each extra newton gives a larger extension than the one before
+      concepts:
+      - curves
+  answer_text: The limit of proportionality is the point beyond which the graph of force against extension
+    is no longer a straight line through the origin. Below it, force is directly proportional to extension,
+    so doubling the force doubles the extension. Beyond it the graph curves, and each extra newton produces
+    a larger extension than the one before.

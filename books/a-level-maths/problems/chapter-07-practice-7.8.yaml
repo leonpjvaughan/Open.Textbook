@@ -11,7 +11,7 @@ symbols:
 problems:
   - id: p1-sphere-radius-rate
     section: "7.8"
-    dfe: [G4]
+    refs: [G4]
     statement: 'A sphere grows so that $\dfrac{dV}{dt} = 100$ cm$^3$/s. Find $\dfrac{dr}{dt}$ when $r = 5$ cm.'
     answer_label: 'The rate'
     check:
@@ -22,7 +22,7 @@ problems:
 
   - id: p2-sphere-unit-rate
     section: "7.8"
-    dfe: [G4]
+    refs: [G4]
     statement: 'A sphere grows so that $\dfrac{dV}{dt} = 4\pi$ cm$^3$/s. Find $\dfrac{dr}{dt}$ when $r = 1$ cm.'
     answer_label: 'The rate'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-cube-volume-rate
     section: "7.8"
-    dfe: [G4]
+    refs: [G4]
     statement: 'A cube expands so that each edge grows at $0.5$ cm/s. Find $\dfrac{dV}{dt}$ when the edge is $4$ cm.'
     answer_label: 'The rate'
     check:
@@ -44,7 +44,7 @@ problems:
 
   - id: p4-circle-radius-rate
     section: "7.8"
-    dfe: [G4]
+    refs: [G4]
     statement: 'A circle''s area grows at $2$ cm$^2$/s. Find $\dfrac{dr}{dt}$ when $r = 3$ cm.'
     answer_label: 'The rate'
     check:
@@ -55,7 +55,7 @@ problems:
 
   - id: p5-circle-area-rate
     section: "7.8"
-    dfe: [G4]
+    refs: [G4]
     statement: 'A circle''s radius grows at $0.05$ cm/s. Find $\dfrac{dA}{dt}$ when $r = 6$ cm.'
     answer_label: 'The rate'
     check:
@@ -66,7 +66,7 @@ problems:
 
   - id: p6-inverse-cube
     section: "7.8"
-    dfe: [G4]
+    refs: [G4]
     statement: 'The function $f(x) = x^3$ has an inverse. Find $\left(f^{-1}\right)''(27)$.'
     answer_label: 'The gradient'
     check:
@@ -78,7 +78,7 @@ problems:
 
   - id: p7-inverse-cubic-linear
     section: "7.8"
-    dfe: [G4]
+    refs: [G4]
     statement: 'The function $f(x) = x^3 + 3x$ has an inverse. Find $\left(f^{-1}\right)''(0)$.'
     answer_label: 'The gradient'
     check:
@@ -90,7 +90,7 @@ problems:
 
   - id: p8-inverse-quintic
     section: "7.8"
-    dfe: [G4]
+    refs: [G4]
     statement: 'The function $f(x) = x^5 + x$ has an inverse. Find $\left(f^{-1}\right)''(2)$.'
     answer_label: 'The gradient'
     check:
@@ -102,7 +102,7 @@ problems:
 
   - id: p9-connected-square
     section: "7.8"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Two quantities are linked by $y = x^2$, and $x$ grows at $4$ units per second. Find $\dfrac{dy}{dt}$ when $x = 5$.'
     answer_label: 'The rate'
     check:
@@ -113,7 +113,7 @@ problems:
 
   - id: p10-cylinder-volume
     section: "7.8"
-    dfe: [G4]
+    refs: [G4]
     statement: 'A cylinder has fixed height $10$ cm and volume $V = \pi r^2 h$. Its radius grows at $0.1$ cm/s. Find $\dfrac{dV}{dt}$ when $r = 2$ cm.'
     answer_label: 'The rate'
     check:
@@ -124,7 +124,7 @@ problems:
 
   - id: p11-droplet-radius
     section: "7.8"
-    dfe: [G4]
+    refs: [G4]
     statement: 'A spherical droplet grows so that $\dfrac{dV}{dt} = 5$ cm$^3$/s. Find $\dfrac{dr}{dt}$ when $r = 2$ cm.'
     answer_label: 'The rate'
     check:
@@ -135,7 +135,7 @@ problems:
 
   - id: p12-inverse-cubic-linear-second
     section: "7.8"
-    dfe: [G4]
+    refs: [G4]
     statement: 'The function $f(x) = x^3 + 4x$ has an inverse. Find $\left(f^{-1}\right)''(5)$.'
     answer_label: 'The gradient'
     check:

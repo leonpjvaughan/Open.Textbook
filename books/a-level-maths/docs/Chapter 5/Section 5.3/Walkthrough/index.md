@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Trigonometry
 section: '5.3'
 section_title: 'The sine, cosine and tangent functions: graphs and periodicity'
-dfe:
+refs:
 - E3
 kind: walkthrough
 ---

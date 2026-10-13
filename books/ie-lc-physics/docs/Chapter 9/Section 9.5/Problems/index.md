@@ -15,4 +15,4 @@ kind: problems
 # 9.5 Stationary waves and resonance — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 2.6
+> Tier: **O** · refs: 2.6

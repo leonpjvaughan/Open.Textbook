@@ -15,7 +15,7 @@ chapter: 3
 problems:
   - id: p1-angular-frequency
     section: '3.6'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'An oscillation has a period of 0.25 s. Find its angular frequency.'
     answer_label: 'The angular frequency'
     check: {kind: approx, value: "2 * pi / 0.25", target: "25.13", tolerance: "0.01"}
@@ -23,7 +23,7 @@ problems:
 
   - id: p2-period-from-frequency
     section: '3.6'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'An oscillation has a frequency of 2.5 Hz. Find its period.'
     answer_label: 'The period'
     check: {kind: approx, value: "1 / 2.5", target: "0.40", tolerance: "0.001"}
@@ -31,7 +31,7 @@ problems:
 
   - id: p3-max-speed
     section: '3.6'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'An oscillation has amplitude 0.030 m and angular frequency $12\,\text{rad}\,\text{s}^{-1}$. Find the maximum speed.'
     answer_label: 'The maximum speed'
     check: {kind: approx, value: "0.030 * 12", target: "0.36", tolerance: "0.001"}
@@ -39,7 +39,7 @@ problems:
 
   - id: p4-max-acceleration
     section: '3.6'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'An oscillation has amplitude 0.030 m and angular frequency $12\,\text{rad}\,\text{s}^{-1}$. Find the maximum acceleration.'
     answer_label: 'The maximum acceleration'
     check: {kind: approx, value: "0.030 * 12**2", target: "4.32", tolerance: "0.001"}
@@ -47,7 +47,7 @@ problems:
 
   - id: p5-mass-spring-period
     section: '3.6'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A mass of 0.80 kg hangs on a spring of spring constant $5.0\,\text{N}\,\text{m}^{-1}$. Find the period of the oscillation.'
     answer_label: 'The period'
     check: {kind: approx, value: "2 * pi * sqrt(0.80 / 5.0)", target: "2.51", tolerance: "0.01"}
@@ -55,7 +55,7 @@ problems:
 
   - id: p6-pendulum-period
     section: '3.6'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A simple pendulum has a length of 2.50 m. Find its period. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The period'
     check: {kind: approx, value: "2 * pi * sqrt(2.50 / 9.81)", target: "3.17", tolerance: "0.01"}
@@ -63,7 +63,7 @@ problems:
 
   - id: p7-speed-at-displacement
     section: '3.6'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'An oscillation has amplitude 0.10 m and angular frequency $4.0\,\text{rad}\,\text{s}^{-1}$. Find the speed when the displacement is 0.060 m.'
     answer_label: 'The speed'
     check: {kind: approx, value: "4.0 * sqrt(0.10**2 - 0.060**2)", target: "0.32", tolerance: "0.001"}
@@ -71,7 +71,7 @@ problems:
 
   - id: p8-total-energy
     section: '3.6'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A mass of 0.50 kg oscillates with amplitude 0.020 m and angular frequency $8.0\,\text{rad}\,\text{s}^{-1}$. Find the total energy of the oscillation.'
     answer_label: 'The total energy'
     check: {kind: approx, value: "0.5 * 0.50 * 8.0**2 * 0.020**2", target: "0.0064", tolerance: "0.0001"}
@@ -79,7 +79,7 @@ problems:
 
   - id: p9-kinetic-energy
     section: '3.6'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'The same mass of 0.50 kg oscillates with amplitude 0.020 m and angular frequency $8.0\,\text{rad}\,\text{s}^{-1}$. Find the kinetic energy when the displacement is 0.012 m.'
     answer_label: 'The kinetic energy'
     check: {kind: approx, value: "0.5 * 0.50 * 8.0**2 * (0.020**2 - 0.012**2)", target: "0.00410", tolerance: "0.0001"}
@@ -87,7 +87,7 @@ problems:
 
   - id: p10-length-for-period
     section: '3.6'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'Find the length of a simple pendulum that has a period of exactly 1.50 s. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The length'
     check: {kind: approx, value: "9.81 * 1.50**2 / (4 * pi**2)", target: "0.559", tolerance: "0.001"}
@@ -95,7 +95,7 @@ problems:
 
   - id: p11-mean-period
     section: '3.6'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A student times the same oscillation four times and records 18.2 s, 18.1 s, 18.3 s and 18.2 s. Find the mean time and the mean period for one oscillation.'
     answer_label: 'The mean time and the period'
     check:
@@ -107,7 +107,7 @@ problems:
 
   - id: p12-method-choice
     section: '3.6'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A mass on a spring is pulled down and released. Say which formula you would use to find the period, and explain why the amplitude does not appear in it.'
     answer_label: 'The formula and the reason'
     check:

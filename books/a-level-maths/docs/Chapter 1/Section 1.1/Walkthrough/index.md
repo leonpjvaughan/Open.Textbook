@@ -4,7 +4,7 @@ chapter: 1
 chapter_title: Proof and mathematical argument
 section: '1.1'
 section_title: Statements, assumptions and the structure of a proof
-dfe:
+refs:
 - A1
 - OT1
 kind: walkthrough

@@ -15,4 +15,4 @@ kind: problems
 # 21.8 Expected frequency — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: SP.2
+> Tier: **H** · refs: SP.2

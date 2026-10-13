@@ -6,7 +6,7 @@ problems:
 - id: ch7-71-length
   section: '7.1'
   tier: F
-  dfe:
+  refs:
   - N13
   statement: 'Convert $3.45$ km to metres.'
   answer_label: Convert kilometres to metres
@@ -18,7 +18,7 @@ problems:
 - id: ch7-71-capacity
   section: '7.1'
   tier: F
-  dfe:
+  refs:
   - N13
   statement: 'Convert $750$ ml to litres.'
   answer_label: Convert millilitres to litres
@@ -30,7 +30,7 @@ problems:
 - id: ch7-71-area
   section: '7.1'
   tier: F
-  dfe:
+  refs:
   - N13
   statement: 'Convert $0.8$ m$^2$ to cm$^2$.'
   answer_label: Convert square metres
@@ -42,7 +42,7 @@ problems:
 - id: ch7-71-scale
   section: '7.1'
   tier: F
-  dfe:
+  refs:
   - R1
   statement: 'A map scale is $1:25\,000$. Two towns are $6.4$ cm apart. Find the real distance in kilometres.'
   answer_label: Map distance
@@ -54,7 +54,7 @@ problems:
 - id: ch7-71-drawing
   section: '7.1'
   tier: F
-  dfe:
+  refs:
   - R1
   statement: 'A plan uses scale $1:80$. Find the drawing length for a real wall measuring $4$ m.'
   answer_label: Plan length
@@ -66,7 +66,7 @@ problems:
 - id: ch7-71-bearing
   section: '7.1'
   tier: F
-  dfe:
+  refs:
   - G14
   statement: 'A boat travels on a bearing of $072^\circ$. Give the reverse bearing.'
   answer_label: Reverse bearing
@@ -78,7 +78,7 @@ problems:
 - id: ch7-71-bearing2
   section: '7.1'
   tier: F
-  dfe:
+  refs:
   - G14
   statement: 'A bearing is measured clockwise from which direction?'
   answer_label: Bearing reference
@@ -90,7 +90,7 @@ problems:
 - id: ch7-71-convert
   section: '7.1'
   tier: F
-  dfe:
+  refs:
   - N13
   statement: 'Convert $2.3$ tonnes to kilograms.'
   answer_label: Convert tonnes
@@ -102,7 +102,7 @@ problems:
 - id: ch7-71-scale-h
   section: '7.1'
   tier: H
-  dfe:
+  refs:
   - R1
   statement: '**H** A map distance is $7.5$ cm and the real distance is $3$ km. Find the scale in the form $1:n$.'
   answer_label: Find a map scale
@@ -114,7 +114,7 @@ problems:
 - id: ch7-71-area-h
   section: '7.1'
   tier: H
-  dfe:
+  refs:
   - N13
   statement: '**H** Convert $35\,000$ cm$^2$ to m$^2$.'
   answer_label: Convert square centimetres

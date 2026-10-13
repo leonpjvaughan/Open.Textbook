@@ -216,7 +216,7 @@ def section_stub(chapter: dict, section: dict, kind: str) -> str:
         f"{STUB_MARKER}\n\n"
         f"# {section['id']} {section['title']} — {titles[kind]}\n\n"
         f"> **Stub.** {guidance[kind]}\n"
-        f"> {tier_note}DfE refs: "
+        f"> {tier_note}refs: "
         f"{', '.join(section.get('refs', [])) or '—'}\n"
     )
 

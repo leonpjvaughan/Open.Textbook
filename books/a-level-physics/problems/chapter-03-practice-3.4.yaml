@@ -15,7 +15,7 @@ chapter: 3
 problems:
   - id: p1-momentum
     section: '3.4'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A ball of mass 0.25 kg moves at $20\,\text{m}\,\text{s}^{-1}$. Find its momentum.'
     answer_label: 'The momentum'
     check:
@@ -30,7 +30,7 @@ problems:
   - id: p2-impulse
     plays: impulse
     section: '3.4'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A force of 600 N acts for 0.20 s. Find the impulse.'
     answer_label: 'The impulse'
     check:
@@ -44,7 +44,7 @@ problems:
 
   - id: p3-rebound-momentum
     section: '3.4'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A ball of mass 0.10 kg hits a wall at $20\,\text{m}\,\text{s}^{-1}$ and rebounds at $15\,\text{m}\,\text{s}^{-1}$. Find the change in momentum. Take the direction towards the wall as positive.'
     answer_label: 'The change in momentum'
     check:
@@ -57,7 +57,7 @@ problems:
   - id: p4-force-from-momentum
     plays: force-momentum
     section: '3.4'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'The momentum of a ball increases from $1.2\,\text{kg}\,\text{m}\,\text{s}^{-1}$ to $3.6\,\text{kg}\,\text{m}\,\text{s}^{-1}$ in 0.30 s. Find the average force on the ball.'
     answer_label: 'The average force'
     check:
@@ -72,7 +72,7 @@ problems:
 
   - id: p5-stick-together
     section: '3.4'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A trolley of mass 4.0 kg moves at $2.5\,\text{m}\,\text{s}^{-1}$ and collides with a stationary trolley of mass 1.0 kg. The trolleys stick together. Find their common velocity.'
     answer_label: 'The common velocity'
     check:
@@ -87,7 +87,7 @@ problems:
 
   - id: p6-inelastic-loss
     section: '3.4'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A trolley of mass 2.0 kg moves at $5.0\,\text{m}\,\text{s}^{-1}$ and collides with a stationary trolley of mass 3.0 kg. They stick together. Find the kinetic energy lost in the collision.'
     answer_label: 'The kinetic energy lost'
     check:
@@ -100,7 +100,7 @@ problems:
 
   - id: p7-two-dimensions
     section: '3.4'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A ball of mass 0.20 kg moves due east at $6.0\,\text{m}\,\text{s}^{-1}$. A second ball of mass 0.30 kg moves due north at $4.0\,\text{m}\,\text{s}^{-1}$. Find the magnitude of the total momentum of the two balls.'
     answer_label: 'The magnitude of the total momentum'
     check:
@@ -112,7 +112,7 @@ problems:
 
   - id: p8-force-time-area
     section: '3.4'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A force–time graph for a collision has the points $(0, 0)$, $(0.10, 200)$ and $(0.20, 0)$. Find the impulse.'
     answer_label: 'The impulse'
     check:
@@ -124,7 +124,7 @@ problems:
 
   - id: p9-recoil
     section: '3.4'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A rifle of mass 3.5 kg fires a bullet of mass 0.015 kg at $600\,\text{m}\,\text{s}^{-1}$. Find the recoil velocity of the rifle.'
     answer_label: 'The recoil velocity'
     check:
@@ -136,7 +136,7 @@ problems:
 
   - id: p10-explosion
     section: '3.4'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'An object of mass 6.0 kg is at rest. It explodes into two pieces of mass 2.0 kg and 4.0 kg. The 2.0 kg piece moves at $9.0\,\text{m}\,\text{s}^{-1}$. Find the velocity of the 4.0 kg piece.'
     answer_label: 'The velocity of the larger piece'
     check: {kind: evaluate, expression: "-(2.0 * 9.0) / 4.0", answer: "-4.5"}
@@ -144,7 +144,7 @@ problems:
 
   - id: p11-airbag
     section: '3.4'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'Explain why an airbag reduces the injury to a driver in a crash, using the impulse–momentum relation.'
     answer_label: 'Why the airbag reduces injury'
     check:
@@ -162,7 +162,7 @@ problems:
 
   - id: p12-method-choice
     section: '3.4'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'Two railway wagons collide and couple. Say whether you would use the equations of motion, conservation of energy, or conservation of momentum to find the speed after the collision, and why.'
     answer_label: 'The method and the reason'
     check:

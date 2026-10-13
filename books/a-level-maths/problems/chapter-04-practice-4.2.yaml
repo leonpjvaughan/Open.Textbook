@@ -12,7 +12,7 @@ symbols:
 problems:
   - id: p1-negative-power
     section: "4.2"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Expand $(1 + x)^{-1}$ up to and including the term in $x^3$, and state the range of validity.'
     answer_label: 'The expansion and the range'
     plays: binomial-series
@@ -25,7 +25,7 @@ problems:
 
   - id: p2-negative-power-scaled
     section: "4.2"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Expand $(1 + 3x)^{-1}$ up to and including the term in $x^3$, and state the range of validity.'
     answer_label: 'The expansion and the range'
     plays: binomial-series
@@ -38,7 +38,7 @@ problems:
 
   - id: p3-fractional-power-minus-x
     section: "4.2"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Expand $(1 - x)^{\frac{1}{2}}$ up to and including the term in $x^3$.'
     answer_label: 'The expansion'
     plays: binomial-series
@@ -51,7 +51,7 @@ problems:
 
   - id: p4-take-out-a-to-the-n
     section: "4.2"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Expand $\sqrt{9 + x}$ up to and including the term in $x^3$, and state the range of validity.'
     answer_label: 'The expansion and the range'
     plays: binomial-series
@@ -64,7 +64,7 @@ problems:
 
   - id: p5-negative-fractional-power
     section: "4.2"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Find the first three terms, up to $x^2$, in the expansion of $\dfrac{1}{\sqrt{1 + 4x}}$.'
     answer_label: 'The first three terms'
     plays: binomial-series
@@ -77,7 +77,7 @@ problems:
 
   - id: p6-negative-integer-power
     section: "4.2"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Expand $(1 + x)^{-3}$ up to and including the term in $x^3$.'
     answer_label: 'The expansion'
     plays: binomial-series
@@ -90,7 +90,7 @@ problems:
 
   - id: p7-surd-answer
     section: "4.2"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Find the first three terms, up to $x^2$, in the expansion of $(2 + 3x)^{\frac{1}{2}}$. Give the answer with exact surds.'
     answer_label: 'The first three terms'
     plays: binomial-series
@@ -103,7 +103,7 @@ problems:
 
   - id: p8-coefficient-of-a-term
     section: "4.2"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Find the coefficient of $x^2$ in the expansion of $(1 - 2x)^{\frac{1}{2}}$.'
     answer_label: 'The coefficient'
     check:
@@ -114,7 +114,7 @@ problems:
 
   - id: p9-approximate-a-root
     section: "4.2"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Use the first three terms of the expansion of $(1 + x)^{\frac{1}{2}}$ to estimate $\sqrt{1.02}$.'
     answer_label: 'The estimate'
     check:
@@ -126,7 +126,7 @@ problems:
 
   - id: p10-approximate-a-reciprocal-root
     section: "4.2"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Use the first three terms of the expansion of $(1 + x)^{-\frac{1}{2}}$ to estimate $\dfrac{1}{\sqrt{1.02}}$.'
     answer_label: 'The estimate'
     check:
@@ -138,7 +138,7 @@ problems:
 
   - id: p11-range-of-validity
     section: "4.2"
-    dfe: [D1]
+    refs: [D1]
     statement: 'State the range of $x$ for which the expansion of $(1 + 7x)^{-1}$ is valid. Give the answer as an inequality.'
     answer_label: 'The range'
     check:
@@ -150,7 +150,7 @@ problems:
 
   - id: p12-first-two-terms
     section: "4.2"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Show that the first two terms in the expansion of $\sqrt{4 + 2x}$ are $2 + \frac{x}{2}$.'
     answer_label: 'The first two terms'
     plays: binomial-series

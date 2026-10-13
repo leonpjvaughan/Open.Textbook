@@ -5,7 +5,7 @@ chapter_title: Transformations, congruence and similarity
 section: "18.1"
 section_title: Reflection, rotation and translation
 tier: F
-dfe: [G7, G8]
+refs: [G7, G8]
 kind: problems
 ---
 

@@ -3,7 +3,7 @@ problems:
 - id: p1-venn-neither
   section: '23.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'P6'
   statement: 'In 40 students, 22 study art, 17 study music and 8 study both. How many study neither?'
   answer_label: 'In 40 students, 22 study art, 17 study music and 8 study both. How many study neither?'
@@ -15,7 +15,7 @@ problems:
 - id: p2-intersection-probability
   section: '23.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'P6'
   statement: 'In a group of 25, 7 are in both sets A and B. Find $P(A\cap B)$ for a random selection.'
   answer_label: 'In a group of 25, 7 are in both sets A and B. Find $P(A\cap B)$ for a random selection.'
@@ -27,7 +27,7 @@ problems:
 - id: p3-union-count
   section: '23.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'P6'
   statement: 'There are 18 in A, 13 in B and 5 in both. Find the number in $A\cup B$.'
   answer_label: 'There are 18 in A, 13 in B and 5 in both. Find the number in $A\cup B$.'
@@ -39,7 +39,7 @@ problems:
 - id: p4-only-a
   section: '23.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'P6'
   statement: 'Set A contains 20 people, including 6 who are also in B. How many are in A only?'
   answer_label: 'Set A contains 20 people, including 6 who are also in B. How many are in A only?'
@@ -51,7 +51,7 @@ problems:
 - id: p5-neither-prob
   section: '23.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'P6'
   statement: 'Of 30 people, 21 are in at least one of A or B. Find the probability a random person is in neither.'
   answer_label: 'Of 30 people, 21 are in at least one of A or B. Find the probability a random person is in neither.'
@@ -63,7 +63,7 @@ problems:
 - id: p6-intersection-language
   section: '23.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'P6'
   statement: 'What does $A\cap B$ mean?'
   answer_label: 'What does $A\cap B$ mean?'
@@ -75,7 +75,7 @@ problems:
 - id: p7-union-language
   section: '23.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'P6'
   statement: 'What does $A\cup B$ mean?'
   answer_label: 'What does $A\cup B$ mean?'
@@ -87,7 +87,7 @@ problems:
 - id: p8-complete-overlap
   section: '23.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'P6'
   statement: 'In 32 people, 15 are in A, 14 are in B and 4 in both. Find the number in neither.'
   answer_label: 'In 32 people, 15 are in A, 14 are in B and 4 in both. Find the number in neither.'
@@ -99,7 +99,7 @@ problems:
 - id: p9-only-b
   section: '23.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'P6'
   statement: 'Set B has 19 members, 8 of whom are also in A. Find the number in B only.'
   answer_label: 'Set B has 19 members, 8 of whom are also in A. Find the number in B only.'
@@ -111,7 +111,7 @@ problems:
 - id: p10-at-least-a
   section: '23.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'P6'
   statement: 'In a group of 50, 31 belong to A or B. How many are outside both sets?'
   answer_label: 'In a group of 50, 31 belong to A or B. How many are outside both sets?'

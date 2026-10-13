@@ -4,7 +4,7 @@ chapter: 7
 chapter_title: Thermal physics and matter
 section: '7.2'
 section_title: Ideal gases and molecular kinetic theory
-dfe:
+refs:
 - AP7
 kind: guided-problems
 ---

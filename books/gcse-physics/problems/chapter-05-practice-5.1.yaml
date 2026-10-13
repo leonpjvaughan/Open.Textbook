@@ -9,7 +9,7 @@ problems:
   - id: p1-convert-mhz
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'Express a frequency of 150 MHz in hertz, using standard form.'
     answer_label: '150 MHz in hertz'
     check:
@@ -23,7 +23,7 @@ problems:
   - id: p2-convert-nm
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'Express a wavelength of 600 nm in metres, using standard form.'
     answer_label: '600 nm in metres'
     check:
@@ -37,7 +37,7 @@ problems:
   - id: p3-radio-wavelength
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'A radio station broadcasts at 100 MHz. Calculate the wavelength of the radio waves. Take the speed of electromagnetic waves as 3.0e8 m/s.'
     answer_label: 'Wavelength of the radio waves'
     check:
@@ -55,7 +55,7 @@ problems:
   - id: p4-microwave-wavelength
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'A microwave link uses radiation with a frequency of 2.0 GHz. Calculate its wavelength.'
     answer_label: 'Wavelength of the microwaves'
     check:
@@ -73,7 +73,7 @@ problems:
   - id: p5-infrared-frequency
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'Infrared radiation has a wavelength of 5.0 μm. Calculate its frequency.'
     answer_label: 'Frequency of the infrared radiation'
     check:
@@ -91,7 +91,7 @@ problems:
   - id: p6-visible-frequency
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'Blue-green light has a wavelength of 500 nm. Calculate its frequency.'
     answer_label: 'Frequency of the light'
     check:
@@ -109,7 +109,7 @@ problems:
   - id: p7-ultraviolet-frequency
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'Ultraviolet radiation has a wavelength of 200 nm. Calculate its frequency.'
     answer_label: 'Frequency of the ultraviolet radiation'
     check:
@@ -127,7 +127,7 @@ problems:
   - id: p8-xray-frequency
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'A dental X-ray has a wavelength of 2.0e-10 m. Calculate its frequency.'
     answer_label: 'Frequency of the X-ray'
     check:
@@ -145,7 +145,7 @@ problems:
   - id: p9-gamma-wavelength
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'Gamma radiation from a sample has a frequency of 3.0e20 Hz. Calculate its wavelength.'
     answer_label: 'Wavelength of the gamma radiation'
     check:
@@ -163,7 +163,7 @@ problems:
   - id: p10-hidden-frequency
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'A microwave has a wavelength of 0.030 m. Calculate its frequency.'
     answer_label: 'Frequency of the microwave'
     check:
@@ -181,7 +181,7 @@ problems:
   - id: p11-order-spectrum
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'Place these four groups in order of increasing wavelength: infrared, gamma, radio, ultraviolet.'
     answer_label: 'The order of increasing wavelength'
     check:
@@ -199,7 +199,7 @@ problems:
   - id: p12-same-speed
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'A radio wave and a gamma ray travel through a vacuum together. Explain how their speeds and their frequencies compare.'
     answer_label: 'A comparison of speeds and frequencies'
     check:
@@ -217,7 +217,7 @@ problems:
   - id: p13-method-choice-anchor
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'In the chapter problem the radio telescope receives a signal at 150 MHz. Say which relationship you will use, then calculate the wavelength.'
     answer_label: 'Wavelength of the signal'
     check:

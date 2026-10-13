@@ -4,7 +4,7 @@ chapter: 6
 chapter_title: Waves
 section: '6.1'
 section_title: Superposition and interference
-dfe:
+refs:
 - AP6
 kind: guided-problems
 ---

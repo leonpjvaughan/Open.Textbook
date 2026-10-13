@@ -4,7 +4,7 @@ problems:
   - id: ch10-101-next-four
     section: '10.1'
     tier: F
-    dfe: [A23]
+    refs: [A23]
     statement: 'Write the next two terms: $7,11,15,19,\ldots$.'
     answer_label: 'Write the next two terms: $7,11,15,19,\ldots$.'
     check: {"kind":"all","checks":[{"kind":"evaluate","expression":"19+4","answer":"23"},{"kind":"evaluate","expression":"23+4","answer":"27"}]}
@@ -13,7 +13,7 @@ problems:
   - id: ch10-101-nth-rule
     section: '10.1'
     tier: F
-    dfe: [A23]
+    refs: [A23]
     statement: 'Find the nth term of $5,9,13,17,\ldots$.'
     answer_label: 'Find the nth term of $5,9,13,17,\ldots$.'
     check: {"kind":"all","checks":[{"kind":"evaluate","expression":"4*1+1","answer":"5"},{"kind":"evaluate","expression":"4*2+1","answer":"9"},{"kind":"evaluate","expression":"4*4+1","answer":"17"}]}
@@ -22,7 +22,7 @@ problems:
   - id: ch10-101-position-rule
     section: '10.1'
     tier: F
-    dfe: [A23]
+    refs: [A23]
     statement: 'The nth term is $6n-2$. Work out the 15th term.'
     answer_label: 'The nth term is $6n-2$. Work out the 15th term.'
     check: {"kind":"evaluate","expression":"6*15-2","answer":"88"}
@@ -31,7 +31,7 @@ problems:
   - id: ch10-101-missing-term
     section: '10.1'
     tier: F
-    dfe: [A23]
+    refs: [A23]
     statement: 'Find the missing term: $3,8,\square,18,23$.'
     answer_label: 'Find the missing term: $3,8,\square,18,23$.'
     check: {"kind":"evaluate","expression":"8+5","answer":"13"}
@@ -40,7 +40,7 @@ problems:
   - id: ch10-101-word-rule
     section: '10.1'
     tier: F
-    dfe: [A23]
+    refs: [A23]
     statement: 'A pattern has 4 tiles at position 1 and adds 6 tiles each time. Write a rule for position $n$.'
     answer_label: 'A pattern has 4 tiles at position 1 and adds 6 tiles each time. W'
     check: {"kind":"all","checks":[{"kind":"evaluate","expression":"6*1-2","answer":"4"},{"kind":"evaluate","expression":"6*2-2","answer":"10"},{"kind":"evaluate","expression":"6*5-2","answer":"28"}]}
@@ -49,7 +49,7 @@ problems:
   - id: ch10-101-negative-change
     section: '10.1'
     tier: F
-    dfe: [A23]
+    refs: [A23]
     statement: 'Continue $20,15,10,5,\ldots$ by two terms.'
     answer_label: 'Continue $20,15,10,5,\ldots$ by two terms.'
     check: {"kind":"all","checks":[{"kind":"evaluate","expression":"5-5","answer":"0"},{"kind":"evaluate","expression":"0-5","answer":"-5"}]}
@@ -58,7 +58,7 @@ problems:
   - id: ch10-101-compare-method
     section: '10.1'
     tier: F
-    dfe: [A23]
+    refs: [A23]
     statement: 'Which rule gives more at position 10: $4n+3$ or $5n-2$? Say which method you use.'
     answer_label: 'Which rule gives more at position 10: $4n+3$ or $5n-2$? Say which'
     check: {"kind":"compare","relation":">","lhs":"5*10-2","rhs":"4*10+3"}
@@ -67,7 +67,7 @@ problems:
   - id: ch10-101-higher-between
     section: '10.1'
     tier: H
-    dfe: [A23]
+    refs: [A23]
     statement: '**H** Write a position-to-term rule for a sequence with first term 7 and common difference 9.'
     answer_label: '**H** Write a position-to-term rule for a sequence with first ter'
     check: {"kind":"all","checks":[{"kind":"evaluate","expression":"9*1-2","answer":"7"},{"kind":"evaluate","expression":"9*2-2","answer":"16"}]}

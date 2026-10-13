@@ -15,4 +15,4 @@ kind: problems
 # 11.2 Sampling methods and bias — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 1.5
+> Tier: **O** · refs: 1.5

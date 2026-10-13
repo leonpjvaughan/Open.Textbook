@@ -15,4 +15,4 @@ kind: guided-problems
 # 1.6 Surds and irrational numbers — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **H** · DfE refs: N.1
+> Tier: **H** · refs: N.1

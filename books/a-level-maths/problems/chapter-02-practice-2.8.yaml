@@ -10,7 +10,7 @@ symbols:
 problems:
   - id: p1-cancel-common-factor
     section: "2.8"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Simplify $\dfrac{x^2 - 1}{x^2 + 3x + 2}$.'
     answer_label: 'Simplified'
     check:
@@ -22,7 +22,7 @@ problems:
 
   - id: p2-cancel-difference-of-squares
     section: "2.8"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Simplify $\dfrac{x^2 - 9}{x^2 - x - 6}$.'
     answer_label: 'Simplified'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: p3-cancel-quadratic
     section: "2.8"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Simplify $\dfrac{x^2 + 5x + 6}{x^2 - 4}$.'
     answer_label: 'Simplified'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: p4-cancel-simple
     section: "2.8"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Simplify $\dfrac{x^2 - 4}{x - 2}$, stating the value of $x$ that is not allowed.'
     answer_label: 'Simplified, with the excluded value'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: p5-add-fractions
     section: "2.8"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Write $\dfrac{2}{x} + \dfrac{3}{x + 1}$ as a single fraction.'
     answer_label: 'A single fraction'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: p6-subtract-fractions
     section: "2.8"
-    dfe: [B6]
+    refs: [B6]
     statement: 'Write $\dfrac{1}{x - 1} - \dfrac{1}{x + 1}$ as a single fraction.'
     answer_label: 'A single fraction'
     check:
@@ -82,7 +82,7 @@ problems:
 
   - id: p7-partial-fractions-distinct
     section: "2.8"
-    dfe: [B10]
+    refs: [B10]
     statement: 'Express $\dfrac{3x + 2}{(x - 1)(x + 2)}$ in partial fractions.'
     answer_label: 'Partial fractions'
     check:
@@ -94,7 +94,7 @@ problems:
 
   - id: p8-partial-fractions-repeated
     section: "2.8"
-    dfe: [B10]
+    refs: [B10]
     statement: 'Express $\dfrac{2x + 3}{(x - 1)^2}$ in partial fractions.'
     answer_label: 'Partial fractions'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: p9-partial-fractions-three-terms
     section: "2.8"
-    dfe: [B10]
+    refs: [B10]
     statement: 'Express $\dfrac{6x^2 + 5x - 5}{(x - 1)(x + 1)(x + 2)}$ in partial fractions.'
     answer_label: 'Partial fractions'
     check:
@@ -118,7 +118,7 @@ problems:
 
   - id: p10-partial-fractions-linear-denominator
     section: "2.8"
-    dfe: [B10]
+    refs: [B10]
     statement: 'Express $\dfrac{7x + 4}{(2x + 1)(x + 2)}$ in partial fractions.'
     answer_label: 'Partial fractions'
     check:
@@ -130,7 +130,7 @@ problems:
 
   - id: p11-excluded-values
     section: "2.8"
-    dfe: [B6]
+    refs: [B6]
     statement: 'For $\dfrac{x + 1}{(x - 2)(x + 3)}$, work out the values of $x$ for which the expression is not defined.'
     answer_label: 'The excluded values'
     check:
@@ -142,7 +142,7 @@ problems:
 
   - id: p12-partial-fractions-mixed
     section: "2.8"
-    dfe: [B10]
+    refs: [B10]
     statement: 'Express $\dfrac{3x^2 + 2x + 1}{(x - 1)(x + 2)^2}$ in partial fractions.'
     answer_label: 'Partial fractions'
     check:

@@ -15,4 +15,4 @@ kind: guided-problems
 # 4.9 Linear inequalities — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **F** · DfE refs: 4.3
+> Tier: **F** · refs: 4.3

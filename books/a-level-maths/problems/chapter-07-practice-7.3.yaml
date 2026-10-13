@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: p1-power
     section: "7.3"
-    dfe: [G2]
+    refs: [G2]
     statement: 'Differentiate $y = 8x^3$.'
     answer_label: 'The derivative'
     check:
@@ -21,7 +21,7 @@ problems:
 
   - id: p2-reciprocal
     section: "7.3"
-    dfe: [G2]
+    refs: [G2]
     statement: 'Differentiate $y = \dfrac{5}{x}$.'
     answer_label: 'The derivative'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-fractional-power
     section: "7.3"
-    dfe: [G2]
+    refs: [G2]
     statement: 'Differentiate $y = x^{1/4}$.'
     answer_label: 'The derivative'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: p4-polynomial
     section: "7.3"
-    dfe: [G2]
+    refs: [G2]
     statement: 'Differentiate $y = 2x^5 - 4x^3 + x$.'
     answer_label: 'The derivative'
     check:
@@ -57,7 +57,7 @@ problems:
 
   - id: p5-negative-power
     section: "7.3"
-    dfe: [G2]
+    refs: [G2]
     statement: 'Differentiate $y = 3x^{-2}$.'
     answer_label: 'The derivative'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: p6-exponential
     section: "7.3"
-    dfe: [G2]
+    refs: [G2]
     statement: 'Differentiate $y = e^{4x}$.'
     answer_label: 'The derivative'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-exponential-negative
     section: "7.3"
-    dfe: [G2]
+    refs: [G2]
     statement: 'Differentiate $y = 3e^{-2x}$.'
     answer_label: 'The derivative'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p8-base-a
     section: "7.3"
-    dfe: [G2]
+    refs: [G2]
     statement: 'Differentiate $y = 2^{3x}$.'
     answer_label: 'The derivative'
     check:
@@ -105,7 +105,7 @@ problems:
 
   - id: p9-sine
     section: "7.3"
-    dfe: [G2]
+    refs: [G2]
     statement: 'Differentiate $y = \sin 5x$.'
     answer_label: 'The derivative'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: p10-cosine
     section: "7.3"
-    dfe: [G2]
+    refs: [G2]
     statement: 'Differentiate $y = 4\cos 2x$.'
     answer_label: 'The derivative'
     check:
@@ -129,7 +129,7 @@ problems:
 
   - id: p11-tangent
     section: "7.3"
-    dfe: [G2]
+    refs: [G2]
     statement: 'Differentiate $y = \tan 3x$.'
     answer_label: 'The derivative'
     check:
@@ -141,7 +141,7 @@ problems:
 
   - id: p12-logarithm-sum
     section: "7.3"
-    dfe: [G2]
+    refs: [G2]
     statement: 'Differentiate $y = 3\ln x + 2e^x - \cos x$.'
     answer_label: 'The derivative'
     check:

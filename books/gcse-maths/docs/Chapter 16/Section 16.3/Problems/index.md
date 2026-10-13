@@ -5,7 +5,7 @@ chapter_title: Angles, polygons and geometrical reasoning
 section: '16.3'
 section_title: Angles in triangles and quadrilaterals
 tier: F
-dfe: [G3, G4]
+refs: [G3, G4]
 kind: problems
 ---
 

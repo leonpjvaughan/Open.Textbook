@@ -15,4 +15,4 @@ kind: problems
 # 9.4 Linear, quadratic and exponential growth — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: AF.1
+> Tier: **O** · refs: AF.1

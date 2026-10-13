@@ -5,7 +5,7 @@ chapter_title: Space physics
 section: '10.1'
 section_title: The solar system and orbits
 tier: F
-dfe:
+refs:
 - SP1
 kind: guided-problems
 ---

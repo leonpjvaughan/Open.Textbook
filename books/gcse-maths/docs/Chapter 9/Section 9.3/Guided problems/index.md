@@ -5,7 +5,7 @@ chapter_title: Equations and inequalities
 section: "9.3"
 section_title: Forming and solving equations
 tier: F
-dfe: [A21]
+refs: [A21]
 kind: guided-problems
 ---
 

@@ -5,7 +5,7 @@ chapter_title: Other functions and graphs
 section: '13.2'
 section_title: Trigonometric graphs
 tier: H
-dfe: [A12]
+refs: [A12]
 kind: walkthrough
 ---
 

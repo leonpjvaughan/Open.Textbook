@@ -3,7 +3,7 @@ problems:
 - id: p1-scale-endpoints
   section: '23.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'P2'
   statement: 'A probability is $0.7$. Is the event more likely or less likely than not?'
   answer_label: 'A probability is $0.7$. Is the event more likely or less likely than not?'
@@ -16,7 +16,7 @@ problems:
 - id: p2-die-prime
   section: '23.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'P3'
   statement: 'A fair six-sided die is rolled. Find the probability of a prime number.'
   answer_label: 'A fair six-sided die is rolled. Find the probability of a prime number.'
@@ -28,7 +28,7 @@ problems:
 - id: p3-spinner-not-blue
   section: '23.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'P4'
   statement: 'A spinner has 3 blue and 5 yellow equal sectors. Find the probability it does not land on blue.'
   answer_label: 'A spinner has 3 blue and 5 yellow equal sectors. Find the probability it does not land on blue.'
@@ -40,7 +40,7 @@ problems:
 - id: p4-certain-event
   section: '23.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'P2'
   statement: 'A fair die is rolled. Find the probability of a result from 1 to 6.'
   answer_label: 'A fair die is rolled. Find the probability of a result from 1 to 6.'
@@ -52,7 +52,7 @@ problems:
 - id: p5-two-dice-total
   section: '23.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'P3'
   statement: 'Two fair dice are rolled. Find the probability their total is 7.'
   answer_label: 'Two fair dice are rolled. Find the probability their total is 7.'
@@ -64,7 +64,7 @@ problems:
 - id: p6-complement
   section: '23.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'P4'
   statement: 'The probability a bus is late is $0.18$. Find the probability it is not late.'
   answer_label: 'The probability a bus is late is $0.18$. Find the probability it is not late.'
@@ -76,7 +76,7 @@ problems:
 - id: p7-fraction-percent
   section: '23.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'P2'
   statement: 'Write $\frac{3}{5}$ as a percentage.'
   answer_label: 'Write $\frac{3}{5}$ as a percentage.'
@@ -88,7 +88,7 @@ problems:
 - id: p8-marbles
   section: '23.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'P3'
   statement: 'A bag has 7 red, 2 green and 1 blue counter. Find the probability of green.'
   answer_label: 'A bag has 7 red, 2 green and 1 blue counter. Find the probability of green.'
@@ -100,7 +100,7 @@ problems:
 - id: p9-impossible
   section: '23.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'P2'
   statement: 'A fair coin is tossed. Find the probability it lands on both heads and tails at once.'
   answer_label: 'A fair coin is tossed. Find the probability it lands on both heads and tails at once.'
@@ -112,7 +112,7 @@ problems:
 - id: p10-at-least-one
   section: '23.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'P4'
   statement: 'A bag has 4 white and 6 black counters. Find the probability of not choosing white.'
   answer_label: 'A bag has 4 white and 6 black counters. Find the probability of not choosing white.'
@@ -124,7 +124,7 @@ problems:
 - id: p11-theoretical-expected-frequency
   section: '23.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'P2'
   - 'P3'
   statement: 'A fair six-sided die is rolled 60 times. Find the expected number of fives and the expected relative frequency of fives.'

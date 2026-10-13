@@ -4,7 +4,7 @@ chapter: 9
 chapter_title: Numerical methods
 section: '9.4'
 section_title: The trapezium rule and limits on the estimate
-dfe:
+refs:
 - I3
 kind: problems
 ---

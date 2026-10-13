@@ -8,7 +8,7 @@ chapter: 16
 problems:
   - id: p1-acceleration
     section: "16.2"
-    dfe: [R2]
+    refs: [R2]
     statement: 'A resultant force of $20$ N acts on a mass of $5$ kg. Find the acceleration.'
     answer_label: 'The acceleration'
     check: {kind: evaluate, expression: "20 / 5", answer: "4"}
@@ -16,7 +16,7 @@ problems:
 
   - id: p2-braking
     section: "16.2"
-    dfe: [R2]
+    refs: [R2]
     statement: 'A car of mass $1200$ kg brakes with a total braking force of $3600$ N. The only horizontal force is the braking force. Find the acceleration, taking the direction of motion as positive.'
     answer_label: 'The acceleration'
     check: {kind: evaluate, expression: "-3600 / 1200", answer: "-3"}
@@ -24,7 +24,7 @@ problems:
 
   - id: p3-crate
     section: "16.2"
-    dfe: [R2]
+    refs: [R2]
     statement: 'A crate of mass $45$ kg is pushed along a floor by a resultant force of $150$ N. Find the acceleration.'
     answer_label: 'The acceleration'
     check: {kind: evaluate, expression: "150 / 45", answer: "10/3"}
@@ -32,7 +32,7 @@ problems:
 
   - id: p4-find-force
     section: "16.2"
-    dfe: [R2]
+    refs: [R2]
     statement: 'A mass of $8$ kg accelerates at $2.5$ m s$^{-2}$. Find the resultant force.'
     answer_label: 'The resultant force'
     check: {kind: evaluate, expression: "8 * 2.5", answer: "20"}
@@ -40,7 +40,7 @@ problems:
 
   - id: p5-find-mass
     section: "16.2"
-    dfe: [R2]
+    refs: [R2]
     statement: 'A resultant force of $240$ N gives a body an acceleration of $4$ m s$^{-2}$. Find the mass of the body.'
     answer_label: 'The mass'
     check: {kind: evaluate, expression: "240 / 4", answer: "60"}
@@ -48,7 +48,7 @@ problems:
 
   - id: p6-opposite-forces
     section: "16.2"
-    dfe: [R2]
+    refs: [R2]
     statement: 'Forces of $50$ N and $30$ N act in opposite directions on a body of mass $8$ kg. Find the acceleration.'
     answer_label: 'The acceleration'
     check: {kind: evaluate, expression: "(50 - 30) / 8", answer: "2.5"}
@@ -56,7 +56,7 @@ problems:
 
   - id: p7-car
     section: "16.2"
-    dfe: [R2]
+    refs: [R2]
     statement: 'A car of mass $1500$ kg has a driving force of $4000$ N and a total resistance of $1000$ N. Find the acceleration.'
     answer_label: 'The acceleration'
     check: {kind: evaluate, expression: "(4000 - 1000) / 1500", answer: "2"}
@@ -64,7 +64,7 @@ problems:
 
   - id: p8-from-rest
     section: "16.2"
-    dfe: [R2]
+    refs: [R2]
     statement: 'A body of mass $4$ kg accelerates from rest to $20$ m s$^{-1}$ in $5$ s. Find the resultant force on it.'
     answer_label: 'The resultant force'
     check: {kind: evaluate, expression: "4 * (20 / 5)", answer: "16"}
@@ -72,7 +72,7 @@ problems:
 
   - id: p9-brake-force
     section: "16.2"
-    dfe: [R2]
+    refs: [R2]
     statement: 'A car of mass $900$ kg must decelerate at $2$ m s$^{-2}$. Find the braking force needed if the only horizontal force is the braking force.'
     answer_label: 'The braking force'
     check: {kind: evaluate, expression: "900 * 2", answer: "1800"}
@@ -80,7 +80,7 @@ problems:
 
   - id: p10-components
     section: "16.2"
-    dfe: [R2]
+    refs: [R2]
     statement: 'A resultant force of $(6, 8)$ N acts on a mass of $2$ kg. Find the acceleration as a column vector, and its size.'
     answer_label: 'The acceleration and its size'
     check:
@@ -95,7 +95,7 @@ problems:
 
   - id: p11-unknown-force
     section: "16.2"
-    dfe: [R2]
+    refs: [R2]
     statement: 'A body of mass $6$ kg accelerates at $1.5$ m s$^{-2}$ against a resistance of $5$ N. Find the driving force.'
     answer_label: 'The driving force'
     check: {kind: evaluate, expression: "6 * 1.5 + 5", answer: "14"}
@@ -103,7 +103,7 @@ problems:
 
   - id: p12-perpendicular-forces
     section: "16.2"
-    dfe: [R2]
+    refs: [R2]
     statement: 'Forces of $30$ N and $40$ N act at right angles on a mass of $10$ kg. Find the size of the resultant force and the acceleration.'
     answer_label: 'The resultant and the acceleration'
     check:

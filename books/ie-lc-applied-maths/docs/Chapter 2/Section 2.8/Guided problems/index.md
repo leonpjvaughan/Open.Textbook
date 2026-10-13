@@ -15,4 +15,4 @@ kind: guided-problems
 # 2.8 Shortest paths and Dijkstra's algorithm — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: S2
+> Tier: **O** · refs: S2

@@ -15,4 +15,4 @@ kind: walkthrough
 # 11.4 Measures of centre and spread — Learn
 
 > **Stub.** Teaching narrative and fully worked examples. At least one Tier-1 or Tier-2 interactive figure where a parameter is worth manipulating. State prerequisites and learning objectives at the top.
-> Tier: **F** · DfE refs: 1.7
+> Tier: **F** · refs: 1.7

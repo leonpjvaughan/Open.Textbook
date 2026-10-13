@@ -15,4 +15,4 @@ kind: problems
 # 8.6 Commutative and associative set operations — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: N.5
+> Tier: **H** · refs: N.5

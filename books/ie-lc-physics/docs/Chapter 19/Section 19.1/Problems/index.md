@@ -15,4 +15,4 @@ kind: problems
 # 19.1 From Thomson to Rutherford — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 4.3
+> Tier: **O** · refs: 4.3

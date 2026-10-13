@@ -13,7 +13,7 @@ symbols:
 problems:
   - id: r1-chain
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = (2x + 3)^4$.'
     answer_label: 'The derivative'
     check:
@@ -25,7 +25,7 @@ problems:
 
   - id: r2-product
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = x^2e^{3x}$.'
     answer_label: 'The derivative'
     check:
@@ -37,7 +37,7 @@ problems:
 
   - id: r3-quotient
     section: "7.7"
-    dfe: [G4]
+    refs: [G4]
     statement: 'Differentiate $y = \dfrac{3x - 1}{x + 2}$.'
     answer_label: 'The derivative'
     check:
@@ -49,7 +49,7 @@ problems:
 
   - id: r4-implicit
     section: "7.9"
-    dfe: [G5]
+    refs: [G5]
     statement: 'Find $\dfrac{dy}{dx}$ for $x^2 + y^2 = 100$.'
     answer_label: 'The derivative'
     check:
@@ -61,7 +61,7 @@ problems:
 
   - id: r5-parametric
     section: "7.9"
-    dfe: [G5]
+    refs: [G5]
     statement: 'Find $\dfrac{dy}{dx}$ for the curve $x = t^3$, $y = t^2$.'
     answer_label: 'The derivative'
     check:
@@ -73,7 +73,7 @@ problems:
 
   - id: r6-stationary
     section: "7.5"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the stationary points of $y = x^3 - 12x$ and classify them.'
     answer_label: 'The sign of the second derivative at each point'
     check:
@@ -86,7 +86,7 @@ problems:
 
   - id: r7-tangent
     section: "7.5"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the gradient of the tangent to $y = x^2 - 4x$ at $x = 3$.'
     answer_label: 'The gradient'
     check:
@@ -98,7 +98,7 @@ problems:
 
   - id: r8-exponential-equation
     section: "7.3"
-    dfe: [G2, F5]
+    refs: [G2, F5]
     statement: 'Solve $2^x = 7$, giving $x$ to three significant figures.'
     answer_label: 'The value of $x$'
     check:
@@ -110,7 +110,7 @@ problems:
 
   - id: r9-trigonometric-equation
     section: "7.3"
-    dfe: [E7]
+    refs: [E7]
     statement: 'Solve $\sin\theta = \dfrac{1}{2}$ for $0 \le \theta < 2\pi$.'
     answer_label: 'The solutions'
     check:
@@ -123,7 +123,7 @@ problems:
 
   - id: r10-surd
     section: "7.3"
-    dfe: [B2]
+    refs: [B2]
     statement: 'Write $\sqrt{75} + \sqrt{12}$ in the form $k\sqrt{3}$.'
     answer_label: 'The value of $k$'
     check:
@@ -134,7 +134,7 @@ problems:
 
   - id: r11-proof
     section: "1.2"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that $(n + 1)^2 - n^2$ is always odd.'
     answer_label: 'The simplified difference'
     check:
@@ -145,7 +145,7 @@ problems:
 
   - id: r12-binomial
     section: "7.3"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Find the coefficient of $x^3$ in the expansion of $(2 + x)^6$.'
     answer_label: 'The coefficient'
     check:
@@ -156,7 +156,7 @@ problems:
 
   - id: r13-connected-rate
     section: "7.8"
-    dfe: [G4]
+    refs: [G4]
     statement: 'A balloon has $\dfrac{dV}{dt} = 200$ cm$^3$/s. Find $\dfrac{dr}{dt}$ when $r = 5$ cm.'
     answer_label: 'The rate'
     check:
@@ -167,7 +167,7 @@ problems:
 
   - id: r14-differential-equation
     section: "7.10"
-    dfe: [G6, OT3]
+    refs: [G6, OT3]
     statement: 'A radioactive mass $m$ decays at a rate proportional to $m$. Write the differential equation and show that $m = m_0e^{-kt}$ satisfies it.'
     answer_label: 'The differential equation'
     check:

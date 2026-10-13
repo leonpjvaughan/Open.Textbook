@@ -9,7 +9,7 @@ problems:
     id: 'ch12-12.3-values'
     section: '12.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'A11'
     statement: 'For $y=x^2-4$, work out $y$ when $x=-2,-1,0,1,2$.'
     answer_label: 'For $y=x^2-4$, work out $y$ when $x=-2,-1,0,1,2$.'
@@ -41,7 +41,7 @@ problems:
     id: 'ch12-12.3-roots'
     section: '12.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'A11'
     statement: 'State the roots of $y=x^2-9$.'
     answer_label: 'State the roots of $y=x^2-9$.'
@@ -61,7 +61,7 @@ problems:
     id: 'ch12-12.3-intercept'
     section: '12.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'A11'
     statement: 'Find the $y$-intercept of $y=x^2+3x-4$.'
     answer_label: 'Find the $y$-intercept of $y=x^2+3x-4$.'
@@ -74,7 +74,7 @@ problems:
     id: 'ch12-12.3-turn'
     section: '12.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'A11'
     statement: 'Find the turning point of $y=(x-2)^2+1$.'
     answer_label: 'Find the turning point of $y=(x-2)^2+1$.'
@@ -95,7 +95,7 @@ problems:
     id: 'ch12-12.3-shape'
     section: '12.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'A11'
     statement: 'Does $y=-2x^2+1$ open upwards or downwards?'
     answer_label: 'Does $y=-2x^2+1$ open upwards or downwards?'
@@ -109,7 +109,7 @@ problems:
     id: 'ch12-12.3-translated'
     section: '12.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'A11'
       - 'A12'
     statement: 'For $y=(x+1)^2-4$, state the turning point and roots.'
@@ -134,7 +134,7 @@ problems:
     id: 'ch12-12.3-graph-count'
     section: '12.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'A12'
     statement: 'How many roots does $y=x^2+2$ have?'
     answer_label: 'How many roots does $y=x^2+2$ have?'
@@ -148,7 +148,7 @@ problems:
     id: 'ch12-12.3-model'
     section: '12.3'
     tier: 'F'
-    dfe:
+    refs:
       - 'A11'
     statement: 'For $h=-t^2+4t+5$, work out $h$ at $t=0$ and $t=2$.'
     answer_label: 'For $h=-t^2+4t+5$, work out $h$ at $t=0$ and $t=2$.'

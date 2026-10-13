@@ -5,7 +5,7 @@ chapter_title: Percentages and financial mathematics
 section: "6.2"
 section_title: Percentage change
 tier: F
-dfe: [R9]
+refs: [R9]
 kind: guided-problems
 ---
 

@@ -16,7 +16,7 @@ problems:
 - id: ch14-14-1-01
   section: '14.1'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $x+y=9$ and $x-y=3$.'
   answer_label: 'Solve $x+y=9$ and $x-y=3$.'
@@ -37,7 +37,7 @@ problems:
 - id: ch14-14-1-02
   section: '14.1'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $2x+y=11$ and $x+y=7$.'
   answer_label: 'Solve $2x+y=11$ and $x+y=7$.'
@@ -58,7 +58,7 @@ problems:
 - id: ch14-14-1-03
   section: '14.1'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $3x+2y=16$ and $x+2y=8$.'
   answer_label: 'Solve $3x+2y=16$ and $x+2y=8$.'
@@ -79,7 +79,7 @@ problems:
 - id: ch14-14-1-04
   section: '14.1'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $2x+3y=13$ and $2x-y=5$.'
   answer_label: 'Solve $2x+3y=13$ and $2x-y=5$.'
@@ -100,7 +100,7 @@ problems:
 - id: ch14-14-1-05
   section: '14.1'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $4x+y=18$ and $2x+y=10$.'
   answer_label: 'Solve $4x+y=18$ and $2x+y=10$.'
@@ -121,7 +121,7 @@ problems:
 - id: ch14-14-1-06
   section: '14.1'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $3x+2y=19$ and $2x+2y=14$.'
   answer_label: 'Solve $3x+2y=19$ and $2x+2y=14$.'
@@ -142,7 +142,7 @@ problems:
 - id: ch14-14-1-07
   section: '14.1'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $2x+5y=1$ and $2x+2y=10$.'
   answer_label: 'Solve $2x+5y=1$ and $2x+2y=10$.'
@@ -163,7 +163,7 @@ problems:
 - id: ch14-14-1-08
   section: '14.1'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $3x+4y=2$ and $5x+4y=10$.'
   answer_label: 'Solve $3x+4y=2$ and $5x+4y=10$.'
@@ -184,7 +184,7 @@ problems:
 - id: ch14-14-1-09
   section: '14.1'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'A cinema sells adult tickets for $£a$ and child tickets for $£c$. Two adults and one child cost £25; one adult and two children cost £20. Find both prices.'
   answer_label: 'A cinema sells adult tickets for $£a$ and child tickets for $£c$. Two'
@@ -205,7 +205,7 @@ problems:
 - id: ch14-14-1-10
   section: '14.1'
   tier: H
-  dfe:
+  refs:
   - A19
   statement: 'Solve $3x+2y=7$ and $5x-4y=1$.'
   answer_label: 'Solve $3x+2y=7$ and $5x-4y=1$.'

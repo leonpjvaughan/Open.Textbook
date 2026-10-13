@@ -5,7 +5,7 @@ chapter_title: Ratio and proportion
 section: '5.1'
 section_title: Ratio notation, simplifying and sharing
 tier: F
-dfe:
+refs:
 - R3
 - R4
 - R5

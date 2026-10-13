@@ -5,7 +5,7 @@ chapter_title: 'Statistics: representing and analysing data'
 section: '24.1'
 section_title: Collecting data, sampling and questionnaires
 tier: F
-dfe: [S1, S5]
+refs: [S1, S5]
 kind: problems
 ---
 

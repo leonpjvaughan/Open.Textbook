@@ -21,7 +21,7 @@ problems:
   - id: w1-radio-wavelength
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'A radio signal has a frequency of 150 MHz. Take the speed of electromagnetic waves in a vacuum as 3.0e8 m/s. Calculate the wavelength.'
     answer_label: 'Wavelength of the radio signal'
     check:
@@ -39,7 +39,7 @@ problems:
   - id: w2-infrared-frequency
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'Infrared radiation has a wavelength of 10 μm. Calculate its frequency.'
     answer_label: 'Frequency of the infrared radiation'
     check:
@@ -57,7 +57,7 @@ problems:
   - id: w3-visible-frequency
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'Green light has a wavelength of 600 nm. Calculate its frequency.'
     answer_label: 'Frequency of the green light'
     check:
@@ -75,7 +75,7 @@ problems:
   - id: w4-xray-frequency
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'An X-ray has a wavelength of 1.0e-10 m. Calculate its frequency.'
     answer_label: 'Frequency of the X-ray'
     check:
@@ -94,7 +94,7 @@ problems:
   - id: w5-microwave-oven
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'A microwave oven uses radiation with a frequency of 2.5 GHz. Calculate its wavelength.'
     answer_label: 'Wavelength of the microwave radiation'
     check:
@@ -112,7 +112,7 @@ problems:
   - id: w6-infrared-remote
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'A television remote control sends infrared radiation with a wavelength of 1.0 μm. Calculate its frequency.'
     answer_label: 'Frequency of the infrared radiation'
     check:
@@ -130,7 +130,7 @@ problems:
   - id: w7-reflection-angle
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'A ray of light hits a mirror at an angle of incidence of 40°. State the angle of reflection and give a reason.'
     answer_label: 'The angle of reflection'
     check:
@@ -149,7 +149,7 @@ problems:
   - id: w8-magnification-picture
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A lens projects a picture 2.0 cm tall onto a wall. The image is 0.30 m tall. Calculate the magnification.'
     answer_label: 'Magnification of the lens'
     check:
@@ -162,7 +162,7 @@ problems:
   - id: w9-magnification-coin
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A lens forms an image of a coin. The coin is 3.0 mm across and the image is 15 mm across. Calculate the magnification.'
     answer_label: 'Magnification of the lens'
     check:
@@ -175,7 +175,7 @@ problems:
   - id: w10-image-height
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A lens has a magnification of 3.0. The object is 8.0 mm tall. Calculate the height of the image.'
     answer_label: 'Height of the image'
     check:
@@ -189,7 +189,7 @@ problems:
   - id: w11-red-frequency
     section: '5.4'
     tier: F
-    dfe: [WA6]
+    refs: [WA6]
     statement: 'Red light has a wavelength of 750 nm. Calculate its frequency.'
     answer_label: 'Frequency of the red light'
     check:
@@ -208,7 +208,7 @@ problems:
   - id: w12-peak-frequency
     section: '5.5'
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'A warm object emits most of its radiation at a wavelength of 8.0 μm. Calculate the frequency of this radiation.'
     answer_label: 'Frequency of the peak radiation'
     check:
@@ -227,7 +227,7 @@ problems:
   - id: g1-radio-wavelength
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'An FM radio station broadcasts at 100 MHz. Calculate the wavelength of the radio waves.'
     answer_label: 'Wavelength of the radio waves'
     check:
@@ -245,7 +245,7 @@ problems:
   - id: g2-microwave-wavelength
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'A radar transmitter sends microwaves at 10 GHz. Calculate their wavelength.'
     answer_label: 'Wavelength of the microwaves'
     check:
@@ -263,7 +263,7 @@ problems:
   - id: g3-infrared-wavelength
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'A detector measures infrared radiation with a frequency of 6.0e13 Hz. Calculate its wavelength. Give your answer in micrometres.'
     answer_label: 'Wavelength of the infrared radiation'
     check:
@@ -282,7 +282,7 @@ problems:
   - id: g4-uv-wavelength
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'Ultraviolet radiation has a frequency of 1.5e15 Hz. Calculate its wavelength.'
     answer_label: 'Wavelength of the ultraviolet radiation'
     check:
@@ -300,7 +300,7 @@ problems:
   - id: g5-infrared-absorption
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'A black metal plate and a shiny metal plate are placed in bright sunshine. Explain which plate warms up faster and why.'
     answer_label: 'Which plate warms faster, and why'
     check:
@@ -319,7 +319,7 @@ problems:
   - id: g6-magnification
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A magnifying glass forms an image 20 mm tall of an object 5.0 mm tall. Calculate the magnification.'
     answer_label: 'Magnification of the lens'
     check:
@@ -332,7 +332,7 @@ problems:
   - id: g7-image-height
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A lens has a magnification of 6.0. A bee in front of it is 1.5 mm long. Calculate the length of the image of the bee.'
     answer_label: 'Length of the image'
     check:
@@ -346,7 +346,7 @@ problems:
   - id: g8-colour-object
     section: '5.4'
     tier: F
-    dfe: [WA6]
+    refs: [WA6]
     statement: 'A red shirt is seen in green light. Explain the colour the shirt appears, and why.'
     answer_label: 'The colour of the shirt in green light'
     check:
@@ -365,7 +365,7 @@ problems:
   - id: g9-black-body
     section: '5.5'
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'A metal block is heated until it glows. Explain how the radiation it emits changes as its temperature rises.'
     answer_label: 'How the emitted radiation changes'
     check:
@@ -384,7 +384,7 @@ problems:
   - id: anchor-radio-wavelength
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'The observatory radio telescope receives a signal with a frequency of 150 MHz. Calculate the wavelength.'
     answer_label: 'Wavelength of the radio signal'
     check:
@@ -402,7 +402,7 @@ problems:
   - id: anchor-infrared-frequency
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'The observatory infrared camera detects radiation with a wavelength of 10 μm. Calculate its frequency.'
     answer_label: 'Frequency of the infrared radiation'
     check:
@@ -420,7 +420,7 @@ problems:
   - id: anchor-visible-frequency
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'A visible-light image at the observatory uses light with a wavelength of 600 nm. Calculate its frequency.'
     answer_label: 'Frequency of the visible light'
     check:
@@ -438,7 +438,7 @@ problems:
   - id: anchor-magnification
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'The visitor centre lens projects a picture 2.0 cm tall so that its image on the wall is 0.30 m tall. Calculate the magnification.'
     answer_label: 'Magnification of the projected picture'
     check:
@@ -451,7 +451,7 @@ problems:
   - id: anchor-spectrum-order
     section: '5.1'
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'Place the radio signal, the infrared radiation and the visible light from the chapter problem in order of increasing frequency. Explain your answer.'
     answer_label: 'The order of increasing frequency'
     check:

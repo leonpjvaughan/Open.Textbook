@@ -5,7 +5,7 @@ chapter_title: 'Statistics: representing and analysing data'
 section: '24.5'
 section_title: Time series and line graphs
 tier: F
-dfe: [S2]
+refs: [S2]
 kind: walkthrough
 ---
 

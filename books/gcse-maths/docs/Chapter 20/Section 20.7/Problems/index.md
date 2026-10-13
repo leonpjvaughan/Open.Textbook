@@ -5,7 +5,7 @@ chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.7'
 section_title: "The cosine rule"
 tier: H
-dfe: [G22]
+refs: [G22]
 kind: problems
 ---
 

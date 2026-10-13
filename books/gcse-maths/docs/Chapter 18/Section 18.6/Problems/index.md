@@ -5,7 +5,7 @@ chapter_title: Transformations, congruence and similarity
 section: "18.6"
 section_title: "Similarity: areas and volumes"
 tier: H
-dfe: [G19]
+refs: [G19]
 kind: problems
 ---
 

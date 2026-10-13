@@ -5,7 +5,7 @@ chapter_title: Measures, accuracy, standard form and surds
 section: '7.5'
 section_title: Standard form
 tier: F
-dfe:
+refs:
 - N9
 kind: problems
 ---

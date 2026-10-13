@@ -5,7 +5,7 @@ chapter_title: Measures, accuracy, standard form and surds
 section: '7.3'
 section_title: Rounding and error intervals
 tier: F
-dfe:
+refs:
 - N15
 kind: guided-problems
 ---

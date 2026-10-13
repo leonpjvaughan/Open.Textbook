@@ -5,7 +5,7 @@ chapter_title: Straight-line graphs and rates of change
 section: '11.4'
 section_title: Parallel and perpendicular lines
 tier: H
-dfe: [A9]
+refs: [A9]
 kind: walkthrough
 ---
 

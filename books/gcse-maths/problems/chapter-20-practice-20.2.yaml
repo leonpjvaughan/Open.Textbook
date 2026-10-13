@@ -4,7 +4,7 @@ problems:
   - id: 'ch20-20-2-01'
     section: '20.2'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A right triangle has angle 30° and hypotenuse 14 cm. Find the opposite side.'
     answer_label: 'Question 1'
     plays: trig-ratios
@@ -14,7 +14,7 @@ problems:
   - id: 'ch20-20-2-02'
     section: '20.2'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A right triangle has angle 60° and hypotenuse 10 cm. Find the adjacent side.'
     answer_label: 'Question 2'
     plays: trig-ratios
@@ -24,7 +24,7 @@ problems:
   - id: 'ch20-20-2-03'
     section: '20.2'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A right triangle has angle 45° and adjacent side 8 cm. Find the opposite side to 3 significant figures.'
     answer_label: 'Question 3'
     check: {kind: 'rounded', value: '8*tan(pi/4)', rounded: '8.00', to: '0.01'}
@@ -33,7 +33,7 @@ problems:
   - id: 'ch20-20-2-04'
     section: '20.2'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'The opposite and adjacent sides are 5 cm and 12 cm. Find the angle to 1 decimal place.'
     answer_label: 'Question 4'
     check: {kind: 'rounded', value: 'atan(5/12)*180/pi', rounded: '22.6', to: '0.1'}
@@ -42,7 +42,7 @@ problems:
   - id: 'ch20-20-2-05'
     section: '20.2'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'The hypotenuse is 13 cm and one leg is 5 cm. Find the angle opposite that leg.'
     answer_label: 'Question 5'
     check: {kind: 'rounded', value: 'asin(5/13)*180/pi', rounded: '22.6', to: '0.1'}
@@ -51,7 +51,7 @@ problems:
   - id: 'ch20-20-2-06'
     section: '20.2'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A right triangle has angle 30° and adjacent side 6 cm. Find the hypotenuse.'
     answer_label: 'Question 6'
     plays: trig-ratios
@@ -61,7 +61,7 @@ problems:
   - id: 'ch20-20-2-07'
     section: '20.2'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'Find the opposite side when the hypotenuse is 20 cm and angle is 30°.'
     answer_label: 'Question 7'
     plays: trig-ratios
@@ -71,7 +71,7 @@ problems:
   - id: 'ch20-20-2-08'
     section: '20.2'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A right triangle has opposite 9 cm and adjacent 12 cm. Find the hypotenuse.'
     answer_label: 'Question 8'
     plays: pythagoras

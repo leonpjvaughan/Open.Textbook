@@ -3,7 +3,7 @@ problems:
 - id: 'ch18-18.4-definition'
   section: '18.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'G5'
   statement: 'What does it mean for two triangles to be congruent?'
   answer_label: 'What does it mean for two triangles to be congruent?'
@@ -15,7 +15,7 @@ problems:
 - id: 'ch18-18.4-sss'
   section: '18.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'G5'
   statement: 'Two triangles have side lengths $3,4,5$ and $5,4,3$. Which criterion proves congruence?'
   answer_label: 'Two triangles have side lengths $3,4,5$ and $5,4,3$. Which criterion proves congruence?'
@@ -27,7 +27,7 @@ problems:
 - id: 'ch18-18.4-sas'
   section: '18.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'G5'
   statement: 'Two sides and the included angle match in two triangles. Name the criterion.'
   answer_label: 'Two sides and the included angle match in two triangles. Name the criterion.'
@@ -39,7 +39,7 @@ problems:
 - id: 'ch18-18.4-asa'
   section: '18.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'G5'
   statement: 'Two angles and the included side match. Name the criterion.'
   answer_label: 'Two angles and the included side match. Name the criterion.'
@@ -51,7 +51,7 @@ problems:
 - id: 'ch18-18.4-rhs'
   section: '18.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'G5'
   statement: 'Two right-angled triangles have equal hypotenuses and one equal corresponding leg. Name the criterion.'
   answer_label: 'Two right-angled triangles have equal hypotenuses and one equal corresponding leg. Name the criterion.'
@@ -63,7 +63,7 @@ problems:
 - id: 'ch18-18.4-not-aaa'
   section: '18.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'G5'
   statement: 'Is matching three angles enough to prove triangles congruent? Explain.'
   answer_label: 'Is matching three angles enough to prove triangles congruent? Explain.'
@@ -75,7 +75,7 @@ problems:
 - id: 'ch18-18.4-criterion'
   section: '18.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'G5'
   statement: 'Two sides and a non-included angle are given equal. Does this always prove congruence?'
   answer_label: 'Two sides and a non-included angle are given equal. Does this always prove congruence?'
@@ -87,7 +87,7 @@ problems:
 - id: 'ch18-18.4-identify'
   section: '18.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'G5'
   statement: 'Triangles have sides $6,8,10$ each. State a congruence criterion.'
   answer_label: 'Triangles have sides $6,8,10$ each. State a congruence criterion.'
@@ -99,7 +99,7 @@ problems:
 - id: 'ch18-18.4-reason'
   section: '18.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'G5'
   statement: 'A pair of triangles has equal hypotenuse, one equal leg, and each has a right angle. Give a reason they are congruent.'
   answer_label: 'A pair of triangles has equal hypotenuse, one equal leg, and each has a right angle. Give a reason they are congruent.'
@@ -111,7 +111,7 @@ problems:
 - id: 'ch18-18.4-classify'
   section: '18.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'G5'
   statement: 'Two triangles have angles $40^\circ,60^\circ,80^\circ$ and corresponding sides of lengths $3,4,5$ and $6,8,10$. Congruent?'
   answer_label: 'Two triangles have angles $40^\circ,60^\circ,80^\circ$ and corresponding sides of lengths $3,4,5$ and $6,8,10$. Congruent?'

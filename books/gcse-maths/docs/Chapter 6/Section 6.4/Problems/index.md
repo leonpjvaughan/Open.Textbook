@@ -5,7 +5,7 @@ chapter_title: Percentages and financial mathematics
 section: "6.4"
 section_title: Simple and compound interest
 tier: F
-dfe: [R9, R16]
+refs: [R9, R16]
 kind: problems
 ---
 

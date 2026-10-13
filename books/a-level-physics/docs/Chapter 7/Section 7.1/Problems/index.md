@@ -4,7 +4,7 @@ chapter: 7
 chapter_title: Thermal physics and matter
 section: '7.1'
 section_title: Internal energy and specific heat capacity
-dfe:
+refs:
 - AP7
 kind: problems
 ---

@@ -4,7 +4,7 @@ chapter: 4
 chapter_title: Materials
 section: '4.2'
 section_title: Force-extension graphs and stored energy
-dfe:
+refs:
 - AP4
 kind: problems
 ---

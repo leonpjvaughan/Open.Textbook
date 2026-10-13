@@ -15,4 +15,4 @@ kind: problems
 # 2.5 Deriving the equations of motion from a graph — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 1.1
+> Tier: **H** · refs: 1.1

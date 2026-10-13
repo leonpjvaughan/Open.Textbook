@@ -5,7 +5,7 @@ chapter_title: Angles, polygons and geometrical reasoning
 section: '16.4'
 section_title: Angles in polygons
 tier: F
-dfe: [G3]
+refs: [G3]
 kind: guided-problems
 ---
 

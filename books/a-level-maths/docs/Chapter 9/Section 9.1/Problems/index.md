@@ -4,7 +4,7 @@ chapter: 9
 chapter_title: Numerical methods
 section: '9.1'
 section_title: Locating roots by change of sign
-dfe:
+refs:
 - I1
 kind: problems
 ---

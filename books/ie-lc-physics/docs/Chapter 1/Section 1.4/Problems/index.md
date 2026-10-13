@@ -15,4 +15,4 @@ kind: problems
 # 1.4 Planning and evaluating an investigation — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 1.6
+> Tier: **O** · refs: 1.6

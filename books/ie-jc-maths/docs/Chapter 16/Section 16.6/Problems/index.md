@@ -15,4 +15,4 @@ kind: problems
 # 16.6 Surface area and curved surface area — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: GT.2
+> Tier: **O** · refs: GT.2

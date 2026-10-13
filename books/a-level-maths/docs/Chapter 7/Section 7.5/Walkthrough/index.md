@@ -4,7 +4,7 @@ chapter: 7
 chapter_title: Differentiation
 section: '7.5'
 section_title: Tangents, normals, maxima, minima and stationary points
-dfe:
+refs:
 - G3
 kind: walkthrough
 ---

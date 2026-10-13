@@ -4,7 +4,7 @@ problems:
   - id: c2-22-prime-factor-72
     section: '2.2'
     tier: F
-    dfe: [N4]
+    refs: [N4]
     statement: 'Write $72$ as a product of prime factors.'
     answer_label: 'Prime factors of 72'
     check: {kind: evaluate, expression: "2^3*3^2", answer: "72"}
@@ -13,7 +13,7 @@ problems:
   - id: c2-22-prime-factor-90
     section: '2.2'
     tier: F
-    dfe: [N4]
+    refs: [N4]
     statement: 'Write $90$ as a product of prime factors.'
     answer_label: 'Prime factors of 90'
     check: {kind: evaluate, expression: "2*3^2*5", answer: "90"}
@@ -21,7 +21,7 @@ problems:
   - id: c2-22-hcf-24-40
     section: '2.2'
     tier: F
-    dfe: [N4]
+    refs: [N4]
     statement: 'Find the HCF of $24$ and $40$.'
     answer_label: 'HCF of 24 and 40'
     check: {kind: all, checks: [{kind: evaluate, expression: "24/8", answer: "3"}, {kind: evaluate, expression: "40/8", answer: "5"}, {kind: evaluate, expression: "2^3", answer: "8"}, {kind: evaluate, expression: "24/16", answer: "3/2"}]}
@@ -29,7 +29,7 @@ problems:
   - id: c2-22-lcm-15-20
     section: '2.2'
     tier: F
-    dfe: [N4]
+    refs: [N4]
     statement: 'Find the LCM of $15$ and $20$.'
     answer_label: 'LCM of 15 and 20'
     check: {kind: all, checks: [{kind: evaluate, expression: "60/15", answer: "4"}, {kind: evaluate, expression: "60/20", answer: "3"}]}
@@ -37,7 +37,7 @@ problems:
   - id: c2-22-hcf-36-60
     section: '2.2'
     tier: F
-    dfe: [N4]
+    refs: [N4]
     statement: 'Find the HCF of $36$ and $60$.'
     answer_label: 'HCF of 36 and 60'
     check: {kind: all, checks: [{kind: evaluate, expression: "36/12", answer: "3"}, {kind: evaluate, expression: "60/12", answer: "5"}]}
@@ -45,7 +45,7 @@ problems:
   - id: c2-22-lcm-8-18
     section: '2.2'
     tier: F
-    dfe: [N4]
+    refs: [N4]
     statement: 'Find the LCM of $8$ and $18$.'
     answer_label: 'LCM of 8 and 18'
     check: {kind: all, checks: [{kind: evaluate, expression: "72/8", answer: "9"}, {kind: evaluate, expression: "72/18", answer: "4"}]}
@@ -53,7 +53,7 @@ problems:
   - id: c2-22-packs
     section: '2.2'
     tier: F
-    dfe: [N4]
+    refs: [N4]
     statement: 'A teacher has $48$ pencils and $60$ pens. She makes the greatest possible number of identical sets, using all items. How many sets does she make?'
     answer_label: 'Identical sets'
     check: {kind: all, checks: [{kind: evaluate, expression: "48/12", answer: "4"}, {kind: evaluate, expression: "60/12", answer: "5"}]}
@@ -61,7 +61,7 @@ problems:
   - id: c2-22-events
     section: '2.2'
     tier: F
-    dfe: [N4]
+    refs: [N4]
     statement: 'Two lights flash every $12$ seconds and every $18$ seconds. They flash together now. After how many seconds will they next flash together?'
     answer_label: 'Lights flashing together'
     check: {kind: all, checks: [{kind: evaluate, expression: "36/12", answer: "3"}, {kind: evaluate, expression: "36/18", answer: "2"}]}
@@ -69,7 +69,7 @@ problems:
   - id: c2-22-prime-factor-150
     section: '2.2'
     tier: F
-    dfe: [N4]
+    refs: [N4]
     statement: 'Write $150$ as a product of prime factors, then use it to find the HCF of $150$ and $210$.'
     answer_label: 'Prime factors and HCF'
     check: {kind: all, checks: [{kind: evaluate, expression: "2*3*5^2", answer: "150"}, {kind: evaluate, expression: "150/30", answer: "5"}, {kind: evaluate, expression: "210/30", answer: "7"}]}

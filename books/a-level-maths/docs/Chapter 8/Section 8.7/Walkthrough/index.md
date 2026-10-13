@@ -4,7 +4,7 @@ chapter: 8
 chapter_title: Integration
 section: '8.7'
 section_title: Separable first-order differential equations
-dfe:
+refs:
 - H7
 kind: walkthrough
 ---

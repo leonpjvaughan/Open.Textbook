@@ -4,7 +4,7 @@ chapter: 12
 chapter_title: Probability
 section: '12.1'
 section_title: Mutually exclusive and independent events
-dfe:
+refs:
 - M1
 kind: walkthrough
 ---

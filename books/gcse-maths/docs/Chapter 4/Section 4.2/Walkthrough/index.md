@@ -5,7 +5,7 @@ chapter_title: Fractions, decimals and percentages
 section: "4.2"
 section_title: Adding and subtracting fractions
 tier: F
-dfe: [N2]
+refs: [N2]
 kind: walkthrough
 ---
 # 4.2 Adding and subtracting fractions — Learn

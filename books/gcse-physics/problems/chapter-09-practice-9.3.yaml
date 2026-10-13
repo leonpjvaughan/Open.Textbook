@@ -10,7 +10,7 @@ problems:
   - id: p1-background-sources
     section: '9.3'
     tier: F
-    dfe: [AT3]
+    refs: [AT3]
     statement: 'Name two natural sources and two man-made sources of background radiation.'
     answer_label: 'Sources of background radiation'
     check:
@@ -28,7 +28,7 @@ problems:
   - id: p2-dose-convert
     section: '9.3'
     tier: F
-    dfe: [AT3]
+    refs: [AT3]
     statement: 'A worker receives a radiation dose of 2.5 mSv. Convert this dose to sieverts.'
     answer_label: 'The dose in sieverts'
     check: {kind: convert, value: '2.5', from: 'mSv', to: 'Sv', answer: '0.0025'}
@@ -37,7 +37,7 @@ problems:
   - id: p3-dose-factors
     section: '9.3'
     tier: F
-    dfe: [AT3]
+    refs: [AT3]
     statement: 'Explain how a person\u2019s occupation and location can change the radiation dose they receive in a year.'
     answer_label: 'Occupation, location and dose'
     check:
@@ -55,7 +55,7 @@ problems:
   - id: p4-background-correction
     section: '9.3'
     tier: F
-    dfe: [AT3]
+    refs: [AT3]
     statement: 'A detector records a count rate of 180 counts per minute near a source. The background count rate is 20 counts per minute. Calculate the corrected count rate from the source.'
     answer_label: 'Corrected count rate'
     check: {kind: evaluate, expression: '180 - 20', answer: '160'}
@@ -64,7 +64,7 @@ problems:
   - id: p5-alpha-inside
     section: '9.3'
     tier: F
-    dfe: [AT3]
+    refs: [AT3]
     statement: 'Explain why an alpha source is a serious hazard if it is taken into the body, but a small hazard if it is held outside the body.'
     answer_label: 'Alpha radiation inside and outside the body'
     check:
@@ -85,7 +85,7 @@ problems:
   - id: p6-tracer-choice
     section: '9.3'
     tier: F
-    dfe: [AT3]
+    refs: [AT3]
     statement: 'A tracer is used to explore an internal organ. Explain why the tracer emits gamma radiation and has a half-life of a few hours.'
     answer_label: 'Choosing a tracer'
     check:
@@ -103,7 +103,7 @@ problems:
   - id: p7-radiotherapy
     section: '9.3'
     tier: F
-    dfe: [AT3]
+    refs: [AT3]
     statement: 'Explain how nuclear radiation is used to control or destroy unwanted tissue.'
     answer_label: 'Using radiation on unwanted tissue'
     check:
@@ -124,7 +124,7 @@ problems:
   - id: p8-long-half-life
     section: '9.3'
     tier: F
-    dfe: [AT3]
+    refs: [AT3]
     statement: 'Two radioactive sources are spilled. Source A has a half-life of 14 days and source B has a half-life of 14 years. Explain why source B is the greater long-term hazard.'
     answer_label: 'Which spill is the greater long-term hazard'
     check:
@@ -142,7 +142,7 @@ problems:
   - id: p9-risk-benefit
     section: '9.3'
     tier: F
-    dfe: [AT3]
+    refs: [AT3]
     statement: 'A patient is offered a scan with a radioactive tracer. Evaluate the benefits and the risks of the scan.'
     answer_label: 'Benefits and risks of a tracer scan'
     check:
@@ -163,7 +163,7 @@ problems:
   - id: p10-number-of-half-lives
     section: '9.3'
     tier: F
-    dfe: [AT3]
+    refs: [AT3]
     statement: 'A sample has a count rate of 800 counts per second. After 24 hours the count rate is 50 counts per second. The half-life is 6.0 hours. Work out how many half-lives have passed.'
     answer_label: 'Number of half-lives'
     check: {kind: evaluate, expression: '800 / 50', answer: '16'}
@@ -172,7 +172,7 @@ problems:
   - id: p11-compare-sources
     section: '9.3'
     tier: F
-    dfe: [AT3]
+    refs: [AT3]
     statement: 'A hospital must choose between a gamma source with a half-life of 6 hours and an alpha source with a half-life of 10 years, to explore an internal organ. Say which source is suitable and why.'
     answer_label: 'Choosing a source to explore an organ'
     check:
@@ -193,7 +193,7 @@ problems:
   - id: p12-precautions
     section: '9.3'
     tier: F
-    dfe: [AT3]
+    refs: [AT3]
     statement: 'State three precautions that reduce the dose a technician receives while working near a radioactive source.'
     answer_label: 'Precautions that reduce dose'
     check:

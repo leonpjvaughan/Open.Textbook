@@ -5,7 +5,7 @@ chapter_title: Energy
 section: '1.1'
 section_title: Energy stores and transfers
 tier: F
-dfe:
+refs:
 - EN1
 kind: walkthrough
 ---

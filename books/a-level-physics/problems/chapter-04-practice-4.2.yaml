@@ -15,7 +15,7 @@ problems:
   - id: p1-spring-constant
     plays: hookes-law
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A spring extends by $0.050\,\text{m}$ under a force of $10\,\text{N}$. Find the spring constant.'
     answer_label: 'The spring constant'
     check:
@@ -30,7 +30,7 @@ problems:
   - id: p2-force
     plays: hookes-law
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A spring of constant $250\,\text{N}\,\text{m}^{-1}$ is stretched by $0.080\,\text{m}$. Find the force.'
     answer_label: 'The force'
     check:
@@ -45,7 +45,7 @@ problems:
   - id: p3-energy
     plays: stored-energy
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A spring of constant $250\,\text{N}\,\text{m}^{-1}$ is stretched by $0.080\,\text{m}$ by a force of $20\,\text{N}$. Find the energy stored.'
     answer_label: 'The energy stored'
     check:
@@ -59,7 +59,7 @@ problems:
 
   - id: p4-graph-gradient
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A force-extension graph is a straight line through $(0, 0)$ and $(0.040\,\text{m}, 8.0\,\text{N})$. Find the gradient, which is the spring constant.'
     answer_label: 'The gradient'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: p5-graph-area
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'The same straight-line graph reaches $8.0\,\text{N}$ at an extension of $0.040\,\text{m}$. Find the energy stored, from the area under the graph.'
     answer_label: 'The energy stored'
     check:
@@ -82,7 +82,7 @@ problems:
   - id: p6-gradient-to-E
     plays: young-modulus
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire of length $1.50\,\text{m}$ and area $2.0 \times 10^{-7}\,\text{m}^2$ has a force-extension graph of gradient $2.0 \times 10^{4}\,\text{N}\,\text{m}^{-1}$. Find the Young modulus.'
     answer_label: 'The Young modulus'
     check:
@@ -98,7 +98,7 @@ problems:
   - id: p7-energy-kx
     plays: stored-energy
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A spring of constant $400\,\text{N}\,\text{m}^{-1}$ is stretched by $0.10\,\text{m}$. Find the energy stored.'
     answer_label: 'The energy stored'
     check:
@@ -113,7 +113,7 @@ problems:
   - id: p8-energy-force-extension
     plays: stored-energy
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire carries a force of $60\,\text{N}$ and extends by $25\,\text{mm}$. Find the energy stored in the wire.'
     answer_label: 'The energy stored'
     check:
@@ -127,7 +127,7 @@ problems:
 
   - id: p9-nonlinear-area
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A force-extension graph for a rubber cord gives the points $(0, 0)$, $(0.020, 3.5)$, $(0.040, 7.5)$, $(0.060, 13)$ and $(0.080, 20)$. Find the energy stored at an extension of $0.080\,\text{m}$.'
     answer_label: 'The energy stored'
     check:
@@ -139,7 +139,7 @@ problems:
   - id: p10-force-from-energy
     plays: stored-energy
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A spring stores $0.36\,\text{J}$ when it is extended by $0.060\,\text{m}$. The graph is a straight line through the origin. Find the final force.'
     answer_label: 'The final force'
     check:
@@ -153,7 +153,7 @@ problems:
 
   - id: p11-nonlinear-method
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'Explain why $E = \tfrac{1}{2}F\Delta L$ cannot be used to find the energy stored when the force-extension graph is not a straight line.'
     answer_label: 'Why the triangle formula fails'
     check:
@@ -171,7 +171,7 @@ problems:
 
   - id: p12-limit-of-proportionality
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A spring obeys Hooke''s law up to a force of $15\,\text{N}$. A student loads it to $25\,\text{N}$ and finds that the extension is larger than $F = k\Delta L$ predicts. Explain why.'
     answer_label: 'Why the extension is larger'
     check:

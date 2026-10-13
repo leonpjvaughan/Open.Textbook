@@ -5,7 +5,7 @@ chapter_title: Straight-line graphs and rates of change
 section: '11.3'
 section_title: Finding the equation of a line
 tier: F
-dfe: [A9]
+refs: [A9]
 kind: walkthrough
 ---
 

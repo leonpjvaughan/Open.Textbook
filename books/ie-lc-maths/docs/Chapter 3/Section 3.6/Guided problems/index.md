@@ -15,4 +15,4 @@ kind: guided-problems
 # 3.6 Similar figures: length, area and volume ratios — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **H** · DfE refs: 3.4
+> Tier: **H** · refs: 3.4

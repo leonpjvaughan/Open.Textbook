@@ -7,7 +7,7 @@ chapter: 13
 problems:
   - id: p1-matching-mean
     section: "13.4"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim B(50, 0.4)$. Work out the mean $\mu = np$ of the matching Normal variable.'
     answer_label: 'The mean'
     check:
@@ -18,7 +18,7 @@ problems:
 
   - id: p2-matching-variance
     section: "13.4"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim B(50, 0.4)$. Work out the variance $np(1-p)$ of the matching Normal variable.'
     answer_label: 'The variance'
     check:
@@ -29,7 +29,7 @@ problems:
 
   - id: p3-matching-standard-deviation
     section: "13.4"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim B(50, 0.4)$. Work out the standard deviation $\sigma = \sqrt{np(1-p)}$ of the matching Normal variable.'
     answer_label: 'The standard deviation'
     check:
@@ -40,7 +40,7 @@ problems:
 
   - id: p4-approximate-at-most
     section: "13.4"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim B(50, 0.4)$. Use the Normal approximation to estimate $P(X \le 15)$.'
     answer_label: 'The estimate'
     check:
@@ -54,7 +54,7 @@ problems:
 
   - id: p5-large-n-mean
     section: "13.4"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim B(100, 0.5)$. Work out the mean of the matching Normal variable.'
     answer_label: 'The mean'
     check:
@@ -65,7 +65,7 @@ problems:
 
   - id: p6-large-n-standard-deviation
     section: "13.4"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim B(100, 0.5)$. Work out the standard deviation of the matching Normal variable.'
     answer_label: 'The standard deviation'
     check:
@@ -76,7 +76,7 @@ problems:
 
   - id: p7-approximate-at-most-forty
     section: "13.4"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim B(100, 0.5)$. Use the Normal approximation to estimate $P(X \le 40)$.'
     answer_label: 'The estimate'
     check:
@@ -90,7 +90,7 @@ problems:
 
   - id: p8-within-one-sigma
     section: "13.4"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim N(\mu, \sigma^2)$. Work out $P(\mu - \sigma < X < \mu + \sigma)$, the probability within one standard deviation of the mean.'
     answer_label: 'The probability'
     check:
@@ -104,7 +104,7 @@ problems:
 
   - id: p9-within-two-sigma
     section: "13.4"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim N(\mu, \sigma^2)$. Work out $P(\mu - 2\sigma < X < \mu + 2\sigma)$.'
     answer_label: 'The probability'
     check:
@@ -118,7 +118,7 @@ problems:
 
   - id: p10-within-three-sigma
     section: "13.4"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim N(\mu, \sigma^2)$. Work out $P(\mu - 3\sigma < X < \mu + 3\sigma)$.'
     answer_label: 'The probability'
     check:
@@ -132,7 +132,7 @@ problems:
 
   - id: p11-points-of-inflection
     section: "13.4"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim N(50, 5^2)$. The Normal curve has points of inflection at $\mu - \sigma$ and $\mu + \sigma$. Work out the two values of $x$.'
     answer_label: 'The two values of x'
     check:
@@ -144,7 +144,7 @@ problems:
 
   - id: p12-approximate-at-most-twenty-four
     section: "13.4"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim B(50, 0.4)$. Use the Normal approximation to estimate $P(X \le 24)$.'
     answer_label: 'The estimate'
     check:
@@ -158,7 +158,7 @@ problems:
 
   - id: p13-exact-for-comparison
     section: "13.4"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim B(50, 0.4)$. Work out the exact binomial probability $P(X \le 15)$, to compare with the Normal estimate.'
     answer_label: 'The exact probability'
     check:

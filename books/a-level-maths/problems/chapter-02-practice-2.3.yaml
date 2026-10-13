@@ -11,7 +11,7 @@ symbols:
 problems:
   - id: p1-complete-monic
     section: "2.3"
-    dfe: [B3]
+    refs: [B3]
     statement: 'Write $x^2 + 6x + 2$ in the form $(x + a)^2 + b$.'
     answer_label: 'Completed square'
     check:
@@ -22,7 +22,7 @@ problems:
 
   - id: p2-complete-non-monic
     section: "2.3"
-    dfe: [B3]
+    refs: [B3]
     statement: 'Write $2x^2 - 8x + 5$ in the form $a(x + p)^2 + q$.'
     answer_label: 'Completed square'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-minimum-value
     section: "2.3"
-    dfe: [B3]
+    refs: [B3]
     statement: 'Complete the square for $x^2 - 10x + 3$, and state the minimum value of the expression.'
     answer_label: 'The completed square and the minimum'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: p4-discriminant-negative
     section: "2.3"
-    dfe: [B3]
+    refs: [B3]
     statement: 'Work out the discriminant of $3x^2 + 2x + 5$ and use it to state how many real roots the equation $3x^2 + 2x + 5 = 0$ has.'
     answer_label: 'The discriminant and the number of roots'
     check:
@@ -57,7 +57,7 @@ problems:
 
   - id: p5-discriminant-zero
     section: "2.3"
-    dfe: [B3]
+    refs: [B3]
     statement: 'Show that $x^2 - 4x + 4 = 0$ has a repeated root, and find it.'
     answer_label: 'The discriminant and the root'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: p6-discriminant-positive
     section: "2.3"
-    dfe: [B3]
+    refs: [B3]
     statement: 'Work out the discriminant of $x^2 - 5x + 6$ and state how many real roots the equation has.'
     answer_label: 'The discriminant and the number of roots'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-vertex
     section: "2.3"
-    dfe: [B3]
+    refs: [B3]
     statement: 'Find the coordinates of the vertex of $y = x^2 - 6x + 5$.'
     answer_label: 'The vertex'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p8-always-positive
     section: "2.3"
-    dfe: [B3]
+    refs: [B3]
     statement: 'Show that $x^2 + 4x + 7$ is positive for every value of $x$, and state its minimum value.'
     answer_label: 'The completed square and the minimum'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: p9-factorise
     section: "2.3"
-    dfe: [B3]
+    refs: [B3]
     statement: 'Factorise $x^2 - 7x + 12$.'
     answer_label: 'Factorised'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: p10-repeated-root-k
     section: "2.3"
-    dfe: [B3]
+    refs: [B3]
     statement: 'The equation $x^2 + kx + 9 = 0$ has a repeated root. Find the possible values of $k$.'
     answer_label: 'The values of $k$'
     check:
@@ -129,7 +129,7 @@ problems:
 
   - id: p11-no-real-roots
     section: "2.3"
-    dfe: [B3]
+    refs: [B3]
     statement: 'Show that the equation $2x^2 - 4x + 5 = 0$ has no real roots.'
     answer_label: 'The discriminant and the conclusion'
     check:
@@ -141,7 +141,7 @@ problems:
 
   - id: p12-method-choice
     section: "2.3"
-    dfe: [B3]
+    refs: [B3]
     statement: 'For $y = x^2 - 2x - 3$, say which feature you would find each way. (a) the roots (b) the vertex.'
     answer_label: 'Which method, and why'
     check:

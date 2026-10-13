@@ -12,7 +12,7 @@ symbols:
 problems:
   - id: c1-drone-bracket
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'A drone''s height is $h(t) = 40e^{-t/4} - 2t$ metres. Show that the drone lands between $5$ and $6$ seconds.'
     answer_label: 'The two heights'
     check:
@@ -24,7 +24,7 @@ problems:
 
   - id: c2-drone-derivative
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'For the drone model $h(t) = 40e^{-t/4} - 2t$, write down $h''(t)$.'
     answer_label: 'The derivative'
     check:
@@ -36,7 +36,7 @@ problems:
 
   - id: c3-drone-newton-step
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'Use Newton–Raphson with $t_0 = 5$ on $h(t) = 40e^{-t/4} - 2t$. Find $t_1$ to four decimal places.'
     answer_label: 'The value of t1'
     check:
@@ -48,7 +48,7 @@ problems:
 
   - id: c4-drone-landing-time
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'For the drone, state the landing time to three decimal places.'
     answer_label: 'The landing time'
     check:
@@ -60,7 +60,7 @@ problems:
 
   - id: c5-river-area
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'A river survey gives depths $0, 1.2, 2.5, 3.1, 2.4, 0.9, 0$ metres at distances $0, 2, 4, 6, 8, 10, 12$ metres. Estimate the cross-sectional area.'
     answer_label: 'The area'
     check:
@@ -71,7 +71,7 @@ problems:
 
   - id: c6-river-limits
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'For the river survey, give a lower limit and an upper limit for the cross-sectional area.'
     answer_label: 'The limits'
     check:
@@ -83,7 +83,7 @@ problems:
 
   - id: c7-speed-distance
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'A car''s speed is recorded every two seconds: $0, 5, 9, 12, 14, 15$ metres per second at $t = 0, 2, 4, 6, 8, 10$ seconds. Estimate the distance travelled.'
     answer_label: 'The distance'
     check:
@@ -94,7 +94,7 @@ problems:
 
   - id: c8-speed-limits
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'For the speed trace in the previous question, give a lower limit and an upper limit for the distance travelled.'
     answer_label: 'The limits'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: c9-drug-bracket
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'A drug''s concentration is $C(t) = 6te^{-0.4t}$ milligrams per litre. Show that the concentration reaches $2$ milligrams per litre between $t = 0.35$ and $t = 0.4$ hours.'
     answer_label: 'The two values'
     check:
@@ -118,7 +118,7 @@ problems:
 
   - id: c10-drug-newton-step
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'For $f(t) = 3t - e^{0.4t}$, use Newton–Raphson with $t_0 = 0.4$. Find $t_1$ to four decimal places.'
     answer_label: 'The value of t1'
     check:
@@ -130,7 +130,7 @@ problems:
 
   - id: c11-drug-time
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'State the time from the previous question to two decimal places, in hours.'
     answer_label: 'The time'
     check:
@@ -142,7 +142,7 @@ problems:
 
   - id: c12-temperature-bracket
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'A cooling model gives $T = 20 + 60e^{-0.05t} - 0.5t$ degrees, $t$ minutes after a switch is pressed. Show that the temperature is $30$ degrees between $t = 21$ and $t = 22$.'
     answer_label: 'The two values'
     check:
@@ -154,7 +154,7 @@ problems:
 
   - id: c13-temperature-time
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'For the cooling model in the previous question, state the time when the temperature is $30$ degrees, to two decimal places.'
     answer_label: 'The time'
     check:
@@ -166,7 +166,7 @@ problems:
 
   - id: c14-second-drone
     section: "9.5"
-    dfe: [I4, OT2]
+    refs: [I4, OT2]
     statement: 'A second drone has height $h(t) = 30e^{-t/3} - 3t$ metres. Show that it lands between $3$ and $4$ seconds, and state the landing time to two decimal places.'
     answer_label: 'The bracket and the time'
     check:

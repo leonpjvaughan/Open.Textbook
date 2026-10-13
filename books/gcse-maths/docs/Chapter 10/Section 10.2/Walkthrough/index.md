@@ -5,7 +5,7 @@ chapter_title: Sequences
 section: '10.2'
 section_title: Special sequences
 tier: F
-dfe:
+refs:
 - A24
 kind: walkthrough
 ---

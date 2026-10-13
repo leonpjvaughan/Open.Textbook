@@ -4,7 +4,7 @@ chapter: 16
 chapter_title: Forces, Newton's laws and moments
 section: '16.3'
 section_title: Weight and motion under gravity
-dfe:
+refs:
 - R3
 kind: problems
 ---

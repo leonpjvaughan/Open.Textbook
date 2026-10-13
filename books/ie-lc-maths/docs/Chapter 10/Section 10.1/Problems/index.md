@@ -15,4 +15,4 @@ kind: problems
 # 10.1 Counting outcomes and the fundamental principle — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 1.1
+> Tier: **F** · refs: 1.1

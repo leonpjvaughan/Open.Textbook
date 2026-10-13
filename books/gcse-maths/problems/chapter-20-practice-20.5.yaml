@@ -4,7 +4,7 @@ problems:
   - id: 'ch20-20-5-01'
     section: '20.5'
     tier: 'H'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A cuboid measures 3 cm, 4 cm and 12 cm. Find its space diagonal.'
     answer_label: 'Question 1'
     check: {kind: 'evaluate', expression: '3**2+4**2+12**2', answer: '169'}
@@ -13,7 +13,7 @@ problems:
   - id: 'ch20-20-5-02'
     section: '20.5'
     tier: 'H'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A cuboid measures 5 cm, 12 cm and 9 cm. Find its space diagonal to 3 significant figures.'
     answer_label: 'Question 2'
     check: {kind: 'rounded', value: 'sqrt(5**2+12**2+9**2)', rounded: '15.8', to: '0.1'}
@@ -22,7 +22,7 @@ problems:
   - id: 'ch20-20-5-03'
     section: '20.5'
     tier: 'H'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A cuboid has base dimensions 6 cm by 8 cm and height 10 cm. Find the space diagonal.'
     answer_label: 'Question 3'
     check: {kind: 'evaluate', expression: '6**2+8**2+10**2', answer: '200'}
@@ -31,7 +31,7 @@ problems:
   - id: 'ch20-20-5-04'
     section: '20.5'
     tier: 'H'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A cuboid has a 5 cm by 12 cm base and height 8 cm. Find the angle between its space diagonal and base to 1 decimal place.'
     answer_label: 'Question 4'
     check: {kind: 'rounded', value: 'atan(8/13)*180/pi', rounded: '31.6', to: '0.1'}
@@ -40,7 +40,7 @@ problems:
   - id: 'ch20-20-5-05'
     section: '20.5'
     tier: 'H'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A cube has side 4 cm. Find its space diagonal exactly.'
     answer_label: 'Question 5'
     check: {kind: 'evaluate', expression: 'sqrt(4**2+4**2+4**2)', answer: '4*sqrt(3)'}
@@ -49,7 +49,7 @@ problems:
   - id: 'ch20-20-5-06'
     section: '20.5'
     tier: 'H'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A cuboid is 4 m by 7 m by 24 m. Find its space diagonal.'
     answer_label: 'Question 6'
     check: {kind: 'evaluate', expression: '4**2+7**2+24**2', answer: '641'}
@@ -58,7 +58,7 @@ problems:
   - id: 'ch20-20-5-07'
     section: '20.5'
     tier: 'H'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A cuboid is 9 cm by 12 cm by 20 cm. Find the space diagonal to 1 decimal place.'
     answer_label: 'Question 7'
     check: {kind: 'rounded', value: 'sqrt(9**2+12**2+20**2)', rounded: '25.0', to: '0.1'}
@@ -67,7 +67,7 @@ problems:
   - id: 'ch20-20-5-08'
     section: '20.5'
     tier: 'H'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A cube has side 6 cm. Find the angle between the space diagonal and a face diagonal to 1 decimal place.'
     answer_label: 'Question 8'
     check: {kind: 'rounded', value: 'acos(sqrt(2/3))*180/pi', rounded: '35.3', to: '0.1'}

@@ -15,4 +15,4 @@ kind: problems
 # 13.4 Electric field strength and potential — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 3.2
+> Tier: **H** · refs: 3.2

@@ -6,7 +6,7 @@ problems:
 - id: ch9-9-6-factor-positive
   section: '9.6'
   tier: H
-  dfe:
+  refs:
   - A22
   statement: 'Solve $(x-2)(x+3)>0$.'
   answer_label: 'Solve $(x-2)(x+3)>0$.'
@@ -19,7 +19,7 @@ problems:
 - id: ch9-9-6-factor-negative
   section: '9.6'
   tier: H
-  dfe:
+  refs:
   - A22
   statement: 'Solve $(x-1)(x-5)<0$.'
   answer_label: 'Solve $(x-1)(x-5)<0$.'
@@ -32,7 +32,7 @@ problems:
 - id: ch9-9-6-square
   section: '9.6'
   tier: H
-  dfe:
+  refs:
   - A22
   statement: 'Solve $x^2-9\geq0$.'
   answer_label: 'Solve $x^2-9\geq0$.'
@@ -45,7 +45,7 @@ problems:
 - id: ch9-9-6-downward
   section: '9.6'
   tier: H
-  dfe:
+  refs:
   - A22
   statement: 'Solve $-x^2+4>0$.'
   answer_label: 'Solve $-x^2+4>0$.'
@@ -58,7 +58,7 @@ problems:
 - id: ch9-9-6-shifted
   section: '9.6'
   tier: H
-  dfe:
+  refs:
   - A22
   statement: 'Solve $x^2+x-6\leq0$.'
   answer_label: 'Solve $x^2+x-6\leq0$.'
@@ -71,7 +71,7 @@ problems:
 - id: ch9-9-6-nonmonic
   section: '9.6'
   tier: H
-  dfe:
+  refs:
   - A22
   statement: 'Solve $2x^2-8x>0$.'
   answer_label: 'Solve $2x^2-8x>0$.'
@@ -84,7 +84,7 @@ problems:
 - id: ch9-9-6-factor-form
   section: '9.6'
   tier: H
-  dfe:
+  refs:
   - A22
   statement: 'Solve $(x+4)(x-1)\leq0$.'
   answer_label: 'Solve $(x+4)(x-1)\leq0$.'
@@ -97,7 +97,7 @@ problems:
 - id: ch9-9-6-mixed-linear
   section: '9.6'
   tier: H
-  dfe:
+  refs:
   - A22
   statement: 'Which method applies, and why? Solve $x^2-4x+3>0$.'
   answer_label: 'Which method applies, and why? Solve $x^2-4x+3>0$.'
@@ -110,7 +110,7 @@ problems:
 - id: ch9-9-6-strict-roots
   section: '9.6'
   tier: H
-  dfe:
+  refs:
   - A22
   statement: 'Solve $x^2-5x+6<0$.'
   answer_label: 'Solve $x^2-5x+6<0$.'

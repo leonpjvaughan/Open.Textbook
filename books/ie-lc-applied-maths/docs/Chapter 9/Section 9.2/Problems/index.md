@@ -15,4 +15,4 @@ kind: problems
 # 9.2 Building the model and stating assumptions — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: S1
+> Tier: **O** · refs: S1

@@ -4,7 +4,7 @@ chapter: 9
 chapter_title: Fields
 section: '9.4'
 section_title: Electromagnetic induction
-dfe:
+refs:
 - AP9
 kind: guided-problems
 ---

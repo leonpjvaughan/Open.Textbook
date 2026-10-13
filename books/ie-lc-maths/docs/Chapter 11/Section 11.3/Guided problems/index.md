@@ -15,4 +15,4 @@ kind: guided-problems
 # 11.3 Representing data: charts and histograms — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **F** · DfE refs: 1.6
+> Tier: **F** · refs: 1.6

@@ -5,7 +5,7 @@ chapter_title: Ratio and proportion
 section: '5.3'
 section_title: Direct proportion
 tier: F
-dfe:
+refs:
 - R10
 - R13
 - R14

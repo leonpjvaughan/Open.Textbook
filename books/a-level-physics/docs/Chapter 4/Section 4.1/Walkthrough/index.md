@@ -4,7 +4,7 @@ chapter: 4
 chapter_title: Materials
 section: '4.1'
 section_title: Stress, strain and the Young modulus
-dfe:
+refs:
 - AP4
 kind: walkthrough
 ---

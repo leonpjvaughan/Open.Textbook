@@ -16,4 +16,4 @@ kind: problems
 # 9.1 Repeating patterns and tables — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: N.4, AF.1
+> Tier: **O** · refs: N.4, AF.1

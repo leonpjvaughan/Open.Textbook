@@ -6,7 +6,7 @@ problems:
 - id: ch7-76-simplify
   section: '7.6'
   tier: H
-  dfe:
+  refs:
   - N8
   statement: 'Simplify $\sqrt{98}$.'
   answer_label: Simplify a surd
@@ -18,7 +18,7 @@ problems:
 - id: ch7-76-add
   section: '7.6'
   tier: H
-  dfe:
+  refs:
   - N8
   statement: 'Simplify $2\sqrt{12}+\sqrt{27}$.'
   answer_label: Add like surds
@@ -30,7 +30,7 @@ problems:
 - id: ch7-76-subtract
   section: '7.6'
   tier: H
-  dfe:
+  refs:
   - N8
   statement: 'Simplify $\sqrt{75}-\sqrt{12}$.'
   answer_label: Subtract like surds
@@ -42,7 +42,7 @@ problems:
 - id: ch7-76-multiply
   section: '7.6'
   tier: H
-  dfe:
+  refs:
   - N8
   statement: 'Simplify $\\sqrt{10}\times\\sqrt{40}$.'
   answer_label: Multiply surds
@@ -54,7 +54,7 @@ problems:
 - id: ch7-76-rationalise
   section: '7.6'
   tier: H
-  dfe:
+  refs:
   - N8
   statement: 'Rationalise the denominator of $\frac{6}{\sqrt5}$.'
   answer_label: Rationalise a denominator
@@ -66,7 +66,7 @@ problems:
 - id: ch7-76-expand
   section: '7.6'
   tier: H
-  dfe:
+  refs:
   - N8
   statement: 'Expand and simplify $\sqrt3(2+\sqrt{12})$.'
   answer_label: Expand a surd expression
@@ -78,7 +78,7 @@ problems:
 - id: ch7-76-square
   section: '7.6'
   tier: H
-  dfe:
+  refs:
   - N8
   statement: 'Expand $(\sqrt5+2)^2$.'
   answer_label: Square a surd expression
@@ -90,7 +90,7 @@ problems:
 - id: ch7-76-rationalise2
   section: '7.6'
   tier: H
-  dfe:
+  refs:
   - N8
   statement: 'Rationalise $\frac{3}{2\sqrt2}$.'
   answer_label: Rationalise a denominator
@@ -102,7 +102,7 @@ problems:
 - id: ch7-76-h
   section: '7.6'
   tier: H
-  dfe:
+  refs:
   - N8
   statement: '**H** Simplify $(\sqrt7+\sqrt3)(\sqrt7-\sqrt3)$.'
   answer_label: Use difference of squares
@@ -114,7 +114,7 @@ problems:
 - id: ch7-76-exact
   section: '7.6'
   tier: H
-  dfe:
+  refs:
   - N8
   statement: 'Simplify $\frac{\sqrt{45}}{\sqrt5}+\sqrt{20}$.'
   answer_label: Combine exact surd values
@@ -126,7 +126,7 @@ problems:
 - id: ch7-76-method-surd
   section: '7.6'
   tier: 'H'
-  dfe: [N8]
+  refs: [N8]
   statement: 'Work out $\sqrt{12}\times\sqrt{3}$. Which method is quicker: simplify each surd first, or multiply under one root? Give a reason.'
   answer_label: 'Method choice: one root or simplify first'
   check:

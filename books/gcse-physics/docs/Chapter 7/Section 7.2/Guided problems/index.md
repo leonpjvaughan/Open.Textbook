@@ -5,7 +5,7 @@ chapter_title: Magnetism and electromagnetism
 section: '7.2'
 section_title: Magnetic effects of currents and the motor effect
 tier: F
-dfe:
+refs:
 - MG2
 kind: guided-problems
 ---

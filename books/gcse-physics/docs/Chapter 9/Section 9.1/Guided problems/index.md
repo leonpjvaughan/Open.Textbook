@@ -5,7 +5,7 @@ chapter_title: Atomic structure
 section: '9.1'
 section_title: Nuclear atom and isotopes
 tier: F
-dfe:
+refs:
 - AT1
 kind: guided-problems
 ---

@@ -12,7 +12,7 @@ symbols:
 problems:
   - id: v1-sum-i
     section: "8.4"
-    dfe: [H4]
+    refs: [H4]
     statement: 'Write down the value of $\displaystyle\sum_{i=1}^{n} i$ in terms of $n$.'
     answer_label: 'The sum'
     plays: aqa-arithmetic-series
@@ -25,7 +25,7 @@ problems:
 
   - id: v2-sum-i2
     section: "8.4"
-    dfe: [H4]
+    refs: [H4]
     statement: 'Write down the value of $\displaystyle\sum_{i=1}^{n} i^2$ in terms of $n$.'
     answer_label: 'The sum'
     check:
@@ -37,7 +37,7 @@ problems:
 
   - id: v3-limit-half
     section: "8.4"
-    dfe: [H4]
+    refs: [H4]
     statement: 'Find $\displaystyle\lim_{n \to \infty} \frac{n+1}{2n}$.'
     answer_label: 'The limit'
     check:
@@ -49,7 +49,7 @@ problems:
 
   - id: v4-limit-thirds
     section: "8.4"
-    dfe: [H4]
+    refs: [H4]
     statement: 'Find $\displaystyle\lim_{n \to \infty} \frac{4(n+1)(2n+1)}{3n^2}$.'
     answer_label: 'The limit'
     check:
@@ -61,7 +61,7 @@ problems:
 
   - id: v5-integral-x
     section: "8.4"
-    dfe: [H4]
+    refs: [H4]
     statement: 'Use a limit of a sum to evaluate $\displaystyle\int_0^1 x\,dx$.'
     answer_label: 'The value of the integral'
     check:
@@ -73,7 +73,7 @@ problems:
 
   - id: v6-integral-x2
     section: "8.4"
-    dfe: [H4]
+    refs: [H4]
     statement: 'Use a limit of a sum to evaluate $\displaystyle\int_0^2 x^2\,dx$.'
     answer_label: 'The value of the integral'
     check:
@@ -85,7 +85,7 @@ problems:
 
   - id: v7-integral-linear
     section: "8.4"
-    dfe: [H4]
+    refs: [H4]
     statement: 'Use a limit of a sum to evaluate $\displaystyle\int_0^3 (x + 1)\,dx$.'
     answer_label: 'The value of the integral'
     check:
@@ -97,7 +97,7 @@ problems:
 
   - id: v8-integral-quadratic-plus-one
     section: "8.4"
-    dfe: [H4]
+    refs: [H4]
     statement: 'Use a limit of a sum to evaluate $\displaystyle\int_0^2 (x^2 + 1)\,dx$.'
     answer_label: 'The value of the integral'
     check:
@@ -109,7 +109,7 @@ problems:
 
   - id: v9-integral-symbolic
     section: "8.4"
-    dfe: [H4]
+    refs: [H4]
     statement: 'Use a limit of a sum to show that $\displaystyle\int_0^a x^2\,dx = \frac{a^3}{3}$ for $a > 0$.'
     answer_label: 'The value of the integral'
     check:
@@ -121,7 +121,7 @@ problems:
 
   - id: v10-integral-offset
     section: "8.4"
-    dfe: [H4]
+    refs: [H4]
     statement: 'Evaluate $\displaystyle\int_1^2 x\,dx$ by any method.'
     answer_label: 'The value of the integral'
     check:
@@ -133,7 +133,7 @@ problems:
 
   - id: v11-sum-of-constant
     section: "8.4"
-    dfe: [H4]
+    refs: [H4]
     statement: 'Write down the value of $\displaystyle\sum_{i=1}^{n} 1$.'
     answer_label: 'The sum'
     check:
@@ -144,7 +144,7 @@ problems:
 
   - id: v12-limit-of-sum-with-cube
     section: "8.4"
-    dfe: [H4]
+    refs: [H4]
     statement: 'Evaluate $\displaystyle\int_0^1 x^3\,dx$ using a limit of a sum, given that $\displaystyle\sum_{i=1}^{n} i^3 = \frac{n^2(n+1)^2}{4}$.'
     answer_label: 'The value of the integral'
     check:

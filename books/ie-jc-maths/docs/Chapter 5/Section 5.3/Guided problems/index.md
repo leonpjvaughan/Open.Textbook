@@ -15,4 +15,4 @@ kind: guided-problems
 # 5.3 Multiplying and dividing fractions — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: N.2
+> Tier: **O** · refs: N.2

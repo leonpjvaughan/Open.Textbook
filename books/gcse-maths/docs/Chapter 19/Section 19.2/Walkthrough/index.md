@@ -5,7 +5,7 @@ chapter_title: Perimeter, area, surface area and volume
 section: "19.2"
 section_title: Circumference and area of circles
 tier: F
-dfe: [G17]
+refs: [G17]
 kind: walkthrough
 ---
 

@@ -5,7 +5,7 @@ chapter_title: Vectors
 section: '22.3'
 section_title: Vectors in geometric problems and proofs
 tier: H
-dfe: [G25]
+refs: [G25]
 kind: problems
 ---
 

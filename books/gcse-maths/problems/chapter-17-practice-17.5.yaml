@@ -3,7 +3,7 @@ problems:
   - id: 'ch17-17-5-bearing-east'
     section: '17.5'
     tier: 'F'
-    dfe:
+    refs:
       - 'G15'
     statement: 'Write the three-figure bearing for east.'
     answer_label: 'Write the three-figure bearing for east.'
@@ -15,7 +15,7 @@ problems:
   - id: 'ch17-17-5-bearing-southwest'
     section: '17.5'
     tier: 'F'
-    dfe:
+    refs:
       - 'G15'
     statement: 'Write the three-figure bearing for south-west.'
     answer_label: 'Write the three-figure bearing for south-west.'
@@ -27,7 +27,7 @@ problems:
   - id: 'ch17-17-5-bearing-southeast'
     section: '17.5'
     tier: 'F'
-    dfe:
+    refs:
       - 'G15'
     statement: 'Write the three-figure bearing for south-east.'
     answer_label: 'Write the three-figure bearing for south-east.'
@@ -39,7 +39,7 @@ problems:
   - id: 'ch17-17-5-scale-length'
     section: '17.5'
     tier: 'F'
-    dfe:
+    refs:
       - 'G15'
     statement: 'A scale is 1 cm to 4 km. What real distance does 6 cm represent?'
     answer_label: 'A scale is 1 cm to 4 km. What real distance does 6 cm represent?'
@@ -51,7 +51,7 @@ problems:
   - id: 'ch17-17-5-scale-drawing'
     section: '17.5'
     tier: 'F'
-    dfe:
+    refs:
       - 'G15'
     statement: 'A scale is 1 cm to 5 m. How long is 35 m on the drawing?'
     answer_label: 'A scale is 1 cm to 5 m. How long is 35 m on the drawing?'
@@ -63,7 +63,7 @@ problems:
   - id: 'ch17-17-5-scale-map'
     section: '17.5'
     tier: 'F'
-    dfe:
+    refs:
       - 'G15'
     statement: 'A map scale is 1:25 000. What real distance in metres does 4 cm represent?'
     answer_label: 'A map scale is 1:25 000. What real distance in metres does 4 cm represent?'
@@ -75,7 +75,7 @@ problems:
   - id: 'ch17-17-5-garden-diagonal'
     section: '17.5'
     tier: 'F'
-    dfe:
+    refs:
       - 'G15'
     statement: 'A rectangle is 24 m by 18 m. Work out its diagonal.'
     answer_label: 'A rectangle is 24 m by 18 m. Work out its diagonal.'
@@ -88,7 +88,7 @@ problems:
   - id: 'ch17-17-5-garden-bearing'
     section: '17.5'
     tier: 'F'
-    dfe:
+    refs:
       - 'G15'
     statement: 'A route goes 24 m east and 18 m north. Find its bearing to the nearest degree.'
     answer_label: 'A route goes 24 m east and 18 m north. Find its bearing to the nearest degree.'
@@ -101,7 +101,7 @@ problems:
   - id: 'ch17-17-5-method'
     section: '17.5'
     tier: 'F'
-    dfe:
+    refs:
       - 'G15'
     statement: 'A plan uses 1 cm to 5 m. The garden is 20 m by 15 m. Which method finds the real diagonal: scale the drawing, or use Pythagoras on the real lengths? Give a reason, then work it out.'
     answer_label: 'Method choice: scale or Pythagoras'

@@ -18,7 +18,7 @@ problems:
   - id: r1-anchor-sound-wavelength
     plays: wave-speed
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The loudspeakers are driven at 1.00 kHz and the speed of sound is 340 m/s. Find the wavelength of the sound.'
     check:
       kind: dimensions
@@ -31,42 +31,42 @@ problems:
 
   - id: r2-anchor-first-max
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The speakers are 1.20 m apart and the sound has wavelength 0.340 m. Find the angle of the first loud band to the side of the centre line.'
     check: {kind: approx, value: "asin(0.340 / 1.20)*180/pi", target: "16.5", tolerance: "0.2"}
     answer_text: '$\sin\theta = \dfrac{\lambda}{s} = \dfrac{0.340}{1.20} = 0.2833$, so $\theta = 16.5^\circ$.'
 
   - id: r3-anchor-fringe
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The laser has wavelength 633 nm, the double slit is 0.25 mm wide and the screen is 2.50 m away. Find the fringe spacing.'
     check: {kind: approx, value: "633e-9 * 2.50 / 0.25e-3", target: "6.33e-3", tolerance: "1e-5"}
     answer_text: '$w = \dfrac{\lambda D}{s} = \dfrac{633 \times 10^{-9} \times 2.50}{0.25 \times 10^{-3}} = 6.33 \times 10^{-3}\,\text{m}$, or $6.33\,\text{mm}$.'
 
   - id: r4-anchor-grating
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The diffraction grating has 300 lines per millimetre. Find the spacing between neighbouring slits, in metres.'
     check: {kind: approx, value: "1 / 300e3", target: "3.33e-6", tolerance: "1e-8"}
     answer_text: '$300\,\text{lines mm}^{-1} = 3.00 \times 10^5\,\text{lines m}^{-1}$, so $d = \dfrac{1}{3.00 \times 10^5} = 3.33 \times 10^{-6}\,\text{m}$.'
 
   - id: r5-anchor-first-order
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The grating spacing is 3.33e-6 m and the light has wavelength 633 nm. Find the angle of the first-order maximum.'
     check: {kind: approx, value: "asin(633e-9 / 3.333e-6)*180/pi", target: "10.9", tolerance: "0.2"}
     answer_text: '$\sin\theta = \dfrac{633 \times 10^{-9}}{3.33 \times 10^{-6}} = 0.190$, so $\theta = 10.9^\circ$.'
 
   - id: r6-anchor-highest-order
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'For the grating spacing 3.33e-6 m and the wavelength 633 nm, find the highest order the grating can give.'
     check: {kind: between, value: "3.333e-6 / 633e-9", low: "5", high: "6"}
     answer_text: '$\dfrac{d}{\lambda} = \dfrac{3.33 \times 10^{-6}}{633 \times 10^{-9}} = 5.26$. The highest whole number with $n\lambda \le d$ is 5.'
 
   - id: r7-anchor-string
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The guitar string has tension 81 N, a mass per unit length of 4.0e-4 kg/m, and a length of 0.650 m. Find the speed of a wave on it and the frequency of its fundamental note.'
     answer_label: 'The wave speed and the fundamental frequency'
     check:
@@ -78,14 +78,14 @@ problems:
 
   - id: r8-anchor-polariser
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Plane-polarised laser light passes through an analyser whose axis is at 60 degrees to the plane of polarisation. Find the fraction of the intensity that passes.'
     check: {kind: approx, value: "cos(60 * pi / 180)**2", target: "0.25", tolerance: "1e-6"}
     answer_text: '$\dfrac{I}{I_0} = \cos^2 60^\circ = 0.25$, so one quarter of the light passes.'
 
   - id: r9-anchor-tension
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The string sounds 346 Hz at a tension of 81 N. Find the tension needed for 330 Hz.'
     answer_label: 'The tension'
     check: {kind: approx, value: "81 * (330 / (450 / 1.3))**2", target: "73.6", tolerance: "0.1"}
@@ -93,14 +93,14 @@ problems:
 
   - id: r10-convert
     section: Review
-    dfe: [AP1, AP6]
+    refs: [AP1, AP6]
     statement: 'The grating spacing is 3.33e-6 m. Write this length in micrometres.'
     check: {kind: convert, value: "3.33e-6", from: "m", to: "um", answer: "3.33"}
     answer_text: '$3.33 \times 10^{-6}\,\text{m} = 3.33\,\mu\text{m}$. One micrometre is $10^{-6}\,\text{m}$.'
 
   - id: r11-uncertainty
     section: Review
-    dfe: [AP1, AP6]
+    refs: [AP1, AP6]
     statement: 'A sound wave has a frequency of 500 Hz with a percentage uncertainty of 0.4%, and a wavelength of 0.680 m with a percentage uncertainty of 1.5%. Find its speed and its absolute uncertainty.'
     answer_label: 'The speed and its uncertainty'
     check:
@@ -116,7 +116,7 @@ problems:
 
   - id: r12-resolve
     section: Review
-    dfe: [AP2, AP6]
+    refs: [AP2, AP6]
     statement: 'A tension of 12.0 N acts along a string at 35 degrees to the horizontal. Find the horizontal and vertical components of the tension.'
     answer_label: 'The two components'
     check:
@@ -130,7 +130,7 @@ problems:
 
   - id: r13-shm
     section: Review
-    dfe: [AP3, AP6]
+    refs: [AP3, AP6]
     statement: 'A mass of 0.10 kg hangs on a spring of force constant 40 N/m. Find the period of the oscillation.'
     answer_label: 'The period'
     check: {kind: approx, value: "2 * pi * sqrt(0.10 / 40)", target: "0.314", tolerance: "0.001"}
@@ -138,7 +138,7 @@ problems:
 
   - id: r14-method-choice
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'You must measure the wavelength of a laser. Say which method you would choose, a double slit or a diffraction grating, and explain why. State the measurements you need.'
     answer_label: 'The method and the measurements'
     check:
@@ -159,7 +159,7 @@ problems:
 
   - id: r15-stationary-compare
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Compare a stationary wave with a progressive wave, in terms of the amplitude at different points and the transfer of energy.'
     answer_label: 'The comparison'
     check:

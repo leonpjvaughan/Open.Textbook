@@ -15,4 +15,4 @@ kind: problems
 # 12.5 Graphs of the trigonometric functions — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 2.3
+> Tier: **O** · refs: 2.3

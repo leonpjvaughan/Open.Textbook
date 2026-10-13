@@ -15,4 +15,4 @@ kind: problems
 # 18.2 The photoelectric effect — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 4.2
+> Tier: **O** · refs: 4.2

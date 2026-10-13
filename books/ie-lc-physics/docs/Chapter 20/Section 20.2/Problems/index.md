@@ -15,4 +15,4 @@ kind: problems
 # 20.2 Half-life and activity — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 4.4
+> Tier: **O** · refs: 4.4

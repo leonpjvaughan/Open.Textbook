@@ -2880,3 +2880,57 @@ original had no value display. Leave `fission-chain-reaction` as it is.
 - `uv run python -m pytest tests/test_figures.py -q` passes with 18 skipped.
 - A before/after browser measurement of one affected figure shows the value
   display gone and every painted colour unchanged.
+
+---
+
+## The Irish books — where they stand (2026-10-13)
+
+Four books were added under the `Junior Cycle` and `Leaving Certificate`
+qualifications: `ie-jc-maths`, `ie-lc-maths`, `ie-lc-applied-maths`, `ie-lc-physics`.
+71 chapters, 429 sections. All four scaffold, build and navigate, and all 16 profiles
+in the collection build clean.
+
+**The curriculum plan is complete. The prose is not.** Every section exists as a
+`<!-- scaffold:stub -->` page, which is the scaffold's own marker and is what CI and
+`grep -rl scaffold:stub` will find. What is authored so far:
+
+| Book | Chapters | Authored |
+|---|---|---|
+| `ie-jc-maths` | 22 | Chapter 3 (factors, multiples, primes) — 3 sections |
+| `ie-lc-physics` | 22 | Chapter 5 (stretching and compressing) — 4 sections |
+| `ie-lc-maths` | 18 | none |
+| `ie-lc-applied-maths` | 9 | none |
+
+To continue, use `.agents/chapter-brief.md` with `BOOK_ID` and `CHAPTER_ID`. It was
+rewritten for the Irish books on the same day: the tier codes are the book's (not
+`F`/`H` everywhere), a section's references are `refs:` not `dfe:`, and the four
+`ie-*` books have a section of their own in `AGENTS.md`.
+
+### Priorities, in the order that seems right
+
+1. **`ie-lc-applied-maths` Chapter 2, networks and graphs.** Strand 2 has no
+   counterpart anywhere in this collection — spanning trees, Dijkstra, Bellman,
+   dynamic programming, adjacency-matrix algebra. It is the material most likely to
+   be reused by another book later, and the least likely to be got right by
+   adapting an existing chapter.
+2. **`ie-lc-maths`** — the largest book and the one with a real examination
+   population. Three levels, so the tier filtering is worth exercising early.
+3. The two chapters already authored are the pattern to follow; each was written
+   against its own verified bank.
+
+### Known gaps, recorded rather than hidden
+
+- **No booklets for the Irish books.** `BOOKLETS.md` says every subject whose board
+  provides a sheet should have one. Ireland provides the SEC *Mathematical Tables*
+  for Leaving Certificate Mathematics and a formulae sheet for Physics. Neither has
+  been built. **This needs the board's own documents**, and `examinations.ie` could
+  not be read while the books were planned (Cloudflare challenge; see
+  `research/curriculum/ie-curriculum.md` §8), so nothing may be written from memory.
+  Find an accessible copy first.
+- **Nine A-level Mathematics booklet items cannot be parsed** by
+  `sympy.parsing.latex`, so a problem declaring one gets no coverage check. They are
+  listed with reasons in `tests/test_verify_coverage.py → UNPARSABLE_NOTATION`. That
+  test now fails when a tenth appears.
+- **The Applied Mathematics specification numbers only its strands**, so the
+  coverage check for that book reaches no finer than "all four strands are taught".
+  Recorded in its `curriculum.yaml`.

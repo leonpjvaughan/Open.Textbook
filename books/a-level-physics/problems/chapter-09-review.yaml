@@ -17,7 +17,7 @@ chapter: 9
 problems:
   - id: r1-field-strength-at-radius
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the gravitational field strength at a distance of 1.0e7 m from the centre of the Earth.'
     answer_label: 'The field strength'
     check: {kind: approx, value: "6.67e-11 * 5.97e24 / 1.0e7**2", target: "3.98", tolerance: "0.02"}
@@ -25,7 +25,7 @@ problems:
 
   - id: r2-orbital-speed
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the orbital speed of a satellite in a circular orbit of radius 1.0e7 m around the Earth.'
     answer_label: 'The orbital speed'
     check: {kind: approx, value: "sqrt(6.67e-11 * 5.97e24 / 1.0e7)", target: "6.31e3", tolerance: "10"}
@@ -33,7 +33,7 @@ problems:
 
   - id: r3-escape-speed
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A planet has a mass of 6.0e23 kg and a radius of 3.0e6 m. Find the escape speed from its surface.'
     answer_label: 'The escape speed'
     check: {kind: approx, value: "sqrt(2 * 6.67e-11 * 6.0e23 / 3.0e6)", target: "5.17e3", tolerance: "20"}
@@ -41,7 +41,7 @@ problems:
 
   - id: r4-energy-between-potentials
     section: '9.1'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A 1500 kg spacecraft moves from a point where the gravitational potential is -6.0e7 J/kg to a point where it is -4.5e7 J/kg. Find the energy needed.'
     answer_label: 'The energy needed'
     check: {kind: approx, value: "1500 * ((-4.5e7) - (-6.0e7))", target: "2.25e10", tolerance: "1e8"}
@@ -49,7 +49,7 @@ problems:
 
   - id: r5-coulomb-force
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Two point charges, each +1.0 microcoulomb, are 0.10 m apart in air. Find the force between them.'
     answer_label: 'The force'
     check: {kind: approx, value: "8.99e9 * 1.0e-6 * 1.0e-6 / 0.10**2", target: "0.899", tolerance: "0.005"}
@@ -57,7 +57,7 @@ problems:
 
   - id: r6-uniform-field-force
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Two parallel plates are 5.0 mm apart with a potential difference of 300 V. Find the electric field strength and the force on an electron between them.'
     answer_label: 'The field strength and the force'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: r7-accelerated-electron-speed
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'An electron is accelerated from rest through a potential difference of 150 V. Find its speed. The mass of an electron is 9.11e-31 kg.'
     answer_label: 'The speed'
     check: {kind: approx, value: "sqrt(2 * 1.60e-19 * 150 / 9.11e-31)", target: "7.26e6", tolerance: "1e5"}
@@ -77,7 +77,7 @@ problems:
 
   - id: r8-force-on-wire
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A straight wire of length 0.40 m carries a current of 3.0 A at right angles to a field of flux density 0.25 T. Find the force on the wire.'
     answer_label: 'The force'
     check: {kind: approx, value: "0.25 * 3.0 * 0.40", target: "0.30", tolerance: "0.005"}
@@ -85,7 +85,7 @@ problems:
 
   - id: r9-radius-of-proton
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A proton moves at 4.0e6 m/s at right angles to a field of flux density 0.20 T. Find the radius of its circular path. The mass of a proton is 1.67e-27 kg.'
     answer_label: 'The radius'
     check: {kind: approx, value: "1.67e-27 * 4.0e6 / (0.20 * 1.60e-19)", target: "0.209", tolerance: "0.003"}
@@ -93,7 +93,7 @@ problems:
 
   - id: r10-flux-linkage
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A coil of 300 turns and area 5.0e-3 m^2 is at right angles to a field of flux density 0.15 T. Find the flux linkage.'
     answer_label: 'The flux linkage'
     check: {kind: approx, value: "300 * 0.15 * 5.0e-3", target: "0.225", tolerance: "0.002"}
@@ -101,7 +101,7 @@ problems:
 
   - id: r11-faraday-emf
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A coil of 120 turns has an area of 0.025 m^2. The flux density through it rises steadily from 0.10 T to 0.50 T in 0.30 s. Find the induced emf.'
     answer_label: 'The induced emf'
     check: {kind: approx, value: "120 * 0.025 * (0.50 - 0.10) / 0.30", target: "4.0", tolerance: "0.05"}
@@ -109,7 +109,7 @@ problems:
 
   - id: r12-motional-emf-power
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A rod of length 0.15 m moves at 8.0 m/s at right angles to a field of 0.40 T. It completes a circuit of resistance 1.2 ohms. Find the emf and the power dissipated.'
     answer_label: 'The emf and the power'
     check:
@@ -121,7 +121,7 @@ problems:
 
   - id: r13-transformer
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A transformer has 500 turns on the primary coil and 25 turns on the secondary coil. The primary is connected to a 230 V alternating supply. Find the secondary voltage.'
     answer_label: 'The secondary voltage'
     check: {kind: approx, value: "230 * 25 / 500", target: "11.5", tolerance: "0.1"}
@@ -129,7 +129,7 @@ problems:
 
   - id: r14-method-accelerate-then-bend
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A charged particle is accelerated from rest by a uniform electric field and then enters a magnetic field at right angles. State which equations you would use to find its speed and the radius of its circular path, and why.'
     check:
       kind: structured
@@ -151,7 +151,7 @@ problems:
 
   - id: r15-gravitational-force-and-acceleration
     section: '9.1'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A satellite of mass 800 kg orbits the Earth at a radius of 7.0e6 m. Find the gravitational force on it and its centripetal acceleration.'
     answer_label: 'The force and the acceleration'
     check:
@@ -163,7 +163,7 @@ problems:
 
   - id: r16-photon-energy
     section: '9.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A photon has a wavelength of 500 nm. Find its energy in joules.'
     answer_label: 'The photon energy'
     check: {kind: approx, value: "6.63e-34 * 3.00e8 / 500e-9", target: "3.98e-19", tolerance: "1e-20"}

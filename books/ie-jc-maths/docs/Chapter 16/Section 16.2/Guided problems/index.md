@@ -15,4 +15,4 @@ kind: guided-problems
 # 16.2 The circumference and area of a circle — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: GT.2
+> Tier: **O** · refs: GT.2

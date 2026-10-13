@@ -14,7 +14,7 @@ chapter: 1
 problems:
   - id: p1-mean-half-range
     section: '1.3'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A student measures the diameter of a wire four times and records $2.14\,\text{mm}$, $2.16\,\text{mm}$, $2.15\,\text{mm}$ and $2.12\,\text{mm}$. Find the mean and the uncertainty using the half-range convention.'
     answer_label: 'The mean and its uncertainty'
     check:
@@ -27,7 +27,7 @@ problems:
 
   - id: p2-percentage-uncertainty
     section: '1.3'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A length is measured as $0.542\,\text{m}$ with an uncertainty of $0.001\,\text{m}$. Calculate the percentage uncertainty.'
     answer_label: 'The percentage uncertainty'
     check:
@@ -39,7 +39,7 @@ problems:
 
   - id: p3-add-absolutes
     section: '1.3'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'The length of a pendulum is found from two metre-rule readings: $0.000\,\text{m}$ at the pivot and $0.800\,\text{m}$ at the centre of the bob. Each reading has an uncertainty of $0.0005\,\text{m}$. Find the length and the uncertainty in the length.'
     answer_label: 'The length and its uncertainty'
     check:
@@ -54,7 +54,7 @@ problems:
 
   - id: p4-percentage-cylinder
     section: '1.3'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A cylinder has radius $r = 2.50\,\text{cm}$ with a percentage uncertainty of $1.2\%$, and height $h = 6.00\,\text{cm}$ with a percentage uncertainty of $0.8\%$. Find the percentage uncertainty in the volume $V = \pi r^2 h$.'
     answer_label: 'The percentage uncertainty in the volume'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: p5-percentage-quotient
     section: '1.3'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'The density of a liquid is found from $\rho = \dfrac{m}{V}$. The mass is $25.6 \pm 0.1\,\text{g}$ and the volume is $10.0 \pm 0.2\,\text{cm}^3$. Find the density and its absolute uncertainty.'
     answer_label: 'The density and its absolute uncertainty'
     check:
@@ -84,7 +84,7 @@ problems:
 
   - id: p6-quote-a-result
     section: '1.3'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A measurement gives $E = 12.345\,\text{J}$ with an uncertainty of $0.2\,\text{J}$. Write the result in the correct form.'
     answer_label: 'The result in the correct form'
     check:
@@ -97,7 +97,7 @@ problems:
 
   - id: p7-agreement
     section: '1.3'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A student measures the acceleration due to gravity as $9.80 \pm 0.04\,\text{m}\,\text{s}^{-2}$. The accepted value is $9.81\,\text{m}\,\text{s}^{-2}$. Does the measurement agree with the accepted value? Give a reason.'
     answer_label: 'Whether the results agree'
     check:
@@ -114,7 +114,7 @@ problems:
 
   - id: p8-short-pendulum
     section: '1.3'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A pendulum has length $0.400\,\text{m}$. Its period is measured as $1.27\,\text{s}$. Use $g = \dfrac{4\pi^2 L}{T^2}$ to find the acceleration due to gravity.'
     answer_label: 'The value of g'
     check:
@@ -126,7 +126,7 @@ problems:
 
   - id: p9-stone-density-method
     section: '1.3'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'You must find the density of a small irregular stone. State which measurements you would take, which instrument you would use for each, and how you would obtain the uncertainty in the density.'
     answer_label: 'The measurements and the uncertainty'
     check:
@@ -146,7 +146,7 @@ problems:
 
   - id: p10-timing-percentage
     section: '1.3'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A student times 20 oscillations three times and records $35.90\,\text{s}$, $35.85\,\text{s}$ and $35.95\,\text{s}$. Find the mean time, its uncertainty, and the percentage uncertainty in the mean.'
     answer_label: 'The mean time and its percentage uncertainty'
     check:
@@ -163,7 +163,7 @@ problems:
 
   - id: p11-small-percentage
     section: '1.3'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A student says: "A smaller percentage uncertainty always means a more accurate result." Explain why this is not always true.'
     answer_label: 'Why a small uncertainty is not the same as accuracy'
     check:
@@ -180,7 +180,7 @@ problems:
 
   - id: p12-sum-uncertainty
     section: '1.3'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'The mass of an empty beaker is $52.4 \pm 0.1\,\text{g}$. The mass of the beaker and the water is $128.7 \pm 0.1\,\text{g}$. Find the mass of the water and its uncertainty.'
     answer_label: 'The mass of water and its uncertainty'
     check:

@@ -5,7 +5,7 @@ chapter_title: Algebraic expressions and manipulation
 section: "8.2"
 section_title: Simplifying and collecting like terms
 tier: F
-dfe: [A4]
+refs: [A4]
 kind: problems
 ---
 

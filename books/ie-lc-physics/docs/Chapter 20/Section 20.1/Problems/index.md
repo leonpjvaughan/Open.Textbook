@@ -15,4 +15,4 @@ kind: problems
 # 20.1 Radioactive decay and the three emissions — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 4.4
+> Tier: **O** · refs: 4.4

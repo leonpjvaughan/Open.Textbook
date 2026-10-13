@@ -15,4 +15,4 @@ kind: problems
 # 15.5 The electric motor — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 3.5
+> Tier: **O** · refs: 3.5

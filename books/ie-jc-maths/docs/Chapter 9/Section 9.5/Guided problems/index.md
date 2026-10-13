@@ -15,4 +15,4 @@ kind: guided-problems
 # 9.5 Converting between representations — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: AF.1
+> Tier: **O** · refs: AF.1

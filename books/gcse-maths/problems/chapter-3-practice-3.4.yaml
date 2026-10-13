@@ -7,7 +7,7 @@ problems:
   - id: ch3-34-half-index
     section: '3.4'
     tier: H
-    dfe: [N7]
+    refs: [N7]
     statement: 'Work out $49^{1/2}$.'
     answer_label: 'Evaluate a half index'
     check: {kind: evaluate, expression: '49**(1/2)', answer: '7'}
@@ -15,7 +15,7 @@ problems:
   - id: ch3-34-third-index
     section: '3.4'
     tier: H
-    dfe: [N7]
+    refs: [N7]
     statement: 'Work out $125^{1/3}$.'
     answer_label: 'Evaluate a third index'
     check: {kind: evaluate, expression: '125**(1/3)', answer: '5'}
@@ -23,7 +23,7 @@ problems:
   - id: ch3-34-fractional-power
     section: '3.4'
     tier: H
-    dfe: [N7]
+    refs: [N7]
     statement: 'Work out $64^{2/3}$.'
     answer_label: 'Evaluate a fractional index'
     check: {kind: evaluate, expression: '64**(2/3)', answer: '16'}
@@ -31,7 +31,7 @@ problems:
   - id: ch3-34-negative-index
     section: '3.4'
     tier: H
-    dfe: [N7]
+    refs: [N7]
     statement: 'Work out $16^{-1/2}$.'
     answer_label: 'Evaluate a negative fractional index'
     check: {kind: evaluate, expression: '16**(-1/2)', answer: '1/4'}
@@ -39,7 +39,7 @@ problems:
   - id: ch3-34-negative-fraction
     section: '3.4'
     tier: H
-    dfe: [N7]
+    refs: [N7]
     statement: 'Work out $32^{-2/5}$.'
     answer_label: 'Evaluate a negative fractional index'
     check: {kind: evaluate, expression: '32**(-2/5)', answer: '1/4'}
@@ -47,7 +47,7 @@ problems:
   - id: ch3-34-combine-fractions
     section: '3.4'
     tier: H
-    dfe: [N7]
+    refs: [N7]
     statement: 'Simplify $a^{1/2}a^{3/2}$.'
     answer_label: 'Combine fractional indices'
     check: {kind: evaluate, expression: 'a**(1/2)*a**(3/2)', answer: 'a**2'}
@@ -55,7 +55,7 @@ problems:
   - id: ch3-34-fractional-equation
     section: '3.4'
     tier: H
-    dfe: [N7]
+    refs: [N7]
     statement: 'Solve $x^{1/2}=6$ for positive $x$.'
     answer_label: 'Solve an equation with a fractional index'
     check: {kind: solve, equation: 'sqrt(x)=6', variable: x, answer: ['36']}
@@ -63,7 +63,7 @@ problems:
   - id: ch3-34-algebraic-rewrite
     section: '3.4'
     tier: H
-    dfe: [N7]
+    refs: [N7]
     statement: 'Write $\\frac{1}{\\sqrt[3]{b^2}}$ using a fractional index.'
     answer_label: 'Rewrite a radical using indices'
     check: {kind: evaluate, expression: '1/root(b**2,3)', answer: 'b**(-2/3)'}
@@ -71,7 +71,7 @@ problems:
   - id: ch3-34-method-index
     section: '3.4'
     tier: 'H'
-    dfe: [N7]
+    refs: [N7]
     statement: 'Two methods evaluate $64^{2/3}$: find the cube root first, or raise to the power $2$ first. Which is easier, and why? Use your chosen method to evaluate $64^{2/3}$.'
     answer_label: 'Method choice: root first or power first'
     check:

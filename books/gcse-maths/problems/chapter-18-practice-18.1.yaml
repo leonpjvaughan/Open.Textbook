@@ -3,7 +3,7 @@ problems:
 - id: 'ch18-18.1-reflection'
   section: '18.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Reflect the point $(3,2)$ in the $y$-axis. Give its image.'
   answer_label: 'Reflect the point $(3,2)$ in the $y$-axis. Give its image.'
@@ -20,7 +20,7 @@ problems:
 - id: 'ch18-18.1-rotation'
   section: '18.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Rotate $(2,1)$ by $90^\circ$ clockwise about the origin.'
   answer_label: 'Rotate $(2,1)$ by $90^\circ$ clockwise about the origin.'
@@ -37,7 +37,7 @@ problems:
 - id: 'ch18-18.1-translation'
   section: '18.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Translate $(-1,3)$ by the vector $\begin{pmatrix}4\\-2\end{pmatrix}$.'
   answer_label: 'Translate $(-1,3)$ by the vector $\begin{pmatrix}4\\-2\end{pmatrix}$.'
@@ -54,7 +54,7 @@ problems:
 - id: 'ch18-18.1-describe'
   section: '18.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'G8'
   statement: 'Describe the single transformation taking $(1,2)$ to $(-1,2)$ and $(3,2)$ to $(-3,2)$.'
   answer_label: 'Describe the single transformation taking $(1,2)$ to $(-1,2)$ and $(3,2)$ to $(-3,2)$.'
@@ -77,7 +77,7 @@ problems:
 - id: 'ch18-18.1-reflect-line'
   section: '18.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Reflect $(4,-2)$ in the line $y=x$.'
   answer_label: 'Reflect $(4,-2)$ in the line $y=x$.'
@@ -94,7 +94,7 @@ problems:
 - id: 'ch18-18.1-translate-shape'
   section: '18.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Triangle vertices are $(0,0),(2,0),(1,3)$. Translate by $\begin{pmatrix}-3\\1\end{pmatrix}$. Give all image vertices.'
   answer_label: 'Triangle vertices are $(0,0),(2,0),(1,3)$. Translate by $\begin{pmatrix}-3\\1\end{pmatrix}$. Give all image vertices.'
@@ -123,7 +123,7 @@ problems:
 - id: 'ch18-18.1-rotation-centre'
   section: '18.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Rotate $(4,2)$ by $180^\circ$ about the origin.'
   answer_label: 'Rotate $(4,2)$ by $180^\circ$ about the origin.'
@@ -140,7 +140,7 @@ problems:
 - id: 'ch18-18.1-choose'
   section: '18.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'G8'
   statement: 'A shape keeps its size and orientation but moves three left and one up. A vertex at $(2,1)$ moves to $(-1,2)$. Which transformation applies, and why?'
   answer_label: 'A shape keeps its size and orientation but moves three left and one up. A vertex at $(2,1)$ moves to $(-1,2)$. Which transformation applies, and why?'
@@ -157,7 +157,7 @@ problems:
 - id: 'ch18-18.1-reflect-x'
   section: '18.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Reflect $(-5,2)$ in the $x$-axis.'
   answer_label: 'Reflect $(-5,2)$ in the $x$-axis.'
@@ -174,7 +174,7 @@ problems:
 - id: 'ch18-18.1-turn'
   section: '18.1'
   tier: 'F'
-  dfe:
+  refs:
   - 'G7'
   statement: 'Rotate $(1,-4)$ by $90^\circ$ anticlockwise about the origin.'
   answer_label: 'Rotate $(1,-4)$ by $90^\circ$ anticlockwise about the origin.'
@@ -191,7 +191,7 @@ problems:
 - id: 'ch18-18.1-combination'
   section: '18.1'
   tier: 'H'
-  dfe:
+  refs:
   - 'G8'
   statement: 'Translate the triangle with vertices $(1,1)$, $(3,1)$ and $(1,2)$ by $\begin{pmatrix}1\\1\end{pmatrix}$. Then reflect it in the $y$-axis and rotate it $90^\circ$ clockwise about the origin. Give the image vertices and state what stays unchanged.'
   answer_label: 'Translate the triangle with vertices $(1,1)$, $(3,1)$ and $(1,2)$ by $\begin{pmatrix}1\\1\end{pmatrix}$. Then reflect it in the $y$-axis and rotate it $90^\circ$ clockwise about the origin. Give the image vertices and state what stays unchanged.'

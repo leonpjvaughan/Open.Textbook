@@ -11,7 +11,7 @@ problems:
   - id: p1-force-car
     section: '3.2'
     tier: F
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A car of mass 1400 kg accelerates at 2.0 m/s². Calculate the resultant force.'
     answer_label: 'Resultant force on the car'
     check:
@@ -29,7 +29,7 @@ problems:
   - id: p2-mass-object
     section: '3.2'
     tier: F
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A resultant force of 150 N gives an object an acceleration of 5.0 m/s². Calculate the mass of the object.'
     answer_label: 'Mass of the object'
     check:
@@ -47,7 +47,7 @@ problems:
   - id: p3-acceleration-trolley
     section: '3.2'
     tier: F
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A resultant force of 350 N acts on a trolley of mass 70 kg. Calculate the acceleration.'
     answer_label: 'Acceleration of the trolley'
     check:
@@ -65,7 +65,7 @@ problems:
   - id: p4-braking-force-car
     section: '3.2'
     tier: F
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A car of mass 1200 kg accelerates at 7.0 m/s². Calculate the resultant force on the car.'
     answer_label: 'Resultant force on the car'
     check:
@@ -83,7 +83,7 @@ problems:
   - id: p5-lorry-force
     section: '3.2'
     tier: F
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A lorry of mass 30000 kg accelerates at 3.5 m/s². Calculate the resultant force on the lorry.'
     answer_label: 'Resultant force on the lorry'
     check:
@@ -101,7 +101,7 @@ problems:
   - id: p6-newton-first-book
     section: '3.2'
     tier: F
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A book rests on a table without moving. Name the two forces acting on the book, and explain why the resultant force is zero.'
     answer_label: 'The two forces on the book'
     check:
@@ -119,7 +119,7 @@ problems:
   - id: p7-newton-third-rocket
     section: '3.2'
     tier: F
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A rocket pushes hot gas downwards out of its engine. Use Newton''s third law to explain why the rocket moves upwards.'
     answer_label: 'The force that moves the rocket'
     check:
@@ -137,7 +137,7 @@ problems:
   - id: p8-method-choice-anchor
     section: '3.2'
     tier: F
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'The chapter problem asks for the acceleration of the bus and the resultant force on it. Say which equation you would use for each step, and name the quantities you need.'
     answer_label: 'Choosing the equation for each step'
     check:
@@ -155,7 +155,7 @@ problems:
   - id: p9-inertial-mass
     section: '3.2'
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'Explain what is meant by inertial mass, and why an object with a larger inertial mass is harder to stop.'
     answer_label: 'Inertial mass'
     check:
@@ -173,7 +173,7 @@ problems:
   - id: p10-acceleration-car
     section: '3.2'
     tier: F
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A resultant force of 900 N acts on a car of mass 1500 kg. Calculate the acceleration.'
     answer_label: 'Acceleration of the car'
     check:
@@ -191,7 +191,7 @@ problems:
   - id: p11-acceleration-ball
     section: '3.2'
     tier: F
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A resultant force of 6.0 N acts on a ball of mass 0.50 kg. Calculate the acceleration.'
     answer_label: 'Acceleration of the ball'
     check:

@@ -4,7 +4,7 @@ chapter: 8
 chapter_title: Quantum and nuclear physics
 section: '8.2'
 section_title: Wave-particle duality
-dfe:
+refs:
 - AP8
 kind: walkthrough
 ---

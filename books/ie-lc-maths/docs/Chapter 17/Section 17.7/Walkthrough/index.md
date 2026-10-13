@@ -15,4 +15,4 @@ kind: walkthrough
 # 17.7 Proving a circle theorem — Learn
 
 > **Stub.** Teaching narrative and fully worked examples. At least one Tier-1 or Tier-2 interactive figure where a parameter is worth manipulating. State prerequisites and learning objectives at the top.
-> Tier: **H** · DfE refs: 2.1
+> Tier: **H** · refs: 2.1

@@ -4,7 +4,7 @@ chapter: 6
 chapter_title: Exponentials and logarithms
 section: '6.4'
 section_title: Solving equations of the form a^x = b
-dfe:
+refs:
 - F5
 kind: walkthrough
 ---

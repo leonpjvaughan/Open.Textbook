@@ -15,4 +15,4 @@ kind: problems
 # 15.4 The force on a moving charge — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 3.5
+> Tier: **H** · refs: 3.5

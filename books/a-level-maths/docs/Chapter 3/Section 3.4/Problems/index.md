@@ -4,7 +4,7 @@ chapter: 3
 chapter_title: Coordinate geometry
 section: '3.4'
 section_title: Parametric equations and Cartesian conversion
-dfe:
+refs:
 - C3
 kind: problems
 ---

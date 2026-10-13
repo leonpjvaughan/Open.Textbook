@@ -14,7 +14,7 @@ symbols:
 problems:
   - id: p1-greatest-height
     section: "3.5"
-    dfe: [C4, OT3]
+    refs: [C4, OT3]
     statement: 'A ball is modelled by $x = 10t$, $y = 15t - 5t^2$, in metres and seconds. Find the greatest height of the ball, and the time at which it occurs.'
     answer_label: 'The greatest height and the time'
     check:
@@ -26,7 +26,7 @@ problems:
 
   - id: p2-parametric-to-cartesian
     section: "3.5"
-    dfe: [C4, OT3]
+    refs: [C4, OT3]
     statement: 'For the model $x = 10t$, $y = 15t - 5t^2$, find the Cartesian equation of the path.'
     answer_label: 'The Cartesian equation'
     check:
@@ -38,7 +38,7 @@ problems:
 
   - id: p3-landing-point
     section: "3.5"
-    dfe: [C4, OT3]
+    refs: [C4, OT3]
     statement: 'For the model $x = 10t$, $y = 15t - 5t^2$, find the time at which the ball lands and the distance it travels.'
     answer_label: 'The time and the distance'
     check:
@@ -50,7 +50,7 @@ problems:
 
   - id: p4-wheel-path
     section: "3.5"
-    dfe: [C4, OT3]
+    refs: [C4, OT3]
     statement: 'A wheel cabin is modelled by $x = 7\cos t$, $y = 9 + 7\sin t$. Find the Cartesian equation of the path and describe it.'
     answer_label: 'The path'
     check:
@@ -61,7 +61,7 @@ problems:
 
   - id: p5-wheel-greatest-height
     section: "3.5"
-    dfe: [C4, OT3]
+    refs: [C4, OT3]
     statement: 'For the cabin model $x = 7\cos t$, $y = 9 + 7\sin t$, work out the greatest height of the cabin and the value of $t$ at which it occurs.'
     answer_label: 'The greatest height and the value of t'
     check:
@@ -72,7 +72,7 @@ problems:
 
   - id: p6-position-at-time
     section: "3.5"
-    dfe: [C4, OT3]
+    refs: [C4, OT3]
     statement: 'A point moves on $x = 3 + 2\cos t$, $y = 1 + 2\sin t$. Find its position at $t = \frac{\pi}{2}$.'
     answer_label: 'The position'
     check:
@@ -84,7 +84,7 @@ problems:
 
   - id: p7-drone-path
     section: "3.5"
-    dfe: [C4, OT3]
+    refs: [C4, OT3]
     statement: 'The drone is modelled by $x = 6 + 5\cos\left(\frac{\pi t}{30}\right)$, $y = 8 + 5\sin\left(\frac{\pi t}{30}\right)$. Convert the path to Cartesian form.'
     answer_label: 'The path'
     check:
@@ -95,7 +95,7 @@ problems:
 
   - id: p8-drone-crossing-times
     section: "3.5"
-    dfe: [C4, OT3]
+    refs: [C4, OT3]
     statement: 'The drone is at $(6 + 5\cos\left(\frac{\pi t}{30}\right), 8 + 5\sin\left(\frac{\pi t}{30}\right))$. The causeway is the line $x + y = 19$. Find every time in the first $60$ seconds at which the drone is above the causeway.'
     answer_label: 'The times'
     check:
@@ -108,7 +108,7 @@ problems:
 
   - id: p9-drone-easternmost
     section: "3.5"
-    dfe: [C4, OT3]
+    refs: [C4, OT3]
     statement: 'For the drone model $x = 6 + 5\cos\left(\frac{\pi t}{30}\right)$, $y = 8 + 5\sin\left(\frac{\pi t}{30}\right)$, find every time in the first $60$ seconds at which the drone is at the easternmost point of the rim.'
     answer_label: 'The times'
     check:
@@ -121,7 +121,7 @@ problems:
 
   - id: p10-write-a-model
     section: "3.5"
-    dfe: [C4, OT3]
+    refs: [C4, OT3]
     statement: 'An object moves around the circle $(x - 4)^2 + (y - 6)^2 = 9$ at a steady speed, starting at the easternmost point and taking $20$ seconds for one lap. Write its position after $t$ seconds as parametric equations.'
     answer_label: 'The parametric equations'
     check:
@@ -133,7 +133,7 @@ problems:
 
   - id: p11-projectile-path
     section: "3.5"
-    dfe: [C4, OT3]
+    refs: [C4, OT3]
     statement: 'A ball is modelled by $x = 8t$, $y = 20t - 5t^2$. Find the Cartesian equation of its path.'
     answer_label: 'The path'
     check:
@@ -145,7 +145,7 @@ problems:
 
   - id: p12-method-choice
     section: "3.5"
-    dfe: [C4, OT3]
+    refs: [C4, OT3]
     statement: 'A ball is modelled by $x = 12t$, $y = 18t - 5t^2$. Work out the greatest height of the ball. Say whether you used a "where" method or a "when" method.'
     answer_label: 'The greatest height'
     check:

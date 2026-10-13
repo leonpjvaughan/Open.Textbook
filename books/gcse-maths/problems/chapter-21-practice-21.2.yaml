@@ -4,7 +4,7 @@ problems:
   - id: 'ch21-centre-angle'
     section: '21.2'
     tier: 'H'
-    dfe: ['G10']
+    refs: ['G10']
     statement: 'An angle at the circumference is $34^\circ$. Find the angle at the centre standing on the same arc.'
     answer_label: 'Angle at the centre'
     check: {kind: 'evaluate', expression: '2 * 34', answer: '68'}
@@ -13,7 +13,7 @@ problems:
   - id: 'ch21-circumference-angle'
     section: '21.2'
     tier: 'H'
-    dfe: ['G10']
+    refs: ['G10']
     statement: 'An angle at the centre is $126^\circ$. Find the angle at the circumference standing on the same arc.'
     answer_label: 'Angle at the circumference'
     check: {kind: 'evaluate', expression: '126 / 2', answer: '63'}
@@ -22,7 +22,7 @@ problems:
   - id: 'ch21-semicircle'
     section: '21.2'
     tier: 'H'
-    dfe: ['G10']
+    refs: ['G10']
     statement: '$AB$ is a diameter and $C$ is on the circle. Find $\angle ACB$.'
     answer_label: 'Angle in a semicircle'
     check: {kind: 'evaluate', expression: '180 / 2', answer: '90'}
@@ -31,7 +31,7 @@ problems:
   - id: 'ch21-same-segment'
     section: '21.2'
     tier: 'H'
-    dfe: ['G10']
+    refs: ['G10']
     statement: 'Two angles stand on the same chord in the same segment. One is $48^\circ$. Find the other.'
     answer_label: 'Same segment'
     check: {kind: 'evaluate', expression: '48', answer: '48'}
@@ -40,7 +40,7 @@ problems:
   - id: 'ch21-cyclic-opposite'
     section: '21.2'
     tier: 'H'
-    dfe: ['G10']
+    refs: ['G10']
     statement: 'Opposite angles in a cyclic quadrilateral are $x^\circ$ and $117^\circ$. Find $x$.'
     answer_label: 'Cyclic quadrilateral'
     check: {kind: 'evaluate', expression: '180 - 117', answer: '63'}
@@ -49,7 +49,7 @@ problems:
   - id: 'ch21-cyclic-variable'
     section: '21.2'
     tier: 'H'
-    dfe: ['G10']
+    refs: ['G10']
     statement: 'Opposite angles in a cyclic quadrilateral are $(3x+5)^\circ$ and $(2x+25)^\circ$. Solve for $x$.'
     answer_label: 'Cyclic equation'
     check: {kind: 'solve', equation: '3*x + 5 + 2*x + 25 - 180 = 0', variable: 'x', answer: ['30']}
@@ -59,7 +59,7 @@ problems:
   - id: 'ch21-centre-variable'
     section: '21.2'
     tier: 'H'
-    dfe: ['G10']
+    refs: ['G10']
     statement: 'An angle at the circumference is $(x+12)^\circ$. The angle at the centre on the same arc is $100^\circ$. Find $x$.'
     answer_label: 'Centre angle equation'
     check: {kind: 'solve', equation: '2*(x+12) - 100 = 0', variable: 'x', answer: ['38']}
@@ -69,7 +69,7 @@ problems:
   - id: 'ch21-same-segment-context'
     section: '21.2'
     tier: 'H'
-    dfe: ['G10']
+    refs: ['G10']
     statement: 'A cyclic quadrilateral has one angle of $88^\circ$. Find the opposite angle.'
     answer_label: 'Opposite cyclic angle'
     check: {kind: 'evaluate', expression: '180 - 88', answer: '92'}
@@ -78,7 +78,7 @@ problems:
   - id: 'ch21-semicircle-isosceles'
     section: '21.2'
     tier: 'H'
-    dfe: ['G10']
+    refs: ['G10']
     statement: 'In a triangle inscribed in a semicircle, one acute angle is $37^\circ$. Find the third angle.'
     answer_label: 'Triangle in a semicircle'
     check: {kind: 'evaluate', expression: '180 - 90 - 37', answer: '53'}
@@ -87,7 +87,7 @@ problems:
   - id: 'ch21-cyclic-sum-check'
     section: '21.2'
     tier: 'H'
-    dfe: ['G10']
+    refs: ['G10']
     statement: 'A cyclic quadrilateral has three angles $72^\circ$, $105^\circ$ and $x^\circ$. The $105^\circ$ angle is opposite $x$. Find $x$.'
     answer_label: 'Use the opposite pair'
     check: {kind: 'evaluate', expression: '180 - 105', answer: '75'}

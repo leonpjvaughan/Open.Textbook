@@ -5,7 +5,7 @@ chapter_title: Fractions, decimals and percentages
 section: "4.3"
 section_title: Multiplying and dividing fractions
 tier: F
-dfe: [N2]
+refs: [N2]
 kind: walkthrough
 ---
 # 4.3 Multiplying and dividing fractions — Learn

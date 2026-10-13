@@ -4,7 +4,7 @@ chapter: 3
 chapter_title: Mechanics
 section: '3.5'
 section_title: Circular motion
-dfe:
+refs:
 - AP3
 kind: guided-problems
 ---

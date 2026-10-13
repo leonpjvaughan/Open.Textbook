@@ -15,7 +15,7 @@ problems:
   - id: p1-resultant-force
     plays: force-ma
     section: '3.2'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A resultant force of 45 N acts on an object of mass 15 kg. Find the acceleration.'
     answer_label: 'The acceleration'
     check:
@@ -30,7 +30,7 @@ problems:
   - id: p2-car-resultant
     plays: force-ma
     section: '3.2'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A car of mass 600 kg has a driving force of 2000 N. A drag force of 800 N acts against the motion. Find the acceleration.'
     answer_label: 'The acceleration'
     check:
@@ -46,7 +46,7 @@ problems:
   - id: p3-balanced-forces
     plays: force-ma
     section: '3.2'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'Two horizontal forces act on a 5.0 kg trolley: 20 N to the right and 35 N to the left. Find the resultant force and the acceleration.'
     answer_label: 'The resultant force and the acceleration'
     check:
@@ -62,7 +62,7 @@ problems:
   - id: p4-lift-up
     plays: force-ma
     section: '3.2'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A passenger of mass 60 kg stands in a lift that accelerates upwards at $2.0\,\text{m}\,\text{s}^{-2}$. Find the normal reaction on the passenger. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The normal reaction'
     check:
@@ -78,7 +78,7 @@ problems:
   - id: p5-lift-down
     plays: force-ma
     section: '3.2'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A passenger of mass 70 kg stands in a lift that accelerates downwards at $1.5\,\text{m}\,\text{s}^{-2}$. Find the normal reaction on the passenger. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The normal reaction'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p6-frictionless-slope
     section: '3.2'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A block is released on a frictionless slope at 30° to the horizontal. Find its acceleration down the slope. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The acceleration down the slope'
     check:
@@ -105,7 +105,7 @@ problems:
 
   - id: p7-slope-with-friction
     section: '3.2'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A crate of mass 4.0 kg is on a slope at 25° to the horizontal. A friction force of 6.0 N acts up the slope. Find the acceleration of the crate down the slope. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The acceleration down the slope'
     check:
@@ -116,7 +116,7 @@ problems:
 
   - id: p8-projectile-height
     section: '3.2'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A ball is thrown at $25\,\text{m}\,\text{s}^{-1}$ at 50° above the horizontal. Find the maximum height it reaches. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The maximum height'
     check:
@@ -132,7 +132,7 @@ problems:
 
   - id: p9-projectile-range
     section: '3.2'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A stone is thrown at $18\,\text{m}\,\text{s}^{-1}$ at 35° above level ground. Find the time of flight and the range. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The time of flight and the range'
     check:
@@ -150,7 +150,7 @@ problems:
   - id: p10-skydiver-drag
     plays: force-ma
     section: '3.2'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A skydiver of mass 90 kg falls downwards with an acceleration of $1.5\,\text{m}\,\text{s}^{-2}$. Find the drag force on the skydiver. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The drag force'
     check:
@@ -165,7 +165,7 @@ problems:
 
   - id: p11-third-law
     section: '3.2'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A book rests on a table. A student says the weight of the book and the normal reaction from the table are a third-law pair. Explain why the student is wrong.'
     answer_label: 'Why the two forces are not a third-law pair'
     check:
@@ -183,7 +183,7 @@ problems:
 
   - id: p12-method-choice
     section: '3.2'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A ball is kicked at 22 m/s at 28 degrees above the horizontal. Say how you would set up the calculation before you find the range, and name the one quantity that is the same in both directions.'
     answer_label: 'The method and the shared quantity'
     check:

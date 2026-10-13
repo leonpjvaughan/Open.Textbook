@@ -15,4 +15,4 @@ kind: problems
 # 2.11 Comparing the algorithms and choosing one — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: S2
+> Tier: **H** · refs: S2

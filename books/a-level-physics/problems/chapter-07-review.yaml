@@ -17,7 +17,7 @@ problems:
   - id: r1-anchor-heat-water
     plays: thermal-energy
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'The pressure cooker holds 1.50 kg of water at 20 C and the water boils at 121 C. Find the energy needed to heat the water to boiling. c = 4200 J/kg/K.'
     answer_label: 'The energy to heat the water'
     check:
@@ -33,7 +33,7 @@ problems:
   - id: r2-anchor-boil
     plays: latent-heat
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the energy needed to turn 0.050 kg of boiling water into steam. L = 2.26e6 J/kg.'
     answer_label: 'The energy to boil the water'
     check:
@@ -47,7 +47,7 @@ problems:
 
   - id: r3-anchor-total
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the total energy supplied to heat the water and to turn 0.050 kg of it into steam.'
     answer_label: 'The total energy'
     check:
@@ -64,7 +64,7 @@ problems:
 
   - id: r4-anchor-rate
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'The cooker boils for 12 minutes, and 0.050 kg of water turns to steam in that time. Find the average rate at which energy is used for boiling.'
     answer_label: 'The average rate'
     check: {kind: approx, value: "113000 / 720", target: "157", tolerance: "2"}
@@ -72,7 +72,7 @@ problems:
 
   - id: r5-anchor-moles
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'The steam above the water is at 2.00e5 Pa and 121 C, in a volume of 2.00e-3 m3. Treat it as an ideal gas and find the number of moles. R = 8.31 J/K/mol.'
     answer_label: 'The number of moles of steam'
     check:
@@ -86,7 +86,7 @@ problems:
 
   - id: r6-anchor-molecules
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the number of molecules in the steam. Use n = 0.1222 mol and N_A = 6.02e23 /mol.'
     answer_label: 'The number of molecules'
     check: {kind: approx, value: "0.1222 * 6.02e23", target: "7.36e22", tolerance: "0.05e22"}
@@ -94,7 +94,7 @@ problems:
 
   - id: r7-anchor-average-ke
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the average random kinetic energy of a steam molecule at 121 C. k = 1.38e-23 J/K.'
     answer_label: 'The average molecular kinetic energy'
     check: {kind: approx, value: "1.5 * 1.38e-23 * 394", target: "8.16e-21", tolerance: "0.05e-21"}
@@ -102,7 +102,7 @@ problems:
 
   - id: r8-anchor-rms
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the rms speed of a steam molecule at 121 C. The molar mass of water is 0.018 kg/mol and R = 8.31 J/K/mol.'
     answer_label: 'The rms speed'
     check: {kind: approx, value: "sqrt(3 * 8.31 * 394 / 0.018)", target: "739", tolerance: "2"}
@@ -110,7 +110,7 @@ problems:
 
   - id: r9-anchor-pressure-reason
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Explain, in terms of the steam molecules, why the steam exerts a pressure on the inside of the cooker.'
     answer_label: 'A model answer'
     check:
@@ -137,7 +137,7 @@ problems:
 
   - id: r10-anchor-prediction
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'At the start, the lid is clamped shut and the water is heated. Explain why the pressure rises and why the water can reach 121 C before it boils.'
     answer_label: 'A model answer'
     check:
@@ -158,7 +158,7 @@ problems:
 
   - id: r11-interleave-uncertainty
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A 2.0 kg metal block is heated through 25.0 K. The mass has a percentage uncertainty of 0.5% and the temperature change 0.8%. The specific heat capacity is taken as exact. Find the energy supplied and its absolute uncertainty.'
     answer_label: 'The energy and its uncertainty'
     check:
@@ -174,7 +174,7 @@ problems:
 
   - id: r12-interleave-sigfigs
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'An experiment gives an energy of 210000 J. Write this value to two significant figures.'
     answer_label: 'The energy to two significant figures'
     check: {kind: sigfigs, value: "210000", figures: 2, answer: "2.1e5", convention: round-once}
@@ -182,7 +182,7 @@ problems:
 
   - id: r13-interleave-kinetic-energy
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A molecule of mass 4.8e-26 kg moves at 500 m/s. Find its kinetic energy.'
     answer_label: 'The kinetic energy'
     check: {kind: evaluate, expression: "0.5 * 4.8e-26 * 500**2", answer: "6.0e-21"}
@@ -190,7 +190,7 @@ problems:
 
   - id: r14-interleave-momentum
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A molecule of mass 4.8e-26 kg hits a wall at 500 m/s and rebounds at 500 m/s. Find the change in its momentum.'
     answer_label: 'The change in momentum'
     check: {kind: evaluate, expression: "2 * 4.8e-26 * 500", answer: "4.8e-23"}
@@ -198,7 +198,7 @@ problems:
 
   - id: r15-interleave-method-choice
     section: Review
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Choose the equation to use for each situation, and give a reason. (a) Heating water in a kettle with no boiling. (b) Melting ice at 0 C. (c) Finding the number of moles of steam in a sealed space.'
     answer_label: 'A model answer'
     check:

@@ -5,7 +5,7 @@ chapter_title: Atomic structure
 section: '9.4'
 section_title: Nuclear fission and fusion
 tier: F
-dfe:
+refs:
 - AT4
 kind: walkthrough
 ---

@@ -4,7 +4,7 @@ chapter: 3
 chapter_title: Mechanics
 section: '3.4'
 section_title: Momentum
-dfe:
+refs:
 - AP3
 kind: guided-problems
 ---

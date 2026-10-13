@@ -8,7 +8,7 @@ chapter: 16
 problems:
   - id: p1-resolve-50-30
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A force of $50$ N acts at $30^\circ$ above the horizontal. Find its horizontal and vertical components.'
     answer_label: 'The two components'
     check:
@@ -20,7 +20,7 @@ problems:
 
   - id: p2-resolve-80-55
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A force of $80$ N acts at $55^\circ$ above the horizontal. Find its horizontal and vertical components, each to $2$ d.p.'
     answer_label: 'The two components'
     check:
@@ -32,7 +32,7 @@ problems:
 
   - id: p3-weight-on-slope-18
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A weight of $441$ N acts on a body on a slope of $18^\circ$. Find the component of the weight along the slope and the component perpendicular to the slope, each to $1$ d.p.'
     answer_label: 'The two components'
     check:
@@ -44,7 +44,7 @@ problems:
 
   - id: p4-weight-on-slope-30
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A weight of $98$ N acts on a body on a slope of $30^\circ$. Find the component along the slope and the component perpendicular to the slope.'
     answer_label: 'The two components'
     check:
@@ -56,7 +56,7 @@ problems:
 
   - id: p5-two-strings-60-30
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A particle of weight $50$ N hangs in equilibrium from two light strings. One string makes $60^\circ$ with the horizontal and the other makes $30^\circ$ with the horizontal. Find the tension in each string.'
     answer_label: 'The two tensions'
     check:
@@ -68,7 +68,7 @@ problems:
 
   - id: p6-slope-rope-parallel
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A block of mass $60$ kg rests on a smooth slope of $25^\circ$. A light rope parallel to the slope holds it in equilibrium. Find the tension and the normal reaction, each to $1$ d.p. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The tension and the normal reaction'
     check:
@@ -80,7 +80,7 @@ problems:
 
   - id: p7-horizontal-force-on-slope
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A body of weight $392$ N is held in equilibrium on a smooth slope of $30^\circ$ by a horizontal force $P$. Find $P$ and the normal reaction, each to $1$ d.p.'
     answer_label: 'The force and the normal reaction'
     check:
@@ -92,7 +92,7 @@ problems:
 
   - id: p8-resolve-120-35
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A force of $120$ N acts at $35^\circ$ below the horizontal. Find the horizontal component and the downward vertical component, each to $2$ d.p.'
     answer_label: 'The two components'
     check:
@@ -104,7 +104,7 @@ problems:
 
   - id: p9-four-forces-equilibrium
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A particle is in equilibrium under four forces. Three of them are $(5, 0)$ N, $(-3, 4)$ N and $(0, -6)$ N. Find the fourth force as a column vector.'
     answer_label: 'The fourth force'
     check:
@@ -122,7 +122,7 @@ problems:
 
   - id: p10-three-forces-perpendicular
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A particle is in equilibrium under three forces. Two of them are $12$ N due east and $5$ N due north. Find the third force as a column vector and its size.'
     answer_label: 'The third force and its size'
     check:
@@ -137,7 +137,7 @@ problems:
 
   - id: p11-two-strings-40-50
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A particle of weight $30$ N hangs in equilibrium from two light strings. One string makes $40^\circ$ with the horizontal and the other makes $50^\circ$ with the horizontal. Find the two tensions, each to $2$ d.p.'
     answer_label: 'The two tensions'
     check:
@@ -149,7 +149,7 @@ problems:
 
   - id: p12-slope-rope-15
     section: "16.5"
-    dfe: [R4]
+    refs: [R4]
     statement: 'A block of mass $10$ kg rests on a smooth slope of $15^\circ$. A light rope parallel to the slope holds it in equilibrium. Find the tension and the normal reaction, each to $2$ d.p. Take $g = 9.8$ m s$^{-2}$.'
     answer_label: 'The tension and the normal reaction'
     check:

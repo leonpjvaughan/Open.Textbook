@@ -21,7 +21,7 @@ problems:
   - id: p1-weight-pupil
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A pupil has a mass of 55 kg. Take $g = 9.8\,\text{N/kg}$. Calculate the weight of the pupil.'
     answer_label: 'Weight of the pupil'
     check:
@@ -39,7 +39,7 @@ problems:
   - id: p2-weight-apple
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'An apple has a mass of 0.20 kg. Take $g = 9.8\,\text{N/kg}$. Calculate the weight of the apple.'
     answer_label: 'Weight of the apple'
     check:
@@ -57,7 +57,7 @@ problems:
   - id: p3-resultant-forward
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A box is pushed to the right with a force of 320 N. A friction force of 180 N acts to the left. Calculate the resultant force on the box, and give its direction.'
     answer_label: 'Resultant force on the box'
     check: {kind: evaluate, expression: "320 - 180", answer: "140"}
@@ -66,7 +66,7 @@ problems:
   - id: p4-resultant-same
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'Two people push a car in the same direction. One pushes with a force of 400 N and the other pushes with 350 N. Calculate the resultant force on the car.'
     answer_label: 'Resultant force on the car'
     check: {kind: evaluate, expression: "400 + 350", answer: "750"}
@@ -75,7 +75,7 @@ problems:
   - id: p5-balanced
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'Two teams pull on a rope in opposite directions. Each team pulls with a force of 1200 N. Calculate the resultant force on the rope.'
     answer_label: 'Resultant force on the rope'
     check: {kind: evaluate, expression: "1200 - 1200", answer: "0"}
@@ -84,7 +84,7 @@ problems:
   - id: p6-weight-moon
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A box of tools has a mass of 5.0 kg. On the Moon, $g = 1.6\,\text{N/kg}$. Calculate the weight of the box on the Moon.'
     answer_label: 'Weight of the box on the Moon'
     check:
@@ -102,7 +102,7 @@ problems:
   - id: p7-crate-weight
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A crate has a mass of 40 kg. Take $g = 9.8\,\text{N/kg}$. Calculate the weight of the crate.'
     answer_label: 'Weight of the crate'
     check:
@@ -120,7 +120,7 @@ problems:
   - id: p8-contact-noncontact
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'Classify each of these forces as a contact force or a non-contact force: friction, the magnetic force, tension, the gravitational force.'
     answer_label: 'Contact and non-contact forces'
     check:
@@ -138,7 +138,7 @@ problems:
   - id: p9-interaction-pair
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A book rests on a table. Name the force the table exerts on the book, and the force the book exerts on the table. Explain why these two forces form an interaction pair.'
     answer_label: 'The interaction pair'
     check:
@@ -159,7 +159,7 @@ problems:
   - id: p10-mass-weight
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A pupil says that their weight is 50 kg. Explain what is wrong with this statement.'
     answer_label: 'What is wrong with the statement'
     check:
@@ -180,7 +180,7 @@ problems:
   - id: p11-resolve-40n
     section: '2.1'
     tier: H
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A force of 40 N acts at $35^\circ$ to the horizontal. Resolve the force into a horizontal component and a vertical component. Give each component to 3 significant figures.'
     answer_label: 'The two components'
     check:
@@ -196,7 +196,7 @@ problems:
   - id: p12-resultant-perpendicular
     section: '2.1'
     tier: H
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'Two forces act at right angles. One force is 60 N and the other is 80 N. Calculate the magnitude and the direction of the resultant force.'
     answer_label: 'The resultant force'
     check:

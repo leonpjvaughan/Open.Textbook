@@ -17,7 +17,7 @@ problems:
   - id: p1-charge
     plays: current
     section: '5.1'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A current of $0.40\,\text{A}$ flows for $25\,\text{s}$. Find the charge that flows.'
     answer_label: 'The charge'
     check:
@@ -31,7 +31,7 @@ problems:
 
   - id: p2-current
     section: '5.1'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A charge of $90\,\text{C}$ passes a point in a circuit in $60\,\text{s}$. Find the current.'
     answer_label: 'The current'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: p3-electrons
     section: '5.1'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'Find the number of electrons that carry a charge of $1.6\,\text{C}$. Use $e = 1.60 \times 10^{-19}\,\text{C}$.'
     answer_label: 'The number of electrons'
     check: {kind: evaluate, expression: "1.6 / 1.60e-19", answer: "1.0e19"}
@@ -54,7 +54,7 @@ problems:
   - id: p4-terminal-pd
     plays: emf
     section: '5.1'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A battery has an emf of $6.0\,\text{V}$ and an internal resistance of $0.20\,\Omega$. It drives a current of $0.50\,\text{A}$. Find the terminal potential difference.'
     answer_label: 'The terminal potential difference'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: p5-power-energy
     section: '5.1'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A component has a potential difference of $12\,\text{V}$ across it and a current of $0.25\,\text{A}$ through it for $60\,\text{s}$. Find the power and the energy transferred.'
     answer_label: 'The power and the energy'
     check: {kind: evaluate, expression: "12 * 0.25 * 60", answer: "180"}
@@ -78,7 +78,7 @@ problems:
   - id: p6-circuit
     plays: emf
     section: '5.1'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A cell of emf $1.5\,\text{V}$ and internal resistance $0.30\,\Omega$ is connected to a $1.2\,\Omega$ resistor. Find the current and the terminal potential difference.'
     answer_label: 'The current and the terminal potential difference'
     check:
@@ -94,7 +94,7 @@ problems:
   - id: p7-charge-time
     plays: current
     section: '5.1'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A current of $2.0\,\text{A}$ flows for $5.0$ minutes. Find the charge that flows.'
     answer_label: 'The charge'
     check:
@@ -108,7 +108,7 @@ problems:
 
   - id: p8-electrons
     section: '5.1'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'Find the number of electrons that carry a charge of $0.32\,\text{C}$. Use $e = 1.60 \times 10^{-19}\,\text{C}$.'
     answer_label: 'The number of electrons'
     check: {kind: evaluate, expression: "0.32 / 1.60e-19", answer: "2.0e18"}
@@ -117,7 +117,7 @@ problems:
   - id: p9-internal
     plays: emf
     section: '5.1'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A battery has an emf of $24\,\text{V}$ and an internal resistance of $0.50\,\Omega$. It drives a current of $4.0\,\text{A}$. Find the terminal potential difference and the external resistance.'
     answer_label: 'The terminal potential difference and the external resistance'
     check:
@@ -132,7 +132,7 @@ problems:
 
   - id: p10-energy
     section: '5.1'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A battery of emf $9.0\,\text{V}$ transfers a charge of $5.0\,\text{C}$. Find the energy transferred to the charge.'
     answer_label: 'The energy transferred'
     check:
@@ -146,7 +146,7 @@ problems:
 
   - id: p11-emf-vs-pd
     section: '5.1'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'Explain the difference between the emf of a battery and the potential difference across a bulb in the circuit.'
     answer_label: 'The difference between emf and potential difference'
     check:
@@ -167,7 +167,7 @@ problems:
 
   - id: p12-internal-resistance
     section: '5.1'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'Explain why the terminal potential difference of a battery is less than its emf when a current flows.'
     answer_label: 'Why the terminal pd is less than the emf'
     check:

@@ -3,7 +3,7 @@ problems:
 - id: p1-relative-frequency
   section: '23.2'
   tier: 'F'
-  dfe:
+  refs:
   - 'P1'
   statement: 'A player scores 21 times in 35 attempts. Find the relative frequency of scoring.'
   answer_label: 'A player scores 21 times in 35 attempts. Find the relative frequency of scoring.'
@@ -15,7 +15,7 @@ problems:
 - id: p2-estimate-from-frequency
   section: '23.2'
   tier: 'F'
-  dfe:
+  refs:
   - 'P2'
   statement: 'A spinner lands on green 42 times in 70 spins. Use this to estimate the probability of green.'
   answer_label: 'A spinner lands on green 42 times in 70 spins. Use this to estimate the probability of green.'
@@ -27,7 +27,7 @@ problems:
 - id: p3-sample-not-certainty
   section: '23.2'
   tier: 'F'
-  dfe:
+  refs:
   - 'P3'
   statement: 'A fair coin lands on heads 7 times in 10 tosses. Is this result impossible for a fair coin?'
   answer_label: 'A fair coin lands on heads 7 times in 10 tosses. Is this result impossible for a fair coin?'
@@ -40,7 +40,7 @@ problems:
 - id: p4-expected-dice
   section: '23.2'
   tier: 'F'
-  dfe:
+  refs:
   - 'P5'
   statement: 'A fair die is rolled 300 times. Find the expected number of sixes.'
   answer_label: 'A fair die is rolled 300 times. Find the expected number of sixes.'
@@ -52,7 +52,7 @@ problems:
 - id: p5-expected-spinner
   section: '23.2'
   tier: 'F'
-  dfe:
+  refs:
   - 'P5'
   statement: 'A spinner has probability $0.3$ of landing on red. Find the expected red results in 80 spins.'
   answer_label: 'A spinner has probability $0.3$ of landing on red. Find the expected red results in 80 spins.'
@@ -64,7 +64,7 @@ problems:
 - id: p6-relative-percent
   section: '23.2'
   tier: 'F'
-  dfe:
+  refs:
   - 'P1'
   statement: 'A team wins 16 of 40 games. Find the relative frequency as a percentage.'
   answer_label: 'A team wins 16 of 40 games. Find the relative frequency as a percentage.'
@@ -76,7 +76,7 @@ problems:
 - id: p7-expected-fractional
   section: '23.2'
   tier: 'F'
-  dfe:
+  refs:
   - 'P5'
   statement: 'An event has probability $\frac{2}{5}$. Find its expected frequency in 12 trials.'
   answer_label: 'An event has probability $\frac{2}{5}$. Find its expected frequency in 12 trials.'
@@ -88,7 +88,7 @@ problems:
 - id: p8-estimate-200
   section: '23.2'
   tier: 'F'
-  dfe:
+  refs:
   - 'P2'
   statement: 'A sample suggests probability $0.62$. Estimate the number of successes in 200 trials.'
   answer_label: 'A sample suggests probability $0.62$. Estimate the number of successes in 200 trials.'
@@ -100,7 +100,7 @@ problems:
 - id: p9-relative-frequency-fail
   section: '23.2'
   tier: 'F'
-  dfe:
+  refs:
   - 'P1'
   statement: 'A shot misses 9 times in 30 attempts. Find the relative frequency of a miss.'
   answer_label: 'A shot misses 9 times in 30 attempts. Find the relative frequency of a miss.'
@@ -112,7 +112,7 @@ problems:
 - id: p10-compare-theory-data
   section: '23.2'
   tier: 'F'
-  dfe:
+  refs:
   - 'P3'
   statement: 'A fair die shows a 1 on 14 of 60 rolls. Compare the observed relative frequency with the theoretical probability.'
   answer_label: 'A fair die shows a 1 on 14 of 60 rolls. Compare the observed relative frequency with the theoretical probability.'

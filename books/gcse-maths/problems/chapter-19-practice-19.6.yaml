@@ -3,7 +3,7 @@ problems:
 - id: 'ch19-19-6-01'
   section: '19.6'
   tier: 'F'
-  dfe: &id001
+  refs: &id001
   - 'G17'
   statement: 'An L-shape is made by removing a 3 cm by 2 cm rectangle from a 9 cm by 6 cm rectangle. Work out its area.'
   answer_label: 'Composite area'
@@ -15,7 +15,7 @@ problems:
 - id: 'ch19-19-6-02'
   section: '19.6'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A rectangle 10 cm by 8 cm has a 4 cm by 3 cm rectangle removed. Work out the remaining area.'
   answer_label: 'Composite area'
   check:
@@ -26,7 +26,7 @@ problems:
 - id: 'ch19-19-6-03'
   section: '19.6'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A shape is made from a rectangle 7 cm by 4 cm and a triangle with base 7 cm and height 3 cm. Work out its area.'
   answer_label: 'Composite area'
   check:
@@ -37,7 +37,7 @@ problems:
 - id: 'ch19-19-6-04'
   section: '19.6'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A semicircle of radius 4 cm is joined to a rectangle 8 cm by 5 cm along the rectangle length. Work out the outer perimeter in terms of π.'
   answer_label: 'Composite perimeter'
   check:
@@ -48,7 +48,7 @@ problems:
 - id: 'ch19-19-6-05'
   section: '19.6'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A solid is made from a cuboid 5 cm by 4 cm by 3 cm and a cuboid 2 cm by 4 cm by 3 cm joined along a 4 cm by 3 cm face. Work out its volume.'
   answer_label: 'Composite volume'
   check:
@@ -59,7 +59,7 @@ problems:
 - id: 'ch19-19-6-06'
   section: '19.6'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'Two cuboids of dimensions 4 cm by 3 cm by 2 cm and 5 cm by 3 cm by 2 cm are joined along a 3 cm by 2 cm face. Work out the outside surface area.'
   answer_label: 'Composite surface area'
   check:
@@ -70,7 +70,7 @@ problems:
 - id: 'ch19-19-6-07'
   section: '19.6'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A solid consists of a cylinder of radius 3 cm and height 4 cm with a hemisphere of radius 3 cm on top. Work out its volume in terms of π.'
   answer_label: 'Composite volume'
   check:
@@ -81,7 +81,7 @@ problems:
 - id: 'ch19-19-6-08'
   section: '19.6'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A shape has area 72 cm². A square of side 4 cm is cut from it. Work out the remaining area and explain why you subtract.'
   answer_label: 'Remaining area'
   check:
@@ -92,7 +92,7 @@ problems:
 - id: 'ch19-19-6-method'
   section: '19.6'
   tier: 'F'
-  dfe: *id001
+  refs: *id001
   statement: 'A solid is a cuboid 10 cm by 4 cm by 2 cm with a cylindrical hole of radius 2 cm drilled through its 2 cm height. Which method finds the remaining volume: add the volumes, or subtract the hole from the cuboid? Give a reason, then work it out in terms of π.'
   answer_label: 'Method choice: add or subtract'
   check:

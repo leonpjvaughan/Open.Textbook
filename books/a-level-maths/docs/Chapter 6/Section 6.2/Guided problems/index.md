@@ -4,7 +4,7 @@ chapter: 6
 chapter_title: Exponentials and logarithms
 section: '6.2'
 section_title: The gradient of e^kx and the exponential model
-dfe:
+refs:
 - F2
 - G2
 kind: guided-problems

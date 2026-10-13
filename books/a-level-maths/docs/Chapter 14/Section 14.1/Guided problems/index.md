@@ -4,7 +4,7 @@ chapter: 14
 chapter_title: Statistical hypothesis testing
 section: '14.1'
 section_title: The language of hypothesis testing
-dfe:
+refs:
 - O1
 kind: guided-problems
 ---

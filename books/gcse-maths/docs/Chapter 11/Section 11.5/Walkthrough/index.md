@@ -5,7 +5,7 @@ chapter_title: Straight-line graphs and rates of change
 section: '11.5'
 section_title: Real-life and distance-time graphs
 tier: F
-dfe: [A14, R14]
+refs: [A14, R14]
 kind: walkthrough
 ---
 

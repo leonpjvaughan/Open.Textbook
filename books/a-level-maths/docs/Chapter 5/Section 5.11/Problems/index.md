@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Trigonometry
 section: '5.11'
 section_title: Proofs with trigonometric functions and identities
-dfe:
+refs:
 - E8
 kind: problems
 ---

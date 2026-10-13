@@ -5,7 +5,7 @@ chapter_title: Algebraic expressions and manipulation
 section: "8.5"
 section_title: Substitution into expressions and formulae
 tier: F
-dfe: [A2]
+refs: [A2]
 kind: problems
 ---
 

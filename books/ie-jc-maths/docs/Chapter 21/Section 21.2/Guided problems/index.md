@@ -15,4 +15,4 @@ kind: guided-problems
 # 21.2 Probability as a number from 0 to 1 — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: SP.2
+> Tier: **O** · refs: SP.2

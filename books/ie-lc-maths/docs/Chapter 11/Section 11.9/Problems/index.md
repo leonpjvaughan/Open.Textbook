@@ -15,4 +15,4 @@ kind: problems
 # 11.9 Hypothesis testing and confidence intervals — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 1.7
+> Tier: **H** · refs: 1.7

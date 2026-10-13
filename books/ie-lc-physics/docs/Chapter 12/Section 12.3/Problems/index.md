@@ -15,4 +15,4 @@ kind: problems
 # 12.3 Energy in electromagnetic radiation — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 2.4
+> Tier: **O** · refs: 2.4

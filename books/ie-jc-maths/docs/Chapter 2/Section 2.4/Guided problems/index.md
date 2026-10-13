@@ -15,4 +15,4 @@ kind: guided-problems
 # 2.4 Fractional indices and roots — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: N.1
+> Tier: **O** · refs: N.1

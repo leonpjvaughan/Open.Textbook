@@ -15,4 +15,4 @@ kind: guided-problems
 # 12.2 Pythagoras' theorem — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **F** · DfE refs: 2.3
+> Tier: **F** · refs: 2.3

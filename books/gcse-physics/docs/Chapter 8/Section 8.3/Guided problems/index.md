@@ -5,7 +5,7 @@ chapter_title: Particle model of matter
 section: '8.3'
 section_title: Particle model and pressure
 tier: F
-dfe:
+refs:
 - PM3
 kind: guided-problems
 ---

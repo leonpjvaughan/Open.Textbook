@@ -15,4 +15,4 @@ kind: problems
 # 10.5 Axioms of probability — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 1.2
+> Tier: **F** · refs: 1.2

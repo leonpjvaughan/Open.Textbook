@@ -4,7 +4,7 @@ chapter: 16
 chapter_title: Forces, Newton's laws and moments
 section: '16.8'
 section_title: Moments in static contexts
-dfe:
+refs:
 - S1
 kind: guided-problems
 ---

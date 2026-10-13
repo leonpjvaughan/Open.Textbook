@@ -5,7 +5,7 @@ chapter_title: Properties, constructions, loci and bearings
 section: "17.5"
 section_title: Bearings and scale drawings
 tier: F
-dfe: [G15]
+refs: [G15]
 kind: problems
 ---
 

@@ -15,4 +15,4 @@ kind: problems
 # 8.1 Sets and set notation — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: N.5
+> Tier: **O** · refs: N.5

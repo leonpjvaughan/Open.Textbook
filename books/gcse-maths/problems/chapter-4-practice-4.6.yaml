@@ -4,7 +4,7 @@ problems:
 - id: 'ch4-fraction-amount'
   section: '4.6'
   tier: 'F'
-  dfe:
+  refs:
   - 'N11'
   statement: 'Work out $\frac{3}{8}$ of $£64$.'
   answer_label: 'Answer 1'
@@ -16,7 +16,7 @@ problems:
 - id: 'ch4-percent-amount'
   section: '4.6'
   tier: 'F'
-  dfe:
+  refs:
   - 'N11'
   statement: 'Work out $15\%$ of $80$.'
   answer_label: 'Answer 2'
@@ -28,7 +28,7 @@ problems:
 - id: 'ch4-percent-change'
   section: '4.6'
   tier: 'F'
-  dfe:
+  refs:
   - 'N12'
   statement: 'A £60 coat is reduced by $20\%$. Work out its sale price.'
   answer_label: 'Answer 3'
@@ -40,7 +40,7 @@ problems:
 - id: 'ch4-reverse-percent'
   section: '4.6'
   tier: 'F'
-  dfe:
+  refs:
   - 'N12'
   statement: 'After a $25\%$ increase, a price is £90. Work out the original price.'
   answer_label: 'Answer 4'
@@ -52,7 +52,7 @@ problems:
 - id: 'ch4-fraction-percent'
   section: '4.6'
   tier: 'F'
-  dfe:
+  refs:
   - 'N11'
   - 'N12'
   statement: 'Write $\frac{3}{20}$ as a percentage, then work out $\frac{3}{20}$ of £140.'
@@ -70,7 +70,7 @@ problems:
 - id: 'ch4-fraction-increase'
   section: '4.6'
   tier: 'F'
-  dfe:
+  refs:
   - 'N12'
   statement: 'Increase £80 by $\frac{1}{5}$. Work out the new price.'
   answer_label: 'Increase by one fifth'
@@ -82,7 +82,7 @@ problems:
 - id: 'ch4-reverse-fraction'
   section: '4.6'
   tier: 'F'
-  dfe:
+  refs:
   - 'N12'
   statement: 'After a $10\%$ decrease, a price is £54. Work out the original price.'
   answer_label: 'Original price after decrease'
@@ -94,7 +94,7 @@ problems:
 - id: ch4-46-method-multiplier
   section: '4.6'
   tier: 'F'
-  dfe: [N11, N12]
+  refs: [N11, N12]
   statement: 'A £80 coat is reduced by $15\%$, then the sale price is reduced by a further $10\%$. Which method is quicker: multiply by one overall multiplier, or apply each decrease in turn? Give a reason. Then work out the final price.'
   answer_label: 'Method choice: one multiplier or two steps'
   check:

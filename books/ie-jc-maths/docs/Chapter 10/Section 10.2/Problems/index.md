@@ -15,4 +15,4 @@ kind: problems
 # 10.2 Substituting values into expressions — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: AF.2
+> Tier: **O** · refs: AF.2

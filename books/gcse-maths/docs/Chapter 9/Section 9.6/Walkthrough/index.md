@@ -5,7 +5,7 @@ chapter_title: Equations and inequalities
 section: "9.6"
 section_title: Quadratic inequalities
 tier: H
-dfe: [A22]
+refs: [A22]
 kind: walkthrough
 ---
 

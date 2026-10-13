@@ -15,4 +15,4 @@ kind: guided-problems
 # 13.1 Distance, midpoint and slope — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **F** · DfE refs: 2.2
+> Tier: **F** · refs: 2.2

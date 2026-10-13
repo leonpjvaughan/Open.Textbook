@@ -4,7 +4,7 @@ chapter: 11
 chapter_title: Statistical sampling and data presentation
 section: '11.3'
 section_title: Diagrams for single-variable data and the histogram
-dfe:
+refs:
 - L1
 kind: problems
 ---

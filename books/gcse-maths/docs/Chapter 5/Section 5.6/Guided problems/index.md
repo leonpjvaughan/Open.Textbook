@@ -5,7 +5,7 @@ chapter_title: Ratio and proportion
 section: '5.6'
 section_title: Comparing lengths, areas and volumes
 tier: H
-dfe:
+refs:
 - R12
 kind: guided-problems
 ---

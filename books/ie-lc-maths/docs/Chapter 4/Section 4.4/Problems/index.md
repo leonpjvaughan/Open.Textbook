@@ -15,4 +15,4 @@ kind: problems
 # 4.4 Features of linear relationships — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 4.1
+> Tier: **F** · refs: 4.1

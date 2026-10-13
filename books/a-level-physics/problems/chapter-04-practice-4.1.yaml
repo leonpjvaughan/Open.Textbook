@@ -18,7 +18,7 @@ problems:
   - id: p1-stress-basic
     plays: tensile-stress
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire of cross-sectional area $2.0 \times 10^{-6}\,\text{m}^2$ carries a tensile force of $50\,\text{N}$. Find the stress.'
     answer_label: 'The tensile stress'
     check:
@@ -32,7 +32,7 @@ problems:
 
   - id: p2-strain
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire of original length $1.60\,\text{m}$ extends by $0.80\,\text{mm}$. Find the strain.'
     answer_label: 'The tensile strain'
     check: {kind: evaluate, expression: "0.80e-3 / 1.60", answer: "5.0e-4"}
@@ -41,7 +41,7 @@ problems:
   - id: p3-young-modulus
     plays: young-modulus
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A material has a stress of $1.2 \times 10^{8}\,\text{Pa}$ and a strain of $6.0 \times 10^{-4}$. Find its Young modulus.'
     answer_label: 'The Young modulus'
     check:
@@ -55,7 +55,7 @@ problems:
 
   - id: p4-diameter-stress
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire has a diameter of $0.60\,\text{mm}$ and carries a force of $30\,\text{N}$. Find the stress in the wire.'
     answer_label: 'The tensile stress'
     check: {kind: approx, value: "30 / (pi * (0.30e-3)**2)", target: "1.06e8", tolerance: "5e6"}
@@ -64,7 +64,7 @@ problems:
   - id: p5-extension
     plays: young-modulus
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A steel wire has $E = 2.0 \times 10^{11}\,\text{Pa}$, cross-sectional area $5.0 \times 10^{-7}\,\text{m}^2$ and length $1.80\,\text{m}$. A force of $40\,\text{N}$ stretches it. Find the extension.'
     answer_label: 'The extension'
     check:
@@ -80,7 +80,7 @@ problems:
 
   - id: p6-material-ratio
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A steel wire and a copper wire have the same length and area and carry the same force. Steel has $E = 2.0 \times 10^{11}\,\text{Pa}$ and copper has $E = 1.2 \times 10^{11}\,\text{Pa}$. Find how many times larger the copper extension is than the steel extension.'
     answer_label: 'The ratio of the extensions'
     check: {kind: evaluate, expression: "20 / 12", answer: "5/3"}
@@ -88,7 +88,7 @@ problems:
 
   - id: p7-cable-stress
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A cable of cross-sectional area $1.2 \times 10^{-4}\,\text{m}^2$ supports a load of mass $900\,\text{kg}$. Take $g = 9.81\,\text{N}\,\text{kg}^{-1}$ and find the stress.'
     answer_label: 'The tensile stress'
     check: {kind: approx, value: "900 * 9.81 / 1.2e-4", target: "7.4e7", tolerance: "5e5"}
@@ -96,7 +96,7 @@ problems:
 
   - id: p8-percentage-strain
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire $2.50\,\text{m}$ long extends by $1.5\,\text{mm}$. Find the strain, and write it as a percentage.'
     answer_label: 'The strain and the percentage strain'
     check:
@@ -109,7 +109,7 @@ problems:
   - id: p9-find-E
     plays: young-modulus
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire of length $2.50\,\text{m}$ and area $4.0 \times 10^{-7}\,\text{m}^2$ extends by $1.0\,\text{mm}$ under a force of $32\,\text{N}$. Find the Young modulus.'
     answer_label: 'The Young modulus'
     check:
@@ -125,7 +125,7 @@ problems:
 
   - id: p10-method-choice
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'You know the force, the original length, the extension and the cross-sectional area of a stretched wire. Describe how to find the Young modulus, and state its unit.'
     answer_label: 'The method and the unit'
     check:
@@ -149,7 +149,7 @@ problems:
 
   - id: p11-thicker-wire
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'Two steel wires have the same length. One has twice the diameter of the other. Both carry the same force. Explain what happens to the stress and to the extension of the thicker wire.'
     answer_label: 'The stress and the extension of the thicker wire'
     check:
@@ -170,7 +170,7 @@ problems:
 
   - id: p12-homogeneity
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'Show that $E = \dfrac{FL}{A\,\Delta L}$ gives the base units $\text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$.'
     answer_label: 'A base-unit check'
     check:

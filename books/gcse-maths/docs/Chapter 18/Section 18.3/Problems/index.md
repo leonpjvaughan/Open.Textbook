@@ -5,7 +5,7 @@ chapter_title: Transformations, congruence and similarity
 section: "18.3"
 section_title: Enlargement with fractional and negative scale factors
 tier: H
-dfe: [G7]
+refs: [G7]
 kind: problems
 ---
 

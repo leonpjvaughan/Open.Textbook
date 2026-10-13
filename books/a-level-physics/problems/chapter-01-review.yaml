@@ -15,7 +15,7 @@ chapter: 1
 problems:
   - id: r1-mean-timing
     section: Review
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'The 20-oscillation timings are $35.90\,\text{s}$, $35.85\,\text{s}$ and $35.95\,\text{s}$. Find the mean time and its uncertainty using the half-range convention.'
     answer_label: 'The mean time and its uncertainty'
     check:
@@ -28,7 +28,7 @@ problems:
 
   - id: r2-period
     section: Review
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'The time for 20 oscillations is $35.90\,\text{s}$. Find the period $T$ of one oscillation in seconds.'
     answer_label: 'The period of one oscillation'
     check:
@@ -39,7 +39,7 @@ problems:
 
   - id: r3-calculate-g
     section: Review
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'Use $g = \dfrac{4\pi^2 L}{T^2}$ with $L = 0.800\,\text{m}$ and $T = 1.795\,\text{s}$ to find $g$.'
     answer_label: 'The value of g'
     check:
@@ -51,7 +51,7 @@ problems:
 
   - id: r4-percentage-g
     section: Review
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'The percentage uncertainty in the length is $0.125\%$ and the percentage uncertainty in the period is $0.139\%$. Find the percentage uncertainty in $g$, using $g = \dfrac{4\pi^2 L}{T^2}$.'
     answer_label: 'The percentage uncertainty in g'
     check:
@@ -63,7 +63,7 @@ problems:
 
   - id: r5-uncertainty-g
     section: Review
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'The value of $g$ is $9.802\,\text{m}\,\text{s}^{-2}$ and its percentage uncertainty is $0.40\%$. Find the absolute uncertainty in $g$.'
     answer_label: 'The absolute uncertainty in g'
     check:
@@ -75,7 +75,7 @@ problems:
 
   - id: r6-quote-g
     section: Review
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'The value of $g$ is $9.802\,\text{m}\,\text{s}^{-2}$ and the absolute uncertainty is $0.04\,\text{m}\,\text{s}^{-2}$. Write the result in the correct form.'
     answer_label: 'The result in the correct form'
     check:
@@ -88,7 +88,7 @@ problems:
 
   - id: r7-agreement
     section: Review
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'The experiment gives $g = 9.80 \pm 0.04\,\text{m}\,\text{s}^{-2}$. The accepted value is $9.81\,\text{m}\,\text{s}^{-2}$. Decide whether the experiment agrees with the accepted value, and give a reason.'
     answer_label: 'Whether the experiment agrees with the accepted value'
     check:
@@ -108,7 +108,7 @@ problems:
 
   - id: r8-clock-length
     section: Review
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A clock keeps time when its pendulum has a period of exactly $2.000\,\text{s}$. Use $T = 2\pi\sqrt{\dfrac{L}{g}}$ with $g = 9.81\,\text{m}\,\text{s}^{-2}$ to find the length the pendulum needs.'
     answer_label: 'The length the pendulum needs'
     check:
@@ -120,7 +120,7 @@ problems:
 
   - id: r9-homogeneity-period
     section: Review
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'Show that the period equation $T = 2\pi\sqrt{\dfrac{L}{g}}$ is homogeneous.'
     answer_label: 'A homogeneity check'
     check:
@@ -131,7 +131,7 @@ problems:
 
   - id: r10-convert-pressure
     section: Review
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A pressure is quoted as $2.5\,\text{MPa}$. Write it in pascals and in base units.'
     answer_label: 'The pressure in pascals'
     check:
@@ -144,7 +144,7 @@ problems:
 
   - id: r11-estimate-year
     section: Review
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'Estimate the number of seconds in a year to one significant figure.'
     answer_label: 'The number of seconds in a year'
     check:
@@ -156,7 +156,7 @@ problems:
 
   - id: r12-density-uncertainty
     section: Review
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A metal block has mass $84.6 \pm 0.1\,\text{g}$ and volume $30.0 \pm 0.5\,\text{cm}^3$. Find the density and its absolute uncertainty.'
     answer_label: 'The density and its absolute uncertainty'
     check:
@@ -172,7 +172,7 @@ problems:
 
   - id: r13-method-choice
     section: Review
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A student must find the acceleration of a trolley down a ramp. Say which quantity the student should measure directly, which equation relates the measurements, and which uncertainty is likely to dominate the result.'
     answer_label: 'The method and the dominant uncertainty'
     check:

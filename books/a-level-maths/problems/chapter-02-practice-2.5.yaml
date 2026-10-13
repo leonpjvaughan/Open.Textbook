@@ -10,7 +10,7 @@ symbols:
 problems:
   - id: p1-eliminate
     section: "2.5"
-    dfe: [B4]
+    refs: [B4]
     statement: 'Solve the simultaneous equations $2x + 3y = 7$ and $5x - y = 9$.'
     answer_label: 'The solution'
     check:
@@ -22,7 +22,7 @@ problems:
 
   - id: p2-eliminate-two
     section: "2.5"
-    dfe: [B4]
+    refs: [B4]
     statement: 'Solve $3x + 2y = 16$ and $2x - y = 6$.'
     answer_label: 'The solution'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: p3-line-and-circle
     section: "2.5"
-    dfe: [B4]
+    refs: [B4]
     statement: 'Solve $y = x + 1$ and $x^2 + y^2 = 25$.'
     answer_label: 'The solutions'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: p4-line-and-parabola
     section: "2.5"
-    dfe: [B4]
+    refs: [B4]
     statement: 'Solve $y = 2x + 1$ and $y = x^2 - 2$.'
     answer_label: 'The solutions'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: p5-sum-and-product
     section: "2.5"
-    dfe: [B4]
+    refs: [B4]
     statement: 'Solve $x + y = 5$ and $xy = 6$.'
     answer_label: 'The solutions'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: p6-parabola-and-line
     section: "2.5"
-    dfe: [B4]
+    refs: [B4]
     statement: 'Solve $y = x^2$ and $y = 2x + 3$.'
     answer_label: 'The solutions'
     check:
@@ -82,7 +82,7 @@ problems:
 
   - id: p7-difference-of-squares
     section: "2.5"
-    dfe: [B4]
+    refs: [B4]
     statement: 'Solve $x + y = 4$ and $x^2 - y^2 = 8$.'
     answer_label: 'The solution'
     check:
@@ -94,7 +94,7 @@ problems:
 
   - id: p8-tangent-line
     section: "2.5"
-    dfe: [B4]
+    refs: [B4]
     statement: 'Solve $x^2 + y^2 = 4$ and $y = x + 2$.'
     answer_label: 'The solutions'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: p9-symmetric
     section: "2.5"
-    dfe: [B4]
+    refs: [B4]
     statement: 'Solve $x + y = 5$ and $x^2 + y^2 = 13$.'
     answer_label: 'The solutions'
     check:
@@ -118,7 +118,7 @@ problems:
 
   - id: p10-unit-circle
     section: "2.5"
-    dfe: [B4]
+    refs: [B4]
     statement: 'Solve $x + y = 1$ and $x^2 + y^2 = 1$.'
     answer_label: 'The solutions'
     check:
@@ -130,7 +130,7 @@ problems:
 
   - id: p11-fraction-coordinates
     section: "2.5"
-    dfe: [B4]
+    refs: [B4]
     statement: 'Solve $x + 2y = 4$ and $x^2 + y^2 = 16$.'
     answer_label: 'The solutions'
     check:
@@ -142,7 +142,7 @@ problems:
 
   - id: p12-graphical-meeting
     section: "2.5"
-    dfe: [B4]
+    refs: [B4]
     statement: 'The curve $y = x^2$ and the line $y = 4$ meet at two points. Solve the pair of equations to find them, and explain what the solutions mean on a graph.'
     answer_label: 'The points and their meaning'
     check:

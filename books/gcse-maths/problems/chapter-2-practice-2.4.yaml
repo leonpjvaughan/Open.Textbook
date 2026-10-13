@@ -4,7 +4,7 @@ problems:
   - id: c2-24-menu
     section: '2.4'
     tier: H
-    dfe: [N5]
+    refs: [N5]
     statement: 'A cafe offers 5 hot drinks and 4 cakes. How many hot-drink-and-cake choices are there?'
     answer_label: 'Cafe choices'
     check: {kind: evaluate, expression: "5*4", answer: "20"}
@@ -12,7 +12,7 @@ problems:
   - id: c2-24-code-repeat
     section: '2.4'
     tier: H
-    dfe: [N5]
+    refs: [N5]
     statement: 'How many three-letter codes can be made from A, B, C and D if letters may repeat?'
     answer_label: 'Codes with repetition'
     check: {kind: evaluate, expression: "4^3", answer: "64"}
@@ -20,7 +20,7 @@ problems:
   - id: c2-24-code-distinct
     section: '2.4'
     tier: H
-    dfe: [N5]
+    refs: [N5]
     statement: 'How many three-letter codes can be made from A, B, C and D if letters cannot repeat?'
     answer_label: 'Codes without repetition'
     check: {kind: evaluate, expression: "4*3*2", answer: "24"}
@@ -28,7 +28,7 @@ problems:
   - id: c2-24-outfits
     section: '2.4'
     tier: H
-    dfe: [N5]
+    refs: [N5]
     statement: 'There are 3 tops, 2 trousers and 2 pairs of shoes. How many outfits use one of each?'
     answer_label: 'Outfits'
     check: {kind: evaluate, expression: "3*2*2", answer: "12"}
@@ -36,7 +36,7 @@ problems:
   - id: c2-24-number-even
     section: '2.4'
     tier: H
-    dfe: [N5]
+    refs: [N5]
     statement: 'How many even three-digit numbers can be made from $1,2,3,4$ without repeating digits?'
     answer_label: 'Even numbers without repetition'
     check: {kind: evaluate, expression: "2*3*2", answer: "12"}
@@ -44,7 +44,7 @@ problems:
   - id: c2-24-travel
     section: '2.4'
     tier: H
-    dfe: [N5]
+    refs: [N5]
     statement: 'A trip uses one of 4 trains, one of 3 buses and one of 2 walking routes. How many routes are possible?'
     answer_label: 'Trip routes'
     check: {kind: evaluate, expression: "4*3*2", answer: "24"}
@@ -52,7 +52,7 @@ problems:
   - id: c2-24-meal-restriction
     section: '2.4'
     tier: H
-    dfe: [N5]
+    refs: [N5]
     statement: 'A meal has a choice of 4 mains and 3 drinks. One drink is unavailable with one particular main. How many combinations remain?'
     answer_label: 'Restricted combinations'
     check: {kind: evaluate, expression: "4*3-1", answer: "11"}
@@ -60,7 +60,7 @@ problems:
   - id: c2-24-digits-greater
     section: '2.4'
     tier: H
-    dfe: [N5]
+    refs: [N5]
     statement: 'How many two-digit numbers greater than 30 can be made from digits $1,2,3,4,5$ without repetition?'
     answer_label: 'Two-digit numbers over 30'
     check: {kind: evaluate, expression: "3*4", answer: "12"}
@@ -68,7 +68,7 @@ problems:
   - id: c2-24-password
     section: '2.4'
     tier: H
-    dfe: [N5]
+    refs: [N5]
     statement: 'A password has one capital letter from A to C followed by two digits from 0 to 9. Digits may repeat. How many passwords are possible?'
     answer_label: 'Passwords'
     check: {kind: evaluate, expression: "3*10*10", answer: "300"}
@@ -76,7 +76,7 @@ problems:
   - id: c2-24-method-count
     section: '2.4'
     tier: 'H'
-    dfe: [N5]
+    refs: [N5]
     statement: 'A cafe offers 4 starters and 6 main courses. Which method counts the two-course meals faster: an organised list or the product rule? Give a reason. Then work out how many two-course meals are possible, and the total cost if each costs £9.'
     answer_label: 'Method choice: list or product rule'
     check:

@@ -5,7 +5,7 @@ chapter_title: Equations and inequalities
 section: "9.5"
 section_title: Solving linear inequalities
 tier: F
-dfe: [A22]
+refs: [A22]
 kind: walkthrough
 ---
 

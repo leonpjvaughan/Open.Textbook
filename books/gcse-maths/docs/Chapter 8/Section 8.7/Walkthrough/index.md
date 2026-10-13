@@ -5,7 +5,7 @@ chapter_title: Algebraic expressions and manipulation
 section: "8.7"
 section_title: Expanding products of three binomials
 tier: H
-dfe: [A4]
+refs: [A4]
 kind: walkthrough
 ---
 

@@ -5,7 +5,7 @@ chapter_title: Magnetism and electromagnetism
 section: '7.1'
 section_title: Permanent and induced magnetism, magnetic forces and fields
 tier: F
-dfe:
+refs:
 - MG1
 kind: walkthrough
 ---

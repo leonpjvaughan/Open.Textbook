@@ -15,4 +15,4 @@ kind: guided-problems
 # 5.2 The coefficient of friction — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: S3
+> Tier: **O** · refs: S3

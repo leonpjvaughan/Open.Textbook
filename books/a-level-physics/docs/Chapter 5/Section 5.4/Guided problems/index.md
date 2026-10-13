@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Electric circuits
 section: '5.4'
 section_title: Capacitance
-dfe:
+refs:
 - AP5
 kind: guided-problems
 ---

@@ -4,7 +4,7 @@ chapter: 8
 chapter_title: Integration
 section: '8.5'
 section_title: Integration by substitution and by parts
-dfe:
+refs:
 - H5
 kind: guided-problems
 ---

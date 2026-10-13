@@ -12,7 +12,7 @@ symbols:
 problems:
   - id: p1-factorial
     section: "4.1"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Work out $6!$.'
     answer_label: 'The factorial'
     check:
@@ -23,7 +23,7 @@ problems:
 
   - id: p2-binomial-coefficient
     section: "4.1"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Work out $\binom{9}{2}$.'
     answer_label: 'The coefficient'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: p3-symmetry
     section: "4.1"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Work out $\binom{9}{7}$ without multiplying seven numbers together.'
     answer_label: 'The coefficient'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: p4-expand-one-plus-x
     section: "4.1"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Expand $(1 + x)^6$.'
     answer_label: 'The expansion'
     check:
@@ -57,7 +57,7 @@ problems:
 
   - id: p5-expand-two-plus-x
     section: "4.1"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Expand $(2 + x)^4$.'
     answer_label: 'The expansion'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: p6-expand-with-a-minus
     section: "4.1"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Expand $(1 - 3x)^4$.'
     answer_label: 'The expansion'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-single-coefficient
     section: "4.1"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Find the coefficient of $x^3$ in the expansion of $(2 + 5x)^6$.'
     answer_label: 'The coefficient'
     check:
@@ -92,7 +92,7 @@ problems:
 
   - id: p8-negative-single-coefficient
     section: "4.1"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Find the term in $x^4$ in the expansion of $(3 - 2x)^7$.'
     answer_label: 'The term'
     check:
@@ -103,7 +103,7 @@ problems:
 
   - id: p9-find-the-constant
     section: "4.1"
-    dfe: [D1]
+    refs: [D1]
     statement: 'The coefficient of $x^2$ in the expansion of $(1 + kx)^5$ is $160$. Find the possible values of $k$.'
     answer_label: 'The values of $k$'
     check:
@@ -115,7 +115,7 @@ problems:
 
   - id: p10-compound-interest
     section: "4.1"
-    dfe: [D1]
+    refs: [D1]
     statement: 'A gift of £2,000 grows at 6% a year. Use the binomial expansion of $(1.06)^3$ to work out the value after 3 years, to the nearest penny.'
     answer_label: 'The value'
     check:
@@ -127,7 +127,7 @@ problems:
 
   - id: p11-small-power
     section: "4.1"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Use the binomial expansion of $(1 + 0.02)^5$ to work out $1.02^5$ to 3 decimal places. Show the first four terms of the expansion.'
     answer_label: 'The value to 3 decimal places'
     check:
@@ -139,7 +139,7 @@ problems:
 
   - id: p12-count-the-orders
     section: "4.1"
-    dfe: [D1]
+    refs: [D1]
     statement: 'A fair coin is tossed 6 times. The number of orders in which exactly 2 heads can appear is $\binom{6}{2}$. Work out that number.'
     answer_label: 'The number of orders'
     check:

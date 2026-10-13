@@ -5,7 +5,7 @@ chapter_title: Factors, multiples and primes
 section: '2.2'
 section_title: Prime factorisation, HCF and LCM
 tier: F
-dfe: [N4]
+refs: [N4]
 kind: walkthrough
 ---
 

@@ -4,7 +4,7 @@ chapter: 11
 chapter_title: Statistical sampling and data presentation
 section: '11.5'
 section_title: 'Measures of central tendency and variation, including standard deviation'
-dfe:
+refs:
 - L3
 kind: problems
 ---

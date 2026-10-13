@@ -5,7 +5,7 @@ chapter_title: Factors, multiples and primes
 section: '2.1'
 section_title: Factors, multiples and prime numbers
 tier: F
-dfe: [N4]
+refs: [N4]
 kind: guided-problems
 ---
 

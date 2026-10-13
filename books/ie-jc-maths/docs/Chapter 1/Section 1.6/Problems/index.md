@@ -15,4 +15,4 @@ kind: problems
 # 1.6 Surds and irrational numbers — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: N.1
+> Tier: **H** · refs: N.1

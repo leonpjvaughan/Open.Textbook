@@ -10,7 +10,7 @@ symbols:
 problems:
   - id: p1-sin-exact
     section: "5.10"
-    dfe: [E7]
+    refs: [E7]
     statement: 'Solve $\sin\theta = \dfrac{\sqrt{3}}{2}$ for $0 \le \theta < 2\pi$.'
     answer_label: 'The solutions'
     check:
@@ -23,7 +23,7 @@ problems:
 
   - id: p2-cos-negative
     section: "5.10"
-    dfe: [E7]
+    refs: [E7]
     statement: 'Solve $\cos\theta = -\dfrac{1}{2}$ for $0 \le \theta < 2\pi$.'
     answer_label: 'The solutions'
     check:
@@ -36,7 +36,7 @@ problems:
 
   - id: p3-tan-exact
     section: "5.10"
-    dfe: [E7]
+    refs: [E7]
     statement: 'Solve $\tan\theta = \sqrt{3}$ for $0 \le \theta < 2\pi$.'
     answer_label: 'The solutions'
     check:
@@ -49,7 +49,7 @@ problems:
 
   - id: p4-double-angle
     section: "5.10"
-    dfe: [E7]
+    refs: [E7]
     statement: 'Solve $\sin 2\theta = \dfrac{\sqrt{3}}{2}$ for $0 \le \theta < 2\pi$.'
     answer_label: 'The solutions'
     check:
@@ -62,7 +62,7 @@ problems:
 
   - id: p5-factorise
     section: "5.10"
-    dfe: [E7]
+    refs: [E7]
     statement: 'Solve $2\cos^2\theta - \cos\theta = 0$ for $0 \le \theta < 2\pi$.'
     answer_label: 'The solutions'
     check:
@@ -75,7 +75,7 @@ problems:
 
   - id: p6-squared
     section: "5.10"
-    dfe: [E7]
+    refs: [E7]
     statement: 'Solve $\sin^2\theta = \dfrac{1}{4}$ for $0 \le \theta < 2\pi$.'
     answer_label: 'The solutions'
     check:
@@ -88,7 +88,7 @@ problems:
 
   - id: p7-quadratic
     section: "5.10"
-    dfe: [E7]
+    refs: [E7]
     statement: 'Solve $2\sin^2\theta - \sin\theta - 1 = 0$ for $0 \le \theta < 2\pi$.'
     answer_label: 'The solutions'
     check:
@@ -101,7 +101,7 @@ problems:
 
   - id: p8-sin-half
     section: "5.10"
-    dfe: [E7]
+    refs: [E7]
     statement: 'Solve $\sin\theta = \dfrac{1}{2}$ for $0 \le \theta < 2\pi$.'
     answer_label: 'The solutions'
     check:
@@ -114,7 +114,7 @@ problems:
 
   - id: p9-cos-surd
     section: "5.10"
-    dfe: [E7]
+    refs: [E7]
     statement: 'Solve $\cos\theta = -\dfrac{\sqrt{3}}{2}$ for $0 \le \theta < 2\pi$.'
     answer_label: 'The solutions'
     check:
@@ -127,7 +127,7 @@ problems:
 
   - id: p10-tan-one
     section: "5.10"
-    dfe: [E7]
+    refs: [E7]
     statement: 'Solve $\tan\theta = 1$ for $0 \le \theta < 2\pi$.'
     answer_label: 'The solutions'
     check:

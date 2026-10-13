@@ -4,7 +4,7 @@ chapter: 7
 chapter_title: Differentiation
 section: '7.6'
 section_title: Increasing and decreasing functions
-dfe:
+refs:
 - G3
 kind: walkthrough
 ---

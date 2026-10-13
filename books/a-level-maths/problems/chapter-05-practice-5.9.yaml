@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: p1-single-wave
     section: "5.9"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Write $3\cos\theta + 4\sin\theta$ in the form $R\cos(\theta - \alpha)$, and state the greatest value.'
     answer_label: 'The single wave and its greatest value'
     check:
@@ -21,7 +21,7 @@ problems:
 
   - id: p2-negative-sine
     section: "5.9"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Write $5\cos\theta - 12\sin\theta$ in the form $R\cos(\theta - \alpha)$, and state the greatest value.'
     answer_label: 'The single wave and its greatest value'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-exact-form
     section: "5.9"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Write $-\cos\theta + \sqrt{3}\sin\theta$ in the form $R\cos(\theta - \alpha)$, in exact form.'
     answer_label: 'The single wave'
     check:
@@ -44,7 +44,7 @@ problems:
 
   - id: p4-greatest-value
     section: "5.9"
-    dfe: [E6]
+    refs: [E6]
     statement: 'State the greatest value of $3\cos\theta + 4\sin\theta$.'
     answer_label: 'The greatest value'
     check:
@@ -55,7 +55,7 @@ problems:
 
   - id: p5-least-value
     section: "5.9"
-    dfe: [E6]
+    refs: [E6]
     statement: 'State the least value of $5\cos\theta - 12\sin\theta$.'
     answer_label: 'The least value'
     check:
@@ -66,7 +66,7 @@ problems:
 
   - id: p6-sine-form
     section: "5.9"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Write $4\sin\theta + 3\cos\theta$ in the form $R\sin(\theta + \beta)$, with $\beta$ acute.'
     answer_label: 'The single wave'
     check:
@@ -77,7 +77,7 @@ problems:
 
   - id: p7-solve-equation
     section: "5.9"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Solve $3\cos\theta + 4\sin\theta = 2$ for the smallest positive value of $\theta$, to three decimal places.'
     answer_label: 'The smallest positive solution'
     check:
@@ -89,7 +89,7 @@ problems:
 
   - id: p8-tide-maximum
     section: "5.9"
-    dfe: [E6]
+    refs: [E6]
     statement: 'The tide height is $h = 12\cos\theta + 5\sin\theta$ metres. State the greatest height.'
     answer_label: 'The greatest height'
     check:
@@ -100,7 +100,7 @@ problems:
 
   - id: p9-phase-angle
     section: "5.9"
-    dfe: [E6]
+    refs: [E6]
     statement: 'For $12\cos\theta + 5\sin\theta$, find the phase $\alpha$ in radians to three decimal places.'
     answer_label: 'The phase'
     check:
@@ -112,7 +112,7 @@ problems:
 
   - id: p10-tide-equation
     section: "5.9"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Solve $12\cos\theta + 5\sin\theta = 10$ for the smallest positive value of $\theta$, to three decimal places.'
     answer_label: 'The smallest positive solution'
     check:

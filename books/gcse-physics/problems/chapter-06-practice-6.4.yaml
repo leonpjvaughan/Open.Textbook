@@ -10,7 +10,7 @@ problems:
   - id: p1-power-from-vi
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A lamp on the 230 V mains supply takes a current of 0.20 A. Calculate its power.'
     answer_label: 'Power of the lamp'
     check:
@@ -28,7 +28,7 @@ problems:
   - id: p2-power-from-i2r
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A current of 3.0 A flows through an 8.0 Ω resistor. Calculate the power transferred to the resistor.'
     answer_label: 'Power transferred to the resistor'
     check:
@@ -46,7 +46,7 @@ problems:
   - id: p3-power-i2r-two
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A current of 0.50 A flows through a 40 Ω resistor. Calculate the power transferred to the resistor.'
     answer_label: 'Power transferred to the resistor'
     check:
@@ -64,7 +64,7 @@ problems:
   - id: p4-energy-from-pt
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A 46 W lamp is switched on for 200 s. Calculate the energy it transfers.'
     answer_label: 'Energy transferred by the lamp'
     check:
@@ -82,7 +82,7 @@ problems:
   - id: p5-energy-from-qv
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A charge of 40 C flows through an appliance at a potential difference of 230 V. Calculate the energy transferred.'
     answer_label: 'Energy transferred to the appliance'
     check:
@@ -100,7 +100,7 @@ problems:
   - id: p6-current-from-power
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A 460 W appliance is connected to the 230 V mains supply. Calculate the current through it.'
     answer_label: 'Current through the appliance'
     check:
@@ -118,7 +118,7 @@ problems:
   - id: p7-energy-minutes
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A 138 W appliance is switched on for 5.0 minutes. Calculate the energy it transfers.'
     answer_label: 'Energy transferred by the appliance'
     check:
@@ -136,7 +136,7 @@ problems:
   - id: p8-heater-energy
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A 1150 W heater is switched on for 30 minutes. Calculate the energy it transfers.'
     answer_label: 'Energy transferred by the heater'
     check:
@@ -154,7 +154,7 @@ problems:
   - id: p9-national-grid
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'Explain why the National Grid transfers electrical power at a very high potential difference.'
     answer_label: 'Why the National Grid uses a high potential difference'
     check:
@@ -172,7 +172,7 @@ problems:
   - id: p10-transformers
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'Describe the job of the step-up transformers and the step-down transformers in the National Grid.'
     answer_label: 'The two kinds of transformer'
     check:
@@ -190,7 +190,7 @@ problems:
   - id: p11-appliance-transfer
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'Describe how a kettle and an electric motor transfer energy from the supply to a useful store.'
     answer_label: 'The energy transfers in the kettle and the motor'
     check:
@@ -208,7 +208,7 @@ problems:
   - id: p12-efficiency-interleaved
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'An electric motor transfers 2000 J of energy, and 1500 J is transferred usefully. Calculate the efficiency of the motor. This uses the idea of efficiency from Chapter 1.'
     answer_label: 'Efficiency of the motor'
     check:
@@ -221,7 +221,7 @@ problems:
   - id: p13-method-choice
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A heater is connected to the 230 V mains supply and takes a current of 4.0 A. Say which relationships you will use, then calculate the power and the energy transferred in 10 minutes.'
     answer_label: 'Power and energy transferred'
     check:

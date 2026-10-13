@@ -10,7 +10,7 @@ problems:
   - id: solve-linear
     section: "9.1"
     tier: F
-    dfe: [A17]
+    refs: [A17]
     statement: 'Solve $2x + 3 = 11$.'
     step_relation: solutions
     check: {kind: solve, equation: "2*x + 3 = 11", variable: x, answer: ["4"]}
@@ -22,7 +22,7 @@ problems:
   - id: expand-binomial
     section: "12.1"
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Expand $(x + 3)(x - 4)$.'
     check:
       kind: evaluate
@@ -36,7 +36,7 @@ problems:
   - id: factorise-quadratic
     section: "12.1"
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Factorise $x^2 - x - 12$.'
     check:
       kind: evaluate
@@ -49,7 +49,7 @@ problems:
   - id: solve-quadratic
     section: "12.4"
     tier: F
-    dfe: [A18]
+    refs: [A18]
     statement: 'Solve $x^2 - 5 = 20$.'
     step_relation: solutions
     check: {kind: solve, equation: "x**2 - 5 = 20", variable: x, answer: ["5", "-5"]}
@@ -60,7 +60,7 @@ problems:
   - id: collect-like-terms
     section: "8.2"
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Simplify $2x + 3y + 5x - y$.'
     check:
       kind: evaluate

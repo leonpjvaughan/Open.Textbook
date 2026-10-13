@@ -10,7 +10,7 @@ problems:
   - id: p1-red-frequency
     section: '5.4'
     tier: F
-    dfe: [WA6]
+    refs: [WA6]
     statement: 'Red light has a wavelength of 750 nm. Calculate its frequency.'
     answer_label: 'Frequency of the red light'
     check:
@@ -28,7 +28,7 @@ problems:
   - id: p2-violet-frequency
     section: '5.4'
     tier: F
-    dfe: [WA6]
+    refs: [WA6]
     statement: 'Violet light has a wavelength of 400 nm. Calculate its frequency.'
     answer_label: 'Frequency of the violet light'
     check:
@@ -46,7 +46,7 @@ problems:
   - id: p3-red-violet
     section: '5.4'
     tier: F
-    dfe: [WA6]
+    refs: [WA6]
     statement: 'Compare red light and violet light. State which has the longer wavelength and which has the higher frequency.'
     answer_label: 'A comparison of red and violet light'
     check:
@@ -64,7 +64,7 @@ problems:
   - id: p4-white-light
     section: '5.4'
     tier: F
-    dfe: [WA6]
+    refs: [WA6]
     statement: 'White light passes through a prism and spreads into a spectrum. Explain why the colours separate.'
     answer_label: 'Why the colours separate'
     check:
@@ -82,7 +82,7 @@ problems:
   - id: p5-red-filter
     section: '5.4'
     tier: F
-    dfe: [WA6]
+    refs: [WA6]
     statement: 'White light shines on a red filter. Describe the light that passes through the filter, and explain what happens to the other colours.'
     answer_label: 'The light that passes through the filter'
     check:
@@ -100,7 +100,7 @@ problems:
   - id: p6-red-object-green-light
     section: '5.4'
     tier: F
-    dfe: [WA6]
+    refs: [WA6]
     statement: 'A red football is taken into a room lit only by green light. State and explain the colour the ball appears.'
     answer_label: 'The colour of the ball in green light'
     check:
@@ -118,7 +118,7 @@ problems:
   - id: p7-white-object-red-light
     section: '5.4'
     tier: F
-    dfe: [WA6]
+    refs: [WA6]
     statement: 'A white wall is lit by red light. State and explain the colour the wall appears.'
     answer_label: 'The colour of the wall in red light'
     check:
@@ -136,7 +136,7 @@ problems:
   - id: p8-black-object
     section: '5.4'
     tier: F
-    dfe: [WA6]
+    refs: [WA6]
     statement: 'Explain why a black object looks black when it is lit by white light.'
     answer_label: 'Why a black object looks black'
     check:
@@ -154,7 +154,7 @@ problems:
   - id: p9-frequency-to-wavelength
     section: '5.4'
     tier: F
-    dfe: [WA6]
+    refs: [WA6]
     statement: 'The light from a lamp has a frequency of 5.0e14 Hz. Calculate its wavelength in nanometres, and state the colour of the light.'
     answer_label: 'Wavelength of the light'
     check:
@@ -172,7 +172,7 @@ problems:
   - id: p10-diffuse-reflection
     section: '5.4'
     tier: F
-    dfe: [WA6]
+    refs: [WA6]
     statement: 'Explain why a rough white wall looks white, even though the light is reflected in many directions.'
     answer_label: 'Why the rough wall looks white'
     check:
@@ -190,7 +190,7 @@ problems:
   - id: p11-method-choice
     section: '5.4'
     tier: F
-    dfe: [WA6]
+    refs: [WA6]
     statement: 'A light source has a wavelength of 500 nm. Say which relationship you will use, then calculate the frequency.'
     answer_label: 'Frequency of the light'
     check:
@@ -208,7 +208,7 @@ problems:
   - id: p12-spectrum-order
     section: '5.4'
     tier: F
-    dfe: [WA6]
+    refs: [WA6]
     statement: 'Place the colours of the visible spectrum in order from the longest wavelength to the shortest.'
     answer_label: 'The colours in order of wavelength'
     check:

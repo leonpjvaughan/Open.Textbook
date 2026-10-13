@@ -8,7 +8,7 @@ symbols:
 problems:
   - id: p1-amplitude-period
     section: "5.3"
-    dfe: [E3]
+    refs: [E3]
     statement: 'State the amplitude, the period and the range of $y = 4\sin x$.'
     answer_label: 'The amplitude, period and range'
     check:
@@ -20,7 +20,7 @@ problems:
 
   - id: p2-transformed-wave
     section: "5.3"
-    dfe: [E3]
+    refs: [E3]
     statement: 'State the amplitude, the period and the range of $y = 2\cos(4x) + 3$.'
     answer_label: 'The amplitude, period and range'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-tangent-period
     section: "5.3"
-    dfe: [E3]
+    refs: [E3]
     statement: 'State the period of $y = \tan x$, and the $x$-values of its asymptotes in the interval from $0$ to $2\pi$, not including the endpoints.'
     answer_label: 'The period and the asymptotes'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: p4-read-values
     section: "5.3"
-    dfe: [E3]
+    refs: [E3]
     statement: 'Write down the values of $\sin\dfrac{\pi}{2}$, $\cos\dfrac{\pi}{2}$ and $\tan\dfrac{\pi}{4}$.'
     answer_label: 'The three values'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: p5-phase-period
     section: "5.3"
-    dfe: [E3]
+    refs: [E3]
     statement: 'State the period and the phase shift of $y = \sin\left(2x - \dfrac{\pi}{3}\right)$.'
     answer_label: 'The period and the phase shift'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: p6-max-min
     section: "5.3"
-    dfe: [E3]
+    refs: [E3]
     statement: 'State the maximum and minimum values of $y = 3\sin x - 1$.'
     answer_label: 'The maximum and minimum'
     check:
@@ -82,7 +82,7 @@ problems:
 
   - id: p7-slow-wave
     section: "5.3"
-    dfe: [E3]
+    refs: [E3]
     statement: 'State the period and the range of $y = 5\sin(0.5x)$.'
     answer_label: 'The period and range'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p8-cosine-phase
     section: "5.3"
-    dfe: [E3]
+    refs: [E3]
     statement: 'State the period and the phase shift of $y = \cos\left(3x - \dfrac{\pi}{2}\right)$.'
     answer_label: 'The period and the phase shift'
     check:
@@ -105,7 +105,7 @@ problems:
 
   - id: p9-odd-even
     section: "5.3"
-    dfe: [E3]
+    refs: [E3]
     statement: 'Use the symmetry of the graphs to show that $\sin(-x) = -\sin x$ for every real number $x$.'
     answer_label: 'The identity'
     check:
@@ -116,7 +116,7 @@ problems:
 
   - id: p10-shifted-cosine
     section: "5.3"
-    dfe: [E3]
+    refs: [E3]
     statement: 'State the period, the maximum and the minimum of $y = 2 + 3\cos\left(\dfrac{x}{2}\right)$.'
     answer_label: 'The period, maximum and minimum'
     check:

@@ -8,7 +8,7 @@ symbols:
 problems:
   - id: p1-sec
     section: "5.6"
-    dfe: [E4]
+    refs: [E4]
     statement: 'Write down the value of $\sec\dfrac{\pi}{3}$.'
     answer_label: 'The value'
     check:
@@ -19,7 +19,7 @@ problems:
 
   - id: p2-cosec
     section: "5.6"
-    dfe: [E4]
+    refs: [E4]
     statement: 'Write down the value of $\operatorname{cosec}\dfrac{\pi}{6}$.'
     answer_label: 'The value'
     check:
@@ -30,7 +30,7 @@ problems:
 
   - id: p3-cot
     section: "5.6"
-    dfe: [E4]
+    refs: [E4]
     statement: 'Write down the value of $\cot\dfrac{\pi}{4}$.'
     answer_label: 'The value'
     check:
@@ -41,7 +41,7 @@ problems:
 
   - id: p4-cosec-identity
     section: "5.6"
-    dfe: [E4]
+    refs: [E4]
     statement: 'Simplify $\operatorname{cosec}^2\theta - \cot^2\theta$.'
     answer_label: 'The simplified expression'
     check:
@@ -52,7 +52,7 @@ problems:
 
   - id: p5-sec-identity
     section: "5.6"
-    dfe: [E4]
+    refs: [E4]
     statement: 'Simplify $\sec^2\theta - \tan^2\theta$.'
     answer_label: 'The simplified expression'
     check:
@@ -63,7 +63,7 @@ problems:
 
   - id: p6-from-cos
     section: "5.6"
-    dfe: [E4]
+    refs: [E4]
     statement: 'Given that $\cos\theta = \dfrac{5}{13}$ and $\theta$ is acute, find $\sin\theta$ and $\operatorname{cosec}\theta$.'
     answer_label: 'The two values'
     check:
@@ -75,7 +75,7 @@ problems:
 
   - id: p7-arcsin
     section: "5.6"
-    dfe: [E4]
+    refs: [E4]
     statement: 'Work out $\arcsin\dfrac{\sqrt{3}}{2}$, giving the principal value in radians.'
     answer_label: 'The principal value'
     check:
@@ -86,7 +86,7 @@ problems:
 
   - id: p8-arccos
     section: "5.6"
-    dfe: [E4]
+    refs: [E4]
     statement: 'Work out $\arccos\dfrac{1}{2}$, giving the principal value in radians.'
     answer_label: 'The principal value'
     check:
@@ -97,7 +97,7 @@ problems:
 
   - id: p9-arctan
     section: "5.6"
-    dfe: [E4]
+    refs: [E4]
     statement: 'Work out $\arctan 1$, giving the principal value in radians.'
     answer_label: 'The principal value'
     check:
@@ -108,7 +108,7 @@ problems:
 
   - id: p10-tan-from-sec
     section: "5.6"
-    dfe: [E4]
+    refs: [E4]
     statement: 'Given that $\sec\theta = \dfrac{5}{3}$ and $\theta$ is acute, find $\tan\theta$.'
     answer_label: 'The value'
     check:

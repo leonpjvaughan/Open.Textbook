@@ -5,7 +5,7 @@ chapter_title: Space physics
 section: '10.2'
 section_title: Red-shift and the Big Bang
 tier: F
-dfe:
+refs:
 - SP2
 kind: problems
 ---

@@ -15,4 +15,4 @@ kind: guided-problems
 # 20.5 The isosceles triangle and its converse — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: GT.3
+> Tier: **O** · refs: GT.3

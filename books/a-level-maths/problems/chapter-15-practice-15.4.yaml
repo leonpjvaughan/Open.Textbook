@@ -7,7 +7,7 @@ chapter: 15
 problems:
   - id: p1-final-velocity-and-displacement
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A cyclist moves at $6$ m/s and accelerates at $3$ m/s$^2$ for $5$ s. Find the final velocity and the displacement.'
     answer_label: 'The final velocity and the displacement'
     check:
@@ -19,7 +19,7 @@ problems:
 
   - id: p2-from-rest
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A car starts from rest and accelerates at $4$ m/s$^2$ for $6$ s. Find its final velocity and the distance travelled.'
     answer_label: 'The final velocity and the distance'
     check:
@@ -31,7 +31,7 @@ problems:
 
   - id: p3-braking-to-rest
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A car travelling at $25$ m/s brakes uniformly and stops in $100$ m. Find the acceleration and the time taken.'
     answer_label: 'The acceleration and the time'
     check:
@@ -43,7 +43,7 @@ problems:
 
   - id: p4-velocity-from-distance
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A particle starts from rest and accelerates at $2$ m/s$^2$ over a distance of $36$ m. Find its final velocity and the time taken.'
     answer_label: 'The final velocity and the time'
     check:
@@ -55,7 +55,7 @@ problems:
 
   - id: p5-greatest-height
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A ball is thrown vertically upwards at $14$ m/s. Find the greatest height it reaches. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The greatest height'
     check:
@@ -66,7 +66,7 @@ problems:
 
   - id: p6-time-to-rest
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A ball is thrown vertically upwards at $19.6$ m/s. Find the time it takes to reach its greatest height. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The time to the greatest height'
     check:
@@ -77,7 +77,7 @@ problems:
 
   - id: p7-dropped-ball
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A ball is dropped from rest and falls for $3$ s. Taking downwards as positive, find its final velocity and the distance fallen. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The final velocity and the distance'
     check:
@@ -89,7 +89,7 @@ problems:
 
   - id: p8-braking-time-and-distance
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A car travelling at $30$ m/s brakes at $6$ m/s$^2$ until it stops. Find the stopping time and the stopping distance.'
     answer_label: 'The stopping time and the distance'
     check:
@@ -101,7 +101,7 @@ problems:
 
   - id: p9-accelerating-train
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A train accelerates uniformly from $12$ m/s to $24$ m/s over $8$ s. Find its acceleration and the distance travelled.'
     answer_label: 'The acceleration and the distance'
     check:
@@ -113,7 +113,7 @@ problems:
 
   - id: p10-return-to-the-hand
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A stone is thrown vertically upwards at $9.8$ m/s and returns to the thrower''s hand at the same height. Find the total time in the air and the greatest height. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The total time and the greatest height'
     check:
@@ -125,7 +125,7 @@ problems:
 
   - id: p11-find-the-final-velocity
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A particle moving at $5$ m/s accelerates at $2$ m/s$^2$ over a distance of $44$ m. Find its final velocity.'
     answer_label: 'The final velocity'
     check:
@@ -136,7 +136,7 @@ problems:
 
   - id: p12-two-stages
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A car starts from rest and accelerates at $2$ m/s$^2$ for $5$ s. It then travels at a constant velocity for $10$ s. Find the total distance travelled.'
     answer_label: 'The total distance'
     check:

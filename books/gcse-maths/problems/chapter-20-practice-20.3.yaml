@@ -4,7 +4,7 @@ problems:
   - id: 'ch20-20-3-01'
     section: '20.3'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A point is 10 m from a tower. The elevation angle is 45°. Find the height above eye level.'
     answer_label: 'Question 1'
     plays: trig-ratios
@@ -14,7 +14,7 @@ problems:
   - id: 'ch20-20-3-02'
     section: '20.3'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A building is 20 m high. The angle of elevation from a point is 30°. Find the horizontal distance.'
     answer_label: 'Question 2'
     plays: trig-ratios
@@ -24,7 +24,7 @@ problems:
   - id: 'ch20-20-3-03'
     section: '20.3'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A kite string is 50 m long and makes a 30° angle with the ground. Find its vertical height.'
     answer_label: 'Question 3'
     plays: trig-ratios
@@ -34,7 +34,7 @@ problems:
   - id: 'ch20-20-3-04'
     section: '20.3'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A hill rises 12 m over a horizontal distance of 16 m. Find the angle of elevation to 1 decimal place.'
     answer_label: 'Question 4'
     check: {kind: 'rounded', value: 'atan(12/16)*180/pi', rounded: '36.9', to: '0.1'}
@@ -43,7 +43,7 @@ problems:
   - id: 'ch20-20-3-05'
     section: '20.3'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'From a cliff top 30 m above sea level, the depression angle to a boat is 45°. Find the horizontal distance.'
     answer_label: 'Question 5'
     plays: trig-ratios
@@ -53,7 +53,7 @@ problems:
   - id: 'ch20-20-3-06'
     section: '20.3'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A tree casts a 6 m shadow when the sun elevation is 60°. Find its height.'
     answer_label: 'Question 6'
     plays: trig-ratios
@@ -63,7 +63,7 @@ problems:
   - id: 'ch20-20-3-07'
     section: '20.3'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A person observes a roof at 35° elevation from 18 m away. Find the rise to 1 decimal place.'
     answer_label: 'Question 7'
     check: {kind: 'rounded', value: '18*tan(35*pi/180)', rounded: '12.6', to: '0.1'}
@@ -72,7 +72,7 @@ problems:
   - id: 'ch20-20-3-08'
     section: '20.3'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A plane is 500 m above ground. Its depression angle to a runway point is 10°. Find horizontal distance to nearest metre.'
     answer_label: 'Question 8'
     check: {kind: 'rounded', value: '500/tan(10*pi/180)', rounded: '2836.0', to: '1'}

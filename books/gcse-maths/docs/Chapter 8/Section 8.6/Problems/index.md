@@ -5,7 +5,7 @@ chapter_title: Algebraic expressions and manipulation
 section: "8.6"
 section_title: Rearranging formulae
 tier: F
-dfe: [A5]
+refs: [A5]
 kind: problems
 ---
 

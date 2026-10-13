@@ -15,4 +15,4 @@ kind: guided-problems
 # 20.9 Circles and their theorems — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **H** · DfE refs: GT.3
+> Tier: **H** · refs: GT.3

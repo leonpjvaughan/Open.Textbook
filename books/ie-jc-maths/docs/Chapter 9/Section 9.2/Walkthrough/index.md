@@ -15,4 +15,4 @@ kind: walkthrough
 # 9.2 The general term of a linear pattern — Learn
 
 > **Stub.** Teaching narrative and fully worked examples. At least one Tier-1 or Tier-2 interactive figure where a parameter is worth manipulating. State prerequisites and learning objectives at the top.
-> Tier: **O** · DfE refs: AF.1
+> Tier: **O** · refs: AF.1

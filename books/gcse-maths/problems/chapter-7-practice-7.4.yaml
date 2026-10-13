@@ -6,7 +6,7 @@ problems:
 - id: ch7-74-length
   section: '7.4'
   tier: H
-  dfe:
+  refs:
   - N16
   statement: 'A length is $9.3$ cm to the nearest $0.1$ cm. Give its bounds.'
   answer_label: Length bounds
@@ -25,7 +25,7 @@ problems:
 - id: ch7-74-area
   section: '7.4'
   tier: H
-  dfe:
+  refs:
   - N16
   statement: 'A rectangle has length $8.2$ cm and width $4.6$ cm, each to the nearest $0.1$ cm. Find the upper bound for its area.'
   answer_label: Upper bound for area
@@ -37,7 +37,7 @@ problems:
 - id: ch7-74-minarea
   section: '7.4'
   tier: H
-  dfe:
+  refs:
   - N16
   statement: 'Using the same measurements, find the lower bound for the rectangle area.'
   answer_label: Lower bound for area
@@ -49,7 +49,7 @@ problems:
 - id: ch7-74-speed
   section: '7.4'
   tier: H
-  dfe:
+  refs:
   - N16
   statement: 'A distance is $100$ m to the nearest metre and a time is $8.0$ s to the nearest $0.1$ s. Find the upper bound for speed.'
   answer_label: Upper bound for speed
@@ -61,7 +61,7 @@ problems:
 - id: ch7-74-quotient
   section: '7.4'
   tier: H
-  dfe:
+  refs:
   - N16
   statement: 'For positive $a$ and $b$, which combination gives the greatest value of $a/b$: greatest $a$ with least $b$, or least $a$ with greatest $b$?'
   answer_label: Choose quotient bounds
@@ -74,7 +74,7 @@ problems:
 - id: ch7-74-volume
   section: '7.4'
   tier: H
-  dfe:
+  refs:
   - N16
   statement: 'A cube side is $3.0$ cm to the nearest $0.1$ cm. Find the upper bound for its volume.'
   answer_label: Upper bound for volume
@@ -86,7 +86,7 @@ problems:
 - id: ch7-74-density
   section: '7.4'
   tier: H
-  dfe:
+  refs:
   - N16
   statement: 'A mass is $50$ g to the nearest gram and volume is $20$ cm$^3$ to the nearest cm$^3$. Find the greatest possible density.'
   answer_label: Maximum density
@@ -98,7 +98,7 @@ problems:
 - id: ch7-74-difference
   section: '7.4'
   tier: H
-  dfe:
+  refs:
   - N16
   statement: 'Two lengths are $12.4$ cm and $8.1$ cm, each to the nearest $0.1$ cm. Find the upper bound for their difference.'
   answer_label: Upper bound for a difference
@@ -110,7 +110,7 @@ problems:
 - id: ch7-74-bound
   section: '7.4'
   tier: H
-  dfe:
+  refs:
   - N16
   statement: 'A speed is $v=d/t$ where $d=72$ km to the nearest km and $t=1.2$ h to the nearest $0.1$ h. Find the lower bound for speed.'
   answer_label: Lower bound for speed
@@ -122,7 +122,7 @@ problems:
 - id: ch7-74-compare
   section: '7.4'
   tier: H
-  dfe:
+  refs:
   - N16
   statement: 'A rectangle has sides $5.0$ m and $2.0$ m, each to the nearest $0.1$ m. Find upper bounds for its perimeter and area.'
   answer_label: Compare upper bounds

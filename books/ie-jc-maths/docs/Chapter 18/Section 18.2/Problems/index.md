@@ -15,4 +15,4 @@ kind: problems
 # 18.2 Finding a missing side — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: GT.4
+> Tier: **O** · refs: GT.4

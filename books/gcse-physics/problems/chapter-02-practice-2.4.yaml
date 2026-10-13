@@ -12,7 +12,7 @@ problems:
   - id: p1-pressure-block
     section: '2.4'
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'A block pushes down on the ground with a force of 200 N. The area in contact with the ground is 0.080 m$^2$. Calculate the pressure on the ground.'
     answer_label: 'Pressure on the ground'
     check:
@@ -30,7 +30,7 @@ problems:
   - id: p2-tyre-pressure
     section: '2.4'
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'A tyre pushes on the road with a force of 540 N. The contact patch between the tyre and the road has an area of 0.0012 m$^2$. Calculate the pressure in the tyre.'
     answer_label: 'Pressure in the tyre'
     check:
@@ -48,7 +48,7 @@ problems:
   - id: p3-force-from-pressure
     section: '2.4'
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'A pressure of 4500 Pa acts on an area of 0.60 m$^2$. Calculate the force normal to the surface.'
     answer_label: 'Force normal to the surface'
     check:
@@ -66,7 +66,7 @@ problems:
   - id: p4-area-from-pressure
     section: '2.4'
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'A force of 600 N produces a pressure of 15000 Pa. Calculate the area that the force acts on.'
     answer_label: 'Area the force acts on'
     check:
@@ -84,7 +84,7 @@ problems:
   - id: p5-convert-area
     section: '2.4'
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'The area of a small tile is 25 cm$^2$. Convert this area to square metres.'
     answer_label: 'Area in square metres'
     check:
@@ -98,7 +98,7 @@ problems:
   - id: p6-stiletto-pressure
     section: '2.4'
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'A force of 600 N acts through the point of a stiletto heel. The area of the point is 0.00020 m$^2$. Calculate the pressure. Explain why a wide heel is kinder to a wooden floor.'
     answer_label: 'Pressure from the heel'
     check:
@@ -116,7 +116,7 @@ problems:
   - id: p7-normal-force
     section: '2.4'
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'Explain why the pressure in a fluid causes a force normal to a surface, and give one example of the effect.'
     answer_label: 'The force from fluid pressure'
     check:
@@ -134,7 +134,7 @@ problems:
   - id: p8-atmosphere-height
     section: '2.4'
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'Explain why atmospheric pressure decreases as the height above the ground increases.'
     answer_label: 'Why atmospheric pressure falls with height'
     check:
@@ -155,7 +155,7 @@ problems:
   - id: p9-pressure-depth
     section: '2.4'
     tier: H
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'Calculate the pressure due to a column of water 10 m high. The density of water is 1000 kg/m$^3$ and $g = 9.8\,\text{N/kg}$. Use $p = h\rho g$.'
     answer_label: 'Pressure at a depth of 10 m'
     check:
@@ -174,7 +174,7 @@ problems:
   - id: p10-pressure-oil
     section: '2.4'
     tier: H
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'A tank holds a layer of oil 0.50 m deep. The density of the oil is 800 kg/m$^3$ and $g = 9.8\,\text{N/kg}$. Calculate the pressure due to the oil at the bottom of the layer.'
     answer_label: 'Pressure due to the oil'
     check:
@@ -193,7 +193,7 @@ problems:
   - id: p11-depth-difference
     section: '2.4'
     tier: H
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'A diver moves from a depth of 1.0 m to a depth of 3.0 m in water of density 1000 kg/m$^3$. Take $g = 9.8\,\text{N/kg}$. Calculate the increase in pressure.'
     answer_label: 'Increase in pressure on the diver'
     check:
@@ -212,7 +212,7 @@ problems:
   - id: p12-upthrust
     section: '2.4'
     tier: H
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'Explain why a partly submerged object feels an upward force, and describe one factor that decides whether the object floats or sinks.'
     answer_label: 'Upthrust and floating'
     check:

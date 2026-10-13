@@ -7,7 +7,7 @@ symbols:
 problems:
   - id: p1-frequency-density
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A class of width 5 contains 12 values. Find the frequency density.'
     answer_label: 'The frequency density'
     check:
@@ -18,7 +18,7 @@ problems:
 
   - id: p2-frequency-from-density
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A histogram bar has frequency density 3 for a class of width 8. Find the frequency in the class.'
     answer_label: 'The frequency'
     check:
@@ -29,7 +29,7 @@ problems:
 
   - id: p3-class-width
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A class runs from 20 to 35. Find its class width.'
     answer_label: 'The class width'
     check:
@@ -40,7 +40,7 @@ problems:
 
   - id: p4-total-frequency
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A histogram has three classes: $0$–$10$ with frequency density 2, $10$–$20$ with frequency density 5, and $20$–$40$ with frequency density 1. Find the total frequency.'
     answer_label: 'The total frequency'
     check:
@@ -51,7 +51,7 @@ problems:
 
   - id: p5-part-class
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A histogram has frequency density 4 for the class $5$–$15$. Find the number of values between $5$ and $10$.'
     answer_label: 'The number of values'
     check:
@@ -62,7 +62,7 @@ problems:
 
   - id: p6-table-total
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A grouped frequency table has classes with frequencies 12, 20 and 18. Find the total frequency.'
     answer_label: 'The total frequency'
     check:
@@ -73,7 +73,7 @@ problems:
 
   - id: p7-grouped-mean
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A grouped table has classes $0$–$10$ with frequency 12, $10$–$20$ with frequency 20, and $20$–$30$ with frequency 18. Using midpoints $5$, $15$ and $25$, estimate the mean.'
     answer_label: 'The estimated mean'
     check:
@@ -84,7 +84,7 @@ problems:
 
   - id: p8-density-of-class
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A class of width 10 contains 25 values. Find its frequency density.'
     answer_label: 'The frequency density'
     check:
@@ -95,7 +95,7 @@ problems:
 
   - id: p9-frequency-part
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A histogram bar has frequency density 1.4 for the class $0$–$20$. Find the frequency in the class.'
     answer_label: 'The frequency'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: p10-compare-densities
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'One class $0$–$10$ contains 30 values, and another class $10$–$30$ contains 40 values. Find the frequency density of each class.'
     answer_label: 'The two frequency densities'
     check:
@@ -118,7 +118,7 @@ problems:
 
   - id: p11-probability
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A histogram of 200 values has frequency density 6 in the class $10$–$20$. Estimate the probability that a value lies in that class.'
     answer_label: 'The estimated probability'
     check:
@@ -130,7 +130,7 @@ problems:
 
   - id: p12-method-choice
     section: "11.3"
-    dfe: [L1]
+    refs: [L1]
     statement: 'A histogram has frequency density 6 in the class $0$–$5$ and frequency density 4 in the class $5$–$15$. Find the number of values in the class $5$–$15$. State whether you used the height or the area.'
     answer_label: 'The number of values'
     check:

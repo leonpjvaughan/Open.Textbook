@@ -3,7 +3,7 @@ problems:
 - id: line-unknown
   section: '16.1'
   tier: F
-  dfe:
+  refs:
   - G3
   statement: 'Work out $x$: $x+124=180$.'
   answer_label: 'Work out $x$: $x+124=180$.'
@@ -15,7 +15,7 @@ problems:
 - id: point-unknown
   section: '16.1'
   tier: F
-  dfe:
+  refs:
   - G3
   statement: Angles around a point are $85^\circ$, $140^\circ$ and $y^\circ$. Find $y$.
   answer_label: Angles around a point are $85^\circ$, $140^\circ$ and $y^\circ$. Find $y$.
@@ -27,7 +27,7 @@ problems:
 - id: vertical
   section: '16.1'
   tier: F
-  dfe:
+  refs:
   - G3
   statement: Two lines cross. One angle is $47^\circ$. Find the other three angles.
   answer_label: Two lines cross. One angle is $47^\circ$. Find the other three angles.
@@ -48,7 +48,7 @@ problems:
 - id: line-algebra
   section: '16.1'
   tier: F
-  dfe:
+  refs:
   - G3
   statement: Angles on a line are $(3x+10)^\circ$ and $(2x+20)^\circ$. Find $x$ and both angles.
   answer_label: Angles on a line are $(3x+10)^\circ$ and $(2x+20)^\circ$. Find $x$ and both angl
@@ -62,7 +62,7 @@ problems:
 - id: point-four
   section: '16.1'
   tier: F
-  dfe:
+  refs:
   - G3
   statement: Four angles around a point are $x^\circ$, $2x^\circ$, $90^\circ$ and $30^\circ$. Find $x$.
   answer_label: Four angles around a point are $x^\circ$, $2x^\circ$, $90^\circ$ and $30^\circ$.
@@ -76,7 +76,7 @@ problems:
 - id: straight-reason
   section: '16.1'
   tier: F
-  dfe:
+  refs:
   - G3
   statement: Explain why the angle next to $136^\circ$ on a straight line is $44^\circ$.
   answer_label: Explain why the angle next to $136^\circ$ on a straight line is $44^\circ$.
@@ -88,7 +88,7 @@ problems:
 - id: mixed-earlier
   section: '16.1'
   tier: F
-  dfe:
+  refs:
   - G3
   statement: A rectangle has a perimeter of $30$ cm and length $9$ cm. Find its width.
   answer_label: A rectangle has a perimeter of $30$ cm and length $9$ cm. Find its width.
@@ -100,7 +100,7 @@ problems:
 - id: vert-algebra
   section: '16.1'
   tier: F
-  dfe:
+  refs:
   - G3
   statement: Two vertically opposite angles are $(4x+5)^\circ$ and $(6x-25)^\circ$. Find $x$.
   answer_label: Two vertically opposite angles are $(4x+5)^\circ$ and $(6x-25)^\circ$. Find $x$.

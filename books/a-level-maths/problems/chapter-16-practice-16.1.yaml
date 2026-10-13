@@ -10,7 +10,7 @@ chapter: 16
 problems:
   - id: p1-same-direction
     section: "16.1"
-    dfe: [R1]
+    refs: [R1]
     statement: 'Two horizontal forces of $12$ N and $5$ N act on a particle in the same direction. Find the resultant force.'
     answer_label: 'The resultant force'
     check: {kind: evaluate, expression: "12 + 5", answer: "17"}
@@ -18,7 +18,7 @@ problems:
 
   - id: p2-opposite-directions
     section: "16.1"
-    dfe: [R1]
+    refs: [R1]
     statement: 'A horizontal force of $20$ N acts to the right and a horizontal force of $8$ N acts to the left on a particle. Find the resultant force, giving its size and direction.'
     answer_label: 'The resultant force'
     check: {kind: evaluate, expression: "20 - 8", answer: "12"}
@@ -26,7 +26,7 @@ problems:
 
   - id: p3-perpendicular-size
     section: "16.1"
-    dfe: [R1]
+    refs: [R1]
     statement: 'Forces of $6$ N and $8$ N act at right angles at a point. Find the size of the resultant force.'
     answer_label: 'The size of the resultant'
     check: {kind: vector, op: norm, args: ["Matrix([6, 8])"], answer: "10"}
@@ -34,7 +34,7 @@ problems:
 
   - id: p4-perpendicular-direction
     section: "16.1"
-    dfe: [R1]
+    refs: [R1]
     statement: 'A force of $9$ N acts due east and a force of $40$ N acts due north at a point. Find the size of the resultant force and its direction from east.'
     answer_label: 'The size and the direction'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: p5-three-forces-equilibrium
     section: "16.1"
-    dfe: [R1]
+    refs: [R1]
     statement: 'Two of the three forces on a particle in equilibrium are $5$ N due east and $3$ N due north. Find the third force as a column vector.'
     answer_label: 'The third force'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: p6-three-components
     section: "16.1"
-    dfe: [R1]
+    refs: [R1]
     statement: 'Forces $(2, 3)$ N, $(-5, 1)$ N and $(4, -6)$ N act at a point. Find the resultant force as a column vector.'
     answer_label: 'The resultant'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: p7-constant-velocity
     section: "16.1"
-    dfe: [R1]
+    refs: [R1]
     statement: 'A car travels at a constant velocity. The driving force is $800$ N and the total resistance is $800$ N. Find the resultant force on the car.'
     answer_label: 'The resultant force'
     check: {kind: evaluate, expression: "800 - 800", answer: "0"}
@@ -78,7 +78,7 @@ problems:
 
   - id: p8-terminal-velocity
     section: "16.1"
-    dfe: [R1]
+    refs: [R1]
     statement: 'A skydiver of weight $700$ N falls at terminal velocity. Find the resultant force on the skydiver and the size of the air resistance.'
     answer_label: 'The resultant and the air resistance'
     check: {kind: evaluate, expression: "700 - 700", answer: "0"}
@@ -86,7 +86,7 @@ problems:
 
   - id: p9-angle-between
     section: "16.1"
-    dfe: [R1]
+    refs: [R1]
     statement: 'Two forces of $10$ N each act at a point with an angle of $60^\circ$ between them. Find the size of the resultant force.'
     answer_label: 'The size of the resultant'
     check:
@@ -98,7 +98,7 @@ problems:
 
   - id: p10-size-and-angle
     section: "16.1"
-    dfe: [R1]
+    refs: [R1]
     statement: 'Forces of $15$ N and $20$ N act at right angles at a point. Find the size of the resultant and the angle it makes with the $20$ N force.'
     answer_label: 'The size and the angle'
     check:
@@ -110,7 +110,7 @@ problems:
 
   - id: p11-equilibrium-size
     section: "16.1"
-    dfe: [R1]
+    refs: [R1]
     statement: 'A particle is held in equilibrium by three forces. Two of them are $8$ N east and $6$ N north. Find the size of the third force.'
     answer_label: 'The size of the third force'
     check: {kind: vector, op: norm, args: ["Matrix([-8, -6])"], answer: "10"}
@@ -118,7 +118,7 @@ problems:
 
   - id: p12-resultant-of-components
     section: "16.1"
-    dfe: [R1]
+    refs: [R1]
     statement: 'Forces $(4, -1)$ N and $(-1, 5)$ N act at a point. Find the resultant force and its size.'
     answer_label: 'The resultant and its size'
     check:

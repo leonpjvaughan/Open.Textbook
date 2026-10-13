@@ -4,7 +4,7 @@ chapter: 7
 chapter_title: Differentiation
 section: '7.2'
 section_title: Differentiation from first principles
-dfe:
+refs:
 - G1
 kind: guided-problems
 ---

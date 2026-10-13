@@ -3,7 +3,7 @@ problems:
 - id: p1-coordinate
   section: '11.1'
   tier: F
-  dfe: &id001
+  refs: &id001
   - A8
   - A9
   - G11
@@ -22,7 +22,7 @@ problems:
 - id: p2-quadrants
   section: '11.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: State the quadrant containing $(-4,5)$.
   answer_label: Question 2
   check:
@@ -33,7 +33,7 @@ problems:
 - id: p3-table
   section: '11.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: Complete the table for $y=2x+1$ when $x=-1,0,2$.
   answer_label: Question 3
   check:
@@ -52,7 +52,7 @@ problems:
 - id: p4-points
   section: '11.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: For $y=x+2$, find $y$ when $x=-2,1,3$.
   answer_label: Question 4
   check:
@@ -71,7 +71,7 @@ problems:
 - id: p5-plot-points
   section: '11.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: Give three points on the line $y=3x$ for $x=-1,0,2$.
   answer_label: Question 5
   check:
@@ -90,7 +90,7 @@ problems:
 - id: p6-x-intercept
   section: '11.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: The graph $y=x-4$ crosses the horizontal axis at which point?
   answer_label: Question 6
   check:
@@ -102,7 +102,7 @@ problems:
 - id: p7-line-table
   section: '11.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: For $y=5-x$, complete the values when $x=0,2,5$.
   answer_label: Question 7
   check:
@@ -121,7 +121,7 @@ problems:
 - id: p8-reflection
   section: '11.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: A point $(a,b)$ is reflected in the $x$-axis. State the image coordinates.
   answer_label: Question 8
   check:
@@ -137,7 +137,7 @@ problems:
 - id: p9-plot-rule
   section: '11.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: Does $(2,7)$ lie on $y=3x+1$? Show a substitution check.
   answer_label: Question 9
   check:
@@ -149,7 +149,7 @@ problems:
 - id: p10-higher
   section: '11.1'
   tier: H
-  dfe: *id001
+  refs: *id001
   statement: Find the midpoint of $(2,5)$ and $(8,-1)$.
   answer_label: Question 10
   check:

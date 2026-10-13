@@ -3,7 +3,7 @@ problems:
   - id: 'ch17-17-4-circle-locus'
     section: '17.4'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'Describe the locus of points 6 cm from fixed point P.'
     answer_label: 'Describe the locus of points 6 cm from fixed point P.'
@@ -15,7 +15,7 @@ problems:
   - id: 'ch17-17-4-line-locus'
     section: '17.4'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'Describe the locus 2 cm from a straight line.'
     answer_label: 'Describe the locus 2 cm from a straight line.'
@@ -27,7 +27,7 @@ problems:
   - id: 'ch17-17-4-equal-distance'
     section: '17.4'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'What locus contains points equally distant from A and B?'
     answer_label: 'What locus contains points equally distant from A and B?'
@@ -39,7 +39,7 @@ problems:
   - id: 'ch17-17-4-shortest-distance'
     section: '17.4'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'A point is 4 cm from a line measured perpendicularly. A sloping segment to the line is 5 cm. Can it be shorter?'
     answer_label: 'A point is 4 cm from a line measured perpendicularly. A sloping segment to the line is 5 cm. Can it be shorter?'
@@ -52,7 +52,7 @@ problems:
   - id: 'ch17-17-4-distance-point-line'
     section: '17.4'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'A point lies 3 cm above a horizontal line. State its perpendicular distance to the line.'
     answer_label: 'A point lies 3 cm above a horizontal line. State its perpendicular distance to the line.'
@@ -64,7 +64,7 @@ problems:
   - id: 'ch17-17-4-intersect-loci'
     section: '17.4'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'A point is 5 cm from P and equally distant from A and B. Which two loci must intersect?'
     answer_label: 'A point is 5 cm from P and equally distant from A and B. Which two loci must intersect?'
@@ -76,7 +76,7 @@ problems:
   - id: 'ch17-17-4-garden-locus'
     section: '17.4'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'The water point is at the garden centre. What radius circle marks points 4 m away?'
     answer_label: 'The water point is at the garden centre. What radius circle marks points 4 m away?'
@@ -88,7 +88,7 @@ problems:
   - id: 'ch17-17-4-perp-shortest'
     section: '17.4'
     tier: 'F'
-    dfe:
+    refs:
       - 'G2'
     statement: 'A sloping segment and perpendicular segment both join a point to a line. Which is shorter?'
     answer_label: 'A sloping segment and perpendicular segment both join a point to a line. Which is shorter?'

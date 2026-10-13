@@ -15,4 +15,4 @@ kind: problems
 # 6.5 Absolute and relative comparison — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: N.3
+> Tier: **O** · refs: N.3

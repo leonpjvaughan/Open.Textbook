@@ -15,4 +15,4 @@ kind: problems
 # 6.6 Speed, distance and time — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: N.3
+> Tier: **O** · refs: N.3

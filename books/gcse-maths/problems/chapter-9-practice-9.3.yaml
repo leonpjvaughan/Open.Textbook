@@ -6,7 +6,7 @@ problems:
 - id: ch9-9-3-age
   section: '9.3'
   tier: F
-  dfe:
+  refs:
   - A21
   statement: 'Mina is 4 years older than Sam. Their ages total 30 years. Find both ages.'
   answer_label: 'Mina is 4 years older than Sam. Their ages total 30 years. Find both a'
@@ -20,7 +20,7 @@ problems:
 - id: ch9-9-3-perimeter
   section: '9.3'
   tier: F
-  dfe:
+  refs:
   - A21
   statement: 'A rectangle has width $x$ cm and length $(x+3)$ cm. Its perimeter is 34 cm. Find its dimensions.'
   answer_label: 'A rectangle has width $x$ cm and length $(x+3)$ cm. Its perimeter is 3'
@@ -34,7 +34,7 @@ problems:
 - id: ch9-9-3-tickets
   section: '9.3'
   tier: F
-  dfe:
+  refs:
   - A21
   statement: 'An adult ticket costs £8 more than a child ticket. One adult and two child tickets cost £35. Find each price.'
   answer_label: 'An adult ticket costs £8 more than a child ticket. One adult and two c'
@@ -48,7 +48,7 @@ problems:
 - id: ch9-9-3-taxi
   section: '9.3'
   tier: F
-  dfe:
+  refs:
   - A21
   statement: 'A taxi charge is £3 plus £2 per kilometre. The total is £19. How far was the journey?'
   answer_label: 'A taxi charge is £3 plus £2 per kilometre. The total is £19. How far w'
@@ -62,7 +62,7 @@ problems:
 - id: ch9-9-3-three-numbers
   section: '9.3'
   tier: F
-  dfe:
+  refs:
   - A21
   statement: 'Three consecutive integers have a total of 72. Find them.'
   answer_label: 'Three consecutive integers have a total of 72. Find them.'
@@ -76,7 +76,7 @@ problems:
 - id: ch9-9-3-sticks
   section: '9.3'
   tier: F
-  dfe:
+  refs:
   - A21
   statement: 'A 30 cm wire is cut into two pieces. One piece is 6 cm longer. Find each length.'
   answer_label: 'A 30 cm wire is cut into two pieces. One piece is 6 cm longer. Find ea'
@@ -90,7 +90,7 @@ problems:
 - id: ch9-9-3-mobile-plan
   section: '9.3'
   tier: F
-  dfe:
+  refs:
   - A21
   statement: 'Plan A costs £5 plus £0.10 per text. Plan B costs £11. How many texts make the costs equal?'
   answer_label: '''''Plan A costs £5 plus £0.10 per text. Plan B costs £11. How many texts '''''
@@ -104,7 +104,7 @@ problems:
 - id: ch9-9-3-number
   section: '9.3'
   tier: F
-  dfe:
+  refs:
   - A21
   statement: 'Four times a number, then subtract 7, gives 29. Find the number.'
   answer_label: 'Four times a number, then subtract 7, gives 29. Find the number.'
@@ -118,7 +118,7 @@ problems:
 - id: ch9-9-3-higher-equation
   section: '9.3'
   tier: F
-  dfe:
+  refs:
   - A21
   statement: 'A number is multiplied by 3, then 5 is added. This equals twice the number plus 14. Find the number.'
   answer_label: 'A number is multiplied by 3, then 5 is added. This equals twice the nu'

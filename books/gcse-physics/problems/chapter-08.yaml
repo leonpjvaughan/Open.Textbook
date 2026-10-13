@@ -19,7 +19,7 @@ problems:
   - id: w1-ice-mass
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A block of ice has a volume of 2.5 x 10^-3 m^3. The density of ice is 920 kg/m^3. Calculate the mass of the block.'
     check:
       kind: all
@@ -36,7 +36,7 @@ problems:
   - id: w2-metal-density
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A piece of metal has a mass of 67.5 g and a volume of 25 cm^3. Calculate its density in g/cm^3.'
     check:
       kind: all
@@ -53,7 +53,7 @@ problems:
   - id: w3-liquid-density
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'An empty beaker has a mass of 120 g. With 100 cm^3 of liquid in it the total mass is 204 g. Calculate the density of the liquid in g/cm^3.'
     check:
       kind: all
@@ -71,7 +71,7 @@ problems:
   - id: w4-states-particles
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'Describe the difference between a solid and a gas using the particle model.'
     check:
       kind: structured
@@ -88,7 +88,7 @@ problems:
   - id: w5-melt-mass-conserved
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A 2.3 kg block of ice melts completely. Explain what happens to the mass and to the volume, and why.'
     check:
       kind: structured
@@ -106,7 +106,7 @@ problems:
   - id: g1-density-800
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A block of metal has a mass of 0.60 kg and a volume of 0.75 x 10^-3 m^3. Calculate its density.'
     check:
       kind: all
@@ -123,7 +123,7 @@ problems:
   - id: g2-concrete-mass
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A block of concrete has a density of 2400 kg/m^3 and a volume of 0.25 m^3. Calculate its mass.'
     check:
       kind: all
@@ -140,7 +140,7 @@ problems:
   - id: g3-water-volume
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A bottle holds 1.2 kg of water. The density of water is 1000 kg/m^3. Calculate the volume of the water.'
     check:
       kind: all
@@ -157,7 +157,7 @@ problems:
   - id: g4-stone-density
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A stone of mass 64.8 g raises the water level in a measuring cylinder from 50 cm^3 to 74 cm^3. Calculate its density in g/cm^3.'
     check:
       kind: all
@@ -175,7 +175,7 @@ problems:
   - id: g5-gas-density
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'Explain, using the particle model, why a gas has a much lower density than the same mass of a solid.'
     check:
       kind: structured
@@ -192,7 +192,7 @@ problems:
   - id: g6-melting-mass
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A student says that when ice melts some of the ice is lost, so the mass of the water is less than the mass of the ice. Explain why the student is wrong.'
     check:
       kind: structured
@@ -209,7 +209,7 @@ problems:
   - id: g7-stone-method
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A small irregular stone has a mass of 39 g and raises the water level in a measuring cylinder from 20 cm^3 to 35 cm^3. Describe how to find its density and calculate the value.'
     answer_label: 'Method and density of the stone'
     check:
@@ -231,7 +231,7 @@ problems:
   - id: warmup-8-1-convert
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'Warm-up: change 250 cm^3 into cubic metres.'
     check:
       kind: all
@@ -243,7 +243,7 @@ problems:
   - id: warmup-8-1-lift
     section: '8.1'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'Warm-up: a worker lifts a box of mass 20 kg through 1.5 m. Take g = 9.8 N/kg. Calculate the energy gained by the gravitational potential store.'
     check:
       kind: all
@@ -262,7 +262,7 @@ problems:
   - id: w6-water-heat
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'A student heats 2.0 kg of water from 20 °C to 50 °C. The specific heat capacity of water is 4200 J/kg°C. Calculate the energy transferred to the water.'
     check:
       kind: all
@@ -280,7 +280,7 @@ problems:
   - id: w7-metal-c
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'A block of metal of mass 2.0 kg gains 46200 J when its temperature rises by 55 °C. Calculate the specific heat capacity of the metal.'
     check:
       kind: all
@@ -298,7 +298,7 @@ problems:
   - id: w8-melt-ice
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Calculate the energy needed to melt 0.50 kg of ice at 0 °C. The specific latent heat of fusion of ice is 3.3 x 10^5 J/kg.'
     check:
       kind: all
@@ -315,7 +315,7 @@ problems:
   - id: w9-boil-water
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Calculate the energy needed to boil away 0.20 kg of water at 100 °C. The specific latent heat of vaporisation of water is 2.3 x 10^6 J/kg.'
     check:
       kind: all
@@ -332,7 +332,7 @@ problems:
   - id: w10-graph-flat
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'A heating graph has a flat part at 0 °C and another at 100 °C. Explain what is happening on each flat part.'
     check:
       kind: structured
@@ -350,7 +350,7 @@ problems:
   - id: g8-copper-heat
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'A block of copper of mass 0.50 kg is heated through 80 °C. The specific heat capacity of copper is 390 J/kg°C. Calculate the energy transferred to the copper.'
     check:
       kind: all
@@ -368,7 +368,7 @@ problems:
   - id: g9-liquid-c
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'A liquid of mass 1.5 kg gains 13500 J when its temperature rises by 20 °C. Calculate the specific heat capacity of the liquid.'
     check:
       kind: all
@@ -386,7 +386,7 @@ problems:
   - id: g10-melt-080
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Calculate the energy needed to melt 0.80 kg of ice at 0 °C. The specific latent heat of fusion of ice is 3.3 x 10^5 J/kg.'
     check:
       kind: all
@@ -403,7 +403,7 @@ problems:
   - id: g11-boil-0050
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Calculate the energy needed to boil away 0.050 kg of water at 100 °C. The specific latent heat of vaporisation of water is 2.3 x 10^6 J/kg.'
     check:
       kind: all
@@ -420,7 +420,7 @@ problems:
   - id: g12-compare-melt-warm
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Compare the energy needed to melt 1.0 kg of ice at 0 °C with the energy needed to warm 1.0 kg of water from 0 °C to 45 °C. Use L = 3.3 x 10^5 J/kg and c = 4200 J/kg°C.'
     answer_label: 'The two energies and which is larger'
     check:
@@ -444,7 +444,7 @@ problems:
   - id: g13-graph-flat-explain
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'A heating graph for a pure substance has a flat part. Explain what is happening to the particles and what happens to the temperature.'
     check:
       kind: structured
@@ -464,7 +464,7 @@ problems:
   - id: g14-two-stage
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Calculate the total energy needed to warm 0.20 kg of water from 20 °C to 100 °C and then boil it all away. Use c = 4200 J/kg°C and L = 2.3 x 10^6 J/kg.'
     check:
       kind: all
@@ -497,7 +497,7 @@ problems:
   - id: warmup-8-2-density
     section: '8.2'
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'Warm-up: a block has a mass of 1.2 kg and a volume of 1.5 x 10^-3 m^3. Calculate its density.'
     check:
       kind: all
@@ -514,7 +514,7 @@ problems:
   - id: warmup-8-2-power
     section: '8.2'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Warm-up: a heater transfers 30000 J of energy in 20 s. Calculate its power.'
     check:
       kind: all
@@ -532,7 +532,7 @@ problems:
   - id: w11-pv-pressure
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A fixed mass of gas at 100 kPa fills 0.30 m^3. It is compressed at constant temperature to 0.10 m^3. Calculate the new pressure.'
     check:
       kind: all
@@ -550,7 +550,7 @@ problems:
   - id: w12-pv-volume
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A fixed mass of gas at 100 kPa fills 0.60 m^3. It expands at constant temperature to 150 kPa. Calculate the new volume.'
     check:
       kind: all
@@ -568,7 +568,7 @@ problems:
   - id: w13-force-from-pressure
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A gas pushes on a window of area 0.015 m^2 with a force of 3000 N. Calculate the pressure of the gas on the window.'
     check:
       kind: all
@@ -585,7 +585,7 @@ problems:
   - id: w14-cooling-can
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A sealed metal can of air is placed in a freezer. Explain what happens to the motion of the air particles and to the pressure inside the can.'
     check:
       kind: structured
@@ -605,7 +605,7 @@ problems:
   - id: w15-bicycle-pump
     section: '8.3'
     tier: H
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A student pushes the handle of a bicycle pump quickly. The air inside the pump gets warm. Explain why, using energy ideas.'
     check:
       kind: structured
@@ -626,7 +626,7 @@ problems:
   - id: g15-pv-pressure
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A fixed mass of gas at 100 kPa fills 1.2 m^3. It is compressed at constant temperature to 0.40 m^3. Calculate the new pressure.'
     check:
       kind: all
@@ -644,7 +644,7 @@ problems:
   - id: g16-pv-volume
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A fixed mass of gas at 100 kPa fills 0.30 m^3. It expands at constant temperature to 120 kPa. Calculate the new volume.'
     check:
       kind: all
@@ -662,7 +662,7 @@ problems:
   - id: g17-plate-force
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A gas exerts a pressure of 250 kPa on a flat plate of area 0.040 m^2. Calculate the force on the plate.'
     check:
       kind: all
@@ -679,7 +679,7 @@ problems:
   - id: g18-compress-explain
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'Explain, using the particle model, why the pressure of a gas rises when the gas is compressed at a constant temperature.'
     check:
       kind: structured
@@ -696,7 +696,7 @@ problems:
   - id: g19-heat-sealed
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A sealed metal container holding a gas is warmed. The volume does not change. Explain what happens to the speed of the particles and to the pressure of the gas.'
     check:
       kind: structured
@@ -716,7 +716,7 @@ problems:
   - id: g20-method-choice-pv
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'Say which relationship you will use, then calculate the pressure when 0.80 m^3 of gas at 100 kPa is compressed to 0.20 m^3 at a constant temperature.'
     check:
       kind: all
@@ -734,7 +734,7 @@ problems:
   - id: g21-pump-explain
     section: '8.3'
     tier: H
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A student pushes the handle of a bicycle pump quickly. Explain why the air inside the pump becomes warmer.'
     check:
       kind: structured
@@ -755,7 +755,7 @@ problems:
   - id: warmup-8-3-heat
     section: '8.3'
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Warm-up: calculate the energy needed to warm 0.50 kg of water by 40 °C. The specific heat capacity of water is 4200 J/kg°C.'
     check:
       kind: all
@@ -773,7 +773,7 @@ problems:
   - id: warmup-8-3-pressure
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'Warm-up: a force of 60 N acts on an area of 0.020 m^2. Calculate the pressure.'
     check:
       kind: all
@@ -791,7 +791,7 @@ problems:
   - id: anchor-ice-mass
     section: Review
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'The block of ice has a volume of 2.5 x 10^-3 m^3 and the density of ice is 920 kg/m^3. Calculate its mass.'
     check:
       kind: all
@@ -808,7 +808,7 @@ problems:
   - id: anchor-melt
     section: Review
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'The 2.3 kg of ice melts. The specific latent heat of fusion of ice is 3.3 x 10^5 J/kg. Calculate the energy needed.'
     check:
       kind: all
@@ -825,7 +825,7 @@ problems:
   - id: anchor-warm
     section: Review
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'The 2.3 kg of meltwater is warmed from 0 °C to 45 °C. The specific heat capacity of water is 4200 J/kg°C. Calculate the energy needed.'
     check:
       kind: all
@@ -843,7 +843,7 @@ problems:
   - id: anchor-total
     section: Review
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Add the energy to melt the ice, 759000 J, to the energy to warm the water, 434700 J.'
     check:
       kind: all
@@ -855,7 +855,7 @@ problems:
   - id: anchor-balloon
     section: Review
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'The weather balloon holds 2.0 m^3 of gas at 100 kPa in the valley. At altitude the pressure is 25 kPa and the temperature is the same. Calculate the volume at altitude.'
     check:
       kind: all

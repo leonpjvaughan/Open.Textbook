@@ -5,7 +5,7 @@ chapter_title: Functions, algebraic fractions and proof
 section: "15.3"
 section_title: "Operations with algebraic fractions"
 tier: H
-dfe: [A4]
+refs: [A4]
 kind: practise
 ---
 

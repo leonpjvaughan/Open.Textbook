@@ -10,7 +10,7 @@ symbols:
 problems:
   - id: t1-cubic
     section: "8.2"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Evaluate $\displaystyle\int_0^2 x^3\,dx$.'
     answer_label: 'The value of the integral'
     check:
@@ -22,7 +22,7 @@ problems:
 
   - id: t2-linear
     section: "8.2"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Evaluate $\displaystyle\int_1^3 (2x + 1)\,dx$.'
     answer_label: 'The value of the integral'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: t3-quadratic
     section: "8.2"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Evaluate $\displaystyle\int_0^1 (3x^2 - 2x + 1)\,dx$.'
     answer_label: 'The value of the integral'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: t4-reciprocal
     section: "8.2"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Evaluate $\displaystyle\int_1^2 \frac{1}{x}\,dx$, giving an exact answer.'
     answer_label: 'The value of the integral'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: t5-exponential
     section: "8.2"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Evaluate $\displaystyle\int_0^1 e^{2x}\,dx$, giving an exact answer.'
     answer_label: 'The value of the integral'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: t6-cosine
     section: "8.2"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Evaluate $\displaystyle\int_0^{\pi/2} \cos x\,dx$.'
     answer_label: 'The value of the integral'
     check:
@@ -82,7 +82,7 @@ problems:
 
   - id: t7-sine
     section: "8.2"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Evaluate $\displaystyle\int_0^{\pi} \sin x\,dx$.'
     answer_label: 'The value of the integral'
     check:
@@ -94,7 +94,7 @@ problems:
 
   - id: t8-odd-function
     section: "8.2"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Evaluate $\displaystyle\int_{-1}^{1} x^3\,dx$ and explain the value.'
     answer_label: 'The value of the integral'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: t9-signed-area
     section: "8.2"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Evaluate $\displaystyle\int_0^3 (x^2 - 4)\,dx$.'
     answer_label: 'The value of the integral'
     check:
@@ -118,7 +118,7 @@ problems:
 
   - id: t10-area-domain
     section: "8.2"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the area under the curve $y = 4 - x^2$ between $x = -2$ and $x = 2$.'
     answer_label: 'The area'
     check:
@@ -130,7 +130,7 @@ problems:
 
   - id: t11-area-square
     section: "8.2"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the area under the curve $y = x^2$ between $x = 0$ and $x = 3$.'
     answer_label: 'The area'
     check:
@@ -142,7 +142,7 @@ problems:
 
   - id: t12-split-area
     section: "8.2"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the total area between the curve $y = x^2 - 2x$ and the horizontal axis, from $x = 0$ to $x = 3$.'
     answer_label: 'The total area'
     check:

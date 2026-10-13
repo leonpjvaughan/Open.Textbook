@@ -4,7 +4,7 @@ chapter: 8
 chapter_title: Integration
 section: '8.3'
 section_title: The area between two curves
-dfe:
+refs:
 - H3
 kind: guided-problems
 ---

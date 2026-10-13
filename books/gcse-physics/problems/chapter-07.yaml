@@ -20,7 +20,7 @@ problems:
   - id: w1-distance-cm
     section: '7.1'
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'A compass is placed 8.0 cm from a magnet. Write this distance in metres.'
     answer_label: 'The distance in metres'
     check:
@@ -34,7 +34,7 @@ problems:
   - id: w2-acceleration
     section: '7.1'
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'A magnetic force of 0.40 N acts on a steel ball of mass 0.10 kg. Calculate the acceleration of the ball.'
     answer_label: 'Acceleration of the ball'
     check:
@@ -53,7 +53,7 @@ problems:
   - id: w3-motor-force
     section: '7.2'
     tier: H
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'A wire of length 0.15 m carries a current of 2.0 A at right angles to a magnetic field of flux density 0.25 T. Calculate the force on the wire.'
     answer_label: 'Force on the wire'
     check:
@@ -72,7 +72,7 @@ problems:
   - id: w4-motor-flux
     section: '7.2'
     tier: H
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'A wire of length 0.50 m carries a current of 4.0 A and feels a force of 0.20 N at right angles to a magnetic field. Calculate the magnetic flux density.'
     answer_label: 'Magnetic flux density'
     check:
@@ -91,7 +91,7 @@ problems:
   - id: w5-guided-force
     section: '7.2'
     tier: H
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'A wire of length 0.20 m carries a current of 3.0 A at right angles to a magnetic field of flux density 0.40 T. Calculate the force on the wire.'
     answer_label: 'Force on the wire'
     check:
@@ -110,7 +110,7 @@ problems:
   - id: w6-guided-current
     section: '7.2'
     tier: H
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'The force on a wire of length 0.50 m is 0.60 N. The wire sits at right angles to a magnetic field of flux density 0.30 T. Calculate the current in the wire.'
     answer_label: 'Current in the wire'
     check:
@@ -130,7 +130,7 @@ problems:
   - id: w7-transformer-turns
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'A transformer has 200 turns on the primary coil and 50 turns on the secondary coil. The primary potential difference is 12 V. Calculate the secondary potential difference.'
     answer_label: 'Secondary potential difference'
     check:
@@ -143,7 +143,7 @@ problems:
   - id: w8-anchor-turns
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'The transformer in the chapter problem steps 12 000 V down to 240 V. The primary coil has 4000 turns. Calculate the number of turns on the secondary coil.'
     answer_label: 'Number of turns on the secondary coil'
     check: {kind: evaluate, expression: "4000 * 240 / 12000", answer: "80"}
@@ -152,7 +152,7 @@ problems:
   - id: w9-anchor-current
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'The yard in the chapter problem uses 24 kW of power. The transmission line delivers it at 12 000 V. Calculate the current in the line.'
     answer_label: 'Current in the transmission line'
     check:
@@ -170,7 +170,7 @@ problems:
   - id: w10-guided-vs
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'A transformer has 500 turns on the primary coil and 100 turns on the secondary coil. The primary potential difference is 240 V. Calculate the secondary potential difference.'
     answer_label: 'Secondary potential difference'
     check:
@@ -183,7 +183,7 @@ problems:
   - id: w11-guided-np
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'A step-up transformer changes 12 V to 240 V. The secondary coil has 2000 turns. Calculate the number of turns on the primary coil.'
     answer_label: 'Number of turns on the primary coil'
     check: {kind: evaluate, expression: "2000 * 12 / 240", answer: "100"}
@@ -192,7 +192,7 @@ problems:
   - id: w12-guided-is
     section: '7.3'
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'A transformer has a primary potential difference of 11 000 V and a primary current of 0.50 A. The secondary potential difference is 250 V. Assume the transformer is 100% efficient. Calculate the secondary current.'
     answer_label: 'Secondary current'
     check:
@@ -212,7 +212,7 @@ problems:
   - id: w13-speaker-force
     section: '7.4'
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'A loudspeaker coil has 0.050 m of wire inside the magnetic field. The flux density is 0.20 T and the current is 0.50 A. Calculate the force on the coil.'
     answer_label: 'Force on the coil'
     check:
@@ -231,7 +231,7 @@ problems:
   - id: w14-guided-speaker-force
     section: '7.4'
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'A loudspeaker coil has 0.10 m of wire inside the magnetic field. The flux density is 0.30 T and the current is 0.40 A. Calculate the force on the coil.'
     answer_label: 'Force on the coil'
     check:
@@ -251,7 +251,7 @@ problems:
   - id: w15-relay
     section: '7.2'
     tier: F
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'A relay has a coil of wire on an iron core, an iron armature, and a switch. A small current flows through the coil. Explain how the relay closes a switch in a larger circuit.'
     answer_label: 'How the relay works'
     check:
@@ -273,7 +273,7 @@ problems:
   - id: warmup-7-1-acceleration
     section: '7.1'
     tier: F
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'Warm-up: a resultant force of 12 N acts on an object of mass 3.0 kg. Calculate the acceleration.'
     answer_label: 'Acceleration'
     check:
@@ -291,7 +291,7 @@ problems:
   - id: warmup-7-3-power
     section: '7.3'
     tier: H
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'Warm-up: a power supply has a potential difference of 12 V and drives a current of 2.0 A. Calculate the power.'
     answer_label: 'Power'
     check:

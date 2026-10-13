@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Electric circuits
 section: '5.1'
 section_title: Current, charge and emf
-dfe:
+refs:
 - AP5
 kind: guided-problems
 ---

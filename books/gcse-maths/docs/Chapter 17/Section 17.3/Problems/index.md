@@ -5,7 +5,7 @@ chapter_title: Properties, constructions, loci and bearings
 section: "17.3"
 section_title: Constructions with ruler and compasses
 tier: F
-dfe: [G2]
+refs: [G2]
 kind: problems
 ---
 

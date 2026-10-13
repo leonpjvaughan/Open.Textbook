@@ -16,7 +16,7 @@ symbols:
 problems:
   - id: z1-cooling
     section: "8.8"
-    dfe: [H8]
+    refs: [H8]
     statement: 'A liquid cools so that $\dfrac{dT}{dt} = -0.1(T - 20)$, with $T = 90$°C when $t = 0$ and $t$ in minutes. Find $T$ in terms of $t$.'
     answer_label: 'The temperature'
     check:
@@ -30,7 +30,7 @@ problems:
 
   - id: z2-cooling-halving
     section: "8.8"
-    dfe: [H8]
+    refs: [H8]
     statement: 'A drink cools so that $\dfrac{dT}{dt} = -k(T - 20)$, with $T = 90$°C when $t = 0$. After $20$ minutes the temperature is $55$°C. Show that $k = \dfrac{\ln 2}{20}$ and find $T$ in terms of $t$.'
     answer_label: 'The temperature'
     check:
@@ -44,7 +44,7 @@ problems:
 
   - id: z3-population
     section: "8.8"
-    dfe: [H8]
+    refs: [H8]
     statement: 'A population $P$ grows so that $\dfrac{dP}{dt} = 0.02P$, with $P = 5000$ when $t = 0$ and $t$ in years. Find $P$ in terms of $t$.'
     answer_label: 'The population'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: z4-population-doubling
     section: "8.8"
-    dfe: [H8]
+    refs: [H8]
     statement: 'For the population $P = 5000e^{0.02t}$, find the time taken for the population to double, giving an exact answer in years.'
     answer_label: 'The doubling time'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: z5-decay
     section: "8.8"
-    dfe: [H8]
+    refs: [H8]
     statement: 'A radioactive mass $m$ decays so that $\dfrac{dm}{dt} = -0.05m$, with $m = 200$ g when $t = 0$ and $t$ in years. Find $m$ in terms of $t$.'
     answer_label: 'The mass'
     check:
@@ -84,7 +84,7 @@ problems:
 
   - id: z6-decay-half-life
     section: "8.8"
-    dfe: [H8]
+    refs: [H8]
     statement: 'For the mass $m = 200e^{-0.05t}$, find the half-life, giving an exact answer in years.'
     answer_label: 'The half-life'
     check:
@@ -96,7 +96,7 @@ problems:
 
   - id: z7-kinematics
     section: "8.8"
-    dfe: [H8]
+    refs: [H8]
     statement: 'A ball falls through a fluid so that $\dfrac{dv}{dt} = 9.8 - 2v$, with $v = 0$ when $t = 0$ and $t$ in seconds. Find $v$ in terms of $t$.'
     answer_label: 'The velocity'
     check:
@@ -110,7 +110,7 @@ problems:
 
   - id: z8-terminal-velocity
     section: "8.8"
-    dfe: [H8]
+    refs: [H8]
     statement: 'For the velocity $v = 4.9\left(1 - e^{-2t}\right)$, find the terminal velocity, that is the limit of $v$ as $t \to \infty$.'
     answer_label: 'The terminal velocity'
     check:
@@ -122,7 +122,7 @@ problems:
 
   - id: z9-cooling-general
     section: "8.8"
-    dfe: [H8]
+    refs: [H8]
     statement: 'A body cools so that $\dfrac{dT}{dt} = -k(T - 20)$, where $k > 0$. Find the general solution for $T$.'
     answer_label: 'The general solution'
     check:
@@ -135,7 +135,7 @@ problems:
 
   - id: z10-initial-and-limit
     section: "8.8"
-    dfe: [H8]
+    refs: [H8]
     statement: 'A cooling model gives $T = 20 + 70e^{-0.1t}$. Find the initial temperature and the limiting temperature.'
     answer_label: 'The initial and limiting temperatures'
     check:
@@ -147,7 +147,7 @@ problems:
 
   - id: z11-decay-value
     section: "8.8"
-    dfe: [H8]
+    refs: [H8]
     statement: 'For the mass $m = 50e^{-0.02t}$, find the mass after $10$ years, giving an exact answer in grams.'
     answer_label: 'The mass'
     check:
@@ -159,7 +159,7 @@ problems:
 
   - id: z12-interpretation
     section: "8.8"
-    dfe: [H8, OT3]
+    refs: [H8, OT3]
     statement: 'A model for a population is $P = 5000e^{0.02t}$. Find the rate of change of the population at $t = 0$, and give one limitation of the model.'
     answer_label: 'The rate of change at $t = 0$'
     check:

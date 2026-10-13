@@ -5,7 +5,7 @@ chapter_title: Sequences
 section: '10.5'
 section_title: Geometric sequences
 tier: H
-dfe:
+refs:
 - A24
 kind: guided-problems
 ---

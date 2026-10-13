@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Trigonometry
 section: '5.12'
 section_title: 'Trigonometry in context: vectors, kinematics and forces'
-dfe:
+refs:
 - E9
 - OT3
 kind: guided-problems

@@ -4,7 +4,7 @@ chapter: 10
 chapter_title: Vectors
 section: '10.4'
 section_title: Position vectors and the distance between two points
-dfe:
+refs:
 - J4
 kind: problems
 ---

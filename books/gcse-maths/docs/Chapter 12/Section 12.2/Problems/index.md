@@ -5,7 +5,7 @@ chapter_title: Quadratic expressions, equations and graphs
 section: '12.2'
 section_title: Factorising harder quadratics
 tier: H
-dfe:
+refs:
 - A4
 kind: problems
 ---

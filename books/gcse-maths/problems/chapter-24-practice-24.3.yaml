@@ -4,7 +4,7 @@ problems:
   - id: 'ch24-24-3-mean-list'
     section: '24.3'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Find the mean of 2, 4, 6, 8.'
     answer_label: 'Find the mean of 2, 4, 6, 8.'
     check:
@@ -17,7 +17,7 @@ problems:
   - id: 'ch24-24-3-median-odd'
     section: '24.3'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Find the median of 3, 7, 2, 9, 4.'
     answer_label: 'Find the median of 3, 7, 2, 9, 4.'
     check:
@@ -30,7 +30,7 @@ problems:
   - id: 'ch24-24-3-mode-list'
     section: '24.3'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Find the mode of 1, 3, 3, 4, 6.'
     answer_label: 'Mode of the list'
     check:
@@ -43,7 +43,7 @@ problems:
   - id: 'ch24-24-3-range-list'
     section: '24.3'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Find the range of 5, 9, 2, 6.'
     answer_label: 'Find the range of 5, 9, 2, 6.'
     check:
@@ -56,7 +56,7 @@ problems:
   - id: 'ch24-24-3-mean-even'
     section: '24.3'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Find the mean of 12, 15, 17, 20.'
     answer_label: 'Find the mean of 12, 15, 17, 20.'
     check:
@@ -69,7 +69,7 @@ problems:
   - id: 'ch24-24-3-median-even'
     section: '24.3'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Find the median of 2, 8, 5, 11.'
     answer_label: 'Find the median of 2, 8, 5, 11.'
     check:
@@ -82,7 +82,7 @@ problems:
   - id: 'ch24-24-3-outlier-mean'
     section: '24.3'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'The data are 2, 3, 3, 4, 18. Find the mean.'
     answer_label: 'The data are 2, 3, 3, 4, 18. Find the mean.'
     check:
@@ -95,7 +95,7 @@ problems:
   - id: 'ch24-24-3-compare-ranges'
     section: '24.3'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'Set A has range 4 and set B has range 9. Which set has greater spread by range?'
     answer_label: 'Set A has range 4 and set B has range 9. Which set has greater spread by range?'
     check:
@@ -108,7 +108,7 @@ problems:
   - id: 'ch24-24-3-mode-no-repeat'
     section: '24.3'
     tier: 'F'
-    dfe: ['S4']
+    refs: ['S4']
     statement: 'The values 2, 4, 6 and 8 each occur once. State whether there is a mode and find the range.'
     answer_label: 'The values 2, 4, 6 and 8 each occur once. State whether there is a mode and find the range.'
     check:

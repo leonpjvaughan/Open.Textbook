@@ -7,7 +7,7 @@ chapter: 13
 problems:
   - id: r1-chapter-binomial
     section: "13"
-    dfe: [N1]
+    refs: [N1]
     statement: 'Each of 20 seeds germinates with probability 0.8, independently. The random variable $X$ is the number that germinate. Find $P(X \le 13)$.'
     answer_label: 'The probability'
     check:
@@ -21,7 +21,7 @@ problems:
 
   - id: r2-chapter-normal
     section: "13"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The height of a mature sunflower is modelled as $X \sim N(45, 6^2)$ cm. Find $P(X > 52)$.'
     answer_label: 'The probability'
     check:
@@ -35,7 +35,7 @@ problems:
 
   - id: r3-binomial-at-most
     section: "13"
-    dfe: [N1]
+    refs: [N1]
     statement: 'The random variable $X \sim B\left(10, \tfrac13\right)$. Find $P(X \le 2)$.'
     answer_label: 'The probability'
     check:
@@ -49,7 +49,7 @@ problems:
 
   - id: r4-normal-between
     section: "13"
-    dfe: [N2]
+    refs: [N2]
     statement: 'A measurement is modelled as $X \sim N(70, 8^2)$. Find $P(62 < X < 78)$.'
     answer_label: 'The probability'
     check:
@@ -63,7 +63,7 @@ problems:
 
   - id: r5-inverse-normal
     section: "13"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim N(100, 15^2)$. Find the value $a$ such that $P(X < a) = 0.90$.'
     answer_label: 'The value of a'
     check:
@@ -75,7 +75,7 @@ problems:
 
   - id: r6-correlation
     section: "13"
-    dfe: [L2]
+    refs: [L2]
     statement: 'The pairs of values $(1, 2)$, $(2, 3)$, $(3, 5)$, $(4, 4)$ and $(5, 6)$ are plotted. Work out Pearson product-moment correlation coefficient $r$.'
     answer_label: 'The correlation coefficient'
     check:
@@ -87,7 +87,7 @@ problems:
 
   - id: r7-regression
     section: "13"
-    dfe: [L2]
+    refs: [L2]
     statement: 'For the pairs $(1, 2)$, $(2, 3)$, $(3, 5)$, $(4, 4)$ and $(5, 6)$, find the least-squares regression line $y = a + bx$.'
     answer_label: 'The line'
     check:
@@ -99,7 +99,7 @@ problems:
 
   - id: r8-binomial-coefficient
     section: "13"
-    dfe: [D1]
+    refs: [D1]
     statement: 'Work out $\dbinom{10}{3}$.'
     answer_label: 'The value'
     check:
@@ -110,7 +110,7 @@ problems:
 
   - id: r9-points-of-inflection
     section: "13"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim N(50, 5^2)$. Work out the two $x$-values of the points of inflection, which are at $\mu - \sigma$ and $\mu + \sigma$.'
     answer_label: 'The two values'
     check:
@@ -122,7 +122,7 @@ problems:
 
   - id: r10-normal-approximation
     section: "13"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim B(50, 0.4)$. Use the Normal approximation, with the continuity correction, to estimate $P(X \le 15)$.'
     answer_label: 'The estimate'
     check:
@@ -136,7 +136,7 @@ problems:
 
   - id: r11-two-sigma-band
     section: "13"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $Z \sim N(0, 1)$. Work out $P(-2 < Z < 2)$.'
     answer_label: 'The probability'
     check:
@@ -150,7 +150,7 @@ problems:
 
   - id: r12-normal-approximation-tail
     section: "13"
-    dfe: [N2]
+    refs: [N2]
     statement: 'The random variable $X \sim B(15, 0.8)$. Use the Normal approximation to estimate $P(X \ge 12)$.'
     answer_label: 'The estimate'
     check:

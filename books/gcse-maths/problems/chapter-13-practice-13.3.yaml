@@ -6,7 +6,7 @@ problems:
   - id: vertical-translation
     section: '13.3'
     tier: H
-    dfe: [A13]
+    refs: [A13]
     statement: 'Translate $y=x^2$ up 4 units. Write its new equation.'
     answer_label: 'Vertical translation'
     check: {kind: evaluate, expression: 0**2+4, answer: '4'}
@@ -14,7 +14,7 @@ problems:
   - id: horizontal-translation
     section: '13.3'
     tier: H
-    dfe: [A13]
+    refs: [A13]
     statement: 'Translate $y=x^2$ 3 units right. Write its new equation.'
     answer_label: 'Horizontal translation'
     check: {kind: evaluate, expression: (3-3)**2, answer: '0'}
@@ -22,7 +22,7 @@ problems:
   - id: translate-left-and-up
     section: '13.3'
     tier: H
-    dfe: [A13]
+    refs: [A13]
     statement: 'Translate $y=x^2$ 2 units left and 1 unit up. Give the equation and turning point.'
     answer_label: 'Combined translation'
     check: {kind: evaluate, expression: (-2+2)**2+1, answer: '1'}
@@ -30,7 +30,7 @@ problems:
   - id: reflection-x
     section: '13.3'
     tier: H
-    dfe: [A13]
+    refs: [A13]
     statement: 'Reflect $y=x^3$ in the $x$-axis. Give the new equation.'
     answer_label: '$x$-axis reflection'
     check: {kind: evaluate, expression: -(2**3), answer: '-8'}
@@ -38,7 +38,7 @@ problems:
   - id: reflection-y
     section: '13.3'
     tier: H
-    dfe: [A13]
+    refs: [A13]
     statement: 'Reflect $y=x^2+1$ in the $y$-axis. Give the new equation.'
     answer_label: '$y$-axis reflection'
     check: {kind: evaluate, expression: (-3)**2+1, answer: '10'}
@@ -46,7 +46,7 @@ problems:
   - id: reflect-point-in-x-axis
     section: '13.3'
     tier: H
-    dfe: [A13]
+    refs: [A13]
     statement: 'The point $(2,5)$ lies on $y=f(x)$. State its image after reflection in the $x$-axis.'
     answer_label: '$x$-axis reflection of a point'
     check: {kind: evaluate, expression: -5, answer: '-5'}
@@ -54,7 +54,7 @@ problems:
   - id: reflect-point-in-y-axis
     section: '13.3'
     tier: H
-    dfe: [A13]
+    refs: [A13]
     statement: 'The point $(4,3)$ lies on $y=f(x)$. State its image after reflection in the $y$-axis.'
     answer_label: '$y$-axis reflection of a point'
     check: {kind: evaluate, expression: -4, answer: '-4'}
@@ -62,7 +62,7 @@ problems:
   - id: point-shift
     section: '13.3'
     tier: H
-    dfe: [A13]
+    refs: [A13]
     statement: 'The point $(2,5)$ lies on $y=f(x)$. State its image under $y=f(x)-4$.'
     answer_label: 'Point after vertical shift'
     check: {kind: evaluate, expression: 5-4, answer: '1'}
@@ -70,7 +70,7 @@ problems:
   - id: combined-reflection-translation
     section: '13.3'
     tier: H
-    dfe: [A13]
+    refs: [A13]
     statement: '**H** Starting with $y=f(x)$, reflect in the $x$-axis, then translate 3 units right and 2 units up. Write the transformed rule.'
     answer_label: 'Combined transformations'
     check: {kind: evaluate, expression: -(2**2)+2, answer: '-2'}
@@ -79,7 +79,7 @@ problems:
   - id: ch13-133-method-transform
     section: '13.3'
     tier: H
-    dfe: [A13]
+    refs: [A13]
     statement: 'The graph of $y=x^2$ moves 3 units right and 2 units down. Which method finds the new equation: track the turning point, or substitute $x-3$ and subtract 2? Give a reason. Then write the new equation and the turning point.'
     answer_label: 'Method choice: track the turning point or substitute'
     check:

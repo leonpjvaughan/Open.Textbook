@@ -15,7 +15,7 @@ symbols:
 problems:
   - id: t1-square-four-strips
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'Use the trapezium rule with four strips to estimate $\displaystyle\int_0^2 x^2\,dx$.'
     answer_label: 'The estimate'
     check:
@@ -26,7 +26,7 @@ problems:
 
   - id: t2-square-exact
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'Find the exact value of $\displaystyle\int_0^2 x^2\,dx$.'
     answer_label: 'The exact value'
     check:
@@ -38,7 +38,7 @@ problems:
 
   - id: t3-square-overestimate
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'State whether the trapezium estimate $2.75$ for $\displaystyle\int_0^2 x^2\,dx$ is an overestimate or an underestimate, and give a reason.'
     answer_label: 'The comparison'
     check:
@@ -50,7 +50,7 @@ problems:
 
   - id: t4-square-eight-strips
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'Use the trapezium rule with eight strips to estimate $\displaystyle\int_0^2 x^2\,dx$.'
     answer_label: 'The estimate'
     check:
@@ -61,7 +61,7 @@ problems:
 
   - id: t5-square-limits
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'Using four strips and rectangles, give a lower limit and an upper limit for $\displaystyle\int_0^2 x^2\,dx$.'
     answer_label: 'The limits'
     check:
@@ -73,7 +73,7 @@ problems:
 
   - id: t6-reciprocal-four-strips
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'Use the trapezium rule with four strips to estimate $\displaystyle\int_0^1 \frac{1}{1 + x}\,dx$.'
     answer_label: 'The estimate'
     check:
@@ -84,7 +84,7 @@ problems:
 
   - id: t7-reciprocal-exact
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'Find the exact value of $\displaystyle\int_0^1 \frac{1}{1 + x}\,dx$.'
     answer_label: 'The exact value'
     check:
@@ -96,7 +96,7 @@ problems:
 
   - id: t8-reciprocal-overestimate
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'State whether the four-strip estimate $0.6970$ for $\displaystyle\int_0^1 \frac{1}{1 + x}\,dx$ is too large or too small, and give a reason.'
     answer_label: 'The comparison'
     check:
@@ -108,7 +108,7 @@ problems:
 
   - id: t9-reciprocal-limits
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'Using four strips and rectangles, give a lower limit and an upper limit for $\displaystyle\int_0^1 \frac{1}{1 + x}\,dx$.'
     answer_label: 'The limits'
     check:
@@ -120,7 +120,7 @@ problems:
 
   - id: t10-speed-table
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'A car''s speed is recorded every second: $0, 3, 5, 6, 6$ metres per second at $t = 0, 1, 2, 3, 4$ seconds. Estimate the distance travelled.'
     answer_label: 'The distance'
     check:
@@ -131,7 +131,7 @@ problems:
 
   - id: t11-speed-limits
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'For the speed table in the previous question, give a lower limit and an upper limit for the distance travelled.'
     answer_label: 'The limits'
     check:
@@ -143,7 +143,7 @@ problems:
 
   - id: t12-second-derivative
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'For $f(x) = x^2$, find $f''''(x)$ and use its sign to explain why the trapezium rule overestimates $\displaystyle\int_0^2 x^2\,dx$.'
     answer_label: 'The second derivative'
     check:
@@ -156,7 +156,7 @@ problems:
 
   - id: t13-pond-area
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'A pond is sounded at $2$ metre intervals across a straight line: the depths are $0, 1.4, 1.9, 1.2, 0$ metres. Estimate the cross-sectional area.'
     answer_label: 'The area'
     check:
@@ -167,7 +167,7 @@ problems:
 
   - id: t14-pond-limits
     section: "9.4"
-    dfe: [I3]
+    refs: [I3]
     statement: 'For the pond in the previous question, give a lower limit and an upper limit for the area.'
     answer_label: 'The limits'
     check:

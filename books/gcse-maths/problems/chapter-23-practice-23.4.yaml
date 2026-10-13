@@ -3,7 +3,7 @@ problems:
 - id: p1-two-heads
   section: '23.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'P8'
   statement: 'A fair coin is tossed twice. Find the probability of two heads.'
   answer_label: 'A fair coin is tossed twice. Find the probability of two heads.'
@@ -15,7 +15,7 @@ problems:
 - id: p2-one-head
   section: '23.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'P8'
   statement: 'A fair coin is tossed twice. Find the probability of exactly one head.'
   answer_label: 'A fair coin is tossed twice. Find the probability of exactly one head.'
@@ -27,7 +27,7 @@ problems:
 - id: p3-at-least-one-six
   section: '23.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'P8'
   statement: 'A fair die is rolled twice. Find the probability of at least one six.'
   answer_label: 'A fair die is rolled twice. Find the probability of at least one six.'
@@ -39,7 +39,7 @@ problems:
 - id: p4-red-then-blue
   section: '23.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'P8'
   statement: 'A bag has 3 red and 2 blue counters. A counter is replaced after each pick. Find the probability of red then blue.'
   answer_label: 'A bag has 3 red and 2 blue counters. A counter is replaced after each pick. Find the probability of red then blue.'
@@ -51,7 +51,7 @@ problems:
 - id: p5-two-tails
   section: '23.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'P8'
   statement: 'A fair coin is tossed three times. Find the probability of three tails.'
   answer_label: 'A fair coin is tossed three times. Find the probability of three tails.'
@@ -63,7 +63,7 @@ problems:
 - id: p6-two-or-more
   section: '23.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'P8'
   statement: 'A fair coin is tossed twice. Find the probability of at most one head.'
   answer_label: 'A fair coin is tossed twice. Find the probability of at most one head.'
@@ -75,7 +75,7 @@ problems:
 - id: p7-spinner-then-coin
   section: '23.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'P8'
   statement: 'A spinner has probability $\frac14$ of red. It is spun and a coin is tossed. Find the probability of red and heads.'
   answer_label: 'A spinner has probability $\frac14$ of red. It is spun and a coin is tossed. Find the probability of red and heads.'
@@ -87,7 +87,7 @@ problems:
 - id: p8-two-sixes
   section: '23.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'P8'
   statement: 'A fair die is rolled twice. Find the probability of no sixes.'
   answer_label: 'A fair die is rolled twice. Find the probability of no sixes.'
@@ -99,7 +99,7 @@ problems:
 - id: p9-either-path
   section: '23.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'P8'
   statement: 'A fair coin is tossed twice. Find the probability of exactly one tail.'
   answer_label: 'A fair coin is tossed twice. Find the probability of exactly one tail.'
@@ -111,7 +111,7 @@ problems:
 - id: p10-three-trials
   section: '23.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'P8'
   statement: 'An event has probability $\frac13$ on each independent trial. Find the probability it happens on all three trials.'
   answer_label: 'An event has probability $\frac13$ on each independent trial. Find the probability it happens on all three trials.'
@@ -123,7 +123,7 @@ problems:
 - id: p11-dependent-draws
   section: '23.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'P8'
   statement: 'A bag has 4 red and 3 blue counters. One counter is drawn and not replaced. Find the probability of red then blue.'
   answer_label: 'A bag has 4 red and 3 blue counters. One counter is drawn and not replaced. Find the probability of red then blue.'

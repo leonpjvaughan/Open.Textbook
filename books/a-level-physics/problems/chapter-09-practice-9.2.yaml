@@ -17,7 +17,7 @@ chapter: 9
 problems:
   - id: p1-coulomb-force-opposite
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A charge of +6.0 microcoulombs and a charge of -3.0 microcoulombs are 0.20 m apart in air. Find the magnitude of the force between them.'
     answer_label: 'The magnitude of the force'
     check:
@@ -31,7 +31,7 @@ problems:
 
   - id: p2-field-point-charge
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the electric field strength at a distance of 0.50 m from a point charge of +4.0 microcoulombs.'
     answer_label: 'The electric field strength'
     check: {kind: approx, value: "8.99e9 * 4.0e-6 / 0.50**2", target: "1.44e5", tolerance: "1e3"}
@@ -39,7 +39,7 @@ problems:
 
   - id: p3-uniform-field
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Two parallel plates are 3.0 mm apart and have a potential difference of 150 V. Find the electric field strength between them.'
     answer_label: 'The electric field strength'
     check: {kind: approx, value: "150 / 3.0e-3", target: "5.0e4", tolerance: "1e2"}
@@ -47,7 +47,7 @@ problems:
 
   - id: p4-potential-point-charge
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the electric potential at a distance of 0.50 m from a point charge of +4.0 microcoulombs.'
     answer_label: 'The electric potential'
     check: {kind: approx, value: "8.99e9 * 4.0e-6 / 0.50", target: "7.19e4", tolerance: "1e2"}
@@ -55,7 +55,7 @@ problems:
 
   - id: p5-potential-energy
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A charge of +2.0 microcoulombs is placed at a point where the electric potential is 3.0e4 V. Find its electric potential energy.'
     answer_label: 'The electric potential energy'
     check: {kind: approx, value: "2.0e-6 * 3.0e4", target: "0.060", tolerance: "0.001"}
@@ -63,7 +63,7 @@ problems:
 
   - id: p6-work-done-charge
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the work done moving a charge of +5.0 microcoulombs through a potential difference of 1200 V.'
     answer_label: 'The work done'
     check: {kind: approx, value: "5.0e-6 * 1200", target: "6.0e-3", tolerance: "1e-4"}
@@ -71,7 +71,7 @@ problems:
 
   - id: p7-electron-speed
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'An electron is accelerated from rest through a potential difference of 400 V. Find its speed. The mass of an electron is 9.11e-31 kg.'
     answer_label: 'The speed'
     check: {kind: approx, value: "sqrt(2 * 1.60e-19 * 400 / 9.11e-31)", target: "1.19e7", tolerance: "1e5"}
@@ -79,7 +79,7 @@ problems:
 
   - id: p8-ion-force-uniform-field
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Two grids 2.0 mm apart have a potential difference of 900 V. Find the electric field strength between them and the force on a xenon ion of charge +1.60e-19 C.'
     answer_label: 'The field strength and the force'
     check:
@@ -91,7 +91,7 @@ problems:
 
   - id: p9-force-inverse-square
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Two point charges 0.10 m apart repel each other with a force of 0.40 N. Find the force between them when they are 0.20 m apart.'
     answer_label: 'The new force'
     check: {kind: approx, value: "0.40 / 2**2", target: "0.10", tolerance: "0.001"}
@@ -99,7 +99,7 @@ problems:
 
   - id: p10-coulomb-force-2sf
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A calculation gives an electric force of 0.16182 N. Write the answer to two significant figures.'
     answer_label: 'The force to two significant figures'
     check:
@@ -112,7 +112,7 @@ problems:
 
   - id: p11-uncertainty-field-strength
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'The potential difference across two plates is measured with an uncertainty of 0.5%, and their separation with an uncertainty of 1.0%. The field strength is 6.0e4 V/m. Find its absolute uncertainty.'
     answer_label: 'The absolute uncertainty'
     check:
@@ -128,7 +128,7 @@ problems:
 
   - id: p12-convert-plate-gap
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A plate separation is 3.0 mm. Write it in metres.'
     answer_label: 'The separation in metres'
     check: {kind: convert, value: "3.0", from: "mm", to: "m", answer: "3.0e-3"}
@@ -136,7 +136,7 @@ problems:
 
   - id: p13-method-accelerated-charge
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A charged particle is released from rest in a uniform electric field. Explain how you would find its kinetic energy after it has crossed the field.'
     check:
       kind: structured
@@ -158,7 +158,7 @@ problems:
 
   - id: p14-charge-and-electrons
     section: '9.2'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A current of 0.25 A flows for 40 s. Find the charge that passes and the number of electrons.'
     answer_label: 'The charge and the number of electrons'
     check: {kind: approx, value: "0.25 * 40 / 1.60e-19", target: "6.25e19", tolerance: "1e18"}

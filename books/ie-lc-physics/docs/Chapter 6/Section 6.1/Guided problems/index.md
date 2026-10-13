@@ -15,4 +15,4 @@ kind: guided-problems
 # 6.1 Weight, mass and gravitational field strength — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: 1.5
+> Tier: **O** · refs: 1.5

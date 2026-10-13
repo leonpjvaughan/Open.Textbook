@@ -15,4 +15,4 @@ kind: problems
 # 20.8 The theorem of Pythagoras as a theorem — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: GT.3
+> Tier: **O** · refs: GT.3

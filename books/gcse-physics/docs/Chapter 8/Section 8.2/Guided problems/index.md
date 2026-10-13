@@ -6,7 +6,7 @@ chapter_title: Particle model of matter
 section: '8.2'
 section_title: Internal energy, energy transfers and particle motions
 tier: F
-dfe:
+refs:
 - PM2
 kind: guided-problems
 ---

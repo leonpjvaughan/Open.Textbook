@@ -5,7 +5,7 @@ chapter_title: Circle geometry and circle theorems
 section: '21.3'
 section_title: Tangents and chords
 tier: H
-dfe: [G10]
+refs: [G10]
 kind: problems
 ---
 

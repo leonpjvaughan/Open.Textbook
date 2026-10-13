@@ -16,7 +16,7 @@ problems:
 - id: ch14-14-2-01
   section: '14.2'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $y=x+2$ and $x+y=10$.'
   answer_label: Solve $y=x+2$ and $x+y=10$.
@@ -37,7 +37,7 @@ problems:
 - id: ch14-14-2-02
   section: '14.2'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $y=2x-1$ and $x+y=8$.'
   answer_label: Solve $y=2x-1$ and $x+y=8$.
@@ -58,7 +58,7 @@ problems:
 - id: ch14-14-2-03
   section: '14.2'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $x=3y+1$ and $x+y=13$.'
   answer_label: Solve $x=3y+1$ and $x+y=13$.
@@ -79,7 +79,7 @@ problems:
 - id: ch14-14-2-04
   section: '14.2'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $y=5-x$ and $2x+3y=11$.'
   answer_label: Solve $y=5-x$ and $2x+3y=11$.
@@ -100,7 +100,7 @@ problems:
 - id: ch14-14-2-05
   section: '14.2'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $y=3x+4$ and $2x+y=19$.'
   answer_label: Solve $y=3x+4$ and $2x+y=19$.
@@ -121,7 +121,7 @@ problems:
 - id: ch14-14-2-06
   section: '14.2'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $x=2y-3$ and $3x+y=17$.'
   answer_label: Solve $x=2y-3$ and $3x+y=17$.
@@ -142,7 +142,7 @@ problems:
 - id: ch14-14-2-07
   section: '14.2'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $y=\frac{x}{2}+1$ and $x+y=10$.'
   answer_label: 'Solve $y=\frac{x}{2}+1$ and $x+y=10$.'
@@ -163,7 +163,7 @@ problems:
 - id: ch14-14-2-08
   section: '14.2'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'Solve $x=4-y$ and $3x+2y=8$.'
   answer_label: Solve $x=4-y$ and $3x+2y=8$.
@@ -184,7 +184,7 @@ problems:
 - id: ch14-14-2-09
   section: '14.2'
   tier: F
-  dfe:
+  refs:
   - A19
   statement: 'A rectangle has length $l=2w+1$ cm and perimeter 26 cm. Find its dimensions.'
   answer_label: A rectangle has length $l=2w+1$ cm and perimeter 26 cm. Find its dimen
@@ -205,7 +205,7 @@ problems:
 - id: ch14-14-2-10
   section: '14.2'
   tier: H
-  dfe:
+  refs:
   - A19
   statement: 'Solve $y=2x-3$ and $4x+3y=17$.'
   answer_label: Solve $y=2x-3$ and $4x+3y=17$.

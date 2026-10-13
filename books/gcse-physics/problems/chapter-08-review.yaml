@@ -10,7 +10,7 @@ problems:
   - id: r1-density
     section: Review
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A block has a mass of 3.6 kg and a volume of 4.0 x 10^-3 m^3. Calculate its density.'
     answer_label: 'Density of the block'
     check:
@@ -28,7 +28,7 @@ problems:
   - id: r2-specific-heat
     section: Review
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Calculate the energy needed to warm 1.5 kg of water by 25 °C. The specific heat capacity of water is 4200 J/kg°C.'
     answer_label: 'Energy transferred to the water'
     check:
@@ -47,7 +47,7 @@ problems:
   - id: r3-latent
     section: Review
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Calculate the energy needed to melt 0.40 kg of ice at 0 °C. The specific latent heat of fusion of ice is 3.3 x 10^5 J/kg. This is a change of state, so choose the relationship carefully.'
     answer_label: 'Energy needed to melt the ice'
     check:
@@ -65,7 +65,7 @@ problems:
   - id: r4-pv
     section: Review
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A fixed mass of gas at 100 kPa fills 1.5 m^3. It is compressed at constant temperature to 0.50 m^3. Calculate the new pressure.'
     answer_label: 'New pressure of the gas'
     check:
@@ -84,7 +84,7 @@ problems:
   - id: r5-pressure-force
     section: Review
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A gas exerts a pressure of 150 kPa on a surface of area 0.020 m^2. Calculate the force on the surface. This uses pressure from Section 2.4.'
     answer_label: 'Force on the surface'
     check:
@@ -102,7 +102,7 @@ problems:
   - id: r6-efficiency
     section: Review
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'A device is supplied with 800 J of energy and transfers 600 J usefully. Calculate its efficiency. This uses efficiency from Chapter 1.'
     answer_label: 'Efficiency of the device'
     check:
@@ -115,7 +115,7 @@ problems:
   - id: r7-power
     section: Review
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'A heater has a power of 1200 W and runs for 3.0 minutes. Calculate the energy it transfers. This uses power from Chapter 1.'
     answer_label: 'Energy transferred by the heater'
     check:
@@ -133,7 +133,7 @@ problems:
   - id: r8-work-done
     section: Review
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'A force of 80 N moves an object 6.0 m along the line of the force. Calculate the work done. This uses work done from Chapter 2.'
     answer_label: 'Work done on the object'
     check:
@@ -151,7 +151,7 @@ problems:
   - id: r9-change-state
     section: Review
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Explain what happens to the energy supplied to a substance while it is changing state, and what happens to the temperature.'
     answer_label: 'Energy during a change of state'
     check:
@@ -169,7 +169,7 @@ problems:
   - id: r10-work-on-gas
     section: Review
     tier: H
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A force of 25 N pushes a piston through 0.20 m. Calculate the work done on the gas. Explain what happens to the internal energy of the gas. This is Higher tier only.'
     answer_label: 'Work done on the gas and its effect'
     check:
@@ -187,7 +187,7 @@ problems:
   - id: r11-two-stage
     section: Review
     tier: F
-    dfe: [PM2]
+    refs: [PM2]
     statement: 'Say which relationships you will use, then calculate the total energy needed to warm 0.50 kg of water from 20 °C to 100 °C and then boil it all away. Use c = 4200 J/kg°C and L = 2.3 x 10^6 J/kg.'
     answer_label: 'Total energy for warming and boiling'
     check:
@@ -220,7 +220,7 @@ problems:
   - id: r12-float
     section: Review
     tier: F
-    dfe: [PM1]
+    refs: [PM1]
     statement: 'A material has a density of 900 kg/m^3. The density of water is 1000 kg/m^3. State whether the material floats on water, and explain your answer using the particle model.'
     answer_label: 'Whether the material floats'
     check:
@@ -238,7 +238,7 @@ problems:
   - id: r13-method-choice
     section: Review
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A fixed mass of gas at 120 kPa fills 0.80 m^3 at a constant temperature. Say which relationship you will use, then calculate the volume when the pressure is 60 kPa.'
     answer_label: 'New volume of the gas'
     check:

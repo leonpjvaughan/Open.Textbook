@@ -5,7 +5,7 @@ chapter_title: Probability
 section: '23.2'
 section_title: Relative frequency and expected outcomes
 tier: F
-dfe:
+refs:
 - P1
 - P2
 - P3

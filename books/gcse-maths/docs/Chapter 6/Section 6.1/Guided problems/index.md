@@ -5,7 +5,7 @@ chapter_title: Percentages and financial mathematics
 section: "6.1"
 section_title: Percentage of an amount
 tier: F
-dfe: [R9]
+refs: [R9]
 kind: guided-problems
 ---
 

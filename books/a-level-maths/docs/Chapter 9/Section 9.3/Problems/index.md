@@ -4,7 +4,7 @@ chapter: 9
 chapter_title: Numerical methods
 section: '9.3'
 section_title: Newton–Raphson and other recurrence relations
-dfe:
+refs:
 - I2
 kind: problems
 ---

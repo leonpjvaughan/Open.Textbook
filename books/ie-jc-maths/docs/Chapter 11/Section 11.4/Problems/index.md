@@ -15,4 +15,4 @@ kind: problems
 # 11.4 Common factors and factorising — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: AF.3
+> Tier: **O** · refs: AF.3

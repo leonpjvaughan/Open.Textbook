@@ -5,7 +5,7 @@ chapter_title: Measures, accuracy, standard form and surds
 section: '7.6'
 section_title: Surds and exact calculations
 tier: H
-dfe:
+refs:
 - N8
 kind: guided-problems
 ---

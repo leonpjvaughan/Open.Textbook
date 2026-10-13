@@ -17,7 +17,7 @@ chapter: 8
 problems:
   - id: p1-electron-speed
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron moves at 2.0e6 m/s. Find its de Broglie wavelength. The mass of an electron is 9.11e-31 kg.'
     answer_label: 'The de Broglie wavelength'
     check: {kind: approx, value: "6.63e-34 / (9.11e-31 * 2.0e6)", target: "3.64e-10", tolerance: "5e-12"}
@@ -26,7 +26,7 @@ problems:
   - id: p2-momentum-from-wavelength
     plays: de-broglie
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron has a de Broglie wavelength of 1.0e-10 m. Find its momentum.'
     answer_label: 'The momentum'
     check:
@@ -40,7 +40,7 @@ problems:
 
   - id: p3-electron-accelerated
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron is accelerated through 500 V. Find its de Broglie wavelength.'
     answer_label: 'The de Broglie wavelength'
     check: {kind: approx, value: "6.63e-34 / sqrt(2 * 9.11e-31 * 500 * 1.60e-19)", target: "5.49e-11", tolerance: "5e-13"}
@@ -48,7 +48,7 @@ problems:
 
   - id: p4-speed-from-wavelength
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Find the speed of an electron whose de Broglie wavelength is 2.0e-10 m.'
     answer_label: 'The speed'
     check: {kind: approx, value: "6.63e-34 / (9.11e-31 * 2.0e-10)", target: "3.64e6", tolerance: "5e4"}
@@ -56,7 +56,7 @@ problems:
 
   - id: p5-everyday-object
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Find the de Broglie wavelength of a 0.050 kg ball moving at 20 m/s.'
     answer_label: 'The de Broglie wavelength'
     check: {kind: approx, value: "6.63e-34 / (0.050 * 20)", target: "6.63e-34", tolerance: "1e-36"}
@@ -64,7 +64,7 @@ problems:
 
   - id: p6-electron-diffraction-evidence
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Describe the electron diffraction experiment, and explain how it shows that electrons have wave properties.'
     check:
       kind: structured
@@ -86,7 +86,7 @@ problems:
 
   - id: p7-rings-and-voltage
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'In an electron diffraction tube, the rings move closer together when the accelerating voltage is increased. Explain why.'
     check:
       kind: structured
@@ -111,7 +111,7 @@ problems:
 
   - id: p8-proton-wavelength
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Find the de Broglie wavelength of a proton moving at 1.0e6 m/s. The mass of a proton is 1.67e-27 kg.'
     answer_label: 'The de Broglie wavelength'
     check: {kind: approx, value: "6.63e-34 / (1.67e-27 * 1.0e6)", target: "3.97e-13", tolerance: "5e-15"}
@@ -120,7 +120,7 @@ problems:
   - id: p9-photon-momentum
     plays: de-broglie
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Find the momentum of a photon of wavelength 500 nm.'
     answer_label: 'The momentum'
     check:
@@ -134,7 +134,7 @@ problems:
 
   - id: p10-voltage-from-wavelength
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron has a de Broglie wavelength of 5.0e-11 m. Find the accelerating potential difference.'
     answer_label: 'The potential difference'
     check: {kind: approx, value: "(6.63e-34 / 5.0e-11)**2 / (2 * 9.11e-31 * 1.60e-19)", target: "603", tolerance: "5"}
@@ -142,7 +142,7 @@ problems:
 
   - id: p11-sigfigs
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A de Broglie wavelength is calculated as 5.492e-11 m. Write it to three significant figures.'
     answer_label: 'The wavelength'
     check: {kind: sigfigs, value: "5.492e-11", figures: 3, answer: "5.49e-11", convention: round-once}
@@ -150,7 +150,7 @@ problems:
 
   - id: p12-momentum-uncertainty
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'The mass of an electron is known to 0.10% and its speed to 3.0%. Find the percentage uncertainty in its momentum.'
     answer_label: 'The percentage uncertainty'
     check:
@@ -165,7 +165,7 @@ problems:
 
   - id: p13-method-choice
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A student must find the de Broglie wavelength of an electron. State which two quantities you would find first, and give the equations you would use.'
     check:
       kind: structured

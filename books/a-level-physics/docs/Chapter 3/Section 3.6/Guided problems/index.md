@@ -4,7 +4,7 @@ chapter: 3
 chapter_title: Mechanics
 section: '3.6'
 section_title: Oscillations and simple harmonic motion
-dfe:
+refs:
 - AP3
 kind: guided-problems
 ---

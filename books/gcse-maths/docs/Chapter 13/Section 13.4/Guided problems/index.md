@@ -5,7 +5,7 @@ chapter_title: Other functions and graphs
 section: '13.4'
 section_title: The equation of a circle and tangents
 tier: H
-dfe: [A16]
+refs: [A16]
 kind: guided-problems
 ---
 

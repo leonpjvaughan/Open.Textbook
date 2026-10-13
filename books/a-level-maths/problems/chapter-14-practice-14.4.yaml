@@ -6,7 +6,7 @@ chapter: 14
 problems:
   - id: p1-pvalue-positive-reject
     section: "14.4"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A study of 15 pairs gives a correlation coefficient $r = 0.62$. The test is one-tailed with $H_1: \rho > 0$ at the 5% level, and the p-value is $0.007$. State, with a symbol, how the p-value compares with the significance level, and name the decision.'
     answer_label: 'The comparison and the decision'
     check: {kind: compare, lhs: "0.007", relation: "<", rhs: "0.05"}
@@ -14,7 +14,7 @@ problems:
 
   - id: p2-pvalue-retain
     section: "14.4"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A sample of 20 pairs gives $r = 0.22$ and a two-tailed p-value of $0.35$. State, with a symbol, how the p-value compares with the 5% significance level, and name the decision.'
     answer_label: 'The comparison and the decision'
     check: {kind: compare, lhs: "0.35", relation: ">", rhs: "0.05"}
@@ -22,7 +22,7 @@ problems:
 
   - id: p3-pvalue-one-percent
     section: "14.4"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A sample of 30 pairs gives $r = 0.42$ and a two-tailed p-value of $0.021$. State, with a symbol, how the p-value compares with the 1% significance level, and name the decision.'
     answer_label: 'The comparison and the decision'
     check: {kind: compare, lhs: "0.021", relation: ">", rhs: "0.01"}
@@ -30,7 +30,7 @@ problems:
 
   - id: p4-critical-two-reject
     section: "14.4"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A sample of 30 pairs gives $r = 0.42$. The test is two-tailed at the 5% level and the critical value for 30 pairs is $0.361$. State, with a symbol, how $|r|$ compares with the critical value, and name the decision.'
     answer_label: 'The comparison and the decision'
     check: {kind: compare, lhs: "0.42", relation: ">", rhs: "0.361"}
@@ -38,7 +38,7 @@ problems:
 
   - id: p5-critical-two-retain
     section: "14.4"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A sample of 30 pairs gives $r = 0.35$. The test is two-tailed at the 5% level and the critical value for 30 pairs is $0.361$. State, with a symbol, how $|r|$ compares with the critical value, and name the decision.'
     answer_label: 'The comparison and the decision'
     check: {kind: compare, lhs: "0.35", relation: "<", rhs: "0.361"}
@@ -46,7 +46,7 @@ problems:
 
   - id: p6-one-tail-reject
     section: "14.4"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A sample of 20 pairs gives $r = 0.44$. The test is one-tailed with $H_1: \rho > 0$ at the 5% level and the critical value is $0.378$. State, with a symbol, how $r$ compares with the critical value, and name the decision.'
     answer_label: 'The comparison and the decision'
     check: {kind: compare, lhs: "0.44", relation: ">", rhs: "0.378"}
@@ -54,7 +54,7 @@ problems:
 
   - id: p7-two-tail-retain
     section: "14.4"
-    dfe: [O1]
+    refs: [O1]
     statement: 'The same 20 pairs give $r = 0.44$. The test is now two-tailed at the 5% level and the critical value is $0.444$. State, with a symbol, how $|r|$ compares with the critical value, and name the decision.'
     answer_label: 'The comparison and the decision'
     check: {kind: compare, lhs: "0.44", relation: "<", rhs: "0.444"}
@@ -62,7 +62,7 @@ problems:
 
   - id: p8-negative-reject
     section: "14.4"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A sample of 25 pairs gives $r = -0.52$. The test is one-tailed with $H_1: \rho < 0$ at the 5% level and the critical value is $0.337$. State, with a symbol, how $|r|$ compares with the critical value, and name the decision.'
     answer_label: 'The comparison and the decision'
     check: {kind: compare, lhs: "Abs(-0.52)", relation: ">", rhs: "0.337"}
@@ -70,7 +70,7 @@ problems:
 
   - id: p9-negative-retain
     section: "14.4"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A sample of 25 pairs gives $r = -0.28$. The test is one-tailed with $H_1: \rho < 0$ at the 5% level and the critical value is $0.337$. State, with a symbol, how $|r|$ compares with the critical value, and name the decision.'
     answer_label: 'The comparison and the decision'
     check: {kind: compare, lhs: "Abs(-0.28)", relation: "<", rhs: "0.337"}
@@ -78,7 +78,7 @@ problems:
 
   - id: p10-sample-size
     section: "14.4"
-    dfe: [O1]
+    refs: [O1]
     statement: 'The two-tailed 5% critical value for a correlation is $0.361$ for 30 pairs and $0.254$ for 60 pairs. State, with a symbol, how the critical value for 60 pairs compares with the critical value for 30 pairs, and explain what this means for a fixed value of $r$.'
     answer_label: 'The comparison'
     check: {kind: compare, lhs: "0.254", relation: "<", rhs: "0.361"}
@@ -86,7 +86,7 @@ problems:
 
   - id: p11-absolute-value
     section: "14.4"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A correlation coefficient is $r = -0.78$. Write down $|r|$, the value a two-tailed test compares with the critical value.'
     answer_label: 'The value of $|r|$'
     check: {kind: evaluate, expression: "Abs(-0.78)", answer: "0.78"}
@@ -94,7 +94,7 @@ problems:
 
   - id: p12-two-tail-split
     section: "14.4"
-    dfe: [O1]
+    refs: [O1]
     statement: 'A two-tailed test of a correlation uses the 5% significance level. Find the probability placed in each tail.'
     answer_label: 'The probability in each tail'
     check: {kind: evaluate, expression: "0.05/2", answer: "1/40"}

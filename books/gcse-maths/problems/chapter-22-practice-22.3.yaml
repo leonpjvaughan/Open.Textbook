@@ -10,7 +10,7 @@ problems:
   - id: ch22-223-route
     section: '22.3'
     tier: H
-    dfe: [G25]
+    refs: [G25]
     statement: 'In triangle $ABC$, $\overrightarrow{AB}=\mathbf{a}$ and $\overrightarrow{BC}=\mathbf{b}$. Find $\overrightarrow{AC}$.'
     answer_label: 'Vector AC'
     check: {kind: all, checks: [{kind: evaluate, expression: 'a + b', answer: 'b + a'}]}
@@ -18,7 +18,7 @@ problems:
   - id: ch22-223-reverse-route
     section: '22.3'
     tier: H
-    dfe: [G25]
+    refs: [G25]
     statement: 'If $\overrightarrow{AB}=\mathbf{u}+\mathbf{v}$, write $\overrightarrow{BA}$.'
     answer_label: 'Reverse vector'
     check: {kind: all, checks: [{kind: evaluate, expression: '-(u + v)', answer: '-u - v'}]}
@@ -26,7 +26,7 @@ problems:
   - id: ch22-223-parallelogram-diagonal
     section: '22.3'
     tier: H
-    dfe: [G25]
+    refs: [G25]
     statement: 'In parallelogram $ABCD$, $\overrightarrow{AB}=\mathbf{u}$ and $\overrightarrow{AD}=\mathbf{v}$. Find $\overrightarrow{AC}$.'
     answer_label: 'Diagonal AC'
     check: {kind: all, checks: [{kind: evaluate, expression: 'u + v', answer: 'v + u'}]}
@@ -34,7 +34,7 @@ problems:
   - id: ch22-223-other-diagonal
     section: '22.3'
     tier: H
-    dfe: [G25]
+    refs: [G25]
     statement: 'In the same parallelogram, find $\overrightarrow{DB}$.'
     answer_label: 'Diagonal DB'
     check: {kind: all, checks: [{kind: evaluate, expression: 'u - v', answer: 'u + (-v)'}]}
@@ -42,7 +42,7 @@ problems:
   - id: ch22-223-midpoint-position
     section: '22.3'
     tier: H
-    dfe: [G25]
+    refs: [G25]
     statement: 'A segment has endpoint position vectors $\mathbf{p}$ and $\mathbf{q}$. Write the midpoint position vector.'
     answer_label: 'Midpoint position vector'
     check: {kind: all, checks: [{kind: evaluate, expression: '(p + q)/2', answer: 'p/2 + q/2'}]}
@@ -50,7 +50,7 @@ problems:
   - id: ch22-223-prove-midpoints
     section: '22.3'
     tier: H
-    dfe: [G25]
+    refs: [G25]
     statement: 'In parallelogram $ABCD$, take $A$ as the origin, with $B=\mathbf{u}$ and $D=\mathbf{v}$. Show the diagonals have the same midpoint.'
     answer_label: 'Midpoint equality'
     check: {kind: all, checks: [{kind: evaluate, expression: '(u + v)/2', answer: 'u/2 + v/2'}, {kind: evaluate, expression: '(u + v)/2', answer: 'v/2 + u/2'}]}
@@ -58,7 +58,7 @@ problems:
   - id: ch22-223-triangle-midpoint
     section: '22.3'
     tier: H
-    dfe: [G25]
+    refs: [G25]
     statement: 'In triangle $OAB$, the position vectors of $A$ and $B$ are $\mathbf{a}$ and $\mathbf{b}$. Point $M$ is the midpoint of $AB$. Find $\overrightarrow{OM}$.'
     answer_label: 'Vector OM'
     check: {kind: all, checks: [{kind: evaluate, expression: '(a + b)/2', answer: 'a/2 + b/2'}, {kind: evaluate, expression: '(a + b)/2', answer: 'b/2 + a/2'}]}
@@ -66,7 +66,7 @@ problems:
   - id: ch22-223-higher-proof
     section: '22.3'
     tier: H
-    dfe: [G25]
+    refs: [G25]
     statement: 'A quadrilateral has successive side vectors $\mathbf{p}$, $\mathbf{q}$, $-\mathbf{p}$ and $-\mathbf{q}$. Explain why it closes.'
     answer_label: 'Closure'
     check: {kind: all, checks: [{kind: evaluate, expression: 'p + q - p - q', answer: '0'}, {kind: evaluate, expression: 'p - p + q - q', answer: '0'}]}
@@ -74,7 +74,7 @@ problems:
   - id: ch22-223-midpoint-method
     section: '22.3'
     tier: H
-    dfe: [G25]
+    refs: [G25]
     statement: 'Point $P$ is the midpoint of $AB$ and point $Q$ is the midpoint of $BC$, where $\overrightarrow{AB}=\mathbf{u}$ and $\overrightarrow{BC}=\mathbf{v}$. Which method finds $\overrightarrow{PQ}$: add the route vectors through $B$, or halve the diagonal $AC$? Give a reason, then find it.'
     answer_label: 'Method choice: route or diagonal'
     check: {kind: all, checks: [{kind: evaluate, expression: '-u/2 + v/2', answer: '(v - u)/2'}, {kind: evaluate, expression: '(u + v)/2 - u/2', answer: 'v/2'}]}

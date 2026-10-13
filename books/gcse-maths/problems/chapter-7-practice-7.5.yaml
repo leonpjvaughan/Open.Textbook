@@ -6,7 +6,7 @@ problems:
 - id: ch7-75-large
   section: '7.5'
   tier: F
-  dfe:
+  refs:
   - N9
   statement: 'Write $6\,320\,000$ in standard form.'
   answer_label: Large number in standard form
@@ -18,7 +18,7 @@ problems:
 - id: ch7-75-small
   section: '7.5'
   tier: F
-  dfe:
+  refs:
   - N9
   statement: 'Write $0.000091$ in standard form.'
   answer_label: Small number in standard form
@@ -30,7 +30,7 @@ problems:
 - id: ch7-75-multiply
   section: '7.5'
   tier: F
-  dfe:
+  refs:
   - N9
   statement: 'Work out $(2\times10^5)(3\times10^4)$ in standard form.'
   answer_label: Multiply standard form
@@ -42,7 +42,7 @@ problems:
 - id: ch7-75-divide
   section: '7.5'
   tier: F
-  dfe:
+  refs:
   - N9
   statement: 'Work out $(8\times10^7)\\div(2\times10^3)$ in standard form.'
   answer_label: Divide standard form
@@ -54,7 +54,7 @@ problems:
 - id: ch7-75-add
   section: '7.5'
   tier: F
-  dfe:
+  refs:
   - N9
   statement: 'Work out $4.5\times10^6+2.3\times10^6$.'
   answer_label: Add in standard form
@@ -66,7 +66,7 @@ problems:
 - id: ch7-75-subtract
   section: '7.5'
   tier: F
-  dfe:
+  refs:
   - N9
   statement: 'Work out $5.2\times10^4-3\times10^3$.'
   answer_label: Subtract in standard form
@@ -78,7 +78,7 @@ problems:
 - id: ch7-75-compare
   section: '7.5'
   tier: F
-  dfe:
+  refs:
   - N9
   statement: 'Which is greater: $7.4\times10^{-3}$ or $6.9\times10^{-2}$?'
   answer_label: Compare standard form values
@@ -91,7 +91,7 @@ problems:
 - id: ch7-75-context
   section: '7.5'
   tier: F
-  dfe:
+  refs:
   - N9
   statement: 'A bacterium is $0.000004$ m long. Write this length in standard form.'
   answer_label: Measurement in standard form
@@ -103,7 +103,7 @@ problems:
 - id: ch7-75-h
   section: '7.5'
   tier: H
-  dfe:
+  refs:
   - N9
   statement: '**H** Work out $(6\times10^{-4})(5\times10^8)\\div(3\times10^2)$ in standard form.'
   answer_label: Combined standard form calculation
@@ -115,7 +115,7 @@ problems:
 - id: ch7-75-estimate
   section: '7.5'
   tier: F
-  dfe:
+  refs:
   - N9
   statement: 'Which method applies to add $8.2\times10^5$ and $3.7\times10^4$? Then calculate.'
   answer_label: Choose a method for addition

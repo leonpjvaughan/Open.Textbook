@@ -15,4 +15,4 @@ kind: problems
 # 3.4 Nets of prisms, cylinders and spheres — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 3.4
+> Tier: **O** · refs: 3.4

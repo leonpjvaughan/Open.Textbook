@@ -4,7 +4,7 @@ chapter: 12
 chapter_title: Probability
 section: '12.2'
 section_title: Conditional probability and the conditional probability formula
-dfe:
+refs:
 - M2
 kind: walkthrough
 ---

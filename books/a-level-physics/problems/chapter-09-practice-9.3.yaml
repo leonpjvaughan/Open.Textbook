@@ -17,7 +17,7 @@ chapter: 9
 problems:
   - id: p1-force-on-wire
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A straight wire of length 0.60 m carries a current of 2.5 A at right angles to a magnetic field of flux density 0.35 T. Find the force on the wire.'
     answer_label: 'The force on the wire'
     check:
@@ -31,7 +31,7 @@ problems:
 
   - id: p2-force-on-wire-angle
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'The wire in question 1 is turned so that it makes an angle of 55 degrees with the field. Find the force on it now.'
     answer_label: 'The force on the wire'
     check: {kind: approx, value: "0.35 * 2.5 * 0.60 * sin(55 * pi / 180)", target: "0.430", tolerance: "0.005"}
@@ -39,7 +39,7 @@ problems:
 
   - id: p3-force-on-electron
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'An electron moves at 3.0e6 m/s at right angles to a magnetic field of flux density 0.15 T. Find the magnetic force on it.'
     answer_label: 'The magnetic force'
     check: {kind: approx, value: "0.15 * 1.60e-19 * 3.0e6", target: "7.2e-14", tolerance: "1e-15"}
@@ -47,7 +47,7 @@ problems:
 
   - id: p4-radius-of-path
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the radius of the circular path of the electron in question 3. The mass of an electron is 9.11e-31 kg.'
     answer_label: 'The radius'
     check: {kind: approx, value: "9.11e-31 * 3.0e6 / (0.15 * 1.60e-19)", target: "1.14e-4", tolerance: "1e-6"}
@@ -55,7 +55,7 @@ problems:
 
   - id: p5-period-of-path
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Find the time the electron in question 3 takes to complete one full circle.'
     answer_label: 'The period'
     check: {kind: approx, value: "2 * pi * 9.11e-31 / (0.15 * 1.60e-19)", target: "2.39e-10", tolerance: "1e-12"}
@@ -63,7 +63,7 @@ problems:
 
   - id: p6-magnetic-flux
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A coil of area 2.0e-3 m^2 is placed at right angles to a magnetic field of flux density 0.45 T. Find the magnetic flux through one turn.'
     answer_label: 'The magnetic flux'
     check:
@@ -77,7 +77,7 @@ problems:
 
   - id: p7-flux-linkage
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'The coil in question 6 has 250 turns. Find the flux linkage.'
     answer_label: 'The flux linkage'
     check: {kind: approx, value: "250 * 0.45 * 2.0e-3", target: "0.225", tolerance: "0.002"}
@@ -85,7 +85,7 @@ problems:
 
   - id: p8-tesla-definition
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A wire of length 1.0 m carrying a current of 1.0 A at right angles to a field feels a force of 1.0 N. Show that the flux density is 1.0 T.'
     answer_label: 'The flux density'
     check:
@@ -99,7 +99,7 @@ problems:
 
   - id: p9-no-force-parallel
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Explain why a charged particle moving along the lines of a magnetic field feels no magnetic force.'
     check:
       kind: structured
@@ -121,7 +121,7 @@ problems:
 
   - id: p10-uncertainty-radius
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'The radius of a charged particle in a magnetic field is 0.070 m. The flux density is measured with an uncertainty of 1.5% and the speed with an uncertainty of 0.5%. Find the absolute uncertainty in the radius.'
     answer_label: 'The absolute uncertainty'
     check:
@@ -137,7 +137,7 @@ problems:
 
   - id: p11-force-2sf
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A calculation gives a magnetic force of 9.6154e-14 N. Write the answer to two significant figures.'
     answer_label: 'The force to two significant figures'
     check:
@@ -150,7 +150,7 @@ problems:
 
   - id: p12-convert-millitesla
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A magnetic field has a flux density of 3.0 mT. Write this in tesla.'
     answer_label: 'The flux density in tesla'
     check: {kind: convert, value: "3.0", from: "mT", to: "T", answer: "3.0e-3"}
@@ -158,7 +158,7 @@ problems:
 
   - id: p13-ion-in-mass-spectrometer
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A xenon ion of mass 2.18e-25 kg and charge +1.60e-19 C is accelerated from rest through 1.20 kV. It then enters a magnetic field of flux density 0.25 T at right angles to its velocity. Find the radius of its path.'
     answer_label: 'The radius'
     check:
@@ -172,7 +172,7 @@ problems:
 
   - id: p14-method-mass-spectrometer
     section: '9.3'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'State which equation you would use to find the radius of the path of an ion in a mass spectrometer, and why.'
     check:
       kind: structured

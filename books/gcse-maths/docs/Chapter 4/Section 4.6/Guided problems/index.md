@@ -5,7 +5,7 @@ chapter_title: Fractions, decimals and percentages
 section: "4.6"
 section_title: Fractions and percentages as operators
 tier: F
-dfe: [N11, N12]
+refs: [N11, N12]
 kind: guided-problems
 ---
 # 4.6 Fractions and percentages as operators — Practise with help

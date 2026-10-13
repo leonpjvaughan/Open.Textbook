@@ -5,7 +5,7 @@ chapter_title: Functions, algebraic fractions and proof
 section: "15.5"
 section_title: "Algebraic proof"
 tier: H
-dfe: [A6]
+refs: [A6]
 kind: learn
 ---
 

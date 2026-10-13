@@ -5,7 +5,7 @@ chapter_title: Circle geometry and circle theorems
 section: '21.1'
 section_title: Parts of a circle
 tier: F
-dfe: [G9]
+refs: [G9]
 kind: problems
 ---
 

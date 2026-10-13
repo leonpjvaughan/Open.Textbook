@@ -3,7 +3,7 @@ problems:
 - id: 'ch18-18.5-ratio'
   section: '18.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'G19'
   statement: 'Similar shapes have corresponding sides $4$ cm and $10$ cm. Find the scale factor from small to large.'
   answer_label: 'Similar shapes have corresponding sides $4$ cm and $10$ cm. Find the scale factor from small to large.'
@@ -15,7 +15,7 @@ problems:
 - id: 'ch18-18.5-missing'
   section: '18.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'R12'
   statement: 'Similar triangles have sides $3,4,5$ and a corresponding longest side $15$. Find the scale factor and the other two sides.'
   answer_label: 'Similar triangles have sides $3,4,5$ and a corresponding longest side $15$. Find the scale factor and the other two sides.'
@@ -35,7 +35,7 @@ problems:
 - id: 'ch18-18.5-map'
   section: '18.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'G19'
   statement: 'Two similar rectangles have corresponding widths $5$ cm and $8$ cm. A short side of the first is $3$ cm. Find the corresponding side.'
   answer_label: 'Two similar rectangles have corresponding widths $5$ cm and $8$ cm. A short side of the first is $3$ cm. Find the corresponding side.'
@@ -47,7 +47,7 @@ problems:
 - id: 'ch18-18.5-ratio-check'
   section: '18.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'G19'
   statement: 'Are triangles with sides $2,3,4$ and $4,6,8$ similar? Give a reason.'
   answer_label: 'Are triangles with sides $2,3,4$ and $4,6,8$ similar? Give a reason.'
@@ -67,7 +67,7 @@ problems:
 - id: 'ch18-18.5-find-side'
   section: '18.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'R12'
   statement: 'Corresponding sides are $7$ cm and $21$ cm. A second side on the smaller shape is $5$ cm. Find its matching length.'
   answer_label: 'Corresponding sides are $7$ cm and $21$ cm. A second side on the smaller shape is $5$ cm. Find its matching length.'
@@ -79,7 +79,7 @@ problems:
 - id: 'ch18-18.5-context'
   section: '18.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'R12'
   statement: 'A model bridge is $1.2$ m long. The real bridge is $30$ m long. Find the scale factor from model to real.'
   answer_label: 'A model bridge is $1.2$ m long. The real bridge is $30$ m long. Find the scale factor from model to real.'
@@ -91,7 +91,7 @@ problems:
 - id: 'ch18-18.5-similar-or-congruent'
   section: '18.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'G19'
   statement: 'Two similar shapes have scale factor $1.4$. Are they congruent? Explain.'
   answer_label: 'Two similar shapes have scale factor $1.4$. Are they congruent? Explain.'
@@ -103,7 +103,7 @@ problems:
 - id: 'ch18-18.5-missing-length'
   section: '18.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'G19'
   statement: 'Similar triangles have corresponding sides $8$ and $12$. A side matching $10$ is on the second triangle. Find its corresponding side on the first.'
   answer_label: 'Similar triangles have corresponding sides $8$ and $12$. A side matching $10$ is on the second triangle. Find its corresponding side on the first.'
@@ -115,7 +115,7 @@ problems:
 - id: 'ch18-18.5-explain'
   section: '18.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'R12'
   statement: 'A drawing uses scale $1:50$. A line is $6$ cm on the drawing. Find the real length in metres.'
   answer_label: 'A drawing uses scale $1:50$. A line is $6$ cm on the drawing. Find the real length in metres.'
@@ -127,7 +127,7 @@ problems:
 - id: 'ch18-18.5-method'
   section: '18.5'
   tier: 'F'
-  dfe:
+  refs:
   - 'G19'
   statement: 'Lengths $6,9,12$ are compared with $10,15,20$. Which method checks similarity, and why?'
   answer_label: 'Lengths $6,9,12$ are compared with $10,15,20$. Which method checks similarity, and why?'

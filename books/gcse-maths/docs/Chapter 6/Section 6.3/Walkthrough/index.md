@@ -5,7 +5,7 @@ chapter_title: Percentages and financial mathematics
 section: "6.3"
 section_title: Reverse percentages
 tier: F
-dfe: [R9]
+refs: [R9]
 kind: walkthrough
 ---
 

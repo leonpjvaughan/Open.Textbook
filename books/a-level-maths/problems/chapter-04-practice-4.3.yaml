@@ -13,7 +13,7 @@ symbols:
 problems:
   - id: p1-formula-distant-term
     section: "4.3"
-    dfe: [D2]
+    refs: [D2]
     statement: 'A sequence is given by $u_n = 4n - 7$. Work out $u_{20}$.'
     answer_label: 'The term'
     check:
@@ -24,7 +24,7 @@ problems:
 
   - id: p2-formula-quadratic
     section: "4.3"
-    dfe: [D2]
+    refs: [D2]
     statement: 'A sequence is given by $u_n = 3n^2 + 1$. Work out $u_6$.'
     answer_label: 'The term'
     check:
@@ -35,7 +35,7 @@ problems:
 
   - id: p3-recurrence-three-steps
     section: "4.3"
-    dfe: [D2]
+    refs: [D2]
     statement: 'A sequence is given by $u_{n+1} = 2u_n + 3$ and $u_1 = 1$. Work out $u_4$.'
     answer_label: 'The term'
     check:
@@ -47,7 +47,7 @@ problems:
 
   - id: p4-recurrence-first-negative
     section: "4.3"
-    dfe: [D2]
+    refs: [D2]
     statement: 'A sequence is given by $u_{n+1} = u_n - 4$ and $u_1 = 20$. Find the first term that is negative.'
     answer_label: 'The position of the first negative term'
     check:
@@ -59,7 +59,7 @@ problems:
 
   - id: p5-periodic-distant-term
     section: "4.3"
-    dfe: [D2]
+    refs: [D2]
     statement: 'A sequence repeats the pattern $6, 1, 8, 1, 6, 1, 8, 1, \dots$. Work out $u_{50}$.'
     answer_label: 'The term'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: p6-fibonacci
     section: "4.3"
-    dfe: [D2]
+    refs: [D2]
     statement: 'The Fibonacci sequence is defined by $f_1 = 1$, $f_2 = 1$ and $f_{n+2} = f_{n+1} + f_n$. Work out $f_{10}$.'
     answer_label: 'The term'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-alternating-sequence
     section: "4.3"
-    dfe: [D2]
+    refs: [D2]
     statement: 'A sequence is given by $u_n = (-1)^n$. Work out $u_7$ and $u_{100}$, and state the period.'
     answer_label: 'The two terms and the period'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p8-depreciation
     section: "4.3"
-    dfe: [D2]
+    refs: [D2]
     statement: 'A van costs £12,000. Its value falls by 15% each year, so $v_{n+1} = 0.85v_n$ with $v_1 = 12{,}000$. Work out its value after 3 years, to the nearest penny.'
     answer_label: 'The value'
     check:
@@ -105,7 +105,7 @@ problems:
 
   - id: p9-halving-recurrence
     section: "4.3"
-    dfe: [D2]
+    refs: [D2]
     statement: 'A sequence is given by $u_{n+1} = \frac{1}{2}u_n + 1$ and $u_1 = 0$. Work out $u_4$ and say whether the sequence increases or decreases.'
     answer_label: 'The term and the direction'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: p10-two-ways-to-see-it
     section: "4.3"
-    dfe: [D2]
+    refs: [D2]
     statement: 'The sequence $1, 4, 9, 16, \dots$ can be described by the formula $u_n = n^2$ or by the recurrence $u_{n+1} = u_n + 2n + 1$. Show that the recurrence gives the gap $7$ between the third and fourth terms, then work out $u_{20}$.'
     answer_label: 'The gap and the twentieth term'
     check:
@@ -130,7 +130,7 @@ problems:
 
   - id: p11-recurrence-iterate
     section: "4.3"
-    dfe: [D2]
+    refs: [D2]
     statement: 'A sequence is given by $u_{n+1} = 2u_n - 1$ and $u_1 = 3$. Work out $u_5$.'
     answer_label: 'The term'
     check:
@@ -142,7 +142,7 @@ problems:
 
   - id: p12-fundraising-terms
     section: "4.3"
-    dfe: [D2]
+    refs: [D2]
     statement: 'The quiz night follows $q_{n+1} = q_n + 50$ with $q_1 = 150$. The online appeal follows $a_{n+1} = 0.8a_n$ with $a_1 = 600$. Work out the quiz income in month 10 and the appeal income in month 6, to the nearest penny.'
     answer_label: 'The two incomes'
     check:

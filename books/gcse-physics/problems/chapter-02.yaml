@@ -18,7 +18,7 @@ problems:
   - id: w1-weight-pupil
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A pupil of mass 70 kg stands on the ground. Take g = 9.8 N/kg. Calculate the weight of the pupil.'
     check:
       kind: all
@@ -35,7 +35,7 @@ problems:
   - id: w2-resultant-opposite
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A force of 250 N acts to the right and a force of 100 N acts to the left. Calculate the resultant force.'
     check: {kind: evaluate, expression: "250 - 100", answer: "150"}
     answer_text: '$150\,\text{N}$ to the right'
@@ -43,7 +43,7 @@ problems:
   - id: w3-resultant-same
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'Two forces of 35 N and 50 N act in the same direction. Calculate the resultant force.'
     check: {kind: evaluate, expression: "35 + 50", answer: "85"}
     answer_text: '$85\,\text{N}$ in the direction of the forces'
@@ -51,7 +51,7 @@ problems:
   - id: w4-resolve-50n
     section: '2.1'
     tier: H
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A force of 50 N acts at 30 degrees to the horizontal. Resolve the force into components.'
     check:
       kind: all
@@ -66,7 +66,7 @@ problems:
   - id: w5-resultant-perpendicular
     section: '2.1'
     tier: H
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'Two forces of 30 N and 40 N act at right angles. Calculate the resultant.'
     check:
       kind: all
@@ -82,7 +82,7 @@ problems:
   - id: g1-weight-climber
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A climber has a mass of 65 kg. Take g = 9.8 N/kg. Calculate the weight of the climber.'
     check:
       kind: all
@@ -99,7 +99,7 @@ problems:
   - id: g2-resultant-tug
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A force of 185 N acts to the right and a force of 120 N acts to the left. Calculate the resultant force.'
     check: {kind: evaluate, expression: "185 - 120", answer: "65"}
     answer_text: '$65\,\text{N}$ to the right'
@@ -107,7 +107,7 @@ problems:
   - id: g3-resolve-80n
     section: '2.1'
     tier: H
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A force of 80 N acts at 25 degrees to the horizontal. Resolve the force into components.'
     check:
       kind: all
@@ -122,7 +122,7 @@ problems:
   - id: g4-resultant-same
     section: '2.1'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'Two forces of 25 N and 40 N act in the same direction. Calculate the resultant force.'
     check: {kind: evaluate, expression: "25 + 40", answer: "65"}
     answer_text: '$65\,\text{N}$ in the direction of the forces'
@@ -131,7 +131,7 @@ problems:
   - id: w6-spring-force
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A spring has a spring constant of 320 N/m and is stretched by 0.15 m. Calculate the force.'
     check:
       kind: all
@@ -148,7 +148,7 @@ problems:
   - id: w7-spring-constant
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A force of 20 N stretches a spring by 0.080 m. Calculate the spring constant.'
     check:
       kind: all
@@ -165,7 +165,7 @@ problems:
   - id: w8-spring-extension
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A spring has a spring constant of 120 N/m. A force of 36 N is applied. Calculate the extension.'
     check:
       kind: all
@@ -182,7 +182,7 @@ problems:
   - id: w9-elastic-energy
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A spring has a spring constant of 200 N/m and is stretched by 0.20 m. Calculate the energy stored.'
     check:
       kind: all
@@ -200,7 +200,7 @@ problems:
   - id: g5-spring-force
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A spring has a spring constant of 150 N/m and is stretched by 0.24 m. Calculate the force.'
     check:
       kind: all
@@ -217,7 +217,7 @@ problems:
   - id: g6-spring-constant
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A force of 30 N stretches a spring by 0.12 m. Calculate the spring constant.'
     check:
       kind: all
@@ -234,7 +234,7 @@ problems:
   - id: g7-elastic-energy
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A spring has a spring constant of 350 N/m and is stretched by 0.20 m. Calculate the energy stored.'
     check:
       kind: all
@@ -251,7 +251,7 @@ problems:
   - id: g8-graph-gradient
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A force-extension graph is a straight line through the origin. The extension is 0.30 m when the force is 60 N. Find the spring constant from the gradient.'
     check:
       kind: gradient
@@ -263,7 +263,7 @@ problems:
   - id: w10-work-push
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A force of 75 N pushes a box 6.0 m along the line of the force. Calculate the work done.'
     check:
       kind: all
@@ -280,7 +280,7 @@ problems:
   - id: w11-force-from-work
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A machine does 600 J of work over 8.0 m. Calculate the force.'
     check:
       kind: all
@@ -297,7 +297,7 @@ problems:
   - id: w12-distance-from-work
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A force of 120 N does 480 J of work. Calculate the distance moved.'
     check:
       kind: all
@@ -314,7 +314,7 @@ problems:
   - id: w13-work-lifting
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A box of mass 12 kg is lifted 2.5 m. Take g = 9.8 N/kg. Calculate the work done against gravity.'
     check:
       kind: all
@@ -332,7 +332,7 @@ problems:
   - id: w14-work-friction
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A friction force of 45 N acts on a crate that slides 12 m. Calculate the work done against friction.'
     check:
       kind: all
@@ -349,7 +349,7 @@ problems:
   - id: w14b-motor-power
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A motor does 1800 J of work in 6.0 s. Calculate the power of the motor.'
     check:
       kind: all
@@ -367,7 +367,7 @@ problems:
   - id: g9-work-push
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A force of 90 N pushes a crate 6.0 m. Calculate the work done.'
     check:
       kind: all
@@ -384,7 +384,7 @@ problems:
   - id: g10-force-from-work
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A machine does 1200 J of work over 25 m. Calculate the force.'
     check:
       kind: all
@@ -401,7 +401,7 @@ problems:
   - id: g11-work-lifting
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A bag of mass 6.0 kg is lifted 1.5 m. Take g = 9.8 N/kg. Calculate the work done against gravity.'
     check:
       kind: all
@@ -419,7 +419,7 @@ problems:
   - id: g12-work-lifting-2
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A bag of mass 20 kg is lifted 1.8 m. Take g = 9.8 N/kg. Calculate the work done against gravity.'
     check:
       kind: all
@@ -438,7 +438,7 @@ problems:
   - id: w15-pressure-block
     section: '2.4'
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'A force of 300 N acts on an area of 0.015 m squared. Calculate the pressure.'
     check:
       kind: all
@@ -455,7 +455,7 @@ problems:
   - id: w16-force-from-pressure
     section: '2.4'
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'A pressure of 8000 Pa acts on an area of 0.25 m squared. Calculate the force.'
     check:
       kind: all
@@ -472,7 +472,7 @@ problems:
   - id: w17-area-from-pressure
     section: '2.4'
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'A force of 900 N produces a pressure of 30000 Pa. Calculate the area.'
     check:
       kind: all
@@ -489,7 +489,7 @@ problems:
   - id: w18-pressure-depth
     section: '2.4'
     tier: H
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'Calculate the pressure due to a column of water 5.0 m high. The density of water is 1000 kg/m cubed and g = 9.8 N/kg.'
     check:
       kind: all
@@ -507,7 +507,7 @@ problems:
   - id: w19-depth-difference
     section: '2.4'
     tier: H
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'Calculate the pressure difference between depths of 1.0 m and 3.0 m in water of density 1000 kg/m cubed. Take g = 9.8 N/kg.'
     check:
       kind: all
@@ -526,7 +526,7 @@ problems:
   - id: g13-pressure-block
     section: '2.4'
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'A force of 240 N acts on an area of 0.020 m squared. Calculate the pressure.'
     check:
       kind: all
@@ -543,7 +543,7 @@ problems:
   - id: g14-force-from-pressure
     section: '2.4'
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'A pressure of 2500 Pa acts on an area of 0.48 m squared. Calculate the force.'
     check:
       kind: all
@@ -560,7 +560,7 @@ problems:
   - id: g15-pressure-depth
     section: '2.4'
     tier: H
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'Calculate the pressure due to a column of water 0.20 m high. The density of water is 1000 kg/m cubed and g = 9.8 N/kg.'
     check:
       kind: all
@@ -579,7 +579,7 @@ problems:
   - id: w20-moment
     section: '2.5'
     tier: F
-    dfe: [FO4]
+    refs: [FO4]
     statement: 'A force of 40 N acts at a perpendicular distance of 0.15 m from a pivot. Calculate the moment.'
     check:
       kind: all
@@ -596,7 +596,7 @@ problems:
   - id: w21-balance
     section: '2.5'
     tier: F
-    dfe: [FO4]
+    refs: [FO4]
     statement: 'A weight of 300 N sits 2.0 m from the pivot of a balanced beam. A second weight sits 2.5 m from the pivot on the other side. Calculate the second weight.'
     check:
       kind: all
@@ -614,7 +614,7 @@ problems:
   - id: w22-lever
     section: '2.5'
     tier: F
-    dfe: [FO4]
+    refs: [FO4]
     statement: 'A lever has an effort of 200 N at 0.80 m from the pivot and a load at 0.20 m from the pivot. Calculate the force on the load.'
     check:
       kind: all
@@ -632,7 +632,7 @@ problems:
   - id: w23-gear
     section: '2.5'
     tier: F
-    dfe: [FO4]
+    refs: [FO4]
     statement: 'A gear with 30 teeth drives a gear with 15 teeth. The driving gear has a moment of 8.0 N m. Calculate the moment of the driven gear.'
     check:
       kind: all
@@ -645,7 +645,7 @@ problems:
   - id: g16-moment
     section: '2.5'
     tier: F
-    dfe: [FO4]
+    refs: [FO4]
     statement: 'A force of 25 N acts at a perpendicular distance of 0.40 m from a pivot. Calculate the moment.'
     check:
       kind: all
@@ -662,7 +662,7 @@ problems:
   - id: g17-balance
     section: '2.5'
     tier: F
-    dfe: [FO4]
+    refs: [FO4]
     statement: 'A weight of 500 N sits 0.60 m from the pivot of a balanced beam. A second weight sits 1.5 m from the pivot on the other side. Calculate the second weight.'
     check:
       kind: all
@@ -680,7 +680,7 @@ problems:
   - id: g18-lever
     section: '2.5'
     tier: F
-    dfe: [FO4]
+    refs: [FO4]
     statement: 'A lever has an effort of 120 N at 0.50 m from the pivot and a load at 0.10 m from the pivot. Calculate the force on the load.'
     check:
       kind: all
@@ -698,7 +698,7 @@ problems:
   - id: g19-gear
     section: '2.5'
     tier: F
-    dfe: [FO4]
+    refs: [FO4]
     statement: 'A gear with 20 teeth drives a gear with 40 teeth. The driving gear has a moment of 12 N m. Calculate the moment of the driven gear.'
     check:
       kind: all
@@ -711,7 +711,7 @@ problems:
   - id: warmup-2-1-kinetic
     section: '2.1'
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'Warm-up: calculate the energy in the kinetic store of a 2.0 kg object moving at 3.0 m/s.'
     check:
       kind: all
@@ -727,7 +727,7 @@ problems:
   - id: warmup-2-2-weight
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'Warm-up: calculate the weight of a 4.0 kg bag. Take g = 9.8 N/kg.'
     check:
       kind: all
@@ -744,7 +744,7 @@ problems:
   - id: warmup-2-3-spring
     section: '2.3'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'Warm-up: a spring of spring constant 200 N/m is stretched by 0.10 m. Calculate the force.'
     check:
       kind: all
@@ -761,7 +761,7 @@ problems:
   - id: warmup-2-4-work
     section: '2.4'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'Warm-up: calculate the work done when a force of 60 N moves an object 5.0 m along the line of the force.'
     check:
       kind: all
@@ -778,7 +778,7 @@ problems:
   - id: warmup-2-5-pressure
     section: '2.5'
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'Warm-up: calculate the pressure when a force of 400 N acts on an area of 0.20 m squared.'
     check:
       kind: all

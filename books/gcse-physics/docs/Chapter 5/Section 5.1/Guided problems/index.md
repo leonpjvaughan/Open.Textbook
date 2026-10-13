@@ -5,7 +5,7 @@ chapter_title: Light and electromagnetic waves
 section: '5.1'
 section_title: The electromagnetic spectrum
 tier: F
-dfe:
+refs:
 - WA3
 kind: guided-problems
 ---

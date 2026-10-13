@@ -15,4 +15,4 @@ kind: problems
 # 14.1 Translations — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 2.4
+> Tier: **F** · refs: 2.4

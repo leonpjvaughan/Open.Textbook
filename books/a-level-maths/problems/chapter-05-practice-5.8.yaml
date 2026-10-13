@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: p1-sin-75
     section: "5.8"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Find the exact value of $\sin 75^\circ$.'
     answer_label: 'The value'
     check:
@@ -20,7 +20,7 @@ problems:
 
   - id: p2-cos-15
     section: "5.8"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Find the exact value of $\cos 15^\circ$.'
     answer_label: 'The value'
     check:
@@ -31,7 +31,7 @@ problems:
 
   - id: p3-tan-75
     section: "5.8"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Find the exact value of $\tan 75^\circ$.'
     answer_label: 'The value'
     check:
@@ -42,7 +42,7 @@ problems:
 
   - id: p4-sin-double
     section: "5.8"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Given that $\sin A = \dfrac{5}{13}$ and $A$ is acute, find $\sin 2A$.'
     answer_label: 'The value'
     check:
@@ -53,7 +53,7 @@ problems:
 
   - id: p5-cos-double
     section: "5.8"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Given that $\sin A = \dfrac{5}{13}$ and $A$ is acute, find $\cos 2A$.'
     answer_label: 'The value'
     check:
@@ -64,7 +64,7 @@ problems:
 
   - id: p6-tan-double
     section: "5.8"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Given that $\tan A = \dfrac{1}{2}$, find $\tan 2A$.'
     answer_label: 'The value'
     check:
@@ -75,7 +75,7 @@ problems:
 
   - id: p7-sin-105
     section: "5.8"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Find the exact value of $\sin 105^\circ$.'
     answer_label: 'The value'
     check:
@@ -86,7 +86,7 @@ problems:
 
   - id: p8-cos-double-from-cos
     section: "5.8"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Given that $\cos A = \dfrac{3}{5}$, find $\cos 2A$.'
     answer_label: 'The value'
     check:
@@ -97,7 +97,7 @@ problems:
 
   - id: p9-sum-to-product
     section: "5.8"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Show that $\sin(A + B) + \sin(A - B) \equiv 2\sin A\cos B$.'
     answer_label: 'The identity'
     plays: sine-addition
@@ -109,7 +109,7 @@ problems:
 
   - id: p10-double-division
     section: "5.8"
-    dfe: [E6]
+    refs: [E6]
     statement: 'Show that $\dfrac{\sin 2A}{2\sin A} \equiv \cos A$ for $\sin A \neq 0$.'
     answer_label: 'The identity'
     check:

@@ -15,4 +15,4 @@ kind: problems
 # 5.1 Equivalent fractions and ordering — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: N.2
+> Tier: **O** · refs: N.2

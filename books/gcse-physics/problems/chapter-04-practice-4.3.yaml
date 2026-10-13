@@ -12,7 +12,7 @@ problems:
   - id: p1-law-of-reflection
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'State the law of reflection for a wave at a surface.'
     answer_label: 'The law of reflection'
     check:
@@ -30,7 +30,7 @@ problems:
   - id: p2-echo-time-wall
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A water wave travels at 3.0 m/s and reflects from a wall 24 m away. Calculate the time taken for the wave to travel to the wall and back.'
     answer_label: 'Time for the echo'
     check:
@@ -48,7 +48,7 @@ problems:
   - id: p3-wavelength-change
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A wave of frequency 250 Hz passes from one material into another. Its speed changes from 5.0 m/s to 8.0 m/s. The frequency does not change. Calculate the wavelength in each material.'
     answer_label: 'Wavelengths in the two materials'
     check:
@@ -73,7 +73,7 @@ problems:
   - id: p4-transmitted-fraction
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'When a wave meets a boundary, 10% of its energy is reflected and 20% is absorbed. Calculate the percentage of the energy that is transmitted.'
     answer_label: 'Percentage transmitted'
     check:
@@ -85,7 +85,7 @@ problems:
   - id: p5-three-effects
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'Describe what can happen to a wave when it meets the boundary between two different materials.'
     answer_label: 'What happens at a boundary'
     check:
@@ -106,7 +106,7 @@ problems:
   - id: p6-why-normal
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'Explain why the angles in a reflection diagram are measured from the normal and not from the surface.'
     answer_label: 'Why the normal is used'
     check:
@@ -124,7 +124,7 @@ problems:
   - id: p7-ray-diagram
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'Describe how to draw a ray diagram to show a wave reflecting from a flat surface.'
     answer_label: 'Drawing a reflection ray diagram'
     check:
@@ -145,7 +145,7 @@ problems:
   - id: p8-absorption-example
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A room is lined with soft, thick curtains. Explain how this reduces the loudness of an echo in the room.'
     answer_label: 'How curtains reduce an echo'
     check:
@@ -166,7 +166,7 @@ problems:
   - id: p9-convert-cm
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A ripple tank is filled with water to a depth of 15 cm. Convert this depth to metres.'
     answer_label: 'Depth in metres'
     check:
@@ -180,7 +180,7 @@ problems:
   - id: p10-deep-water-speed
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A water wave of frequency 4.0 Hz passes from shallow water into deep water. In the deep water the wavelength is 0.35 m. The frequency stays the same. Calculate the wave speed in the deep water.'
     answer_label: 'Wave speed in deep water'
     check:
@@ -198,7 +198,7 @@ problems:
   - id: p11-sound-echo-distance
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A person claps and hears the echo from a wall after 0.60 s. The speed of sound in air is 330 m/s. Calculate the distance from the person to the wall.'
     answer_label: 'Distance to the wall'
     check:
@@ -216,7 +216,7 @@ problems:
   - id: p12-method-choice
     section: '4.3'
     tier: F
-    dfe: [WA2]
+    refs: [WA2]
     statement: 'A sound wave passes from air into water. The frequency does not change. Say which equation links the speed, the frequency and the wavelength, and explain what happens to the wavelength.'
     answer_label: 'Choosing the equation and predicting the wavelength'
     check:

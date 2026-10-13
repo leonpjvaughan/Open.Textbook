@@ -4,7 +4,7 @@ chapter: 2
 chapter_title: Algebra and functions
 section: '2.9'
 section_title: Graphs, the modulus function, asymptotes and intersections
-dfe:
+refs:
 - B7
 kind: guided-problems
 ---

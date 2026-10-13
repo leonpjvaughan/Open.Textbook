@@ -3,7 +3,7 @@ problems:
 - id: p1-parallel
   section: '11.4'
   tier: H
-  dfe: &id001
+  refs: &id001
   - A9
   statement: Give the gradient of a line parallel to $y=3x+2$.
   answer_label: Question 1
@@ -15,7 +15,7 @@ problems:
 - id: p2-perpendicular
   section: '11.4'
   tier: H
-  dfe: *id001
+  refs: *id001
   statement: Give the gradient of a line perpendicular to $y=2x-1$.
   answer_label: Question 2
   check:
@@ -26,7 +26,7 @@ problems:
 - id: p3-parallel-equation
   section: '11.4'
   tier: H
-  dfe: *id001
+  refs: *id001
   statement: Find the equation parallel to $y=4x+1$ through $(0,-3)$.
   answer_label: Question 3
   check:
@@ -37,7 +37,7 @@ problems:
 - id: p4-perp-equation
   section: '11.4'
   tier: H
-  dfe: *id001
+  refs: *id001
   statement: Find the equation perpendicular to $y=x+2$ through $(0,5)$.
   answer_label: Question 4
   check:
@@ -48,7 +48,7 @@ problems:
 - id: p5-check-parallel
   section: '11.4'
   tier: H
-  dfe: *id001
+  refs: *id001
   statement: Are $y=2x+1$ and $y=2x-7$ parallel? Give a reason.
   answer_label: Question 5
   check:
@@ -60,7 +60,7 @@ problems:
 - id: p6-check-perp
   section: '11.4'
   tier: H
-  dfe: *id001
+  refs: *id001
   statement: Are gradients $-3$ and $1/3$ perpendicular? Give a reason.
   answer_label: Question 6
   check:
@@ -71,7 +71,7 @@ problems:
 - id: p7-through-point
   section: '11.4'
   tier: H
-  dfe: *id001
+  refs: *id001
   statement: Find the line perpendicular to $y=0.5x+3$ through $(2,1)$.
   answer_label: Question 7
   check:
@@ -82,7 +82,7 @@ problems:
 - id: p8-find-intercept
   section: '11.4'
   tier: H
-  dfe: *id001
+  refs: *id001
   statement: A line parallel to $y=-2x+1$ passes through $(3,4)$. Find its equation.
   answer_label: Question 8
   check:
@@ -93,7 +93,7 @@ problems:
 - id: p9-mix
   section: '11.4'
   tier: H
-  dfe: *id001
+  refs: *id001
   statement: Find the gradient between $(0,1)$ and $(2,5)$. Is a line of gradient -2 perpendicular to it?
   answer_label: Question 9
   check:
@@ -110,7 +110,7 @@ problems:
 - id: p10-interleave
   section: '11.4'
   tier: H
-  dfe: *id001
+  refs: *id001
   statement: Solve $2x+3=11$, then state the gradient of a parallel line to $y=2x-9$.
   answer_label: Question 10
   check:
@@ -127,7 +127,7 @@ problems:
 - id: p11-higher
   section: '11.4'
   tier: H
-  dfe: *id001
+  refs: *id001
   statement: Find equations of both lines through $(1,2)$ parallel and perpendicular to $y=3x-1$.
   answer_label: Question 11
   check:

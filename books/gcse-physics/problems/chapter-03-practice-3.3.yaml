@@ -10,7 +10,7 @@ problems:
   - id: p1-thinking-distance-car
     section: '3.3'
     tier: F
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'A car travels at 18 m/s. The driver has a reaction time of 0.50 s. Calculate the thinking distance.'
     answer_label: 'Thinking distance'
     check:
@@ -28,7 +28,7 @@ problems:
   - id: p2-stopping-distance-car
     section: '3.3'
     tier: F
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'A car travels at 22 m/s. The reaction time is 0.50 s and the braking distance is 40 m. Calculate the thinking distance and the stopping distance.'
     answer_label: 'Thinking distance and stopping distance'
     check:
@@ -46,7 +46,7 @@ problems:
   - id: p3-deceleration-van
     section: '3.3'
     tier: F
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'A van travels at 16 m/s and stops in a distance of 32 m. Calculate the deceleration.'
     answer_label: 'Deceleration of the van'
     check:
@@ -64,7 +64,7 @@ problems:
   - id: p4-braking-force-car
     section: '3.3'
     tier: H
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'A car of mass 1200 kg travels at 20 m/s and stops in a distance of 25 m. Calculate the deceleration and the braking force.'
     answer_label: 'Deceleration and braking force'
     check:
@@ -89,7 +89,7 @@ problems:
   - id: p5-braking-force-lorry
     section: '3.3'
     tier: H
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'A van of mass 1300 kg travels at 20 m/s and stops in a distance of 40 m. Calculate the braking force.'
     answer_label: 'Braking force on the van'
     check:
@@ -108,7 +108,7 @@ problems:
   - id: p6-factors-braking
     section: '3.3'
     tier: F
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'Give two factors that can increase the braking distance of a car, and explain how one of them has its effect.'
     answer_label: 'Two factors that increase braking distance'
     check:
@@ -129,7 +129,7 @@ problems:
   - id: p7-reaction-time-factors
     section: '3.3'
     tier: F
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'State two factors that can increase the reaction time of a driver, and say what a longer reaction time does to the stopping distance.'
     answer_label: 'Two factors that increase reaction time'
     check:
@@ -150,7 +150,7 @@ problems:
   - id: p8-measure-reaction-time
     section: '3.3'
     tier: F
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'Describe how to measure a reaction time with a ruler.'
     answer_label: 'Measuring a reaction time with a ruler'
     check:
@@ -171,7 +171,7 @@ problems:
   - id: p9-large-deceleration-force
     section: '3.3'
     tier: H
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'A car of mass 1500 kg travels at 24 m/s and stops in a distance of 36 m. Calculate the deceleration and the braking force.'
     answer_label: 'Deceleration and braking force'
     check:
@@ -196,7 +196,7 @@ problems:
   - id: p10-stopping-distance-van
     section: '3.3'
     tier: F
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'A van travels at 16 m/s. The reaction time is 0.50 s and the braking distance is 24 m. Calculate the stopping distance.'
     answer_label: 'Stopping distance of the van'
     check:
@@ -215,7 +215,7 @@ problems:
   - id: p11-graph-shape
     section: '3.3'
     tier: F
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'A graph of stopping distance against speed curves upwards. Explain why the thinking distance is a straight line on this graph, and why the braking distance curves.'
     answer_label: 'Why the graph curves upwards'
     check:
@@ -233,7 +233,7 @@ problems:
   - id: p12-brakes-heat
     section: '3.3'
     tier: F
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'Explain why the brakes of a vehicle become hot when the vehicle stops.'
     answer_label: 'Why the brakes become hot'
     check:

@@ -15,4 +15,4 @@ kind: problems
 # 13.2 Changing the subject of a formula — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: AF.6
+> Tier: **O** · refs: AF.6

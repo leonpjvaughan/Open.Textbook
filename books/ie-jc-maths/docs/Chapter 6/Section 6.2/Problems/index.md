@@ -15,4 +15,4 @@ kind: problems
 # 6.2 Dividing a quantity in a given ratio — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: N.2
+> Tier: **O** · refs: N.2

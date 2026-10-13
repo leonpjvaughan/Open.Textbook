@@ -3,7 +3,7 @@ problems:
   - id: 'ch17-17-1-shape-polygon'
     section: '17.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'G1'
       - 'G12'
     statement: 'Name the polygon with 8 sides.'
@@ -16,7 +16,7 @@ problems:
   - id: 'ch17-17-1-cube-count'
     section: '17.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'G1'
       - 'G12'
     statement: 'A cube has how many edges?'
@@ -29,7 +29,7 @@ problems:
   - id: 'ch17-17-1-cuboid-vertices'
     section: '17.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'G1'
       - 'G12'
     statement: 'How many vertices does a cuboid have?'
@@ -42,7 +42,7 @@ problems:
   - id: 'ch17-17-1-prism-faces'
     section: '17.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'G1'
       - 'G12'
     statement: 'A triangular prism has how many faces?'
@@ -55,7 +55,7 @@ problems:
   - id: 'ch17-17-1-symmetry-square'
     section: '17.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'G1'
       - 'G12'
     statement: 'How many lines of reflection symmetry does a square have?'
@@ -68,7 +68,7 @@ problems:
   - id: 'ch17-17-1-triangle-label'
     section: '17.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'G1'
       - 'G12'
     statement: 'In triangle ABC, name the angle at B using three letters.'
@@ -81,7 +81,7 @@ problems:
   - id: 'ch17-17-1-draw-description'
     section: '17.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'G1'
       - 'G12'
     statement: 'A right-angled triangle has its right angle at C. If angle A is 35 degrees, work out angle B.'
@@ -94,7 +94,7 @@ problems:
   - id: 'ch17-17-1-sphere-properties'
     section: '17.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'G1'
       - 'G12'
     statement: 'How many edges and vertices does a sphere have?'

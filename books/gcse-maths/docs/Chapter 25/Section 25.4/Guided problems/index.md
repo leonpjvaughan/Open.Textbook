@@ -5,7 +5,7 @@ chapter_title: 'Statistics: spread, grouped data and correlation'
 section: '25.4'
 section_title: Scatter graphs and correlation
 tier: F
-dfe: [S6]
+refs: [S6]
 kind: guided-problems
 ---
 

@@ -5,7 +5,7 @@ chapter: 13
 problems:
   - id: p1-biased-coin-at-most-two
     section: "13.2"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A biased coin lands on heads with probability 0.4. It is tossed 10 times. The random variable $X$ is the number of heads. Find $P(X \le 2)$.'
     answer_label: 'The probability'
     check:
@@ -19,7 +19,7 @@ problems:
 
   - id: p2-free-throws-at-least-eight
     section: "13.2"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A basketball player scores a free throw with probability 0.4. She takes 10 free throws. The random variable $X$ is the number she scores. Find $P(X \ge 8)$.'
     answer_label: 'The probability'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-faulty-between-three-and-five
     section: "13.2"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A machine produces faulty items with probability 0.3. A sample of 12 items is checked. The random variable $X$ is the number of faulty items. Find $P(3 \le X \le 5)$.'
     answer_label: 'The probability'
     check:
@@ -47,7 +47,7 @@ problems:
 
   - id: p4-fair-coin-at-most-nine
     section: "13.2"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A fair coin is tossed 20 times. The random variable $X$ is the number of heads. Find $P(X \le 9)$.'
     answer_label: 'The probability'
     check:
@@ -60,7 +60,7 @@ problems:
 
   - id: p5-quiz-at-least-four
     section: "13.2"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A quiz has 15 questions. Each question has 5 options, and exactly one is correct. A student guesses every answer. The random variable $X$ is the number correct. Find $P(X \ge 4)$.'
     answer_label: 'The probability'
     check:
@@ -74,7 +74,7 @@ problems:
 
   - id: p6-seeds-at-least-one
     section: "13.2"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A seed germinates with probability 0.6. Eight seeds are planted. The random variable $X$ is the number that germinate. Find $P(X \ge 1)$.'
     answer_label: 'The probability'
     check:
@@ -87,7 +87,7 @@ problems:
 
   - id: p7-chapter-seeds-at-most-thirteen
     section: "13.2"
-    dfe: [N1]
+    refs: [N1]
     statement: 'Each of 20 seeds germinates with probability 0.8, independently. The random variable $X$ is the number that germinate. Find $P(X \le 13)$.'
     answer_label: 'The probability'
     check:
@@ -101,7 +101,7 @@ problems:
 
   - id: p8-fair-coin-at-least-five
     section: "13.2"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A fair coin is tossed 6 times. The random variable $X$ is the number of heads. Find $P(X \ge 5)$.'
     answer_label: 'The probability'
     check:
@@ -114,7 +114,7 @@ problems:
 
   - id: p9-fault-rate-none
     section: "13.2"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A machine produces faulty items with probability 0.1. A sample of 50 items is checked. The random variable $X$ is the number of faulty items. Find $P(X = 0)$.'
     answer_label: 'The probability'
     check:
@@ -128,7 +128,7 @@ problems:
 
   - id: p10-spinner-at-most-one
     section: "13.2"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A spinner lands on red with probability $\tfrac13$. It is spun 9 times. The random variable $X$ is the number of reds. Find $P(X \le 1)$.'
     answer_label: 'The probability'
     check:
@@ -142,7 +142,7 @@ problems:
 
   - id: p11-fair-coin-between-eight-and-twelve
     section: "13.2"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A fair coin is tossed 20 times. The random variable $X$ is the number of heads. Find $P(8 \le X \le 12)$.'
     answer_label: 'The probability'
     check:
@@ -155,7 +155,7 @@ problems:
 
   - id: p12-quiz-at-least-ten
     section: "13.2"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A test has 20 questions. Each has 4 options, and exactly one is correct. A student guesses every answer. The random variable $X$ is the number correct. Find $P(X \ge 10)$.'
     answer_label: 'The probability'
     check:

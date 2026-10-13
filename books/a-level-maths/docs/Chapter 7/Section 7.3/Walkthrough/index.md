@@ -4,7 +4,7 @@ chapter: 7
 chapter_title: Differentiation
 section: '7.3'
 section_title: Differentiating x^n, e^kx, a^kx, sin kx, cos kx, tan kx and ln x
-dfe:
+refs:
 - G2
 kind: walkthrough
 ---

@@ -8,7 +8,7 @@ symbols:
 problems:
   - id: p1-cancel-sine
     section: "5.7"
-    dfe: [E5]
+    refs: [E5]
     statement: 'Prove that $\dfrac{\sin^2\theta}{\sin\theta} \equiv \sin\theta$ for $\sin\theta \neq 0$.'
     answer_label: 'The identity'
     check:
@@ -19,7 +19,7 @@ problems:
 
   - id: p2-cos-tan
     section: "5.7"
-    dfe: [E5]
+    refs: [E5]
     statement: 'Prove that $\cos\theta\tan\theta \equiv \sin\theta$ for $\cos\theta \neq 0$.'
     answer_label: 'The identity'
     check:
@@ -30,7 +30,7 @@ problems:
 
   - id: p3-sec-squared
     section: "5.7"
-    dfe: [E5]
+    refs: [E5]
     statement: 'Prove that $1 + \tan^2\theta \equiv \sec^2\theta$.'
     answer_label: 'The identity'
     check:
@@ -41,7 +41,7 @@ problems:
 
   - id: p4-square-difference
     section: "5.7"
-    dfe: [E5]
+    refs: [E5]
     statement: 'Prove that $(\sin\theta - \cos\theta)^2 \equiv 1 - 2\sin\theta\cos\theta$.'
     answer_label: 'The identity'
     check:
@@ -52,7 +52,7 @@ problems:
 
   - id: p5-fraction
     section: "5.7"
-    dfe: [E5]
+    refs: [E5]
     statement: 'Prove that $\dfrac{\cos^2\theta}{1 - \sin\theta} \equiv 1 + \sin\theta$ for $\sin\theta \neq 1$.'
     answer_label: 'The identity'
     check:
@@ -63,7 +63,7 @@ problems:
 
   - id: p6-sec-cosec
     section: "5.7"
-    dfe: [E5]
+    refs: [E5]
     statement: 'Prove that $\sec^2\theta + \operatorname{cosec}^2\theta \equiv \sec^2\theta\,\operatorname{cosec}^2\theta$ for $\sin\theta\cos\theta \neq 0$.'
     answer_label: 'The identity'
     check:
@@ -74,7 +74,7 @@ problems:
 
   - id: p7-one-minus-cos
     section: "5.7"
-    dfe: [E5]
+    refs: [E5]
     statement: 'Prove that $\dfrac{1 - \cos^2\theta}{\sin\theta} \equiv \sin\theta$ for $\sin\theta \neq 0$.'
     answer_label: 'The identity'
     check:
@@ -85,7 +85,7 @@ problems:
 
   - id: p8-mixed-product
     section: "5.7"
-    dfe: [E5]
+    refs: [E5]
     statement: 'Prove that $\sin\theta\cos\theta(\tan\theta + \cot\theta) \equiv 1$ for $\sin\theta\cos\theta \neq 0$.'
     answer_label: 'The identity'
     check:
@@ -96,7 +96,7 @@ problems:
 
   - id: p9-with-steps
     section: "5.7"
-    dfe: [E5]
+    refs: [E5]
     statement: 'Prove that $\tan\theta\cos\theta \equiv \sin\theta$ by simplifying the left-hand side.'
     answer_label: 'The identity'
     steps:
@@ -110,7 +110,7 @@ problems:
 
   - id: p10-pythagorean
     section: "5.7"
-    dfe: [E5]
+    refs: [E5]
     statement: 'Simplify $\sin^2\theta + \cos^2\theta$ using the basic identity.'
     answer_label: 'The simplified expression'
     check:

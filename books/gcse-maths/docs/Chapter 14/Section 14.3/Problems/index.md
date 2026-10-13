@@ -5,7 +5,7 @@ chapter_title: Simultaneous equations and iteration
 section: "14.3"
 section_title: Solving simultaneous equations graphically
 tier: F
-dfe: [A19]
+refs: [A19]
 kind: problems
 ---
 

@@ -12,7 +12,7 @@ symbols:
 problems:
   - id: n1-derivative-cubic
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'For $f(x) = x^3 + x - 1$, write down $f''(x)$.'
     answer_label: 'The derivative'
     check:
@@ -24,7 +24,7 @@ problems:
 
   - id: n2-nr-first-step
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Use Newton–Raphson on $f(x) = x^3 + x - 1$ with $x_0 = 0.7$. Find $x_1$ to four decimal places.'
     answer_label: 'The value of x1'
     check:
@@ -36,7 +36,7 @@ problems:
 
   - id: n3-nr-second-step
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Continue the iteration to find $x_2$ for $f(x) = x^3 + x - 1$ from $x_0 = 0.7$.'
     answer_label: 'The value of x2'
     check:
@@ -48,7 +48,7 @@ problems:
 
   - id: n4-nr-root-cubic
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'State the root of $x^3 + x - 1 = 0$ to four decimal places.'
     answer_label: 'The root'
     check:
@@ -60,7 +60,7 @@ problems:
 
   - id: n5-derivative-exponential
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'For $f(x) = e^x - 3x$, write down $f''(x)$.'
     answer_label: 'The derivative'
     check:
@@ -72,7 +72,7 @@ problems:
 
   - id: n6-nr-exponential-step
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Use Newton–Raphson on $e^x = 3x$ with $x_0 = 1.5$. Find $x_1$ to four decimal places.'
     answer_label: 'The value of x1'
     check:
@@ -84,7 +84,7 @@ problems:
 
   - id: n7-nr-exponential-root
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Continue the iteration on $e^x = 3x$ to find the root near $1.5$ to four decimal places.'
     answer_label: 'The root'
     check:
@@ -96,7 +96,7 @@ problems:
 
   - id: n8-square-root-recurrence
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Use $x_{n+1} = \dfrac{1}{2}\left(x_n + \dfrac{5}{x_n}\right)$ with $x_0 = 2$. Find $x_3$ to four decimal places.'
     answer_label: 'The value of x3'
     check:
@@ -108,7 +108,7 @@ problems:
 
   - id: n9-square-root-converged
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Continue the recurrence in the previous question to find $x_4$ to five decimal places.'
     answer_label: 'The value of x4'
     check:
@@ -120,7 +120,7 @@ problems:
 
   - id: n10-sqrt-seven-recurrence
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'The recurrence $x_{n+1} = \dfrac{1}{2}\left(x_n + \dfrac{7}{x_n}\right)$ starts from $x_0 = 3$. Find $x_2$ as an exact fraction.'
     answer_label: 'The value of x2'
     check:
@@ -132,7 +132,7 @@ problems:
 
   - id: n11-stationary-point-failure
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'For $f(x) = x^2 - 4$, work out $f''(0)$. Explain why Newton–Raphson fails from $x_0 = 0$.'
     answer_label: 'The value of the derivative at 0'
     check:
@@ -144,7 +144,7 @@ problems:
 
   - id: n12-cycle-failure
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'For $f(x) = x^3 - 2x + 2$ with $x_0 = 0$, find $x_2$.'
     answer_label: 'The value of x2'
     plays: newton-raphson
@@ -157,7 +157,7 @@ problems:
 
   - id: n13-nr-cubic-two
     section: "9.3"
-    dfe: [I2]
+    refs: [I2]
     statement: 'Use Newton–Raphson on $x^3 - 2x - 5 = 0$ with $x_0 = 2$. Find $x_2$.'
     answer_label: 'The value of x2'
     check:

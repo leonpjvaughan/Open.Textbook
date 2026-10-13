@@ -6,7 +6,7 @@ problems:
 - id: ch9-9-1-one-step
   section: '9.1'
   tier: F
-  dfe:
+  refs:
   - A17
   statement: 'Solve $x+7=19$.'
   answer_label: 'Solve $x+7=19$.'
@@ -20,7 +20,7 @@ problems:
 - id: ch9-9-1-subtract
   section: '9.1'
   tier: F
-  dfe:
+  refs:
   - A17
   statement: 'Solve $x-8=5$.'
   answer_label: 'Solve $x-8=5$.'
@@ -34,7 +34,7 @@ problems:
 - id: ch9-9-1-multiply
   section: '9.1'
   tier: F
-  dfe:
+  refs:
   - A17
   statement: 'Solve $5x=35$.'
   answer_label: 'Solve $5x=35$.'
@@ -48,7 +48,7 @@ problems:
 - id: ch9-9-1-divide
   section: '9.1'
   tier: F
-  dfe:
+  refs:
   - A17
   statement: 'Solve $x/4=6$.'
   answer_label: 'Solve $x/4=6$.'
@@ -62,7 +62,7 @@ problems:
 - id: ch9-9-1-two-step
   section: '9.1'
   tier: F
-  dfe:
+  refs:
   - A17
   statement: 'Solve $3x+4=25$.'
   answer_label: 'Solve $3x+4=25$.'
@@ -76,7 +76,7 @@ problems:
 - id: ch9-9-1-brackets
   section: '9.1'
   tier: F
-  dfe:
+  refs:
   - A17
   statement: 'Solve $2(x+3)=18$.'
   answer_label: 'Solve $2(x+3)=18$.'
@@ -90,7 +90,7 @@ problems:
 - id: ch9-9-1-fraction
   section: '9.1'
   tier: F
-  dfe:
+  refs:
   - A17
   statement: 'Solve $x/3+2=7$.'
   answer_label: 'Solve $x/3+2=7$.'
@@ -104,7 +104,7 @@ problems:
 - id: ch9-9-1-negative
   section: '9.1'
   tier: F
-  dfe:
+  refs:
   - A17
   statement: 'Solve $4-2x=-8$.'
   answer_label: 'Solve $4-2x=-8$.'
@@ -118,7 +118,7 @@ problems:
 - id: ch9-9-1-decimal
   section: '9.1'
   tier: F
-  dfe:
+  refs:
   - A17
   statement: 'Solve $0.5x+1.2=4.2$.'
   answer_label: 'Solve $0.5x+1.2=4.2$.'

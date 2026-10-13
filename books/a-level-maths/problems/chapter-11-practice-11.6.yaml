@@ -7,7 +7,7 @@ symbols:
 problems:
   - id: p1-iqr
     section: "11.6"
-    dfe: [L4]
+    refs: [L4]
     statement: 'Find the interquartile range of $12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 45$, using the $(n + 1)$ positions.'
     answer_label: 'The interquartile range'
     check:
@@ -20,7 +20,7 @@ problems:
 
   - id: p2-lower-quartile
     section: "11.6"
-    dfe: [L4]
+    refs: [L4]
     statement: 'Find the lower quartile of $12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 45$, using the $(n + 1)$ method.'
     answer_label: 'The lower quartile'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-lower-fence
     section: "11.6"
-    dfe: [L4]
+    refs: [L4]
     statement: 'A data set has $Q_1 = 15$ and IQR $= 6$. Find the lower fence for a possible outlier.'
     answer_label: 'The lower fence'
     check:
@@ -44,7 +44,7 @@ problems:
 
   - id: p4-upper-fence
     section: "11.6"
-    dfe: [L4]
+    refs: [L4]
     statement: 'A data set has $Q_3 = 21$ and IQR $= 6$. Find the upper fence for a possible outlier.'
     answer_label: 'The upper fence'
     check:
@@ -55,7 +55,7 @@ problems:
 
   - id: p5-is-outlier
     section: "11.6"
-    dfe: [L4]
+    refs: [L4]
     statement: 'The upper fence of a data set is 30. Is the value 45 a possible outlier?'
     answer_label: 'Whether 45 is a possible outlier'
     check:
@@ -67,7 +67,7 @@ problems:
 
   - id: p6-cleaned-mean
     section: "11.6"
-    dfe: [L4]
+    refs: [L4]
     statement: 'The data $12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 45$ contain the outlier 45. Remove 45 and find the mean of the remaining values.'
     answer_label: 'The cleaned mean'
     check:
@@ -79,7 +79,7 @@ problems:
 
   - id: p7-unit-correction
     section: "11.6"
-    dfe: [L4]
+    refs: [L4]
     statement: 'A journey time is recorded as 300 seconds, but the rest of the data are in minutes. Convert 300 seconds to minutes.'
     answer_label: 'The value in minutes'
     check:
@@ -90,7 +90,7 @@ problems:
 
   - id: p8-outlier-count
     section: "11.6"
-    dfe: [L4]
+    refs: [L4]
     statement: 'A data set has fences at 6 and 30. The values $5, 12, 20, 31$ and $45$ are in the data. Find how many of these values lie outside the fences.'
     answer_label: 'The number of values outside the fences'
     check:
@@ -105,7 +105,7 @@ problems:
 
   - id: p9-mean-sd-fence
     section: "11.6"
-    dfe: [L4]
+    refs: [L4]
     statement: 'A data set $10, 12, 14, 16, 18$ has mean 14 and standard deviation $\sqrt{8}$, dividing by $n$. Using the rule that a value more than two standard deviations from the mean is a possible outlier, find the two fences.'
     answer_label: 'The two fences'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: p10-missing-value
     section: "11.6"
-    dfe: [L4]
+    refs: [L4]
     statement: 'A data set has one missing value. The five known values are $12, 14, 16, 18, 20$. Find the mean of the known values.'
     answer_label: 'The mean of the known values'
     check:
@@ -129,7 +129,7 @@ problems:
 
   - id: p11-recorded-error
     section: "11.6"
-    dfe: [L4]
+    refs: [L4]
     statement: 'A data set of 10 values has mean 20. One value, 50, is found to be a recording error. Remove 50 and find the mean of the remaining 9 values.'
     answer_label: 'The mean of the remaining values'
     check:
@@ -140,7 +140,7 @@ problems:
 
   - id: p12-method-choice
     section: "11.6"
-    dfe: [L4]
+    refs: [L4]
     statement: 'A bar chart shows profits of 96, 98 and 100, and its vertical axis starts at 95. Find the percentage increase from 96 to 100, and say whether the chart exaggerates the change.'
     answer_label: 'The percentage increase'
     check:

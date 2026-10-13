@@ -4,7 +4,7 @@ chapter: 15
 chapter_title: Quantities, units and kinematics
 section: '15.1'
 section_title: Fundamental and derived SI quantities and units
-dfe:
+refs:
 - P1
 kind: walkthrough
 ---

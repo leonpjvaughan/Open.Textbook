@@ -5,7 +5,7 @@ chapter_title: Ratio and proportion
 section: '5.4'
 section_title: Inverse proportion
 tier: F
-dfe:
+refs:
 - R10
 - R13
 - R14

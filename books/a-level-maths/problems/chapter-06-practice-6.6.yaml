@@ -12,7 +12,7 @@ symbols:
 problems:
   - id: p1-continuous-interest
     section: "6.6"
-    dfe: [F7, OT3]
+    refs: [F7, OT3]
     statement: '£1000 is invested at $5\%$ per year, compounded continuously, so $A = 1000e^{0.05t}$. Find the amount after $10$ years, to the nearest penny.'
     answer_label: 'The amount'
     check:
@@ -24,7 +24,7 @@ problems:
 
   - id: p2-doubling-time
     section: "6.6"
-    dfe: [F7, OT3]
+    refs: [F7, OT3]
     statement: 'An investment grows as $A = A_0e^{0.07t}$. Find the exact time for the money to double.'
     answer_label: 'The time'
     check:
@@ -36,7 +36,7 @@ problems:
 
   - id: p3-decay-constant
     section: "6.6"
-    dfe: [F7, OT3]
+    refs: [F7, OT3]
     statement: 'A radioactive isotope has a half-life of $5$ years. Find the decay constant $k$ in the model $m = m_0e^{-kt}$.'
     answer_label: 'The value of $k$'
     check:
@@ -48,7 +48,7 @@ problems:
 
   - id: p4-fraction-remaining
     section: "6.6"
-    dfe: [F7, OT3]
+    refs: [F7, OT3]
     statement: 'A radioactive sample has a half-life of $8$ days. What fraction of the sample remains after $24$ days?'
     answer_label: 'The fraction remaining'
     check:
@@ -59,7 +59,7 @@ problems:
 
   - id: p5-drug-amount
     section: "6.6"
-    dfe: [F7, OT3]
+    refs: [F7, OT3]
     statement: 'The amount of a drug in the blood is $A = 50e^{-0.3t}$ mg after $t$ hours. Find the amount after $4$ hours, to three significant figures.'
     answer_label: 'The amount'
     check:
@@ -71,7 +71,7 @@ problems:
 
   - id: p6-drug-threshold
     section: "6.6"
-    dfe: [F7, OT3]
+    refs: [F7, OT3]
     statement: 'A drug is modelled by $A = 50e^{-0.3t}$. Find the exact time for the amount to fall to $5$ mg.'
     answer_label: 'The time'
     check:
@@ -83,7 +83,7 @@ problems:
 
   - id: p7-population
     section: "6.6"
-    dfe: [F7, OT3]
+    refs: [F7, OT3]
     statement: 'A population is modelled by $P = 1500e^{0.02t}$, where $t$ is in years. Find $P$ after $25$ years, to the nearest whole number.'
     answer_label: 'The population'
     check:
@@ -95,7 +95,7 @@ problems:
 
   - id: p8-car-value
     section: "6.6"
-    dfe: [F7, OT3]
+    refs: [F7, OT3]
     statement: 'A car worth £$20000$ loses value as $V = 20000e^{-0.15t}$, where $t$ is in years. Find its value after $3$ years, to the nearest penny.'
     answer_label: 'The value'
     check:
@@ -107,7 +107,7 @@ problems:
 
   - id: p9-doubling-approximate
     section: "6.6"
-    dfe: [F7, OT3]
+    refs: [F7, OT3]
     statement: 'A quantity grows as $Q = Q_0e^{0.07t}$. Write the doubling time to three significant figures.'
     answer_label: 'The doubling time'
     check:
@@ -119,7 +119,7 @@ problems:
 
   - id: p10-satisfies-model
     section: "6.6"
-    dfe: [F7, OT3]
+    refs: [F7, OT3]
     statement: 'Show that $y = Ae^{kt}$ satisfies the equation $\dfrac{dy}{dt} = ky$.'
     answer_label: 'The derivative'
     check:
@@ -131,7 +131,7 @@ problems:
 
   - id: p11-model-error
     section: "6.6"
-    dfe: [F7, OT3]
+    refs: [F7, OT3]
     statement: 'A model predicts $1000e^{0.5}$ for a measurement. The measured value is $1600$. Find the difference, model minus measurement, to two decimal places.'
     answer_label: 'The difference'
     check:
@@ -143,7 +143,7 @@ problems:
 
   - id: p12-solve-concentration
     section: "6.6"
-    dfe: [F7, OT3]
+    refs: [F7, OT3]
     statement: 'A concentration is modelled by $C = 120e^{-0.25t}$. Find the exact time for $C$ to fall to $30$.'
     answer_label: 'The time'
     check:

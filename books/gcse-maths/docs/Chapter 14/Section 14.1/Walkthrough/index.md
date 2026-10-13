@@ -5,7 +5,7 @@ chapter_title: Simultaneous equations and iteration
 section: "14.1"
 section_title: Simultaneous equations by elimination
 tier: F
-dfe: [A19]
+refs: [A19]
 kind: walkthrough
 ---
 

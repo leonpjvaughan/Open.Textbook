@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Trigonometry
 section: '5.8'
 section_title: Addition and double-angle formulae
-dfe:
+refs:
 - E6
 kind: problems
 ---

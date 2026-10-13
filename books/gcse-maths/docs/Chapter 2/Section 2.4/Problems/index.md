@@ -5,7 +5,7 @@ chapter_title: Factors, multiples and primes
 section: '2.4'
 section_title: The product rule for counting
 tier: H
-dfe: [N5]
+refs: [N5]
 kind: problems
 ---
 

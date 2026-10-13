@@ -3,7 +3,7 @@ problems:
 - id: proof-co
   section: '16.5'
   tier: H
-  dfe:
+  refs:
   - G6
   statement: Parallel lines give one angle of $64^\circ$. Find and justify the co-interior angle.
   answer_label: Parallel lines give one angle of $64^\circ$. Find and justify the co-interior an
@@ -15,7 +15,7 @@ problems:
 - id: proof-triangle
   section: '16.5'
   tier: H
-  dfe:
+  refs:
   - G6
   statement: A triangle has angles $52^\circ$, $x^\circ$ and $(x+20)^\circ$. Find $x$, showing the angle fact.
   answer_label: A triangle has angles $52^\circ$, $x^\circ$ and $(x+20)^\circ$. Find $x$, showin
@@ -29,7 +29,7 @@ problems:
 - id: proof-quad
   section: '16.5'
   tier: H
-  dfe:
+  refs:
   - G6
   statement: Three quadrilateral angles are $88^\circ$, $94^\circ$ and $101^\circ$. Find the fourth and give a reason.
   answer_label: 'Three quadrilateral angles are $88^\circ$, $94^\circ$ and $101^\circ$. Find the '
@@ -41,7 +41,7 @@ problems:
 - id: proof-vertical
   section: '16.5'
   tier: H
-  dfe:
+  refs:
   - G6
   statement: Two lines cross. One angle is $x+18$ degrees and its opposite is $3x-22$ degrees. Find $x$.
   answer_label: Two lines cross. One angle is $x+18$ degrees and its opposite is $3x-22$ degrees
@@ -55,7 +55,7 @@ problems:
 - id: proof-exterior
   section: '16.5'
   tier: H
-  dfe:
+  refs:
   - G6
   statement: 'A triangle has opposite interior angles $x^\circ$ and $(x+30)^\circ$. Its exterior angle is $130^\circ$. Find $x$.'
   answer_label: A triangle has opposite interior angles $x^\circ$ and $(x+30)^\circ$. Its exteri
@@ -69,7 +69,7 @@ problems:
 - id: proof-poly
   section: '16.5'
   tier: H
-  dfe:
+  refs:
   - G6
   statement: A regular polygon has exterior angle $24^\circ$. Find its number of sides and explain the angle sum used.
   answer_label: A regular polygon has exterior angle $24^\circ$. Find its number of sides and ex
@@ -81,7 +81,7 @@ problems:
 - id: mixed-polygon
   section: '16.5'
   tier: H
-  dfe:
+  refs:
   - G6
   statement: Find each interior angle of a regular decagon.
   answer_label: Find each interior angle of a regular decagon.
@@ -93,7 +93,7 @@ problems:
 - id: higher-two-step
   section: '16.5'
   tier: H
-  dfe:
+  refs:
   - G6
   statement: 'A triangle sits on a straight line. Its base angles are $x^\circ$ and $(x+20)^\circ$; its exterior angle is $130^\circ$. Find all three interior angles.'
   answer_label: A triangle sits on a straight line. Its base angles are $x^\circ$ and $(x+20)^\c
@@ -107,7 +107,7 @@ problems:
 - id: mixed-method-polygon
   section: '16.5'
   tier: 'H'
-  dfe: [G6]
+  refs: [G6]
   statement: 'A regular polygon has 12 sides. Which method finds each exterior angle: $360\div n$, or $180^\circ$ minus each interior angle? Give a reason, then find one exterior angle and one interior angle.'
   answer_label: 'Method choice: exterior angle or interior formula'
   check:

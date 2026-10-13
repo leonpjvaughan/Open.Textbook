@@ -4,7 +4,7 @@ chapter: 8
 chapter_title: Quantum and nuclear physics
 section: '8.3'
 section_title: Radioactive decay and half-life
-dfe:
+refs:
 - AP8
 kind: guided-problems
 ---

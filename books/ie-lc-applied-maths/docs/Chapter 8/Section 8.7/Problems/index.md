@@ -15,4 +15,4 @@ kind: problems
 # 8.7 Solving separable differential equations — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: S4
+> Tier: **H** · refs: S4

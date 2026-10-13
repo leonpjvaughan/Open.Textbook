@@ -5,7 +5,7 @@ chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.3'
 section_title: "Angles of elevation and depression"
 tier: F
-dfe: [G20]
+refs: [G20]
 kind: problems
 ---
 

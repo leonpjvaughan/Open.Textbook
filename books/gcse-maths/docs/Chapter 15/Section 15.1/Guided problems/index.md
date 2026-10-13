@@ -5,7 +5,7 @@ chapter_title: Functions, algebraic fractions and proof
 section: "15.1"
 section_title: "Functions: inverse and composite"
 tier: H
-dfe: [A7]
+refs: [A7]
 kind: practise-with-help
 ---
 

@@ -15,4 +15,4 @@ kind: problems
 # 17.1 The coordinate plane and plotting points — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: GT.5
+> Tier: **O** · refs: GT.5

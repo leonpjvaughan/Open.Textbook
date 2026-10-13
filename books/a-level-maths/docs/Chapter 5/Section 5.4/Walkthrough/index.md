@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Trigonometry
 section: '5.4'
 section_title: Exact trigonometric values
-dfe:
+refs:
 - E3
 kind: walkthrough
 ---

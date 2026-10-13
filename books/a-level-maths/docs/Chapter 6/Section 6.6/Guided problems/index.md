@@ -4,7 +4,7 @@ chapter: 6
 chapter_title: Exponentials and logarithms
 section: '6.6'
 section_title: Exponential growth and decay in modelling
-dfe:
+refs:
 - F7
 - OT3
 kind: guided-problems

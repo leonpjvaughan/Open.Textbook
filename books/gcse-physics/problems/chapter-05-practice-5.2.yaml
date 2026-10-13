@@ -9,7 +9,7 @@ problems:
   - id: p1-microwave-oven
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'A microwave oven uses radiation with a frequency of 2.5 GHz. Calculate its wavelength.'
     answer_label: 'Wavelength of the microwaves'
     check:
@@ -27,7 +27,7 @@ problems:
   - id: p2-infrared-wavelength
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'A thermal camera detects infrared radiation with a frequency of 3.0e14 Hz. Calculate its wavelength in micrometres.'
     answer_label: 'Wavelength of the infrared radiation'
     check:
@@ -45,7 +45,7 @@ problems:
   - id: p3-ultraviolet-frequency
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'Ultraviolet radiation used in a sunbed has a wavelength of 300 nm. Calculate its frequency.'
     answer_label: 'Frequency of the ultraviolet radiation'
     check:
@@ -63,7 +63,7 @@ problems:
   - id: p4-xray-wavelength
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'An X-ray machine produces radiation with a frequency of 1.0e18 Hz. Calculate its wavelength in nanometres.'
     answer_label: 'Wavelength of the X-rays'
     check:
@@ -81,7 +81,7 @@ problems:
   - id: p5-mobile-signal
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'A mobile phone signal has a frequency of 750 MHz. Calculate its wavelength.'
     answer_label: 'Wavelength of the mobile signal'
     check:
@@ -99,7 +99,7 @@ problems:
   - id: p6-wifi-wavelength
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'A wi-fi router sends radiation at 6.0 GHz. Calculate its wavelength.'
     answer_label: 'Wavelength of the wi-fi signal'
     check:
@@ -117,7 +117,7 @@ problems:
   - id: p7-reflection
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'A light ray hits a plane mirror. The angle between the incoming ray and the mirror is 50°. Work out the angle of reflection and give a reason.'
     answer_label: 'The angle of reflection'
     check:
@@ -138,7 +138,7 @@ problems:
   - id: p8-refraction
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'A ray of light passes from air into a glass block. Describe what happens to the ray, and explain why one part of the ray changes direction.'
     answer_label: 'What happens at the air-glass boundary'
     check:
@@ -156,7 +156,7 @@ problems:
   - id: p9-gamma-uses
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'Give one medical use of gamma radiation and one medical use of X-rays. Explain why each is suitable.'
     answer_label: 'One use of each, with a reason'
     check:
@@ -180,7 +180,7 @@ problems:
   - id: p10-uv-dangers
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'Explain one danger of ultraviolet radiation and state one way to reduce the risk.'
     answer_label: 'One danger of ultraviolet radiation, and a way to reduce it'
     check:
@@ -198,7 +198,7 @@ problems:
   - id: p11-absorption
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'A black surface and a white surface are side by side in the sunshine. Compare how each surface absorbs and reflects infrared radiation.'
     answer_label: 'A comparison of the two surfaces'
     check:
@@ -216,7 +216,7 @@ problems:
   - id: p12-method-choice
     section: '5.2'
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'A radio transmitter sends a signal at 6.0 GHz. Say which relationship you will use, then calculate the wavelength.'
     answer_label: 'Wavelength of the radio signal'
     check:

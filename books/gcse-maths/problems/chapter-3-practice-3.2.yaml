@@ -3,7 +3,7 @@ problems:
   - id: ch3-32-sqrt-estimate
     section: '3.2'
     tier: F
-    dfe: [N6]
+    refs: [N6]
     statement: 'Estimate $\\sqrt{50}$ to the nearest whole number. Give a reason.'
     answer_label: 'Estimate a square root'
     check: {kind: between, value: '7.1', low: '7', high: '8'}
@@ -11,7 +11,7 @@ problems:
   - id: ch3-32-cube-estimate-90
     section: '3.2'
     tier: F
-    dfe: [N6]
+    refs: [N6]
     statement: 'Estimate $\\sqrt[3]{90}$ to the nearest whole number.'
     answer_label: 'Estimate a cube root'
     check: {kind: between, value: '4', low: '3', high: '5'}
@@ -19,7 +19,7 @@ problems:
   - id: ch3-32-power-estimate
     section: '3.2'
     tier: F
-    dfe: [N6]
+    refs: [N6]
     statement: 'Estimate $48^2$ by rounding 48 to the nearest ten.'
     answer_label: 'Estimate a square'
     check: {kind: evaluate, expression: '50**2', answer: '2500'}
@@ -27,7 +27,7 @@ problems:
   - id: ch3-32-cube-estimate
     section: '3.2'
     tier: F
-    dfe: [N6]
+    refs: [N6]
     statement: 'Estimate $19^3$ by rounding 19 to one significant figure.'
     answer_label: 'Estimate a cube'
     check: {kind: evaluate, expression: '20**3', answer: '8000'}
@@ -35,7 +35,7 @@ problems:
   - id: ch3-32-root-range
     section: '3.2'
     tier: F
-    dfe: [N6]
+    refs: [N6]
     statement: 'Between which two consecutive whole numbers does $\\sqrt{120}$ lie?'
     answer_label: 'Bracket a square root'
     check: {kind: between, value: 'sqrt(120)', low: '10', high: '11'}
@@ -43,7 +43,7 @@ problems:
   - id: ch3-32-closer-estimate
     section: '3.2'
     tier: F
-    dfe: [N6]
+    refs: [N6]
     statement: 'Is $\\sqrt{30}$ closer to 5 or 6? Give a reason.'
     answer_label: 'Compare distances from squares'
     check: {kind: compare, relation: '<', lhs: 'sqrt(30)-5', rhs: '6-sqrt(30)'}
@@ -51,7 +51,7 @@ problems:
   - id: ch3-32-higher-power-bound
     section: '3.2'
     tier: H
-    dfe: [N6]
+    refs: [N6]
     statement: 'Estimate $98^3$ by rounding to the nearest ten.'
     answer_label: 'Estimate a large cube'
     check: {kind: evaluate, expression: '100**3', answer: '1000000'}
@@ -59,7 +59,7 @@ problems:
   - id: ch3-32-higher-root-bound
     section: '3.2'
     tier: H
-    dfe: [N6]
+    refs: [N6]
     statement: 'Between which consecutive whole numbers does $\\sqrt[3]{500}$ lie?'
     answer_label: 'Bracket a cube root'
     check: {kind: between, value: 'root(500, 3)', low: '7', high: '8'}

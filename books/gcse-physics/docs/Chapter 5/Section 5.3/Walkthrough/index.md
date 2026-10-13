@@ -5,7 +5,7 @@ chapter_title: Light and electromagnetic waves
 section: '5.3'
 section_title: Lenses and ray diagrams
 tier: F
-dfe:
+refs:
 - WA5
 kind: walkthrough
 ---

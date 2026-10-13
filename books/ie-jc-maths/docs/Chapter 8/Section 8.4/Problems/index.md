@@ -15,4 +15,4 @@ kind: problems
 # 8.4 Venn diagrams with two and three sets — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: N.5
+> Tier: **O** · refs: N.5

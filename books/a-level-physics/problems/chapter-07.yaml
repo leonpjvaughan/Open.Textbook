@@ -21,7 +21,7 @@ problems:
   - id: w1-heating-water
     plays: thermal-energy
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A pressure cooker holds 1.50 kg of water at 20 C. The specific heat capacity of water is 4200 J/kg/K. Find the energy needed to heat the water to 121 C.'
     answer_label: 'The energy supplied'
     check:
@@ -37,7 +37,7 @@ problems:
   - id: w2-vaporisation
     plays: latent-heat
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'The specific latent heat of vaporisation of water is 2.26e6 J/kg. Find the energy needed to turn 0.050 kg of boiling water into steam at the same temperature.'
     answer_label: 'The energy supplied'
     check:
@@ -51,7 +51,7 @@ problems:
 
   - id: w3-two-stage
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the total energy to heat 1.50 kg of water from 20 C to 121 C and then turn 0.050 kg of it into steam. Use c = 4200 J/kg/K and L = 2.26e6 J/kg.'
     answer_label: 'The total energy'
     check:
@@ -69,7 +69,7 @@ problems:
   - id: w4-practical-c
     plays: thermal-energy
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'An aluminium block of mass 1.0 kg is heated by a 12 V, 2.0 A heater for 300 s. Its temperature rises by 8.0 K. Find the specific heat capacity of the aluminium.'
     answer_label: 'The specific heat capacity'
     check:
@@ -87,7 +87,7 @@ problems:
   - id: w5-temperature-rise
     plays: thermal-energy
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A 700 W heater warms 2.0 kg of water for 300 s. Find the temperature rise. The specific heat capacity of water is 4200 J/kg/K.'
     answer_label: 'The temperature rise'
     check:
@@ -105,7 +105,7 @@ problems:
   - id: g1-copper-block
     plays: thermal-energy
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A 0.80 kg copper block is heated from 20 C to 45 C. The specific heat capacity of copper is 390 J/kg/K. Find the energy supplied.'
     answer_label: 'The energy supplied'
     check:
@@ -121,7 +121,7 @@ problems:
   - id: g2-melt-ice
     plays: latent-heat
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the energy needed to melt 0.20 kg of ice at 0 C. The specific latent heat of fusion of ice is 3.34e5 J/kg.'
     answer_label: 'The energy supplied'
     check:
@@ -136,7 +136,7 @@ problems:
   - id: g3-find-c
     plays: thermal-energy
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A 2.0 kg block gains 45000 J of energy and its temperature rises by 50 K. Find its specific heat capacity.'
     answer_label: 'The specific heat capacity'
     check:
@@ -151,7 +151,7 @@ problems:
 
   - id: g4-heat-then-boil
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A pan heats 0.50 kg of water from 20 C to 100 C, then boils 0.10 kg of it into steam. Use c = 4200 J/kg/K and L = 2.26e6 J/kg. Find the total energy supplied.'
     answer_label: 'The total energy'
     check:
@@ -169,7 +169,7 @@ problems:
   - id: g5-practical-c
     plays: thermal-energy
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A heater of 6.0 V and 3.0 A runs for 200 s in 1.5 kg of liquid. The temperature of the liquid rises by 4.0 K. Find the specific heat capacity of the liquid.'
     answer_label: 'The specific heat capacity'
     check:
@@ -186,7 +186,7 @@ problems:
 
   - id: g6-state-reason
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Explain why the temperature of ice does not change while it is melting, even though energy is being supplied.'
     check:
       kind: structured
@@ -210,7 +210,7 @@ problems:
   # --- Section 7.1, the warm-up recalls --------------------------------------
   - id: warmup-7-1-power
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A heater transfers 3600 J of energy in 120 s. Find its power.'
     answer_label: 'The power'
     check: {kind: evaluate, expression: "3600 / 120", answer: "30"}
@@ -218,7 +218,7 @@ problems:
 
   - id: warmup-7-1-mass
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Write 500 g in kilograms.'
     answer_label: 'The mass'
     check: {kind: convert, value: "500", from: "g", to: "kg", answer: "0.5"}
@@ -226,7 +226,7 @@ problems:
 
   - id: warmup-7-1-temperature
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'The temperature of a liquid rises from 18 C to 45 C. Find the temperature change in kelvin.'
     answer_label: 'The temperature change'
     check: {kind: evaluate, expression: "45 - 18", answer: "27"}
@@ -235,7 +235,7 @@ problems:
   # --- Section 7.2, the Learn worked examples --------------------------------
   - id: w6-kelvin
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Write 121 C in kelvin.'
     answer_label: 'The temperature'
     check: {kind: evaluate, expression: "121 + 273", answer: "394"}
@@ -244,7 +244,7 @@ problems:
   - id: w7-boyle
     plays: ideal-gas-n
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A gas at a pressure of 1.0e5 Pa occupies a volume of 200 cm3. It is compressed at constant temperature to 50 cm3. Find the new pressure.'
     answer_label: 'The new pressure'
     check:
@@ -259,7 +259,7 @@ problems:
 
   - id: w8-moles
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Steam in a pressure cooker is at a pressure of 2.00e5 Pa and a temperature of 121 C, in a space of volume 2.00e-3 m3. Treat the steam as an ideal gas and find the number of moles. R = 8.31 J/K/mol.'
     answer_label: 'The number of moles'
     check:
@@ -273,7 +273,7 @@ problems:
 
   - id: w9-molecules
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Use pV = NkT to find the number of steam molecules in the space in Worked example 4. Use p = 2.00e5 Pa, V = 2.00e-3 m3, T = 394 K and k = 1.38e-23 J/K.'
     answer_label: 'The number of molecules'
     check: {kind: approx, value: "2.00e5 * 2.00e-3 / (1.38e-23 * 394)", target: "7.36e22", tolerance: "0.05e22"}
@@ -281,7 +281,7 @@ problems:
 
   - id: w10-average-ke
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the average random kinetic energy of a steam molecule at 121 C. Use k = 1.38e-23 J/K.'
     answer_label: 'The average kinetic energy'
     check: {kind: approx, value: "1.5 * 1.38e-23 * 394", target: "8.16e-21", tolerance: "0.05e-21"}
@@ -289,7 +289,7 @@ problems:
 
   - id: w11-rms-speed
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the rms speed of a steam molecule at 121 C. The molar mass of water is 0.018 kg/mol, k = 1.38e-23 J/K and N_A = 6.02e23 /mol.'
     answer_label: 'The rms speed'
     check: {kind: approx, value: "sqrt(3 * 1.38e-23 * 394 / (0.018 / 6.02e23))", target: "739", tolerance: "2"}
@@ -297,7 +297,7 @@ problems:
 
   - id: w12-kinetic-theory
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A gas contains 5.0e22 molecules, each of mass 4.8e-26 kg, in a volume of 2.0e-3 m3. The rms speed is 500 m/s. Use pV = (1/3)Nm(c_rms)^2 to find the pressure.'
     answer_label: 'The pressure'
     check:
@@ -314,7 +314,7 @@ problems:
   - id: w13-charles
     plays: ideal-gas-n
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A fixed mass of gas occupies 300 cm3 at 300 K. It is heated at constant pressure to 450 K. Find its new volume.'
     answer_label: 'The new volume'
     check:
@@ -331,7 +331,7 @@ problems:
   - id: g7-boyle
     plays: ideal-gas-n
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A gas occupies 4.0e-3 m3 at a pressure of 1.0e5 Pa. It is compressed at constant temperature to 1.0e-3 m3. Find the new pressure.'
     answer_label: 'The new pressure'
     check:
@@ -347,7 +347,7 @@ problems:
   - id: g8-charles
     plays: ideal-gas-n
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A fixed mass of gas at 290 K occupies 2.0e-3 m3. At constant pressure it is warmed to 348 K. Find its new volume.'
     answer_label: 'The new volume'
     check:
@@ -362,7 +362,7 @@ problems:
 
   - id: g9-moles
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the number of moles in 0.020 m3 of gas at 1.0e5 Pa and 300 K. R = 8.31 J/K/mol.'
     answer_label: 'The number of moles'
     check: {kind: approx, value: "1.0e5 * 0.020 / (8.31 * 300)", target: "0.802", tolerance: "0.002"}
@@ -370,7 +370,7 @@ problems:
 
   - id: g10-molecules
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the number of molecules in the gas in the previous problem. Use n = 0.802 mol and N_A = 6.02e23 /mol.'
     answer_label: 'The number of molecules'
     check: {kind: approx, value: "0.802 * 6.02e23", target: "4.83e23", tolerance: "0.02e23"}
@@ -378,7 +378,7 @@ problems:
 
   - id: g11-average-ke
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the average random kinetic energy of a gas molecule at 300 K. Use k = 1.38e-23 J/K.'
     answer_label: 'The average kinetic energy'
     check: {kind: approx, value: "1.5 * 1.38e-23 * 300", target: "6.21e-21", tolerance: "0.05e-21"}
@@ -386,7 +386,7 @@ problems:
 
   - id: g12-rms-nitrogen
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the rms speed of nitrogen molecules at 300 K. The molar mass of nitrogen is 0.028 kg/mol and R = 8.31 J/K/mol.'
     answer_label: 'The rms speed'
     check: {kind: approx, value: "sqrt(3 * 8.31 * 300 / 0.028)", target: "517", tolerance: "2"}
@@ -394,7 +394,7 @@ problems:
 
   - id: g13-pressure-reason
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Explain, in terms of the molecules, how a gas exerts a pressure on the walls of its container.'
     check:
       kind: structured
@@ -421,7 +421,7 @@ problems:
   # --- Section 7.2, the warm-up recalls --------------------------------------
   - id: warmup-7-2-kinetic-energy
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A molecule of mass 4.8e-26 kg moves at 500 m/s. Find its kinetic energy.'
     answer_label: 'The kinetic energy'
     check: {kind: evaluate, expression: "0.5 * 4.8e-26 * 500**2", answer: "6.0e-21"}
@@ -429,7 +429,7 @@ problems:
 
   - id: warmup-7-2-momentum
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A molecule of mass 4.8e-26 kg strikes a wall at 500 m/s and rebounds at 500 m/s. Find the change in its momentum.'
     answer_label: 'The change in momentum'
     check: {kind: evaluate, expression: "2 * 4.8e-26 * 500", answer: "4.8e-23"}
@@ -437,7 +437,7 @@ problems:
 
   - id: warmup-7-2-prefix
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Write 200 cm3 in cubic metres.'
     answer_label: 'The volume'
     check: {kind: convert, value: "200", from: "cm^3", to: "m^3", answer: "2.0e-4"}
@@ -447,7 +447,7 @@ problems:
   - id: anchor-heat-water
     plays: thermal-energy
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'The pressure cooker holds 1.50 kg of water at 20 C. It boils at 121 C. Find the energy needed to heat the water to boiling. c = 4200 J/kg/K.'
     answer_label: 'The energy supplied'
     check:
@@ -463,7 +463,7 @@ problems:
   - id: anchor-boil-water
     plays: latent-heat
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the energy to turn 0.050 kg of boiling water into steam. L = 2.26e6 J/kg.'
     answer_label: 'The energy supplied'
     check:
@@ -477,7 +477,7 @@ problems:
 
   - id: anchor-total-energy
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the total energy to heat the water and to turn 0.050 kg of it into steam.'
     answer_label: 'The total energy'
     check:
@@ -494,7 +494,7 @@ problems:
 
   - id: anchor-boiling-rate
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'The cooker boils for 12 minutes, and 0.050 kg of water turns to steam in that time. Find the average rate at which energy is used for boiling.'
     answer_label: 'The average rate of energy transfer'
     check: {kind: approx, value: "113000 / 720", target: "157", tolerance: "2"}
@@ -502,7 +502,7 @@ problems:
 
   - id: anchor-moles
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'The steam in the space above the water is at 2.00e5 Pa and 121 C, in a volume of 2.00e-3 m3. Treat it as an ideal gas and find the number of moles. R = 8.31 J/K/mol.'
     answer_label: 'The number of moles'
     check:
@@ -516,7 +516,7 @@ problems:
 
   - id: anchor-molecules
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the number of molecules in the steam. Use n = 0.1222 mol and N_A = 6.02e23 /mol.'
     answer_label: 'The number of molecules'
     check: {kind: approx, value: "0.1222 * 6.02e23", target: "7.36e22", tolerance: "0.05e22"}
@@ -524,7 +524,7 @@ problems:
 
   - id: anchor-average-ke
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the average random kinetic energy of a steam molecule at 121 C. k = 1.38e-23 J/K.'
     answer_label: 'The average kinetic energy'
     check: {kind: approx, value: "1.5 * 1.38e-23 * 394", target: "8.16e-21", tolerance: "0.05e-21"}
@@ -532,7 +532,7 @@ problems:
 
   - id: anchor-rms
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the rms speed of a steam molecule at 121 C. Molar mass 0.018 kg/mol, R = 8.31 J/K/mol.'
     answer_label: 'The rms speed'
     check: {kind: approx, value: "sqrt(3 * 8.31 * 394 / 0.018)", target: "739", tolerance: "2"}
@@ -540,7 +540,7 @@ problems:
 
   - id: anchor-pressure-reason
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Explain, in terms of the steam molecules, why the steam exerts a pressure on the inside of the pressure cooker.'
     check:
       kind: structured
@@ -566,7 +566,7 @@ problems:
 
   - id: anchor-prediction
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Before the valve opens, the lid is clamped shut and the water is heated. Predict what happens to the pressure inside and to the temperature at which the water boils.'
     check:
       kind: structured

@@ -4,7 +4,7 @@ chapter: 2
 chapter_title: Algebra and functions
 section: '2.5'
 section_title: Simultaneous equations by elimination and substitution
-dfe:
+refs:
 - B4
 kind: guided-problems
 ---

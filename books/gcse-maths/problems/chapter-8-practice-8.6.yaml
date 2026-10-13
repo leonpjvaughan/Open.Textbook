@@ -12,7 +12,7 @@ problems:
   - id: ch8-8-6-1
     section: '8.6'
     tier: F
-    dfe: [A5]
+    refs: [A5]
     statement: 'Make $x$ the subject of $y=x+7$.'
     answer_label: 'Make $x$ the subject of $y=x+7$.'
     check:
@@ -23,7 +23,7 @@ problems:
   - id: ch8-8-6-2
     section: '8.6'
     tier: F
-    dfe: [A5]
+    refs: [A5]
     statement: 'Make $x$ the subject of $y=4x$.'
     answer_label: 'Make $x$ the subject of $y=4x$.'
     check:
@@ -34,7 +34,7 @@ problems:
   - id: ch8-8-6-3
     section: '8.6'
     tier: F
-    dfe: [A5]
+    refs: [A5]
     statement: 'Make $b$ the subject of $A=a+b$.'
     answer_label: 'Make $b$ the subject of $A=a+b$.'
     check:
@@ -45,7 +45,7 @@ problems:
   - id: ch8-8-6-4
     section: '8.6'
     tier: F
-    dfe: [A5]
+    refs: [A5]
     statement: 'Make $r$ the subject of $C=2r$.'
     answer_label: 'Make $r$ the subject of $C=2r$.'
     check:
@@ -56,7 +56,7 @@ problems:
   - id: ch8-8-6-5
     section: '8.6'
     tier: F
-    dfe: [A5]
+    refs: [A5]
     statement: 'Make $h$ the subject of $V=bh/2$.'
     answer_label: 'Make $h$ the subject of $V=bh/2$.'
     check:
@@ -67,7 +67,7 @@ problems:
   - id: ch8-8-6-6
     section: '8.6'
     tier: F
-    dfe: [A5]
+    refs: [A5]
     statement: 'Make $t$ the subject of $s=t-9$.'
     answer_label: 'Make $t$ the subject of $s=t-9$.'
     check:
@@ -78,7 +78,7 @@ problems:
   - id: ch8-8-6-7
     section: '8.6'
     tier: F
-    dfe: [A5]
+    refs: [A5]
     statement: 'Make $w$ the subject of $P=2l+2w$.'
     answer_label: 'Make $w$ the subject of $P=2l+2w$.'
     check:
@@ -89,7 +89,7 @@ problems:
   - id: ch8-8-6-8
     section: '8.6'
     tier: F
-    dfe: [A5]
+    refs: [A5]
     statement: 'Make $y$ the subject of $x=y+4$.'
     answer_label: 'Make $y$ the subject of $x=y+4$.'
     check:
@@ -101,7 +101,7 @@ problems:
   - id: ch8-86-method-rearrange
     section: '8.6'
     tier: F
-    dfe: [A5]
+    refs: [A5]
     statement: 'Make $x$ the subject of $y=3x+2$. Which method fits: undo the $+2$ first, or undo the $\times3$ first? Give a reason, then rearrange.'
     answer_label: 'Method choice: reverse the order of operations'
     check:

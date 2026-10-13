@@ -4,7 +4,7 @@ chapter: 10
 chapter_title: Vectors
 section: '10.3'
 section_title: Vector addition and scalar multiplication
-dfe:
+refs:
 - J3
 kind: problems
 ---

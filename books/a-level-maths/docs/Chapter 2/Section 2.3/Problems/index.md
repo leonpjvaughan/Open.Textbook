@@ -4,7 +4,7 @@ chapter: 2
 chapter_title: Algebra and functions
 section: '2.3'
 section_title: Quadratic functions, the discriminant and completing the square
-dfe:
+refs:
 - B3
 kind: problems
 ---

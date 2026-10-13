@@ -5,7 +5,7 @@ chapter_title: Electricity
 section: '6.4'
 section_title: Energy transfers and the national grid
 tier: F
-dfe:
+refs:
 - EL4
 kind: problems
 ---

@@ -4,7 +4,7 @@ chapter: 16
 chapter_title: Forces, Newton's laws and moments
 section: '16.5'
 section_title: Resolving forces and coplanar equilibrium
-dfe:
+refs:
 - R4
 kind: problems
 ---

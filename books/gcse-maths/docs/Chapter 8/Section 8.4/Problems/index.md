@@ -5,7 +5,7 @@ chapter_title: Algebraic expressions and manipulation
 section: "8.4"
 section_title: Factorising with common factors
 tier: F
-dfe: [A4]
+refs: [A4]
 kind: problems
 ---
 

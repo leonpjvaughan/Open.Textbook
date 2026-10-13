@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: p1-solve-base-2
     section: "6.4"
-    dfe: [F5]
+    refs: [F5]
     statement: 'Solve $2^x = 7$, giving $x$ exactly.'
     answer_label: 'The value of $x$'
     check:
@@ -21,7 +21,7 @@ problems:
 
   - id: p2-solve-base-3
     section: "6.4"
-    dfe: [F5]
+    refs: [F5]
     statement: 'Solve $3^x = 20$, giving $x$ exactly.'
     answer_label: 'The value of $x$'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-solve-small-base
     section: "6.4"
-    dfe: [F5]
+    refs: [F5]
     statement: 'Solve $5^x = 0.1$, giving $x$ exactly.'
     answer_label: 'The value of $x$'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: p4-solve-e
     section: "6.4"
-    dfe: [F5]
+    refs: [F5]
     statement: 'Solve $e^x = 5$, giving $x$ exactly.'
     answer_label: 'The value of $x$'
     check:
@@ -57,7 +57,7 @@ problems:
 
   - id: p5-solve-e-double
     section: "6.4"
-    dfe: [F5]
+    refs: [F5]
     statement: 'Solve $e^{2x} = 9$, giving $x$ exactly.'
     answer_label: 'The value of $x$'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: p6-quadratic-in-e
     section: "6.4"
-    dfe: [F5]
+    refs: [F5]
     statement: 'Solve $e^{2x} - 5e^x + 6 = 0$, giving each value of $x$ exactly.'
     answer_label: 'The values of $x$'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-quadratic-in-2x
     section: "6.4"
-    dfe: [F5]
+    refs: [F5]
     statement: 'Solve $2^{2x} - 5\left(2^x\right) + 4 = 0$, giving each value of $x$ exactly.'
     answer_label: 'The values of $x$'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p8-solve-linear-exponent
     section: "6.4"
-    dfe: [F5]
+    refs: [F5]
     statement: 'Solve $5^{2x-1} = 30$, giving $x$ exactly.'
     answer_label: 'The value of $x$'
     check:
@@ -105,7 +105,7 @@ problems:
 
   - id: p9-solve-power-sum
     section: "6.4"
-    dfe: [F5]
+    refs: [F5]
     statement: 'Solve $3^{x+1} = 100$, giving $x$ exactly.'
     answer_label: 'The value of $x$'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: p10-approximate
     section: "6.4"
-    dfe: [F5]
+    refs: [F5]
     statement: 'Solve $2^x = 7$, giving $x$ to three significant figures.'
     answer_label: 'The value of $x$'
     check:
@@ -129,7 +129,7 @@ problems:
 
   - id: p11-no-solution
     section: "6.4"
-    dfe: [F5]
+    refs: [F5]
     statement: 'Solve $e^x = -1$ for real $x$, or explain why there is no solution.'
     answer_label: 'The solution set'
     check:
@@ -142,7 +142,7 @@ problems:
 
   - id: p12-solve-by-matching-base
     section: "6.4"
-    dfe: [F5]
+    refs: [F5]
     statement: 'Solve $4^x = 8$ by writing both sides as powers of $2$.'
     answer_label: 'The value of $x$'
     check:

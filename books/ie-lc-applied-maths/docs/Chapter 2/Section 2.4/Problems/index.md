@@ -15,4 +15,4 @@ kind: problems
 # 2.4 Matrix algebra and the product of adjacency matrices — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: S2
+> Tier: **O** · refs: S2

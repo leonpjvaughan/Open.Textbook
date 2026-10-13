@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: p1-decreasing-quadratic
     section: "7.6"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the interval on which $y = x^2 - 10x$ is decreasing.'
     answer_label: 'The interval'
     check:
@@ -21,7 +21,7 @@ problems:
 
   - id: p2-increasing-cubic
     section: "7.6"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the intervals on which $y = x^3 - 3x^2$ is increasing.'
     answer_label: 'The intervals'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-decreasing-between-roots
     section: "7.6"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the interval on which $y = x^3 - 12x + 1$ is decreasing.'
     answer_label: 'The interval'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: p4-increasing-cubic-factor
     section: "7.6"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the intervals on which $y = 2x^3 - 3x^2 - 12x$ is increasing.'
     answer_label: 'The intervals'
     check:
@@ -57,7 +57,7 @@ problems:
 
   - id: p5-increasing-given-derivative
     section: "7.6"
-    dfe: [G3]
+    refs: [G3]
     statement: 'A function has $f''(x) = (x - 1)(x - 5)$. Find the intervals on which $f$ is increasing.'
     answer_label: 'The intervals'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: p6-increasing-line
     section: "7.6"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the interval on which $y = x^2 + 6x + 1$ is increasing.'
     answer_label: 'The interval'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-decreasing-given-derivative
     section: "7.6"
-    dfe: [G3]
+    refs: [G3]
     statement: 'A function has $f''(x) = 3(x - 1)(x - 3)$. Find the interval on which $f$ is decreasing.'
     answer_label: 'The interval'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p8-decreasing-cubic
     section: "7.6"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the interval on which $y = x^3 - 6x^2 + 9x$ is decreasing.'
     answer_label: 'The interval'
     check:
@@ -105,7 +105,7 @@ problems:
 
   - id: p9-increasing-quadratic
     section: "7.6"
-    dfe: [G3]
+    refs: [G3]
     statement: 'Find the interval on which $y = 2x^2 - 8x + 3$ is increasing.'
     answer_label: 'The interval'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: p10-increasing-factored
     section: "7.6"
-    dfe: [G3]
+    refs: [G3]
     statement: 'A function has $f''(x) = 6(x + 4)(x - 2)$. Find the intervals on which $f$ is increasing.'
     answer_label: 'The intervals'
     check:

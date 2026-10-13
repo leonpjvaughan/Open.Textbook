@@ -4,7 +4,7 @@ chapter: 11
 chapter_title: Statistical sampling and data presentation
 section: '11.2'
 section_title: Sampling techniques and their critique
-dfe:
+refs:
 - K1
 kind: problems
 ---

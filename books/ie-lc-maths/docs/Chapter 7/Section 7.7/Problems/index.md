@@ -15,4 +15,4 @@ kind: problems
 # 7.7 Rates of change in context — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 5.2
+> Tier: **O** · refs: 5.2

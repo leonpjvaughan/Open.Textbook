@@ -15,4 +15,4 @@ kind: problems
 # 18.1 The photon and the quantum idea — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 4.2
+> Tier: **O** · refs: 4.2

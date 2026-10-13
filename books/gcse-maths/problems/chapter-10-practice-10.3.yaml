@@ -6,7 +6,7 @@ problems:
   - id: ch10-103-linear-rule
     section: '10.3'
     tier: F
-    dfe: [A25]
+    refs: [A25]
     statement: 'Find the nth term of $8,12,16,20,\ldots$.'
     answer_label: 'Find the nth term of $8,12,16,20,\ldots$.'
     check: {"kind":"all","checks":[{"kind":"evaluate","expression":"4*1+4","answer":"8"},{"kind":"evaluate","expression":"4*2+4","answer":"12"},{"kind":"evaluate","expression":"4*3+4","answer":"16"}]}
@@ -15,7 +15,7 @@ problems:
   - id: ch10-103-negative-linear
     section: '10.3'
     tier: F
-    dfe: [A25]
+    refs: [A25]
     statement: 'Find the nth term of $15,11,7,3,\ldots$.'
     answer_label: 'Find the nth term of $15,11,7,3,\ldots$.'
     check: {"kind":"all","checks":[{"kind":"evaluate","expression":"-4*1+19","answer":"15"},{"kind":"evaluate","expression":"-4*2+19","answer":"11"},{"kind":"evaluate","expression":"-4*3+19","answer":"7"}]}
@@ -24,7 +24,7 @@ problems:
   - id: ch10-103-find-term
     section: '10.3'
     tier: F
-    dfe: [A25]
+    refs: [A25]
     statement: 'Find the 25th term of $3n+7$.'
     answer_label: 'Find the 25th term of $3n+7$.'
     check: {"kind":"evaluate","expression":"3*25+7","answer":"82"}
@@ -33,7 +33,7 @@ problems:
   - id: ch10-103-which-position
     section: '10.3'
     tier: F
-    dfe: [A25]
+    refs: [A25]
     statement: 'Which term of $5n-2$ is 48?'
     answer_label: 'Which term of $5n-2$ is 48?'
     check: {"kind":"evaluate","expression":"5*10-2","answer":"48"}
@@ -42,7 +42,7 @@ problems:
   - id: ch10-103-match-rule
     section: '10.3'
     tier: F
-    dfe: [A25]
+    refs: [A25]
     statement: 'Does $7n+1$ generate $8,15,22,29$?'
     answer_label: 'Does $7n+1$ generate $8,15,22,29$?'
     check: {"kind":"all","checks":[{"kind":"evaluate","expression":"7*1+1","answer":"8"},{"kind":"evaluate","expression":"7*2+1","answer":"15"},{"kind":"evaluate","expression":"7*3+1","answer":"22"},{"kind":"evaluate","expression":"7*4+1","answer":"29"}]}
@@ -51,7 +51,7 @@ problems:
   - id: ch10-103-pattern-context
     section: '10.3'
     tier: F
-    dfe: [A25]
+    refs: [A25]
     statement: 'A theatre row has 12 seats and each next row has 4 more. How many seats are in row 10?'
     answer_label: 'A theatre row has 12 seats and each next row has 4 more. How many'
     check: {"kind":"evaluate","expression":"12+9*4","answer":"48"}
@@ -60,7 +60,7 @@ problems:
   - id: ch10-103-method-choice
     section: '10.3'
     tier: F
-    dfe: [A25]
+    refs: [A25]
     statement: 'Sequence A has nth term $4n+1$; B has $3n+15$. Which has more at position 20? State the method.'
     answer_label: 'Sequence A has nth term $4n+1$; B has $3n+15$. Which has more at '
     check: {"kind":"compare","relation":">","lhs":"4*20+1","rhs":"3*20+15"}
@@ -69,7 +69,7 @@ problems:
   - id: ch10-103-higher-linear
     section: '10.3'
     tier: H
-    dfe: [A25]
+    refs: [A25]
     statement: '**H** A linear sequence has common difference 8 and 1st term 3. Find its nth term.'
     answer_label: '**H** A linear sequence has common difference 8 and 1st term 3. F'
     check: {"kind":"all","checks":[{"kind":"evaluate","expression":"8*1-5","answer":"3"},{"kind":"evaluate","expression":"8*2-5","answer":"11"}]}

@@ -18,7 +18,7 @@ chapter: 3
 problems:
   - id: p1-accelerate-from-rest
     section: '3.1'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A car accelerates uniformly from rest at $2.5\,\text{m}\,\text{s}^{-2}$ for 6.0 s. Find its final speed and the distance it travels.'
     answer_label: 'The final speed and the distance'
     check:
@@ -41,7 +41,7 @@ problems:
   - id: p2-train-decelerate
     plays: suvat-v2
     section: '3.1'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A train slows from $40\,\text{m}\,\text{s}^{-1}$ to $15\,\text{m}\,\text{s}^{-1}$ over a distance of 500 m. Find its acceleration.'
     answer_label: 'The acceleration'
     check:
@@ -56,7 +56,7 @@ problems:
 
   - id: p3-stone-fall
     section: '3.1'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A stone is dropped from rest and falls for 3.2 s. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$. Find its speed and the distance it falls.'
     answer_label: 'The speed and the distance'
     check:
@@ -68,7 +68,7 @@ problems:
 
   - id: p4-ball-thrown-up
     section: '3.1'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A ball is thrown vertically upwards at $12\,\text{m}\,\text{s}^{-1}$. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$. Find the maximum height it reaches and the time it takes to reach it.'
     answer_label: 'The maximum height and the time'
     check:
@@ -80,7 +80,7 @@ problems:
 
   - id: p5-graph-gradient-and-area
     section: '3.1'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A velocity–time graph has the points $(0, 0)$, $(2, 6)$, $(4, 12)$, $(6, 12)$ and $(8, 0)$. The first two points are in a straight line. Find the acceleration in the first 2.0 s and the total displacement over the 8.0 s.'
     answer_label: 'The acceleration and the displacement'
     check:
@@ -92,7 +92,7 @@ problems:
 
   - id: p6-thrown-up-velocity
     section: '3.1'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A ball is thrown vertically upwards at $20\,\text{m}\,\text{s}^{-1}$. Take upwards as positive and $g = 9.81\,\text{m}\,\text{s}^{-2}$. Find its velocity after 3.0 s.'
     answer_label: 'The velocity after 3.0 s'
     check:
@@ -104,7 +104,7 @@ problems:
 
   - id: p7-two-stage
     section: '3.1'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A car accelerates uniformly from rest at $1.5\,\text{m}\,\text{s}^{-2}$ for 8.0 s, then travels at the final speed for a further 12 s. Find the total distance travelled.'
     answer_label: 'The total distance'
     check:
@@ -119,7 +119,7 @@ problems:
 
   - id: p8-distance-displacement
     section: '3.1'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A runner completes one lap of a 400 m track in 50 s and stops at the start. Explain the difference between the distance travelled, the displacement and the average speed.'
     answer_label: 'Distance, displacement and average speed'
     check:
@@ -140,7 +140,7 @@ problems:
 
   - id: p9-rocket-two-phase
     section: '3.1'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A model rocket lifts off from rest and accelerates upwards at $25\,\text{m}\,\text{s}^{-2}$ for 4.0 s. The engine then cuts off and the rocket decelerates at $g = 9.81\,\text{m}\,\text{s}^{-2}$. Find the speed at engine cut-off and the time from cut-off until the rocket reaches its highest point.'
     answer_label: 'The speed at cut-off and the time to the highest point'
     check:
@@ -152,7 +152,7 @@ problems:
 
   - id: p10-speed-conversion
     section: '3.1'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A car travels at $25\,\text{m}\,\text{s}^{-1}$. Write this speed in $\text{km}\,\text{h}^{-1}$.'
     answer_label: 'The speed in kilometres per hour'
     check:
@@ -165,7 +165,7 @@ problems:
 
   - id: p11-method-choice
     section: '3.1'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A car accelerates uniformly from $10\,\text{m}\,\text{s}^{-1}$ to $22\,\text{m}\,\text{s}^{-1}$ over 120 m. Say which equation of motion you would choose, and why, before you calculate the acceleration.'
     answer_label: 'The equation and the reason'
     check:
@@ -186,7 +186,7 @@ problems:
 
   - id: p12-sigfigs
     section: '3.1'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A trolley starts from rest and travels 60 m in 8.0 s with constant acceleration. Find the acceleration to two significant figures.'
     answer_label: 'The acceleration to two significant figures'
     check:

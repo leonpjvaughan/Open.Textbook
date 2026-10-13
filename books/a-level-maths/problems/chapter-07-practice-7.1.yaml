@@ -11,7 +11,7 @@ symbols:
 problems:
   - id: p1-line-gradient
     section: "7.1"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Find the gradient of the straight line through $(2, 5)$ and $(6, 17)$.'
     answer_label: 'The gradient'
     check:
@@ -22,7 +22,7 @@ problems:
 
   - id: p2-chord-quadratic
     section: "7.1"
-    dfe: [G1]
+    refs: [G1]
     statement: 'The curve $y = x^2$ passes through $P(1, 1)$ and $Q(3, 9)$. Find the gradient of the chord $PQ$.'
     answer_label: 'The gradient of the chord'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-chord-close
     section: "7.1"
-    dfe: [G1]
+    refs: [G1]
     statement: 'The curve $y = x^2$ passes through $P(1, 1)$ and $Q(1.5, 2.25)$. Find the gradient of the chord $PQ$.'
     answer_label: 'The gradient of the chord'
     check:
@@ -44,7 +44,7 @@ problems:
 
   - id: p4-estimate-cubic
     section: "7.1"
-    dfe: [G1]
+    refs: [G1]
     statement: 'Use the chord from $(2, 8)$ to $(2.1, 9.261)$ on the curve $y = x^3$ to estimate the gradient at $x = 2$. Give your answer to two decimal places.'
     answer_label: 'The estimated gradient'
     check:
@@ -55,7 +55,7 @@ problems:
 
   - id: p5-gradient-zero
     section: "7.1"
-    dfe: [G1]
+    refs: [G1]
     statement: 'A curve has gradient function $f''(x) = 3x^2 - 6x$. Find the two values of $x$ where the gradient is zero.'
     answer_label: 'The two values of $x$'
     check:
@@ -67,7 +67,7 @@ problems:
 
   - id: p6-gradient-value
     section: "7.1"
-    dfe: [G1]
+    refs: [G1]
     statement: 'A curve has gradient function $f''(x) = 3x^2 - 6x$. Work out the gradient at $x = 3$.'
     answer_label: 'The gradient at $x = 3$'
     check:
@@ -79,7 +79,7 @@ problems:
 
   - id: p7-average-speed
     section: "7.1"
-    dfe: [G1]
+    refs: [G1]
     statement: 'A stone falls a distance $s = 5t^2$ metres in $t$ seconds. Find the average speed between $t = 1$ and $t = 3$ seconds.'
     answer_label: 'The average speed'
     check:
@@ -90,7 +90,7 @@ problems:
 
   - id: p8-population-rate
     section: "7.1"
-    dfe: [G1]
+    refs: [G1]
     statement: 'The population $P$ of a village after $t$ years is modelled by $\dfrac{dP}{dt} = 40 - 4t$. Work out the rate of change of the population at $t = 5$.'
     answer_label: 'The rate of change'
     check:
@@ -102,7 +102,7 @@ problems:
 
   - id: p9-flat-points
     section: "7.1"
-    dfe: [G1]
+    refs: [G1]
     statement: 'A curve has gradient function $f''(x) = (x - 1)(x - 4)$. Find the two values of $x$ where the curve is flat.'
     answer_label: 'The two values of $x$'
     check:
@@ -114,7 +114,7 @@ problems:
 
   - id: p10-temperature-fall
     section: "7.1"
-    dfe: [G1]
+    refs: [G1]
     statement: 'A drink cools so that its temperature after $t$ minutes is $\theta = 100 - 3t$ degrees Celsius. Work out the change in temperature over $4$ minutes.'
     answer_label: 'The change in temperature'
     check:

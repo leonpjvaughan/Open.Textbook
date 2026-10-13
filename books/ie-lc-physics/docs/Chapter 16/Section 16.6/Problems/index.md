@@ -15,4 +15,4 @@ kind: problems
 # 16.6 R.M.S. values of alternating current — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 3.6
+> Tier: **H** · refs: 3.6

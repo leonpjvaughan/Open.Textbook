@@ -4,7 +4,7 @@ chapter: 4
 chapter_title: Sequences and series
 section: '4.3'
 section_title: Sequences from formulae and recurrences
-dfe:
+refs:
 - D2
 kind: walkthrough
 ---

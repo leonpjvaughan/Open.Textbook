@@ -4,7 +4,7 @@ chapter: 10
 chapter_title: Vectors
 section: '10.2'
 section_title: Magnitude and direction; component and magnitude/direction form
-dfe:
+refs:
 - J2
 kind: walkthrough
 ---

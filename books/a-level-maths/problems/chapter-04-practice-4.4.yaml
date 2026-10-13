@@ -11,7 +11,7 @@ symbols:
 problems:
   - id: p1-evaluate-finite-sum
     section: "4.4"
-    dfe: [D3]
+    refs: [D3]
     statement: 'Evaluate $\sum_{r=1}^{4}(5r - 2)$.'
     answer_label: 'The sum'
     plays: aqa-arithmetic-series
@@ -24,7 +24,7 @@ problems:
 
   - id: p2-geometric-looking-sum
     section: "4.4"
-    dfe: [D3]
+    refs: [D3]
     statement: 'Evaluate $\sum_{r=1}^{5}2^r$.'
     answer_label: 'The sum'
     plays: geometric-series
@@ -37,7 +37,7 @@ problems:
 
   - id: p3-evaluate-arithmetic-sum
     section: "4.4"
-    dfe: [D3]
+    refs: [D3]
     statement: 'Evaluate $\sum_{r=1}^{8}(3r - 2)$.'
     answer_label: 'The sum'
     plays: aqa-arithmetic-series
@@ -50,7 +50,7 @@ problems:
 
   - id: p4-sum-of-squares
     section: "4.4"
-    dfe: [D3]
+    refs: [D3]
     statement: 'Evaluate $\sum_{r=1}^{4}r^2$.'
     answer_label: 'The sum'
     check:
@@ -62,7 +62,7 @@ problems:
 
   - id: p5-write-in-sigma
     section: "4.4"
-    dfe: [D3]
+    refs: [D3]
     statement: 'Write $5 + 10 + 15 + \dots + 60$ in sigma notation, and work out the sum.'
     answer_label: 'The sum'
     plays: aqa-arithmetic-series
@@ -75,7 +75,7 @@ problems:
 
   - id: p6-linear-standard-results
     section: "4.4"
-    dfe: [D3]
+    refs: [D3]
     statement: 'Use the standard results to work out $\sum_{r=1}^{12}(2r + 3)$.'
     answer_label: 'The sum'
     plays: aqa-arithmetic-series
@@ -88,7 +88,7 @@ problems:
 
   - id: p7-square-standard-result
     section: "4.4"
-    dfe: [D3]
+    refs: [D3]
     statement: 'Use a standard result to work out $\sum_{r=1}^{10}r^2$.'
     answer_label: 'The sum'
     check:
@@ -100,7 +100,7 @@ problems:
 
   - id: p8-mixed-standard-results
     section: "4.4"
-    dfe: [D3]
+    refs: [D3]
     statement: 'Use the standard results to work out $\sum_{r=1}^{8}(r^2 + r)$.'
     answer_label: 'The sum'
     check:
@@ -112,7 +112,7 @@ problems:
 
   - id: p9-sum-of-cubes
     section: "4.4"
-    dfe: [D3]
+    refs: [D3]
     statement: 'Use a standard result to work out $\sum_{r=1}^{4}r^3$.'
     answer_label: 'The sum'
     check:
@@ -124,7 +124,7 @@ problems:
 
   - id: p10-index-not-from-one
     section: "4.4"
-    dfe: [D3]
+    refs: [D3]
     statement: 'Use the standard results to work out $\sum_{r=4}^{9}r$.'
     answer_label: 'The sum'
     plays: aqa-arithmetic-series
@@ -137,7 +137,7 @@ problems:
 
   - id: p11-quiz-total
     section: "4.4"
-    dfe: [D3]
+    refs: [D3]
     statement: 'The quiz night raises $50n + 100$ pounds in month $n$. Write the total raised in the first 10 months in sigma notation, and work it out.'
     answer_label: 'The total'
     check:
@@ -149,7 +149,7 @@ problems:
 
   - id: p12-symbolic-sum
     section: "4.4"
-    dfe: [D3]
+    refs: [D3]
     statement: 'Work out $\sum_{r=1}^{n}(3r + 1)$ in terms of $n$.'
     answer_label: 'The sum in terms of n'
     plays: aqa-arithmetic-series

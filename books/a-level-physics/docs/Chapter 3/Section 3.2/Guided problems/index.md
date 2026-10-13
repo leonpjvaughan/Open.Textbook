@@ -4,7 +4,7 @@ chapter: 3
 chapter_title: Mechanics
 section: '3.2'
 section_title: Dynamics and Newton's laws of motion
-dfe:
+refs:
 - AP3
 kind: guided-problems
 ---

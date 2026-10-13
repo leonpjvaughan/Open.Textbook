@@ -15,4 +15,4 @@ kind: problems
 # 6.1 Relations and functions — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 5.1
+> Tier: **F** · refs: 5.1

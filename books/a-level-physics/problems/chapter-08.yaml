@@ -21,7 +21,7 @@ problems:
   # --- Section 8.1, the Learn worked examples --------------------------------
   - id: w1-gamma-photon
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A 511 keV gamma photon: find its energy in joules, its frequency and its wavelength.'
     answer_label: 'The energy, frequency and wavelength'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: w2-hydrogen-transition
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron falls from -3.40 eV to -13.6 eV. Find the photon energy, frequency and wavelength.'
     answer_label: 'The energy, frequency and wavelength'
     check:
@@ -47,7 +47,7 @@ problems:
 
   - id: w3-photoelectric-kinetic
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: '250 nm light falls on a 2.00 eV photocathode. Find the photon energy and the maximum kinetic energy, in eV.'
     answer_label: 'The photon energy and the maximum kinetic energy'
     check:
@@ -59,7 +59,7 @@ problems:
 
   - id: w4-threshold-wavelength
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Find the threshold wavelength for a photocathode of work function 2.00 eV.'
     answer_label: 'The threshold wavelength'
     check: {kind: approx, value: "6.63e-34 * 3.00e8 / (2.00 * 1.60e-19)", target: "6.22e-7", tolerance: "5e-9"}
@@ -68,7 +68,7 @@ problems:
   # --- Section 8.1, warm-ups and guided problems -----------------------------
   - id: g1-wave-wavelength
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A wave of frequency 6.0e14 Hz: find its wavelength.'
     answer_label: 'The wavelength'
     check: {kind: approx, value: "3.00e8 / 6.0e14", target: "5.0e-7", tolerance: "1e-9"}
@@ -76,7 +76,7 @@ problems:
 
   - id: g2-ev-to-joules
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Write 2.0 eV in joules.'
     answer_label: 'The energy'
     check: {kind: approx, value: "2.0 * 1.60e-19", target: "3.2e-19", tolerance: "1e-21"}
@@ -84,7 +84,7 @@ problems:
 
   - id: g3-electron-50v
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron is accelerated through 50 V. Find its kinetic energy in joules.'
     answer_label: 'The kinetic energy'
     check: {kind: approx, value: "1.60e-19 * 50", target: "8.0e-18", tolerance: "1e-20"}
@@ -93,7 +93,7 @@ problems:
   - id: g4-photon-energy-frequency
     plays: photon-energy
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A photon has a frequency of 5.0e14 Hz. Find its energy.'
     answer_label: 'The photon energy'
     check:
@@ -108,7 +108,7 @@ problems:
   - id: g5-photon-400nm
     plays: photon-energy
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Find the energy of a photon of wavelength 400 nm.'
     answer_label: 'The photon energy'
     check:
@@ -123,7 +123,7 @@ problems:
 
   - id: g6-max-kinetic-300nm
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: '300 nm light falls on a metal of work function 2.30 eV. Find the maximum kinetic energy in eV.'
     answer_label: 'The maximum kinetic energy'
     check: {kind: approx, value: "6.63e-34 * 3.00e8 / 300e-9 / 1.60e-19 - 2.30", target: "1.84", tolerance: "0.02"}
@@ -131,7 +131,7 @@ problems:
 
   - id: g7-threshold-200ev
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A metal has a work function of 2.00 eV. Find its threshold wavelength.'
     answer_label: 'The threshold wavelength'
     check: {kind: approx, value: "6.63e-34 * 3.00e8 / (2.00 * 1.60e-19)", target: "6.22e-7", tolerance: "5e-9"}
@@ -139,7 +139,7 @@ problems:
 
   - id: g8-stopping-potential
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'The maximum kinetic energy of photoelectrons is 2.5 eV. Find the stopping potential.'
     answer_label: 'The stopping potential'
     check:
@@ -150,7 +150,7 @@ problems:
 
   - id: g9-hydrogen-transition
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron falls from -1.51 eV to -3.40 eV. Find the photon energy and wavelength.'
     answer_label: 'The photon energy and wavelength'
     check:
@@ -162,7 +162,7 @@ problems:
 
   - id: g10-below-threshold
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Explain why bright light below the threshold frequency releases no photoelectrons.'
     check:
       kind: structured
@@ -185,7 +185,7 @@ problems:
   # --- Section 8.2, the Learn worked examples --------------------------------
   - id: w5-electron-150v
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron is accelerated through 150 V. Find its kinetic energy, momentum and de Broglie wavelength.'
     answer_label: 'The kinetic energy, momentum and wavelength'
     check:
@@ -198,7 +198,7 @@ problems:
 
   - id: w6-everyday-object
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Find the de Broglie wavelength of a 0.050 kg ball at 20 m/s.'
     answer_label: 'The de Broglie wavelength'
     check: {kind: approx, value: "6.63e-34 / (0.050 * 20)", target: "6.63e-34", tolerance: "1e-36"}
@@ -206,7 +206,7 @@ problems:
 
   - id: w7-voltage-from-wavelength
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Electrons have a de Broglie wavelength of 5.0e-11 m. Find the momentum, kinetic energy and accelerating potential difference.'
     answer_label: 'The momentum, kinetic energy and potential difference'
     check:
@@ -220,7 +220,7 @@ problems:
   # --- Section 8.2, warm-ups and guided problems -----------------------------
   - id: g11-ball-momentum
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A 0.20 kg ball moves at 3.0 m/s. Find its momentum.'
     answer_label: 'The momentum'
     check:
@@ -235,7 +235,7 @@ problems:
   - id: g12-photon-500nm
     plays: photon-energy
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Find the energy of a photon of wavelength 500 nm.'
     answer_label: 'The photon energy'
     check:
@@ -250,7 +250,7 @@ problems:
 
   - id: g13-electron-200v
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron is accelerated through 200 V. Find its kinetic energy in joules.'
     answer_label: 'The kinetic energy'
     check: {kind: approx, value: "1.60e-19 * 200", target: "3.2e-17", tolerance: "1e-19"}
@@ -258,7 +258,7 @@ problems:
 
   - id: g14-electron-speed-wavelength
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron moves at 2.0e6 m/s. Find its de Broglie wavelength.'
     answer_label: 'The de Broglie wavelength'
     check: {kind: approx, value: "6.63e-34 / (9.11e-31 * 2.0e6)", target: "3.64e-10", tolerance: "5e-12"}
@@ -266,7 +266,7 @@ problems:
 
   - id: g15-proton-wavelength
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Find the de Broglie wavelength of a proton moving at 1.0e6 m/s.'
     answer_label: 'The de Broglie wavelength'
     check: {kind: approx, value: "6.63e-34 / (1.67e-27 * 1.0e6)", target: "3.97e-13", tolerance: "5e-15"}
@@ -275,7 +275,7 @@ problems:
   - id: g16-momentum-from-wavelength
     plays: de-broglie
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron has a de Broglie wavelength of 1.0e-10 m. Find its momentum.'
     answer_label: 'The momentum'
     check:
@@ -289,7 +289,7 @@ problems:
 
   - id: g17-electron-500v
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron is accelerated through 500 V. Find its de Broglie wavelength.'
     answer_label: 'The de Broglie wavelength'
     check: {kind: approx, value: "6.63e-34 / sqrt(2 * 9.11e-31 * 500 * 1.60e-19)", target: "5.49e-11", tolerance: "5e-13"}
@@ -297,7 +297,7 @@ problems:
 
   - id: g18-electron-diffraction
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Describe the electron diffraction experiment and what it shows.'
     check:
       kind: structured
@@ -319,7 +319,7 @@ problems:
 
   - id: g19-rings-and-voltage
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Explain why the diffraction rings move closer together when the accelerating voltage rises.'
     check:
       kind: structured
@@ -346,7 +346,7 @@ problems:
   - id: w8-tracer-activity
     plays: decay-rate
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A source of half-life 110 min starts at 8.0e8 Bq. Find its activity after 330 min.'
     answer_label: 'The activity'
     check:
@@ -359,7 +359,7 @@ problems:
 
   - id: w9-decay-constant
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Find the decay constant of a nuclide of half-life 110 minutes, in s^-1.'
     answer_label: 'The decay constant'
     check: {kind: approx, value: "ln(2) / 6600", target: "1.05e-4", tolerance: "1e-6"}
@@ -367,7 +367,7 @@ problems:
 
   - id: w10-number-of-nuclei
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A source has an activity of 8.0e8 Bq and a decay constant of 1.05e-4 s^-1. Find the number of undecayed nuclei.'
     answer_label: 'The number of nuclei'
     check: {kind: approx, value: "8.0e8 / 1.05e-4", target: "7.62e12", tolerance: "1e10"}
@@ -375,7 +375,7 @@ problems:
 
   - id: w11-beta-plus-equation
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Write the balanced equation for the beta-plus decay of fluorine-18.'
     check:
       kind: structured
@@ -398,7 +398,7 @@ problems:
   # --- Section 8.3, warm-ups and guided problems -----------------------------
   - id: g20-fraction-after-three
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A quantity halves every 4.0 minutes. What fraction remains after 12 minutes?'
     answer_label: 'The fraction'
     check: {kind: approx, value: "1 / 2**3", target: "0.125", tolerance: "0.001"}
@@ -406,7 +406,7 @@ problems:
 
   - id: g21-hours-to-seconds
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Write 3.0 hours in seconds.'
     answer_label: 'The time'
     check: {kind: convert, value: "3.0", from: "h", to: "s", answer: "10800"}
@@ -414,7 +414,7 @@ problems:
 
   - id: g22-activity-from-nuclei
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A sample of 5.0e20 nuclei has decay constant 2.0e-6 s^-1. Find its activity.'
     answer_label: 'The activity'
     check:
@@ -429,7 +429,7 @@ problems:
   - id: g23-activity-15-days
     plays: decay-rate
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A source of 640 Bq has a half-life of 5.0 days. Find its activity after 15 days.'
     answer_label: 'The activity'
     check:
@@ -442,7 +442,7 @@ problems:
 
   - id: g24-decay-constant-6h
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Find the decay constant of a nuclide of half-life 6.0 hours, in s^-1.'
     answer_label: 'The decay constant'
     check: {kind: approx, value: "ln(2) / (6.0 * 3600)", target: "3.2e-5", tolerance: "1e-7"}
@@ -450,7 +450,7 @@ problems:
 
   - id: g25-activity-4e15
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A sample of 4.0e15 nuclei has decay constant 1.2e-5 s^-1. Find its activity.'
     answer_label: 'The activity'
     check:
@@ -465,7 +465,7 @@ problems:
   - id: g26-nuclei-from-activity
     plays: activity
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A source of 2.0e6 Bq has decay constant 5.0e-7 s^-1. Find the number of nuclei.'
     answer_label: 'The number of nuclei'
     check:
@@ -479,7 +479,7 @@ problems:
 
   - id: g27-exponential-decay
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A source of 8.0e8 Bq has decay constant 1.05e-4 s^-1. Find its activity after 3300 s.'
     answer_label: 'The activity'
     check: {kind: approx, value: "8.0e8 * exp(-1.05e-4 * 3300)", target: "5.66e8", tolerance: "1e7"}
@@ -487,7 +487,7 @@ problems:
 
   - id: g28-alpha-equation
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Write the balanced equation for the alpha decay of americium-241.'
     check:
       kind: structured
@@ -509,7 +509,7 @@ problems:
 
   - id: g29-beta-minus-equation
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Write the balanced equation for the beta-minus decay of carbon-14.'
     check:
       kind: structured
@@ -531,7 +531,7 @@ problems:
 
   - id: g30-random-nature
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Explain why the activity is predictable although one decay is random.'
     check:
       kind: structured
@@ -554,7 +554,7 @@ problems:
   # --- Section 8.4, the Learn worked examples --------------------------------
   - id: w12-helium-binding
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A helium-4 nucleus has a mass defect of 0.0304 u. Find its binding energy and its value per nucleon.'
     answer_label: 'The binding energy and its value per nucleon'
     check:
@@ -566,7 +566,7 @@ problems:
 
   - id: w13-fission-mass-defect
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A reaction releases 200 MeV. Find the mass defect in kilograms.'
     answer_label: 'The mass defect'
     check: {kind: approx, value: "200e6 * 1.60e-19 / (3.00e8)**2", target: "3.56e-28", tolerance: "1e-29"}
@@ -574,7 +574,7 @@ problems:
 
   - id: w14-annihilation
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron and a positron annihilate. Each has rest energy 0.511 MeV. Find the total energy and the energy of each photon.'
     answer_label: 'The total energy and the energy of each photon'
     check:
@@ -587,7 +587,7 @@ problems:
   # --- Section 8.4, warm-ups and guided problems -----------------------------
   - id: g31-mev-to-joules
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Write 2.0 MeV in joules.'
     answer_label: 'The energy'
     check: {kind: approx, value: "2.0e6 * 1.60e-19", target: "3.2e-13", tolerance: "1e-15"}
@@ -596,7 +596,7 @@ problems:
   - id: g32-mass-to-energy
     plays: mass-energy
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A mass of 1.0e-30 kg becomes energy. Find the energy released.'
     answer_label: 'The energy released'
     check:
@@ -610,7 +610,7 @@ problems:
 
   - id: g33-photon-mev
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Find the energy in joules of a photon of energy 0.511 MeV.'
     answer_label: 'The energy'
     check: {kind: approx, value: "0.511e6 * 1.60e-19", target: "8.18e-14", tolerance: "1e-15"}
@@ -619,7 +619,7 @@ problems:
   - id: g34-mass-to-energy-3e-29
     plays: mass-energy
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A reaction converts 3.0e-29 kg into energy. Find the energy released.'
     answer_label: 'The energy released'
     check:
@@ -633,7 +633,7 @@ problems:
 
   - id: g35-mass-defect-mev
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A nucleus has a mass defect of 0.050 u. Find its binding energy in MeV.'
     answer_label: 'The binding energy'
     check: {kind: approx, value: "0.050 * 931.5", target: "46.6", tolerance: "0.05"}
@@ -641,7 +641,7 @@ problems:
 
   - id: g36-helium-binding
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A helium-4 nucleus has a mass defect of 0.0304 u. Find its binding energy per nucleon.'
     answer_label: 'The binding energy per nucleon'
     check: {kind: approx, value: "0.0304 * 931.5 / 4", target: "7.08", tolerance: "0.02"}
@@ -649,7 +649,7 @@ problems:
 
   - id: g37-fission-mass-defect
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A reaction releases 200 MeV. Find the mass defect.'
     answer_label: 'The mass defect'
     check: {kind: approx, value: "200e6 * 1.60e-19 / (3.00e8)**2", target: "3.56e-28", tolerance: "1e-29"}
@@ -657,7 +657,7 @@ problems:
 
   - id: g38-annihilation-photon
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A positron and an electron annihilate into two photons. Find the total energy and the energy of each photon.'
     answer_label: 'The total energy and the energy of each photon'
     check:
@@ -669,7 +669,7 @@ problems:
 
   - id: g39-fission-explanation
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Explain why fission of a heavy nucleus releases energy.'
     check:
       kind: structured
@@ -691,7 +691,7 @@ problems:
 
   - id: g40-fusion-explanation
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Explain why fusion of two light nuclei releases energy.'
     check:
       kind: structured
@@ -714,7 +714,7 @@ problems:
   - id: g41-sun
     plays: mass-energy
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'The Sun converts 4.3e9 kg of mass each second. Find the energy released each second.'
     answer_label: 'The energy each second'
     check:

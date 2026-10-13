@@ -8,7 +8,7 @@ symbols:
 problems:
   - id: p1-divides-sixty
     section: "1.3"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that every whole number from $1$ to $6$ divides $60$.'
     answer_label: 'Each case'
     check:
@@ -24,7 +24,7 @@ problems:
 
   - id: p2-sum-of-two-primes
     section: "1.3"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that every even number from $4$ to $20$ is the sum of two prime numbers.'
     answer_label: 'Each case'
     check:
@@ -49,7 +49,7 @@ problems:
 
   - id: p3-n-squared-plus-n-even
     section: "1.3"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Prove by exhaustion that $n^2 + n$ is even for $n = 0, 1, 2, 3, 4$.'
     answer_label: 'Each case'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: p4-seven-is-prime
     section: "1.3"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that $7$ is prime by testing every whole number from $2$ to $6$.'
     answer_label: 'Each case'
     check:
@@ -84,7 +84,7 @@ problems:
 
   - id: p5-never-a-multiple-of-three
     section: "1.3"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that for $n = 1, 2, 3, 4, 5$, the value of $n^2 + 1$ is never a multiple of $3$.'
     answer_label: 'Each case'
     check:
@@ -99,7 +99,7 @@ problems:
 
   - id: p6-check-the-claim
     section: "1.3"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Check the claim "$n^2 + n + 41$ is prime" for $n = 0, 1, 2, 3$.'
     answer_label: 'The four values'
     check:
@@ -129,7 +129,7 @@ problems:
 
   - id: p7-ninety-one
     section: "1.3"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that $91$ is not prime by testing the primes whose squares are at most $91$.'
     answer_label: 'The factor found'
     check:
@@ -144,7 +144,7 @@ problems:
 
   - id: p8-ninety-seven
     section: "1.3"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that $97$ is prime by testing the primes up to $\sqrt{97}$.'
     answer_label: 'Each case'
     check:
@@ -159,7 +159,7 @@ problems:
 
   - id: p9-cube-minus-n
     section: "1.3"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Show that $n^3 - n$ is a multiple of $6$ for $n = 1, 2, 3, 4$.'
     answer_label: 'Each case'
     check:
@@ -177,7 +177,7 @@ problems:
 
   - id: p10-limits-of-exhaustion
     section: "1.3"
-    dfe: [A1]
+    refs: [A1]
     statement: 'The claim "$n^2 + n + 41$ is prime" holds for every whole number $n$ from $0$ to $39$. Explain why this does not prove the claim.'
     answer_label: 'The gap in the argument'
     check:
@@ -200,7 +200,7 @@ problems:
 
   - id: p11-method-choice
     section: "1.3"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Choose the method for each part before you answer, then explain your choice. (a) Prove that $n^2 + n$ is even for every whole number $n$. (b) Prove that every whole number from $1$ to $5$ divides $60$.'
     answer_label: 'Which method, and why'
     check:

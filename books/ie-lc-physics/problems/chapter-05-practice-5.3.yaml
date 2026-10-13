@@ -1,0 +1,73 @@
+# Leaving Certificate Physics, Chapter 5, section 5.3 (strand 1 outcome 1.3).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The two `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 5
+problems:
+- id: p5-3-epe
+  section: '5.3'
+  tier: O
+  refs:
+  - '1.3'
+  statement: A spring of spring constant 200 N/m is stretched by 0.10 m. Calculate the energy stored in
+    it.
+  answer_label: Energy stored
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 0.5 * k * x**2
+      values:
+        k:
+          value: '200'
+          unit: N/m
+        x:
+          value: '0.10'
+          unit: m
+      answer:
+        value: '1'
+        unit: J
+    - kind: sigfigs
+      value: '1'
+      figures: 2
+      answer: '1.0'
+      convention: round-once
+  answer_text: $E = \tfrac{1}{2}kx^2 = 0.5 \times 200 \times 0.10^2 = 1.0\,\text{J}$.
+- id: p5-3-epe-double
+  section: '5.3'
+  tier: O
+  refs:
+  - '1.3'
+  statement: A spring is stretched by 0.20 m and stores 4.0 J. Calculate the energy stored when it is
+    stretched by 0.40 m.
+  answer_label: Energy stored at double the extension
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 0.5 * k * x**2
+      values:
+        k:
+          value: '200'
+          unit: N/m
+        x:
+          value: '0.40'
+          unit: m
+      answer:
+        value: '16'
+        unit: J
+    - kind: sigfigs
+      value: '16'
+      figures: 2
+      answer: '16'
+      convention: round-once
+  answer_text: $16\,\text{J}$ — four times as much, not twice. The extension is squared in $\tfrac{1}{2}kx^2$,
+    so doubling $x$ multiplies the energy by $2^2 = 4$.

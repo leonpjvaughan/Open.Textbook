@@ -4,7 +4,7 @@ problems:
 - id: p1-10-percent
   section: '6.1'
   tier: F
-  dfe: &id001
+  refs: &id001
   - R9
   statement: 'Work out 10% of £360.'
   answer_label: 10% of £360
@@ -16,7 +16,7 @@ problems:
 - id: p2-25-percent
   section: '6.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: 'Work out 25% of 84.'
   answer_label: 25% of 84
   check:
@@ -27,7 +27,7 @@ problems:
 - id: p3-15-percent
   section: '6.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: 'Work out 15% of £240.'
   answer_label: 15% of £240
   check:
@@ -38,7 +38,7 @@ problems:
 - id: p4-percent-as-fraction
   section: '6.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: 'Write 37% as a fraction in its simplest form.'
   answer_label: 37% as a fraction
   check:
@@ -49,7 +49,7 @@ problems:
 - id: p5-amount-fraction
   section: '6.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: 'Work out $3/8$ of 144.'
   answer_label: 3/8 of 144
   check:
@@ -60,7 +60,7 @@ problems:
 - id: p6-sale-price
   section: '6.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: 'A £68 jacket has a 20% discount. Work out the discount amount.'
   answer_label: 20% discount
   check:
@@ -71,7 +71,7 @@ problems:
 - id: p7-commission
   section: '6.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: 'A worker earns 6% commission on sales of £1,250. Work out the commission.'
   answer_label: 6% commission
   check:
@@ -82,7 +82,7 @@ problems:
 - id: p8-compare-methods
   section: '6.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: 'A learner works out 12% of 250 by finding 10% and 2%. Work out both parts and the total.'
   answer_label: 12% of 250
   check:
@@ -101,7 +101,7 @@ problems:
 - id: p9-context
   section: '6.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: 'A recipe uses 450 g of flour. Work out 40% of this amount.'
   answer_label: 40% of 450
   check:
@@ -112,7 +112,7 @@ problems:
 - id: p10-higher
   section: '6.1'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: 'Work out 17.5% of 320.'
   answer_label: 17.5% of 320
   check:

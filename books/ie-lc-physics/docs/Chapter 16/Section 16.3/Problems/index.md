@@ -15,4 +15,4 @@ kind: problems
 # 16.3 Lenz's law and conservation of energy — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 3.6
+> Tier: **O** · refs: 3.6

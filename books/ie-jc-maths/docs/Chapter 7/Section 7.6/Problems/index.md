@@ -15,4 +15,4 @@ kind: problems
 # 7.6 Value for money and comparing offers — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: N.2
+> Tier: **O** · refs: N.2

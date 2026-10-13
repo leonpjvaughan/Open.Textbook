@@ -15,4 +15,4 @@ kind: walkthrough
 # 15.1 Magnetic fields and magnetic materials — Learn
 
 > **Stub.** Teaching narrative and fully worked examples. At least one Tier-1 or Tier-2 interactive figure where a parameter is worth manipulating. State prerequisites and learning objectives at the top.
-> Tier: **O** · DfE refs: 3.4
+> Tier: **O** · refs: 3.4

@@ -4,7 +4,7 @@ problems:
 - id: 'ch4-multiply'
   section: '4.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'N2'
   statement: 'Work out $\frac{3}{7}\times\frac{14}{15}$.'
   answer_label: 'Answer 1'
@@ -16,7 +16,7 @@ problems:
 - id: 'ch4-divide'
   section: '4.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'N2'
   statement: 'Work out $\frac{5}{6}\div\frac{10}{9}$.'
   answer_label: 'Answer 2'
@@ -28,7 +28,7 @@ problems:
 - id: 'ch4-fraction-of'
   section: '4.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'N2'
   statement: 'Work out $\frac{3}{5}$ of $40$.'
   answer_label: 'Answer 3'
@@ -40,7 +40,7 @@ problems:
 - id: 'ch4-mixed-mult'
   section: '4.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'N2'
   statement: 'Work out $2\frac{1}{4}\times\frac{2}{3}$.'
   answer_label: 'Answer 4'
@@ -52,7 +52,7 @@ problems:
 - id: 'ch4-share-fraction'
   section: '4.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'N2'
   statement: 'A ribbon $\frac{5}{6}$ metre long is cut into pieces each $\frac{1}{12}$ metre long. How many pieces are made?'
   answer_label: 'Answer 5'
@@ -64,7 +64,7 @@ problems:
 - id: 'ch4-mult-fractions'
   section: '4.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'N2'
   statement: 'Work out $\frac{4}{9}\times\frac{3}{8}$.'
   answer_label: 'Answer 6'
@@ -76,7 +76,7 @@ problems:
 - id: 'ch4-divide-fractions'
   section: '4.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'N2'
   statement: 'Work out $\frac{7}{8}\div\frac{7}{4}$.'
   answer_label: 'Answer 7'
@@ -88,7 +88,7 @@ problems:
 - id: 'ch4-fraction-of-amount'
   section: '4.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'N2'
   statement: 'Work out $\frac{2}{3}$ of $45$.'
   answer_label: 'Answer 8'
@@ -100,7 +100,7 @@ problems:
 - id: 'ch4-plank-pieces'
   section: '4.3'
   tier: 'F'
-  dfe:
+  refs:
   - 'N2'
   statement: 'A plank $\frac{3}{4}$ metre long is cut into pieces each $\frac{3}{16}$ metre long. How many pieces are made?'
   answer_label: 'Answer 9'

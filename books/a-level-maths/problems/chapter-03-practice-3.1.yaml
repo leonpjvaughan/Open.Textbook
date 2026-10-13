@@ -11,7 +11,7 @@ symbols:
 problems:
   - id: p1-gradient-two-points
     section: "3.1"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Work out the gradient of the line through $(2, 5)$ and $(7, 11)$.'
     answer_label: 'The gradient'
     check:
@@ -22,7 +22,7 @@ problems:
 
   - id: p2-negative-gradient
     section: "3.1"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Work out the gradient of the line through $(-3, 4)$ and $(5, -2)$.'
     answer_label: 'The gradient'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-gradient-and-point
     section: "3.1"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Find the equation of the line with gradient $4$ through $(3, -2)$, in the form $y = mx + c$.'
     answer_label: 'The equation'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: p4-equation-two-points
     section: "3.1"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Find the equation of the line through $(2, 5)$ and $(7, 11)$. Give the gradient and the intercept.'
     answer_label: 'The gradient and the intercept'
     check:
@@ -57,7 +57,7 @@ problems:
 
   - id: p5-general-form
     section: "3.1"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Write $y = \dfrac{2}{3}x - 4$ in the form $ax + by + c = 0$, where $a$, $b$ and $c$ are whole numbers.'
     answer_label: 'The equation in general form'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: p6-axis-crossings
     section: "3.1"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Work out where the line $2x + 3y = 12$ crosses each axis.'
     answer_label: 'The two intercepts'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-gradient-from-equation
     section: "3.1"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Work out the gradient of the line $6x - 5y + 13 = 0$.'
     answer_label: 'The gradient'
     check:
@@ -92,7 +92,7 @@ problems:
 
   - id: p8-point-on-line
     section: "3.1"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Decide whether the point $(5, 2)$ lies on the line $y = 3x - 13$.'
     answer_label: 'The decision'
     check:
@@ -103,7 +103,7 @@ problems:
 
   - id: p9-taxi-model
     section: "3.1"
-    dfe: [C1]
+    refs: [C1]
     statement: 'A taxi charges a fixed £3 plus £2 for each kilometre. Write a model for the cost of a journey of $d$ kilometres, and work out the cost of a journey of $8$ km.'
     answer_label: 'The model and the cost'
     check:
@@ -114,7 +114,7 @@ problems:
 
   - id: p10-rate-from-two-readings
     section: "3.1"
-    dfe: [C1]
+    refs: [C1]
     statement: 'A graph shows cost $C$ in pounds against the number $n$ of items. The line passes through $(2, 7)$ and $(6, 31)$. Work out the gradient and say what it means.'
     answer_label: 'The gradient and its meaning'
     check:
@@ -125,7 +125,7 @@ problems:
 
   - id: p11-line-through-three-points
     section: "3.1"
-    dfe: [C1]
+    refs: [C1]
     statement: 'The points $(1, 3)$, $(2, 5)$ and $(3, 7)$ lie on a straight line. Find the equation of the line.'
     answer_label: 'The equation'
     check:
@@ -137,7 +137,7 @@ problems:
 
   - id: p12-vertical-line
     section: "3.1"
-    dfe: [C1]
+    refs: [C1]
     statement: 'The points $(4, -1)$ and $(4, 7)$ lie on a vertical line. Explain why the gradient is undefined, and write the equation of the line.'
     answer_label: 'The reason and the equation'
     check:

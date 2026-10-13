@@ -15,4 +15,4 @@ kind: guided-problems
 # 15.4 Choosing sensible units and estimating — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: GT.1
+> Tier: **O** · refs: GT.1

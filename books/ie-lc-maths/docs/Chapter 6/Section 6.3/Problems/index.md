@@ -15,4 +15,4 @@ kind: problems
 # 6.3 Composite and inverse functions — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 5.1
+> Tier: **O** · refs: 5.1

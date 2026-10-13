@@ -10,7 +10,7 @@ symbols:
 problems:
   - id: p1-square-sum
     section: "5.11"
-    dfe: [E8]
+    refs: [E8]
     statement: 'Prove that $(\sin A + \cos A)^2 \equiv 1 + \sin 2A$.'
     answer_label: 'The identity'
     check:
@@ -21,7 +21,7 @@ problems:
 
   - id: p2-product
     section: "5.11"
-    dfe: [E8]
+    refs: [E8]
     statement: 'Prove that $\sin(A + B)\sin(A - B) \equiv \sin^2 A - \sin^2 B$.'
     answer_label: 'The identity'
     check:
@@ -32,7 +32,7 @@ problems:
 
   - id: p3-cos2-from-tan
     section: "5.11"
-    dfe: [E8]
+    refs: [E8]
     statement: 'Prove that $\cos 2A \equiv \dfrac{1 - \tan^2 A}{1 + \tan^2 A}$.'
     answer_label: 'The identity'
     check:
@@ -43,7 +43,7 @@ problems:
 
   - id: p4-tan-cot
     section: "5.11"
-    dfe: [E8]
+    refs: [E8]
     statement: 'Prove that $\tan A + \cot A \equiv 2\operatorname{cosec} 2A$ for $\sin A\cos A \neq 0$.'
     answer_label: 'The identity'
     check:
@@ -55,7 +55,7 @@ problems:
 
   - id: p5-fourth-powers
     section: "5.11"
-    dfe: [E8]
+    refs: [E8]
     statement: 'Prove that $\cos^4 A - \sin^4 A \equiv \cos 2A$.'
     answer_label: 'The identity'
     check:
@@ -66,7 +66,7 @@ problems:
 
   - id: p6-sin-triple
     section: "5.11"
-    dfe: [E8]
+    refs: [E8]
     statement: 'Prove that $\sin 3A \equiv 3\sin A - 4\sin^3 A$.'
     answer_label: 'The identity'
     check:
@@ -77,7 +77,7 @@ problems:
 
   - id: p7-cos-triple
     section: "5.11"
-    dfe: [E8]
+    refs: [E8]
     statement: 'Prove that $\cos 3A \equiv 4\cos^3 A - 3\cos A$.'
     answer_label: 'The identity'
     check:
@@ -88,7 +88,7 @@ problems:
 
   - id: p8-double-fraction
     section: "5.11"
-    dfe: [E8]
+    refs: [E8]
     statement: 'Prove that $\dfrac{\sin 2A}{1 + \cos 2A} \equiv \tan A$ for $1 + \cos 2A \neq 0$.'
     answer_label: 'The identity'
     check:
@@ -99,7 +99,7 @@ problems:
 
   - id: p9-half-angle
     section: "5.11"
-    dfe: [E8]
+    refs: [E8]
     statement: 'Prove that $\dfrac{1 - \cos 2A}{\sin 2A} \equiv \tan A$ for $\sin 2A \neq 0$.'
     answer_label: 'The identity'
     check:
@@ -111,7 +111,7 @@ problems:
 
   - id: p10-double-from-product
     section: "5.11"
-    dfe: [E8]
+    refs: [E8]
     statement: 'Prove that $2\sin A\cos A \equiv \sin 2A$.'
     answer_label: 'The identity'
     check:

@@ -3,7 +3,7 @@ problems:
 - id: p1-conditional-table
   section: '23.6'
   tier: 'H'
-  dfe:
+  refs:
   - 'P9'
   statement: 'Of 20 students who cycle, 15 wear helmets. Find the probability a cyclist wears a helmet.'
   answer_label: 'Of 20 students who cycle, 15 wear helmets. Find the probability a cyclist wears a helmet.'
@@ -15,7 +15,7 @@ problems:
 - id: p2-given-bus
   section: '23.6'
   tier: 'H'
-  dfe:
+  refs:
   - 'P9'
   statement: 'Of 18 bus users, 7 bring lunch. Find $P(\text{lunch}\mid\text{bus})$.'
   answer_label: 'Of 18 bus users, 7 bring lunch. Find $P(\text{lunch}\mid\text{bus})$.'
@@ -27,7 +27,7 @@ problems:
 - id: p3-venn-conditional
   section: '23.6'
   tier: 'H'
-  dfe:
+  refs:
   - 'P9'
   statement: 'In a group of 30, 12 are in A and 8 are in both A and B. Find $P(B\mid A)$.'
   answer_label: 'In a group of 30, 12 are in A and 8 are in both A and B. Find $P(B\mid A)$.'
@@ -39,7 +39,7 @@ problems:
 - id: p4-without-replacement
   section: '23.6'
   tier: 'H'
-  dfe:
+  refs:
   - 'P9'
   statement: 'A bag has 4 red and 3 blue counters. Given that a red counter was removed, find the probability the next counter is blue.'
   answer_label: 'A bag has 4 red and 3 blue counters. Given that a red counter was removed, find the probability the next counter is blue.'
@@ -51,7 +51,7 @@ problems:
 - id: p5-conditional-group
   section: '23.6'
   tier: 'H'
-  dfe:
+  refs:
   - 'P9'
   statement: 'There are 16 students in a team. Six are left-handed, and 4 of the left-handed students wear glasses. Find the probability a student wears glasses, given that the student is left-handed.'
   answer_label: 'There are 16 students in a team. Six are left-handed, and 4 of the left-handed students wear glasses. Find the probability a student wears glasses, given that the student is left-handed.'
@@ -63,7 +63,7 @@ problems:
 - id: p6-given-girls
   section: '23.6'
   tier: 'H'
-  dfe:
+  refs:
   - 'P9'
   statement: 'In a group, 14 girls attend a club and 9 of them walk home. Find the probability a club attendee walks home, given the attendee is a girl.'
   answer_label: 'In a group, 14 girls attend a club and 9 of them walk home. Find the probability a club attendee walks home, given the attendee is a girl.'
@@ -75,7 +75,7 @@ problems:
 - id: p7-conditional-die
   section: '23.6'
   tier: 'H'
-  dfe:
+  refs:
   - 'P9'
   statement: 'A fair die is rolled. Given the result is even, find the probability it is greater than 3.'
   answer_label: 'A fair die is rolled. Given the result is even, find the probability it is greater than 3.'
@@ -87,7 +87,7 @@ problems:
 - id: p8-conditional-set
   section: '23.6'
   tier: 'H'
-  dfe:
+  refs:
   - 'P9'
   statement: 'In a group, 24 are in A and 10 are in both A and B. Find $P(A\cap B\mid A)$.'
   answer_label: 'In a group, 24 are in A and 10 are in both A and B. Find $P(A\cap B\mid A)$.'
@@ -99,7 +99,7 @@ problems:
 - id: p9-higher-dependent
   section: '23.6'
   tier: 'H'
-  dfe:
+  refs:
   - 'P9'
   statement: 'A bag has 5 red and 3 blue counters. One red is removed without replacement. Find the probability the second counter is red, given the first was red.'
   answer_label: 'A bag has 5 red and 3 blue counters. One red is removed without replacement. Find the probability the second counter is red, given the first was red.'
@@ -111,7 +111,7 @@ problems:
 - id: p10-higher-conditional
   section: '23.6'
   tier: 'H'
-  dfe:
+  refs:
   - 'P9'
   statement: 'A fair die is rolled. Given the result is greater than 2, find the probability it is odd.'
   answer_label: 'A fair die is rolled. Given the result is greater than 2, find the probability it is odd.'
@@ -123,7 +123,7 @@ problems:
 - id: p11-method-representation
   section: '23.6'
   tier: 'H'
-  dfe:
+  refs:
   - 'P9'
   statement: 'In a group of 30 students, 18 study French and 10 study both French and Spanish. Find $P(\text{Spanish}\mid\text{French})$. Which representation makes the restricted group clearest: a two-way table or a Venn diagram? Give a reason, then find the probability.'
   answer_label: 'Method choice: table or Venn diagram'

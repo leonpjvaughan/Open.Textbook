@@ -1,0 +1,97 @@
+# Junior Cycle Mathematics, Chapter 3, section 3.2.
+#
+# Every check is an arithmetic identity the CAS proves, so the answer the reader
+# is shown is the answer the verifier proved. `gcd` and `lcm` are available;
+# `isprime` and `factorint` are not, because they return a bare Python bool or
+# dict and the CAS parser wants a SymPy expression. Primality and factorisation
+# are therefore written as products — "91 = 7 x 13, so 91 is not prime" — which
+# proves the same thing and is the form the reader can check by hand.
+chapter: 3
+symbols: {}
+
+problems:
+- id: jc3-3.2-prime-1
+  section: '3.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Write down all the prime numbers between 20 and 40.
+  answer_label: Write down all the prime numbers between 20 and 40.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: '23'
+      answer: '23'
+    - kind: evaluate
+      expression: '29'
+      answer: '29'
+    - kind: evaluate
+      expression: '31'
+      answer: '31'
+    - kind: evaluate
+      expression: '37'
+      answer: '37'
+  answer_text: '$23, 29, 31$ and $37$. Each has no factor smaller than itself except 1: 21, 27 and 33
+    divide by 3, 25 and 35 by 5, 39 by 3, and 22, 24, 26, 28, 30, 32, 34, 36 and 38 are even.'
+- id: jc3-3.2-prime-2
+  section: '3.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Show that 91 is not a prime number.
+  answer_label: Show that 91 is not a prime number.
+  check:
+    kind: evaluate
+    expression: 7*13
+    answer: '91'
+  answer_text: $91=7\times13$, so 91 has a factor other than 1 and itself. It is not prime.
+- id: jc3-3.2-factorise-1
+  section: '3.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Write 360 as a product of its prime factors. Give your answer in index form.
+  answer_label: Write 360 as a product of its prime factors.
+  check:
+    kind: evaluate
+    expression: 2**3*3**2*5
+    answer: '360'
+  answer_text: $360=2^3\times3^2\times5$. Divide out 2 three times, then 3 twice, then 5 once.
+- id: jc3-3.2-factorise-2
+  section: '3.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Write 700 as a product of its prime factors, in index form.
+  answer_label: Write 700 as a product of its prime factors.
+  check:
+    kind: evaluate
+    expression: 2**2*5**2*7
+    answer: '700'
+  answer_text: $700=2^2\times5^2\times7$.
+- id: jc3-3.2-divisors-1
+  section: '3.2'
+  tier: O
+  refs:
+  - N.1
+  statement: $84=2^2\times3\times7$. Use the prime factorisation to find how many factors 84 has.
+  answer_label: How many factors does 84 have?
+  check:
+    kind: evaluate
+    expression: (2+1)*(1+1)*(1+1)
+    answer: '12'
+  answer_text: Twelve. Each factor uses 0, 1 or 2 copies of 2, and 0 or 1 copy of each of 3 and 7 — that
+    is $3\times2\times2=12$ combinations, and each gives a different factor.
+- id: jc3-3.2-factorise-3
+  section: '3.2'
+  tier: O
+  refs:
+  - N.1
+  statement: 'Write 5775 as a product of prime factors. *(Hint: it ends in 5, and its digit sum is 24.)*'
+  answer_label: Write 5775 as a product of prime factors.
+  check:
+    kind: evaluate
+    expression: 3*5**2*7*11
+    answer: '5775'
+  answer_text: $5775=3\times5^2\times7\times11$.

@@ -17,7 +17,7 @@ chapter: 6
 problems:
   - id: p1-wavelength
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A sound wave has a frequency of 1.5 kHz and a speed of 330 m/s. Find its wavelength.'
     answer_label: 'The wavelength'
     check: {kind: approx, value: "330 / 1500", target: "0.22", tolerance: "0.005"}
@@ -25,7 +25,7 @@ problems:
 
   - id: p2-frequency
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A wave has a wavelength of 2.5 m and a speed of 340 m/s. Find its frequency.'
     answer_label: 'The frequency'
     check: {kind: approx, value: "340 / 2.5", target: "136", tolerance: "0.5"}
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-phase
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Two points on a wave are 0.15 m apart. The wavelength is 0.60 m. Find the phase difference between them, in degrees.'
     answer_label: 'The phase difference'
     check: {kind: approx, value: "0.15 / 0.60 * 360", target: "90", tolerance: "0.001"}
@@ -41,7 +41,7 @@ problems:
 
   - id: p4-path-difference
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Two loudspeakers are driven in phase at 425 Hz. The speed of sound is 340 m/s. A point is 2.60 m from one speaker and 1.40 m from the other. State whether the sound there is loud or quiet, and give a reason.'
     answer_label: 'The sound at the point'
     check:
@@ -60,7 +60,7 @@ problems:
 
   - id: p5-fringe-spacing
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A laser of wavelength 640 nm passes through two slits 0.30 mm apart. The screen is 2.0 m away. Find the fringe spacing.'
     answer_label: 'The fringe spacing'
     check: {kind: approx, value: "640e-9 * 2.0 / 0.30e-3", target: "4.27e-3", tolerance: "1e-5"}
@@ -68,7 +68,7 @@ problems:
 
   - id: p6-wavelength-fringes
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'In a two-slit experiment the slits are 0.20 mm apart and the screen is 1.5 m away. The fringe spacing is 2.4 mm. Find the wavelength of the light.'
     answer_label: 'The wavelength'
     check: {kind: approx, value: "2.4e-3 * 0.20e-3 / 1.5", target: "3.2e-7", tolerance: "1e-9"}
@@ -76,7 +76,7 @@ problems:
 
   - id: p7-coherence-method
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Two loudspeakers are placed side by side. Describe how to make them act as coherent sources, and explain why this matters.'
     check:
       kind: structured
@@ -98,7 +98,7 @@ problems:
 
   - id: p8-two-source-angle
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Two loudspeakers 2.0 m apart are driven in phase at 850 Hz. The speed of sound is 340 m/s. Find the angle of the first loud band to the side of the centre.'
     answer_label: 'The angle of the first loud band'
     check: {kind: approx, value: "asin((340 / 850) / 2.0)*180/pi", target: "11.5", tolerance: "0.2"}
@@ -106,7 +106,7 @@ problems:
 
   - id: p9-method
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'You must find the wavelength of a laser. Describe a method that uses two slits, and state the three measurements you need.'
     check:
       kind: structured
@@ -129,7 +129,7 @@ problems:
 
   - id: p10-energy
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Explain why the dark fringes in an interference pattern do not mean that energy has been destroyed.'
     check:
       kind: structured
@@ -151,7 +151,7 @@ problems:
 
   - id: p11-uncertainty
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A sound wave has a frequency of 340 Hz with a percentage uncertainty of 0.5%, and a wavelength of 1.00 m with a percentage uncertainty of 2.0%. Find its speed and its absolute uncertainty.'
     answer_label: 'The speed and its uncertainty'
     check:
@@ -166,7 +166,7 @@ problems:
 
   - id: p12-sigfigs
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A wavelength is measured as 6.328e-7 m. Write it in nanometres, and round it to three significant figures.'
     answer_label: 'The wavelength in nanometres and to three significant figures'
     check:

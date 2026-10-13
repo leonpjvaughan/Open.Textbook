@@ -4,7 +4,7 @@ chapter: 3
 chapter_title: Coordinate geometry
 section: '3.2'
 section_title: Parallel and perpendicular lines
-dfe:
+refs:
 - C1
 kind: guided-problems
 ---

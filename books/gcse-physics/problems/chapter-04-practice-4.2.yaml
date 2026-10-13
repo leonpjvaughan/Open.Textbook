@@ -14,7 +14,7 @@ problems:
   - id: p1-ultrasound-echo
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'An ultrasound pulse travels through tissue at 1500 m/s. The reflection returns to the detector after 0.00020 s. Calculate the distance to the boundary.'
     answer_label: 'Distance to the boundary'
     check:
@@ -32,7 +32,7 @@ problems:
   - id: p2-ship-echo-sounder
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A ship uses an echo sounder. A pulse of sound travels through sea water at 1500 m/s and returns from the sea floor after 0.050 s. Calculate the depth of the water.'
     answer_label: 'Depth of the water'
     check:
@@ -50,7 +50,7 @@ problems:
   - id: p3-seismic-speed
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'An earthquake produces a P-wave that travels 90 km in 15 s. Calculate the speed of the P-wave.'
     answer_label: 'Speed of the P-wave'
     check:
@@ -68,7 +68,7 @@ problems:
   - id: p4-ultrasound-wavelength
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'An ultrasound scanner works at a frequency of 2.5 MHz. The speed of sound in tissue is 1500 m/s. Calculate the wavelength of the ultrasound.'
     answer_label: 'Wavelength of the ultrasound'
     check:
@@ -86,7 +86,7 @@ problems:
   - id: p5-convert-khz
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'The upper limit of normal human hearing is 20 kHz. Convert this frequency to hertz.'
     answer_label: 'Frequency in hertz'
     check:
@@ -100,7 +100,7 @@ problems:
   - id: p6-hearing-period
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'The lowest frequency a healthy young person can hear is 20 Hz. Calculate the period of this sound wave.'
     answer_label: 'Period of the lowest audible sound'
     check:
@@ -117,7 +117,7 @@ problems:
   - id: p7-echo-time-tissue
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'In a scan, an ultrasound boundary is 0.060 m from the detector. The speed of sound in tissue is 1500 m/s. Calculate the time for the pulse to travel to the boundary and back.'
     answer_label: 'Echo time'
     check:
@@ -135,7 +135,7 @@ problems:
   - id: p8-sound-vacuum
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'Explain why a sound wave cannot travel through a vacuum.'
     answer_label: 'Sound in a vacuum'
     check:
@@ -153,7 +153,7 @@ problems:
   - id: p9-ear-frequency-range
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'Explain why the ear can detect sound only over a limited range of frequencies.'
     answer_label: 'The range of hearing'
     check:
@@ -174,7 +174,7 @@ problems:
   - id: p10-ultrasound-detection
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'Explain how an ultrasound pulse can be used to find the distance to a boundary inside the body.'
     answer_label: 'Finding a boundary with ultrasound'
     check:
@@ -195,7 +195,7 @@ problems:
   - id: p11-seismic-core
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'Explain how the study of seismic waves from earthquakes gives evidence about the structure of the Earth, including its core.'
     answer_label: 'Seismic evidence for the Earth'
     check:
@@ -216,7 +216,7 @@ problems:
   - id: p12-compare-p-s
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'Compare P-waves and S-waves from an earthquake.'
     answer_label: 'P-waves and S-waves'
     check:
@@ -237,7 +237,7 @@ problems:
   - id: p13-echo-sounding-depth
     section: '4.2'
     tier: H
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'An echo sounder on a boat sends a pulse of sound down through water at 1500 m/s. The reflection returns after 0.080 s. Calculate the depth of the water.'
     answer_label: 'Depth of the water'
     check:

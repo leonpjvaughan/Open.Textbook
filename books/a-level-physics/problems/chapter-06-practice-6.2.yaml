@@ -18,7 +18,7 @@ chapter: 6
 problems:
   - id: p1-spacing
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A diffraction grating has 250 lines per millimetre. Find the spacing between neighbouring slits, in metres.'
     answer_label: 'The slit spacing'
     check: {kind: approx, value: "1 / 250e3", target: "4.0e-6", tolerance: "1e-9"}
@@ -26,7 +26,7 @@ problems:
 
   - id: p2-first-order
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A grating has a slit spacing of 4.0e-6 m. Light of wavelength 500 nm falls on it. Find the angle of the first-order maximum.'
     answer_label: 'The first-order angle'
     check: {kind: approx, value: "asin(500e-9 / 4.0e-6)*180/pi", target: "7.2", tolerance: "0.2"}
@@ -34,7 +34,7 @@ problems:
 
   - id: p3-highest
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'For the grating and light of question 2, find the highest order the grating can give.'
     answer_label: 'The highest order'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: p4-second-order
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A grating of spacing 3.33e-6 m gives its second-order maximum at 20.0 degrees. Find the wavelength of the light.'
     answer_label: 'The wavelength'
     check: {kind: approx, value: "3.33e-6 * sin(20 * pi / 180) / 2", target: "5.70e-7", tolerance: "1e-9"}
@@ -54,7 +54,7 @@ problems:
 
   - id: p5-diffraction
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Explain why you can hear a person through a doorway from around a corner, but you cannot see them.'
     check:
       kind: structured
@@ -76,7 +76,7 @@ problems:
 
   - id: p6-intensity
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Plane-polarised light passes through an analyser whose axis is at 30 degrees to the plane of polarisation. Find the fraction of the intensity that passes.'
     answer_label: 'The fraction of the intensity'
     check: {kind: approx, value: "cos(30 * pi / 180)**2", target: "0.75", tolerance: "1e-6"}
@@ -84,7 +84,7 @@ problems:
 
   - id: p7-amplitude
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Plane-polarised light of amplitude 25 V/m passes through an analyser at 40 degrees to the plane of polarisation. Find the transmitted amplitude.'
     answer_label: 'The transmitted amplitude'
     check: {kind: approx, value: "25 * cos(40 * pi / 180)", target: "19.2", tolerance: "0.1"}
@@ -92,7 +92,7 @@ problems:
 
   - id: p8-crossed
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Describe what happens to the light when the second of two polarising filters is turned until its axis is at 90 degrees to the first, and explain why.'
     check:
       kind: structured
@@ -111,7 +111,7 @@ problems:
 
   - id: p9-method
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'You are given a diffraction grating labelled 300 lines per millimetre and a laser of unknown wavelength. Describe how to find the wavelength, and state the measurements you need.'
     check:
       kind: structured
@@ -133,7 +133,7 @@ problems:
 
   - id: p10-fringe
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A laser of wavelength 600 nm passes through two slits 0.25 mm apart. The screen is 1.5 m away. Find the fringe spacing.'
     answer_label: 'The fringe spacing'
     check: {kind: approx, value: "600e-9 * 1.5 / 0.25e-3", target: "3.6e-3", tolerance: "1e-5"}
@@ -141,7 +141,7 @@ problems:
 
   - id: p11-uncertainty
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A grating has a spacing of 2.00e-6 m, known exactly. The sine of the first-order angle is 0.300 with a percentage uncertainty of 1.0%. Find the wavelength and its absolute uncertainty.'
     answer_label: 'The wavelength and its uncertainty'
     check:
@@ -157,7 +157,7 @@ problems:
 
   - id: p12-sigfigs
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The angle of a first-order maximum is 18.46 degrees. Write the angle to three significant figures.'
     answer_label: 'The angle to three significant figures'
     check: {kind: sigfigs, value: "18.46", figures: 3, answer: "18.5", convention: round-once}

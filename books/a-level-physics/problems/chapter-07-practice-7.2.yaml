@@ -17,7 +17,7 @@ chapter: 7
 problems:
   - id: p1-kelvin
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Write these temperatures in kelvin: (a) -23 C; (b) 27 C.'
     answer_label: 'The temperatures in kelvin'
     check:
@@ -30,7 +30,7 @@ problems:
   - id: p2-boyle
     plays: ideal-gas-n
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A gas at a pressure of 1.2e5 Pa occupies 3.0e-3 m3. It is compressed at constant temperature to 1.5e-3 m3. Find the new pressure.'
     answer_label: 'The new pressure'
     check:
@@ -46,7 +46,7 @@ problems:
   - id: p3-charles
     plays: ideal-gas-n
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A fixed mass of gas occupies 250 cm3 at 290 K. It is heated at constant pressure to 348 K. Find its new volume.'
     answer_label: 'The new volume'
     check:
@@ -62,7 +62,7 @@ problems:
   - id: p4-pressure-law
     plays: ideal-gas-n
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A sealed rigid container holds gas at 1.0e5 Pa and 300 K. The gas is heated to 360 K. Find the new pressure.'
     answer_label: 'The new pressure'
     check:
@@ -77,7 +77,7 @@ problems:
 
   - id: p5-moles
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the number of moles in 0.050 m3 of gas at 1.0e5 Pa and 290 K. R = 8.31 J/K/mol.'
     answer_label: 'The number of moles'
     check: {kind: approx, value: "1.0e5 * 0.050 / (8.31 * 290)", target: "2.07", tolerance: "0.01"}
@@ -85,7 +85,7 @@ problems:
 
   - id: p6-molecules
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the number of molecules in the gas in the previous question. Use n = 2.07 mol and N_A = 6.02e23 /mol.'
     answer_label: 'The number of molecules'
     check: {kind: approx, value: "2.07 * 6.02e23", target: "1.25e24", tolerance: "0.02e24"}
@@ -93,7 +93,7 @@ problems:
 
   - id: p7-average-ke
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the average random kinetic energy of a molecule of a gas at 27 C. k = 1.38e-23 J/K.'
     answer_label: 'The average kinetic energy'
     check: {kind: approx, value: "1.5 * 1.38e-23 * 300", target: "6.21e-21", tolerance: "0.05e-21"}
@@ -101,7 +101,7 @@ problems:
 
   - id: p8-rms-oxygen
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the rms speed of oxygen molecules at 300 K. The molar mass of oxygen is 0.032 kg/mol and R = 8.31 J/K/mol.'
     answer_label: 'The rms speed'
     check: {kind: approx, value: "sqrt(3 * 8.31 * 300 / 0.032)", target: "483", tolerance: "2"}
@@ -109,7 +109,7 @@ problems:
 
   - id: p9-kinetic-theory
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A gas in a container of volume 1.5e-3 m3 has 8.0e22 molecules, each of mass 3.2e-26 kg. The rms speed is 600 m/s. Use pV = (1/3)Nm(c_rms)^2 to find the pressure.'
     answer_label: 'The pressure'
     check:
@@ -125,7 +125,7 @@ problems:
 
   - id: p10-graph-gradient
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A student measures the pressure p of a fixed mass of gas for several values of 1/V at constant temperature. The points are (1/V in 1e3 m-3, p in 1e5 Pa): (1.0, 1.02), (2.0, 1.96), (3.0, 3.05), (4.0, 3.98). Find the gradient of the graph and say what the gradient represents.'
     answer_label: 'The gradient and its meaning'
     check:
@@ -136,7 +136,7 @@ problems:
 
   - id: p11-boyle-reason
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A weather balloon rises, where the temperature is constant but the pressure is lower. Explain, in terms of the molecules, why the balloon expands.'
     answer_label: 'A model answer'
     check:
@@ -160,7 +160,7 @@ problems:
 
   - id: p12-pressure-reason
     section: '7.2'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Explain, in terms of the molecules, why heating a gas at constant volume increases its pressure.'
     answer_label: 'A model answer'
     check:

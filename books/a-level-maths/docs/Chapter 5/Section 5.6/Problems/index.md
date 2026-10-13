@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Trigonometry
 section: '5.6'
 section_title: Secant, cosecant, cotangent and the inverse trigonometric functions
-dfe:
+refs:
 - E4
 kind: problems
 ---

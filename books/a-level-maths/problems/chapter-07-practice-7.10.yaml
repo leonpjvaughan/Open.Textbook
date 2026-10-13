@@ -16,7 +16,7 @@ symbols:
 problems:
   - id: p1-population-growth
     section: "7.10"
-    dfe: [G6, OT3]
+    refs: [G6, OT3]
     statement: 'A population grows at a rate proportional to its size. Show that $P = P_0e^{kt}$ satisfies the differential equation you construct.'
     answer_label: 'The differential equation'
     check:
@@ -29,7 +29,7 @@ problems:
 
   - id: p2-radioactive-decay
     section: "7.10"
-    dfe: [G6, OT3]
+    refs: [G6, OT3]
     statement: 'A radioactive mass decays at a rate proportional to the mass. Construct the differential equation and show that $m = m_0e^{-kt}$ satisfies it.'
     answer_label: 'The differential equation'
     check:
@@ -42,7 +42,7 @@ problems:
 
   - id: p3-cooling
     section: "7.10"
-    dfe: [G6, OT3]
+    refs: [G6, OT3]
     statement: 'A body cools in a room at $15^\circ$C. Its temperature falls at a rate proportional to the difference from $15$. Construct the differential equation and show that $T = 15 + Ce^{-kt}$ satisfies it.'
     answer_label: 'The differential equation'
     check:
@@ -55,7 +55,7 @@ problems:
 
   - id: p4-constant-acceleration
     section: "7.10"
-    dfe: [G6, OT3]
+    refs: [G6, OT3]
     statement: 'A car has constant acceleration $a$. Construct the differential equation for its velocity $v$ and show that $v = at + C$ satisfies it.'
     answer_label: 'The differential equation'
     check:
@@ -68,7 +68,7 @@ problems:
 
   - id: p5-cooling-limit
     section: "7.10"
-    dfe: [G6, OT3]
+    refs: [G6, OT3]
     statement: 'A liquid cools towards a room temperature of $18^\circ$C at a rate proportional to its excess over $18$. Construct the differential equation and show that $T = 18 + Ce^{-kt}$ satisfies it.'
     answer_label: 'The differential equation'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p6-price-demand
     section: "7.10"
-    dfe: [G6, OT3]
+    refs: [G6, OT3]
     statement: 'The price $P$ of an item falls at a rate proportional to the amount by which it exceeds $10$. Construct the differential equation and show that $P = 10 + Ce^{-kt}$ satisfies it.'
     answer_label: 'The differential equation'
     check:
@@ -94,7 +94,7 @@ problems:
 
   - id: p7-family-exponential
     section: "7.10"
-    dfe: [G6]
+    refs: [G6]
     statement: 'The curve $y = Ae^{2x}$ contains a constant $A$. Show that $y$ satisfies the differential equation $\dfrac{dy}{dx} = 2y$.'
     answer_label: 'The verification'
     check:
@@ -105,7 +105,7 @@ problems:
 
   - id: p8-family-cubic
     section: "7.10"
-    dfe: [G6]
+    refs: [G6]
     statement: 'The curve $y = x^3 + C$ contains a constant $C$. Form a differential equation that does not contain $C$.'
     answer_label: 'The derivative'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: p9-family-sine
     section: "7.10"
-    dfe: [G6]
+    refs: [G6]
     statement: 'The curve $y = A\sin 2x$ contains a constant $A$. Show that $y$ satisfies the differential equation $\dfrac{d^2y}{dx^2} = -4y$.'
     answer_label: 'The verification'
     check:
@@ -128,7 +128,7 @@ problems:
 
   - id: p10-family-parabola
     section: "7.10"
-    dfe: [G6]
+    refs: [G6]
     statement: 'The curve $y = Ax^2$ contains a constant $A$. Show that $x\dfrac{dy}{dx} = 2y$.'
     answer_label: 'The verification'
     check:
@@ -139,7 +139,7 @@ problems:
 
   - id: p11-family-decay
     section: "7.10"
-    dfe: [G6]
+    refs: [G6]
     statement: 'The curve $y = Ae^{-x}$ contains a constant $A$. Show that $y$ satisfies $\dfrac{dy}{dx} = -y$.'
     answer_label: 'The verification'
     check:
@@ -150,7 +150,7 @@ problems:
 
   - id: p12-logistic-style
     section: "7.10"
-    dfe: [G6, OT3]
+    refs: [G6, OT3]
     statement: 'A population $P$ grows at a rate proportional to $(1000 - P)$. Construct the differential equation and show that $P = 1000 - Ce^{-kt}$ satisfies it.'
     answer_label: 'The differential equation'
     check:

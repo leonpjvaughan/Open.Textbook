@@ -6,7 +6,7 @@ chapter: 13
 problems:
   - id: p1-coin-distribution
     section: "13.1"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A fair coin is tossed 10 times. The random variable $X$ is the number of heads. Write down the distribution of $X$ and find $P(X = 5)$.'
     answer_label: 'The distribution and the probability'
     check:
@@ -19,7 +19,7 @@ problems:
 
   - id: p2-missing-probability
     section: "13.1"
-    dfe: [N1]
+    refs: [N1]
     statement: 'The probabilities for a discrete random variable $X$ are $0.1$, $0.3$, $k$ and $0.2$. Find $k$.'
     answer_label: 'The value of $k$'
     check:
@@ -30,7 +30,7 @@ problems:
 
   - id: p3-die-at-least-five
     section: "13.1"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A fair six-sided die is rolled once. The random variable $X$ is the score. Find $P(X \ge 5)$.'
     answer_label: 'The probability'
     check:
@@ -41,7 +41,7 @@ problems:
 
   - id: p4-binomial-five-three-tenths
     section: "13.1"
-    dfe: [N1]
+    refs: [N1]
     statement: 'The random variable $X \sim B(5, 0.3)$. Find $P(X = 2)$.'
     answer_label: 'The probability'
     check:
@@ -54,7 +54,7 @@ problems:
 
   - id: p5-binomial-six-quarter
     section: "13.1"
-    dfe: [N1]
+    refs: [N1]
     statement: 'The random variable $X \sim B(6, \tfrac14)$. Find $P(X = 2)$.'
     answer_label: 'The probability'
     check:
@@ -67,7 +67,7 @@ problems:
 
   - id: p6-binomial-four-third
     section: "13.1"
-    dfe: [N1]
+    refs: [N1]
     statement: 'The random variable $X \sim B(4, \tfrac13)$. Find $P(X = 1)$.'
     answer_label: 'The probability'
     check:
@@ -80,7 +80,7 @@ problems:
 
   - id: p7-binomial-five-two-thirds
     section: "13.1"
-    dfe: [N1]
+    refs: [N1]
     statement: 'The random variable $X \sim B(5, \tfrac23)$. Find $P(X = 4)$.'
     answer_label: 'The probability'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p8-probabilities-sum-to-one
     section: "13.1"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A discrete random variable $X$ has probabilities $0.2$, $0.3$, $0.4$ and $0.1$. Work out the sum of the four probabilities and state whether they form a valid distribution.'
     answer_label: 'The sum'
     check:
@@ -104,7 +104,7 @@ problems:
 
   - id: p9-without-replacement
     section: "13.1"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A bag holds 5 red counters and 3 blue counters. Two counters are taken without replacement. The random variable $X$ is the number of red counters. Explain why $X$ is not binomial, and find $P(X = 1)$.'
     answer_label: 'The probability'
     check:
@@ -115,7 +115,7 @@ problems:
 
   - id: p10-binomial-eight-fifth
     section: "13.1"
-    dfe: [N1]
+    refs: [N1]
     statement: 'The random variable $X \sim B(8, 0.2)$. Find $P(X = 0)$.'
     answer_label: 'The probability'
     check:
@@ -128,7 +128,7 @@ problems:
 
   - id: p11-binomial-ten-nine-tenths
     section: "13.1"
-    dfe: [N1]
+    refs: [N1]
     statement: 'The random variable $X \sim B(10, 0.9)$. Find $P(X = 8)$.'
     answer_label: 'The probability'
     check:
@@ -142,7 +142,7 @@ problems:
 
   - id: p12-multiple-choice
     section: "13.1"
-    dfe: [N1]
+    refs: [N1]
     statement: 'A multiple-choice test has 8 questions. Each question has 5 options, and exactly one option is correct. A student guesses every answer. The random variable $X$ is the number of correct answers. Write down the distribution of $X$ and find $P(X = 3)$.'
     answer_label: 'The distribution and the probability'
     check:

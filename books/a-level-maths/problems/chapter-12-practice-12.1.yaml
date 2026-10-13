@@ -6,7 +6,7 @@ chapter: 12
 problems:
   - id: p1-die-even-or-five
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'A fair six-sided die is rolled once. Find the probability of an even number or a 5.'
     answer_label: 'The probability of an even number or a 5'
     check:
@@ -17,7 +17,7 @@ problems:
 
   - id: p2-die-even-or-prime
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'A fair six-sided die is rolled once. Find the probability of an even number or a prime number.'
     answer_label: 'The probability of an even number or a prime number'
     check:
@@ -28,7 +28,7 @@ problems:
 
   - id: p3-counter-not-red
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'A bag has 4 red counters and 6 black counters. One counter is taken at random. Find the probability that it is not red.'
     answer_label: 'The probability that the counter is not red'
     check:
@@ -39,7 +39,7 @@ problems:
 
   - id: p4-coin-and-die
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'A fair coin is tossed and a fair six-sided die is rolled. The two results are independent. Find the probability of a head and a 6.'
     answer_label: 'The probability of a head and a 6'
     check:
@@ -50,7 +50,7 @@ problems:
 
   - id: p5-two-hearts-replacement
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'A card is taken at random from a standard pack of 52 cards, then replaced. A second card is taken at random. Find the probability that both cards are hearts.'
     answer_label: 'The probability that both cards are hearts'
     check:
@@ -61,7 +61,7 @@ problems:
 
   - id: p6-car-and-bicycle-independent
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'A survey of 300 adults records whether each owns a car and whether each owns a bicycle. 180 own a car, 120 own a bicycle, and 72 own both. Show that owning a car and owning a bicycle are independent.'
     answer_label: 'The test for independence'
     check:
@@ -72,7 +72,7 @@ problems:
 
   - id: p7-cat-and-dog-not-independent
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'A survey of 250 people records whether each owns a cat and whether each owns a dog. 150 own a cat, 100 own a dog, and 30 own both. Show that owning a cat and owning a dog are not independent.'
     answer_label: 'The test for independence'
     check:
@@ -83,7 +83,7 @@ problems:
 
   - id: p8-mutually-exclusive-product
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'Two events $A$ and $B$ have $P(A) = 0.3$ and $P(B) = 0.4$, and they are mutually exclusive. Work out $P(A) \times P(B)$, and explain why this shows that the events are not independent.'
     answer_label: 'The product of the probabilities'
     check:
@@ -94,7 +94,7 @@ problems:
 
   - id: p9-football-or-tennis
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'In a class of 30 students, 18 play football, 12 play tennis, and 6 play both. A student is chosen at random. Find the probability that the student plays football or tennis.'
     answer_label: 'The probability that the student plays football or tennis'
     check:
@@ -105,7 +105,7 @@ problems:
 
   - id: p10-independent-union
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'Events $A$ and $B$ are independent with $P(A) = 0.5$ and $P(B) = 0.4$. Find $P(A \text{ or } B)$.'
     answer_label: 'The probability of A or B'
     check:
@@ -116,7 +116,7 @@ problems:
 
   - id: p11-both-pass
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'A component passes inspection with probability $0.973$. Two components are inspected independently. Find the probability that both pass, to 4 decimal places.'
     answer_label: 'The probability that both components pass'
     check:
@@ -128,7 +128,7 @@ problems:
 
   - id: p12-coin-twice-reasoning
     section: "12.1"
-    dfe: [M1]
+    refs: [M1]
     statement: 'A fair coin is tossed twice. Event $A$ is a head on the first toss. Event $B$ is a head on the second toss. Are $A$ and $B$ mutually exclusive? Are they independent? Explain your answers.'
     answer_label: 'Mutually exclusive and independent'
     check:

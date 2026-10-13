@@ -13,7 +13,7 @@ chapter: 1
 problems:
   - id: p1-estimate-air
     section: '1.2'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A classroom is $10\,\text{m}$ long, $6.0\,\text{m}$ wide and $2.5\,\text{m}$ high. The density of air is $1.2\,\text{kg}\,\text{m}^{-3}$. Estimate the mass of air in the room to one significant figure.'
     answer_label: 'The estimated mass of air'
     check:
@@ -30,7 +30,7 @@ problems:
 
   - id: p2-estimate-heartbeats
     section: '1.2'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'Estimate the number of times a person heart beats in 70 years. Take the rate as 70 beats per minute, and give your answer to one significant figure.'
     answer_label: 'The estimated number of heartbeats'
     check:
@@ -44,7 +44,7 @@ problems:
 
   - id: p3-page-thickness
     section: '1.2'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A stack of 100 sheets of paper is $12\,\text{mm}$ thick. Find the thickness of one sheet, and say why a direct measurement of one sheet would be unreliable.'
     answer_label: 'The thickness of one sheet'
     check:
@@ -60,7 +60,7 @@ problems:
 
   - id: p4-resolution
     section: '1.2'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A metre rule has a smallest division of $1\,\text{mm}$. State the uncertainty in a single reading and explain why it is not zero.'
     answer_label: 'The uncertainty in one reading'
     check:
@@ -80,7 +80,7 @@ problems:
 
   - id: p5-accuracy-precision
     section: '1.2'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'Two students each measure the diameter of the same wire five times. Student A gets readings that are all close together but about $0.20\,\text{mm}$ too large. Student B gets readings spread over $0.10\,\text{mm}$ that average the true value. Which student is more precise, and which is more accurate? Give a reason for each answer.'
     answer_label: 'Precision and accuracy'
     check:
@@ -97,7 +97,7 @@ problems:
 
   - id: p6-systematic-random
     section: '1.2'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'Classify each error as systematic or random, and state one way to reduce it. (a) A top-pan balance reads $0.05\,\text{g}$ when the pan is empty. (b) A student reaction time when a stopwatch is started and stopped. (c) A thermometer is calibrated $0.5\,^\circ\text{C}$ too high.'
     answer_label: 'The type of each error'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: p7-timing-oscillations
     section: '1.2'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A stopwatch can be started and stopped with an uncertainty of about $0.2\,\text{s}$. A student times 20 oscillations in one measurement and divides by 20 to find the period. Work out the uncertainty in the period.'
     answer_label: 'The uncertainty in the period'
     check:
@@ -128,7 +128,7 @@ problems:
 
   - id: p8-instrument-choice
     section: '1.2'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'You must measure the diameter of a wire that is about $0.30\,\text{mm}$ across. The instruments available are a metre rule (smallest division $1\,\text{mm}$), a vernier caliper (smallest division $0.1\,\text{mm}$) and a micrometer (smallest division $0.01\,\text{mm}$). Choose the instrument you would use, give a reason, and state the uncertainty in one reading.'
     answer_label: 'The instrument and its uncertainty'
     check:
@@ -148,7 +148,7 @@ problems:
 
   - id: p9-earth-sun
     section: '1.2'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'Estimate how many Earth diameters would fit across the Sun. The radius of the Earth is $6.4 \times 10^3\,\text{km}$ and the radius of the Sun is $7.0 \times 10^5\,\text{km}$. Give your answer to one significant figure.'
     answer_label: 'The estimate to one significant figure'
     check:
@@ -160,7 +160,7 @@ problems:
 
   - id: p10-bathtub-estimate
     section: '1.2'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'You want to estimate the mass of water in a full bath. State the measurements you would take, estimate each one, and say which estimate is likely to give the largest percentage uncertainty in the mass.'
     answer_label: 'The measurements and the weakest estimate'
     check:
@@ -180,7 +180,7 @@ problems:
 
   - id: p11-significant-figures
     section: '1.2'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A student calculates a speed as $2.876\,18\,\text{m}\,\text{s}^{-1}$ from measurements that are each known to two significant figures. Write the speed to the correct number of significant figures.'
     answer_label: 'The speed to the correct figures'
     check:
@@ -193,7 +193,7 @@ problems:
 
   - id: p12-limits
     section: '1.2'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'Explain why a measurement can never be exact. Use the words resolution, systematic error and random error.'
     answer_label: 'Why no measurement is exact'
     check:

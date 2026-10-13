@@ -5,7 +5,7 @@ chapter_title: Light and electromagnetic waves
 section: '5.4'
 section_title: Colour and frequency
 tier: F
-dfe:
+refs:
 - WA6
 kind: guided-problems
 ---

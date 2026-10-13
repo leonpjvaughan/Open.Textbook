@@ -13,7 +13,7 @@ problems:
   - id: p1-microphone
     section: '7.4'
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'Explain how a moving-coil microphone converts the pressure variations in a sound wave into variations in a current.'
     answer_label: 'How a microphone works'
     check:
@@ -34,7 +34,7 @@ problems:
   - id: p2-loudspeaker
     section: '7.4'
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'Explain how a moving-coil loudspeaker converts a varying current into a sound wave.'
     answer_label: 'How a loudspeaker works'
     check:
@@ -55,7 +55,7 @@ problems:
   - id: p3-compare
     section: '7.4'
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'Compare a moving-coil microphone with a moving-coil loudspeaker, and state the effect each device uses.'
     answer_label: 'Microphone compared with loudspeaker'
     check:
@@ -76,7 +76,7 @@ problems:
   - id: p4-current-reverse
     section: '7.4'
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'A current flows through the coil of a loudspeaker, and the cone moves forward. Describe what happens to the cone when the current is reversed, and give a reason.'
     answer_label: 'What the reversed current does'
     check:
@@ -94,7 +94,7 @@ problems:
   - id: p5-coil-must-move
     section: '7.4'
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'A microphone produces no current when the sound stops. Explain why the coil must keep moving for a current to be induced.'
     answer_label: 'Why the coil must move'
     check:
@@ -112,7 +112,7 @@ problems:
   - id: p6-force-calc
     section: '7.4'
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'A loudspeaker coil has 0.040 m of wire inside the magnetic field. The flux density is 0.25 T and the current is 0.80 A. Calculate the force on the coil.'
     answer_label: 'Force on the coil'
     check:
@@ -131,7 +131,7 @@ problems:
   - id: p7-headphones
     section: '7.4'
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'Explain how a pair of moving-coil headphones produces sound from a varying current.'
     answer_label: 'How headphones work'
     check:
@@ -152,7 +152,7 @@ problems:
   - id: p8-diaphragm
     section: '7.4'
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'Explain the part played by the diaphragm in a moving-coil microphone.'
     answer_label: 'The job of the diaphragm'
     check:
@@ -170,7 +170,7 @@ problems:
   - id: p9-which-effect
     section: '7.4'
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'A student says a loudspeaker works by the generator effect. Explain why the student is wrong, and name the correct effect.'
     answer_label: 'The correct effect'
     check:
@@ -188,7 +188,7 @@ problems:
   - id: p10-method
     section: '7.4'
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'A loudspeaker coil sits at right angles to a magnetic field. Say which equation you will use to find the force on the coil, and name the quantities you need.'
     answer_label: 'Choosing the method'
     check:

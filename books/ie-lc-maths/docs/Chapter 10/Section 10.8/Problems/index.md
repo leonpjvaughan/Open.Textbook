@@ -15,4 +15,4 @@ kind: problems
 # 10.8 Bernoulli trials and the binomial distribution — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 1.3
+> Tier: **H** · refs: 1.3

@@ -15,4 +15,4 @@ kind: problems
 # 12.9 Solving trigonometric equations — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 2.3
+> Tier: **H** · refs: 2.3

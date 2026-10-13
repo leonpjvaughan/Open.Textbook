@@ -4,7 +4,7 @@ chapter: 13
 chapter_title: Statistical distributions
 section: '13.3'
 section_title: The Normal distribution as a model
-dfe:
+refs:
 - N2
 kind: problems
 ---

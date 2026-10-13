@@ -15,4 +15,4 @@ kind: problems
 # 11.1 Populations and samples — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 1.5
+> Tier: **F** · refs: 1.5

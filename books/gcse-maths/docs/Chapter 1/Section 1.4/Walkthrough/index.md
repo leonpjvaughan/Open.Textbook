@@ -5,7 +5,7 @@ chapter_title: Number skills
 section: "1.4"
 section_title: Priority of operations and inverse operations
 tier: F
-dfe: [N3]
+refs: [N3]
 kind: walkthrough
 ---
 

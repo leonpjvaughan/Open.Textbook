@@ -16,7 +16,7 @@ problems:
   - id: r1-anchor-electromagnet
     section: Review
     tier: F
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'The scrapyard crane uses an electromagnet instead of a permanent magnet. Explain why.'
     answer_label: 'Why the crane uses an electromagnet'
     check:
@@ -34,7 +34,7 @@ problems:
   - id: r2-anchor-induced
     section: Review
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'The crane magnet attracts the steel scrap but not the aluminium. Explain why.'
     answer_label: 'Steel attracted, aluminium not'
     check:
@@ -52,7 +52,7 @@ problems:
   - id: r3-anchor-field
     section: Review
     tier: F
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'Describe the magnetic field inside the crane solenoid.'
     answer_label: 'The field inside the solenoid'
     check:
@@ -70,7 +70,7 @@ problems:
   - id: r4-anchor-iron
     section: Review
     tier: F
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'Explain how the iron core makes the crane electromagnet stronger.'
     answer_label: 'How the iron core helps'
     check:
@@ -88,7 +88,7 @@ problems:
   - id: r5-anchor-transformer-turns
     section: Review
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'The yard transformer steps 12 000 V down to 240 V. The primary coil has 4000 turns. Calculate the number of turns on the secondary coil.'
     answer_label: 'Number of turns on the secondary coil'
     check: {kind: evaluate, expression: "4000 * 240 / 12000", answer: "80"}
@@ -97,7 +97,7 @@ problems:
   - id: r6-anchor-line-current
     section: Review
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'The yard uses 24 kW of power from a 12 000 V transmission line. Calculate the current in the line.'
     answer_label: 'Current in the transmission line'
     check:
@@ -115,7 +115,7 @@ problems:
   - id: r7-anchor-microphone
     section: Review
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'Explain how the office microphone turns the yard manager''s voice into a varying current.'
     answer_label: 'How the microphone works'
     check:
@@ -133,7 +133,7 @@ problems:
   - id: r8-anchor-loudspeaker
     section: Review
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'Explain how the office loudspeaker turns the varying current back into sound.'
     answer_label: 'How the loudspeaker works'
     check:
@@ -151,7 +151,7 @@ problems:
   - id: r9-like-poles
     section: Review
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'Two magnets are placed with their south poles facing each other. Describe the force between them, and give a reason.'
     answer_label: 'The force between the two south poles'
     check:
@@ -169,7 +169,7 @@ problems:
   - id: r10-convert-cm
     section: Review
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'The crane magnet is held 15 cm above the scrap. Write this distance in metres.'
     answer_label: 'The distance in metres'
     check:
@@ -183,7 +183,7 @@ problems:
   - id: r11-force-calc
     section: Review
     tier: H
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'A wire of length 0.25 m in a motor carries a current of 2.0 A and sits at right angles to a magnetic field of flux density 0.30 T. Calculate the force on the wire.'
     answer_label: 'Force on the wire'
     check:
@@ -202,7 +202,7 @@ problems:
   - id: r12-power
     section: Review
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'The crane electromagnet runs from a 240 V supply and takes a current of 4.0 A. Calculate the power it uses.'
     answer_label: 'Power used by the electromagnet'
     check:
@@ -220,7 +220,7 @@ problems:
   - id: r13-gravitational
     section: Review
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A steel block of mass 2.0 kg is lifted 1.5 m onto a pile. Take g = 9.8 N/kg. Calculate the energy transferred to the gravitational store of the block.'
     answer_label: 'Energy in the gravitational store'
     check:
@@ -239,7 +239,7 @@ problems:
   - id: r14-weight
     section: Review
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'The crane magnet supports a steel plate of mass 5.0 kg. Take g = 9.8 N/kg. Calculate the weight of the plate.'
     answer_label: 'Weight of the plate'
     check:
@@ -257,7 +257,7 @@ problems:
   - id: r15-method-transformer
     section: Review
     tier: H
-    dfe: [MG3]
+    refs: [MG3]
     statement: 'A transformer has 2000 turns on the primary coil and 500 turns on the secondary coil. The primary potential difference is 240 V. Say which relationship you will use, then calculate the secondary potential difference.'
     answer_label: 'Secondary potential difference'
     check:
@@ -270,7 +270,7 @@ problems:
   - id: r16-loudspeaker-effect
     section: Review
     tier: H
-    dfe: [MG4]
+    refs: [MG4]
     statement: 'A student says a loudspeaker works by the generator effect. Explain why the student is wrong, and name the correct effect.'
     answer_label: 'The correct effect'
     check:

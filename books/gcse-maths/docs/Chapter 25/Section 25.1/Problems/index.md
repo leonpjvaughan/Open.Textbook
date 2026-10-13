@@ -5,7 +5,7 @@ chapter_title: 'Statistics: spread, grouped data and correlation'
 section: '25.1'
 section_title: Quartiles, interquartile range and box plots
 tier: H
-dfe: [S4]
+refs: [S4]
 kind: problems
 ---
 

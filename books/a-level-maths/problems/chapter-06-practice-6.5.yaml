@@ -14,7 +14,7 @@ symbols:
 problems:
   - id: p1-linearise-exponential
     section: "6.5"
-    dfe: [F6]
+    refs: [F6]
     statement: 'For the model $y = kb^x$, with $k > 0$ and $b > 0$, show that $\ln y = \ln k + x\ln b$.'
     answer_label: 'The difference'
     check:
@@ -25,7 +25,7 @@ problems:
 
   - id: p2-gradient-from-data
     section: "6.5"
-    dfe: [F6]
+    refs: [F6]
     statement: 'A model $y = kb^x$ has data points $\left(0, 200\right)$ and $\left(1, 300\right)$. Find the gradient of the graph of $\ln y$ against $x$.'
     answer_label: 'The gradient'
     check:
@@ -36,7 +36,7 @@ problems:
 
   - id: p3-estimate-growth-factor
     section: "6.5"
-    dfe: [F6]
+    refs: [F6]
     statement: 'The gradient of a log-linear graph is $\ln 1.5$. Write $\ln 1.5$ to three decimal places.'
     answer_label: 'The value'
     check:
@@ -48,7 +48,7 @@ problems:
 
   - id: p4-estimate-initial-value
     section: "6.5"
-    dfe: [F6]
+    refs: [F6]
     statement: 'A log-linear graph of $\ln y$ against $x$ has intercept $\ln 200$. Find the value of $k$ in $y = kb^x$.'
     answer_label: 'The value of $k$'
     check:
@@ -59,7 +59,7 @@ problems:
 
   - id: p5-linearise-power
     section: "6.5"
-    dfe: [F6]
+    refs: [F6]
     statement: 'For the model $y = ax^3$, with $a > 0$ and $x > 0$, show that plotting $\ln y$ against $\ln x$ gives a straight line of gradient $3$.'
     answer_label: 'The difference'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: p6-power-gradient
     section: "6.5"
-    dfe: [F6]
+    refs: [F6]
     statement: 'The points $\left(1, 3\right)$, $\left(2, 12\right)$ and $\left(3, 27\right)$ fit a model $y = ax^n$. Use the first and last points to find $n$ from the gradient of $\ln y$ against $\ln x$.'
     answer_label: 'The value of $n$'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-predict-growth
     section: "6.5"
-    dfe: [F6]
+    refs: [F6]
     statement: 'A population is modelled by $N = 200\left(1.5\right)^t$. Predict $N$ when $t = 5$.'
     answer_label: 'The value of $N$'
     check:
@@ -92,7 +92,7 @@ problems:
 
   - id: p8-solve-for-time
     section: "6.5"
-    dfe: [F6, F5]
+    refs: [F6, F5]
     statement: 'A population is modelled by $N = 200\left(1.5\right)^x$. Find the value of $x$ when $N = 1000$, exactly.'
     answer_label: 'The value of $x$'
     check:
@@ -104,7 +104,7 @@ problems:
 
   - id: p9-log10-form
     section: "6.5"
-    dfe: [F6]
+    refs: [F6]
     statement: 'A model gives $\log_{10} y = 2 + 0.5x$. Find $k$ and $b$ in $y = kb^x$.'
     answer_label: 'The values of $k$ and $b$'
     check:
@@ -116,7 +116,7 @@ problems:
 
   - id: p10-approximate-gradient
     section: "6.5"
-    dfe: [F6]
+    refs: [F6]
     statement: 'A model has data points $\left(0, 5\right)$ and $\left(2, 20\right)$. Write the gradient of the graph of $\ln y$ against $x$ to three decimal places.'
     answer_label: 'The gradient'
     check:
@@ -128,7 +128,7 @@ problems:
 
   - id: p11-interpret-intercept
     section: "6.5"
-    dfe: [F6]
+    refs: [F6]
     statement: 'A straight line fitted to a graph of $\ln y$ against $x$ has gradient $0.4$ and passes through $\left(0, 1.2\right)$. Find $k$ in the model $y = kb^x$, to three significant figures.'
     answer_label: 'The value of $k$'
     check:
@@ -140,7 +140,7 @@ problems:
 
   - id: p12-power-intercept
     section: "6.5"
-    dfe: [F6]
+    refs: [F6]
     statement: 'A graph of $\ln y$ against $\ln x$ for a model $y = ax^n$ has intercept $\ln 4$. Find $a$.'
     answer_label: 'The value of $a$'
     check:

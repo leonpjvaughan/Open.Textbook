@@ -13,7 +13,7 @@ problems:
   - id: p1-field-wire
     section: '7.2'
     tier: F
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'Describe the magnetic field around a long straight wire carrying a current.'
     answer_label: 'The field around a straight wire'
     check:
@@ -31,7 +31,7 @@ problems:
   - id: p2-solenoid
     section: '7.2'
     tier: F
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'Explain how a solenoid increases the magnetic effect of a current.'
     answer_label: 'How a solenoid increases the field'
     check:
@@ -49,7 +49,7 @@ problems:
   - id: p3-iron-core
     section: '7.2'
     tier: F
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'Explain why an iron core is placed inside a solenoid, and why an electromagnet can be switched off.'
     answer_label: 'The iron core and switching off'
     check:
@@ -67,7 +67,7 @@ problems:
   - id: p4-field-distance
     section: '7.2'
     tier: F
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'A compass is moved from 2.0 cm to 6.0 cm away from a straight wire carrying a steady current. Describe how the deflection of the needle changes as it is moved, and give a reason.'
     answer_label: 'How the deflection changes with distance'
     check:
@@ -85,7 +85,7 @@ problems:
   - id: p5-field-inside
     section: '7.2'
     tier: F
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'Describe the magnetic field inside a solenoid.'
     answer_label: 'The field inside a solenoid'
     check:
@@ -103,7 +103,7 @@ problems:
   - id: p6-current-factors
     section: '7.2'
     tier: F
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'State the two factors that affect the strength of the magnetic field around a straight wire.'
     answer_label: 'The two factors'
     check:
@@ -121,7 +121,7 @@ problems:
   - id: p7-electromagnet-advantage
     section: '7.2'
     tier: F
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'Give one advantage of an electromagnet over a permanent magnet, and describe one use that relies on it.'
     answer_label: 'An advantage and a use'
     check:
@@ -139,7 +139,7 @@ problems:
   - id: p8-fleming
     section: '7.2'
     tier: H
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'State Fleming''s left-hand rule, and name what each part of the left hand represents.'
     answer_label: 'Fleming''s left-hand rule'
     check:
@@ -160,7 +160,7 @@ problems:
   - id: p9-force-calc
     section: '7.2'
     tier: H
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'A wire of length 0.20 m carries a current of 1.5 A at right angles to a magnetic field of flux density 0.50 T. Calculate the force on the wire.'
     answer_label: 'Force on the wire'
     check:
@@ -179,7 +179,7 @@ problems:
   - id: p10-flux-calc
     section: '7.2'
     tier: H
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'A wire of length 0.30 m carries a current of 2.0 A and feels a force of 0.36 N at right angles to a magnetic field. Calculate the magnetic flux density.'
     answer_label: 'Magnetic flux density'
     check:
@@ -198,7 +198,7 @@ problems:
   - id: p11-motor
     section: '7.2'
     tier: H
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'Explain how the force on a coil of wire in a magnetic field makes an electric motor rotate.'
     answer_label: 'How the motor rotates'
     check:
@@ -219,7 +219,7 @@ problems:
   - id: p12-current-calc
     section: '7.2'
     tier: H
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'A wire of length 0.50 m sits at right angles to a magnetic field of flux density 0.40 T. The force on the wire is 0.80 N. Calculate the current in the wire.'
     answer_label: 'Current in the wire'
     check:
@@ -238,7 +238,7 @@ problems:
   - id: p13-method
     section: '7.2'
     tier: H
-    dfe: [MG2]
+    refs: [MG2]
     statement: 'A wire is placed at right angles to a magnetic field. Say which equation you will use to find the force on it, and name the three quantities you need.'
     answer_label: 'Choosing the method'
     check:

@@ -15,4 +15,4 @@ kind: problems
 # 21.1 Listing outcomes and the sample space — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: SP.1
+> Tier: **O** · refs: SP.1

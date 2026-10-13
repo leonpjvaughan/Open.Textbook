@@ -5,7 +5,7 @@ problems:
 - id: ch14-14-5-01
   section: '14.5'
   tier: H
-  dfe: [A20]
+  refs: [A20]
   statement: 'Use $x_{n+1}=\frac12(x_n+6/x_n)$ with $x_0=2$. Find $x_1$.'
   answer_label: 'First iteration'
   check: {kind: evaluate, expression: '(2 + 6/2)/2', answer: '5/2'}
@@ -13,7 +13,7 @@ problems:
 - id: ch14-14-5-02
   section: '14.5'
   tier: H
-  dfe: [A20]
+  refs: [A20]
   statement: 'Use $x_{n+1}=\frac12(x_n+6/x_n)$ with $x_0=2$. Find $x_2$.'
   answer_label: 'Second iteration'
   check: {kind: evaluate, expression: '((2 + 6/2)/2 + 6/((2 + 6/2)/2))/2', answer: '49/20'}
@@ -21,7 +21,7 @@ problems:
 - id: ch14-14-5-03
   section: '14.5'
   tier: H
-  dfe: [A20]
+  refs: [A20]
   statement: 'Use $x_{n+1}=\frac12(x_n+6/x_n)$ with $x_0=2$. Find $x_3$ to 3 decimal places.'
   answer_label: 'Third iteration, 3 decimal places'
   check:
@@ -33,7 +33,7 @@ problems:
 - id: ch14-14-5-04
   section: '14.5'
   tier: H
-  dfe: [A20]
+  refs: [A20]
   statement: 'Use $x_{n+1}=2+1/x_n$ with $x_0=2$. Find $x_2$.'
   answer_label: 'Two iterations'
   check: {kind: evaluate, expression: '2 + 1/(2 + 1/2)', answer: '12/5'}
@@ -41,7 +41,7 @@ problems:
 - id: ch14-14-5-05
   section: '14.5'
   tier: H
-  dfe: [A20]
+  refs: [A20]
   statement: 'Use $x_{n+1}=3+2/x_n$ with $x_0=2$. Find $x_2$.'
   answer_label: 'Iteration with a different rule'
   check: {kind: evaluate, expression: '3 + 2/(3 + 2/2)', answer: '7/2'}
@@ -49,7 +49,7 @@ problems:
 - id: ch14-14-5-06
   section: '14.5'
   tier: H
-  dfe: [A20]
+  refs: [A20]
   statement: 'Use $x_{n+1}=\frac12(x_n+6/x_n)$ with $x_0=3$. Find $x_2$.'
   answer_label: 'Iteration from a new start value'
   check: {kind: evaluate, expression: '((3 + 6/3)/2 + 6/((3 + 6/3)/2))/2', answer: '49/20'}
@@ -57,7 +57,7 @@ problems:
 - id: ch14-14-5-07
   section: '14.5'
   tier: H
-  dfe: [A20]
+  refs: [A20]
   statement: 'Use $x_{n+1}=x_n/2+1$ with $x_0=8$. Find $x_3$.'
   answer_label: 'Three steps of iteration'
   check: {kind: evaluate, expression: '(((8/2+1)/2+1)/2+1)', answer: '11/4'}
@@ -65,7 +65,7 @@ problems:
 - id: ch14-14-5-08
   section: '14.5'
   tier: H
-  dfe: [A20]
+  refs: [A20]
   statement: 'Use $x_{n+1}=1+2/x_n$ with $x_0=2$. Find $x_3$.'
   answer_label: 'Three iterations with fractions'
   check: {kind: evaluate, expression: '1 + 2/(1 + 2/(1 + 2/2))', answer: '2'}
@@ -73,7 +73,7 @@ problems:
 - id: ch14-14-5-method
   section: '14.5'
   tier: H
-  dfe: [A20]
+  refs: [A20]
   statement: 'Which method fits each part, and why? (a) Solve $y=2x+1$ and $y=3x-4$. (b) Use $x_{n+1}=2+1/x_n$ with $x_0=2$ to find $x_2$.'
   answer_label: 'Method choice: solve or iterate'
   check:

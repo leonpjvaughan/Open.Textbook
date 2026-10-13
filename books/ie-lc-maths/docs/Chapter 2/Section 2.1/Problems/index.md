@@ -15,4 +15,4 @@ kind: problems
 # 2.1 Percentages and percentage change — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 3.3
+> Tier: **F** · refs: 3.3

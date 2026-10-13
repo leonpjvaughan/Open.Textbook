@@ -15,4 +15,4 @@ kind: problems
 # 10.1 Generating and interpreting expressions — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: AF.2
+> Tier: **O** · refs: AF.2

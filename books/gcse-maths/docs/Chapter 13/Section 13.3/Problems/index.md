@@ -5,7 +5,7 @@ chapter_title: Other functions and graphs
 section: '13.3'
 section_title: Transformations of graphs
 tier: H
-dfe:
+refs:
 - A13
 kind: problems
 ---

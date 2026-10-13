@@ -4,7 +4,7 @@ chapter: 8
 chapter_title: Integration
 section: '8.6'
 section_title: Integrating with partial fractions
-dfe:
+refs:
 - H6
 kind: problems
 ---

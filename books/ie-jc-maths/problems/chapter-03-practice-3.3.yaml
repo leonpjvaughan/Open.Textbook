@@ -1,0 +1,111 @@
+# Junior Cycle Mathematics, Chapter 3, section 3.3.
+#
+# Every check is an arithmetic identity the CAS proves, so the answer the reader
+# is shown is the answer the verifier proved. `gcd` and `lcm` are available;
+# `isprime` and `factorint` are not, because they return a bare Python bool or
+# dict and the CAS parser wants a SymPy expression. Primality and factorisation
+# are therefore written as products — "91 = 7 x 13, so 91 is not prime" — which
+# proves the same thing and is the form the reader can check by hand.
+chapter: 3
+symbols: {}
+
+problems:
+- id: jc3-3.3-hcf-1
+  section: '3.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Find the highest common factor of 24 and 36.
+  answer_label: Find the highest common factor of 24 and 36.
+  check:
+    kind: evaluate
+    expression: gcd(24,36)
+    answer: '12'
+  answer_text: $12$. In prime factors, $24=2^3\times3$ and $36=2^2\times3^2$; the highest common factor
+    takes the smaller power of each shared prime, $2^2\times3=12$.
+- id: jc3-3.3-lcm-1
+  section: '3.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Find the lowest common multiple of 24 and 36.
+  answer_label: Find the lowest common multiple of 24 and 36.
+  check:
+    kind: evaluate
+    expression: lcm(24,36)
+    answer: '72'
+  answer_text: $72$. The lowest common multiple takes the *larger* power of each shared prime, $2^3\times3^2=72$.
+- id: jc3-3.3-hcf-2
+  section: '3.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Find the highest common factor of 84 and 210.
+  answer_label: Find the highest common factor of 84 and 210.
+  check:
+    kind: evaluate
+    expression: gcd(84,210)
+    answer: '42'
+  answer_text: $42$. $84=2^2\times3\times7$ and $210=2\times3\times5\times7$, so the highest common factor
+    is $2\times3\times7=42$.
+- id: jc3-3.3-lcm-2
+  section: '3.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Find the lowest common multiple of 12, 15 and 20.
+  answer_label: Find the lowest common multiple of 12, 15 and 20.
+  check:
+    kind: evaluate
+    expression: lcm(lcm(12,15),20)
+    answer: '60'
+  answer_text: '$60$. In prime factors: $12=2^2\times3$, $15=3\times5$, $20=2^2\times5$. The lowest common
+    multiple needs the largest power of each prime that appears, $2^2\times3\times5=60$.'
+- id: jc3-3.3-context-1
+  section: '3.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Two lighthouses flash every 12 seconds and every 18 seconds. They flash together. After how
+    many seconds do they next flash together?
+  answer_label: After how many seconds do they next flash together?
+  check:
+    kind: evaluate
+    expression: lcm(12,18)
+    answer: '36'
+  answer_text: $36$ seconds. The question asks when two repeating events line up again, which is the lowest
+    common multiple — not the highest common factor.
+- id: jc3-3.3-context-2
+  section: '3.3'
+  tier: O
+  refs:
+  - N.1
+  statement: A shop has 48 blue pens and 60 black pens. They are packed into boxes of one colour, every
+    box holding the same number of pens, with none left over. What is the greatest number of pens a box
+    can hold?
+  answer_label: What is the greatest number of pens a box can hold?
+  check:
+    kind: evaluate
+    expression: gcd(48,60)
+    answer: '12'
+  answer_text: $12$ pens. The box size must divide both 48 and 60, and it must be as large as possible,
+    so it is the highest common factor.
+- id: jc3-3.3-product-1
+  section: '3.3'
+  tier: H
+  refs:
+  - N.1
+  statement: For any two whole numbers, the product of their highest common factor and their lowest common
+    multiple is the product of the numbers. Check this for 18 and 30.
+  answer_label: Check the rule for 18 and 30.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: gcd(18,30)*lcm(18,30)
+      answer: '540'
+    - kind: evaluate
+      expression: 18*30
+      answer: '540'
+  answer_text: 'For 18 and 30: the highest common factor is 6 and the lowest common multiple is 90, and
+    $6\times90=540=18\times30$. The rule holds, which is why finding one of the two gives you the other.'

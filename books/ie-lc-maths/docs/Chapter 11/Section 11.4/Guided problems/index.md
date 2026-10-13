@@ -15,4 +15,4 @@ kind: guided-problems
 # 11.4 Measures of centre and spread — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **F** · DfE refs: 1.7
+> Tier: **F** · refs: 1.7

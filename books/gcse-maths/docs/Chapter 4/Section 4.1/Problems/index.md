@@ -5,7 +5,7 @@ chapter_title: Fractions, decimals and percentages
 section: "4.1"
 section_title: Equivalent fractions and ordering
 tier: F
-dfe: [N1, N10]
+refs: [N1, N10]
 kind: problems
 ---
 # 4.1 Equivalent fractions and ordering — Practise

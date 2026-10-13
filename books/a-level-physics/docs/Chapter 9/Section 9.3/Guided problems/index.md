@@ -4,7 +4,7 @@ chapter: 9
 chapter_title: Fields
 section: '9.3'
 section_title: Magnetic fields
-dfe:
+refs:
 - AP9
 kind: guided-problems
 ---

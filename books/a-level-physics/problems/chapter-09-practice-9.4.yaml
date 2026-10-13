@@ -17,7 +17,7 @@ chapter: 9
 problems:
   - id: p1-faraday-changing-field
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A coil of 80 turns has an area of 0.020 m^2. The flux density through it rises steadily from 0.15 T to 0.55 T in 0.25 s. Find the induced emf.'
     answer_label: 'The induced emf'
     check: {kind: approx, value: "80 * 0.020 * (0.55 - 0.15) / 0.25", target: "2.56", tolerance: "0.02"}
@@ -25,7 +25,7 @@ problems:
 
   - id: p2-motional-emf
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A rod of length 0.30 m moves at 5.0 m/s at right angles to a magnetic field of flux density 0.50 T. Find the emf induced across it.'
     answer_label: 'The induced emf'
     check:
@@ -39,7 +39,7 @@ problems:
 
   - id: p3-current-and-force
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'The rod in question 2 is part of a circuit of total resistance 1.5 ohms. Find the current and the force that opposes the motion.'
     answer_label: 'The current and the force'
     check:
@@ -51,7 +51,7 @@ problems:
 
   - id: p4-search-coil
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A search coil of 800 turns and area 1.2e-4 m^2 is in a magnetic field that changes at 0.25 T/s. Find the emf induced in the coil.'
     answer_label: 'The induced emf'
     check: {kind: approx, value: "800 * 1.2e-4 * 0.25", target: "0.024", tolerance: "0.0005"}
@@ -59,7 +59,7 @@ problems:
 
   - id: p5-peak-emf
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A generator coil of 250 turns and area 4.0e-3 m^2 turns at 40 rad/s in a field of flux density 0.30 T. Find the peak emf.'
     answer_label: 'The peak emf'
     check: {kind: approx, value: "250 * 4.0e-3 * 0.30 * 40", target: "12", tolerance: "0.1"}
@@ -67,7 +67,7 @@ problems:
 
   - id: p6-rotating-coil-emf
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A coil of 400 turns and area 6.0e-3 m^2 is turned from parallel to perpendicular to a field of 0.20 T in 0.050 s. Find the average induced emf.'
     answer_label: 'The average induced emf'
     check: {kind: approx, value: "400 * 0.20 * 6.0e-3 / 0.050", target: "9.6", tolerance: "0.1"}
@@ -75,7 +75,7 @@ problems:
 
   - id: p7-transformer
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A transformer has 2000 turns on the primary coil and 50 turns on the secondary coil. The primary is connected to a 230 V alternating supply. Find the secondary voltage.'
     answer_label: 'The secondary voltage'
     check: {kind: approx, value: "230 * 50 / 2000", target: "5.75", tolerance: "0.05"}
@@ -83,7 +83,7 @@ problems:
 
   - id: p8-lenz-energy
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'Explain, using the conservation of energy, why the force on a conductor that carries an induced current opposes the motion producing it.'
     check:
       kind: structured
@@ -108,7 +108,7 @@ problems:
 
   - id: p9-uncertainty-emf
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A rod moving through a magnetic field induces an emf of 0.60 V. The flux density has an uncertainty of 2.0%, the length 0.5% and the speed 1.0%. Find the absolute uncertainty in the emf.'
     answer_label: 'The absolute uncertainty'
     check:
@@ -125,7 +125,7 @@ problems:
 
   - id: p10-emf-2sf
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A search-coil calculation gives an emf of 0.02431 V. Write the answer to two significant figures.'
     answer_label: 'The emf to two significant figures'
     check:
@@ -138,7 +138,7 @@ problems:
 
   - id: p11-convert-millivolts
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'An induced emf is 30 mV. Write it in volts.'
     answer_label: 'The emf in volts'
     check: {kind: convert, value: "30", from: "mV", to: "V", answer: "0.030"}
@@ -146,7 +146,7 @@ problems:
 
   - id: p12-power-dissipated
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A rod of length 0.20 m moves at 4.0 m/s at right angles to a field of 0.30 T. It completes a circuit of resistance 0.60 ohms. Find the power dissipated in the circuit.'
     answer_label: 'The power dissipated'
     check: {kind: approx, value: "(0.30 * 0.20 * 4.0)**2 / 0.60", target: "0.096", tolerance: "0.002"}
@@ -154,7 +154,7 @@ problems:
 
   - id: p13-method-rotating-coil
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A coil is rotated at a steady rate in a uniform magnetic field. Explain how to find the maximum emf, and why the emf is zero at two positions in each turn.'
     check:
       kind: structured
@@ -176,7 +176,7 @@ problems:
 
   - id: p14-tether-power
     section: '9.4'
-    dfe: [AP9]
+    refs: [AP9]
     statement: 'A conducting tether of length 25 m moves at 7.5e3 m/s at right angles to a field of flux density 4.0e-5 T. It drives a current of 0.60 A. Find the emf across the tether and the electrical power delivered.'
     answer_label: 'The emf and the power'
     check:

@@ -13,7 +13,7 @@ symbols:
 problems:
   - id: p1-nth-term
     section: "4.5"
-    dfe: [D4]
+    refs: [D4]
     statement: 'An arithmetic sequence begins $7, 11, 15, \dots$. Work out the 15th term.'
     answer_label: 'The term'
     check:
@@ -24,7 +24,7 @@ problems:
 
   - id: p2-negative-common-difference
     section: "4.5"
-    dfe: [D4]
+    refs: [D4]
     statement: 'An arithmetic sequence begins $100, 92, 84, \dots$. Work out the 20th term.'
     answer_label: 'The term'
     check:
@@ -35,7 +35,7 @@ problems:
 
   - id: p3-sum-of-series
     section: "4.5"
-    dfe: [D4]
+    refs: [D4]
     statement: 'Work out the sum of the first 20 terms of $5, 9, 13, \dots$.'
     answer_label: 'The sum'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: p4-count-the-terms
     section: "4.5"
-    dfe: [D4]
+    refs: [D4]
     statement: 'For the series $3 + 7 + 11 + \dots + 83$, work out how many terms there are and then the total.'
     answer_label: 'The number of terms and the total'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: p5-sum-thirty-terms
     section: "4.5"
-    dfe: [D4]
+    refs: [D4]
     statement: 'Work out the sum of the first 30 terms of $2, 6, 10, \dots$.'
     answer_label: 'The sum'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: p6-two-terms-given
     section: "4.5"
-    dfe: [D4]
+    refs: [D4]
     statement: 'The 8th term of an arithmetic sequence is $45$ and the 12th term is $65$. Find the first term and the common difference.'
     answer_label: 'The first term and the common difference'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-first-negative-term
     section: "4.5"
-    dfe: [D4]
+    refs: [D4]
     statement: 'An arithmetic sequence begins $40, 36, 32, \dots$. Find the first term that is negative.'
     answer_label: 'The first negative term'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p8-sum-from-a-and-d
     section: "4.5"
-    dfe: [D4]
+    refs: [D4]
     statement: 'An arithmetic series has first term $3$ and common difference $7$. Work out the sum of the first 12 terms.'
     answer_label: 'The sum'
     check:
@@ -104,7 +104,7 @@ problems:
 
   - id: p9-multiples-in-a-range
     section: "4.5"
-    dfe: [D4]
+    refs: [D4]
     statement: 'Work out the sum of the multiples of $4$ from $12$ to $96$ inclusive.'
     answer_label: 'The sum'
     check:
@@ -116,7 +116,7 @@ problems:
 
   - id: p10-quiz-eighteen-months
     section: "4.5"
-    dfe: [D4]
+    refs: [D4]
     statement: 'The quiz night raises $150$ pounds in month 1 and $50$ more each month. Work out the total raised in the first 18 months.'
     answer_label: 'The total'
     check:
@@ -127,7 +127,7 @@ problems:
 
   - id: p11-savings-plan
     section: "4.5"
-    dfe: [D4]
+    refs: [D4]
     statement: 'A savings club pays in £200 in month 1 and £15 more each month after that. Work out the total paid in over 24 months.'
     answer_label: 'The total'
     check:
@@ -138,7 +138,7 @@ problems:
 
   - id: p12-sum-given-find-terms
     section: "4.5"
-    dfe: [D4]
+    refs: [D4]
     statement: 'The sum of the first $n$ terms of an arithmetic series is $S_n = n^2 + 3n$. Work out the 5th term and the common difference.'
     answer_label: 'The term and the difference'
     check:

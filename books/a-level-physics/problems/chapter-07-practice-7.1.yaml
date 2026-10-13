@@ -18,7 +18,7 @@ chapter: 7
 problems:
   - id: p1-internal-energy
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A student says that temperature measures the energy stored in an object. Explain why this is not correct, and say what internal energy is.'
     answer_label: 'A model answer'
     check:
@@ -43,7 +43,7 @@ problems:
   - id: p2-heat-oil
     plays: thermal-energy
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A tank contains 2.5 kg of oil. The specific heat capacity of the oil is 2100 J/kg/K. The oil is heated from 20 C to 80 C. Find the energy supplied.'
     answer_label: 'The energy supplied'
     check:
@@ -59,7 +59,7 @@ problems:
   - id: p3-find-c
     plays: thermal-energy
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A 3.0 kg block gains 78000 J of energy. Its temperature rises by 40 K. Find its specific heat capacity.'
     answer_label: 'The specific heat capacity'
     check:
@@ -75,7 +75,7 @@ problems:
   - id: p4-melt-ice
     plays: latent-heat
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the energy needed to melt 0.30 kg of ice at 0 C. The specific latent heat of fusion of ice is 3.34e5 J/kg.'
     answer_label: 'The energy supplied'
     check:
@@ -90,7 +90,7 @@ problems:
   - id: p5-boil-water
     plays: latent-heat
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'Find the energy needed to turn 0.15 kg of water at 100 C into steam at 100 C. The specific latent heat of vaporisation of water is 2.26e6 J/kg.'
     answer_label: 'The energy supplied'
     check:
@@ -104,7 +104,7 @@ problems:
 
   - id: p6-two-stage
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A kettle heats 1.2 kg of water from 15 C to 100 C, then boils off 0.050 kg of water. Use c = 4200 J/kg/K and L = 2.26e6 J/kg. Find the total energy supplied.'
     answer_label: 'The total energy'
     check:
@@ -122,7 +122,7 @@ problems:
   - id: p7-temperature-rise
     plays: thermal-energy
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A 500 W heater warms 2.0 kg of water for 672 s. Find the temperature rise. The specific heat capacity of water is 4200 J/kg/K.'
     answer_label: 'The temperature rise'
     check:
@@ -138,7 +138,7 @@ problems:
 
   - id: p8-uncertainty
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'In a heating experiment the mass is 0.500 kg with a percentage uncertainty of 0.4%, and the temperature rise is 40.0 K with a percentage uncertainty of 0.5%. The specific heat capacity is taken as exact. Find the energy supplied and the absolute uncertainty in it.'
     answer_label: 'The energy and its uncertainty'
     check:
@@ -154,7 +154,7 @@ problems:
 
   - id: p9-sigfigs
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A heating experiment gives an energy of 636300 J. Write this energy to three significant figures.'
     answer_label: 'The energy to three significant figures'
     check: {kind: sigfigs, value: "636300", figures: 3, answer: "6.36e5", convention: round-once}
@@ -162,7 +162,7 @@ problems:
 
   - id: p10-convert
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'A block of mass 250 g is heated. Write this mass in kilograms.'
     answer_label: 'The mass'
     check: {kind: convert, value: "250", from: "g", to: "kg", answer: "0.25"}
@@ -170,7 +170,7 @@ problems:
 
   - id: p11-area-energy
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'The power supplied to a heater rises steadily from 100 W to 500 W over 40 s. Find the energy transferred.'
     answer_label: 'The energy transferred'
     check:
@@ -182,7 +182,7 @@ problems:
 
   - id: p12-method-choice
     section: '7.1'
-    dfe: [AP7]
+    refs: [AP7]
     statement: 'For each change, say whether to use E = mc(theta) or E = mL, and give a reason. (a) Heating water from 20 C to 60 C. (b) Melting ice at 0 C.'
     answer_label: 'A model answer'
     check:

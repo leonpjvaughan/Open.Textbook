@@ -5,7 +5,7 @@ chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.2'
 section_title: "Trigonometric ratios (SOHCAHTOA)"
 tier: F
-dfe: [G20]
+refs: [G20]
 kind: guided-problems
 ---
 

@@ -11,7 +11,7 @@ problems:
   - id: p1-spring-force
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A spring has a spring constant of 200 N/m. It is stretched by 0.16 m. Calculate the force applied to the spring.'
     answer_label: 'Force applied to the spring'
     check:
@@ -29,7 +29,7 @@ problems:
   - id: p2-spring-constant
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A force of 15 N stretches a spring by 0.060 m. Calculate the spring constant of the spring.'
     answer_label: 'Spring constant of the spring'
     check:
@@ -47,7 +47,7 @@ problems:
   - id: p3-extension
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A spring has a spring constant of 150 N/m. A force of 45 N is applied. Calculate the extension of the spring.'
     answer_label: 'Extension of the spring'
     check:
@@ -65,7 +65,7 @@ problems:
   - id: p4-elastic-energy
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A spring has a spring constant of 250 N/m. It is stretched by 0.20 m, up to the limit of proportionality. Calculate the energy stored in the elastic potential store.'
     answer_label: 'Energy stored in the spring'
     check:
@@ -83,7 +83,7 @@ problems:
   - id: p5-elastic-energy-small
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A spring has a spring constant of 400 N/m. It is compressed by 0.050 m. Calculate the energy stored in the elastic potential store.'
     answer_label: 'Energy stored in the spring'
     check:
@@ -101,7 +101,7 @@ problems:
   - id: p6-spring-force-2
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A spring has a spring constant of 60 N/m. It is stretched by 0.35 m. Calculate the force applied to the spring.'
     answer_label: 'Force applied to the spring'
     check:
@@ -119,7 +119,7 @@ problems:
   - id: p7-graph-gradient
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A force is added to a spring and the extension is measured. The results are shown in the table. Use the gradient of the force-extension graph to find the spring constant, in N/m.'
     answer_label: 'Spring constant from the graph'
     check:
@@ -131,7 +131,7 @@ problems:
   - id: p8-graph-area
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A spring stretches by 0.30 m when a force of 30 N is applied. The graph of force against extension is a straight line through the origin. Use the area under the graph to find the energy stored in the spring.'
     answer_label: 'Energy stored, from the area under the graph'
     check:
@@ -143,7 +143,7 @@ problems:
   - id: p9-elastic-inelastic
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'Describe the difference between elastic deformation and inelastic deformation. Give one example of each.'
     answer_label: 'Elastic and inelastic deformation'
     check:
@@ -164,7 +164,7 @@ problems:
   - id: p10-limit-proportionality
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'Describe the relationship between force and extension for a spring, up to the limit of proportionality and beyond it.'
     answer_label: 'Force and extension for a spring'
     check:
@@ -182,7 +182,7 @@ problems:
   - id: p11-force-and-energy
     section: '2.2'
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A spring has a spring constant of 500 N/m. It is stretched by 0.040 m. Calculate the force applied and the energy stored in the elastic potential store.'
     answer_label: 'Force and energy stored'
     check:

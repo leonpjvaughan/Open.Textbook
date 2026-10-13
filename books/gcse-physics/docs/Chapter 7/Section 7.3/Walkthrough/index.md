@@ -5,7 +5,7 @@ chapter_title: Magnetism and electromagnetism
 section: '7.3'
 section_title: Induced potential, transformers and the national grid
 tier: H
-dfe:
+refs:
 - MG3
 kind: walkthrough
 ---

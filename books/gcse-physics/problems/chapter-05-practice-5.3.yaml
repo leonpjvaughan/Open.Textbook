@@ -9,7 +9,7 @@ problems:
   - id: p1-magnification-small
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A lens forms an image 12 mm tall of an object 4.0 mm tall. Calculate the magnification.'
     answer_label: 'Magnification of the lens'
     check:
@@ -22,7 +22,7 @@ problems:
   - id: p2-magnification-coin
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A lens forms an image 30 mm across of a coin 6.0 mm across. Calculate the magnification.'
     answer_label: 'Magnification of the lens'
     check:
@@ -35,7 +35,7 @@ problems:
   - id: p3-magnification-metres
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A slide 4.0 cm tall is projected so that its image is 0.20 m tall. Calculate the magnification. Take care with the units.'
     answer_label: 'Magnification of the projected image'
     check:
@@ -48,7 +48,7 @@ problems:
   - id: p4-image-height
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A lens has a magnification of 4.0. An object 7.0 mm tall is placed in front of it. Calculate the height of the image.'
     answer_label: 'Height of the image'
     check:
@@ -61,7 +61,7 @@ problems:
   - id: p5-object-height
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A lens has a magnification of 5.0. The image of an insect is 45 mm long. Calculate the length of the insect.'
     answer_label: 'Length of the insect'
     check:
@@ -74,7 +74,7 @@ problems:
   - id: p6-magnification-anchor
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'The visitor centre lens projects a picture 2.0 cm tall so that its image is 0.30 m tall. Calculate the magnification.'
     answer_label: 'Magnification of the projected picture'
     check:
@@ -87,7 +87,7 @@ problems:
   - id: p7-ray-parallel
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A ray of light enters a convex lens parallel to the principal axis. Describe the path of the ray after it leaves the lens, and name the point it passes through.'
     answer_label: 'The path of the ray'
     check:
@@ -105,7 +105,7 @@ problems:
   - id: p8-ray-diagram
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'Describe how to draw a ray diagram to find the image formed by a convex lens. Include what you must label.'
     answer_label: 'How to draw the ray diagram'
     check:
@@ -132,7 +132,7 @@ problems:
   - id: p9-real-virtual
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'Compare a real image with a virtual image. State one difference in how each is formed.'
     answer_label: 'A comparison of real and virtual images'
     check:
@@ -150,7 +150,7 @@ problems:
   - id: p10-convex-concave
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A convex lens and a concave lens are each held in sunlight. Describe the effect each lens has on a beam of parallel rays.'
     answer_label: 'The effect of each lens'
     check:
@@ -168,7 +168,7 @@ problems:
   - id: p11-no-unit
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'Explain why magnification has no unit.'
     answer_label: 'Why magnification has no unit'
     check:
@@ -186,7 +186,7 @@ problems:
   - id: p12-image-height-method
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A lens has a magnification of 2.5. An object is 1.2 cm tall. Say which form of the magnification relationship you will use, then calculate the height of the image.'
     answer_label: 'Height of the image'
     check:
@@ -199,7 +199,7 @@ problems:
   - id: p13-magnification-bee
     section: '5.3'
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A magnifying glass forms an image of a bee. The image is 27 mm long and the bee is 4.5 mm long. Calculate the magnification.'
     answer_label: 'Magnification of the lens'
     check:

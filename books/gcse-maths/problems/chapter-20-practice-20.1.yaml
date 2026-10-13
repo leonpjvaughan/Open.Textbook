@@ -4,7 +4,7 @@ problems:
   - id: 'ch20-20-1-01'
     section: '20.1'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A right triangle has shorter sides 9 cm and 12 cm. Find the hypotenuse.'
     answer_label: 'Question 1'
     plays: pythagoras
@@ -14,7 +14,7 @@ problems:
   - id: 'ch20-20-1-02'
     section: '20.1'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'The hypotenuse is 17 cm and one shorter side is 8 cm. Find the other side.'
     answer_label: 'Question 2'
     check: {kind: 'evaluate', expression: '17**2-8**2', answer: '225'}
@@ -23,7 +23,7 @@ problems:
   - id: 'ch20-20-1-03'
     section: '20.1'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'Find the hypotenuse when the shorter sides are 5 cm and 7 cm. Give your answer to 3 significant figures.'
     answer_label: 'Question 3'
     check: {kind: 'rounded', value: 'sqrt(5**2+7**2)', rounded: '8.60', to: '0.01'}
@@ -32,7 +32,7 @@ problems:
   - id: 'ch20-20-1-04'
     section: '20.1'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A rectangle is 7 m by 24 m. Find its diagonal.'
     answer_label: 'Question 4'
     plays: pythagoras
@@ -42,7 +42,7 @@ problems:
   - id: 'ch20-20-1-05'
     section: '20.1'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A ladder reaches 12 m up a wall. Its foot is 5 m from the wall. Find its length.'
     answer_label: 'Question 5'
     plays: pythagoras
@@ -52,7 +52,7 @@ problems:
   - id: 'ch20-20-1-06'
     section: '20.1'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A triangle has hypotenuse 10 cm and one shorter side 6 cm. Find the other side.'
     answer_label: 'Question 6'
     check: {kind: 'evaluate', expression: '10**2-6**2', answer: '64'}
@@ -61,7 +61,7 @@ problems:
   - id: 'ch20-20-1-07'
     section: '20.1'
     tier: 'F'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A right triangle has shorter sides 1.5 m and 2 m. Find the hypotenuse.'
     answer_label: 'Question 7'
     plays: pythagoras
@@ -71,7 +71,7 @@ problems:
   - id: 'ch20-20-1-08'
     section: '20.1'
     tier: 'H'
-    dfe: ['G20']
+    refs: ['G20']
     statement: 'A square has side 10 cm. Find its diagonal exactly.'
     answer_label: 'Question 8'
     plays: pythagoras

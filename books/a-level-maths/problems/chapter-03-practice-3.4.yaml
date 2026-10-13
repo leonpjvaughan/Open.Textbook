@@ -15,7 +15,7 @@ symbols:
 problems:
   - id: p1-point-from-parameter
     section: "3.4"
-    dfe: [C3]
+    refs: [C3]
     statement: 'A curve has parametric equations $x = 3t$, $y = t^2 + 1$. Find the point where $t = 2$.'
     answer_label: 'The point'
     check:
@@ -27,7 +27,7 @@ problems:
 
   - id: p2-eliminate-parabola
     section: "3.4"
-    dfe: [C3]
+    refs: [C3]
     statement: 'Find the Cartesian equation of the curve $x = 3t$, $y = t^2 + 1$.'
     answer_label: 'The Cartesian equation'
     check:
@@ -39,7 +39,7 @@ problems:
 
   - id: p3-eliminate-line
     section: "3.4"
-    dfe: [C3]
+    refs: [C3]
     statement: 'Find the Cartesian equation of the curve $x = t - 4$, $y = 2t + 1$.'
     answer_label: 'The Cartesian equation'
     check:
@@ -51,7 +51,7 @@ problems:
 
   - id: p4-eliminate-circle
     section: "3.4"
-    dfe: [C3]
+    refs: [C3]
     statement: 'Find the Cartesian equation of the curve $x = 4\cos t$, $y = 4\sin t$.'
     answer_label: 'The Cartesian equation'
     check:
@@ -62,7 +62,7 @@ problems:
 
   - id: p5-eliminate-shifted-circle
     section: "3.4"
-    dfe: [C3]
+    refs: [C3]
     statement: 'Find the Cartesian equation of the curve $x = 1 + 3\cos t$, $y = -2 + 3\sin t$.'
     answer_label: 'The Cartesian equation'
     check:
@@ -73,7 +73,7 @@ problems:
 
   - id: p6-cartesian-to-parametric
     section: "3.4"
-    dfe: [C3]
+    refs: [C3]
     statement: 'Give parametric equations for the curve $y = x^2 - 3$, and show that eliminating the parameter returns the same curve.'
     answer_label: 'The parametric equations'
     check:
@@ -85,7 +85,7 @@ problems:
 
   - id: p7-restricted-range
     section: "3.4"
-    dfe: [C3]
+    refs: [C3]
     statement: 'A curve is given by $x = t + 2$, $y = t^2$, for $0 \le t \le 2$. Find its Cartesian equation and the range of $x$ that it covers.'
     answer_label: 'The Cartesian equation and the range of x'
     check:
@@ -98,7 +98,7 @@ problems:
 
   - id: p8-eliminate-hyperbola
     section: "3.4"
-    dfe: [C3]
+    refs: [C3]
     statement: 'Find the Cartesian equation of the curve $x = t$, $y = \dfrac{1}{t}$, where $t \ne 0$.'
     answer_label: 'The Cartesian equation'
     check:
@@ -110,7 +110,7 @@ problems:
 
   - id: p9-identity-for-a-cusp
     section: "3.4"
-    dfe: [C3]
+    refs: [C3]
     statement: 'A curve is given by $x = t^2$, $y = t^3$. Show that it satisfies $y^2 = x^3$.'
     answer_label: 'The identity'
     check:
@@ -121,7 +121,7 @@ problems:
 
   - id: p10-point-on-parametric-curve
     section: "3.4"
-    dfe: [C3]
+    refs: [C3]
     statement: 'Decide whether the point $(4, 8)$ lies on the curve $x = t^2$, $y = t^3$.'
     answer_label: 'The decision'
     check:
@@ -132,7 +132,7 @@ problems:
 
   - id: p11-eliminate-linear
     section: "3.4"
-    dfe: [C3]
+    refs: [C3]
     statement: 'Find the Cartesian equation of the curve $x = 2t + 1$, $y = t - 3$.'
     answer_label: 'The Cartesian equation'
     check:
@@ -144,7 +144,7 @@ problems:
 
   - id: p12-method-choice
     section: "3.4"
-    dfe: [C3]
+    refs: [C3]
     statement: 'A curve is given by $x = t^2$, $y = 2t$. Find the Cartesian equation, and state the part of the curve it covers.'
     answer_label: 'The Cartesian equation and the range of x'
     check:

@@ -6,7 +6,7 @@ chapter: 5
 problems:
   - id: p1-sin-small
     section: "5.5"
-    dfe: [E2]
+    refs: [E2]
     statement: 'Use a small-angle approximation to estimate $\sin 0.1$.'
     answer_label: 'The estimate'
     check:
@@ -18,7 +18,7 @@ problems:
 
   - id: p2-cos-small
     section: "5.5"
-    dfe: [E2]
+    refs: [E2]
     statement: 'Use a small-angle approximation to estimate $\cos 0.2$.'
     answer_label: 'The estimate'
     check:
@@ -30,7 +30,7 @@ problems:
 
   - id: p3-tan-small
     section: "5.5"
-    dfe: [E2]
+    refs: [E2]
     statement: 'Use a small-angle approximation to estimate $\tan 0.05$.'
     answer_label: 'The estimate'
     check:
@@ -42,7 +42,7 @@ problems:
 
   - id: p4-pendulum
     section: "5.5"
-    dfe: [E2]
+    refs: [E2]
     statement: 'A pendulum of length $0.6$ m swings through a small angle $\theta = 0.12$ radians. Estimate the horizontal displacement of the bob, in metres.'
     answer_label: 'The displacement'
     check:
@@ -54,7 +54,7 @@ problems:
 
   - id: p5-sin-error
     section: "5.5"
-    dfe: [E2]
+    refs: [E2]
     statement: 'The error in $\sin\theta \approx \theta$ is about $\dfrac{\theta^3}{6}$. Estimate the error at $\theta = 0.2$, to three significant figures.'
     answer_label: 'The error'
     check:
@@ -66,7 +66,7 @@ problems:
 
   - id: p6-snell
     section: "5.5"
-    dfe: [E2]
+    refs: [E2]
     statement: 'Light meets a surface at a small angle $i = 0.04$ radians, and $\sin i = 1.5\sin r$. Estimate the angle $r$ in radians, to three significant figures.'
     answer_label: 'The angle $r$'
     check:
@@ -78,7 +78,7 @@ problems:
 
   - id: p7-cos-small-again
     section: "5.5"
-    dfe: [E2]
+    refs: [E2]
     statement: 'Use a small-angle approximation to estimate $\cos 0.1$.'
     answer_label: 'The estimate'
     check:
@@ -90,7 +90,7 @@ problems:
 
   - id: p8-sin-tiny
     section: "5.5"
-    dfe: [E2]
+    refs: [E2]
     statement: 'Use a small-angle approximation to estimate $\sin 0.02$.'
     answer_label: 'The estimate'
     check:
@@ -102,7 +102,7 @@ problems:
 
   - id: p9-sum
     section: "5.5"
-    dfe: [E2]
+    refs: [E2]
     statement: 'Use small-angle approximations to estimate $\sin 0.1 + \tan 0.1$.'
     answer_label: 'The estimate'
     check:
@@ -114,7 +114,7 @@ problems:
 
   - id: p10-error-grows
     section: "5.5"
-    dfe: [E2]
+    refs: [E2]
     statement: 'Work out the error in the approximation $\sin\theta \approx \theta$ at $\theta = 0.5$, to three significant figures.'
     answer_label: 'The error at $0.5$'
     check:

@@ -5,7 +5,7 @@ chapter_title: Powers, roots and indices
 section: '3.3'
 section_title: Laws of indices
 tier: F
-dfe: [A4, N7]
+refs: [A4, N7]
 kind: problems
 ---
 

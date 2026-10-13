@@ -16,7 +16,7 @@ symbols:
 problems:
   - id: y1-separable-xy
     section: "8.7"
-    dfe: [H7]
+    refs: [H7]
     statement: 'Solve $\dfrac{dy}{dx} = xy$, giving the general solution.'
     answer_label: 'The general solution'
     check:
@@ -29,7 +29,7 @@ problems:
 
   - id: y2-separable-3xy
     section: "8.7"
-    dfe: [H7]
+    refs: [H7]
     statement: 'Solve $\dfrac{dy}{dx} = 3xy$, giving the general solution.'
     answer_label: 'The general solution'
     check:
@@ -42,7 +42,7 @@ problems:
 
   - id: y3-separable-x-over-y
     section: "8.7"
-    dfe: [H7]
+    refs: [H7]
     statement: 'Solve $\dfrac{dy}{dx} = \dfrac{x}{y}$, giving the general solution.'
     answer_label: 'The general solution'
     check:
@@ -55,7 +55,7 @@ problems:
 
   - id: y4-separable-exponential
     section: "8.7"
-    dfe: [H7]
+    refs: [H7]
     statement: 'Solve $\dfrac{dy}{dx} = e^{x-y}$, giving the general solution.'
     answer_label: 'The general solution'
     check:
@@ -68,7 +68,7 @@ problems:
 
   - id: y5-particular-double-x
     section: "8.7"
-    dfe: [H7]
+    refs: [H7]
     statement: 'Find the particular solution of $\dfrac{dy}{dx} = 2xy$ for which $y = 3$ when $x = 0$.'
     answer_label: 'The particular solution'
     check:
@@ -82,7 +82,7 @@ problems:
 
   - id: y6-particular-square-root
     section: "8.7"
-    dfe: [H7]
+    refs: [H7]
     statement: 'Find the particular solution of $\dfrac{dy}{dx} = \dfrac{x}{y}$ for which $y = 2$ when $x = 0$.'
     answer_label: 'The particular solution'
     check:
@@ -96,7 +96,7 @@ problems:
 
   - id: y7-factorising
     section: "8.7"
-    dfe: [H7]
+    refs: [H7]
     statement: 'Solve $\dfrac{dy}{dx} = xy - x$, giving the general solution.'
     answer_label: 'The general solution'
     check:
@@ -109,7 +109,7 @@ problems:
 
   - id: y8-y-over-x
     section: "8.7"
-    dfe: [H7]
+    refs: [H7]
     statement: 'Solve $\dfrac{dy}{dx} = \dfrac{y}{x}$ for $x > 0$, giving the general solution.'
     answer_label: 'The general solution'
     check:
@@ -122,7 +122,7 @@ problems:
 
   - id: y9-kinematics
     section: "8.7"
-    dfe: [H7]
+    refs: [H7]
     statement: 'A body moves so that $\dfrac{dv}{dt} = 2 - v$ and $v = 0$ when $t = 0$. Find $v$ in terms of $t$.'
     answer_label: 'The velocity'
     check:
@@ -136,7 +136,7 @@ problems:
 
   - id: y10-population
     section: "8.7"
-    dfe: [H7]
+    refs: [H7]
     statement: 'A population $P$ grows so that $\dfrac{dP}{dt} = 0.05P$ and $P = 200$ when $t = 0$. Find $P$ in terms of $t$.'
     answer_label: 'The population'
     check:
@@ -150,7 +150,7 @@ problems:
 
   - id: y11-decay
     section: "8.7"
-    dfe: [H7]
+    refs: [H7]
     statement: 'A mass $m$ decays so that $\dfrac{dm}{dt} = -0.05m$ and $m = 200$ when $t = 0$. Find $m$ in terms of $t$.'
     answer_label: 'The mass'
     check:
@@ -164,7 +164,7 @@ problems:
 
   - id: y12-factor-particular
     section: "8.7"
-    dfe: [H7]
+    refs: [H7]
     statement: 'Find the particular solution of $\dfrac{dy}{dx} = xy - x$ for which $y = 3$ when $x = 0$.'
     answer_label: 'The particular solution'
     check:

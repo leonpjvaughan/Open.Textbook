@@ -15,4 +15,4 @@ kind: problems
 # 2.3 Zero and negative indices — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: N.1
+> Tier: **O** · refs: N.1

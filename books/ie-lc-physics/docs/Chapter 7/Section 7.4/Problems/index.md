@@ -15,4 +15,4 @@ kind: problems
 # 7.4 Circular motion problems — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 1.6
+> Tier: **H** · refs: 1.6

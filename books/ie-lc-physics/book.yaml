@@ -34,7 +34,10 @@ tier_axis:
   O: Ordinary and Higher
   H: Higher only
 
-oracles: [sympy]
+# The units oracle owns `dimensions`, `convert`, `sigfigs`, `uncertainty`,
+# `resolve`, `gradient`, `intercept`, `area` and `structured` — every check kind a
+# physics answer needs. Declared here rather than done by a special case.
+oracles: [sympy, units]
 
 theme:
   light:

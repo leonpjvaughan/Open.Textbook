@@ -8,7 +8,7 @@ chapter: 10
 problems:
   - id: p1-magnitude-6-8
     section: "10.2"
-    dfe: [J2]
+    refs: [J2]
     statement: 'Find the magnitude of $\mathbf{a} = 6\mathbf{i} + 8\mathbf{j}$.'
     answer_label: 'The magnitude'
     check:
@@ -20,7 +20,7 @@ problems:
 
   - id: p2-magnitude-negative
     section: "10.2"
-    dfe: [J2]
+    refs: [J2]
     statement: 'Find the magnitude of $\mathbf{b} = -7\mathbf{i} + 24\mathbf{j}$.'
     answer_label: 'The magnitude'
     check:
@@ -32,7 +32,7 @@ problems:
 
   - id: p3-magnitude-3d
     section: "10.2"
-    dfe: [J2]
+    refs: [J2]
     statement: 'Find the magnitude of $\mathbf{c} = 2\mathbf{i} - 6\mathbf{j} + 3\mathbf{k}$.'
     answer_label: 'The magnitude'
     check:
@@ -44,7 +44,7 @@ problems:
 
   - id: p4-direction-60
     section: "10.2"
-    dfe: [J2]
+    refs: [J2]
     statement: 'Find the direction of $\mathbf{a} = \mathbf{i} + \sqrt{3}\mathbf{j}$ as an angle from the positive $x$-axis.'
     answer_label: 'The direction in degrees'
     check:
@@ -56,7 +56,7 @@ problems:
 
   - id: p5-direction-third-quadrant
     section: "10.2"
-    dfe: [J2]
+    refs: [J2]
     statement: 'Find the direction of $\mathbf{b} = -\mathbf{i} - \mathbf{j}$ as an anticlockwise angle from the positive $x$-axis, between $0^\circ$ and $360^\circ$.'
     answer_label: 'The direction in degrees'
     check:
@@ -68,7 +68,7 @@ problems:
 
   - id: p6-direction-fourth-quadrant
     section: "10.2"
-    dfe: [J2]
+    refs: [J2]
     statement: 'Find the direction of $\mathbf{c} = 3\mathbf{i} - 3\mathbf{j}$ as an anticlockwise angle from the positive $x$-axis, between $0^\circ$ and $360^\circ$.'
     answer_label: 'The direction in degrees'
     check:
@@ -80,7 +80,7 @@ problems:
 
   - id: p7-unit-vector
     section: "10.2"
-    dfe: [J2]
+    refs: [J2]
     statement: 'Find the unit vector in the direction of $\mathbf{a} = 6\mathbf{i} + 8\mathbf{j}$.'
     answer_label: 'The unit vector'
     check:
@@ -92,7 +92,7 @@ problems:
 
   - id: p8-components-from-force
     section: "10.2"
-    dfe: [J2]
+    refs: [J2]
     statement: 'A force of $20$ N acts at $60^\circ$ above the horizontal. Find its horizontal and vertical components, exactly.'
     answer_label: 'The two components'
     check:
@@ -104,7 +104,7 @@ problems:
 
   - id: p9-components-from-bearing
     section: "10.2"
-    dfe: [J2]
+    refs: [J2]
     statement: 'A cyclist rides $8$ km on a bearing of $030^\circ$. Find the displacement from the start, with east as $\mathbf{i}$ and north as $\mathbf{j}$, exactly.'
     answer_label: 'The two components'
     check:
@@ -116,7 +116,7 @@ problems:
 
   - id: p10-components-from-tangent
     section: "10.2"
-    dfe: [J2]
+    refs: [J2]
     statement: 'A vector has magnitude $25$ and lies in the first quadrant. The angle $\theta$ it makes with the positive $x$-axis satisfies $\tan\theta = \dfrac{7}{24}$. Find its two components.'
     answer_label: 'The two components'
     check:
@@ -128,7 +128,7 @@ problems:
 
   - id: p11-distance-to-drone
     section: "10.2"
-    dfe: [J2]
+    refs: [J2]
     statement: 'A drone is $3$ m east, $4$ m north and $12$ m above its base. Find its distance from the base.'
     answer_label: 'The distance'
     check:
@@ -140,7 +140,7 @@ problems:
 
   - id: p12-magnitude-of-a-velocity
     section: "10.2"
-    dfe: [J2]
+    refs: [J2]
     statement: 'A current has velocity $-4\mathbf{i} + 3\mathbf{j}$ m/s. Find its speed and the angle it makes with the positive $x$-axis.'
     answer_label: 'The speed and the direction'
     check:

@@ -21,7 +21,7 @@ problems:
   - id: p1-gpe-wall
     section: '1.1'
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A pupil of mass 45 kg climbs to the top of a 6.0 m climbing wall. Take $g = 9.8\,\text{N/kg}$. Calculate the energy gained by the gravitational potential store.'
     answer_label: 'Energy gained by the gravitational potential store'
     check:
@@ -40,7 +40,7 @@ problems:
   - id: p2-ke-ball
     section: '1.1'
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A ball of mass 0.25 kg is thrown at 12 m/s. Calculate the energy in its kinetic store.'
     answer_label: 'Energy in the kinetic store'
     check:
@@ -58,7 +58,7 @@ problems:
   - id: p3-elastic-spring
     section: '1.1'
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A spring with spring constant 150 N/m is stretched by 0.12 m. Calculate the energy stored in the elastic potential store.'
     answer_label: 'Energy in the elastic potential store'
     check:
@@ -76,7 +76,7 @@ problems:
   - id: p4-thermal-aluminium
     section: '1.1'
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A 2.0 kg block of aluminium is heated from 15 °C to 65 °C. The specific heat capacity of aluminium is 900 J/kg°C. Calculate the energy transferred to the block.'
     answer_label: 'Energy transferred to the block'
     check:
@@ -95,7 +95,7 @@ problems:
   - id: p5-power-pump
     section: '1.1'
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A pump transfers 36000 J of energy in 20 s. Calculate its power.'
     answer_label: 'Power of the pump'
     check:
@@ -113,7 +113,7 @@ problems:
   - id: p6-energy-microwave
     section: '1.1'
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A microwave oven has a power of 1200 W and runs for 90 s. Calculate the energy transferred.'
     answer_label: 'Energy transferred by the microwave'
     check:
@@ -131,7 +131,7 @@ problems:
   - id: p7-work-trolley
     section: '1.1'
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A force of 180 N moves a trolley 4.5 m along the line of the force. Calculate the work done.'
     answer_label: 'Work done on the trolley'
     check:
@@ -149,7 +149,7 @@ problems:
   - id: p8-ke-braking
     section: '1.1'
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A car of mass 900 kg slows from 15 m/s to rest. Calculate the energy transferred to the thermal store of the brakes.'
     answer_label: 'Energy transferred to the brakes'
     check:
@@ -167,7 +167,7 @@ problems:
   - id: p9-kettle-power
     section: '1.1'
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A kettle transfers $5.0 \times 10^5\,\text{J}$ of energy in 200 s. Calculate its power.'
     answer_label: 'Power of the kettle'
     check:
@@ -185,7 +185,7 @@ problems:
   - id: p10-anchor-gpe
     section: '1.1'
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'In the chapter problem, 30 kg of water falls 12 m to the wheel each second. Take $g = 9.8\,\text{N/kg}$. Calculate the energy the water gives up from its gravitational potential store each second.'
     answer_label: 'Energy given up each second'
     check:
@@ -204,7 +204,7 @@ problems:
   - id: p11-stores-cyclist
     section: '1.1'
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A cyclist freewheels down a hill and speeds up. Name the store that decreases and the store that increases.'
     answer_label: 'The two stores that change'
     check:
@@ -222,7 +222,7 @@ problems:
   - id: p12-stores-box
     section: '1.1'
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A box is pushed across a rough floor and slows down until it stops. Describe the energy transfer, naming both stores.'
     answer_label: 'The energy transfer'
     check:

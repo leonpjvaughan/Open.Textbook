@@ -15,4 +15,4 @@ kind: guided-problems
 # 8.8 Comparing a discrete and a continuous model — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **H** · DfE refs: S4
+> Tier: **H** · refs: S4

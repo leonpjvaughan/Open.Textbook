@@ -8,7 +8,7 @@ chapter: 10
 problems:
   - id: p1-collinear-equal-steps
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'Show that $A(1, 2)$, $B(4, 8)$ and $C(7, 14)$ are collinear.'
     answer_label: 'The two displacements'
     check:
@@ -26,7 +26,7 @@ problems:
 
   - id: p2-parallelogram
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'The quadrilateral has vertices $A(0, 0)$, $B(3, 1)$, $C(5, 5)$ and $D(2, 4)$. Show that it is a parallelogram.'
     answer_label: 'The two opposite sides'
     check:
@@ -44,7 +44,7 @@ problems:
 
   - id: p3-divide-ratio-one-two
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'The points are $A(1, 3)$ and $B(7, 9)$. Find the point $P$ on $AB$ with $AP : PB = 1 : 2$.'
     answer_label: 'The position vector of $P$'
     check:
@@ -66,7 +66,7 @@ problems:
 
   - id: p4-divide-ratio-three-two
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'The points are $A(2, 1)$ and $B(7, 6)$. Find the point $P$ on $AB$ with $AP : PB = 3 : 2$.'
     answer_label: 'The position vector of $P$'
     check:
@@ -88,7 +88,7 @@ problems:
 
   - id: p5-equilibrium-third-force
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'Forces $\mathbf{F}_1 = 3\mathbf{i} - 2\mathbf{j}$ N and $\mathbf{F}_2 = -\mathbf{i} + 4\mathbf{j}$ N act at a point. Find the third force that keeps the point still.'
     answer_label: 'The third force'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: p6-resultant-force-magnitude
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'Two forces $\mathbf{F}_1 = 5\mathbf{i} + \mathbf{j}$ N and $\mathbf{F}_2 = -2\mathbf{i} + 4\mathbf{j}$ N act at a point. Find the resultant and its magnitude.'
     answer_label: 'The resultant and its magnitude'
     check:
@@ -121,7 +121,7 @@ problems:
 
   - id: p7-motion-position
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'A particle starts at $\mathbf{r}_0 = 2\mathbf{i} - \mathbf{j}$ m and moves with velocity $\mathbf{v} = 3\mathbf{i} + 2\mathbf{j}$ m/s. Find its position after $3$ s and its distance from the origin then.'
     answer_label: 'The position and the distance'
     check:
@@ -136,7 +136,7 @@ problems:
 
   - id: p8-boat-and-current
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'A boat has velocity $5\mathbf{i}$ m/s in still water. A current of $2\mathbf{j}$ m/s flows. Find the resultant velocity, the speed and the direction from the positive $x$-axis.'
     answer_label: 'The velocity, the speed and the direction'
     check:
@@ -152,7 +152,7 @@ problems:
 
   - id: p9-plane-and-wind
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'A plane flies at $240$ km/h due east. A wind blows from the north at $70$ km/h, pushing the plane due south. Find the resultant velocity, the speed and the direction.'
     answer_label: 'The velocity, the speed and the direction'
     check:
@@ -168,7 +168,7 @@ problems:
 
   - id: p10-collinear-common-point
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'Show that $A(1, 1)$, $B(3, 5)$ and $C(5, 9)$ are collinear.'
     answer_label: 'The two displacements'
     check:
@@ -186,7 +186,7 @@ problems:
 
   - id: p11-diagonals-bisect
     section: "10.5"
-    dfe: [J5]
+    refs: [J5]
     statement: 'The quadrilateral has vertices $A(0, 0)$, $B(4, 0)$, $C(5, 3)$ and $D(1, 3)$. Show that the diagonals $AC$ and $BD$ bisect each other.'
     answer_label: 'The two midpoints'
     check:
@@ -204,7 +204,7 @@ problems:
 
   - id: p12-walk-from-base
     section: "10.5"
-    dfe: [J5, OT2]
+    refs: [J5, OT2]
     statement: 'A hiker starts at $B(1, 2)$ km, walks to a first waypoint at $(4, 6)$ km, then to a second at $(8, 3)$ km. Find the single displacement from the start, the distance from the start, and the direction of that displacement from the positive $x$-axis.'
     answer_label: 'The displacement, the distance and the direction'
     check:

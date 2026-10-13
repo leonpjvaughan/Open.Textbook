@@ -11,7 +11,7 @@ symbols:
 problems:
   - id: p1-compose-fg
     section: "2.10"
-    dfe: [B8, OT1]
+    refs: [B8, OT1]
     statement: 'Given $f(x) = 2x + 3$ and $g(x) = x^2$, find $f(g(x))$.'
     answer_label: 'The composite function'
     check:
@@ -23,7 +23,7 @@ problems:
 
   - id: p2-compose-gf
     section: "2.10"
-    dfe: [B8, OT1]
+    refs: [B8, OT1]
     statement: 'Given $f(x) = 2x + 3$ and $g(x) = x^2$, find $g(f(x))$.'
     answer_label: 'The composite function'
     check:
@@ -35,7 +35,7 @@ problems:
 
   - id: p3-compose-value
     section: "2.10"
-    dfe: [B8, OT1]
+    refs: [B8, OT1]
     statement: 'Given $f(x) = x^2 + 1$ and $g(x) = 3x - 1$, work out $f(g(2))$.'
     answer_label: 'The value'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: p4-inverse-linear
     section: "2.10"
-    dfe: [B8, OT1]
+    refs: [B8, OT1]
     statement: 'Find the inverse of $f(x) = 3x - 2$.'
     answer_label: 'The inverse function'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: p5-inverse-rational
     section: "2.10"
-    dfe: [B8, OT1]
+    refs: [B8, OT1]
     statement: 'Find the inverse of $f(x) = \dfrac{x + 1}{x - 2}$, where $x \neq 2$.'
     answer_label: 'The inverse function'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: p6-inverse-square-restricted
     section: "2.10"
-    dfe: [B8, OT1]
+    refs: [B8, OT1]
     statement: 'The function $f(x) = x^2 + 1$ has domain $x \geq 0$. Find its inverse.'
     symbols:
       x: {nonnegative: true}
@@ -84,7 +84,7 @@ problems:
 
   - id: p7-inverse-cube
     section: "2.10"
-    dfe: [B8, OT1]
+    refs: [B8, OT1]
     statement: 'Find the inverse of $f(x) = x^3 + 2$.'
     symbols:
       x: {positive: true}
@@ -98,7 +98,7 @@ problems:
 
   - id: p8-self-composition
     section: "2.10"
-    dfe: [B8, OT1]
+    refs: [B8, OT1]
     statement: 'Given $f(x) = 2x - 1$, find $f(f(x))$.'
     answer_label: 'The composite function'
     check:
@@ -110,7 +110,7 @@ problems:
 
   - id: p9-domain-and-range
     section: "2.10"
-    dfe: [B8, OT1]
+    refs: [B8, OT1]
     statement: 'For $f(x) = \sqrt{x - 2}$, state the domain and the range, and work out $f(6)$.'
     answer_label: 'The domain, the range and a value'
     check:
@@ -122,7 +122,7 @@ problems:
 
   - id: p10-no-inverse
     section: "2.10"
-    dfe: [B8, OT1]
+    refs: [B8, OT1]
     statement: 'Explain why $f(x) = x^2$ has no inverse function on the whole real line.'
     answer_label: 'A reason, with two inputs'
     check:
@@ -134,7 +134,7 @@ problems:
 
   - id: p11-inverses-check
     section: "2.10"
-    dfe: [B8, OT1]
+    refs: [B8, OT1]
     statement: 'Show that $f(x) = 5x + 1$ and $g(x) = \dfrac{x - 1}{5}$ are inverses of each other.'
     answer_label: 'Both compositions'
     check:
@@ -146,7 +146,7 @@ problems:
 
   - id: p12-inverse-of-square-shifted
     section: "2.10"
-    dfe: [B8, OT1]
+    refs: [B8, OT1]
     statement: 'Given $f(x) = x^2 + 3$ on $x \geq 0$, show that $g(x) = \sqrt{x - 3}$ is its inverse.'
     symbols:
       x: {nonnegative: true}

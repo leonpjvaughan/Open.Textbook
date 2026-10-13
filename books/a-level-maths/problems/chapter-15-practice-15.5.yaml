@@ -11,7 +11,7 @@ symbols:
 problems:
   - id: p1-velocity-and-acceleration
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'The displacement of a particle is $s = t^2 + 3t$ metres. Find its velocity and its acceleration.'
     answer_label: 'The velocity and the acceleration'
     check:
@@ -23,7 +23,7 @@ problems:
 
   - id: p2-acceleration-not-constant
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'The displacement of a particle is $s = 2t^3 - 3t^2$ metres. Find its velocity and its acceleration.'
     answer_label: 'The velocity and the acceleration'
     check:
@@ -35,7 +35,7 @@ problems:
 
   - id: p3-displacement-from-velocity
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'A particle has velocity $v = 4t + 1$ m/s. Its displacement is $0$ m when $t = 0$. Find its displacement as a function of time.'
     answer_label: 'The displacement'
     check:
@@ -47,7 +47,7 @@ problems:
 
   - id: p4-velocity-from-acceleration
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'A particle has constant acceleration $a = 10$ m/s$^2$. Its velocity is $3$ m/s when $t = 0$. Find its velocity as a function of time.'
     answer_label: 'The velocity'
     check:
@@ -59,7 +59,7 @@ problems:
 
   - id: p5-displacement-from-acceleration
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'A particle has constant acceleration $a = 10$ m/s$^2$. Its velocity is $3$ m/s and its displacement is $0$ m when $t = 0$. Find its displacement as a function of time.'
     answer_label: 'The displacement'
     check:
@@ -71,7 +71,7 @@ problems:
 
   - id: p6-times-at-rest
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'The displacement of a particle is $s = t^3 - 3t^2$ metres. Find the times when the particle is at rest.'
     answer_label: 'The times at rest'
     check:
@@ -83,7 +83,7 @@ problems:
 
   - id: p7-time-at-rest
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'The displacement of a particle is $s = 6t - t^2$ metres. Find the time when the particle is at rest.'
     answer_label: 'The time at rest'
     check:
@@ -95,7 +95,7 @@ problems:
 
   - id: p8-displacement-over-interval
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'The displacement of a particle is $s = 6t - t^2$ metres for $0 \le t \le 6$. Find the displacement over the whole interval.'
     answer_label: 'The displacement'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: p9-distance-over-interval
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'The displacement of a particle is $s = 6t - t^2$ metres for $0 \le t \le 6$. The particle is at rest at $t = 3$. Find the total distance travelled.'
     answer_label: 'The total distance'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: p10-velocity-from-varying-acceleration
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'A particle has acceleration $a = 6t$ m/s$^2$. Its velocity is $4$ m/s when $t = 0$. Find its velocity as a function of time.'
     answer_label: 'The velocity'
     check:
@@ -129,7 +129,7 @@ problems:
 
   - id: p11-displacement-from-varying-velocity
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'A particle has velocity $v = 3t^2 + 4$ m/s and displacement $0$ m when $t = 0$. Find its displacement as a function of time.'
     answer_label: 'The displacement'
     check:
@@ -141,7 +141,7 @@ problems:
 
   - id: p12-distance-with-calculus
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'A particle starts with velocity $5$ m/s and moves with constant acceleration $4$ m/s$^2$. Use calculus to find its displacement after $3$ s.'
     answer_label: 'The displacement'
     check:

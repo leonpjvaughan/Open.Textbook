@@ -15,4 +15,4 @@ kind: guided-problems
 # 22.5 Writing the report — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: 1.3
+> Tier: **O** · refs: 1.3

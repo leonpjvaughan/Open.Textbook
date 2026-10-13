@@ -4,7 +4,7 @@ chapter: 13
 chapter_title: Statistical distributions
 section: '13.1'
 section_title: Discrete probability distributions and the binomial distribution
-dfe:
+refs:
 - N1
 kind: walkthrough
 ---

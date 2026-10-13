@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: p1-gradient-of-displacement
     section: "15.3"
-    dfe: [Q2]
+    refs: [Q2]
     statement: 'A displacement–time graph is a straight line through $(0, 0)$ and $(8, 24)$, with $s$ in metres and $t$ in seconds. Find the velocity.'
     answer_label: 'The velocity'
     check:
@@ -20,7 +20,7 @@ problems:
 
   - id: p2-displacement-gradient-offset
     section: "15.3"
-    dfe: [Q2]
+    refs: [Q2]
     statement: 'A displacement–time graph is a straight line through $(0, 10)$ and $(5, 25)$, with $s$ in metres. Find the velocity.'
     answer_label: 'The velocity'
     check:
@@ -31,7 +31,7 @@ problems:
 
   - id: p3-horizontal-displacement
     section: "15.3"
-    dfe: [Q2]
+    refs: [Q2]
     statement: 'A displacement–time graph is horizontal from $t = 2$ s to $t = 9$ s. Find the velocity in that interval.'
     answer_label: 'The velocity'
     check:
@@ -42,7 +42,7 @@ problems:
 
   - id: p4-acceleration-and-distance
     section: "15.3"
-    dfe: [Q2]
+    refs: [Q2]
     statement: 'A velocity–time graph is a straight line from $(0, 5)$ to $(4, 17)$, with $v$ in m/s. Find the acceleration and the distance travelled.'
     answer_label: 'The acceleration and the distance'
     check:
@@ -54,7 +54,7 @@ problems:
 
   - id: p5-deceleration
     section: "15.3"
-    dfe: [Q2]
+    refs: [Q2]
     statement: 'A velocity–time graph is a straight line from $(0, 20)$ to $(5, 5)$, with $v$ in m/s. Find the acceleration and the distance travelled.'
     answer_label: 'The acceleration and the distance'
     check:
@@ -66,7 +66,7 @@ problems:
 
   - id: p6-from-rest
     section: "15.3"
-    dfe: [Q2]
+    refs: [Q2]
     statement: 'A velocity–time graph is a straight line from $(0, 0)$ to $(6, 18)$, with $v$ in m/s. Find the acceleration and the distance travelled.'
     answer_label: 'The acceleration and the distance'
     check:
@@ -78,7 +78,7 @@ problems:
 
   - id: p7-braking
     section: "15.3"
-    dfe: [Q2]
+    refs: [Q2]
     statement: 'A velocity–time graph is a straight line from $(0, 24)$ to $(8, 0)$. Find the acceleration and the distance travelled.'
     answer_label: 'The acceleration and the distance'
     check:
@@ -90,7 +90,7 @@ problems:
 
   - id: p8-three-segments
     section: "15.3"
-    dfe: [Q2]
+    refs: [Q2]
     statement: 'A velocity–time graph has segments $(0, 0)$ to $(3, 6)$, $(3, 6)$ to $(9, 6)$, and $(9, 6)$ to $(12, 0)$. Find the total distance travelled.'
     answer_label: 'The total distance'
     check:
@@ -101,7 +101,7 @@ problems:
 
   - id: p9-crossing-the-axis
     section: "15.3"
-    dfe: [Q2]
+    refs: [Q2]
     statement: 'A velocity–time graph is a straight line from $(0, 8)$ to $(4, -8)$, with $v$ in m/s. Find the displacement and the distance travelled.'
     answer_label: 'The displacement and the distance'
     check:
@@ -113,7 +113,7 @@ problems:
 
   - id: p10-trapezium-distance
     section: "15.3"
-    dfe: [Q2]
+    refs: [Q2]
     statement: 'A velocity–time graph is a straight line from $(0, 4)$ to $(5, 14)$. Find the distance travelled.'
     answer_label: 'The distance'
     check:
@@ -124,7 +124,7 @@ problems:
 
   - id: p11-accelerate-then-steady
     section: "15.3"
-    dfe: [Q2]
+    refs: [Q2]
     statement: 'A velocity–time graph rises from $(0, 0)$ to $(5, 15)$, then stays at $15$ m/s from $(5, 15)$ to $(15, 15)$. Find the total distance travelled.'
     answer_label: 'The total distance'
     check:
@@ -135,7 +135,7 @@ problems:
 
   - id: p12-signs-mixed
     section: "15.3"
-    dfe: [Q2]
+    refs: [Q2]
     statement: 'A velocity–time graph has a straight line from $(0, 12)$ to $(6, 0)$, then a straight line from $(6, 0)$ to $(10, -4)$. Find the displacement and the distance travelled over the whole $10$ s.'
     answer_label: 'The displacement and the distance'
     check:

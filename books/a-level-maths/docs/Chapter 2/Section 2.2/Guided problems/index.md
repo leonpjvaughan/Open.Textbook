@@ -4,7 +4,7 @@ chapter: 2
 chapter_title: Algebra and functions
 section: '2.2'
 section_title: Surds and rationalising the denominator
-dfe:
+refs:
 - B2
 kind: guided-problems
 ---

@@ -4,7 +4,7 @@ problems:
   - id: 'ch24-24-2-frequency-total'
     section: '24.2'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'A table has frequencies 7, 11 and 6. Find the total.'
     answer_label: 'A table has frequencies 7, 11 and 6. Find the total.'
     check:
@@ -16,7 +16,7 @@ problems:
   - id: 'ch24-24-2-bar-chart-choice'
     section: '24.2'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'A class records these favourite fruits: 5 choose apples, 8 choose bananas and 3 choose pears. Name a suitable chart to compare the categories and work out the total responses.'
     answer_label: 'A class records these favourite fruits: 5 choose apples, 8 choose bananas and 3 choose pears. Name a suitable chart to compare the categories and work out the total responses.'
     check:
@@ -28,7 +28,7 @@ problems:
   - id: 'ch24-24-2-pie-angle'
     section: '24.2'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'A category has frequency 15 in a total of 60. Find its pie-chart angle.'
     answer_label: 'A category has frequency 15 in a total of 60. Find its pie-chart angle.'
     check:
@@ -40,7 +40,7 @@ problems:
   - id: 'ch24-24-2-pictogram-value'
     section: '24.2'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'One pictogram symbol represents 5 votes. How many votes do 6 symbols represent?'
     answer_label: 'One pictogram symbol represents 5 votes. How many votes do 6 symbols represent?'
     check:
@@ -52,7 +52,7 @@ problems:
   - id: 'ch24-24-2-pie-angle-second'
     section: '24.2'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'A group of 20 out of 80 choose walking. Find the sector angle.'
     answer_label: 'A group of 20 out of 80 choose walking. Find the sector angle.'
     check:
@@ -64,7 +64,7 @@ problems:
   - id: 'ch24-24-2-vertical-line-chart'
     section: '24.2'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'The ungrouped discrete data are 2, 5, 5, 7. Name a suitable chart and find the median.'
     answer_label: 'The ungrouped discrete data are 2, 5, 5, 7. Name a suitable chart and find the median.'
     check:
@@ -77,7 +77,7 @@ problems:
   - id: 'ch24-24-2-pictogram-half'
     section: '24.2'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'Each symbol represents 4 pupils. What does 2.5 symbols represent?'
     answer_label: 'Each symbol represents 4 pupils. What does 2.5 symbols represent?'
     check:
@@ -89,7 +89,7 @@ problems:
   - id: 'ch24-24-2-interpret-bar'
     section: '24.2'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'A bar chart shows 12 votes for red and 8 for blue. How many more chose red?'
     answer_label: 'A bar chart shows 12 votes for red and 8 for blue. How many more chose red?'
     check:
@@ -101,7 +101,7 @@ problems:
   - id: 'ch24-24-2-table-to-pie'
     section: '24.2'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'Frequencies are 9, 6 and 5. Find the pie angle for frequency 6.'
     answer_label: 'Frequencies are 9, 6 and 5. Find the pie angle for frequency 6.'
     check:

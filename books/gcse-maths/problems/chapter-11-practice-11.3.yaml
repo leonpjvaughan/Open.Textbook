@@ -6,7 +6,7 @@ problems:
 - id: p1-origin
   section: '11.3'
   tier: F
-  dfe: &id001
+  refs: &id001
   - A9
   statement: Find the equation of a line through the origin with gradient 5.
   answer_label: Question 1
@@ -18,7 +18,7 @@ problems:
 - id: p2-point-gradient
   section: '11.3'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: Find the equation with gradient 2 through $(0,4)$.
   answer_label: Question 2
   check:
@@ -29,7 +29,7 @@ problems:
 - id: p3-find-c
   section: '11.3'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: A line has gradient -3 and passes through $(2,1)$. Find its equation.
   answer_label: Question 3
   check:
@@ -40,7 +40,7 @@ problems:
 - id: p4-find-m
   section: '11.3'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: A line $y=mx+2$ passes through $(3,11)$. Find $m$.
   answer_label: Question 4
   check:
@@ -52,7 +52,7 @@ problems:
 - id: p5-two-points
   section: '11.3'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: Find the equation of the line through $(0,-2)$ and $(4,6)$.
   answer_label: Question 5
   check:
@@ -63,7 +63,7 @@ problems:
 - id: p6-point-check
   section: '11.3'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: Find the equation of a line with gradient 4 through $(1,7)$.
   answer_label: Question 6
   check:
@@ -74,7 +74,7 @@ problems:
 - id: p7-table-rule
   section: '11.3'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: A line has values $(1,5),(2,8),(3,11)$. Find its equation.
   answer_label: Question 7
   check:
@@ -85,7 +85,7 @@ problems:
 - id: p8-context
   section: '11.3'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: A taxi fare is £4 plus £2.50 per kilometre. Write the cost $C$ for $d$ kilometres.
   answer_label: Question 8
   check:
@@ -96,7 +96,7 @@ problems:
 - id: p9-which-method
   section: '11.3'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: 'Which method finds a line equation from two points: use the gradient then substitute, or read an intercept? Give the gradient for $(2,1),(6,9)$.'
   answer_label: Question 9
   check:
@@ -107,7 +107,7 @@ problems:
 - id: p10-higher
   section: '11.3'
   tier: H
-  dfe: *id001
+  refs: *id001
   statement: Find the equation through $(-2,5)$ and $(4,-4)$.
   answer_label: Question 10
   check:

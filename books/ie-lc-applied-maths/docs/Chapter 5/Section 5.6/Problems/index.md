@@ -15,4 +15,4 @@ kind: problems
 # 5.6 Terminal velocity — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: S3
+> Tier: **H** · refs: S3

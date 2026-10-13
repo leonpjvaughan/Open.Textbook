@@ -4,7 +4,7 @@ chapter: 16
 chapter_title: Forces, Newton's laws and moments
 section: '16.7'
 section_title: Friction and the F <= mu R model
-dfe:
+refs:
 - R6
 kind: guided-problems
 ---

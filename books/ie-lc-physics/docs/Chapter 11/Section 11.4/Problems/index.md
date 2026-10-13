@@ -15,4 +15,4 @@ kind: problems
 # 11.4 The Doppler effect — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 2.7
+> Tier: **O** · refs: 2.7

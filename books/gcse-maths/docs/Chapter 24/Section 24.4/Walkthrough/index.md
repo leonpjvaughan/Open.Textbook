@@ -5,7 +5,7 @@ chapter_title: 'Statistics: representing and analysing data'
 section: '24.4'
 section_title: Averages from frequency tables
 tier: F
-dfe: [S4]
+refs: [S4]
 kind: walkthrough
 ---
 

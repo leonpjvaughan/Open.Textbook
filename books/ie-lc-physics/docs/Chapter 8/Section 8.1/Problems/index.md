@@ -15,4 +15,4 @@ kind: problems
 # 8.1 Temperature, heat and thermal equilibrium — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 2.1
+> Tier: **O** · refs: 2.1

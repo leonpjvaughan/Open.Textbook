@@ -4,7 +4,7 @@ chapter: 11
 chapter_title: Statistical sampling and data presentation
 section: '11.4'
 section_title: Scatter diagrams, regression lines and correlation
-dfe:
+refs:
 - L2
 kind: problems
 ---

@@ -11,7 +11,7 @@ problems:
   - id: p1-work-push
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A force of 60 N pushes a crate 4.0 m along the line of the force. Calculate the work done on the crate.'
     answer_label: 'Work done on the crate'
     check:
@@ -29,7 +29,7 @@ problems:
   - id: p2-work-sled
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A force of 35 N pulls a sledge 12 m along the line of the force. Calculate the work done on the sledge.'
     answer_label: 'Work done on the sledge'
     check:
@@ -47,7 +47,7 @@ problems:
   - id: p3-force-from-work
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A machine does 900 J of work as it moves a load 12 m along the line of the force. Calculate the force.'
     answer_label: 'Force exerted by the machine'
     check:
@@ -65,7 +65,7 @@ problems:
   - id: p4-distance-from-work
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A force of 90 N does 720 J of work. Calculate the distance moved along the line of the force.'
     answer_label: 'Distance moved'
     check:
@@ -83,7 +83,7 @@ problems:
   - id: p5-work-lifting
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A box of mass 8.0 kg is lifted 3.0 m onto a shelf. Take $g = 9.8\,\text{N/kg}$. Calculate the work done against gravity. Use the force needed to lift the box.'
     answer_label: 'Work done against gravity'
     check:
@@ -102,7 +102,7 @@ problems:
   - id: p6-work-friction
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A friction force of 45 N acts on a sledge that is pulled 22 m. Calculate the work done against friction.'
     answer_label: 'Work done against friction'
     check:
@@ -120,7 +120,7 @@ problems:
   - id: p7-kinetic-energy
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A car of mass 1200 kg travels at 20 m/s. Calculate the energy in its kinetic store. This is the work done by the brakes when the car stops.'
     answer_label: 'Work done by the brakes'
     check:
@@ -138,7 +138,7 @@ problems:
   - id: p8-braking-force
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'The brakes of the car transfer $2.4 \times 10^5\,\text{J}$ of energy over a braking distance of 50 m. Calculate the average braking force.'
     answer_label: 'Average braking force'
     check:
@@ -156,7 +156,7 @@ problems:
   - id: p9-convert-nm
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A pulley does 350 N m of work. Convert this value to joules.'
     answer_label: 'Work done in joules'
     check:
@@ -170,7 +170,7 @@ problems:
   - id: p10-power-link
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A motor does 3000 J of work in 20 s. Calculate the power of the motor.'
     answer_label: 'Power of the motor'
     check:
@@ -188,7 +188,7 @@ problems:
   - id: p11-work-lifting-2
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A bag of mass 25 kg is lifted 1.2 m onto a wall. Take $g = 9.8\,\text{N/kg}$. Say which force does the work, then calculate the work done.'
     answer_label: 'Work done lifting the bag'
     check:
@@ -207,7 +207,7 @@ problems:
   - id: p12-friction-transfer
     section: '2.3'
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A box slides across a floor and stops. Describe the energy transfer that happens as the box slows, and name the store that receives the energy.'
     answer_label: 'The energy transfer'
     check:

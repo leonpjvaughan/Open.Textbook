@@ -15,7 +15,7 @@ problems:
   - id: p1-work-along
     plays: work-done
     section: '3.3'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A force of 120 N moves a trolley 6.0 m along the direction of the force. Find the work done.'
     answer_label: 'The work done'
     check:
@@ -29,7 +29,7 @@ problems:
 
   - id: p2-work-at-angle
     section: '3.3'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A force of 300 N acts at 25° to the horizontal and moves a crate 10 m along the ground. Find the work done by the force.'
     answer_label: 'The work done'
     check:
@@ -41,7 +41,7 @@ problems:
 
   - id: p3-perpendicular-work
     section: '3.3'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A person carries a box along a level floor at a constant height. Explain why the person does no work on the box against gravity.'
     answer_label: 'Why the work against gravity is zero'
     check:
@@ -60,7 +60,7 @@ problems:
   - id: p4-kinetic-energy
     plays: kinetic-energy
     section: '3.3'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A car of mass 1200 kg travels at $15\,\text{m}\,\text{s}^{-1}$. Find its kinetic energy.'
     answer_label: 'The kinetic energy'
     check:
@@ -75,7 +75,7 @@ problems:
   - id: p5-potential-energy
     plays: gpe
     section: '3.3'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A mass of 5.0 kg is lifted through 8.0 m. Find the gravitational potential energy gained. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The gravitational potential energy gained'
     check:
@@ -90,7 +90,7 @@ problems:
 
   - id: p6-fall-speed
     section: '3.3'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'An object is dropped from rest through 20 m. Use conservation of energy to find its speed just before it lands. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The speed just before landing'
     check:
@@ -103,7 +103,7 @@ problems:
   - id: p7-work-energy-car
     plays: kinetic-energy
     section: '3.3'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A car of mass 800 kg speeds up from $5.0\,\text{m}\,\text{s}^{-1}$ to $15\,\text{m}\,\text{s}^{-1}$. Find the work done by the resultant force.'
     answer_label: 'The work done'
     check:
@@ -119,7 +119,7 @@ problems:
   - id: p8-power-work-time
     plays: power
     section: '3.3'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A machine does 3000 J of useful work in 6.0 s. Find its useful power.'
     answer_label: 'The useful power'
     check:
@@ -134,7 +134,7 @@ problems:
   - id: p9-power-force-velocity
     plays: power
     section: '3.3'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A car travels at a constant $12\,\text{m}\,\text{s}^{-1}$ against a resistive force of 500 N. Find the useful power developed by the engine.'
     answer_label: 'The useful power'
     check:
@@ -148,7 +148,7 @@ problems:
 
   - id: p10-thermal-energy
     section: '3.3'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A block slides down a slope. It loses 50 J of gravitational potential energy and gains 30 J of kinetic energy. Find the energy transferred to thermal stores.'
     answer_label: 'The thermal energy transferred'
     check: {kind: evaluate, expression: "50 - 30", answer: "20"}
@@ -156,7 +156,7 @@ problems:
 
   - id: p11-efficiency
     section: '3.3'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A motor is supplied with 5000 J of energy and uses it to raise a load of mass 40 kg through 10 m. Find the useful energy transferred and the efficiency. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The useful energy and the efficiency'
     check:
@@ -168,7 +168,7 @@ problems:
 
   - id: p12-method-choice
     section: '3.3'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A ball is dropped from a height of 3.0 m and you must find its speed at the ground. Say which method you would use and why, and name the assumption that makes the answer simple.'
     answer_label: 'The method and its assumption'
     check:

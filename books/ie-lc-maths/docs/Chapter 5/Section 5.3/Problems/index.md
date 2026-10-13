@@ -15,4 +15,4 @@ kind: problems
 # 5.3 The complex conjugate and division — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 4.4
+> Tier: **O** · refs: 4.4

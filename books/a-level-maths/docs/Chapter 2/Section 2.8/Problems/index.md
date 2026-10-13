@@ -4,7 +4,7 @@ chapter: 2
 chapter_title: Algebra and functions
 section: '2.8'
 section_title: Rational expressions and partial fractions
-dfe:
+refs:
 - B6
 - B10
 kind: problems

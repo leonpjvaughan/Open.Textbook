@@ -4,7 +4,7 @@ problems:
   - id: 'ch24-24-5-monthly-rise'
     section: '24.5'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'A value rises from 14 in April to 19 in May. Find the increase.'
     answer_label: 'A value rises from 14 in April to 19 in May. Find the increase.'
     check:
@@ -16,7 +16,7 @@ problems:
   - id: 'ch24-24-5-monthly-fall'
     section: '24.5'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'A temperature falls from 17°C to 12°C. Find the change.'
     answer_label: 'A temperature falls from 17°C to 12°C. Find the change.'
     check:
@@ -28,7 +28,7 @@ problems:
   - id: 'ch24-24-5-time-order'
     section: '24.5'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'Put these dates in time order: June, April, May. How many months pass between April and June?'
     answer_label: 'Put these dates in time order: June, April, May. How many months pass between April and June?'
     check:
@@ -40,7 +40,7 @@ problems:
   - id: 'ch24-24-5-line-graph-total-change'
     section: '24.5'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'Weekly totals are 21, 18, 24. Find the overall change from week 1 to week 3.'
     answer_label: 'Weekly totals are 21, 18, 24. Find the overall change from week 1 to week 3.'
     check:
@@ -52,7 +52,7 @@ problems:
   - id: 'ch24-24-5-stable-time-series'
     section: '24.5'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'A count is 9, 9, 9 across three months. Describe the trend.'
     answer_label: 'A count is 9, 9, 9 across three months. Describe the trend.'
     check:
@@ -64,7 +64,7 @@ problems:
   - id: 'ch24-24-5-line-graph-next'
     section: '24.5'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'A value is 6, 10, 8 across three days. Describe the changes.'
     answer_label: 'A value is 6, 10, 8 across three days. Describe the changes.'
     check:
@@ -76,7 +76,7 @@ problems:
   - id: 'ch24-24-5-time-series-difference'
     section: '24.5'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'Rainfall is 3 mm then 11 mm. Find the increase.'
     answer_label: 'Rainfall is 3 mm then 11 mm. Find the increase.'
     check:
@@ -88,7 +88,7 @@ problems:
   - id: 'ch24-24-5-time-series-mean'
     section: '24.5'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'Daily values are 2, 4, 6. Find their mean.'
     answer_label: 'Daily values are 2, 4, 6. Find their mean.'
     check:
@@ -101,7 +101,7 @@ problems:
   - id: 'ch24-24-5-compare-change'
     section: '24.5'
     tier: 'F'
-    dfe: ['S2']
+    refs: ['S2']
     statement: 'Series A changes 10 to 13; series B changes 8 to 12. Which rises more?'
     answer_label: 'Series A changes 10 to 13; series B changes 8 to 12. Which rises more?'
     check:
@@ -114,7 +114,7 @@ problems:
   - id: 'ch24-24-5-method'
     section: '24.5'
     tier: 'F'
-    dfe: ['S2', 'S4']
+    refs: ['S2', 'S4']
     statement: 'A time series shows a value rising and falling over 6 months. To compare a typical value with the spread, which method applies: a line graph alone, or the mean and range? Give a reason, then find the mean and range of 4, 6, 5, 9, 6, 6.'
     answer_label: 'Method choice: graph or summary statistics'
     check:

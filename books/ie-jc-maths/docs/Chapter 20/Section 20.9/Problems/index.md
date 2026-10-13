@@ -15,4 +15,4 @@ kind: problems
 # 20.9 Circles and their theorems — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: GT.3
+> Tier: **H** · refs: GT.3

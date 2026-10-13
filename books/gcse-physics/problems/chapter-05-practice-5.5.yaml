@@ -9,7 +9,7 @@ problems:
   - id: p1-every-object
     section: '5.5'
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'Explain why every object emits infrared radiation, even when it is cold.'
     answer_label: 'Why every object emits infrared radiation'
     check:
@@ -27,7 +27,7 @@ problems:
   - id: p2-black-surface
     section: '5.5'
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'A black surface and a shiny surface are at the same temperature. Compare the radiation each surface emits and absorbs.'
     answer_label: 'A comparison of the two surfaces'
     check:
@@ -45,7 +45,7 @@ problems:
   - id: p3-temperature-rise
     section: '5.5'
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'Explain what happens to the temperature of an object when it absorbs more radiation than it emits.'
     answer_label: 'What happens to the temperature'
     check:
@@ -63,7 +63,7 @@ problems:
   - id: p4-hotter-object
     section: '5.5'
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'Two objects have the same size and the same surface. One is hotter than the other. Compare the radiation they emit.'
     answer_label: 'A comparison of the radiation emitted'
     check:
@@ -81,7 +81,7 @@ problems:
   - id: p5-peak-frequency
     section: '5.5'
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'A warm object emits most of its radiation at a wavelength of 10 μm. Calculate the frequency of this radiation.'
     answer_label: 'Frequency of the peak radiation'
     check:
@@ -99,7 +99,7 @@ problems:
   - id: p6-hot-peak-frequency
     section: '5.5'
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'A hotter object emits most of its radiation at a wavelength of 2.0 μm. Calculate the frequency of this radiation.'
     answer_label: 'Frequency of the peak radiation'
     check:
@@ -117,7 +117,7 @@ problems:
   - id: p7-glow
     section: '5.5'
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'A piece of iron is heated. It first glows dull red, then orange, then white. Explain the change.'
     answer_label: 'Why the glow changes colour'
     check:
@@ -135,7 +135,7 @@ problems:
   - id: p8-star-temperature
     section: '5.5'
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'One star looks red and another looks blue. State which star is hotter and explain your answer.'
     answer_label: 'Which star is hotter'
     check:
@@ -153,7 +153,7 @@ problems:
   - id: p9-equilibrium
     section: '5.5'
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'A cup of hot tea cools down and then stays at room temperature. Explain why its temperature becomes constant.'
     answer_label: 'Why the temperature becomes constant'
     check:
@@ -171,7 +171,7 @@ problems:
   - id: p10-sun-earth
     section: '5.5'
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'The Sun is much hotter than the Earth. Explain how their emitted radiation differs, and why the Earth still has a steady temperature.'
     answer_label: 'How the radiation differs'
     check:
@@ -189,7 +189,7 @@ problems:
   - id: p11-thermogram
     section: '5.5'
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'A thermal camera shows a person as bright against a cold background. Explain what the camera is detecting.'
     answer_label: 'What the thermal camera detects'
     check:
@@ -207,7 +207,7 @@ problems:
   - id: p12-method-choice
     section: '5.5'
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'Two objects emit their most intense radiation at 3.0 μm and 6.0 μm. Say which relationship you will use to compare their frequencies, then work out both frequencies and state which object is hotter.'
     answer_label: 'The two frequencies and the hotter object'
     check:

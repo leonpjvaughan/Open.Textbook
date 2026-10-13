@@ -17,7 +17,7 @@ problems:
   - id: r1-anchor-charge
     plays: capacitance
     section: Review
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A defibrillator capacitor of capacitance $100\,\mu\text{F}$ is charged to $2000\,\text{V}$. Find the charge stored.'
     answer_label: 'The charge stored'
     check:
@@ -32,7 +32,7 @@ problems:
   - id: r2-anchor-energy
     plays: capacitor-energy
     section: Review
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A defibrillator capacitor of capacitance $100\,\mu\text{F}$ is charged to $2000\,\text{V}$. Find the energy stored.'
     answer_label: 'The energy stored'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: r3-anchor-leads
     section: Review
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'The copper leads have total length $1.2\,\text{m}$ and diameter $2.0\,\text{mm}$. The resistivity of copper is $1.7 \times 10^{-8}\,\Omega\,\text{m}$. Find the resistance of the leads.'
     answer_label: 'The resistance of the leads'
     check: {kind: approx, value: "1.7e-8 * 1.2 / (pi * (1.0e-3)**2)", target: "6.49e-3", tolerance: "0.05e-3"}
@@ -55,7 +55,7 @@ problems:
   - id: r4-anchor-current
     plays: resistance
     section: Review
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A capacitor charged to $2000\,\text{V}$ is discharged through a total resistance of $50\,\Omega$. Find the current at the first instant.'
     answer_label: 'The initial current'
     check:
@@ -70,7 +70,7 @@ problems:
   - id: r5-anchor-time-constant
     plays: time-constant
     section: Review
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A $100\,\mu\text{F}$ capacitor discharges through a total resistance of $50\,\Omega$. Find the time constant.'
     answer_label: 'The time constant'
     check:
@@ -84,7 +84,7 @@ problems:
 
   - id: r6-anchor-pd
     section: Review
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A capacitor charged to $2000\,\text{V}$ discharges with a time constant of $5.0\,\text{ms}$. Find the potential difference after $5.0\,\text{ms}$.'
     answer_label: 'The potential difference'
     check: {kind: approx, value: "2000 * exp(-1)", target: "736", tolerance: "2"}
@@ -93,7 +93,7 @@ problems:
   - id: r7-anchor-battery
     plays: emf
     section: Review
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'The unit draws $2.0\,\text{A}$ from a battery of emf $12\,\text{V}$ and internal resistance $0.15\,\Omega$. Find the terminal potential difference.'
     answer_label: 'The terminal potential difference'
     check:
@@ -108,7 +108,7 @@ problems:
 
   - id: r8-anchor-test-load
     section: Review
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'The unit is tested on two $100\,\Omega$ resistors in parallel. Find the equivalent resistance of the test load.'
     answer_label: 'The equivalent resistance'
     check: {kind: evaluate, expression: "1 / (1/100 + 1/100)", answer: "50"}
@@ -116,7 +116,7 @@ problems:
 
   - id: r9-anchor-judgement
     section: Review
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'The leads have a resistance of $6.5 \times 10^{-3}\,\Omega$ and the chest has a resistance of $50\,\Omega$. Decide whether the leads make a significant difference to the discharge, and give a reason.'
     answer_label: 'The judgement'
     check:
@@ -137,7 +137,7 @@ problems:
 
   - id: r10-convert-area
     section: Review
-    dfe: [AP1, AP5]
+    refs: [AP1, AP5]
     statement: 'A wire has a cross-sectional area of $2.5\,\text{mm}^2$. Write this area in $\text{m}^2$.'
     answer_label: 'The area in square metres'
     check: {kind: convert, value: "2.5", from: "mm^2", to: "m^2", answer: "2.5e-06"}
@@ -145,7 +145,7 @@ problems:
 
   - id: r11-uncertainty
     section: Review
-    dfe: [AP1, AP5]
+    refs: [AP1, AP5]
     statement: 'A capacitor discharge is timed with repeated readings of $2.48\,\text{s}$, $2.50\,\text{s}$ and $2.52\,\text{s}$. Find the mean time and the uncertainty, using the half-range convention.'
     answer_label: 'The mean and the uncertainty'
     check:
@@ -158,7 +158,7 @@ problems:
 
   - id: r12-resolve
     section: Review
-    dfe: [AP2, AP5]
+    refs: [AP2, AP5]
     statement: 'A force of $800\,\text{N}$ acts at $40^\circ$ to the horizontal. Find its horizontal and vertical components.'
     answer_label: 'The two components'
     check:
@@ -173,7 +173,7 @@ problems:
   - id: r13-work-power
     plays: work-done
     section: Review
-    dfe: [AP3, AP5]
+    refs: [AP3, AP5]
     statement: 'A force of $250\,\text{N}$ moves a crate $12\,\text{m}$ along its line of action in $15\,\text{s}$. Find the work done and the power.'
     answer_label: 'The work done and the power'
     check:
@@ -188,7 +188,7 @@ problems:
   - id: r14-density
     plays: density
     section: Review
-    dfe: [AP4, AP5]
+    refs: [AP4, AP5]
     statement: 'A copper block has a volume of $1.5 \times 10^{-4}\,\text{m}^3$ and a mass of $1.35\,\text{kg}$. Find its density.'
     answer_label: 'The density'
     check:

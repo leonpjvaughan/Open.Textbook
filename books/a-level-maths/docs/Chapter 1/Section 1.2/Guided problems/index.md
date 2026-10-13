@@ -4,7 +4,7 @@ chapter: 1
 chapter_title: Proof and mathematical argument
 section: '1.2'
 section_title: Proof by deduction
-dfe:
+refs:
 - A1
 kind: guided-problems
 ---

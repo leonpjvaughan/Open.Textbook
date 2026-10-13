@@ -4,7 +4,7 @@ problems:
 - id: 'ch4-decimal-frac'
   section: '4.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'N10'
   statement: 'Write $0.48$ as a fraction in its simplest form.'
   answer_label: 'Answer 1'
@@ -16,7 +16,7 @@ problems:
 - id: 'ch4-fraction-dec'
   section: '4.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'N10'
   statement: 'Write $\frac{7}{20}$ as a decimal.'
   answer_label: 'Answer 2'
@@ -28,7 +28,7 @@ problems:
 - id: 'ch4-terminating'
   section: '4.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'N10'
   statement: 'Work out $\frac{13}{40}$ as a decimal.'
   answer_label: 'Answer 3'
@@ -40,7 +40,7 @@ problems:
 - id: 'ch4-nonterm-check'
   section: '4.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'N10'
   statement: 'Which fraction has a terminating decimal: $\frac{5}{12}$ or $\frac{7}{40}$? Give the decimal.'
   answer_label: 'Answer 4'
@@ -52,7 +52,7 @@ problems:
 - id: 'ch4-order-rep'
   section: '4.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'N10'
   statement: 'Write $\frac{5}{8}$ and $0.61$ in order, smallest first.'
   answer_label: 'Answer 5'
@@ -65,7 +65,7 @@ problems:
 - id: 'ch4-decimal-to-fraction'
   section: '4.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'N10'
   statement: 'Write $0.16$ as a fraction in its simplest form.'
   answer_label: 'Answer 6'
@@ -77,7 +77,7 @@ problems:
 - id: 'ch4-fraction-nine-twentyfifths'
   section: '4.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'N10'
   statement: 'Write $\frac{9}{25}$ as a decimal.'
   answer_label: 'Answer 7'
@@ -89,7 +89,7 @@ problems:
 - id: 'ch4-fraction-seven-eighths'
   section: '4.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'N10'
   statement: 'Write $\frac{7}{8}$ as a decimal.'
   answer_label: 'Answer 8'
@@ -101,7 +101,7 @@ problems:
 - id: 'ch4-order-three-fifths'
   section: '4.4'
   tier: 'F'
-  dfe:
+  refs:
   - 'N10'
   statement: 'Write $0.58$ and $\frac{3}{5}$ in order, smallest first.'
   answer_label: 'Answer 9'

@@ -6,7 +6,7 @@ chapter: 5
 problems:
   - id: p1-sin-60
     section: "5.4"
-    dfe: [E3]
+    refs: [E3]
     statement: 'Write down the exact value of $\sin 60^\circ$.'
     answer_label: 'The value'
     check:
@@ -17,7 +17,7 @@ problems:
 
   - id: p2-tan-30
     section: "5.4"
-    dfe: [E3]
+    refs: [E3]
     statement: 'Write down the exact value of $\tan 30^\circ$, with a rational denominator.'
     answer_label: 'The value'
     check:
@@ -28,7 +28,7 @@ problems:
 
   - id: p3-sin-second-quadrant
     section: "5.4"
-    dfe: [E3]
+    refs: [E3]
     statement: 'Find the exact value of $\sin\dfrac{2\pi}{3}$.'
     answer_label: 'The value'
     check:
@@ -39,7 +39,7 @@ problems:
 
   - id: p4-cos-third-quadrant
     section: "5.4"
-    dfe: [E3]
+    refs: [E3]
     statement: 'Find the exact value of $\cos\dfrac{5\pi}{4}$.'
     answer_label: 'The value'
     check:
@@ -50,7 +50,7 @@ problems:
 
   - id: p5-tan-second-quadrant
     section: "5.4"
-    dfe: [E3]
+    refs: [E3]
     statement: 'Find the exact value of $\tan\dfrac{5\pi}{6}$.'
     answer_label: 'The value'
     check:
@@ -61,7 +61,7 @@ problems:
 
   - id: p6-sum-of-values
     section: "5.4"
-    dfe: [E3]
+    refs: [E3]
     statement: 'Find the exact value of $\sin\dfrac{7\pi}{6} + \cos\dfrac{\pi}{3}$.'
     answer_label: 'The value'
     check:
@@ -72,7 +72,7 @@ problems:
 
   - id: p7-cos-second-quadrant
     section: "5.4"
-    dfe: [E3]
+    refs: [E3]
     statement: 'Find the exact value of $\cos\dfrac{2\pi}{3}$.'
     answer_label: 'The value'
     check:
@@ -83,7 +83,7 @@ problems:
 
   - id: p8-product
     section: "5.4"
-    dfe: [E3]
+    refs: [E3]
     statement: 'Find the exact value of $\sin\dfrac{\pi}{4}\cos\dfrac{\pi}{4}$.'
     answer_label: 'The value'
     check:
@@ -94,7 +94,7 @@ problems:
 
   - id: p9-sum
     section: "5.4"
-    dfe: [E3]
+    refs: [E3]
     statement: 'Find the exact value of $\sin\dfrac{\pi}{4} + \cos\dfrac{\pi}{4}$.'
     answer_label: 'The value'
     check:
@@ -105,7 +105,7 @@ problems:
 
   - id: p10-tan-60
     section: "5.4"
-    dfe: [E3]
+    refs: [E3]
     statement: 'Find the exact value of $\tan\dfrac{\pi}{3}$.'
     answer_label: 'The value'
     check:

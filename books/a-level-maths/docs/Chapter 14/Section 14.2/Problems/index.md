@@ -4,7 +4,7 @@ chapter: 14
 chapter_title: Statistical hypothesis testing
 section: '14.2'
 section_title: Binomial tests for a proportion, one- and two-tailed
-dfe:
+refs:
 - O1
 - O2
 kind: problems

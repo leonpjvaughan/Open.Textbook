@@ -15,4 +15,4 @@ kind: problems
 # 4.5 Evaluating and simplifying expressions — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 4.1
+> Tier: **F** · refs: 4.1

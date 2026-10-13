@@ -20,7 +20,7 @@ problems:
   # --- Section 6.1, the Learn worked examples --------------------------------
   - id: w1-sound-wavelength
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A sound wave of frequency 256 Hz travels at 340 m/s. Find its wavelength.'
     answer_label: 'The wavelength'
     check: {kind: approx, value: "340 / 256", target: "1.33", tolerance: "0.005"}
@@ -28,7 +28,7 @@ problems:
 
   - id: w2-light-frequency
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Red light has a wavelength of 600 nm in a vacuum. The speed of light is 3.00e8 m/s. Find its frequency.'
     answer_label: 'The frequency'
     check: {kind: approx, value: "3.00e8 / 600e-9", target: "5.00e14", tolerance: "1e10"}
@@ -36,7 +36,7 @@ problems:
 
   - id: w3-phase-difference
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Two points on a wave are 0.150 m apart. The wavelength is 0.600 m. Find the phase difference between them, in degrees.'
     answer_label: 'The phase difference'
     check: {kind: approx, value: "0.150 / 0.600 * 360", target: "90", tolerance: "0.001"}
@@ -44,7 +44,7 @@ problems:
 
   - id: w4-path-difference
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Two loudspeakers are driven in phase at 500 Hz. The speed of sound is 340 m/s. A point is 2.38 m from one speaker and 1.70 m from the other. Decide whether the sound there is loud or quiet, and give a reason.'
     answer_label: 'The sound at the point'
     check:
@@ -63,7 +63,7 @@ problems:
 
   - id: w5-fringe-spacing
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A laser of wavelength 633 nm passes through two slits 0.25 mm apart. The screen is 2.50 m away. Find the fringe spacing.'
     answer_label: 'The fringe spacing'
     check:
@@ -78,7 +78,7 @@ problems:
 
   - id: w6-wavelength-fringes
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'In a two-slit experiment the slits are 0.50 mm apart and the screen is 3.00 m away. The fringe spacing is 3.60 mm. Find the wavelength of the light.'
     answer_label: 'The wavelength'
     check: {kind: approx, value: "3.60e-3 * 0.50e-3 / 3.00", target: "6.0e-7", tolerance: "1e-9"}
@@ -88,7 +88,7 @@ problems:
   - id: g1-wavelength
     plays: wave-speed
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A sound wave has a frequency of 425 Hz and travels at 340 m/s. Find its wavelength.'
     answer_label: 'The wavelength'
     check:
@@ -103,7 +103,7 @@ problems:
   - id: g2-speed
     plays: wave-speed
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A wave has a wavelength of 0.25 m and a frequency of 680 Hz. Find its speed.'
     answer_label: 'The speed'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: g3-phase-difference
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Two points on a wave are 0.80 m apart. The wavelength is 2.0 m. Find the phase difference between them, in degrees.'
     answer_label: 'The phase difference'
     check: {kind: approx, value: "0.80 / 2.0 * 360", target: "144", tolerance: "0.001"}
@@ -125,7 +125,7 @@ problems:
 
   - id: g4-path-difference
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Two loudspeakers are driven in phase at 850 Hz. The speed of sound is 340 m/s. A listener is 4.30 m from one speaker and 3.70 m from the other. Decide whether the sound is loud or quiet, and give a reason.'
     answer_label: 'The sound at the listener'
     check:
@@ -144,7 +144,7 @@ problems:
 
   - id: g5-fringe-spacing
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A laser of wavelength 590 nm passes through two slits 0.40 mm apart. The screen is 1.80 m away. Find the spacing of the bright fringes.'
     answer_label: 'The fringe spacing'
     check:
@@ -159,7 +159,7 @@ problems:
 
   - id: g6-coherence
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Explain what is meant by coherent sources, and explain why two separate lamps cannot produce a steady interference pattern, even when they look the same colour.'
     check:
       kind: structured
@@ -183,7 +183,7 @@ problems:
   - id: warmup-6-1-period
     plays: period
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Warm-up: a wave has a frequency of 250 Hz. Find its period.'
     check:
       kind: dimensions
@@ -195,7 +195,7 @@ problems:
 
   - id: warmup-6-1-mm
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Warm-up: write 0.60 mm in metres.'
     check: {kind: convert, value: "0.60", from: "mm", to: "m", answer: "6.0e-4"}
     answer_text: '$0.60\,\text{mm} = 6.0 \times 10^{-4}\,\text{m}$.'
@@ -203,7 +203,7 @@ problems:
   - id: warmup-6-1-speed
     plays: velocity
     section: '6.1'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Warm-up: a car travels 150 m in 6.0 s. Find its average speed.'
     check:
       kind: dimensions
@@ -217,7 +217,7 @@ problems:
   # --- Section 6.2, the Learn worked examples --------------------------------
   - id: w7-grating-spacing
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A grating has 600 lines per millimetre. Find the spacing between neighbouring slits, in metres.'
     answer_label: 'The slit spacing'
     check: {kind: approx, value: "1 / 600e3", target: "1.667e-6", tolerance: "1e-9"}
@@ -225,7 +225,7 @@ problems:
 
   - id: w8-grating-first-order
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A grating has a slit spacing of 1.667e-6 m and is lit by light of wavelength 590 nm. Find the angle of the first-order maximum.'
     answer_label: 'The first-order angle'
     check: {kind: approx, value: "asin(590e-9 / 1.667e-6)*180/pi", target: "20.7", tolerance: "0.2"}
@@ -233,7 +233,7 @@ problems:
 
   - id: w9-grating-highest-order
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'For the grating and light of Worked example 1, find the highest order the grating can give.'
     answer_label: 'The highest order'
     check: {kind: between, value: "1.667e-6 / 590e-9", low: "2", high: "3"}
@@ -241,7 +241,7 @@ problems:
 
   - id: w10-wavelength-from-grating
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A grating of spacing 2.00e-6 m gives its second-order maximum at 40.0 degrees. Find the wavelength of the light.'
     answer_label: 'The wavelength'
     check: {kind: approx, value: "2.00e-6 * sin(40 * pi / 180) / 2", target: "6.43e-7", tolerance: "1e-9"}
@@ -249,7 +249,7 @@ problems:
 
   - id: w11-polarisation-amplitude
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Plane-polarised light of amplitude 40 V/m falls on an analyser whose axis is at 60 degrees to the plane of polarisation. Find the transmitted amplitude.'
     answer_label: 'The transmitted amplitude'
     check: {kind: approx, value: "40 * cos(60 * pi / 180)", target: "20", tolerance: "0.001"}
@@ -257,7 +257,7 @@ problems:
 
   - id: w12-polarisation-intensity
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Find the fraction of the intensity that passes through the analyser in Worked example 3.'
     answer_label: 'The fraction of the intensity'
     check: {kind: approx, value: "cos(60 * pi / 180)**2", target: "0.25", tolerance: "1e-6"}
@@ -266,7 +266,7 @@ problems:
   # --- Section 6.2, the guided problems --------------------------------------
   - id: g7-grating-spacing
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A diffraction grating has 500 lines per millimetre. Find the spacing between neighbouring slits, in metres.'
     answer_label: 'The slit spacing'
     check: {kind: approx, value: "1 / 500e3", target: "2.00e-6", tolerance: "1e-9"}
@@ -274,7 +274,7 @@ problems:
 
   - id: g8-grating-angle
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Light of wavelength 633 nm falls on a grating of spacing 2.00e-6 m. Find the angle of the first-order maximum.'
     answer_label: 'The first-order angle'
     check: {kind: approx, value: "asin(633e-9 / 2.00e-6)*180/pi", target: "18.5", tolerance: "0.2"}
@@ -282,7 +282,7 @@ problems:
 
   - id: g9-grating-highest
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'For the grating and light in question 2, find the highest order the grating can give.'
     answer_label: 'The highest order'
     check: {kind: between, value: "2.00e-6 / 633e-9", low: "3", high: "4"}
@@ -290,7 +290,7 @@ problems:
 
   - id: g10-grating-wavelength
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A grating of spacing 1.667e-6 m gives its first-order maximum at 22.0 degrees. Find the wavelength of the light.'
     answer_label: 'The wavelength'
     check: {kind: approx, value: "1.667e-6 * sin(22 * pi / 180)", target: "6.24e-7", tolerance: "1e-9"}
@@ -298,7 +298,7 @@ problems:
 
   - id: g11-polarisation-half
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Plane-polarised light passes through an analyser whose axis is at 45 degrees to the plane of polarisation. Find the fraction of the intensity that passes through.'
     answer_label: 'The fraction of the intensity'
     check: {kind: approx, value: "cos(45 * pi / 180)**2", target: "0.5", tolerance: "1e-6"}
@@ -306,7 +306,7 @@ problems:
 
   - id: g12-polarisation-sound
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Explain why light can be polarised but sound cannot. Include the words transverse and longitudinal in your answer.'
     check:
       kind: structured
@@ -327,7 +327,7 @@ problems:
   - id: warmup-6-2-speed
     plays: wave-speed
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Warm-up: a wave has a wavelength of 0.60 m and a frequency of 550 Hz. Find its speed.'
     check:
       kind: dimensions
@@ -340,14 +340,14 @@ problems:
 
   - id: warmup-6-2-phase-fraction
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Warm-up: two points on a wave are 90 degrees apart in phase. Write the distance between them as a fraction of the wavelength.'
     check: {kind: evaluate, expression: "90 / 360", answer: "1/4"}
     answer_text: '$90^\circ$ is one quarter of $360^\circ$, so the distance is $\dfrac{\lambda}{4}$.'
 
   - id: warmup-6-2-nm
     section: '6.2'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Warm-up: write 6.33e-7 m in nanometres.'
     check: {kind: convert, value: "6.33e-7", from: "m", to: "nm", answer: "633"}
     answer_text: '$6.33 \times 10^{-7}\,\text{m} = 633\,\text{nm}$.'
@@ -355,7 +355,7 @@ problems:
   # --- Section 6.3, the Learn worked examples --------------------------------
   - id: w13-string-speed
     section: '6.3'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A guitar string has a tension of 81 N and a mass per unit length of 4.0e-4 kg/m. Find the speed of a wave on the string.'
     answer_label: 'The wave speed'
     check: {kind: approx, value: "sqrt(81 / 4.0e-4)", target: "450", tolerance: "0.5"}
@@ -363,7 +363,7 @@ problems:
 
   - id: w14-fundamental
     section: '6.3'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The string in Worked example 1 is 0.650 m long and is fixed at both ends. Find the frequency of its fundamental note.'
     answer_label: 'The fundamental frequency'
     check: {kind: approx, value: "450 / (2 * 0.650)", target: "346", tolerance: "0.5"}
@@ -371,7 +371,7 @@ problems:
 
   - id: w15-tension-double
     section: '6.3'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A string sounds a note of 220 Hz when its tension is 60 N. Find the tension needed for a note of 440 Hz.'
     answer_label: 'The tension'
     check: {kind: approx, value: "60 * (440 / 220)**2", target: "240", tolerance: "0.01"}
@@ -379,7 +379,7 @@ problems:
 
   - id: w16-open-pipe
     section: '6.3'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'An organ pipe is open at both ends and is 0.800 m long. The speed of sound is 340 m/s. Find the frequency of its fundamental note and of its second harmonic.'
     answer_label: 'The two frequencies'
     check:
@@ -391,7 +391,7 @@ problems:
 
   - id: w17-closed-pipe
     section: '6.3'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A pipe of length 0.800 m is closed at one end. Find the frequency of its fundamental note and of its next possible harmonic.'
     answer_label: 'The two frequencies'
     check:
@@ -404,7 +404,7 @@ problems:
   # --- Section 6.3, the guided problems --------------------------------------
   - id: g13-string-speed
     section: '6.3'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A string has a tension of 100 N and a mass per unit length of 2.5e-4 kg/m. Find the speed of a wave on the string.'
     answer_label: 'The wave speed'
     check: {kind: approx, value: "sqrt(100 / 2.5e-4)", target: "632", tolerance: "0.5"}
@@ -412,7 +412,7 @@ problems:
 
   - id: g14-fundamental
     section: '6.3'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A string 0.500 m long is fixed at both ends. The speed of a wave on it is 400 m/s. Find the frequency of its fundamental note.'
     answer_label: 'The fundamental frequency'
     check: {kind: approx, value: "400 / (2 * 0.500)", target: "400", tolerance: "0.1"}
@@ -420,7 +420,7 @@ problems:
 
   - id: g15-third-harmonic
     section: '6.3'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A string 0.600 m long has a wave speed of 300 m/s. Find the frequency of its third harmonic.'
     answer_label: 'The third harmonic'
     check: {kind: approx, value: "3 * 300 / (2 * 0.600)", target: "750", tolerance: "0.1"}
@@ -428,7 +428,7 @@ problems:
 
   - id: g16-tension
     section: '6.3'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A string sounds a note of 200 Hz when its tension is 100 N. Find the tension needed for a note of 300 Hz.'
     answer_label: 'The tension'
     check: {kind: approx, value: "100 * (300 / 200)**2", target: "225", tolerance: "0.01"}
@@ -436,7 +436,7 @@ problems:
 
   - id: g17-open-pipe
     section: '6.3'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A pipe is open at both ends and is 0.500 m long. The speed of sound is 340 m/s. Find the frequency of its fundamental note and of its second harmonic.'
     answer_label: 'The two frequencies'
     check:
@@ -448,7 +448,7 @@ problems:
 
   - id: g18-closed-pipe
     section: '6.3'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'A pipe of length 0.500 m is closed at one end. Find the frequency of its fundamental note and of the next possible harmonic, and explain why some harmonics are missing.'
     answer_label: 'The two frequencies and the reason'
     check:
@@ -462,7 +462,7 @@ problems:
   - id: warmup-6-3-period
     plays: period
     section: '6.3'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Warm-up: a wave has a frequency of 0.50 kHz. Find its period.'
     check:
       kind: dimensions
@@ -475,7 +475,7 @@ problems:
   - id: warmup-6-3-hooke
     plays: hookes-law
     section: '6.3'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Warm-up: a spring of force constant 200 N/m is stretched by a force of 10 N. Find the extension.'
     check:
       kind: dimensions
@@ -488,7 +488,7 @@ problems:
 
   - id: warmup-6-3-units
     section: '6.3'
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Warm-up: write 4.0e-4 kg in grams.'
     check: {kind: convert, value: "4.0e-4", from: "kg", to: "g", answer: "0.40"}
     answer_text: '$4.0 \times 10^{-4}\,\text{kg} = 0.40\,\text{g}$.'
@@ -497,7 +497,7 @@ problems:
   - id: anchor-sound-wavelength
     plays: wave-speed
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The two loudspeakers are driven at 1.00 kHz and the speed of sound is 340 m/s. Find the wavelength of the sound.'
     check:
       kind: dimensions
@@ -510,63 +510,63 @@ problems:
 
   - id: anchor-first-max
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The speakers are 1.20 m apart and the wavelength of the sound is 0.340 m. Find the angle of the first loud band to the side of the centre line.'
     check: {kind: approx, value: "asin(0.340 / 1.20)*180/pi", target: "16.5", tolerance: "0.2"}
     answer_text: '$\sin\theta = \dfrac{\lambda}{s} = \dfrac{0.340}{1.20} = 0.2833$, so $\theta = 16.5^\circ$.'
 
   - id: anchor-fringe-spacing
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The laser has wavelength 633 nm, the double slit is 0.25 mm wide and the screen is 2.50 m away. Find the fringe spacing.'
     check: {kind: approx, value: "633e-9 * 2.50 / 0.25e-3", target: "6.33e-3", tolerance: "1e-5"}
     answer_text: '$w = \dfrac{\lambda D}{s} = \dfrac{633 \times 10^{-9} \times 2.50}{0.25 \times 10^{-3}} = 6.33 \times 10^{-3}\,\text{m}$, or $6.33\,\text{mm}$.'
 
   - id: anchor-grating-spacing
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The diffraction grating has 300 lines per millimetre. Find the spacing between neighbouring slits, in metres.'
     check: {kind: approx, value: "1 / 300e3", target: "3.33e-6", tolerance: "1e-8"}
     answer_text: '$300\,\text{lines mm}^{-1} = 3.00 \times 10^5\,\text{lines m}^{-1}$, so $d = \dfrac{1}{3.00 \times 10^5} = 3.33 \times 10^{-6}\,\text{m}$.'
 
   - id: anchor-first-order
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The grating spacing is 3.33e-6 m and the light has wavelength 633 nm. Find the angle of the first-order maximum.'
     check: {kind: approx, value: "asin(633e-9 / 3.333e-6)*180/pi", target: "10.9", tolerance: "0.2"}
     answer_text: '$\sin\theta = \dfrac{633 \times 10^{-9}}{3.33 \times 10^{-6}} = 0.190$, so $\theta = 10.9^\circ$.'
 
   - id: anchor-highest-order
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'For the grating spacing 3.33e-6 m and the wavelength 633 nm, find the highest order the grating can give.'
     check: {kind: between, value: "3.333e-6 / 633e-9", low: "5", high: "6"}
     answer_text: '$\dfrac{d}{\lambda} = \dfrac{3.33 \times 10^{-6}}{633 \times 10^{-9}} = 5.26$. The highest whole number with $n\lambda \le d$ is 5.'
 
   - id: anchor-string-speed
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The guitar string has tension 81 N and a mass per unit length of 4.0e-4 kg/m. Find the speed of a wave on it.'
     check: {kind: approx, value: "sqrt(81 / 4.0e-4)", target: "450", tolerance: "0.5"}
     answer_text: '$v = \sqrt{\dfrac{T}{\mu}} = \sqrt{\dfrac{81}{4.0 \times 10^{-4}}} = 450\,\text{m}\,\text{s}^{-1}$.'
 
   - id: anchor-fundamental
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The string is 0.650 m long and the wave speed is 450 m/s. Find the frequency of its fundamental note.'
     check: {kind: approx, value: "450 / (2 * 0.650)", target: "346", tolerance: "0.5"}
     answer_text: '$f_1 = \dfrac{v}{2L} = \dfrac{450}{2 \times 0.650} = 346\,\text{Hz}$.'
 
   - id: anchor-polariser
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'Plane-polarised laser light passes through an analyser whose axis is at 60 degrees to the plane of polarisation. Find the fraction of the intensity that passes.'
     check: {kind: approx, value: "cos(60 * pi / 180)**2", target: "0.25", tolerance: "1e-6"}
     answer_text: '$\dfrac{I}{I_0} = \cos^2 60^\circ = 0.25$, so one quarter of the light passes.'
 
   - id: anchor-tension
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The string sounds 346 Hz at a tension of 81 N. Find the tension needed for 330 Hz.'
     answer_label: 'The tension'
     check: {kind: approx, value: "81 * (330 / (450 / 1.3))**2", target: "73.6", tolerance: "0.1"}
@@ -574,7 +574,7 @@ problems:
 
   - id: anchor-prediction
     section: Review
-    dfe: [AP6]
+    refs: [AP6]
     statement: 'The technician changes the note to a higher one. Do the loud and quiet places stay where they are, or move? Give a reason.'
     check:
       kind: structured

@@ -5,7 +5,7 @@ chapter_title: Algebraic expressions and manipulation
 section: "8.3"
 section_title: Expanding brackets
 tier: F
-dfe: [A4]
+refs: [A4]
 kind: problems
 ---
 

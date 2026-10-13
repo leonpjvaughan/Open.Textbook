@@ -15,4 +15,4 @@ kind: guided-problems
 # 4.2 Representing relations in tables and graphs — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **F** · DfE refs: 4.1
+> Tier: **F** · refs: 4.1

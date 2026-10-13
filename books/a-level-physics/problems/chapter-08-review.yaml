@@ -17,7 +17,7 @@ chapter: 8
 problems:
   - id: r1-photon-frequency
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A photon has an energy of 2.5 eV. Find its frequency.'
     answer_label: 'The frequency'
     check: {kind: approx, value: "2.5 * 1.60e-19 / 6.63e-34", target: "6.03e14", tolerance: "1e13"}
@@ -25,7 +25,7 @@ problems:
 
   - id: r2-photoelectric-kinetic
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Light of wavelength 450 nm falls on a metal of work function 2.20 eV. Find the maximum kinetic energy of the electrons, in eV.'
     answer_label: 'The maximum kinetic energy'
     check: {kind: approx, value: "6.63e-34 * 3.00e8 / 450e-9 / 1.60e-19 - 2.20", target: "0.56", tolerance: "0.02"}
@@ -33,7 +33,7 @@ problems:
 
   - id: r3-de-broglie-speed
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron moves at 5.0e6 m/s. Find its de Broglie wavelength.'
     answer_label: 'The de Broglie wavelength'
     check: {kind: approx, value: "6.63e-34 / (9.11e-31 * 5.0e6)", target: "1.46e-10", tolerance: "1e-12"}
@@ -41,7 +41,7 @@ problems:
 
   - id: r4-de-broglie-accelerated
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron is accelerated through 250 V. Find its de Broglie wavelength.'
     answer_label: 'The de Broglie wavelength'
     check: {kind: approx, value: "6.63e-34 / sqrt(2 * 9.11e-31 * 250 * 1.60e-19)", target: "7.77e-11", tolerance: "1e-12"}
@@ -50,7 +50,7 @@ problems:
   - id: r5-half-lives
     plays: decay-rate
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A source has an activity of 1200 Bq and a half-life of 8.0 days. Find its activity after 32 days.'
     answer_label: 'The activity'
     check:
@@ -63,7 +63,7 @@ problems:
 
   - id: r6-decay-constant
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A nuclide has a half-life of 8.0 days. Find its decay constant in s^-1.'
     answer_label: 'The decay constant'
     check: {kind: approx, value: "ln(2) / (8.0 * 86400)", target: "1.00e-6", tolerance: "1e-8"}
@@ -71,7 +71,7 @@ problems:
 
   - id: r7-mass-defect-energy
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A nucleus has a mass defect of 0.025 u. Find its binding energy in MeV.'
     answer_label: 'The binding energy'
     check: {kind: approx, value: "0.025 * 931.5", target: "23.3", tolerance: "0.05"}
@@ -79,7 +79,7 @@ problems:
 
   - id: r8-annihilation
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron and a positron annihilate. Find the total energy released, in joules.'
     answer_label: 'The total energy'
     check: {kind: approx, value: "2 * 0.511 * 1.60e-13", target: "1.64e-13", tolerance: "1e-15"}
@@ -87,7 +87,7 @@ problems:
 
   - id: r9-convert-nm
     section: '8.1'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Write 250 nm in metres.'
     answer_label: 'The wavelength'
     check: {kind: convert, value: "250", from: "nm", to: "m", answer: "2.50e-7"}
@@ -95,7 +95,7 @@ problems:
 
   - id: r10-fringe-spacing
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A laser of wavelength 633 nm passes through two slits 0.20 mm apart, and the screen is 2.0 m away. Find the fringe spacing.'
     answer_label: 'The fringe spacing'
     check: {kind: approx, value: "633e-9 * 2.0 / 0.20e-3", target: "6.33e-3", tolerance: "1e-5"}
@@ -103,7 +103,7 @@ problems:
 
   - id: r11-electron-speed-energy
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron is accelerated from rest through 400 V. Find its speed.'
     answer_label: 'The speed'
     check: {kind: approx, value: "sqrt(2 * 1.60e-19 * 400 / 9.11e-31)", target: "1.19e7", tolerance: "1e5"}
@@ -111,7 +111,7 @@ problems:
 
   - id: r12-uncertainty
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A half-life is measured as 5.35 minutes with an uncertainty of 2.0%. Find the absolute uncertainty.'
     answer_label: 'The absolute uncertainty'
     check: {kind: approx, value: "5.35 * 0.02", target: "0.107", tolerance: "0.001"}
@@ -119,7 +119,7 @@ problems:
 
   - id: r13-half-life-from-change
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A source falls from 800 Bq to 100 Bq in 24 hours. Find its half-life.'
     answer_label: 'The half-life'
     check: {kind: approx, value: "24 / 3", target: "8", tolerance: "0.1"}
@@ -127,7 +127,7 @@ problems:
 
   - id: r14-method-de-broglie
     section: '8.2'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A beam of electrons is accelerated through 300 V. State which equation you would use to find their de Broglie wavelength, and why.'
     check:
       kind: structured
@@ -149,7 +149,7 @@ problems:
 
   - id: r15-method-mass-energy
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'State which equation you would use to find the energy released when a nucleus loses mass, and why.'
     check:
       kind: structured

@@ -3,7 +3,7 @@ problems:
   - id: p1-round-7284
     section: "1.5"
     tier: F
-    dfe: [N14, N15]
+    refs: [N14, N15]
     statement: 'Round $7\,284$ to the nearest (a) $10$, (b) $100$, (c) $1000$.'
     answer_label: 'Round $7\,284$'
     check:
@@ -17,7 +17,7 @@ problems:
   - id: p2-round-one-decimal-place
     section: "1.5"
     tier: F
-    dfe: [N14, N15]
+    refs: [N14, N15]
     statement: 'Round $12.78$ to 1 decimal place.'
     answer_label: 'Round $12.78$ to 1 decimal place'
     check: {kind: rounded, value: "12.78", rounded: "12.8", to: "0.1"}
@@ -26,7 +26,7 @@ problems:
   - id: p3-round-two-decimal-places
     section: "1.5"
     tier: F
-    dfe: [N14, N15]
+    refs: [N14, N15]
     statement: 'Round $0.916$ to 2 decimal places.'
     answer_label: 'Round $0.916$ to 2 decimal places'
     check: {kind: rounded, value: "0.916", rounded: "0.92", to: "0.01"}
@@ -35,7 +35,7 @@ problems:
   - id: p4-round-significant-figures
     section: "1.5"
     tier: F
-    dfe: [N14, N15]
+    refs: [N14, N15]
     statement: 'Round $63\,500$ to 2 significant figures.'
     answer_label: 'Round $63\,500$ to 2 significant figures'
     check: {kind: rounded, value: "63500", rounded: "64000", to: "1000"}
@@ -44,7 +44,7 @@ problems:
   - id: p5-round-small-decimal
     section: "1.5"
     tier: F
-    dfe: [N14, N15]
+    refs: [N14, N15]
     statement: 'Round $0.020\,45$ to 3 significant figures.'
     answer_label: 'Round $0.020\,45$ to 3 significant figures'
     check: {kind: rounded, value: "0.02045", rounded: "0.0205", to: "0.0001"}
@@ -53,7 +53,7 @@ problems:
   - id: p6-estimate-product
     section: "1.5"
     tier: F
-    dfe: [N14, N15]
+    refs: [N14, N15]
     statement: 'Estimate $59 \times 31$ by rounding each number to 1 significant figure.'
     answer_label: 'Estimate $59 \times 31$'
     check: {kind: evaluate, expression: "60 * 30", answer: "1800"}
@@ -62,7 +62,7 @@ problems:
   - id: p7-estimate-quotient
     section: "1.5"
     tier: F
-    dfe: [N14, N15]
+    refs: [N14, N15]
     statement: 'Estimate $497 \div 5$.'
     answer_label: 'Estimate $497 \div 5$'
     check: {kind: evaluate, expression: "500 / 5", answer: "100"}
@@ -71,7 +71,7 @@ problems:
   - id: p8-round-jug-capacity
     section: "1.5"
     tier: F
-    dfe: [N14, N15]
+    refs: [N14, N15]
     statement: 'A jug holds $1.85$ litres. Round this to the nearest tenth of a litre and to the nearest litre.'
     answer_label: 'Rounded jug capacity'
     check:
@@ -84,7 +84,7 @@ problems:
   - id: p9-round-journey-time
     section: "1.5"
     tier: F
-    dfe: [N14, N15]
+    refs: [N14, N15]
     statement: 'A journey takes $3$ hours $47$ minutes. Round this to the nearest hour.'
     answer_label: 'Journey time to nearest hour'
     check: {kind: rounded, value: "3 + 47/60", rounded: "4", to: "1"}
@@ -93,7 +93,7 @@ problems:
   - id: p10-estimate-cyclist-speed
     section: "1.5"
     tier: F
-    dfe: [N14, N15]
+    refs: [N14, N15]
     statement: 'A cyclist travels $24.6$ km in $1.8$ hours. Estimate the average speed by rounding, then say whether an exact answer of $13.7$ km/h is reasonable.'
     answer_label: 'Estimated average speed'
     check:
@@ -106,7 +106,7 @@ problems:
   - id: p11-round-profit-to-five
     section: "1.5"
     tier: F
-    dfe: [N14, N15]
+    refs: [N14, N15]
     statement: 'The stall''s profit was £39.20. A poster must show the profit to the nearest £5. What should it say?'
     answer_label: 'Profit to nearest £5'
     check: {kind: rounded, value: "39.20", rounded: "40", to: "5"}
@@ -115,7 +115,7 @@ problems:
   - id: p12-range-rounding-to-one-decimal
     section: "1.5"
     tier: H
-    dfe: [N14, N15]
+    refs: [N14, N15]
     statement: 'A number rounds to $4.7$ to 1 decimal place. Write down the smallest and largest values it could have.'
     answer_label: 'Range of values'
     check:
@@ -128,7 +128,7 @@ problems:
   - id: p13-estimate-compound-expression
     section: "1.5"
     tier: H
-    dfe: [N14, N15]
+    refs: [N14, N15]
     statement: 'Estimate $\dfrac{6.2 \times 19.8}{3.1}$ by rounding each number to 1 significant figure.'
     answer_label: 'Estimate the quotient'
     check: {kind: evaluate, expression: "6 * 20 / 3", answer: "40"}
@@ -136,7 +136,7 @@ problems:
   - id: ch1-15-method-estimate
     section: '1.5'
     tier: 'F'
-    dfe: [N14, N15]
+    refs: [N14, N15]
     statement: 'A shop sells 19 boxes at £6.20 each. Which is the better first step: estimate the total, or calculate it exactly? Give a reason. Then estimate by rounding each number to 1 significant figure, and work out the exact total.'
     answer_label: 'Method choice: estimate or calculate exactly'
     check:

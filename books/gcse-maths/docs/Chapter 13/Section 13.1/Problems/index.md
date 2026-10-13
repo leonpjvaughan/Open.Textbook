@@ -5,7 +5,7 @@ chapter_title: Other functions and graphs
 section: '13.1'
 section_title: Cubic, reciprocal and exponential graphs
 tier: H
-dfe:
+refs:
 - A12
 - A14
 kind: problems

@@ -4,7 +4,7 @@ chapter: 3
 chapter_title: Coordinate geometry
 section: '3.3'
 section_title: The equation of a circle and its properties
-dfe:
+refs:
 - C2
 kind: walkthrough
 ---

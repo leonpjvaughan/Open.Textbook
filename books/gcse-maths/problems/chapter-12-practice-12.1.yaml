@@ -9,7 +9,7 @@ problems:
     id: 'ch12-12.1-expand-a'
     section: '12.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'A4'
     statement: 'Expand $(x+3)(x+5).'
     answer_label: 'Expand $(x+3)(x+5).'
@@ -22,7 +22,7 @@ problems:
     id: 'ch12-12.1-expand-b'
     section: '12.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'A4'
     statement: 'Expand $(2x-1)(x+4).'
     answer_label: 'Expand $(2x-1)(x+4).'
@@ -35,7 +35,7 @@ problems:
     id: 'ch12-12.1-factorise-a'
     section: '12.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'A4'
     statement: 'Factorise $x^2+8x+15$.'
     answer_label: 'Factorise $x^2+8x+15$.'
@@ -48,7 +48,7 @@ problems:
     id: 'ch12-12.1-factorise-b'
     section: '12.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'A4'
     statement: 'Factorise $x^2-x-12$.'
     answer_label: 'Factorise $x^2-x-12$.'
@@ -61,7 +61,7 @@ problems:
     id: 'ch12-12.1-difference'
     section: '12.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'A4'
     statement: 'Factorise $x^2-25$.'
     answer_label: 'Factorise $x^2-25$.'
@@ -74,7 +74,7 @@ problems:
     id: 'ch12-12.1-solve-expression'
     section: '12.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'A18'
     statement: 'Solve $x^2+6x+8=0$ by factorising.'
     answer_label: 'Solve $x^2+6x+8=0$ by factorising.'
@@ -101,7 +101,7 @@ problems:
     id: 'ch12-12.1-challenge'
     section: '12.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'A4'
     statement: 'Factorise $3x^2+12x$.'
     answer_label: 'Factorise $3x^2+12x$.'
@@ -114,7 +114,7 @@ problems:
     id: 'ch12-12.1-context'
     section: '12.1'
     tier: 'F'
-    dfe:
+    refs:
       - 'A4'
     statement: 'A rectangle has sides $(x+2)$ cm and $(x+7)$ cm. Expand an expression for its area.'
     answer_label: 'A rectangle has sides $(x+2)$ cm and $(x+7)$ cm. Expand an expression for its area.'

@@ -5,7 +5,7 @@ chapter_title: Perimeter, area, surface area and volume
 section: "19.1"
 section_title: Perimeter and area of 2D shapes
 tier: F
-dfe: [G16]
+refs: [G16]
 kind: walkthrough
 ---
 

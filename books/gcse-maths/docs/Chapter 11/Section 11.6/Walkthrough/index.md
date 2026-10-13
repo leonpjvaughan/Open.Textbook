@@ -5,7 +5,7 @@ chapter_title: Straight-line graphs and rates of change
 section: '11.6'
 section_title: Gradients and areas under graphs
 tier: H
-dfe: [A15, R15]
+refs: [A15, R15]
 kind: walkthrough
 ---
 

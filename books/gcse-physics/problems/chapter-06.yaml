@@ -17,7 +17,7 @@ problems:
   - id: w1-charge-flow
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'A current of 3.0 A flows through a lamp for 20 s. Calculate the charge that flows.'
     answer_label: 'Charge that flows'
     check:
@@ -35,7 +35,7 @@ problems:
   - id: w2-current-from-charge
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'A charge of 120 C passes a point in a circuit in 40 s. Calculate the current.'
     answer_label: 'Current in the circuit'
     check:
@@ -53,7 +53,7 @@ problems:
   - id: w3-potential-difference
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'A current of 0.50 A flows through a 12 Ω resistor. Calculate the potential difference across the resistor.'
     answer_label: 'Potential difference across the resistor'
     check:
@@ -71,7 +71,7 @@ problems:
   - id: w4-resistance-from-pd
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'The potential difference across a resistor is 9.0 V and the current through it is 0.30 A. Calculate the resistance.'
     answer_label: 'Resistance of the resistor'
     check:
@@ -90,7 +90,7 @@ problems:
   - id: g1-current
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'A charge of 90 C flows through a lamp in 30 s. Calculate the current.'
     answer_label: 'Current through the lamp'
     check:
@@ -108,7 +108,7 @@ problems:
   - id: g2-charge-minutes
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'A current of 0.40 A flows through a heater for 5.0 minutes. Calculate the charge that flows.'
     answer_label: 'Charge that flows'
     check:
@@ -126,7 +126,7 @@ problems:
   - id: g3-current-from-pd
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'The potential difference across a 15 Ω resistor is 6.0 V. Calculate the current through it.'
     answer_label: 'Current through the resistor'
     check:
@@ -144,7 +144,7 @@ problems:
   - id: g4-potential-difference
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'A current of 0.20 A flows through a 60 Ω resistor. Calculate the potential difference across it.'
     answer_label: 'Potential difference across the resistor'
     check:
@@ -162,7 +162,7 @@ problems:
   - id: g5-resistance-thermistor
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'The potential difference across a thermistor is 9.0 V and the current through it is 0.050 A. Calculate its resistance.'
     answer_label: 'Resistance of the thermistor'
     check:
@@ -181,7 +181,7 @@ problems:
   - id: w5-series-resistance
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A 4.0 Ω resistor and a 6.0 Ω resistor are connected in series. Calculate the total resistance.'
     answer_label: 'Total resistance of the series pair'
     check:
@@ -199,7 +199,7 @@ problems:
   - id: w6-series-current
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A 4.0 Ω resistor and a 6.0 Ω resistor in series are connected to a 5.0 V supply. Calculate the current.'
     answer_label: 'Current in the series circuit'
     check:
@@ -217,7 +217,7 @@ problems:
   - id: w7-series-pd-one
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A current of 0.50 A flows through a 4.0 Ω resistor. Calculate the potential difference across it.'
     answer_label: 'Potential difference across the 4.0 Ω resistor'
     check:
@@ -235,7 +235,7 @@ problems:
   - id: w8-series-pd-two
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A current of 0.50 A flows through a 6.0 Ω resistor. Calculate the potential difference across it.'
     answer_label: 'Potential difference across the 6.0 Ω resistor'
     check:
@@ -253,7 +253,7 @@ problems:
   - id: w9-parallel-branch-one
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A 10 Ω resistor is connected across a 5.0 V supply. Calculate the current through it.'
     answer_label: 'Current through the 10 Ω resistor'
     check:
@@ -271,7 +271,7 @@ problems:
   - id: w10-parallel-branch-two
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A 20 Ω resistor is connected across a 5.0 V supply. Calculate the current through it.'
     answer_label: 'Current through the 20 Ω resistor'
     check:
@@ -289,7 +289,7 @@ problems:
   - id: w11-parallel-total
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'Branch currents of 0.50 A and 0.25 A join at the supply. Calculate the total current.'
     answer_label: 'Total current from the supply'
     check:
@@ -308,7 +308,7 @@ problems:
   - id: g6-series-three-five
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A 3.0 Ω resistor and a 5.0 Ω resistor are connected in series to a 4.0 V supply. Calculate the current.'
     answer_label: 'Current in the series circuit'
     check:
@@ -327,7 +327,7 @@ problems:
   - id: g7-series-three-pd
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A current of 0.50 A flows through a 3.0 Ω resistor. Calculate the potential difference across it.'
     answer_label: 'Potential difference across the 3.0 Ω resistor'
     check:
@@ -345,7 +345,7 @@ problems:
   - id: g8-series-two-four
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A 2.0 Ω resistor and a 4.0 Ω resistor are connected in series to a 6.0 V battery. Calculate the current.'
     answer_label: 'Current in the circuit'
     check:
@@ -364,7 +364,7 @@ problems:
   - id: g9-series-two-pd
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A current of 1.0 A flows through a 2.0 Ω resistor. Calculate the potential difference across it.'
     answer_label: 'Potential difference across the 2.0 Ω resistor'
     check:
@@ -382,7 +382,7 @@ problems:
   - id: g10-parallel-eight
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'An 8.0 Ω resistor is connected across a 6.0 V supply. Calculate the current through it.'
     answer_label: 'Current through the 8.0 Ω resistor'
     check:
@@ -400,7 +400,7 @@ problems:
   - id: g11-parallel-twenty-four
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A 24 Ω resistor is connected across a 6.0 V supply. Calculate the current through it.'
     answer_label: 'Current through the 24 Ω resistor'
     check:
@@ -418,7 +418,7 @@ problems:
   - id: g12-parallel-total
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'Branch currents of 0.75 A and 0.25 A join at the supply. Calculate the total current.'
     answer_label: 'Total current from the supply'
     check:
@@ -436,7 +436,7 @@ problems:
   - id: g13-lamp-current
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A 1150 Ω lamp is connected across a 230 V supply. Calculate the current through it.'
     answer_label: 'Current through the lamp'
     check:
@@ -454,7 +454,7 @@ problems:
   - id: g14-series-unknown
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'A 9.0 V supply is connected in series with a 12 Ω resistor and an unknown resistor. The potential difference across the 12 Ω resistor is 3.0 V. Calculate the current.'
     answer_label: 'Current in the circuit'
     check:
@@ -472,7 +472,7 @@ problems:
   - id: g15-series-unknown-resistance
     section: '6.2'
     tier: F
-    dfe: [EL2]
+    refs: [EL2]
     statement: 'The unknown resistor in the same circuit carries 0.25 A and has 6.0 V across it. Calculate its resistance.'
     answer_label: 'Resistance of the unknown resistor'
     check:
@@ -491,7 +491,7 @@ problems:
   - id: w12-charge-minutes
     section: '6.3'
     tier: F
-    dfe: [EL3]
+    refs: [EL3]
     statement: 'A mains appliance takes a current of 5.0 A for 2.0 minutes. Calculate the charge that flows through it.'
     answer_label: 'Charge that flows'
     check:
@@ -509,7 +509,7 @@ problems:
   - id: g16-charge-kettle
     section: '6.3'
     tier: F
-    dfe: [EL3]
+    refs: [EL3]
     statement: 'A mains kettle takes a current of 8.0 A for 1.5 minutes. Calculate the charge that flows through it.'
     answer_label: 'Charge that flows through the kettle'
     check:
@@ -527,7 +527,7 @@ problems:
   - id: w13-power-vi
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A heater on the 230 V supply takes a current of 5.0 A. Calculate its power.'
     answer_label: 'Power of the heater'
     check:
@@ -545,7 +545,7 @@ problems:
   - id: w14-power-i2r
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A current of 2.0 A flows through a 15 Ω resistor. Calculate the power transferred to it.'
     answer_label: 'Power transferred to the resistor'
     check:
@@ -563,7 +563,7 @@ problems:
   - id: w15-energy-pt
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A 1150 W heater is switched on for 30 minutes. Calculate the energy it transfers.'
     answer_label: 'Energy transferred by the heater'
     check:
@@ -581,7 +581,7 @@ problems:
   - id: w16-energy-qv
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A charge of 9000 C flows through a heater at 230 V. Calculate the energy transferred.'
     answer_label: 'Energy transferred to the heater'
     check:
@@ -600,7 +600,7 @@ problems:
   - id: g17-power-lamp
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A lamp on the 230 V supply takes a current of 0.20 A. Calculate its power.'
     answer_label: 'Power of the lamp'
     check:
@@ -618,7 +618,7 @@ problems:
   - id: g18-power-resistor
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A current of 3.0 A flows through an 8.0 Ω resistor. Calculate the power transferred to it.'
     answer_label: 'Power transferred to the resistor'
     check:
@@ -636,7 +636,7 @@ problems:
   - id: g19-energy-lamp
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A 46 W lamp is switched on for 200 s. Calculate the energy it transfers.'
     answer_label: 'Energy transferred by the lamp'
     check:
@@ -654,7 +654,7 @@ problems:
   - id: g20-energy-qv
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A charge of 40 C flows through an appliance at 230 V. Calculate the energy transferred.'
     answer_label: 'Energy transferred to the appliance'
     check:
@@ -672,7 +672,7 @@ problems:
   - id: g21-current-from-power
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'A 460 W appliance is connected to the 230 V supply. Calculate the current through it.'
     answer_label: 'Current through the appliance'
     check:
@@ -690,7 +690,7 @@ problems:
   - id: g22-power-and-energy
     section: '6.4'
     tier: F
-    dfe: [EL4]
+    refs: [EL4]
     statement: 'An appliance on the 230 V supply takes a current of 0.60 A for 5.0 minutes. Calculate the power and the energy transferred.'
     answer_label: 'Power and energy transferred'
     check:
@@ -714,7 +714,7 @@ problems:
   - id: w17-spark-current
     section: '6.5'
     tier: F
-    dfe: [EL5]
+    refs: [EL5]
     statement: 'A spark transfers a charge of 3.0 μC in a time of 1.5 μs. Calculate the average current.'
     answer_label: 'Average current of the spark'
     check:
@@ -732,7 +732,7 @@ problems:
   - id: g23-spark-current
     section: '6.5'
     tier: F
-    dfe: [EL5]
+    refs: [EL5]
     statement: 'A spark transfers a charge of 5.0 μC in a time of 2.0 μs. Calculate the average current.'
     answer_label: 'Average current of the spark'
     check:

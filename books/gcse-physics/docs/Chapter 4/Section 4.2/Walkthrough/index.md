@@ -5,7 +5,7 @@ chapter_title: Waves in matter
 section: '4.2'
 section_title: Sound waves and waves for detection and exploration
 tier: H
-dfe:
+refs:
 - WA1
 kind: walkthrough
 ---

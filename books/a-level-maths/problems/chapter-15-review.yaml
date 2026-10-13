@@ -11,7 +11,7 @@ symbols:
 problems:
   - id: q1-unit-conversion
     section: "15.1"
-    dfe: [P1]
+    refs: [P1]
     statement: 'Convert $108$ km/h to m/s.'
     answer_label: 'The speed in m/s'
     check:
@@ -22,7 +22,7 @@ problems:
 
   - id: q2-force-and-acceleration
     section: "15.1"
-    dfe: [P1]
+    refs: [P1]
     statement: 'A force of $12$ N acts on a mass of $4$ kg. Find the acceleration.'
     answer_label: 'The acceleration'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: q3-distance-and-displacement
     section: "15.2"
-    dfe: [Q1]
+    refs: [Q1]
     statement: 'A walker walks $700$ m east, then turns and walks $200$ m west. Taking east as positive, find the distance travelled and the displacement.'
     answer_label: 'The distance and the displacement'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: q4-average-speed-and-velocity
     section: "15.2"
-    dfe: [Q1]
+    refs: [Q1]
     statement: 'A boat moves $300$ m due north in $25$ s, then $100$ m due south in $15$ s. Find its average speed and its average velocity over the whole journey.'
     answer_label: 'The average speed and the average velocity'
     check:
@@ -57,7 +57,7 @@ problems:
 
   - id: q5-graph-gradient-and-area
     section: "15.3"
-    dfe: [Q2]
+    refs: [Q2]
     statement: 'A velocity–time graph is a straight line from $(0, 6)$ to $(4, 18)$, with $v$ in m/s. Find the acceleration and the displacement.'
     answer_label: 'The acceleration and the displacement'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: q6-graph-crossing-the-axis
     section: "15.3"
-    dfe: [Q2]
+    refs: [Q2]
     statement: 'A velocity–time graph is a straight line from $(0, 10)$ to $(5, -10)$, with $v$ in m/s. Find the displacement and the distance travelled.'
     answer_label: 'The displacement and the distance'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: q7-suvat-two-step
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A particle moves at $8$ m/s and accelerates at $3$ m/s$^2$ for $6$ s. Find its final velocity and its displacement.'
     answer_label: 'The final velocity and the displacement'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: q8-braking-distance
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A car travelling at $20$ m/s brakes at $4$ m/s$^2$ until it stops. Find the stopping distance.'
     answer_label: 'The stopping distance'
     check:
@@ -105,7 +105,7 @@ problems:
 
   - id: q9-vertical-motion
     section: "15.4"
-    dfe: [Q3]
+    refs: [Q3]
     statement: 'A ball is thrown vertically upwards at $24.5$ m/s. Find the time to its greatest height and the greatest height. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The time and the greatest height'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: q10-calculus-differentiation
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'The displacement of a particle is $s = t^3 - 6t^2 + 9t$ metres. Find its velocity and its acceleration.'
     answer_label: 'The velocity and the acceleration'
     check:
@@ -129,7 +129,7 @@ problems:
 
   - id: q11-calculus-integration
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'A particle has acceleration $a = 12$ m/s$^2$. Its velocity is $5$ m/s and its displacement is $0$ m when $t = 0$. Find its velocity and its displacement as functions of time.'
     answer_label: 'The velocity and the displacement'
     check:
@@ -142,7 +142,7 @@ problems:
 
   - id: q12-distance-with-a-turn
     section: "15.5"
-    dfe: [Q4]
+    refs: [Q4]
     statement: 'The displacement of a particle is $s = 8t - t^2$ metres for $0 \le t \le 8$. Find the displacement and the distance travelled over the whole interval.'
     answer_label: 'The displacement and the distance'
     check:
@@ -154,7 +154,7 @@ problems:
 
   - id: q13-resolve-a-velocity
     section: "15.6"
-    dfe: [Q5, J5]
+    refs: [Q5, J5]
     statement: 'A particle is projected at $30$ m/s at $60^\circ$ to the horizontal. Find the horizontal and vertical components of its initial velocity.'
     answer_label: 'The two components'
     check:
@@ -166,7 +166,7 @@ problems:
 
   - id: q14-projectile-quantities
     section: "15.6"
-    dfe: [Q5]
+    refs: [Q5]
     statement: 'A ball is projected at $30$ m/s at $30^\circ$ from level ground. Find its time of flight, its greatest height and its range. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The time, the greatest height and the range'
     check:
@@ -179,7 +179,7 @@ problems:
 
   - id: q15-projectile-at-a-wall
     section: "15.6"
-    dfe: [Q5, J5]
+    refs: [Q5, J5]
     statement: 'A ball is kicked at $25$ m/s at $60^\circ$ towards a wall $25$ m away. Find the time it takes to reach the wall and its height then. Take $g = 9.8$ m/s$^2$.'
     answer_label: 'The time and the height'
     check:

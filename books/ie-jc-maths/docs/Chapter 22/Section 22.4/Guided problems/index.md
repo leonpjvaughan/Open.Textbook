@@ -15,4 +15,4 @@ kind: guided-problems
 # 22.4 Bar charts, line plots and histograms — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: SP.3
+> Tier: **O** · refs: SP.3

@@ -15,4 +15,4 @@ kind: guided-problems
 # 9.3 Quadratic patterns and their general term — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: AF.1
+> Tier: **O** · refs: AF.1

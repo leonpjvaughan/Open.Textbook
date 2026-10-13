@@ -5,7 +5,7 @@ chapter_title: Sequences
 section: '10.4'
 section_title: The nth term of a quadratic sequence
 tier: H
-dfe:
+refs:
 - A25
 kind: walkthrough
 ---

@@ -15,4 +15,4 @@ kind: problems
 # 14.3 Series and parallel circuits — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 3.3
+> Tier: **O** · refs: 3.3

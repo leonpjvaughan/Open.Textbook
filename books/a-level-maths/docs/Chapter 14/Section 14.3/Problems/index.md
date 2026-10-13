@@ -4,7 +4,7 @@ chapter: 14
 chapter_title: Statistical hypothesis testing
 section: '14.3'
 section_title: Normal tests for a mean and the significance level
-dfe:
+refs:
 - O3
 kind: problems
 ---

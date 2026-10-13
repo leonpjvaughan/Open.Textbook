@@ -16,7 +16,7 @@ problems:
   - id: r1-chapter-signal
     section: Review
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'The telescope orbits 540 km above the Earth. A radio signal travels at $3.0 \times 10^{8}\,\text{m/s}$. Calculate the time for a signal from the telescope to reach the ground.'
     answer_label: 'Time for the telescope signal to reach the ground'
     check:
@@ -34,7 +34,7 @@ problems:
   - id: r2-chapter-orbit
     section: Review
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'Explain what keeps the telescope in a circular orbit around the Earth, and describe the direction of the force.'
     answer_label: 'What keeps the telescope in orbit'
     check:
@@ -55,7 +55,7 @@ problems:
   - id: r3-chapter-sun
     section: Review
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'The telescope photographs new stars forming. Explain why a star such as the Sun stays the same size for billions of years.'
     answer_label: 'Why a star stays the same size'
     check:
@@ -76,7 +76,7 @@ problems:
   - id: r4-chapter-redshift
     section: Review
     tier: F
-    dfe: [SP2]
+    refs: [SP2]
     statement: 'The telescope photographs distant galaxies. Explain what is meant by the red-shift of the light from a galaxy, and what it shows.'
     answer_label: 'Red-shift and what it shows'
     check:
@@ -97,7 +97,7 @@ problems:
   - id: r5-chapter-big-bang
     section: Review
     tier: F
-    dfe: [SP2]
+    refs: [SP2]
     statement: 'State what the Big Bang model says about the start of the universe, and explain how red-shift supports it.'
     answer_label: 'The Big Bang model and the evidence'
     check:
@@ -118,7 +118,7 @@ problems:
   - id: r6-chapter-galaxy-time
     section: Review
     tier: F
-    dfe: [SP2]
+    refs: [SP2]
     statement: 'One of the galaxies photographed by the telescope is $2.4 \times 10^{25}\,\text{m}$ from the Earth. Say which equation you will use, then calculate how long the light has taken to reach the Earth. Give your answer in seconds to 2 significant figures.'
     answer_label: 'Time for the light from the distant galaxy'
     check:
@@ -137,7 +137,7 @@ problems:
   - id: r7-chapter-solar-system
     section: Review
     tier: F
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'State the main features of our solar system, and say where the solar system sits in the universe.'
     answer_label: 'The main features of the solar system'
     check:
@@ -164,7 +164,7 @@ problems:
   - id: r8-ht-velocity
     section: Review
     tier: H
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'The telescope moves at a constant speed in its orbit, but its velocity changes. Explain how this is possible.'
     answer_label: 'How the velocity changes while the speed stays the same'
     check:
@@ -185,7 +185,7 @@ problems:
   - id: r9-ht-radius
     section: Review
     tier: H
-    dfe: [SP1]
+    refs: [SP1]
     statement: 'A small force from a thruster changes the speed of a satellite in a stable circular orbit. Explain why the radius of the orbit must change.'
     answer_label: 'Why the radius of a stable orbit must change'
     check:
@@ -206,7 +206,7 @@ problems:
   - id: r10-interleave-speed
     section: Review
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A space probe travels $1.2 \times 10^{8}\,\text{m}$ in $4.0 \times 10^{2}\,\text{s}$. Say which equation you will use, then calculate its average speed. Give your answer to 2 significant figures.'
     answer_label: 'Average speed of the space probe'
     check:
@@ -224,7 +224,7 @@ problems:
   - id: r11-interleave-wave
     section: Review
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A radio signal from a satellite has a frequency of $6.0 \times 10^{14}\,\text{Hz}$ and a wavelength of $5.0 \times 10^{-7}\,\text{m}$. Calculate the speed of the signal. Give your answer to 2 significant figures.'
     answer_label: 'Speed of the radio signal'
     check:
@@ -242,7 +242,7 @@ problems:
   - id: r12-interleave-kinetic
     section: Review
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A satellite of mass 1500 kg orbits at a speed of 20 m/s at one point in a transfer orbit. Calculate the energy in its kinetic store. Give your answer to 2 significant figures.'
     answer_label: 'Energy in the kinetic store of the satellite'
     check:
@@ -260,7 +260,7 @@ problems:
   - id: r13-interleave-weight
     section: Review
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'An astronaut has a mass of 70 kg. The gravitational field strength on the Moon is 1.6 N/kg. Calculate the weight of the astronaut on the Moon. Give your answer to 2 significant figures.'
     answer_label: 'Weight of the astronaut on the Moon'
     check:
@@ -278,7 +278,7 @@ problems:
   - id: r14-interleave-fusion
     section: Review
     tier: F
-    dfe: [AT4]
+    refs: [AT4]
     statement: 'Fusion happens in the core of a star such as the Sun. Describe the process of nuclear fusion and explain why it releases energy.'
     answer_label: 'Fusion in a star'
     check:
@@ -299,7 +299,7 @@ problems:
   - id: r15-method-choice
     section: Review
     tier: F
-    dfe: [SP1, SP2]
+    refs: [SP1, SP2]
     statement: 'A television programme makes two claims: that a satellite stays in orbit because the Earth pulls on it, and that the universe is expanding because distant galaxies are red-shifted. Say which idea supports each claim, and explain each one in one sentence.'
     answer_label: 'The idea behind each claim'
     check:

@@ -5,7 +5,7 @@ chapter_title: Properties, constructions, loci and bearings
 section: "17.2"
 section_title: Plans and elevations
 tier: F
-dfe: [G13]
+refs: [G13]
 kind: walkthrough
 ---
 

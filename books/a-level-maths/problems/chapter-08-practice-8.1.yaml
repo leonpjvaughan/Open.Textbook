@@ -11,7 +11,7 @@ symbols:
 problems:
   - id: s1-power
     section: "8.1"
-    dfe: [H2]
+    refs: [H2]
     statement: 'Find $\displaystyle\int x^5\,dx$.'
     answer_label: 'The integral'
     check:
@@ -24,7 +24,7 @@ problems:
 
   - id: s2-constant-multiple
     section: "8.1"
-    dfe: [H2]
+    refs: [H2]
     statement: 'Find $\displaystyle\int 3x^2\,dx$.'
     answer_label: 'The integral'
     check:
@@ -37,7 +37,7 @@ problems:
 
   - id: s3-sum-difference
     section: "8.1"
-    dfe: [H2]
+    refs: [H2]
     statement: 'Find $\displaystyle\int \left(4x^3 - 2x\right)dx$.'
     answer_label: 'The integral'
     check:
@@ -50,7 +50,7 @@ problems:
 
   - id: s4-negative-power
     section: "8.1"
-    dfe: [H2]
+    refs: [H2]
     statement: 'Find $\displaystyle\int \frac{1}{x^2}\,dx$.'
     answer_label: 'The integral'
     check:
@@ -63,7 +63,7 @@ problems:
 
   - id: s5-surd-power
     section: "8.1"
-    dfe: [H2]
+    refs: [H2]
     statement: 'Find $\displaystyle\int \sqrt{x}\,dx$.'
     answer_label: 'The integral'
     check:
@@ -76,7 +76,7 @@ problems:
 
   - id: s6-reciprocal
     section: "8.1"
-    dfe: [H2]
+    refs: [H2]
     statement: 'Find $\displaystyle\int \frac{1}{x}\,dx$ for $x > 0$.'
     answer_label: 'The integral'
     check:
@@ -89,7 +89,7 @@ problems:
 
   - id: s7-exponential
     section: "8.1"
-    dfe: [H2]
+    refs: [H2]
     statement: 'Find $\displaystyle\int e^{3x}\,dx$.'
     answer_label: 'The integral'
     check:
@@ -102,7 +102,7 @@ problems:
 
   - id: s8-sine
     section: "8.1"
-    dfe: [H2]
+    refs: [H2]
     statement: 'Find $\displaystyle\int \sin 2x\,dx$.'
     answer_label: 'The integral'
     check:
@@ -115,7 +115,7 @@ problems:
 
   - id: s9-cosine
     section: "8.1"
-    dfe: [H2]
+    refs: [H2]
     statement: 'Find $\displaystyle\int \cos 4x\,dx$.'
     answer_label: 'The integral'
     check:
@@ -128,7 +128,7 @@ problems:
 
   - id: s10-mixed-sum
     section: "8.1"
-    dfe: [H2]
+    refs: [H2]
     statement: 'Find $\displaystyle\int \left(e^{2x} + \sin x\right)dx$.'
     answer_label: 'The integral'
     check:
@@ -141,7 +141,7 @@ problems:
 
   - id: s11-constant-from-point
     section: "8.1"
-    dfe: [H1, H2]
+    refs: [H1, H2]
     statement: 'The gradient of a curve is $\dfrac{dy}{dx} = 3x^2$, and the curve passes through $(1, 5)$. Find the equation of the curve.'
     answer_label: 'The equation of the curve'
     check:
@@ -153,7 +153,7 @@ problems:
 
   - id: s12-definite-ftc
     section: "8.1"
-    dfe: [H1]
+    refs: [H1]
     statement: 'Use the Fundamental Theorem of Calculus to evaluate $\displaystyle\int_0^2 3x^2\,dx$.'
     answer_label: 'The value of the integral'
     check:

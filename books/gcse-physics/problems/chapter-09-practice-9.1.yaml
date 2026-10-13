@@ -12,7 +12,7 @@ problems:
   - id: p1-atom-particles
     section: '9.1'
     tier: F
-    dfe: [AT1]
+    refs: [AT1]
     statement: 'State the relative electric charge of a proton, a neutron and an electron, and say where the protons and neutrons are found in an atom.'
     answer_label: 'The three particles and their charges'
     check:
@@ -36,7 +36,7 @@ problems:
   - id: p2-mass-number
     section: '9.1'
     tier: F
-    dfe: [AT1]
+    refs: [AT1]
     statement: 'An atom has 15 protons and 16 neutrons. State its mass number and the number of electrons in the neutral atom.'
     answer_label: 'Mass number and electrons'
     check: {kind: evaluate, expression: '15 + 16', answer: '31'}
@@ -45,7 +45,7 @@ problems:
   - id: p3-iron-notation
     section: '9.1'
     tier: F
-    dfe: [AT1]
+    refs: [AT1]
     statement: 'An atom of iron is written $^{56}_{26}\text{Fe}$. State the number of protons, the number of neutrons and the number of electrons.'
     answer_label: 'Protons, neutrons and electrons in iron-56'
     check:
@@ -57,7 +57,7 @@ problems:
   - id: p4-isotope-definition
     section: '9.1'
     tier: F
-    dfe: [AT1]
+    refs: [AT1]
     statement: 'Define the term isotope.'
     answer_label: 'Definition of an isotope'
     check:
@@ -75,7 +75,7 @@ problems:
   - id: p5-carbon-isotopes
     section: '9.1'
     tier: F
-    dfe: [AT1]
+    refs: [AT1]
     statement: 'Carbon-12 and carbon-14 are both atoms of carbon. Explain why they are isotopes of the same element.'
     answer_label: 'Why carbon-12 and carbon-14 are isotopes'
     check:
@@ -93,7 +93,7 @@ problems:
   - id: p6-rutherford
     section: '9.1'
     tier: F
-    dfe: [AT1]
+    refs: [AT1]
     statement: 'Describe what the alpha particle scattering experiment showed about the mass and the charge of an atom.'
     answer_label: 'What the scattering experiment showed'
     check:
@@ -111,7 +111,7 @@ problems:
   - id: p7-plum-pudding
     section: '9.1'
     tier: F
-    dfe: [AT1]
+    refs: [AT1]
     statement: 'Describe the difference between the plum pudding model and the nuclear model of the atom.'
     answer_label: 'Plum pudding compared with the nuclear model'
     check:
@@ -129,7 +129,7 @@ problems:
   - id: p8-ion
     section: '9.1'
     tier: F
-    dfe: [AT1]
+    refs: [AT1]
     statement: 'An atom of magnesium loses two outer electrons. State the charge on the ion that is formed, and explain your answer.'
     answer_label: 'The charge on the ion'
     check:
@@ -147,7 +147,7 @@ problems:
   - id: p9-nucleus-size
     section: '9.1'
     tier: F
-    dfe: [AT1]
+    refs: [AT1]
     statement: 'The radius of an atom is about $1 \times 10^{-10}\,\text{m}$. The radius of its nucleus is about $1 \times 10^{-14}\,\text{m}$. Work out how many times smaller the nucleus is than the atom.'
     answer_label: 'How many times smaller the nucleus is'
     check: {kind: evaluate, expression: '1e-10 / 1e-14', answer: '1e4'}
@@ -156,7 +156,7 @@ problems:
   - id: p10-energy-levels
     section: '9.1'
     tier: F
-    dfe: [AT1]
+    refs: [AT1]
     statement: 'Describe what happens to an electron when an atom absorbs electromagnetic radiation, and what happens when the atom emits electromagnetic radiation.'
     answer_label: 'Absorption and emission of radiation'
     check:
@@ -174,7 +174,7 @@ problems:
   - id: p11-chapter-isotope
     section: '9.1'
     tier: F
-    dfe: [AT1]
+    refs: [AT1]
     statement: 'In the chapter problem the tracer isotope has 43 protons and 56 neutrons. State its atomic number, its mass number and the number of electrons in a neutral atom.'
     answer_label: 'Atomic number, mass number and electrons of the tracer'
     check: {kind: evaluate, expression: '43 + 56', answer: '99'}
@@ -183,7 +183,7 @@ problems:
   - id: p12-method
     section: '9.1'
     tier: F
-    dfe: [AT1]
+    refs: [AT1]
     statement: 'A pupil says that the mass number of an atom is the number of neutrons in it. Explain what is wrong with this statement, and give the correct definition.'
     answer_label: 'Correcting the definition of mass number'
     check:

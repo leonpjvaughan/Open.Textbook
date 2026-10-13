@@ -15,4 +15,4 @@ kind: guided-problems
 # 5.1 The imaginary unit and complex numbers — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: 4.4
+> Tier: **O** · refs: 4.4

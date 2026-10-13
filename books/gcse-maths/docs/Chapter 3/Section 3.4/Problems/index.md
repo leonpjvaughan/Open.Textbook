@@ -5,7 +5,7 @@ chapter_title: Powers, roots and indices
 section: '3.4'
 section_title: Negative and fractional indices
 tier: H
-dfe: [N7]
+refs: [N7]
 kind: problems
 ---
 

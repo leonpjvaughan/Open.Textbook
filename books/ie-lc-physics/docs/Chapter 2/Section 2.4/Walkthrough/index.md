@@ -16,4 +16,4 @@ kind: walkthrough
 # 2.4 Motion under gravity — Learn
 
 > **Stub.** Teaching narrative and fully worked examples. At least one Tier-1 or Tier-2 interactive figure where a parameter is worth manipulating. State prerequisites and learning objectives at the top.
-> Tier: **O** · DfE refs: 1.1, 1.5
+> Tier: **O** · refs: 1.1, 1.5

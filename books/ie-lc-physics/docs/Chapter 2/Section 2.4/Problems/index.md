@@ -16,4 +16,4 @@ kind: problems
 # 2.4 Motion under gravity — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 1.1, 1.5
+> Tier: **O** · refs: 1.1, 1.5

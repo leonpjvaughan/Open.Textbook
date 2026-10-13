@@ -17,7 +17,7 @@ problems:
   # --- Section 2.1, the Learn worked examples and the guided problems ---------
   - id: w1-classify
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Classify each quantity as a scalar or a vector: distance, displacement, speed, velocity, mass, force.'
     answer_label: 'Scalars and vectors'
     check:
@@ -35,7 +35,7 @@ problems:
 
   - id: w2-displacement-line
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A walker walks 3.0 km east, then 1.5 km west. Find the resultant displacement.'
     answer_label: 'The resultant displacement'
     check:
@@ -50,7 +50,7 @@ problems:
   - id: w3-velocity-dt
     plays: velocity
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A cyclist travels 500 m east in 20 s. Find the average velocity.'
     answer_label: 'The average velocity'
     check:
@@ -64,7 +64,7 @@ problems:
 
   - id: w4-boat-collinear
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A boat has a speed through the water of 6.0 m/s east. The current is 2.0 m/s east. Find its velocity over the ground when it travels with the current and against it.'
     answer_label: 'The velocity with and against the current'
     check:
@@ -76,7 +76,7 @@ problems:
 
   - id: w5-scalar-multiple
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A force of 20 N acts east. Find the force 3 times larger in the same direction.'
     answer_label: 'The scaled force'
     check: {kind: evaluate, expression: "3 * 20", answer: "60"}
@@ -84,7 +84,7 @@ problems:
 
   - id: g1-classify-guided
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Classify each quantity as a scalar or a vector: energy, acceleration, temperature, weight.'
     answer_label: 'Scalars and vectors'
     check:
@@ -102,7 +102,7 @@ problems:
 
   - id: g2-hiker-line
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A hiker walks 4.0 km north, then 2.5 km south. Find the resultant displacement.'
     answer_label: 'The resultant displacement'
     check: {kind: evaluate, expression: "4.0 - 2.5", answer: "1.5"}
@@ -110,7 +110,7 @@ problems:
 
   - id: g3-speed-velocity
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A car drives at a steady 15 m/s round a bend. Explain why its speed is constant but its velocity is changing.'
     answer_label: 'Speed and velocity on a bend'
     check:
@@ -128,7 +128,7 @@ problems:
 
   - id: g4-cyclist-line
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A cyclist rides 8.0 km east, then 6.0 km west. Find the resultant displacement.'
     answer_label: 'The resultant displacement'
     check: {kind: evaluate, expression: "8.0 - 6.0", answer: "2.0"}
@@ -136,7 +136,7 @@ problems:
 
   - id: g5-current-scalar
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Explain why electric current is a scalar even though it has a direction.'
     answer_label: 'Why current is a scalar'
     check:
@@ -154,7 +154,7 @@ problems:
 
   - id: g6-return
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A dog runs 50 m east, then 50 m west. Find its resultant displacement.'
     answer_label: 'The resultant displacement'
     check: {kind: evaluate, expression: "50 - 50", answer: "0"}
@@ -163,7 +163,7 @@ problems:
   # --- Section 2.2, the Learn worked examples and the guided problems ---------
   - id: w6-resolve-25-30
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Resolve a velocity of 25 m/s at 30 degrees above the horizontal into horizontal and vertical components.'
     answer_label: 'The two components'
     check:
@@ -176,7 +176,7 @@ problems:
 
   - id: w7-resolve-200-120
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A force of 200 N acts at 120 degrees from the positive x-axis. Find its components.'
     answer_label: 'The two components'
     check:
@@ -189,7 +189,7 @@ problems:
 
   - id: w8-resultant-6-8
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Two forces of 6.0 N and 8.0 N act at right angles. Find the magnitude and direction of the resultant.'
     answer_label: 'The resultant force'
     check:
@@ -202,7 +202,7 @@ problems:
 
   - id: w9-slope-500
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A block of weight 500 N rests on a slope at 25 degrees to the horizontal. Resolve the weight along and perpendicular to the slope.'
     answer_label: 'The two components of the weight'
     check:
@@ -215,7 +215,7 @@ problems:
 
   - id: w10-components-120-50
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A displacement has components 120 m east and 50 m north. Find its magnitude and direction.'
     answer_label: 'The magnitude and direction'
     check:
@@ -228,7 +228,7 @@ problems:
 
   - id: w11-scale-drawing
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Describe how to add two vectors at 40 degrees by a scale drawing.'
     answer_label: 'The scale-drawing method'
     check:
@@ -249,7 +249,7 @@ problems:
 
   - id: g7-resolve-60-40
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Resolve a force of 60 N at 40 degrees to the horizontal.'
     answer_label: 'The two components'
     check:
@@ -262,7 +262,7 @@ problems:
 
   - id: g8-components-minus-3-4
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A vector has components -3.0 and +4.0. Find its magnitude and direction.'
     answer_label: 'The magnitude and direction'
     check:
@@ -275,7 +275,7 @@ problems:
 
   - id: g9-resultant-7-24
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Two forces of 7.0 N and 24 N act at right angles. Find the resultant.'
     answer_label: 'The resultant force'
     check:
@@ -288,7 +288,7 @@ problems:
 
   - id: g10-slope-800
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A weight of 800 N acts on a slope at 20 degrees to the horizontal. Resolve it along and perpendicular to the slope.'
     answer_label: 'The two components of the weight'
     check:
@@ -301,7 +301,7 @@ problems:
 
   - id: g11-resolve-15-35
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Resolve a velocity of 15 m/s at 35 degrees above the horizontal.'
     answer_label: 'The two components'
     check:
@@ -314,7 +314,7 @@ problems:
 
   - id: g12-scale-method
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'State why Pythagoras cannot be used alone to add two vectors at 55 degrees, and name a method that works.'
     answer_label: 'Why Pythagoras fails, and what to use'
     check:
@@ -333,42 +333,42 @@ problems:
   # --- The warm-up recalls ----------------------------------------------------
   - id: warmup-2-1-speed
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Warm-up: write 72 km/h in metres per second.'
     check: {kind: convert, value: "72", from: "km h^-1", to: "m s^-1", answer: "20"}
     answer_text: '$72\,\text{km}\,\text{h}^{-1} = 20\,\text{m}\,\text{s}^{-1}$.'
 
   - id: warmup-2-1-standard-form
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Warm-up: write 0.00045 m in standard form to two significant figures.'
     check: {kind: sigfigs, value: "0.00045", figures: 2, answer: "4.5e-4", convention: round-once}
     answer_text: '$4.5 \times 10^{-4}\,\text{m}$.'
 
   - id: warmup-2-1-pythagoras
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Warm-up: a right-angled triangle has shorter sides 3 and 4. Find the hypotenuse.'
     check: {kind: evaluate, expression: "sqrt(3**2 + 4**2)", answer: "5"}
     answer_text: 'The hypotenuse is $\sqrt{3^2 + 4^2} = \sqrt{25} = 5$.'
 
   - id: warmup-2-2-pythagoras
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Warm-up: a right-angled triangle has shorter sides 5 and 12. Find the hypotenuse.'
     check: {kind: evaluate, expression: "sqrt(5**2 + 12**2)", answer: "13"}
     answer_text: 'The hypotenuse is $\sqrt{5^2 + 12^2} = \sqrt{169} = 13$.'
 
   - id: warmup-2-2-cos60
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Warm-up: work out $50\cos 60^\circ$.'
     check: {kind: evaluate, expression: "50 * cos(60 * pi / 180)", answer: "25"}
     answer_text: '$50\cos 60^\circ = 50 \times 0.5 = 25$.'
 
   - id: warmup-2-2-sin60
     section: '2.2'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Warm-up: work out $50\sin 60^\circ$ to three significant figures.'
     check: {kind: approx, value: "50 * sin(60 * pi / 180)", target: "43.3", tolerance: "0.01"}
     answer_text: '$50\sin 60^\circ = 43.3$ to three significant figures.'
@@ -376,7 +376,7 @@ problems:
   # --- The chapter problem, resolved on the Review page -----------------------
   - id: anchor-ferry-velocity
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'The ferry points straight across at 4.0 m/s and the current is 3.0 m/s. Find the velocity over the ground, as a magnitude and a direction.'
     check:
       kind: resolve
@@ -389,7 +389,7 @@ problems:
   - id: anchor-ferry-time
     plays: velocity
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'The river is 120 m wide and the across component of the velocity is 4.0 m/s. Find the crossing time.'
     check:
       kind: dimensions
@@ -403,7 +403,7 @@ problems:
   - id: anchor-ferry-downstream
     plays: velocity
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'The current is 3.0 m/s and the crossing takes 30 s. Find how far downstream the ferry lands.'
     check:
       kind: dimensions
@@ -416,14 +416,14 @@ problems:
 
   - id: anchor-ferry-heading
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'The ferry must cancel the 3.0 m/s current and land directly opposite. Find the angle upstream from the straight-across direction.'
     check: {kind: approx, value: "asin(3.0 / 4.0) * 180 / pi", target: "48.59", tolerance: "0.01"}
     answer_text: 'The ferry must have an upstream component of 3.0 m/s, so $4.0\sin\theta = 3.0$ and $\theta = \sin^{-1}(0.75) = 48.6^\circ$.'
 
   - id: anchor-ferry-heading-components
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'With the heading at 48.59 degrees upstream, find the across component and the upstream component of the ferry velocity.'
     check:
       kind: resolve
@@ -435,14 +435,14 @@ problems:
 
   - id: anchor-ferry-direct-time
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'With the heading at 48.59 degrees upstream, the across component is 2.646 m/s. Find the crossing time for the 120 m river.'
     check: {kind: approx, value: "120 / (4.0 * cos(asin(3.0 / 4.0)))", target: "45.36", tolerance: "0.01"}
     answer_text: '$t = \dfrac{120}{2.65} = 45\,\text{s}$. The ferry takes longer than the 30 s straight-across crossing, because the across component is smaller when part of the velocity is used to fight the current.'
 
   - id: anchor-ferry-judgement
     section: Review
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'State the heading needed to land directly opposite, how long the crossing then takes, and one reason the ferry operator might choose the shorter crossing instead.'
     answer_label: 'The judgement'
     check:

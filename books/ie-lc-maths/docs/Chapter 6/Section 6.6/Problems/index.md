@@ -15,4 +15,4 @@ kind: problems
 # 6.6 Exponential and logarithmic functions — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 5.1
+> Tier: **O** · refs: 5.1

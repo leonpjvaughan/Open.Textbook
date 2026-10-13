@@ -15,4 +15,4 @@ kind: problems
 # 2.7 Minimum spanning trees: Prim's algorithm — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: S2
+> Tier: **O** · refs: S2

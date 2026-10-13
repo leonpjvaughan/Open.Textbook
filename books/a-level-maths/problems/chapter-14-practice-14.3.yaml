@@ -6,7 +6,7 @@ chapter: 14
 problems:
   - id: p1-bottles-lower
     section: "14.3"
-    dfe: [O3]
+    refs: [O3]
     statement: 'A machine fills bottles with a mean of 330 ml. The standard deviation is known to be 6 ml. A sample of 36 bottles has a mean of 328 ml. Test at the 5% level whether the machine is underfilling the bottles.'
     answer_label: 'The p-value and the decision'
     check:
@@ -24,7 +24,7 @@ problems:
 
   - id: p2-machine-retain
     section: "14.3"
-    dfe: [O3]
+    refs: [O3]
     statement: 'A machine is set to a mean of 60 g. The standard deviation is known to be 12 g. A sample of 36 items has a mean of 62 g. Test at the 5% level whether the mean has changed.'
     answer_label: 'The p-value and the decision'
     check:
@@ -42,7 +42,7 @@ problems:
 
   - id: p3-bottles-two
     section: "14.3"
-    dfe: [O3]
+    refs: [O3]
     statement: 'A bottle is filled with a mean of 20 ml. The standard deviation is known to be 2 ml. A sample of 16 bottles has a mean of 20.8 ml. Test at the 5% level whether the mean has changed.'
     answer_label: 'The p-value and the decision'
     check:
@@ -60,7 +60,7 @@ problems:
 
   - id: p4-bottles-two-large
     section: "14.3"
-    dfe: [O3]
+    refs: [O3]
     statement: 'The same bottle in question 3 is checked with a sample of 64 bottles instead, and the mean is again 20.8 ml. Test at the 5% level whether the mean has changed.'
     answer_label: 'The p-value and the decision'
     check:
@@ -78,7 +78,7 @@ problems:
 
   - id: p5-test-statistic
     section: "14.3"
-    dfe: [O3]
+    refs: [O3]
     statement: 'A claim sets $\mu = 250$ and the standard deviation is known to be 5. A sample of 25 has mean 248. Find the value of the test statistic $z$.'
     answer_label: 'The test statistic'
     check: {kind: evaluate, expression: "(248 - 250) / (5 / sqrt(25))", answer: "-2"}
@@ -86,7 +86,7 @@ problems:
 
   - id: p6-standard-error
     section: "14.3"
-    dfe: [O3]
+    refs: [O3]
     statement: 'A population has standard deviation 10. A sample of size 25 is taken. Find the standard error of the sample mean.'
     answer_label: 'The standard error'
     check: {kind: evaluate, expression: "10 / sqrt(25)", answer: "2"}
@@ -94,7 +94,7 @@ problems:
 
   - id: p7-upper-tail
     section: "14.3"
-    dfe: [O3]
+    refs: [O3]
     statement: 'A claim sets $\mu = 100$. The standard deviation is known to be 10. A sample of 25 has mean 104. Test at the 5% level whether the mean is higher than the claim.'
     answer_label: 'The p-value and the decision'
     check:
@@ -112,7 +112,7 @@ problems:
 
   - id: p8-critical-value-order
     section: "14.3"
-    dfe: [O3]
+    refs: [O3]
     statement: 'State, with a symbol, how the two-tailed 5% critical value $1.96$ compares with the one-tailed 5% critical value $1.645$.'
     answer_label: 'The comparison'
     check: {kind: compare, lhs: "1.96", relation: ">", rhs: "1.645"}
@@ -120,7 +120,7 @@ problems:
 
   - id: p9-p-value-compare
     section: "14.3"
-    dfe: [O3]
+    refs: [O3]
     statement: 'A Normal test gives a p-value of $0.0228$. State, with a symbol, how it compares with the 5% significance level.'
     answer_label: 'The comparison'
     check: {kind: compare, lhs: "0.0228", relation: "<", rhs: "0.05"}
@@ -128,7 +128,7 @@ problems:
 
   - id: p10-p-value-one-percent
     section: "14.3"
-    dfe: [O3]
+    refs: [O3]
     statement: 'The same test gives a p-value of $0.0228$. State, with a symbol, how it compares with the 1% significance level.'
     answer_label: 'The comparison'
     check: {kind: compare, lhs: "0.0228", relation: ">", rhs: "0.01"}
@@ -136,7 +136,7 @@ problems:
 
   - id: p11-standardise
     section: "14.3"
-    dfe: [O3]
+    refs: [O3]
     statement: 'A claim sets $\mu = 100$ and the standard deviation is known to be 15. A sample of 25 has mean 104. Find the test statistic $z$, as an exact fraction.'
     answer_label: 'The test statistic'
     check: {kind: evaluate, expression: "(104 - 100) / (15 / sqrt(25))", answer: "4/3"}
@@ -144,7 +144,7 @@ problems:
 
   - id: p12-two-tailed-double
     section: "14.3"
-    dfe: [O3]
+    refs: [O3]
     statement: 'A Normal test has an upper-tail probability of $0.0038$. Find the two-tailed p-value.'
     answer_label: 'The two-tailed p-value'
     check: {kind: evaluate, expression: "2 * 0.0038", answer: "0.0076"}

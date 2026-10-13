@@ -9,7 +9,7 @@ symbols:
 problems:
   - id: u1-curve-line
     section: "8.3"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the area enclosed between the curve $y = x^2$ and the line $y = x + 2$.'
     answer_label: 'The area'
     check:
@@ -21,7 +21,7 @@ problems:
 
   - id: u2-parabola-line
     section: "8.3"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the area enclosed between the curve $y = x^2$ and the line $y = 4$.'
     answer_label: 'The area'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: u3-parabola-line-origin
     section: "8.3"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the area enclosed between the curve $y = x^2$ and the line $y = 2x$.'
     answer_label: 'The area'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: u4-cubic-line
     section: "8.3"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the area between the curve $y = x^3$ and the line $y = x$, from $x = 0$ to $x = 1$.'
     answer_label: 'The area'
     check:
@@ -57,7 +57,7 @@ problems:
 
   - id: u5-root-line
     section: "8.3"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the area enclosed between the curve $y = \sqrt{x}$ and the line $y = x$.'
     answer_label: 'The area'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: u6-parabola-axis
     section: "8.3"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the area enclosed between the curve $y = x^2 - 4$ and the horizontal axis.'
     answer_label: 'The area'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: u7-downward-parabola-line
     section: "8.3"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the area enclosed between the curve $y = 6 - x^2$ and the line $y = 2$.'
     answer_label: 'The area'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: u8-parabola-tangentish
     section: "8.3"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the area enclosed between the curve $y = x^2$ and the line $y = 4x - 3$.'
     answer_label: 'The area'
     check:
@@ -105,7 +105,7 @@ problems:
 
   - id: u9-parabola-line-crossing
     section: "8.3"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the area enclosed between the curve $y = x^2 - 2x$ and the line $y = x$.'
     answer_label: 'The area'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: u10-cubic-axis-split
     section: "8.3"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the total area enclosed between the curve $y = x^3 - 4x$ and the horizontal axis.'
     answer_label: 'The total area'
     check:
@@ -130,7 +130,7 @@ problems:
 
   - id: u11-line-above-parabola
     section: "8.3"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the area enclosed between the curve $y = 4 - x^2$ and the line $y = x + 2$.'
     answer_label: 'The area'
     check:
@@ -142,7 +142,7 @@ problems:
 
   - id: u12-symmetry
     section: "8.3"
-    dfe: [H3]
+    refs: [H3]
     statement: 'Find the area enclosed between the curve $y = 4 - x^2$ and the line $y = 1$.'
     answer_label: 'The area'
     check:

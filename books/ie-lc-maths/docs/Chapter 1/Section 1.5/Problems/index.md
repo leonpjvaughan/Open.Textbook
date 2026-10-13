@@ -15,4 +15,4 @@ kind: problems
 # 1.5 Indices and the rules of indices — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 3.2
+> Tier: **F** · refs: 3.2

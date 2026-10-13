@@ -12,7 +12,7 @@ problems:
   - id: r1-anchor-weight
     section: Review
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'In the chapter problem the bike and its rider have a mass of 110 kg. Take $g = 9.8\,\text{N/kg}$. Calculate their total weight.'
     answer_label: 'Total weight of bike and rider'
     check:
@@ -30,7 +30,7 @@ problems:
   - id: r2-anchor-spring-k
     section: Review
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'The front suspension spring of the bike compresses by 0.020 m when the front wheel carries a force of 600 N. Calculate the spring constant of the spring.'
     answer_label: 'Spring constant of the front spring'
     check:
@@ -48,7 +48,7 @@ problems:
   - id: r3-anchor-spring-energy
     section: Review
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'The spring constant is $3.0 \times 10^4\,\text{N/m}$ and the spring is compressed by 0.020 m. Calculate the energy stored in the elastic potential store.'
     answer_label: 'Energy stored in the spring'
     check:
@@ -66,7 +66,7 @@ problems:
   - id: r4-anchor-work
     section: Review
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A force of 150 N pushes the bike 8.0 m up the workshop ramp, along the line of the force. Calculate the work done.'
     answer_label: 'Work done pushing the bike up the ramp'
     check:
@@ -84,7 +84,7 @@ problems:
   - id: r5-anchor-pressure
     section: Review
     tier: F
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'The front tyre carries a force of 540 N. The contact patch has an area of 12 cm$^2$. Calculate the pressure in the tyre in pascals.'
     answer_label: 'Pressure in the front tyre'
     check:
@@ -102,7 +102,7 @@ problems:
   - id: r6-anchor-moment
     section: Review
     tier: F
-    dfe: [FO4]
+    refs: [FO4]
     statement: 'A hand pulls the brake lever with a force of 60 N at a perpendicular distance of 0.090 m from the pivot. Calculate the moment of the force about the pivot.'
     answer_label: 'Moment of the hand force'
     check:
@@ -120,7 +120,7 @@ problems:
   - id: r7-anchor-cable-force
     section: Review
     tier: F
-    dfe: [FO4]
+    refs: [FO4]
     statement: 'The brake cable is 0.030 m from the pivot. The moment about the pivot is 5.4 N m. Calculate the force in the cable.'
     answer_label: 'Force in the brake cable'
     check:
@@ -138,7 +138,7 @@ problems:
   - id: r8-kinetic-energy
     section: Review
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'The bike and its rider have a total mass of 110 kg and travel at 6.0 m/s. Calculate the energy in the kinetic store.'
     answer_label: 'Energy in the kinetic store'
     check:
@@ -156,7 +156,7 @@ problems:
   - id: r9-efficiency
     section: Review
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A workshop motor does 1200 J of work, and 900 J of that work is useful. Calculate the efficiency of the motor as a decimal and as a percentage.'
     answer_label: 'Efficiency of the motor'
     check:
@@ -169,7 +169,7 @@ problems:
   - id: r10-resultant
     section: Review
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A cyclist pedals with a forward force of 260 N. Air resistance and friction give a total backward force of 190 N. Calculate the resultant force on the bicycle.'
     answer_label: 'Resultant force on the bicycle'
     check: {kind: evaluate, expression: "260 - 190", answer: "70"}
@@ -178,7 +178,7 @@ problems:
   - id: r11-gpe-lift
     section: Review
     tier: F
-    dfe: [EN1, FO2]
+    refs: [EN1, FO2]
     statement: 'The bike is lifted 0.50 m onto a rack. Its mass is 110 kg. Take $g = 9.8\,\text{N/kg}$. Calculate the work done against gravity, using the gravitational potential energy gained.'
     answer_label: 'Work done lifting the bike'
     check:
@@ -197,7 +197,7 @@ problems:
   - id: r12-method-choice
     section: Review
     tier: F
-    dfe: [FO1, FO3, FO4]
+    refs: [FO1, FO3, FO4]
     statement: 'The chapter problem asks for the pressure in the front tyre and the moment on the brake lever. Say which equation you would use for each part, and name the quantities you need.'
     answer_label: 'Choosing the equation for each part'
     check:
@@ -215,7 +215,7 @@ problems:
   - id: r13-depth-pressure
     section: Review
     tier: H
-    dfe: [FO3]
+    refs: [FO3]
     statement: 'A water tank is 1.2 m deep. The density of water is 1000 kg/m$^3$ and $g = 9.8\,\text{N/kg}$. Calculate the pressure due to the water at the bottom of the tank.'
     answer_label: 'Pressure at the bottom of the tank'
     check:

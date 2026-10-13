@@ -15,4 +15,4 @@ kind: problems
 # 13.7 Dividing a line segment in a given ratio — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 2.2
+> Tier: **H** · refs: 2.2

@@ -5,7 +5,7 @@ chapter_title: Fractions, decimals and percentages
 section: "4.5"
 section_title: Recurring decimals
 tier: H
-dfe: [N10]
+refs: [N10]
 kind: guided-problems
 ---
 # 4.5 Recurring decimals — Practise with help

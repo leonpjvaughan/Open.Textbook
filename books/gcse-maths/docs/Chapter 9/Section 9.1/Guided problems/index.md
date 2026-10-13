@@ -5,7 +5,7 @@ chapter_title: Equations and inequalities
 section: "9.1"
 section_title: Solving linear equations
 tier: F
-dfe: [A17]
+refs: [A17]
 kind: guided-problems
 ---
 

@@ -13,7 +13,7 @@ chapter: 5
 problems:
   - id: p1-capacitance
     section: '5.4'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A capacitor stores a charge of $2.0 \times 10^{-5}\,\text{C}$ at a potential difference of $10\,\text{V}$. Find its capacitance.'
     answer_label: 'The capacitance'
     check:
@@ -27,7 +27,7 @@ problems:
 
   - id: p2-charge
     section: '5.4'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A capacitor of capacitance $100\,\mu\text{F}$ is charged to a potential difference of $12\,\text{V}$. Find the charge stored.'
     answer_label: 'The charge stored'
     check: {kind: evaluate, expression: "100e-6 * 12", answer: "1.2e-3"}
@@ -36,7 +36,7 @@ problems:
   - id: p3-energy
     plays: capacitor-energy
     section: '5.4'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A capacitor of capacitance $50\,\mu\text{F}$ is charged to a potential difference of $100\,\text{V}$. Find the energy stored.'
     answer_label: 'The energy stored'
     check:
@@ -51,7 +51,7 @@ problems:
   - id: p4-time-constant
     plays: time-constant
     section: '5.4'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A capacitor of capacitance $10\,\mu\text{F}$ is discharged through a $10\,\text{k}\Omega$ resistor. Find the time constant.'
     answer_label: 'The time constant'
     check:
@@ -65,7 +65,7 @@ problems:
 
   - id: p5-discharge-pd
     section: '5.4'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A capacitor of capacitance $100\,\mu\text{F}$ is charged to $10\,\text{V}$ and discharged through a $1.0\,\text{k}\Omega$ resistor. Find the potential difference after $0.10\,\text{s}$.'
     answer_label: 'The potential difference'
     check: {kind: approx, value: "10 * exp(-0.10 / (1000 * 100e-6))", target: "3.68", tolerance: "0.01"}
@@ -73,7 +73,7 @@ problems:
 
   - id: p6-parallel-plate
     section: '5.4'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A parallel plate capacitor has plates of area $0.050\,\text{m}^2$ separated by $2.0 \times 10^{-4}\,\text{m}$. The gap is filled with air, which has a relative permittivity of $1.0$. Find the capacitance.'
     answer_label: 'The capacitance'
     check: {kind: approx, value: "8.85e-12 * 1.0 * 0.050 / 2.0e-4", target: "2.21e-9", tolerance: "0.02e-9"}
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-energy-qv
     section: '5.4'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A capacitor holds a charge of $0.50\,\text{C}$ at a potential difference of $100\,\text{V}$. Find the energy stored.'
     answer_label: 'The energy stored'
     check: {kind: evaluate, expression: "0.5 * 0.50 * 100", answer: "25"}
@@ -89,7 +89,7 @@ problems:
 
   - id: p8-half-life
     section: '5.4'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A capacitor discharges with a time constant of $0.050\,\text{s}$. Find the half-life, the time for the charge to fall to half its starting value.'
     answer_label: 'The half-life'
     check: {kind: approx, value: "0.050 * log(2)", target: "0.0347", tolerance: "0.0005"}
@@ -97,7 +97,7 @@ problems:
 
   - id: p9-capacitance-from-energy
     section: '5.4'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A capacitor stores $0.10\,\text{J}$ when the potential difference across it is $50\,\text{V}$. Find its capacitance.'
     answer_label: 'The capacitance'
     check: {kind: evaluate, expression: "2 * 0.10 / 50**2", answer: "8.0e-5"}
@@ -106,7 +106,7 @@ problems:
   - id: p10-initial-current
     plays: resistance
     section: '5.4'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A capacitor is charged to $2000\,\text{V}$ and discharged through a total resistance of $50\,\Omega$. Find the current at the first instant of the discharge.'
     answer_label: 'The initial current'
     check:
@@ -120,7 +120,7 @@ problems:
 
   - id: p11-log-graph
     section: '5.4'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A student plots $\ln V$ against time for a discharging capacitor. The points are $(0.00, 2.303)$, $(0.010, 1.803)$, $(0.020, 1.303)$ and $(0.030, 0.803)$. Find the gradient of the line, and state its unit.'
     answer_label: 'The gradient'
     check:
@@ -131,7 +131,7 @@ problems:
 
   - id: p12-energy-area
     section: '5.4'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A capacitor holds a charge of $0.200\,\text{C}$ at a potential difference of $2000\,\text{V}$. The charge–potential difference graph is a straight line through the origin. Find the energy stored from the area under the graph.'
     answer_label: 'The energy stored'
     check:
@@ -142,7 +142,7 @@ problems:
 
   - id: p13-log-intercept
     section: '5.4'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'For a discharging capacitor, the points $(0.00, 2.303)$, $(0.010, 1.803)$, $(0.020, 1.303)$ and $(0.030, 0.803)$ lie on a straight-line graph of $\ln V$ against time. Find the intercept of the line, which is $\ln V_0$.'
     answer_label: 'The intercept'
     check:
@@ -153,7 +153,7 @@ problems:
 
   - id: p14-exponential-reason
     section: '5.4'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'Explain why the charge on a discharging capacitor falls exponentially with time.'
     answer_label: 'Why the discharge is exponential'
     check:

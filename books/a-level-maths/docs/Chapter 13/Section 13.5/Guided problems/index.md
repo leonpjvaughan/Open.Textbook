@@ -4,7 +4,7 @@ chapter: 13
 chapter_title: Statistical distributions
 section: '13.5'
 section_title: Selecting an appropriate distribution
-dfe:
+refs:
 - N3
 - OT2
 kind: guided-problems

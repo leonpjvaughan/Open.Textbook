@@ -15,4 +15,4 @@ kind: problems
 # 21.4 Nuclear power and its alternatives — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 4.6
+> Tier: **O** · refs: 4.6

@@ -5,7 +5,7 @@ chapter_title: Measures, accuracy, standard form and surds
 section: '7.4'
 section_title: Upper and lower bounds
 tier: H
-dfe:
+refs:
 - N16
 kind: problems
 ---

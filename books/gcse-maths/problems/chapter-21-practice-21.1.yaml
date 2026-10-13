@@ -4,7 +4,7 @@ problems:
   - id: 'ch21-radius-diameter'
     section: '21.1'
     tier: 'F'
-    dfe: ['G9']
+    refs: ['G9']
     statement: 'A circle has radius $5.2$ cm. Work out its diameter.'
     answer_label: 'Diameter from radius'
     check: {kind: 'evaluate', expression: '5.2 * 2', answer: '10.4'}
@@ -13,7 +13,7 @@ problems:
   - id: 'ch21-diameter-radius'
     section: '21.1'
     tier: 'F'
-    dfe: ['G9']
+    refs: ['G9']
     statement: 'A circle has diameter $18$ mm. Work out its radius.'
     answer_label: 'Radius from diameter'
     check: {kind: 'evaluate', expression: '18 / 2', answer: '9'}
@@ -22,7 +22,7 @@ problems:
   - id: 'ch21-radius-check'
     section: '21.1'
     tier: 'F'
-    dfe: ['G9']
+    refs: ['G9']
     statement: 'A circle has radius $7$ cm. Is a chord of length $13$ cm possible? Give a reason.'
     answer_label: 'Check a chord length'
     check: {kind: 'compare', relation: '<', lhs: '13', rhs: '14'}
@@ -31,7 +31,7 @@ problems:
   - id: 'ch21-terms-arc'
     section: '21.1'
     tier: 'F'
-    dfe: ['G9']
+    refs: ['G9']
     statement: 'A circle has radius $4$ cm. Work out its diameter, then name the circle boundary.'
     answer_label: 'Circle vocabulary'
     check: {kind: 'evaluate', expression: '4 * 2', answer: '8'}
@@ -40,7 +40,7 @@ problems:
   - id: 'ch21-terms-segment'
     section: '21.1'
     tier: 'F'
-    dfe: ['G9']
+    refs: ['G9']
     statement: 'A circle has diameter $14$ cm. Work out its radius, then name the region between a chord and its arc.'
     answer_label: 'Name the segment'
     check: {kind: 'evaluate', expression: '14 / 2', answer: '7'}
@@ -49,7 +49,7 @@ problems:
   - id: 'ch21-diameter-chord'
     section: '21.1'
     tier: 'F'
-    dfe: ['G9']
+    refs: ['G9']
     statement: 'A line through the centre joins two points on the circumference. If the radius is $3$ cm, work out the line length and explain why it is also a chord.'
     answer_label: 'Diameter and chord'
     check: {kind: 'evaluate', expression: '2 * 3', answer: '6'}
@@ -58,7 +58,7 @@ problems:
   - id: 'ch21-radius-multiple'
     section: '21.1'
     tier: 'F'
-    dfe: ['G9']
+    refs: ['G9']
     statement: 'The radius is $3.75$ cm. Work out the diameter.'
     answer_label: 'Decimal radius'
     check: {kind: 'evaluate', expression: '3.75 * 2', answer: '7.5'}
@@ -67,7 +67,7 @@ problems:
   - id: 'ch21-identify-tangent'
     section: '21.1'
     tier: 'F'
-    dfe: ['G9']
+    refs: ['G9']
     statement: 'A straight line touches a circle at exactly one point. Name the line and state how many points of contact it has.'
     answer_label: 'Name the tangent'
     check: {kind: 'evaluate', expression: '1', answer: '1'}
@@ -76,7 +76,7 @@ problems:
   - id: 'ch21-mixed-labels'
     section: '21.1'
     tier: 'F'
-    dfe: ['G9']
+    refs: ['G9']
     statement: 'A line joins two points on a circle and passes through its centre. If the radius is $5$ cm, work out the line length and give both correct names.'
     answer_label: 'Name the line'
     check: {kind: 'evaluate', expression: '2 * 5', answer: '10'}
@@ -85,7 +85,7 @@ problems:
   - id: 'ch21-radius-higher'
     section: '21.1'
     tier: 'F'
-    dfe: ['G9']
+    refs: ['G9']
     statement: 'A chord is $16$ cm long and is the diameter. Find the radius.'
     answer_label: 'Radius of a diameter'
     check: {kind: 'evaluate', expression: '16 / 2', answer: '8'}

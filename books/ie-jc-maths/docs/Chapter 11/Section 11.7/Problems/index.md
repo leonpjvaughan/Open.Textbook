@@ -15,4 +15,4 @@ kind: problems
 # 11.7 Dividing a cubic or quadratic by a linear expression — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: AF.3
+> Tier: **H** · refs: AF.3

@@ -12,7 +12,7 @@ problems:
   - id: ch8-8-3-1
     section: '8.3'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Expand $2(x+3)$.'
     answer_label: 'Expand $2(x+3)$.'
     check:
@@ -23,7 +23,7 @@ problems:
   - id: ch8-8-3-2
     section: '8.3'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Expand $4(a-2)$.'
     answer_label: 'Expand $4(a-2)$.'
     check:
@@ -34,7 +34,7 @@ problems:
   - id: ch8-8-3-3
     section: '8.3'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Expand $-3(y+5)$.'
     answer_label: 'Expand $-3(y+5)$.'
     check:
@@ -45,7 +45,7 @@ problems:
   - id: ch8-8-3-4
     section: '8.3'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Expand and simplify $2(x+4)+3x$.'
     answer_label: 'Expand and simplify $2(x+4)+3x$.'
     check:
@@ -56,7 +56,7 @@ problems:
   - id: ch8-8-3-5
     section: '8.3'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Expand and simplify $5(2p-1)-3p$.'
     answer_label: 'Expand and simplify $5(2p-1)-3p$.'
     check:
@@ -67,7 +67,7 @@ problems:
   - id: ch8-8-3-6
     section: '8.3'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Expand $3(4k-2)$.'
     answer_label: 'Expand $3(4k-2)$.'
     check:
@@ -78,7 +78,7 @@ problems:
   - id: ch8-8-3-7
     section: '8.3'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Expand $6(2r+1)$.'
     answer_label: 'Expand $6(2r+1)$.'
     check:
@@ -89,7 +89,7 @@ problems:
   - id: ch8-8-3-8
     section: '8.3'
     tier: F
-    dfe: [A4]
+    refs: [A4]
     statement: 'Expand $-2(3w-4)$.'
     answer_label: 'Expand $-2(3w-4)$.'
     check:

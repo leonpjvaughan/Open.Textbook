@@ -4,7 +4,7 @@ problems:
   - id: 'ch24-24-1-sample-proportion'
     section: '24.1'
     tier: 'F'
-    dfe: ['S1', 'S5']
+    refs: ['S1', 'S5']
     statement: 'A sample of 40 pupils includes 12 who walk. Work out the sample proportion who walk.'
     answer_label: 'A sample of 40 pupils includes 12 who walk. Work out the sample proportion who walk.'
     check:
@@ -16,7 +16,7 @@ problems:
   - id: 'ch24-24-1-population-estimate'
     section: '24.1'
     tier: 'F'
-    dfe: ['S1', 'S5']
+    refs: ['S1', 'S5']
     statement: 'A random sample of 30 people has 9 who use the bus. Estimate the number in a population of 500 who use the bus.'
     answer_label: 'A random sample of 30 people has 9 who use the bus. Estimate the number in a population of 500 who use the bus.'
     check:
@@ -28,7 +28,7 @@ problems:
   - id: 'ch24-24-1-survey-percentage'
     section: '24.1'
     tier: 'F'
-    dfe: ['S1', 'S5']
+    refs: ['S1', 'S5']
     statement: 'In a sample of 80 pupils, 28 bring lunch from home. Work out the percentage.'
     answer_label: 'In a sample of 80 pupils, 28 bring lunch from home. Work out the percentage.'
     check:
@@ -40,7 +40,7 @@ problems:
   - id: 'ch24-24-1-questionnaire-count'
     section: '24.1'
     tier: 'F'
-    dfe: ['S1', 'S5']
+    refs: ['S1', 'S5']
     statement: 'A neutral survey records 14 “walk”, 18 “bus”, and 8 “car” responses. How many responses were recorded?'
     answer_label: 'A neutral survey records 14 “walk”, 18 “bus”, and 8 “car” responses. How many responses were recorded?'
     check:
@@ -52,7 +52,7 @@ problems:
   - id: 'ch24-24-1-representative-fraction'
     section: '24.1'
     tier: 'F'
-    dfe: ['S1', 'S5']
+    refs: ['S1', 'S5']
     statement: 'A sample of 25 pupils includes 10 cyclists. Write the sample fraction in its simplest form.'
     answer_label: 'A sample of 25 pupils includes 10 cyclists. Write the sample fraction in its simplest form.'
     check:
@@ -64,7 +64,7 @@ problems:
   - id: 'ch24-24-1-estimate-size'
     section: '24.1'
     tier: 'F'
-    dfe: ['S1', 'S5']
+    refs: ['S1', 'S5']
     statement: 'A sample of 45 households has 18 with a pet. Estimate the number with a pet in 300 households.'
     answer_label: 'A sample of 45 households has 18 with a pet. Estimate the number with a pet in 300 households.'
     check:
@@ -76,7 +76,7 @@ problems:
   - id: 'ch24-24-1-biased-survey'
     section: '24.1'
     tier: 'F'
-    dfe: ['S1', 'S5']
+    refs: ['S1', 'S5']
     statement: 'A pupil asks only friends from the chess club whether the school should buy more footballs. Work out the percentage represented by 6 yes votes in a sample of 10, and explain one limitation of the sample.'
     answer_label: 'A pupil asks only friends from the chess club whether the school should buy more footballs. Work out the percentage represented by 6 yes votes in a sample of 10, and explain one limitation of the sample.'
     check:
@@ -88,7 +88,7 @@ problems:
   - id: 'ch24-24-1-sample-coverage'
     section: '24.1'
     tier: 'F'
-    dfe: ['S1', 'S5']
+    refs: ['S1', 'S5']
     statement: 'A town survey asks 50 people at a train station about car ownership. Work out the percentage represented by 20 car owners, then state one group that may be under-represented.'
     answer_label: 'A town survey asks 50 people at a train station about car ownership. Work out the percentage represented by 20 car owners, then state one group that may be under-represented.'
     check:
@@ -100,7 +100,7 @@ problems:
   - id: 'ch24-24-1-neutral-question'
     section: '24.1'
     tier: 'F'
-    dfe: ['S1', 'S5']
+    refs: ['S1', 'S5']
     statement: 'Replace “You agree that the new route is safer, do you not?” with a neutral question. In a sample of 30 responses, 18 people answer yes. Work out this percentage.'
     answer_label: 'Replace “You agree that the new route is safer, do you not?” with a neutral question. In a sample of 30 responses, 18 people answer yes. Work out this percentage.'
     check:

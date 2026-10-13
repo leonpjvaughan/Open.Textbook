@@ -5,7 +5,7 @@ chapter_title: Transformations, congruence and similarity
 section: "18.5"
 section_title: Similarity and similar lengths
 tier: F
-dfe: [G19, R12]
+refs: [G19, R12]
 kind: problems
 ---
 

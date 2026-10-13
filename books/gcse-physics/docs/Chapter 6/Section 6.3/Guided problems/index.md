@@ -5,7 +5,7 @@ chapter_title: Electricity
 section: '6.3'
 section_title: Domestic uses and safety
 tier: F
-dfe:
+refs:
 - EL3
 kind: guided-problems
 ---

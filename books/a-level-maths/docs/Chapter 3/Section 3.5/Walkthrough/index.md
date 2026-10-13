@@ -4,7 +4,7 @@ chapter: 3
 chapter_title: Coordinate geometry
 section: '3.5'
 section_title: Parametric equations in modelling
-dfe:
+refs:
 - C4
 - OT3
 kind: walkthrough

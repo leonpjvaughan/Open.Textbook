@@ -4,7 +4,7 @@ problems:
 - id: p1-simple
   section: '6.4'
   tier: F
-  dfe: &id001
+  refs: &id001
   - R9
   - R16
   statement: £500 is invested at 4% simple interest each year for 3 years. Work out the interest.
@@ -17,7 +17,7 @@ problems:
 - id: p2-total-simple
   section: '6.4'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: £750 is invested at 2% simple interest each year for 5 years. Work out the final amount.
   answer_label: Final amount
   check:
@@ -28,7 +28,7 @@ problems:
 - id: p3-compound
   section: '6.4'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: £600 is invested at 5% compound interest for 2 years. Work out the final amount.
   answer_label: Compound amount
   check:
@@ -39,7 +39,7 @@ problems:
 - id: p4-growth-factor
   section: '6.4'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: Write the multiplier for 3% interest, compounded yearly.
   answer_label: Annual multiplier
   check:
@@ -50,7 +50,7 @@ problems:
 - id: p5-compare
   section: '6.4'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: Find the final amount for £1000 at 6% for 2 years using simple interest, then compound interest.
   answer_label: Compare interest types
   check:
@@ -66,7 +66,7 @@ problems:
 - id: p6-interest
   section: '6.4'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: £2400 is invested at 3.5% simple interest for 4 years. Work out the interest and final amount.
   answer_label: Interest and amount
   check:
@@ -82,7 +82,7 @@ problems:
 - id: p7-decimal
   section: '6.4'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: £1250 is invested at 2.4% compound interest for 3 years. Give the final amount to the nearest penny.
   answer_label: Compound amount
   check:
@@ -94,7 +94,7 @@ problems:
 - id: p8-context
   section: '6.4'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: A savings account pays 4% compound interest. Work out the balance of £800 after 4 years.
   answer_label: Balance
   check:
@@ -106,7 +106,7 @@ problems:
 - id: p9-meaning
   section: '6.4'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: Explain why compound interest gives more than simple interest after several years at a positive rate.
   answer_label: Compare
   check:
@@ -118,7 +118,7 @@ problems:
 - id: p10-higher
   section: '6.4'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: '£900 is invested at 3% compound interest for 5 years. Work out the increase in value to the nearest penny.'
   answer_label: Increase
   check:
@@ -131,7 +131,7 @@ problems:
 - id: ch6-64-method-interest
   section: '6.4'
   tier: F
-  dfe: [R9, R16]
+  refs: [R9, R16]
   statement: '£200 earns 5% per year for 2 years. Which method fits each part, and why? (a) simple interest. (b) compound interest. Then work out the final amount for each.'
   answer_label: 'Method choice: simple or compound interest'
   check:

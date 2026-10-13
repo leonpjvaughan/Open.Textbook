@@ -14,7 +14,7 @@ problems:
   - id: p1-resistance
     plays: resistance
     section: '5.2'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A resistor has a potential difference of $4.5\,\text{V}$ across it and a current of $0.15\,\text{A}$ through it. Find its resistance.'
     answer_label: 'The resistance'
     check:
@@ -29,7 +29,7 @@ problems:
   - id: p2-wire-resistance
     plays: resistivity
     section: '5.2'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A wire of resistivity $1.7 \times 10^{-8}\,\Omega\,\text{m}$ has length $5.0\,\text{m}$ and cross-sectional area $1.0 \times 10^{-6}\,\text{m}^2$. Find its resistance.'
     answer_label: 'The resistance'
     check:
@@ -45,7 +45,7 @@ problems:
   - id: p3-resistivity
     plays: resistivity
     section: '5.2'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A wire of length $1.5\,\text{m}$ and cross-sectional area $2.0 \times 10^{-7}\,\text{m}^2$ has a resistance of $3.0\,\Omega$. Find the resistivity of the material.'
     answer_label: 'The resistivity'
     check:
@@ -60,7 +60,7 @@ problems:
 
   - id: p4-copper-wire
     section: '5.2'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A copper wire has a diameter of $0.50\,\text{mm}$ and a length of $1.0\,\text{m}$. The resistivity of copper is $1.7 \times 10^{-8}\,\Omega\,\text{m}$. Find its resistance.'
     answer_label: 'The resistance'
     check: {kind: approx, value: "1.7e-8 * 1.0 / (pi * (2.5e-4)**2)", target: "0.0866", tolerance: "0.001"}
@@ -68,7 +68,7 @@ problems:
 
   - id: p5-lamp-resistance
     section: '5.2'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A filament lamp has a current of $0.30\,\text{A}$ at a pd of $2.0\,\text{V}$ and a current of $0.50\,\text{A}$ at a pd of $6.0\,\text{V}$. Find the resistance at each pd.'
     answer_label: 'The two resistances'
     check:
@@ -80,7 +80,7 @@ problems:
 
   - id: p6-graph-gradient
     section: '5.2'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A current–potential difference graph for a component is a straight line through $(0.10\,\text{A}, 2.0\,\text{V})$ and $(0.20\,\text{A}, 4.0\,\text{V})$. Find the gradient, which is the resistance.'
     answer_label: 'The gradient'
     check:
@@ -91,7 +91,7 @@ problems:
 
   - id: p7-scaling
     section: '5.2'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'Two wires are made of the same metal. One has three times the length and twice the diameter of the other. Find the factor by which the resistance of the first wire differs from the second.'
     answer_label: 'The ratio of the resistances'
     check: {kind: evaluate, expression: "3 / 4", answer: "0.75"}
@@ -100,7 +100,7 @@ problems:
   - id: p8-power
     plays: electrical-power
     section: '5.2'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A current of $0.50\,\text{A}$ flows through a $20\,\Omega$ resistor. Find the power dissipated in the resistor.'
     answer_label: 'The power'
     check:
@@ -114,7 +114,7 @@ problems:
 
   - id: p9-resistivity-diameter
     section: '5.2'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'A wire of length $2.0\,\text{m}$ and diameter $0.60\,\text{mm}$ has a resistance of $0.50\,\Omega$. Find the resistivity of the material.'
     answer_label: 'The resistivity'
     check: {kind: approx, value: "0.50 * pi * (3.0e-4)**2 / 2.0", target: "7.07e-8", tolerance: "0.05e-8"}
@@ -122,7 +122,7 @@ problems:
 
   - id: p10-filament-thermistor
     section: '5.2'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'Compare the effect of a rise in temperature on the resistance of a metal filament and on the resistance of a thermistor. Give a reason for each.'
     answer_label: 'The comparison'
     check:
@@ -146,7 +146,7 @@ problems:
 
   - id: p11-method-choice
     section: '5.2'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'You are given a wire, a battery, an ammeter and a voltmeter. Describe how you would find the resistivity of the metal of the wire, and say why each measurement is needed.'
     answer_label: 'The method'
     check:
@@ -173,7 +173,7 @@ problems:
 
   - id: p12-temperature-reason
     section: '5.2'
-    dfe: [AP5]
+    refs: [AP5]
     statement: 'Explain, in terms of the charge carriers, why the resistance of a metal wire increases when the wire gets hotter.'
     answer_label: 'Why the resistance rises'
     check:

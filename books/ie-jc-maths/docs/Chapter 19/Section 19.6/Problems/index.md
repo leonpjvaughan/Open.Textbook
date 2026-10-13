@@ -15,4 +15,4 @@ kind: problems
 # 19.6 Combining transformations — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: GT.6
+> Tier: **H** · refs: GT.6

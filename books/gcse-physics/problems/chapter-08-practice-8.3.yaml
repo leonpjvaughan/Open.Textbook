@@ -10,7 +10,7 @@ problems:
   - id: p1-pv-pressure
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A fixed mass of gas at 100 kPa fills 0.50 m^3. It is compressed at constant temperature to 0.25 m^3. Calculate the new pressure.'
     answer_label: 'New pressure of the gas'
     check:
@@ -29,7 +29,7 @@ problems:
   - id: p2-pv-volume
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A fixed mass of gas at 100 kPa fills 0.90 m^3. It expands at constant temperature to 150 kPa. Calculate the new volume.'
     answer_label: 'New volume of the gas'
     check:
@@ -48,7 +48,7 @@ problems:
   - id: p3-force-from-pressure
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A gas exerts a pressure of 120 kPa on a plate of area 0.025 m^2. Calculate the force on the plate.'
     answer_label: 'Force on the plate'
     check:
@@ -66,7 +66,7 @@ problems:
   - id: p4-collisions
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'Explain, using the particle model, why a gas exerts a pressure on the walls of its container.'
     answer_label: 'Why a gas exerts a pressure'
     check:
@@ -87,7 +87,7 @@ problems:
   - id: p5-constant-volume
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A gas is sealed in a rigid container and then warmed. The volume does not change. Explain what happens to the pressure of the gas.'
     answer_label: 'Pressure when the gas is warmed'
     check:
@@ -108,7 +108,7 @@ problems:
   - id: p6-pressure-basic
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A force of 45 N acts at right angles on an area of 0.015 m^2. Calculate the pressure.'
     answer_label: 'Pressure on the area'
     check:
@@ -126,7 +126,7 @@ problems:
   - id: p7-method-choice
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'Say which relationship you will use, then calculate the pressure when 0.60 m^3 of gas at 100 kPa is compressed to 0.15 m^3 at a constant temperature.'
     answer_label: 'New pressure after compression'
     check:
@@ -145,7 +145,7 @@ problems:
   - id: p8-work-on-gas
     section: '8.3'
     tier: H
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A student pushes the handle of a bicycle pump. Explain how doing work on the trapped air can raise its temperature.'
     answer_label: 'Work done on a gas'
     check:
@@ -166,7 +166,7 @@ problems:
   - id: p9-work-done
     section: '8.3'
     tier: H
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A force of 20 N pushes a piston through 0.25 m. Calculate the work done on the gas. Assume all of the work increases the internal energy of the gas.'
     answer_label: 'Work done on the gas'
     check:
@@ -184,7 +184,7 @@ problems:
   - id: p10-pv-double
     section: '8.3'
     tier: F
-    dfe: [PM3]
+    refs: [PM3]
     statement: 'A fixed mass of gas at 100 kPa fills 2.0 m^3 at a constant temperature. The gas expands until its pressure is 50 kPa. Calculate the new volume.'
     answer_label: 'New volume of the gas'
     check:

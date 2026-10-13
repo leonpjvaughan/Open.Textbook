@@ -5,7 +5,7 @@ chapter_title: Powers, roots and indices
 section: "3.1"
 section_title: Powers and roots
 tier: F
-dfe: [N6]
+refs: [N6]
 kind: guided-problems
 ---
 

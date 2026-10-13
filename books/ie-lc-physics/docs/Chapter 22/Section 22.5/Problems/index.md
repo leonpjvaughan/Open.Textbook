@@ -15,4 +15,4 @@ kind: problems
 # 22.5 Writing the report — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 1.3
+> Tier: **O** · refs: 1.3

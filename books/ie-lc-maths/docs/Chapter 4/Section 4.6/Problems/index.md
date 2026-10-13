@@ -15,4 +15,4 @@ kind: problems
 # 4.6 Solving linear equations — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 4.2
+> Tier: **F** · refs: 4.2

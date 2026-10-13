@@ -15,4 +15,4 @@ kind: guided-problems
 # 8.4 Conduction, convection and radiation — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: 2.1
+> Tier: **O** · refs: 2.1

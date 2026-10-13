@@ -5,7 +5,7 @@ chapter_title: Probability
 section: '23.5'
 section_title: Venn diagrams and set notation
 tier: F
-dfe:
+refs:
 - P6
 kind: guided-problems
 ---

@@ -17,7 +17,7 @@ problems:
   - id: p1-half-lives
     plays: decay-rate
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A source has an activity of 640 Bq and a half-life of 5.0 days. Find its activity after 15 days.'
     answer_label: 'The activity'
     check:
@@ -30,7 +30,7 @@ problems:
 
   - id: p2-decay-constant
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A radioisotope has a half-life of 6.0 hours. Find its decay constant in s^-1.'
     answer_label: 'The decay constant'
     check: {kind: approx, value: "ln(2) / (6.0 * 3600)", target: "3.21e-5", tolerance: "5e-8"}
@@ -38,7 +38,7 @@ problems:
 
   - id: p3-activity-from-nuclei
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A sample contains 4.0e15 nuclei of a radioisotope whose decay constant is 1.2e-5 s^-1. Find its activity.'
     answer_label: 'The activity'
     check:
@@ -53,7 +53,7 @@ problems:
   - id: p4-nuclei-from-activity
     plays: activity
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A source has an activity of 2.0e6 Bq and a decay constant of 5.0e-7 s^-1. Find the number of radioactive nuclei.'
     answer_label: 'The number of nuclei'
     check:
@@ -67,7 +67,7 @@ problems:
 
   - id: p5-exponential-decay
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A source has an initial activity of 8.0e8 Bq and a decay constant of 1.05e-4 s^-1. Find its activity after 3300 s.'
     answer_label: 'The activity'
     check: {kind: approx, value: "8.0e8 * exp(-1.05e-4 * 3300)", target: "5.66e8", tolerance: "1e7"}
@@ -75,7 +75,7 @@ problems:
 
   - id: p6-time-to-fraction
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A source has a half-life of 8.0 days. Find the time for its activity to fall to one sixteenth of its initial value.'
     answer_label: 'The time'
     check:
@@ -89,7 +89,7 @@ problems:
 
   - id: p7-beta-plus-equation
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Fluorine-18, $^{18}_{9}\text{F}$, decays by beta-plus emission. Write the balanced nuclear equation.'
     check:
       kind: structured
@@ -111,7 +111,7 @@ problems:
 
   - id: p8-alpha-equation
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Americium-241, $^{241}_{95}\text{Am}$, decays by alpha emission. Write the balanced nuclear equation.'
     check:
       kind: structured
@@ -133,7 +133,7 @@ problems:
 
   - id: p9-corrected-count-rate
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A detector records 720 counts in 60 s from a source. The background is 60 counts in 60 s. Find the corrected count rate.'
     answer_label: 'The corrected count rate'
     check:
@@ -148,7 +148,7 @@ problems:
 
   - id: p10-sigfigs
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A half-life is measured as 5.348 days. Write it to two significant figures.'
     answer_label: 'The half-life'
     check: {kind: sigfigs, value: "5.348", figures: 2, answer: "5.3", convention: round-once}
@@ -156,7 +156,7 @@ problems:
 
   - id: p11-convert-minutes
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Write a half-life of 110 minutes in seconds.'
     answer_label: 'The half-life'
     check: {kind: convert, value: "110", from: "min", to: "s", answer: "6600"}
@@ -164,7 +164,7 @@ problems:
 
   - id: p12-half-life-from-gradient
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A graph of ln A against t has a gradient of -1.05e-4 s^-1. Find the half-life.'
     answer_label: 'The half-life'
     check: {kind: approx, value: "ln(2) / 1.05e-4", target: "6600", tolerance: "50"}
@@ -172,7 +172,7 @@ problems:
 
   - id: p13-random-nature
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Explain why the activity of a sample is predictable even though the decay of a single nucleus is random.'
     check:
       kind: structured
@@ -194,7 +194,7 @@ problems:
 
   - id: p14-method-choice
     section: '8.3'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A source has an activity of 640 Bq, which falls to 40 Bq in 20 days. State how you would find the half-life before you calculate it.'
     answer_label: 'The method and the half-life'
     check:

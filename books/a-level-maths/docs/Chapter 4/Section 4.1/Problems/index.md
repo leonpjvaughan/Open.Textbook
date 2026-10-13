@@ -4,7 +4,7 @@ chapter: 4
 chapter_title: Sequences and series
 section: '4.1'
 section_title: Binomial expansion for positive integer n; n! and nCr
-dfe:
+refs:
 - D1
 kind: problems
 ---

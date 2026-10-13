@@ -4,7 +4,7 @@ chapter: 2
 chapter_title: Vectors and scalars
 section: '2.1'
 section_title: Scalars and vectors
-dfe:
+refs:
 - AP2
 kind: walkthrough
 ---

@@ -14,7 +14,7 @@ symbols:
 problems:
   - id: p1-truth-values
     section: "1.1"
-    dfe: [A1, OT1]
+    refs: [A1, OT1]
     statement: 'Decide whether each statement is true or false. (a) $2 + 3 = 6$ (b) $12$ is a multiple of $4$ (c) $7 < 3$.'
     answer_label: 'True or false'
     check:
@@ -27,7 +27,7 @@ problems:
 
   - id: p2-assumption-conclusion
     section: "1.1"
-    dfe: [A1, OT1]
+    refs: [A1, OT1]
     statement: 'A statement says: "If a whole number is a multiple of $6$, then it is a multiple of $3$." (a) Write the assumption. (b) Write the conclusion. (c) Test the statement with the number $42$.'
     answer_label: 'Assumption, conclusion and a test'
     check:
@@ -39,7 +39,7 @@ problems:
 
   - id: p3-converse
     section: "1.1"
-    dfe: [A1, OT1]
+    refs: [A1, OT1]
     statement: 'A statement says: "If $n$ is a multiple of $4$, then $n$ is even." (a) Write the converse. (b) Give a value of $n$ that shows the converse is false.'
     answer_label: 'The converse and a counter example'
     check:
@@ -51,7 +51,7 @@ problems:
 
   - id: p4-counter-example-inequality
     section: "1.1"
-    dfe: [A1, OT1]
+    refs: [A1, OT1]
     statement: 'The statement "For every real number $x$, $x^2 \geq x$" is false. Find a value of $x$ that shows this.'
     answer_label: 'A value of $x$'
     check:
@@ -63,7 +63,7 @@ problems:
 
   - id: p5-exists
     section: "1.1"
-    dfe: [A1, OT1]
+    refs: [A1, OT1]
     statement: 'Show that there is a whole number $n$ for which $n^2 + n + 1$ is a multiple of $3$.'
     answer_label: 'A value of $n$'
     check:
@@ -75,7 +75,7 @@ problems:
 
   - id: p6-values-of-the-formula
     section: "1.1"
-    dfe: [A1, OT1]
+    refs: [A1, OT1]
     statement: 'Work out the value of $n^2 + n + 41$ for $n = 1$, $n = 2$ and $n = 3$.'
     answer_label: 'The three values'
     check:
@@ -88,7 +88,7 @@ problems:
 
   - id: p7-prime-or-composite
     section: "1.1"
-    dfe: [A1, OT1]
+    refs: [A1, OT1]
     statement: 'Decide whether each number is prime: (a) $9$ (b) $11$.'
     answer_label: 'Prime or composite'
     check:
@@ -101,7 +101,7 @@ problems:
 
   - id: p8-finite-check-is-not-proof
     section: "1.1"
-    dfe: [A1, OT1]
+    refs: [A1, OT1]
     statement: 'A student checks $n = 1, 2, 3, 4, 5$ and finds that $n^2 + n + 41$ is prime each time. The student says: "This proves the claim for every whole number $n$." Explain what is wrong with the reasoning.'
     answer_label: 'The flaw in the reasoning'
     check:
@@ -136,7 +136,7 @@ problems:
 
   - id: p9-multiple-of-six
     section: "1.1"
-    dfe: [A1, OT1]
+    refs: [A1, OT1]
     statement: 'A whole number $n$ is a multiple of $6$. Show that $n$ is also a multiple of $3$.'
     answer_label: 'Show the conclusion'
     check:
@@ -147,7 +147,7 @@ problems:
 
   - id: p10-false-implication
     section: "1.1"
-    dfe: [A1, OT1]
+    refs: [A1, OT1]
     statement: 'The statement "If $n$ is a multiple of $3$, then $n$ is a multiple of $9$" is false. Give a value of $n$ that shows this.'
     answer_label: 'A value of $n$'
     check:

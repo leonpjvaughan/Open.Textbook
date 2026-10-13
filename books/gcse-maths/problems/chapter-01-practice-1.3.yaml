@@ -5,7 +5,7 @@ problems:
   - id: p1-order-negative-numbers
     section: "1.3"
     tier: F
-    dfe: [N1, N2]
+    refs: [N1, N2]
     statement: 'Write these in order, smallest first: $4,\ -2,\ 0,\ -7,\ 1$.'
     answer_label: 'Order the numbers'
     check:
@@ -20,7 +20,7 @@ problems:
   - id: p2-add-negative
     section: "1.3"
     tier: F
-    dfe: [N1, N2]
+    refs: [N1, N2]
     statement: 'Work out $-8 + 3$.'
     answer_label: '$-8 + 3$'
     check: {kind: evaluate, expression: "-8 + 3", answer: "-5"}
@@ -29,7 +29,7 @@ problems:
   - id: p3-subtract-to-negative
     section: "1.3"
     tier: F
-    dfe: [N1, N2]
+    refs: [N1, N2]
     statement: 'Work out $5 - 12$.'
     answer_label: '$5 - 12$'
     check: {kind: evaluate, expression: "5 - 12", answer: "-7"}
@@ -38,7 +38,7 @@ problems:
   - id: p4-subtract-negative-direction
     section: "1.3"
     tier: F
-    dfe: [N1, N2]
+    refs: [N1, N2]
     statement: 'Work out $-6 - 4$.'
     answer_label: '$-6 - 4$'
     check: {kind: evaluate, expression: "-6 - 4", answer: "-10"}
@@ -47,7 +47,7 @@ problems:
   - id: p5-subtract-negative-number
     section: "1.3"
     tier: F
-    dfe: [N1, N2]
+    refs: [N1, N2]
     statement: 'Work out $2 - (-9)$.'
     answer_label: '$2 - (-9)$'
     check: {kind: evaluate, expression: "2 - (-9)", answer: "11"}
@@ -56,7 +56,7 @@ problems:
   - id: p6-multiply-negative-positive
     section: "1.3"
     tier: F
-    dfe: [N1, N2]
+    refs: [N1, N2]
     statement: 'Work out $(-7) \times 3$.'
     answer_label: '$(-7) \times 3$'
     check: {kind: evaluate, expression: "(-7) * 3", answer: "-21"}
@@ -65,7 +65,7 @@ problems:
   - id: p7-multiply-two-negatives
     section: "1.3"
     tier: F
-    dfe: [N1, N2]
+    refs: [N1, N2]
     statement: 'Work out $(-6) \times (-6)$.'
     answer_label: '$(-6) \times (-6)$'
     check: {kind: evaluate, expression: "(-6) * (-6)", answer: "36"}
@@ -74,7 +74,7 @@ problems:
   - id: p8-divide-negative
     section: "1.3"
     tier: F
-    dfe: [N1, N2]
+    refs: [N1, N2]
     statement: 'Work out $(-36) \div 4$.'
     answer_label: '$(-36) \div 4$'
     check: {kind: evaluate, expression: "(-36) / 4", answer: "-9"}
@@ -83,7 +83,7 @@ problems:
   - id: p9-temperature-fall
     section: "1.3"
     tier: F
-    dfe: [N1, N2]
+    refs: [N1, N2]
     statement: 'The temperature falls from $2\, ^\circ\text{C}$ to $-5\, ^\circ\text{C}$. By how many degrees did it fall?'
     answer_label: 'Temperature change'
     check: {kind: evaluate, expression: "2 - (-5)", answer: "7"}
@@ -92,7 +92,7 @@ problems:
   - id: p10-submarine-depth
     section: "1.3"
     tier: F
-    dfe: [N1, N2]
+    refs: [N1, N2]
     statement: 'A submarine is at $-40$ m and rises $15$ m. What is its new depth?'
     answer_label: 'New submarine depth'
     check: {kind: evaluate, expression: "-40 + 15", answer: "-25"}
@@ -101,7 +101,7 @@ problems:
   - id: p11-shop-loss
     section: "1.3"
     tier: F
-    dfe: [N1, N2]
+    refs: [N1, N2]
     statement: 'A shop''s takings are £210 and its costs are £235. Work out the profit as a negative number and describe the result.'
     answer_label: 'Profit or loss'
     check: {kind: evaluate, expression: "210 - 235", answer: "-25"}
@@ -110,7 +110,7 @@ problems:
   - id: p12-quiz-score
     section: "1.3"
     tier: F
-    dfe: [N1, N2]
+    refs: [N1, N2]
     statement: 'In a quiz, teams score $+3$ for a correct answer and $-1$ for a wrong answer. A team gets 7 correct and 4 wrong. What is its total score?'
     answer_label: 'Total quiz score'
     check: {kind: evaluate, expression: "7 * 3 + 4 * (-1)", answer: "17"}
@@ -119,7 +119,7 @@ problems:
   - id: p13-mixed-negative-calculation
     section: "1.3"
     tier: H
-    dfe: [N1, N2]
+    refs: [N1, N2]
     statement: 'Work out $-4 + 6 - 3 + 2 - 5$.'
     answer_label: 'Mixed calculation'
     check: {kind: evaluate, expression: "-4 + 6 - 3 + 2 - 5", answer: "-4"}
@@ -128,7 +128,7 @@ problems:
   - id: p14-negative-factor-pairs
     section: "1.3"
     tier: H
-    dfe: [N1, N2]
+    refs: [N1, N2]
     statement: 'The product of two negative numbers is $+36$. Give two possible pairs.'
     answer_label: 'Two possible pairs'
     check:

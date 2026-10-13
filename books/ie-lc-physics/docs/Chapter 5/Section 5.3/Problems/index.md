@@ -5,14 +5,17 @@ chapter_title: Stretching and compressing
 section: '5.3'
 section_title: Elastic potential energy
 tier: O
-refs:
-- '1.3'
+refs: ['1.3']
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.3 Elastic potential energy — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 1.3
+Work independently. The questions and answers are shown together at the end.
+
+Write $x^2$ out in full before you substitute. The extension is squared, so a small
+arithmetic slip changes the answer a great deal.
+
+:::problems chapter-05-practice-5.3
+
+:::answers chapter-05-practice-5.3

@@ -5,7 +5,7 @@ chapter_title: Measures, accuracy, standard form and surds
 section: '7.2'
 section_title: 'Compound measures: speed, density and pressure'
 tier: F
-dfe:
+refs:
 - R1
 - R11
 kind: problems

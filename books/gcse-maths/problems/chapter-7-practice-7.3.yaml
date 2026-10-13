@@ -6,7 +6,7 @@ problems:
 - id: ch7-73-round
   section: '7.3'
   tier: F
-  dfe:
+  refs:
   - N15
   statement: 'Round $38.476$ to 2 decimal places.'
   answer_label: Round to 2 decimal places
@@ -19,7 +19,7 @@ problems:
 - id: ch7-73-sf
   section: '7.3'
   tier: F
-  dfe:
+  refs:
   - N15
   statement: 'Round $0.006384$ to 2 significant figures.'
   answer_label: Round to 2 significant figures
@@ -32,7 +32,7 @@ problems:
 - id: ch7-73-interval
   section: '7.3'
   tier: F
-  dfe:
+  refs:
   - N15
   statement: 'A length is $12.6$ cm to the nearest $0.1$ cm. Write its error interval.'
   answer_label: Error interval
@@ -51,7 +51,7 @@ problems:
 - id: ch7-73-interval2
   section: '7.3'
   tier: F
-  dfe:
+  refs:
   - N15
   statement: 'A mass is $540$ g to the nearest $10$ g. Give its lower and upper bounds.'
   answer_label: Bounds from rounding
@@ -70,7 +70,7 @@ problems:
 - id: ch7-73-decimal
   section: '7.3'
   tier: F
-  dfe:
+  refs:
   - N15
   statement: 'Round $7.995$ to 2 decimal places.'
   answer_label: Round a carry value
@@ -83,7 +83,7 @@ problems:
 - id: ch7-73-estimate
   section: '7.3'
   tier: F
-  dfe:
+  refs:
   - N15
   statement: 'Estimate $49.8\times19.7$ by rounding each value to 1 significant figure.'
   answer_label: Estimate a product
@@ -95,7 +95,7 @@ problems:
 - id: ch7-73-roundmass
   section: '7.3'
   tier: F
-  dfe:
+  refs:
   - N15
   statement: 'Round $0.0847$ kg to 2 significant figures.'
   answer_label: Round a small measurement
@@ -108,7 +108,7 @@ problems:
 - id: ch7-73-interpret
   section: '7.3'
   tier: F
-  dfe:
+  refs:
   - N15
   statement: 'A number rounds to $250$ to the nearest $10$. Is $255$ included in its interval?'
   answer_label: Interpret an endpoint
@@ -121,7 +121,7 @@ problems:
 - id: ch7-73-interval-h
   section: '7.3'
   tier: H
-  dfe:
+  refs:
   - N15
   statement: '**H** A value is $3.40$ to 3 significant figures. Give its error interval.'
   answer_label: Significant-figure interval
@@ -140,7 +140,7 @@ problems:
 - id: ch7-73-boundary
   section: '7.3'
   tier: F
-  dfe:
+  refs:
   - N15
   statement: 'A time rounds to $6.2$ seconds to the nearest $0.1$ second. Give its interval and explain the upper sign.'
   answer_label: Explain an interval

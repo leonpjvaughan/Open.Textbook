@@ -12,7 +12,7 @@ symbols:
 problems:
   - id: p1-parallel-same-gradient
     section: "3.2"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Decide whether the lines $y = 7x + 2$ and $y = 7x - 5$ are parallel. Give a reason.'
     answer_label: 'The decision and the reason'
     check:
@@ -23,7 +23,7 @@ problems:
 
   - id: p2-negative-reciprocal
     section: "3.2"
-    dfe: [C1]
+    refs: [C1]
     statement: 'A line has gradient $\dfrac{5}{2}$. Work out the gradient of a line perpendicular to it.'
     answer_label: 'The perpendicular gradient'
     check:
@@ -34,7 +34,7 @@ problems:
 
   - id: p3-perpendicular-through-point
     section: "3.2"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Find the equation of the line through $(-1, 4)$ perpendicular to $y = 2x + 1$.'
     answer_label: 'The equation'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: p4-parallel-through-point
     section: "3.2"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Find the equation of the line through $(2, -3)$ parallel to $4x + y = 1$.'
     answer_label: 'The equation'
     check:
@@ -58,7 +58,7 @@ problems:
 
   - id: p5-perpendicular-from-general
     section: "3.2"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Find the equation of the line through $(5, 1)$ perpendicular to $3x - 2y = 8$.'
     answer_label: 'The equation'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: p6-midpoint
     section: "3.2"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Work out the midpoint of the segment from $(-3, 7)$ to $(9, -1)$.'
     answer_label: 'The midpoint'
     check:
@@ -82,7 +82,7 @@ problems:
 
   - id: p7-perpendicular-test
     section: "3.2"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Show that $y = \dfrac{2}{5}x + 4$ and $y = -\dfrac{5}{2}x - 1$ are perpendicular.'
     answer_label: 'The test'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p8-distance-to-line
     section: "3.2"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Work out the shortest distance from $(2, 1)$ to the line $3x + 4y = 22$.'
     answer_label: 'The distance'
     check:
@@ -104,7 +104,7 @@ problems:
 
   - id: p9-distance-anchor
     section: "3.2"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Work out the shortest distance from the point $(6, 8)$ to the line $x + y = 19$. Give the answer as an exact surd.'
     answer_label: 'The distance'
     check:
@@ -115,7 +115,7 @@ problems:
 
   - id: p10-foot-of-perpendicular
     section: "3.2"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Find the point where the perpendicular from $(6, 8)$ to the line $x + y = 19$ meets the line.'
     answer_label: 'The foot of the perpendicular'
     check:
@@ -127,7 +127,7 @@ problems:
 
   - id: p11-perpendicular-bisector
     section: "3.2"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Find the perpendicular bisector of the segment joining $(2, 1)$ and $(6, 9)$.'
     answer_label: 'The equation'
     check:
@@ -139,7 +139,7 @@ problems:
 
   - id: p12-method-choice
     section: "3.2"
-    dfe: [C1]
+    refs: [C1]
     statement: 'Which of these lines is perpendicular to $2x - 5y = 10$? Give the gradient of the line you choose. (a) $y = -\dfrac{5}{2}x + 1$   (b) $y = \dfrac{5}{2}x - 1$   (c) $y = -\dfrac{2}{5}x$'
     answer_label: 'The line and its gradient'
     check:

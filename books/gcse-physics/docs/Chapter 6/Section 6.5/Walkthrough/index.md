@@ -5,7 +5,7 @@ chapter_title: Electricity
 section: '6.5'
 section_title: Static electricity and electric fields
 tier: F
-dfe:
+refs:
 - EL5
 kind: walkthrough
 ---

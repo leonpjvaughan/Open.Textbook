@@ -15,4 +15,4 @@ kind: problems
 # 13.2 The equation of a line — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 2.2
+> Tier: **F** · refs: 2.2

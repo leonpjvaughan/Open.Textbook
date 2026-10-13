@@ -8,7 +8,7 @@ chapter: 5
 problems:
   - id: p1-sine-rule-side
     section: "5.1"
-    dfe: [E1]
+    refs: [E1]
     statement: 'In triangle $ABC$, angle $A = 30^\circ$, angle $B = 45^\circ$ and side $a = 6$ cm. Find side $b$.'
     answer_label: 'The side $b$'
     check:
@@ -19,7 +19,7 @@ problems:
 
   - id: p2-sine-rule-angle
     section: "5.1"
-    dfe: [E1]
+    refs: [E1]
     statement: 'In triangle $ABC$, side $a = 5$ cm, side $b = 5\sqrt{2}$ cm and angle $A = 30^\circ$. Find the acute value of angle $B$.'
     answer_label: 'The acute angle $B$'
     check:
@@ -30,7 +30,7 @@ problems:
 
   - id: p3-cosine-rule-side
     section: "5.1"
-    dfe: [E1]
+    refs: [E1]
     statement: 'In triangle $ABC$, side $b = 5$ cm, side $c = 8$ cm and the included angle $A = 60^\circ$. Find side $a$.'
     answer_label: 'The side $a$'
     check:
@@ -41,7 +41,7 @@ problems:
 
   - id: p4-cosine-rule-angle
     section: "5.1"
-    dfe: [E1]
+    refs: [E1]
     statement: 'A triangle has sides $3$ cm, $5$ cm and $7$ cm. Find the angle opposite the $7$ cm side, in degrees.'
     answer_label: 'The angle opposite the $7$ cm side'
     check:
@@ -52,7 +52,7 @@ problems:
 
   - id: p5-area
     section: "5.1"
-    dfe: [E1]
+    refs: [E1]
     statement: 'Find the area of the triangle with $a = 6$ cm, $b = 8$ cm and included angle $C = 30^\circ$.'
     answer_label: 'The area'
     check:
@@ -63,7 +63,7 @@ problems:
 
   - id: p6-area-surds
     section: "5.1"
-    dfe: [E1]
+    refs: [E1]
     statement: 'Find the area of the triangle with sides $6$ cm and $4\sqrt{2}$ cm and included angle $45^\circ$.'
     answer_label: 'The area'
     check:
@@ -74,7 +74,7 @@ problems:
 
   - id: p7-ambiguous-angle
     section: "5.1"
-    dfe: [E1]
+    refs: [E1]
     statement: 'In triangle $ABC$, side $a = 10$ cm, side $b = 12$ cm and angle $A = 40^\circ$. Find the obtuse possible value of angle $B$, to three significant figures.'
     answer_label: 'The obtuse angle $B$'
     check:
@@ -86,7 +86,7 @@ problems:
 
   - id: p8-survey-side
     section: "5.1"
-    dfe: [E1]
+    refs: [E1]
     statement: 'In triangle $SLB$, the angle at $S$ is $30^\circ$, the angle at $B$ is $45^\circ$ and the side $SL = 10$ km. Find the side $LB$, opposite the angle at $S$.'
     answer_label: 'The side $LB$'
     check:
@@ -97,7 +97,7 @@ problems:
 
   - id: p9-obtuse-included
     section: "5.1"
-    dfe: [E1]
+    refs: [E1]
     statement: 'In triangle $ABC$, side $b = 7$ cm, side $c = 9$ cm and the included angle $A = 120^\circ$. Find side $a$, in surd form.'
     answer_label: 'The side $a$'
     check:
@@ -108,7 +108,7 @@ problems:
 
   - id: p10-obtuse-area
     section: "5.1"
-    dfe: [E1]
+    refs: [E1]
     statement: 'Find the area of the triangle with sides $5$ cm and $8$ cm and included angle $150^\circ$.'
     answer_label: 'The area'
     check:

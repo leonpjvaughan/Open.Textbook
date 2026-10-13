@@ -15,4 +15,4 @@ kind: problems
 # 14.5 Interpreting graphs in context — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: AF.7
+> Tier: **O** · refs: AF.7

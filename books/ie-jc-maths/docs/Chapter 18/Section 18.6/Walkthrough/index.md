@@ -15,4 +15,4 @@ kind: walkthrough
 # 18.6 Angles of elevation and depression — Learn
 
 > **Stub.** Teaching narrative and fully worked examples. At least one Tier-1 or Tier-2 interactive figure where a parameter is worth manipulating. State prerequisites and learning objectives at the top.
-> Tier: **O** · DfE refs: GT.4
+> Tier: **O** · refs: GT.4

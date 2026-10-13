@@ -7,7 +7,7 @@ symbols:
 problems:
   - id: p1-srs-probability
     section: "11.2"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A school has 1200 students. A simple random sample of 60 is chosen. Find the probability that a given student is chosen.'
     answer_label: 'The probability'
     check:
@@ -18,7 +18,7 @@ problems:
 
   - id: p2-systematic-interval
     section: "11.2"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A population of 500 is sampled systematically. The sample size is 25. Find the sampling interval $k$.'
     answer_label: 'The interval'
     check:
@@ -29,7 +29,7 @@ problems:
 
   - id: p3-stratified-year12
     section: "11.2"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A college has 480 Year 12 students and 320 Year 13 students. A stratified sample of 40 is taken. Find the number from Year 12.'
     answer_label: 'The Year 12 sample size'
     check:
@@ -40,7 +40,7 @@ problems:
 
   - id: p4-stratified-year13
     section: "11.2"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A college has 480 Year 12 students and 320 Year 13 students. A stratified sample of 40 is taken. Find the number from Year 13.'
     answer_label: 'The Year 13 sample size'
     check:
@@ -51,7 +51,7 @@ problems:
 
   - id: p5-stratified-largest
     section: "11.2"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A town has three age groups of sizes 2000, 3000 and 5000. A stratified sample of 200 is taken. Find the number from the largest group.'
     answer_label: 'The sample size from the largest group'
     check:
@@ -62,7 +62,7 @@ problems:
 
   - id: p6-stratified-small-stratum
     section: "11.2"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A population splits into strata of size 300 and 700. A stratified sample of 60 is taken. Find the number from the 700 stratum.'
     answer_label: 'The sample size from the 700 stratum'
     check:
@@ -73,7 +73,7 @@ problems:
 
   - id: p7-sampling-fraction
     section: "11.2"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A factory has 2500 workers, and a sample of 125 is taken. Find the fraction of the population that is sampled.'
     answer_label: 'The sampling fraction'
     check:
@@ -84,7 +84,7 @@ problems:
 
   - id: p8-quota-proportion
     section: "11.2"
-    dfe: [K1]
+    refs: [K1]
     statement: 'An interviewer is told to fill a quota of 50 people, made up of 30 women and 20 men. Find the proportion of the quota that is women.'
     answer_label: 'The proportion'
     check:
@@ -95,7 +95,7 @@ problems:
 
   - id: p9-systematic-third
     section: "11.2"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A population numbered 1 to 200 is sampled systematically. The sample size is 40 and the starting point is 7. Find the third member of the sample.'
     answer_label: 'The third member'
     check:
@@ -106,7 +106,7 @@ problems:
 
   - id: p10-systematic-k
     section: "11.2"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A list of 720 names is sampled systematically, and the sample size is 90. Find the interval $k$.'
     answer_label: 'The interval'
     check:
@@ -117,7 +117,7 @@ problems:
 
   - id: p11-systematic-count
     section: "11.2"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A list of 1000 names is sampled by taking every 10th name. How many names are in the sample?'
     answer_label: 'The sample size'
     check:
@@ -128,7 +128,7 @@ problems:
 
   - id: p12-method-choice
     section: "11.2"
-    dfe: [K1]
+    refs: [K1]
     statement: 'A population of 350 is split into strata of size 120, 150 and 80. A stratified sample of 50 is taken. Find the stratum sample size for the 120 stratum, rounded to the nearest whole person.'
     answer_label: 'The stratum sample size'
     check:

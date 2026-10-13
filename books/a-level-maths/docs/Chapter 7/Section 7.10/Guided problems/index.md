@@ -4,7 +4,7 @@ chapter: 7
 chapter_title: Differentiation
 section: '7.10'
 section_title: Constructing differential equations
-dfe:
+refs:
 - G6
 - OT3
 kind: guided-problems

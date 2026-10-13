@@ -4,7 +4,7 @@ chapter: 15
 chapter_title: Quantities, units and kinematics
 section: '15.6'
 section_title: Motion under gravity and projectiles using vectors
-dfe:
+refs:
 - Q5
 - J5
 kind: guided-problems

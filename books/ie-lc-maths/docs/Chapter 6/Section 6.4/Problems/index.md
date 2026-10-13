@@ -15,4 +15,4 @@ kind: problems
 # 6.4 Injective, surjective and bijective functions — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 5.1
+> Tier: **H** · refs: 5.1

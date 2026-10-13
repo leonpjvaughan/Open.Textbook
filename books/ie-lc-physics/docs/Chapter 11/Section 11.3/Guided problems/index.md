@@ -15,4 +15,4 @@ kind: guided-problems
 # 11.3 Pitch, loudness and quality — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: 2.5
+> Tier: **O** · refs: 2.5

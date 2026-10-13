@@ -4,7 +4,7 @@ chapter: 2
 chapter_title: Algebra and functions
 section: '2.12'
 section_title: 'Functions in modelling: limitations and refinements'
-dfe:
+refs:
 - B11
 - OT3
 kind: problems

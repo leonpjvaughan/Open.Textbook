@@ -5,7 +5,7 @@ chapter_title: Transformations, congruence and similarity
 section: "18.4"
 section_title: Congruence and congruence criteria
 tier: F
-dfe: [G5]
+refs: [G5]
 kind: walkthrough
 ---
 

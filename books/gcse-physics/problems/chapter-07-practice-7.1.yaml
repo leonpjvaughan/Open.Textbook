@@ -14,7 +14,7 @@ problems:
   - id: p1-magnetic-materials
     section: '7.1'
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'Name two magnetic materials and two materials that are not magnetic.'
     answer_label: 'Magnetic and non-magnetic materials'
     check:
@@ -32,7 +32,7 @@ problems:
   - id: p2-permanent-induced
     section: '7.1'
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'Describe the difference between a permanent magnet and an induced magnet.'
     answer_label: 'Permanent and induced magnets'
     check:
@@ -53,7 +53,7 @@ problems:
   - id: p3-like-poles
     section: '7.1'
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'Two bar magnets are placed with their north poles facing each other. Describe the force between them, and give a reason.'
     answer_label: 'The force between the two north poles'
     check:
@@ -71,7 +71,7 @@ problems:
   - id: p4-clip-copper
     section: '7.1'
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'A steel paper clip is attracted to a magnet, but a copper coin is not. Explain why.'
     answer_label: 'Why the clip is attracted and the coin is not'
     check:
@@ -89,7 +89,7 @@ problems:
   - id: p5-compass-evidence
     section: '7.1'
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'Explain how the behaviour of a compass gives evidence that the core of the Earth must be magnetic.'
     answer_label: 'The evidence from a compass'
     check:
@@ -110,7 +110,7 @@ problems:
   - id: p6-plot-field
     section: '7.1'
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'Describe how to plot the magnetic field pattern of a bar magnet with a plotting compass.'
     answer_label: 'Plotting the field of a bar magnet'
     check:
@@ -131,7 +131,7 @@ problems:
   - id: p7-field-strength
     section: '7.1'
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'State where the magnetic field of a bar magnet is strongest and where it is weakest, and give a reason.'
     answer_label: 'Where the field is strongest and weakest'
     check:
@@ -149,7 +149,7 @@ problems:
   - id: p8-convert-cm
     section: '7.1'
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'A compass sits 12 cm from a magnet. Write the distance in metres.'
     answer_label: 'The distance in metres'
     check:
@@ -163,7 +163,7 @@ problems:
   - id: p9-acceleration
     section: '7.1'
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'A magnetic force of 0.60 N acts on a steel ball of mass 0.20 kg. Calculate the acceleration of the ball.'
     answer_label: 'Acceleration of the ball'
     check:
@@ -181,7 +181,7 @@ problems:
   - id: p10-weight
     section: '7.1'
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'A magnet holds up a steel block of mass 2.5 kg. Take g = 9.8 N/kg. Calculate the weight of the block.'
     answer_label: 'Weight of the block'
     check:
@@ -199,7 +199,7 @@ problems:
   - id: p11-stay-magnetic
     section: '7.1'
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'A steel object is brought near a magnet and then taken away. Will the object stay magnetic? Give a reason.'
     answer_label: 'Whether the object stays magnetic'
     check:
@@ -217,7 +217,7 @@ problems:
   - id: p12-induced-attraction
     section: '7.1'
     tier: F
-    dfe: [MG1]
+    refs: [MG1]
     statement: 'Explain why an induced magnet is always attracted to a magnet, and never repelled.'
     answer_label: 'Why induced magnetism always attracts'
     check:

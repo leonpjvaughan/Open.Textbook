@@ -15,4 +15,4 @@ kind: problems
 # 14.1 Current, potential difference and resistance — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 3.3
+> Tier: **O** · refs: 3.3

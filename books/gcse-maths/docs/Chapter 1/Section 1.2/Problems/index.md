@@ -5,7 +5,7 @@ chapter_title: Number skills
 section: "1.2"
 section_title: The four operations
 tier: F
-dfe: [N2, N3]
+refs: [N2, N3]
 kind: problems
 ---
 

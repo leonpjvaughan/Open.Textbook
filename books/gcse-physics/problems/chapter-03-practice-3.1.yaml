@@ -20,7 +20,7 @@ problems:
   - id: p1-speed-cyclist
     section: '3.1'
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A cyclist travels 180 m in 30 s. Calculate her average speed.'
     answer_label: 'Average speed of the cyclist'
     check:
@@ -38,7 +38,7 @@ problems:
   - id: p2-distance-car
     section: '3.1'
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A car travels at a steady 15 m/s for 20 s. Calculate the distance it travels.'
     answer_label: 'Distance travelled'
     check:
@@ -56,7 +56,7 @@ problems:
   - id: p3-time-train
     section: '3.1'
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A train travels 900 m at a steady 30 m/s. Calculate the time taken.'
     answer_label: 'Time taken by the train'
     check:
@@ -74,7 +74,7 @@ problems:
   - id: p4-average-speed-walker
     section: '3.1'
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A walker covers 1200 m in 800 s. Calculate his average speed.'
     answer_label: 'Average speed of the walker'
     check:
@@ -92,7 +92,7 @@ problems:
   - id: p5-acceleration-car
     section: '3.1'
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A car speeds up from 8.0 m/s to 20 m/s in 4.0 s. Calculate its acceleration.'
     answer_label: 'Acceleration of the car'
     check:
@@ -111,7 +111,7 @@ problems:
   - id: p6-deceleration-bus
     section: '3.1'
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A bus slows from 15 m/s to rest in 5.0 s. Calculate the size of its deceleration.'
     answer_label: 'Deceleration of the bus'
     check:
@@ -130,7 +130,7 @@ problems:
   - id: p7-gradient-distance-time
     section: '3.1'
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A distance-time graph is a straight line through $(0\,\text{s}, 0\,\text{m})$, $(10\,\text{s}, 60\,\text{m})$ and $(20\,\text{s}, 120\,\text{m})$. Calculate the speed from the gradient of the line.'
     answer_label: 'Speed from the gradient'
     check:
@@ -142,7 +142,7 @@ problems:
   - id: p8-gradient-velocity-time
     section: '3.1'
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A velocity-time graph is a straight line through $(0\,\text{s}, 0\,\text{m/s})$, $(4.0\,\text{s}, 10\,\text{m/s})$ and $(8.0\,\text{s}, 20\,\text{m/s})$. Calculate the acceleration from the gradient of the line.'
     answer_label: 'Acceleration from the gradient'
     check:
@@ -154,7 +154,7 @@ problems:
   - id: p9-braking-distance
     section: '3.1'
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A car travels at 24 m/s. The driver brakes with a steady deceleration of 6.0 m/s² until the car stops. Calculate the braking distance.'
     answer_label: 'Braking distance'
     check:
@@ -172,7 +172,7 @@ problems:
   - id: p10-final-velocity
     section: '3.1'
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A trolley starts from rest and accelerates at 2.0 m/s² over a distance of 25 m. Calculate its final velocity.'
     answer_label: 'Final velocity of the trolley'
     check:
@@ -185,7 +185,7 @@ problems:
   - id: p11-tangent-distance-time
     section: '3.1'
     tier: H
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A distance-time graph for an accelerating object is curved. The tangent at 4.0 s passes through $(2.0\,\text{s}, 10\,\text{m})$ and $(6.0\,\text{s}, 30\,\text{m})$. Calculate the speed at 4.0 s.'
     answer_label: 'Speed from the tangent'
     check:
@@ -197,7 +197,7 @@ problems:
   - id: p12-area-velocity-time
     section: '3.1'
     tier: H
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A velocity-time graph rises in a straight line from 0 m/s at 0 s to 20 m/s at 8.0 s. Calculate the distance travelled from the area under the graph.'
     answer_label: 'Distance from the area under the graph'
     check:
@@ -209,7 +209,7 @@ problems:
   - id: p13-velocity-roundabout
     section: '3.1'
     tier: H
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A car travels around a roundabout at a steady 8.0 m/s. Explain why the velocity of the car is changing even though its speed is constant.'
     answer_label: 'Why the velocity is changing'
     check:
@@ -227,7 +227,7 @@ problems:
   - id: p14-scalars-vectors
     section: '3.1'
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'Describe the difference between distance and displacement, and between speed and velocity.'
     answer_label: 'Distance and displacement, speed and velocity'
     check:

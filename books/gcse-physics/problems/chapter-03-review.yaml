@@ -12,7 +12,7 @@ problems:
   - id: r1-anchor-acceleration
     section: Review
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'In the chapter problem the bus accelerates from rest to 12 m/s in 8.0 s. Calculate its acceleration.'
     answer_label: 'Acceleration of the bus'
     check:
@@ -31,7 +31,7 @@ problems:
   - id: r2-anchor-force
     section: Review
     tier: F
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'The bus and its passengers have a mass of 12000 kg and accelerate at 1.5 m/s². Calculate the resultant force on the bus.'
     answer_label: 'Resultant force on the bus'
     check:
@@ -49,7 +49,7 @@ problems:
   - id: r3-anchor-thinking
     section: Review
     tier: F
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'The bus travels at 12 m/s and the driver reacts in 0.60 s. Calculate the thinking distance.'
     answer_label: 'Thinking distance of the bus'
     check:
@@ -67,7 +67,7 @@ problems:
   - id: r4-anchor-stopping-dry
     section: Review
     tier: F
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'On a dry road the thinking distance is 7.2 m and the braking distance is 9.0 m. Calculate the stopping distance.'
     answer_label: 'Stopping distance on a dry road'
     check:
@@ -85,7 +85,7 @@ problems:
   - id: r5-anchor-deceleration
     section: Review
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'On a dry road the bus slows from 12 m/s to rest in a braking distance of 9.0 m. Calculate the deceleration.'
     answer_label: 'Deceleration of the bus'
     check:
@@ -103,7 +103,7 @@ problems:
   - id: r6-anchor-braking-force
     section: Review
     tier: H
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'The bus has a mass of 12000 kg and decelerates at 8.0 m/s². Calculate the braking force.'
     answer_label: 'Braking force on the bus'
     check:
@@ -121,7 +121,7 @@ problems:
   - id: r7-anchor-stopping-wet
     section: Review
     tier: F
-    dfe: [FO7]
+    refs: [FO7]
     statement: 'On a wet road the thinking distance is 7.2 m and the braking distance is 14 m. Calculate the stopping distance, and say whether the bus stops before a hazard 20 m ahead.'
     answer_label: 'Stopping distance on a wet road'
     check:
@@ -139,7 +139,7 @@ problems:
   - id: r8-anchor-momentum
     section: Review
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'The bus has a mass of 12000 kg and travels at 12 m/s. Calculate its momentum.'
     answer_label: 'Momentum of the bus'
     check:
@@ -157,7 +157,7 @@ problems:
   - id: r9-anchor-collision
     section: Review
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'The bus of mass 12000 kg travelling at 12 m/s hits the stationary van of mass 8000 kg. The two move off together. Calculate their common velocity.'
     answer_label: 'Common velocity of the bus and van'
     check:
@@ -176,7 +176,7 @@ problems:
   - id: r10-kinetic-energy
     section: Review
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A car of mass 1200 kg travels at 20 m/s. Calculate the energy in its kinetic store.'
     answer_label: 'Kinetic energy of the car'
     check:
@@ -194,7 +194,7 @@ problems:
   - id: r11-average-speed
     section: Review
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'A train travels 3600 m in 120 s. Calculate its average speed.'
     answer_label: 'Average speed of the train'
     check:
@@ -212,7 +212,7 @@ problems:
   - id: r12-work-done
     section: Review
     tier: F
-    dfe: [FO2]
+    refs: [FO2]
     statement: 'A force of 250 N moves a crate 12 m along the line of the force. Calculate the work done.'
     answer_label: 'Work done on the crate'
     check:
@@ -230,7 +230,7 @@ problems:
   - id: r13-weight
     section: Review
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A passenger has a mass of 80 kg. Take $g = 9.8\,\text{N/kg}$. Calculate her weight.'
     answer_label: 'Weight of the passenger'
     check:
@@ -248,7 +248,7 @@ problems:
   - id: r14-momentum-ball
     section: Review
     tier: H
-    dfe: [FO6]
+    refs: [FO6]
     statement: 'A ball of mass 0.50 kg moves at 12 m/s. Calculate its momentum.'
     answer_label: 'Momentum of the ball'
     check:
@@ -266,7 +266,7 @@ problems:
   - id: r15-method-choice
     section: Review
     tier: F
-    dfe: [FO5, FO6, FO7]
+    refs: [FO5, FO6, FO7]
     statement: 'A car brakes to a stop. Say which equation you would use to find the deceleration, and which equation you would then use to find the braking force. Name the quantities you need for each.'
     answer_label: 'Choosing the equation for each step'
     check:
@@ -284,7 +284,7 @@ problems:
   - id: r16-terminal-velocity
     section: Review
     tier: F
-    dfe: [FO5]
+    refs: [FO5]
     statement: 'Explain why an object falling through a fluid reaches a terminal velocity.'
     answer_label: 'Reaching terminal velocity'
     check:

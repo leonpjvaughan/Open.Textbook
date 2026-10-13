@@ -5,7 +5,7 @@ chapter_title: Vectors
 section: '22.2'
 section_title: Adding and subtracting vectors
 tier: F
-dfe: [G25]
+refs: [G25]
 kind: walkthrough
 ---
 

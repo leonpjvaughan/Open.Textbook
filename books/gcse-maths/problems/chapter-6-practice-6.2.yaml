@@ -4,7 +4,7 @@ problems:
 - id: p1-increase
   section: '6.2'
   tier: F
-  dfe: &id001
+  refs: &id001
   - R9
   statement: Increase £80 by 15%.
   answer_label: 15% increase on £80
@@ -16,7 +16,7 @@ problems:
 - id: p2-decrease
   section: '6.2'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: Decrease 240 by 12%.
   answer_label: 12% decrease from 240
   check:
@@ -27,7 +27,7 @@ problems:
 - id: p3-change-amount
   section: '6.2'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: A price rises from £40 to £46. Work out the percentage increase.
   answer_label: Percentage increase
   check:
@@ -38,7 +38,7 @@ problems:
 - id: p4-decrease-rate
   section: '6.2'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: A quantity falls from 250 to 200. Work out the percentage decrease.
   answer_label: Percentage decrease
   check:
@@ -49,7 +49,7 @@ problems:
 - id: p5-multiplier
   section: '6.2'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: Write the multiplier for a 7% increase.
   answer_label: Multiplier
   check:
@@ -60,7 +60,7 @@ problems:
 - id: p6-multiplier-down
   section: '6.2'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: Write the multiplier for a 35% decrease.
   answer_label: Multiplier
   check:
@@ -71,7 +71,7 @@ problems:
 - id: p7-context
   section: '6.2'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: A £560 bicycle is reduced by 8%. Work out its new price.
   answer_label: New price
   check:
@@ -82,7 +82,7 @@ problems:
 - id: p8-context2
   section: '6.2'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: A town population of 18 000 increases by 2.5%. Work out the new population.
   answer_label: New population
   check:
@@ -93,7 +93,7 @@ problems:
 - id: p9-reason
   section: '6.2'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: 'A value changes from 64 to 80. Work out the percentage change and state whether it is an increase or decrease.'
   answer_label: Percentage change
   check:
@@ -104,7 +104,7 @@ problems:
 - id: p10-two-step
   section: '6.2'
   tier: F
-  dfe: *id001
+  refs: *id001
   statement: 'A £120 item increases by 10%, then decreases by 10%. Work out its final price.'
   answer_label: Final price
   check:

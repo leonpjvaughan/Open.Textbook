@@ -15,4 +15,4 @@ kind: guided-problems
 # 21.8 Expected frequency — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **H** · DfE refs: SP.2
+> Tier: **H** · refs: SP.2

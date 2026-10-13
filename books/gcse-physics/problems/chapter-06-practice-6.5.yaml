@@ -10,7 +10,7 @@ problems:
   - id: p1-convert-microcoulombs
     section: '6.5'
     tier: F
-    dfe: [EL5]
+    refs: [EL5]
     statement: 'Express a charge of 3.0 μC in coulombs, using standard form.'
     answer_label: '3.0 μC in coulombs'
     check:
@@ -24,7 +24,7 @@ problems:
   - id: p2-convert-microseconds
     section: '6.5'
     tier: F
-    dfe: [EL5]
+    refs: [EL5]
     statement: 'Express a time of 2.0 μs in seconds, using standard form.'
     answer_label: '2.0 μs in seconds'
     check:
@@ -38,7 +38,7 @@ problems:
   - id: p3-spark-current
     section: '6.5'
     tier: F
-    dfe: [EL5]
+    refs: [EL5]
     statement: 'A spark transfers a charge of 3.0 μC in a time of 1.5 μs. Calculate the average current.'
     answer_label: 'Average current of the spark'
     check:
@@ -56,7 +56,7 @@ problems:
   - id: p4-charging-by-rubbing
     section: '6.5'
     tier: F
-    dfe: [EL5]
+    refs: [EL5]
     statement: 'Describe how rubbing two insulating materials together makes them electrically charged, and state the sign of the charge on the material that gains electrons.'
     answer_label: 'How rubbing produces charge'
     check:
@@ -74,7 +74,7 @@ problems:
   - id: p5-forces-between-charges
     section: '6.5'
     tier: F
-    dfe: [EL5]
+    refs: [EL5]
     statement: 'State what force acts between two charged objects that carry the same type of charge, and between two that carry opposite types of charge. Say what kind of force this is.'
     answer_label: 'The forces between charged objects'
     check:
@@ -95,7 +95,7 @@ problems:
   - id: p6-field-non-contact
     section: '6.5'
     tier: F
-    dfe: [EL5]
+    refs: [EL5]
     statement: 'Explain how the idea of an electric field helps to explain the non-contact force between two charged objects.'
     answer_label: 'The electric field and the non-contact force'
     check:
@@ -113,7 +113,7 @@ problems:
   - id: p7-spark
     section: '6.5'
     tier: F
-    dfe: [EL5]
+    refs: [EL5]
     statement: 'Explain how a strong electric field can cause a spark.'
     answer_label: 'How an electric field causes a spark'
     check:
@@ -134,7 +134,7 @@ problems:
   - id: p8-field-pattern
     section: '6.5'
     tier: F
-    dfe: [EL5]
+    refs: [EL5]
     statement: 'Describe the electric field pattern around an isolated charged sphere. Include the direction of the field lines for a positive sphere and for a negative sphere.'
     answer_label: 'The field pattern of a charged sphere'
     check:
@@ -155,7 +155,7 @@ problems:
   - id: p9-field-strength
     section: '6.5'
     tier: F
-    dfe: [EL5]
+    refs: [EL5]
     statement: 'Describe how the strength of the electric field around a charged object changes as the distance from the object increases.'
     answer_label: 'How the field strength changes with distance'
     check:
@@ -173,7 +173,7 @@ problems:
   - id: p10-charge-interleaved
     section: '6.5'
     tier: F
-    dfe: [EL5]
+    refs: [EL5]
     statement: 'A current of 0.25 A flows for 80 s. Calculate the charge that flows. This uses the equation from Section 6.1.'
     answer_label: 'Charge that flows'
     check:
@@ -191,7 +191,7 @@ problems:
   - id: p11-power-interleaved
     section: '6.5'
     tier: F
-    dfe: [EL5]
+    refs: [EL5]
     statement: 'A device on the 230 V supply takes a current of 0.30 A. Calculate its power. This uses the equation from Section 6.4.'
     answer_label: 'Power of the device'
     check:
@@ -209,7 +209,7 @@ problems:
   - id: p12-method-choice
     section: '6.5'
     tier: F
-    dfe: [EL5]
+    refs: [EL5]
     statement: 'A spark transfers a charge of 4.0 μC in a time of 2.0 μs. Say which relationship you will use, then calculate the average current.'
     answer_label: 'Average current of the spark'
     check:

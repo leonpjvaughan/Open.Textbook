@@ -4,7 +4,7 @@ chapter: 13
 chapter_title: Statistical distributions
 section: '13.4'
 section_title: Links to the binomial, histograms and points of inflection
-dfe:
+refs:
 - N2
 kind: walkthrough
 ---

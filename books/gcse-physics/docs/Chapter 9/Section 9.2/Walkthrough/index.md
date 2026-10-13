@@ -5,7 +5,7 @@ chapter_title: Atomic structure
 section: '9.2'
 section_title: Atoms and nuclear radiation
 tier: F
-dfe:
+refs:
 - AT2
 kind: walkthrough
 ---

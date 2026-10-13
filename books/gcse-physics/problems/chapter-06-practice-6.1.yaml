@@ -11,7 +11,7 @@ problems:
   - id: p1-convert-ma
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'Express a current of 250 mA in amperes.'
     answer_label: '250 mA in amperes'
     check:
@@ -25,7 +25,7 @@ problems:
   - id: p2-convert-minutes
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'Express a time of 5.0 minutes in seconds.'
     answer_label: '5.0 minutes in seconds'
     check:
@@ -39,7 +39,7 @@ problems:
   - id: p3-charge-flow
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'A current of 5.0 A flows through a heater for 60 s. Calculate the charge that flows.'
     answer_label: 'Charge that flows'
     check:
@@ -57,7 +57,7 @@ problems:
   - id: p4-current-from-charge
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'A charge of 120 C passes a point in a circuit in 40 s. Calculate the current.'
     answer_label: 'Current in the circuit'
     check:
@@ -75,7 +75,7 @@ problems:
   - id: p5-potential-difference
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'A current of 0.50 A flows through a 12 Ω resistor. Calculate the potential difference across the resistor.'
     answer_label: 'Potential difference across the resistor'
     check:
@@ -93,7 +93,7 @@ problems:
   - id: p6-current-from-pd
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'The potential difference across a 30 Ω resistor is 9.0 V. Calculate the current through it.'
     answer_label: 'Current through the resistor'
     check:
@@ -111,7 +111,7 @@ problems:
   - id: p7-resistance-from-pd
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'The potential difference across a component is 18 V and the current through it is 0.40 A. Calculate its resistance.'
     answer_label: 'Resistance of the component'
     check:
@@ -129,7 +129,7 @@ problems:
   - id: p8-resistance-from-graph
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'A resistor is tested and the potential difference across it is plotted against the current through it. The graph is a straight line through the points (0.10 A, 2.0 V), (0.20 A, 4.0 V) and (0.30 A, 6.0 V). Use the gradient of the graph to find the resistance.'
     answer_label: 'Resistance from the gradient'
     check:
@@ -141,7 +141,7 @@ problems:
   - id: p9-current-same-value
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'A cell, a lamp and a resistor are connected in a single closed loop. Explain why the current through the lamp equals the current through the resistor.'
     answer_label: 'Why the current is the same at both components'
     check:
@@ -159,7 +159,7 @@ problems:
   - id: p10-filament-resistance
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'Explain why the resistance of a filament lamp increases as the current through it increases.'
     answer_label: 'Why the resistance of a filament lamp increases'
     check:
@@ -177,7 +177,7 @@ problems:
   - id: p11-thermistor-application
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'Describe what happens to the resistance of a thermistor as its temperature increases, and give one use for a thermistor in a circuit.'
     answer_label: 'The thermistor and one use'
     check:
@@ -195,7 +195,7 @@ problems:
   - id: p12-power-interleaved
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'A lamp transfers 90 J of energy in 15 s. Calculate its power. This uses the idea of power from Chapter 1.'
     answer_label: 'Power of the lamp'
     check:
@@ -208,7 +208,7 @@ problems:
   - id: p13-method-choice
     section: '6.1'
     tier: F
-    dfe: [EL1]
+    refs: [EL1]
     statement: 'A lamp has a potential difference of 12 V across it and a resistance of 24 Ω. Say which relationship you will use, then calculate the current through the lamp.'
     answer_label: 'Current through the lamp'
     check:

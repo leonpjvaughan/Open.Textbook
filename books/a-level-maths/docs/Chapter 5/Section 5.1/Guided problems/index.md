@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Trigonometry
 section: '5.1'
 section_title: The sine and cosine rules and the area of a triangle
-dfe:
+refs:
 - E1
 kind: guided-problems
 ---

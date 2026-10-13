@@ -7,7 +7,7 @@ chapter: 15
 problems:
   - id: p1-distance-and-displacement
     section: "15.2"
-    dfe: [Q1]
+    refs: [Q1]
     statement: 'A cyclist rides $4$ km east, then turns and rides $1.5$ km west. Taking east as positive, find the distance travelled and the displacement.'
     answer_label: 'The distance and the displacement'
     check:
@@ -19,7 +19,7 @@ problems:
 
   - id: p2-out-and-back
     section: "15.2"
-    dfe: [Q1]
+    refs: [Q1]
     statement: 'A runner jogs $2.4$ km along a straight path, then turns and jogs $0.8$ km back. Find the distance travelled and the displacement.'
     answer_label: 'The distance and the displacement'
     check:
@@ -31,7 +31,7 @@ problems:
 
   - id: p3-average-speed
     section: "15.2"
-    dfe: [Q1]
+    refs: [Q1]
     statement: 'A car travels $420$ m along a straight road in $35$ s. Find its average speed.'
     answer_label: 'The average speed'
     check:
@@ -42,7 +42,7 @@ problems:
 
   - id: p4-average-velocity
     section: "15.2"
-    dfe: [Q1]
+    refs: [Q1]
     statement: 'A walker moves $300$ m due north in $20$ s. Find the average velocity.'
     answer_label: 'The average velocity'
     check:
@@ -53,7 +53,7 @@ problems:
 
   - id: p5-average-speed-and-velocity
     section: "15.2"
-    dfe: [Q1]
+    refs: [Q1]
     statement: 'A train moves $500$ m east in $25$ s, then $100$ m west in $20$ s. Find its average speed and its average velocity.'
     answer_label: 'The average speed and the average velocity'
     check:
@@ -65,7 +65,7 @@ problems:
 
   - id: p6-acceleration
     section: "15.2"
-    dfe: [Q1]
+    refs: [Q1]
     statement: 'A car speeds up from $4$ m/s to $22$ m/s in $6$ s. Find its acceleration.'
     answer_label: 'The acceleration'
     check:
@@ -76,7 +76,7 @@ problems:
 
   - id: p7-deceleration
     section: "15.2"
-    dfe: [Q1]
+    refs: [Q1]
     statement: 'A train slows from $45$ m/s to $9$ m/s in $4$ s while travelling east. Taking east as positive, find its acceleration.'
     answer_label: 'The acceleration'
     check:
@@ -87,7 +87,7 @@ problems:
 
   - id: p8-acceleration-under-gravity
     section: "15.2"
-    dfe: [Q1]
+    refs: [Q1]
     statement: 'A ball is thrown vertically upwards at $14.7$ m/s and returns to the thrower''s hand $3$ s later, moving downwards at $14.7$ m/s. Taking upwards as positive, find its acceleration.'
     answer_label: 'The acceleration'
     check:
@@ -98,7 +98,7 @@ problems:
 
   - id: p9-swimmer
     section: "15.2"
-    dfe: [Q1]
+    refs: [Q1]
     statement: 'A swimmer swims $25$ m to the far end of a straight pool, back to the start, then $25$ m to the far end again. Find the distance travelled and the displacement.'
     answer_label: 'The distance and the displacement'
     check:
@@ -110,7 +110,7 @@ problems:
 
   - id: p10-distance-from-speed
     section: "15.2"
-    dfe: [Q1]
+    refs: [Q1]
     statement: 'A car travels at an average speed of $20$ m/s for $15$ s. Find the distance travelled.'
     answer_label: 'The distance'
     check:
@@ -121,7 +121,7 @@ problems:
 
   - id: p11-position-and-velocity
     section: "15.2"
-    dfe: [Q1]
+    refs: [Q1]
     statement: 'A particle on a straight line is at position $-3$ m when $t = 0$ and at position $7$ m when $t = 10$ s. Find its displacement and its average velocity.'
     answer_label: 'The displacement and the average velocity'
     check:
@@ -133,7 +133,7 @@ problems:
 
   - id: p12-dropped-ball
     section: "15.2"
-    dfe: [Q1]
+    refs: [Q1]
     statement: 'A ball is dropped from rest. After $3$ s it is moving downwards at $29.4$ m/s. Taking downwards as positive, find its acceleration.'
     answer_label: 'The acceleration'
     check:

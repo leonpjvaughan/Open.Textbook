@@ -15,4 +15,4 @@ kind: problems
 # 21.2 Binding energy and the mass defect — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 4.5
+> Tier: **O** · refs: 4.5

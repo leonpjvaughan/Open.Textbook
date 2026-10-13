@@ -18,7 +18,7 @@ problems:
   - id: p1-mass-to-energy
     plays: mass-energy
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A reaction converts a mass of 2.0e-30 kg into energy. Find the energy released.'
     answer_label: 'The energy released'
     check:
@@ -32,7 +32,7 @@ problems:
 
   - id: p2-mass-defect-mev
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A nucleus has a mass defect of 0.050 u. Find its binding energy in MeV.'
     answer_label: 'The binding energy'
     check: {kind: approx, value: "0.050 * 931.5", target: "46.6", tolerance: "0.05"}
@@ -40,7 +40,7 @@ problems:
 
   - id: p3-kg-to-mev
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A nuclear reaction has a mass defect of 3.0e-29 kg. Find the energy released, in MeV.'
     answer_label: 'The energy released'
     check: {kind: approx, value: "3.0e-29 * (3.00e8)**2 / 1.60e-13", target: "16.9", tolerance: "0.1"}
@@ -48,7 +48,7 @@ problems:
 
   - id: p4-binding-energy-per-nucleon
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A helium-4 nucleus has a mass defect of 0.0304 u. Find its binding energy in MeV and its binding energy per nucleon.'
     answer_label: 'The binding energy and its value per nucleon'
     check:
@@ -60,7 +60,7 @@ problems:
 
   - id: p5-mass-defect-kg
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A fission reaction releases 200 MeV. Find the mass defect in kilograms.'
     answer_label: 'The mass defect'
     check: {kind: approx, value: "200e6 * 1.60e-19 / (3.00e8)**2", target: "3.56e-28", tolerance: "1e-29"}
@@ -68,7 +68,7 @@ problems:
 
   - id: p6-annihilation-energy
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'An electron and a positron annihilate. Each has a rest energy of 0.511 MeV. Find the total energy released, in MeV and in joules.'
     answer_label: 'The total energy'
     check:
@@ -80,7 +80,7 @@ problems:
 
   - id: p7-annihilation-photon
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'In the annihilation, two identical photons are produced. Find the energy of each photon in joules and its wavelength.'
     answer_label: 'The photon energy and wavelength'
     check:
@@ -92,7 +92,7 @@ problems:
 
   - id: p8-fusion-energy
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'In a fusion reaction, 2.0e-29 kg of mass becomes energy. Find the energy released, in MeV.'
     answer_label: 'The energy released'
     check: {kind: approx, value: "2.0e-29 * (3.00e8)**2 / 1.60e-13", target: "11.3", tolerance: "0.1"}
@@ -100,7 +100,7 @@ problems:
 
   - id: p9-fission-explanation
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Explain why energy is released when a very heavy nucleus undergoes fission.'
     check:
       kind: structured
@@ -125,7 +125,7 @@ problems:
 
   - id: p10-fusion-explanation
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'Explain why energy is released when two light nuclei fuse.'
     check:
       kind: structured
@@ -147,7 +147,7 @@ problems:
 
   - id: p11-sigfigs
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A mass defect is calculated as 0.030376 u. Write it to three significant figures.'
     answer_label: 'The mass defect'
     check: {kind: sigfigs, value: "0.030376", figures: 3, answer: "0.0304", convention: round-once}
@@ -155,7 +155,7 @@ problems:
 
   - id: p12-energy-uncertainty
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A mass defect is 3.0e-29 kg with an uncertainty of 4.0%. Find the percentage uncertainty in the energy released.'
     answer_label: 'The percentage uncertainty'
     check:
@@ -169,7 +169,7 @@ problems:
 
   - id: p13-rest-mass
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'The rest energy of a proton is 938 MeV. Find its mass in kilograms.'
     answer_label: 'The mass'
     check: {kind: approx, value: "938e6 * 1.60e-19 / (3.00e8)**2", target: "1.67e-27", tolerance: "1e-29"}
@@ -177,7 +177,7 @@ problems:
 
   - id: p14-method-choice
     section: '8.4'
-    dfe: [AP8]
+    refs: [AP8]
     statement: 'A nuclear reaction has a mass defect of 0.020 u. State which equation you would use to find the energy released in joules, and why.'
     check:
       kind: structured

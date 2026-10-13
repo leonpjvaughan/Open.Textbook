@@ -4,7 +4,7 @@ chapter: 2
 chapter_title: Algebra and functions
 section: '2.6'
 section_title: Linear and quadratic inequalities, and set notation
-dfe:
+refs:
 - B5
 kind: walkthrough
 ---

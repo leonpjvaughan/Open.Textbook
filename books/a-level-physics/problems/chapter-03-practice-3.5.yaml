@@ -13,7 +13,7 @@ chapter: 3
 problems:
   - id: p1-radians
     section: '3.5'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'Write $120^\circ$ in radians.'
     answer_label: 'The angle in radians'
     check:
@@ -25,7 +25,7 @@ problems:
 
   - id: p2-angular-velocity
     section: '3.5'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A wheel rotates at 2.5 revolutions per second. Find its angular velocity in radians per second.'
     answer_label: 'The angular velocity'
     check:
@@ -38,7 +38,7 @@ problems:
   - id: p3-v-omega-r
     plays: angular-speed
     section: '3.5'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'An object moves in a circle of radius 0.40 m with an angular velocity of $20\,\text{rad}\,\text{s}^{-1}$. Find its speed.'
     answer_label: 'The speed'
     check:
@@ -53,7 +53,7 @@ problems:
   - id: p4-centripetal-acceleration
     plays: centripetal-acceleration
     section: '3.5'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'An object moves at $6.0\,\text{m}\,\text{s}^{-1}$ in a circle of radius 12 m. Find its centripetal acceleration.'
     answer_label: 'The centripetal acceleration'
     check:
@@ -68,7 +68,7 @@ problems:
   - id: p5-centripetal-force
     plays: centripetal-force
     section: '3.5'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'An object of mass 0.60 kg moves at $4.0\,\text{m}\,\text{s}^{-1}$ in a circle of radius 0.80 m. Find the centripetal force on it.'
     answer_label: 'The centripetal force'
     check:
@@ -83,7 +83,7 @@ problems:
 
   - id: p6-car-bend
     section: '3.5'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A car of mass 1000 kg goes round a bend of radius 80 m at $20\,\text{m}\,\text{s}^{-1}$. Find the centripetal acceleration and the friction force. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The acceleration and the friction force'
     check:
@@ -95,7 +95,7 @@ problems:
 
   - id: p7-minimum-speed-top
     section: '3.5'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A ball is whirled in a vertical circle of radius 1.2 m. Find the minimum speed at the top of the circle for the ball to keep moving in the circle. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The minimum speed at the top'
     check:
@@ -108,7 +108,7 @@ problems:
   - id: p8-tension-bottom
     plays: centripetal-force
     section: '3.5'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A bucket of mass 0.40 kg is swung in a vertical circle of radius 0.50 m. At the bottom of the circle its speed is $4.0\,\text{m}\,\text{s}^{-1}$. Find the tension in the string. Take $g = 9.81\,\text{m}\,\text{s}^{-2}$.'
     answer_label: 'The tension in the string'
     check:
@@ -124,7 +124,7 @@ problems:
 
   - id: p9-period
     section: '3.5'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A wheel rotates with an angular velocity of $12\,\text{rad}\,\text{s}^{-1}$. Find its period of rotation.'
     answer_label: 'The period'
     check:
@@ -136,7 +136,7 @@ problems:
 
   - id: p10-factor-change
     section: '3.5'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'The speed of an object in a circle is doubled and the radius is halved. By what factor does the centripetal acceleration change?'
     answer_label: 'The factor'
     check: {kind: evaluate, expression: "(2**2) / (1/2)", answer: "8"}
@@ -144,7 +144,7 @@ problems:
 
   - id: p11-no-centrifugal
     section: '3.5'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A passenger on a roundabout says there is an outward force pushing them outwards. Explain why there is no such force in the ground frame.'
     answer_label: 'Why there is no outward force'
     check:
@@ -165,7 +165,7 @@ problems:
 
   - id: p12-method-choice
     section: '3.5'
-    dfe: [AP3]
+    refs: [AP3]
     statement: 'A stone is whirled in a horizontal circle on a string. Say how you would find the tension, and name the force that provides the centripetal force.'
     answer_label: 'The method and the force'
     check:

@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Trigonometry
 section: '5.5'
 section_title: Small-angle approximations
-dfe:
+refs:
 - E2
 kind: guided-problems
 ---

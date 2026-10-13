@@ -15,4 +15,4 @@ kind: guided-problems
 # 17.1 The coordinate plane and plotting points — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: GT.5
+> Tier: **O** · refs: GT.5

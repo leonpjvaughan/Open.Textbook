@@ -5,7 +5,7 @@ chapter: 14
 problems:
   - id: p1-pizza-lower
     section: "14.2"
-    dfe: [O1, O2]
+    refs: [O1, O2]
     statement: 'A pizza chain claims that 1 delivery in 5 takes more than 30 minutes. In 30 deliveries, 2 take more than 30 minutes. Test the claim at the 5% level against the alternative that the proportion is lower.'
     answer_label: 'The p-value and the decision'
     check:
@@ -22,7 +22,7 @@ problems:
 
   - id: p2-components-lower-retain
     section: "14.2"
-    dfe: [O1, O2]
+    refs: [O1, O2]
     statement: 'A manufacturer claims that 20% of components are faulty. A sample of 25 components contains 2 faulty ones. Test the claim at the 5% level against the alternative that the proportion is lower.'
     answer_label: 'The p-value and the decision'
     check:
@@ -39,7 +39,7 @@ problems:
 
   - id: p3-brand-upper-retain
     section: "14.2"
-    dfe: [O1, O2]
+    refs: [O1, O2]
     statement: 'A survey claims that 40% of shoppers prefer brand A. In a sample of 30 shoppers, 16 prefer brand A. Test the claim at the 5% level against the alternative that the proportion is higher.'
     answer_label: 'The p-value and the decision'
     check:
@@ -56,7 +56,7 @@ problems:
 
   - id: p4-coin-upper
     section: "14.2"
-    dfe: [O1, O2]
+    refs: [O1, O2]
     statement: 'A coin is tossed 16 times and shows 12 heads. Test at the 5% level whether the coin is biased towards heads.'
     answer_label: 'The p-value and the decision'
     check:
@@ -73,7 +73,7 @@ problems:
 
   - id: p5-spinner-two-reject
     section: "14.2"
-    dfe: [O1, O2]
+    refs: [O1, O2]
     statement: 'A spinner is claimed to land on red 1 time in 4. In 30 spins it lands on red 13 times. Test at the 5% level whether the spinner is unfair.'
     answer_label: 'The two-tailed p-value and the decision'
     check:
@@ -90,7 +90,7 @@ problems:
 
   - id: p6-spinner-two-retain
     section: "14.2"
-    dfe: [O1, O2]
+    refs: [O1, O2]
     statement: 'The same spinner in question 5 lands on red 12 times in 30 spins. Test at the 5% level whether the spinner is unfair.'
     answer_label: 'The two-tailed p-value and the decision'
     check:
@@ -107,7 +107,7 @@ problems:
 
   - id: p7-compare-five
     section: "14.2"
-    dfe: [O1, O2]
+    refs: [O1, O2]
     statement: 'A test gives a p-value of $0.0442$. State, with a symbol, how this p-value compares with the 5% significance level, and name the decision.'
     answer_label: 'The comparison and the decision'
     check: {kind: compare, lhs: "0.0442", relation: "<", rhs: "0.05"}
@@ -115,7 +115,7 @@ problems:
 
   - id: p8-compare-one
     section: "14.2"
-    dfe: [O1, O2]
+    refs: [O1, O2]
     statement: 'The same test gives a p-value of $0.0442$. State, with a symbol, how this p-value compares with the 1% significance level, and name the decision.'
     answer_label: 'The comparison and the decision'
     check: {kind: compare, lhs: "0.0442", relation: ">", rhs: "0.01"}
@@ -123,7 +123,7 @@ problems:
 
   - id: p9-pizza-tail
     section: "14.2"
-    dfe: [O1, O2]
+    refs: [O1, O2]
     statement: 'A chain claims that 1 delivery in 5 takes more than 30 minutes. Find $P(X \le 2)$ for a sample of 30 deliveries, to 4 decimal places.'
     answer_label: 'The lower tail probability'
     check:
@@ -136,7 +136,7 @@ problems:
 
   - id: p10-brand-tail
     section: "14.2"
-    dfe: [O1, O2]
+    refs: [O1, O2]
     statement: 'A survey claims that 40% of shoppers prefer brand A. Find $P(X \ge 16)$ for a sample of 30 shoppers, to 4 decimal places.'
     answer_label: 'The upper tail probability'
     check:
@@ -149,7 +149,7 @@ problems:
 
   - id: p11-coin-strong-two
     section: "14.2"
-    dfe: [O1, O2]
+    refs: [O1, O2]
     statement: 'A coin is tossed 20 times and shows 16 heads. Test at the 5% level whether the coin is fair.'
     answer_label: 'The two-tailed p-value and the decision'
     check:
@@ -166,7 +166,7 @@ problems:
 
   - id: p12-callcentre-upper-retain
     section: "14.2"
-    dfe: [O1, O2]
+    refs: [O1, O2]
     statement: 'A call centre claims that 70% of calls are answered within 30 seconds. In a sample of 40 calls, 32 are answered in time. Test at the 5% level whether the proportion is higher than the claim.'
     answer_label: 'The p-value and the decision'
     check:

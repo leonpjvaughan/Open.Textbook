@@ -5,7 +5,7 @@ chapter_title: Functions, algebraic fractions and proof
 section: "15.4"
 section_title: "Identities and equivalent expressions"
 tier: F
-dfe: [A6]
+refs: [A6]
 kind: practise
 ---
 

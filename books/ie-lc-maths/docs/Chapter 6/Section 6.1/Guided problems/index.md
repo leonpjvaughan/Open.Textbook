@@ -15,4 +15,4 @@ kind: guided-problems
 # 6.1 Relations and functions — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **F** · DfE refs: 5.1
+> Tier: **F** · refs: 5.1

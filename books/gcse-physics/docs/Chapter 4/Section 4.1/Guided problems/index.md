@@ -5,7 +5,7 @@ chapter_title: Waves in matter
 section: '4.1'
 section_title: Waves in air, fluids and solids
 tier: F
-dfe:
+refs:
 - WA1
 kind: guided-problems
 ---

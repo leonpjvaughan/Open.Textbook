@@ -15,4 +15,4 @@ kind: problems
 # 17.3 The charge-to-mass ratio of the electron — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · DfE refs: 4.1
+> Tier: **H** · refs: 4.1

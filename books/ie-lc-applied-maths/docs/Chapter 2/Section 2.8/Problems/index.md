@@ -15,4 +15,4 @@ kind: problems
 # 2.8 Shortest paths and Dijkstra's algorithm — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: S2
+> Tier: **O** · refs: S2

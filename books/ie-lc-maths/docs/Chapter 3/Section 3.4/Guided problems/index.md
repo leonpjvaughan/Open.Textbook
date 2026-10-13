@@ -15,4 +15,4 @@ kind: guided-problems
 # 3.4 Nets of prisms, cylinders and spheres — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: 3.4
+> Tier: **O** · refs: 3.4

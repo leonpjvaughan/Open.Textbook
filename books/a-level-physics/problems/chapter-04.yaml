@@ -19,7 +19,7 @@ problems:
   - id: w1-stress-240
     plays: tensile-stress
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire of cross-sectional area 1.5e-5 m^2 carries a tensile force of 240 N. Find the stress.'
     answer_label: 'The tensile stress'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: w2-diameter-stress
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire has a diameter of 0.80 mm and carries a force of 50 N. Find the stress.'
     answer_label: 'The tensile stress'
     check: {kind: approx, value: "50 / (pi * (0.40e-3)**2)", target: "1.0e8", tolerance: "2e6"}
@@ -41,7 +41,7 @@ problems:
 
   - id: w3-strain
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire 2.50 m long extends by 0.60 mm. Find the strain.'
     answer_label: 'The tensile strain'
     check: {kind: evaluate, expression: "6.0e-4 / 2.50", answer: "2.4e-4"}
@@ -49,7 +49,7 @@ problems:
 
   - id: w4-young-extension
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A steel wire of length 2.00 m and area 4.0e-7 m^2 carries a force of 60 N. Use E = 2.0e11 Pa to find the stress, the strain and the extension.'
     answer_label: 'The stress, the strain and the extension'
     check:
@@ -78,7 +78,7 @@ problems:
   - id: w5-find-E
     plays: young-modulus
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire 2.00 m long and of area 1.0e-7 m^2 extends by 2.0 mm under a force of 20 N. Find the Young modulus.'
     answer_label: 'The Young modulus'
     check:
@@ -95,7 +95,7 @@ problems:
   - id: w6-young-unit
     plays: tensile-stress
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'Use E = stress / strain to show that the base units of the Young modulus are kg m^-1 s^-2.'
     answer_label: 'The base units of the Young modulus'
     check:
@@ -110,7 +110,7 @@ problems:
   - id: g1-stress-guided
     plays: tensile-stress
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire of cross-sectional area 4.0e-6 m^2 carries a force of 80 N. Find the stress.'
     answer_label: 'The tensile stress'
     check:
@@ -124,7 +124,7 @@ problems:
 
   - id: g2-strain-guided
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire of original length 2.00 m extends by 1.2 mm. Find the strain.'
     answer_label: 'The tensile strain'
     check: {kind: evaluate, expression: "1.2e-3 / 2.00", answer: "6.0e-4"}
@@ -133,7 +133,7 @@ problems:
   - id: g3-E-guided
     plays: young-modulus
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A material has a stress of 9.0e7 Pa and a strain of 4.5e-4. Find its Young modulus.'
     answer_label: 'The Young modulus'
     check:
@@ -147,7 +147,7 @@ problems:
 
   - id: g4-diameter-guided
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire has a diameter of 0.50 mm and carries a force of 20 N. Find the stress.'
     answer_label: 'The tensile stress'
     check: {kind: approx, value: "20 / (pi * (0.25e-3)**2)", target: "1.0e8", tolerance: "3e6"}
@@ -156,7 +156,7 @@ problems:
   - id: g5-extension-guided
     plays: young-modulus
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A copper wire has E = 1.2e11 Pa, length 1.50 m and area 3.0e-7 m^2. A force of 36 N stretches it. Find the extension.'
     answer_label: 'The extension'
     check:
@@ -172,7 +172,7 @@ problems:
 
   - id: g6-stiffer-material
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A steel wire and a copper wire are the same length and area and carry the same force. Explain which stretches more. Steel has E = 2.0e11 Pa and copper has E = 1.2e11 Pa.'
     answer_label: 'Which wire stretches more, and why'
     check:
@@ -191,21 +191,21 @@ problems:
   # --- Section 4.1, the warm-up recalls ---------------------------------------
   - id: warmup-4-1-mm2
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'Warm-up: write 3.0 mm^2 in m^2.'
     check: {kind: convert, value: "3.0", from: "mm^2", to: "m^2", answer: "3.0e-06"}
     answer_text: '$3.0\,\text{mm}^2 = 3.0 \times 10^{-6}\,\text{m}^2$.'
 
   - id: warmup-4-1-decimal
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'Warm-up: write 2.4e-4 as an ordinary decimal.'
     check: {kind: evaluate, expression: "2.4e-4", answer: "0.00024"}
     answer_text: '$2.4 \times 10^{-4} = 0.000\,24$.'
 
   - id: warmup-4-1-circle
     section: '4.1'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'Warm-up: find the area of a circle of diameter 0.80 mm, in m^2, to two significant figures.'
     check: {kind: approx, value: "pi * (0.40e-3)**2", target: "5.0e-7", tolerance: "1e-8"}
     answer_text: 'The radius is $0.40\,\text{mm} = 4.0 \times 10^{-4}\,\text{m}$, so the area is $\pi (4.0 \times 10^{-4})^2 = 5.0 \times 10^{-7}\,\text{m}^2$.'
@@ -214,7 +214,7 @@ problems:
   - id: w7-hooke-k
     plays: hookes-law
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A spring extends by 0.040 m when a force of 8.0 N acts on it. Find the spring constant.'
     answer_label: 'The spring constant'
     check:
@@ -228,7 +228,7 @@ problems:
 
   - id: w8-graph-gradient
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A force-extension graph is a straight line through (0.010 m, 4.0 N) and (0.040 m, 16 N). Find the spring constant.'
     answer_label: 'The spring constant'
     check:
@@ -240,7 +240,7 @@ problems:
   - id: w9-energy-straight
     plays: stored-energy
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A spring of spring constant 200 N/m is stretched by 0.040 m. Find the energy stored.'
     answer_label: 'The energy stored'
     check:
@@ -255,7 +255,7 @@ problems:
   - id: w10-energy-graph
     plays: stored-energy
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A straight-line force-extension graph reaches 16 N at an extension of 0.040 m. Find the energy stored, from the area under the graph.'
     answer_label: 'The energy stored'
     check:
@@ -269,7 +269,7 @@ problems:
 
   - id: w11-area-nonlinear
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A rubber cord gives forces 0, 3.5, 7.5, 13 and 20 N at extensions 0, 0.020, 0.040, 0.060 and 0.080 m. Find the energy stored at 0.080 m.'
     answer_label: 'The energy stored'
     check:
@@ -281,7 +281,7 @@ problems:
   - id: w12-gradient-to-E
     plays: young-modulus
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire of length 1.50 m and area 2.0e-7 m^2 has a force-extension graph of gradient 2.0e4 N/m. Find the Young modulus.'
     answer_label: 'The Young modulus'
     check:
@@ -297,7 +297,7 @@ problems:
   - id: g7-hooke-guided
     plays: hookes-law
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A spring extends by 0.060 m under a force of 12 N. Find the spring constant.'
     answer_label: 'The spring constant'
     check:
@@ -311,7 +311,7 @@ problems:
 
   - id: g8-force-energy-guided
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A spring of constant 300 N/m is stretched by 0.050 m. Find the force and the energy stored.'
     answer_label: 'The force and the energy stored'
     check:
@@ -333,7 +333,7 @@ problems:
 
   - id: g9-graph-guided
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A force-extension graph is a straight line through (0, 0) and (0.025 m, 10 N). Find the gradient and the energy stored at 10 N.'
     answer_label: 'The gradient and the energy stored'
     check:
@@ -349,7 +349,7 @@ problems:
 
   - id: g10-wire-k-energy
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire has E = 2.0e11 Pa, area 1.0e-7 m^2 and length 2.00 m. Find its stiffness and the energy stored when it extends by 1.0 mm.'
     answer_label: 'The stiffness and the energy stored'
     check:
@@ -372,7 +372,7 @@ problems:
 
   - id: g11-nonlinear-method
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A force-extension graph bends. Explain why the energy stored is not half F times the extension, and how to find it.'
     answer_label: 'Why the triangle formula fails, and what to use'
     check:
@@ -390,7 +390,7 @@ problems:
 
   - id: g12-energy-to-force
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A spring stores 0.90 J when it is extended by 0.060 m. Find the final force and the spring constant.'
     answer_label: 'The final force and the spring constant'
     check:
@@ -413,21 +413,21 @@ problems:
   # --- Section 4.2, the warm-up recalls ---------------------------------------
   - id: warmup-4-2-half
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'Warm-up: work out half of 12 multiplied by 0.30.'
     check: {kind: evaluate, expression: "0.5 * 12 * 0.30", answer: "1.8"}
     answer_text: '$\tfrac{1}{2} \times 12 \times 0.30 = 1.8$.'
 
   - id: warmup-4-2-triangle
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'Warm-up: find the area of a triangle with base 0.040 m and height 8.0 N.'
     check: {kind: evaluate, expression: "0.5 * 0.040 * 8.0", answer: "0.16"}
     answer_text: 'The area is $\tfrac{1}{2} \times 0.040 \times 8.0 = 0.16$.'
 
   - id: warmup-4-2-gradient
     section: '4.2'
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'Warm-up: find the gradient of the line through (0, 0) and (0.050 m, 15 N).'
     check:
       kind: gradient
@@ -439,7 +439,7 @@ problems:
   - id: anchor-crane-stress
     plays: tensile-stress
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'The beam has mass 2500 kg and the cable has area 1.5e-4 m^2. Find the stress in the cable.'
     check:
       kind: dimensions
@@ -454,7 +454,7 @@ problems:
   - id: anchor-crane-strain
     plays: young-modulus
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'The cable stress is 1.635e8 Pa and the steel has E = 2.0e11 Pa. Find the strain.'
     check:
       kind: dimensions
@@ -468,7 +468,7 @@ problems:
   - id: anchor-crane-extension
     plays: tensile-strain
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'The cable is 20.0 m long and the strain is 8.175e-4. Find the extension.'
     check:
       kind: dimensions
@@ -481,7 +481,7 @@ problems:
 
   - id: anchor-crane-energy
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'The load is 24 525 N and the extension is 1.635e-2 m. Find the energy stored in the cable.'
     answer_label: 'The energy stored'
     check: {kind: approx, value: "0.5 * 24525 * 0.01635", target: "200.49", tolerance: "0.05"}
@@ -490,7 +490,7 @@ problems:
   - id: anchor-crane-spring-constant
     plays: young-modulus
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'Use E = 2.0e11 Pa, area 1.5e-4 m^2 and length 20.0 m to find the stiffness of the cable.'
     answer_label: 'The stiffness of the cable'
     check:
@@ -505,7 +505,7 @@ problems:
 
   - id: anchor-crane-max-mass
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'The working stress is 3.0e8 Pa and the cable area is 1.5e-4 m^2. Find the greatest mass the cable may lift.'
     answer_label: 'The greatest mass'
     check: {kind: approx, value: "3.0e8 * 1.5e-4 / 9.81", target: "4587", tolerance: "2"}
@@ -513,7 +513,7 @@ problems:
 
   - id: anchor-crane-judgement
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A second beam of mass 5000 kg is proposed. Decide whether the cable may lift it under the safety rule, and give a reason.'
     answer_label: 'The judgement'
     check:

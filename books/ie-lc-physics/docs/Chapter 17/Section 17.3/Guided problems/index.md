@@ -15,4 +15,4 @@ kind: guided-problems
 # 17.3 The charge-to-mass ratio of the electron — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **H** · DfE refs: 4.1
+> Tier: **H** · refs: 4.1

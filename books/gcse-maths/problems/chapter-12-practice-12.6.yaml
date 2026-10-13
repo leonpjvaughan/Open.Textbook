@@ -9,7 +9,7 @@ problems:
     id: 'ch12-12.6-square-1'
     section: '12.6'
     tier: 'H'
-    dfe:
+    refs:
       - 'A11'
       - 'A18'
     statement: 'Complete the square for $x^2+8x+3$.'
@@ -23,7 +23,7 @@ problems:
     id: 'ch12-12.6-square-2'
     section: '12.6'
     tier: 'H'
-    dfe:
+    refs:
       - 'A11'
       - 'A18'
     statement: 'Complete the square for $x^2-6x+1$.'
@@ -37,7 +37,7 @@ problems:
     id: 'ch12-12.6-turning'
     section: '12.6'
     tier: 'H'
-    dfe:
+    refs:
       - 'A11'
     statement: 'State the turning point of $y=(x-4)^2+2$.'
     answer_label: 'State the turning point of $y=(x-4)^2+2$.'
@@ -50,7 +50,7 @@ problems:
     id: 'ch12-12.6-solve-1'
     section: '12.6'
     tier: 'H'
-    dfe:
+    refs:
       - 'A18'
     statement: 'Solve $x^2+4x-1=0$ by completing the square.'
     answer_label: 'Solve $x^2+4x-1=0$ by completing the square.'
@@ -66,7 +66,7 @@ problems:
     id: 'ch12-12.6-square-5'
     section: '12.6'
     tier: 'H'
-    dfe:
+    refs:
       - 'A11'
       - 'A18'
     statement: 'Write $x^2-10x+7$ in completed-square form.'
@@ -80,7 +80,7 @@ problems:
     id: 'ch12-12.6-solve-2'
     section: '12.6'
     tier: 'H'
-    dfe:
+    refs:
       - 'A18'
     statement: 'Solve $x^2-6x+5=0$ by completing the square.'
     answer_label: 'Solve $x^2-6x+5=0$ by completing the square.'
@@ -96,7 +96,7 @@ problems:
     id: 'ch12-12.6-max'
     section: '12.6'
     tier: 'H'
-    dfe:
+    refs:
       - 'A11'
     statement: 'State the maximum value of $y=-(x-2)^2+7$.'
     answer_label: 'State the maximum value of $y=-(x-2)^2+7$.'
@@ -110,7 +110,7 @@ problems:
     id: 'ch12-12.6-solve-4'
     section: '12.6'
     tier: 'H'
-    dfe:
+    refs:
       - 'A18'
     statement: 'Solve $x^2+2x-7=0$ by completing the square.'
     answer_label: 'Solve $x^2+2x-7=0$ by completing the square.'
@@ -126,7 +126,7 @@ problems:
     id: ch12-126-method-square
     section: '12.6'
     tier: 'H'
-    dfe: [A18]
+    refs: [A18]
     statement: 'Solve $x^2+6x+5=0$. Which method fits better: factorising or completing the square? Give a reason. Then solve it, and state the minimum value of $x^2+6x+5$.'
     answer_label: 'Method choice: factorise or complete the square'
     check:

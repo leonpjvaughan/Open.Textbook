@@ -6,7 +6,7 @@ chapter: 5
 problems:
   - id: p1-degrees-to-radians
     section: "5.2"
-    dfe: [E1]
+    refs: [E1]
     statement: 'Change $135^\circ$ into radians, in terms of $\pi$.'
     answer_label: 'The angle in radians'
     check:
@@ -17,7 +17,7 @@ problems:
 
   - id: p2-radians-to-degrees
     section: "5.2"
-    dfe: [E1]
+    refs: [E1]
     statement: 'Change $\dfrac{5\pi}{6}$ radians into degrees.'
     answer_label: 'The angle in degrees'
     check:
@@ -28,7 +28,7 @@ problems:
 
   - id: p3-decimal-radians
     section: "5.2"
-    dfe: [E1]
+    refs: [E1]
     statement: 'Change $2.4$ radians into degrees, to one decimal place.'
     answer_label: 'The angle in degrees'
     check:
@@ -40,7 +40,7 @@ problems:
 
   - id: p4-arc-length
     section: "5.2"
-    dfe: [E1]
+    refs: [E1]
     statement: 'A circle has radius $12$ cm. Find the length of the arc that subtends $0.6$ radians at the centre.'
     answer_label: 'The arc length'
     check:
@@ -51,7 +51,7 @@ problems:
 
   - id: p5-sector-area
     section: "5.2"
-    dfe: [E1]
+    refs: [E1]
     statement: 'A sector has radius $9$ cm and angle $2$ radians. Find its area.'
     answer_label: 'The sector area'
     check:
@@ -62,7 +62,7 @@ problems:
 
   - id: p6-arc-and-sector
     section: "5.2"
-    dfe: [E1]
+    refs: [E1]
     statement: 'A sector has radius $10$ cm and angle $\dfrac{\pi}{4}$ radians. Find the arc length and the sector area, in terms of $\pi$.'
     answer_label: 'The arc length and the area'
     check:
@@ -74,7 +74,7 @@ problems:
 
   - id: p7-segment-area
     section: "5.2"
-    dfe: [E1]
+    refs: [E1]
     statement: 'A circle has radius $5$ cm. Find the area of the segment cut off by an arc of angle $\dfrac{\pi}{6}$ radians. Give the exact value.'
     answer_label: 'The segment area'
     check:
@@ -85,7 +85,7 @@ problems:
 
   - id: p8-fraction-turn
     section: "5.2"
-    dfe: [E1]
+    refs: [E1]
     statement: 'Change $210^\circ$ into radians, in terms of $\pi$.'
     answer_label: 'The angle in radians'
     check:
@@ -96,7 +96,7 @@ problems:
 
   - id: p9-angle-from-arc
     section: "5.2"
-    dfe: [E1]
+    refs: [E1]
     statement: 'A sector has radius $8$ cm and arc length $20$ cm. Find the angle at the centre, in radians.'
     answer_label: 'The angle in radians'
     check:
@@ -107,7 +107,7 @@ problems:
 
   - id: p10-angle-from-area
     section: "5.2"
-    dfe: [E1]
+    refs: [E1]
     statement: 'A sector has radius $6$ cm and area $30$ cm$^2$. Find the angle at the centre, in radians.'
     answer_label: 'The angle in radians'
     check:

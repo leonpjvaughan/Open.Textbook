@@ -15,4 +15,4 @@ kind: problems
 # 15.1 Axioms and the rules of deduction — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · DfE refs: 2.1
+> Tier: **O** · refs: 2.1

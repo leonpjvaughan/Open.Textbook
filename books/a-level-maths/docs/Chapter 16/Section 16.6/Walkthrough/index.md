@@ -4,7 +4,7 @@ chapter: 16
 chapter_title: Forces, Newton's laws and moments
 section: '16.6'
 section_title: Resultant forces and dynamics in a plane
-dfe:
+refs:
 - R5
 kind: walkthrough
 ---

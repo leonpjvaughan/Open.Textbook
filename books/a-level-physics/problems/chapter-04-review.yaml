@@ -18,7 +18,7 @@ problems:
   - id: r1-crane-stress
     plays: tensile-stress
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'The beam has mass $2500\,\text{kg}$ and the cable has area $1.5 \times 10^{-4}\,\text{m}^2$. Find the stress in the cable.'
     answer_label: 'The stress in the cable'
     check:
@@ -34,7 +34,7 @@ problems:
   - id: r2-crane-strain
     plays: young-modulus
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'The cable stress is $1.635 \times 10^{8}\,\text{Pa}$ and $E = 2.0 \times 10^{11}\,\text{Pa}$. Find the strain.'
     answer_label: 'The strain'
     check:
@@ -49,7 +49,7 @@ problems:
   - id: r3-crane-extension
     plays: tensile-strain
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'The cable is $20.0\,\text{m}$ long and the strain is $8.175 \times 10^{-4}$. Find the extension.'
     answer_label: 'The extension'
     check:
@@ -63,7 +63,7 @@ problems:
 
   - id: r4-crane-energy
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'The load is $24\,525\,\text{N}$ and the extension is $1.635 \times 10^{-2}\,\text{m}$. Find the energy stored in the cable.'
     answer_label: 'The energy stored'
     check: {kind: approx, value: "0.5 * 24525 * 0.01635", target: "200.49", tolerance: "0.05"}
@@ -71,7 +71,7 @@ problems:
 
   - id: r5-crane-max-mass
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'The working stress is $3.0 \times 10^{8}\,\text{Pa}$ and the cable area is $1.5 \times 10^{-4}\,\text{m}^2$. Find the greatest mass the cable may lift.'
     answer_label: 'The greatest mass'
     check: {kind: approx, value: "3.0e8 * 1.5e-4 / 9.81", target: "4587", tolerance: "2"}
@@ -79,7 +79,7 @@ problems:
 
   - id: r6-crane-judgement
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A second beam of mass $5000\,\text{kg}$ is proposed. Decide whether the cable may lift it under the safety rule, and give a reason.'
     answer_label: 'The judgement'
     check:
@@ -100,7 +100,7 @@ problems:
 
   - id: r7-convert-area
     section: Review
-    dfe: [AP1, AP4]
+    refs: [AP1, AP4]
     statement: 'A wire has a cross-sectional area of $4.0\,\text{mm}^2$. Write this area in $\text{m}^2$.'
     answer_label: 'The area in square metres'
     check: {kind: convert, value: "4.0", from: "mm^2", to: "m^2", answer: "4.0e-06"}
@@ -109,7 +109,7 @@ problems:
   - id: r8-homogeneity-stress
     plays: tensile-stress
     section: Review
-    dfe: [AP1, AP4]
+    refs: [AP1, AP4]
     statement: 'Show that a stress has the base units $\text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$.'
     answer_label: 'The base units of stress'
     check:
@@ -123,7 +123,7 @@ problems:
 
   - id: r9-uncertainty-diameter
     section: Review
-    dfe: [AP1, AP4]
+    refs: [AP1, AP4]
     statement: 'A wire has a diameter of $2.00 \pm 0.01\,\text{mm}$. Find the percentage uncertainty in the cross-sectional area.'
     answer_label: 'The percentage uncertainty in the area'
     check:
@@ -137,7 +137,7 @@ problems:
 
   - id: r10-resolve-tension
     section: Review
-    dfe: [AP2, AP4]
+    refs: [AP2, AP4]
     statement: 'A cable pulls a post with a tension of $5000\,\text{N}$ at $30^\circ$ to the horizontal. Find the horizontal and vertical components of the tension.'
     answer_label: 'The two components of the tension'
     check:
@@ -151,7 +151,7 @@ problems:
 
   - id: r11-method-choice-graph
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A wire is stretched, and the force and the extension are measured. Say which graph you would plot to find the Young modulus, and how you would use it. State one measurement you need as well as the graph.'
     answer_label: 'The graph and the method'
     check:
@@ -173,7 +173,7 @@ problems:
   - id: r12-density
     plays: density
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A steel block has a volume of $2.5 \times 10^{-4}\,\text{m}^3$ and a mass of $1.96\,\text{kg}$. Find its density.'
     answer_label: 'The density'
     check:
@@ -187,7 +187,7 @@ problems:
 
   - id: r13-graph-gradient-area
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'A force-extension graph for a wire is a straight line through $(0, 0)$ and $(1.5\,\text{mm},\, 12\,\text{N})$. Find the gradient and the energy stored at that extension.'
     answer_label: 'The gradient and the energy stored'
     check:
@@ -203,7 +203,7 @@ problems:
 
   - id: r14-limit-vs-elastic
     section: Review
-    dfe: [AP4]
+    refs: [AP4]
     statement: 'Explain the difference between the limit of proportionality and the elastic limit.'
     answer_label: 'The two limits'
     check:

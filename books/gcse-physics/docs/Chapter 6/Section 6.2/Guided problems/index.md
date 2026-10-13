@@ -5,7 +5,7 @@ chapter_title: Electricity
 section: '6.2'
 section_title: Series and parallel circuits
 tier: F
-dfe:
+refs:
 - EL2
 kind: guided-problems
 ---

@@ -5,7 +5,7 @@ chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.8'
 section_title: "The area of any triangle"
 tier: H
-dfe: [G23]
+refs: [G23]
 kind: walkthrough
 ---
 

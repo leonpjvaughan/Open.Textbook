@@ -15,4 +15,4 @@ kind: guided-problems
 # 6.4 Inverse proportion — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: N.3
+> Tier: **O** · refs: N.3

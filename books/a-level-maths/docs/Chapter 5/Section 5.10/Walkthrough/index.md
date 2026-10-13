@@ -4,7 +4,7 @@ chapter: 5
 chapter_title: Trigonometry
 section: '5.10'
 section_title: Solving trigonometric equations in an interval
-dfe:
+refs:
 - E7
 kind: walkthrough
 ---

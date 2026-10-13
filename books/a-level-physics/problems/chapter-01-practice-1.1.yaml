@@ -20,7 +20,7 @@ chapter: 1
 problems:
   - id: p1-area-mm2
     section: '1.1'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A wire has a cross-sectional area of $2.5\,\text{mm}^2$. Write this area in $\text{m}^2$.'
     answer_label: 'The area in square metres'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p2-capacitance-muf
     section: '1.1'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A capacitor is marked $4.7\,\mu\text{F}$. Write its capacitance in farads.'
     answer_label: 'The capacitance in farads'
     check:
@@ -46,7 +46,7 @@ problems:
 
   - id: p3-speed-kmh
     section: '1.1'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A train travels at $72\,\text{km}\,\text{h}^{-1}$. Write this speed in $\text{m}\,\text{s}^{-1}$.'
     answer_label: 'The speed in metres per second'
     check:
@@ -59,7 +59,7 @@ problems:
 
   - id: p4-homogeneity-ke
     section: '1.1'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'Show that the kinetic energy equation $E_k = \tfrac{1}{2}mv^2$ is homogeneous. Use the base units $\text{kg}$, $\text{m}$ and $\text{s}$.'
     answer_label: 'A homogeneity check'
     check:
@@ -70,7 +70,7 @@ problems:
 
   - id: p5-homogeneity-suvat
     section: '1.1'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'Show that the equation of motion $v^2 = u^2 + 2as$ is homogeneous.'
     answer_label: 'A homogeneity check'
     check:
@@ -82,7 +82,7 @@ problems:
   - id: p6-planck-units
     plays: photon-energy
     section: '1.1'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'The energy of a photon is $E = hf$, where $f$ is the frequency. Use base units to find the unit of the Planck constant $h$.'
     answer_label: 'The base units of the Planck constant'
     check:
@@ -96,7 +96,7 @@ problems:
 
   - id: p7-drag-viscosity
     section: '1.1'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'The drag force on a small sphere moving slowly through a liquid is $F = 6\pi\eta rv$, where $r$ is the radius and $v$ is the speed. Use base units to find the unit of the viscosity $\eta$.'
     answer_label: 'The base units of the viscosity'
     check:
@@ -111,7 +111,7 @@ problems:
 
   - id: p8-base-units-pascal
     section: '1.1'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'The pascal is one newton per square metre. Show that its base units are $\text{kg}\,\text{m}^{-1}\,\text{s}^{-2}$.'
     answer_label: 'The base units of the pascal'
     check:
@@ -125,7 +125,7 @@ problems:
 
   - id: p9-proton-mass-grams
     section: '1.1'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'The mass of a proton is $1.67 \times 10^{-27}\,\text{kg}$. Write this mass in grams.'
     answer_label: 'The mass in grams'
     check:
@@ -138,7 +138,7 @@ problems:
 
   - id: p10-density-prefix-error
     section: '1.1'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'A student writes the density of aluminium as $2700\,\text{g}\,\text{m}^{-3}$. Explain the mistake and write the density correctly in $\text{kg}\,\text{m}^{-3}$.'
     answer_label: 'The mistake and the correction'
     check:
@@ -155,7 +155,7 @@ problems:
 
   - id: p11-force-base-units
     section: '1.1'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'Two students disagree about the unit of force. Student A says $\text{kg}\,\text{m}\,\text{s}^{-2}$. Student B says $\text{kg}\,\text{m}\,\text{s}^{-1}$. Decide which student is correct, and show how the base units follow from $F = ma$.'
     answer_label: 'The correct unit of force'
     check:
@@ -171,7 +171,7 @@ problems:
 
   - id: p12-standard-form
     section: '1.1'
-    dfe: [AP1]
+    refs: [AP1]
     statement: 'The wavelength of a green light wave is $0.000\,000\,54\,\text{m}$. Write this wavelength in standard form to two significant figures.'
     answer_label: 'The wavelength in standard form'
     check:

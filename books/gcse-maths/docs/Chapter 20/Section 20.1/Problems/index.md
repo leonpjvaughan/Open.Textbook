@@ -5,7 +5,7 @@ chapter_title: "Pythagoras' theorem and trigonometry"
 section: '20.1'
 section_title: "Pythagoras' theorem"
 tier: F
-dfe: [G20]
+refs: [G20]
 kind: problems
 ---
 

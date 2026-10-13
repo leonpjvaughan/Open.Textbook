@@ -5,7 +5,7 @@ chapter_title: Circle geometry and circle theorems
 section: '21.4'
 section_title: Proof of circle theorems
 tier: H
-dfe: [G10]
+refs: [G10]
 kind: walkthrough
 ---
 

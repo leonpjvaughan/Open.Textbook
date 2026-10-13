@@ -5,7 +5,7 @@ chapter_title: Waves in matter
 section: '4.3'
 section_title: Waves at material interfaces
 tier: F
-dfe:
+refs:
 - WA2
 kind: problems
 ---

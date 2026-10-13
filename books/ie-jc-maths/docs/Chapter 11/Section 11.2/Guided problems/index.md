@@ -15,4 +15,4 @@ kind: guided-problems
 # 11.2 Multiplying out a single bracket — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: AF.3
+> Tier: **O** · refs: AF.3

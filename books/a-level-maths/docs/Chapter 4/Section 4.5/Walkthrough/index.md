@@ -4,7 +4,7 @@ chapter: 4
 chapter_title: Sequences and series
 section: '4.5'
 section_title: Arithmetic sequences and series
-dfe:
+refs:
 - D4
 kind: walkthrough
 ---

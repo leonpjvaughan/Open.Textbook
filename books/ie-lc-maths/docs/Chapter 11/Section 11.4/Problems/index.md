@@ -15,4 +15,4 @@ kind: problems
 # 11.4 Measures of centre and spread — Practise
 
 > **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · DfE refs: 1.7
+> Tier: **F** · refs: 1.7

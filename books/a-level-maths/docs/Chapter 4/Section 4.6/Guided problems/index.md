@@ -4,7 +4,7 @@ chapter: 4
 chapter_title: Sequences and series
 section: '4.6'
 section_title: Geometric sequences and series, and the sum to infinity
-dfe:
+refs:
 - D5
 kind: guided-problems
 ---

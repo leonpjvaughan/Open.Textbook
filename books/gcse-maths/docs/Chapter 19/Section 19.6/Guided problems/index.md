@@ -5,7 +5,7 @@ chapter_title: Perimeter, area, surface area and volume
 section: "19.6"
 section_title: Composite shapes and solids
 tier: F
-dfe: [G17]
+refs: [G17]
 kind: guided-problems
 ---
 

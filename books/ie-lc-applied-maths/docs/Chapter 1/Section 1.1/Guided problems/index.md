@@ -15,4 +15,4 @@ kind: guided-problems
 # 1.1 The problem-solving cycle — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: S1
+> Tier: **O** · refs: S1

@@ -4,7 +4,7 @@ chapter: 16
 chapter_title: Forces, Newton's laws and moments
 section: '16.2'
 section_title: Newton's second law and F = ma
-dfe:
+refs:
 - R2
 kind: guided-problems
 ---

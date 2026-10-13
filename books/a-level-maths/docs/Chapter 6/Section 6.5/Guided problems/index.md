@@ -4,7 +4,7 @@ chapter: 6
 chapter_title: Exponentials and logarithms
 section: '6.5'
 section_title: Logarithmic graphs and estimating parameters
-dfe:
+refs:
 - F6
 kind: guided-problems
 ---

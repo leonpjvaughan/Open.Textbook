@@ -4,7 +4,7 @@ chapter: 7
 chapter_title: Differentiation
 section: '7.7'
 section_title: The product, quotient and chain rules
-dfe:
+refs:
 - G4
 kind: guided-problems
 ---

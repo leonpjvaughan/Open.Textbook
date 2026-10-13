@@ -8,7 +8,7 @@ symbols:
 problems:
   - id: p1-prime-formula
     section: "1.4"
-    dfe: [A1]
+    refs: [A1]
     statement: 'The claim is "For every whole number $n$, the value of $n^2 + n + 41$ is prime." Find a counter example.'
     answer_label: 'The counter example'
     check:
@@ -21,7 +21,7 @@ problems:
 
   - id: p2-two-is-even
     section: "1.4"
-    dfe: [A1]
+    refs: [A1]
     statement: 'The claim is "Every prime number is odd." Find a counter example.'
     answer_label: 'The counter example'
     check:
@@ -33,7 +33,7 @@ problems:
 
   - id: p3-mersenne
     section: "1.4"
-    dfe: [A1]
+    refs: [A1]
     statement: 'The claim is "If $n$ is prime, then $2^n - 1$ is prime." Find a counter example.'
     answer_label: 'The counter example'
     check:
@@ -45,7 +45,7 @@ problems:
 
   - id: p4-square-inequality
     section: "1.4"
-    dfe: [A1]
+    refs: [A1]
     statement: 'The claim is "For every real number $x$, $x^2 > x$." Find a counter example.'
     answer_label: 'The counter example'
     check:
@@ -57,7 +57,7 @@ problems:
 
   - id: p5-square-inequality-two
     section: "1.4"
-    dfe: [A1]
+    refs: [A1]
     statement: 'The claim is "For all real numbers $x$ and $y$, if $x^2 > y^2$ then $x > y$." Find a counter example.'
     answer_label: 'The counter example'
     check:
@@ -69,7 +69,7 @@ problems:
 
   - id: p6-six-and-twelve
     section: "1.4"
-    dfe: [A1]
+    refs: [A1]
     statement: 'The claim is "If a whole number is a multiple of $6$, then it is a multiple of $12$." Find a counter example.'
     answer_label: 'The counter example'
     check:
@@ -81,7 +81,7 @@ problems:
 
   - id: p7-second-prime-formula
     section: "1.4"
-    dfe: [A1]
+    refs: [A1]
     statement: 'The claim is "For every whole number $n$, the value of $n^2 - n + 11$ is prime." Find a counter example.'
     answer_label: 'The counter example'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p8-sum-of-irrationals
     section: "1.4"
-    dfe: [A1]
+    refs: [A1]
     statement: 'The claim is "The sum of two irrational numbers is irrational." Find a counter example.'
     answer_label: 'The counter example'
     check:
@@ -104,7 +104,7 @@ problems:
 
   - id: p9-sum-of-primes
     section: "1.4"
-    dfe: [A1]
+    refs: [A1]
     statement: 'The claim is "The sum of two prime numbers is even." Find a counter example.'
     answer_label: 'The counter example'
     check:
@@ -116,7 +116,7 @@ problems:
 
   - id: p10-triangle
     section: "1.4"
-    dfe: [A1]
+    refs: [A1]
     statement: 'The claim is "Every triangle whose sides are whole numbers has a right angle." Find a counter example.'
     answer_label: 'The counter example'
     check:
@@ -129,7 +129,7 @@ problems:
 
   - id: p11-method-choice
     section: "1.4"
-    dfe: [A1]
+    refs: [A1]
     statement: 'Choose the method for each part before you answer, then explain your choice. (a) Prove that the sum of two odd numbers is even. (b) Decide whether every whole number of the form $n^2 + 1$ is prime.'
     answer_label: 'Which method, and why'
     check:

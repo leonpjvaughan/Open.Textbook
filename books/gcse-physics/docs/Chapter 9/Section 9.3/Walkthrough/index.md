@@ -5,7 +5,7 @@ chapter_title: Atomic structure
 section: '9.3'
 section_title: Hazards and uses of radioactive emissions and background radiation
 tier: F
-dfe:
+refs:
 - AT3
 kind: walkthrough
 ---

@@ -17,7 +17,7 @@ chapter: 2
 problems:
   - id: p1-classify-scalar-vector
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Classify each quantity as a scalar or a vector: mass, weight, displacement, energy, acceleration, temperature.'
     answer_label: 'Scalars and vectors'
     check:
@@ -35,7 +35,7 @@ problems:
 
   - id: p2-hiker-displacement
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A hiker walks $4.2\,\text{km}$ north, then turns and walks $1.7\,\text{km}$ south. Find the resultant displacement.'
     answer_label: 'The resultant displacement'
     check:
@@ -50,7 +50,7 @@ problems:
   - id: p3-velocity-dimensions
     plays: velocity
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A car travels $1.2\,\text{km}$ east in $60\,\text{s}$. Find its average velocity.'
     answer_label: 'The average velocity'
     check:
@@ -64,7 +64,7 @@ problems:
 
   - id: p4-collinear-forces
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Two forces act along the same line. A force of $300\,\text{N}$ acts to the right, and a force of $450\,\text{N}$ acts to the left. Find the resultant force, and state its direction.'
     answer_label: 'The resultant force'
     check: {kind: evaluate, expression: "300 - 450", answer: "-150"}
@@ -72,7 +72,7 @@ problems:
 
   - id: p5-distance-displacement
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Explain the difference between distance and displacement, using a journey that ends where it started.'
     answer_label: 'Distance and displacement'
     check:
@@ -93,7 +93,7 @@ problems:
 
   - id: p6-return-displacement
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A plane flies $800\,\text{km}$ east and then $800\,\text{km}$ west. Find its final displacement.'
     answer_label: 'The final displacement'
     check: {kind: evaluate, expression: "800 - 800", answer: "0"}
@@ -101,7 +101,7 @@ problems:
 
   - id: p7-current-scalar
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'An electric current has a direction, but it is not a vector. Explain why.'
     answer_label: 'Why current is not a vector'
     check:
@@ -119,7 +119,7 @@ problems:
 
   - id: p8-notation
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A displacement is written as $250\,\text{m}$ on a bearing of $060^\circ$. State its magnitude and its direction.'
     answer_label: 'The magnitude and direction'
     check:
@@ -137,7 +137,7 @@ problems:
 
   - id: p9-speed-velocity
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A car travels round a roundabout at a steady $8.0\,\text{m}\,\text{s}^{-1}$. Explain why its speed is constant but its velocity is not.'
     answer_label: 'Speed and velocity on a roundabout'
     check:
@@ -155,7 +155,7 @@ problems:
 
   - id: p10-trolley-displacement
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A trolley moves $2.0\,\text{m}$ to the right, then $5.0\,\text{m}$ to the left. Find its resultant displacement.'
     answer_label: 'The resultant displacement'
     check: {kind: evaluate, expression: "2.0 - 5.0", answer: "-3.0"}
@@ -163,7 +163,7 @@ problems:
 
   - id: p11-vector-quantities
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'Which of these quantities are vectors: force, power, momentum, work, impulse, pressure? Give the magnitude and the direction for one of them.'
     answer_label: 'The vector quantities'
     check:
@@ -181,7 +181,7 @@ problems:
 
   - id: p12-method-choice
     section: '2.1'
-    dfe: [AP2]
+    refs: [AP2]
     statement: 'A ferry points straight across a river at $4.0\,\text{m}\,\text{s}^{-1}$. The current flows at $3.0\,\text{m}\,\text{s}^{-1}$ at right angles to the crossing. A student says the velocity over the ground is $7.0\,\text{m}\,\text{s}^{-1}$. Explain why this is wrong, and say what rule gives the correct value.'
     answer_label: 'Why the velocities do not simply add'
     check:

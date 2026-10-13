@@ -4,7 +4,7 @@ chapter: 11
 chapter_title: Statistical sampling and data presentation
 section: '11.6'
 section_title: Outliers, data cleaning and critiquing presentation
-dfe:
+refs:
 - L4
 kind: problems
 ---

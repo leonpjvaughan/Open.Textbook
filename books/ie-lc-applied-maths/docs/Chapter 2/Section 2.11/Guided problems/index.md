@@ -15,4 +15,4 @@ kind: guided-problems
 # 2.11 Comparing the algorithms and choosing one — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **H** · DfE refs: S2
+> Tier: **H** · refs: S2

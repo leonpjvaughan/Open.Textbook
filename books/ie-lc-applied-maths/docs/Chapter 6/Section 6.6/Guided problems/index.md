@@ -15,4 +15,4 @@ kind: guided-problems
 # 6.6 Collisions in two dimensions — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **H** · DfE refs: S3
+> Tier: **H** · refs: S3

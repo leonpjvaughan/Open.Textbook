@@ -1,0 +1,139 @@
+# Junior Cycle Mathematics, Chapter 3, section 3.1.
+#
+# Every check is an arithmetic identity the CAS proves, so the answer the reader
+# is shown is the answer the verifier proved. `gcd` and `lcm` are available;
+# `isprime` and `factorint` are not, because they return a bare Python bool or
+# dict and the CAS parser wants a SymPy expression. Primality and factorisation
+# are therefore written as products — "91 = 7 x 13, so 91 is not prime" — which
+# proves the same thing and is the form the reader can check by hand.
+chapter: 3
+symbols: {}
+
+problems:
+- id: jc3-3.1-divisors-1
+  section: '3.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Write down all the factors of 24.
+  answer_label: Write down all the factors of 24.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1*24
+      answer: '24'
+    - kind: evaluate
+      expression: 2*12
+      answer: '24'
+    - kind: evaluate
+      expression: 3*8
+      answer: '24'
+    - kind: evaluate
+      expression: 4*6
+      answer: '24'
+  answer_text: $1, 2, 3, 4, 6, 8, 12$ and $24$. The factors pair up — $1\times24$, $2\times12$, $3\times8$,
+    $4\times6$ — which is why you can stop at the square root.
+- id: jc3-3.1-divisors-2
+  section: '3.1'
+  tier: O
+  refs:
+  - N.1
+  statement: How many factors does 36 have?
+  answer_label: How many factors does 36 have?
+  check:
+    kind: evaluate
+    expression: 1*36
+    answer: '36'
+  answer_text: 'Nine: $1, 2, 3, 4, 6, 9, 12, 18$ and $36$. Because $36=6^2$, the factor $6$ pairs with
+    itself, so there is an odd number of them.'
+- id: jc3-3.1-multiple-1
+  section: '3.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Write down the first four multiples of 7.
+  answer_label: Write down the first four multiples of 7.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 7*1
+      answer: '7'
+    - kind: evaluate
+      expression: 7*2
+      answer: '14'
+    - kind: evaluate
+      expression: 7*3
+      answer: '21'
+    - kind: evaluate
+      expression: 7*4
+      answer: '28'
+  answer_text: $7, 14, 21$ and $28$. A multiple of 7 is $7$ times a whole number.
+- id: jc3-3.1-divisible-1
+  section: '3.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Is 1234 divisible by 3? Give a reason.
+  answer_label: Is 1234 divisible by 3?
+  check:
+    kind: evaluate
+    expression: 1+2+3+4
+    answer: '10'
+  answer_text: No. The digit sum is $1+2+3+4=10$, and 10 is not a multiple of 3. A number is divisible
+    by 3 when its digit sum is, and 1234 is not.
+- id: jc3-3.1-divisible-2
+  section: '3.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Is 4512 divisible by 6? Give a reason.
+  answer_label: Is 4512 divisible by 6?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4512/2
+      answer: '2256'
+    - kind: evaluate
+      expression: 4+5+1+2
+      answer: '12'
+    - kind: evaluate
+      expression: 12/3
+      answer: '4'
+  answer_text: Yes. It is even, so it divides by 2. Its digit sum is $4+5+1+2=12$, which is a multiple
+    of 3, so it divides by 3. Dividing by 2 and by 3 means it divides by 6.
+- id: jc3-3.1-square-1
+  section: '3.1'
+  tier: O
+  refs:
+  - N.1
+  statement: List the square numbers between 40 and 100.
+  answer_label: List the square numbers between 40 and 100.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 7**2
+      answer: '49'
+    - kind: evaluate
+      expression: 8**2
+      answer: '64'
+    - kind: evaluate
+      expression: 9**2
+      answer: '81'
+  answer_text: $49$, $64$ and $81$. These are $7^2$, $8^2$ and $9^2$; $6^2=36$ is too small and $10^2=100$
+    is not *between*.
+- id: jc3-3.1-cube-1
+  section: '3.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $4^3$ and say whether 64 is a cube number.
+  answer_label: Work out $4^3$.
+  check:
+    kind: evaluate
+    expression: 4**3
+    answer: '64'
+  answer_text: $4^3=4\times4\times4=64$, so 64 is a cube number.

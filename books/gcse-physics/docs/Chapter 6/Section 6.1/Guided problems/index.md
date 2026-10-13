@@ -5,7 +5,7 @@ chapter_title: Electricity
 section: '6.1'
 section_title: Current, potential difference and resistance
 tier: F
-dfe:
+refs:
 - EL1
 kind: guided-problems
 ---

@@ -4,7 +4,7 @@ chapter: 2
 chapter_title: Algebra and functions
 section: '2.10'
 section_title: Composite and inverse functions
-dfe:
+refs:
 - B8
 - OT1
 kind: problems

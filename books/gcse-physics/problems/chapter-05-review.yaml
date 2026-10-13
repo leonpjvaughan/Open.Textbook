@@ -11,7 +11,7 @@ problems:
   - id: r1-anchor-radio
     section: Review
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'The observatory radio telescope receives a signal with a frequency of 150 MHz. Calculate the wavelength.'
     answer_label: 'Wavelength of the radio signal'
     check:
@@ -29,7 +29,7 @@ problems:
   - id: r2-anchor-infrared
     section: Review
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'The observatory infrared camera detects radiation with a wavelength of 10 μm. Calculate its frequency.'
     answer_label: 'Frequency of the infrared radiation'
     check:
@@ -47,7 +47,7 @@ problems:
   - id: r3-anchor-visible
     section: Review
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'A visible-light image uses light with a wavelength of 600 nm. Calculate its frequency.'
     answer_label: 'Frequency of the visible light'
     check:
@@ -65,7 +65,7 @@ problems:
   - id: r4-anchor-magnification
     section: Review
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'The visitor centre lens projects a picture 2.0 cm tall so that its image is 0.30 m tall. Calculate the magnification.'
     answer_label: 'Magnification of the projected picture'
     check:
@@ -78,7 +78,7 @@ problems:
   - id: r5-anchor-order
     section: Review
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'Place the radio signal, the infrared radiation and the visible light from the chapter problem in order of increasing frequency. Explain your answer.'
     answer_label: 'The order of increasing frequency'
     check:
@@ -96,7 +96,7 @@ problems:
   - id: r6-anchor-white-walls
     section: Review
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'The observatory walls are painted white. Explain why white walls keep the building cooler in sunshine than black walls would.'
     answer_label: 'Why white walls keep the building cooler'
     check:
@@ -117,7 +117,7 @@ problems:
   - id: r7-sound-wavelength
     section: Review
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A sound wave travels through air at 340 m/s and has a frequency of 170 Hz. Calculate its wavelength.'
     answer_label: 'Wavelength of the sound wave'
     check:
@@ -135,7 +135,7 @@ problems:
   - id: r8-sound-period
     section: Review
     tier: F
-    dfe: [WA1]
+    refs: [WA1]
     statement: 'A sound wave has a frequency of 50 Hz. Calculate its period.'
     answer_label: 'Period of the sound wave'
     check:
@@ -148,7 +148,7 @@ problems:
   - id: r9-kinetic-energy
     section: Review
     tier: F
-    dfe: [EN1]
+    refs: [EN1]
     statement: 'A ball of mass 0.20 kg moves at 15 m/s. Calculate the energy in its kinetic store.'
     answer_label: 'Energy in the kinetic store'
     check:
@@ -166,7 +166,7 @@ problems:
   - id: r10-efficiency
     section: Review
     tier: F
-    dfe: [EN2]
+    refs: [EN2]
     statement: 'A motor transfers 200 J of energy, and 150 J is usefully transferred. Calculate the efficiency of the motor.'
     answer_label: 'Efficiency of the motor'
     check:
@@ -179,7 +179,7 @@ problems:
   - id: r11-weight
     section: Review
     tier: F
-    dfe: [FO1]
+    refs: [FO1]
     statement: 'A pupil of mass 60 kg stands on the ground. Take $g = 9.8\,\text{N/kg}$. Calculate the pupil''s weight.'
     answer_label: 'Weight of the pupil'
     check:
@@ -197,7 +197,7 @@ problems:
   - id: r12-radio-frequency
     section: Review
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'A radio wave has a wavelength of 0.15 m. Calculate its frequency.'
     answer_label: 'Frequency of the radio wave'
     check:
@@ -215,7 +215,7 @@ problems:
   - id: r13-image-height
     section: Review
     tier: F
-    dfe: [WA5]
+    refs: [WA5]
     statement: 'A lens has a magnification of 8.0. An object is 3.0 mm tall. Calculate the height of the image.'
     answer_label: 'Height of the image'
     check:
@@ -228,7 +228,7 @@ problems:
   - id: r14-ultraviolet-frequency
     section: Review
     tier: F
-    dfe: [WA4]
+    refs: [WA4]
     statement: 'Ultraviolet radiation has a wavelength of 250 nm. Calculate its frequency.'
     answer_label: 'Frequency of the ultraviolet radiation'
     check:
@@ -246,7 +246,7 @@ problems:
   - id: r15-method-choice
     section: Review
     tier: F
-    dfe: [WA3]
+    refs: [WA3]
     statement: 'A signal has a frequency of 300 MHz. Say which relationship you will use, then calculate the wavelength.'
     answer_label: 'Wavelength of the signal'
     check:
@@ -264,7 +264,7 @@ problems:
   - id: r16-black-body
     section: Review
     tier: F
-    dfe: [WA7]
+    refs: [WA7]
     statement: 'Explain why a hot object emits radiation with a shorter peak wavelength than a cool object.'
     answer_label: 'Why the peak wavelength is shorter'
     check:

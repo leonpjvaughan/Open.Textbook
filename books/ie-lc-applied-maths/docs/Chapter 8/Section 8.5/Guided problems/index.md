@@ -15,4 +15,4 @@ kind: guided-problems
 # 8.5 Feedback and limited growth — Practise with help
 
 > **Stub.** Scaffolded practice with progressive exposure: the student attempts each step, then reveals a hint or a fuller worked step only if needed.
-> Tier: **O** · DfE refs: S4
+> Tier: **O** · refs: S4
