@@ -3,6 +3,10 @@
 // are scaled to their tallest value and the curve is scaled to its peak, so
 // the two can be compared. Pure HTML and SVG, no colour of its own: the
 // fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the two sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 function binomialCoefficient(n, r) {
   let result = 1;
@@ -26,27 +30,30 @@ function normalPdf(x, mu, sigma) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:640px">
-      <label>Number of trials n
-        <input class="n" type="range" min="5" max="100" step="5" value="20">
-        <output class="n-out">20</output>
-      </label>
-      <label>Probability of success p
-        <input class="p" type="range" min="5" max="95" step="5" value="50">
-        <output class="p-out">0.50</output>
-      </label>
-      <svg viewBox="0 0 480 200" width="100%" role="img"
-           aria-label="Binomial bars with a Normal curve drawn over them"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "Binomial bars with a Normal curve drawn over them",
+    width: 480,
+    height: 200,
+    max: 640,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const nInput = el.querySelector(".n");
-  const pInput = el.querySelector(".p");
-  const nOut = el.querySelector(".n-out");
-  const pOut = el.querySelector(".p-out");
+  const nInput = slider(el, {
+    id: "n",
+    label: "Number of trials n",
+    min: 5,
+    max: 100,
+    step: 5,
+    value: 20,
+  });
+  const pInput = slider(el, {
+    id: "p",
+    label: "Probability of success p",
+    min: 5,
+    max: 95,
+    step: 5,
+    value: 50,
+    format: (value) => (value / 100).toFixed(2),
+  });
 
   function render() {
     const n = Number(nInput.value);
@@ -100,10 +107,6 @@ export function mount(el) {
 
     svg.innerHTML = bars + curve + axis + ticks.join("");
 
-    nOut.value = n;
-    nOut.textContent = n;
-    pOut.value = p.toFixed(2);
-    pOut.textContent = p.toFixed(2);
     const ok = mu > 5 && n * (1 - p) > 5;
     readout.textContent =
       `n = ${n} and p = ${p.toFixed(2)}. The matching curve has mean ` +
@@ -119,8 +122,5 @@ export function mount(el) {
     );
   }
 
-  nInput.addEventListener("input", render);
-  pInput.addEventListener("input", render);
-
-  render();
+  react([nInput, pInput], render);
 }

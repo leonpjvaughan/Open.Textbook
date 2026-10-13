@@ -3,6 +3,11 @@
 // in the overlap cell and watches P(A given B) move away from P(A).
 // Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
 // carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. The two-way table and the
+// verdict line are the figure's own text, so they stay here.
+import { panel, slider, react } from "./kit.js";
 
 const N = 200;
 const HALF = 100;
@@ -21,38 +26,40 @@ function bar(y, value, className) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:640px">
-      <p>
-        <label>Number in both A and B
-          <input class="overlap" type="range" min="0" max="100" step="1" value="50">
-          <output class="overlap-out">50</output>
-        </label>
-      </p>
-      <table class="two-way">
-        <tr>
-          <th></th><th>B</th><th>not B</th><th>Total</th>
-        </tr>
-        <tr><th>A</th><td class="ab"></td><td class="anb"></td><td>100</td></tr>
-        <tr><th>not A</th><td class="nab"></td><td class="nanb"></td><td>100</td></tr>
-        <tr><th>Total</th><td>100</td><td>100</td><td>200</td></tr>
-      </table>
-      <svg viewBox="0 0 ${LEFT + BAR_W + 60} 80" width="100%" role="img"
-           aria-label="A bar chart comparing the conditional probability of A given B with the unconditional probability of A"></svg>
-      <p class="readout" aria-live="polite"></p>
-      <p class="verdict" aria-live="polite"></p>
-    </div>`;
+  const { root, svg, readout } = panel(el, {
+    label:
+      "A bar chart comparing the conditional probability of A given B with the unconditional probability of A",
+    width: LEFT + BAR_W + 60,
+    height: 80,
+    max: 640,
+  });
 
-  const svg = el.querySelector("svg");
-  const overlap = el.querySelector(".overlap");
-  const overlapOut = el.querySelector(".overlap-out");
-  const readout = el.querySelector(".readout");
-  const verdict = el.querySelector(".verdict");
+  const overlap = slider(el, {
+    id: "overlap",
+    label: "Number in both A and B",
+    min: 0,
+    max: 100,
+    step: 1,
+    value: 50,
+  });
+
+  const table = document.createElement("table");
+  table.className = "two-way";
+  table.innerHTML =
+    `<tr><th></th><th>B</th><th>not B</th><th>Total</th></tr>` +
+    `<tr><th>A</th><td class="ab"></td><td class="anb"></td><td>100</td></tr>` +
+    `<tr><th>not A</th><td class="nab"></td><td class="nanb"></td><td>100</td></tr>` +
+    `<tr><th>Total</th><td>100</td><td>100</td><td>200</td></tr>`;
+
+  const verdict = document.createElement("p");
+  verdict.className = "verdict";
+  verdict.setAttribute("aria-live", "polite");
+
+  root.insertBefore(table, svg);
+  root.append(verdict);
 
   function render() {
     const x = Number(overlap.value);
-    overlapOut.value = x;
-    overlapOut.textContent = x;
 
     const ab = x;
     const anb = HALF - x;
@@ -94,6 +101,5 @@ export function mount(el) {
     );
   }
 
-  overlap.addEventListener("input", render);
-  render();
+  react(overlap, render);
 }

@@ -3,6 +3,10 @@
 // the exact probabilities from the binomial formula, so the chart matches the
 // formula on the page. Pure HTML and SVG, no framework and no colour of its
 // own: the fig-* classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the two sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, react } from "./kit.js";
 
 function binomialCoefficient(n, r) {
   let result = 1;
@@ -23,27 +27,31 @@ function binomialProbabilities(n, p) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:620px">
-      <label>Number of trials n
-        <input class="n" type="range" min="1" max="20" step="1" value="10">
-        <output class="n-out">10</output>
-      </label>
-      <label>Probability of success p
-        <input class="p" type="range" min="5" max="95" step="5" value="50">
-        <output class="p-out">0.50</output>
-      </label>
-      <svg viewBox="0 0 460 200" width="100%" role="img"
-           aria-label="A bar chart of the binomial probabilities for chosen n and p"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A bar chart of the binomial probabilities for chosen n and p",
+    width: 460,
+    height: 200,
+    max: 620,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const nInput = el.querySelector(".n");
-  const pInput = el.querySelector(".p");
-  const nOut = el.querySelector(".n-out");
-  const pOut = el.querySelector(".p-out");
+  const nInput = slider(el, {
+    id: "n",
+    label: "Number of trials n",
+    min: 1,
+    max: 20,
+    step: 1,
+    value: 10,
+  });
+  const pInput = slider(el, {
+    id: "p",
+    label: "Probability of success p",
+    min: 5,
+    max: 95,
+    step: 5,
+    value: 50,
+    format: (value) => (value / 100).toFixed(2),
+  });
 
   function render() {
     const n = Number(nInput.value);
@@ -91,10 +99,6 @@ export function mount(el) {
 
     svg.innerHTML = axis + bars + ticks;
 
-    nOut.value = n;
-    nOut.textContent = n;
-    pOut.value = p.toFixed(2);
-    pOut.textContent = p.toFixed(2);
     readout.textContent =
       `n = ${n} and p = ${p.toFixed(2)}. The tallest bar is at r = ${mode}, ` +
       `with probability ${tallest.toFixed(4)}. The probabilities add to 1.`;
@@ -107,8 +111,5 @@ export function mount(el) {
     );
   }
 
-  nInput.addEventListener("input", render);
-  pInput.addEventListener("input", render);
-
-  render();
+  react([nInput, pInput], render);
 }

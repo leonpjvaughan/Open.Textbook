@@ -4,6 +4,11 @@
 // heights change, but the total area does not.
 // Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
 // carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentence.
+import { panel, slider, react } from "./kit.js";
 
 const WIDTHS = [5, 10, 15, 20];
 const MIN_VALUE = 0;
@@ -34,21 +39,23 @@ function classes(width) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:600px">
-      <label>Class width
-        <input class="w" type="range" min="0" max="3" step="1" value="1">
-        <output class="w-out">10</output>
-      </label>
-      <svg viewBox="0 0 430 190" width="100%" role="img"
-           aria-label="A histogram of 60 values drawn with a chosen class width"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "A histogram of 60 values drawn with a chosen class width",
+    width: 430,
+    height: 190,
+    max: 600,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const wInput = el.querySelector(".w");
-  const wOut = el.querySelector(".w-out");
+  const wInput = slider(el, {
+    id: "w",
+    label: "Class width",
+    min: 0,
+    max: 3,
+    step: 1,
+    value: 1,
+    // The slider moves through the four widths, not through the index.
+    format: (index) => String(WIDTHS[Number(index)]),
+  });
 
   function render() {
     const width = WIDTHS[Number(wInput.value)];
@@ -105,11 +112,5 @@ export function mount(el) {
     );
   }
 
-  wInput.addEventListener("input", () => {
-    wOut.value = WIDTHS[Number(wInput.value)];
-    wOut.textContent = WIDTHS[Number(wInput.value)];
-    render();
-  });
-
-  render();
+  react(wInput, render);
 }

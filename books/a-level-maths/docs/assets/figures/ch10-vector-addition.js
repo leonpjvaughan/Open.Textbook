@@ -3,6 +3,11 @@
 // resultant and the scalar multiple k*a. Plain HTML and SVG, no framework and
 // no colour of its own: the fig-* classes carry the theme. Runtime text is
 // plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the five sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentence.
+import { panel, slider, react } from "./kit.js";
 
 const SCALE = 20;
 const ORIGIN_X = 220;
@@ -42,36 +47,54 @@ function arrow(x1, y1, x2, y2, cls) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:560px">
-      <label>a across
-        <input class="a1" type="range" min="-4" max="4" step="1" value="3">
-      </label>
-      <label>a up
-        <input class="a2" type="range" min="-4" max="4" step="1" value="4">
-      </label>
-      <label>b across
-        <input class="b1" type="range" min="-4" max="4" step="1" value="4">
-      </label>
-      <label>b up
-        <input class="b2" type="range" min="-4" max="4" step="1" value="-3">
-      </label>
-      <label>scaler k
-        <input class="k" type="range" min="-2" max="2" step="0.5" value="2">
-      </label>
-      <svg viewBox="0 0 ${W} ${H}" width="100%" role="img"
-           aria-label="Two vectors a and b drawn head to tail, their resultant a plus b, and the scalar multiple k times a"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "Two vectors a and b drawn head to tail, their resultant a plus b, and the scalar multiple k times a",
+    width: W,
+    height: H,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
   const inputs = {
-    a1: el.querySelector(".a1"),
-    a2: el.querySelector(".a2"),
-    b1: el.querySelector(".b1"),
-    b2: el.querySelector(".b2"),
-    k: el.querySelector(".k"),
+    a1: slider(el, {
+      id: "a1",
+      label: "a across",
+      min: -4,
+      max: 4,
+      step: 1,
+      value: 3,
+    }),
+    a2: slider(el, {
+      id: "a2",
+      label: "a up",
+      min: -4,
+      max: 4,
+      step: 1,
+      value: 4,
+    }),
+    b1: slider(el, {
+      id: "b1",
+      label: "b across",
+      min: -4,
+      max: 4,
+      step: 1,
+      value: 4,
+    }),
+    b2: slider(el, {
+      id: "b2",
+      label: "b up",
+      min: -4,
+      max: 4,
+      step: 1,
+      value: -3,
+    }),
+    k: slider(el, {
+      id: "k",
+      label: "scaler k",
+      min: -2,
+      max: 2,
+      step: 0.5,
+      value: 2,
+    }),
   };
 
   function grid() {
@@ -132,8 +155,5 @@ export function mount(el) {
     );
   }
 
-  for (const input of Object.values(inputs)) {
-    input.addEventListener("input", update);
-  }
-  update();
+  react(Object.values(inputs), update);
 }

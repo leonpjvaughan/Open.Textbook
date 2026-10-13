@@ -249,3 +249,40 @@ def test_every_figure_label_is_readable_at_phone_width(tmp_path):
     assert len(measured) > 100, (
         f"only {len(measured)} figures measured; the sweep is too narrow to mean anything"
     )
+
+
+# --- the kit's own contract ---------------------------------------------------
+#
+# 73 modules build on `assets/figures/kit.js`, and its guarantees are DOM
+# behaviour, so they are checked in a browser. The kit is where the accessibility
+# contract now lives: it is what puts `role="img"` on a drawing, keeps it off a
+# readout, and refuses to give an SVG a fixed height. A defect in it would reach
+# every converted figure at once, which is why it is worth a check of its own.
+#
+# `scripts/check-figure-kit.cjs` holds the assertions and the reasons; this only
+# runs it, the way the other tests here run the audit.
+
+
+@pytest.mark.browser
+def test_the_kit_keeps_the_contract_it_exists_to_keep():
+    """Every guarantee `kit.js` makes, checked rather than assumed.
+
+    Each one is a defect that reached production before the kit existed:
+    `role="img"` on a live readout (four modules), a fixed pixel `height` that
+    shrank a phone's labels (70 modules), `fmt` obeyed when called as a `map`
+    callback, and a signed number with no space.
+    """
+    _require_environment()
+    checker = repo_root() / "scripts" / "check-figure-kit.cjs"
+    assert checker.is_file(), "the kit check is missing"
+    result = subprocess.run(
+        ["node", str(checker), str(SITE)],
+        capture_output=True,
+        text=True,
+        check=False,
+        cwd=repo_root(),
+    )
+    assert result.returncode == 0, (
+        "the shared figure kit no longer keeps its contract.\n"
+        f"{result.stdout[-2000:]}\n{result.stderr[-3000:]}"
+    )

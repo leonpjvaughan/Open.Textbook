@@ -9,28 +9,36 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to
 // both schemes. No colour literal appears here, and no runtime LaTeX: the
 // readout is plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-grating-orders" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 330" width="100%" role="img"
-           aria-label="A diffraction grating with rays at each order, drawn on an arc"></svg>
-      <label style="display:block;margin:.5rem 0">Wavelength (nanometres)
-        <input class="wavelength" type="range" min="400" max="700" step="10" value="600">
-        <output class="wavelength-out">600</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Grating lines per millimetre
-        <input class="density" type="range" min="100" max="1000" step="50" value="300">
-        <output class="density-out">300</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const wavelength = el.querySelector(".wavelength");
-  const density = el.querySelector(".density");
-  const wavelengthOut = el.querySelector(".wavelength-out");
-  const densityOut = el.querySelector(".density-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label: "A diffraction grating with rays at each order, drawn on an arc",
+    width: 600,
+    height: 330,
+    max: 600,
+  });
+
+  const wavelength = slider(el, {
+    id: "wavelength",
+    label: "Wavelength (nanometres)",
+    min: 400,
+    max: 700,
+    step: 10,
+    value: 600,
+  });
+  const density = slider(el, {
+    id: "density",
+    label: "Grating lines per millimetre",
+    min: 100,
+    max: 1000,
+    step: 50,
+    value: 300,
+  });
 
   const GX = 300;
   const GY = 300;
@@ -48,8 +56,6 @@ export function mount(el) {
   function update() {
     const lambdaNm = Number(wavelength.value);
     const lines = Number(density.value);
-    wavelengthOut.textContent = String(lambdaNm);
-    densityOut.textContent = String(lines);
 
     const lambdaM = lambdaNm * 1e-9;
     const dM = 1 / (lines * 1000);
@@ -110,7 +116,5 @@ export function mount(el) {
       `<em>Increase the number of lines per millimetre: does the pattern spread out or pack together?</em>`;
   }
 
-  wavelength.addEventListener("input", update);
-  density.addEventListener("input", update);
-  update();
+  react([wavelength, density], update);
 }

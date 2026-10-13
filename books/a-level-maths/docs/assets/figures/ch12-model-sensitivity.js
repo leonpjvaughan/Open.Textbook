@@ -3,6 +3,11 @@
 // and reads the counts of true and false positives in 100000 people.
 // Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
 // carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the two sliders, the live
+// readout and the redraw — comes from `kit.js`. The ratio line is the figure's own
+// second live region, so it stays here.
+import { panel, slider, react } from "./kit.js";
 
 const DETECT = 0.95;
 const PEOPLE = 100000;
@@ -21,42 +26,41 @@ function bar(y, count, className) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:680px">
-      <p>
-        <label>How common the condition is
-          <input class="prevalence" type="range" min="1" max="200" step="1" value="5">
-          <output class="prevalence-out"></output>
-        </label>
-      </p>
-      <p>
-        <label>False-positive rate
-          <input class="fpr" type="range" min="1" max="200" step="1" value="20">
-          <output class="fpr-out"></output>
-        </label>
-      </p>
-      <svg viewBox="0 0 ${LEFT + BAR_W + 70} 76" width="100%" role="img"
-           aria-label="A bar chart of true positives and false positives among one hundred thousand people"></svg>
-      <p class="readout" aria-live="polite"></p>
-      <p class="ratio" aria-live="polite"></p>
-    </div>`;
+  const { root, svg, readout } = panel(el, {
+    label:
+      "A bar chart of true positives and false positives among one hundred thousand people",
+    width: LEFT + BAR_W + 70,
+    height: 76,
+    max: 680,
+  });
 
-  const prevalence = el.querySelector(".prevalence");
-  const fpr = el.querySelector(".fpr");
-  const prevalenceOut = el.querySelector(".prevalence-out");
-  const fprOut = el.querySelector(".fpr-out");
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const ratio = el.querySelector(".ratio");
+  const prevalence = slider(el, {
+    id: "prevalence",
+    label: "How common the condition is",
+    min: 1,
+    max: 200,
+    step: 1,
+    value: 5,
+    format: (value) => `${(value / 10).toFixed(1)}%`,
+  });
+  const fpr = slider(el, {
+    id: "fpr",
+    label: "False-positive rate",
+    min: 1,
+    max: 200,
+    step: 1,
+    value: 20,
+    format: (value) => `${(value / 10).toFixed(1)}%`,
+  });
+
+  const ratio = document.createElement("p");
+  ratio.className = "ratio";
+  ratio.setAttribute("aria-live", "polite");
+  root.append(ratio);
 
   function render() {
     const p = Number(prevalence.value) / 1000;
     const f = Number(fpr.value) / 1000;
-
-    prevalenceOut.value = `${(p * 100).toFixed(1)}%`;
-    prevalenceOut.textContent = `${(p * 100).toFixed(1)}%`;
-    fprOut.value = `${(f * 100).toFixed(1)}%`;
-    fprOut.textContent = `${(f * 100).toFixed(1)}%`;
 
     const truePositives = PEOPLE * p * DETECT;
     const falsePositives = PEOPLE * (1 - p) * f;
@@ -88,7 +92,5 @@ export function mount(el) {
     );
   }
 
-  prevalence.addEventListener("input", render);
-  fpr.addEventListener("input", render);
-  render();
+  react([prevalence, fpr], render);
 }

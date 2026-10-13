@@ -3,6 +3,11 @@
 // and a component into the slope. Plain HTML and SVG, no framework and no
 // colour of its own: the fig-* classes carry the theme. Runtime text is plain
 // text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
 const SCALE = 0.13; // pixels per newton
 const BASE_Y = 278;
@@ -61,24 +66,30 @@ function fitArrow(x1, y1, x2, y2) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:600px">
-      <label>Mass of the block, in kilograms
-        <input class="mass" type="range" min="20" max="100" step="5" value="60">
-      </label>
-      <label>Angle of the slope, in degrees
-        <input class="angle" type="range" min="0" max="50" step="1" value="25">
-      </label>
-      <svg viewBox="0 0 460 330" width="100%" role="img"
-           aria-label="A block on a slope, with its weight split into a component along the slope and a component into the slope"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A block on a slope, with its weight split into a component along the slope and a component into the slope",
+    width: 460,
+    height: 330,
+    max: 600,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
   const inputs = {
-    mass: el.querySelector(".mass"),
-    angle: el.querySelector(".angle"),
+    mass: slider(el, {
+      id: "mass",
+      label: "Mass of the block, in kilograms",
+      min: 20,
+      max: 100,
+      step: 5,
+      value: 60,
+    }),
+    angle: slider(el, {
+      id: "angle",
+      label: "Angle of the slope, in degrees",
+      min: 0,
+      max: 50,
+      value: 25,
+    }),
   };
 
   function update() {
@@ -150,8 +161,5 @@ export function mount(el) {
     );
   }
 
-  for (const input of Object.values(inputs)) {
-    input.addEventListener("input", update);
-  }
-  update();
+  react(Object.values(inputs), update);
 }

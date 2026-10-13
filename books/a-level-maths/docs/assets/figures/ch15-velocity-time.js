@@ -8,6 +8,11 @@
 // Plain HTML, SVG and three range inputs, so it is keyboard-operable with no
 // framework, and no colour of its own: the fig-* classes carry the theme. The
 // runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
 const LEFT = 60;
 const RIGHT = 440;
@@ -33,30 +38,37 @@ function label(text, x, y) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-controls">
-      <label class="fig-field">Initial velocity u, m/s
-        <input data-role="u" type="range" min="-10" max="20" step="1" value="4">
-      </label>
-      <label class="fig-field">Acceleration a, m/s squared
-        <input data-role="a" type="range" min="-5" max="5" step="0.5" value="3">
-      </label>
-      <label class="fig-field">Time T, seconds
-        <input data-role="t" type="range" min="1" max="10" step="1" value="6">
-      </label>
-    </div>
-    <svg viewBox="0 0 480 260" width="100%" role="img"
-         aria-label="A velocity-time graph with a straight line, the shaded area between the line and the time axis, and the acceleration and displacement read out below"></svg>
-    <p class="fig-readout" data-role="readout" aria-live="polite"></p>
-  `;
+  const { svg, readout } = panel(el, {
+    label:
+      "A velocity-time graph with a straight line, the shaded area between the line and the time axis, and the acceleration and displacement read out below",
+    width: 480,
+    height: 260,
+  });
 
   const inputs = {
-    u: el.querySelector('[data-role="u"]'),
-    a: el.querySelector('[data-role="a"]'),
-    t: el.querySelector('[data-role="t"]'),
+    u: slider(el, {
+      id: "u",
+      label: "Initial velocity u, m/s",
+      min: -10,
+      max: 20,
+      value: 4,
+    }),
+    a: slider(el, {
+      id: "a",
+      label: "Acceleration a, m/s squared",
+      min: -5,
+      max: 5,
+      step: 0.5,
+      value: 3,
+    }),
+    t: slider(el, {
+      id: "t",
+      label: "Time T, seconds",
+      min: 1,
+      max: 10,
+      value: 6,
+    }),
   };
-  const readout = el.querySelector('[data-role="readout"]');
-  const svg = el.querySelector("svg");
 
   function draw() {
     const u = Number(inputs.u.value);
@@ -118,8 +130,5 @@ export function mount(el) {
     );
   }
 
-  for (const input of Object.values(inputs)) {
-    input.addEventListener("input", draw);
-  }
-  draw();
+  react(Object.values(inputs), draw);
 }

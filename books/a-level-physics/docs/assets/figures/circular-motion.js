@@ -9,6 +9,12 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to both
 // schemes. No colour literal appears here, and no runtime LaTeX: the readout is
 // plain HTML.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 // How far a ray from (x, y) in direction (ux, uy) travels before it meets the
 // 600 by 300 frame, keeping a margin clear for the arrowhead.
 function reach(x, y, ux, uy) {
@@ -22,27 +28,32 @@ function reach(x, y, ux, uy) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-circular-motion" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 300" width="100%" role="img"
-           aria-label="An object moving in a horizontal circle, with its velocity along the tangent and the centripetal force towards the centre"></svg>
-      <label style="display:block;margin:.5rem 0">Speed (metres per second)
-        <input class="speed" type="range" min="1" max="15" step="0.5" value="6">
-        <output class="speed-out">6.0</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Radius (metres)
-        <input class="radius" type="range" min="0.5" max="5" step="0.1" value="2">
-        <output class="radius-out">2.0</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "An object moving in a horizontal circle, with its velocity along the tangent and the centripetal force towards the centre",
+    width: 600,
+    height: 300,
+    max: 600,
+  });
 
-  const svg = el.querySelector("svg");
-  const speed = el.querySelector(".speed");
-  const radius = el.querySelector(".radius");
-  const speedOut = el.querySelector(".speed-out");
-  const radiusOut = el.querySelector(".radius-out");
-  const readout = el.querySelector(".readout");
+  const speed = slider(el, {
+    id: "speed",
+    label: "Speed (metres per second)",
+    min: 1,
+    max: 15,
+    step: 0.5,
+    value: 6,
+    format: (value) => value.toFixed(1),
+  });
+  const radius = slider(el, {
+    id: "radius",
+    label: "Radius (metres)",
+    min: 0.5,
+    max: 5,
+    step: 0.1,
+    value: 2,
+    format: (value) => value.toFixed(1),
+  });
 
   const MASS = 0.5;
   const CX = 300;
@@ -70,8 +81,6 @@ export function mount(el) {
   function update() {
     const v = Number(speed.value);
     const r = Number(radius.value);
-    speedOut.textContent = v.toFixed(1);
-    radiusOut.textContent = r.toFixed(1);
 
     const pixels = 24 + (r / 5) * 100;
     const omega = v / r;
@@ -127,7 +136,5 @@ export function mount(el) {
       `<em>The velocity arrow points along the tangent and the force arrow points to the centre. Double the speed: what happens to the force?</em>`;
   }
 
-  speed.addEventListener("input", update);
-  radius.addEventListener("input", update);
-  update();
+  react([speed, radius], update);
 }

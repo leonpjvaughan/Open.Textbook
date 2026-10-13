@@ -8,6 +8,11 @@
 // Plain HTML, SVG and two range inputs, so it is keyboard-operable with no
 // framework, and no colour of its own: the fig-* classes carry the theme. The
 // runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
 const G = 9.8;
 const LEFT = 50;
@@ -21,24 +26,28 @@ function short(value) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-controls">
-      <label class="fig-field">Launch speed, m/s
-        <input data-role="speed" type="range" min="5" max="40" step="1" value="20">
-      </label>
-      <label class="fig-field">Launch angle, degrees
-        <input data-role="angle" type="range" min="10" max="80" step="5" value="45">
-      </label>
-    </div>
-    <svg viewBox="0 0 480 300" width="100%" role="img"
-         aria-label="The curved path of a projectile launched over level ground, with its range, greatest height and time of flight read out below"></svg>
-    <p class="fig-readout" data-role="readout" aria-live="polite"></p>
-  `;
+  const { svg, readout } = panel(el, {
+    label:
+      "The curved path of a projectile launched over level ground, with its range, greatest height and time of flight read out below",
+    width: 480,
+    height: 300,
+  });
 
-  const speedInput = el.querySelector('[data-role="speed"]');
-  const angleInput = el.querySelector('[data-role="angle"]');
-  const readout = el.querySelector('[data-role="readout"]');
-  const svg = el.querySelector("svg");
+  const speedInput = slider(el, {
+    id: "speed",
+    label: "Launch speed, m/s",
+    min: 5,
+    max: 40,
+    value: 20,
+  });
+  const angleInput = slider(el, {
+    id: "angle",
+    label: "Launch angle, degrees",
+    min: 10,
+    max: 80,
+    step: 5,
+    value: 45,
+  });
 
   function draw() {
     const speed = Number(speedInput.value);
@@ -107,7 +116,5 @@ export function mount(el) {
     );
   }
 
-  speedInput.addEventListener("input", draw);
-  angleInput.addEventListener("input", draw);
-  draw();
+  react([speedInput, angleInput], draw);
 }

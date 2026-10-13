@@ -5,22 +5,30 @@
 // the field strength, its ratio to the surface value and the gravitational
 // potential. Colours come from the fig-* classes, so the figure adapts to every
 // bundle and to both schemes. The readout is plain HTML, never runtime maths.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-gravitational-field" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 320" width="100%" role="img"
-           aria-label="Graph of gravitational field strength against distance from the centre of the Earth, with a movable marker"></svg>
-      <label style="display:block;margin:.5rem 0">Distance from the centre (megametres)
-        <input class="radius" type="range" min="6.4" max="38" step="0.1" value="6.8">
-        <output class="radius-out">6.8</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const radius = el.querySelector(".radius");
-  const radiusOut = el.querySelector(".radius-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "Graph of gravitational field strength against distance from the centre of the Earth, with a movable marker",
+    width: 620,
+    height: 320,
+    max: 620,
+  });
+
+  const radius = slider(el, {
+    id: "radius",
+    label: "Distance from the centre (megametres)",
+    min: 6.4,
+    max: 38,
+    step: 0.1,
+    value: 6.8,
+    format: (value) => value.toFixed(1),
+  });
 
   const GM = 6.67e-11 * 5.97e24; // m^3 s^-2
   const R = 6.37e6; // m
@@ -39,7 +47,6 @@ export function mount(el) {
 
   function update() {
     const r = Number(radius.value) * 1e6;
-    radiusOut.textContent = Number(radius.value).toFixed(1);
 
     const g = GM / (r * r);
     const V = -GM / r;
@@ -93,6 +100,5 @@ export function mount(el) {
       `<em>Find the distance where g is one quarter of the surface value. What is the ratio of the distances?</em>`;
   }
 
-  radius.addEventListener("input", update);
-  update();
+  react(radius, update);
 }

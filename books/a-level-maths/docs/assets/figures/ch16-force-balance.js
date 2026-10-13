@@ -3,6 +3,11 @@
 // figure shows when the two forces balance and when they do not. Plain HTML and
 // SVG, no framework and no colour of its own: the fig-* classes carry the
 // theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
 // Pixels per newton. The two forces can align, so the resultant reaches 24 N;
 // at 6 px per newton that is 144 px from the origin, which stays inside the
@@ -45,32 +50,46 @@ function arrow(x1, y1, x2, y2, cls) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:600px">
-      <label>Force A, size in newtons
-        <input class="a-mag" type="range" min="0" max="12" step="0.5" value="8">
-      </label>
-      <label>Force A, direction in degrees
-        <input class="a-dir" type="range" min="0" max="360" step="5" value="30">
-      </label>
-      <label>Force B, size in newtons
-        <input class="b-mag" type="range" min="0" max="12" step="0.5" value="8">
-      </label>
-      <label>Force B, direction in degrees
-        <input class="b-dir" type="range" min="0" max="360" step="5" value="210">
-      </label>
-      <svg viewBox="0 0 ${W} ${H}" width="100%" role="img"
-           aria-label="Two forces acting at a point, with their resultant drawn from the point"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "Two forces acting at a point, with their resultant drawn from the point",
+    width: W,
+    height: H,
+    max: 600,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
   const inputs = {
-    aMag: el.querySelector(".a-mag"),
-    aDir: el.querySelector(".a-dir"),
-    bMag: el.querySelector(".b-mag"),
-    bDir: el.querySelector(".b-dir"),
+    aMag: slider(el, {
+      id: "a-mag",
+      label: "Force A, size in newtons",
+      min: 0,
+      max: 12,
+      step: 0.5,
+      value: 8,
+    }),
+    aDir: slider(el, {
+      id: "a-dir",
+      label: "Force A, direction in degrees",
+      min: 0,
+      max: 360,
+      step: 5,
+      value: 30,
+    }),
+    bMag: slider(el, {
+      id: "b-mag",
+      label: "Force B, size in newtons",
+      min: 0,
+      max: 12,
+      step: 0.5,
+      value: 8,
+    }),
+    bDir: slider(el, {
+      id: "b-dir",
+      label: "Force B, direction in degrees",
+      min: 0,
+      max: 360,
+      step: 5,
+      value: 210,
+    }),
   };
 
   function axes() {
@@ -120,8 +139,5 @@ export function mount(el) {
     );
   }
 
-  for (const input of Object.values(inputs)) {
-    input.addEventListener("input", update);
-  }
-  update();
+  react(Object.values(inputs), update);
 }

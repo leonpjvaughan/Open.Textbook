@@ -4,6 +4,11 @@
 // density, so the readout matches the curve drawn. Pure HTML and SVG, no
 // colour of its own: the fig-* classes carry the theme. Runtime text is plain
 // text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
 const X_MIN = 0;
 const X_MAX = 100;
@@ -31,33 +36,34 @@ function normalCdf(x, mu, sigma) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:620px">
-      <label>Mean
-        <input class="mu" type="range" min="20" max="80" step="1" value="50">
-        <output class="mu-out">50</output>
-      </label>
-      <label>Standard deviation
-        <input class="sigma" type="range" min="2" max="20" step="1" value="10">
-        <output class="sigma-out">10</output>
-      </label>
-      <label>Value x
-        <input class="x" type="range" min="0" max="100" step="1" value="60">
-        <output class="x-out">60</output>
-      </label>
-      <svg viewBox="0 0 460 200" width="100%" role="img"
-           aria-label="A Normal curve with the area to the left of x shaded"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "A Normal curve with the area to the left of x shaded",
+    width: 460,
+    height: 200,
+    max: 620,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const muInput = el.querySelector(".mu");
-  const sigmaInput = el.querySelector(".sigma");
-  const xInput = el.querySelector(".x");
-  const muOut = el.querySelector(".mu-out");
-  const sigmaOut = el.querySelector(".sigma-out");
-  const xOut = el.querySelector(".x-out");
+  const muInput = slider(el, {
+    id: "mu",
+    label: "Mean",
+    min: 20,
+    max: 80,
+    value: 50,
+  });
+  const sigmaInput = slider(el, {
+    id: "sigma",
+    label: "Standard deviation",
+    min: 2,
+    max: 20,
+    value: 10,
+  });
+  const xInput = slider(el, {
+    id: "x",
+    label: "Value x",
+    min: 0,
+    max: 100,
+    value: 60,
+  });
 
   const left = 30;
   const plotW = 410;
@@ -117,12 +123,6 @@ export function mount(el) {
     const probability = normalCdf(x, mu, sigma);
     const z = (x - mu) / sigma;
 
-    muOut.value = mu;
-    muOut.textContent = mu;
-    sigmaOut.value = sigma;
-    sigmaOut.textContent = sigma;
-    xOut.value = x;
-    xOut.textContent = x;
     readout.textContent =
       `Mean ${mu}, standard deviation ${sigma}. The shaded area P(X < ${x}) is ` +
       `${probability.toFixed(4)}, with z = ${z.toFixed(2)}. The curve is ` +
@@ -135,9 +135,5 @@ export function mount(el) {
     );
   }
 
-  muInput.addEventListener("input", render);
-  sigmaInput.addEventListener("input", render);
-  xInput.addEventListener("input", render);
-
-  render();
+  react([muInput, sigmaInput, xInput], render);
 }

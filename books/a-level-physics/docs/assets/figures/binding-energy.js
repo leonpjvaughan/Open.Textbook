@@ -9,22 +9,28 @@
 // nuclide. Colours come from CSS classes, so the figure adapts to every bundle
 // and to both schemes. No colour literal appears here, and no runtime LaTeX: the
 // readout is plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-binding-energy" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 300" width="100%" role="img"
-           aria-label="Schematic curve of binding energy per nucleon against nucleon number, with the chosen nuclide marked"></svg>
-      <label style="display:block;margin:.5rem 0">Nucleon number
-        <input class="mass" type="range" min="1" max="250" step="1" value="56">
-        <output class="mass-out">56</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const mass = el.querySelector(".mass");
-  const massOut = el.querySelector(".mass-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "Schematic curve of binding energy per nucleon against nucleon number, with the chosen nuclide marked",
+    width: 620,
+    height: 300,
+    max: 620,
+  });
+
+  const mass = slider(el, {
+    id: "mass",
+    label: "Nucleon number",
+    min: 1,
+    max: 250,
+    value: 56,
+  });
 
   const LEFT = 80;
   const RIGHT = 580;
@@ -67,7 +73,6 @@ export function mount(el) {
 
   function update() {
     const a = Number(mass.value);
-    massOut.textContent = String(a);
     const value = a === 1 ? 0 : valueAt(a);
 
     let axes =
@@ -118,6 +123,5 @@ export function mount(el) {
       `Why does moving towards the peak release energy?</em>`;
   }
 
-  mass.addEventListener("input", update);
-  update();
+  react(mass, update);
 }

@@ -2,6 +2,11 @@
 // load slides along it; the reader watches each reaction change. Plain HTML and
 // SVG, no framework and no colour of its own: the fig-* classes carry the
 // theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
 const G = 9.8;
 const BEAM_MASS = 20;
@@ -31,24 +36,30 @@ function arrow(x1, y1, x2, y2, cls) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:600px">
-      <label>Load mass, in kilograms
-        <input class="load" type="range" min="0" max="60" step="5" value="45">
-      </label>
-      <label>Distance of the load from support A, in metres
-        <input class="place" type="range" min="0.4" max="3.6" step="0.1" value="1.5">
-      </label>
-      <svg viewBox="0 0 480 300" width="100%" role="img"
-           aria-label="A uniform beam on two supports with a load at a chosen distance from the left support"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "A uniform beam on two supports with a load at a chosen distance from the left support",
+    width: 480,
+    height: 300,
+    max: 600,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
   const inputs = {
-    load: el.querySelector(".load"),
-    place: el.querySelector(".place"),
+    load: slider(el, {
+      id: "load",
+      label: "Load mass, in kilograms",
+      min: 0,
+      max: 60,
+      step: 5,
+      value: 45,
+    }),
+    place: slider(el, {
+      id: "place",
+      label: "Distance of the load from support A, in metres",
+      min: 0.4,
+      max: 3.6,
+      step: 0.1,
+      value: 1.5,
+    }),
   };
 
   const beamWeight = BEAM_MASS * G;
@@ -99,8 +110,5 @@ export function mount(el) {
     );
   }
 
-  for (const input of Object.values(inputs)) {
-    input.addEventListener("input", update);
-  }
-  update();
+  react(Object.values(inputs), update);
 }

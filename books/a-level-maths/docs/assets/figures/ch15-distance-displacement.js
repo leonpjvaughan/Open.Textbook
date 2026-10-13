@@ -8,6 +8,11 @@
 // Plain HTML, SVG and two range inputs, so it is keyboard-operable with no
 // framework, and no colour of its own: the fig-* classes carry the theme. The
 // runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
 const LEFT = 50;
 const RIGHT = 430;
@@ -28,24 +33,29 @@ function tick(value) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-controls">
-      <label class="fig-field">Turning point, metres
-        <input data-role="turn" type="range" min="10" max="100" step="10" value="60">
-      </label>
-      <label class="fig-field">Finishing point, metres
-        <input data-role="finish" type="range" min="0" max="100" step="10" value="20">
-      </label>
-    </div>
-    <svg viewBox="0 0 480 200" width="100%" role="img"
-         aria-label="A number line showing a walker who starts at zero, walks to a turning point and then to a finishing point, with distance and displacement read out below"></svg>
-    <p class="fig-readout" data-role="readout" aria-live="polite"></p>
-  `;
+  const { svg, readout } = panel(el, {
+    label:
+      "A number line showing a walker who starts at zero, walks to a turning point and then to a finishing point, with distance and displacement read out below",
+    width: 480,
+    height: 200,
+  });
 
-  const turnInput = el.querySelector('[data-role="turn"]');
-  const finishInput = el.querySelector('[data-role="finish"]');
-  const readout = el.querySelector('[data-role="readout"]');
-  const svg = el.querySelector("svg");
+  const turnInput = slider(el, {
+    id: "turn",
+    label: "Turning point, metres",
+    min: 10,
+    max: 100,
+    step: 10,
+    value: 60,
+  });
+  const finishInput = slider(el, {
+    id: "finish",
+    label: "Finishing point, metres",
+    min: 0,
+    max: 100,
+    step: 10,
+    value: 20,
+  });
 
   function draw() {
     const turn = Number(turnInput.value);
@@ -97,7 +107,5 @@ export function mount(el) {
     );
   }
 
-  turnInput.addEventListener("input", draw);
-  finishInput.addEventListener("input", draw);
-  draw();
+  react([turnInput, finishInput], draw);
 }

@@ -10,28 +10,36 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to
 // both schemes. No colour literal appears here, and no runtime LaTeX: the
 // readout is plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-force-extension" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 270" width="100%" role="img"
-           aria-label="A force-extension graph for a spring, with a straight line through the origin and the area under the line shaded as the energy stored"></svg>
-      <label style="display:block;margin:.5rem 0">Stiffness
-        <input class="stiffness" type="range" min="100" max="500" step="50" value="200">
-        <output class="stiffness-out">200</output> N/m
-      </label>
-      <label style="display:block;margin:.3rem 0">Force
-        <input class="force" type="range" min="0" max="40" step="1" value="20">
-        <output class="force-out">20</output> N
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const stiffness = el.querySelector(".stiffness");
-  const stiffnessOut = el.querySelector(".stiffness-out");
-  const force = el.querySelector(".force");
-  const forceOut = el.querySelector(".force-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A force-extension graph for a spring, with a straight line through the origin and the area under the line shaded as the energy stored",
+    width: 600,
+    height: 270,
+    max: 600,
+  });
+
+  const stiffness = slider(el, {
+    id: "stiffness",
+    label: "Stiffness (N/m)",
+    min: 100,
+    max: 500,
+    step: 50,
+    value: 200,
+  });
+  const force = slider(el, {
+    id: "force",
+    label: "Force (N)",
+    min: 0,
+    max: 40,
+    value: 20,
+  });
 
   const LEFT = 64;
   const RIGHT = 560;
@@ -46,8 +54,6 @@ export function mount(el) {
   function update() {
     const k = Number(stiffness.value);
     const f = Number(force.value);
-    stiffnessOut.textContent = String(k);
-    forceOut.textContent = String(f);
 
     const x = f / k;
     const pointX = px(x);
@@ -99,7 +105,5 @@ export function mount(el) {
       `<em>Double the force on the same spring: by what factor does the shaded area grow?</em>`;
   }
 
-  stiffness.addEventListener("input", update);
-  force.addEventListener("input", update);
-  update();
+  react([stiffness, force], update);
 }

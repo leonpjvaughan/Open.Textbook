@@ -3,6 +3,11 @@
 // stays at rest or slides, and what the friction force is in each case. Plain
 // HTML and SVG, no framework and no colour of its own: the fig-* classes carry
 // the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
 const G = 9.8;
 
@@ -27,24 +32,30 @@ function arrow(x1, y1, x2, y2, cls) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:600px">
-      <label>Push on the block, in newtons
-        <input class="push" type="range" min="0" max="250" step="5" value="80">
-      </label>
-      <label>Coefficient of friction
-        <input class="mu" type="range" min="0" max="1" step="0.05" value="0.4">
-      </label>
-      <svg viewBox="0 0 480 320" width="100%" role="img"
-           aria-label="A block on a rough floor pushed to the right, with friction acting to the left"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "A block on a rough floor pushed to the right, with friction acting to the left",
+    width: 480,
+    height: 320,
+    max: 600,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
   const inputs = {
-    push: el.querySelector(".push"),
-    mu: el.querySelector(".mu"),
+    push: slider(el, {
+      id: "push",
+      label: "Push on the block, in newtons",
+      min: 0,
+      max: 250,
+      step: 5,
+      value: 80,
+    }),
+    mu: slider(el, {
+      id: "mu",
+      label: "Coefficient of friction",
+      min: 0,
+      max: 1,
+      step: 0.05,
+      value: 0.4,
+    }),
   };
 
   const mass = 30;
@@ -100,8 +111,5 @@ export function mount(el) {
     );
   }
 
-  for (const input of Object.values(inputs)) {
-    input.addEventListener("input", update);
-  }
-  update();
+  react(Object.values(inputs), update);
 }

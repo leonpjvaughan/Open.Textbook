@@ -11,6 +11,11 @@
 // framework. Colours come from the fig-* and text-* classes, so the figure
 // adapts to every bundle and to both schemes. No colour literal appears here,
 // and the runtime text is plain HTML, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the five sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentence.
+import { panel, slider, react } from "./kit.js";
 
 const UNIT = 21; // pixels per grid unit
 const ORIGIN_X = 220;
@@ -109,48 +114,59 @@ function unitForm(x, y) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="font:14px system-ui;max-width:560px">
-      <svg viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" role="img"
-           aria-label="A vector drawn on a grid with its two components, and a second arrow drawn from the origin showing a multiple of the same vector"></svg>
-      <label style="display:block;margin:.5rem 0">a across, in units
-        <input class="ax" type="range" min="-4" max="4" step="1" value="3">
-        <output class="ax-out">3</output>
-      </label>
-      <label style="display:block;margin:.2rem 0">a up, in units
-        <input class="ay" type="range" min="-4" max="4" step="1" value="4">
-        <output class="ay-out">4</output>
-      </label>
-      <label style="display:block;margin:.2rem 0">a starts, across
-        <input class="sx" type="range" min="-5" max="5" step="1" value="-1">
-        <output class="sx-out">-1</output>
-      </label>
-      <label style="display:block;margin:.2rem 0">a starts, up
-        <input class="sy" type="range" min="-5" max="5" step="1" value="-3">
-        <output class="sy-out">-3</output>
-      </label>
-      <label style="display:block;margin:.2rem 0">the multiple k
-        <input class="k" type="range" min="-2" max="2" step="0.5" value="1">
-        <output class="k-out">1</output>
-      </label>
-      <p class="readout text-ink" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A vector drawn on a grid with its two components, and a second arrow drawn from the origin showing a multiple of the same vector",
+    width: WIDTH,
+    height: HEIGHT,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
   const inputs = {
-    ax: el.querySelector(".ax"),
-    ay: el.querySelector(".ay"),
-    sx: el.querySelector(".sx"),
-    sy: el.querySelector(".sy"),
-    k: el.querySelector(".k"),
-  };
-  const outputs = {
-    ax: el.querySelector(".ax-out"),
-    ay: el.querySelector(".ay-out"),
-    sx: el.querySelector(".sx-out"),
-    sy: el.querySelector(".sy-out"),
-    k: el.querySelector(".k-out"),
+    ax: slider(el, {
+      id: "ax",
+      label: "a across, in units",
+      min: -4,
+      max: 4,
+      step: 1,
+      value: 3,
+      format: num,
+    }),
+    ay: slider(el, {
+      id: "ay",
+      label: "a up, in units",
+      min: -4,
+      max: 4,
+      step: 1,
+      value: 4,
+      format: num,
+    }),
+    sx: slider(el, {
+      id: "sx",
+      label: "a starts, across",
+      min: -5,
+      max: 5,
+      step: 1,
+      value: -1,
+      format: num,
+    }),
+    sy: slider(el, {
+      id: "sy",
+      label: "a starts, up",
+      min: -5,
+      max: 5,
+      step: 1,
+      value: -3,
+      format: num,
+    }),
+    k: slider(el, {
+      id: "k",
+      label: "the multiple k",
+      min: -2,
+      max: 2,
+      step: 0.5,
+      value: 1,
+      format: num,
+    }),
   };
 
   function grid() {
@@ -176,12 +192,6 @@ export function mount(el) {
     const sx = Number(inputs.sx.value);
     const sy = Number(inputs.sy.value);
     const k = Number(inputs.k.value);
-
-    outputs.ax.textContent = num(ax);
-    outputs.ay.textContent = num(ay);
-    outputs.sx.textContent = num(sx);
-    outputs.sy.textContent = num(sy);
-    outputs.k.textContent = num(k);
 
     const ex = sx + ax;
     const ey = sy + ay;
@@ -271,8 +281,5 @@ export function mount(el) {
     );
   }
 
-  for (const input of Object.values(inputs)) {
-    input.addEventListener("input", update);
-  }
-  update();
+  react(Object.values(inputs), update);
 }

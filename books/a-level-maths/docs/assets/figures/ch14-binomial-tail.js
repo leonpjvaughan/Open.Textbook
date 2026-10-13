@@ -2,6 +2,12 @@
 // of a binomial test. Pure HTML and SVG, an ES module, no framework and no
 // colour of its own: the fig-* classes carry the theme. Runtime text is plain
 // text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the drop-downs,
+// the live readout, the redraw — comes from `kit.js`. What is left here is the
+// drawing and the sentence, which are the parts that differ from every other
+// figure.
+import { panel, slider, chooser, react } from "./kit.js";
 
 function binomialPmf(n, p) {
   const pmf = new Array(n + 1).fill(0);
@@ -64,57 +70,58 @@ function inRegion(k, region) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:640px">
-      <p>
-        <label>Number of trials n
-          <input class="n" type="range" min="10" max="40" step="5" value="20">
-          <output class="n-out">20</output>
-        </label>
-      </p>
-      <p>
-        <label>Null probability p
-          <input class="p" type="range" min="0.05" max="0.95" step="0.05" value="0.25">
-          <output class="p-out">0.25</output>
-        </label>
-      </p>
-      <p>
-        <label>Observed count
-          <input class="observ" type="range" min="0" max="20" step="1" value="2">
-          <output class="observ-out">2</output>
-        </label>
-      </p>
-      <p>
-        <label>Significance level
-          <select class="alpha">
-            <option value="0.05" selected>5%</option>
-            <option value="0.01">1%</option>
-            <option value="0.1">10%</option>
-          </select>
-        </label>
-        <label>Tail
-          <select class="tail">
-            <option value="left" selected>lower tail</option>
-            <option value="right">upper tail</option>
-            <option value="two">two tails</option>
-          </select>
-        </label>
-      </p>
-      <svg viewBox="0 0 460 190" width="100%" role="img"
-           aria-label="A bar chart of a binomial distribution with the critical region shaded and the observed count marked"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A bar chart of a binomial distribution with the critical region shaded and the observed count marked",
+    width: 460,
+    height: 190,
+    max: 640,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const nInput = el.querySelector(".n");
-  const pInput = el.querySelector(".p");
-  const observInput = el.querySelector(".observ");
-  const alphaInput = el.querySelector(".alpha");
-  const tailInput = el.querySelector(".tail");
-  const nOut = el.querySelector(".n-out");
-  const pOut = el.querySelector(".p-out");
-  const observOut = el.querySelector(".observ-out");
+  const nInput = slider(el, {
+    id: "n",
+    label: "Number of trials n",
+    min: 10,
+    max: 40,
+    step: 5,
+    value: 20,
+  });
+  const pInput = slider(el, {
+    id: "p",
+    label: "Null probability p",
+    min: 0.05,
+    max: 0.95,
+    step: 0.05,
+    value: 0.25,
+    format: (value) => value.toFixed(2),
+  });
+  const observInput = slider(el, {
+    id: "observ",
+    label: "Observed count",
+    min: 0,
+    max: 20,
+    value: 2,
+  });
+  const alphaInput = chooser(el, {
+    id: "alpha",
+    label: "Significance level",
+    choices: [
+      { value: "0.05", label: "5%" },
+      { value: "0.01", label: "1%" },
+      { value: "0.1", label: "10%" },
+    ],
+    value: "0.05",
+  });
+  const tailInput = chooser(el, {
+    id: "tail",
+    label: "Tail",
+    choices: [
+      { value: "left", label: "lower tail" },
+      { value: "right", label: "upper tail" },
+      { value: "two", label: "two tails" },
+    ],
+    value: "left",
+  });
 
   function render() {
     const n = Number(nInput.value);
@@ -196,22 +203,5 @@ export function mount(el) {
     );
   }
 
-  [nInput, pInput, observInput].forEach((input) => {
-    input.addEventListener("input", () => {
-      nOut.value = nInput.value;
-      nOut.textContent = nInput.value;
-      pOut.value = Number(pInput.value).toFixed(2);
-      pOut.textContent = Number(pInput.value).toFixed(2);
-      observOut.value = observInput.value;
-      observOut.textContent = observInput.value;
-      render();
-    });
-  });
-  alphaInput.addEventListener("change", render);
-  tailInput.addEventListener("change", render);
-
-  nOut.textContent = nInput.value;
-  pOut.textContent = Number(pInput.value).toFixed(2);
-  observOut.textContent = observInput.value;
-  render();
+  react([nInput, pInput, observInput, alphaInput, tailInput], render);
 }

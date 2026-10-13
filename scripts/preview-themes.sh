@@ -54,6 +54,11 @@ node scripts/check-mobile.cjs site
 # labels were found rendering black at 1.4:1 on the dark scheme.
 node scripts/audit-figures.cjs site --json "${TMPDIR:-/tmp}/figure-audit.json"
 
+# The shared kit's own contract, before the modules that build on it. It puts
+# `role="img"` on a drawing, keeps it off a readout and refuses an SVG a fixed
+# height, so a defect here reaches every converted figure at once.
+node scripts/check-figure-kit.cjs site
+
 # The matrix, 6 bundles x 2 schemes x 3 routes = 36 pages. Adding a book means
 # adding its landing route and one of its chapter routes here.
 exec node test/theme-preview.cjs \

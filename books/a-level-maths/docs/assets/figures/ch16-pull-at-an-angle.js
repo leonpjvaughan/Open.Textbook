@@ -10,6 +10,11 @@
 // Colours come from the fig-* and text-* classes, so the figure adapts to every
 // bundle and to both schemes. No colour literal appears here, and the runtime
 // text is plain HTML, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
 const G = 9.8;
 const SCALE = 0.18; // pixels per newton
@@ -75,42 +80,48 @@ function label(x, y, text, cls, anchor) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" role="img"
-           aria-label="A crate on a floor pulled by a rope at an angle, with the two components of the tension, the weight, the normal reaction and the resistance drawn as arrows"></svg>
-      <label style="display:block;margin:.5rem 0">Tension T in the rope, in newtons
-        <input class="tension" type="range" min="50" max="300" step="10" value="200">
-        <output class="tension-out">200</output>
-      </label>
-      <label style="display:block;margin:.2rem 0">Angle of the rope above the floor, in degrees
-        <input class="angle" type="range" min="0" max="60" step="5" value="25">
-        <output class="angle-out">25</output>
-      </label>
-      <label style="display:block;margin:.2rem 0">Mass of the crate, in kilograms
-        <input class="mass" type="range" min="10" max="60" step="5" value="45">
-        <output class="mass-out">45</output>
-      </label>
-      <label style="display:block;margin:.2rem 0">Resistance to the motion, in newtons
-        <input class="drag" type="range" min="0" max="150" step="5" value="80">
-        <output class="drag-out">80</output>
-      </label>
-      <p class="readout text-ink" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A crate on a floor pulled by a rope at an angle, with the two components of the tension, the weight, the normal reaction and the resistance drawn as arrows",
+    width: WIDTH,
+    height: HEIGHT,
+    max: 620,
+  });
+  readout.classList.add("text-ink");
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
   const inputs = {
-    tension: el.querySelector(".tension"),
-    angle: el.querySelector(".angle"),
-    mass: el.querySelector(".mass"),
-    drag: el.querySelector(".drag"),
-  };
-  const outputs = {
-    tension: el.querySelector(".tension-out"),
-    angle: el.querySelector(".angle-out"),
-    mass: el.querySelector(".mass-out"),
-    drag: el.querySelector(".drag-out"),
+    tension: slider(el, {
+      id: "tension",
+      label: "Tension T in the rope, in newtons",
+      min: 50,
+      max: 300,
+      step: 10,
+      value: 200,
+    }),
+    angle: slider(el, {
+      id: "angle",
+      label: "Angle of the rope above the floor, in degrees",
+      min: 0,
+      max: 60,
+      step: 5,
+      value: 25,
+    }),
+    mass: slider(el, {
+      id: "mass",
+      label: "Mass of the crate, in kilograms",
+      min: 10,
+      max: 60,
+      step: 5,
+      value: 45,
+    }),
+    drag: slider(el, {
+      id: "drag",
+      label: "Resistance to the motion, in newtons",
+      min: 0,
+      max: 150,
+      step: 5,
+      value: 80,
+    }),
   };
 
   function update() {
@@ -118,11 +129,6 @@ export function mount(el) {
     const degrees = Number(inputs.angle.value);
     const mass = Number(inputs.mass.value);
     const drag = Number(inputs.drag.value);
-
-    outputs.tension.textContent = String(tension);
-    outputs.angle.textContent = String(degrees);
-    outputs.mass.textContent = String(mass);
-    outputs.drag.textContent = String(drag);
 
     const radians = (degrees * Math.PI) / 180;
     const cos = Math.cos(radians);
@@ -287,8 +293,5 @@ export function mount(el) {
     );
   }
 
-  for (const input of Object.values(inputs)) {
-    input.addEventListener("input", update);
-  }
-  update();
+  react(Object.values(inputs), update);
 }

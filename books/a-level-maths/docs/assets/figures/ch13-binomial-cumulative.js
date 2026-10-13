@@ -3,6 +3,10 @@
 // shaded bars and the probability. The probabilities are built from the
 // binomial formula. Pure HTML and SVG, no colour of its own: the fig-* classes
 // carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the chooser,
+// the live readout and the redraw — comes from `kit.js`.
+import { panel, slider, chooser, react } from "./kit.js";
 
 function binomialCoefficient(n, r) {
   let result = 1;
@@ -27,39 +31,47 @@ const RANGES = [
 ];
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:620px">
-      <label>Number of trials n
-        <input class="n" type="range" min="2" max="20" step="1" value="10">
-        <output class="n-out">10</output>
-      </label>
-      <label>Probability of success p
-        <input class="p" type="range" min="5" max="95" step="5" value="40">
-        <output class="p-out">0.40</output>
-      </label>
-      <label>Value r
-        <input class="r" type="range" min="0" max="10" step="1" value="2">
-        <output class="r-out">2</output>
-      </label>
-      <label>Range
-        <select class="range">
-          ${RANGES.map((item) => `<option value="${item.id}">${item.label}</option>`).join("")}
-        </select>
-      </label>
-      <svg viewBox="0 0 460 200" width="100%" role="img"
-           aria-label="A bar chart of a binomial distribution with a shaded range"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label: "A bar chart of a binomial distribution with a shaded range",
+    width: 460,
+    height: 200,
+    max: 620,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const nInput = el.querySelector(".n");
-  const pInput = el.querySelector(".p");
-  const rInput = el.querySelector(".r");
-  const rangeInput = el.querySelector(".range");
-  const nOut = el.querySelector(".n-out");
-  const pOut = el.querySelector(".p-out");
-  const rOut = el.querySelector(".r-out");
+  const nInput = slider(el, {
+    id: "n",
+    label: "Number of trials n",
+    min: 2,
+    max: 20,
+    step: 1,
+    value: 10,
+  });
+  const pInput = slider(el, {
+    id: "p",
+    label: "Probability of success p",
+    min: 5,
+    max: 95,
+    step: 5,
+    value: 40,
+    format: (value) => (value / 100).toFixed(2),
+  });
+  const rInput = slider(el, {
+    id: "r",
+    label: "Value r",
+    min: 0,
+    max: 10,
+    step: 1,
+    value: 2,
+  });
+  const rangeInput = chooser(el, {
+    id: "range",
+    label: "Range",
+    choices: RANGES.map((item) => ({ value: item.id, label: item.label })),
+  });
+
+  // A smaller n can clamp r, and a programmatic change does not fire `input`, so
+  // its readout is refreshed in `render` below.
+  const rOut = rInput.parentElement.querySelector("output");
 
   function inRange(r, value, kind) {
     if (kind === "exactly") {
@@ -129,12 +141,7 @@ export function mount(el) {
 
     svg.innerHTML = axis + bars + ticks;
 
-    nOut.value = n;
-    nOut.textContent = n;
-    pOut.value = p.toFixed(2);
-    pOut.textContent = p.toFixed(2);
-    rOut.value = r;
-    rOut.textContent = r;
+    rOut.textContent = String(r);
 
     const words = RANGES.find((item) => item.id === kind).label.replace(
       "r",
@@ -152,10 +159,5 @@ export function mount(el) {
     );
   }
 
-  nInput.addEventListener("input", render);
-  pInput.addEventListener("input", render);
-  rInput.addEventListener("input", render);
-  rangeInput.addEventListener("change", render);
-
-  render();
+  react([nInput, pInput, rInput, rangeInput], render);
 }

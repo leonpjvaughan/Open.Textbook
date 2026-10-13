@@ -7,28 +7,39 @@
 //
 // The drawing is not to scale. Colours come from the fig-* classes. The readout
 // is plain HTML, never runtime maths.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-charged-particle-path" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 320" width="100%" role="img"
-           aria-label="A proton entering a magnetic field out of the page and following a circular path"></svg>
-      <label style="display:block;margin:.5rem 0">Flux density (tesla)
-        <input class="field" type="range" min="0.05" max="0.5" step="0.01" value="0.2">
-        <output class="field-out">0.20</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Speed (millions of metres per second)
-        <input class="speed" type="range" min="0.5" max="5" step="0.1" value="5">
-        <output class="speed-out">5.0</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const field = el.querySelector(".field");
-  const speed = el.querySelector(".speed");
-  const fieldOut = el.querySelector(".field-out");
-  const speedOut = el.querySelector(".speed-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A proton entering a magnetic field out of the page and following a circular path",
+    width: 620,
+    height: 320,
+    max: 620,
+  });
+
+  const field = slider(el, {
+    id: "field",
+    label: "Flux density (tesla)",
+    min: 0.05,
+    max: 0.5,
+    step: 0.01,
+    value: 0.2,
+    format: (value) => value.toFixed(2),
+  });
+  const speed = slider(el, {
+    id: "speed",
+    label: "Speed (millions of metres per second)",
+    min: 0.5,
+    max: 5,
+    step: 0.1,
+    value: 5,
+    format: (value) => value.toFixed(1),
+  });
 
   const M = 1.67e-27; // mass of a proton, kg
   const Q = 1.60e-19; // charge of a proton, C
@@ -36,8 +47,6 @@ export function mount(el) {
   function update() {
     const B = Number(field.value);
     const v = Number(speed.value) * 1e6;
-    fieldOut.textContent = B.toFixed(2);
-    speedOut.textContent = Number(speed.value).toFixed(1);
 
     const r = (M * v) / (B * Q);
     const period = (2 * Math.PI * M) / (B * Q);
@@ -92,7 +101,5 @@ export function mount(el) {
       `<em>Double the speed. What happens to the radius, and what happens to the time for one circle?</em>`;
   }
 
-  field.addEventListener("input", update);
-  speed.addEventListener("input", update);
-  update();
+  react([field, speed], update);
 }

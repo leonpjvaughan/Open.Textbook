@@ -13,6 +13,11 @@
 // no framework. Colours come from the fig-* and text-* classes, so the figure
 // adapts to every bundle and to both schemes. No colour literal appears here,
 // and the runtime text is plain HTML, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout, the redraw — comes from `kit.js`. What is left here is the drawing and
+// the sentence, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
 const G = 9.8; // metres per second squared, downwards
 const SCALE = 12; // pixels per metre
@@ -63,27 +68,31 @@ function velocityArrow(ballY, v) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 ${WIDTH} ${HEIGHT}" width="100%" role="img"
-           aria-label="A ball on a vertical height scale, drawn at the height it has reached after a chosen time, with the direction it is moving and the greatest height marked"></svg>
-      <label style="display:block;margin:.5rem 0">Launch speed u, in metres per second
-        <input class="u" type="range" min="5" max="20" step="1" value="14">
-        <output class="u-out">14</output>
-      </label>
-      <label style="display:block;margin:.2rem 0">Time t, in seconds
-        <input class="t" type="range" min="0" max="2.8" step="0.1" value="1.4">
-        <output class="t-out">1.4</output>
-      </label>
-      <p class="readout text-ink" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A ball on a vertical height scale, drawn at the height it has reached after a chosen time, with the direction it is moving and the greatest height marked",
+    width: WIDTH,
+    height: HEIGHT,
+    max: 600,
+  });
+  readout.classList.add("text-ink");
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const uInput = el.querySelector(".u");
-  const tInput = el.querySelector(".t");
-  const uOut = el.querySelector(".u-out");
-  const tOut = el.querySelector(".t-out");
+  const uInput = slider(el, {
+    id: "u",
+    label: "Launch speed u, in metres per second",
+    min: 5,
+    max: 20,
+    value: 14,
+  });
+  const tInput = slider(el, {
+    id: "t",
+    label: "Time t, in seconds",
+    min: 0,
+    max: 2.8,
+    step: 0.1,
+    value: 1.4,
+    format: (value) => value.toFixed(1),
+  });
 
   function ruler() {
     let lines = "";
@@ -111,10 +120,12 @@ export function mount(el) {
     // slider there keeps the whole flight on the track.
     const tMax = Math.floor(((2 * u) / G) * 10) / 10;
     tInput.max = tMax.toFixed(1);
+    if (Number(tInput.value) > tMax) {
+      // Setting the range in script clamps the value, and a clamp does not fire
+      // `input`, so the kit's own number display would keep the old value.
+      tInput.dispatchEvent(new Event("input"));
+    }
     const t = Number(tInput.value);
-
-    uOut.textContent = String(u);
-    tOut.textContent = t.toFixed(1);
 
     const v = u - G * t;
     const s = u * t - 0.5 * G * t * t;
@@ -214,7 +225,5 @@ export function mount(el) {
     );
   }
 
-  uInput.addEventListener("input", update);
-  tInput.addEventListener("input", update);
-  update();
+  react([uInput, tInput], update);
 }

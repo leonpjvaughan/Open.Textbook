@@ -3,6 +3,12 @@
 // the false-alarm rate, and reads the probability of a real event given an
 // alarm. Pure HTML and SVG, no framework and no colour of its own: the fig-*
 // classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the frame, the two sliders, the live readout and the redraw —
+// comes from `kit.js`. This figure has two drawings, and the kit gives one
+// surface, so the tree is the named surface from `panel()` and the bar chart is
+// built here beside it, as the kit does not draw.
+import { panel, slider, react } from "./kit.js";
 
 const DETECT = 0.95;
 const BAR_W = 300;
@@ -20,40 +26,52 @@ function bar(y, value, className) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:640px">
-      <p>
-        <label>Probability of a fire on a morning
-          <input class="base" type="range" min="1" max="200" step="1" value="1">
-          <output class="base-out"></output>
-        </label>
-      </p>
-      <p>
-        <label>Probability the alarm sounds with no fire
-          <input class="fpr" type="range" min="1" max="200" step="1" value="20">
-          <output class="fpr-out"></output>
-        </label>
-      </p>
-      <svg viewBox="0 0 470 132" width="100%" role="img"
-           aria-label="A two-stage tree diagram for a fire alarm, with branch probabilities that change with the controls"></svg>
-      <ul class="paths">
-        <li>Fire and alarm: <span class="fa"></span></li>
-        <li>Fire and no alarm: <span class="fn"></span></li>
-        <li>No fire and alarm: <span class="na"></span></li>
-        <li>No fire and no alarm: <span class="nn"></span></li>
-      </ul>
-      <svg viewBox="0 0 ${LEFT + BAR_W + 60} 66" width="100%" role="img"
-           aria-label="A bar chart comparing the base rate with the probability of a fire given an alarm"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { root, svg: tree, readout } = panel(el, {
+    label:
+      "A two-stage tree diagram for a fire alarm, with branch probabilities that change with the controls",
+    width: 470,
+    height: 132,
+    max: 640,
+  });
 
-  const base = el.querySelector(".base");
-  const fpr = el.querySelector(".fpr");
-  const baseOut = el.querySelector(".base-out");
-  const fprOut = el.querySelector(".fpr-out");
-  const tree = el.querySelector("svg");
-  const bars = el.querySelectorAll("svg")[1];
-  const readout = el.querySelector(".readout");
+  const base = slider(el, {
+    id: "base",
+    label: "Probability of a fire on a morning",
+    min: 1,
+    max: 200,
+    step: 1,
+    value: 1,
+    format: (value) => (value / 1000).toFixed(3),
+  });
+  const fpr = slider(el, {
+    id: "fpr",
+    label: "Probability the alarm sounds with no fire",
+    min: 1,
+    max: 200,
+    step: 1,
+    value: 20,
+    format: (value) => (value / 1000).toFixed(3),
+  });
+
+  const paths = document.createElement("ul");
+  paths.className = "paths";
+  paths.innerHTML =
+    `<li>Fire and alarm: <span class="fa"></span></li>` +
+    `<li>Fire and no alarm: <span class="fn"></span></li>` +
+    `<li>No fire and alarm: <span class="na"></span></li>` +
+    `<li>No fire and no alarm: <span class="nn"></span></li>`;
+
+  const bars = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  bars.setAttribute("viewBox", `0 0 ${LEFT + BAR_W + 60} 66`);
+  bars.setAttribute("width", "100%");
+  bars.setAttribute("role", "img");
+  bars.setAttribute(
+    "aria-label",
+    "A bar chart comparing the base rate with the probability of a fire given an alarm"
+  );
+
+  root.insertBefore(paths, readout);
+  root.insertBefore(bars, readout);
 
   function line(x1, y1, x2, y2, className) {
     return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="${className}"></line>`;
@@ -67,11 +85,6 @@ export function mount(el) {
     const pFire = Number(base.value) / 1000;
     const pFalse = Number(fpr.value) / 1000;
     const pNoFire = 1 - pFire;
-
-    baseOut.value = pFire.toFixed(3);
-    baseOut.textContent = pFire.toFixed(3);
-    fprOut.value = pFalse.toFixed(3);
-    fprOut.textContent = pFalse.toFixed(3);
 
     const fireAlarm = pFire * DETECT;
     const fireNo = pFire * (1 - DETECT);
@@ -135,7 +148,5 @@ export function mount(el) {
     );
   }
 
-  base.addEventListener("input", render);
-  fpr.addEventListener("input", render);
-  render();
+  react([base, fpr], render);
 }

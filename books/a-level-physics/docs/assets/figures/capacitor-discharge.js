@@ -15,28 +15,37 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to
 // both schemes. No colour literal appears here, and no runtime LaTeX: the
 // readout is plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-capacitor-discharge" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 280" width="100%" role="img"
-           aria-label="A potential difference against time in milliseconds for a discharging capacitor, with the working point marked at one time constant"></svg>
-      <label style="display:block;margin:.5rem 0">Resistance
-        <input class="resistance" type="range" min="100" max="1000" step="50" value="200">
-        <output class="resistance-out">200</output> ohm
-      </label>
-      <label style="display:block;margin:.3rem 0">Capacitance
-        <input class="capacitance" type="range" min="100" max="500" step="50" value="100">
-        <output class="capacitance-out">100</output> microfarad
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const resistance = el.querySelector(".resistance");
-  const resistanceOut = el.querySelector(".resistance-out");
-  const capacitance = el.querySelector(".capacitance");
-  const capacitanceOut = el.querySelector(".capacitance-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A potential difference against time in milliseconds for a discharging capacitor, with the working point marked at one time constant",
+    width: 600,
+    height: 280,
+    max: 600,
+  });
+
+  const resistance = slider(el, {
+    id: "resistance",
+    label: "Resistance (ohm)",
+    min: 100,
+    max: 1000,
+    step: 50,
+    value: 200,
+  });
+  const capacitance = slider(el, {
+    id: "capacitance",
+    label: "Capacitance (microfarad)",
+    min: 100,
+    max: 500,
+    step: 50,
+    value: 100,
+  });
 
   const LEFT = 70;
   const RIGHT = 560;
@@ -62,8 +71,6 @@ export function mount(el) {
     const tau = r * c; // seconds
     const tauMs = tau * 1000;
     const tMax = axisMaxMs(tauMs);
-    resistanceOut.textContent = String(r);
-    capacitanceOut.textContent = String(c * 1e6);
 
     let axes =
       `<line x1="${LEFT}" y1="${BOTTOM}" x2="${RIGHT}" y2="${BOTTOM}" class="fig-ink"></line>` +
@@ -114,7 +121,5 @@ export function mount(el) {
       `<em>Double the resistance: what happens to the time constant?</em>`;
   }
 
-  resistance.addEventListener("input", update);
-  capacitance.addEventListener("input", update);
-  update();
+  react([resistance, capacitance], update);
 }

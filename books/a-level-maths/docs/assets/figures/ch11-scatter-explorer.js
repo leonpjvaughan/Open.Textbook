@@ -4,6 +4,11 @@
 // lesson, the interpretation is.
 // Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
 // carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentence.
+import { panel, slider, react } from "./kit.js";
 
 const FIXED = [
   { x: 1, y: 2.0 },
@@ -46,21 +51,22 @@ function leastSquares(points) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:600px">
-      <label>Height of the far point
-        <input class="h" type="range" min="1" max="10" step="0.5" value="7">
-        <output class="h-out">7</output>
-      </label>
-      <svg viewBox="0 0 430 290" width="100%" role="img"
-           aria-label="A scatter diagram with a line of best fit and one movable point"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A scatter diagram with a line of best fit and one movable point",
+    width: 430,
+    height: 290,
+    max: 600,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const hInput = el.querySelector(".h");
-  const hOut = el.querySelector(".h-out");
+  const hInput = slider(el, {
+    id: "h",
+    label: "Height of the far point",
+    min: 1,
+    max: 10,
+    step: 0.5,
+    value: 7,
+  });
 
   function render() {
     const movable = { x: MOVABLE_X, y: Number(hInput.value) };
@@ -103,11 +109,5 @@ export function mount(el) {
     );
   }
 
-  hInput.addEventListener("input", () => {
-    hOut.value = hInput.value;
-    hOut.textContent = hInput.value;
-    render();
-  });
-
-  render();
+  react(hInput, render);
 }

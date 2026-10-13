@@ -6,6 +6,11 @@
 // drawn along the axis so the size of the sample can be seen as well as read.
 // Pure HTML and SVG, no framework and no colour of its own: the fig-* classes
 // carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the slider, the live
+// readout and the redraw — comes from `kit.js`. The kit has no button helper, so
+// the two action buttons stay here.
+import { panel, slider, react } from "./kit.js";
 
 const POPULATION_SIZE = 240;
 const MIN_VALUE = 0;
@@ -48,25 +53,37 @@ function drawSample(size) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:600px">
-      <label>Sample size n
-        <input class="n" type="range" min="5" max="50" step="5" value="10">
-        <output class="n-out">10</output>
-      </label>
-      <p><button class="draw" type="button">Take a new sample</button>
-         <button class="reset" type="button">Clear the history</button></p>
-      <svg viewBox="0 0 430 150" width="100%" role="img"
-           aria-label="A number line showing the population mean and the mean of a random sample"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A number line showing the population mean and the mean of a random sample",
+    width: 430,
+    height: 150,
+    max: 600,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const nInput = el.querySelector(".n");
-  const nOut = el.querySelector(".n-out");
-  const drawButton = el.querySelector(".draw");
-  const resetButton = el.querySelector(".reset");
+  const nInput = slider(el, {
+    id: "n",
+    label: "Sample size n",
+    min: 5,
+    max: 50,
+    step: 5,
+    value: 10,
+  });
+
+  // The kit has no button helper, so the two controls that are an action rather
+  // than a state are built here, beside the control column.
+  const actions = document.createElement("p");
+  actions.style.cssText = "margin:0;grid-column:1/-1";
+  const drawButton = document.createElement("button");
+  drawButton.type = "button";
+  drawButton.className = "draw";
+  drawButton.textContent = "Take a new sample";
+  const resetButton = document.createElement("button");
+  resetButton.type = "button";
+  resetButton.className = "reset";
+  resetButton.textContent = "Clear the history";
+  actions.append(drawButton, resetButton);
+  el.querySelector(".fig-controls").append(actions);
 
   let history = [];
 
@@ -151,17 +168,16 @@ export function mount(el) {
 
   // Moving the sample-size slider draws a sample of the new size, so the drawing
   // changes with the slider and the reader sees a sample of the size they set.
-  // The button below draws further samples of the same size.
-  nInput.addEventListener("input", () => {
-    nOut.value = nInput.value;
-    nOut.textContent = nInput.value;
-    takeSample();
-  });
+  // The button below draws further samples of the same size. `react` redraws at
+  // mount and on every change; taking the sample is the side effect that stays on
+  // `input`, so the initial picture is still "no sample yet" and a drag takes one
+  // sample per input, not a second one when the value is committed.
+  react(nInput, render);
+  nInput.addEventListener("input", takeSample);
+
   drawButton.addEventListener("click", takeSample);
   resetButton.addEventListener("click", () => {
     history = [];
     render();
   });
-
-  render();
 }

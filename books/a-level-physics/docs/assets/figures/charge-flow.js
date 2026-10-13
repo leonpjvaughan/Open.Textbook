@@ -9,30 +9,42 @@
 //
 // Colours come from CSS classes, so the figure adapts to every bundle and to
 // both schemes. No colour literal appears here, and no runtime LaTeX: the readout
-// is plain HTML. Every value is written out as text, so shape and size are never
 // the only signal.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
+
 export function mount(el) {
   const ELEMENTARY = 1.6e-19; // coulombs, the charge on one electron
   const TIME_MAX = 60; // seconds
   const CURRENT_MAX = 5; // amperes
 
-  el.innerHTML = `
-    <div class="fig-charge-flow" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 340" width="100%" role="img"
-           aria-label="A graph of current against time. The shaded rectangle has a height equal to the current and a width equal to the time, so its area is the charge transferred."></svg>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem .9rem">
-        <label>Current (A)
-          <input class="current" type="range" min="0.5" max="${CURRENT_MAX}" step="0.1" value="2"></label>
-        <label>Time (s)
-          <input class="time" type="range" min="5" max="${TIME_MAX}" step="5" value="30"></label>
-      </div>
-      <p class="readout" aria-live="polite" style="margin:.6rem 0 0"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A graph of current against time. The shaded rectangle has a height equal to the current and a width equal to the time, so its area is the charge transferred.",
+    width: 600,
+    height: 340,
+    max: 600,
+  });
 
-  const svg = el.querySelector("svg");
-  const current = el.querySelector(".current");
-  const time = el.querySelector(".time");
-  const readout = el.querySelector(".readout");
+  const current = slider(el, {
+    id: "current",
+    label: "Current (A)",
+    min: 0.5,
+    max: CURRENT_MAX,
+    step: 0.1,
+    value: 2,
+  });
+  const time = slider(el, {
+    id: "time",
+    label: "Time (s)",
+    min: 5,
+    max: TIME_MAX,
+    step: 5,
+    value: 30,
+  });
 
   const LEFT = 80;
   const RIGHT = 540;
@@ -97,7 +109,5 @@ export function mount(el) {
       `<em>Which transfers more charge: doubling the current, or doubling the time?</em>`;
   }
 
-  current.addEventListener("input", update);
-  time.addEventListener("input", update);
-  update();
+  react([current, time], update);
 }

@@ -9,28 +9,38 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to
 // both schemes. No colour literal appears here, and no runtime LaTeX: the readout
 // is plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-ideal-gas" style="font:14px system-ui;max-width:640px">
-      <svg viewBox="0 0 640 280" width="100%" role="img"
-           aria-label="A box of gas molecules with a piston, showing how temperature and volume change the pressure"></svg>
-      <label style="display:block;margin:.5rem 0">Temperature (K)
-        <input class="temp" type="range" min="100" max="600" step="10" value="300">
-        <output class="temp-out">300</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Volume (10^-3 m^3)
-        <input class="vol" type="range" min="1.0" max="4.0" step="0.1" value="2.0">
-        <output class="vol-out">2.0</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const temp = el.querySelector(".temp");
-  const vol = el.querySelector(".vol");
-  const tempOut = el.querySelector(".temp-out");
-  const volOut = el.querySelector(".vol-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A box of gas molecules with a piston, showing how temperature and volume change the pressure",
+    width: 640,
+    height: 280,
+    max: 640,
+  });
+
+  const temp = slider(el, {
+    id: "temp",
+    label: "Temperature (K)",
+    min: 100,
+    max: 600,
+    step: 10,
+    value: 300,
+  });
+  const vol = slider(el, {
+    id: "vol",
+    label: "Volume (10^-3 m^3)",
+    min: 1.0,
+    max: 4.0,
+    step: 0.1,
+    value: 2.0,
+    format: (value) => value.toFixed(1),
+  });
 
   const BOLTZMANN = 1.38e-23;
   const MOLECULE_MASS = 4.8e-26;
@@ -50,8 +60,6 @@ export function mount(el) {
   function update() {
     const temperature = Number(temp.value);
     const volume = Number(vol.value) * 1e-3;
-    tempOut.textContent = String(temperature);
-    volOut.textContent = volume ? (volume / 1e-3).toFixed(1) : "0";
 
     const pressure = (MOLECULES * BOLTZMANN * temperature) / volume;
     const kineticEnergy = 1.5 * BOLTZMANN * temperature;
@@ -90,7 +98,5 @@ export function mount(el) {
       `<em>Double the temperature. What happens to the pressure, and what happens to the volume?</em>`;
   }
 
-  temp.addEventListener("input", update);
-  vol.addEventListener("input", update);
-  update();
+  react([temp, vol], update);
 }

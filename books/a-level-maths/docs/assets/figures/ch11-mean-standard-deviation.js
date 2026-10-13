@@ -10,32 +10,38 @@
 // move more before a control is touched, and asks for the reason afterwards.
 // Colours come from CSS classes, so the figure adapts to every bundle and both
 // schemes; the readout is `aria-live`.
-export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:600px">
-      <label style="display:block;margin:.2rem 0">
-        The fifth reading
-        <input class="reading" type="range" min="0" max="16" step="0.5" value="10"
-               aria-label="Value of the fifth reading">
-        <output class="reading-out">10.0</output>
-      </label>
-      <label style="display:block;margin:.2rem 0 .4rem">
-        Added to every reading
-        <input class="shift" type="range" min="-2" max="2" step="0.5" value="0"
-               aria-label="Constant added to every reading">
-        <output class="shift-out">0.0</output>
-      </label>
-      <svg viewBox="0 0 560 262" width="100%" role="img"
-           aria-label="A dot plot of five readings, with a marker for the mean and a bar showing one standard deviation either side of it"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the two sliders, the live
+// readout and the redraw — comes from `kit.js`.
+import { panel, slider, fmt, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const readingInput = el.querySelector(".reading");
-  const readingOut = el.querySelector(".reading-out");
-  const shiftInput = el.querySelector(".shift");
-  const shiftOut = el.querySelector(".shift-out");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "A dot plot of five readings, with a marker for the mean and a bar showing one standard deviation either side of it",
+    width: 560,
+    height: 262,
+    max: 600,
+  });
+
+  const readingInput = slider(el, {
+    id: "reading",
+    label: "The fifth reading",
+    min: 0,
+    max: 16,
+    step: 0.5,
+    value: 10,
+    format: (value) => value.toFixed(1),
+  });
+  const shiftInput = slider(el, {
+    id: "shift",
+    label: "Added to every reading",
+    min: -2,
+    max: 2,
+    step: 0.5,
+    value: 0,
+    format: (value) => value.toFixed(1),
+  });
 
   const WIDTH = 560;
   const LEFT = 26;
@@ -50,8 +56,6 @@ export function mount(el) {
 
   const xToPx = (value) =>
     LEFT + ((value - X_MIN) / (X_MAX - X_MIN)) * (RIGHT - LEFT);
-
-  const fmt = (value) => String(Number(value.toFixed(2)));
 
   const text = (x, y, label, anchor = "middle", cls = "fig-ink") =>
     `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anchor}" ` +
@@ -133,7 +137,7 @@ export function mount(el) {
     svg.innerHTML = grid + axis + ticks + fixedDots + movable + meanMark + band;
 
     readout.textContent =
-      `The readings are ${values.map(fmt).join(", ")}. Their mean is ` +
+      `The readings are ${values.map((value) => fmt(value)).join(", ")}. Their mean is ` +
       `${mean.toFixed(2)}. The squared deviations from the mean add to ` +
       `${sumSquares.toFixed(2)}, so dividing by ${n} and taking the square root ` +
       `gives a standard deviation of ${sd.toFixed(2)}.`;
@@ -145,14 +149,5 @@ export function mount(el) {
     );
   }
 
-  const show = (input, output, decimals) => {
-    output.value = Number(input.value).toFixed(decimals);
-    output.textContent = Number(input.value).toFixed(decimals);
-    render();
-  };
-
-  readingInput.addEventListener("input", () => show(readingInput, readingOut, 1));
-  shiftInput.addEventListener("input", () => show(shiftInput, shiftOut, 1));
-
-  render();
+  react([readingInput, shiftInput], render);
 }

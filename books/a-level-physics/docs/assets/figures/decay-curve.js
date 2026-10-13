@@ -9,34 +9,45 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to
 // both schemes. No colour literal appears here, and no runtime LaTeX: the
 // readout is plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-decay-curve" style="font:14px system-ui;max-width:620px">
-      <svg viewBox="0 0 620 300" width="100%" role="img"
-           aria-label="Activity of a radioactive source against time in half-lives, with the working point marked"></svg>
-      <label style="display:block;margin:.4rem 0">Half-life (hours)
-        <input class="half-life" type="range" min="1" max="20" step="1" value="8">
-        <output class="half-life-out">8</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Starting activity (becquerels)
-        <input class="activity" type="range" min="100" max="1000" step="50" value="800">
-        <output class="activity-out">800</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Time (half-lives)
-        <input class="time" type="range" min="0" max="5" step="0.1" value="3">
-        <output class="time-out">3.0</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const halfLife = el.querySelector(".half-life");
-  const activity = el.querySelector(".activity");
-  const time = el.querySelector(".time");
-  const halfLifeOut = el.querySelector(".half-life-out");
-  const activityOut = el.querySelector(".activity-out");
-  const timeOut = el.querySelector(".time-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "Activity of a radioactive source against time in half-lives, with the working point marked",
+    width: 620,
+    height: 300,
+    max: 620,
+  });
+
+  const halfLife = slider(el, {
+    id: "half-life",
+    label: "Half-life (hours)",
+    min: 1,
+    max: 20,
+    value: 8,
+  });
+  const activity = slider(el, {
+    id: "activity",
+    label: "Starting activity (becquerels)",
+    min: 100,
+    max: 1000,
+    step: 50,
+    value: 800,
+  });
+  const time = slider(el, {
+    id: "time",
+    label: "Time (half-lives)",
+    min: 0,
+    max: 5,
+    step: 0.1,
+    value: 3,
+    format: (value) => value.toFixed(1),
+  });
 
   const LEFT = 80;
   const RIGHT = 580;
@@ -51,9 +62,6 @@ export function mount(el) {
     const halfLifeHours = Number(halfLife.value);
     const start = Number(activity.value);
     const n = Number(time.value);
-    halfLifeOut.textContent = String(halfLifeHours);
-    activityOut.textContent = String(start);
-    timeOut.textContent = n.toFixed(1);
 
     const fraction = Math.pow(2, -n);
     const remaining = start * fraction;
@@ -108,8 +116,5 @@ export function mount(el) {
       `<em>Set the time to 3 half-lives. What fraction remains? Try 4.</em>`;
   }
 
-  halfLife.addEventListener("input", update);
-  activity.addEventListener("input", update);
-  time.addEventListener("input", update);
-  update();
+  react([halfLife, activity, time], update);
 }

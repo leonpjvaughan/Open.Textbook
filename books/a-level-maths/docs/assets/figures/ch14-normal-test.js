@@ -3,6 +3,12 @@
 // and the sample size and watches the test statistic and the tail area. Pure
 // HTML and SVG, an ES module, no framework and no colour of its own: the fig-*
 // classes carry the theme. Runtime text is plain text, never TeX.
+//
+// The scaffolding — the surface, its accessible name, the sliders, the drop-downs,
+// the live readout, the redraw — comes from `kit.js`. What is left here is the
+// drawing and the sentence, which are the parts that differ from every other
+// figure.
+import { panel, slider, chooser, react } from "./kit.js";
 
 const NULL_MEAN = 500;
 
@@ -38,57 +44,60 @@ function pValueFromZ(z, tail) {
 }
 
 export function mount(el) {
-  el.innerHTML = `
-    <div style="max-width:640px">
-      <p>
-        <label>Sample mean
-          <input class="xbar" type="range" min="494" max="506" step="0.5" value="497">
-          <output class="xbar-out">497.0</output>
-        </label>
-      </p>
-      <p>
-        <label>Known standard deviation
-          <input class="sigma" type="range" min="2" max="8" step="0.5" value="4">
-          <output class="sigma-out">4.0</output>
-        </label>
-      </p>
-      <p>
-        <label>Sample size n
-          <input class="n" type="range" min="4" max="64" step="4" value="16">
-          <output class="n-out">16</output>
-        </label>
-      </p>
-      <p>
-        <label>Significance level
-          <select class="alpha">
-            <option value="0.05" selected>5%</option>
-            <option value="0.01">1%</option>
-            <option value="0.1">10%</option>
-          </select>
-        </label>
-        <label>Tail
-          <select class="tail">
-            <option value="left" selected>lower tail</option>
-            <option value="right">upper tail</option>
-            <option value="two">two tails</option>
-          </select>
-        </label>
-      </p>
-      <svg viewBox="0 0 460 190" width="100%" role="img"
-           aria-label="A Normal curve for the sample mean with the critical region for the chosen significance level shaded"></svg>
-      <p class="readout" aria-live="polite"></p>
-    </div>`;
+  const { svg, readout } = panel(el, {
+    label:
+      "A Normal curve for the sample mean with the critical region for the chosen significance level shaded",
+    width: 460,
+    height: 190,
+    max: 640,
+  });
 
-  const svg = el.querySelector("svg");
-  const readout = el.querySelector(".readout");
-  const xbarInput = el.querySelector(".xbar");
-  const sigmaInput = el.querySelector(".sigma");
-  const nInput = el.querySelector(".n");
-  const alphaInput = el.querySelector(".alpha");
-  const tailInput = el.querySelector(".tail");
-  const xbarOut = el.querySelector(".xbar-out");
-  const sigmaOut = el.querySelector(".sigma-out");
-  const nOut = el.querySelector(".n-out");
+  const xbarInput = slider(el, {
+    id: "xbar",
+    label: "Sample mean",
+    min: 494,
+    max: 506,
+    step: 0.5,
+    value: 497,
+    format: (value) => value.toFixed(1),
+  });
+  const sigmaInput = slider(el, {
+    id: "sigma",
+    label: "Known standard deviation",
+    min: 2,
+    max: 8,
+    step: 0.5,
+    value: 4,
+    format: (value) => value.toFixed(1),
+  });
+  const nInput = slider(el, {
+    id: "n",
+    label: "Sample size n",
+    min: 4,
+    max: 64,
+    step: 4,
+    value: 16,
+  });
+  const alphaInput = chooser(el, {
+    id: "alpha",
+    label: "Significance level",
+    choices: [
+      { value: "0.05", label: "5%" },
+      { value: "0.01", label: "1%" },
+      { value: "0.1", label: "10%" },
+    ],
+    value: "0.05",
+  });
+  const tailInput = chooser(el, {
+    id: "tail",
+    label: "Tail",
+    choices: [
+      { value: "left", label: "lower tail" },
+      { value: "right", label: "upper tail" },
+      { value: "two", label: "two tails" },
+    ],
+    value: "left",
+  });
 
   function render() {
     const xbar = Number(xbarInput.value);
@@ -207,22 +216,5 @@ export function mount(el) {
     );
   }
 
-  [xbarInput, sigmaInput, nInput].forEach((input) => {
-    input.addEventListener("input", () => {
-      xbarOut.value = Number(xbarInput.value).toFixed(1);
-      xbarOut.textContent = Number(xbarInput.value).toFixed(1);
-      sigmaOut.value = Number(sigmaInput.value).toFixed(1);
-      sigmaOut.textContent = Number(sigmaInput.value).toFixed(1);
-      nOut.value = nInput.value;
-      nOut.textContent = nInput.value;
-      render();
-    });
-  });
-  alphaInput.addEventListener("change", render);
-  tailInput.addEventListener("change", render);
-
-  xbarOut.textContent = Number(xbarInput.value).toFixed(1);
-  sigmaOut.textContent = Number(sigmaInput.value).toFixed(1);
-  nOut.textContent = nInput.value;
-  render();
+  react([xbarInput, sigmaInput, nInput, alphaInput, tailInput], render);
 }

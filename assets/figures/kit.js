@@ -58,7 +58,9 @@
  * @param {number} [options.height] the viewBox height.
  * @param {boolean} [options.drawing] false for a figure that draws nothing.
  * @param {number} [options.max]    `max-width` in pixels for the whole figure.
- * @returns {{root: HTMLElement, svg: SVGSVGElement|null, readout: HTMLElement}}
+ * @returns {{root: HTMLElement, svg: SVGSVGElement|null, readout: HTMLElement,
+ *   controls: HTMLElement}} `controls` is the column a module can append its own
+ *   buttons to; the kit has no button helper.
  */
 export function panel(el, options = {}) {
   const {
@@ -126,7 +128,25 @@ export function panel(el, options = {}) {
  * @returns {HTMLInputElement} the input, ready to read `.value` from.
  */
 export function slider(parent, options = {}) {
-  const { id = "", label = "", min = 0, max = 1, step = 1, value = min, format } = options;
+  const {
+    id = "",
+    label = "",
+    // A module whose slider had no value displayed gains one, which changes what
+    // the reader sees. `show: false` keeps the previous behaviour; `unit` puts a
+    // unit after the number, which is why "200 ohm" does not have to live in the
+    // label.
+    show = true,
+    unit = "",
+    // The accessible name, when it should say more than the visible label. A
+    // distinct, more descriptive name was being replaced by the shorter visible
+    // one.
+    name = "",
+    min = 0,
+    max = 1,
+    step = 1,
+    value = min,
+    format,
+  } = options;
   const holder = document.createElement("label");
   holder.className = "fig-control";
   holder.textContent = label ? `${label} ` : "";
@@ -138,18 +158,28 @@ export function slider(parent, options = {}) {
   input.step = String(step);
   input.value = String(value);
   if (id) input.className = id;
-  input.setAttribute("aria-label", label || id);
+  input.setAttribute("aria-label", name || label || id);
+
+  if (!show) {
+    holder.append(input);
+    (parent.querySelector(".fig-controls") || parent).append(holder);
+    return input;
+  }
 
   const out = document.createElement("output");
   out.className = id ? `${id}-out` : "fig-out";
-  const show = () => {
-    out.textContent = format ? format(Number(input.value)) : String(input.value);
+  const paint = () => {
+    // The raw value, not `fmt`: a slider's value is whatever its `step` produced, so
+    // it is already clean, and rounding it to a fixed number of places would
+    // truncate a `step="0.001"` control at 3.14159 to 3.1416.
+    const number = format ? format(Number(input.value)) : input.value;
+    out.textContent = unit ? `${number} ${unit}` : number;
   };
 
   holder.append(input, out);
   (parent.querySelector(".fig-controls") || parent).append(holder);
-  input.addEventListener("input", show);
-  show();
+  input.addEventListener("input", paint);
+  paint();
   return input;
 }
 
@@ -198,7 +228,11 @@ export function chooser(parent, options = {}) {
  */
 export function fmt(value, places = 2) {
   if (!Number.isFinite(value)) return "—";
-  const rounded = Number(value.toFixed(places));
+  // `values.map(fmt)` passes the *index* as `places`, so a caller who writes the
+  // natural thing silently rounds to 0, 1, 2 places down the list. A second
+  // argument that is not a number is ignored rather than obeyed.
+  const digits = Number.isInteger(places) ? places : 2;
+  const rounded = Number(value.toFixed(Math.max(0, Math.min(20, digits))));
   return String(rounded);
 }
 
@@ -224,10 +258,15 @@ export function signed(value, places = 2) {
  * drawing only after the first `input` event — the image point that appeared only
  * once the slider moved.
  */
-export function react(controls, draw) {
+export function react(controls, draw, options = {}) {
+  const { initial = true } = options;
   const list = [controls].flat().filter(Boolean);
   for (const control of list) control.addEventListener("input", draw);
   for (const control of list) control.addEventListener("change", draw);
-  draw();
+  // `initial: false` for a control whose change is a *side effect* rather than a
+  // redraw — a slider that takes a new random sample must not take one on load,
+  // and the faithful wiring is `react(slider, render, { initial: false })` plus
+  // its own listener for the sample.
+  if (initial) draw();
   return list;
 }

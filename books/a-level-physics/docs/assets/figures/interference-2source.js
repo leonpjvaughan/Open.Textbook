@@ -9,34 +9,47 @@
 // Colours come from CSS classes, so the figure adapts to every bundle and to
 // both schemes. No colour literal appears here, and no runtime LaTeX: the
 // readout is plain HTML.
-export function mount(el) {
-  el.innerHTML = `
-    <div class="fig-interference-2source" style="font:14px system-ui;max-width:600px">
-      <svg viewBox="0 0 600 320" width="100%" role="img"
-           aria-label="Two coherent sources, the rays to the first bright fringe, and the bright fringes on a screen"></svg>
-      <label style="display:block;margin:.5rem 0">Wavelength (nanometres)
-        <input class="wavelength" type="range" min="400" max="700" step="10" value="600">
-        <output class="wavelength-out">600</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Source separation (millimetres)
-        <input class="separation" type="range" min="0.05" max="0.50" step="0.01" value="0.25">
-        <output class="separation-out">0.25</output>
-      </label>
-      <label style="display:block;margin:.3rem 0">Distance to the screen (metres)
-        <input class="distance" type="range" min="0.5" max="3.0" step="0.1" value="2.5">
-        <output class="distance-out">2.5</output>
-      </label>
-      <p class="readout" aria-live="polite" style="margin:.5rem 0 0"></p>
-    </div>`;
+//
+// The scaffolding — the surface, its accessible name, the sliders, the live
+// readout and the redraw — comes from `kit.js`. What is left here is the drawing
+// and the sentences, which are the parts that differ from every other figure.
+import { panel, slider, react } from "./kit.js";
 
-  const svg = el.querySelector("svg");
-  const wavelength = el.querySelector(".wavelength");
-  const separation = el.querySelector(".separation");
-  const distance = el.querySelector(".distance");
-  const wavelengthOut = el.querySelector(".wavelength-out");
-  const separationOut = el.querySelector(".separation-out");
-  const distanceOut = el.querySelector(".distance-out");
-  const readout = el.querySelector(".readout");
+export function mount(el) {
+  const { svg, readout } = panel(el, {
+    label:
+      "Two coherent sources, the rays to the first bright fringe, and the bright fringes on a screen",
+    width: 600,
+    height: 320,
+    max: 600,
+  });
+
+  const wavelength = slider(el, {
+    id: "wavelength",
+    label: "Wavelength (nanometres)",
+    min: 400,
+    max: 700,
+    step: 10,
+    value: 600,
+  });
+  const separation = slider(el, {
+    id: "separation",
+    label: "Source separation (millimetres)",
+    min: 0.05,
+    max: 0.5,
+    step: 0.01,
+    value: 0.25,
+    format: (value) => value.toFixed(2),
+  });
+  const distance = slider(el, {
+    id: "distance",
+    label: "Distance to the screen (metres)",
+    min: 0.5,
+    max: 3.0,
+    step: 0.1,
+    value: 2.5,
+    format: (value) => value.toFixed(1),
+  });
 
   const SLIT_X = 90;
   const MID_Y = 160;
@@ -47,9 +60,6 @@ export function mount(el) {
     const lambdaNm = Number(wavelength.value);
     const sMm = Number(separation.value);
     const dM = Number(distance.value);
-    wavelengthOut.textContent = String(lambdaNm);
-    separationOut.textContent = sMm.toFixed(2);
-    distanceOut.textContent = dM.toFixed(1);
 
     const lambdaM = lambdaNm * 1e-9;
     const sM = sMm * 1e-3;
@@ -110,8 +120,5 @@ export function mount(el) {
       `<em>Move the sources closer together: what happens to the fringe spacing?</em>`;
   }
 
-  wavelength.addEventListener("input", update);
-  separation.addEventListener("input", update);
-  distance.addEventListener("input", update);
-  update();
+  react([wavelength, separation, distance], update);
 }
