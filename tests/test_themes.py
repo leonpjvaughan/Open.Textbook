@@ -685,9 +685,41 @@ NAMED_COLOURS = frozenset(
 )
 
 
-def colour_literals(css: str) -> list[str]:
-    """Every colour literal in a stylesheet, comments ignored."""
+# `#` starts a comment in Python and a colour in CSS, so a scanner that serves
+# both has to be told which it is reading. Three times now this check has fired on
+# English rather than on a colour — the phrase "Red sectors" in a label, the words
+# "the bank", and "the gate stayed green" in a Python comment — and each time the
+# cheap fix was to reword the sentence, which leaves the trap in place for the next
+# writer.
+#
+# Comments are removed with Python's own tokenizer rather than a regular
+# expression: `#` inside a string is a hex colour (`fill = "#fff"`), and a regex
+# cannot tell the two apart. The tokenizer can, because it is the same one that
+# reads the file.
+def without_python_comments(source: str) -> str:
+    """The source with its comments replaced by spaces, line numbers kept."""
+    import io
+    import tokenize
+
+    out: list[str] = []
+    try:
+        for token in tokenize.generate_tokens(io.StringIO(source).readline):
+            if token.type == tokenize.COMMENT:
+                out.append(" " * len(token.string))
+            else:
+                out.append(token.string)
+    except tokenize.TokenError:
+        return source  # a fragment, not a whole file
+    # `generate_tokens` drops whitespace between tokens; re-joining with a space is
+    # enough for a scanner looking for colour values.
+    return " ".join(out)
+
+
+def colour_literals(css: str, python: bool = False) -> list[str]:
+    """Every colour literal in a stylesheet or a Python file, comments ignored."""
     text = CSS_COMMENT.sub(" ", css)
+    if python:
+        text = without_python_comments(text)
     found = [match.group(0) for match in HEX_COLOUR.finditer(text)]
     found += [match.group(0) for match in COLOUR_FUNCTION.finditer(text)]
     found += [
@@ -739,7 +771,9 @@ def test_the_pipeline_shell_defines_no_colour():
     )
     for path in shells:
         assert path.is_file(), f"{path} is missing; did the shell move?"
-        literals = colour_literals(path.read_text(encoding="utf-8"))
+        literals = colour_literals(
+            path.read_text(encoding="utf-8"), python=path.suffix == ".py"
+        )
         assert not literals, (
             f"{path.name} declares a literal colour ({literals}), which outranks "
             "every theme bundle. Use a --tb-* token, a fig-*/text-* class, or "
@@ -762,6 +796,15 @@ def test_the_colour_scanner_can_actually_fail():
     assert not colour_literals("x { box-shadow: 0 1px 2px color-mix(in srgb, var(--tb-ink) 20%, transparent); }")
     # `white-space` contains a colour name but is a property, not a value.
     assert not colour_literals("x { white-space: nowrap; }")
+    # Prose about colour, in the language where `#` is a comment. A hex in a .py
+    # file is still caught, because only the comment is removed.
+    assert not colour_literals("# the gate stayed green\n", python=True)
+    # A literal in code is still caught. It has to be written as code: a `#` at
+    # the start of a line *is* a Python comment, so `#fff` alone is a comment —
+    # which the first version of this assertion got wrong.
+    assert colour_literals('fill = "#fff"\n', python=True)
+    assert colour_literals('x = "rgb(1 2 3)"\n', python=True)
+    assert not colour_literals('fill = "var(--tb-ink)"  # a green box\n', python=True)
 
 
 def test_the_portal_stylesheet_defines_no_colour():
@@ -909,3 +952,38 @@ def test_the_figure_control_check_can_actually_fail():
     assert match and "maths-figure select" in " ".join(match.group(1).split())
     # And a control left with no token is not accepted.
     assert not re.search(r"(?<![\w-])color\s*:\s*var\(--tb-", "color: black;")
+
+
+def test_the_house_accent_matches_the_book_it_stands_in_for():
+    """The engine's one colour is a fallback, and it must not quietly drift.
+
+    A book with no tint of its own — the reference work — takes `HOUSE_ACCENT`
+    instead. That value is the first book's palette copied across, which
+    `engine/AGENTS.md` says the engine should not be doing; until a bundle can be
+    reached from `Scheme.accent`, this test is what makes the duplicate a
+    deliberate one rather than a coincidence somebody edits one half of.
+    """
+    from textbook.book import HOUSE_ACCENT, HOUSE_ACCENT_DARK_SCHEME, book_by_id
+
+    source = book_by_id("gcse-maths").theme
+    assert HOUSE_ACCENT == source.for_scheme("default").accent
+    assert HOUSE_ACCENT_DARK_SCHEME == source.for_scheme("slate").accent
+
+
+def test_the_engine_names_no_other_colour():
+    """Every colour the engine mentions outside its palettes is accounted for.
+
+    The rule is "the engine declares no colour", and the exception is the
+    fallback above. This fails if a third one is added without the same reasoning
+    being written down.
+    """
+    from textbook import book as book_module
+
+    named = {
+        name: value
+        for name, value in vars(book_module).items()
+        if name.startswith("HOUSE_ACCENT") and isinstance(value, str)
+    }
+    assert set(named) == {"HOUSE_ACCENT", "HOUSE_ACCENT_DARK_SCHEME"}, (
+        f"the engine names more accents than the fallback: {sorted(named)}"
+    )

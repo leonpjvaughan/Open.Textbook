@@ -31,10 +31,11 @@ def known_slugs(config) -> set[str]:
 
 
 def root_prefix(page) -> str:
-    url = (page.url or "").rstrip("/")
-    if not url:
-        return ""
-    return "../" * (url.count("/") + 1)
+    """The path back to the site root. See `config.root_prefix` for why it is there.
+
+    It was `"../" * (url.count("/") + 1)` — the same answer by a different route.
+    """
+    return cfg.root_prefix(page.url or "")
 
 
 def on_page_markdown(markdown, page, config, files):

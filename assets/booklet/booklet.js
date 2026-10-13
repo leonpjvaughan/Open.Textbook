@@ -131,6 +131,16 @@
       <table class="bk-table"><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table></section>`;
   }
 
+  /** Show or hide the search box. It filters formulae; tables have no search. */
+  function setSearchVisible(visible) {
+    const box = panel.querySelector(".bk-search");
+    if (!box) return;
+    box.hidden = !visible;
+    // `hidden` alone can leave it focusable once a style sets `display`, so it is
+    // disabled too — out of the tab order for certain.
+    box.disabled = !visible;
+  }
+
   function renderContent() {
     const content = panel.querySelector(".bk-content");
     const meta = state.data.meta;
@@ -138,14 +148,21 @@
     let count = 0;
 
     if (state.tab === "tables") {
-      content.innerHTML = state.data.tables
-        .filter((t) => t.tier === undefined || t.tier.includes(state.tier))
-        .map(tableHtml)
-        .join("");
+      const tables = state.data.tables.filter(
+        (t) => t.tier === undefined || t.tier.includes(state.tier),
+      );
+      content.innerHTML = tables.map(tableHtml).join("");
+      // The filtered count, not every table in the booklet. A Foundation reader
+      // was told "3 tables" and shown 2, because the list was tier-filtered and
+      // the number was not.
       panel.querySelector(".bk-count").textContent =
-        `${state.data.tables.length} ${meta.table_label || "tables"}`;
+        `${tables.length} ${meta.table_label || "tables"}`;
+      // There is no search on this tab, so the box is hidden rather than left
+      // visible and inert — typing in it did nothing and said nothing.
+      setSearchVisible(false);
       return;
     }
+    setSearchVisible(true);
 
     const html = state.data.sections
       .map((section) => {
@@ -308,10 +325,16 @@
 
   function applyRect() {
     if (!state.rect || !bigScreen()) return;
-    panel.style.left = `${state.rect.left}px`;
-    panel.style.top = `${state.rect.top}px`;
-    panel.style.width = `${state.rect.width}px`;
-    panel.style.height = `${state.rect.height}px`;
+    // A rect saved on a wider window can leave the panel off-screen while the
+    // button still reports `aria-expanded="true"`. Clamp it back into view.
+    const width = Math.min(state.rect.width, window.innerWidth);
+    const height = Math.min(state.rect.height, window.innerHeight);
+    const left = Math.max(0, Math.min(state.rect.left, window.innerWidth - width));
+    const top = Math.max(0, Math.min(state.rect.top, window.innerHeight - height));
+    panel.style.left = `${left}px`;
+    panel.style.top = `${top}px`;
+    panel.style.width = `${width}px`;
+    panel.style.height = `${height}px`;
   }
 
   function rememberRect() {

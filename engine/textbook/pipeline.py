@@ -162,9 +162,8 @@ def href(url: str) -> str:
 
 
 def prefix_for(url: str) -> str:
-    """The relative path back to the site root: one ``../`` per directory level."""
-    depth = len([part for part in url.strip("/").split("/") if part])
-    return "../" * depth
+    """The relative path back to the site root. See `config.root_prefix`."""
+    return cfg.root_prefix(url)
 
 
 def booklet_widget(book: books.Book, prefix: str) -> str:
@@ -489,8 +488,15 @@ def run_pagefind(out: Path) -> bool:
         text=True,
     )
     if finished.returncode != 0:
-        log.warning("pagefind failed: %s", (finished.stderr or "").strip()[:400])
-        return False
+        # Present and failing is a defect; absent is a feature this build does not
+        # have. `indexed` was not part of `BuildResult.ok`, so a full book whose
+        # search index failed shipped a site whose search box says "Search is
+        # unavailable" while the gate stayed green — the one-chapter build the
+        # tests indexed was fine.
+        raise RuntimeError(
+            "pagefind is installed but failed, so the built site has no working "
+            f"search: {(finished.stderr or '').strip()[:400]}"
+        )
     return True
 
 
@@ -1060,6 +1066,16 @@ def main() -> int:
         return 2
     except KeyError as err:
         log.error("unknown book or profile: %s", err)
+        return 2
+    except ValueError as err:
+        # The authoring errors: an unknown `:::figure` slug, a `:::problems` name
+        # that matches no bank, a `:::prove` id in no registry, a background that
+        # is not registered, a profile the book does not declare. Each raises a
+        # `ValueError` with a message written for a person, and every one used to
+        # reach the terminal as a traceback — the same shape of failure that
+        # `FrontMatterError` was given a log line for. The build failed either way;
+        # only the diagnostic was inconsistent.
+        log.error("%s", err)
         return 2
 
     report(result)

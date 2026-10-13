@@ -24,12 +24,21 @@ from . import yamlio
 COLLECTION_FILE = "collection.yaml"
 BOOKS_DIR = "books"
 
-# House accents, used when a book declares none for a scheme.
+# The accent a **book with no tint of its own** gets: the reference work, whose
+# `theme:` block is empty because it belongs to no subject. It is the only colour
+# the engine names, and it is a fallback rather than a design.
+#
+# It used to be five constants, three of which nothing read, and all five were the
+# first book's palette copied verbatim (`books/gcse-maths/book.yaml`). That
+# contradicts `engine/AGENTS.md`: "The engine declares no colour. Colour lives in
+# the bundles … a book contributes only its tint." The honest fix is for a book
+# with no tint to take the *bundle's* accent, which is what `--tb-accent` already
+# resolves to — but `Scheme.accent` is what the landing card reads, and there is no
+# bundle in scope at that point. So the fallback stays, reduced to the two values
+# actually used, named for what they are, and pinned by a test that fails if it
+# drifts from the bundle it is standing in for.
 HOUSE_ACCENT = "#2f6690"
-HOUSE_ACCENT_LIGHT = "#4a7fae"
-HOUSE_ACCENT_DARK = "#24506f"
 HOUSE_ACCENT_DARK_SCHEME = "#6ea8d8"
-HOUSE_ACCENT_LIGHT_SCHEME = "#8cc0e8"
 
 # The tokens a book may set, per scheme, in book.yaml. Everything else about the
 # design system is shared; a book that needs more than tinting belongs in its

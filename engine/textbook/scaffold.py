@@ -29,7 +29,7 @@ from .book import (
     load_collection,
     repo_root,
 )
-from .config import book_by_id
+from .book import book_by_id
 
 STUB_MARKER = "<!-- scaffold:stub -->"
 
