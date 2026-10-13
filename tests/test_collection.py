@@ -290,3 +290,37 @@ def test_a_new_book_scaffolds_a_banks_directory(tmp_path):
 
     assert banks.is_dir(), "the scaffold did not create the banks directory"
     assert (banks / ".gitkeep").is_file(), "an empty banks directory would not be tracked"
+
+
+def test_the_scaffolds_symlinks_are_assets_the_build_actually_ships(tmp_path):
+    """The two lists of "the shared assets" must not drift apart.
+
+    `scaffold.SHARED_ASSETS` decides which links a book's `docs/assets/` carries;
+    `pipeline.copy_assets` decides what the built site actually contains. Nothing
+    tied them together, so an asset added to one and not the other is either a
+    broken symlink or a file the pages request and the build never copies.
+
+    The build's link check catches an asset a *page* references. It cannot catch one
+    reached only at runtime — a stylesheet that imports another, a font, a worker
+    chunk — which is what this test is for.
+
+    It builds rather than reading the source: the first version scanned
+    `copy_assets` for literal file names and missed every file copied inside a loop
+    (`for name in SHARED_CSS`), which is to say it missed the ones it was written to
+    check.
+    """
+    from textbook import pipeline, scaffold
+
+    book = books.book_by_id("gcse-maths")
+    out = tmp_path / "site"
+    pipeline.build(book.id, book.default_profile.id, out=out, index=False)
+
+    built = {path.relative_to(out).as_posix() for path in out.rglob("*")}
+    linked = {name for _, name in scaffold.SHARED_ASSETS}
+    assert linked, "the scaffold links nothing"
+
+    missing = sorted(name for name in linked if name not in built)
+    assert not missing, (
+        f"the scaffold symlinks {missing}, which the build does not write — the "
+        "book would carry a link to a file the built site does not contain"
+    )

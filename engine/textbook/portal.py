@@ -34,6 +34,7 @@ from __future__ import annotations
 import html
 import json
 import os
+from functools import lru_cache
 import re
 import shutil
 import subprocess
@@ -47,9 +48,23 @@ from . import headers
 from .hooks.prefs import snippet as prefs_snippet
 from .themes import default_bundle, ordered_bundles
 
-ROOT = books.repo_root()
-ASSETS = ROOT / "assets"
-SITE = ROOT / "site"
+@lru_cache(maxsize=None)
+def root() -> Path:
+    """The repository root, resolved on first use rather than at import.
+
+    The three constants this replaces were captured when the module loaded, so
+    they depended on the cwd and `TEXTBOOK_ROOT` at that moment — while
+    `repo_root()` is written to be correct whenever it is called.
+    """
+    return books.repo_root()
+
+
+def assets() -> Path:
+    return root() / "assets"
+
+
+def site() -> Path:
+    return root() / "site"
 TEMPLATE = Path(__file__).resolve().parent / "templates" / "portal.html"
 
 
@@ -310,7 +325,7 @@ def service_worker() -> str:
     With no git and no CI variables the label falls back to ``dev``, which keeps
     a local build working; it is the one case where the cache does not rotate.
     """
-    source = (ASSETS / "sw.js").read_text(encoding="utf-8")
+    source = (assets() / "sw.js").read_text(encoding="utf-8")
     label = re.sub(r"[^A-Za-z0-9._-]", "-", build_label() or "dev")
     return source.replace(SW_PLACEHOLDER, label)
 
@@ -449,7 +464,7 @@ def _git(*args: str) -> str:
     """A git value, or the empty string if git cannot answer."""
     try:
         finished = subprocess.run(
-            ("git", *args), cwd=ROOT, capture_output=True, text=True, check=True
+            ("git", *args), cwd=root(), capture_output=True, text=True, check=True
         )
     except (OSError, subprocess.CalledProcessError):
         return ""
@@ -518,34 +533,34 @@ def main() -> int:
         print("ERROR: no books found under books/", file=sys.stderr)
         return 1
 
-    SITE.mkdir(parents=True, exist_ok=True)
-    (SITE / "index.html").write_text(render(), encoding="utf-8")
-    (SITE / "404.html").write_text(not_found(), encoding="utf-8")
-    (SITE / "robots.txt").write_text(robots_txt(), encoding="utf-8")
-    (SITE / "sitemap.xml").write_text(sitemap_index(), encoding="utf-8")
-    (SITE / "version.json").write_text(version_json(), encoding="utf-8")
-    (SITE / "manifest.webmanifest").write_text(manifest(), encoding="utf-8")
-    (SITE / "sw.js").write_text(service_worker(), encoding="utf-8")
-    headers.write(SITE)
+    site().mkdir(parents=True, exist_ok=True)
+    (site() / "index.html").write_text(render(), encoding="utf-8")
+    (site() / "404.html").write_text(not_found(), encoding="utf-8")
+    (site() / "robots.txt").write_text(robots_txt(), encoding="utf-8")
+    (site() / "sitemap.xml").write_text(sitemap_index(), encoding="utf-8")
+    (site() / "version.json").write_text(version_json(), encoding="utf-8")
+    (site() / "manifest.webmanifest").write_text(manifest(), encoding="utf-8")
+    (site() / "sw.js").write_text(service_worker(), encoding="utf-8")
+    headers.write(site())
 
-    target = SITE / "assets" / "stylesheets"
+    target = site() / "assets" / "stylesheets"
     target.mkdir(parents=True, exist_ok=True)
     # The bundle stylesheet is shared with every book: one copy, one truth. The
     # Settings stylesheet and runtime are shared too, so the landing page and the
     # books use one control rather than two.
-    shutil.copyfile(ASSETS / "stylesheets" / "themes.css", target / "themes.css")
-    shutil.copyfile(ASSETS / "stylesheets" / "portal.css", target / "portal.css")
-    shutil.copyfile(ASSETS / "stylesheets" / "settings.css", target / "settings.css")
+    shutil.copyfile(assets() / "stylesheets" / "themes.css", target / "themes.css")
+    shutil.copyfile(assets() / "stylesheets" / "portal.css", target / "portal.css")
+    shutil.copyfile(assets() / "stylesheets" / "settings.css", target / "settings.css")
 
-    settings_target = SITE / "assets" / "settings"
+    settings_target = site() / "assets" / "settings"
     settings_target.mkdir(parents=True, exist_ok=True)
     for name in ("settings.js", "service-worker.js"):
-        shutil.copyfile(ASSETS / "settings" / name, settings_target / name)
+        shutil.copyfile(assets() / "settings" / name, settings_target / name)
 
-    icons_target = SITE / "assets" / "icons"
+    icons_target = site() / "assets" / "icons"
     icons_target.mkdir(parents=True, exist_ok=True)
     for name in ("app-icon.svg", "favicon.svg", "apple-touch-icon.png"):
-        shutil.copyfile(ASSETS / "icons" / name, icons_target / name)
+        shutil.copyfile(assets() / "icons" / name, icons_target / name)
 
     label = build_label() or "no build identity"
     print(

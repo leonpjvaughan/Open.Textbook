@@ -57,6 +57,24 @@ SHARED_ASSETS: tuple[tuple[str, str], ...] = (
     ("figures/figures.js", "assets/figures/figures.js"),
 )
 
+#: The three page kinds of a section, in the order a reader meets them.
+#:
+#: One tuple because there were four places that had to agree and no test between
+#: them: the URL shaper's slug map, the reader-facing titles a stub is written
+#: with, the navigation's page list, and the loop that emits the stubs. Adding a
+#: fourth page kind meant editing four files and finding out at a build whether
+#: they agreed. The four fields are (directory, kind, reader-facing title, URL
+#: segment).
+#:
+#: The directory names are ours; the titles are the reader's, and `AGENTS.md` is
+#: explicit that internal words must never reach a page or a URL. That is why the
+#: two differ at all.
+PAGE_KINDS: tuple[tuple[str, str, str, str], ...] = (
+    ("Walkthrough", "walkthrough", "Learn", "learn"),
+    ("Guided problems", "guided-problems", "Practise with help", "practise-with-help"),
+    ("Problems", "problems", "Practise", "practise"),
+)
+
 STRAND_FILES = {
     "number": "number.md",
     "algebra": "algebra.md",
@@ -174,11 +192,7 @@ def section_stub(chapter: dict, section: dict, kind: str) -> str:
     # (build_nav_list) already uses these names, and an authored page carries
     # one in its title; a stub that used the internal name instead would put
     # "Guided problems" in front of the reader, which the voice rules forbid.
-    titles = {
-        "walkthrough": "Learn",
-        "guided-problems": "Practise with help",
-        "problems": "Practise",
-    }
+    titles = {kind: title for _, kind, title, _ in PAGE_KINDS}
     # `tier` is optional. A book with a Foundation/Higher axis declares it on
     # every section; a book with none (A-level) omits it, and a page that
     # declares no tier belongs to every reader of that book. The field keeps its
@@ -678,9 +692,8 @@ def build_nav_list(
             children.append(
                 {
                     f"{s['id']} {s['title']}": [
-                        {"Learn": f"{base}/Walkthrough/index.md"},
-                        {"Practise with help": f"{base}/Guided problems/index.md"},
-                        {"Practise": f"{base}/Problems/index.md"},
+                        {title: f"{base}/{directory}/index.md"}
+                        for directory, _kind, title, _slug in PAGE_KINDS
                     ]
                 }
             )
@@ -753,21 +766,8 @@ def scaffold(book: Book, dry_run: bool) -> None:
         emit(chapter_dir / "index.md", chapter_stub(c), dry_run)
         for s in c["sections"]:
             base = chapter_dir / f"Section {s['id']}"
-            emit(
-                base / "Walkthrough" / "index.md",
-                section_stub(c, s, "walkthrough"),
-                dry_run,
-            )
-            emit(
-                base / "Guided problems" / "index.md",
-                section_stub(c, s, "guided-problems"),
-                dry_run,
-            )
-            emit(
-                base / "Problems" / "index.md",
-                section_stub(c, s, "problems"),
-                dry_run,
-            )
+            for directory, kind, _title, _slug in PAGE_KINDS:
+                emit(base / directory / "index.md", section_stub(c, s, kind), dry_run)
         emit(chapter_dir / "Review" / "index.md", review_stub(c), dry_run)
 
     ensure_shared_assets(book, dry_run)

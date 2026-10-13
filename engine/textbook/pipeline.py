@@ -28,6 +28,7 @@ import argparse
 import html
 import logging
 import posixpath
+from functools import lru_cache
 import re
 import shutil
 import subprocess
@@ -52,7 +53,8 @@ from . import themes
 from .frontmatter import FrontMatterError
 from .frontmatter import read as read_page
 from .frontmatter import split as split_front_matter
-from .hooks import MARKDOWN_HOOKS, maths, prefs
+from . import hooks
+from .hooks import MARKDOWN_HOOKS, prefs
 from .themes import default_bundle, ordered_bundles
 
 log = logging.getLogger("textbook.pipeline")
@@ -69,6 +71,9 @@ SHELL_CSS = CSS / "shell.css"
 # importing the package. Defined in `hooks/__init__.py` because that is where the
 # order belongs, and importing it here rather than repeating it is what makes the
 # docstring there true. `tests/test_render_hooks.py` asserts they are one object.
+#
+# `render_page` calls `hooks.on_page_markdown` — the package's own composition —
+# so the chain that runs and the chain this names cannot be two different things.
 MARKDOWN_HOOKS = MARKDOWN_HOOKS
 
 # Only the extensions the content actually uses. The retired MkDocs shell also
@@ -104,7 +109,15 @@ ID_ATTR = re.compile(r'\bid="([^"]*)"')
 # installed by npm beside KaTeX, which the build already needs, so it adds no new
 # kind of dependency. Running it is a separate step, and skippable, so tests do
 # not pay for indexing.
-PAGEFIND = books.repo_root() / "node_modules" / ".bin" / "pagefind"
+@lru_cache(maxsize=None)
+def pagefind() -> Path:
+    """The Pagefind binary, resolved on first use rather than at import.
+
+    A module-level `PAGEFIND = books.repo_root() / ...` captured the answer at
+    import, so it depended on the cwd and `TEXTBOOK_ROOT` *at that moment* rather
+    than at the moment the build ran.
+    """
+    return books.repo_root() / "node_modules" / ".bin" / "pagefind"
 
 
 # --- paths and URLs -----------------------------------------------------------
@@ -114,11 +127,7 @@ PAGEFIND = books.repo_root() / "node_modules" / ".bin" / "pagefind"
 # reader's. AGENTS.md is explicit that internal words must never reach the reader,
 # and a URL is read in the address bar, the sitemap and every search result, so
 # the published path uses the same vocabulary the navigation does.
-SLUG_OVERRIDES = {
-    "Walkthrough": "learn",
-    "Guided problems": "practise-with-help",
-    "Problems": "practise",
-}
+SLUG_OVERRIDES = {directory: slug for directory, _kind, _title, slug in scaffold.PAGE_KINDS}
 
 # Everything else slugs mechanically: 'Chapter 12' -> 'chapter-12',
 # 'Section 1.1' -> 'section-1.1'. Dots survive so section numbers stay legible.
@@ -441,11 +450,14 @@ def render_page(
     url = url_for(md_path)
     page = make_page(md_path, url)
 
-    for hook in MARKDOWN_HOOKS:
-        body = hook.on_page_markdown(body, page, config, [])
+    # Through the package, not the tuple: "run every hook in order" used to be
+    # written twice, here and in `hooks/__init__.py`, so the chain the pipeline ran
+    # and the chain the package documented were two implementations that happened to
+    # agree. The wrappers were dead code with a live duplicate.
+    body = hooks.on_page_markdown(body, page, config, [])
 
     content = markdown.markdown(body, extensions=EXTENSIONS, output_format="html5")
-    content = maths.on_page_content(content, page, config, [])
+    content = hooks.on_page_content(content, page, config, [])
     content = wrap_tables(rewrite_source_links(content))
 
     title = str(meta.get("title") or md_path)
@@ -480,10 +492,11 @@ def render_page(
 
 def run_pagefind(out: Path) -> bool:
     """Build the search index over the rendered HTML. False if unavailable."""
-    if not PAGEFIND.exists():
+    binary = pagefind()
+    if not binary.exists():
         return False
     finished = subprocess.run(
-        [str(PAGEFIND), "--site", str(out), "--quiet"],
+        [str(binary), "--site", str(out), "--quiet"],
         capture_output=True,
         text=True,
     )

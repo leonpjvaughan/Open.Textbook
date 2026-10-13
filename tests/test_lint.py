@@ -40,7 +40,10 @@ def lint_page(tmp_path: Path, monkeypatch, text: str):
         description="",
         root=tmp_path,
     )
-    monkeypatch.setattr(lint, "ROOT", tmp_path)
+    # No patching of a module-level root: the linter reports paths relative to the
+    # book it is given, and this fixture already gives it one rooted at `tmp_path`.
+    # It used to read a `lint.ROOT` captured at import, which is the cwd and
+    # `TEXTBOOK_ROOT` at the moment the module loaded.
     findings: Counter = Counter()
     examples: dict[str, list[str]] = {}
     lint.lint(book, fix=False, findings=findings, examples=examples)

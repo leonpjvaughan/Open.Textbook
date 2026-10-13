@@ -70,7 +70,8 @@ def test_the_gate_still_fires_on_an_authored_page(tmp_path, monkeypatch):
         description="",
         root=tmp_path,
     )
-    monkeypatch.setattr(lint, "ROOT", tmp_path)
+    # The linter reports paths relative to the book it is given, so this fixture
+    # needs no module-level root — it used to patch one captured at import.
 
     findings: Counter = Counter()
     examples: dict[str, list[str]] = {}

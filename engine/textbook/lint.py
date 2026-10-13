@@ -23,7 +23,6 @@ from . import book as books
 from . import frontmatter
 from .scaffold import STUB_MARKER
 
-ROOT = books.repo_root()
 
 # --- text preparation ---------------------------------------------------------
 
@@ -215,7 +214,7 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
         original = text
         if fix:
             text = fix_text(text)
-        rel = str(path.relative_to(ROOT))
+        rel = str(path.relative_to(book.root))
         # Front matter that does not parse silently drops `tier`, which is how a
         # Higher-only page ends up in a Foundation build. See frontmatter.py.
         try:
@@ -290,7 +289,7 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
         block = warm_up_block(path.read_text(encoding="utf-8"))
         if block:
             starters.setdefault(f"Chapter {chapter.group(1)}|{block}", []).append(
-                str(path.relative_to(ROOT))
+                str(path.relative_to(book.root))
             )
     for key, places in starters.items():
         if len(places) > 1:
@@ -304,7 +303,7 @@ def lint(book: books.Book, fix: bool, findings: Counter, examples: dict) -> tupl
     # Cross-references must point at real sections and chapters.
     sections = known_sections(book)
     for path in paths:
-        rel = str(path.relative_to(ROOT))
+        rel = str(path.relative_to(book.root))
         text = path.read_text(encoding="utf-8")
         for ref in set(SECTION_REF.findall(text)):
             if ref not in sections:
