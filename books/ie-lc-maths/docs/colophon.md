@@ -39,6 +39,10 @@ rather than reproduced.
 
 The specification content, and any wording taken from a specification, belongs to the National Council for Curriculum and Assessment, which publishes it. The State Examinations Commission sets and marks the examinations.
 
+The formulae and tables in the **Formulae** booklet are the awarding
+bodies' own sheets. Ofqual decides which material the boards must
+provide.
+
 The claims in this book rest on these documents:
 
 - [Leaving Certificate Mathematics syllabus, for examination from 2015](https://www.curriculumonline.ie/getmedia/f6f2e822-2b0c-461e-bcd4-dfcde6decc0c/SCSEC25_Maths_syllabus_examination-2015_English.pdf)

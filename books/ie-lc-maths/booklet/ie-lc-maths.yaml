@@ -1,0 +1,908 @@
+# Leaving Certificate Mathematics — the SEC Formulae and Tables booklet.
+#
+# One national booklet, not a board's own sheet: the State Examinations
+# Commission publishes it and the superintendent issues it to every candidate.
+# The same document serves Mathematics, Physics, Chemistry and Applied
+# Mathematics, so there is no choice of board and nothing is tier-restricted —
+# every item is `given` to every candidate at every level.
+#
+# Source and fidelity notes are in `meta` below. The extraction command is in
+# research/sources/ie-lc-maths/EXTRACTION-NOTE.md, which matters: the booklet's
+# CropBox clips most of every page.
+meta:
+  title: Leaving Certificate Mathematics — formulae and tables
+  year: state examinations
+  note: The State Examinations Commission publishes one booklet for the state examinations, and it is
+    the same for Foundation, Ordinary and Higher level. The superintendent issues it at the start of the
+    examination and collects it at the end; a candidate may not bring their own copy. Everything printed
+    here is therefore given to you, which is why every item is in the `given` group.
+  provenance:
+    sec: Foirmlí agus Táblaí / Formulae and Tables, approved for use in the state examinations. Coimisiún
+      na Scrúduithe Stáit / State Examinations Commission, SEC567/14-V5-Dec2014, ISBN 978 1 4064 2862
+      9.
+  basis: The booklet is published by the Stationery Office for the State Examinations Commission and is
+    issued to every candidate. The mathematics sections reproduced here are pages 8 to 44 of the booklet.
+    The physics, chemistry and tables sections are carried by the Physics and Chemistry books, which use
+    the same document.
+  boards:
+    sec:
+      name: SEC
+      code: State Examinations Commission
+  groups:
+    given:
+      label: In the Formulae and Tables booklet
+      tone: accent
+sections:
+- id: length-and-area
+  title: Length and area
+  items:
+  - id: parallelogram-area
+    name: Area of a parallelogram
+    latex: A = ah
+    note: Also $A = ab\sin C$, which the booklet prints on the same line.
+    provision:
+      sec: given
+    keywords:
+    - parallelogram
+    - area
+    - base
+    - height
+  - id: parallelogram-area-sine
+    name: Area of a parallelogram from two sides
+    latex: A = ab\sin C
+    provision:
+      sec: given
+    keywords:
+    - parallelogram
+    - area
+    - sine
+  - id: trapezium-area
+    name: Area of a trapezium
+    latex: A = \frac{a+b}{2}\,h
+    provision:
+      sec: given
+    keywords:
+    - trapezium
+    - trapezoid
+    - area
+  - id: circle-circumference
+    name: Circumference of a circle
+    latex: l = 2\pi r
+    note: The booklet calls the circumference the length $l$.
+    provision:
+      sec: given
+    keywords:
+    - circle
+    - circumference
+    - perimeter
+  - id: circle-area
+    name: Area of a circle
+    latex: A = \pi r^2
+    provision:
+      sec: given
+    keywords:
+    - circle
+    - disc
+    - area
+  - id: arc-length-radians
+    name: Length of an arc, angle in radians
+    latex: l = r\theta
+    provision:
+      sec: given
+    keywords:
+    - arc
+    - sector
+    - radians
+    - length
+  - id: sector-area-radians
+    name: Area of a sector, angle in radians
+    latex: A = \tfrac{1}{2}r^2\theta
+    provision:
+      sec: given
+    keywords:
+    - sector
+    - arc
+    - radians
+    - area
+  - id: arc-length-degrees
+    name: Length of an arc, angle in degrees
+    latex: l = 2\pi r\left(\frac{\theta}{360^\circ}\right)
+    provision:
+      sec: given
+    keywords:
+    - arc
+    - sector
+    - degrees
+    - length
+  - id: sector-area-degrees
+    name: Area of a sector, angle in degrees
+    latex: A = \pi r^2\left(\frac{\theta}{360^\circ}\right)
+    provision:
+      sec: given
+    keywords:
+    - sector
+    - arc
+    - degrees
+    - area
+  - id: triangle-area
+    name: Area of a triangle
+    latex: A = \tfrac{1}{2}ah
+    note: Also $A = \tfrac{1}{2}ab\sin C$, printed on the same line.
+    provision:
+      sec: given
+    keywords:
+    - triangle
+    - area
+    - base
+    - height
+  - id: triangle-area-sine
+    name: Area of a triangle from two sides and the included angle
+    latex: A = \tfrac{1}{2}ab\sin C
+    provision:
+      sec: given
+    keywords:
+    - triangle
+    - area
+    - sine
+  - id: triangle-heron
+    name: Area of a triangle from three sides
+    latex: A = \sqrt{s(s-a)(s-b)(s-c)}
+    note: Taking $s = \dfrac{a+b+c}{2}$.
+    provision:
+      sec: given
+    keywords:
+    - triangle
+    - area
+    - Heron
+- id: surface-area-and-volume
+  title: Surface area and volume
+  items:
+  - id: cylinder-curved-area
+    name: Curved surface area of a cylinder
+    latex: A = 2\pi r h
+    provision:
+      sec: given
+    keywords:
+    - cylinder
+    - surface area
+  - id: cylinder-volume
+    name: Volume of a cylinder
+    latex: V = \pi r^2 h
+    provision:
+      sec: given
+    keywords:
+    - cylinder
+    - volume
+  - id: cone-curved-area
+    name: Curved surface area of a cone
+    latex: A = \pi r l
+    provision:
+      sec: given
+    keywords:
+    - cone
+    - surface area
+    - slant
+  - id: cone-volume
+    name: Volume of a cone
+    latex: V = \tfrac{1}{3}\pi r^2 h
+    provision:
+      sec: given
+    keywords:
+    - cone
+    - volume
+  - id: sphere-area
+    name: Surface area of a sphere
+    latex: A = 4\pi r^2
+    provision:
+      sec: given
+    keywords:
+    - sphere
+    - surface area
+  - id: sphere-volume
+    name: Volume of a sphere
+    latex: V = \tfrac{4}{3}\pi r^3
+    provision:
+      sec: given
+    keywords:
+    - sphere
+    - volume
+  - id: frustum-area
+    name: Curved surface area of a frustum of a cone
+    latex: A = \pi(r + R)l
+    provision:
+      sec: given
+    keywords:
+    - frustum
+    - cone
+    - surface area
+  - id: frustum-volume
+    name: Volume of a frustum of a cone
+    latex: V = \tfrac{1}{3}\pi h\left(R^2 + Rr + r^2\right)
+    provision:
+      sec: given
+    keywords:
+    - frustum
+    - cone
+    - volume
+  - id: prism-volume
+    name: Volume of a solid of uniform cross-section
+    latex: V = Bh
+    note: Taking $B$ as the area of the base.
+    provision:
+      sec: given
+    keywords:
+    - prism
+    - volume
+    - cross-section
+  - id: pyramid-volume
+    name: Volume of a pyramid
+    latex: V = \tfrac{1}{3}Bh
+    provision:
+      sec: given
+    keywords:
+    - pyramid
+    - volume
+- id: trigonometry
+  title: Trigonometry
+  items:
+  - id: pythagoras-identity
+    name: Pythagoras' identity
+    latex: \cos^2 A + \sin^2 A = 1
+    provision:
+      sec: given
+    keywords:
+    - identity
+    - trigonometry
+    - pythagoras
+  - id: sec-squared-identity
+    name: Identity for $\sec^2 A$
+    latex: \sec^2 A = 1 + \tan^2 A
+    provision:
+      sec: given
+    keywords:
+    - identity
+    - sec
+    - tan
+  - id: tan-definition
+    name: Tangent in terms of sine and cosine
+    latex: \tan A = \frac{\sin A}{\cos A}
+    provision:
+      sec: given
+    keywords:
+    - tan
+    - sine
+    - cosine
+  - id: sec-cosec-cot
+    name: Secant, cosecant and cotangent
+    latex: \sec A = \frac{1}{\cos A} \qquad \operatorname{cosec} A = \frac{1}{\sin A} \qquad \cot A =
+      \frac{1}{\tan A}
+    provision:
+      sec: given
+    keywords:
+    - sec
+    - cosec
+    - cot
+  - id: cos-negative-angle
+    name: Cosine of a negative angle
+    latex: \cos(-A) = \cos A
+    provision:
+      sec: given
+    keywords:
+    - cosine
+    - even
+    - negative angle
+  - id: sin-negative-angle
+    name: Sine of a negative angle
+    latex: \sin(-A) = -\sin A
+    provision:
+      sec: given
+    keywords:
+    - sine
+    - odd
+    - negative angle
+  - id: tan-negative-angle
+    name: Tangent of a negative angle
+    latex: \tan(-A) = -\tan A
+    provision:
+      sec: given
+    keywords:
+    - tangent
+    - odd
+    - negative angle
+  - id: cos-sum
+    name: Cosine of a sum
+    latex: \cos(A+B) = \cos A\cos B - \sin A\sin B
+    provision:
+      sec: given
+    keywords:
+    - addition formula
+    - cosine
+  - id: cos-difference
+    name: Cosine of a difference
+    latex: \cos(A-B) = \cos A\cos B + \sin A\sin B
+    provision:
+      sec: given
+    keywords:
+    - addition formula
+    - cosine
+  - id: sin-sum
+    name: Sine of a sum
+    latex: \sin(A+B) = \sin A\cos B + \cos A\sin B
+    provision:
+      sec: given
+    keywords:
+    - addition formula
+    - sine
+  - id: sin-difference
+    name: Sine of a difference
+    latex: \sin(A-B) = \sin A\cos B - \cos A\sin B
+    provision:
+      sec: given
+    keywords:
+    - addition formula
+    - sine
+  - id: tan-sum
+    name: Tangent of a sum
+    latex: \tan(A+B) = \frac{\tan A + \tan B}{1 - \tan A\tan B}
+    provision:
+      sec: given
+    keywords:
+    - addition formula
+    - tangent
+  - id: tan-difference
+    name: Tangent of a difference
+    latex: \tan(A-B) = \frac{\tan A - \tan B}{1 + \tan A\tan B}
+    provision:
+      sec: given
+    keywords:
+    - addition formula
+    - tangent
+  - id: cos-double
+    name: Cosine of a double angle
+    latex: \cos 2A = \cos^2 A - \sin^2 A
+    provision:
+      sec: given
+    keywords:
+    - double angle
+    - cosine
+  - id: sin-double
+    name: Sine of a double angle
+    latex: \sin 2A = 2\sin A\cos A
+    provision:
+      sec: given
+    keywords:
+    - double angle
+    - sine
+  - id: tan-double
+    name: Tangent of a double angle
+    latex: \tan 2A = \frac{2\tan A}{1 - \tan^2 A}
+    provision:
+      sec: given
+    keywords:
+    - double angle
+    - tangent
+  - id: sin-squared-half-angle
+    name: $\sin^2 A$ in terms of $\cos 2A$
+    latex: \sin^2 A = \tfrac{1}{2}\left(1 - \cos 2A\right)
+    provision:
+      sec: given
+    keywords:
+    - half angle
+    - sine squared
+  - id: cos-squared-half-angle
+    name: $\cos^2 A$ in terms of $\cos 2A$
+    latex: \cos^2 A = \tfrac{1}{2}\left(1 + \cos 2A\right)
+    provision:
+      sec: given
+    keywords:
+    - half angle
+    - cosine squared
+- id: trigonometry-of-the-triangle
+  title: Trigonometry of the triangle
+  items:
+  - id: sine-rule
+    name: The sine rule
+    latex: \frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}
+    provision:
+      sec: given
+    keywords:
+    - sine rule
+    - triangle
+  - id: cosine-rule
+    name: The cosine rule
+    latex: a^2 = b^2 + c^2 - 2bc\cos A
+    provision:
+      sec: given
+    keywords:
+    - cosine rule
+    - triangle
+- id: algebra
+  title: Algebra
+  items:
+  - id: quadratic-formula
+    name: Roots of a quadratic equation
+    latex: x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+    note: For $ax^2 + bx + c = 0$.
+    provision:
+      sec: given
+    keywords:
+    - quadratic
+    - formula
+    - roots
+  - id: matrix-inverse-2x2
+    name: Inverse of a 2 by 2 matrix
+    latex: A^{-1} = \frac{1}{\det(A)}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}
+    note: With $\det(A) = ad - bc \neq 0$, for $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$.
+    provision:
+      sec: given
+    keywords:
+    - matrix
+    - inverse
+    - determinant
+  - id: binomial-coefficient
+    name: Binomial coefficient
+    latex: \binom{n}{r} = {}^nC_r = C(n,r) = \frac{n!}{r!\,(n-r)!}
+    provision:
+      sec: given
+    keywords:
+    - binomial
+    - combination
+    - coefficient
+- id: indices-and-logarithms
+  title: Indices and logarithms
+  items:
+  - id: index-product
+    name: Product of powers
+    latex: a^p a^q = a^{p+q}
+    provision:
+      sec: given
+    keywords:
+    - indices
+    - powers
+    - index laws
+  - id: index-quotient
+    name: Quotient of powers
+    latex: \frac{a^p}{a^q} = a^{p-q}
+    provision:
+      sec: given
+    keywords:
+    - indices
+    - powers
+    - index laws
+  - id: index-power-of-power
+    name: Power of a power
+    latex: \left(a^p\right)^q = a^{pq}
+    provision:
+      sec: given
+    keywords:
+    - indices
+    - powers
+    - index laws
+  - id: index-zero
+    name: The zero index
+    latex: a^0 = 1
+    provision:
+      sec: given
+    keywords:
+    - indices
+    - zero index
+  - id: index-negative
+    name: A negative index
+    latex: a^{-p} = \frac{1}{a^p}
+    provision:
+      sec: given
+    keywords:
+    - indices
+    - negative index
+  - id: index-fractional
+    name: A fractional index
+    latex: a^{\frac{p}{q}} = \sqrt[q]{a^p}
+    provision:
+      sec: given
+    keywords:
+    - indices
+    - fractional index
+    - surd
+  - id: log-definition
+    name: Definition of a logarithm
+    latex: a^x = y \iff \log_a y = x
+    provision:
+      sec: given
+    keywords:
+    - logarithm
+    - definition
+  - id: log-product
+    name: Logarithm of a product
+    latex: \log_a(xy) = \log_a x + \log_a y
+    provision:
+      sec: given
+    keywords:
+    - logarithm
+    - product rule
+  - id: log-quotient
+    name: Logarithm of a quotient
+    latex: \log_a\!\left(\frac{x}{y}\right) = \log_a x - \log_a y
+    provision:
+      sec: given
+    keywords:
+    - logarithm
+    - quotient rule
+  - id: log-power
+    name: Logarithm of a power
+    latex: \log_a x^q = q\log_a x
+    provision:
+      sec: given
+    keywords:
+    - logarithm
+    - power rule
+  - id: log-one
+    name: Logarithm of one
+    latex: \log_a 1 = 0
+    provision:
+      sec: given
+    keywords:
+    - logarithm
+  - id: log-change-of-base
+    name: Change of base
+    latex: \log_b x = \frac{\log_a x}{\log_a b}
+    provision:
+      sec: given
+    keywords:
+    - logarithm
+    - change of base
+  - id: log-inverse
+    name: A logarithm and its base cancel
+    latex: a^{\log_a x} = x \qquad \log_a a^x = x
+    provision:
+      sec: given
+    keywords:
+    - logarithm
+    - inverse
+- id: sequences-and-series
+  title: Sequences and series
+  items:
+  - id: arithmetic-term
+    name: General term of an arithmetic sequence
+    latex: T_n = a + (n-1)d
+    note: $d$ is the common difference.
+    provision:
+      sec: given
+    keywords:
+    - arithmetic
+    - sequence
+    - term
+  - id: arithmetic-sum
+    name: Sum of an arithmetic series
+    latex: S_n = \frac{n}{2}\left[2a + (n-1)d\right]
+    provision:
+      sec: given
+    keywords:
+    - arithmetic
+    - series
+    - sum
+  - id: geometric-term
+    name: General term of a geometric sequence
+    latex: T_n = ar^{n-1}
+    note: $a$ is the first term.
+    provision:
+      sec: given
+    keywords:
+    - geometric
+    - sequence
+    - term
+  - id: geometric-sum
+    name: Sum of a geometric series
+    latex: S_n = \frac{a\left(1 - r^n\right)}{1 - r}
+    provision:
+      sec: given
+    keywords:
+    - geometric
+    - series
+    - sum
+  - id: geometric-sum-infinite
+    name: Sum to infinity of a geometric series
+    latex: S_\infty = \frac{a}{1 - r}
+    provision:
+      sec: given
+    keywords:
+    - geometric
+    - series
+    - infinity
+- id: sets-and-logic
+  title: Sets and logic
+  items:
+  - id: set-natural
+    name: The natural numbers
+    latex: \mathbb{N} = \{1, 2, 3, 4, 5, 6, \ldots\}
+    provision:
+      sec: given
+    keywords:
+    - set
+    - natural numbers
+  - id: set-integers
+    name: The integers
+    latex: \mathbb{Z} = \{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\}
+    provision:
+      sec: given
+    keywords:
+    - set
+    - integers
+- id: calculus
+  title: Calculus
+  items:
+  - id: derivative-power
+    name: Derivative of a power
+    latex: \frac{d}{dx}\left(x^n\right) = nx^{n-1}
+    provision:
+      sec: given
+    keywords:
+    - calculus
+    - differentiation
+    - power
+  - id: derivative-sin
+    name: Derivative of sine
+    latex: \frac{d}{dx}\left(\sin x\right) = \cos x
+    provision:
+      sec: given
+    keywords:
+    - calculus
+    - differentiation
+    - sine
+  - id: derivative-cos
+    name: Derivative of cosine
+    latex: \frac{d}{dx}\left(\cos x\right) = -\sin x
+    provision:
+      sec: given
+    keywords:
+    - calculus
+    - differentiation
+    - cosine
+  - id: derivative-exp
+    name: Derivative of an exponential
+    latex: \frac{d}{dx}\left(e^{ax}\right) = ae^{ax}
+    provision:
+      sec: given
+    keywords:
+    - calculus
+    - differentiation
+    - exponential
+  - id: derivative-log
+    name: Derivative of a logarithm
+    latex: \frac{d}{dx}\left(\ln x\right) = \frac{1}{x}
+    provision:
+      sec: given
+    keywords:
+    - calculus
+    - differentiation
+    - logarithm
+  - id: product-rule
+    name: The product rule
+    latex: \frac{d}{dx}(uv) = u\frac{dv}{dx} + v\frac{du}{dx}
+    provision:
+      sec: given
+    keywords:
+    - calculus
+    - product rule
+  - id: quotient-rule
+    name: The quotient rule
+    latex: \frac{d}{dx}\!\left(\frac{u}{v}\right) = \frac{v\frac{du}{dx} - u\frac{dv}{dx}}{v^2}
+    provision:
+      sec: given
+    keywords:
+    - calculus
+    - quotient rule
+  - id: chain-rule
+    name: The chain rule
+    latex: y = f(u) \Rightarrow \frac{dy}{dx} = \frac{dy}{du}\cdot\frac{du}{dx}
+    provision:
+      sec: given
+    keywords:
+    - calculus
+    - chain rule
+  - id: integral-power
+    name: Integral of a power
+    latex: \int x^n\,dx = \frac{x^{n+1}}{n+1}
+    provision:
+      sec: given
+    keywords:
+    - calculus
+    - integration
+    - power
+  - id: integral-sin
+    name: Integral of sine
+    latex: \int \sin x\,dx = -\cos x
+    provision:
+      sec: given
+    keywords:
+    - calculus
+    - integration
+    - sine
+  - id: integral-cos
+    name: Integral of cosine
+    latex: \int \cos x\,dx = \sin x
+    provision:
+      sec: given
+    keywords:
+    - calculus
+    - integration
+    - cosine
+  - id: integral-reciprocal
+    name: Integral of the reciprocal
+    latex: \int \frac{1}{x}\,dx = \ln|x|
+    provision:
+      sec: given
+    keywords:
+    - calculus
+    - integration
+    - logarithm
+  - id: integration-by-parts
+    name: Integration by parts
+    latex: \int u\,dv = uv - \int v\,du
+    provision:
+      sec: given
+    keywords:
+    - calculus
+    - integration
+    - parts
+  - id: volume-of-revolution
+    name: Volume of a solid of revolution
+    latex: V = \pi\int_{a}^{b} y^2\,dx
+    provision:
+      sec: given
+    keywords:
+    - calculus
+    - integration
+    - volume
+    - revolution
+- id: statistics-and-probability
+  title: Statistics and probability
+  items:
+  - id: mean-list
+    name: Mean of a list of numbers
+    latex: \mu = \frac{\sum x}{n}
+    provision:
+      sec: given
+    keywords:
+    - statistics
+    - mean
+  - id: mean-frequency-table
+    name: Mean from a frequency table
+    latex: \mu = \frac{\sum fx}{\sum f}
+    provision:
+      sec: given
+    keywords:
+    - statistics
+    - mean
+    - frequency table
+  - id: standard-deviation-list
+    name: Standard deviation of a list of numbers
+    latex: \sigma = \sqrt{\frac{\sum (x - \mu)^2}{n}}
+    provision:
+      sec: given
+    keywords:
+    - statistics
+    - standard deviation
+  - id: standard-deviation-frequency-table
+    name: Standard deviation from a frequency table
+    latex: \sigma = \sqrt{\frac{\sum f(x - \mu)^2}{\sum f}}
+    provision:
+      sec: given
+    keywords:
+    - statistics
+    - standard deviation
+    - frequency table
+  - id: binomial-probability
+    name: Binomial distribution
+    latex: P(X = r) = \binom{n}{r}p^r q^{n-r}
+    note: For $r = 0, \ldots, n$.
+    provision:
+      sec: given
+    keywords:
+    - probability
+    - binomial distribution
+  - id: binomial-mean
+    name: Mean of a binomial distribution
+    latex: \mu = np
+    provision:
+      sec: given
+    keywords:
+    - probability
+    - binomial
+    - mean
+  - id: binomial-standard-deviation
+    name: Standard deviation of a binomial distribution
+    latex: \sigma = \sqrt{npq}
+    provision:
+      sec: given
+    keywords:
+    - probability
+    - binomial
+    - standard deviation
+  - id: poisson-probability
+    name: Poisson distribution
+    latex: P(X = r) = \frac{e^{-\lambda}\lambda^r}{r!}
+    note: For $r = 0, 1, 2, \ldots$
+    provision:
+      sec: given
+    keywords:
+    - probability
+    - Poisson distribution
+  - id: poisson-mean
+    name: Mean of a Poisson distribution
+    latex: \mu = \lambda
+    provision:
+      sec: given
+    keywords:
+    - probability
+    - Poisson
+    - mean
+  - id: poisson-standard-deviation
+    name: Standard deviation of a Poisson distribution
+    latex: \sigma = \sqrt{\lambda}
+    provision:
+      sec: given
+    keywords:
+    - probability
+    - Poisson
+    - standard deviation
+  - id: normal-density
+    name: The normal distribution
+    latex: f(X) = \frac{1}{\sigma\sqrt{2\pi}}\,e^{-\frac{(X-\mu)^2}{2\sigma^2}}
+    provision:
+      sec: given
+    keywords:
+    - probability
+    - normal distribution
+  - id: standard-normal-density
+    name: The standard normal distribution
+    latex: f(Z) = \frac{1}{\sqrt{2\pi}}\,e^{-\frac{Z^2}{2}}
+    provision:
+      sec: given
+    keywords:
+    - probability
+    - standard normal
+  - id: standardising-formula
+    name: The standardising formula
+    latex: z = \frac{x - \mu}{\sigma}
+    provision:
+      sec: given
+    keywords:
+    - probability
+    - z-score
+    - standardise
+  - id: sample-standard-deviation
+    name: Estimate of population standard deviation from a sample
+    latex: s = \sqrt{\frac{\sum (x - \bar{x})^2}{n-1}}
+    provision:
+      sec: given
+    keywords:
+    - statistics
+    - sample
+    - standard deviation
+  - id: standard-error-mean
+    name: Standard error of the mean
+    latex: \sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}}
+    provision:
+      sec: given
+    keywords:
+    - statistics
+    - standard error
+    - mean
+  - id: standard-error-proportion
+    name: Standard error of the proportion
+    latex: \sigma_{\hat{P}} = \sqrt{\frac{p(1-p)}{n}}
+    provision:
+      sec: given
+    keywords:
+    - statistics
+    - standard error
+    - proportion
+  - id: one-sample-z-test
+    name: One-sample z-test
+    latex: z = \frac{\bar{x} - \mu}{\sigma/\sqrt{n}}
+    provision:
+      sec: given
+    keywords:
+    - statistics
+    - hypothesis test
+    - z-test

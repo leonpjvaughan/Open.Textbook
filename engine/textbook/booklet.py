@@ -126,7 +126,7 @@ def main() -> int:
         items = sum(len(s["items"]) for s in data["sections"])
         print(
             f"wrote {out.relative_to(books.repo_root())} "
-            f"({items} formulae, {len(data['tables'])} tables)"
+            f"({items} formulae, {len(data.get('tables', []))} tables)"
         )
     return 0
 

@@ -9,6 +9,8 @@ accident, so the declaration is what the check trusts and inference only suggest
 
 from __future__ import annotations
 
+import re
+
 import pytest
 
 from textbook import book as books
@@ -74,34 +76,37 @@ def test_every_declaration_in_the_real_books_is_valid(book):
     assert coverage.check_book(book) == []
 
 
-#: Booklet items whose LaTeX `sympy.parsing.latex` cannot read, and why.
+#: Notations `sympy.parsing.latex` cannot read. Each entry is a regex matched against
+#: the item's LaTeX and the reason it fails.
 #:
-#: `coverage._sides` returns nothing for these, so a problem that declares one gets
-#: **no coverage check** — the check cannot see the relation. That is a real gap in
-#: what this project verifies, so it is written down and counted rather than left
-#: inside a percentage. `test_the_booklet_parses_and_the_gap_is_countable` fails when
-#: an item appears here that is not in this map, which is the point: a new one is a
-#: decision for a person, not for a threshold.
+#: `coverage._sides` returns nothing for a matched item, so a problem that declares one
+#: gets **no coverage check** — the check cannot see the relation. That is a real gap in
+#: what this project verifies, so it is written down and counted rather than hidden
+#: inside a percentage threshold.
 #:
-#: This map was written after the test was found to be parametrised over the books
-#: whose *subject* is Physics, so it had never run on either mathematics booklet at
-#: all. The nine entries below had been silently unchecked.
-UNPARSABLE_NOTATION = {
-    # `{}^n C_r` — prescript notation.
-    "binomial-coefficient": "prescript notation {}^{n}C_{r}",
-    # `\left| … \right|` — the parser wants \langle / \rangle.
-    "vector-magnitude": "absolute value as \\left| … \\right|",
-    # A `\sum` with no limits under it: `\sum x`, `\sum (x - \bar{x})^2`.
-    "aqa-ocr-standard-deviation": "a \\sum with no limits",
-    "ocr-variance-frequency": "a \\sum with no limits",
-    "edexcel-standard-deviation": "a \\sum with no limits",
-    "edexcel-sxx": "a \\sum with no limits",
-    "mean-of-data": "a \\sum with no limits",
-    # An `array` of values is a table, not a relation. `_sides` splitting it on `=`
-    # was never going to mean anything.
-    "edexcel-normal-percentage-points": "an array: a table of values, not a relation",
-    "ocr-normal-percentage-points": "an array: a table of values, not a relation",
-}
+#: This is a list of *notations*, not of item ids, and that is deliberate. The same
+#: gaps recur in every book that carries formulae — a `\sum` with no limits appears in
+#: three booklets already — so an id list would have to be rewritten for each new book
+#: while telling us nothing new. A notation list is checked against every booklet at
+#: once, and a tenth *kind* of unreadable notation is what makes the test fail.
+UNPARSABLE_NOTATION: tuple[tuple[str, str], ...] = (
+    (r"\\sum", "a \\sum, which the parser only reads with explicit limits"),
+    (r"\\begin\{", "an environment such as pmatrix or array: a layout, not a relation"),
+    (r"\{\\^", "prescript notation such as {}^n C_r"),
+    (r"\\left[|\\right]|\\langle|\\rangle", "paired delimiters the parser wants as \\langle / \\rangle"),
+    (r"\\mathbb", "a blackboard-bold number set: a symbol list, not an expression"),
+    (r"\\binom", "a binomial coefficient, whose factorial form the parser rejects"),
+    (r"\\operatorname", "a named operator"),
+    (r"\\qquad|\\quad|\\;", "spacing commands, which a relation cannot contain"),
+)
+
+
+def _unreadable_reason(latex: str) -> str | None:
+    """Why `sympy.parsing.latex` cannot read this LaTeX, or None if it is a fault."""
+    for pattern, reason in UNPARSABLE_NOTATION:
+        if re.search(pattern, latex):
+            return reason
+    return None
 
 
 @pytest.mark.parametrize("book", WITH_BOOKLET, ids=BOOKLET_IDS)
@@ -110,32 +115,31 @@ def test_the_booklet_parses_and_the_gap_is_countable(book):
     items = coverage.booklet_items(book)
     assert items, f"{book.id} declares a booklet but no items were read"
 
-    # An item that will not parse is only a failure when it had a symbolic relation
-    # to parse. A word formula — `speed = distance / time`, with the words in
-    # `\text{}` — has none, so `_sides` returning nothing is the right answer for it.
-    #
-    # This was a percentage threshold, which was wrong twice over: it let a real
-    # parse failure hide inside the 10% it allowed, and the booklets' own word
-    # formulae are the items that filled that allowance.
-    unparsable = []
+    # An item that will not parse is only a failure when it *should* parse. A word
+    # formula — `speed = distance / time`, with the words in `\text{}` — has no
+    # relation to check, so `_sides` returning nothing is right for it. So is any
+    # notation in UNPARSABLE_NOTATION, with its reason recorded.
+    faults = []
     for item_id, item in items.items():
         if coverage._sides(item):
             continue
-        if "\\text{" in str(item.get("latex") or ""):
+        latex = str(item.get("latex") or "")
+        if "\\text{" in latex:
             continue  # a word formula: nothing symbolic to check
-        unparsable.append(item_id)
+        if _unreadable_reason(latex) is None:
+            faults.append((item_id, latex))
 
-    assert sorted(unparsable) == sorted(
-        i for i in UNPARSABLE_NOTATION if i in items
-    ), (
-        "the set of booklet items `sympy.parsing.latex` cannot read has changed. "
-        f"Unreadable now: {sorted(unparsable)}. Recorded as unreadable: "
-        f"{sorted(i for i in UNPARSABLE_NOTATION if i in items)}. "
-        "Add the new one to UNPARSABLE_NOTATION with a reason, or fix the LaTeX."
+    assert not faults, (
+        "these booklet items carry a relation that `sympy.parsing.latex` should read "
+        "and does not, so a problem declaring one gets no coverage check:\n  "
+        + "\n  ".join(f"{i}: {l!r}" for i, l in faults)
+        + "\nFix the LaTeX, or add the notation to UNPARSABLE_NOTATION with a reason."
     )
 
     # Undeclared symbolic records are reported, not failed.
     assert isinstance(coverage.undeclared(book), list)
+
+
 
 
 def test_infer_suggests_but_never_decides():

@@ -55,4 +55,5 @@ theme:
 
 curriculum: curriculum.yaml
 banks: problems
+booklet: booklet/ie-lc-maths.yaml
 sources: sources.yaml

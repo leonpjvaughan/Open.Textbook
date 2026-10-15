@@ -45,6 +45,12 @@ meta:
   note: >-
     Strands 1–5 are the whole syllabus. Section B of the syllabus document is the
     shared synthetic geometry course, delivered by chapters 15–17 and not a strand.
+    Assessment, measured off the SEC papers rather than read from the syllabus: at
+    Higher and Ordinary, two papers of 300 marks each, every paper split 150 marks
+    of Section A (concepts and skills, 6 questions at 30 marks) and 150 of Section B
+    (contexts and applications, 4 questions at 50 marks). At Foundation, ONE paper of
+    300 marks. The 2021 and 2022 papers are 220 marks — reduced COVID-era papers, not
+    the current format. See research/curriculum/ie-curriculum.md section 8a.
 
 coverage:
   - prefix: "1."
