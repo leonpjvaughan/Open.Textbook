@@ -267,6 +267,90 @@ export function signed(value, places = 2) {
 }
 
 /**
+ * Text sizes for a drawing, in viewBox units.
+ *
+ * **Why a scale rather than a number.** An SVG scales by rendered width over viewBox
+ * width, so a `font-size` is not the size a reader sees. A 560-unit viewBox in a 358px
+ * phone panel draws at 0.64: `font-size="16"` is 10.2px on screen, and `13` is 8.3px.
+ * The audit's floor is 9px, so **anything below 15 in a full-width viewBox fails at
+ * phone width** — and four modules had drifted to 10, 11 and 12.
+ *
+ * That is why these are named rather than chosen. Fourteen distinct sizes were in use
+ * across 177 modules with nothing to stop the next one being 10, so the size is now a
+ * decision with a name and a reason attached, taken once here.
+ *
+ * The values assume a viewBox around 420–560 units wide, which is what `panel`.
+ * A figure with a much wider viewBox needs to scale these up by the same factor, and
+ * `check-figure-kit.cjs` measures the rendered size rather than trusting the name.
+ */
+export const SIZE = {
+  /** The smallest a label may be. 16 units is 10.2px at the 0.64 phone scale. */
+  label: 16,
+  /** An axis tick or a minor annotation. */
+  tick: 15,
+  /** A title or a value read off the drawing. */
+  value: 18,
+  /** A heading inside the drawing. */
+  heading: 20,
+};
+
+/**
+ * A positioned piece of text, as an SVG element string.
+ *
+ * One hundred and seven of 177 modules wrote this by hand — the same four attributes
+ * in the same order, varying only position, words and size. Writing it by hand is how
+ * a `<text>` ends up with no `fig-*` or `text-*` class and ships as black on a dark
+ * panel: that defect was found **eighteen times** by measurement.
+ *
+ * The class defaults to `text-ink`, so the common case cannot forget it.
+ *
+ * @param {object} o
+ * @param {number} o.x  viewBox x, the point the anchor refers to
+ * @param {number} o.y  viewBox y
+ * @param {string} o.text  the words. Never `$...$` — the maths hook runs at build time.
+ * @param {string} [o.anchor]  `start` | `middle` | `end`, default `middle`
+ * @param {number} [o.size]  one of `SIZE`; default `SIZE.label`
+ * @param {string} [o.class]  a `text-*` class; default `text-ink`
+ * @param {number} [o.weight]  optional font-weight
+ * @returns {string} an SVG `<text>` element, ready to concatenate
+ */
+export function label({ x, y, text, anchor = "middle", size = SIZE.label, class: cls = "text-ink", weight } = {}) {
+  const attrs = [
+    `x="${Number(x).toFixed(1)}"`,
+    `y="${Number(y).toFixed(1)}"`,
+    `font-size="${size}"`,
+    `text-anchor="${anchor}"`,
+    `class="${cls}"`,
+  ];
+  if (weight) attrs.push(`font-weight="${weight}"`);
+  // `escape` rather than trusting the caller: a label with an ampersand in it is a
+  // malformed document, and the failure is silent in every browser.
+  const safe = String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return `<text ${attrs.join(" ")}>${safe}</text>`;
+}
+
+/**
+ * Map a value in its own units to an SVG coordinate, in one axis.
+ *
+ * Twenty modules built this by hand and the arithmetic is identical each time — which
+ * is exactly why the sign errors are not. A y-axis that counts upwards and an SVG
+ * y-axis that counts downwards is the pair that gets flipped, and a flipped axis looks
+ * like a correct drawing until someone reads a value off it.
+ *
+ * @param {object} o
+ * @param {[number, number]} o.domain  the values to map, `[low, high]`
+ * @param {[number, number]} o.range  the SVG coordinates, `[low, high]`
+ * @returns {(value: number) => number} the mapping
+ */
+export function scale({ domain, range }) {
+  const [d0, d1] = domain;
+  const [r0, r1] = range;
+  if (d1 === d0) throw new Error("scale: the domain has no width, so it cannot be mapped");
+  const span = d1 - d0;
+  return (value) => r0 + ((Number(value) - d0) / span) * (r1 - r0);
+}
+
+/**
  * Run `draw` whenever any control changes, and once now.
  *
  * Every figure does this by hand, and doing it by hand is how a figure ends up

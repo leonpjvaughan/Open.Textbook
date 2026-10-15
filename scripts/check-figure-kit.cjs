@@ -84,6 +84,33 @@ async function probe(kitPath) {
     signedNegative: kit.signed(-3.5),
     bareSvg: made.svg,
     bareSurfaces: bare.querySelectorAll("svg").length,
+
+    // The size scale and the two string helpers. `SIZE` is checked by value because
+    // the phone floor is arithmetic: rendered size is `font-size` times the panel's
+    // width over the viewBox width, so a 15-unit label is 9.6px at 390px and a
+    // 13-unit one is 8.3px. The floor is 9px, and four modules had drifted below it
+    // while every module's own attributes looked reasonable.
+    size: kit.SIZE,
+
+    // `label` must produce a well-formed element with a colour class by default,
+    // because a `<text>` with no `fig-*`/`text-*` class is painted with `fill`'s
+    // initial black and disappears on a dark panel. That defect was found 18 times.
+    labelDefault: kit.label({ x: 10, y: 20, text: "Hi" }),
+    labelAnchored: kit.label({ x: 1, y: 2, text: "0", anchor: "end", size: 15 }),
+    labelEscaped: kit.label({ x: 0, y: 0, text: "a & b < c" }),
+
+    // `scale` maps a domain onto a range. The y-axis case is the one that gets
+    // flipped by hand, so it is checked directly.
+    scaleX: [0, 5, 10].map(kit.scale({ domain: [0, 10], range: [100, 500] })),
+    scaleY: [0, 10].map(kit.scale({ domain: [0, 10], range: [400, 40] })),
+    scaleDegenerate: (() => {
+      try {
+        kit.scale({ domain: [3, 3], range: [0, 1] });
+        return "no error";
+      } catch (e) {
+        return e.message;
+      }
+    })(),
   };
 }
 
@@ -145,6 +172,75 @@ async function main() {
   want("a negative signed number", result.signedNegative, "\u2212 3.5");
   want("a figure with no drawing makes no surface", result.bareSvg, null);
   want("and puts none on the page", result.bareSurfaces, 0);
+
+  // ── the size scale ────────────────────────────────────────────────────────
+  //
+  // Grounded in measurement, not taste: at 390px a 560-unit viewBox draws at 0.64 of
+  // its stated size, so the smallest named size must clear 9px. A module choosing its
+  // own number is how four figures drifted below the floor while every one of their own
+  // attributes looked reasonable. `audit-figures.cjs --mobile` measures what actually
+  // reaches the screen; this checks the scale the modules are told to use.
+  const PHONE_SCALE = 358 / 560;
+  const FLOOR_PX = 9;
+  if (!result.size || !Object.keys(result.size).length) {
+    problems.push("the kit exports no SIZE scale, so every module picks its own number");
+  }
+  for (const [name, units] of Object.entries(result.size || {})) {
+    const onPhone = units * PHONE_SCALE;
+    if (onPhone < FLOOR_PX) {
+      problems.push(
+        `SIZE.${name} is ${units} units, which is ${onPhone.toFixed(1)}px at phone ` +
+          `width - below the ${FLOOR_PX}px floor`,
+      );
+    }
+  }
+
+  // ── label ─────────────────────────────────────────────────────────────────
+  //
+  // A `<text>` with no `fig-*`/`text-*` class is painted with `fill`'s initial black and
+  // disappears on a dark panel. That defect was found eighteen times by measurement, so
+  // the helper carries the class by default rather than leaving it to the caller.
+  const defaultLabel = result.labelDefault || "";
+  if (!/^<text /.test(defaultLabel)) {
+    problems.push(`label() does not return a <text> element: ${defaultLabel.slice(0, 60)}`);
+  }
+  if (!/class="text-ink"/.test(defaultLabel)) {
+    problems.push(
+      "label() has no default colour class, so a caller that forgets one gets " +
+        "initial-black text on a dark panel",
+    );
+  }
+  if (!/font-size="16"/.test(defaultLabel)) {
+    problems.push(`label() does not default to SIZE.label: ${defaultLabel.slice(0, 60)}`);
+  }
+  if (!/text-anchor="end"/.test(result.labelAnchored || "")) {
+    problems.push("label() ignores its `anchor` argument");
+  }
+  if (!/font-size="15"/.test(result.labelAnchored || "")) {
+    problems.push("label() ignores its `size` argument");
+  }
+  if (!/a &amp; b &lt; c/.test(result.labelEscaped || "")) {
+    problems.push(`label() does not escape its text: ${result.labelEscaped}`);
+  }
+
+  // ── scale ─────────────────────────────────────────────────────────────────
+  //
+  // The y-axis case is the one that gets flipped when written by hand: a value that
+  // counts upwards onto an axis that counts downwards.
+  const scaleX = result.scaleX || [];
+  want("scale maps the domain's low end", scaleX[0], 100);
+  want("scale maps the domain's middle", scaleX[1], 300);
+  want("scale maps the domain's high end", scaleX[2], 500);
+  const scaleY = result.scaleY || [];
+  want("scale handles a range that counts down", scaleY[0], 400);
+  want("scale handles a range that counts down at the top", scaleY[1], 40);
+  if (!/no width/.test(result.scaleDegenerate || "")) {
+    problems.push(
+      "scale() accepts a domain with no width, which would divide by zero and " +
+        "produce NaN coordinates rather than failing",
+    );
+  }
+
 
   if (problems.length) {
     console.error("the figure kit does not keep its contract:");

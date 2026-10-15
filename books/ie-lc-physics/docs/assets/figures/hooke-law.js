@@ -12,7 +12,7 @@
 //
 // The scaffolding — the panel, its accessible name, the slider, the readout and the
 // redraw — comes from `kit.js`. What is left is the drawing and the sentences.
-import { panel, slider, react, fmt } from "./kit.js";
+import { SIZE, fmt, panel, react, slider } from "./kit.js";
 
 // The spring behaves while the extension is at or below this, in metres.
 const LIMIT_EXTENSION = 0.24;
@@ -79,9 +79,9 @@ export function mount(el) {
     const axes = `
       <line x1="${PLOT.x0}" y1="${PLOT.y0}" x2="${PLOT.x1}" y2="${PLOT.y0}" class="fig-grid" stroke-width="1.5"></line>
       <line x1="${PLOT.x0}" y1="${PLOT.y0}" x2="${PLOT.x0}" y2="${PLOT.y1}" class="fig-grid" stroke-width="1.5"></line>
-      <text x="${PLOT.x0 - 8}" y="${PLOT.y0 + 4}" class="text-ink" text-anchor="end" font-size="12">0</text>
-      <text x="${PLOT.x1}" y="${PLOT.y0 + 18}" class="text-ink" text-anchor="end" font-size="12">extension / m</text>
-      <text x="${PLOT.x0 - 6}" y="${PLOT.y1 - 4}" class="text-ink" text-anchor="end" font-size="12">force / N</text>
+      <text x="${PLOT.x0 - 8}" y="${PLOT.y0 + 4}" class="text-ink" text-anchor="end" font-size="${SIZE.tick}">0</text>
+      <text x="${PLOT.x1}" y="${PLOT.y0 + 18}" class="text-ink" text-anchor="end" font-size="${SIZE.tick}">extension / m</text>
+      <text x="${PLOT.x0 - 6}" y="${PLOT.y1 - 4}" class="text-ink" text-anchor="end" font-size="${SIZE.tick}">force / N</text>
     `;
 
     // The straight part: Hooke's law, up to the limit.
@@ -101,7 +101,7 @@ export function mount(el) {
     const limitMark =
       `<line x1="${sx(LIMIT_EXTENSION)}" y1="${PLOT.y0}" x2="${sx(LIMIT_EXTENSION)}" y2="${sy(K * LIMIT_EXTENSION)}" class="fig-grid" stroke-width="1" stroke-dasharray="2 3"></line>` +
       `<circle cx="${sx(LIMIT_EXTENSION)}" cy="${sy(K * LIMIT_EXTENSION)}" r="4" class="fig-ink"></circle>` +
-      `<text x="${sx(LIMIT_EXTENSION) + 6}" y="${sy(K * LIMIT_EXTENSION) - 8}" class="text-ink" font-size="11">limit of proportionality</text>`;
+      `<text x="${sx(LIMIT_EXTENSION) + 6}" y="${sy(K * LIMIT_EXTENSION) - 8}" class="text-ink" font-size="${SIZE.tick}">limit of proportionality</text>`;
 
     // The spring itself, drawn to the right so the reader sees the extension as well
     // as reading it. Coils bunch together as the spring lengthens.
@@ -121,7 +121,7 @@ export function mount(el) {
       <line x1="404" y1="${top - 16}" x2="404" y2="${top}" class="fig-grid" stroke-width="2"></line>
       <path d="${spring.trim()}" fill="none" class="fig-ink" stroke-width="2" stroke-linejoin="round"></path>
       <line x1="386" y1="${bottom.toFixed(1)}" x2="424" y2="${bottom.toFixed(1)}" class="fig-ink" stroke-width="3"></line>
-      <text x="432" y="${top + 10}" class="text-ink" font-size="11">spring</text>`;
+      <text x="432" y="${top + 10}" class="text-ink" font-size="${SIZE.tick}">spring</text>`;
 
     readout.textContent = past
       ? `F = ${fmt(force, 1)} N, extension = ${fmt(extension, 3)} m. Past the limit of proportionality: the graph is no longer straight, so F = kx no longer gives this extension.`

@@ -8,7 +8,7 @@
 // The scaffolding — the surface, its accessible name, the four sliders, the live
 // readout, the redraw — comes from `kit.js`. What is left here is the drawing and
 // the sentence, which are the parts that differ from every other figure.
-import { panel, slider, react } from "./kit.js";
+import { SIZE, panel, react, slider } from "./kit.js";
 
 export function mount(el) {
   const { svg, readout } = panel(el, {
@@ -26,8 +26,8 @@ export function mount(el) {
   function bar(x, w, h, cls, label, value) {
     const base = 100;
     return `<rect x="${x}" y="${base - h}" width="${w}" height="${h}" class="${cls}"></rect>
-      <text x="${x + w / 2}" y="${base + 12}" text-anchor="middle" font-size="10" class="fig-ink">${label}</text>
-      <text x="${x + w / 2}" y="${base - h - 4}" text-anchor="middle" font-size="10" class="fig-ink">${value}</text>`;
+      <text x="${x + w / 2}" y="${base + 12}" text-anchor="middle" font-size="${SIZE.tick}" class="fig-ink">${label}</text>
+      <text x="${x + w / 2}" y="${base - h - 4}" text-anchor="middle" font-size="${SIZE.tick}" class="fig-ink">${value}</text>`;
   }
 
   react([bought, costEach, priceEach, sold], () => {
