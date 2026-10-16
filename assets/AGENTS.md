@@ -12,30 +12,78 @@ and adding or previewing a bundle — that used to sit in the root.
 
 ## Figures: draw through the kit, and choose no number
 
-`assets/figures/kit.js` is the shared surface for every figure — **177 of 177 modules
-import it**. It does not draw: a framework for 177 bespoke diagrams would be a framework
-around nothing. What it owns is everything *around* the drawing, and the three rules
-below are checked rather than trusted. The measurements and the reasoning are in
-`research/design/reuse-audit.md`.
+`assets/figures/kit.js` is the shared surface for every figure — **209 of 209 modules
+import it**. It is a barrel over six layers, and a module imports only what it needs:
+
+| Layer | File | The question it answers |
+|---|---|---|
+| text | `kit/text.js` | what does it say, and at what size? |
+| frame | `kit/frame.js` | what is the figure, and where does it live? |
+| draw | `kit/draw.js` | what does it look like? |
+| controls | `kit/controls.js` | what can the reader change? |
+| interact | `kit/interact.js` | what happens over time, or in response? |
+| drag | `kit/drag.js` | what can the reader move directly? |
+
+The kit began as ten functions and deliberately did not draw, on the argument that "a
+framework for 177 bespoke diagrams would be a framework around nothing". That was right
+about *bespoke* drawing and wrong about *repeated* drawing, and the measurements settled
+it: **162 modules draw a straight line in a `fig-*` class by hand, 68 a `<rect>`, 44 a
+`<polygon>`, 44 sample a curve segment by segment, and 24 hand-build a coordinate
+mapping.** Those are the same five drawings re-earned two hundred times, and the
+re-earning is where the legibility defects came from. So the marks are shared and the
+*arrangement* stays bespoke — which is the line the first kit was reaching for. The
+measurements and the reasoning are in `research/design/reuse-audit.md`.
+
+### The rules, each checked rather than trusted
 
 - **Choose no size. Use `SIZE`.** An SVG scales by rendered width over viewBox width, so
-  a `font-size` is not the size a reader sees. A 560-unit viewBox in a 358px phone panel
-  draws at **0.64**, so `font-size="16"` is 10.2px and `13` is 8.3px — below the 9px
-  floor. Fourteen distinct sizes were in use across 177 modules before the scale
-  existed, and four had drifted below the floor with every one of their own attributes
-  looking reasonable. `SIZE.tick` is the smallest that clears it.
-- **Use `label()` for text, never a hand-written `<text>`.** 107 modules wrote the same
-  four attributes by hand. The class defaults to `text-ink`, because a `<text>` with no
-  colour class is painted with `fill`'s initial black and vanishes on a dark panel — a
-  defect found **eighteen times** by measurement. Never put `$...$` in a label: the maths
-  hook runs at build time.
-- **Use `scale()` to map a domain onto a range.** 20 modules built it by hand, and the
-  y-axis case is the one that gets flipped when written by hand. It raises on a domain
-  with no width, where the hand-built version divides by zero and produces `NaN`.
+  a `font-size` is not the size a reader sees. A 560-unit viewBox in a 322.8px phone
+  drawing panel scales at **0.576**, so `font-size="16"` is 9.2px and `15` is 8.6px —
+  below the 9px floor. Fourteen distinct sizes were in use across 177 modules before the
+  scale existed, and four had drifted below the floor with every one of their own
+  attributes looking reasonable. `SIZE.tick` is the smallest that clears it.
+- **Use `label()` for text, never a hand-written `<text>`.** 136 modules still write the
+  same four attributes by hand and never call it. The class defaults to `text-ink`,
+  because a `<text>` with no colour class is painted with `fill`'s initial black and
+  vanishes on a dark panel — a defect found **eighteen times** by measurement. Never put
+  `$...$` in a label: the maths hook runs at build time.
+- **Use `scale()` to map a domain onto a range, and `.invert` to come back.** 24 modules
+  built it by hand, and the y-axis case is the one that gets flipped when written by
+  hand. It raises on a domain with no width, where the hand-built version divides by zero
+  and produces `NaN`.
+- **Use `axes()` for a graph area.** It returns **the mappers as well as the string**, so
+  a module draws its data with the same geometry its own axes used and the two cannot
+  disagree. `line`, `circle`, `rect`, `polygon`, `path`, `arrow`, `curve`, `graph`,
+  `area`, `dots` and `bars` are pure functions returning strings, so the arrangement
+  stays yours.
+- **Use `sigfig()` for a rounded answer.** It is the reader's side of the bank's
+  `sigfigs` check: `6`, `6.0` and `6.00` are three different claims, and `sigfig(300, 2)`
+  is `"3.0e2"` because a trailing zero that holds a place is not a significant figure.
+- **Use `seed()` for randomness, never `Math.random`.** A figure that samples must be
+  reproducible: two readers comparing what they saw must be comparing the same data, and
+  the browser check cannot assert anything about data that changes on every load.
+- **A draggable handle must have a backing control, and `draggable()` enforces it.** A
+  pointer is not a keyboard. The control is the value and the keyboard path; the handle is
+  an enhancement that writes to it, and it gets no `tabindex` of its own, so a reader
+  tabbing through the figure meets one focus stop per value rather than two.
+- **An animation must have a scrubber and a still.** `animate()` gives a range input over
+  the whole frame range and honours `prefers-reduced-motion` by not starting: every frame
+  is reachable without motion, and the figure is complete for a reader who asked for less.
+- **A self-check compares against an answer the bank already proved.** `check()` is a
+  numeric comparison with a tolerance and a normalised string match — **not** an algebra
+  engine. The collection's promise is that a computer checks every answer, and the
+  verifier does that at build time; this is the reader's side of the same promise.
+- **Composite controls carry a `.value`.** `segmented`, `stepper` and `table` read and
+  write like a `<select>`, so `react(control, draw)` binds any of them and a module has one
+  shape to learn rather than two.
+- **Every control is a native element.** `<input>`, `<select>`, `<button>`, `<textarea>` —
+  so the keyboard, the screen reader and the platform work without being rebuilt.
 
-`scripts/check-figure-kit.cjs` verifies all three, including the phone-floor arithmetic,
-in CI. `scripts/audit-figures.cjs --mobile` measures what actually reaches a 390px
-screen; the current state is **0 figures below 9px**.
+`scripts/check-figure-kit.cjs` verifies all of this through a real page, including the
+phone-floor arithmetic, and `scripts/check-figure-kit-pure.mjs` verifies the drawing and
+formatting layers under plain `node`, so they are in the ordinary gate rather than only
+where Playwright is configured. `scripts/audit-figures.cjs --mobile` measures what
+actually reaches a 390px screen; the current state is **0 figures below 9px**.
 
 ## Before you add a shared thing
 
@@ -46,7 +94,11 @@ copies of the same component.
   `docs/assets/` holds only what is that book's own. Shared files are declared once in
   `scaffold.SHARED_FILES` and **the build places them** — nothing in this repository is a
   symlink, because git checks one out as a small plain file wherever `core.symlinks` is
-  false and a green build then ships a 36-byte `kit.js` holding a path.
+  false and a green build then ships a 36-byte `kit.js` holding a path. A **directory**
+  whose whole contents are shared is declared in `scaffold.SHARED_DIRS` and copied
+  recursively: the kit is six files behind a barrel, and a list of files would have to be
+  edited whenever a layer is added — and a layer missed that way breaks every figure in
+  every book at runtime, where the build's own link check cannot see it.
 - **If two figures do the same thing, it belongs in the kit.** Before writing a helper
   into a module, run `grep -l` for the idiom across the other modules. `research/design/reuse-audit.md`
   records what was measured already, including the idioms that are deliberately **not**

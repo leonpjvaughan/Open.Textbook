@@ -450,3 +450,39 @@ def test_every_slider_says_whether_it_shows_its_value(book, path):
         "value is shown. `show: true` or `show: false` — the reader sees the "
         f"difference, so it is stated at the call: {silent[0][:70]!r}"
     )
+
+
+# --- the kit's pure layer -----------------------------------------------------
+#
+# `scripts/check-figure-kit.cjs` checks the kit through a real page, because most of
+# its contract is DOM behaviour — a role, a live region, a focus stop. But the drawing
+# and formatting layers are pure functions returning strings and numbers, and they are
+# what a module composes hundreds of times. Checking them only in the browser means
+# checking them only where Playwright is configured; this runs under plain `node`, so it
+# is in the ordinary gate.
+
+
+def test_the_figure_kit_keeps_its_pure_contract():
+    """Sizes, formatting, geometry, marks, seeded randomness and answer checking.
+
+    Every assertion is a defect that shipped or nearly did: `2.6666666666666665` in
+    front of a reader, a `<text>` with no colour class (eighteen times), a mark
+    carrying `183.99999999999997`, a y-axis flipped when built by hand, a curve that
+    disappears because one sample was `NaN`, and a wrong answer reported as a mistake
+    when the reader had merely typed a unit.
+    """
+    import subprocess
+
+    script = repo_root() / "scripts" / "check-figure-kit-pure.mjs"
+    assert script.is_file(), "the pure kit check is missing"
+    result = subprocess.run(
+        ["node", str(script)],
+        capture_output=True,
+        text=True,
+        check=False,
+        cwd=repo_root(),
+    )
+    assert result.returncode == 0, (
+        "the figure kit's pure layer no longer keeps its contract.\n"
+        f"{result.stdout[-3000:]}\n{result.stderr[-2000:]}"
+    )

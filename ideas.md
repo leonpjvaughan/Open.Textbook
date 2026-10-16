@@ -162,37 +162,54 @@ point of this file.
 
 Ordered by how much of the space is unexplored. "Today" is the measured count from §1.
 
-| Form | What the reader does | Today | What it needs | Where it pays |
+| Form | What the reader does | Before | Now | Where it pays |
 |---|---|---|---|---|
-| **Parameter** | moves a slider and watches one quantity change | 202 | — | everything |
-| **Alternative** | picks from a few named options | 24 | — | method choice, cases, models |
-| **Switch** | turns a layer on or off | 12 | — | overlays, sign conventions, units |
-| **Step** | advances a procedure one step at a time | 4 | a `stepper()` primitive | constructions, algorithms, proofs |
-| **Drag** | moves an object to a place | 0 (10 ad-hoc) | `drag()`, with arrow-key support | geometry, algebra tiles, statistics, vectors |
-| **Build** | assembles a whole from parts | 1 (`atom-builder`) | `assemble()` | circuits, trees, Venn regions, atoms |
-| **Plot** | reads a graph of a function it chose | 22 call `scale()`; 44 draw a curve with `<path>` | `plot()` | calculus, functions, statistics |
-| **Table** | reads values beside their graph | 1 | `table()` | sequences, probability, data |
-| **Sample** | draws a random sample and watches it vary | 1 uses `Math.random` | `sample()` + a seed, so it is reproducible | statistics, probability |
-| **Field** | sees a field as arrows or lines | 6 ad-hoc (`ie-lc-physics`) | `field()` | electricity, magnetism, slope fields |
-| **Shade** | reads a region, a bar or an area | 68 draw a `<rect>`; 54 a `<polygon>` | `plot()` with a fill | integrals, probability, areas |
-| **Solid** | turns a 3D object | 0 | `solid3d()` | volume, surface area, nets, 3D vectors |
-| **Animate** | watches a process unfold in time | 0 | `animate()`, with a static frame | waves, decay, motion, algorithms |
-| **Answer** | types an answer and is told whether it is right | 0 | `check()`, against a value CI already proved | every Practise set |
-| **Fresh** | gets a new problem of the same kind | 0 | `generate()`, seeded | every Practise set |
-| **Notate** | types mathematics, not typing | 0 | `notate()`, inserting plain text | algebra, calculus |
-| **Explore** | focuses a labelled part of a diagram | 0 | `diagram()` with focusable hotspots | anatomy of a formula, a cell, a circuit |
+| **Parameter** | moves a slider and watches one quantity change | 202 | `slider` | everything |
+| **Alternative** | picks from a few named options | 24 | `chooser`, `segmented` | method choice, cases, models |
+| **Switch** | turns a layer on or off | 12 | `toggle` | overlays, sign conventions, units |
+| **Step** | advances a procedure one step at a time | 4 ad-hoc | **`stepper`** | constructions, algorithms, proofs |
+| **Drag** | moves an object to a place | 0 in the kit, 10 ad-hoc | **`draggable`** | geometry, algebra tiles, statistics, vectors |
+| **Build** | assembles a whole from parts | 1 (`atom-builder`) | — | circuits, trees, Venn regions, atoms |
+| **Plot** | reads a graph of a function it chose | 162 drew an axis; 22 used `scale` | **`axes`, `line`, `curve`, `graph`, `area`, `bars`, `dots`** | calculus, functions, statistics |
+| **Table** | reads values beside their graph | 1 | **`table`** | sequences, probability, data |
+| **Sample** | draws a random sample and watches it vary | 1 used `Math.random` | **`seed`** | statistics, probability |
+| **Field** | sees a field as arrows or lines | 6 ad-hoc (`ie-lc-physics`) | — | electricity, magnetism, slope fields |
+| **Shade** | reads a region, a bar or an area | 68 `<rect>`; 54 `<polygon>` | **`area`, `bars`, `rect`** | integrals, probability, areas |
+| **Solid** | turns a 3D object | 0 | — | volume, surface area, nets, 3D vectors |
+| **Animate** | watches a process unfold in time | 0 | **`animate`** | waves, decay, motion, algorithms |
+| **Answer** | types an answer and is told whether it is right | 0 | **`answerBox`, `check`, `field`** | every Practise set |
+| **Fresh** | gets a new problem of the same kind | 0 | (`seed` is the missing half) | every Practise set |
+| **Notate** | types mathematics, not typing | 0 | — | algebra, calculus |
+| **Explore** | focuses a labelled part of a diagram | 0 | — | anatomy of a formula, a cell, a circuit |
 
-Three of these seventeen forms have a kit primitive — a parameter, an alternative, a
-switch. The other fourteen are hand-built where they exist at all, or do not exist. That is
-the opportunity.
+This table is the record of the kit's first expansion (2026-10-16). Ten of the seventeen
+forms now have a primitive — see **Built** at the end — and the four still missing are
+`assemble`, `field`, `solid3d` and `notate`, plus the generator behind **Fresh**.
 
 ---
 
 ## 4. Kit extensions worth having
 
-Each names the evidence that it would be used, what it unlocks, roughly what it costs, and
-the check that would stop it rotting. The kit is 379 lines and 6.3 kB gzipped; these are
-additions to it, not a framework.
+Each names the evidence that it would be used, what it unlocks, and the check that stops it
+rotting. The kit was 379 lines in one file; it is now **six layers behind a barrel**,
+because the drawing and interaction primitives are not a framework — they are pure
+functions returning strings, and the arrangement stays the module's.
+
+| | Section | State |
+|---|---|---|
+| 4.1 | `drag()` | **built** — `draggable()`, and it refuses to work without a backing control |
+| 4.2 | `stepper()` | **built** |
+| 4.3 | `plot()` | **built** as `axes()` + marks, which is smaller and composes better |
+| 4.4 | `table()` | **built** |
+| 4.5 | `assemble()` | not built — the palette and validation are a design of their own |
+| 4.6 | `field()` | not built — six hand-built renderers in one book want it |
+| 4.7 | `solid3d()` | not built — the one real content limit left |
+| 4.8 | `check()` | **built** — `answerBox()` and `check()`, against an answer CI proved |
+| 4.9 | `generate()` | half built — `seed()` is the missing half; the generator is not |
+| 4.10 | `animate()` | **built** — a scrubber, a play button, and reduced motion honoured |
+| 4.11 | `notate()` | not built — a keypad, not a formula editor |
+| 4.12 | `diagram()` | not built |
+| 4.13 | `numberLine()` and the `label()` migration | `numberLine()` **built**; 136 modules still to migrate |
 
 ### 4.1 `drag()` — direct manipulation with a keyboard path
 
@@ -649,6 +666,31 @@ This file is the queue, so an idea leaves it by being built.
 
 ### Built
 
-| Book | Section | Module | Date |
+**The kit, 2026-10-16** — the first expansion. 25 exports over six layers, a barrel, a
+build that places the directory, and two checkers.
+
+| What | Where | Why it was worth it |
+|---|---|---|
+| `SIZE`, `label`, `fmt`, `signed`, `sigfig`, `coord`, `escape`, `hidden` | `kit/text.js` | 136 modules hand-write `<text>`; 154 formatted their own numbers; `sigfig` is the reader's side of the bank's check |
+| `panel` (with `description` and `caption`) | `kit/frame.js` | the frame entire accessibility contract lives in |
+| `scale` (with `.invert`), `extent`, `ticks`, `axes` | `kit/draw.js` | 162 modules draw an axis by hand and 24 hand-build a mapping |
+| `line`, `circle`, `rect`, `polygon`, `path`, `arrow` | `kit/draw.js` | 68 `<rect>`, 54 `<polygon>`, and an arrowhead re-derived every time |
+| `curve`, `graph`, `area`, `bars`, `dots`, `numberLine` | `kit/draw.js` | 44 modules sample a curve segment by segment |
+| `slider`, `toggle`, `chooser`, `button`, `segmented`, `field`, `textarea` | `kit/controls.js` | 10 modules build a button; there was no way to take an answer at all |
+| `react`, `notify`, `seed`, `stepper`, `table`, `animate` | `kit/interact.js` | 4 steppers and 1 table hand-built; nothing animated or sampled reproducibly |
+| `check`, `answerBox`, `remember` | `kit/interact.js` | the reader's side of "a computer checks every answer", and the storage the pedagogy asks for |
+| `draggable` | `kit/drag.js` | 10 modules handle a pointer event with no guarantee the keyboard can reach the value |
+| `SHARED_DIRS` and the recursive copy | `engine/textbook/` | the kit is a library now, and a layer the build did not copy would break every figure silently |
+| `check-figure-kit-pure.mjs` | `scripts/` | the drawing and formatting layers now checked without a browser |
+
+**Figures built from the kit, 2026-10-16:**
+
+| Book | Section | Module | Note |
 |---|---|---|---|
-| — | — | *nothing from this file yet* | — |
+| `ie-lc-applied-maths` | 2.1 | `graph-basics` | degree and the handshake lemma |
+| `ie-lc-applied-maths` | 2.6, 2.7 | `mst-stepper` | Kruskal and Prim side by side |
+| `ie-lc-applied-maths` | 2.8 | `dijkstra-stepper` | one settlement at a time |
+| `ie-lc-applied-maths` | 7.1 | `circular-motion` | what supplies the centripetal force |
+| `ie-lc-applied-maths` | 7.5 | `hookes-law` | force-extension and the limit |
+| `ie-lc-applied-maths` | 9.3 | `model-fit` | fitting a cooling model to data |
+| `ie-lc-maths` | 5.4 | `argand-diagram` | the conjugate as a reflection |

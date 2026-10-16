@@ -331,3 +331,72 @@ def test_every_declared_shared_file_is_one_the_build_writes(tmp_path):
         assert (out / relative).read_bytes() == (repo_root() / relative).read_bytes(), (
             f"{relative} differs between assets/ and the built site"
         )
+
+
+def test_every_file_in_a_shared_directory_reaches_the_build(tmp_path):
+    """A declared shared directory is copied whole, and nothing in it is left behind.
+
+    The figure kit outgrew one file: it is 25 exports over six layers, and `kit.js` is
+    now a barrel importing `kit/*.js`. That is exactly the change `SHARED_FILES` cannot
+    carry — a list of files has to be edited whenever a layer is added, and a layer that
+    is missed breaks every figure in every book **at runtime**, where the build's own
+    link check cannot see it, because an asset reached only by a module import is not a
+    link on any page.
+
+    So the directory is declared and copied recursively, and this test compares what is
+    on disk with what the build wrote. A layer added and not copied fails here.
+    """
+    from textbook import pipeline, scaffold
+
+    assert scaffold.SHARED_DIRS, "no shared directory is declared, so the kit cannot be a library"
+
+    book = books.book_by_id("gcse-maths")
+    out = tmp_path / "site"
+    pipeline.build(book.id, book.default_profile.id, out=out, index=False)
+
+    for relative in scaffold.SHARED_DIRS:
+        source = repo_root() / relative
+        assert source.is_dir(), f"{relative} is declared shared and is not a directory"
+        for path in sorted(source.rglob("*")):
+            if not path.is_file():
+                continue
+            built = out / path.relative_to(repo_root())
+            assert built.is_file(), (
+                f"{path.relative_to(repo_root())} is inside a shared directory and the "
+                "build did not write it, so a module that imports it fails to mount"
+            )
+            assert built.read_bytes() == path.read_bytes(), (
+                f"{path.relative_to(repo_root())} differs between assets/ and the build"
+            )
+
+
+def test_the_kit_barrel_imports_only_files_the_build_ships():
+    """Every relative import in the kit resolves inside a shared directory.
+
+    A barrel that imports a layer is only useful if the layer travels with it. This
+    walks the imports rather than trusting the declaration above, so a `kit/` module
+    that reaches outside the shared directory is caught at the source.
+    """
+    from textbook import scaffold
+    from textbook.book import repo_root
+
+    # Resolved, because `repo_root()` may sit behind a symlink and `is_relative_to`
+    # compares the text of the path rather than the file it points at.
+    declared = {(repo_root() / relative).resolve() for relative in scaffold.SHARED_DIRS}
+    kit = repo_root() / "assets" / "figures" / "kit.js"
+    text = kit.read_text(encoding="utf-8")
+
+    # `export { … } from "…"` statements only, and across lines — a bare `from "…"`
+    # pattern also matches the prose in the barrel's own doc comment, which says that
+    # modules write `from "./kit.js"` and sent this test looking for a file that is
+    # not an import at all.
+    imports = re.findall(r'^export\s*\{[^}]*\}\s*from\s+"(\.[^"]+)"', text, re.M | re.S)
+    assert imports, "kit.js is a barrel and imports nothing, which cannot be right"
+
+    for specifier in imports:
+        target = (kit.parent / specifier).resolve()
+        assert target.is_file(), f"kit.js imports {specifier}, which does not exist"
+        assert any(target.is_relative_to(directory) for directory in declared), (
+            f"kit.js imports {specifier}, which is outside every shared directory, so "
+            "the build will not copy it and the import fails at runtime"
+        )

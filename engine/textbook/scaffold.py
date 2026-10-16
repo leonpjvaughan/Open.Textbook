@@ -71,6 +71,21 @@ SHARED_FILES: tuple[str, ...] = (
     "assets/figures/kit.js",
 )
 
+#: Directories whose **whole contents** are shared, copied recursively by the build.
+#:
+#: The figure kit outgrew one file. It is 25 exports over six layers — text, frame,
+#: draw, controls, interact, drag — and `kit.js` is now a barrel that re-exports them,
+#: so the 209 modules that write `from "./kit.js"` are unchanged.
+#:
+#: A directory is declared rather than each module listed. Adding a file to
+#: `SHARED_FILES` and forgetting the build was exactly the drift the list above was
+#: introduced to remove, and a kit of five or six files is the case where it would
+#: happen again: the omission would break every figure in every book at runtime, where
+#: the build's own link check cannot see it. Declaring the directory makes the
+#: contents shared by construction, and `tests/test_collection.py` compares what is
+#: on disk with what the build wrote, so a file that nothing copies fails the suite.
+SHARED_DIRS: tuple[str, ...] = ("assets/figures/kit",)
+
 # Files that live in a book's `docs/assets/figures/` but are not figures. The
 # loader mounts a module by slug and the kit is imported by one, so neither is a
 # slug a `:::figure` directive may name. Read by the directive's slug registry and

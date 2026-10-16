@@ -42,21 +42,34 @@ runs it:
   triggers the per-page loader; raw `<maths-figure>` HTML does not.
 - The module is `books/<id>/docs/assets/figures/<slug>.js` — the filename **is**
   the slug. It exports `mount(el)`. An unknown slug fails the build.
+- **Import the kit's layers, not its whole surface.** `panel` and `react` from
+  `./kit.js`; `SIZE`, `label`, `fmt`, `sigfig` for text; `axes`, `line`, `curve`,
+  `graph`, `area`, `bars`, `dots` for the drawing; `slider`, `chooser`, `segmented`,
+  `toggle`, `button`, `field` for controls; `stepper`, `table`, `animate`, `seed`,
+  `check` for behaviour; `draggable` for a handle. The layer map is in
+  `assets/AGENTS.md`.
+- **Draw through the marks, not a `<text>` or a raw coordinate.** `axes()` returns its
+  mappers, so a module draws with the same geometry the axes used. `label()` carries the
+  colour class by default, which a hand-written `<text>` does not — that is the defect
+  found eighteen times. `sigfig()` is for a rounded answer and `seed()` for randomness.
 - **No colour in the module.** Use the `fig-*` classes (`fig-accent`, `fig-warn`,
   `fig-good`, `fig-ink`, `fig-grid`) and the `--tb-*` tokens, so the figure
   adapts to every bundle and both schemes. A hard-coded colour is a bug.
 - **No `$…$` in anything the module injects at runtime.** The maths hook runs at
   build time, so runtime LaTeX is not rendered. Use plain text or HTML.
-- **Accessible.** Give the drawing `role="img"` and an `aria-label`. Put a live
-  readout in `aria-live="polite"`. Every control is operable by keyboard: native
-  `<input>` and `<button>` are the default, not `<div>` handlers. Never use
-  colour as the only signal.
+- **Accessible.** Give the drawing `role="img"` and an `aria-label` — `panel` does
+  both — and put a live readout in `aria-live="polite"`, which `panel` also does.
+  Every control is a native element built by the kit, so it is keyboard-operable and
+  has a visible label and an accessible name. Never use colour as the only signal. A
+  draggable handle needs its backing control; `draggable()` throws without one.
 
 ## Verify
 
 ```bash
-uv run python -m pytest tests/ -q     # manifest coverage: every slug exists
+node scripts/check-figure-kit-pure.mjs           # the drawing and formatting layers, no browser
+uv run python -m pytest tests/ -q                # manifest coverage, the kit's pure contract
 uv run python -m textbook.pipeline --book <book> --profile <profile>
+node scripts/check-figure-kit.cjs site            # the DOM contract, needs PLAYWRIGHT_PATH
 node scripts/screenshot.cjs site ~/out --schemes light,dark -- \
   "learn:/<book>/<profile>/chapter-<n>/section-<n.m>/learn/"
 ```

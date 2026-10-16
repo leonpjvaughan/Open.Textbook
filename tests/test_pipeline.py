@@ -929,9 +929,17 @@ def test_the_shared_figure_files_are_copied_from_assets_not_through_a_symlink(tm
 
     figures = out / "assets" / "figures"
     kit = (figures / "kit.js").read_text(encoding="utf-8")
-    assert "export function panel" in kit, (
+    # The kit is a barrel over `kit/*.js` now, so its own marker is the re-export rather
+    # than a definition. What matters is unchanged: the built file is the kit and not a
+    # path, and it points at the layers that must have travelled with it.
+    assert 'from "./kit/frame.js"' in kit, (
         "the built kit.js is not the kit — on a platform that checks symlinks out as "
         f"text files the site would serve a path instead: {kit[:80]!r}"
+    )
+    frame = (figures / "kit" / "frame.js").read_text(encoding="utf-8")
+    assert "export function panel" in frame, (
+        "the kit's frame layer did not reach the build, so every figure would fail to "
+        "mount with the build still green"
     )
     assert "customElements" in (figures / "figures.js").read_text(encoding="utf-8"), (
         "the built loader is not the loader"
@@ -941,3 +949,10 @@ def test_the_shared_figure_files_are_copied_from_assets_not_through_a_symlink(tm
     assert not any(
         p.stat().st_size < 200 for p in figures.glob("*.js")
     ), f"a build output is a path, not a program: {[p.name for p in figures.glob('*.js') if p.stat().st_size < 200]}"
+    # Every layer, checked the same way: a layer that is a path rather than a program
+    # is the same defect one directory down.
+    layers = sorted(p.name for p in (figures / "kit").glob("*.js"))
+    assert layers, "the kit's layers did not reach the build"
+    assert not any(
+        (figures / "kit" / name).stat().st_size < 200 for name in layers
+    ), f"a kit layer is a path, not a program: {layers}"

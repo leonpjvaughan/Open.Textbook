@@ -571,6 +571,22 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
         shutil.copy2(source, target)
         copied.append(Path(relative).name)
 
+    # A shared directory's whole contents, recursively. The kit is a library of
+    # layers rather than one file, and a barrel that imports a layer the build did not
+    # copy is a figure that fails to mount — with the build green, because an asset
+    # reached only at runtime is not a link on any page.
+    for relative in scaffold.SHARED_DIRS:
+        source = root / relative
+        if not source.is_dir():
+            continue
+        for path in sorted(source.rglob("*")):
+            if not path.is_file():
+                continue
+            target = out / path.relative_to(root)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(path, target)
+            copied.append(path.name)
+
     # The shell is the engine's own stylesheet, not a shared asset: it is part of
     # the renderer rather than the design system a book composes.
     sheets.mkdir(parents=True, exist_ok=True)
