@@ -201,15 +201,20 @@ functions returning strings, and the arrangement stays the module's.
 | 4.2 | `stepper()` | **built** |
 | 4.3 | `plot()` | **built** as `axes()` + marks, which is smaller and composes better |
 | 4.4 | `table()` | **built** |
-| 4.5 | `assemble()` | not built — the palette and validation are a design of their own |
-| 4.6 | `field()` | not built — six hand-built renderers in one book want it |
-| 4.7 | `solid3d()` | not built — the one real content limit left |
+| 4.5 | `assemble()` | **built** — `builder()`, which assembles and leaves the judging to the module |
+| 4.6 | `field()` | **built** — `vectorField()`, the name changed to leave `field()` to the input |
+| 4.7 | `solid3d()` | **built** — `camera3d()`, a fixed camera and a painter's algorithm |
 | 4.8 | `check()` | **built** — `answerBox()` and `check()`, against an answer CI proved |
-| 4.9 | `generate()` | half built — `seed()` is the missing half; the generator is not |
+| 4.9 | `generate()` | **built** — `exercise()` and `practice()`, with the honest limit stated |
 | 4.10 | `animate()` | **built** — a scrubber, a play button, and reduced motion honoured |
-| 4.11 | `notate()` | not built — a keypad, not a formula editor |
-| 4.12 | `diagram()` | not built |
+| 4.11 | `notate()` | **built** — a keypad, not a formula editor |
+| 4.12 | `diagram()` | not built — a drawing with focusable, described parts |
 | 4.13 | `numberLine()` and the `label()` migration | `numberLine()` **built**; 136 modules still to migrate |
+
+Two more were added while building these, because they were the same idiom as things
+already there: **`venn()`**, whose region labels are placed by geometry rather than by
+hand — an atom in the wrong region teaches the opposite of the truth — and **`notify()`**,
+so a composite control tells `react()` it changed through the one path it listens to.
 
 ### 4.1 `drag()` — direct manipulation with a keyboard path
 
@@ -615,40 +620,49 @@ an argument against `mathlive` in every case, since `notate()` is a keyboard.
 
 ---
 
-## 9. The structural idea that makes the rest cheaper
+## 9. The shared figure library — **built**
 
-**Figure modules cannot be shared between books.** Four ideas are already implemented
-twice, and all four pairs differ (§1). Every idea in §5 will be built at least twice
-unless this changes.
+**Figure modules can now be shared between books.** `assets/figures/` is the library: a
+module dropped in beside the loader is mountable by its filename in every book, because
+a figure is mounted by bare slug and the build copies the library flat into each book's
+figures directory. A book may not define its own module with the same name; the build
+fails and says so.
 
-The shape of the fix is a **shared figure library**: a directory of modules more than one
-book uses, mounted by slug like any other, held to the same contract and measured by the
-same audit. It is the same move the repository made for the CSS, the settings widget and
-the kit. It is the largest idea in this file and the one that decides whether the next
-fifty figures are cheap or expensive.
+The first two residents are `venn-regions` — mounted by `ie-jc-maths` 8.4 and
+`ie-lc-maths` 10.4 from one file — and the kit's `venn()` beneath it.
 
-The alternative — a copy per book — is defensible, because a book can then tune a figure
-to its own specification. But it should be a decision, not the accident it is now.
+**What this is for, and what it is not.** The four figures that were duplicated before it
+existed — `circular-motion`, `radiation-penetration`, `transformer-turns`,
+`vector-addition` — turned out on inspection to be *two books solving one topic
+differently for different readers*. GCSE Physics draws penetration through materials with
+source buttons; Leaving Certificate Physics draws range in air with ionisation density.
+Merging them would serve neither page. So the library is **not** a de-duplicator for
+topic figures. It is for a **generic tool**: the same set-notation diagram, the same
+number line, the same coordinate grid, the same slope field — the things where two books
+want the same picture because the idea is the same picture.
 
 ---
 
 ## 10. Priority
 
-1. **Store the relevance prompt (§6.1)** and **`check()` for the Warm-up (§6.2, §4.8)**.
+**The kit is done.** Every primitive in §4 is built except `diagram()` (§4.12), and the
+shared library (§9) is built. What is left is content: the figures that use them.
+
+1. **`diagram()`** (§4.12) — a drawing whose parts are focusable and described. The last
+   unwritten primitive, and the one an accessibility review of a dense figure wants.
+2. **Store the relevance prompt (§6.1)** and put **`practice()` on every Warm-up (§6.2)**.
    Retrieval is the most secure recommendation in the pedagogy and the relevance prompt is
-   where the reader writes in their own words. Neither needs a new drawing.
-2. **`plot()`, `stepper()`, `table()`** (§4.3, §4.2, §4.4), which between them cover most
-   of §5, and `stepper()` has two working uses to be built from.
-3. **`drag()`** (§4.1) — the largest design job, and the one that unlocks geometry, algebra
-   tiles and statistics at once. It must be designed before it is written.
-4. **Ten figures for `ie-jc-maths`** (§5): indices, fractions, ratio and proportion,
+   where the reader writes in their own words. Both are now a few lines, because the kit
+   has `remember()` and `practice()`.
+3. **Ten figures for `ie-jc-maths`** (§5): indices ✓, fractions, ratio and proportion,
    expanding, the line, trig ratios, transformations, one construction, charts, spread.
-5. **Chord → tangent and Riemann strips for `ie-lc-maths`** (§5).
-6. **`field()`** (§4.6) — six hand-built renderers in one book, and slope fields want one.
-7. **Sound, gravity and the EM spectrum for `ie-lc-physics`**; **projectiles, pulleys,
-   restitution and SHM for `ie-lc-applied-maths`** (§5).
-8. **Decide the shared-figure-library question (§9)** before the count doubles, and
-   **migrate the 136 modules to `label()`** (§4.13).
+   Also the solids — the book now has `cuboid-volume` and `camera3d()` behind it.
+4. **Chord → tangent and Riemann strips for `ie-lc-maths`** (§5).
+5. **Sound, gravity and the EM spectrum for `ie-lc-physics`**, using `vectorField()` for
+   the fields; **projectiles, pulleys, restitution and SHM for `ie-lc-applied-maths`**.
+6. **Migrate the 136 modules to `label()`** (§4.13) — debt, and the trap is live.
+7. **A `slope-field` figure in the shared library**, which `ie-lc-applied-maths` 8.7 and
+   any future A-level book both want identically — the second test of the library.
 
 ---
 
@@ -680,6 +694,10 @@ build that places the directory, and two checkers.
 | `react`, `notify`, `seed`, `stepper`, `table`, `animate` | `kit/interact.js` | 4 steppers and 1 table hand-built; nothing animated or sampled reproducibly |
 | `check`, `answerBox`, `remember` | `kit/interact.js` | the reader's side of "a computer checks every answer", and the storage the pedagogy asks for |
 | `draggable` | `kit/drag.js` | 10 modules handle a pointer event with no guarantee the keyboard can reach the value |
+| `camera3d`, `vectorField`, `venn` | `kit/draw.js` | the one real content limit (3D), six hand-built field renderers, and set regions that cannot be placed by hand |
+| `builder`, `notate` | `kit/controls.js` | assembling from parts, and typing mathematics on a phone without a 5.6 MB library |
+| `exercise`, `practice` | `kit/interact.js` | endless practice, with the honest limit stated: internal consistency, not verification |
+| the shared figure library | `assets/figures/` | a figure two books want identically is written once — see §9 for what it is *not* for |
 | `SHARED_DIRS` and the recursive copy | `engine/textbook/` | the kit is a library now, and a layer the build did not copy would break every figure silently |
 | `check-figure-kit-pure.mjs` | `scripts/` | the drawing and formatting layers now checked without a browser |
 
@@ -694,3 +712,7 @@ build that places the directory, and two checkers.
 | `ie-lc-applied-maths` | 7.5 | `hookes-law` | force-extension and the limit |
 | `ie-lc-applied-maths` | 9.3 | `model-fit` | fitting a cooling model to data |
 | `ie-lc-maths` | 5.4 | `argand-diagram` | the conjugate as a reflection |
+| `ie-jc-maths` | 2.2 | `index-laws-practice` | generated questions, checked against their own parameters |
+| `ie-jc-maths` | 9.4 | `growth-curves` | three growth curves, and the week each crosses |
+| `ie-jc-maths` | 16.5 | `cuboid-volume` | a cuboid in 3D, volume as layers and surface as faces |
+| **shared** | `ie-jc-maths` 8.4, `ie-lc-maths` 10.4 | `venn-regions` | one module, two books |

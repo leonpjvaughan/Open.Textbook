@@ -3181,35 +3181,42 @@ rewritten for the Irish books on the same day: the tier codes are the book's (no
 
 ---
 
-## 56. `fig_good` on the figure panel has 0.1 of contrast margin — the tightest token
+## 56. The figure panel's tint was spending the contrast margin — **done**
 
-**What is wrong, and it is not a defect yet.** The figure audit holds `fig_accent`,
-`fig_warn` and `fig_good` to 4.5:1 against **the figure panel**, which is not the same
-surface as the page's paper. Measured over every bundle and both schemes:
+**What was wrong.** `fig_good` against the figure panel in `editorial`/light measured
+**4.60 against a 4.5 floor** — a 2% margin. Measuring every token rather than the one
+that was noticed showed it was not alone:
 
 ```
-$ node scripts/audit-figures.cjs site --only growth-curves --json /tmp/g.json
-  editorial/light  fig_good on the panel  4.60   floor 4.5   margin +0.10
-  editorial/dark   fig_good on the panel  7.52
-  # and against `paper` instead of the panel, the worst is 5.33 (glass/light)
+$ # margin over the floor, worst bundle × scheme, before
+  fig_accent   +0.02      # two hundredths
+  fig_warn     +0.18
+  fig_good     +0.06
+  fig_grid     +0.04      # against a 3.0 floor
 ```
 
-So the invariant holds and `tests/test_themes.py` pins the thresholds — but the tightest
-value in the collection is 4.60 against a 4.5 floor, a **2% margin**. A small palette
-edit to `fig_good` in the `editorial` light member, or to that bundle's figure panel,
-takes it under, and the failure would look like a theme change rather than a contrast
-one.
+**The cause was the panel itself, not the tokens.** The `maths-figure` surface is
+`color-mix(in srgb, paper 92%, ink 8%)` in `assets/stylesheets/extra.css` — a *derived*
+surface, darker than the paper — so the tint was quietly spending the margin every figure
+token needs. The invariant held by 0.02 and the failure would have looked like a theme
+change.
 
-**The fix.** Either widen the `editorial` light `fig_good` a little so the margin is
-comfortable, or leave it and let the test be the guard. It needs a decision rather than a
-patch, which is why it is here.
+**The fix.** The tint is 4%. Measured after:
+
+```
+  fig_accent   +0.41      fig_warn  +0.57      fig_good  +0.44      fig_grid  +0.32
+```
+
+The border, not the tint, is what makes a figure read as a panel, so 4% keeps the
+delineation and returns the margin. `FIGURE_PANEL_INK` in `engine/textbook/themes.py`
+moved with it, and `test_the_figure_surface_matches_the_stylesheet` is what caught the
+two drifting apart.
 
 **Done means**
 
-- `node scripts/audit-figures.cjs site --json /tmp/all.json` reports the minimum
-  `fig_good`-against-panel ratio, and it is either above 4.5 with a stated margin the
-  author is happy with, or the palette has moved.
-- `uv run python -m pytest tests/test_themes.py -q` still passes.
+- Every figure token clears its floor by at least 0.3 over every bundle and both schemes.
+- `uv run python -m pytest tests/test_themes.py -q` passes.
+- `node scripts/audit-figures.cjs site` reports no contrast problem.
 
 ## The Irish books are finished (2026-10-16)
 

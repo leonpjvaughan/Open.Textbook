@@ -79,12 +79,19 @@ FIGURE_MIN_CONTRAST = {"fig_accent": 4.5, "fig_warn": 4.5, "fig_good": 4.5, "fig
 # to nothing is silently skipped rather than reported.
 FIGURE_TOKEN_ALIAS = {"fig_accent": "accent"}
 
-# The maths-figure panel is `color-mix(in srgb, paper 92%, ink 8%)` in
-# assets/stylesheets/extra.css. A token drawn inside a figure sits on that mix,
-# not on the page behind it; the mix is always closer to mid-grey than the paper,
-# so measuring against the panel is the stricter check. The share is mirrored
-# here and pinned to the stylesheet by test_the_figure_surface_matches_the_stylesheet.
-FIGURE_PANEL_INK = 0.08
+# The maths-figure panel is `color-mix(in srgb, paper 96%, ink 4%)` in
+# assets/stylesheets/extra.css. A token drawn inside a figure sits on that mix, not on
+# the page behind it; the mix is always closer to mid-grey than the paper, so measuring
+# against the panel is the stricter check. The share is mirrored here and pinned to the
+# stylesheet by test_the_figure_surface_matches_the_stylesheet.
+#
+# It was 8% until the margin was measured rather than the floor. The panel is a
+# *derived* surface, so the tint was quietly spending the contrast every figure token
+# needs: at 8% the accent cleared the 4.5:1 text floor by **0.02** and `fig_grid`
+# cleared 3:1 by 0.04, over every bundle and both schemes. At 4% the worst margins are
+# +0.41 and +0.32 — a palette edit now has room to move, and the figure still reads as
+# a panel because the border, not the tint, is what delineates it.
+FIGURE_PANEL_INK = 0.04
 
 # The landing page's card is `color-mix(in srgb, ink N%, paper)` — 4% in light
 # and 7% in dark — in assets/stylesheets/portal.css (`--tb-card`). `ink_soft`

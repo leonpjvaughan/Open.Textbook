@@ -2,10 +2,15 @@
 ``<maths-figure data-figure="<slug>">`` element, and inject the figure loader
 only into pages that use it.
 
-Known slugs are discovered from ``<docs>/assets/figures/*.js``, excluding the two
-shared files the scaffold symlinks in (the loader and the kit), so a figure cannot
-drift out of sync with the registry — and so the registry is per book. An unknown
-slug fails the build.
+Known slugs are the book's own — discovered from ``<docs>/assets/figures/*.js`` —
+**plus the shared library** in ``assets/figures/``, so a module that more than one
+book mounts is available to all of them by its filename. An unknown slug fails the
+build.
+
+A book's own module may not share a name with a shared one: two modules with one
+slug would make a page's meaning depend on build order, and the book can always
+rename its own. That is an error here rather than an override, and it is the reason
+the library is worth having — a duplicated figure has to be noticed.
 """
 
 from __future__ import annotations
@@ -28,11 +33,28 @@ def figures_dir(config):
     return cfg.docs_dir(config) / "assets" / "figures"
 
 
-def known_slugs(config) -> set[str]:
+def local_slugs(config) -> set[str]:
+    """The slugs this book's own figures directory provides."""
     path = figures_dir(config)
     if not path.is_dir():
         return set()
     return {p.stem for p in path.glob("*.js") if p.name not in SHARED}
+
+
+def known_slugs(config) -> set[str]:
+    """This book's own slugs together with the shared library's."""
+    return local_slugs(config) | set(scaffold.shared_figure_modules())
+
+
+def shadowing_slugs(config) -> list[str]:
+    """Slugs provided both by this book and by the shared library.
+
+    A book that defines its own ``slope-field`` while the library also has one is a
+    mistake worth failing on: the slug no longer says which figure a page means, and
+    the book's copy would silently win or silently lose depending on the order the
+    build happens to write them in.
+    """
+    return sorted(local_slugs(config) & set(scaffold.shared_figure_modules()))
 
 
 def root_prefix(page) -> str:
@@ -45,6 +67,14 @@ def root_prefix(page) -> str:
 
 def on_page_markdown(markdown, page, config, files):
     known = known_slugs(config)
+    shadowing = shadowing_slugs(config)
+    if shadowing:
+        raise ValueError(
+            f"figures: {page.file.src_path} is in a book that defines "
+            f"{', '.join(shadowing)}, which the shared library already provides "
+            f"({scaffold.FIGURE_LIBRARY}). Rename the book's own module: two modules "
+            "with one slug make a page's meaning depend on build order."
+        )
     used: set[str] = set()
 
     def replace(match: re.Match[str]) -> str:

@@ -357,6 +357,75 @@ async function probe(kitPath) {
       document.body.append(host);
       return kit.panel(host, { drawing: false }).caption.tagName;
     })(),
+
+    // A builder assembles and the module validates, so the kit owns the order, the
+    // keyboard and the announcement and never judges the assembly.
+    builder: (() => {
+      const host = document.createElement("maths-figure");
+      host.style.cssText = "display:block;width:420px";
+      document.body.append(host);
+      kit.panel(host, { label: "Build", drawing: false });
+      const b = kit.builder(host, {
+        label: "Add a particle",
+        parts: [{ id: "p", label: "Proton" }, { id: "n", label: "Neutron" }],
+        value: ["p"],
+      });
+      let redraws = 0;
+      kit.react(b, () => { redraws += 1; });
+      const parts = [...b.querySelectorAll("button")].slice(0, 2);
+      const undo = [...b.querySelectorAll("button")].pop();
+      parts[1].click();
+      const added = b.value.join(",");
+      const pressed = parts.map((x) => x.getAttribute("aria-pressed")).join(",");
+      undo.click();
+      return [added, b.value.join(","), redraws > 1, pressed, undo.tagName];
+    })(),
+
+    // The keypad inserts plain text at the caret and fires `input`, so what receives it
+    // is still an ordinary field and the checker still reads a string.
+    notate: (() => {
+      const host = document.createElement("maths-figure");
+      host.style.cssText = "display:block;width:420px";
+      document.body.append(host);
+      kit.panel(host, { label: "Keypad", drawing: false });
+      const input = kit.field(host, { label: "Answer" });
+      const pad = kit.notate(host, { input });
+      input.value = "12";
+      input.setSelectionRange(1, 1);
+      let fired = 0;
+      input.addEventListener("input", () => { fired += 1; });
+      const first = pad.querySelector("button");
+      first.click();
+      return [input.value, input.selectionStart, fired, first.tagName];
+    })(),
+
+    // Endless practice, which is the only thing here that changes what a reader *does*
+    // rather than what they see. The verdict has to follow the current question: a
+    // stale answer is how this widget would teach something false.
+    practice: (() => {
+      const host = document.createElement("maths-figure");
+      host.style.cssText = "display:block;width:420px";
+      document.body.append(host);
+      const { readout, caption } = kit.panel(host, { label: "Practice", drawing: false });
+      const kinds = [{
+        id: "double",
+        build: (rng) => { const n = rng.int(3, 9); return { text: `Double ${n}.`, answer: 2 * n }; },
+      }];
+      const made = kit.practice(host, { kinds, seed: 3, readout, caption });
+      const first = caption.textContent;
+      const firstAnswer = made.exercise.answer;
+      made.input.value = firstAnswer;
+      const good = made.verify();
+      const said = readout.textContent;
+      [...host.querySelectorAll('button')].find((b) => b.textContent === 'Another question').click();
+      const second = caption.textContent;
+      const cleared = made.input.value === "";
+      made.input.value = made.exercise.answer;
+      const goodAfterNext = made.verify();
+      // The answers must differ, or the check could pass by accident.
+      const checks = [...host.querySelectorAll('button')].filter((b) => b.textContent === 'Check').length;
+      return [first.startsWith("Double"), good, said, second !== first, cleared, goodAfterNext, firstAnswer !== made.exercise.answer, checks];
+    })(),
   };
 }
 
@@ -682,6 +751,21 @@ async function main() {
   if (hidden[2] !== "a long description") problems.push("hidden() lost its text");
   want("a description is linked to the drawing", JSON.stringify(result.descriptionLinked), JSON.stringify([true, "A longer descr"]));
   want("panel returns a caption element", result.captionElement, "P");
+  want(
+    "a builder adds in order, undoes, announces and redraws",
+    JSON.stringify(result.builder),
+    JSON.stringify(["p,n", "p", true, "true,true", "BUTTON"]),
+  );
+  want(
+    "a keypad inserts at the caret and fires input",
+    JSON.stringify(result.notate),
+    JSON.stringify(["1/2", 2, 1, "BUTTON"]),
+  );
+  want(
+    "practice verifies the current question and moves on",
+    JSON.stringify(result.practice),
+    JSON.stringify([true, true, "Correct.", true, true, true, true, 1]),
+  );
 
 
   if (problems.length) {

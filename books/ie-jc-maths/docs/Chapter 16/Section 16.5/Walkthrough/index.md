@@ -137,6 +137,21 @@ Volume and surface area are different, and the formulas are not interchangeable.
 A second trap is the diameter. The formulas for a cylinder and a sphere use the
 radius. Halve the diameter before you start, or the answer will be too large.
 
+## Investigate a cuboid
+
+:::figure cuboid-volume
+
+**Predict, then test.** The figure draws a cuboid with its hidden edges dashed. Before
+you move anything, write down what happens to the **volume** if you double the length,
+and what happens to the **surface area** if you double the length. Are they the same?
+
+Now double the length and check. Then set all three dimensions to the same number, so
+the box is a cube, and see what the volume and the surface area are.
+
+**Explain.** Write two or three sentences. Say what doubling one dimension does to the
+volume and what it does to the surface area, and why the two answers are different.
+Use the words "layers" and "faces" in your explanation.
+
 ## Progress check
 
 Return to the chapter problem. The cylindrical part of the tank has a radius of 0.5 m

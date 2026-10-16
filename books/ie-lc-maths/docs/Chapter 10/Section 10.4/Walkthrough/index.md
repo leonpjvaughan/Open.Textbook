@@ -55,6 +55,18 @@ $$A \cup B = \{2, 4, 5, 6\} \qquad A \cap B = \{6\}$$
 
 So $n(A \cup B) = 4$ and $n(A \cap B) = 1$.
 
+## Which regions an expression selects
+
+:::figure venn-regions
+
+**Predict, then test.** Write down which parts of the diagram $A \cap B$ selects, and
+which $A'$ selects. Then choose each one and check. Switch to three sets and try
+$A \cap B \cap C$ and $(A \cup B \cup C)'$.
+
+**Explain.** The readout tells you how many parts of the diagram an expression
+selects. Use it to explain why $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ has a
+subtraction in it: say which parts would be counted twice by $P(A) + P(B)$ alone.
+
 ## The addition rule
 
 If you add $n(A)$ and $n(B)$, the outcomes in both events are counted twice. The addition

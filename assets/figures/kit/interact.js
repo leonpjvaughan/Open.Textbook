@@ -444,3 +444,121 @@ export function remember(key, fallback = null) {
     },
   };
 }
+
+/**
+ * A generated question, with the answer that belongs to it.
+ *
+ * **The honest limit, stated first.** The problem-bank verifier proves every banked
+ * answer at build time against a CAS. A generated question cannot be proved that way —
+ * there is no bank — so this is a *different* claim: the answer is computed by the same
+ * function that wrote the question, so the two cannot disagree. That is internal
+ * consistency, not independent verification, and a page that uses it must not say
+ * "checked by a computer".
+ *
+ * What makes it trustworthy anyway is that the *generator* is checked: a template whose
+ * `answer` is a function of the parameters it drew is testable by generating a thousand
+ * and asserting the invariants a reader would check by hand. `tests/test_figure_kit_pure.py`
+ * does exactly that for the kinds the collection ships.
+ *
+ * @param {object} o
+ * @param {Array<{id: string, build: (rng: object) => {text, answer, tolerance?, unit?}}>} o.kinds
+ * @param {number} [o.seed]  the seed; the same seed gives the same question
+ * @param {string} [o.only]  restrict to one kind, for a page that has one
+ * @returns {{id: string, text: string, answer: string, tolerance: number, unit: string,
+ *   next: Function, at: number}}
+ */
+export function exercise({ kinds = [], seed: start = 1, only } = {}) {
+  const usable = only ? kinds.filter((kind) => kind.id === only) : kinds;
+  if (!usable.length) throw new Error("exercise: no kinds to generate from");
+  const state = { id: "", text: "", answer: "", tolerance: 0, unit: "", at: start, count: 0 };
+
+  const take = (index) => {
+    const rng = seed(index);
+    const kind = usable[index % usable.length];
+    const built = kind.build(rng);
+    state.id = kind.id;
+    state.text = built.text;
+    state.answer = String(built.answer);
+    state.tolerance = built.tolerance ?? 0;
+    state.unit = built.unit ?? "";
+    state.count = index;
+    return state;
+  };
+
+  const api = {
+    get id() { return state.id; },
+    get text() { return state.text; },
+    get answer() { return state.answer; },
+    get tolerance() { return state.tolerance; },
+    get unit() { return state.unit; },
+    get at() { return state.at; },
+    /** Step to the next question. Passing a seed jumps to that one, which is how a
+     *  reader shares "question 7" with someone else. */
+    next(nextSeed) {
+      state.at = nextSeed === undefined ? state.at + 1 : nextSeed;
+      return take(state.at);
+    },
+  };
+  take(state.at);
+  return api;
+}
+
+/**
+ * Endless practice: a generated question, a box, a Check and a Next.
+ *
+ * The widget the collection has never had. It is `exercise()` and `answerBox()`
+ * composed, so the page has to write nothing but the generators, and it is built on
+ * native controls so the keyboard and the screen reader are served by the primitives.
+ *
+ * The question goes in the panel's `caption` — a place the frame already has for a line
+ * of the figure's own prose — and the verdict goes in the live readout.
+ *
+ * @returns {{exercise: object, input: HTMLElement, verify: Function, next: Function}}
+ */
+export function practice(parent, { kinds = [], seed = 1, only, readout, caption, label = "Your answer", nextLabel = "Another question" } = {}) {
+  const quiz = exercise({ kinds, seed, only });
+  const holder = document.createElement("p");
+  holder.className = "fig-question";
+  holder.style.cssText = "margin:.2rem 0 .5rem";
+  if (caption) caption.replaceChildren();
+  const target = caption || holder;
+  if (!caption) (parent.querySelector(".fig-controls") || parent).append(holder);
+
+  // The field and the Check are built here rather than through `answerBox()`, because
+  // `answerBox` brings its own Check button — and composing the two produced a widget
+  // with two of them, which the browser check caught.
+  const input = field(parent, { id: "answer", label, name: label, type: "text", inputmode: "decimal" });
+
+  const show = () => {
+    target.textContent = quiz.text;
+    input.value = "";
+  };
+
+  const verify = () => {
+    const result = check(input.value, { answer: quiz.answer, tolerance: quiz.tolerance, unit: quiz.unit });
+    const said = {
+      empty: "Type an answer first.",
+      invalid: "That does not look like a number. Check what you typed.",
+      correct: "Correct.",
+      wrong: "Not yet. Try again, or work through the method.",
+    }[result.state];
+    if (readout) {
+      readout.textContent =
+        result.state === "wrong" ? `${said} The answer is ${result.expected}${quiz.unit ? ` ${quiz.unit}` : ""}.` : said;
+    }
+    return result.state === "correct";
+  };
+  button(parent, { label: "Check", name: "Check my answer", onClick: verify });
+  button(parent, {
+    label: nextLabel,
+    name: "Show me another question",
+    onClick: () => {
+      quiz.next();
+      show();
+      if (readout) readout.textContent = "A new question. Work it out before you check.";
+      return true;
+    },
+  });
+  show();
+  return { exercise: quiz, input, verify };
+}

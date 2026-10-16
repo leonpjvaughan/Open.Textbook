@@ -92,14 +92,30 @@ TOKEN_COLOUR_VALUES = {
 RUNTIME_LATEX = re.compile(r"\$(?!\{)")
 
 
+class _SharedLibrary:
+    """The shared figure library, wearing enough of a ``Book`` to be parametrised over.
+
+    Its modules are held to exactly the same contract as a book's own — that is the
+    point of them being modules rather than a special case.
+    """
+
+    id = "shared"
+    docs = repo_root() / "assets"
+
+
 def figure_modules() -> list:
-    """Every figure module, discovered from the filesystem for every book."""
+    """Every figure module: each book's own, and the shared library's."""
     found = []
     for book in BOOKS:
         figures = book.docs / "assets" / "figures"
         for path in sorted(figures.glob("*.js")):
             if path.name not in SHARED_FIGURE_FILES:
                 found.append((book, path))
+    library = repo_root() / scaffold.FIGURE_LIBRARY
+    shared = _SharedLibrary()
+    for path in sorted(library.glob("*.js")):
+        if path.name not in SHARED_FIGURE_FILES:
+            found.append((shared, path))
     return found
 
 
@@ -287,7 +303,12 @@ def colour_literals(text: str) -> list[str]:
     found += [
         match.group(1)
         for match in FIGURE_COLOUR_PROPERTY.finditer(text)
+        # A boolean is not a colour. `fill: true` is a JavaScript option on a drawing
+        # helper, and the property pattern cannot tell JavaScript from CSS — so the
+        # values that can never be a colour are excluded rather than left to look like
+        # one. Everything else that is not a token is reported.
         if match.group(1).lower() not in TOKEN_COLOUR_VALUES
+        and match.group(1).lower() not in {"true", "false", "null", "undefined"}
     ]
     return found
 
@@ -486,3 +507,116 @@ def test_the_figure_kit_keeps_its_pure_contract():
         "the figure kit's pure layer no longer keeps its contract.\n"
         f"{result.stdout[-3000:]}\n{result.stderr[-2000:]}"
     )
+
+
+# --- the shared figure library -------------------------------------------------
+#
+# A figure module is mounted by bare slug (`import(`./${slug}.js`)`), so a shared
+# module has to sit *beside the loader* in the built tree. `assets/figures/` already
+# holds the loader and the kit, so it is the library too, and the rule is the one a
+# book's own directory already uses: every `*.js` there that is not the loader or the
+# kit is a figure any book may mount.
+#
+# This exists because a figure that two books want *identically* should be written
+# once. The four earlier duplicates — `circular-motion`, `radiation-penetration`,
+# `transformer-turns`, `vector-addition` — turned out to be two books solving the same
+# topic differently for different readers, which is a legitimate choice and not this.
+# What this is for is a generic tool: the same set-notation diagram, the same number
+# line, the same coordinate grid.
+
+
+def shared_modules() -> dict:
+    return scaffold.shared_figure_modules()
+
+
+def test_a_book_may_not_shadow_a_shared_module():
+    """One slug, one module. Two would make a page's meaning depend on build order.
+
+    A book that wants its own version can always rename it, and the error the hook
+    raises says so. Silent shadowing is the failure this prevents: the book's copy would
+    win or lose depending on which the build happened to write last, and the page would
+    look right in one build and wrong in the next.
+    """
+    from textbook.hooks import figures as hook
+
+    shared = set(shared_modules())
+    assert shared, "the shared library is empty, so this test proves nothing"
+
+    for book in BOOKS:
+        # The hook needs an mkdocs config; the collision rule does not, so the two
+        # halves are checked separately rather than standing up a config per book.
+        local = {
+            path.stem
+            for path in (book.docs / "assets" / "figures").glob("*.js")
+            if path.name not in SHARED_FIGURE_FILES
+        }
+        clashes = sorted(local & shared)
+        assert not clashes, (
+            f"{book.id} defines {clashes}, which the shared library "
+            f"({scaffold.FIGURE_LIBRARY}) already provides. Rename the book's own module."
+        )
+    assert hook.shadowing_slugs  # the rule the hook applies is the one checked here
+
+
+def test_the_build_writes_every_shared_module_beside_the_loader(tmp_path):
+    """A shared module has to land next to `figures.js`, because the loader is relative.
+
+    Copying it into a subdirectory would leave the file present and unmountable, which
+    the build would not notice: an asset reached only by a module import is not a link
+    on any page.
+    """
+    from textbook import pipeline
+
+    book = BOOKS[0]
+    out = tmp_path / "site"
+    pipeline.build(book.id, book.default_profile.id, out=out, index=False)
+
+    figures = out / "assets" / "figures"
+    assert (figures / "figures.js").is_file(), "the loader did not reach the build"
+    shared = shared_modules()
+    assert shared, "the shared library is empty, so this test proves nothing"
+    for slug, source in shared.items():
+        built = figures / source.name
+        assert built.is_file(), (
+            f"the shared module {source.name} is mounted by slug and the build did not "
+            "write it beside the loader, so `import(`./{slug}.js`)` fails at runtime"
+        )
+        assert built.read_bytes() == source.read_bytes(), f"{source.name} differs between the library and the build"
+
+
+def test_a_page_can_mount_a_shared_module(tmp_path):
+    """The end of the chain: the directive accepts the slug and the element is rendered.
+
+    The registry unions the book's slugs with the library's, and this proves it through
+    a real build rather than by reading the two sets — a page that names a shared module
+    must come out with a `<maths-figure>` for it and a loader to mount it.
+    """
+    from textbook import pipeline
+
+    shared = set(shared_modules())
+    assert shared, "the shared library is empty, so this test proves nothing"
+
+    found = None
+    for book in BOOKS:
+        for page in book.docs.rglob("*.md"):
+            for match in re.finditer(r"^:::figure[ \t]+([a-z0-9-]+)", page.read_text(encoding="utf-8"), re.M):
+                if match.group(1) in shared:
+                    found = (book, page, match.group(1))
+                    break
+            if found:
+                break
+        if found:
+            break
+
+    assert found, (
+        "no page mounts a shared module, so the library has no user and this test would "
+        "prove nothing. Either mount one or delete the library."
+    )
+    book, page, slug = found
+    out = tmp_path / "site"
+    pipeline.build(book.id, book.default_profile.id, out=out, index=False)
+
+    built = [
+        p for p in out.rglob("*.html") if f'data-figure="{slug}"' in p.read_text(encoding="utf-8")
+    ]
+    assert built, f"{page.relative_to(repo_root())} names the shared figure {slug} and the built site has no such element"

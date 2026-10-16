@@ -92,6 +92,41 @@ SHARED_DIRS: tuple[str, ...] = ("assets/figures/kit",)
 # by `pipeline.copy_assets`, so there is one list rather than two.
 SHARED_FIGURE_FILES: tuple[str, ...] = ("figures.js", "kit.js")
 
+#: The shared figure library: modules in `assets/figures/` that more than one book
+#: mounts.
+#:
+#: **Why a directory rather than a list.** A figure module is mounted by bare slug —
+#: the loader runs `import(`./${slug}.js`)` — so a shared module has to sit *beside the
+#: loader* in the built tree, not in a subdirectory. `assets/figures/` already holds
+#: the loader, the kit and the kit's layers, and a figure module dropped in beside them
+#: resolves `./kit.js` in the source and in the build alike. So the rule is the same one
+#: a book's own directory uses:
+#:
+#: > every `*.js` in `assets/figures/` other than `SHARED_FIGURE_FILES` is a figure
+#: > module, and every book can mount it by its filename.
+#:
+#: A book's own module of the same name is an **error rather than an override**. Two
+#: modules with one slug would make the page's meaning depend on build order, and the
+#: book can always rename its own.
+FIGURE_LIBRARY = "assets/figures"
+
+
+def shared_figure_modules() -> dict[str, Path]:
+    """Every shared figure module, by slug.
+
+    Read by the directive's slug registry, by the test that checks every shared module
+    against the figure contract, and by nothing else — the build copies the directory
+    rather than reading this.
+    """
+    directory = repo_root() / FIGURE_LIBRARY
+    if not directory.is_dir():
+        return {}
+    return {
+        path.stem: path
+        for path in sorted(directory.glob("*.js"))
+        if path.name not in SHARED_FIGURE_FILES
+    }
+
 #: The three page kinds of a section, in the order a reader meets them.
 #:
 #: One tuple because there were four places that had to agree and no test between

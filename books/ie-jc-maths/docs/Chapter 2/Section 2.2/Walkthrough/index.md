@@ -99,6 +99,22 @@ $$(2x)^4 = 2^4 x^4 = 16x^4$$
 Add the indices on top first: $4^5\times4^3 = 4^8$. Then subtract:
 $4^8\div4^6 = 4^2 = 16$.
 
+## Test the laws
+
+:::figure index-laws-practice
+
+**Predict, then test.** Before you answer, say out loud which law you will use. Then
+work the index out first — write $2^3 \times 2^4$ as $2^7$ in your head — and only then
+work out the number.
+
+**Explain.** When you get one wrong, do not move on. Write down which of these happened:
+you added the indices when you should have multiplied them, you multiplied when you
+should have added them, or the arithmetic was right and the power was wrong. The three
+mistakes have three different fixes.
+
+A new question arrives every time you ask for one, so you can stay on this until you
+are getting three in a row.
+
 ## Progress check
 
 Back to the photocopier. The 141% button multiplies the width by $\sqrt2$, which

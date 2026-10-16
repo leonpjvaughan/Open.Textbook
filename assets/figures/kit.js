@@ -80,6 +80,7 @@ export {
   arrow,
   axes,
   bars,
+  camera3d,
   circle,
   curve,
   dots,
@@ -92,14 +93,18 @@ export {
   rect,
   scale,
   ticks,
+  vectorField,
+  venn,
 } from "./kit/draw.js";
-export { button, chooser, field, segmented, slider, textarea, toggle } from "./kit/controls.js";
+export { builder, button, chooser, field, notate, segmented, slider, textarea, toggle } from "./kit/controls.js";
 export {
   animate,
   answerBox,
   check,
+  exercise,
   notify,
   react,
+  practice,
   remember,
   seed,
   stepper,

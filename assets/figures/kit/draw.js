@@ -371,3 +371,341 @@ export function numberLine({ width = 560, min = -5, max = 5, step, label: axisLa
   // an open end is a `circle` with `class="fig-paper"` for the outer ring.
   return { draw, x: mapX, y: box.y, box };
 }
+
+/**
+ * A Venn diagram whose region labels are placed by geometry rather than by hand.
+ *
+ * The reason this is in the kit rather than in a module: **an atom in the wrong
+ * region teaches the opposite of the truth.** A hand-placed label is a judgement about
+ * whether a point is inside two overlapping circles, and the judgement is easy to get
+ * wrong and impossible to see when it is. So a region is declared as a predicate —
+ * inside these sets, outside those — and `venn()` finds the point that satisfies it
+ * and is furthest from every boundary, which centres the label in its own region by
+ * construction.
+ *
+ * It is also the one figure several books want *identically*: set notation is the same
+ * in GCSE Mathematics, in Junior Cycle Mathematics (8.4) and in Leaving Certificate
+ * Mathematics (10.4), so it is the first module in the shared library.
+ *
+ * ```js
+ * const v = venn({
+ *   circles: [{ id: "A", cx: 255, cy: 150, r: 88 }, { id: "B", cx: 325, cy: 150, r: 88 }],
+ *   regions: [
+ *     { id: "a", in: ["A"], out: ["B"], text: "A only" },
+ *     { id: "ab", in: ["A", "B"], text: "A ∩ B" },
+ *   ],
+ * });
+ * svg.innerHTML = v.draw + dots(...)   // v.points.ab is where the label goes
+ * ```
+ *
+ * @param {object} o
+ * @param {Array<{id: string, cx: number, cy: number, r: number, class?: string}>} o.circles
+ * @param {Array<{id: string, in?: string[], out?: string[], text?: string}>} o.regions
+ *   `in` are the sets the region is inside, `out` the sets it is outside. A region with
+ *   no `in` is the exterior.
+ * @param {object} [o.box]  the universal set's rectangle; default derives one
+ * @param {number} [o.step]  the sampling step in viewBox units; default 2
+ * @param {boolean} [o.labels]  draw each region's `text` at its point; default true
+ * @param {boolean} [o.rings]  draw the circles and the rectangle; default true
+ * @returns {{draw: string, points: Record<string, {x: number, y: number}>, circles: object}}
+ */
+export function venn({
+  circles = [],
+  regions = [],
+  box,
+  step = 2,
+  labels = true,
+  rings = true,
+  labelSize = SIZE.tick,
+} = {}) {
+  if (!circles.length) return { draw: "", points: {}, circles: circles };
+  // The frame has to reach each circle's **far** edge, not its near one. Taking the
+  // extent of `cx - r` alone gave a box that stopped at the rightmost left edge, so
+  // every region to the right of it was unreachable and silently absent from the
+  // result — half a Venn diagram, with no error.
+  const [minX, maxX] = [Math.min(...circles.map((c) => c.cx - c.r)), Math.max(...circles.map((c) => c.cx + c.r))];
+  const [minY, maxY] = [Math.min(...circles.map((c) => c.cy - c.r)), Math.max(...circles.map((c) => c.cy + c.r))];
+  const frame = box || {
+    x: minX - 34,
+    y: minY - 34,
+    width: maxX - minX + 68,
+    height: maxY - minY + 68,
+  };
+
+  const inside = (circle, x, y) => Math.hypot(x - circle.cx, y - circle.cy) <= circle.r;
+  // The distance to the nearest boundary: a circle's own edge, or the frame's. The
+  // point that maximises it is the one furthest into its region, which is where a
+  // label belongs.
+  const clearance = (x, y) => {
+    let nearest = Math.min(x - frame.x, frame.x + frame.width - x, y - frame.y, frame.y + frame.height - y);
+    for (const circle of circles) {
+      nearest = Math.min(nearest, Math.abs(Math.hypot(x - circle.cx, y - circle.cy) - circle.r));
+    }
+    return nearest;
+  };
+
+  const points = {};
+  for (const region of regions) {
+    const want = new Set(region.in || []);
+    const avoid = new Set(region.out || []);
+    let best = null;
+    let bestClearance = -Infinity;
+    for (let y = frame.y + step; y < frame.y + frame.height; y += step) {
+      for (let x = frame.x + step; x < frame.x + frame.width; x += step) {
+        // `true` to begin with: a region with nothing to avoid (the intersection) has
+        // no failing circle, and an exterior region only fails on the sets it is
+        // outside of. Starting this from `avoid.size > 0` rejected every candidate for
+        // every region that had no `out`, which silently produced half a diagram.
+        let ok = true;
+        for (const circle of circles) {
+          const isIn = inside(circle, x, y);
+          if (want.has(circle.id) && !isIn) { ok = false; break; }
+          if (avoid.has(circle.id) && isIn) { ok = false; break; }
+        }
+        if (!ok) continue;
+        const clear = clearance(x, y);
+        if (clear > bestClearance) {
+          bestClearance = clear;
+          best = { x, y };
+        }
+      }
+    }
+    if (best) points[region.id] = best;
+  }
+
+  let draw = "";
+  if (rings) {
+    draw += rect({ x: frame.x, y: frame.y, width: frame.width, height: frame.height, class: "fig-grid" });
+    for (const circle of circles) {
+      draw += `<circle cx="${coord(circle.cx)}" cy="${coord(circle.cy)}" r="${coord(circle.r)}" class="${circle.class || "fig-ink"}" fill="none" stroke-width="1.6"></circle>`;
+    }
+  }
+  if (labels) {
+    for (const region of regions) {
+      const point = points[region.id];
+      if (!point || !region.text) continue;
+      draw += label({ x: point.x, y: point.y + 5, text: region.text, size: labelSize, class: region.class || "text-ink" });
+    }
+  }
+  return { draw, points, circles: frame };
+}
+
+/**
+ * A vector field: arrows on a grid, drawn from a function.
+ *
+ * Six modules in `ie-lc-physics` alone hand-build this — the field of a bar magnet, of
+ * a wire, of two charges, of two plates, the force on a conductor, the field that turns
+ * a motor — and each of them re-derives the same two things: the direction of an arrow
+ * from a vector, and the conversion of that direction into SVG coordinates, where the
+ * y-axis counts the other way.
+ *
+ * The field function is given in **data units** and the mappers turn it into a
+ * direction, so a flipped axis cannot flip the arrows without also flipping the axes.
+ * Arrows are drawn at a fixed length because a field diagram shows *direction and
+ * relative strength*, and a proportional length on a coarse grid is unreadable; pass
+ * `strength` to vary it if the page is about magnitude.
+ *
+ * @param {object} o
+ * @param {(x: number, y: number) => [number, number]} o.field  the vector at a point
+ * @param {Function} o.x  the x mapper from `axes()`
+ * @param {Function} o.y  the y mapper from `axes()`
+ * @param {object} o.box  the plot box from `axes()`
+ * @param {number} [o.step]  grid spacing in SVG units; default 36
+ * @param {number} [o.length]  arrow length in SVG units; default 16
+ * @param {string} [o.class]  a `fig-*` class; default `fig-grid`
+ * @param {(x: number, y: number) => number} [o.strength]  scales the arrow length
+ */
+export function vectorField({
+  field,
+  x,
+  y,
+  box,
+  step = 36,
+  length = 16,
+  class: cls = "fig-grid",
+  head = 5,
+  strength,
+} = {}) {
+  let draw = "";
+  for (let px = box.x0; px <= box.x1; px += step) {
+    for (let py = box.y1; py <= box.y0; py += step) {
+      const [dx, dy] = field(x.invert(px), y.invert(py));
+      // The direction in SVG units, through the mappers — which is what makes a
+      // y-axis that counts upwards come out right.
+      const sx = x(x.invert(px) + dx) - px;
+      const sy = y(y.invert(py) + dy) - py;
+      const size = Math.hypot(sx, sy);
+      if (!(size > 0)) continue;
+      const scale = strength ? Math.min(1.6, Math.max(0.35, strength(x.invert(px), y.invert(py)))) : 1;
+      const reach = length * scale;
+      const ux = (sx / size) * reach;
+      const uy = (sy / size) * reach;
+      draw += arrow({ x1: px - ux / 2, y1: py - uy / 2, x2: px + ux / 2, y2: py + uy / 2, class: cls, width: 1.4, head });
+    }
+  }
+  return draw;
+}
+
+/**
+ * A camera for small 3D drawings: solids, 3D vectors, a plane.
+ *
+ * Not a 3D engine. It is a **fixed camera and a painter's algorithm**, which is all a
+ * textbook needs to draw a cuboid with its hidden edges dashed, and it is here because
+ * "can't do 3D" is a *content* limit rather than a presentational one: nets folding into
+ * solids, the volume of a prism as a stack of layers, and three perpendicular axes are
+ * all in the specifications and none of them can be drawn in a flat SVG.
+ *
+ * The camera looks at the origin from a yaw and a pitch, and `drawMesh` resolves
+ * visibility by winding: a face is **back-facing** when its projected vertices run the
+ * wrong way round, and an edge is hidden when every face containing it is back-facing.
+ * That rule is exact for a convex solid, which is every solid a school textbook draws,
+ * and it means a module states its geometry and nothing about the view.
+ *
+ * ```js
+ * const cam = camera3d({ width: 560, height: 300 });
+ * const cube = { vertices: [...], faces: [{ indices: [0,1,2,3] }, ...] };
+ * svg.innerHTML = cam.drawMesh(cube);
+ * ```
+ *
+ * @param {object} o
+ * @param {number} [o.yaw]  degrees anticlockwise about the vertical axis; default -32
+ * @param {number} [o.pitch]  degrees above the horizontal; default 22
+ * @param {number} [o.zoom]  a multiplier on the fitted size; default 1
+ * @returns {{project: Function, depth: Function, drawMesh: Function, centre: object}}
+ */
+export function camera3d({ width = 560, height = 300, yaw = -32, pitch = 22, zoom = 1, margin = 26 } = {}) {
+  const ry = (yaw * Math.PI) / 180;
+  const rx = (pitch * Math.PI) / 180;
+  const cosY = Math.cos(ry);
+  const sinY = Math.sin(ry);
+  const cosX = Math.cos(rx);
+  const sinX = Math.sin(rx);
+  const centre = { x: width / 2, y: height / 2 };
+
+  // The direction from the scene towards the camera, in world space: the gradient of
+  // the depth we sort on. A face is visible when its outward normal has a positive
+  // part along this, which is exact and — with the outward orientation below — does
+  // not care which way round a module happened to list a face's vertices.
+  const toward = [cosX * sinY, sinX, cosX * cosY];
+
+  // The rotate-then-project step. `depth` is what the painter's algorithm sorts on:
+  // bigger is nearer to the camera.
+  const raw = ([x, y, z]) => {
+    const ax = x * cosY - z * sinY;
+    const az = x * sinY + z * cosY;
+    return { ax, screenY: y * cosX - az * sinX, depth: y * sinX + az * cosX };
+  };
+
+  /** Project one point at a given scale, about a given screen centre. */
+  const at = (point, scale, origin) => {
+    const { ax, screenY } = raw(point);
+    return { x: origin.x + ax * scale, y: origin.y - screenY * scale, depth: raw(point).depth };
+  };
+
+  // `project` is the unfitted mapping, for a caller that has already worked out its
+  // own scale. `drawMesh` fits instead, because only it knows the whole geometry.
+  const project = (point) => at(point, zoom, centre);
+
+  const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+  const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+
+  const drawMesh = ({
+    vertices = [],
+    faces = [],
+    edges = [],
+    origin = [0, 0, 0],
+    hidden = "dashed",
+    backClass = "fig-grid",
+    frontClass = "fig-accent",
+    lineClass = "fig-ink",
+    hiddenClass = "fig-grid",
+    fill = false,
+    fillFront = 0.2,
+    fillBack = 0.07,
+  } = {}) => {
+    if (!vertices.length) return "";
+
+    // **Fit the geometry to the drawing.** The camera has no idea how big the solid is
+    // — the first version projected a unit cube to one pixel — so the caller states the
+    // vertices in its own units and this scales them to the box, minus a margin for the
+    // labels and the dashed edges.
+    const centred = vertices.map((v) => sub(v, origin));
+    const laid = centred.map((v) => raw(v));
+    const xs = laid.map((p) => p.ax);
+    const ys = laid.map((p) => p.screenY);
+    const spanX = Math.max(...xs) - Math.min(...xs);
+    const spanY = Math.max(...ys) - Math.min(...ys);
+    const usableX = Math.max(1, width - 2 * margin);
+    const usableY = Math.max(1, height - 2 * margin);
+    const fit = Math.min(spanX > 0 ? usableX / spanX : Infinity, spanY > 0 ? usableY / spanY : Infinity) * zoom;
+    const midX = (Math.max(...xs) + Math.min(...xs)) / 2;
+    const midY = (Math.max(...ys) + Math.min(...ys)) / 2;
+    const placed = laid.map((p) => ({
+      x: centre.x + (p.ax - midX) * fit,
+      y: centre.y - (p.screenY - midY) * fit,
+      depth: p.depth,
+    }));
+
+    // The solid's own centre, so a face's normal can be turned outward regardless of
+    // the order its vertices were written in.
+    const centroid = centred.reduce((acc, v) => [acc[0] + v[0] / centred.length, acc[1] + v[1] / centred.length, acc[2] + v[2] / centred.length], [0, 0, 0]);
+
+    const faceInfo = faces.map((face) => {
+      const world = face.indices.map((i) => centred[i]);
+      let normal = cross(sub(world[1], world[0]), sub(world[2], world[0]));
+      const faceCentre = world.reduce((acc, v) => [acc[0] + v[0] / world.length, acc[1] + v[1] / world.length, acc[2] + v[2] / world.length], [0, 0, 0]);
+      if (dot(normal, sub(faceCentre, centroid)) < 0) normal = [-normal[0], -normal[1], -normal[2]];
+      return { face, front: dot(normal, toward) > 0, points: face.indices.map((i) => placed[i]) };
+    });
+
+    let draw = "";
+    // The far faces first, so a filled solid reads as a solid rather than a cut-out.
+    for (const { face, front, points } of [...faceInfo].sort((a, b) => {
+      const mean = (f) => f.points.reduce((s, p) => s + p.depth, 0) / f.points.length;
+      return mean(a) - mean(b);
+    })) {
+      if (!fill) break;
+      const d = points.map((p, i) => `${i ? "L" : "M"}${coord(p.x)} ${coord(p.y)}`).join(" ") + " Z";
+      draw += path({
+        d,
+        class: face.class || (front ? frontClass : backClass),
+        fill: "currentColor",
+        opacity: front ? (face.opacity ?? fillFront) : (face.opacity ?? fillBack),
+        width: 1.2,
+      });
+    }
+
+    // Then the edges. An edge is hidden when **every** face that contains it is
+    // back-facing — the rule for a convex solid, which is every solid a school textbook
+    // draws.
+    const faceOf = new Map();
+    for (const { face, front } of faceInfo) {
+      const list = face.indices;
+      for (let i = 0; i < list.length; i += 1) {
+        const a = list[i];
+        const b = list[(i + 1) % list.length];
+        const key = a < b ? `${a}-${b}` : `${b}-${a}`;
+        faceOf.set(key, [...(faceOf.get(key) || []), front]);
+      }
+    }
+    for (const edge of edges) {
+      const [a, b] = edge.between;
+      const key = a < b ? `${a}-${b}` : `${b}-${a}`;
+      const list = faceOf.get(key) || [];
+      const isHidden = edge.hidden ?? (list.length > 0 && list.every((front) => !front));
+      draw += line({
+        x1: placed[a].x,
+        y1: placed[a].y,
+        x2: placed[b].x,
+        y2: placed[b].y,
+        class: isHidden ? hiddenClass : edge.class || lineClass,
+        width: isHidden ? 1.2 : 1.8,
+        dash: isHidden && hidden === "dashed" ? "4 3" : undefined,
+      });
+    }
+    return draw;
+  };
+
+  return { project, raw, toward, drawMesh, centre, width, height, zoom };
+}

@@ -13,7 +13,9 @@ and adding or previewing a bundle — that used to sit in the root.
 ## Figures: draw through the kit, and choose no number
 
 `assets/figures/kit.js` is the shared surface for every figure — **209 of 209 modules
-import it**. It is a barrel over six layers, and a module imports only what it needs:
+import it** — and `assets/figures/` is also the **shared figure library**, so a module
+that more than one book wants identically is written once and mounted by both. The kit is
+a barrel over six layers, and a module imports only what it needs:
 
 | Layer | File | The question it answers |
 |---|---|---|
@@ -78,11 +80,36 @@ measurements and the reasoning are in `research/design/reuse-audit.md`.
   shape to learn rather than two.
 - **Every control is a native element.** `<input>`, `<select>`, `<button>`, `<textarea>` —
   so the keyboard, the screen reader and the platform work without being rebuilt.
+- **Use `camera3d()` for a solid, not a flat drawing.** A fixed camera and a painter's
+  algorithm are enough for a cuboid with its hidden edges dashed, and "can't do 3D" is a
+  content limit rather than a presentational one: nets, prisms, stacks of layers and
+  three perpendicular axes are all in the specifications. A face's visibility is decided
+  by turning its normal outward from the solid's own centroid, so the order a module
+  writes its vertices does not matter — and `drawMesh` fits the geometry to the box,
+  because the camera has no idea how big the solid is.
+- **Use `vectorField()` for arrows on a grid.** Six modules in one book hand-build it and
+  each re-derives the arrow's direction and the SVG y-axis, which counts the other way.
+  The field is given in data units and turned into a direction *through the mappers*, so
+  a flipped axis cannot flip the arrows.
+- **Use `venn()` for set regions, and let it place the labels.** An atom in the wrong
+  region teaches the opposite of the truth, so a region is declared as a predicate and
+  the label goes at the point furthest inside it. Never place a Venn region by hand.
+- **Use `builder()` to assemble and validate in the module.** The kit owns the palette,
+  the order and the keyboard; whether an assembly is right is the page's lesson.
+- **Use `practice()` and `exercise()` for generated questions — and never claim they are
+  checked.** A banked answer is proved by a CAS at build time; a generated one cannot be,
+  so the claim is only that the answer is computed by the same function that wrote the
+  question, and the two cannot disagree. The *generator* is what is checked, and a page
+  built on it must not say "checked by a computer".
+- **A generated question is plain text, not LaTeX.** The maths hook runs at build time,
+  so `$…$` a module injects at runtime reaches the reader as dollar signs.
 
 `scripts/check-figure-kit.cjs` verifies all of this through a real page, including the
 phone-floor arithmetic, and `scripts/check-figure-kit-pure.mjs` verifies the drawing and
 formatting layers under plain `node`, so they are in the ordinary gate rather than only
-where Playwright is configured. `scripts/audit-figures.cjs --mobile` measures what
+where Playwright is configured. Between them they check the invariant that matters most
+for a Venn diagram — that every region's label lands inside the region it names, for two
+sets and three — and for a solid, that a cube's hidden edges number exactly three. `scripts/audit-figures.cjs --mobile` measures what
 actually reaches a 390px screen; the current state is **0 figures below 9px**.
 
 ## Before you add a shared thing
@@ -103,6 +130,17 @@ copies of the same component.
   into a module, run `grep -l` for the idiom across the other modules. `research/design/reuse-audit.md`
   records what was measured already, including the idioms that are deliberately **not**
   shared and the reason for each.
+- **If two books want the same figure, it belongs in `assets/figures/`.** That directory
+  is the shared figure library: a module dropped in beside the loader is mountable by its
+  filename in every book, because a figure is mounted by bare slug and the build copies
+  the library flat into each book's figures directory. A book may not define its own
+  module with the same name — the build fails and says so, because two modules with one
+  slug would make a page's meaning depend on build order.
+  **This is for a generic tool, not for a topic two syllabi treat differently.** The four
+  figures that were duplicated before the library existed — `circular-motion`,
+  `radiation-penetration`, `transformer-turns`, `vector-addition` — are each two books
+  solving one topic for different readers, which is a legitimate choice. What belongs
+  here is the same set-notation diagram, the same number line, the same coordinate grid.
 - **Before building a new interaction, read `ideas.md`.** It holds the queue of visual and
   interactive aids for the whole collection, the measured state of what exists, the evidence
   for each idea, and what a new one would cost. If the idea is there, build it and move it

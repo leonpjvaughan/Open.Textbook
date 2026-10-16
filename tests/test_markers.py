@@ -9,6 +9,7 @@ from types import SimpleNamespace
 import pytest
 
 from textbook import config as cfg
+from textbook import scaffold
 from textbook.book import discover_books
 from textbook.hooks import _fences, figures, problems
 
@@ -98,9 +99,15 @@ def test_every_marker_in_the_book_resolves(book):
     for bank in banks:
         assert (book.banks / f"{bank}.yaml").exists(), f"missing bank for :::answers {bank}"
     for slug in slugs:
-        assert (book.docs / "assets" / "figures" / f"{slug}.js").is_file(), (
-            f"missing figure module for {slug}"
-        )
+        # A slug is resolved by the book's own figures directory **or by the shared
+        # library**, because a figure that two books want identically is written once
+        # and mounted by both. Before the library existed this test was the check that
+        # a page could not name a figure nobody had written; it still is, and a shared
+        # module satisfies it in the same way a local one does.
+        assert (
+            (book.docs / "assets" / "figures" / f"{slug}.js").is_file()
+            or slug in scaffold.shared_figure_modules()
+        ), f"missing figure module for {slug}"
 
 
 @pytest.mark.parametrize("book", BOOKS, ids=lambda book: book.id)

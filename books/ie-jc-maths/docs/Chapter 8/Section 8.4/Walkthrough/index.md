@@ -38,6 +38,17 @@ The overlap is the intersection $A \cap B$. Everything inside the two circles
 together is the union $A \cup B$. Everything outside both circles is the complement
 $(A \cup B)'$.
 
+:::figure venn-regions
+
+**Predict, then test.** Before you touch the controls, write down which parts of the
+diagram $A \cap B$ picks out. Then choose $A \cap B$ and check. Now choose
+$(A \cup B)'$ and see which part lights up. Finally switch to three sets and try
+$A \cap B \cap C$.
+
+**Explain.** Write two sentences. Say how many parts of a two-set diagram $A$ picks
+out, and how many $(A \cup B)'$ picks out. Then say why $A \cap B$ is one part while
+$A \cup B$ is three.
+
 **Example 1.** In a class of 30 students, 18 play football, 12 play basketball and
 6 play both. Fill in the two-set diagram.
 

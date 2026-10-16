@@ -685,6 +685,22 @@ def copy_assets(book: books.Book, out: Path) -> list[str]:
             shutil.copy2(module, figures_dir / module.name)
             count += 1
         copied.append(f"{count} figure modules")
+
+    # The shared figure library: every module in `assets/figures/` that more than one
+    # book mounts, copied **flat** beside the loader because a figure is mounted by
+    # bare slug. A book's own module of the same name is an error rather than an
+    # override — see `shared_figure_modules` — so there is nothing to decide here.
+    library = root / scaffold.FIGURE_LIBRARY
+    shared = 0
+    if library.is_dir():
+        figures_dir.mkdir(parents=True, exist_ok=True)
+        for module in sorted(library.glob("*.js")):
+            if module.name in scaffold.SHARED_FIGURE_FILES:
+                continue
+            shutil.copy2(module, figures_dir / module.name)
+            shared += 1
+    if shared:
+        copied.append(f"{shared} shared figure modules")
     return copied
 
 

@@ -257,3 +257,154 @@ export function textarea(parent, { id = "", label = "", name = "", rows = 3, val
   mount(parent, holder);
   return input;
 }
+
+/**
+ * A builder: a palette of parts the reader adds to an assembly.
+ *
+ * One module in 209 does this by hand — `atom-builder`, where the reader adds protons,
+ * neutrons and electrons — and the same shape fits a circuit, a tree diagram, a Venn
+ * region, a prime-factor tree, a net folding into a solid, a nuclear equation, and a
+ * proof assembled from reasons. What they share is a set of parts, a way to add and
+ * remove them, and a drawing that follows.
+ *
+ * **It assembles, and the module validates.** The kit owns the palette, the order and
+ * the keyboard; whether the assembly is *right* is the page's lesson, so `builder()`
+ * never judges. The returned container carries a `.value` — the part ids in the order
+ * they were added — so `react(container, draw)` works like any other control, and a
+ * module reads the assembly to draw it.
+ *
+ * The parts are buttons with `aria-pressed`, so adding and removing is one key each and
+ * a screen reader announces the state.
+ *
+ * @param {object} o
+ * @param {Array<{id: string, label: string}>} o.parts
+ * @param {string[]} [o.value]  the parts already added, in order
+ * @param {number} [o.max]  the most the reader may add; 0 means no limit
+ * @returns {HTMLElement & {value: string[], reset: Function}}
+ */
+export function builder(parent, { id = "build", label = "", name = "", parts = [], value = [], max = 0 } = {}) {
+  const holder = document.createElement("div");
+  holder.className = "fig-control fig-builder";
+  holder.style.cssText = `${UI_FONT};grid-column:1 / -1`;
+  if (id) holder.classList.add(id);
+
+  if (label) {
+    const heading = document.createElement("p");
+    heading.textContent = label;
+    heading.style.cssText = `${UI_FONT};margin:0 0 .25rem`;
+    holder.append(heading);
+  }
+
+  const row = document.createElement("div");
+  row.style.cssText = "display:flex;flex-wrap:wrap;gap:.35rem";
+  const order = value.slice();
+  const buttons = new Map();
+
+  const announce = () => {
+    // **Do not assign `holder.value` here.** It has a setter, and the setter resets and
+    // notifies — so assigning it inside the notify recursed until the stack ran out.
+    // The getter already reads `order`, so there is nothing to copy: the value *is* the
+    // order, and the setter exists only for a caller.
+    for (const [partId, button] of buttons) {
+      const on = order.includes(partId);
+      button.setAttribute("aria-pressed", String(on));
+      button.dataset.count = String(order.filter((x) => x === partId).length);
+    }
+    // `input` and `change`, dispatched here rather than imported from `interact.js`:
+    // that module imports this one, so the dependency only goes one way.
+    holder.dispatchEvent(new Event("input", { bubbles: true }));
+    holder.dispatchEvent(new Event("change", { bubbles: true }));
+  };
+
+  for (const part of parts) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = part.label;
+    button.setAttribute("aria-pressed", "false");
+    button.setAttribute("aria-label", part.label);
+    button.style.cssText = UI_FONT;
+    button.addEventListener("click", () => {
+      if (max && order.length >= max) return;
+      order.push(part.id);
+      announce();
+    });
+    buttons.set(part.id, button);
+    row.append(button);
+  }
+
+  const undo = document.createElement("button");
+  undo.type = "button";
+  undo.textContent = "Undo";
+  undo.setAttribute("aria-label", "Remove the last part");
+  undo.style.cssText = UI_FONT;
+  undo.addEventListener("click", () => {
+    order.pop();
+    announce();
+  });
+  row.append(undo);
+  holder.append(row);
+
+  holder.reset = (next = []) => {
+    order.length = 0;
+    order.push(...next);
+    announce();
+  };
+  Object.defineProperty(holder, "value", { get: () => order.slice(), set: (next) => holder.reset(next) });
+  mount(parent, holder);
+  announce();
+  return holder;
+}
+
+/**
+ * A small mathematics keypad, for typing an answer on a phone.
+ *
+ * The collection had no way to take an answer, and the obstacle is not the checking —
+ * it is that `x^2` and `3/4` are awkward on a phone keyboard. `mathlive`, the obvious
+ * library, is 5.6 MB unpacked, which would be the largest dependency in the project
+ * for the sake of inserting characters.
+ *
+ * So this is a keypad and not a formula editor: each key inserts plain text at the
+ * caret and fires `input`, so whatever receives it is still an ordinary text field and
+ * the checker still reads a string. It deliberately does not render the mathematics —
+ * that is the maths hook's job, at build time.
+ */
+export function notate(parent, { input, label = "", keys } = {}) {
+  if (!input) throw new Error("notate: an input is required, because the keypad inserts into one");
+  const holder = document.createElement("div");
+  holder.className = "fig-control fig-notate";
+  holder.style.cssText = `${UI_FONT};grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:.25rem;margin-top:.25rem`;
+  if (label) holder.setAttribute("aria-label", label);
+
+  const KEYS = keys || [
+    { text: "/", name: "fraction bar" },
+    { text: "^", name: "power" },
+    { text: "(", name: "open bracket" },
+    { text: ")", name: "close bracket" },
+    { text: "−", name: "minus" },
+    { text: "π", name: "pi" },
+    { text: "√", name: "root" },
+    { text: "°", name: "degrees" },
+  ];
+
+  for (const key of KEYS) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = key.text;
+    button.setAttribute("aria-label", `Insert ${key.name || key.text}`);
+    button.style.cssText = `${UI_FONT};min-width:2.2rem`;
+    button.addEventListener("click", () => {
+      const start = input.selectionStart ?? input.value.length;
+      const end = input.selectionEnd ?? start;
+      input.value = input.value.slice(0, start) + key.text + input.value.slice(end);
+      const caret = start + key.text.length;
+      input.focus();
+      if (input.setSelectionRange) input.setSelectionRange(caret, caret);
+      // `input` rather than `change`: a keypad press is a value the moment it lands, and
+      // a checker listening for `input` is already wired.
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+    holder.append(button);
+  }
+  mount(parent, holder);
+  return holder;
+}

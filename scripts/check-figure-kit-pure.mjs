@@ -136,10 +136,62 @@ wantMatch("graph samples a function", kit.graph((t) => t * t, {
 }), /^<path d="M/);
 wantMatch("area closes a filled region", kit.area([[0, 0], [1, 1], [2, 0]], { x: (v) => v, y: (v) => v, baseline: 0 }), /currentColor/);
 wantMatch("dots draws a circle per point", kit.dots([[0, 0], [1, 1]], { x: (v) => v, y: (v) => v }), /^<circle/);
-want(
-  "bars draws one rect per item",
+want("bars draws one rect per item",
   (kit.bars([{ from: 0, to: 1, value: 5 }, { from: 1, to: 2, value: 8 }], { x: (v) => v * 50, y: (v) => v * 10 }).match(/<rect/g) || []).length,
   2,
+);
+
+// `venn()` places each region's label by geometry, because **an atom in the wrong
+// region teaches the opposite of the truth**. The invariant is checked directly: for
+// every region of a two-set and a three-set diagram, the point `venn()` chose must be
+// inside exactly the circles the region declares.
+function vennIsSound(circles, regions) {
+  const diagram = kit.venn({ circles, regions, labels: false, rings: false });
+  const wrong = [];
+  for (const region of regions) {
+    const point = diagram.points[region.id];
+    if (!point) {
+      wrong.push(`${region.id} was never placed`);
+      continue;
+    }
+    const inside = circles
+      .filter((c) => Math.hypot(point.x - c.cx, point.y - c.cy) <= c.r)
+      .map((c) => c.id)
+      .sort()
+      .join("");
+    const declared = (region.in || []).slice().sort().join("");
+    if (inside !== declared) wrong.push(`${region.id} landed in ${inside || "nothing"}, not ${declared || "nothing"}`);
+  }
+  return wrong;
+}
+const twoSets = [{ id: "A", cx: 250, cy: 148, r: 88 }, { id: "B", cx: 320, cy: 148, r: 88 }];
+const twoRegions = [
+  { id: "a", in: ["A"], out: ["B"] },
+  { id: "ab", in: ["A", "B"] },
+  { id: "b", in: ["B"], out: ["A"] },
+  { id: "outside", out: ["A", "B"] },
+];
+const threeSets = [
+  { id: "A", cx: 280, cy: 126, r: 82 },
+  { id: "B", cx: 228, cy: 204, r: 82 },
+  { id: "C", cx: 332, cy: 204, r: 82 },
+];
+const letters = ["A", "B", "C"];
+const threeRegions = [];
+for (let mask = 0; mask < 8; mask += 1) {
+  const inside = letters.filter((_, i) => mask & (1 << i));
+  threeRegions.push({ id: inside.join("") || "outside", in: inside, out: letters.filter((l) => !inside.includes(l)) });
+}
+for (const [what, circles, regions] of [["two", twoSets, twoRegions], ["three", threeSets, threeRegions]]) {
+  const wrong = vennIsSound(circles, regions);
+  if (wrong.length) {
+    problems.push(`venn() places a ${what}-set region wrongly, which would print a false diagram: ${wrong.join("; ")}`);
+  }
+}
+want(
+  "venn draws a ring per set and a frame",
+  (kit.venn({ circles: twoSets, regions: twoRegions, labels: false }).draw.match(/<circle|<rect/g) || []).length,
+  3,
 );
 wantMatch("label escapes and carries a class", kit.label({ x: 0, y: 0, text: "a & b" }), /class="text-ink">a &amp; b</);
 wantMatch("label honours its anchor and size", kit.label({ x: 0, y: 0, text: "0", anchor: "end", size: 18 }), /font-size="18" text-anchor="end"/);
@@ -205,6 +257,115 @@ want("the verdicts of check()", states, [
   "correct",
   "correct",
 ]);
+
+// ── a vector field ─────────────────────────────────────────────────────────────
+//
+// Six modules in one book hand-build this, and the two things they re-derive are the
+// arrow's direction and the SVG y-axis, which counts the other way. A field that points
+// the wrong way on one axis is a false diagram.
+const fieldAxes = kit.axes({ x: { domain: [-1, 1] }, y: { domain: [-1, 1] } });
+function fieldDirections(field) {
+  const markup = kit.vectorField({ field, x: fieldAxes.x, y: fieldAxes.y, box: fieldAxes.box, step: 60, length: 16 });
+  return [...markup.matchAll(/<line x1="([\d.-]+)" y1="([\d.-]+)" x2="([\d.-]+)" y2="([\d.-]+)"/g)].map((m) => ({
+    dx: Number(m[3]) - Number(m[1]),
+    dy: Number(m[4]) - Number(m[2]),
+  }));
+}
+const east = fieldDirections(() => [1, 0]);
+if (!east.length) problems.push("vectorField draws nothing");
+if (!east.every((d) => d.dx > 0)) problems.push("vectorField draws a +x field pointing the wrong way");
+const north = fieldDirections(() => [0, 1]);
+if (!north.every((d) => d.dy < 0)) {
+  problems.push(
+    "vectorField draws a +y field pointing down the screen. The y-axis counts the other " +
+      "way in SVG, and the direction has to go through the mappers to come out right.",
+  );
+}
+
+// ── a camera for small 3D drawings ─────────────────────────────────────────────
+//
+// The rule is the one a textbook uses: a solid's hidden edges are the ones whose every
+// face is turned away. A cube has exactly three, and a primitive that drew four or two
+// would make every 3D figure in the collection wrong in the same way.
+const cube = {
+  vertices: [
+    [-1, -1, -1], [1, -1, -1], [1, -1, 1], [-1, -1, 1],
+    [-1, 1, -1], [1, 1, -1], [1, 1, 1], [-1, 1, 1],
+  ],
+  // Deliberately inconsistent winding, to check that the outward orientation is what
+  // decides visibility rather than the order a module happened to write its vertices.
+  faces: [
+    { indices: [0, 1, 2, 3] }, { indices: [4, 5, 6, 7] }, { indices: [0, 1, 5, 4] },
+    { indices: [2, 3, 7, 6] }, { indices: [1, 2, 6, 5] }, { indices: [0, 3, 7, 4] },
+  ],
+  edges: [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4], [0, 4], [1, 5], [2, 6], [3, 7]].map(
+    (between) => ({ between }),
+  ),
+};
+const cam = kit.camera3d({ width: 560, height: 300 });
+const wire = cam.drawMesh(cube);
+if ((wire.match(/<line/g) || []).length !== 12) problems.push("camera3d does not draw a cube's twelve edges");
+// Three dashed edges among the twelve: the three incident to the hidden vertex.
+// Excluding a stroke-width of 2 from the count is awkward, so count the dash arrays.
+const ruled = kit.line({ x1: 0, y1: 0, x2: 1, y2: 1 });
+const bare = (wire.match(/<line/g) || []).length;
+const dashed = (wire.match(/stroke-dasharray/g) || []).length;
+if (ruled.includes("stroke-dasharray")) problems.push("the line mark carries a dash by default");
+if (dashed !== 3) {
+  problems.push(
+    `camera3d hides ${dashed} of a cube's ${bare} edges; a cube has exactly three hidden ` +
+      "ones, and the rule is that every face containing an edge is turned away",
+  );
+}
+const ys = [...wire.matchAll(/y1="([\d.-]+)"/g)].map((m) => Number(m[1]));
+if (Math.min(...ys) < 0 || Math.max(...ys) > 300) {
+  problems.push(`camera3d draws outside its box: y from ${Math.min(...ys)} to ${Math.max(...ys)}`);
+}
+if (/NaN/.test(wire)) problems.push("camera3d writes a NaN coordinate");
+if (!(wire.match(/<path/g) || []).length && cam.drawMesh({ ...cube, fill: true }).match(/<path/g)) {
+  // informational only: a wireframe declares no faces to fill
+}
+if ((cam.drawMesh({ ...cube, fill: true }).match(/<path/g) || []).length !== 6) {
+  problems.push("camera3d does not fill a cube's six faces");
+}
+if (!cam.project([0, 0, 0])) problems.push("camera3d has no project()");
+
+// ── a generated question ───────────────────────────────────────────────────────
+//
+// The claim here is **internal consistency, not verification**: the answer is computed
+// by the same function that wrote the question, so they cannot disagree. What can be
+// checked is that it is deterministic, that a different seed differs, and that the
+// answer agrees with the numbers the question states.
+const kinds = [
+  {
+    id: "hcf",
+    build(rng) {
+      const a = rng.int(2, 12) * 4;
+      const b = rng.int(2, 12) * 6;
+      const hcf = (x, y) => (y ? hcf(y, x % y) : x);
+      return { text: `Find the highest common factor of ${a} and ${b}.`, answer: hcf(a, b) };
+    },
+  },
+];
+const one = kit.exercise({ kinds, seed: 5 });
+const two = kit.exercise({ kinds, seed: 5 });
+want("a regenerated question is the same question", one.text, two.text);
+want("and the same answer", one.answer, two.answer);
+if (kit.exercise({ kinds, seed: 6 }).text === one.text) problems.push("a different seed gives the same question");
+let disagree = 0;
+for (let s = 1; s <= 300; s += 1) {
+  const quiz = kit.exercise({ kinds, seed: s });
+  const a = Number(quiz.text.match(/of (\d+)/)[1]);
+  const b = Number(quiz.text.match(/and (\d+)/)[1]);
+  const hcf = (x, y) => (y ? hcf(y, x % y) : x);
+  if (hcf(a, b) !== Number(quiz.answer)) disagree += 1;
+}
+if (disagree) {
+  problems.push(
+    `a generated answer disagrees with the numbers in its own question, in ${disagree} of ` +
+      "300 seeds. The only thing a generator claims is that the two cannot disagree.",
+  );
+}
 
 if (problems.length) {
   console.error("the figure kit's pure layer does not keep its contract:");

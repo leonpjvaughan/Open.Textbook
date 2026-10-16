@@ -99,7 +99,23 @@
   font-size: 1.05em;
 }
 
-/* Interactive figures read as instrument panels, not decoration. */
+/* Interactive figures read as instrument panels, not decoration.
+ *
+ * The tint is 4%, and it was 8% until the contrast of every figure token was measured
+ * against the panel this rule produces rather than against the page's paper. The panel
+ * is a *derived* surface — paper mixed with a little ink — and it is therefore darker
+ * than the paper, so the tint was quietly spending the margin the figure tokens need.
+ * Measured over every bundle and both schemes:
+ *
+ *     tint   fig_accent  fig_warn  fig_good  fig_grid   (margin over the floor)
+ *      8%       +0.02      +0.18     +0.06     +0.04
+ *      4%       +0.41      +0.57     +0.44     +0.32
+ *
+ * At 8% the accent cleared the 4.5:1 text floor by two hundredths — a palette edit
+ * anywhere near it would have broken it, and the failure would have looked like a
+ * theme change rather than a contrast one. The border, not the tint, is what makes the
+ * figure read as a panel, so 4% keeps the delineation and returns the margin.
+ */
 .md-typeset maths-figure {
   display: block;
   max-width: 46rem;
@@ -107,7 +123,7 @@
   padding: 1rem 1.1rem;
   border: 1px solid var(--md-default-fg-color--lightest);
   border-radius: 6px;
-  background: color-mix(in srgb, var(--md-default-bg-color) 92%, var(--md-default-fg-color) 8%);
+  background: color-mix(in srgb, var(--md-default-bg-color) 96%, var(--md-default-fg-color) 4%);
 }
 
 .md-typeset maths-figure figcaption,
