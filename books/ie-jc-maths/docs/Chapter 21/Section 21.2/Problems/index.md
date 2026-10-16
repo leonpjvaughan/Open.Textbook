@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 21.2 Probability as a number from 0 to 1 — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: SP.2
+Work independently. The questions and the answers are shown together at the end.
+
+Some questions ask you to **explain**. Say where the number came from: an
+experiment gives an estimate, and counting equally likely outcomes gives the
+theoretical probability.
+
+:::problems chapter-21-practice-21.2
+
+:::answers chapter-21-practice-21.2

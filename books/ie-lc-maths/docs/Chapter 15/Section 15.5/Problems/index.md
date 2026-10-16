@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.5 The isosceles triangle and its converse — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Find the two equal sides before you look for the equal angles. Name the theorem you use
+in every question that asks for a reason.
+
+:::problems chapter-15-practice-15.5
+
+:::answers chapter-15-practice-15.5

@@ -1,0 +1,127 @@
+# Practice set for 15.2 (strand 2, outcome 2.1). Every numeric check is proved by
+# sympy: the expression is the arithmetic the page claims and the answer is the
+# result. The `structured` records cover the proof of Theorem 1 and the explanation
+# of the common error. They prove that a model answer contains the declared ideas
+# **in order**; they do not prove the geometry, and they cannot. The mathematics of
+# a written argument stays a human judgement, so the model answer in `points` is the
+# thing to read, not a proof.
+chapter: 15
+problems:
+  - id: lc15-2-vertically-opposite
+    section: '15.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Two straight lines cross. One of the four angles is $65^\circ$. Find the angle
+      vertically opposite it.
+    answer_label: 'The vertically opposite angle'
+    check: {kind: evaluate, expression: '180 - (180 - 65)', answer: '65'}
+    answer_text: >-
+      The angle is $65^\circ$. Vertically opposite angles are equal, by Theorem 1.
+
+  - id: lc15-2-straight-line
+    section: '15.2'
+    tier: O
+    refs: ['2.1']
+    statement: 'Two angles on a straight line are $65^\circ$ and $x^\circ$. Find $x$.'
+    answer_label: '$x$'
+    check: {kind: evaluate, expression: '180 - 65', answer: '115'}
+    answer_text: >-
+      $x = 115^\circ$, because angles on a straight line add to $180^\circ$.
+
+  - id: lc15-2-at-a-point
+    section: '15.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Three angles around a point are $120^\circ$, $95^\circ$ and $x^\circ$. Find $x$.
+    answer_label: '$x$'
+    check: {kind: evaluate, expression: '360 - 120 - 95', answer: '145'}
+    answer_text: >-
+      $x = 145^\circ$, because the angles around a point add to $360^\circ$.
+
+  - id: lc15-2-algebraic
+    section: '15.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Two angles on a straight line are $4x$ and $5x$. Find $x$, then find the two
+      angles.
+    answer_label: '$x$, then the two angles'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '180 / 9', answer: '20'}
+        - {kind: evaluate, expression: '4 * (180 / 9)', answer: '80'}
+        - {kind: evaluate, expression: '5 * (180 / 9)', answer: '100'}
+    answer_text: >-
+      $9x = 180$, so $x = 20$. The angles are $80^\circ$ and $100^\circ$, and
+      $80 + 100 = 180$ as a straight line requires.
+
+  - id: lc15-2-reflex
+    section: '15.2'
+    tier: O
+    refs: ['2.1']
+    statement: 'An ordinary angle at a point measures $65^\circ$. Find the reflex angle.'
+    answer_label: 'The reflex angle'
+    check: {kind: evaluate, expression: '360 - 65', answer: '295'}
+    answer_text: >-
+      $295^\circ$. The ordinary angle and the reflex angle together fill a full angle of
+      $360^\circ$.
+
+  - id: lc15-2-bisector
+    section: '15.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      The ray $[AD$ bisects the angle $\angle BAC$, and $|\angle BAC| = 78^\circ$. Find
+      $|\angle BAD|$.
+    answer_label: '$|\angle BAD|$'
+    check: {kind: evaluate, expression: '78 / 2', answer: '39'}
+    answer_text: >-
+      $|\angle BAD| = 39^\circ$. A bisector cuts the angle into two equal parts.
+
+  - id: lc15-2-prove-theorem-1
+    section: '15.2'
+    tier: O
+    refs: ['2.1']
+    statement: 'Prove that vertically opposite angles are equal in measure.'
+    answer_label: 'The proof of Theorem 1'
+    check:
+      kind: structured
+      requires: [name-angles, first-straight-line, second-straight-line, subtract]
+      concepts: [supplementary, vertically-opposite]
+      points:
+        - id: name-angles
+          text: let two lines cross at O and name the four angles around O as a, b, c and d in order
+          concepts: [vertically-opposite]
+        - id: first-straight-line
+          text: a and b lie on one straight line, so a + b = 180 degrees
+          concepts: [supplementary]
+        - id: second-straight-line
+          text: c and b lie on the other straight line, so c + b = 180 degrees
+          concepts: [supplementary]
+        - id: subtract
+          text: the two totals are equal, so a + b = c + b, and subtracting b gives a = c
+          concepts: [vertically-opposite]
+    answer_text: >-
+      Both $a$ and $c$ are supplementary to the same angle $b$, so they are equal. The
+      same argument gives $b = d$.
+
+  - id: lc15-2-four-angles
+    section: '15.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Two straight lines cross. One angle is $42^\circ$. Find the other three angles, in
+      order around the crossing.
+    answer_label: 'The other three angles'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '180 - (180 - 42)', answer: '42'}
+        - {kind: evaluate, expression: '180 - 42', answer: '138'}
+    answer_text: >-
+      The angles are $42^\circ$, $138^\circ$, $42^\circ$ and $138^\circ$. The two
+      $42^\circ$ angles are vertically opposite, and the other two are supplementary to
+      $42^\circ$.

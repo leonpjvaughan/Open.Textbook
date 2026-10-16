@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 22.1 Populations, samples and surveys — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: SP.3
+Work independently. The questions and answers are shown together at the end.
+
+Several questions ask you to **explain** or **give a reason**. A reason means a
+sentence, not a number. Say who was asked, and whether that group is the right
+one.
+
+:::problems chapter-22-practice-22.1
+
+:::answers chapter-22-practice-22.1

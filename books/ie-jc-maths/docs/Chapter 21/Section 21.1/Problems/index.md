@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 21.1 Listing outcomes and the sample space — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: SP.1
+Work independently. The questions and the answers are shown together at the end.
+
+Some questions ask you to **explain**. An explanation means a sentence or two, not
+a number. Say what you counted and why the count is a product.
+
+:::problems chapter-21-practice-21.1
+
+:::answers chapter-21-practice-21.1

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 20.10 Constructing a proof — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.3
+Work independently. The questions and answers are shown together at the end.
+
+For each proof, write the given and the goal first. Then write one step on each
+line, with its reason. End with the conclusion.
+
+:::problems chapter-20-practice-20.10
+
+:::answers chapter-20-practice-20.10

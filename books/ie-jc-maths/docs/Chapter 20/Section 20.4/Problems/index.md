@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 20.4 Congruent triangles — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.3
+Work independently. The questions and answers are shown together at the end.
+
+When a question asks which test proves two triangles congruent, name the test and
+say what the data give you. A test with no reason is only half an answer.
+
+:::problems chapter-20-practice-20.4
+
+:::answers chapter-20-practice-20.4

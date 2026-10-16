@@ -1,0 +1,210 @@
+# Junior Cycle Mathematics, Chapter 22, section 22.9.
+#
+# Spotting a misleading graph and explaining why it misleads is a reason, so those
+# records use `structured`. The real difference behind a truncated axis, the area
+# exaggeration of a pictogram and the per-group comparison are arithmetic, and use
+# `evaluate` and `compare`.
+chapter: 22
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc22-22.9-truncated
+  section: '22.9'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A bar chart compares 12 with 14, and its vertical axis starts at 10. Explain why the chart is misleading.'
+  answer_label: 'Explain why the truncated axis misleads.'
+  check:
+    kind: structured
+    requires: [state-problem, give-reason]
+    concepts: [truncated-axis]
+    points:
+    - id: state-problem
+      text: 'The vertical axis starts at 10, not at 0, so the difference looks much larger than it is.'
+      concepts: [truncated-axis]
+    - id: give-reason
+      text: 'The bar for 14 rises 4 units above the base and the bar for 12 rises 2 units, so 14 looks twice as tall as 12, although the real difference is only 2.'
+      concepts: [truncated-axis]
+  answer_text: 'The axis starts at 10, not at 0, so the difference looks much larger than it is. The bar for 14 rises 4 units and the bar for 12 rises 2 units, so 14 looks twice as tall as 12. The real difference is only 2.'
+
+- id: jc22-22.9-pictogram
+  section: '22.9'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A pictogram uses one symbol for 20 visitors and a second symbol for 40 visitors. The second symbol is twice as tall and twice as wide as the first. How many times larger does the second symbol look?'
+  answer_label: 'Find how many times larger the symbol looks.'
+  check:
+    kind: evaluate
+    expression: 2 * 2
+    answer: '4'
+  answer_text: 'The second symbol looks $2\times2=4$ times larger, because it grew in both height and width. The value only doubled, so the picture exaggerates the change.'
+
+- id: jc22-22.9-short-range
+  section: '22.9'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A graph shows only the last three months of sales. Sales were high in those months but low all year. Explain why the graph is misleading.'
+  answer_label: 'Explain why the short time range misleads.'
+  check:
+    kind: structured
+    requires: [state-problem, give-reason]
+    concepts: [time-range]
+    points:
+    - id: state-problem
+      text: 'The graph shows only a short time range and leaves out the other nine months.'
+      concepts: [time-range]
+    - id: give-reason
+      text: 'The three good months hide the low sales in the rest of the year, so the reader sees a trend that is not there.'
+      concepts: [time-range]
+  answer_text: 'The graph is misleading because it shows only a short time range. The three good months hide the low sales in the rest of the year, so the reader sees a rise that does not match the whole year. A longer range would show the full trend.'
+
+- id: jc22-22.9-real-difference
+  section: '22.9'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A poster compares a mean sleep of 7.4 hours with a target of 8 hours. Work out the real difference.'
+  answer_label: 'Find the real difference.'
+  check:
+    kind: evaluate
+    expression: 8 - 7.4
+    answer: '3/5'
+  answer_text: 'The real difference is $8-7.4=0.6$ hours. On an axis that starts at 7.0, this small difference fills most of the axis, so it looks large.'
+
+- id: jc22-22.9-broken-axis
+  section: '22.9'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A bar chart has a zigzag on the vertical axis between 0 and 100. What does the zigzag tell you?'
+  answer_label: 'Explain what the zigzag means.'
+  check:
+    kind: structured
+    requires: [state-meaning, give-reason]
+    concepts: [broken-axis]
+    points:
+    - id: state-meaning
+      text: 'The zigzag marks a break in the axis, so the axis skips over a range of values.'
+      concepts: [broken-axis]
+    - id: give-reason
+      text: 'The break changes the scale, so you must not read the bar heights as if the axis ran straight from 0.'
+      concepts: [broken-axis]
+  answer_text: 'The zigzag marks a break in the axis. The axis skips over a range of values, so the scale is not straight from 0. You must not read the bar heights as if the axis were unbroken.'
+
+- id: jc22-22.9-group-sizes
+  section: '22.9'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A company has 100 shops and sells 200 items. A rival has 10 shops and sells 100 items. Compare the sales per shop and say why the totals are unfair.'
+  answer_label: 'Compare the sales per shop.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 200 / 100
+      answer: '2'
+    - kind: evaluate
+      expression: 100 / 10
+      answer: '10'
+    - kind: compare
+      relation: '<'
+      lhs: '2'
+      rhs: '10'
+  answer_text: 'The company sells $200\div100=2$ items per shop, and the rival sells $100\div10=10$ items per shop. The totals are unfair because the groups have different sizes. Per shop, the rival sells far more.'
+
+- id: jc22-22.9-axis-ratio
+  section: '22.9'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A bar chart compares 30 with 35, and its vertical axis starts at 25. How many times taller does the bar for 35 look than the bar for 30?'
+  answer_label: 'Find how many times taller the bar looks.'
+  check:
+    kind: evaluate
+    expression: (35 - 25) / (30 - 25)
+    answer: '2'
+  answer_text: 'Above the base of 25, the bar for 30 rises 5 units and the bar for 35 rises 10 units. So the bar for 35 looks $10\div5=2$ times taller, although the real difference is only 5.'
+
+- id: jc22-22.9-anchor-poster
+  section: '22.9'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The chapter problem. A poster compares the mean sleep of 7.4 hours with the target of 8 hours, and its vertical axis starts at 7.0. Explain why the poster is misleading.'
+  answer_label: 'Explain why the poster is misleading.'
+  check:
+    kind: structured
+    requires: [state-problem, give-reason]
+    concepts: [truncated-axis, honest-graph]
+    points:
+    - id: state-problem
+      text: 'The axis starts at 7.0, so it covers only 1 hour and makes the gap of 0.6 hours look large.'
+      concepts: [truncated-axis]
+    - id: give-reason
+      text: 'On an axis from 0 to 8, both bars would be tall and close together, which is the honest picture of a small real difference.'
+      concepts: [honest-graph]
+  answer_text: 'The poster is misleading because its axis starts at 7.0. The axis covers only 1 hour, so the real gap of 0.6 hours fills most of it and looks large. On an axis from 0 to 8, both bars would be tall and close together, which shows the small real difference honestly.'
+
+- id: jc22-22.9-honest-fix
+  section: '22.9'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A bar chart has a truncated vertical axis. Give one way to redraw it so that it is honest.'
+  answer_label: 'Suggest an honest redraw.'
+  check:
+    kind: structured
+    requires: [give-fix]
+    concepts: [honest-graph, truncated-axis]
+    points:
+    - id: give-fix
+      text: 'Start the vertical axis at 0, or mark the break with a clear zigzag so the reader knows the axis is cut.'
+      concepts: [honest-graph, truncated-axis]
+  answer_text: 'Start the vertical axis at 0, so the bars show the true sizes. If the data needs a narrow range, mark the break with a clear zigzag and a label, so the reader knows the axis does not start at 0.'
+
+- id: jc22-22.9-percentages
+  section: '22.9'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'School A has 20 of 50 students in a club. School B has 30 of 100 students in a club. Which school has the higher proportion in a club?'
+  answer_label: 'Compare the proportions.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 20 / 50
+      answer: '2/5'
+    - kind: evaluate
+      expression: 30 / 100
+      answer: '3/10'
+    - kind: compare
+      relation: '>'
+      lhs: '2/5'
+      rhs: '3/10'
+  answer_text: 'School A has $20\div50=0.4$, or 40%, in a club. School B has $30\div100=0.3$, or 30%. School A has the higher proportion, even though School B has the larger number of students. Compare proportions when the group sizes differ.'
+
+- id: jc22-22.9-five-checks
+  section: '22.9'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A bar chart has a vertical axis that starts at 40 and a zigzag at the bottom. The bars are 3D. Name two ways the chart can mislead.'
+  answer_label: 'Name two ways the chart can mislead.'
+  check:
+    kind: structured
+    requires: [name-first, name-second]
+    concepts: [truncated-axis, broken-axis, three-d]
+    points:
+    - id: name-first
+      text: 'The axis starts at 40, not at 0, so small differences look large. The zigzag marks a break, which hides the true scale.'
+      concepts: [truncated-axis, broken-axis]
+    - id: name-second
+      text: 'The 3D effect changes the height of the bars through perspective, so the bars are not drawn to scale.'
+      concepts: [three-d]
+  answer_text: 'The axis starts at 40, not at 0, so small differences look large, and the zigzag marks a break that hides the true scale. The 3D effect also changes the apparent height of the bars through perspective, so they are not drawn to scale.'

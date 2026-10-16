@@ -1,0 +1,149 @@
+# Junior Cycle Mathematics, Chapter 21, section 21.4.
+#
+# The complement is one subtraction, `1 - P(A)`, so every record is an
+# `evaluate` on that difference. Two records use the complement twice, because
+# "at least one" is easier through its opposite. The `structured` record asks
+# the reader to explain why an event and its complement add to 1.
+chapter: 21
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc21-21.4-rain
+  section: '21.4'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'The probability that it rains tomorrow is $0.3$. Find the probability that it does not rain.'
+  answer_label: 'Find the probability that it does not rain.'
+  check:
+    kind: evaluate
+    expression: 1-0.3
+    answer: '0.7'
+  answer_text: '$1-0.3=0.7$. Raining and not raining are complements: one of them must happen, so their probabilities add to 1.'
+
+- id: jc21-21.4-no-prize
+  section: '21.4'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'In the open-day game the probability of winning a prize is $\frac38$. Find the probability of winning no prize.'
+  answer_label: 'Find the probability of winning no prize.'
+  check:
+    kind: evaluate
+    expression: 1-3/8
+    answer: '5/8'
+  answer_text: '$1-\frac38=\frac58$. The prize and no prize cover every play, so their probabilities add to 1. Because $\frac58$ is more than one half, a player is more likely to win nothing than to win something.'
+
+- id: jc21-21.4-not-red
+  section: '21.4'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A bag holds some counters. The probability of taking a red counter is $\frac25$. Find the probability of not taking a red counter.'
+  answer_label: 'Find the probability of not taking a red counter.'
+  check:
+    kind: evaluate
+    expression: 1-2/5
+    answer: '3/5'
+  answer_text: '$1-\frac25=\frac35$. Red and not red are complements, so the two probabilities add to 1: $\frac25+\frac35=1$.'
+
+- id: jc21-21.4-not-six
+  section: '21.4'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A fair six-sided die is rolled. Find the probability that the result is not a 6.'
+  answer_label: 'Find the probability that the result is not a 6.'
+  check:
+    kind: evaluate
+    expression: 1-1/6
+    answer: '5/6'
+  answer_text: '$1-\frac16=\frac56$. The five results 1, 2, 3, 4 and 5 are not a 6, so 5 of the 6 outcomes match. The complement gives the same answer more quickly.'
+
+- id: jc21-21.4-not-blue
+  section: '21.4'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A spinner lands on blue with probability $0.45$. Find the probability that it does not land on blue.'
+  answer_label: 'Find the probability that it does not land on blue.'
+  check:
+    kind: evaluate
+    expression: 1-0.45
+    answer: '0.55'
+  answer_text: '$1-0.45=0.55$. The two events are complements, so their probabilities add to 1: $0.45+0.55=1$.'
+
+- id: jc21-21.4-two-coins-head
+  section: '21.4'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A fair coin is tossed twice. Find the probability of at least one head.'
+  answer_label: 'Find the probability of at least one head.'
+  check:
+    kind: evaluate
+    expression: 1-1/4
+    answer: '3/4'
+  answer_text: '$1-\frac14=\frac34$. The only way to avoid at least one head is $TT$, and its probability is $\frac12\times\frac12=\frac14$. Using the complement is quicker than counting the three outcomes $HH$, $HT$ and $TH$ one at a time.'
+
+- id: jc21-21.4-two-rolls-six
+  section: '21.4'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A fair six-sided die is rolled twice. Find the probability of at least one 6.'
+  answer_label: 'Find the probability of at least one 6.'
+  check:
+    kind: evaluate
+    expression: 1-(5/6)*(5/6)
+    answer: '11/36'
+  answer_text: 'The complement of at least one 6 is no 6 at all. The probability of no 6 on one roll is $\frac56$, so on two rolls it is $\frac56\times\frac56=\frac{25}{36}$. Then $1-\frac{25}{36}=\frac{11}{36}$.'
+
+- id: jc21-21.4-three-coins-head
+  section: '21.4'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A fair coin is tossed three times. Find the probability of at least one head.'
+  answer_label: 'Find the probability of at least one head.'
+  check:
+    kind: evaluate
+    expression: 1-1/8
+    answer: '7/8'
+  answer_text: '$1-\frac18=\frac78$. The only outcome with no head is $TTT$, and $\frac12\times\frac12\times\frac12=\frac18$. So at least one head has probability $\frac78$.'
+
+- id: jc21-21.4-not-vowel
+  section: '21.4'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A letter is chosen at random from the 26 letters of the alphabet. Find the number of letters that are not vowels.'
+  answer_label: 'Find the number of letters that are not vowels.'
+  check:
+    kind: evaluate
+    expression: 26-5
+    answer: '21'
+  answer_text: '$26-5=21$. The five vowels are A, E, I, O and U, so 21 of the 26 letters are not vowels. The probability of not a vowel is $\frac{21}{26}$.'
+
+- id: jc21-21.4-explain-sum
+  section: '21.4'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A bag holds 4 green counters and 1 yellow counter. Explain why the probability of green and the probability of yellow add to 1.'
+  answer_label: 'Explain why the two probabilities add to 1.'
+  check:
+    kind: structured
+    requires: [green, yellow, cover-all]
+    concepts: [complement]
+    points:
+    - id: green
+      text: 'The probability of green is $\frac45$, because 4 of the 5 equally likely counters are green.'
+      concepts: [complement]
+    - id: yellow
+      text: 'The probability of yellow is $\frac15$, because 1 of the 5 counters is yellow.'
+      concepts: [complement]
+    - id: cover-all
+      text: 'Every counter is green or yellow and no counter is both, so the two events cover the whole sample space and $\frac45+\frac15=1$.'
+      concepts: [complement]

@@ -1,0 +1,168 @@
+# Junior Cycle Mathematics, Chapter 21, section 21.1.
+#
+# A sample space is a list, and a CAS cannot check a list. What it can check is
+# the count: the fundamental principle of counting multiplies the numbers of
+# choices, so each record here proves the product the reader should reach. The
+# one question that asks the reader to explain the principle uses `structured`,
+# which proves the model answer contains its declared steps in order and covers
+# its concept. It proves nothing about whether the explanation is the best one.
+chapter: 21
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc21-21.1-two-coins
+  section: '21.1'
+  tier: O
+  refs:
+  - SP.1
+  statement: 'A fair coin is tossed twice. How many outcomes are in the sample space?'
+  answer_label: 'How many outcomes are in the sample space?'
+  check:
+    kind: evaluate
+    expression: 2*2
+    answer: '4'
+  answer_text: 'Four: $HH$, $HT$, $TH$ and $TT$. The first toss has 2 outcomes and the second toss has 2, so $2\times2=4$. Listing the second toss in the same order for each first toss is what stops you missing one.'
+
+- id: jc21-21.1-die-coin
+  section: '21.1'
+  tier: O
+  refs:
+  - SP.1
+  statement: 'A fair six-sided die is rolled and a coin is tossed. How many outcomes are in the sample space?'
+  answer_label: 'How many outcomes are in the sample space?'
+  check:
+    kind: evaluate
+    expression: 6*2
+    answer: '12'
+  answer_text: 'Twelve. Each of the 6 die results can go with heads or with tails, so $6\times2=12$. You can write the space as a table with 6 rows and 2 columns.'
+
+- id: jc21-21.1-menu
+  section: '21.1'
+  tier: O
+  refs:
+  - SP.1
+  statement: 'A cafe offers 3 starters, 4 main courses and 2 desserts. How many different three-course meals are possible?'
+  answer_label: 'How many different three-course meals are possible?'
+  check:
+    kind: evaluate
+    expression: 3*4*2
+    answer: '24'
+  answer_text: 'Twenty-four. Multiply the choices at each stage: $3\times4\times2=24$. For each of the 12 starter-and-main pairs there are 2 desserts, so $12\times2=24$.'
+
+- id: jc21-21.1-two-dice
+  section: '21.1'
+  tier: O
+  refs:
+  - SP.1
+  statement: 'Two fair six-sided dice are rolled. How many outcomes are in the sample space?'
+  answer_label: 'How many outcomes are in the sample space?'
+  check:
+    kind: evaluate
+    expression: 6*6
+    answer: '36'
+  answer_text: 'Thirty-six. Each die has 6 results, so $6\times6=36$. A table with the first die down the side and the second die across the top shows all 36 outcomes, and it shows that $(2,5)$ and $(5,2)$ are different outcomes.'
+
+- id: jc21-21.1-spinner-die
+  section: '21.1'
+  tier: O
+  refs:
+  - SP.1
+  statement: 'A spinner has 3 equal sectors and a fair die is rolled. How many outcomes are in the sample space?'
+  answer_label: 'How many outcomes are in the sample space?'
+  check:
+    kind: evaluate
+    expression: 3*6
+    answer: '18'
+  answer_text: 'Eighteen. The spinner has 3 outcomes and the die has 6, so $3\times6=18$. The order of the two stages does not change the count.'
+
+- id: jc21-21.1-code
+  section: '21.1'
+  tier: O
+  refs:
+  - SP.1
+  statement: 'A code is made from one letter chosen from A, B, C and one digit chosen from 1, 2, 3, 4. How many different codes are possible?'
+  answer_label: 'How many different codes are possible?'
+  check:
+    kind: evaluate
+    expression: 3*4
+    answer: '12'
+  answer_text: 'Twelve. There are 3 letters and 4 digits, so $3\times4=12$ codes. For each letter there are 4 digits, which gives A1, A2, A3, A4 and so on.'
+
+- id: jc21-21.1-two-dice-seven
+  section: '21.1'
+  tier: O
+  refs:
+  - SP.1
+  statement: 'Two fair dice are rolled. How many of the 36 outcomes have a total of 7?'
+  answer_label: 'How many outcomes have a total of 7?'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1+6
+      answer: '7'
+    - kind: evaluate
+      expression: 2+5
+      answer: '7'
+    - kind: evaluate
+      expression: 3+4
+      answer: '7'
+    - kind: evaluate
+      expression: 4+3
+      answer: '7'
+    - kind: evaluate
+      expression: 5+2
+      answer: '7'
+    - kind: evaluate
+      expression: 6+1
+      answer: '7'
+  answer_text: 'Six: $(1,6)$, $(2,5)$, $(3,4)$, $(4,3)$, $(5,2)$ and $(6,1)$. Work along the table from the top left to the bottom right and the six pairs appear in order.'
+
+- id: jc21-21.1-two-children
+  section: '21.1'
+  tier: O
+  refs:
+  - SP.1
+  statement: 'A family has two children. How many outcomes are in the sample space for the order of boys and girls?'
+  answer_label: 'How many outcomes are in the sample space?'
+  check:
+    kind: evaluate
+    expression: 2*2
+    answer: '4'
+  answer_text: 'Four: $BB$, $BG$, $GB$ and $GG$. The two middle outcomes are different, because the older child and the younger child are separate positions. That is why $2\times2=4$ and not 3.'
+
+- id: jc21-21.1-three-coins
+  section: '21.1'
+  tier: O
+  refs:
+  - SP.1
+  statement: 'A fair coin is tossed three times. How many outcomes are in the sample space?'
+  answer_label: 'How many outcomes are in the sample space?'
+  check:
+    kind: evaluate
+    expression: 2*2*2
+    answer: '8'
+  answer_text: 'Eight. Each toss doubles the number of outcomes: $2\times2\times2=8$. They run from $HHH$ to $TTT$, and you can list them by taking every pair from the first two tosses and adding $H$ and then $T$.'
+
+- id: jc21-21.1-explain
+  section: '21.1'
+  tier: O
+  refs:
+  - SP.1
+  statement: 'A menu has 3 starters and 4 main courses. Explain why there are $3\times4=12$ meals, and not $3+4=7$.'
+  answer_label: 'Explain why the number of meals is a product.'
+  check:
+    kind: structured
+    requires: [count-first, pair-with-second, multiply]
+    concepts: [fundamental-principle]
+    points:
+    - id: count-first
+      text: 'The first choice has 3 outcomes and the second choice has 4 outcomes.'
+      concepts: [fundamental-principle]
+    - id: pair-with-second
+      text: 'Each starter can be paired with each of the 4 main courses, so the pairs are counted, not added.'
+      concepts: [fundamental-principle]
+    - id: multiply
+      text: 'Counting the pairs gives $3\times4=12$ meals, while adding would give only 7 and would miss the pairings.'
+      concepts: [fundamental-principle]

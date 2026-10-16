@@ -1,0 +1,148 @@
+# Practice set for 15.7 (strand 2, outcome 2.1). A construction is a sequence of
+# moves, so most records here are `structured`: they prove that a model answer
+# contains the declared steps **in order**, and that is all. A `structured` record
+# cannot draw the figure, and it cannot prove that the construction is correct; that
+# is why the `points` list gives the reason for each method, and a person checks it.
+# The numeric checks are proved by sympy, and they cover the arithmetic of dividing an
+# angle or a segment.
+chapter: 15
+problems:
+  - id: lc15-7-bisect-90
+    section: '15.7'
+    tier: O
+    refs: ['2.1']
+    statement: 'An angle of $90^\circ$ is bisected. Find the size of each part.'
+    answer_label: 'Each part'
+    check: {kind: evaluate, expression: '90 / 2', answer: '45'}
+    answer_text: >-
+      Each part is $45^\circ$. A bisector cuts the angle into two equal parts.
+
+  - id: lc15-7-bisect-twice
+    section: '15.7'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      An angle of $60^\circ$ is bisected, and then each half is bisected again. Find the
+      size of each of the four angles.
+    answer_label: 'Each of the four angles'
+    check: {kind: evaluate, expression: '60 / 4', answer: '15'}
+    answer_text: >-
+      Each angle is $15^\circ$. The first bisection gives two angles of $30^\circ$, and
+      the second bisection halves each of those.
+
+  - id: lc15-7-divide-three
+    section: '15.7'
+    tier: O
+    refs: ['2.1']
+    statement: 'A segment has length $21$ cm. It is divided into three equal parts. Find the length of each part.'
+    answer_label: 'The length of each part'
+    check: {kind: evaluate, expression: '21 / 3', answer: '7'}
+    answer_text: >-
+      Each part is $7$ cm. Construction 6 divides the segment without measuring it, but
+      the three parts are equal.
+
+  - id: lc15-7-divide-two
+    section: '15.7'
+    tier: O
+    refs: ['2.1']
+    statement: 'A segment has length $36$ cm. Find the distance from each end to the midpoint.'
+    answer_label: 'The distance from each end'
+    check: {kind: evaluate, expression: '36 / 2', answer: '18'}
+    answer_text: >-
+      $18$ cm. The perpendicular bisector, Construction 2, meets the segment at its
+      midpoint.
+
+  - id: lc15-7-perp-bisector-steps
+    section: '15.7'
+    tier: O
+    refs: ['2.1']
+    statement: 'Describe the steps for constructing the perpendicular bisector of a segment $[AB]$.'
+    answer_label: 'The steps of Construction 2'
+    check:
+      kind: structured
+      requires: [arc-from-a, arc-from-b, join-p-q]
+      concepts: [equal-compass-opening, perpendicular-bisector]
+      points:
+        - id: arc-from-a
+          text: with centre A, open the compass to more than half of AB and draw an arc on each side of AB
+          concepts: [equal-compass-opening]
+        - id: arc-from-b
+          text: with centre B and the same compass opening, draw arcs cutting the first two at P and Q
+          concepts: [equal-compass-opening]
+        - id: join-p-q
+          text: draw the line PQ, which is the perpendicular bisector of AB
+          concepts: [perpendicular-bisector]
+    answer_text: >-
+      The same compass opening from $A$ and from $B$ makes $P$ and $Q$ each the same
+      distance from $A$ as from $B$, so $PQ$ is the perpendicular bisector.
+
+  - id: lc15-7-perp-on-line-steps
+    section: '15.7'
+    tier: O
+    refs: ['2.1']
+    statement: 'Describe the steps for constructing the perpendicular to a line $l$ at a point $P$ on $l$.'
+    answer_label: 'The steps of Construction 4'
+    check:
+      kind: structured
+      requires: [arc-cut-a-b, arcs-from-a-b, join-p-q]
+      concepts: [equal-distances, perpendicular-bisector]
+      points:
+        - id: arc-cut-a-b
+          text: with centre P, draw an arc cutting l at A and at B, one on each side of P
+          concepts: [equal-distances]
+        - id: arcs-from-a-b
+          text: with centres A and B and a compass opening greater than half of AB, draw arcs crossing at Q
+          concepts: [equal-distances]
+        - id: join-p-q
+          text: draw the line PQ, which is perpendicular to l
+          concepts: [perpendicular-bisector]
+    answer_text: >-
+      $P$ and $Q$ are both the same distance from $A$ as from $B$, so $PQ$ is the
+      perpendicular bisector of $[AB]$ and is perpendicular to $l$.
+
+  - id: lc15-7-parallel-steps
+    section: '15.7'
+    tier: O
+    refs: ['2.1']
+    statement: 'Describe the steps for drawing a line through a point $P$ parallel to a line $l$.'
+    answer_label: 'The steps of Construction 5'
+    check:
+      kind: structured
+      requires: [draw-transversal, copy-angle, conclude-parallel]
+      concepts: [transversal, alternate-angles]
+      points:
+        - id: draw-transversal
+          text: draw any line through P that meets l at Q, giving a transversal
+          concepts: [transversal]
+        - id: copy-angle
+          text: at P, copy the angle PQA so that the copy is on the opposite side of PQ from A, and call the new ray PT
+          concepts: [transversal]
+        - id: conclude-parallel
+          text: the alternate angles PQA and QPT are equal, so the line through P and T is parallel to l by Theorem 3 part 1
+          concepts: [alternate-angles]
+    answer_text: >-
+      The copied angle makes the alternate angles equal, and equal alternate angles make
+      the two lines parallel.
+
+  - id: lc15-7-compass-opening
+    section: '15.7'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Explain why the compass opening must stay the same when you draw the two matching
+      arcs of a construction.
+    answer_label: 'Why the opening must not change'
+    check:
+      kind: structured
+      requires: [equal-distances, proof-fails]
+      concepts: [equal-compass-opening, perpendicular-bisector]
+      points:
+        - id: equal-distances
+          text: the same opening makes the two distances from the first centre equal to the two distances from the second centre
+          concepts: [equal-compass-opening]
+        - id: proof-fails
+          text: the proof of the construction needs those equal distances, so changing the opening breaks the proof and the line drawn is not the one asked for
+          concepts: [perpendicular-bisector]
+    answer_text: >-
+      The equal distances are what the proof depends on. A different opening gives a
+      different line, and the construction fails.

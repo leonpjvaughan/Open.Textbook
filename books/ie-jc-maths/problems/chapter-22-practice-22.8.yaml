@@ -1,0 +1,205 @@
+# Junior Cycle Mathematics, Chapter 22, section 22.8.
+#
+# Judging a claim is a reason, so those records use `structured`. An estimate
+# scaled from a sample to a population is an `evaluate`, so the verifier proves
+# the proportion the reader is shown.
+chapter: 22
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc22-22.8-small-sample
+  section: '22.8'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A headline says "Most students want a longer lunch break." The survey asked 8 students. Give one reason to question the claim.'
+  answer_label: 'Question the claim.'
+  check:
+    kind: structured
+    requires: [state-problem, give-reason]
+    concepts: [sample-size, claim]
+    points:
+    - id: state-problem
+      text: 'The sample is very small, so it cannot describe the whole school.'
+      concepts: [sample-size]
+    - id: give-reason
+      text: 'If another 8 students were asked, the result could be different, so the claim is too strong for the evidence.'
+      concepts: [claim]
+  answer_text: 'The sample is too small. Eight students cannot describe a whole school. If another 8 students were asked, the result could change, so the claim is too strong for the evidence.'
+
+- id: jc22-22.8-biased-claim
+  section: '22.8'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A survey about the new timetable is given only to students in the music room. Why should you question the result?'
+  answer_label: 'Explain why the result should be questioned.'
+  check:
+    kind: structured
+    requires: [state-bias, explain]
+    concepts: [bias, sample]
+    points:
+    - id: state-bias
+      text: 'The sample is biased, because it includes only students who use the music room.'
+      concepts: [bias]
+    - id: explain
+      text: 'Students who never go to the music room had no chance of being asked, so the result describes that group, not the school.'
+      concepts: [sample]
+  answer_text: 'The sample is biased. It includes only students who use the music room, so students who never go there had no chance of being asked. The result describes that group, not the whole school.'
+
+- id: jc22-22.8-eighty-percent
+  section: '22.8'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'An advert says that 80% of people prefer a drink. The survey asked 10 people. How many preferred the drink?'
+  answer_label: 'Find the number of people.'
+  check:
+    kind: evaluate
+    expression: 80 / 100 * 10
+    answer: '8'
+  answer_text: '80% of 10 is $0.8\times10=8$ people. A sample of 10 is very small, so the claim is weak even though the percentage looks large.'
+
+- id: jc22-22.8-mean-median
+  section: '22.8'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A report says the mean rent in a town is €1400, but the median is €1100. Which number describes a typical rent better? Explain.'
+  answer_label: 'Choose the better description and explain.'
+  check:
+    kind: structured
+    requires: [choose-number, give-reason]
+    concepts: [mean, median, extreme-value]
+    points:
+    - id: choose-number
+      text: 'The median of €1100 describes a typical rent better.'
+      concepts: [median]
+    - id: give-reason
+      text: 'A few very expensive homes pull the mean above the middle, so the mean is higher than most rents.'
+      concepts: [mean, extreme-value]
+  answer_text: 'The median of €1100 describes a typical rent better. A few very expensive homes pull the mean above the middle, so the mean of €1400 is higher than most rents.'
+
+- id: jc22-22.8-sport-cause
+  section: '22.8'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A survey finds that students who play sport score higher in tests. Can it conclude that sport raises test scores? Explain.'
+  answer_label: 'Decide whether the claim is supported.'
+  check:
+    kind: structured
+    requires: [state-answer, give-reason]
+    concepts: [correlation, causation]
+    points:
+    - id: state-answer
+      text: 'No. The survey shows a link, not a cause.'
+      concepts: [causation]
+    - id: give-reason
+      text: 'A third factor, such as a healthy routine, could affect both sport and test scores, so a correlation alone does not prove cause.'
+      concepts: [correlation]
+  answer_text: 'It cannot conclude that sport raises test scores. The survey shows a link. A third factor, such as a regular routine or good health, could affect both sport and test scores, so a correlation alone does not prove cause.'
+
+- id: jc22-22.8-half-of-four
+  section: '22.8'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A claim says "Half of all students cycle to school." The survey asked 4 students, and 2 cycle. What is wrong with the claim?'
+  answer_label: 'Explain what is wrong with the claim.'
+  check:
+    kind: structured
+    requires: [state-problem, give-reason]
+    concepts: [sample-size, claim]
+    points:
+    - id: state-problem
+      text: 'The claim generalises from a sample of only 4 students.'
+      concepts: [sample-size]
+    - id: give-reason
+      text: 'Half of 4 is 2, but such a small sample cannot describe all students, so the claim needs a much larger and fairer sample.'
+      concepts: [claim]
+  answer_text: 'The claim generalises from a sample of only 4 students. Half of 4 is 2, but a sample of 4 cannot describe all students. The claim needs a much larger and fairer sample.'
+
+- id: jc22-22.8-anchor-supported
+  section: '22.8'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The chapter problem. The survey found a mean sleep of 7.4 hours in a sample of 20 students. Write one statement that the survey supports.'
+  answer_label: 'Write a statement the survey supports.'
+  check:
+    kind: structured
+    requires: [state-supported]
+    concepts: [sample]
+    points:
+    - id: state-supported
+      text: 'In this sample of 20 students, the mean sleep was 7.4 hours.'
+      concepts: [sample]
+  answer_text: 'A supported statement is: "In this sample of 20 students, the mean sleep was 7.4 hours." It is also fair to say the mean for the school is probably near 7.4 hours, because 20 is a small sample.'
+
+- id: jc22-22.8-anchor-headline
+  section: '22.8'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The chapter problem. A headline says "Screens are stealing students'' sleep." Is the survey strong enough for this headline? Explain.'
+  answer_label: 'Decide whether the survey supports the headline.'
+  check:
+    kind: structured
+    requires: [state-answer, give-reason]
+    concepts: [correlation, causation, claim]
+    points:
+    - id: state-answer
+      text: 'No. The survey is not strong enough for the headline.'
+      concepts: [claim]
+    - id: give-reason
+      text: 'It shows a negative correlation in one sample of 20 students, and it does not prove that screens cause less sleep, because a third factor could explain the link.'
+      concepts: [correlation, causation]
+  answer_text: 'The survey is not strong enough for the headline. It shows a negative correlation between screen time and sleep in one sample of 20 students. It does not prove that screens cause less sleep, because a third factor could explain the link.'
+
+- id: jc22-22.8-estimate-360
+  section: '22.8'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A survey of 50 students finds that 30 walk to school. Estimate how many of 600 students walk to school.'
+  answer_label: 'Estimate the number in the population.'
+  check:
+    kind: evaluate
+    expression: 30 / 50 * 600
+    answer: '360'
+  answer_text: 'The sample proportion is $30\div50=0.6$. Scaling up gives $0.6\times600=360$. About 360 students walk to school. This is an estimate, not a count.'
+
+- id: jc22-22.8-estimate-150
+  section: '22.8'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A survey of 40 students finds that 12 cycle to school. Estimate how many of 500 students cycle to school.'
+  answer_label: 'Estimate the number in the population.'
+  check:
+    kind: evaluate
+    expression: 12 / 40 * 500
+    answer: '150'
+  answer_text: 'The sample proportion is $12\div40=0.3$. Scaling up gives $0.3\times500=150$. About 150 students cycle to school.'
+
+- id: jc22-22.8-not-supported
+  section: '22.8'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A survey of 20 students found a mean sleep of 7.4 hours. A claim says the mean sleep of every student in the school is exactly 7.4 hours. Explain why this claim is not supported.'
+  answer_label: 'Explain why the claim is not supported.'
+  check:
+    kind: structured
+    requires: [state-problem, give-reason]
+    concepts: [sample, estimate, claim]
+    points:
+    - id: state-problem
+      text: 'The value 7.4 hours is the mean of the sample, not of the whole school.'
+      concepts: [sample]
+    - id: give-reason
+      text: 'A sample gives an estimate with some uncertainty, so the school mean is probably near 7.4 hours but not exactly that value.'
+      concepts: [estimate, claim]
+  answer_text: 'The value 7.4 hours is the mean of the sample, not of the whole school. A sample gives an estimate with some uncertainty, so the school mean is probably near 7.4 hours but not exactly 7.4 hours.'

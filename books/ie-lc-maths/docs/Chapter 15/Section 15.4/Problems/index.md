@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.4 Parallel lines — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Check for the parallel marks before you use any angle rule. Name the rule for every angle
+you find, and give a reason with every proof step.
+
+:::problems chapter-15-practice-15.4
+
+:::answers chapter-15-practice-15.4

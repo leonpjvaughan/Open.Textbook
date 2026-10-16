@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 20.6 Parallelograms and their corollaries — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.3
+Work independently. The questions and answers are shown together at the end.
+
+When a question asks you to prove a result, draw the diagonal first and say which
+two triangles you are comparing. Name the congruence test, and say which sides or
+angles match.
+
+:::problems chapter-20-practice-20.6
+
+:::answers chapter-20-practice-20.6

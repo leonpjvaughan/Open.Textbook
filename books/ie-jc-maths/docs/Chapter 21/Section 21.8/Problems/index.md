@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 21.8 Expected frequency — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: SP.2
+Work independently. The questions and the answers are shown together at the end.
+
+Some questions ask you to **explain**. Say whether a difference between the
+expected and the observed number is ordinary, and say why.
+
+:::problems chapter-21-practice-21.8
+
+:::answers chapter-21-practice-21.8

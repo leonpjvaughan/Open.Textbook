@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 22.8 Interpreting data and questioning a claim — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: SP.3
+Work independently. The questions and answers are shown together at the end.
+
+Ask the four questions: who was asked, how many, what was asked, and what the
+number means. Then decide what the data supports.
+
+:::problems chapter-22-practice-22.8
+
+:::answers chapter-22-practice-22.8

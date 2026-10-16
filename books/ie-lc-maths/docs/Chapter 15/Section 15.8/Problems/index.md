@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.8 Writing a formal proof — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Use the four parts: Given, To prove, Construction, Proof. Give a reason for every line,
+and check that no reason repeats its own statement.
+
+:::problems chapter-15-practice-15.8
+
+:::answers chapter-15-practice-15.8

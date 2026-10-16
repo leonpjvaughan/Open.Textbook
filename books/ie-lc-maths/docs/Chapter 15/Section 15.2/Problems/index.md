@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.2 The first theorems on angles — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Name the rule you use for every angle you find. Write "angles on a straight line" or
+"angles at a point" or "vertically opposite", and check the answer against the rule.
+
+:::problems chapter-15-practice-15.2
+
+:::answers chapter-15-practice-15.2

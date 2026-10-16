@@ -1,0 +1,178 @@
+# Junior Cycle Mathematics, Chapter 22, section 22.2.
+#
+# Method choice and the identification of bias cannot be proved by a CAS, so those
+# records use `structured`. The systematic-sample arithmetic is an `evaluate`, so
+# the verifier proves the division the reader is shown.
+chapter: 22
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc22-22.2-define-bias
+  section: '22.2'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'What does it mean for a sample to be biased?'
+  answer_label: 'Define a biased sample.'
+  check:
+    kind: structured
+    requires: [define-bias, explain-effect]
+    concepts: [bias, sample]
+    points:
+    - id: define-bias
+      text: 'A biased sample favours one part of the population, so some members are more likely to be chosen than others.'
+      concepts: [bias]
+    - id: explain-effect
+      text: 'The answers then describe the favoured part, not the whole population.'
+      concepts: [sample]
+  answer_text: 'A biased sample favours one part of the population, so some members have a bigger chance of being chosen than others. The answers then describe that favoured part, not the whole population.'
+
+- id: jc22-22.2-fairer-method
+  section: '22.2'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A school wants to ask 20 students about the timetable. Method A asks the first 20 students at the gate. Method B picks 20 names at random from the roll. Which method is fairer? Explain.'
+  answer_label: 'Choose the fairer method and explain.'
+  check:
+    kind: structured
+    requires: [choose-method, give-reason]
+    concepts: [bias, random-sample]
+    points:
+    - id: choose-method
+      text: 'Method B is fairer.'
+      concepts: [random-sample]
+    - id: give-reason
+      text: 'Picking names at random gives every student the same chance, while the students at the gate are a convenience sample that misses many students.'
+      concepts: [bias]
+  answer_text: 'Method B is fairer. Picking 20 names at random gives every student the same chance of being chosen. The students at the gate are a convenience sample, and many students never pass that gate.'
+
+- id: jc22-22.2-systematic
+  section: '22.2'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A list has 250 names. A systematic sample takes every 10th name. How many names are chosen?'
+  answer_label: 'Find the number of names chosen.'
+  check:
+    kind: evaluate
+    expression: 250 / 10
+    answer: '25'
+  answer_text: 'There are $250 \div 10 = 25$ names chosen.'
+
+- id: jc22-22.2-bias-example
+  section: '22.2'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Give one way that a sample can be biased.'
+  answer_label: 'Give one way a sample can be biased.'
+  check:
+    kind: structured
+    requires: [give-example]
+    concepts: [bias]
+    points:
+    - id: give-example
+      text: 'A convenience sample asks only the people who are easiest to reach, such as students in one corridor, so everyone else is left out.'
+      concepts: [bias]
+  answer_text: 'A convenience sample asks only the people who are easiest to reach. For example, asking students in the computer room leaves out everyone who never goes there, so the sample favours one part of the school.'
+
+- id: jc22-22.2-library
+  section: '22.2'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A survey about reading is given only to students in the library. Explain the bias.'
+  answer_label: 'Explain the bias in the sample.'
+  check:
+    kind: structured
+    requires: [state-bias, explain]
+    concepts: [bias, sample]
+    points:
+    - id: state-bias
+      text: 'The sample is biased towards students who read a lot.'
+      concepts: [bias]
+    - id: explain
+      text: 'Students in the library are more likely to enjoy reading, so their answers overstate how much the whole school reads.'
+      concepts: [sample]
+  answer_text: 'The sample is biased towards students who read. Students in the library are more likely to enjoy reading than the average student, so their answers overstate how much the whole school reads. Students who never use the library have no chance of being asked.'
+
+- id: jc22-22.2-one-in-eight
+  section: '22.2'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A random sample takes 1 student in every 8 from a school of 480 students. How many students are in the sample?'
+  answer_label: 'Find the sample size.'
+  check:
+    kind: evaluate
+    expression: 480 / 8
+    answer: '60'
+  answer_text: 'The sample has $480 \div 8 = 60$ students.'
+
+- id: jc22-22.2-larger-sample
+  section: '22.2'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A student says that a larger sample always removes bias. Is this correct? Explain.'
+  answer_label: 'Decide whether a larger sample removes bias.'
+  check:
+    kind: structured
+    requires: [decide, give-reason]
+    concepts: [bias, sample-size]
+    points:
+    - id: decide
+      text: 'No. A larger sample does not remove a bias.'
+      concepts: [bias]
+    - id: give-reason
+      text: 'A larger sample reduces the random wobble, but if one part of the population was left out, the answers are still one-sided.'
+      concepts: [sample-size]
+  answer_text: 'A larger sample does not remove a bias. Size reduces the random wobble in the estimate, but if the method leaves out part of the population, the answers stay one-sided. Asking 200 students in the computer room is still biased.'
+
+- id: jc22-22.2-estimate-population
+  section: '22.2'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'In a random sample of 50 students, 18 say they walk to school. The school has 600 students. Estimate how many students in the whole school walk to school.'
+  answer_label: 'Estimate the number in the population.'
+  check:
+    kind: evaluate
+    expression: 18 / 50 * 600
+    answer: '216'
+  answer_text: 'The sample proportion is $18 \div 50$. Scaling up to 600 students gives $18 \div 50 \times 600 = 216$. About 216 students walk to school. This is an estimate, not a count.'
+
+- id: jc22-22.2-anchor
+  section: '22.2'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The chapter problem. Describe how to choose the 20 students for the sleep survey so that the sample is not biased.'
+  answer_label: 'Describe a fair way to choose the sample.'
+  check:
+    kind: structured
+    requires: [state-method, avoid-bias]
+    concepts: [random-sample, bias]
+    points:
+    - id: state-method
+      text: 'Number every student on the roll, then use a random number generator to pick 20 different numbers.'
+      concepts: [random-sample]
+    - id: avoid-bias
+      text: 'Every student then has the same chance of being chosen, so the sample is not biased towards one class or year group.'
+      concepts: [bias]
+  answer_text: 'Number every student on the roll from 1 to 600. Use a random number generator to pick 20 different numbers, and ask those students. Every student has the same chance of being chosen, so the sample is not biased towards one class, one year group or one part of the school.'
+
+- id: jc22-22.2-one-in-five
+  section: '22.2'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A systematic sample takes 1 student in every 5 from a school of 350 students. How many students are in the sample?'
+  answer_label: 'Find the sample size.'
+  check:
+    kind: evaluate
+    expression: 350 / 5
+    answer: '70'
+  answer_text: 'The sample has $350 \div 5 = 70$ students.'

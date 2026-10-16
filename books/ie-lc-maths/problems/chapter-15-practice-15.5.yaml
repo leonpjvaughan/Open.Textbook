@@ -1,0 +1,148 @@
+# Practice set for 15.5 (strand 2, outcome 2.1). The numeric checks are proved by
+# sympy: an `evaluate` for the arithmetic, a `solve` where an angle is fixed by an
+# equation, and a `compare` for the triangle inequality, where the claim is an
+# inequality rather than a value. The `structured` records cover the isosceles proof,
+# the comparison of sides with angles, and the corollary. A `structured` record proves
+# that a model answer contains the declared steps **in order**; it does not prove the
+# geometry, and the mathematics of the argument stays a human judgement. The `points`
+# list is the model answer the reader sees.
+chapter: 15
+problems:
+  - id: lc15-5-apex-to-base
+    section: '15.5'
+    tier: O
+    refs: ['2.1']
+    statement: 'An isosceles triangle has an apex angle of $100^\circ$. Find each base angle.'
+    answer_label: 'Each base angle'
+    check: {kind: evaluate, expression: '(180 - 100) / 2', answer: '40'}
+    answer_text: >-
+      Each base angle is $40^\circ$. The two base angles are equal by Theorem 2 part 1,
+      and the three angles add to $180^\circ$.
+
+  - id: lc15-5-base-to-apex
+    section: '15.5'
+    tier: O
+    refs: ['2.1']
+    statement: 'An isosceles triangle has a base angle of $55^\circ$. Find the apex angle.'
+    answer_label: 'The apex angle'
+    check: {kind: evaluate, expression: '180 - 2 * 55', answer: '70'}
+    answer_text: >-
+      The apex angle is $70^\circ$. Both base angles are $55^\circ$, so the apex angle is
+      $180 - 55 - 55$.
+
+  - id: lc15-5-algebraic
+    section: '15.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      An isosceles triangle has base angles of $2x$ each and an apex angle of $x$. Find
+      $x$, then find the apex angle.
+    answer_label: '$x$, then the apex angle'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: '2*x + 2*x + x = 180', variable: x, answer: ['36']}
+        - {kind: evaluate, expression: '2 * 36 + 2 * 36 + 36', answer: '180'}
+    symbols: {x: {real: true}}
+    answer_text: >-
+      The base angles are equal, so $2x + 2x + x = 180$, which gives $5x = 180$ and
+      $x = 36$. The apex angle is $36^\circ$ and each base angle is $72^\circ$.
+
+  - id: lc15-5-equilateral
+    section: '15.5'
+    tier: O
+    refs: ['2.1']
+    statement: 'An equilateral triangle has all three sides equal. Find each angle.'
+    answer_label: 'Each angle'
+    check: {kind: evaluate, expression: '180 / 3', answer: '60'}
+    answer_text: >-
+      Each angle is $60^\circ$. Two equal sides give two equal angles by Theorem 2
+      part 1, and repeating the argument makes all three angles equal.
+
+  - id: lc15-5-longest-side
+    section: '15.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In a triangle, $|\angle A| = 80^\circ$, $|\angle B| = 60^\circ$ and
+      $|\angle C| = 40^\circ$. Name the longest side and the shortest side.
+    answer_label: 'The longest and the shortest side'
+    check:
+      kind: structured
+      requires: [longest, shortest]
+      concepts: [greater-angle-greater-side]
+      points:
+        - id: longest
+          text: the longest side is opposite the largest angle, and the largest angle is A, so the longest side is BC
+          concepts: [greater-angle-greater-side]
+        - id: shortest
+          text: the shortest side is opposite the smallest angle, and the smallest angle is C, so the shortest side is AB
+          concepts: [greater-angle-greater-side]
+    answer_text: >-
+      The longest side is $BC$, opposite the $80^\circ$ angle at $A$. The shortest side is
+      $AB$, opposite the $40^\circ$ angle at $C$.
+
+  - id: lc15-5-inequality-no
+    section: '15.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A triangle is claimed to have sides $7$ cm, $4$ cm and $2$ cm. Show that these
+      lengths cannot form a triangle.
+    answer_label: 'Why the lengths cannot form a triangle'
+    check: {kind: compare, lhs: '4 + 2', rhs: '7', relation: '<'}
+    answer_text: >-
+      The two shorter sides add to $6$ cm, which is less than the longest side of $7$ cm.
+      Two sides of a triangle must be together greater than the third, by Theorem 8, so
+      these lengths cannot form a triangle.
+
+  - id: lc15-5-prove-isosceles
+    section: '15.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Prove that the angles opposite the equal sides of an isosceles triangle are equal.
+    answer_label: 'The proof of Theorem 2 part 1'
+    check:
+      kind: structured
+      requires: [state-equal-sides, compare-with-self, conclude-angles]
+      concepts: [sas, isosceles]
+      points:
+        - id: state-equal-sides
+          text: let triangle ABC have AB = AC
+          concepts: [isosceles]
+        - id: compare-with-self
+          text: compare triangle ABC with triangle ACB; the matching parts are AB = AC, AC = AB and angle A = angle A, so the triangles are congruent by SAS
+          concepts: [sas]
+        - id: conclude-angles
+          text: the congruence matches B with C, so angle B = angle C
+          concepts: [isosceles]
+    answer_text: >-
+      The triangle is congruent to itself with the labels $B$ and $C$ exchanged, by SAS.
+      The matching angles are equal.
+
+  - id: lc15-5-corollary
+    section: '15.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In an isosceles triangle, $D$ is the midpoint of the base $[BC]$. Show that the
+      line $AD$ is perpendicular to $BC$.
+    answer_label: 'The proof of the corollary'
+    check:
+      kind: structured
+      requires: [sss-congruence, equal-angles, right-angles]
+      concepts: [sss, supplementary]
+      points:
+        - id: sss-congruence
+          text: AB = AC, BD = DC because D is the midpoint, and AD is common, so triangle ABD is congruent to triangle ACD by SSS
+          concepts: [sss]
+        - id: equal-angles
+          text: the congruence gives angle ADB = angle ADC
+          concepts: [sss]
+        - id: right-angles
+          text: angles ADB and ADC lie on the straight line BC, so they add to 180 degrees; equal angles that add to 180 degrees are each 90 degrees
+          concepts: [supplementary]
+    answer_text: >-
+      $\triangle ABD \cong \triangle ACD$ by SSS, so $\angle ADB = \angle ADC$. The two
+      angles are supplementary, so each is $90^\circ$.

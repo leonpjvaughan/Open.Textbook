@@ -1,0 +1,154 @@
+# Practice set for 15.3 (strand 2, outcome 2.1). The numeric checks are proved by
+# sympy, and each one computes the matching part rather than repeating the given
+# number. The `structured` records cover the choice of congruence test and the reason
+# SSA fails. A `structured` record proves that a model answer contains its declared
+# ideas **in order**; it does not prove the geometry, because the verifier reads the
+# words. The model answer is the `points` list, and the reasoning in it is checked by
+# a person, not by the CAS.
+chapter: 15
+problems:
+  - id: lc15-3-name-sas
+    section: '15.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In two triangles, $|AB| = |A'B'|$, $|AC| = |A'C'|$ and
+      $|\angle A| = |\angle A'|$. Name the congruence test and say why it applies.
+    answer_label: 'The congruence test'
+    check:
+      kind: structured
+      requires: [identify-parts, included-angle]
+      concepts: [sas, congruence]
+      points:
+        - id: identify-parts
+          text: the two sides are AB and AC, and the angle is angle A
+          concepts: [sas]
+        - id: included-angle
+          text: angle A lies between the sides AB and AC, so the test is SAS, two sides and the included angle
+          concepts: [sas, congruence]
+    answer_text: >-
+      SAS. The angle $\angle A$ is between the sides $AB$ and $AC$, so the two triangles
+      are congruent: $\triangle ABC \cong \triangle A'B'C'$.
+
+  - id: lc15-3-name-asa
+    section: '15.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In two triangles, $|\angle B| = |\angle B'|$, $|\angle C| = |\angle C'|$ and
+      $|BC| = |B'C'|$. Name the congruence test and say which side lies between the two
+      angles.
+    answer_label: 'The congruence test'
+    check:
+      kind: structured
+      requires: [identify-side, test-asa]
+      concepts: [asa, congruence]
+      points:
+        - id: identify-side
+          text: the side BC lies between the angles at B and at C
+          concepts: [asa]
+        - id: test-asa
+          text: two angles and the side between them is ASA
+          concepts: [asa, congruence]
+    answer_text: >-
+      ASA. The side $BC$ lies between the two given angles, so
+      $\triangle ABC \cong \triangle A'B'C'$.
+
+  - id: lc15-3-sss-perimeter
+    section: '15.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Two triangles are congruent by SSS. The first has sides $7$ cm, $9$ cm and
+      $12$ cm. Find the perimeter of the second triangle.
+    answer_label: 'The perimeter'
+    check: {kind: evaluate, expression: '7 + 9 + 12', answer: '28'}
+    answer_text: >-
+      $28$ cm. Congruent triangles have matching sides, so the second triangle has the
+      same three side lengths and the same perimeter.
+
+  - id: lc15-3-matching-side
+    section: '15.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $\triangle ABC \cong \triangle PQR$. The perimeter of $\triangle ABC$ is $40$ cm,
+      with $|AB| = 12$ cm and $|BC| = 15$ cm. Find $|PR|$.
+    answer_label: '$|PR|$'
+    check: {kind: evaluate, expression: '40 - 12 - 15', answer: '13'}
+    answer_text: >-
+      $|AC| = 40 - 12 - 15 = 13$ cm. The letter order gives $A$ matching $P$ and $C$
+      matching $R$, so $|PR| = |AC| = 13$ cm.
+
+  - id: lc15-3-matching-angle
+    section: '15.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $\triangle ABC \cong \triangle PQR$. In $\triangle ABC$, $|\angle A| = 70^\circ$
+      and $|\angle B| = 50^\circ$. Find $|\angle R|$.
+    answer_label: '$|\angle R|$'
+    check: {kind: evaluate, expression: '180 - 70 - 50', answer: '60'}
+    answer_text: >-
+      $|\angle C| = 180 - 70 - 50 = 60^\circ$. The letter order gives $C$ matching $R$,
+      so $|\angle R| = 60^\circ$.
+
+  - id: lc15-3-ssa
+    section: '15.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Explain why two sides and an angle that is not between them do not prove that two
+      triangles are congruent.
+    answer_label: 'Why SSA is not a test'
+    check:
+      kind: structured
+      requires: [not-included, two-triangles]
+      concepts: [ssa-fails, two-answer-case]
+      points:
+        - id: not-included
+          text: the angle is not between the two given sides, so the given data do not fix the triangle
+          concepts: [ssa-fails]
+        - id: two-triangles
+          text: with AB = 6, BC = 4 and angle A = 30 degrees, the sine rule gives C = 48.6 or 131.4 degrees, so two different triangles share the same data
+          concepts: [two-answer-case, ssa-fails]
+    answer_text: >-
+      The same three measurements can describe two different triangles. The sine rule
+      gives two possible angles $C$, so the shape is not fixed.
+
+  - id: lc15-3-letter-order
+    section: '15.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In two triangles, $|AB| = |PQ|$, $|BC| = |QR|$ and $|CA| = |RP|$. Write the
+      congruence statement with the vertices in matching order, and say which angle
+      matches $\angle C$.
+    answer_label: 'The congruence statement'
+    check:
+      kind: structured
+      requires: [match-vertices, match-angle]
+      concepts: [matching-order]
+      points:
+        - id: match-vertices
+          text: A matches P, B matches Q and C matches R, so the statement is triangle ABC congruent to triangle PQR
+          concepts: [matching-order]
+        - id: match-angle
+          text: C matches R, so angle C matches angle R
+          concepts: [matching-order]
+    answer_text: >-
+      $\triangle ABC \cong \triangle PQR$, with $A \leftrightarrow P$, $B \leftrightarrow Q$
+      and $C \leftrightarrow R$. So $\angle C$ matches $\angle R$.
+
+  - id: lc15-3-side-sum
+    section: '15.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $\triangle ABC \cong \triangle PQR$, with $|AB| = 9$ cm, $|BC| = 14$ cm and
+      $|AC| = 11$ cm. Find $|QR| + |RP|$.
+    answer_label: '$|QR| + |RP|$'
+    check: {kind: evaluate, expression: '14 + 11', answer: '25'}
+    answer_text: >-
+      $B$ matches $Q$ and $C$ matches $R$, so $|QR| = |BC| = 14$ cm. Also
+      $|RP| = |CA| = 11$ cm. So $|QR| + |RP| = 25$ cm.

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 21.7 Probability from a table or a diagram — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: SP.2
+Work independently. The questions and the answers are shown together at the end.
+
+Some questions ask you to **explain**. Say which cell you read, and which number is
+the denominator.
+
+:::problems chapter-21-practice-21.7
+
+:::answers chapter-21-practice-21.7

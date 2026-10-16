@@ -1,0 +1,150 @@
+# Junior Cycle Mathematics, Chapter 21, section 21.7.
+#
+# A probability read off a table or a tree diagram is still a count divided by a
+# count, so every record is an `evaluate` on that fraction. The statements
+# describe the table in words rather than printing a markdown table, because a
+# table inside a numbered list item does not render reliably. The `structured`
+# record asks the reader to explain how to read one cell of a two-way table.
+chapter: 21
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc21-21.7-table-spinner-a
+  section: '21.7'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'The open-day game has 24 equally likely outcomes in a table. Six of the outcomes have the spinner on A. Find the probability that the spinner lands on A.'
+  answer_label: 'Find the probability that the spinner lands on A.'
+  check:
+    kind: evaluate
+    expression: 6/24
+    answer: '1/4'
+  answer_text: '$\frac{6}{24}=\frac14$. Read the A column of the table and count the 6 outcomes in it, then divide by the 24 outcomes in the whole table.'
+
+- id: jc21-21.7-table-prize
+  section: '21.7'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'The open-day game has 24 equally likely outcomes in a table. Nine of the outcomes have the die on 6 or the spinner on A. Find the probability of a prize.'
+  answer_label: 'Find the probability of a prize.'
+  check:
+    kind: evaluate
+    expression: 9/24
+    answer: '3/8'
+  answer_text: '$\frac{9}{24}=\frac38$. Count every outcome in the 6 row and every outcome in the A column, taking care not to count the 6 with an A twice, then divide by 24.'
+
+- id: jc21-21.7-two-way-cell
+  section: '21.7'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A two-way table shows 40 students. The cell for boys who walk to school holds 12. A student is chosen at random. Find the probability that the student is a boy who walks to school.'
+  answer_label: 'Find the probability that the student is a boy who walks to school.'
+  check:
+    kind: evaluate
+    expression: 12/40
+    answer: '3/10'
+  answer_text: '$\frac{12}{40}=\frac{3}{10}$. Divide the cell count by the grand total of the table. The row total and the column total are not the right denominators here.'
+
+- id: jc21-21.7-two-way-sport
+  section: '21.7'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A two-way table shows 200 students. The cell for boys who play a sport holds 45. A student is chosen at random. Find the probability that the student is a boy who plays a sport.'
+  answer_label: 'Find the probability that the student is a boy who plays a sport.'
+  check:
+    kind: evaluate
+    expression: 45/200
+    answer: '9/40'
+  answer_text: '$\frac{45}{200}=\frac{9}{40}$. The grand total of the table is 200, so that is the denominator. The cell where the boy row meets the sport column is 45.'
+
+- id: jc21-21.7-tree-heads-tails
+  section: '21.7'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A fair coin is tossed twice. Use a tree diagram to find the probability of a head then a tail.'
+  answer_label: 'Find the probability of a head then a tail.'
+  check:
+    kind: evaluate
+    expression: 1/2*1/2
+    answer: '1/4'
+  answer_text: '$\frac12\times\frac12=\frac14$. The first branch splits into head and tail with probability $\frac12$ each, and the second branch splits the same way. Multiply along the branch head then tail.'
+
+- id: jc21-21.7-tree-one-head
+  section: '21.7'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A fair coin is tossed twice. Use a tree diagram to find the probability of exactly one head.'
+  answer_label: 'Find the probability of exactly one head.'
+  check:
+    kind: evaluate
+    expression: 1/4+1/4
+    answer: '1/2'
+  answer_text: '$\frac14+\frac14=\frac12$. The branch head then tail and the branch tail then head both give exactly one head, so multiply along each branch and add the two results.'
+
+- id: jc21-21.7-two-way-girls
+  section: '21.7'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A two-way table shows 100 students. There are 60 girls in the table. A student is chosen at random. Find the probability that the student is a girl.'
+  answer_label: 'Find the probability that the student is a girl.'
+  check:
+    kind: evaluate
+    expression: 60/100
+    answer: '3/5'
+  answer_text: '$\frac{60}{100}=\frac35$. Read the total of the girl row or the girl column, then divide by the grand total of 100. The grand total is the denominator for a probability taken from the whole table.'
+
+- id: jc21-21.7-table-die-six
+  section: '21.7'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'The open-day game has 24 equally likely outcomes in a table. Four of the outcomes have the die on 6. Find the probability that the die shows 6.'
+  answer_label: 'Find the probability that the die shows 6.'
+  check:
+    kind: evaluate
+    expression: 4/24
+    answer: '1/6'
+  answer_text: '$\frac{4}{24}=\frac16$. The 6 row holds 4 outcomes, one for each spinner sector, and the whole table holds 24. This matches the $\frac16$ you get from the die alone.'
+
+- id: jc21-21.7-table-total
+  section: '21.7'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A two-way table shows 150 students. The cell for girls who take the bus holds 60. A student is chosen at random. Find the probability that the student is a girl who takes the bus.'
+  answer_label: 'Find the probability that the student is a girl who takes the bus.'
+  check:
+    kind: evaluate
+    expression: 60/150
+    answer: '2/5'
+  answer_text: '$\frac{60}{150}=\frac25$. The cell count is 60 and the grand total of the table is 150. Simplify by dividing the top and the bottom by 30.'
+
+- id: jc21-21.7-explain-cell
+  section: '21.7'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A two-way table shows 45 boys who play a sport out of 200 students. Explain how to use the table to find the probability that a student chosen at random is a boy who plays a sport.'
+  answer_label: 'Explain how to read the probability from the table.'
+  check:
+    kind: structured
+    requires: [find-cell, find-total, divide]
+    concepts: [two-way-table]
+    points:
+    - id: find-cell
+      text: 'Read the cell where the boy row and the plays-sport column meet: the count is 45.'
+      concepts: [two-way-table]
+    - id: find-total
+      text: 'Read the grand total of the table, which is 200.'
+      concepts: [two-way-table]
+    - id: divide
+      text: 'Divide the cell count by the grand total: the probability is $\frac{45}{200}$.'
+      concepts: [two-way-table]

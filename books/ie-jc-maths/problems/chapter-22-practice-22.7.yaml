@@ -1,0 +1,208 @@
+# Junior Cycle Mathematics, Chapter 22, section 22.7.
+#
+# Describing a correlation and judging cause are reasons, so they use
+# `structured`. An estimate read from a line of best fit is checked as the
+# arithmetic of the line, `evaluate` or `between`, never as a bare reading.
+chapter: 22
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc22-22.7-positive
+  section: '22.7'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A scatter graph shows that taller students tend to weigh more. Describe the correlation.'
+  answer_label: 'Describe the correlation.'
+  check:
+    kind: structured
+    requires: [name-correlation, give-reason]
+    concepts: [correlation]
+    points:
+    - id: name-correlation
+      text: 'The correlation is positive.'
+      concepts: [correlation]
+    - id: give-reason
+      text: 'As height increases, weight tends to increase, so the points rise from left to right.'
+      concepts: [correlation]
+  answer_text: 'The correlation is positive. As height increases, weight tends to increase, so the points rise from left to right.'
+
+- id: jc22-22.7-negative
+  section: '22.7'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A scatter graph shows that students who practise a skill more make fewer mistakes. Describe the correlation.'
+  answer_label: 'Describe the correlation.'
+  check:
+    kind: structured
+    requires: [name-correlation, give-reason]
+    concepts: [correlation]
+    points:
+    - id: name-correlation
+      text: 'The correlation is negative.'
+      concepts: [correlation]
+    - id: give-reason
+      text: 'As practice time increases, mistakes tend to decrease, so the points fall from left to right.'
+      concepts: [correlation]
+  answer_text: 'The correlation is negative. As practice time increases, the number of mistakes tends to decrease, so the points fall from left to right.'
+
+- id: jc22-22.7-none
+  section: '22.7'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A scatter graph has points spread widely with no pattern. Describe the correlation.'
+  answer_label: 'Describe the correlation.'
+  check:
+    kind: structured
+    requires: [name-correlation, give-reason]
+    concepts: [correlation]
+    points:
+    - id: name-correlation
+      text: 'There is no correlation.'
+      concepts: [correlation]
+    - id: give-reason
+      text: 'The points show no line and no trend, so the two variables are not linked in the data.'
+      concepts: [correlation]
+  answer_text: 'There is no correlation. The points show no pattern and no line, so the two variables are not linked in the data.'
+
+- id: jc22-22.7-strong
+  section: '22.7'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A scatter graph has points that lie very close to a straight line falling from left to right. Describe the correlation, including its strength.'
+  answer_label: 'Describe the correlation and its strength.'
+  check:
+    kind: structured
+    requires: [name-direction, name-strength]
+    concepts: [correlation, line-of-best-fit]
+    points:
+    - id: name-direction
+      text: 'The correlation is negative, because the line falls from left to right.'
+      concepts: [correlation]
+    - id: name-strength
+      text: 'The correlation is strong, because the points lie very close to a straight line.'
+      concepts: [line-of-best-fit]
+  answer_text: 'The correlation is negative and strong. It is negative because the points fall from left to right, and strong because the points lie very close to a straight line.'
+
+- id: jc22-22.7-causation
+  section: '22.7'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Ice cream sales and the number of sunburn cases rise together in summer. Does eating ice cream cause sunburn? Explain.'
+  answer_label: 'Explain whether ice cream causes sunburn.'
+  check:
+    kind: structured
+    requires: [state-answer, give-reason]
+    concepts: [correlation, causation]
+    points:
+    - id: state-answer
+      text: 'No. Eating ice cream does not cause sunburn.'
+      concepts: [causation]
+    - id: give-reason
+      text: 'Hot, sunny weather causes both more ice cream sales and more sunburn, so the two are correlated without one causing the other.'
+      concepts: [correlation]
+  answer_text: 'Eating ice cream does not cause sunburn. Hot, sunny weather causes both more ice cream sales and more sunburn. The two are correlated, but one does not cause the other.'
+
+- id: jc22-22.7-anchor-correlation
+  section: '22.7'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The chapter problem. The scatter graph of screen time against sleep has points that fall from left to right. Describe the correlation.'
+  answer_label: 'Describe the correlation in the survey data.'
+  check:
+    kind: structured
+    requires: [name-correlation, describe-trend]
+    concepts: [correlation, line-of-best-fit]
+    points:
+    - id: name-correlation
+      text: 'The correlation is negative.'
+      concepts: [correlation]
+    - id: describe-trend
+      text: 'As screen time increases, sleep time tends to decrease, and the points lie fairly close to a straight line, so the correlation is fairly strong.'
+      concepts: [line-of-best-fit]
+  answer_text: 'The correlation is negative. As screen time increases, sleep time tends to decrease. The points lie fairly close to a straight line, so the correlation is fairly strong.'
+
+- id: jc22-22.7-anchor-cause
+  section: '22.7'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The chapter problem. Does the survey prove that screens cause less sleep? Explain.'
+  answer_label: 'Explain whether the survey proves cause.'
+  check:
+    kind: structured
+    requires: [state-answer, give-reason]
+    concepts: [correlation, causation]
+    points:
+    - id: state-answer
+      text: 'No. The survey shows a link, not a cause.'
+      concepts: [causation]
+    - id: give-reason
+      text: 'A third factor could affect both screen time and sleep, so the correlation alone cannot prove that screens cause less sleep.'
+      concepts: [correlation]
+  answer_text: 'The survey does not prove that screens cause less sleep. It shows a link between screen time and sleep. A third factor, such as staying up late for other reasons, could affect both, so a correlation alone cannot prove cause.'
+
+- id: jc22-22.7-gradient
+  section: '22.7'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A line of best fit passes through $(2,5)$ and $(6,13)$. Find the gradient of the line.'
+  answer_label: 'Find the gradient of the line of best fit.'
+  check:
+    kind: evaluate
+    expression: (13 - 5) / (6 - 2)
+    answer: '2'
+  answer_text: 'The gradient is the rise divided by the run: $(13-5)\div(6-2)=8\div4=2$. The line rises 2 units for every 1 unit across.'
+
+- id: jc22-22.7-estimate
+  section: '22.7'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A line of best fit passes through $(0,4)$ and $(8,12)$. Use the line to estimate $y$ when $x=6$.'
+  answer_label: 'Estimate a value from the line of best fit.'
+  check:
+    kind: evaluate
+    expression: 4 + 6
+    answer: '10'
+  answer_text: 'The line rises 8 units over a run of 8, so its gradient is 1 and it starts at 4. The line is $y=4+x$. When $x=6$, $y=4+6=10$. An estimate from a line of best fit is not an exact measurement.'
+
+- id: jc22-22.7-line-use
+  section: '22.7'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A line of best fit passes through $(1,10)$ and $(5,2)$. Estimate $y$ when $x=3$.'
+  answer_label: 'Estimate a value from the line of best fit.'
+  check:
+    kind: evaluate
+    expression: 10 - 2 * (3 - 1)
+    answer: '6'
+  answer_text: 'The gradient is $(2-10)\div(5-1)=-8\div4=-2$, so the line falls 2 units for every 1 across. Starting at 10 when $x=1$, at $x=3$ the value is $10-2\times2=6$.'
+
+- id: jc22-22.7-which-claim
+  section: '22.7'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A study finds that students who eat breakfast score higher in tests. A newspaper says that eating breakfast makes students score higher. Explain why the newspaper may be wrong.'
+  answer_label: 'Explain why the claim may be wrong.'
+  check:
+    kind: structured
+    requires: [state-answer, give-reason]
+    concepts: [correlation, causation]
+    points:
+    - id: state-answer
+      text: 'A correlation does not prove that breakfast causes higher scores.'
+      concepts: [causation]
+    - id: give-reason
+      text: 'Students who eat breakfast may also have other habits, such as a regular routine, that raise their scores, so a third factor could explain the link.'
+      concepts: [correlation]
+  answer_text: 'The newspaper may be wrong because a correlation does not prove cause. Students who eat breakfast may also have other habits, such as a regular morning routine, that help their scores. A third factor could explain the link.'

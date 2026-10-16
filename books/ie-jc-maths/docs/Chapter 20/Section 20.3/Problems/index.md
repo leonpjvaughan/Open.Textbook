@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 20.3 Angles and parallel lines — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.3
+Work independently. The questions and answers are shown together at the end.
+
+Some questions ask you to **prove** a result. A proof means a chain of steps, and
+each step names its reason: a straight line, a parallel line, or a theorem already
+proved. A list of steps with no reasons is not a proof.
+
+:::problems chapter-20-practice-20.3
+
+:::answers chapter-20-practice-20.3

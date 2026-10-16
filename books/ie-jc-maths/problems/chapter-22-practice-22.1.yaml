@@ -1,0 +1,183 @@
+# Junior Cycle Mathematics, Chapter 22, section 22.1.
+#
+# Definitions, choices of method and reasons cannot be proved by a CAS, so those
+# records use `structured`, which proves only that the model answer covers its
+# declared ideas in order. The arithmetic records are `evaluate`, so the answer
+# the reader is shown is the answer the verifier proved.
+chapter: 22
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc22-22.1-population
+  section: '22.1'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A hospital asks 40 patients how long they waited for an appointment. Name the population and the sample.'
+  answer_label: 'Name the population and the sample.'
+  check:
+    kind: structured
+    requires: [name-population, name-sample]
+    concepts: [population, sample]
+    points:
+    - id: name-population
+      text: 'The population is every patient of the hospital.'
+      concepts: [population]
+    - id: name-sample
+      text: 'The sample is the 40 patients who were asked.'
+      concepts: [sample]
+  answer_text: 'The population is every patient of the hospital. The sample is the 40 patients who were asked. The hospital uses those 40 answers to describe all its patients.'
+
+- id: jc22-22.1-why-sample
+  section: '22.1'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Give one reason why a sample is used instead of a census.'
+  answer_label: 'Give one reason for using a sample.'
+  check:
+    kind: structured
+    requires: [give-reason]
+    concepts: [sample, census]
+    points:
+    - id: give-reason
+      text: 'A sample is quicker and cheaper than a census, and some members of the population are hard to reach.'
+      concepts: [sample, census]
+  answer_text: 'A sample asks fewer people, so it is quicker and cheaper than a census. It is also the only option when some members of the population are hard to reach. A census gives the full picture but costs much more.'
+
+- id: jc22-22.1-primary-secondary
+  section: '22.1'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'You count the number of cars passing the school gate yourself. Is this primary data or secondary data? Explain your answer.'
+  answer_label: 'Classify the data and explain.'
+  check:
+    kind: structured
+    requires: [classify, give-reason]
+    concepts: [primary-data, secondary-data]
+    points:
+    - id: classify
+      text: 'It is primary data, because you collected it yourself.'
+      concepts: [primary-data]
+    - id: give-reason
+      text: 'Data that someone else collected is secondary data, and you would be using it second hand.'
+      concepts: [secondary-data]
+  answer_text: 'It is primary data, because you collected it yourself at the gate. Data that someone else collected and you reuse is secondary data.'
+
+- id: jc22-22.1-not-sampled
+  section: '22.1'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A school has 620 students. A sample of 50 students is chosen. How many students are not in the sample?'
+  answer_label: 'Find how many students are not in the sample.'
+  check:
+    kind: evaluate
+    expression: 620 - 50
+    answer: '570'
+  answer_text: 'There are $620-50=570$ students not in the sample.'
+
+- id: jc22-22.1-question-flaw
+  section: '22.1'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A survey question asks: "Do you agree that the new canteen is much better and cheaper?" State one problem with the question and write a better one.'
+  answer_label: 'State the problem and write a better question.'
+  check:
+    kind: structured
+    requires: [state-problem, write-question]
+    concepts: [survey-question]
+    points:
+    - id: state-problem
+      text: 'The question asks two things at once and the words "much better" lead the reader towards one answer.'
+      concepts: [survey-question]
+    - id: write-question
+      text: 'A better question asks about one thing, for example "How would you rate the price of the new canteen: too high, about right, or too low?"'
+      concepts: [survey-question]
+  answer_text: 'The question asks about quality and price at the same time, and the words "much better" lead the reader. A better question asks about one thing and offers neutral choices, such as "How would you rate the price of the new canteen?"'
+
+- id: jc22-22.1-population-car
+  section: '22.1'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A factory checks the paint on the cars it makes. Name the population.'
+  answer_label: 'Name the population.'
+  check:
+    kind: structured
+    requires: [name-population]
+    concepts: [population]
+    points:
+    - id: name-population
+      text: 'The population is every car made by the factory.'
+      concepts: [population]
+  answer_text: 'The population is every car made by the factory. A population is the whole group you want to find out about, and it need not be people.'
+
+- id: jc22-22.1-census
+  section: '22.1'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A census form is sent to 48 families. 35 families reply. How many families do not reply?'
+  answer_label: 'Find how many families do not reply.'
+  check:
+    kind: evaluate
+    expression: 48 - 35
+    answer: '13'
+  answer_text: 'There are $48-35=13$ families who do not reply.'
+
+- id: jc22-22.1-represent
+  section: '22.1'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A survey about school sports asks only the members of the football team. Explain why this sample is not a good guide to the whole school.'
+  answer_label: 'Explain why the sample is not representative.'
+  check:
+    kind: structured
+    requires: [state-answer, give-reason]
+    concepts: [sample, bias]
+    points:
+    - id: state-answer
+      text: 'The sample is not representative of the school.'
+      concepts: [sample]
+    - id: give-reason
+      text: 'Football players are likely to like sport more than other students do, so their answers are not typical of the whole school.'
+      concepts: [bias]
+  answer_text: 'The sample is not representative. The football team is a group that already likes sport, so its answers would not match the answers of students who do not play football. The sample is biased towards sport.'
+
+- id: jc22-22.1-breakfast
+  section: '22.1'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Of 40 students asked, 26 eat breakfast. How many do not eat breakfast?'
+  answer_label: 'Find how many students do not eat breakfast.'
+  check:
+    kind: evaluate
+    expression: 40 - 26
+    answer: '14'
+  answer_text: 'There are $40-26=14$ students who do not eat breakfast.'
+
+- id: jc22-22.1-anchor
+  section: '22.1'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The chapter problem. State the population for the sleep survey, and write one clear question that asks about one thing.'
+  answer_label: 'State the population and write a survey question.'
+  check:
+    kind: structured
+    requires: [name-population, write-question]
+    concepts: [population, sample, survey-question]
+    points:
+    - id: name-population
+      text: 'The population is every student in the school.'
+      concepts: [population]
+    - id: write-question
+      text: 'A clear question is "How many hours of sleep did you get on the last school night?", which asks about one thing and asks for a number.'
+      concepts: [sample, survey-question]
+  answer_text: 'The population is every student in the school. A clear question is "How many hours of sleep did you get on the last school night?" It asks about one thing, names a clear night, and asks for a number.'

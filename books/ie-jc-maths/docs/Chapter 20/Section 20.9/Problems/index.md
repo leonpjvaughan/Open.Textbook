@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 20.9 Circles and their theorems — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: GT.3
+Work independently. The questions and answers are shown together at the end.
+
+Every answer here needs a theorem. Name it: the angle at the centre, the angle in
+a semicircle, the same-arc result, or the cyclic quadrilateral. An answer with no
+theorem is only half an answer.
+
+:::problems chapter-20-practice-20.9
+
+:::answers chapter-20-practice-20.9

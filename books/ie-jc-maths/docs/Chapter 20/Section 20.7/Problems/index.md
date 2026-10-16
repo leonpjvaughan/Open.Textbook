@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 20.7 Similar triangles and proportionality — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.3
+Work independently. The questions and answers are shown together at the end.
+
+For a missing side, write the ratio down before you calculate. Keep the matching
+sides in the same position in the two fractions, and say which scale factor you
+used.
+
+:::problems chapter-20-practice-20.7
+
+:::answers chapter-20-practice-20.7

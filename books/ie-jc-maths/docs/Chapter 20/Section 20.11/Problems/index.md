@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 20.11 Evaluating someone else's proof — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.3
+Work independently. The questions and answers are shown together at the end.
+
+For each proof you judge, name the fault and say why it is a fault. A verdict with
+no reason is only half an answer. When a claim says "always", look for one case
+that breaks it.
+
+:::problems chapter-20-practice-20.11
+
+:::answers chapter-20-practice-20.11

@@ -1,0 +1,198 @@
+# Junior Cycle Mathematics, Chapter 22, section 22.5.
+#
+# The mean and the median are exact summary statistics, so the oracle computes
+# them from the data and the reader's value must agree. The mode is the value with
+# the largest frequency, so it is proved by `compare` on the stated frequencies,
+# never asserted. Which measure suits a context is a reason, and uses `structured`.
+chapter: 22
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc22-22.5-mean-small
+  section: '22.5'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Find the mean of $5, 6, 7, 8, 9$.'
+  answer_label: 'Find the mean.'
+  check:
+    kind: statistic
+    data: [5, 6, 7, 8, 9]
+    stat: mean
+    answer: '7'
+  answer_text: 'The values add to $35$ and there are 5 of them, so the mean is $35\div5=7$.'
+
+- id: jc22-22.5-median-odd
+  section: '22.5'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Find the median of $8, 3, 6, 5, 9$.'
+  answer_label: 'Find the median.'
+  check:
+    kind: statistic
+    data: [8, 3, 6, 5, 9]
+    stat: median
+    answer: '6'
+  answer_text: 'In order the values are $3, 5, 6, 8, 9$. There are 5 values, so the median is the third one, which is 6.'
+
+- id: jc22-22.5-median-even
+  section: '22.5'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Find the median of $4, 9, 2, 7$.'
+  answer_label: 'Find the median.'
+  check:
+    kind: statistic
+    data: [4, 9, 2, 7]
+    stat: median
+    answer: '11/2'
+  answer_text: 'In order the values are $2, 4, 7, 9$. The middle two are 4 and 7, so the median is $(4+7)\div2=5.5$.'
+
+- id: jc22-22.5-mode
+  section: '22.5'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'In the data $3, 5, 5, 6, 8, 8, 8$, the frequencies are 1 for 3, 2 for 5, 1 for 6 and 3 for 8. Find the mode.'
+  answer_label: 'Find the mode.'
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      relation: '>'
+      lhs: '3'
+      rhs: '1'
+    - kind: compare
+      relation: '>'
+      lhs: '3'
+      rhs: '2'
+  answer_text: 'The largest frequency is 3, which belongs to 8. The mode is 8.'
+
+- id: jc22-22.5-mean-outlier
+  section: '22.5'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Find the mean of $2, 3, 3, 4, 8$.'
+  answer_label: 'Find the mean.'
+  check:
+    kind: statistic
+    data: [2, 3, 3, 4, 8]
+    stat: mean
+    answer: '4'
+  answer_text: 'The values add to $20$ and there are 5 of them, so the mean is $20\div5=4$. The value 8 is much larger than the rest and pulls the mean above the median of 3.'
+
+- id: jc22-22.5-mean-days
+  section: '22.5'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A shop sells $4, 6, 5$ and $9$ ice creams on four days. Find the mean number sold each day.'
+  answer_label: 'Find the mean number of ice creams.'
+  check:
+    kind: statistic
+    data: [4, 6, 5, 9]
+    stat: mean
+    answer: '6'
+  answer_text: 'The four days add to $4+6+5+9=24$, so the mean is $24\div4=6$ ice creams each day.'
+
+- id: jc22-22.5-anchor-mean
+  section: '22.5'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The chapter problem. The 20 sleep answers are $9, 10, 9, 10, 8, 8, 8, 9, 7, 8, 8, 7, 6, 7, 6, 7, 5, 6, 5, 5$. Find the mean.'
+  answer_label: 'Find the mean sleep.'
+  check:
+    kind: statistic
+    data: [9, 10, 9, 10, 8, 8, 8, 9, 7, 8, 8, 7, 6, 7, 6, 7, 5, 6, 5, 5]
+    stat: mean
+    answer: '37/5'
+  answer_text: 'The values add to $148$, and there are 20 of them, so the mean is $148\div20=7.4$ hours. That is below the school target of 8 hours.'
+
+- id: jc22-22.5-anchor-median
+  section: '22.5'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The chapter problem. The 20 sleep answers are $9, 10, 9, 10, 8, 8, 8, 9, 7, 8, 8, 7, 6, 7, 6, 7, 5, 6, 5, 5$. Find the median.'
+  answer_label: 'Find the median sleep.'
+  check:
+    kind: statistic
+    data: [9, 10, 9, 10, 8, 8, 8, 9, 7, 8, 8, 7, 6, 7, 6, 7, 5, 6, 5, 5]
+    stat: median
+    answer: '15/2'
+  answer_text: 'In order the middle two values are the 10th and 11th, which are 7 and 8. The median is $(7+8)\div2=7.5$ hours.'
+
+- id: jc22-22.5-anchor-mode
+  section: '22.5'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The chapter problem. The sleep frequencies are 3, 3, 4, 5, 3 and 2 for the values 5, 6, 7, 8, 9 and 10. Find the mode.'
+  answer_label: 'Find the mode sleep.'
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      relation: '>'
+      lhs: '5'
+      rhs: '3'
+    - kind: compare
+      relation: '>'
+      lhs: '5'
+      rhs: '4'
+    - kind: compare
+      relation: '>'
+      lhs: '5'
+      rhs: '2'
+  answer_text: 'The largest frequency is 5, which belongs to 8 hours. The mode is 8 hours.'
+
+- id: jc22-22.5-mean-frequency
+  section: '22.5'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A frequency table gives the values 0, 1, 2 and 3 with frequencies 2, 5, 2 and 1. Find the mean.'
+  answer_label: 'Find the mean from the frequency table.'
+  check:
+    kind: evaluate
+    expression: (0 * 2 + 1 * 5 + 2 * 2 + 3 * 1) / 10
+    answer: '6/5'
+  answer_text: 'Multiply each value by its frequency, add, then divide by the total frequency: $(0\times2+1\times5+2\times2+3\times1)\div10=12\div10=1.2$.'
+
+- id: jc22-22.5-required-score
+  section: '22.5'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A student scores 6, 7 and 8 in three tests. What score is needed in the fourth test to make the mean 8?'
+  answer_label: 'Find the required score.'
+  check:
+    kind: evaluate
+    expression: 4 * 8 - (6 + 7 + 8)
+    answer: '11'
+  answer_text: 'A mean of 8 over 4 tests needs a total of $4\times8=32$. The first three scores add to 21, so the fourth score must be $32-21=11$.'
+
+- id: jc22-22.5-choose-measure
+  section: '22.5'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A town reports the prices of its houses. One house costs far more than all the others. Which measure of centre describes a typical house price better, the mean or the median? Explain.'
+  answer_label: 'Choose the better measure and explain.'
+  check:
+    kind: structured
+    requires: [choose-measure, give-reason]
+    concepts: [mean, median, extreme-value]
+    points:
+    - id: choose-measure
+      text: 'The median is better, because one very expensive house pulls the mean above the typical price.'
+      concepts: [median, extreme-value]
+    - id: give-reason
+      text: 'The median is the middle value, so it hardly moves when a single extreme value is added, while the mean uses every value.'
+      concepts: [mean]
+  answer_text: 'The median describes a typical house price better. The very expensive house pulls the mean upwards, because the mean uses every value. The median is the middle value, so it hardly moves when one extreme value is present.'

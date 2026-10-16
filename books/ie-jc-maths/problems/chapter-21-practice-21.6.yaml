@@ -1,0 +1,151 @@
+# Junior Cycle Mathematics, Chapter 21, section 21.6.
+#
+# The multiplication rule is `P(A and B) = P(A) * P(B)` for independent events,
+# so each record is an `evaluate` on that product. Independence is a property of
+# the experiment, not of the arithmetic, so the `structured` record asks the
+# reader to explain why a draw without replacement breaks it. The verifier
+# proves the arithmetic of the product; it cannot prove that the events really
+# are independent.
+chapter: 21
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc21-21.6-two-coins-heads
+  section: '21.6'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A fair coin is tossed twice. Find the probability of two heads.'
+  answer_label: 'Find the probability of two heads.'
+  check:
+    kind: evaluate
+    expression: 1/2*1/2
+    answer: '1/4'
+  answer_text: '$\frac12\times\frac12=\frac14$. The two tosses are independent, because the first result does not change the chance of a head on the second. One of the four outcomes, $HH$, is two heads.'
+
+- id: jc21-21.6-star-prize
+  section: '21.6'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'In the open-day game the die and the spinner do not affect each other. The probability of a 6 is $\frac16$ and the probability of an A is $\frac14$. Find the probability of a 6 and an A.'
+  answer_label: 'Find the probability of a 6 and an A.'
+  check:
+    kind: evaluate
+    expression: 1/6*1/4
+    answer: '1/24'
+  answer_text: '$\frac16\times\frac14=\frac{1}{24}$. The die and the spinner are independent, so multiply. The same answer comes from counting: 1 of the 24 equally likely outcomes is a 6 with an A.'
+
+- id: jc21-21.6-double-six
+  section: '21.6'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A fair six-sided die is rolled twice. Find the probability of a 6 on both rolls.'
+  answer_label: 'Find the probability of a 6 on both rolls.'
+  check:
+    kind: evaluate
+    expression: 1/6*1/6
+    answer: '1/36'
+  answer_text: '$\frac16\times\frac16=\frac{1}{36}$. The two rolls are independent. One of the 36 equally likely outcomes is a 6 on both.'
+
+- id: jc21-21.6-red-twice
+  section: '21.6'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A spinner lands on red with probability $\frac38$. It is spun twice. Find the probability that it lands on red both times.'
+  answer_label: 'Find the probability that it lands on red both times.'
+  check:
+    kind: evaluate
+    expression: 3/8*3/8
+    answer: '9/64'
+  answer_text: '$\frac38\times\frac38=\frac{9}{64}$. The two spins are independent, because the first spin does not change the spinner. Multiply the numerators and the denominators.'
+
+- id: jc21-21.6-bag-replacement
+  section: '21.6'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A bag holds 2 red and 3 blue counters. A counter is taken, put back, and a second counter is taken. Find the probability that both are red.'
+  answer_label: 'Find the probability that both are red.'
+  check:
+    kind: evaluate
+    expression: 2/5*2/5
+    answer: '4/25'
+  answer_text: '$\frac25\times\frac25=\frac{4}{25}$. Putting the counter back restores the bag to 5 counters, so the second draw has the same chance as the first and the draws are independent.'
+
+- id: jc21-21.6-both-even
+  section: '21.6'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'Two fair six-sided dice are rolled. Find the probability that both dice show an even number.'
+  answer_label: 'Find the probability that both dice show an even number.'
+  check:
+    kind: evaluate
+    expression: 1/2*1/2
+    answer: '1/4'
+  answer_text: '$\frac12\times\frac12=\frac14$. Each die shows an even number with probability $\frac36=\frac12$, and the two dice are independent. Counting agrees: 9 of the 36 outcomes have two even numbers.'
+
+- id: jc21-21.6-coin-and-six
+  section: '21.6'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A fair coin is tossed and a fair six-sided die is rolled. Find the probability of a head and a 6.'
+  answer_label: 'Find the probability of a head and a 6.'
+  check:
+    kind: evaluate
+    expression: 1/2*1/6
+    answer: '1/12'
+  answer_text: '$\frac12\times\frac16=\frac{1}{12}$. The coin and the die are independent. Counting agrees: 1 of the 12 equally likely outcomes is a head with a 6.'
+
+- id: jc21-21.6-no-six-twice
+  section: '21.6'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A fair six-sided die is rolled twice. Find the probability of no 6 on either roll.'
+  answer_label: 'Find the probability of no 6 on either roll.'
+  check:
+    kind: evaluate
+    expression: 5/6*5/6
+    answer: '25/36'
+  answer_text: '$\frac56\times\frac56=\frac{25}{36}$. The probability of not a 6 on one roll is $\frac56$, and the rolls are independent. The complementary event, at least one 6, then has probability $1-\frac{25}{36}=\frac{11}{36}$.'
+
+- id: jc21-21.6-three-heads
+  section: '21.6'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A fair coin is tossed three times. Find the probability of three heads.'
+  answer_label: 'Find the probability of three heads.'
+  check:
+    kind: evaluate
+    expression: 1/2*1/2*1/2
+    answer: '1/8'
+  answer_text: '$\frac12\times\frac12\times\frac12=\frac18$. Each toss is independent, so multiply the three probabilities. One of the 8 outcomes, $HHH$, is three heads.'
+
+- id: jc21-21.6-explain-replacement
+  section: '21.6'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A bag holds 2 red and 3 blue counters. Explain why drawing two counters without replacement does not give independent events.'
+  answer_label: 'Explain why the draws are not independent.'
+  check:
+    kind: structured
+    requires: [first-draw, second-draw, conclusion]
+    concepts: [independent-events]
+    points:
+    - id: first-draw
+      text: 'The first draw has 2 red counters out of 5, so the probability of red is $\frac25$.'
+      concepts: [independent-events]
+    - id: second-draw
+      text: 'After a red counter is taken there are 1 red and 3 blue left, so the second draw is from 4 counters and the chance has changed.'
+      concepts: [independent-events]
+    - id: conclusion
+      text: 'The first result changes the chance on the second draw, so the two events are not independent and the multiplication rule does not apply.'
+      concepts: [independent-events]

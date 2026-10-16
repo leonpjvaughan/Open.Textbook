@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 21.6 Independent events and the multiplication rule — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: SP.2
+Work independently. The questions and the answers are shown together at the end.
+
+Some questions ask you to **explain**. Say whether the first event changes the
+second, and say which rule you used.
+
+:::problems chapter-21-practice-21.6
+
+:::answers chapter-21-practice-21.6

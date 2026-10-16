@@ -1,0 +1,190 @@
+# Practice set for 15.8 (strand 2, outcome 2.1). Writing a proof is a sequence of
+# statements, so most records here are `structured`: they prove that a model answer
+# contains the declared steps **in order**, and that is all. A `structured` record
+# cannot judge whether a reason is a good one, and it cannot prove the geometry; the
+# `points` list is the model answer, and a person checks the reasoning in it. The two
+# numeric checks are proved by sympy and they finish the chapter problem.
+chapter: 15
+problems:
+  - id: lc15-8-four-parts
+    section: '15.8'
+    tier: O
+    refs: ['2.1']
+    statement: 'Name the four parts of a formal proof, in order, and say what each one holds.'
+    answer_label: 'The four parts of a proof'
+    check:
+      kind: structured
+      requires: [given, to-prove, construction, proof]
+      concepts: [formal-proof]
+      points:
+        - id: given
+          text: the Given holds the facts you start with
+          concepts: [formal-proof]
+        - id: to-prove
+          text: the To prove holds the single statement you are going to reach
+          concepts: [formal-proof]
+        - id: construction
+          text: the Construction holds any line, point or arc you add to the figure
+          concepts: [formal-proof]
+        - id: proof
+          text: the Proof holds the chain of statements, each with a reason
+          concepts: [formal-proof]
+    answer_text: >-
+      Given, To prove, Construction, Proof. The Construction part is the one most often
+      left out, and it must be written.
+
+  - id: lc15-8-given-to-prove
+    section: '15.8'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Write the Given, the To prove and the Construction for the proof that the angles of
+      a triangle add to $180^\circ$.
+    answer_label: 'Given, To prove and Construction'
+    check:
+      kind: structured
+      requires: [given-triangle, to-prove-sum, construction-parallel]
+      concepts: [formal-proof, axiom-of-parallels]
+      points:
+        - id: given-triangle
+          text: given the triangle ABC
+          concepts: [formal-proof]
+        - id: to-prove-sum
+          text: to prove that angle ABC plus angle BCA plus angle CAB equals 180 degrees
+          concepts: [formal-proof]
+        - id: construction-parallel
+          text: construction, draw the line through A parallel to BC, and name its ends D and E
+          concepts: [axiom-of-parallels]
+    answer_text: >-
+      The construction draws the parallel line, and the Axiom of Parallels guarantees that
+      exactly one such line exists.
+
+  - id: lc15-8-reason-line
+    section: '15.8'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A proof of the angle sum contains the line
+      $|\angle ABC| = |\angle DAB|$. Give the reason for that line.
+    answer_label: 'The reason for the line'
+    check:
+      kind: structured
+      requires: [name-theorem, name-transversal]
+      concepts: [alternate-angles]
+      points:
+        - id: name-theorem
+          text: the angles are alternate angles, so they are equal by Theorem 3 part 2
+          concepts: [alternate-angles]
+        - id: name-transversal
+          text: the line AB is the transversal of the parallel lines DE and BC
+          concepts: [alternate-angles]
+    answer_text: >-
+      Alternate angles, Theorem 3 part 2, with $AB$ as the transversal of the parallel
+      lines $DE$ and $BC$.
+
+  - id: lc15-8-vertically-opposite-proof
+    section: '15.8'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Write the proof that vertically opposite angles are equal in formal form, with a
+      reason for every line.
+    answer_label: 'The formal proof of Theorem 1'
+    check:
+      kind: structured
+      requires: [first-equation, second-equation, subtract]
+      concepts: [supplementary, vertically-opposite]
+      points:
+        - id: first-equation
+          text: a + b = 180 degrees, because the angles lie on a straight line
+          concepts: [supplementary]
+        - id: second-equation
+          text: c + b = 180 degrees, because those angles lie on the other straight line
+          concepts: [supplementary]
+        - id: subtract
+          text: both totals are 180 degrees, so a + b = c + b, and subtracting b gives a = c; the same argument gives b = d
+          concepts: [vertically-opposite]
+    answer_text: >-
+      Each of $a$ and $c$ is supplementary to the same angle $b$, so the two are equal.
+      The same argument gives $b = d$.
+
+  - id: lc15-8-isosceles-proof
+    section: '15.8'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Write the proof that the base angles of an isosceles triangle are equal in formal
+      form, with a reason for every line.
+    answer_label: 'The formal proof of Theorem 2 part 1'
+    check:
+      kind: structured
+      requires: [given-sides, matching-parts, congruence, matching-angles]
+      concepts: [sas, isosceles]
+      points:
+        - id: given-sides
+          text: given the triangle ABC with AB = AC
+          concepts: [isosceles]
+        - id: matching-parts
+          text: AC = AB is the same sides the other way round, and angle BAC = angle CAB is the same angle
+          concepts: [sas]
+        - id: congruence
+          text: triangle ABC is congruent to triangle ACB by SAS
+          concepts: [sas]
+        - id: matching-angles
+          text: the matching angles of the congruent triangles are equal, so angle ABC = angle ACB
+          concepts: [isosceles]
+    answer_text: >-
+      The triangle is congruent to itself with the labels at the ends of the base
+      exchanged, by SAS, so the two base angles are equal.
+
+  - id: lc15-8-diagram-fact
+    section: '15.8'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A proof uses the fact that two lines are parallel, but the parallel marks are not in
+      the Given. Explain why the proof is not valid, and say where a proof may take a fact
+      from.
+    answer_label: 'Why the proof is not valid'
+    check:
+      kind: structured
+      requires: [diagram-not-a-reason, allowed-sources]
+      concepts: [diagram-fact, formal-proof]
+      points:
+        - id: diagram-not-a-reason
+          text: a diagram is only a sketch, so a line that looks parallel has not been proved parallel
+          concepts: [diagram-fact]
+        - id: allowed-sources
+          text: a proof may use an axiom, a theorem, a definition or a fact from the Given, and nothing else
+          concepts: [formal-proof]
+    answer_text: >-
+      The fact is not in the Given and it has not been proved, so the proof does not
+      follow. Every line must come from an axiom, a theorem, a definition or the Given.
+
+  - id: lc15-8-anchor-sum
+    section: '15.8'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      The glazier's pane has two angles of $65^\circ$ and $48^\circ$. Use the angle sum to
+      find the third angle.
+    answer_label: 'The third angle'
+    check: {kind: evaluate, expression: '180 - 65 - 48', answer: '67'}
+    answer_text: >-
+      $180 - 65 - 48 = 67^\circ$. The three angles of a triangle add to $180^\circ$ by
+      Theorem 4, which is proved from the Axiom of Parallels and the alternate angles
+      theorem.
+
+  - id: lc15-8-anchor-exterior
+    section: '15.8'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In the glazier's pane, the exterior angle at the third vertex is $113^\circ$. Find
+      the sum of the two interior opposite angles.
+    answer_label: 'The sum of the two interior opposite angles'
+    check: {kind: evaluate, expression: '65 + 48', answer: '113'}
+    answer_text: >-
+      The exterior angle equals the sum of the two interior opposite angles, by Theorem 6,
+      so the sum is $113^\circ$. Those two angles are $65^\circ$ and $48^\circ$, and
+      $65 + 48 = 113$.

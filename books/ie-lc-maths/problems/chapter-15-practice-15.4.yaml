@@ -1,0 +1,151 @@
+# Practice set for 15.4 (strand 2, outcome 2.1). The numeric checks are proved by
+# sympy. Where an angle is fixed by an equation, the check is `solve`, so the CAS
+# proves the value of x rather than repeating a number. The `structured` records
+# cover the two proofs of this section. They prove that a model answer contains the
+# declared steps **in order** and covers the declared ideas; they do not prove the
+# geometry. The verifier reads the words of a written argument, so the mathematics
+# of the argument stays a human judgement. The `points` list is the model answer the
+# reader sees.
+chapter: 15
+problems:
+  - id: lc15-4-alternate-algebra
+    section: '15.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Two parallel lines are cut by a transversal. A pair of alternate angles are $4x$
+      and $3x + 15$. Find $x$, then find the size of each angle.
+    answer_label: '$x$, then each angle'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: '4*x = 3*x + 15', variable: x, answer: ['15']}
+        - {kind: evaluate, expression: '4 * 15', answer: '60'}
+    symbols: {x: {real: true}}
+    answer_text: >-
+      Alternate angles at parallel lines are equal, so $4x = 3x + 15$ and $x = 15$. Each
+      angle is $4 \times 15 = 60^\circ$, and the other is $3 \times 15 + 15 = 60^\circ$.
+
+  - id: lc15-4-corresponding-algebra
+    section: '15.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Two parallel lines are cut by a transversal. A pair of corresponding angles are
+      $5x - 10$ and $3x + 40$. Find $x$.
+    answer_label: '$x$'
+    check:
+      kind: solve
+      equation: '5*x - 10 = 3*x + 40'
+      variable: x
+      answer: ['25']
+    symbols: {x: {real: true}}
+    answer_text: >-
+      Corresponding angles at parallel lines are equal, so $5x - 10 = 3x + 40$. Then
+      $2x = 50$ and $x = 25$. Both angles are $115^\circ$.
+
+  - id: lc15-4-same-side
+    section: '15.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Two parallel lines are cut by a transversal. One angle is $72^\circ$. Find the
+      angle inside the parallel lines on the same side of the transversal.
+    answer_label: 'The angle on the same side'
+    check: {kind: evaluate, expression: '180 - 72', answer: '108'}
+    answer_text: >-
+      $108^\circ$. The alternate angle is $72^\circ$, and the angle on the same side is
+      supplementary to it.
+
+  - id: lc15-4-angle-sum
+    section: '15.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In $\triangle ABC$, $|\angle A| = 65^\circ$ and $|\angle B| = 48^\circ$. Find
+      $|\angle C|$.
+    answer_label: '$|\angle C|$'
+    check: {kind: evaluate, expression: '180 - 65 - 48', answer: '67'}
+    answer_text: >-
+      $|\angle C| = 67^\circ$. The three angles of a triangle add to $180^\circ$, by
+      Theorem 4.
+
+  - id: lc15-4-exterior
+    section: '15.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In $\triangle ABC$, the exterior angle at $A$ is $113^\circ$ and
+      $|\angle B| = 65^\circ$. Find $|\angle C|$.
+    answer_label: '$|\angle C|$'
+    check: {kind: evaluate, expression: '113 - 65', answer: '48'}
+    answer_text: >-
+      The exterior angle equals the sum of the two interior opposite angles, so
+      $|\angle C| = 113 - 65 = 48^\circ$.
+
+  - id: lc15-4-prove-angle-sum
+    section: '15.4'
+    tier: O
+    refs: ['2.1']
+    statement: 'Prove that the angles in any triangle add to $180^\circ$.'
+    answer_label: 'The proof of Theorem 4'
+    check:
+      kind: structured
+      requires: [draw-parallel, first-alternate, second-alternate, add-to-straight]
+      concepts: [axiom-of-parallels, alternate-angles, straight-angle]
+      points:
+        - id: draw-parallel
+          text: draw the line through A parallel to BC, using the Axiom of Parallels, and name its ends D and E
+          concepts: [axiom-of-parallels]
+        - id: first-alternate
+          text: AB is a transversal, so the alternate angles give angle ABC = angle DAB
+          concepts: [alternate-angles]
+        - id: second-alternate
+          text: AC is a transversal, so the alternate angles give angle ACB = angle CAE
+          concepts: [alternate-angles]
+        - id: add-to-straight
+          text: the three angles at A make the straight angle DAE, which is 180 degrees, so the three angles of the triangle add to 180 degrees
+          concepts: [straight-angle]
+    answer_text: >-
+      The proof rests on the Axiom of Parallels, the alternate angles theorem, and the
+      Protractor Axiom.
+
+  - id: lc15-4-prove-alternate
+    section: '15.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      State both parts of the alternate angles theorem, and say which part is used to
+      prove the angle sum of a triangle.
+    answer_label: 'Both parts, and the part used'
+    check:
+      kind: structured
+      requires: [part-one, part-two, which-part]
+      concepts: [alternate-angles, converse]
+      points:
+        - id: part-one
+          text: if a transversal makes equal alternate angles on two lines, then the two lines are parallel
+          concepts: [alternate-angles]
+        - id: part-two
+          text: conversely, if two lines are parallel, then any transversal makes equal alternate angles with them
+          concepts: [converse]
+        - id: which-part
+          text: the angle sum proof uses part two, because it starts with a line drawn parallel to the base
+          concepts: [alternate-angles]
+    answer_text: >-
+      Part 1 gives the parallel lines from equal alternate angles. Part 2 gives the equal
+      alternate angles from the parallel lines. The angle sum proof uses part 2.
+
+  - id: lc15-4-mixed
+    section: '15.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Two parallel lines are cut by a transversal. One angle is $55^\circ$. Find the
+      angle on the same side of the transversal, inside the parallel lines, and say which
+      theorem you used.
+    answer_label: 'The angle, and the theorem'
+    check: {kind: evaluate, expression: '180 - 55', answer: '125'}
+    answer_text: >-
+      $125^\circ$. The alternate angle is $55^\circ$ by Theorem 3 part 2, and the angle
+      on the same side is supplementary to it.

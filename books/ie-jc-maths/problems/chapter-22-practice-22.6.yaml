@@ -1,0 +1,205 @@
+# Junior Cycle Mathematics, Chapter 22, section 22.6.
+#
+# The range is a subtraction. The quartiles and the IQR are exact summary
+# statistics, and the method taught here is the median of each half with the
+# median excluded for an odd count, which is the `exclusive` convention. The
+# convention is named in every quartile record because the methods disagree on
+# real data. Why the IQR resists an extreme value is a reason, and uses
+# `structured`.
+chapter: 22
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc22-22.6-range-1
+  section: '22.6'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Find the range of $4, 9, 2, 7$.'
+  answer_label: 'Find the range.'
+  check:
+    kind: evaluate
+    expression: 9 - 2
+    answer: '7'
+  answer_text: 'The largest value is 9 and the smallest is 2, so the range is $9-2=7$.'
+
+- id: jc22-22.6-range-2
+  section: '22.6'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Find the range of $12, 15, 11, 20, 13$.'
+  answer_label: 'Find the range.'
+  check:
+    kind: evaluate
+    expression: 20 - 11
+    answer: '9'
+  answer_text: 'The largest value is 20 and the smallest is 11, so the range is $20-11=9$.'
+
+- id: jc22-22.6-quartile1
+  section: '22.6'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Find the lower quartile of $2, 4, 6, 8, 10, 12, 14, 16$.'
+  answer_label: 'Find the lower quartile.'
+  check:
+    kind: statistic
+    data: [2, 4, 6, 8, 10, 12, 14, 16]
+    stat: quartile1
+    convention: exclusive
+    answer: '5'
+  answer_text: 'The lower half is $2, 4, 6, 8$. Its median is $(4+6)\div2=5$, so $Q_1=5$.'
+
+- id: jc22-22.6-quartile3-iqr
+  section: '22.6'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'For $2, 4, 6, 8, 10, 12, 14, 16$, find the upper quartile and the interquartile range.'
+  answer_label: 'Find the upper quartile and the IQR.'
+  check:
+    kind: all
+    checks:
+    - kind: statistic
+      data: [2, 4, 6, 8, 10, 12, 14, 16]
+      stat: quartile3
+      convention: exclusive
+      answer: '13'
+    - kind: statistic
+      data: [2, 4, 6, 8, 10, 12, 14, 16]
+      stat: iqr
+      convention: exclusive
+      answer: '8'
+  answer_text: 'The upper half is $10, 12, 14, 16$, so $Q_3=(12+14)\div2=13$. Then $\text{IQR}=Q_3-Q_1=13-5=8$.'
+
+- id: jc22-22.6-iqr-odd
+  section: '22.6'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Find the interquartile range of $3, 4, 5, 6, 7, 8, 9$.'
+  answer_label: 'Find the interquartile range.'
+  check:
+    kind: statistic
+    data: [3, 4, 5, 6, 7, 8, 9]
+    stat: iqr
+    convention: exclusive
+    answer: '4'
+  answer_text: 'The median is 6, and it belongs to neither half. The lower half is $3, 4, 5$ with $Q_1=4$, and the upper half is $7, 8, 9$ with $Q_3=8$. The IQR is $8-4=4$.'
+
+- id: jc22-22.6-outlier
+  section: '22.6'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'One value in a set of data is much larger than all the others. Which is affected more, the range or the interquartile range? Explain.'
+  answer_label: 'Compare the effect on the range and the IQR.'
+  check:
+    kind: structured
+    requires: [choose-measure, give-reason]
+    concepts: [range, interquartile-range, extreme-value]
+    points:
+    - id: choose-measure
+      text: 'The range is affected more, because it uses the largest value.'
+      concepts: [range, extreme-value]
+    - id: give-reason
+      text: 'The IQR uses the middle half of the data and ignores the highest quarter, so it hardly changes.'
+      concepts: [interquartile-range]
+  answer_text: 'The range is affected more. It is the largest value minus the smallest, so one extreme value makes it large. The interquartile range uses the middle half of the data and ignores the highest quarter, so it hardly moves.'
+
+- id: jc22-22.6-anchor-range
+  section: '22.6'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The chapter problem. The sleep values run from 5 to 10 hours. Find the range.'
+  answer_label: 'Find the range of the sleep data.'
+  check:
+    kind: evaluate
+    expression: 10 - 5
+    answer: '5'
+  answer_text: 'The largest sleep is 10 hours and the smallest is 5 hours, so the range is $10-5=5$ hours.'
+
+- id: jc22-22.6-anchor-iqr
+  section: '22.6'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The chapter problem. The 20 ordered sleep values are $5, 5, 5, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 10, 10$. Find $Q_1$, $Q_3$ and the interquartile range.'
+  answer_label: 'Find the quartiles and the IQR.'
+  check:
+    kind: all
+    checks:
+    - kind: statistic
+      data: [5, 5, 5, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 10, 10]
+      stat: quartile1
+      convention: exclusive
+      answer: '6'
+    - kind: statistic
+      data: [5, 5, 5, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 10, 10]
+      stat: quartile3
+      convention: exclusive
+      answer: '17/2'
+    - kind: statistic
+      data: [5, 5, 5, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9, 9, 9, 10, 10]
+      stat: iqr
+      convention: exclusive
+      answer: '5/2'
+  answer_text: 'Each half has 10 values. The lower half gives $Q_1=(6+6)\div2=6$ and the upper half gives $Q_3=(8+9)\div2=8.5$. The interquartile range is $8.5-6=2.5$ hours. The middle half of the students sleep between 6 and 8.5 hours.'
+
+- id: jc22-22.6-compare-groups
+  section: '22.6'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Group A has $Q_1=11$ and $Q_3=19$. Group B has $Q_1=8$ and $Q_3=21$. Which group has the larger middle-half spread?'
+  answer_label: 'Compare the interquartile ranges.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 19 - 11
+      answer: '8'
+    - kind: evaluate
+      expression: 21 - 8
+      answer: '13'
+    - kind: compare
+      relation: '<'
+      lhs: '8'
+      rhs: '13'
+  answer_text: 'Group A has IQR $19-11=8$ and Group B has IQR $21-8=13$. Group B has the larger middle-half spread, so its middle values are more spread out.'
+
+- id: jc22-22.6-range-outlier
+  section: '22.6'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A set of data is $3, 4, 5, 6, 20$. Work out the range.'
+  answer_label: 'Find the range.'
+  check:
+    kind: evaluate
+    expression: 20 - 3
+    answer: '17'
+  answer_text: 'The largest value is 20 and the smallest is 3, so the range is $20-3=17$. The value 20 is much larger than the rest, and it makes the range large.'
+
+- id: jc22-22.6-consistency
+  section: '22.6'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Two classes sit the same test. Class A has a median of 65 and an IQR of 6. Class B has a median of 65 and an IQR of 15. Which class is more consistent? Explain.'
+  answer_label: 'Compare the consistency of the two classes.'
+  check:
+    kind: structured
+    requires: [choose-class, give-reason]
+    concepts: [interquartile-range, median]
+    points:
+    - id: choose-class
+      text: 'Class A is more consistent, because its interquartile range is smaller.'
+      concepts: [interquartile-range]
+    - id: give-reason
+      text: 'Both classes have the same median, so the middle score is the same. A smaller IQR means the middle half of the marks are closer together.'
+      concepts: [median]
+  answer_text: 'Class A is more consistent. Both classes have a median of 65, so their middle scores are the same. Class A has the smaller interquartile range, so the middle half of its marks are closer together.'

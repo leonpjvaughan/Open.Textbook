@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 22.3 Tallying and frequency tables — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: SP.3
+Work independently. The questions and answers are shown together at the end.
+
+Count carefully, then add the frequencies. If the total does not match the number
+of answers, one row is wrong.
+
+:::problems chapter-22-practice-22.3
+
+:::answers chapter-22-practice-22.3

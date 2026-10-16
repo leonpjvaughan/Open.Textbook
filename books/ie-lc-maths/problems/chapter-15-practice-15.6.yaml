@@ -1,0 +1,148 @@
+# Practice set for 15.6 (strand 2, outcome 2.1). The numeric checks are proved by
+# sympy: an `evaluate` for the arithmetic and a `solve` where the angle is fixed by
+# an equation. The `structured` records cover the two propositions and the two
+# properties of the perpendicular bisector. A `structured` record proves that a model
+# answer contains the declared steps **in order**; it does not prove the geometry,
+# and the mathematics of a written argument stays a human judgement. The `points`
+# list is the model answer the reader sees.
+chapter: 15
+problems:
+  - id: lc15-6-acute-angle
+    section: '15.6'
+    tier: O
+    refs: ['2.1']
+    statement: 'A right-angled triangle has one acute angle of $35^\circ$. Find the other acute angle.'
+    answer_label: 'The other acute angle'
+    check: {kind: evaluate, expression: '90 - 35', answer: '55'}
+    answer_text: >-
+      $55^\circ$. The three angles add to $180^\circ$ and one of them is $90^\circ$, so
+      the two acute angles add to $90^\circ$.
+
+  - id: lc15-6-bisector-half
+    section: '15.6'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $[AB]$ has length $18$ cm, and the perpendicular bisector of $[AB]$ meets $AB$ at
+      $M$. Find $|AM|$.
+    answer_label: '$|AM|$'
+    check: {kind: evaluate, expression: '18 / 2', answer: '9'}
+    answer_text: >-
+      $|AM| = 9$ cm. The perpendicular bisector passes through the midpoint of $[AB]$.
+
+  - id: lc15-6-isosceles-right
+    section: '15.6'
+    tier: O
+    refs: ['2.1']
+    statement: 'A right-angled triangle is also isosceles. Find each acute angle.'
+    answer_label: 'Each acute angle'
+    check: {kind: evaluate, expression: '90 / 2', answer: '45'}
+    answer_text: >-
+      $45^\circ$ each. The two acute angles add to $90^\circ$, and equal sides give equal
+      angles by Theorem 2 part 1.
+
+  - id: lc15-6-algebraic
+    section: '15.6'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In a right-angled triangle the two acute angles are $3x$ and $2x$. Find $x$, then
+      find the two acute angles.
+    answer_label: '$x$, then the acute angles'
+    check:
+      kind: all
+      checks:
+        - {kind: solve, equation: '3*x + 2*x = 90', variable: x, answer: ['18']}
+        - {kind: evaluate, expression: '3 * 18 + 2 * 18', answer: '90'}
+    symbols: {x: {real: true}}
+    answer_text: >-
+      The acute angles add to $90^\circ$, so $5x = 90$ and $x = 18$. The acute angles are
+      $54^\circ$ and $36^\circ$, and $54 + 36 = 90$.
+
+  - id: lc15-6-straight-angle
+    section: '15.6'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A line $l$ is perpendicular to a line $m$. Find the size of the angle next to the
+      right angle, on the straight line $m$.
+    answer_label: 'The angle next to the right angle'
+    check: {kind: evaluate, expression: '180 - 90', answer: '90'}
+    answer_text: >-
+      $90^\circ$. The two angles sit on the straight line $m$ and add to $180^\circ$, so
+      all four angles at the crossing are right angles.
+
+  - id: lc15-6-perpendiculars-parallel
+    section: '15.6'
+    tier: O
+    refs: ['2.1']
+    statement: 'Prove that two lines perpendicular to the same line are parallel.'
+    answer_label: 'The proof of Proposition 1'
+    check:
+      kind: structured
+      requires: [transversal-right-angles, alternate-equal, conclude-parallel]
+      concepts: [alternate-angles, perpendicular]
+      points:
+        - id: transversal-right-angles
+          text: the common line is a transversal of the two lines, and it makes a right angle with each of them
+          concepts: [perpendicular]
+        - id: alternate-equal
+          text: the two alternate angles are both 90 degrees, so they are equal
+          concepts: [alternate-angles]
+        - id: conclude-parallel
+          text: by Theorem 3 part 1, equal alternate angles make the two lines parallel
+          concepts: [alternate-angles]
+    answer_text: >-
+      The common line makes a right angle with each of the two lines. The alternate angles
+      are equal, so the lines are parallel by Theorem 3 part 1.
+
+  - id: lc15-6-equidistant
+    section: '15.6'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A point $P$ is the same distance from $A$ as from $B$. Prove that $P$ lies on the
+      perpendicular bisector of $[AB]$.
+    answer_label: 'The proof of Property 2'
+    check:
+      kind: structured
+      requires: [isosceles, midpoint-line, perpendicular]
+      concepts: [isosceles, perpendicular-bisector]
+      points:
+        - id: isosceles
+          text: PA = PB, so triangle PAB is isosceles with apex P and base AB
+          concepts: [isosceles]
+        - id: midpoint-line
+          text: let M be the midpoint of AB, and draw PM
+          concepts: [perpendicular-bisector]
+        - id: perpendicular
+          text: by the corollary in Section 15.5, the line from the apex to the midpoint of the base is perpendicular to the base, so PM is perpendicular to AB at its midpoint
+          concepts: [perpendicular-bisector]
+    answer_text: >-
+      $\triangle PAB$ is isosceles with apex $P$. The line from the apex to the midpoint of
+      the base is perpendicular to the base, so $P$ lies on the perpendicular bisector.
+
+  - id: lc15-6-unique-perpendicular
+    section: '15.6'
+    tier: O
+    refs: ['2.1']
+    statement: 'Prove that there is exactly one line perpendicular to a given line through a given point.'
+    answer_label: 'The proof of Proposition 2'
+    check:
+      kind: structured
+      requires: [one-exists, two-would-be-parallel, axiom-of-parallels]
+      concepts: [axiom-of-parallels, perpendicular]
+      points:
+        - id: one-exists
+          text: the Protractor Axiom gives a ray making 90 degrees with the line, so at least one perpendicular exists
+          concepts: [perpendicular]
+        - id: two-would-be-parallel
+          text: two lines through the point both perpendicular to the given line would be parallel to each other by Proposition 1
+          concepts: [perpendicular]
+        - id: axiom-of-parallels
+          text: by the Axiom of Parallels there is only one line through the point parallel to a given line, so the two lines are the same line
+          concepts: [axiom-of-parallels]
+    answer_text: >-
+      One perpendicular exists by the Protractor Axiom. Two of them would be parallel
+      lines through the same point, so they would be the same line, by the Axiom of
+      Parallels.

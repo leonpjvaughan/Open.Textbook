@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 21.3 Equally likely outcomes — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: SP.2
+Work independently. The questions and the answers are shown together at the end.
+
+Some questions ask you to **explain**. Say whether the outcomes are equally likely,
+and count the outcomes rather than the colours.
+
+:::problems chapter-21-practice-21.3
+
+:::answers chapter-21-practice-21.3

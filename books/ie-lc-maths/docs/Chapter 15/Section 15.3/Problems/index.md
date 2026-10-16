@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.3 Congruent triangles — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Name the test you use in every question, and write the congruence statement with the
+vertices in matching order. Check the letter order before you read anything off it.
+
+:::problems chapter-15-practice-15.3
+
+:::answers chapter-15-practice-15.3

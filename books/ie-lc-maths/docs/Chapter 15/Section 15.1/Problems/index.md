@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.1 Axioms and the rules of deduction — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Write a reason for every line you use, even when the answer feels obvious. Check each
+statement by asking whether it is an axiom or something proved from an axiom.
+
+:::problems chapter-15-practice-15.1
+
+:::answers chapter-15-practice-15.1

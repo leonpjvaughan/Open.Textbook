@@ -1,5 +1,5 @@
 ---
-title: '22.6 Measures of spread: range and interquartile range — Practise'
+title: "22.6 Measures of spread: range and interquartile range — Practise"
 chapter: 22
 chapter_title: Statistics
 section: '22.6'
@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 22.6 Measures of spread: range and interquartile range — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: SP.3
+Work independently. The questions and answers are shown together at the end.
+
+Order the data first. Mark the median, then cover it before you take the median
+of each half.
+
+:::problems chapter-22-practice-22.6
+
+:::answers chapter-22-practice-22.6

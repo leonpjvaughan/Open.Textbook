@@ -1,0 +1,153 @@
+# Junior Cycle Mathematics, Chapter 21, section 21.8 (Higher only).
+#
+# An expected frequency is `probability * number of trials`, so each record is
+# an `evaluate` on that product. Expected frequency is a prediction, not a
+# promise: the verifier proves the multiplication, and it cannot prove that a
+# real experiment will land on the expected value. Relative frequency is the
+# same division of counts as in section 21.2.
+chapter: 21
+symbols: {}
+
+problems:
+- id: jc21-21.8-die-sixes
+  section: '21.8'
+  tier: H
+  refs:
+  - SP.2
+  statement: 'A fair six-sided die is rolled 300 times. Work out the expected number of 6s.'
+  answer_label: 'Work out the expected number of 6s.'
+  check:
+    kind: evaluate
+    expression: 300*1/6
+    answer: '50'
+  answer_text: '$300\times\frac16=50$. The expected frequency is the probability of a 6 multiplied by the number of rolls. The actual number of 6s will usually differ from 50.'
+
+- id: jc21-21.8-prizes
+  section: '21.8'
+  tier: H
+  refs:
+  - SP.2
+  statement: 'In the open-day game the probability of a prize is $\frac38$. The game is played 240 times. Work out the expected number of prizes.'
+  answer_label: 'Work out the expected number of prizes.'
+  check:
+    kind: evaluate
+    expression: 240*3/8
+    answer: '90'
+  answer_text: '$240\times\frac38=90$. The organiser should expect about 90 prizes from 240 plays. Because 90 is less than half of 240, the stall keeps more plays without a prize.'
+
+- id: jc21-21.8-star-prizes
+  section: '21.8'
+  tier: H
+  refs:
+  - SP.2
+  statement: 'In the open-day game the probability of the star prize is $\frac{1}{24}$. The game is played 240 times. Work out the expected number of star prizes.'
+  answer_label: 'Work out the expected number of star prizes.'
+  check:
+    kind: evaluate
+    expression: 240*1/24
+    answer: '10'
+  answer_text: '$240\times\frac{1}{24}=10$. The star prize is rare, so the organiser should expect about 10 of them in 240 plays and should buy a few more than 10 prizes to be safe.'
+
+- id: jc21-21.8-coin-heads
+  section: '21.8'
+  tier: H
+  refs:
+  - SP.2
+  statement: 'A fair coin is tossed 200 times. Work out the expected number of heads.'
+  answer_label: 'Work out the expected number of heads.'
+  check:
+    kind: evaluate
+    expression: 200*1/2
+    answer: '100'
+  answer_text: '$200\times\frac12=100$. The probability of a head is one half, so half of the 200 tosses are expected to be heads.'
+
+- id: jc21-21.8-spinner-red
+  section: '21.8'
+  tier: H
+  refs:
+  - SP.2
+  statement: 'A spinner lands on red with probability $\frac38$. It is spun 400 times. Work out the expected number of reds.'
+  answer_label: 'Work out the expected number of reds.'
+  check:
+    kind: evaluate
+    expression: 400*3/8
+    answer: '150'
+  answer_text: '$400\times\frac38=150$. Multiply the probability by the number of spins. A run of 400 spins that gives 130 reds is possible, and it does not on its own mean the spinner is unfair.'
+
+- id: jc21-21.8-die-greater
+  section: '21.8'
+  tier: H
+  refs:
+  - SP.2
+  statement: 'A fair six-sided die is rolled 120 times. Work out the expected number of results greater than 4.'
+  answer_label: 'Work out the expected number of results greater than 4.'
+  check:
+    kind: evaluate
+    expression: 120*1/3
+    answer: '40'
+  answer_text: '$120\times\frac13=40$. The results greater than 4 are 5 and 6, so the probability is $\frac26=\frac13$. Then $120\times\frac13=40$.'
+
+- id: jc21-21.8-difference
+  section: '21.8'
+  tier: H
+  refs:
+  - SP.2
+  statement: 'A fair die is rolled 300 times. The expected number of 6s is 50, but the die shows 44. Work out the difference between the observed and the expected number.'
+  answer_label: 'Work out the difference between the observed and the expected number.'
+  check:
+    kind: evaluate
+    expression: 50-44
+    answer: '6'
+  answer_text: '$50-44=6$. The observed number is 6 below the expected number. A difference like this is ordinary: the expected value is the long-run average, not the result of every 300 rolls.'
+
+- id: jc21-21.8-relative-frequency
+  section: '21.8'
+  tier: H
+  refs:
+  - SP.2
+  statement: 'A die is rolled 300 times and shows a 6 on 44 of the rolls. Work out the relative frequency of a 6.'
+  answer_label: 'Work out the relative frequency of a 6.'
+  check:
+    kind: evaluate
+    expression: 44/300
+    answer: '11/75'
+  answer_text: '$\frac{44}{300}=\frac{11}{75}$, which is about $0.147$. The theoretical probability is $\frac16$, about $0.167$, so the relative frequency is close to it. More rolls usually bring the relative frequency closer still.'
+
+- id: jc21-21.8-ninety-sixes
+  section: '21.8'
+  tier: H
+  refs:
+  - SP.2
+  statement: 'A fair six-sided die is rolled 90 times. Work out the expected number of 6s.'
+  answer_label: 'Work out the expected number of 6s.'
+  check:
+    kind: evaluate
+    expression: 90*1/6
+    answer: '15'
+  answer_text: '$90\times\frac16=15$. Divide the number of rolls by 6, because one sixth of the rolls are expected to be a 6.'
+
+- id: jc21-21.8-biased-coin
+  section: '21.8'
+  tier: H
+  refs:
+  - SP.2
+  statement: 'A biased coin lands on heads with probability $0.6$. It is tossed 250 times. Work out the expected number of heads.'
+  answer_label: 'Work out the expected number of heads.'
+  check:
+    kind: evaluate
+    expression: 250*0.6
+    answer: '150'
+  answer_text: '$250\times0.6=150$. The probability is a decimal, so multiply the decimal by the number of tosses. Expected frequency works the same way with a decimal probability as with a fraction.'
+
+- id: jc21-21.8-dice-sevens
+  section: '21.8'
+  tier: H
+  refs:
+  - SP.2
+  statement: 'Two fair dice are rolled 180 times. Work out the expected number of times the total is 7.'
+  answer_label: 'Work out the expected number of times the total is 7.'
+  check:
+    kind: evaluate
+    expression: 180*1/6
+    answer: '30'
+  answer_text: '$180\times\frac16=30$. Six of the 36 outcomes total 7, so the probability is $\frac{6}{36}=\frac16$. Then $180\times\frac16=30$.'

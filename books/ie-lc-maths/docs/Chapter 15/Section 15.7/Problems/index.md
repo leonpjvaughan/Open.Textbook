@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.7 Constructions 1–6 — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Draw each construction with a sharp pencil and leave the arcs on the page. A construction
+with the arcs rubbed out cannot be checked.
+
+:::problems chapter-15-practice-15.7
+
+:::answers chapter-15-practice-15.7

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 22.2 Choosing a sample and avoiding bias — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: SP.3
+Work independently. The questions and answers are shown together at the end.
+
+Ask yourself who had a chance of being chosen. If one part of the population had
+no chance, the sample is biased.
+
+:::problems chapter-22-practice-22.2
+
+:::answers chapter-22-practice-22.2

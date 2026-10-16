@@ -1,0 +1,142 @@
+# Junior Cycle Mathematics, Chapter 21, section 21.2.
+#
+# The probability scale runs from 0 to 1, and every check here proves one point
+# on it: an arithmetic identity for a probability, or a comparison that places
+# one value above another. Relative frequency is a division of counts, so it is
+# an `evaluate` too. A percentage is written as its decimal value in the CAS
+# field, because the per cent sign belongs in the statement, not the expression.
+chapter: 21
+symbols: {}
+
+problems:
+- id: jc21-21.2-compare-half
+  section: '21.2'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'The probability of an event is $0.7$. Is the event more likely or less likely than not?'
+  answer_label: 'Is the event more likely or less likely than not?'
+  check:
+    kind: compare
+    relation: '>'
+    lhs: '0.7'
+    rhs: '0.5'
+  answer_text: 'More likely than not. The value $0.7$ is greater than $0.5$, which is the probability of an even chance, and $0.7$ sits nearer to 1 than to 0.'
+
+- id: jc21-21.2-impossible
+  section: '21.2'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A fair six-sided die is rolled. What is the probability of the die showing 7?'
+  answer_label: 'What is the probability of the die showing 7?'
+  check:
+    kind: evaluate
+    expression: 0/6
+    answer: '0'
+  answer_text: 'Zero. The die has no 7, so the event is impossible and sits at the left end of the scale. A probability of 0 means the event cannot happen.'
+
+- id: jc21-21.2-certain
+  section: '21.2'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A fair coin is tossed. What is the probability that it shows heads or tails?'
+  answer_label: 'What is the probability that it shows heads or tails?'
+  check:
+    kind: evaluate
+    expression: 2/2
+    answer: '1'
+  answer_text: 'One. Heads and tails are the only outcomes, so the event is certain and sits at the right end of the scale. A probability of 1 means the event must happen.'
+
+- id: jc21-21.2-decimal
+  section: '21.2'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'Write the probability $\frac14$ as a decimal.'
+  answer_label: 'Write the probability as a decimal.'
+  check:
+    kind: evaluate
+    expression: 1/4
+    answer: '0.25'
+  answer_text: '$0.25$, because $1\div4=0.25$. One quarter is between 0 and 0.5, so it is less likely than not.'
+
+- id: jc21-21.2-percentage
+  section: '21.2'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'Write the probability $0.6$ as a percentage.'
+  answer_label: 'Write the probability as a percentage.'
+  check:
+    kind: evaluate
+    expression: 0.6*100
+    answer: '60'
+  answer_text: '$60$ per cent. Multiply a decimal by 100 to change it to a percentage, so $0.6\times100=60$. The same event is more likely than not, because $0.6>0.5$.'
+
+- id: jc21-21.2-fraction-decimal
+  section: '21.2'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'Write the probability $\frac38$ as a decimal.'
+  answer_label: 'Write the probability as a decimal.'
+  check:
+    kind: evaluate
+    expression: 3/8
+    answer: '0.375'
+  answer_text: '$0.375$, because $3\div8=0.375$. The value is less than $0.5$, so the event is less likely than not.'
+
+- id: jc21-21.2-relfreq-60
+  section: '21.2'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A die is rolled 60 times and shows a 6 on 13 of the rolls. Work out the relative frequency of a 6.'
+  answer_label: 'Work out the relative frequency of a 6.'
+  check:
+    kind: evaluate
+    expression: 13/60
+    answer: '13/60'
+  answer_text: 'The relative frequency is $\frac{13}{60}$. Divide the number of times the event happened by the number of trials: $13\div60$. As a decimal it is about $0.217$, which is higher than the theoretical $\frac16$ of about $0.167$.'
+
+- id: jc21-21.2-relfreq-200
+  section: '21.2'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'A spinner is spun 200 times and lands on red 46 times. Work out the relative frequency of red.'
+  answer_label: 'Work out the relative frequency of red.'
+  check:
+    kind: evaluate
+    expression: 46/200
+    answer: '23/100'
+  answer_text: 'The relative frequency is $\frac{46}{200}=\frac{23}{100}=0.23$. Relative frequency estimates the probability from the data you collected, so it can differ from the theoretical value.'
+
+- id: jc21-21.2-above-one
+  section: '21.2'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'Someone says the probability of rain tomorrow is $1.2$. Is that possible?'
+  answer_label: 'Is a probability of $1.2$ possible?'
+  check:
+    kind: compare
+    relation: '>'
+    lhs: '1.2'
+    rhs: '1'
+  answer_text: 'No. A probability cannot be greater than 1, because 1 is the probability of a certain event. The value $1.2$ is above 1, so it is not a probability.'
+
+- id: jc21-21.2-five-eighths-percent
+  section: '21.2'
+  tier: O
+  refs:
+  - SP.2
+  statement: 'Write the probability $\frac58$ as a percentage.'
+  answer_label: 'Write the probability as a percentage.'
+  check:
+    kind: evaluate
+    expression: 5/8*100
+    answer: '62.5'
+  answer_text: '$62.5$ per cent. Change the fraction to a decimal first: $5\div8=0.625$. Then multiply by 100 to get $62.5$ per cent. This is more than half.'

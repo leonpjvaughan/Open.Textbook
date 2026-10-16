@@ -1,0 +1,138 @@
+# Practice set for 15.1 (strand 2, outcome 2.1). The numeric checks are proved by
+# sympy: the expression is the arithmetic the page claims, and the answer is the
+# result. The `structured` records cover the statements and the explanations; they
+# prove that a model answer contains the declared ideas **in order**, and nothing
+# more. A `structured` record does not prove the geometry, and it cannot: the
+# verifier reads the words, so the mathematics of a written argument stays a human
+# judgement. The model answer is the `points` list, and it is what the reader sees.
+chapter: 15
+problems:
+  - id: lc15-1-two-points
+    section: '15.1'
+    tier: O
+    refs: ['2.1']
+    statement: 'State the Two Points Axiom.'
+    answer_label: 'The Two Points Axiom'
+    check:
+      kind: structured
+      requires: [exactly-one, through-two-points]
+      concepts: [axiom]
+      points:
+        - id: exactly-one
+          text: there is exactly one line through any two given points
+          concepts: [axiom]
+        - id: through-two-points
+          text: so two points fix a line completely, and no second line passes through both
+          concepts: [axiom]
+    answer_text: >-
+      There is exactly one line through any two given points. This is an axiom, so we
+      accept it without proof.
+
+  - id: lc15-1-converse-square
+    section: '15.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Write the converse of "if a shape is a square, then it has four right angles", and
+      say whether the converse is true.
+    answer_label: 'The converse, and whether it is true'
+    check:
+      kind: structured
+      requires: [swap, counterexample]
+      concepts: [converse, false-converse]
+      points:
+        - id: swap
+          text: the converse swaps the two parts, so it reads "if a shape has four right angles, then it is a square"
+          concepts: [converse]
+        - id: counterexample
+          text: the converse is false, because a rectangle has four right angles and is not a square
+          concepts: [false-converse]
+    answer_text: >-
+      Converse: "if a shape has four right angles, then it is a square." It is false. A
+      rectangle has four right angles and is not a square.
+
+  - id: lc15-1-midpoint
+    section: '15.1'
+    tier: O
+    refs: ['2.1']
+    statement: '$M$ is the midpoint of $[AB]$, and $|AB| = 26$ cm. Find $|AM|$.'
+    answer_label: '$|AM|$'
+    check: {kind: evaluate, expression: '26 / 2', answer: '13'}
+    answer_text: >-
+      $|AM| = 13$ cm. The midpoint cuts the segment into two equal parts, so each half is
+      half of $26$.
+
+  - id: lc15-1-segment-sum
+    section: '15.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $C$ lies between $A$ and $B$ on the line $AB$. Given $|AC| = 9$ cm and
+      $|CB| = 15$ cm, find $|AB|$.
+    answer_label: '$|AB|$'
+    check: {kind: evaluate, expression: '9 + 15', answer: '24'}
+    answer_text: >-
+      $|AB| = 24$ cm. A point between two others splits the distance into two parts that
+      add to the whole.
+
+  - id: lc15-1-angle-part
+    section: '15.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $D$ is inside the angle $\angle BAC$. Given $|\angle BAC| = 118^\circ$ and
+      $|\angle BAD| = 45^\circ$, find $|\angle DAC|$.
+    answer_label: '$|\angle DAC|$'
+    check: {kind: evaluate, expression: '118 - 45', answer: '73'}
+    answer_text: >-
+      $|\angle DAC| = 73^\circ$. The ray $[AD$ splits the angle into two parts that add to
+      the whole.
+
+  - id: lc15-1-counterexample
+    section: '15.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A student claims that every quadrilateral with perpendicular diagonals is a
+      rhombus. Explain why the claim is false, and give a counterexample.
+    answer_label: 'Why the claim is false'
+    check:
+      kind: structured
+      requires: [identify-converse, give-kite]
+      concepts: [false-converse, counterexample]
+      points:
+        - id: identify-converse
+          text: the claim is the converse of the true statement that a rhombus has perpendicular diagonals
+          concepts: [false-converse]
+        - id: give-kite
+          text: a kite has perpendicular diagonals but is not a rhombus, because a rhombus needs all four sides equal
+          concepts: [counterexample]
+    answer_text: >-
+      The claim is a false converse. A rhombus does have perpendicular diagonals, but the
+      other direction fails. A kite has perpendicular diagonals and is not a rhombus.
+
+  - id: lc15-1-ruler-sum
+    section: '15.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $A$, $C$ and $B$ lie on one line, and $C$ is between $A$ and $B$. Given
+      $|AC| = 6$ cm and $|CB| = 11$ cm, find $|AB|$.
+    answer_label: '$|AB|$'
+    check: {kind: evaluate, expression: '6 + 11', answer: '17'}
+    answer_text: >-
+      $|AB| = 17$ cm, by part 3 of the Ruler Axiom. The two parts add to the whole.
+
+  - id: lc15-1-angle-sum
+    section: '15.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In a triangle, two of the angles are $35^\circ$ and $90^\circ$. Find the third
+      angle, and say whether the rule you used is an axiom.
+    answer_label: 'The third angle, and whether the rule is an axiom'
+    check: {kind: evaluate, expression: '180 - 35 - 90', answer: '55'}
+    answer_text: >-
+      The third angle is $55^\circ$, because the three angles of a triangle add to
+      $180^\circ$. That rule is not an axiom. It is a theorem, and it is proved in
+      Section 15.4.

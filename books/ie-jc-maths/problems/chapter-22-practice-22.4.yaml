@@ -1,0 +1,190 @@
+# Junior Cycle Mathematics, Chapter 22, section 22.4.
+#
+# Every reading from a chart is an arithmetic identity over the bar heights the
+# reader is given: a height is a number, a total is a sum and the tallest bar is a
+# chain of `compare`s. Choosing between a bar chart and a histogram is a reason,
+# and uses `structured`.
+chapter: 22
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc22-22.4-tallest
+  section: '22.4'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A bar chart shows the goals scored in five matches, with bar heights 2, 3, 1, 4 and 0. How many goals were scored in the match with the tallest bar?'
+  answer_label: 'Read the tallest bar.'
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      relation: '>'
+      lhs: '4'
+      rhs: '2'
+    - kind: compare
+      relation: '>'
+      lhs: '4'
+      rhs: '3'
+    - kind: compare
+      relation: '>'
+      lhs: '4'
+      rhs: '1'
+    - kind: compare
+      relation: '>'
+      lhs: '4'
+      rhs: '0'
+  answer_text: 'The tallest bar has height 4, so 4 goals were scored in that match. The height of a bar is the frequency.'
+
+- id: jc22-22.4-total
+  section: '22.4'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A bar chart has heights 2, 3, 1, 4 and 0. How many goals were scored in total?'
+  answer_label: 'Find the total from the bar chart.'
+  check:
+    kind: evaluate
+    expression: 2 + 3 + 1 + 4 + 0
+    answer: '10'
+  answer_text: 'The total is the sum of the bar heights: $2+3+1+4+0=10$ goals.'
+
+- id: jc22-22.4-hist-tallest
+  section: '22.4'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A histogram of homework minutes has bar heights 4, 9, 8, 6 and 3 for the classes 0 to 19, 20 to 39, 40 to 59, 60 to 79 and 80 to 99. Which class has the tallest bar?'
+  answer_label: 'Find the tallest class.'
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      relation: '>'
+      lhs: '9'
+      rhs: '4'
+    - kind: compare
+      relation: '>'
+      lhs: '9'
+      rhs: '8'
+    - kind: compare
+      relation: '>'
+      lhs: '9'
+      rhs: '6'
+    - kind: compare
+      relation: '>'
+      lhs: '9'
+      rhs: '3'
+  answer_text: 'The largest height is 9, which belongs to the class 20 to 39 minutes. That class has the tallest bar and is the most common.'
+
+- id: jc22-22.4-hist-atleast40
+  section: '22.4'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A histogram has bar heights 4, 9, 8, 6 and 3 for the classes 0 to 19, 20 to 39, 40 to 59, 60 to 79 and 80 to 99 minutes. How many students spent 40 minutes or more on homework?'
+  answer_label: 'Find the number of students.'
+  check:
+    kind: evaluate
+    expression: 8 + 6 + 3
+    answer: '17'
+  answer_text: 'The classes 40 to 59, 60 to 79 and 80 to 99 have heights 8, 6 and 3. Their sum is $8+6+3=17$ students.'
+
+- id: jc22-22.4-line-plot-total
+  section: '22.4'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A line plot has 2, 5, 3 and 1 crosses above the values 1, 2, 3 and 4. How many pieces of data are there?'
+  answer_label: 'Find the total number of data values.'
+  check:
+    kind: evaluate
+    expression: 2 + 5 + 3 + 1
+    answer: '11'
+  answer_text: 'Every cross is one answer, so the total is $2+5+3+1=11$ pieces of data.'
+
+- id: jc22-22.4-hist-below40
+  section: '22.4'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A histogram has bar heights 4, 9, 8, 6 and 3 for the classes 0 to 19, 20 to 39, 40 to 59, 60 to 79 and 80 to 99 minutes. How many students spent less than 40 minutes?'
+  answer_label: 'Find the number of students.'
+  check:
+    kind: evaluate
+    expression: 4 + 9
+    answer: '13'
+  answer_text: 'The classes below 40 minutes are 0 to 19 and 20 to 39, with heights 4 and 9. Their sum is $4+9=13$ students.'
+
+- id: jc22-22.4-sleep-atleast7
+  section: '22.4'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The sleep bar chart has heights 3, 3, 4, 5, 3 and 2 for the values 5, 6, 7, 8, 9 and 10. How many students slept 7 hours or more?'
+  answer_label: 'Find the number of students.'
+  check:
+    kind: evaluate
+    expression: 4 + 5 + 3 + 2
+    answer: '14'
+  answer_text: 'The values 7, 8, 9 and 10 have heights 4, 5, 3 and 2. Their sum is $4+5+3+2=14$ students.'
+
+- id: jc22-22.4-sleep-fewer7
+  section: '22.4'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The sleep bar chart has heights 3, 3, 4, 5, 3 and 2 for the values 5, 6, 7, 8, 9 and 10. How many students slept fewer than 7 hours?'
+  answer_label: 'Find the number of students.'
+  check:
+    kind: evaluate
+    expression: 3 + 3
+    answer: '6'
+  answer_text: 'The values below 7 are 5 and 6, with heights 3 and 3. Their sum is $3+3=6$ students.'
+
+- id: jc22-22.4-bar-difference
+  section: '22.4'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'The sleep bar chart has heights 3, 3, 4, 5, 3 and 2. Work out the difference between the tallest bar and the shortest bar.'
+  answer_label: 'Find the difference in height.'
+  check:
+    kind: evaluate
+    expression: 5 - 2
+    answer: '3'
+  answer_text: 'The tallest bar is 5 and the shortest bar is 2, so the difference is $5-2=3$. The tallest bar is three more than the shortest.'
+
+- id: jc22-22.4-which-graph
+  section: '22.4'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'Which graph suits each set of data: a bar chart or a histogram? (a) The favourite colours of a class. (b) The heights of 30 students, grouped into classes.'
+  answer_label: 'Choose the graph for each set of data.'
+  check:
+    kind: structured
+    requires: [choose-colours, choose-heights]
+    concepts: [bar-chart, histogram]
+    points:
+    - id: choose-colours
+      text: 'A bar chart, because colours are separate categories and the bars need gaps.'
+      concepts: [bar-chart]
+    - id: choose-heights
+      text: 'A histogram, because heights are continuous and the classes join up with no gaps.'
+      concepts: [histogram]
+  answer_text: '(a) A bar chart, because colours are separate categories. (b) A histogram, because heights sit on a continuous scale and the classes join up.'
+
+- id: jc22-22.4-pictogram
+  section: '22.4'
+  tier: O
+  refs:
+  - SP.3
+  statement: 'A pictogram uses one symbol for 6 books. A row has 5 symbols. How many books does the row show?'
+  answer_label: 'Find the number of books.'
+  check:
+    kind: evaluate
+    expression: 5 * 6
+    answer: '30'
+  answer_text: 'Each symbol stands for 6 books, so the row shows $5\times6=30$ books.'
