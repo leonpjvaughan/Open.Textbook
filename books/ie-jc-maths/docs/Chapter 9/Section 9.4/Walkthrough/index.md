@@ -80,17 +80,30 @@ multiplies, so it races ahead.
 $2^{n-1}$. Before you calculate anything, predict which plan is largest in week 10.
 Then predict the week in which Cara's plan first beats Aoife's plan.
 
-**Test.** Work out the three amounts for weeks 1 to 10.
+:::figure growth-curves
 
-| Week | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Aoife (€) | 3 | 6 | 9 | 12 | 15 | 18 | 21 | 24 | 27 | 30 |
-| Ben (€) | 1 | 4 | 9 | 16 | 25 | 36 | 49 | 64 | 81 | 100 |
-| Cara (€) | 1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 512 |
+**Test.** The figure above draws all three plans on one pair of axes. Move the week
+and watch the three amounts change.
 
-**Explain.** Write two or three sentences. Say which plan is largest in week 10, and
-say why doubling overtakes a fixed step even though it starts behind. Use the words
+Where does Cara's plan first beat Aoife's? Where does it first beat Ben's? Write both
+week numbers down before you read on.
+
+**Explain.** Write two or three sentences. Say which plan is largest by week 8, and say
+why doubling overtakes a fixed step even though it starts behind. Use the words
 "multiplier" and "difference" in your explanation.
+
+Check your crossover weeks against this table.
+
+| Week | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|---|---|---|---|---|---|---|---|---|
+| Aoife (€) | 3 | 6 | 9 | 12 | 15 | 18 | 21 | 24 |
+| Ben (€) | 1 | 4 | 9 | 16 | 25 | 36 | 49 | 64 |
+| Cara (€) | 1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 |
+
+Cara beats Aoife in week 5, where $16$ passes $15$. She beats Ben in week 7, where $64$
+passes $49$. Both crossovers are within the first eight weeks, which is why the figure
+stops there: a graph of all ten weeks would need an axis to $512$, and the straight line
+and the squares would be flattened against the bottom.
 
 > **Watch out.** An exponential pattern is not quadratic. The doubling pattern
 > $1, 2, 4, 8$ has first differences $1, 2, 4$, and those are not constant, so its

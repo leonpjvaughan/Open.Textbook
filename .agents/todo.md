@@ -3181,6 +3181,36 @@ rewritten for the Irish books on the same day: the tier codes are the book's (no
 
 ---
 
+## 56. `fig_good` on the figure panel has 0.1 of contrast margin — the tightest token
+
+**What is wrong, and it is not a defect yet.** The figure audit holds `fig_accent`,
+`fig_warn` and `fig_good` to 4.5:1 against **the figure panel**, which is not the same
+surface as the page's paper. Measured over every bundle and both schemes:
+
+```
+$ node scripts/audit-figures.cjs site --only growth-curves --json /tmp/g.json
+  editorial/light  fig_good on the panel  4.60   floor 4.5   margin +0.10
+  editorial/dark   fig_good on the panel  7.52
+  # and against `paper` instead of the panel, the worst is 5.33 (glass/light)
+```
+
+So the invariant holds and `tests/test_themes.py` pins the thresholds — but the tightest
+value in the collection is 4.60 against a 4.5 floor, a **2% margin**. A small palette
+edit to `fig_good` in the `editorial` light member, or to that bundle's figure panel,
+takes it under, and the failure would look like a theme change rather than a contrast
+one.
+
+**The fix.** Either widen the `editorial` light `fig_good` a little so the margin is
+comfortable, or leave it and let the test be the guard. It needs a decision rather than a
+patch, which is why it is here.
+
+**Done means**
+
+- `node scripts/audit-figures.cjs site --json /tmp/all.json` reports the minimum
+  `fig_good`-against-panel ratio, and it is either above 4.5 with a stated margin the
+  author is happy with, or the palette has moved.
+- `uv run python -m pytest tests/test_themes.py -q` still passes.
+
 ## The Irish books are finished (2026-10-16)
 
 **All 71 chapters of the four Irish books are authored end to end.** 429 sections, every
