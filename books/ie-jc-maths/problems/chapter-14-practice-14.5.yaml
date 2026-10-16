@@ -1,0 +1,197 @@
+# Junior Cycle Mathematics, Chapter 14, section 14.5.
+#
+# A reading from a graph is a measurement, so where the reader estimates, the check
+# is an interval (`kind: between`) rather than a false equality. A rate is checked
+# by its division, and a maximum or a crossing is checked by comparing the two
+# values the graph shows. Units and words stay in `statement`.
+chapter: 14
+symbols:
+  x: {real: true}
+
+problems:
+- id: jc14-14.5-speed-1
+  section: '14.5'
+  tier: O
+  refs:
+  - AF.7
+  statement: A distance-time graph shows a car travelling 60 km in the first hour. Find its speed during that
+    hour.
+  answer_label: Find the speed in the first hour.
+  check:
+    kind: evaluate
+    expression: 60/1
+    answer: '60'
+  answer_text: The speed is 60 km/h, because the car covers 60 km in 1 hour. On a distance-time graph, the
+    speed is the distance divided by the time, so a steeper line means a faster journey.
+- id: jc14-14.5-speed-2
+  section: '14.5'
+  tier: O
+  refs:
+  - AF.7
+  statement: The same car then travels 40 km in one hour. Find its speed during that hour.
+  answer_label: Find the speed in the last hour.
+  check:
+    kind: evaluate
+    expression: 40/1
+    answer: '40'
+  answer_text: The speed is 40 km/h. The line for this part of the journey is less steep than the first part,
+    because the car covers less distance in the same time.
+- id: jc14-14.5-distance-1
+  section: '14.5'
+  tier: O
+  refs:
+  - AF.7
+  statement: The car travels 60 km and then 40 km, with a stop between the two parts. Find the total distance
+    travelled.
+  answer_label: Find the total distance.
+  check:
+    kind: evaluate
+    expression: 60+40
+    answer: '100'
+  answer_text: The total distance is 100 km. The graph is flat during the stop, so the distance does not
+    change while the time goes on. A flat part of a distance-time graph means the object is not moving.
+- id: jc14-14.5-rate-1
+  section: '14.5'
+  tier: O
+  refs:
+  - AF.7
+  statement: A tap fills a tank with 200 litres in 4 minutes. Find the rate at which water flows in.
+  answer_label: Find the rate in litres per minute.
+  check:
+    kind: evaluate
+    expression: 200/4
+    answer: '50'
+  answer_text: The water flows in at 50 litres per minute. The graph of the volume against the time is a
+    straight line, because the water flows at a steady rate. A straight line on a graph means the rate does
+    not change.
+- id: jc14-14.5-maximum-1
+  section: '14.5'
+  tier: O
+  refs:
+  - AF.7
+  statement: A ball is thrown straight up. Its height in metres after $t$ seconds is $h(t)=20t-5t^2$. Find the
+    greatest height the ball reaches, and the time it takes to get there.
+  answer_label: Find the greatest height and the time.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 20*2-5*2**2
+      answer: '20'
+    - kind: compare
+      lhs: 20*2-5*2**2
+      relation: '>'
+      rhs: 20*1-5*1**2
+    - kind: compare
+      lhs: 20*2-5*2**2
+      relation: '>'
+      rhs: 20*3-5*3**2
+  answer_text: The greatest height is 20 m, reached after 2 seconds. This is the highest point of the graph.
+    The ball is at 15 m after 1 second and at 15 m after 3 seconds, so the highest point is in the middle of
+    those two times.
+- id: jc14-14.5-crossing-1
+  section: '14.5'
+  tier: O
+  refs:
+  - AF.7
+  statement: The graphs of $y=2x-1$ and $y=x+2$ cross at $x=3$. Show that the two graphs have the same
+    height there.
+  answer_label: Show that the two graphs have the same height at $x=3$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*3-1
+      answer: '5'
+    - kind: evaluate
+      expression: 3+2
+      answer: '5'
+  answer_text: Both graphs have height 5 at $x=3$, so the point $(3,5)$ lies on both lines. The crossing
+    point is the solution of $2x-1=x+2$, and the graph shows that solution as the place where the two lines
+    meet.
+- id: jc14-14.5-garden-1
+  section: '14.5'
+  tier: O
+  refs:
+  - AF.7
+  statement: The graph of the area of the garden bed is $A(x)=12x-2x^2$ square metres. Find the greatest area
+    shown on the graph.
+  answer_label: Find the greatest area.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 12*3-2*3**2
+      answer: '18'
+    - kind: compare
+      lhs: 12*3-2*3**2
+      relation: '>'
+      rhs: 12*2-2*2**2
+    - kind: compare
+      lhs: 12*3-2*3**2
+      relation: '>'
+      rhs: 12*4-2*4**2
+  answer_text: The greatest area is $18\ \text{m}^2$. The graph rises, reaches its highest point at a width
+    of 3 m, and then falls. The highest point of a graph is the maximum, and it answers the question the club
+    asked.
+- id: jc14-14.5-garden-2
+  section: '14.5'
+  tier: O
+  refs:
+  - AF.7
+  statement: The graph of $A(x)=12x-2x^2$ shows the area of the garden bed for each width. Find the two
+    widths for which the area is 0, and say what the graph looks like there.
+  answer_label: Find the widths that give an area of 0.
+  check:
+    kind: solve
+    equation: 12*x-2*x**2 = 0
+    variable: x
+    answer:
+    - '0'
+    - '6'
+  answer_text: The area is 0 at $x=0$ and at $x=6$. These are the two places where the graph meets the
+    horizontal axis. Between them the graph is above the axis, so every width from 0 to 6 gives a positive
+    area.
+- id: jc14-14.5-approx-1
+  section: '14.5'
+  tier: O
+  refs:
+  - AF.7
+  statement: The graph of $y=x^2-3$ is a curve. Read the value of $y$ when $x=1.5$ from the graph, and show
+    that your reading lies between $-1$ and $-0.5$.
+  answer_label: Read $y$ when $x=1.5$.
+  check:
+    kind: between
+    low: '-1'
+    value: 1.5**2-3
+    high: '-0.5'
+  answer_text: The value is $1.5^2-3=2.25-3=-0.75$, which lies between $-1$ and $-0.5$. A reading taken from
+    a graph is approximate, so an answer between two values on the grid is a complete answer.
+- id: jc14-14.5-speed-3
+  section: '14.5'
+  tier: O
+  refs:
+  - AF.7
+  statement: A cyclist rides 20 km out from home in 2 hours, rests for 1 hour, and then rides the 20 km home in
+    1 hour. Find the speed on the way home.
+  answer_label: Find the speed on the way home.
+  check:
+    kind: evaluate
+    expression: 20/1
+    answer: '20'
+  answer_text: The speed on the way home is 20 km/h, because 20 km is covered in 1 hour. On the graph the
+    line goes back down to 0, which shows the distance from home getting smaller.
+- id: jc14-14.5-rate-2
+  section: '14.5'
+  tier: O
+  refs:
+  - AF.7
+  statement: A cup of water cools from $90^\circ$C to $20^\circ$C over 7 minutes. Find the average rate at
+    which the temperature falls.
+  answer_label: Find the average rate of cooling.
+  check:
+    kind: evaluate
+    expression: (90-20)/7
+    answer: '10'
+  answer_text: The temperature falls by $90-20=70^\circ$C in 7 minutes, which is $10^\circ$C per minute. The
+    graph of the temperature against the time falls, and its steepness is this rate.

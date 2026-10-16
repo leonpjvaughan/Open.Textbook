@@ -1,0 +1,251 @@
+# Leaving Certificate Physics, Chapter 16, section 16.1 (strand 3 outcome 3.6).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An answer that is two significant figures
+# is written in scientific notation when a trailing zero would otherwise be lost:
+# `6.0e-3` is two figures, and `0.006` reads as one.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` record proves only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in it is right.
+chapter: 16
+problems:
+- id: p16-1-flux-basic
+  section: '16.1'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A coil of area 0.040 m² lies at right angles to a field of flux density 0.25 T. Calculate
+    the flux through the coil.
+  answer_label: Magnetic flux
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: B * A
+      values:
+        B:
+          value: '0.25'
+          unit: T
+        A:
+          value: '0.040'
+          unit: m^2
+      answer:
+        value: '0.010'
+        unit: Wb
+    - kind: sigfigs
+      value: '0.25 * 0.040'
+      figures: 2
+      answer: '0.010'
+      convention: round-once
+  answer_text: '$\Phi = BA = 0.25 \times 0.040 = 0.010\,\text{Wb}$. The unit follows from the quantities:
+    a tesla multiplied by a square metre is a weber.'
+- id: p16-1-flux-density
+  section: '16.1'
+  tier: O
+  refs:
+  - '3.6'
+  statement: The flux through a surface of area 0.080 m² is 0.024 Wb. Calculate the flux density of the
+    field.
+  answer_label: Flux density
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: Phi / A
+      values:
+        Phi:
+          value: '0.024'
+          unit: Wb
+        A:
+          value: '0.080'
+          unit: m^2
+      answer:
+        value: '0.30'
+        unit: T
+    - kind: sigfigs
+      value: '0.024 / 0.080'
+      figures: 2
+      answer: '0.30'
+      convention: round-once
+  answer_text: 'Rearranging $\Phi = BA$ gives $B = \dfrac{\Phi}{A} = \dfrac{0.024}{0.080} = 0.30\,\text{T}$.
+    Each square metre of the surface carries 0.30 Wb of flux, so the flux density is 0.30 T.'
+- id: p16-1-area
+  section: '16.1'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A field of flux density 0.50 T produces a flux of 0.020 Wb through a surface at right angles
+    to it. Calculate the area of the surface.
+  answer_label: Area
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: Phi / B
+      values:
+        Phi:
+          value: '0.020'
+          unit: Wb
+        B:
+          value: '0.50'
+          unit: T
+      answer:
+        value: '0.040'
+        unit: m^2
+    - kind: sigfigs
+      value: '0.020 / 0.50'
+      figures: 2
+      answer: '0.040'
+      convention: round-once
+  answer_text: '$A = \dfrac{\Phi}{B} = \dfrac{0.020}{0.50} = 0.040\,\text{m}^2$. That is 400 cm², which
+    is a plausible coil area.'
+- id: p16-1-linkage
+  section: '16.1'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A coil of 300 turns, each of area 0.020 m², lies at right angles to a field of flux density
+    0.15 T. Calculate the flux linkage of the coil.
+  answer_label: Flux linkage
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: N * B * A
+      values:
+        N:
+          value: '300'
+        B:
+          value: '0.15'
+          unit: T
+        A:
+          value: '0.020'
+          unit: m^2
+      answer:
+        value: '0.90'
+        unit: Wb
+    - kind: sigfigs
+      value: '300 * 0.15 * 0.020'
+      figures: 2
+      answer: '0.90'
+      convention: round-once
+  answer_text: 'The flux through one turn is $\Phi = BA = 0.15 \times 0.020 = 3.0 \times 10^{-3}\,\text{Wb}$.
+    The flux linkage is $N\Phi = 300 \times 3.0 \times 10^{-3} = 0.90\,\text{Wb}$. The same field passes
+    through every turn, so the linkage is 300 times the flux through one turn.'
+- id: p16-1-linkage-2
+  section: '16.1'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A coil of 250 turns has a flux of $4.0 \times 10^{-3}$ Wb through each turn. Calculate the
+    flux linkage of the coil.
+  answer_label: Flux linkage
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: N * Phi
+      values:
+        N:
+          value: '250'
+        Phi:
+          value: '4.0e-3'
+          unit: Wb
+      answer:
+        value: '1.0'
+        unit: Wb
+    - kind: sigfigs
+      value: '250 * 4.0e-3'
+      figures: 2
+      answer: '1.0'
+      convention: round-once
+  answer_text: '$N\Phi = 250 \times 4.0 \times 10^{-3} = 1.0\,\text{Wb}$. The flux linkage is the quantity
+    Faraday''s law uses, because every turn contributes to the induced voltage.'
+- id: p16-1-orientation
+  section: '16.1'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A coil turns steadily in a uniform magnetic field. Describe what happens to the flux through
+    the coil, and state its value when the plane of the coil is parallel to the field.
+  answer_label: Flux through a turning coil
+  check:
+    kind: structured
+    requires:
+    - right-angles
+    - turning
+    - parallel
+    concepts:
+    - largest
+    - falls
+    - zero
+    points:
+    - id: right-angles
+      text: when the plane of the coil is at right angles to the field, the flux is at its largest value, BA
+      concepts:
+      - largest
+    - id: turning
+      text: as the coil turns away from that position, less of the field passes through it, so the flux falls
+      concepts:
+      - falls
+    - id: parallel
+      text: when the plane of the coil is parallel to the field, no field passes through it, so the flux is zero
+      concepts:
+      - zero
+  answer_text: When the plane of the coil is at right angles to the field, the field passes straight through
+    it and the flux is at its largest value, $BA$. As the coil turns away from that position, less of the
+    field passes through the coil, so the flux falls. When the plane of the coil is parallel to the field,
+    the field runs along the coil and no field passes through it, so the flux is zero.
+- id: p16-1-units
+  section: '16.1'
+  tier: O
+  refs:
+  - '3.6'
+  statement: Show that the tesla is the same as a weber per square metre.
+  answer_label: The tesla in webers per square metre
+  check:
+    kind: dimensions
+    consistency: Phi = B * A
+    units:
+      Phi: Wb
+      B: T
+      A: m^2
+  answer_text: '$\Phi = BA$, so $B = \dfrac{\Phi}{A}$. A flux density is a flux divided by an area, so
+    its unit is the weber per square metre. One tesla is therefore one weber per square metre, and the
+    dimensions of the two sides of $\Phi = BA$ agree.'
+- id: p16-1-chapter
+  section: '16.1'
+  tier: O
+  refs:
+  - '3.6'
+  statement: The chapter problem. The generator coil has 180 turns, and each turn encloses an area of
+    0.020 m². The coil turns in a field of flux density 0.30 T. Calculate the flux through one turn when
+    the plane of the coil is at right angles to the field.
+  answer_label: Flux through one turn
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: B * A
+      values:
+        B:
+          value: '0.30'
+          unit: T
+        A:
+          value: '0.020'
+          unit: m^2
+      answer:
+        value: '6.0e-3'
+        unit: Wb
+    - kind: sigfigs
+      value: '0.30 * 0.020'
+      figures: 2
+      answer: '6.0e-3'
+      convention: round-once
+  answer_text: '$\Phi = BA = 0.30 \times 0.020 = 6.0 \times 10^{-3}\,\text{Wb}$. The flux linkage of
+    the coil in this position is $N\Phi = 180 \times 6.0 \times 10^{-3} = 1.08\,\text{Wb}$. Section 16.2
+    uses this linkage to find the induced voltage, so keep the unrounded value 1.08 Wb.'

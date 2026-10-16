@@ -1,0 +1,284 @@
+# Leaving Certificate Physics, Chapter 15, section 15.5 (strand 3 outcome 3.5).
+#
+# The electric motor is the same force as section 15.3, applied to a coil that
+# turns. The numeric records reuse F = BIl with the number of turns, and the
+# dimensions and the rounding are written out separately. The `structured`
+# records prove only that a model answer contains the declared steps and concepts,
+# in order — not that the physics in them is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics.
+# Why a coil turns, and what the commutator does, are reasoning steps the CAS
+# cannot see, so those records are `structured` and read by a human.
+chapter: 15
+problems:
+- id: p15-5-force-turns
+  section: '15.5'
+  tier: O
+  refs:
+  - '3.5'
+  statement: The coil of a motor has 40 turns. Each side of the coil in the magnetic field is 3.0
+    cm long, the flux density is 0.20 T, and the coil carries a current of 0.50 A. Calculate the force
+    on one side of one turn, and the total force on that side of the coil.
+  answer_label: Force on one turn and on the whole coil
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: B * I * l
+      values:
+        B:
+          value: '0.20'
+          unit: T
+        I:
+          value: '0.50'
+          unit: A
+        l:
+          value: '0.030'
+          unit: m
+      answer:
+        value: '3.0e-3'
+        unit: N
+    - kind: sigfigs
+      value: '0.20 * 0.50 * 0.030'
+      figures: 2
+      answer: '3.0e-3'
+      convention: round-once
+    - kind: dimensions
+      expression: N * B * I * l
+      values:
+        N:
+          value: '40'
+        B:
+          value: '0.20'
+          unit: T
+        I:
+          value: '0.50'
+          unit: A
+        l:
+          value: '0.030'
+          unit: m
+      answer:
+        value: '0.12'
+        unit: N
+    - kind: sigfigs
+      value: '40 * 0.20 * 0.50 * 0.030'
+      figures: 2
+      answer: '0.12'
+      convention: round-once
+  answer_text: For one turn, $F = BIl = 0.20 \times 0.50 \times 0.030 = 3.0 \times 10^{-3}\,\text{N}$.
+    Every one of the 40 turns carries the same current, so the total force on that side is
+    $40 \times 3.0 \times 10^{-3} = 0.12\,\text{N}$.
+- id: p15-5-force-turns-2
+  section: '15.5'
+  tier: O
+  refs:
+  - '3.5'
+  statement: A motor coil has 25 turns. The side of the coil in the field is 4.0 cm long, the flux
+    density is 0.30 T, and the current is 0.20 A. Calculate the force on one side of one turn, and the
+    total force on that side of the coil.
+  answer_label: Force on one turn and on the whole coil
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: B * I * l
+      values:
+        B:
+          value: '0.30'
+          unit: T
+        I:
+          value: '0.20'
+          unit: A
+        l:
+          value: '0.040'
+          unit: m
+      answer:
+        value: '2.4e-3'
+        unit: N
+    - kind: sigfigs
+      value: '0.30 * 0.20 * 0.040'
+      figures: 2
+      answer: '2.4e-3'
+      convention: round-once
+    - kind: dimensions
+      expression: N * B * I * l
+      values:
+        N:
+          value: '25'
+        B:
+          value: '0.30'
+          unit: T
+        I:
+          value: '0.20'
+          unit: A
+        l:
+          value: '0.040'
+          unit: m
+      answer:
+        value: '0.060'
+        unit: N
+    - kind: sigfigs
+      value: '25 * 0.30 * 0.20 * 0.040'
+      figures: 2
+      answer: '6.0e-2'
+      convention: round-once
+  answer_text: For one turn, $F = BIl = 0.30 \times 0.20 \times 0.040 = 2.4 \times 10^{-3}\,\text{N}$.
+    The total on that side is $25 \times 2.4 \times 10^{-3} = 6.0 \times 10^{-2}\,\text{N}$.
+- id: p15-5-commutator
+  section: '15.5'
+  tier: O
+  refs:
+  - '3.5'
+  statement: State the function of the split-ring commutator in a simple direct-current motor.
+  answer_label: The function of the commutator
+  check:
+    kind: structured
+    requires: [function, why]
+    concepts: [reverses-current, keeps-turning]
+    points:
+    - id: function
+      text: the split-ring commutator reverses the direction of the current in the coil every half
+        turn
+      concepts: [reverses-current]
+    - id: why
+      text: reversing the current reverses the force on each side of the coil, so the coil keeps turning
+        the same way instead of stopping or turning back
+      concepts: [keeps-turning]
+  answer_text: The split-ring commutator reverses the direction of the current in the coil every half
+    turn. Reversing the current reverses the force on each side of the coil, so the coil keeps turning
+    the same way instead of stopping or turning back.
+- id: p15-5-half-turn
+  section: '15.5'
+  tier: O
+  refs:
+  - '3.5'
+  statement: Explain why a coil in a magnetic field would stop after half a turn if there were no
+    commutator.
+  answer_label: Why the coil would stop
+  check:
+    kind: structured
+    requires: [forces, position, stop]
+    concepts: [opposite-forces, vertical-plane, no-turning-effect]
+    points:
+    - id: forces
+      text: the current in the two sides of the coil flows in opposite directions, so the two sides
+        are pushed in opposite directions, which turns the coil
+      concepts: [opposite-forces]
+    - id: position
+      text: after half a turn the coil is vertical, and the forces on the two sides act along the same
+        line through the axis
+      concepts: [vertical-plane]
+    - id: stop
+      text: the forces no longer produce a turning effect, so the coil stops, and without a commutator
+        it would not start again
+      concepts: [no-turning-effect]
+  answer_text: The current in the two sides of the coil flows in opposite directions, so the two sides
+    are pushed in opposite directions, which turns the coil. After half a turn the coil is vertical,
+    and the forces on the two sides act along the same line through the axis. The forces no longer
+    produce a turning effect, so the coil stops, and without a commutator it would not start again.
+- id: p15-5-increase
+  section: '15.5'
+  tier: O
+  refs:
+  - '3.5'
+  statement: State two changes that would increase the turning effect on the coil of a motor.
+  answer_label: Two ways to increase the turning effect
+  check:
+    kind: structured
+    requires: [first, second]
+    concepts: [current, flux-density]
+    points:
+    - id: first
+      text: increase the current through the coil
+      concepts: [current]
+    - id: second
+      text: use a stronger magnet, so the magnetic flux density is larger, or increase the number of
+        turns on the coil
+      concepts: [flux-density]
+  answer_text: Increase the current through the coil. Use a stronger magnet, so the magnetic flux
+    density is larger, or increase the number of turns on the coil.
+- id: p15-5-energy
+  section: '15.5'
+  tier: O
+  refs:
+  - '3.5'
+  statement: Describe the energy transfers in an electric motor, and say why the motor gets warm.
+  answer_label: Energy transfers in a motor
+  check:
+    kind: structured
+    requires: [input, output, heating]
+    concepts: [electrical-to-kinetic, resistance-heating]
+    points:
+    - id: input
+      text: electrical energy is supplied to the coil and transferred to kinetic energy of the turning
+        coil
+      concepts: [electrical-to-kinetic]
+    - id: output
+      text: some of the energy is transferred usefully to the device the motor drives, such as the
+        blades of a fan
+      concepts: [electrical-to-kinetic]
+    - id: heating
+      text: the rest is transferred as heat, because the coil has resistance and a current through a
+        resistance transfers energy as heat
+      concepts: [resistance-heating]
+  answer_text: Electrical energy is supplied to the coil and transferred to kinetic energy of the
+    turning coil. Some of the energy is transferred usefully to the device the motor drives, such as
+    the blades of a fan. The rest is transferred as heat, because the coil has resistance and a current
+    through a resistance transfers energy as heat.
+- id: p15-5-opposite
+  section: '15.5'
+  tier: O
+  refs:
+  - '3.5'
+  statement: Explain why the two sides of a motor coil are pushed in opposite directions, and why this
+    makes the coil turn.
+  answer_label: Why the coil turns
+  check:
+    kind: structured
+    requires: [current, force, turning]
+    concepts: [opposite-currents, opposite-forces, couple]
+    points:
+    - id: current
+      text: the current flows one way along one side of the coil and the opposite way along the other
+        side
+      concepts: [opposite-currents]
+    - id: force
+      text: the field is the same for both sides, so the force $F = BIl$ on each side is the same size
+        but in opposite directions
+      concepts: [opposite-forces]
+    - id: turning
+      text: the two opposite forces act on opposite sides of the axis, so together they produce a
+        turning effect that rotates the coil
+      concepts: [couple]
+  answer_text: The current flows one way along one side of the coil and the opposite way along the
+    other side. The field is the same for both sides, so the force $F = BIl$ on each side is the same
+    size but in opposite directions. The two opposite forces act on opposite sides of the axis, so
+    together they produce a turning effect that rotates the coil.
+- id: p15-5-left-hand
+  section: '15.5'
+  tier: O
+  refs:
+  - '3.5'
+  statement: State what the first finger, the second finger and the thumb represent in Fleming's
+    left-hand rule, and say what the rule is used to find in a motor.
+  answer_label: Fleming's left-hand rule in a motor
+  check:
+    kind: structured
+    requires: [first, second, thumb]
+    concepts: [field, current, force-direction]
+    points:
+    - id: first
+      text: the first finger points in the direction of the magnetic field, from the north pole to the
+        south pole
+      concepts: [field]
+    - id: second
+      text: the second finger points in the direction of the conventional current in the conductor
+      concepts: [current]
+    - id: thumb
+      text: the thumb points in the direction of the force on the conductor, which is the direction in
+        which that side of the coil is pushed
+      concepts: [force-direction]
+  answer_text: The first finger points in the direction of the magnetic field, from the north pole to
+    the south pole. The second finger points in the direction of the conventional current in the
+    conductor. The thumb points in the direction of the force on the conductor, which is the direction
+    in which that side of the coil is pushed.

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.6 The logistic model — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: S4
+Work independently. The questions and answers are shown together at the end.
+
+Read the carrying capacity out of the bracket before you do anything else. It
+fixes the limit and the point of inflexion.
+
+:::problems chapter-08-practice-8.6
+
+:::answers chapter-08-practice-8.6

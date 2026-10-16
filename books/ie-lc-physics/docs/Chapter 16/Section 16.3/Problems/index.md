@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.3 Lenz's law and conservation of energy — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 3.6
+Work independently. The questions and answers are shown together at the end.
+
+Where a question asks for a direction or an explanation, write in full sentences.
+Decide first whether the flux is increasing or decreasing, then say what the
+induced current must do to oppose that change.
+
+:::problems chapter-16-practice-16.3
+
+:::answers chapter-16-practice-16.3

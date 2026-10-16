@@ -1,0 +1,263 @@
+# Leaving Certificate Physics, Chapter 15, section 15.4 (strand 3 outcome 3.5).
+# Higher level only.
+#
+# The booklet gives the force on a charged particle as F = qvB with v
+# perpendicular to B, so every numeric record here uses it, with the dimensions
+# and the rounding written out separately. The `structured` records prove only
+# that a model answer contains the declared steps and concepts, in order — not
+# that the physics in them is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics.
+# The direction of the force on a negative charge is a reasoning step the CAS
+# cannot see, so those records are `structured` and read by a human.
+chapter: 15
+problems:
+- id: p15-4-electron-force
+  section: '15.4'
+  tier: H
+  refs:
+  - '3.5'
+  statement: An electron of charge $1.6 \times 10^{-19}$ C moves at $2.0 \times 10^{6}$ m/s at right
+    angles to a uniform magnetic field of flux density 0.30 T. Calculate the force on the electron.
+  answer_label: Force on the electron
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: B * q * v
+      values:
+        B:
+          value: '0.30'
+          unit: T
+        q:
+          value: '1.6e-19'
+          unit: C
+        v:
+          value: '2.0e6'
+          unit: m/s
+      answer:
+        value: '9.6e-14'
+        unit: N
+    - kind: sigfigs
+      value: '0.30 * 1.6e-19 * 2.0e6'
+      figures: 2
+      answer: '9.6e-14'
+      convention: round-once
+  answer_text: $F = Bqv = 0.30 \times 1.6 \times 10^{-19} \times 2.0 \times 10^{6} = 9.6 \times
+    10^{-14}\,\text{N}$.
+- id: p15-4-proton-force
+  section: '15.4'
+  tier: H
+  refs:
+  - '3.5'
+  statement: A proton of charge $1.6 \times 10^{-19}$ C moves at $5.0 \times 10^{5}$ m/s at right
+    angles to a magnetic field of flux density 0.20 T. Calculate the force on the proton.
+  answer_label: Force on the proton
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: B * q * v
+      values:
+        B:
+          value: '0.20'
+          unit: T
+        q:
+          value: '1.6e-19'
+          unit: C
+        v:
+          value: '5.0e5'
+          unit: m/s
+      answer:
+        value: '1.6e-14'
+        unit: N
+    - kind: sigfigs
+      value: '0.20 * 1.6e-19 * 5.0e5'
+      figures: 2
+      answer: '1.6e-14'
+      convention: round-once
+  answer_text: $F = Bqv = 0.20 \times 1.6 \times 10^{-19} \times 5.0 \times 10^{5} = 1.6 \times
+    10^{-14}\,\text{N}$.
+- id: p15-4-field
+  section: '15.4'
+  tier: H
+  refs:
+  - '3.5'
+  statement: A charged particle of charge $3.2 \times 10^{-19}$ C moves at $1.0 \times 10^{6}$ m/s
+    at right angles to a magnetic field and experiences a force of $2.4 \times 10^{-14}$ N. Calculate
+    the magnetic flux density.
+  answer_label: Magnetic flux density
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F / (q * v)
+      values:
+        F:
+          value: '2.4e-14'
+          unit: N
+        q:
+          value: '3.2e-19'
+          unit: C
+        v:
+          value: '1.0e6'
+          unit: m/s
+      answer:
+        value: '0.075'
+        unit: T
+    - kind: sigfigs
+      value: '2.4e-14 / (3.2e-19 * 1.0e6)'
+      figures: 2
+      answer: '0.075'
+      convention: round-once
+  answer_text: Rearranging $F = Bqv$ for the flux density gives $B = \dfrac{F}{qv} = \dfrac{2.4 \times
+    10^{-14}}{3.2 \times 10^{-19} \times 1.0 \times 10^{6}} = 0.075\,\text{T}$.
+- id: p15-4-speed
+  section: '15.4'
+  tier: H
+  refs:
+  - '3.5'
+  statement: A particle of charge $4.0 \times 10^{-19}$ C moves at right angles to a magnetic field
+    of flux density 0.40 T and experiences a force of $4.0 \times 10^{-14}$ N. Calculate the speed
+    of the particle.
+  answer_label: Speed of the particle
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F / (q * B)
+      values:
+        F:
+          value: '4.0e-14'
+          unit: N
+        q:
+          value: '4.0e-19'
+          unit: C
+        B:
+          value: '0.40'
+          unit: T
+      answer:
+        value: '2.5e5'
+        unit: m/s
+    - kind: sigfigs
+      value: '4.0e-14 / (4.0e-19 * 0.40)'
+      figures: 2
+      answer: '2.5e5'
+      convention: round-once
+  answer_text: Rearranging $F = Bqv$ for the speed gives $v = \dfrac{F}{qB} = \dfrac{4.0 \times
+    10^{-14}}{4.0 \times 10^{-19} \times 0.40} = 2.5 \times 10^{5}\,\text{m/s}$.
+- id: p15-4-no-work
+  section: '15.4'
+  tier: H
+  refs:
+  - '3.5'
+  statement: Explain why the magnetic force on a moving charged particle changes the direction of its
+    motion but not its speed.
+  answer_label: Why the magnetic force does no work
+  check:
+    kind: structured
+    requires: [direction, work, conclusion]
+    concepts: [perpendicular-force, no-work, constant-speed]
+    points:
+    - id: direction
+      text: the force is always at right angles to the velocity of the particle
+      concepts: [perpendicular-force]
+    - id: work
+      text: work done is force multiplied by the distance moved in the direction of the force, and here
+        that distance is zero, so the force does no work on the particle
+      concepts: [no-work]
+    - id: conclusion
+      text: because no work is done, the kinetic energy and therefore the speed stay the same, and only
+        the direction of the velocity changes
+      concepts: [constant-speed]
+  answer_text: The force is always at right angles to the velocity of the particle. Work done is force
+    multiplied by the distance moved in the direction of the force, and here that distance is zero,
+    so the force does no work on the particle. Because no work is done, the kinetic energy and
+    therefore the speed stay the same, and only the direction of the velocity changes.
+- id: p15-4-link
+  section: '15.4'
+  tier: H
+  refs:
+  - '3.5'
+  statement: Explain how the force on a current-carrying conductor in a magnetic field follows from
+    the force on each moving charge inside it.
+  answer_label: From moving charges to the force on a wire
+  check:
+    kind: structured
+    requires: [charges, sum, result]
+    concepts: [moving-charges, individual-forces, total-force]
+    points:
+    - id: charges
+      text: the current in a metal wire is a flow of moving electrons, and each electron is a charged
+        particle moving in the magnetic field
+      concepts: [moving-charges]
+    - id: sum
+      text: the magnetic field exerts a force $F = Bqv$ on each moving electron, and every one of those
+        forces points the same way
+      concepts: [individual-forces]
+    - id: result
+      text: the force on the wire is the sum of the forces on all the moving electrons, which is the
+        force $F = BIl$ on the conductor
+      concepts: [total-force]
+  answer_text: The current in a metal wire is a flow of moving electrons, and each electron is a charged
+    particle moving in the magnetic field. The magnetic field exerts a force $F = Bqv$ on each moving
+    electron, and every one of those forces points the same way. The force on the wire is the sum of
+    the forces on all the moving electrons, which is the force $F = BIl$ on the conductor.
+- id: p15-4-drift
+  section: '15.4'
+  tier: H
+  refs:
+  - '3.5'
+  statement: In the fan motor, the electrons in the coil drift at about $1.0 \times 10^{-4}$ m/s through
+    a magnetic field of flux density 0.15 T. Calculate the force on one electron.
+  answer_label: Force on one drifting electron
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: B * q * v
+      values:
+        B:
+          value: '0.15'
+          unit: T
+        q:
+          value: '1.6e-19'
+          unit: C
+        v:
+          value: '1.0e-4'
+          unit: m/s
+      answer:
+        value: '2.4e-24'
+        unit: N
+    - kind: sigfigs
+      value: '0.15 * 1.6e-19 * 1.0e-4'
+      figures: 2
+      answer: '2.4e-24'
+      convention: round-once
+  answer_text: $F = Bqv = 0.15 \times 1.6 \times 10^{-19} \times 1.0 \times 10^{-4} = 2.4 \times
+    10^{-24}\,\text{N}$. That is tiny for one electron, and the force on the coil is the sum of the
+    forces on all the moving electrons in it.
+- id: p15-4-direction
+  section: '15.4'
+  tier: H
+  refs:
+  - '3.5'
+  statement: State how the direction of the magnetic force on a negative charge compares with the force
+    on a positive charge moving the same way in the same field.
+  answer_label: The force on a negative charge
+  check:
+    kind: structured
+    requires: [compare, rule]
+    concepts: [opposite-direction, left-hand-positive]
+    points:
+    - id: compare
+      text: the force on the negative charge is in the opposite direction to the force on the positive
+        charge
+      concepts: [opposite-direction]
+    - id: rule
+      text: Fleming's left-hand rule gives the direction for a positive charge, and for a negative charge
+        the force is reversed
+      concepts: [left-hand-positive]
+  answer_text: The force on the negative charge is in the opposite direction to the force on the positive
+    charge. Fleming's left-hand rule gives the direction for a positive charge, and for a negative
+    charge the force is reversed.

@@ -1,0 +1,302 @@
+# Leaving Certificate Physics, Chapter 16, section 16.6 (strand 3 outcome 3.6).
+#
+# This section is Higher only, so every record carries `tier: H` and the page is
+# rendered with a Higher marker on each question.
+#
+# The r.m.s. relation is a square root, so it is not an exact rational and the
+# `dimensions` and `sigfigs` checks declare a tolerance. `sigfigs` rounds the value
+# once and refuses a band that straddles a rounding boundary, so a tolerance is
+# chosen narrow enough that the rounded answer cannot change across it.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` record proves only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in it is right.
+chapter: 16
+problems:
+- id: p16-6-rms-current
+  section: '16.6'
+  tier: H
+  refs:
+  - '3.6'
+  statement: An alternating current has a peak value of 8.0 A. Calculate its r.m.s. value.
+  answer_label: r.m.s. current
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: I0 / sqrt(2)
+      values:
+        I0:
+          value: '8.0'
+          unit: A
+      answer:
+        value: '5.7'
+        unit: A
+      tolerance: '0.05'
+    - kind: sigfigs
+      value: '8.0 / sqrt(2)'
+      tolerance: '0.005'
+      figures: 2
+      answer: '5.7'
+      convention: round-once
+  answer_text: '$I_{\text{rms}} = \dfrac{I_0}{\sqrt{2}} = \dfrac{8.0}{1.414} = 5.7\,\text{A}$. The
+    r.m.s. value is about 71% of the peak, and it is the value an a.c. ammeter would show.'
+- id: p16-6-peak-current
+  section: '16.6'
+  tier: H
+  refs:
+  - '3.6'
+  statement: An alternating current has an r.m.s. value of 4.0 A. Calculate its peak value.
+  answer_label: Peak current
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(2) * Irms
+      values:
+        Irms:
+          value: '4.0'
+          unit: A
+      answer:
+        value: '5.7'
+        unit: A
+      tolerance: '0.05'
+    - kind: sigfigs
+      value: 'sqrt(2) * 4.0'
+      tolerance: '0.005'
+      figures: 2
+      answer: '5.7'
+      convention: round-once
+  answer_text: 'Rearranging $I_{\text{rms}} = \dfrac{I_0}{\sqrt{2}}$ gives $I_0 = \sqrt{2}\,I_{\text{rms}}
+    = 1.414 \times 4.0 = 5.7\,\text{A}$. The peak and the r.m.s. value differ by the factor $\sqrt{2}$.'
+- id: p16-6-power
+  section: '16.6'
+  tier: H
+  refs:
+  - '3.6'
+  statement: A heater of resistance 48 Ω is connected to an r.m.s. voltage of 240 V. Calculate the r.m.s.
+    current and the average power transferred to the heater.
+  answer_label: r.m.s. current and power
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: Vrms / R
+      values:
+        Vrms:
+          value: '240'
+          unit: V
+        R:
+          value: '48'
+          unit: Ω
+      answer:
+        value: '5.0'
+        unit: A
+    - kind: dimensions
+      expression: Vrms ** 2 / R
+      values:
+        Vrms:
+          value: '240'
+          unit: V
+        R:
+          value: '48'
+          unit: Ω
+      answer:
+        value: '1200'
+        unit: W
+    - kind: sigfigs
+      value: '240 ** 2 / 48'
+      figures: 2
+      answer: 1.2e3
+      convention: round-once
+  answer_text: 'The r.m.s. current is $I_{\text{rms}} = \dfrac{V_{\text{rms}}}{R} = \dfrac{240}{48} = 5.0\,\text{A}$.
+    The average power is $P = I_{\text{rms}}^2R = 5.0^2 \times 48 = 1200\,\text{W}$, or $P = \dfrac{V_{\text{rms}}^2}{R}
+    = \dfrac{240^2}{48} = 1200\,\text{W}$. The r.m.s. values give the average power.'
+- id: p16-6-mains
+  section: '16.6'
+  tier: H
+  refs:
+  - '3.6'
+  statement: The peak value of a mains voltage is 325 V. Calculate its r.m.s. value.
+  answer_label: r.m.s. voltage
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: V0 / sqrt(2)
+      values:
+        V0:
+          value: '325'
+          unit: V
+      answer:
+        value: '230'
+        unit: V
+      tolerance: '0.5'
+    - kind: sigfigs
+      value: '325 / sqrt(2)'
+      tolerance: '0.5'
+      figures: 2
+      answer: 2.3e2
+      convention: round-once
+  answer_text: '$V_{\text{rms}} = \dfrac{V_0}{\sqrt{2}} = \dfrac{325}{1.414} = 230\,\text{V}$. This
+    is the value printed on a mains label, while 325 V is the peak an oscilloscope would show.'
+- id: p16-6-lamp
+  section: '16.6'
+  tier: H
+  refs:
+  - '3.6'
+  statement: A lamp is rated at 60 W when it is connected to an r.m.s. voltage of 230 V. Calculate the r.m.s.
+    current and the peak current through the lamp.
+  answer_label: r.m.s. and peak current
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: P / Vrms
+      values:
+        P:
+          value: '60'
+          unit: W
+        Vrms:
+          value: '230'
+          unit: V
+      answer:
+        value: '0.26'
+        unit: A
+      tolerance: '0.002'
+    - kind: dimensions
+      expression: sqrt(2) * P / Vrms
+      values:
+        P:
+          value: '60'
+          unit: W
+        Vrms:
+          value: '230'
+          unit: V
+      answer:
+        value: '0.37'
+        unit: A
+      tolerance: '0.002'
+    - kind: sigfigs
+      value: 'sqrt(2) * 60 / 230'
+      tolerance: '0.002'
+      figures: 2
+      answer: '0.37'
+      convention: round-once
+  answer_text: 'The power rating is an average, so it uses the r.m.s. current: $I_{\text{rms}} = \dfrac{P}{V_{\text{rms}}}
+    = \dfrac{60}{230} = 0.26\,\text{A}$. The peak current is $I_0 = \sqrt{2}\,I_{\text{rms}} = 1.414 \times
+    0.26 = 0.37\,\text{A}$, which is about 41% larger.'
+- id: p16-6-heater
+  section: '16.6'
+  tier: H
+  refs:
+  - '3.6'
+  statement: A heater of resistance 60 Ω is connected to an r.m.s. voltage of 240 V. Calculate the average
+    power transferred to it.
+  answer_label: Average power
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: Vrms ** 2 / R
+      values:
+        Vrms:
+          value: '240'
+          unit: V
+        R:
+          value: '60'
+          unit: Ω
+      answer:
+        value: '960'
+        unit: W
+    - kind: sigfigs
+      value: '240 ** 2 / 60'
+      figures: 2
+      answer: 9.6e2
+      convention: round-once
+  answer_text: '$P = \dfrac{V_{\text{rms}}^2}{R} = \dfrac{240^2}{60} = \dfrac{57\,600}{60} = 960\,\text{W}$.
+    Using the peak voltage of 340 V in this equation would give twice the correct power, because the peak
+    lasts for only an instant.'
+- id: p16-6-why
+  section: '16.6'
+  tier: H
+  refs:
+  - '3.6'
+  statement: Explain why the mean value of an alternating current is not used to find the energy it transfers,
+    and state what is used instead.
+  answer_label: The mean and the r.m.s. value
+  check:
+    kind: structured
+    requires:
+    - mean
+    - square
+    - rms
+    concepts:
+    - zero-mean
+    - positive-square
+    - same-heating
+    points:
+    - id: mean
+      text: the current is positive for half a cycle and negative for the other half, so its mean value over a full cycle is zero
+      concepts:
+      - zero-mean
+    - id: square
+      text: the energy transferred in a resistor depends on the current squared, and a square is never negative, so the mean of the squares is positive
+      concepts:
+      - positive-square
+    - id: rms
+      text: the r.m.s. value is the steady direct current that transfers energy at the same average rate, and it is the value used in the power equations
+      concepts:
+      - same-heating
+  answer_text: The current is positive for half a cycle and negative for the other half, so its mean value
+    over a full cycle is zero, and a mean of zero would predict no energy transferred. The energy transferred
+    in a resistor depends on the square of the current, and a square is never negative, so the mean of the
+    squares is positive. The r.m.s. value is the square root of that mean, and it is the steady direct current
+    that transfers energy at the same average rate. It is the value used in the power equations.
+- id: p16-6-chapter
+  section: '16.6'
+  tier: H
+  refs:
+  - '3.6'
+  statement: 'The chapter problem. The generator delivers 24 kW at an r.m.s. voltage of 240 V. Calculate
+    the r.m.s. current and the peak current in the circuit.'
+  answer_label: r.m.s. and peak current
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: P / Vrms
+      values:
+        P:
+          value: '24000'
+          unit: W
+        Vrms:
+          value: '240'
+          unit: V
+      answer:
+        value: '100'
+        unit: A
+    - kind: dimensions
+      expression: sqrt(2) * P / Vrms
+      values:
+        P:
+          value: '24000'
+          unit: W
+        Vrms:
+          value: '240'
+          unit: V
+      answer:
+        value: '141'
+        unit: A
+      tolerance: '0.5'
+    - kind: sigfigs
+      value: 'sqrt(2) * 24000 / 240'
+      tolerance: '0.5'
+      figures: 2
+      answer: 1.4e2
+      convention: round-once
+  answer_text: 'The r.m.s. current is $I_{\text{rms}} = \dfrac{P}{V_{\text{rms}}} = \dfrac{24\,000}{240}
+    = 100\,\text{A}$. The peak current is $I_0 = \sqrt{2}\,I_{\text{rms}} = 1.414 \times 100 = 141\,\text{A}$,
+    which is $1.4 \times 10^{2}\,\text{A}$ to two significant figures. The power of 24 kW is the average
+    rate, so it is found from the r.m.s. current, not the peak.'

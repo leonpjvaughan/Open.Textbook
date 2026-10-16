@@ -1,0 +1,312 @@
+# Leaving Certificate Physics, Chapter 16, section 16.5 (strand 3 outcome 3.6).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. The turns ratio is dimensionless, so it
+# is checked with `evaluate` on the arithmetic. An answer that is two significant
+# figures is written in scientific notation when a trailing zero would otherwise be
+# lost: `2.0e3` is two figures, and `2000` reads as one.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` record proves only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in it is right.
+chapter: 16
+problems:
+- id: p16-5-stepup
+  section: '16.5'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A transformer has 200 turns on the primary and 800 turns on the secondary. The primary voltage
+    is 12 V. Calculate the secondary voltage.
+  answer_label: Secondary voltage
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: Vp * Ns / Np
+      values:
+        Vp:
+          value: '12'
+          unit: V
+        Ns:
+          value: '800'
+        Np:
+          value: '200'
+      answer:
+        value: '48'
+        unit: V
+    - kind: sigfigs
+      value: '12 * 800 / 200'
+      figures: 2
+      answer: '48'
+      convention: round-once
+  answer_text: '$V_s = V_p \times \dfrac{N_s}{N_p} = 12 \times \dfrac{800}{200} = 12 \times 4 = 48\,\text{V}$.
+    The secondary has four times as many turns, so it has four times the voltage.'
+- id: p16-5-stepdown
+  section: '16.5'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A transformer has 1000 turns on the primary and 100 turns on the secondary. The primary voltage
+    is 230 V. Calculate the secondary voltage.
+  answer_label: Secondary voltage
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: Vp * Ns / Np
+      values:
+        Vp:
+          value: '230'
+          unit: V
+        Ns:
+          value: '100'
+        Np:
+          value: '1000'
+      answer:
+        value: '23'
+        unit: V
+    - kind: sigfigs
+      value: '230 * 100 / 1000'
+      figures: 2
+      answer: '23'
+      convention: round-once
+  answer_text: '$V_s = V_p \times \dfrac{N_s}{N_p} = 230 \times \dfrac{100}{1000} = 230 \times 0.10 = 23\,\text{V}$.
+    This is a step-down transformer: the secondary has one tenth of the turns, so it has one tenth of the
+    voltage.'
+- id: p16-5-turns
+  section: '16.5'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A transformer steps a voltage of 240 V down to 12 V. The primary coil has 500 turns. Calculate
+    the number of turns on the secondary coil.
+  answer_label: Secondary turns
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: Np * Vs / Vp
+      values:
+        Np:
+          value: '500'
+        Vs:
+          value: '12'
+          unit: V
+        Vp:
+          value: '240'
+          unit: V
+      answer:
+        value: '25'
+    - kind: sigfigs
+      value: '500 * 12 / 240'
+      figures: 2
+      answer: '25'
+      convention: round-once
+  answer_text: 'Rearranging the transformer equation gives $N_s = N_p \times \dfrac{V_s}{V_p} = 500 \times
+    \dfrac{12}{240} = 500 \times 0.050 = 25$. The secondary coil has 25 turns, which is one twentieth of
+    the primary turns, so the voltage is one twentieth of 240 V.'
+- id: p16-5-current
+  section: '16.5'
+  tier: O
+  refs:
+  - '3.6'
+  statement: An ideal transformer has a primary voltage of 12 V and a primary current of 2.0 A. The secondary
+    voltage is 48 V. Calculate the secondary current.
+  answer_label: Secondary current
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: Vp * Ip / Vs
+      values:
+        Vp:
+          value: '12'
+          unit: V
+        Ip:
+          value: '2.0'
+          unit: A
+        Vs:
+          value: '48'
+          unit: V
+      answer:
+        value: '0.50'
+        unit: A
+    - kind: sigfigs
+      value: '12 * 2.0 / 48'
+      figures: 2
+      answer: '0.50'
+      convention: round-once
+  answer_text: 'An ideal transformer transfers all the power, so $V_pI_p = V_sI_s$ and $I_s = \dfrac{V_pI_p}{V_s}
+    = \dfrac{12 \times 2.0}{48} = \dfrac{24}{48} = 0.50\,\text{A}$. The voltage went up four times and the
+    current went down four times, so the power stays 24 W on both sides.'
+- id: p16-5-efficiency
+  section: '16.5'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A transformer has an input power of 800 W and an output power of 720 W. Calculate its efficiency.
+  answer_label: Efficiency
+  check:
+    kind: evaluate
+    expression: '720 / 800 * 100'
+    answer: '90'
+  answer_text: '$\text{efficiency} = \dfrac{\text{power out}}{\text{power in}} \times 100\% = \dfrac{720}{800}
+    \times 100\% = 90\%$. The other 80 W is transferred to the core and the windings, which warm up.'
+- id: p16-5-loss
+  section: '16.5'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A power station delivers 10 kW along a cable of resistance 5.0 Ω at a voltage of 500 V. Calculate
+    the current in the cable and the power lost in it.
+  answer_label: Current and power lost
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: P / V
+      values:
+        P:
+          value: '10000'
+          unit: W
+        V:
+          value: '500'
+          unit: V
+      answer:
+        value: '20'
+        unit: A
+    - kind: dimensions
+      expression: (P / V) ** 2 * R
+      values:
+        P:
+          value: '10000'
+          unit: W
+        V:
+          value: '500'
+          unit: V
+        R:
+          value: '5.0'
+          unit: Ω
+      answer:
+        value: '2000'
+        unit: W
+    - kind: sigfigs
+      value: '(10000 / 500) ** 2 * 5.0'
+      figures: 2
+      answer: 2.0e3
+      convention: round-once
+  answer_text: 'The current is $I = \dfrac{P}{V} = \dfrac{10\,000}{500} = 20\,\text{A}$. The power lost
+    is $P_{\text{lost}} = I^2R = 20^2 \times 5.0 = 400 \times 5.0 = 2000\,\text{W}$, which is 2.0 kW.
+    Sending the same power at 10 kV would need a current of only 1.0 A and would waste only 5.0 W.'
+- id: p16-5-why
+  section: '16.5'
+  tier: O
+  refs:
+  - '3.6'
+  statement: Explain why electrical energy is transmitted along the national grid at a very high voltage.
+  answer_label: Why the grid uses a high voltage
+  check:
+    kind: structured
+    requires:
+    - current
+    - loss
+    - transform
+    concepts:
+    - smaller-current
+    - i-squared-r
+    - step-up-and-down
+    points:
+    - id: current
+      text: for a given power, a higher voltage means a smaller current, because the power is the voltage multiplied by the current
+      concepts:
+      - smaller-current
+    - id: loss
+      text: the power lost in the cable is the current squared multiplied by the resistance, so a smaller current wastes much less energy
+      concepts:
+      - i-squared-r
+    - id: transform
+      text: transformers step the voltage up for the journey and down again for the user, without changing the power
+      concepts:
+      - step-up-and-down
+  answer_text: For a given power, a higher voltage means a smaller current, because $P = VI$. The power lost
+    in the cable is $I^2R$, so a smaller current wastes much less energy. Transformers step the voltage up
+    for the journey and down again for the user, and an ideal transformer does not change the power. The
+    high voltage is therefore about reducing the current, not about increasing the energy delivered.
+- id: p16-5-chapter
+  section: '16.5'
+  tier: O
+  refs:
+  - '3.6'
+  statement: 'The chapter problem. The generator delivers 24 kW at an r.m.s. voltage of 240 V, and the transmission
+    cable has a resistance of 4.0 Ω. Calculate the current and the power lost in the cable when the voltage
+    is not raised, and again when a step-up transformer raises it to 24 kV. State the turns ratio of that
+    transformer.'
+  answer_label: Currents and power losses
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: P / V
+      values:
+        P:
+          value: '24000'
+          unit: W
+        V:
+          value: '240'
+          unit: V
+      answer:
+        value: '100'
+        unit: A
+    - kind: dimensions
+      expression: (P / V) ** 2 * R
+      values:
+        P:
+          value: '24000'
+          unit: W
+        V:
+          value: '240'
+          unit: V
+        R:
+          value: '4.0'
+          unit: Ω
+      answer:
+        value: '40000'
+        unit: W
+    - kind: dimensions
+      expression: P / V
+      values:
+        P:
+          value: '24000'
+          unit: W
+        V:
+          value: '24000'
+          unit: V
+      answer:
+        value: '1.0'
+        unit: A
+    - kind: dimensions
+      expression: (P / V) ** 2 * R
+      values:
+        P:
+          value: '24000'
+          unit: W
+        V:
+          value: '24000'
+          unit: V
+        R:
+          value: '4.0'
+          unit: Ω
+      answer:
+        value: '4.0'
+        unit: W
+    - kind: evaluate
+      expression: '10000 / 100'
+      answer: '100'
+  answer_text: 'At 240 V the current is $I = \dfrac{P}{V} = \dfrac{24\,000}{240} = 100\,\text{A}$, and
+    the cable wastes $P_{\text{lost}} = I^2R = 100^2 \times 4.0 = 40\,000\,\text{W}$, which is more than
+    the generator supplies. Stepped up to 24 kV the current is $I = \dfrac{24\,000}{24\,000} = 1.0\,\text{A}$,
+    and the waste is $1.0^2 \times 4.0 = 4.0\,\text{W}$. The turns ratio is $\dfrac{N_s}{N_p} = \dfrac{24\,000}{240}
+    = 100$, so a 100-turn primary needs a 10 000-turn secondary.'

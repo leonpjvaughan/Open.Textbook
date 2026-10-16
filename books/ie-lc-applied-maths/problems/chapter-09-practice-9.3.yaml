@@ -1,0 +1,130 @@
+# Practice set for 9.3 (strand S1, the modelling process). The `evaluate` checks
+# prove the residual arithmetic. The `sigfigs` check proves a mean rounded once
+# to a declared number of figures. The `structured` records prove only that a
+# model answer contains the declared ideas, in order.
+chapter: 9
+problems:
+  - id: am9-3-residual
+    section: '9.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model predicts a temperature of 62 °C and the measurement is 65 °C. Find
+      the residual.
+    answer_label: Residual
+    check: {kind: evaluate, expression: '65 - 62', answer: '3'}
+    answer_text: >-
+      The residual is measured minus predicted: $65 - 62 = +3$ °C. The sign is
+      positive, so the measurement is larger than the prediction and the model
+      is too low at this point.
+
+  - id: am9-3-residual-sign
+    section: '9.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A residual is positive. Explain what that says about the model.
+    answer_label: What a positive residual means
+    check:
+      kind: structured
+      requires: [measurement-larger, model-low]
+      concepts: [residual]
+      points:
+        - id: measurement-larger
+          text: the measurement is larger than the prediction
+          concepts: [residual]
+        - id: model-low
+          text: so the model is too low at that point
+          concepts: [residual]
+    answer_text: >-
+      A positive residual means the measurement is larger than the prediction,
+      so the model is too low at that point. A negative residual would mean the
+      model is too high. The sign tells you the direction of the error, and the
+      size tells you how far out the model is.
+
+  - id: am9-3-mean-residual
+    section: '9.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Four residuals are $+3$, $-1$, $+2$ and $-4$. Find the mean residual.
+    answer_label: Mean residual
+    check: {kind: evaluate, expression: '(3 - 1 + 2 - 4) / 4', answer: '0'}
+    answer_text: >-
+      $3 - 1 + 2 - 4 = 0$, and $0 \div 4 = 0$. The mean residual is zero, which
+      means the model is not systematically too high or too low. It does not
+      prove the model is right, because the individual residuals are not zero.
+
+  - id: am9-3-sse
+    section: '9.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Four residuals are $+3$, $-1$, $+2$ and $-4$. Find the total squared
+      error.
+    answer_label: Total squared error
+    check: {kind: evaluate, expression: '3**2 + (-1)**2 + 2**2 + (-4)**2', answer: '30'}
+    answer_text: >-
+      $9 + 1 + 4 + 16 = 30$. Squaring removes the sign, so a residual of $-4$
+      counts as much as one of $+4$. The smaller the total, the better the model
+      fits the data.
+
+  - id: am9-3-percent-error
+    section: '9.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model predicts 50 °C and the measurement is 55 °C. Find the percentage
+      error, using the measurement as the base, as an exact fraction of a
+      percent.
+    answer_label: Percentage error
+    check: {kind: evaluate, expression: '(55 - 50) / 55 * 100', answer: '100/11'}
+    answer_text: >-
+      $\dfrac{55 - 50}{55} \times 100 = \dfrac{100}{11}$, which is about 9.1%.
+      A percentage error has no unit, so it can compare models measured in
+      different units.
+
+  - id: am9-3-mean-sigfigs
+    section: '9.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Three readings of a temperature are 62 °C, 65 °C and 63 °C. Find their
+      mean, correct to 3 significant figures.
+    answer_label: Mean temperature
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: '(62 + 65 + 63) / 3'
+      figures: 3
+      answer: '63.3'
+      unit: 'degC'
+    answer_text: >-
+      $\dfrac{62 + 65 + 63}{3} = \dfrac{190}{3} = 63.333\ldots$ °C, which is
+      63.3 °C to 3 significant figures. Reporting 63.333 would claim more
+      precision than readings taken to the nearest degree.
+
+  - id: am9-3-one-point
+    section: '9.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A student tests a model against one measurement and reports that the model
+      works. Explain why one measurement cannot test a model.
+    answer_label: Why one point is not enough
+    check:
+      kind: structured
+      requires: [one-point, no-pattern]
+      concepts: [data]
+      points:
+        - id: one-point
+          text: one point can be matched by adjusting one number in the model
+          concepts: [data]
+        - id: no-pattern
+          text: a model is a claim about a pattern, and a pattern needs several points across the range
+          concepts: [data]
+    answer_text: >-
+      One measurement can be matched by adjusting one number in the model, so it
+      cannot say whether the model works anywhere else. A model is a claim about
+      a pattern, and a pattern needs several points, spread across the range,
+      before it can be checked.

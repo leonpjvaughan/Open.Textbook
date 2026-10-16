@@ -10,9 +10,15 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.3 The force on a current-carrying conductor — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 3.5
+Work independently. The questions and answers are shown together at the end.
+
+Give every numerical answer with its **unit**, and to the number of significant
+figures the data justify. Before you substitute into $F = BIl$, write down which three
+of the four quantities you know and which one you want. For each direction question,
+draw the field and the current, then apply Fleming's left-hand rule.
+
+:::problems chapter-15-practice-15.3
+
+:::answers chapter-15-practice-15.3

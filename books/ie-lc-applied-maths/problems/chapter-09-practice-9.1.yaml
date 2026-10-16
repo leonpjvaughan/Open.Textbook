@@ -1,0 +1,166 @@
+# Practice set for 9.1 (strand S1, the modelling process). The `evaluate` checks
+# prove the arithmetic a project plan contains. The `structured` records prove
+# only that a model answer contains the declared ideas, in order — whether the
+# question chosen is a good one stays human.
+chapter: 9
+problems:
+  - id: am9-1-three-tests
+    section: '9.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Name the three tests a candidate project problem must pass.
+    answer_label: The three tests
+    check:
+      kind: structured
+      requires: [measurable, data, manageable]
+      concepts: [criteria]
+      points:
+        - id: measurable
+          text: the answer is a number with a unit, and you can say what would count as a good answer
+          concepts: [criteria]
+        - id: data
+          text: the numbers can be collected or found within the time you have
+          concepts: [criteria]
+        - id: manageable
+          text: the model can be finished with the mathematics you know
+          concepts: [criteria]
+    answer_text: >-
+      The problem must be measurable, so the answer is a number with a unit. The
+      data must be available, so the numbers can be collected in the time you
+      have. The problem must be manageable, so the model can be finished with
+      the mathematics you know. A problem that fails any one of the three will
+      cost marks.
+
+  - id: am9-1-precise-question
+    section: '9.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Turn the broad topic "traffic in the town" into a precise project
+      question. Name the quantity, the unit and the place.
+    answer_label: A precise question
+    check:
+      kind: structured
+      requires: [quantity, unit, place]
+      concepts: [question]
+      points:
+        - id: quantity
+          text: a time, a distance, a cost or a count
+          concepts: [question]
+        - id: unit
+          text: the unit the quantity is measured in, such as minutes or metres
+          concepts: [question]
+        - id: place
+          text: the place or moment the answer applies to
+          concepts: [question]
+    answer_text: >-
+      One precise question is "How many minutes does the queue of cars at the
+      school gate take to clear after 08:30?" The quantity is a time, the unit
+      is minutes, and the place and moment are the school gate after 08:30. A
+      reader can collect data for it and check the answer.
+
+  - id: am9-1-sample-count
+    section: '9.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A project records a temperature every 2 minutes for 30 minutes, with the
+      first reading at the start. How many readings will the student record?
+    answer_label: Number of readings
+    check: {kind: evaluate, expression: '30 / 2 + 1', answer: '16'}
+    answer_text: >-
+      There are $30 \div 2 = 15$ intervals, and each interval has one reading at
+      its start. Including the reading at time zero gives $15 + 1 = 16$
+      readings.
+
+  - id: am9-1-time-budget
+    section: '9.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A student has four weeks for the project and can work three hours each
+      week. Find the total number of hours available.
+    answer_label: Hours available
+    check: {kind: evaluate, expression: '4 * 3', answer: '12'}
+    answer_text: >-
+      $4 \times 3 = 12$ hours. A project that needs 40 hours of measurement
+      fails the manageable test, and it is better to find that out now.
+
+  - id: am9-1-narrow
+    section: '9.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Narrow the broad topic "water use at home" into a question with a
+      quantity, a unit and a place.
+    answer_label: A narrowed question
+    check:
+      kind: structured
+      requires: [quantity, unit, place]
+      concepts: [question]
+      points:
+        - id: quantity
+          text: a volume or a rate
+          concepts: [question]
+        - id: unit
+          text: litres, or litres each minute
+          concepts: [question]
+        - id: place
+          text: one tap, one shower or one building
+          concepts: [question]
+    answer_text: >-
+      One narrowed question is "How many litres does the shower in my house use
+      each minute?" The quantity is a flow rate, the unit is litres each minute,
+      and the place is one shower. It can be measured with a bucket and a timer,
+      so it passes all three tests.
+
+  - id: am9-1-no-unit
+    section: '9.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A student writes the question "Is the bus service good?" Explain why the
+      question cannot be marked.
+    answer_label: Why the question cannot be marked
+    check:
+      kind: structured
+      requires: [no-number, cannot-check]
+      concepts: [unit]
+      points:
+        - id: no-number
+          text: the word "good" names no quantity and no unit
+          concepts: [unit]
+        - id: cannot-check
+          text: two readers would disagree about what counts as good, so nobody can say whether the answer is right
+          concepts: [unit]
+    answer_text: >-
+      The word "good" names no quantity and no unit, so the answer cannot be a
+      number. Two readers would disagree about what counts as good, and nobody
+      can say whether the answer is right. A markable version is "How many
+      minutes late is the 08:15 bus on a school day?"
+
+  - id: am9-1-data-source
+    section: '9.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A project uses average rainfall figures from a website. Explain what the
+      student must check before using the numbers.
+    answer_label: What to check
+    check:
+      kind: structured
+      requires: [name-source, units-match]
+      concepts: [data]
+      points:
+        - id: name-source
+          text: the source can be named, with the place and the years it covers
+          concepts: [data]
+        - id: units-match
+          text: the units and the definition match the quantity in the question
+          concepts: [data]
+    answer_text: >-
+      The student must check that the source can be named, with the place and the
+      years it covers, so a reader can find the same numbers. The student must
+      also check that the units and the definition match the question: an
+      average for the whole country is not the rainfall at one town.

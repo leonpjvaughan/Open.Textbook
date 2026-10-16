@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 14.5 Interpreting graphs in context — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.7
+Work independently. The questions and answers are shown together at the end.
+
+Read the axes first, and say what each one measures. A flat part of a distance-time
+graph is a stop, and the highest point of a graph is the maximum.
+
+:::problems chapter-14-practice-14.5
+
+:::answers chapter-14-practice-14.5

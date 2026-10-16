@@ -1,0 +1,171 @@
+# Practice set for 8.5 (strand S4, changing world). Feedback and limited growth:
+# a constant input or loss added to a rate proportional to the amount, the
+# equilibrium it settles to, and the lake model of the chapter problem. Each
+# solution is proved by `ode`, each equilibrium by `solve`. The `structured`
+# record checks the presence and order of the ideas in a model answer.
+chapter: 8
+symbols:
+  t: {real: true}
+  P: {real: true}
+  T: {real: true}
+  V: {real: true}
+problems:
+  - id: am8-5-lake-fill
+    section: '8.5'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A pollutant enters a lake at a constant rate of $20$ kg per day, and is
+      washed out at a rate proportional to the amount $P$ present. The lake
+      starts clean, so $\dfrac{dP}{dt} = 20 - 0.05P$ with $P = 0$ when $t = 0$.
+      Find $P$ in terms of $t$.
+    answer_label: The amount of pollutant
+    check:
+      kind: ode
+      dependent: P
+      independent: t
+      equation: "Derivative(P(t), t) = 20 - 0.05*P(t)"
+      answer: "400*(1 - exp(-0.05*t))"
+      initial: [[0, "0"]]
+    answer_text: >-
+      Separate and integrate: $\ln|400 - P| = -0.05t + C$, so
+      $P = 400 - Ae^{-0.05t}$. The condition $P(0) = 0$ gives $A = 400$, so
+      $P = 400\left(1 - e^{-0.05t}\right)$.
+
+  - id: am8-5-lake-equilibrium
+    section: '8.5'
+    tier: O
+    refs: [S4]
+    statement: >-
+      For the lake model $\dfrac{dP}{dt} = 20 - 0.05P$, find the amount of
+      pollutant at which the amount stops changing.
+    answer_label: The equilibrium amount
+    check:
+      kind: solve
+      equation: "20 - 0.05*P = 0"
+      variable: "P"
+      answer: ["400"]
+    answer_text: >-
+      Set the rate to zero: $20 - 0.05P = 0$, so $0.05P = 20$ and $P = 400$ kg.
+      The solution $P = 400\left(1 - e^{-0.05t}\right)$ confirms it, because the
+      exponential term tends to zero.
+
+  - id: am8-5-feedback
+    section: '8.5'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A tank is filled with water at $6$ litres per minute and drains at a rate
+      proportional to the volume $V$. With the given units,
+      $\dfrac{dV}{dt} = 6 - 0.3V$ and $V = 0$ when $t = 0$. Find $V$ in terms of
+      $t$.
+    answer_label: The volume
+    check:
+      kind: ode
+      dependent: V
+      independent: t
+      equation: "Derivative(V(t), t) = 6 - 0.3*V(t)"
+      answer: "20*(1 - exp(-0.3*t))"
+      initial: [[0, "0"]]
+    answer_text: >-
+      The equilibrium is $V = \dfrac{6}{0.3} = 20$ litres. Separating gives
+      $V = 20\left(1 - e^{-0.3t}\right)$, so the volume rises towards $20$ litres.
+
+  - id: am8-5-cooling-feedback
+    section: '8.5'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A body cools so that $\dfrac{dT}{dt} = -0.1(T - 15)$, with $T = 90$°C when
+      $t = 0$ and $t$ in minutes. Find $T$ in terms of $t$.
+    answer_label: The temperature
+    check:
+      kind: ode
+      dependent: T
+      independent: t
+      equation: "Derivative(T(t), t) = -0.1*(T(t) - 15)"
+      answer: "15 + 75*exp(-0.1*t)"
+      initial: [[0, "90"]]
+    answer_text: >-
+      The equilibrium is $T = 15$°C. Separating gives
+      $T = 15 + Ae^{-0.1t}$, and $T(0) = 90$ gives $A = 75$, so
+      $T = 15 + 75e^{-0.1t}$.
+
+  - id: am8-5-lake-clear
+    section: '8.5'
+    tier: O
+    refs: [S4]
+    statement: >-
+      The factory closes, so no more pollutant enters the lake. The amount now
+      satisfies $\dfrac{dP}{dt} = -0.05P$, with $P = 400$ kg when $t = 0$. Find
+      $P$ in terms of $t$.
+    answer_label: The amount after the input stops
+    check:
+      kind: ode
+      dependent: P
+      independent: t
+      equation: "Derivative(P(t), t) = -0.05*P(t)"
+      answer: "400*exp(-0.05*t)"
+      initial: [[0, "400"]]
+    answer_text: >-
+      With no input the model is pure decay. The general solution is
+      $P = Ae^{-0.05t}$, and $P(0) = 400$ gives $A = 400$, so
+      $P = 400e^{-0.05t}$.
+
+  - id: am8-5-safe-time
+    section: '8.5'
+    tier: O
+    refs: [S4]
+    statement: >-
+      For the lake $P = 400e^{-0.05t}$, find the time taken for the amount to
+      fall to the safe level of $50$ kg. Give an exact answer in days.
+    answer_label: The time to reach the safe level
+    check:
+      kind: solve
+      equation: "400*exp(-0.05*t) = 50"
+      variable: "t"
+      answer: ["20*ln(8)"]
+    answer_text: >-
+      Set $P = 50$: $e^{-0.05t} = \dfrac{50}{400} = \dfrac{1}{8}$, so
+      $-0.05t = -\ln 8$ and $t = \dfrac{\ln 8}{0.05} = 20\ln 8 \approx 41.6$
+      days.
+
+  - id: am8-5-limited-rate
+    section: '8.5'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A population with limited resources is modelled by
+      $\dfrac{dP}{dt} = 0.02P\left(1 - \dfrac{P}{500}\right)$. Find the rate of
+      change when $P = 100$.
+    answer_label: The rate of change
+    check:
+      kind: apply
+      expression: "0.02*P*(1 - P/500)"
+      apply: {op: subs, args: [P, "100"]}
+      answer: "8/5"
+    answer_text: >-
+      Substitute $P = 100$: $0.02(100)\left(1 - \dfrac{100}{500}\right)
+      = 2(0.8) = 1.6$. The rate is $1.6$ per unit time, smaller than the
+      unconstrained rate $0.02(100) = 2$.
+
+  - id: am8-5-stability
+    section: '8.5'
+    tier: O
+    refs: [S4]
+    statement: >-
+      The lake model is $\dfrac{dP}{dt} = 20 - 0.05P$. Explain why the
+      equilibrium at $P = 400$ kg is stable.
+    answer_label: Why the equilibrium is stable
+    check:
+      kind: structured
+      requires: [equilibrium, approach, stable]
+      concepts: [stable-equilibrium]
+      points:
+        - {id: equilibrium, text: "At $P = 400$ the rate of change is zero, so the amount stays there.", concepts: [equilibrium]}
+        - {id: approach, text: "Below $400$ the term $20 - 0.05P$ is positive, so the amount rises.", concepts: [stable-equilibrium]}
+        - {id: stable, text: "Above $400$ the term is negative, so the amount falls. Either way it returns to $400$, which makes the equilibrium stable."}
+    answer_text: >-
+      Below $400$ the rate is positive and the amount rises; above $400$ the rate
+      is negative and the amount falls. Either side moves back towards $400$, so
+      the equilibrium is stable.

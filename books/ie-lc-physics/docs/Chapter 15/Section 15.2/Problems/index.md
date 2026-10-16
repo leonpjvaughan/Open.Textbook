@@ -10,9 +10,15 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.2 The magnetic field of a current — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 3.4
+Work independently. The questions and answers are shown together at the end.
+
+Most of these ask for a direction or a description. Before you answer, decide which
+rule you need: the right-hand grip rule for a straight wire, the right-hand grip rule
+for a solenoid, or the domain model of a magnetic material. Draw a small sketch for
+each direction question, and mark the current on it.
+
+:::problems chapter-15-practice-15.2
+
+:::answers chapter-15-practice-15.2

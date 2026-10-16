@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.1 Magnetic flux and flux density — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 3.6
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**, and to the number of significant figures the
+data justify. Before you use $\Phi = BA$, check that the surface is at right
+angles to the field, because that gives the largest possible flux.
+
+:::problems chapter-16-practice-16.1
+
+:::answers chapter-16-practice-16.1

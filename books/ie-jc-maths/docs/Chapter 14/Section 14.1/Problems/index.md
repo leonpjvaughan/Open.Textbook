@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 14.1 The idea of a function — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.7
+Work independently. The questions and answers are shown together at the end.
+
+Read each rule as a machine. Ask what happens to the input, and remember that a
+function gives exactly one output for each input.
+
+:::problems chapter-14-practice-14.1
+
+:::answers chapter-14-practice-14.1

@@ -10,9 +10,12 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.6 Critical evaluation of models — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S1
+Work independently. The questions and answers are shown together at the end.
+
+For each model, name the assumption it rests on and say what would break it.
+
+:::problems chapter-09-practice-9.6
+
+:::answers chapter-09-practice-9.6

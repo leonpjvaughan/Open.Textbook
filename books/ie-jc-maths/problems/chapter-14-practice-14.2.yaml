@@ -1,0 +1,166 @@
+# Junior Cycle Mathematics, Chapter 14, section 14.2.
+#
+# Function notation is checked two ways. An evaluation writes the substituted
+# calculation in `expression` and the claimed value in `answer`, so a wrong
+# substitution fails. A "find the input" question uses `kind: solve`, so the CAS
+# solves the equation and proves the claimed input rather than restating it.
+# Units and words stay in `statement`: the CAS parses numbers and symbols only.
+chapter: 14
+symbols:
+  x: {real: true}
+
+problems:
+- id: jc14-14.2-eval-1
+  section: '14.2'
+  tier: O
+  refs:
+  - AF.7
+  statement: The function $f$ is defined by $f(x)=3x-2$. Find $f(4)$.
+  answer_label: Find $f(4)$.
+  check:
+    kind: evaluate
+    expression: 3*4-2
+    answer: '10'
+  answer_text: $f(4)=3\times4-2=12-2=10$. The $4$ replaces every $x$ in the rule. The number inside the
+    bracket is the input.
+- id: jc14-14.2-eval-2
+  section: '14.2'
+  tier: O
+  refs:
+  - AF.7
+  statement: The function $f$ is defined by $f(x)=3x-2$. Find $f(-2)$.
+  answer_label: Find $f(-2)$.
+  check:
+    kind: evaluate
+    expression: 3*(-2)-2
+    answer: '-8'
+  answer_text: $f(-2)=3\times(-2)-2=-6-2=-8$. Put a negative input in brackets when you substitute it, so
+    the sign stays attached to the number.
+- id: jc14-14.2-eval-3
+  section: '14.2'
+  tier: O
+  refs:
+  - AF.7
+  statement: The function $f$ is defined by $f(x)=x^2+1$. Find $f(5)$.
+  answer_label: Find $f(5)$.
+  check:
+    kind: evaluate
+    expression: 5**2+1
+    answer: '26'
+  answer_text: $f(5)=5^2+1=25+1=26$. Work out the square before the addition, because indices are stronger
+    than adding.
+- id: jc14-14.2-eval-4
+  section: '14.2'
+  tier: O
+  refs:
+  - AF.7
+  statement: The function $f$ is defined by $f(x)=x^2+1$. Find $f(-3)$.
+  answer_label: Find $f(-3)$.
+  check:
+    kind: evaluate
+    expression: (-3)**2+1
+    answer: '10'
+  answer_text: $f(-3)=(-3)^2+1=9+1=10$. The square of a negative number is positive, because
+    $(-3)\times(-3)=9$.
+- id: jc14-14.2-solve-1
+  section: '14.2'
+  tier: O
+  refs:
+  - AF.7
+  statement: The function $f$ is defined by $f(x)=2x+7$. Find the input $x$ for which $f(x)=19$.
+  answer_label: Find $x$ when $f(x)=19$.
+  check:
+    kind: solve
+    equation: 2*x+7 = 19
+    variable: x
+    answer: '6'
+  answer_text: '$x=6$, because $2\times6+7=12+7=19$. Subtract 7 from both sides to get $2x=12$, and then
+    divide both sides by 2.'
+- id: jc14-14.2-solve-2
+  section: '14.2'
+  tier: O
+  refs:
+  - AF.7
+  statement: The function $g$ is defined by $g(x)=5x$. Find the input $x$ for which $g(x)=45$.
+  answer_label: Find $x$ when $g(x)=45$.
+  check:
+    kind: solve
+    equation: 5*x = 45
+    variable: x
+    answer: '9'
+  answer_text: '$x=9$, because $5\times9=45$. Divide both sides by 5. The output 45 is the value of the
+    function, and the input 9 is what produced it.'
+- id: jc14-14.2-solve-3
+  section: '14.2'
+  tier: O
+  refs:
+  - AF.7
+  statement: The function $h$ is defined by $h(x)=x^2-4$. Find both inputs for which $h(x)=0$.
+  answer_label: Find $x$ when $h(x)=0$.
+  check:
+    kind: solve
+    equation: x**2-4 = 0
+    variable: x
+    answer:
+    - '-2'
+    - '2'
+  answer_text: '$x=-2$ or $x=2$, because $(-2)^2-4=0$ and $2^2-4=0$. A square hides the sign of its input,
+    so both a negative and a positive input can give the same output.'
+- id: jc14-14.2-garden-1
+  section: '14.2'
+  tier: O
+  refs:
+  - AF.7
+  statement: The garden bed has area $A(x)=12x-2x^2$ square metres, where $x$ is the width in metres. Find
+    $A(3)$.
+  answer_label: Find $A(3)$.
+  check:
+    kind: evaluate
+    expression: 12*3-2*3**2
+    answer: '18'
+  answer_text: $A(3)=12\times3-2\times3^2=36-18=18$, so the area is $18\ \text{m}^2$. Work out the index
+    before the subtraction.
+- id: jc14-14.2-garden-2
+  section: '14.2'
+  tier: O
+  refs:
+  - AF.7
+  statement: The garden bed has area $A(x)=12x-2x^2$ square metres. Find the widths $x$ for which the area
+    is $16\ \text{m}^2$.
+  answer_label: Find $x$ when $A(x)=16$.
+  check:
+    kind: solve
+    equation: 12*x-2*x**2 = 16
+    variable: x
+    answer:
+    - '2'
+    - '4'
+  answer_text: '$x=2$ or $x=4$. Both widths give an area of $16\ \text{m}^2$, which is the table from
+    Section 14.1. You will see these two points on the graph in Section 14.4.'
+- id: jc14-14.2-eval-5
+  section: '14.2'
+  tier: O
+  refs:
+  - AF.7
+  statement: The function $h$ is defined by $h(x)=4-x$. Find $h(7)$.
+  answer_label: Find $h(7)$.
+  check:
+    kind: evaluate
+    expression: 4-7
+    answer: '-3'
+  answer_text: $h(7)=4-7=-3$. The input is larger than 4, so the output is negative.
+- id: jc14-14.2-equal-1
+  section: '14.2'
+  tier: O
+  refs:
+  - AF.7
+  statement: The functions $f$ and $g$ are defined by $f(x)=2x+1$ and $g(x)=x+5$. Find the input $x$ for
+    which $f(x)=g(x)$.
+  answer_label: Find $x$ when $f(x)=g(x)$.
+  check:
+    kind: solve
+    equation: 2*x+1 = x+5
+    variable: x
+    answer: '4'
+  answer_text: '$x=4$, because $f(4)=2\times4+1=9$ and $g(4)=4+5=9$. Subtract $x$ from both sides to get
+    $x+1=5$, and then subtract 1. This is the input where the two graphs cross.'

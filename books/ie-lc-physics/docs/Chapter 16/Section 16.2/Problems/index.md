@@ -10,9 +10,15 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.2 Faraday's law of induction — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 3.6
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**, and to the number of significant figures the
+data justify. Use the flux through **one turn** in $\Delta\Phi$, and multiply by
+$N$ once. If a question gives the flux linkage already, do not multiply by $N$
+again.
+
+:::problems chapter-16-practice-16.2
+
+:::answers chapter-16-practice-16.2

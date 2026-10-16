@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.2 Building the model and stating assumptions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S1
+Work independently. The questions and answers are shown together at the end.
+
+Write the unit beside every letter before you use it. State each assumption as a
+sentence that ends with what it leaves out.
+
+:::problems chapter-09-practice-9.2
+
+:::answers chapter-09-practice-9.2

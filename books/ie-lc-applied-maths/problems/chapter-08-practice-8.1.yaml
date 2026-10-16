@@ -1,0 +1,163 @@
+# Practice set for 8.1 (strand S4, changing world). Reading a rate of change,
+# forming a differential equation from a statement, and checking a claimed
+# solution. A claimed solution is proved by `ode`, which substitutes it back into
+# the equation; a solution that does not fit fails. The two `structured` records
+# check the presence and order of the ideas in a model answer, and nothing more.
+chapter: 8
+symbols:
+  t: {real: true}
+  x: {real: true}
+  P: {real: true}
+  Q: {real: true}
+  y: {real: true}
+  k: {real: true}
+  A: {real: true}
+problems:
+  - id: am8-1-rate-at-a-point
+    section: '8.1'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A quantity $Q$ changes with time so that $Q = 3t^2 + 2t$. Find
+      $\dfrac{dQ}{dt}$, and its value when $t = 2$.
+    answer_label: The rate of change at t = 2
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "3*t**2 + 2*t", apply: {op: diff, args: [t]}, answer: "6*t + 2"}
+        - {kind: apply, expression: "6*t + 2", apply: {op: subs, args: [t, "2"]}, answer: "14"}
+    answer_text: >-
+      Differentiate term by term: $\dfrac{dQ}{dt} = 6t + 2$. At $t = 2$ the rate
+      is $6(2) + 2 = 14$.
+
+  - id: am8-1-verify-exponential
+    section: '8.1'
+    tier: O
+    refs: [S4]
+    statement: >-
+      Show that $y = 5e^{2x}$ is a solution of the differential equation
+      $\dfrac{dy}{dx} = 2y$.
+    answer_label: The check by substitution
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = 2*y(x)"
+      answer: "5*exp(2*x)"
+    answer_text: >-
+      Differentiate: $\dfrac{dy}{dx} = 10e^{2x}$. The right-hand side is
+      $2y = 2 \times 5e^{2x} = 10e^{2x}$. The two sides agree, so $y = 5e^{2x}$
+      is a solution.
+
+  - id: am8-1-verify-decay
+    section: '8.1'
+    tier: O
+    refs: [S4]
+    statement: >-
+      Show that $y = Ae^{-3t}$ is a solution of $\dfrac{dy}{dt} = -3y$ for every
+      value of the constant $A$.
+    answer_label: The check by substitution
+    check:
+      kind: ode
+      dependent: y
+      independent: t
+      equation: "Derivative(y(t), t) = -3*y(t)"
+      answer: "A*exp(-3*t)"
+    answer_text: >-
+      Differentiate: $\dfrac{dy}{dt} = -3Ae^{-3t}$. The right-hand side is
+      $-3y = -3Ae^{-3t}$. The two sides agree for every $A$, so every member of
+      the family is a solution.
+
+  - id: am8-1-form-decay
+    section: '8.1'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A quantity decays at a rate proportional to the amount present. Let $P$ be
+      the amount and $t$ the time. Write down a differential equation for $P$.
+    answer_label: The differential equation
+    check:
+      kind: structured
+      requires: [rate, proportional, negative]
+      concepts: [proportional-decay]
+      points:
+        - {id: rate, text: "Let $P$ be the amount and $t$ the time, so the rate of change is $\\dfrac{dP}{dt}$.", concepts: [rate-notation]}
+        - {id: proportional, text: "The rate is proportional to the amount present, so $\\dfrac{dP}{dt} = kP$.", concepts: [proportional-decay]}
+        - {id: negative, text: "The quantity decays, so $k$ is negative."}
+    answer_text: >-
+      The rate of change is proportional to the amount, so
+      $\dfrac{dP}{dt} = kP$ with $k < 0$.
+
+  - id: am8-1-form-cooling
+    section: '8.1'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A cup of tea cools in a room at $20$°C. The temperature $T$ falls at a rate
+      proportional to the difference between $T$ and $20$. Write down a
+      differential equation for $T$.
+    answer_label: The differential equation
+    check:
+      kind: structured
+      requires: [rate, difference, direction]
+      concepts: [newton-cooling]
+      points:
+        - {id: rate, text: "The rate of change of the temperature is $\\dfrac{dT}{dt}$.", concepts: [rate-notation]}
+        - {id: difference, text: "The rate is proportional to the difference $T - 20$, so $\\dfrac{dT}{dt} = -k(T - 20)$.", concepts: [newton-cooling]}
+        - {id: direction, text: "The tea cools towards $20$°C, so $k$ is positive and the minus sign makes the rate negative when $T > 20$."}
+    answer_text: >-
+      The temperature falls towards the room temperature, so
+      $\dfrac{dT}{dt} = -k(T - 20)$ with $k > 0$.
+
+  - id: am8-1-derivative-value
+    section: '8.1'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A population is modelled by $P = 100e^{0.03t}$, with $t$ in years. Find
+      $\dfrac{dP}{dt}$, and its value when $t = 0$.
+    answer_label: The rate of change at t = 0
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "100*exp(0.03*t)", apply: {op: diff, args: [t]}, answer: "3*exp(0.03*t)"}
+        - {kind: apply, expression: "3*exp(0.03*t)", apply: {op: subs, args: [t, "0"]}, answer: "3"}
+    answer_text: >-
+      Differentiate: $\dfrac{dP}{dt} = 100 \times 0.03e^{0.03t} = 3e^{0.03t}$. At
+      $t = 0$ the rate is $3e^0 = 3$ per year.
+
+  - id: am8-1-equilibrium
+    section: '8.1'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A quantity changes so that $\dfrac{dP}{dt} = 0.5P - 10$. Find the value of
+      $P$ at which the rate of change is zero.
+    answer_label: The value of P
+    check:
+      kind: solve
+      equation: "0.5*P - 10 = 0"
+      variable: "P"
+      answer: ["20"]
+    answer_text: >-
+      Set the rate to zero: $0.5P - 10 = 0$, so $0.5P = 10$ and $P = 20$. At that
+      value the quantity stops changing, so it is the equilibrium value.
+
+  - id: am8-1-verify-feedback
+    section: '8.1'
+    tier: O
+    refs: [S4]
+    statement: >-
+      Show that $P = 20 + 30e^{-0.5t}$ is a solution of
+      $\dfrac{dP}{dt} = -0.5(P - 20)$.
+    answer_label: The check by substitution
+    check:
+      kind: ode
+      dependent: P
+      independent: t
+      equation: "Derivative(P(t), t) = -0.5*(P(t) - 20)"
+      answer: "20 + 30*exp(-0.5*t)"
+    answer_text: >-
+      Differentiate: $\dfrac{dP}{dt} = -15e^{-0.5t}$. The right-hand side is
+      $-0.5(P - 20) = -0.5 \times 30e^{-0.5t} = -15e^{-0.5t}$. The two sides
+      agree, so the given expression is a solution.

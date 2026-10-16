@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.1 Magnetic fields and magnetic materials — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 3.4
+Work independently. The questions and answers are shown together at the end.
+
+Write every answer in your own words, and use the words **pole**, **field line** and
+**domain** where they help. Before you describe a field, decide whether the question
+asks about the direction of the field or about its strength.
+
+:::problems chapter-15-practice-15.1
+
+:::answers chapter-15-practice-15.1

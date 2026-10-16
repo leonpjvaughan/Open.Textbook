@@ -11,9 +11,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 14.4 Graphing quadratic functions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.7, AF.5
+Work independently. The questions and answers are shown together at the end.
+
+Make the table first. Join the points with a smooth curve, not with straight segments.
+Read a root where the curve meets the horizontal axis, and a maximum at the highest
+point.
+
+:::problems chapter-14-practice-14.4
+
+:::answers chapter-14-practice-14.4

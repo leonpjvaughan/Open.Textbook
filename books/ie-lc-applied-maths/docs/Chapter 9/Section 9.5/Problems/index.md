@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.5 Communicating the result — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S1
+Work independently. The questions and answers are shown together at the end.
+
+Round once, at the end, to the precision the data supports. A conclusion must
+give the answer, its main assumption and one limit.
+
+:::problems chapter-09-practice-9.5
+
+:::answers chapter-09-practice-9.5

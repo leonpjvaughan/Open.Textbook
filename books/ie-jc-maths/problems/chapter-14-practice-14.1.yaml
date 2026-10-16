@@ -1,0 +1,213 @@
+# Junior Cycle Mathematics, Chapter 14, section 14.1.
+#
+# The idea of a function is checked numerically: each record writes the
+# calculation the rule performs in `expression` and the claimed output in
+# `answer`, so a wrong substitution fails rather than comparing a number with
+# itself. Units and words stay in `statement`: the CAS parses numbers only.
+chapter: 14
+symbols: {}
+
+problems:
+- id: jc14-14.1-rule-1
+  section: '14.1'
+  tier: O
+  refs:
+  - AF.7
+  statement: A function machine doubles the input and then adds 1. Find the output when the input is 3.
+  answer_label: Find the output for input 3.
+  check:
+    kind: evaluate
+    expression: 2*3+1
+    answer: '7'
+  answer_text: The output is $7$. The machine doubles 3 to get 6, and then adds 1 to get 7. Each input gives
+    exactly one output, and that is what makes the machine a function.
+- id: jc14-14.1-rule-2
+  section: '14.1'
+  tier: O
+  refs:
+  - AF.7
+  statement: The same machine doubles the input and then adds 1. Find the output when the input is 10.
+  answer_label: Find the output for input 10.
+  check:
+    kind: evaluate
+    expression: 2*10+1
+    answer: '21'
+  answer_text: The output is $21$, because $2\times10=20$ and $20+1=21$. The rule works in the same way for
+    every input, which is why one rule describes the whole machine.
+- id: jc14-14.1-table-1
+  section: '14.1'
+  tier: O
+  refs:
+  - AF.7
+  statement: 'A machine multiplies the input by 3 and then subtracts 2. Complete the output row for the inputs
+    2, 4, 6 and 8.'
+  answer_label: Complete the output row.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3*2-2
+      answer: '4'
+    - kind: evaluate
+      expression: 3*4-2
+      answer: '10'
+    - kind: evaluate
+      expression: 3*6-2
+      answer: '16'
+    - kind: evaluate
+      expression: 3*8-2
+      answer: '22'
+  answer_text: The outputs are $4$, $10$, $16$ and $22$. Each input has one output, so the table shows a
+    function. The outputs go up by 6 each time, because the inputs go up by 2 and the rule multiplies by 3.
+- id: jc14-14.1-rule-3
+  section: '14.1'
+  tier: O
+  refs:
+  - AF.7
+  statement: A rule adds 5 to the input. Find the output when the input is 7.
+  answer_label: Find the output for input 7.
+  check:
+    kind: evaluate
+    expression: 7+5
+    answer: '12'
+  answer_text: The output is $12$. Adding 5 gives one answer for each input, so this rule is a function.
+- id: jc14-14.1-not-function-1
+  section: '14.1'
+  tier: O
+  refs:
+  - AF.7
+  statement: A rule pairs each number with a number whose square it is. Use the number 9 to explain why this
+    rule is not a function.
+  answer_label: Explain why the rule is not a function.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3**2
+      answer: '9'
+    - kind: evaluate
+      expression: (-3)**2
+      answer: '9'
+  answer_text: The rule is not a function. Both 3 and $-3$ have square 9, so the input 9 would have two
+    outputs. A function gives exactly one output for each input.
+- id: jc14-14.1-table-2
+  section: '14.1'
+  tier: O
+  refs:
+  - AF.7
+  statement: A table shows the input 4 with the two outputs 8 and 10. Show that both outputs belong to the
+    input 4, and say whether the table is a function.
+  answer_label: Show both outputs and decide.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4+4
+      answer: '8'
+    - kind: evaluate
+      expression: 4+6
+      answer: '10'
+  answer_text: The input 4 gives both 8 and 10, because $4+4=8$ and $4+6=10$. The table is not a function,
+    because one input has two outputs.
+- id: jc14-14.1-garden-1
+  section: '14.1'
+  tier: O
+  refs:
+  - AF.7
+  statement: The garden bed from the chapter problem has width $x$ metres and area $A=x(12-2x)$ square
+    metres. Find the area when $x=2$ and when $x=4$.
+  answer_label: Find the area for $x=2$ and for $x=4$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*(12-2*2)
+      answer: '16'
+    - kind: evaluate
+      expression: 4*(12-2*4)
+      answer: '16'
+  answer_text: Both widths give an area of $16\ \text{m}^2$. For $x=2$ the fenced length is $12-4=8$ m, and
+    $2\times8=16$. For $x=4$ the fenced length is $12-8=4$ m, and $4\times4=16$.
+- id: jc14-14.1-garden-2
+  section: '14.1'
+  tier: O
+  refs:
+  - AF.7
+  statement: The widths 2 m and 4 m both give an area of $16\ \text{m}^2$. Check both values, and say
+    whether the area is still a function of the width.
+  answer_label: Check both values and decide.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*(12-2*2)
+      answer: '16'
+    - kind: evaluate
+      expression: 4*(12-2*4)
+      answer: '16'
+  answer_text: 'The area is still a function of the width: each width you choose gives exactly one area.
+    Two different widths may share the same area, and that does not break the rule. The other way round is
+    not a function, because one area can come from two widths.'
+- id: jc14-14.1-range-1
+  section: '14.1'
+  tier: O
+  refs:
+  - AF.7
+  statement: A function takes the whole numbers 1, 2, 3, 4 and 5 and doubles each one. Write down the range
+    of the function.
+  answer_label: Write down the range.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*1
+      answer: '2'
+    - kind: evaluate
+      expression: 2*2
+      answer: '4'
+    - kind: evaluate
+      expression: 2*3
+      answer: '6'
+    - kind: evaluate
+      expression: 2*4
+      answer: '8'
+    - kind: evaluate
+      expression: 2*5
+      answer: '10'
+  answer_text: The range is $2$, $4$, $6$, $8$ and $10$. The inputs 1 to 5 are the domain, and the outputs are
+    the range. Every input has exactly one output, so this is a function.
+- id: jc14-14.1-cost-1
+  section: '14.1'
+  tier: O
+  refs:
+  - AF.7
+  statement: Tickets for the school concert cost €3 each. The cost of $n$ tickets is the function $C(n)=3n$.
+    Find the cost of 6 tickets.
+  answer_label: Find $C(6)$.
+  check:
+    kind: evaluate
+    expression: 3*6
+    answer: '18'
+  answer_text: $C(6)=3\times6=18$, so 6 tickets cost €18. The number of tickets is the input and the cost is
+    the output, and each number of tickets gives one cost.
+- id: jc14-14.1-range-2
+  section: '14.1'
+  tier: O
+  refs:
+  - AF.7
+  statement: A function has domain $\{1, 2, 3\}$ and rule $f(x)=x+10$. Write down the range.
+  answer_label: Write down the range.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1+10
+      answer: '11'
+    - kind: evaluate
+      expression: 2+10
+      answer: '12'
+    - kind: evaluate
+      expression: 3+10
+      answer: '13'
+  answer_text: The range is $11$, $12$ and $13$. The domain lists the inputs, and the range lists the outputs
+    the rule produces from them.

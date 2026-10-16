@@ -1,0 +1,279 @@
+# Leaving Certificate Physics, Chapter 16, section 16.3 (strand 3 outcome 3.6).
+#
+# This section is mostly reasoning, so most records use `structured`. It proves
+# presence, order and coverage of the declared steps, nothing more: it cannot tell
+# whether the physics in the model answer is right. The two calculation records use
+# the physics oracle, which proves the magnitude and the unit, and `sigfigs` proves
+# the rounding.
+#
+# Honest limit: a dimensionally consistent, arithmetically correct, physically
+# absurd answer would pass the calculations, and a model answer can cover the right
+# concepts in the wrong way and still pass `structured`. Human review covers the
+# rest.
+chapter: 16
+problems:
+- id: p16-3-approach
+  section: '16.3'
+  tier: O
+  refs:
+  - '3.6'
+  statement: The north pole of a bar magnet is pushed towards a coil. State the polarity of the face of
+    the coil nearest the magnet, and explain your answer.
+  answer_label: Polarity of the near face
+  check:
+    kind: structured
+    requires:
+    - increase
+    - oppose
+    - repel
+    concepts:
+    - increasing-flux
+    - north-pole
+    - repulsion
+    points:
+    - id: increase
+      text: as the magnet approaches, the flux through the coil increases
+      concepts:
+      - increasing-flux
+    - id: oppose
+      text: by Lenz's law the induced current opposes the increase, so the near face becomes a north pole
+      concepts:
+      - north-pole
+    - id: repel
+      text: two north poles repel, so the coil pushes back on the approaching magnet
+      concepts:
+      - repulsion
+  answer_text: As the magnet approaches, the flux through the coil increases. By Lenz's law the induced
+    current opposes that increase, so it must try to push the magnet away. The near face of the coil becomes
+    a north pole, and two north poles repel.
+- id: p16-3-recede
+  section: '16.3'
+  tier: O
+  refs:
+  - '3.6'
+  statement: The same magnet is pulled away from the coil. State the polarity of the near face, and explain
+    why the answer differs from the case where the magnet approaches.
+  answer_label: Polarity of the near face
+  check:
+    kind: structured
+    requires:
+    - decrease
+    - oppose
+    - attract
+    concepts:
+    - decreasing-flux
+    - south-pole
+    - attraction
+    points:
+    - id: decrease
+      text: as the magnet moves away, the flux through the coil decreases
+      concepts:
+      - decreasing-flux
+    - id: oppose
+      text: by Lenz's law the induced current opposes the decrease, so the near face becomes a south pole
+      concepts:
+      - south-pole
+    - id: attract
+      text: unlike poles attract, so the coil pulls on the receding magnet
+      concepts:
+      - attraction
+  answer_text: As the magnet moves away, the flux through the coil decreases. By Lenz's law the induced
+    current opposes that decrease, so the near face becomes a south pole. Unlike poles attract, so the coil
+    pulls on the receding magnet. The answer differs because the change is in the opposite direction. The
+    induced current always opposes the change, never the magnet.
+- id: p16-3-energy
+  section: '16.3'
+  tier: O
+  refs:
+  - '3.6'
+  statement: Explain, using conservation of energy, why the induced current opposes the change that produces
+    it.
+  answer_label: Lenz's law and energy
+  check:
+    kind: structured
+    requires:
+    - aid
+    - work
+    - transfer
+    concepts:
+    - energy-from-nothing
+    - work-done
+    - mechanical-to-electrical
+    points:
+    - id: aid
+      text: if the induced current aided the change, the change would grow on its own and the current would grow without limit
+      concepts:
+      - energy-from-nothing
+    - id: work
+      text: because the current opposes the change, work must be done to keep the change going
+      concepts:
+      - work-done
+    - id: transfer
+      text: that work is the energy transferred from mechanical energy to electrical energy
+      concepts:
+      - mechanical-to-electrical
+  answer_text: If the induced current aided the change, the change would grow on its own, the current would
+    grow without limit, and energy would come from nothing. That cannot happen. Because the induced current
+    opposes the change, work must be done to keep the change going, and that work is the energy transferred
+    from mechanical energy to electrical energy.
+- id: p16-3-eddy
+  section: '16.3'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A strong magnet is dropped down a vertical copper tube and falls much more slowly than in air.
+    Explain why, and say where the energy goes.
+  answer_label: A magnet falling in a copper tube
+  check:
+    kind: structured
+    requires:
+    - eddy
+    - oppose
+    - balance
+    - heat
+    concepts:
+    - induced-currents
+    - upward-force
+    - terminal-speed
+    - internal-energy
+    points:
+    - id: eddy
+      text: the falling magnet changes the flux through the copper, which induces eddy currents in the copper
+      concepts:
+      - induced-currents
+    - id: oppose
+      text: by Lenz's law the eddy currents oppose the change and exert an upward force on the magnet
+      concepts:
+      - upward-force
+    - id: balance
+      text: the magnet reaches a steady slow speed where the upward magnetic force balances its weight
+      concepts:
+      - terminal-speed
+    - id: heat
+      text: the gravitational potential energy lost becomes internal energy in the copper, so the tube warms slightly
+      concepts:
+      - internal-energy
+  answer_text: As the magnet falls, the flux through the copper changes and eddy currents are induced in
+    it. By Lenz's law those currents oppose the change and exert an upward force on the magnet. The magnet
+    reaches a steady slow speed where the upward magnetic force balances its weight. The gravitational
+    potential energy it loses is transferred to internal energy in the copper, so the tube warms slightly.
+- id: p16-3-force
+  section: '16.3'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A side of a generator coil is 0.20 m long and lies at right angles to a field of flux density
+    0.15 T. The induced current in the side is 0.40 A. Calculate the force on the side.
+  answer_label: Force on the side
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: B * I * L
+      values:
+        B:
+          value: '0.15'
+          unit: T
+        I:
+          value: '0.40'
+          unit: A
+        L:
+          value: '0.20'
+          unit: m
+      answer:
+        value: '0.012'
+        unit: N
+    - kind: sigfigs
+      value: '0.15 * 0.40 * 0.20'
+      figures: 2
+      answer: '0.012'
+      convention: round-once
+  answer_text: '$F = BIL = 0.15 \times 0.40 \times 0.20 = 0.012\,\text{N}$. The force opposes the motion
+    of the coil, so the turbine must do work against it to keep the coil turning.'
+- id: p16-3-power
+  section: '16.3'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A generator coil has an induced emf of 4.0 V and a resistance of 2.0 Ω. Calculate the induced
+    current and the rate at which energy is transferred to the coil as internal energy.
+  answer_label: Current and power
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: E / R
+      values:
+        E:
+          value: '4.0'
+          unit: V
+        R:
+          value: '2.0'
+          unit: Ω
+      answer:
+        value: '2.0'
+        unit: A
+    - kind: dimensions
+      expression: E ** 2 / R
+      values:
+        E:
+          value: '4.0'
+          unit: V
+        R:
+          value: '2.0'
+          unit: Ω
+      answer:
+        value: '8.0'
+        unit: W
+    - kind: sigfigs
+      value: '4.0 ** 2 / 2.0'
+      figures: 2
+      answer: '8.0'
+      convention: round-once
+  answer_text: 'The current is $I = \dfrac{V}{R} = \dfrac{4.0}{2.0} = 2.0\,\text{A}$. The rate at which
+    energy becomes internal energy in the coil is $P = I^2R = 2.0^2 \times 2.0 = 8.0\,\text{W}$. That energy
+    comes from the work done against the opposing force, and it is why the coil warms up.'
+- id: p16-3-chapter
+  section: '16.3'
+  tier: O
+  refs:
+  - '3.6'
+  statement: 'The chapter problem. The stream turns the turbine, and the turbine turns the generator coil.
+    Explain why the falling water must keep doing work on the turbine for as long as the village uses electricity,
+    and say where the energy that heats the coil and the cable comes from.'
+  answer_label: The work the water must do
+  check:
+    kind: structured
+    requires:
+    - current
+    - opposing-force
+    - work
+    - heating
+    concepts:
+    - induced-current-in-field
+    - lenz-opposition
+    - mechanical-to-electrical
+    - internal-energy
+    points:
+    - id: current
+      text: the changing flux induces a current in the coil, and the current flows through the coil in a magnetic field
+      concepts:
+      - induced-current-in-field
+    - id: opposing-force
+      text: by Lenz's law the force on that current opposes the motion, so the coil resists turning
+      concepts:
+      - lenz-opposition
+    - id: work
+      text: the water must do work against the opposing force, and that work becomes electrical energy in the circuit
+      concepts:
+      - mechanical-to-electrical
+    - id: heating
+      text: the current transfers some energy to the resistance of the coil and the cable, which is why they warm up
+      concepts:
+      - internal-energy
+  answer_text: The changing flux induces a current in the coil, and the coil sits in a magnetic field, so
+    the current feels a force. By Lenz's law that force opposes the turning, so the turbine must do work
+    against it to keep the coil moving. That work is the energy transferred from the falling water to the
+    electrical circuit. Some of the current's energy is transferred to the resistance of the coil and the
+    cable, so they warm up. Without the water doing work, the coil would slow down and the current would
+    stop.

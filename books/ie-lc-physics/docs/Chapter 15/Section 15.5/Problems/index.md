@@ -10,9 +10,16 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.5 The electric motor — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 3.5
+Work independently. The questions and answers are shown together at the end.
+
+Give every numerical answer with its **unit**, and to the number of significant
+figures the data justify. Before you answer a question about a coil, decide whether it
+asks for the force on **one turn** or on **the whole coil**. Before you describe what a
+motor does, decide whether the question is about the force, the turning effect or the
+commutator.
+
+:::problems chapter-15-practice-15.5
+
+:::answers chapter-15-practice-15.5

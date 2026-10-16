@@ -1,0 +1,168 @@
+# Practice set for 8.6 (strand S4, changing world), Higher level. The logistic
+# model: growth slowed by a carrying capacity. A particular solution is proved by
+# `ode` with its initial value; the carrying capacity is proved as a limit; the
+# general solution is proved by substitution, so the arbitrary constant is free.
+# The `structured` record checks the presence and order of the ideas in a model
+# answer, and nothing more.
+chapter: 8
+symbols:
+  t: {real: true}
+  P: {real: true}
+  k: {real: true}
+  M: {real: true}
+  A: {real: true}
+problems:
+  - id: am8-6-logistic
+    section: '8.6'
+    tier: H
+    refs: [S4]
+    statement: >-
+      A population follows the logistic model
+      $\dfrac{dP}{dt} = 0.1P\left(1 - \dfrac{P}{500}\right)$, with $P = 50$ when
+      $t = 0$. Find $P$ in terms of $t$.
+    answer_label: The population
+    check:
+      kind: ode
+      dependent: P
+      independent: t
+      equation: "Derivative(P(t), t) = 0.1*P(t)*(1 - P(t)/500)"
+      answer: "500/(1 + 9*exp(-0.1*t))"
+      initial: [[0, "50"]]
+    answer_text: >-
+      The carrying capacity is $500$, so the solution has the form
+      $P = \dfrac{500}{1 + Ae^{-0.1t}}$. The condition $P(0) = 50$ gives
+      $1 + A = 10$, so $A = 9$ and $P = \dfrac{500}{1 + 9e^{-0.1t}}$.
+
+  - id: am8-6-capacity
+    section: '8.6'
+    tier: H
+    refs: [S4]
+    statement: >-
+      For the population $P = \dfrac{500}{1 + 9e^{-0.1t}}$, find the limit of
+      $P$ as $t$ grows without limit.
+    answer_label: The carrying capacity
+    check:
+      kind: apply
+      expression: "500/(1 + 9*exp(-0.1*t))"
+      apply: {op: limit, args: [t, "oo"]}
+      answer: "500"
+    answer_text: >-
+      As $t \to \infty$ the term $e^{-0.1t} \to 0$, so
+      $P \to \dfrac{500}{1} = 500$. This limiting value is the carrying capacity
+      of the environment.
+
+  - id: am8-6-logistic-two
+    section: '8.6'
+    tier: H
+    refs: [S4]
+    statement: >-
+      A population follows $\dfrac{dP}{dt} = 0.2P\left(1 - \dfrac{P}{200}\right)$,
+      with $P = 20$ when $t = 0$. Find $P$ in terms of $t$.
+    answer_label: The population
+    check:
+      kind: ode
+      dependent: P
+      independent: t
+      equation: "Derivative(P(t), t) = 0.2*P(t)*(1 - P(t)/200)"
+      answer: "200/(1 + 9*exp(-0.2*t))"
+      initial: [[0, "20"]]
+    answer_text: >-
+      The carrying capacity is $200$. The solution is
+      $P = \dfrac{200}{1 + Ae^{-0.2t}}$, and $P(0) = 20$ gives $1 + A = 10$, so
+      $A = 9$ and $P = \dfrac{200}{1 + 9e^{-0.2t}}$.
+
+  - id: am8-6-initial
+    section: '8.6'
+    tier: H
+    refs: [S4]
+    statement: >-
+      For the population $P = \dfrac{500}{1 + 9e^{-0.1t}}$, find the population
+      when $t = 0$.
+    answer_label: The population at t = 0
+    check:
+      kind: apply
+      expression: "500/(1 + 9*exp(-0.1*t))"
+      apply: {op: subs, args: [t, "0"]}
+      answer: "50"
+    answer_text: >-
+      Substitute $t = 0$: $e^0 = 1$, so $P = \dfrac{500}{1 + 9} = \dfrac{500}{10}
+      = 50$. This matches the initial value used to build the model.
+
+  - id: am8-6-half-capacity
+    section: '8.6'
+    tier: H
+    refs: [S4]
+    statement: >-
+      For the population $P = \dfrac{500}{1 + 9e^{-0.1t}}$, find the time at
+      which the population reaches half the carrying capacity. Give an exact
+      answer.
+    answer_label: The time to reach half the capacity
+    check:
+      kind: solve
+      equation: "500/(1 + 9*exp(-0.1*t)) = 250"
+      variable: "t"
+      answer: ["10*ln(9)"]
+    answer_text: >-
+      Half the carrying capacity is $250$. Then $1 + 9e^{-0.1t} = 2$, so
+      $e^{-0.1t} = \dfrac{1}{9}$ and $t = 10\ln 9 = 20\ln 3 \approx 22.0$.
+
+  - id: am8-6-zero-rate
+    section: '8.6'
+    tier: H
+    refs: [S4]
+    statement: >-
+      For the logistic model
+      $\dfrac{dP}{dt} = 0.1P\left(1 - \dfrac{P}{500}\right)$, find every value of
+      $P$ at which the rate of change is zero.
+    answer_label: The values of P
+    check:
+      kind: solve
+      equation: "0.1*P*(1 - P/500) = 0"
+      variable: "P"
+      answer: ["0", "500"]
+    answer_text: >-
+      The rate is zero when $P = 0$ or when $1 - \dfrac{P}{500} = 0$, that is
+      $P = 500$. The value $P = 0$ is an unstable equilibrium and $P = 500$ is
+      the stable carrying capacity.
+
+  - id: am8-6-general
+    section: '8.6'
+    tier: H
+    refs: [S4]
+    statement: >-
+      Show that $P = \dfrac{M}{1 + Ae^{-kt}}$ is a solution of the general
+      logistic equation $\dfrac{dP}{dt} = kP\left(1 - \dfrac{P}{M}\right)$, for
+      positive constants $k$ and $M$ and any constant $A$.
+    answer_label: The general solution
+    check:
+      kind: ode
+      dependent: P
+      independent: t
+      equation: "Derivative(P(t), t) = k*P(t)*(1 - P(t)/M)"
+      answer: "M/(1 + A*exp(-k*t))"
+    answer_text: >-
+      Write $P = M(1 + Ae^{-kt})^{-1}$. Differentiating gives
+      $\dfrac{dP}{dt} = \dfrac{kMAe^{-kt}}{(1 + Ae^{-kt})^2}$. The right-hand side
+      is $kP\left(1 - \dfrac{P}{M}\right) = \dfrac{kMAe^{-kt}}{(1 + Ae^{-kt})^2}$,
+      which agrees, so the expression is a solution for every $A$.
+
+  - id: am8-6-shape
+    section: '8.6'
+    tier: H
+    refs: [S4]
+    statement: >-
+      Describe how the graph of a logistic solution behaves before and after the
+      population reaches half the carrying capacity.
+    answer_label: The shape of the curve
+    check:
+      kind: structured
+      requires: [slow-start, fastest, slowing]
+      concepts: [carrying-capacity]
+      points:
+        - {id: slow-start, text: "For small $P$ the factor $1 - \\dfrac{P}{M}$ is close to $1$, so the growth is almost exponential at first.", concepts: [exponential-phase]}
+        - {id: fastest, text: "The rate of change is greatest at $P = \\dfrac{M}{2}$, so the curve is steepest halfway up.", concepts: [inflexion]}
+        - {id: slowing, text: "Beyond $\\dfrac{M}{2}$ the factor $1 - \\dfrac{P}{M}$ shrinks, so the growth slows and $P$ approaches the carrying capacity $M$ from below.", concepts: [carrying-capacity]}
+    answer_text: >-
+      Growth is almost exponential while $P$ is small, is fastest at
+      $P = \dfrac{M}{2}$, and then slows as $P$ approaches the carrying capacity
+      $M$. The graph is an S-shaped curve that levels off at $M$.

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.1 Reading the brief and choosing a problem — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S1
+Work independently. The questions and answers are shown together at the end.
+
+For each question, name the quantity, the unit and the moment or place before
+you decide whether the problem is suitable.
+
+:::problems chapter-09-practice-9.1
+
+:::answers chapter-09-practice-9.1

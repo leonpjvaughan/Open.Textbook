@@ -1,0 +1,156 @@
+# Practice set for 8.2 (strand S4, changing world). Exponential growth and decay:
+# the solution of dP/dt = kP, doubling time, half-life, and a value at a chosen
+# time. Each claimed solution is proved by `ode`; a value is proved by
+# substitution. The `solve` answers are written to match `solveset` exactly, and
+# a numeric exponential is written as an exact fraction, `exp(-1/2)`, because
+# SymPy evaluates a float exponent numerically.
+chapter: 8
+symbols:
+  t: {real: true}
+  P: {real: true}
+  m: {real: true}
+  A: {real: true}
+problems:
+  - id: am8-2-growth
+    section: '8.2'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A population $P$ grows so that $\dfrac{dP}{dt} = 0.04P$. When $t = 0$ the
+      population is $250$. Find $P$ in terms of $t$.
+    answer_label: The population
+    check:
+      kind: ode
+      dependent: P
+      independent: t
+      equation: "Derivative(P(t), t) = 0.04*P(t)"
+      answer: "250*exp(0.04*t)"
+      initial: [[0, "250"]]
+    answer_text: >-
+      The general solution is $P = Ae^{0.04t}$. The condition $P(0) = 250$ gives
+      $A = 250$, so $P = 250e^{0.04t}$.
+
+  - id: am8-2-decay
+    section: '8.2'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A quantity $P$ decays so that $\dfrac{dP}{dt} = -0.1P$. When $t = 0$ the
+      quantity is $80$. Find $P$ in terms of $t$.
+    answer_label: The quantity
+    check:
+      kind: ode
+      dependent: P
+      independent: t
+      equation: "Derivative(P(t), t) = -0.1*P(t)"
+      answer: "80*exp(-0.1*t)"
+      initial: [[0, "80"]]
+    answer_text: >-
+      The general solution is $P = Ae^{-0.1t}$. The condition $P(0) = 80$ gives
+      $A = 80$, so $P = 80e^{-0.1t}$.
+
+  - id: am8-2-value
+    section: '8.2'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A radioactive mass is modelled by $m = 500e^{-0.02t}$, with $m$ in grams
+      and $t$ in years. Find the mass after $25$ years, giving an exact answer.
+    answer_label: The mass after 25 years
+    check:
+      kind: apply
+      expression: "500*exp(-0.02*t)"
+      apply: {op: subs, args: [t, "25"]}
+      answer: "500*exp(-1/2)"
+    answer_text: >-
+      Substitute $t = 25$: $m = 500e^{-0.5} = 500e^{-1/2}$ grams, which is about
+      $303$ grams.
+
+  - id: am8-2-half-life
+    section: '8.2'
+    tier: O
+    refs: [S4]
+    statement: >-
+      For the mass $m = 500e^{-0.02t}$ grams, find the half-life, that is the
+      time taken for the mass to fall to half its starting value. Give an exact
+      answer in years.
+    answer_label: The half-life
+    check:
+      kind: solve
+      equation: "500*exp(-0.02*t) = 250"
+      variable: "t"
+      answer: ["50*ln(2)"]
+    answer_text: >-
+      Set $m = 250$: $e^{-0.02t} = \dfrac{1}{2}$, so $-0.02t = -\ln 2$ and
+      $t = \dfrac{\ln 2}{0.02} = 50\ln 2 \approx 34.7$ years.
+
+  - id: am8-2-doubling
+    section: '8.2'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A population is modelled by $P = 250e^{0.04t}$, with $t$ in years. Find the
+      doubling time, giving an exact answer in years.
+    answer_label: The doubling time
+    check:
+      kind: solve
+      equation: "250*exp(0.04*t) = 500"
+      variable: "t"
+      answer: ["25*ln(2)"]
+    answer_text: >-
+      Set $P = 500$: $e^{0.04t} = 2$, so $0.04t = \ln 2$ and
+      $t = \dfrac{\ln 2}{0.04} = 25\ln 2 \approx 17.3$ years.
+
+  - id: am8-2-growth-rate
+    section: '8.2'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A population is modelled by $P = 3000e^{0.015t}$, with $t$ in years. Find
+      $\dfrac{dP}{dt}$ when $t = 0$.
+    answer_label: The rate of change at t = 0
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "3000*exp(0.015*t)", apply: {op: diff, args: [t]}, answer: "45*exp(0.015*t)"}
+        - {kind: apply, expression: "45*exp(0.015*t)", apply: {op: subs, args: [t, "0"]}, answer: "45"}
+    answer_text: >-
+      Differentiate: $\dfrac{dP}{dt} = 3000 \times 0.015e^{0.015t}
+      = 45e^{0.015t}$. At $t = 0$ the rate is $45$ per year.
+
+  - id: am8-2-account
+    section: '8.2'
+    tier: O
+    refs: [S4]
+    statement: >-
+      Money in an account grows continuously so that $P = 1000e^{0.03t}$, with
+      $P$ in euro and $t$ in years. Find the balance after $10$ years, giving an
+      exact answer.
+    answer_label: The balance after 10 years
+    check:
+      kind: apply
+      expression: "1000*exp(0.03*t)"
+      apply: {op: subs, args: [t, "10"]}
+      answer: "1000*exp(3/10)"
+    answer_text: >-
+      Substitute $t = 10$: $P = 1000e^{0.3}$ euro, which is about €1350. A
+      continuous rate of $3\%$ per year gives slightly more than $3\%$ added once
+      a year.
+
+  - id: am8-2-reach
+    section: '8.2'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A population is modelled by $P = 2000e^{0.05t}$, with $t$ in years. Find
+      the time taken for the population to reach $3000$, giving an exact answer
+      in years.
+    answer_label: The time to reach 3000
+    check:
+      kind: solve
+      equation: "2000*exp(0.05*t) = 3000"
+      variable: "t"
+      answer: ["20*ln(3/2)"]
+    answer_text: >-
+      Set $P = 3000$: $e^{0.05t} = \dfrac{3000}{2000} = \dfrac{3}{2}$, so
+      $0.05t = \ln\dfrac{3}{2}$ and $t = 20\ln\dfrac{3}{2} \approx 8.1$ years.

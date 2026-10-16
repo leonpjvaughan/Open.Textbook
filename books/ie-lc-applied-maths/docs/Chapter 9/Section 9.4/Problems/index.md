@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.4 Iterating and improving — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S1
+Work independently. The questions and answers are shown together at the end.
+
+Change one assumption at a time. After each change, say whether the total
+squared error fell or rose.
+
+:::problems chapter-09-practice-9.4
+
+:::answers chapter-09-practice-9.4

@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.5 Transformers and the transmission of electricity — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 3.6
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**, and to the number of significant figures the
+data justify. Write the turns ratio with the secondary turns on top, and remember
+that a step-up transformer increases the voltage but leaves the power unchanged.
+
+:::problems chapter-16-practice-16.5
+
+:::answers chapter-16-practice-16.5

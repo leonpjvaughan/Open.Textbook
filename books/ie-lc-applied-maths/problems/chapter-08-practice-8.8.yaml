@@ -1,0 +1,160 @@
+# Practice set for 8.8 (strand S4, changing world), Higher level. Comparing a
+# discrete model with a continuous one: iterating a recurrence, taking one or
+# more Euler steps, and evaluating the exact continuous solution at the same
+# time. Euler steps are proved by `evaluate` on the arithmetic, the continuous
+# value by substitution, the recurrence by iteration. The `structured` record
+# checks the presence and order of the ideas in a model answer, and nothing more.
+chapter: 8
+symbols:
+  n: {integer: true}
+  t: {real: true}
+  u: {real: true}
+  P: {real: true}
+  y: {real: true}
+  x: {real: true}
+problems:
+  - id: am8-8-compare-ten
+    section: '8.8'
+    tier: H
+    refs: [S4]
+    statement: >-
+      A continuous model gives $P = 100e^{0.05t}$, and a discrete model gives
+      $u_{n+1} = 1.05u_n$ with $u_0 = 100$. Find the value each model gives at
+      $t = n = 10$.
+    answer_label: The two values
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: "100*exp(0.05*t)", apply: {op: subs, args: [t, "10"]}, answer: "100*exp(1/2)"}
+        - {kind: apply, expression: "(21/20)*u", apply: {op: iterate, args: [100, 10], variable: u}, answer: "100*(21/20)**10"}
+    answer_text: >-
+      The continuous model gives $100e^{0.5} \approx 164.9$. The discrete model
+      gives $100(1.05)^{10} \approx 162.9$. The discrete value is slightly
+      smaller, because $5\%$ added once a year is a little less than continuous
+      growth at $5\%$ per year.
+
+  - id: am8-8-euler-one
+    section: '8.8'
+    tier: H
+    refs: [S4]
+    statement: >-
+      Use Euler's method with step $h = 1$ on $\dfrac{dy}{dx} = 0.5y$ with
+      $y = 100$ when $x = 0$. Find the estimate of $y$ after one step.
+    answer_label: The estimate after one step
+    check:
+      kind: evaluate
+      expression: "100 + 1*(0.5*100)"
+      answer: "150"
+    answer_text: >-
+      One Euler step adds $h \times \dfrac{dy}{dx}$ to the current value:
+      $y_1 = 100 + 1(0.5 \times 100) = 150$.
+
+  - id: am8-8-euler-two
+    section: '8.8'
+    tier: H
+    refs: [S4]
+    statement: >-
+      Continue the Euler method from $y_1 = 150$, still with $h = 1$ and
+      $\dfrac{dy}{dx} = 0.5y$. Find the estimate of $y$ after the second step.
+    answer_label: The estimate after two steps
+    check:
+      kind: evaluate
+      expression: "150 + 1*(0.5*150)"
+      answer: "225"
+    answer_text: >-
+      $y_2 = 150 + 1(0.5 \times 150) = 150 + 75 = 225$. The estimate grows much
+      faster than the true solution, because the step is large.
+
+  - id: am8-8-euler-half
+    section: '8.8'
+    tier: H
+    refs: [S4]
+    statement: >-
+      Repeat the first two steps with the smaller step $h = 0.5$ on
+      $\dfrac{dy}{dx} = 0.5y$ with $y = 100$ when $x = 0$. Find the estimate
+      after two half-steps, that is at $x = 1$.
+    answer_label: The estimate at x = 1
+    check:
+      kind: evaluate
+      expression: "125 + 0.5*(0.5*125)"
+      answer: "156.25"
+    answer_text: >-
+      The first half-step gives $100 + 0.5(50) = 125$. The second gives
+      $125 + 0.5(62.5) = 156.25$. Halving the step moves the estimate from $225$
+      to $156.25$, closer to the true value.
+
+  - id: am8-8-exact
+    section: '8.8'
+    tier: H
+    refs: [S4]
+    statement: >-
+      For $\dfrac{dy}{dx} = 0.5y$ with $y = 100$ when $x = 0$, the exact
+      solution is $y = 100e^{0.5x}$. Find the exact value at $x = 1$.
+    answer_label: The exact value at x = 1
+    check:
+      kind: apply
+      expression: "100*exp(0.5*x)"
+      apply: {op: subs, args: [x, "1"]}
+      answer: "100*exp(1/2)"
+    answer_text: >-
+      Substitute $x = 1$: $y = 100e^{0.5} \approx 164.9$. The Euler estimate with
+      $h = 0.5$ was $156.25$, still below the exact value, so the method
+      underestimates here.
+
+  - id: am8-8-lake-discrete
+    section: '8.8'
+    tier: H
+    refs: [S4]
+    statement: >-
+      The lake loses $5\%$ of its pollutant each day. A discrete model is
+      $u_{n+1} = 0.95u_n$ with $u_0 = 400$ kg. Find $u_{10}$.
+    answer_label: The discrete amount after ten days
+    check:
+      kind: apply
+      expression: "(19/20)*u"
+      apply: {op: iterate, args: [400, 10], variable: u}
+      answer: "400*(19/20)**10"
+    answer_text: >-
+      $u_{10} = 400(0.95)^{10} \approx 239.5$ kg. The discrete model removes
+      $5\%$ of the amount at the end of each whole day.
+
+  - id: am8-8-lake-continuous
+    section: '8.8'
+    tier: H
+    refs: [S4]
+    statement: >-
+      The continuous lake model is $P = 400e^{-0.05t}$ kg. Find $P$ after ten
+      days.
+    answer_label: The continuous amount after ten days
+    check:
+      kind: apply
+      expression: "400*exp(-0.05*t)"
+      apply: {op: subs, args: [t, "10"]}
+      answer: "400*exp(-1/2)"
+    answer_text: >-
+      $P = 400e^{-0.5} \approx 242.6$ kg. The continuous model is about $3$ kg
+      above the discrete one after ten days, because the removal happens
+      throughout each day rather than all at the end.
+
+  - id: am8-8-step-size
+    section: '8.8'
+    tier: H
+    refs: [S4]
+    statement: >-
+      Explain how the size of the step in Euler's method affects the estimate,
+      and why a discrete model and a continuous model need not agree.
+    answer_label: Step size and disagreement
+    check:
+      kind: structured
+      requires: [step-size, error, reason]
+      concepts: [euler-method]
+      points:
+        - {id: step-size, text: "A smaller step $h$ gives an estimate closer to the exact solution, because the rate is recalculated more often.", concepts: [euler-method]}
+        - {id: error, text: "A large step uses one rate for the whole interval, so the estimate drifts from the true curve."}
+        - {id: reason, text: "A discrete model changes the amount in jumps, while a continuous model changes it at every instant, so the two agree only in the limit of a very small step."}
+    answer_text: >-
+      A smaller step gives a better estimate, because the rate is recalculated
+      more often. A large step uses one rate for a whole interval and drifts
+      from the true curve. A discrete model changes in jumps and a continuous
+      model changes at every instant, so they agree only as the step tends to
+      zero.

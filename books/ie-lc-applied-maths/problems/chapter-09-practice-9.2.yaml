@@ -1,0 +1,140 @@
+# Practice set for 9.2 (strand S1, the modelling process). The `evaluate` checks
+# prove the arithmetic of each model. The `dimensions` check proves that both
+# sides of a relationship carry the same base units. The `structured` records
+# prove only that a model answer contains the declared ideas, in order.
+chapter: 9
+problems:
+  - id: am9-2-battery-rate
+    section: '9.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A phone battery is at 100% when it is unplugged, and at 70% two hours
+      later. Find the rate at which the charge falls, in percent each hour.
+    answer_label: Rate of fall
+    check: {kind: evaluate, expression: '(100 - 70) / 2', answer: '15'}
+    answer_text: >-
+      The charge falls by $100 - 70 = 30$ percent in 2 hours, so the rate is
+      $\dfrac{30}{2} = 15$ percent each hour. The model assumes the charge falls
+      at this steady rate, which leaves out a battery that falls faster when it
+      runs a heavy app.
+
+  - id: am9-2-battery-time
+    section: '9.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Using a rate of 15 percent each hour, find the time for the charge to fall
+      from 100% to 0%, in hours.
+    answer_label: Time to empty
+    check: {kind: evaluate, expression: '100 / 15', answer: '20/3'}
+    answer_text: >-
+      $t = \dfrac{100}{15} = \dfrac{20}{3}$ hours, which is about 6.67 hours.
+      The exact fraction is kept until the end, so the rounding happens once.
+
+  - id: am9-2-letter-unit
+    section: '9.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Explain why every letter in a model needs a unit written beside it.
+    answer_label: Why a letter needs a unit
+    check:
+      kind: structured
+      requires: [meaning, check]
+      concepts: [unit]
+      points:
+        - id: meaning
+          text: the unit says what the letter measures, so another person can read the model
+          concepts: [unit]
+        - id: check
+          text: the units let a reader check that both sides of a relationship balance
+          concepts: [unit]
+    answer_text: >-
+      The unit says what the letter measures, so another person can read the
+      model and know what each symbol means. The units also let a reader check
+      that both sides of a relationship balance. A letter with no unit could be
+      minutes or hours, and the answer would be wrong by a factor of 60.
+
+  - id: am9-2-dimensional-distance
+    section: '9.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Show that the relationship $d = vt$ balances, where $d$ is a distance, $v$
+      is a speed and $t$ is a time.
+    answer_label: A unit check
+    check:
+      kind: dimensions
+      consistency: "d = v * t"
+      units: {d: "m", v: "m s^-1", t: "s"}
+    answer_text: >-
+      On the right, $v$ has unit m/s and $t$ has unit s, so $vt$ has unit m. The
+      left side is a distance in metres. Both sides match, so the relationship
+      balances.
+
+  - id: am9-2-assumption-costed
+    section: '9.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model of a cooling cup assumes the room temperature is steady. Write the
+      assumption as a sentence that finishes with what it leaves out.
+    answer_label: The assumption
+    check:
+      kind: structured
+      requires: [steady-room, leaves-out]
+      concepts: [assumptions]
+      points:
+        - id: steady-room
+          text: the room stays at one temperature for the whole measurement
+          concepts: [assumptions]
+        - id: leaves-out
+          text: so a room that warms up when the heating comes on is not modelled
+          concepts: [assumptions]
+    answer_text: >-
+      "The room stays at one temperature for the whole measurement, so a room
+      that warms up when the heating comes on is not modelled." The second half
+      names the real situation the assumption leaves out, so a reader can judge
+      whether the assumption is safe for their own room.
+
+  - id: am9-2-shower-volume
+    section: '9.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A shower model uses $V$ for the volume in litres, $r$ for the flow rate in
+      litres each minute and $t$ for the time in minutes. The flow rate is
+      8 litres each minute and the shower lasts 5 minutes. Find the volume.
+    answer_label: Volume
+    check: {kind: evaluate, expression: '8 * 5', answer: '40'}
+    answer_text: >-
+      $V = rt = 8 \times 5 = 40$ litres. The model assumes the flow rate stays
+      the same for the whole shower, which leaves out a shower that is turned
+      down halfway through.
+
+  - id: am9-2-small-model
+    section: '9.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A student adds a new letter for every detail of the situation. Explain why
+      a larger model is not automatically a better one.
+    answer_label: Why smaller is often better
+    check:
+      kind: structured
+      requires: [more-letters, more-assumptions]
+      concepts: [simplicity]
+      points:
+        - id: more-letters
+          text: every new letter needs its own measurement, and a measurement can be wrong
+          concepts: [simplicity]
+        - id: more-assumptions
+          text: every new letter adds an assumption, so there are more places for the model to fail
+          concepts: [simplicity]
+    answer_text: >-
+      Every new letter needs its own measurement, and a measurement can be
+      wrong. Every new letter also adds an assumption, so a larger model has
+      more places to fail and is harder to check. Start with the smallest model
+      that could answer the question, and add a letter only when the data shows
+      it is needed.

@@ -1,0 +1,155 @@
+# Practice set for 8.7 (strand S4, changing world), Higher level. Separable
+# first-order differential equations. A solution is proved by `ode`, which
+# substitutes it back into the equation, so the arbitrary constant is free and
+# the name of the constant never matters; a particular solution also pins the
+# initial value. Integration is verified by differentiation, never asserted.
+chapter: 8
+symbols:
+  x: {real: true}
+  y: {real: true}
+  t: {real: true}
+  T: {real: true}
+  v: {real: true}
+  A: {real: true}
+problems:
+  - id: am8-7-xy
+    section: '8.7'
+    tier: H
+    refs: [S4]
+    statement: 'Solve $\dfrac{dy}{dx} = xy$, giving the general solution.'
+    answer_label: The general solution
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = x*y(x)"
+      answer: "A*exp(x**2/2)"
+    answer_text: >-
+      Separate: $\displaystyle\int \dfrac{1}{y}\,dy = \int x\,dx$, so
+      $\ln|y| = \dfrac{x^2}{2} + C$ and $y = Ae^{x^2/2}$.
+
+  - id: am8-7-three-x-squared-y
+    section: '8.7'
+    tier: H
+    refs: [S4]
+    statement: 'Solve $\dfrac{dy}{dx} = 3x^2y$, giving the general solution.'
+    answer_label: The general solution
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = 3*x**2*y(x)"
+      answer: "A*exp(x**3)"
+    answer_text: >-
+      Separate and integrate: $\ln|y| = x^3 + C$, so $y = Ae^{x^3}$.
+
+  - id: am8-7-x-over-y
+    section: '8.7'
+    tier: H
+    refs: [S4]
+    statement: 'Solve $\dfrac{dy}{dx} = \dfrac{x}{y}$, giving the general solution.'
+    answer_label: The general solution
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = x/y(x)"
+      answer: "sqrt(x**2 + A)"
+    answer_text: >-
+      Separate: $y\,dy = x\,dx$, so $\dfrac{y^2}{2} = \dfrac{x^2}{2} + C$ and
+      $y^2 = x^2 + A$. Hence $y = \pm\sqrt{x^2 + A}$; a particular solution keeps
+      one sign, fixed by the initial condition.
+
+  - id: am8-7-y-over-x
+    section: '8.7'
+    tier: H
+    refs: [S4]
+    statement: >-
+      Solve $\dfrac{dy}{dx} = \dfrac{y}{x}$ for $x > 0$, giving the general
+      solution.
+    answer_label: The general solution
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = y(x)/x"
+      answer: "A*x"
+    answer_text: >-
+      Separate: $\displaystyle\int \dfrac{1}{y}\,dy = \int \dfrac{1}{x}\,dx$, so
+      $\ln|y| = \ln x + C$ and $y = Ax$.
+
+  - id: am8-7-particular
+    section: '8.7'
+    tier: H
+    refs: [S4]
+    statement: >-
+      Find the particular solution of $\dfrac{dy}{dx} = 2xy$ for which $y = 3$
+      when $x = 0$.
+    answer_label: The particular solution
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = 2*x*y(x)"
+      answer: "3*exp(x**2)"
+      initial: [[0, "3"]]
+    answer_text: >-
+      The general solution is $y = Ae^{x^2}$. The condition $x = 0$, $y = 3$
+      gives $3 = A$, so $y = 3e^{x^2}$.
+
+  - id: am8-7-exponential-difference
+    section: '8.7'
+    tier: H
+    refs: [S4]
+    statement: >-
+      Solve $\dfrac{dy}{dx} = e^{x-y}$, giving the general solution.
+    answer_label: The general solution
+    check:
+      kind: ode
+      dependent: y
+      independent: x
+      equation: "Derivative(y(x), x) = exp(x - y(x))"
+      answer: "ln(exp(x) + A)"
+    answer_text: >-
+      Write $e^{x-y} = e^xe^{-y}$, so $e^y\,dy = e^x\,dx$. Integrating gives
+      $e^y = e^x + A$, so $y = \ln(e^x + A)$.
+
+  - id: am8-7-cooling
+    section: '8.7'
+    tier: H
+    refs: [S4]
+    statement: >-
+      A liquid cools so that $\dfrac{dT}{dt} = -0.1(T - 20)$, with $T = 90$°C
+      when $t = 0$ and $t$ in minutes. Find $T$ in terms of $t$.
+    answer_label: The temperature
+    check:
+      kind: ode
+      dependent: T
+      independent: t
+      equation: "Derivative(T(t), t) = -0.1*(T(t) - 20)"
+      answer: "20 + 70*exp(-0.1*t)"
+      initial: [[0, "90"]]
+    answer_text: >-
+      Separate: $\ln|T - 20| = -0.1t + C$, so $T = 20 + Ae^{-0.1t}$. The
+      condition $T(0) = 90$ gives $A = 70$, so $T = 20 + 70e^{-0.1t}$.
+
+  - id: am8-7-terminal-velocity
+    section: '8.7'
+    tier: H
+    refs: [S4]
+    statement: >-
+      A body falls through a fluid so that $\dfrac{dv}{dt} = 9.8 - 2v$, with
+      $v = 0$ when $t = 0$ and $t$ in seconds. Find $v$ in terms of $t$.
+    answer_label: The velocity
+    check:
+      kind: ode
+      dependent: v
+      independent: t
+      equation: "Derivative(v(t), t) = 9.8 - 2*v(t)"
+      answer: "4.9*(1 - exp(-2*t))"
+      initial: [[0, "0"]]
+    answer_text: >-
+      Separate to $-\dfrac{1}{2}\ln|9.8 - 2v| = t + C$, so
+      $9.8 - 2v = Ae^{-2t}$. The condition $v(0) = 0$ gives $A = 9.8$, so
+      $v = 4.9\left(1 - e^{-2t}\right)$. The velocity approaches the terminal
+      value $4.9$ m/s.

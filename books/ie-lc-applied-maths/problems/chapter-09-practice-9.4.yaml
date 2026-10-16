@@ -1,0 +1,148 @@
+# Practice set for 9.4 (strand S1, the modelling process). The `evaluate` checks
+# prove the arithmetic of each refinement. The `structured` records prove only
+# that a model answer contains the declared ideas, in order — whether the change
+# was the right one stays human.
+chapter: 9
+problems:
+  - id: am9-4-new-rate
+    section: '9.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A battery falls from 100% to 70% in 2.5 hours, not 2 hours. Find the new
+      rate of fall, in percent each hour.
+    answer_label: New rate
+    check: {kind: evaluate, expression: '(100 - 70) / 2.5', answer: '12'}
+    answer_text: >-
+      $\dfrac{100 - 70}{2.5} = \dfrac{30}{2.5} = 12$ percent each hour. One
+      assumption changed, and the new model can be tested against the same
+      measurements.
+
+  - id: am9-4-new-time
+    section: '9.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Using the rate of 12 percent each hour, find the new time for the charge
+      to fall from 100% to 0%, in hours.
+    answer_label: New time
+    check: {kind: evaluate, expression: '100 / 12', answer: '25/3'}
+    answer_text: >-
+      $t = \dfrac{100}{12} = \dfrac{25}{3}$ hours, which is about 8.33 hours.
+      The prediction moves from about 6.67 hours to about 8.33 hours, and the
+      report gives both, so the reader can see what the change did.
+
+  - id: am9-4-improvement
+    section: '9.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model's total squared error falls from 30 to 12. Find the percentage
+      reduction.
+    answer_label: Percentage reduction
+    check: {kind: evaluate, expression: '(30 - 12) / 30 * 100', answer: '60'}
+    answer_text: >-
+      $\dfrac{30 - 12}{30} \times 100 = 60\%$. A large fall from one change is
+      good evidence that the assumption you changed was the one that mattered.
+
+  - id: am9-4-one-at-a-time
+    section: '9.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Explain why you should change one assumption at a time when you refine a
+      model.
+    answer_label: Why one at a time
+    check:
+      kind: structured
+      requires: [one-change, see-effect]
+      concepts: [refine]
+      points:
+        - id: one-change
+          text: change one assumption, so only one thing is different from the previous model
+          concepts: [refine]
+        - id: see-effect
+          text: the new answer then shows which change caused which effect, so you keep the change only if the data supports it
+          concepts: [refine]
+    answer_text: >-
+      If you change two assumptions at once, you cannot tell which change caused
+      the new answer. Change one assumption, work the model again, and compare
+      the new error with the old one. The change is kept only if the data
+      supports it.
+
+  - id: am9-4-sensitivity
+    section: '9.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model has two uncertain assumptions. Explain how to find which one the
+      answer depends on most.
+    answer_label: Finding the sensitive assumption
+    check:
+      kind: structured
+      requires: [change-each, biggest-move]
+      concepts: [sensitivity]
+      points:
+        - id: change-each
+          text: change each assumption in turn, by as much as it could plausibly be wrong
+          concepts: [sensitivity]
+        - id: biggest-move
+          text: the assumption that moves the prediction furthest is the one the answer depends on most
+          concepts: [sensitivity]
+    answer_text: >-
+      Change each assumption in turn, by as much as the measurement could
+      plausibly be wrong, and see how far the prediction moves. The assumption
+      that moves the answer furthest is the one the answer depends on most, and
+      it is the one to measure most carefully.
+
+  - id: am9-4-stop
+    section: '9.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Repeating a measurement changes it by 2 °C, and a change to the model
+      moves the prediction by 0.4 °C. Explain whether the change is worth
+      keeping.
+    answer_label: Whether to keep the change
+    check:
+      kind: structured
+      requires: [smaller-than-noise, stop]
+      concepts: [stopping]
+      points:
+        - id: smaller-than-noise
+          text: the change is 0.4 °C and the measurement varies by 2 °C, so the change is much smaller than the variation
+          concepts: [stopping]
+        - id: stop
+          text: the data cannot see the difference, so the model is good enough and refining further is wasted work
+          concepts: [stopping]
+    answer_text: >-
+      The change is smaller than the variation in the measurements, so the data
+      cannot see it. The model is good enough, and the report should say that
+      the remaining error is smaller than the variation in the data.
+
+  - id: am9-4-overfit
+    section: '9.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A student adds one new number to the model for each measurement, until the
+      curve passes through every point. Explain why this does not improve the
+      model.
+    answer_label: Why this does not help
+    check:
+      kind: structured
+      requires: [as-many-numbers, predicts-nothing]
+      concepts: [overfit]
+      points:
+        - id: as-many-numbers
+          text: the model has as many numbers as measurements, so it can fit the data perfectly
+          concepts: [overfit]
+        - id: predicts-nothing
+          text: a model that fits every point has no freedom left to be wrong, so it predicts nothing about the next measurement
+          concepts: [overfit]
+    answer_text: >-
+      The model has as many numbers as measurements, so it can fit the data
+      perfectly. This is called overfitting. The model has learned the
+      measurements rather than the situation, and it will be wrong for the next
+      measurement. A useful model has fewer numbers than measurements, so the
+      data can disagree with it.

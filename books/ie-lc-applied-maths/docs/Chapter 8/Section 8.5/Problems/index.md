@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.5 Feedback and limited growth — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S4
+Work independently. The questions and answers are shown together at the end.
+
+Find the equilibrium first. It is the level the model heads towards, and every
+other answer is written around it.
+
+:::problems chapter-08-practice-8.5
+
+:::answers chapter-08-practice-8.5

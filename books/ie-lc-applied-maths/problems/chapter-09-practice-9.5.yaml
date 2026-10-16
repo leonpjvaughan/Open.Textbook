@@ -1,0 +1,177 @@
+# Practice set for 9.5 (strand S1, the modelling process). The `evaluate` checks
+# prove the arithmetic a report contains. The `sigfigs` check proves a value
+# rounded once to a declared number of figures. The `structured` records prove
+# only that a model answer contains the declared ideas, in order.
+chapter: 9
+problems:
+  - id: am9-5-round-time
+    section: '9.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model gives a clear time of $\dfrac{95}{12}$ minutes. Write it correct to
+      2 significant figures.
+    answer_label: Clear time
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: '95/12'
+      figures: 2
+      answer: '7.9'
+      unit: 'min'
+    answer_text: >-
+      $\dfrac{95}{12} = 7.9166\ldots$ minutes, which is 7.9 minutes to 2
+      significant figures. Reporting 7.916666 would claim a precision the
+      measured rates do not have.
+
+  - id: am9-5-report-parts
+    section: '9.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Name the six parts of a modelling report, in order.
+    answer_label: The six parts
+    check:
+      kind: structured
+      requires: [question, assumptions, model, solution, evaluation, conclusion]
+      concepts: [report]
+      points:
+        - id: question
+          text: the question, in one sentence with a unit
+          concepts: [report]
+        - id: assumptions
+          text: the assumptions, each one ending with what it leaves out
+          concepts: [report]
+        - id: model
+          text: the model, with every letter and its unit
+          concepts: [report]
+        - id: solution
+          text: the solution, with the substitution, the arithmetic and the units
+          concepts: [report]
+        - id: evaluation
+          text: the evaluation, with the data, the residuals and what the refinement changed
+          concepts: [report]
+        - id: conclusion
+          text: the conclusion, with the answer, its main assumption and one limit
+          concepts: [report]
+    answer_text: >-
+      The question, the assumptions, the model, the solution, the evaluation and
+      the conclusion. The six parts follow the modelling cycle, so a reader can
+      see where every number came from.
+
+  - id: am9-5-conclusion
+    section: '9.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A conclusion reads "The clear time is 8 minutes." State the two things it
+      is missing.
+    answer_label: What the conclusion is missing
+    check:
+      kind: structured
+      requires: [main-assumption, limit]
+      concepts: [conclusion]
+      points:
+        - id: main-assumption
+          text: the assumption the answer depends on most
+          concepts: [conclusion]
+        - id: limit
+          text: one limit of the model, such as the range where it was tested
+          concepts: [conclusion]
+    answer_text: >-
+      The conclusion gives the answer and its unit, but it is missing the
+      assumption the answer depends on most and one limit of the model. A fuller
+      conclusion is: "The clear time is about 8 minutes on a normal lunchtime.
+      The answer depends most on the arrival rate, so a heavier rush would make
+      it longer. The model assumes steady rates, so it cannot say how long one
+      particular day takes."
+
+  - id: am9-5-range
+    section: '9.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      An arrival rate is only known to lie between two values, which give clear
+      times of 7 minutes and 10 minutes. Explain why the report should give a
+      range rather than one number.
+    answer_label: Why a range
+    check:
+      kind: structured
+      requires: [two-times, range]
+      concepts: [uncertainty]
+      points:
+        - id: two-times
+          text: the two rates give clear times of 7 minutes and 10 minutes
+          concepts: [uncertainty]
+        - id: range
+          text: the answer is only known to lie between those times, so report the range and say which measurement it depends on
+          concepts: [uncertainty]
+    answer_text: >-
+      The answer is only known to lie between 7 and 10 minutes, so a single
+      number would hide how much it depends on the arrival rate. The range tells
+      the reader something true about how well the situation was measured.
+
+  - id: am9-5-speed-units
+    section: '9.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A report gives a speed as 10 m/s. Convert it to kilometres each hour, so
+      the reader can picture it.
+    answer_label: Speed
+    check: {kind: evaluate, expression: '10 * 3.6', answer: '36'}
+    answer_text: >-
+      $10 \times 3.6 = 36$ km/h. There are 3600 seconds in an hour and 1000
+      metres in a kilometre, so multiplying a speed in m/s by 3.6 gives the
+      speed in km/h. The conversion helps the reader picture the answer and does
+      not change the model.
+
+  - id: am9-5-table-header
+    section: '9.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A table has a column headed "Time" with the entries 0, 2, 4 and 6.
+      Explain what is missing, and write the header again.
+    answer_label: The corrected header
+    check:
+      kind: structured
+      requires: [unit-header, same-figures]
+      concepts: [table]
+      points:
+        - id: unit-header
+          text: the unit is missing, and the header should read "Time / min"
+          concepts: [table]
+        - id: same-figures
+          text: every entry in the column is then in the same unit, and the same number of decimal places is kept down the column
+          concepts: [table]
+    answer_text: >-
+      The unit is missing, so the header should read "Time / min". Every entry
+      in the column is then in the same unit, and the same number of decimal
+      places is kept down the column. Putting the unit in the header is shorter
+      than writing it after each number, and it cannot be forgotten on one row.
+
+  - id: am9-5-false-precision
+    section: '9.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A student reports a clear time of 7.916666 minutes. Explain why this is a
+      mistake, and give a better way to report the number.
+    answer_label: Why the number is misleading
+    check:
+      kind: structured
+      requires: [claims-precision, round-or-range]
+      concepts: [rounding]
+      points:
+        - id: claims-precision
+          text: the number claims a precision the measurements do not have
+          concepts: [rounding]
+        - id: round-or-range
+          text: report it to 2 significant figures, about 7.9 minutes, or give a range
+          concepts: [rounding]
+    answer_text: >-
+      The number claims a precision the data does not have, because the rates
+      were counted in whole students each minute. A better report gives the
+      answer to 2 significant figures, about 7.9 minutes, or gives a range such
+      as 7 to 9 minutes. False precision makes a report harder to trust.

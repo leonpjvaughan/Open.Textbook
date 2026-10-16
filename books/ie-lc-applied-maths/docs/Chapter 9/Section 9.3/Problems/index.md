@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.3 Testing the model against data — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S1
+Work independently. The questions and answers are shown together at the end.
+
+For each comparison, write the residual with its sign. A positive residual means
+the model is too low, and a negative residual means it is too high.
+
+:::problems chapter-09-practice-9.3
+
+:::answers chapter-09-practice-9.3

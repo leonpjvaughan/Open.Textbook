@@ -1,0 +1,290 @@
+# Leaving Certificate Physics, Chapter 16, section 16.2 (strand 3 outcome 3.6).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An answer that is two significant figures
+# is written in scientific notation when a trailing zero would otherwise be lost:
+# `3.0e1` is two figures, and `30` reads as one.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 16
+problems:
+- id: p16-2-emf-basic
+  section: '16.2'
+  tier: O
+  refs:
+  - '3.6'
+  statement: The flux through one turn of a coil of 60 turns changes by 0.020 Wb in 0.10 s. Calculate
+    the average induced emf.
+  answer_label: Average induced emf
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: N * dPhi / t
+      values:
+        N:
+          value: '60'
+        dPhi:
+          value: '0.020'
+          unit: Wb
+        t:
+          value: '0.10'
+          unit: s
+      answer:
+        value: '12'
+        unit: V
+    - kind: sigfigs
+      value: '60 * 0.020 / 0.10'
+      figures: 2
+      answer: '12'
+      convention: round-once
+  answer_text: '$E = N\dfrac{\Delta\Phi}{\Delta t} = 60 \times \dfrac{0.020}{0.10} = 60 \times 0.20 = 12\,\text{V}$.
+    The flux changes by 0.20 Wb each second in every turn, and the coil has 60 turns.'
+- id: p16-2-emf-change
+  section: '16.2'
+  tier: O
+  refs:
+  - '3.6'
+  statement: The flux through one turn of a coil of 150 turns rises from $3.0 \times 10^{-3}$ Wb to
+    $9.0 \times 10^{-3}$ Wb in 0.030 s. Calculate the average induced emf.
+  answer_label: Average induced emf
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: N * (Phi2 - Phi1) / t
+      values:
+        N:
+          value: '150'
+        Phi1:
+          value: '3.0e-3'
+          unit: Wb
+        Phi2:
+          value: '9.0e-3'
+          unit: Wb
+        t:
+          value: '0.030'
+          unit: s
+      answer:
+        value: '30'
+        unit: V
+    - kind: sigfigs
+      value: '150 * (9.0e-3 - 3.0e-3) / 0.030'
+      figures: 2
+      answer: 3.0e1
+      convention: round-once
+  answer_text: 'The change in flux is $\Delta\Phi = 9.0 \times 10^{-3} - 3.0 \times 10^{-3} = 6.0 \times
+    10^{-3}\,\text{Wb}$. Then $E = N\dfrac{\Delta\Phi}{\Delta t} = 150 \times \dfrac{6.0 \times 10^{-3}}{0.030}
+    = 150 \times 0.20 = 30\,\text{V}$. Using the final flux instead of the change gives a much larger
+    answer.'
+- id: p16-2-emf-area
+  section: '16.2'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A single loop of area 0.050 m² lies at right angles to a field whose flux density rises from
+    0.20 T to 0.60 T in 0.20 s. Calculate the average induced emf.
+  answer_label: Average induced emf
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: N * A * (B2 - B1) / t
+      values:
+        N:
+          value: '1'
+        A:
+          value: '0.050'
+          unit: m^2
+        B1:
+          value: '0.20'
+          unit: T
+        B2:
+          value: '0.60'
+          unit: T
+        t:
+          value: '0.20'
+          unit: s
+      answer:
+        value: '0.10'
+        unit: V
+    - kind: sigfigs
+      value: '0.050 * (0.60 - 0.20) / 0.20'
+      figures: 2
+      answer: '0.10'
+      convention: round-once
+  answer_text: 'The area is constant, so the change in flux is $\Delta\Phi = A\,\Delta B = 0.050 \times
+    0.40 = 0.020\,\text{Wb}$. With one loop, $E = \dfrac{\Delta\Phi}{\Delta t} = \dfrac{0.020}{0.20} =
+    0.10\,\text{V}$. A single loop gives a small emf, which is why a generator coil has many turns.'
+- id: p16-2-time
+  section: '16.2'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A coil of 250 turns has a flux change of $8.0 \times 10^{-3}$ Wb through each turn. The average
+    induced emf is 20 V. Calculate the time taken for the change.
+  answer_label: Time taken
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: N * dPhi / E
+      values:
+        N:
+          value: '250'
+        dPhi:
+          value: '8.0e-3'
+          unit: Wb
+        E:
+          value: '20'
+          unit: V
+      answer:
+        value: '0.10'
+        unit: s
+    - kind: sigfigs
+      value: '250 * 8.0e-3 / 20'
+      figures: 2
+      answer: '0.10'
+      convention: round-once
+  answer_text: 'Rearranging $E = N\dfrac{\Delta\Phi}{\Delta t}$ gives $\Delta t = \dfrac{N\,\Delta\Phi}{E}
+    = \dfrac{250 \times 8.0 \times 10^{-3}}{20} = \dfrac{2.0}{20} = 0.10\,\text{s}$. The flux linkage
+    changes by 2.0 Wb in 0.10 s, which is a rate of 20 Wb each second.'
+- id: p16-2-linkage-rate
+  section: '16.2'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A coil of 100 turns has a flux linkage that changes from 0.20 Wb to 0.80 Wb in 0.040 s. Calculate
+    the average induced emf.
+  answer_label: Average induced emf
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: (L2 - L1) / t
+      values:
+        L1:
+          value: '0.20'
+          unit: Wb
+        L2:
+          value: '0.80'
+          unit: Wb
+        t:
+          value: '0.040'
+          unit: s
+      answer:
+        value: '15'
+        unit: V
+    - kind: sigfigs
+      value: '(0.80 - 0.20) / 0.040'
+      figures: 2
+      answer: '15'
+      convention: round-once
+  answer_text: 'The question gives the flux linkage, so the number of turns is already included. The change
+    is $\Delta(N\Phi) = 0.80 - 0.20 = 0.60\,\text{Wb}$, and $E = \dfrac{\Delta(N\Phi)}{\Delta t} = \dfrac{0.60}{0.040}
+    = 15\,\text{V}$. Multiplying by 100 again would give a hundred times too much.'
+- id: p16-2-factors
+  section: '16.2'
+  tier: O
+  refs:
+  - '3.6'
+  statement: State three changes that make the emf induced in a coil larger, and explain why each one works.
+  answer_label: Making the induced emf larger
+  check:
+    kind: structured
+    requires:
+    - turns
+    - flux
+    - time
+    concepts:
+    - more-turns
+    - larger-change
+    - less-time
+    points:
+    - id: turns
+      text: increase the number of turns, because the same change in flux is linked by more turns
+      concepts:
+      - more-turns
+    - id: flux
+      text: make the flux change by more webers, because the emf is proportional to the change in flux linkage
+      concepts:
+      - larger-change
+    - id: time
+      text: make the change happen in less time, because the emf is proportional to the rate of change
+      concepts:
+      - less-time
+  answer_text: Increase the number of turns, because the same change in flux is linked by more turns. Make
+    the flux change by more webers, because the induced emf is proportional to the change in flux linkage.
+    Make the change happen in less time, because the induced emf is proportional to the rate of change of
+    flux linkage.
+- id: p16-2-steady
+  section: '16.2'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A coil sits in a strong magnetic field that does not change. Explain why no emf is induced
+    in the coil.
+  answer_label: A steady field
+  check:
+    kind: structured
+    requires:
+    - steady
+    - zero
+    concepts:
+    - no-change
+    - zero-emf
+    points:
+    - id: steady
+      text: the field is steady, so the flux linkage through the coil does not change
+      concepts:
+      - no-change
+    - id: zero
+      text: Faraday's law depends on the rate of change of flux linkage, so with no change the induced emf is zero
+      concepts:
+      - zero-emf
+  answer_text: The field is steady, so the flux linkage through the coil does not change. Faraday's law
+    depends on the rate of change of flux linkage, and a rate of change of zero gives an induced emf of
+    zero. A large steady flux induces nothing; it is the change that drives the current.
+- id: p16-2-chapter
+  section: '16.2'
+  tier: O
+  refs:
+  - '3.6'
+  statement: The chapter problem. The generator coil has 180 turns, and the flux through each turn falls
+    from $6.0 \times 10^{-3}$ Wb to zero in $5.0 \times 10^{-3}$ s. Calculate the average emf induced
+    in the coil in that time.
+  answer_label: Average induced emf
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: N * (Phi1 - Phi2) / t
+      values:
+        N:
+          value: '180'
+        Phi1:
+          value: '6.0e-3'
+          unit: Wb
+        Phi2:
+          value: '0'
+          unit: Wb
+        t:
+          value: '5.0e-3'
+          unit: s
+      answer:
+        value: '216'
+        unit: V
+    - kind: sigfigs
+      value: '180 * 6.0e-3 / 5.0e-3'
+      figures: 2
+      answer: 2.2e2
+      convention: round-once
+  answer_text: 'The change in flux through one turn is $6.0 \times 10^{-3}\,\text{Wb}$, and the flux linkage
+    changes by $N\,\Delta\Phi = 180 \times 6.0 \times 10^{-3} = 1.08\,\text{Wb}$. Then $E = \dfrac{1.08}{5.0
+    \times 10^{-3}} = 216\,\text{V}$, which is $2.2 \times 10^{2}\,\text{V}$ to two significant figures.
+    Section 16.4 compares this average value with the peak value of 340 V.'

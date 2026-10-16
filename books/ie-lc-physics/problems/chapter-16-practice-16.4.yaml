@@ -1,0 +1,268 @@
+# Leaving Certificate Physics, Chapter 16, section 16.4 (strand 3 outcome 3.6).
+#
+# The r.m.s. relation is a square root, so it is not an exact rational and the
+# `dimensions` and `sigfigs` checks declare a tolerance. `sigfigs` rounds the value
+# once and refuses a band that straddles a rounding boundary, so the tolerance is
+# chosen narrow enough that the rounded answer cannot change across it.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 16
+problems:
+- id: p16-4-period
+  section: '16.4'
+  tier: O
+  refs:
+  - '3.6'
+  statement: A generator coil turns at 40 revolutions each second. Calculate the time for one complete
+    revolution.
+  answer_label: Period
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 1 / f
+      values:
+        f:
+          value: '40'
+          unit: Hz
+      answer:
+        value: '0.025'
+        unit: s
+    - kind: sigfigs
+      value: '1 / 40'
+      figures: 2
+      answer: '0.025'
+      convention: round-once
+  answer_text: '$T = \dfrac{1}{f} = \dfrac{1}{40} = 0.025\,\text{s}$. One quarter of a revolution takes
+    $6.3 \times 10^{-3}\,\text{s}$, which is the time from the position of largest flux to the position of
+    zero flux.'
+- id: p16-4-rms
+  section: '16.4'
+  tier: O
+  refs:
+  - '3.6'
+  statement: The peak output of an a.c. generator is 20 V. Calculate its r.m.s. value.
+  answer_label: r.m.s. voltage
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: V0 / sqrt(2)
+      values:
+        V0:
+          value: '20'
+          unit: V
+      answer:
+        value: '14'
+        unit: V
+      tolerance: '0.5'
+    - kind: sigfigs
+      value: '20 / sqrt(2)'
+      tolerance: '0.1'
+      figures: 2
+      answer: 1.4e1
+      convention: round-once
+  answer_text: '$V_{\text{rms}} = \dfrac{V_0}{\sqrt{2}} = \dfrac{20}{1.414} = 14\,\text{V}$. The r.m.s.
+    value is smaller than the peak, because the voltage spends most of its time below the peak.'
+- id: p16-4-peak
+  section: '16.4'
+  tier: O
+  refs:
+  - '3.6'
+  statement: An a.c. supply has an r.m.s. voltage of 6.0 V. Calculate its peak voltage.
+  answer_label: Peak voltage
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(2) * Vrms
+      values:
+        Vrms:
+          value: '6.0'
+          unit: V
+      answer:
+        value: '8.5'
+        unit: V
+      tolerance: '0.05'
+    - kind: sigfigs
+      value: 'sqrt(2) * 6.0'
+      tolerance: '0.01'
+      figures: 2
+      answer: '8.5'
+      convention: round-once
+  answer_text: 'Rearranging $V_{\text{rms}} = \dfrac{V_0}{\sqrt{2}}$ gives $V_0 = \sqrt{2}\,V_{\text{rms}}
+    = 1.414 \times 6.0 = 8.5\,\text{V}$. The peak is larger than the r.m.s. value by a factor of about
+    1.41.'
+- id: p16-4-sliprings
+  section: '16.4'
+  tier: O
+  refs:
+  - '3.6'
+  statement: Describe the difference between the slip rings of an a.c. generator and the split-ring commutator
+    of a d.c. generator, and state the effect of the difference on the output.
+  answer_label: Slip rings and a commutator
+  check:
+    kind: structured
+    requires:
+    - slip
+    - reverse
+    - commutator
+    - same
+    concepts:
+    - a.c.-output
+    - d.c.-output
+    - swap
+    points:
+    - id: slip
+      text: an a.c. generator uses slip rings, so the connections to the outside circuit never swap over
+      concepts:
+      - swap
+    - id: reverse
+      text: the current in the outside circuit therefore reverses every half revolution, giving an alternating output
+      concepts:
+      - a.c.-output
+    - id: commutator
+      text: a d.c. generator uses a split-ring commutator, which swaps the connections every half revolution
+      concepts:
+      - swap
+    - id: same
+      text: the current in the outside circuit therefore keeps the same direction, although it still rises and falls
+      concepts:
+      - d.c.-output
+  answer_text: An a.c. generator uses slip rings, so the connections to the outside circuit never swap over.
+    The current in the outside circuit reverses every half revolution, giving an alternating output. A d.c.
+    generator uses a split-ring commutator, which swaps the connections every half revolution. The current
+    in the outside circuit therefore keeps the same direction, although it still rises and falls.
+- id: p16-4-graph
+  section: '16.4'
+  tier: O
+  refs:
+  - '3.6'
+  statement: Describe the graph of output voltage against time for an a.c. generator, and state where the
+    peaks and the zeros fall.
+  answer_label: The output graph
+  check:
+    kind: structured
+    requires:
+    - sine
+    - peak
+    - zero
+    concepts:
+    - sine-curve
+    - peak
+    - zero-at-largest-flux
+    points:
+    - id: sine
+      text: the graph is a sine curve that starts at zero and rises to a peak
+      concepts:
+      - sine-curve
+    - id: peak
+      text: the voltage reaches a peak in each direction once per revolution, and returns to zero twice per revolution
+      concepts:
+      - peak
+    - id: zero
+      text: the voltage is zero when the flux through the coil is at its largest, because the flux is changing most slowly there
+      concepts:
+      - zero-at-largest-flux
+  answer_text: The graph is a sine curve. It starts at zero, rises to a peak, falls back through zero,
+    reaches a peak in the opposite direction, and returns to zero once per revolution. The peaks fall where
+    the flux is zero and changing most quickly. The zeros fall where the flux is at its largest and changing
+    most slowly.
+- id: p16-4-rms-2
+  section: '16.4'
+  tier: O
+  refs:
+  - '3.6'
+  statement: The peak output of a generator is 170 V. Calculate its r.m.s. value.
+  answer_label: r.m.s. voltage
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: V0 / sqrt(2)
+      values:
+        V0:
+          value: '170'
+          unit: V
+      answer:
+        value: '120'
+        unit: V
+      tolerance: '0.5'
+    - kind: sigfigs
+      value: '170 / sqrt(2)'
+      tolerance: '0.5'
+      figures: 2
+      answer: 1.2e2
+      convention: round-once
+  answer_text: '$V_{\text{rms}} = \dfrac{V_0}{\sqrt{2}} = \dfrac{170}{1.414} = 120\,\text{V}$. An r.m.s.
+    value of 120 V is the kind of number printed on a supply label, while 170 V is the peak an oscilloscope
+    would show.'
+- id: p16-4-frequency
+  section: '16.4'
+  tier: O
+  refs:
+  - '3.6'
+  statement: The output of a generator completes one full cycle in 0.020 s. Calculate the frequency of the
+    output.
+  answer_label: Frequency
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 1 / T
+      values:
+        T:
+          value: '0.020'
+          unit: s
+      answer:
+        value: '50'
+        unit: Hz
+    - kind: sigfigs
+      value: '1 / 0.020'
+      figures: 2
+      answer: 5.0e1
+      convention: round-once
+  answer_text: '$f = \dfrac{1}{T} = \dfrac{1}{0.020} = 50\,\text{Hz}$. The coil makes 50 revolutions each
+    second, so the output alternates 50 times each second. This is the frequency of the mains supply.'
+- id: p16-4-chapter
+  section: '16.4'
+  tier: O
+  refs:
+  - '3.6'
+  statement: 'The chapter problem. The generator turns at 50 revolutions each second, and the peak value
+    of its output is 340 V. Calculate the time for one complete revolution and the r.m.s. value of the output.'
+  answer_label: Period and r.m.s. voltage
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 1 / f
+      values:
+        f:
+          value: '50'
+          unit: Hz
+      answer:
+        value: '0.020'
+        unit: s
+    - kind: dimensions
+      expression: V0 / sqrt(2)
+      values:
+        V0:
+          value: '340'
+          unit: V
+      answer:
+        value: '240'
+        unit: V
+      tolerance: '0.5'
+    - kind: sigfigs
+      value: '340 / sqrt(2)'
+      tolerance: '0.5'
+      figures: 2
+      answer: 2.4e2
+      convention: round-once
+  answer_text: 'The period is $T = \dfrac{1}{f} = \dfrac{1}{50} = 0.020\,\text{s}$, so a quarter turn takes
+    $5.0 \times 10^{-3}\,\text{s}$. The r.m.s. output is $V_{\text{rms}} = \dfrac{V_0}{\sqrt{2}} = \dfrac{340}{1.414}
+    = 240\,\text{V}$. Section 16.5 uses the r.m.s. value to find the current in the transmission cable.'

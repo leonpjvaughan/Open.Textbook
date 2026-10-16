@@ -1,0 +1,152 @@
+# Practice set for 8.3 (strand S4, changing world). Recurrence relations as
+# discrete models: building a recurrence from a statement, iterating it, and
+# finding its closed form. An iterate is proved by repeated substitution; a
+# closed form is proved by `rsolve` with the initial value pinned, so the answer
+# is the particular solution and not a family. Powers are written as exact
+# fractions so a float rounding never decides whether a step is right.
+chapter: 8
+symbols:
+  n: {integer: true}
+  u: {real: true}
+  L: {real: true}
+problems:
+  - id: am8-3-iterate-growth
+    section: '8.3'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A population starts at $200$ and grows by $5\%$ each year, so
+      $u_{n+1} = 1.05u_n$ with $u_0 = 200$. Find $u_3$, the population after
+      three years.
+    answer_label: The population after three years
+    check:
+      kind: apply
+      expression: "(21/20)*u"
+      apply: {op: iterate, args: [200, 3], variable: u}
+      answer: "200*(21/20)**3"
+    answer_text: >-
+      Apply the rule three times: $u_1 = 210$, $u_2 = 220.5$ and
+      $u_3 = 200 \times 1.05^3 = 231.525$, so about $232$ people.
+
+  - id: am8-3-iterate-car
+    section: '8.3'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A car worth €18\,000 loses $12\%$ of its value each year, so
+      $u_{n+1} = 0.88u_n$ with $u_0 = 18\,000$. Find the value after four years.
+    answer_label: The value after four years
+    check:
+      kind: apply
+      expression: "(22/25)*u"
+      apply: {op: iterate, args: [18000, 4], variable: u}
+      answer: "18000*(22/25)**4"
+    answer_text: >-
+      The value after four years is $u_4 = 18\,000 \times 0.88^4 \approx
+      €10\,790$. Each year the value is multiplied by $0.88$.
+
+  - id: am8-3-iterate-medicine
+    section: '8.3'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A patient takes $40$ mg of a medicine each day, and half of the medicine in
+      the body is cleared each day. The amount just after a dose satisfies
+      $u_{n+1} = 0.5u_n + 40$ with $u_0 = 0$. Find $u_3$.
+    answer_label: The amount after three doses
+    check:
+      kind: apply
+      expression: "0.5*u + 40"
+      apply: {op: iterate, args: [0, 3], variable: u}
+      answer: "70"
+    answer_text: >-
+      $u_1 = 40$, $u_2 = 0.5(40) + 40 = 60$, $u_3 = 0.5(60) + 40 = 70$ mg. The
+      amount is rising towards the fixed point $80$ mg.
+
+  - id: am8-3-iterate-savings
+    section: '8.3'
+    tier: O
+    refs: [S4]
+    statement: >-
+      €500 is paid into an account at the end of each year, and the account earns
+      $2\%$ interest a year. The balance just after a payment satisfies
+      $u_{n+1} = 1.02u_n + 500$ with $u_0 = 0$. Find $u_2$.
+    answer_label: The balance after two payments
+    check:
+      kind: apply
+      expression: "1.02*u + 500"
+      apply: {op: iterate, args: [0, 2], variable: u}
+      answer: "1010"
+    answer_text: >-
+      $u_1 = 500$. Then $u_2 = 1.02(500) + 500 = 510 + 500 = 1010$ euro. The
+      first payment earns one year of interest before the second payment is made.
+
+  - id: am8-3-iterate-three
+    section: '8.3'
+    tier: O
+    refs: [S4]
+    statement: >-
+      A recurrence is $u_{n+1} = 3u_n - 4$ with $u_0 = 1$. Find $u_3$.
+    answer_label: The value of u_3
+    check:
+      kind: apply
+      expression: "3*u - 4"
+      apply: {op: iterate, args: [1, 3], variable: u}
+      answer: "-25"
+    answer_text: >-
+      $u_1 = 3(1) - 4 = -1$, $u_2 = 3(-1) - 4 = -7$, $u_3 = 3(-7) - 4 = -25$.
+      The values move away from the fixed point, so this recurrence grows without
+      limit.
+
+  - id: am8-3-rsolve-double
+    section: '8.3'
+    tier: O
+    refs: [S4]
+    statement: >-
+      Solve the recurrence $u_{n+1} = 2u_n$ with $u_0 = 5$, giving $u_n$ in
+      terms of $n$.
+    answer_label: The closed form
+    check:
+      kind: apply
+      expression: "u(n+1) = 2*u(n)"
+      apply: {op: rsolve, dependent: u, independent: n, initial: [[0, "5"]]}
+      answer: "5*2**n"
+    answer_text: >-
+      Each step doubles the value, so $u_n = 5 \times 2^n$. Check: $u_0 = 5$ and
+      $u_1 = 10$.
+
+  - id: am8-3-rsolve-feedback
+    section: '8.3'
+    tier: O
+    refs: [S4]
+    statement: >-
+      Solve the recurrence $u_{n+1} = 0.5u_n + 40$ with $u_0 = 0$, giving $u_n$
+      in terms of $n$.
+    answer_label: The closed form
+    check:
+      kind: apply
+      expression: "u(n+1) = 0.5*u(n) + 40"
+      apply: {op: rsolve, dependent: u, independent: n, initial: [[0, "0"]]}
+      answer: "80 - 80*(1/2)**n"
+    answer_text: >-
+      The fixed point solves $L = 0.5L + 40$, so $L = 80$. Then
+      $u_n = 80 - 80\left(\dfrac{1}{2}\right)^n$. Check: $u_0 = 0$ and $u_1 = 40$.
+
+  - id: am8-3-limit
+    section: '8.3'
+    tier: O
+    refs: [S4]
+    statement: >-
+      For the recurrence $u_{n+1} = 0.5u_n + 40$, find the value that $u_n$
+      approaches as $n$ grows. Solve for the value $L$ that satisfies
+      $L = 0.5L + 40$.
+    answer_label: The limiting value
+    check:
+      kind: solve
+      equation: "L = 0.5*L + 40"
+      variable: "L"
+      answer: ["80"]
+    answer_text: >-
+      At the limit the value stops changing, so $L = 0.5L + 40$. Then $0.5L = 40$
+      and $L = 80$. The closed form $80 - 80\left(\dfrac{1}{2}\right)^n$ shows
+      the same value: the second term tends to zero.

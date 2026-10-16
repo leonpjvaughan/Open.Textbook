@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 14.2 Function notation and evaluating functions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.7
+Work independently. The questions and answers are shown together at the end.
+
+Put a negative input in brackets when you substitute it. When you are asked for the
+input, write the rule equal to the output and solve the equation.
+
+:::problems chapter-14-practice-14.2
+
+:::answers chapter-14-practice-14.2

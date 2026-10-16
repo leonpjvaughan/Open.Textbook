@@ -1,0 +1,162 @@
+# Practice set for 9.6 (strand S1, the modelling process). The `evaluate` checks
+# prove the arithmetic of an extrapolation and of an error comparison. The
+# `structured` records prove only that a model answer contains the declared
+# ideas, in order — whether the evaluation is fair stays human.
+chapter: 9
+problems:
+  - id: am9-6-extrapolation
+    section: '9.6'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A battery model predicts a charge $c = 100 - 15t$ after $t$ hours. Find
+      the predicted charge after 8 hours.
+    answer_label: Predicted charge
+    check: {kind: evaluate, expression: '100 - 15 * 8', answer: '-20'}
+    answer_text: >-
+      $c = 100 - 120 = -20$ percent. A charge cannot be negative, so the model
+      fails beyond the range where it was tested. The report should say that
+      the model applies only while the charge is falling to zero.
+
+  - id: am9-6-limit
+    section: '9.6'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model of a canteen queue gives an average wait of 6 minutes. State one
+      thing the model cannot tell the reader, and explain why it matters.
+    answer_label: One limit of the model
+    check:
+      kind: structured
+      requires: [limit, matters]
+      concepts: [limits]
+      points:
+        - id: limit
+          text: the model gives an average, so it cannot say how long one particular student waits
+          concepts: [limits]
+        - id: matters
+          text: a real wait could be longer or shorter, so a reader who treats the average as a promise will be surprised
+          concepts: [limits]
+    answer_text: >-
+      The model gives an average, so it cannot say how long one particular
+      student waits. A real wait could be longer or shorter, so a reader who
+      treats the average as a promise will be surprised by the real queue.
+
+  - id: am9-6-assumption-break
+    section: '9.6'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model of a queue assumes a steady arrival rate. A concert finishes and
+      200 people arrive at once. Name the assumption that breaks, and say what
+      happens to the model's answer.
+    answer_label: The broken assumption
+    check:
+      kind: structured
+      requires: [name-assumption, effect]
+      concepts: [assumptions]
+      points:
+        - id: name-assumption
+          text: the assumption that arrivals are steady breaks
+          concepts: [assumptions]
+        - id: effect
+          text: the real queue is much longer than the model predicts, so the answer is too low
+          concepts: [assumptions]
+    answer_text: >-
+      The assumption that the arrival rate is steady breaks when a crowd arrives
+      at once. The real queue is much longer than the model predicts, so the
+      answer is too low. The model is not wrong about a steady queue; the
+      situation changed, and the model no longer applies.
+
+  - id: am9-6-model-not-decision
+    section: '9.6'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model says a new till would cut a queue from 8 minutes to 4 minutes.
+      Explain why the model does not decide whether to buy the till.
+    answer_label: Why the model does not decide
+    check:
+      kind: structured
+      requires: [values, judgement]
+      concepts: [judgement]
+      points:
+        - id: values
+          text: the decision also depends on the cost of the till and what else the money could do
+          concepts: [judgement]
+        - id: judgement
+          text: those are values and judgement, so a person makes the decision and the model informs it
+          concepts: [judgement]
+    answer_text: >-
+      The model gives the change in the queue time, which is one fact among
+      several. The decision also depends on the cost of the till, the space it
+      needs and what else the money could do. Those are values and judgement, so
+      the model informs the decision and a person makes it.
+
+  - id: am9-6-check-model
+    section: '9.6'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A newspaper prints a model's prediction. Name three things you would check
+      before trusting it.
+    answer_label: Three checks
+    check:
+      kind: structured
+      requires: [assumptions, data, arithmetic]
+      concepts: [evaluation]
+      points:
+        - id: assumptions
+          text: what the model assumes, and whether those assumptions hold here
+          concepts: [evaluation]
+        - id: data
+          text: where the data came from, and how old it is
+          concepts: [evaluation]
+        - id: arithmetic
+          text: whether the units balance, and whether the conclusion claims more than the model allows
+          concepts: [evaluation]
+    answer_text: >-
+      Check what the model assumes, and whether those assumptions hold for this
+      situation. Check where the data came from and how old it is. Check whether
+      the units balance, and whether the conclusion claims more than the model
+      allows. A number given to five figures for a month that has not happened
+      is a warning sign.
+
+  - id: am9-6-two-models
+    section: '9.6'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Two models predict 61 °C and 68 °C. The measurement is 65 °C. Find the
+      error of the first model, and say which model is closer.
+    answer_label: Error of the first model
+    check: {kind: evaluate, expression: 'abs(61 - 65)', answer: '4'}
+    answer_text: >-
+      The first model is $|61 - 65| = 4$ °C out. The second is
+      $|68 - 65| = 3$ °C out, so the second model is closer. Comparing the sizes
+      of the errors is how two models are judged against the same measurement.
+
+  - id: am9-6-computer
+    section: '9.6'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model was produced by a computer program. Explain why the output is not
+      automatically trustworthy.
+    answer_label: Why the output is not automatically trustworthy
+    check:
+      kind: structured
+      requires: [wrong-assumption, wrong-output]
+      concepts: [trust]
+      points:
+        - id: wrong-assumption
+          text: a computer computes whatever it is told, and a wrong assumption at the start is not detected by the program
+          concepts: [trust]
+        - id: wrong-output
+          text: every number after a wrong assumption is wrong, however fast the computer produced it
+          concepts: [trust]
+    answer_text: >-
+      A computer computes whatever it is told, so a wrong assumption at the start
+      is not detected by the program. Every number after a wrong assumption is
+      wrong, however fast the computer produced it. A complicated model has more
+      assumptions, not fewer, so it needs more checking rather than less.

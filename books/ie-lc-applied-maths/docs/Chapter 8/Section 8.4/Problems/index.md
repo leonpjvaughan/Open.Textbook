@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.4 First-order difference equations — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S4
+Work independently. The questions and answers are shown together at the end.
+
+Find the fixed point before the closed form. The fixed point is the anchor, and
+the closed form is written around it.
+
+:::problems chapter-08-practice-8.4
+
+:::answers chapter-08-practice-8.4

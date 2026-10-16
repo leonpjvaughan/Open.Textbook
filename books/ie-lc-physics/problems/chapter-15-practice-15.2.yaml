@@ -1,0 +1,184 @@
+# Leaving Certificate Physics, Chapter 15, section 15.2 (strand 3 outcome 3.4).
+#
+# The magnetic field of a current is a direction and a shape, not a number the
+# specification asks for: the booklet gives no formula for B around a wire, so
+# this bank asks for the field to be described and the right-hand grip rule to be
+# applied. Every record is therefore a `structured` check.
+#
+# Honest limit: the verifier proves a model answer contains its declared steps in
+# order and covers its declared concepts. It cannot prove that a description is
+# correct, and a wrong description written in the declared order would pass.
+chapter: 15
+problems:
+- id: p15-2-wire-field
+  section: '15.2'
+  tier: O
+  refs:
+  - '3.4'
+  statement: Describe the shape and the direction of the magnetic field around a long straight
+    current-carrying wire.
+  answer_label: The field around a straight wire
+  check:
+    kind: structured
+    requires: [shape, direction]
+    concepts: [concentric-circles, right-hand-grip, perpendicular]
+    points:
+    - id: shape
+      text: the field lines are concentric circles around the wire, in a plane at right angles to the
+        wire
+      concepts: [concentric-circles, perpendicular]
+    - id: direction
+      text: the direction is given by the right-hand grip rule — point the thumb of the right hand
+        along the conventional current, and the fingers curl in the direction of the field
+      concepts: [right-hand-grip]
+  answer_text: The field lines are concentric circles around the wire, in a plane at right angles to
+    the wire. The direction is given by the right-hand grip rule — point the thumb of the right hand
+    along the conventional current, and the fingers curl in the direction of the field.
+- id: p15-2-oersted
+  section: '15.2'
+  tier: O
+  refs:
+  - '3.4'
+  statement: A straight wire passes vertically through a piece of card. When a current flows, a compass
+    placed on the card is deflected. Explain why.
+  answer_label: Why a current deflects a compass
+  check:
+    kind: structured
+    requires: [field, deflect, rule]
+    concepts: [current-makes-field, compass-aligns]
+    points:
+    - id: field
+      text: a current produces a magnetic field around it, so the wire is surrounded by a magnetic
+        field
+      concepts: [current-makes-field]
+    - id: deflect
+      text: the compass needle aligns with the combined field of the Earth and the wire, so it turns
+        away from north
+      concepts: [compass-aligns]
+    - id: rule
+      text: the field circles the wire, and its direction is given by the right-hand grip rule
+      concepts: [current-makes-field]
+  answer_text: A current produces a magnetic field around it, so the wire is surrounded by a magnetic
+    field. The compass needle aligns with the combined field of the Earth and the wire, so it turns
+    away from north. The field circles the wire, and its direction is given by the right-hand grip
+    rule.
+- id: p15-2-solenoid
+  section: '15.2'
+  tier: O
+  refs:
+  - '3.4'
+  statement: Describe the magnetic field of a current-carrying solenoid, and explain how to find which
+    end of the solenoid is the north pole.
+  answer_label: The field of a solenoid
+  check:
+    kind: structured
+    requires: [shape, poles, rule]
+    concepts: [like-bar-magnet, uniform-inside, right-hand-grip]
+    points:
+    - id: shape
+      text: outside the solenoid the field is like the field of a bar magnet, and inside it the field
+        lines are close together and almost straight
+      concepts: [like-bar-magnet, uniform-inside]
+    - id: poles
+      text: one end acts as a north pole and the other end acts as a south pole
+      concepts: [like-bar-magnet]
+    - id: rule
+      text: curl the fingers of the right hand in the direction of the current around the coil, and
+        the thumb points to the north end
+      concepts: [right-hand-grip]
+  answer_text: Outside the solenoid the field is like the field of a bar magnet, and inside it the field
+    lines are close together and almost straight. One end acts as a north pole and the other end acts
+    as a south pole. Curl the fingers of the right hand in the direction of the current around the
+    coil, and the thumb points to the north end.
+- id: p15-2-core
+  section: '15.2'
+  tier: O
+  refs:
+  - '3.4'
+  statement: Explain the effect of placing a soft iron core inside a current-carrying solenoid.
+  answer_label: The effect of a soft iron core
+  check:
+    kind: structured
+    requires: [effect, why, use]
+    concepts: [stronger-field, domains, electromagnet]
+    points:
+    - id: effect
+      text: the iron core makes the magnetic field much stronger, because iron is a magnetic material
+      concepts: [stronger-field]
+    - id: why
+      text: the field of the coil lines up the domains in the iron, and the iron then adds its own
+        field to the field of the coil
+      concepts: [domains]
+    - id: use
+      text: this is how an electromagnet is made, and it can be switched on and off with the current
+      concepts: [electromagnet]
+  answer_text: The iron core makes the magnetic field much stronger, because iron is a magnetic material.
+    The field of the coil lines up the domains in the iron, and the iron then adds its own field to
+    the field of the coil. This is how an electromagnet is made, and it can be switched on and off
+    with the current.
+- id: p15-2-increase
+  section: '15.2'
+  tier: O
+  refs:
+  - '3.4'
+  statement: State two ways to increase the strength of the magnetic field of an electromagnet.
+  answer_label: Two ways to strengthen an electromagnet
+  check:
+    kind: structured
+    requires: [first, second]
+    concepts: [current, turns]
+    points:
+    - id: first
+      text: increase the current through the coil
+      concepts: [current]
+    - id: second
+      text: increase the number of turns on the coil, or place a soft iron core inside it
+      concepts: [turns]
+  answer_text: Increase the current through the coil. Increase the number of turns on the coil, or
+    place a soft iron core inside it.
+- id: p15-2-compare
+  section: '15.2'
+  tier: O
+  refs:
+  - '3.4'
+  statement: Compare the magnetic field of a solenoid with the magnetic field of a bar magnet.
+  answer_label: Solenoid and bar magnet compared
+  check:
+    kind: structured
+    requires: [similar, different]
+    concepts: [same-shape, source]
+    points:
+    - id: similar
+      text: both have a north end and a south end, and outside both the field lines run from north to
+        south and curve round to the south pole
+      concepts: [same-shape]
+    - id: different
+      text: the field of the solenoid is produced by a current and disappears when the current stops,
+        while the field of a bar magnet is produced by the material itself
+      concepts: [source]
+  answer_text: Both have a north end and a south end, and outside both the field lines run from north
+    to south and curve round to the south pole. The field of the solenoid is produced by a current and
+    disappears when the current stops, while the field of a bar magnet is produced by the material
+    itself.
+- id: p15-2-flux-density
+  section: '15.2'
+  tier: O
+  refs:
+  - '3.4'
+  statement: State what is meant by magnetic flux density, and give its unit.
+  answer_label: Magnetic flux density
+  check:
+    kind: structured
+    requires: [definition, unit]
+    concepts: [B, tesla]
+    points:
+    - id: definition
+      text: magnetic flux density B is a measure of the strength of a magnetic field, defined by the
+        force it exerts on a current-carrying conductor or on a moving charge
+      concepts: [B]
+    - id: unit
+      text: its unit is the tesla, T
+      concepts: [tesla]
+  answer_text: Magnetic flux density B is a measure of the strength of a magnetic field, defined by
+    the force it exerts on a current-carrying conductor or on a moving charge. Its unit is the tesla,
+    T.

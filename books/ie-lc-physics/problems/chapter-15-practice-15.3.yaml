@@ -1,0 +1,273 @@
+# Leaving Certificate Physics, Chapter 15, section 15.3 (strand 3 outcome 3.5).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 15
+problems:
+- id: p15-3-force
+  section: '15.3'
+  tier: O
+  refs:
+  - '3.5'
+  statement: A straight wire of length 0.20 m carries a current of 3.0 A at right angles to a uniform
+    magnetic field of flux density 0.40 T. Calculate the force on the wire.
+  answer_label: Force on the wire
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: B * I * l
+      values:
+        B:
+          value: '0.40'
+          unit: T
+        I:
+          value: '3.0'
+          unit: A
+        l:
+          value: '0.20'
+          unit: m
+      answer:
+        value: '0.24'
+        unit: N
+    - kind: sigfigs
+      value: '0.40 * 3.0 * 0.20'
+      figures: 2
+      answer: '0.24'
+      convention: round-once
+  answer_text: $F = BIl = 0.40 \times 3.0 \times 0.20 = 0.24\,\text{N}$.
+- id: p15-3-current
+  section: '15.3'
+  tier: O
+  refs:
+  - '3.5'
+  statement: A wire of length 0.15 m lies at right angles to a magnetic field of flux density 0.25
+    T and experiences a force of 0.030 N. Calculate the current in the wire.
+  answer_label: Current in the wire
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F / (B * l)
+      values:
+        F:
+          value: '0.030'
+          unit: N
+        B:
+          value: '0.25'
+          unit: T
+        l:
+          value: '0.15'
+          unit: m
+      answer:
+        value: '0.80'
+        unit: A
+    - kind: sigfigs
+      value: '0.030 / (0.25 * 0.15)'
+      figures: 2
+      answer: '0.80'
+      convention: round-once
+  answer_text: Rearranging $F = BIl$ for the current gives $I = \dfrac{F}{Bl} = \dfrac{0.030}{0.25
+    \times 0.15} = 0.80\,\text{A}$.
+- id: p15-3-length
+  section: '15.3'
+  tier: O
+  refs:
+  - '3.5'
+  statement: A current of 2.0 A flows through a wire at right angles to a magnetic field of flux density
+    0.50 T. The force on the wire is 0.60 N. Calculate the length of wire in the field.
+  answer_label: Length of wire in the field
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F / (B * I)
+      values:
+        F:
+          value: '0.60'
+          unit: N
+        B:
+          value: '0.50'
+          unit: T
+        I:
+          value: '2.0'
+          unit: A
+      answer:
+        value: '0.60'
+        unit: m
+    - kind: sigfigs
+      value: '0.60 / (0.50 * 2.0)'
+      figures: 2
+      answer: '0.60'
+      convention: round-once
+  answer_text: Rearranging $F = BIl$ for the length gives $l = \dfrac{F}{BI} = \dfrac{0.60}{0.50 \times
+    2.0} = 0.60\,\text{m}$.
+- id: p15-3-flux-density
+  section: '15.3'
+  tier: O
+  refs:
+  - '3.5'
+  statement: A wire of length 0.20 m carries a current of 4.0 A at right angles to a magnetic field
+    and experiences a force of 0.16 N. Calculate the magnetic flux density.
+  answer_label: Magnetic flux density
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F / (I * l)
+      values:
+        F:
+          value: '0.16'
+          unit: N
+        I:
+          value: '4.0'
+          unit: A
+        l:
+          value: '0.20'
+          unit: m
+      answer:
+        value: '0.20'
+        unit: T
+    - kind: sigfigs
+      value: '0.16 / (4.0 * 0.20)'
+      figures: 2
+      answer: '0.20'
+      convention: round-once
+  answer_text: Rearranging $F = BIl$ for the flux density gives $B = \dfrac{F}{Il} = \dfrac{0.16}{4.0
+    \times 0.20} = 0.20\,\text{T}$.
+- id: p15-3-parallel
+  section: '15.3'
+  tier: O
+  refs:
+  - '3.5'
+  statement: A wire carries a current parallel to a magnetic field. State the force on the wire and
+    explain your answer.
+  answer_label: A current parallel to the field
+  check:
+    kind: structured
+    requires: [force, reason]
+    concepts: [zero-force, perpendicular-component]
+    points:
+    - id: force
+      text: the force is zero
+      concepts: [zero-force]
+    - id: reason
+      text: the force $F = BIl$ acts only on the part of the current that is at right angles to the
+        field, and a current parallel to the field has no perpendicular component
+      concepts: [perpendicular-component]
+  answer_text: The force is zero. The force $F = BIl$ acts only on the part of the current that is at
+    right angles to the field, and a current parallel to the field has no perpendicular component.
+- id: p15-3-left-hand
+  section: '15.3'
+  tier: O
+  refs:
+  - '3.5'
+  statement: State Fleming's left-hand rule, and say what each finger represents.
+  answer_label: Fleming's left-hand rule
+  check:
+    kind: structured
+    requires: [field, current, force]
+    concepts: [first-finger-field, second-finger-current, thumb-force]
+    points:
+    - id: field
+      text: the first finger points in the direction of the magnetic field, from north to south
+      concepts: [first-finger-field]
+    - id: current
+      text: the second finger points in the direction of the conventional current
+      concepts: [second-finger-current]
+    - id: force
+      text: the thumb points in the direction of the force on the conductor, which is the direction
+        of motion
+      concepts: [thumb-force]
+  answer_text: Hold the left hand with the first finger, second finger and thumb at right angles to
+    each other. The first finger points in the direction of the magnetic field, from north to south.
+    The second finger points in the direction of the conventional current. The thumb points in the
+    direction of the force on the conductor, which is the direction of motion.
+- id: p15-3-change
+  section: '15.3'
+  tier: O
+  refs:
+  - '3.5'
+  statement: A wire carries a current at right angles to a magnetic field. The current is doubled and
+    the magnetic flux density is halved. State the new force and explain your answer.
+  answer_label: The force after the changes
+  check:
+    kind: structured
+    requires: [result, reason]
+    concepts: [unchanged, proportional]
+    points:
+    - id: result
+      text: the force is unchanged
+      concepts: [unchanged]
+    - id: reason
+      text: the force is proportional to both the current and the flux density, so doubling the current
+        doubles the force and halving the flux density halves it, leaving the force the same
+      concepts: [proportional]
+  answer_text: The force is unchanged. The force is proportional to both the current and the flux
+    density, so doubling the current doubles the force and halving the flux density halves it, leaving
+    the force the same.
+- id: p15-3-fan-coil
+  section: '15.3'
+  tier: O
+  refs:
+  - '3.5'
+  statement: The coil of the fan motor has 50 turns. The side of the coil that sits in the magnetic
+    field is 2.0 cm long, the flux density is 0.15 T, and the coil carries a current of 0.25 A. Calculate
+    the force on one side of one turn, and the total force on that side of the coil.
+  answer_label: Force on one turn and on the whole coil
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: B * I * l
+      values:
+        B:
+          value: '0.15'
+          unit: T
+        I:
+          value: '0.25'
+          unit: A
+        l:
+          value: '0.020'
+          unit: m
+      answer:
+        value: '7.5e-4'
+        unit: N
+    - kind: sigfigs
+      value: '0.15 * 0.25 * 0.020'
+      figures: 2
+      answer: '7.5e-4'
+      convention: round-once
+    - kind: dimensions
+      expression: N * B * I * l
+      values:
+        N:
+          value: '50'
+        B:
+          value: '0.15'
+          unit: T
+        I:
+          value: '0.25'
+          unit: A
+        l:
+          value: '0.020'
+          unit: m
+      answer:
+        value: '3.75e-2'
+        unit: N
+    - kind: sigfigs
+      value: '50 * 0.15 * 0.25 * 0.020'
+      figures: 2
+      answer: '3.8e-2'
+      convention: round-once
+  answer_text: For one turn, $F = BIl = 0.15 \times 0.25 \times 0.020 = 7.5 \times 10^{-4}\,\text{N}$.
+    The coil has 50 turns, and every turn carries the same current, so the total force on that side
+    is $50 \times 7.5 \times 10^{-4} = 3.8 \times 10^{-2}\,\text{N}$.

@@ -1,0 +1,198 @@
+# Leaving Certificate Physics, Chapter 15, section 15.1 (strand 3 outcome 3.4).
+#
+# This section has no formula, so every record is a `structured` check. That kind
+# proves a model answer contains its declared steps in order and covers its
+# declared concepts — nothing about whether the physics in them is right. Each
+# model answer is therefore also read by a human, and the honest limit is stated
+# in PROBLEMS.md.
+#
+# Honest limit: the verifier proves presence, order and coverage. It cannot prove
+# that a description is correct, and a wrong description written in the declared
+# order would pass.
+chapter: 15
+problems:
+- id: p15-1-what-is-a-field
+  section: '15.1'
+  tier: O
+  refs:
+  - '3.4'
+  statement: State what is meant by a magnetic field, and describe how the field lines around a
+    bar magnet are drawn.
+  answer_label: A magnetic field and its field lines
+  check:
+    kind: structured
+    requires: [region, direction, spacing, crossing]
+    concepts: [region-of-force, north-to-south, closer-means-stronger, never-cross]
+    points:
+    - id: region
+      text: a magnetic field is the region around a magnet in which it exerts a force on another
+        magnet or on a magnetic material
+      concepts: [region-of-force]
+    - id: direction
+      text: outside the magnet the lines run from the north pole to the south pole, and an arrow on
+        a line shows the direction of the force on a north pole placed there
+      concepts: [north-to-south]
+    - id: spacing
+      text: the lines are drawn closer together where the field is stronger, which is near the poles
+      concepts: [closer-means-stronger]
+    - id: crossing
+      text: the lines never cross, because the field has only one direction at any point
+      concepts: [never-cross]
+  answer_text: A magnetic field is the region around a magnet in which it exerts a force on another
+    magnet or on a magnetic material. Outside the magnet the field lines run from the north pole to
+    the south pole, and an arrow on a line shows the direction of the force on a north pole placed
+    there. The lines are drawn closer together where the field is stronger, which is near the poles.
+    The lines never cross, because the field has only one direction at any point.
+- id: p15-1-like-poles
+  section: '15.1'
+  tier: O
+  refs:
+  - '3.4'
+  statement: Two bar magnets are placed with their north poles facing each other. Describe the force
+    between them and the pattern of the field lines between the poles.
+  answer_label: Like poles facing each other
+  check:
+    kind: structured
+    requires: [force, pattern]
+    concepts: [repulsion, field-lines-pushed-apart]
+    points:
+    - id: force
+      text: like poles repel, so each magnet is pushed away from the other
+      concepts: [repulsion]
+    - id: pattern
+      text: the field lines from the two north poles curve away from each other, and there is a
+        region between the poles where the field is weak
+      concepts: [field-lines-pushed-apart]
+  answer_text: Like poles repel, so each magnet is pushed away from the other. The field lines from
+    the two north poles curve away from each other, and there is a region between the poles where
+    the field is weak.
+- id: p15-1-unlike-poles
+  section: '15.1'
+  tier: O
+  refs:
+  - '3.4'
+  statement: Two bar magnets are placed with the north pole of one facing the south pole of the other.
+    Describe the force between them and the pattern of the field lines.
+  answer_label: Unlike poles facing each other
+  check:
+    kind: structured
+    requires: [force, pattern]
+    concepts: [attraction, field-lines-join]
+    points:
+    - id: force
+      text: unlike poles attract, so each magnet is pulled towards the other
+      concepts: [attraction]
+    - id: pattern
+      text: the field lines run from the north pole of one magnet to the south pole of the other, so
+        the two magnets join into one field pattern
+      concepts: [field-lines-join]
+  answer_text: Unlike poles attract, so each magnet is pulled towards the other. The field lines run
+    from the north pole of one magnet to the south pole of the other, so the two magnets join into
+    one field pattern.
+- id: p15-1-domains
+  section: '15.1'
+  tier: O
+  refs:
+  - '3.4'
+  statement: Explain, using the domain model, why a piece of soft iron becomes a magnet when it is
+    held near a strong magnet, and why it loses its magnetism when it is taken away.
+  answer_label: The domain model of magnetisation
+  check:
+    kind: structured
+    requires: [domains, alignment, random]
+    concepts: [domain-model, temporary-magnet]
+    points:
+    - id: domains
+      text: a magnetic material is made of many tiny regions called domains, and each domain behaves
+        like a small magnet of its own
+      concepts: [domain-model]
+    - id: alignment
+      text: near a strong magnet the domains line up with the field, so the iron becomes a magnet and
+        is attracted to the magnet
+      concepts: [temporary-magnet]
+    - id: random
+      text: when the magnet is taken away the domains return to random directions, so the iron loses
+        its magnetism
+      concepts: [temporary-magnet]
+  answer_text: A magnetic material is made of many tiny regions called domains, and each domain behaves
+    like a small magnet of its own. Near a strong magnet the domains line up with the field, so the
+    iron becomes a magnet and is attracted to the magnet. When the magnet is taken away the domains
+    return to random directions, so the iron loses its magnetism.
+- id: p15-1-earth
+  section: '15.1'
+  tier: O
+  refs:
+  - '3.4'
+  statement: A bar magnet is suspended so that it can turn freely. It comes to rest pointing north
+    and south. Explain what this shows about the Earth.
+  answer_label: A suspended magnet and the Earth
+  check:
+    kind: structured
+    requires: [aligns, conclusion]
+    concepts: [earth-field, compass]
+    points:
+    - id: aligns
+      text: the magnet turns until it lies along the Earth's magnetic field, which is the same field
+        that a compass needle follows
+      concepts: [earth-field]
+    - id: conclusion
+      text: the Earth behaves as if it has a magnetic field, with a magnetic south pole near the
+        geographic north pole
+      concepts: [compass]
+  answer_text: The magnet turns until it lies along the Earth's magnetic field, which is the same field
+    that a compass needle follows. The Earth behaves as if it has a magnetic field, with a magnetic
+    south pole near the geographic north pole.
+- id: p15-1-materials
+  section: '15.1'
+  tier: O
+  refs:
+  - '3.4'
+  statement: Which of these materials are attracted to a magnet — copper, iron, steel, aluminium,
+    cobalt? Explain your answer.
+  answer_label: Which materials a magnet attracts
+  check:
+    kind: structured
+    requires: [attracted, not-attracted, reason]
+    concepts: [magnetic-material, non-magnetic]
+    points:
+    - id: attracted
+      text: iron, steel and cobalt are attracted, because they are magnetic materials
+      concepts: [magnetic-material]
+    - id: not-attracted
+      text: copper and aluminium are not attracted, because they are not magnetic materials
+      concepts: [non-magnetic]
+    - id: reason
+      text: only iron, nickel, cobalt and their alloys, such as steel, are strongly magnetic
+      concepts: [magnetic-material]
+  answer_text: Iron, steel and cobalt are attracted, because they are magnetic materials. Copper and
+    aluminium are not attracted, because they are not magnetic materials. Only iron, nickel, cobalt
+    and their alloys, such as steel, are strongly magnetic.
+- id: p15-1-permanent-temporary
+  section: '15.1'
+  tier: O
+  refs:
+  - '3.4'
+  statement: Explain the difference between a permanent magnet and a temporary magnet, and give one
+    use of each.
+  answer_label: Permanent and temporary magnets
+  check:
+    kind: structured
+    requires: [permanent, temporary, uses]
+    concepts: [steel, soft-iron, electromagnet]
+    points:
+    - id: permanent
+      text: a permanent magnet, such as steel, keeps its magnetism when the magnetising field is
+        removed
+      concepts: [steel]
+    - id: temporary
+      text: a temporary magnet, such as soft iron, is strongly magnetised in a field but loses most
+        of its magnetism when the field is removed
+      concepts: [soft-iron]
+    - id: uses
+      text: a permanent magnet is used in a fridge magnet or a loudspeaker, and a temporary magnet is
+        used as the core of an electromagnet or a relay
+      concepts: [electromagnet]
+  answer_text: A permanent magnet, such as steel, keeps its magnetism when the magnetising field is
+    removed. A temporary magnet, such as soft iron, is strongly magnetised in a field but loses most
+    of its magnetism when the field is removed. A permanent magnet is used in a fridge magnet or a
+    loudspeaker, and a temporary magnet is used as the core of an electromagnet or a relay.

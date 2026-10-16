@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.6 R.M.S. values of alternating current — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 3.6
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**, and to the number of significant figures the
+data justify. The power equations take the **r.m.s.** values, so find those first
+when a question gives you a peak.
+
+:::problems chapter-16-practice-16.6
+
+:::answers chapter-16-practice-16.6
