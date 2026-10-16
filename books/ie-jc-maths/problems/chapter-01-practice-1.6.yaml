@@ -1,0 +1,193 @@
+# Junior Cycle Mathematics, Chapter 1, section 1.6 (Higher level).
+#
+# Surds and irrational numbers. Every check is an arithmetic identity the CAS
+# proves. A surd is compared in its exact form, so sqrt(72) and 6*sqrt(2) are
+# proved equal rather than rounded; the one estimate uses `approx` with a stated
+# tolerance, because a decimal answer is a claim about a band, not an equality.
+chapter: 1
+symbols: {}
+
+problems:
+- id: jc1-1.6-simplify-1
+  section: '1.6'
+  tier: H
+  refs:
+  - N.1
+  statement: Simplify $\sqrt{50}$.
+  answer_label: Simplify $\sqrt{50}$.
+  check:
+    kind: evaluate
+    expression: 'sqrt(50)'
+    answer: '5*sqrt(2)'
+  answer_text: >-
+    $5\sqrt{2}$. Look for the largest square factor of 50, which is 25. Then
+    $\sqrt{50} = \sqrt{25 \times 2} = \sqrt{25} \times \sqrt{2} = 5\sqrt{2}$.
+- id: jc1-1.6-simplify-2
+  section: '1.6'
+  tier: H
+  refs:
+  - N.1
+  statement: Simplify $\sqrt{72}$.
+  answer_label: Simplify $\sqrt{72}$.
+  check:
+    kind: evaluate
+    expression: 'sqrt(72)'
+    answer: '6*sqrt(2)'
+  answer_text: >-
+    $6\sqrt{2}$. The largest square factor of 72 is 36, and
+    $\sqrt{72} = \sqrt{36 \times 2} = 6\sqrt{2}$.
+- id: jc1-1.6-simplify-3
+  section: '1.6'
+  tier: H
+  refs:
+  - N.1
+  statement: Simplify $\sqrt{18}$.
+  answer_label: Simplify $\sqrt{18}$.
+  check:
+    kind: evaluate
+    expression: 'sqrt(18)'
+    answer: '3*sqrt(2)'
+  answer_text: >-
+    $3\sqrt{2}$. The largest square factor of 18 is 9, so
+    $\sqrt{18} = \sqrt{9 \times 2} = 3\sqrt{2}$.
+- id: jc1-1.6-simplify-4
+  section: '1.6'
+  tier: H
+  refs:
+  - N.1
+  statement: Simplify $\sqrt{48}$.
+  answer_label: Simplify $\sqrt{48}$.
+  check:
+    kind: evaluate
+    expression: 'sqrt(48)'
+    answer: '4*sqrt(3)'
+  answer_text: >-
+    $4\sqrt{3}$. The largest square factor of 48 is 16, so
+    $\sqrt{48} = \sqrt{16 \times 3} = 4\sqrt{3}$.
+- id: jc1-1.6-simplify-5
+  section: '1.6'
+  tier: H
+  refs:
+  - N.1
+  statement: Simplify $\sqrt{200}$.
+  answer_label: Simplify $\sqrt{200}$.
+  check:
+    kind: evaluate
+    expression: 'sqrt(200)'
+    answer: '10*sqrt(2)'
+  answer_text: >-
+    $10\sqrt{2}$. The largest square factor of 200 is 100, so
+    $\sqrt{200} = \sqrt{100 \times 2} = 10\sqrt{2}$.
+- id: jc1-1.6-multiply-1
+  section: '1.6'
+  tier: H
+  refs:
+  - N.1
+  statement: Work out $\sqrt{3} \times \sqrt{12}$.
+  answer_label: Work out $\sqrt{3} \times \sqrt{12}$.
+  check:
+    kind: evaluate
+    expression: 'sqrt(3) * sqrt(12)'
+    answer: '6'
+  answer_text: >-
+    $6$. The product of two square roots is the square root of the product:
+    $\sqrt{3} \times \sqrt{12} = \sqrt{36} = 6$. This is a whole number, so the
+    answer is not a surd.
+- id: jc1-1.6-multiply-2
+  section: '1.6'
+  tier: H
+  refs:
+  - N.1
+  statement: Work out $\sqrt{8} \times \sqrt{2}$.
+  answer_label: Work out $\sqrt{8} \times \sqrt{2}$.
+  check:
+    kind: evaluate
+    expression: 'sqrt(8) * sqrt(2)'
+    answer: '4'
+  answer_text: >-
+    $4$. $\sqrt{8} \times \sqrt{2} = \sqrt{16} = 4$. You can also simplify first:
+    $\sqrt{8} = 2\sqrt{2}$, and $2\sqrt{2} \times \sqrt{2} = 2 \times 2 = 4$.
+- id: jc1-1.6-like-1
+  section: '1.6'
+  tier: H
+  refs:
+  - N.1
+  statement: Work out $2\sqrt{3} + 5\sqrt{3}$.
+  answer_label: Work out $2\sqrt{3} + 5\sqrt{3}$.
+  check:
+    kind: evaluate
+    expression: '2*sqrt(3) + 5*sqrt(3)'
+    answer: '7*sqrt(3)'
+  answer_text: >-
+    $7\sqrt{3}$. These are like surds, because both are multiples of $\sqrt{3}$.
+    They add the same way as $2x + 5x = 7x$: the number in front adds and the
+    surd stays.
+- id: jc1-1.6-like-2
+  section: '1.6'
+  tier: H
+  refs:
+  - N.1
+  statement: Work out $4\sqrt{5} - \sqrt{5}$.
+  answer_label: Work out $4\sqrt{5} - \sqrt{5}$.
+  check:
+    kind: evaluate
+    expression: '4*sqrt(5) - sqrt(5)'
+    answer: '3*sqrt(5)'
+  answer_text: >-
+    $3\sqrt{5}$. The single $\sqrt{5}$ counts as $1\sqrt{5}$, so
+    $4\sqrt{5} - 1\sqrt{5} = 3\sqrt{5}$.
+- id: jc1-1.6-rationalise-1
+  section: '1.6'
+  tier: H
+  refs:
+  - N.1
+  statement: >-
+    Write $\frac{1}{\sqrt{2}}$ with a whole number on the bottom.
+  answer_label: Write $\frac{1}{\sqrt{2}}$ with a whole number on the bottom.
+  check:
+    kind: evaluate
+    expression: '1/sqrt(2)'
+    answer: 'sqrt(2)/2'
+  answer_text: >-
+    $\frac{\sqrt{2}}{2}$. Multiply the top and the bottom by $\sqrt{2}$. That gives
+    $\frac{\sqrt{2}}{\sqrt{2} \times \sqrt{2}} = \frac{\sqrt{2}}{2}$, because
+    $\sqrt{2} \times \sqrt{2} = 2$. The value of the number has not changed.
+- id: jc1-1.6-estimate-1
+  section: '1.6'
+  tier: H
+  refs:
+  - N.1
+  statement: Write $\sqrt{2}$ correct to three decimal places.
+  answer_label: Write $\sqrt{2}$ correct to three decimal places.
+  check:
+    kind: approx
+    value: 'sqrt(2)'
+    target: '1.414'
+    tolerance: '0.001'
+  answer_text: >-
+    $1.414$. The value is $1.41421356\ldots$, and the fourth decimal place is 2, so
+    you round down. $\sqrt{2}$ lies between 1 and 2, because $1^2 = 1$ and
+    $2^2 = 4$.
+- id: jc1-1.6-anchor-1
+  section: '1.6'
+  tier: H
+  refs:
+  - N.1
+  statement: >-
+    The centre's new climbing wall is a square with an area of 72 square metres.
+    Write the exact side length as a surd, and work out the exact perimeter.
+  answer_label: Write the exact side length and perimeter.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 'sqrt(72)'
+      answer: '6*sqrt(2)'
+    - kind: evaluate
+      expression: '4 * sqrt(72)'
+      answer: '24*sqrt(2)'
+  answer_text: >-
+    The side is $6\sqrt{2}$ metres, and the perimeter is $24\sqrt{2}$ metres. A
+    square's side is the square root of its area, and the perimeter is four sides:
+    $4 \times 6\sqrt{2} = 24\sqrt{2}$. The side is about 8.49 metres, because
+    $\sqrt{2}$ is about 1.414.

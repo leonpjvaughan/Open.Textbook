@@ -3048,11 +3048,13 @@ rewritten for the Irish books on the same day: the tier codes are the book's (no
 
 ---
 
-## The current goal — finish the Irish books (2026-10-15)
+## The current goal — finish every chapter of every Irish book (2026-10-16)
 
-**The four Irish books are the work.** They exist and build — 71 chapters, 429
-sections, every profile green — but **63 of the 71 chapters are still the scaffold's
-stub**. Five chapters are authored end to end and are the pattern: `ie-jc-maths`
+**The four Irish books are the work, and the goal is every chapter of all four.** They
+exist and build — 71 chapters, 429 sections, every profile green — but **66 of the 71
+chapters are still the scaffold's stub**. Nothing is "done" until
+`grep -rl 'scaffold:stub' books/<id>/docs/Chapter <n>/` prints nothing for every chapter
+of every book, with a verified bank behind every answer. Five chapters are authored end to end and are the pattern: `ie-jc-maths`
 Chapter 3, `ie-lc-physics` Chapter 5, `ie-lc-applied-maths` Chapter 2 (11 sections,
 35 pages, 11 verified banks, three figures), `ie-lc-maths` Chapter 5 (5 sections,
 17 pages, 5 verified banks, one figure), and `ie-lc-maths` Chapter 9 (6 sections,

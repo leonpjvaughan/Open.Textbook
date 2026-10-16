@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.3 Motion on a smooth horizontal plane — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Take $g = 9.8$ m/s². Draw the free-body diagram first, then write one equation
+for the vertical direction and one for the horizontal direction.
+
+:::problems chapter-04-practice-4.3
+
+:::answers chapter-04-practice-4.3

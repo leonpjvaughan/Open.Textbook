@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.5 Tension and connected particles — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Take $g = 9.8$ m/s². Write a separate equation for each body before you combine
+them, and check the tension with the other body once you have found it.
+
+:::problems chapter-04-practice-4.5
+
+:::answers chapter-04-practice-4.5

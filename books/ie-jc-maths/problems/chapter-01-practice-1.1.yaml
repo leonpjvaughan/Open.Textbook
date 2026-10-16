@@ -1,0 +1,204 @@
+# Junior Cycle Mathematics, Chapter 1, section 1.1.
+#
+# The number systems. Every check is an arithmetic identity the CAS proves, so
+# the answer the reader is shown is the answer the verifier proved. A question
+# about which set a number belongs to is checked by the arithmetic that decides
+# it: a negative number is shown to be less than zero, and a decimal is shown to
+# equal a fraction of two integers.
+chapter: 1
+symbols: {}
+
+problems:
+- id: jc1-1.1-natural-1
+  section: '1.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Write down the natural numbers between 4 and 10.
+  answer_label: Write down the natural numbers between 4 and 10.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: '5'
+      answer: '5'
+    - kind: evaluate
+      expression: '6'
+      answer: '6'
+    - kind: evaluate
+      expression: '7'
+      answer: '7'
+    - kind: evaluate
+      expression: '8'
+      answer: '8'
+    - kind: evaluate
+      expression: '9'
+      answer: '9'
+  answer_text: >-
+    $5, 6, 7, 8$ and $9$. The natural numbers are the counting numbers
+    $1, 2, 3, \ldots$. The word *between* leaves out 4 and 10, and it also leaves
+    out every fraction and decimal in the gap.
+- id: jc1-1.1-integer-1
+  section: '1.1'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    Which of $-3$, $2.5$, $0$ and $6$ are integers? Give a reason for the one that
+    is not.
+  answer_label: Which of the four numbers are integers?
+  check:
+    kind: evaluate
+    expression: '5/2'
+    answer: '2.5'
+  answer_text: >-
+    $-3$, $0$ and $6$ are integers. $2.5$ is not, because $2.5 = 5/2$. An integer
+    has no fractional part, and 5 is not a multiple of 2.
+- id: jc1-1.1-rational-1
+  section: '1.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Write $0.75$ as a fraction in its simplest form.
+  answer_label: Write $0.75$ as a fraction in its simplest form.
+  check:
+    kind: evaluate
+    expression: '3/4'
+    answer: '0.75'
+  answer_text: >-
+    $3/4$. Start from $0.75 = 75/100$, then divide the top and the bottom by 25.
+    That gives $3/4$, and 3 and 4 share no factor.
+- id: jc1-1.1-rational-2
+  section: '1.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Write $6.5$ as a fraction in its simplest form.
+  answer_label: Write $6.5$ as a fraction in its simplest form.
+  check:
+    kind: evaluate
+    expression: '13/2'
+    answer: '6.5'
+  answer_text: >-
+    $13/2$. $6.5 = 65/10$, and dividing the top and the bottom by 5 gives $13/2$.
+    This is an improper fraction, which is allowed: $13/2$ is a rational number.
+- id: jc1-1.1-rational-3
+  section: '1.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Is $7$ a rational number? Explain your answer.
+  answer_label: Is $7$ a rational number?
+  check:
+    kind: evaluate
+    expression: '7/1'
+    answer: '7'
+  answer_text: >-
+    Yes. $7 = 7/1$, and 7 and 1 are integers. Every integer is rational, because
+    every integer can be written as itself divided by 1.
+- id: jc1-1.1-rational-4
+  section: '1.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Write $2\frac{1}{2}$ as an improper fraction and as a decimal.
+  answer_label: Write $2\frac{1}{2}$ as an improper fraction and as a decimal.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: '2 + 1/2'
+      answer: '5/2'
+    - kind: evaluate
+      expression: '5/2'
+      answer: '2.5'
+  answer_text: >-
+    $5/2$ and $2.5$. Two wholes are four halves, and adding the extra half gives
+    five halves. As a decimal, $5/2 = 2.5$.
+- id: jc1-1.1-decimal-1
+  section: '1.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Write $5/8$ as a decimal.
+  answer_label: Write $5/8$ as a decimal.
+  check:
+    kind: evaluate
+    expression: '5/8'
+    answer: '0.625'
+  answer_text: >-
+    $0.625$. Divide 5 by 8. The decimal stops after three places, which is what
+    happens when the denominator has only 2s and 5s as prime factors.
+- id: jc1-1.1-set-1
+  section: '1.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Is $-4$ a natural number? Is it an integer?
+  answer_label: Is $-4$ a natural number? Is it an integer?
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: '-4'
+      relation: <
+      rhs: '0'
+    - kind: evaluate
+      expression: '-4/1'
+      answer: '-4'
+  answer_text: >-
+    It is an integer, and it is not a natural number. The natural numbers start at
+    1, so a negative number can never be natural. $-4$ is an integer because it is
+    a whole number with a sign. It is also rational, since $-4 = -4/1$.
+- id: jc1-1.1-order-1
+  section: '1.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Put $-2$, $5$, $-7$, $0$ and $3$ in order from smallest to largest.
+  answer_label: Put the five numbers in order from smallest to largest.
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: '-7'
+      relation: <
+      rhs: '-2'
+    - kind: compare
+      lhs: '-2'
+      relation: <
+      rhs: '0'
+    - kind: compare
+      lhs: '0'
+      relation: <
+      rhs: '3'
+    - kind: compare
+      lhs: '3'
+      relation: <
+      rhs: '5'
+  answer_text: >-
+    $-7, -2, 0, 3, 5$. On the number line the negatives sit to the left of zero,
+    and the further left a number is, the smaller it is.
+- id: jc1-1.1-anchor-1
+  section: '1.1'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The trip budget shows a fund balance of $-80$ euros. Is $-80$ a natural
+    number, an integer, or neither?
+  answer_label: Is $-80$ a natural number, an integer, or neither?
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      lhs: '-80'
+      relation: <
+      rhs: '0'
+    - kind: evaluate
+      expression: '-80/1'
+      answer: '-80'
+  answer_text: >-
+    It is an integer. The minus sign tells you the fund is overdrawn, so the
+    balance is less than zero. The natural numbers start at 1, so $-80$ is not
+    natural. It is also rational, because $-80 = -80/1$.

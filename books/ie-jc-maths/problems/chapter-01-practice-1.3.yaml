@@ -1,0 +1,170 @@
+# Junior Cycle Mathematics, Chapter 1, section 1.3.
+#
+# Multiplying and dividing integers. Every check is an arithmetic identity the
+# CAS proves. The sign of the answer is the whole point of the section, so a
+# question that asks for a sign is checked by the multiplication that fixes it.
+chapter: 1
+symbols: {}
+
+problems:
+- id: jc1-1.3-mul-1
+  section: '1.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $(-4) \times 6$.
+  answer_label: Work out $(-4) \times 6$.
+  check:
+    kind: evaluate
+    expression: '(-4) * 6'
+    answer: '-24'
+  answer_text: >-
+    $-24$. One negative and one positive give a negative answer, and
+    $4 \times 6 = 24$.
+- id: jc1-1.3-mul-2
+  section: '1.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $(-5) \times (-7)$.
+  answer_label: Work out $(-5) \times (-7)$.
+  check:
+    kind: evaluate
+    expression: '(-5) * (-7)'
+    answer: '35'
+  answer_text: >-
+    $35$. Two negatives make a positive, and $5 \times 7 = 35$.
+- id: jc1-1.3-mul-3
+  section: '1.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $8 \times (-3)$.
+  answer_label: Work out $8 \times (-3)$.
+  check:
+    kind: evaluate
+    expression: '8 * (-3)'
+    answer: '-24'
+  answer_text: >-
+    $-24$. A positive times a negative is negative, and $8 \times 3 = 24$.
+- id: jc1-1.3-div-1
+  section: '1.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $(-36) \div 4$.
+  answer_label: Work out $(-36) \div 4$.
+  check:
+    kind: evaluate
+    expression: '(-36) / 4'
+    answer: '-9'
+  answer_text: >-
+    $-9$. Division follows the same sign rules as multiplication. Check it by
+    multiplying back: $(-9) \times 4 = -36$.
+- id: jc1-1.3-div-2
+  section: '1.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $(-48) \div (-6)$.
+  answer_label: Work out $(-48) \div (-6)$.
+  check:
+    kind: evaluate
+    expression: '(-48) / (-6)'
+    answer: '8'
+  answer_text: >-
+    $8$. Two negatives make a positive. Check it by multiplying back:
+    $8 \times (-6) = -48$.
+- id: jc1-1.3-mul-4
+  section: '1.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $7 \times (-2) \times 3$.
+  answer_label: Work out $7 \times (-2) \times 3$.
+  check:
+    kind: evaluate
+    expression: '7 * (-2) * 3'
+    answer: '-42'
+  answer_text: >-
+    $-42$. There is one minus sign, and an odd number of them gives a negative
+    answer. Work left to right: $7 \times (-2) = -14$, and $-14 \times 3 = -42$.
+- id: jc1-1.3-power-1
+  section: '1.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $(-2)^3$.
+  answer_label: Work out $(-2)^3$.
+  check:
+    kind: evaluate
+    expression: '(-2)**3'
+    answer: '-8'
+  answer_text: >-
+    $-8$. The index is 3, which is odd, so the answer keeps the minus sign:
+    $(-2) \times (-2) \times (-2) = -8$. With an even index the answer would be
+    positive, because the pairs of negatives multiply to positives.
+- id: jc1-1.3-anchor-1
+  section: '1.3'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The centre charges 14 euros for each person, and 35 people are going. Work out
+    the total cost for the centre.
+  answer_label: Work out the total cost for the centre.
+  check:
+    kind: evaluate
+    expression: '35 * 14'
+    answer: '490'
+  answer_text: >-
+    490 euros. This is a repeated addition of 14, thirty-five times, which is what
+    multiplication means. $35 \times 14 = 490$.
+- id: jc1-1.3-anchor-2
+  section: '1.3'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The money still to find is 577.50 euros, shared equally by 35 people. Work out
+    each person's share.
+  answer_label: Work out each person's share.
+  check:
+    kind: evaluate
+    expression: '577.5 / 35'
+    answer: '16.5'
+  answer_text: >-
+    16.50 euros each. Division undoes multiplication, so check it with
+    $35 \times 16.5 = 577.5$.
+- id: jc1-1.3-context-1
+  section: '1.3'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The temperature falls by 3 degrees each hour for 5 hours. Work out the total
+    change in temperature.
+  answer_label: Work out the total change in temperature.
+  check:
+    kind: evaluate
+    expression: '5 * (-3)'
+    answer: '-15'
+  answer_text: >-
+    $-15$ degrees. Five falls of 3 degrees make a fall of 15. A fall is a
+    negative change, so the answer is $-15$ degrees.
+- id: jc1-1.3-anchor-3
+  section: '1.3'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The fund is 80 euros overdrawn, so its balance is $-80$ euros. Then the 35
+    people pay 16.50 euros each into it. Work out the new balance.
+  answer_label: Work out the new balance after the contributions.
+  check:
+    kind: evaluate
+    expression: '-80 + 35 * 16.5'
+    answer: '497.5'
+  answer_text: >-
+    497.50 euros. The contributions add $35 \times 16.5 = 577.5$ euros. Then
+    $-80 + 577.5 = 497.5$, so the fund is back above zero.

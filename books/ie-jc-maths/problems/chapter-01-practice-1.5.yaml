@@ -1,0 +1,204 @@
+# Junior Cycle Mathematics, Chapter 1, section 1.5.
+#
+# The commutative, associative and distributive properties. Every check is an
+# arithmetic identity the CAS proves. Where a question asks which property was
+# used, the check proves the two sides of the property are equal, which is what
+# the property claims.
+chapter: 1
+symbols: {}
+
+problems:
+- id: jc1-1.5-commute-1
+  section: '1.5'
+  tier: O
+  refs:
+  - N.1
+  statement: Use the commutative property to write $7 + 12$ another way, and work it out.
+  answer_label: Write $7 + 12$ another way and work it out.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: '7 + 12'
+      answer: '19'
+    - kind: evaluate
+      expression: '12 + 7'
+      answer: '19'
+  answer_text: >-
+    $12 + 7$, which is also $19$. Addition is commutative, so you may swap the two
+    numbers without changing the total. The same is true of multiplication.
+- id: jc1-1.5-assoc-1
+  section: '1.5'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $4 \times 13 \times 25$ by pairing 4 and 25 first.
+  answer_label: Work out $4 \times 13 \times 25$.
+  check:
+    kind: evaluate
+    expression: '4 * 13 * 25'
+    answer: '1300'
+  answer_text: >-
+    $1300$. Multiplication is commutative and associative, so you may reorder and
+    regroup: $4 \times 25 = 100$, and then $100 \times 13 = 1300$. Pairing 4 and 25
+    gives a round number, which is why it is quicker.
+- id: jc1-1.5-dist-1
+  section: '1.5'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    Use the distributive property to work out $6 \times 47$ as
+    $6 \times (40 + 7)$.
+  answer_label: Use the distributive property to work out $6 \times 47$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: '6 * (40 + 7)'
+      answer: '282'
+    - kind: evaluate
+      expression: '6 * 40 + 6 * 7'
+      answer: '282'
+  answer_text: >-
+    $282$. Multiplication distributes over addition:
+    $6 \times (40 + 7) = 6 \times 40 + 6 \times 7 = 240 + 42 = 282$.
+- id: jc1-1.5-dist-2
+  section: '1.5'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    Use the distributive property to work out $8 \times 99$ as
+    $8 \times (100 - 1)$.
+  answer_label: Use the distributive property to work out $8 \times 99$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: '8 * (100 - 1)'
+      answer: '792'
+    - kind: evaluate
+      expression: '8 * 100 - 8 * 1'
+      answer: '792'
+  answer_text: >-
+    $792$. Multiplication distributes over subtraction as well:
+    $8 \times (100 - 1) = 800 - 8 = 792$. Turning 99 into $100 - 1$ makes the
+    multiplication quick.
+- id: jc1-1.5-dist-3
+  section: '1.5'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    Show that $3 \times (10 + 4) = 3 \times 10 + 3 \times 4$ by working out both
+    sides.
+  answer_label: Show that the two sides are equal.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: '3 * (10 + 4)'
+      answer: '42'
+    - kind: evaluate
+      expression: '3 * 10 + 3 * 4'
+      answer: '42'
+  answer_text: >-
+    Both sides are $42$. The left is $3 \times 14 = 42$. The right is
+    $30 + 12 = 42$. The distributive property says the two sides are always equal,
+    for any numbers.
+- id: jc1-1.5-factor-1
+  section: '1.5'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    Work out $15 \times 4 + 15 \times 6$ by taking out the common factor 15.
+  answer_label: Work out $15 \times 4 + 15 \times 6$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: '15 * 4 + 15 * 6'
+      answer: '150'
+    - kind: evaluate
+      expression: '15 * (4 + 6)'
+      answer: '150'
+  answer_text: >-
+    $150$. Both terms contain a factor of 15, so take it out:
+    $15 \times 4 + 15 \times 6 = 15 \times (4 + 6) = 15 \times 10 = 150$. This is
+    the distributive property read backwards, and it is called factorising.
+- id: jc1-1.5-assoc-2
+  section: '1.5'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    Which property lets you work out $25 \times 4 \times 7$ as
+    $(25 \times 4) \times 7$? Work out the answer.
+  answer_label: Name the property and work out the answer.
+  check:
+    kind: evaluate
+    expression: '25 * 4 * 7'
+    answer: '700'
+  answer_text: >-
+    The associative property of multiplication, because it changes the grouping.
+    $(25 \times 4) \times 7 = 100 \times 7 = 700$. The commutative property would
+    only let you swap the numbers, not regroup them.
+- id: jc1-1.5-notcommute-1
+  section: '1.5'
+  tier: O
+  refs:
+  - N.1
+  statement: Is subtraction commutative? Give an example to explain.
+  answer_label: Is subtraction commutative? Give an example.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: '7 - 3'
+      answer: '4'
+    - kind: evaluate
+      expression: '3 - 7'
+      answer: '-4'
+  answer_text: >-
+    No. $7 - 3 = 4$ but $3 - 7 = -4$. The two answers are different, so you may
+    not swap the numbers in a subtraction. Division has the same problem:
+    $12 \div 4 = 3$ but $4 \div 12$ is not 3.
+- id: jc1-1.5-dist-4
+  section: '1.5'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $5 \times (20 - 3)$.
+  answer_label: Work out $5 \times (20 - 3)$.
+  check:
+    kind: evaluate
+    expression: '5 * (20 - 3)'
+    answer: '85'
+  answer_text: >-
+    $85$. Brackets first: $20 - 3 = 17$. Then $5 \times 17 = 85$. Using the
+    distributive property gives the same answer: $100 - 15 = 85$.
+- id: jc1-1.5-anchor-1
+  section: '1.5'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The centre costs 14 euros each and lunch costs 6.50 euros each, for 35 people.
+    Work out $35 \times (14 + 6.5)$ in the two ways the distributive property
+    allows.
+  answer_label: Work out the two ways of the distributive property.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: '35 * (14 + 6.5)'
+      answer: '717.5'
+    - kind: evaluate
+      expression: '35 * 14 + 35 * 6.5'
+      answer: '717.5'
+  answer_text: >-
+    Both ways give 717.50 euros. The first adds the two prices first:
+    $14 + 6.5 = 20.5$, and then $35 \times 20.5 = 717.5$. The second multiplies
+    each price separately and adds: $490 + 227.5 = 717.5$.

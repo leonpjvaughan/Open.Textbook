@@ -103,7 +103,7 @@ breaks down.
 
 The **limit of proportionality** is the point beyond which the extension is no longer
 proportional to the force. Plotting force on the vertical axis against extension on the
-horizontal axis shows it clearly.
+horizontal axis shows it.
 
 - **Below the limit**, the points lie on a straight line through the origin. The
   gradient of that line is the spring constant, because $F = kx$ is a straight line

@@ -1,0 +1,197 @@
+# Practice set for 3.1 (strand S3, the physical world). Every answer is a
+# quantity, so the checks come from the `units` oracle: `dimensions` proves the
+# arithmetic *and* the unit together, `convert` proves a unit conversion exactly,
+# and `sigfigs` proves a value rounded once to the figures the data support.
+# Units stay out of the CAS fields, as PROBLEMS.md requires.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics.
+# A dimensionally consistent, arithmetically correct, physically absurd answer
+# would pass. The sign of an acceleration is proved by the arithmetic, never by
+# the prose around it.
+chapter: 3
+problems:
+  - id: am3-1-distance-displacement
+    section: '3.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A cyclist rides $120$ m east, then turns and rides $80$ m west. Write down
+      the total distance travelled and the final displacement.
+    answer_label: Distance travelled, then displacement
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: a + b
+          values:
+            a: {value: '120', unit: m}
+            b: {value: '80', unit: m}
+          answer: {value: '200', unit: m}
+        - kind: dimensions
+          expression: a - b
+          values:
+            a: {value: '120', unit: m}
+            b: {value: '80', unit: m}
+          answer: {value: '40', unit: m}
+    answer_text: >-
+      Distance is the whole path, so $120 + 80 = 200$ m. Displacement is the
+      change in position, so $120 - 80 = 40$ m east. The two answers differ
+      because distance adds every step and displacement cancels the opposite ones.
+
+  - id: am3-1-average-speed
+    section: '3.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A runner covers $400$ m in $50$ s. Calculate the average speed.
+    answer_label: Average speed
+    check:
+      kind: dimensions
+      expression: d / t
+      values:
+        d: {value: '400', unit: m}
+        t: {value: '50', unit: s}
+      answer: {value: '8', unit: m/s}
+    answer_text: >-
+      Average speed is distance divided by time, so $\dfrac{400}{50} = 8$ m/s.
+
+  - id: am3-1-average-velocity-zero
+    section: '3.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A runner completes one lap of a $400$ m track in $50$ s and stops at the
+      starting point. Calculate the average velocity.
+    answer_label: Average velocity
+    check:
+      kind: dimensions
+      expression: s / t
+      values:
+        s: {value: '0', unit: m}
+        t: {value: '50', unit: s}
+      answer: {value: '0', unit: m/s}
+    answer_text: >-
+      Average velocity is displacement divided by time. The runner finishes
+      where they started, so the displacement is $0$ m and the average velocity
+      is $\dfrac{0}{50} = 0$ m/s. The average *speed* for the same lap is $8$
+      m/s, because speed counts the whole $400$ m path and velocity does not.
+
+  - id: am3-1-average-speed-and-velocity
+    section: '3.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car travels $150$ m north, then $50$ m south, in $20$ s. Calculate its
+      average speed and its average velocity.
+    answer_label: Average speed, then average velocity
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (a + b) / t
+          values:
+            a: {value: '150', unit: m}
+            b: {value: '50', unit: m}
+            t: {value: '20', unit: s}
+          answer: {value: '10', unit: m/s}
+        - kind: dimensions
+          expression: (a - b) / t
+          values:
+            a: {value: '150', unit: m}
+            b: {value: '50', unit: m}
+            t: {value: '20', unit: s}
+          answer: {value: '5', unit: m/s}
+    answer_text: >-
+      The path is $150 + 50 = 200$ m, so the average speed is $\dfrac{200}{20} =
+      10$ m/s. The displacement is $150 - 50 = 100$ m north, so the average
+      velocity is $\dfrac{100}{20} = 5$ m/s north. The average speed is larger,
+      because the car's short journey south used time without adding
+      displacement.
+
+  - id: am3-1-acceleration
+    section: '3.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car speeds up from $8$ m/s to $20$ m/s in $6$ s. Calculate its
+      acceleration.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: (v - u) / t
+      values:
+        v: {value: '20', unit: m/s}
+        u: {value: '8', unit: m/s}
+        t: {value: '6', unit: s}
+      answer: {value: '2', unit: m/s^2}
+    answer_text: >-
+      Acceleration is the change in velocity divided by the time taken, so
+      $a = \dfrac{v - u}{t} = \dfrac{20 - 8}{6} = 2$ m/s$^2$. The velocity
+      changes by $2$ m/s every second.
+
+  - id: am3-1-negative-acceleration
+    section: '3.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A train slows down from $30$ m/s to $10$ m/s in $8$ s. Calculate its
+      acceleration, taking the direction of travel as positive.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: (v - u) / t
+      values:
+        v: {value: '10', unit: m/s}
+        u: {value: '30', unit: m/s}
+        t: {value: '8', unit: s}
+      answer: {value: '-2.5', unit: m/s^2}
+    answer_text: >-
+      $a = \dfrac{v - u}{t} = \dfrac{10 - 30}{8} = -2.5$ m/s$^2$. The negative
+      sign means the acceleration points opposite to the direction of travel, so
+      the train is slowing down. The magnitude is $2.5$ m/s$^2$.
+
+  - id: am3-1-convert-kmh
+    section: '3.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car travels at a steady $72$ km/h. Convert this speed to metres per
+      second.
+    answer_label: Speed in m/s
+    check:
+      kind: convert
+      value: '72'
+      from: km/h
+      to: m/s
+      answer: '20'
+    answer_text: >-
+      $1$ km is $1000$ m and $1$ hour is $3600$ s, so
+      $72 \text{ km/h} = \dfrac{72 \times 1000}{3600} = 20$ m/s. Dividing a
+      speed in km/h by $3.6$ gives the same result.
+
+  - id: am3-1-average-speed-figures
+    section: '3.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car travels $60$ m in $10$ s. Calculate its average speed to
+      $2$ significant figures.
+    answer_label: Average speed
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: d / t
+          values:
+            d: {value: '60', unit: m}
+            t: {value: '10', unit: s}
+          answer: {value: '6', unit: m/s}
+        - kind: sigfigs
+          value: '6'
+          figures: 2
+          answer: '6.0'
+          convention: round-once
+    answer_text: >-
+      $\dfrac{60}{10} = 6$ m/s exactly. Written to $2$ significant figures the
+      answer is $6.0$ m/s: the zero is kept, because dropping it would report
+      only one significant figure.

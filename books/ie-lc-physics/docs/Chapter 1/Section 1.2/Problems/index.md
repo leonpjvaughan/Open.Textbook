@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.2 Measuring, accuracy and uncertainty — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 1.1
+Work independently. The questions and answers are shown together at the end.
+
+Write the uncertainty with its unit, and say whether it is absolute or a percentage.
+When a result comes from several measurements, decide first whether the rule is the
+absolute one or the percentage one.
+
+:::problems chapter-01-practice-1.2
+
+:::answers chapter-01-practice-1.2

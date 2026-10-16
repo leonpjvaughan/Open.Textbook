@@ -5,14 +5,17 @@ chapter_title: Number systems and the four operations
 section: '1.3'
 section_title: Multiplying and dividing integers
 tier: O
-refs:
-- N.1
+refs: [N.1]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.3 Multiplying and dividing integers — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: N.1
+Work independently. The questions and answers are shown together at the end.
+
+Before you calculate, decide the sign of the answer and write it down. A correct
+number with the wrong sign scores nothing.
+
+:::problems chapter-01-practice-1.3
+
+:::answers chapter-01-practice-1.3

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.7 Newton's laws in vector form — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Keep the $\mathbf{i}$ arithmetic and the $\mathbf{j}$ arithmetic on separate
+lines. A vector answer is only complete when both components are there.
+
+:::problems chapter-04-practice-4.7
+
+:::answers chapter-04-practice-4.7

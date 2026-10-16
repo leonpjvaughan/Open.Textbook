@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.6 Pulleys — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Take $g = 9.8$ m/s². Decide which way the system moves before you calculate, and
+check the tension with the second body once you have it.
+
+:::problems chapter-04-practice-4.6
+
+:::answers chapter-04-practice-4.6

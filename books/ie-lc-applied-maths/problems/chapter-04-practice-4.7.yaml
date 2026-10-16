@@ -1,0 +1,161 @@
+# Practice set for 4.7 (strand S3, the physical world; Higher only). The `vector`
+# checks compare columns component by component and stay exact, so no tolerance
+# is needed. The `resolve` check proves a resolved pair against a declared
+# tolerance. The `structured` record proves only that a model answer contains
+# the declared ideas, in order — not that the physics is right.
+chapter: 4
+problems:
+  - id: am4-7-add-forces
+    section: '4.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      Two forces act on a particle: $\mathbf{F}_1 = (3\mathbf{i} + 4\mathbf{j})$
+      N and $\mathbf{F}_2 = (2\mathbf{i} - \mathbf{j})$ N. Find the resultant
+      force in $\mathbf{i}$, $\mathbf{j}$ form.
+    answer_label: Resultant force
+    check:
+      kind: vector
+      op: add
+      args: ["Matrix([3, 4])", "Matrix([2, -1])"]
+      answer: "Matrix([5, 3])"
+    answer_text: >-
+      Add the matching components: $(3 + 2)\mathbf{i} + (4 - 1)\mathbf{j} =
+      5\mathbf{i} + 3\mathbf{j}$ N.
+
+  - id: am4-7-acceleration-vector
+    section: '4.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A resultant force of $(5\mathbf{i} + 3\mathbf{j})$ N acts on a particle
+      of mass $2$ kg. Find the acceleration as a vector.
+    answer_label: Acceleration vector
+    check:
+      kind: vector
+      op: scale
+      args: ["1/2", "Matrix([5, 3])"]
+      answer: "Matrix([5/2, 3/2])"
+    answer_text: >-
+      Divide each component of the force by the mass:
+      $\mathbf{a} = \dfrac{1}{2}(5\mathbf{i} + 3\mathbf{j}) = 2.5\mathbf{i} +
+      1.5\mathbf{j}$ m/s$^2$.
+
+  - id: am4-7-magnitude
+    section: '4.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      An acceleration is $(2.5\mathbf{i} + 1.5\mathbf{j})$ m/s$^2$. Find its
+      magnitude, leaving your answer as an exact surd.
+    answer_label: Magnitude
+    check:
+      kind: vector
+      op: norm
+      args: ["Matrix([5/2, 3/2])"]
+      answer: "sqrt(34)/2"
+    answer_text: >-
+      The magnitude is $\sqrt{2.5^2 + 1.5^2} = \sqrt{6.25 + 2.25} =
+      \sqrt{8.5} = \dfrac{\sqrt{34}}{2}$ m/s$^2$.
+
+  - id: am4-7-resolve-10-30
+    section: '4.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A force of $10$ N acts at $30^\circ$ above the positive $x$-axis. Resolve
+      it into components in the $\mathbf{i}$ and $\mathbf{j}$ directions, each
+      to $3$ significant figures.
+    answer_label: The two components
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: '10'
+      angle_deg: '30'
+      components: {x: '8.66', y: '5'}
+      tolerance: '0.01'
+    answer_text: >-
+      The component along $\mathbf{i}$ is $10\cos 30^\circ = 8.66$ N. The
+      component along $\mathbf{j}$ is $10\sin 30^\circ = 5$ N. So
+      $\mathbf{F} = 8.66\mathbf{i} + 5\mathbf{j}$ N, to $3$ significant figures.
+
+  - id: am4-7-add-forces-2
+    section: '4.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      Find the resultant of $(6\mathbf{i} - 2\mathbf{j})$ N and
+      $(-4\mathbf{i} + 5\mathbf{j})$ N.
+    answer_label: Resultant force
+    check:
+      kind: vector
+      op: add
+      args: ["Matrix([6, -2])", "Matrix([-4, 5])"]
+      answer: "Matrix([2, 3])"
+    answer_text: >-
+      Add the matching components: $(6 - 4)\mathbf{i} + (-2 + 5)\mathbf{j} =
+      2\mathbf{i} + 3\mathbf{j}$ N.
+
+  - id: am4-7-mass-from-vectors
+    section: '4.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A force of $(6\mathbf{i} + 9\mathbf{j})$ N gives a particle an
+      acceleration of $(2\mathbf{i} + 3\mathbf{j})$ m/s$^2$. Find the mass.
+    answer_label: Mass
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '6/2', answer: '3'}
+        - {kind: evaluate, expression: '9/3', answer: '3'}
+    answer_text: >-
+      In vector form $\mathbf{F} = m\mathbf{a}$, so each component gives the same
+      mass. From $\mathbf{i}$: $m = \dfrac{6}{2} = 3$. From $\mathbf{j}$:
+      $m = \dfrac{9}{3} = 3$. The mass is $3$ kg.
+
+  - id: am4-7-resultant-and-equilibrium
+    section: '4.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      Two forces act on a particle: $(4\mathbf{i} + 3\mathbf{j})$ N and
+      $(-1\mathbf{i} + 2\mathbf{j})$ N. Find the resultant force. State the
+      third force that would keep the particle in equilibrium.
+    answer_label: Resultant force, then third force
+    check:
+      kind: vector
+      op: add
+      args: ["Matrix([4, 3])", "Matrix([-1, 2])"]
+      answer: "Matrix([3, 5])"
+    answer_text: >-
+      The resultant is $(4 - 1)\mathbf{i} + (3 + 2)\mathbf{j} = 3\mathbf{i} +
+      5\mathbf{j}$ N. For equilibrium the third force must be equal and opposite
+      to the resultant, so it is $(-3\mathbf{i} - 5\mathbf{j})$ N.
+
+  - id: am4-7-component-equations
+    section: '4.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      Explain what Newton's second law, $\mathbf{F} = m\mathbf{a}$, means for a
+      force written in $\mathbf{i}$, $\mathbf{j}$ form.
+    answer_label: The component equations
+    check:
+      kind: structured
+      requires: [component-x, component-y]
+      concepts: [vector-second-law]
+      points:
+        - id: component-x
+          text: >-
+            the i components satisfy F_x = m a_x on their own
+          concepts: [vector-second-law]
+        - id: component-y
+          text: >-
+            the j components satisfy F_y = m a_y on their own, so the two
+            directions can be treated separately
+    answer_text: >-
+      The single vector equation is two equations in one. The
+      $\mathbf{i}$ components give $F_x = m a_x$, and the $\mathbf{j}$
+      components give $F_y = m a_y$. The two directions do not mix, so you can
+      work out the horizontal motion and the vertical motion separately.

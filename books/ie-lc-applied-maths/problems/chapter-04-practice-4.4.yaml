@@ -1,0 +1,185 @@
+# Practice set for 4.4 (strand S3, the physical world). The `dimensions` checks
+# prove the arithmetic and the unit together; where a component carries a surd
+# the check declares a tolerance, because the value is irrational. The
+# `structured` record proves only that a model answer contains the declared
+# ideas, in order — not that the physics is right.
+chapter: 4
+problems:
+  - id: am4-4-component-30
+    section: '4.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block of mass $10$ kg rests on a smooth plane inclined at $30^\circ$ to
+      the horizontal. Taking $g = 9.8$ m/s$^2$, calculate the component of the
+      weight acting down the plane.
+    answer_label: Component down the plane
+    check:
+      kind: dimensions
+      expression: m * g / 2
+      values:
+        m: {value: '10', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '49', unit: N}
+    answer_text: >-
+      The component down the plane is $mg\sin 30^\circ$, and
+      $\sin 30^\circ = 0.5$. So the component is
+      $10 \times 9.8 \times 0.5 = 49$ N.
+
+  - id: am4-4-acceleration-30
+    section: '4.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block slides down a smooth plane inclined at $30^\circ$ to the
+      horizontal. Taking $g = 9.8$ m/s$^2$, calculate its acceleration.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: g / 2
+      values:
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '4.9', unit: 'm/s^2'}
+    answer_text: >-
+      The resultant force down the plane is $mg\sin 30^\circ$. Newton's second
+      law gives $ma = mg\sin 30^\circ$, so $a = g\sin 30^\circ = 9.8 \times 0.5
+      = 4.9$ m/s$^2$. The mass cancels.
+
+  - id: am4-4-normal-reaction-30
+    section: '4.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block of mass $10$ kg rests on a smooth plane inclined at $30^\circ$ to
+      the horizontal. Taking $g = 9.8$ m/s$^2$, calculate the normal reaction,
+      to $3$ significant figures.
+    answer_label: Normal reaction
+    check:
+      kind: dimensions
+      expression: m * g * sqrt(3) / 2
+      values:
+        m: {value: '10', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '84.87', unit: N}
+      tolerance: '0.01'
+    answer_text: >-
+      The component of the weight perpendicular to the plane is
+      $mg\cos 30^\circ$. The block does not move perpendicular to the plane, so
+      $R = mg\cos 30^\circ = 10 \times 9.8 \times 0.8660 = 84.87$ N, to $3$
+      significant figures.
+
+  - id: am4-4-acceleration-45
+    section: '4.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block slides down a smooth plane inclined at $45^\circ$ to the
+      horizontal. Taking $g = 9.8$ m/s$^2$, calculate its acceleration, to $3$
+      significant figures.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: g * sqrt(2) / 2
+      values:
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '6.93', unit: 'm/s^2'}
+      tolerance: '0.01'
+    answer_text: >-
+      The acceleration down a smooth plane is $g\sin\theta$. Here
+      $\theta = 45^\circ$, so $a = 9.8 \times 0.7071 = 6.93$ m/s$^2$, to $3$
+      significant figures.
+
+  - id: am4-4-hold-in-equilibrium
+    section: '4.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block of mass $6$ kg is held at rest on a smooth plane inclined at
+      $30^\circ$ to the horizontal by a force acting up the plane. Taking
+      $g = 9.8$ m/s$^2$, calculate the size of the force.
+    answer_label: Force up the plane
+    check:
+      kind: dimensions
+      expression: m * g / 2
+      values:
+        m: {value: '6', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '29.4', unit: N}
+    answer_text: >-
+      The block is in equilibrium, so the force up the plane balances the
+      component of the weight down the plane. That component is
+      $mg\sin 30^\circ = 6 \times 9.8 \times 0.5 = 29.4$ N.
+
+  - id: am4-4-angle-from-acceleration
+    section: '4.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block slides down a smooth plane with an acceleration of $4.9$
+      m/s$^2$. Taking $g = 9.8$ m/s$^2$, show that $\sin\theta = 0.5$, where
+      $\theta$ is the angle of the plane, and state the value of $\theta$.
+    answer_label: Value of sin theta, then theta
+    check:
+      kind: evaluate
+      expression: '(49/10)/(49/5)'
+      answer: '1/2'
+    answer_text: >-
+      The acceleration down a smooth plane is $g\sin\theta$, so
+      $\sin\theta = \dfrac{a}{g} = \dfrac{4.9}{9.8} = 0.5$. Then
+      $\theta = 30^\circ$, because $\sin 30^\circ = 0.5$.
+
+  - id: am4-4-12kg-two-parts
+    section: '4.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A crate of mass $12$ kg is released from rest on a smooth plane inclined
+      at $30^\circ$ to the horizontal. Taking $g = 9.8$ m/s$^2$, calculate the
+      component of the weight down the plane and the acceleration of the crate.
+    answer_label: Component down the plane, then acceleration
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g / 2
+          values:
+            m: {value: '12', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '58.8', unit: N}
+        - kind: dimensions
+          expression: g / 2
+          values:
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '4.9', unit: 'm/s^2'}
+    answer_text: >-
+      The component down the plane is $mg\sin 30^\circ = 12 \times 9.8 \times
+      0.5 = 58.8$ N. Then $a = \dfrac{58.8}{12} = 4.9$ m/s$^2$. The acceleration
+      is the same as for any other mass on this slope, because the mass cancels.
+
+  - id: am4-4-mass-independent
+    section: '4.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Explain why the acceleration of a block sliding down a smooth inclined
+      plane does not depend on the mass of the block.
+    answer_label: Why the mass cancels
+    check:
+      kind: structured
+      requires: [force-proportional-to-mass, cancel-mass]
+      concepts: [newton-second]
+      points:
+        - id: force-proportional-to-mass
+          text: >-
+            the component of the weight down the plane is mg sin theta, which is
+            proportional to the mass
+          concepts: [newton-second]
+        - id: cancel-mass
+          text: >-
+            Newton's second law gives ma = mg sin theta, so the mass divides out
+            and a = g sin theta
+    answer_text: >-
+      The force down the plane is $mg\sin\theta$, which is proportional to the
+      mass. Newton's second law gives $ma = mg\sin\theta$. Divide both sides by
+      $m$ and the mass cancels, leaving $a = g\sin\theta$. The acceleration
+      depends on the angle and on $g$, not on the mass.

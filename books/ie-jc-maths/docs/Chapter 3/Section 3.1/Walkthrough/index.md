@@ -76,7 +76,7 @@ $$8, 16, 24, 32, 40, 48, 56$$
 
 The next one is 64, which is past 60, so you stop there.
 
-The words are easy to confuse, so keep the two sentences apart:
+The two words describe different things, so keep the two sentences apart:
 
 - $3$ **is a factor of** $12$, because $12\div3=4$ exactly.
 - $12$ **is a multiple of** $3$, because $12=3\times4$.

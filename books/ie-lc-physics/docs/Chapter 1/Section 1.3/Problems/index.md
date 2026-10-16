@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.3 Scientific models and the Nature of Science — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 1.1
+Work independently. The questions and answers are shown together at the end.
+
+Where a question asks you to explain, write a sentence rather than a number. Before
+you calculate, say what the model assumes — the assumption is often what the question
+is really about.
+
+:::problems chapter-01-practice-1.3
+
+:::answers chapter-01-practice-1.3

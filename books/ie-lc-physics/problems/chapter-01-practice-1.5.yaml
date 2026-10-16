@@ -1,0 +1,139 @@
+# Leaving Certificate Physics, Chapter 1, section 1.5.
+#
+# This bank covers graphs: the gradient of a straight line, the intercept, the area
+# under a line, and the straightening of a graph into a form whose gradient gives a
+# constant. `gradient`, `intercept` and `area` are graph readings, so each is proved
+# against a declared interval, never an equality.
+#
+# Honest limit: this proves the arithmetic of the reading, not that the graph was drawn
+# or the points measured well. `structured` proves presence, order and coverage only.
+chapter: 1
+problems:
+  - id: p1-5-gradient-speed
+    section: '1.5'
+    tier: O
+    refs: ['1.1', '1.4']
+    statement: 'A distance-time graph is a straight line through the origin, passing through the point (4.0 s, 12 m). Calculate the gradient and state what it represents.'
+    answer_label: 'Gradient of the distance-time graph'
+    check:
+      kind: gradient
+      series:
+        - [0, 0]
+        - [4.0, 12]
+      between: [2.9, 3.1]
+    answer_text: 'Gradient $= \dfrac{\Delta d}{\Delta t} = \dfrac{12}{4.0} = 3.0\,\text{m/s}$. The gradient of a distance-time graph is the speed, so the object moves at $3.0\,\text{m/s}$.'
+  - id: p1-5-gradient-spring
+    section: '1.5'
+    tier: O
+    refs: ['1.1', '1.4']
+    statement: 'A force-extension graph passes through (0.10 m, 2.0 N) and (0.30 m, 6.0 N). Calculate the gradient, with its unit.'
+    answer_label: 'Gradient of the force-extension graph'
+    check:
+      kind: gradient
+      series:
+        - [0.10, 2.0]
+        - [0.30, 6.0]
+      between: [19, 21]
+    answer_text: 'Gradient $= \dfrac{\Delta F}{\Delta x} = \dfrac{6.0 - 2.0}{0.30 - 0.10} = \dfrac{4.0}{0.20} = 20\,\text{N/m}$. The unit comes from dividing newtons by metres.'
+  - id: p1-5-intercept
+    section: '1.5'
+    tier: O
+    refs: ['1.1', '1.4']
+    statement: 'A distance-time graph passes through (1.0 s, 4.0 m) and (3.0 s, 8.0 m). Find the intercept on the distance axis.'
+    answer_label: 'Intercept'
+    check:
+      kind: intercept
+      series:
+        - [1.0, 4.0]
+        - [3.0, 8.0]
+      between: [1.9, 2.1]
+    answer_text: 'The gradient is $\dfrac{8.0 - 4.0}{3.0 - 1.0} = 2.0\,\text{m/s}$. Using $d = 2.0t + c$ at $t = 1.0\,\text{s}$: $4.0 = 2.0 + c$, so $c = 2.0\,\text{m}$. The intercept is the distance at $t = 0$, which is $2.0\,\text{m}$.'
+  - id: p1-5-area
+    section: '1.5'
+    tier: O
+    refs: ['1.1', '1.4']
+    statement: 'A force-extension graph for a spring is a straight line through (0, 0) and (0.20 m, 10 N). Find the area under the graph up to 0.20 m, and state what it represents.'
+    answer_label: 'Area under the force-extension graph'
+    check:
+      kind: area
+      series:
+        - [0, 0]
+        - [0.20, 10]
+      between: [0.9, 1.1]
+    answer_text: 'The area is a triangle: $\frac{1}{2} \times 0.20 \times 10 = 1.0\,\text{J}$. The area under a force-extension graph is the energy stored in the spring, so the spring stores $1.0\,\text{J}$.'
+  - id: p1-5-gravity
+    section: '1.5'
+    tier: O
+    refs: ['1.1', '1.4']
+    statement: 'A student plots the distance a ball falls against $t^2$. The graph is a straight line through the origin with a gradient of 4.9 m/s$^2$. Use the gradient to find $g$, given that the gradient is $\frac{1}{2}g$.'
+    answer_label: 'Value of g'
+    check:
+      kind: dimensions
+      expression: 2 * m
+      values:
+        m: {value: '4.9', unit: m/s^2}
+      answer: {value: '9.8', unit: m/s^2}
+    answer_text: 'The gradient is $\frac{1}{2}g$, so $g = 2 \times 4.9 = 9.8\,\text{m/s}^2$. Plotting $s$ against $t^2$ straightens the graph, because $s = \frac{1}{2}gt^2$ becomes $s = \left(\frac{1}{2}g\right)t^2$, a straight line through the origin.'
+  - id: p1-5-axes
+    section: '1.5'
+    tier: O
+    refs: ['1.1', '1.4']
+    statement: 'Explain why every axis on a graph must carry the name of the quantity and its unit.'
+    answer_label: 'Labelling axes'
+    check:
+      kind: structured
+      requires: [quantity, unit, gradient]
+      concepts: [what-is-plotted, what-it-means, units-of-gradient]
+      points:
+        - id: quantity
+          text: 'The axis label says which quantity is plotted, so the reader knows what the numbers mean.'
+          concepts: [what-is-plotted]
+        - id: unit
+          text: 'The unit says what the numbers are measured in, so the scale is unambiguous.'
+          concepts: [what-it-means]
+        - id: gradient
+          text: 'The units of the two axes give the unit of the gradient, which is how a graph is read for a physical constant.'
+          concepts: [units-of-gradient]
+    answer_text: 'The axis label names the quantity plotted, so the reader knows what the numbers mean. The unit says what those numbers are measured in, so the scale is unambiguous. The units of the two axes also give the unit of the gradient, which is how a graph is read for a physical constant.'
+  - id: p1-5-bestfit
+    section: '1.5'
+    tier: O
+    refs: ['1.1', '1.4']
+    statement: 'Explain what a line of best fit is, and why you should not join the plotted points dot to dot.'
+    answer_label: 'Line of best fit'
+    check:
+      kind: structured
+      requires: [line, spread, reason]
+      concepts: [trend, scatter, single-value]
+      points:
+        - id: line
+          text: 'A line of best fit is the single straight line that shows the trend of the points.'
+          concepts: [trend]
+        - id: spread
+          text: 'The points scatter a little because every measurement has an uncertainty, so the line passes through the middle of the scatter.'
+          concepts: [scatter]
+        - id: reason
+          text: 'Joining the points dot to dot would make the graph follow every random error and would hide the trend.'
+          concepts: [single-value]
+    answer_text: 'A line of best fit is the single straight line that shows the trend of the points. The points scatter a little because every measurement has an uncertainty, so the line passes through the middle of the scatter. Joining the points dot to dot would make the graph follow every random error and would hide the trend.'
+  - id: p1-5-proportional
+    section: '1.5'
+    tier: O
+    refs: ['1.1', '1.4']
+    statement: 'A graph of $s$ against $t^2$ for a falling ball is a straight line through the origin. Explain what this shows about the motion.'
+    answer_label: 'What the straight line shows'
+    check:
+      kind: structured
+      requires: [straight, origin, conclusion]
+      concepts: [proportional, zero, model]
+      points:
+        - id: straight
+          text: 'A straight line shows that s is proportional to t squared.'
+          concepts: [proportional]
+        - id: origin
+          text: 'The line passes through the origin, so at t = 0 the distance fallen is zero.'
+          concepts: [zero]
+        - id: conclusion
+          text: 'This is the prediction of s = half g t squared, so the data supports the falling-ball model.'
+          concepts: [model]
+    answer_text: 'A straight line shows that $s$ is proportional to $t^2$. The line passes through the origin, so at $t = 0$ the distance fallen is zero. This is exactly the prediction of $s = \frac{1}{2}gt^2$, so the data supports the falling-ball model over the range tested.'

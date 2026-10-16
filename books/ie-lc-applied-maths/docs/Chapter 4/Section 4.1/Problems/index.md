@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.1 Forces and Newton's laws — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Take $g = 9.8$ m/s² unless a question says otherwise. Give every force in
+newtons, and decide first whether a question is about a mass or a weight.
+
+:::problems chapter-04-practice-4.1
+
+:::answers chapter-04-practice-4.1

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.2 Resultant force and equilibrium — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Sketch the forces before you add them. For a resolution, decide which component
+lies along the angle before you choose sine or cosine.
+
+:::problems chapter-04-practice-4.2
+
+:::answers chapter-04-practice-4.2

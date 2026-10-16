@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.1 Displacement, velocity and acceleration — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Choose a positive direction before you calculate, and write it down. Give every
+answer with its unit, and check whether the question asks for a distance or a
+displacement.
+
+:::problems chapter-03-practice-3.1
+
+:::answers chapter-03-practice-3.1

@@ -211,7 +211,7 @@ $$W = Fd = 12 \times 3.0 = 36\,\text{J}$$
 
 This matters here: stretching a spring also does work, and Section 5.3 works out where
 that energy goes. The difference is that the force changes as the spring stretches, so
-you cannot simply multiply force by extension.
+you cannot multiply force by extension.
 
 </details>
 </details>

@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 17.1 Evidence for the electron — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 4.1
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**, and to the number of significant figures the data
+justify. Take $e = 1.6 \times 10^{-19}$ C and the mass of an electron as
+$9.1 \times 10^{-31}$ kg.
+
+:::problems chapter-17-practice-17.1
+
+:::answers chapter-17-practice-17.1

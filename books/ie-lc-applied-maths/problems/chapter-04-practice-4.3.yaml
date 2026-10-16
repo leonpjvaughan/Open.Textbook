@@ -1,0 +1,197 @@
+# Practice set for 4.3 (strand S3, the physical world). The `dimensions` checks
+# prove the arithmetic and the unit together, including the sign of an
+# acceleration. The `structured` record proves only that a model answer contains
+# the declared ideas, in order — not that the physics is right.
+chapter: 4
+problems:
+  - id: am4-3-acceleration-8kg
+    section: '4.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block of mass $8$ kg rests on a smooth horizontal floor. A horizontal
+      force of $24$ N pulls it. Calculate its acceleration.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: F / m
+      values:
+        F: {value: '24', unit: N}
+        m: {value: '8', unit: kg}
+      answer: {value: '3', unit: 'm/s^2'}
+    answer_text: >-
+      The floor is smooth, so no friction acts. The only horizontal force is the
+      $24$ N pull, so $a = \dfrac{F}{m} = \dfrac{24}{8} = 3$ m/s$^2$.
+
+  - id: am4-3-two-forces-5kg
+    section: '4.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block of mass $5$ kg on a smooth horizontal floor is pulled with $20$ N
+      to the right and $8$ N to the left. Calculate the resultant force and the
+      acceleration.
+    answer_label: Resultant force, then acceleration
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F1 - F2
+          values:
+            F1: {value: '20', unit: N}
+            F2: {value: '8', unit: N}
+          answer: {value: '12', unit: N}
+        - kind: dimensions
+          expression: (F1 - F2) / m
+          values:
+            F1: {value: '20', unit: N}
+            F2: {value: '8', unit: N}
+            m: {value: '5', unit: kg}
+          answer: {value: '2.4', unit: 'm/s^2'}
+    answer_text: >-
+      The forces are opposite, so the resultant is $20 - 8 = 12$ N to the right.
+      Then $a = \dfrac{12}{5} = 2.4$ m/s$^2$ to the right.
+
+  - id: am4-3-normal-reaction-15kg
+    section: '4.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A box of mass $15$ kg rests on a horizontal floor. Taking
+      $g = 9.8$ m/s$^2$, calculate the normal reaction from the floor.
+    answer_label: Normal reaction
+    check:
+      kind: dimensions
+      expression: m * g
+      values:
+        m: {value: '15', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '147', unit: N}
+    answer_text: >-
+      The box does not move vertically, so the vertical forces balance. The
+      normal reaction equals the weight: $R = mg = 15 \times 9.8 = 147$ N.
+
+  - id: am4-3-force-for-acceleration
+    section: '4.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A trolley of mass $4$ kg on a smooth horizontal floor accelerates at
+      $3.5$ m/s$^2$. Calculate the horizontal force on it.
+    answer_label: Force
+    check:
+      kind: dimensions
+      expression: m * a
+      values:
+        m: {value: '4', unit: kg}
+        a: {value: '3.5', unit: 'm/s^2'}
+      answer: {value: '14', unit: N}
+    answer_text: >-
+      $F = ma = 4 \times 3.5 = 14$ N.
+
+  - id: am4-3-deceleration
+    section: '4.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block of mass $6$ kg slides on a smooth horizontal floor. A horizontal
+      force of $12$ N acts on it in the opposite direction to its motion.
+      Calculate its acceleration, taking the direction of motion as positive.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: F / m
+      values:
+        F: {value: '-12', unit: N}
+        m: {value: '6', unit: kg}
+      answer: {value: '-2', unit: 'm/s^2'}
+    answer_text: >-
+      The force opposes the motion, so its value is $-12$ N in the chosen
+      direction. Then $a = \dfrac{-12}{6} = -2$ m/s$^2$. The negative sign means
+      the block is slowing down.
+
+  - id: am4-3-resultant-12kg
+    section: '4.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A crate of mass $12$ kg on a smooth horizontal floor has a $30$ N force
+      acting forwards and a $6$ N force acting backwards. Calculate the
+      resultant force and the acceleration.
+    answer_label: Resultant force, then acceleration
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F1 - F2
+          values:
+            F1: {value: '30', unit: N}
+            F2: {value: '6', unit: N}
+          answer: {value: '24', unit: N}
+        - kind: dimensions
+          expression: (F1 - F2) / m
+          values:
+            F1: {value: '30', unit: N}
+            F2: {value: '6', unit: N}
+            m: {value: '12', unit: kg}
+          answer: {value: '2', unit: 'm/s^2'}
+    answer_text: >-
+      The resultant is $30 - 6 = 24$ N forwards. Then
+      $a = \dfrac{24}{12} = 2$ m/s$^2$ forwards.
+
+  - id: am4-3-negative-resultant
+    section: '4.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A puck of mass $2$ kg slides on smooth ice. A force of $10$ N acts in the
+      direction of motion and a force of $16$ N acts against it. Calculate the
+      resultant force and the acceleration.
+    answer_label: Resultant force, then acceleration
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F1 - F2
+          values:
+            F1: {value: '10', unit: N}
+            F2: {value: '16', unit: N}
+          answer: {value: '-6', unit: N}
+        - kind: dimensions
+          expression: (F1 - F2) / m
+          values:
+            F1: {value: '10', unit: N}
+            F2: {value: '16', unit: N}
+            m: {value: '2', unit: kg}
+          answer: {value: '-3', unit: 'm/s^2'}
+    answer_text: >-
+      The resultant is $10 - 16 = -6$ N, so it points against the motion. Then
+      $a = \dfrac{-6}{2} = -3$ m/s$^2$. The negative sign means the puck is
+      slowing down.
+
+  - id: am4-3-normal-reaction-why
+    section: '4.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A book rests on a horizontal table. Explain why the normal reaction from
+      the table equals the weight of the book.
+    answer_label: Why R equals mg
+    check:
+      kind: structured
+      requires: [vertical-equilibrium, newton-first]
+      concepts: [normal-reaction]
+      points:
+        - id: vertical-equilibrium
+          text: >-
+            the book has no vertical acceleration, so the vertical forces on it
+            must balance
+          concepts: [normal-reaction]
+        - id: newton-first
+          text: >-
+            the normal reaction upwards therefore equals the weight downwards,
+            so R = mg
+    answer_text: >-
+      The book stays on the table, so it has no vertical acceleration. Newton's
+      first law then says the vertical forces balance. The normal reaction
+      upwards equals the weight downwards, so $R = mg$.

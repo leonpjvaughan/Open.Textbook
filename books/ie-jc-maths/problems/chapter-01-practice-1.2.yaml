@@ -1,0 +1,170 @@
+# Junior Cycle Mathematics, Chapter 1, section 1.2.
+#
+# Adding and subtracting integers. Every check is an arithmetic identity the CAS
+# proves. A double sign is written in brackets in the statement and kept in the
+# expression, so the verifier proves the same calculation the reader performs.
+chapter: 1
+symbols: {}
+
+problems:
+- id: jc1-1.2-add-1
+  section: '1.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $-7 + 3$.
+  answer_label: Work out $-7 + 3$.
+  check:
+    kind: evaluate
+    expression: '-7 + 3'
+    answer: '-4'
+  answer_text: >-
+    $-4$. Start at $-7$ on the number line and move 3 places to the right. You
+    finish at $-4$, which is still less than zero.
+- id: jc1-1.2-sub-1
+  section: '1.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $5 - 9$.
+  answer_label: Work out $5 - 9$.
+  check:
+    kind: evaluate
+    expression: '5 - 9'
+    answer: '-4'
+  answer_text: >-
+    $-4$. Start at 5 and move 9 places to the left. You pass zero and finish at
+    $-4$, because $9 - 5 = 4$.
+- id: jc1-1.2-sub-2
+  section: '1.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $-4 - 6$.
+  answer_label: Work out $-4 - 6$.
+  check:
+    kind: evaluate
+    expression: '-4 - 6'
+    answer: '-10'
+  answer_text: >-
+    $-10$. Both numbers push to the left, so the amounts add: $4 + 6 = 10$ and the
+    answer is negative.
+- id: jc1-1.2-sign-1
+  section: '1.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $-3 + (-8)$.
+  answer_label: Work out $-3 + (-8)$.
+  check:
+    kind: evaluate
+    expression: '-3 + (-8)'
+    answer: '-11'
+  answer_text: >-
+    $-11$. Adding a negative number is the same as subtracting its positive. So
+    $-3 + (-8) = -3 - 8 = -11$.
+- id: jc1-1.2-sign-2
+  section: '1.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $6 - (-9)$.
+  answer_label: Work out $6 - (-9)$.
+  check:
+    kind: evaluate
+    expression: '6 - (-9)'
+    answer: '15'
+  answer_text: >-
+    $15$. Subtracting a negative number moves to the right, because it is the same
+    as adding. So $6 - (-9) = 6 + 9 = 15$.
+- id: jc1-1.2-sign-3
+  section: '1.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $-2 - (-7)$.
+  answer_label: Work out $-2 - (-7)$.
+  check:
+    kind: evaluate
+    expression: '-2 - (-7)'
+    answer: '5'
+  answer_text: >-
+    $5$. The two minus signs together make an addition:
+    $-2 - (-7) = -2 + 7 = 5$.
+- id: jc1-1.2-context-1
+  section: '1.2'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The temperature is $-4$ degrees and falls by 7 degrees. Work out the new
+    temperature.
+  answer_label: Work out the new temperature.
+  check:
+    kind: evaluate
+    expression: '-4 - 7'
+    answer: '-11'
+  answer_text: >-
+    $-11$ degrees. A fall of 7 is a subtraction: $-4 - 7 = -11$. Both the starting
+    value and the change push downwards.
+- id: jc1-1.2-context-2
+  section: '1.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out the difference between $-6$ and $4$.
+  answer_label: Work out the difference between $-6$ and $4$.
+  check:
+    kind: evaluate
+    expression: '4 - (-6)'
+    answer: '10'
+  answer_text: >-
+    $10$. The difference is the distance between the two numbers on the number
+    line. From $-6$ to 0 is 6, and from 0 to 4 is 4, so the gap is $6 + 4 = 10$.
+- id: jc1-1.2-chain-1
+  section: '1.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $12 - 15 + 7$.
+  answer_label: Work out $12 - 15 + 7$.
+  check:
+    kind: evaluate
+    expression: '12 - 15 + 7'
+    answer: '4'
+  answer_text: >-
+    $4$. Work from left to right: $12 - 15 = -3$, and then $-3 + 7 = 4$. Addition
+    and subtraction are equally strong, so you take them in the order you read
+    them.
+- id: jc1-1.2-anchor-1
+  section: '1.2'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The class fund holds 620 euros. The bus deposit of 150 euros and the centre
+    deposit of 70 euros are paid. Work out the new balance.
+  answer_label: Work out the new balance after the two deposits.
+  check:
+    kind: evaluate
+    expression: '620 - 150 - 70'
+    answer: '400'
+  answer_text: >-
+    400 euros. Both deposits are money leaving the fund, so both are subtractions:
+    $620 - 150 = 470$, and then $470 - 70 = 400$.
+- id: jc1-1.2-anchor-2
+  section: '1.2'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The fund balance is 400 euros. The whole bus is paid early for 480 euros.
+    Work out the balance, and say what the sign means.
+  answer_label: Work out the balance after the bus is paid.
+  check:
+    kind: evaluate
+    expression: '400 - 480'
+    answer: '-80'
+  answer_text: >-
+    $-80$ euros. The balance is now negative, which means the fund is overdrawn by
+    80 euros. The money has been spent before it arrived.

@@ -149,8 +149,24 @@ exist because fourteen font sizes and 107 hand-written text elements were in use
 177 modules. The rules and the measurements are in `assets/AGENTS.md`, and
 `research/design/reuse-audit.md` has the evidence.
 
-**The current work is finishing the Irish books.** The state, what is already in hand,
-the known gaps and the priority order are in `.agents/todo.md`.
+**The current work is finishing every chapter of every Irish book.** 66 chapters
+remain: `ie-jc-maths` 21, `ie-lc-maths` 16, `ie-lc-applied-maths` 8, `ie-lc-physics` 21.
+Five are authored end to end and are the pattern to copy — `ie-jc-maths` Chapter 3,
+`ie-lc-physics` Chapter 5, `ie-lc-applied-maths` Chapter 2, and `ie-lc-maths` Chapters 5
+and 9. The state, the corpus already in hand, the known gaps and the order to work in are
+in `.agents/todo.md`, and the per-chapter contract is `.agents/chapter-brief.md`.
+
+**A chapter is not finished until all of this is true.** It is the definition of done,
+and it is what CI and the gate check:
+
+- the chapter index, every section's three pages, and the Review all exist, and
+  `grep -rl 'scaffold:stub' books/<id>/docs/Chapter <n>/` prints nothing;
+- every answer is in a verified bank — `python -m textbook.verify books/<id>/problems/`
+  reports `ok` for every file, so no answer is asserted rather than proved;
+- `python -m textbook.lint` reports nothing for the book;
+- the profile builds for that book produce **no** `math-error` page, and figures go
+  through `kit.js` with `SIZE`, `label()` and `scale()`;
+- `python -m pytest tests/ -q` passes.
 
 ## Repository map
 

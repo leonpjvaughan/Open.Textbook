@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.4 Planning and evaluating an investigation — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 1.6
+Work independently. The questions and answers are shown together at the end.
+
+Some of these questions ask you to plan or to evaluate rather than to calculate. For
+those, write a short paragraph with a reason in it. A plan without a reason is only
+half an answer.
+
+:::problems chapter-01-practice-1.4
+
+:::answers chapter-01-practice-1.4

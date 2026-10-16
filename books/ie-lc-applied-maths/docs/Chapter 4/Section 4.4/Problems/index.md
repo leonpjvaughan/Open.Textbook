@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.4 Motion on an inclined plane — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Take $g = 9.8$ m/s². Draw the slope, mark the angle at the horizontal, and
+resolve the weight along the plane and into the plane before you calculate.
+
+:::problems chapter-04-practice-4.4
+
+:::answers chapter-04-practice-4.4

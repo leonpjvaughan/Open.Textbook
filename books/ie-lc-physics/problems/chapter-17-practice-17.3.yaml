@@ -1,0 +1,303 @@
+# Leaving Certificate Physics, Chapter 17, section 17.3 (strand 4 outcome 4.1).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. The `dimensions` check on a value that
+# carries a tolerance proves the answer lies in the stated band, which is how a
+# measured quantity such as a charge-to-mass ratio is reported.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 17
+problems:
+- id: p17-3-force
+  section: '17.3'
+  tier: H
+  refs:
+  - '4.1'
+  statement: An electron moves at $2.0 \times 10^7$ m/s at right angles to a uniform magnetic field of
+    flux density $3.0 \times 10^{-3}$ T. Calculate the magnetic force on the electron. Take $e = 1.6
+    \times 10^{-19}$ C.
+  answer_label: Magnetic force
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: B * e * v
+      values:
+        B:
+          value: '3.0e-3'
+          unit: T
+        e:
+          value: '1.6e-19'
+          unit: C
+        v:
+          value: '2.0e7'
+          unit: m/s
+      answer:
+        value: '9.6e-15'
+        unit: N
+    - kind: sigfigs
+      value: '3.0e-3 * 1.6e-19 * 2.0e7'
+      figures: 2
+      answer: '9.6e-15'
+      convention: round-once
+  answer_text: $F = Bev = 3.0 \times 10^{-3} \times 1.6 \times 10^{-19} \times 2.0 \times 10^7 = 9.6
+    \times 10^{-15}\,\text{N}$. The force is perpendicular to the velocity, so it changes the direction
+    of the electron but not its speed.
+- id: p17-3-radius
+  section: '17.3'
+  tier: H
+  refs:
+  - '4.1'
+  statement: An electron travels at $1.76 \times 10^7$ m/s at right angles to a magnetic field of flux
+    density $2.0 \times 10^{-3}$ T. Calculate the radius of its circular path. Take $e = 1.6 \times
+    10^{-19}$ C and $m = 9.1 \times 10^{-31}$ kg.
+  answer_label: Radius of the path
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * v / (e * B)
+      values:
+        m:
+          value: '9.1e-31'
+          unit: kg
+        v:
+          value: '1.76e7'
+          unit: m/s
+        e:
+          value: '1.6e-19'
+          unit: C
+        B:
+          value: '2.0e-3'
+          unit: T
+      answer:
+        value: '5.0e-2'
+        unit: m
+      tolerance: '5e-4'
+    - kind: sigfigs
+      value: '9.1e-31 * 1.76e7 / (1.6e-19 * 2.0e-3)'
+      figures: 2
+      answer: '5.0e-2'
+      convention: round-once
+  answer_text: The magnetic force provides the centripetal force, so $Bev = \dfrac{mv^2}{r}$ and $r =
+    \dfrac{mv}{Be} = \dfrac{9.1 \times 10^{-31} \times 1.76 \times 10^7}{1.6 \times 10^{-19} \times 2.0
+    \times 10^{-3}} = 5.0 \times 10^{-2}\,\text{m}$, which is 5.0 cm.
+- id: p17-3-em
+  section: '17.3'
+  tier: H
+  refs:
+  - '4.1'
+  statement: In a Thomson-type tube, electrons leave the gun at $2.7 \times 10^7$ m/s. They enter a
+    magnetic field of flux density $2.0 \times 10^{-3}$ T at right angles and travel in a circular arc
+    of radius $7.5 \times 10^{-2}$ m. Calculate the charge-to-mass ratio of the electron.
+  answer_label: Charge-to-mass ratio
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v / (B * r)
+      values:
+        v:
+          value: '2.7e7'
+          unit: m/s
+        B:
+          value: '2.0e-3'
+          unit: T
+        r:
+          value: '7.5e-2'
+          unit: m
+      answer:
+        value: '1.8e11'
+        unit: C/kg
+    - kind: sigfigs
+      value: '2.7e7 / (2.0e-3 * 7.5e-2)'
+      figures: 2
+      answer: '1.8e11'
+      convention: round-once
+  answer_text: The magnetic force provides the centripetal force, so $Bev = \dfrac{mv^2}{r}$. Rearranging
+    gives $\dfrac{e}{m} = \dfrac{v}{Br} = \dfrac{2.7 \times 10^7}{2.0 \times 10^{-3} \times 7.5 \times
+    10^{-2}} = 1.8 \times 10^{11}\,\text{C/kg}$. The accepted value is $1.76 \times 10^{11}$ C/kg.
+- id: p17-3-crossed
+  section: '17.3'
+  tier: H
+  refs:
+  - '4.1'
+  statement: In a crossed-field experiment the electric field strength is $3.0 \times 10^4$ V/m and the
+    magnetic flux density is $2.0 \times 10^{-3}$ T. The beam passes through undeflected. Calculate the
+    speed of the electrons.
+  answer_label: Speed of the electrons
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: E / B
+      values:
+        E:
+          value: '3.0e4'
+          unit: V/m
+        B:
+          value: '2.0e-3'
+          unit: T
+      answer:
+        value: '1.5e7'
+        unit: m/s
+    - kind: sigfigs
+      value: '3.0e4 / 2.0e-3'
+      figures: 2
+      answer: '1.5e7'
+      convention: round-once
+  answer_text: The beam is undeflected, so the electric and magnetic forces balance. Then $eE = Bev$,
+    and the charge cancels, giving $v = \dfrac{E}{B} = \dfrac{3.0 \times 10^4}{2.0 \times 10^{-3}} =
+    1.5 \times 10^7\,\text{m/s}$.
+- id: p17-3-field
+  section: '17.3'
+  tier: H
+  refs:
+  - '4.1'
+  statement: An electron moves at $1.76 \times 10^7$ m/s in a circle of radius 5.0 cm. Given that $e/m
+    = 1.76 \times 10^{11}$ C/kg, calculate the magnetic flux density.
+  answer_label: Magnetic flux density
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v / (em * r)
+      values:
+        v:
+          value: '1.76e7'
+          unit: m/s
+        em:
+          value: '1.76e11'
+          unit: C/kg
+        r:
+          value: '0.05'
+          unit: m
+      answer:
+        value: '2.0e-3'
+        unit: T
+    - kind: sigfigs
+      value: '1.76e7 / (1.76e11 * 0.05)'
+      figures: 2
+      answer: '2.0e-3'
+      convention: round-once
+  answer_text: From $\dfrac{e}{m} = \dfrac{v}{Br}$, $B = \dfrac{v}{(e/m)r} = \dfrac{1.76 \times
+    10^7}{1.76 \times 10^{11} \times 0.05} = 2.0 \times 10^{-3}\,\text{T}$.
+- id: p17-3-mass
+  section: '17.3'
+  tier: H
+  refs:
+  - '4.1'
+  statement: The charge-to-mass ratio of the electron is $1.76 \times 10^{11}$ C/kg and its charge is
+    $1.6 \times 10^{-19}$ C. Calculate the mass of the electron.
+  answer_label: Mass of the electron
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: e / em
+      values:
+        e:
+          value: '1.6e-19'
+          unit: C
+        em:
+          value: '1.76e11'
+          unit: C/kg
+      answer:
+        value: '9.1e-31'
+        unit: kg
+      tolerance: '5e-33'
+    - kind: sigfigs
+      value: '1.6e-19 / 1.76e11'
+      figures: 2
+      answer: '9.1e-31'
+      convention: round-once
+  answer_text: $m = \dfrac{e}{e/m} = \dfrac{1.6 \times 10^{-19}}{1.76 \times 10^{11}} = 9.1 \times
+    10^{-31}\,\text{kg}$. This is about 1800 times smaller than the mass of a hydrogen atom.
+- id: p17-3-thomson
+  section: '17.3'
+  tier: H
+  refs:
+  - '4.1'
+  statement: Describe how Thomson used crossed electric and magnetic fields to measure the charge-to-mass
+    ratio of the electron, and explain why the method does not need the value of the charge.
+  answer_label: Thomson's method
+  check:
+    kind: structured
+    requires:
+    - balance
+    - speed
+    - magnetic-arc
+    - ratio
+    concepts:
+    - undeflected
+    - charge-cancels
+    - centripetal
+    - no-charge-needed
+    points:
+    - id: balance
+      text: set an electric field and a magnetic field at right angles so their forces on the moving
+        electron cancel and the beam passes through undeflected
+      concepts:
+      - undeflected
+    - id: speed
+      text: the balance gives eE = Bev, so v = E / B; the charge cancels, so the speed is found without
+        knowing e or m
+      concepts:
+      - charge-cancels
+      - no-charge-needed
+    - id: magnetic-arc
+      text: switch off the electric field and let the magnetic force alone bend the beam into a circle
+        of radius r, where Bev = mv^2 / r
+      concepts:
+      - centripetal
+    - id: ratio
+      text: combine the two results to get e / m = v / (Br), and the charge cancels again
+      concepts:
+      - no-charge-needed
+  answer_text: Thomson set an electric field and a magnetic field at right angles across the beam. When
+    their forces cancel, the beam passes through undeflected, so $eE = Bev$ and $v = E/B$. The charge
+    cancels, so the speed is known without knowing $e$ or $m$. He then switched off the electric field,
+    so the magnetic force alone bent the beam into a circle of radius $r$, where $Bev = mv^2/r$. Combining
+    the two results gives $\dfrac{e}{m} = \dfrac{v}{Br}$, and the charge cancels again.
+- id: p17-3-compare
+  section: '17.3'
+  tier: H
+  refs:
+  - '4.1'
+  statement: The measured charge-to-mass ratio of the electron is much larger than that of a hydrogen
+    ion. Explain what this shows about the electron, and why the same value is found for every gas.
+  answer_label: What the large ratio shows
+  check:
+    kind: structured
+    requires:
+    - compare
+    - mass
+    - universal
+    concepts:
+    - much-lighter
+    - same-charge
+    - constituent-of-matter
+    points:
+    - id: compare
+      text: the electron has a much larger charge-to-mass ratio than a hydrogen ion
+      concepts:
+      - much-lighter
+    - id: mass
+      text: the charge on an electron is the same size as the charge on a hydrogen ion, so the large ratio
+        means the electron has a far smaller mass
+      concepts:
+      - same-charge
+      - much-lighter
+    - id: universal
+      text: the value is the same for every gas and every cathode, so electrons are present in all matter
+      concepts:
+      - constituent-of-matter
+  answer_text: The charge-to-mass ratio of the electron is about 1800 times larger than that of a hydrogen
+    ion. The charge on an electron is the same size as the charge on a hydrogen ion, so the difference
+    must come from the mass. The electron is far lighter. The same value is found for every gas and every
+    cathode, so electrons are a common constituent of all matter.

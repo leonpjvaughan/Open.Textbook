@@ -1,0 +1,151 @@
+# Leaving Certificate Physics, Chapter 1, section 1.3.
+#
+# This bank covers scientific models and the Nature of Science. The falling-ball model
+# gives the numbers; the `structured` records carry the account of what a model is and
+# how it is tested. `dimensions` proves the unit of every predicted quantity, and
+# `approx` proves a percentage difference that is not a tidy fraction.
+#
+# Honest limit: this proves arithmetic and dimensions, not physics. `structured` proves
+# only that a model answer contains its declared steps and concepts, in order.
+chapter: 1
+problems:
+  - id: p1-3-fall-distance
+    section: '1.3'
+    tier: O
+    refs: ['1.1']
+    statement: 'The simplest model says a dropped ball falls a distance $s = \frac{1}{2}gt^2$. Take $g = 9.8\,\text{m/s}^2$. Calculate the distance fallen in 0.40 s.'
+    answer_label: 'Distance fallen'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: 0.5 * g * t**2
+          values:
+            g: {value: '9.8', unit: m/s^2}
+            t: {value: '0.40', unit: s}
+          answer: {value: '0.784', unit: m}
+        - kind: sigfigs
+          value: '0.784'
+          figures: 2
+          answer: '0.78'
+          convention: round-once
+    answer_text: '$s = \frac{1}{2}gt^2 = 0.5 \times 9.8 \times 0.40^2 = 0.784\,\text{m}$. The data give two significant figures, so $s = 0.78\,\text{m}$.'
+  - id: p1-3-fall-time
+    section: '1.3'
+    tier: O
+    refs: ['1.1']
+    statement: 'Use the same model to calculate the time for a ball to fall 1.25 m. Take $g = 9.8\,\text{m/s}^2$.'
+    answer_label: 'Time to fall 1.25 m'
+    check:
+      kind: dimensions
+      expression: sqrt(2 * s / g)
+      values:
+        s: {value: '1.25', unit: m}
+        g: {value: '9.8', unit: m/s^2}
+      answer: {value: '0.51', unit: s}
+      tolerance: '0.01'
+    answer_text: 'Rearranging $s = \frac{1}{2}gt^2$ gives $t = \sqrt{\dfrac{2s}{g}} = \sqrt{\dfrac{2 \times 1.25}{9.8}} = 0.51\,\text{s}$.'
+  - id: p1-3-landing-speed
+    section: '1.3'
+    tier: O
+    refs: ['1.1']
+    statement: 'Use the same model to calculate the speed of a ball when it lands after falling 1.25 m. Take $g = 9.8\,\text{m/s}^2$.'
+    answer_label: 'Landing speed'
+    check:
+      kind: dimensions
+      expression: sqrt(2 * g * s)
+      values:
+        g: {value: '9.8', unit: m/s^2}
+        s: {value: '1.25', unit: m}
+      answer: {value: '5.0', unit: m/s}
+      tolerance: '0.1'
+    answer_text: 'The speed is $v = \sqrt{2gs} = \sqrt{2 \times 9.8 \times 1.25} = \sqrt{24.5} = 4.9\,\text{m/s}$, or $5.0\,\text{m/s}$ to two significant figures. That is the answer to the chapter problem: this is how fast the simplest model says the ball lands.'
+  - id: p1-3-speed
+    section: '1.3'
+    tier: O
+    refs: ['1.1']
+    statement: 'In the same model, speed is $v = gt$. Calculate the speed of the ball 0.40 s after it is dropped. Take $g = 9.8\,\text{m/s}^2$.'
+    answer_label: 'Speed after 0.40 s'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: g * t
+          values:
+            g: {value: '9.8', unit: m/s^2}
+            t: {value: '0.40', unit: s}
+          answer: {value: '3.92', unit: m/s}
+        - kind: sigfigs
+          value: '3.92'
+          figures: 2
+          answer: '3.9'
+          convention: round-once
+    answer_text: '$v = gt = 9.8 \times 0.40 = 3.92\,\text{m/s}$, which is $3.9\,\text{m/s}$ to two significant figures.'
+  - id: p1-3-percent-difference
+    section: '1.3'
+    tier: O
+    refs: ['1.1']
+    statement: 'The model predicts a fall time of 0.45 s. A student measures 0.50 s. Calculate the percentage difference between the measurement and the prediction.'
+    answer_label: 'Percentage difference'
+    check:
+      kind: approx
+      value: (0.50 - 0.45) / 0.45 * 100
+      target: '11.1'
+      tolerance: '0.1'
+    answer_text: '$\text{percentage difference} = \dfrac{0.50 - 0.45}{0.45} \times 100\% = 11.1\%$. The measurement is about 11% longer than the model predicts.'
+  - id: p1-3-consistent
+    section: '1.3'
+    tier: O
+    refs: ['1.1']
+    statement: 'The gravitational field strength is $g = 9.8\,\text{m/s}^2$. Show that this unit is consistent with $g = \dfrac{F}{m}$.'
+    answer_label: 'Unit of gravitational field strength'
+    check:
+      kind: dimensions
+      consistency: 'g = F / m'
+      units:
+        g: m/s^2
+        F: N
+        m: kg
+    answer_text: 'A force of 1 N is 1 kg m/s$^2$, so $\dfrac{F}{m}$ has the unit $\dfrac{\text{kg}\,\text{m/s}^2}{\text{kg}} = \text{m/s}^2$. This matches the unit of $g$, so the equation is dimensionally consistent.'
+  - id: p1-3-model
+    section: '1.3'
+    tier: O
+    refs: ['1.1']
+    statement: 'Explain what is meant by a scientific model, and state one assumption of the falling-ball model.'
+    answer_label: 'What a model is'
+    check:
+      kind: structured
+      requires: [definition, assumption, prediction]
+      concepts: [simplified, assumption, predicts]
+      points:
+        - id: definition
+          text: 'A scientific model is a simplified representation of a real system, written in words, diagrams, numbers or equations.'
+          concepts: [simplified]
+        - id: assumption
+          text: 'The falling-ball model assumes the ball falls freely, with no air resistance, and that g is constant.'
+          concepts: [assumption]
+        - id: prediction
+          text: 'A model is useful when it predicts the behaviour of the system, and it is tested by comparing its predictions with measurements.'
+          concepts: [predicts]
+    answer_text: 'A scientific model is a simplified representation of a real system, written in words, diagrams, numbers or equations. The falling-ball model assumes that the ball falls freely, with no air resistance, and that $g$ is constant. A model earns its place by predicting what the system will do, and it is tested against measurements.'
+  - id: p1-3-revision
+    section: '1.3'
+    tier: O
+    refs: ['1.1']
+    statement: 'Describe how a scientific model is tested against evidence, and how it can change.'
+    answer_label: 'Testing and changing a model'
+    check:
+      kind: structured
+      requires: [test, evidence, revise]
+      concepts: [compare, data, modify]
+      points:
+        - id: test
+          text: 'A model is tested by comparing its prediction with data measured from the real system.'
+          concepts: [compare, data]
+        - id: evidence
+          text: 'When the prediction and the data disagree, the difference is evidence about the model or about the measurement.'
+          concepts: [data]
+        - id: revise
+          text: 'The model is then revised, or replaced, when new data shows that it cannot account for the system.'
+          concepts: [modify]
+    answer_text: 'A model is tested by comparing its prediction with data measured from the real system. When the two disagree, the difference is evidence about the model or about the measurement. If new data shows that the model cannot account for the system, the model is revised or replaced. This is how the Nature of Science works: knowledge is provisional and changes as evidence arrives.'

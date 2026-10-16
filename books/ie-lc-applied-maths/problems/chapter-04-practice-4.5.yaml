@@ -1,0 +1,188 @@
+# Practice set for 4.5 (strand S3, the physical world). The `dimensions` checks
+# prove the arithmetic and the unit together for the acceleration and the
+# tension of each system. The `structured` record proves only that a model
+# answer contains the declared ideas, in order — not that the physics is right.
+chapter: 4
+problems:
+  - id: am4-5-atwood-acceleration
+    section: '4.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Two masses of $4$ kg and $6$ kg hang from the ends of a light string that
+      passes over a smooth pulley. Taking $g = 9.8$ m/s$^2$, calculate the
+      acceleration of the system.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: (m2 - m1) * g / (m1 + m2)
+      values:
+        m1: {value: '4', unit: kg}
+        m2: {value: '6', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '1.96', unit: 'm/s^2'}
+    answer_text: >-
+      The heavier mass falls and the lighter mass rises. The resultant force is
+      $(6 - 4)g = 2 \times 9.8 = 19.6$ N, and the total mass moved is
+      $4 + 6 = 10$ kg. So $a = \dfrac{19.6}{10} = 1.96$ m/s$^2$.
+
+  - id: am4-5-atwood-tension
+    section: '4.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      For the same system, with the $4$ kg mass accelerating upwards at
+      $1.96$ m/s$^2$, calculate the tension in the string.
+    answer_label: Tension
+    check:
+      kind: dimensions
+      expression: m1 * (g + a)
+      values:
+        m1: {value: '4', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        a: {value: '1.96', unit: 'm/s^2'}
+      answer: {value: '47.04', unit: N}
+    answer_text: >-
+      For the $4$ kg mass, the tension acts upwards and the weight downwards.
+      The mass accelerates upwards, so $T - 4g = 4a$. Then
+      $T = 4(9.8 + 1.96) = 4 \times 11.76 = 47.04$ N.
+
+  - id: am4-5-table-acceleration
+    section: '4.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A mass of $3$ kg rests on a smooth horizontal table. It is joined by a
+      light string to a mass of $2$ kg, and a horizontal force of $10$ N pulls
+      the $2$ kg mass away from the table. Calculate the acceleration of the
+      system.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: F / (m1 + m2)
+      values:
+        F: {value: '10', unit: N}
+        m1: {value: '3', unit: kg}
+        m2: {value: '2', unit: kg}
+      answer: {value: '2', unit: 'm/s^2'}
+    answer_text: >-
+      The two masses move together, so the whole mass is $3 + 2 = 5$ kg. The
+      driving force is $10$ N, so $a = \dfrac{10}{5} = 2$ m/s$^2$.
+
+  - id: am4-5-table-tension
+    section: '4.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      For the same system, calculate the tension in the string.
+    answer_label: Tension
+    check:
+      kind: dimensions
+      expression: m1 * a
+      values:
+        m1: {value: '3', unit: kg}
+        a: {value: '2', unit: 'm/s^2'}
+      answer: {value: '6', unit: N}
+    answer_text: >-
+      The $3$ kg mass is pulled by the tension alone, so $T = m_1 a = 3 \times 2
+      = 6$ N. Check with the $2$ kg mass: the $10$ N force and the tension act
+      in opposite directions, so $10 - T = 2 \times 2 = 4$ N, which also gives
+      $T = 6$ N.
+
+  - id: am4-5-car-trailer-acceleration
+    section: '4.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car of mass $1200$ kg tows a trailer of mass $800$ kg on a level road.
+      The driving force is $4000$ N. Calculate the acceleration.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: F / (mc + mt)
+      values:
+        F: {value: '4000', unit: N}
+        mc: {value: '1200', unit: kg}
+        mt: {value: '800', unit: kg}
+      answer: {value: '2', unit: 'm/s^2'}
+    answer_text: >-
+      The car and trailer move together, so the total mass is
+      $1200 + 800 = 2000$ kg. Then $a = \dfrac{4000}{2000} = 2$ m/s$^2$.
+
+  - id: am4-5-tow-bar-tension
+    section: '4.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      For the same car and trailer, calculate the tension in the tow bar.
+    answer_label: Tension
+    check:
+      kind: dimensions
+      expression: mt * a
+      values:
+        mt: {value: '800', unit: kg}
+        a: {value: '2', unit: 'm/s^2'}
+      answer: {value: '1600', unit: N}
+    answer_text: >-
+      The only horizontal force on the trailer is the pull of the tow bar, so
+      $T = m_t a = 800 \times 2 = 1600$ N.
+
+  - id: am4-5-atwood-3-5
+    section: '4.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Masses of $3$ kg and $5$ kg hang from a light string over a smooth
+      pulley. Taking $g = 9.8$ m/s$^2$, calculate the acceleration and the
+      tension.
+    answer_label: Acceleration, then tension
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (m2 - m1) * g / (m1 + m2)
+          values:
+            m1: {value: '3', unit: kg}
+            m2: {value: '5', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '2.45', unit: 'm/s^2'}
+        - kind: dimensions
+          expression: m1 * (g + (m2 - m1) * g / (m1 + m2))
+          values:
+            m1: {value: '3', unit: kg}
+            m2: {value: '5', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '36.75', unit: N}
+    answer_text: >-
+      The resultant force is $(5 - 3)g = 2 \times 9.8 = 19.6$ N, and the total
+      mass is $8$ kg, so $a = \dfrac{19.6}{8} = 2.45$ m/s$^2$. For the $3$ kg
+      mass, $T - 3g = 3a$, so $T = 3(9.8 + 2.45) = 36.75$ N.
+
+  - id: am4-5-light-string-tension
+    section: '4.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Explain why the tension is the same at every point of a light,
+      inextensible string that passes over a smooth pulley.
+    answer_label: Why the tension is the same
+    check:
+      kind: structured
+      requires: [light-string, equal-pulls]
+      concepts: [newton-second]
+      points:
+        - id: light-string
+          text: >-
+            a light string has negligible mass, so the forces at its two ends
+            must be equal or the string would have an unbounded acceleration
+          concepts: [newton-second]
+        - id: equal-pulls
+          text: >-
+            the pull at each end is the tension, so the tension has the same
+            size throughout
+    answer_text: >-
+      A light string has negligible mass. Newton's second law for the string is
+      $F = ma$ with $m$ almost zero, so the resultant force on it must be almost
+      zero. The pull at one end must therefore equal the pull at the other end.
+      Each pull is the tension, so the tension has the same size throughout the
+      string.

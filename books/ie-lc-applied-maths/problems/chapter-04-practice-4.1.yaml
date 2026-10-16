@@ -1,0 +1,178 @@
+# Practice set for 4.1 (strand S3, the physical world). Every answer is a
+# quantity, so the checks come from the `units` oracle: `dimensions` proves the
+# arithmetic *and* the unit together, and `sigfigs` proves a value rounded once
+# to the figures the data support. Units stay out of the CAS fields, as
+# PROBLEMS.md requires. The two `structured` records prove only that a model
+# answer contains the declared ideas, in order — not that the physics is right.
+chapter: 4
+problems:
+  - id: am4-1-weight-8kg
+    section: '4.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A bag has a mass of $8$ kg. Taking $g = 9.8$ m/s$^2$, calculate its weight.
+    answer_label: Weight
+    check:
+      kind: dimensions
+      expression: m * g
+      values:
+        m: {value: '8', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '78.4', unit: N}
+    answer_text: >-
+      $W = mg = 8 \times 9.8 = 78.4$ N.
+
+  - id: am4-1-mass-from-weight
+    section: '4.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A box weighs $24.5$ N. Taking $g = 9.8$ m/s$^2$, calculate its mass.
+    answer_label: Mass
+    check:
+      kind: dimensions
+      expression: W / g
+      values:
+        W: {value: '24.5', unit: N}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '2.5', unit: kg}
+    answer_text: >-
+      Rearrange $W = mg$ to $m = \dfrac{W}{g}$, so
+      $m = \dfrac{24.5}{9.8} = 2.5$ kg.
+
+  - id: am4-1-second-law-acceleration
+    section: '4.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A resultant force of $30$ N acts on a mass of $6$ kg. Calculate the
+      acceleration.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: F / m
+      values:
+        F: {value: '30', unit: N}
+        m: {value: '6', unit: kg}
+      answer: {value: '5', unit: 'm/s^2'}
+    answer_text: >-
+      Newton's second law gives $F = ma$, so $a = \dfrac{F}{m} =
+      \dfrac{30}{6} = 5$ m/s$^2$.
+
+  - id: am4-1-second-law-force
+    section: '4.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A trolley of mass $0.5$ kg accelerates at $4$ m/s$^2$. Calculate the
+      resultant force on it.
+    answer_label: Resultant force
+    check:
+      kind: dimensions
+      expression: m * a
+      values:
+        m: {value: '0.5', unit: kg}
+        a: {value: '4', unit: 'm/s^2'}
+      answer: {value: '2', unit: N}
+    answer_text: >-
+      $F = ma = 0.5 \times 4 = 2$ N.
+
+  - id: am4-1-resultant-two-forces
+    section: '4.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A box is pushed with $12$ N to the right and $4$ N to the left. Write down
+      the resultant force.
+    answer_label: Resultant force
+    check:
+      kind: dimensions
+      expression: F1 - F2
+      values:
+        F1: {value: '12', unit: N}
+        F2: {value: '4', unit: N}
+      answer: {value: '8', unit: N}
+    answer_text: >-
+      The forces point in opposite directions, so subtract the smaller from the
+      larger: $12 - 4 = 8$ N to the right.
+
+  - id: am4-1-weight-sigfigs
+    section: '4.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A small ball has a mass of $0.2$ kg. Taking $g = 9.8$ m/s$^2$, calculate
+      its weight to $2$ significant figures.
+    answer_label: Weight
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g
+          values:
+            m: {value: '0.2', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '1.96', unit: N}
+        - kind: sigfigs
+          value: '1.96'
+          figures: 2
+          answer: '2.0'
+          convention: round-once
+    answer_text: >-
+      $W = mg = 0.2 \times 9.8 = 1.96$ N. Written to $2$ significant figures
+      this is $2.0$ N. The zero is kept, because dropping it would report only
+      one significant figure.
+
+  - id: am4-1-first-law
+    section: '4.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A cyclist travels along a straight road at a constant velocity. Explain
+      what the resultant force on the cyclist is, and why.
+    answer_label: Resultant force and reason
+    check:
+      kind: structured
+      requires: [zero-resultant, steady-velocity]
+      concepts: [newton-first]
+      points:
+        - id: zero-resultant
+          text: the resultant force on the cyclist is zero
+          concepts: [newton-first]
+        - id: steady-velocity
+          text: >-
+            by Newton's first law, a body with no resultant force stays at rest
+            or keeps a constant velocity
+    answer_text: >-
+      The resultant force is zero. Newton's first law says that a body with no
+      resultant force stays at rest or moves with a constant velocity. A
+      constant velocity is exactly what the question describes, so the forward
+      push and the backward resistance must balance.
+
+  - id: am4-1-third-law
+    section: '4.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A swimmer pushes the water backwards. Describe the pair of forces in
+      Newton's third law, and say why the pair does not cancel.
+    answer_label: The force pair
+    check:
+      kind: structured
+      requires: [equal-opposite, two-bodies]
+      concepts: [newton-third]
+      points:
+        - id: equal-opposite
+          text: >-
+            the swimmer pushes the water backwards and the water pushes the
+            swimmer forwards, with equal size and opposite direction
+          concepts: [newton-third]
+        - id: two-bodies
+          text: >-
+            the two forces act on different bodies, so they do not cancel
+    answer_text: >-
+      The swimmer pushes the water backwards, and the water pushes the swimmer
+      forwards. The two forces are equal in size and opposite in direction.
+      They act on two different bodies, the swimmer and the water, so they do
+      not cancel. Only the force on the swimmer moves the swimmer.

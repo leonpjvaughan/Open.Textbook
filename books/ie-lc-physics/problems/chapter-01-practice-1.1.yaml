@@ -1,0 +1,141 @@
+# Leaving Certificate Physics, Chapter 1, section 1.1.
+#
+# This bank covers physical quantities and SI units: prefix conversion, unit-carrying
+# arithmetic, significant figures, dimensional consistency, and the base/derived
+# distinction. The units oracle proves the magnitude *and* the dimension; a rounded
+# answer is never equal to the exact one, so `sigfigs` states the rounding separately.
+#
+# Honest limit: this proves arithmetic and dimensions, not physics. `structured` proves
+# only that a model answer contains its declared steps and concepts, in order — not that
+# the physics in them is right.
+chapter: 1
+problems:
+  - id: p1-1-km
+    section: '1.1'
+    tier: O
+    refs: ['1.1']
+    statement: 'Convert 2.5 km to metres.'
+    answer_label: 'Length in metres'
+    check:
+      kind: convert
+      value: '2.5'
+      from: km
+      to: m
+      answer: '2500'
+    answer_text: '$2.5\,\text{km} = 2.5 \times 1000 = 2500\,\text{m}$. The prefix kilo means $10^3$.'
+  - id: p1-1-mass
+    section: '1.1'
+    tier: O
+    refs: ['1.1']
+    statement: 'Convert 250 g to kilograms.'
+    answer_label: 'Mass in kilograms'
+    check:
+      kind: convert
+      value: '250'
+      from: g
+      to: kg
+      answer: '0.25'
+    answer_text: '$250\,\text{g} = 250 \div 1000 = 0.25\,\text{kg}$. Divide by $10^3$ when moving from a smaller unit to a larger one.'
+  - id: p1-1-volume
+    section: '1.1'
+    tier: O
+    refs: ['1.1']
+    statement: 'Convert 100 cm$^3$ to m$^3$.'
+    answer_label: 'Volume in cubic metres'
+    check:
+      kind: convert
+      value: '100'
+      from: cm^3
+      to: m^3
+      answer: '0.0001'
+    answer_text: '$1\,\text{cm} = 10^{-2}\,\text{m}$, so $1\,\text{cm}^3 = (10^{-2})^3 = 10^{-6}\,\text{m}^3$. Then $100\,\text{cm}^3 = 100 \times 10^{-6} = 0.0001\,\text{m}^3$.'
+  - id: p1-1-time
+    section: '1.1'
+    tier: O
+    refs: ['1.1']
+    statement: 'Convert 3.0 ms to seconds.'
+    answer_label: 'Time in seconds'
+    check:
+      kind: convert
+      value: '3.0'
+      from: ms
+      to: s
+      answer: '0.003'
+    answer_text: '$3.0\,\text{ms} = 3.0 \times 10^{-3} = 0.003\,\text{s}$. The prefix milli means $10^{-3}$.'
+  - id: p1-1-speed
+    section: '1.1'
+    tier: O
+    refs: ['1.1']
+    statement: 'A runner covers 240 m in 12 s. Calculate the average speed.'
+    answer_label: 'Average speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: d / t
+          values:
+            d: {value: '240', unit: m}
+            t: {value: '12', unit: s}
+          answer: {value: '20', unit: m/s}
+        - kind: sigfigs
+          value: '20'
+          figures: 2
+          answer: '2.0e1'
+          convention: round-once
+    answer_text: '$v = \dfrac{d}{t} = \dfrac{240}{12} = 20\,\text{m/s}$. The data give two significant figures, so write $2.0 \times 10^{1}\,\text{m/s}$ to show them.'
+  - id: p1-1-density
+    section: '1.1'
+    tier: O
+    refs: ['1.1']
+    statement: 'A block has a mass of 0.54 kg and a volume of 0.00020 m$^3$. Calculate its density.'
+    answer_label: 'Density'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m / V
+          values:
+            m: {value: '0.54', unit: kg}
+            V: {value: '0.00020', unit: m^3}
+          answer: {value: '2700', unit: kg/m^3}
+        - kind: sigfigs
+          value: '2700'
+          figures: 2
+          answer: '2.7e3'
+          convention: round-once
+    answer_text: '$\rho = \dfrac{m}{V} = \dfrac{0.54}{0.00020} = 2700\,\text{kg/m}^3$. Both readings carry two significant figures, so write $2.7 \times 10^{3}\,\text{kg/m}^3$.'
+  - id: p1-1-newton
+    section: '1.1'
+    tier: O
+    refs: ['1.1']
+    statement: 'The equation $F = ma$ relates force, mass and acceleration. Show that the unit of force, the newton, is the same as kg m/s$^2$.'
+    answer_label: 'The newton in base units'
+    check:
+      kind: dimensions
+      consistency: 'F = m * a'
+      units:
+        F: N
+        m: kg
+        a: m/s^2
+    answer_text: 'The newton is a derived unit, so it is built from base units. From $F = ma$, one newton is one kilogram metre per second squared: $1\,\text{N} = 1\,\text{kg}\,\text{m/s}^2$.'
+  - id: p1-1-base-derived
+    section: '1.1'
+    tier: O
+    refs: ['1.1']
+    statement: 'Explain the difference between a base unit and a derived unit, and give one example of each.'
+    answer_label: 'Base and derived units'
+    check:
+      kind: structured
+      requires: [base, derived, example]
+      concepts: [fundamental, built-from-base, combination]
+      points:
+        - id: base
+          text: 'A base unit is one of the seven units the SI system is built from, such as the metre, the kilogram or the second.'
+          concepts: [fundamental]
+        - id: derived
+          text: 'A derived unit is built from base units by multiplication or division, such as the newton or the joule.'
+          concepts: [built-from-base, combination]
+        - id: example
+          text: 'For example, the newton is 1 kg m/s^2, and the joule is 1 kg m^2/s^2.'
+          concepts: [combination]
+    answer_text: 'A base unit is one of the seven units the SI system is built from, such as the metre, the kilogram or the second. A derived unit is built from base units by multiplication or division. The newton is a derived unit, equal to 1 kg m/s^2.'

@@ -1,0 +1,197 @@
+# Practice set for 4.6 (strand S3, the physical world). The `dimensions` checks
+# prove the arithmetic and the unit together for the acceleration and the
+# tension of each pulley system. The `structured` record proves only that a
+# model answer contains the declared ideas, in order — not that the physics is
+# right.
+chapter: 4
+problems:
+  - id: am4-6-table-hanging-acceleration
+    section: '4.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A mass of $5$ kg rests on a smooth horizontal table. A light string from
+      the mass passes over a smooth pulley at the table edge and carries a
+      hanging mass of $3$ kg. Taking $g = 9.8$ m/s$^2$, calculate the
+      acceleration of the system.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: m2 * g / (m1 + m2)
+      values:
+        m1: {value: '5', unit: kg}
+        m2: {value: '3', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '3.675', unit: 'm/s^2'}
+    answer_text: >-
+      The hanging mass drives the system. The driving force is $m_2 g = 3 \times
+      9.8 = 29.4$ N, and the total mass moved is $5 + 3 = 8$ kg. So
+      $a = \dfrac{29.4}{8} = 3.675$ m/s$^2$.
+
+  - id: am4-6-table-hanging-tension
+    section: '4.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      For the same system, calculate the tension in the string.
+    answer_label: Tension
+    check:
+      kind: dimensions
+      expression: m1 * a
+      values:
+        m1: {value: '5', unit: kg}
+        a: {value: '3.675', unit: 'm/s^2'}
+      answer: {value: '18.375', unit: N}
+    answer_text: >-
+      On the table the only horizontal force is the tension, so
+      $T = m_1 a = 5 \times 3.675 = 18.375$ N.
+
+  - id: am4-6-chapter-acceleration
+    section: '4.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A crate of mass $20$ kg rests on a smooth plane inclined at $30^\circ$ to
+      the horizontal. A light string from the crate runs up the plane, over a
+      smooth pulley at the top, and carries a hanging mass of $15$ kg. Taking
+      $g = 9.8$ m/s$^2$, calculate the acceleration of the system.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: (m2 * g - m1 * g / 2) / (m1 + m2)
+      values:
+        m1: {value: '20', unit: kg}
+        m2: {value: '15', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '1.4', unit: 'm/s^2'}
+    answer_text: >-
+      The hanging weight is $15 \times 9.8 = 147$ N. The component of the
+      crate's weight down the plane is $20 \times 9.8 \times 0.5 = 98$ N. The
+      hanging weight is larger, so the crate accelerates up the plane. The
+      resultant is $147 - 98 = 49$ N, and the total mass moved is $35$ kg. So
+      $a = \dfrac{49}{35} = 1.4$ m/s$^2$.
+
+  - id: am4-6-chapter-tension
+    section: '4.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      For the same crate and hanging mass, calculate the tension in the string.
+    answer_label: Tension
+    check:
+      kind: dimensions
+      expression: m2 * (g - a)
+      values:
+        m2: {value: '15', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        a: {value: '1.4', unit: 'm/s^2'}
+      answer: {value: '126', unit: N}
+    answer_text: >-
+      For the hanging mass the tension acts upwards and the weight downwards,
+      and the mass accelerates downwards. So $m_2 g - T = m_2 a$, giving
+      $T = 15(9.8 - 1.4) = 15 \times 8.4 = 126$ N. Check with the crate:
+      $T - 98 = 20 \times 1.4 = 28$, so $T = 126$ N.
+
+  - id: am4-6-equilibrium-hanging-mass
+    section: '4.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A crate of mass $20$ kg rests on a smooth plane inclined at $30^\circ$ to
+      the horizontal. A light string runs from the crate, up the plane and over
+      a smooth pulley, and carries a hanging mass that keeps the crate in
+      equilibrium. Calculate the hanging mass.
+    answer_label: Hanging mass
+    check:
+      kind: dimensions
+      expression: m1 / 2
+      values:
+        m1: {value: '20', unit: kg}
+      answer: {value: '10', unit: kg}
+    answer_text: >-
+      In equilibrium the hanging weight equals the component of the crate's
+      weight down the plane. So $m g = 20 g \sin 30^\circ = 20 g \times 0.5$.
+      The $g$ cancels, giving $m = 10$ kg.
+
+  - id: am4-6-table-hanging-4-6
+    section: '4.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A mass of $4$ kg rests on a smooth horizontal table. A string from it
+      passes over a smooth pulley and carries a hanging mass of $6$ kg. Taking
+      $g = 9.8$ m/s$^2$, calculate the acceleration and the tension.
+    answer_label: Acceleration, then tension
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m2 * g / (m1 + m2)
+          values:
+            m1: {value: '4', unit: kg}
+            m2: {value: '6', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '5.88', unit: 'm/s^2'}
+        - kind: dimensions
+          expression: m1 * m2 * g / (m1 + m2)
+          values:
+            m1: {value: '4', unit: kg}
+            m2: {value: '6', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '23.52', unit: N}
+    answer_text: >-
+      The driving force is $6 \times 9.8 = 58.8$ N and the total mass is
+      $10$ kg, so $a = \dfrac{58.8}{10} = 5.88$ m/s$^2$. The tension is
+      $T = m_1 a = 4 \times 5.88 = 23.52$ N.
+
+  - id: am4-6-slope-hanging-4-4
+    section: '4.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A mass of $4$ kg rests on a smooth plane inclined at $30^\circ$ to the
+      horizontal. A string from it runs up the plane, over a smooth pulley, and
+      carries a hanging mass of $4$ kg. Taking $g = 9.8$ m/s$^2$, calculate the
+      acceleration of the system.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: (m2 * g - m1 * g / 2) / (m1 + m2)
+      values:
+        m1: {value: '4', unit: kg}
+        m2: {value: '4', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '2.45', unit: 'm/s^2'}
+    answer_text: >-
+      The hanging weight is $4 \times 9.8 = 39.2$ N. The component of the
+      weight of the mass on the plane down the plane is $4 \times 9.8 \times
+      0.5 = 19.6$ N. The resultant is $39.2 - 19.6 = 19.6$ N, and the total
+      mass is $8$ kg, so $a = \dfrac{19.6}{8} = 2.45$ m/s$^2$.
+
+  - id: am4-6-smooth-pulley
+    section: '4.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Describe what a smooth pulley does to the string that passes over it, and
+      what this means for the tension.
+    answer_label: The effect of a smooth pulley
+    check:
+      kind: structured
+      requires: [changes-direction, same-tension]
+      concepts: [smooth-pulley]
+      points:
+        - id: changes-direction
+          text: >-
+            a pulley changes the direction of the string without changing the
+            size of the tension in it
+          concepts: [smooth-pulley]
+        - id: same-tension
+          text: >-
+            a smooth pulley has no friction, so the tension is the same on both
+            sides of the pulley
+    answer_text: >-
+      A pulley changes the direction of the string. Because the pulley is
+      smooth, it exerts no friction on the string, so the tension is the same on
+      both sides. This lets the string pull the table mass horizontally and the
+      hanging mass vertically with the same tension.

@@ -1,0 +1,168 @@
+# Junior Cycle Mathematics, Chapter 1, section 1.4.
+#
+# The order of operations and brackets. Every check is an arithmetic identity the
+# CAS proves, and the CAS parses the expression with the same precedence the
+# reader is taught, so a wrong order gives a different number and the check fails.
+chapter: 1
+symbols: {}
+
+problems:
+- id: jc1-1.4-order-1
+  section: '1.4'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $3 + 2 \times 4$.
+  answer_label: Work out $3 + 2 \times 4$.
+  check:
+    kind: evaluate
+    expression: '3 + 2 * 4'
+    answer: '11'
+  answer_text: >-
+    $11$. Multiplication happens before addition, so $2 \times 4 = 8$ first. Then
+    $3 + 8 = 11$. Adding first would give 20, which is wrong.
+- id: jc1-1.4-bracket-1
+  section: '1.4'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $(3 + 2) \times 4$.
+  answer_label: Work out $(3 + 2) \times 4$.
+  check:
+    kind: evaluate
+    expression: '(3 + 2) * 4'
+    answer: '20'
+  answer_text: >-
+    $20$. The brackets go first: $3 + 2 = 5$, and then $5 \times 4 = 20$. Compare
+    this with the previous question, where the same numbers without brackets gave
+    11.
+- id: jc1-1.4-order-2
+  section: '1.4'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $20 - 3 \times 4$.
+  answer_label: Work out $20 - 3 \times 4$.
+  check:
+    kind: evaluate
+    expression: '20 - 3 * 4'
+    answer: '8'
+  answer_text: >-
+    $8$. Multiply first: $3 \times 4 = 12$. Then $20 - 12 = 8$.
+- id: jc1-1.4-index-1
+  section: '1.4'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $2 + 3^2$.
+  answer_label: Work out $2 + 3^2$.
+  check:
+    kind: evaluate
+    expression: '2 + 3**2'
+    answer: '11'
+  answer_text: >-
+    $11$. The index goes before the addition: $3^2 = 9$, and then $2 + 9 = 11$.
+- id: jc1-1.4-index-2
+  section: '1.4'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $(2 + 3)^2$.
+  answer_label: Work out $(2 + 3)^2$.
+  check:
+    kind: evaluate
+    expression: '(2 + 3)**2'
+    answer: '25'
+  answer_text: >-
+    $25$. The brackets go first: $2 + 3 = 5$, and then $5^2 = 25$. The index
+    applies to the whole bracket, not to the 3 alone.
+- id: jc1-1.4-order-3
+  section: '1.4'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $12 \div 3 + 2 \times 5$.
+  answer_label: Work out $12 \div 3 + 2 \times 5$.
+  check:
+    kind: evaluate
+    expression: '12 / 3 + 2 * 5'
+    answer: '14'
+  answer_text: >-
+    $14$. Division and multiplication both come before addition:
+    $12 \div 3 = 4$ and $2 \times 5 = 10$. Then $4 + 10 = 14$.
+- id: jc1-1.4-order-4
+  section: '1.4'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $12 \div 3 \times 2$.
+  answer_label: Work out $12 \div 3 \times 2$.
+  check:
+    kind: evaluate
+    expression: '12 / 3 * 2'
+    answer: '8'
+  answer_text: >-
+    $8$. Division and multiplication are equally strong, so work from left to
+    right: $12 \div 3 = 4$, and then $4 \times 2 = 8$. Doing the multiplication
+    first would give 2, which is wrong.
+- id: jc1-1.4-bracket-2
+  section: '1.4'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $100 - (4 + 6) \times 5$.
+  answer_label: Work out $100 - (4 + 6) \times 5$.
+  check:
+    kind: evaluate
+    expression: '100 - (4 + 6) * 5'
+    answer: '50'
+  answer_text: >-
+    $50$. Brackets first: $4 + 6 = 10$. Then the multiplication: $10 \times 5 = 50$.
+    Finally the subtraction: $100 - 50 = 50$.
+- id: jc1-1.4-bracket-3
+  section: '1.4'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $2 \times (3 + 4 \times 2)$.
+  answer_label: Work out $2 \times (3 + 4 \times 2)$.
+  check:
+    kind: evaluate
+    expression: '2 * (3 + 4 * 2)'
+    answer: '22'
+  answer_text: >-
+    $22$. Inside the bracket, multiplication goes first: $4 \times 2 = 8$. Then
+    $3 + 8 = 11$. Finally $2 \times 11 = 22$.
+- id: jc1-1.4-fraction-1
+  section: '1.4'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $\frac{8 + 4}{2 + 4}$.
+  answer_label: Work out the fraction.
+  check:
+    kind: evaluate
+    expression: '(8 + 4) / (2 + 4)'
+    answer: '2'
+  answer_text: >-
+    $2$. A fraction bar is a bracket for the top and a bracket for the bottom.
+    The top is $8 + 4 = 12$ and the bottom is $2 + 4 = 6$. Then $12 \div 6 = 2$.
+- id: jc1-1.4-anchor-1
+  section: '1.4'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    Write the total cost of the trip as one calculation and work it out: the bus
+    at 480 euros, the centre at 14 euros each for 35 people, and lunch at 6.50
+    euros each for 35 people.
+  answer_label: Work out the total cost of the trip.
+  check:
+    kind: evaluate
+    expression: '480 + 35 * 14 + 35 * 6.5'
+    answer: '1197.5'
+  answer_text: >-
+    1197.50 euros. The two multiplications go first:
+    $35 \times 14 = 490$ and $35 \times 6.5 = 227.5$. Then
+    $480 + 490 + 227.5 = 1197.5$. Addition and subtraction are equally strong, so
+    you work from left to right.

@@ -1,0 +1,132 @@
+# Leaving Certificate Physics, Chapter 1, section 1.2.
+#
+# This bank covers measurement: the reading uncertainty of an instrument, percentage
+# uncertainty, the two combining rules, and the uncertainty in a mean. The units
+# oracle proves the *band* under a named convention, never a single number, because
+# the convention is the claim.
+#
+# Honest limit: this proves arithmetic against the declared convention, not the
+# board's mark scheme. `structured` proves only that a model answer contains its
+# declared steps and concepts, in order.
+chapter: 1
+problems:
+  - id: p1-2-reading
+    section: '1.2'
+    tier: O
+    refs: ['1.1']
+    statement: 'A metre stick is marked in millimetres. State the reading uncertainty of a single reading from it, in metres.'
+    answer_label: 'Reading uncertainty'
+    check:
+      kind: dimensions
+      expression: d / 2
+      values:
+        d: {value: '0.001', unit: m}
+      answer: {value: '0.0005', unit: m}
+    answer_text: 'The smallest division is $1\,\text{mm} = 0.001\,\text{m}$. The reading uncertainty is half of the smallest division: $\pm 0.0005\,\text{m}$, which is $\pm 0.5\,\text{mm}$.'
+  - id: p1-2-percentage
+    section: '1.2'
+    tier: O
+    refs: ['1.1']
+    statement: 'An extension is measured as 0.040 m, with a reading uncertainty of $\pm 0.001$ m. Calculate the percentage uncertainty in the extension.'
+    answer_label: 'Percentage uncertainty'
+    check:
+      kind: evaluate
+      expression: (0.001 / 0.040) * 100
+      answer: '2.5'
+    answer_text: '$\text{percentage uncertainty} = \dfrac{0.001}{0.040} \times 100\% = 2.5\%$. So the extension is $0.040\,\text{m} \pm 2.5\%$.'
+  - id: p1-2-total
+    section: '1.2'
+    tier: O
+    refs: ['1.1']
+    statement: 'Two lengths are added: 0.120 m $\pm$ 0.001 m and 0.080 m $\pm$ 0.001 m. Find the total length and its absolute uncertainty.'
+    answer_label: 'Total length and its uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-absolutes
+      terms:
+        - {value: '0.120', absolute: '0.001'}
+        - {value: '0.080', absolute: '0.001'}
+      result: '0.200'
+      uncertainty: '0.002'
+    answer_text: 'When lengths are added, the absolute uncertainties add. The total is $0.120 + 0.080 = 0.200\,\text{m}$, with an uncertainty of $0.001 + 0.001 = 0.002\,\text{m}$. So the total is $0.200\,\text{m} \pm 0.002\,\text{m}$.'
+  - id: p1-2-work
+    section: '1.2'
+    tier: O
+    refs: ['1.1']
+    statement: 'A force of 12.0 N $\pm$ 3% moves an object 0.50 m $\pm$ 2%. Calculate the work done and its absolute uncertainty.'
+    answer_label: 'Work done and its uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: '12.0', percentage: '3'}
+        - {value: '0.50', percentage: '2'}
+      result: '6.0'
+      uncertainty: '0.30'
+    answer_text: 'The work is $W = Fd = 12.0 \times 0.50 = 6.0\,\text{J}$. The percentage uncertainties add: $3\% + 2\% = 5\%$. The absolute uncertainty is $5\%$ of $6.0\,\text{J}$, which is $0.30\,\text{J}$. So $W = 6.0\,\text{J} \pm 0.30\,\text{J}$.'
+  - id: p1-2-mean
+    section: '1.2'
+    tier: O
+    refs: ['1.1']
+    statement: 'A ball is timed four times as it falls. The readings are 0.46 s, 0.44 s, 0.48 s and 0.46 s. Calculate the mean and the uncertainty as half the range.'
+    answer_label: 'Mean time and its uncertainty'
+    check:
+      kind: uncertainty
+      mean_of: ['0.46', '0.44', '0.48', '0.46']
+      convention: half-range
+      answer: '0.46'
+      uncertainty: '0.02'
+    answer_text: 'The mean is $\dfrac{0.46 + 0.44 + 0.48 + 0.46}{4} = 0.46\,\text{s}$. The range is $0.48 - 0.44 = 0.04\,\text{s}$, so the uncertainty is half of that: $0.02\,\text{s}$. The result is $0.46\,\text{s} \pm 0.02\,\text{s}$.'
+  - id: p1-2-reaction
+    section: '1.2'
+    tier: O
+    refs: ['1.1']
+    statement: 'A student times a ball fall with a stopwatch. The reaction time is about 0.20 s and the fall takes 0.40 s. Calculate the percentage uncertainty in the time that the reaction time causes.'
+    answer_label: 'Percentage uncertainty from reaction time'
+    check:
+      kind: evaluate
+      expression: (0.20 / 0.40) * 100
+      answer: '50'
+    answer_text: '$\dfrac{0.20}{0.40} \times 100\% = 50\%$. The reaction time is half the fall time, so this measurement is not precise enough to test the model well.'
+  - id: p1-2-random-systematic
+    section: '1.2'
+    tier: O
+    refs: ['1.1']
+    statement: 'Explain the difference between a random error and a systematic error, and give one example of each.'
+    answer_label: 'Random and systematic error'
+    check:
+      kind: structured
+      requires: [random, systematic, example]
+      concepts: [scatter, offset, mean]
+      points:
+        - id: random
+          text: 'A random error scatters readings above and below the true value, so a mean of repeats reduces it.'
+          concepts: [scatter, mean]
+        - id: systematic
+          text: 'A systematic error pushes every reading the same way, so even the mean is wrong.'
+          concepts: [offset]
+        - id: example
+          text: 'A stopwatch started late every time is a systematic error; a reading that varies with the angle of the eye is a random error.'
+          concepts: [scatter, offset]
+    answer_text: 'A random error scatters readings above and below the true value, so repeating the measurement and taking a mean reduces it. A systematic error pushes every reading the same way, so the mean is wrong too. A stopwatch started late every time is systematic; a reading that changes with the angle of the eye is random.'
+  - id: p1-2-precise
+    section: '1.2'
+    tier: O
+    refs: ['1.1']
+    statement: 'A student measures a length five times and gets 0.251 m, 0.252 m, 0.250 m, 0.251 m and 0.251 m. The true length is 0.262 m. Say whether the readings are precise, accurate, or both, and explain what the student should do.'
+    answer_label: 'Precision and accuracy'
+    check:
+      kind: structured
+      requires: [precise, accurate, conclusion]
+      concepts: [close-together, true-value, systematic]
+      points:
+        - id: precise
+          text: 'The readings are precise, because they sit close together and agree with one another.'
+          concepts: [close-together]
+        - id: accurate
+          text: 'They are not accurate, because every reading is about 0.011 m below the true value.'
+          concepts: [true-value]
+        - id: conclusion
+          text: 'The error is systematic, so the student should look for a zero error or a fault in the instrument.'
+          concepts: [systematic]
+    answer_text: 'The readings are precise, because they sit close together. They are not accurate, because every reading is about 0.011 m below the true value. The pattern points to a systematic error, so the student should check the instrument for a zero error.'

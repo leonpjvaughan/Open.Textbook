@@ -1,0 +1,170 @@
+# Practice set for 4.2 (strand S3, the physical world). The `dimensions` checks
+# prove the arithmetic and the unit of each resultant, and the `resolve` checks
+# prove a resolved pair of components against a declared tolerance. The
+# `structured` record proves only that a model answer contains the declared
+# ideas, in order — not that the physics is right.
+chapter: 4
+problems:
+  - id: am4-2-perpendicular-3-4
+    section: '4.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Two forces of $3$ N and $4$ N act at right angles to each other. Calculate
+      the size of the resultant force.
+    answer_label: Resultant force
+    check:
+      kind: dimensions
+      expression: sqrt(F1**2 + F2**2)
+      values:
+        F1: {value: '3', unit: N}
+        F2: {value: '4', unit: N}
+      answer: {value: '5', unit: N}
+    answer_text: >-
+      Forces at right angles add like the sides of a right-angled triangle, so
+      $R = \sqrt{3^2 + 4^2} = \sqrt{25} = 5$ N.
+
+  - id: am4-2-perpendicular-6-8
+    section: '4.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Two forces of $6$ N and $8$ N act at right angles. Calculate the size of
+      the resultant force.
+    answer_label: Resultant force
+    check:
+      kind: dimensions
+      expression: sqrt(F1**2 + F2**2)
+      values:
+        F1: {value: '6', unit: N}
+        F2: {value: '8', unit: N}
+      answer: {value: '10', unit: N}
+    answer_text: >-
+      $R = \sqrt{6^2 + 8^2} = \sqrt{100} = 10$ N.
+
+  - id: am4-2-opposite-forces
+    section: '4.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Two forces of $12$ N and $5$ N act along the same line but in opposite
+      directions. Write down the resultant force.
+    answer_label: Resultant force
+    check:
+      kind: dimensions
+      expression: F1 - F2
+      values:
+        F1: {value: '12', unit: N}
+        F2: {value: '5', unit: N}
+      answer: {value: '7', unit: N}
+    answer_text: >-
+      Opposite forces subtract: $12 - 5 = 7$ N, in the direction of the larger
+      force.
+
+  - id: am4-2-equilibrium-third-force
+    section: '4.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Two forces of $9$ N and $4$ N act on a particle in the same direction. A
+      third force keeps the particle in equilibrium. Write down the size of the
+      third force.
+    answer_label: Third force
+    check:
+      kind: dimensions
+      expression: F1 + F2
+      values:
+        F1: {value: '9', unit: N}
+        F2: {value: '4', unit: N}
+      answer: {value: '13', unit: N}
+    answer_text: >-
+      The two given forces add to $9 + 4 = 13$ N. In equilibrium the resultant
+      is zero, so the third force must be $13$ N in the opposite direction.
+
+  - id: am4-2-components-20-30
+    section: '4.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A force of $20$ N acts at $30^\circ$ above the horizontal. Resolve it into
+      a horizontal component and a vertical component, each to $3$ significant
+      figures.
+    answer_label: Horizontal and vertical components
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: '20'
+      angle_deg: '30'
+      components: {x: '17.32', y: '10'}
+      tolerance: '0.01'
+    answer_text: >-
+      The horizontal component is $20\cos 30^\circ = 17.32$ N. The vertical
+      component is $20\sin 30^\circ = 10$ N. The two components are at right
+      angles, and they have the same effect as the single $20$ N force.
+
+  - id: am4-2-direction-3-4
+    section: '4.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A force of $3$ N acts east and a force of $4$ N acts north. Calculate the
+      size of the resultant and its direction from east, to $3$ significant
+      figures.
+    answer_label: Resultant size and direction
+    check:
+      kind: resolve
+      relation: magnitude-and-angle-from-components
+      components: {x: '3', y: '4'}
+      magnitude: '5'
+      angle_deg: '53.13'
+      tolerance: '0.01'
+    answer_text: >-
+      The size is $R = \sqrt{3^2 + 4^2} = 5$ N. The angle from east is
+      $\tan\theta = \dfrac{4}{3}$, so $\theta = 53.13^\circ$ north of east.
+
+  - id: am4-2-equilibrium-7-24
+    section: '4.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Two forces of $7$ N and $24$ N act at right angles on a particle. A third
+      force keeps the particle in equilibrium. Calculate the size of the third
+      force.
+    answer_label: Third force
+    check:
+      kind: dimensions
+      expression: sqrt(F1**2 + F2**2)
+      values:
+        F1: {value: '7', unit: N}
+        F2: {value: '24', unit: N}
+      answer: {value: '25', unit: N}
+    answer_text: >-
+      The two given forces have resultant $\sqrt{7^2 + 24^2} = \sqrt{625} =
+      25$ N. For equilibrium the third force must be equal and opposite to this
+      resultant, so its size is $25$ N.
+
+  - id: am4-2-equilibrium-condition
+    section: '4.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      State the condition for a particle to be in equilibrium, and explain what
+      this means for the acceleration of the particle.
+    answer_label: Equilibrium condition
+    check:
+      kind: structured
+      requires: [zero-resultant, zero-acceleration]
+      concepts: [equilibrium]
+      points:
+        - id: zero-resultant
+          text: the resultant force on the particle is zero
+          concepts: [equilibrium]
+        - id: zero-acceleration
+          text: >-
+            by Newton's second law the acceleration is also zero, so the
+            particle stays at rest or keeps a constant velocity
+    answer_text: >-
+      A particle is in equilibrium when the resultant force on it is zero.
+      Newton's second law then gives $a = \dfrac{F}{m} = 0$, so the
+      acceleration is zero. The particle stays at rest or keeps a constant
+      velocity.

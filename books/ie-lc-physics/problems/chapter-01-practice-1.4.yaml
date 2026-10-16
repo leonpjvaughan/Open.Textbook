@@ -1,0 +1,130 @@
+# Leaving Certificate Physics, Chapter 1, section 1.4.
+#
+# This bank covers planning and evaluating an investigation: variables, repeats, the
+# mean and its uncertainty, percentage uncertainty, anomalous readings, and the design
+# choices that make a test fair. `structured` carries the planning and evaluation
+# answers, because those are explanations rather than quantities.
+#
+# Honest limit: this proves arithmetic against the declared convention, and the
+# presence and order of a model answer's steps. It does not judge the plan.
+chapter: 1
+problems:
+  - id: p1-4-variables
+    section: '1.4'
+    tier: O
+    refs: ['1.6']
+    statement: 'A student investigates how the time for a ball to fall depends on the height it is dropped from. State the independent variable, the dependent variable and one control variable.'
+    answer_label: 'The variables'
+    check:
+      kind: structured
+      requires: [independent, dependent, control]
+      concepts: [changed, measured, kept-same]
+      points:
+        - id: independent
+          text: 'The independent variable is the drop height, because that is the variable the student changes.'
+          concepts: [changed]
+        - id: dependent
+          text: 'The dependent variable is the drop time, because that is what the student measures.'
+          concepts: [measured]
+        - id: control
+          text: 'A control variable is the mass of the ball, which must be kept the same in every trial.'
+          concepts: [kept-same]
+    answer_text: 'The independent variable is the drop height, because the student changes it. The dependent variable is the drop time, because that is what is measured. A control variable is the mass of the ball, which is kept the same in every trial so that it cannot affect the result.'
+  - id: p1-4-mean
+    section: '1.4'
+    tier: O
+    refs: ['1.6']
+    statement: 'A ball takes 0.45 s, 0.47 s, 0.44 s, 0.46 s and 0.48 s to fall from the same height. Calculate the mean time.'
+    answer_label: 'Mean time'
+    check:
+      kind: evaluate
+      expression: (0.45 + 0.47 + 0.44 + 0.46 + 0.48) / 5
+      answer: '0.46'
+    answer_text: '$\text{mean} = \dfrac{0.45 + 0.47 + 0.44 + 0.46 + 0.48}{5} = \dfrac{2.30}{5} = 0.46\,\text{s}$. A mean of several repeats is a better estimate than any single reading.'
+  - id: p1-4-halfrange
+    section: '1.4'
+    tier: O
+    refs: ['1.6']
+    statement: 'Four timings of a ball fall are 0.62 s, 0.66 s, 0.60 s and 0.64 s. Calculate the mean and the uncertainty as half the range.'
+    answer_label: 'Mean and uncertainty'
+    check:
+      kind: uncertainty
+      mean_of: ['0.62', '0.66', '0.60', '0.64']
+      convention: half-range
+      answer: '0.63'
+      uncertainty: '0.03'
+    answer_text: 'The mean is $\dfrac{0.62 + 0.66 + 0.60 + 0.64}{4} = 0.63\,\text{s}$. The range is $0.66 - 0.60 = 0.06\,\text{s}$, so the uncertainty is half of that: $0.03\,\text{s}$. The result is $0.63\,\text{s} \pm 0.03\,\text{s}$.'
+  - id: p1-4-percentage
+    section: '1.4'
+    tier: O
+    refs: ['1.6']
+    statement: 'A force is measured as 4.0 N, with an uncertainty of $\pm 0.1$ N. Calculate the percentage uncertainty in the force.'
+    answer_label: 'Percentage uncertainty in the force'
+    check:
+      kind: evaluate
+      expression: (0.1 / 4.0) * 100
+      answer: '2.5'
+    answer_text: '$\text{percentage uncertainty} = \dfrac{0.1}{4.0} \times 100\% = 2.5\%$. Reporting the uncertainty as a percentage shows how much it matters.'
+  - id: p1-4-anomaly
+    section: '1.4'
+    tier: O
+    refs: ['1.6']
+    statement: 'A student records the time for ten swings as 14.2 s, 14.3 s, 14.2 s, 18.9 s and 14.3 s. Identify the anomalous reading and say what the student should do about it.'
+    answer_label: 'The anomalous reading'
+    check:
+      kind: structured
+      requires: [identify, action, reason]
+      concepts: [far-from-others, repeat, mistake]
+      points:
+        - id: identify
+          text: 'The reading of 18.9 s is anomalous, because it is far from the other four readings.'
+          concepts: [far-from-others]
+        - id: action
+          text: 'The student should repeat that trial and check for a mistake in starting or stopping the timer.'
+          concepts: [repeat, mistake]
+        - id: reason
+          text: 'An anomalous reading is left out of the mean only when there is a reason to think it is wrong.'
+          concepts: [mistake]
+    answer_text: 'The reading of 18.9 s is anomalous, because it is far from the other four readings. The student should repeat that trial and check for a mistake in starting or stopping the timer. An anomalous reading is left out of the mean only when there is a reason to think it is wrong, and that reason is recorded.'
+  - id: p1-4-repeats
+    section: '1.4'
+    tier: O
+    refs: ['1.6']
+    statement: 'Explain why a student repeats a measurement and takes the mean of the readings.'
+    answer_label: 'Why repeat a measurement'
+    check:
+      kind: structured
+      requires: [random, mean, reliability]
+      concepts: [scatter, average, reliable]
+      points:
+        - id: random
+          text: 'Repeating reduces the effect of random errors, which scatter readings above and below the true value.'
+          concepts: [scatter]
+        - id: mean
+          text: 'The mean of several readings is a better estimate than any single reading.'
+          concepts: [average]
+        - id: reliability
+          text: 'Repeated readings that agree with one another show that the result is reliable.'
+          concepts: [reliable]
+    answer_text: 'Repeating a measurement reduces the effect of random errors, which scatter the readings above and below the true value. The mean of several readings is a better estimate than any single reading. Repeated readings that agree also show that the result is reliable.'
+  - id: p1-4-speed
+    section: '1.4'
+    tier: O
+    refs: ['1.6']
+    statement: 'A ball falls 1.20 m in 0.50 s. Calculate its average speed.'
+    answer_label: 'Average speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: d / t
+          values:
+            d: {value: '1.20', unit: m}
+            t: {value: '0.50', unit: s}
+          answer: {value: '2.4', unit: m/s}
+        - kind: sigfigs
+          value: '2.4'
+          figures: 2
+          answer: '2.4'
+          convention: round-once
+    answer_text: '$v = \dfrac{d}{t} = \dfrac{1.20}{0.50} = 2.4\,\text{m/s}$. Both readings carry two significant figures, so the answer does too.'

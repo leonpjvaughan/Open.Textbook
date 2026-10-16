@@ -1,0 +1,284 @@
+# Leaving Certificate Physics, Chapter 17, section 17.1 (strand 4 outcome 4.1).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 17
+problems:
+- id: p17-1-maltese
+  section: '17.1'
+  tier: O
+  refs:
+  - '4.1'
+  statement: Describe the Maltese cross experiment with a discharge tube, and state what it shows about
+    cathode rays.
+  answer_label: What the Maltese cross shows
+  check:
+    kind: structured
+    requires:
+    - arrangement
+    - observation
+    - conclusion
+    concepts:
+    - straight-lines
+    - shadow
+    - from-cathode
+    points:
+    - id: arrangement
+      text: a metal cross is placed in the path of the rays inside the tube, with a fluorescent screen at
+        the end
+      concepts:
+      - straight-lines
+    - id: observation
+      text: a sharp shadow of the cross appears on the screen, with the same shape as the cross
+      concepts:
+      - shadow
+    - id: conclusion
+      text: the rays travel in straight lines from the cathode, so the cross blocks them and casts a shadow
+      concepts:
+      - straight-lines
+      - from-cathode
+  answer_text: A metal cross sits in the tube in front of the cathode, and the end of the tube carries a
+    fluorescent screen. A sharp shadow of the cross appears on the screen. The rays travel in straight
+    lines from the cathode, so the cross blocks them and casts a shadow with its own shape.
+- id: p17-1-deflection
+  section: '17.1'
+  tier: O
+  refs:
+  - '4.1'
+  statement: A beam of cathode rays passes between two charged plates. State which plate the beam moves
+    towards, and explain how this shows that the rays are negatively charged.
+  answer_label: The direction of deflection
+  check:
+    kind: structured
+    requires:
+    - direction
+    - force
+    - conclusion
+    concepts:
+    - negative-charge
+    - opposite-to-field
+    points:
+    - id: direction
+      text: the beam moves towards the positive plate and away from the negative plate
+      concepts:
+      - negative-charge
+    - id: force
+      text: the electric force on a charge points along the field, and the field runs from the positive
+        plate to the negative plate
+      concepts:
+      - opposite-to-field
+    - id: conclusion
+      text: the beam moves opposite to the field, so the charge it carries is negative
+      concepts:
+      - negative-charge
+  answer_text: The beam moves towards the positive plate. An electric field runs from the positive plate
+    to the negative plate. A positive charge would be pushed along the field and would move to the
+    negative plate. The rays move the other way, so they carry a negative charge.
+- id: p17-1-force
+  section: '17.1'
+  tier: O
+  refs:
+  - '4.1'
+  statement: An electron sits in a uniform electric field of strength $4.0 \times 10^4$ N/C. Calculate
+    the electric force on it.
+  answer_label: Electric force
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: e * E
+      values:
+        e:
+          value: '1.6e-19'
+          unit: C
+        E:
+          value: '4.0e4'
+          unit: N/C
+      answer:
+        value: '6.4e-15'
+        unit: N
+    - kind: sigfigs
+      value: '1.6e-19 * 4.0e4'
+      figures: 2
+      answer: '6.4e-15'
+      convention: round-once
+  answer_text: $F = eE = 1.6 \times 10^{-19} \times 4.0 \times 10^4 = 6.4 \times 10^{-15}\,\text{N}$.
+- id: p17-1-acceleration
+  section: '17.1'
+  tier: O
+  refs:
+  - '4.1'
+  statement: An electron sits in a uniform electric field of strength $4.0 \times 10^4$ N/C. Calculate
+    its acceleration. Take the mass of an electron as $9.1 \times 10^{-31}$ kg.
+  answer_label: Acceleration
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: e * E / m
+      values:
+        e:
+          value: '1.6e-19'
+          unit: C
+        E:
+          value: '4.0e4'
+          unit: N/C
+        m:
+          value: '9.1e-31'
+          unit: kg
+      answer:
+        value: '7.0e15'
+        unit: m/s^2
+      tolerance: '5e13'
+    - kind: sigfigs
+      value: '1.6e-19 * 4.0e4 / 9.1e-31'
+      figures: 2
+      answer: '7.0e15'
+      convention: round-once
+  answer_text: $F = eE = 6.4 \times 10^{-15}\,\text{N}$, so $a = \dfrac{F}{m} = \dfrac{6.4 \times
+    10^{-15}}{9.1 \times 10^{-31}} = 7.0 \times 10^{15}\,\text{m/s}^2$. This enormous acceleration is
+    why the electron reaches the screen so quickly.
+- id: p17-1-weight
+  section: '17.1'
+  tier: O
+  refs:
+  - '4.1'
+  statement: Calculate the weight of an electron. Take its mass as $9.1 \times 10^{-31}$ kg and $g =
+    9.8\,\text{m/s}^2$.
+  answer_label: Weight of an electron
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * g
+      values:
+        m:
+          value: '9.1e-31'
+          unit: kg
+        g:
+          value: '9.8'
+          unit: m/s^2
+      answer:
+        value: '8.9e-30'
+        unit: N
+      tolerance: '5e-32'
+    - kind: sigfigs
+      value: '9.1e-31 * 9.8'
+      figures: 2
+      answer: '8.9e-30'
+      convention: round-once
+  answer_text: $W = mg = 9.1 \times 10^{-31} \times 9.8 = 8.9 \times 10^{-30}\,\text{N}$. This is far
+    smaller than the electric force on the same electron, which is why the weight is ignored in the tube.
+- id: p17-1-time
+  section: '17.1'
+  tier: O
+  refs:
+  - '4.1'
+  statement: Cathode rays cross a discharge tube 0.30 m long at a speed of $2.7 \times 10^7$ m/s. Calculate
+    the time they take.
+  answer_label: Time to cross the tube
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: d / v
+      values:
+        d:
+          value: '0.30'
+          unit: m
+        v:
+          value: '2.7e7'
+          unit: m/s
+      answer:
+        value: '1.1e-8'
+        unit: s
+      tolerance: '5e-10'
+    - kind: sigfigs
+      value: '0.30 / 2.7e7'
+      figures: 2
+      answer: '1.1e-8'
+      convention: round-once
+  answer_text: $t = \dfrac{d}{v} = \dfrac{0.30}{2.7 \times 10^7} = 1.1 \times 10^{-8}\,\text{s}$. The
+    rays cross the tube in a few tens of nanoseconds, so the glow appears as soon as the supply is switched
+    on.
+- id: p17-1-same
+  section: '17.1'
+  tier: O
+  refs:
+  - '4.1'
+  statement: The charge-to-mass ratio of cathode rays is measured with different gases in the tube and
+    different metals for the cathode. The value is always the same. Explain what this shows about the
+    rays.
+  answer_label: What the same value shows
+  check:
+    kind: structured
+    requires:
+    - observation
+    - inference
+    - conclusion
+    concepts:
+    - same-particles
+    - constituent-of-matter
+    points:
+    - id: observation
+      text: the charge-to-mass ratio does not depend on the gas or on the metal used for the cathode
+      concepts:
+      - same-particles
+    - id: inference
+      text: the rays are the same particles whatever the tube is made of, so they are not a fragment of
+        the particular gas or metal
+      concepts:
+      - same-particles
+    - id: conclusion
+      text: these particles are present in every material, so they are a common constituent of matter
+      concepts:
+      - constituent-of-matter
+  answer_text: The value does not depend on the gas or on the cathode metal. So the rays are the same
+    particles in every tube, not pieces of the particular gas or metal. These particles must be present
+    in all matter, which is why they are called electrons.
+- id: p17-1-conclusion
+  section: '17.1'
+  tier: O
+  refs:
+  - '4.1'
+  statement: State Thomson's conclusion about cathode rays, and give two observations that support it.
+  answer_label: Thomson's conclusion
+  check:
+    kind: structured
+    requires:
+    - conclusion
+    - evidence-one
+    - evidence-two
+    concepts:
+    - negative
+    - universal
+    - very-light
+    points:
+    - id: conclusion
+      text: cathode rays are streams of very light, negatively charged particles called electrons
+      concepts:
+      - negative
+      - very-light
+    - id: evidence-one
+      text: the rays are deflected by electric and magnetic fields in the direction expected for a negative
+        charge
+      concepts:
+      - negative
+    - id: evidence-two
+      text: the charge-to-mass ratio is the same for every gas and every cathode, and is about two thousand
+        times larger than for a hydrogen ion, so the particles are far lighter than any atom
+      concepts:
+      - universal
+      - very-light
+  answer_text: Thomson concluded that cathode rays are streams of very light, negatively charged particles,
+    which he called electrons. The rays are deflected by electric and magnetic fields as a negative charge
+    would be. Their charge-to-mass ratio is the same for every gas and every cathode, and it is about two
+    thousand times larger than for a hydrogen ion, so the particles are far lighter than any atom.
