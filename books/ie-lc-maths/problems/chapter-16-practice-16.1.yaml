@@ -1,0 +1,124 @@
+# Practice set for 16.1 (strand 2, outcome 2.1). The numeric checks are proved by
+# sympy: the expression is the arithmetic the page claims, and the answer is the
+# result. The two `structured` records cover the proof and the explanation. A
+# `structured` record proves that a model answer contains the declared ideas **in
+# order**, and nothing more. It does not prove the geometry, and it cannot: the
+# verifier reads the words, so the mathematics of a written argument stays a human
+# judgement. The `points` list is the model answer the reader sees.
+chapter: 16
+problems:
+  - id: lc16-1-perimeter
+    section: '16.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A parallelogram has adjacent sides of $9$ cm and $7$ cm. Find its perimeter.
+    answer_label: 'The perimeter'
+    check: {kind: evaluate, expression: '2 * (9 + 7)', answer: '32'}
+    answer_text: >-
+      The perimeter is $32$ cm. Opposite sides are equal by Theorem 9, so the four sides
+      are $9$, $7$, $9$ and $7$ cm.
+
+  - id: lc16-1-consecutive-angle
+    section: '16.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In a parallelogram $ABCD$, $|\angle A| = 68^\circ$. Find $|\angle B|$.
+    answer_label: '$|\angle B|$'
+    check: {kind: evaluate, expression: '180 - 68', answer: '112'}
+    answer_text: >-
+      $|\angle B| = 112^\circ$. The angles $\angle A$ and $\angle B$ are consecutive, so
+      they are supplementary.
+
+  - id: lc16-1-opposite-sides-sum
+    section: '16.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In a parallelogram $ABCD$, $|AB| = 14$ cm and $|BC| = 9$ cm. Find
+      $|DC| + |AD|$.
+    answer_label: '$|DC| + |AD|$'
+    check: {kind: evaluate, expression: '14 + 9', answer: '23'}
+    answer_text: >-
+      $|DC| + |AD| = 23$ cm. $DC$ is opposite $AB$, and $AD$ is opposite $BC$, so
+      Theorem 9 gives $|DC| = 14$ cm and $|AD| = 9$ cm.
+
+  - id: lc16-1-rhombus-perimeter
+    section: '16.1'
+    tier: O
+    refs: ['2.1']
+    statement: 'A rhombus has a side of $6$ cm. Find its perimeter.'
+    answer_label: 'The perimeter'
+    check: {kind: evaluate, expression: '4 * 6', answer: '24'}
+    answer_text: >-
+      The perimeter is $24$ cm. A rhombus has all four sides equal, so the perimeter is
+      $4 \times 6$.
+
+  - id: lc16-1-angle-check
+    section: '16.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In a parallelogram $ABCD$, $|\angle A| = 68^\circ$. Write down all four angles, and
+      show that they add to $360^\circ$.
+    answer_label: 'The four angles, and their sum'
+    check: {kind: evaluate, expression: '68 + 112 + 68 + 112', answer: '360'}
+    answer_text: >-
+      The four angles are $68^\circ$, $112^\circ$, $68^\circ$ and $112^\circ$. Opposite
+      angles are equal, and consecutive angles are supplementary, so the sum is
+      $360^\circ$.
+
+  - id: lc16-1-prove-opposite-sides
+    section: '16.1'
+    tier: O
+    refs: ['2.1']
+    statement: 'Prove that the opposite sides of a parallelogram are equal.'
+    answer_label: 'The proof of Theorem 9'
+    check:
+      kind: structured
+      requires: [draw-diagonal, alternate-angles, asa, conclude]
+      concepts: [alternate-angles, asa, congruent-parts]
+      points:
+        - id: draw-diagonal
+          text: let ABCD be a parallelogram with AB parallel to DC and AD parallel to BC, and draw the diagonal BD
+          concepts: [congruent-parts]
+        - id: alternate-angles
+          text: the angles ABD and BDC are equal by alternate angles at AB parallel to DC, and the angles ADB and DBC are equal by alternate angles at AD parallel to BC
+          concepts: [alternate-angles]
+        - id: asa
+          text: the side BD is common, so triangle DAB is congruent to triangle BCD by ASA
+          concepts: [asa]
+        - id: conclude
+          text: matching parts of congruent triangles are equal, so AB equals DC and AD equals BC
+          concepts: [congruent-parts]
+    answer_text: >-
+      Draw the diagonal $BD$. The alternate angles give
+      $|\angle ABD| = |\angle BDC|$ and $|\angle ADB| = |\angle DBC|$, and $BD$ is
+      common, so $\triangle DAB \cong \triangle BCD$ by ASA. Therefore $|AB| = |DC|$
+      and $|AD| = |BC|$.
+
+  - id: lc16-1-rectangle-parallelogram
+    section: '16.1'
+    tier: O
+    refs: ['2.1']
+    statement: 'Explain why every rectangle is a parallelogram.'
+    answer_label: 'Why a rectangle is a parallelogram'
+    check:
+      kind: structured
+      requires: [extend-side, alternate-angles, both-pairs]
+      concepts: [right-angle, alternate-angles, parallelogram]
+      points:
+        - id: extend-side
+          text: let ABCD be a rectangle and extend AB past A to a point E, so the angle EAD is 180 minus 90, which is 90 degrees
+          concepts: [right-angle]
+        - id: alternate-angles
+          text: the angles EAD and ADC are alternate angles at the transversal AD and both are 90 degrees, so AB is parallel to DC
+          concepts: [alternate-angles]
+        - id: both-pairs
+          text: the same argument with the side AD gives AD parallel to BC, so both pairs of opposite sides are parallel and the rectangle is a parallelogram
+          concepts: [parallelogram]
+    answer_text: >-
+      Each angle is $90^\circ$. At the transversal $AD$, the alternate angles
+      $\angle EAD$ and $\angle ADC$ are both $90^\circ$, so $AB \parallel DC$. The same
+      argument gives $AD \parallel BC$, so the rectangle is a parallelogram.

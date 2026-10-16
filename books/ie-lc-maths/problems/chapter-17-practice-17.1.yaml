@@ -1,0 +1,136 @@
+# Practice set for 17.1 (strand 2, outcome 2.1). Every numeric record is proved by
+# sympy: the `expression` is the right-angled-triangle arithmetic the section teaches
+# and the `answer` is the result, so the two are shown to agree rather than compared
+# with themselves. The `structured` records cover the statements and the explanations;
+# a `structured` record proves that a model answer contains its declared ideas **in
+# order**, and nothing more. It does not prove the geometry, and it cannot: the
+# verifier reads the words, so the mathematics of a written argument stays a human
+# judgement. The model answer is the `points` list, and it is what the reader sees.
+chapter: 17
+problems:
+  - id: lc17-1-distance
+    section: '17.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A circle has radius $13$ cm. A chord is $24$ cm long. Find the distance from the
+      centre to the chord.
+    answer_label: 'Distance from the centre'
+    check: {kind: evaluate, expression: 'sqrt(13**2 - 12**2)', answer: '5'}
+    answer_text: >-
+      The half-chord is $12$ cm, so $d^2 + 12^2 = 13^2$ and $d^2 = 25$. The distance is
+      $5$ cm.
+
+  - id: lc17-1-radius
+    section: '17.1'
+    tier: O
+    refs: ['2.1']
+    statement: 'A chord of length $48$ cm lies $7$ cm from the centre. Find the radius.'
+    answer_label: 'Radius'
+    check: {kind: evaluate, expression: 'sqrt(7**2 + 24**2)', answer: '25'}
+    answer_text: >-
+      The half-chord is $24$ cm, so $r^2 = 7^2 + 24^2 = 625$. The radius is $25$ cm.
+
+  - id: lc17-1-distance-16
+    section: '17.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A chord of a circle is $16$ cm long. The radius is $10$ cm. Find the distance from
+      the centre to the chord.
+    answer_label: 'Distance from the centre'
+    check: {kind: evaluate, expression: 'sqrt(10**2 - 8**2)', answer: '6'}
+    answer_text: >-
+      The half-chord is $8$ cm, so $d^2 = 10^2 - 8^2 = 36$. The distance is $6$ cm.
+
+  - id: lc17-1-radius-30
+    section: '17.1'
+    tier: O
+    refs: ['2.1']
+    statement: 'A chord of length $30$ cm lies $8$ cm from the centre. Find the radius.'
+    answer_label: 'Radius'
+    check: {kind: evaluate, expression: 'sqrt(8**2 + 15**2)', answer: '17'}
+    answer_text: >-
+      The half-chord is $15$ cm, so $r^2 = 8^2 + 15^2 = 289$. The radius is $17$ cm.
+
+  - id: lc17-1-window-bar
+    section: '17.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A circular window has radius $25$ cm. A straight bar $40$ cm long is fitted across
+      it. Find the distance from the centre of the window to the bar.
+    answer_label: 'Distance from the centre'
+    check: {kind: evaluate, expression: 'sqrt(25**2 - 20**2)', answer: '15'}
+    answer_text: >-
+      The bar is a chord, and its half-length is $20$ cm. So
+      $d^2 = 25^2 - 20^2 = 225$, and the distance is $15$ cm.
+
+  - id: lc17-1-second-chord
+    section: '17.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In a circle of radius $13$ cm, a chord of length $10$ cm is drawn. Find its
+      distance from the centre, and say whether it is closer to the centre than a chord
+      of length $24$ cm.
+    answer_label: 'Distance from the centre'
+    check: {kind: evaluate, expression: 'sqrt(13**2 - 5**2)', answer: '12'}
+    answer_text: >-
+      The half-chord is $5$ cm, so $d^2 = 13^2 - 5^2 = 144$ and $d = 12$ cm. The $24$ cm
+      chord lies $5$ cm from the centre, so the shorter chord is **further** from the
+      centre.
+
+  - id: lc17-1-find-centre
+    section: '17.1'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Explain how to find the centre of a circle when only two chords are drawn, and say
+      why the method works.
+    answer_label: 'Finding the centre'
+    check:
+      kind: structured
+      requires: [two-bisectors, crossing-point, why]
+      concepts: [perpendicular-bisector, theorem-21]
+      points:
+        - id: two-bisectors
+          text: construct the perpendicular bisector of each of the two chords
+          concepts: [perpendicular-bisector]
+        - id: crossing-point
+          text: the two bisectors cross at one point, and that point is the centre
+          concepts: [theorem-21]
+        - id: why
+          text: the perpendicular bisector of a chord passes through the centre, by part 2 of Theorem 21
+          concepts: [theorem-21]
+    answer_text: >-
+      Construct the perpendicular bisector of each chord. Both bisectors pass through the
+      centre, by part 2 of Theorem 21, so their crossing point is the centre. The chords
+      must not be parallel, or the bisectors would be parallel and would not cross.
+
+  - id: lc17-1-equal-chords
+    section: '17.1'
+    tier: O
+    refs: ['2.1']
+    statement: 'Show that two equal chords of a circle are the same distance from the centre.'
+    answer_label: 'The proof'
+    check:
+      kind: structured
+      requires: [same-half-chord, same-radius, subtract]
+      concepts: [pythagoras, equal-chords]
+      points:
+        - id: same-half-chord
+          text: the two chords have the same length, so their half-chords are equal
+          concepts: [equal-chords]
+        - id: same-radius
+          text: both right-angled triangles have the same radius as hypotenuse
+          concepts: [pythagoras]
+        - id: subtract
+          text: Pythagoras gives d1^2 = r^2 - (c/2)^2 and d2^2 = r^2 - (c/2)^2, so d1^2 = d2^2 and therefore d1 = d2
+          concepts: [pythagoras]
+    answer_text: >-
+      Let the equal chords have length $c$, and let their distances from the centre be
+      $d_1$ and $d_2$. Pythagoras' theorem gives
+      $d_1^2 + (\tfrac12 c)^2 = r^2$ and $d_2^2 + (\tfrac12 c)^2 = r^2$ for the same
+      radius $r$. Subtracting gives $d_1^2 = d_2^2$, and both are lengths, so
+      $d_1 = d_2$.

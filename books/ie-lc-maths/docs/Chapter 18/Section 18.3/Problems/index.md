@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 18.3 The dot product — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.2
+Work independently. The questions and answers are shown together at the end.
+
+Multiply matching components and add. Check the sign of the answer: a positive number
+means an acute angle, a zero means a right angle, and a negative number means an obtuse
+angle.
+
+:::problems chapter-18-practice-18.3
+
+:::answers chapter-18-practice-18.3

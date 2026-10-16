@@ -1,5 +1,5 @@
 ---
-title: 11.6 The normal distribution — Practise
+title: "11.6 The normal distribution — Practise"
 chapter: 11
 chapter_title: Statistics
 section: '11.6'
@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.6 The normal distribution — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 1.7
+Work independently. The questions and answers are shown together at the end.
+
+Standardise before you reach for the table. For a probability that is not of the form
+$P(Z \le z)$, use symmetry or subtract two areas.
+
+:::problems chapter-11-practice-11.6
+
+:::answers chapter-11-practice-11.6

@@ -43,7 +43,7 @@ problems:
       answer: "18000*(22/25)**4"
     answer_text: >-
       The value after four years is $u_4 = 18\,000 \times 0.88^4 \approx
-      €10\,790$. Each year the value is multiplied by $0.88$.
+      10\,790$, which is €10\,790. Each year the value is multiplied by $0.88$.
 
   - id: am8-3-iterate-medicine
     section: '8.3'

@@ -1,0 +1,146 @@
+# Practice set for 11.5 (strand 1, outcome 1.7). Each standard deviation and variance names
+# its convention, because dividing by n and by n-1 give different numbers and the
+# verifier refuses an unnamed one. The conventions are `population` (divide by n, the
+# booklet's list formula) and `sample` (divide by n-1, the booklet's estimate). The IQR
+# names the `linear` (n+1) position convention. Everything is exact over the rationals, so
+# a surd answer such as 2*sqrt(2) is compared symbolically and never rounded.
+chapter: 11
+problems:
+  - id: lc11-5-std
+    section: '11.5'
+    tier: O
+    refs: ['1.7']
+    statement: 'Find the standard deviation of $2$, $4$, $6$, $8$ and $10$, dividing by $n$.'
+    answer_label: 'The standard deviation'
+    check:
+      kind: statistic
+      data: [2, 4, 6, 8, 10]
+      stat: std
+      convention: population
+      answer: '2*sqrt(2)'
+    answer_text: >-
+      The mean is $6$ and the squared deviations are $16$, $4$, $0$, $4$ and $16$, which
+      add to $40$. The variance is $\dfrac{40}{5} = 8$, so
+      $\sigma = \sqrt{8} = 2\sqrt{2} \approx 2.83$.
+
+  - id: lc11-5-variance
+    section: '11.5'
+    tier: O
+    refs: ['1.7']
+    statement: 'Find the variance of $2$, $4$, $6$, $8$ and $10$, dividing by $n$.'
+    answer_label: 'The variance'
+    check:
+      kind: statistic
+      data: [2, 4, 6, 8, 10]
+      stat: variance
+      convention: population
+      answer: '8'
+    answer_text: >-
+      The squared deviations add to $40$, so the variance is $\dfrac{40}{5} = 8$. It is
+      the mean of the squared deviations.
+
+  - id: lc11-5-std-outlier
+    section: '11.5'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      Find the standard deviation of $10$, $12$, $14$, $16$, $18$ and $30$, dividing by
+      $n$.
+    answer_label: 'The standard deviation'
+    check:
+      kind: statistic
+      data: [10, 12, 14, 16, 18, 30]
+      stat: std
+      convention: population
+      answer: '2*sqrt(95)/3'
+    answer_text: >-
+      The mean is $\dfrac{100}{6} = \dfrac{50}{3}$. The squared deviations add to
+      $\dfrac{760}{3}$, so the variance is $\dfrac{380}{9}$ and
+      $\sigma = \dfrac{\sqrt{380}}{3} = \dfrac{2\sqrt{95}}{3} \approx 6.50$. One outlier
+      more than doubles the standard deviation of the other five values.
+
+  - id: lc11-5-iqr
+    section: '11.5'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      Find the interquartile range of $1$, $3$, $4$, $6$, $8$, $9$, $11$ and $14$, using
+      the $(n + 1)$ position method.
+    answer_label: 'The interquartile range'
+    check:
+      kind: statistic
+      data: [1, 3, 4, 6, 8, 9, 11, 14]
+      stat: iqr
+      convention: linear
+      answer: '29/4'
+    answer_text: >-
+      The position of $Q_1$ is $\dfrac{9}{4} = 2.25$, giving $Q_1 = 3.25$. The position
+      of $Q_3$ is $\dfrac{27}{4} = 6.75$, giving $Q_3 = 10.5$. The IQR is
+      $10.5 - 3.25 = 7.25 = \dfrac{29}{4}$.
+
+  - id: lc11-5-sample-std
+    section: '11.5'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      Find the sample standard deviation of $2$, $4$, $6$, $8$ and $10$, dividing by
+      $n - 1$.
+    answer_label: 'The sample standard deviation'
+    check:
+      kind: statistic
+      data: [2, 4, 6, 8, 10]
+      stat: std
+      convention: sample
+      answer: 'sqrt(10)'
+    answer_text: >-
+      The squared deviations add to $40$ and $n - 1 = 4$, so $s = \sqrt{\dfrac{40}{4}}
+      = \sqrt{10} \approx 3.16$. This is larger than the value $2.83$ found by dividing
+      by $n$, because the divisor is smaller.
+
+  - id: lc11-5-freq-std
+    section: '11.5'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      A frequency table has value $1$ with frequency $2$, value $2$ with frequency $4$,
+      value $3$ with frequency $6$, value $4$ with frequency $4$ and value $5$ with
+      frequency $2$. Find the standard deviation, dividing by $\sum f$.
+    answer_label: 'The standard deviation'
+    check: {kind: evaluate, expression: 'sqrt(24 / 18)', answer: '2*sqrt(3)/3'}
+    answer_text: >-
+      The mean is $\dfrac{54}{18} = 3$. Weighting each squared deviation by its
+      frequency gives $2(4) + 4(1) + 6(0) + 4(1) + 2(4) = 24$, so
+      $\sigma = \sqrt{\dfrac{24}{18}} = \dfrac{2\sqrt{3}}{3} \approx 1.15$.
+
+  - id: lc11-5-summary-std
+    section: '11.5'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      A data set has $n = 10$, $\sum x = 60$ and $\sum x^2 = 800$. Find the standard
+      deviation, dividing by $n$.
+    answer_label: 'The standard deviation'
+    check: {kind: evaluate, expression: 'sqrt(800 / 10 - (60 / 10)**2)', answer: '2*sqrt(11)'}
+    answer_text: >-
+      The mean is $6$. Then
+      $\sigma = \sqrt{\dfrac{800}{10} - 6^2} = \sqrt{44} = 2\sqrt{11} \approx 6.63$.
+      The shortcut $\sigma^2 = \dfrac{\sum x^2}{n} - \mu^2$ avoids finding every
+      deviation.
+
+  - id: lc11-5-compare
+    section: '11.5'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      Data set A is $12$, $15$, $17$, $18$, $23$. Data set B is $5$, $15$, $17$, $19$,
+      $29$. Find the standard deviation of each, dividing by $n$.
+    answer_label: 'The standard deviation of A, then of B'
+    check:
+      kind: all
+      checks:
+        - {kind: statistic, data: [12, 15, 17, 18, 23], stat: std, convention: population, answer: 'sqrt(330)/5'}
+        - {kind: statistic, data: [5, 15, 17, 19, 29], stat: std, convention: population, answer: '2*sqrt(370)/5'}
+    answer_text: >-
+      Set A has $\sigma = \dfrac{\sqrt{330}}{5} \approx 3.63$. Set B has
+      $\sigma = \dfrac{2\sqrt{370}}{5} \approx 7.69$. The means agree, so the standard
+      deviations are what separate the two sets.

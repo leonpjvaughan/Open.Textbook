@@ -1,0 +1,157 @@
+# Practice set for 16.2 (strand 2, outcome 2.1). The numeric checks are proved by
+# sympy: the expression is the arithmetic the page claims, and the answer is the
+# result. The `structured` records cover the converses and the two proofs. A
+# `structured` record proves that a model answer contains the declared ideas **in
+# order**, and nothing more. It does not prove the geometry: the verifier reads the
+# words, so the mathematics of a written argument stays a human judgement. The
+# `points` list is the model answer the reader sees.
+chapter: 16
+problems:
+  - id: lc16-2-angle-sum
+    section: '16.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Three angles of a quadrilateral are $110^\circ$, $75^\circ$ and $95^\circ$. Find
+      the fourth angle.
+    answer_label: 'The fourth angle'
+    check: {kind: evaluate, expression: '360 - 110 - 75 - 95', answer: '80'}
+    answer_text: >-
+      The fourth angle is $80^\circ$. The four angles of a quadrilateral add to
+      $360^\circ$.
+
+  - id: lc16-2-diagonal-halves
+    section: '16.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      The diagonals of a parallelogram meet at $E$, with $|AE| = 5$ cm and
+      $|BE| = 4$ cm. Find the lengths of the two diagonals.
+    answer_label: 'The two diagonals'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2 * 5', answer: '10'}
+        - {kind: evaluate, expression: '2 * 4', answer: '8'}
+    answer_text: >-
+      The diagonals are $10$ cm and $8$ cm. The diagonals bisect one another by
+      Theorem 10, so each diagonal is twice the half that is given.
+
+  - id: lc16-2-opposite-angles
+    section: '16.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A convex quadrilateral $ABCD$ has $|\angle A| = |\angle C| = 100^\circ$ and
+      $|\angle B| = |\angle D| = 80^\circ$. Explain why it is a parallelogram.
+    answer_label: 'Why it is a parallelogram'
+    check:
+      kind: structured
+      requires: [opposite-equal, consecutive-sum, parallel-conclusion]
+      concepts: [converse, consecutive-angles]
+      points:
+        - id: opposite-equal
+          text: the opposite angles are equal, which is the hypothesis of Converse 1 of Theorem 9
+          concepts: [converse]
+        - id: consecutive-sum
+          text: the four angles add to 360 degrees, so two consecutive angles such as A and B add to 180 degrees
+          concepts: [consecutive-angles]
+        - id: parallel-conclusion
+          text: consecutive angles that add to 180 degrees make the opposite sides parallel, so both pairs are parallel and the quadrilateral is a parallelogram
+          concepts: [converse]
+    answer_text: >-
+      Opposite angles are equal, and consecutive angles add to $180^\circ$. The
+      consecutive angles therefore make each pair of opposite sides parallel, so the
+      quadrilateral is a parallelogram by Converse 1 of Theorem 9.
+
+  - id: lc16-2-equal-parallel
+    section: '16.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A quadrilateral $ABCD$ has $|AB| = |DC|$, and $AB \parallel DC$. Name the
+      proposition that makes it a parallelogram, and say what else is then true.
+    answer_label: 'The proposition, and what follows'
+    check:
+      kind: structured
+      requires: [name-proposition, other-pair]
+      concepts: [equal-and-parallel, parallelogram]
+      points:
+        - id: name-proposition
+          text: Proposition 4, because one pair of opposite sides is both equal and parallel
+          concepts: [equal-and-parallel]
+        - id: other-pair
+          text: by Theorem 9 the other pair of opposite sides is also equal and parallel, and the opposite angles are equal
+          concepts: [parallelogram]
+    answer_text: >-
+      Proposition 4 makes it a parallelogram. Then Theorem 9 gives the other pair of
+      opposite sides equal and parallel, and the opposite angles equal.
+
+  - id: lc16-2-prove-diagonals
+    section: '16.2'
+    tier: O
+    refs: ['2.1']
+    statement: 'Prove that the diagonals of a parallelogram bisect one another.'
+    answer_label: 'The proof of Theorem 10'
+    check:
+      kind: structured
+      requires: [meet-at-e, alternate-angles, asa, conclude]
+      concepts: [alternate-angles, asa, opposite-sides]
+      points:
+        - id: meet-at-e
+          text: let ABCD be a parallelogram and let the diagonals AC and BD meet at E
+          concepts: [opposite-sides]
+        - id: alternate-angles
+          text: the angles EAD and ECB are equal by alternate angles at AD parallel to BC, and the angles EDA and EBC are also equal by alternate angles
+          concepts: [alternate-angles]
+        - id: asa
+          text: the side AD equals the side BC by Theorem 9, so triangle ADE is congruent to triangle CBE by ASA
+          concepts: [asa]
+        - id: conclude
+          text: matching parts give AE equals EC and DE equals EB, so the diagonals bisect one another
+          concepts: [opposite-sides]
+    answer_text: >-
+      The alternate angles at the parallel sides give two equal angles in
+      $\triangle ADE$ and $\triangle CBE$, and $|AD| = |BC|$, so the triangles are
+      congruent by ASA. Therefore $|AE| = |EC|$ and $|DE| = |EB|$.
+
+  - id: lc16-2-rhombus-diagonals
+    section: '16.2'
+    tier: O
+    refs: ['2.1']
+    statement: 'Prove that the diagonals of a rhombus are perpendicular.'
+    answer_label: 'The proof for the rhombus'
+    check:
+      kind: structured
+      requires: [rhombus-parallelogram, bisect, sss, right-angle]
+      concepts: [rhombus, diagonal-bisect, sss]
+      points:
+        - id: rhombus-parallelogram
+          text: a rhombus has all four sides equal, so it is a parallelogram by Proposition 5
+          concepts: [rhombus]
+        - id: bisect
+          text: its diagonals therefore bisect one another at a point E, by Theorem 10
+          concepts: [diagonal-bisect]
+        - id: sss
+          text: the triangles ABE and ADE have AB equal to AD, BE equal to DE and AE common, so they are congruent by SSS
+          concepts: [sss]
+        - id: right-angle
+          text: the angles AEB and AED are equal and sit on the straight line BD, so each is 90 degrees and the diagonals are perpendicular
+          concepts: [sss]
+    answer_text: >-
+      A rhombus is a parallelogram, so its diagonals bisect one another. The two
+      triangles on either side of a diagonal are congruent by SSS, so the two angles at
+      the meeting point are equal and each is $90^\circ$.
+
+  - id: lc16-2-opposite-sides-perimeter
+    section: '16.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A quadrilateral has opposite sides of $13$ cm and $8$ cm, so it is a
+      parallelogram by Converse 2 of Theorem 9. Find its perimeter.
+    answer_label: 'The perimeter'
+    check: {kind: evaluate, expression: '2 * (13 + 8)', answer: '42'}
+    answer_text: >-
+      The perimeter is $42$ cm. The four sides are $13$, $8$, $13$ and $8$ cm, so the
+      perimeter is $2 \times (13 + 8)$.

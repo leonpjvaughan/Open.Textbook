@@ -1,0 +1,163 @@
+# Practice set for 11.6 (strand 1, outcome 1.7). Normal probabilities are computed exactly
+# through sympy.stats, so a normal answer is an erf expression and a decimal answer must
+# declare the tolerance it is checked to. That is why every decimal record carries a
+# `tolerance`: without one the answer would have to be written exactly. The named query
+# (`at_most`, `at_least`, `between`) and the named tail are the whole check, so a right
+# area on the wrong side fails. The `structured` record proves the declared idea is
+# present; it does not prove that the description is well worded.
+chapter: 11
+problems:
+  - id: lc11-6-z-score
+    section: '11.6'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      A normal distribution has mean $70$ and standard deviation $8$. Find the $z$-score
+      of $78$.
+    answer_label: 'The z-score'
+    check: {kind: evaluate, expression: '(78 - 70) / 8', answer: '1'}
+    answer_text: >-
+      $z = \dfrac{78 - 70}{8} = 1$, so $78$ lies one standard deviation above the mean.
+      A $z$-score counts standard deviations and has no units.
+
+  - id: lc11-6-normal-between
+    section: '11.6'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      $X$ is normally distributed with mean $70$ and standard deviation $8$. Find
+      $P(62 < X < 78)$, correct to three decimal places.
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 70, sigma: 8}
+      query: {kind: between, low: 62, high: 78}
+      answer: '0.683'
+      tolerance: '0.001'
+    answer_text: >-
+      The $z$-scores are $-1$ and $1$. The table gives $P(Z \le 1) = 0.8413$ and
+      $P(Z \le -1) = 0.1587$, so the probability is $0.8413 - 0.1587 = 0.6826 \approx
+      0.683$. This is the empirical rule's $68\%$ band.
+
+  - id: lc11-6-normal-at-most
+    section: '11.6'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      The random variable $Z$ has the standard normal distribution. Find $P(Z < 1.5)$,
+      correct to four decimal places.
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 0, sigma: 1}
+      query: {kind: at_most, value: 1.5}
+      answer: '0.9332'
+      tolerance: '0.0001'
+    answer_text: >-
+      The standard normal table gives $P(Z < 1.5) = 0.9332$ directly. The table gives the
+      area to the left of $z$.
+
+  - id: lc11-6-normal-at-least
+    section: '11.6'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      $X$ is normally distributed with mean $70$ and standard deviation $8$. Find
+      $P(X > 85)$, correct to four decimal places.
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 70, sigma: 8}
+      query: {kind: at_least, value: 85}
+      answer: '0.0304'
+      tolerance: '0.0001'
+    answer_text: >-
+      Standardise: $z = \dfrac{85 - 70}{8} = 1.875$. The table gives
+      $P(Z \le 1.88) = 0.9699$, so $P(X > 85) = 1 - 0.9699 = 0.0301$ using the table's
+      rounded $z$. Keeping the exact $z$ gives $0.0304$ to four decimal places. About
+      $3\%$ of values lie above $85$.
+
+  - id: lc11-6-empirical-count
+    section: '11.6'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      The times of $1000$ runners are normally distributed with mean $50$ minutes and
+      standard deviation $6$ minutes. About how many runners finish between $44$ and $56$
+      minutes?
+    answer_label: 'The number of runners'
+    check:
+      kind: approx
+      value: '1000 * 0.6827'
+      target: '683'
+      tolerance: '2'
+    answer_text: >-
+      $44$ and $56$ are one standard deviation either side of the mean, so about $68\%$
+      of runners lie in the band. Then $0.68 \times 1000 = 680$, or $683$ using $0.6827$.
+      The empirical rule gives the same answer as the table.
+
+  - id: lc11-6-inverse
+    section: '11.6'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      The random variable $X$ is normally distributed with mean $100$ and standard
+      deviation $15$. Find the value $a$ such that $P(X < a) = 0.90$, correct to three
+      decimal places.
+    answer_label: 'The value of a'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '100 + 1.2816 * 15', answer: '119.224'}
+        - {kind: distribution, distribution: normal, parameters: {mu: 100, sigma: 15}, query: {kind: at_most, value: '119.224'}, answer: '0.90', tolerance: '0.0001'}
+    answer_text: >-
+      The $z$-score with $P(Z \le z) = 0.90$ is $z = 1.2816$. Then
+      $a = \mu + z\sigma = 100 + 1.2816 \times 15 = 119.224$, so $a \approx 119.2$ to
+      one decimal place.
+
+  - id: lc11-6-between-2
+    section: '11.6'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      $X$ is normally distributed with mean $70$ and standard deviation $8$. Find
+      $P(66 < X < 74)$, correct to three decimal places.
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 70, sigma: 8}
+      query: {kind: between, low: 66, high: 74}
+      answer: '0.383'
+      tolerance: '0.001'
+    answer_text: >-
+      The $z$-scores are $-0.5$ and $0.5$. Then $P(66 < X < 74) = 0.6915 - 0.3085 =
+      0.383$. The interval is half a standard deviation either side of the mean, so the
+      proportion is smaller than the $68\%$ band.
+
+  - id: lc11-6-standardise-explain
+    section: '11.6'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      Explain what a $z$-score measures, and why it is useful when using the normal
+      table.
+    answer_label: 'What a z-score measures'
+    check:
+      kind: structured
+      requires: [distance, table]
+      concepts: [standard-deviations, standard-normal]
+      points:
+        - id: distance
+          text: a z-score counts how many standard deviations a value lies from the mean
+          concepts: [standard-deviations]
+        - id: table
+          text: it turns any normal distribution into the standard normal distribution, so one table can be used for every mean and standard deviation
+          concepts: [standard-normal]
+    answer_text: >-
+      A $z$-score counts how many standard deviations a value lies from the mean. It
+      turns any normal distribution into the standard normal distribution, so a single
+      table can be used whatever the mean and standard deviation are.

@@ -61,7 +61,7 @@ problems:
     answer_text: >-
       Subtract $4n$ from both sides: $240 = 6n$. Divide by $6$: $n = 40$.
 
-      At $40$ candles the cost is $240 + 160 = €400$ and the income is €400, so
+      At $40$ candles the cost is $240 + 160 = 400$, which is €400 and the income is €400, so
       the two sides are equal. This is the break-even point.
 
   - id: lc4-6-bracket
@@ -117,6 +117,6 @@ problems:
     answer_text: >-
       Subtract $5$: $2n = 24$. Divide by $2$: $n = 12$.
 
-      A journey of $12$ km costs $5 + 2(12) = €29$.
+      A journey of $12$ km costs $5 + 2(12) = 29$, which is €29.
 
       Check: $5 + 24 = 29$. Correct.

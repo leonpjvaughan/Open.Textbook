@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.3 Similar triangles — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Before you form a ratio, write the matching pairs of vertices under the similarity
+statement. Every ratio in this page depends on that pairing.
+
+:::problems chapter-16-practice-16.3
+
+:::answers chapter-16-practice-16.3

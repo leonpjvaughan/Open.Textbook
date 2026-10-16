@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.1 Quadrilaterals and parallelograms — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Name the theorem or the definition you use in every question. A correct number with no
+reason is only half an answer.
+
+:::problems chapter-16-practice-16.1
+
+:::answers chapter-16-practice-16.1

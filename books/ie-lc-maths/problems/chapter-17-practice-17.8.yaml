@@ -1,0 +1,149 @@
+# Practice set for 17.8 (strand 2, outcome 2.1). The numeric records are proved by
+# sympy: each `expression` is the crossing-chords arithmetic the section teaches, and
+# each `answer` is the result, so the check proves the two agree. One record proves a
+# negative scale factor, which is the enlargement link. The `structured` records cover
+# the proofs and the explanations; a `structured` record proves that a model answer
+# contains its declared ideas **in order**, and nothing more. It does not prove the
+# geometry. The model answer is the `points` list, and it is what the reader sees.
+chapter: 17
+problems:
+  - id: lc17-8-cross-3-8-4
+    section: '17.8'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      Two chords $AB$ and $CD$ cross at $P$ inside a circle. Given $|PA| = 3$ cm,
+      $|PB| = 8$ cm and $|PC| = 4$ cm, find $|PD|$.
+    answer_label: '$|PD|$'
+    check: {kind: evaluate, expression: '3 * 8 / 4', answer: '6'}
+    answer_text: >-
+      The product of the parts of one chord equals the product of the parts of the other:
+      $3 \times 8 = 4 \times |PD|$, so $|PD| = 24 \div 4 = 6$ cm.
+
+  - id: lc17-8-cross-5-12-4
+    section: '17.8'
+    tier: H
+    refs: ['2.1']
+    statement: 'Two chords cross at $P$, with $|PA| = 5$ cm, $|PB| = 12$ cm and $|PC| = 4$ cm. Find $|PD|$.'
+    answer_label: '$|PD|$'
+    check: {kind: evaluate, expression: '5 * 12 / 4', answer: '15'}
+    answer_text: >-
+      $5 \times 12 = 4 \times |PD|$, so $|PD| = 60 \div 4 = 15$ cm.
+
+  - id: lc17-8-full-chord
+    section: '17.8'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      A chord $AB$ of length $13$ cm is cut by another chord at $P$, with $|PA| = 4$ cm.
+      The other chord has one part $|PC| = 6$ cm. Find its other part $|PD|$.
+    answer_label: '$|PD|$'
+    check: {kind: evaluate, expression: '4 * (13 - 4) / 6', answer: '6'}
+    answer_text: >-
+      The two parts of $AB$ are $4$ cm and $13 - 4 = 9$ cm. So
+      $4 \times 9 = 6 \times |PD|$, and $|PD| = 36 \div 6 = 6$ cm.
+
+  - id: lc17-8-window-bars
+    section: '17.8'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      Two lead bars $AB$ and $CD$ cross at a point $P$ inside a circular window, with
+      $|PA| = 6$ cm, $|PB| = 8$ cm and $|PC| = 4$ cm. Find $|PD|$.
+    answer_label: '$|PD|$'
+    check: {kind: evaluate, expression: '6 * 8 / 4', answer: '12'}
+    answer_text: >-
+      $6 \times 8 = 4 \times |PD|$, so $|PD| = 48 \div 4 = 12$ cm.
+
+  - id: lc17-8-scale-factor
+    section: '17.8'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      Two chords $AB$ and $CD$ cross at $P$, with $|PA| = 6$ cm and $|PD| = 12$ cm. Find
+      the scale factor of the enlargement centred at $P$ that takes the triangle $APC$ to
+      the triangle $DPB$.
+    answer_label: 'Scale factor'
+    check: {kind: evaluate, expression: '-12 / 6', answer: '-2'}
+    answer_text: >-
+      The matching vertex of $A$ is $D$, so the scale factor is
+      $k = -|PD| \div |PA| = -12 \div 6 = -2$. The image is twice as far from $P$, on the
+      opposite side.
+
+  - id: lc17-8-similar-proof
+    section: '17.8'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      Two chords $AB$ and $CD$ cross at $P$ inside a circle. Prove that the triangles $APC$
+      and $DPB$ are similar.
+    answer_label: 'The proof'
+    check:
+      kind: structured
+      requires: [vertically-opposite, same-segment, aa]
+      concepts: [vertically-opposite, same-segment]
+      points:
+        - id: vertically-opposite
+          text: the angles APC and DPB are vertically opposite, so they are equal, by Theorem 1
+          concepts: [vertically-opposite]
+        - id: same-segment
+          text: P lies on AB and on CD, so angle PAC is angle BAC and angle PDB is angle CDB, and both stand on the arc BC in the same segment, so they are equal by Corollary 2
+          concepts: [same-segment]
+        - id: aa
+          text: two pairs of equal angles make the triangles similar by AA
+          concepts: [same-segment]
+    answer_text: >-
+      The angles $\angle APC$ and $\angle DPB$ are vertically opposite, so they are equal.
+      The point $P$ lies on $AB$, so $\angle PAC = \angle BAC$, and on $CD$, so
+      $\angle PDB = \angle CDB$. Both stand on the arc $BC$ in the same segment, so they
+      are equal by Corollary 2. Two pairs of equal angles make the triangles similar.
+
+  - id: lc17-8-product-rule
+    section: '17.8'
+    tier: H
+    refs: ['2.1']
+    statement: 'Explain why $|PA| \times |PB| = |PC| \times |PD|$ for two chords that cross at $P$.'
+    answer_label: 'The explanation'
+    check:
+      kind: structured
+      requires: [similar, ratio]
+      concepts: [similar-triangles, crossing-chords]
+      points:
+        - id: similar
+          text: the triangles APC and DPB are similar, with A matching D, P matching P and C matching B
+          concepts: [similar-triangles]
+        - id: ratio
+          text: the ratio PA/PD equals the ratio PC/PB, and multiplying both sides by PD and PB gives PA times PB equals PC times PD
+          concepts: [crossing-chords]
+    answer_text: >-
+      The triangles $APC$ and $DPB$ are similar, with $A$ matching $D$ and $C$ matching
+      $B$. So $|PA|/|PD| = |PC|/|PB|$. Multiplying both sides by $|PD| \times |PB|$ gives
+      $|PA| \times |PB| = |PC| \times |PD|$.
+
+  - id: lc17-8-enlargement
+    section: '17.8'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      Explain how the two similar triangles made by two crossing chords are related by an
+      enlargement.
+    answer_label: 'The enlargement'
+    check:
+      kind: structured
+      requires: [centre, negative-factor, half-turn]
+      concepts: [enlargement, similar-triangles]
+      points:
+        - id: centre
+          text: the centre of the enlargement is the crossing point P
+          concepts: [enlargement]
+        - id: negative-factor
+          text: the scale factor is the ratio of a pair of corresponding sides, and it is negative because the triangles lie on opposite sides of P
+          concepts: [enlargement]
+        - id: half-turn
+          text: a negative scale factor places the image on the opposite side of P, so the image is also turned through a half-turn about P
+          concepts: [similar-triangles]
+    answer_text: >-
+      The centre of the enlargement is the crossing point $P$, and the scale factor is the
+      ratio of a pair of corresponding sides. The triangles lie on opposite sides of $P$,
+      so the scale factor is negative and the image is turned through a half-turn about
+      $P$.

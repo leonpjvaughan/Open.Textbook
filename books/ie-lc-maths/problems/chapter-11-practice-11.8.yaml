@@ -1,0 +1,139 @@
+# Practice set for 11.8 (strand 1, outcome 1.7, Higher level). The standard errors and
+# z-scores are exact arithmetic, proved by `evaluate`; the normal probabilities go through
+# sympy.stats and declare a tolerance for their decimal answer. The `structured` record
+# proves that the statement of the central limit theorem contains the declared ideas in
+# order; it cannot prove that the theorem is being applied to a large enough sample, which
+# is a judgement. Every record here is Higher-only.
+chapter: 11
+problems:
+  - id: lc11-8-se
+    section: '11.8'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A population has standard deviation $12$. Samples of size $36$ are taken. Find the
+      standard error of the mean.
+    answer_label: 'The standard error'
+    check: {kind: evaluate, expression: '12 / sqrt(36)', answer: '2'}
+    answer_text: >-
+      $\sigma_{\bar{x}} = \dfrac{12}{\sqrt{36}} = \dfrac{12}{6} = 2$. An average of $36$
+      values varies less than a single value does.
+
+  - id: lc11-8-se-2
+    section: '11.8'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A population has standard deviation $12$. Samples of size $144$ are taken. Find the
+      standard error of the mean.
+    answer_label: 'The standard error'
+    check: {kind: evaluate, expression: '12 / sqrt(144)', answer: '1'}
+    answer_text: >-
+      $\sigma_{\bar{x}} = \dfrac{12}{12} = 1$. The sample was multiplied by $4$ and the
+      standard error was divided by $2$, because $\sqrt{4} = 2$.
+
+  - id: lc11-8-se-fraction
+    section: '11.8'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A population has standard deviation $20$. Samples of size $64$ are taken. Find the
+      standard error of the mean.
+    answer_label: 'The standard error'
+    check: {kind: evaluate, expression: '20 / sqrt(64)', answer: '5/2'}
+    answer_text: >-
+      $\sigma_{\bar{x}} = \dfrac{20}{8} = \dfrac{5}{2} = 2.5$. The standard error can be
+      a fraction, and it keeps the units of the data.
+
+  - id: lc11-8-z
+    section: '11.8'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A population has mean $100$ and standard deviation $15$. Samples of size $25$ are
+      taken. Find the $z$-score of a sample mean of $106$.
+    answer_label: 'The z-score'
+    check: {kind: evaluate, expression: '(106 - 100) / (15 / sqrt(25))', answer: '2'}
+    answer_text: >-
+      The standard error is $\dfrac{15}{5} = 3$, so $z = \dfrac{106 - 100}{3} = 2$. The
+      sample mean lies two standard errors above the population mean.
+
+  - id: lc11-8-prob
+    section: '11.8'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A population has mean $100$ and standard deviation $15$. Samples of size $25$ are
+      taken. Find the probability that a sample mean is above $106$, correct to four
+      decimal places.
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 100, sigma: 3}
+      query: {kind: at_least, value: 106}
+      answer: '0.0228'
+      tolerance: '0.0001'
+    answer_text: >-
+      The standard error is $3$, so $z = 2$. Then $P(Z \le 2) = 0.9772$ and
+      $P(\bar{x} > 106) = 1 - 0.9772 = 0.0228$. About $2.3\%$ of samples of $25$ would
+      have a mean this high.
+
+  - id: lc11-8-between
+    section: '11.8'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A population has mean $100$ and standard deviation $15$. Samples of size $25$ are
+      taken. Find the probability that a sample mean lies between $97$ and $103$, correct
+      to three decimal places.
+    answer_label: 'The probability'
+    check:
+      kind: distribution
+      distribution: normal
+      parameters: {mu: 100, sigma: 3}
+      query: {kind: between, low: 97, high: 103}
+      answer: '0.683'
+      tolerance: '0.001'
+    answer_text: >-
+      The standard error is $3$, so the $z$-scores are $-1$ and $1$. Then
+      $P(97 < \bar{x} < 103) = 0.8413 - 0.1587 = 0.6826 \approx 0.683$, the empirical
+      rule's band applied to the sample mean.
+
+  - id: lc11-8-quadruple
+    section: '11.8'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A sample size is multiplied by $4$. By what factor does the standard error of the
+      mean change?
+    answer_label: 'The factor'
+    check: {kind: evaluate, expression: '1 / sqrt(4)', answer: '1/2'}
+    answer_text: >-
+      $\dfrac{\sigma}{\sqrt{4n}} = \dfrac{\sigma}{2\sqrt{n}}$, so the standard error is
+      halved. The factor is $\dfrac{1}{2}$.
+
+  - id: lc11-8-clt
+    section: '11.8'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      State what the central limit theorem says about the sample mean when the sample
+      size is large.
+    answer_label: 'The statement'
+    check:
+      kind: structured
+      requires: [shape, parameters]
+      concepts: [normal, standard-error]
+      points:
+        - id: shape
+          text: for a large sample size n, the sample mean is approximately normally distributed, whatever the shape of the population
+          concepts: [normal]
+        - id: parameters
+          text: the distribution has mean equal to the population mean mu and standard deviation sigma divided by the square root of n, the standard error
+          concepts: [standard-error]
+    answer_text: >-
+      For a large sample size $n$, the sample mean is approximately normally distributed
+      with mean $\mu$ and standard deviation $\dfrac{\sigma}{\sqrt{n}}$. The population
+      does not need to be normal. A sample size of about $30$ or more is often large
+      enough.

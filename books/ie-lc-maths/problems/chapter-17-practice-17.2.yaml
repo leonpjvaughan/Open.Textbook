@@ -1,0 +1,135 @@
+# Practice set for 17.2 (strand 2, outcome 2.1). The numeric records are proved by
+# sympy: each `expression` is the halving or doubling the theorem claims, and each
+# `answer` is the result, so the check proves the two agree. One record proves a
+# Pythagorean equality with `compare`, which is how the converse of Pythagoras shows
+# that the side $BC$ is a diameter. The `structured` record covers the explanation; it
+# proves that a model answer contains the declared ideas **in order**, and nothing
+# more. It does not prove the geometry. The model answer is the `points` list, and it
+# is what the reader sees.
+chapter: 17
+problems:
+  - id: lc17-2-centre-angle
+    section: '17.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $O$ is the centre of a circle, $|\angle AOB| = 110^\circ$, and $C$ is a point on
+      the major arc $AB$. Find $|\angle ACB|$.
+    answer_label: '$|\angle ACB|$'
+    check: {kind: evaluate, expression: '110 / 2', answer: '55'}
+    answer_text: >-
+      The angle at the centre is twice the angle at the circle on the same arc, so
+      $|\angle ACB| = 110^\circ \div 2 = 55^\circ$.
+
+  - id: lc17-2-semicircle
+    section: '17.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $BC$ is a diameter of a circle, $A$ is another point of the circle, and
+      $|\angle ABC| = 62^\circ$. Find $|\angle BAC|$ and $|\angle ACB|$.
+    answer_label: '$|\angle BAC|$, then $|\angle ACB|$'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '180 / 2', answer: '90'}
+        - {kind: evaluate, expression: '180 - 90 - 62', answer: '28'}
+    answer_text: >-
+      $|\angle BAC| = 90^\circ$, because it is the angle in a semicircle. The three angles
+      of the triangle add to $180^\circ$, so
+      $|\angle ACB| = 180^\circ - 90^\circ - 62^\circ = 28^\circ$.
+
+  - id: lc17-2-same-segment
+    section: '17.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $A$, $B$, $C$ and $D$ lie on a circle, with $A$ and $D$ on the same side of $BC$.
+      Given $|\angle BAC| = 37^\circ$, find $|\angle BDC|$ and the angle at the centre
+      standing on the arc $BC$.
+    answer_label: '$|\angle BDC|$, then the angle at the centre'
+    check: {kind: evaluate, expression: '2 * 37', answer: '74'}
+    answer_text: >-
+      The two angles at the circle stand on the same arc and lie in the same segment, so
+      $|\angle BDC| = |\angle BAC| = 37^\circ$ by Corollary 2. The angle at the centre is
+      twice the angle at the circle, so it is $2 \times 37^\circ = 74^\circ$.
+
+  - id: lc17-2-double
+    section: '17.2'
+    tier: O
+    refs: ['2.1']
+    statement: 'An arc stands at $25^\circ$ at a point of a circle. Find the angle it stands at the centre.'
+    answer_label: 'Angle at the centre'
+    check: {kind: evaluate, expression: '2 * 25', answer: '50'}
+    answer_text: >-
+      The angle at the centre is twice the angle at the circle, so it is
+      $2 \times 25^\circ = 50^\circ$.
+
+  - id: lc17-2-reflex
+    section: '17.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $O$ is the centre of a circle with $|\angle AOB| = 100^\circ$, and $C$ lies on the
+      minor arc $AB$. Find $|\angle ACB|$.
+    answer_label: '$|\angle ACB|$'
+    check: {kind: evaluate, expression: '(360 - 100) / 2', answer: '130'}
+    answer_text: >-
+      The angle at the centre on the minor arc is the reflex angle
+      $360^\circ - 100^\circ = 260^\circ$. The angle at the circle is half of it, so
+      $|\angle ACB| = 130^\circ$.
+
+  - id: lc17-2-reflex-partner
+    section: '17.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In the same circle, $|\angle AOB| = 100^\circ$ and a point $D$ lies on the major arc
+      $AB$. Find $|\angle ADB|$.
+    answer_label: '$|\angle ADB|$'
+    check: {kind: evaluate, expression: '100 / 2', answer: '50'}
+    answer_text: >-
+      The angle at $D$ stands on the major arc, so it is half the ordinary angle at the
+      centre: $|\angle ADB| = 100^\circ \div 2 = 50^\circ$. The two answers $130^\circ$
+      and $50^\circ$ add to $180^\circ$.
+
+  - id: lc17-2-window-triangle
+    section: '17.2'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A triangle $ABC$ is drawn in a circle with $|AB| = 30$ cm, $|AC| = 40$ cm and
+      $|BC| = 50$ cm. Show that $BC$ is a diameter, and state $|\angle BAC|$.
+    answer_label: 'The equality, then the angle'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: '=', lhs: '30**2 + 40**2', rhs: '50**2'}
+        - {kind: evaluate, expression: '180 / 2', answer: '90'}
+    answer_text: >-
+      $30^2 + 40^2 = 900 + 1600 = 2500$, and $50^2 = 2500$. The two sides satisfy
+      $|AB|^2 + |AC|^2 = |BC|^2$, so the angle at $A$ is a right angle, by the converse of
+      Pythagoras' theorem. A right angle standing on the chord $BC$ makes $BC$ a diameter,
+      by Corollary 4, and $|\angle BAC| = 90^\circ$.
+
+  - id: lc17-2-explain-semicircle
+    section: '17.2'
+    tier: O
+    refs: ['2.1']
+    statement: 'Explain why every angle in a semicircle is a right angle.'
+    answer_label: 'The explanation'
+    check:
+      kind: structured
+      requires: [straight-angle, halve]
+      concepts: [theorem-19, semicircle]
+      points:
+        - id: straight-angle
+          text: the angle at the centre standing on a diameter is the straight angle, 180 degrees
+          concepts: [semicircle]
+        - id: halve
+          text: the angle at the circle is half the angle at the centre on the same arc, by Theorem 19, so it is 90 degrees
+          concepts: [theorem-19]
+    answer_text: >-
+      Let $BC$ be a diameter and $A$ another point of the circle. The angle at the centre
+      standing on $BC$ is the straight angle, $180^\circ$. By Theorem 19 the angle at the
+      circle is half of it, so $|\angle BAC| = 90^\circ$.

@@ -149,9 +149,10 @@ problems:
     kind: evaluate
     expression: '1.5 * 4.0 * 0.30'
     answer: '1.8'
-  answer_text: 'The energy is $E = Pt = 1.5 \times 4.0 = 6.0\,\text{kWh}$. The cost is $6.0 \times
-    €0.30 = €1.80$. The kilowatt-hour is the unit the electricity bill uses, which is why this
-    calculation is done in kWh rather than in joules.'
+  answer_text: 'The energy is $E = Pt = 1.5 \times 4.0 = 6.0\,\text{kWh}$. At €0.30 per
+    kilowatt-hour the cost is $6.0 \times 0.30 = 1.80$, which is €1.80. The kilowatt-hour is the
+    unit the electricity bill uses, which is why this calculation is done in kWh rather than in
+    joules.'
 - id: p14-4-fuse
   section: '14.4'
   tier: O

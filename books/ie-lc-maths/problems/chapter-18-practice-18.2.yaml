@@ -1,0 +1,190 @@
+# Practice set for 18.2, vector arithmetic.
+#
+# Addition, subtraction and scaling are exact `vector` operations on columns. A
+# resultant displacement is the sum; a length is the norm of that sum. The anchor
+# problem's two legs and its return leg are checked here as well as in the Review.
+chapter: 18
+problems:
+  - id: lc18-2-add
+    section: '18.2'
+    tier: O
+    refs: ['2.2']
+    statement: 'Add $\begin{pmatrix} 2 \\ 5 \end{pmatrix}$ and $\begin{pmatrix} 3 \\ -4 \end{pmatrix}$.'
+    answer_label: 'The sum'
+    check:
+      kind: vector
+      op: add
+      args: ["Matrix([2, 5])", "Matrix([3, -4])"]
+      answer: "Matrix([5, 1])"
+    answer_text: >-
+      Add the matching components:
+      $\begin{pmatrix} 2 \\ 5 \end{pmatrix} + \begin{pmatrix} 3 \\ -4 \end{pmatrix}
+      = \begin{pmatrix} 2 + 3 \\ 5 + (-4) \end{pmatrix} = \begin{pmatrix} 5 \\ 1 \end{pmatrix}$.
+      This is the triangle law: the two arrows joined head to tail.
+
+  - id: lc18-2-subtract
+    section: '18.2'
+    tier: O
+    refs: ['2.2']
+    statement: 'Subtract: $\begin{pmatrix} 1 \\ 2 \end{pmatrix} - \begin{pmatrix} 4 \\ -1 \end{pmatrix}$.'
+    answer_label: 'The difference'
+    check:
+      kind: vector
+      op: subtract
+      args: ["Matrix([1, 2])", "Matrix([4, -1])"]
+      answer: "Matrix([-3, 3])"
+    answer_text: >-
+      $\begin{pmatrix} 1 \\ 2 \end{pmatrix} - \begin{pmatrix} 4 \\ -1 \end{pmatrix}
+      = \begin{pmatrix} 1 - 4 \\ 2 - (-1) \end{pmatrix} = \begin{pmatrix} -3 \\ 3 \end{pmatrix}$.
+      Subtracting is adding the opposite, so watch the sign of the second component.
+
+  - id: lc18-2-scalar
+    section: '18.2'
+    tier: O
+    refs: ['2.2']
+    statement: 'Work out $-3\begin{pmatrix} 2 \\ -5 \end{pmatrix}$.'
+    answer_label: 'The vector $-3\mathbf{a}$'
+    check:
+      kind: vector
+      op: scale
+      args: ["-3", "Matrix([2, -5])"]
+      answer: "Matrix([-6, 15])"
+    answer_text: >-
+      Multiply each component by $-3$:
+      $-3\begin{pmatrix} 2 \\ -5 \end{pmatrix} = \begin{pmatrix} -6 \\ 15 \end{pmatrix}$.
+      The negative scalar reverses the direction, and the new vector is three times as
+      long as the original.
+
+  - id: lc18-2-combine
+    section: '18.2'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      For $\mathbf{a} = \begin{pmatrix} 3 \\ -1 \end{pmatrix}$ and
+      $\mathbf{b} = \begin{pmatrix} 1 \\ 4 \end{pmatrix}$, find $2\mathbf{a} + 3\mathbf{b}$.
+    answer_label: 'The vector $2\mathbf{a} + 3\mathbf{b}$'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: scale
+          args: ["2", "Matrix([3, -1])"]
+          answer: "Matrix([6, -2])"
+        - kind: vector
+          op: scale
+          args: ["3", "Matrix([1, 4])"]
+          answer: "Matrix([3, 12])"
+        - kind: vector
+          op: add
+          args: ["Matrix([6, -2])", "Matrix([3, 12])"]
+          answer: "Matrix([9, 10])"
+    answer_text: >-
+      $2\mathbf{a} = \begin{pmatrix} 6 \\ -2 \end{pmatrix}$ and
+      $3\mathbf{b} = \begin{pmatrix} 3 \\ 12 \end{pmatrix}$. Adding the two results gives
+      $2\mathbf{a} + 3\mathbf{b} = \begin{pmatrix} 9 \\ 10 \end{pmatrix}$.
+
+  - id: lc18-2-resultant-displacement
+    section: '18.2'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      A walker has three displacements: $3\mathbf{i} - 4\mathbf{j}$ km,
+      $-\mathbf{i} + 2\mathbf{j}$ km and $2\mathbf{i} + \mathbf{j}$ km. Find the single
+      displacement from the start and the distance from the start.
+    answer_label: 'The displacement and the distance'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([3, -4])", "Matrix([-1, 2])", "Matrix([2, 1])"]
+          answer: "Matrix([4, -1])"
+        - {kind: vector, op: norm, args: ["Matrix([4, -1])"], answer: "sqrt(17)"}
+    answer_text: >-
+      Add the three columns component by component:
+      $(3 - 1 + 2)\mathbf{i} + (-4 + 2 + 1)\mathbf{j} = 4\mathbf{i} - \mathbf{j}$ km.
+      The distance from the start is the length of that displacement:
+      $\sqrt{4^2 + (-1)^2} = \sqrt{17}$ km.
+
+  - id: lc18-2-equilibrium
+    section: '18.2'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Two forces $\mathbf{A} = \begin{pmatrix} 5 \\ -2 \end{pmatrix}$ N and
+      $\mathbf{B} = \begin{pmatrix} -3 \\ 7 \end{pmatrix}$ N act at a point. Find the
+      force $\mathbf{C}$ that keeps the point still.
+    answer_label: 'The third force $\mathbf{C}$'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([5, -2])", "Matrix([-3, 7])"]
+          answer: "Matrix([2, 5])"
+        - kind: vector
+          op: scale
+          args: ["-1", "Matrix([2, 5])"]
+          answer: "Matrix([-2, -5])"
+    answer_text: >-
+      For the point to stay still, $\mathbf{A} + \mathbf{B} + \mathbf{C} = \mathbf{0}$.
+      Now $\mathbf{A} + \mathbf{B} = \begin{pmatrix} 2 \\ 5 \end{pmatrix}$ N, so
+      $\mathbf{C} = -\begin{pmatrix} 2 \\ 5 \end{pmatrix}
+      = \begin{pmatrix} -2 \\ -5 \end{pmatrix}$ N.
+
+  - id: lc18-2-drone-legs
+    section: '18.2'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      A drone flies from its depot with displacement
+      $\mathbf{a} = \begin{pmatrix} 6 \\ 2 \end{pmatrix}$ km, then
+      $\mathbf{b} = \begin{pmatrix} -2 \\ 6 \end{pmatrix}$ km. Find its displacement from
+      the depot, and the single vector that returns it to the depot.
+    answer_label: 'The displacement from the depot, then the return vector'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([6, 2])", "Matrix([-2, 6])"]
+          answer: "Matrix([4, 8])"
+        - kind: vector
+          op: scale
+          args: ["-1", "Matrix([4, 8])"]
+          answer: "Matrix([-4, -8])"
+    answer_text: >-
+      After the two legs the drone sits at
+      $\mathbf{a} + \mathbf{b} = \begin{pmatrix} 6 - 2 \\ 2 + 6 \end{pmatrix}
+      = \begin{pmatrix} 4 \\ 8 \end{pmatrix}$ km from the depot. To return it must fly
+      the opposite of that displacement,
+      $-\begin{pmatrix} 4 \\ 8 \end{pmatrix} = \begin{pmatrix} -4 \\ -8 \end{pmatrix}$ km.
+
+  - id: lc18-2-magnitudes
+    section: '18.2'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Explain why $|\mathbf{a} + \mathbf{b}|$ is not usually equal to
+      $|\mathbf{a}| + |\mathbf{b}|$, and say when the two are equal.
+    answer_label: 'Why the lengths do not add'
+    check:
+      kind: structured
+      requires: [direction, triangle, equal-case]
+      concepts: [vectors-have-direction, triangle-inequality, same-direction]
+      points:
+        - id: direction
+          text: a vector carries a direction, so the lengths cannot simply be added
+          concepts: [vectors-have-direction]
+        - id: triangle
+          text: the two vectors and their sum form a triangle, and one side is shorter than the other two together
+          concepts: [triangle-inequality]
+        - id: equal-case
+          text: the lengths add only when the two vectors point the same way
+          concepts: [same-direction]
+    answer_text: >-
+      A vector carries a direction as well as a size, so adding the sizes ignores the
+      direction. The two vectors and their sum form a triangle, and in any triangle one
+      side is shorter than the other two sides added together. So
+      $|\mathbf{a} + \mathbf{b}| \le |\mathbf{a}| + |\mathbf{b}|$, with equality only
+      when $\mathbf{a}$ and $\mathbf{b}$ point the same way.

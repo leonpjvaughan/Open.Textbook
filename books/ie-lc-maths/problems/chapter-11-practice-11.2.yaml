@@ -1,0 +1,150 @@
+# Practice set for 11.2 (strand 1, outcome 1.5). The counts, rates and proportions are
+# proved exactly by `evaluate`. The `structured` records prove presence and order of the
+# declared ideas, not that a sampling method was described correctly in every word, and
+# nothing at all about whether a sample really is biased — that judgement is human. The
+# stratified-sample records are Higher-only, because the syllabus names stratified,
+# cluster and quota sampling at Higher level.
+chapter: 11
+problems:
+  - id: lc11-2-systematic
+    section: '11.2'
+    tier: O
+    refs: ['1.5']
+    statement: >-
+      A list holds $400$ names. A researcher takes every $8$th name. How many names are in
+      the sample?
+    answer_label: 'The sample size'
+    check: {kind: evaluate, expression: '400 / 8', answer: '50'}
+    answer_text: >-
+      $400 \div 8 = 50$ names. This is a systematic sample, and it also needs a random
+      start so that the first name is not always the same one.
+
+  - id: lc11-2-response-rate
+    section: '11.2'
+    tier: O
+    refs: ['1.5']
+    statement: >-
+      A charity sends out $800$ questionnaires and $320$ are returned. Work out the
+      response rate as a percentage.
+    answer_label: 'The response rate'
+    check: {kind: evaluate, expression: '320 / 800 * 100', answer: '40'}
+    answer_text: >-
+      The response rate is $\dfrac{320}{800} \times 100 = 40\%$. The $480$ people who
+      did not reply may differ from those who did, so non-response can bias the result.
+
+  - id: lc11-2-sample-proportion
+    section: '11.2'
+    tier: O
+    refs: ['1.5']
+    statement: >-
+      Of $800$ questionnaires, $320$ are returned. Write the proportion returned as a
+      fraction in its simplest form.
+    answer_label: 'The proportion returned'
+    check: {kind: evaluate, expression: '320 / 800', answer: '2/5'}
+    answer_text: >-
+      The proportion is $\dfrac{320}{800} = \dfrac{2}{5} = 0.4$. A proportion is a
+      number between $0$ and $1$, and it is the statistic here.
+
+  - id: lc11-2-non-response
+    section: '11.2'
+    tier: O
+    refs: ['1.5']
+    statement: >-
+      A charity sends out $800$ questionnaires and $320$ are returned. How many
+      questionnaires were not returned?
+    answer_label: 'The number not returned'
+    check: {kind: evaluate, expression: '800 - 320', answer: '480'}
+    answer_text: >-
+      $800 - 320 = 480$ questionnaires were not returned. If those $480$ people hold
+      different views from the $320$ who replied, the sample is biased.
+
+  - id: lc11-2-name-method
+    section: '11.2'
+    tier: O
+    refs: ['1.5']
+    statement: >-
+      A researcher asks the first $30$ people who leave a shopping centre on a Tuesday
+      morning. Name the sampling method, and say whether the sample is likely to be
+      representative.
+    answer_label: 'The method and the likely bias'
+    check:
+      kind: structured
+      requires: [method, bias]
+      concepts: [convenience, under-represented]
+      points:
+        - id: method
+          text: it is a convenience sample, because the people are chosen for being easy to reach
+          concepts: [convenience]
+        - id: bias
+          text: people who work or study on a Tuesday morning are under-represented, so the sample is likely to be biased
+          concepts: [under-represented]
+    answer_text: >-
+      It is a convenience sample. People who work or study on a Tuesday morning are
+      unlikely to be in the shopping centre, so those groups are under-represented and
+      the sample is likely to be biased.
+
+  - id: lc11-2-leading-question
+    section: '11.2'
+    tier: O
+    refs: ['1.5']
+    statement: >-
+      A survey asks: "Do you agree that the council wastes money on unnecessary
+      projects?" Explain why this question may bias the answers.
+    answer_label: 'Why the question biases the answers'
+    check:
+      kind: structured
+      requires: [loaded-words, better-question]
+      concepts: [leading-question]
+      points:
+        - id: loaded-words
+          text: the words "wastes" and "unnecessary" judge the spending, so they push the reader towards agreeing
+          concepts: [leading-question]
+        - id: better-question
+          text: a fairer question asks whether the reader approves of the council's spending, without judging it in the wording
+          concepts: [leading-question]
+    answer_text: >-
+      The question is a leading question. The words "wastes" and "unnecessary" judge the
+      spending, so they push the reader towards agreeing. A fairer question would ask
+      whether the reader approves of the spending, without judging it.
+
+  - id: lc11-2-stratified
+    section: '11.2'
+    tier: H
+    refs: ['1.5']
+    statement: >-
+      A school has $360$ girls and $240$ boys, so $600$ students. A stratified sample of
+      $60$ students is taken. How many girls and how many boys are in the sample?
+    answer_label: 'The number of girls, then the number of boys'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '60 * 360 / 600', answer: '36'}
+        - {kind: evaluate, expression: '60 * 240 / 600', answer: '24'}
+    answer_text: >-
+      Girls: $\dfrac{60 \times 360}{600} = 36$. Boys: $\dfrac{60 \times 240}{600} = 24$.
+      The sample keeps the school's mix, because $\dfrac{36}{60} = \dfrac{3}{5}$ is the
+      same fraction as $\dfrac{360}{600}$.
+
+  - id: lc11-2-cluster
+    section: '11.2'
+    tier: H
+    refs: ['1.5']
+    statement: >-
+      A researcher chooses four streets at random from a town, then visits every house in
+      those four streets. Name the sampling method, and give one advantage of it.
+    answer_label: 'The method and one advantage'
+    check:
+      kind: structured
+      requires: [method, advantage]
+      concepts: [cluster, cheaper]
+      points:
+        - id: method
+          text: it is a cluster sample, because whole groups (the streets) are chosen at random and everyone in them is measured
+          concepts: [cluster]
+        - id: advantage
+          text: visiting four streets is cheaper and quicker than travelling across the whole town
+          concepts: [cheaper]
+    answer_text: >-
+      It is a cluster sample: whole groups, the streets, are chosen at random and
+      everyone in them is measured. It is cheaper and quicker than a simple random
+      sample spread across the whole town, because the researcher visits four streets.

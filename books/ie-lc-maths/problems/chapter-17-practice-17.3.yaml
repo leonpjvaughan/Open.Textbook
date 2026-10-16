@@ -1,0 +1,140 @@
+# Practice set for 17.3 (strand 2, outcome 2.1). The numeric records are proved by
+# sympy: each `expression` is the subtraction or the equation the corollary gives,
+# and each `answer` is the result. One `compare` record proves that a pair of
+# opposite angles is **not** $180^\circ$, which is the test that fails. The
+# `structured` records cover the explanations; a `structured` record proves that a
+# model answer contains its declared ideas **in order**, and nothing more. It does not
+# prove the geometry. The model answer is the `points` list, and it is what the reader
+# sees.
+chapter: 17
+problems:
+  - id: lc17-3-opposite
+    section: '17.3'
+    tier: O
+    refs: ['2.1']
+    statement: '$ABCD$ is a cyclic quadrilateral with $|\angle BAD| = 108^\circ$. Find $|\angle BCD|$.'
+    answer_label: '$|\angle BCD|$'
+    check: {kind: evaluate, expression: '180 - 108', answer: '72'}
+    answer_text: >-
+      The angles at $A$ and at $C$ are opposite, and opposite angles of a cyclic
+      quadrilateral sum to $180^\circ$. So
+      $|\angle BCD| = 180^\circ - 108^\circ = 72^\circ$.
+
+  - id: lc17-3-two-x
+    section: '17.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A cyclic quadrilateral has two opposite angles of $2x$ and $3x$. Find $x$, then find
+      both angles.
+    answer_label: '$x$'
+    check: {kind: evaluate, expression: '180 / 5', answer: '36'}
+    answer_text: >-
+      The opposite angles sum to $180^\circ$, so $2x + 3x = 180$ and $5x = 180$. Hence
+      $x = 36$, and the two angles are $72^\circ$ and $108^\circ$.
+
+  - id: lc17-3-exterior
+    section: '17.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $ABCD$ is cyclic, and the side $AB$ is extended past $B$. The exterior angle at $B$
+      is $124^\circ$. Find $|\angle ABC|$ and $|\angle ADC|$.
+    answer_label: '$|\angle ABC|$, then $|\angle ADC|$'
+    check: {kind: evaluate, expression: '180 - 124', answer: '56'}
+    answer_text: >-
+      The exterior angle and the interior angle at $B$ lie on a straight line, so
+      $|\angle ABC| = 180^\circ - 124^\circ = 56^\circ$. The exterior angle equals the
+      interior opposite angle, so $|\angle ADC| = 124^\circ$. Check: $56 + 124 = 180$.
+
+  - id: lc17-3-cyclic-pqrs
+    section: '17.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A cyclic quadrilateral $PQRS$ has $|\angle P| = 90^\circ$ and $|\angle Q| = 85^\circ$.
+      Find $|\angle R|$ and $|\angle S|$.
+    answer_label: '$|\angle R|$, then $|\angle S|$'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '180 - 90', answer: '90'}
+        - {kind: evaluate, expression: '180 - 85', answer: '95'}
+    answer_text: >-
+      $P$ and $R$ are opposite, so $|\angle R| = 180^\circ - 90^\circ = 90^\circ$. $Q$ and
+      $S$ are opposite, so $|\angle S| = 180^\circ - 85^\circ = 95^\circ$. The four angles
+      add to $360^\circ$.
+
+  - id: lc17-3-window-pane
+    section: '17.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A four-sided pane $PQRS$ is set in a circular window, so the pane is cyclic. The
+      angle at $Q$ measures $76^\circ$. Find $|\angle PSR|$.
+    answer_label: '$|\angle PSR|$'
+    check: {kind: evaluate, expression: '180 - 76', answer: '104'}
+    answer_text: >-
+      The angles at $Q$ and at $S$ are opposite, so they sum to $180^\circ$. Hence
+      $|\angle PSR| = 180^\circ - 76^\circ = 104^\circ$.
+
+  - id: lc17-3-not-cyclic
+    section: '17.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A convex quadrilateral has angles $95^\circ$, $85^\circ$, $80^\circ$ and $100^\circ$,
+      in order. Show that it is not cyclic.
+    answer_label: 'The opposite pair that fails'
+    check: {kind: compare, relation: '!=', lhs: '95 + 80', rhs: '180'}
+    answer_text: >-
+      The first and third angles are opposite, and $95 + 80 = 175$, which is not
+      $180^\circ$. The other opposite pair gives $85 + 100 = 185$, also not $180^\circ$.
+      So the quadrilateral is not cyclic.
+
+  - id: lc17-3-why-opposite
+    section: '17.3'
+    tier: O
+    refs: ['2.1']
+    statement: 'Explain why the opposite angles of a cyclic quadrilateral sum to $180^\circ$.'
+    answer_label: 'The explanation'
+    check:
+      kind: structured
+      requires: [two-arcs, half-each]
+      concepts: [theorem-19, opposite-angles]
+      points:
+        - id: two-arcs
+          text: the two opposite angles stand on the two arcs that together make the whole circle
+          concepts: [opposite-angles]
+        - id: half-each
+          text: the two angles at the centre add to 360 degrees, and each angle at the circle is half of its own angle at the centre, by Theorem 19
+          concepts: [theorem-19]
+    answer_text: >-
+      The two opposite angles stand on the two arcs $AC$ that make the whole circle. The
+      angles at the centre on those arcs add to $360^\circ$. By Theorem 19 each angle at
+      the circle is half of its own angle at the centre, so the two opposite angles add to
+      $180^\circ$.
+
+  - id: lc17-3-cyclic-test
+    section: '17.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      State the test for four points to lie on one circle, and explain why the test works.
+    answer_label: 'The test, and why it works'
+    check:
+      kind: structured
+      requires: [test, equal-angle]
+      concepts: [converse, same-segment]
+      points:
+        - id: test
+          text: a convex quadrilateral is cyclic when a pair of opposite angles adds to 180 degrees
+          concepts: [converse]
+        - id: equal-angle
+          text: draw the circle through three vertices; the fourth makes an equal angle in the same segment, so it lies on the same circle
+          concepts: [same-segment]
+    answer_text: >-
+      A convex quadrilateral is cyclic when a pair of opposite angles adds to $180^\circ$.
+      Draw the circle through three of the vertices. The fourth vertex makes the same angle
+      on the same chord as a point of that circle, so it lies on the same circle by the
+      converse to Corollary 2.

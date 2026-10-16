@@ -1,0 +1,138 @@
+# Practice set for 17.5 (strand 2, outcome 2.1). The numeric records are proved by
+# sympy: each `expression` is the halving, the ratio or the area-to-inradius arithmetic
+# the section teaches, and each `answer` is the result. The `structured` records cover
+# the statements and the proofs; a `structured` record proves that a model answer
+# contains its declared ideas **in order**, and nothing more. It does not prove the
+# geometry. The model answer is the `points` list, and it is what the reader sees.
+chapter: 17
+problems:
+  - id: lc17-5-circumradius-26
+    section: '17.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A triangle has a right angle at $A$, and the hypotenuse $BC$ is $26$ cm. Find the
+      circumradius.
+    answer_label: 'Circumradius'
+    check: {kind: evaluate, expression: '26 / 2', answer: '13'}
+    answer_text: >-
+      The circumcentre of a right-angled triangle is the midpoint of the hypotenuse, so the
+      circumradius is $26 \div 2 = 13$ cm.
+
+  - id: lc17-5-circumradius-9-12
+    section: '17.5'
+    tier: O
+    refs: ['2.1']
+    statement: 'A triangle has sides $9$ cm, $12$ cm and $15$ cm. Find the circumradius.'
+    answer_label: 'Circumradius'
+    check: {kind: evaluate, expression: 'sqrt(9**2 + 12**2) / 2', answer: '15/2'}
+    answer_text: >-
+      $9^2 + 12^2 = 225 = 15^2$, so the triangle is right-angled with hypotenuse $15$ cm.
+      The circumradius is $15 \div 2 = 7.5$ cm.
+
+  - id: lc17-5-centroid
+    section: '17.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A median of a triangle is $21$ cm long. The centroid divides it in the ratio $2:1$,
+      with the longer part next to the vertex. Find the distance from the vertex to the
+      centroid.
+    answer_label: 'Distance to the centroid'
+    check: {kind: evaluate, expression: '2 * 21 / 3', answer: '14'}
+    answer_text: >-
+      The median is split into three equal parts of $7$ cm, and the longer part is two of
+      them. The distance from the vertex to the centroid is $14$ cm.
+
+  - id: lc17-5-inradius
+    section: '17.5'
+    tier: O
+    refs: ['2.1']
+    statement: 'A triangle has sides $5$ cm, $12$ cm and $13$ cm. Find the radius of its incircle.'
+    answer_label: 'Inradius'
+    check: {kind: evaluate, expression: '(5*12/2) / ((5 + 12 + 13)/2)', answer: '2'}
+    answer_text: >-
+      The triangle is right-angled, so its area is $\tfrac12 \times 5 \times 12 = 30$ cm².
+      Joining the incentre to the vertices splits it into three triangles of height $r$ and
+      bases $5$, $12$ and $13$: $\tfrac12 r (30) = 30$, so $15r = 30$ and $r = 2$ cm.
+
+  - id: lc17-5-right-6-8
+    section: '17.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A triangle has sides $6$ cm, $8$ cm and $10$ cm. Find its circumradius and state
+      where its orthocentre is.
+    answer_label: 'Circumradius, then the orthocentre'
+    check: {kind: evaluate, expression: 'sqrt(6**2 + 8**2) / 2', answer: '5'}
+    answer_text: >-
+      $6^2 + 8^2 = 100 = 10^2$, so the triangle is right-angled with hypotenuse $10$ cm.
+      The circumradius is $5$ cm. The orthocentre is the vertex of the right angle, where
+      the $6$ cm side meets the $8$ cm side.
+
+  - id: lc17-5-window-circumcircle
+    section: '17.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A triangle $ABC$ has $|AB| = 30$ cm, $|AC| = 40$ cm and $|BC| = 50$ cm. Find the
+      circumradius, and say why the circumcentre is the midpoint of $BC$.
+    answer_label: 'Circumradius'
+    check: {kind: evaluate, expression: '50 / 2', answer: '25'}
+    answer_text: >-
+      $30^2 + 40^2 = 2500 = 50^2$, so the angle at $A$ is a right angle. By Corollary 4
+      the chord $BC$ is a diameter of the circumcircle, so the circumcentre is the midpoint
+      of $BC$ and the circumradius is $50 \div 2 = 25$ cm.
+
+  - id: lc17-5-four-points
+    section: '17.5'
+    tier: O
+    refs: ['2.1']
+    statement: 'Name the four special points of a triangle, and say which lines meet at each one.'
+    answer_label: 'The four points and their lines'
+    check:
+      kind: structured
+      requires: [circumcentre, incentre, centroid, orthocentre]
+      concepts: [special-points]
+      points:
+        - id: circumcentre
+          text: the perpendicular bisectors of the sides meet at the circumcentre, the centre of the circle through the vertices
+          concepts: [special-points]
+        - id: incentre
+          text: the angle bisectors meet at the incentre, the centre of the circle touching the three sides
+          concepts: [special-points]
+        - id: centroid
+          text: the medians meet at the centroid
+          concepts: [special-points]
+        - id: orthocentre
+          text: the altitudes meet at the orthocentre
+          concepts: [special-points]
+    answer_text: >-
+      The perpendicular bisectors meet at the circumcentre. The angle bisectors meet at the
+      incentre. The medians meet at the centroid. The altitudes meet at the orthocentre.
+
+  - id: lc17-5-why-circumcentre
+    section: '17.5'
+    tier: O
+    refs: ['2.1']
+    statement: 'Prove that the three perpendicular bisectors of a triangle meet at one point.'
+    answer_label: 'The proof'
+    check:
+      kind: structured
+      requires: [two-bisectors, equal-distances, third]
+      concepts: [perpendicular-bisector, circumcentre]
+      points:
+        - id: two-bisectors
+          text: let the perpendicular bisectors of AB and AC meet at O
+          concepts: [perpendicular-bisector]
+        - id: equal-distances
+          text: O is on the perpendicular bisector of AB so OA = OB, and on the perpendicular bisector of AC so OA = OC
+          concepts: [perpendicular-bisector]
+        - id: third
+          text: therefore OB = OC, so O lies on the perpendicular bisector of BC too, and all three bisectors pass through O
+          concepts: [circumcentre]
+    answer_text: >-
+      Let the perpendicular bisectors of $AB$ and $AC$ meet at $O$. Because $O$ is on the
+      perpendicular bisector of $AB$, $|OA| = |OB|$. Because $O$ is on the perpendicular
+      bisector of $AC$, $|OA| = |OC|$. So $|OB| = |OC|$, and $O$ lies on the perpendicular
+      bisector of $BC$ as well. All three bisectors pass through $O$.

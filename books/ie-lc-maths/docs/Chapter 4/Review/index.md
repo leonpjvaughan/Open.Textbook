@@ -24,8 +24,8 @@ the price stays at €10.
 
 $$240 + 4n = 10n \quad\Rightarrow\quad 240 = 6n \quad\Rightarrow\quad n = 40$$
 
-At $40$ candles the cost is $240 + 4(40) = €400$ and the income is
-$10(40) = €400$. The two lines cross at $(40, 400)$.
+At $40$ candles the cost is $240 + 4(40) = 400$, which is €400, and the income is
+$10(40) = 400$, which is €400. The two lines cross at $(40, 400)$.
 
 Below $40$ candles the cost line is above the income line, so the business makes
 a loss. Above $40$ candles the income line is above the cost line, so it makes a

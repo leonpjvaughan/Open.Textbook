@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.2 Corollaries of the parallelogram theorems — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+For each shape, decide first which property you have been given. Then name the result that
+turns that property into a parallelogram.
+
+:::problems chapter-16-practice-16.2
+
+:::answers chapter-16-practice-16.2

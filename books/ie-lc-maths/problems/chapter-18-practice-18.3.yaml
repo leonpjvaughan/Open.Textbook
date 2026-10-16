@@ -1,0 +1,144 @@
+# Practice set for 18.3, the dot product.
+#
+# The dot product is a scalar, so a `vector` check with `op: dot` returns a number and
+# the answer is an expression, not a column. The sign of the dot product is checked with
+# `compare`, and the link to length uses `a . a = |a|^2`.
+chapter: 18
+symbols:
+  k: {real: true}
+problems:
+  - id: lc18-3-dot
+    section: '18.3'
+    tier: O
+    refs: ['2.2']
+    statement: 'Work out $\begin{pmatrix} 1 \\ 2 \end{pmatrix} \cdot \begin{pmatrix} 3 \\ 4 \end{pmatrix}$.'
+    answer_label: 'The dot product'
+    check:
+      kind: vector
+      op: dot
+      args: ["Matrix([1, 2])", "Matrix([3, 4])"]
+      answer: "11"
+    answer_text: >-
+      Multiply matching components and add:
+      $\begin{pmatrix} 1 \\ 2 \end{pmatrix} \cdot \begin{pmatrix} 3 \\ 4 \end{pmatrix}
+      = 1 \times 3 + 2 \times 4 = 3 + 8 = 11$. The answer is a single number, not a
+      vector.
+
+  - id: lc18-3-dot-negative
+    section: '18.3'
+    tier: O
+    refs: ['2.2']
+    statement: 'Work out $\begin{pmatrix} -2 \\ 5 \end{pmatrix} \cdot \begin{pmatrix} 3 \\ -1 \end{pmatrix}$.'
+    answer_label: 'The dot product'
+    check:
+      kind: vector
+      op: dot
+      args: ["Matrix([-2, 5])", "Matrix([3, -1])"]
+      answer: "-11"
+    answer_text: >-
+      $(-2) \times 3 + 5 \times (-1) = -6 - 5 = -11$. A negative answer is allowed, and
+      it tells you the angle between the vectors is obtuse.
+
+  - id: lc18-3-dot-self
+    section: '18.3'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      For $\mathbf{a} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}$, work out
+      $\mathbf{a} \cdot \mathbf{a}$, and check that it equals $|\mathbf{a}|^2$.
+    answer_label: 'The dot product and the squared length'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: dot
+          args: ["Matrix([3, 4])", "Matrix([3, 4])"]
+          answer: "25"
+        - {kind: vector, op: norm, args: ["Matrix([3, 4])"], answer: "5"}
+    answer_text: >-
+      $\mathbf{a} \cdot \mathbf{a} = 3^2 + 4^2 = 9 + 16 = 25$. The length is
+      $|\mathbf{a}| = \sqrt{3^2 + 4^2} = 5$, so $|\mathbf{a}|^2 = 25$. The two agree,
+      because a vector dotted with itself always gives its squared length.
+
+  - id: lc18-3-perpendicular
+    section: '18.3'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Work out $\begin{pmatrix} 3 \\ 4 \end{pmatrix} \cdot \begin{pmatrix} 4 \\ -3 \end{pmatrix}$,
+      and say what the answer tells you about the two vectors.
+    answer_label: 'The dot product'
+    check:
+      kind: vector
+      op: dot
+      args: ["Matrix([3, 4])", "Matrix([4, -3])"]
+      answer: "0"
+    answer_text: >-
+      $3 \times 4 + 4 \times (-3) = 12 - 12 = 0$. A dot product of zero means the two
+      vectors are **perpendicular**, so these two meet at a right angle.
+
+  - id: lc18-3-sign
+    section: '18.3'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      The dot product of two non-zero vectors is negative. State whether the angle
+      between them is acute, right or obtuse, and give the reason.
+    answer_label: 'The type of angle'
+    check:
+      kind: compare
+      relation: '<'
+      lhs: "-11"
+      rhs: "0"
+    answer_text: >-
+      A negative dot product means the angle is **obtuse**. From
+      $\mathbf{a} \cdot \mathbf{b} = |\mathbf{a}||\mathbf{b}|\cos\theta$, the lengths are
+      positive, so the sign of the dot product is the sign of $\cos\theta$. A negative
+      cosine belongs to an angle between $90^\circ$ and $180^\circ$.
+
+  - id: lc18-3-unknown
+    section: '18.3'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Find $k$ so that $\begin{pmatrix} 2 \\ k \end{pmatrix}$ is perpendicular to
+      $\begin{pmatrix} 3 \\ 4 \end{pmatrix}$.
+    answer_label: 'The value of $k$'
+    check:
+      kind: solve
+      equation: "2*3 + k*4 = 0"
+      variable: k
+      answer: ["-3/2"]
+    answer_text: >-
+      For perpendicular vectors the dot product is zero:
+      $2 \times 3 + k \times 4 = 0$, so $6 + 4k = 0$ and $k = -\dfrac{3}{2}$.
+      Check: $2 \times 3 + \left(-\dfrac{3}{2}\right) \times 4 = 6 - 6 = 0$.
+
+  - id: lc18-3-properties
+    section: '18.3'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Explain what kind of quantity the dot product produces, and state two of its
+      properties.
+    answer_label: 'The dot product and its properties'
+    check:
+      kind: structured
+      requires: [scalar, commutative, length]
+      concepts: [dot-product-is-a-scalar, order-does-not-matter, self-dot-is-squared-length]
+      points:
+        - id: scalar
+          text: the dot product of two vectors is a single number, called a scalar
+          concepts: [dot-product-is-a-scalar]
+        - id: commutative
+          text: the order does not matter, so a dot b equals b dot a
+          concepts: [order-does-not-matter]
+        - id: length
+          text: a vector dotted with itself gives its squared length
+          concepts: [self-dot-is-squared-length]
+    answer_text: >-
+      The dot product of two vectors is a **scalar**, a single number, not a vector.
+      Two of its properties are that the order does not matter,
+      $\mathbf{a} \cdot \mathbf{b} = \mathbf{b} \cdot \mathbf{a}$, and that a vector
+      dotted with itself gives its squared length,
+      $\mathbf{a} \cdot \mathbf{a} = |\mathbf{a}|^2$.

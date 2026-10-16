@@ -1,0 +1,146 @@
+# Practice set for 18.1, vectors and their representation.
+#
+# A vector is a column, so a `vector` check compares matrices component by component.
+# A length is the norm of the column, kept exact as a surd where the answer is not a
+# whole number. Nothing here needs a decimal.
+chapter: 18
+problems:
+  - id: lc18-1-displacement
+    section: '18.1'
+    tier: O
+    refs: ['2.2']
+    statement: 'Write the displacement from $A(1, 2)$ to $B(5, 7)$ as a column vector.'
+    answer_label: 'The displacement $\vec{AB}$'
+    check:
+      kind: vector
+      op: subtract
+      args: ["Matrix([5, 7])", "Matrix([1, 2])"]
+      answer: "Matrix([4, 5])"
+    answer_text: >-
+      Subtract the coordinates of $A$ from those of $B$:
+      $\vec{AB} = \begin{pmatrix} 5 - 1 \\ 7 - 2 \end{pmatrix}
+      = \begin{pmatrix} 4 \\ 5 \end{pmatrix}$. The vector moves $4$ units across and
+      $5$ units up.
+
+  - id: lc18-1-reverse
+    section: '18.1'
+    tier: O
+    refs: ['2.2']
+    statement: 'For the same points, write the displacement from $B(5, 7)$ to $A(1, 2)$.'
+    answer_label: 'The displacement $\vec{BA}$'
+    check:
+      kind: vector
+      op: subtract
+      args: ["Matrix([1, 2])", "Matrix([5, 7])"]
+      answer: "Matrix([-4, -5])"
+    answer_text: >-
+      $\vec{BA} = \begin{pmatrix} 1 - 5 \\ 2 - 7 \end{pmatrix}
+      = \begin{pmatrix} -4 \\ -5 \end{pmatrix}$. Reversing the journey reverses the
+      signs, so $\vec{BA} = -\vec{AB}$.
+
+  - id: lc18-1-column
+    section: '18.1'
+    tier: O
+    refs: ['2.2']
+    statement: 'Write $3\mathbf{i} - 4\mathbf{j}$ as a column vector.'
+    answer_label: 'The column vector'
+    check:
+      kind: vector
+      op: scale
+      args: ["1", "Matrix([3, -4])"]
+      answer: "Matrix([3, -4])"
+    answer_text: >-
+      The number multiplying $\mathbf{i}$ is the across component, and the number
+      multiplying $\mathbf{j}$ is the up component. So
+      $3\mathbf{i} - 4\mathbf{j} = \begin{pmatrix} 3 \\ -4 \end{pmatrix}$.
+
+  - id: lc18-1-magnitude
+    section: '18.1'
+    tier: O
+    refs: ['2.2']
+    statement: 'Find the length of the vector $\begin{pmatrix} 6 \\ 8 \end{pmatrix}$.'
+    answer_label: 'The length'
+    check:
+      kind: vector
+      op: norm
+      args: ["Matrix([6, 8])"]
+      answer: "10"
+    answer_text: >-
+      $|\mathbf{a}| = \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10$. The length
+      is the hypotenuse of a right triangle with sides $6$ and $8$.
+
+  - id: lc18-1-magnitude-surd
+    section: '18.1'
+    tier: O
+    refs: ['2.2']
+    statement: 'Find the length of the vector $\begin{pmatrix} 1 \\ 2 \end{pmatrix}$, leaving your answer as a surd.'
+    answer_label: 'The length'
+    check:
+      kind: vector
+      op: norm
+      args: ["Matrix([1, 2])"]
+      answer: "sqrt(5)"
+    answer_text: >-
+      $|\mathbf{a}| = \sqrt{1^2 + 2^2} = \sqrt{1 + 4} = \sqrt{5}$. The answer is not a
+      whole number, so keep it as $\sqrt{5}$ rather than rounding.
+
+  - id: lc18-1-negative
+    section: '18.1'
+    tier: O
+    refs: ['2.2']
+    statement: 'Write down $-\begin{pmatrix} 2 \\ -5 \end{pmatrix}$.'
+    answer_label: 'The vector $-\mathbf{a}$'
+    check:
+      kind: vector
+      op: scale
+      args: ["-1", "Matrix([2, -5])"]
+      answer: "Matrix([-2, 5])"
+    answer_text: >-
+      Changing the sign of every component gives
+      $-\begin{pmatrix} 2 \\ -5 \end{pmatrix} = \begin{pmatrix} -2 \\ 5 \end{pmatrix}$.
+      The new vector has the same length and points the opposite way.
+
+  - id: lc18-1-unit
+    section: '18.1'
+    tier: O
+    refs: ['2.2']
+    statement: 'Find the unit vector in the direction of $\begin{pmatrix} 6 \\ 8 \end{pmatrix}$.'
+    answer_label: 'The unit vector'
+    check:
+      kind: vector
+      op: unit
+      args: ["Matrix([6, 8])"]
+      answer: "Matrix([3/5, 4/5])"
+    answer_text: >-
+      The length is $10$, so divide each component by $10$:
+      $\dfrac{1}{10}\begin{pmatrix} 6 \\ 8 \end{pmatrix}
+      = \begin{pmatrix} \frac{3}{5} \\ \frac{4}{5} \end{pmatrix}$. This vector has
+      length $1$ and points the same way as the original.
+
+  - id: lc18-1-vector-or-scalar
+    section: '18.1'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Explain the difference between a scalar and a vector, and give one example of
+      each.
+    answer_label: 'Scalar and vector'
+    check:
+      kind: structured
+      requires: [size, direction, example]
+      concepts: [scalar-has-size-only, vector-has-size-and-direction]
+      points:
+        - id: size
+          text: a scalar has size only, while a vector has size and direction
+          concepts: [scalar-has-size-only]
+        - id: direction
+          text: a vector is drawn as an arrow and written as a column of components
+          concepts: [vector-has-size-and-direction]
+        - id: example
+          text: a scalar example is a temperature or a mass, and a vector example is a displacement or a force
+    answer_text: >-
+      A **scalar** is a quantity with size only, such as a temperature of $20$ degrees
+      or a mass of $5$ kg. A **vector** has size **and** direction, such as a
+      displacement of $4$ km east or a force of $10$ N downwards. A vector is drawn as
+      an arrow and written as a column of components, and its length is the size of the
+      quantity.

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 18.5 Vectors in three dimensions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 2.2
+Work independently. The questions and answers are shown together at the end.
+
+Carry the third component through every step. For a length, square all three components
+before you add them.
+
+:::problems chapter-18-practice-18.5
+
+:::answers chapter-18-practice-18.5

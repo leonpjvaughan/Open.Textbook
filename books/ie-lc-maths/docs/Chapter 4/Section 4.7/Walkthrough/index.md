@@ -51,7 +51,7 @@ This is the equation solved in Section 4.6, so $n = 40$. Then
 
 $$R = 10(40) = 400$$
 
-The solution is $n = 40$, $C = R = €400$. Substitution suits a system where one
+The solution is $n = 40$, with $C = R = 400$, which is €400. Substitution suits a system where one
 unknown is already the subject of an equation.
 
 ## Method 2: elimination

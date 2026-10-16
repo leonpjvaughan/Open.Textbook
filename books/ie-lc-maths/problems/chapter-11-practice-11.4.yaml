@@ -1,0 +1,135 @@
+# Practice set for 11.4 (strand 1, outcome 1.7). Mean, median and range are computed by
+# `statistic`, which uses exact rational arithmetic, so a mean like 7/5 is proved and not
+# rounded. The frequency-table mean and the missing-value problem are exact arithmetic,
+# proved by `evaluate`. The `structured` record proves that the declared ideas appear in
+# order; the choice of average is a judgement and is not proved.
+chapter: 11
+problems:
+  - id: lc11-4-mean
+    section: '11.4'
+    tier: F
+    refs: ['1.7']
+    statement: 'Find the mean of $4$, $7$, $9$, $12$, $13$ and $15$.'
+    answer_label: 'The mean'
+    check:
+      kind: statistic
+      data: [4, 7, 9, 12, 13, 15]
+      stat: mean
+      answer: '10'
+    answer_text: >-
+      The sum is $60$ and there are $6$ values, so $\bar{x} = \dfrac{60}{6} = 10$.
+
+  - id: lc11-4-median
+    section: '11.4'
+    tier: F
+    refs: ['1.7']
+    statement: 'Find the median of $3$, $5$, $8$, $10$, $12$ and $14$.'
+    answer_label: 'The median'
+    check:
+      kind: statistic
+      data: [3, 5, 8, 10, 12, 14]
+      stat: median
+      answer: '9'
+    answer_text: >-
+      There are $6$ values, so the median is the mean of the $3$rd and $4$th:
+      $\dfrac{8 + 10}{2} = 9$.
+
+  - id: lc11-4-range
+    section: '11.4'
+    tier: F
+    refs: ['1.7']
+    statement: 'Find the range of $12$, $15$, $11$, $19$ and $14$.'
+    answer_label: 'The range'
+    check:
+      kind: statistic
+      data: [12, 15, 11, 19, 14]
+      stat: range
+      answer: '8'
+    answer_text: >-
+      The range is $19 - 11 = 8$. The range uses only the two extreme values.
+
+  - id: lc11-4-freq-mean
+    section: '11.4'
+    tier: F
+    refs: ['1.7']
+    statement: >-
+      Find the mean of the data in the frequency table below.
+      Value $0$ has frequency $4$; value $1$ has frequency $7$; value $2$ has frequency
+      $6$; value $3$ has frequency $3$.
+    answer_label: 'The mean'
+    check: {kind: evaluate, expression: '(0*4 + 1*7 + 2*6 + 3*3) / (4 + 7 + 6 + 3)', answer: '7/5'}
+    answer_text: >-
+      $\sum fx = 0 + 7 + 12 + 9 = 28$ and $\sum f = 20$, so
+      $\bar{x} = \dfrac{28}{20} = \dfrac{7}{5} = 1.4$.
+
+  - id: lc11-4-missing-value
+    section: '11.4'
+    tier: F
+    refs: ['1.7']
+    statement: >-
+      The mean of five numbers is $12$. Four of the numbers are $8$, $10$, $12$ and $14$.
+      Find the fifth number.
+    answer_label: 'The fifth number'
+    check: {kind: evaluate, expression: '5 * 12 - (8 + 10 + 12 + 14)', answer: '16'}
+    answer_text: >-
+      The five numbers add to $5 \times 12 = 60$. The four known numbers add to
+      $8 + 10 + 12 + 14 = 44$. The fifth number is $60 - 44 = 16$.
+
+  - id: lc11-4-outlier-mean
+    section: '11.4'
+    tier: F
+    refs: ['1.7']
+    statement: >-
+      Find the mean of $10$, $12$, $14$, $16$ and $18$. Then find the mean after the
+      value $30$ is added.
+    answer_label: 'The first mean, then the mean with 30'
+    check:
+      kind: all
+      checks:
+        - {kind: statistic, data: [10, 12, 14, 16, 18], stat: mean, answer: '14'}
+        - {kind: statistic, data: [10, 12, 14, 16, 18, 30], stat: mean, answer: '50/3'}
+    answer_text: >-
+      The first mean is $14$. With $30$ added the sum is $100$ over $6$ values, so the
+      mean rises to $\dfrac{50}{3} = 16.67$ (3 s.f.). One outlier raises the mean by
+      about $2.7$.
+
+  - id: lc11-4-choose-average
+    section: '11.4'
+    tier: F
+    refs: ['1.7']
+    statement: >-
+      The daily sales at a small shop are $5$, $6$, $6$, $7$ and $100$. Explain which
+      average describes a typical day better, and why.
+    answer_label: 'Which average, and why'
+    check:
+      kind: structured
+      requires: [values, reason]
+      concepts: [outlier, median]
+      points:
+        - id: values
+          text: the median is 6, while the mean is 124 divided by 5, which is 24.8
+          concepts: [median]
+        - id: reason
+          text: the value 100 is an outlier and pulls the mean far above every typical day, so the median describes a typical day better
+          concepts: [outlier]
+    answer_text: >-
+      The median is $6$ and the mean is $24.8$. The value $100$ is an outlier and it
+      pulls the mean far above every typical day. The median, $6$, describes a typical
+      day better.
+
+  - id: lc11-4-compare-range
+    section: '11.4'
+    tier: F
+    refs: ['1.7']
+    statement: >-
+      Data set A is $12$, $15$, $17$, $18$, $23$. Data set B is $5$, $15$, $17$, $19$,
+      $29$. Find the range of each set.
+    answer_label: 'The range of A, then the range of B'
+    check:
+      kind: all
+      checks:
+        - {kind: statistic, data: [12, 15, 17, 18, 23], stat: range, answer: '11'}
+        - {kind: statistic, data: [5, 15, 17, 19, 29], stat: range, answer: '24'}
+    answer_text: >-
+      Set A has range $23 - 12 = 11$ and set B has range $29 - 5 = 24$. Set B is more
+      spread out, although the two sets share a middle value.

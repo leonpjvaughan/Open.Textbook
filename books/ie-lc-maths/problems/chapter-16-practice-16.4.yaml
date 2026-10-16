@@ -1,0 +1,148 @@
+# Practice set for 16.4 (strand 2, outcome 2.1, Higher level). The numeric checks are
+# proved by sympy: the expression is the arithmetic the page claims, and the answer is
+# the result. The `structured` records cover the parallel test, the equal intercepts
+# theorem and the proportionality theorem. A `structured` record proves that a model
+# answer contains the declared ideas **in order**, and nothing more. It does not prove
+# the geometry: the verifier reads the words, so the mathematics of a written argument
+# stays a human judgement. The `points` list is the model answer the reader sees.
+chapter: 16
+problems:
+  - id: lc16-4-divide-side
+    section: '16.4'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      In $\triangle ABC$, a line parallel to $BC$ cuts $[AB]$ at $D$ with
+      $|AD| : |DB| = 5 : 3$. Given $|AC| = 24$ cm, find $|AE|$, where $E$ is on $[AC]$.
+    answer_label: '$|AE|$'
+    check: {kind: evaluate, expression: '24 * 5 / 8', answer: '15'}
+    answer_text: >-
+      $|AE| = 15$ cm. The line cuts $[AC]$ in the same ratio $5 : 3$, and there are
+      $8$ equal parts in the whole side of $24$ cm.
+
+  - id: lc16-4-proportional-side
+    section: '16.4'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      $\triangle ABC \sim \triangle A'B'C'$, with $|AB| = 12$ cm, $|BC| = 9$ cm and
+      $|A'B'| = 4$ cm. Find $|B'C'|$.
+    answer_label: "$|B'C'|$"
+    check: {kind: evaluate, expression: '9 * 4 / 12', answer: '3'}
+    answer_text: >-
+      $|B'C'| = 3$ cm. Theorem 13 gives
+      $\frac{|B'C'|}{|BC|} = \frac{|A'B'|}{|AB|} = \frac{4}{12} = \frac{1}{3}$.
+
+  - id: lc16-4-parallel-test
+    section: '16.4'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      In $\triangle ABC$, $D$ is on $[AB]$ and $E$ is on $[AC]$, with $|AD| = 6$ cm,
+      $|DB| = 8$ cm, $|AE| = 9$ cm and $|EC| = 12$ cm. Decide whether $DE \parallel BC$,
+      and give a reason.
+    answer_label: 'Whether DE is parallel to BC'
+    check:
+      kind: structured
+      requires: [first-ratio, second-ratio, compare, conclude]
+      concepts: [ratio, converse]
+      points:
+        - id: first-ratio
+          text: the first ratio is AD over DB, which is 6 over 8, or three quarters
+          concepts: [ratio]
+        - id: second-ratio
+          text: the second ratio is AE over EC, which is 9 over 12, or three quarters
+          concepts: [ratio]
+        - id: compare
+          text: the two ratios are equal
+          concepts: [ratio]
+        - id: conclude
+          text: by the converse of Theorem 12, equal ratios mean that DE is parallel to BC
+          concepts: [converse]
+    answer_text: >-
+      $\frac{6}{8} = \frac{3}{4}$ and $\frac{9}{12} = \frac{3}{4}$, so the ratios are
+      equal. By the converse of Theorem 12, $DE \parallel BC$.
+
+  - id: lc16-4-find-ec
+    section: '16.4'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      In $\triangle ABC$, the line $DE$ cuts $[AB]$ at $D$ and $[AC]$ at $E$, with
+      $|AD| = 5$ cm, $|DB| = 3$ cm and $|AE| = 7.5$ cm. Find $|EC|$.
+    answer_label: '$|EC|$'
+    check: {kind: evaluate, expression: '7.5 * 3 / 5', answer: '4.5'}
+    answer_text: >-
+      $|EC| = 4.5$ cm. The line cuts the two sides in the same ratio, so
+      $\frac{5}{3} = \frac{7.5}{|EC|}$.
+
+  - id: lc16-4-prove-equal-intercepts
+    section: '16.4'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      Prove that if three parallel lines cut off equal segments on one transversal, then
+      they cut off equal segments on any other transversal.
+    answer_label: 'The proof of Theorem 11'
+    check:
+      kind: structured
+      requires: [construct-parallels, three-parallelograms, congruent-triangles, conclude]
+      concepts: [parallelogram, aas, equal-segments]
+      points:
+        - id: construct-parallels
+          text: draw the line through A parallel to DE, meeting the second and third parallel lines at E dash and F dash, and draw the line through F dash parallel to AB, meeting the middle parallel line at B dash
+          concepts: [equal-segments]
+        - id: three-parallelograms
+          text: ADEE dash, EE dash F dash F and B dash BCF dash are parallelograms, so AE dash equals DE, E dash F dash equals EF, and B dash F dash equals BC, which equals AB
+          concepts: [parallelogram]
+        - id: congruent-triangles
+          text: the triangles ABE dash and F dash B dash E dash have AB equal to B dash F dash, equal alternate angles at A and F dash, and equal vertically opposite angles at E dash, so they are congruent by AAS
+          concepts: [aas]
+        - id: conclude
+          text: the congruence gives AE dash equals F dash E dash, so DE equals AE dash equals F dash E dash equals EF
+          concepts: [equal-segments]
+    answer_text: >-
+      The construction gives three parallelograms and a pair of congruent triangles by
+      AAS. The congruence makes $E'$ the midpoint of $AF'$, and the parallelograms carry
+      that equality back to $|DE| = |EF|$.
+
+  - id: lc16-4-prove-proportional-sides
+    section: '16.4'
+    tier: H
+    refs: ['2.1']
+    statement: 'Prove that similar triangles have proportional corresponding sides.'
+    answer_label: 'The proof of Theorem 13'
+    check:
+      kind: structured
+      requires: [copy-smaller, parallel-third-side, apply-ratio, conclude]
+      concepts: [similarity, sas, ratio]
+      points:
+        - id: copy-smaller
+          text: choose B double dash on AB with AB double dash equal to A dash B dash and C double dash on AC with AC double dash equal to A dash C dash, so triangle AB double dash C double dash is congruent to triangle A dash B dash C dash by SAS
+          concepts: [sas]
+        - id: parallel-third-side
+          text: the equal corresponding angles make B double dash C double dash parallel to BC, by Theorem 3 part 1
+          concepts: [similarity]
+        - id: apply-ratio
+          text: apply Theorem 12 to triangle ABC with the line B double dash C double dash parallel to BC, giving AB double dash over AC double dash equals AB over AC
+          concepts: [ratio]
+        - id: conclude
+          text: substitute the equal lengths and rearrange to get AB over A dash B dash equals AC over A dash C dash, and the same argument at another vertex gives the third ratio
+          concepts: [similarity]
+    answer_text: >-
+      A congruent copy of the smaller triangle sits inside the larger one with its third
+      side parallel to the base. Theorem 12 gives the ratio on the two sides, and the
+      same argument at a second vertex gives the third ratio.
+
+  - id: lc16-4-divide-segment
+    section: '16.4'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      The points $A(0,0)$ and $B(10,0)$ are the ends of a segment. Find the
+      $x$-coordinate of the point that divides $[AB]$ in the ratio $3 : 2$.
+    answer_label: 'The $x$-coordinate'
+    check: {kind: evaluate, expression: '10 * 3 / 5', answer: '6'}
+    answer_text: >-
+      The point is $\frac{3}{5}$ of the way from $A$ to $B$, so $x = 6$. Then
+      $|AC| = 6$ and $|CB| = 4$, and $\frac{6}{4} = \frac{3}{2}$.

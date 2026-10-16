@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 17.1 Chords and the centre — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Draw a diagram for every question, and mark the right angle and the midpoint before you
+substitute. Use half the chord, not the whole chord.
+
+:::problems chapter-17-practice-17.1
+
+:::answers chapter-17-practice-17.1

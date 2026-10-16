@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 18.1 Vectors and their representation — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.2
+Work independently. The questions and answers are shown together at the end.
+
+Write every vector as a column unless the question says otherwise. Leave a length as a
+surd when it is not a whole number, and check the sign of each component before you move
+on.
+
+:::problems chapter-18-practice-18.1
+
+:::answers chapter-18-practice-18.1

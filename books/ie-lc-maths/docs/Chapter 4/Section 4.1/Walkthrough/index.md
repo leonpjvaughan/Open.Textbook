@@ -94,7 +94,7 @@ it is the coefficient of $n$.
 
 $$240 + 4n$$
 
-For $10$ candles the cost is $240 + 4(10) = €280$.
+For $10$ candles the cost is $240 + 4(10) = 280$, which is €280.
 
 **Predict, then test.** Draw the fourth shape and the fifth shape of the
 matchstick row on paper. Before you count, predict how many matchsticks the fifth

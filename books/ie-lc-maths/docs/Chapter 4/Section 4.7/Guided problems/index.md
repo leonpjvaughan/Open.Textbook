@@ -119,7 +119,7 @@ $$240 = 6n \quad\Rightarrow\quad n = 40$$
 
 Then $R = 10(40) = 400$ and $C = 240 + 160 = 400$.
 
-The solution is $n = 40$, $C = R = €400$. The two lines cross at $(40, 400)$.
+The solution is $n = 40$, with $C = R = 400$, which is €400. The two lines cross at $(40, 400)$.
 
 </details>
 </details>

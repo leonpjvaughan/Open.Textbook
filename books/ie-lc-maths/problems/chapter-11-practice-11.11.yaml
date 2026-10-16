@@ -1,0 +1,229 @@
+# Practice set for 11.11 (strand 1, outcome 1.4). This section is about reasoning rather
+# than computation, so most records are `structured`. The numeric ones below are the
+# quantities a claim actually rests on — a percentage change, a base rate, a margin of
+# error — and those sympy proves outright. A `structured` record checks that a model
+# answer contains the declared ideas, in order; it does not check the reasoning, and the
+# bank says so rather than implying otherwise.
+chapter: 11
+problems:
+  - id: lc11-11-truncated-change
+    section: '11.11'
+    tier: F
+    refs: ['1.4']
+    statement: >-
+      A bar chart shows profits of €96m, €98m and €100m, with the vertical axis starting
+      at €95m. Work out the true percentage increase from €96m to €100m.
+    answer_label: 'The percentage increase'
+    check:
+      kind: evaluate
+      expression: '(100 - 96) / 96 * 100'
+      answer: '50 / 12'
+    answer_text: >-
+      $\dfrac{100 - 96}{96} \times 100 = \dfrac{400}{96} = 4.17\%$ to two decimal places.
+
+      A rise of about $4\%$ is small. On an axis starting at $0$ the three bars would look
+      almost the same height.
+
+  - id: lc11-11-bar-exaggeration
+    section: '11.11'
+    tier: F
+    refs: ['1.4']
+    statement: >-
+      On that chart the axis starts at €95m, so the bars stand $1$, $3$ and $5$ units
+      above it. Find the ratio of the third bar's height to the first, and the ratio of
+      the two profits.
+    answer_label: 'Bar ratio, then profit ratio'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '5 / 1', answer: '5'}
+        - {kind: evaluate, expression: '100 / 96', answer: '25 / 24'}
+    answer_text: >-
+      The bars are in the ratio $5 : 1$, so the third looks **five times** as tall as the
+      first. The profits are in the ratio $100 : 96$, which is about $1.04 : 1$ — a
+      change of about $4\%$.
+
+      The chart makes a $4\%$ change look like a $400\%$ one. The numbers on the bars are
+      correct; the axis is what misleads.
+
+  - id: lc11-11-base-rate
+    section: '11.11'
+    tier: F
+    refs: ['1.4']
+    statement: >-
+      A report says "1 000 people in a million are affected". Express this as a rate per
+      100 000 people.
+    answer_label: 'The rate per 100 000'
+    check:
+      kind: evaluate
+      expression: '1000 / 1000000 * 100000'
+      answer: '100'
+    answer_text: >-
+      $\dfrac{1000}{1\,000\,000} \times 100\,000 = 100$, so it is **100 people per
+      100 000** — which is the same as one person in a thousand.
+
+      A big-sounding number with no base says nothing. One thousand in a million and one
+      in a thousand are the same statement, and the second is far less alarming.
+
+  - id: lc11-11-relative-risk
+    section: '11.11'
+    tier: O
+    refs: ['1.4']
+    statement: >-
+      A treatment "doubles the risk" of a side effect, which rises from one person in a
+      million to two in a million. Work out the increase in the number of cases per
+      million people.
+    answer_label: 'The increase per million'
+    check: {kind: evaluate, expression: '2 - 1', answer: '1'}
+    answer_text: >-
+      The increase is $2 - 1 = 1$ extra case per million people.
+
+      The risk has indeed doubled — that part is true. But the absolute increase is one
+      person in a million, which is what a patient needs to know. "Doubles the risk"
+      sounds alarming; "one extra case in a million" does not. Both describe the same
+      change.
+
+  - id: lc11-11-small-sample
+    section: '11.11'
+    tier: F
+    refs: ['1.4']
+    statement: >-
+      An advertisement says "two out of three dentists recommend this brush". Express this
+      as a percentage, and state how many dentists were asked.
+    answer_label: 'The percentage, then the sample size'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2 / 3 * 100', answer: '200 / 3'}
+        - {kind: evaluate, expression: '3', answer: '3'}
+    answer_text: >-
+      Two out of three is $66.7\%$, and the sample was **three** dentists.
+
+      Three people chosen from one clinic say nothing about dentists in general. The
+      percentage is accurate and the claim is worthless, because the sample is far too
+      small to stand in for the population.
+
+  - id: lc11-11-margin-interval
+    section: '11.11'
+    tier: H
+    refs: ['1.4']
+    statement: >-
+      A poll of 1 000 people reports $52\%$ Yes with a margin of error of $3.2$ percentage
+      points. Write down the confidence interval for the Yes share.
+    answer_label: 'The interval'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '52 - 3.2', answer: '48.8'}
+        - {kind: evaluate, expression: '52 + 3.2', answer: '55.2'}
+    answer_text: >-
+      The interval runs from $52 - 3.2 = 48.8\%$ to $52 + 3.2 = 55.2\%$.
+
+      The interval includes values below $50\%$, so a No result is inside it. The poll
+      cannot separate the two sides, and it certainly cannot predict the outcome.
+
+  - id: lc11-11-margin-size
+    section: '11.11'
+    tier: H
+    refs: ['1.4']
+    statement: >-
+      A poll of 1 000 people reports $52\%$ Yes. Find the lead in percentage points, and
+      compare it with the margin of error of $3.2$ percentage points.
+    answer_label: 'The lead, then the comparison'
+    check:
+      kind: evaluate
+      expression: '52 - 48'
+      answer: '4'
+    answer_text: >-
+      The lead is $52\% - 48\% = 4$ percentage points, against a margin of error of
+      $3.2$ points.
+
+      A lead of $4$ points is only a little larger than the uncertainty, so the two
+      results are close to indistinguishable. It is the difference between the lead and
+      the margin that matters, not the lead on its own.
+
+  - id: lc11-11-truncated-axis
+    section: '11.11'
+    tier: F
+    refs: ['1.4']
+    statement: >-
+      Explain why a truncated vertical axis misleads a reader, and say what to check.
+    answer_label: 'Why it misleads'
+    check:
+      kind: structured
+      requires: [start, proportion]
+      concepts: [axis-not-zero, heights-not-proportional]
+      points:
+        - id: start
+          text: the axis starts above zero, so the bars are drawn from that number rather than from zero
+          concepts: [axis-not-zero]
+        - id: proportion
+          text: the bar heights are then no longer proportional to the values they show, so a small change fills most of the chart
+          concepts: [heights-not-proportional]
+    answer_text: >-
+      A truncated axis starts at a number other than zero. The bars are drawn from that
+      starting value, so their heights no longer stand in the same proportion as the
+      quantities they represent. A change from $96$ to $100$ is about $4\%$, but on an
+      axis from $95$ to $100$ the bars are $1$ and $5$ units tall and the change looks
+      enormous.
+
+      To check any chart, look at where the vertical axis starts, and compare the ratio
+      of the bar heights with the ratio of the actual numbers.
+
+  - id: lc11-11-causation
+    section: '11.11'
+    tier: O
+    refs: ['1.4']
+    statement: >-
+      A study finds that people who drink more coffee have higher incomes. Explain why
+      this does not show that coffee raises income.
+    answer_label: 'Why the claim does not follow'
+    check:
+      kind: structured
+      requires: [third, not-follow]
+      concepts: [third-variable, correlation-not-causation]
+      points:
+        - id: third
+          text: a third variable could explain both, such as the type of job or the age of the people sampled
+          concepts: [third-variable]
+        - id: not-follow
+          text: two variables moving together is correlation; it does not show that one causes the other
+          concepts: [correlation-not-causation]
+    answer_text: >-
+      The study reports a correlation, and a correlation alone does not show a cause. A
+      **third variable** could drive both: people in professional jobs may drink more
+      coffee and earn more, for reasons that have nothing to do with coffee. Age, the
+      country, and the type of work are all candidates.
+
+      The variables move together, which is a fact about the sample. To claim a cause you
+      need evidence that the cause came first and that nothing else explains the pattern
+      — and that is far harder to get.
+
+  - id: lc11-11-significance
+    section: '11.11'
+    tier: H
+    refs: ['1.4']
+    statement: >-
+      A very large trial finds that a treatment lowers blood pressure by a statistically
+      significant amount of $0.2$ mmHg. Explain why the result may still not matter.
+    answer_label: 'Why it may not matter'
+    check:
+      kind: structured
+      requires: [significant, size]
+      concepts: [significance-not-importance, small-effect]
+      points:
+        - id: significant
+          text: a large sample makes even a tiny effect detectable, so statistical significance does not mean the effect is large
+          concepts: [significance-not-importance]
+        - id: size
+          text: a fall of 0.2 mmHg is far smaller than a patient would notice and far smaller than the natural variation in blood pressure, so it has no practical importance
+          concepts: [small-effect]
+    answer_text: >-
+      Statistical significance says the effect is too large to be explained by chance
+      alone. With a very large sample, even a very small effect clears that bar, because
+      the measurement is precise enough to detect it.
+
+      A fall of $0.2$ mmHg is far smaller than a patient could notice, and smaller than
+      the ordinary variation in a person's blood pressure through the day. So the result
+      is real and unimportant at once. Significance and importance are different
+      questions, and a careful reader asks both.

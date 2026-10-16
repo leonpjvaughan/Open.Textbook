@@ -110,7 +110,7 @@ E = Pt = 1.5 \times 4.0 = 6.0\,\text{kWh}
 $$
 
 $$
-\text{cost} = 6.0 \times €0.30 = €1.80
+\text{cost} = 6.0 \times 0.30 = 1.80
 $$
 
 ## Fuses and circuit breakers

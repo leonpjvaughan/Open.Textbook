@@ -1,0 +1,156 @@
+# Practice set for 11.1 (strand 1, outcome 1.5). The numeric records are counts,
+# proportions and fractions, which `evaluate` proves exactly over the rationals. The
+# `structured` records prove only that a model answer contains the declared ideas in
+# order and covers the declared concepts — presence and order, not whether the words are
+# the best ones or the statistics are right. A human still reads those answers.
+chapter: 11
+problems:
+  - id: lc11-1-census-count
+    section: '11.1'
+    tier: F
+    refs: ['1.5']
+    statement: >-
+      A golf club has $24$ members and takes a census of them. How many members are
+      surveyed?
+    answer_label: 'The number surveyed'
+    check: {kind: evaluate, expression: '24', answer: '24'}
+    answer_text: >-
+      A census measures every member of the population, so all $24$ members are
+      surveyed. A sample would measure only some of them.
+
+  - id: lc11-1-fifth-sample
+    section: '11.1'
+    tier: F
+    refs: ['1.5']
+    statement: >-
+      A year group has $250$ students. A researcher chooses a simple random sample of
+      one fifth of them. How many students are in the sample?
+    answer_label: 'The sample size'
+    check: {kind: evaluate, expression: '250 / 5', answer: '50'}
+    answer_text: >-
+      One fifth of $250$ is $250 \div 5 = 50$ students. That is $20\%$ of the year
+      group.
+
+  - id: lc11-1-percent-sample
+    section: '11.1'
+    tier: F
+    refs: ['1.5']
+    statement: >-
+      A company tests $12\%$ of the $250$ components in a batch. How many components are
+      tested?
+    answer_label: 'The number tested'
+    check: {kind: evaluate, expression: '0.12 * 250', answer: '30'}
+    answer_text: >-
+      $12\%$ of $250$ is $0.12 \times 250 = 30$ components. The other $220$ components
+      are not tested, which is the trade-off a sample makes.
+
+  - id: lc11-1-fraction-sampled
+    section: '11.1'
+    tier: F
+    refs: ['1.5']
+    statement: >-
+      A sample of $40$ students is taken from a school of $1200$ students. What fraction
+      of the population is sampled? Give the fraction in its simplest form.
+    answer_label: 'The fraction sampled'
+    check: {kind: evaluate, expression: '40 / 1200', answer: '1/30'}
+    answer_text: >-
+      The fraction is $\dfrac{40}{1200} = \dfrac{1}{30}$. One student in every $30$ is
+      in the sample.
+
+  - id: lc11-1-population-sample
+    section: '11.1'
+    tier: F
+    refs: ['1.5']
+    statement: >-
+      A school surveys $50$ of its $800$ students about the canteen food. Name the
+      population and the sample.
+    answer_label: 'The population and the sample'
+    check:
+      kind: structured
+      requires: [population, sample]
+      concepts: [whole-group, part-group]
+      points:
+        - id: population
+          text: the population is all 800 students in the school, the whole group the question is about
+          concepts: [whole-group]
+        - id: sample
+          text: the sample is the 50 students who were asked, the part that was measured
+          concepts: [part-group]
+    answer_text: >-
+      The population is all $800$ students in the school. The sample is the $50$
+      students who were asked.
+
+  - id: lc11-1-why-sample
+    section: '11.1'
+    tier: F
+    refs: ['1.5']
+    statement: >-
+      A factory tests $200$ bulbs from a batch of $5000$ by leaving each one on until it
+      fails. Explain why the factory uses a sample rather than a census.
+    answer_label: 'Why a sample is used'
+    check:
+      kind: structured
+      requires: [destructive, cost]
+      concepts: [testing-destroys, census-expensive]
+      points:
+        - id: destructive
+          text: the test destroys each bulb, so testing every bulb would leave none to sell
+          concepts: [testing-destroys]
+        - id: cost
+          text: testing 5000 bulbs also costs far more time and money than testing 200
+          concepts: [census-expensive]
+    answer_text: >-
+      The test destroys the bulb, so a census would destroy the whole batch. Testing
+      every bulb would also cost far more time and money than testing a sample.
+
+  - id: lc11-1-srs-method
+    section: '11.1'
+    tier: F
+    refs: ['1.5']
+    statement: >-
+      Explain how to choose a simple random sample of $40$ students from a numbered list
+      of $800$.
+    answer_label: 'The method'
+    check:
+      kind: structured
+      requires: [number, random-numbers, take]
+      concepts: [equal-chance]
+      points:
+        - id: number
+          text: number the students from 1 to 800
+          concepts: [equal-chance]
+        - id: random-numbers
+          text: use a random number generator to produce 40 different numbers between 1 and 800
+          concepts: [equal-chance]
+        - id: take
+          text: take the students with those numbers as the sample
+          concepts: [equal-chance]
+    answer_text: >-
+      Number the students from $1$ to $800$. Use a random number generator to produce
+      $40$ different numbers from $1$ to $800$. The students with those numbers form the
+      sample. Every student has the same chance of being chosen.
+
+  - id: lc11-1-representative
+    section: '11.1'
+    tier: F
+    refs: ['1.5']
+    statement: >-
+      Explain why a sample used to make a claim about a population must be
+      representative, and give one way a sample could fail to be representative.
+    answer_label: 'Why representativeness matters'
+    check:
+      kind: structured
+      requires: [generalise, bias-example]
+      concepts: [generalise, biased]
+      points:
+        - id: generalise
+          text: the sample is used to generalise to the whole population, so it must have the same mix as the population
+          concepts: [generalise]
+        - id: bias-example
+          text: for example, asking only students in the canteen at lunchtime misses everyone who brings their own lunch, so the sample is biased
+          concepts: [biased]
+    answer_text: >-
+      The sample stands in for the population, so it must have the same mix. If it does
+      not, the sample is biased. Asking only students who are in the canteen at
+      lunchtime would miss everyone who brings their own lunch, and their answers would
+      be missing from the result.

@@ -134,8 +134,8 @@ problems:
     answer_text: >-
       Set the costs equal: $20 + 5n = 30 + 3n$, so $2n = 10$ and $n = 5$.
 
-      The common cost is $20 + 5(5) = €45$. Check with Plan B:
-      $30 + 3(5) = €45$. Correct.
+      The common cost is $20 + 5(5) = 45$, which is €45. Check with Plan B:
+      $30 + 3(5) = 45$, which is €45. Correct.
 
   - id: lc4-7-why-two
     section: '4.7'

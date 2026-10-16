@@ -1,0 +1,157 @@
+# Practice set for 11.10 (strand 1, outcome 1.7). The correlation and regression kinds
+# compute Pearson's r and the least-squares line exactly over the rational data, so a
+# surd answer such as -8*sqrt(65)/65 is compared symbolically. The checks prove the
+# arithmetic for the given data; they cannot prove that a line drawn by eye is the best
+# one, and they say nothing about causation. The `structured` records prove that the
+# declared ideas appear in order.
+chapter: 11
+problems:
+  - id: lc11-10-correlation
+    section: '11.10'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      The pairs $(1, 2)$, $(2, 3)$, $(3, 5)$, $(4, 4)$ and $(5, 6)$ are plotted. Find
+      Pearson's correlation coefficient $r$.
+    answer_label: 'The correlation coefficient'
+    check:
+      kind: correlation
+      x: [1, 2, 3, 4, 5]
+      y: [2, 3, 5, 4, 6]
+      answer: '9/10'
+    answer_text: >-
+      $r = \dfrac{9}{10} = 0.9$. The points rise from left to right and lie close to a
+      straight line, so the correlation is strong and positive.
+
+  - id: lc11-10-regression
+    section: '11.10'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      For the pairs $(1, 2)$, $(2, 3)$, $(3, 5)$, $(4, 4)$ and $(5, 6)$, find the
+      least-squares regression line $y = a + bx$.
+    answer_label: 'The gradient and the intercept'
+    check:
+      kind: regression
+      x: [1, 2, 3, 4, 5]
+      y: [2, 3, 5, 4, 6]
+      answer: {gradient: '9/10', intercept: '13/10'}
+    answer_text: >-
+      The least-squares line is $y = 1.3 + 0.9x$, so the gradient is $b = 0.9$ and the
+      intercept is $a = 1.3$. The gradient says that each extra unit of $x$ is associated
+      with about $0.9$ more of $y$.
+
+  - id: lc11-10-predict
+    section: '11.10'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      The least-squares line for a data set is $y = 1.3 + 0.9x$. Use it to predict $y$
+      when $x = 6$.
+    answer_label: 'The predicted value'
+    check: {kind: evaluate, expression: '13/10 + 9/10 * 6', answer: '67/10'}
+    answer_text: >-
+      $y = 1.3 + 0.9(6) = 1.3 + 5.4 = 6.7 = \dfrac{67}{10}$. The value $x = 6$ lies just
+      outside the data range, so this is a short extrapolation.
+
+  - id: lc11-10-negative
+    section: '11.10'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      The pairs $(1, 10)$, $(2, 9)$, $(3, 7)$, $(4, 5)$ and $(5, 4)$ are plotted. Find
+      Pearson's correlation coefficient $r$.
+    answer_label: 'The correlation coefficient'
+    check:
+      kind: correlation
+      x: [1, 2, 3, 4, 5]
+      y: [10, 9, 7, 5, 4]
+      answer: '-8*sqrt(65)/65'
+    answer_text: >-
+      $r = -\dfrac{8\sqrt{65}}{65} \approx -0.992$. The correlation is very strong and
+      negative: as $x$ increases, $y$ decreases.
+
+  - id: lc11-10-regression-negative
+    section: '11.10'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      For the pairs $(1, 10)$, $(2, 9)$, $(3, 7)$, $(4, 5)$ and $(5, 4)$, find the
+      least-squares regression line $y = a + bx$.
+    answer_label: 'The gradient and the intercept'
+    check:
+      kind: regression
+      x: [1, 2, 3, 4, 5]
+      y: [10, 9, 7, 5, 4]
+      answer: {gradient: '-8/5', intercept: '59/5'}
+    answer_text: >-
+      The line is $y = 11.8 - 1.6x$, so the gradient is $-\dfrac{8}{5} = -1.6$ and the
+      intercept is $\dfrac{59}{5} = 11.8$. The negative gradient matches the negative
+      correlation.
+
+  - id: lc11-10-perfect
+    section: '11.10'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      The pairs $(1, 2)$, $(2, 4)$, $(3, 6)$ and $(4, 8)$ are plotted. Find Pearson's
+      correlation coefficient $r$.
+    answer_label: 'The correlation coefficient'
+    check:
+      kind: correlation
+      x: [1, 2, 3, 4]
+      y: [2, 4, 6, 8]
+      answer: '1'
+    answer_text: >-
+      $r = 1$. The points lie exactly on the line $y = 2x$, so the correlation is perfect
+      and positive. A perfect correlation is rare in real data.
+
+  - id: lc11-10-interpret
+    section: '11.10'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      A study finds $r = -0.92$ between weekly hours of exercise and resting heart rate.
+      Explain what this says, and why it does not prove that exercise lowers the heart
+      rate.
+    answer_label: 'What the correlation says, and what it does not prove'
+    check:
+      kind: structured
+      requires: [describe, caution]
+      concepts: [negative-strong, not-causation]
+      points:
+        - id: describe
+          text: the correlation is strong and negative, so people who exercise more tend to have a lower resting heart rate
+          concepts: [negative-strong]
+        - id: caution
+          text: it does not prove that exercise causes the lower rate, because another variable such as diet or sleep could explain both
+          concepts: [not-causation]
+    answer_text: >-
+      The correlation is strong and negative: people who exercise more tend to have a
+      lower resting heart rate. It does not prove that exercise causes the lower rate.
+      Another variable, such as diet or sleep, could drive both, and only a designed
+      experiment can support a causal claim.
+
+  - id: lc11-10-extrapolate
+    section: '11.10'
+    tier: O
+    refs: ['1.7']
+    statement: >-
+      A line of best fit is found from data with $x$ between $1$ and $8$. Explain why a
+      prediction at $x = 20$ is unreliable, while a prediction at $x = 5$ is not.
+    answer_label: 'Why the prediction is unreliable'
+    check:
+      kind: structured
+      requires: [outside-range, inside-range]
+      concepts: [extrapolation, interpolation]
+      points:
+        - id: outside-range
+          text: the value x = 20 lies far outside the range of the data, so the pattern found in the data may not continue
+          concepts: [extrapolation]
+        - id: inside-range
+          text: the value x = 5 lies inside the range, so it is an interpolation and the line is supported by nearby data
+          concepts: [interpolation]
+    answer_text: >-
+      $x = 20$ is far outside the range of the data, so the pattern may not continue, and
+      the prediction is an unreliable extrapolation. $x = 5$ lies inside the range, so it
+      is an interpolation supported by nearby data.

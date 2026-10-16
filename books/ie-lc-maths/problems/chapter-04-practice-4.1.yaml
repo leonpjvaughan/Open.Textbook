@@ -76,7 +76,7 @@ problems:
       €240 is paid once, so it is the constant. €4 is paid for every candle, so
       it is the coefficient. The cost of $n$ candles is $240 + 4n$.
 
-      For $30$ candles the cost is $240 + 120 = €360$.
+      For $30$ candles the cost is $240 + 120 = 360$, which is €360.
 
   - id: lc4-1-plumber
     section: '4.1'
@@ -92,7 +92,7 @@ problems:
       The call-out fee is paid once, so it is the constant. The hourly charge is
       the coefficient: $50 + 30n$.
 
-      For $4$ hours the cost is $50 + 120 = €170$.
+      For $4$ hours the cost is $50 + 120 = 170$, which is €170.
 
   - id: lc4-1-decreasing
     section: '4.1'

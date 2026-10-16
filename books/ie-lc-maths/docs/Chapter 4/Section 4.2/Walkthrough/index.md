@@ -84,7 +84,7 @@ A graph answers "what if" questions without any arithmetic.
 **Example 2.** Read the income at $35$ candles from the graph.
 
 The point on the income line above $n = 35$ has a vertical value of about $350$.
-The formula gives $10 \times 35 = €350$, which confirms the reading.
+The formula gives $10 \times 35 = 350$, which is €350 and confirms the reading.
 
 > **Watch out.** Put the input on the horizontal axis and the output on the
 > vertical axis, and label both. A graph with the axes the wrong way round still

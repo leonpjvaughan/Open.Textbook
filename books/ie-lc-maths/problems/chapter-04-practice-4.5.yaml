@@ -18,7 +18,7 @@ problems:
     answer_label: 'The value of C'
     check: {kind: evaluate, expression: '240 + 4 * 50', answer: '440'}
     answer_text: >-
-      $C = 240 + 4(50) = 240 + 200 = €440$. Multiply before adding.
+      $C = 240 + 4(50) = 240 + 200 = 440$, which is €440. Multiply before adding.
 
   - id: lc4-5-like-terms
     section: '4.5'
@@ -103,7 +103,7 @@ problems:
       $10n - 4n = 6n$, so the profit is $6n - 240$.
 
       At $n = 40$ the profit is $6(40) - 240 = 0$, which is the break-even point.
-      At $n = 50$ the profit is $6(50) - 240 = €60$.
+      At $n = 50$ the profit is $6(50) - 240 = 60$, which is €60.
 
   - id: lc4-5-expand-quadratic
     section: '4.5'

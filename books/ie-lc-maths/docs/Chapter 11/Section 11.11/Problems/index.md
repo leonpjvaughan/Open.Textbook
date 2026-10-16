@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.11 Statistical reasoning and misused statistics — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 1.4
+Work independently. The questions and answers are shown together at the end.
+
+Several of these ask for a reason rather than a number. Write the reason in a full
+sentence, and name the specific problem — "truncated axis" or "correlation used as
+causation" — rather than saying only that the claim is wrong.
+
+:::problems chapter-11-practice-11.11
+
+:::answers chapter-11-practice-11.11

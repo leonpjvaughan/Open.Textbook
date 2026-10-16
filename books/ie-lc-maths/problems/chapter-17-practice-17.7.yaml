@@ -1,0 +1,197 @@
+# Practice set for 17.7 (strand 2, outcome 2.1). Writing a proof is a sequence of
+# statements, so most records here are `structured`: they prove that a model answer
+# contains the declared steps **in order**, and that is all. A `structured` record
+# cannot judge whether a reason is a good one, and it cannot prove the geometry; the
+# `points` list is the model answer, and a person checks the reasoning in it. The one
+# numeric record is proved by sympy and it checks the arithmetic of the exterior-angle
+# line. The model answer is the `points` list, and it is what the reader sees.
+chapter: 17
+problems:
+  - id: lc17-7-four-parts
+    section: '17.7'
+    tier: H
+    refs: ['2.1']
+    statement: 'Name the four parts of a formal proof, in order, and say what each one holds.'
+    answer_label: 'The four parts'
+    check:
+      kind: structured
+      requires: [given, to-prove, construction, proof]
+      concepts: [formal-proof]
+      points:
+        - id: given
+          text: the Given holds the facts you start with
+          concepts: [formal-proof]
+        - id: to-prove
+          text: the To prove holds the single statement you will reach
+          concepts: [formal-proof]
+        - id: construction
+          text: the Construction holds any line, point or arc you add to the figure
+          concepts: [formal-proof]
+        - id: proof
+          text: the Proof holds the chain of statements, each with a reason
+          concepts: [formal-proof]
+    answer_text: >-
+      Given, To prove, Construction, Proof. The Construction part is the one most often
+      left out, and it must be written.
+
+  - id: lc17-7-given-to-prove
+    section: '17.7'
+    tier: H
+    refs: ['2.1']
+    statement: 'Write the Given and the To prove for the proof of the angle at the centre theorem.'
+    answer_label: 'Given and To prove'
+    check:
+      kind: structured
+      requires: [given-circle, to-prove-twice]
+      concepts: [theorem-19, formal-proof]
+      points:
+        - id: given-circle
+          text: given a circle with centre O and points A, B and C on the circle, with O inside the angle ABC
+          concepts: [formal-proof]
+        - id: to-prove-twice
+          text: to prove that the angle AOC equals twice the angle ABC
+          concepts: [theorem-19]
+    answer_text: >-
+      **Given:** a circle with centre $O$, and points $A$, $B$ and $C$ on the circle, with
+      $O$ inside the angle $\angle ABC$. **To prove:** $|\angle AOC| = 2|\angle ABC|$.
+
+  - id: lc17-7-reason-line
+    section: '17.7'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      In the proof of Theorem 19, give the reason for the line
+      $|\angle AOD| = |\angle BAO| + |\angle ABO|$.
+    answer_label: 'The reason'
+    check:
+      kind: structured
+      requires: [exterior-angle, name-triangle]
+      concepts: [exterior-angle]
+      points:
+        - id: exterior-angle
+          text: the angle AOD is the exterior angle of the triangle AOB at O, and an exterior angle equals the sum of the two interior opposite angles, by Theorem 6
+          concepts: [exterior-angle]
+        - id: name-triangle
+          text: the two interior opposite angles are BAO and ABO
+          concepts: [exterior-angle]
+    answer_text: >-
+      $\angle AOD$ is the exterior angle of the triangle $AOB$ at $O$. The exterior angle
+      equals the sum of the two interior opposite angles, by Theorem 6, and those are
+      $\angle BAO$ and $\angle ABO$.
+
+  - id: lc17-7-exterior-numbers
+    section: '17.7'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      In the proof of Theorem 19, $|\angle AOD| = 2|\angle ABO|$ and
+      $|\angle ABO| = 32^\circ$. Find $|\angle AOD|$.
+    answer_label: '$|\angle AOD|$'
+    check: {kind: evaluate, expression: '2 * 32', answer: '64'}
+    answer_text: >-
+      $|\angle AOD| = 2 \times 32^\circ = 64^\circ$, from line 4 of the proof.
+
+  - id: lc17-7-semicircle-proof
+    section: '17.7'
+    tier: H
+    refs: ['2.1']
+    statement: 'Prove that the angle in a semicircle is a right angle, using Theorem 19.'
+    answer_label: 'The proof'
+    check:
+      kind: structured
+      requires: [straight-angle, halve]
+      concepts: [semicircle, theorem-19]
+      points:
+        - id: straight-angle
+          text: the diameter BC makes the angle at the centre BOC the straight angle, 180 degrees
+          concepts: [semicircle]
+        - id: halve
+          text: the angle BAC stands on the same arc BC, so by Theorem 19 it is half of 180 degrees, which is 90 degrees
+          concepts: [theorem-19]
+    answer_text: >-
+      The diameter $BC$ makes the angle at the centre $\angle BOC$ the straight angle,
+      $180^\circ$. The angle $\angle BAC$ stands on the same arc $BC$, so by Theorem 19 it
+      is half of the angle at the centre: $|\angle BAC| = 90^\circ$.
+
+  - id: lc17-7-contradiction
+    section: '17.7'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      Outline the proof by contradiction that a tangent is perpendicular to the radius at
+      the point of contact, and state what the contradiction is.
+    answer_label: 'The outline and the contradiction'
+    check:
+      kind: structured
+      requires: [assume-not, mirror-point, contradiction]
+      concepts: [proof-by-contradiction, tangent]
+      points:
+        - id: assume-not
+          text: suppose the tangent l touches the circle at P and OP is not perpendicular to l
+          concepts: [proof-by-contradiction]
+        - id: mirror-point
+          text: let Q be the foot of the perpendicular from O to l, and let R be the point of l with QR = QP on the other side of Q
+          concepts: [tangent]
+        - id: contradiction
+          text: triangles OQP and OQR are congruent by SAS, so OR = OP and R is also on the circle, so l meets the circle at two points, contradicting the definition of a tangent
+          concepts: [proof-by-contradiction]
+    answer_text: >-
+      Suppose $OP$ is not perpendicular to the tangent $l$. Let $Q$ be the foot of the
+      perpendicular from $O$ to $l$, and let $R$ be the point of $l$ on the other side of
+      $Q$ from $P$ with $|QR| = |QP|$. The triangles $OQP$ and $OQR$ are congruent by SAS,
+      so $|OR| = |OP|$ and $R$ is on the circle. Then $l$ meets the circle at two points,
+      which contradicts the definition of a tangent.
+
+  - id: lc17-7-same-segment-proof
+    section: '17.7'
+    tier: H
+    refs: ['2.1']
+    statement: 'Prove that angles in the same segment are equal, using Theorem 19.'
+    answer_label: 'The proof'
+    check:
+      kind: structured
+      requires: [both-halves, same-centre-angle]
+      concepts: [same-segment, theorem-19]
+      points:
+        - id: both-halves
+          text: the angle BAC is half of the angle at the centre standing on the arc BC, by Theorem 19
+          concepts: [theorem-19]
+        - id: same-centre-angle
+          text: the angle BA'C is half of the same angle at the centre, because both angles stand on the same arc, and two halves of the same angle are equal
+          concepts: [same-segment]
+    answer_text: >-
+      Each angle is half of the angle at the centre standing on the arc $BC$, by Theorem
+      19. Both stand on the same arc, so they are halves of the same angle, and they are
+      equal.
+
+  - id: lc17-7-measured-example
+    section: '17.7'
+    tier: H
+    refs: ['2.1']
+    statement: >-
+      A student measures one angle in a semicircle, finds $90^\circ$, and says this proves
+      the result. Explain why this is not a proof.
+    answer_label: 'Why it is not a proof'
+    check:
+      kind: structured
+      requires: [one-case, proof-covers-all, asymmetry]
+      concepts: [proof, counterexample]
+      points:
+        - id: one-case
+          text: one measurement shows the statement for that one semicircle only
+          concepts: [proof]
+        - id: proof-covers-all
+          text: a proof must start from the Given and reach the conclusion by reasons, so it covers every circle at once
+          concepts: [proof]
+        - id: asymmetry
+          text: a single counterexample would disprove the statement, but no number of confirming measurements can prove it
+          concepts: [counterexample]
+    answer_text: >-
+      One measurement shows the statement for that one semicircle. It does not show it for
+      every semicircle. A proof must start from the Given and reach the conclusion by
+      reasons, so the argument covers every case at once.
+
+      There is also an asymmetry worth noticing. A single **counterexample** — one
+      semicircle whose angle was not $90^\circ$ — would disprove the statement at once.
+      But no number of confirming measurements can prove it, because the next circle
+      might be the one that fails. Measuring supports a guess; only a proof establishes it.

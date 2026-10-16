@@ -1,5 +1,5 @@
 ---
-title: 11.4 Measures of centre and spread — Practise
+title: "11.4 Measures of centre and spread — Practise"
 chapter: 11
 chapter_title: Statistics
 section: '11.4'
@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.4 Measures of centre and spread — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 1.7
+Work independently. The questions and answers are shown together at the end.
+
+Put every list in order before you look for the median. For the mean from a frequency
+table, work out $\sum fx$ and $\sum f$ first.
+
+:::problems chapter-11-practice-11.4
+
+:::answers chapter-11-practice-11.4

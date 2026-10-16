@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 17.5 The special points of a triangle — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Decide which lines you need before you draw anything. Say whether the circle passes
+through the vertices or touches the sides, and that tells you which point you have.
+
+:::problems chapter-17-practice-17.5
+
+:::answers chapter-17-practice-17.5

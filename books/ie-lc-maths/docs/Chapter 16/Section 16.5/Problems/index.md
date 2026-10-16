@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.5 Pythagoras' theorem proved — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Draw the right angle first, and mark the side opposite it. That side is the hypotenuse,
+and it decides whether you add or subtract.
+
+:::problems chapter-16-practice-16.5
+
+:::answers chapter-16-practice-16.5

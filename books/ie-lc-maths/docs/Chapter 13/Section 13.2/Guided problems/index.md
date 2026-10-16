@@ -166,7 +166,7 @@ The fixed charge happens even for $0$ km, so it is the intercept.
 
 $$y = 2x + 3.5$$
 
-For $7$ km, $y = 2 \times 7 + 3.5 = €17.50$. The fixed charge is the intercept
+For $7$ km, $y = 2 \times 7 + 3.5 = 17.5$, which is €17.50. The fixed charge is the intercept
 because it does not change with distance.
 
 </details>

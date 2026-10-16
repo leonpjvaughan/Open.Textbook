@@ -1,0 +1,132 @@
+# Practice set for 17.4 (strand 2, outcome 2.1). The numeric records are proved by
+# sympy: each `expression` is the right-angled-triangle arithmetic at the point of
+# contact, and each `answer` is the result. The `structured` records cover the two
+# proofs; a `structured` record proves that a model answer contains its declared ideas
+# **in order**, and nothing more. It does not prove the geometry, and it cannot: the
+# verifier reads the words, so the mathematics of a written argument stays a human
+# judgement. The model answer is the `points` list, and it is what the reader sees.
+chapter: 17
+problems:
+  - id: lc17-4-tangent-5-13
+    section: '17.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A circle has radius $5$ cm. A point $T$ is $13$ cm from the centre. Find the length
+      of the tangent from $T$ to the circle.
+    answer_label: 'Tangent length'
+    check: {kind: evaluate, expression: 'sqrt(13**2 - 5**2)', answer: '12'}
+    answer_text: >-
+      The radius to the point of contact is perpendicular to the tangent, so
+      $|TU|^2 = 13^2 - 5^2 = 144$ and $|TU| = 12$ cm.
+
+  - id: lc17-4-distance-24-7
+    section: '17.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A tangent from a point $T$ to a circle has length $24$ cm, and the radius is $7$ cm.
+      Find the distance from $T$ to the centre.
+    answer_label: 'Distance from the centre'
+    check: {kind: evaluate, expression: 'sqrt(7**2 + 24**2)', answer: '25'}
+    answer_text: >-
+      The distance from $T$ to the centre is the hypotenuse, so
+      $|OT|^2 = 7^2 + 24^2 = 625$ and $|OT| = 25$ cm.
+
+  - id: lc17-4-tangent-9-41
+    section: '17.4'
+    tier: O
+    refs: ['2.1']
+    statement: 'A circle has radius $9$ cm and a point $T$ is $41$ cm from the centre. Find the tangent length.'
+    answer_label: 'Tangent length'
+    check: {kind: evaluate, expression: 'sqrt(41**2 - 9**2)', answer: '40'}
+    answer_text: >-
+      $|TU|^2 = 41^2 - 9^2 = 1600$, so the tangent length is $40$ cm.
+
+  - id: lc17-4-distance-15-8
+    section: '17.4'
+    tier: O
+    refs: ['2.1']
+    statement: 'A tangent of length $8$ cm is drawn from a point $T$ to a circle of radius $15$ cm. Find the distance from $T$ to the centre.'
+    answer_label: 'Distance from the centre'
+    check: {kind: evaluate, expression: 'sqrt(15**2 + 8**2)', answer: '17'}
+    answer_text: >-
+      $|OT|^2 = 15^2 + 8^2 = 289$, so $|OT| = 17$ cm.
+
+  - id: lc17-4-bisected
+    section: '17.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      The two tangents from $T$ touch a circle at $U$ and $V$, and $|\angle UTV| = 84^\circ$.
+      Find $|\angle OTV|$.
+    answer_label: '$|\angle OTV|$'
+    check: {kind: evaluate, expression: '84 / 2', answer: '42'}
+    answer_text: >-
+      The triangles $OUT$ and $OVT$ are congruent, so the line $OT$ bisects the angle
+      between the two tangents: $|\angle OTV| = 42^\circ$.
+
+  - id: lc17-4-window-rod
+    section: '17.4'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A circular window has radius $25$ cm. A support rod touches the rim at $U$ and is
+      fixed at a point $T$ with $|OT| = 65$ cm. Find the length of the rod $|TU|$.
+    answer_label: 'Rod length'
+    check: {kind: evaluate, expression: 'sqrt(65**2 - 25**2)', answer: '60'}
+    answer_text: >-
+      The rod is a tangent, so the radius $OU$ is perpendicular to it. Then
+      $|TU|^2 = 65^2 - 25^2 = 3600$, and the rod is $60$ cm long.
+
+  - id: lc17-4-why-perpendicular
+    section: '17.4'
+    tier: O
+    refs: ['2.1']
+    statement: 'Prove that a tangent is perpendicular to the radius at the point of contact.'
+    answer_label: 'The proof by contradiction'
+    check:
+      kind: structured
+      requires: [assume-not, mirror-point, contradiction]
+      concepts: [tangent, congruence]
+      points:
+        - id: assume-not
+          text: suppose the tangent l touches the circle at P and OP is not perpendicular to l
+          concepts: [tangent]
+        - id: mirror-point
+          text: let Q be the foot of the perpendicular from O to l, and let R be the reflection of P in Q, so QR = QP
+          concepts: [congruence]
+        - id: contradiction
+          text: triangles OQP and OQR are congruent by SAS, so OR = OP and R is also on the circle; then l meets the circle at two points, contradicting the definition of a tangent
+          concepts: [tangent]
+    answer_text: >-
+      Suppose the tangent $l$ touches the circle at $P$ and $OP$ is not perpendicular to
+      $l$. Let $Q$ be the foot of the perpendicular from $O$ to $l$, and let $R$ be the
+      point of $l$ on the other side of $Q$ from $P$ with $|QR| = |QP|$. The triangles
+      $OQP$ and $OQR$ are congruent by SAS, so $|OR| = |OP|$ and $R$ is on the circle.
+      Then $l$ meets the circle at two points, which contradicts the definition of a
+      tangent. So $OP$ is perpendicular to $l$.
+
+  - id: lc17-4-equal-tangents
+    section: '17.4'
+    tier: O
+    refs: ['2.1']
+    statement: 'Prove that the two tangents from a point outside a circle are equal in length.'
+    answer_label: 'The proof'
+    check:
+      kind: structured
+      requires: [two-right-angles, congruent-triangles]
+      concepts: [tangent, congruent-triangles]
+      points:
+        - id: two-right-angles
+          text: by part 1 of Theorem 20 the radii to the two points of contact are perpendicular to the tangents
+          concepts: [tangent]
+        - id: congruent-triangles
+          text: the two triangles share the hypotenuse OT and have equal radii, so they are congruent and the two tangent lengths are equal
+          concepts: [congruent-triangles]
+    answer_text: >-
+      Let the tangents from $T$ touch the circle at $U$ and $V$. By part 1 of Theorem 20,
+      $OU$ is perpendicular to $TU$ and $OV$ is perpendicular to $TV$. The triangles
+      $OUT$ and $OVT$ have a right angle, equal radii $|OU| = |OV|$, and the common side
+      $OT$. Two right-angled triangles with the hypotenuse and one other side equal are
+      congruent, so $|TU| = |TV|$.

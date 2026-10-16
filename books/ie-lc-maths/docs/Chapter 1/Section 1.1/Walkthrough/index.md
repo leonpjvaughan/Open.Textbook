@@ -37,7 +37,7 @@ $$\dots,\ -3,\ -2,\ -1,\ 0,\ 1,\ 2,\ 3,\ \dots$$
 
 The integers are written $\mathbb{Z}$. They can be positive, negative or zero,
 and they have no fractional part. A temperature of $-4^\circ C$ and a bank balance
-of $-\text{€}50$ are both integers.
+of $-50$, meaning €50 owed, are both integers.
 
 Every natural number is an integer, because you can reach it by counting. The
 reverse is not true: $-4$ is an integer but not a natural number.

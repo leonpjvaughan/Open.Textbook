@@ -1,0 +1,171 @@
+# Practice set for 11.9 (strand 1, outcome 1.7, Higher level). The standard errors and test
+# statistics are irrational, so they are checked with `approx` and a stated tolerance. The
+# hypothesis records go through sympy.stats: the verifier computes the exact tail from the
+# stated distribution and tail, checks the declared p-value against it, and checks the
+# decision against alpha. It proves the arithmetic and the decision given the stated
+# distribution and tail; it can never prove that the test itself was the right one for the
+# context. The `structured` record proves the declared ideas are present in order.
+chapter: 11
+problems:
+  - id: lc11-9-se
+    section: '11.9'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A sample of $80$ new phones has mean charging time $45.4$ minutes. The population
+      standard deviation is $3.1$ minutes. Find the standard error, correct to four
+      decimal places.
+    answer_label: 'The standard error'
+    check: {kind: approx, value: '3.1 / sqrt(80)', target: '0.3466', tolerance: '0.0001'}
+    answer_text: >-
+      $\dfrac{3.1}{\sqrt{80}} \approx 0.3466$ minutes. The standard error measures how
+      much the sample mean varies from sample to sample.
+
+  - id: lc11-9-z
+    section: '11.9'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A sample of $80$ new phones has mean charging time $45.4$ minutes and standard
+      error $0.3466$ minutes. Test the claim that the population mean is $44$ minutes.
+      Find the test statistic, correct to three decimal places.
+    answer_label: 'The test statistic'
+    check: {kind: approx, value: '(45.4 - 44) / (3.1 / sqrt(80))', target: '4.039', tolerance: '0.001'}
+    answer_text: >-
+      $z = \dfrac{45.4 - 44}{0.3466} \approx 4.04$. The sample mean lies about four
+      standard errors above the claimed mean, which is very unusual under the claim.
+
+  - id: lc11-9-ci-mean
+    section: '11.9'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A sample of $80$ new phones has mean charging time $45.4$ minutes and population
+      standard deviation $3.1$ minutes. Build the $95\%$ confidence interval for the
+      population mean, giving each end correct to three decimal places.
+    answer_label: 'The lower end, then the upper end'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: '45.4 - 1.96 * 3.1 / sqrt(80)', target: '44.721', tolerance: '0.001'}
+        - {kind: approx, value: '45.4 + 1.96 * 3.1 / sqrt(80)', target: '46.079', tolerance: '0.001'}
+    answer_text: >-
+      $45.4 \pm 1.96 \times 0.3466 = 45.4 \pm 0.679$, so the interval is
+      $(44.72, 46.08)$ minutes. The interval does not contain $44$.
+
+  - id: lc11-9-test-decision
+    section: '11.9'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A two-tailed $z$-test of $H_0: \mu = 44$ gives $z = 4.039$. Carry out the test at
+      the $5\%$ level, stating the $p$-value and the decision.
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: normal
+      parameters: {mu: 0, sigma: 1}
+      tail: two
+      observed: '4.039'
+      p_value: '0.00005'
+      alpha: '1/20'
+      decision: reject
+      critical_region: {max: '-1.96', min: '1.96'}
+      tolerance: '0.001'
+    answer_text: >-
+      The two-tailed $p$-value is about $0.00005$, which is far below $0.05$. Reject
+      $H_0$. There is strong evidence that the mean charging time is not $44$ minutes.
+      The confidence interval in the previous question agrees, because it does not
+      contain $44$.
+
+  - id: lc11-9-ci-proportion
+    section: '11.9'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A poll of $1000$ voters gives $\hat{p} = 0.52$. Build the $95\%$ confidence
+      interval for the population proportion, giving each end correct to three decimal
+      places.
+    answer_label: 'The lower end, then the upper end'
+    check:
+      kind: all
+      checks:
+        - {kind: approx, value: '0.52 - 1.96 * sqrt(0.52 * 0.48 / 1000)', target: '0.489', tolerance: '0.001'}
+        - {kind: approx, value: '0.52 + 1.96 * sqrt(0.52 * 0.48 / 1000)', target: '0.551', tolerance: '0.001'}
+    answer_text: >-
+      The standard error is $\sqrt{\dfrac{0.52 \times 0.48}{1000}} \approx 0.0158$, so
+      the interval is $0.52 \pm 0.031 = (0.489, 0.551)$. It contains $0.5$.
+
+  - id: lc11-9-anchor
+    section: '11.9'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A poll of $1000$ voters reports $\hat{p} = 0.52$. Test $H_0: p = 0.5$ against
+      $H_1: p \neq 0.5$ at the $5\%$ level. The test statistic is $z = 1.2649$. State the
+      $p$-value and the decision.
+    answer_label: 'The p-value and the decision'
+    check:
+      kind: hypothesis
+      distribution: normal
+      parameters: {mu: 0, sigma: 1}
+      tail: two
+      observed: '1.2649'
+      p_value: '0.206'
+      alpha: '1/20'
+      decision: retain
+      critical_region: {max: '-1.96', min: '1.96'}
+      tolerance: '0.001'
+    answer_text: >-
+      The two-tailed $p$-value is about $0.206$, which is greater than $0.05$. Retain
+      $H_0$. The poll is consistent with a $50$-$50$ split, so a four-point lead is not
+      evidence that Yes would win.
+
+  - id: lc11-9-critical
+    section: '11.9'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A two-tailed test at the $5\%$ level gives $z = 2.3$. Find the $p$-value and the
+      decision, and state the critical values.
+    answer_label: 'The p-value, the decision and the critical values'
+    check:
+      kind: hypothesis
+      distribution: normal
+      parameters: {mu: 0, sigma: 1}
+      tail: two
+      observed: '2.3'
+      p_value: '0.0214'
+      alpha: '1/20'
+      decision: reject
+      critical_region: {max: '-1.96', min: '1.96'}
+      tolerance: '0.001'
+    answer_text: >-
+      The two-tailed $p$-value is about $0.0214 < 0.05$, so reject $H_0$. The critical
+      values are $\pm 1.96$, and $|2.3| > 1.96$, which agrees with the decision. A test
+      statistic beyond a critical value is the same statement as a $p$-value below
+      $\alpha$.
+
+  - id: lc11-9-p-value
+    section: '11.9'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A test gives a $p$-value of $0.046$ at the $5\%$ level. Explain what the $p$-value
+      means, and state the decision.
+    answer_label: 'The meaning and the decision'
+    check:
+      kind: structured
+      requires: [meaning, decision]
+      concepts: [assuming-null, reject]
+      points:
+        - id: meaning
+          text: the p-value is the probability of a result at least as extreme as the one observed, assuming the null hypothesis is true
+          concepts: [assuming-null]
+        - id: decision
+          text: since 0.046 is less than 0.05, reject the null hypothesis at the 5% level
+          concepts: [reject]
+    answer_text: >-
+      The $p$-value $0.046$ is the probability of a result at least as extreme as the one
+      observed, assuming $H_0$ is true. It is not the probability that $H_0$ is true.
+      Since $0.046 < 0.05$, reject $H_0$ at the $5\%$ level.

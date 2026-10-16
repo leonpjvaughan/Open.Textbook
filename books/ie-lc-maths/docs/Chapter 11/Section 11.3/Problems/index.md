@@ -1,5 +1,5 @@
 ---
-title: '11.3 Representing data: charts and histograms — Practise'
+title: "11.3 Representing data: charts and histograms — Practise"
 chapter: 11
 chapter_title: Statistics
 section: '11.3'
@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.3 Representing data: charts and histograms — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 1.6
+Work independently. The questions and answers are shown together at the end.
+
+Before you calculate, decide whether the data are categorical or numerical, and whether
+the classes have equal widths. That choice decides which formula applies.
+
+:::problems chapter-11-practice-11.3
+
+:::answers chapter-11-practice-11.3

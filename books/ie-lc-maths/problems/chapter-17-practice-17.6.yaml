@@ -1,0 +1,178 @@
+# Practice set for 17.6 (strand 2, outcome 2.1). Most records here are `structured`,
+# because a construction is a sequence of steps: the record proves that a model answer
+# contains the declared steps **in order**, and that is all. It cannot draw the figure,
+# and it does not prove the geometry; a person checks the drawing. The two numeric
+# records are proved by sympy: each `expression` is the halving of the $60^\circ$
+# construction and each `answer` is the result. The model answer is the `points` list,
+# and it is what the reader sees.
+chapter: 17
+problems:
+  - id: lc17-6-circumcircle
+    section: '17.6'
+    tier: O
+    refs: ['2.1']
+    statement: 'Describe construction 16, the circumcircle of a triangle, and say why it works.'
+    answer_label: 'The construction and its reason'
+    check:
+      kind: structured
+      requires: [two-bisectors, circle, reason]
+      concepts: [perpendicular-bisector, circumcentre]
+      points:
+        - id: two-bisectors
+          text: construct the perpendicular bisector of one side and of a second side
+          concepts: [perpendicular-bisector]
+        - id: circle
+          text: the bisectors cross at the circumcentre O, and the circle centred at O through one vertex passes through the other two
+          concepts: [circumcentre]
+        - id: reason
+          text: the perpendicular bisectors of a triangle meet at one point, by Proposition 17
+          concepts: [circumcentre]
+    answer_text: >-
+      Construct the perpendicular bisector of one side, then of a second side. They cross
+      at the circumcentre $O$. Draw the circle with centre $O$ through one vertex; it
+      passes through the other two. The method works because the perpendicular bisectors
+      of a triangle meet at one point, by Proposition 17.
+
+  - id: lc17-6-tangent-at-point
+    section: '17.6'
+    tier: O
+    refs: ['2.1']
+    statement: 'Describe construction 19, the tangent at a point on a circle, and say why the line is a tangent.'
+    answer_label: 'The construction and its reason'
+    check:
+      kind: structured
+      requires: [radius, perpendicular, reason]
+      concepts: [tangent, radius]
+      points:
+        - id: radius
+          text: draw the radius OP to the point P on the circle
+          concepts: [radius]
+        - id: perpendicular
+          text: construct the line through P perpendicular to OP, using Construction 4
+          concepts: [tangent]
+        - id: reason
+          text: a line through a point of a circle perpendicular to the radius at that point is a tangent, by part 2 of Theorem 20
+          concepts: [tangent]
+    answer_text: >-
+      Draw the radius $OP$. Construct the line through $P$ perpendicular to $OP$. The line
+      is a tangent by part 2 of Theorem 20.
+
+  - id: lc17-6-angle-60
+    section: '17.6'
+    tier: O
+    refs: ['2.1']
+    statement: 'Describe construction 18, an angle of $60^\circ$ without a protractor, and say why the angle is $60^\circ$.'
+    answer_label: 'The construction and its reason'
+    check:
+      kind: structured
+      requires: [two-arcs, equilateral, reason]
+      concepts: [equilateral, angle]
+      points:
+        - id: two-arcs
+          text: draw an arc from A cutting the ray at B, then an arc from B with the same opening cutting the first arc at C
+          concepts: [angle]
+        - id: equilateral
+          text: the three lengths AB, AC and BC are equal, so the triangle ABC is equilateral
+          concepts: [equilateral]
+        - id: reason
+          text: the three angles of an equilateral triangle are equal and add to 180 degrees, so each is 60 degrees
+          concepts: [equilateral]
+    answer_text: >-
+      Draw an arc from $A$ that cuts the ray at $B$. With the same opening, draw an arc from
+      $B$ that cuts the first arc at $C$. Draw the ray $[AC$. The three lengths are equal,
+      so $ABC$ is equilateral, and each angle of an equilateral triangle is $60^\circ$.
+
+  - id: lc17-6-incircle
+    section: '17.6'
+    tier: O
+    refs: ['2.1']
+    statement: 'Describe construction 17, the incircle of a triangle.'
+    answer_label: 'The construction'
+    check:
+      kind: structured
+      requires: [two-bisectors, perpendicular, circle]
+      concepts: [incentre, angle-bisector]
+      points:
+        - id: two-bisectors
+          text: construct the bisector of the angle at A and of the angle at B, which cross at the incentre I
+          concepts: [angle-bisector]
+        - id: perpendicular
+          text: drop the perpendicular from I to one side, using Construction 3
+          concepts: [incentre]
+        - id: circle
+          text: draw the circle with centre I and that perpendicular as radius; it touches all three sides
+          concepts: [incentre]
+    answer_text: >-
+      Construct the bisector of the angle at $A$ and of the angle at $B$; they cross at the
+      incentre $I$. Drop the perpendicular from $I$ to one side. The circle with centre $I$
+      and that perpendicular as radius touches all three sides.
+
+  - id: lc17-6-half-60
+    section: '17.6'
+    tier: O
+    refs: ['2.1']
+    statement: 'An angle of $60^\circ$ is constructed and then bisected. Find each part.'
+    answer_label: 'Each part'
+    check: {kind: evaluate, expression: '60 / 2', answer: '30'}
+    answer_text: 'Bisecting an angle of $60^\circ$ gives two angles of $30^\circ$.'
+
+  - id: lc17-6-quarter-60
+    section: '17.6'
+    tier: O
+    refs: ['2.1']
+    statement: 'An angle of $60^\circ$ is bisected, and then each half is bisected again. Find each of the four angles.'
+    answer_label: 'Each angle'
+    check: {kind: evaluate, expression: '60 / 4', answer: '15'}
+    answer_text: >-
+      The first bisection gives $30^\circ$, and the second gives four angles of
+      $60^\circ \div 4 = 15^\circ$.
+
+  - id: lc17-6-centroid-construction
+    section: '17.6'
+    tier: O
+    refs: ['2.1']
+    statement: 'Describe construction 21, the centroid of a triangle.'
+    answer_label: 'The construction'
+    check:
+      kind: structured
+      requires: [first-median, second-median, reason]
+      concepts: [median, centroid]
+      points:
+        - id: first-median
+          text: construct the midpoint of one side and draw the median from the opposite vertex to it
+          concepts: [median]
+        - id: second-median
+          text: construct the midpoint of a second side and draw its median; the two cross at the centroid
+          concepts: [centroid]
+        - id: reason
+          text: the three medians meet at one point, by Proposition 19, so the third median passes through the same point
+          concepts: [centroid]
+    answer_text: >-
+      Construct the midpoint of one side and draw the median from the opposite vertex.
+      Repeat for a second side. The two medians cross at the centroid, and the third median
+      passes through it by Proposition 19.
+
+  - id: lc17-6-orthocentre-construction
+    section: '17.6'
+    tier: O
+    refs: ['2.1']
+    statement: 'Describe construction 22, the orthocentre of a triangle, and say which earlier construction each altitude needs.'
+    answer_label: 'The construction'
+    check:
+      kind: structured
+      requires: [first-altitude, second-altitude, reason]
+      concepts: [altitude, orthocentre]
+      points:
+        - id: first-altitude
+          text: construct the perpendicular from A to BC, using Construction 3, to get the altitude from A
+          concepts: [altitude]
+        - id: second-altitude
+          text: construct the perpendicular from B to AC; the two altitudes cross at the orthocentre
+          concepts: [orthocentre]
+        - id: reason
+          text: the three altitudes meet at one point, by Proposition 20
+          concepts: [orthocentre]
+    answer_text: >-
+      Construct the perpendicular from $A$ to $BC$ and from $B$ to $AC$, each using
+      Construction 3. The two altitudes cross at the orthocentre, and the third passes
+      through it by Proposition 20.

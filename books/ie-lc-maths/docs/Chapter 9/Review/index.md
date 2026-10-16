@@ -12,11 +12,15 @@ kind: review
 
 **Plan A — arithmetic.** €50, then €20 more each month: $a = 50$, $d = 20$.
 
-$$S_{24} = \frac{24}{2}\left(2(50) + 23(20)\right) = 12(100 + 460) = 12 \times 560 = €6720$$
+$$S_{24} = \frac{24}{2}\left(2(50) + 23(20)\right) = 12(100 + 460) = 12 \times 560 = 6720$$
+
+so Plan A saves €6720.
 
 **Plan B — geometric.** €50, then up 10% each month: $a = 50$, $r = 1.1$.
 
-$$S_{24} = \frac{50\left(1.1^{24} - 1\right)}{1.1 - 1} = 500(9.8497\dots - 1) \approx €4425$$
+$$S_{24} = \frac{50\left(1.1^{24} - 1\right)}{1.1 - 1} = 500(9.8497\dots - 1) \approx 4425$$
+
+so Plan B saves about €4425.
 
 **Plan A wins**, by about €2295.
 

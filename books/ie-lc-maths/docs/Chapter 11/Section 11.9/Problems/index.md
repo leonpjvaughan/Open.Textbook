@@ -1,5 +1,5 @@
 ---
-title: 11.9 Hypothesis testing and confidence intervals — Practise
+title: "11.9 Hypothesis testing and confidence intervals — Practise"
 chapter: 11
 chapter_title: Statistics
 section: '11.9'
@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.9 Hypothesis testing and confidence intervals — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 1.7
+Work independently. The questions and answers are shown together at the end.
+
+Write the hypotheses before you calculate. For a two-tailed test, double the one-sided
+tail, and compare the result with the significance level.
+
+:::problems chapter-11-practice-11.9
+
+:::answers chapter-11-practice-11.9

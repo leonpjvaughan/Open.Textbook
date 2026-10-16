@@ -121,7 +121,9 @@ $R = 10(12) = 120$.
 
 The income is €120 and the cost is €300, so the business makes a loss of
 
-$$300 - 120 = €180$$
+$$300 - 120 = 180$$
+
+The loss is €180.
 
 The income is below the cost, which is the loss region of the graph.
 
@@ -173,9 +175,11 @@ The cost rose by €40 while $n$ rose by $10$.
 <details markdown="1">
 <summary>Full working</summary>
 
-$$\text{cost per candle} = \frac{360 - 320}{30 - 20} = \frac{40}{10} = €4$$
+$$\text{cost per candle} = \frac{360 - 320}{30 - 20} = \frac{40}{10} = 4$$
 
-The fixed cost is what is left after the candles: $320 - 4(20) = 320 - 80 = €240$.
+So each candle costs €4.
+
+The fixed cost is what is left after the candles: $320 - 4(20) = 320 - 80 = 240$, which is €240.
 
 The formula is $C = 240 + 4n$, as before.
 

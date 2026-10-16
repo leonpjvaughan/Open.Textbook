@@ -95,7 +95,7 @@ problems:
     check: {kind: evaluate, expression: '2*7 + 3.5', answer: '17.5'}
     answer_text: >-
       The fixed charge is the intercept and the rate is the slope, so
-      $y = 2x + 3.5$. For $7$ km, $y = 2 \times 7 + 3.5 = €17.50$.
+      $y = 2x + 3.5$. For $7$ km, $y = 2 \times 7 + 3.5 = 17.5$, which is €17.50.
 
   - id: lc13-2-negative-slope
     section: '13.2'

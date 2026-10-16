@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.4 Proportionality and ratios in triangles — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Write the ratio you are using before you calculate. The two ratios on the two sides of a
+triangle must have the same shape, or the comparison is meaningless.
+
+:::problems chapter-16-practice-16.4
+
+:::answers chapter-16-practice-16.4

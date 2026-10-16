@@ -1,0 +1,143 @@
+# Practice set for 16.7 (strand 2, outcome 2.1). A construction is a sequence of
+# moves, so most records here are `structured`: they prove that a model answer
+# contains the declared steps **in order**, and that is all. A `structured` record
+# cannot draw the figure, and it cannot prove that the construction is correct; that
+# is why the `points` list gives the reason for each step, and a person checks it.
+# The numeric checks are proved by sympy, and they cover the arithmetic of dividing a
+# segment or finding a missing side.
+chapter: 16
+problems:
+  - id: lc16-7-divide-four
+    section: '16.7'
+    tier: O
+    refs: ['2.1']
+    statement: 'A segment is $24$ cm long. It is divided into four equal parts. Find the length of each part.'
+    answer_label: 'The length of each part'
+    check: {kind: evaluate, expression: '24 / 4', answer: '6'}
+    answer_text: >-
+      Each part is $6$ cm. Construction 7 marks equal segments on a ray and draws
+      parallels, and the parallel lines cut off equal segments on the original segment.
+
+  - id: lc16-7-divide-six
+    section: '16.7'
+    tier: O
+    refs: ['2.1']
+    statement: 'A segment is $36$ cm long. It is divided into six equal parts. Find the length of each part.'
+    answer_label: 'The length of each part'
+    check: {kind: evaluate, expression: '36 / 6', answer: '6'}
+    answer_text: >-
+      Each part is $6$ cm. The method is Construction 7, with six equal segments marked
+      on the ray.
+
+  - id: lc16-7-sss-construction
+    section: '16.7'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Describe the steps for constructing a triangle with sides of $5$ cm, $6$ cm and
+      $7$ cm, and name the congruence test.
+    answer_label: 'The steps of Construction 10'
+    check:
+      kind: structured
+      requires: [draw-first-side, two-arcs, join-vertex]
+      concepts: [sss, arc-radius]
+      points:
+        - id: draw-first-side
+          text: draw the side of 7 cm with the ruler, using Construction 8
+          concepts: [arc-radius]
+        - id: two-arcs
+          text: with centre at one end draw an arc of radius 5 cm, and with centre at the other end draw an arc of radius 6 cm
+          concepts: [arc-radius]
+        - id: join-vertex
+          text: the arcs meet at the third vertex, so draw the two remaining sides, and the construction is justified by SSS
+          concepts: [sss]
+    answer_text: >-
+      Draw the $7$ cm side, draw an arc of radius $5$ cm from one end and an arc of
+      radius $6$ cm from the other, and join the meeting point. The three sides are
+      fixed, so the construction is justified by SSS.
+
+  - id: lc16-7-right-triangle
+    section: '16.7'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A right-angled triangle has a hypotenuse of $13$ cm and one leg of $5$ cm. Find
+      the third side.
+    answer_label: 'The third side'
+    check: {kind: evaluate, expression: 'sqrt(13**2 - 5**2)', answer: '12'}
+    answer_text: >-
+      The third side is $12$ cm, by Pythagoras. Construction 13 draws the leg, constructs
+      a perpendicular at one end, and uses an arc of radius $13$ cm from the other end.
+
+  - id: lc16-7-asa-angle
+    section: '16.7'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A triangle is constructed with two angles of $40^\circ$ and $65^\circ$, and the
+      side between them $8$ cm long. Find the third angle.
+    answer_label: 'The third angle'
+    check: {kind: evaluate, expression: '180 - 40 - 65', answer: '75'}
+    answer_text: >-
+      The third angle is $75^\circ$. The three angles of a triangle add to $180^\circ$,
+      and the construction uses ASA.
+
+  - id: lc16-7-rectangle-steps
+    section: '16.7'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Describe the steps for constructing a rectangle with sides of $60$ mm and $25$ mm,
+      and say why the result is a rectangle.
+    answer_label: 'The steps of Construction 15'
+    check:
+      kind: structured
+      requires: [draw-first-side, perpendiculars, mark-second-side, complete]
+      concepts: [right-angle, rectangle]
+      points:
+        - id: draw-first-side
+          text: draw one side of 60 mm with the ruler
+          concepts: [rectangle]
+        - id: perpendiculars
+          text: construct the perpendicular to that side at each end, using Construction 4
+          concepts: [right-angle]
+        - id: mark-second-side
+          text: on one perpendicular mark a point 25 mm from the corner, using Construction 8
+          concepts: [rectangle]
+        - id: complete
+          text: construct the perpendicular to the marked side at that point, meeting the other perpendicular, so all four angles are right angles and the shape is a rectangle
+          concepts: [right-angle]
+    answer_text: >-
+      Draw the $60$ mm side, construct perpendiculars at both ends, mark $25$ mm on one
+      perpendicular, and construct the final perpendicular. All four angles are right
+      angles, so the shape is a rectangle.
+
+  - id: lc16-7-sas-steps
+    section: '16.7'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Describe the steps for constructing a triangle given two sides and the included
+      angle, and name the congruence test.
+    answer_label: 'The steps of Construction 11'
+    check:
+      kind: structured
+      requires: [draw-first-side, construct-angle, mark-second-side, join]
+      concepts: [sas, included-angle]
+      points:
+        - id: draw-first-side
+          text: draw the first given side with the ruler
+          concepts: [included-angle]
+        - id: construct-angle
+          text: at one end construct the given angle with the protractor, using Construction 9
+          concepts: [included-angle]
+        - id: mark-second-side
+          text: on the new ray mark the second given side with its correct length, using Construction 8
+          concepts: [sas]
+        - id: join
+          text: join the far end of the second side to the other end of the first side, and the construction is justified by SAS
+          concepts: [sas]
+    answer_text: >-
+      Draw the first side, construct the given angle at one end, mark the second side on
+      the new ray, and join the ends. The two sides and the angle between them are fixed,
+      so the construction is justified by SAS.

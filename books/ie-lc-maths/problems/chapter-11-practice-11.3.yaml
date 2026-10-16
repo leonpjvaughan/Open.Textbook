@@ -1,0 +1,129 @@
+# Practice set for 11.3 (strand 1, outcome 1.6). Every numeric answer is an exact
+# rational or integer, so `evaluate` and `statistic` prove it. The stem-and-leaf values
+# are given as a plain list in the check, because a display is a way of writing a data
+# set and the data set is what the statistic is computed from. The `structured` record
+# proves the declared ideas are present in order; it does not prove that the display
+# chosen is the best one, which is a judgement.
+chapter: 11
+problems:
+  - id: lc11-3-pie-angle
+    section: '11.3'
+    tier: F
+    refs: ['1.6']
+    statement: >-
+      A survey of $200$ people records favourite sport. $25$ choose hurling. Find the
+      angle of the hurling slice in a pie chart.
+    answer_label: 'The angle'
+    check: {kind: evaluate, expression: '25 / 200 * 360', answer: '45'}
+    answer_text: >-
+      $\dfrac{25}{200} \times 360^\circ = 45^\circ$. A full circle is $360^\circ$, so
+      each angle is the category's fraction of the total multiplied by $360$.
+
+  - id: lc11-3-pie-angle-2
+    section: '11.3'
+    tier: F
+    refs: ['1.6']
+    statement: >-
+      In a survey of $60$ students, $15$ walk to school. Find the angle of the walking
+      slice in a pie chart.
+    answer_label: 'The angle'
+    check: {kind: evaluate, expression: '15 / 60 * 360', answer: '90'}
+    answer_text: >-
+      $\dfrac{15}{60} \times 360^\circ = 90^\circ$. One quarter of the students walk, so
+      the slice is one quarter of the circle, which is $90^\circ$.
+
+  - id: lc11-3-hist-frequency
+    section: '11.3'
+    tier: F
+    refs: ['1.6']
+    statement: >-
+      A histogram has a class of width $5$ with frequency density $6$. How many values
+      are in the class?
+    answer_label: 'The frequency'
+    check: {kind: evaluate, expression: '6 * 5', answer: '30'}
+    answer_text: >-
+      Frequency $=$ frequency density $\times$ class width $= 6 \times 5 = 30$ values.
+      The area of the bar is proportional to the frequency.
+
+  - id: lc11-3-frequency-total
+    section: '11.3'
+    tier: F
+    refs: ['1.6']
+    statement: >-
+      A frequency table has frequencies $12$, $8$, $15$ and $5$. Find the total
+      frequency.
+    answer_label: 'The total frequency'
+    check: {kind: evaluate, expression: '12 + 8 + 15 + 5', answer: '40'}
+    answer_text: >-
+      $12 + 8 + 15 + 5 = 40$. The table describes $40$ items, and every pie-chart angle
+      is a fraction of this total.
+
+  - id: lc11-3-stem-median
+    section: '11.3'
+    tier: F
+    refs: ['1.6']
+    statement: >-
+      A stem-and-leaf plot holds the values $12$, $14$, $15$, $18$, $21$, $23$, $27$,
+      $29$, $31$ and $34$. Find the median.
+    answer_label: 'The median'
+    check:
+      kind: statistic
+      data: [12, 14, 15, 18, 21, 23, 27, 29, 31, 34]
+      stat: median
+      answer: '22'
+    answer_text: >-
+      There are $10$ values, so the median lies between the $5$th and $6$th:
+      $\dfrac{21 + 23}{2} = 22$.
+
+  - id: lc11-3-stem-range
+    section: '11.3'
+    tier: F
+    refs: ['1.6']
+    statement: >-
+      A stem-and-leaf plot holds the values $12$, $14$, $15$, $18$, $21$, $23$, $27$,
+      $29$, $31$ and $34$. Find the range.
+    answer_label: 'The range'
+    check:
+      kind: statistic
+      data: [12, 14, 15, 18, 21, 23, 27, 29, 31, 34]
+      stat: range
+      answer: '22'
+    answer_text: >-
+      The range is the largest value minus the smallest: $34 - 12 = 22$.
+
+  - id: lc11-3-percent-count
+    section: '11.3'
+    tier: F
+    refs: ['1.6']
+    statement: >-
+      A bar chart shows that $40\%$ of $250$ people chose a bus. How many people chose
+      the bus?
+    answer_label: 'The number of people'
+    check: {kind: evaluate, expression: '0.4 * 250', answer: '100'}
+    answer_text: >-
+      $40\%$ of $250$ is $0.4 \times 250 = 100$ people. The bar chart shows the
+      percentage; the count is the percentage turned back into a number.
+
+  - id: lc11-3-which-display
+    section: '11.3'
+    tier: F
+    refs: ['1.6']
+    statement: >-
+      Explain why a histogram is used for the times of $200$ runners, while a bar chart
+      is used for the runners' clubs.
+    answer_label: 'Why each display is used'
+    check:
+      kind: structured
+      requires: [times-histogram, clubs-bar]
+      concepts: [numerical-classes, categorical-gaps]
+      points:
+        - id: times-histogram
+          text: the times are numerical, so they are grouped into classes such as 20-29 minutes, and the bars touch because the classes run on without a break
+          concepts: [numerical-classes]
+        - id: clubs-bar
+          text: the clubs are categories, so they get one bar each with gaps between the bars
+          concepts: [categorical-gaps]
+    answer_text: >-
+      The times are numerical, so they are grouped into classes and shown by a histogram
+      whose bars touch. The clubs are categories, so they get a bar chart with gaps
+      between the bars.

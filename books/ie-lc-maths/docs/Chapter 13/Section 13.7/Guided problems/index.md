@@ -199,12 +199,12 @@ There are five parts in total.
 <details markdown="1">
 <summary>Next step</summary>
 
-One part is $120 \div 5 = €24$.
+One part is $120 \div 5 = 24$, which is €24.
 
 <details markdown="1">
 <summary>Full working</summary>
 
-One part is €24, so the shares are $2 \times 24 = €48$ and $3 \times 24 = €72$.
+One part is €24, so the shares are $2 \times 24 = 48$ and $3 \times 24 = 72$, which are €48 and €72.
 
 The section formula does the same thing with two coordinates instead of one
 amount. Both are weighted averages.

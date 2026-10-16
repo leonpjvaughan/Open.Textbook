@@ -61,9 +61,9 @@ problems:
         - {kind: evaluate, expression: '320 - 4 * 20', answer: '240'}
     answer_text: >-
       The cost rose by €40 while $n$ rose by $10$, so the cost per candle is
-      $(360 - 320)/(30 - 20) = €4$.
+      $(360 - 320)/(30 - 20) = 4$, which is €4.
 
-      The fixed cost is what remains: $320 - 4(20) = €240$. The formula is
+      The fixed cost is what remains: $320 - 4(20) = 240$, which is €240. The formula is
       $C = 240 + 4n$.
 
   - id: lc4-2-read-profit
@@ -81,9 +81,11 @@ problems:
         - {kind: evaluate, expression: '10 * 50', answer: '500'}
         - {kind: evaluate, expression: '10 * 50 - (240 + 4 * 50)', answer: '60'}
     answer_text: >-
-      The cost is $240 + 200 = €440$, the income is €500, and the profit is
+      The cost is $240 + 200 = 440$, which is €440, the income is €500, and the profit is
 
-      $$500 - 440 = €60$$
+      $$500 - 440 = 60$$
+
+      The profit is €60.
 
       The point $n = 50$ lies to the right of the break-even point, so the income
       line is above the cost line there.
@@ -149,9 +151,9 @@ problems:
           text: at n = 0 the income formula gives 0, because no candles means no money in
           concepts: [zero-sales]
     answer_text: >-
-      At $n = 0$ the cost is $240 + 4(0) = €240$, so the cost line starts at
+      At $n = 0$ the cost is $240 + 4(0) = 240$, which is €240, so the cost line starts at
       $(0, 240)$. The fixed cost is paid whatever happens.
 
-      At $n = 0$ the income is $10(0) = €0$, so the income line starts at the
+      At $n = 0$ the income is $10(0) = 0$, which is €0, so the income line starts at the
       origin. No candles sold means no money in. The starting height of each line
       is the constant in its formula.

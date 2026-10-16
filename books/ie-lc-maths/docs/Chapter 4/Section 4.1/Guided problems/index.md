@@ -146,7 +146,7 @@ coefficient.
 
 $$50 + 30n$$
 
-For $4$ hours: $50 + 30(4) = 50 + 120 = €170$.
+For $4$ hours: $50 + 30(4) = 50 + 120 = 170$, which is €170.
 
 </details>
 </details>

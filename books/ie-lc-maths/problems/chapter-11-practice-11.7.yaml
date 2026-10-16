@@ -1,0 +1,122 @@
+# Practice set for 11.7 (strand 1, outcome 1.7, Higher level). The margin of error is
+# 1/sqrt(n), the maximum radius of the 95% confidence interval for a proportion. The
+# arithmetic is exact, so a surd answer such as sqrt(10)/100 is compared symbolically and
+# an interval endpoint keeps its surd. The `structured` record proves the declared idea is
+# present in order; it does not prove the reasoning about confidence levels is complete.
+# Every record here is Higher-only, because the syllabus places the margin of error at
+# Higher level.
+chapter: 11
+problems:
+  - id: lc11-7-moe-400
+    section: '11.7'
+    tier: H
+    refs: ['1.7']
+    statement: 'A poll asks $400$ people. Find the margin of error, as a decimal.'
+    answer_label: 'The margin of error'
+    check: {kind: evaluate, expression: '1 / sqrt(400)', answer: '1/20'}
+    answer_text: >-
+      $\dfrac{1}{\sqrt{400}} = \dfrac{1}{20} = 0.05$, or $5\%$. A sample of $400$ gives
+      an answer within about five percentage points of the truth.
+
+  - id: lc11-7-moe-1000
+    section: '11.7'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A poll asks $1000$ people. Find the margin of error as a decimal, correct to three
+      decimal places.
+    answer_label: 'The margin of error'
+    check: {kind: approx, value: '1 / sqrt(1000)', target: '0.032', tolerance: '0.001'}
+    answer_text: >-
+      $\dfrac{1}{\sqrt{1000}} = \dfrac{\sqrt{10}}{100} \approx 0.032$, or $3.2\%$. The
+      sample size sits under a square root, so the margin of error falls slowly.
+
+  - id: lc11-7-n-from-moe
+    section: '11.7'
+    tier: H
+    refs: ['1.7']
+    statement: 'Find the sample size needed for a margin of error of $2.5\%$.'
+    answer_label: 'The sample size'
+    check: {kind: evaluate, expression: '1 / 0.025**2', answer: '1600'}
+    answer_text: >-
+      Set $\dfrac{1}{\sqrt{n}} = 0.025$. Then $n = \dfrac{1}{0.025^2} = 1600$. Halving
+      the margin of error takes four times the sample.
+
+  - id: lc11-7-proportion
+    section: '11.7'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A sample of $800$ people contains $320$ who support a plan. Find the sample
+      proportion $\hat{p}$.
+    answer_label: 'The sample proportion'
+    check: {kind: evaluate, expression: '320 / 800', answer: '2/5'}
+    answer_text: >-
+      $\hat{p} = \dfrac{320}{800} = \dfrac{2}{5} = 0.4$. The sample proportion is the
+      statistic used to estimate the population proportion $p$.
+
+  - id: lc11-7-interval
+    section: '11.7'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A poll of $1000$ voters reports $\hat{p} = 0.52$ for Yes. Using the margin of error
+      $\dfrac{1}{\sqrt{1000}}$, build the $95\%$ confidence interval.
+    answer_label: 'The lower end, then the upper end'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '0.52 - 1/sqrt(1000)', answer: '13/25 - sqrt(10)/100'}
+        - {kind: evaluate, expression: '0.52 + 1/sqrt(1000)', answer: '13/25 + sqrt(10)/100'}
+    answer_text: >-
+      $0.52 \pm 0.0316$ gives $(0.4884, 0.5516)$, or $48.8\%$ to $55.2\%$. The interval
+      runs from a clear No to a clear Yes, so the poll does not separate the two sides.
+
+  - id: lc11-7-moe-2500
+    section: '11.7'
+    tier: H
+    refs: ['1.7']
+    statement: 'A poll asks $2500$ people. Find the margin of error, as a decimal.'
+    answer_label: 'The margin of error'
+    check: {kind: evaluate, expression: '1 / sqrt(2500)', answer: '1/50'}
+    answer_text: >-
+      $\dfrac{1}{\sqrt{2500}} = \dfrac{1}{50} = 0.02$, or $2\%$. Going from $1000$ to
+      $2500$ responses shrinks the margin of error from $3.2\%$ to $2\%$.
+
+  - id: lc11-7-n-paper
+    section: '11.7'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      A survey wants its margin of error $\dfrac{1}{\sqrt{n}}$ to be at most $3.4\%$.
+      Find the smallest whole number $n$ that works.
+    answer_label: 'The smallest sample size'
+    check: {kind: evaluate, expression: 'ceiling(1 / 0.034**2)', answer: '866'}
+    answer_text: >-
+      Solve $\dfrac{1}{\sqrt{n}} \le 0.034$. Then $n \ge \dfrac{1}{0.034^2} = 865.05$,
+      so the smallest whole number is $866$. The margin of error for $n = 866$ is
+      $\dfrac{1}{\sqrt{866}} \approx 0.0340$.
+
+  - id: lc11-7-wider
+    section: '11.7'
+    tier: H
+    refs: ['1.7']
+    statement: >-
+      Explain why a $99\%$ confidence interval is wider than a $95\%$ confidence interval
+      for the same sample.
+    answer_label: 'Why the 99% interval is wider'
+    check:
+      kind: structured
+      requires: [confidence, multiplier]
+      concepts: [wider-interval, z-value]
+      points:
+        - id: confidence
+          text: a higher confidence level asks the method to cover the true value more often, which needs a wider interval
+          concepts: [wider-interval]
+        - id: multiplier
+          text: the 99% interval uses z = 2.576 in place of 1.96, so the radius is larger
+          concepts: [z-value]
+    answer_text: >-
+      A higher confidence level asks the method to cover the true value more often. To do
+      that, the interval must reach further on each side. The $99\%$ interval uses
+      $z = 2.576$ in place of $1.96$, so the radius is larger and the interval is wider.

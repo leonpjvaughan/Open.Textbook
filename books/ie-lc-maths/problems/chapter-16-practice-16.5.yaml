@@ -1,0 +1,132 @@
+# Practice set for 16.5 (strand 2, outcome 2.1). The numeric checks are proved by
+# sympy: the expression is the arithmetic the page claims, and the answer is the
+# result. The two `structured` records cover the theorem and its converse. A
+# `structured` record proves that a model answer contains the declared ideas **in
+# order**, and nothing more. It does not prove the geometry: the verifier reads the
+# words, so the mathematics of a written argument stays a human judgement. The
+# `points` list is the model answer the reader sees.
+chapter: 16
+problems:
+  - id: lc16-5-hypotenuse
+    section: '16.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A right-angled triangle has legs of $5$ cm and $12$ cm. Find the hypotenuse.
+    answer_label: 'The hypotenuse'
+    check: {kind: evaluate, expression: 'sqrt(5**2 + 12**2)', answer: '13'}
+    answer_text: >-
+      The hypotenuse is $13$ cm. The hypotenuse is opposite the right angle, so the two
+      squares are added: $25 + 144 = 169$, and $\sqrt{169} = 13$.
+
+  - id: lc16-5-leg
+    section: '16.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A right-angled triangle has a hypotenuse of $17$ cm and one leg of $8$ cm. Find
+      the other leg.
+    answer_label: 'The other leg'
+    check: {kind: evaluate, expression: 'sqrt(17**2 - 8**2)', answer: '15'}
+    answer_text: >-
+      The other leg is $15$ cm. The unknown side is a leg, so the square of the known leg
+      is subtracted from the square of the hypotenuse: $289 - 64 = 225$, and
+      $\sqrt{225} = 15$.
+
+  - id: lc16-5-right-angle-test
+    section: '16.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A triangle has sides of $7$ cm, $24$ cm and $25$ cm. Show that it is right-angled.
+    answer_label: 'The test for the right angle'
+    check: {kind: evaluate, expression: '7**2 + 24**2 - 25**2', answer: '0'}
+    answer_text: >-
+      $7^2 + 24^2 = 49 + 576 = 625$, and $25^2 = 625$. The two sides are equal, so the
+      triangle is right-angled by the converse of Pythagoras. The right angle is opposite
+      the $25$ cm side.
+
+  - id: lc16-5-ladder
+    section: '16.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A ladder $13$ m long leans against a vertical wall. Its foot is $5$ m from the base
+      of the wall. How far up the wall does the ladder reach?
+    answer_label: 'The height on the wall'
+    check: {kind: evaluate, expression: 'sqrt(13**2 - 5**2)', answer: '12'}
+    answer_text: >-
+      The ladder reaches $12$ m up the wall. The ladder is the hypotenuse, so
+      $h^2 = 169 - 25 = 144$.
+
+  - id: lc16-5-field-diagonal
+    section: '16.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A rectangle is $60$ m long and $25$ m wide. Find the length of a diagonal.
+    answer_label: 'The diagonal'
+    check: {kind: evaluate, expression: 'sqrt(60**2 + 25**2)', answer: '65'}
+    answer_text: >-
+      The diagonal is $65$ m. It is the hypotenuse of a right-angled triangle with legs
+      $60$ m and $25$ m.
+
+  - id: lc16-5-prove-pythagoras
+    section: '16.5'
+    tier: O
+    refs: ['2.1']
+    statement: "Prove Pythagoras' theorem using similar triangles."
+    answer_label: 'The proof of Theorem 14'
+    check:
+      kind: structured
+      requires: [drop-perpendicular, first-similar, second-similar, add-equations]
+      concepts: [aa-rule, proportional-sides, segment-split]
+      points:
+        - id: drop-perpendicular
+          text: let ABC have a right angle at B, and drop the perpendicular from B to the hypotenuse AC, meeting AC at D
+          concepts: [aa-rule]
+        - id: first-similar
+          text: triangles ABC and ADB both have a right angle and share the angle at A, so they are similar by AA, and AC over AB equals AB over AD, giving AB squared equals AC times AD
+          concepts: [aa-rule, proportional-sides]
+        - id: second-similar
+          text: triangles ABC and BDC both have a right angle and share the angle at C, so they are similar, giving BC squared equals AC times DC
+          concepts: [proportional-sides]
+        - id: add-equations
+          text: add the two equations, take out the common factor AC, and use AD plus DC equals AC to get AB squared plus BC squared equals AC squared
+          concepts: [segment-split]
+    answer_text: >-
+      The perpendicular from the right angle makes two triangles, each similar to the
+      original. The proportional sides give $|AB|^2 = |AC| \times |AD|$ and
+      $|BC|^2 = |AC| \times |DC|$. Adding and using $|AD| + |DC| = |AC|$ gives
+      $|AB|^2 + |BC|^2 = |AC|^2$.
+
+  - id: lc16-5-prove-converse
+    section: '16.5'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Prove the converse of Pythagoras' theorem: if the square of one side of a triangle
+      equals the sum of the squares of the other two, then the angle opposite that side
+      is a right angle.
+    answer_label: 'The proof of Theorem 15'
+    check:
+      kind: structured
+      requires: [construct-right-triangle, apply-pythagoras, sss, conclude]
+      concepts: [pythagoras, sss, right-angle]
+      points:
+        - id: construct-right-triangle
+          text: draw a ray from B perpendicular to BC and mark D on it with BD equal to AB
+          concepts: [right-angle]
+        - id: apply-pythagoras
+          text: triangle DBC is right-angled at B, so DC squared equals BD squared plus BC squared, which equals AB squared plus BC squared, which equals AC squared by hypothesis, so DC equals AC
+          concepts: [pythagoras]
+        - id: sss
+          text: triangles ABC and DBC have AC equal to DC, AB equal to BD and BC common, so they are congruent by SSS
+          concepts: [sss]
+        - id: conclude
+          text: matching angles give angle ABC equal to angle DBC, which is 90 degrees, so the angle opposite the first side is a right angle
+          concepts: [right-angle]
+    answer_text: >-
+      Build a right-angled triangle on $BC$ with the same other leg $AB$. Pythagoras
+      gives its hypotenuse equal to $AC$, so the two triangles are congruent by SSS and
+      the angle at $B$ is a right angle.

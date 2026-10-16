@@ -74,7 +74,7 @@ problems:
     answer_label: 'The cost of 25 candles'
     check: {kind: evaluate, expression: '240 + 4 * 25', answer: '340'}
     answer_text: >-
-      $C = 240 + 4(25) = 240 + 100 = €340$.
+      $C = 240 + 4(25) = 240 + 100 = 340$, which is €340.
 
   - id: lc4-3-find-input
     section: '4.3'
@@ -102,7 +102,7 @@ problems:
     answer_text: >-
       The gap is $10$ and the value at $n = 0$ is $0$, so $R = 10n$.
 
-      The income from $35$ candles is $10(35) = €350$.
+      The income from $35$ candles is $10(35) = 350$, which is €350.
 
   - id: lc4-3-meeting-point
     section: '4.3'

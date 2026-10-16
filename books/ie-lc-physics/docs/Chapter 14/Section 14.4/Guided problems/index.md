@@ -153,7 +153,9 @@ $E = 0.80 \times 6.0 = 4.8$ kWh, then multiply by €0.30.
 
 $$E = Pt = 0.80 \times 6.0 = 4.8\,\text{kWh}$$
 
-$$\text{cost} = 4.8 \times €0.30 = €1.44$$
+$$\text{cost} = 4.8 \times 0.30 = 1.44$$
+
+The cost is €1.44.
 
 The price is per kilowatt-hour, so the energy must be in kilowatt-hours before you
 multiply.

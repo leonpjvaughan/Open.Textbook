@@ -65,7 +65,7 @@ In symbols, with $n$ for the number of kilometres:
 
 $$F = 5 + 2n$$
 
-A journey of $12$ km costs $5 + 2(12) = €29$.
+A journey of $12$ km costs $5 + 2(12) = 29$, which is €29.
 
 Writing the words first is a check on the symbols. If the words and the symbols
 disagree, the symbols are wrong.
@@ -77,7 +77,9 @@ Once you have the formula, any value is a substitution.
 **Example 4.** Use $C = 240 + 4n$ to predict the cost of $25$ candles, and the
 number of candles that cost €300.
 
-$$C = 240 + 4(25) = 240 + 100 = €340$$
+$$C = 240 + 4(25) = 240 + 100 = 340$$
+
+The cost is €340.
 
 For €300, solve $240 + 4n = 300$, so $4n = 60$ and $n = 15$ candles.
 

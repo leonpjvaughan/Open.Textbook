@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 17.4 Tangents to a circle — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Mark the point of contact on every diagram, and put the right-angle square between the
+radius and the tangent. The right angle is never at the external point.
+
+:::problems chapter-17-practice-17.4
+
+:::answers chapter-17-practice-17.4

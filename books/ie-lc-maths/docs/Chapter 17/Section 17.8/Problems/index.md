@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 17.8 Enlargements and similar triangles in the circle — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 2.1
+Work independently. The questions and answers are shown together at the end.
+
+Write the similar triangles with their vertices in matching order before you use a ratio.
+The matching order is what tells you which sides to pair.
+
+:::problems chapter-17-practice-17.8
+
+:::answers chapter-17-practice-17.8

@@ -97,11 +97,15 @@ problems:
     answer_label: 'The profit at n = 50'
     check: {kind: evaluate, expression: '14 * 50 - 0.1 * 50**2 - (240 + 4 * 50)', answer: '10'}
     answer_text: >-
-      $$R = 14(50) - 0.1(2500) = 700 - 250 = €450$$
+      $$R = 14(50) - 0.1(2500) = 700 - 250 = 450$$
 
-      $$C = 240 + 4(50) = €440$$
+      The revenue is €450.
 
-      The profit is $450 - 440 = €10$.
+      $$C = 240 + 4(50) = 440$$
+
+      The cost is €440.
+
+      The profit is $450 - 440 = 10$, which is €10.
 
       Since $50$ lies between the two break-even points, the profit is positive
       there. That confirms the middle region is the profitable one.

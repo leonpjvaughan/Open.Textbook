@@ -42,7 +42,9 @@ $4 \times 50 = 200$.
 <details markdown="1">
 <summary>Full working</summary>
 
-$$C = 240 + 200 = €440$$
+$$C = 240 + 200 = 440$$
+
+The cost is €440.
 
 </details>
 </details>

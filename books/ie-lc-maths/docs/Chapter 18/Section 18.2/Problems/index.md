@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 18.2 Vector arithmetic — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.2
+Work independently. The questions and answers are shown together at the end.
+
+Add and subtract component by component, and take care with the signs. Where a question
+asks for a distance, find the resultant first and then its length.
+
+:::problems chapter-18-practice-18.2
+
+:::answers chapter-18-practice-18.2

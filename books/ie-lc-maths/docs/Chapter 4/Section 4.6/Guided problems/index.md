@@ -114,8 +114,8 @@ $240 = 6n$.
 
 $$n = 40$$
 
-At $40$ candles the cost is $240 + 4(40) = €400$ and the income is
-$10(40) = €400$. They are equal, so this is the break-even point.
+At $40$ candles the cost is $240 + 4(40) = 400$, which is €400, and the income is
+$10(40) = 400$, which is €400. They are equal, so this is the break-even point.
 
 </details>
 </details>

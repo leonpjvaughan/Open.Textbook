@@ -1,0 +1,171 @@
+# Practice set for 18.6, geometric applications of vectors.
+#
+# Geometry is proved with the vector operations already checked: equal displacements
+# show a parallelogram or a straight line, a zero dot product shows a right angle, and a
+# length is a norm. The chapter problem's return leg, right angle and area are resolved
+# here as well as in the Review.
+chapter: 18
+problems:
+  - id: lc18-6-midpoint
+    section: '18.6'
+    tier: H
+    refs: ['2.2']
+    statement: 'Find the midpoint of $A(-1, 4)$ and $B(5, -2)$.'
+    answer_label: 'The midpoint'
+    check:
+      kind: vector
+      op: scale
+      args: ["1/2", "Matrix([4, 2])"]
+      answer: "Matrix([2, 1])"
+    answer_text: >-
+      The midpoint is the average of the position vectors:
+      $\dfrac{1}{2}\left(\begin{pmatrix} -1 \\ 4 \end{pmatrix}
+      + \begin{pmatrix} 5 \\ -2 \end{pmatrix}\right)
+      = \dfrac{1}{2}\begin{pmatrix} 4 \\ 2 \end{pmatrix}
+      = \begin{pmatrix} 2 \\ 1 \end{pmatrix}$, which is the point $(2, 1)$.
+
+  - id: lc18-6-parallelogram
+    section: '18.6'
+    tier: H
+    refs: ['2.2']
+    statement: >-
+      The points are $A(1, 1)$, $B(4, 2)$, $C(5, 5)$ and $D(2, 4)$. Show that $ABCD$ is
+      a parallelogram.
+    answer_label: 'The two opposite sides $\vec{AB}$ and $\vec{DC}$'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: subtract
+          args: ["Matrix([4, 2])", "Matrix([1, 1])"]
+          answer: "Matrix([3, 1])"
+        - kind: vector
+          op: subtract
+          args: ["Matrix([5, 5])", "Matrix([2, 4])"]
+          answer: "Matrix([3, 1])"
+    answer_text: >-
+      $\vec{AB} = \begin{pmatrix} 4 - 1 \\ 2 - 1 \end{pmatrix}
+      = \begin{pmatrix} 3 \\ 1 \end{pmatrix}$ and
+      $\vec{DC} = \begin{pmatrix} 5 - 2 \\ 5 - 4 \end{pmatrix}
+      = \begin{pmatrix} 3 \\ 1 \end{pmatrix}$. The two opposite sides are equal as
+      vectors, so they are parallel and equal in length. One such pair is enough to make
+      $ABCD$ a parallelogram.
+
+  - id: lc18-6-collinear
+    section: '18.6'
+    tier: H
+    refs: ['2.2']
+    statement: 'Show that $A(1, 2)$, $B(4, 6)$ and $C(7, 10)$ lie on one straight line.'
+    answer_label: 'The two displacements $\vec{AB}$ and $\vec{BC}$'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: subtract
+          args: ["Matrix([4, 6])", "Matrix([1, 2])"]
+          answer: "Matrix([3, 4])"
+        - kind: vector
+          op: subtract
+          args: ["Matrix([7, 10])", "Matrix([4, 6])"]
+          answer: "Matrix([3, 4])"
+    answer_text: >-
+      $\vec{AB} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}$ and
+      $\vec{BC} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}$. The two displacements are equal,
+      so the same step repeats and the points lie on one straight line.
+
+  - id: lc18-6-isosceles-right
+    section: '18.6'
+    tier: H
+    refs: ['2.2']
+    statement: >-
+      The vectors are $\mathbf{a} = \begin{pmatrix} 6 \\ 2 \end{pmatrix}$ and
+      $\mathbf{b} = \begin{pmatrix} -2 \\ 6 \end{pmatrix}$. Show that the triangle they
+      form with their sum is right-angled and isosceles.
+    answer_label: 'The dot product and the two lengths'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: dot
+          args: ["Matrix([6, 2])", "Matrix([-2, 6])"]
+          answer: "0"
+        - {kind: vector, op: norm, args: ["Matrix([6, 2])"], answer: "2*sqrt(10)"}
+        - {kind: vector, op: norm, args: ["Matrix([-2, 6])"], answer: "2*sqrt(10)"}
+    answer_text: >-
+      $\mathbf{a} \cdot \mathbf{b} = 6 \times (-2) + 2 \times 6 = -12 + 12 = 0$, so the
+      two vectors meet at a right angle. Their lengths are both
+      $\sqrt{6^2 + 2^2} = \sqrt{40} = 2\sqrt{10}$. Two equal sides and a right angle
+      between them make the triangle right-angled and isosceles.
+
+  - id: lc18-6-area
+    section: '18.6'
+    tier: H
+    refs: ['2.2']
+    statement: >-
+      The two sides meeting at a right angle have length $2\sqrt{10}$ each. Find the area
+      of the triangle.
+    answer_label: 'The area'
+    check:
+      kind: evaluate
+      expression: "(1/2) * sqrt(40) * sqrt(40)"
+      answer: "20"
+    answer_text: >-
+      For a right-angled triangle the area is half the product of the two shorter sides:
+      $\dfrac{1}{2} \times 2\sqrt{10} \times 2\sqrt{10}
+      = \dfrac{1}{2} \times 40 = 20$ square units.
+
+  - id: lc18-6-return-leg
+    section: '18.6'
+    tier: H
+    refs: ['2.2']
+    statement: >-
+      A drone flies $\begin{pmatrix} 6 \\ 2 \end{pmatrix}$ km and then
+      $\begin{pmatrix} -2 \\ 6 \end{pmatrix}$ km. Find the single vector that returns it
+      to the depot, and the distance of that return leg.
+    answer_label: 'The return vector and its length'
+    check:
+      kind: all
+      checks:
+        - kind: vector
+          op: add
+          args: ["Matrix([6, 2])", "Matrix([-2, 6])"]
+          answer: "Matrix([4, 8])"
+        - kind: vector
+          op: scale
+          args: ["-1", "Matrix([4, 8])"]
+          answer: "Matrix([-4, -8])"
+        - {kind: vector, op: norm, args: ["Matrix([4, 8])"], answer: "4*sqrt(5)"}
+    answer_text: >-
+      The two legs leave the drone at
+      $\begin{pmatrix} 6 - 2 \\ 2 + 6 \end{pmatrix} = \begin{pmatrix} 4 \\ 8 \end{pmatrix}$
+      km. The return leg is the opposite of that displacement,
+      $\begin{pmatrix} -4 \\ -8 \end{pmatrix}$ km. Its length is
+      $\sqrt{4^2 + 8^2} = \sqrt{80} = 4\sqrt{5}$ km, which is about $8.94$ km.
+
+  - id: lc18-6-parallelogram-method
+    section: '18.6'
+    tier: H
+    refs: ['2.2']
+    statement: >-
+      Describe how to use vectors to prove that a quadrilateral is a parallelogram.
+    answer_label: 'The vector method'
+    check:
+      kind: structured
+      requires: [sides, equal, conclude]
+      concepts: [opposite-sides-as-vectors, equal-vectors-are-parallel, one-pair-is-enough]
+      points:
+        - id: sides
+          text: write two opposite sides as displacement vectors from the coordinates
+          concepts: [opposite-sides-as-vectors]
+        - id: equal
+          text: show the two displacement vectors are equal, so the sides are parallel and equal in length
+          concepts: [equal-vectors-are-parallel]
+        - id: conclude
+          text: one pair of equal and parallel opposite sides makes the quadrilateral a parallelogram
+          concepts: [one-pair-is-enough]
+    answer_text: >-
+      Write one pair of opposite sides as displacement vectors, such as $\vec{AB}$ and
+      $\vec{DC}$. Subtract the coordinates to find each vector. If the two vectors are
+      equal, the sides are parallel and equal in length, and one such pair is enough to
+      make the quadrilateral a parallelogram. Showing both pairs equal works too, but it
+      is not needed.

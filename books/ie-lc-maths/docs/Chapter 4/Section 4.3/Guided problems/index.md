@@ -147,7 +147,9 @@ $4 \times 25 = 100$.
 <details markdown="1">
 <summary>Full working</summary>
 
-$$C = 240 + 100 = €340$$
+$$C = 240 + 100 = 340$$
+
+The cost is €340.
 
 </details>
 </details>
@@ -196,7 +198,9 @@ $80 \times 0.75$.
 <details markdown="1">
 <summary>Full working</summary>
 
-$$80 \times 0.75 = €60$$
+$$80 \times 0.75 = 60$$
+
+That is €60.
 
 The sale price is €60. A percentage fall and a fixed fall behave differently, and
 a formula records which one a situation uses.

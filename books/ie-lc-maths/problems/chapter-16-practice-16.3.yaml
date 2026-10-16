@@ -1,0 +1,129 @@
+# Practice set for 16.3 (strand 2, outcome 2.1). The numeric checks are proved by
+# sympy: the expression is the arithmetic the page claims, and the answer is the
+# result. The two `structured` records cover the AA rule and the reason the shadow
+# triangles are similar. A `structured` record proves that a model answer contains
+# the declared ideas **in order**, and nothing more. It does not prove the geometry:
+# the verifier reads the words, so the mathematics of a written argument stays a
+# human judgement. The `points` list is the model answer the reader sees.
+chapter: 16
+problems:
+  - id: lc16-3-find-side
+    section: '16.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $\triangle ABC \sim \triangle PQR$. Given $|AB| = 8$ cm, $|BC| = 12$ cm and
+      $|PQ| = 6$ cm, find $|QR|$.
+    answer_label: '$|QR|$'
+    check: {kind: evaluate, expression: '12 * 6 / 8', answer: '9'}
+    answer_text: >-
+      $|QR| = 9$ cm. The scale factor from $\triangle ABC$ to $\triangle PQR$ is
+      $\frac{6}{8} = 0.75$, and $BC$ matches $QR$.
+
+  - id: lc16-3-ratio-rule
+    section: '16.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      In $\triangle ABC$, $D$ is on $AB$, $E$ is on $AC$, and $DE \parallel BC$. Given
+      $|AD| = 4$ cm, $|DB| = 6$ cm and $|AE| = 6$ cm, find $|EC|$.
+    answer_label: '$|EC|$'
+    check: {kind: evaluate, expression: '6 * 6 / 4', answer: '9'}
+    answer_text: >-
+      $|EC| = 9$ cm. The parallel line cuts the two sides in the same ratio, so
+      $\frac{|AD|}{|DB|} = \frac{|AE|}{|EC|}$ and $\frac{4}{6} = \frac{6}{|EC|}$.
+
+  - id: lc16-3-tree-shadow
+    section: '16.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      A post $1.5$ m tall casts a shadow $2$ m long. At the same time a tree casts a
+      shadow $10$ m long. Find the height of the tree.
+    answer_label: 'The height of the tree'
+    check: {kind: evaluate, expression: '1.5 * 10 / 2', answer: '7.5'}
+    answer_text: >-
+      The tree is $7.5$ m tall. The two right-angled triangles are similar by the AA
+      rule, so the heights and the shadows are in the same ratio:
+      $\frac{h}{1.5} = \frac{10}{2}$.
+
+  - id: lc16-3-scale-factor
+    section: '16.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      $\triangle ABC \sim \triangle A'B'C'$, with $|AB| = 5$ cm and $|AC| = 7$ cm.
+      Given $|A'B'| = 15$ cm, find $|A'C'|$.
+    answer_label: "$|A'C'|$"
+    check: {kind: evaluate, expression: '7 * 15 / 5', answer: '21'}
+    answer_text: >-
+      $|A'C'| = 21$ cm. The scale factor is $\frac{15}{5} = 3$, and $AC$ matches
+      $A'C'$.
+
+  - id: lc16-3-perimeter-ratio
+    section: '16.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Two triangles are similar, and the scale factor from the smaller to the larger is
+      $3$. The perimeter of the smaller triangle is $20$ cm. Find the perimeter of the
+      larger triangle.
+    answer_label: 'The larger perimeter'
+    check: {kind: evaluate, expression: '20 * 3', answer: '60'}
+    answer_text: >-
+      The perimeter is $60$ cm. Every side is multiplied by the scale factor, so the
+      perimeter is multiplied by the same factor.
+
+  - id: lc16-3-prove-aa
+    section: '16.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Prove that if two angles of one triangle equal two angles of another, then the
+      triangles are similar.
+    answer_label: 'The proof of the AA rule'
+    check:
+      kind: structured
+      requires: [name-angles, use-angle-sum, conclude]
+      concepts: [angle-sum, similarity]
+      points:
+        - id: name-angles
+          text: let the first triangle have angles A and B and the second have matching angles A dash and B dash, with A equal to A dash and B equal to B dash
+          concepts: [similarity]
+        - id: use-angle-sum
+          text: the angles of a triangle add to 180 degrees, so angle C is 180 minus A minus B, which equals 180 minus A dash minus B dash, which is angle C dash
+          concepts: [angle-sum]
+        - id: conclude
+          text: the third angles are equal as well, so all three angles match and the triangles are similar
+          concepts: [similarity]
+    answer_text: >-
+      The third angle of each triangle is $180^\circ$ minus the other two. The two
+      subtractions have the same value, so the third angles are equal and the triangles
+      are similar.
+
+  - id: lc16-3-shadow-similar
+    section: '16.3'
+    tier: O
+    refs: ['2.1']
+    statement: >-
+      Explain why the triangle made by a post and its shadow is similar to the triangle
+      made by a tree and its shadow at the same time of day.
+    answer_label: 'Why the shadow triangles are similar'
+    check:
+      kind: structured
+      requires: [right-angles, sun-angle, aa]
+      concepts: [right-angle, aa-rule]
+      points:
+        - id: right-angles
+          text: the post and the tree are both vertical, so each triangle has a right angle between the object and the ground
+          concepts: [right-angle]
+        - id: sun-angle
+          text: at the same time of day the Sun makes the same angle with the ground for both, so the angles at the ends of the shadows are equal
+          concepts: [right-angle]
+        - id: aa
+          text: two angles of one triangle equal two angles of the other, so the triangles are similar by the AA rule
+          concepts: [aa-rule]
+    answer_text: >-
+      Each triangle has a right angle, and the Sun makes the same angle with the ground
+      for both. Two equal angles are enough, so the triangles are similar by the AA
+      rule.

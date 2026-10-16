@@ -1,5 +1,5 @@
 ---
-title: 11.7 Sampling variability and the margin of error — Practise
+title: "11.7 Sampling variability and the margin of error — Practise"
 chapter: 11
 chapter_title: Statistics
 section: '11.7'
@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.7 Sampling variability and the margin of error — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 1.7
+Work independently. The questions and answers are shown together at the end.
+
+The margin of error is $\dfrac{1}{\sqrt{n}}$. Keep the surd exact until the last line, and
+state the answer as a percentage when the question is about a poll.
+
+:::problems chapter-11-practice-11.7
+
+:::answers chapter-11-practice-11.7
