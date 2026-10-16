@@ -1,0 +1,199 @@
+# Practice set for 7.4 (strand S3, the physical world; Higher only). A radius can
+# be exact, so `evaluate` proves it. A speed, a period, a reaction or an angle
+# built on a square root, a tangent or a cosine is irrational, so `sigfigs` proves
+# the value rounded once to three significant figures and `approx` proves it
+# against a declared tolerance. The `structured` record proves only that a model
+# answer contains the declared ideas, in order — not that the physics is right.
+#
+# Honest limit: this proves the arithmetic and the declared rounding, not the
+# physics. A dimensionally consistent, arithmetically correct, physically absurd
+# answer would pass.
+chapter: 7
+problems:
+  - id: am7-4-conical-radius
+    section: '7.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A conical pendulum has a string of length $1.5$ m, and the string makes an
+      angle of $30^\circ$ with the vertical. Calculate the radius of the circle
+      the bob travels in.
+    answer_label: Radius of the circle
+    check: {kind: evaluate, expression: '1.5 * sin(pi / 6)', answer: '0.75'}
+    answer_text: >-
+      The bob travels in a circle whose radius is the horizontal distance from
+      the axis, $r = L\sin\theta = 1.5 \times \sin 30^\circ = 1.5 \times 0.5
+      = 0.75$ m. The radius is not the length of the string.
+
+  - id: am7-4-conical-speed
+    section: '7.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A conical pendulum has a string of length $1.2$ m making an angle of
+      $30^\circ$ with the vertical. Calculate the speed of the bob, giving your
+      answer to three significant figures.
+    answer_label: Speed of the bob
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: 'sqrt(9.8 * 1.2 * sin(pi / 6) * tan(pi / 6))'
+      figures: 3
+      answer: '1.84'
+      unit: 'm/s'
+      tolerance: '0.01'
+    answer_text: >-
+      The radius is $r = 1.2\sin 30^\circ = 0.6$ m. Then
+      $v = \sqrt{gr\tan\theta} = \sqrt{9.8 \times 0.6 \times \tan 30^\circ}
+      = \sqrt{3.395} \approx 1.84$ m/s.
+
+  - id: am7-4-conical-period
+    section: '7.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A conical pendulum has a string of length $1.2$ m making an angle of
+      $30^\circ$ with the vertical. Calculate the period of the circular motion,
+      giving your answer to three significant figures.
+    answer_label: Period
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: '2 * pi * sqrt(1.2 * cos(pi / 6) / 9.8)'
+      figures: 3
+      answer: '2.05'
+      unit: s
+      tolerance: '0.001'
+    answer_text: >-
+      $T_p = 2\pi\sqrt{\dfrac{L\cos\theta}{g}}
+      = 2\pi\sqrt{\dfrac{1.2 \times 0.8660}{9.8}} = 2\pi\sqrt{0.1060}
+      \approx 2.05$ s. The period does not depend on the mass of the bob.
+
+  - id: am7-4-banked-design-speed
+    section: '7.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A bend of radius $200$ m is banked at $10^\circ$. Calculate the design
+      speed, the speed at which no friction is needed. Give your answer to three
+      significant figures.
+    answer_label: Design speed
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: 'sqrt(9.8 * 200 * tan(pi / 18))'
+      figures: 3
+      answer: '18.6'
+      unit: 'm/s'
+      tolerance: '0.001'
+    answer_text: >-
+      At the design speed the normal reaction alone supplies the centripetal
+      force, so $\tan\theta = \dfrac{v^2}{gr}$ and
+      $v = \sqrt{gr\tan\theta} = \sqrt{9.8 \times 200 \times \tan 10^\circ}
+      = \sqrt{345.6} \approx 18.6$ m/s.
+
+  - id: am7-4-banked-angle
+    section: '7.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A bend of radius $80$ m is to be taken at $20$ m/s with no friction.
+      Calculate the angle of the bank, giving your answer in degrees to three
+      significant figures.
+    answer_label: Angle of the bank
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: 'atan(20**2 / (9.8 * 80)) * 180 / pi'
+      figures: 3
+      answer: '27.0'
+      unit: degrees
+      tolerance: '0.001'
+    answer_text: >-
+      $\tan\theta = \dfrac{v^2}{gr} = \dfrac{20^2}{9.8 \times 80}
+      = \dfrac{400}{784} = 0.5102$, so
+      $\theta = \arctan 0.5102 \approx 27.0^\circ$. The bank is steeper than the
+      chapter-problem bend, because the speed is higher for the same radius.
+
+  - id: am7-4-normal-reaction
+    section: '7.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A car of mass $1000$ kg is on a track banked at $12^\circ$. Calculate the
+      normal reaction on the car.
+    answer_label: Normal reaction
+    check:
+      kind: approx
+      value: '1000 * 9.8 / cos(12 * pi / 180)'
+      target: '10019'
+      tolerance: '1'
+    answer_text: >-
+      On a banked track the normal reaction balances the weight through its
+      vertical component, so $N\cos\theta = mg$ and
+      $N = \dfrac{mg}{\cos\theta} = \dfrac{1000 \times 9.8}{\cos 12^\circ}
+      \approx 10019$ N. The reaction is larger than the weight of $9800$ N,
+      because its horizontal component also turns the car.
+
+  - id: am7-4-conical-tension
+    section: '7.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A conical pendulum has a bob of mass $0.5$ kg, and the string makes an
+      angle of $40^\circ$ with the vertical. Calculate the tension in the string,
+      giving your answer to three significant figures.
+    answer_label: Tension
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: '0.5 * 9.8 / cos(40 * pi / 180)'
+      figures: 3
+      answer: '6.40'
+      unit: N
+      tolerance: '0.001'
+    answer_text: >-
+      There is no vertical acceleration, so $T\cos\theta = mg$ and
+      $T = \dfrac{mg}{\cos\theta} = \dfrac{0.5 \times 9.8}{\cos 40^\circ}
+      \approx 6.40$ N. The tension is larger than the weight of $4.9$ N, because
+      its horizontal component supplies the centripetal force.
+
+  - id: am7-4-why-banking
+    section: '7.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      Explain why a banked track needs no friction at the design speed, and state
+      which way friction acts when the car travels faster than the design speed.
+    answer_label: Why banking removes the need for friction
+    check:
+      kind: structured
+      requires: [normal-reaction-tilted, components, faster-case]
+      concepts: [banking, friction]
+      points:
+        - id: normal-reaction-tilted
+          text: >-
+            the normal reaction is perpendicular to the banked surface, so it is
+            tilted towards the centre of the bend
+          concepts: [banking]
+        - id: components
+          text: >-
+            the vertical component balances the weight and the horizontal
+            component supplies the centripetal force, and at the design speed
+            that component is exactly enough
+          concepts: [banking]
+        - id: faster-case
+          text: >-
+            above the design speed the car needs a larger centripetal force than
+            the bank alone gives, so friction acts down the slope towards the
+            centre
+          concepts: [friction]
+    answer_text: >-
+      On a banked track the normal reaction is perpendicular to the surface, so
+      it is tilted towards the centre of the bend. Its vertical component
+      balances the weight and its horizontal component points towards the centre.
+      At the design speed that horizontal component supplies exactly the
+      centripetal force needed, so no friction is required. Above the design
+      speed the car needs more force than the bank alone gives, so friction acts
+      down the slope towards the centre. Below the design speed the car needs
+      less, so friction acts up the slope, away from the centre.

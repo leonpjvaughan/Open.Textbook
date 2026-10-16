@@ -1,0 +1,204 @@
+# Practice set for 7.2 (strand S3, the physical world). Accelerations and forces
+# are quantities, so `dimensions` proves the arithmetic and the unit together;
+# `evaluate` proves the exact form of an answer that contains pi. The `structured`
+# record proves only that a model answer contains the declared ideas, in order —
+# not that the physics is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics.
+# A dimensionally consistent, arithmetically correct, physically absurd answer
+# would pass.
+chapter: 7
+problems:
+  - id: am7-2-accel-basic
+    section: '7.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A body moves in a circle of radius $2$ m at a steady $6$ m/s. Calculate
+      its centripetal acceleration.
+    answer_label: Centripetal acceleration
+    check:
+      kind: dimensions
+      expression: v**2 / r
+      values:
+        v: {value: '6', unit: 'm/s'}
+        r: {value: '2', unit: m}
+      answer: {value: '18', unit: 'm/s^2'}
+    answer_text: >-
+      $a = \dfrac{v^2}{r} = \dfrac{6^2}{2} = 18$ m/s². The acceleration points
+      towards the centre of the circle.
+
+  - id: am7-2-force-basic
+    section: '7.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A body of mass $0.5$ kg moves in a circle of radius $1.5$ m at $3$ m/s.
+      Calculate the force towards the centre.
+    answer_label: Force towards the centre
+    check:
+      kind: dimensions
+      expression: m * v**2 / r
+      values:
+        m: {value: '0.5', unit: kg}
+        v: {value: '3', unit: 'm/s'}
+        r: {value: '1.5', unit: m}
+      answer: {value: '3', unit: N}
+    answer_text: >-
+      The acceleration is $a = \dfrac{3^2}{1.5} = 6$ m/s², so
+      $F = ma = 0.5 \times 6 = 3$ N. The force is $3$ N towards the centre, and
+      something such as a tension must supply it.
+
+  - id: am7-2-accel-omega
+    section: '7.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A body moves in a circle of radius $0.5$ m with angular velocity
+      $4$ rad/s. Calculate its centripetal acceleration.
+    answer_label: Centripetal acceleration
+    check:
+      kind: dimensions
+      expression: omega**2 * r
+      values:
+        omega: {value: '4', unit: 's^-1'}
+        r: {value: '0.5', unit: m}
+      answer: {value: '8', unit: 'm/s^2'}
+    answer_text: >-
+      $a = \omega^2 r = 4^2 \times 0.5 = 16 \times 0.5 = 8$ m/s². This form is
+      quicker when the angular velocity is given rather than the speed.
+
+  - id: am7-2-force-omega
+    section: '7.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A body of mass $2$ kg moves in a circle of radius $0.4$ m with angular
+      velocity $5$ rad/s. Calculate the force towards the centre.
+    answer_label: Force towards the centre
+    check:
+      kind: dimensions
+      expression: m * omega**2 * r
+      values:
+        m: {value: '2', unit: kg}
+        omega: {value: '5', unit: 's^-1'}
+        r: {value: '0.4', unit: m}
+      answer: {value: '20', unit: N}
+    answer_text: >-
+      $F = m\omega^2 r = 2 \times 5^2 \times 0.4 = 2 \times 25 \times 0.4 = 20$
+      N. The force points towards the centre of the circle.
+
+  - id: am7-2-car-bend
+    section: '7.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car of mass $1500$ kg goes round a bend of radius $50$ m at $20$ m/s.
+      Calculate its centripetal acceleration and the force towards the centre.
+    answer_label: Acceleration, then force
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: v**2 / r
+          values:
+            v: {value: '20', unit: 'm/s'}
+            r: {value: '50', unit: m}
+          answer: {value: '8', unit: 'm/s^2'}
+        - kind: dimensions
+          expression: m * v**2 / r
+          values:
+            m: {value: '1500', unit: kg}
+            v: {value: '20', unit: 'm/s'}
+            r: {value: '50', unit: m}
+          answer: {value: '12000', unit: N}
+    answer_text: >-
+      $a = \dfrac{20^2}{50} = 8$ m/s², and
+      $F = 1500 \times 8 = 12000$ N. The friction between the tyres and the road
+      supplies this force towards the centre of the bend.
+
+  - id: am7-2-tension-string
+    section: '7.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $0.15$ kg on a string moves in a horizontal circle of
+      radius $0.6$ m and makes $2$ revolutions each second. Calculate the
+      tension in the string, leaving your answer in terms of $\pi$.
+    answer_label: Tension
+    check:
+      kind: evaluate
+      expression: '0.15 * (4 * pi)**2 * 0.6'
+      answer: '1.44 * pi**2'
+    answer_text: >-
+      The angular velocity is $\omega = 2\pi f = 2\pi \times 2 = 4\pi$ rad/s.
+      Then $F = m\omega^2 r = 0.15 \times (4\pi)^2 \times 0.6 = 1.44\pi^2$ N,
+      about $14.2$ N. The tension points along the string towards the centre.
+
+  - id: am7-2-drum
+    section: '7.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A point on the drum of a washing machine is $0.25$ m from the axis, and
+      the drum spins at $100$ rad/s. Calculate the acceleration of the point and
+      the force on a $0.5$ kg item of clothing at the drum wall.
+    answer_label: Acceleration, then force
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: omega**2 * r
+          values:
+            omega: {value: '100', unit: 's^-1'}
+            r: {value: '0.25', unit: m}
+          answer: {value: '2500', unit: 'm/s^2'}
+        - kind: dimensions
+          expression: m * omega**2 * r
+          values:
+            m: {value: '0.5', unit: kg}
+            omega: {value: '100', unit: 's^-1'}
+            r: {value: '0.25', unit: m}
+          answer: {value: '1250', unit: N}
+    answer_text: >-
+      $a = \omega^2 r = 100^2 \times 0.25 = 2500$ m/s², and
+      $F = 0.5 \times 2500 = 1250$ N towards the axis. The drum wall pushes the
+      clothing inwards. Without that push the clothing would travel in a straight
+      line, which is how the water leaves through the holes.
+
+  - id: am7-2-no-outward-force
+    section: '7.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A student says that a body moving in a circle is pushed outwards by a
+      centrifugal force. Explain what is wrong with this, and state the
+      direction of the resultant force.
+    answer_label: Why there is no outward force
+    check:
+      kind: structured
+      requires: [acceleration-inwards, force-is-resultant, straight-line-tendency]
+      concepts: [centripetal-force, inertia]
+      points:
+        - id: acceleration-inwards
+          text: >-
+            the acceleration points towards the centre, so the resultant force
+            must point towards the centre as well
+          concepts: [centripetal-force]
+        - id: force-is-resultant
+          text: >-
+            the centripetal force is the resultant of the forces already acting,
+            such as a tension or friction, not a separate outward force
+          concepts: [centripetal-force]
+        - id: straight-line-tendency
+          text: >-
+            the outward feeling comes from the body tending to continue in a
+            straight line while the vehicle or string turns it
+          concepts: [inertia]
+    answer_text: >-
+      The acceleration of a body moving in a circle points towards the centre, so
+      by Newton's second law the resultant force points towards the centre too.
+      The centripetal force is the resultant of the forces already acting, such
+      as a tension or friction, and it is not a separate outward force. The
+      outward feeling comes from the body tending to continue in a straight line
+      while the car or the string turns it.

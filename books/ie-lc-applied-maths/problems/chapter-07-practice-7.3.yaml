@@ -1,0 +1,228 @@
+# Practice set for 7.3 (strand S3, the physical world). Forces and reactions are
+# quantities, so `dimensions` proves the arithmetic and the unit together. A
+# greatest speed is a square root and is usually irrational, so it is checked with
+# `sigfigs` (rounded once to three significant figures) rather than asserted as an
+# equality. The `structured` records prove only that a model answer contains the
+# declared ideas, in order — not that the physics is right.
+#
+# Honest limit: this proves the arithmetic, the dimensions and the declared
+# rounding, not the physics. A dimensionally consistent, arithmetically correct,
+# physically absurd answer would pass.
+chapter: 7
+problems:
+  - id: am7-3-flat-bend-max
+    section: '7.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car goes round a flat bend of radius $30$ m. The coefficient of friction
+      is $0.6$. Calculate the greatest speed at which the car can take the bend,
+      giving your answer to three significant figures.
+    answer_label: Greatest speed
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: 'sqrt(0.6 * 9.8 * 30)'
+      figures: 3
+      answer: '13.3'
+      unit: 'm/s'
+      tolerance: '0.05'
+    answer_text: >-
+      The friction available is $\mu mg$ and the force needed is
+      $\dfrac{mv^2}{r}$, so the mass cancels and
+      $v_{\max} = \sqrt{\mu g r} = \sqrt{0.6 \times 9.8 \times 30}
+      = \sqrt{176.4} \approx 13.3$ m/s. A heavier car takes the bend at the same
+      greatest speed.
+
+  - id: am7-3-friction-needed
+    section: '7.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car of mass $1500$ kg goes round a flat bend of radius $60$ m at
+      $15$ m/s. Calculate the friction force needed towards the centre.
+    answer_label: Friction force
+    check:
+      kind: dimensions
+      expression: m * v**2 / r
+      values:
+        m: {value: '1500', unit: kg}
+        v: {value: '15', unit: 'm/s'}
+        r: {value: '60', unit: m}
+      answer: {value: '5625', unit: N}
+    answer_text: >-
+      $F = \dfrac{mv^2}{r} = \dfrac{1500 \times 15^2}{60} = 5625$ N. Friction is
+      not at its limiting value here; it takes the value needed to hold the car
+      on the bend.
+
+  - id: am7-3-slide-decision
+    section: '7.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car goes round a flat bend of radius $50$ m with coefficient of friction
+      $0.4$ at a speed of $18$ m/s. Calculate the greatest speed, and decide
+      whether the car stays on the bend.
+    answer_label: Greatest speed, and the decision
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(mu * g * r)
+          values:
+            mu: {value: '0.4'}
+            g: {value: '9.8', unit: 'm/s^2'}
+            r: {value: '50', unit: m}
+          answer: {value: '14', unit: 'm/s'}
+        - kind: structured
+          requires: [greatest-speed, comparison]
+          concepts: [sliding]
+          points:
+            - id: greatest-speed
+              text: >-
+                the greatest speed is $\sqrt{0.4 \times 9.8 \times 50} = 14$ m/s
+              concepts: [sliding]
+            - id: comparison
+              text: >-
+                the speed of $18$ m/s is greater than $14$ m/s, so the friction
+                available is not enough and the car slides
+              concepts: [sliding]
+    answer_text: >-
+      The greatest speed is
+      $v_{\max} = \sqrt{\mu g r} = \sqrt{0.4 \times 9.8 \times 50}
+      = \sqrt{196} = 14$ m/s. The car's speed of $18$ m/s is greater than
+      $14$ m/s, so the friction available is not enough. The car slides
+      outwards, and the driver must slow down.
+
+  - id: am7-3-hump-bridge
+    section: '7.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car of mass $1000$ kg crosses a hump-back bridge whose top is an arc of
+      radius $50$ m. The speed is $12$ m/s. Calculate the normal reaction on the
+      car at the top.
+    answer_label: Normal reaction
+    check:
+      kind: dimensions
+      expression: m * g - m * v**2 / r
+      values:
+        m: {value: '1000', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        v: {value: '12', unit: 'm/s'}
+        r: {value: '50', unit: m}
+      answer: {value: '6920', unit: N}
+    answer_text: >-
+      At the top of the arc the weight acts towards the centre and the normal
+      reaction acts away from it, so $mg - R = \dfrac{mv^2}{r}$. Then
+      $R = 1000 \times 9.8 - \dfrac{1000 \times 12^2}{50} = 9800 - 2880 = 6920$
+      N. The reaction is less than the weight, because the car is accelerating
+      downwards.
+
+  - id: am7-3-least-speed
+    section: '7.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball moves in a vertical circle of radius $1.6$ m. Calculate the least
+      speed it can have at the top and keep the string taut, giving your answer
+      to three significant figures.
+    answer_label: Least speed at the top
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: 'sqrt(9.8 * 1.6)'
+      figures: 3
+      answer: '3.96'
+      unit: 'm/s'
+      tolerance: '0.01'
+    answer_text: >-
+      The string stays taut while $T = \dfrac{mv^2}{r} - mg \ge 0$. Setting
+      $T = 0$ gives $v^2 = gr$, so
+      $v_{\min} = \sqrt{9.8 \times 1.6} = \sqrt{15.68} \approx 3.96$ m/s. Below
+      this speed the weight alone is more than the force needed for the circular
+      path, and the string goes slack.
+
+  - id: am7-3-string-tension-top
+    section: '7.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $0.2$ kg on a string moves in a vertical circle of radius
+      $1.0$ m. At the top of the circle its speed is $5$ m/s. Calculate the
+      tension in the string.
+    answer_label: Tension at the top
+    check:
+      kind: dimensions
+      expression: m * v**2 / r - m * g
+      values:
+        m: {value: '0.2', unit: kg}
+        v: {value: '5', unit: 'm/s'}
+        r: {value: '1.0', unit: m}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '3.04', unit: N}
+    answer_text: >-
+      At the top the weight and the tension both point towards the centre, so
+      $T + mg = \dfrac{mv^2}{r}$ and
+      $T = \dfrac{0.2 \times 5^2}{1.0} - 0.2 \times 9.8 = 5 - 1.96 = 3.04$ N.
+      The tension is positive, so the string is taut.
+
+  - id: am7-3-wet-roundabout
+    section: '7.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      The chapter-problem roundabout has radius $20$ m. On a wet day the
+      coefficient of friction falls to $0.4$. Calculate the greatest speed at
+      which the car can take the roundabout, giving your answer to three
+      significant figures.
+    answer_label: Greatest speed on a wet day
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: 'sqrt(0.4 * 9.8 * 20)'
+      figures: 3
+      answer: '8.85'
+      unit: 'm/s'
+      tolerance: '0.01'
+    answer_text: >-
+      $v_{\max} = \sqrt{\mu g r} = \sqrt{0.4 \times 9.8 \times 20}
+      = \sqrt{78.4} \approx 8.85$ m/s. The car's speed of $10$ m/s is above this,
+      so on a wet day the car would slide. A lower coefficient of friction means
+      a lower greatest speed.
+
+  - id: am7-3-vertical-circle-forces
+    section: '7.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Describe the forces acting on a ball at the top of a vertical circle, and
+      explain how the condition for the string to stay taut is found.
+    answer_label: Forces at the top of a vertical circle
+    check:
+      kind: structured
+      requires: [both-forces-inwards, equation, condition]
+      concepts: [weight, tension]
+      points:
+        - id: both-forces-inwards
+          text: >-
+            at the top of the circle the weight and the tension both point
+            towards the centre, which is directly below the ball
+          concepts: [weight, tension]
+        - id: equation
+          text: >-
+            the resultant towards the centre is $T + mg$, so
+            $T + mg = \dfrac{mv^2}{r}$
+          concepts: [tension]
+        - id: condition
+          text: >-
+            the string stays taut while the tension is at least zero, which gives
+            the least speed $v = \sqrt{gr}$
+          concepts: [tension]
+    answer_text: >-
+      At the top of the circle the centre is directly below the ball, so the
+      weight and the tension both point towards the centre. The resultant towards
+      the centre is $T + mg$, and this must equal $\dfrac{mv^2}{r}$. So
+      $T = \dfrac{mv^2}{r} - mg$. The string stays taut while $T \ge 0$, which
+      gives the least speed $v = \sqrt{gr}$. Below that speed the string goes
+      slack.

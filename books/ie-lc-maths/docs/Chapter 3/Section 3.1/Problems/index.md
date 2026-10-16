@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.1 Perimeter and area of plane figures — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 3.4
+Work independently. The questions and answers are shown together at the end.
+
+Write the unit with every answer. An area is in square units and a perimeter is in
+units, so check which one the question asks for before you start.
+
+:::problems chapter-03-practice-3.1
+
+:::answers chapter-03-practice-3.1

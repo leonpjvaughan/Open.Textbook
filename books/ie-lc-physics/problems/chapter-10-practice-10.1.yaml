@@ -1,0 +1,213 @@
+# Leaving Certificate Physics, Chapter 10, section 10.1 (strand 2 outcome 2.3).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. A `structured` record proves only that a
+# model answer contains the declared steps in order and covers the declared
+# concepts — not that the physics in them is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass.
+chapter: 10
+problems:
+- id: p10-1-incidence-angle
+  section: '10.1'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    A ray of light strikes a plane mirror. The ray makes an angle of 55° with the
+    surface of the mirror. Calculate the angle of incidence.
+  answer_label: Angle of incidence
+  check:
+    kind: evaluate
+    expression: 90 - 55
+    answer: '35'
+  answer_text: >-
+    The angle of incidence is measured from the normal. The normal is at right
+    angles to the surface, so $i = 90^\circ - 55^\circ = 35^\circ$.
+- id: p10-1-angle-between
+  section: '10.1'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    A ray of light makes an angle of 25° with the surface of a plane mirror.
+    Calculate the angle between the incident ray and the reflected ray.
+  answer_label: Angle between the two rays
+  check:
+    kind: evaluate
+    expression: 2 * (90 - 25)
+    answer: '130'
+  answer_text: >-
+    The angle of incidence is $90^\circ - 25^\circ = 65^\circ$, and the angle of
+    reflection equals it. The two angles are on opposite sides of the normal, so
+    the angle between the rays is $65^\circ + 65^\circ = 130^\circ$.
+- id: p10-1-perpendicular
+  section: '10.1'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    A ray of light is reflected from a plane mirror so that the incident ray and
+    the reflected ray are at right angles to each other. Calculate the angle of
+    incidence.
+  answer_label: Angle of incidence
+  check:
+    kind: evaluate
+    expression: 90 / 2
+    answer: '45'
+  answer_text: >-
+    The angle of incidence equals the angle of reflection. The two angles
+    together make 90°, so each is $90^\circ \div 2 = 45^\circ$.
+- id: p10-1-echo-depth
+  section: '10.1'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    A student claps and hears the echo from a distant wall 0.80 s later. The
+    speed of sound in air is 340 m/s. Calculate the distance from the student to
+    the wall.
+  answer_label: Distance to the wall
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v * t / 2
+      values:
+        v:
+          value: '340'
+          unit: m/s
+        t:
+          value: '0.80'
+          unit: s
+      answer:
+        value: '136'
+        unit: m
+    - kind: sigfigs
+      value: 340 * 0.80 / 2
+      figures: 2
+      answer: '1.4e2'
+      convention: round-once
+  answer_text: >-
+    The sound travels to the wall and back, so the distance is
+    $s = \dfrac{vt}{2} = \dfrac{340 \times 0.80}{2} = 136\,\text{m}$. To two
+    significant figures that is $1.4 \times 10^{2}\,\text{m}$.
+- id: p10-1-ultrasound-depth
+  section: '10.1'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    An ultrasound pulse is sent into water. The echo returns after 0.060 s. The
+    speed of ultrasound in water is 1500 m/s. Calculate the depth of the water.
+  answer_label: Depth of the water
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v * t / 2
+      values:
+        v:
+          value: '1500'
+          unit: m/s
+        t:
+          value: '0.060'
+          unit: s
+      answer:
+        value: '45'
+        unit: m
+    - kind: sigfigs
+      value: 1500 * 0.060 / 2
+      figures: 2
+      answer: '45'
+      convention: round-once
+  answer_text: >-
+    The pulse travels down and back, so the depth is
+    $d = \dfrac{vt}{2} = \dfrac{1500 \times 0.060}{2} = 45\,\text{m}$.
+- id: p10-1-law
+  section: '10.1'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    State the law of reflection, and say what the normal is.
+  answer_label: The law of reflection
+  check:
+    kind: structured
+    requires:
+    - normal
+    - equal-angles
+    - same-plane
+    concepts:
+    - normal
+    - law-of-reflection
+    points:
+    - id: normal
+      text: >-
+        The normal is the line drawn at right angles to the surface at the point
+        where the ray meets it.
+      concepts:
+      - normal
+    - id: equal-angles
+      text: >-
+        The angle of incidence equals the angle of reflection, and both are
+        measured from the normal.
+      concepts:
+      - law-of-reflection
+    - id: same-plane
+      text: >-
+        The incident ray, the reflected ray and the normal all lie in the same
+        plane.
+      concepts:
+      - law-of-reflection
+  answer_text: >-
+    The normal is the line at right angles to the surface at the point of
+    incidence. The angle of incidence equals the angle of reflection, and both
+    are measured from the normal. The incident ray, the reflected ray and the
+    normal all lie in the same plane.
+- id: p10-1-diffuse
+  section: '10.1'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    Explain why a plane mirror gives a clear image of your face, but a white wall
+    does not.
+  answer_label: A mirror and a wall
+  check:
+    kind: structured
+    requires:
+    - smooth
+    - rough
+    - scattered
+    concepts:
+    - specular-reflection
+    - diffuse-reflection
+    points:
+    - id: smooth
+      text: >-
+        The surface of a mirror is smooth, so rays that arrive parallel reflect
+        in the same direction and a clear image forms.
+      concepts:
+      - specular-reflection
+    - id: rough
+      text: >-
+        A wall is rough on the scale of the wavelength of light, so the normal
+        points in a different direction at every point.
+      concepts:
+      - diffuse-reflection
+    - id: scattered
+      text: >-
+        The reflected rays leave in many directions, so the light is scattered
+        and no image forms.
+      concepts:
+      - diffuse-reflection
+  answer_text: >-
+    A mirror is smooth, so parallel rays reflect in the same direction and form a
+    clear image. A wall is rough compared with the wavelength of light, so the
+    normal points in a different direction at each point. The reflected rays
+    leave in many directions and the light is scattered, so no image forms.

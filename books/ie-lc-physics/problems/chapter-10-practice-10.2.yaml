@@ -1,0 +1,262 @@
+# Leaving Certificate Physics, Chapter 10, section 10.2 (strand 2 outcome 2.3).
+#
+# Snell's law needs a trigonometric function, so an angle is proved by `approx`
+# against a stated tolerance, and its rounding by `sigfigs`. A quantity is proved
+# by `dimensions`, which carries the unit as well as the magnitude. The `structured`
+# records prove only that a model answer contains the declared steps in order and
+# covers the declared concepts — not that the physics in them is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass.
+chapter: 10
+problems:
+- id: p10-2-refraction-angle
+  section: '10.2'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    A ray of light in air meets a flat glass surface at an angle of incidence of
+    40.0°. The refractive index of the glass is 1.50. Calculate the angle of
+    refraction.
+  answer_label: Angle of refraction
+  check:
+    kind: all
+    checks:
+    - kind: approx
+      value: asin(sin(40 * pi / 180) / 1.50) * 180 / pi
+      target: '25.4'
+      tolerance: '0.1'
+    - kind: sigfigs
+      value: asin(sin(40 * pi / 180) / 1.50) * 180 / pi
+      figures: 3
+      tolerance: '0.01'
+      answer: '25.4'
+      convention: round-once
+  answer_text: >-
+    Snell's law gives $n = \dfrac{\sin i}{\sin r}$, so
+    $\sin r = \dfrac{\sin 40.0^\circ}{1.50} = 0.4285$ and $r = 25.4^\circ$. The
+    light bends towards the normal because it slows down in the glass.
+- id: p10-2-speed-glass
+  section: '10.2'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    Light travels through air at $3.0 \times 10^{8}$ m/s. Calculate the speed of
+    the light in a glass of refractive index 1.50.
+  answer_label: Speed in the glass
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: c / n
+      values:
+        c:
+          value: '3.0e8'
+          unit: m/s
+        n:
+          value: '1.50'
+      answer:
+        value: '2.0e8'
+        unit: m/s
+    - kind: sigfigs
+      value: 3.0e8 / 1.50
+      figures: 2
+      answer: '2.0e8'
+      convention: round-once
+  answer_text: >-
+    Rearranging $n = \dfrac{c_1}{c_2}$ gives
+    $c_2 = \dfrac{c_1}{n} = \dfrac{3.0 \times 10^{8}}{1.50} =
+    2.0 \times 10^{8}\,\text{m/s}$. The light travels more slowly in the glass
+    than in the air.
+- id: p10-2-index-from-speed
+  section: '10.2'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    Light travels at $2.0 \times 10^{8}$ m/s in a sample of glass. Calculate the
+    refractive index of the glass. Take the speed of light in air as
+    $3.0 \times 10^{8}$ m/s.
+  answer_label: Refractive index
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: c / v
+      values:
+        c:
+          value: '3.0e8'
+          unit: m/s
+        v:
+          value: '2.0e8'
+          unit: m/s
+      answer:
+        value: '1.5'
+    - kind: sigfigs
+      value: 3.0e8 / 2.0e8
+      figures: 2
+      answer: '1.5'
+      convention: round-once
+  answer_text: >-
+    The refractive index compares the speed in air with the speed in the medium:
+    $n = \dfrac{c_1}{c_2} = \dfrac{3.0 \times 10^{8}}{2.0 \times 10^{8}} = 1.5$.
+    The refractive index has no unit.
+- id: p10-2-wavelength-glass
+  section: '10.2'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    A laser emits light of wavelength 650 nm in air. The light enters a glass
+    block of refractive index 1.50. The frequency does not change. Calculate the
+    wavelength of the light in the glass.
+  answer_label: Wavelength in the glass
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: wavelength_air / n
+      values:
+        wavelength_air:
+          value: '6.50e-7'
+          unit: m
+        n:
+          value: '1.50'
+      answer:
+        value: '4.33e-7'
+        unit: m
+      tolerance: '1e-9'
+    - kind: sigfigs
+      value: 6.50e-7 / 1.50
+      figures: 3
+      tolerance: '1e-10'
+      answer: '4.33e-7'
+      convention: round-once
+  answer_text: >-
+    The frequency stays the same, so the wavelength changes in the same ratio as
+    the speed: $\lambda_2 = \dfrac{\lambda_1}{n} = \dfrac{6.50 \times
+    10^{-7}}{1.50} = 4.33 \times 10^{-7}\,\text{m}$, which is 433 nm.
+- id: p10-2-frequency
+  section: '10.2'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    The laser emits light of wavelength 650 nm in air. Take the speed of light in
+    air as $3.0 \times 10^{8}$ m/s. Calculate the frequency of the light.
+  answer_label: Frequency
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: c / wavelength_air
+      values:
+        c:
+          value: '3.0e8'
+          unit: m/s
+        wavelength_air:
+          value: '6.50e-7'
+          unit: m
+      answer:
+        value: '4.6e14'
+        unit: Hz
+      tolerance: '2e12'
+    - kind: sigfigs
+      value: 3.0e8 / 6.50e-7
+      figures: 2
+      tolerance: '1e12'
+      answer: '4.6e14'
+      convention: round-once
+  answer_text: >-
+    $c = f\lambda$, so $f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^{8}}
+    {6.50 \times 10^{-7}} = 4.6 \times 10^{14}\,\text{Hz}$. This frequency is
+    set by the laser and does not change when the light enters the glass.
+- id: p10-2-snell
+  section: '10.2'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    State Snell's law, and explain what the refractive index of a medium tells
+    you.
+  answer_label: Snell's law and refractive index
+  check:
+    kind: structured
+    requires:
+    - snell
+    - index
+    - slower
+    concepts:
+    - snell-law
+    - refractive-index
+    points:
+    - id: snell
+      text: >-
+        Snell's law states that $n = \dfrac{\sin i}{\sin r}$, where $i$ is the
+        angle of incidence and $r$ is the angle of refraction, both measured from
+        the normal.
+      concepts:
+      - snell-law
+    - id: index
+      text: >-
+        The refractive index of a medium is the ratio of the speed of light in
+        air to the speed of light in the medium, $n = \dfrac{c_1}{c_2}$.
+      concepts:
+      - refractive-index
+    - id: slower
+      text: >-
+        A larger refractive index means the light travels more slowly in the
+        medium and bends further towards the normal.
+      concepts:
+      - refractive-index
+  answer_text: >-
+    Snell's law is $n = \dfrac{\sin i}{\sin r}$, with both angles measured from
+    the normal. The refractive index of a medium is the ratio of the speed of
+    light in air to the speed in the medium, $n = \dfrac{c_1}{c_2}$. A larger
+    refractive index means the light travels more slowly and bends further
+    towards the normal.
+- id: p10-2-bends
+  section: '10.2'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    Explain why a ray of light bends towards the normal when it passes from air
+    into glass, and why its frequency does not change.
+  answer_label: Why light bends
+  check:
+    kind: structured
+    requires:
+    - slows
+    - bends
+    - frequency
+    concepts:
+    - speed-change
+    - frequency
+    points:
+    - id: slows
+      text: >-
+        Light travels more slowly in glass than in air, so its speed drops as it
+        crosses the surface.
+      concepts:
+      - speed-change
+    - id: bends
+      text: >-
+        The change of speed changes the direction of the wavefront, so the ray
+        bends towards the normal.
+      concepts:
+      - speed-change
+    - id: frequency
+      text: >-
+        The frequency is set by the source and stays the same, so the wavelength
+        shortens to keep $c = f\lambda$ true with the smaller speed.
+      concepts:
+      - frequency
+  answer_text: >-
+    Light travels more slowly in glass than in air, so its speed drops at the
+    surface and the ray bends towards the normal. The frequency is set by the
+    source and does not change, so the wavelength shortens to keep $c = f\lambda$
+    true with the smaller speed.

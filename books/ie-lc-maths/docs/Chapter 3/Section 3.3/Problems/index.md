@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.3 Volume of prisms and cylinders — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 3.4
+Work independently. The questions and answers are shown together at the end.
+
+Write the cross-section area first in your working. Check the unit at the end: a
+volume is in cubic units, and a capacity can be in litres.
+
+:::problems chapter-03-practice-3.3
+
+:::answers chapter-03-practice-3.3

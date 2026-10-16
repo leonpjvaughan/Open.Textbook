@@ -1,0 +1,203 @@
+# Practice set for 7.6 (strand S3, the physical world; Higher only). Angular
+# frequencies, speeds and accelerations are quantities, so `dimensions` proves the
+# arithmetic and the unit together; `evaluate` proves an exact form that contains
+# pi; and `apply` proves the differentiation by re-differentiating the expression.
+# The `structured` record proves only that a model answer contains the declared
+# ideas, in order — not that the physics is right.
+#
+# Honest limit: this proves the arithmetic, the dimensions and the calculus, not
+# the physics. A dimensionally consistent, arithmetically correct, physically
+# absurd answer would pass.
+chapter: 7
+problems:
+  - id: am7-6-omega-and-period
+    section: '7.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A mass of $0.2$ kg is attached to a spring of stiffness $5$ N/m. Calculate
+      the angular frequency and the period, leaving the period in terms of $\pi$.
+    answer_label: Angular frequency, then period
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(k / m)
+          values:
+            k: {value: '5', unit: 'N/m'}
+            m: {value: '0.2', unit: kg}
+          answer: {value: '5', unit: 's^-1'}
+        - kind: evaluate
+          expression: '2 * pi / sqrt(5 / 0.2)'
+          answer: '2 * pi / 5'
+    answer_text: >-
+      $\omega = \sqrt{\dfrac{k}{m}} = \sqrt{\dfrac{5}{0.2}} = \sqrt{25}
+      = 5$ rad/s. Then $T = \dfrac{2\pi}{\omega} = \dfrac{2\pi}{5}$ s, about
+      $1.26$ s. The period depends on the mass and the stiffness, and not on the
+      amplitude.
+
+  - id: am7-6-period
+    section: '7.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A mass of $2$ kg is attached to a spring of stiffness $32$ N/m. Calculate
+      the period, leaving your answer in terms of $\pi$.
+    answer_label: Period
+    check:
+      kind: evaluate
+      expression: '2 * pi / sqrt(32 / 2)'
+      answer: 'pi / 2'
+    answer_text: >-
+      $\omega = \sqrt{\dfrac{32}{2}} = \sqrt{16} = 4$ rad/s, so
+      $T = \dfrac{2\pi}{4} = \dfrac{\pi}{2}$ s, about $1.57$ s. Four times the
+      mass with the same spring would give twice the period, because the period
+      depends on the square root of the mass.
+
+  - id: am7-6-max-speed
+    section: '7.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A body moves with simple harmonic motion of amplitude $0.05$ m and angular
+      frequency $6$ rad/s. Calculate its maximum speed.
+    answer_label: Maximum speed
+    check:
+      kind: dimensions
+      expression: A * omega
+      values:
+        A: {value: '0.05', unit: m}
+        omega: {value: '6', unit: 's^-1'}
+      answer: {value: '0.3', unit: 'm/s'}
+    answer_text: >-
+      $v_{\max} = A\omega = 0.05 \times 6 = 0.3$ m/s. The speed is greatest as
+      the body passes through the equilibrium position, where the acceleration is
+      zero.
+
+  - id: am7-6-max-accel
+    section: '7.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A body moves with simple harmonic motion of amplitude $0.05$ m and angular
+      frequency $6$ rad/s. Calculate its maximum acceleration.
+    answer_label: Maximum acceleration
+    check:
+      kind: dimensions
+      expression: A * omega**2
+      values:
+        A: {value: '0.05', unit: m}
+        omega: {value: '6', unit: 's^-1'}
+      answer: {value: '1.8', unit: 'm/s^2'}
+    answer_text: >-
+      $a_{\max} = A\omega^2 = 0.05 \times 6^2 = 0.05 \times 36 = 1.8$ m/s². The
+      acceleration is greatest at the extremes, where the speed is zero.
+
+  - id: am7-6-spring-motion
+    section: '7.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A mass of $0.1$ kg is attached to a spring of stiffness $40$ N/m and set
+      oscillating with amplitude $0.02$ m. Calculate the angular frequency, the
+      maximum speed and the maximum acceleration.
+    answer_label: Angular frequency, maximum speed, maximum acceleration
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(k / m)
+          values:
+            k: {value: '40', unit: 'N/m'}
+            m: {value: '0.1', unit: kg}
+          answer: {value: '20', unit: 's^-1'}
+        - kind: dimensions
+          expression: A * sqrt(k / m)
+          values:
+            A: {value: '0.02', unit: m}
+            k: {value: '40', unit: 'N/m'}
+            m: {value: '0.1', unit: kg}
+          answer: {value: '0.4', unit: 'm/s'}
+        - kind: dimensions
+          expression: A * k / m
+          values:
+            A: {value: '0.02', unit: m}
+            k: {value: '40', unit: 'N/m'}
+            m: {value: '0.1', unit: kg}
+          answer: {value: '8', unit: 'm/s^2'}
+    answer_text: >-
+      $\omega = \sqrt{\dfrac{40}{0.1}} = \sqrt{400} = 20$ rad/s. Then
+      $v_{\max} = A\omega = 0.02 \times 20 = 0.4$ m/s and
+      $a_{\max} = A\omega^2 = 0.02 \times 400 = 8$ m/s². The maximum acceleration
+      is less than $g$, so the mass stays on its support.
+
+  - id: am7-6-stiffness-from-period
+    section: '7.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A mass of $0.5$ kg oscillates on a spring with period $0.4$ s. Calculate
+      the stiffness of the spring, leaving your answer in terms of $\pi$.
+    answer_label: Stiffness
+    check:
+      kind: evaluate
+      expression: '0.5 * (2 * pi / 0.4)**2'
+      answer: '12.5 * pi**2'
+    answer_text: >-
+      $\omega = \dfrac{2\pi}{T} = \dfrac{2\pi}{0.4} = 5\pi$ rad/s, so
+      $k = m\omega^2 = 0.5 \times (5\pi)^2 = 12.5\pi^2$ N/m, about $123.4$ N/m.
+      The stiffness is large because the mass completes five oscillations each
+      second.
+
+  - id: am7-6-second-derivative
+    section: '7.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A body moves so that its displacement is $x = A\cos\omega t$. Show by
+      differentiating twice that its acceleration is $-\omega^2 x$.
+    answer_label: The two derivatives
+    check:
+      kind: all
+      checks:
+        - kind: apply
+          expression: 'A * cos(omega * t)'
+          apply: {op: diff, args: [t]}
+          answer: '-A * omega * sin(omega * t)'
+        - kind: apply
+          expression: '-A * omega * sin(omega * t)'
+          apply: {op: diff, args: [t]}
+          answer: '-A * omega**2 * cos(omega * t)'
+    answer_text: >-
+      Differentiating once gives the speed
+      $v = \dfrac{dx}{dt} = -A\omega\sin\omega t$. Differentiating again gives
+      $a = \dfrac{dv}{dt} = -A\omega^2\cos\omega t = -\omega^2(A\cos\omega t)
+      = -\omega^2 x$. The acceleration is proportional to the displacement and
+      points the opposite way, which is the definition of simple harmonic motion.
+
+  - id: am7-6-car-bounce
+    section: '7.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      The chapter-problem car of mass $1200$ kg rests on springs of total
+      stiffness $120000$ N/m. Calculate the angular frequency and the period of
+      its bounce, leaving the period in terms of $\pi$.
+    answer_label: Angular frequency, then period
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(k / m)
+          values:
+            k: {value: '120000', unit: 'N/m'}
+            m: {value: '1200', unit: kg}
+          answer: {value: '10', unit: 's^-1'}
+        - kind: evaluate
+          expression: '2 * pi / sqrt(120000 / 1200)'
+          answer: 'pi / 5'
+    answer_text: >-
+      $\omega = \sqrt{\dfrac{120000}{1200}} = \sqrt{100} = 10$ rad/s, so
+      $T = \dfrac{2\pi}{10} = \dfrac{\pi}{5}$ s, about $0.628$ s. The car bounces
+      about five times in three seconds, and the period is the same whatever the
+      size of the bump.

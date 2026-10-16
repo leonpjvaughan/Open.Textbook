@@ -1,0 +1,143 @@
+# Junior Cycle Mathematics, Chapter 11, section 11.3.
+#
+# The check writes the bracket product in `expression` and the claimed expansion
+# in `answer`, so the CAS proves the two are equivalent for every real value of
+# the letter. The middle terms are collected in `answer`, and the CAS proves that
+# collection is correct.
+chapter: 11
+symbols:
+  x: {real: true}
+
+problems:
+- id: jc11-11.3-expand-1
+  section: '11.3'
+  tier: O
+  refs:
+  - AF.3
+  statement: Expand $(x+3)(x+4)$.
+  answer_label: Expand $(x+3)(x+4)$.
+  check:
+    kind: evaluate
+    expression: (x + 3)*(x + 4)
+    answer: x**2 + 7*x + 12
+  answer_text: '$x^2+7x+12$. The four products are $x^2$, $4x$, $3x$ and 12. The middle terms collect to $7x$.'
+- id: jc11-11.3-expand-2
+  section: '11.3'
+  tier: O
+  refs:
+  - AF.3
+  statement: Expand $(x+8)(x+2)$.
+  answer_label: Expand $(x+8)(x+2)$.
+  check:
+    kind: evaluate
+    expression: (x + 8)*(x + 2)
+    answer: x**2 + 10*x + 16
+  answer_text: '$x^2+10x+16$. The middle terms $2x$ and $8x$ collect to $10x$.'
+- id: jc11-11.3-expand-3
+  section: '11.3'
+  tier: O
+  refs:
+  - AF.3
+  statement: Expand $(x+6)(x-2)$.
+  answer_label: Expand $(x+6)(x-2)$.
+  check:
+    kind: evaluate
+    expression: (x + 6)*(x - 2)
+    answer: x**2 + 4*x - 12
+  answer_text: '$x^2+4x-12$. The middle terms are $-2x$ and $6x$, which collect to $4x$. The last term is $6\times(-2)=-12$.'
+- id: jc11-11.3-expand-4
+  section: '11.3'
+  tier: O
+  refs:
+  - AF.3
+  statement: Expand $(x-3)(x-7)$.
+  answer_label: Expand $(x-3)(x-7)$.
+  check:
+    kind: evaluate
+    expression: (x - 3)*(x - 7)
+    answer: x**2 - 10*x + 21
+  answer_text: '$x^2-10x+21$. The middle terms are both negative, so they collect to $-10x$. The last term is $(-3)\times(-7)=+21$.'
+- id: jc11-11.3-expand-5
+  section: '11.3'
+  tier: O
+  refs:
+  - AF.3
+  statement: Expand $(x+5)(x-5)$.
+  answer_label: Expand $(x+5)(x-5)$.
+  check:
+    kind: evaluate
+    expression: (x + 5)*(x - 5)
+    answer: x**2 - 25
+  answer_text: '$x^2-25$. The middle terms $-5x$ and $+5x$ cancel, so only the two squares are left. You will meet this pattern again in Section 11.6.'
+- id: jc11-11.3-expand-coeff-1
+  section: '11.3'
+  tier: O
+  refs:
+  - AF.3
+  statement: Expand $(2x+5)(x+2)$.
+  answer_label: Expand $(2x+5)(x+2)$.
+  check:
+    kind: evaluate
+    expression: (2*x + 5)*(x + 2)
+    answer: 2*x**2 + 9*x + 10
+  answer_text: '$2x^2+9x+10$. The four products are $2x^2$, $4x$, $5x$ and 10. The middle terms collect to $9x$.'
+- id: jc11-11.3-expand-coeff-2
+  section: '11.3'
+  tier: O
+  refs:
+  - AF.3
+  statement: Expand $(3x-2)(x+4)$.
+  answer_label: Expand $(3x-2)(x+4)$.
+  check:
+    kind: evaluate
+    expression: (3*x - 2)*(x + 4)
+    answer: 3*x**2 + 10*x - 8
+  answer_text: '$3x^2+10x-8$. The middle terms are $12x$ and $-2x$, which collect to $10x$.'
+- id: jc11-11.3-square-1
+  section: '11.3'
+  tier: O
+  refs:
+  - AF.3
+  statement: Expand $(x+7)^2$.
+  answer_label: Expand $(x+7)^2$.
+  check:
+    kind: evaluate
+    expression: (x + 7)**2
+    answer: x**2 + 14*x + 49
+  answer_text: '$x^2+14x+49$. Write $(x+7)^2$ as $(x+7)(x+7)$. The two middle terms are equal, so they give $14x$.'
+- id: jc11-11.3-square-2
+  section: '11.3'
+  tier: O
+  refs:
+  - AF.3
+  statement: Expand $(x-6)^2$.
+  answer_label: Expand $(x-6)^2$.
+  check:
+    kind: evaluate
+    expression: (x - 6)**2
+    answer: x**2 - 12*x + 36
+  answer_text: '$x^2-12x+36$. Write $(x-6)^2$ as $(x-6)(x-6)$. The last term is $(-6)\times(-6)=+36$.'
+- id: jc11-11.3-sum-1
+  section: '11.3'
+  tier: O
+  refs:
+  - AF.3
+  statement: Expand and simplify $(x+3)(x+4)+(x+1)(x+2)$.
+  answer_label: Expand and simplify the two products.
+  check:
+    kind: evaluate
+    expression: (x + 3)*(x + 4) + (x + 1)*(x + 2)
+    answer: 2*x**2 + 10*x + 14
+  answer_text: '$2x^2+10x+14$. The first product is $x^2+7x+12$ and the second is $x^2+3x+2$. Collect the like terms across both.'
+- id: jc11-11.3-plot-1
+  section: '11.3'
+  tier: O
+  refs:
+  - AF.3
+  statement: The garden plot has area $(x+5)(x+2)$ square metres. Expand the product.
+  answer_label: Expand the area of the plot.
+  check:
+    kind: evaluate
+    expression: (x + 5)*(x + 2)
+    answer: x**2 + 7*x + 10
+  answer_text: '$x^2+7x+10$. The four products are $x^2$, $2x$, $5x$ and 10. The middle terms collect to $7x$. This is the total area of the plot in the chapter problem.'

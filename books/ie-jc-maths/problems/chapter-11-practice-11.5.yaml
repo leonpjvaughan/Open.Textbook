@@ -1,0 +1,143 @@
+# Junior Cycle Mathematics, Chapter 11, section 11.5.
+#
+# The check writes the expanded quadratic in `expression` and the claimed pair
+# of brackets in `answer`, so the CAS proves the product equals the sum. The
+# verifier proves the algebra, not the method, so a different route to the same
+# pair of brackets would also pass. The intended pair is stated in `answer_text`.
+chapter: 11
+symbols:
+  x: {real: true}
+
+problems:
+- id: jc11-11.5-factor-1
+  section: '11.5'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2+6x+8$.
+  answer_label: Factorise $x^2+6x+8$.
+  check:
+    kind: evaluate
+    expression: x**2 + 6*x + 8
+    answer: (x + 2)*(x + 4)
+  answer_text: '$(x+2)(x+4)$. The pair 2 and 4 multiplies to 8 and adds to 6. Check: $x^2+4x+2x+8=x^2+6x+8$.'
+- id: jc11-11.5-factor-2
+  section: '11.5'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2+9x+18$.
+  answer_label: Factorise $x^2+9x+18$.
+  check:
+    kind: evaluate
+    expression: x**2 + 9*x + 18
+    answer: (x + 3)*(x + 6)
+  answer_text: '$(x+3)(x+6)$. The pair 3 and 6 multiplies to 18 and adds to 9.'
+- id: jc11-11.5-factor-3
+  section: '11.5'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2+11x+30$.
+  answer_label: Factorise $x^2+11x+30$.
+  check:
+    kind: evaluate
+    expression: x**2 + 11*x + 30
+    answer: (x + 5)*(x + 6)
+  answer_text: '$(x+5)(x+6)$. The pair 5 and 6 multiplies to 30 and adds to 11.'
+- id: jc11-11.5-factor-4
+  section: '11.5'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2+3x-10$.
+  answer_label: Factorise $x^2+3x-10$.
+  check:
+    kind: evaluate
+    expression: x**2 + 3*x - 10
+    answer: (x + 5)*(x - 2)
+  answer_text: '$(x+5)(x-2)$. The product is negative, so the signs differ. The pair 5 and $-2$ multiplies to $-10$ and adds to 3.'
+- id: jc11-11.5-factor-5
+  section: '11.5'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2-2x-8$.
+  answer_label: Factorise $x^2-2x-8$.
+  check:
+    kind: evaluate
+    expression: x**2 - 2*x - 8
+    answer: (x - 4)*(x + 2)
+  answer_text: '$(x-4)(x+2)$. The product is negative, so the signs differ. The pair $-4$ and 2 multiplies to $-8$ and adds to $-2$.'
+- id: jc11-11.5-factor-6
+  section: '11.5'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2-7x+10$.
+  answer_label: Factorise $x^2-7x+10$.
+  check:
+    kind: evaluate
+    expression: x**2 - 7*x + 10
+    answer: (x - 2)*(x - 5)
+  answer_text: '$(x-2)(x-5)$. The product is positive and the sum is negative, so both numbers are negative. The pair $-2$ and $-5$ multiplies to 10 and adds to $-7$.'
+- id: jc11-11.5-factor-7
+  section: '11.5'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2-9x+20$.
+  answer_label: Factorise $x^2-9x+20$.
+  check:
+    kind: evaluate
+    expression: x**2 - 9*x + 20
+    answer: (x - 4)*(x - 5)
+  answer_text: '$(x-4)(x-5)$. The pair $-4$ and $-5$ multiplies to 20 and adds to $-9$.'
+- id: jc11-11.5-factor-8
+  section: '11.5'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2+2x-24$.
+  answer_label: Factorise $x^2+2x-24$.
+  check:
+    kind: evaluate
+    expression: x**2 + 2*x - 24
+    answer: (x + 6)*(x - 4)
+  answer_text: '$(x+6)(x-4)$. The pair 6 and $-4$ multiplies to $-24$ and adds to 2.'
+- id: jc11-11.5-factor-9
+  section: '11.5'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2-5x-6$.
+  answer_label: Factorise $x^2-5x-6$.
+  check:
+    kind: evaluate
+    expression: x**2 - 5*x - 6
+    answer: (x - 6)*(x + 1)
+  answer_text: '$(x-6)(x+1)$. The pair $-6$ and 1 multiplies to $-6$ and adds to $-5$.'
+- id: jc11-11.5-factor-10
+  section: '11.5'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2+7x+10$.
+  answer_label: Factorise $x^2+7x+10$.
+  check:
+    kind: evaluate
+    expression: x**2 + 7*x + 10
+    answer: (x + 5)*(x + 2)
+  answer_text: '$(x+5)(x+2)$. The pair 5 and 2 multiplies to 10 and adds to 7. This is the total area of the garden plot, so the two brackets are its length and width.'
+- id: jc11-11.5-factor-11
+  section: '11.5'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2+12x+35$.
+  answer_label: Factorise $x^2+12x+35$.
+  check:
+    kind: evaluate
+    expression: x**2 + 12*x + 35
+    answer: (x + 5)*(x + 7)
+  answer_text: '$(x+5)(x+7)$. The pair 5 and 7 multiplies to 35 and adds to 12.'

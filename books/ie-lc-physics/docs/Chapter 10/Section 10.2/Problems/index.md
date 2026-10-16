@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 10.2 Refraction and Snell's law — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.3
+Work independently. The questions and answers are shown together at the end.
+
+Measure every angle from the normal. Write each answer with its unit where it has
+one, and remember that a refractive index has no unit.
+
+:::problems chapter-10-practice-10.2
+
+:::answers chapter-10-practice-10.2

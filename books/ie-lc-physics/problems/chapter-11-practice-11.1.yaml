@@ -1,0 +1,282 @@
+# Leaving Certificate Physics, Chapter 11, section 11.1 (strand 2 outcome 2.5).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a
+# rounded answer is never equal to the exact one. An integer that is two
+# significant figures is written as `6.8e2`, since `680` reads as two figures but
+# `680.0` would read as four.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps in order and covers the declared concepts.
+chapter: 11
+problems:
+- id: p11-1-wave-type
+  section: '11.1'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    Sound travels from a loudspeaker to your ear. State the kind of wave that
+    sound is, and describe how the air particles move as the sound passes.
+  answer_label: The kind of wave and the vibration
+  check:
+    kind: structured
+    requires:
+    - kind
+    - vibration
+    - regions
+    concepts:
+    - longitudinal
+    - along
+    - compression
+    points:
+    - id: kind
+      text: sound is a longitudinal wave
+      concepts:
+      - longitudinal
+    - id: vibration
+      text: the air particles vibrate back and forth along the direction the sound travels
+      concepts:
+      - along
+    - id: regions
+      text: the wave consists of compressions, where the particles are closer together, and
+        rarefactions, where they are farther apart
+      concepts:
+      - compression
+  answer_text: >-
+    Sound is a longitudinal wave. The air particles vibrate back and forth along
+    the direction the sound travels, so they pass the disturbance on to their
+    neighbours. The wave consists of compressions, where the particles are closer
+    together, and rarefactions, where they are farther apart. The energy travels
+    to your ear; the air itself does not.
+- id: p11-1-medium
+  section: '11.1'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    Explain why sound cannot travel through a vacuum, and name one piece of
+    evidence for this.
+  answer_label: Why sound needs a medium
+  check:
+    kind: structured
+    requires:
+    - mechanical
+    - no-particles
+    - evidence
+    concepts:
+    - mechanical-wave
+    - medium
+    - bell-jar
+    points:
+    - id: mechanical
+      text: sound is a mechanical wave, so it needs the particles of a medium to pass the
+        disturbance from one place to the next
+      concepts:
+      - mechanical-wave
+      - medium
+    - id: no-particles
+      text: a vacuum has no particles, so there is nothing to vibrate and nothing to carry
+        the sound
+      concepts:
+      - medium
+    - id: evidence
+      text: an electric bell ringing inside a bell jar becomes fainter as the air is pumped out,
+        and can no longer be heard once the jar is evacuated
+      concepts:
+      - bell-jar
+  answer_text: >-
+    Sound is a mechanical wave. It travels by making the particles of a medium
+    vibrate, so it needs a medium. A vacuum has no particles, so there is nothing
+    to vibrate and nothing to pass the disturbance on. An electric bell ringing
+    inside a bell jar becomes fainter as the air is pumped out, and cannot be
+    heard once the jar is evacuated. Light from the bell is still visible, because
+    light is not a mechanical wave.
+- id: p11-1-distance
+  section: '11.1'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    A sound wave travels through air at 340 m/s. Calculate how far it travels in
+    2.0 s.
+  answer_label: Distance travelled
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v * t
+      values:
+        v:
+          value: '340'
+          unit: m/s
+        t:
+          value: '2.0'
+          unit: s
+      answer:
+        value: '680'
+        unit: m
+    - kind: sigfigs
+      value: 340 * 2.0
+      figures: 2
+      answer: 6.8e2
+      convention: round-once
+  answer_text: >-
+    $s = vt = 340 \times 2.0 = 680\,\text{m}$. The speed of sound is quoted for
+    air at about $20\,^\circ\text{C}$. It is a little larger in warm air, because
+    the particles move faster.
+- id: p11-1-wavelength
+  section: '11.1'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    A siren makes a note of frequency 700 Hz. The speed of sound in air is
+    340 m/s. Calculate the wavelength of the note.
+  answer_label: Wavelength
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v / f
+      values:
+        v:
+          value: '340'
+          unit: m/s
+        f:
+          value: '700'
+          unit: Hz
+      answer:
+        value: '0.49'
+        unit: m
+      tolerance: '0.005'
+    - kind: sigfigs
+      value: 340 / 700
+      figures: 2
+      answer: '0.49'
+      convention: round-once
+  answer_text: >-
+    Rearranging $v = f\lambda$ gives
+    $\lambda = \dfrac{v}{f} = \dfrac{340}{700} = 0.49\,\text{m}$. Each complete
+    vibration of the air stretches 0.49 m along the direction the sound travels.
+- id: p11-1-water-time
+  section: '11.1'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    A sound wave travels 680 m through water. The speed of sound in water is
+    1500 m/s. Calculate the time the sound takes to travel this distance.
+  answer_label: Time in water
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: s / v
+      values:
+        s:
+          value: '680'
+          unit: m
+        v:
+          value: '1500'
+          unit: m/s
+      answer:
+        value: '0.453'
+        unit: s
+      tolerance: '0.001'
+    - kind: sigfigs
+      value: 680 / 1500
+      figures: 3
+      answer: '0.453'
+      convention: round-once
+  answer_text: >-
+    $t = \dfrac{s}{v} = \dfrac{680}{1500} = 0.453\,\text{s}$. The same distance
+    takes 2.0 s in air, so sound travels about four times faster in water than in
+    air. The particles of a liquid are closer together than those of a gas, so the
+    disturbance passes from one to the next more quickly.
+- id: p11-1-thunder
+  section: '11.1'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    You see a flash of lightning and hear the thunder 5.0 s later. The speed of
+    sound in air is 340 m/s. Calculate your distance from the lightning.
+  answer_label: Distance from the lightning
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v * t
+      values:
+        v:
+          value: '340'
+          unit: m/s
+        t:
+          value: '5.0'
+          unit: s
+      answer:
+        value: '1700'
+        unit: m
+    - kind: sigfigs
+      value: 340 * 5.0
+      figures: 2
+      answer: 1.7e3
+      convention: round-once
+  answer_text: >-
+    $s = vt = 340 \times 5.0 = 1700\,\text{m}$, which is 1.7 km. The light
+    reaches you almost instantly, because light travels about a million times
+    faster than sound. The delay is the time the sound takes to reach you.
+- id: p11-1-speaker
+  section: '11.1'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    The cone of a loudspeaker moves forwards and backwards. Describe what this
+    does to the air next to the cone, and explain how the disturbance reaches your
+    ear.
+  answer_label: How a loudspeaker makes sound
+  check:
+    kind: structured
+    requires:
+    - push
+    - pull
+    - travel
+    - receive
+    concepts:
+    - compression
+    - rarefaction
+    - medium
+    - energy
+    points:
+    - id: push
+      text: when the cone moves forwards it pushes the air particles together and makes a
+        compression
+      concepts:
+      - compression
+    - id: pull
+      text: when the cone moves backwards it leaves the air particles farther apart and makes
+        a rarefaction
+      concepts:
+      - rarefaction
+    - id: travel
+      text: the compressions and rarefactions travel away from the cone as a longitudinal
+        wave, while the air particles vibrate about fixed positions
+      concepts:
+      - medium
+    - id: receive
+      text: the wave carries energy to your ear, and the arriving compressions and rarefactions
+        make your eardrum vibrate
+      concepts:
+      - energy
+  answer_text: >-
+    When the cone moves forwards it pushes the air particles together and makes a
+    compression. When it moves backwards it leaves the air particles farther
+    apart and makes a rarefaction. The compressions and rarefactions travel away
+    from the cone as a longitudinal wave, while the air particles vibrate about
+    fixed positions and pass the disturbance on. The wave carries energy to your
+    ear, and the arriving compressions and rarefactions make your eardrum vibrate.

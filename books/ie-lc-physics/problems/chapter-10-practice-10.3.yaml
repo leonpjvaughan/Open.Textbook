@@ -1,0 +1,250 @@
+# Leaving Certificate Physics, Chapter 10, section 10.3 (strand 2 outcome 2.3).
+#
+# A critical angle is proved by `approx` against a stated tolerance, and its
+# rounding by `sigfigs`; the tolerance on `sigfigs` is the band across which the
+# reported rounding must not change, so a value near a rounding boundary is caught
+# rather than shipped. The `structured` records prove only that a model answer
+# contains the declared steps in order and covers the declared concepts — not that
+# the physics in them is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass.
+chapter: 10
+problems:
+- id: p10-3-critical-glass
+  section: '10.3'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    Calculate the critical angle for a glass-air boundary. The refractive index
+    of the glass is 1.50.
+  answer_label: Critical angle
+  check:
+    kind: all
+    checks:
+    - kind: approx
+      value: asin(1 / 1.50) * 180 / pi
+      target: '41.8'
+      tolerance: '0.1'
+    - kind: sigfigs
+      value: asin(1 / 1.50) * 180 / pi
+      figures: 3
+      tolerance: '0.01'
+      answer: '41.8'
+      convention: round-once
+  answer_text: >-
+    At the critical angle the refracted ray leaves along the surface, so
+    $r = 90^\circ$ and $\sin r = 1$. Then $\sin C = \dfrac{1}{n} = \dfrac{1}{1.50}
+    = 0.6667$, so $C = 41.8^\circ$.
+- id: p10-3-critical-water
+  section: '10.3'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    The refractive index of water is 1.33. Calculate the critical angle for a
+    water-air boundary.
+  answer_label: Critical angle
+  check:
+    kind: all
+    checks:
+    - kind: approx
+      value: asin(1 / 1.33) * 180 / pi
+      target: '48.8'
+      tolerance: '0.1'
+    - kind: sigfigs
+      value: asin(1 / 1.33) * 180 / pi
+      figures: 3
+      tolerance: '0.001'
+      answer: '48.8'
+      convention: round-once
+  answer_text: >-
+    $\sin C = \dfrac{1}{n} = \dfrac{1}{1.33} = 0.7519$, so $C = 48.8^\circ$. The
+    critical angle for water is larger than for glass, because water has the
+    smaller refractive index.
+- id: p10-3-index-from-critical
+  section: '10.3'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    The critical angle for a boundary between a transparent material and air is
+    45.0°. Calculate the refractive index of the material.
+  answer_label: Refractive index
+  check:
+    kind: all
+    checks:
+    - kind: approx
+      value: 1 / sin(45 * pi / 180)
+      target: '1.41'
+      tolerance: '0.01'
+    - kind: sigfigs
+      value: 1 / sin(45 * pi / 180)
+      figures: 3
+      tolerance: '0.0005'
+      answer: '1.41'
+      convention: round-once
+  answer_text: >-
+    $\sin C = \dfrac{1}{n}$, so $n = \dfrac{1}{\sin C} =
+    \dfrac{1}{\sin 45.0^\circ} = 1.41$.
+- id: p10-3-compare
+  section: '10.3'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    Light inside a glass block of refractive index 1.50 meets the glass-air
+    boundary at an angle of incidence of 45°. State whether the light leaves the
+    glass, and explain your answer.
+  answer_label: Does the light leave the glass?
+  check:
+    kind: structured
+    requires:
+    - critical
+    - compare
+    - decide
+    concepts:
+    - critical-angle
+    - total-internal-reflection
+    points:
+    - id: critical
+      text: >-
+        The critical angle is given by $\sin C = \dfrac{1}{n} = \dfrac{1}{1.50}$,
+        so $C = 41.8^\circ$.
+      concepts:
+      - critical-angle
+    - id: compare
+      text: >-
+        The angle of incidence inside the glass is 45°, which is greater than the
+        critical angle of 41.8°.
+      concepts:
+      - critical-angle
+    - id: decide
+      text: >-
+        So the light is totally internally reflected and stays inside the glass;
+        no light leaves through that surface.
+      concepts:
+      - total-internal-reflection
+  answer_text: >-
+    The critical angle is 41.8°. The angle of incidence inside the glass is 45°,
+    which is greater than the critical angle, so the light is totally internally
+    reflected and stays inside the glass.
+- id: p10-3-side-face
+  section: '10.3'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    A ray of light enters a rectangular glass block of refractive index 1.50
+    through the top face at an angle of incidence of 40.0°. Inside the glass it
+    makes an angle of 25.4° with the normal. The ray then meets the vertical side
+    face. Explain why the light does not leave through the side face.
+  answer_label: The light at the side face
+  check:
+    kind: structured
+    requires:
+    - angle
+    - critical
+    - compare
+    concepts:
+    - geometry
+    - critical-angle
+    - total-internal-reflection
+    points:
+    - id: angle
+      text: >-
+        The normal at the side face is horizontal, so the angle of incidence
+        there is $90^\circ - 25.4^\circ = 64.6^\circ$.
+      concepts:
+      - geometry
+    - id: critical
+      text: >-
+        The critical angle for this glass is
+        $C = \sin^{-1}\left(\dfrac{1}{1.50}\right) = 41.8^\circ$.
+      concepts:
+      - critical-angle
+    - id: compare
+      text: >-
+        The angle of incidence at the side face, 64.6°, is greater than the
+        critical angle, so the light is totally internally reflected.
+      concepts:
+      - total-internal-reflection
+  answer_text: >-
+    The normal at the side face is horizontal, so the angle of incidence there is
+    $90^\circ - 25.4^\circ = 64.6^\circ$. The critical angle for the glass is
+    41.8°. Since 64.6° is greater than the critical angle, the light is totally
+    internally reflected and stays inside the block.
+- id: p10-3-fibre
+  section: '10.3'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    Describe how an optical fibre keeps a light signal inside the fibre, and give
+    one use of optical fibres.
+  answer_label: An optical fibre
+  check:
+    kind: structured
+    requires:
+    - denser
+    - angle
+    - reflection
+    concepts:
+    - total-internal-reflection
+    - applications
+    points:
+    - id: denser
+      text: >-
+        The core of the fibre has a higher refractive index than the cladding
+        around it, so light in the core meets a boundary with a material of lower
+        refractive index.
+      concepts:
+      - total-internal-reflection
+    - id: angle
+      text: >-
+        The light strikes the boundary at an angle greater than the critical
+        angle for the two materials.
+      concepts:
+      - total-internal-reflection
+    - id: reflection
+      text: >-
+        The light is totally internally reflected back into the core, so the
+        signal travels along the fibre with very little loss. Uses include
+        broadband internet and medical endoscopes.
+      concepts:
+      - applications
+  answer_text: >-
+    The core of the fibre has a higher refractive index than the cladding around
+    it, so light in the core meets a boundary with a lower-index material. The
+    light strikes the boundary at an angle greater than the critical angle and is
+    totally internally reflected back into the core. The signal travels along the
+    fibre with very little loss. Optical fibres carry broadband internet and are
+    used in medical endoscopes.
+- id: p10-3-diamond
+  section: '10.3'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    The refractive index of diamond is 2.42. Calculate the critical angle for a
+    diamond-air boundary.
+  answer_label: Critical angle
+  check:
+    kind: all
+    checks:
+    - kind: approx
+      value: asin(1 / 2.42) * 180 / pi
+      target: '24.4'
+      tolerance: '0.1'
+    - kind: sigfigs
+      value: asin(1 / 2.42) * 180 / pi
+      figures: 3
+      tolerance: '0.01'
+      answer: '24.4'
+      convention: round-once
+  answer_text: >-
+    $\sin C = \dfrac{1}{n} = \dfrac{1}{2.42} = 0.4132$, so $C = 24.4^\circ$. The
+    critical angle is small because the refractive index is large, which is why a
+    cut diamond reflects light many times and sparkles.

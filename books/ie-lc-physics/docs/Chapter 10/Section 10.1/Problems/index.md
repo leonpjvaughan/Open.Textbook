@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 10.1 Reflection of waves — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.3
+Work independently. The questions and answers are shown together at the end.
+
+Draw the normal before you measure any angle, and measure every angle from it. Write
+each answer with its unit where it has one.
+
+:::problems chapter-10-practice-10.1
+
+:::answers chapter-10-practice-10.1

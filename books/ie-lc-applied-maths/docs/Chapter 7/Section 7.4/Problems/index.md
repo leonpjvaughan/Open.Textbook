@@ -10,9 +10,15 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.4 Conical pendulum and banked tracks — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+Every question here is Higher level.
+
+Resolve into a vertical direction and a direction towards the centre. For a
+conical pendulum the radius is $L\sin\theta$, never the length of the string. For
+a banked track, the design speed comes from $\tan\theta = \dfrac{v^2}{gr}$.
+
+:::problems chapter-07-practice-7.4
+
+:::answers chapter-07-practice-7.4

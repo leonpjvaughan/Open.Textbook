@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.4 The Doppler effect — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.7
+Work independently. The questions and answers are shown together at the end.
+
+These questions ask for explanations, so write in full sentences. Name the wavefronts, say
+what happens to their spacing, and say what the listener hears as a result. Give any
+quantity with its unit.
+
+:::problems chapter-11-practice-11.4
+
+:::answers chapter-11-practice-11.4

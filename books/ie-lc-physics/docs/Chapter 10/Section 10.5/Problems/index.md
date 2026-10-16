@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 10.5 The diffraction grating — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 2.3
+Work independently. The questions and answers are shown together at the end.
+
+Find the slit spacing first, in metres. Remember that $n$ in the grating equation is
+the order of the maximum, and it is a whole number.
+
+:::problems chapter-10-practice-10.5
+
+:::answers chapter-10-practice-10.5

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.2 The speed of sound and its measurement — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.5
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**, and to the number of significant figures the data
+support. In an echo question, remember that the sound travels to the reflector and back.
+
+:::problems chapter-11-practice-11.2
+
+:::answers chapter-11-practice-11.2

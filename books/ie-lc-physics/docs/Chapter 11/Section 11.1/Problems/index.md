@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.1 Sound as a wave — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.5
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**, and to the number of significant figures the data
+support. Take the speed of sound in air as 340 m/s unless a question gives a different
+value.
+
+:::problems chapter-11-practice-11.1
+
+:::answers chapter-11-practice-11.1

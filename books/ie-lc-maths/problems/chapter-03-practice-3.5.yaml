@@ -1,0 +1,143 @@
+# Practice set for 3.5 (strand 3, outcome 3.4). The rational surface areas are proved by
+# the `dimensions` oracle, so the unit is checked with the number. The cylinder surfaces
+# are exact multiples of pi and are proved by `sympy`. The one explanation uses
+# `structured`.
+chapter: 3
+problems:
+  - id: lc3-5-cuboid-surface
+    section: '3.5'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the surface area of a cuboid $5$ cm by $3$ cm by $2$ cm.'
+    answer_label: 'The surface area of the cuboid'
+    check:
+      kind: dimensions
+      expression: '2 * (l * w + l * h + w * h)'
+      values:
+        l: {value: '5', unit: cm}
+        w: {value: '3', unit: cm}
+        h: {value: '2', unit: cm}
+      answer: {value: '62', unit: 'cm^2'}
+    answer_text: >-
+      $$A = 2(15 + 10 + 6) = 62 \text{ cm}^2$$
+
+      Three pairs of rectangles, each pair counted twice.
+
+  - id: lc3-5-triangular-prism-surface
+    section: '3.5'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      A triangular prism has a right-angled cross-section with legs $3$ cm and $4$ cm, and
+      a hypotenuse of $5$ cm. Its length is $10$ cm. Find its surface area.
+    answer_label: 'The surface area of the prism'
+    check:
+      kind: dimensions
+      expression: '2 * (a * b / 2) + a * L + b * L + c * L'
+      values:
+        a: {value: '3', unit: cm}
+        b: {value: '4', unit: cm}
+        c: {value: '5', unit: cm}
+        L: {value: '10', unit: cm}
+      answer: {value: '132', unit: 'cm^2'}
+    answer_text: >-
+      Two triangular ends and three rectangles:
+
+      $$A = 2(6) + 30 + 40 + 50 = 132 \text{ cm}^2$$
+
+  - id: lc3-5-curved-surface
+    section: '3.5'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the curved surface area of a cylinder of radius $7$ cm and height $4$ cm.'
+    answer_label: 'The curved surface area'
+    check: {kind: evaluate, expression: '2 * pi * 7 * 4', answer: '56 * pi'}
+    answer_text: >-
+      $$2\pi r h = 2\pi \times 7 \times 4 = 56\pi \approx 175.93 \text{ cm}^2$$
+
+      The word **curved** means the two circles are left out.
+
+  - id: lc3-5-total-surface
+    section: '3.5'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the total surface area of a closed cylinder of radius $7$ cm and height $4$ cm.'
+    answer_label: 'The total surface area'
+    check: {kind: evaluate, expression: '2 * pi * 7**2 + 2 * pi * 7 * 4', answer: '154 * pi'}
+    answer_text: >-
+      Two circles give $2 \times 49\pi = 98\pi$, and the tube gives $56\pi$:
+
+      $$A = 98\pi + 56\pi = 154\pi \approx 483.81 \text{ cm}^2$$
+
+  - id: lc3-5-no-lid
+    section: '3.5'
+    tier: F
+    refs: ['3.4']
+    statement: 'A cylinder of radius $7$ cm and height $4$ cm has no lid. Find its surface area.'
+    answer_label: 'The surface area with no lid'
+    check: {kind: evaluate, expression: 'pi * 7**2 + 2 * pi * 7 * 4', answer: '105 * pi'}
+    answer_text: >-
+      With no lid there is one circle instead of two:
+
+      $$A = 49\pi + 56\pi = 105\pi \approx 329.87 \text{ cm}^2$$
+
+      The curved surface is unchanged, because the tube is still there.
+
+  - id: lc3-5-cylinder-diameter
+    section: '3.5'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the total surface area of a closed cylinder of diameter $10$ cm and height $6$ cm.'
+    answer_label: 'The total surface area'
+    check: {kind: evaluate, expression: '2 * pi * (10 / 2)**2 + 2 * pi * (10 / 2) * 6', answer: '110 * pi'}
+    answer_text: >-
+      The radius is $5$ cm, so
+
+      $$A = 2\pi \times 25 + 2\pi \times 5 \times 6 = 50\pi + 60\pi = 110\pi \approx 345.58 \text{ cm}^2$$
+
+  - id: lc3-5-tank-a-surface
+    section: '3.5'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      Tank A is a closed cylinder of diameter $1.2$ m and height $1.2$ m. Find its total
+      surface area in square metres, giving the exact answer in terms of $\pi$.
+    answer_label: 'The total surface area of Tank A'
+    check: {kind: evaluate, expression: '2 * pi * 0.6**2 + 2 * pi * 0.6 * 1.2', answer: '2.16 * pi'}
+    answer_text: >-
+      The radius is $0.6$ m, so
+
+      $$A = 2\pi \times 0.36 + 2\pi \times 0.6 \times 1.2 = 0.72\pi + 1.44\pi = 2.16\pi \approx 6.79 \text{ m}^2$$
+
+      Keep the exact value $2.16\pi$ for the comparison with Tank B in Section 3.7.
+
+  - id: lc3-5-curved-versus-total
+    section: '3.5'
+    tier: F
+    refs: ['3.4']
+    statement: 'Explain the difference between the curved surface area and the total surface area of a cylinder.'
+    answer_label: 'Curved surface area and total surface area'
+    check:
+      kind: structured
+      requires: [describe-curved, describe-total, give-example]
+      concepts: [curved-surface, total-surface]
+      points:
+        - id: describe-curved
+          text: >-
+            The curved surface area is the area of the tube alone. It unrolls into a
+            rectangle of width $2\pi r$ and height $h$, so it is $2\pi r h$.
+          concepts: [curved-surface]
+        - id: describe-total
+          text: >-
+            The total surface area adds the two circular ends, each of area $\pi r^2$, so
+            it is $2\pi r^2 + 2\pi r h$.
+          concepts: [total-surface]
+        - id: give-example
+          text: >-
+            For a radius of $7$ cm and a height of $4$ cm the curved surface is
+            $56\pi \text{ cm}^2$ and the total is $154\pi \text{ cm}^2$.
+    answer_text: >-
+      The curved surface area is the area of the tube only, and it unrolls into a rectangle
+      of width $2\pi r$ and height $h$. The total surface area also counts the two circular
+      ends, so it is larger by $2\pi r^2$. A cylinder with no lid has one circle instead of
+      two, and a cylinder that is painted on the outside only may need the total.

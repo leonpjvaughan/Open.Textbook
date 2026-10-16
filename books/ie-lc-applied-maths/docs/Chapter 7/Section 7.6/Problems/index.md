@@ -10,9 +10,15 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.6 Simple harmonic motion — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+Every question here is Higher level.
+
+Find $\omega$ from the mass and the stiffness before you use any other formula.
+The amplitude sets the maximum speed and the maximum acceleration, but it does not
+appear in the period. Keep an angle inside a cosine in radians.
+
+:::problems chapter-07-practice-7.6
+
+:::answers chapter-07-practice-7.6

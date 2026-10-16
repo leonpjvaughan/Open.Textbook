@@ -1,0 +1,197 @@
+# Leaving Certificate Physics, Chapter 10, section 10.5 (strand 2 outcome 2.3).
+#
+# Higher-level section. The grating equation needs a trigonometric function, so an
+# angle is proved by `approx` against a stated tolerance and its rounding by
+# `sigfigs`. The order of a maximum is proved exactly by `evaluate`, because the
+# largest whole number below $d/\lambda$ is exact rational arithmetic. The
+# `structured` records prove only that a model answer contains the declared steps
+# in order and covers the declared concepts — not that the physics in them is
+# right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass.
+chapter: 10
+problems:
+- id: p10-5-slit-spacing
+  section: '10.5'
+  tier: H
+  refs:
+  - '2.3'
+  statement: >-
+    A diffraction grating has 500 lines per millimetre. Calculate the distance
+    between neighbouring slits.
+  answer_label: Slit spacing
+  check:
+    kind: all
+    checks:
+    - kind: approx
+      value: 0.001 / 500
+      target: '2.0e-6'
+      tolerance: '1e-9'
+    - kind: sigfigs
+      value: 0.001 / 500
+      figures: 2
+      answer: '2.0e-6'
+      convention: round-once
+  answer_text: >-
+    There are 500 slits in 1 mm, so the spacing is
+    $d = \dfrac{1\,\text{mm}}{500} = \dfrac{0.001\,\text{m}}{500} =
+    2.0 \times 10^{-6}\,\text{m}$.
+- id: p10-5-first-order
+  section: '10.5'
+  tier: H
+  refs:
+  - '2.3'
+  statement: >-
+    Light of wavelength 650 nm falls on a diffraction grating with 300 lines per
+    millimetre. Calculate the angle of the first-order maximum.
+  answer_label: Angle of the first-order maximum
+  check:
+    kind: all
+    checks:
+    - kind: approx
+      value: asin(6.50e-7 * 300 / 0.001) * 180 / pi
+      target: '11.2'
+      tolerance: '0.05'
+    - kind: sigfigs
+      value: asin(6.50e-7 * 300 / 0.001) * 180 / pi
+      figures: 3
+      tolerance: '0.001'
+      answer: '11.2'
+      convention: round-once
+  answer_text: >-
+    The slit spacing is $d = \dfrac{0.001}{300} = 3.33 \times 10^{-6}\,\text{m}$.
+    For the first order, $n = 1$, so $\sin\theta = \dfrac{\lambda}{d} =
+    \dfrac{6.50 \times 10^{-7}}{3.33 \times 10^{-6}} = 0.195$ and
+    $\theta = 11.2^\circ$.
+- id: p10-5-second-order
+  section: '10.5'
+  tier: H
+  refs:
+  - '2.3'
+  statement: >-
+    The same grating has 300 lines per millimetre and the light has a wavelength
+    of 650 nm. Calculate the angle of the second-order maximum.
+  answer_label: Angle of the second-order maximum
+  check:
+    kind: all
+    checks:
+    - kind: approx
+      value: asin(2 * 6.50e-7 * 300 / 0.001) * 180 / pi
+      target: '23.0'
+      tolerance: '0.05'
+    - kind: sigfigs
+      value: asin(2 * 6.50e-7 * 300 / 0.001) * 180 / pi
+      figures: 3
+      tolerance: '0.001'
+      answer: '23.0'
+      convention: round-once
+  answer_text: >-
+    For the second order, $n = 2$, so
+    $\sin\theta = \dfrac{2\lambda}{d} = \dfrac{2 \times 6.50 \times 10^{-7}}
+    {3.33 \times 10^{-6}} = 0.390$ and $\theta = 23.0^\circ$. The second-order
+    maximum is further from the centre than the first-order maximum.
+- id: p10-5-max-order
+  section: '10.5'
+  tier: H
+  refs:
+  - '2.3'
+  statement: >-
+    Light of wavelength 650 nm falls on a grating with 300 lines per millimetre.
+    Calculate the largest order of maximum that can be seen.
+  answer_label: Largest order
+  check:
+    kind: evaluate
+    expression: floor(0.001 / 300 / 6.50e-7)
+    answer: '5'
+  answer_text: >-
+    The largest possible value of $\sin\theta$ is 1, so $n$ cannot exceed
+    $\dfrac{d}{\lambda} = \dfrac{3.33 \times 10^{-6}}{6.50 \times 10^{-7}} =
+    5.13$. The largest whole number below this is 5, so five orders are visible on
+    each side of the centre.
+- id: p10-5-many-slits
+  section: '10.5'
+  tier: H
+  refs:
+  - '2.3'
+  statement: >-
+    Explain why a diffraction grating produces sharper and brighter maxima than
+    two slits.
+  answer_label: A grating compared with two slits
+  check:
+    kind: structured
+    requires:
+    - many
+    - in-step
+    - sharp
+    concepts:
+    - grating
+    - interference
+    points:
+    - id: many
+      text: >-
+        A grating has many hundreds of slits, so light from all of them
+        interferes at the screen.
+      concepts:
+      - grating
+    - id: in-step
+      text: >-
+        At the angles where the waves from every slit arrive in step, they add to
+        give a very bright maximum.
+      concepts:
+      - interference
+    - id: sharp
+      text: >-
+        At nearby angles the waves are out of step and cancel, so the maximum is
+        narrow and sharp.
+      concepts:
+      - interference
+  answer_text: >-
+    A grating has many hundreds of slits, so light from all of them interferes.
+    Where the waves from every slit arrive in step they add to give a very bright
+    maximum. At nearby angles the waves cancel, so the maximum is narrow and
+    sharp.
+- id: p10-5-spectrum
+  section: '10.5'
+  tier: H
+  refs:
+  - '2.3'
+  statement: >-
+    White light is passed through a diffraction grating. Describe what is seen on
+    the screen, and explain why the red end of each spectrum is further from the
+    centre than the violet end.
+  answer_label: White light through a grating
+  check:
+    kind: structured
+    requires:
+    - spectra
+    - formula
+    - red
+    concepts:
+    - grating
+    - wavelength
+    points:
+    - id: spectra
+      text: >-
+        A white central maximum is seen, with a spectrum on each side for every
+        order.
+      concepts:
+      - grating
+    - id: formula
+      text: >-
+        The grating equation is $n\lambda = d\sin\theta$, so for a given order the
+        angle depends on the wavelength.
+      concepts:
+      - grating
+    - id: red
+      text: >-
+        Red light has a longer wavelength than violet light, so red has the larger
+        angle and lies further from the centre.
+      concepts:
+      - wavelength
+  answer_text: >-
+    A white central maximum is seen, with a spectrum on each side for every order.
+    The grating equation is $n\lambda = d\sin\theta$, so for a given order the
+    angle depends on the wavelength. Red light has a longer wavelength than violet
+    light, so red lies further from the centre.

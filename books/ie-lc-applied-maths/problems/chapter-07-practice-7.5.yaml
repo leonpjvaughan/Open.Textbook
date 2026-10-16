@@ -1,0 +1,203 @@
+# Practice set for 7.5 (strand S3, the physical world). Every answer is a tension,
+# an extension or a stiffness, so `dimensions` proves the arithmetic and the unit
+# together. The `structured` record proves only that a model answer contains the
+# declared ideas, in order — not that the physics is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics.
+# A dimensionally consistent, arithmetically correct, physically absurd answer
+# would pass.
+chapter: 7
+problems:
+  - id: am7-5-tension-basic
+    section: '7.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A spring of stiffness $250$ N/m is extended by $0.2$ m. Calculate the
+      tension.
+    answer_label: Tension
+    check:
+      kind: dimensions
+      expression: k * x
+      values:
+        k: {value: '250', unit: 'N/m'}
+        x: {value: '0.2', unit: m}
+      answer: {value: '50', unit: N}
+    answer_text: >-
+      $T = kx = 250 \times 0.2 = 50$ N. The tension is proportional to the
+      extension, so doubling the extension doubles the tension.
+
+  - id: am7-5-tension-extension
+    section: '7.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A spring of natural length $0.4$ m and stiffness $150$ N/m is stretched to
+      a length of $0.6$ m. Calculate the tension.
+    answer_label: Tension
+    check:
+      kind: dimensions
+      expression: k * (stretched - natural)
+      values:
+        k: {value: '150', unit: 'N/m'}
+        stretched: {value: '0.6', unit: m}
+        natural: {value: '0.4', unit: m}
+      answer: {value: '30', unit: N}
+    answer_text: >-
+      The extension is $x = 0.6 - 0.4 = 0.2$ m, so
+      $T = kx = 150 \times 0.2 = 30$ N. Using the length $0.6$ m in place of the
+      extension would give $90$ N, three times too large.
+
+  - id: am7-5-equilibrium-extension
+    section: '7.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A mass of $3$ kg hangs at rest from a spring of stiffness $600$ N/m.
+      Calculate the extension.
+    answer_label: Extension
+    check:
+      kind: dimensions
+      expression: m * g / k
+      values:
+        m: {value: '3', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        k: {value: '600', unit: 'N/m'}
+      answer: {value: '0.049', unit: m}
+    answer_text: >-
+      At rest the tension balances the weight, so $kx = mg$ and
+      $x = \dfrac{mg}{k} = \dfrac{3 \times 9.8}{600} = 0.049$ m. The spring is
+      $4.9$ cm longer than its natural length.
+
+  - id: am7-5-modulus-tension
+    section: '7.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      An elastic string has natural length $0.8$ m and modulus $80$ N. It is
+      stretched to a length of $1.1$ m. Calculate the tension.
+    answer_label: Tension
+    check:
+      kind: dimensions
+      expression: modulus * (stretched - L) / L
+      values:
+        modulus: {value: '80', unit: N}
+        stretched: {value: '1.1', unit: m}
+        L: {value: '0.8', unit: m}
+      answer: {value: '30', unit: N}
+    answer_text: >-
+      The extension is $x = 1.1 - 0.8 = 0.3$ m, so
+      $T = \dfrac{\lambda x}{L} = \dfrac{80 \times 0.3}{0.8} = 30$ N. The
+      modulus is measured in newtons and describes the string itself.
+
+  - id: am7-5-lift
+    section: '7.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A mass of $1.5$ kg hangs from a spring of stiffness $300$ N/m in a lift
+      that accelerates upwards at $1.5$ m/s². Calculate the tension and the
+      extension.
+    answer_label: Tension, then extension
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * (g + a)
+          values:
+            m: {value: '1.5', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+            a: {value: '1.5', unit: 'm/s^2'}
+          answer: {value: '16.95', unit: N}
+        - kind: dimensions
+          expression: m * (g + a) / k
+          values:
+            m: {value: '1.5', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+            a: {value: '1.5', unit: 'm/s^2'}
+            k: {value: '300', unit: 'N/m'}
+          answer: {value: '0.0565', unit: m}
+    answer_text: >-
+      Taking upwards as positive, $T - mg = ma$, so
+      $T = m(g + a) = 1.5 \times 11.3 = 16.95$ N. The extension is
+      $x = \dfrac{T}{k} = \dfrac{16.95}{300} = 0.0565$ m. The spring is longer
+      than at rest, because the tension must also accelerate the mass upwards.
+
+  - id: am7-5-stiffness
+    section: '7.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A spring is extended by $0.08$ m by a tension of $24$ N. Calculate its
+      stiffness.
+    answer_label: Stiffness
+    check:
+      kind: dimensions
+      expression: T / x
+      values:
+        T: {value: '24', unit: N}
+        x: {value: '0.08', unit: m}
+      answer: {value: '300', unit: 'N/m'}
+    answer_text: >-
+      Rearranging $T = kx$ gives $k = \dfrac{T}{x} = \dfrac{24}{0.08} = 300$
+      N/m. The stiffness is the tension for each metre of extension, so a larger
+      stiffness means a spring that is harder to stretch.
+
+  - id: am7-5-car-springs
+    section: '7.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      The chapter-problem car of mass $1200$ kg rests on four springs that
+      together have stiffness $120000$ N/m. Calculate the compression of the
+      springs.
+    answer_label: Compression of the springs
+    check:
+      kind: dimensions
+      expression: m * g / k
+      values:
+        m: {value: '1200', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        k: {value: '120000', unit: 'N/m'}
+      answer: {value: '0.098', unit: m}
+    answer_text: >-
+      At rest the springs support the weight, $mg = 1200 \times 9.8 = 11760$ N,
+      so $x = \dfrac{mg}{k} = \dfrac{11760}{120000} = 0.098$ m. The springs are
+      about $9.8$ cm shorter than their natural length under the car's weight.
+
+  - id: am7-5-elastic-limit
+    section: '7.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Explain what the elastic limit is, and why Hooke's law stops working beyond
+      it.
+    answer_label: The elastic limit
+    check:
+      kind: structured
+      requires: [definition, permanent-stretch, proportionality-fails]
+      concepts: [hookes-law, elastic-limit]
+      points:
+        - id: definition
+          text: >-
+            the elastic limit is the extension beyond which the spring does not
+            return to its natural length when the force is removed
+          concepts: [elastic-limit]
+        - id: permanent-stretch
+          text: >-
+            beyond the limit the material is permanently stretched, so its
+            natural length has changed
+          concepts: [elastic-limit]
+        - id: proportionality-fails
+          text: >-
+            the tension is no longer proportional to the extension, so $T = kx$
+            does not describe the spring
+          concepts: [hookes-law]
+    answer_text: >-
+      The elastic limit is the extension beyond which the spring does not return
+      to its natural length when the force is removed. Up to that point the
+      material behaves elastically and the tension is proportional to the
+      extension, so $T = kx$ holds. Beyond the limit the material is permanently
+      stretched, its natural length has changed, and the same extension no longer
+      gives the same tension. The proportionality has broken down, so Hooke's law
+      no longer describes the spring.

@@ -1,0 +1,332 @@
+# Leaving Certificate Physics, Chapter 11, section 11.4 (strand 2 outcome 2.7).
+#
+# Outcome 2.7 asks for a qualitative model of the Doppler effect and for its
+# real-life applications, so every record in this bank is a `structured` check of a
+# written answer, apart from the stationary-source wavelength, which is the wave
+# equation applied to the chapter problem before any motion is introduced.
+#
+# Honest limit: a `structured` check proves only that a model answer contains the
+# declared steps in order and covers the declared concepts. It proves nothing about
+# whether the physics in those steps is right.
+chapter: 11
+problems:
+- id: p11-4-stationary-wavelength
+  section: '11.4'
+  tier: O
+  refs:
+  - '2.7'
+  statement: >-
+    An ambulance siren makes a note of frequency 700 Hz. The ambulance is
+    stationary and the speed of sound in air is 340 m/s. Calculate the wavelength
+    of the note.
+  answer_label: Wavelength when stationary
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v / f
+      values:
+        v:
+          value: '340'
+          unit: m/s
+        f:
+          value: '700'
+          unit: Hz
+      answer:
+        value: '0.49'
+        unit: m
+      tolerance: '0.005'
+    - kind: sigfigs
+      value: 340 / 700
+      figures: 2
+      answer: '0.49'
+      convention: round-once
+  answer_text: >-
+    $\lambda = \dfrac{v}{f} = \dfrac{340}{700} = 0.49\,\text{m}$. This is the
+    spacing of the wavefronts when the source is at rest. The next sections ask
+    what happens to that spacing when the source moves.
+- id: p11-4-approach
+  section: '11.4'
+  tier: O
+  refs:
+  - '2.7'
+  statement: >-
+    An ambulance with its siren sounding comes towards you. Explain why the note
+    you hear has a higher frequency than the note the siren makes.
+  answer_label: Why the note is higher
+  check:
+    kind: structured
+    requires:
+    - move
+    - bunch
+    - wavelength
+    - frequency
+    concepts:
+    - wavefronts
+    - wavelength
+    - frequency
+    points:
+      - id: move
+        text: the ambulance moves towards you between one wavefront and the next, so each
+          wavefront is sent from a point closer to you than the one before
+        concepts:
+        - wavefronts
+      - id: bunch
+        text: the wavefronts in front of the ambulance are squeezed closer together
+        concepts:
+        - wavefronts
+      - id: wavelength
+        text: the distance between neighbouring wavefronts reaching you is the wavelength, and
+          it is shorter than the wavelength the siren produces
+        concepts:
+        - wavelength
+      - id: frequency
+        text: the wavefronts arrive more often, so the frequency you hear is higher and the
+          pitch is higher
+        concepts:
+        - frequency
+  answer_text: >-
+    The ambulance moves towards you between one wavefront and the next, so each
+    wavefront is sent from a point closer to you than the one before. The
+    wavefronts in front of the ambulance are squeezed closer together. The
+    distance between neighbouring wavefronts that reach you is the wavelength, and
+    it is shorter than the wavelength the siren produces. The wavefronts arrive
+    more often, so the frequency you hear is higher and the pitch sounds higher.
+- id: p11-4-recede
+  section: '11.4'
+  tier: O
+  refs:
+  - '2.7'
+  statement: >-
+    The ambulance has passed you and is now moving away. Explain why the note you
+    hear now has a lower frequency than the note the siren makes.
+  answer_label: Why the note is lower
+  check:
+    kind: structured
+    requires:
+    - move
+    - spread
+    - wavelength
+    - frequency
+    concepts:
+    - wavefronts
+    - wavelength
+    - frequency
+    points:
+      - id: move
+        text: the ambulance moves away between one wavefront and the next, so each wavefront
+          is sent from a point farther from you than the one before
+        concepts:
+        - wavefronts
+      - id: spread
+        text: the wavefronts behind the ambulance are stretched farther apart
+        concepts:
+        - wavefronts
+      - id: wavelength
+        text: the distance between neighbouring wavefronts reaching you is longer than the
+          wavelength the siren produces
+        concepts:
+        - wavelength
+      - id: frequency
+        text: the wavefronts arrive less often, so the frequency you hear is lower and the
+          pitch is lower
+        concepts:
+        - frequency
+  answer_text: >-
+    The ambulance moves away between one wavefront and the next, so each wavefront
+    is sent from a point farther from you than the one before. The wavefronts
+    behind the ambulance are stretched farther apart. The distance between
+    neighbouring wavefronts that reach you is longer than the wavelength the siren
+    produces. The wavefronts arrive less often, so the frequency you hear is lower
+    and the pitch sounds lower.
+- id: p11-4-passing
+  section: '11.4'
+  tier: O
+  refs:
+  - '2.7'
+  statement: >-
+    Describe what a listener standing at the roadside hears as an ambulance with
+    its siren sounding goes past, and explain why the change happens when it does.
+  answer_label: What the listener hears
+  check:
+    kind: structured
+    requires:
+    - before
+    - at
+    - after
+    concepts:
+    - frequency
+    - pitch
+    points:
+      - id: before
+        text: as the ambulance approaches, the listener hears a note of higher frequency and
+          higher pitch than the siren makes
+        concepts:
+        - frequency
+        - pitch
+      - id: at
+        text: the note drops sharply at the moment the ambulance passes the listener, because
+          the motion stops being towards the listener and becomes away
+        concepts:
+        - frequency
+        - pitch
+      - id: after
+        text: as the ambulance moves away, the listener hears a note of lower frequency and
+          lower pitch than the siren makes
+        concepts:
+        - frequency
+        - pitch
+  answer_text: >-
+    As the ambulance approaches, the listener hears a note of higher frequency and
+    higher pitch than the siren makes. The note drops sharply at the moment it
+    passes, because the motion stops being towards the listener and becomes away
+    from the listener. As it moves away, the listener hears a note of lower
+    frequency and lower pitch. The siren itself makes one steady note throughout.
+- id: p11-4-driver
+  section: '11.4'
+  tier: O
+  refs:
+  - '2.7'
+  statement: >-
+    State what the driver of the ambulance hears, and explain your answer.
+  answer_label: What the driver hears
+  check:
+    kind: structured
+    requires:
+    - statement
+    - reason
+    concepts:
+    - relative-motion
+    - frequency
+    points:
+      - id: statement
+        text: the driver hears the steady 700 Hz note that the siren makes, with no change in
+          pitch
+        concepts:
+        - frequency
+      - id: reason
+        text: the driver and the siren are moving together, so the driver is not moving towards
+          or away from the source; there is no relative motion along the line to the source
+        concepts:
+        - relative-motion
+  answer_text: >-
+    The driver hears the steady 700 Hz note that the siren makes, with no change
+    in pitch. The driver and the siren move together, so the driver is not moving
+    towards or away from the source. The Doppler shift depends on the relative
+    motion of the source and the listener, and here there is none.
+- id: p11-4-speed-unchanged
+  section: '11.4'
+  tier: O
+  refs:
+  - '2.7'
+  statement: >-
+    A siren sounds in still air. State whether the speed of the sound in the air
+    changes as the ambulance moves, and explain your answer.
+  answer_label: The speed of the sound
+  check:
+    kind: structured
+    requires:
+    - speed
+    - reason
+    - contrast
+    concepts:
+    - medium
+    - frequency
+    - wavelength
+    points:
+      - id: speed
+        text: the speed of the sound in the air does not change; it stays at about 340 m/s
+        concepts:
+        - medium
+      - id: reason
+        text: the speed of sound is set by the air, its temperature and its pressure, and not
+          by the motion of the source
+        concepts:
+        - medium
+      - id: contrast
+        text: what changes is the wavelength and the frequency heard; the two change together
+          so that their product, the speed, stays the same
+        concepts:
+        - wavelength
+        - frequency
+  answer_text: >-
+    The speed of the sound in the air does not change; it stays at about 340 m/s.
+    The speed is set by the air, its temperature and its pressure, and not by the
+    motion of the source. What changes is the wavelength and the frequency heard.
+    The two change together so that their product, the speed, stays the same. A
+    higher observed frequency goes with a shorter observed wavelength.
+- id: p11-4-application
+  section: '11.4'
+  tier: O
+  refs:
+  - '2.7'
+  statement: >-
+    Describe one real-life application of the Doppler effect, and explain how the
+    effect is used in it.
+  answer_label: One application
+  check:
+    kind: structured
+    requires:
+    - application
+    - use
+    concepts:
+    - frequency-shift
+    - red-shift
+    points:
+      - id: application
+        text: a Doppler speed trap sends microwaves at a car and detects the wave reflected from
+          it, or a Doppler ultrasound probe measures the speed of blood in an artery
+        concepts:
+        - frequency-shift
+      - id: use
+        text: the reflected wave has a slightly different frequency from the wave sent, and the
+          size of that frequency shift gives the speed of the car or of the blood
+        concepts:
+        - frequency-shift
+        - red-shift
+  answer_text: >-
+    A Doppler speed trap sends microwaves at a car and detects the wave reflected
+    from it. The reflected wave has a slightly different frequency from the wave
+    sent, and the size of that frequency shift gives the speed of the car. A
+    Doppler ultrasound probe uses the same idea to measure the speed of blood in
+    an artery. The red shift of the light from distant galaxies is the same effect
+    in light, and it is evidence that the galaxies are moving away from us.
+- id: p11-4-red-shift
+  section: '11.4'
+  tier: O
+  refs:
+  - '2.7'
+  statement: >-
+    The light from a distant galaxy is found to be shifted towards longer
+    wavelengths. State what this shows about the galaxy, and name the effect.
+  answer_label: Red shift
+  check:
+    kind: structured
+    requires:
+    - motion
+    - name
+    - evidence
+    concepts:
+    - red-shift
+    - relative-motion
+    points:
+      - id: motion
+        text: the light is shifted towards longer wavelengths, which is towards the red end of
+          the spectrum, so the galaxy is moving away from us
+        concepts:
+        - red-shift
+      - id: name
+        text: this is the red shift, which is the Doppler effect for light
+        concepts:
+        - red-shift
+      - id: evidence
+        text: almost every distant galaxy shows a red shift, which is evidence that the universe
+          is expanding
+        concepts:
+        - relative-motion
+  answer_text: >-
+    The light is shifted towards longer wavelengths, which is towards the red end
+    of the spectrum. A shift to longer wavelengths means the source is moving away
+    from the observer, so the galaxy is moving away from us. This is the red shift,
+    which is the Doppler effect for light. Almost every distant galaxy shows a red
+    shift, and that is evidence that the universe is expanding.

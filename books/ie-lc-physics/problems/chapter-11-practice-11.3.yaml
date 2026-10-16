@@ -1,0 +1,316 @@
+# Leaving Certificate Physics, Chapter 11, section 11.3 (strand 2 outcome 2.5).
+#
+# The three structured records relate pitch to frequency, loudness to amplitude,
+# and quality to the overtones present, which is the wording of outcome 2.5.
+# The quantity records carry both a `dimensions` check and a `sigfigs` check.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps in order and covers the declared concepts.
+chapter: 11
+problems:
+- id: p11-3-pitch
+  section: '11.3'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    Explain what is meant by the pitch of a note, and state which characteristic
+    of the sound wave sets it.
+  answer_label: Pitch
+  check:
+    kind: structured
+    requires:
+    - definition
+    - characteristic
+    - direction
+    concepts:
+    - frequency
+    - high-low
+    points:
+      - id: definition
+        text: the pitch is how high or low the note sounds to a listener
+        concepts:
+        - high-low
+      - id: characteristic
+        text: the pitch is set by the frequency of the sound wave, which is the number of
+          complete vibrations each second
+        concepts:
+        - frequency
+      - id: direction
+        text: a higher frequency gives a higher pitch, and a lower frequency gives a lower
+          pitch
+        concepts:
+        - frequency
+        - high-low
+  answer_text: >-
+    The pitch is how high or low the note sounds. It is set by the frequency of
+    the sound wave, which is the number of complete vibrations each second. A
+    higher frequency gives a higher pitch, and a lower frequency gives a lower
+    pitch. Doubling the frequency raises the pitch by one octave.
+- id: p11-3-loudness
+  section: '11.3'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    Explain what is meant by the loudness of a note, and state which
+    characteristic of the sound wave sets it.
+  answer_label: Loudness
+  check:
+    kind: structured
+    requires:
+    - definition
+    - characteristic
+    - energy
+    concepts:
+    - amplitude
+    - energy
+    points:
+      - id: definition
+        text: the loudness is how strong the note sounds to a listener, and a louder note
+          carries more energy to the ear
+        concepts:
+        - energy
+      - id: characteristic
+        text: the loudness is set by the amplitude of the sound wave, which is the maximum
+          displacement of the air particles from the rest position
+        concepts:
+        - amplitude
+      - id: energy
+        text: a larger amplitude means more energy is carried, so the note sounds louder
+        concepts:
+        - amplitude
+        - energy
+  answer_text: >-
+    The loudness is how strong the note sounds. It is set by the amplitude of the
+    sound wave, which is the maximum displacement of the air particles from the
+    rest position. A larger amplitude means the wave carries more energy, so the
+    note sounds louder. The frequency sets the pitch and the amplitude sets the
+    loudness; the two can change independently.
+- id: p11-3-quality
+  section: '11.3'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    Two instruments play the same note at the same loudness, but they sound
+    different. Explain why, and name the characteristic of the sound that this
+    describes.
+  answer_label: Quality of a note
+  check:
+    kind: structured
+    requires:
+    - same
+    - overtones
+    - name
+    concepts:
+    - frequency
+    - amplitude
+    - overtones
+    - quality
+    points:
+      - id: same
+        text: the two notes have the same frequency and the same amplitude, so they have the
+          same pitch and the same loudness
+        concepts:
+        - frequency
+        - amplitude
+      - id: overtones
+        text: each instrument also produces weaker overtones at whole-number multiples of the
+          fundamental frequency, and the mixture of overtones differs between the two
+        concepts:
+        - overtones
+      - id: name
+        text: the difference is the quality, or timbre, of the note, and it is set by the
+          mixture of overtones present
+        concepts:
+        - quality
+        - overtones
+  answer_text: >-
+    The two notes have the same frequency and the same amplitude, so they have the
+    same pitch and the same loudness. Each instrument also produces weaker
+    overtones at whole-number multiples of the fundamental frequency, and the
+    mixture of overtones differs between the two. The difference is the quality,
+    or timbre, of the note. It is set by the mixture of overtones present, which is
+    why a violin and a flute sound different on the same note.
+- id: p11-3-audible-wavelength
+  section: '11.3'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    The highest frequency a young person can hear is about 20 kHz. The speed of
+    sound in air is 340 m/s. Calculate the wavelength of this sound.
+  answer_label: Wavelength at 20 kHz
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v / f
+      values:
+        v:
+          value: '340'
+          unit: m/s
+        f:
+          value: '20000'
+          unit: Hz
+      answer:
+        value: '0.017'
+        unit: m
+    - kind: sigfigs
+      value: 340 / 20000
+      figures: 2
+      answer: '0.017'
+      convention: round-once
+  answer_text: >-
+    $20\,\text{kHz} = 20000\,\text{Hz}$, and
+    $\lambda = \dfrac{v}{f} = \dfrac{340}{20000} = 0.017\,\text{m}$. That is 17 mm,
+    a little larger than the width of your little finger. The wavelength of the
+    highest note you can hear is shorter than the wavelength of any note lower
+    down the range.
+- id: p11-3-ultrasound-wavelength
+  section: '11.3'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    An ultrasound scan uses a frequency of 40 kHz. The speed of sound in body
+    tissue is 1500 m/s. Calculate the wavelength of the ultrasound in the tissue.
+  answer_label: Wavelength in tissue
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v / f
+      values:
+        v:
+          value: '1500'
+          unit: m/s
+        f:
+          value: '40000'
+          unit: Hz
+      answer:
+        value: '0.038'
+        unit: m
+      tolerance: '0.001'
+    - kind: sigfigs
+      value: 1500 / 40000
+      figures: 2
+      answer: '0.038'
+      convention: round-once
+  answer_text: >-
+    $40\,\text{kHz} = 40000\,\text{Hz}$, and
+    $\lambda = \dfrac{v}{f} = \dfrac{1500}{40000} = 0.0375\,\text{m}$, which rounds
+    to 0.038 m. A short wavelength reflects from small structures inside the body,
+    which is why ultrasound can build up a picture of an organ without any surgery.
+- id: p11-3-period
+  section: '11.3'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    A note has a frequency of 440 Hz. Calculate its period.
+  answer_label: Period
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 1 / f
+      values:
+        f:
+          value: '440'
+          unit: Hz
+      answer:
+        value: '0.00227'
+        unit: s
+      tolerance: '0.00001'
+    - kind: sigfigs
+      value: 1 / 440
+      figures: 3
+      answer: '0.00227'
+      convention: round-once
+  answer_text: >-
+    $T = \dfrac{1}{f} = \dfrac{1}{440} = 0.00227\,\text{s}$, which is 2.27 ms. The
+    air completes 440 vibrations every second, so each one takes a little over two
+    milliseconds.
+- id: p11-3-octave
+  section: '11.3'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    One note has a frequency of 220 Hz and a second note has a frequency of
+    440 Hz. State which note has the higher pitch, and describe how the two
+    frequencies are related.
+  answer_label: Comparing two notes
+  check:
+    kind: structured
+    requires:
+    - higher
+    - ratio
+    - octave
+    concepts:
+    - frequency
+    - octave
+    points:
+      - id: higher
+        text: the 440 Hz note has the higher pitch, because its frequency is larger
+        concepts:
+        - frequency
+      - id: ratio
+        text: the frequency of the second note is twice the frequency of the first
+        concepts:
+        - frequency
+      - id: octave
+        text: doubling the frequency raises the pitch by one octave, so the two notes are an
+          octave apart
+        concepts:
+        - octave
+  answer_text: >-
+    The 440 Hz note has the higher pitch, because its frequency is larger. Its
+    frequency is exactly twice that of the 220 Hz note. Doubling the frequency
+    raises the pitch by one octave, so the two notes are an octave apart. The two
+    notes sound pleasing together for that reason.
+- id: p11-3-ultrasound-use
+  section: '11.3'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    State what ultrasound is, and describe one medical use of it.
+  answer_label: Ultrasound and one use
+  check:
+    kind: structured
+    requires:
+    - definition
+    - use
+    - reason
+    concepts:
+    - ultrasound
+    - reflection
+    points:
+      - id: definition
+        text: ultrasound is sound with a frequency above the upper limit of human hearing,
+          which is about 20 kHz
+        concepts:
+        - ultrasound
+      - id: use
+        text: in a scan, a probe sends ultrasound pulses into the body and detects the pulses
+          reflected from the boundaries between different tissues
+        concepts:
+        - reflection
+      - id: reason
+        text: the echoes are used to build up an image of an organ or of a baby in the womb,
+          and ultrasound is used because it is not ionising
+        concepts:
+        - ultrasound
+        - reflection
+  answer_text: >-
+    Ultrasound is sound with a frequency above the upper limit of human hearing,
+    which is about 20 kHz. In a scan, a probe sends ultrasound pulses into the body
+    and detects the pulses reflected from the boundaries between different
+    tissues. The echoes build up an image of an organ or of a baby in the womb.
+    Ultrasound is used because it is not ionising, so it does not damage cells the
+    way X-rays can.

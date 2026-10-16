@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.5 Hooke's law and elastic strings — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Find the extension before you use Hooke's law: the extension is the stretched
+length minus the natural length. At rest, the tension balances the weight. When
+the mass accelerates, use Newton's second law with the tension and the weight.
+
+:::problems chapter-07-practice-7.5
+
+:::answers chapter-07-practice-7.5

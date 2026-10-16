@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 11.3 Pitch, loudness and quality — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.5
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**, and to the number of significant figures the data
+support. Keep the pitch and the loudness separate in your answers: the frequency sets one
+and the amplitude sets the other.
+
+:::problems chapter-11-practice-11.3
+
+:::answers chapter-11-practice-11.3

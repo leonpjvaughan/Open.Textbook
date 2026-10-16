@@ -1,0 +1,130 @@
+# Junior Cycle Mathematics, Chapter 11, section 11.6.
+#
+# The check writes the expression in `expression` and the claimed factorisation in
+# `answer`, so the CAS proves the product equals the sum. The rule is stated in the
+# Learn page, and the checks prove it holds for each example.
+chapter: 11
+symbols:
+  x: {real: true}
+
+problems:
+- id: jc11-11.6-factor-1
+  section: '11.6'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2-4$.
+  answer_label: Factorise $x^2-4$.
+  check:
+    kind: evaluate
+    expression: x**2 - 4
+    answer: (x + 2)*(x - 2)
+  answer_text: '$(x+2)(x-2)$. Both terms are squares: $x^2$ and $2^2$. Check: $x^2-2x+2x-4=x^2-4$.'
+- id: jc11-11.6-factor-2
+  section: '11.6'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2-64$.
+  answer_label: Factorise $x^2-64$.
+  check:
+    kind: evaluate
+    expression: x**2 - 64
+    answer: (x + 8)*(x - 8)
+  answer_text: '$(x+8)(x-8)$. The number 64 is $8^2$.'
+- id: jc11-11.6-factor-3
+  section: '11.6'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2-81$.
+  answer_label: Factorise $x^2-81$.
+  check:
+    kind: evaluate
+    expression: x**2 - 81
+    answer: (x + 9)*(x - 9)
+  answer_text: '$(x+9)(x-9)$. The number 81 is $9^2$.'
+- id: jc11-11.6-factor-4
+  section: '11.6'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $4x^2-25$.
+  answer_label: Factorise $4x^2-25$.
+  check:
+    kind: evaluate
+    expression: 4*x**2 - 25
+    answer: (2*x + 5)*(2*x - 5)
+  answer_text: '$(2x+5)(2x-5)$. The first term is $(2x)^2$ and the second is $5^2$.'
+- id: jc11-11.6-factor-5
+  section: '11.6'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $9x^2-1$.
+  answer_label: Factorise $9x^2-1$.
+  check:
+    kind: evaluate
+    expression: 9*x**2 - 1
+    answer: (3*x + 1)*(3*x - 1)
+  answer_text: '$(3x+1)(3x-1)$. The first term is $(3x)^2$ and the second is $1^2$.'
+- id: jc11-11.6-factor-6
+  section: '11.6'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $16x^2-49$.
+  answer_label: Factorise $16x^2-49$.
+  check:
+    kind: evaluate
+    expression: 16*x**2 - 49
+    answer: (4*x + 7)*(4*x - 7)
+  answer_text: '$(4x+7)(4x-7)$. The first term is $(4x)^2$ and the second is $7^2$.'
+- id: jc11-11.6-factor-7
+  section: '11.6'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^4-1$.
+  answer_label: Factorise $x^4-1$.
+  check:
+    kind: evaluate
+    expression: x**4 - 1
+    answer: (x**2 + 1)*(x + 1)*(x - 1)
+  answer_text: '$(x^2+1)(x+1)(x-1)$. First factorise as $(x^2+1)(x^2-1)$, and then factorise the second bracket again. The bracket $x^2+1$ has a plus sign, so it does not factorise.'
+- id: jc11-11.6-factor-8
+  section: '11.6'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $25x^2-9$.
+  answer_label: Factorise $25x^2-9$.
+  check:
+    kind: evaluate
+    expression: 25*x**2 - 9
+    answer: (5*x + 3)*(5*x - 3)
+  answer_text: '$(5x+3)(5x-3)$. The first term is $(5x)^2$ and the second is $3^2$.'
+- id: jc11-11.6-expand-1
+  section: '11.6'
+  tier: O
+  refs:
+  - AF.3
+  statement: Expand $(x+10)(x-10)$.
+  answer_label: Expand $(x+10)(x-10)$.
+  check:
+    kind: evaluate
+    expression: (x + 10)*(x - 10)
+    answer: x**2 - 100
+  answer_text: '$x^2-100$. The middle terms $-10x$ and $+10x$ cancel, so only the two squares are left.'
+- id: jc11-11.6-expand-2
+  section: '11.6'
+  tier: O
+  refs:
+  - AF.3
+  statement: Expand $(3x+2)(3x-2)$.
+  answer_label: Expand $(3x+2)(3x-2)$.
+  check:
+    kind: evaluate
+    expression: (3*x + 2)*(3*x - 2)
+    answer: 9*x**2 - 4
+  answer_text: '$9x^2-4$. The middle terms $-6x$ and $+6x$ cancel, and the two squares are $9x^2$ and 4.'

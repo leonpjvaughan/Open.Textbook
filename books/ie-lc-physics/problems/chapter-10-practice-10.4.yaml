@@ -1,0 +1,216 @@
+# Leaving Certificate Physics, Chapter 10, section 10.4 (strand 2 outcome 2.3).
+#
+# The two numerical records prove a path difference in wavelengths by exact
+# rational arithmetic, so a point on the screen is identified from a whole or half
+# number of wavelengths rather than from a stated opinion. The `structured`
+# records prove only that a model answer contains the declared steps in order and
+# covers the declared concepts — not that the physics in them is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass.
+chapter: 10
+problems:
+- id: p10-4-bright-fringe
+  section: '10.4'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    In a two-slit experiment the path difference from the two slits to a point on
+    the screen is $1.3\,\mu\text{m}$. The wavelength of the light is 650 nm.
+    Calculate the path difference in wavelengths, and state whether the point is
+    bright or dark.
+  answer_label: Path difference in wavelengths
+  check:
+    kind: evaluate
+    expression: 1.3e-6 / 6.5e-7
+    answer: '2'
+  answer_text: >-
+    The path difference is $\dfrac{1.3 \times 10^{-6}}{6.5 \times 10^{-7}} = 2$
+    wavelengths. A whole number of wavelengths means the two waves arrive in step,
+    so the point is a bright fringe.
+- id: p10-4-dark-fringe
+  section: '10.4'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    In a two-slit experiment the path difference to a point on the screen is
+    $1.625\,\mu\text{m}$ and the wavelength is 650 nm. Calculate the path
+    difference in wavelengths, and state whether the point is bright or dark.
+  answer_label: Path difference in wavelengths
+  check:
+    kind: evaluate
+    expression: 1.625e-6 / 6.5e-7
+    answer: '2.5'
+  answer_text: >-
+    The path difference is $\dfrac{1.625 \times 10^{-6}}{6.5 \times 10^{-7}} =
+    2.5$ wavelengths. A half number of wavelengths means the two waves arrive out
+    of step, so the point is a dark fringe.
+- id: p10-4-diffraction
+  section: '10.4'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    Explain what diffraction is, and state when it is most noticeable.
+  answer_label: Diffraction
+  check:
+    kind: structured
+    requires:
+    - spread
+    - gap
+    - long
+    concepts:
+    - diffraction
+    - wavelength
+    points:
+    - id: spread
+      text: >-
+        Diffraction is the spreading of a wave when it passes through a gap or
+        past an obstacle.
+      concepts:
+      - diffraction
+    - id: gap
+      text: >-
+        The spreading is greatest when the width of the gap or obstacle is about
+        the same as the wavelength.
+      concepts:
+      - wavelength
+    - id: long
+      text: >-
+        A wave with a long wavelength diffracts more through a given gap than a
+        wave with a short wavelength.
+      concepts:
+      - wavelength
+  answer_text: >-
+    Diffraction is the spreading of a wave when it passes a gap or an obstacle.
+    It is greatest when the gap or obstacle is about the same size as the
+    wavelength. A long wavelength diffracts more through a given gap than a short
+    one.
+- id: p10-4-coherent
+  section: '10.4'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    Explain what is meant by two coherent sources, and why they are needed to see
+    a steady interference pattern.
+  answer_label: Coherent sources
+  check:
+    kind: structured
+    requires:
+    - coherent
+    - phase
+    - pattern
+    concepts:
+    - coherence
+    - interference
+    points:
+    - id: coherent
+      text: >-
+        Two sources are coherent when they have the same frequency and a constant
+        phase difference.
+      concepts:
+      - coherence
+    - id: phase
+      text: >-
+        If the phase difference changed at random, the bright and dark positions
+        would move and no steady pattern would form.
+      concepts:
+      - coherence
+    - id: pattern
+      text: >-
+        With coherent sources the waves arrive in step at some points and out of
+        step at others, giving a steady pattern of bright and dark fringes.
+      concepts:
+      - interference
+  answer_text: >-
+    Two sources are coherent when they have the same frequency and a constant
+    phase difference. If the phase difference changed at random, the bright and
+    dark positions would move and no steady pattern would form. With coherent
+    sources the waves arrive in step at some points and out of step at others, so
+    a steady pattern of bright and dark fringes appears.
+- id: p10-4-white-light
+  section: '10.4'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    White light is used in a two-slit experiment. Explain why the fringes are
+    coloured.
+  answer_label: Coloured fringes
+  check:
+    kind: structured
+    requires:
+    - wavelengths
+    - position
+    - centre
+    concepts:
+    - dispersion
+    - interference
+    points:
+    - id: wavelengths
+      text: >-
+        White light contains a continuous range of wavelengths.
+      concepts:
+      - dispersion
+    - id: position
+      text: >-
+        The position of a bright fringe depends on the wavelength, so each colour
+        has its maximum at a different angle.
+      concepts:
+      - interference
+    - id: centre
+      text: >-
+        Away from the centre the colours separate and overlap, while the centre
+        fringe stays white because every wavelength has a maximum there.
+      concepts:
+      - dispersion
+  answer_text: >-
+    White light contains a range of wavelengths. The position of a bright fringe
+    depends on the wavelength, so each colour has its maximum at a different
+    angle. Away from the centre the colours separate, and the centre fringe stays
+    white because every wavelength has a maximum there.
+- id: p10-4-radio-hill
+  section: '10.4'
+  tier: O
+  refs:
+  - '2.3'
+  statement: >-
+    A radio signal on a long wavelength can be received behind a hill, but the
+    television signal from the same transmitter is much weaker there. Explain why.
+  answer_label: Radio behind a hill
+  check:
+    kind: structured
+    requires:
+    - diffraction
+    - wavelength
+    - compare
+    concepts:
+    - diffraction
+    - wavelength
+    points:
+    - id: diffraction
+      text: >-
+        Both signals spread out by diffraction when they pass the hill.
+      concepts:
+      - diffraction
+    - id: wavelength
+      text: >-
+        The radio wave has a much longer wavelength than the television signal.
+      concepts:
+      - wavelength
+    - id: compare
+      text: >-
+        Diffraction is greatest when the wavelength is comparable to the size of
+        the obstacle, so the radio wave bends around the hill far more than the
+        television wave.
+      concepts:
+      - diffraction
+  answer_text: >-
+    Both signals diffract when they pass the hill. The radio wave has a much
+    longer wavelength than the television signal. Diffraction is greatest when
+    the wavelength is comparable to the size of the obstacle, so the radio wave
+    bends around the hill far more than the television wave.

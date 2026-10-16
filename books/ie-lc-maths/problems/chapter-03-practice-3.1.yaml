@@ -1,0 +1,169 @@
+# Practice set for 3.1 (strand 3, outcome 3.4). Every area and perimeter here is a
+# rational number, so it is proved by the `dimensions` oracle: the arithmetic is done
+# on exact rationals and the unit is checked at the same time, which is what an area
+# claim actually needs. The conversion uses `convert`, and the one explanation uses
+# `structured`.
+chapter: 3
+problems:
+  - id: lc3-1-rectangle-area
+    section: '3.1'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the area of a rectangle $7$ m long and $4$ m wide.'
+    answer_label: 'The area of the rectangle'
+    check:
+      kind: dimensions
+      expression: 'l * w'
+      values:
+        l: {value: '7', unit: m}
+        w: {value: '4', unit: m}
+      answer: {value: '28', unit: 'm^2'}
+    answer_text: >-
+      $$A = 7 \times 4 = 28 \text{ m}^2$$
+
+      Length times width, and the unit is a square unit.
+
+  - id: lc3-1-rectangle-perimeter
+    section: '3.1'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the perimeter of a rectangle $7$ m long and $4$ m wide.'
+    answer_label: 'The perimeter of the rectangle'
+    check:
+      kind: dimensions
+      expression: '2 * l + 2 * w'
+      values:
+        l: {value: '7', unit: m}
+        w: {value: '4', unit: m}
+      answer: {value: '22', unit: m}
+    answer_text: >-
+      $$P = 2(7) + 2(4) = 14 + 8 = 22 \text{ m}$$
+
+      A perimeter is a length, so the unit is metres, not square metres.
+
+  - id: lc3-1-triangle-area
+    section: '3.1'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the area of a triangle with base $9$ cm and perpendicular height $6$ cm.'
+    answer_label: 'The area of the triangle'
+    check:
+      kind: dimensions
+      expression: '(b * h) / 2'
+      values:
+        b: {value: '9', unit: cm}
+        h: {value: '6', unit: cm}
+      answer: {value: '27', unit: 'cm^2'}
+    answer_text: >-
+      $$A = \tfrac{1}{2} \times 9 \times 6 = 27 \text{ cm}^2$$
+
+      A triangle is half of a parallelogram with the same base and height.
+
+  - id: lc3-1-parallelogram-area
+    section: '3.1'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      A parallelogram has base $8$ cm, perpendicular height $5$ cm and a sloping side of
+      $6$ cm. Find its area.
+    answer_label: 'The area of the parallelogram'
+    check:
+      kind: dimensions
+      expression: 'b * h'
+      values:
+        b: {value: '8', unit: cm}
+        h: {value: '5', unit: cm}
+      answer: {value: '40', unit: 'cm^2'}
+    answer_text: >-
+      $$A = 8 \times 5 = 40 \text{ cm}^2$$
+
+      The perpendicular height is $5$ cm. The sloping side of $6$ cm is longer and
+      belongs to the perimeter, so it is not used here.
+
+  - id: lc3-1-trapezium-area
+    section: '3.1'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      Find the area of a trapezium with parallel sides $6$ m and $10$ m, and perpendicular
+      height $4$ m.
+    answer_label: 'The area of the trapezium'
+    check:
+      kind: dimensions
+      expression: '((a + b) / 2) * h'
+      values:
+        a: {value: '6', unit: m}
+        b: {value: '10', unit: m}
+        h: {value: '4', unit: m}
+      answer: {value: '32', unit: 'm^2'}
+    answer_text: >-
+      $$A = \tfrac{1}{2}(6 + 10)(4) = \tfrac{1}{2}(16)(4) = 32 \text{ m}^2$$
+
+      Add the two parallel sides, halve, then multiply by the height between them.
+
+  - id: lc3-1-composite-area
+    section: '3.1'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      A garden is a rectangle $10$ m by $6$ m with a triangular flower bed of base $4$ m
+      and perpendicular height $3$ m attached to one long side. Find the total area.
+    answer_label: 'The total area of the garden'
+    check:
+      kind: dimensions
+      expression: 'l * w + (b * h) / 2'
+      values:
+        l: {value: '10', unit: m}
+        w: {value: '6', unit: m}
+        b: {value: '4', unit: m}
+        h: {value: '3', unit: m}
+      answer: {value: '66', unit: 'm^2'}
+    answer_text: >-
+      $$A = (10 \times 6) + \left(\tfrac{1}{2} \times 4 \times 3\right) = 60 + 6 = 66 \text{ m}^2$$
+
+      Split the shape into a rectangle and a triangle, then add the two areas.
+
+  - id: lc3-1-square-metres
+    section: '3.1'
+    tier: F
+    refs: ['3.4']
+    statement: 'A floor covers $2.4 \text{ m}^2$. How many square centimetres is that?'
+    answer_label: 'The area in square centimetres'
+    check: {kind: convert, value: '2.4', from: 'm^2', to: 'cm^2', answer: '24000'}
+    answer_text: >-
+      $$2.4 \times 10\,000 = 24\,000 \text{ cm}^2$$
+
+      One square metre holds $100 \times 100 = 10\,000$ square centimetres, so an area
+      conversion uses $10\,000$, not $100$.
+
+  - id: lc3-1-perpendicular-height
+    section: '3.1'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      Explain why the area of a parallelogram uses the perpendicular height rather than
+      the sloping side.
+    answer_label: 'Why the perpendicular height is used'
+    check:
+      kind: structured
+      requires: [choose-perpendicular-height, compare-with-sloping-side, state-area]
+      concepts: [perpendicular-height]
+      points:
+        - id: choose-perpendicular-height
+          text: >-
+            The height must meet the base at a right angle. It is the perpendicular
+            distance between the two parallel sides.
+          concepts: [perpendicular-height]
+        - id: compare-with-sloping-side
+          text: >-
+            The sloping side is longer than the perpendicular height, so using it would
+            give an area that is too big.
+        - id: state-area
+          text: >-
+            Use base times perpendicular height. For a base of $8$ cm and a height of
+            $5$ cm the area is $40 \text{ cm}^2$.
+    answer_text: >-
+      A parallelogram is a rectangle pushed sideways, and pushing a shape sideways does
+      not change its area. The rectangle it comes from has base $8$ cm and height $5$ cm,
+      so the area is $8 \times 5 = 40 \text{ cm}^2$. The sloping side of $6$ cm is longer
+      than the height, and multiplying by it gives $48 \text{ cm}^2$, which is too big.

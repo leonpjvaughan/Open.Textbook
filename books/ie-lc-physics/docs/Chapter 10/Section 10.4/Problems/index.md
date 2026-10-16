@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 10.4 Diffraction and interference — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.3
+Work independently. The questions and answers are shown together at the end.
+
+For each path-difference question, divide by the wavelength and look at the answer. A
+whole number gives a bright fringe, and a half number gives a dark fringe.
+
+:::problems chapter-10-practice-10.4
+
+:::answers chapter-10-practice-10.4

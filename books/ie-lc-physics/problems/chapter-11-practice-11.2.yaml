@@ -1,0 +1,329 @@
+# Leaving Certificate Physics, Chapter 11, section 11.2 (strand 2 outcome 2.5).
+#
+# Every quantity record carries both a `dimensions` check (magnitude and unit) and
+# a `sigfigs` check (the rounding the data support). The resonance-tube records use
+# the fact that the distance between the first and second resonance positions is
+# half a wavelength, which Section 9.5 established for a stationary wave.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps in order and covers the declared concepts.
+chapter: 11
+problems:
+- id: p11-2-echo-distance
+  section: '11.2'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    A student claps once and hears the echo from a wall 0.80 s later. The speed of
+    sound in air is 340 m/s. Calculate the distance from the student to the wall.
+  answer_label: Distance to the wall
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v * t / 2
+      values:
+        v:
+          value: '340'
+          unit: m/s
+        t:
+          value: '0.80'
+          unit: s
+      answer:
+        value: '136'
+        unit: m
+    - kind: sigfigs
+      value: 340 * 0.80 / 2
+      figures: 3
+      answer: '136'
+      convention: round-once
+  answer_text: >-
+    The sound travels to the wall and back, so the distance to the wall is half
+    the distance the sound covers:
+    $d = \dfrac{vt}{2} = \dfrac{340 \times 0.80}{2} = 136\,\text{m}$. Dividing by
+    two is the step that catches people out: the time is for the round trip.
+- id: p11-2-echo-time
+  section: '11.2'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    A wall is 170 m from a student. The speed of sound in air is 340 m/s.
+    Calculate the time between the clap and the echo.
+  answer_label: Time to the echo
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 2 * d / v
+      values:
+        d:
+          value: '170'
+          unit: m
+        v:
+          value: '340'
+          unit: m/s
+      answer:
+        value: '1.0'
+        unit: s
+    - kind: sigfigs
+      value: 2 * 170 / 340
+      figures: 2
+      answer: '1.0'
+      convention: round-once
+  answer_text: >-
+    The sound travels there and back, a total of $2 \times 170 = 340\,\text{m}$.
+    Then $t = \dfrac{2d}{v} = \dfrac{340}{340} = 1.0\,\text{s}$. A full second is
+    long enough to time with a stopwatch, which is why the echo method works best
+    over a distance of at least 100 m.
+- id: p11-2-resonance-wavelength
+  section: '11.2'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    A tuning fork of frequency 500 Hz is held over a resonance tube. The first
+    resonance is heard when the air column is 0.16 m long, and the second when it
+    is 0.50 m long. Calculate the wavelength of the sound.
+  answer_label: Wavelength
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 2 * (L2 - L1)
+      values:
+        L2:
+          value: '0.50'
+          unit: m
+        L1:
+          value: '0.16'
+          unit: m
+      answer:
+        value: '0.68'
+        unit: m
+    - kind: sigfigs
+      value: 2 * (0.50 - 0.16)
+      figures: 2
+      answer: '0.68'
+      convention: round-once
+  answer_text: >-
+    The first resonance happens with a quarter of a wavelength in the tube, and
+    the second with three quarters. The difference is half a wavelength, so
+    $\lambda = 2(L_2 - L_1) = 2(0.50 - 0.16) = 0.68\,\text{m}$. Using the
+    difference cancels the end correction at the open top of the tube, which is
+    why two resonance positions are measured rather than one.
+- id: p11-2-resonance-speed
+  section: '11.2'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    The tuning fork has a frequency of 500 Hz and the wavelength of the sound is
+    0.68 m. Calculate the speed of sound in the air in the tube.
+  answer_label: Speed of sound
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: f * wavelength
+      values:
+        f:
+          value: '500'
+          unit: Hz
+        wavelength:
+          value: '0.68'
+          unit: m
+      answer:
+        value: '340'
+        unit: m/s
+    - kind: sigfigs
+      value: 500 * 0.68
+      figures: 3
+      answer: 3.40e2
+      convention: round-once
+  answer_text: >-
+    $v = f\lambda = 500 \times 0.68 = 340\,\text{m/s}$. The frequency is printed on
+    the tuning fork and the wavelength comes from the two resonance positions, so
+    the speed follows from one relationship.
+- id: p11-2-steel
+  section: '11.2'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    Sound travels along a steel rail at 5000 m/s. Calculate the time it takes to
+    travel 1.0 km along the rail.
+  answer_label: Time along the rail
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: s / v
+      values:
+        s:
+          value: '1000'
+          unit: m
+        v:
+          value: '5000'
+          unit: m/s
+      answer:
+        value: '0.20'
+        unit: s
+    - kind: sigfigs
+      value: 1000 / 5000
+      figures: 2
+      answer: '0.20'
+      convention: round-once
+  answer_text: >-
+    $t = \dfrac{s}{v} = \dfrac{1000}{5000} = 0.20\,\text{s}$. The same distance
+    takes about 2.9 s through the air, so a listener with an ear to the rail hears
+    the sound long before the sound through the air arrives. The particles of a
+    solid are held close together and pull on one another, so the disturbance
+    passes on quickly.
+- id: p11-2-echo-method
+  section: '11.2'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    Describe how to measure the speed of sound in air by the echo method. State
+    the measurements you would take and the calculation you would do.
+  answer_label: The echo method
+  check:
+    kind: structured
+    requires:
+    - distance
+    - time
+    - calculation
+    - repeat
+    concepts:
+    - distance
+    - time
+    - round-trip
+    - average
+    points:
+    - id: distance
+      text: measure a straight distance from a wall or a building with a tape, choosing a
+        distance of at least 100 m so that the time is long enough to time
+      concepts:
+      - distance
+    - id: time
+      text: clap once and time from the clap to the echo, using a stopwatch or a phone, and
+        note that the sound travels to the wall and back
+      concepts:
+      - time
+      - round-trip
+    - id: calculation
+      text: divide twice the measured distance by the time, because the sound covers the distance
+        to the wall twice
+      concepts:
+      - round-trip
+    - id: repeat
+      text: repeat the timing several times and take the average, to reduce the effect of
+        reaction time on a single reading
+      concepts:
+      - average
+  answer_text: >-
+    Measure a straight distance to a wall with a tape, choosing at least 100 m so
+    that the time is long enough to time. Clap once and time from the clap to the
+    echo. The sound travels to the wall and back, so the distance covered is twice
+    the measured distance. Calculate the speed from
+    $v = \dfrac{2d}{t}$. Repeat the timing several times and take the average,
+    because reaction time makes a single reading uncertain.
+- id: p11-2-resonance-method
+  section: '11.2'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    Describe how a resonance tube is used to measure the speed of sound in air,
+    and explain why the difference between the two resonance lengths is measured.
+  answer_label: The resonance-tube method
+  check:
+    kind: structured
+    requires:
+    - fork
+    - lengths
+    - wavelength
+    - speed
+    concepts:
+    - resonance
+    - stationary-wave
+    - end-correction
+    points:
+    - id: fork
+      text: hold a tuning fork of known frequency over the open end of a tube and change the
+        length of the air column until the sound becomes loudest
+      concepts:
+      - resonance
+    - id: lengths
+      text: record the air-column length at the first resonance and again at the second, where
+        the sound is loud again
+      concepts:
+      - stationary-wave
+    - id: wavelength
+      text: the difference between the two lengths is half a wavelength, so the wavelength is
+        twice that difference, which cancels the end correction at the open top of the tube
+      concepts:
+      - stationary-wave
+      - end-correction
+    - id: speed
+      text: calculate the speed from v = f times the wavelength, using the frequency printed
+        on the fork
+      concepts:
+      - resonance
+  answer_text: >-
+    Hold a tuning fork of known frequency over the open end of a tube, and change
+    the length of the air column until the sound becomes loudest. That is
+    resonance. Record the length at the first resonance and again at the second.
+    The difference between the two lengths is half a wavelength, so the wavelength
+    is twice that difference. Then calculate the speed from $v = f\lambda$, using
+    the frequency printed on the fork. The difference is used because it cancels
+    the end correction at the open top of the tube, which would otherwise make each
+    length too long by the same small amount.
+- id: p11-2-speed-medium
+  section: '11.2'
+  tier: O
+  refs:
+  - '2.5'
+  statement: >-
+    State whether sound travels faster in air, in water or in steel, and explain
+    the reason for the order.
+  answer_label: Speed in the three media
+  check:
+    kind: structured
+    requires:
+    - order
+    - reason
+    - comparison
+    concepts:
+    - solid
+    - liquid
+    - gas
+    points:
+    - id: order
+      text: sound travels fastest in steel, more slowly in water, and slowest in air
+      concepts:
+      - solid
+      - liquid
+      - gas
+    - id: reason
+      text: in a solid the particles are held close together and are bound to one another, so
+        a vibration passes to the next particle quickly
+      concepts:
+      - solid
+    - id: comparison
+      text: in a gas the particles are far apart and only collide occasionally, so the disturbance
+        is passed on more slowly; a liquid is in between
+      concepts:
+      - gas
+      - liquid
+  answer_text: >-
+    Sound travels fastest in steel, more slowly in water, and slowest in air. In a
+    solid the particles are held close together and are bound to one another, so a
+    vibration passes from one particle to the next quickly. In a gas the particles
+    are far apart and meet only occasionally, so the disturbance is passed on more
+    slowly. A liquid lies between the two.

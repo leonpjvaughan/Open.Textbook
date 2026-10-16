@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.2 Centripetal acceleration and force — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Decide first whether you have the linear speed or the angular velocity, and
+choose the matching form of the formula. The radius is the distance from the
+centre, never the diameter. The force always points towards the centre.
+
+:::problems chapter-07-practice-7.2
+
+:::answers chapter-07-practice-7.2

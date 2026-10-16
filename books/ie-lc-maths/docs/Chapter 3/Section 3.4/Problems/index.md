@@ -1,5 +1,5 @@
 ---
-title: 3.4 Nets of prisms, cylinders and spheres — Practise
+title: Nets of prisms, cylinders and spheres — Practise
 chapter: 3
 chapter_title: Length, area and volume
 section: '3.4'
@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.4 Nets of prisms, cylinders and spheres — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 3.4
+Work independently. The questions and answers are shown together at the end.
+
+List every face before you add anything. For a cylinder, remember that the rectangle is as
+wide as the circumference of the base.
+
+:::problems chapter-03-practice-3.4
+
+:::answers chapter-03-practice-3.4

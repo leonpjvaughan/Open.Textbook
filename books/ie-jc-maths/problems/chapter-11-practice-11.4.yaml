@@ -1,0 +1,135 @@
+# Junior Cycle Mathematics, Chapter 11, section 11.4.
+#
+# The check writes the expanded expression in `expression` and the claimed
+# factorisation in `answer`, so the CAS proves the product equals the sum. A
+# partially factorised answer would also be equivalent, because the verifier
+# proves the algebra and not the method; `answer_text` states the intended
+# highest-common-factor form for the reader.
+chapter: 11
+symbols:
+  x: {real: true}
+  y: {real: true}
+  a: {real: true}
+  b: {real: true}
+
+problems:
+- id: jc11-11.4-factor-1
+  section: '11.4'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $3x+12$.
+  answer_label: Factorise $3x+12$.
+  check:
+    kind: evaluate
+    expression: 3*x + 12
+    answer: 3*(x + 4)
+  answer_text: '$3(x+4)$. Both terms divide by 3. The $3x$ becomes $x$ and the 12 becomes 4.'
+- id: jc11-11.4-factor-2
+  section: '11.4'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $7x+21$.
+  answer_label: Factorise $7x+21$.
+  check:
+    kind: evaluate
+    expression: 7*x + 21
+    answer: 7*(x + 3)
+  answer_text: '$7(x+3)$. Both terms divide by 7. The $7x$ becomes $x$ and the 21 becomes 3.'
+- id: jc11-11.4-factor-3
+  section: '11.4'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $5x-20$.
+  answer_label: Factorise $5x-20$.
+  check:
+    kind: evaluate
+    expression: 5*x - 20
+    answer: 5*(x - 4)
+  answer_text: '$5(x-4)$. Both terms divide by 5, and the minus sign stays inside the bracket.'
+- id: jc11-11.4-factor-4
+  section: '11.4'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $4x^2+12x$.
+  answer_label: Factorise $4x^2+12x$.
+  check:
+    kind: evaluate
+    expression: 4*x**2 + 12*x
+    answer: 4*x*(x + 3)
+  answer_text: '$4x(x+3)$. The numbers share the factor 4, and both terms contain $x$. The highest common factor is $4x$.'
+- id: jc11-11.4-factor-5
+  section: '11.4'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $x^2+8x$.
+  answer_label: Factorise $x^2+8x$.
+  check:
+    kind: evaluate
+    expression: x**2 + 8*x
+    answer: x*(x + 8)
+  answer_text: '$x(x+8)$. Both terms divide by $x$. The $x^2$ becomes $x$ and the $8x$ becomes 8.'
+- id: jc11-11.4-factor-6
+  section: '11.4'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $6x^2-15x$.
+  answer_label: Factorise $6x^2-15x$.
+  check:
+    kind: evaluate
+    expression: 6*x**2 - 15*x
+    answer: 3*x*(2*x - 5)
+  answer_text: '$3x(2x-5)$. The numbers share the factor 3, and both terms contain $x$. The highest common factor is $3x$.'
+- id: jc11-11.4-factor-7
+  section: '11.4'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $9a+6$.
+  answer_label: Factorise $9a+6$.
+  check:
+    kind: evaluate
+    expression: 9*a + 6
+    answer: 3*(3*a + 2)
+  answer_text: '$3(3a+2)$. Both terms divide by 3. The $9a$ becomes $3a$ and the 6 becomes 2.'
+- id: jc11-11.4-factor-8
+  section: '11.4'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $2x^2+6x+4$.
+  answer_label: Factorise $2x^2+6x+4$.
+  check:
+    kind: evaluate
+    expression: 2*x**2 + 6*x + 4
+    answer: 2*(x**2 + 3*x + 2)
+  answer_text: '$2(x^2+3x+2)$. Every term divides by 2. The $2x^2$ becomes $x^2$, the $6x$ becomes $3x$, and the 4 becomes 2.'
+- id: jc11-11.4-factor-9
+  section: '11.4'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $10x^2y+5xy^2$.
+  answer_label: Factorise $10x^2y+5xy^2$.
+  check:
+    kind: evaluate
+    expression: 10*x**2*y + 5*x*y**2
+    answer: 5*x*y*(2*x + y)
+  answer_text: '$5xy(2x+y)$. The numbers share the factor 5, and both terms contain $x$ and $y$. The highest common factor is $5xy$.'
+- id: jc11-11.4-factor-10
+  section: '11.4'
+  tier: O
+  refs:
+  - AF.3
+  statement: Factorise $4x+14$.
+  answer_label: Factorise $4x+14$.
+  check:
+    kind: evaluate
+    expression: 4*x + 14
+    answer: 2*(2*x + 7)
+  answer_text: '$2(2x+7)$. Both terms divide by 2. This is the perimeter of the garden plot from the chapter problem.'

@@ -1,0 +1,132 @@
+# Practice set for 3.2 (strand 3, outcome 3.4). Every answer here is a rational
+# multiple of pi, so the `sympy` oracle proves it: `pi * 0.6**2` and `0.36 * pi` are the
+# same exact object, and the verifier compares them symbolically rather than as decimals.
+# The one explanation uses `structured`.
+chapter: 3
+problems:
+  - id: lc3-2-circumference-radius
+    section: '3.2'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the circumference of a circle of radius $7$ cm.'
+    answer_label: 'The circumference'
+    check: {kind: evaluate, expression: '2 * pi * 7', answer: '14 * pi'}
+    answer_text: >-
+      $$C = 2\pi r = 2\pi \times 7 = 14\pi \approx 43.98 \text{ cm}$$
+
+      The exact answer is $14\pi$ cm. The decimal is that value to 2 decimal places.
+
+  - id: lc3-2-circumference-diameter
+    section: '3.2'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the circumference of a circle of diameter $9$ m.'
+    answer_label: 'The circumference'
+    check: {kind: evaluate, expression: 'pi * 9', answer: '9 * pi'}
+    answer_text: >-
+      $$C = \pi d = \pi \times 9 = 9\pi \approx 28.27 \text{ m}$$
+
+      The diameter is given, so the short formula is $C = \pi d$.
+
+  - id: lc3-2-area-radius
+    section: '3.2'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the area of a circle of radius $5$ cm.'
+    answer_label: 'The area'
+    check: {kind: evaluate, expression: 'pi * 5**2', answer: '25 * pi'}
+    answer_text: >-
+      $$A = \pi r^2 = \pi \times 25 = 25\pi \approx 78.54 \text{ cm}^2$$
+
+      Square the radius first, then multiply by $\pi$.
+
+  - id: lc3-2-area-diameter
+    section: '3.2'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the area of a circle of diameter $12$ m.'
+    answer_label: 'The area'
+    check: {kind: evaluate, expression: 'pi * (12 / 2)**2', answer: '36 * pi'}
+    answer_text: >-
+      The radius is $6$ m, so
+
+      $$A = \pi \times 6^2 = 36\pi \approx 113.10 \text{ m}^2$$
+
+      Halve the diameter before you square it. Using $12$ as the radius would give an
+      area four times too big.
+
+  - id: lc3-2-radius-from-circumference
+    section: '3.2'
+    tier: F
+    refs: ['3.4']
+    statement: 'A circle has circumference $20\pi$ cm. Find its radius.'
+    answer_label: 'The radius'
+    check: {kind: evaluate, expression: '20 * pi / (2 * pi)', answer: '10'}
+    answer_text: >-
+      $C = 2\pi r$, so $2\pi r = 20\pi$ and $r = 10$ cm. The $\pi$ cancels, so the
+      radius is exact.
+
+  - id: lc3-2-semicircle-area
+    section: '3.2'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the area of a semicircle of radius $8$ cm.'
+    answer_label: 'The area of the semicircle'
+    check: {kind: evaluate, expression: 'pi * 8**2 / 2', answer: '32 * pi'}
+    answer_text: >-
+      $$A = \tfrac{1}{2} \times \pi \times 8^2 = \tfrac{1}{2} \times 64\pi = 32\pi \approx 100.53 \text{ cm}^2$$
+
+      A semicircle is half of a full circle, so find the full area and halve it.
+
+  - id: lc3-2-pad-uncovered
+    section: '3.2'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      A square concrete pad measures $1.6$ m by $1.6$ m. A circular tank base of diameter
+      $1.2$ m sits on it. Find the area of the pad that the base does not cover.
+    answer_label: 'The uncovered area'
+    check: {kind: evaluate, expression: '1.6**2 - pi * 0.6**2', answer: '2.56 - 0.36 * pi'}
+    answer_text: >-
+      The radius of the base is $0.6$ m, so
+
+      $$A = 1.6^2 - \pi \times 0.6^2 = 2.56 - 0.36\pi \approx 1.43 \text{ m}^2$$
+
+      Subtract the circle from the square. The exact answer is $2.56 - 0.36\pi$ square
+      metres.
+
+  - id: lc3-2-radius-or-diameter
+    section: '3.2'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      Explain the difference between the radius and the diameter of a circle, and say
+      which one appears in the area formula.
+    answer_label: 'Radius, diameter and the area formula'
+    check:
+      kind: structured
+      requires: [define-radius, define-diameter, name-area-formula, warn-on-squaring]
+      concepts: [radius, diameter, pi-r-squared]
+      points:
+        - id: define-radius
+          text: >-
+            The radius is the distance from the centre of the circle to any point on it.
+          concepts: [radius]
+        - id: define-diameter
+          text: >-
+            The diameter is the distance across the circle through the centre, so it is
+            twice the radius.
+          concepts: [diameter]
+        - id: name-area-formula
+          text: >-
+            The area formula is $A = \pi r^2$, so it uses the radius, not the diameter.
+          concepts: [pi-r-squared]
+        - id: warn-on-squaring
+          text: >-
+            Square the radius first and multiply by $\pi$ afterwards. $\pi r^2$ means
+            $\pi \times (r^2)$, not $(\pi r)^2$.
+    answer_text: >-
+      The radius is the distance from the centre to the edge, and the diameter is twice
+      that. The area formula $A = \pi r^2$ uses the radius, so a diameter of $12$ m gives
+      a radius of $6$ m and an area of $36\pi \text{ m}^2$. Square the radius first, then
+      multiply by $\pi$.

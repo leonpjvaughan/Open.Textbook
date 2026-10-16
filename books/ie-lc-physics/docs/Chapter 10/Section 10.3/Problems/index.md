@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 10.3 Total internal reflection and the critical angle — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.3
+Work independently. The questions and answers are shown together at the end.
+
+For every question, decide first which way the light is travelling. The critical
+angle belongs to the denser medium, so measure the angle inside it.
+
+:::problems chapter-10-practice-10.3
+
+:::answers chapter-10-practice-10.3

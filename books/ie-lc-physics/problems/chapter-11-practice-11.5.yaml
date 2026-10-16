@@ -1,0 +1,325 @@
+# Leaving Certificate Physics, Chapter 11, section 11.5 (strand 2 outcome 2.7).
+#
+# Higher level. The formula is f' = fc / (c +/- u), the Doppler-effect item of the
+# SEC Formulae and Tables, with c the speed of sound in the medium and u the speed
+# of the source. It is supplied in each statement, because the reader is not asked
+# to recall it.
+#
+# Every quantity record carries both a `dimensions` check (magnitude and unit) and
+# a `sigfigs` check (the rounding the data support). The `structured` records prove
+# only that a model answer contains the declared steps in order and covers the
+# declared concepts.
+chapter: 11
+problems:
+- id: p11-5-approach
+  section: '11.5'
+  tier: H
+  refs:
+  - '2.7'
+  statement: >-
+    An ambulance siren makes a note of 700 Hz. The ambulance approaches a
+    stationary listener at 30 m/s, and the speed of sound in air is 340 m/s. Use
+    $f' = \dfrac{fc}{c - u}$ to calculate the frequency the listener hears.
+  answer_label: Frequency heard approaching
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: f * c / (c - u)
+      values:
+        f:
+          value: '700'
+          unit: Hz
+        c:
+          value: '340'
+          unit: m/s
+        u:
+          value: '30'
+          unit: m/s
+      answer:
+        value: '768'
+        unit: Hz
+      tolerance: '1'
+    - kind: sigfigs
+      value: 700 * 340 / (340 - 30)
+      figures: 3
+      answer: '768'
+      convention: round-once
+  answer_text: >-
+    $f' = \dfrac{fc}{c - u} = \dfrac{700 \times 340}{340 - 30} = \dfrac{238000}{310}
+    = 768\,\text{Hz}$ to three significant figures. The listener hears a frequency
+    higher than the 700 Hz the siren makes, because the wavefronts arrive more
+    often.
+- id: p11-5-recede
+  section: '11.5'
+  tier: H
+  refs:
+  - '2.7'
+  statement: >-
+    The same ambulance has passed the listener and now moves away at 30 m/s. The
+    siren still makes a note of 700 Hz and the speed of sound is 340 m/s. Use
+    $f' = \dfrac{fc}{c + u}$ to calculate the frequency the listener hears.
+  answer_label: Frequency heard receding
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: f * c / (c + u)
+      values:
+        f:
+          value: '700'
+          unit: Hz
+        c:
+          value: '340'
+          unit: m/s
+        u:
+          value: '30'
+          unit: m/s
+      answer:
+        value: '643'
+        unit: Hz
+      tolerance: '1'
+    - kind: sigfigs
+      value: 700 * 340 / (340 + 30)
+      figures: 3
+      answer: '643'
+      convention: round-once
+  answer_text: >-
+    $f' = \dfrac{fc}{c + u} = \dfrac{700 \times 340}{340 + 30} = \dfrac{238000}{370}
+    = 643\,\text{Hz}$ to three significant figures. The two answers, 768 Hz and
+    643 Hz, are the two notes the listener hears from the one steady 700 Hz siren.
+- id: p11-5-faster
+  section: '11.5'
+  tier: H
+  refs:
+  - '2.7'
+  statement: >-
+    A car approaches a stationary listener at 60 m/s with its horn sounding at
+    700 Hz. The speed of sound in air is 340 m/s. Use
+    $f' = \dfrac{fc}{c - u}$ to calculate the frequency the listener hears.
+  answer_label: Frequency heard at 60 m/s
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: f * c / (c - u)
+      values:
+        f:
+          value: '700'
+          unit: Hz
+        c:
+          value: '340'
+          unit: m/s
+        u:
+          value: '60'
+          unit: m/s
+      answer:
+        value: '850'
+        unit: Hz
+    - kind: sigfigs
+      value: 700 * 340 / (340 - 60)
+      figures: 2
+      answer: 8.5e2
+      convention: round-once
+  answer_text: >-
+    $f' = \dfrac{fc}{c - u} = \dfrac{700 \times 340}{340 - 60} = \dfrac{238000}{280}
+    = 850\,\text{Hz}$. Doubling the speed of the source does not double the
+    frequency heard. The denominator $c - u$ becomes smaller, and the frequency
+    rises by more than the speed did.
+- id: p11-5-wavelength-front
+  section: '11.5'
+  tier: H
+  refs:
+  - '2.7'
+  statement: >-
+    A siren makes a note of 700 Hz and moves towards a listener at 30 m/s. The
+    speed of sound in air is 340 m/s. Calculate the wavelength of the sound in
+    front of the siren, using $\lambda = \dfrac{c - u}{f}$.
+  answer_label: Wavelength in front
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: (c - u) / f
+      values:
+        c:
+          value: '340'
+          unit: m/s
+        u:
+          value: '30'
+          unit: m/s
+        f:
+          value: '700'
+          unit: Hz
+      answer:
+        value: '0.44'
+        unit: m
+      tolerance: '0.005'
+    - kind: sigfigs
+      value: (340 - 30) / 700
+      figures: 2
+      answer: '0.44'
+      convention: round-once
+  answer_text: >-
+    $\lambda = \dfrac{c - u}{f} = \dfrac{340 - 30}{700} = \dfrac{310}{700}
+    = 0.44\,\text{m}$. The stationary wavelength was 0.49 m, so the wavefronts in
+    front are squeezed closer together. A shorter wavelength with the same speed of
+    sound means a higher observed frequency, which agrees with the 768 Hz
+    calculated from the Doppler formula.
+- id: p11-5-solve-speed
+  section: '11.5'
+  tier: H
+  refs:
+  - '2.7'
+  statement: >-
+    A source approaches a stationary listener and makes a note of 700 Hz. The
+    listener hears 800 Hz. The speed of sound in air is 340 m/s. Use
+    $f' = \dfrac{fc}{c - u}$ to calculate the speed of the source.
+  answer_label: Speed of the source
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: f * c / (c - u)
+      values:
+        f:
+          value: '700'
+          unit: Hz
+        c:
+          value: '340'
+          unit: m/s
+        u:
+          value: '42.5'
+          unit: m/s
+      answer:
+        value: '800'
+        unit: Hz
+    - kind: sigfigs
+      value: 85 / 2
+      figures: 3
+      answer: '42.5'
+      convention: round-once
+  answer_text: >-
+    Rearranging gives $c - u = \dfrac{fc}{f'} = \dfrac{700 \times 340}{800} = 297.5$
+    m/s, so $u = 340 - 297.5 = 42.5\,\text{m/s}$. Check the answer by substituting
+    it back: $f' = \dfrac{700 \times 340}{340 - 42.5} = 800\,\text{Hz}$, which is
+    the frequency the listener heard.
+- id: p11-5-signs
+  section: '11.5'
+  tier: H
+  refs:
+  - '2.7'
+  statement: >-
+    The Doppler formula is $f' = \dfrac{fc}{c \pm u}$. Explain when the minus sign
+    is used and when the plus sign is used, and say what each sign does to the
+    frequency heard.
+  answer_label: Choosing the sign
+  check:
+    kind: structured
+    requires:
+    - approaching
+    - receding
+    - effect
+    concepts:
+    - minus
+    - plus
+    - denominator
+    points:
+      - id: approaching
+        text: use the minus sign when the source is moving towards the listener, so the
+          denominator is c minus u
+        concepts:
+        - minus
+        - denominator
+      - id: receding
+        text: use the plus sign when the source is moving away from the listener, so the
+          denominator is c plus u
+        concepts:
+        - plus
+        - denominator
+      - id: effect
+        text: a smaller denominator gives a larger frequency, so approaching raises the
+          frequency heard, and a larger denominator gives a smaller frequency, so receding
+          lowers it
+        concepts:
+        - denominator
+  answer_text: >-
+    Use the minus sign when the source moves towards the listener, so the
+    denominator is $c - u$. Use the plus sign when the source moves away, so the
+    denominator is $c + u$. A smaller denominator gives a larger frequency, so
+    approaching raises the frequency heard. A larger denominator gives a smaller
+    frequency, so receding lowers it. The speed of the sound in the air, $c$, does
+    not change either way.
+- id: p11-5-double
+  section: '11.5'
+  tier: H
+  refs:
+  - '2.7'
+  statement: >-
+    A source moving towards a listener at 30 m/s is heard at 768 Hz. The source
+    speed is doubled to 60 m/s. Explain why the frequency heard more than doubles
+    the shift, rather than doubling the frequency.
+  answer_label: Doubling the speed
+  check:
+    kind: structured
+    requires:
+    - not-double
+    - reason
+    concepts:
+    - denominator
+    - shift
+    points:
+      - id: not-double
+        text: the frequency heard does not double when the speed doubles, and the shift from the
+          source frequency more than doubles
+        concepts:
+        - shift
+      - id: reason
+        text: the frequency heard depends on 1 divided by (c - u), and doubling u does not halve
+          (c - u), so the change is not proportional to the speed
+        concepts:
+        - denominator
+        - shift
+  answer_text: >-
+    The frequency heard does not double when the speed doubles. The frequency
+    depends on $\dfrac{1}{c - u}$, and doubling $u$ does not halve $c - u$. At
+    30 m/s the denominator is 310 m/s; at 60 m/s it is 280 m/s. The shift from the
+    source frequency grows faster than the speed does, because the denominator
+    falls by a larger fraction than the speed rises.
+- id: p11-5-limit
+  section: '11.5'
+  tier: H
+  refs:
+  - '2.7'
+  statement: >-
+    A source moves towards a listener at a speed close to the speed of sound.
+    Explain what the Doppler formula predicts for the frequency heard, and state
+    one reason the prediction is not reliable.
+  answer_label: A source near the speed of sound
+  check:
+    kind: structured
+    requires:
+    - prediction
+    - reason
+    concepts:
+    - denominator
+    - shock
+    points:
+      - id: prediction
+        text: as u approaches c, the denominator c minus u approaches zero, so the formula
+          predicts a frequency that becomes very large
+        concepts:
+        - denominator
+      - id: reason
+        text: the formula assumes the source is slower than the sound and that the air is
+          undisturbed, so it cannot describe the shock wave that forms when the source
+          reaches the speed of sound
+        concepts:
+        - shock
+  answer_text: >-
+    As $u$ approaches $c$, the denominator $c - u$ approaches zero, so the formula
+    predicts a frequency that becomes very large. The formula assumes the source
+    is slower than the sound and that the air in front is undisturbed. When the
+    source reaches the speed of sound, the wavefronts pile up into a shock wave,
+    and the simple formula cannot describe what happens. That is why it is used
+    only for source speeds well below the speed of sound.

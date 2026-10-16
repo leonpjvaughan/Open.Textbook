@@ -10,9 +10,15 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.3 Circular motion in context — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+On a flat bend, friction supplies the force and the mass cancels from the
+greatest speed. In a vertical circle, draw the arrows at the top before you
+write the equation. Give a greatest speed to three significant figures unless
+the exact value is a whole number.
+
+:::problems chapter-07-practice-7.3
+
+:::answers chapter-07-practice-7.3

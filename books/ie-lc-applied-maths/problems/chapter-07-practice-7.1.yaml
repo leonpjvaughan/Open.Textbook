@@ -1,0 +1,163 @@
+# Practice set for 7.1 (strand S3, the physical world). Answers are angles, times
+# and speeds, so the checks come from both oracles: `dimensions` proves the
+# arithmetic and the unit together, and `evaluate` proves an exact form that
+# contains pi. The `structured` record proves only that a model answer contains
+# the declared ideas, in order — not that the physics is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics.
+# A dimensionally consistent, arithmetically correct, physically absurd answer
+# would pass.
+chapter: 7
+problems:
+  - id: am7-1-omega-from-period
+    section: '7.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A point moves round a circle with period $8$ s. Calculate its angular
+      velocity, leaving your answer in terms of $\pi$.
+    answer_label: Angular velocity
+    check: {kind: evaluate, expression: '2 * pi / 8', answer: 'pi / 4'}
+    answer_text: >-
+      One complete revolution is $2\pi$ radians, so
+      $\omega = \dfrac{2\pi}{T} = \dfrac{2\pi}{8} = \dfrac{\pi}{4}$ rad/s. That
+      is about $0.785$ rad/s.
+
+  - id: am7-1-omega-from-frequency
+    section: '7.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A wheel turns at a frequency of $3$ Hz. Calculate its angular velocity,
+      leaving your answer in terms of $\pi$.
+    answer_label: Angular velocity
+    check: {kind: evaluate, expression: '2 * pi * 3', answer: '6 * pi'}
+    answer_text: >-
+      A frequency of $3$ Hz means three turns each second, and each turn is
+      $2\pi$ radians. So $\omega = 2\pi f = 2\pi \times 3 = 6\pi$ rad/s. That is
+      about $18.8$ rad/s.
+
+  - id: am7-1-omega-from-rpm
+    section: '7.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A disc turns at $900$ revolutions each minute. Calculate its angular
+      velocity, leaving your answer in terms of $\pi$.
+    answer_label: Angular velocity
+    check: {kind: evaluate, expression: '2 * pi * 900 / 60', answer: '30 * pi'}
+    answer_text: >-
+      First convert the rate to revolutions each second:
+      $900 \div 60 = 15$ Hz. Then
+      $\omega = 2\pi f = 2\pi \times 15 = 30\pi$ rad/s, about $94.2$ rad/s.
+
+  - id: am7-1-linear-speed
+    section: '7.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A point on the rim of a wheel of radius $0.5$ m has angular velocity
+      $12$ rad/s. Calculate its linear speed.
+    answer_label: Linear speed
+    check:
+      kind: dimensions
+      expression: omega * r
+      values:
+        omega: {value: '12', unit: 's^-1'}
+        r: {value: '0.5', unit: m}
+      answer: {value: '6', unit: 'm/s'}
+    answer_text: >-
+      The linear speed is $v = \omega r = 12 \times 0.5 = 6$ m/s. The angular
+      velocity describes the turn, and multiplying by the radius turns it into
+      the distance travelled along the circle each second.
+
+  - id: am7-1-period-from-omega
+    section: '7.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A body moves in a circle with angular velocity $2.5$ rad/s. Calculate its
+      period, leaving your answer in terms of $\pi$.
+    answer_label: Period
+    check: {kind: evaluate, expression: '2 * pi / 2.5', answer: '4 * pi / 5'}
+    answer_text: >-
+      Rearrange $\omega = \dfrac{2\pi}{T}$ to give
+      $T = \dfrac{2\pi}{\omega} = \dfrac{2\pi}{2.5} = \dfrac{4\pi}{5}$ s. That is
+      about $2.51$ s.
+
+  - id: am7-1-roundabout-car
+    section: '7.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car goes round a roundabout of radius $25$ m at a steady $15$ m/s.
+      Calculate its angular velocity and its period.
+    answer_label: Angular velocity, then period
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: v / r
+          values:
+            v: {value: '15', unit: 'm/s'}
+            r: {value: '25', unit: m}
+          answer: {value: '0.6', unit: 's^-1'}
+        - kind: evaluate
+          expression: '2 * pi / (15 / 25)'
+          answer: '10 * pi / 3'
+    answer_text: >-
+      The angular velocity is
+      $\omega = \dfrac{v}{r} = \dfrac{15}{25} = 0.6$ rad/s. The period is
+      $T = \dfrac{2\pi}{\omega} = \dfrac{2\pi}{0.6} = \dfrac{10\pi}{3}$ s, about
+      $10.5$ s.
+
+  - id: am7-1-rim-speed
+    section: '7.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A wheel of radius $0.4$ m turns with period $0.5$ s. Calculate the speed of
+      a point on its rim, leaving your answer in terms of $\pi$.
+    answer_label: Speed of a point on the rim
+    check: {kind: evaluate, expression: '2 * pi * 0.4 / 0.5', answer: '8 * pi / 5'}
+    answer_text: >-
+      A point on the rim travels the circumference $2\pi r$ in one period, so
+      $v = \dfrac{2\pi r}{T} = \dfrac{2\pi \times 0.4}{0.5} = \dfrac{8\pi}{5}$
+      m/s. That is about $5.03$ m/s. The same answer comes from
+      $v = \omega r$ with $\omega = \dfrac{2\pi}{0.5} = 4\pi$ rad/s.
+
+  - id: am7-1-why-omega-same
+    section: '7.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Explain why every point on a rigid turning wheel has the same angular
+      velocity, but points further from the centre have a greater linear speed.
+    answer_label: Why the angular velocity is shared
+    check:
+      kind: structured
+      requires: [same-angle, omega-r-link, larger-radius]
+      concepts: [angular-velocity, linear-speed]
+      points:
+        - id: same-angle
+          text: >-
+            the wheel is rigid, so every point turns through the same angle in
+            the same time, and the angular velocity is therefore the same
+          concepts: [angular-velocity]
+        - id: omega-r-link
+          text: >-
+            the linear speed is the angle turned each second multiplied by the
+            radius, $v = \omega r$
+          concepts: [linear-speed]
+        - id: larger-radius
+          text: >-
+            a point further from the centre has a larger radius, so it travels a
+            longer arc in the same time and moves faster
+          concepts: [linear-speed]
+    answer_text: >-
+      The wheel is rigid, so all its points keep the same positions relative to
+      one another. In a given time they all turn through the same angle, so they
+      share the same angular velocity. The distance each point travels is the
+      angle times its radius, $v = \omega r$. A point further from the centre has
+      a larger radius, so it travels a longer arc in the same time and has a
+      greater linear speed.

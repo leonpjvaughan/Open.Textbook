@@ -1,0 +1,179 @@
+# Practice set for 3.3 (strand 3, outcome 3.4). The rational prisms are proved by the
+# `dimensions` oracle, so the unit of the answer is checked as well as the number. The
+# cylinders are exact multiples of pi and are proved by `sympy`. The capacity conversion
+# uses `convert`, and the explanation uses `structured`.
+chapter: 3
+problems:
+  - id: lc3-3-cuboid
+    section: '3.3'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the volume of a cuboid $5$ m long, $3$ m wide and $2$ m high.'
+    answer_label: 'The volume of the cuboid'
+    check:
+      kind: dimensions
+      expression: 'l * w * h'
+      values:
+        l: {value: '5', unit: m}
+        w: {value: '3', unit: m}
+        h: {value: '2', unit: m}
+      answer: {value: '30', unit: 'm^3'}
+    answer_text: >-
+      $$V = 5 \times 3 \times 2 = 30 \text{ m}^3$$
+
+      Three lengths are multiplied, so the unit is cubic metres.
+
+  - id: lc3-3-triangular-prism
+    section: '3.3'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      A triangular prism has a cross-section with base $8$ cm and perpendicular height
+      $5$ cm. Its length is $20$ cm. Find its volume.
+    answer_label: 'The volume of the prism'
+    check:
+      kind: dimensions
+      expression: '(b * h / 2) * L'
+      values:
+        b: {value: '8', unit: cm}
+        h: {value: '5', unit: cm}
+        L: {value: '20', unit: cm}
+      answer: {value: '400', unit: 'cm^3'}
+    answer_text: >-
+      The cross-section is a triangle, so its area is
+
+      $$\tfrac{1}{2} \times 8 \times 5 = 20 \text{ cm}^2$$
+
+      The volume is the cross-section area multiplied by the length:
+
+      $$V = 20 \times 20 = 400 \text{ cm}^3$$
+
+  - id: lc3-3-trapezium-prism
+    section: '3.3'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      A drain is a prism with a trapezium-shaped cross-section. The parallel sides are
+      $0.6$ m and $1.0$ m, the height between them is $0.4$ m, and the drain is $12$ m
+      long. Find its volume.
+    answer_label: 'The volume of the drain'
+    check:
+      kind: dimensions
+      expression: '((a + b) / 2) * h * L'
+      values:
+        a: {value: '0.6', unit: m}
+        b: {value: '1.0', unit: m}
+        h: {value: '0.4', unit: m}
+        L: {value: '12', unit: m}
+      answer: {value: '3.84', unit: 'm^3'}
+    answer_text: >-
+      The cross-section area is
+
+      $$\tfrac{1}{2}(0.6 + 1.0)(0.4) = 0.32 \text{ m}^2$$
+
+      so
+
+      $$V = 0.32 \times 12 = 3.84 \text{ m}^3$$
+
+  - id: lc3-3-cylinder-radius
+    section: '3.3'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the volume of a cylinder of radius $3$ cm and height $10$ cm.'
+    answer_label: 'The volume of the cylinder'
+    check: {kind: evaluate, expression: 'pi * 3**2 * 10', answer: '90 * pi'}
+    answer_text: >-
+      $$V = \pi r^2 h = \pi \times 9 \times 10 = 90\pi \approx 282.74 \text{ cm}^3$$
+
+      Square the radius first, then multiply by the height.
+
+  - id: lc3-3-cylinder-diameter
+    section: '3.3'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the volume of a cylinder of diameter $10$ cm and height $12$ cm.'
+    answer_label: 'The volume of the cylinder'
+    check: {kind: evaluate, expression: 'pi * (10 / 2)**2 * 12', answer: '300 * pi'}
+    answer_text: >-
+      The radius is $5$ cm, so
+
+      $$V = \pi \times 25 \times 12 = 300\pi \approx 942.48 \text{ cm}^3$$
+
+      Halve the diameter before squaring. Using $10$ as the radius gives $1200\pi$,
+      which is four times too big.
+
+  - id: lc3-3-cylinder-diameter-14
+    section: '3.3'
+    tier: F
+    refs: ['3.4']
+    statement: 'Find the volume of a cylinder of diameter $14$ cm and height $5$ cm.'
+    answer_label: 'The volume of the cylinder'
+    check: {kind: evaluate, expression: 'pi * (14 / 2)**2 * 5', answer: '245 * pi'}
+    answer_text: >-
+      The radius is $7$ cm, so
+
+      $$V = \pi \times 49 \times 5 = 245\pi \approx 769.69 \text{ cm}^3$$
+
+  - id: lc3-3-cubic-metres-to-litres
+    section: '3.3'
+    tier: F
+    refs: ['3.4']
+    statement: 'A tank holds $2.5 \text{ m}^3$ of water. How many litres is that?'
+    answer_label: 'The capacity in litres'
+    check: {kind: convert, value: '2.5', from: 'm^3', to: 'L', answer: '2500'}
+    answer_text: >-
+      $$2.5 \times 1000 = 2500 \text{ L}$$
+
+      One cubic metre is $1000$ litres, so a capacity in cubic metres becomes litres
+      when it is multiplied by $1000$.
+
+  - id: lc3-3-tank-a-volume
+    section: '3.3'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      Tank A is a cylinder of diameter $1.2$ m and height $1.2$ m. Find its volume in
+      cubic metres, giving the exact answer in terms of $\pi$.
+    answer_label: 'The volume of Tank A'
+    check: {kind: evaluate, expression: 'pi * 0.6**2 * 1.2', answer: '0.432 * pi'}
+    answer_text: >-
+      The radius is $0.6$ m, so
+
+      $$V = \pi \times 0.6^2 \times 1.2 = 0.432\pi \approx 1.36 \text{ m}^3$$
+
+      That is about $1360$ litres. Keep the exact value $0.432\pi$ for the comparison
+      with Tank B in Section 3.7.
+
+  - id: lc3-3-prism-rule
+    section: '3.3'
+    tier: F
+    refs: ['3.4']
+    statement: >-
+      Explain why the volume of a prism is the area of its cross-section multiplied by
+      its length.
+    answer_label: 'Why a prism uses the cross-section'
+    check:
+      kind: structured
+      requires: [describe-prism, describe-slices, state-rule]
+      concepts: [cross-section, prism-volume]
+      points:
+        - id: describe-prism
+          text: >-
+            A prism has the same cross-section all the way along, so its ends are
+            identical and every slice between them is a copy of that shape.
+          concepts: [cross-section]
+        - id: describe-slices
+          text: >-
+            Each slice has the area of the cross-section, and the number of slices is the
+            length of the prism.
+        - id: state-rule
+          text: >-
+            So the volume is the cross-section area multiplied by the length. For a
+            cylinder the cross-section is a circle, and the rule becomes
+            $V = \pi r^2 h$.
+          concepts: [prism-volume]
+    answer_text: >-
+      A prism is the same shape all the way along. A slice one unit thick has the area of
+      the cross-section, and the prism is made of as many slices as its length. So
+      $V = \text{cross-section area} \times \text{length}$. A cuboid is a prism with a
+      rectangle for a cross-section, and a cylinder is a prism with a circle for one.
