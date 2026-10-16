@@ -1,0 +1,121 @@
+# Practice set for 9.1 (strand 4, outcome 4.1). Every answer is a number the formula
+# produces, so `evaluate` proves it. `T` and `n` are not declared symbols here: the
+# expression is written with the numbers already substituted, so the check proves the
+# arithmetic of the answer rather than the algebra of the formula.
+chapter: 9
+problems:
+  - id: lc9-1-tenth-term
+    section: '9.1'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      An arithmetic sequence begins $3, 8, 13, \dots$. Find the tenth term.
+    answer_label: 'The tenth term'
+    check: {kind: evaluate, expression: '3 + (10 - 1) * 5', answer: '48'}
+    answer_text: >-
+      $a = 3$ and $d = 5$, so $T_{10} = a + 9d = 3 + 45 = 48$.
+
+  - id: lc9-1-which-term
+    section: '9.1'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      The arithmetic sequence $3, 7, 11, \dots$ has $83$ as one of its terms. Which term
+      is it?
+    answer_label: 'The term number'
+    check: {kind: evaluate, expression: '(83 - 3) / 4 + 1', answer: '21'}
+    answer_text: >-
+      $a = 3$, $d = 4$, so $3 + (n - 1)4 = 83$, giving $4(n - 1) = 80$ and $n = 21$. It
+      is the $21$st term.
+
+  - id: lc9-1-find-d
+    section: '9.1'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      The third term of an arithmetic sequence is $11$ and the eighth is $31$. Find the
+      common difference and the first term.
+    answer_label: 'd, then a'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(31 - 11) / (8 - 3)', answer: '4'}
+        - {kind: evaluate, expression: '11 - (3 - 1) * 4', answer: '3'}
+    answer_text: >-
+      Between the third and eighth terms there are $5$ steps, so $d = (31 - 11)/5 = 4$.
+      Then $T_3 = a + 2d = 11$, so $a = 11 - 8 = 3$.
+
+  - id: lc9-1-nth-formula
+    section: '9.1'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      Write down a formula for the $n$th term of the sequence $7, 12, 17, \dots$, and
+      use it to find the $30$th term.
+    answer_label: 'The formula, then the 30th term'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '7 + (30 - 1) * 5', answer: '152'}
+        - {kind: evaluate, expression: '5 * 30 + 2', answer: '152'}
+    answer_text: >-
+      $a = 7$ and $d = 5$, so $T_n = 7 + (n - 1)5 = 5n + 2$.
+
+      $T_{30} = 5(30) + 2 = 152$. Simplifying the formula to $5n + 2$ makes it quicker
+      to use, and both forms must give the same answer.
+
+  - id: lc9-1-three-means
+    section: '9.1'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      Insert three numbers between $2$ and $14$ so that the five numbers form an
+      arithmetic sequence.
+    answer_label: 'The three numbers'
+    check:
+      kind: evaluate
+      expression: '(14 - 2) / 4'
+      answer: '3'
+    answer_text: >-
+      The five terms have $4$ gaps between the first and last, so
+      $d = (14 - 2)/4 = 3$. The numbers are $5$, $8$ and $11$.
+
+  - id: lc9-1-decreasing
+    section: '9.1'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      An arithmetic sequence has $a = 40$ and $d = -6$. Find the first term that is
+      negative.
+    answer_label: 'The first negative term'
+    check: {kind: evaluate, expression: '40 + (8 - 1) * (-6)', answer: '-2'}
+    answer_text: >-
+      $T_n = 40 - 6(n - 1)$. This is negative when $40 < 6(n - 1)$, so $n - 1 > 6.67$,
+      giving $n = 8$. Then $T_8 = 40 - 42 = -2$, the first negative term.
+
+  - id: lc9-1-common-difference
+    section: '9.1'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      Explain how to tell whether a sequence is arithmetic, and what the common
+      difference is.
+    answer_label: 'The test'
+    check:
+      kind: structured
+      requires: [difference, constant]
+      concepts: [subtract-consecutive, constant]
+      points:
+        - id: difference
+          text: subtract each term from the one after it
+          concepts: [subtract-consecutive]
+        - id: constant
+          text: the sequence is arithmetic when every one of those differences is the same, and that value is the common difference d
+          concepts: [constant]
+    answer_text: >-
+      Subtract each term from the one after it. If every difference is the same, the
+      sequence is arithmetic and that constant difference is $d$.
+
+      So for $3, 8, 13, \dots$ the differences are $5, 5, 5$, and $d = 5$. For
+      $2, 4, 8, \dots$ the differences are $2, 4, \dots$, which are not constant, so that
+      sequence is not arithmetic.

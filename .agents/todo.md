@@ -3008,6 +3008,7 @@ in the collection build clean.
 | `ie-lc-physics` | 22 | Chapter 5 (stretching and compressing) — 4 sections |
 | `ie-lc-applied-maths` | 9 | Chapter 2 (networks and graphs) — 11 sections, 3 figures |
 | `ie-lc-maths` | 18 | Chapter 5 (complex numbers) — 5 sections, 1 figure |
+| `ie-lc-maths` | 18 | Chapter 9 (sequences and series) — 6 sections |
 | `ie-lc-maths` | 18 | none |
 | `ie-lc-applied-maths` | 9 | none |
 
@@ -3050,13 +3051,13 @@ rewritten for the Irish books on the same day: the tier codes are the book's (no
 ## The current goal — finish the Irish books (2026-10-15)
 
 **The four Irish books are the work.** They exist and build — 71 chapters, 429
-sections, every profile green — but **64 of the 71 chapters are still the scaffold's
-stub**. Four chapters are authored end to end and are the pattern: `ie-jc-maths`
+sections, every profile green — but **63 of the 71 chapters are still the scaffold's
+stub**. Five chapters are authored end to end and are the pattern: `ie-jc-maths`
 Chapter 3, `ie-lc-physics` Chapter 5, `ie-lc-applied-maths` Chapter 2 (11 sections,
-35 pages, 11 verified banks, three figures), and `ie-lc-maths` Chapter 5 (5 sections,
-17 pages, 5 verified banks, one figure). Each is a chapter index, every section's three
-pages, a Review that resolves the chapter problem, and a verified bank behind every
-answer.
+35 pages, 11 verified banks, three figures), `ie-lc-maths` Chapter 5 (5 sections,
+17 pages, 5 verified banks, one figure), and `ie-lc-maths` Chapter 9 (6 sections,
+23 pages, 6 verified banks). Each is a chapter index, every section's three pages, a
+Review that resolves the chapter problem, and a verified bank behind every answer.
 
 **What is already in hand, so nobody re-fetches it:**
 

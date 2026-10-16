@@ -1,0 +1,122 @@
+# Practice set for 9.5 (strand 4, outcome 4.1). A recurrence defines terms one from the
+# last, and no oracle iterates; the checks therefore prove the value of a specific term
+# by writing the iteration out, which is what a reader would do by hand.
+chapter: 9
+problems:
+  - id: lc9-5-terms
+    section: '9.5'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      A sequence is defined by $T_1 = 2$ and $T_{n+1} = 3T_n - 1$. Write down the first
+      four terms.
+    answer_label: 'The first four terms'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3 * 2 - 1', answer: '5'}
+        - {kind: evaluate, expression: '3 * (3 * 2 - 1) - 1', answer: '14'}
+        - {kind: evaluate, expression: '3 * (3 * (3 * 2 - 1) - 1) - 1', answer: '41'}
+    answer_text: >-
+      $T_1 = 2$, $T_2 = 3(2) - 1 = 5$, $T_3 = 3(5) - 1 = 14$, $T_4 = 3(14) - 1 = 41$.
+
+      The sequence is $2, 5, 14, 41, \dots$ Each term depends on the one before it, which
+      is what the recurrence says.
+
+  - id: lc9-5-term-ten
+    section: '9.5'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      A sequence has $T_1 = 100$ and $T_{n+1} = \dfrac{1}{2}T_n + 10$. Find $T_2$, $T_3$
+      and $T_4$.
+    answer_label: '$T_2$, then $T_3$, then $T_4$'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '100 / 2 + 10', answer: '60'}
+        - {kind: evaluate, expression: '60 / 2 + 10', answer: '40'}
+        - {kind: evaluate, expression: '40 / 2 + 10', answer: '30'}
+    answer_text: >-
+      $T_2 = 50 + 10 = 60$, $T_3 = 30 + 10 = 40$, $T_4 = 20 + 10 = 30$.
+
+      The terms are getting smaller but the halving is doing less each time. The sequence
+      is heading towards a fixed point, which is the next question.
+
+  - id: lc9-5-fixed-point
+    section: '9.5'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      For the recurrence $T_{n+1} = \dfrac{1}{2}T_n + 10$, find the value $L$ that the
+      terms approach, by solving $L = \dfrac{1}{2}L + 10$.
+    answer_label: 'The limiting value'
+    check: {kind: evaluate, expression: '10 / (1 - 1/2)', answer: '20'}
+    answer_text: >-
+      Solve $L = \dfrac{1}{2}L + 10$:
+
+      $$\frac{1}{2}L = 10 \quad\Rightarrow\quad L = 20$$
+
+      The terms $100, 60, 40, 30, \dots$ are moving towards $20$, and they never pass it.
+      This value is called the **fixed point** or the equilibrium of the recurrence.
+
+  - id: lc9-5-fixed-point-two
+    section: '9.5'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      Find the fixed point of the recurrence $T_{n+1} = 4T_n - 9$.
+    answer_label: 'The fixed point'
+    check: {kind: evaluate, expression: '9 / (4 - 1)', answer: '3'}
+    answer_text: >-
+      Solve $L = 4L - 9$: $3L = 9$, so $L = 3$.
+
+      A fixed point is where the sequence would stay if it ever reached it. Note this
+      does **not** mean the sequence converges — $4T_n - 9$ grows away from $3$ unless it
+      starts there exactly. A fixed point and a limit are not the same thing.
+
+  - id: lc9-5-increasing
+    section: '9.5'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      A sequence has $T_1 = 3$ and $T_{n+1} = T_n + 7$. Write down $T_5$ and say what kind
+      of sequence it is.
+    answer_label: '$T_5$, and the kind of sequence'
+    check: {kind: evaluate, expression: '3 + (5 - 1) * 7', answer: '31'}
+    answer_text: >-
+      $T_5 = 3 + 4(7) = 31$.
+
+      The recurrence adds the same number each time, so the sequence is **arithmetic**
+      with $a = 3$ and $d = 7$. A recurrence that adds a constant is an arithmetic
+      sequence; one that multiplies by a constant is a geometric sequence.
+
+  - id: lc9-5-recurrence-vs-formula
+    section: '9.5'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      Explain the difference between defining a sequence by a recurrence relation and by
+      a formula for the $n$th term.
+    answer_label: 'The difference'
+    check:
+      kind: structured
+      requires: [previous, direct]
+      concepts: [needs-previous, direct-any-term]
+      points:
+        - id: previous
+          text: a recurrence gives each term from the previous one, so you must work up from the start to reach a far term
+          concepts: [needs-previous]
+        - id: direct
+          text: a formula for the nth term gives any term directly, without finding the ones before it
+          concepts: [direct-any-term]
+    answer_text: >-
+      A **recurrence relation** defines each term from the one (or ones) before it, so to
+      reach $T_{100}$ you must work up from $T_1$ one step at a time.
+
+      A **formula for the $n$th term** gives any term directly: $T_n = 3n + 2$ gives
+      $T_{100}$ immediately, without finding $T_{99}$.
+
+      Both describe the same sequence when they agree. Working out the formula from a
+      recurrence is a separate problem, and for an arithmetic or geometric recurrence it
+      is easy because the recurrence is the definition of those sequences.

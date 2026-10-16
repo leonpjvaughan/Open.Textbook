@@ -1,0 +1,117 @@
+# Practice set for 9.3 (strand 4, outcome 4.1). The geometric formulas are checked with
+# the numbers substituted, so the arithmetic of the answer is proved.
+chapter: 9
+problems:
+  - id: lc9-3-fifth-term
+    section: '9.3'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      A geometric sequence begins $2, 6, 18, \dots$. Find the fifth term.
+    answer_label: 'The fifth term'
+    check: {kind: evaluate, expression: '2 * 3**(5 - 1)', answer: '162'}
+    answer_text: >-
+      $a = 2$ and $r = 3$, so $T_5 = ar^4 = 2 \times 81 = 162$.
+
+  - id: lc9-3-sum-five
+    section: '9.3'
+    tier: O
+    refs: ['4.1']
+    statement: 'Find the sum of the first five terms of $2, 6, 18, \dots$.'
+    answer_label: 'The sum'
+    check:
+      kind: evaluate
+      expression: '2 * (3**5 - 1) / (3 - 1)'
+      answer: '242'
+    answer_text: >-
+      $S_n = \dfrac{a(r^n - 1)}{r - 1}$, so
+
+      $$S_5 = \frac{2(243 - 1)}{2} = 242$$
+
+      Check by adding: $2 + 6 + 18 + 54 + 162 = 242$. Correct.
+
+  - id: lc9-3-find-r
+    section: '9.3'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      A geometric sequence has first term $5$ and third term $45$. Find the two possible
+      values of the common ratio.
+    answer_label: 'The two values of r'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'sqrt(45 / 5)', answer: '3'}
+        - {kind: evaluate, expression: '-sqrt(45 / 5)', answer: '-3'}
+    answer_text: >-
+      $T_3 = ar^2 = 45$, so $r^2 = 9$ and $r = 3$ or $r = -3$.
+
+      Both are possible: with $r = -3$ the sequence is $5, -15, 45, \dots$, which also
+      has third term $45$. Whenever you take a square root, remember both signs.
+
+  - id: lc9-3-sum-half
+    section: '9.3'
+    tier: O
+    refs: ['4.1']
+    statement: 'Find the sum of the first four terms of $80, 40, 20, \dots$.'
+    answer_label: 'The sum'
+    check:
+      kind: evaluate
+      expression: '80 * (1 - (1/2)**4) / (1 - 1/2)'
+      answer: '150'
+    answer_text: >-
+      $a = 80$ and $r = \dfrac{1}{2}$, so
+
+      $$S_4 = \frac{80\left(1 - \frac{1}{16}\right)}{1 - \frac{1}{2}} = \frac{80 \times \frac{15}{16}}{\frac{1}{2}} = 150$$
+
+      Check: $80 + 40 + 20 + 10 = 150$. Correct.
+
+  - id: lc9-3-difference
+    section: '9.3'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      Explain how to tell whether a sequence is geometric, and how that differs from
+      arithmetic.
+    answer_label: 'The test'
+    check:
+      kind: structured
+      requires: [divide, constant]
+      concepts: [divide-consecutive, constant-ratio]
+      points:
+        - id: divide
+          text: divide each term by the one before it
+          concepts: [divide-consecutive]
+        - id: constant
+          text: the sequence is geometric when every one of those ratios is the same; arithmetic adds a constant, geometric multiplies by one
+          concepts: [constant-ratio]
+    answer_text: >-
+      Divide each term by the one before it. If every ratio is the same, the sequence is
+      geometric and that constant ratio is $r$.
+
+      The difference from arithmetic is add versus multiply. An arithmetic sequence adds
+      the same number each step ($3, 8, 13, \dots$); a geometric one multiplies by the
+      same number ($2, 6, 18, \dots$). A sequence cannot usually be both, unless $d = 0$
+      or $r = 1$.
+
+  - id: lc9-3-compare
+    section: '9.3'
+    tier: H
+    refs: ['4.1']
+    statement: >-
+      A sequence has first term $4$ and each term is $3$ more than the previous. A
+      second has first term $4$ and each term is $3$ times the previous. Write down the
+      fourth term of each, and say which is larger.
+    answer_label: 'Both fourth terms, then which is larger'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '4 + (4 - 1) * 3', answer: '13'}
+        - {kind: evaluate, expression: '4 * 3**(4 - 1)', answer: '108'}
+    answer_text: >-
+      Arithmetic: $T_4 = 4 + 3(3) = 13$.
+      Geometric: $T_4 = 4 \times 3^3 = 108$.
+
+      The geometric term is much larger. Adding a constant grows linearly; multiplying by
+      one grows exponentially, which is why a geometric sequence overtakes an arithmetic
+      one and then leaves it far behind.

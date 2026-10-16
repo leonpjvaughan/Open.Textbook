@@ -1,0 +1,155 @@
+# Practice set for 9.4 (strand 4, outcome 4.1, Higher). The sum to infinity is a limit,
+# and the check proves the closed form; the *condition* for convergence is recorded as
+# `structured`, because it is a statement, not a number.
+chapter: 9
+problems:
+  - id: lc9-4-sum-infinity
+    section: '9.4'
+    tier: H
+    refs: ['4.1']
+    statement: 'Find the sum to infinity of $8 + 4 + 2 + \dots$.'
+    answer_label: 'Sum to infinity'
+    check: {kind: evaluate, expression: '8 / (1 - 1/2)', answer: '16'}
+    answer_text: >-
+      $a = 8$ and $r = \dfrac{1}{2}$, and $|r| < 1$, so the sum to infinity exists:
+
+      $$S_\infty = \frac{a}{1 - r} = \frac{8}{1 - \frac{1}{2}} = \frac{8}{\frac{1}{2}} = 16$$
+
+      The terms keep halving, so the total creeps up towards $16$ without ever reaching
+      it.
+
+  - id: lc9-4-negative-r
+    section: '9.4'
+    tier: H
+    refs: ['4.1']
+    statement: 'Find the sum to infinity of $6 - 2 + \frac{2}{3} - \dots$.'
+    answer_label: 'Sum to infinity'
+    check: {kind: evaluate, expression: '6 / (1 - (-1/3))', answer: '9/2'}
+    answer_text: >-
+      $a = 6$ and $r = -\dfrac{1}{3}$. Since $\left|-\frac{1}{3}\right| < 1$ the sum
+      exists:
+
+      $$S_\infty = \frac{6}{1 - \left(-\frac{1}{3}\right)} = \frac{6}{\frac{4}{3}} = \frac{18}{4} = \frac{9}{2}$$
+
+      A negative ratio makes the terms alternate in sign, but the sum still converges as
+      long as $|r| < 1$.
+
+  - id: lc9-4-condition
+    section: '9.4'
+    tier: H
+    refs: ['4.1']
+    statement: >-
+      State the condition for a geometric series to have a sum to infinity, and say what
+      happens when it does not hold.
+    answer_label: 'The condition'
+    check:
+      kind: structured
+      requires: [less, diverge]
+      concepts: [ratio-below-one, no-finite-sum]
+      points:
+        - id: less
+          text: the common ratio must satisfy |r| < 1, so the terms shrink towards zero
+          concepts: [ratio-below-one]
+        - id: diverge
+          text: if |r| >= 1 the terms do not shrink and the series has no finite sum
+          concepts: [no-finite-sum]
+    answer_text: >-
+      A geometric series has a sum to infinity exactly when $|r| < 1$. Then the terms
+      shrink towards zero and the total settles on $\dfrac{a}{1-r}$.
+
+      If $|r| \ge 1$ the terms do not shrink, and the series has no finite sum. For
+      $r = 1$ the terms are all equal and the total grows without bound; for $|r| > 1$ the
+      terms themselves grow.
+
+  - id: lc9-4-find-a
+    section: '9.4'
+    tier: H
+    refs: ['4.1']
+    statement: >-
+      A geometric series with $|r| < 1$ has first term $a$ and sum to infinity $24$. Its
+      common ratio is $\dfrac{2}{3}$. Find $a$.
+    answer_label: 'The first term'
+    check: {kind: evaluate, expression: '24 * (1 - 2/3)', answer: '8'}
+    answer_text: >-
+      $S_\infty = \dfrac{a}{1 - r} = 24$, so
+
+      $$a = 24\left(1 - \frac{2}{3}\right) = 24 \times \frac{1}{3} = 8$$
+
+  - id: lc9-4-repeating
+    section: '9.4'
+    tier: H
+    refs: ['4.1']
+    statement: >-
+      Write $0.777\dots$ as a fraction, using a geometric series.
+    answer_label: 'The fraction'
+    check:
+      kind: evaluate
+      expression: '(7/10) / (1 - 1/10)'
+      answer: '7/9'
+    answer_text: >-
+      $0.777\dots = \dfrac{7}{10} + \dfrac{7}{100} + \dfrac{7}{1000} + \dots$, a
+      geometric series with $a = \dfrac{7}{10}$ and $r = \dfrac{1}{10}$:
+
+      $$S_\infty = \frac{\frac{7}{10}}{1 - \frac{1}{10}} = \frac{\frac{7}{10}}{\frac{9}{10}} = \frac{7}{9}$$
+
+      This is why a recurring decimal is always a fraction: it is a geometric series with
+      $|r| < 1$.
+
+  - id: lc9-4-converge
+    section: '9.4'
+    tier: H
+    refs: ['4.1']
+    statement: >-
+      Which of these geometric series have a sum to infinity: (a) $r = 0.9$,
+      (b) $r = -1.1$, (c) $r = -\dfrac{3}{4}$, (d) $r = 1$?
+    answer_label: 'Which converge'
+    check:
+      kind: structured
+      requires: [a, c, rest]
+      concepts: [abs-below-one, no-sum]
+      points:
+        - id: a
+          text: (a) r = 0.9 has |r| < 1, so it converges
+          concepts: [abs-below-one]
+        - id: c
+          text: (c) r = -3/4 has |r| < 1, so it converges despite being negative
+          concepts: [abs-below-one]
+        - id: rest
+          text: (b) r = -1.1 has |r| > 1 and (d) r = 1 has |r| = 1, so neither has a sum to infinity
+          concepts: [no-sum]
+    answer_text: >-
+      (a) and (c) converge, because $|r| < 1$ in both — the sign of $r$ does not matter,
+      only its size.
+
+      (b) $r = -1.1$ has $|r| = 1.1 > 1$, so the terms grow in size and there is no finite
+      sum. (d) $r = 1$ has $|r| = 1$; every term equals the first, so the sum grows
+      without bound.
+
+  - id: lc9-4-why
+    section: '9.4'
+    tier: H
+    refs: ['4.1']
+    statement: >-
+      Explain why $S_\infty = \dfrac{a}{1-r}$ only makes sense when $|r| < 1$.
+    answer_label: 'Why the condition is needed'
+    check:
+      kind: structured
+      requires: [power, limit]
+      concepts: [r-to-n-shrinks, finite-limit]
+      points:
+        - id: power
+          text: the formula comes from S_n = a(1 - r^n)/(1 - r), so everything depends on what r^n does as n grows
+          concepts: [r-to-n-shrinks]
+        - id: limit
+          text: when |r| < 1 the powers r^n shrink to zero and S_n settles on a/(1-r); otherwise r^n does not shrink and S_n does not settle
+          concepts: [finite-limit]
+    answer_text: >-
+      The sum to infinity is the value $S_n$ approaches as $n$ grows. From the finite-sum
+      formula,
+
+      $$S_n = \frac{a(1 - r^n)}{1 - r}$$
+
+      everything depends on $r^n$. When $|r| < 1$, the powers $r^n$ shrink towards zero as
+      $n$ grows, so $S_n$ approaches $\dfrac{a}{1-r}$ — a finite number. When $|r| \ge 1$,
+      $r^n$ does not shrink, so $S_n$ does not settle on anything and there is no sum to
+      infinity.

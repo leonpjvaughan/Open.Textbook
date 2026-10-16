@@ -1,0 +1,133 @@
+# Practice set for 9.2 (strand 4, outcome 4.1). The series sums are checked by the
+# formula, so a wrong n or a wrong a fails the check.
+chapter: 9
+problems:
+  - id: lc9-2-sum-first
+    section: '9.2'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      Find the sum of the first $20$ terms of $5, 8, 11, \dots$.
+    answer_label: 'The sum'
+    check:
+      kind: evaluate
+      expression: '(20 / 2) * (2 * 5 + (20 - 1) * 3)'
+      answer: '670'
+    answer_text: >-
+      $S_n = \dfrac{n}{2}\left(2a + (n-1)d\right)$, so
+
+      $$S_{20} = 10(10 + 57) = 670$$
+
+  - id: lc9-2-sum-last
+    section: '9.2'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      Find the sum $3 + 7 + 11 + \dots + 83$.
+    answer_label: 'The sum'
+    check:
+      kind: evaluate
+      expression: '(21 / 2) * (3 + 83)'
+      answer: '903'
+    answer_text: >-
+      From Section 9.1 this series has $21$ terms, with first term $3$ and last term
+      $83$. Using $S_n = \dfrac{n}{2}(a + l)$:
+
+      $$S_{21} = \frac{21}{2}(3 + 83) = \frac{21 \times 86}{2} = 21 \times 43 = 903$$
+
+  - id: lc9-2-find-n
+    section: '9.2'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      How many terms of $4, 7, 10, \dots$ are needed for the sum to be $175$?
+    answer_label: 'Number of terms'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(-5 + sqrt(25 + 4 * 3 * 350)) / (2 * 3)', answer: '10'}
+        - {kind: evaluate, expression: '(10 / 2) * (2 * 4 + (10 - 1) * 3)', answer: '175'}
+    answer_text: >-
+      $S_n = \dfrac{n}{2}\left(8 + 3(n-1)\right) = 175$, so
+      $n(3n + 5) = 350$. Solving $3n^2 + 5n - 350 = 0$ gives $n = 10$ (the other root is
+      negative).
+
+      Check: $S_{10} = \dfrac{10}{2}(8 + 27) = 5 \times 35 = 175$. Correct.
+
+  - id: lc9-2-gauss
+    section: '9.2'
+    tier: O
+    refs: ['4.1']
+    statement: 'Find the sum of the first $100$ whole numbers, $1 + 2 + 3 + \dots + 100$.'
+    answer_label: 'The sum'
+    check: {kind: evaluate, expression: '(100 / 2) * (1 + 100)', answer: '5050'}
+    answer_text: >-
+      This is arithmetic with $a = 1$, $d = 1$, $n = 100$, so
+
+      $$S_{100} = \frac{100}{2}(1 + 100) = 50 \times 101 = 5050$$
+
+      The trick is that the terms pair up: $1 + 100 = 101$, and there are $50$ such
+      pairs.
+
+  - id: lc9-2-sum-formula
+    section: '9.2'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      State the two forms of the formula for the sum of an arithmetic series, and say
+      when each is easier to use.
+    answer_label: 'The two forms'
+    check:
+      kind: structured
+      requires: [formula, when]
+      concepts: [first-and-last, a-and-d]
+      points:
+        - id: formula
+          text: S_n = n/2 (a + l) when the last term l is known, and S_n = n/2 (2a + (n-1)d) when it is not
+          concepts: [first-and-last, a-and-d]
+        - id: when
+          text: the first is easier when the series is written out and the last term is visible; the second is needed when only a and d are given
+          concepts: [first-and-last, a-and-d]
+    answer_text: >-
+      The two forms are
+
+      $$S_n = \frac{n}{2}(a + l) \qquad S_n = \frac{n}{2}\left(2a + (n-1)d\right)$$
+
+      where $l$ is the last (or $n$th) term.
+
+      Use the first when the series is written out and the last term can be read off —
+      $3 + 7 + 11 + \dots + 83$ is one multiplication. Use the second when only $a$ and
+      $d$ are known and the last term has to be worked out first. Both give the same
+      answer, because $l = a + (n-1)d$.
+
+  - id: lc9-2-average
+    section: '9.2'
+    tier: O
+    refs: ['4.1']
+    statement: >-
+      Explain why the sum of an arithmetic series is $n$ times the average of the first
+      and last terms.
+    answer_label: 'Why the formula works'
+    check:
+      kind: structured
+      requires: [pair, average]
+      concepts: [pairs-sum-constant, average]
+      points:
+        - id: pair
+          text: pairing the first term with the last, the second with the second last, and so on, gives the same total every time
+          concepts: [pairs-sum-constant]
+        - id: average
+          text: each pair sums to a + l, so the average of the whole series is the average of the first and last terms, and n of those averages make the sum
+          concepts: [average]
+    answer_text: >-
+      Pair the terms from the two ends: the first with the last, the second with the second
+      last, and so on. Each pair adds to $a + l$:
+
+      $$a + l = (a + d) + (l - d) = (a + 2d) + (l - 2d) = \dots$$
+
+      So the average term is $\dfrac{a + l}{2}$, and $n$ terms with that average sum to
+
+      $$S_n = n \times \frac{a + l}{2}$$
+
+      which is the formula. That is also why an arithmetic series is the only kind whose
+      sum is just "how many terms times the average".
