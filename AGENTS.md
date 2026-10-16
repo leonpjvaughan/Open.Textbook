@@ -149,12 +149,12 @@ exist because fourteen font sizes and 107 hand-written text elements were in use
 177 modules. The rules and the measurements are in `assets/AGENTS.md`, and
 `research/design/reuse-audit.md` has the evidence.
 
-**The current work is finishing every chapter of every Irish book.** 66 chapters
-remain: `ie-jc-maths` 21, `ie-lc-maths` 16, `ie-lc-applied-maths` 8, `ie-lc-physics` 21.
-Five are authored end to end and are the pattern to copy — `ie-jc-maths` Chapter 3,
-`ie-lc-physics` Chapter 5, `ie-lc-applied-maths` Chapter 2, and `ie-lc-maths` Chapters 5
-and 9. The state, the corpus already in hand, the known gaps and the order to work in are
-in `.agents/todo.md`, and the per-chapter contract is `.agents/chapter-brief.md`.
+**The four Irish books are complete.** All 71 chapters are authored end to end — 429
+sections, every page, and every glossary and home page — so
+`grep -rl 'scaffold:stub' books/*/docs/` prints nothing and the built site has no stub
+page. The chapter problem, the corpus in hand and the record of what was found while
+writing are in `.agents/todo.md`; the per-chapter contract is
+`.agents/chapter-brief.md`.
 
 **A chapter is not finished until all of this is true.** It is the definition of done,
 and it is what CI and the gate check:

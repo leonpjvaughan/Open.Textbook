@@ -2991,6 +2991,94 @@ build has what it needs.
 
 ---
 
+## 52. A euro sign inside maths renders as nothing, and KaTeX only warns — **done**
+
+**What was wrong.** KaTeX has no glyph for `€`, so a `€` inside `$…$` is dropped and the
+build prints `Unrecognized Unicode character "€" (8364) [unknownSymbol]` as a *warning*.
+A warning does not fail the gate, so a page could ship with the currency missing from
+every amount. Thirty-three occurrences were found across the Irish books, in three
+places, and the first scan found only one of them:
+
+```
+$ # the pages
+  books/ie-lc-maths/docs/Chapter 4/Section 4.3/Walkthrough/index.md:80:
+    $$C = 240 + 4(25) = 240 + 100 = €340$$
+$ # the display blocks inside the problem banks — missed by a page-only scan
+  books/ie-lc-maths/problems/chapter-04-practice-4.2.yaml: 500 - 440 = €60
+$ # and an inline one in a bank answer_text
+  books/ie-lc-physics/problems/chapter-14-practice-14.4.yaml: €0.30 = €1.80$
+```
+
+Counting the occurrences in the **built HTML** is the only reliable check: a source scan
+has to handle `$$…$$` across lines *and* look inside `books/<id>/problems/`, and both
+were missed at first.
+
+**The fix.** In every case the number stays inside the maths and the symbol moves into
+the prose beside it — `$240 + 100 = 340$, which is €340` — which is how the English books
+already write `£`. The four books now build with 0 `Unrecognized Unicode` warnings.
+
+**Done means**
+
+- `grep -rl 'Unrecognized Unicode' <build log>` prints nothing for every book.
+- No `<math>` element in the built site contains `€`.
+
+## 53. An unquoted title with a colon is invalid YAML, and one shipped — **done**
+
+**What was wrong.** `title: 11.3 Representing data: charts and histograms — Learn` is not
+valid YAML: the second colon starts a mapping. The build refuses it with
+`front matter is not valid YAML (line 2, column 30)`, so the page has no tier and the
+chapter build stops after seven pages. One delegated chapter wrote it that way; the page
+names that already carry a colon are quoted.
+
+**The fix.** The title is quoted. The build's own error message is good — it names the
+line and the column and says why — so this is caught as soon as the chapter is built,
+which is why the handoff requires the build check.
+
+**Done means**
+
+- `uv run python -m textbook.pipeline --book <id> --profile higher` prints no
+  `front matter is not valid YAML` for any book.
+
+## 54. `textbook.verify` stops at the first bank that will not parse, and a short run looks like a clean one
+
+**What is wrong.** `textbook.verify` exits non-zero on an unparseable bank file, but it
+prints no error and no traceback:
+
+```
+$ uv run python -m textbook.verify books/ie-lc-maths/problems/
+... 22 files, then nothing ...
+$ echo $?
+1
+```
+
+A run that should have reported 134 files reports 22, and **nothing says why**. The
+broken file was `chapter-04-practice-4.2.yaml`, invalid because an edit had put a line at
+four spaces inside a folded scalar indented six. The failure was found only by counting
+the files:
+
+```
+$ uv run python -m textbook.verify books/ie-lc-maths/problems/ | grep -cE '^ ?ok'
+22
+$ ls books/ie-lc-maths/problems/*.yaml | wc -l
+134
+```
+
+The same trap applies to `pytest`: a parametrised test over banks reports a missing bank
+rather than a malformed one, which is a different failure with a different fix.
+
+**The fix.** Print the file and the reason before exiting, so a short run is visibly short
+rather than quietly short. The count comparison above is the check that would have caught
+it, and it belongs in the run.
+
+**Done means**
+
+- A bank file with invalid YAML makes `textbook.verify` print the path and the parse
+  error, then exit non-zero.
+- `uv run python -m textbook.verify books/<id>/problems/ | grep -cE '^ ?ok'` equals
+  `ls books/<id>/problems/*.yaml | wc -l` for every book.
+
+---
+
 ## The Irish books — where they stand (2026-10-13)
 
 Four books were added under the `Junior Cycle` and `Leaving Certificate`
@@ -3048,18 +3136,37 @@ rewritten for the Irish books on the same day: the tier codes are the book's (no
 
 ---
 
-## The current goal — finish every chapter of every Irish book (2026-10-16)
+## The Irish books are finished (2026-10-16)
 
-**The four Irish books are the work, and the goal is every chapter of all four.** They
-exist and build — 71 chapters, 429 sections, every profile green — but **66 of the 71
-chapters are still the scaffold's stub**. Nothing is "done" until
-`grep -rl 'scaffold:stub' books/<id>/docs/Chapter <n>/` prints nothing for every chapter
-of every book, with a verified bank behind every answer. Five chapters are authored end to end and are the pattern: `ie-jc-maths`
-Chapter 3, `ie-lc-physics` Chapter 5, `ie-lc-applied-maths` Chapter 2 (11 sections,
-35 pages, 11 verified banks, three figures), `ie-lc-maths` Chapter 5 (5 sections,
-17 pages, 5 verified banks, one figure), and `ie-lc-maths` Chapter 9 (6 sections,
-23 pages, 6 verified banks). Each is a chapter index, every section's three pages, a
-Review that resolves the chapter problem, and a verified bank behind every answer.
+**All 71 chapters of the four Irish books are authored end to end.** 429 sections, every
+page, and every glossary and home page. `grep -rl 'scaffold:stub' books/*/docs/` prints
+nothing and the built site has 0 stub pages. All 429 banks verify with the oracle, every
+profile builds with no `math-error`, the lint is clean for all four books, and 165
+figures measure with none below the 9px phone floor.
+
+The record of how it was done, and what it found, is below and in the numbered items.
+
+| Book | Chapters | Sections | Banks | State |
+|---|---|---|---|---|
+| `ie-jc-maths` | 22 | 129 | 129 | complete |
+| `ie-lc-maths` | 18 | 134 | 134 | complete |
+| `ie-lc-applied-maths` | 9 | 67 | 67 | complete |
+| `ie-lc-physics` | 22 | 99 | 99 | complete |
+
+Every chapter is the same shape: an index that sets a chapter problem, every section's
+three pages (Learn, Practise with help, Practise), a Review that resolves the chapter
+problem with mixed practice and a reflection, and a bank in which the oracle proves every
+answer. A stated result that is not proved carries a `:::prove` link to a page in
+`books/proofs/proofs.yaml` — `pythagoras`, `angles-in-a-triangle`, `angle-in-a-semicircle`
+and `angle-at-the-centre` are the four the geometry chapters use.
+
+Work the same way again with `delegate` and this handoff: name the book and chapter, tell
+the child to read the pattern chapters and `.agents/chapter-brief.md`, give it the file
+list and the expected page count, and require the five checks — `textbook.verify`,
+`textbook.pipeline` with no `math-error`, `textbook.lint`, no `scaffold:stub`, and
+`pytest tests/`. A chapter of six sections takes about fifteen minutes; the delegation
+reports a timeout at 900s but the files are usually written by then, so **check the
+filesystem before re-delegating**.
 
 **What is already in hand, so nobody re-fetches it:**
 
