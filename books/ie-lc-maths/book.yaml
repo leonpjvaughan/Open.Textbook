@@ -41,7 +41,13 @@ tier_axis:
   O: Ordinary and Higher
   H: Higher only
 
-oracles: [sympy]
+# Verification oracles the banks in this book may use. sympy proves the algebra —
+# including complex arithmetic, since it parses `I`. The `units` oracle is here for its
+# `structured` check, which is the only record that can check an **explanation**: an
+# Irish mathematics paper asks `Show that`, `Prove` and `explain` 1,468 times across
+# the corpus, so a bank needs a way to assert the steps of a written argument. It
+# proves that a model answer contains the declared ideas, and nothing more.
+oracles: [sympy, units]
 
 theme:
   light:

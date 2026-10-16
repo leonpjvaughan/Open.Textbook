@@ -2919,6 +2919,39 @@ command in a comment. The kit's doc comment states the real relationship.
 - `assets/figures/kit.js` and `scripts/check-figure-kit.cjs` no longer contain the
   string `0.64` or `358 / 560` as a scale.
 
+## 50. `evaluate` cannot check a `solve()` result, so a roots answer must be checked root by root
+
+**What is wrong.** The sympy oracle's `evaluate` check parses `expression` and
+`answer` and compares them with `equivalent`. When the expression is
+`solve(x**2 - 2*x + 5, x)` it returns a sympy **list**, and `cas._rationalize` calls
+`.replace` on it:
+
+```
+$ uv run python -c "from textbook.verify import cas; print(cas.parse_expression('solve(x**2 - 2*x + 5, x)', {}))"
+[1 - 2*I, 1 + 2*I]
+$ # a bank with {kind: evaluate, expression: 'solve(...)', answer: '[1 - 2*I, 1 + 2*I]'}
+AttributeError: 'list' object has no attribute 'replace'
+```
+
+So a bank cannot assert "the roots are $1 \pm 2i$" directly. It has to assert
+$f(1 + 2i) = 0$ and $f(1 - 2i) = 0$ instead — which is arguably the better check
+anyway, since it verifies the roots rather than trusting `solve`, but it means the
+**count** of roots is not checked. A cubic with a missing root would still pass.
+
+**The fix.** Let `evaluate` accept a list on either side, comparing element-wise, so
+`{expression: 'solve(...)', answer: '[1 - 2*I, 1 + 2*I]'}` is a valid record. That
+checks the roots *and* their number. It was worked around in
+`books/ie-lc-maths/problems/chapter-05-practice-5.5.yaml`, which checks each root
+against the polynomial instead.
+
+**Done means**
+
+- `{kind: evaluate, expression: 'solve(x**2 - 2*x + 5, x)', answer: '[1 - 2*I, 1 + 2*I]'}`
+  passes, and the same record with a missing element fails.
+- `books/ie-lc-maths/problems/chapter-05-practice-5.5.yaml` is rewritten to use it,
+  so the number of roots is checked rather than assumed.
+- `uv run python -m textbook.verify books/ie-lc-maths/problems/` still passes.
+
 ---
 
 ## The Irish books — where they stand (2026-10-13)
@@ -2937,6 +2970,7 @@ in the collection build clean.
 | `ie-jc-maths` | 22 | Chapter 3 (factors, multiples, primes) — 3 sections |
 | `ie-lc-physics` | 22 | Chapter 5 (stretching and compressing) — 4 sections |
 | `ie-lc-applied-maths` | 9 | Chapter 2 (networks and graphs) — 11 sections, 3 figures |
+| `ie-lc-maths` | 18 | Chapter 5 (complex numbers) — 5 sections, 1 figure |
 | `ie-lc-maths` | 18 | none |
 | `ie-lc-applied-maths` | 9 | none |
 
@@ -2979,11 +3013,12 @@ rewritten for the Irish books on the same day: the tier codes are the book's (no
 ## The current goal — finish the Irish books (2026-10-15)
 
 **The four Irish books are the work.** They exist and build — 71 chapters, 429
-sections, every profile green — but **65 of the 71 chapters are still the scaffold's
-stub**. Three chapters are authored end to end and are the pattern: `ie-jc-maths`
-Chapter 3, `ie-lc-physics` Chapter 5, and `ie-lc-applied-maths` Chapter 2 (11 sections,
-35 pages, 11 verified banks, three figures). Each is a chapter index, every section's
-three pages, a Review that resolves the chapter problem, and a verified bank behind every
+sections, every profile green — but **64 of the 71 chapters are still the scaffold's
+stub**. Four chapters are authored end to end and are the pattern: `ie-jc-maths`
+Chapter 3, `ie-lc-physics` Chapter 5, `ie-lc-applied-maths` Chapter 2 (11 sections,
+35 pages, 11 verified banks, three figures), and `ie-lc-maths` Chapter 5 (5 sections,
+17 pages, 5 verified banks, one figure). Each is a chapter index, every section's three
+pages, a Review that resolves the chapter problem, and a verified bank behind every
 answer.
 
 **What is already in hand, so nobody re-fetches it:**

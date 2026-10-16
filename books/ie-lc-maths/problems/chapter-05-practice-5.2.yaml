@@ -1,0 +1,120 @@
+# Practice set for 5.2 (strand 4, outcome 4.4). Every arithmetic answer is proved by
+# sympy as a complex number, so a sign error in the imaginary part fails the check.
+chapter: 5
+problems:
+  - id: lc5-2-add
+    section: '5.2'
+    tier: O
+    refs: ['4.4']
+    statement: 'Work out $(3 + 2i) + (1 - 4i)$.'
+    answer_label: 'The sum'
+    check: {kind: evaluate, expression: '(3 + 2*I) + (1 - 4*I)', answer: '4 - 2*I'}
+    answer_text: >-
+      Add the real parts and add the imaginary parts:
+      $(3 + 1) + (2 - 4)i = 4 - 2i$.
+
+  - id: lc5-2-subtract
+    section: '5.2'
+    tier: O
+    refs: ['4.4']
+    statement: 'Work out $(5 - i) - (2 + 3i)$.'
+    answer_label: 'The difference'
+    check: {kind: evaluate, expression: '(5 - I) - (2 + 3*I)', answer: '3 - 4*I'}
+    answer_text: >-
+      $(5 - 2) + (-1 - 3)i = 3 - 4i$. Be careful with the sign of the second bracket:
+      subtracting $-i$ means the imaginary parts are $-1$ and $-3$.
+
+  - id: lc5-2-multiply
+    section: '5.2'
+    tier: O
+    refs: ['4.4']
+    statement: 'Work out $(3 + 2i)(1 - 4i)$.'
+    answer_label: 'The product'
+    check: {kind: evaluate, expression: '(3 + 2*I)*(1 - 4*I)', answer: '11 - 10*I'}
+    answer_text: >-
+      Expand as two brackets, then replace $i^2$ with $-1$:
+
+      $(3 + 2i)(1 - 4i) = 3 - 12i + 2i - 8i^2 = 3 - 10i + 8 = 11 - 10i$.
+
+  - id: lc5-2-square
+    section: '5.2'
+    tier: O
+    refs: ['4.4']
+    statement: 'Work out $(2 + 3i)^2$.'
+    answer_label: 'The square'
+    check: {kind: evaluate, expression: '(2 + 3*I)**2', answer: '-5 + 12*I'}
+    answer_text: >-
+      $(2 + 3i)^2 = 4 + 12i + 9i^2 = 4 + 12i - 9 = -5 + 12i$.
+
+      The real part is negative. Squaring a complex number can move it anywhere in the
+      plane, which is why the square of a positive real is not the only possibility.
+
+  - id: lc5-2-i-product
+    section: '5.2'
+    tier: O
+    refs: ['4.4']
+    statement: 'Work out $i(4 - 3i)$.'
+    answer_label: 'The product'
+    check: {kind: evaluate, expression: 'I*(4 - 3*I)', answer: '3 + 4*I'}
+    answer_text: >-
+      $i(4 - 3i) = 4i - 3i^2 = 4i + 3 = 3 + 4i$.
+
+      Multiplying by $i$ rotates the number a quarter turn about the origin on the
+      Argand diagram, which Section 5.4 shows.
+
+  - id: lc5-2-power
+    section: '5.2'
+    tier: O
+    refs: ['4.4']
+    statement: 'Simplify $i^{50}$.'
+    answer_label: '$i^{50}$'
+    check: {kind: evaluate, expression: 'I**50', answer: '-1'}
+    answer_text: >-
+      $50 = 4 \times 12 + 2$, so $i^{50} = i^2 = -1$.
+
+  - id: lc5-2-equal
+    section: '5.2'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      Two complex numbers are equal, $(x + 2) + 5i = 4 + (y - 1)i$. Find $x$ and $y$.
+    answer_label: 'x, then y'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '4 - 2', answer: '2'}
+        - {kind: evaluate, expression: '5 + 1', answer: '6'}
+    answer_text: >-
+      Two complex numbers are equal when their real parts are equal and their imaginary
+      parts are equal. So $x + 2 = 4$, giving $x = 2$, and $y - 1 = 5$, giving $y = 6$.
+
+      This is the key idea: one equation in complex numbers is **two** equations in real
+      numbers.
+
+  - id: lc5-2-commutative
+    section: '5.2'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      Explain why the arithmetic of complex numbers follows the same rules as the
+      arithmetic of real numbers.
+    answer_label: Why the rules carry over
+    check:
+      kind: structured
+      requires: [treat, replace]
+      concepts: [i-as-symbol, replace-i-squared]
+      points:
+        - id: treat
+          text: i is treated as a symbol and expanded as if it were an ordinary unknown
+          concepts: [i-as-symbol]
+        - id: replace
+          text: wherever i squared appears it is replaced by -1, and that is the only new rule
+          concepts: [replace-i-squared]
+    answer_text: >-
+      Complex numbers are added and multiplied by treating $i$ as a symbol and expanding
+      exactly as you would with an unknown $x$. The only new rule is that $i^2 = -1$,
+      which is applied wherever a power of $i$ of 2 or more appears.
+
+      Because the expansion rules are the same, commutativity, associativity and the
+      distributive law all carry over. That is why $(3 + 2i)(1 - 4i)$ is expanded as two
+      brackets in the usual way.

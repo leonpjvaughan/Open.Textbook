@@ -1,18 +1,22 @@
 ---
-title: 5.4 The Argand diagram and modulus — Practise
+title: "5.4 The Argand diagram and modulus — Practise"
 chapter: 5
 chapter_title: Complex numbers
 section: '5.4'
-section_title: The Argand diagram and modulus
+section_title: "The Argand diagram and modulus"
 tier: O
 refs:
 - '4.4'
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.4 The Argand diagram and modulus — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 4.4
+Work independently. The questions and answers are shown together at the end.
+
+Write every answer in the form $a + bi$ unless the question asks for something else, and
+check the sign of the imaginary part before you move on.
+
+:::problems chapter-05-practice-5.4
+
+:::answers chapter-05-practice-5.4

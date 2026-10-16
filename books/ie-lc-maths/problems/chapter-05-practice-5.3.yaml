@@ -1,0 +1,144 @@
+# Practice set for 5.3 (strand 4, outcome 4.4). Division is the one place a sign error
+# hides: the conjugate of the denominator is what makes the bottom real, and sympy
+# proves the result as a complex number.
+chapter: 5
+problems:
+  - id: lc5-3-conjugate
+    section: '5.3'
+    tier: O
+    refs: ['4.4']
+    statement: 'Write down the complex conjugate of $4 - 7i$.'
+    answer_label: 'The conjugate'
+    check: {kind: evaluate, expression: 'conjugate(4 - 7*I)', answer: '4 + 7*I'}
+    answer_text: >-
+      The conjugate changes the sign of the imaginary part: $\overline{4 - 7i} = 4 + 7i$.
+
+  - id: lc5-3-product-real
+    section: '5.3'
+    tier: O
+    refs: ['4.4']
+    statement: 'Work out $(4 - 7i)(4 + 7i)$.'
+    answer_label: 'The product'
+    check: {kind: evaluate, expression: '(4 - 7*I)*(4 + 7*I)', answer: '65'}
+    answer_text: >-
+      This is a difference of two squares:
+      $(4 - 7i)(4 + 7i) = 16 - 49i^2 = 16 + 49 = 65$.
+
+      The answer is real, and it always is: $z\bar z$ is a non-negative real number for
+      every complex number $z$.
+
+  - id: lc5-3-divide
+    section: '5.3'
+    tier: O
+    refs: ['4.4']
+    statement: 'Write $\dfrac{3 + 2i}{1 - i}$ in the form $a + bi$.'
+    answer_label: 'The quotient'
+    check: {kind: evaluate, expression: '(3 + 2*I) / (1 - I)', answer: '(1 + 5*I) / 2'}
+    answer_text: >-
+      Multiply top and bottom by the conjugate of the bottom, $1 + i$:
+
+      $$\frac{3 + 2i}{1 - i} = \frac{(3 + 2i)(1 + i)}{(1 - i)(1 + i)}
+      = \frac{1 + 5i}{2} = \frac{1}{2} + \frac{5}{2}i$$
+
+      The bottom became real because $(1 - i)(1 + i) = 2$. That is the whole purpose of
+      multiplying by the conjugate.
+
+  - id: lc5-3-divide-two
+    section: '5.3'
+    tier: O
+    refs: ['4.4']
+    statement: 'Write $\dfrac{5}{2 + i}$ in the form $a + bi$.'
+    answer_label: 'The quotient'
+    check: {kind: evaluate, expression: '5 / (2 + I)', answer: '2 - I'}
+    answer_text: >-
+      Multiply top and bottom by $2 - i$:
+
+      $$\frac{5}{2 + i} = \frac{5(2 - i)}{(2 + i)(2 - i)} = \frac{10 - 5i}{5} = 2 - i$$
+
+  - id: lc5-3-modulus-squared
+    section: '5.3'
+    tier: O
+    refs: ['4.4']
+    statement: 'For $z = 3 + 4i$, work out $z\bar z$ and the modulus $|z|$.'
+    answer_label: '$z\bar z$, then $|z|$'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(3 + 4*I)*conjugate(3 + 4*I)', answer: '25'}
+        - {kind: evaluate, expression: 'Abs(3 + 4*I)', answer: '5'}
+    answer_text: >-
+      $z\bar z = 25$, and $|z| = \sqrt{25} = 5$. In general $z\bar z = |z|^2$, which is
+      where the modulus comes from.
+
+  - id: lc5-3-conjugate-sum
+    section: '5.3'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      For $z = 2 + 3i$ and $w = 1 - i$, show that $\overline{z + w} = \bar z + \bar w$.
+    answer_label: 'Both sides'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'conjugate((2 + 3*I) + (1 - I))', answer: '3 - 2*I'}
+        - {kind: evaluate, expression: 'conjugate(2 + 3*I) + conjugate(1 - I)', answer: '3 - 2*I'}
+    answer_text: >-
+      $z + w = 3 + 2i$, so $\overline{z + w} = 3 - 2i$.
+      Separately, $\bar z + \bar w = (2 - 3i) + (1 + i) = 3 - 2i$. The two sides are
+      equal, as claimed.
+
+      This is why the conjugate of a sum is the sum of the conjugates: changing the sign
+      of each imaginary part is the same whether you do it before or after adding.
+
+  - id: lc5-3-conjugate-product
+    section: '5.3'
+    tier: H
+    refs: ['4.4']
+    statement: >-
+      For $z = 2 + i$ and $w = 3 - 2i$, show that $\overline{zw} = \bar z\,\bar w$.
+    answer_label: 'Both sides'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'conjugate((2 + I)*(3 - 2*I))', answer: '8 + I'}
+        - {kind: evaluate, expression: 'conjugate(2 + I) * conjugate(3 - 2*I)', answer: '8 + I'}
+    answer_text: >-
+      $zw = (2 + i)(3 - 2i) = 6 - 4i + 3i - 2i^2 = 8 - i$, so
+      $\overline{zw} = 8 + i$.
+
+      And $\bar z\,\bar w = (2 - i)(3 + 2i) = 6 + 4i - 3i - 2i^2 = 8 + i$. The two sides
+      agree at $8 + i$.
+
+      So the conjugate of a product is the product of the conjugates — the same rule the
+      sum satisfied in the previous question.
+
+  - id: lc5-3-why-conjugate
+    section: '5.3'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      Explain why multiplying the top and bottom of a fraction by the conjugate of the
+      bottom makes the denominator real.
+    answer_label: Why the conjugate works
+    check:
+      kind: structured
+      requires: [difference, real]
+      concepts: [difference-of-squares, imaginary-cancels]
+      points:
+        - id: difference
+          text: (a + bi)(a - bi) is a difference of two squares, giving a squared minus b squared i squared
+          concepts: [difference-of-squares]
+        - id: real
+          text: since i squared is -1 the result is a squared plus b squared, with no i left
+          concepts: [imaginary-cancels]
+    answer_text: >-
+      Write the denominator as $a + bi$. Its conjugate is $a - bi$, and
+
+      $$(a + bi)(a - bi) = a^2 - (bi)^2 = a^2 - b^2i^2 = a^2 + b^2$$
+
+      Because $i^2 = -1$, the two imaginary terms cancel and nothing with $i$ is left.
+      The result is the real number $a^2 + b^2$, so the fraction becomes a complex number
+      divided by a real one — which is the standard form.
+
+      This is the same fact as $z\bar z = |z|^2$, and it is why the conjugate is the tool
+      for division.

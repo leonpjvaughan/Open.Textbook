@@ -1,0 +1,147 @@
+# Practice set for 5.4 (strand 4, outcome 4.4). The Argand diagram is a picture, and no
+# oracle here can see it; every record therefore asks for a number that the picture
+# represents — a modulus, a distance, a midpoint — so the answer is checkable.
+chapter: 5
+problems:
+  - id: lc5-4-modulus
+    section: '5.4'
+    tier: O
+    refs: ['4.4']
+    statement: 'Find the modulus of $5 + 12i$.'
+    answer_label: 'Modulus'
+    check: {kind: evaluate, expression: 'Abs(5 + 12*I)', answer: '13'}
+    answer_text: >-
+      $|5 + 12i| = \sqrt{5^2 + 12^2} = \sqrt{25 + 144} = \sqrt{169} = 13$.
+
+  - id: lc5-4-modulus-two
+    section: '5.4'
+    tier: O
+    refs: ['4.4']
+    statement: 'Find the modulus of $2 - 2i$.'
+    answer_label: 'Modulus'
+    check: {kind: evaluate, expression: 'Abs(2 - 2*I)', answer: '2*sqrt(2)'}
+    answer_text: >-
+      $|2 - 2i| = \sqrt{2^2 + (-2)^2} = \sqrt{8} = 2\sqrt{2}$.
+
+      Leave it as $2\sqrt{2}$ unless asked for a decimal. $\sqrt{8}$ is not wrong, but
+      $2\sqrt{2}$ is the simplified form an examiner expects.
+
+  - id: lc5-4-distance
+    section: '5.4'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      The points $z_1 = 1 + 2i$ and $z_2 = 4 + 6i$ are plotted on an Argand diagram.
+      Find the distance between them.
+    answer_label: 'Distance'
+    check: {kind: evaluate, expression: 'Abs((4 + 6*I) - (1 + 2*I))', answer: '5'}
+    answer_text: >-
+      The distance is $|z_2 - z_1| = |3 + 4i| = \sqrt{9 + 16} = 5$.
+
+      On the Argand diagram this is just Pythagoras on the horizontal and vertical gaps,
+      which are $3$ and $4$.
+
+  - id: lc5-4-midpoint
+    section: '5.4'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      Find the midpoint of the points $1 + 2i$ and $5 + 8i$ on the Argand diagram.
+    answer_label: 'Midpoint'
+    check:
+      kind: evaluate
+      expression: '((1 + 2*I) + (5 + 8*I)) / 2'
+      answer: '3 + 5*I'
+    answer_text: >-
+      The midpoint is the average of the two: $\dfrac{(1 + 5) + (2 + 8)i}{2} = 3 + 5i$.
+
+      On the Argand diagram the real and imaginary parts are separate coordinates, so the
+      midpoint is found by averaging each coordinate — exactly as on a Cartesian plane.
+
+  - id: lc5-4-modulus-product
+    section: '5.4'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      For $z = 3 + 4i$ and $w = 5 - 12i$, work out $|z|$, $|w|$ and $|zw|$.
+    answer_label: '|z|, then |w|, then |zw|'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'Abs(3 + 4*I)', answer: '5'}
+        - {kind: evaluate, expression: 'Abs(5 - 12*I)', answer: '13'}
+        - {kind: evaluate, expression: 'Abs((3 + 4*I)*(5 - 12*I))', answer: '65'}
+    answer_text: >-
+      $|z| = 5$ and $|w| = 13$, so $|z||w| = 65$. And $|zw| = 65$ too, because
+      **the modulus of a product is the product of the moduli**.
+
+      Check it directly if you like: $zw = 15 - 36i + 20i - 48i^2 = 63 - 16i$, and
+      $|63 - 16i| = \sqrt{3969 + 256} = \sqrt{4225} = 65$.
+
+  - id: lc5-4-locus
+    section: '5.4'
+    tier: H
+    refs: ['4.4']
+    statement: >-
+      Describe the set of points $z$ on the Argand diagram for which $|z| = 4$.
+    answer_label: 'The set of points'
+    check:
+      kind: structured
+      requires: [circle, radius]
+      concepts: [circle, centre-origin]
+      points:
+        - id: circle
+          text: it is a circle centred at the origin
+          concepts: [circle]
+        - id: radius
+          text: with radius 4, because the modulus is the distance from the origin
+          concepts: [radius, centre-origin]
+    answer_text: >-
+      The modulus $|z|$ is the distance from the origin to the point $z$. So $|z| = 4$ is
+      the set of points at distance 4 from the origin: a **circle** of radius 4, centred
+      at the origin.
+
+      Writing $z = x + iy$ makes it an ordinary circle equation: $x^2 + y^2 = 16$.
+
+  - id: lc5-4-argand-read
+    section: '5.4'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A point on the Argand diagram is 3 units left of the origin and 2 units below it.
+      Write it as a complex number and find its modulus.
+    answer_label: 'The complex number, then its modulus'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '-3 - 2*I', answer: '-3 - 2*I'}
+        - {kind: evaluate, expression: 'Abs(-3 - 2*I)', answer: 'sqrt(13)'}
+    answer_text: >-
+      Left is a negative real part and down is a negative imaginary part, so the number is
+      $-3 - 2i$. Its modulus is $\sqrt{(-3)^2 + (-2)^2} = \sqrt{13}$.
+
+  - id: lc5-4-argand-explain
+    section: '5.4'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      Explain how a complex number is plotted on an Argand diagram.
+    answer_label: 'How to plot it'
+    check:
+      kind: structured
+      requires: [real, imaginary]
+      concepts: [real-axis, imaginary-axis]
+      points:
+        - id: real
+          text: the real part is the horizontal coordinate, measured along the real axis
+          concepts: [real-axis]
+        - id: imaginary
+          text: the imaginary part is the vertical coordinate, measured along the imaginary axis
+          concepts: [imaginary-axis]
+    answer_text: >-
+      The real part of the number is plotted on the horizontal axis — the **real axis** —
+      and the imaginary part on the vertical axis — the **imaginary axis**.
+
+      So $3 + 4i$ is the point $(3, 4)$, and $-1 + 2i$ is $(-1, 2)$. The Argand diagram
+      turns complex arithmetic into geometry: addition becomes translation, and the
+      modulus becomes a distance.

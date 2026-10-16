@@ -1,0 +1,162 @@
+# Practice set for 5.5 (strand 4, outcome 4.4, Higher). The cubic in this chapter's
+# problem is x^3 - 5x^2 + 11x - 15, whose roots are 3 and 1 +/- 2i. sympy solves it, so
+# the roots are proved rather than asserted; the conjugate root theorem is a statement
+# about real coefficients and is recorded as `structured`.
+chapter: 5
+problems:
+  - id: lc5-5-one-root
+    section: '5.5'
+    tier: H
+    refs: ['4.4']
+    statement: >-
+      Show that $x = 3$ is a root of $x^3 - 5x^2 + 11x - 15 = 0$.
+    answer_label: 'The value at x = 3'
+    check:
+      kind: evaluate
+      expression: '3**3 - 5*3**2 + 11*3 - 15'
+      answer: '0'
+    answer_text: >-
+      $27 - 45 + 33 - 15 = 0$, so $x = 3$ is a root.
+
+  - id: lc5-5-quadratic-factor
+    section: '5.5'
+    tier: H
+    refs: ['4.4']
+    statement: >-
+      Dividing $x^3 - 5x^2 + 11x - 15$ by $(x - 3)$ leaves a quadratic. Write it down
+      and solve it.
+    answer_label: 'The quadratic, and its roots checked'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(1 + 2*I)**2 - 2*(1 + 2*I) + 5', answer: '0'}
+        - {kind: evaluate, expression: '(1 - 2*I)**2 - 2*(1 - 2*I) + 5', answer: '0'}
+    answer_text: >-
+      The quotient is $x^2 - 2x + 5$. Solving it:
+
+      $$x = \frac{2 \pm \sqrt{4 - 20}}{2} = \frac{2 \pm \sqrt{-16}}{2} = \frac{2 \pm 4i}{2} = 1 \pm 2i$$
+
+      So the roots are $1 + 2i$ and $1 - 2i$.
+
+  - id: lc5-5-all-roots
+    section: '5.5'
+    tier: H
+    refs: ['4.4']
+    statement: 'Write down all three roots of $x^3 - 5x^2 + 11x - 15 = 0$.'
+    answer_label: 'All three roots, each checked'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3**3 - 5*3**2 + 11*3 - 15', answer: '0'}
+        - {kind: evaluate, expression: '(1 + 2*I)**3 - 5*(1 + 2*I)**2 + 11*(1 + 2*I) - 15', answer: '0'}
+        - {kind: evaluate, expression: '(1 - 2*I)**3 - 5*(1 - 2*I)**2 + 11*(1 - 2*I) - 15', answer: '0'}
+    answer_text: >-
+      $x = 3$, $x = 1 + 2i$ and $x = 1 - 2i$. One real root and a conjugate pair, which
+      is the shape a real cubic must have.
+
+  - id: lc5-5-sum-product
+    section: '5.5'
+    tier: H
+    refs: ['4.4']
+    statement: >-
+      For that cubic, work out the sum of the three roots and the product of the three
+      roots.
+    answer_label: 'Sum, then product'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3 + (1 + 2*I) + (1 - 2*I)', answer: '5'}
+        - {kind: evaluate, expression: '3 * (1 + 2*I) * (1 - 2*I)', answer: '15'}
+    answer_text: >-
+      The sum is $3 + (1 + 2i) + (1 - 2i) = 5$ and the product is
+      $3(1 + 2i)(1 - 2i) = 3 \times 5 = 15$.
+
+      The imaginary parts cancel in both, because the two complex roots are conjugates.
+      That is not a coincidence: the sum and product of a real cubic are real, so the
+      conjugate pair must cancel exactly.
+
+  - id: lc5-5-conjugate-theorem
+    section: '5.5'
+    tier: H
+    refs: ['4.4']
+    statement: >-
+      State the conjugate root theorem for a polynomial with real coefficients.
+    answer_label: 'The theorem'
+    check:
+      kind: structured
+      requires: [real, conjugate]
+      concepts: [real-coefficients, conjugate-pair]
+      points:
+        - id: real
+          text: if a polynomial has all real coefficients
+          concepts: [real-coefficients]
+        - id: conjugate
+          text: and a complex number is a root, then its conjugate is also a root
+          concepts: [conjugate-pair]
+    answer_text: >-
+      If a polynomial has real coefficients and $z$ is a root, then its complex conjugate
+      $\bar z$ is also a root.
+
+      So complex roots of a real polynomial always come in **conjugate pairs**. A real
+      cubic therefore has either three real roots, or one real root and a conjugate pair —
+      never two real roots and one complex root.
+
+  - id: lc5-5-given-root
+    section: '5.5'
+    tier: H
+    refs: ['4.4']
+    statement: >-
+      A cubic with real coefficients has $2 + 3i$ as one root. Write down another root.
+    answer_label: 'Another root'
+    check: {kind: evaluate, expression: 'conjugate(2 + 3*I)', answer: '2 - 3*I'}
+    answer_text: >-
+      $2 - 3i$, by the conjugate root theorem. The coefficients are real, so the
+      conjugate of any complex root is also a root.
+
+  - id: lc5-5-build-quadratic
+    section: '5.5'
+    tier: H
+    refs: ['4.4']
+    statement: >-
+      Find the quadratic with real coefficients whose roots are $1 + 2i$ and $1 - 2i$.
+    answer_label: 'Sum, product, and a root check'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(1 + 2*I) + (1 - 2*I)', answer: '2'}
+        - {kind: evaluate, expression: '(1 + 2*I) * (1 - 2*I)', answer: '5'}
+        - {kind: evaluate, expression: '(1 + 2*I)**2 - 2*(1 + 2*I) + 5', answer: '0'}
+    answer_text: >-
+      Sum of roots $= 2$, product $= (1 + 2i)(1 - 2i) = 5$, so the quadratic is
+
+      $$x^2 - (\text{sum})x + (\text{product}) = x^2 - 2x + 5$$
+
+      The coefficients are real, as they must be for a conjugate pair.
+
+  - id: lc5-5-why-pair
+    section: '5.5'
+    tier: H
+    refs: ['4.4']
+    statement: >-
+      Explain why a cubic with real coefficients cannot have exactly two real roots and
+      one non-real complex root.
+    answer_label: 'Why that is impossible'
+    check:
+      kind: structured
+      requires: [pair, three]
+      concepts: [conjugate-pair, degree-count]
+      points:
+        - id: pair
+          text: a non-real complex root forces its conjugate to be a root too, so complex roots come in pairs
+          concepts: [conjugate-pair]
+        - id: three
+          text: a cubic has exactly three roots, and one complex root would need a partner, leaving two real roots and two complex ones - four roots in all, which is too many
+          concepts: [degree-count]
+    answer_text: >-
+      By the conjugate root theorem, a non-real complex root of a real polynomial forces
+      its conjugate to be a root as well. So complex roots arrive in pairs.
+
+      A cubic has exactly three roots (counting repeats). If it had two real roots and one
+      complex root, the complex root would need its conjugate, making four roots in all —
+      more than a cubic can have. So a real cubic has either three real roots, or one real
+      root and a conjugate pair.

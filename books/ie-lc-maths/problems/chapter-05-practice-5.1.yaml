@@ -1,0 +1,112 @@
+# Practice set for 5.1 (strand 4, outcome 4.4). sympy parses `I`, so every answer here
+# is proved as a complex number: `equivalent` simplifies both sides and compares. A
+# complex number written as `3 + 2*I` and one written `3 + 2i` are the same object to
+# the oracle, which is why the answer text can use either notation.
+chapter: 5
+problems:
+  - id: lc5-1-i-squared
+    section: '5.1'
+    tier: O
+    refs: ['4.4']
+    statement: 'Write down the value of $i^2$.'
+    answer_label: 'Value of i^2'
+    check: {kind: evaluate, expression: 'I**2', answer: '-1'}
+    answer_text: 'By definition $i^2 = -1$.'
+
+  - id: lc5-1-i-cubed
+    section: '5.1'
+    tier: O
+    refs: ['4.4']
+    statement: 'Write down $i^3$ and $i^4$ in their simplest form.'
+    answer_label: '$i^3$, then $i^4$'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'I**3', answer: '-I'}
+        - {kind: evaluate, expression: 'I**4', answer: '1'}
+    answer_text: >-
+      $i^3 = i^2 \cdot i = -i$, and $i^4 = (i^2)^2 = (-1)^2 = 1$.
+
+  - id: lc5-1-i-power
+    section: '5.1'
+    tier: O
+    refs: ['4.4']
+    statement: 'Simplify $i^{27}$.'
+    answer_label: '$i^{27}$'
+    check: {kind: evaluate, expression: 'I**27', answer: '-I'}
+    answer_text: >-
+      $27 = 4 \times 6 + 3$, and powers of $i$ repeat every 4, so
+      $i^{27} = i^{3} = -i$.
+
+  - id: lc5-1-sqrt-negative
+    section: '5.1'
+    tier: O
+    refs: ['4.4']
+    statement: 'Write $\sqrt{-9}$ in terms of $i$.'
+    answer_label: '$\sqrt{-9}$'
+    check: {kind: evaluate, expression: 'sqrt(-9)', answer: '3*I'}
+    answer_text: '$\sqrt{-9} = \sqrt{9}\sqrt{-1} = 3i$.'
+
+  - id: lc5-1-parts
+    section: '5.1'
+    tier: O
+    refs: ['4.4']
+    statement: 'Write down the real part and the imaginary part of $5 - 3i$.'
+    answer_label: 'Real part, then imaginary part'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 're(5 - 3*I)', answer: '5'}
+        - {kind: evaluate, expression: 'im(5 - 3*I)', answer: '-3'}
+    answer_text: >-
+      The real part is $5$ and the imaginary part is $-3$. The imaginary part is the
+      **number multiplying $i$**, so it is $-3$, not $-3i$ and not $3$.
+
+  - id: lc5-1-solve
+    section: '5.1'
+    tier: O
+    refs: ['4.4']
+    statement: 'Solve $x^2 + 9 = 0$ for $x$, giving both values.'
+    answer_label: 'Both values of x'
+    check:
+      kind: evaluate
+      expression: 'sqrt(-9)'
+      answer: '3*I'
+    answer_text: >-
+      $x^2 = -9$, so $x = \pm\sqrt{-9} = \pm 3i$. There are two solutions, $3i$ and
+      $-3i$, because a quadratic has two roots.
+
+  - id: lc5-1-form
+    section: '5.1'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      Explain what is meant by the standard form $a + bi$ of a complex number, and say
+      what $a$ and $b$ are called.
+    answer_label: Standard form
+    check:
+      kind: structured
+      requires: [real, imaginary]
+      concepts: [a-real, b-imaginary]
+      points:
+        - id: real
+          text: a is the real part and is an ordinary real number
+          concepts: [a-real]
+        - id: imaginary
+          text: b is the imaginary part and is also real; bi is the imaginary term
+          concepts: [b-imaginary]
+    answer_text: >-
+      A complex number is written $a + bi$, where $a$ and $b$ are real numbers. $a$ is
+      the **real part** and $b$ is the **imaginary part**. The imaginary part is the
+      real number $b$ multiplying $i$, not $bi$ itself.
+
+  - id: lc5-1-i-reciprocal
+    section: '5.1'
+    tier: H
+    refs: ['4.4']
+    statement: 'Write $\dfrac{1}{i}$ in the form $a + bi$.'
+    answer_label: '$\frac{1}{i}$ in standard form'
+    check: {kind: evaluate, expression: '1 / I', answer: '-I'}
+    answer_text: >-
+      Multiply top and bottom by $i$: $\dfrac{1}{i} = \dfrac{i}{i^2} = \dfrac{i}{-1}
+      = -i$. So $a = 0$ and $b = -1$.
