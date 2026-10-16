@@ -1,0 +1,168 @@
+# Leaving Certificate Physics, Chapter 22, section 22.5.
+#
+# This bank covers the report: the sections it needs and what each contains; the
+# honest account of what did not work; relating the result to society; presenting a
+# graph and a table; using a source without plagiarism; writing for a general
+# reader; and a word-count calculation.
+#
+# Honest limit: `structured` proves only that a model answer contains its declared
+# steps and concepts, in order. It cannot judge the writing.
+chapter: 22
+problems:
+  - id: p22-5-sections
+    section: '22.5'
+    tier: O
+    refs: ['1.3']
+    statement: 'Name three sections of an investigation report and say what each one contains.'
+    answer_label: 'Three sections of the report'
+    check:
+      kind: structured
+      requires: [purpose, method, conclusion]
+      concepts: [question, repeatable, evidence]
+      points:
+        - id: purpose
+          text: 'The purpose states the question and the physics being investigated.'
+          concepts: [question]
+        - id: method
+          text: 'The method gives the steps another person would follow to repeat the readings.'
+          concepts: [repeatable]
+        - id: conclusion
+          text: 'The conclusion states what the evidence shows and whether it supports the hypothesis.'
+          concepts: [evidence]
+    answer_text: 'The purpose states the question and the physics. The method gives the steps another person would follow to repeat the readings. The conclusion states what the evidence shows and whether it supports the hypothesis.'
+  - id: p22-5-reflection
+    section: '22.5'
+    tier: O
+    refs: ['1.3']
+    statement: 'Explain why an honest account of what did not work is worth more than a tidy report that hides the problems.'
+    answer_label: 'An honest account'
+    check:
+      kind: structured
+      requires: [honest, reason, improvement]
+      concepts: [limitations, evidence, revision]
+      points:
+        - id: honest
+          text: 'An honest account says what limited the readings and how large each problem was.'
+          concepts: [limitations]
+        - id: reason
+          text: 'A report that hides the problems cannot be judged, because the reader cannot see how much the result can be trusted.'
+          concepts: [evidence]
+        - id: improvement
+          text: 'Saying what you would change also shows that you understand the method.'
+          concepts: [revision]
+    answer_text: 'An honest account says what limited the readings and how large each problem was. A report that hides the problems cannot be judged, because the reader cannot see how much the result can be trusted. Saying what you would change also shows that you understand the method.'
+  - id: p22-5-society
+    section: '22.5'
+    tier: O
+    refs: ['1.3']
+    statement: 'Describe how you would relate the results of an investigation into home insulation to society.'
+    answer_label: 'Relating the result to society'
+    check:
+      kind: structured
+      requires: [real-world, factors, judgement]
+      concepts: [application, economic, ethical]
+      points:
+        - id: real-world
+          text: 'State what the result means for a household, such as the money saved on heating each year.'
+          concepts: [application]
+        - id: factors
+          text: 'Consider the cost of the insulation, the carbon dioxide avoided and who pays for the work.'
+          concepts: [economic, ethical]
+        - id: judgement
+          text: 'Weigh the factors and say what you would recommend, and for whom.'
+          concepts: [application]
+    answer_text: 'State what the result means for a household, such as the money saved on heating each year. Consider the cost of the insulation, the carbon dioxide avoided and who pays for the work. Weigh the factors and say what you would recommend, and for whom.'
+  - id: p22-5-wordcount
+    section: '22.5'
+    tier: O
+    refs: ['1.3']
+    statement: 'A report has a word limit of 1200 words. A student writes 420 words of background research and 300 words of method. Calculate the percentage of the limit used so far.'
+    answer_label: 'Percentage of the limit used'
+    check:
+      kind: evaluate
+      expression: (420 + 300) / 1200 * 100
+      answer: '60'
+    answer_text: 'The student has written $420 + 300 = 720$ words. As a percentage of the limit, $\dfrac{720}{1200} \times 100\% = 60\%$.'
+  - id: p22-5-measurement
+    section: '22.5'
+    tier: O
+    refs: ['1.3']
+    statement: 'A student measures a length as 0.1250 m. Write the value in millimetres, keeping the same number of significant figures.'
+    answer_label: 'The value in millimetres'
+    check:
+      kind: all
+      checks:
+        - kind: convert
+          value: '0.1250'
+          from: m
+          to: mm
+          answer: '125.0'
+        - kind: sigfigs
+          value: '125.0'
+          figures: 4
+          answer: '125.0'
+          convention: round-once
+    answer_text: '$0.1250\,\text{m} = 125.0\,\text{mm}$. The trailing zero after the decimal point matters: it shows that the reading is to four significant figures, not three.'
+  - id: p22-5-reference
+    section: '22.5'
+    tier: O
+    refs: ['1.3']
+    statement: 'Explain how you would use a source in your report without committing plagiarism.'
+    answer_label: 'Using a source honestly'
+    check:
+      kind: structured
+      requires: [own-words, quote, cite]
+      concepts: [paraphrase, quotation, citation]
+      points:
+        - id: own-words
+          text: 'Write the idea in your own words, and then check that the meaning has not changed.'
+          concepts: [paraphrase]
+        - id: quote
+          text: 'If you use the exact words, put them in quotation marks and keep the quotation short.'
+          concepts: [quotation]
+        - id: cite
+          text: 'Give the source for every idea or figure you take, in the list of references.'
+          concepts: [citation]
+    answer_text: 'Write the idea in your own words, then check that the meaning has not changed. If you use the exact words, put them in quotation marks and keep the quotation short. Give the source for every idea or figure you take.'
+  - id: p22-5-graph
+    section: '22.5'
+    tier: O
+    refs: ['1.3']
+    statement: 'State what a graph in the results section needs so that a reader can check it.'
+    answer_label: 'What a graph needs'
+    check:
+      kind: structured
+      requires: [axes, units, fit]
+      concepts: [label, unit, gradient]
+      points:
+        - id: axes
+          text: 'Label each axis with the quantity, and put the independent variable on the horizontal axis.'
+          concepts: [label]
+        - id: units
+          text: 'Write the unit with each label, such as time / s.'
+          concepts: [unit]
+        - id: fit
+          text: 'Plot the readings as points, draw a line of best fit, and say what its gradient means.'
+          concepts: [gradient]
+    answer_text: 'Label each axis with the quantity, putting the independent variable on the horizontal axis. Write the unit with each label, such as time / s. Plot the readings as points, draw a line of best fit and say what its gradient means.'
+  - id: p22-5-audience
+    section: '22.5'
+    tier: O
+    refs: ['1.3']
+    statement: 'Explain how you would change your report for a reader who is not a physicist.'
+    answer_label: 'Writing for a general reader'
+    check:
+      kind: structured
+      requires: [terms, plain, summary]
+      concepts: [define, plain-English, summary]
+      points:
+        - id: terms
+          text: 'Explain each technical term the first time you use it.'
+          concepts: [define]
+        - id: plain
+          text: 'Use short active sentences, and give every number with its unit.'
+          concepts: [plain-English]
+        - id: summary
+          text: 'Open with a short summary of the question, the result and why it matters.'
+          concepts: [summary]
+    answer_text: 'Explain each technical term the first time you use it. Use short active sentences, and give every number with its unit. Open with a short summary of the question, the result and why it matters.'

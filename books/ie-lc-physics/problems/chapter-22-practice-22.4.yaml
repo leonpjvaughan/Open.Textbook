@@ -1,0 +1,147 @@
+# Leaving Certificate Physics, Chapter 22, section 22.4.
+#
+# This bank covers the processing and evaluation of primary data: the mean and its
+# uncertainty; a gradient, an intercept and an area read from a graph; percentage
+# uncertainties combined; a density calculated to the figures the data support; and
+# the judgement that compares a result with a model.
+#
+# Honest limit: the graph checks read a series with a least-squares line or the
+# trapezium rule and prove the result against a declared interval. They do not
+# judge whether the series was plotted correctly. `structured` proves presence and
+# order only.
+chapter: 22
+problems:
+  - id: p22-4-mean
+    section: '22.4'
+    tier: O
+    refs: ['1.4']
+    statement: 'A student records the time for ten swings of a pendulum as 14.2 s, 14.3 s, 14.2 s, 14.4 s and 14.4 s. Calculate the mean and the uncertainty as half the range.'
+    answer_label: 'Mean time and its uncertainty'
+    check:
+      kind: uncertainty
+      mean_of: ['14.2', '14.3', '14.2', '14.4', '14.4']
+      convention: half-range
+      answer: '14.3'
+      uncertainty: '0.1'
+    answer_text: 'The mean is $\dfrac{14.2 + 14.3 + 14.2 + 14.4 + 14.4}{5} = 14.3\,\text{s}$. The range is $14.4 - 14.2 = 0.2\,\text{s}$, so the uncertainty is half of that: $0.1\,\text{s}$. The result is $14.3\,\text{s} \pm 0.1\,\text{s}$.'
+  - id: p22-4-gradient
+    section: '22.4'
+    tier: O
+    refs: ['1.4']
+    statement: 'A graph of voltage against current is a straight line through the points (0.10 A, 1.2 V), (0.20 A, 2.4 V) and (0.30 A, 3.6 V). Calculate the gradient, with its unit, and say what it represents.'
+    answer_label: 'The gradient and its meaning'
+    check:
+      kind: gradient
+      series:
+        - ['0.10', '1.2']
+        - ['0.20', '2.4']
+        - ['0.30', '3.6']
+      between: ['11.5', '12.5']
+    answer_text: 'The gradient is $\dfrac{3.6 - 1.2}{0.30 - 0.10} = \dfrac{2.4}{0.20} = 12\,\text{V/A}$. A volt per amp is an ohm, so the gradient is the resistance, $12\,\Omega$.'
+  - id: p22-4-intercept
+    section: '22.4'
+    tier: O
+    refs: ['1.4']
+    statement: 'A graph of extension against force for a spring is a straight line through the points (0 N, 0.00 m), (2.0 N, 0.04 m) and (4.0 N, 0.08 m). Find the intercept on the extension axis and say what it means.'
+    answer_label: 'The intercept and its meaning'
+    check:
+      kind: intercept
+      series:
+        - ['0', '0.00']
+        - ['2.0', '0.04']
+        - ['4.0', '0.08']
+      between: ['-0.005', '0.005']
+    answer_text: 'The line passes through the origin, so the intercept is $0\,\text{m}$. It means that a force of zero gives an extension of zero: the spring is unstretched when nothing pulls it.'
+  - id: p22-4-area
+    section: '22.4'
+    tier: O
+    refs: ['1.4']
+    statement: 'A graph of force against extension for a spring passes through (0 m, 0 N), (0.02 m, 4 N), (0.04 m, 8 N) and (0.06 m, 12 N). Use the trapezium rule to find the area under the graph, and say what the area represents.'
+    answer_label: 'The area under the graph'
+    check:
+      kind: area
+      series:
+        - ['0', '0']
+        - ['0.02', '4']
+        - ['0.04', '8']
+        - ['0.06', '12']
+      between: ['0.35', '0.37']
+    answer_text: 'The area is $\dfrac{0.02 \times (0 + 4)}{2} + \dfrac{0.02 \times (4 + 8)}{2} + \dfrac{0.02 \times (8 + 12)}{2} = 0.04 + 0.12 + 0.20 = 0.36\,\text{J}$. The area under a force-extension graph is the energy stored in the spring.'
+  - id: p22-4-percentage
+    section: '22.4'
+    tier: O
+    refs: ['1.4']
+    statement: 'A force of 8.0 N is measured with an uncertainty of 3%, and it moves an object 0.25 m with an uncertainty of 2%. Calculate the work done and its absolute uncertainty.'
+    answer_label: 'Work done and its uncertainty'
+    check:
+      kind: uncertainty
+      combine: add-percentages
+      terms:
+        - {value: '8.0', percentage: '3'}
+        - {value: '0.25', percentage: '2'}
+      result: '2.0'
+      uncertainty: '0.10'
+    answer_text: 'The work is $W = Fd = 8.0 \times 0.25 = 2.0\,\text{J}$. The percentage uncertainties add: $3\% + 2\% = 5\%$. The absolute uncertainty is $5\%$ of $2.0\,\text{J}$, which is $0.10\,\text{J}$. So $W = 2.0\,\text{J} \pm 0.10\,\text{J}$.'
+  - id: p22-4-density
+    section: '22.4'
+    tier: O
+    refs: ['1.4']
+    statement: 'A block has a mass of 0.240 kg and a volume of 0.000 080 m$^3$. Calculate its density, to the significant figures the data support.'
+    answer_label: 'Density'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m / V
+          values:
+            m: {value: '0.240', unit: kg}
+            V: {value: '0.00008', unit: 'm^3'}
+          answer: {value: '3000', unit: 'kg/m^3'}
+        - kind: sigfigs
+          value: '3000'
+          figures: 3
+          answer: 3.00e3
+          convention: round-once
+    answer_text: '$\rho = \dfrac{m}{V} = \dfrac{0.240}{0.000\,080} = 3000\,\text{kg/m}^3$, which is $3.00 \times 10^3\,\text{kg/m}^3$ to three significant figures. The trailing zeros must be shown, so the answer is written in scientific notation.'
+  - id: p22-4-supports
+    section: '22.4'
+    tier: O
+    refs: ['1.4']
+    statement: 'An investigation gives the gradient of a distance-time-squared graph as 9.5 m/s$^2$, and the accepted value of $g$ is 9.8 m/s$^2$. State whether the evidence supports the model, and give a reason.'
+    answer_label: 'Does the evidence support the model?'
+    check:
+      kind: structured
+      requires: [compare, reason, conclusion]
+      concepts: [difference, uncertainty, supports]
+      points:
+        - id: compare
+          text: 'The measured value is 9.5 m/s$^2$, which is about 3% below the accepted value of 9.8 m/s$^2$.'
+          concepts: [difference]
+        - id: reason
+          text: 'The difference is small, and the uncertainty in the timings is larger than 3%, so the two values agree within the uncertainty.'
+          concepts: [uncertainty]
+        - id: conclusion
+          text: 'The evidence supports the model, because the measured value is close to the prediction.'
+          concepts: [supports]
+    answer_text: 'The measured value is 9.5 m/s$^2$, about 3% below the accepted 9.8 m/s$^2$. The uncertainty in the timings is larger than 3%, so the values agree within the uncertainty. The evidence supports the model.'
+  - id: p22-4-errors
+    section: '22.4'
+    tier: O
+    refs: ['1.4']
+    statement: 'A student finds that every reading is about 0.02 s too large, and that the readings scatter by about 0.01 s. Identify the type of each error and say what to do about each.'
+    answer_label: 'The two types of error'
+    check:
+      kind: structured
+      requires: [systematic, random, action]
+      concepts: [same-way, scatter, mean]
+      points:
+        - id: systematic
+          text: 'The reading that is always too large is a systematic error, because it pushes every reading the same way.'
+          concepts: [same-way]
+        - id: random
+          text: 'The scatter of about 0.01 s is a random error, because it moves the readings above and below the true value.'
+          concepts: [scatter]
+        - id: action
+          text: 'Repeating and averaging reduces the random error, and the systematic error needs the instrument or the method to be checked.'
+          concepts: [mean]
+    answer_text: 'The reading that is always too large is a systematic error, because it pushes every reading the same way. The scatter is a random error, because it moves readings above and below the true value. Repeating and averaging reduces the random error, and the systematic error needs the instrument or method checked.'

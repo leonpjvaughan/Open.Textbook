@@ -1,0 +1,179 @@
+# Junior Cycle Mathematics, Chapter 15, section 15.3.
+#
+# A time conversion is proved by `convert`, which knows that one minute is sixty
+# seconds, one hour is sixty minutes and one day is twenty-four hours, exactly.
+# Clock arithmetic is proved by `evaluate` on the number of minutes, because a
+# clock face is not a decimal. The reader is shown the clock time in
+# `answer_text`; the check proves the minutes.
+chapter: 15
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc15-15.3-h-min
+  section: '15.3'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 2.5 hours to minutes.'
+  answer_label: 'Convert 2.5 hours to minutes.'
+  check:
+    kind: convert
+    value: '2.5'
+    from: 'h'
+    to: 'min'
+    answer: '150'
+  answer_text: 'There are $60$ minutes in $1$ hour, so $2.5\times60=150$ minutes. Half an hour is $30$ minutes, which fits the answer.'
+
+- id: jc15-15.3-min-h
+  section: '15.3'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 90 minutes to hours.'
+  answer_label: 'Convert 90 minutes to hours.'
+  check:
+    kind: convert
+    value: '90'
+    from: 'min'
+    to: 'h'
+    answer: '1.5'
+  answer_text: 'There are $60$ minutes in $1$ hour, so $90\div60=1.5$ hours. That is $1$ hour and $30$ minutes, not $1$ hour and $90$ minutes.'
+
+- id: jc15-15.3-h-s
+  section: '15.3'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 3 hours to seconds.'
+  answer_label: 'Convert 3 hours to seconds.'
+  check:
+    kind: convert
+    value: '3'
+    from: 'h'
+    to: 's'
+    answer: '10800'
+  answer_text: 'One hour is $60$ minutes, and one minute is $60$ seconds, so one hour is $60\times60=3600$ seconds. Then $3\times3600=10800$ seconds.'
+
+- id: jc15-15.3-s-min
+  section: '15.3'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 180 seconds to minutes.'
+  answer_label: 'Convert 180 seconds to minutes.'
+  check:
+    kind: convert
+    value: '180'
+    from: 's'
+    to: 'min'
+    answer: '3'
+  answer_text: 'There are $60$ seconds in $1$ minute, so $180\div60=3$ minutes. Three whole minutes take $180$ seconds.'
+
+- id: jc15-15.3-day-h
+  section: '15.3'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 1 day to hours.'
+  answer_label: 'Convert 1 day to hours.'
+  check:
+    kind: convert
+    value: '1'
+    from: 'day'
+    to: 'h'
+    answer: '24'
+  answer_text: 'One day is $24$ hours. The clock passes 12 twice in a day, once for the morning and once for the night.'
+
+- id: jc15-15.3-min-h-2
+  section: '15.3'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 45 minutes to hours.'
+  answer_label: 'Convert 45 minutes to hours.'
+  check:
+    kind: convert
+    value: '45'
+    from: 'min'
+    to: 'h'
+    answer: '0.75'
+  answer_text: 'There are $60$ minutes in $1$ hour, so $45\div60=0.75$ hours. Three quarters of an hour is $45$ minutes.'
+
+- id: jc15-15.3-film
+  section: '15.3'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A film starts at 19:40 and lasts 1 hour 35 minutes. What time does the film end?'
+  answer_label: 'Find the finishing time.'
+  check:
+    kind: evaluate
+    expression: 19*60+40+60+35
+    answer: '1275'
+  answer_text: 'The film ends at 21:15. Start at 19:40 and add 1 hour to get 20:40, then add 35 minutes. From 20:40, another 20 minutes reaches 21:00, and 15 minutes more reaches 21:15. In minutes, $1275$ minutes is $21\times60+15$.'
+
+- id: jc15-15.3-train
+  section: '15.3'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A train leaves at 08:15 and arrives at 10:05. How long is the journey in minutes?'
+  answer_label: 'Find the journey time in minutes.'
+  check:
+    kind: evaluate
+    expression: 10*60+5-(8*60+15)
+    answer: '110'
+  answer_text: 'The journey takes $110$ minutes, which is 1 hour 50 minutes. From 08:15 to 09:15 is one hour. From 09:15 to 10:05 is another 50 minutes. In minutes, $605-495=110$.'
+
+- id: jc15-15.3-bus
+  section: '15.3'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A bus leaves the school at 09:20. The next bus leaves 45 minutes later. What time does the next bus leave?'
+  answer_label: 'Find the next departure time.'
+  check:
+    kind: evaluate
+    expression: 9*60+20+45
+    answer: '605'
+  answer_text: 'The next bus leaves at 10:05. From 09:20, another 40 minutes reaches 10:00, and 5 minutes more reaches 10:05. In minutes, $605$ minutes is $10\times60+5$.'
+
+- id: jc15-15.3-paris
+  section: '15.3'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A flight leaves Dublin at 07:35 and takes 1 hour 55 minutes. Paris is 1 hour ahead of Dublin. What is the local time in Paris when the flight lands?'
+  answer_label: 'Find the local arrival time in Paris.'
+  check:
+    kind: evaluate
+    expression: 7*60+35+60+55+60
+    answer: '630'
+  answer_text: 'The flight lands at 09:30 Dublin time. From 07:35, add 1 hour to get 08:35, then add 55 minutes to get 09:30. Paris is 1 hour ahead, so the local time is 10:30. In minutes, $630$ minutes is $10\times60+30$.'
+
+- id: jc15-15.3-newyork
+  section: '15.3'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A flight leaves Dublin at 11:00 and takes 7 hours. New York is 5 hours behind Dublin. What is the local time in New York when the flight lands?'
+  answer_label: 'Find the local arrival time in New York.'
+  check:
+    kind: evaluate
+    expression: 11+7-5
+    answer: '13'
+  answer_text: 'The flight lands at 18:00 Dublin time, because $11+7=18$. New York is 5 hours behind, so the local time is 13:00, because $18-5=13$. That is 1 pm in New York.'
+
+- id: jc15-15.3-clock
+  section: '15.3'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A 24-hour clock shows 17:45. Write this as a 12-hour time with am or pm.'
+  answer_label: 'Write the time on a 12-hour clock.'
+  check:
+    kind: evaluate
+    expression: 17-12
+    answer: '5'
+  answer_text: 'The time is 5:45 pm. A 24-hour time from 13:00 to 23:59 is in the afternoon or evening, so subtract 12 to get the 12-hour hour. The minutes do not change, so $17-12=5$ and the minutes stay at 45.'

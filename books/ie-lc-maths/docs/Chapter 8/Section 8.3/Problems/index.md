@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.3 The fundamental theorem of calculus — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 5.2
+Work independently. The questions and answers are shown together at the end.
+
+Write down the antiderivative before you substitute anything. For $e^{kx}$, $\sin kx$ and
+$\cos kx$ the factor is $\dfrac{1}{k}$, and leaving it out is the error to watch for.
+
+:::problems chapter-08-practice-8.3
+
+:::answers chapter-08-practice-8.3

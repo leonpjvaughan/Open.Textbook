@@ -1,0 +1,171 @@
+# Junior Cycle Mathematics, Chapter 16, section 16.5.
+#
+# A volume is a product of areas and lengths, so the check is an exact `evaluate`.
+# A pi answer stays exact; a decimal answer uses 3.14 exactly. The last record asks
+# why the radius is used rather than the diameter, which uses `structured`.
+chapter: 16
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc16-16.5-box-1
+  section: '16.5'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A rectangular solid is 5 cm long, 3 cm wide and 4 cm tall. Find its volume.'
+  answer_label: 'Find the volume.'
+  check:
+    kind: evaluate
+    expression: 5*3*4
+    answer: '60'
+  answer_text: 'The volume is $60$ cm³. Multiply the three lengths: $5\times3\times4=60$. A volume fills space, so the unit is cubed.'
+
+- id: jc16-16.5-prism-1
+  section: '16.5'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A triangular prism is 10 cm long. Its cross-section is a triangle with base 6 cm and height 4 cm. Find its volume.'
+  answer_label: 'Find the volume.'
+  check:
+    kind: evaluate
+    expression: 0.5*6*4*10
+    answer: '120'
+  answer_text: 'The volume is $120$ cm³. The cross-section is $\tfrac{1}{2}\times6\times4=12$ cm². Multiply by the length: $12\times10=120$ cm³.'
+
+- id: jc16-16.5-prism-2
+  section: '16.5'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A triangular prism is 12 cm long. Its cross-section is a triangle with base 8 cm and height 5 cm. Find its volume.'
+  answer_label: 'Find the volume.'
+  check:
+    kind: evaluate
+    expression: 0.5*8*5*12
+    answer: '240'
+  answer_text: 'The volume is $240$ cm³. The cross-section is $\tfrac{1}{2}\times8\times5=20$ cm². Multiply by the length: $20\times12=240$ cm³.'
+
+- id: jc16-16.5-cyl-1
+  section: '16.5'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A cylinder has a radius of 3 cm and a height of 10 cm. Find its volume in terms of $\pi$.'
+  answer_label: 'Find the volume in terms of pi.'
+  check:
+    kind: evaluate
+    expression: pi*3**2*10
+    answer: '90*pi'
+  answer_text: 'The volume is $90\pi$ cm³. Use $V=\pi r^2h$: square the radius to get $9$, then multiply by the height 10 and by $\pi$.'
+
+- id: jc16-16.5-cyl-2
+  section: '16.5'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A cylinder has a radius of 2 m and a height of 7 m. Find its volume. Use $\pi\approx3.14$.'
+  answer_label: 'Find the volume as a decimal.'
+  check:
+    kind: evaluate
+    expression: 3.14*2**2*7
+    answer: '87.92'
+  answer_text: 'The volume is about $87.92$ m³. Square the radius to get $4$. Then $3.14\times4\times7=87.92$. Round once, at the end.'
+
+- id: jc16-16.5-sphere-1
+  section: '16.5'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A sphere has a radius of 6 cm. Find its volume in terms of $\pi$.'
+  answer_label: 'Find the volume in terms of pi.'
+  check:
+    kind: evaluate
+    expression: (4/3)*pi*6**3
+    answer: '288*pi'
+  answer_text: 'The volume is $288\pi$ cm³. Cube the radius: $6^3=216$. Then multiply by $\tfrac{4}{3}$: $\tfrac{4}{3}\times216=288$.'
+
+- id: jc16-16.5-sphere-2
+  section: '16.5'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A sphere has a radius of 3 cm. Find its volume in terms of $\pi$.'
+  answer_label: 'Find the volume in terms of pi.'
+  check:
+    kind: evaluate
+    expression: (4/3)*pi*3**3
+    answer: '36*pi'
+  answer_text: 'The volume is $36\pi$ cm³. Cube the radius: $3^3=27$. Then $\tfrac{4}{3}\times27=36$. The radius is cubed, so the volume grows quickly with the radius.'
+
+- id: jc16-16.5-litres-1
+  section: '16.5'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A tank holds 3 m³ of water. Write this volume in litres.'
+  answer_label: 'Write the volume in litres.'
+  check:
+    kind: evaluate
+    expression: 3*1000
+    answer: '3000'
+  answer_text: 'The tank holds $3000$ L. One cubic metre is 1000 L, so multiply by 1000. A cubic metre is a cube of side 1 m, which holds a thousand litres.'
+
+- id: jc16-16.5-litres-2
+  section: '16.5'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A container holds 2.5 m³ of sand. Write this volume in litres.'
+  answer_label: 'Write the volume in litres.'
+  check:
+    kind: evaluate
+    expression: 2.5*1000
+    answer: '2500'
+  answer_text: 'The container holds $2500$ L. Multiply the cubic metres by 1000: $2.5\times1000=2500$. The decimal point moves three places to the right.'
+
+- id: jc16-16.5-tank
+  section: '16.5'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'The cylindrical part of the chapter tank has a radius of 0.5 m and a height of 1 m. Find its volume in terms of $\pi$.'
+  answer_label: 'Find the volume in terms of pi.'
+  check:
+    kind: evaluate
+    expression: pi*0.5**2*1
+    answer: '0.25*pi'
+  answer_text: 'The volume is $0.25\pi$ m³. Square the radius: $0.5^2=0.25$. Multiply by the height 1 and by $\pi$. That is about 0.785 m³, or 785 L.'
+
+- id: jc16-16.5-tank-litres
+  section: '16.5'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'The cylindrical part of the chapter tank has a volume of $0.25\pi$ m³. Write this volume in litres. Use $\pi\approx3.14$.'
+  answer_label: 'Write the volume in litres.'
+  check:
+    kind: evaluate
+    expression: 3.14*0.5**2*1*1000
+    answer: '785'
+  answer_text: 'The cylindrical part holds about $785$ L. First $0.25\times3.14=0.785$ m³. Then multiply by 1000, because $1$ m³ is 1000 L.'
+
+- id: jc16-16.5-radius-reason
+  section: '16.5'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A cylinder has a diameter of 10 cm and a height of 6 cm. Explain why you use a radius of 5 cm, and not a diameter of 10 cm, in the volume formula.'
+  answer_label: 'Explain the first step.'
+  check:
+    kind: structured
+    requires: [find-radius, explain-cube]
+    concepts: [radius]
+    points:
+    - id: find-radius
+      text: 'Halve the diameter to get the radius, so $r=5$ cm.'
+      concepts: [radius]
+    - id: explain-cube
+      text: 'The formula is $V=\pi r^2h$, and it uses the radius. Using 10 cm would give four times the correct volume.'
+  answer_text: 'The formula $V=\pi r^2h$ uses the radius. Halve 10 cm to get $r=5$ cm, then work out $V=\pi\times25\times6=150\pi$ cm³. Using 10 cm would give $\pi\times100\times6$, which is four times too large.'

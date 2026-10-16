@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.1 The derivative from first principles — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 5.2
+Work independently. The questions and answers are shown together at the end.
+
+Simplify the average gradient before you let $h$ go to zero. Check that the $h$ cancels
+first, then take the limit.
+
+:::problems chapter-07-practice-7.1
+
+:::answers chapter-07-practice-7.1

@@ -1,0 +1,130 @@
+# Practice set for 7.10 (strand 5, outcome 5.2, Higher). The exponential and trigonometric
+# derivatives are operations, so every one uses `kind: apply` with `op: diff`. The base-a
+# exponential brings a logarithm, and the trigonometric derivatives carry the sign that is
+# the usual trap.
+chapter: 7
+symbols:
+  x: {real: true}
+  t: {real: true}
+problems:
+  - id: lc7-10-exponential
+    section: '7.10'
+    tier: H
+    refs: ['5.2']
+    statement: 'Differentiate $y = e^x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: 'exp(x)'
+      apply: {op: diff, args: [x]}
+      answer: 'exp(x)'
+    answer_text: >-
+      The exponential function is its own derivative: $\dfrac{dy}{dx} = e^x$. The
+      gradient of the curve at any point equals its height there.
+
+  - id: lc7-10-exponential-kx
+    section: '7.10'
+    tier: H
+    refs: ['5.2']
+    statement: 'Differentiate $y = e^{3x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: 'exp(3*x)'
+      apply: {op: diff, args: [x]}
+      answer: '3*exp(3*x)'
+    answer_text: >-
+      The derivative of $e^{kx}$ is $ke^{kx}$. Here $k = 3$, so
+      $\dfrac{dy}{dx} = 3e^{3x}$. The chain rule is why the $3$ appears.
+
+  - id: lc7-10-exponential-negative
+    section: '7.10'
+    tier: H
+    refs: ['5.2']
+    statement: 'Differentiate $y = 5e^{-2x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '5*exp(-2*x)'
+      apply: {op: diff, args: [x]}
+      answer: '-10*exp(-2*x)'
+    answer_text: >-
+      The constant in the exponent is $-2$, so
+      $\dfrac{dy}{dx} = 5 \times (-2)e^{-2x} = -10e^{-2x}$. The derivative is
+      negative, which matches a curve that falls.
+
+  - id: lc7-10-base-a
+    section: '7.10'
+    tier: H
+    refs: ['5.2']
+    statement: 'Differentiate $y = 2^x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '2**x'
+      apply: {op: diff, args: [x]}
+      answer: '2**x*log(2)'
+    answer_text: >-
+      For a base $a$ the derivative is $a^x \ln a$. Here $a = 2$, so
+      $\dfrac{dy}{dx} = 2^x \ln 2$. The factor $\ln 2 \approx 0.693$ is a constant.
+
+  - id: lc7-10-sine
+    section: '7.10'
+    tier: H
+    refs: ['5.2']
+    statement: 'Differentiate $y = \sin x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: 'sin(x)'
+      apply: {op: diff, args: [x]}
+      answer: 'cos(x)'
+    answer_text: >-
+      $\dfrac{dy}{dx} = \cos x$. At $x = 0$ the sine curve has gradient $1$, and
+      $\cos 0 = 1$.
+
+  - id: lc7-10-cosine
+    section: '7.10'
+    tier: H
+    refs: ['5.2']
+    statement: 'Differentiate $y = \cos x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: 'cos(x)'
+      apply: {op: diff, args: [x]}
+      answer: '-sin(x)'
+    answer_text: >-
+      $\dfrac{dy}{dx} = -\sin x$. The minus sign is the usual trap: at $x = 0$ the
+      cosine curve is falling, so its gradient there is $0$, and just after $0$ the
+      gradient is negative.
+
+  - id: lc7-10-sine-kx
+    section: '7.10'
+    tier: H
+    refs: ['5.2']
+    statement: 'Differentiate $y = \sin 4x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: 'sin(4*x)'
+      apply: {op: diff, args: [x]}
+      answer: '4*cos(4*x)'
+    answer_text: >-
+      The derivative of $\sin kx$ is $k\cos kx$. Here $k = 4$, so
+      $\dfrac{dy}{dx} = 4\cos 4x$.
+
+  - id: lc7-10-cosine-kx
+    section: '7.10'
+    tier: H
+    refs: ['5.2']
+    statement: 'Differentiate $y = \cos 3x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: 'cos(3*x)'
+      apply: {op: diff, args: [x]}
+      answer: '-3*sin(3*x)'
+    answer_text: >-
+      The derivative of $\cos kx$ is $-k\sin kx$. Here $k = 3$, so
+      $\dfrac{dy}{dx} = -3\sin 3x$.

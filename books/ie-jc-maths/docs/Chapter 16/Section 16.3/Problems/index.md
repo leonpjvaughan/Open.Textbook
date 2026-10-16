@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.3 Areas of composite figures — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.2
+Work independently. The questions and answers are shown together at the end.
+
+Decide first whether the parts are joined or cut out. Joined parts are added. A hole
+or a cut corner is subtracted. Keep every unit the same while you work.
+
+:::problems chapter-16-practice-16.3
+
+:::answers chapter-16-practice-16.3

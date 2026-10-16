@@ -1,0 +1,183 @@
+# Junior Cycle Mathematics, Chapter 15, section 15.1.
+#
+# The units are checked numerically: `expression` performs the calculation and
+# `answer` is the value the reader is shown, so a wrong fact fails rather than
+# comparing a number with itself. Two questions ask the reader to choose a unit.
+# A choice cannot be proved by a CAS, so those use `structured`, which proves only
+# that the model answer names the unit and gives a reason, and nothing more.
+chapter: 15
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc15-15.1-length-1
+  section: '15.1'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A ruler is marked in millimetres. A pencil starts at the 0 mark and ends at the 70 mm mark. Write the length of the pencil in centimetres.'
+  answer_label: 'Write the length in centimetres.'
+  check:
+    kind: evaluate
+    expression: 70/10
+    answer: '7'
+  answer_text: 'The pencil is $7$ cm long. There are $10$ mm in $1$ cm, and $70\div10=7$. A ruler shows both units, so you can read a length in either one.'
+
+- id: jc15-15.1-length-2
+  section: '15.1'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A classroom is 3 m long. Write its length in centimetres.'
+  answer_label: 'Write the length in centimetres.'
+  check:
+    kind: evaluate
+    expression: 3*100
+    answer: '300'
+  answer_text: 'The room is $300$ cm long. There are $100$ cm in $1$ m, so you multiply by 100. The centimetre is the smaller unit, so you need more of them.'
+
+- id: jc15-15.1-length-3
+  section: '15.1'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A road sign gives a distance of 4 km. Write the distance in metres.'
+  answer_label: 'Write the distance in metres.'
+  check:
+    kind: evaluate
+    expression: 4*1000
+    answer: '4000'
+  answer_text: 'The distance is $4000$ m. There are $1000$ m in $1$ km, so you multiply by 1000. The kilometre suits long distances on a road sign.'
+
+- id: jc15-15.1-mass-1
+  section: '15.1'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A bag of flour has a mass of 2 kg. Write its mass in grams.'
+  answer_label: 'Write the mass in grams.'
+  check:
+    kind: evaluate
+    expression: 2*1000
+    answer: '2000'
+  answer_text: 'The bag has a mass of $2000$ g. There are $1000$ g in $1$ kg, so you multiply by 1000. The gram is the smaller unit, so the number grows.'
+
+- id: jc15-15.1-mass-2
+  section: '15.1'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A small van has a mass of 3 tonnes. Write its mass in kilograms.'
+  answer_label: 'Write the mass in kilograms.'
+  check:
+    kind: evaluate
+    expression: 3*1000
+    answer: '3000'
+  answer_text: 'The van has a mass of $3000$ kg. There are $1000$ kg in $1$ tonne, so you multiply by 1000. A tonne measures a heavy mass such as a van or a lorry.'
+
+- id: jc15-15.1-capacity-1
+  section: '15.1'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A bottle holds 1.5 litres of water. Write its capacity in millilitres.'
+  answer_label: 'Write the capacity in millilitres.'
+  check:
+    kind: evaluate
+    expression: 1.5*1000
+    answer: '1500'
+  answer_text: 'The bottle holds $1500$ mL. There are $1000$ mL in $1$ L, so you multiply by 1000. The millilitre is the smaller unit, so the number grows.'
+
+- id: jc15-15.1-capacity-2
+  section: '15.1'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A measuring jug is marked every 100 mL. Water is poured in up to the sixth mark above zero. Write the volume in millilitres.'
+  answer_label: 'Write the volume in millilitres.'
+  check:
+    kind: evaluate
+    expression: 6*100
+    answer: '600'
+  answer_text: 'The volume is $600$ mL. Six marks at $100$ mL each give $6\times100=600$. Read a scale from the zero line, not from the bottom of the jug.'
+
+- id: jc15-15.1-scale-1
+  section: '15.1'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A kitchen scale shows 0.75 kg. Write the mass in grams.'
+  answer_label: 'Write the mass in grams.'
+  check:
+    kind: evaluate
+    expression: 0.75*1000
+    answer: '750'
+  answer_text: 'The scale shows $750$ g. The display is in kilograms, and there are $1000$ g in $1$ kg, so $0.75\times1000=750$. A kitchen scale often shows both units.'
+
+- id: jc15-15.1-mass-left-1
+  section: '15.1'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A bag of sugar has a mass of 1 kg. A recipe uses 250 g of it. How many grams of sugar are left?'
+  answer_label: 'Find the mass left.'
+  check:
+    kind: evaluate
+    expression: 1000-250
+    answer: '750'
+  answer_text: 'There are $750$ g left. First write the bag in grams: $1$ kg is $1000$ g. Then subtract the $250$ g used, so $1000-250=750$. Both masses must be in the same unit before you subtract.'
+
+- id: jc15-15.1-compare-1
+  section: '15.1'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A desk is 2 m long and a bench is 190 cm long. Show both lengths in centimetres and say which is longer.'
+  answer_label: 'Compare the two lengths.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*100
+      answer: '200'
+    - kind: compare
+      lhs: '200'
+      relation: '>'
+      rhs: '190'
+  answer_text: 'The desk is $200$ cm and the bench is $190$ cm, so the desk is longer. Write both lengths in the same unit before you compare them. The number alone does not tell you the size, because the unit matters too.'
+
+- id: jc15-15.1-choose-1
+  section: '15.1'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A letter is placed on a kitchen scale. Which unit fits its mass: grams, kilograms or tonnes? Give a reason.'
+  answer_label: 'Choose the unit and give a reason.'
+  check:
+    kind: structured
+    requires: [choose-unit, give-reason]
+    concepts: [gram]
+    points:
+    - id: choose-unit
+      text: 'The gram fits the mass of a letter, because a letter is light.'
+      concepts: [gram]
+    - id: give-reason
+      text: 'A kilogram is a thousand grams, so a letter would be a small decimal in kilograms. A tonne is a thousand kilograms, which is far too large for a letter.'
+
+- id: jc15-15.1-choose-2
+  section: '15.1'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A teaspoon is filled with medicine. Which unit fits its capacity: millilitres or litres? Give a reason.'
+  answer_label: 'Choose the unit and give a reason.'
+  check:
+    kind: structured
+    requires: [choose-unit, give-reason]
+    concepts: [millilitre]
+    points:
+    - id: choose-unit
+      text: 'The millilitre fits the capacity of a teaspoon, because a teaspoon holds a small amount.'
+      concepts: [millilitre]
+    - id: give-reason
+      text: 'A litre is a thousand millilitres, so a teaspoon would be a tiny decimal in litres. The millilitre keeps the number readable.'

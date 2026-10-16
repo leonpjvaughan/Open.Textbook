@@ -1,0 +1,172 @@
+# Junior Cycle Mathematics, Chapter 16, section 16.4.
+#
+# The area of a net is a sum of flat areas, so the check is an exact `evaluate` on
+# the whole expression. A pi answer stays exact; a decimal answer uses 3.14 exactly.
+# The last record asks for the width of the rectangle in a cylinder net and a
+# reason, which uses `structured`.
+chapter: 16
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc16-16.4-cuboid-1
+  section: '16.4'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A rectangular solid is 4 cm long, 3 cm wide and 2 cm tall. Find the area of its net.'
+  answer_label: 'Find the area of the net.'
+  check:
+    kind: evaluate
+    expression: 2*(4*3+3*2+4*2)
+    answer: '52'
+  answer_text: 'The net has an area of $52$ cm². The three pairs of faces are $4\times3=12$, $3\times2=6$ and $4\times2=8$. Double the total: $2(12+6+8)=52$.'
+
+- id: jc16-16.4-cuboid-2
+  section: '16.4'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A box is 5 cm long, 4 cm wide and 3 cm tall. Find the area of its net.'
+  answer_label: 'Find the area of the net.'
+  check:
+    kind: evaluate
+    expression: 2*(5*4+4*3+5*3)
+    answer: '94'
+  answer_text: 'The net has an area of $94$ cm². The three pairs are $20$, $12$ and $15$ cm². Their total is $47$, and doubling gives $94$ cm².'
+
+- id: jc16-16.4-cube
+  section: '16.4'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A cube has sides of 5 cm. Find the area of its net.'
+  answer_label: 'Find the area of the net.'
+  check:
+    kind: evaluate
+    expression: 6*5**2
+    answer: '150'
+  answer_text: 'The net has an area of $150$ cm². A cube net has six equal squares. Each is $5^2=25$ cm², so the total is $6\times25=150$.'
+
+- id: jc16-16.4-cube-2
+  section: '16.4'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A cube has sides of 8 cm. Find the area of its net.'
+  answer_label: 'Find the area of the net.'
+  check:
+    kind: evaluate
+    expression: 6*8**2
+    answer: '384'
+  answer_text: 'The net has an area of $384$ cm². Each square face is $8^2=64$ cm². Six faces give $6\times64=384$ cm².'
+
+- id: jc16-16.4-prism
+  section: '16.4'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A triangular prism is 10 cm long. Its cross-section is a triangle with base 6 cm, height 4 cm and the other two sides each 5 cm. Find the area of its net.'
+  answer_label: 'Find the area of the net.'
+  check:
+    kind: evaluate
+    expression: 2*(0.5*6*4)+(6+5+5)*10
+    answer: '184'
+  answer_text: 'The net has an area of $184$ cm². The two triangular ends give $2\times\tfrac{1}{2}\times6\times4=24$ cm². The three rectangles have a total width of $6+5+5=16$ cm and length 10 cm, giving $160$ cm². Add them.'
+
+- id: jc16-16.4-cyl-1
+  section: '16.4'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A cylinder has a radius of 3 cm and a height of 10 cm. Find the area of its net in terms of $\pi$.'
+  answer_label: 'Find the area of the net in terms of pi.'
+  check:
+    kind: evaluate
+    expression: 2*pi*3**2+2*pi*3*10
+    answer: '78*pi'
+  answer_text: 'The net has an area of $78\pi$ cm². The two circular ends give $2\times9\pi=18\pi$ cm². The curved surface unrolls into a rectangle $6\pi$ cm wide and 10 cm tall, giving $60\pi$ cm². Add them.'
+
+- id: jc16-16.4-cyl-2
+  section: '16.4'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A cylinder has a radius of 5 cm and a height of 12 cm. Find the area of its net in terms of $\pi$.'
+  answer_label: 'Find the area of the net in terms of pi.'
+  check:
+    kind: evaluate
+    expression: 2*pi*5**2+2*pi*5*12
+    answer: '170*pi'
+  answer_text: 'The net has an area of $170\pi$ cm². The ends give $2\times25\pi=50\pi$ cm². The rectangle is $10\pi$ cm wide and 12 cm tall, giving $120\pi$ cm². Add them to get $170\pi$ cm².'
+
+- id: jc16-16.4-cyl-3
+  section: '16.4'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A cylinder has a radius of 2 cm and a height of 7 cm. Find the area of its net. Use $\pi\approx3.14$.'
+  answer_label: 'Find the area of the net as a decimal.'
+  check:
+    kind: evaluate
+    expression: 2*3.14*2**2+2*3.14*2*7
+    answer: '113.04'
+  answer_text: 'The net has an area of about $113.04$ cm². The ends give $2\times3.14\times4=25.12$ cm². The rectangle gives $2\times3.14\times2\times7=87.92$ cm². Add them: $25.12+87.92=113.04$ cm².'
+
+- id: jc16-16.4-cyl-width
+  section: '16.4'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A cylinder has a radius of 4 cm. Find the width of the rectangle in its net, in terms of $\pi$.'
+  answer_label: 'Find the width in terms of pi.'
+  check:
+    kind: evaluate
+    expression: 2*pi*4
+    answer: '8*pi'
+  answer_text: 'The width is $8\pi$ cm. The rectangle wraps right around the circular end, so its width is the circumference $2\pi r=2\times\pi\times4=8\pi$ cm. It is not the radius or the diameter.'
+
+- id: jc16-16.4-box-2
+  section: '16.4'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A rectangular solid is 6 m long, 2 m wide and 2 m tall. Find the area of its net.'
+  answer_label: 'Find the area of the net.'
+  check:
+    kind: evaluate
+    expression: 2*(6*2+2*2+6*2)
+    answer: '56'
+  answer_text: 'The net has an area of $56$ m². The three pairs are $6\times2=12$, $2\times2=4$ and $6\times2=12$ m². Their total is $28$, and doubling gives $56$ m².'
+
+- id: jc16-16.4-bed
+  section: '16.4'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'The chapter raised bed is a rectangular solid, 2 m long, 1 m wide and 0.5 m deep. Find the area of its net.'
+  answer_label: 'Find the area of the net.'
+  check:
+    kind: evaluate
+    expression: 2*(2*1+1*0.5+2*0.5)
+    answer: '7'
+  answer_text: 'The net has an area of $7$ m². The pairs are $2\times1=2$, $1\times0.5=0.5$ and $2\times0.5=1$ m². Their total is $3.5$, and doubling gives $7$ m². That is the area of board needed for the bed.'
+
+- id: jc16-16.4-net-reason
+  section: '16.4'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'The net of a cylinder contains a rectangle. Explain what the width of that rectangle is, and why.'
+  answer_label: 'Explain the width of the rectangle.'
+  check:
+    kind: structured
+    requires: [name-width, give-reason]
+    concepts: [circumference]
+    points:
+    - id: name-width
+      text: 'The width is the circumference of the circular end, $2\pi r$.'
+      concepts: [circumference]
+    - id: give-reason
+      text: 'The rectangle wraps right around the circle, so it must be as long as the circumference.'
+  answer_text: 'The width of the rectangle is the circumference of the circular end, $2\pi r$. The rectangle wraps right around the circle when the net folds up, so its width must match the circumference.'

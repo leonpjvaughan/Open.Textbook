@@ -2,15 +2,29 @@
 title: Leaving Certificate Mathematics
 ---
 
-<!-- scaffold:stub -->
-
 # Leaving Certificate Mathematics
 
-A complete, interactive Leaving Certificate Mathematics book for Ireland, covering Foundation, Ordinary and Higher level.
+Welcome. This is a complete, interactive Leaving Certificate Mathematics book for
+Ireland. It covers Foundation, Ordinary and Higher level. Everything here is free
+to read online, and there is nothing to install.
+
+## How to use this book
+
+Each section has three pages:
+
+| Page | What it is for |
+|---|---|
+| **Learn** | The teaching: ideas, worked examples, and something to try |
+| **Practise with help** | Questions with hints you reveal only if you need them |
+| **Practise** | Independent questions, with answers at the end |
+
+Each chapter opens with a problem you will be able to solve by the end. It closes
+with a **Review** that mixes the chapter's methods together and returns to
+earlier chapters.
 
 - 18 chapters, 134 sections
 
-- Tiers: Foundation, Ordinary and Higher, Ordinary and Higher, Higher only
+- Tiers: Foundation, Ordinary and Higher
 
 - Awarding bodies: SEC
 
@@ -34,3 +48,7 @@ A complete, interactive Leaving Certificate Mathematics book for Ireland, coveri
 1. [Chapter 16: Synthetic geometry: quadrilaterals, similarity and area](Chapter 16/index.md)
 1. [Chapter 17: Synthetic geometry: circles](Chapter 17/index.md)
 1. [Chapter 18: Vectors](Chapter 18/index.md)
+
+## Learn more
+
+- [Glossary](Glossary/index.md) — the key words, by strand

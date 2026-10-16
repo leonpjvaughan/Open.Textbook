@@ -1,0 +1,172 @@
+# Junior Cycle Mathematics, Chapter 16, section 16.3.
+#
+# A composite area is an addition or a subtraction of simple areas, so the check is
+# an exact `evaluate` on the whole expression. An answer with pi stays exact
+# (`54-2.25*pi`); a decimal answer uses 3.14 exactly. The last record asks for a
+# method and a reason, which uses `structured`.
+chapter: 16
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc16-16.3-lshape
+  section: '16.3'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'An L-shaped floor is 8 m wide and 5 m tall, with a rectangular notch 3 m wide and 2 m tall missing from a corner. Find the area of the floor.'
+  answer_label: 'Find the area.'
+  check:
+    kind: evaluate
+    expression: 8*5-3*2
+    answer: '34'
+  answer_text: 'The floor has an area of $34$ m². The whole rectangle would be $8\times5=40$ m². The notch is $3\times2=6$ m², so subtract it: $40-6=34$.'
+
+- id: jc16-16.3-house
+  section: '16.3'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A house shape is a rectangle 6 m wide and 4 m tall, with a triangle on top. The triangle has a base of 6 m and a height of 3 m. Find the total area.'
+  answer_label: 'Find the total area.'
+  check:
+    kind: evaluate
+    expression: 6*4+0.5*6*3
+    answer: '33'
+  answer_text: 'The total area is $33$ m². The rectangle is $6\times4=24$ m², and the triangle is $\tfrac{1}{2}\times6\times3=9$ m². Add them: $24+9=33$.'
+
+- id: jc16-16.3-semicircle
+  section: '16.3'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A shape is a rectangle 10 cm wide and 4 cm tall, with a semicircle of radius 2 cm on one short end. Find its area in terms of $\pi$.'
+  answer_label: 'Find the area in terms of pi.'
+  check:
+    kind: evaluate
+    expression: 10*4+0.5*pi*2**2
+    answer: '40+2*pi'
+  answer_text: 'The area is $40+2\pi$ cm². The rectangle is $40$ cm². The semicircle is half of a circle: $\tfrac{1}{2}\times\pi\times2^2=2\pi$. Add the two parts.'
+
+- id: jc16-16.3-hole
+  section: '16.3'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A rectangular card is 10 cm by 6 cm. A circular hole of radius 2 cm is cut out. Find the area that is left, in terms of $\pi$.'
+  answer_label: 'Find the area left in terms of pi.'
+  check:
+    kind: evaluate
+    expression: 10*6-pi*2**2
+    answer: '60-4*pi'
+  answer_text: 'The area left is $60-4\pi$ cm². The card is $60$ cm², and the hole is $\pi\times2^2=4\pi$ cm². The hole is removed, so subtract it.'
+
+- id: jc16-16.3-cut-corner
+  section: '16.3'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A rectangle is 12 cm by 5 cm. A triangular corner with base 4 cm and height 3 cm is cut off. Find the area that is left.'
+  answer_label: 'Find the area left.'
+  check:
+    kind: evaluate
+    expression: 12*5-0.5*4*3
+    answer: '54'
+  answer_text: 'The area left is $54$ cm². The rectangle is $60$ cm², and the triangle is $\tfrac{1}{2}\times4\times3=6$ cm². Subtract the cut corner: $60-6=54$.'
+
+- id: jc16-16.3-two-rect
+  section: '16.3'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'An L-shape is made from a rectangle 7 m by 4 m joined to a rectangle 3 m by 2 m. Find the total area.'
+  answer_label: 'Find the total area.'
+  check:
+    kind: evaluate
+    expression: 7*4+3*2
+    answer: '34'
+  answer_text: 'The total area is $34$ m². The larger rectangle is $7\times4=28$ m², and the smaller is $3\times2=6$ m². Add them: $28+6=34$.'
+
+- id: jc16-16.3-window
+  section: '16.3'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A window is a rectangle 0.8 m wide and 1.2 m tall, with a semicircle of radius 0.4 m on top. Find its area in terms of $\pi$.'
+  answer_label: 'Find the area in terms of pi.'
+  check:
+    kind: evaluate
+    expression: 0.8*1.2+0.5*pi*0.4**2
+    answer: '0.96+0.08*pi'
+  answer_text: 'The area is $0.96+0.08\pi$ m². The rectangle is $0.8\times1.2=0.96$ m². The semicircle is $\tfrac{1}{2}\times\pi\times0.4^2=0.08\pi$ m². The radius 0.4 m is half of the width 0.8 m, so the semicircle fits.'
+
+- id: jc16-16.3-circ-hole
+  section: '16.3'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A rectangular lawn is 10 m by 5 m. A circular flower bed of radius 1 m is dug inside it. Find the grass area that is left. Use $\pi\approx3.14$.'
+  answer_label: 'Find the grass area.'
+  check:
+    kind: evaluate
+    expression: 10*5-3.14*1**2
+    answer: '46.86'
+  answer_text: 'The grass area is about $46.86$ m². The lawn is $50$ m², and the bed is $3.14\times1^2=3.14$ m². Subtract the bed: $50-3.14=46.86$.'
+
+- id: jc16-16.3-rect-tri
+  section: '16.3'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A shape is a rectangle 8 m wide and 4 m tall, with a triangle of base 8 m and height 3 m on top. Find the total area.'
+  answer_label: 'Find the total area.'
+  check:
+    kind: evaluate
+    expression: 8*4+0.5*8*3
+    answer: '44'
+  answer_text: 'The total area is $44$ m². The rectangle is $8\times4=32$ m², and the triangle is $\tfrac{1}{2}\times8\times3=12$ m². Add them: $32+12=44$.'
+
+- id: jc16-16.3-quarter
+  section: '16.3'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A square has sides of 6 cm. A quarter-circle of radius 6 cm is cut from one corner. Find the area that is left, in terms of $\pi$.'
+  answer_label: 'Find the area left in terms of pi.'
+  check:
+    kind: evaluate
+    expression: 6*6-0.25*pi*6**2
+    answer: '36-9*pi'
+  answer_text: 'The area left is $36-9\pi$ cm². The square is $36$ cm². A quarter-circle is one quarter of a full circle: $\tfrac{1}{4}\times\pi\times6^2=9\pi$ cm². Subtract it.'
+
+- id: jc16-16.3-planted
+  section: '16.3'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'The chapter plot is a rectangle 10 m by 6 m. A triangular bed has an area of 6 m², and a circular pond has an area of $2.25\pi$ m². Find the planted area in terms of $\pi$.'
+  answer_label: 'Find the planted area in terms of pi.'
+  check:
+    kind: evaluate
+    expression: 10*6-6-pi*1.5**2
+    answer: '54-2.25*pi'
+  answer_text: 'The planted area is $54-2.25\pi$ m². The plot is $60$ m². Subtract the bed, $6$ m², and the pond, $2.25\pi$ m². The two beds are removed from the plot, so subtract both.'
+
+- id: jc16-16.3-method
+  section: '16.3'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A rectangular sheet has a circular hole cut out of it. Explain how you find the area of the sheet that is left.'
+  answer_label: 'Explain the method.'
+  check:
+    kind: structured
+    requires: [find-whole, subtract-hole]
+    concepts: [subtract]
+    points:
+    - id: find-whole
+      text: 'Find the area of the whole rectangle, using length times width.'
+      concepts: [subtract]
+    - id: subtract-hole
+      text: 'Find the area of the circle, $\pi r^2$, and subtract it from the rectangle.'
+  answer_text: 'Find the area of the whole rectangle first, using length times width. Then find the area of the circular hole, $\pi r^2$. The hole is removed, so subtract the circle from the rectangle.'

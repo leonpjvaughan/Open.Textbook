@@ -2,11 +2,26 @@
 title: Leaving Certificate Applied Mathematics
 ---
 
-<!-- scaffold:stub -->
-
 # Leaving Certificate Applied Mathematics
 
-A complete, interactive Leaving Certificate Applied Mathematics book for Ireland, covering Ordinary and Higher level, with the modelling process at its centre.
+Welcome. This is a complete, interactive Leaving Certificate Applied Mathematics
+book for Ireland. It covers Ordinary and Higher level, with the modelling process
+at its centre. Everything here is free to read online, and there is nothing to
+install.
+
+## How to use this book
+
+Each section has three pages:
+
+| Page | What it is for |
+|---|---|
+| **Learn** | The teaching: ideas, worked examples, and something to try |
+| **Practise with help** | Questions with hints you reveal only if you need them |
+| **Practise** | Independent questions, with answers at the end |
+
+Each chapter opens with a problem you will be able to solve by the end. It closes
+with a **Review** that mixes the chapter's methods together and returns to
+earlier chapters.
 
 - 9 chapters, 67 sections
 
@@ -25,3 +40,7 @@ A complete, interactive Leaving Certificate Applied Mathematics book for Ireland
 1. [Chapter 7: Circular motion and oscillation](Chapter 7/index.md)
 1. [Chapter 8: Modelling a changing world](Chapter 8/index.md)
 1. [Chapter 9: The modelling project](Chapter 9/index.md)
+
+## Learn more
+
+- [Glossary](Glossary/index.md) — the key words, by strand

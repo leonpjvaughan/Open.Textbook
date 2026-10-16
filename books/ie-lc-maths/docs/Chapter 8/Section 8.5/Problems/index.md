@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.5 Integration by substitution — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 5.2
+Work independently. The questions and answers are shown together at the end.
+
+Choose the inner function first and write down $du$. Rewrite the whole integral, including
+$dx$, before you integrate. For a definite integral, change the limits at the same time.
+
+:::problems chapter-08-practice-8.5
+
+:::answers chapter-08-practice-8.5

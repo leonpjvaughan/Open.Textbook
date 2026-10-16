@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.9 Curve sketching — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 5.2
+Work independently. The questions and answers are shown together at the end.
+
+Find the features in order: intercepts, stationary points, then concavity. Label every
+feature you mark on a sketch.
+
+:::problems chapter-07-practice-7.9
+
+:::answers chapter-07-practice-7.9

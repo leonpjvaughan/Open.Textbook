@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.6 The second derivative and concavity — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 5.2
+Work independently. The questions and answers are shown together at the end.
+
+Differentiate twice, and keep the two results separate. State the concavity from the sign of
+the second derivative, not from the sign of the first.
+
+:::problems chapter-07-practice-7.6
+
+:::answers chapter-07-practice-7.6

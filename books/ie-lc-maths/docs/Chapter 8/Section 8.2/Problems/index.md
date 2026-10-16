@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.2 The definite integral and area — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 5.2
+Work independently. The questions and answers are shown together at the end.
+
+Evaluate the antiderivative at the top limit first, then at the bottom limit, and subtract.
+Leave out the constant of integration: it cancels.
+
+:::problems chapter-08-practice-8.2
+
+:::answers chapter-08-practice-8.2

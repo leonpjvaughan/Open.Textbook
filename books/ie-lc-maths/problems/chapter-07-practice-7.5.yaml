@@ -1,0 +1,131 @@
+# Practice set for 7.5 (strand 5, outcome 5.2). The chain rule is an operation, so every
+# derivative uses `kind: apply` with `op: diff`. The rate of change of a composed
+# quantity is the product of the two rates, which the tank uses.
+chapter: 7
+symbols:
+  x: {real: true}
+  t: {real: true}
+  h: {real: true}
+problems:
+  - id: lc7-5-power-five
+    section: '7.5'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = (2x + 3)^5$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '(2*x + 3)**5'
+      apply: {op: diff, args: [x]}
+      answer: '10*(2*x + 3)**4'
+    answer_text: >-
+      Let $u = 2x + 3$, so $\dfrac{du}{dx} = 2$. Then $y = u^5$ and
+      $\dfrac{dy}{du} = 5u^4$. The chain rule gives
+
+      $$\frac{dy}{dx} = 5u^4 \times 2 = 10(2x + 3)^4$$
+
+  - id: lc7-5-root
+    section: '7.5'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = \sqrt{3x + 1}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: 'sqrt(3*x + 1)'
+      apply: {op: diff, args: [x]}
+      answer: '3/(2*sqrt(3*x + 1))'
+    answer_text: >-
+      Write $y = (3x + 1)^{1/2}$. The outer derivative is
+      $\tfrac{1}{2}(3x + 1)^{-1/2}$, and the inner derivative is $3$. Multiplying:
+
+      $$\frac{dy}{dx} = \frac{1}{2}(3x + 1)^{-1/2} \times 3
+      = \frac{3}{2\sqrt{3x + 1}}$$
+
+  - id: lc7-5-square-cubed
+    section: '7.5'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = (x^2 + 1)^3$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '(x**2 + 1)**3'
+      apply: {op: diff, args: [x]}
+      answer: '6*x*(x**2 + 1)**2'
+    answer_text: >-
+      Let $u = x^2 + 1$, so $\dfrac{du}{dx} = 2x$. Then
+
+      $$\frac{dy}{dx} = 3(x^2 + 1)^2 \times 2x = 6x(x^2 + 1)^2$$
+
+  - id: lc7-5-negative-inner
+    section: '7.5'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = (1 - 4x)^3$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '(1 - 4*x)**3'
+      apply: {op: diff, args: [x]}
+      answer: '-12*(1 - 4*x)**2'
+    answer_text: >-
+      The outer derivative is $3(1 - 4x)^2$, and the inner derivative is $-4$. So
+
+      $$\frac{dy}{dx} = 3(1 - 4x)^2 \times (-4) = -12(1 - 4x)^2$$
+
+      The negative inner derivative makes the whole derivative negative.
+
+  - id: lc7-5-linear-fourth
+    section: '7.5'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = (5x - 2)^4$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '(5*x - 2)**4'
+      apply: {op: diff, args: [x]}
+      answer: '20*(5*x - 2)**3'
+    answer_text: >-
+      The outer derivative is $4(5x - 2)^3$, and the inner derivative is $5$. So
+
+      $$\frac{dy}{dx} = 4(5x - 2)^3 \times 5 = 20(5x - 2)^3$$
+
+  - id: lc7-5-tank-height
+    section: '7.5'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      The tank is a cylinder, so its volume and height are linked by $V = 4\pi h$.
+      At $t = 4$ minutes the volume is rising at $V'(4) = 48$ litres per minute. Use
+      the chain rule to work out $\dfrac{dh}{dt}$ at that instant.
+    answer_label: 'The rate of rise of the water'
+    check: {kind: evaluate, expression: '48/(4*pi)', answer: '12/pi'}
+    answer_text: >-
+      From $V = 4\pi h$ we get $\dfrac{dV}{dh} = 4\pi$. The chain rule says
+
+      $$\frac{dV}{dt} = \frac{dV}{dh} \times \frac{dh}{dt}$$
+
+      so $\dfrac{dh}{dt} = \dfrac{48}{4\pi} = \dfrac{12}{\pi}$ units per minute.
+
+  - id: lc7-5-rule-statement
+    section: '7.5'
+    tier: O
+    refs: ['5.2']
+    statement: 'State the chain rule for $y$ a function of $u$, where $u$ is a function of $x$.'
+    answer_label: 'The chain rule'
+    check:
+      kind: structured
+      requires: [product-of-rates]
+      concepts: [chain-rule, rates-multiply]
+      points:
+        - id: product-of-rates
+          text: >-
+            dy/dx equals dy/du times du/dx, so the two rates multiply
+          concepts: [chain-rule, rates-multiply]
+    answer_text: >-
+      $$\frac{dy}{dx} = \frac{dy}{du} \times \frac{du}{dx}$$
+
+      If $y$ changes twice as fast as $u$, and $u$ changes three times as fast as $x$,
+      then $y$ changes six times as fast as $x$. The rates multiply.

@@ -1,0 +1,184 @@
+# Junior Cycle Mathematics, Chapter 15, section 15.4.
+#
+# An estimate is not a single exact number, so an estimate is proved with
+# `between`: the value must lie inside the interval the record declares. That is
+# honest, and it is all a machine can prove about an estimate. A measurement
+# rounded to a sensible accuracy is proved with `rounded`, and a choice of unit
+# with `structured`, which proves the model answer names the unit and gives a
+# reason and nothing more.
+chapter: 15
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc15-15.4-pace
+  section: '15.4'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A pupil takes a pace of about 0.75 m. Estimate the length of a corridor that takes 60 paces. Give your answer in metres.'
+  answer_label: 'Estimate the length of the corridor.'
+  check:
+    kind: evaluate
+    expression: 0.75*60
+    answer: '45'
+  answer_text: 'The corridor is about $45$ m long. Multiply the length of one pace by the number of paces: $0.75\times60=45$. An estimate is a sensible answer, not an exact one.'
+
+- id: jc15-15.4-books
+  section: '15.4'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Eight identical textbooks each have a mass of about 0.4 kg. Estimate the total mass in kilograms.'
+  answer_label: 'Estimate the total mass.'
+  check:
+    kind: evaluate
+    expression: 8*0.4
+    answer: '3.2'
+  answer_text: 'The books have a total mass of about $3.2$ kg. Each mass is rounded to one decimal place, so the total is given the same way. A mass of about $3$ kg is a sensible check.'
+
+- id: jc15-15.4-tap
+  section: '15.4'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A tap fills a 2 litre bottle in 10 seconds. Estimate how much water flows from the tap in 1 minute. Give your answer in millilitres.'
+  answer_label: 'Estimate the volume in millilitres.'
+  check:
+    kind: evaluate
+    expression: 2000/10*60
+    answer: '12000'
+  answer_text: 'About $12000$ mL flows in one minute, which is $12$ litres. In 10 seconds the tap gives $2000$ mL, so in 60 seconds it gives six times as much. Check the units: the question asks for millilitres.'
+
+- id: jc15-15.4-pencils
+  section: '15.4'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A pencil is about 18 cm long. Estimate the total length of 5 pencils placed end to end. Give your answer in metres.'
+  answer_label: 'Estimate the total length in metres.'
+  check:
+    kind: evaluate
+    expression: 18*5/100
+    answer: '0.9'
+  answer_text: 'The pencils reach about $0.9$ m. Five pencils are $18\times5=90$ cm, and $90\div100=0.9$ m. The question asks for metres, so convert the centimetres at the end.'
+
+- id: jc15-15.4-door
+  section: '15.4'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Estimate the height of a classroom door in metres. Choose a value that is sensible for a door.'
+  answer_label: 'Estimate the height of the door.'
+  check:
+    kind: between
+    low: '1.5'
+    value: '2'
+    high: '2.5'
+  answer_text: 'A sensible estimate is $2$ m. A door is taller than most people, and an adult is about $1.8$ m. An estimate of $2$ m sits between $1.5$ m and $2.5$ m, which is the range a door can reasonably take.'
+
+- id: jc15-15.4-mug
+  section: '15.4'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Estimate the capacity of a mug in millilitres. Choose a value that is sensible for a mug.'
+  answer_label: 'Estimate the capacity of the mug.'
+  check:
+    kind: between
+    low: '150'
+    value: '300'
+    high: '500'
+  answer_text: 'A sensible estimate is $300$ mL. A can of drink holds $330$ mL, and a mug holds about the same. An estimate of $300$ mL sits between $150$ mL and $500$ mL.'
+
+- id: jc15-15.4-bag
+  section: '15.4'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Estimate the mass of a full school bag in kilograms. Choose a value that is sensible for a bag.'
+  answer_label: 'Estimate the mass of the bag.'
+  check:
+    kind: between
+    low: '2'
+    value: '5'
+    high: '12'
+  answer_text: 'A sensible estimate is $5$ kg. A school bag holds books, a laptop and a bottle of water. An estimate of $5$ kg sits between $2$ kg for a light bag and $12$ kg for a very heavy one.'
+
+- id: jc15-15.4-round-m
+  section: '15.4'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A table is measured as 1.47 m long. Write the length rounded to the nearest 0.1 m.'
+  answer_label: 'Round the length to the nearest 0.1 m.'
+  check:
+    kind: rounded
+    value: '1.47'
+    rounded: '1.5'
+    to: '0.1'
+  answer_text: 'The length is $1.5$ m to the nearest 0.1 m. The digit after the 4 is 7, which is 5 or more, so the 4 goes up to 5. A length measured to the centimetre does not need to be reported to the millimetre.'
+
+- id: jc15-15.4-round-kg
+  section: '15.4'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A bag has a mass of 3.62 kg. Write the mass rounded to the nearest 0.1 kg.'
+  answer_label: 'Round the mass to the nearest 0.1 kg.'
+  check:
+    kind: rounded
+    value: '3.62'
+    rounded: '3.6'
+    to: '0.1'
+  answer_text: 'The mass is $3.6$ kg to the nearest 0.1 kg. The digit after the 6 is 2, which is less than 5, so the 6 stays. Reporting $3.62$ kg suggests more accuracy than the scale can give.'
+
+- id: jc15-15.4-round-over
+  section: '15.4'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A pupil estimates the length of a hall as 12.375 m. Write the estimate rounded to the nearest 0.1 m.'
+  answer_label: 'Round the estimate to the nearest 0.1 m.'
+  check:
+    kind: rounded
+    value: '12.375'
+    rounded: '12.4'
+    to: '0.1'
+  answer_text: 'The estimate is $12.4$ m to the nearest 0.1 m. The digit after the 3 is 7, so the 3 goes up to 4. An estimate cannot be known to the millimetre, so the extra digits go.'
+
+- id: jc15-15.4-choose-car
+  section: '15.4'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Which unit fits the mass of a car: grams, kilograms or tonnes? Give a reason.'
+  answer_label: 'Choose the unit and give a reason.'
+  check:
+    kind: structured
+    requires: [choose-unit, give-reason]
+    concepts: [kilogram]
+    points:
+    - id: choose-unit
+      text: 'The kilogram fits the mass of a car, because a car is heavy but its mass is only a few thousand kilograms.'
+      concepts: [kilogram]
+    - id: give-reason
+      text: 'In grams the mass would be millions, which is hard to read. A tonne is a thousand kilograms, so a small car is about one tonne.'
+
+- id: jc15-15.4-choose-bath
+  section: '15.4'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Which unit fits the capacity of a bath: millilitres or litres? Give a reason.'
+  answer_label: 'Choose the unit and give a reason.'
+  check:
+    kind: structured
+    requires: [choose-unit, give-reason]
+    concepts: [litre]
+    points:
+    - id: choose-unit
+      text: 'The litre fits the capacity of a bath, because a bath holds a large amount of water.'
+      concepts: [litre]
+    - id: give-reason
+      text: 'In millilitres the capacity would be hundreds of thousands, which is hard to read. A bath holds about one hundred and fifty litres.'

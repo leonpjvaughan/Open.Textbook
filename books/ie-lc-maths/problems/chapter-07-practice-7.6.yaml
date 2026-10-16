@@ -1,0 +1,137 @@
+# Practice set for 7.6 (strand 5, outcome 5.2). The second derivative is a differentiation
+# applied twice, so the checks use `kind: apply` with `op: diff` and compare the second
+# derivative directly. Concavity is an inequality on f''. The meaning of f'' is a written
+# argument and uses `structured`.
+chapter: 7
+symbols:
+  x: {real: true}
+  t: {real: true}
+problems:
+  - id: lc7-6-quartic
+    section: '7.6'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find $\dfrac{d^2y}{dx^2}$ for $y = x^4 - 2x^2$.'
+    answer_label: 'The second derivative'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: 'x**4 - 2*x**2', apply: {op: diff, args: [x]}, answer: '4*x**3 - 4*x'}
+        - {kind: apply, expression: '4*x**3 - 4*x', apply: {op: diff, args: [x]}, answer: '12*x**2 - 4'}
+    answer_text: >-
+      Differentiate once: $\dfrac{dy}{dx} = 4x^3 - 4x$. Differentiate again:
+
+      $$\frac{d^2y}{dx^2} = 12x^2 - 4$$
+
+  - id: lc7-6-cubic
+    section: '7.6'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find $\dfrac{d^2y}{dx^2}$ for $y = 2x^3 - 3x^2 + 5$.'
+    answer_label: 'The second derivative'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: '2*x**3 - 3*x**2 + 5', apply: {op: diff, args: [x]}, answer: '6*x**2 - 6*x'}
+        - {kind: apply, expression: '6*x**2 - 6*x', apply: {op: diff, args: [x]}, answer: '12*x - 6'}
+    answer_text: >-
+      First derivative: $\dfrac{dy}{dx} = 6x^2 - 6x$. Second derivative:
+
+      $$\frac{d^2y}{dx^2} = 12x - 6$$
+
+  - id: lc7-6-cubic-factorised
+    section: '7.6'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find $\dfrac{d^2y}{dx^2}$ for $y = x^3 - 6x^2 + 9x$.'
+    answer_label: 'The second derivative'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: 'x**3 - 6*x**2 + 9*x', apply: {op: diff, args: [x]}, answer: '3*x**2 - 12*x + 9'}
+        - {kind: apply, expression: '3*x**2 - 12*x + 9', apply: {op: diff, args: [x]}, answer: '6*x - 12'}
+    answer_text: >-
+      Differentiate once: $\dfrac{dy}{dx} = 3x^2 - 12x + 9$. Differentiate again:
+
+      $$\frac{d^2y}{dx^2} = 6x - 12$$
+
+  - id: lc7-6-tank-second
+    section: '7.6'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      The tank volume is $V(t) = 12t^2 - t^3$ and its rate is $V'(t) = 24t - 3t^2$.
+      Find $V''(t)$.
+    answer_label: 'The second derivative'
+    check:
+      kind: apply
+      expression: '24*t - 3*t**2'
+      apply: {op: diff, args: [t]}
+      answer: '24 - 6*t'
+    answer_text: >-
+      Differentiate the rate: $V''(t) = 24 - 6t$. This measures how quickly the rate
+      itself is changing.
+
+  - id: lc7-6-tank-second-four
+    section: '7.6'
+    tier: O
+    refs: ['5.2']
+    statement: 'Work out $V''(4)$ for the tank.'
+    answer_label: 'The second derivative at four minutes'
+    check: {kind: evaluate, expression: '24 - 6*4', answer: '0'}
+    answer_text: >-
+      $V''(4) = 24 - 24 = 0$. The rate is neither rising nor falling at $t = 4$, which
+      is where the rate reaches its greatest value.
+
+  - id: lc7-6-tank-concave
+    section: '7.6'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      For the tank, $V''(t) = 24 - 6t$. Find the values of $t$ for which the graph of
+      $V$ is concave up.
+    answer_label: 'Where the graph is concave up'
+    check:
+      kind: inequality
+      variable: t
+      inequality: '24 - 6*t > 0'
+      answer: 'Interval.open(-oo, 4)'
+    answer_text: >-
+      The graph is concave up when $V''(t) > 0$:
+
+      $$24 - 6t > 0 \qquad 24 > 6t \qquad t < 4$$
+
+      So the graph is concave up for $t < 4$ and concave down for $t > 4$. The point
+      $t = 4$ is where the concavity changes.
+
+  - id: lc7-6-meaning
+    section: '7.6'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Explain what the sign of the second derivative tells you about the graph of a
+      function.
+    answer_label: 'What the sign means'
+    check:
+      kind: structured
+      requires: [positive, negative]
+      concepts: [concave-up, concave-down]
+      points:
+        - id: positive
+          text: >-
+            when f'' is positive the gradient is increasing, so the curve is concave up
+            and bends upwards like a cup
+          concepts: [concave-up]
+        - id: negative
+          text: >-
+            when f'' is negative the gradient is decreasing, so the curve is concave down
+            and bends downwards like a cap
+          concepts: [concave-down]
+    answer_text: >-
+      The second derivative is the rate of change of the gradient. When $f''(x) > 0$ the
+      gradient is increasing, so the curve is **concave up** and bends upwards like a
+      cup. When $f''(x) < 0$ the gradient is decreasing, so the curve is **concave
+      down** and bends downwards like a cap.
+
+      The second derivative says nothing directly about whether the function is rising
+      or falling. A curve can rise while bending downwards.

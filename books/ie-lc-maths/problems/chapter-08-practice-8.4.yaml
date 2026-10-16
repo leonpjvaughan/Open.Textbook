@@ -1,0 +1,199 @@
+# Practice set for 8.4 (strand 5, outcome 5.2). A region that crosses the x-axis is
+# split at the crossing, and each piece is proved as an exact definite integral. The
+# total area is the sum of the sizes of the pieces, so the sum is stated in the answer
+# text after both pieces are proved. The chapter problem's tank drains below the axis
+# after four minutes.
+chapter: 8
+symbols:
+  x: {real: true}
+  t: {real: true}
+problems:
+  - id: lc8-4-above-axis
+    section: '8.4'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Find the area of the region bounded by the curve $y = x^2$, the $x$-axis and the
+      lines $x = 0$ and $x = 2$.
+    answer_label: 'The area'
+    check:
+      kind: apply
+      expression: 'x**2'
+      apply: {op: integrate, args: [x, '0', '2']}
+      answer: '8/3'
+    answer_text: >-
+      The curve lies above the axis on this interval, so the area is the definite
+      integral:
+
+      $$\text{Area} = \int_0^2 x^2\,dx = \left[\frac{x^3}{3}\right]_0^2 = \frac{8}{3}$$
+
+      The area is $\dfrac{8}{3}$ square units.
+
+  - id: lc8-4-shifted-curve
+    section: '8.4'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Find the area of the region bounded by the curve $y = x^2 - 1$ and the $x$-axis
+      between $x = 1$ and $x = 2$.
+    answer_label: 'The area'
+    check:
+      kind: apply
+      expression: 'x**2 - 1'
+      apply: {op: integrate, args: [x, '1', '2']}
+      answer: '4/3'
+    answer_text: >-
+      The curve crosses the axis at $x = 1$, and it is above the axis between $1$ and
+      $2$. The area is
+
+      $$\int_1^2 (x^2 - 1)\,dx = \left[\frac{x^3}{3} - x\right]_1^2
+      = \left(\frac{8}{3} - 2\right) - \left(\frac{1}{3} - 1\right)
+      = \frac{2}{3} + \frac{2}{3} = \frac{4}{3}$$
+
+  - id: lc8-4-crossing
+    section: '8.4'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Find the total area of the region bounded by the curve $y = x^2 - 4$ and the
+      $x$-axis between $x = 0$ and $x = 3$.
+    answer_label: 'The total area'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: 'x**2 - 4', apply: {op: integrate, args: [x, '0', '2']}, answer: '-16/3'}
+        - {kind: apply, expression: 'x**2 - 4', apply: {op: integrate, args: [x, '2', '3']}, answer: '7/3'}
+        - {kind: evaluate, expression: '16/3 + 7/3', answer: '23/3'}
+    answer_text: >-
+      The curve crosses the axis where $x^2 - 4 = 0$, that is at $x = 2$. Split the
+      region there.
+
+      From $x = 0$ to $x = 2$ the curve is below the axis:
+
+      $$\int_0^2 (x^2 - 4)\,dx = \left[\frac{x^3}{3} - 4x\right]_0^2
+      = \frac{8}{3} - 8 = -\frac{16}{3}$$
+
+      The area of that piece is $\dfrac{16}{3}$. From $x = 2$ to $x = 3$ the curve is
+      above the axis:
+
+      $$\int_2^3 (x^2 - 4)\,dx = \left[\frac{x^3}{3} - 4x\right]_2^3
+      = (9 - 12) - \left(\frac{8}{3} - 8\right) = -3 + \frac{16}{3} = \frac{7}{3}$$
+
+      The total area is the sum of the two sizes:
+
+      $$\frac{16}{3} + \frac{7}{3} = \frac{23}{3}$$
+
+  - id: lc8-4-cancelling
+    section: '8.4'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      For $y = x^2 - 2x$, work out the signed integral from $x = 0$ to $x = 3$ and the
+      total area between the curve and the axis on the same interval.
+    answer_label: 'The signed integral, then the total area'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: 'x**2 - 2*x', apply: {op: integrate, args: [x, '0', '3']}, answer: '0'}
+        - {kind: apply, expression: 'x**2 - 2*x', apply: {op: integrate, args: [x, '0', '2']}, answer: '-4/3'}
+        - {kind: apply, expression: 'x**2 - 2*x', apply: {op: integrate, args: [x, '2', '3']}, answer: '4/3'}
+        - {kind: evaluate, expression: '4/3 + 4/3', answer: '8/3'}
+    answer_text: >-
+      The curve crosses the axis at $x = 0$ and $x = 2$. On the whole interval,
+
+      $$\int_0^3 (x^2 - 2x)\,dx = \left[\frac{x^3}{3} - x^2\right]_0^3 = (9 - 9) - 0 = 0$$
+
+      The signed integral is $0$ because the two pieces cancel. They do not cancel as
+      areas, though. The piece below the axis has size $\dfrac{4}{3}$:
+
+      $$\int_0^2 (x^2 - 2x)\,dx = \frac{8}{3} - 4 = -\frac{4}{3}$$
+
+      The piece above the axis also has size $\dfrac{4}{3}$:
+
+      $$\int_2^3 (x^2 - 2x)\,dx = (9 - 9) - \left(\frac{8}{3} - 4\right) = \frac{4}{3}$$
+
+      The total area is $\dfrac{4}{3} + \dfrac{4}{3} = \dfrac{8}{3}$ square units.
+
+  - id: lc8-4-symmetric
+    section: '8.4'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Find the area of the region bounded by the curve $y = x^2$ and the $x$-axis
+      between $x = -2$ and $x = 2$.
+    answer_label: 'The area'
+    check:
+      kind: apply
+      expression: 'x**2'
+      apply: {op: integrate, args: [x, '-2', '2']}
+      answer: '16/3'
+    answer_text: >-
+      The curve lies above the axis on the whole interval, so there is no split:
+
+      $$\int_{-2}^{2} x^2\,dx = \left[\frac{x^3}{3}\right]_{-2}^{2}
+      = \frac{8}{3} - \left(-\frac{8}{3}\right) = \frac{16}{3}$$
+
+      A curve above the axis everywhere on the interval needs no splitting.
+
+  - id: lc8-4-tank-drain
+    section: '8.4'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      The tank's rate of change of volume is $r(t) = 12t - 3t^2$ litres per minute.
+      Work out $\displaystyle\int_4^6 r(t)\,dt$ and say what the value means.
+    answer_label: 'The value of the integral'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: '12*t - 3*t**2', apply: {op: integrate, args: [t, '4', '6']}, answer: '-32'}
+        - {kind: evaluate, expression: 'abs(-32)', answer: '32'}
+    answer_text: >-
+      $$\int_4^6 (12t - 3t^2)\,dt = \Big[6t^2 - t^3\Big]_4^6
+      = (216 - 216) - (96 - 64) = 0 - 32 = -32$$
+
+      The value is $-32$ litres. Between $t = 4$ and $t = 6$ the rate is negative, so
+      the volume is falling. The tank loses $32$ litres, which is exactly the $32$
+      litres it gained over the first four minutes, so it returns to empty.
+
+      The graph of $r$ lies below the axis between $t = 4$ and $t = 6$. The area of
+      that region is $32$ square units, the size of the integral. This is the chapter
+      problem continued.
+
+  - id: lc8-4-why-split
+    section: '8.4'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Explain why a region that crosses the $x$-axis must be split before its area is
+      found.
+    answer_label: 'Why the split is needed'
+    check:
+      kind: structured
+      requires: [sign, split, add]
+      concepts: [signed-area, total-area]
+      points:
+        - id: sign
+          text: >-
+            a definite integral is a signed area, so a part of the region below the axis
+            counts as negative
+          concepts: [signed-area]
+        - id: split
+          text: >-
+            find where the curve crosses the axis and split the interval there, so each
+            piece has one sign
+          concepts: [total-area]
+        - id: add
+          text: >-
+            take the size of each piece and add them, so the negative piece does not
+            cancel the positive one
+          concepts: [total-area]
+    answer_text: >-
+      A definite integral measures **signed** area. A part of the region that lies
+      below the axis gives a negative contribution, so it reduces the value of the
+      integral.
+
+      To find the total area you split the interval at each crossing point, so that
+      each piece lies wholly above or wholly below the axis. Then you take the size of
+      each piece and add them. Adding the signed integrals instead would let the
+      negative piece cancel part of the positive one, which is not the area.

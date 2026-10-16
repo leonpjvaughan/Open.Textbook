@@ -14,9 +14,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 22.6 Reviewing the whole course — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 1.1, 1.2, 2.1, 3.1, 4.1
+Work independently. The questions and answers are shown together at the end.
+
+The questions mix the strands, so decide first what each one is asking for: a
+speed, an acceleration, a force, a vector, a graph reading or an argument. Give
+every numerical answer with its unit.
+
+:::problems chapter-22-practice-22.6
+
+:::answers chapter-22-practice-22.6

@@ -1,0 +1,132 @@
+# Practice set for 7.2 (strand 5, outcome 5.2). The power rule and the sum rule turn a
+# polynomial into its derivative, which is an operation, so every derivative uses
+# `kind: apply` with `op: diff`. Negative and fractional powers are rewritten first in
+# the working; the check proves the derivative of the rewritten form.
+chapter: 7
+symbols:
+  x: {real: true}
+  t: {real: true}
+problems:
+  - id: lc7-2-power-seven
+    section: '7.2'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = x^7$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: 'x**7'
+      apply: {op: diff, args: [x]}
+      answer: '7*x**6'
+    answer_text: >-
+      Multiply by the power and reduce the power by one:
+      $\dfrac{dy}{dx} = 7x^6$.
+
+  - id: lc7-2-constant-multiple
+    section: '7.2'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = 5x^4$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '5*x**4'
+      apply: {op: diff, args: [x]}
+      answer: '20*x**3'
+    answer_text: >-
+      The constant $5$ stays in front: $\dfrac{dy}{dx} = 5 \times 4x^3 = 20x^3$.
+
+  - id: lc7-2-polynomial
+    section: '7.2'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = 3x^2 - 4x + 7$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '3*x**2 - 4*x + 7'
+      apply: {op: diff, args: [x]}
+      answer: '6*x - 4'
+    answer_text: >-
+      Differentiate term by term. The derivative of $3x^2$ is $6x$, of $-4x$ is
+      $-4$, and of the constant $7$ is $0$:
+
+      $$\frac{dy}{dx} = 6x - 4$$
+
+  - id: lc7-2-cubic
+    section: '7.2'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = 2x^3 + x$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '2*x**3 + x'
+      apply: {op: diff, args: [x]}
+      answer: '6*x**2 + 1'
+    answer_text: >-
+      The derivative of $2x^3$ is $6x^2$. The term $x$ is $x^1$, and its derivative is
+      $1 \times x^0 = 1$. So $\dfrac{dy}{dx} = 6x^2 + 1$.
+
+  - id: lc7-2-negative-power
+    section: '7.2'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = \dfrac{1}{x^2}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: 'x**(-2)'
+      apply: {op: diff, args: [x]}
+      answer: '-2*x**(-3)'
+    answer_text: >-
+      Write $y = x^{-2}$. Then $\dfrac{dy}{dx} = -2x^{-3} = -\dfrac{2}{x^3}$. The
+      power rule works for negative powers in exactly the same way.
+
+  - id: lc7-2-fractional-power
+    section: '7.2'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = \sqrt{x}$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: 'sqrt(x)'
+      apply: {op: diff, args: [x]}
+      answer: '1/(2*sqrt(x))'
+    answer_text: >-
+      Write $y = x^{1/2}$. Then
+      $\dfrac{dy}{dx} = \tfrac{1}{2}x^{-1/2} = \dfrac{1}{2\sqrt{x}}$. A fractional
+      power follows the same rule.
+
+  - id: lc7-2-tank
+    section: '7.2'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      The volume in the tank after $t$ minutes is $V(t) = 12t^2 - t^3$ litres.
+      Differentiate $V$ to find the rate $V'(t)$.
+    answer_label: 'The rate'
+    check:
+      kind: apply
+      expression: '12*t**2 - t**3'
+      apply: {op: diff, args: [t]}
+      answer: '24*t - 3*t**2'
+    answer_text: >-
+      Differentiate term by term: the derivative of $12t^2$ is $24t$, and the
+      derivative of $t^3$ is $3t^2$. So
+
+      $$V'(t) = 24t - 3t^2$$
+
+      litres per minute.
+
+  - id: lc7-2-tank-rate-four
+    section: '7.2'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Using $V'(t) = 24t - 3t^2$, work out the rate at $t = 4$ minutes.
+    answer_label: 'The rate at four minutes'
+    check: {kind: evaluate, expression: '24*4 - 3*4**2', answer: '48'}
+    answer_text: >-
+      $V'(4) = 24(4) - 3(16) = 96 - 48 = 48$ litres per minute.

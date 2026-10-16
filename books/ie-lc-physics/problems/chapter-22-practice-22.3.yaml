@@ -1,0 +1,145 @@
+# Leaving Certificate Physics, Chapter 22, section 22.3.
+#
+# This bank covers the design of the investigation and the gathering of primary
+# data: independent, dependent and control variables; the reading uncertainty of an
+# instrument; percentage uncertainty; repeats and the uncertainty in a mean; the
+# method; and a worked speed calculation from primary readings.
+#
+# Honest limit: the units oracle proves arithmetic against a declared convention,
+# and `structured` proves presence and order, not the quality of a design.
+chapter: 22
+problems:
+  - id: p22-3-variables
+    section: '22.3'
+    tier: O
+    refs: ['1.4']
+    statement: 'A student investigates how the angle of a solar cell affects the voltage it produces. State the independent variable, the dependent variable and one control variable.'
+    answer_label: 'The variables'
+    check:
+      kind: structured
+      requires: [independent, dependent, control]
+      concepts: [changed, measured, kept-same]
+      points:
+        - id: independent
+          text: 'The independent variable is the angle of the cell, because that is what the student changes.'
+          concepts: [changed]
+        - id: dependent
+          text: 'The dependent variable is the voltage, because that is what the student measures.'
+          concepts: [measured]
+        - id: control
+          text: 'A control variable is the distance from the lamp to the cell, which is kept the same in every trial.'
+          concepts: [kept-same]
+    answer_text: 'The independent variable is the angle of the cell, because the student changes it. The dependent variable is the voltage, because that is what is measured. A control variable is the distance from the lamp, which is kept the same so that it cannot affect the result.'
+  - id: p22-3-mean
+    section: '22.3'
+    tier: O
+    refs: ['1.4']
+    statement: 'A student times the same fall five times and records 0.72 s, 0.70 s, 0.74 s, 0.71 s and 0.73 s. Calculate the mean and the uncertainty as half the range.'
+    answer_label: 'Mean time and its uncertainty'
+    check:
+      kind: uncertainty
+      mean_of: ['0.72', '0.70', '0.74', '0.71', '0.73']
+      convention: half-range
+      answer: '0.72'
+      uncertainty: '0.02'
+    answer_text: 'The mean is $\dfrac{0.72 + 0.70 + 0.74 + 0.71 + 0.73}{5} = 0.72\,\text{s}$. The range is $0.74 - 0.70 = 0.04\,\text{s}$, so the uncertainty is half of that: $0.02\,\text{s}$. The result is $0.72\,\text{s} \pm 0.02\,\text{s}$.'
+  - id: p22-3-reading
+    section: '22.3'
+    tier: O
+    refs: ['1.4']
+    statement: 'A metre stick is marked in millimetres. State the reading uncertainty of a single reading from it, in metres.'
+    answer_label: 'Reading uncertainty'
+    check:
+      kind: dimensions
+      expression: d / 2
+      values:
+        d: {value: '0.001', unit: m}
+      answer: {value: '0.0005', unit: m}
+    answer_text: 'The smallest division is $1\,\text{mm} = 0.001\,\text{m}$. The reading uncertainty is half of the smallest division, which is $\pm 0.0005\,\text{m}$, or $\pm 0.5\,\text{mm}$.'
+  - id: p22-3-percentage
+    section: '22.3'
+    tier: O
+    refs: ['1.4']
+    statement: 'A voltage is measured as 2.50 V with an uncertainty of $\pm 0.05$ V. Calculate the percentage uncertainty in the voltage.'
+    answer_label: 'Percentage uncertainty'
+    check:
+      kind: evaluate
+      expression: 0.05 / 2.50 * 100
+      answer: '2'
+    answer_text: '$\text{percentage uncertainty} = \dfrac{0.05}{2.50} \times 100\% = 2\%$. So the voltage is $2.50\,\text{V} \pm 2\%$.'
+  - id: p22-3-repeat
+    section: '22.3'
+    tier: O
+    refs: ['1.4']
+    statement: 'Explain why a student repeats each reading three times and takes the mean.'
+    answer_label: 'Why repeat a reading'
+    check:
+      kind: structured
+      requires: [random, mean, reliability]
+      concepts: [scatter, average, reliable]
+      points:
+        - id: random
+          text: 'Repeating reduces the effect of random errors, which scatter the readings above and below the true value.'
+          concepts: [scatter]
+        - id: mean
+          text: 'The mean of several readings is a better estimate than any single reading.'
+          concepts: [average]
+        - id: reliability
+          text: 'Repeated readings that agree with one another show that the result is reliable.'
+          concepts: [reliable]
+    answer_text: 'Repeating reduces the effect of random errors, which scatter the readings above and below the true value. The mean of several readings is a better estimate than any single reading. Readings that agree also show that the result is reliable.'
+  - id: p22-3-method
+    section: '22.3'
+    tier: O
+    refs: ['1.4']
+    statement: 'Describe the steps you would take to gather primary data for an investigation into how the drop height of a ball affects its bounce height.'
+    answer_label: 'Gathering the primary data'
+    check:
+      kind: structured
+      requires: [measure, release, repeat]
+      concepts: [instrument, control, repeat]
+      points:
+        - id: measure
+          text: 'Measure the drop height and the bounce height with a metre stick, reading at eye level to avoid parallax.'
+          concepts: [instrument]
+        - id: release
+          text: 'Release the ball from the same height without pushing it, and let it bounce on the same surface each time.'
+          concepts: [control]
+        - id: repeat
+          text: 'Repeat each height three times and record every reading in a table with the quantity and unit in the heading.'
+          concepts: [repeat]
+    answer_text: 'Measure the drop height and the bounce height with a metre stick, reading at eye level. Release the ball from the same height without pushing it, onto the same surface each time. Repeat each height three times and record every reading in a table.'
+  - id: p22-3-speed
+    section: '22.3'
+    tier: O
+    refs: ['1.4']
+    statement: 'A toy car travels 0.60 m in 1.5 s. Calculate its average speed, to the significant figures the data support.'
+    answer_label: 'Average speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: d / t
+          values:
+            d: {value: '0.60', unit: m}
+            t: {value: '1.5', unit: s}
+          answer: {value: '0.4', unit: m/s}
+        - kind: sigfigs
+          value: '0.4'
+          figures: 2
+          answer: '0.40'
+          convention: round-once
+    answer_text: '$v = \dfrac{d}{t} = \dfrac{0.60}{1.5} = 0.40\,\text{m/s}$. Both readings carry two significant figures, so the answer does too.'
+  - id: p22-3-stopwatch
+    section: '22.3'
+    tier: O
+    refs: ['1.4']
+    statement: 'A stopwatch reads to the nearest 0.01 s. State the reading uncertainty of a single timing from it.'
+    answer_label: 'Reading uncertainty'
+    check:
+      kind: dimensions
+      expression: d / 2
+      values:
+        d: {value: '0.01', unit: s}
+      answer: {value: '0.005', unit: s}
+    answer_text: 'The smallest division is $0.01\,\text{s}$, so the reading uncertainty is half of that: $\pm 0.005\,\text{s}$. A single timing is quoted as, for example, $0.42\,\text{s} \pm 0.005\,\text{s}$.'

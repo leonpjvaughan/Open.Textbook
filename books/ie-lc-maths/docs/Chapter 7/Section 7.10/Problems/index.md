@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.10 Differentiating exponential and trigonometric functions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 5.2
+Work independently. The questions and answers are shown together at the end.
+
+Check the sign on every cosine derivative, and multiply in the constant inside the angle.
+For a base other than $e$, the derivative brings $\ln a$.
+
+:::problems chapter-07-practice-7.10
+
+:::answers chapter-07-practice-7.10

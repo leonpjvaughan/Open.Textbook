@@ -1,0 +1,172 @@
+# Junior Cycle Mathematics, Chapter 16, section 16.2.
+#
+# An answer "in terms of pi" is exact, so the check uses `pi` in both the
+# expression and the answer. A decimal answer uses 3.14 exactly, so the check is
+# still an exact rational comparison rather than a tolerance. The last record asks
+# for a reason, which no CAS can prove, so it uses `structured`.
+chapter: 16
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc16-16.2-circ-1
+  section: '16.2'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A circle has a radius of 5 cm. Find its circumference in terms of $\pi$.'
+  answer_label: 'Find the circumference in terms of pi.'
+  check:
+    kind: evaluate
+    expression: 2*pi*5
+    answer: '10*pi'
+  answer_text: 'The circumference is $10\pi$ cm. Use $C=2\pi r$: $2\times\pi\times5=10\pi$. Leaving the answer in terms of $\pi$ keeps it exact.'
+
+- id: jc16-16.2-area-1
+  section: '16.2'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A circle has a radius of 5 cm. Find its area in terms of $\pi$.'
+  answer_label: 'Find the area in terms of pi.'
+  check:
+    kind: evaluate
+    expression: pi*5**2
+    answer: '25*pi'
+  answer_text: 'The area is $25\pi$ cm². Use $A=\pi r^2$: square the radius first, so $5^2=25$, then multiply by $\pi$.'
+
+- id: jc16-16.2-circ-2
+  section: '16.2'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A circle has a diameter of 12 m. Find its circumference in terms of $\pi$.'
+  answer_label: 'Find the circumference in terms of pi.'
+  check:
+    kind: evaluate
+    expression: pi*12
+    answer: '12*pi'
+  answer_text: 'The circumference is $12\pi$ m. Use $C=\pi d$: the diameter is 12 m, so $C=\pi\times12=12\pi$. The diameter is used directly here.'
+
+- id: jc16-16.2-area-2
+  section: '16.2'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A circle has a diameter of 12 m. Find its area in terms of $\pi$.'
+  answer_label: 'Find the area in terms of pi.'
+  check:
+    kind: evaluate
+    expression: pi*6**2
+    answer: '36*pi'
+  answer_text: 'The area is $36\pi$ m². Halve the diameter first, so $r=6$ m. Then $A=\pi\times6^2=36\pi$. Using 12 as the radius would give the wrong answer.'
+
+- id: jc16-16.2-circ-3
+  section: '16.2'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A circle has a radius of 7 cm. Find its circumference. Use $\pi\approx3.14$.'
+  answer_label: 'Find the circumference as a decimal.'
+  check:
+    kind: evaluate
+    expression: 2*3.14*7
+    answer: '43.96'
+  answer_text: 'The circumference is about $43.96$ cm. Use $C=2\pi r$: $2\times3.14\times7=43.96$. Round once, at the end.'
+
+- id: jc16-16.2-area-3
+  section: '16.2'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A circle has a radius of 3 m. Find its area. Use $\pi\approx3.14$.'
+  answer_label: 'Find the area as a decimal.'
+  check:
+    kind: evaluate
+    expression: 3.14*3**2
+    answer: '28.26'
+  answer_text: 'The area is about $28.26$ m². Square the radius first: $3^2=9$. Then $3.14\times9=28.26$. The answer is a surface, so the unit is squared.'
+
+- id: jc16-16.2-area-4
+  section: '16.2'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A circular lid has a radius of 10 cm. Find its area. Use $\pi\approx3.14$.'
+  answer_label: 'Find the area as a decimal.'
+  check:
+    kind: evaluate
+    expression: 3.14*10**2
+    answer: '314'
+  answer_text: 'The area is about $314$ cm². Square the radius: $10^2=100$. Then $3.14\times100=314$. The square of 10 is 100, which makes the multiplication quick.'
+
+- id: jc16-16.2-pond-circ
+  section: '16.2'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'The chapter pond has a radius of 1.5 m. Find its circumference in terms of $\pi$.'
+  answer_label: 'Find the circumference in terms of pi.'
+  check:
+    kind: evaluate
+    expression: 2*pi*1.5
+    answer: '3*pi'
+  answer_text: 'The circumference is $3\pi$ m. Use $C=2\pi r$: $2\times1.5=3$, so the circumference is $3\pi$ m. That is about 9.42 m.'
+
+- id: jc16-16.2-pond-area
+  section: '16.2'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'The chapter pond has a radius of 1.5 m. Find its area in terms of $\pi$.'
+  answer_label: 'Find the area in terms of pi.'
+  check:
+    kind: evaluate
+    expression: pi*1.5**2
+    answer: '2.25*pi'
+  answer_text: 'The area is $2.25\pi$ m². Square the radius: $1.5^2=2.25$. Then multiply by $\pi$. The area is about 7.07 m².'
+
+- id: jc16-16.2-radius
+  section: '16.2'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A circle has a circumference of 62.8 cm. Find its radius. Use $\pi\approx3.14$.'
+  answer_label: 'Find the radius.'
+  check:
+    kind: evaluate
+    expression: 62.8/(2*3.14)
+    answer: '10'
+  answer_text: 'The radius is $10$ cm. Start from $62.8=2\times3.14\times r$, so $62.8=6.28r$ and $r=62.8\div6.28=10$. Check it: $2\times3.14\times10=62.8$ cm.'
+
+- id: jc16-16.2-diameter
+  section: '16.2'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A circular table has a circumference of 31.4 m. Find its diameter. Use $\pi\approx3.14$.'
+  answer_label: 'Find the diameter.'
+  check:
+    kind: evaluate
+    expression: 31.4/3.14
+    answer: '10'
+  answer_text: 'The diameter is $10$ m. Use $C=\pi d$, so $d=31.4\div3.14=10$. The radius would be half of this, which is 5 m.'
+
+- id: jc16-16.2-reason
+  section: '16.2'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A circle has a diameter of 8 cm. Explain why you halve the diameter before you use the formula $A=\pi r^2$.'
+  answer_label: 'Explain the first step.'
+  check:
+    kind: structured
+    requires: [find-radius, explain-square]
+    concepts: [radius]
+    points:
+    - id: find-radius
+      text: 'Halve the diameter to get the radius, so $r=4$ cm.'
+      concepts: [radius]
+    - id: explain-square
+      text: 'The formula squares the radius, not the diameter. Using 8 would give $\pi\times64$ instead of $\pi\times16$.'
+  answer_text: 'The formula squares the radius, not the diameter. Halve 8 cm to get $r=4$ cm, then work out $A=\pi\times4^2=16\pi$ cm². Using 8 cm would give $\pi\times64$ cm², which is four times too big.'

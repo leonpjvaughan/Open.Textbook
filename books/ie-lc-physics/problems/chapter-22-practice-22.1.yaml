@@ -1,0 +1,161 @@
+# Leaving Certificate Physics, Chapter 22, section 22.1.
+#
+# This bank covers reading the SEC brief and turning an interest into a question
+# that can be investigated: what makes a question testable, measurable and
+# manageable; how to refine a broad interest; how to write a testable hypothesis;
+# the difference between a demonstration and an investigation; and the time budget.
+#
+# Honest limit: `structured` proves only that a model answer contains its declared
+# steps and concepts, in order. It does not judge whether the question is a good one.
+chapter: 22
+problems:
+  - id: p22-1-testable
+    section: '22.1'
+    tier: O
+    refs: ['1.3']
+    statement: 'State what makes a question suitable for a scientific investigation.'
+    answer_label: 'A question that can be investigated'
+    check:
+      kind: structured
+      requires: [testable, measurable, manageable]
+      concepts: [variable, instrument, time]
+      points:
+        - id: testable
+          text: 'The question is testable when you can change one thing and measure what happens, so the answer comes from evidence rather than opinion.'
+          concepts: [variable]
+        - id: measurable
+          text: 'It is measurable when the quantity you measure can be read from an instrument, such as a time in seconds or a voltage in volts.'
+          concepts: [instrument]
+        - id: manageable
+          text: 'It is manageable when the readings fit the time, the equipment and the safety rules you have.'
+          concepts: [time]
+    answer_text: 'A suitable question is testable, so one thing can be changed and something else measured; measurable, so the reading comes from an instrument; and manageable, so it fits the time and equipment available.'
+  - id: p22-1-refine
+    section: '22.1'
+    tier: O
+    refs: ['1.3']
+    statement: 'A student is interested in solar panels. Write a testable question for an investigation into solar cells, and state the independent and dependent variables.'
+    answer_label: 'A testable question and its variables'
+    check:
+      kind: structured
+      requires: [question, variables, physics]
+      concepts: [changed, measured, light]
+      points:
+        - id: question
+          text: 'How does the angle of a solar cell to the lamp affect the voltage it produces?'
+          concepts: [changed, measured]
+        - id: variables
+          text: 'The independent variable is the angle of the cell, and the dependent variable is the voltage.'
+          concepts: [changed, measured]
+        - id: physics
+          text: 'The physics is that a cell produces a voltage when light falls on it, and the light reaching the cell depends on the angle.'
+          concepts: [light]
+    answer_text: 'A testable question is: how does the angle of a solar cell to the lamp affect the voltage it produces? The independent variable is the angle and the dependent variable is the voltage. The physics is that the cell produces a voltage from the light falling on it.'
+  - id: p22-1-hypothesis
+    section: '22.1'
+    tier: O
+    refs: ['1.3']
+    statement: 'Write a testable hypothesis for the solar-cell question, and say what physics supports it.'
+    answer_label: 'A testable hypothesis'
+    check:
+      kind: structured
+      requires: [prediction, direction, reason]
+      concepts: [prediction, direction, physics]
+      points:
+        - id: prediction
+          text: 'If the cell faces the lamp directly, then the voltage it produces is largest.'
+          concepts: [prediction]
+        - id: direction
+          text: 'The hypothesis predicts a direction, so the readings can show whether it is right.'
+          concepts: [direction]
+        - id: reason
+          text: 'The physics is that light falling on the cell is spread over a larger area when the cell is turned away from the lamp.'
+          concepts: [physics]
+    answer_text: 'If the cell faces the lamp directly, then the voltage is largest. The hypothesis predicts a direction, so the readings can test it. The physics is that turning the cell away spreads the light over a larger area.'
+  - id: p22-1-demonstration
+    section: '22.1'
+    tier: O
+    refs: ['1.3']
+    statement: 'Explain the difference between a demonstration and an investigation.'
+    answer_label: 'Demonstration and investigation'
+    check:
+      kind: structured
+      requires: [demonstration, investigation, decision]
+      concepts: [known-result, own-measurement, no-variable]
+      points:
+        - id: demonstration
+          text: 'A demonstration shows something that is already known, and the result is not in doubt.'
+          concepts: [known-result]
+        - id: investigation
+          text: 'An investigation answers a question with measurements you take yourself.'
+          concepts: [own-measurement]
+        - id: decision
+          text: 'A demonstration cannot test a hypothesis, because there is no variable for you to change.'
+          concepts: [no-variable]
+    answer_text: 'A demonstration shows something already known, so its result is not in doubt. An investigation answers a question with measurements you take yourself. A demonstration cannot test a hypothesis, because there is no variable to change.'
+  - id: p22-1-phases
+    section: '22.1'
+    tier: O
+    refs: ['1.3']
+    statement: 'Describe the two phases of the Physics In Practice Investigation and say what each one produces.'
+    answer_label: 'The two phases'
+    check:
+      kind: structured
+      requires: [research, experiment, link]
+      concepts: [secondary, primary, hypothesis]
+      points:
+        - id: research
+          text: 'In the research phase you gather, process and evaluate information from secondary sources.'
+          concepts: [secondary]
+        - id: experiment
+          text: 'In the experiment phase you form a hypothesis and gather primary data.'
+          concepts: [primary, hypothesis]
+        - id: link
+          text: 'The knowledge from the research informs the experiment, because it gives a reason for the hypothesis.'
+          concepts: [hypothesis]
+    answer_text: 'In the research phase you gather, process and evaluate information from secondary sources. In the experiment phase you form a hypothesis and gather primary data. The research informs the experiment, because it gives a reason for the hypothesis.'
+  - id: p22-1-time
+    section: '22.1'
+    tier: O
+    refs: ['1.3']
+    statement: 'The investigation is expected to take up to 20 hours. A student plans to spend 25% of the time on research and 45% on the experiment. Calculate the number of hours left for writing the report.'
+    answer_label: 'Hours left for the report'
+    check:
+      kind: evaluate
+      expression: 20 - 20 * 0.25 - 20 * 0.45
+      answer: '6'
+    answer_text: 'Research takes $25\%$ of 20 hours, which is 5 hours, and the experiment takes $45\%$, which is 9 hours. The time left is $20 - 5 - 9 = 6$ hours.'
+  - id: p22-1-units
+    section: '22.1'
+    tier: O
+    refs: ['1.3']
+    statement: 'A student records the distance a toy car travels as 85 cm. Convert it to metres.'
+    answer_label: 'Distance in metres'
+    check:
+      kind: convert
+      value: '85'
+      from: cm
+      to: m
+      answer: '0.85'
+    answer_text: 'There are 100 cm in a metre, so $85\,\text{cm} = \dfrac{85}{100} = 0.85\,\text{m}$.'
+  - id: p22-1-weak
+    section: '22.1'
+    tier: O
+    refs: ['1.3']
+    statement: 'A student asks, "Is physics interesting?" Explain two reasons why this is not a suitable investigation question, and rewrite it as one that is.'
+    answer_label: 'Why the question fails, and a better one'
+    check:
+      kind: structured
+      requires: [opinion, no-variable, rewrite]
+      concepts: [opinion, no-measurement, testable]
+      points:
+        - id: opinion
+          text: 'The question asks for an opinion, so no measurement can settle it.'
+          concepts: [opinion]
+        - id: no-variable
+          text: 'There is nothing to change and nothing to measure, so the investigation would produce no data.'
+          concepts: [no-measurement]
+        - id: rewrite
+          text: 'A better question is: how does the length of a pendulum affect the time for one swing?'
+          concepts: [testable]
+    answer_text: 'The question asks for an opinion, so no measurement can settle it. There is nothing to change and nothing to measure, so it would produce no data. A better question is: how does the length of a pendulum affect the time for one swing?'

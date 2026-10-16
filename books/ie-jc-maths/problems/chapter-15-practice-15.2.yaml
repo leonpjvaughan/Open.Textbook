@@ -1,0 +1,193 @@
+# Junior Cycle Mathematics, Chapter 15, section 15.2.
+#
+# A conversion is proved by `convert`, which parses both units into an exact
+# dimension and an exact factor to SI. It checks the dimensions agree before it
+# compares the numbers, so a metre-to-litre mistake fails even when the digits
+# match. Two records reason with a conversion and are checked as arithmetic.
+chapter: 15
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc15-15.2-km-m
+  section: '15.2'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 3 km to metres.'
+  answer_label: 'Convert 3 km to metres.'
+  check:
+    kind: convert
+    value: '3'
+    from: 'km'
+    to: 'm'
+    answer: '3000'
+  answer_text: 'There are $1000$ m in $1$ km, so $3\times1000=3000$ m. The metre is the smaller unit, so the number is larger.'
+
+- id: jc15-15.2-cm-m
+  section: '15.2'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 250 cm to metres.'
+  answer_label: 'Convert 250 cm to metres.'
+  check:
+    kind: convert
+    value: '250'
+    from: 'cm'
+    to: 'm'
+    answer: '2.5'
+  answer_text: 'There are $100$ cm in $1$ m, so $250\div100=2.5$ m. The metre is the larger unit, so the number is smaller.'
+
+- id: jc15-15.2-kg-g
+  section: '15.2'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 4.5 kg to grams.'
+  answer_label: 'Convert 4.5 kg to grams.'
+  check:
+    kind: convert
+    value: '4.5'
+    from: 'kg'
+    to: 'g'
+    answer: '4500'
+  answer_text: 'There are $1000$ g in $1$ kg, so $4.5\times1000=4500$ g. The gram is the smaller unit, so you multiply.'
+
+- id: jc15-15.2-g-kg
+  section: '15.2'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 3500 g to kilograms.'
+  answer_label: 'Convert 3500 g to kilograms.'
+  check:
+    kind: convert
+    value: '3500'
+    from: 'g'
+    to: 'kg'
+    answer: '3.5'
+  answer_text: 'There are $1000$ g in $1$ kg, so $3500\div1000=3.5$ kg. The kilogram is the larger unit, so you divide.'
+
+- id: jc15-15.2-l-ml
+  section: '15.2'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 2.5 litres to millilitres.'
+  answer_label: 'Convert 2.5 litres to millilitres.'
+  check:
+    kind: convert
+    value: '2.5'
+    from: 'L'
+    to: 'mL'
+    answer: '2500'
+  answer_text: 'There are $1000$ mL in $1$ L, so $2.5\times1000=2500$ mL. The millilitre is the smaller unit, so you multiply.'
+
+- id: jc15-15.2-ml-l
+  section: '15.2'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 750 mL to litres.'
+  answer_label: 'Convert 750 mL to litres.'
+  check:
+    kind: convert
+    value: '750'
+    from: 'mL'
+    to: 'L'
+    answer: '0.75'
+  answer_text: 'There are $1000$ mL in $1$ L, so $750\div1000=0.75$ L. The litre is the larger unit, so you divide. Writing $0.75$ L is neater than writing $750$ mL.'
+
+- id: jc15-15.2-t-kg
+  section: '15.2'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 1.2 tonnes to kilograms.'
+  answer_label: 'Convert 1.2 tonnes to kilograms.'
+  check:
+    kind: convert
+    value: '1.2'
+    from: 't'
+    to: 'kg'
+    answer: '1200'
+  answer_text: 'There are $1000$ kg in $1$ tonne, so $1.2\times1000=1200$ kg. The kilogram is the smaller unit, so you multiply.'
+
+- id: jc15-15.2-m-mm
+  section: '15.2'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 0.4 m to millimetres.'
+  answer_label: 'Convert 0.4 m to millimetres.'
+  check:
+    kind: convert
+    value: '0.4'
+    from: 'm'
+    to: 'mm'
+    answer: '400'
+  answer_text: 'There are $1000$ mm in $1$ m, so $0.4\times1000=400$ mm. The millimetre is much smaller than the metre, so the number is much larger.'
+
+- id: jc15-15.2-m2-cm2
+  section: '15.2'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 5.5 square metres to square centimetres.'
+  answer_label: 'Convert 5.5 square metres to square centimetres.'
+  check:
+    kind: convert
+    value: '5.5'
+    from: 'm^2'
+    to: 'cm^2'
+    answer: '55000'
+  answer_text: 'There are $100$ cm in $1$ m, so there are $100\times100=10000$ cm$^2$ in $1$ m$^2$. Then $5.5\times10000=55000$ cm$^2$. The factor is squared because the unit is squared.'
+
+- id: jc15-15.2-l-cm3
+  section: '15.2'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 3.5 litres to cubic centimetres.'
+  answer_label: 'Convert 3.5 litres to cubic centimetres.'
+  check:
+    kind: convert
+    value: '3.5'
+    from: 'L'
+    to: 'cm^3'
+    answer: '3500'
+  answer_text: 'One millilitre is one cubic centimetre, so $1$ L is $1000$ cm$^3$. Then $3.5\times1000=3500$ cm$^3$. The litre is the larger unit, so the number grows.'
+
+- id: jc15-15.2-m-km
+  section: '15.2'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'Convert 2500 m to kilometres.'
+  answer_label: 'Convert 2500 m to kilometres.'
+  check:
+    kind: convert
+    value: '2500'
+    from: 'm'
+    to: 'km'
+    answer: '2.5'
+  answer_text: 'There are $1000$ m in $1$ km, so $2500\div1000=2.5$ km. The kilometre is the larger unit, so the number is smaller.'
+
+- id: jc15-15.2-glasses
+  section: '15.2'
+  tier: O
+  refs:
+  - GT.1
+  statement: 'A bottle holds 1.5 litres. How many 250 mL glasses can it fill?'
+  answer_label: 'Find the number of glasses.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1.5*1000
+      answer: '1500'
+    - kind: evaluate
+      expression: 1500/250
+      answer: '6'
+  answer_text: 'The bottle holds $1500$ mL, and $1500\div250=6$, so it fills $6$ glasses. Write both amounts in the same unit before you divide.'

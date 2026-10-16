@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.4 Nets of solids — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.2
+Work independently. The questions and answers are shown together at the end.
+
+Sketch the net before you calculate. Count every face, then find the area of each
+face. A missing face is the most common mistake in this section.
+
+:::problems chapter-16-practice-16.4
+
+:::answers chapter-16-practice-16.4

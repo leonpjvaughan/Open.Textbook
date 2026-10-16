@@ -1,0 +1,139 @@
+# Practice set for 7.7 (strand 5, outcome 5.2). A rate of change is a derivative, so the
+# symbolic ones use `kind: apply` with `op: diff` and the numerical ones use `evaluate`.
+# The average rate over an interval is a quotient of two values of the function, which
+# `evaluate` proves exactly. The meaning of the units is a written argument.
+chapter: 7
+symbols:
+  x: {real: true}
+  t: {real: true}
+  r: {real: true, positive: true}
+problems:
+  - id: lc7-7-velocity-rule
+    section: '7.7'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      A stone falls so that its distance from the start after $t$ seconds is
+      $s(t) = t^3 - 6t^2 + 9t$ metres. Find the velocity $s'(t)$.
+    answer_label: 'The velocity'
+    check:
+      kind: apply
+      expression: 't**3 - 6*t**2 + 9*t'
+      apply: {op: diff, args: [t]}
+      answer: '3*t**2 - 12*t + 9'
+    answer_text: >-
+      Velocity is the rate of change of distance, so differentiate:
+
+      $$s'(t) = 3t^2 - 12t + 9 \text{ metres per second}$$
+
+  - id: lc7-7-velocity-two
+    section: '7.7'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Using $s'(t) = 3t^2 - 12t + 9$, work out the velocity at $t = 2$ seconds.
+    answer_label: 'The velocity at two seconds'
+    check: {kind: evaluate, expression: '3*2**2 - 12*2 + 9', answer: '-3'}
+    answer_text: >-
+      $s'(2) = 3(4) - 12(2) + 9 = 12 - 24 + 9 = -3$ metres per second. The negative
+      sign means the stone is moving back towards its start at that instant.
+
+  - id: lc7-7-tank-rate
+    section: '7.7'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      The tank volume is $V(t) = 12t^2 - t^3$ litres. Work out the instantaneous rate
+      $V'(4)$.
+    answer_label: 'The instantaneous rate'
+    check: {kind: evaluate, expression: '24*4 - 3*4**2', answer: '48'}
+    answer_text: >-
+      $V'(t) = 24t - 3t^2$, so $V'(4) = 96 - 48 = 48$ litres per minute.
+
+  - id: lc7-7-tank-average
+    section: '7.7'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      For the tank, work out the average rate of filling over the first four minutes.
+      That is, divide the volume gained by the time taken.
+    answer_label: 'The average rate'
+    check: {kind: evaluate, expression: '(12*4**2 - 4**3)/4', answer: '32'}
+    answer_text: >-
+      $V(4) = 12(16) - 64 = 128$ litres, and the tank started empty, so the average
+      rate is
+
+      $$\frac{128 - 0}{4} = 32 \text{ litres per minute}$$
+
+      The instantaneous rate at $t = 4$ is $48$, which is larger. The tank fills faster
+      at the end of those four minutes than on average.
+
+  - id: lc7-7-sphere
+    section: '7.7'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      A balloon is a sphere of radius $r$ centimetres, with volume
+      $V = \dfrac{4}{3}\pi r^3$. Find $\dfrac{dV}{dr}$ and work out its value at
+      $r = 3$ cm.
+    answer_label: 'The rate of change of volume, then its value'
+    check:
+      kind: all
+      checks:
+        - {kind: apply, expression: '(4/3)*pi*r**3', apply: {op: diff, args: [r]}, answer: '4*pi*r**2'}
+        - {kind: evaluate, expression: '4*pi*3**2', answer: '36*pi'}
+    answer_text: >-
+      $\dfrac{dV}{dr} = 4\pi r^2$. At $r = 3$,
+
+      $$\frac{dV}{dr} = 4\pi(9) = 36\pi \approx 113.1 \text{ cubic centimetres per
+      centimetre}$$
+
+      This rate is the surface area of the sphere, which is not a coincidence.
+
+  - id: lc7-7-units
+    section: '7.7'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Explain what the value and the units of $V'(4) = 48$ mean in the tank problem.
+    answer_label: 'What the rate means'
+    check:
+      kind: structured
+      requires: [value, units]
+      concepts: [instantaneous-rate, per-minute]
+      points:
+        - id: value
+          text: >-
+            at the instant four minutes after filling starts, the volume is increasing at
+            48 litres per minute
+          concepts: [instantaneous-rate]
+        - id: units
+          text: >-
+            the units are litres per minute, because the derivative divides a change in
+            litres by a change in minutes
+          concepts: [per-minute]
+    answer_text: >-
+      The value $48$ is an instantaneous rate. At the moment $t = 4$ minutes, the
+      volume is increasing at $48$ litres per minute. It is not the amount added over
+      the next minute, because the rate changes as the tank fills.
+
+      The units are litres per minute, because the derivative divides a change in
+      volume in litres by a change in time in minutes.
+
+  - id: lc7-7-average-versus-instant
+    section: '7.7'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      For the tank, state the average rate over the first four minutes and the
+      instantaneous rate at $t = 4$, and say which is larger.
+    answer_label: 'Both rates'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(12*4**2 - 4**3)/4', answer: '32'}
+        - {kind: evaluate, expression: '24*4 - 3*4**2', answer: '48'}
+    answer_text: >-
+      The average rate is $32$ litres per minute and the instantaneous rate at $t = 4$
+      is $48$ litres per minute. The instantaneous rate is larger, so the tank is
+      filling more quickly at the end of the interval than on average.

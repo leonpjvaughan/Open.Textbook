@@ -1,0 +1,183 @@
+# Practice set for 8.6 (strand 5, outcome 5.2). The average value of a function is a
+# definite integral divided by the width of the interval, and that whole computation is
+# proved as one `evaluate` check, because the CAS can integrate and divide. An
+# accumulated change is a definite integral of a rate, proved with `kind: apply`.
+chapter: 8
+symbols:
+  x: {real: true}
+  t: {real: true}
+problems:
+  - id: lc8-6-average-quadratic
+    section: '8.6'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find the average value of $f(x) = x^2$ over the interval $0 \le x \le 3$.'
+    answer_label: 'The average value'
+    check:
+      kind: evaluate
+      expression: '(1/3)*integrate(x**2, (x, 0, 3))'
+      answer: '3'
+    answer_text: >-
+      The average value is the area divided by the width of the interval:
+
+      $$\text{average} = \frac{1}{3 - 0}\int_0^3 x^2\,dx
+      = \frac{1}{3}\left[\frac{x^3}{3}\right]_0^3 = \frac{1}{3} \times 9 = 3$$
+
+      The average value is $3$.
+
+  - id: lc8-6-average-cubic
+    section: '8.6'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find the average value of $f(x) = x^3$ over the interval $0 \le x \le 2$.'
+    answer_label: 'The average value'
+    check:
+      kind: evaluate
+      expression: '(1/2)*integrate(x**3, (x, 0, 2))'
+      answer: '2'
+    answer_text: >-
+      $$\text{average} = \frac{1}{2}\int_0^2 x^3\,dx
+      = \frac{1}{2}\left[\frac{x^4}{4}\right]_0^2 = \frac{1}{2} \times 4 = 2$$
+
+      The average value is $2$.
+
+  - id: lc8-6-average-speed
+    section: '8.6'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      A car's speed after $t$ seconds is $v(t) = 6t$ metres per second. Find its average
+      speed over the first four seconds.
+    answer_label: 'The average speed'
+    check:
+      kind: evaluate
+      expression: '(1/4)*integrate(6*t, (t, 0, 4))'
+      answer: '12'
+    answer_text: >-
+      $$\text{average speed} = \frac{1}{4}\int_0^4 6t\,dt
+      = \frac{1}{4}\Big[3t^2\Big]_0^4 = \frac{1}{4} \times 48 = 12$$
+
+      The average speed is $12$ metres per second.
+
+  - id: lc8-6-distance
+    section: '8.6'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      For the same car, with speed $v(t) = 6t$ metres per second, find the distance
+      travelled in the first four seconds.
+    answer_label: 'The distance travelled'
+    check:
+      kind: apply
+      expression: '6*t'
+      apply: {op: integrate, args: [t, '0', '4']}
+      answer: '48'
+    answer_text: >-
+      Distance is the accumulated change of position, so integrate the speed:
+
+      $$\int_0^4 6t\,dt = \Big[3t^2\Big]_0^4 = 48 \text{ metres}$$
+
+      The car travels $48$ metres. Dividing by the four seconds gives the average speed
+      of $12$ metres per second.
+
+  - id: lc8-6-average-flow
+    section: '8.6'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Water enters the tank at $r(t) = 12t - 3t^2$ litres per minute. Find the average
+      rate of flow over the first four minutes.
+    answer_label: 'The average rate of flow'
+    check:
+      kind: evaluate
+      expression: '(1/4)*integrate(12*t - 3*t**2, (t, 0, 4))'
+      answer: '8'
+    answer_text: >-
+      The average rate is the total volume divided by the time:
+
+      $$\text{average rate} = \frac{1}{4}\int_0^4 (12t - 3t^2)\,dt
+      = \frac{1}{4}\Big[6t^2 - t^3\Big]_0^4 = \frac{32}{4} = 8$$
+
+      The average rate is $8$ litres per minute. The rate is not constant: it starts at
+      $0$, rises to a greatest value of $12$ litres per minute at $t = 2$, and falls
+      again. This is the chapter problem.
+
+  - id: lc8-6-average-zero
+    section: '8.6'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find the average value of $f(x) = x^2 - 2x$ over $0 \le x \le 3$.'
+    answer_label: 'The average value'
+    check:
+      kind: evaluate
+      expression: '(1/3)*integrate(x**2 - 2*x, (x, 0, 3))'
+      answer: '0'
+    answer_text: >-
+      $$\text{average} = \frac{1}{3}\int_0^3 (x^2 - 2x)\,dx
+      = \frac{1}{3}\left[\frac{x^3}{3} - x^2\right]_0^3 = \frac{1}{3}(9 - 9) = 0$$
+
+      The average value is $0$. The function is negative on part of the interval and
+      positive on the rest, and the two contributions cancel. An average value can be
+      zero even when the function is not zero everywhere.
+
+  - id: lc8-6-accumulated-loss
+    section: '8.6'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      A tank drains at a steady $4$ litres per minute. Find the change in the volume of
+      water over $5$ minutes.
+    answer_label: 'The change in volume'
+    check:
+      kind: apply
+      expression: '-4'
+      apply: {op: integrate, args: [t, '0', '5']}
+      answer: '-20'
+    answer_text: >-
+      A steady rate of $-4$ litres per minute means
+
+      $$\int_0^5 (-4)\,dt = \Big[-4t\Big]_0^5 = -20$$
+
+      The change is $-20$ litres. The negative sign records that the volume is falling.
+      The accumulated change is the definite integral of the rate.
+
+  - id: lc8-6-why
+    section: '8.6'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Explain why the average value of a function over an interval is the area under
+      its graph divided by the width of the interval.
+    answer_label: 'Why the formula works'
+    check:
+      kind: structured
+      requires: [area, rectangle, divide]
+      concepts: [area-as-integral, equal-area-rectangle]
+      points:
+        - id: area
+          text: >-
+            the definite integral is the area of the region between the graph and the
+            axis
+          concepts: [area-as-integral]
+        - id: rectangle
+          text: >-
+            imagine a rectangle on the same interval whose area equals that region; its
+            height is the average value
+          concepts: [equal-area-rectangle]
+        - id: divide
+          text: >-
+            the area of a rectangle is height times width, so the height is the area
+            divided by the width
+          concepts: [equal-area-rectangle]
+    answer_text: >-
+      The definite integral $\displaystyle\int_a^b f(x)\,dx$ is the area of the region
+      between the graph and the axis, from $a$ to $b$.
+
+      Now picture a rectangle on the same interval with the same area as that region.
+      Its height is the average value of the function, because the rectangle smooths
+      the region out to a single level.
+
+      The area of a rectangle is height times width. So the height is the area divided
+      by the width:
+
+      $$\text{average value} = \frac{1}{b - a}\int_a^b f(x)\,dx$$

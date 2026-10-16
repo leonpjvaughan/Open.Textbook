@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.7 Volume and surface area of composite solids — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.2
+Work independently. The questions and answers are shown together at the end.
+
+Sketch the solid and mark the join. For a volume, add the parts. For a surface area,
+add the outer faces and leave the hidden join out.
+
+:::problems chapter-16-practice-16.7
+
+:::answers chapter-16-practice-16.7

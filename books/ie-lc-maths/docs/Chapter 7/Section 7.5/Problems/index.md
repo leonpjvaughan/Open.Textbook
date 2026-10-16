@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.5 The chain rule — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 5.2
+Work independently. The questions and answers are shown together at the end.
+
+Name the inside part $u$ and find $\dfrac{du}{dx}$ before you multiply. The inner derivative
+is the factor most often left out.
+
+:::problems chapter-07-practice-7.5
+
+:::answers chapter-07-practice-7.5

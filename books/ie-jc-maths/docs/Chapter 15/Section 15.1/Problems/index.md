@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.1 Units of length, mass and capacity — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.1
+Work independently. The questions and answers are shown together at the end.
+
+Name the unit before you calculate. Check that the number and the unit make sense
+together, and remember that a smaller unit needs a larger number.
+
+:::problems chapter-15-practice-15.1
+
+:::answers chapter-15-practice-15.1

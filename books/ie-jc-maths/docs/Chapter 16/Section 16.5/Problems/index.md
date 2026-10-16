@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.5 Volume of prisms, cylinders and spheres — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.2
+Work independently. The questions and answers are shown together at the end.
+
+Find the cross-section first for a prism or a cylinder. Read the question to see
+whether it gives the radius or the diameter, and keep the unit cubed.
+
+:::problems chapter-16-practice-16.5
+
+:::answers chapter-16-practice-16.5

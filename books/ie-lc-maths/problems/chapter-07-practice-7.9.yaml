@@ -1,0 +1,123 @@
+# Practice set for 7.9 (strand 5, outcome 5.2). Curve sketching reads the function and its
+# derivatives: `evaluate` and `solve` find the intercepts and turning points, and `apply`
+# produces the derivatives. The order of the steps is a written argument and uses
+# `structured`. The tank curve is the chapter problem's graph.
+chapter: 7
+symbols:
+  x: {real: true}
+  t: {real: true}
+problems:
+  - id: lc7-9-y-intercept
+    section: '7.9'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find the y-intercept of the curve $y = x^3 - 3x$.'
+    answer_label: 'The y-intercept'
+    check: {kind: evaluate, expression: '0**3 - 3*0', answer: '0'}
+    answer_text: >-
+      Put $x = 0$: $y = 0$. The curve passes through the origin.
+
+  - id: lc7-9-x-intercepts
+    section: '7.9'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find the x-intercepts of $y = x^3 - 3x$.'
+    answer_label: 'The x-intercepts'
+    check:
+      kind: solve
+      equation: 'x**3 - 3*x = 0'
+      variable: x
+      answer: [0, -sqrt(3), sqrt(3)]
+    answer_text: >-
+      Factorise: $x^3 - 3x = x(x^2 - 3) = x(x - \sqrt{3})(x + \sqrt{3})$. The
+      intercepts are $x = 0$, $x = \sqrt{3} \approx 1.73$ and
+      $x = -\sqrt{3} \approx -1.73$.
+
+  - id: lc7-9-inflection
+    section: '7.9'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find the point of inflection of $y = x^3 - 3x$.'
+    answer_label: 'The x-value of the point of inflection'
+    check:
+      kind: solve
+      equation: '6*x = 0'
+      variable: x
+      answer: [0]
+    answer_text: >-
+      The second derivative is $\dfrac{d^2y}{dx^2} = 6x$. This is zero at $x = 0$, and
+      it changes sign there, so $(0, 0)$ is a point of inflection. The curve is concave
+      down for $x < 0$ and concave up for $x > 0$.
+
+  - id: lc7-9-tank-four
+    section: '7.9'
+    tier: O
+    refs: ['5.2']
+    statement: 'Work out $V(4)$ for the tank volume $V(t) = 12t^2 - t^3$.'
+    answer_label: 'The volume at four minutes'
+    check: {kind: evaluate, expression: '12*4**2 - 4**3', answer: '128'}
+    answer_text: >-
+      $V(4) = 12(16) - 64 = 192 - 64 = 128$ litres. This is the point of inflection
+      of the volume graph, where the rate is greatest.
+
+  - id: lc7-9-tank-eight
+    section: '7.9'
+    tier: O
+    refs: ['5.2']
+    statement: 'Work out $V(8)$ for the tank volume $V(t) = 12t^2 - t^3$.'
+    answer_label: 'The volume at eight minutes'
+    check: {kind: evaluate, expression: '12*8**2 - 8**3', answer: '256'}
+    answer_text: >-
+      $V(8) = 12(64) - 512 = 256$ litres. This is the highest point of the graph on
+      the interval $0 \le t \le 8$.
+
+  - id: lc7-9-tank-intercepts
+    section: '7.9'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find the t-intercepts of the tank volume $V(t) = 12t^2 - t^3$.'
+    answer_label: 'The t-intercepts'
+    check:
+      kind: solve
+      equation: '12*t**2 - t**3 = 0'
+      variable: t
+      answer: [0, 12]
+    answer_text: >-
+      Factorise: $12t^2 - t^3 = t^2(12 - t)$. The intercepts are $t = 0$ (a double
+      root) and $t = 12$. On the interval $0 \le t \le 8$ the graph starts at the
+      origin, rises to its highest point at $t = 8$, and does not reach $t = 12$.
+
+  - id: lc7-9-order
+    section: '7.9'
+    tier: O
+    refs: ['5.2']
+    statement: 'Describe the steps for sketching the graph of a function using its derivatives.'
+    answer_label: 'The order of the steps'
+    check:
+      kind: structured
+      requires: [intercepts, stationary, second]
+      concepts: [sketching-order, second-derivative-shape]
+      points:
+        - id: intercepts
+          text: >-
+            find where the graph crosses the axes by putting x = 0 and by solving
+            f(x) = 0
+          concepts: [sketching-order]
+        - id: stationary
+          text: >-
+            find the stationary points by solving f'(x) = 0, and work out their
+            y-values
+          concepts: [sketching-order]
+        - id: second
+          text: >-
+            use f'' to decide the concavity and to classify each stationary point, then
+            sketch the curve through these features
+          concepts: [second-derivative-shape]
+    answer_text: >-
+      1. **Intercepts.** Put $x = 0$ for the $y$-intercept, and solve $f(x) = 0$ for
+         the $x$-intercepts.
+      2. **Stationary points.** Solve $f'(x) = 0$ and work out the $y$-value at each
+         one.
+      3. **Shape.** Use $f''$ to find where the curve is concave up and concave down,
+         and to classify each stationary point.
+      4. **Sketch.** Draw a smooth curve through the features, and label them.

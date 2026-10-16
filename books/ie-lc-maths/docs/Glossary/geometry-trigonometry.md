@@ -3,8 +3,8 @@ title: Glossary — Geometry and Trigonometry
 strand: geometry-trigonometry
 ---
 
-<!-- scaffold:stub -->
-
 # Glossary — Geometry and Trigonometry
 
-> **Stub.** Terms introduced by this strand's chapters, alphabetically.
+The Trigonometry, Coordinate Geometry, Transformation Geometry, Synthetic
+Geometry and Vectors chapters are not finished yet. Their key terms will be
+defined here as each chapter is added.

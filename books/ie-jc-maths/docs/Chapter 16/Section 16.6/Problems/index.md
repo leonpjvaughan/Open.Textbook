@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.6 Surface area and curved surface area — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.2
+Work independently. The questions and answers are shown together at the end.
+
+Read the question twice. "Curved surface area" means the side only. "Total surface
+area" or "surface area" means the side and the flat ends together.
+
+:::problems chapter-16-practice-16.6
+
+:::answers chapter-16-practice-16.6

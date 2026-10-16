@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.2 Converting between units — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.1
+Work independently. The questions and answers are shown together at the end.
+
+For each question, decide the direction first. A smaller unit needs a bigger number, so
+you multiply. A larger unit needs a smaller number, so you divide.
+
+:::problems chapter-15-practice-15.2
+
+:::answers chapter-15-practice-15.2

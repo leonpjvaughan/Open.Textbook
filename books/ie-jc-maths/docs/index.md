@@ -2,11 +2,25 @@
 title: Junior Cycle Mathematics
 ---
 
-<!-- scaffold:stub -->
-
 # Junior Cycle Mathematics
 
-A complete, interactive Junior Cycle Mathematics book for Ireland, covering both Ordinary and Higher level.
+Welcome. This is a complete, interactive Junior Cycle Mathematics book for
+Ireland. It covers Ordinary and Higher level. Everything here is free to read
+online, and there is nothing to install.
+
+## How to use this book
+
+Each section has three pages:
+
+| Page | What it is for |
+|---|---|
+| **Learn** | The teaching: ideas, worked examples, and something to try |
+| **Practise with help** | Questions with hints you reveal only if you need them |
+| **Practise** | Independent questions, with answers at the end |
+
+Each chapter opens with a problem you will be able to solve by the end. It closes
+with a **Review** that mixes the chapter's methods together and returns to
+earlier chapters.
 
 - 22 chapters, 129 sections
 
@@ -38,3 +52,7 @@ A complete, interactive Junior Cycle Mathematics book for Ireland, covering both
 1. [Chapter 20: Synthetic geometry, constructions and proof](Chapter 20/index.md)
 1. [Chapter 21: Probability](Chapter 21/index.md)
 1. [Chapter 22: Statistics](Chapter 22/index.md)
+
+## Learn more
+
+- [Glossary](Glossary/index.md) — the key words, by strand

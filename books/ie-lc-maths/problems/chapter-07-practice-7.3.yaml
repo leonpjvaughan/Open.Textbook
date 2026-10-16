@@ -1,0 +1,153 @@
+# Practice set for 7.3 (strand 5, outcome 5.2). The product rule is an operation on a
+# product, so every derivative is `kind: apply` with `op: diff`. The explanation of why
+# the rule is not u'v' is a written argument and uses `structured`.
+chapter: 7
+symbols:
+  x: {real: true}
+  t: {real: true}
+problems:
+  - id: lc7-3-basic
+    section: '7.3'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = (x + 1)(x + 2)$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '(x + 1)*(x + 2)'
+      apply: {op: diff, args: [x]}
+      answer: '2*x + 3'
+    answer_text: >-
+      Let $u = x + 1$ and $v = x + 2$, so $u' = 1$ and $v' = 1$. Then
+
+      $$y' = u'v + uv' = 1(x + 2) + (x + 1)(1) = 2x + 3$$
+
+      Expanding first gives $x^2 + 3x + 2$, whose derivative is also $2x + 3$.
+
+  - id: lc7-3-quadratic-linear
+    section: '7.3'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = (2x + 3)(x^2 - 1)$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '(2*x + 3)*(x**2 - 1)'
+      apply: {op: diff, args: [x]}
+      answer: '6*x**2 + 6*x - 2'
+    answer_text: >-
+      Let $u = 2x + 3$, so $u' = 2$, and $v = x^2 - 1$, so $v' = 2x$. Then
+
+      $$y' = 2(x^2 - 1) + (2x + 3)(2x) = 2x^2 - 2 + 4x^2 + 6x = 6x^2 + 6x - 2$$
+
+  - id: lc7-3-x-squared
+    section: '7.3'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = x^2(3x - 5)$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: 'x**2*(3*x - 5)'
+      apply: {op: diff, args: [x]}
+      answer: '9*x**2 - 10*x'
+    answer_text: >-
+      Let $u = x^2$, so $u' = 2x$, and $v = 3x - 5$, so $v' = 3$. Then
+
+      $$y' = 2x(3x - 5) + x^2(3) = 6x^2 - 10x + 3x^2 = 9x^2 - 10x$$
+
+  - id: lc7-3-two-brackets
+    section: '7.3'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = (x^2 + 1)(x - 4)$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '(x**2 + 1)*(x - 4)'
+      apply: {op: diff, args: [x]}
+      answer: '3*x**2 - 8*x + 1'
+    answer_text: >-
+      Let $u = x^2 + 1$, so $u' = 2x$, and $v = x - 4$, so $v' = 1$. Then
+
+      $$y' = 2x(x - 4) + (x^2 + 1)(1) = 2x^2 - 8x + x^2 + 1 = 3x^2 - 8x + 1$$
+
+  - id: lc7-3-linear-pair
+    section: '7.3'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $y = (2x + 1)(3x - 2)$.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '(2*x + 1)*(3*x - 2)'
+      apply: {op: diff, args: [x]}
+      answer: '12*x - 1'
+    answer_text: >-
+      Let $u = 2x + 1$, so $u' = 2$, and $v = 3x - 2$, so $v' = 3$. Then
+
+      $$y' = 2(3x - 2) + (2x + 1)(3) = 6x - 4 + 6x + 3 = 12x - 1$$
+
+  - id: lc7-3-tank
+    section: '7.3'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      The volume in the tank is $V(t) = t^2(12 - t)$ litres. Use the product rule to
+      find $V'(t)$.
+    answer_label: 'The rate'
+    check:
+      kind: apply
+      expression: 't**2*(12 - t)'
+      apply: {op: diff, args: [t]}
+      answer: '24*t - 3*t**2'
+    answer_text: >-
+      Let $u = t^2$, so $u' = 2t$, and $v = 12 - t$, so $v' = -1$. Then
+
+      $$V'(t) = 2t(12 - t) + t^2(-1) = 24t - 2t^2 - t^2 = 24t - 3t^2$$
+
+      This is the same rate that Section 7.2 found from the expanded form.
+
+  - id: lc7-3-tank-rate-four
+    section: '7.3'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Using the product rule result $V'(t) = 24t - 3t^2$, work out the rate at
+      $t = 4$ minutes.
+    answer_label: 'The rate at four minutes'
+    check: {kind: evaluate, expression: '24*4 - 3*4**2', answer: '48'}
+    answer_text: >-
+      $V'(4) = 96 - 48 = 48$ litres per minute. Both forms of $V$ give the same rate,
+      which is a useful check that the product rule was applied correctly.
+
+  - id: lc7-3-why-not
+    section: '7.3'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Explain why the derivative of a product is **not** found by multiplying the
+      derivatives of the two factors.
+    answer_label: 'Why the rule is needed'
+    check:
+      kind: structured
+      requires: [counterexample, two-terms]
+      concepts: [product-rule, not-u-prime-v-prime]
+      points:
+        - id: counterexample
+          text: >-
+            a counterexample shows the shortcut fails, for example
+            x times x has derivative 2x, while 1 times 1 is 1
+          concepts: [not-u-prime-v-prime]
+        - id: two-terms
+          text: >-
+            the product rule has two terms, u'v and uv', because a change in either
+            factor changes the product
+          concepts: [product-rule]
+    answer_text: >-
+      Test the shortcut on $y = x \cdot x = x^2$. Both factors have derivative $1$, so
+      multiplying them gives $1$. The true derivative is $2x$. The shortcut fails.
+
+      The product rule has two terms, $u'v + uv'$, because a change in either factor
+      changes the product. The first term counts the change in $u$, and the second
+      counts the change in $v$.

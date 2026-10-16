@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 15.4 Choosing sensible units and estimating — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.1
+Work independently. The questions and answers are shown together at the end.
+
+Choose the unit that keeps the number between 1 and 1000. For an estimate, build the
+value from something you know, and round it to a sensible accuracy.
+
+:::problems chapter-15-practice-15.4
+
+:::answers chapter-15-practice-15.4

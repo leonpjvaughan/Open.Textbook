@@ -1,0 +1,174 @@
+# Junior Cycle Mathematics, Chapter 16, section 16.1.
+#
+# Every numeric answer is proved by `evaluate`: the expression performs the
+# calculation and `answer` is the value the reader is shown, so a wrong formula
+# fails instead of comparing a number with itself. The last record asks the reader
+# to choose a measurement and give a reason. A choice cannot be proved by a CAS, so
+# it uses `structured`, which proves only that the model answer names the height and
+# gives a reason, and nothing more.
+chapter: 16
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc16-16.1-perim-1
+  section: '16.1'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A rectangle is 7 cm long and 4 cm wide. Find its perimeter.'
+  answer_label: 'Find the perimeter.'
+  check:
+    kind: evaluate
+    expression: 2*(7+4)
+    answer: '22'
+  answer_text: 'The perimeter is $22$ cm. Add the length and the width, then double: $2(7+4)=2\times11=22$. Perimeter is a length, so the unit is cm.'
+
+- id: jc16-16.1-area-1
+  section: '16.1'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A rectangle is 12 m long and 5 m wide. Find its area.'
+  answer_label: 'Find the area.'
+  check:
+    kind: evaluate
+    expression: 12*5
+    answer: '60'
+  answer_text: 'The area is $60$ m². Multiply the length by the width: $12\times5=60$. Area is a surface, so the unit is squared.'
+
+- id: jc16-16.1-perim-2
+  section: '16.1'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A rectangular garden is 9 m long and 4 m wide. Find its perimeter.'
+  answer_label: 'Find the perimeter.'
+  check:
+    kind: evaluate
+    expression: 2*(9+4)
+    answer: '26'
+  answer_text: 'The perimeter is $26$ m. Add the length and the width, then double: $2(9+4)=2\times13=26$. Walking all the way around the edge covers 26 m.'
+
+- id: jc16-16.1-area-2
+  section: '16.1'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A square has sides of 9 m. Find its area.'
+  answer_label: 'Find the area.'
+  check:
+    kind: evaluate
+    expression: 9*9
+    answer: '81'
+  answer_text: 'The area is $81$ m². A square is a rectangle whose length and width are equal, so $9\times9=81$. The answer is a square number because both sides are the same.'
+
+- id: jc16-16.1-tri-1
+  section: '16.1'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A triangle has a base of 8 cm and a perpendicular height of 5 cm. Find its area.'
+  answer_label: 'Find the area.'
+  check:
+    kind: evaluate
+    expression: 0.5*8*5
+    answer: '20'
+  answer_text: 'The area is $20$ cm². A triangle is half of a rectangle, so use $\tfrac{1}{2}\times8\times5=20$. The height must meet the base at a right angle.'
+
+- id: jc16-16.1-tri-2
+  section: '16.1'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A triangle has a base of 10 m and a perpendicular height of 6 m. Find its area.'
+  answer_label: 'Find the area.'
+  check:
+    kind: evaluate
+    expression: 0.5*10*6
+    answer: '30'
+  answer_text: 'The area is $30$ m². Work out $\tfrac{1}{2}\times10\times6=30$. Halve the base first, or halve the answer at the end. Either way the area is the same.'
+
+- id: jc16-16.1-tri-height
+  section: '16.1'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A triangle has an area of 24 m² and a base of 6 m. Find its perpendicular height.'
+  answer_label: 'Find the height.'
+  check:
+    kind: evaluate
+    expression: 2*24/6
+    answer: '8'
+  answer_text: 'The height is $8$ m. Start from $24=\tfrac{1}{2}\times6\times h$, so $24=3h$ and $h=8$. Multiplying the area by 2 undoes the halving.'
+
+- id: jc16-16.1-rect-width
+  section: '16.1'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A rectangle has an area of 48 cm² and a length of 8 cm. Find its width.'
+  answer_label: 'Find the width.'
+  check:
+    kind: evaluate
+    expression: 48/8
+    answer: '6'
+  answer_text: 'The width is $6$ cm. The area is length times width, so divide the area by the length: $48\div8=6$. Check by multiplying: $8\times6=48$ cm².'
+
+- id: jc16-16.1-plot-perim
+  section: '16.1'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'The chapter plot is a rectangle 10 m long and 6 m wide. Find its perimeter.'
+  answer_label: 'Find the perimeter of the plot.'
+  check:
+    kind: evaluate
+    expression: 2*(10+6)
+    answer: '32'
+  answer_text: 'The perimeter is $32$ m. The plot has two sides of 10 m and two sides of 6 m: $10+6+10+6=32$. This is the length of fence needed to go right around the plot.'
+
+- id: jc16-16.1-plot-area
+  section: '16.1'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'The chapter plot is a rectangle 10 m long and 6 m wide. Find its area.'
+  answer_label: 'Find the area of the plot.'
+  check:
+    kind: evaluate
+    expression: 10*6
+    answer: '60'
+  answer_text: 'The area is $60$ m². Multiply the length by the width: $10\times6=60$. The beds and the pond sit inside this area, and you will subtract them in Section 16.3.'
+
+- id: jc16-16.1-bed-area
+  section: '16.1'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'The triangular bed in the chapter plot has two shorter sides of 4 m and 3 m, meeting at a right angle. Find its area.'
+  answer_label: 'Find the area of the bed.'
+  check:
+    kind: evaluate
+    expression: 0.5*4*3
+    answer: '6'
+  answer_text: 'The bed has an area of $6$ m². The two shorter sides meet at a right angle, so one is the base and the other is the height: $\tfrac{1}{2}\times4\times3=6$.'
+
+- id: jc16-16.1-height-reason
+  section: '16.1'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A triangle has a base of 6 cm. One of its other sides is 5 cm long, and the perpendicular height is 4 cm. Explain which measurement you use as the height, and why.'
+  answer_label: 'Choose the height and give a reason.'
+  check:
+    kind: structured
+    requires: [choose-height, give-reason]
+    concepts: [perpendicular-height]
+    points:
+    - id: choose-height
+      text: 'Use 4 cm as the height, because it is the perpendicular height.'
+      concepts: [perpendicular-height]
+    - id: give-reason
+      text: 'The height must meet the base at a right angle. The 5 cm side is slanted, so it is not the height.'
+  answer_text: 'Use $4$ cm, because it is the perpendicular height. The height must meet the base at a right angle, and the $5$ cm side is slanted. Using the slanted side would give the wrong area.'

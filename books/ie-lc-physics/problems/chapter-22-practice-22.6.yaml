@@ -1,0 +1,157 @@
+# Leaving Certificate Physics, Chapter 22, section 22.6.
+#
+# This bank reviews the whole course through the investigation: a speed and a
+# density from strand 1, motion and a resolved vector from strand 1, a velocity-time
+# gradient, an uncertainty in a mean, a dimensional check, and the link from a
+# question to its strand. It interleaves, so the reader has to choose the method.
+#
+# Honest limit: the verifier proves arithmetic, dimensions and a declared
+# convention. `structured` proves presence and order, not the reasoning.
+chapter: 22
+problems:
+  - id: p22-6-speed
+    section: '22.6'
+    tier: O
+    refs: ['1.1']
+    statement: 'A trolley travels 1.20 m in 0.40 s. Calculate its average speed, to the significant figures the data support.'
+    answer_label: 'Average speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: d / t
+          values:
+            d: {value: '1.20', unit: m}
+            t: {value: '0.40', unit: s}
+          answer: {value: '3.0', unit: m/s}
+        - kind: sigfigs
+          value: '3.0'
+          figures: 2
+          answer: '3.0'
+          convention: round-once
+    answer_text: '$v = \dfrac{d}{t} = \dfrac{1.20}{0.40} = 3.0\,\text{m/s}$. Both readings carry two significant figures, so the answer does too.'
+  - id: p22-6-motion
+    section: '22.6'
+    tier: O
+    refs: ['1.1']
+    statement: 'A car accelerates from rest at 2.0 m/s$^2$ for 5.0 s. Calculate its final speed, to the significant figures the data support.'
+    answer_label: 'Final speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: a * t
+          values:
+            a: {value: '2.0', unit: 'm/s^2'}
+            t: {value: '5.0', unit: s}
+          answer: {value: '10', unit: m/s}
+        - kind: sigfigs
+          value: '10'
+          figures: 2
+          answer: 1.0e1
+          convention: round-once
+    answer_text: '$v = u + at = 0 + 2.0 \times 5.0 = 10\,\text{m/s}$, which is $1.0 \times 10^1\,\text{m/s}$ to two significant figures. The trailing zero must be shown, so the answer is written in scientific notation.'
+  - id: p22-6-force
+    section: '22.6'
+    tier: O
+    refs: ['1.2']
+    statement: 'A resultant force of 12 N acts on a mass of 3.0 kg. Calculate the acceleration, to the significant figures the data support.'
+    answer_label: 'Acceleration'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F / m
+          values:
+            F: {value: '12', unit: N}
+            m: {value: '3.0', unit: kg}
+          answer: {value: '4.0', unit: 'm/s^2'}
+        - kind: sigfigs
+          value: '4.0'
+          figures: 2
+          answer: '4.0'
+          convention: round-once
+    answer_text: '$a = \dfrac{F}{m} = \dfrac{12}{3.0} = 4.0\,\text{m/s}^2$. The mass carries two significant figures, so the answer does too.'
+  - id: p22-6-vector
+    section: '22.6'
+    tier: O
+    refs: ['1.2']
+    statement: 'A force of 50 N acts at 30$^\circ$ above the horizontal. Calculate its horizontal and vertical components, each to two significant figures.'
+    answer_label: 'The components'
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: '50'
+      angle_deg: '30'
+      components: {x: '43.3', y: '25'}
+      tolerance: '0.1'
+    answer_text: 'The horizontal component is $50\cos 30^\circ = 43.3\,\text{N}$, and the vertical component is $50\sin 30^\circ = 25\,\text{N}$. Both are given to two significant figures, so the horizontal component is $4.3 \times 10^1\,\text{N}$.'
+  - id: p22-6-gradient
+    section: '22.6'
+    tier: O
+    refs: ['1.1']
+    statement: 'A velocity-time graph passes through (0 s, 0 m/s), (2.0 s, 6.0 m/s) and (4.0 s, 12 m/s). Find the gradient, with its unit, and say what it represents.'
+    answer_label: 'The gradient and its meaning'
+    check:
+      kind: gradient
+      series:
+        - ['0', '0']
+        - ['2.0', '6.0']
+        - ['4.0', '12']
+      between: ['2.9', '3.1']
+    answer_text: 'The gradient is $\dfrac{12 - 6.0}{4.0 - 2.0} = \dfrac{6.0}{2.0} = 3.0\,\text{m/s}^2$. The gradient of a velocity-time graph is the acceleration.'
+  - id: p22-6-uncertainty
+    section: '22.6'
+    tier: O
+    refs: ['1.1']
+    statement: 'A student measures the same length five times and records 0.512 m, 0.510 m, 0.514 m, 0.513 m and 0.511 m. Calculate the mean and the uncertainty as half the range.'
+    answer_label: 'Mean length and its uncertainty'
+    check:
+      kind: uncertainty
+      mean_of: ['0.512', '0.510', '0.514', '0.513', '0.511']
+      convention: half-range
+      answer: '0.512'
+      uncertainty: '0.002'
+    answer_text: 'The mean is $\dfrac{0.512 + 0.510 + 0.514 + 0.513 + 0.511}{5} = 0.512\,\text{m}$. The range is $0.514 - 0.510 = 0.004\,\text{m}$, so the uncertainty is half of that: $0.002\,\text{m}$. The result is $0.512\,\text{m} \pm 0.002\,\text{m}$.'
+  - id: p22-6-units
+    section: '22.6'
+    tier: O
+    refs: ['1.1']
+    statement: 'Explain why checking the units of an answer can show that it is wrong, and give one example.'
+    answer_label: 'Checking the units'
+    check:
+      kind: structured
+      requires: [dimensions, example, limit]
+      concepts: [same-unit, mismatch, arithmetic]
+      points:
+        - id: dimensions
+          text: 'Every term in an equation must have the same unit, so a mismatch means the equation cannot be right.'
+          concepts: [same-unit]
+        - id: example
+          text: 'For example, speed is measured in metres per second, so an answer in metres cannot be a speed.'
+          concepts: [mismatch]
+        - id: limit
+          text: 'The check cannot prove the number is right, because a wrong value can still carry the correct unit.'
+          concepts: [arithmetic]
+    answer_text: 'Every term in an equation must have the same unit, so a mismatch means the equation cannot be right. For example, speed is measured in metres per second, so an answer in metres cannot be a speed. The check cannot prove the number is right, because a wrong value can still carry the correct unit.'
+  - id: p22-6-strand
+    section: '22.6'
+    tier: O
+    refs: ['3.1']
+    statement: 'A student investigates how the current through a filament lamp changes as the voltage across it changes. Name the strand of physics, and state the equation that links voltage, current and resistance.'
+    answer_label: 'The strand and the equation'
+    check:
+      kind: structured
+      requires: [strand, equation, reason]
+      concepts: [electricity, ohms-law, graph]
+      points:
+        - id: strand
+          text: 'The question belongs to the strand on electric and magnetic fields, because it is about current and voltage.'
+          concepts: [electricity]
+        - id: equation
+          text: 'The equation is $V = IR$, which links voltage, current and resistance.'
+          concepts: [ohms-law]
+        - id: reason
+          text: 'A graph of voltage against current has a gradient equal to the resistance.'
+          concepts: [graph]
+    answer_text: 'The question belongs to the strand on electric and magnetic fields, because it is about current and voltage. The equation is $V = IR$. A graph of voltage against current has a gradient equal to the resistance.'

@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 16.1 Perimeter and area of rectangles and triangles — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.2
+Work independently. The questions and answers are shown together at the end.
+
+Decide first whether the question wants a perimeter or an area. A perimeter adds the
+sides and uses metres or centimetres. An area multiplies two sides and uses square
+metres or square centimetres.
+
+:::problems chapter-16-practice-16.1
+
+:::answers chapter-16-practice-16.1

@@ -1,0 +1,174 @@
+# Junior Cycle Mathematics, Chapter 16, section 16.7.
+#
+# A composite volume is a sum, and a composite surface area is a sum with the hidden
+# join removed, so both are exact `evaluate` checks. A volume in litres is a rounding
+# of an exact value, so it uses `rounded`, which proves the answer is the nearest
+# litre rather than comparing a number with itself. The last record asks why the join
+# is left out, which uses `structured`.
+chapter: 16
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc16-16.7-cube-vol
+  section: '16.7'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A solid is a cuboid 5 cm by 4 cm by 3 cm, with a cube of side 2 cm on top. Find its volume.'
+  answer_label: 'Find the volume.'
+  check:
+    kind: evaluate
+    expression: 5*4*3+2**3
+    answer: '68'
+  answer_text: 'The volume is $68$ cm³. The cuboid is $5\times4\times3=60$ cm³, and the cube is $2^3=8$ cm³. The two parts fill separate spaces, so add them.'
+
+- id: jc16-16.7-cube-surface
+  section: '16.7'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A solid is a cuboid 5 cm by 4 cm by 3 cm, with a cube of side 2 cm on top. Find its surface area.'
+  answer_label: 'Find the surface area.'
+  check:
+    kind: evaluate
+    expression: 2*(5*4+4*3+5*3)+6*2**2-2*2**2
+    answer: '110'
+  answer_text: 'The surface area is $110$ cm². The cuboid gives $94$ cm² and the cube gives $24$ cm². The join hides a $2\times2=4$ cm² square on each solid, so subtract $8$ cm²: $94+24-8=110$.'
+
+- id: jc16-16.7-cube-vol-2
+  section: '16.7'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A solid is a cuboid 4 cm by 3 cm by 2 cm, with a cube of side 1 cm on top. Find its volume.'
+  answer_label: 'Find the volume.'
+  check:
+    kind: evaluate
+    expression: 4*3*2+1**3
+    answer: '25'
+  answer_text: 'The volume is $25$ cm³. The cuboid is $4\times3\times2=24$ cm³, and the cube is $1^3=1$ cm³. Add them to get $25$ cm³.'
+
+- id: jc16-16.7-cube-surface-2
+  section: '16.7'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A solid is a cuboid 4 cm by 3 cm by 2 cm, with a cube of side 1 cm on top. Find its surface area.'
+  answer_label: 'Find the surface area.'
+  check:
+    kind: evaluate
+    expression: 2*(4*3+3*2+4*2)+6*1**2-2*1**2
+    answer: '56'
+  answer_text: 'The surface area is $56$ cm². The cuboid gives $52$ cm² and the cube gives $6$ cm². The join hides $1$ cm² on each solid, so subtract $2$ cm²: $52+6-2=56$.'
+
+- id: jc16-16.7-cyl-hemi-vol
+  section: '16.7'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A solid is a cylinder of radius 3 cm and height 10 cm, with a hemisphere of radius 3 cm on top. Find its volume in terms of $\pi$.'
+  answer_label: 'Find the volume in terms of pi.'
+  check:
+    kind: evaluate
+    expression: pi*3**2*10+(2/3)*pi*3**3
+    answer: '108*pi'
+  answer_text: 'The volume is $108\pi$ cm³. The cylinder gives $90\pi$ cm³. The hemisphere gives $\tfrac{2}{3}\times27\pi=18\pi$ cm³. Add them to get $108\pi$ cm³.'
+
+- id: jc16-16.7-cyl-hemi-surface
+  section: '16.7'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A solid is a cylinder of radius 3 cm and height 10 cm, with a hemisphere of radius 3 cm on top. Find its surface area in terms of $\pi$.'
+  answer_label: 'Find the surface area in terms of pi.'
+  check:
+    kind: evaluate
+    expression: pi*3**2+2*pi*3*10+2*pi*3**2
+    answer: '87*pi'
+  answer_text: 'The surface area is $87\pi$ cm². The flat base gives $9\pi$ cm² and the curved side gives $60\pi$ cm². The hemisphere gives $2\times9\pi=18\pi$ cm². The circle where the two solids meet is hidden, so it is not counted.'
+
+- id: jc16-16.7-cyl-hemi-vol-2
+  section: '16.7'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A solid is a cylinder of radius 2 m and height 5 m, with a hemisphere of radius 2 m on top. Find its volume in terms of $\pi$.'
+  answer_label: 'Find the volume in terms of pi.'
+  check:
+    kind: evaluate
+    expression: pi*2**2*5+(2/3)*pi*2**3
+    answer: '76*pi/3'
+  answer_text: 'The volume is $\tfrac{76}{3}\pi$ m³. The cylinder gives $20\pi$ m³. The hemisphere gives $\tfrac{2}{3}\times8\pi=\tfrac{16}{3}\pi$ m³. Adding gives $\tfrac{60}{3}\pi+\tfrac{16}{3}\pi=\tfrac{76}{3}\pi$ m³.'
+
+- id: jc16-16.7-cyl-hemi-surface-2
+  section: '16.7'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A solid is a cylinder of radius 4 cm and height 6 cm, with a hemisphere of radius 4 cm on top. Find its surface area in terms of $\pi$.'
+  answer_label: 'Find the surface area in terms of pi.'
+  check:
+    kind: evaluate
+    expression: pi*4**2+2*pi*4*6+2*pi*4**2
+    answer: '96*pi'
+  answer_text: 'The surface area is $96\pi$ cm². The base gives $16\pi$ cm² and the curved side gives $48\pi$ cm². The hemisphere gives $32\pi$ cm². Add them: $16\pi+48\pi+32\pi=96\pi$ cm².'
+
+- id: jc16-16.7-tank-vol
+  section: '16.7'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'The chapter tank is a cylinder of radius 0.5 m with a hemisphere of radius 0.5 m on top. The cylindrical part is 1 m tall. Find the volume of the whole tank in terms of $\pi$.'
+  answer_label: 'Find the volume in terms of pi.'
+  check:
+    kind: evaluate
+    expression: pi*Rational(1,4)+Rational(2,3)*pi*Rational(1,8)
+    answer: 'pi/3'
+  answer_text: 'The volume is $\tfrac{1}{3}\pi$ m³. The cylinder gives $0.25\pi$ m³. The hemisphere gives $\tfrac{1}{12}\pi$ m³. Adding gives $\tfrac{3}{12}\pi+\tfrac{1}{12}\pi=\tfrac{4}{12}\pi=\tfrac{1}{3}\pi$ m³.'
+
+- id: jc16-16.7-tank-litres
+  section: '16.7'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'The chapter tank has a volume of $\tfrac{1}{3}\pi$ m³. Write this volume in litres, to the nearest litre.'
+  answer_label: 'Write the volume in litres.'
+  check:
+    kind: rounded
+    value: pi/3*1000
+    rounded: '1047'
+    to: '1'
+  answer_text: 'The tank holds about $1047$ L. First $\tfrac{1}{3}\pi\approx1.047$ m³. Then multiply by 1000, because $1$ m³ is 1000 L. The answer rounds to 1047 L.'
+
+- id: jc16-16.7-tank-surface
+  section: '16.7'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'The chapter tank is a cylinder of radius 0.5 m with a hemisphere of radius 0.5 m on top. The cylindrical part is 1 m tall. Find the surface area of the whole tank in terms of $\pi$.'
+  answer_label: 'Find the surface area in terms of pi.'
+  check:
+    kind: evaluate
+    expression: pi*0.5**2+2*pi*0.5*1+2*pi*0.5**2
+    answer: '7*pi/4'
+  answer_text: 'The surface area is $\tfrac{7}{4}\pi$ m². The base gives $0.25\pi$ m² and the curved side gives $\pi$ m². The hemisphere gives $0.5\pi$ m². Add them: $0.25\pi+\pi+0.5\pi=1.75\pi=\tfrac{7}{4}\pi$ m².'
+
+- id: jc16-16.7-hidden-reason
+  section: '16.7'
+  tier: O
+  refs:
+  - GT.2
+  statement: 'A cube is placed on top of a cuboid to make one solid. Explain why the face where the two solids meet is not counted in the surface area.'
+  answer_label: 'Explain the hidden face.'
+  check:
+    kind: structured
+    requires: [name-hidden, explain-subtract]
+    concepts: [hidden-face]
+    points:
+    - id: name-hidden
+      text: 'The face where the solids meet is inside the new solid, so it is hidden.'
+      concepts: [hidden-face]
+    - id: explain-subtract
+      text: 'It is hidden on both solids, so subtract it twice from the sum of the two surface areas.'
+  answer_text: 'The face where the two solids meet is inside the new solid, so it is not part of the outside. It is hidden on both solids, so subtract it twice from the sum of the two surface areas.'

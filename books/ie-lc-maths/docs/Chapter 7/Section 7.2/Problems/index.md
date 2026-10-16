@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.2 Differentiating powers and polynomials — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 5.2
+Work independently. The questions and answers are shown together at the end.
+
+Rewrite any root or fraction as a power before you differentiate. Check each new power is
+one less than the old one, and remember that a constant term differentiates to zero.
+
+:::problems chapter-07-practice-7.2
+
+:::answers chapter-07-practice-7.2

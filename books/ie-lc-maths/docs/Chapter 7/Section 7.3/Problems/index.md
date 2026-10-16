@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.3 The product rule — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 5.2
+Work independently. The questions and answers are shown together at the end.
+
+Write down $u$, $v$, $u'$ and $v'$ before you substitute. The rule has two terms, and each
+one keeps one factor unchanged.
+
+:::problems chapter-07-practice-7.3
+
+:::answers chapter-07-practice-7.3

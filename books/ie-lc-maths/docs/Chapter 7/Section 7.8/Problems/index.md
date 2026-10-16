@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.8 Stationary points, maxima and minima — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 5.2
+Work independently. The questions and answers are shown together at the end.
+
+Solve $f'(x) = 0$ first, then classify each point. Remember that a zero derivative does not
+always mean a maximum or a minimum.
+
+:::problems chapter-07-practice-7.8
+
+:::answers chapter-07-practice-7.8

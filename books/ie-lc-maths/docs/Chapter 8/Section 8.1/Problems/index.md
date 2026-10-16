@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 8.1 Antiderivatives — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 5.2
+Work independently. The questions and answers are shown together at the end.
+
+Add the constant of integration to every indefinite integral. When a question gives you a
+point on the curve, substitute the coordinates to find the constant.
+
+:::problems chapter-08-practice-8.1
+
+:::answers chapter-08-practice-8.1

@@ -1,0 +1,170 @@
+# Practice set for 7.1 (strand 5, outcome 5.2). Differentiation is an operation and not
+# an equivalence, so every derivative is checked with `kind: apply` and `op: diff`.
+# The limit argument itself is an explanation, so it uses `structured` from the units
+# oracle. The chapter problem's tank V(t) = 12t^2 - t^3 is estimated numerically here.
+chapter: 7
+symbols:
+  x: {real: true}
+  t: {real: true}
+problems:
+  - id: lc7-1-average-gradient
+    section: '7.1'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Work out the average gradient of $y = x^2$ between $x = 3$ and $x = 3.1$.
+    answer_label: 'The average gradient'
+    check:
+      kind: evaluate
+      expression: '((31/10)**2 - 3**2) / (31/10 - 3)'
+      answer: '61/10'
+    answer_text: >-
+      The average gradient is the change in $y$ divided by the change in $x$:
+
+      $$\frac{3.1^2 - 3^2}{3.1 - 3} = \frac{9.61 - 9}{0.1} = \frac{0.61}{0.1} = 6.1$$
+
+  - id: lc7-1-x-squared
+    section: '7.1'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Differentiate $f(x) = x^2$ from first principles.
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: 'x**2'
+      apply: {op: diff, args: [x]}
+      answer: '2*x'
+    answer_text: >-
+      The average gradient over the interval from $x$ to $x + h$ is
+
+      $$\frac{(x + h)^2 - x^2}{h} = \frac{x^2 + 2xh + h^2 - x^2}{h}
+      = \frac{2xh + h^2}{h} = 2x + h$$
+
+      As $h$ gets closer to zero, $2x + h$ gets closer to $2x$. So $f'(x) = 2x$.
+
+  - id: lc7-1-three-x-squared
+    section: '7.1'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $f(x) = 3x^2$ from first principles.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '3*x**2'
+      apply: {op: diff, args: [x]}
+      answer: '6*x'
+    answer_text: >-
+      $$\frac{3(x + h)^2 - 3x^2}{h} = \frac{3(x^2 + 2xh + h^2) - 3x^2}{h}
+      = \frac{6xh + 3h^2}{h} = 6x + 3h$$
+
+      Let $h$ go to zero: $f'(x) = 6x$. The constant $3$ multiplies the derivative of
+      $x^2$, which is $2x$.
+
+  - id: lc7-1-linear
+    section: '7.1'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $f(x) = 5x + 2$ from first principles.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: '5*x + 2'
+      apply: {op: diff, args: [x]}
+      answer: '5'
+    answer_text: >-
+      $$\frac{(5(x + h) + 2) - (5x + 2)}{h} = \frac{5h}{h} = 5$$
+
+      The $h$ cancels and nothing is left to take a limit of. The derivative of a
+      straight line is its gradient, here $5$.
+
+  - id: lc7-1-cubic
+    section: '7.1'
+    tier: O
+    refs: ['5.2']
+    statement: 'Differentiate $f(x) = x^3$ from first principles.'
+    answer_label: 'The derivative'
+    check:
+      kind: apply
+      expression: 'x**3'
+      apply: {op: diff, args: [x]}
+      answer: '3*x**2'
+    answer_text: >-
+      Expand $(x + h)^3 = x^3 + 3x^2h + 3xh^2 + h^3$. Subtract $x^3$ and divide by
+      $h$:
+
+      $$\frac{3x^2h + 3xh^2 + h^3}{h} = 3x^2 + 3xh + h^2$$
+
+      Every remaining term carries an $h$, so all of them vanish as $h$ goes to zero.
+      The derivative is $3x^2$.
+
+  - id: lc7-1-gradient-at-point
+    section: '7.1'
+    tier: O
+    refs: ['5.2']
+    statement: 'Find the gradient of the curve $y = x^2$ at the point where $x = 3$.'
+    answer_label: 'The gradient'
+    check: {kind: evaluate, expression: '2*3', answer: '6'}
+    answer_text: >-
+      From first principles the derivative is $2x$, so at $x = 3$ the gradient is
+      $2 \times 3 = 6$. That agrees with the average gradient over a very short
+      interval from $x = 3$.
+
+  - id: lc7-1-tank-estimate
+    section: '7.1'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      The volume in the tank after $t$ minutes is $V(t) = 12t^2 - t^3$ litres.
+      Estimate $V'(4)$, the rate at $t = 4$ minutes, by working out the average rate
+      from $t = 4$ to $t = 4.1$.
+    answer_label: 'The estimated rate'
+    check:
+      kind: evaluate
+      expression: '((12*(41/10)**2 - (41/10)**3) - (12*4**2 - 4**3)) / (1/10)'
+      answer: '4799/100'
+    answer_text: >-
+      $V(4) = 12(16) - 64 = 128$ litres and
+      $V(4.1) = 12(16.81) - 68.921 = 132.799$ litres. The average rate is
+
+      $$\frac{132.799 - 128}{0.1} = 47.99$$
+
+      litres per minute. The true rate is $48$, so a step of $0.1$ minute has
+      already given a good estimate.
+
+  - id: lc7-1-limit-meaning
+    section: '7.1'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Explain what is meant by taking the limit as $h$ goes to zero in
+      differentiation from first principles.
+    answer_label: 'The meaning of the limit'
+    check:
+      kind: structured
+      requires: [shrink, cancel, limit]
+      concepts: [average-to-instantaneous, h-not-zero]
+      points:
+        - id: shrink
+          text: >-
+            start with the average gradient over an interval of width h, which is the
+            gradient of a chord
+          concepts: [average-to-instantaneous]
+        - id: cancel
+          text: >-
+            expand, subtract and divide by h; the division is allowed because h is not
+            zero, only small
+          concepts: [h-not-zero]
+        - id: limit
+          text: >-
+            then let h shrink towards zero so the chord becomes the tangent, and the
+            average gradient becomes the instantaneous gradient
+          concepts: [average-to-instantaneous]
+    answer_text: >-
+      The average gradient over an interval of width $h$ is the gradient of a chord.
+      You expand, subtract and divide by $h$ while $h$ is small but not zero, so the
+      division is allowed.
+
+      Then you let $h$ shrink towards zero. The chord turns into the tangent, and the
+      average gradient turns into the instantaneous gradient. The limit is what the
+      average gradient settles towards, and that value is the derivative.

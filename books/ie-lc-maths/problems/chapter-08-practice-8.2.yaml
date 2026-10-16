@@ -1,0 +1,162 @@
+# Practice set for 8.2 (strand 5, outcome 5.2). A definite integral is evaluated with
+# `kind: apply` and `op: integrate` over the two limits, so the exact value is proved.
+# Where a total area needs a split, the two pieces are proved and the sum is stated in
+# the answer text, which follows from the two exact pieces. The chapter problem's tank
+# is evaluated here over the first four minutes.
+chapter: 8
+symbols:
+  x: {real: true}
+  t: {real: true}
+problems:
+  - id: lc8-2-x-squared
+    section: '8.2'
+    tier: O
+    refs: ['5.2']
+    statement: 'Evaluate $\displaystyle\int_0^2 x^2\,dx$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: 'x**2'
+      apply: {op: integrate, args: [x, '0', '2']}
+      answer: '8/3'
+    steps:
+      - expr: 'x**2'
+      - expr: '8/3'
+        relation: apply
+        apply: {op: integrate, args: [x, '0', '2']}
+    answer_text: >-
+      An antiderivative of $x^2$ is $\dfrac{x^3}{3}$, so
+
+      $$\int_0^2 x^2\,dx = \left[\frac{x^3}{3}\right]_0^2
+      = \frac{8}{3} - 0 = \frac{8}{3}$$
+
+      No constant of integration appears. It would add $C$ at the top and subtract $C$
+      at the bottom, so it always cancels.
+
+  - id: lc8-2-linear
+    section: '8.2'
+    tier: O
+    refs: ['5.2']
+    statement: 'Evaluate $\displaystyle\int_1^3 (2x + 1)\,dx$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: '2*x + 1'
+      apply: {op: integrate, args: [x, '1', '3']}
+      answer: '10'
+    answer_text: >-
+      $$\int_1^3 (2x + 1)\,dx = \Big[x^2 + x\Big]_1^3 = (9 + 3) - (1 + 1) = 12 - 2 = 10$$
+
+  - id: lc8-2-quadratic
+    section: '8.2'
+    tier: O
+    refs: ['5.2']
+    statement: 'Evaluate $\displaystyle\int_0^1 (3x^2 - 2x + 1)\,dx$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: '3*x**2 - 2*x + 1'
+      apply: {op: integrate, args: [x, '0', '1']}
+      answer: '1'
+    answer_text: >-
+      $$\int_0^1 (3x^2 - 2x + 1)\,dx = \Big[x^3 - x^2 + x\Big]_0^1 = 1 - 0 = 1$$
+
+  - id: lc8-2-below-axis
+    section: '8.2'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Evaluate $\displaystyle\int_0^3 (x^2 - 4)\,dx$ and explain the sign of the value.
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: 'x**2 - 4'
+      apply: {op: integrate, args: [x, '0', '3']}
+      answer: '-3'
+    answer_text: >-
+      $$\int_0^3 (x^2 - 4)\,dx = \left[\frac{x^3}{3} - 4x\right]_0^3 = 9 - 12 = -3$$
+
+      The value is negative. Between $x = 0$ and $x = 2$ the curve lies below the
+      $x$-axis, and that part of the region counts as negative. A definite integral
+      measures **signed** area, not total area.
+
+  - id: lc8-2-odd
+    section: '8.2'
+    tier: O
+    refs: ['5.2']
+    statement: 'Evaluate $\displaystyle\int_{-1}^{1} x^3\,dx$ and explain the value.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: 'x**3'
+      apply: {op: integrate, args: [x, '-1', '1']}
+      answer: '0'
+    answer_text: >-
+      $$\int_{-1}^{1} x^3\,dx = \left[\frac{x^4}{4}\right]_{-1}^{1}
+      = \frac{1}{4} - \frac{1}{4} = 0$$
+
+      The region below the axis between $-1$ and $0$ cancels the region above the axis
+      between $0$ and $1$, because the curve has rotational symmetry about the origin.
+
+  - id: lc8-2-negative-power
+    section: '8.2'
+    tier: O
+    refs: ['5.2']
+    statement: 'Evaluate $\displaystyle\int_1^2 \frac{1}{x^2}\,dx$.'
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: 'x**(-2)'
+      apply: {op: integrate, args: [x, '1', '2']}
+      answer: '1/2'
+    answer_text: >-
+      Write $\dfrac{1}{x^2} = x^{-2}$. An antiderivative is $-\dfrac{1}{x}$, so
+
+      $$\int_1^2 x^{-2}\,dx = \left[-\frac{1}{x}\right]_1^2
+      = -\frac{1}{2} - (-1) = \frac{1}{2}$$
+
+  - id: lc8-2-area-under-curve
+    section: '8.2'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Find the area of the region bounded by the curve $y = x^2$, the $x$-axis and the
+      line $x = 3$.
+    answer_label: 'The area'
+    check:
+      kind: apply
+      expression: 'x**2'
+      apply: {op: integrate, args: [x, '0', '3']}
+      answer: '9'
+    answer_text: >-
+      The region runs from $x = 0$ to $x = 3$, and the curve stays above the axis, so
+      the area is the definite integral:
+
+      $$\text{Area} = \int_0^3 x^2\,dx = \left[\frac{x^3}{3}\right]_0^3 = 9$$
+
+      The area is $9$ square units.
+
+  - id: lc8-2-tank-water
+    section: '8.2'
+    tier: O
+    refs: ['5.2']
+    statement: >-
+      Water enters a tank at $r(t) = 12t - 3t^2$ litres per minute. Work out
+      $\displaystyle\int_0^4 r(t)\,dt$ and say what the value means.
+    answer_label: 'The value of the integral'
+    check:
+      kind: apply
+      expression: '12*t - 3*t**2'
+      apply: {op: integrate, args: [t, '0', '4']}
+      answer: '32'
+    steps:
+      - expr: '12*t - 3*t**2'
+      - expr: '32'
+        relation: apply
+        apply: {op: integrate, args: [t, '0', '4']}
+    answer_text: >-
+      $$\int_0^4 (12t - 3t^2)\,dt = \Big[6t^2 - t^3\Big]_0^4 = (96 - 64) - 0 = 32$$
+
+      The value $32$ is the volume of water that entered the tank over the four
+      minutes, in litres. It is also the area under the graph of $r$ between $t = 0$
+      and $t = 4$. This is the chapter problem.

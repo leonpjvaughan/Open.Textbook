@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 7.7 Rates of change in context — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 5.2
+Work independently. The questions and answers are shown together at the end.
+
+Decide first whether the question wants an average rate or an instantaneous rate. Write the
+units beside every answer.
+
+:::problems chapter-07-practice-7.7
+
+:::answers chapter-07-practice-7.7

@@ -3,8 +3,7 @@ title: Glossary — Statistics and Probability
 strand: statistics-probability
 ---
 
-<!-- scaffold:stub -->
-
 # Glossary — Statistics and Probability
 
-> **Stub.** Terms introduced by this strand's chapters, alphabetically.
+The Probability and Statistics chapters are not finished yet. Their key terms
+will be defined here as each chapter is added.
