@@ -1,0 +1,204 @@
+# Junior Cycle Mathematics, Chapter 20, section 20.8 (learning outcome GT.3).
+#
+# Pythagoras is proved here as a theorem, so the `evaluate` checks prove the
+# arithmetic of the theorem and its converse: the squares added, the squares
+# subtracted, and the two values compared. The `structured` records are the two
+# proofs. They prove only that a model answer contains the declared steps, in order,
+# and covers the declared concepts — **presence and order, not the geometry**. The
+# proof book also holds this result at `:::prove pythagoras`.
+chapter: 20
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc20-20.8-hypotenuse
+  section: '20.8'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A right-angled triangle has legs of 6 cm and 8 cm. Find the hypotenuse.
+  answer_label: Find the hypotenuse.
+  check: {kind: evaluate, expression: 'sqrt(6**2 + 8**2)', answer: '10'}
+  answer_text: >-
+    $6^2+8^2=36+64=100$, and $\sqrt{100}=10$. The hypotenuse is 10 cm.
+
+- id: jc20-20.8-hypotenuse-2
+  section: '20.8'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A right-angled triangle has legs of 5 cm and 12 cm. Find the hypotenuse.
+  answer_label: Find the hypotenuse.
+  check: {kind: evaluate, expression: 'sqrt(5**2 + 12**2)', answer: '13'}
+  answer_text: >-
+    $5^2+12^2=25+144=169$, and $\sqrt{169}=13$. The hypotenuse is 13 cm.
+
+- id: jc20-20.8-missing-leg
+  section: '20.8'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A right-angled triangle has a hypotenuse of 25 cm and one leg of 24 cm. Find
+    the other leg.
+  answer_label: Find the other leg.
+  check: {kind: evaluate, expression: 'sqrt(25**2 - 24**2)', answer: '7'}
+  answer_text: >-
+    $25^2-24^2=625-576=49$, and $\sqrt{49}=7$. The other leg is 7 cm.
+
+- id: jc20-20.8-converse
+  section: '20.8'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A triangle has sides of 8 cm, 15 cm and 17 cm. Use the converse of Pythagoras
+    to decide whether it is right-angled.
+  answer_label: Decide whether it is right-angled.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '8**2 + 15**2', answer: '289'}
+    - {kind: evaluate, expression: '17**2', answer: '289'}
+  answer_text: >-
+    $8^2+15^2=64+225=289$, and $17^2=289$. The two values match, so by the
+    converse of Pythagoras the triangle is right-angled.
+
+- id: jc20-20.8-converse-false
+  section: '20.8'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A triangle has sides of 4 cm, 5 cm and 6 cm. Use the converse of Pythagoras to
+    decide whether it is right-angled.
+  answer_label: Decide whether it is right-angled.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '4**2 + 5**2', answer: '41'}
+    - {kind: evaluate, expression: '6**2', answer: '36'}
+  answer_text: >-
+    $4^2+5^2=16+25=41$, but $6^2=36$. The two values are different, so the triangle
+    is not right-angled.
+
+- id: jc20-20.8-diagonal
+  section: '20.8'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A rectangle is 9 m by 12 m. Find the length of a diagonal.
+  answer_label: Find the diagonal.
+  check: {kind: evaluate, expression: 'sqrt(9**2 + 12**2)', answer: '15'}
+  answer_text: >-
+    A diagonal is the hypotenuse of a right-angled triangle with legs 9 m and 12 m.
+    $9^2+12^2=81+144=225$, and $\sqrt{225}=15$ m.
+
+- id: jc20-20.8-proof
+  section: '20.8'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Prove Pythagoras' theorem: in a right-angled triangle, the square of the
+    hypotenuse equals the sum of the squares of the other two sides.
+  answer_label: Prove the theorem.
+  check:
+    kind: structured
+    requires: [altitude, similarA, similarB, add]
+    concepts: [altitude, similar-triangles, sum]
+    points:
+    - id: altitude
+      text: In the right-angled triangle $ABC$ with the right angle at $B$, draw the perpendicular $BD$ from $B$ to the hypotenuse $AC$.
+      concepts: [altitude]
+    - id: similarA
+      text: Triangles $ABC$ and $ADB$ share the angle at $A$ and both have a right angle, so they are similar; therefore $\dfrac{|AC|}{|AB|}=\dfrac{|AB|}{|AD|}$, giving $|AB|^2=|AC|\times|AD|$.
+      concepts: [similar-triangles]
+    - id: similarB
+      text: In the same way triangles $ABC$ and $BDC$ are similar, giving $|BC|^2=|AC|\times|DC|$.
+      concepts: [similar-triangles]
+    - id: add
+      text: Adding the two results gives $|AB|^2+|BC|^2=|AC|\times(|AD|+|DC|)=|AC|^2$.
+      concepts: [sum]
+  answer_text: >-
+    Draw the perpendicular $BD$ from the right angle at $B$ to the hypotenuse
+    $AC$. Triangles $ABC$ and $ADB$ share the angle at $A$ and both have a right
+    angle, so they are similar. Matching sides give
+    $\dfrac{|AC|}{|AB|}=\dfrac{|AB|}{|AD|}$, so $|AB|^2=|AC|\times|AD|$. In the
+    same way triangles $ABC$ and $BDC$ are similar, so
+    $|BC|^2=|AC|\times|DC|$. Adding,
+    $|AB|^2+|BC|^2=|AC|\times(|AD|+|DC|)=|AC|\times|AC|=|AC|^2$. The square of the
+    hypotenuse equals the sum of the squares of the other two sides.
+
+- id: jc20-20.8-converse-proof
+  section: '20.8'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Prove the converse of Pythagoras: if the square of one side of a triangle
+    equals the sum of the squares of the other two, the angle opposite the first
+    side is a right angle.
+  answer_label: Prove the converse.
+  check:
+    kind: structured
+    requires: [construct, pythagoras, sss, conclude]
+    concepts: [right-angle, pythagoras, sss]
+    points:
+    - id: construct
+      text: Construct a second triangle on the other side of $BC$ with a right angle at $B$ and with a side $BD$ equal to $AB$.
+      concepts: [right-angle]
+    - id: pythagoras
+      text: Pythagoras' theorem in the new triangle gives $|DC|^2=|BD|^2+|BC|^2=|AB|^2+|BC|^2=|AC|^2$, using the hypothesis, so $|DC|=|AC|$.
+      concepts: [pythagoras]
+    - id: sss
+      text: The two triangles have $|AB|=|BD|$, the common side $BC$, and $|AC|=|DC|$, so they are congruent by SSS.
+      concepts: [sss]
+    - id: conclude
+      text: Matching angles give the angle at $B$ equal to the right angle of the new triangle, so the angle at $B$ is 90°.
+      concepts: [right-angle]
+  answer_text: >-
+    Construct a triangle on the other side of $BC$ with a right angle at $B$ and
+    with $|BD|=|AB|$. Pythagoras' theorem in the new triangle gives
+    $|DC|^2=|BD|^2+|BC|^2$. Since $|BD|=|AB|$ and $|AB|^2+|BC|^2=|AC|^2$ by the
+    hypothesis, we get $|DC|^2=|AC|^2$, so $|DC|=|AC|$. The two triangles have
+    $|AB|=|BD|$, the common side $BC$, and $|AC|=|DC|$, so they are congruent by
+    SSS. Matching angles give the angle at $B$ equal to the right angle, so it is
+    90°.
+
+- id: jc20-20.8-rhs
+  section: '20.8'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Explain why RHS is a valid congruence test for right-angled triangles.
+  answer_label: Explain why RHS works.
+  check:
+    kind: structured
+    requires: [pythagoras, sss]
+    concepts: [pythagoras, sss, hypotenuse]
+    points:
+    - id: pythagoras
+      text: In a right-angled triangle, Pythagoras' theorem gives the third side from the hypotenuse and the other side, so the third side is fixed.
+      concepts: [pythagoras, hypotenuse]
+    - id: sss
+      text: Both triangles then have three pairs of equal sides, so SSS makes them congruent.
+      concepts: [sss]
+  answer_text: >-
+    In a right-angled triangle, Pythagoras' theorem finds the third side from the
+    hypotenuse and the other side. If two right-angled triangles have equal
+    hypotenuses and one equal side, then their third sides are equal too. Both
+    triangles then have three pairs of equal sides, so SSS makes them congruent.
+    That is why RHS is a valid test.
+
+- id: jc20-20.8-triple
+  section: '20.8'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Show that 7, 24 and 25 form a Pythagorean triple by working out $7^2+24^2$ and
+    comparing it with $25^2$.
+  answer_label: Work out $7^2+24^2$ and compare.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '7**2 + 24**2', answer: '625'}
+    - {kind: evaluate, expression: '25**2', answer: '625'}
+  answer_text: >-
+    $7^2+24^2=49+576=625$ and $25^2=625$. The two values match, so 7, 24 and 25
+    form a Pythagorean triple: a right-angled triangle has sides 7, 24 and 25.

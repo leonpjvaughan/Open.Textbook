@@ -1,0 +1,176 @@
+# Junior Cycle Mathematics, Chapter 20, section 20.7 (learning outcome GT.3).
+#
+# Similarity is a statement about ratios, so the `evaluate` checks prove the ratio
+# arithmetic: cross-multiplying to find a missing side, or applying a scale factor.
+# The `structured` records are the proofs. They prove only that a model answer
+# contains the declared steps, in order, and covers the declared concepts —
+# **presence and order, not the geometry**. A human checks the argument.
+chapter: 20
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc20-20.7-scale-factor
+  section: '20.7'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Two triangles are similar. A side of 4 cm in the small triangle matches a side
+    of 12 cm in the large one. Work out the scale factor.
+  answer_label: Work out the scale factor.
+  check: {kind: evaluate, expression: '12/4', answer: '3'}
+  answer_text: >-
+    $12\div4=3$. The scale factor is 3, so every side of the small triangle is
+    multiplied by 3 to give the matching side of the large one.
+
+- id: jc20-20.7-missing-side
+  section: '20.7'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Two triangles are similar. In the small triangle a side is 3 cm and the
+    matching side in the large triangle is 9 cm. Another side of the small triangle
+    is 4 cm. Find the matching side in the large triangle.
+  answer_label: Find the matching side.
+  check: {kind: evaluate, expression: '4 * 9/3', answer: '12'}
+  answer_text: >-
+    The scale factor is $9\div3=3$, so the matching side is $4\times3=12$ cm.
+
+- id: jc20-20.7-cross-multiply
+  section: '20.7'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Two triangles are similar, so $\dfrac{3}{4}=\dfrac{9}{x}$. Find $x$.
+  answer_label: Find $x$.
+  check: {kind: evaluate, expression: '4*9/3', answer: '12'}
+  answer_text: >-
+    Cross-multiply: $3x=4\times9=36$, so $x=36\div3=12$. In similar triangles the
+    matching sides are in the same ratio.
+
+- id: jc20-20.7-ratio-two-three
+  section: '20.7'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Two similar triangles have matching sides in the ratio $2:3$. A side of the
+    small triangle is 8 cm. Find the matching side of the large one.
+  answer_label: Find the matching side.
+  check: {kind: evaluate, expression: '8 * 3/2', answer: '12'}
+  answer_text: >-
+    The scale factor is $\dfrac{3}{2}=1.5$, so the matching side is
+    $8\times1.5=12$ cm.
+
+- id: jc20-20.7-shadow
+  section: '20.7'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A vertical stick 1.5 m tall casts a shadow 2 m long. At the same time a tree
+    casts a shadow 8 m long. The two triangles are similar. Find the height of the
+    tree.
+  answer_label: Find the height of the tree.
+  check: {kind: evaluate, expression: '8 * 1.5/2', answer: '6'}
+  answer_text: >-
+    The triangles are similar, so $\dfrac{1.5}{2}=\dfrac{h}{8}$. Then
+    $h=8\times1.5\div2=6$ m. The tree is 6 m tall.
+
+- id: jc20-20.7-area-ratio
+  section: '20.7'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Two triangles are similar with scale factor 3. The area of the small triangle
+    is 5 cm². Work out the area of the large one.
+  answer_label: Work out the area of the large triangle.
+  check: {kind: evaluate, expression: '5 * 3**2', answer: '45'}
+  answer_text: >-
+    Areas scale by the square of the scale factor, so the large area is
+    $5\times3^2=5\times9=45$ cm².
+
+- id: jc20-20.7-two-angles
+  section: '20.7'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Explain why two triangles are similar if two of their angles are equal.
+  answer_label: Explain why two equal angles are enough.
+  check:
+    kind: structured
+    requires: [third, conclusion]
+    concepts: [angle-sum, similar]
+    points:
+    - id: third
+      text: The third angle of each triangle is found by subtracting the other two from 180°, so the two third angles must be equal.
+      concepts: [angle-sum]
+    - id: conclusion
+      text: All three angles of one triangle then equal the angles of the other, so the triangles are similar.
+      concepts: [similar]
+  answer_text: >-
+    The angles in a triangle add to 180°. If two angles of one triangle equal two
+    angles of another, then subtracting each pair from 180° gives equal third
+    angles. All three angles match, so the triangles are similar. This is why two
+    angles are enough.
+
+- id: jc20-20.7-proportional-proof
+  section: '20.7'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Prove that if two triangles are similar, their sides are proportional in order.
+  answer_label: Prove the result.
+  check:
+    kind: structured
+    requires: [place, parallel, ratio, conclude]
+    concepts: [scale-factor, parallel-line, same-ratio]
+    points:
+    - id: place
+      text: Place the smaller triangle on the larger one so that a vertex and a side match, giving a scale factor $k$.
+      concepts: [scale-factor]
+    - id: parallel
+      text: The third side of the small triangle is parallel to the matching side of the large one, because the matching angles are equal.
+      concepts: [parallel-line]
+    - id: ratio
+      text: A line parallel to one side cuts the other two sides in the same ratio, so each pair of matching sides is divided in the ratio $k$.
+      concepts: [same-ratio]
+    - id: conclude
+      text: Therefore the three pairs of matching sides are in the same ratio, in order.
+      concepts: [same-ratio]
+  answer_text: >-
+    Place the smaller triangle on the larger one so that one vertex and one side
+    match. The matching angles are equal, so the third side of the small triangle
+    is parallel to the matching side of the large one. A line parallel to one side
+    of a triangle cuts the other two sides in the same ratio, so every pair of
+    matching sides is in the same ratio. The sides are proportional in order.
+
+- id: jc20-20.7-parallel-ratio
+  section: '20.7'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    In triangle $ABC$, a line parallel to $BC$ cuts $[AB]$ at $D$ and $[AC]$ at
+    $E$. If $|AD|=4$ cm, $|DB|=6$ cm and $|AE|=6$ cm, find $|EC|$.
+  answer_label: Find $|EC|$.
+  check: {kind: evaluate, expression: '6 * 6/4', answer: '9'}
+  answer_text: >-
+    A line parallel to $BC$ cuts the two sides in the same ratio, so
+    $\dfrac{|AD|}{|DB|}=\dfrac{|AE|}{|EC|}$. Then
+    $\dfrac{4}{6}=\dfrac{6}{|EC|}$, so $|EC|=\dfrac{6\times6}{4}=9$ cm.
+
+- id: jc20-20.7-similar-or-not
+  section: '20.7'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Triangle $P$ has angles 40°, 60° and 80°. Triangle $Q$ has angles 40°, 70° and
+    70°. Work out whether the triangles are similar, using the angle sums.
+  answer_label: Work out whether they are similar.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '40 + 60 + 80', answer: '180'}
+    - {kind: evaluate, expression: '40 + 70 + 70', answer: '180'}
+  answer_text: >-
+    Both angle sums are 180°, so both are valid triangles. But the angle sets are
+    different — 40°, 60°, 80° against 40°, 70°, 70° — so the triangles are **not**
+    similar. Similar triangles need all three angles to match.

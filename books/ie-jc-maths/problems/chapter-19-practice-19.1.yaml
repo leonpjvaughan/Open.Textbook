@@ -1,0 +1,238 @@
+# Junior Cycle Mathematics, Chapter 19, section 19.1.
+#
+# A translation adds the same vector to every point, so each image coordinate is
+# an `evaluate` on `start + move`. Finding the vector is the reverse subtraction,
+# `finish - start`. A question that asks the reader to describe the translation
+# in words cannot be proved by a CAS, so it uses `structured`, which proves only
+# that the model answer contains its steps in order and covers its concepts.
+chapter: 19
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc19-19.1-point-1
+  section: '19.1'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'The point $P(2,3)$ is translated by the vector $\begin{pmatrix}4\\1\end{pmatrix}$. Find the image of $P$.'
+  answer_label: 'Find the image of $P$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2 + 4
+      answer: '6'
+    - kind: evaluate
+      expression: 3 + 1
+      answer: '4'
+  answer_text: 'The image is $(6,4)$. The vector means 4 right and 1 up, so add 4 to the $x$-coordinate and 1 to the $y$-coordinate.'
+
+- id: jc19-19.1-point-2
+  section: '19.1'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'The point $Q(-1,2)$ is translated by the vector $\begin{pmatrix}3\\-4\end{pmatrix}$. Find the image of $Q$.'
+  answer_label: 'Find the image of $Q$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: -1 + 3
+      answer: '2'
+    - kind: evaluate
+      expression: 2 + -4
+      answer: '-2'
+  answer_text: 'The image is $(2,-2)$. The second part of the vector is negative, so the point moves down by 4. Add the vector to the coordinates: $-1+3=2$ and $2-4=-2$.'
+
+- id: jc19-19.1-point-3
+  section: '19.1'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'The point $R(0,-3)$ is translated by the vector $\begin{pmatrix}-2\\5\end{pmatrix}$. Find the image of $R$.'
+  answer_label: 'Find the image of $R$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0 + -2
+      answer: '-2'
+    - kind: evaluate
+      expression: -3 + 5
+      answer: '2'
+  answer_text: 'The image is $(-2,2)$. The vector means 2 left and 5 up. Add the vector to the coordinates: $0-2=-2$ and $-3+5=2$.'
+
+- id: jc19-19.1-vector-1
+  section: '19.1'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A translation maps $A(1,1)$ to $B(5,4)$. Find the vector of the translation.'
+  answer_label: 'Find the vector of the translation.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 5 - 1
+      answer: '4'
+    - kind: evaluate
+      expression: 4 - 1
+      answer: '3'
+  answer_text: 'The vector is $\begin{pmatrix}4\\3\end{pmatrix}$. Subtract the start from the finish: $5-1=4$ across and $4-1=3$ up.'
+
+- id: jc19-19.1-vector-2
+  section: '19.1'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A translation maps $C(-2,3)$ to $D(4,-1)$. Find the vector of the translation.'
+  answer_label: 'Find the vector of the translation.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4 - -2
+      answer: '6'
+    - kind: evaluate
+      expression: -1 - 3
+      answer: '-4'
+  answer_text: 'The vector is $\begin{pmatrix}6\\-4\end{pmatrix}$. Subtract the start from the finish: $4-(-2)=6$ across and $-1-3=-4$ down.'
+
+- id: jc19-19.1-tri-1
+  section: '19.1'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A triangle has vertices $P(1,1)$, $Q(4,1)$ and $R(1,3)$. It is translated by the vector $\begin{pmatrix}2\\3\end{pmatrix}$. Find the image vertices.'
+  answer_label: 'Find the three image vertices.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1 + 2
+      answer: '3'
+    - kind: evaluate
+      expression: 1 + 3
+      answer: '4'
+    - kind: evaluate
+      expression: 4 + 2
+      answer: '6'
+    - kind: evaluate
+      expression: 3 + 2
+      answer: '5'
+    - kind: evaluate
+      expression: 3 + 3
+      answer: '6'
+  answer_text: 'The image vertices are $(3,4)$, $(6,4)$ and $(3,6)$. Every vertex moves by the same vector, 2 right and 3 up, so the image is the same size and shape as the original triangle.'
+
+- id: jc19-19.1-tri-2
+  section: '19.1'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A triangle has vertices $A(0,0)$, $B(2,0)$ and $C(0,2)$. It is translated by the vector $\begin{pmatrix}-1\\4\end{pmatrix}$. Find the image vertices.'
+  answer_label: 'Find the three image vertices.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0 + -1
+      answer: '-1'
+    - kind: evaluate
+      expression: 0 + 4
+      answer: '4'
+    - kind: evaluate
+      expression: 2 + -1
+      answer: '1'
+    - kind: evaluate
+      expression: 0 + 4
+      answer: '4'
+    - kind: evaluate
+      expression: -1 + 0
+      answer: '-1'
+    - kind: evaluate
+      expression: 2 + 4
+      answer: '6'
+  answer_text: 'The image vertices are $(-1,4)$, $(1,4)$ and $(-1,6)$. The vector moves every point 1 left and 4 up. The image triangle is congruent to the original.'
+
+- id: jc19-19.1-reverse
+  section: '19.1'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A translation maps $P(3,5)$ to $P''(7,2)$. Find the vector of the translation.'
+  answer_label: 'Find the vector of the translation.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 7 - 3
+      answer: '4'
+    - kind: evaluate
+      expression: 2 - 5
+      answer: '-3'
+  answer_text: 'The vector is $\begin{pmatrix}4\\-3\end{pmatrix}$. The $x$-coordinate increased by 4 and the $y$-coordinate decreased by 3, so the move is 4 right and 3 down.'
+
+- id: jc19-19.1-word
+  section: '19.1'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A robot at $(2,1)$ moves by the vector $\begin{pmatrix}3\\2\end{pmatrix}$ and then by the vector $\begin{pmatrix}-1\\4\end{pmatrix}$. Where does the robot finish?'
+  answer_label: 'Find the finishing point.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2 + 3 + -1
+      answer: '4'
+    - kind: evaluate
+      expression: 1 + 2 + 4
+      answer: '7'
+  answer_text: 'The robot finishes at $(4,7)$. Two translations in a row have the same effect as one translation. Add the vectors: $3-1=2$ right and $2+4=6$ up, then add that to $(2,1)$.'
+
+- id: jc19-19.1-crest
+  section: '19.1'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'The crest is the square with corners $(0,0)$, $(4,0)$, $(4,4)$ and $(0,4)$. A copy of the crest is made by translating it by the vector $\begin{pmatrix}6\\0\end{pmatrix}$. Find the four corners of the copy.'
+  answer_label: 'Find the four corners of the copy.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0 + 6
+      answer: '6'
+    - kind: evaluate
+      expression: 4 + 6
+      answer: '10'
+    - kind: evaluate
+      expression: 0 + 0
+      answer: '0'
+    - kind: evaluate
+      expression: 4 + 0
+      answer: '4'
+  answer_text: 'The copy has corners $(6,0)$, $(10,0)$, $(10,4)$ and $(6,4)$. Every corner moves 6 right and 0 up, so the copy sits beside the original with the same size and shape.'
+
+- id: jc19-19.1-describe
+  section: '19.1'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A shape at $(1,2)$ is translated to a shape at $(4,6)$. Find the vector and describe the translation in words.'
+  answer_label: 'Find the vector and describe the translation.'
+  check:
+    kind: structured
+    requires: [find-vector, describe-in-words]
+    concepts: [translation-vector]
+    points:
+    - id: find-vector
+      text: 'The vector is $\begin{pmatrix}3\\4\end{pmatrix}$: subtract the start from the finish, $4-1=3$ and $6-2=4$.'
+      concepts: [translation-vector]
+    - id: describe-in-words
+      text: 'The translation is 3 right and 4 up. Every point of the shape moves by that same vector.'
+      concepts: [translation-vector]
+  answer_text: 'The vector is $\begin{pmatrix}3\\4\end{pmatrix}$, so the translation is 3 right and 4 up. Subtract the start from the finish to find it: $4-1=3$ and $6-2=4$.'

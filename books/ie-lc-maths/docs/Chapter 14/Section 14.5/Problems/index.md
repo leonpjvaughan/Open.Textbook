@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 14.5 Transformations and symmetry in the plane — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.4
+Work independently. The questions and answers are shown together at the end.
+
+For each question, decide first whether it asks what a transformation does or what a
+shape's symmetry is. The two use different language, and mixing them up costs marks.
+
+:::problems chapter-14-practice-14.5
+
+:::answers chapter-14-practice-14.5

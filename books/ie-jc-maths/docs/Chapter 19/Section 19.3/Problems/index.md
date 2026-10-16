@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 19.3 Central symmetry — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.6
+Work independently. The questions and answers are shown together at the end.
+
+The centre of the half-turn is the midpoint of a point and its image. For a
+half-turn about the origin, change the sign of both coordinates.
+
+:::problems chapter-19-practice-19.3
+
+:::answers chapter-19-practice-19.3

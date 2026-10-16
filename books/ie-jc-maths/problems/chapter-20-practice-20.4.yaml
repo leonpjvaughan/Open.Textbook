@@ -1,0 +1,198 @@
+# Junior Cycle Mathematics, Chapter 20, section 20.4 (learning outcome GT.3).
+#
+# Congruence is decided by matching sides and angles, so the `evaluate` checks prove
+# the arithmetic of a matching — the remaining side, the remaining angle, the
+# perimeter. The `structured` records ask the reader to choose and justify a
+# congruence test. They prove only that a model answer contains the declared ideas,
+# in order, and covers the declared concepts: **presence and order, not the
+# geometry**. A human checks that the test named is the right one for the data.
+chapter: 20
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc20-20.4-matching-side
+  section: '20.4'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Triangles $ABC$ and $DEF$ are congruent, with $A$ matching $D$, $B$ matching
+    $E$ and $C$ matching $F$. If $|AB|=7$ cm, write down $|DE|$.
+  answer_label: Write down $|DE|$.
+  check:
+    kind: structured
+    requires: [side, reason]
+    concepts: [matching-sides, congruent]
+    points:
+    - id: side
+      text: $|DE|=7$ cm.
+      concepts: [matching-sides]
+    - id: reason
+      text: In congruent triangles, matching sides are equal, and $DE$ matches $AB$.
+      concepts: [congruent]
+  answer_text: >-
+    $|DE|=7$ cm. In congruent triangles, matching sides are equal, and $|DE|$
+    matches $|AB|$.
+
+- id: jc20-20.4-matching-angle
+  section: '20.4'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Two triangles are congruent. In the first, the angles are 40°, 60° and 80°. In
+    the second, two angles are 40° and 60°. Work out the third angle.
+  answer_label: Work out the third angle.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '40 + 60', answer: '100'}
+    - {kind: evaluate, expression: '180 - 100', answer: '80'}
+  answer_text: >-
+    $40+60=100$, and $180-100=80°$. The third angle is 80°, matching the 80° angle
+    of the first triangle.
+
+- id: jc20-20.4-perimeter
+  section: '20.4'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A triangle has sides of 5 cm, 7 cm and 9 cm. A second triangle is congruent to
+    it. Work out the perimeter of the second triangle.
+  answer_label: Work out the perimeter.
+  check: {kind: evaluate, expression: '5 + 7 + 9', answer: '21'}
+  answer_text: >-
+    $5+7+9=21$ cm. Congruent triangles have equal corresponding sides, so the
+    second triangle has the same perimeter.
+
+- id: jc20-20.4-sss
+  section: '20.4'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Two triangles have sides 6 cm, 8 cm, 10 cm and 6 cm, 8 cm, 10 cm. Which
+    congruence test proves them congruent?
+  answer_label: Name the test and say why.
+  check:
+    kind: structured
+    requires: [test, reason]
+    concepts: [sss, three-sides]
+    points:
+    - id: test
+      text: SSS, the three sides test.
+      concepts: [sss]
+    - id: reason
+      text: All three pairs of corresponding sides are equal.
+      concepts: [three-sides]
+  answer_text: >-
+    **SSS.** All three pairs of corresponding sides are equal, so Axiom 4 makes the
+    triangles congruent.
+
+- id: jc20-20.4-sas
+  section: '20.4'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Two triangles each have two sides of 4 cm and 9 cm, and the angle between those
+    two sides is 55° in each. Which congruence test applies?
+  answer_label: Name the test and say why.
+  check:
+    kind: structured
+    requires: [test, reason]
+    concepts: [sas, included-angle]
+    points:
+    - id: test
+      text: SAS, two sides and the included angle.
+      concepts: [sas]
+    - id: reason
+      text: The 55° angle lies between the two given sides in each triangle, so it is the included angle.
+      concepts: [included-angle]
+  answer_text: >-
+    **SAS.** Two sides and the angle between them are given, and the angle is
+    included, so Axiom 4 makes the triangles congruent.
+
+- id: jc20-20.4-asa
+  section: '20.4'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Two triangles each have two angles of 50° and 70°, and the side between those
+    angles is 8 cm in each. Which congruence test applies?
+  answer_label: Name the test and say why.
+  check:
+    kind: structured
+    requires: [test, reason]
+    concepts: [asa, included-side]
+    points:
+    - id: test
+      text: ASA, two angles and the included side.
+      concepts: [asa]
+    - id: reason
+      text: The 8 cm side lies between the 50° and 70° angles in each triangle.
+      concepts: [included-side]
+  answer_text: >-
+    **ASA.** Two angles and the side between them are given, so Axiom 4 makes the
+    triangles congruent.
+
+- id: jc20-20.4-rhs
+  section: '20.4'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Two right-angled triangles each have a hypotenuse of 13 cm and one other side
+    of 5 cm. Which congruence test applies, and why is the third side the same in
+    both?
+  answer_label: Name the test and give the reason.
+  check:
+    kind: structured
+    requires: [test, reason]
+    concepts: [rhs, pythagoras]
+    points:
+    - id: test
+      text: RHS, right angle, hypotenuse and side.
+      concepts: [rhs]
+    - id: reason
+      text: Pythagoras' theorem gives the third side as the square root of $13^2-5^2=144$, so both third sides are 12 cm and SSS then applies.
+      concepts: [pythagoras]
+  answer_text: >-
+    **RHS.** Both triangles are right-angled, the hypotenuses are equal and one
+    other side is equal. Pythagoras' theorem gives the third side in each:
+    $13^2-5^2=169-25=144$, so the third side is 12 cm in both. The triangles are
+    congruent.
+
+- id: jc20-20.4-ssa
+  section: '20.4'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Two triangles each have sides 4 cm and 6 cm, and an angle of 30° that is not
+    between those sides. Explain why this does not prove the triangles congruent.
+  answer_label: Explain why the test does not work.
+  check:
+    kind: structured
+    requires: [not-a-test, two-shapes]
+    concepts: [not-included, ambiguous]
+    points:
+    - id: not-a-test
+      text: The angle is not the included angle, so this is not SAS.
+      concepts: [not-included]
+    - id: two-shapes
+      text: With the given data there can be two different triangles that are not congruent, so the data do not fix the triangle.
+      concepts: [ambiguous]
+  answer_text: >-
+    The 30° angle is not between the two given sides, so the data are not SAS. In
+    fact, the data can fit two different triangles that are not congruent, so they
+    do not fix the shape. A congruence test needs the angle to be included, or a
+    right angle with the hypotenuse, which is RHS.
+
+- id: jc20-20.4-congruent-area
+  section: '20.4'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Two congruent triangles each have base 8 cm and height 5 cm. Work out the area
+    of one of them.
+  answer_label: Work out the area of one triangle.
+  check: {kind: evaluate, expression: '8 * 5 / 2', answer: '20'}
+  answer_text: >-
+    $\dfrac{8\times5}{2}=20$ cm². Congruent triangles have equal areas, so the two
+    triangles have the same area.

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 14.6 Composing transformations — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 2.4
+Work independently. The questions and answers are shown together at the end.
+
+Write the intermediate image down after the first transformation. Then apply the second
+transformation to that written image, not to the original point.
+
+:::problems chapter-14-practice-14.6
+
+:::answers chapter-14-practice-14.6

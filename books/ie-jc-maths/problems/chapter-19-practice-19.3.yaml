@@ -1,0 +1,205 @@
+# Junior Cycle Mathematics, Chapter 19, section 19.3.
+#
+# Central symmetry is a half-turn about a centre. Each image coordinate is an
+# `evaluate` on `2a - x` and `2b - y` for a centre `(a, b)`, which is the origin
+# rule when `a = b = 0`. Finding the centre is the reverse: it is the midpoint of
+# a point and its image. One record asks the reader to explain the origin rule;
+# an explanation cannot be proved by a CAS, so it uses `structured`.
+chapter: 19
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc19-19.3-origin-1
+  section: '19.3'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Find the image of $P(3,2)$ under a half-turn about the origin.'
+  answer_label: 'Find the image of $P$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0 - 3
+      answer: '-3'
+    - kind: evaluate
+      expression: 0 - 2
+      answer: '-2'
+  answer_text: 'The image is $(-3,-2)$. A half-turn about the origin changes the sign of both coordinates. The origin is the midpoint of $P$ and its image.'
+
+- id: jc19-19.3-origin-2
+  section: '19.3'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Find the image of $P(-1,4)$ under a half-turn about the origin.'
+  answer_label: 'Find the image of $P$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0 - -1
+      answer: '1'
+    - kind: evaluate
+      expression: 0 - 4
+      answer: '-4'
+  answer_text: 'The image is $(1,-4)$. Both coordinates change sign. The point moves to the opposite side of the origin, the same distance away.'
+
+- id: jc19-19.3-centre-1
+  section: '19.3'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Find the image of $A(4,0)$ under a half-turn about the point $(2,2)$.'
+  answer_label: 'Find the image of $A$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*2 - 4
+      answer: '0'
+    - kind: evaluate
+      expression: 2*2 - 0
+      answer: '4'
+  answer_text: 'The image is $(0,4)$. The centre $(2,2)$ is the midpoint of $A(4,0)$ and its image, so the image is the same distance on the other side of the centre.'
+
+- id: jc19-19.3-centre-2
+  section: '19.3'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Find the image of $P(3,2)$ under a half-turn about the point $(1,1)$.'
+  answer_label: 'Find the image of $P$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*1 - 3
+      answer: '-1'
+    - kind: evaluate
+      expression: 2*1 - 2
+      answer: '0'
+  answer_text: 'The image is $(-1,0)$. Use the rule for a half-turn about $(a,b)$: the image is $(2a-x,\ 2b-y)$. Here $2\times1-3=-1$ and $2\times1-2=0$.'
+
+- id: jc19-19.3-centre-3
+  section: '19.3'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Find the image of $P(2,3)$ under a half-turn about the point $(-1,2)$.'
+  answer_label: 'Find the image of $P$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*-1 - 2
+      answer: '-4'
+    - kind: evaluate
+      expression: 2*2 - 3
+      answer: '1'
+  answer_text: 'The image is $(-4,1)$. Apply $(2a-x,\ 2b-y)$ with $a=-1$ and $b=2$: $2\times(-1)-2=-4$ and $2\times2-3=1$.'
+
+- id: jc19-19.3-findcentre
+  section: '19.3'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A half-turn maps $P(1,3)$ to $P''(5,7)$. Find the centre of the half-turn.'
+  answer_label: 'Find the centre.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: (1 + 5)/2
+      answer: '3'
+    - kind: evaluate
+      expression: (3 + 7)/2
+      answer: '5'
+  answer_text: 'The centre is $(3,5)$. The centre is the midpoint of a point and its image. Average the coordinates: $(1+5)\div2=3$ and $(3+7)\div2=5$.'
+
+- id: jc19-19.3-tri-1
+  section: '19.3'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A triangle has vertices $(1,1)$, $(3,1)$ and $(1,2)$. Find the image vertices under a half-turn about the origin.'
+  answer_label: 'Find the three image vertices.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0 - 1
+      answer: '-1'
+    - kind: evaluate
+      expression: 0 - 1
+      answer: '-1'
+    - kind: evaluate
+      expression: 0 - 3
+      answer: '-3'
+    - kind: evaluate
+      expression: 0 - 1
+      answer: '-1'
+    - kind: evaluate
+      expression: 0 - 1
+      answer: '-1'
+    - kind: evaluate
+      expression: 0 - 2
+      answer: '-2'
+  answer_text: 'The image vertices are $(-1,-1)$, $(-3,-1)$ and $(-1,-2)$. Every coordinate changes sign. The image is the same size and shape as the original triangle, but it has been turned through 180°.'
+
+- id: jc19-19.3-crest
+  section: '19.3'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'The crest is the square with corners $(0,0)$, $(4,0)$, $(4,4)$ and $(0,4)$. It has central symmetry about its centre $M(2,2)$. Find the image of the corner $A(4,0)$ under a half-turn about $M$.'
+  answer_label: 'Find the image of $A$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*2 - 4
+      answer: '0'
+    - kind: evaluate
+      expression: 2*2 - 0
+      answer: '4'
+  answer_text: 'The image is $(0,4)$, which is the corner $C$. The half-turn about $M$ maps each corner to the opposite corner, so it maps the whole crest onto itself.'
+
+- id: jc19-19.3-crest-2
+  section: '19.3'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Find the image of the corner $B(4,4)$ of the crest under a half-turn about $M(2,2)$.'
+  answer_label: 'Find the image of $B$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*2 - 4
+      answer: '0'
+    - kind: evaluate
+      expression: 2*2 - 4
+      answer: '0'
+  answer_text: 'The image is $(0,0)$, which is the corner $O$. Together with the last result, the half-turn sends $A$ to $C$ and $B$ to $O$. The crest maps onto itself.'
+
+- id: jc19-19.3-explain
+  section: '19.3'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Explain why a half-turn about the origin maps the point $(x,y)$ to $(-x,-y)$.'
+  answer_label: 'Explain the rule for a half-turn about the origin.'
+  check:
+    kind: structured
+    requires: [name-rule, give-reason]
+    concepts: [central-symmetry]
+    points:
+    - id: name-rule
+      text: 'The image is $(-x,-y)$: both coordinates change sign.'
+      concepts: [central-symmetry]
+    - id: give-reason
+      text: 'A half-turn turns the point through 180°. The origin stays fixed and is the midpoint of the point and its image, so the image is the same distance from the origin on the opposite side.'
+      concepts: [central-symmetry]
+  answer_text: 'The image is $(-x,-y)$. A half-turn is a turn through 180° about the origin. The origin is the midpoint of the point and its image, so the image is the same distance from the origin but on the opposite side, and both coordinates change sign.'

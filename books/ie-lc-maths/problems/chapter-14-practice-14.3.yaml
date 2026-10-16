@@ -1,0 +1,90 @@
+# Practice set for 14.3 (strand 2, outcome 2.4). sympy proves the coordinate
+# arithmetic: a quarter-turn or a half-turn about the origin is a 2 by 2 matrix acting
+# on the point, and central symmetry about a general centre is the midpoint rule. The
+# order of a rotational symmetry is proved as 360 divided by the smallest fitting turn.
+chapter: 14
+problems:
+  - id: lc14-3-rotate-anticlockwise
+    section: '14.3'
+    tier: F
+    refs: ['2.4']
+    statement: 'Rotate the point $(4,1)$ by $90^\circ$ anticlockwise about the origin.'
+    answer_label: 'Quarter-turn anticlockwise'
+    check: {kind: evaluate, expression: 'Matrix([[0, -1], [1, 0]]) * Matrix([4, 1])', answer: 'Matrix([-1, 4])'}
+    answer_text: '$(-1,4)$: the rule for a quarter-turn anticlockwise is $(x,y) \to (-y,x)$.'
+
+  - id: lc14-3-rotate-clockwise
+    section: '14.3'
+    tier: F
+    refs: ['2.4']
+    statement: 'Rotate the point $(2,-3)$ by $90^\circ$ clockwise about the origin.'
+    answer_label: 'Quarter-turn clockwise'
+    check: {kind: evaluate, expression: 'Matrix([[0, 1], [-1, 0]]) * Matrix([2, -3])', answer: 'Matrix([-3, -2])'}
+    answer_text: '$(-3,-2)$: the rule for a quarter-turn clockwise is $(x,y) \to (y,-x)$.'
+
+  - id: lc14-3-rotate-half-turn
+    section: '14.3'
+    tier: F
+    refs: ['2.4']
+    statement: 'Rotate the point $(3,1)$ by $180^\circ$ about the origin.'
+    answer_label: 'Half-turn'
+    check: {kind: evaluate, expression: 'Matrix([[-1, 0], [0, -1]]) * Matrix([3, 1])', answer: 'Matrix([-3, -1])'}
+    answer_text: '$(-3,-1)$: a half-turn changes the sign of both coordinates.'
+
+  - id: lc14-3-central-symmetry
+    section: '14.3'
+    tier: F
+    refs: ['2.4']
+    statement: 'Find the image of $(5,1)$ under central symmetry about the point $C(2,3)$.'
+    answer_label: 'Central symmetry about $C(2,3)$'
+    check: {kind: evaluate, expression: 'Matrix([2*2 - 5, 2*3 - 1])', answer: 'Matrix([-1, 5])'}
+    answer_text: >-
+      $(-1,5)$: central symmetry about $C(c,d)$ sends $(x,y)$ to $(2c - x,\; 2d - y)$,
+      so the centre is the midpoint of the point and its image.
+
+  - id: lc14-3-order-square
+    section: '14.3'
+    tier: F
+    refs: ['2.4']
+    statement: 'Find the order of rotational symmetry of a square.'
+    answer_label: 'Order of rotational symmetry of a square'
+    check: {kind: evaluate, expression: '360 / 90', answer: '4'}
+    answer_text: 'The smallest turn that fits is $90^\circ$, and $360 \div 90 = 4$.'
+
+  - id: lc14-3-order-hexagon
+    section: '14.3'
+    tier: F
+    refs: ['2.4']
+    statement: 'Find the order of rotational symmetry of a regular hexagon.'
+    answer_label: 'Order of rotational symmetry of a hexagon'
+    check: {kind: evaluate, expression: '360 / 60', answer: '6'}
+    answer_text: 'The smallest turn that fits is $60^\circ$, and $360 \div 60 = 6$.'
+
+  - id: lc14-3-rotate-triangle
+    section: '14.3'
+    tier: F
+    refs: ['2.4']
+    statement: >-
+      Rotate the triangle with corners $(1,1)$, $(4,1)$ and $(1,3)$ by $180^\circ$ about
+      the origin, and give all three image corners.
+    answer_label: 'Image of the triangle'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'Matrix([[-1, 0], [0, -1]]) * Matrix([1, 1])', answer: 'Matrix([-1, -1])'}
+        - {kind: evaluate, expression: 'Matrix([[-1, 0], [0, -1]]) * Matrix([4, 1])', answer: 'Matrix([-4, -1])'}
+        - {kind: evaluate, expression: 'Matrix([[-1, 0], [0, -1]]) * Matrix([1, 3])', answer: 'Matrix([-1, -3])'}
+    answer_text: '$(-1,-1)$, $(-4,-1)$ and $(-1,-3)$: every corner changes the sign of both coordinates.'
+
+  - id: lc14-3-describe-rotation
+    section: '14.3'
+    tier: F
+    refs: ['2.4']
+    statement: >-
+      A rotation about the origin takes the point $(2,-5)$ to $(5,2)$. Describe the
+      rotation fully.
+    answer_label: 'Description of the rotation'
+    check: {kind: evaluate, expression: 'Matrix([[0, -1], [1, 0]]) * Matrix([2, -5])', answer: 'Matrix([5, 2])'}
+    answer_text: >-
+      A rotation of $90^\circ$ anticlockwise about the origin. The rule $(x,y) \to
+      (-y,x)$ sends $(2,-5)$ to $(5,2)$.

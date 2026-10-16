@@ -1,0 +1,218 @@
+# Junior Cycle Mathematics, Chapter 19, section 19.5.
+#
+# A point reflected in an axis is an `evaluate` on `2k - x` for a vertical axis
+# `x = k` or `2k - y` for a horizontal axis `y = k`, and the axis of a symmetric
+# shape is found from the midpoint of two matching points. Counting axes or naming
+# a rotational order cannot be proved by a CAS, so those records use `structured`,
+# which proves only that the model answer covers its declared ideas.
+chapter: 19
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc19-19.5-square
+  section: '19.5'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'How many axes of symmetry does a square have? Describe them.'
+  answer_label: 'Count the axes of symmetry of a square.'
+  check:
+    kind: structured
+    requires: [state-number, describe-axes]
+    concepts: [axis-of-symmetry]
+    points:
+    - id: state-number
+      text: 'A square has 4 axes of symmetry.'
+      concepts: [axis-of-symmetry]
+    - id: describe-axes
+      text: 'Two axes join the midpoints of opposite sides, and two run along the diagonals.'
+      concepts: [axis-of-symmetry]
+  answer_text: 'A square has 4 axes of symmetry: two through the midpoints of opposite sides, and two along the diagonals. A reflection in any of these four lines leaves the square looking the same.'
+
+- id: jc19-19.5-rectangle
+  section: '19.5'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'How many axes of symmetry does a rectangle have?'
+  answer_label: 'Count the axes of symmetry of a rectangle.'
+  check:
+    kind: structured
+    requires: [state-number, warn-diagonals]
+    concepts: [axis-of-symmetry]
+    points:
+    - id: state-number
+      text: 'A rectangle has 2 axes of symmetry.'
+      concepts: [axis-of-symmetry]
+    - id: warn-diagonals
+      text: 'The axes join the midpoints of opposite sides. The diagonals are not axes of symmetry, because a reflection in a diagonal does not map the rectangle onto itself.'
+      concepts: [axis-of-symmetry]
+  answer_text: 'A rectangle has 2 axes of symmetry, each joining the midpoints of a pair of opposite sides. The diagonals are not axes of symmetry: a reflection in a diagonal turns the rectangle the wrong way.'
+
+- id: jc19-19.5-parallelogram
+  section: '19.5'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Does a parallelogram have an axis of symmetry? Explain your answer.'
+  answer_label: 'Decide whether a parallelogram has an axis of symmetry.'
+  check:
+    kind: structured
+    requires: [state-answer, give-reason]
+    concepts: [axis-of-symmetry]
+    points:
+    - id: state-answer
+      text: 'No. A parallelogram has no axis of symmetry.'
+      concepts: [axis-of-symmetry]
+    - id: give-reason
+      text: 'No line divides it into two halves that are mirror images, unless it is a special parallelogram such as a rectangle or a rhombus.'
+      concepts: [axis-of-symmetry]
+  answer_text: 'No. A parallelogram has no axis of symmetry. No line divides a general parallelogram into two halves that are mirror images. A rectangle, a rhombus and a square do have axes, because they are special parallelograms.'
+
+- id: jc19-19.5-eq-tri
+  section: '19.5'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'How many axes of symmetry does an equilateral triangle have?'
+  answer_label: 'Count the axes of symmetry of an equilateral triangle.'
+  check:
+    kind: structured
+    requires: [state-number, describe-axes]
+    concepts: [axis-of-symmetry]
+    points:
+    - id: state-number
+      text: 'An equilateral triangle has 3 axes of symmetry.'
+      concepts: [axis-of-symmetry]
+    - id: describe-axes
+      text: 'Each axis passes through one vertex and the midpoint of the opposite side.'
+      concepts: [axis-of-symmetry]
+  answer_text: 'An equilateral triangle has 3 axes of symmetry. Each axis passes through a vertex and the midpoint of the opposite side. The three sides are equal, so the triangle is symmetric in three ways.'
+
+- id: jc19-19.5-iso-tri
+  section: '19.5'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'An isosceles triangle has vertices $(0,0)$, $(4,0)$ and $(2,3)$. Find the equation of its axis of symmetry.'
+  answer_label: 'Find the axis of symmetry.'
+  check:
+    kind: evaluate
+    expression: (0 + 4)/2
+    answer: '2'
+  answer_text: 'The axis is the vertical line $x=2$. The apex $(2,3)$ sits directly above the midpoint of the base, and the midpoint has $x=(0+4)\div2=2$. The axis is always the perpendicular bisector of the base of an isosceles triangle.'
+
+- id: jc19-19.5-axis-image
+  section: '19.5'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A shape has an axis of symmetry along the line $x=2$. The point $(0,3)$ lies on the shape. Find the mirror image of this point.'
+  answer_label: 'Find the mirror image of the point.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*2 - 0
+      answer: '4'
+    - kind: evaluate
+      expression: 3
+      answer: '3'
+  answer_text: 'The mirror image is $(4,3)$. The point $(0,3)$ is 2 units to the left of the axis $x=2$, so its image is 2 units to the right. The $y$-coordinate stays the same.'
+
+- id: jc19-19.5-axis-image-2
+  section: '19.5'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A shape has an axis of symmetry along the line $y=1$. The point $(2,4)$ lies on the shape. Find the mirror image of this point.'
+  answer_label: 'Find the mirror image of the point.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2
+      answer: '2'
+    - kind: evaluate
+      expression: 2*1 - 4
+      answer: '-2'
+  answer_text: 'The mirror image is $(2,-2)$. The point is 3 units above the axis $y=1$, so its image is 3 units below. The $x$-coordinate stays the same.'
+
+- id: jc19-19.5-axis-image-3
+  section: '19.5'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A shape has an axis of symmetry along the line $x=-1$. The point $(3,5)$ lies on the shape. Find the mirror image of this point.'
+  answer_label: 'Find the mirror image of the point.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*-1 - 3
+      answer: '-5'
+    - kind: evaluate
+      expression: 5
+      answer: '5'
+  answer_text: 'The mirror image is $(-5,5)$. The point is 4 units to the right of the axis $x=-1$, so its image is 4 units to the left, at $x=-5$. The $y$-coordinate stays the same.'
+
+- id: jc19-19.5-crest
+  section: '19.5'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'The crest is shaded on the left and right triangles and plain on the top and bottom triangles. How many axes of symmetry does the crest have? Name them.'
+  answer_label: 'Count the axes of symmetry of the crest.'
+  check:
+    kind: structured
+    requires: [state-number, name-axes]
+    concepts: [axis-of-symmetry]
+    points:
+    - id: state-number
+      text: 'The crest has 2 axes of symmetry.'
+      concepts: [axis-of-symmetry]
+    - id: name-axes
+      text: 'They are the vertical line $x=2$ and the horizontal line $y=2$ through the centre. A diagonal is not an axis, because it would send a shaded triangle onto a plain one.'
+      concepts: [axis-of-symmetry]
+  answer_text: 'The crest has 2 axes of symmetry: the vertical line $x=2$ and the horizontal line $y=2$. A diagonal is not an axis, because a reflection in a diagonal sends a shaded triangle onto a plain one.'
+
+- id: jc19-19.5-circle
+  section: '19.5'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'How many axes of symmetry does a circle have?'
+  answer_label: 'Count the axes of symmetry of a circle.'
+  check:
+    kind: structured
+    requires: [state-number, give-reason]
+    concepts: [axis-of-symmetry]
+    points:
+    - id: state-number
+      text: 'A circle has infinitely many axes of symmetry.'
+      concepts: [axis-of-symmetry]
+    - id: give-reason
+      text: 'Every line through the centre is an axis. A reflection in any diameter leaves the circle looking the same.'
+      concepts: [axis-of-symmetry]
+  answer_text: 'A circle has infinitely many axes of symmetry. Every line through the centre is an axis, and there are infinitely many such lines. A reflection in any diameter leaves the circle unchanged.'
+
+- id: jc19-19.5-rot-order
+  section: '19.5'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A square turns about its centre. How many times does it fit onto itself in a full turn? This number is its order of rotational symmetry.'
+  answer_label: 'Find the order of rotational symmetry of a square.'
+  check:
+    kind: structured
+    requires: [state-number, give-reason]
+    concepts: [rotational-symmetry]
+    points:
+    - id: state-number
+      text: 'The order is 4: the square fits onto itself at 0°, 90°, 180° and 270°.'
+      concepts: [rotational-symmetry]
+    - id: give-reason
+      text: 'A quarter-turn maps each corner onto the next corner, so the square looks the same four times in a full turn.'
+      concepts: [rotational-symmetry]
+  answer_text: 'The order of rotational symmetry is 4. A square fits onto itself at 0°, 90°, 180° and 270°, so it looks the same four times in a full turn.'

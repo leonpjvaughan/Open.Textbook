@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 14.4 Enlargements and the scale factor — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.4
+Work independently. The questions and answers are shown together at the end.
+
+State the centre and the scale factor before you enlarge anything. For every area
+question, use the area factor $k^2$ and check that the answer has the right units.
+
+:::problems chapter-14-practice-14.4
+
+:::answers chapter-14-practice-14.4

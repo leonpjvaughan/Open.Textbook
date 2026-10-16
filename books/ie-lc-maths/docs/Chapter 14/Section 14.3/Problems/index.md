@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 14.3 Central symmetry and rotation — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 2.4
+Work independently. The questions and answers are shown together at the end.
+
+Write down the centre, the angle and the direction before you turn anything. For central
+symmetry, check that the centre is the midpoint of a point and its image.
+
+:::problems chapter-14-practice-14.3
+
+:::answers chapter-14-practice-14.3

@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 13.6 Intersection of a line and a circle — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 2.2
+Work on your own, without notes. Decide first whether the question wants the
+points themselves or only their number. If it wants only the number, use the
+discriminant and save yourself the work.
+
+The questions and the answers are shown together at the end.
+
+:::problems chapter-13-practice-13.6
+
+:::answers chapter-13-practice-13.6

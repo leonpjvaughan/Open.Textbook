@@ -1,0 +1,134 @@
+# Practice set for 13.1 (Leaving Certificate Mathematics, strand 2, outcome 2.2).
+#
+# The distance is a square root, the midpoint and the slope are arithmetic the
+# CAS does from the coordinates, so no answer is compared with itself. The
+# `solve` record declares `k` so SymPy finds the missing coordinate rather than
+# being told it.
+chapter: 13
+symbols:
+  k: {real: true}
+problems:
+  - id: lc13-1-distance
+    section: '13.1'
+    tier: F
+    refs: ['2.2']
+    statement: 'Find the distance between $(2, 3)$ and $(5, 7)$.'
+    answer_label: 'The distance'
+    check: {kind: evaluate, expression: 'sqrt((5 - 2)**2 + (7 - 3)**2)', answer: '5'}
+    answer_text: >-
+      The differences are $5 - 2 = 3$ and $7 - 3 = 4$. So the distance is
+      $\sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5$.
+
+  - id: lc13-1-midpoint
+    section: '13.1'
+    tier: F
+    refs: ['2.2']
+    statement: 'Find the midpoint of the segment joining $(2, 3)$ and $(8, -1)$.'
+    answer_label: 'The midpoint'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(2 + 8)/2', answer: '5'}
+        - {kind: evaluate, expression: '(3 + (-1))/2', answer: '1'}
+    answer_text: >-
+      The midpoint is the average of the two $x$-coordinates and the average of
+      the two $y$-coordinates: $\left(\frac{2 + 8}{2}, \frac{3 + (-1)}{2}\right)
+      = (5, 1)$.
+
+  - id: lc13-1-slope
+    section: '13.1'
+    tier: F
+    refs: ['2.2']
+    statement: 'Find the slope of the line through $(1, 2)$ and $(5, 10)$.'
+    answer_label: 'The slope'
+    check: {kind: evaluate, expression: '(10 - 2)/(5 - 1)', answer: '2'}
+    answer_text: >-
+      The slope is the rise over the run: $\frac{10 - 2}{5 - 1} = \frac{8}{4} = 2$.
+      The line rises $2$ units for every $1$ unit to the right.
+
+  - id: lc13-1-surd
+    section: '13.1'
+    tier: F
+    refs: ['2.2']
+    statement: 'Find the exact distance between $(0, 0)$ and $(4, 6)$. Give a surd.'
+    answer_label: 'The distance'
+    check: {kind: evaluate, expression: 'sqrt((4 - 0)**2 + (6 - 0)**2)', answer: '2*sqrt(13)'}
+    answer_text: >-
+      $\sqrt{4^2 + 6^2} = \sqrt{16 + 36} = \sqrt{52} = \sqrt{4 \times 13}
+      = 2\sqrt{13}$. The surd is exact, so keep it and do not round.
+
+  - id: lc13-1-chapter-road
+    section: '13.1'
+    tier: F
+    refs: ['2.2']
+    statement: >-
+      The main road runs from $A(-1, 1)$ to $B(7, 7)$. Find its length, its
+      midpoint and its slope.
+    answer_label: 'Length, midpoint and slope'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'sqrt((7 - (-1))**2 + (7 - 1)**2)', answer: '10'}
+        - {kind: evaluate, expression: '(-1 + 7)/2', answer: '3'}
+        - {kind: evaluate, expression: '(1 + 7)/2', answer: '4'}
+        - {kind: evaluate, expression: '(7 - 1)/(7 - (-1))', answer: '3/4'}
+    answer_text: >-
+      The length is $\sqrt{8^2 + 6^2} = 10$ units. The midpoint is
+      $\left(\frac{-1 + 7}{2}, \frac{1 + 7}{2}\right) = (3, 4)$. The slope is
+      $\frac{7 - 1}{7 - (-1)} = \frac{6}{8} = \frac{3}{4}$.
+
+  - id: lc13-1-missing-endpoint
+    section: '13.1'
+    tier: F
+    refs: ['2.2']
+    statement: >-
+      The midpoint of a segment is $(4, 3)$ and one endpoint is $(1, 5)$. Find
+      the other endpoint.
+    answer_label: 'The other endpoint'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2*4 - 1', answer: '7'}
+        - {kind: evaluate, expression: '2*3 - 5', answer: '1'}
+    answer_text: >-
+      The midpoint is the average of the endpoints, so each endpoint is
+      twice the midpoint minus the other endpoint. The other endpoint is
+      $(2 \times 4 - 1, 2 \times 3 - 5) = (7, 1)$.
+
+  - id: lc13-1-find-k
+    section: '13.1'
+    tier: F
+    refs: ['2.2']
+    statement: >-
+      The line through $(2, k)$ and $(6, 9)$ has slope $2$. Find $k$.
+    answer_label: 'The value of k'
+    check: {kind: solve, equation: '(9 - k)/(6 - 2) = 2', variable: k, answer: '1'}
+    answer_text: >-
+      The slope is $\frac{9 - k}{6 - 2} = 2$, so $9 - k = 8$ and $k = 1$.
+
+  - id: lc13-1-explain-distance
+    section: '13.1'
+    tier: F
+    refs: ['2.2']
+    statement: >-
+      Explain why the distance between $(x_1, y_1)$ and $(x_2, y_2)$ is
+      $\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$.
+    answer_label: 'Why the formula works'
+    check:
+      kind: structured
+      requires: [differences, triangle, hypotenuse]
+      concepts: [right-angle, pythagoras]
+      points:
+        - id: differences
+          text: The horizontal difference is x2 - x1 and the vertical difference is y2 - y1.
+          concepts: [right-angle]
+        - id: triangle
+          text: Those two differences are the shorter sides of a right-angled triangle.
+          concepts: [right-angle]
+        - id: hypotenuse
+          text: The distance is the hypotenuse, so Pythagoras gives its square as the sum of the two squares.
+          concepts: [pythagoras]
+    answer_text: >-
+      The horizontal and vertical differences are the two shorter sides of a
+      right-angled triangle, and the distance is the hypotenuse. Pythagoras
+      then gives distance $= \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$.

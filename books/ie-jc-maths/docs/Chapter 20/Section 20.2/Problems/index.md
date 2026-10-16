@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 20.2 The constructions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.3
+Work independently. The questions and answers are shown together at the end.
+
+For a construction question, write the steps in order and say why each step is
+needed. A construction that is not explained is only half an answer.
+
+:::problems chapter-20-practice-20.2
+
+:::answers chapter-20-practice-20.2

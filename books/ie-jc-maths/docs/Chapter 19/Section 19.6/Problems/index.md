@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 19.6 Combining transformations — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: GT.6
+Work independently. The questions and answers are shown together at the end.
+
+Apply the first transformation, write down the intermediate point, then apply the
+second. Two reflections in parallel lines give a translation; two reflections in
+perpendicular lines give a half-turn.
+
+:::problems chapter-19-practice-19.6
+
+:::answers chapter-19-practice-19.6

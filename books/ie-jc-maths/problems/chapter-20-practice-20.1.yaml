@@ -1,0 +1,207 @@
+# Junior Cycle Mathematics, Chapter 20, section 20.1 (learning outcome GT.3).
+#
+# The vocabulary of proof is a classification and a choice, not arithmetic, so most
+# records here are `structured`: they prove only that a model answer contains the
+# declared ideas, in order, and covers the declared concepts. They prove **presence
+# and order, not the mathematics** — nothing here decides whether a classification is
+# the one the course intends, and a human checks that. The `evaluate` records prove
+# the arithmetic of the counterexamples the section uses.
+chapter: 20
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc20-20.1-axiom
+  section: '20.1'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    The statement "there is exactly one line through any two given points" is
+    accepted without proof. What kind of statement is it, and what does that mean?
+  answer_label: Name the kind of statement and say what it means.
+  check:
+    kind: structured
+    requires: [name, meaning]
+    concepts: [axiom, accepted-without-proof]
+    points:
+    - id: name
+      text: It is an axiom.
+      concepts: [axiom]
+    - id: meaning
+      text: An axiom is a statement accepted as true without proof, and it is the starting point for proving theorems.
+      concepts: [accepted-without-proof]
+  answer_text: >-
+    It is an **axiom**. An axiom is a statement we accept as true without proof.
+    Every proof has to start somewhere, and the axioms are where this course starts.
+
+- id: jc20-20.1-theorem
+  section: '20.1'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    The statement "the angles in a triangle add to 180°" is proved from the axioms
+    and the theorems that come before it. What kind of statement is it, and what
+    does that mean?
+  answer_label: Name the kind of statement and say what it means.
+  check:
+    kind: structured
+    requires: [name, meaning]
+    concepts: [theorem, deduced]
+    points:
+    - id: name
+      text: It is a theorem.
+      concepts: [theorem]
+    - id: meaning
+      text: A theorem is a statement deduced from the axioms by logical argument.
+      concepts: [deduced]
+  answer_text: >-
+    It is a **theorem**. A theorem is a statement deduced from the axioms by
+    logical argument. Unlike an axiom, a theorem needs a proof.
+
+- id: jc20-20.1-converse-isosceles
+  section: '20.1'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Theorem 2 says: in an isosceles triangle, the angles opposite the equal sides
+    are equal. Write down its converse.
+  answer_label: Write down the converse.
+  check:
+    kind: structured
+    requires: [converse]
+    concepts: [converse, swap]
+    points:
+    - id: converse
+      text: If two angles of a triangle are equal, then the triangle is isosceles.
+      concepts: [converse, swap]
+  answer_text: >-
+    **If two angles of a triangle are equal, then the triangle is isosceles.** The
+    converse swaps the hypothesis and the conclusion. The original says equal sides
+    give equal angles; the converse says equal angles give equal sides.
+
+- id: jc20-20.1-converse-false
+  section: '20.1'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    The statement "if a number is divisible by 6, then it is divisible by 3" is
+    true. Show that its converse is false by testing the number 9.
+  answer_label: Test 9 and decide.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '9/3', answer: '3'}
+    - {kind: evaluate, expression: 'Mod(9, 6)', answer: '3'}
+  answer_text: >-
+    $9\div3=3$ exactly, so 9 is divisible by 3. But $9\div6$ leaves a remainder of
+    3, so 9 is not divisible by 6. The converse — "if a number is divisible by 3,
+    then it is divisible by 6" — is false, and 9 is a counterexample. A true
+    statement can have a false converse.
+
+- id: jc20-20.1-converse-true
+  section: '20.1'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    The converse of Pythagoras' theorem says that if the square of one side equals
+    the sum of the squares of the other two, then the triangle is right-angled. Test
+    the triangle with sides 3 cm, 4 cm and 5 cm.
+  answer_label: Test the triangle and decide.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '3**2 + 4**2', answer: '25'}
+    - {kind: evaluate, expression: '5**2', answer: '25'}
+  answer_text: >-
+    $3^2+4^2=9+16=25$ and $5^2=25$. The two values match, so the triangle is
+    right-angled. This converse is true, which is why the test works in both
+    directions.
+
+- id: jc20-20.1-hypothesis
+  section: '20.1'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A statement reads: "if a quadrilateral is a rectangle, then it is a
+    parallelogram." Write down the hypothesis and the conclusion.
+  answer_label: Write down the hypothesis and the conclusion.
+  check:
+    kind: structured
+    requires: [hypothesis, conclusion]
+    concepts: [hypothesis, conclusion]
+    points:
+    - id: hypothesis
+      text: The hypothesis is "a quadrilateral is a rectangle".
+      concepts: [hypothesis]
+    - id: conclusion
+      text: The conclusion is "it is a parallelogram".
+      concepts: [conclusion]
+  answer_text: >-
+    The **hypothesis** is what we are given: a quadrilateral is a rectangle. The
+    **conclusion** is what we must show follows: it is a parallelogram. Swapping
+    the two gives the converse.
+
+- id: jc20-20.1-corollary
+  section: '20.1'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Which of these two statements is a corollary: (a) the angles in a triangle add
+    to 180°, or (b) a diagonal divides a parallelogram into two congruent triangles?
+    Give a reason.
+  answer_label: Choose and give a reason.
+  check:
+    kind: structured
+    requires: [choice, reason]
+    concepts: [corollary, follows-from-theorem]
+    points:
+    - id: choice
+      text: Statement (b) is the corollary.
+      concepts: [corollary]
+    - id: reason
+      text: It follows at once from Theorem 9, that opposite sides of a parallelogram are equal, together with a congruence test.
+      concepts: [follows-from-theorem]
+  answer_text: >-
+    Statement **(b)** is the corollary. A corollary is a result that follows
+    quickly from a theorem already proved. Once Theorem 9 gives the opposite sides
+    as equal, the two triangles made by a diagonal are congruent by ASA, with no
+    new argument needed.
+
+- id: jc20-20.1-implies
+  section: '20.1'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Explain what "implies" means when we write "equal alternate angles implies
+    parallel lines".
+  answer_label: Explain what "implies" means.
+  check:
+    kind: structured
+    requires: [meaning]
+    concepts: [implies, if-then]
+    points:
+    - id: meaning
+      text: It means that if the alternate angles are equal, then the lines must be parallel; the first statement is the reason for the second.
+      concepts: [implies, if-then]
+  answer_text: >-
+    "Implies" is the arrow between a hypothesis and a conclusion. It means that
+    whenever the first statement is true, the second is true as well. So if the
+    alternate angles are equal, the lines must be parallel — the equality is the
+    reason for the parallelism.
+
+- id: jc20-20.1-angle-check
+  section: '20.1'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A triangle has angles of 55°, 65° and $x$. Use the theorem that the angles of a
+    triangle add to 180° to find $x$.
+  answer_label: Find $x$.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '55 + 65', answer: '120'}
+    - {kind: evaluate, expression: '180 - 120', answer: '60'}
+  answer_text: >-
+    $55+65=120$, and $180-120=60$. So $x=60°$. The theorem is the reason the
+    calculation is allowed; in Section 20.3 you will prove that theorem.

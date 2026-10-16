@@ -1,0 +1,97 @@
+# Practice set for 14.5 (strand 2, outcome 2.4). sympy proves the arithmetic that
+# identifies a transformation (the claimed matrix sends the object point to the image
+# point), the order of a rotational symmetry as 360 divided by the smallest fitting turn,
+# and similarity as the equality of the matching ratios.
+chapter: 14
+problems:
+  - id: lc14-5-identify-y-axis
+    section: '14.5'
+    tier: O
+    refs: ['2.4']
+    statement: 'A single transformation takes $(3,4)$ to $(-3,4)$. Name the transformation.'
+    answer_label: 'Transformation taking $(3,4)$ to $(-3,4)$'
+    check: {kind: evaluate, expression: 'Matrix([[-1, 0], [0, 1]]) * Matrix([3, 4])', answer: 'Matrix([-3, 4])'}
+    answer_text: 'A reflection in the $y$-axis: the $x$-coordinate changes sign and the $y$-coordinate does not.'
+
+  - id: lc14-5-identify-y-equals-x
+    section: '14.5'
+    tier: O
+    refs: ['2.4']
+    statement: 'A single transformation takes $(3,4)$ to $(4,3)$. Name the transformation.'
+    answer_label: 'Transformation taking $(3,4)$ to $(4,3)$'
+    check: {kind: evaluate, expression: 'Matrix([[0, 1], [1, 0]]) * Matrix([3, 4])', answer: 'Matrix([4, 3])'}
+    answer_text: 'A reflection in the line $y = x$: the two coordinates swap.'
+
+  - id: lc14-5-identify-half-turn
+    section: '14.5'
+    tier: O
+    refs: ['2.4']
+    statement: 'A single transformation takes $(3,4)$ to $(-3,-4)$. Name the transformation.'
+    answer_label: 'Transformation taking $(3,4)$ to $(-3,-4)$'
+    check: {kind: evaluate, expression: 'Matrix([[-1, 0], [0, -1]]) * Matrix([3, 4])', answer: 'Matrix([-3, -4])'}
+    answer_text: 'A rotation of $180^\circ$ about the origin, which is central symmetry about the origin.'
+
+  - id: lc14-5-identify-translation
+    section: '14.5'
+    tier: O
+    refs: ['2.4']
+    statement: 'A single transformation takes $(3,4)$ to $(3,5)$. Name the transformation.'
+    answer_label: 'Transformation taking $(3,4)$ to $(3,5)$'
+    check: {kind: evaluate, expression: 'Matrix([3, 4]) + Matrix([0, 1])', answer: 'Matrix([3, 5])'}
+    answer_text: 'A translation by the vector $\binom{0}{1}$: every point moves 1 unit up.'
+
+  - id: lc14-5-order-octagon
+    section: '14.5'
+    tier: O
+    refs: ['2.4']
+    statement: 'Find the order of rotational symmetry of a regular octagon.'
+    answer_label: 'Order of rotational symmetry'
+    check: {kind: evaluate, expression: '360 / 45', answer: '8'}
+    answer_text: 'The smallest fitting turn is $45^\circ$, so the order is $360 \div 45 = 8$.'
+
+  - id: lc14-5-turn-pentagon
+    section: '14.5'
+    tier: O
+    refs: ['2.4']
+    statement: 'Find the smallest turn, in degrees, that maps a regular pentagon onto itself.'
+    answer_label: 'Smallest fitting turn'
+    check: {kind: evaluate, expression: '360 / 5', answer: '72'}
+    answer_text: 'A regular pentagon has 5 equal sides, so the smallest fitting turn is $360 \div 5 = 72^\circ$.'
+
+  - id: lc14-5-similar-triangles
+    section: '14.5'
+    tier: O
+    refs: ['2.4']
+    statement: >-
+      Two triangles have side lengths $3$, $4$, $5$ cm and $6$, $8$, $10$ cm. Are they
+      congruent, similar, or neither? Give a reason.
+    answer_label: 'Congruent, similar, or neither'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '6/3 - 8/4', answer: '0'}
+        - {kind: evaluate, expression: '8/4 - 10/5', answer: '0'}
+    answer_text: >-
+      Similar, with scale factor $2$. Every matching pair of sides is in the same ratio
+      $2$, and the two ratios agree. They are not congruent, because the sizes differ.
+
+  - id: lc14-5-parallelogram-symmetry
+    section: '14.5'
+    tier: O
+    refs: ['2.4']
+    statement: >-
+      Describe the symmetry of a parallelogram that is not a rectangle, and say why it
+      has no axis of symmetry.
+    answer_label: 'Symmetry of a parallelogram'
+    check:
+      kind: structured
+      requires: [half-turn, no-reflection]
+      concepts: [rotational-symmetry, axial-symmetry]
+      points:
+        - {id: half-turn, text: a half-turn about the centre sends each corner to the opposite corner, so the order of rotational symmetry is 2, concepts: [rotational-symmetry]}
+        - {id: no-reflection, text: no reflection maps the parallelogram onto itself, so it has no axis of symmetry, concepts: [axial-symmetry]}
+    answer_text: >-
+      A parallelogram that is not a rectangle has rotational symmetry of order 2 and no
+      axis of symmetry. A half-turn about the centre maps each corner to the opposite
+      corner, so the shape lands on itself. No reflection works, because the sloping
+      sides are unequal and a reflection would move them to the wrong place.

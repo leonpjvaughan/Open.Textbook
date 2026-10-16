@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.8 Trigonometric identities — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 2.3
+Work independently. The questions and answers are shown together at the end.
+
+Every formula in this set is printed in the Formulae and Tables booklet. Choose the
+formula first, then substitute. Check that each sine or cosine answer lies between $-1$
+and $1$.
+
+:::problems chapter-12-practice-12.8
+
+:::answers chapter-12-practice-12.8

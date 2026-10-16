@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.9 Solving trigonometric equations — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 2.3
+Work independently. The questions and answers are shown together at the end.
+
+Say which quadrant each solution lies in before you write it down. A full turn usually
+gives two solutions, and an angle of the form $n\theta$ gives more. Check every answer
+in the original equation.
+
+:::problems chapter-12-practice-12.9
+
+:::answers chapter-12-practice-12.9

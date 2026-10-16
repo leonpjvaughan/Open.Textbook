@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 19.2 Axial symmetry and reflection — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.6
+Work independently. The questions and answers are shown together at the end.
+
+Find the mirror line first. A vertical line changes the $x$-coordinate, a
+horizontal line changes the $y$-coordinate, and the line $y=x$ swaps the pair.
+
+:::problems chapter-19-practice-19.2
+
+:::answers chapter-19-practice-19.2

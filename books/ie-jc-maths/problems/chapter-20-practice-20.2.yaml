@@ -1,0 +1,197 @@
+# Junior Cycle Mathematics, Chapter 20, section 20.2 (learning outcome GT.3).
+#
+# A construction is a sequence of compass-and-straight-edge steps, so a construction
+# question is a `structured` record: it proves only that a model answer contains the
+# declared steps, in order, and covers the declared concepts. It proves **presence
+# and order, not the geometry** — it cannot see the drawing, and it cannot decide
+# whether an arc was drawn in the right place. A human checks the construction. The
+# `evaluate` records prove the arithmetic that goes with each construction.
+chapter: 20
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc20-20.2-bisect-angle
+  section: '20.2'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    An angle measures 74°. A student constructs its bisector. Work out the size of
+    each of the two new angles.
+  answer_label: Work out each new angle.
+  check: {kind: evaluate, expression: '74/2', answer: '37'}
+  answer_text: >-
+    $74°\div2=37°$. The bisector is the ray that divides the angle into two equal
+    angles, so each new angle is 37°.
+
+- id: jc20-20.2-perp-bisector
+  section: '20.2'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    $[AB]$ is 10 cm long. The perpendicular bisector of $[AB]$ meets it at $M$. How
+    far is $M$ from $A$?
+  answer_label: Distance from $M$ to $A$.
+  check: {kind: evaluate, expression: '10/2', answer: '5'}
+  answer_text: >-
+    $10\div2=5$ cm. The perpendicular bisector meets the segment at its midpoint,
+    so $M$ is 5 cm from $A$ and 5 cm from $B$.
+
+- id: jc20-20.2-divide-three
+  section: '20.2'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A segment is 12 cm long. It is divided into 3 equal segments without measuring.
+    Work out the length of each segment.
+  answer_label: Length of each segment.
+  check: {kind: evaluate, expression: '12/3', answer: '4'}
+  answer_text: >-
+    $12\div3=4$ cm. Construction 6 divides a segment into equal parts by stepping
+    off equal lengths with the compass, so the parts come out equal without a ruler.
+
+- id: jc20-20.2-triangle-possible
+  section: '20.2'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A student constructs a triangle with sides 5 cm, 6 cm and 7 cm. Check that the
+    construction is possible by adding the two shorter sides.
+  answer_label: Add the two shorter sides and decide.
+  check: {kind: evaluate, expression: '5 + 6', answer: '11'}
+  answer_text: >-
+    $5+6=11$, which is greater than 7. Two sides of a triangle are together greater
+    than the third, so the triangle can be constructed.
+
+- id: jc20-20.2-triangle-impossible
+  section: '20.2'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Explain why a triangle with sides 2 cm, 3 cm and 6 cm cannot be constructed.
+    Work out $2+3$.
+  answer_label: Work out $2+3$ and decide.
+  check: {kind: evaluate, expression: '2 + 3', answer: '5'}
+  answer_text: >-
+    $2+3=5$, which is less than 6. The two shorter sides cannot reach across the
+    longest side, so no triangle exists. The construction fails before it starts.
+
+- id: jc20-20.2-bisect-steps
+  section: '20.2'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Describe, in order, the steps that bisect a given angle with compass and
+    straight edge.
+  answer_label: Describe the steps in order.
+  check:
+    kind: structured
+    requires: [arc, arcs, join]
+    concepts: [same-radius, bisector]
+    points:
+    - id: arc
+      text: With the vertex as centre, draw an arc that cuts both arms of the angle.
+      concepts: [same-radius]
+    - id: arcs
+      text: With each of the two cut points as centre, and the same compass width, draw two arcs that cross inside the angle.
+      concepts: [same-radius]
+    - id: join
+      text: Join the vertex to the point where the two arcs cross; that ray is the bisector.
+      concepts: [bisector]
+  answer_text: >-
+    With the vertex as centre, draw an arc that cuts both arms. Then, keeping the
+    same compass width, draw an arc from each cut point, so the two arcs cross
+    inside the angle. Join the vertex to that crossing point. The ray you have drawn
+    is the bisector, and it makes two equal angles.
+
+- id: jc20-20.2-perp-steps
+  section: '20.2'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Describe, in order, the steps that construct the perpendicular bisector of a
+    segment $[AB]$.
+  answer_label: Describe the steps in order.
+  check:
+    kind: structured
+    requires: [arcA, arcB, join]
+    concepts: [equal-radius, perpendicular-bisector]
+    points:
+    - id: arcA
+      text: With $A$ as centre and a radius more than half of $[AB]$, draw an arc above and below the segment.
+      concepts: [equal-radius]
+    - id: arcB
+      text: With $B$ as centre and the same radius, draw arcs that cross the first two.
+      concepts: [equal-radius]
+    - id: join
+      text: Join the two crossing points; that line is the perpendicular bisector of $[AB]$.
+      concepts: [perpendicular-bisector]
+  answer_text: >-
+    Open the compass to more than half of $[AB]$. With $A$ as centre, draw an arc
+    above the segment and an arc below it. With $B$ as centre and the same radius,
+    draw arcs that cross the first two. Join the two crossing points. That line cuts
+    $[AB]$ at its midpoint at a right angle, so it is the perpendicular bisector.
+
+- id: jc20-20.2-parallel
+  section: '20.2'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Which construction draws a line through a given point $P$ parallel to a given
+    line $l$? Name it and give one step.
+  answer_label: Name the construction and give one step.
+  check:
+    kind: structured
+    requires: [name, step]
+    concepts: [parallel, corresponding-angles]
+    points:
+    - id: name
+      text: It is Construction 5, the line parallel to a given line through a given point.
+      concepts: [parallel]
+    - id: step
+      text: Draw a transversal through $P$ that cuts $l$, then copy the angle that transversal makes with $l$ at $P$, so the corresponding angles are equal.
+      concepts: [corresponding-angles]
+  answer_text: >-
+    It is **Construction 5**. Draw any line through $P$ that cuts $l$. Copy the
+    angle that line makes with $l$ at $P$, so that the corresponding angles are
+    equal. Equal corresponding angles mean the two lines are parallel.
+
+- id: jc20-20.2-rhs-side
+  section: '20.2'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A right-angled triangle is constructed with a hypotenuse of 10 cm and one other
+    side of 6 cm. Work out the third side.
+  answer_label: Work out the third side.
+  check: {kind: evaluate, expression: 'sqrt(10**2 - 6**2)', answer: '8'}
+  answer_text: >-
+    $10^2-6^2=100-36=64$, and $\sqrt{64}=8$. The third side is 8 cm. This is
+    Construction 13: the hypotenuse and one side fix the triangle.
+
+- id: jc20-20.2-sixty
+  section: '20.2'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Describe how to construct an angle of 60° without a protractor or set square.
+  answer_label: Describe the construction.
+  check:
+    kind: structured
+    requires: [arc, arc2, join]
+    concepts: [equilateral, sixty]
+    points:
+    - id: arc
+      text: Draw a ray from $A$, and with centre $A$ draw an arc that cuts the ray at $B$.
+      concepts: [equilateral]
+    - id: arc2
+      text: With centre $B$ and the same radius, draw an arc that cuts the first arc at $C$.
+      concepts: [equilateral]
+    - id: join
+      text: Join $A$ to $C$. The angle $BAC$ is 60°.
+      concepts: [sixty]
+  answer_text: >-
+    Draw a ray from $A$. With centre $A$, draw an arc that cuts the ray at $B$.
+    With centre $B$ and the same radius, draw an arc that cuts the first arc at $C$.
+    Join $A$ to $C$. The triangle $ABC$ has three equal sides, so it is equilateral,
+    and every angle of it is 60°. So angle $BAC$ is 60°.

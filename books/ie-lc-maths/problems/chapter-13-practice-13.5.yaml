@@ -1,0 +1,124 @@
+# Practice set for 13.5 (Leaving Certificate Mathematics, strand 2, outcome 2.2).
+#
+# A tangent is perpendicular to the radius at the point of contact, so a tangent
+# is proved by a slope product of -1 or by a distance from the centre equal to
+# the radius. The length of a tangent from an external point is Pythagoras on the
+# centre, the point and the point of contact.
+chapter: 13
+problems:
+  - id: lc13-5-perpendicular-slopes
+    section: '13.5'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      The radius to a point on a circle has slope $2$. What is the slope of the
+      tangent there? Show the relationship.
+    answer_label: 'The tangent slope'
+    check: {kind: evaluate, expression: '2*(-1/2)', answer: '-1'}
+    answer_text: >-
+      The tangent is perpendicular to the radius, so its slope is the negative
+      reciprocal of $2$, which is $-\frac{1}{2}$. The product of the slopes is
+      $2 \times \left(-\frac{1}{2}\right) = -1$.
+
+  - id: lc13-5-tangent-at-point
+    section: '13.5'
+    tier: O
+    refs: ['2.2']
+    statement: 'Find the tangent to $x^2 + y^2 = 25$ at the point $(3, 4)$.'
+    answer_label: 'The equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3*3 + 4*4', answer: '25'}
+        - {kind: evaluate, expression: '(4/3)*(-3/4)', answer: '-1'}
+    answer_text: >-
+      The radius from $(0, 0)$ to $(3, 4)$ has slope $\frac{4}{3}$, so the
+      tangent has slope $-\frac{3}{4}$. Then
+      $y - 4 = -\frac{3}{4}(x - 3)$, which is $3x + 4y = 25$. The point is on
+      the circle, since $9 + 16 = 25$.
+
+  - id: lc13-5-tangent-at-b
+    section: '13.5'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      The circle has centre $C(3, 4)$ and radius $5$. Find the tangent at
+      $B(7, 7)$.
+    answer_label: 'The equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(3/4)*(-4/3)', answer: '-1'}
+        - {kind: evaluate, expression: '4*7 + 3*7', answer: '49'}
+    answer_text: >-
+      The radius $CB$ has slope $\frac{7 - 4}{7 - 3} = \frac{3}{4}$, so the
+      tangent has slope $-\frac{4}{3}$. Then
+      $y - 7 = -\frac{4}{3}(x - 7)$, which is $4x + 3y = 49$.
+
+  - id: lc13-5-distance-check
+    section: '13.5'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Show that the line $4x + 3y = 49$ is a tangent to the circle with centre
+      $(3, 4)$ and radius $5$.
+    answer_label: 'The distance and the conclusion'
+    check: {kind: evaluate, expression: 'Abs(4*3 + 3*4 - 49)/sqrt(4**2 + 3**2)', answer: '5'}
+    answer_text: >-
+      The distance from $(3, 4)$ to the line is
+      $\frac{|12 + 12 - 49|}{\sqrt{4^2 + 3^2}} = \frac{25}{5} = 5$. The radius
+      is also $5$, so the line touches the circle once and is a tangent.
+
+  - id: lc13-5-tangent-length
+    section: '13.5'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      From the point $Q(6, 9)$, a tangent is drawn to the circle with centre
+      $C(3, 4)$ and radius $5$. Find the length of the tangent.
+    answer_label: 'The tangent length'
+    check: {kind: evaluate, expression: 'sqrt((6 - 3)**2 + (9 - 4)**2 - 5**2)', answer: '3'}
+    answer_text: >-
+      $CQ^2 = 3^2 + 5^2 = 34$. The radius to the point of contact is
+      perpendicular to the tangent, so Pythagoras gives
+      $t^2 = CQ^2 - r^2 = 34 - 25 = 9$ and $t = 3$.
+
+  - id: lc13-5-horizontal-tangent
+    section: '13.5'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      The circle has centre $(3, 4)$ and radius $5$. Find the tangent at
+      $(3, 9)$.
+    answer_label: 'The equation and the check'
+    check: {kind: evaluate, expression: 'Abs(9 - 4)', answer: '5'}
+    answer_text: >-
+      The radius from $(3, 4)$ to $(3, 9)$ is vertical, so the tangent is
+      horizontal: $y = 9$. The distance from the centre to this line is
+      $|9 - 4| = 5$, which equals the radius, so the line is a tangent.
+
+  - id: lc13-5-explain
+    section: '13.5'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Explain why the tangent to a circle is perpendicular to the radius at the
+      point of contact.
+    answer_label: 'Why the radius and tangent are perpendicular'
+    check:
+      kind: structured
+      requires: [shortest, perpendicular]
+      concepts: [radius, distance]
+      points:
+        - id: shortest
+          text: The radius is the shortest distance from the centre to the tangent line.
+          concepts: [radius, distance]
+        - id: perpendicular
+          text: The shortest distance from a point to a line is the perpendicular one, so the radius meets the tangent at a right angle.
+          concepts: [distance]
+    answer_text: >-
+      Every other point of the tangent line is farther from the centre than the
+      point of contact, so the radius to that point is the shortest distance
+      from the centre to the line. The shortest distance from a point to a line
+      is the perpendicular distance, so the radius and the tangent meet at a
+      right angle.

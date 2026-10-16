@@ -1,0 +1,228 @@
+# Junior Cycle Mathematics, Chapter 20, section 20.9 (learning outcome GT.3, Higher
+# level). This is the one Higher-only section of the chapter, so every record is
+# `tier: H`.
+#
+# The circle theorems are angle facts, so the `evaluate` checks prove the angle
+# arithmetic: doubling the circumference angle, halving the centre angle, and
+# subtracting a cyclic quadrilateral's opposite angle from 180. The `structured`
+# records are the proofs. They prove only that a model answer contains the declared
+# steps, in order, and covers the declared concepts — **presence and order, not the
+# geometry**. The proof book also holds two of these results at
+# `:::prove angle-at-the-centre` and `:::prove angle-in-a-semicircle`.
+chapter: 20
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc20-20.9-centre-from-circumference
+  section: '20.9'
+  tier: H
+  refs: [GT.3]
+  statement: >-
+    The angle at the circumference standing on an arc is 38°. Work out the angle at
+    the centre standing on the same arc.
+  answer_label: Work out the angle at the centre.
+  check: {kind: evaluate, expression: '2*38', answer: '76'}
+  answer_text: >-
+    $2\times38=76°$. The angle at the centre is twice the angle at the
+    circumference standing on the same arc.
+
+- id: jc20-20.9-circumference-from-centre
+  section: '20.9'
+  tier: H
+  refs: [GT.3]
+  statement: >-
+    The angle at the centre standing on an arc is 130°. Work out the angle at the
+    circumference standing on the same arc.
+  answer_label: Work out the angle at the circumference.
+  check: {kind: evaluate, expression: '130/2', answer: '65'}
+  answer_text: >-
+    $130\div2=65°$. The circumference angle is half the centre angle when both
+    stand on the same arc.
+
+- id: jc20-20.9-semicircle
+  section: '20.9'
+  tier: H
+  refs: [GT.3]
+  statement: >-
+    $BC$ is a diameter of a circle and $A$ is another point on the circle. Work out
+    the angle $BAC$.
+  answer_label: Work out the angle $BAC$.
+  check: {kind: evaluate, expression: '180/2', answer: '90'}
+  answer_text: >-
+    $180\div2=90°$. The angle at the centre standing on a diameter is a straight
+    angle, 180°, so the angle at the circumference is half of it. Each angle in a
+    semicircle is a right angle.
+
+- id: jc20-20.9-cyclic-quadrilateral
+  section: '20.9'
+  tier: H
+  refs: [GT.3]
+  statement: >-
+    A cyclic quadrilateral has an angle of 112°. Work out the opposite angle.
+  answer_label: Work out the opposite angle.
+  check: {kind: evaluate, expression: '180 - 112', answer: '68'}
+  answer_text: >-
+    $180-112=68°$. In a cyclic quadrilateral, opposite angles add to 180°.
+
+- id: jc20-20.9-same-arc
+  section: '20.9'
+  tier: H
+  refs: [GT.3]
+  statement: >-
+    Two angles at the circumference stand on the same arc, on the same side of the
+    chord. One is 51°. Write down the other.
+  answer_label: Write down the other angle.
+  check:
+    kind: structured
+    requires: [angle, reason]
+    concepts: [same-arc, equal]
+    points:
+    - id: angle
+      text: The other angle is 51°.
+      concepts: [same-arc]
+    - id: reason
+      text: All angles at points of the circle standing on the same arc are equal.
+      concepts: [equal]
+  answer_text: >-
+    **51°.** All angles at points of the circle standing on the same arc are equal.
+
+- id: jc20-20.9-cyclic-85
+  section: '20.9'
+  tier: H
+  refs: [GT.3]
+  statement: >-
+    A cyclic quadrilateral has an angle of 85°. Work out the opposite angle.
+  answer_label: Work out the opposite angle.
+  check: {kind: evaluate, expression: '180 - 85', answer: '95'}
+  answer_text: >-
+    $180-85=95°$. Opposite angles of a cyclic quadrilateral are supplementary.
+
+- id: jc20-20.9-centre-proof
+  section: '20.9'
+  tier: H
+  refs: [GT.3]
+  statement: >-
+    Prove that the angle at the centre standing on an arc is twice the angle at the
+    circumference standing on the same arc.
+  answer_label: Prove the theorem.
+  check:
+    kind: structured
+    requires: [join, isosceles, exterior, add]
+    concepts: [radius, isosceles, exterior-angle]
+    points:
+    - id: join
+      text: Join the point $B$ on the circumference to the centre $O$, and continue the line to a point $D$.
+      concepts: [radius]
+    - id: isosceles
+      text: $|OA|=|OB|$ because both are radii, so triangle $OAB$ is isosceles and $|\angle BAO|=|\angle ABO|$.
+      concepts: [isosceles]
+    - id: exterior
+      text: The exterior angle theorem gives $|\angle AOD|=|\angle BAO|+|\angle ABO|=2|\angle ABO|$.
+      concepts: [exterior-angle]
+    - id: add
+      text: In the same way $|\angle COD|=2|\angle CBO|$, so $|\angle AOC|=2|\angle ABO|+2|\angle CBO|=2|\angle ABC|$.
+      concepts: [exterior-angle]
+  answer_text: >-
+    Join $B$ to the centre $O$ and continue the line to $D$. Since $|OA|=|OB|$,
+    triangle $OAB$ is isosceles, so $|\angle BAO|=|\angle ABO|$. The exterior angle
+    theorem gives $|\angle AOD|=|\angle BAO|+|\angle ABO|=2|\angle ABO|$. In the
+    same way $|\angle COD|=2|\angle CBO|$. Adding,
+    $|\angle AOC|=2|\angle ABO|+2|\angle CBO|=2|\angle ABC|$. The angle at the
+    centre is twice the angle at the circumference.
+
+- id: jc20-20.9-semicircle-proof
+  section: '20.9'
+  tier: H
+  refs: [GT.3]
+  statement: >-
+    Prove that each angle in a semicircle is a right angle.
+  answer_label: Prove the corollary.
+  check:
+    kind: structured
+    requires: [diameter, centre-angle, half]
+    concepts: [diameter, straight-angle, half]
+    points:
+    - id: diameter
+      text: Let $BC$ be a diameter and $A$ another point of the circle.
+      concepts: [diameter]
+    - id: centre-angle
+      text: The angle at the centre standing on the arc $BC$ is the straight angle $BOC$, which is 180°.
+      concepts: [straight-angle]
+    - id: half
+      text: The angle at the centre is twice the angle at the circumference, so $|\angle BAC|=180°\div2=90°$.
+      concepts: [half]
+  answer_text: >-
+    Let $BC$ be a diameter and $A$ any other point of the circle. The angle at the
+    centre standing on the arc $BC$ is the straight angle $BOC$, which is 180°.
+    The angle at the centre is twice the angle at the circumference, so
+    $|\angle BAC|=180°\div2=90°$. Each angle in a semicircle is a right angle.
+
+- id: jc20-20.9-diameter-proof
+  section: '20.9'
+  tier: H
+  refs: [GT.3]
+  statement: >-
+    Prove that if the angle standing on a chord at some point of the circle is a
+    right angle, then the chord is a diameter.
+  answer_label: Prove the corollary.
+  check:
+    kind: structured
+    requires: [double, straight, diameter]
+    concepts: [double, straight-angle, diameter]
+    points:
+    - id: double
+      text: The angle at the centre standing on the same arc is twice the right angle, so it is 180°.
+      concepts: [double]
+    - id: straight
+      text: An angle at the centre of 180° is a straight angle, so the two radii to the ends of the chord form one straight line.
+      concepts: [straight-angle]
+    - id: diameter
+      text: That line passes through the centre, so the chord is a diameter.
+      concepts: [diameter]
+  answer_text: >-
+    The angle at the centre standing on the same arc is twice the right angle, so
+    it is 180°. An angle at the centre of 180° is a straight angle, so the two
+    radii to the ends of the chord form one straight line through the centre. The
+    chord is therefore a diameter.
+
+- id: jc20-20.9-cyclic-proof
+  section: '20.9'
+  tier: H
+  refs: [GT.3]
+  statement: >-
+    Prove that in a cyclic quadrilateral the opposite angles add to 180°.
+  answer_label: Prove the corollary.
+  check:
+    kind: structured
+    requires: [centre, halves, conclude]
+    concepts: [centre-angle, same-arc, supplementary]
+    points:
+    - id: centre
+      text: The two angles at the centre standing on the two arcs cut off by a pair of opposite sides add to 360°, because together they make a full turn.
+      concepts: [centre-angle]
+    - id: halves
+      text: Each angle of the quadrilateral is half the angle at the centre standing on the same arc.
+      concepts: [same-arc]
+    - id: conclude
+      text: So the two opposite angles of the quadrilateral add to half of 360°, which is 180°.
+      concepts: [supplementary]
+  answer_text: >-
+    Take a pair of opposite angles of the cyclic quadrilateral. The two angles at
+    the centre standing on the arcs they cut off add to 360°, because together they
+    make a full turn. Each angle of the quadrilateral is half the angle at the
+    centre standing on the same arc. So the two opposite angles add to half of
+    360°, which is 180°.
+
+- id: jc20-20.9-two-radii
+  section: '20.9'
+  tier: H
+  refs: [GT.3]
+  statement: >-
+    A triangle has its three vertices on a circle of radius 5 cm, and one side is a
+    diameter. Work out the length of that side.
+  answer_label: Work out the length of the side.
+  check: {kind: evaluate, expression: '2*5', answer: '10'}
+  answer_text: >-
+    A diameter is twice the radius, so the side is $2\times5=10$ cm. The angle
+    opposite it is 90°, by the angle in a semicircle.

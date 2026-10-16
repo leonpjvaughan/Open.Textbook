@@ -1,0 +1,222 @@
+# Junior Cycle Mathematics, Chapter 19, section 19.6 (Higher only).
+#
+# Two transformations in a row are checked by applying the first rule to get the
+# intermediate point and the second rule to the result, so the `evaluate`
+# expressions write the whole chain out. Two reflections in parallel lines give a
+# translation; two reflections in perpendicular lines give a half-turn. The
+# records that ask for that description use `structured`, because a description
+# cannot be proved by a CAS.
+chapter: 19
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc19-19.6-parallel-1
+  section: '19.6'
+  tier: H
+  refs:
+  - GT.6
+  statement: 'Reflect the point $P(1,2)$ in the line $x=0$, and then reflect the image in the line $x=2$. Find the final image.'
+  answer_label: 'Find the final image.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*0 - 1
+      answer: '-1'
+    - kind: evaluate
+      expression: 2*2 - (2*0 - 1)
+      answer: '5'
+    - kind: evaluate
+      expression: 2
+      answer: '2'
+  answer_text: 'The final image is $(5,2)$. The first reflection sends $(1,2)$ to $(-1,2)$, and the second sends it to $(5,2)$. The two parallel mirror lines combine to give a translation of 4 right, which is twice the distance between them.'
+
+- id: jc19-19.6-parallel-2
+  section: '19.6'
+  tier: H
+  refs:
+  - GT.6
+  statement: 'Reflect the point $P(2,1)$ in the line $y=0$, and then reflect the image in the line $y=3$. Find the final image.'
+  answer_label: 'Find the final image.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2
+      answer: '2'
+    - kind: evaluate
+      expression: 2*0 - 1
+      answer: '-1'
+    - kind: evaluate
+      expression: 2*3 - (2*0 - 1)
+      answer: '7'
+  answer_text: 'The final image is $(2,7)$. The first reflection sends $(2,1)$ to $(2,-1)$, and the second sends it to $(2,7)$. Two reflections in parallel horizontal lines give a vertical translation.'
+
+- id: jc19-19.6-perp-1
+  section: '19.6'
+  tier: H
+  refs:
+  - GT.6
+  statement: 'Reflect the point $P(4,3)$ in the line $x=2$, and then reflect the image in the line $y=1$. Find the final image.'
+  answer_label: 'Find the final image.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*2 - 4
+      answer: '0'
+    - kind: evaluate
+      expression: 2*1 - 3
+      answer: '-1'
+  answer_text: 'The final image is $(0,-1)$. The two mirror lines are perpendicular, so together they give a half-turn about the point where they meet, $(2,1)$. A half-turn about $(2,1)$ sends $(4,3)$ to $(0,-1)$.'
+
+- id: jc19-19.6-crest
+  section: '19.6'
+  tier: H
+  refs:
+  - GT.6
+  statement: 'The crest corner $A$ is at $(4,0)$. Reflect $A$ in the line $x=2$, and then reflect the image in the line $y=2$. Find the final image, and say which corner it is.'
+  answer_label: 'Find the final image.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*2 - 4
+      answer: '0'
+    - kind: evaluate
+      expression: 2*2 - 0
+      answer: '4'
+  answer_text: 'The final image is $(0,4)$, which is the corner $C$. The two reflections are in perpendicular lines that meet at the centre $M(2,2)$, so together they are a half-turn about $M$. A half-turn about $M$ sends $A$ to $C$.'
+
+- id: jc19-19.6-rot-reflect
+  section: '19.6'
+  tier: H
+  refs:
+  - GT.6
+  statement: 'Rotate the point $P(2,1)$ through 90° anticlockwise about the origin, and then reflect the image in the $x$-axis. Find the final image.'
+  answer_label: 'Find the final image.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0 - 1
+      answer: '-1'
+    - kind: evaluate
+      expression: 0 - 2
+      answer: '-2'
+  answer_text: 'The final image is $(-1,-2)$. The quarter-turn sends $(2,1)$ to $(-1,2)$. The reflection in the $x$-axis then changes the sign of the $y$-coordinate, giving $(-1,-2)$.'
+
+- id: jc19-19.6-two-translations
+  section: '19.6'
+  tier: H
+  refs:
+  - GT.6
+  statement: 'The point $P(1,1)$ is translated by the vector $\begin{pmatrix}2\\3\end{pmatrix}$ and then by the vector $\begin{pmatrix}-1\\5\end{pmatrix}$. Find the final image.'
+  answer_label: 'Find the final image.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1 + 2 - 1
+      answer: '2'
+    - kind: evaluate
+      expression: 1 + 3 + 5
+      answer: '9'
+  answer_text: 'The final image is $(2,9)$. Two translations combine into one translation whose vector is the sum: $2-1=1$ right and $3+5=8$ up. Adding that to $(1,1)$ gives $(2,9)$.'
+
+- id: jc19-19.6-rot180-translate
+  section: '19.6'
+  tier: H
+  refs:
+  - GT.6
+  statement: 'Rotate the point $P(1,0)$ through 180° about the origin, and then translate the image by the vector $\begin{pmatrix}2\\2\end{pmatrix}$. Find the final image.'
+  answer_label: 'Find the final image.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0 - 1 + 2
+      answer: '1'
+    - kind: evaluate
+      expression: 0 - 0 + 2
+      answer: '2'
+  answer_text: 'The final image is $(1,2)$. The half-turn sends $(1,0)$ to $(-1,0)$. The translation then adds 2 to each coordinate, giving $(1,2)$.'
+
+- id: jc19-19.6-order
+  section: '19.6'
+  tier: H
+  refs:
+  - GT.6
+  statement: 'Reflect the point $P(3,1)$ in the line $x=2$, and then rotate the image through 90° anticlockwise about the origin. Find the final image.'
+  answer_label: 'Find the final image.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0 - (2*2 - 3)
+      answer: '-1'
+    - kind: evaluate
+      expression: 2*2 - 3
+      answer: '1'
+  answer_text: 'The final image is $(-1,1)$. The reflection sends $(3,1)$ to $(1,1)$. The quarter-turn anticlockwise then sends $(1,1)$ to $(-1,1)$.'
+
+- id: jc19-19.6-order-compare
+  section: '19.6'
+  tier: H
+  refs:
+  - GT.6
+  statement: 'In the last question the reflection came first. Work out the final image when the quarter-turn comes first and the reflection second, and explain why the answers are different.'
+  answer_label: 'Reverse the order and explain the difference.'
+  check:
+    kind: structured
+    requires: [find-reversed-image, explain-order]
+    concepts: [combining-transformations]
+    points:
+    - id: find-reversed-image
+      text: 'The quarter-turn sends $(3,1)$ to $(-1,3)$, and the reflection in $x=2$ sends that to $(5,3)$. The final image is $(5,3)$.'
+      concepts: [combining-transformations]
+    - id: explain-order
+      text: 'The two answers, $(-1,1)$ and $(5,3)$, are different. A reflection and a rotation do not commute, so the order of the two transformations matters.'
+      concepts: [combining-transformations]
+  answer_text: 'With the quarter-turn first the final image is $(5,3)$: $(3,1)$ goes to $(-1,3)$, and the reflection in $x=2$ sends that to $(5,3)$. The two orders give different answers, $(-1,1)$ and $(5,3)$, so the order of the transformations matters.'
+
+- id: jc19-19.6-describe
+  section: '19.6'
+  tier: H
+  refs:
+  - GT.6
+  statement: 'Two reflections are made in the parallel lines $x=0$ and $x=2$. Describe the single transformation they combine to give.'
+  answer_label: 'Describe the single transformation.'
+  check:
+    kind: structured
+    requires: [state-type, state-vector]
+    concepts: [combining-transformations]
+    points:
+    - id: state-type
+      text: 'The two reflections combine to give a translation, not a reflection.'
+      concepts: [combining-transformations]
+    - id: state-vector
+      text: 'The translation is 4 right, the vector $\begin{pmatrix}4\\0\end{pmatrix}$. It is twice the distance of 2 between the mirror lines.'
+      concepts: [combining-transformations]
+  answer_text: 'The two reflections combine to give a translation of 4 right, the vector $\begin{pmatrix}4\\0\end{pmatrix}$. The distance between the mirror lines is 2, and the translation is twice that distance.'
+
+- id: jc19-19.6-describe-2
+  section: '19.6'
+  tier: H
+  refs:
+  - GT.6
+  statement: 'Two reflections are made in the perpendicular lines $x=2$ and $y=1$. Describe the single transformation they combine to give.'
+  answer_label: 'Describe the single transformation.'
+  check:
+    kind: structured
+    requires: [state-type, state-centre]
+    concepts: [combining-transformations]
+    points:
+    - id: state-type
+      text: 'The two reflections combine to give a half-turn, not a reflection or a translation.'
+      concepts: [combining-transformations]
+    - id: state-centre
+      text: 'The centre of the half-turn is the point where the lines meet, $(2,1)$.'
+      concepts: [combining-transformations]
+  answer_text: 'The two reflections combine to give a half-turn about $(2,1)$. The lines meet at $(2,1)$, and a half-turn is the same as two reflections in perpendicular lines through its centre.'

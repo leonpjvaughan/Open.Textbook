@@ -1,0 +1,110 @@
+# Practice set for 14.1 (strand 2, outcome 2.4). sympy proves the coordinate
+# arithmetic: the expression is the translation rule applied to the object, and the
+# answer is the image the page claims. `Matrix([x, y])` is a point, and adding or
+# subtracting matrices is the translation rule itself.
+chapter: 14
+problems:
+  - id: lc14-1-translate-point
+    section: '14.1'
+    tier: F
+    refs: ['2.4']
+    statement: 'Translate the point $(3,-2)$ by the vector $\binom{4}{5}$. Give the image.'
+    answer_label: 'Image of $(3,-2)$'
+    check: {kind: evaluate, expression: 'Matrix([3, -2]) + Matrix([4, 5])', answer: 'Matrix([7, 3])'}
+    answer_text: '$(7,3)$: add 4 to the $x$-coordinate and 5 to the $y$-coordinate.'
+
+  - id: lc14-1-translate-negative
+    section: '14.1'
+    tier: F
+    refs: ['2.4']
+    statement: 'Translate the point $(-1,4)$ by the vector $\binom{-3}{-6}$. Give the image.'
+    answer_label: 'Image of $(-1,4)$'
+    check: {kind: evaluate, expression: 'Matrix([-1, 4]) + Matrix([-3, -6])', answer: 'Matrix([-4, -2])'}
+    answer_text: '$(-4,-2)$: both numbers are negative, so the point moves left and down.'
+
+  - id: lc14-1-translate-triangle
+    section: '14.1'
+    tier: F
+    refs: ['2.4']
+    statement: >-
+      A triangle has corners $(0,0)$, $(2,0)$ and $(1,3)$. Translate it by the vector
+      $\binom{2}{1}$ and give all three image corners.
+    answer_label: 'Image of the triangle'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'Matrix([0, 0]) + Matrix([2, 1])', answer: 'Matrix([2, 1])'}
+        - {kind: evaluate, expression: 'Matrix([2, 0]) + Matrix([2, 1])', answer: 'Matrix([4, 1])'}
+        - {kind: evaluate, expression: 'Matrix([1, 3]) + Matrix([2, 1])', answer: 'Matrix([3, 4])'}
+    answer_text: '$(2,1)$, $(4,1)$ and $(3,4)$: every corner moves by the same vector.'
+
+  - id: lc14-1-find-vector
+    section: '14.1'
+    tier: F
+    refs: ['2.4']
+    statement: 'A translation takes $P(1,2)$ to its image $(5,5)$. Find the translation vector.'
+    answer_label: 'Translation vector'
+    check: {kind: evaluate, expression: 'Matrix([5, 5]) - Matrix([1, 2])', answer: 'Matrix([4, 3])'}
+    answer_text: '$\binom{4}{3}$: subtract the object coordinate from the image coordinate.'
+
+  - id: lc14-1-origin-image
+    section: '14.1'
+    tier: F
+    refs: ['2.4']
+    statement: >-
+      A translation takes $M(3,-1)$ to its image $(-2,4)$. Find the image of the
+      origin $O(0,0)$ under the same translation.
+    answer_label: 'Image of the origin'
+    check:
+      kind: evaluate
+      expression: 'Matrix([0, 0]) + (Matrix([-2, 4]) - Matrix([3, -1]))'
+      answer: 'Matrix([-5, 5])'
+    answer_text: '$(-5,5)$: the vector is $\binom{-5}{5}$, and the origin moves by that vector.'
+
+  - id: lc14-1-describe
+    section: '14.1'
+    tier: F
+    refs: ['2.4']
+    statement: 'A translation takes $(2,7)$ to $(2,-1)$. Describe the translation.'
+    answer_label: 'Description of the translation'
+    check: {kind: evaluate, expression: 'Matrix([2, -1]) - Matrix([2, 7])', answer: 'Matrix([0, -8])'}
+    answer_text: >-
+      The vector is $\binom{0}{-8}$: no horizontal movement, and 8 units down.
+
+  - id: lc14-1-preserve
+    section: '14.1'
+    tier: F
+    refs: ['2.4']
+    statement: >-
+      Explain what a translation preserves, and say whether the image is congruent to
+      the object.
+    answer_label: 'What a translation preserves'
+    check:
+      kind: structured
+      requires: [lengths, angles, area, orientation]
+      concepts: [congruent, orientation-unchanged]
+      points:
+        - {id: lengths, text: every length in the shape is unchanged, concepts: [congruent]}
+        - {id: angles, text: every angle in the shape is unchanged, concepts: [congruent]}
+        - {id: area, text: the area is unchanged, concepts: [congruent]}
+        - {id: orientation, text: the image has the same orientation, so it is not a mirror image, concepts: [orientation-unchanged]}
+    answer_text: >-
+      A translation preserves length, angle and area, so the image is congruent to the
+      object. It also preserves orientation, so the image is not a mirror image.
+
+  - id: lc14-1-rectangle
+    section: '14.1'
+    tier: F
+    refs: ['2.4']
+    statement: >-
+      A rectangle has corners $(1,1)$, $(5,1)$, $(5,3)$ and $(1,3)$. Translate it by the
+      vector $\binom{-6}{2}$ and give all four image corners.
+    answer_label: 'Image of the rectangle'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'Matrix([1, 1]) + Matrix([-6, 2])', answer: 'Matrix([-5, 3])'}
+        - {kind: evaluate, expression: 'Matrix([5, 1]) + Matrix([-6, 2])', answer: 'Matrix([-1, 3])'}
+        - {kind: evaluate, expression: 'Matrix([5, 3]) + Matrix([-6, 2])', answer: 'Matrix([-1, 5])'}
+        - {kind: evaluate, expression: 'Matrix([1, 3]) + Matrix([-6, 2])', answer: 'Matrix([-5, 5])'}
+    answer_text: '$(-5,3)$, $(-1,3)$, $(-1,5)$ and $(-5,5)$.'

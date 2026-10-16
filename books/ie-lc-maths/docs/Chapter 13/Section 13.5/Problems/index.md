@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 13.5 Tangents to a circle — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.2
+Work on your own, without notes. For each question, decide whether you need the
+tangent slope, a distance check, or Pythagoras. Write down the radius slope
+before you take its negative reciprocal.
+
+The questions and the answers are shown together at the end.
+
+:::problems chapter-13-practice-13.5
+
+:::answers chapter-13-practice-13.5

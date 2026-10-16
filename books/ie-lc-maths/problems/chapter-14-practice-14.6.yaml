@@ -1,0 +1,126 @@
+# Practice set for 14.6 (strand 2, outcome 2.4). sympy proves the coordinate
+# arithmetic of a composition by nesting the transformations: the inner matrix or sum is
+# the first transformation, and the outer one is the second. Order is part of the
+# expression, so a record that swapped the two transformations would fail the check.
+chapter: 14
+problems:
+  - id: lc14-6-two-translations
+    section: '14.6'
+    tier: H
+    refs: ['2.4']
+    statement: >-
+      Translate the point $(1,2)$ by the vector $\binom{3}{1}$, then translate the image
+      by the vector $\binom{-5}{4}$. Give the final image.
+    answer_label: 'Final image'
+    check: {kind: evaluate, expression: 'Matrix([1, 2]) + Matrix([3, 1]) + Matrix([-5, 4])', answer: 'Matrix([-1, 7])'}
+    answer_text: >-
+      $(-1,7)$: the vectors add to $\binom{-2}{5}$, so the composition is a single
+      translation.
+
+  - id: lc14-6-parallel-reflections
+    section: '14.6'
+    tier: H
+    refs: ['2.4']
+    statement: >-
+      Reflect the point $(2,5)$ in the line $x = 1$, then reflect the image in the line
+      $x = 4$. Give the final image.
+    answer_label: 'Final image'
+    check: {kind: evaluate, expression: 'Matrix([2*4 - (2*1 - 2), 5])', answer: 'Matrix([8, 5])'}
+    answer_text: >-
+      $(8,5)$: two reflections in parallel lines give a translation by twice the distance
+      between the lines, so the composition is $\binom{6}{0}$.
+
+  - id: lc14-6-intersecting-reflections
+    section: '14.6'
+    tier: H
+    refs: ['2.4']
+    statement: >-
+      Reflect the point $(3,4)$ in the line $y = x$, then reflect the image in the
+      $x$-axis. Give the final image.
+    answer_label: 'Final image'
+    check:
+      kind: evaluate
+      expression: 'Matrix([[1, 0], [0, -1]]) * (Matrix([[0, 1], [1, 0]]) * Matrix([3, 4]))'
+      answer: 'Matrix([4, -3])'
+    answer_text: >-
+      $(4,-3)$: the map $(x,y) \to (y,-x)$ is a rotation of $90^\circ$ clockwise about
+      the origin, which is twice the $45^\circ$ between the two lines.
+
+  - id: lc14-6-translate-then-rotate
+    section: '14.6'
+    tier: H
+    refs: ['2.4']
+    statement: >-
+      Translate the point $(2,3)$ by the vector $\binom{1}{1}$, then rotate the image by
+      $90^\circ$ anticlockwise about the origin. Give the final image.
+    answer_label: 'Final image'
+    check:
+      kind: evaluate
+      expression: 'Matrix([[0, -1], [1, 0]]) * (Matrix([2, 3]) + Matrix([1, 1]))'
+      answer: 'Matrix([-4, 3])'
+    answer_text: ' $(-4,3)$: the intermediate image is $(3,4)$, and the quarter-turn sends it to $(-4,3)$.'
+
+  - id: lc14-6-order-matters
+    section: '14.6'
+    tier: H
+    refs: ['2.4']
+    statement: >-
+      Rotate the point $(2,3)$ by $90^\circ$ anticlockwise about the origin, then
+      translate the image by the vector $\binom{1}{1}$. Give the final image, and say
+      whether the answer is the same as doing the two transformations the other way round.
+    answer_label: 'Final image'
+    check:
+      kind: evaluate
+      expression: '(Matrix([[0, -1], [1, 0]]) * Matrix([2, 3])) + Matrix([1, 1])'
+      answer: 'Matrix([-2, 3])'
+    answer_text: >-
+      $(-2,3)$. Doing the translation first gives $(-4,3)$, so the two answers differ and
+      the order of a composition matters.
+
+  - id: lc14-6-two-quarter-turns
+    section: '14.6'
+    tier: H
+    refs: ['2.4']
+    statement: >-
+      Rotate the point $(1,1)$ by $90^\circ$ anticlockwise about the origin, then rotate
+      the image by $90^\circ$ anticlockwise about the origin again. Give the final image.
+    answer_label: 'Final image'
+    check:
+      kind: evaluate
+      expression: 'Matrix([[0, -1], [1, 0]]) * (Matrix([[0, -1], [1, 0]]) * Matrix([1, 1]))'
+      answer: 'Matrix([-1, -1])'
+    answer_text: >-
+      $(-1,-1)$: two quarter-turns make a half-turn, so the composition is a rotation of
+      $180^\circ$ about the origin.
+
+  - id: lc14-6-parallel-reflection-reason
+    section: '14.6'
+    tier: H
+    refs: ['2.4']
+    statement: >-
+      Explain why two reflections in parallel lines have the same effect as a single
+      translation, and say how the distance is found.
+    answer_label: 'Why parallel reflections give a translation'
+    check:
+      kind: structured
+      requires: [each-reflection, net-effect]
+      concepts: [translation, twice-distance]
+      points:
+        - {id: each-reflection, text: each reflection changes the position but not the orientation, and reflecting twice restores the orientation, concepts: [translation]}
+        - {id: net-effect, text: the two reflections move every point by the same amount in the same direction, which is a translation, concepts: [translation, twice-distance]}
+    answer_text: >-
+      A reflection reverses orientation, so two reflections restore it, and the result
+      cannot be a reflection. Both reflections move every point the same way along the
+      perpendicular, so the composition is a translation. The distance moved is twice the
+      distance between the two parallel lines.
+
+  - id: lc14-6-inverse-translation
+    section: '14.6'
+    tier: H
+    refs: ['2.4']
+    statement: >-
+      A translation takes the point $(1,1)$ to $(4,5)$. Find the inverse translation that
+      takes $(4,5)$ back to $(1,1)$.
+    answer_label: 'Inverse translation'
+    check: {kind: evaluate, expression: 'Matrix([1, 1]) - Matrix([4, 5])', answer: 'Matrix([-3, -4])'}
+    answer_text: '$\binom{-3}{-4}$: the inverse of a translation has the opposite vector.'

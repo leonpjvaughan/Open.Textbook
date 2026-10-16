@@ -1,0 +1,229 @@
+# Junior Cycle Mathematics, Chapter 19, section 19.4.
+#
+# A rotation about the origin is an `evaluate` on the rule for its angle: `(-y, x)`
+# for a quarter-turn anticlockwise, `(y, -x)` for a quarter-turn clockwise, and
+# `(-x, -y)` for a half-turn. A rotation about a general centre subtracts the
+# centre, applies the rule, and adds the centre back, and the check writes that
+# arithmetic out. Two records ask the reader to describe a rotation; a description
+# cannot be proved by a CAS, so they use `structured`.
+chapter: 19
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc19-19.4-ccw-1
+  section: '19.4'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Rotate the point $P(3,1)$ through 90° anticlockwise about the origin. Find the image.'
+  answer_label: 'Find the image of $P$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0 - 1
+      answer: '-1'
+    - kind: evaluate
+      expression: 3
+      answer: '3'
+  answer_text: 'The image is $(-1,3)$. A quarter-turn anticlockwise about the origin sends $(x,y)$ to $(-y,x)$. Here $-1$ becomes the new $x$ and 3 the new $y$.'
+
+- id: jc19-19.4-cw-1
+  section: '19.4'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Rotate the point $P(3,1)$ through 90° clockwise about the origin. Find the image.'
+  answer_label: 'Find the image of $P$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1
+      answer: '1'
+    - kind: evaluate
+      expression: 0 - 3
+      answer: '-3'
+  answer_text: 'The image is $(1,-3)$. A quarter-turn clockwise about the origin sends $(x,y)$ to $(y,-x)$. The direction matters: the clockwise image is different from the anticlockwise one.'
+
+- id: jc19-19.4-half-1
+  section: '19.4'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Rotate the point $P(2,5)$ through 180° about the origin. Find the image.'
+  answer_label: 'Find the image of $P$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0 - 2
+      answer: '-2'
+    - kind: evaluate
+      expression: 0 - 5
+      answer: '-5'
+  answer_text: 'The image is $(-2,-5)$. A half-turn about the origin changes the sign of both coordinates. It is the same as central symmetry about the origin.'
+
+- id: jc19-19.4-ccw-2
+  section: '19.4'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Rotate the point $A(4,0)$ through 90° anticlockwise about the origin. Find the image.'
+  answer_label: 'Find the image of $A$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0 - 0
+      answer: '0'
+    - kind: evaluate
+      expression: 4
+      answer: '4'
+  answer_text: 'The image is $(0,4)$. The point starts on the positive $x$-axis and turns anticlockwise onto the positive $y$-axis.'
+
+- id: jc19-19.4-ccw-3
+  section: '19.4'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Rotate the point $P(-2,3)$ through 90° anticlockwise about the origin. Find the image.'
+  answer_label: 'Find the image of $P$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0 - 3
+      answer: '-3'
+    - kind: evaluate
+      expression: -2
+      answer: '-2'
+  answer_text: 'The image is $(-3,-2)$. Use $(x,y)\to(-y,x)$: the new $x$ is $-3$ and the new $y$ is $-2$. The point moves from the second quadrant to the third.'
+
+- id: jc19-19.4-centre-1
+  section: '19.4'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Rotate the point $A(4,0)$ through 90° anticlockwise about the centre $(2,2)$. Find the image.'
+  answer_label: 'Find the image of $A$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2 - (0 - 2)
+      answer: '4'
+    - kind: evaluate
+      expression: 2 + (4 - 2)
+      answer: '4'
+  answer_text: 'The image is $(4,4)$. Move the centre to the origin: $A$ is $(2,-2)$ from the centre. A quarter-turn anticlockwise gives $(2,2)$ from the centre, which is the point $(4,4)$.'
+
+- id: jc19-19.4-centre-2
+  section: '19.4'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Rotate the point $A(4,0)$ through 90° clockwise about the centre $(2,2)$. Find the image.'
+  answer_label: 'Find the image of $A$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2 + (0 - 2)
+      answer: '0'
+    - kind: evaluate
+      expression: 2 - (4 - 2)
+      answer: '0'
+  answer_text: 'The image is $(0,0)$. From the centre, $A$ is $(2,-2)$. A quarter-turn clockwise gives $(-2,-2)$ from the centre, which is the origin.'
+
+- id: jc19-19.4-centre-3
+  section: '19.4'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'Rotate the point $P(3,1)$ through 180° about the centre $(1,2)$. Find the image.'
+  answer_label: 'Find the image of $P$.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*1 - 3
+      answer: '-1'
+    - kind: evaluate
+      expression: 2*2 - 1
+      answer: '3'
+  answer_text: 'The image is $(-1,3)$. A half-turn about $(a,b)$ sends $(x,y)$ to $(2a-x,\ 2b-y)$. Here $2\times1-3=-1$ and $2\times2-1=3$.'
+
+- id: jc19-19.4-tri-1
+  section: '19.4'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A triangle has vertices $(1,1)$, $(3,1)$ and $(1,2)$. Rotate it through 90° anticlockwise about the origin. Find the image vertices.'
+  answer_label: 'Find the three image vertices.'
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0 - 1
+      answer: '-1'
+    - kind: evaluate
+      expression: 1
+      answer: '1'
+    - kind: evaluate
+      expression: 0 - 1
+      answer: '-1'
+    - kind: evaluate
+      expression: 3
+      answer: '3'
+    - kind: evaluate
+      expression: 0 - 2
+      answer: '-2'
+    - kind: evaluate
+      expression: 1
+      answer: '1'
+  answer_text: 'The image vertices are $(-1,1)$, $(-1,3)$ and $(-2,1)$. Every vertex follows the rule $(x,y)\to(-y,x)$, so the image is the same size and shape as the original triangle.'
+
+- id: jc19-19.4-describe
+  section: '19.4'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'A rotation about the origin maps the point $A(4,0)$ to $B(0,4)$. Describe the rotation fully.'
+  answer_label: 'Describe the rotation.'
+  check:
+    kind: structured
+    requires: [state-centre, state-angle, state-direction]
+    concepts: [rotation]
+    points:
+    - id: state-centre
+      text: 'The centre is the origin, because the origin stays fixed.'
+      concepts: [rotation]
+    - id: state-angle
+      text: 'The angle is 90°, a quarter-turn.'
+      concepts: [rotation]
+    - id: state-direction
+      text: 'The direction is anticlockwise. A clockwise quarter-turn would send $A(4,0)$ to $(0,-4)$.'
+      concepts: [rotation]
+  answer_text: 'The rotation is 90° anticlockwise about the origin. The origin is the only point that stays fixed, and a quarter-turn anticlockwise sends the positive $x$-axis onto the positive $y$-axis.'
+
+- id: jc19-19.4-crest
+  section: '19.4'
+  tier: O
+  refs:
+  - GT.6
+  statement: 'The crest has a shaded triangle with vertices $M(2,2)$, $A(4,0)$ and $B(4,4)$. A quarter-turn anticlockwise about $M$ sends the shaded triangle onto a plain triangle. Explain which triangle, and say why the crest does not map onto itself.'
+  answer_label: 'Name the image triangle and explain.'
+  check:
+    kind: structured
+    requires: [name-image, explain-not-same]
+    concepts: [rotation, central-symmetry]
+    points:
+    - id: name-image
+      text: 'The image is the top triangle $MBC$. The point $A(4,0)$ goes to $B(4,4)$, and $B(4,4)$ goes to $C(0,4)$.'
+      concepts: [rotation]
+    - id: explain-not-same
+      text: 'The top triangle is plain, but the crest is shaded on the left and right only. A quarter-turn swaps the shaded and plain triangles, so it does not map the crest onto itself.'
+      concepts: [central-symmetry]
+  answer_text: 'The image is the top triangle $MBC$, which is plain. The crest is shaded on the left and right. A quarter-turn swaps the shaded and plain triangles, so the crest does not map onto itself under a quarter-turn.'

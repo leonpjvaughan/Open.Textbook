@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 13.1 Distance, midpoint and slope — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 2.2
+Work on your own, without notes. Write down which formula you are using before
+you substitute, and keep exact surds unless the question asks for a rounded
+value.
+
+The questions and the answers are shown together at the end.
+
+:::problems chapter-13-practice-13.1
+
+:::answers chapter-13-practice-13.1

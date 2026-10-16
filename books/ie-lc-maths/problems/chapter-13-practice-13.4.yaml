@@ -1,0 +1,156 @@
+# Practice set for 13.4 (Leaving Certificate Mathematics, strand 2, outcome 2.2).
+#
+# A circle is fixed by its centre and the square of its radius. The centre is
+# read from the coefficients of x and y, and the radius squared is recovered from
+# the constant term, so every record proves those three numbers rather than
+# repeating them. The expanded form is checked with `expand`.
+chapter: 13
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: lc13-4-equation
+    section: '13.4'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Write the equation of the circle with centre $(2, -3)$ and radius $4$ in
+      expanded form.
+    answer_label: 'The expanded equation'
+    check:
+      kind: apply
+      expression: '(x - 2)**2 + (y + 3)**2 - 16'
+      apply: {op: expand}
+      answer: 'x**2 + y**2 - 4*x + 6*y - 3'
+    answer_text: >-
+      Substitute into $(x - a)^2 + (y - b)^2 = r^2$:
+      $(x - 2)^2 + (y + 3)^2 = 16$. Expanding gives
+      $x^2 - 4x + 4 + y^2 + 6y + 9 = 16$, so
+      $x^2 + y^2 - 4x + 6y - 3 = 0$.
+
+  - id: lc13-4-centre-radius
+    section: '13.4'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Find the centre and the radius of $x^2 + y^2 - 10x + 4y - 7 = 0$.
+    answer_label: 'The centre and the radius'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '-(-10)/2', answer: '5'}
+        - {kind: evaluate, expression: '-4/2', answer: '-2'}
+        - {kind: evaluate, expression: 'sqrt(5**2 + (-2)**2 - (-7))', answer: '6'}
+    answer_text: >-
+      The centre is $\left(-\frac{D}{2}, -\frac{E}{2}\right) = (5, -2)$. The
+      radius satisfies $r^2 = 5^2 + (-2)^2 - (-7) = 36$, so $r = 6$.
+
+  - id: lc13-4-inside
+    section: '13.4'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Is the point $(5, 4)$ inside, on, or outside the circle
+      $(x - 1)^2 + (y - 2)^2 = 25$?
+    answer_label: 'The decision'
+    check:
+      kind: compare
+      relation: '<'
+      lhs: '(5 - 1)**2 + (4 - 2)**2'
+      rhs: '25'
+    answer_text: >-
+      Substitute the point: $(5 - 1)^2 + (4 - 2)^2 = 16 + 4 = 20$. Since
+      $20 < 25$, the point is inside the circle.
+
+  - id: lc13-4-through-point
+    section: '13.4'
+    tier: O
+    refs: ['2.2']
+    statement: 'A circle has centre $(3, 4)$ and passes through $(7, 7)$. Find its equation.'
+    answer_label: 'The equation'
+    check: {kind: evaluate, expression: '(7 - 3)**2 + (7 - 4)**2', answer: '25'}
+    answer_text: >-
+      The radius squared is the squared distance from the centre to the point:
+      $r^2 = (7 - 3)^2 + (7 - 4)^2 = 16 + 9 = 25$. The equation is
+      $(x - 3)^2 + (y - 4)^2 = 25$.
+
+  - id: lc13-4-diameter
+    section: '13.4'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      $A(-1, 1)$ and $B(7, 7)$ are the ends of a diameter of a circle. Find the
+      equation of the circle.
+    answer_label: 'The equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(-1 + 7)/2', answer: '3'}
+        - {kind: evaluate, expression: '(1 + 7)/2', answer: '4'}
+        - {kind: evaluate, expression: '(7 - 3)**2 + (7 - 4)**2', answer: '25'}
+    answer_text: >-
+      The centre is the midpoint of the diameter:
+      $\left(\frac{-1 + 7}{2}, \frac{1 + 7}{2}\right) = (3, 4)$. The radius is
+      the distance from the centre to $B$: $r^2 = 4^2 + 3^2 = 25$. The equation
+      is $(x - 3)^2 + (y - 4)^2 = 25$.
+
+  - id: lc13-4-expanded
+    section: '13.4'
+    tier: O
+    refs: ['2.2']
+    statement: 'Find the centre and the radius of $x^2 + y^2 - 6x - 8y = 0$.'
+    answer_label: 'The centre and the radius'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '-(-6)/2', answer: '3'}
+        - {kind: evaluate, expression: '-(-8)/2', answer: '4'}
+        - {kind: evaluate, expression: 'sqrt(3**2 + 4**2 - 0)', answer: '5'}
+    answer_text: >-
+      The centre is $(3, 4)$. The constant term is $0$, so
+      $r^2 = 3^2 + 4^2 - 0 = 25$ and $r = 5$. The circle passes through the
+      origin, which is why the constant term is zero.
+
+  - id: lc13-4-outside
+    section: '13.4'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Is the point $(8, 9)$ inside, on, or outside the circle
+      $(x - 3)^2 + (y - 4)^2 = 25$?
+    answer_label: 'The decision'
+    check:
+      kind: compare
+      relation: '>'
+      lhs: '(8 - 3)**2 + (9 - 4)**2'
+      rhs: '25'
+    answer_text: >-
+      Substitute the point: $(8 - 3)^2 + (9 - 4)^2 = 25 + 25 = 50$. Since
+      $50 > 25$, the point is outside the circle. Its distance from the centre
+      is $\sqrt{50} \approx 7.07$, which is more than the radius $5$.
+
+  - id: lc13-4-explain
+    section: '13.4'
+    tier: O
+    refs: ['2.2']
+    statement: >-
+      Explain why the circle with centre $(a, b)$ and radius $r$ has equation
+      $(x - a)^2 + (y - b)^2 = r^2$, and why the right-hand side is $r^2$ and
+      not $r$.
+    answer_label: 'Why the equation has this form'
+    check:
+      kind: structured
+      requires: [distance, square]
+      concepts: [locus, radius]
+      points:
+        - id: distance
+          text: A point (x, y) is on the circle when its distance from (a, b) equals r.
+          concepts: [locus, radius]
+        - id: square
+          text: The distance formula gives the square of that distance, so the equation sets it equal to r squared.
+          concepts: [radius]
+    answer_text: >-
+      The circle is the set of points a fixed distance $r$ from the centre. The
+      distance formula gives $(x - a)^2 + (y - b)^2$ as the square of the
+      distance, so equating it to $r^2$ avoids a square root. Taking the square
+      root of the right-hand side would give the radius, not the squared radius.

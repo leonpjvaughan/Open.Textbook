@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 14.2 Axial symmetry and reflection — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 2.4
+Work independently. The questions and answers are shown together at the end.
+
+Name the mirror line before you reflect, and write down which coordinate changes. For a
+line such as $x = 3$, check that the object and the image are the same distance from the
+line.
+
+:::problems chapter-14-practice-14.2
+
+:::answers chapter-14-practice-14.2

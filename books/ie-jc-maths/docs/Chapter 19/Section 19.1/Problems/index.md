@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 19.1 Translation — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.6
+Work independently. The questions and answers are shown together at the end.
+
+Every point of a shape uses the same vector. Add the same two numbers to every
+vertex, and check the image is congruent to the object.
+
+:::problems chapter-19-practice-19.1
+
+:::answers chapter-19-practice-19.1

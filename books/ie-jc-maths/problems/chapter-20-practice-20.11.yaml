@@ -1,0 +1,197 @@
+# Junior Cycle Mathematics, Chapter 20, section 20.11 (learning outcome GT.3).
+#
+# Evaluating a proof is a judgement about reasons, so most records here are
+# `structured`: they prove only that a model answer contains the declared ideas, in
+# order, and covers the declared concepts. They prove **presence and order, not the
+# geometry** — the verifier cannot tell a good proof from a bad one, and a human
+# checks the judgement. The `evaluate` records prove the arithmetic inside the
+# flawed proofs the section uses.
+chapter: 20
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc20-20.11-circular
+  section: '20.11'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A proof of the triangle angle sum begins: "the angles add to 180° because the
+    angles in a triangle add to 180°." Name the fault and explain it.
+  answer_label: Name the fault and explain it.
+  check:
+    kind: structured
+    requires: [fault, why]
+    concepts: [circular, assumption]
+    points:
+    - id: fault
+      text: 'The proof is circular: it assumes the result it is meant to prove.'
+      concepts: [circular]
+    - id: why
+      text: A proof must start from the axioms and results already proved, so it cannot use the conclusion as a reason.
+      concepts: [assumption]
+  answer_text: >-
+    The fault is **circular reasoning**. The proof assumes the very result it is
+    meant to show, so it proves nothing. A proof has to start from the axioms and
+    from results already proved; using the conclusion as a reason is not allowed.
+
+- id: jc20-20.11-missing-reason
+  section: '20.11'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A proof contains: "the line through $A$ is parallel to $BC$, therefore
+    $|\angle ABC|=|\angle DAB|$." Is the step justified? Say why or why not.
+  answer_label: Decide whether the step is justified.
+  check:
+    kind: structured
+    requires: [verdict, reason]
+    concepts: [alternate-angles, parallel]
+    points:
+    - id: verdict
+      text: Yes, the step is justified.
+      concepts: [alternate-angles]
+    - id: reason
+      text: The two lines are parallel and $AB$ is a transversal, so the alternate angles are equal by the alternate angles theorem.
+      concepts: [parallel]
+  answer_text: >-
+    **Yes.** The line through $A$ is parallel to $BC$, and $AB$ is a transversal
+    of those two lines. The alternate angles theorem then gives
+    $|\angle ABC|=|\angle DAB|$. The step names a real reason and uses it
+    correctly.
+
+- id: jc20-20.11-diagram-only
+  section: '20.11'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A proof says: "from the diagram you can see the two angles are equal." Explain
+    why this is not a proof.
+  answer_label: Explain why the diagram is not enough.
+  check:
+    kind: structured
+    requires: [fault, why]
+    concepts: [diagram, generality]
+    points:
+    - id: fault
+      text: A diagram shows one case, and a proof must hold for every case.
+      concepts: [diagram]
+    - id: why
+      text: The equality has to follow from an axiom or a theorem, not from how the picture happens to be drawn.
+      concepts: [generality]
+  answer_text: >-
+    A diagram shows one case, drawn one way. A proof must hold for every triangle,
+    including ones drawn differently, so "you can see it" is not a reason. The
+    equality has to follow from an axiom or from a theorem already proved.
+
+- id: jc20-20.11-arithmetic
+  section: '20.11'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A proof writes $65+72+x=180$. Work out $x$ and say what the proof has not yet
+    shown.
+  answer_label: Work out $x$ and say what is missing.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '65 + 72', answer: '137'}
+    - {kind: evaluate, expression: '180 - 137', answer: '43'}
+  answer_text: >-
+    $65+72=137$, and $180-137=43$. So $x=43°$. The arithmetic is right, but the
+    proof has not yet shown **why** the three angles add to 180°. It has used the
+    triangle angle sum without proving it.
+
+- id: jc20-20.11-completeness
+  section: '20.11'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A proof of the isosceles theorem says: "triangle $ABC$ is congruent to triangle
+    $ACB$ by SAS." What else must the proof state before this step is complete?
+  answer_label: Say what is missing.
+  check:
+    kind: structured
+    requires: [data, angle]
+    concepts: [sas, included-angle]
+    points:
+    - id: data
+      text: It must state that $|AB|=|AC|$ and $|AC|=|AB|$, the two pairs of equal sides.
+      concepts: [sas]
+    - id: angle
+      text: It must state that the angle at $A$ is the included angle and is the same angle in both triangles.
+      concepts: [included-angle]
+  answer_text: >-
+    The step is incomplete on its own. The proof must state the two pairs of equal
+    sides, $|AB|=|AC|$ and $|AC|=|AB|$, and it must state that the angle at $A$ is
+    the included angle, common to both triangles. SAS needs two sides and the angle
+    between them.
+
+- id: jc20-20.11-counterexample
+  section: '20.11'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A student claims: "if a number is divisible by 3, then it is divisible by 6."
+    Test the number 9 to decide whether the claim is true.
+  answer_label: Test 9 and decide.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '9/3', answer: '3'}
+    - {kind: evaluate, expression: 'Mod(9, 6)', answer: '3'}
+  answer_text: >-
+    $9\div3=3$ exactly, so 9 is divisible by 3. But $9\div6$ leaves a remainder of
+    3, so 9 is not divisible by 6. The claim is false, and 9 is a counterexample.
+    One counterexample is enough to disprove a general claim.
+
+- id: jc20-20.11-bad-converse
+  section: '20.11'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A proof uses the converse of a theorem as if it were the theorem itself.
+    Explain why this can be wrong, and how a proof should use a converse.
+  answer_label: Explain the danger and the correct use.
+  check:
+    kind: structured
+    requires: [danger, correct]
+    concepts: [converse, separate]
+    points:
+    - id: danger
+      text: A converse is a separate statement, and it can be false even when the original theorem is true, so using it without proof is a gap.
+      concepts: [converse]
+    - id: correct
+      text: A converse may be used only when it has itself been stated and proved, as the converses of the isosceles and Pythagoras theorems are.
+      concepts: [separate]
+  answer_text: >-
+    A converse is a separate statement. It can be false even when the original
+    theorem is true, so a proof that uses a converse without proving it has a gap.
+    A converse may be used only when it has itself been stated and proved, as the
+    converses of the isosceles theorem and of Pythagoras have been in this chapter.
+
+- id: jc20-20.11-evaluate
+  section: '20.11'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A proof of the triangle angle sum draws the parallel line, uses the alternate
+    angles, and concludes that the three angles add to 180°. Which step, if any, is
+    missing?
+  answer_label: Name the missing step.
+  check:
+    kind: structured
+    requires: [missing, why]
+    concepts: [straight-angle, completeness]
+    points:
+    - id: missing
+      text: The step that the three angles at $A$ lie on a straight line, so they add to 180°.
+      concepts: [straight-angle]
+    - id: why
+      text: Without it, the proof has moved the angles to $A$ but has not shown that their sum is 180°.
+      concepts: [completeness]
+  answer_text: >-
+    The missing step is the straight angle. After moving the two angles up to $A$,
+    the proof must state that the three angles at $A$ now lie on a straight line,
+    so they add to 180°. Without that step the proof has moved the angles but has
+    not shown that their sum is 180°.

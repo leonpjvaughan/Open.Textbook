@@ -1,0 +1,207 @@
+# Junior Cycle Mathematics, Chapter 20, section 20.6 (learning outcome GT.3).
+#
+# A parallelogram is a quadrilateral, so the `evaluate` checks prove the angle and
+# length arithmetic: opposite angles are equal, adjacent angles add to 180, and the
+# perimeter adds the four sides. The `structured` records are the proofs. They prove
+# only that a model answer contains the declared steps, in order, and covers the
+# declared concepts — **presence and order, not the geometry**.
+chapter: 20
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc20-20.6-opposite-angle
+  section: '20.6'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    In a parallelogram, one angle is 70°. Write down the opposite angle.
+  answer_label: Write down the opposite angle.
+  check:
+    kind: structured
+    requires: [angle, reason]
+    concepts: [opposite-angles, equal]
+    points:
+    - id: angle
+      text: The opposite angle is 70°.
+      concepts: [opposite-angles]
+    - id: reason
+      text: In a parallelogram, opposite angles are equal.
+      concepts: [equal]
+  answer_text: >-
+    The opposite angle is **70°**. In a parallelogram, opposite angles are equal.
+
+- id: jc20-20.6-adjacent-angle
+  section: '20.6'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    In a parallelogram, one angle is 70°. Work out the angle next to it.
+  answer_label: Work out the adjacent angle.
+  check: {kind: evaluate, expression: '180 - 70', answer: '110'}
+  answer_text: >-
+    $180-70=110°$. Adjacent angles in a parallelogram add to 180°, because the
+    opposite sides are parallel and the angles are interior on the same side of a
+    transversal.
+
+- id: jc20-20.6-four-angles
+  section: '20.6'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A parallelogram has one angle of 70°. Work out the sum of its four angles as a
+    check.
+  answer_label: Work out the sum of the four angles.
+  check: {kind: evaluate, expression: '2*70 + 2*110', answer: '360'}
+  answer_text: >-
+    $2\times70+2\times110=140+220=360°$. The angles of a parallelogram are 70°,
+    110°, 70° and 110°, and they add to 360°, as the angles of any quadrilateral do.
+
+- id: jc20-20.6-opposite-side
+  section: '20.6'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    In a parallelogram, one side is 9 cm. Write down the length of the opposite
+    side.
+  answer_label: Write down the opposite side.
+  check:
+    kind: structured
+    requires: [side, reason]
+    concepts: [opposite-sides, equal]
+    points:
+    - id: side
+      text: The opposite side is 9 cm.
+      concepts: [opposite-sides]
+    - id: reason
+      text: In a parallelogram, opposite sides are equal in length.
+      concepts: [equal]
+  answer_text: >-
+    **9 cm.** In a parallelogram, opposite sides are equal in length.
+
+- id: jc20-20.6-perimeter
+  section: '20.6'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A parallelogram has sides of 9 cm and 6 cm. Work out its perimeter.
+  answer_label: Work out the perimeter.
+  check: {kind: evaluate, expression: '2*(9 + 6)', answer: '30'}
+  answer_text: >-
+    $2\times(9+6)=2\times15=30$ cm. The two pairs of opposite sides are equal, so
+    the perimeter is $9+6+9+6$.
+
+- id: jc20-20.6-diagonal-area
+  section: '20.6'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A diagonal divides a parallelogram of area 48 cm² into two triangles. Work out
+    the area of one triangle.
+  answer_label: Work out the area of one triangle.
+  check: {kind: evaluate, expression: '48/2', answer: '24'}
+  answer_text: >-
+    $48\div2=24$ cm². A diagonal divides a parallelogram into two congruent
+    triangles, and congruent triangles have equal areas.
+
+- id: jc20-20.6-opposite-sides-proof
+  section: '20.6'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Prove that the opposite sides of a parallelogram are equal.
+  answer_label: Prove the result.
+  check:
+    kind: structured
+    requires: [diagonal, alternate, congruent]
+    concepts: [diagonal, alternate-angles, asa]
+    points:
+    - id: diagonal
+      text: Draw the diagonal $BD$ of the parallelogram $ABCD$.
+      concepts: [diagonal]
+    - id: alternate
+      text: Because $AB$ is parallel to $DC$ and $AD$ is parallel to $BC$, the alternate angles give $|\angle ABD|=|\angle BDC|$ and $|\angle ADB|=|\angle DBC|$.
+      concepts: [alternate-angles]
+    - id: congruent
+      text: Triangle $DAB$ is congruent to triangle $BCD$ by ASA, since the diagonal $BD$ is common; matching sides give $|AB|=|CD|$ and $|AD|=|CB|$.
+      concepts: [asa]
+  answer_text: >-
+    Draw the diagonal $BD$. Since $AB$ is parallel to $DC$, the alternate angles
+    $\angle ABD$ and $\angle BDC$ are equal. Since $AD$ is parallel to $BC$, the
+    alternate angles $\angle ADB$ and $\angle DBC$ are equal. The diagonal $BD$ is
+    common to the two triangles, so triangle $DAB$ is congruent to triangle $BCD$
+    by ASA. Matching sides are equal, so $|AB|=|CD|$ and $|AD|=|CB|$.
+
+- id: jc20-20.6-diagonals-proof
+  section: '20.6'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Prove that the diagonals of a parallelogram bisect one another.
+  answer_label: Prove the result.
+  check:
+    kind: structured
+    requires: [meet, alternate, congruent, conclude]
+    concepts: [diagonals, alternate-angles, asa, midpoint]
+    points:
+    - id: meet
+      text: Let the diagonals $AC$ and $BD$ of the parallelogram $ABCD$ meet at $E$.
+      concepts: [diagonals]
+    - id: alternate
+      text: Because $AD$ is parallel to $BC$, the alternate angles give $|\angle EAD|=|\angle ECB|$ and $|\angle EDA|=|\angle EBC|$.
+      concepts: [alternate-angles]
+    - id: congruent
+      text: Also $|AD|=|BC|$ because opposite sides of a parallelogram are equal, so triangle $ADE$ is congruent to triangle $CBE$ by ASA.
+      concepts: [asa]
+    - id: conclude
+      text: Matching sides give $|AE|=|EC|$ and $|DE|=|EB|$, so each diagonal is bisected at $E$.
+      concepts: [midpoint]
+  answer_text: >-
+    Let the diagonals meet at $E$. Since $AD$ is parallel to $BC$, the alternate
+    angles give $|\angle EAD|=|\angle ECB|$ and $|\angle EDA|=|\angle EBC|$.
+    Opposite sides of a parallelogram are equal, so $|AD|=|BC|$. Therefore triangle
+    $ADE$ is congruent to triangle $CBE$ by ASA. Matching sides give $|AE|=|EC|$
+    and $|DE|=|EB|$, so the diagonals bisect one another.
+
+- id: jc20-20.6-converse-proof
+  section: '20.6'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Prove that if the opposite sides of a convex quadrilateral are equal, then it
+    is a parallelogram.
+  answer_label: Prove the converse.
+  check:
+    kind: structured
+    requires: [diagonal, sss, conclude]
+    concepts: [diagonal, sss, alternate-angles]
+    points:
+    - id: diagonal
+      text: Draw the diagonal $BD$ of the quadrilateral $ABCD$.
+      concepts: [diagonal]
+    - id: sss
+      text: The two triangles $ABD$ and $CDB$ have $|AB|=|CD|$, $|AD|=|CB|$ and the common side $BD$, so they are congruent by SSS.
+      concepts: [sss]
+    - id: conclude
+      text: Matching angles give $|\angle ABD|=|\angle BDC|$, and these are alternate angles, so $AB$ is parallel to $DC$; similarly $AD$ is parallel to $BC$, so the quadrilateral is a parallelogram.
+      concepts: [alternate-angles]
+  answer_text: >-
+    Draw the diagonal $BD$. The triangles $ABD$ and $CDB$ have $|AB|=|CD|$,
+    $|AD|=|CB|$, and the side $BD$ common, so they are congruent by SSS. Matching
+    angles give $|\angle ABD|=|\angle BDC|$, and these are alternate angles, so
+    $AB$ is parallel to $DC$. In the same way $AD$ is parallel to $BC$. The
+    quadrilateral is a parallelogram.
+
+- id: jc20-20.6-rhombus
+  section: '20.6'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A rhombus has four equal sides of 7 cm. Work out its perimeter and say whether
+    it is a parallelogram.
+  answer_label: Work out the perimeter and decide.
+  check: {kind: evaluate, expression: '4*7', answer: '28'}
+  answer_text: >-
+    $4\times7=28$ cm. A rhombus has both pairs of opposite sides equal, so by the
+    converse of Theorem 9 it is a parallelogram. Its opposite sides are equal and
+    parallel.

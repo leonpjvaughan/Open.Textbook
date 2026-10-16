@@ -1,0 +1,116 @@
+# Practice set for 13.3 (Leaving Certificate Mathematics, strand 2, outcome 2.2).
+#
+# The two relationships are checked as products and as intercepts. Parallel lines
+# share a slope, so the check recomputes the intercept from the point. A right
+# angle is a slope product of -1, and that product is what the CAS proves.
+chapter: 13
+symbols:
+  k: {real: true}
+problems:
+  - id: lc13-3-perpendicular-slopes
+    section: '13.3'
+    tier: F
+    refs: ['2.2']
+    statement: >-
+      A line has slope $4$. What is the slope of a line perpendicular to it?
+      Show the relationship.
+    answer_label: 'The perpendicular slope'
+    check: {kind: evaluate, expression: '4*(-1/4)', answer: '-1'}
+    answer_text: >-
+      The perpendicular slope is the negative reciprocal: $-\frac{1}{4}$. The
+      two slopes multiply to $-1$, since $4 \times \left(-\frac{1}{4}\right) = -1$.
+
+  - id: lc13-3-parallel-line
+    section: '13.3'
+    tier: F
+    refs: ['2.2']
+    statement: 'Find the line through $(2, 3)$ parallel to $y = 5x - 1$.'
+    answer_label: 'The equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3 - 5*2', answer: '-7'}
+        - {kind: evaluate, expression: '5*3 - 7', answer: '8'}
+    answer_text: >-
+      Parallel lines have the same slope, so $m = 5$. Then
+      $y - 3 = 5(x - 2)$, which gives $y = 5x - 7$. The point $(3, 8)$ lies on
+      it, since $5 \times 3 - 7 = 8$.
+
+  - id: lc13-3-perpendicular-line
+    section: '13.3'
+    tier: F
+    refs: ['2.2']
+    statement: 'Find the line through $(2, 3)$ perpendicular to $y = 5x - 1$.'
+    answer_label: 'The equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3 - (-1/5)*2', answer: '17/5'}
+        - {kind: evaluate, expression: '5*(-1/5)', answer: '-1'}
+    answer_text: >-
+      The slope is the negative reciprocal of $5$, which is $-\frac{1}{5}$.
+      Then $y - 3 = -\frac{1}{5}(x - 2)$, so $y = -\frac{1}{5}x + \frac{17}{5}$.
+
+  - id: lc13-3-side-road
+    section: '13.3'
+    tier: F
+    refs: ['2.2']
+    statement: >-
+      The main road has slope $\frac{3}{4}$. A side road leaves $B(7, 7)$ at a
+      right angle to it. Find the equation of the side road.
+    answer_label: 'The equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '(3/4)*(-4/3)', answer: '-1'}
+        - {kind: evaluate, expression: '4*7 + 3*7', answer: '49'}
+    answer_text: >-
+      The perpendicular slope is $-\frac{4}{3}$. Then
+      $y - 7 = -\frac{4}{3}(x - 7)$, which rearranges to $4x + 3y = 49$. The
+      slope product is $\frac{3}{4} \times \left(-\frac{4}{3}\right) = -1$, so
+      the two roads meet at a right angle.
+
+  - id: lc13-3-perpendicular-bisector
+    section: '13.3'
+    tier: F
+    refs: ['2.2']
+    statement: >-
+      Find the perpendicular bisector of the segment from $A(-1, 1)$ to
+      $B(7, 7)$.
+    answer_label: 'The equation'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '4*3 + 3*4', answer: '24'}
+        - {kind: evaluate, expression: '(3/4)*(-4/3)', answer: '-1'}
+    answer_text: >-
+      The midpoint is $(3, 4)$ and the slope of $AB$ is $\frac{3}{4}$, so the
+      perpendicular bisector has slope $-\frac{4}{3}$ through $(3, 4)$:
+      $y - 4 = -\frac{4}{3}(x - 3)$, which is $4x + 3y = 24$. It passes through
+      the midpoint by construction.
+
+  - id: lc13-3-find-k
+    section: '13.3'
+    tier: F
+    refs: ['2.2']
+    statement: >-
+      The line through $(1, 2)$ and $(3, k)$ is perpendicular to a line of
+      slope $-\frac{1}{2}$. Find $k$.
+    answer_label: 'The value of k'
+    check: {kind: solve, equation: '(k - 2)/(3 - 1) = 2', variable: k, answer: '6'}
+    answer_text: >-
+      A line perpendicular to slope $-\frac{1}{2}$ has slope $2$. So
+      $\frac{k - 2}{3 - 1} = 2$, giving $k - 2 = 4$ and $k = 6$.
+
+  - id: lc13-3-decide
+    section: '13.3'
+    tier: F
+    refs: ['2.2']
+    statement: >-
+      Decide whether the lines $y = 3x + 1$ and $y = -\frac{1}{3}x + 4$ are
+      parallel, perpendicular or neither, and give a reason.
+    answer_label: 'The decision and the reason'
+    check: {kind: evaluate, expression: '3*(-1/3)', answer: '-1'}
+    answer_text: >-
+      The slopes are $3$ and $-\frac{1}{3}$. They are not equal, so the lines
+      are not parallel. Their product is $-1$, so the lines are perpendicular.

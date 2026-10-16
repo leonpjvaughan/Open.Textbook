@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 13.2 The equation of a line — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 2.2
+Work on your own, without notes. Decide first whether the question gives you a
+slope or two points, then choose the method that fits. Check every final equation
+by substituting one of the points you were given.
+
+The questions and the answers are shown together at the end.
+
+:::problems chapter-13-practice-13.2
+
+:::answers chapter-13-practice-13.2

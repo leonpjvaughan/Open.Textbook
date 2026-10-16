@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 19.4 Rotation — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: GT.6
+Work independently. The questions and answers are shown together at the end.
+
+Name the centre, the angle and the direction before you start. For a centre that
+is not the origin, subtract the centre, rotate, then add the centre back.
+
+:::problems chapter-19-practice-19.4
+
+:::answers chapter-19-practice-19.4

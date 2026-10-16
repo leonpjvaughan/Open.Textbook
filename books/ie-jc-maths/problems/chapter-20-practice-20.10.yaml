@@ -1,0 +1,242 @@
+# Junior Cycle Mathematics, Chapter 20, section 20.10 (learning outcome GT.3).
+#
+# Constructing a proof is a sequence of reasons, so most records here are
+# `structured`: they prove only that a model answer contains the declared steps, in
+# order, and covers the declared concepts. They prove **presence and order, not the
+# geometry** — the verifier cannot decide whether a reason is the right one, and a
+# human checks that. The `evaluate` records prove the angle arithmetic a proof uses
+# along the way.
+chapter: 20
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc20-20.10-order
+  section: '20.10'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Put the proof of the triangle angle sum in order: (a) the three angles at $A$
+    lie on a straight line, so they add to 180°; (b) draw the line through $A$
+    parallel to $BC$; (c) the alternate angles give the angle at $B$ equal to one
+    angle at $A$; (d) the alternate angles give the angle at $C$ equal to the other
+    angle at $A$.
+  answer_label: Put the steps in order.
+  check:
+    kind: structured
+    requires: [draw, alternateB, alternateC, straight]
+    concepts: [parallel-line, alternate-angles, straight-angle]
+    points:
+    - id: draw
+      text: Draw the line through $A$ parallel to $BC$.
+      concepts: [parallel-line]
+    - id: alternateB
+      text: The transversal $AB$ makes equal alternate angles, so the angle at $B$ equals one angle at $A$.
+      concepts: [alternate-angles]
+    - id: alternateC
+      text: The transversal $AC$ makes equal alternate angles, so the angle at $C$ equals the other angle at $A$.
+      concepts: [alternate-angles]
+    - id: straight
+      text: The three angles at $A$ lie on a straight line, so they add to 180°.
+      concepts: [straight-angle]
+  answer_text: >-
+    The order is **b, c, d, a**. First draw the parallel line through $A$. Then use
+    the alternate angles with $AB$ and with $AC$ to move the angles at $B$ and $C$
+    up to $A$. The three angles now at $A$ lie on a straight line, so they add to
+    180°. The three angles of the triangle therefore add to 180°.
+
+- id: jc20-20.10-reason
+  section: '20.10'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A proof contains the line: "therefore $|\angle ABC|=|\angle DAB|$." Which
+    theorem is the reason for this step?
+  answer_label: Name the reason.
+  check:
+    kind: structured
+    requires: [reason, why]
+    concepts: [alternate-angles, parallel]
+    points:
+    - id: reason
+      text: The alternate angles theorem, or its converse.
+      concepts: [alternate-angles]
+    - id: why
+      text: The line through $A$ is parallel to $BC$, so the transversal $AB$ makes equal alternate angles.
+      concepts: [parallel]
+  answer_text: >-
+    The reason is the **alternate angles theorem**. The line through $A$ is
+    parallel to $BC$, and $AB$ is a transversal of the two parallel lines, so the
+    alternate angles are equal.
+
+- id: jc20-20.10-angle-arithmetic
+  section: '20.10'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A proof reaches the equation $55+65+x=180$. Work out $x$.
+  answer_label: Work out $x$.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '55 + 65', answer: '120'}
+    - {kind: evaluate, expression: '180 - 120', answer: '60'}
+  answer_text: >-
+    $55+65=120$, and $180-120=60$. So $x=60°$.
+
+- id: jc20-20.10-exterior-proof
+  section: '20.10'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Prove that each exterior angle of a triangle equals the sum of the two interior
+    opposite angles.
+  answer_label: Prove the result.
+  check:
+    kind: structured
+    requires: [supplementary, angleSum, subtract]
+    concepts: [straight-angle, angle-sum, exterior]
+    points:
+    - id: supplementary
+      text: The exterior angle and the interior angle at the same vertex are supplementary, so together they add to 180°.
+      concepts: [straight-angle]
+    - id: angleSum
+      text: The three interior angles add to 180°, by the triangle angle sum.
+      concepts: [angle-sum]
+    - id: subtract
+      text: Subtracting the shared interior angle from both 180° sums leaves the exterior angle equal to the sum of the two interior opposite angles.
+      concepts: [exterior]
+  answer_text: >-
+    Let $\alpha$ be the exterior angle at $A$. Then $|\alpha|+|\angle A|=180°$,
+    because they are supplementary. The three interior angles give
+    $|\angle B|+|\angle C|+|\angle A|=180°$. Subtracting the first equation from the
+    second leaves $|\alpha|=|\angle B|+|\angle C|$. The exterior angle equals the
+    sum of the two interior opposite angles.
+
+- id: jc20-20.10-given-prove
+  section: '20.10'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A question says: "In the triangle $ABC$, $|AB|=|AC|$. Prove that
+    $|\angle B|=|\angle C|$." Write down what is given and what is to be proved.
+  answer_label: Write down the given and the goal.
+  check:
+    kind: structured
+    requires: [given, goal]
+    concepts: [hypothesis, conclusion]
+    points:
+    - id: given
+      text: 'Given: the triangle $ABC$ has $|AB|=|AC|$.'
+      concepts: [hypothesis]
+    - id: goal
+      text: 'To prove: the angle at $B$ equals the angle at $C$.'
+      concepts: [conclusion]
+  answer_text: >-
+    **Given:** triangle $ABC$ with $|AB|=|AC|$. **To prove:** $|\angle B|=|\angle C|$.
+    The given is the hypothesis; the goal is the conclusion. Every proof starts by
+    separating the two.
+
+- id: jc20-20.10-isosceles-proof
+  section: '20.10'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Write a proof that the base angles of an isosceles triangle are equal.
+  answer_label: Write the proof.
+  check:
+    kind: structured
+    requires: [given, congruent, conclude]
+    concepts: [equal-sides, sas, base-angles]
+    points:
+    - id: given
+      text: Let $ABC$ have $|AB|=|AC|$.
+      concepts: [equal-sides]
+    - id: congruent
+      text: Triangle $ABC$ is congruent to triangle $ACB$ by SAS, since $|AB|=|AC|$, $|AC|=|AB|$ and the angle at $A$ is common.
+      concepts: [sas]
+    - id: conclude
+      text: Matching angles give $|\angle B|=|\angle C|$.
+      concepts: [base-angles]
+  answer_text: >-
+    Let $ABC$ have $|AB|=|AC|$. Then triangle $ABC$ is congruent to triangle $ACB$
+    by SAS: $|AB|=|AC|$, $|AC|=|AB|$, and the angle at $A$ is the same angle in
+    both. Matching angles in congruent triangles are equal, so $|\angle B|=|\angle C|$.
+    The base angles are equal.
+
+- id: jc20-20.10-converse-check
+  section: '20.10'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    The statement "if a shape is a square, then it is a rectangle" is true. Write
+    the converse and say whether it is true.
+  answer_label: Write the converse and decide.
+  check:
+    kind: structured
+    requires: [converse, truth]
+    concepts: [converse, counterexample]
+    points:
+    - id: converse
+      text: 'The converse is: if a shape is a rectangle, then it is a square.'
+      concepts: [converse]
+    - id: truth
+      text: It is false, because a rectangle 4 cm by 2 cm is not a square, and that is a counterexample.
+      concepts: [counterexample]
+  answer_text: >-
+    The converse is: **if a shape is a rectangle, then it is a square.** It is
+    false. A rectangle measuring 4 cm by 2 cm has four right angles but its sides
+    are not all equal, so it is not a square. A true statement can have a false
+    converse, and a counterexample is enough to show it.
+
+- id: jc20-20.10-complete
+  section: '20.10'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A proof ends with "so the angles add to 180°." Explain why a proof must say
+    which theorem justifies each step, not only give the steps.
+  answer_label: Explain why reasons matter.
+  check:
+    kind: structured
+    requires: [reason, check]
+    concepts: [justification, proof]
+    points:
+    - id: reason
+      text: A list of steps is not a proof unless each step follows from something already known, so the reason is what makes the argument valid.
+      concepts: [justification]
+    - id: check
+      text: Naming the reason also lets a reader check the proof, because they can see which axiom or theorem each step uses.
+      concepts: [proof]
+  answer_text: >-
+    Steps on their own are not a proof. Each step has to follow from something
+    already accepted — an axiom, a definition, or a theorem proved earlier — and
+    naming that reason is what makes the argument valid. It also lets a reader
+    check the proof, because they can see exactly which result each step uses.
+
+- id: jc20-20.10-proof-plan
+  section: '20.10'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    You are asked to prove that the diagonals of a parallelogram bisect one another.
+    Write down the first step of a proof plan and the congruence test you expect to
+    use.
+  answer_label: Write the first step and name the test.
+  check:
+    kind: structured
+    requires: [first, test]
+    concepts: [diagonal, asa]
+    points:
+    - id: first
+      text: Draw the diagonal that forms two triangles sharing a side, and mark the alternate angles made by the parallel sides.
+      concepts: [diagonal]
+    - id: test
+      text: Use ASA, with the alternate angles and the equal opposite sides of the parallelogram.
+      concepts: [asa]
+  answer_text: >-
+    First draw one diagonal, so that the two triangles share it, and mark the
+    alternate angles made by the parallel sides. The two triangles have two pairs
+    of equal angles and the equal opposite sides of the parallelogram, so **ASA**
+    is the test to use. The matching sides then give the two halves of each
+    diagonal as equal.

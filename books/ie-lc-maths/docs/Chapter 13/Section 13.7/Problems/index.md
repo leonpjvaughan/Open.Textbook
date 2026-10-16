@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 13.7 Dividing a line segment in a given ratio — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 2.2
+Work on your own, without notes. Write the ratio down first and label which
+endpoint it starts from. Check your answer by asking whether the point is closer
+to the correct endpoint.
+
+The questions and the answers are shown together at the end.
+
+:::problems chapter-13-practice-13.7
+
+:::answers chapter-13-practice-13.7

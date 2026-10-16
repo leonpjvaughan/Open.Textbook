@@ -1,0 +1,168 @@
+# Junior Cycle Mathematics, Chapter 20, section 20.3 (learning outcome GT.3).
+#
+# Every `evaluate` check is the angle arithmetic the section asks for: the two
+# angles on a straight line are added and subtracted from 180, and the alternate and
+# corresponding angles are compared with the given angle. The two `structured`
+# records are proofs. They prove only that a model answer contains the declared
+# steps, in order, and covers the declared concepts — **presence and order, not the
+# geometry**. The verifier cannot read a diagram or check that a reason is the right
+# one, so a human checks the proof.
+chapter: 20
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc20-20.3-vertically-opposite
+  section: '20.3'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Two straight lines cross. One of the four angles is 130°. Write down the
+    vertically opposite angle and the two angles on a straight line with it.
+  answer_label: Write down the three angles.
+  check: {kind: evaluate, expression: '180 - 130', answer: '50'}
+  answer_text: >-
+    The vertically opposite angle is **130°**, because vertically opposite angles
+    are equal. The two angles on a straight line with it are each $180-130=50°$.
+    The four angles are 130°, 50°, 130° and 50°.
+
+- id: jc20-20.3-straight-line
+  section: '20.3'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Two angles lie on a straight line. One of them is 47°. Work out the other.
+  answer_label: Work out the other angle.
+  check: {kind: evaluate, expression: '180 - 47', answer: '133'}
+  answer_text: >-
+    $180-47=133°$. Angles on a straight line add to 180°, which is the Protractor
+    Axiom applied to a straight angle.
+
+- id: jc20-20.3-alternate
+  section: '20.3'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A transversal cuts two parallel lines. One alternate angle is 68°. Write down
+    the other alternate angle and the corresponding angle.
+  answer_label: Write down both angles.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '68', answer: '68'}
+    - {kind: evaluate, expression: '68', answer: '68'}
+  answer_text: >-
+    Both are **68°**. When two lines are parallel, any transversal makes equal
+    alternate angles with them, and equal corresponding angles as well.
+
+- id: jc20-20.3-triangle-angle
+  section: '20.3'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A triangle has angles of 65° and 72°. Work out the third angle.
+  answer_label: Work out the third angle.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '65 + 72', answer: '137'}
+    - {kind: evaluate, expression: '180 - 137', answer: '43'}
+  answer_text: >-
+    $65+72=137$, and $180-137=43°$. The third angle is 43°, because the angles in a
+    triangle add to 180°.
+
+- id: jc20-20.3-exterior
+  section: '20.3'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    In a triangle, the two interior opposite angles are 48° and 63°. Work out the
+    exterior angle at the third vertex.
+  answer_label: Work out the exterior angle.
+  check: {kind: evaluate, expression: '48 + 63', answer: '111'}
+  answer_text: >-
+    $48+63=111°$. An exterior angle of a triangle equals the sum of the two
+    interior opposite angles, so the exterior angle is 111°.
+
+- id: jc20-20.3-right-triangle
+  section: '20.3'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A right-angled triangle has an acute angle of 35°. Work out the other acute
+    angle.
+  answer_label: Work out the other acute angle.
+  check: {kind: evaluate, expression: '90 - 35', answer: '55'}
+  answer_text: >-
+    $90-35=55°$. The two acute angles of a right-angled triangle add to 90°,
+    because the third angle is 90° and the three angles add to 180°.
+
+- id: jc20-20.3-vertically-opposite-proof
+  section: '20.3'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Prove that vertically opposite angles are equal in measure.
+  answer_label: Prove the result.
+  check:
+    kind: structured
+    requires: [supplementary, subtract]
+    concepts: [straight-angle, equal]
+    points:
+    - id: supplementary
+      text: Each of the two angles is supplementary to the same angle between them, so each pair adds to 180°.
+      concepts: [straight-angle]
+    - id: subtract
+      text: Subtracting the shared angle from both 180° sums leaves the two vertically opposite angles equal.
+      concepts: [equal]
+  answer_text: >-
+    Let the two lines cross so that $A$ lies between $B$ and $C$, and also between
+    $D$ and $E$. Then $|\angle BAD|+|\angle BAE|=180°$ and
+    $|\angle CAE|+|\angle BAE|=180°$, because each pair lies on a straight line.
+    Subtracting gives $|\angle BAD|=|\angle CAE|$. The two vertically opposite
+    angles are equal.
+
+- id: jc20-20.3-angle-sum-proof
+  section: '20.3'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Prove that the angles in any triangle add to 180°.
+  answer_label: Prove the result.
+  check:
+    kind: structured
+    requires: [parallel, alternateB, alternateC, straight]
+    concepts: [parallel-line, alternate-angles, straight-angle]
+    points:
+    - id: parallel
+      text: Draw the line through $A$ parallel to $BC$.
+      concepts: [parallel-line]
+    - id: alternateB
+      text: The transversal $AB$ makes alternate angles equal, so the angle at $B$ equals the angle between $AB$ and the parallel line.
+      concepts: [alternate-angles]
+    - id: alternateC
+      text: The transversal $AC$ makes alternate angles equal, so the angle at $C$ equals the angle between $AC$ and the parallel line.
+      concepts: [alternate-angles]
+    - id: straight
+      text: The three angles at $A$ now lie on the straight line, so they add to 180°.
+      concepts: [straight-angle]
+  answer_text: >-
+    Draw the line through $A$ parallel to $BC$. Because $AB$ is a transversal of
+    two parallel lines, the alternate angles are equal, so the angle at $B$ equals
+    the angle between $AB$ and the new line. For the same reason the angle at $C$
+    equals the angle between $AC$ and the new line. The three angles at $A$ now
+    form a straight angle, so they add to 180°. Therefore the three angles of the
+    triangle add to 180°.
+
+- id: jc20-20.3-cointerior
+  section: '20.3'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A transversal cuts two parallel lines. One interior angle on one side is 115°.
+    Work out the interior angle on the same side.
+  answer_label: Work out the other interior angle.
+  check: {kind: evaluate, expression: '180 - 115', answer: '65'}
+  answer_text: >-
+    $180-115=65°$. The two interior angles on the same side of the transversal add
+    to 180°, because each is equal to the alternate angle of the other.

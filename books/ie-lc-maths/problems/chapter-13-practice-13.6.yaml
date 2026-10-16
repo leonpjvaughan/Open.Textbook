@@ -1,0 +1,143 @@
+# Practice set for 13.6 (Leaving Certificate Mathematics, strand 2, outcome 2.2).
+#
+# A line meets a circle where the two equations hold together, so the two points
+# come from a `system` and their order does not matter. The discriminant decides
+# how many points there are, and that quadratic is what the CAS evaluates.
+chapter: 13
+symbols:
+  x: {real: true}
+  y: {real: true}
+problems:
+  - id: lc13-6-horizontal
+    section: '13.6'
+    tier: H
+    refs: ['2.2']
+    statement: 'Find where the line $y = 3$ meets the circle $x^2 + y^2 = 25$.'
+    answer_label: 'The two points'
+    check:
+      kind: system
+      equations: ['x**2 + y**2 = 25', 'y = 3']
+      variables: [x, y]
+      answer: [['-4', '3'], ['4', '3']]
+    answer_text: >-
+      Substitute $y = 3$: $x^2 + 9 = 25$, so $x^2 = 16$ and $x = 4$ or
+      $x = -4$. The points are $(4, 3)$ and $(-4, 3)$.
+
+  - id: lc13-6-bypass
+    section: '13.6'
+    tier: H
+    refs: ['2.2']
+    statement: >-
+      Find where the bypass $x + y = 12$ meets the roundabout
+      $(x - 3)^2 + (y - 4)^2 = 25$.
+    answer_label: 'The two points'
+    check:
+      kind: system
+      equations: ['x + y = 12', '(x - 3)**2 + (y - 4)**2 = 25']
+      variables: [x, y]
+      answer: [['3', '9'], ['8', '4']]
+    answer_text: >-
+      Substitute $y = 12 - x$: $(x - 3)^2 + (8 - x)^2 = 25$, so
+      $x^2 - 11x + 24 = 0$ and $(x - 3)(x - 8) = 0$. Then $x = 3$ or $x = 8$,
+      giving $(3, 9)$ and $(8, 4)$.
+
+  - id: lc13-6-diagonal
+    section: '13.6'
+    tier: H
+    refs: ['2.2']
+    statement: >-
+      Find where the line $y = x$ meets the circle $(x - 3)^2 + (y - 4)^2 = 25$.
+    answer_label: 'The two points'
+    check:
+      kind: system
+      equations: ['y = x', '(x - 3)**2 + (y - 4)**2 = 25']
+      variables: [x, y]
+      answer: [['0', '0'], ['7', '7']]
+    answer_text: >-
+      Substitute $y = x$: $(x - 3)^2 + (x - 4)^2 = 25$, so
+      $2x^2 - 14x = 0$ and $2x(x - 7) = 0$. Then $x = 0$ or $x = 7$, giving
+      $(0, 0)$ and $(7, 7)$.
+
+  - id: lc13-6-discriminant
+    section: '13.6'
+    tier: H
+    refs: ['2.2']
+    statement: >-
+      Use the discriminant to decide how many times the line $y = x + 1$ meets
+      the circle $x^2 + y^2 = 25$.
+    answer_label: 'The discriminant and the decision'
+    check: {kind: evaluate, expression: '2**2 - 4*2*(-24)', answer: '196'}
+    answer_text: >-
+      Substitute: $x^2 + (x + 1)^2 = 25$, so $2x^2 + 2x - 24 = 0$. The
+      discriminant is $2^2 - 4 \times 2 \times (-24) = 4 + 192 = 196$. It is
+      positive, so there are two points of intersection.
+
+  - id: lc13-6-tangent-discriminant
+    section: '13.6'
+    tier: H
+    refs: ['2.2']
+    statement: >-
+      Show that the line $y = 2x + 5$ is a tangent to
+      $(x - 1)^2 + (y - 2)^2 = 5$ by finding the discriminant.
+    answer_label: 'The discriminant and the conclusion'
+    check: {kind: evaluate, expression: '2**2 - 4*1*1', answer: '0'}
+    answer_text: >-
+      Substitute: $(x - 1)^2 + (2x + 3)^2 = 5$, so $5x^2 + 10x + 5 = 0$ and
+      $x^2 + 2x + 1 = 0$. The discriminant is $2^2 - 4 \times 1 \times 1 = 0$,
+      so there is exactly one point of contact and the line is a tangent.
+
+  - id: lc13-6-misses
+    section: '13.6'
+    tier: H
+    refs: ['2.2']
+    statement: 'Decide whether the line $y = 10$ meets the circle $x^2 + y^2 = 25$.'
+    answer_label: 'The decision'
+    check:
+      kind: compare
+      relation: '<'
+      lhs: '0**2 - 4*1*75'
+      rhs: '0'
+    answer_text: >-
+      Substitute $y = 10$: $x^2 + 100 = 25$, so $x^2 + 75 = 0$. The
+      discriminant is $0 - 4 \times 1 \times 75 = -300$, which is negative.
+      There are no real roots, so the line misses the circle.
+
+  - id: lc13-6-chord-length
+    section: '13.6'
+    tier: H
+    refs: ['2.2']
+    statement: >-
+      The line $x + y = 12$ cuts the circle $(x - 3)^2 + (y - 4)^2 = 25$ at
+      $(3, 9)$ and $(8, 4)$. Find the length of the chord.
+    answer_label: 'The chord length'
+    check: {kind: evaluate, expression: 'sqrt((8 - 3)**2 + (4 - 9)**2)', answer: '5*sqrt(2)'}
+    answer_text: >-
+      The chord length is the distance between the endpoints:
+      $\sqrt{(8 - 3)^2 + (4 - 9)^2} = \sqrt{25 + 25} = \sqrt{50} = 5\sqrt{2}$,
+      about $7.07$.
+
+  - id: lc13-6-explain
+    section: '13.6'
+    tier: H
+    refs: ['2.2']
+    statement: >-
+      Explain how the discriminant of the quadratic you get after substitution
+      tells you whether a line cuts, touches or misses a circle.
+    answer_label: 'What the discriminant tells you'
+    check:
+      kind: structured
+      requires: [substitute, discriminant]
+      concepts: [two-points, tangent, no-points]
+      points:
+        - id: substitute
+          text: Substitute the line into the circle to get a quadratic in one variable.
+          concepts: [two-points]
+        - id: discriminant
+          text: A positive discriminant gives two points, zero gives one point, and a negative discriminant gives none.
+          concepts: [two-points, tangent, no-points]
+    answer_text: >-
+      After substitution the intersections are the real roots of a quadratic.
+      A positive discriminant means two real roots, so the line cuts the circle
+      twice. A zero discriminant means one repeated root, so the line is a
+      tangent. A negative discriminant means no real roots, so the line misses
+      the circle.

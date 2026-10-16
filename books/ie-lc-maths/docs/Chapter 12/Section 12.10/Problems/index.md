@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 12.10 Bearings and three-dimensional problems — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.3
+Work independently. The questions and answers are shown together at the end.
+
+Draw a north line at each point and mark the bearing clockwise from it. For a problem
+inside a solid, find the right triangle first, then choose the ratio.
+
+:::problems chapter-12-practice-12.10
+
+:::answers chapter-12-practice-12.10

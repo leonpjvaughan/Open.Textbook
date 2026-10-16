@@ -1,0 +1,216 @@
+# Practice set for 12.10 (strand 2, outcome 2.3). Bearings are direction problems, so the
+# arithmetic is angles and lengths: `evaluate` proves the exact ones, and `approx` proves
+# the rest to a stated tolerance. The two-boat record uses the cosine rule from the
+# booklet and declares it with `plays`. The three-dimensional records are Higher level,
+# which is where the syllabus places them; they are marked H on the page. The last record
+# is a `structured` check of the method, which the CAS cannot prove.
+chapter: 12
+problems:
+  - id: lc12-10-back-bearing
+    section: '12.10'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      The bearing of $A$ from $B$ is $125^\circ$. Find the bearing of $B$ from $A$.
+    answer_label: 'The back bearing'
+    check: {kind: evaluate, expression: '125 + 180', answer: '305'}
+    answer_text: >-
+      The bearing of $B$ from $A$ is the back bearing of the bearing of $A$ from $B$. Add
+      $180^\circ$:
+
+      $$125^\circ + 180^\circ = 305^\circ$$
+
+      The answer is below $360^\circ$, so there is nothing to subtract. The two points lie
+      on the same line, and the two bearings are opposite directions along it.
+
+  - id: lc12-10-components
+    section: '12.10'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      A ship is $12$ km from port on a bearing of $060^\circ$. Find how far north and how
+      far east of the port it is, each correct to two decimal places.
+    answer_label: 'The north distance, then the east distance'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '12 * cos(60 * pi / 180)', answer: '6'}
+        - {kind: approx, value: '12 * sin(60 * pi / 180)', target: '10.39', tolerance: '0.01'}
+    answer_text: >-
+      Draw a north line at the port. The bearing makes an angle of $60^\circ$ with it, so
+      the distance, the north distance and the east distance form a right triangle. The
+      north distance is the adjacent side:
+
+      $$\text{north} = 12\cos 60^\circ = 12 \times 0.5 = 6 \text{ km}$$
+
+      The east distance is the opposite side:
+
+      $$\text{east} = 12\sin 60^\circ = 12 \times 0.8660 = 10.39 \text{ km}$$
+
+      The north distance is shorter, because the bearing points closer to east than to
+      north.
+
+  - id: lc12-10-two-legs
+    section: '12.10'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      A walker goes $6$ km north, then $8$ km east. Find the distance and the bearing of
+      the walker from the start. Give the bearing correct to one decimal place.
+    answer_label: 'The distance, then the bearing'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'sqrt(6**2 + 8**2)', answer: '10'}
+        - {kind: approx, value: 'atan(8/6) * 180 / pi', target: '53.13', tolerance: '0.05'}
+    answer_text: >-
+      The two legs are perpendicular, so the distance is the hypotenuse of a right
+      triangle:
+
+      $$d = \sqrt{6^2 + 8^2} = \sqrt{100} = 10 \text{ km}$$
+
+      The bearing is measured at the start, clockwise from north. The angle inside the
+      triangle is
+
+      $$\tan^{-1}\!\left(\frac{8}{6}\right) = 53.1^\circ$$
+
+      The bearing is $053^\circ$. It is more than $045^\circ$, because the walker went
+      further east than north.
+
+  - id: lc12-10-boats
+    section: '12.10'
+    tier: O
+    refs: ['2.3']
+    plays: cosine-rule
+    statement: >-
+      Two boats leave the same station. The first is $5$ km away on a bearing of
+      $030^\circ$. The second is $8$ km away on a bearing of $100^\circ$. Find the
+      distance between the boats, correct to two decimal places.
+    answer_label: 'The distance between the boats'
+    check:
+      kind: approx
+      value: 'sqrt(5**2 + 8**2 - 2 * 5 * 8 * cos(70 * pi / 180))'
+      target: '7.85'
+      tolerance: '0.01'
+    answer_text: >-
+      The angle between the two bearings is the angle at the station:
+
+      $$100^\circ - 30^\circ = 70^\circ$$
+
+      The station and the two boats form a triangle with two sides and the angle between
+      them, so use the cosine rule from the booklet:
+
+      $$d^2 = 5^2 + 8^2 - 2(5)(8)\cos 70^\circ$$
+
+      $$d^2 = 25 + 64 - 80 \times 0.3420 = 89 - 27.36 = 61.64$$
+
+      $$d = \sqrt{61.64} = 7.85 \text{ km}$$
+
+      The distance is between the two given distances, which fits an angle of $70^\circ$.
+
+  - id: lc12-10-cuboid
+    section: '12.10'
+    tier: H
+    refs: ['2.3']
+    statement: >-
+      A cuboid is $6$ cm long, $2$ cm wide and $3$ cm high. Find the angle between the
+      space diagonal and the base, correct to one decimal place.
+    answer_label: 'The angle'
+    check:
+      kind: approx
+      value: 'atan(3 / sqrt(6**2 + 2**2)) * 180 / pi'
+      target: '25.4'
+      tolerance: '0.05'
+    answer_text: >-
+      The space diagonal runs from a bottom corner to the opposite top corner. Its
+      projection on the base is the base diagonal:
+
+      $$\text{base diagonal} = \sqrt{6^2 + 2^2} = \sqrt{40}$$
+
+      The right triangle has height $3$ and base $\sqrt{40}$, so
+
+      $$\tan\theta = \frac{3}{\sqrt{40}} \qquad \theta = 25.4^\circ$$
+
+      The angle is small, because the cuboid is long and flat.
+
+  - id: lc12-10-pyramid-edge
+    section: '12.10'
+    tier: H
+    refs: ['2.3']
+    statement: >-
+      A square-based pyramid has base side $10$ m and vertical height $12$ m. Find the
+      angle between a sloping edge and the base, correct to one decimal place.
+    answer_label: 'The angle for a sloping edge'
+    check:
+      kind: approx
+      value: 'atan(12 / (5 * sqrt(2))) * 180 / pi'
+      target: '59.5'
+      tolerance: '0.05'
+    answer_text: >-
+      The apex is directly above the centre of the base. A sloping edge runs from the apex
+      to a base vertex, and its projection is half the diagonal of the base:
+
+      $$\text{half-diagonal} = \frac{10\sqrt{2}}{2} = 5\sqrt{2} = 7.07 \text{ m}$$
+
+      $$\tan\theta = \frac{12}{5\sqrt{2}} \qquad \theta = 59.5^\circ$$
+
+      The pyramid is steep, so the edge rises at nearly $60^\circ$.
+
+  - id: lc12-10-pyramid-face
+    section: '12.10'
+    tier: H
+    refs: ['2.3']
+    statement: >-
+      For the same pyramid, with base side $10$ m and height $12$ m, find the angle
+      between a sloping face and the base, correct to one decimal place.
+    answer_label: 'The angle for a sloping face'
+    check:
+      kind: approx
+      value: 'atan(12 / 5) * 180 / pi'
+      target: '67.4'
+      tolerance: '0.05'
+    answer_text: >-
+      A face meets the base along the middle of a side. The horizontal distance from the
+      centre of the base to that midpoint is half the base side, $5$ m.
+
+      $$\tan\phi = \frac{12}{5} \qquad \phi = 67.4^\circ$$
+
+      The face is steeper than the edge, because its horizontal distance is smaller. The
+      edge used $7.07$ m and the face uses $5$ m, with the same height.
+
+  - id: lc12-10-method
+    section: '12.10'
+    tier: O
+    refs: ['2.3']
+    statement: >-
+      Explain how to find the bearing of one point from another, and how parallel north
+      lines are used in a bearing diagram.
+    answer_label: 'The method'
+    check:
+      kind: structured
+      requires: [draw-north-lines, use-back-bearing, use-parallel-lines]
+      concepts: [bearings]
+      points:
+        - id: draw-north-lines
+          text: >-
+            Draw a north line at each point, and measure the bearing clockwise from it.
+          concepts: [bearings]
+        - id: use-back-bearing
+          text: >-
+            To find the bearing of one point from another, add 180 degrees to the given
+            bearing, and subtract 360 if the result is 360 or more.
+          concepts: [bearings]
+        - id: use-parallel-lines
+          text: >-
+            The north lines are parallel, so the angle a bearing makes with one north
+            line equals the matching angle at the other point.
+          concepts: [bearings]
+    answer_text: >-
+      Draw a north line at each point, and measure each bearing clockwise from north.
+
+      The north lines are parallel, because north is the same everywhere. A bearing's
+      angle with one north line therefore moves to the matching angle at the other point.
+      That is what turns the picture into a triangle you can solve.
+
+      For a back bearing, add $180^\circ$. If the result is $360^\circ$ or more, subtract
+      $360^\circ$. For example, the back bearing of $048^\circ$ is $228^\circ$.

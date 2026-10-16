@@ -1,0 +1,163 @@
+# Junior Cycle Mathematics, Chapter 20, section 20.5 (learning outcome GT.3).
+#
+# The isosceles theorem is used for angles, so the `evaluate` checks prove the angle
+# arithmetic: the apex subtracted from 180 and halved, or the two base angles doubled
+# and subtracted from 180. The `structured` records are the proof and its converse.
+# They prove only that a model answer contains the declared steps, in order, and
+# covers the declared concepts — **presence and order, not the geometry**.
+chapter: 20
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc20-20.5-base-from-apex
+  section: '20.5'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    An isosceles triangle has an apex angle of 40°. Work out each base angle.
+  answer_label: Work out each base angle.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '180 - 40', answer: '140'}
+    - {kind: evaluate, expression: '140/2', answer: '70'}
+  answer_text: >-
+    $180-40=140$, and $140\div2=70°$. The two base angles are equal, because they
+    are opposite the equal sides, so each is 70°.
+
+- id: jc20-20.5-apex-from-base
+  section: '20.5'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    An isosceles triangle has base angles of 65°. Work out the apex angle.
+  answer_label: Work out the apex angle.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '2*65', answer: '130'}
+    - {kind: evaluate, expression: '180 - 130', answer: '50'}
+  answer_text: >-
+    $2\times65=130$, and $180-130=50°$. The apex angle is 50°.
+
+- id: jc20-20.5-equilateral
+  section: '20.5'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    An equilateral triangle has three equal sides. Work out each angle.
+  answer_label: Work out each angle.
+  check: {kind: evaluate, expression: '180/3', answer: '60'}
+  answer_text: >-
+    $180\div3=60°$. An equilateral triangle is isosceles in three different ways,
+    so all three angles are equal, and the three angles add to 180°.
+
+- id: jc20-20.5-base-72
+  section: '20.5'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    An isosceles triangle has base angles of 72°. Work out the apex angle.
+  answer_label: Work out the apex angle.
+  check: {kind: evaluate, expression: '180 - 2*72', answer: '36'}
+  answer_text: >-
+    $180-2\times72=180-144=36°$. The apex angle is 36°.
+
+- id: jc20-20.5-right-isosceles
+  section: '20.5'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A right-angled triangle is also isosceles. Work out each of its acute angles.
+  answer_label: Work out each acute angle.
+  check:
+    kind: all
+    checks:
+    - {kind: evaluate, expression: '180 - 90', answer: '90'}
+    - {kind: evaluate, expression: '90/2', answer: '45'}
+  answer_text: >-
+    The right angle is 90°, so the two equal acute angles add to $180-90=90°$. Each
+    is $90\div2=45°$.
+
+- id: jc20-20.5-perimeter
+  section: '20.5'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    An isosceles triangle has equal sides of 8 cm and a base of 5 cm. Work out its
+    perimeter.
+  answer_label: Work out the perimeter.
+  check: {kind: evaluate, expression: '8 + 8 + 5', answer: '21'}
+  answer_text: >-
+    $8+8+5=21$ cm. The two equal sides are both 8 cm, because the triangle is
+    isosceles.
+
+- id: jc20-20.5-proof
+  section: '20.5'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Prove that in an isosceles triangle the angles opposite the equal sides are
+    equal.
+  answer_label: Prove the result.
+  check:
+    kind: structured
+    requires: [given, congruent, conclude]
+    concepts: [equal-sides, sas, base-angles]
+    points:
+    - id: given
+      text: Suppose the triangle $ABC$ has $|AB|=|AC|$.
+      concepts: [equal-sides]
+    - id: congruent
+      text: Then triangle $ABC$ is congruent to triangle $ACB$ by SAS, because $|AB|=|AC|$, $|AC|=|AB|$ and the included angle at $A$ is the same angle.
+      concepts: [sas]
+    - id: conclude
+      text: Matching angles in congruent triangles are equal, so the angle at $B$ equals the angle at $C$.
+      concepts: [base-angles]
+  answer_text: >-
+    Suppose $|AB|=|AC|$. Then triangle $ABC$ is congruent to triangle $ACB$ by SAS:
+    $|AB|=|AC|$, $|AC|=|AB|$, and the angle at $A$ is the same angle in both. In
+    congruent triangles matching angles are equal, so the angle at $B$ equals the
+    angle at $C$. The angles opposite the equal sides are equal.
+
+- id: jc20-20.5-converse-proof
+  section: '20.5'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    Prove the converse: if two angles of a triangle are equal, the triangle is
+    isosceles.
+  answer_label: Prove the converse.
+  check:
+    kind: structured
+    requires: [given, congruent, conclude]
+    concepts: [equal-angles, asa, equal-sides]
+    points:
+    - id: given
+      text: Suppose the angle at $B$ equals the angle at $C$.
+      concepts: [equal-angles]
+    - id: congruent
+      text: Then triangle $ABC$ is congruent to triangle $ACB$ by ASA, because the angle at $B$ equals the angle at $C$, the angle at $C$ equals the angle at $B$, and the side $BC$ is common.
+      concepts: [asa]
+    - id: conclude
+      text: Matching sides in congruent triangles are equal, so $|AB|=|AC|$ and the triangle is isosceles.
+      concepts: [equal-sides]
+  answer_text: >-
+    Suppose the angle at $B$ equals the angle at $C$. Then triangle $ABC$ is
+    congruent to triangle $ACB$ by ASA: the two angles at $B$ and $C$ match, and
+    the side $BC$ is common. Matching sides are equal, so $|AB|=|AC|$. The triangle
+    is isosceles.
+
+- id: jc20-20.5-equal-angles
+  section: '20.5'
+  tier: O
+  refs: [GT.3]
+  statement: >-
+    A triangle has two equal angles of 58°. Work out the third angle and say whether
+    the triangle is isosceles.
+  answer_label: Work out the third angle and decide.
+  check: {kind: evaluate, expression: '180 - 2*58', answer: '64'}
+  answer_text: >-
+    $180-2\times58=180-116=64°$. Two angles are equal, so by the converse of the
+    isosceles theorem the sides opposite them are equal. The triangle is isosceles.

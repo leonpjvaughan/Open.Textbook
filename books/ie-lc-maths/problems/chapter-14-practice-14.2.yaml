@@ -1,0 +1,95 @@
+# Practice set for 14.2 (strand 2, outcome 2.4). sympy proves the coordinate
+# arithmetic: the expression is the reflection written as a matrix acting on the
+# object point, and the answer is the image the page claims. A reflection in a line
+# through the origin is a 2 by 2 matrix, so the check proves the rule and not only
+# the number.
+chapter: 14
+problems:
+  - id: lc14-2-reflect-y-axis
+    section: '14.2'
+    tier: F
+    refs: ['2.4']
+    statement: 'Reflect the point $(3,2)$ in the $y$-axis. Give the image.'
+    answer_label: 'Image in the $y$-axis'
+    check: {kind: evaluate, expression: 'Matrix([[-1, 0], [0, 1]]) * Matrix([3, 2])', answer: 'Matrix([-3, 2])'}
+    answer_text: '$(-3,2)$: the $y$-coordinate stays and the $x$-coordinate changes sign.'
+
+  - id: lc14-2-reflect-x-axis
+    section: '14.2'
+    tier: F
+    refs: ['2.4']
+    statement: 'Reflect the point $(-4,5)$ in the $x$-axis. Give the image.'
+    answer_label: 'Image in the $x$-axis'
+    check: {kind: evaluate, expression: 'Matrix([[1, 0], [0, -1]]) * Matrix([-4, 5])', answer: 'Matrix([-4, -5])'}
+    answer_text: '$(-4,-5)$: the $x$-coordinate stays and the $y$-coordinate changes sign.'
+
+  - id: lc14-2-reflect-y-equals-x
+    section: '14.2'
+    tier: F
+    refs: ['2.4']
+    statement: 'Reflect the point $(2,5)$ in the line $y = x$. Give the image.'
+    answer_label: 'Image in $y = x$'
+    check: {kind: evaluate, expression: 'Matrix([[0, 1], [1, 0]]) * Matrix([2, 5])', answer: 'Matrix([5, 2])'}
+    answer_text: '$(5,2)$: reflection in $y = x$ swaps the two coordinates.'
+
+  - id: lc14-2-reflect-y-equals-minus-x
+    section: '14.2'
+    tier: F
+    refs: ['2.4']
+    statement: 'Reflect the point $(-3,4)$ in the line $y = -x$. Give the image.'
+    answer_label: 'Image in $y = -x$'
+    check: {kind: evaluate, expression: 'Matrix([[0, -1], [-1, 0]]) * Matrix([-3, 4])', answer: 'Matrix([-4, 3])'}
+    answer_text: ' $(-4,3)$: the rule is $(x,y) \to (-y,-x)$, so the coordinates swap and both signs change.'
+
+  - id: lc14-2-reflect-vertical-line
+    section: '14.2'
+    tier: F
+    refs: ['2.4']
+    statement: 'Reflect the point $(5,2)$ in the line $x = 3$. Give the image.'
+    answer_label: 'Image in $x = 3$'
+    check: {kind: evaluate, expression: 'Matrix([2*3 - 5, 2])', answer: 'Matrix([1, 2])'}
+    answer_text: >-
+      $(1,2)$: the object is 2 units right of the line, so the image is 2 units left of
+      it. The rule is $(x,y) \to (2c - x, y)$ with $c = 3$.
+
+  - id: lc14-2-reflect-horizontal-line
+    section: '14.2'
+    tier: F
+    refs: ['2.4']
+    statement: 'Reflect the point $(2,6)$ in the line $y = 4$. Give the image.'
+    answer_label: 'Image in $y = 4$'
+    check: {kind: evaluate, expression: 'Matrix([2, 2*4 - 6])', answer: 'Matrix([2, 2])'}
+    answer_text: '$(2,2)$: the rule is $(x,y) \to (x, 2c - y)$ with $c = 4$.'
+
+  - id: lc14-2-line-of-symmetry
+    section: '14.2'
+    tier: F
+    refs: ['2.4']
+    statement: 'Explain what is meant by a line of symmetry of a shape.'
+    answer_label: 'Line of symmetry'
+    check:
+      kind: structured
+      requires: [mirror-line, maps-to-itself]
+      concepts: [axial-symmetry]
+      points:
+        - {id: mirror-line, text: a line of symmetry is a mirror line through or across the shape, concepts: [axial-symmetry]}
+        - {id: maps-to-itself, text: reflecting the shape in that line maps the shape exactly onto itself, concepts: [axial-symmetry]}
+    answer_text: >-
+      A line of symmetry is a mirror line such that reflecting the shape in it maps the
+      shape onto itself. The two halves are mirror images of each other.
+
+  - id: lc14-2-reflect-triangle
+    section: '14.2'
+    tier: F
+    refs: ['2.4']
+    statement: >-
+      Reflect the triangle with corners $(1,1)$, $(4,1)$ and $(1,3)$ in the $y$-axis,
+      and give all three image corners.
+    answer_label: 'Image of the triangle'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'Matrix([[-1, 0], [0, 1]]) * Matrix([1, 1])', answer: 'Matrix([-1, 1])'}
+        - {kind: evaluate, expression: 'Matrix([[-1, 0], [0, 1]]) * Matrix([4, 1])', answer: 'Matrix([-4, 1])'}
+        - {kind: evaluate, expression: 'Matrix([[-1, 0], [0, 1]]) * Matrix([1, 3])', answer: 'Matrix([-1, 3])'}
+    answer_text: '$(-1,1)$, $(-4,1)$ and $(-1,3)$: every corner changes the sign of its $x$-coordinate.'
