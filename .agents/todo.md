@@ -2950,21 +2950,23 @@ resolves the chapter problem, and a verified bank behind every answer.
 | | Where |
 |---|---|
 | The four curricula, outcome by outcome | `books/ie-*/curriculum.yaml`, `research/curriculum/ie-curriculum.md` |
-| **974 official SEC papers and 475 marking schemes**, every level | git-ignored in `research/sources/ie-*/papers/`; the fetch recipe is in its `README.md` |
+| **511 official SEC papers and 475 marking schemes** — 986 files, every level | git-ignored in `research/sources/ie-*/papers/`; the fetch recipe is in its `README.md` |
 | The Formulae and Tables booklet, 96 formulae | `books/ie-lc-maths/booklet/` |
 | The verified assessment format for every level | `research/curriculum/ie-curriculum.md` §8a |
+| **The market's tables of contents** | `research/curriculum/ie-textbook-contents.md` |
 | Networks and graphs — no counterpart in the collection | `ie-lc-applied-maths` Strand 2 |
 
 **The known gaps, stated so they are not discovered late:**
 
-- **No textbook table-of-contents research.** The English books have
-  `research/curriculum/a-level-maths-textbooks-and-exams.md` — 1,137 lines on command
-  words, mark schemes, examiner reports, question scaffolding and textbook voice. The
-  Irish books have no equivalent. The publishers (Folens, CJ Fallon, Gill) are
-  reachable but do not expose contents pages; Edco and Educate.ie are blocked. **This
-  is a quality input, not a blocker**: the curricula, the papers and the booklet are
-  enough to write the books, and the corpus already held is enough for the paper
-  analysis.
+- **Textbook table-of-contents research is now in hand.**
+  `research/curriculum/ie-textbook-contents.md` holds the real contents pages of the
+  market leaders — the Gill Ordinary and Higher Level Mathematics courses, two Junior
+  Cycle Mathematics courses (including the 2017 *Destination Maths*, whose section
+  lists show the chapter granularity), and *Investigating Physics*. Read off the
+  publishers' own samples, not recalled; the method to extend it is in the file. What
+  it changes is recorded there: **proof is content in Ireland** (two Higher Level
+  chapters, and 1,468 `Show that`/`Prove` in the corpus), and **Junior Cycle geometry
+  is four chapters, not one**.
 - **No topic-weighted paper analysis.** Command words and mark values have been
   measured (below); which strand each question comes from has not.
 - **Ordinary and Foundation Physics and Applied Mathematics papers are thinner** than
