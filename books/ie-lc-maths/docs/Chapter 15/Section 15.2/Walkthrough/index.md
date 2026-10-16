@@ -96,7 +96,9 @@ $x^\circ$. Find $x$.
 
 The angles around a point add to $360^\circ$.
 $$120 + 95 + 70 + x = 360$$
+
 $$285 + x = 360$$
+
 $$x = 75^\circ$$
 
 **Example 3.** Two angles on a straight line are $3x$ and $2x$. Find $x$, then find the
@@ -104,7 +106,9 @@ two angles.
 
 The angles add to $180^\circ$.
 $$3x + 2x = 180$$
+
 $$5x = 180$$
+
 $$x = 36$$
 
 The two angles are $3 \times 36 = 108^\circ$ and $2 \times 36 = 72^\circ$. Check:

@@ -133,7 +133,9 @@ angle.
 
 The two base angles are equal, by Theorem 2 part 1. Let each be $x$.
 $$100 + x + x = 180$$
+
 $$2x = 80$$
+
 $$x = 40^\circ$$
 
 Each base angle is $40^\circ$.

@@ -163,7 +163,9 @@ Find $|\angle C|$.
 
 The three angles add to $180^\circ$, by Theorem 4.
 $$65 + 48 + |\angle C| = 180$$
+
 $$113 + |\angle C| = 180$$
+
 $$|\angle C| = 67^\circ$$
 
 This is the glazier's pane. The third angle is $67^\circ$, which is the prediction you
@@ -174,6 +176,7 @@ $|\angle B| = 65^\circ$. Find $|\angle C|$.
 
 By Theorem 6, the exterior angle equals the sum of the two interior opposite angles.
 $$113 = 65 + |\angle C|$$
+
 $$|\angle C| = 48^\circ$$
 
 Check with Theorem 4: $|\angle A| = 180 - 113 = 67^\circ$, and
@@ -184,6 +187,7 @@ are $3x$ and $2x + 30$. Find $x$.
 
 Corresponding angles are equal, so
 $$3x = 2x + 30$$
+
 $$x = 30.$$
 
 Both angles are $90^\circ$, so the transversal is perpendicular to the two parallel lines.
