@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.1 Networks and their terminology — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S2
+Work independently. The questions and answers are shown together at the end.
+
+Use the handshake lemma as a check as well as a method: if your degrees sum to an odd
+number, something has been counted wrongly.
+
+:::problems chapter-02-practice-2.1
+
+:::answers chapter-02-practice-2.1

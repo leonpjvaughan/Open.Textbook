@@ -1,18 +1,22 @@
 ---
-title: 2.10 Bellman's principle of optimality — Practise
+title: "2.10 Bellman's principle of optimality — Practise"
 chapter: 2
 chapter_title: Networks and graphs
 section: '2.10'
-section_title: Bellman's principle of optimality
+section_title: "Bellman's principle of optimality"
 tier: O
 refs:
 - S2
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.10 Bellman's principle of optimality — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S2
+Work independently. The questions and answers are shown together at the end.
+
+These questions want reasons, not numbers. State the principle, then say what it does and
+does not claim.
+
+:::problems chapter-02-practice-2.10
+
+:::answers chapter-02-practice-2.10

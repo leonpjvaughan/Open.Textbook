@@ -1,0 +1,112 @@
+# Practice set for 2.5 (strand S2). The counts are checked with `evaluate`; whether a
+# *particular* drawing is a tree cannot be seen by any oracle here, so those questions
+# are phrased as counts or as a stated test, never as "is this drawing a tree".
+chapter: 2
+problems:
+  - id: am2-5-tree-edges
+    section: '2.5'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A tree has 6 vertices. How many edges has it?
+    answer_label: Number of edges
+    check: {kind: evaluate, expression: '6 - 1', answer: '5'}
+    answer_text: >-
+      A tree on $n$ vertices has $n - 1$ edges, so $6 - 1 = 5$.
+
+  - id: am2-5-tree-vertices
+    section: '2.5'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A tree has 12 edges. How many vertices has it?
+    answer_label: Number of vertices
+    check: {kind: evaluate, expression: '12 + 1', answer: '13'}
+    answer_text: >-
+      $n - 1 = 12$, so $n = 13$.
+
+  - id: am2-5-spanning-remove
+    section: '2.5'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A connected network has 9 vertices and 14 edges. How many edges must be removed to
+      leave a spanning tree?
+    answer_label: Edges to remove
+    check: {kind: evaluate, expression: '14 - (9 - 1)', answer: '6'}
+    answer_text: >-
+      A spanning tree on 9 vertices has $9 - 1 = 8$ edges, so $14 - 8 = 6$ edges must be
+      removed. Each removal must not disconnect the network.
+
+  - id: am2-5-tree-test
+    section: '2.5'
+    tier: O
+    refs: [S2]
+    statement: >-
+      State the two conditions that make a connected network a tree.
+    answer_label: The two conditions
+    check:
+      kind: structured
+      requires: [connected, cycle]
+      concepts: [connected, no-cycle]
+      points:
+        - id: connected
+          text: it is connected, so there is a path between every pair of vertices
+          concepts: [connected]
+        - id: cycle
+          text: it contains no cycle, so there is exactly one path between every pair of vertices
+          concepts: [no-cycle]
+    answer_text: >-
+      A tree is a connected network with no cycles. Equivalently, it is a network in
+      which there is exactly one path between every pair of vertices. Adding any edge to
+      a tree creates a cycle; removing any edge disconnects it.
+
+  - id: am2-5-cayley
+    section: '2.5'
+    tier: H
+    refs: [S2]
+    statement: >-
+      A complete network has 4 vertices. How many different spanning trees has it?
+    answer_label: Number of spanning trees
+    check: {kind: evaluate, expression: '4 ** (4 - 2)', answer: '16'}
+    answer_text: >-
+      By Cayley's formula a complete network on $n$ vertices has $n^{n-2}$ spanning
+      trees, so $4^{2} = 16$.
+
+  - id: am2-5-spanning-tree-edges
+    section: '2.5'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A connected network has 10 vertices. How many edges has every spanning tree of it?
+    answer_label: Edges in a spanning tree
+    check: {kind: evaluate, expression: '10 - 1', answer: '9'}
+    answer_text: >-
+      Every spanning tree on 10 vertices has $10 - 1 = 9$ edges, whatever the network
+      looks like and whatever the weights are. That is why finding a cheapest spanning
+      tree is a matter of choosing *which* 9 edges, not how many.
+
+  - id: am2-5-not-tree
+    section: '2.5'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A connected network has 7 vertices and 7 edges. Explain why it is not a tree, and
+      say what it must contain.
+    answer_label: Why it is not a tree
+    check:
+      kind: structured
+      requires: [edges, cycle]
+      concepts: [too-many-edges, cycle]
+      points:
+        - id: edges
+          text: a tree on 7 vertices would have 6 edges, and this network has 7
+          concepts: [too-many-edges]
+        - id: cycle
+          text: one extra edge beyond a tree must close a cycle, so the network contains a cycle
+          concepts: [cycle]
+    answer_text: >-
+      A tree on 7 vertices has $7 - 1 = 6$ edges. This network has 7, which is one more
+      than a tree. A connected network with more than $n - 1$ edges must contain a
+      cycle, because the extra edge must join two vertices that were already connected
+      and close a loop. So the network contains at least one cycle.

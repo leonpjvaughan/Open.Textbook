@@ -1,0 +1,155 @@
+# Practice set for 2.9 (strand S2, dynamic programming). Every value in the table is a
+# scalar, so the oracle proves the arithmetic of the recursion outright. The *order* of
+# the stages is the method, and is stated in the answer rather than checked.
+chapter: 2
+problems:
+  - id: am2-9-backward
+    section: '2.9'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A network has four stages. Stage 1 is $A$; stage 2 is $B, C$; stage 3 is $D, E$;
+      stage 4 is $F$. The edges are $AB = 2$, $AC = 5$, $BD = 4$, $BE = 7$, $CD = 3$,
+      $CE = 2$, $DF = 6$, $EF = 1$. Work backwards and find the least cost from $D$ to
+      $F$.
+    answer_label: Least cost from D to F
+    check: {kind: evaluate, expression: '6', answer: '6'}
+    answer_text: >-
+      From $D$ there is only one edge forward, $DF = 6$, so the least cost from $D$ to
+      $F$ is $6$. Backward recursion always starts at the last stage, where the value is
+      known directly.
+
+  - id: am2-9-stage3
+    section: '2.9'
+    tier: O
+    refs: [S2]
+    statement: >-
+      For the same network, find the least cost from $E$ to $F$, and from $D$ to $F$.
+    answer_label: Cost from E, then from D
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '1', answer: '1'}
+        - {kind: evaluate, expression: '6', answer: '6'}
+    answer_text: >-
+      From $E$: only $EF = 1$, so the least cost is $1$. From $D$: only $DF = 6$, so the
+      least cost is $6$. Stage 3 is where the recursion begins.
+
+  - id: am2-9-stage2
+    section: '2.9'
+    tier: O
+    refs: [S2]
+    statement: >-
+      For the same network, find the least cost from $B$ to $F$ and from $C$ to $F$.
+    answer_label: Cost from B, then from C
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'min(4 + 6, 7 + 1)', answer: '8'}
+        - {kind: evaluate, expression: 'min(3 + 6, 2 + 1)', answer: '3'}
+    answer_text: >-
+      From $B$: either $B \to D \to F$ at $4 + 6 = 10$, or $B \to E \to F$ at
+      $7 + 1 = 8$. The least is $8$, through $E$.
+
+      From $C$: either $C \to D \to F$ at $3 + 6 = 9$, or $C \to E \to F$ at
+      $2 + 1 = 3$. The least is $3$, through $E$.
+
+  - id: am2-9-overall
+    section: '2.9'
+    tier: O
+    refs: [S2]
+    statement: >-
+      For the same network, find the least total cost from $A$ to $F$ and write down the
+      route.
+    answer_label: Least total cost, then the route
+    check:
+      kind: evaluate
+      expression: 'min(2 + 8, 5 + 3)'
+      answer: '8'
+    answer_text: >-
+      From $A$: either $A \to B$ then $8$ more, at $2 + 8 = 10$, or $A \to C$ then $3$
+      more, at $5 + 3 = 8$. The least total cost is $8$, along $A \to C \to E \to F$:
+      $5 + 2 + 1 = 8$.
+
+  - id: am2-9-stage-state
+    section: '2.9'
+    tier: O
+    refs: [S2]
+    statement: >-
+      In a dynamic programming problem, state what a **stage** and a **state** are.
+    answer_label: Stage and state
+    check:
+      kind: structured
+      requires: [stage, state]
+      concepts: [stage-position, state-vertex]
+      points:
+        - id: stage
+          text: a stage is a point in the sequence of decisions — here, which column of the network you are in
+          concepts: [stage-position]
+        - id: state
+          text: a state is the situation you can be in at that stage — here, which vertex you are at
+          concepts: [state-vertex]
+    answer_text: >-
+      A **stage** is one step in the sequence of decisions — in a staged network, which
+      column you are in. A **state** is the situation you can be in at that stage — in a
+      staged network, which vertex you are at.
+
+      Dynamic programming works because the best decision from a state does not depend on
+      how you reached it. That is what lets the recursion run backwards from the last
+      stage, where the value is known, to the first.
+
+  - id: am2-9-backward-why
+    section: '2.9'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Explain why backward recursion starts at the last stage.
+    answer_label: Why it starts at the last stage
+    check:
+      kind: structured
+      requires: [known, uses]
+      concepts: [known-at-end, reuses-values]
+      points:
+        - id: known
+          text: at the last stage the remaining cost is known directly, because there is nothing left to decide
+          concepts: [known-at-end]
+        - id: uses
+          text: each earlier stage is then solved from the values already found for the stage after it, so no stage is solved twice
+          concepts: [reuses-values]
+    answer_text: >-
+      At the last stage the answer is known without any decision: the cost from a final
+      vertex to the destination is just the edge to the destination, or zero if you are
+      already there.
+
+      Working backwards, each earlier stage is then solved using the values already found
+      for the stage after it. Every value is computed once and reused, which is what
+      makes dynamic programming efficient — it never solves the same sub-problem twice.
+
+  - id: am2-9-greedy-fails
+    section: '2.9'
+    tier: O
+    refs: [S2]
+    statement: >-
+      On that network, a student at $A$ takes the cheaper first edge, $AB = 2$, and then
+      has to pay $7 + 1 = 8$ to finish, for a total of 10. What does this show?
+    answer_label: What the greedy choice shows
+    check:
+      kind: structured
+      requires: [cheaper, best]
+      concepts: [locally-cheap, not-globally-best]
+      points:
+        - id: cheaper
+          text: the cheapest edge at the current vertex is AB = 2, but choosing it gives a total of 10
+          concepts: [locally-cheap]
+        - id: best
+          text: the better total of 8 comes from AC = 5, the more expensive first edge, so the locally cheapest choice is not the best
+          concepts: [not-globally-best]
+    answer_text: >-
+      It shows that taking the cheapest edge at each step — the greedy choice — does not
+      always give the best total. $AB = 2$ is cheaper than $AC = 5$, but choosing it
+      leaves only expensive ways to finish, for a total of $10$. Choosing the more
+      expensive $AC = 5$ gives the better total of $8$.
+
+      Dynamic programming avoids this by looking at the whole remaining problem at each
+      stage, rather than only the next edge. That is why it needs the values from the
+      later stages before it can decide.

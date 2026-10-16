@@ -1,0 +1,162 @@
+# Practice set for 2.3 (strand S2). The sympy oracle parses `Matrix(...)`, so the
+# adjacency-matrix answers are checked as matrices and the degree counts as row sums,
+# not asserted. A matrix question is one of the few here that the verifier can prove
+# completely: the object *is* the answer.
+chapter: 2
+problems:
+  - id: am2-3-build
+    section: '2.3'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A network has vertices $A$, $B$, $C$, $D$ and edges $AB$, $AC$, $BC$, $CD$. Write
+      down its adjacency matrix, with the vertices in the order $A, B, C, D$.
+    answer_label: Adjacency matrix
+    check:
+      kind: evaluate
+      expression: 'Matrix([[0,1,1,0],[1,0,1,0],[1,1,0,1],[0,0,1,0]])'
+      answer: 'Matrix([[0,1,1,0],[1,0,1,0],[1,1,0,1],[0,0,1,0]])'
+    answer_text: >-
+      $\begin{pmatrix} 0&1&1&0\\ 1&0&1&0\\ 1&1&0&1\\ 0&0&1&0 \end{pmatrix}$.
+      The entry in row $i$, column $j$ is $1$ when the two vertices are joined and $0$
+      when they are not.
+
+  - id: am2-3-degree-row
+    section: '2.3'
+    tier: O
+    refs: [S2]
+    statement: >-
+      For the matrix in the previous question, find the degree of $C$ by adding the
+      entries in its row.
+    answer_label: Degree of C
+    check:
+      kind: evaluate
+      expression: 'sum(Matrix([[0,1,1,0],[1,0,1,0],[1,1,0,1],[0,0,1,0]])[2,:])'
+      answer: '3'
+    answer_text: >-
+      Row $C$ is $1, 1, 0, 1$, which adds to $3$. In an adjacency matrix the sum of a
+      row is the degree of that vertex.
+
+  - id: am2-3-symmetry
+    section: '2.3'
+    tier: O
+    refs: [S2]
+    statement: >-
+      In an undirected network's adjacency matrix, the entry in row $A$, column $B$ is
+      $1$. What is the entry in row $B$, column $A$, and why?
+    answer_label: The mirrored entry
+    check:
+      kind: structured
+      requires: [one, symmetric]
+      concepts: [same-entry, undirected]
+      points:
+        - id: one
+          text: it is also 1, because the edge is the same edge seen from either end
+          concepts: [same-entry]
+        - id: symmetric
+          text: an undirected network has a symmetric adjacency matrix, so the entry equals its mirror image
+          concepts: [undirected]
+    answer_text: >-
+      It is also $1$. An edge in an undirected network runs both ways, so if $A$ is
+      joined to $B$ then $B$ is joined to $A$. The adjacency matrix is therefore
+      **symmetric**: the entry in row $i$, column $j$ always equals the entry in row
+      $j$, column $i$.
+
+  - id: am2-3-edge-count
+    section: '2.3'
+    tier: O
+    refs: [S2]
+    statement: >-
+      For the network with adjacency matrix
+      $\begin{pmatrix} 0&1&1\\1&0&1\\1&1&0\end{pmatrix}$, how many edges has it, and
+      what is the sum of all the entries?
+    answer_label: Number of edges, then the entry sum
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '3 * 2 / 2', answer: '3'}
+        - {kind: evaluate, expression: '2 * (3 * 2 / 2)', answer: '6'}
+    answer_text: >-
+      Every row sums to $2$, so each vertex has degree $2$. Then
+      $E = (2+2+2)/2 = 3$: it is the triangle on three vertices. The sum of all the
+      entries is $6$, which is twice the number of edges — the same handshake lemma
+      read off the matrix.
+
+  - id: am2-3-directed
+    section: '2.3'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A directed network has arrows $A \to B$, $A \to C$, $B \to C$ and $C \to A$,
+      with vertices in the order $A, B, C$. Write its adjacency matrix.
+    answer_label: Adjacency matrix
+    check:
+      kind: evaluate
+      expression: 'Matrix([[0,1,1],[0,0,1],[1,0,0]])'
+      answer: 'Matrix([[0,1,1],[0,0,1],[1,0,0]])'
+    answer_text: >-
+      $\begin{pmatrix} 0&1&1\\ 0&0&1\\ 1&0&0 \end{pmatrix}$. The entry in row $i$,
+      column $j$ is $1$ when there is an arrow from $i$ to $j$, so the matrix is not
+      symmetric: there is an arrow $A \to C$ but not $C \to A$.
+
+  - id: am2-3-directed-degree
+    section: '2.3'
+    tier: O
+    refs: [S2]
+    statement: >-
+      For that directed network, find the out-degree of $A$ and the in-degree of $A$
+      from its adjacency matrix.
+    answer_label: Out-degree, then in-degree
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: 'sum(Matrix([[0,1,1],[0,0,1],[1,0,0]])[0,:])', answer: '2'}
+        - {kind: evaluate, expression: 'sum(Matrix([[0,1,1],[0,0,1],[1,0,0]])[:,0])', answer: '1'}
+    answer_text: >-
+      Row $A$ is $0, 1, 1$ and adds to $2$, so the out-degree is $2$. Column $A$ is
+      $0, 0, 1$ and adds to $1$, so the in-degree is $1$. **A row gives the
+      out-degree; a column gives the in-degree.**
+
+  - id: am2-3-weighted
+    section: '2.3'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A weighted network has vertices $P, Q, R$ with $PQ = 5$ km, $PR = 2$ km and
+      $QR = 7$ km. Write down the weighted adjacency matrix.
+    answer_label: Weighted adjacency matrix
+    check:
+      kind: evaluate
+      expression: 'Matrix([[0,5,2],[5,0,7],[2,7,0]])'
+      answer: 'Matrix([[0,5,2],[5,0,7],[2,7,0]])'
+    answer_text: >-
+      $\begin{pmatrix} 0&5&2\\ 5&0&7\\ 2&7&0 \end{pmatrix}$. The entry is the weight
+      of the edge, not $1$, and $0$ still means there is no edge. A weighted
+      adjacency matrix is symmetric for an undirected network, exactly as the
+      unweighted one is.
+
+  - id: am2-3-loop-note
+    section: '2.3'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A network has no loops. Explain how to read the degree of a vertex from the
+      adjacency matrix, and state what changes if the network has a loop.
+    answer_label: Reading the degree
+    check:
+      kind: structured
+      requires: [row, loop]
+      concepts: [row-sum, diagonal-two]
+      points:
+        - id: row
+          text: with no loops, the degree is the sum of the entries in the vertex's row
+          concepts: [row-sum]
+        - id: loop
+          text: a loop puts a 1 on the diagonal, but it adds 2 to the degree, so with loops the row sum is not the degree
+          concepts: [diagonal-two]
+    answer_text: >-
+      With no loops, the degree of a vertex is the sum of its row (or, in an undirected
+      network, its column, since the matrix is symmetric). A loop changes this: it
+      appears on the diagonal as a $1$, but it contributes $2$ to the degree because it
+      leaves and arrives. So in a network with loops, the row sum is **not** the degree
+      — add the diagonal entries separately.

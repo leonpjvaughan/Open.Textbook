@@ -1,18 +1,22 @@
 ---
-title: 2.9 Multi-stage problems and dynamic programming — Practise
+title: "2.9 Multi-stage problems and dynamic programming — Practise"
 chapter: 2
 chapter_title: Networks and graphs
 section: '2.9'
-section_title: Multi-stage problems and dynamic programming
+section_title: "Multi-stage problems and dynamic programming"
 tier: O
 refs:
 - S2
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.9 Multi-stage problems and dynamic programming — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S2
+Work independently. The questions and answers are shown together at the end.
+
+Show the value at every state, stage by stage from the last one backwards. A single final
+number with no table is worth few marks.
+
+:::problems chapter-02-practice-2.9
+
+:::answers chapter-02-practice-2.9

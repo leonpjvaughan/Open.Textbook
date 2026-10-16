@@ -1,0 +1,149 @@
+# Practice set for 2.4 (strand S2). This is the section the verifier proves most
+# completely: a walk count *is* an entry of a matrix power, so `Matrix(...)**n` and the
+# claimed count are the same object and sympy decides it outright.
+chapter: 2
+problems:
+  - id: am2-4-product
+    section: '2.4'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Work out the matrix product
+      $\begin{pmatrix} 1&2\\ 3&4 \end{pmatrix}\begin{pmatrix} 0&1\\ 1&0 \end{pmatrix}$.
+    answer_label: The product
+    check:
+      kind: evaluate
+      expression: 'Matrix([[1,2],[3,4]]) * Matrix([[0,1],[1,0]])'
+      answer: 'Matrix([[2,1],[4,3]])'
+    answer_text: >-
+      $\begin{pmatrix} 2&1\\ 4&3 \end{pmatrix}$. The entry in row 1, column 1 is
+      $1 \times 0 + 2 \times 1 = 2$: row 1 of the first matrix times column 1 of the
+      second.
+
+  - id: am2-4-square
+    section: '2.4'
+    tier: O
+    refs: [S2]
+    statement: >-
+      For the network with adjacency matrix
+      $M = \begin{pmatrix} 0&1&1&0\\ 1&0&1&0\\ 1&1&0&1\\ 0&0&1&0 \end{pmatrix}$, work
+      out $M^2$.
+    answer_label: M squared
+    check:
+      kind: evaluate
+      expression: 'Matrix([[0,1,1,0],[1,0,1,0],[1,1,0,1],[0,0,1,0]])**2'
+      answer: 'Matrix([[2,1,1,1],[1,2,1,1],[1,1,3,0],[1,1,0,1]])'
+    answer_text: >-
+      $M^2 = \begin{pmatrix} 2&1&1&1\\ 1&2&1&1\\ 1&1&3&0\\ 1&1&0&1 \end{pmatrix}$.
+
+  - id: am2-4-walks-2
+    section: '2.4'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Using the same $M$, how many walks of length 2 are there from vertex $A$ to
+      vertex $A$? Read it off $M^2$.
+    answer_label: Number of walks of length 2
+    check:
+      kind: evaluate
+      expression: '(Matrix([[0,1,1,0],[1,0,1,0],[1,1,0,1],[0,0,1,0]])**2)[0,0]'
+      answer: '2'
+    answer_text: >-
+      The entry in row $A$, column $A$ of $M^2$ is $2$. The two walks are
+      $A \to B \to A$ and $A \to C \to A$. The entry on the diagonal counts the walks
+      that return to where they started.
+
+  - id: am2-4-walks-to
+    section: '2.4'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Using the same $M$, how many walks of length 2 are there from $A$ to $D$?
+    answer_label: Number of walks of length 2
+    check:
+      kind: evaluate
+      expression: '(Matrix([[0,1,1,0],[1,0,1,0],[1,1,0,1],[0,0,1,0]])**2)[0,3]'
+      answer: '1'
+    answer_text: >-
+      The entry in row $A$, column $D$ of $M^2$ is $1$. The only walk of length 2 from
+      $A$ to $D$ is $A \to C \to D$, because $C$ is the only vertex joined to both.
+
+  - id: am2-4-why
+    section: '2.4'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Explain why the entry in row $i$, column $j$ of $M^2$ counts the walks of length
+      2 from $i$ to $j$.
+    answer_label: Why the product counts walks
+    check:
+      kind: structured
+      requires: [via, sum]
+      concepts: [one-middle-vertex, multiply-add]
+      points:
+        - id: via
+          text: a walk of length 2 from i to j goes through exactly one middle vertex k
+          concepts: [one-middle-vertex]
+        - id: sum
+          text: the product entry multiplies the (i,k) and (k,j) entries and adds over every k, so it counts each middle vertex that works
+          concepts: [multiply-add]
+    answer_text: >-
+      A walk of length 2 from $i$ to $j$ is $i \to k \to j$ for some middle vertex $k$.
+      It exists exactly when $i$ is joined to $k$ **and** $k$ is joined to $j$, which is
+      when both entries $M_{ik}$ and $M_{kj}$ are $1$. Their product is $1$ when the
+      walk exists and $0$ when it does not. The matrix product adds that product over
+      every possible middle vertex $k$, so it counts exactly the walks that work.
+
+  - id: am2-4-walks-3
+    section: '2.4'
+    tier: O
+    refs: [S2]
+    statement: >-
+      For the same $M$, how many walks of length 3 are there from $A$ to $C$? Use
+      $M^3$.
+    answer_label: Number of walks of length 3
+    check:
+      kind: evaluate
+      expression: '(Matrix([[0,1,1,0],[1,0,1,0],[1,1,0,1],[0,0,1,0]])**3)[0,2]'
+      answer: '4'
+    answer_text: >-
+      The entry in row $A$, column $C$ of $M^3$ is $4$. In general the entry in row
+      $i$, column $j$ of $M^n$ counts the walks of length $n$ from $i$ to $j$.
+
+  - id: am2-4-two-step
+    section: '2.4'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A network has adjacency matrix
+      $N = \begin{pmatrix} 0&1&0\\ 1&0&1\\ 0&1&0 \end{pmatrix}$. How many walks of
+      length 2 are there from vertex 1 to vertex 1, and what are they?
+    answer_label: Number of walks and the walks
+    check:
+      kind: evaluate
+      expression: '(Matrix([[0,1,0],[1,0,1],[0,1,0]])**2)[0,0]'
+      answer: '1'
+    answer_text: >-
+      The entry is $1$. The only walk of length 2 from vertex 1 back to vertex 1 is
+      $1 \to 2 \to 1$: vertex 2 is the only neighbour of 1, and it is the only middle
+      vertex available.
+
+  - id: am2-4-triangles
+    section: '2.4'
+    tier: H
+    refs: [S2]
+    statement: >-
+      For a network with adjacency matrix $M$, the number of triangles is
+      $\dfrac{\operatorname{tr}(M^3)}{6}$. Use this on the triangle
+      $T = \begin{pmatrix} 0&1&1\\ 1&0&1\\ 1&1&0 \end{pmatrix}$ to find its number of
+      triangles.
+    answer_label: Number of triangles
+    check:
+      kind: evaluate
+      expression: '(Matrix([[0,1,1],[1,0,1],[1,1,0]])**3).trace() / 6'
+      answer: '1'
+    answer_text: >-
+      $T^3$ has diagonal entries all equal to $2$, so its trace is $6$ and the number
+      of triangles is $6 \div 6 = 1$. The triangle is the network itself. The division
+      by $6$ is because each triangle is counted once from each of its three vertices,
+      and in each of two directions: $3 \times 2 = 6$.

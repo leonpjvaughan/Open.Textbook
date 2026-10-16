@@ -1,0 +1,139 @@
+# Practice set for 2.6 (strand S2, Kruskal). The edge weights in this section's network
+# are all distinct, so the minimum spanning tree is unique and its total weight
+# identifies it completely. That is what makes a single `evaluate` on the total a real
+# check and not a coincidence.
+chapter: 2
+problems:
+  - id: am2-6-first-edge
+    section: '2.6'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Kruskal's algorithm starts by sorting the edges. The weights of a network's edges
+      are $4, 2, 1, 8, 5, 10, 2, 6, 3$. Write them in the order Kruskal's algorithm
+      considers them.
+    answer_label: The sorted order
+    check:
+      kind: evaluate
+      expression: '1 + 2 + 2 + 3 + 4 + 5 + 6 + 8 + 10'
+      answer: '41'
+    answer_text: >-
+      In ascending order: $1, 2, 2, 3, 4, 5, 6, 8, 10$. The sum is $41$, which is only a
+      way of confirming the same nine weights are present — the order is what matters
+      for the algorithm. Where two weights are equal, either may be taken first.
+
+  - id: am2-6-mst-total
+    section: '2.6'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A network has edges $AB = 4$, $AC = 2$, $BC = 1$, $BD = 5$, $CD = 8$, $CE = 10$,
+      $DE = 2$, $DF = 6$, $EF = 3$. Use Kruskal's algorithm to find the total weight of
+      a minimum spanning tree.
+    answer_label: Total weight of the minimum spanning tree
+    check: {kind: evaluate, expression: '1 + 2 + 2 + 3 + 5', answer: '13'}
+    answer_text: >-
+      Sorting gives $BC = 1$, $AC = 2$, $DE = 2$, $EF = 3$, $AB = 4$, $BD = 5$, $DF = 6$,
+      $CD = 8$, $CE = 10$. Kruskal takes $BC$, then $AC$, then $DE$, then $EF$, then
+      skips $AB$ (it would close the cycle $A-B-C-A$), then takes $BD$ (the first edge
+      joining the group $\{A,B,C\}$ to the group $\{D,E,F\}$). That is 5 edges for 6
+      vertices, so it is a spanning tree, with total weight
+      $1 + 2 + 2 + 3 + 5 = 13$.
+
+  - id: am2-6-edges-chosen
+    section: '2.6'
+    tier: O
+    refs: [S2]
+    statement: >-
+      For that network, list the edges in the minimum spanning tree and say how many
+      edges it has.
+    answer_label: The edges, then the count
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '6 - 1', answer: '5'}
+        - {kind: evaluate, expression: '1 + 2 + 2 + 3 + 5', answer: '13'}
+    answer_text: >-
+      The edges are $BC$, $AC$, $DE$, $EF$ and $BD$, five in all. The count is forced:
+      every spanning tree on 6 vertices has $6 - 1 = 5$ edges. The weight $13$ is the
+      smallest possible total.
+
+  - id: am2-6-skip-rule
+    section: '2.6'
+    tier: O
+    refs: [S2]
+    statement: >-
+      In Kruskal's algorithm, why is an edge rejected, and what happens to it?
+    answer_label: Why an edge is rejected
+    check:
+      kind: structured
+      requires: [cycle, discard]
+      concepts: [cycle, never-return]
+      points:
+        - id: cycle
+          text: it is rejected when adding it would close a cycle with the edges already chosen
+          concepts: [cycle]
+        - id: discard
+          text: a rejected edge is discarded for good and is never considered again
+          concepts: [never-return]
+    answer_text: >-
+      An edge is rejected when the two vertices it joins are already connected by the
+      edges chosen so far — adding it would close a cycle. A spanning tree has no
+      cycles, so it is discarded. Because the edges are considered in ascending order
+      and each is looked at once, a discarded edge is never needed later, and is not
+      reconsidered.
+
+  - id: am2-6-mst-optimal
+    section: '2.6'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A student uses Kruskal's algorithm and gets a spanning tree of total weight 17. A
+      classmate finds one of weight 14. What does this tell you about the student's
+      answer, and what must be true of the classmate's?
+    answer_label: What it tells you
+    check:
+      kind: structured
+      requires: [not-minimum, better]
+      concepts: [not-minimum, better-exists]
+      points:
+        - id: not-minimum
+          text: the student's tree is not a minimum spanning tree, because a cheaper one exists
+          concepts: [not-minimum]
+        - id: better
+          text: the classmate's tree is cheaper, though it might still not be the minimum — a third tree could be cheaper again
+          concepts: [better-exists]
+    answer_text: >-
+      A spanning tree of weight 14 shows the student's tree of weight 17 is not a
+      *minimum* spanning tree. It may still be a spanning tree; it is simply not the
+      cheapest one.
+
+      The classmate's tree is cheaper, but that alone does not prove it is minimum
+      either — a third tree might be cheaper still. Only the algorithm, run correctly,
+      guarantees the minimum.
+
+  - id: am2-6-equal-weights
+    section: '2.6'
+    tier: H
+    refs: [S2]
+    statement: >-
+      Two edges of a network both have weight 3, and they are the next two Kruskal
+      considers. Does it matter which is taken first? Explain.
+    answer_label: Does the order matter?
+    check:
+      kind: structured
+      requires: [either, same]
+      concepts: [either-order, same-total]
+      points:
+        - id: either
+          text: either may be taken first, since both have the same weight
+          concepts: [either-order]
+        - id: same
+          text: the total weight of the tree is the same either way, though the tree itself may differ
+          concepts: [same-total]
+    answer_text: >-
+      It does not matter. When two edges have equal weight, either may be taken first,
+      and the algorithm may produce a different *tree* — but never a different *total
+      weight*. If one of them is rejected for closing a cycle, the other is still
+      available. So equal weights can make the minimum spanning tree not unique, while
+      the minimum weight stays the same.

@@ -1,0 +1,162 @@
+# Practice set for 2.8 (strand S2, Dijkstra). A shortest distance is a number, and the
+# oracle checks it exactly. The *path* is a sequence of vertices, which no oracle here
+# can verify; where a path is asked for, the distance is checked and the path is given
+# in the answer.
+chapter: 2
+problems:
+  - id: am2-8-distance-af
+    section: '2.8'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A network has edges $AB = 4$, $AC = 2$, $BC = 1$, $BD = 5$, $CD = 8$, $CE = 10$,
+      $DE = 2$, $DF = 6$, $EF = 3$. Use Dijkstra's algorithm to find the shortest
+      distance from $A$ to $F$.
+    answer_label: Shortest distance from A to F
+    check: {kind: evaluate, expression: '2 + 1 + 5 + 2 + 3', answer: '13'}
+    answer_text: >-
+      The shortest distance is $13$, along $A \to C \to B \to D \to E \to F$, whose
+      weights add to $2 + 1 + 5 + 2 + 3 = 13$. The direct alternatives are longer:
+      $A \to C \to D \to F$ is $2 + 8 + 6 = 16$ and $A \to B \to D \to F$ is
+      $4 + 5 + 6 = 15$.
+
+  - id: am2-8-distance-ab
+    section: '2.8'
+    tier: O
+    refs: [S2]
+    statement: >-
+      For the same network, find the shortest distance from $A$ to $B$.
+    answer_label: Shortest distance from A to B
+    check: {kind: evaluate, expression: '2 + 1', answer: '3'}
+    answer_text: >-
+      The shortest distance from $A$ to $B$ is $3$, along $A \to C \to B$: $2 + 1 = 3$.
+      The direct edge $AB$ has weight $4$, which is longer. This is worth noticing: the
+      shortest route between two places is not always the direct one, and a shortest-path
+      algorithm is needed precisely because you cannot tell by looking.
+
+  - id: am2-8-distance-ad
+    section: '2.8'
+    tier: O
+    refs: [S2]
+    statement: >-
+      For the same network, find the shortest distance from $A$ to $D$.
+    answer_label: Shortest distance from A to D
+    check: {kind: evaluate, expression: '2 + 1 + 5', answer: '8'}
+    answer_text: >-
+      The shortest distance is $8$, along $A \to C \to B \to D$: $2 + 1 + 5 = 8$. Going
+      straight through $C$ and $D$ costs $2 + 8 = 10$, so the longer-looking detour is
+      cheaper.
+
+  - id: am2-8-all-distances
+    section: '2.8'
+    tier: O
+    refs: [S2]
+    statement: >-
+      For the same network, write down the shortest distance from $A$ to each of $A$,
+      $B$, $C$, $D$, $E$ and $F$. Give the sum of the six distances.
+    answer_label: The six distances, then their sum
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '0 + 3 + 2 + 8 + 10 + 13', answer: '36'}
+        - {kind: evaluate, expression: '13', answer: '13'}
+    answer_text: >-
+      $A = 0$, $C = 2$, $B = 3$, $D = 8$, $E = 10$, $F = 13$. The sum is
+      $0 + 2 + 3 + 8 + 10 + 13 = 36$. The distance from $A$ to itself is $0$ by
+      definition.
+
+  - id: am2-8-why-greedy
+    section: '2.8'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Explain why Dijkstra's algorithm can safely settle the vertex with the smallest
+      tentative distance, and never revise it afterwards.
+    answer_label: Why the smallest can be settled
+    check:
+      kind: structured
+      requires: [smallest, no-negative]
+      concepts: [smallest-is-final, weights-positive]
+      points:
+        - id: smallest
+          text: the unsettled vertex with the smallest tentative distance cannot be reached more cheaply by any other route
+          concepts: [smallest-is-final]
+        - id: no-negative
+          text: every other route to it would pass through an unsettled vertex, and all weights are positive, so it would only add to the distance
+          concepts: [weights-positive]
+    answer_text: >-
+      The unsettled vertex with the smallest tentative distance has the least distance of
+      any unsettled vertex. Any other route to it would have to leave the settled set
+      first, and that step already costs at least as much as the smallest distance, before
+      even reaching the vertex. Since every weight is positive, the rest of that route
+      only adds more. So no cheaper route can exist, and the distance is final.
+
+      This is why the algorithm needs every weight to be non-negative. A negative weight
+      would let a longer-looking route become cheaper, and the argument would break.
+
+  - id: am2-8-not-mst
+    section: '2.8'
+    tier: O
+    refs: [S2]
+    statement: >-
+      On the same network, the shortest path from $A$ to $F$ has total weight $13$, and
+      the minimum spanning tree also has total weight $13$. Explain why these being equal
+      is a coincidence, and give one way the two answers differ.
+    answer_label: Why it is a coincidence
+    check:
+      kind: structured
+      requires: [different, count]
+      concepts: [different-problems, different-edges]
+      points:
+        - id: different
+          text: they answer different questions — the tree connects every vertex for the least total, the path connects only two vertices for the least total
+          concepts: [different-problems]
+        - id: count
+          text: they use different sets of edges and a different number of edges, so their totals have no reason to match
+          concepts: [different-edges]
+    answer_text: >-
+      They answer different questions. The minimum spanning tree is the cheapest set of
+      edges that connects **every** vertex; the shortest path is the cheapest route
+      between **two** vertices. One uses 5 edges and the other 5 here, but on another
+      network the counts differ — a spanning tree always has $n-1$ edges, while a path
+      can have any number from 1 to $n-1$.
+
+      They also need not share a single edge. On this network the shortest path is
+      $A \to C \to B \to D \to E \to F$ and the tree is $\{AC, BC, BD, DE, EF\}$, which
+      happen to agree; add one cheaper edge elsewhere and the two answers separate. The
+      equality of the totals here is a coincidence of this network, not a rule.
+
+  - id: am2-8-dijkstra-vs-kruskal
+    section: '2.8'
+    tier: H
+    refs: [S2]
+    statement: >-
+      Both Dijkstra's algorithm and Kruskal's algorithm repeatedly take a cheapest
+      something. State what each takes, and why taking the cheapest is right for one and
+      wrong for the other.
+    answer_label: What each takes
+    check:
+      kind: structured
+      requires: [dijkstra, kruskal]
+      concepts: [cheapest-edge-out, cheapest-edge-anywhere, different-questions]
+      points:
+        - id: dijkstra
+          text: Dijkstra takes the unsettled vertex with the smallest known distance from the start
+          concepts: [cheapest-edge-out]
+        - id: kruskal
+          text: Kruskal takes the cheapest edge that does not close a cycle, anywhere in the network
+          concepts: [cheapest-edge-anywhere]
+        - id: different
+          text: taking the cheapest is right for the question each answers — the least distance from one start, or the least total to connect everything — and using either rule on the other question gives the wrong answer
+          concepts: [different-questions]
+    answer_text: >-
+      Dijkstra takes the **unsettled vertex with the smallest known distance from the
+      start**, and settles it. Kruskal takes the **cheapest edge anywhere that does not
+      close a cycle**.
+
+      Each rule is right for its own question and wrong for the other. Kruskal's cheapest
+      edge anywhere would not find a shortest path from one vertex, because the cheapest
+      edge may point away from the destination. Dijkstra's settling of the nearest
+      unsettled vertex would not build a spanning tree, because it never considers the
+      cheapest edge between two vertices that are both already settled — and those edges
+      are exactly what a tree is made of.

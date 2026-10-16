@@ -1,0 +1,141 @@
+# Practice set for 2.7 (strand S2, Prim). Prim and Kruskal must give the same total on
+# a network with distinct weights, and the section's network is shared with 2.6 on
+# purpose, so a reader can see the two algorithms meet.
+chapter: 2
+problems:
+  - id: am2-7-start
+    section: '2.7'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Prim's algorithm starts from one vertex. A network has edges $AB = 4$, $AC = 2$,
+      $BC = 1$, $BD = 5$, $CD = 8$, $CE = 10$, $DE = 2$, $DF = 6$, $EF = 3$. Starting
+      from $A$, which edge is chosen first, and why?
+    answer_label: The first edge
+    check:
+      kind: evaluate
+      expression: '2'
+      answer: '2'
+    answer_text: >-
+      The edges at $A$ are $AB = 4$ and $AC = 2$. Prim's algorithm takes the cheapest
+      edge leaving the chosen set, so it takes $AC = 2$ first. (Kruskal would also start
+      at $BC = 1$, so the two algorithms begin differently — and still end the same.)
+
+  - id: am2-7-total
+    section: '2.7'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Continue Prim's algorithm from $A$ on that network and find the total weight of
+      the minimum spanning tree.
+    answer_label: Total weight
+    check: {kind: evaluate, expression: '2 + 1 + 5 + 2 + 3', answer: '13'}
+    answer_text: >-
+      From $A$, take $AC = 2$. From $\{A, C\}$ the cheapest edge out is $CB = 1$; take
+      it. From $\{A, C, B\}$ the cheapest is $BD = 5$ ($AB = 4$ would close the cycle
+      $A-B-C-A$ and is not considered). From $\{A, C, B, D\}$ the cheapest is $DE = 2$.
+      From $\{A, C, B, D, E\}$ the cheapest is $EF = 3$. All 6 vertices are now in the
+      tree, with $5$ edges and total weight $2 + 1 + 5 + 2 + 3 = 13$ — the same total
+      Kruskal found.
+
+  - id: am2-7-prim-vs-kruskal
+    section: '2.7'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Prim's and Kruskal's algorithms gave the same total weight. State the one thing
+      they have in common and the one thing that differs.
+    answer_label: The common thing, then the difference
+    check:
+      kind: structured
+      requires: [same-total, growing]
+      concepts: [same-total, grow-differently]
+      points:
+        - id: same-total
+          text: both always produce a minimum spanning tree, so the total weight is the same
+          concepts: [same-total]
+        - id: growing
+          text: they grow the tree differently — Kruskal adds the cheapest edge anywhere, Prim keeps one connected tree and extends it
+          concepts: [grow-differently]
+    answer_text: >-
+      Both algorithms always produce a minimum spanning tree, so on a network with
+      distinct weights they give the same total weight, and even the same tree.
+
+      They differ in how they grow it. Kruskal considers all edges in order of weight and
+      adds the cheapest that does not close a cycle, so it can build several separate
+      pieces before joining them. Prim starts from one vertex and always extends that
+      single connected tree by its cheapest edge out, so the tree is connected at every
+      step.
+
+  - id: am2-7-tie
+    section: '2.7'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Prim's algorithm, part-way through, has a tree on $\{P, Q, R\}$. The edges leaving
+      the tree are $PS = 7$, $QT = 7$ and $RT = 9$. Which edge does it take next?
+    answer_label: The next edge
+    check: {kind: evaluate, expression: '7', answer: '7'}
+    answer_text: >-
+      The cheapest edge leaving the tree has weight $7$, and there are two of them:
+      $PS$ and $QT$. Either may be taken. If both are taken in turn, both are added,
+      since neither closes a cycle — they reach different new vertices. So the answer is
+      an edge of weight $7$, and the tie may be broken either way.
+
+  - id: am2-7-prim-rule
+    section: '2.7'
+    tier: O
+    refs: [S2]
+    statement: >-
+      State the rule Prim's algorithm follows at each step, and say why the chosen edge
+      can never close a cycle.
+    answer_label: The rule, and why no cycle
+    check:
+      kind: structured
+      requires: [cheapest, outside]
+      concepts: [cheapest-leaving, new-vertex]
+      points:
+        - id: cheapest
+          text: at each step, take the cheapest edge that leaves the current tree
+          concepts: [cheapest-leaving]
+        - id: outside
+          text: that edge must reach a vertex not yet in the tree, so it cannot close a cycle
+          concepts: [new-vertex]
+    answer_text: >-
+      At each step Prim's algorithm takes the cheapest edge joining a vertex already in
+      the tree to a vertex not yet in it.
+
+      The chosen edge must reach a vertex outside the tree, because any edge between two
+      vertices already in the tree would not be a candidate — it is not an edge *leaving*
+      the tree. Adding an edge that brings in a new vertex cannot close a cycle, because
+      a cycle needs every one of its vertices already in the tree. So the tree grows by
+      one vertex and one edge each step, and stays a tree.
+
+  - id: am2-7-any-start
+    section: '2.7'
+    tier: H
+    refs: [S2]
+    statement: >-
+      Starting Prim's algorithm from a different vertex gives the same total weight.
+      Explain why this does not depend on the starting vertex.
+    answer_label: Why the start does not matter
+    check:
+      kind: structured
+      requires: [minimum, all]
+      concepts: [minimum-any-start, all-vertices]
+      points:
+        - id: minimum
+          text: whichever vertex it starts from, the algorithm still produces a minimum spanning tree
+          concepts: [minimum-any-start]
+        - id: all
+          text: a minimum spanning tree reaches all the vertices and has the least possible total weight, and that total is a property of the network, not of where you started
+          concepts: [all-vertices]
+    answer_text: >-
+      Prim's algorithm is proved to produce a minimum spanning tree from any starting
+      vertex: at each step the cheapest edge leaving the tree is safe to take, so no
+      choice can make the final total larger. The minimum total weight is a property of
+      the network, not of the starting point, so every start reaches the same total.
+
+      The *tree* found can differ when weights are tied, but the total cannot. Starting
+      elsewhere is a useful check: if two starts give different totals, one of the runs
+      has an arithmetic mistake in it.

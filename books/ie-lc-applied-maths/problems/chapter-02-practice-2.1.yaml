@@ -1,0 +1,129 @@
+# Practice set for 2.1 (strand S2, networks). The `evaluate` checks prove the
+# arithmetic of each answer with the CAS; the `structured` record proves only that a
+# model answer contains the declared ideas, not that the network in them is drawn
+# correctly. A graph question is checked by its count, never by its picture.
+chapter: 2
+problems:
+  - id: am2-1-degree
+    section: '2.1'
+    tier: O
+    refs: [S2]
+    statement: >-
+      In a network, vertex $P$ is joined to $Q$, $R$ and $S$, and there is a second
+      separate edge from $P$ to $Q$. Write down the degree of $P$.
+    answer_label: Degree of P
+    check: {kind: evaluate, expression: '1 + 1 + 1 + 1', answer: '4'}
+    answer_text: >-
+      $\deg(P) = 4$. Both edges to $Q$ count, because they are two different
+      connections.
+
+  - id: am2-1-handshake-edges
+    section: '2.1'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A network has vertex degrees $3, 3, 2, 2, 2$. Use the handshake lemma to find
+      the number of edges.
+    answer_label: Number of edges
+    check: {kind: evaluate, expression: '(3 + 3 + 2 + 2 + 2) / 2', answer: '6'}
+    answer_text: >-
+      $\sum \deg(v) = 12$, and every edge is counted twice, so $E = 12 \div 2 = 6$.
+
+  - id: am2-1-handshake-impossible
+    section: '2.1'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Could a network have vertex degrees $4, 3, 3, 1$? Justify your answer with a
+      calculation.
+    answer_label: Possible or not
+    check: {kind: evaluate, expression: '4 + 3 + 3 + 1', answer: '11'}
+    answer_text: >-
+      The sum of the degrees is $11$, which is odd. The sum of the degrees is always
+      twice the number of edges, so it must be even. No such network exists.
+
+  - id: am2-1-complete-5
+    section: '2.1'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A complete network has 5 vertices. How many edges has it?
+    answer_label: Number of edges
+    check: {kind: evaluate, expression: '5 * 4 / 2', answer: '10'}
+    answer_text: >-
+      $E = \dfrac{n(n-1)}{2} = \dfrac{5 \times 4}{2} = 10$.
+
+  - id: am2-1-complete-15
+    section: '2.1'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A complete network has 15 edges. How many vertices has it?
+    answer_label: Number of vertices
+    check: {kind: evaluate, expression: '6 * 5 / 2', answer: '15'}
+    answer_text: >-
+      $\dfrac{n(n-1)}{2} = 15$, so $n(n-1) = 30$ and $n = 6$, since $6 \times 5 = 30$.
+
+  - id: am2-1-complete-degree
+    section: '2.1'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A complete network has 8 vertices. Write down the degree of each vertex and the
+      total number of edges.
+    answer_label: Degree, then number of edges
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '8 - 1', answer: '7'}
+        - {kind: evaluate, expression: '8 * 7 / 2', answer: '28'}
+    answer_text: >-
+      Every vertex is joined to the other 7, so each degree is $7$. Then
+      $E = \dfrac{8 \times 7}{2} = 28$.
+
+  - id: am2-1-loops
+    section: '2.1'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A vertex has one loop and two ordinary edges to other vertices. What is its
+      degree?
+    answer_label: Degree
+    check: {kind: evaluate, expression: '2 + 1 + 1', answer: '4'}
+    answer_text: >-
+      A loop contributes $2$ because it leaves and arrives, and each ordinary edge
+      contributes $1$, so $\deg = 2 + 1 + 1 = 4$.
+
+  - id: am2-1-handshake-reverse
+    section: '2.1'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A network has 9 edges. What is the sum of the degrees of its vertices?
+    answer_label: Sum of the degrees
+    check: {kind: evaluate, expression: '2 * 9', answer: '18'}
+    answer_text: >-
+      $\sum \deg(v) = 2E = 2 \times 9 = 18$.
+
+  - id: am2-1-odd-count
+    section: '2.1'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Explain why a network can never have exactly three vertices of odd degree.
+    answer_label: Why three is impossible
+    check:
+      kind: structured
+      requires: [sum, twice]
+      concepts: [even-sum, pairs]
+      points:
+        - id: sum
+          text: the sum of all the degrees is twice the number of edges, so it is even
+          concepts: [even-sum]
+        - id: twice
+          text: odd degrees must therefore come in pairs, so the number of odd-degree vertices is even
+          concepts: [pairs]
+    answer_text: >-
+      The sum of the degrees is twice the number of edges, so it is always even. Odd
+      degrees can only add to an even total in pairs, so the number of vertices of odd
+      degree is always even. Three is odd, so it is impossible.

@@ -1,0 +1,148 @@
+# Practice set for 2.2 (strand S2). The `evaluate` checks prove the arithmetic of a
+# count — components, odd-degree vertices, Eulerian existence. Whether a particular
+# drawing is connected is a property of the drawing, and no oracle here can see it;
+# the `structured` record states the test instead of claiming to apply it.
+chapter: 2
+problems:
+  - id: am2-2-components
+    section: '2.2'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A network has 8 vertices. One part contains 5 of them, all joined together; the
+      other 3 form a second part with no edges to the first. How many connected
+      components has the network?
+    answer_label: Number of components
+    check: {kind: evaluate, expression: '1 + 1', answer: '2'}
+    answer_text: >-
+      Two components: the group of 5 and the group of 3. A component is a set of
+      vertices that can all reach one another, and nothing in one group reaches the
+      other.
+
+  - id: am2-2-eulerian
+    section: '2.2'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A connected network has vertex degrees $3, 3, 2, 2, 2$. How many vertices have
+      odd degree, and does the network have an Eulerian trail?
+    answer_label: Odd-degree count, then Eulerian?
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '1 + 1', answer: '2'}
+        - {kind: evaluate, expression: '2', answer: '2'}
+    answer_text: >-
+      Two vertices have odd degree ($3$ and $3$). A connected network has an Eulerian
+      trail exactly when it has 0 or 2 odd-degree vertices, so this one does: the trail
+      starts at one odd vertex and ends at the other.
+
+  - id: am2-2-not-eulerian
+    section: '2.2'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A connected network has vertex degrees $4, 3, 3, 3$. How many odd-degree
+      vertices has it, and can its edges be travelled exactly once each?
+    answer_label: Odd-degree count, then possible?
+    check: {kind: evaluate, expression: '1 + 1 + 1', answer: '3'}
+    answer_text: >-
+      Three vertices have odd degree. Three is not 0 and not 2, so no Eulerian trail
+      exists: the edges cannot all be travelled exactly once. (Three odd vertices is
+      also impossible for a real network, since the degree sum must be even — the
+      example is a test of the rule, not a network you could draw.)
+
+  - id: am2-2-euler-circuit
+    section: '2.2'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Every vertex of a connected network has even degree. How many odd-degree
+      vertices has it, and what kind of Eulerian trail does it have?
+    answer_label: Odd-degree count, then the trail
+    check: {kind: evaluate, expression: '0', answer: '0'}
+    answer_text: >-
+      No vertex has odd degree, so there are 0 of them. With 0 odd vertices the trail
+      can start and finish at the same vertex: it is an **Eulerian circuit**, not just
+      an Eulerian trail.
+
+  - id: am2-2-directed-degree
+    section: '2.2'
+    tier: O
+    refs: [S2]
+    statement: >-
+      In a directed network, vertex $X$ has arrows leaving it to $Y$ and $Z$, and one
+      arrow arriving from $W$. Write down the out-degree and the in-degree of $X$.
+    answer_label: Out-degree, then in-degree
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '1 + 1', answer: '2'}
+        - {kind: evaluate, expression: '1', answer: '1'}
+    answer_text: >-
+      Out-degree $= 2$ (the arrows to $Y$ and $Z$); in-degree $= 1$ (the arrow from
+      $W$). The total degree is the sum, $3$.
+
+  - id: am2-2-directed-sum
+    section: '2.2'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A directed network has 7 arrows. What is the sum of the out-degrees of all its
+      vertices?
+    answer_label: Sum of the out-degrees
+    check: {kind: evaluate, expression: '1 * 7', answer: '7'}
+    answer_text: >-
+      Each arrow leaves exactly one vertex, so the out-degrees add to the number of
+      arrows: $7$. The in-degrees also add to $7$, since each arrow arrives somewhere.
+
+  - id: am2-2-connected-test
+    section: '2.2'
+    tier: O
+    refs: [S2]
+    statement: >-
+      State the test for deciding whether a network is connected.
+    answer_label: The test for connectedness
+    check:
+      kind: structured
+      requires: [reach, every]
+      concepts: [path-exists, all-vertices]
+      points:
+        - id: reach
+          text: from any one vertex you can reach every other vertex along edges
+          concepts: [path-exists]
+        - id: every
+          text: a network is connected when there is a path between every pair of vertices, so it has one component
+          concepts: [all-vertices]
+    answer_text: >-
+      A network is connected when there is a path between every pair of vertices. Pick
+      any vertex; if it can reach all the others, and every other vertex can too, the
+      network has one component and is connected. If some vertex cannot be reached, the
+      network is disconnected and has more than one component.
+
+  - id: am2-2-walk-trail
+    section: '2.2'
+    tier: O
+    refs: [S2]
+    statement: >-
+      In a network, a route goes $A \to B \to C \to B \to D$. Does it repeat a vertex,
+      an edge, or neither? Name the kind of route it is.
+    answer_label: What repeats, and the name
+    check:
+      kind: structured
+      requires: [vertex, edge, trail]
+      concepts: [repeats-vertex, no-edge-twice, trail]
+      points:
+        - id: vertex
+          text: it returns to B, so a vertex is repeated
+          concepts: [repeats-vertex]
+        - id: edge
+          text: no edge is used twice, since each step follows a different edge
+          concepts: [no-edge-twice]
+        - id: trail
+          text: a route that never repeats an edge is a trail, so this is a trail
+          concepts: [trail]
+    answer_text: >-
+      It returns to $B$, so the vertex $B$ is repeated. No edge is used twice, so it is
+      a trail. A trail may repeat vertices; a path may not. This route is a trail but
+      not a path.

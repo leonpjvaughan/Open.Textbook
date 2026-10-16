@@ -279,15 +279,23 @@ export function signed(value, places = 2) {
  * across 177 modules with nothing to stop the next one being 10, so the size is now a
  * decision with a name and a reason attached, taken once here.
  *
- * The values assume a viewBox around 420–560 units wide, which is what `panel`.
- * A figure with a much wider viewBox needs to scale these up by the same factor, and
- * `check-figure-kit.cjs` measures the rendered size rather than trusting the name.
+ * The values assume a viewBox around 420–560 units wide, which is what `panel`
+ * produces. A figure with a much wider viewBox needs to scale these up by the same
+ * factor, and `check-figure-kit.cjs` measures the arithmetic rather than trusting the
+ * name.
+ *
+ * The scale is not a round number and it is not the panel's own width. Measured at a
+ * 390px viewport, the `maths-figure` element is 358px wide but carries 17.6px of
+ * padding on each side, so **the drawing is 322.8px** and a 560-unit viewBox draws at
+ * 322.8 / 560 = 0.576. `SIZE.tick` was 15 units for a while, which is 8.6px — below
+ * the 9px floor — and the guard missed it because it used the element's width instead
+ * of the drawing's. Re-measure with `audit-figures.cjs --mobile` before changing these.
  */
 export const SIZE = {
-  /** The smallest a label may be. 16 units is 10.2px at the 0.64 phone scale. */
+  /** An axis tick or a minor annotation. 16 units is 9.2px at the 0.576 phone scale. */
+  tick: 16,
+  /** The smallest a label may be. */
   label: 16,
-  /** An axis tick or a minor annotation. */
-  tick: 15,
   /** A title or a value read off the drawing. */
   value: 18,
   /** A heading inside the drawing. */

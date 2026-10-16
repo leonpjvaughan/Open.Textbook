@@ -1,0 +1,175 @@
+# Practice set for 2.10 (strand S2, Bellman). The principle is a statement about
+# optimality, not a number, so these records are `structured` throughout: they check
+# that a model answer contains the reasoning, and claim nothing about the mathematics
+# of it. The verifier proves arithmetic; this principle is not arithmetic.
+chapter: 2
+problems:
+  - id: am2-10-statement
+    section: '2.10'
+    tier: O
+    refs: [S2]
+    statement: >-
+      State Bellman's principle of optimality in your own words.
+    answer_label: The principle
+    check:
+      kind: structured
+      requires: [part, optimal]
+      concepts: [subroute-optimal, any-part]
+      points:
+        - id: part
+          text: any part of an optimal route is itself optimal between its own two endpoints
+          concepts: [subroute-optimal]
+        - id: optimal
+          text: if the whole route is best, then no part of it can be replaced by a cheaper part, or the whole route would improve
+          concepts: [any-part]
+    answer_text: >-
+      Bellman's principle of optimality says that any part of an optimal route is itself
+      an optimal route between its own two endpoints.
+
+      If the whole journey is the cheapest possible, then no section of it can be
+      replaced by a cheaper section — if it could, replacing it would make the whole
+      journey cheaper, contradicting that the whole was optimal.
+
+  - id: am2-10-why
+    section: '2.10'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Explain why Bellman's principle is what makes dynamic programming valid.
+    answer_label: Why it makes DP valid
+    check:
+      kind: structured
+      requires: [sub, build]
+      concepts: [subproblems-independent, build-up]
+      points:
+        - id: sub
+          text: it means the best decision from a state does not depend on how you reached that state, so each state can be solved once
+          concepts: [subproblems-independent]
+        - id: build
+          text: that lets the solution be built up from the values of smaller sub-problems, which is what the backward recursion does
+          concepts: [build-up]
+    answer_text: >-
+      Dynamic programming works by solving small sub-problems once and building larger
+      answers from them. That is only valid if a sub-problem's best answer is the same
+      whichever larger problem it belongs to.
+
+      Bellman's principle gives exactly that. If every part of an optimal route is itself
+      optimal, then the best cost from a vertex to the destination is a fixed number,
+      independent of how you arrived at that vertex. So each state can be solved once and
+      reused, which is what the backward recursion relies on.
+
+  - id: am2-10-counterexample
+    section: '2.10'
+    tier: H
+    refs: [S2]
+    statement: >-
+      On the staged network of Section 2.9, the optimal route from $A$ to $F$ is
+      $A \to C \to E \to F$. Name one part of it and state why that part is optimal
+      between its own endpoints.
+    answer_label: A part and why it is optimal
+    check:
+      kind: structured
+      requires: [part, why]
+      concepts: [c-to-f-optimal, else-improve]
+      points:
+        - id: part
+          text: the part C to F, which is C -> E -> F with cost 3
+          concepts: [c-to-f-optimal]
+        - id: why
+          text: if there were a cheaper route from C to F than 3, replacing this part would make the whole route from A cheaper than 8, which is impossible
+          concepts: [else-improve]
+    answer_text: >-
+      Take the part $C \to E \to F$, of cost $2 + 1 = 3$. It is optimal between $C$ and
+      $F$: the only other route is $C \to D \to F$ at $3 + 6 = 9$, which is dearer.
+
+      The principle guarantees it without checking. If some route from $C$ to $F$ were
+      cheaper than $3$, replacing $C \to E \to F$ in the whole route would give a route
+      from $A$ to $F$ cheaper than $8$ — but $8$ is optimal. So no cheaper part can
+      exist.
+
+  - id: am2-10-not-greedy
+    section: '2.10'
+    tier: O
+    refs: [S2]
+    statement: >-
+      Explain how Bellman's principle relates to the greedy approach, and why the two
+      are not the same.
+    answer_label: Bellman and greedy
+    check:
+      kind: structured
+      requires: [whole, local]
+      concepts: [whole-problem, local-choice]
+      points:
+        - id: whole
+          text: Bellman's principle is about the optimality of the whole route and each part of it
+          concepts: [whole-problem]
+        - id: local
+          text: greedy takes the cheapest immediate choice, which Bellman's principle does not justify, because a locally cheap choice can be part of a non-optimal whole
+          concepts: [local-choice]
+    answer_text: >-
+      Bellman's principle says something about an **already optimal** route: its parts are
+      optimal too. It is a property of the best route, used to build the best route.
+
+      Greedy says something different: take the cheapest choice now. That is a *method*,
+      and Bellman's principle does not justify it. On the network of Section 2.9 the
+      cheapest first edge gave a total of $10$, while the optimal total was $8$ — so the
+      greedy choice was part of no optimal route at all. Bellman's principle holds for
+      optimal routes; greedy does not always find one.
+
+  - id: am2-10-stage-value
+    section: '2.10'
+    tier: H
+    refs: [S2]
+    statement: >-
+      In backward recursion, the value stored at each state is the least cost from that
+      state to the end. Explain, using Bellman's principle, why this value does not need
+      to record the route that achieves it.
+    answer_label: Why the route is not stored
+    check:
+      kind: structured
+      requires: [value, route]
+      concepts: [value-enough, route-recoverable]
+      points:
+        - id: value
+          text: by Bellman's principle the best continuation from a state depends only on the state, so the least cost is all that is needed to compare choices
+          concepts: [value-enough]
+        - id: route
+          text: the route can be recovered afterwards by following, at each stage, the choice that achieved the stored value
+          concepts: [route-recoverable]
+    answer_text: >-
+      Bellman's principle says the best continuation from a state depends only on the
+      state, not on how you got there. So to compare two choices at a stage, all you need
+      is the least cost from each resulting state to the end — a single number per state.
+
+      The route itself does not have to be stored. Once the values are known, the route
+      is recovered by starting at the first stage and, at each stage, taking the choice
+      that achieved the stored value. Storing one number per state instead of every route
+      is what keeps dynamic programming efficient.
+
+  - id: am2-10-suboptimal
+    section: '2.10'
+    tier: O
+    refs: [S2]
+    statement: >-
+      A student claims: "Bellman's principle says every part of any route is optimal."
+      State what is wrong and give the correct statement.
+    answer_label: What is wrong
+    check:
+      kind: structured
+      requires: [any, optimal]
+      concepts: [only-optimal-routes, not-any]
+      points:
+        - id: any
+          text: the principle says every part of an *optimal* route is optimal, not every part of any route
+          concepts: [only-optimal-routes]
+        - id: optimal
+          text: a part of a poor route is usually poor too, and need not be optimal between its endpoints
+          concepts: [not-any]
+    answer_text: >-
+      The student has dropped the word "optimal". Bellman's principle says: **every part
+      of an optimal route is itself optimal**. It says nothing about a route that is not
+      optimal.
+
+      A part of a poor route is usually poor as well. The principle is used to *find* the
+      optimal route, by building it from optimal parts — it is not a claim that every
+      route is made of optimal pieces.

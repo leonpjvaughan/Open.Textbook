@@ -2881,6 +2881,44 @@ original had no value display. Leave `fission-chain-reaction` as it is.
 - A before/after browser measurement of one affected figure shows the value
   display gone and every painted colour unchanged.
 
+## 49. The figure-kit phone-floor guard measured the wrong box, and passed a size that is too small — **done**
+
+**What is wrong.** `scripts/check-figure-kit.cjs` guards the rule that every named
+figure size clears 9px on a phone. It computed the rendered size as
+`units * (358 / 560)`, taking 358px as the phone panel width. Measured in a browser
+at a 390px viewport, the `maths-figure` element *is* 358px wide — but it carries
+17.6px of padding on each side, so the **drawing** is 322.8px and the scale is
+0.576, not 0.639:
+
+```
+$ node -e "...measure the chain..."
+{"tag":"maths-figure","w":358,"pad":"17.6px/17.6px"}
+{"tag":"main","w":358,"pad":"0px/0px"}
+# the svg inside is 320.8px, so 560 units draw at 0.573
+```
+
+So the guard said `SIZE.tick` (15 units) was 9.6px and passed it, while the figure
+actually drew it at **8.6px**. `assets/figures/kit.js` repeated the same wrong
+number in its own doc comment ("0.64 phone scale"). A guard that measures the wrong
+box is worse than no guard, because it certifies a defect as safe.
+
+It was found by building `ie-lc-applied-maths` Chapter 2's three figures, which use
+`SIZE.tick` in a 560-unit viewBox, and running `audit-figures.cjs --mobile` on them.
+The audit measures the rendered SVG and reported 8.6px.
+
+**The fix.** `SIZE.tick` is 16 units (9.2px). The guard now derives the scale from
+the drawing width, `(358 - 2 * 17.6) / 560`, with the measurement and the re-measure
+command in a comment. The kit's doc comment states the real relationship.
+
+**Done means**
+
+- `node scripts/check-figure-kit.cjs site` prints `contract kept`, and would fail on a
+  `SIZE` value below 9px at the measured scale.
+- `node scripts/audit-figures.cjs site --mobile` reports **0 figures below 9px** across
+  the collection (measured: 139 figures, median smallest label 9.2px).
+- `assets/figures/kit.js` and `scripts/check-figure-kit.cjs` no longer contain the
+  string `0.64` or `358 / 560` as a scale.
+
 ---
 
 ## The Irish books — where they stand (2026-10-13)
@@ -2898,6 +2936,7 @@ in the collection build clean.
 |---|---|---|
 | `ie-jc-maths` | 22 | Chapter 3 (factors, multiples, primes) — 3 sections |
 | `ie-lc-physics` | 22 | Chapter 5 (stretching and compressing) — 4 sections |
+| `ie-lc-applied-maths` | 9 | Chapter 2 (networks and graphs) — 11 sections, 3 figures |
 | `ie-lc-maths` | 18 | none |
 | `ie-lc-applied-maths` | 9 | none |
 
@@ -2940,10 +2979,12 @@ rewritten for the Irish books on the same day: the tier codes are the book's (no
 ## The current goal — finish the Irish books (2026-10-15)
 
 **The four Irish books are the work.** They exist and build — 71 chapters, 429
-sections, every profile green — but **66 of the 71 chapters are still the scaffold's
-stub**. `ie-jc-maths` Chapter 3 and `ie-lc-physics` Chapter 5 are authored end to end
-and are the pattern: a chapter index, every section's three pages, a Review that
-resolves the chapter problem, and a verified bank behind every answer.
+sections, every profile green — but **65 of the 71 chapters are still the scaffold's
+stub**. Three chapters are authored end to end and are the pattern: `ie-jc-maths`
+Chapter 3, `ie-lc-physics` Chapter 5, and `ie-lc-applied-maths` Chapter 2 (11 sections,
+35 pages, 11 verified banks, three figures). Each is a chapter index, every section's
+three pages, a Review that resolves the chapter problem, and a verified bank behind every
+answer.
 
 **What is already in hand, so nobody re-fetches it:**
 

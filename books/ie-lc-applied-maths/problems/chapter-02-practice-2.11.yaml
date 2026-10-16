@@ -1,0 +1,166 @@
+# Practice set for 2.11 (strand S2, Higher). The comparison is a judgement, so the
+# records are `structured`; the one arithmetic record is the count of spanning trees,
+# which the oracle proves.
+chapter: 2
+problems:
+  - id: am2-11-which-algorithm
+    section: '2.11'
+    tier: H
+    refs: [S2]
+    statement: >-
+      For each question, name the algorithm that answers it: (a) the cheapest set of
+      cables reaching every room; (b) the shortest route between two rooms; (c) the
+      cheapest way through a network of stages.
+    answer_label: (a), then (b), then (c)
+    check:
+      kind: structured
+      requires: [mst, dijkstra, dp]
+      concepts: [kruskal-or-prim, dijkstra, dynamic-programming]
+      points:
+        - id: mst
+          text: (a) Kruskal's or Prim's algorithm, for a minimum spanning tree
+          concepts: [kruskal-or-prim]
+        - id: dijkstra
+          text: (b) Dijkstra's algorithm, for a shortest path
+          concepts: [dijkstra]
+        - id: dp
+          text: (c) dynamic programming with backward recursion
+          concepts: [dynamic-programming]
+    answer_text: >-
+      (a) Kruskal's or Prim's algorithm — a minimum spanning tree. (b) Dijkstra's
+      algorithm — a shortest path. (c) Dynamic programming with backward recursion, which
+      for a staged network is the same as a shortest path but solved stage by stage.
+
+  - id: am2-11-kruskal-prim
+    section: '2.11'
+    tier: H
+    refs: [S2]
+    statement: >-
+      State one reason to choose Kruskal's algorithm and one reason to choose Prim's.
+    answer_label: One reason each
+    check:
+      kind: structured
+      requires: [kruskal, prim]
+      concepts: [sort-once, no-sorting]
+      points:
+        - id: kruskal
+          text: Kruskal sorts the edges once and is easy to do by hand on a small network, especially when the edges are already listed
+          concepts: [sort-once]
+        - id: prim
+          text: Prim never sorts and suits a network stored as a matrix, scanning only the row of the newest vertex, so it is usually faster on a dense network
+          concepts: [no-sorting]
+    answer_text: >-
+      Choose Kruskal when the edges are given as a list and the network is small: it
+      sorts once and then reads down the list, which is quick and easy to show working
+      for.
+
+      Choose Prim when the network is stored as a matrix or is dense: it never sorts,
+      and it only scans the row of the vertex just added, which is faster when most pairs
+      of vertices are joined.
+
+  - id: am2-11-mst-vs-path
+    section: '2.11'
+    tier: H
+    refs: [S2]
+    statement: >-
+      Explain why running Kruskal's algorithm on a network does not give the shortest
+      path between two of its vertices.
+    answer_label: Why Kruskal does not give a shortest path
+    check:
+      kind: structured
+      requires: [goal, cheapest]
+      concepts: [different-goal, global-edges]
+      points:
+        - id: goal
+          text: Kruskal's goal is to connect every vertex for the least total weight, not to connect two particular vertices
+          concepts: [different-goal]
+        - id: cheapest
+          text: it takes the cheapest edge anywhere, which may point away from the destination, and the resulting tree need not contain a shortest route between the two chosen vertices
+          concepts: [global-edges]
+    answer_text: >-
+      Kruskal's algorithm answers a different question. It connects **every** vertex for
+      the least total weight. A shortest path connects **two** particular vertices.
+
+      It also works the wrong way for a route: it takes the cheapest edge anywhere in the
+      network, which may lead away from the destination. The tree it builds is chosen to
+      reach everything cheaply, not to get from one place to another cheaply, and the
+      route between two vertices inside that tree can be much longer than the shortest
+      path.
+
+  - id: am2-11-dijkstra-limit
+    section: '2.11'
+    tier: H
+    refs: [S2]
+    statement: >-
+      State the condition on the edge weights that Dijkstra's algorithm requires, and
+      say what the corresponding condition is for Kruskal's and Prim's algorithms.
+    answer_label: Dijkstra's condition, then the others'
+    check:
+      kind: structured
+      requires: [nonnegative, none]
+      concepts: [nonnegative, any-weights]
+      points:
+        - id: nonnegative
+          text: Dijkstra requires every edge weight to be non-negative, because it settles the nearest vertex on the argument that going further only adds cost
+          concepts: [nonnegative]
+        - id: none
+          text: Kruskal and Prim have no such condition; a minimum spanning tree is defined for any weights, including negative ones
+          concepts: [any-weights]
+    answer_text: >-
+      Dijkstra's algorithm requires every edge weight to be **non-negative**. It settles
+      the nearest unsettled vertex because any other route would pass through a vertex
+      that is at least as far away, and every extra edge adds more. A negative weight
+      breaks that argument.
+
+      Kruskal's and Prim's algorithms have no such condition. A minimum spanning tree is
+      defined for any set of weights, and the cut-property argument does not care whether
+      a weight is positive or negative — only that it is a number that can be compared.
+
+  - id: am2-11-complexity
+    section: '2.11'
+    tier: H
+    refs: [S2]
+    statement: >-
+      A network has 100 vertices and 400 edges. Kruskal's algorithm sorts the edges;
+      Prim's algorithm scans rows. Explain, in terms of the sizes, which is likely to be
+      the more work.
+    answer_label: Which is more work
+    check:
+      kind: structured
+      requires: [edges, vertices]
+      concepts: [sort-many-edges, scan-vertices]
+      points:
+        - id: edges
+          text: Kruskal's work grows with the number of edges, because it sorts all 400 of them
+          concepts: [sort-many-edges]
+        - id: vertices
+          text: Prim's work grows with the number of vertices, because it adds one vertex at a time and scans that row of the 100 by 100 matrix
+          concepts: [scan-vertices]
+    answer_text: >-
+      Kruskal's algorithm sorts all 400 edges, so its work grows with the number of
+      edges. Prim's algorithm adds one vertex at a time and scans the row of the vertex
+      just added, so its work grows with the number of vertices — here 100 rows of a
+      100 by 100 matrix.
+
+      With 400 edges against 100 vertices, Kruskal has four times as many things to sort
+      as Prim has vertices to add, so Prim is likely to be the lighter of the two here.
+      The comparison is in the sizes of the problem, not in the algorithms' correctness —
+      both give the same minimum total.
+
+  - id: am2-11-spanning-count
+    section: '2.11'
+    tier: H
+    refs: [S2]
+    statement: >-
+      A complete network has 5 vertices. How many spanning trees has it, and what does
+      this say about checking a minimum spanning tree by listing them all?
+    answer_label: Number of spanning trees, then what it says
+    check: {kind: evaluate, expression: '5 ** (5 - 2)', answer: '125'}
+    answer_text: >-
+      By Cayley's formula there are $5^{5-2} = 125$ spanning trees. Listing all 125 and
+      comparing their weights would work on 5 vertices, but the count grows very fast:
+      $10^{10-2} = 100$ million for 10 vertices, and $100^{100-2}$ for 100.
+
+      That is why the algorithms matter. Kruskal and Prim find the minimum without
+      examining every possibility, and they are guaranteed to find it — which no amount
+      of listing could promise on a network of any size.

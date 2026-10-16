@@ -33,7 +33,12 @@ tier_axis:
   O: Ordinary and Higher
   H: Higher only
 
-oracles: [sympy]
+# Verification oracles the banks in this book may use. Applied Mathematics needs
+# both: the sympy oracle for the algebra and the matrices, and the units oracle for
+# every quantity — a speed, a force, an energy — which checks the dimensions as well
+# as the magnitude, and the `structured` records that assert the steps of a model.
+# See PROBLEMS.md and engine/textbook/verify/oracles/units.py.
+oracles: [sympy, units]
 
 theme:
   light:

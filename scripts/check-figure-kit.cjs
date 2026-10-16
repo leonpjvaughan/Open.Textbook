@@ -86,10 +86,11 @@ async function probe(kitPath) {
     bareSurfaces: bare.querySelectorAll("svg").length,
 
     // The size scale and the two string helpers. `SIZE` is checked by value because
-    // the phone floor is arithmetic: rendered size is `font-size` times the panel's
-    // width over the viewBox width, so a 15-unit label is 9.6px at 390px and a
-    // 13-unit one is 8.3px. The floor is 9px, and four modules had drifted below it
-    // while every module's own attributes looked reasonable.
+    // the phone floor is arithmetic: rendered size is `font-size` times the drawing's
+    // width over the viewBox width. The drawing is 322.8px at a 390px viewport, so a
+    // 16-unit label is 9.2px and a 15-unit one was 8.6px — below the 9px floor. Four
+    // modules had drifted below it while every module's own attributes looked
+    // reasonable, and the guard then used the wrong width and passed a bad size.
     size: kit.SIZE,
 
     // `label` must produce a well-formed element with a colour class by default,
@@ -175,12 +176,19 @@ async function main() {
 
   // ── the size scale ────────────────────────────────────────────────────────
   //
-  // Grounded in measurement, not taste: at 390px a 560-unit viewBox draws at 0.64 of
-  // its stated size, so the smallest named size must clear 9px. A module choosing its
-  // own number is how four figures drifted below the floor while every one of their own
-  // attributes looked reasonable. `audit-figures.cjs --mobile` measures what actually
-  // reaches the screen; this checks the scale the modules are told to use.
-  const PHONE_SCALE = 358 / 560;
+  // Grounded in measurement, not taste. At a 390px viewport the `maths-figure`
+  // element is 358px wide but carries 17.6px of padding on each side, so the drawing
+  // is 322.8px and a 560-unit viewBox draws at 322.8 / 560 = 0.576. The smallest
+  // named size must clear 9px at that scale. A module choosing its own number is how
+  // four figures drifted below the floor while every one of their own attributes
+  // looked reasonable. `audit-figures.cjs --mobile` measures what actually reaches the
+  // screen; this checks the arithmetic the modules are told to rely on.
+  //
+  // The earlier value here was 358 / 560 — the element's width, not the drawing's —
+  // and it passed `SIZE.tick` at 15 units (9.6px by that arithmetic) when the drawing
+  // put it at 8.6px. A guard that measures the wrong box is worse than no guard.
+  const PHONE_PANEL_PX = 358 - 2 * 17.6;
+  const PHONE_SCALE = PHONE_PANEL_PX / 560;
   const FLOOR_PX = 9;
   if (!result.size || !Object.keys(result.size).length) {
     problems.push("the kit exports no SIZE scale, so every module picks its own number");
