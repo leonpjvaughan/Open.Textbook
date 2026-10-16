@@ -10,6 +10,49 @@ assets, and it owns the **Layout** traps, the **booklet widget** traps and the
 whole **theme model** — the cascade, the contrast invariant, reader preferences
 and adding or previewing a bundle — that used to sit in the root.
 
+## Figures: draw through the kit, and choose no number
+
+`assets/figures/kit.js` is the shared surface for every figure — **177 of 177 modules
+import it**. It does not draw: a framework for 177 bespoke diagrams would be a framework
+around nothing. What it owns is everything *around* the drawing, and the three rules
+below are checked rather than trusted. The measurements and the reasoning are in
+`research/design/reuse-audit.md`.
+
+- **Choose no size. Use `SIZE`.** An SVG scales by rendered width over viewBox width, so
+  a `font-size` is not the size a reader sees. A 560-unit viewBox in a 358px phone panel
+  draws at **0.64**, so `font-size="16"` is 10.2px and `13` is 8.3px — below the 9px
+  floor. Fourteen distinct sizes were in use across 177 modules before the scale
+  existed, and four had drifted below the floor with every one of their own attributes
+  looking reasonable. `SIZE.tick` is the smallest that clears it.
+- **Use `label()` for text, never a hand-written `<text>`.** 107 modules wrote the same
+  four attributes by hand. The class defaults to `text-ink`, because a `<text>` with no
+  colour class is painted with `fill`'s initial black and vanishes on a dark panel — a
+  defect found **eighteen times** by measurement. Never put `$...$` in a label: the maths
+  hook runs at build time.
+- **Use `scale()` to map a domain onto a range.** 20 modules built it by hand, and the
+  y-axis case is the one that gets flipped when written by hand. It raises on a domain
+  with no width, where the hand-built version divides by zero and produces `NaN`.
+
+`scripts/check-figure-kit.cjs` verifies all three, including the phone-floor arithmetic,
+in CI. `scripts/audit-figures.cjs --mobile` measures what actually reaches a 390px
+screen; the current state is **0 figures below 9px**.
+
+## Before you add a shared thing
+
+The collection is nine books and will be more. Two rules keep it from turning into nine
+copies of the same component.
+
+- **If two books need it, it belongs in `assets/`, not in a book.** A book's
+  `docs/assets/` holds only what is that book's own. Shared files are declared once in
+  `scaffold.SHARED_FILES` and **the build places them** — nothing in this repository is a
+  symlink, because git checks one out as a small plain file wherever `core.symlinks` is
+  false and a green build then ships a 36-byte `kit.js` holding a path.
+- **If two figures do the same thing, it belongs in the kit.** Before writing a helper
+  into a module, run `grep -l` for the idiom across the other modules. `research/design/reuse-audit.md`
+  records what was measured already, including the idioms that are deliberately **not**
+  shared and the reason for each.
+
+
 ## What lives here
 
 | Path | What it does |
@@ -128,8 +171,6 @@ node scripts/screenshot.cjs site ~/out --schemes light,dark --theme neon -- \
 
 ## Layout
 
-Moved from the root's `## Watch out for`.
-
 - Shared CSS and runtime widgets live **once**, in `assets/`, and are listed in
   `scaffold.SHARED_FILES`. The build copies each one to the same path in the
   output, so a book never holds a copy and cannot drift from the shared file. Edit
@@ -143,8 +184,8 @@ Moved from the root's `## Watch out for`.
 
 ## The booklet widget
 
-Moved from the root's `## Watch out for`. The booklet **data** is per book and
-lives in `books/AGENTS.md`; the widget is shared and its rules are here.
+The booklet **data** is per book and lives in `books/AGENTS.md`; the widget is
+shared and its rules are here.
 
 - The booklet renders formulae from build-time MathML, so never put `$...$` into
   it at runtime. Tables are plain text and data.

@@ -24,18 +24,50 @@ this one with its exam boards, its tier axis and its subject pitfalls.
 | `books/<id>/booklet/` | Formulae-and-tables data (source of truth) |
 | `books/<id>/sources.yaml` | Tracked provenance for the curriculum and booklet claims |
 
-## Tiers
+## The Irish books
 
-Moved from the root's `## Watch out for`.
+Four books, added 2026-10-13, published under the `Junior Cycle` and
+`Leaving Certificate` qualifications in `collection.yaml`:
+
+| Book | Levels | Notes |
+|---|---|---|
+| `ie-jc-maths` | Ordinary, Higher | One two-hour paper; two Classroom-Based Assessments |
+| `ie-lc-maths` | **Foundation, Ordinary, Higher** | Three nested levels — the only book with three |
+| `ie-lc-applied-maths` | Ordinary, Higher | Networks and dynamics; 20% modelling project |
+| `ie-lc-physics` | Ordinary, Higher | **40% is an investigation**, not a written paper |
+
+Three things about them are not like the English books and are worth knowing before
+touching one.
+
+- **The tier axis is ordered and may have more than two codes.** `tier_axis` is a
+  list, lowest level first: `F`/`H` in England, `O`/`H` in Ireland, and
+  `F`/`O`/`H` for Leaving Certificate Mathematics. A profile's `tier_filter` is the
+  tier code it builds, and a build includes **every level at or below its own**. A
+  filter that names neither a tier code nor `all`/`toggle` now raises: it used to
+  fall through to "include everything", so a typo shipped higher-only pages to the
+  lower-tier reader and the build stayed green.
+- **A section's references are `refs:`, not `dfe:`.** The Irish documents are the
+  NCCA specifications, and the reference names the learning outcome or the strand.
+  The field is neutral because it points at a different document per jurisdiction.
+- **The Unifying strand is not a strand of chapters.** Junior Cycle Mathematics and
+  Leaving Certificate Physics each have one — a set of processes, not content. It is
+  delivered by the chapter formula and referenced from the sections that exercise
+  it, never turned into a chapter that would misrepresent it.
+
+`research/curriculum/ie-curriculum.md` holds the evidence: what each specification
+says, which Physics specification is current and why, and where the content
+overlaps what the collection already had.
+
+## Tiers
 
 - Foundation drops `tier: H` pages; a plain markdown link from an `F` page to an
   `H` page breaks the strict build. Wrap such links in
   `<!-- tier:h -->…<!-- /tier:h -->` or omit them.
-- Verify every `F`/`H` tag against the AQA 8300 tier columns before publishing.
+- Verify every tier tag against the book's own specification before publishing. The
+  English books' `F`/`H` come from the AQA 8300 tier columns; the Irish books' `O`/`H`
+  and `F`/`O`/`H` come from the NCCA specifications, recorded per book.
 
 ## Generated files
-
-Moved from the root's `## Watch out for`.
 
 - `books/<id>/docs/**` stubs, `books/<id>/docs/assets/stylesheets/book.css`
   and `books/<id>/CURRICULUM-MAP.md` are generated. Never hand-edit them; edit
@@ -44,8 +76,6 @@ Moved from the root's `## Watch out for`.
   pages must never contain that marker.
 
 ## Content
-
-Moved from the root's `## Watch out for`.
 
 - The build checks links, maths and structure — **not** mathematical correctness.
   Re-derive every answer and check the arithmetic in worked examples.
@@ -61,8 +91,8 @@ Moved from the root's `## Watch out for`.
 
 ## Problem bank
 
-Moved from the root's `## Watch out for`. `PROBLEMS.md` is the schema and the
-statement of what the verifier can and cannot prove.
+`PROBLEMS.md` is the schema and the statement of what the verifier can and
+cannot prove.
 
 - Keep units, words and `%` out of the CAS fields; they belong in `statement`.
   `£`, `p` and commas will not parse.
@@ -82,8 +112,7 @@ statement of what the verifier can and cannot prove.
 
 ## Booklet data
 
-Moved from the root's `## Watch out for`. The widget that renders it is shared;
-see `assets/AGENTS.md`.
+The widget that renders it is shared; see `assets/AGENTS.md`.
 
 - `BOOKLETS.md` is the contract: one booklet per qualification and subject, built
   from the board's own document, not from another board's sheet or from memory.

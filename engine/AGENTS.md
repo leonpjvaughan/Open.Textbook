@@ -27,8 +27,7 @@ file adds what is particular to the engine, and it now owns the **Maths** and
 
 ## Maths
 
-Moved from the root's `## Watch out for`. These are properties of the maths hook
-and its KaTeX renderer, so they live here. Content authors meet them through
+These are properties of the maths hook and its KaTeX renderer, so they live here. Content authors meet them through
 `books/AGENTS.md`.
 
 - Markdown escapes `<`, `>` and `&` inside `$…$`; the maths hook unescapes before
@@ -40,8 +39,6 @@ and its KaTeX renderer, so they live here. Content authors meet them through
   a trap. `aligned` works; `latex2mathml` does not — do not reintroduce it.
 
 ## Hooks
-
-Moved from the root's `## Watch out for`.
 
 - Never name a hook parameter `html`; it shadows the `html` module.
 - Hooks resolve every path from the build's `config.extra` block, through

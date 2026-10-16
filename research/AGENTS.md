@@ -4,9 +4,15 @@
 input**: nothing here renders into a book, and nothing here is fetched by the
 site. It informs the writing, and it is cited from `books/<id>/sources.yaml`.
 
-Read the root `AGENTS.md` first. The root's **Evidence** and **Capturing work**
-still apply, and they are binding. This file adds what is particular to the
+Read the root `AGENTS.md` first. The root's **Capturing work** still applies,
+and it is binding. This file adds **Evidence** and what is particular to the
 corpus.
+
+## Evidence
+
+Do not overclaim. The synthesis says its causal evidence is mostly US, secondary
+science or early-secondary maths, and that effects are not a ranking of methods;
+keep claims to what the briefing supports. See `research/pedagogy.md`.
 
 ## What lives here
 
@@ -24,8 +30,8 @@ corpus.
 
 - **Do not overclaim.** The synthesis is explicit that its causal evidence is
   mostly US, secondary science or early-secondary maths, and that effects are
-  not a ranking of methods. Keep claims to what the briefing supports; the root's
-  **Evidence** is the rule.
+  not a ranking of methods. Keep claims to what the briefing supports; the
+  **Evidence** section above is the rule.
 - **The tracked manifest is the book's `sources.yaml`.** `research/sources/` is
   fetched by `scripts/fetch_sources.sh` and is git-ignored, so a citation must
   point at the manifest and the source's own URL, not at the fetched copy.
@@ -46,5 +52,5 @@ corpus.
 
 ## Read next
 
-`SHAPE.md` for how the corpus relates to the books, and the root's **Evidence**
-and **Capturing work**.
+`SHAPE.md` for how the corpus relates to the books, and the root's **Capturing
+work**.

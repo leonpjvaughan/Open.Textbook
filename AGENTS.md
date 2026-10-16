@@ -143,45 +143,14 @@ figure cannot repeat a defect the measurement found. The cascade, the contrast
 invariant, reader preferences and adding or previewing a bundle are in
 `assets/AGENTS.md`.
 
-## Evidence
+**Figures are drawn through `assets/figures/kit.js` and may not choose a number.**
+`SIZE`, `label()` and `scale()` are the three rules; they are checked in CI and they
+exist because fourteen font sizes and 107 hand-written text elements were in use across
+177 modules. The rules and the measurements are in `assets/AGENTS.md`, and
+`research/design/reuse-audit.md` has the evidence.
 
-Do not overclaim. The synthesis says its causal evidence is mostly US, secondary
-science or early-secondary maths, and that effects are not a ranking of methods;
-keep claims to what the briefing supports. See `research/pedagogy.md`.
-
-## The Irish books
-
-Four books, added 2026-10-13, published under the `Junior Cycle` and
-`Leaving Certificate` qualifications in `collection.yaml`:
-
-| Book | Levels | Notes |
-|---|---|---|
-| `ie-jc-maths` | Ordinary, Higher | One two-hour paper; two Classroom-Based Assessments |
-| `ie-lc-maths` | **Foundation, Ordinary, Higher** | Three nested levels — the only book with three |
-| `ie-lc-applied-maths` | Ordinary, Higher | Networks and dynamics; 20% modelling project |
-| `ie-lc-physics` | Ordinary, Higher | **40% is an investigation**, not a written paper |
-
-Three things about them are not like the English books and are worth knowing before
-touching one.
-
-- **The tier axis is ordered and may have more than two codes.** `tier_axis` is a
-  list, lowest level first: `F`/`H` in England, `O`/`H` in Ireland, and
-  `F`/`O`/`H` for Leaving Certificate Mathematics. A profile's `tier_filter` is the
-  tier code it builds, and a build includes **every level at or below its own**. A
-  filter that names neither a tier code nor `all`/`toggle` now raises: it used to
-  fall through to "include everything", so a typo shipped higher-only pages to the
-  lower-tier reader and the build stayed green.
-- **A section's references are `refs:`, not `dfe:`.** The Irish documents are the
-  NCCA specifications, and the reference names the learning outcome or the strand.
-  The field is neutral because it points at a different document per jurisdiction.
-- **The Unifying strand is not a strand of chapters.** Junior Cycle Mathematics and
-  Leaving Certificate Physics each have one — a set of processes, not content. It is
-  delivered by the chapter formula and referenced from the sections that exercise
-  it, never turned into a chapter that would misrepresent it.
-
-`research/curriculum/ie-curriculum.md` holds the evidence: what each specification
-says, which Physics specification is current and why, and where the content
-overlaps what the collection already had.
+**The current work is finishing the Irish books.** The state, what is already in hand,
+the known gaps and the priority order are in `.agents/todo.md`.
 
 ## Repository map
 

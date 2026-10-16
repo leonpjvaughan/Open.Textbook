@@ -2934,3 +2934,68 @@ rewritten for the Irish books on the same day: the tier codes are the book's (no
 - **The Applied Mathematics specification numbers only its strands**, so the
   coverage check for that book reaches no finer than "all four strands are taught".
   Recorded in its `curriculum.yaml`.
+
+---
+
+## The current goal — finish the Irish books (2026-10-15)
+
+**The four Irish books are the work.** They exist and build — 71 chapters, 429
+sections, every profile green — but **66 of the 71 chapters are still the scaffold's
+stub**. `ie-jc-maths` Chapter 3 and `ie-lc-physics` Chapter 5 are authored end to end
+and are the pattern: a chapter index, every section's three pages, a Review that
+resolves the chapter problem, and a verified bank behind every answer.
+
+**What is already in hand, so nobody re-fetches it:**
+
+| | Where |
+|---|---|
+| The four curricula, outcome by outcome | `books/ie-*/curriculum.yaml`, `research/curriculum/ie-curriculum.md` |
+| **974 official SEC papers and 475 marking schemes**, every level | git-ignored in `research/sources/ie-*/papers/`; the fetch recipe is in its `README.md` |
+| The Formulae and Tables booklet, 96 formulae | `books/ie-lc-maths/booklet/` |
+| The verified assessment format for every level | `research/curriculum/ie-curriculum.md` §8a |
+| Networks and graphs — no counterpart in the collection | `ie-lc-applied-maths` Strand 2 |
+
+**The known gaps, stated so they are not discovered late:**
+
+- **No textbook table-of-contents research.** The English books have
+  `research/curriculum/a-level-maths-textbooks-and-exams.md` — 1,137 lines on command
+  words, mark schemes, examiner reports, question scaffolding and textbook voice. The
+  Irish books have no equivalent. The publishers (Folens, CJ Fallon, Gill) are
+  reachable but do not expose contents pages; Edco and Educate.ie are blocked. **This
+  is a quality input, not a blocker**: the curricula, the papers and the booklet are
+  enough to write the books, and the corpus already held is enough for the paper
+  analysis.
+- **No topic-weighted paper analysis.** Command words and mark values have been
+  measured (below); which strand each question comes from has not.
+- **Ordinary and Foundation Physics and Applied Mathematics papers are thinner** than
+  Higher. See §8a.
+
+**Method, and it is binding:**
+
+1. **The standard is the one in this file**, not a new one. Figures go through
+   `kit.js` with `SIZE`, `label()` and `scale()` — see *Figures: draw through the kit*.
+2. **A component two books need belongs in `assets/`**, not in one of them. See
+   *Before you add a shared thing*.
+3. **Every answer is in a verified bank.** `:::problems` and `:::answers` render it, so
+   the reader sees what CI proved.
+4. **`.agents/chapter-brief.md`** with `BOOK_ID` and `CHAPTER_ID` is the per-chapter
+   contract, and it was rewritten for the Irish books on 2026-10-15.
+
+**Priority order, and the reason for it:**
+
+1. **`ie-lc-applied-maths` Chapter 2 — networks and graphs.** Strand 2 has no
+   counterpart anywhere in this collection: spanning trees, Dijkstra, Bellman,
+   adjacency-matrix algebra. It is the material most likely to be reused by another
+   book and the least likely to be right if adapted from an existing chapter.
+2. **`ie-lc-maths`** — the largest book, three levels, and the one with a real
+   examination population.
+3. The rest, against the two authored chapters as the pattern.
+
+**Measured from the corpus, for shaping practice.** Across 275 Leaving Certificate
+Mathematics papers the command words are `Find` 6,261, `Show` 3,767, `State` 1,167,
+`Show that` 928, `Draw` 861, `Express` 729, `Calculate` 652, `Write down` 589,
+`Hence` 567, `Solve` 557, `Prove` 540, `Estimate` 488, `Work out` 439, `Construct` 268.
+**`Show that` and `Prove` together appear 1,468 times**, which is the single strongest
+signal about what an Irish practice set must contain — and it is not the shape of the
+English books, which are lighter on proof.
+
