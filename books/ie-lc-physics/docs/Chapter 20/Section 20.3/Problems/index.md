@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 20.3 Nuclear equations — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 4.4
+Work independently. The questions and answers are shown together at the end.
+
+Balance the mass number first and the atomic number second, then check both totals.
+Name the daughter element from its atomic number, and write every equation with the
+nucleon numbers in place.
+
+:::problems chapter-20-practice-20.3
+
+:::answers chapter-20-practice-20.3

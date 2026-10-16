@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 18.2 The photoelectric effect — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 4.2
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**, and to the number of significant figures the
+data justify. Take $h = 6.6 \times 10^{-34}$ J s, $c = 3.0 \times 10^{8}$ m/s and
+$1\,\text{eV} = 1.6 \times 10^{-19}$ J.
+
+:::problems chapter-18-practice-18.2
+
+:::answers chapter-18-practice-18.2

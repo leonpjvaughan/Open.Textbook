@@ -10,9 +10,15 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 20.1 Radioactive decay and the three emissions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 4.4
+Work independently. The questions and answers are shown together at the end.
+
+For a count rate, subtract the background before you use the reading. For a written
+explanation, name the emission and give the reason for your choice. Give every
+numerical answer with its unit and to the number of significant figures the data
+support.
+
+:::problems chapter-20-practice-20.1
+
+:::answers chapter-20-practice-20.1

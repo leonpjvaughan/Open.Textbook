@@ -1,0 +1,298 @@
+# Leaving Certificate Physics, Chapter 20, section 20.3 (strand 4 outcome 4.4).
+#
+# A nuclear equation is arithmetic: the mass number and the atomic number are
+# conserved, so the daughter's numbers are fixed by the parent's and the emission's.
+# `evaluate` proves that arithmetic. `structured` proves only that the model answer
+# names the parent, the emission and the daughter in order — it cannot prove that the
+# element named is the right one, so the answer text states it and a human reads it.
+chapter: 20
+problems:
+  - id: p20-3-alpha-238
+    section: '20.3'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      Uranium-238 decays by alpha emission. Write the nuclear equation, and state
+      the mass number and the atomic number of the daughter nucleus.
+    answer_label: The decay equation
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '238 - 4'
+          answer: '234'
+        - kind: evaluate
+          expression: '92 - 2'
+          answer: '90'
+        - kind: structured
+          requires: [parent, emission, daughter]
+          concepts: [mass-number, atomic-number]
+          points:
+            - id: parent
+              text: >-
+                The parent is uranium-238, with mass number 238 and atomic number
+                92.
+              concepts: [mass-number, atomic-number]
+            - id: emission
+              text: >-
+                The alpha particle carries away mass number 4 and atomic number 2.
+              concepts: [mass-number, atomic-number]
+            - id: daughter
+              text: >-
+                The daughter is thorium-234, with mass number 234 and atomic number
+                90.
+              concepts: [mass-number, atomic-number]
+    answer_text: >-
+      $^{238}_{92}\text{U} \rightarrow {}^{234}_{90}\text{Th} +
+      {}^{4}_{2}\text{He}$. The daughter is thorium-234.
+  - id: p20-3-beta-14
+    section: '20.3'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      Carbon-14 decays by beta emission. Write the nuclear equation, and name the
+      daughter nucleus.
+    answer_label: The decay equation
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '6 + 1'
+          answer: '7'
+        - kind: structured
+          requires: [parent, emission, daughter]
+          concepts: [mass-number, atomic-number, weak-force]
+          points:
+            - id: parent
+              text: >-
+                The parent is carbon-14, with mass number 14 and atomic number 6.
+              concepts: [mass-number, atomic-number]
+            - id: emission
+              text: >-
+                A neutron changes into a proton, so an electron is emitted from the
+                nucleus and the atomic number rises by one.
+              concepts: [atomic-number, weak-force]
+            - id: daughter
+              text: >-
+                The daughter is nitrogen-14, with the same mass number 14 and atomic
+                number 7.
+              concepts: [mass-number, atomic-number]
+    answer_text: >-
+      $^{14}_{6}\text{C} \rightarrow {}^{14}_{7}\text{N} + {}^{0}_{-1}\text{e}$.
+      The daughter is nitrogen-14. The mass number does not change, because a
+      neutron has become a proton. An almost massless particle called an
+      antineutrino is released as well.
+  - id: p20-3-gamma
+    section: '20.3'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A nucleus of technetium-99m releases a gamma ray and becomes technetium-99.
+      State what happens to its mass number and its atomic number, and explain why.
+    answer_label: Gamma emission
+    check:
+      kind: structured
+      requires: [mass, atomic, reason]
+      concepts: [unchanged, no-charge, energy-only]
+      points:
+        - id: mass
+          text: >-
+            The mass number stays the same, because no nucleon leaves the nucleus.
+          concepts: [unchanged]
+        - id: atomic
+          text: >-
+            The atomic number stays the same, because the number of protons does
+            not change.
+          concepts: [unchanged]
+        - id: reason
+          text: >-
+            A gamma ray is electromagnetic radiation with no charge and no mass, so
+            the nucleus loses energy only.
+          concepts: [no-charge, energy-only]
+    answer_text: >-
+      The mass number and the atomic number both stay the same. A gamma ray is
+      electromagnetic radiation with no charge and no mass, so the nucleus loses
+      energy only and keeps the same number of protons and nucleons.
+  - id: p20-3-balance
+    section: '20.3'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      In the decay $^{226}_{88}\text{Ra} \rightarrow {}^{222}_{86}\text{Rn} + X$,
+      identify the particle $X$.
+    answer_label: The missing particle
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '226 - 222'
+          answer: '4'
+        - kind: evaluate
+          expression: '88 - 86'
+          answer: '2'
+        - kind: structured
+          requires: [mass, charge, name]
+          concepts: [mass-number, atomic-number, alpha]
+          points:
+            - id: mass
+              text: >-
+                The mass number must balance, so $X$ carries mass number 4.
+              concepts: [mass-number]
+            - id: charge
+              text: >-
+                The atomic number must balance, so $X$ carries atomic number 2.
+              concepts: [atomic-number]
+            - id: name
+              text: >-
+                A particle with mass number 4 and atomic number 2 is an alpha
+                particle, which is a helium nucleus.
+              concepts: [alpha]
+    answer_text: >-
+      $X$ has mass number $226 - 222 = 4$ and atomic number $88 - 86 = 2$, so $X$ is
+      an alpha particle: $^{4}_{2}\text{He}$.
+  - id: p20-3-conservation
+    section: '20.3'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      State the two quantities that are conserved in every nuclear decay, and
+      explain how they are used to balance an equation.
+    answer_label: The conservation rules
+    check:
+      kind: structured
+      requires: [mass, charge, use]
+      concepts: [mass-number, atomic-number, total-before-equals-total-after]
+      points:
+        - id: mass
+          text: >-
+            The total mass number is conserved: the mass numbers on the left add up
+            to the same total as those on the right.
+          concepts: [mass-number]
+        - id: charge
+          text: >-
+            The total atomic number is conserved: the atomic numbers on the left
+            add up to the same total as those on the right.
+          concepts: [atomic-number]
+        - id: use
+          text: >-
+            Write the parent and the emission, then find the daughter by
+            subtracting. Check both totals afterwards.
+          concepts: [total-before-equals-total-after]
+    answer_text: >-
+      The total mass number is conserved, and the total atomic number is conserved.
+      Write the parent nucleus and the particle it emits, then subtract to find the
+      daughter. Add the two sides afterwards to check that both totals match.
+  - id: p20-3-isotopes
+    section: '20.3'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      Define isotopes, and explain why carbon-14 is an isotope of carbon.
+    answer_label: Isotopes
+    check:
+      kind: structured
+      requires: [definition, protons, neutrons, example]
+      concepts: [same-protons, different-neutrons, unstable]
+      points:
+        - id: definition
+          text: >-
+            Isotopes are nuclei of the same element, so they have the same number
+            of protons but different numbers of neutrons.
+          concepts: [same-protons, different-neutrons]
+        - id: protons
+          text: >-
+            Every carbon nucleus has six protons, so its atomic number is 6.
+          concepts: [same-protons]
+        - id: neutrons
+          text: >-
+            Carbon-14 has mass number 14, so it has $14 - 6 = 8$ neutrons, while
+            carbon-12 has six.
+          concepts: [different-neutrons]
+        - id: example
+          text: >-
+            The extra neutrons make carbon-14 unstable, so it decays, while
+            carbon-12 is stable.
+          concepts: [unstable]
+    answer_text: >-
+      Isotopes are nuclei of the same element, so they have the same number of
+      protons but different numbers of neutrons. Every carbon nucleus has six
+      protons, so carbon-14 has $14 - 6 = 8$ neutrons, while carbon-12 has six. The
+      extra neutrons make carbon-14 unstable, so it decays.
+  - id: p20-3-beta-32
+    section: '20.3'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A phosphorus-32 nucleus decays to sulfur-32. Identify the particle emitted,
+      and explain how the mass numbers and the atomic numbers show this.
+    answer_label: The particle emitted
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '32 - 32'
+          answer: '0'
+        - kind: evaluate
+          expression: '16 - 15'
+          answer: '1'
+        - kind: structured
+          requires: [mass, charge, name]
+          concepts: [mass-number, atomic-number, beta]
+          points:
+            - id: mass
+              text: >-
+                The mass number is unchanged, so the emitted particle has mass
+                number 0.
+              concepts: [mass-number]
+            - id: charge
+              text: >-
+                The atomic number rises from 15 to 16, so the emitted particle
+                carries a charge of $-1e$.
+              concepts: [atomic-number]
+            - id: name
+              text: >-
+                A particle with mass number 0 and charge $-e$ is a beta particle,
+                which is a fast electron.
+              concepts: [beta]
+    answer_text: >-
+      The mass number is unchanged, and the atomic number rises by one, so the
+      emitted particle has mass number 0 and charge $-e$. That is a beta particle:
+      $^{32}_{15}\text{P} \rightarrow {}^{32}_{16}\text{S} + {}^{0}_{-1}\text{e}$.
+  - id: p20-3-alpha-241
+    section: '20.3'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      Americium-241 decays by alpha emission. Write the nuclear equation, and name
+      the daughter nucleus.
+    answer_label: The decay equation
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '241 - 4'
+          answer: '237'
+        - kind: evaluate
+          expression: '95 - 2'
+          answer: '93'
+        - kind: structured
+          requires: [parent, emission, daughter]
+          concepts: [mass-number, atomic-number]
+          points:
+            - id: parent
+              text: >-
+                The parent is americium-241, with mass number 241 and atomic number
+                95.
+              concepts: [mass-number, atomic-number]
+            - id: emission
+              text: >-
+                The alpha particle carries away mass number 4 and atomic number 2.
+              concepts: [mass-number, atomic-number]
+            - id: daughter
+              text: >-
+                The daughter is neptunium-237, with mass number 237 and atomic
+                number 93.
+              concepts: [mass-number, atomic-number]
+    answer_text: >-
+      $^{241}_{95}\text{Am} \rightarrow {}^{237}_{93}\text{Np} +
+      {}^{4}_{2}\text{He}$. The daughter is neptunium-237.

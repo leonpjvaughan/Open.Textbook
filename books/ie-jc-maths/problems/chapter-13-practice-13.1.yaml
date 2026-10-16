@@ -1,0 +1,144 @@
+# Junior Cycle Mathematics, Chapter 13, section 13.1.
+#
+# Every check is an arithmetic identity the CAS proves, so the answer the reader
+# is shown is the answer the verifier proved. Each record writes the substituted
+# calculation in `expression` and the claimed value in `answer`, so a wrong
+# substitution fails rather than comparing a number with itself. Units and words
+# stay in `statement`: the CAS parses numbers and symbols only.
+chapter: 13
+symbols: {}
+
+problems:
+- id: jc13-13.1-sub-1
+  section: '13.1'
+  tier: O
+  refs:
+  - AF.6
+  statement: A rectangle is 7 cm long and 3 cm wide. Use the formula $A=lw$ to find its area.
+  answer_label: Use $A=lw$ with $l=7$ and $w=3$.
+  check:
+    kind: evaluate
+    expression: 7*3
+    answer: '21'
+  answer_text: $A=7\times3=21$, so the area is $21\ \text{cm}^2$. The letter $A$ stands for the area, and
+    the letters on the right are replaced by the numbers you are given.
+- id: jc13-13.1-sub-2
+  section: '13.1'
+  tier: O
+  refs:
+  - AF.6
+  statement: Use the formula $P=2(l+w)$ to find the perimeter of a rectangle with $l=8$ m and $w=5$ m.
+  answer_label: Use $P=2(l+w)$ with $l=8$ and $w=5$.
+  check:
+    kind: evaluate
+    expression: 2*(8+5)
+    answer: '26'
+  answer_text: $P=2(8+5)=2\times13=26$, so the perimeter is $26$ m. The bracket is worked out first, and
+    then the whole bracket is doubled.
+- id: jc13-13.1-sub-3
+  section: '13.1'
+  tier: O
+  refs:
+  - AF.6
+  statement: A car travels 150 km in 3 hours. Use the formula $s=\frac{d}{t}$ to find its average speed.
+  answer_label: Use $s=\frac{d}{t}$ with $d=150$ and $t=3$.
+  check:
+    kind: evaluate
+    expression: 150/3
+    answer: '50'
+  answer_text: $s=150\div3=50$, so the average speed is $50$ km/h. The bar of the fraction groups the whole
+    top and the whole bottom.
+- id: jc13-13.1-sub-4
+  section: '13.1'
+  tier: O
+  refs:
+  - AF.6
+  statement: A club charges €12 for each ticket plus a €5 booking fee. The cost is $C=12n+5$, where $n$ is the
+    number of tickets. Find the cost of 8 tickets.
+  answer_label: Find the cost when $n=8$.
+  check:
+    kind: evaluate
+    expression: 12*8+5
+    answer: '101'
+  answer_text: $C=12\times8+5=96+5=101$, so 8 tickets cost €101. Multiply before you add, because
+    multiplication is stronger than addition.
+- id: jc13-13.1-sub-5
+  section: '13.1'
+  tier: O
+  refs:
+  - AF.6
+  statement: Use the formula $y=3x-5$ to find $y$ when $x=-2$.
+  answer_label: Find $y$ when $x=-2$.
+  check:
+    kind: evaluate
+    expression: 3*(-2)-5
+    answer: '-11'
+  answer_text: $y=3\times(-2)-5=-6-5=-11$. Put a negative number in brackets when you substitute it, so the
+    multiplication sign is clear.
+- id: jc13-13.1-sub-6
+  section: '13.1'
+  tier: O
+  refs:
+  - AF.6
+  statement: Use the formula $A=\pi r^2$ to find the area of a circle with radius 5 cm. Use $\pi\approx3.14$.
+  answer_label: Use $A=\pi r^2$ with $r=5$.
+  check:
+    kind: evaluate
+    expression: 3.14*5**2
+    answer: '78.5'
+  answer_text: $A=3.14\times5^2=3.14\times25=78.5$, so the area is $78.5\ \text{cm}^2$. Work out the power
+    before the multiplication, because indices are stronger.
+- id: jc13-13.1-sub-7
+  section: '13.1'
+  tier: O
+  refs:
+  - AF.6
+  statement: A planter box is a cuboid with $l=1.5$ m, $w=1$ m and $h=0.4$ m. Use $V=lwh$ to find the volume
+    of soil it holds.
+  answer_label: Use $V=lwh$ with $l=1.5$, $w=1$ and $h=0.4$.
+  check:
+    kind: evaluate
+    expression: 1.5*1*0.4
+    answer: '0.6'
+  answer_text: $V=1.5\times1\times0.4=0.6$, so the box holds $0.6\ \text{m}^3$ of soil. Since
+    $1\ \text{m}^3=1000$ litres, that is 600 litres.
+- id: jc13-13.1-sub-8
+  section: '13.1'
+  tier: O
+  refs:
+  - AF.6
+  statement: 'Use the formula $F=\frac{9}{5}C+32$ to change $20^\circ$C into degrees Fahrenheit.'
+  answer_label: Use $F=\frac{9}{5}C+32$ with $C=20$.
+  check:
+    kind: evaluate
+    expression: (9/5)*20+32
+    answer: '68'
+  answer_text: $F=\frac{9}{5}\times20+32=36+32=68$, so $20^\circ$C is $68^\circ$F. The fraction multiplies
+    $C$ first, and then you add 32.
+- id: jc13-13.1-sub-9
+  section: '13.1'
+  tier: O
+  refs:
+  - AF.6
+  statement: A van speeds up from 6 m/s to 30 m/s in 4 seconds. Use the formula $a=\frac{v-u}{t}$ to find its
+    acceleration.
+  answer_label: Use $a=\frac{v-u}{t}$ with $v=30$, $u=6$ and $t=4$.
+  check:
+    kind: evaluate
+    expression: (30-6)/4
+    answer: '6'
+  answer_text: $a=\frac{30-6}{4}=\frac{24}{4}=6$, so the acceleration is $6\ \text{m/s}^2$. Subtract inside
+    the bracket first, then divide.
+- id: jc13-13.1-sub-10
+  section: '13.1'
+  tier: O
+  refs:
+  - AF.6
+  statement: 'Use the formula $y=x^2+2x-3$ to find $y$ when $x=-4$.'
+  answer_label: Find $y$ when $x=-4$.
+  check:
+    kind: evaluate
+    expression: (-4)**2+2*(-4)-3
+    answer: '5'
+  answer_text: $y=(-4)^2+2\times(-4)-3=16-8-3=5$. The square of a negative number is positive, because
+    $(-4)\times(-4)=16$.

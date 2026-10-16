@@ -1,0 +1,186 @@
+# Leaving Certificate Physics, Chapter 18, section 18.2 (strand 4 outcome 4.2).
+#
+# The photoelectric effect: the threshold frequency, the work function and the
+# observations the wave model cannot explain. Every record takes h = 6.6e-34 J s
+# and c = 3.0e8 m/s. `dimensions` proves the magnitude and the unit together;
+# `sigfigs` proves the single rounding.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order.
+chapter: 18
+problems:
+  - id: p18-2-threshold-frequency
+    section: '18.2'
+    tier: O
+    refs: ['4.2']
+    statement: 'A metal has a work function of $3.3 \times 10^{-19}$ J. Calculate its threshold frequency. Take $h = 6.6 \times 10^{-34}$ J s.'
+    answer_label: 'Threshold frequency'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: phi / h
+          values:
+            phi: {value: '3.3e-19', unit: J}
+            h: {value: '6.6e-34', unit: 'J s'}
+          answer: {value: '5.0e14', unit: Hz}
+        - kind: sigfigs
+          value: '3.3e-19 / 6.6e-34'
+          figures: 2
+          answer: '5.0e14'
+          convention: round-once
+    answer_text: 'At the threshold, $hf_0 = \Phi$, so $f_0 = \dfrac{\Phi}{h} = \dfrac{3.3 \times 10^{-19}}{6.6 \times 10^{-34}} = 5.0 \times 10^{14}\,\text{Hz}$.'
+  - id: p18-2-work-function-wavelength
+    section: '18.2'
+    tier: O
+    refs: ['4.2']
+    statement: 'A metal has a threshold wavelength of 600 nm. Calculate its work function in joules. Take $h = 6.6 \times 10^{-34}$ J s and $c = 3.0 \times 10^{8}$ m/s.'
+    answer_label: 'Work function'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / lam0
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: 'm/s'}
+            lam0: {value: '6.0e-7', unit: m}
+          answer: {value: '3.3e-19', unit: J}
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / 6.0e-7'
+          figures: 2
+          answer: '3.3e-19'
+          convention: round-once
+    answer_text: 'At the threshold the photon just has enough energy to free the electron, so $\Phi = \dfrac{hc}{\lambda_0} = \dfrac{6.6 \times 10^{-34} \times 3.0 \times 10^{8}}{6.0 \times 10^{-7}} = 3.3 \times 10^{-19}\,\text{J}$.'
+  - id: p18-2-work-function-ev
+    section: '18.2'
+    tier: O
+    refs: ['4.2']
+    statement: 'A work function is $3.3 \times 10^{-19}$ J. Calculate it in electronvolts. Take $1\,\text{eV} = 1.6 \times 10^{-19}$ J.'
+    answer_label: 'Work function in electronvolts'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '3.3e-19 / 1.6e-19'
+          answer: '2.0625'
+        - kind: sigfigs
+          value: '3.3e-19 / 1.6e-19'
+          figures: 2
+          answer: '2.1'
+          convention: round-once
+    answer_text: '$\dfrac{3.3 \times 10^{-19}}{1.6 \times 10^{-19}} = 2.1\,\text{eV}$ to two significant figures. Work functions are quoted in electronvolts because the numbers are then small and easy to compare with photon energies.'
+  - id: p18-2-threshold-wavelength
+    section: '18.2'
+    tier: O
+    refs: ['4.2']
+    statement: 'A metal has a work function of $3.3 \times 10^{-19}$ J. Calculate its threshold wavelength. Take $h = 6.6 \times 10^{-34}$ J s and $c = 3.0 \times 10^{8}$ m/s.'
+    answer_label: 'Threshold wavelength'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / phi
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: 'm/s'}
+            phi: {value: '3.3e-19', unit: J}
+          answer: {value: '6.0e-7', unit: m}
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / 3.3e-19'
+          figures: 2
+          answer: '6.0e-7'
+          convention: round-once
+    answer_text: 'At the threshold $hf_0 = \Phi$, and $f_0 = \dfrac{c}{\lambda_0}$, so $\lambda_0 = \dfrac{hc}{\Phi} = \dfrac{6.6 \times 10^{-34} \times 3.0 \times 10^{8}}{3.3 \times 10^{-19}} = 6.0 \times 10^{-7}\,\text{m}$, which is 600 nm.'
+  - id: p18-2-red-light-decision
+    section: '18.2'
+    tier: O
+    refs: ['4.2']
+    statement: 'Red light of wavelength 700 nm falls on a metal of work function $3.3 \times 10^{-19}$ J. Calculate the energy of one photon and say whether electrons are released. Take $h = 6.6 \times 10^{-34}$ J s and $c = 3.0 \times 10^{8}$ m/s.'
+    answer_label: 'Photon energy, and whether emission occurs'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / lam
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: 'm/s'}
+            lam: {value: '7.0e-7', unit: m}
+          answer: {value: '2.8e-19', unit: J}
+          tolerance: '1e-20'
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / 7.0e-7'
+          figures: 2
+          answer: '2.8e-19'
+          convention: round-once
+    answer_text: '$E = \dfrac{hc}{\lambda} = \dfrac{6.6 \times 10^{-34} \times 3.0 \times 10^{8}}{7.0 \times 10^{-7}} = 2.8 \times 10^{-19}\,\text{J}$. This is less than the work function, $3.3 \times 10^{-19}$ J, so no electron can escape and no emission occurs. Making the red light brighter cannot change this, because brightness changes the number of photons, not the energy of each one.'
+  - id: p18-2-lamp-power
+    section: '18.2'
+    tier: O
+    refs: ['4.2']
+    statement: 'A lamp releases $4.0 \times 10^{18}$ photons each second. Each photon carries $2.8 \times 10^{-19}$ J. Calculate the power of the light.'
+    answer_label: 'Power of the light'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: N * E
+          values:
+            N: {value: '4.0e18', unit: Hz}
+            E: {value: '2.8e-19', unit: J}
+          answer: {value: '1.1', unit: W}
+          tolerance: '0.05'
+        - kind: sigfigs
+          value: '4.0e18 * 2.8e-19'
+          figures: 2
+          answer: '1.1'
+          convention: round-once
+    answer_text: 'Power is energy each second: $4.0 \times 10^{18} \times 2.8 \times 10^{-19} = 1.1\,\text{W}$.'
+  - id: p18-2-wave-theory-fails
+    section: '18.2'
+    tier: O
+    refs: ['4.2']
+    statement: 'Describe the three observations of the photoelectric effect that the wave model of light cannot explain.'
+    answer_label: 'What the wave model cannot explain'
+    check:
+      kind: structured
+      requires: [threshold, intensity, instantaneous]
+      concepts: [threshold-frequency, kinetic-energy, wave-spreads]
+      points:
+        - id: threshold
+          text: 'Below a threshold frequency no electrons are released, however intense the light, and above it electrons are released however dim the light.'
+          concepts: [threshold-frequency]
+        - id: intensity
+          text: 'Above the threshold, increasing the intensity increases the number of electrons released each second but leaves the maximum kinetic energy of each electron unchanged.'
+          concepts: [kinetic-energy]
+        - id: instantaneous
+          text: 'Emission begins at once, even in very dim light, whereas a wave spreading its energy over the surface would need time to build up enough energy in one place.'
+          concepts: [wave-spreads]
+    answer_text: 'Below a threshold frequency, no electrons are released, however intense the light. Above it, electrons are released even in dim light. Increasing the intensity increases the number of electrons each second but does not change their maximum kinetic energy. Emission also begins at once, even in dim light, whereas a wave would need time to build up energy in one place. The photon model explains all three: one photon gives all its energy to one electron, and the energy of a photon depends on the frequency.'
+  - id: p18-2-photocell
+    section: '18.2'
+    tier: O
+    refs: ['4.2']
+    statement: 'Explain how a photocell uses the photoelectric effect, and give one everyday use of it.'
+    answer_label: 'The photocell'
+    check:
+      kind: structured
+      requires: [cathode, emission, current, application]
+      concepts: [work-function, threshold-frequency, current]
+      points:
+        - id: cathode
+          text: 'The cathode is coated with a metal of low work function, so visible light can free its electrons.'
+          concepts: [work-function]
+        - id: emission
+          text: 'Light of frequency above the threshold releases electrons from the cathode.'
+          concepts: [threshold-frequency]
+        - id: current
+          text: 'The electrons are attracted to the anode, so a current flows; more intense light releases more electrons and gives a larger current.'
+          concepts: [current]
+        - id: application
+          text: 'A photocell switches an automatic door, a burglar alarm or a street lamp when the light falling on it changes.'
+          concepts: [current]
+    answer_text: 'The cathode of a photocell is coated with a metal of low work function. Light of frequency above the threshold releases electrons from its surface. The electrons are attracted to the anode, so a current flows. Brighter light releases more electrons each second and gives a larger current. A photocell switches an automatic door, a burglar alarm or a street lamp when the light falling on it changes.'

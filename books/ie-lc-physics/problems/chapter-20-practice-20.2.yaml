@@ -1,0 +1,220 @@
+# Leaving Certificate Physics, Chapter 20, section 20.2 (strand 4 outcome 4.4).
+#
+# The physics oracle proves a quantity's magnitude and unit (`dimensions`) and the
+# rounding the data support (`sigfigs`). A value built on the irrational constant
+# ln 2 cannot be written exactly, so its `sigfigs` record carries the tolerance
+# across which the declared rounding must hold.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. The
+# decay constant is checked against ln 2 / T, not against a mark scheme.
+chapter: 20
+problems:
+  - id: p20-2-after-three
+    section: '20.2'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A radioactive source has an activity of $6.4 \times 10^3$ Bq. Calculate its
+      activity after three half-lives.
+    answer_label: Activity after three half-lives
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: A0 / 2**3
+          values:
+            A0: {value: '6.4e3', unit: Bq}
+          answer: {value: '800', unit: Bq}
+        - kind: sigfigs
+          value: '6.4e3 / 2**3'
+          figures: 2
+          answer: '8.0e2'
+          convention: round-once
+    answer_text: >-
+      Each half-life halves the activity, so three half-lives divide it by
+      $2^3 = 8$: $6.4 \times 10^3 \div 8 = 8.0 \times 10^2$ Bq.
+  - id: p20-2-after-four
+    section: '20.2'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A radioactive source has an activity of 2400 Bq and a half-life of 5.0
+      minutes. Calculate its activity 20 minutes later.
+    answer_label: Activity after 20 minutes
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: A0 / 2**4
+          values:
+            A0: {value: '2400', unit: Bq}
+          answer: {value: '150', unit: Bq}
+        - kind: sigfigs
+          value: '2400 / 2**4'
+          figures: 2
+          answer: '1.5e2'
+          convention: round-once
+    answer_text: >-
+      Twenty minutes is four half-lives, because $20 \div 5.0 = 4$. The activity is
+      divided by $2^4 = 16$: $2400 \div 16 = 150$ Bq, which is $1.5 \times 10^2$
+      Bq.
+  - id: p20-2-fraction
+    section: '20.2'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      What fraction of the nuclei in a radioactive sample remains after four
+      half-lives?
+    answer_label: Fraction remaining
+    check:
+      kind: dimensions
+      expression: 1 / 2**4
+      answer: {value: '1/16'}
+    answer_text: >-
+      Each half-life leaves one half of the nuclei, so four half-lives leave
+      $\left(\dfrac{1}{2}\right)^4 = \dfrac{1}{16}$ of them.
+  - id: p20-2-show-60
+    section: '20.2'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A source has an activity of 480 Bq. Show that its activity falls to 60 Bq
+      after three half-lives.
+    answer_label: Activity after three half-lives
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: A0 / 2**3
+          values:
+            A0: {value: '480', unit: Bq}
+          answer: {value: '60', unit: Bq}
+        - kind: sigfigs
+          value: '480 / 2**3'
+          figures: 2
+          answer: '6.0e1'
+          convention: round-once
+    answer_text: >-
+      Three half-lives divide the activity by $2^3 = 8$: $480 \div 8 = 60$ Bq,
+      which is $6.0 \times 10^1$ Bq.
+  - id: p20-2-decay-constant
+    section: '20.2'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A radioactive isotope has a half-life of 60 s. Calculate its decay constant,
+      in s$^{-1}$, to three significant figures.
+    answer_label: Decay constant
+    check:
+      kind: sigfigs
+      value: 'log(2) / 60'
+      figures: 3
+      answer: '1.16e-2'
+      unit: s^-1
+      convention: round-once
+      tolerance: '1e-6'
+    answer_text: >-
+      The decay constant is $\lambda = \dfrac{\ln 2}{T_{1/2}} =
+      \dfrac{0.693}{60} = 1.16 \times 10^{-2}\,\text{s}^{-1}$.
+  - id: p20-2-curve
+    section: '20.2'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A graph of activity against time for a radioactive source is a curve that
+      falls and never reaches zero. Describe the shape of the curve and explain how
+      you would find the half-life from it.
+    answer_label: The decay curve
+    check:
+      kind: structured
+      requires: [shape, method, check]
+      concepts: [exponential, halving, constant-half-life]
+      points:
+        - id: shape
+          text: >-
+            The curve falls steeply at first and then flattens, approaching zero
+            without reaching it.
+          concepts: [exponential]
+        - id: method
+          text: >-
+            Read the activity at a chosen time, halve it, and read the time at
+            which the curve reaches that value. The difference between the two
+            times is the half-life.
+          concepts: [halving]
+        - id: check
+          text: >-
+            Repeat the step from another starting point. The half-life is the same
+            every time, which is why one value describes the whole curve.
+          concepts: [constant-half-life]
+    answer_text: >-
+      The curve falls steeply at first and then flattens, approaching zero without
+      reaching it. To find the half-life, read the activity at one time, halve it,
+      and find the time at which the curve reaches that value. The gap between the
+      two times is the half-life. Starting again from another point gives the same
+      half-life, which is why a single value describes the whole curve.
+  - id: p20-2-random
+    section: '20.2'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      The decay of a single nucleus is random, yet the decay curve of a large
+      sample is smooth. Explain why.
+    answer_label: Why the curve is smooth
+    check:
+      kind: structured
+      requires: [random, many-nuclei, probability]
+      concepts: [cannot-predict, statistics, constant-fraction]
+      points:
+        - id: random
+          text: >-
+            You cannot predict when one particular nucleus will decay.
+          concepts: [cannot-predict]
+        - id: many-nuclei
+          text: >-
+            A visible sample holds a very large number of nuclei, so the random
+            events average out.
+          concepts: [statistics]
+        - id: probability
+          text: >-
+            In each short time the same small fraction of the remaining nuclei
+            decays, so the activity falls by the same fraction in equal times.
+          concepts: [constant-fraction]
+    answer_text: >-
+      You cannot predict when one particular nucleus will decay. A visible sample
+      holds a very large number of nuclei, so the random events average out and the
+      measured count rate follows a smooth curve. In every short time the same
+      small fraction of the remaining nuclei decays, so the activity falls by the
+      same fraction in equal times.
+  - id: p20-2-activity
+    section: '20.2'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      State what is meant by the activity of a radioactive source, give its unit,
+      and explain how activity is related to the number of nuclei that are still
+      undecayed.
+    answer_label: Activity
+    check:
+      kind: structured
+      requires: [definition, unit, relation]
+      concepts: [decays-per-second, becquerel, proportional]
+      points:
+        - id: definition
+          text: >-
+            The activity is the number of nuclei that decay in one second.
+          concepts: [decays-per-second]
+        - id: unit
+          text: >-
+            The unit is the becquerel, Bq, where one becquerel is one decay per
+            second.
+          concepts: [becquerel]
+        - id: relation
+          text: >-
+            The activity is proportional to the number of undecayed nuclei, so it
+            halves in every half-life.
+          concepts: [proportional]
+    answer_text: >-
+      The activity of a source is the number of nuclei that decay in one second.
+      Its unit is the becquerel, Bq, where one becquerel is one decay per second.
+      The activity is proportional to the number of nuclei that are still
+      undecayed, so it halves in every half-life.

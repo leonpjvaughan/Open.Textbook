@@ -5,14 +5,17 @@ chapter_title: Formulae
 section: '13.1'
 section_title: Using formulae
 tier: O
-refs:
-- AF.6
+refs: [AF.6]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 13.1 Using formulae — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.6
+Work independently. The questions and answers are shown together at the end.
+
+Write the units with your answer. Put a negative number in brackets when you
+substitute it, and work out an index before the operations around it.
+
+:::problems chapter-13-practice-13.1
+
+:::answers chapter-13-practice-13.1

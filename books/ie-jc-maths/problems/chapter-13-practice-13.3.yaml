@@ -1,0 +1,194 @@
+# Junior Cycle Mathematics, Chapter 13, section 13.3.
+#
+# Two kinds of check, both proved by the CAS. Substituting into a bracket or a
+# fraction is `kind: evaluate`, with the substituted calculation in `expression`
+# and the value in `answer`. Changing the subject is `kind: solve`, which solves
+# the original formula for the new subject; a letter you divide by is declared
+# `nonzero`, or SymPy returns an unsolved intersection instead of the single
+# rearrangement. The `answer` field is the CAS form and the reader sees the
+# friendlier form in `answer_text`.
+chapter: 13
+symbols:
+  A: {real: true}
+  l: {real: true}
+  w: {real: true}
+  h: {real: true, nonzero: true}
+  x: {real: true}
+  y: {real: true}
+  P: {real: true}
+  m: {real: true}
+  a: {real: true}
+  b: {real: true}
+  u: {real: true}
+  v: {real: true}
+  t: {real: true}
+  n: {real: true, nonzero: true}
+  S: {real: true}
+  C: {real: true}
+  F: {real: true}
+  V: {real: true}
+  r: {real: true, positive: true}
+
+problems:
+- id: jc13-13.3-sub-1
+  section: '13.3'
+  tier: O
+  refs:
+  - AF.6
+  statement: Use $P=2(l+w)$ to find the perimeter of a rectangle with $l=6.5$ m and $w=3.5$ m.
+  answer_label: Use $P=2(l+w)$ with $l=6.5$ and $w=3.5$.
+  check:
+    kind: evaluate
+    expression: 2*(6.5+3.5)
+    answer: '20'
+  answer_text: $P=2(6.5+3.5)=2\times10=20$, so the perimeter is 20 m. Add inside the bracket first, then
+    double.
+- id: jc13-13.3-sub-2
+  section: '13.3'
+  tier: O
+  refs:
+  - AF.6
+  statement: Use $A=2h(l+w)$ to find the area of the four sides of a box with $h=4$ cm, $l=10$ cm and $w=3$ cm.
+  answer_label: Use $A=2h(l+w)$ with $h=4$, $l=10$ and $w=3$.
+  check:
+    kind: evaluate
+    expression: 2*4*(10+3)
+    answer: '104'
+  answer_text: $A=2\times4\times(10+3)=8\times13=104$, so the area is $104\ \text{cm}^2$. The bracket goes
+    first, and then you multiply by 2 and by 4.
+- id: jc13-13.3-sub-3
+  section: '13.3'
+  tier: O
+  refs:
+  - AF.6
+  statement: The mean of two numbers is $m=\frac{a+b}{2}$. Find $m$ when $a=7$ and $b=13$.
+  answer_label: Use $m=\frac{a+b}{2}$ with $a=7$ and $b=13$.
+  check:
+    kind: evaluate
+    expression: (7+13)/2
+    answer: '10'
+  answer_text: $m=\frac{7+13}{2}=\frac{20}{2}=10$. The fraction bar groups the whole top, so add before you
+    divide.
+- id: jc13-13.3-sub-4
+  section: '13.3'
+  tier: O
+  refs:
+  - AF.6
+  statement: 'Use $F=\frac{9}{5}C+32$ to change $35^\circ$C into degrees Fahrenheit.'
+  answer_label: Use $F=\frac{9}{5}C+32$ with $C=35$.
+  check:
+    kind: evaluate
+    expression: (9/5)*35+32
+    answer: '95'
+  answer_text: $F=\frac{9}{5}\times35+32=63+32=95$, so $35^\circ$C is $95^\circ$F.
+- id: jc13-13.3-subject-1
+  section: '13.3'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $x$ the subject of the formula $y=3(x+2)$.
+  answer_label: Make $x$ the subject of $y=3(x+2)$.
+  check:
+    kind: solve
+    equation: y = 3*(x+2)
+    variable: x
+    answer: y/3 - 2
+  answer_text: $x=\frac{y}{3}-2$. Divide both sides by 3, which gives $\frac{y}{3}=x+2$, and then subtract 2
+    from both sides.
+- id: jc13-13.3-subject-2
+  section: '13.3'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $w$ the subject of the formula $A=2h(l+w)$.
+  answer_label: Make $w$ the subject of $A=2h(l+w)$.
+  check:
+    kind: solve
+    equation: A = 2*h*(l+w)
+    variable: w
+    answer: A/(2*h) - l
+  answer_text: $w=\frac{A}{2h}-l$. Divide both sides by $2h$, which gives $\frac{A}{2h}=l+w$, and then
+    subtract $l$ from both sides.
+- id: jc13-13.3-subject-3
+  section: '13.3'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $l$ the subject of the formula $P=2(l+w)$.
+  answer_label: Make $l$ the subject of $P=2(l+w)$.
+  check:
+    kind: solve
+    equation: P = 2*(l+w)
+    variable: l
+    answer: P/2 - w
+  answer_text: $l=\frac{P}{2}-w$. Divide both sides by 2 to get $\frac{P}{2}=l+w$, then subtract $w$.
+- id: jc13-13.3-subject-4
+  section: '13.3'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $b$ the subject of the formula $m=\frac{a+b}{2}$.
+  answer_label: Make $b$ the subject of $m=\frac{a+b}{2}$.
+  check:
+    kind: solve
+    equation: m = (a+b)/2
+    variable: b
+    answer: 2*m - a
+  answer_text: $b=2m-a$. Multiply both sides by 2 to clear the fraction, which gives $2m=a+b$, then subtract
+    $a$ from both sides.
+- id: jc13-13.3-subject-5
+  section: '13.3'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $v$ the subject of the formula $t=\frac{v-u}{a}$.
+  answer_label: Make $v$ the subject of $t=\frac{v-u}{a}$.
+  check:
+    kind: solve
+    equation: t = (v-u)/a
+    variable: v
+    answer: u + a*t
+  answer_text: $v=u+at$. Multiply both sides by $a$ to clear the fraction, which gives $at=v-u$, then add
+    $u$ to both sides.
+- id: jc13-13.3-subject-6
+  section: '13.3'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $h$ the subject of the formula for the volume of a cone, $V=\frac{1}{3}\pi r^2h$.
+  answer_label: Make $h$ the subject of $V=\frac{1}{3}\pi r^2h$.
+  check:
+    kind: solve
+    equation: V = (1/3)*pi*r**2*h
+    variable: h
+    answer: 3*V/(pi*r**2)
+  answer_text: $h=\frac{3V}{\pi r^2}$. Multiply both sides by 3 to clear the fraction, which gives
+    $3V=\pi r^2h$, then divide both sides by $\pi r^2$.
+- id: jc13-13.3-subject-7
+  section: '13.3'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $l$ the subject of the formula for the sum of an arithmetic series, $S=\frac{n}{2}(a+l)$.
+  answer_label: Make $l$ the subject of $S=\frac{n}{2}(a+l)$.
+  check:
+    kind: solve
+    equation: S = (n/2)*(a+l)
+    variable: l
+    answer: 2*S/n - a
+  answer_text: $l=\frac{2S}{n}-a$. Multiply both sides by 2 and divide by $n$ to get $\frac{2S}{n}=a+l$, then
+    subtract $a$.
+- id: jc13-13.3-context-1
+  section: '13.3'
+  tier: O
+  refs:
+  - AF.6
+  statement: The planter box from the chapter problem has no lid. The area of board for its four sides and its
+    base is $A=2h(l+w)+lw$. Find $A$ when $l=1.5$ m, $w=1$ m and $h=0.4$ m.
+  answer_label: Use $A=2h(l+w)+lw$ with $l=1.5$, $w=1$ and $h=0.4$.
+  check:
+    kind: evaluate
+    expression: 2*0.4*(1.5+1) + 1.5*1
+    answer: '3.5'
+  answer_text: $A=2\times0.4\times(1.5+1)+1.5\times1=0.8\times2.5+1.5=2+1.5=3.5$, so the box needs
+    $3.5\ \text{m}^2$ of board. Work out each bracket first, then add the base.

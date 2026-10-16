@@ -1,0 +1,176 @@
+# Leaving Certificate Physics, Chapter 18, section 18.3 (strand 4 outcome 4.2).
+#
+# Einstein's photoelectric equation, hf = phi + (1/2) m v_max^2, and the graph of
+# maximum kinetic energy against frequency. Every record takes h = 6.6e-34 J s,
+# c = 3.0e8 m/s, e = 1.6e-19 C and m = 9.1e-31 kg. `dimensions` proves the
+# magnitude and the unit together; `sigfigs` proves the single rounding; a value
+# built on a square root carries the tolerance that makes the rounding a proof.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` record proves only that a model answer contains the
+# declared steps and concepts, in order.
+chapter: 18
+problems:
+  - id: p18-3-kinetic-energy
+    section: '18.3'
+    tier: O
+    refs: ['4.2']
+    statement: 'Light of wavelength 500 nm falls on a metal of work function $3.3 \times 10^{-19}$ J. Calculate the maximum kinetic energy of the emitted electrons. Take $h = 6.6 \times 10^{-34}$ J s and $c = 3.0 \times 10^{8}$ m/s.'
+    answer_label: 'Maximum kinetic energy'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / lam - phi
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: 'm/s'}
+            lam: {value: '5.0e-7', unit: m}
+            phi: {value: '3.3e-19', unit: J}
+          answer: {value: '6.6e-20', unit: J}
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / 5.0e-7 - 3.3e-19'
+          figures: 2
+          answer: '6.6e-20'
+          convention: round-once
+    answer_text: 'The photon energy is $\dfrac{hc}{\lambda} = 3.96 \times 10^{-19}\,\text{J}$. Einstein''s equation gives $E_k = hf - \Phi = 3.96 \times 10^{-19} - 3.3 \times 10^{-19} = 6.6 \times 10^{-20}\,\text{J}$.'
+  - id: p18-3-max-speed
+    section: '18.3'
+    tier: O
+    refs: ['4.2']
+    statement: 'A photoelectron leaves a metal surface with a maximum kinetic energy of $1.2 \times 10^{-19}$ J. Calculate its maximum speed. Take $m = 9.1 \times 10^{-31}$ kg.'
+    answer_label: 'Maximum speed of the electron'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(2 * E / m)
+          values:
+            E: {value: '1.2e-19', unit: J}
+            m: {value: '9.1e-31', unit: kg}
+          answer: {value: '5.1e5', unit: m/s}
+          tolerance: '5e3'
+        - kind: sigfigs
+          value: 'sqrt(2 * 1.2e-19 / 9.1e-31)'
+          figures: 2
+          answer: '5.1e5'
+          tolerance: '1e3'
+          convention: round-once
+    answer_text: '$E_k = \tfrac{1}{2}mv^2$, so $v = \sqrt{\dfrac{2E_k}{m}} = \sqrt{\dfrac{2 \times 1.2 \times 10^{-19}}{9.1 \times 10^{-31}}} = 5.1 \times 10^{5}\,\text{m/s}$.'
+  - id: p18-3-stopping-voltage
+    section: '18.3'
+    tier: O
+    refs: ['4.2']
+    statement: 'The maximum kinetic energy of a photoelectron is $1.2 \times 10^{-19}$ J. Calculate the stopping voltage for this metal. Take $e = 1.6 \times 10^{-19}$ C.'
+    answer_label: 'Stopping voltage'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E / e
+          values:
+            E: {value: '1.2e-19', unit: J}
+            e: {value: '1.6e-19', unit: C}
+          answer: {value: '0.75', unit: V}
+        - kind: sigfigs
+          value: '1.2e-19 / 1.6e-19'
+          figures: 2
+          answer: '0.75'
+          convention: round-once
+    answer_text: 'The stopping voltage just stops the fastest electrons, so $eV_s = E_k$. Then $V_s = \dfrac{E_k}{e} = \dfrac{1.2 \times 10^{-19}}{1.6 \times 10^{-19}} = 0.75\,\text{V}$.'
+  - id: p18-3-work-function
+    section: '18.3'
+    tier: O
+    refs: ['4.2']
+    statement: 'Light of frequency $8.0 \times 10^{14}$ Hz releases electrons from a metal with a maximum kinetic energy of $1.98 \times 10^{-19}$ J. Calculate the work function of the metal. Take $h = 6.6 \times 10^{-34}$ J s.'
+    answer_label: 'Work function'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * f - E
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            f: {value: '8.0e14', unit: Hz}
+            E: {value: '1.98e-19', unit: J}
+          answer: {value: '3.3e-19', unit: J}
+        - kind: sigfigs
+          value: '6.6e-34 * 8.0e14 - 1.98e-19'
+          figures: 2
+          answer: '3.3e-19'
+          convention: round-once
+    answer_text: 'Rearranging $hf = \Phi + E_k$ gives $\Phi = hf - E_k = 6.6 \times 10^{-34} \times 8.0 \times 10^{14} - 1.98 \times 10^{-19} = 3.3 \times 10^{-19}\,\text{J}$.'
+  - id: p18-3-kinetic-energy-ev
+    section: '18.3'
+    tier: O
+    refs: ['4.2']
+    statement: 'Light of frequency $8.0 \times 10^{14}$ Hz falls on a metal of work function 2.1 eV. Calculate the maximum kinetic energy of the emitted electrons, in electronvolts. Take $h = 6.6 \times 10^{-34}$ J s and $1\,\text{eV} = 1.6 \times 10^{-19}$ J.'
+    answer_label: 'Maximum kinetic energy in electronvolts'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          value: '1.2'
+          unit: eV
+          dimensions: J
+          si_value: '1.9226119608e-19'
+        - kind: sigfigs
+          value: '((6.6e-34 * 8.0e14) - (2.1 * 1.6e-19)) / 1.6e-19'
+          figures: 2
+          answer: '1.2'
+          convention: round-once
+    answer_text: 'The photon energy is $hf = 6.6 \times 10^{-34} \times 8.0 \times 10^{14} = 5.28 \times 10^{-19}\,\text{J}$, which is 3.3 eV. The work function is 2.1 eV, so the maximum kinetic energy is $3.3 - 2.1 = 1.2\,\text{eV}$. Working in electronvolts saves a conversion at every step.'
+  - id: p18-3-gradient-planck
+    section: '18.3'
+    tier: O
+    refs: ['4.2']
+    statement: 'A student plots the maximum kinetic energy of the photoelectrons on the vertical axis against the frequency of the light on the horizontal axis. The points are $(6.0 \times 10^{14}, 6.6 \times 10^{-20})$, $(7.0 \times 10^{14}, 1.32 \times 10^{-19})$, $(8.0 \times 10^{14}, 1.98 \times 10^{-19})$, $(9.0 \times 10^{14}, 2.64 \times 10^{-19})$ and $(10.0 \times 10^{14}, 3.3 \times 10^{-19})$. Calculate the gradient of the line and state what it represents.'
+    answer_label: 'Gradient of the line'
+    check:
+      kind: gradient
+      series:
+        - ['6.0e14', '6.6e-20']
+        - ['7.0e14', '1.32e-19']
+        - ['8.0e14', '1.98e-19']
+        - ['9.0e14', '2.64e-19']
+        - ['10.0e14', '3.3e-19']
+      between: ['6.5e-34', '6.7e-34']
+    answer_text: 'The points lie on a straight line, because $E_k = hf - \Phi$ is of the form $y = mx + c$. The gradient is the Planck constant: $\dfrac{3.3 \times 10^{-19} - 6.6 \times 10^{-20}}{10.0 \times 10^{14} - 6.0 \times 10^{14}} = 6.6 \times 10^{-34}\,\text{J s}$.'
+  - id: p18-3-intercept
+    section: '18.3'
+    tier: O
+    refs: ['4.2']
+    statement: 'For the same graph, find the intercept of the line with the vertical axis and state what it represents.'
+    answer_label: 'Intercept with the vertical axis'
+    check:
+      kind: intercept
+      series:
+        - ['6.0e14', '6.6e-20']
+        - ['7.0e14', '1.32e-19']
+        - ['8.0e14', '1.98e-19']
+        - ['9.0e14', '2.64e-19']
+        - ['10.0e14', '3.3e-19']
+      between: ['-3.4e-19', '-3.2e-19']
+    answer_text: 'The line meets the vertical axis at $-3.3 \times 10^{-19}\,\text{J}$. That is $-\Phi$, so the work function is $3.3 \times 10^{-19}\,\text{J}$. The intercept on the frequency axis is the threshold frequency, $5.0 \times 10^{14}\,\text{Hz}$.'
+  - id: p18-3-einstein-equation
+    section: '18.3'
+    tier: O
+    refs: ['4.2']
+    statement: 'State Einstein''s photoelectric equation, name each term, and explain how it accounts for the threshold frequency.'
+    answer_label: 'Einstein''s photoelectric equation'
+    check:
+      kind: structured
+      requires: [equation, terms, threshold]
+      concepts: [photon-energy, work-function, kinetic-energy]
+      points:
+        - id: equation
+          text: 'Einstein''s equation is $hf = \Phi + \tfrac{1}{2}mv_{\text{max}}^2$.'
+          concepts: [photon-energy, work-function, kinetic-energy]
+        - id: terms
+          text: '$hf$ is the energy of the photon, $\Phi$ is the work function, the least energy needed to escape the metal, and $\tfrac{1}{2}mv_{\text{max}}^2$ is the maximum kinetic energy of the emitted electron.'
+          concepts: [photon-energy, work-function, kinetic-energy]
+        - id: threshold
+          text: 'If $hf$ is less than $\Phi$, the electron cannot escape, so no emission occurs until the frequency reaches the threshold $f_0 = \dfrac{\Phi}{h}$.'
+          concepts: [work-function]
+    answer_text: 'Einstein''s equation is $hf = \Phi + \tfrac{1}{2}mv_{\text{max}}^2$. The term $hf$ is the energy of one photon, $\Phi$ is the work function, the least energy an electron needs to escape the metal, and $\tfrac{1}{2}mv_{\text{max}}^2$ is the maximum kinetic energy of the emitted electron. If $hf$ is less than $\Phi$, the electron cannot escape at all, so no emission occurs until the frequency reaches the threshold $f_0 = \dfrac{\Phi}{h}$.'

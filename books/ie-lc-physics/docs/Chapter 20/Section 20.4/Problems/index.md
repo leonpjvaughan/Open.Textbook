@@ -10,9 +10,15 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 20.4 Uses and hazards of radiation — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 4.4
+Work independently. The questions and answers are shown together at the end.
+
+For every use, decide which emission and which half-life the job needs, and give a
+reason for each choice. For a hazard question, name the way the dose is reduced and
+say why it works. Give numerical answers with units and sensible significant
+figures.
+
+:::problems chapter-20-practice-20.4
+
+:::answers chapter-20-practice-20.4

@@ -1,0 +1,292 @@
+# Junior Cycle Mathematics, Chapter 4, section 4.3.
+#
+# Every standard-form answer is checked in two parts: the value is proved by
+# `evaluate`, and the coefficient is proved to be at least 1 and less than 10 by
+# two `compare` checks. That is what stops `12 x 10^5` passing as standard form
+# when its value is right: the coefficient is outside the range, so the build
+# fails.
+#
+# Record 12 rounds to significant figures, so it needs the units oracle. The bank
+# declares it, because the book names SymPy.
+chapter: 4
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc4-4.3-large-1
+  section: '4.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Write 47000 in standard form.
+  answer_label: Write 47000 in standard form.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4.7 * 10**4
+      answer: '47000'
+    - kind: compare
+      lhs: '4.7'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '4.7'
+      relation: <
+      rhs: '10'
+  answer_text: >-
+    $4.7\times10^{4}$. Move the decimal point four places left, from 47000 to
+    4.7000. The coefficient 4.7 is between 1 and 10, so the answer is in standard
+    form.
+- id: jc4-4.3-large-2
+  section: '4.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Write 3600000 in standard form.
+  answer_label: Write 3600000 in standard form.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3.6 * 10**6
+      answer: '3600000'
+    - kind: compare
+      lhs: '3.6'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '3.6'
+      relation: <
+      rhs: '10'
+  answer_text: >-
+    $3.6\times10^{6}$. Move the decimal point six places left. The coefficient is
+    3.6 and the index is 6. Check the size: $3.6\times1000000$ is a little over
+    three million.
+- id: jc4-4.3-small-1
+  section: '4.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Write 0.00052 in standard form.
+  answer_label: Write 0.00052 in standard form.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 5.2 * 10**-4
+      answer: '0.00052'
+    - kind: compare
+      lhs: '5.2'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '5.2'
+      relation: <
+      rhs: '10'
+  answer_text: >-
+    $5.2\times10^{-4}$. Move the decimal point four places right, from 0.00052 to
+    00005.2. The index is $-4$, because the number is smaller than 1.
+- id: jc4-4.3-small-2
+  section: '4.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Write 0.000306 in standard form.
+  answer_label: Write 0.000306 in standard form.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3.06 * 10**-4
+      answer: '0.000306'
+    - kind: compare
+      lhs: '3.06'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '3.06'
+      relation: <
+      rhs: '10'
+  answer_text: >-
+    $3.06\times10^{-4}$. Move the decimal point four places right. The coefficient
+    3.06 keeps all three significant figures of the original number, and the
+    negative index shows that the number is small.
+- id: jc4-4.3-ordinary-1
+  section: '4.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Write $5.3\times10^{-3}$ as an ordinary number.
+  answer_label: Write $5.3\times10^{-3}$ as an ordinary number.
+  check:
+    kind: evaluate
+    expression: 5.3 * 10**-3
+    answer: '0.0053'
+  answer_text: >-
+    $0.0053$. The index is $-3$, so move the decimal point three places left. The
+    answer is a small positive number; the negative index does not make it
+    negative.
+- id: jc4-4.3-ordinary-2
+  section: '4.3'
+  tier: O
+  refs:
+  - N.1
+  statement: Write $7.02\times10^{5}$ as an ordinary number.
+  answer_label: Write $7.02\times10^{5}$ as an ordinary number.
+  check:
+    kind: evaluate
+    expression: 7.02 * 10**5
+    answer: '702000'
+  answer_text: >-
+    $702000$. The index is 5, so move the decimal point five places right. Two
+    places reach 702, and the remaining three places add the zeros.
+- id: jc4-4.3-compare-1
+  section: '4.3'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    Which is larger, $4.1\times10^{4}$ or $9.7\times10^{3}$? Give a reason.
+  answer_label: Which is larger, $4.1\times10^{4}$ or $9.7\times10^{3}$?
+  check:
+    kind: compare
+    lhs: 4.1 * 10**4
+    relation: '>'
+    rhs: 9.7 * 10**3
+  answer_text: >-
+    $4.1\times10^{4}$ is larger. Its index is 4 and the other index is 3, so it
+    is multiplied by the larger power of 10. As ordinary numbers they are 41000
+    and 9700, and 41000 is bigger.
+- id: jc4-4.3-compare-2
+  section: '4.3'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    Which is smaller, $2.5\times10^{-3}$ or $2.5\times10^{-4}$? Give a reason.
+  answer_label: Which is smaller, $2.5\times10^{-3}$ or $2.5\times10^{-4}$?
+  check:
+    kind: compare
+    lhs: 2.5 * 10**-4
+    relation: <
+    rhs: 2.5 * 10**-3
+  answer_text: >-
+    $2.5\times10^{-4}$ is smaller. The coefficients are equal, so the indices
+    decide. The index $-4$ is less than $-3$, so the number is multiplied by the
+    smaller power of 10. As ordinary numbers they are 0.00025 and 0.0025.
+- id: jc4-4.3-multiply
+  section: '4.3'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    Work out $(3\times10^{4})\times(2\times10^{3})$, and give your answer in
+    standard form.
+  answer_label: Work out $(3\times10^{4})\times(2\times10^{3})$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3 * 10**4 * 2 * 10**3
+      answer: '60000000'
+    - kind: compare
+      lhs: '6'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '6'
+      relation: <
+      rhs: '10'
+  answer_text: >-
+    $6\times10^{7}$. Multiply the coefficients: $3\times2=6$. Add the indices:
+    $10^{4}\times10^{3}=10^{7}$. The coefficient 6 is between 1 and 10, so the
+    answer is in standard form.
+- id: jc4-4.3-divide
+  section: '4.3'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    Work out $(8\times10^{6})\div(2\times10^{2})$, and give your answer in
+    standard form.
+  answer_label: Work out $(8\times10^{6})\div(2\times10^{2})$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: (8 * 10**6) / (2 * 10**2)
+      answer: '40000'
+    - kind: compare
+      lhs: '4'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '4'
+      relation: <
+      rhs: '10'
+  answer_text: >-
+    $4\times10^{4}$. Divide the coefficients: $8\div2=4$. Subtract the indices:
+    $10^{6}\div10^{2}=10^{4}$. The coefficient 4 is between 1 and 10, so the
+    answer is in standard form.
+- id: jc4-4.3-anchor-ml
+  section: '4.3'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The dripping tap wastes 1,971,000 ml of water in a year. Write this volume in
+    standard form.
+  answer_label: Write 1,971,000 ml in standard form.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1.971 * 10**6
+      answer: '1971000'
+    - kind: compare
+      lhs: '1.971'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '1.971'
+      relation: <
+      rhs: '10'
+  answer_text: >-
+    $1.971\times10^{6}$ ml. Move the decimal point six places left. The
+    coefficient 1.971 keeps the four significant figures of the volume, and the
+    index 6 fixes the size.
+- id: jc4-4.3-anchor-litres
+  section: '4.3'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The dripping tap wastes 1971 litres of water in a year. Round this to 2
+    significant figures, and write the rounded volume in standard form.
+  answer_label: The volume in litres, to 2 significant figures, in standard form.
+  check:
+    kind: all
+    checks:
+    - kind: sigfigs
+      value: '1971'
+      figures: 2
+      answer: '2.0e3'
+      convention: round-once
+    - kind: evaluate
+      expression: 2.0 * 10**3
+      answer: '2000'
+    - kind: compare
+      lhs: '2.0'
+      relation: '>='
+      rhs: '1'
+    - kind: compare
+      lhs: '2.0'
+      relation: <
+      rhs: '10'
+  answer_text: >-
+    1971 litres is $1.971\times10^{3}$ litres. To 2 significant figures the first
+    two digits are 1 and 9, and the digit on the right is 7, so the 9 goes up.
+    That gives 2000 litres, written $2.0\times10^{3}$ litres. The zero after the
+    point must be written, because it shows the answer is given to 2 significant
+    figures.

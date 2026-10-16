@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 20.2 Half-life and activity — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 4.4
+Work independently. The questions and answers are shown together at the end.
+
+Count the half-lives before you calculate. Where a time and a half-life are given,
+divide the time by the half-life first. Give every activity with its unit, and round
+to the number of significant figures the data support.
+
+:::problems chapter-20-practice-20.2
+
+:::answers chapter-20-practice-20.2

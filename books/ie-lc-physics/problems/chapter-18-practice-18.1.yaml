@@ -1,0 +1,177 @@
+# Leaving Certificate Physics, Chapter 18, section 18.1 (strand 4 outcome 4.2).
+#
+# The photon. Every record takes h = 6.6e-34 J s and c = 3.0e8 m/s, the two-figure
+# values the specification's data table supports at this level. `dimensions`
+# proves the magnitude and the unit together; `sigfigs` proves the single
+# rounding, because a rounded answer is never equal to the exact one.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` record proves only that a model answer contains the
+# declared steps and concepts, in order.
+chapter: 18
+problems:
+  - id: p18-1-photon-frequency
+    section: '18.1'
+    tier: O
+    refs: ['4.2']
+    statement: 'Calculate the energy of a photon of frequency $5.0 \times 10^{14}$ Hz. Take $h = 6.6 \times 10^{-34}$ J s.'
+    answer_label: 'Energy of the photon'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * f
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            f: {value: '5.0e14', unit: Hz}
+          answer: {value: '3.3e-19', unit: J}
+        - kind: sigfigs
+          value: '6.6e-34 * 5.0e14'
+          figures: 2
+          answer: '3.3e-19'
+          convention: round-once
+    answer_text: '$E = hf = 6.6 \times 10^{-34} \times 5.0 \times 10^{14} = 3.3 \times 10^{-19}\,\text{J}$.'
+  - id: p18-1-photon-wavelength
+    section: '18.1'
+    tier: O
+    refs: ['4.2']
+    statement: 'Calculate the energy of a photon of wavelength 500 nm. Take $h = 6.6 \times 10^{-34}$ J s and $c = 3.0 \times 10^{8}$ m/s.'
+    answer_label: 'Energy of the photon'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / lam
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: 'm/s'}
+            lam: {value: '5.0e-7', unit: m}
+          answer: {value: '4.0e-19', unit: J}
+          tolerance: '1e-20'
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / 5.0e-7'
+          figures: 2
+          answer: '4.0e-19'
+          convention: round-once
+    answer_text: '$E = \dfrac{hc}{\lambda} = \dfrac{6.6 \times 10^{-34} \times 3.0 \times 10^{8}}{5.0 \times 10^{-7}} = 4.0 \times 10^{-19}\,\text{J}$.'
+  - id: p18-1-electronvolt
+    section: '18.1'
+    tier: O
+    refs: ['4.2']
+    statement: 'A photon has an energy of 2.1 eV. Calculate its energy in joules. Take $1\,\text{eV} = 1.6 \times 10^{-19}$ J.'
+    answer_label: 'Energy in joules'
+    check:
+      kind: all
+      checks:
+        - kind: evaluate
+          expression: '2.1 * 1.6e-19'
+          answer: '3.36e-19'
+        - kind: sigfigs
+          value: '2.1 * 1.6e-19'
+          figures: 2
+          answer: '3.4e-19'
+          convention: round-once
+    answer_text: '$2.1 \times 1.6 \times 10^{-19} = 3.4 \times 10^{-19}\,\text{J}$ to two significant figures.'
+  - id: p18-1-frequency-from-energy
+    section: '18.1'
+    tier: O
+    refs: ['4.2']
+    statement: 'A photon has an energy of $4.0 \times 10^{-19}$ J. Calculate its frequency. Take $h = 6.6 \times 10^{-34}$ J s.'
+    answer_label: 'Frequency of the photon'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E / h
+          values:
+            E: {value: '4.0e-19', unit: J}
+            h: {value: '6.6e-34', unit: 'J s'}
+          answer: {value: '6.1e14', unit: Hz}
+          tolerance: '1e13'
+        - kind: sigfigs
+          value: '4.0e-19 / 6.6e-34'
+          figures: 2
+          answer: '6.1e14'
+          convention: round-once
+    answer_text: 'Rearranging $E = hf$ gives $f = \dfrac{E}{h} = \dfrac{4.0 \times 10^{-19}}{6.6 \times 10^{-34}} = 6.1 \times 10^{14}\,\text{Hz}$.'
+  - id: p18-1-photon-rate
+    section: '18.1'
+    tier: O
+    refs: ['4.2']
+    statement: 'A lamp emits light of wavelength 500 nm at a power of $2.0 \times 10^{-3}$ W. Each photon carries $3.96 \times 10^{-19}$ J. Calculate the number of photons the lamp emits each second.'
+    answer_label: 'Photons emitted each second'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: P / E
+          values:
+            P: {value: '2.0e-3', unit: W}
+            E: {value: '3.96e-19', unit: J}
+          answer: {value: '5.1e15', unit: Hz}
+          tolerance: '1e14'
+        - kind: sigfigs
+          value: '2.0e-3 / (6.6e-34 * 3.0e8 / 5.0e-7)'
+          figures: 2
+          answer: '5.1e15'
+          convention: round-once
+    answer_text: 'Each second the lamp gives out $2.0 \times 10^{-3}$ J. Dividing by the energy of one photon gives $\dfrac{2.0 \times 10^{-3}}{3.96 \times 10^{-19}} = 5.1 \times 10^{15}$ photons each second.'
+  - id: p18-1-photon-energy-two
+    section: '18.1'
+    tier: O
+    refs: ['4.2']
+    statement: 'Calculate the energy of a photon of frequency $7.0 \times 10^{14}$ Hz. Take $h = 6.6 \times 10^{-34}$ J s.'
+    answer_label: 'Energy of the photon'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * f
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            f: {value: '7.0e14', unit: Hz}
+          answer: {value: '4.6e-19', unit: J}
+          tolerance: '1e-20'
+        - kind: sigfigs
+          value: '6.6e-34 * 7.0e14'
+          figures: 2
+          answer: '4.6e-19'
+          convention: round-once
+    answer_text: '$E = hf = 6.6 \times 10^{-34} \times 7.0 \times 10^{14} = 4.6 \times 10^{-19}\,\text{J}$. The frequency is higher than in question 1, so each photon carries more energy.'
+  - id: p18-1-gradient-planck
+    section: '18.1'
+    tier: O
+    refs: ['4.2']
+    statement: 'A student plots the energy of a photon on the vertical axis against its frequency on the horizontal axis. The points are $(5.0 \times 10^{14}, 3.3 \times 10^{-19})$, $(6.0 \times 10^{14}, 3.96 \times 10^{-19})$, $(7.0 \times 10^{14}, 4.62 \times 10^{-19})$ and $(8.0 \times 10^{14}, 5.28 \times 10^{-19})$. Calculate the gradient of the line and state what it represents.'
+    answer_label: 'Gradient of the line'
+    check:
+      kind: gradient
+      series:
+        - ['5.0e14', '3.3e-19']
+        - ['6.0e14', '3.96e-19']
+        - ['7.0e14', '4.62e-19']
+        - ['8.0e14', '5.28e-19']
+      between: ['6.5e-34', '6.7e-34']
+    answer_text: 'The points lie on a straight line through the origin, because $E = hf$ is $E = h \times f$. The gradient is the Planck constant: $\dfrac{5.28 \times 10^{-19} - 3.3 \times 10^{-19}}{8.0 \times 10^{14} - 5.0 \times 10^{14}} = 6.6 \times 10^{-34}\,\text{J s}$.'
+  - id: p18-1-quantum-idea
+    section: '18.1'
+    tier: O
+    refs: ['4.2']
+    statement: 'Explain what a photon is, and why the wave model of light on its own was not enough to describe the photoelectric effect.'
+    answer_label: 'The photon and the quantum idea'
+    check:
+      kind: structured
+      requires: [photon, energy-quantised, wave-limit]
+      concepts: [packet, frequency, intensity]
+      points:
+        - id: photon
+          text: 'A photon is a packet, or quantum, of light energy.'
+          concepts: [packet]
+        - id: energy-quantised
+          text: 'The energy of one photon is $E = hf$, so it depends on the frequency of the light.'
+          concepts: [frequency]
+        - id: wave-limit
+          text: 'The wave model spreads the energy over the wavefront, so it predicts that brighter light of any colour would release electrons; the experiment shows that frequency, not intensity, decides whether electrons are released.'
+          concepts: [intensity, frequency]
+    answer_text: 'A photon is a packet of light energy. Its energy is $E = hf$, so a photon of higher frequency carries more energy. The wave model spreads the light energy over the whole wavefront, so it predicts that brighter light of any colour would free electrons. The experiment shows that the frequency decides whether electrons are released, and the intensity only changes how many.'

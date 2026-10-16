@@ -1,0 +1,194 @@
+# Leaving Certificate Physics, Chapter 18, section 18.4 (strand 4 outcome 4.2).
+#
+# X-ray production: electrons accelerated through a high voltage give up their
+# energy at a metal target, and the shortest wavelength comes from a single
+# electron giving all its energy to a single photon. Every record takes
+# h = 6.6e-34 J s, c = 3.0e8 m/s and e = 1.6e-19 C.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order.
+chapter: 18
+problems:
+  - id: p18-4-min-wavelength
+    section: '18.4'
+    tier: O
+    refs: ['4.2']
+    statement: 'An X-ray tube is operated at 40 kV. Calculate the shortest wavelength of the X-rays it produces. Take $h = 6.6 \times 10^{-34}$ J s, $c = 3.0 \times 10^{8}$ m/s and $e = 1.6 \times 10^{-19}$ C.'
+    answer_label: 'Shortest wavelength'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / (e * V)
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: 'm/s'}
+            e: {value: '1.6e-19', unit: C}
+            V: {value: '4.0e4', unit: V}
+          answer: {value: '3.1e-11', unit: m}
+          tolerance: '1e-12'
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / (1.6e-19 * 4.0e4)'
+          figures: 2
+          answer: '3.1e-11'
+          convention: round-once
+    answer_text: 'An electron accelerated through $V$ gains energy $eV$. If it gives all of that energy to one photon, then $eV = \dfrac{hc}{\lambda_{\text{min}}}$, so $\lambda_{\text{min}} = \dfrac{hc}{eV} = \dfrac{6.6 \times 10^{-34} \times 3.0 \times 10^{8}}{1.6 \times 10^{-19} \times 4.0 \times 10^{4}} = 3.1 \times 10^{-11}\,\text{m}$.'
+  - id: p18-4-max-frequency
+    section: '18.4'
+    tier: O
+    refs: ['4.2']
+    statement: 'An X-ray tube is operated at 40 kV. Calculate the highest frequency of the X-rays it produces. Take $h = 6.6 \times 10^{-34}$ J s and $e = 1.6 \times 10^{-19}$ C.'
+    answer_label: 'Highest frequency'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: e * V / h
+          values:
+            e: {value: '1.6e-19', unit: C}
+            V: {value: '4.0e4', unit: V}
+            h: {value: '6.6e-34', unit: 'J s'}
+          answer: {value: '9.7e18', unit: Hz}
+          tolerance: '1e17'
+        - kind: sigfigs
+          value: '1.6e-19 * 4.0e4 / 6.6e-34'
+          figures: 2
+          answer: '9.7e18'
+          convention: round-once
+    answer_text: 'The photon of highest frequency carries the whole electron energy: $hf_{\text{max}} = eV$, so $f_{\text{max}} = \dfrac{eV}{h} = \dfrac{1.6 \times 10^{-19} \times 4.0 \times 10^{4}}{6.6 \times 10^{-34}} = 9.7 \times 10^{18}\,\text{Hz}$.'
+  - id: p18-4-voltage-for-wavelength
+    section: '18.4'
+    tier: O
+    refs: ['4.2']
+    statement: 'An X-ray tube must produce X-rays with a shortest wavelength of $2.0 \times 10^{-11}$ m. Calculate the tube voltage needed. Take $h = 6.6 \times 10^{-34}$ J s, $c = 3.0 \times 10^{8}$ m/s and $e = 1.6 \times 10^{-19}$ C.'
+    answer_label: 'Tube voltage'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / (e * lam)
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: 'm/s'}
+            e: {value: '1.6e-19', unit: C}
+            lam: {value: '2.0e-11', unit: m}
+          answer: {value: '6.2e4', unit: V}
+          tolerance: '1e3'
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / (1.6e-19 * 2.0e-11)'
+          figures: 2
+          answer: '6.2e4'
+          convention: round-once
+    answer_text: 'Rearranging $eV = \dfrac{hc}{\lambda_{\text{min}}}$ gives $V = \dfrac{hc}{e\lambda_{\text{min}}} = \dfrac{6.6 \times 10^{-34} \times 3.0 \times 10^{8}}{1.6 \times 10^{-19} \times 2.0 \times 10^{-11}} = 6.2 \times 10^{4}\,\text{V}$, which is 62 kV.'
+  - id: p18-4-xray-photon-energy
+    section: '18.4'
+    tier: O
+    refs: ['4.2']
+    statement: 'An X-ray has a wavelength of $1.0 \times 10^{-10}$ m. Calculate the energy of one X-ray photon. Take $h = 6.6 \times 10^{-34}$ J s and $c = 3.0 \times 10^{8}$ m/s.'
+    answer_label: 'Energy of the X-ray photon'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / lam
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: 'm/s'}
+            lam: {value: '1.0e-10', unit: m}
+          answer: {value: '2.0e-15', unit: J}
+          tolerance: '1e-16'
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / 1.0e-10'
+          figures: 2
+          answer: '2.0e-15'
+          convention: round-once
+    answer_text: '$E = \dfrac{hc}{\lambda} = \dfrac{6.6 \times 10^{-34} \times 3.0 \times 10^{8}}{1.0 \times 10^{-10}} = 2.0 \times 10^{-15}\,\text{J}$. This is about ten thousand times the energy of a visible photon, which is why X-rays can pass through soft tissue.'
+  - id: p18-4-electron-energy
+    section: '18.4'
+    tier: O
+    refs: ['4.2']
+    statement: 'In an X-ray tube, electrons are accelerated through 40 kV. Calculate the kinetic energy each electron gains. Take $e = 1.6 \times 10^{-19}$ C.'
+    answer_label: 'Kinetic energy gained by each electron'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: e * V
+          values:
+            e: {value: '1.6e-19', unit: C}
+            V: {value: '4.0e4', unit: V}
+          answer: {value: '6.4e-15', unit: J}
+        - kind: sigfigs
+          value: '1.6e-19 * 4.0e4'
+          figures: 2
+          answer: '6.4e-15'
+          convention: round-once
+    answer_text: 'The work done by the accelerating field is $eV = 1.6 \times 10^{-19} \times 4.0 \times 10^{4} = 6.4 \times 10^{-15}\,\text{J}$. That is 40 keV, the energy one electron can hand to one photon, which is what sets the shortest wavelength.'
+  - id: p18-4-production
+    section: '18.4'
+    tier: O
+    refs: ['4.2']
+    statement: 'Describe how X-rays are produced in an X-ray tube.'
+    answer_label: 'Production of X-rays'
+    check:
+      kind: structured
+      requires: [filament, acceleration, target, emission]
+      concepts: [thermionic, kinetic-energy, deceleration, photon]
+      points:
+        - id: filament
+          text: 'A current heats a filament, and thermionic emission releases electrons from it.'
+          concepts: [thermionic]
+        - id: acceleration
+          text: 'A high potential difference between the filament and the target accelerates the electrons, so each gains kinetic energy $eV$.'
+          concepts: [kinetic-energy]
+        - id: target
+          text: 'The electrons strike a heavy metal target and slow down very quickly.'
+          concepts: [deceleration]
+        - id: emission
+          text: 'The energy lost by the decelerating electrons leaves the tube as X-ray photons, and the whole tube is in a vacuum.'
+          concepts: [photon]
+    answer_text: 'A current heats a filament, and thermionic emission releases electrons from it. A high potential difference accelerates those electrons towards a heavy metal target, so each electron gains kinetic energy $eV$. When an electron strikes the target it slows down very quickly, and the energy it loses leaves the tube as X-ray photons. The tube is evacuated so the electrons are not scattered by air.'
+  - id: p18-4-compare
+    section: '18.4'
+    tier: O
+    refs: ['4.2']
+    statement: 'Compare X-ray production with the photoelectric effect.'
+    answer_label: 'X-ray production and the photoelectric effect'
+    check:
+      kind: structured
+      requires: [exchange, direction, threshold]
+      concepts: [electron-energy, photon-energy, conservation]
+      points:
+        - id: exchange
+          text: 'Both are single-particle exchanges of energy between an electron and a photon, and both obey conservation of energy.'
+          concepts: [electron-energy, photon-energy, conservation]
+        - id: direction
+          text: 'In the photoelectric effect a photon gives its energy to an electron; in an X-ray tube a fast electron gives its energy to a photon.'
+          concepts: [electron-energy, photon-energy]
+        - id: threshold
+          text: 'The photoelectric effect has a threshold frequency, set by the work function; X-ray production has a shortest wavelength, set by the tube voltage.'
+          concepts: [conservation]
+    answer_text: 'Both processes are single-particle exchanges between an electron and a photon, and both obey conservation of energy. In the photoelectric effect a photon gives all its energy to one electron, so there is a threshold frequency below which nothing is emitted. In an X-ray tube a fast electron gives its energy to one photon, so there is a shortest wavelength set by the tube voltage. The two are inverse processes: light in and electrons out, or electrons in and X-rays out.'
+  - id: p18-4-spectrum
+    section: '18.4'
+    tier: O
+    refs: ['4.2']
+    statement: 'Explain the difference between the continuous X-ray spectrum and the characteristic lines in it.'
+    answer_label: 'Continuous spectrum and characteristic lines'
+    check:
+      kind: structured
+      requires: [continuous, shortest, characteristic]
+      concepts: [deceleration, tube-voltage, energy-levels]
+      points:
+        - id: continuous
+          text: 'The continuous spectrum comes from electrons that slow down at the target and lose part of their energy as a photon of any wavelength; a grazing collision gives a long wavelength and a head-on one gives a short one.'
+          concepts: [deceleration]
+        - id: shortest
+          text: 'The shortest wavelength of the continuous spectrum is set by the tube voltage, because it comes from an electron that gives all of its energy to one photon.'
+          concepts: [tube-voltage]
+        - id: characteristic
+          text: 'The characteristic lines come from electrons knocking an inner electron out of a target atom; the vacancy is filled by an outer electron, which emits a photon of a fixed energy set by the target element.'
+          concepts: [energy-levels]
+    answer_text: 'The continuous spectrum comes from electrons that slow down at the target and lose part of their energy as a photon. A grazing collision gives a long wavelength and a head-on collision gives a short one, so every wavelength down to a limit appears. That limit is set by the tube voltage, because it comes from an electron giving all of its energy to one photon. The characteristic lines come from electrons that knock an inner electron out of a target atom. When an outer electron fills the vacancy, it emits a photon of fixed energy, so the line depends on the target element and not on the tube voltage.'

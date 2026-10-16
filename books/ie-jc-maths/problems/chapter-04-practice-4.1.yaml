@@ -1,0 +1,217 @@
+# Junior Cycle Mathematics, Chapter 4, section 4.1.
+#
+# Rounding to a place value or a decimal place is a `rounded` check: the answer
+# must be the nearest multiple of the declared step. Rounding to significant
+# figures is a `sigfigs` check from the units oracle, which rounds the exact
+# value once and then counts the figures the written answer carries. Both are
+# independent of the answer text, so a wrong rounding fails the build.
+#
+# The bank declares the units oracle itself: the book names SymPy, and
+# `sigfigs` belongs to `units`.
+chapter: 4
+oracles: [sympy, units]
+symbols: {}
+
+problems:
+- id: jc4-4.1-round-100
+  section: '4.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Round 4738 to the nearest 100.
+  answer_label: Round 4738 to the nearest 100.
+  check:
+    kind: rounded
+    value: '4738'
+    rounded: '4700'
+    to: '100'
+  answer_text: >-
+    $4700$. The number sits between 4700 and 4800. The tens digit is 3, which is
+    less than 5, so the hundreds digit stays at 7. The rounded number is only 38
+    away from 4738, which is a small distance next to the step of 100.
+- id: jc4-4.1-round-1000
+  section: '4.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Round 25481 to the nearest 1000.
+  answer_label: Round 25481 to the nearest 1000.
+  check:
+    kind: rounded
+    value: '25481'
+    rounded: '25000'
+    to: '1000'
+  answer_text: >-
+    $25000$. The number sits between 25000 and 26000. The hundreds digit is 4,
+    which is less than 5, so the thousands digit stays at 5.
+- id: jc4-4.1-round-2dp
+  section: '4.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Round 2.648 to 2 decimal places.
+  answer_label: Round 2.648 to 2 decimal places.
+  check:
+    kind: rounded
+    value: '2.648'
+    rounded: '2.65'
+    to: '0.01'
+  answer_text: >-
+    $2.65$. The first two decimal digits are 6 and 4. The digit on the right of
+    the 4 is 8, which is 5 or more, so the 4 goes up to 5.
+- id: jc4-4.1-round-carry
+  section: '4.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Round 3.996 to 2 decimal places.
+  answer_label: Round 3.996 to 2 decimal places.
+  check:
+    kind: rounded
+    value: '3.996'
+    rounded: '4.00'
+    to: '0.01'
+  answer_text: >-
+    $4.00$. The third decimal digit is 6, so the 9 goes up. A 9 cannot go up to
+    10, so it becomes 0 and the carry passes to the digit on its left. Write both
+    zeros, because they show the answer is given to 2 decimal places.
+- id: jc4-4.1-round-1dp
+  section: '4.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Round 5.7284 to 1 decimal place.
+  answer_label: Round 5.7284 to 1 decimal place.
+  check:
+    kind: rounded
+    value: '5.7284'
+    rounded: '5.7'
+    to: '0.1'
+  answer_text: >-
+    $5.7$. One decimal place keeps the 7. The digit on its right is 2, which is
+    less than 5, so the 7 stays.
+- id: jc4-4.1-round-whole
+  section: '4.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Round 47.9 to the nearest whole number.
+  answer_label: Round 47.9 to the nearest whole number.
+  check:
+    kind: rounded
+    value: '47.9'
+    rounded: '48'
+    to: '1'
+  answer_text: >-
+    $48$. The number sits between 47 and 48. The first decimal digit is 9, which
+    is 5 or more, so it rounds up to 48.
+- id: jc4-4.1-sf-3
+  section: '4.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Round 3.14159 to 3 significant figures.
+  answer_label: Round 3.14159 to 3 significant figures.
+  check:
+    kind: sigfigs
+    value: '3.14159'
+    figures: 3
+    answer: '3.14'
+    convention: round-once
+  answer_text: >-
+    $3.14$. The first digit is not zero, so the count starts at the 3. The first
+    three significant figures are 3, 1 and 4. The digit on the right is 1, which
+    is less than 5, so the 4 stays.
+- id: jc4-4.1-sf-leading
+  section: '4.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Round 0.005607 to 2 significant figures.
+  answer_label: Round 0.005607 to 2 significant figures.
+  check:
+    kind: sigfigs
+    value: '0.005607'
+    figures: 2
+    answer: '0.0056'
+    convention: round-once
+  answer_text: >-
+    $0.0056$. The zeros in front of the 5 are place holders, so they do not
+    count. The first two significant figures are 5 and 6. The digit on the right
+    is 0, which is less than 5, so the 6 stays.
+- id: jc4-4.1-sf-trailing
+  section: '4.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Round 0.003049 to 2 significant figures.
+  answer_label: Round 0.003049 to 2 significant figures.
+  check:
+    kind: sigfigs
+    value: '0.003049'
+    figures: 2
+    answer: '0.0030'
+    convention: round-once
+  answer_text: >-
+    $0.0030$. The first two significant figures are 3 and 0. The digit on the
+    right is 4, which is less than 5, so the 0 stays. You must write that zero,
+    because it is a significant figure here and not a place holder.
+- id: jc4-4.1-sf-large
+  section: '4.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Round 27400 to 2 significant figures.
+  answer_label: Round 27400 to 2 significant figures.
+  check:
+    kind: sigfigs
+    value: '27400'
+    figures: 2
+    answer: '27000'
+    convention: round-once
+  answer_text: >-
+    $27000$. The first two significant figures are 2 and 7. The digit on the
+    right is 4, which is less than 5, so the 7 stays. Keep the two zeros: they
+    hold the size of the number, and without them the answer would be 27.
+- id: jc4-4.1-euro
+  section: '4.1'
+  tier: O
+  refs:
+  - N.1
+  statement: A phone is priced at €249.99. Round the price to the nearest euro.
+  answer_label: Round the price to the nearest euro.
+  check:
+    kind: rounded
+    value: '249.99'
+    rounded: '250'
+    to: '1'
+  answer_text: >-
+    €250. The nearest euro means the nearest whole number. The first decimal
+    digit is 9, which is 5 or more, so 249.99 rounds up to 250. The shop still
+    charges the exact price on the label; rounding is only for comparing prices.
+- id: jc4-4.1-anchor
+  section: '4.1'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The dripping tap loses 0.25 ml of water with each drip, and it drips 15 times
+    in one minute. Work out the volume lost in one minute, then round it to 1
+    significant figure.
+  answer_label: The volume lost in one minute, to 1 significant figure.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 15 * 0.25
+      answer: '3.75'
+    - kind: sigfigs
+      value: '3.75'
+      figures: 1
+      answer: '4'
+      convention: round-once
+  answer_text: >-
+    $15\times0.25=3.75$ ml, which is 4 ml to 1 significant figure. The first
+    significant figure of 3.75 is the 3, and the digit on its right is 7, which
+    is 5 or more, so the 3 goes up to 4. The rounded value is the one to use in an
+    estimate in Section 4.2.

@@ -1,0 +1,263 @@
+# Leaving Certificate Physics, Chapter 20, section 20.4 (strand 4 outcome 4.4).
+#
+# The physics oracle proves a quantity's magnitude and unit (`dimensions`) and the
+# rounding the data support (`sigfigs`). The judgements about which source suits a
+# use, and how a dose is reduced, are explanations: `structured` proves only that
+# the model answer contains the declared steps and concepts, in order.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics, and
+# nothing here can prove that a safety decision was the right one.
+chapter: 20
+problems:
+  - id: p20-4-tracer-choice
+    section: '20.4'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A hospital injects a radioactive tracer into a patient and follows it with a
+      detector outside the body. Explain why the tracer is a gamma emitter, and why
+      its half-life is chosen to be a few hours rather than a few years.
+    answer_label: Choosing a tracer
+    check:
+      kind: structured
+      requires: [emission, half-life, safety]
+      concepts: [penetrates-tissue, short-lived, low-dose]
+      points:
+        - id: emission
+          text: >-
+            A gamma emitter is used because gamma rays pass out through the body
+            and reach the detector. An alpha or beta emitter would be stopped
+            inside the patient.
+          concepts: [penetrates-tissue]
+        - id: half-life
+          text: >-
+            The half-life must be long enough to make the measurement and short
+            enough that the activity falls away soon afterwards.
+          concepts: [short-lived]
+        - id: safety
+          text: >-
+            A short half-life means the patient receives a small total dose, and
+            the waste becomes harmless quickly.
+          concepts: [low-dose]
+    answer_text: >-
+      A gamma emitter is used because gamma rays pass out through the body and
+      reach the detector, while alpha and beta particles would be stopped inside
+      the patient. The half-life is a few hours: long enough to carry out the
+      measurement, and short enough that the activity falls away soon afterwards,
+      so the total dose to the patient is small.
+  - id: p20-4-tracer-decay
+    section: '20.4'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A tracer is prepared with an activity of 800 MBq and a half-life of 6.0
+      hours. Calculate its activity 24 hours later.
+    answer_label: Activity after 24 hours
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: A0 / 2**4
+          values:
+            A0: {value: '800', unit: MBq}
+          answer: {value: '50', unit: MBq}
+        - kind: sigfigs
+          value: '800 / 2**4'
+          figures: 2
+          answer: '5.0e1'
+          convention: round-once
+    answer_text: >-
+      Twenty-four hours is four half-lives, because $24 \div 6.0 = 4$. The activity
+      is divided by $2^4 = 16$: $800 \div 16 = 50$ MBq, which is $5.0 \times 10^1$
+      MBq.
+  - id: p20-4-smoke-detector
+    section: '20.4'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A smoke detector contains a small americium-241 source, which is an alpha
+      emitter. Explain how the source and the detector work together to sound the
+      alarm, and why an alpha source is safe to keep in a home.
+    answer_label: How a smoke detector works
+    check:
+      kind: structured
+      requires: [ionisation, alarm, safety]
+      concepts: [air-ionised, current-falls, alpha-stopped]
+      points:
+        - id: ionisation
+          text: >-
+            The alpha particles ionise the air in the gap, so the air conducts and
+            a small current flows between the plates.
+          concepts: [air-ionised]
+        - id: alarm
+          text: >-
+            Smoke particles absorb the ions, the current falls, and the circuit
+            sounds the alarm.
+          concepts: [current-falls]
+        - id: safety
+          text: >-
+            The alpha particles travel only a few centimetres in air and cannot
+            pass through the plastic case or the dead outer layer of the skin.
+          concepts: [alpha-stopped]
+    answer_text: >-
+      The alpha particles ionise the air in the gap, so the air conducts and a
+      small current flows. Smoke particles absorb the ions, the current falls, and
+      the circuit sounds the alarm. The source is safe in a home because the alpha
+      particles travel only a few centimetres in air and cannot pass through the
+      case or the dead outer layer of the skin.
+  - id: p20-4-protection
+    section: '20.4'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A worker handles radioactive sources. Describe three ways to reduce the dose
+      the worker receives, and explain why each one works.
+    answer_label: Reducing the dose
+    check:
+      kind: structured
+      requires: [time, distance, shielding]
+      concepts: [less-exposure, inverse-square, absorber]
+      points:
+        - id: time
+          text: >-
+            Spend as little time near the source as possible, so there is less
+            chance for the radiation to reach the body.
+          concepts: [less-exposure]
+        - id: distance
+          text: >-
+            Keep as far away as possible, because the radiation spreads out and the
+            count rate falls quickly with distance.
+          concepts: [inverse-square]
+        - id: shielding
+          text: >-
+            Put an absorber between the source and the worker, choosing the
+            material for the emission: lead for gamma, aluminium for beta.
+          concepts: [absorber]
+    answer_text: >-
+      Reduce the time spent near the source, because the chance of the radiation
+      reaching the body grows with the time. Increase the distance, because the
+      radiation spreads out and the count rate falls quickly with distance. Use
+      shielding, choosing the material for the emission: lead for gamma rays and
+      aluminium for beta particles.
+  - id: p20-4-carbon-age
+    section: '20.4'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A piece of wood from an old trackway has one quarter of the carbon-14
+      activity of living wood. The half-life of carbon-14 is 5730 years. Calculate
+      the age of the trackway, to two significant figures.
+    answer_label: Age of the trackway
+    check:
+      kind: sigfigs
+      value: '2 * 5730'
+      figures: 2
+      answer: '1.1e4'
+      convention: round-once
+    answer_text: >-
+      One quarter is $\left(\dfrac{1}{2}\right)^2$, so two half-lives have passed.
+      The age is $2 \times 5730 = 11460$ years, which is $1.1 \times 10^4$ years to
+      two significant figures.
+  - id: p20-4-alpha-inside
+    section: '20.4'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      An alpha source is safe to carry in a pocket but dangerous if it is breathed
+      in. Explain this difference.
+    answer_label: Alpha particles inside and outside the body
+    check:
+      kind: structured
+      requires: [outside, inside, reason]
+      concepts: [skin-stops, strong-ionisation, concentrated-dose]
+      points:
+        - id: outside
+          text: >-
+            Outside the body, the dead outer layer of the skin stops the alpha
+            particles, so they never reach living cells.
+          concepts: [skin-stops]
+        - id: inside
+          text: >-
+            Inside the body, the alpha particles are in contact with living tissue,
+            and there is nothing to stop them.
+          concepts: [concentrated-dose]
+        - id: reason
+          text: >-
+            Alpha particles ionise strongly, so all their energy is deposited in a
+            small mass of tissue and the dose is large.
+          concepts: [strong-ionisation, concentrated-dose]
+    answer_text: >-
+      Outside the body, the dead outer layer of the skin stops the alpha particles,
+      so they never reach living cells. Inside the body there is nothing to stop
+      them, and they ionise strongly, so all their energy is deposited in a small
+      mass of tissue. That concentrated dose damages cells, which is why an alpha
+      source must never be breathed in or swallowed.
+  - id: p20-4-waste
+    section: '20.4'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      Some radioactive waste stays dangerous for thousands of years. Explain why a
+      long half-life makes the waste a long-term problem, and describe how the
+      waste is stored.
+    answer_label: Radioactive waste
+    check:
+      kind: structured
+      requires: [half-life, problem, storage]
+      concepts: [slow-decay, shielding, isolation]
+      points:
+        - id: half-life
+          text: >-
+            A long half-life means the activity falls slowly, so the waste stays
+            radioactive for a very long time.
+          concepts: [slow-decay]
+        - id: problem
+          text: >-
+            It must be kept away from people for thousands of years, and it still
+            needs shielding.
+          concepts: [isolation]
+        - id: storage
+          text: >-
+            The waste is sealed in solid containers and buried deep underground in
+            a stable rock formation.
+          concepts: [shielding, isolation]
+    answer_text: >-
+      A long half-life means the activity falls slowly, so the waste stays
+      radioactive for thousands of years. It must be kept away from people and
+      still needs shielding. The waste is sealed in solid containers and buried
+      deep underground in a stable rock formation.
+  - id: p20-4-detector
+    section: '20.4'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A Geiger-Muller tube is used to measure the count rate from a source. Explain
+      what the tube detects, and explain why the background count rate is measured
+      and subtracted.
+    answer_label: Measuring a count rate
+    check:
+      kind: structured
+      requires: [detection, background, subtraction]
+      concepts: [ionisation, always-present, corrected-rate]
+      points:
+        - id: detection
+          text: >-
+            The radiation ionises the gas in the tube, a pulse of current flows,
+            and the tube records one count.
+          concepts: [ionisation]
+        - id: background
+          text: >-
+            Background radiation is always present, so the tube counts some events
+            that do not come from the source.
+          concepts: [always-present]
+        - id: subtraction
+          text: >-
+            Measure the count rate with the source removed, then subtract it. The
+            result is the corrected count rate of the source.
+          concepts: [corrected-rate]
+    answer_text: >-
+      The radiation ionises the gas in the tube, a pulse of current flows, and the
+      tube records one count. Background radiation is always present, so some
+      counts do not come from the source. Measure the count rate with the source
+      removed and subtract it, and the result is the corrected count rate of the
+      source.

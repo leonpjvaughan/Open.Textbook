@@ -1,0 +1,202 @@
+# Junior Cycle Mathematics, Chapter 13, section 13.2.
+#
+# Changing the subject is checked with `kind: solve`: the CAS solves the original
+# formula for the new subject, so the claimed rearrangement is proved rather than
+# restated. A symbol you divide by is declared `nonzero`, because dividing by a
+# letter that could be zero has no single solution and SymPy would return an
+# unsolved intersection. The `answer` field is the CAS form; the reader sees the
+# friendlier form in `answer_text`. Where a rearrangement is proved by putting it
+# back into the formula, the check is `kind: evaluate`.
+chapter: 13
+symbols:
+  A: {real: true, positive: true}
+  l: {real: true, nonzero: true}
+  w: {real: true}
+  x: {real: true}
+  y: {real: true}
+  t: {real: true, nonzero: true}
+  s: {real: true, nonzero: true}
+  d: {real: true}
+  u: {real: true}
+  v: {real: true}
+  a: {real: true, nonzero: true}
+  P: {real: true}
+  c: {real: true}
+  m: {real: true, nonzero: true}
+  r: {real: true, positive: true}
+  C: {real: true}
+  h: {real: true, nonzero: true}
+  n: {real: true, nonzero: true}
+  F: {real: true}
+  V: {real: true}
+
+problems:
+- id: jc13-13.2-subject-1
+  section: '13.2'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $w$ the subject of the formula $A=lw$.
+  answer_label: Make $w$ the subject of $A=lw$.
+  check:
+    kind: solve
+    equation: A = l*w
+    variable: w
+    answer: A/l
+  answer_text: $w=\frac{A}{l}$. The $w$ is multiplied by $l$, so divide both sides by $l$. Dividing undoes
+    multiplying.
+- id: jc13-13.2-subject-2
+  section: '13.2'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $x$ the subject of the formula $y=x+5$.
+  answer_label: Make $x$ the subject of $y=x+5$.
+  check:
+    kind: solve
+    equation: y = x + 5
+    variable: x
+    answer: y - 5
+  answer_text: $x=y-5$. The 5 is added to $x$, so subtract 5 from both sides. Subtracting undoes adding.
+- id: jc13-13.2-subject-3
+  section: '13.2'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $t$ the subject of the formula $s=\frac{d}{t}$.
+  answer_label: Make $t$ the subject of $s=\frac{d}{t}$.
+  check:
+    kind: solve
+    equation: s = d/t
+    variable: t
+    answer: d/s
+  answer_text: $t=\frac{d}{s}$. The $t$ is in the bottom of the fraction, so multiply both sides by $t$ and
+    then divide by $s$.
+- id: jc13-13.2-subject-4
+  section: '13.2'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $a$ the subject of the formula $v=u+at$.
+  answer_label: Make $a$ the subject of $v=u+at$.
+  check:
+    kind: solve
+    equation: v = u + a*t
+    variable: a
+    answer: '-((u-v)/t)'
+  answer_text: $a=\frac{v-u}{t}$. Subtract $u$ from both sides first, which leaves $v-u=at$, and then divide
+    both sides by $t$.
+- id: jc13-13.2-subject-5
+  section: '13.2'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $w$ the subject of the formula $P=2l+2w$.
+  answer_label: Make $w$ the subject of $P=2l+2w$.
+  check:
+    kind: solve
+    equation: P = 2*l + 2*w
+    variable: w
+    answer: (P - 2*l)/2
+  answer_text: $w=\frac{P-2l}{2}$. Subtract $2l$ from both sides, then divide both sides by 2. The whole of
+    $P-2l$ is divided by 2, not only the $P$.
+- id: jc13-13.2-subject-6
+  section: '13.2'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $x$ the subject of the formula $y=mx+c$.
+  answer_label: Make $x$ the subject of $y=mx+c$.
+  check:
+    kind: solve
+    equation: y = m*x + c
+    variable: x
+    answer: '-((c-y)/m)'
+  answer_text: $x=\frac{y-c}{m}$. Subtract $c$ from both sides, then divide both sides by $m$.
+- id: jc13-13.2-subject-7
+  section: '13.2'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $r$ the subject of the formula $C=2\pi r$.
+  answer_label: Make $r$ the subject of $C=2\pi r$.
+  check:
+    kind: solve
+    equation: C = 2*pi*r
+    variable: r
+    answer: C/(2*pi)
+  answer_text: $r=\frac{C}{2\pi}$. The $r$ is multiplied by $2\pi$, so divide both sides by $2\pi$.
+- id: jc13-13.2-subject-8
+  section: '13.2'
+  tier: O
+  refs:
+  - AF.6
+  statement: The planter box from the chapter problem holds $V$ cubic metres, and its volume is $V=lwh$. Make
+    $w$ the subject of the formula.
+  answer_label: Make $w$ the subject of $V=lwh$.
+  check:
+    kind: solve
+    equation: V = l*w*h
+    variable: w
+    answer: V/(l*h)
+  answer_text: $w=\frac{V}{lh}$. Both $l$ and $h$ multiply $w$, so divide both sides by $lh$. You will use
+    this on the Review to find the width of the box.
+- id: jc13-13.2-subject-9
+  section: '13.2'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $h$ the subject of the formula for the volume of a cylinder, $V=\pi r^2h$.
+  answer_label: Make $h$ the subject of $V=\pi r^2h$.
+  check:
+    kind: solve
+    equation: V = pi*r**2*h
+    variable: h
+    answer: V/(pi*r**2)
+  answer_text: $h=\frac{V}{\pi r^2}$. Divide both sides by $\pi r^2$. The whole of $\pi r^2$ is the divisor,
+    not only the $\pi$.
+- id: jc13-13.2-subject-10
+  section: '13.2'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $r$ the subject of the formula for the area of a circle, $A=\pi r^2$. The radius is a
+    length, so it is positive.
+  answer_label: Make $r$ the subject of $A=\pi r^2$.
+  check:
+    kind: solve
+    equation: A = pi*r**2
+    variable: r
+    answer:
+    - -sqrt(A/pi)
+    - sqrt(A/pi)
+  answer_text: $r=\sqrt{\frac{A}{\pi}}$. Divide both sides by $\pi$ to get $r^2=\frac{A}{\pi}$, then take
+    the square root of both sides. A radius is a length, so you take the positive root.
+- id: jc13-13.2-subject-11
+  section: '13.2'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $C$ the subject of the formula $F=\frac{9}{5}C+32$.
+  answer_label: Make $C$ the subject of $F=\frac{9}{5}C+32$.
+  check:
+    kind: solve
+    equation: F = (9/5)*C + 32
+    variable: C
+    answer: 5*(F-32)/9
+  answer_text: $C=\frac{5(F-32)}{9}$. Subtract 32 from both sides, then multiply both sides by $\frac{5}{9}$,
+    which is the same as dividing by $\frac{9}{5}$.
+- id: jc13-13.2-subject-12
+  section: '13.2'
+  tier: O
+  refs:
+  - AF.6
+  statement: Make $v$ the subject of the formula $t=\frac{v-u}{a}$.
+  answer_label: Make $v$ the subject of $t=\frac{v-u}{a}$.
+  check:
+    kind: solve
+    equation: t = (v-u)/a
+    variable: v
+    answer: u + a*t
+  answer_text: $v=u+at$. Multiply both sides by $a$ to clear the fraction, which gives $at=v-u$, then add
+    $u$ to both sides.

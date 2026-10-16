@@ -1,0 +1,226 @@
+# Junior Cycle Mathematics, Chapter 4, section 4.2.
+#
+# Every estimate is proved against the exact value it stands for. The rounded
+# calculation is checked by `evaluate`, and a `between` check proves the exact
+# value lies in the band the estimate predicts. That is what makes the estimate
+# honest: a "check" that compared the estimate with itself would prove nothing.
+#
+# No unit, word or per-cent sign enters a CAS field; those live in `statement`.
+chapter: 4
+symbols: {}
+
+problems:
+- id: jc4-4.2-estimate-product
+  section: '4.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Estimate $4.9\times21.3$.
+  answer_label: Estimate $4.9\times21.3$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 5 * 20
+      answer: '100'
+    - kind: between
+      low: '90'
+      value: 4.9 * 21.3
+      high: '110'
+  answer_text: >-
+    $5\times20=100$. Round 4.9 to 5 and 21.3 to 20, each to one significant
+    figure. The exact answer is 104.37, which sits close to 100, so the estimate
+    is a good check.
+- id: jc4-4.2-estimate-quotient
+  section: '4.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Estimate $813\div18.6$.
+  answer_label: Estimate $813\div18.6$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 800 / 20
+      answer: '40'
+    - kind: between
+      low: '30'
+      value: 813 / 18.6
+      high: '50'
+  answer_text: >-
+    $800\div20=40$. Round 813 to 800 and 18.6 to 20. The exact answer is about
+    43.7, so the estimate is a little low. The divisor was rounded up, which
+    makes the estimate smaller.
+- id: jc4-4.2-estimate-decimals
+  section: '4.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Estimate $0.42\times5.9$.
+  answer_label: Estimate $0.42\times5.9$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 0.4 * 6
+      answer: '2.4'
+    - kind: between
+      low: '2'
+      value: 0.42 * 5.9
+      high: '3'
+  answer_text: >-
+    $0.4\times6=2.4$. The first significant figure of 0.42 is 4, because the
+    zeros in front of it are place holders. The exact answer is 2.478, so the
+    estimate is close.
+- id: jc4-4.2-estimate-sum
+  section: '4.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Estimate $19.95+4.05+3.10$.
+  answer_label: Estimate $19.95+4.05+3.10$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 20 + 4 + 3
+      answer: '27'
+    - kind: between
+      low: '26'
+      value: 19.95 + 4.05 + 3.10
+      high: '28'
+  answer_text: >-
+    $20+4+3=27$. Round each number to the nearest whole number, or to one
+    significant figure, which gives the same three values here. The exact total
+    is 27.10, so the estimate is very close.
+- id: jc4-4.2-spot-decimal
+  section: '4.2'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    A calculator shows $4.9\times21.3=1043.7$. Use an estimate to decide whether
+    this is plausible, and write down the correct answer if it is not.
+  answer_label: Is the calculator answer plausible?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 5 * 20
+      answer: '100'
+    - kind: between
+      low: '90'
+      value: 4.9 * 21.3
+      high: '110'
+  answer_text: >-
+    No, it is not plausible. The estimate is $5\times20=100$, so the answer must
+    be near 100, not near 1000. The digits 10437 are right and the decimal point
+    is wrong. The correct answer is 104.37.
+- id: jc4-4.2-estimate-division-2
+  section: '4.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Estimate $612\div29$.
+  answer_label: Estimate $612\div29$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 600 / 30
+      answer: '20'
+    - kind: between
+      low: '15'
+      value: 612 / 29
+      high: '25'
+  answer_text: >-
+    $600\div30=20$. Round 612 to 600 and 29 to 30. The exact answer is about
+    21.1, so an answer near 20 is plausible.
+- id: jc4-4.2-estimate-product-2
+  section: '4.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Estimate $7.8\times0.51$.
+  answer_label: Estimate $7.8\times0.51$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 8 * 0.5
+      answer: '4'
+    - kind: between
+      low: '3'
+      value: 7.8 * 0.51
+      high: '5'
+  answer_text: >-
+    $8\times0.5=4$. Round 7.8 up to 8 and 0.51 down to 0.5. The exact answer is
+    3.978. One number was rounded up and the other down, so the two errors nearly
+    cancel and the estimate is very close.
+- id: jc4-4.2-too-big
+  section: '4.2'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    A pupil estimates $3.7\times4.2$ as $4\times4=16$. Is the estimate too big or
+    too small? Give a reason.
+  answer_label: Is the estimate of $3.7\times4.2$ too big or too small?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4 * 4
+      answer: '16'
+    - kind: evaluate
+      expression: 3.7 * 4.2
+      answer: '15.54'
+    - kind: compare
+      lhs: 4 * 4
+      relation: '>'
+      rhs: 3.7 * 4.2
+  answer_text: >-
+    Too big. Both numbers were rounded up, so both errors push the estimate above
+    the true value. The exact answer is 15.54, which is less than 16.
+- id: jc4-4.2-anchor-estimate
+  section: '4.2'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The dripping tap loses 3.75 ml each minute. Round this to 1 significant
+    figure, then use the rounded value to estimate the volume lost in one year.
+    Take a year as 365 days.
+  answer_label: The estimated volume lost in one year.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4 * 60 * 24 * 365
+      answer: '2102400'
+    - kind: between
+      low: '1500000'
+      value: 3.75 * 60 * 24 * 365
+      high: '2500000'
+  answer_text: >-
+    $4\times60\times24\times365=2102400$, so the estimate is about 2,100,000 ml.
+    The exact volume is 1,971,000 ml. The estimate is a little above, because
+    3.75 was rounded up to 4, and it agrees on the size of the answer.
+- id: jc4-4.2-anchor-litres
+  section: '4.2'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The estimated volume for the year is 2,102,400 ml. There are 1000 ml in a
+    litre. Write the estimate in litres.
+  answer_label: The estimated volume in litres.
+  check:
+    kind: evaluate
+    expression: 2102400 / 1000
+    answer: '2102.4'
+  answer_text: >-
+    2102.4 litres. Dividing by 1000 moves every digit three places to the right.
+    The exact volume is 1971 litres, so the estimate of about 2100 litres is the
+    right size.

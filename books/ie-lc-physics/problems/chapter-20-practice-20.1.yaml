@@ -1,0 +1,246 @@
+# Leaving Certificate Physics, Chapter 20, section 20.1 (strand 4 outcome 4.4).
+#
+# The physics oracle proves a quantity's magnitude and unit (`dimensions`) and the
+# rounding the data support (`sigfigs`). Where the answer is an explanation and no
+# number can settle it, `structured` proves only that the model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass.
+chapter: 20
+problems:
+  - id: p20-1-background
+    section: '20.1'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A radiation detector in a laboratory records counts even when no source is
+      placed near it. Explain what background radiation is, name two sources of
+      it, and describe one observation that shows it is always present.
+    answer_label: Background radiation
+    check:
+      kind: structured
+      requires: [meaning, sources, evidence]
+      concepts: [always-present, natural-sources, varies]
+      points:
+        - id: meaning
+          text: >-
+            Background radiation is the ionising radiation that is present all the
+            time, from sources other than the one being investigated.
+          concepts: [always-present]
+        - id: sources
+          text: >-
+            It comes from radon gas released by rocks and soil, from cosmic rays
+            from space, and from food, drink and building materials.
+          concepts: [natural-sources]
+        - id: evidence
+          text: >-
+            The count rate changes with height above sea level and with the
+            material of the building, so the radiation comes from the
+            surroundings rather than from the detector.
+          concepts: [varies]
+    answer_text: >-
+      Background radiation is the ionising radiation that is present all the time,
+      from sources other than the one being investigated. It comes from radon gas
+      released by rocks and soil, from cosmic rays, and from food, drink and
+      building materials. A detector moved to a higher place or into a different
+      building records a different count rate, so the radiation comes from the
+      surroundings and not from the detector itself.
+  - id: p20-1-corrected-rate
+    section: '20.1'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A detector records a count rate of 750 counts per minute near a source. With
+      the source removed, the same detector records 130 counts per minute.
+      Calculate the corrected count rate of the source.
+    answer_label: Corrected count rate
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: total - background
+          values:
+            total: {value: '750', unit: min^-1}
+            background: {value: '130', unit: min^-1}
+          answer: {value: '620', unit: min^-1}
+        - kind: sigfigs
+          value: '750 - 130'
+          figures: 2
+          answer: '6.2e2'
+          convention: round-once
+    answer_text: >-
+      Subtract the background count rate: $750 - 130 = 620$ counts per minute,
+      which is $6.2 \times 10^2$ counts per minute.
+  - id: p20-1-emissions
+    section: '20.1'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      Name the three types of ionising radiation given out by radioactive nuclei,
+      and state the charge and the mass of each one.
+    answer_label: The three emissions
+    check:
+      kind: structured
+      requires: [alpha, beta, gamma]
+      concepts: [charge, mass, relative]
+      points:
+        - id: alpha
+          text: >-
+            An alpha particle is a helium nucleus. It carries a charge of $+2e$ and
+            a mass of about four atomic mass units.
+          concepts: [charge, mass, relative]
+        - id: beta
+          text: >-
+            A beta particle is a fast electron. It carries a charge of $-e$ and a
+            mass about 1800 times smaller than an atom.
+          concepts: [charge, mass, relative]
+        - id: gamma
+          text: >-
+            A gamma ray is electromagnetic radiation. It carries no charge and has
+            no mass.
+          concepts: [charge, mass, relative]
+    answer_text: >-
+      An alpha particle is a helium nucleus, with charge $+2e$ and a mass of about
+      four atomic mass units. A beta particle is a fast electron, with charge $-e$
+      and a mass about 1800 times smaller than an atom. A gamma ray is
+      electromagnetic radiation, with no charge and no mass.
+  - id: p20-1-penetration
+    section: '20.1'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      Compare the three emissions for their ionising effect and their penetrating
+      power, and name one material that stops each one.
+    answer_label: Ionising effect and penetrating power
+    check:
+      kind: structured
+      requires: [alpha, beta, gamma]
+      concepts: [ionising, penetrating, absorber]
+      points:
+        - id: alpha
+          text: >-
+            Alpha particles ionise strongly because they are large and doubly
+            charged. They travel only a few centimetres in air and a sheet of paper
+            stops them.
+          concepts: [ionising, penetrating, absorber]
+        - id: beta
+          text: >-
+            Beta particles ionise less strongly than alpha particles. They travel
+            about a metre in air and a few millimetres of aluminium stops them.
+          concepts: [ionising, penetrating, absorber]
+        - id: gamma
+          text: >-
+            Gamma rays ionise weakly because they have no charge. They pass through
+            paper and aluminium, and several centimetres of lead are needed to
+            reduce them.
+          concepts: [ionising, penetrating, absorber]
+    answer_text: >-
+      Alpha particles ionise strongly, travel only a few centimetres in air, and
+      are stopped by a sheet of paper. Beta particles ionise less strongly, travel
+      about a metre in air, and are stopped by a few millimetres of aluminium.
+      Gamma rays ionise weakly, pass through paper and aluminium, and are reduced
+      by several centimetres of lead.
+  - id: p20-1-deflection
+    section: '20.1'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      A narrow beam of each emission passes between two charged plates, one
+      positive and one negative. Describe how each beam moves, and explain what the
+      direction shows about the charge it carries.
+    answer_label: Deflection in an electric field
+    check:
+      kind: structured
+      requires: [alpha, beta, gamma]
+      concepts: [towards-negative, towards-positive, undeflected]
+      points:
+        - id: alpha
+          text: >-
+            The alpha beam bends towards the negative plate, because the particle
+            is positive. The bend is small because the particle is heavy.
+          concepts: [towards-negative]
+        - id: beta
+          text: >-
+            The beta beam bends towards the positive plate, because the electron is
+            negative. The bend is much larger because the electron is light.
+          concepts: [towards-positive]
+        - id: gamma
+          text: >-
+            The gamma beam is not deflected at all, because a gamma ray carries no
+            charge.
+          concepts: [undeflected]
+    answer_text: >-
+      The alpha beam bends towards the negative plate, so the alpha particle is
+      positive. The beta beam bends the other way, towards the positive plate, so
+      the beta particle is negative. The beta bend is much larger because the
+      electron is far lighter. The gamma beam is not deflected, so a gamma ray
+      carries no charge.
+  - id: p20-1-spontaneous
+    section: '20.1'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      Explain what is meant by spontaneous radioactive decay, and explain why
+      heating a radioactive sample strongly does not change its activity.
+    answer_label: Spontaneous decay
+    check:
+      kind: structured
+      requires: [spontaneous, random, unaffected]
+      concepts: [from-nucleus, cannot-predict, external-conditions]
+      points:
+        - id: spontaneous
+          text: >-
+            The decay comes from the unstable nucleus itself, and nothing outside
+            the nucleus causes it.
+          concepts: [from-nucleus]
+        - id: random
+          text: >-
+            It is random, so you cannot predict which nucleus decays next or when
+            it will decay.
+          concepts: [cannot-predict]
+        - id: unaffected
+          text: >-
+            Heating, cooling or squeezing the sample changes only the electrons and
+            the motion of the atoms, so the activity stays the same.
+          concepts: [external-conditions]
+    answer_text: >-
+      Radioactive decay is spontaneous: it comes from the unstable nucleus itself,
+      and nothing outside the nucleus causes it. It is also random, so you cannot
+      predict which nucleus decays next or when it will decay. Heating changes only
+      the electrons and the motion of the atoms, so it cannot change the activity.
+  - id: p20-1-forces
+    section: '20.1'
+    tier: O
+    refs: ['4.4']
+    statement: >-
+      State the role of the strong nuclear force and of the weak nuclear force in
+      the nucleus, and say which one is responsible for beta decay.
+    answer_label: The nuclear forces
+    check:
+      kind: structured
+      requires: [strong, weak, beta]
+      concepts: [binds-nucleons, changes-neutron, large-nucleus]
+      points:
+        - id: strong
+          text: >-
+            The strong nuclear force holds protons and neutrons together, and it
+            overcomes the electrostatic repulsion between the protons.
+          concepts: [binds-nucleons]
+        - id: weak
+          text: >-
+            The weak nuclear force acts on a single nucleon and can change a
+            neutron into a proton.
+          concepts: [changes-neutron]
+        - id: beta
+          text: >-
+            Beta decay is caused by the weak nuclear force. In a very large nucleus
+            the strong force cannot hold every nucleon, and alpha decay can follow.
+          concepts: [changes-neutron, large-nucleus]
+    answer_text: >-
+      The strong nuclear force holds the protons and neutrons together and
+      overcomes the electrostatic repulsion between the protons. The weak nuclear
+      force acts on a single nucleon and can change a neutron into a proton, which
+      is beta decay. In a very large nucleus the strong force cannot hold every
+      nucleon, so alpha decay can also happen.
