@@ -1,0 +1,260 @@
+# Leaving Certificate Physics, Chapter 9, section 9.1 (strand 2 outcome 2.2).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. A `structured` record proves only that
+# a model answer contains the declared steps in order and covers the declared
+# concepts — not that the physics in them is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass.
+chapter: 9
+problems:
+- id: p9-1-energy-matter
+  section: '9.1'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    State what a wave transfers from one place to another, and what it does not
+    transfer.
+  answer_label: What a wave transfers
+  check:
+    kind: structured
+    requires:
+    - energy
+    - matter
+    - example
+    concepts:
+    - energy
+    - matter
+    - medium
+    points:
+    - id: energy
+      text: a wave transfers energy from one place to another
+      concepts:
+      - energy
+    - id: matter
+      text: the particles of the medium vibrate about fixed positions, so the matter of the
+        medium does not travel with the wave
+      concepts:
+      - matter
+    - id: example
+      text: on a rope, the disturbance travels along the rope while the rope itself stays in
+        place
+      concepts:
+      - medium
+  answer_text: >-
+    A wave transfers energy from one place to another. It does not transfer the
+    matter of the medium. The particles of the medium vibrate about fixed
+    positions, so on a rope the disturbance travels along the rope while the rope
+    itself stays in place.
+- id: p9-1-crest-trough
+  section: '9.1'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    A wave has an amplitude of 0.12 m. Calculate the vertical distance from a crest
+    to the next trough.
+  answer_label: Distance from crest to trough
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 2 * A
+      values:
+        A:
+          value: '0.12'
+          unit: m
+      answer:
+        value: '0.24'
+        unit: m
+    - kind: sigfigs
+      value: 2 * 0.12
+      figures: 2
+      answer: '0.24'
+      convention: round-once
+  answer_text: >-
+    The amplitude is the distance from the rest position to a crest, so the crest
+    sits 0.12 m above the rest position and the trough sits 0.12 m below it. The
+    distance between them is $2 \times 0.12 = 0.24\,\text{m}$.
+- id: p9-1-energy-amplitude
+  section: '9.1'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    Explain how the energy carried by a wave changes when its amplitude changes.
+  answer_label: Energy and amplitude
+  check:
+    kind: structured
+    requires:
+    - more-energy
+    - square
+    concepts:
+    - amplitude
+    - energy
+    - square
+    points:
+    - id: more-energy
+      text: a wave with a larger amplitude carries more energy, because the particles of
+        the medium travel further from the rest position
+      concepts:
+      - amplitude
+      - energy
+    - id: square
+      text: the energy carried is proportional to the square of the amplitude, so doubling
+        the amplitude gives four times the energy
+      concepts:
+      - square
+  answer_text: >-
+    A wave with a larger amplitude carries more energy, because the particles of
+    the medium travel further from the rest position. The energy carried is
+    proportional to the square of the amplitude, so doubling the amplitude gives
+    four times the energy.
+- id: p9-1-mechanical-em
+  section: '9.1'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    Explain the difference between a mechanical wave and an electromagnetic wave,
+    and give one example of each.
+  answer_label: Mechanical and electromagnetic waves
+  check:
+    kind: structured
+    requires:
+    - mechanical
+    - electromagnetic
+    - examples
+    concepts:
+    - medium
+    - vacuum
+    - examples
+    points:
+    - id: mechanical
+      text: a mechanical wave needs a medium to travel through, because it is passed on by
+        the particles of the medium
+      concepts:
+      - medium
+    - id: electromagnetic
+      text: an electromagnetic wave needs no medium and can travel through a vacuum
+      concepts:
+      - vacuum
+    - id: examples
+      text: sound is a mechanical wave and light is an electromagnetic wave
+      concepts:
+      - examples
+  answer_text: >-
+    A mechanical wave needs a medium to travel through, because it is passed on by
+    the particles of the medium. Sound is a mechanical wave. An electromagnetic
+    wave needs no medium and can travel through a vacuum. Light is an
+    electromagnetic wave.
+- id: p9-1-amplitude-metres
+  section: '9.1'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    The maximum displacement of a wave from its rest position is 15 cm. State the
+    amplitude of the wave in metres.
+  answer_label: Amplitude
+  check:
+    kind: convert
+    value: '15'
+    from: cm
+    to: m
+    answer: '0.15'
+  answer_text: >-
+    The amplitude is the maximum displacement from the rest position, so it is
+    15 cm. There are 100 cm in a metre, so the amplitude is
+    $15 \div 100 = 0.15\,\text{m}$.
+- id: p9-1-anatomy
+  section: '9.1'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    Define the rest position, the displacement, the crest, the trough and the
+    amplitude of a wave.
+  answer_label: The anatomy of a wave
+  check:
+    kind: structured
+    requires:
+    - rest
+    - displacement
+    - crest
+    - trough
+    - amplitude
+    concepts:
+    - rest
+    - displacement
+    - crest
+    - trough
+    - amplitude
+    points:
+    - id: rest
+      text: the rest position is where the particles of the medium sit when no wave passes
+      concepts:
+      - rest
+    - id: displacement
+      text: the displacement is the distance of a particle from the rest position at a
+        given moment
+      concepts:
+      - displacement
+    - id: crest
+      text: a crest is a point of maximum positive displacement
+      concepts:
+      - crest
+    - id: trough
+      text: a trough is a point of maximum negative displacement
+      concepts:
+      - trough
+    - id: amplitude
+      text: the amplitude is the maximum displacement from the rest position
+      concepts:
+      - amplitude
+  answer_text: >-
+    The rest position is where the particles of the medium sit when no wave
+    passes. The displacement is the distance of a particle from the rest position
+    at a given moment. A crest is a point of maximum positive displacement and a
+    trough is a point of maximum negative displacement. The amplitude is the
+    maximum displacement from the rest position.
+- id: p9-1-sound-vacuum
+  section: '9.1'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    Explain why sound cannot travel through a vacuum, but light can.
+  answer_label: Sound and light in a vacuum
+  check:
+    kind: structured
+    requires:
+    - mechanical
+    - vacuum
+    - electromagnetic
+    concepts:
+    - medium
+    - vacuum
+    - electromagnetic
+    points:
+    - id: mechanical
+      text: sound is a mechanical wave, so it needs particles to pass the disturbance on
+      concepts:
+      - medium
+    - id: vacuum
+      text: a vacuum has no particles, so there is nothing to carry the sound
+      concepts:
+      - vacuum
+    - id: electromagnetic
+      text: light is an electromagnetic wave, so it needs no medium and travels through a
+        vacuum
+      concepts:
+      - electromagnetic
+  answer_text: >-
+    Sound is a mechanical wave, so it needs particles to pass the disturbance on.
+    A vacuum has no particles, so there is nothing to carry the sound. Light is an
+    electromagnetic wave, so it needs no medium and travels through a vacuum.

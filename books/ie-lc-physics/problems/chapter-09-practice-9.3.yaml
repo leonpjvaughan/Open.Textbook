@@ -1,0 +1,264 @@
+# Leaving Certificate Physics, Chapter 9, section 9.3 (strand 2 outcome 2.2).
+#
+# Every record in this bank is a `structured` check. It proves only that a model
+# answer contains the declared steps in order and covers the declared concepts —
+# not that the physics in them is right. That is the honest limit, and it is why
+# the statements ask the reader to explain rather than to calculate.
+chapter: 9
+problems:
+- id: p9-3-transverse
+  section: '9.3'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    Describe a transverse wave, and give two examples of one.
+  answer_label: A transverse wave
+  check:
+    kind: structured
+    requires:
+    - direction
+    - examples
+    concepts:
+    - perpendicular
+    - examples
+    points:
+    - id: direction
+      text: in a transverse wave the particles of the medium vibrate at right angles to the
+        direction the wave travels
+      concepts:
+      - perpendicular
+    - id: examples
+      text: a wave on a string and a light wave are transverse; a wave on the surface of water
+        is also mostly transverse
+      concepts:
+      - examples
+  answer_text: >-
+    In a transverse wave the particles of the medium vibrate at right angles to
+    the direction the wave travels. A wave on a string and a light wave are
+    transverse. A wave on the surface of water is also mostly transverse.
+- id: p9-3-longitudinal
+  section: '9.3'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    Describe a longitudinal wave, and give two examples of one.
+  answer_label: A longitudinal wave
+  check:
+    kind: structured
+    requires:
+    - direction
+    - compressions
+    - examples
+    concepts:
+    - parallel
+    - compression
+    - examples
+    points:
+    - id: direction
+      text: in a longitudinal wave the particles of the medium vibrate along the direction the
+        wave travels
+      concepts:
+      - parallel
+    - id: compressions
+      text: the particles bunch together into compressions and spread apart into rarefactions,
+        and these regions travel along the wave
+      concepts:
+      - compression
+    - id: examples
+      text: sound and ultrasound are longitudinal waves
+      concepts:
+      - examples
+  answer_text: >-
+    In a longitudinal wave the particles of the medium vibrate along the
+    direction the wave travels. The particles bunch together into compressions
+    and spread apart into rarefactions, and these regions travel along the wave.
+    Sound and ultrasound are longitudinal waves.
+- id: p9-3-sound-air
+  section: '9.3'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    Sound is a longitudinal wave. Explain what the particles of the air do as a
+    sound wave passes, and say whether they travel from the source to your ear.
+  answer_label: Air particles in a sound wave
+  check:
+    kind: structured
+    requires:
+    - vibration
+    - compression
+    - no-travel
+    concepts:
+    - parallel
+    - compression
+    - matter
+    points:
+    - id: vibration
+      text: each air particle vibrates back and forth along the direction the sound travels
+      concepts:
+      - parallel
+    - id: compression
+      text: the particles form a compression where they are close together and a rarefaction
+        where they are spread out, and these regions move along
+      concepts:
+      - compression
+    - id: no-travel
+      text: the particles themselves stay near their own positions and do not travel from the
+        source to your ear; only the energy moves
+      concepts:
+      - matter
+  answer_text: >-
+    Each air particle vibrates back and forth along the direction the sound
+    travels. The particles form a compression where they are close together and a
+    rarefaction where they are spread out, and these regions move along. The
+    particles themselves stay near their own positions and do not travel from the
+    source to your ear. Only the energy moves.
+- id: p9-3-polarisation
+  section: '9.3'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    Explain why a sound wave cannot be polarised, but a light wave can.
+  answer_label: Polarisation
+  check:
+    kind: structured
+    requires:
+    - transverse-only
+    - sound
+    - light
+    concepts:
+    - polarisation
+    - transverse
+    - longitudinal
+    points:
+    - id: transverse-only
+      text: only a transverse wave can be polarised, because its vibration has a direction at
+        right angles to the direction of travel that can be selected
+      concepts:
+      - polarisation
+      - transverse
+    - id: sound
+      text: sound is longitudinal, so its vibration is along the direction of travel and there
+        is no such direction to select
+      concepts:
+      - longitudinal
+    - id: light
+      text: light is transverse, so it can be polarised
+      concepts:
+      - transverse
+  answer_text: >-
+    Only a transverse wave can be polarised, because its vibration has a
+    direction at right angles to the direction of travel that can be selected.
+    Sound is longitudinal, so its vibration is along the direction of travel and
+    there is no such direction to select. Light is transverse, so it can be
+    polarised.
+- id: p9-3-string-and-sound
+  section: '9.3'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    The wave on a guitar string is transverse, and the sound it makes in the air
+    is longitudinal. Compare the direction in which the particles vibrate in the
+    two waves.
+  answer_label: String wave and sound wave
+  check:
+    kind: structured
+    requires:
+    - string
+    - air
+    concepts:
+    - perpendicular
+    - parallel
+    points:
+    - id: string
+      text: on the string the particles vibrate at right angles to the direction the wave
+        travels along the string
+      concepts:
+      - perpendicular
+    - id: air
+      text: in the air the particles vibrate back and forth along the direction the sound
+        travels
+      concepts:
+      - parallel
+  answer_text: >-
+    On the string the particles vibrate at right angles to the direction the wave
+    travels along the string, so the wave is transverse. In the air the particles
+    vibrate back and forth along the direction the sound travels, so the sound
+    wave is longitudinal.
+- id: p9-3-misconception
+  section: '9.3'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    A student says that the air travels from a loudspeaker to her ear. Explain what
+    is wrong with this statement.
+  answer_label: Air and sound
+  check:
+    kind: structured
+    requires:
+    - vibration
+    - energy
+    concepts:
+    - matter
+    - energy
+    - compression
+    points:
+    - id: vibration
+      text: the air particles vibrate about their own fixed positions and do not travel across
+        the room
+      concepts:
+      - matter
+    - id: energy
+      text: what travels from the loudspeaker to her ear is energy, carried by a compression
+        moving through the air
+      concepts:
+      - energy
+      - compression
+  answer_text: >-
+    The air particles vibrate about their own fixed positions and do not travel
+    across the room. What travels from the loudspeaker to her ear is energy,
+    carried by a compression moving through the air. The sound wave moves, but
+    the air itself does not.
+- id: p9-3-compression
+  section: '9.3'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    Define a compression and a rarefaction, and state which kind of wave they
+    belong to.
+  answer_label: Compression and rarefaction
+  check:
+    kind: structured
+    requires:
+    - compression
+    - rarefaction
+    - kind
+    concepts:
+    - compression
+    - rarefaction
+    - longitudinal
+    points:
+    - id: compression
+      text: a compression is a region where the particles of the medium are closer together
+        than usual
+      concepts:
+      - compression
+    - id: rarefaction
+      text: a rarefaction is a region where the particles are farther apart than usual
+      concepts:
+      - rarefaction
+    - id: kind
+      text: compressions and rarefactions travel along a longitudinal wave
+      concepts:
+      - longitudinal
+  answer_text: >-
+    A compression is a region where the particles of the medium are closer
+    together than usual. A rarefaction is a region where the particles are
+    farther apart than usual. Compressions and rarefactions travel along a
+    longitudinal wave, such as sound.

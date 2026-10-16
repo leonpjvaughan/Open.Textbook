@@ -1,0 +1,222 @@
+# Practice set for 6.5 (strand S3, the physical world). Every answer is an
+# energy or a velocity, so the checks come from the `units` oracle: `dimensions`
+# proves the arithmetic and the unit together. The `structured` record proves
+# only that a model answer contains the declared ideas, in order — not that the
+# physics is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics.
+chapter: 6
+problems:
+  - id: am6-5-ke-before
+    section: '6.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A test car of mass $1200$ kg moves at $15$ m/s. Calculate its kinetic
+      energy.
+    answer_label: Kinetic energy
+    check:
+      kind: dimensions
+      expression: 0.5 * m * v**2
+      values:
+        m: {value: '1200', unit: kg}
+        v: {value: '15', unit: 'm/s'}
+      answer: {value: '135000', unit: J}
+    answer_text: >-
+      $E_k = \dfrac{1}{2}mv^2 = 0.5 \times 1200 \times 225 = 135000$ J. This is
+      the energy the moving car brings into the collision.
+
+  - id: am6-5-ke-after-inelastic
+    section: '6.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      In a perfectly inelastic crash test, the two cars move off together with
+      total mass $2000$ kg at $9$ m/s. Calculate their kinetic energy after the
+      collision.
+    answer_label: Kinetic energy
+    check:
+      kind: dimensions
+      expression: 0.5 * m * v**2
+      values:
+        m: {value: '2000', unit: kg}
+        v: {value: '9', unit: 'm/s'}
+      answer: {value: '81000', unit: J}
+    answer_text: >-
+      $E_k = 0.5 \times 2000 \times 81 = 81000$ J. The kinetic energy has fallen
+      from $135000$ J, even though momentum is conserved.
+
+  - id: am6-5-ke-lost-inelastic
+    section: '6.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car of mass $1200$ kg moving at $15$ m/s collides with a stationary car
+      of mass $800$ kg. They lock together and move at $9$ m/s. Calculate the
+      kinetic energy lost in the collision.
+    answer_label: Energy lost
+    check:
+      kind: dimensions
+      expression: 0.5 * m1 * u1**2 - 0.5 * (m1 + m2) * v**2
+      values:
+        m1: {value: '1200', unit: kg}
+        m2: {value: '800', unit: kg}
+        u1: {value: '15', unit: 'm/s'}
+        v: {value: '9', unit: 'm/s'}
+      answer: {value: '54000', unit: J}
+    answer_text: >-
+      The kinetic energy before is $135000$ J and after is $81000$ J, so the loss
+      is $135000 - 81000 = 54000$ J. The energy has gone into crumpling metal,
+      sound and heat. Momentum is still conserved; kinetic energy is not.
+
+  - id: am6-5-ke-after-e-half
+    section: '6.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      In a partially elastic crash test with $e = 0.5$, the $1200$ kg car moves
+      at $6$ m/s and the $800$ kg car moves at $13.5$ m/s. Calculate the total
+      kinetic energy after the collision.
+    answer_label: Kinetic energy
+    check:
+      kind: dimensions
+      expression: 0.5 * m1 * v1**2 + 0.5 * m2 * v2**2
+      values:
+        m1: {value: '1200', unit: kg}
+        m2: {value: '800', unit: kg}
+        v1: {value: '6', unit: 'm/s'}
+        v2: {value: '13.5', unit: 'm/s'}
+      answer: {value: '94500', unit: J}
+    answer_text: >-
+      The two kinetic energies are $0.5 \times 1200 \times 36 = 21600$ J and
+      $0.5 \times 800 \times 182.25 = 72900$ J. Their total is $94500$ J, which
+      lies between the $81000$ J of the perfectly inelastic case and the
+      $135000$ J of the elastic case.
+
+  - id: am6-5-elastic-equal-mass
+    section: '6.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $2$ kg moving at $6$ m/s collides head-on and elastically
+      with a stationary ball of the same mass. Calculate the velocity of each
+      ball after the collision.
+    answer_label: Velocities of the two balls
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (m1 - m2) * u1 / (m1 + m2)
+          values:
+            m1: {value: '2', unit: kg}
+            m2: {value: '2', unit: kg}
+            u1: {value: '6', unit: 'm/s'}
+          answer: {value: '0', unit: 'm/s'}
+        - kind: dimensions
+          expression: 2 * m1 * u1 / (m1 + m2)
+          values:
+            m1: {value: '2', unit: kg}
+            m2: {value: '2', unit: kg}
+            u1: {value: '6', unit: 'm/s'}
+          answer: {value: '6', unit: 'm/s'}
+    answer_text: >-
+      For equal masses in an elastic collision, the moving ball stops and the
+      stationary ball moves off at the original speed. So the first ball is at
+      rest and the second moves at $6$ m/s. Momentum and kinetic energy are both
+      conserved.
+
+  - id: am6-5-elastic-unequal
+    section: '6.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $3$ kg moving at $4$ m/s collides head-on and elastically
+      with a stationary ball of mass $1$ kg. Calculate the velocity of each ball
+      after the collision.
+    answer_label: Velocities of the two balls
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (m1 - m2) * u1 / (m1 + m2)
+          values:
+            m1: {value: '3', unit: kg}
+            m2: {value: '1', unit: kg}
+            u1: {value: '4', unit: 'm/s'}
+          answer: {value: '2', unit: 'm/s'}
+        - kind: dimensions
+          expression: 2 * m1 * u1 / (m1 + m2)
+          values:
+            m1: {value: '3', unit: kg}
+            m2: {value: '1', unit: kg}
+            u1: {value: '4', unit: 'm/s'}
+          answer: {value: '6', unit: 'm/s'}
+    answer_text: >-
+      For an elastic collision with $e = 1$, the formulas give
+      $v_1 = \dfrac{(3 - 1) \times 4}{4} = 2$ m/s and
+      $v_2 = \dfrac{2 \times 3 \times 4}{4} = 6$ m/s. Check the kinetic energy:
+      before, $0.5 \times 3 \times 16 = 24$ J; after,
+      $0.5 \times 3 \times 4 + 0.5 \times 1 \times 36 = 6 + 18 = 24$ J.
+
+  - id: am6-5-ke-lost-formula
+    section: '6.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Two cars of masses $1200$ kg and $800$ kg collide with a relative approach
+      speed of $15$ m/s. The coefficient of restitution is $0.5$. Use
+      $E_{\text{lost}} = \dfrac{1}{2}\dfrac{m_1 m_2}{m_1 + m_2}(1 - e^2)u^2$
+      to calculate the kinetic energy lost.
+    answer_label: Energy lost
+    check:
+      kind: dimensions
+      expression: 0.5 * (m1 * m2 / (m1 + m2)) * (1 - e**2) * u**2
+      values:
+        m1: {value: '1200', unit: kg}
+        m2: {value: '800', unit: kg}
+        e: {value: '0.5'}
+        u: {value: '15', unit: 'm/s'}
+      answer: {value: '40500', unit: J}
+    answer_text: >-
+      Substitute the values:
+      $0.5 \times \dfrac{1200 \times 800}{2000} \times (1 - 0.25) \times 225
+      = 0.5 \times 480 \times 0.75 \times 225 = 40500$ J. The formula shows that
+      the energy lost grows with the relative speed and with the amount of
+      inelasticity.
+
+  - id: am6-5-momentum-ke
+    section: '6.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      In an inelastic collision, momentum is conserved but kinetic energy is
+      not. Explain how both statements can be true at once.
+    answer_label: How both can be true
+    check:
+      kind: structured
+      requires: [momentum-conserved, ke-lost, where-energy-goes]
+      concepts: [inelastic]
+      points:
+        - id: momentum-conserved
+          text: >-
+            momentum is conserved because the forces between the bodies are
+            equal and opposite, so they cancel over the collision
+          concepts: [inelastic]
+        - id: ke-lost
+          text: >-
+            kinetic energy falls because some of it is changed into other forms,
+            such as heat, sound and deformation
+          concepts: [inelastic]
+        - id: where-energy-goes
+          text: >-
+            the two quantities measure different things, so conserving one does
+            not conserve the other
+          concepts: [inelastic]
+    answer_text: >-
+      Momentum is a vector and is conserved because the forces the bodies exert
+      on each other are equal and opposite, so their total effect on the total
+      momentum is zero. Kinetic energy is a scalar and can be changed into other
+      forms, such as heat, sound and the energy stored in crumpled metal. During
+      an inelastic collision some kinetic energy changes form, so it falls, even
+      though the total momentum stays the same. The two quantities measure
+      different things, so there is no contradiction.

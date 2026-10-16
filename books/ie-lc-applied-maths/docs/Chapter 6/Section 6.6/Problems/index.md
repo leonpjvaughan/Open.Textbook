@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.6 Collisions in two dimensions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+Every question here is Higher level.
+
+Take the line of the incoming velocity as the $x$-axis. Resolve every velocity
+into components, then conserve the $x$-momentum and the $y$-momentum separately.
+
+:::problems chapter-06-practice-6.6
+
+:::answers chapter-06-practice-6.6

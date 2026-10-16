@@ -1,0 +1,198 @@
+# Leaving Certificate Physics, Chapter 8, section 8.1 (strand 2 outcome 2.1).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one.
+#
+# A temperature conversion is an exact arithmetic step, so it is checked with the
+# symbolic `evaluate` kind: the offsets of the Celsius scale are not a unit
+# conversion, and the units oracle has no offset rule. A reason is a `structured`
+# record: presence, order and coverage only, never physics.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 8
+problems:
+- id: p8-1-define
+  section: '8.1'
+  tier: O
+  refs:
+  - '2.1'
+  statement: State what is meant by temperature, by heat and by thermal equilibrium.
+  answer_label: Temperature, heat and thermal equilibrium
+  check:
+    kind: structured
+    requires:
+    - temperature
+    - heat
+    - equilibrium
+    concepts:
+    - average-kinetic-energy
+    - energy-in-transit
+    - no-net-flow
+    points:
+    - id: temperature
+      text: Temperature is a measure of the average random kinetic energy of the particles of a body.
+      concepts:
+      - average-kinetic-energy
+    - id: heat
+      text: Heat is energy in transit from a hotter body to a colder body because of the temperature
+        difference.
+      concepts:
+      - energy-in-transit
+    - id: equilibrium
+      text: Two bodies are in thermal equilibrium when they are at the same temperature, so no net
+        energy flows between them.
+      concepts:
+      - no-net-flow
+  answer_text: Temperature measures the average random kinetic energy of the particles. Heat is energy
+    in transit from a hotter body to a colder body. Two bodies are in thermal equilibrium when they
+    reach the same temperature, so no net energy flows between them.
+- id: p8-1-celsius-to-kelvin
+  section: '8.1'
+  tier: O
+  refs:
+  - '2.1'
+  statement: The temperature of a room is 25°C. Write this temperature in kelvin. Take 0°C = 273 K.
+  answer_label: Temperature in kelvin
+  check:
+    kind: evaluate
+    expression: 25 + 273
+    answer: '298'
+  answer_text: $T = \theta + 273 = 25 + 273 = 298\,\text{K}$. A change of one degree Celsius is the
+    same size as a change of one kelvin.
+- id: p8-1-kelvin-to-celsius
+  section: '8.1'
+  tier: O
+  refs:
+  - '2.1'
+  statement: A gas is at a temperature of 350 K. Write this temperature in degrees Celsius. Take 0°C
+    = 273 K.
+  answer_label: Temperature in degrees Celsius
+  check:
+    kind: evaluate
+    expression: 350 - 273
+    answer: '77'
+  answer_text: $\theta = T - 273 = 350 - 273 = 77$°C. The kelvin scale starts at absolute zero, so a
+    kelvin value is always larger than the Celsius value.
+- id: p8-1-negative-celsius
+  section: '8.1'
+  tier: O
+  refs:
+  - '2.1'
+  statement: The temperature outside on a winter morning is −20°C. Write this temperature in kelvin.
+    Take 0°C = 273 K.
+  answer_label: Temperature in kelvin
+  check:
+    kind: evaluate
+    expression: -20 + 273
+    answer: '253'
+  answer_text: $T = \theta + 273 = -20 + 273 = 253\,\text{K}$. The temperature is above absolute zero,
+    so the kelvin value is positive.
+- id: p8-1-blocks
+  section: '8.1'
+  tier: O
+  refs:
+  - '2.1'
+  statement: A block at 60°C is placed in contact with a block at 20°C inside an insulated container.
+    Describe what happens to each block and what is meant by thermal equilibrium in this case.
+  answer_label: The two blocks
+  check:
+    kind: structured
+    requires:
+    - hot-block-cools
+    - cold-block-warms
+    - equilibrium
+    concepts:
+    - energy-hot-to-cold
+    - same-temperature
+    points:
+    - id: hot-block-cools
+      text: The hot block transfers energy to the cold block, so the hot block cools down.
+      concepts:
+      - energy-hot-to-cold
+    - id: cold-block-warms
+      text: The cold block gains that energy, so the cold block warms up.
+      concepts:
+      - energy-hot-to-cold
+    - id: equilibrium
+      text: The two blocks reach the same temperature and then stop exchanging net energy, so they are
+        in thermal equilibrium.
+      concepts:
+      - same-temperature
+  answer_text: Energy flows from the hot block to the cold block, so the hot block cools and the cold
+    block warms. They reach the same temperature and then no net energy flows between them, which is
+    thermal equilibrium.
+- id: p8-1-tea
+  section: '8.1'
+  tier: O
+  refs:
+  - '2.1'
+  statement: A cup of tea at 80°C is left in a room at 20°C. State the direction of the energy transfer
+    and the temperature the tea finally reaches.
+  answer_label: The cooling tea
+  check:
+    kind: structured
+    requires:
+    - direction
+    - final-temperature
+    - reason
+    concepts:
+    - hot-to-cold
+    - room-temperature
+    points:
+    - id: direction
+      text: Energy transfers from the hot tea to the cooler room, because energy flows from a hotter
+        body to a colder body.
+      concepts:
+      - hot-to-cold
+    - id: final-temperature
+      text: The tea cools until it reaches the temperature of the room, which is 20°C.
+      concepts:
+      - room-temperature
+    - id: reason
+      text: At that temperature the tea and the room are in thermal equilibrium, so no net energy flows
+        between them.
+      concepts:
+      - room-temperature
+  answer_text: Energy flows from the tea at 80°C to the room at 20°C, because energy flows from a
+    hotter body to a colder body. The tea cools to 20°C, the temperature of the room. At that point
+    the tea and the room are in thermal equilibrium.
+- id: p8-1-thermometer
+  section: '8.1'
+  tier: O
+  refs:
+  - '2.1'
+  statement: A thermometer is placed in a beaker of warm water. Explain why the reading rises at first
+    and then stops changing.
+  answer_label: The thermometer reading
+  check:
+    kind: structured
+    requires:
+    - rises
+    - stops
+    - equilibrium
+    concepts:
+    - energy-transfer
+    - same-temperature
+    points:
+    - id: rises
+      text: Energy transfers from the warm water to the cooler thermometer, so the liquid inside the
+        thermometer expands and the reading rises.
+      concepts:
+      - energy-transfer
+    - id: stops
+      text: The reading stops rising when the thermometer reaches the temperature of the water.
+      concepts:
+      - same-temperature
+    - id: equilibrium
+      text: At that point the thermometer and the water are in thermal equilibrium, so no net energy
+        flows between them.
+      concepts:
+      - same-temperature
+  answer_text: Energy transfers from the warm water to the cooler thermometer, so its liquid expands
+    and the reading rises. The reading stops changing when the thermometer reaches the temperature of
+    the water, because the two are then in thermal equilibrium.

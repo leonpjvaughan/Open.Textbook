@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.5 Computing and interpreting a solution — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S1
+Work independently. The questions and answers are shown together at the end.
+
+Keep the exact value in the middle of a calculation, round once at the end, and
+write the unit beside every answer.
+
+:::problems chapter-01-practice-1.5
+
+:::answers chapter-01-practice-1.5

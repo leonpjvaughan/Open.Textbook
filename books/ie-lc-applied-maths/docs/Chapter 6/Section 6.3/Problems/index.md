@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.3 Collisions in one dimension — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Draw the collision before and after, choose a positive direction, and give every
+velocity its sign. The impulse on a body is its change in momentum.
+
+:::problems chapter-06-practice-6.3
+
+:::answers chapter-06-practice-6.3

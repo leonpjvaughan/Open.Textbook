@@ -1,0 +1,202 @@
+# Practice set for 6.7 (strand S3, the physical world; Higher only). Answers are
+# quantities or a pure ratio, so the checks come from the `units` and `sympy`
+# oracles: `dimensions` proves the arithmetic and the unit together, and
+# `evaluate` proves a dimensionless ratio or a closed form. The `structured`
+# record proves only that a model answer contains the declared ideas, in order —
+# not that the physics is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics.
+chapter: 6
+problems:
+  - id: am6-7-rebound-e
+    section: '6.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A test car hits a barrier at $15$ m/s and rebounds at $6$ m/s. Calculate
+      the coefficient of restitution.
+    answer_label: Coefficient of restitution
+    check: {kind: evaluate, expression: '6 / 15', answer: '0.4'}
+    answer_text: >-
+      The barrier does not move, so the speed of approach is $15$ m/s and the
+      speed of separation is $6$ m/s. The coefficient of restitution is
+      $e = \dfrac{6}{15} = 0.4$.
+
+  - id: am6-7-rebound-impulse
+    section: '6.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      The test car of mass $1200$ kg hits the barrier at $15$ m/s and rebounds
+      at $6$ m/s. Taking the direction towards the barrier as positive,
+      calculate the impulse on the car.
+    answer_label: Impulse
+    check:
+      kind: dimensions
+      expression: m * (v2 - v1)
+      values:
+        m: {value: '1200', unit: kg}
+        v1: {value: '15', unit: 'm/s'}
+        v2: {value: '-6', unit: 'm/s'}
+      answer: {value: '-25200', unit: 'N s'}
+    answer_text: >-
+      Take towards the barrier as positive, so the velocity changes from $+15$
+      m/s to $-6$ m/s. The impulse is
+      $1200 \times (-6 - 15) = -25200$ N s. The negative sign means the impulse
+      acts away from the barrier. A rebound gives a larger impulse than a stop,
+      because the momentum reverses instead of reaching zero.
+
+  - id: am6-7-bounce-speed-2
+    section: '6.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball hits the floor at $10$ m/s and rebounds. The coefficient of
+      restitution is $0.7$. Calculate the speed with which it hits the floor on
+      the second bounce.
+    answer_label: Speed on the second bounce
+    check:
+      kind: dimensions
+      expression: u * e**2
+      values:
+        u: {value: '10', unit: 'm/s'}
+        e: {value: '0.7'}
+      answer: {value: '4.9', unit: 'm/s'}
+    answer_text: >-
+      Each bounce multiplies the speed by $e$. After the first bounce the speed
+      is $10 \times 0.7 = 7$ m/s, so it hits the floor at $7$ m/s. After the
+      second bounce the speed is $7 \times 0.7 = 4.9$ m/s. In one step,
+      $10 \times 0.7^2 = 4.9$ m/s.
+
+  - id: am6-7-height-series
+    section: '6.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball is dropped from a height of $2$ m. The coefficient of restitution
+      is $0.5$. Calculate the height it reaches after the first bounce and after
+      the second bounce.
+    answer_label: Heights after two bounces
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * e**2
+          values:
+            h: {value: '2', unit: m}
+            e: {value: '0.5'}
+          answer: {value: '0.5', unit: m}
+        - kind: dimensions
+          expression: h * e**4
+          values:
+            h: {value: '2', unit: m}
+            e: {value: '0.5'}
+          answer: {value: '0.125', unit: m}
+    answer_text: >-
+      A rebound height is $e^2$ times the height it fell from, because the height
+      depends on the square of the speed. After the first bounce the height is
+      $2 \times 0.5^2 = 0.5$ m. After the second bounce it is
+      $2 \times 0.5^4 = 0.125$ m.
+
+  - id: am6-7-total-distance
+    section: '6.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball is dropped from a height of $2$ m. The coefficient of restitution
+      is $0.5$. Calculate the total distance it travels before it comes to rest.
+    answer_label: Total distance
+    check:
+      kind: evaluate
+      expression: '2 * (1 + 2 * (1/2)**2 / (1 - (1/2)**2))'
+      answer: '10 / 3'
+    answer_text: >-
+      The first fall is $2$ m. Each later bounce covers a rise and a fall, so the
+      distance is
+      $2 + 2 \times 2 \times 0.5^2 + 2 \times 2 \times 0.5^4 + \cdots$. The
+      bounce terms form a geometric series with first term $1$ m and ratio
+      $0.25$, so their sum is $\dfrac{1}{1 - 0.25} = \dfrac{4}{3}$ m. The total
+      is $2 + \dfrac{4}{3} = \dfrac{10}{3} \approx 3.33$ m.
+
+  - id: am6-7-successive-collision
+    section: '6.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball of mass $2$ kg moving at $6$ m/s hits a stationary ball of mass $2$
+      kg. The coefficient of restitution is $0.5$. The struck ball then hits a
+      third stationary ball of mass $2$ kg, again with coefficient of
+      restitution $0.5$. Calculate the speed of the second ball after the first
+      collision, and the speed of the third ball after the second collision.
+    answer_label: Speed after the first, then the second collision
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: u * (1 + e) / 2
+          values:
+            u: {value: '6', unit: 'm/s'}
+            e: {value: '0.5'}
+          answer: {value: '4.5', unit: 'm/s'}
+        - kind: dimensions
+          expression: v * (1 + e) / 2
+          values:
+            v: {value: '4.5', unit: 'm/s'}
+            e: {value: '0.5'}
+          answer: {value: '3.375', unit: 'm/s'}
+    answer_text: >-
+      For equal masses the struck ball moves off at $\dfrac{u(1 + e)}{2}$. After
+      the first collision that is $\dfrac{6 \times 1.5}{2} = 4.5$ m/s. After the
+      second collision the third ball moves at
+      $\dfrac{4.5 \times 1.5}{2} = 3.375$ m/s. The speed falls at each collision,
+      because energy is lost each time.
+
+  - id: am6-7-e-from-height-fraction
+    section: '6.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball bounces to $0.36$ of the height from which it fell each time.
+      Calculate the coefficient of restitution.
+    answer_label: Coefficient of restitution
+    check: {kind: evaluate, expression: 'sqrt(0.36)', answer: '0.6'}
+    answer_text: >-
+      The rebound height is $e^2$ times the drop height, so $e^2 = 0.36$ and
+      $e = \sqrt{0.36} = 0.6$. The ratio of heights is the square of the ratio
+      of speeds.
+
+  - id: am6-7-series
+    section: '6.7'
+    tier: H
+    refs: [S3]
+    statement: >-
+      Explain how a geometric series is used to find the total distance
+      travelled by a bouncing ball, and why the series has a finite sum.
+    answer_label: The series
+    check:
+      kind: structured
+      requires: [ratio, series, finite-sum]
+      concepts: [geometric, restitution]
+      points:
+        - id: ratio
+          text: >-
+            each bounce covers a rise and a fall, and the heights fall by a
+            constant factor of $e^2$ each time
+          concepts: [geometric]
+        - id: series
+          text: >-
+            the bounce distances form a geometric series with first term
+            $2he^2$ and common ratio $e^2$
+          concepts: [geometric]
+        - id: finite-sum
+          text: >-
+            the series has a finite sum because $e$ is less than $1$, so the
+            ratio is less than $1$ and the ball travels a finite total distance
+          concepts: [restitution]
+    answer_text: >-
+      Each bounce after the first covers a rise and a fall. The heights fall by a
+      constant factor of $e^2$ each time, so the distances form a geometric
+      series with first term $2he^2$ and common ratio $e^2$. Because the
+      coefficient of restitution is less than $1$, the ratio is less than $1$,
+      and a geometric series with a ratio less than $1$ has a finite sum. That
+      finite sum is the total distance the ball travels before it comes to rest.

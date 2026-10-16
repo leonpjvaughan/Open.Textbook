@@ -1,0 +1,179 @@
+# Practice set for 6.6 (strand S3, the physical world; Higher only). A
+# two-dimensional collision is a vector problem, so the checks come from the
+# `sympy` oracle: `evaluate` proves each momentum component and the resulting
+# speed, and `approx` proves an angle that is irrational. Units stay out of the
+# CAS fields and live in the statement and the answer text. The `structured`
+# record proves only that a model answer contains the declared ideas, in order —
+# not that the physics is right.
+#
+# Honest limit: this proves the algebra, not the physics.
+chapter: 6
+problems:
+  - id: am6-6-ball-components
+    section: '6.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball of mass $2$ kg moves at $8$ m/s along the $x$-axis and hits a
+      stationary ball of mass $1$ kg. After the collision the $2$ kg ball moves
+      at $4$ m/s at $60^\circ$ to the $x$-axis. Calculate the $x$- and
+      $y$-components of the momentum of the $1$ kg ball.
+    answer_label: Momentum components
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2 * 8 - 2 * 4 * (1/2)', answer: '12'}
+        - {kind: evaluate, expression: '2 * 4 * sqrt(3) / 2', answer: '4 * sqrt(3)'}
+    answer_text: >-
+      The total momentum is $2 \times 8 = 16$ kg m/s along the $x$-axis, and zero
+      in the $y$-direction. After the collision the $2$ kg ball has
+      $x$-momentum $2 \times 4\cos 60^\circ = 4$ and $y$-momentum
+      $2 \times 4\sin 60^\circ = 4\sqrt{3}$ kg m/s. So the $1$ kg ball has
+      $x$-momentum $16 - 4 = 12$ kg m/s and $y$-momentum $4\sqrt{3}$ kg m/s
+      downwards.
+
+  - id: am6-6-ball-speed
+    section: '6.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      The $1$ kg ball in the previous question has momentum components
+      $12$ kg m/s and $4\sqrt{3}$ kg m/s at right angles. Calculate its speed.
+    answer_label: Speed
+    check:
+      kind: evaluate
+      expression: 'sqrt(12**2 + (4 * sqrt(3))**2)'
+      answer: '8 * sqrt(3)'
+    answer_text: >-
+      The magnitude of the momentum is
+      $\sqrt{12^2 + (4\sqrt{3})^2} = \sqrt{144 + 48} = \sqrt{192} = 8\sqrt{3}$
+      kg m/s. The speed is the momentum divided by the mass:
+      $\dfrac{8\sqrt{3}}{1} = 8\sqrt{3} \approx 13.86$ m/s.
+
+  - id: am6-6-ball-angle
+    section: '6.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      The $1$ kg ball has momentum components $12$ kg m/s and $4\sqrt{3}$ kg m/s
+      at right angles. Calculate the angle between its direction of motion and
+      the $x$-axis.
+    answer_label: Angle
+    check: {kind: evaluate, expression: 'atan(sqrt(3) / 3)', answer: 'pi / 6'}
+    answer_text: >-
+      The angle satisfies $\tan\theta = \dfrac{4\sqrt{3}}{12} = \dfrac{\sqrt{3}}{3}$.
+      So $\theta = 30^\circ$, or $\dfrac{\pi}{6}$ radians, below the $x$-axis.
+
+  - id: am6-6-crash-components
+    section: '6.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A test car of mass $1200$ kg moving at $15$ m/s along the $x$-axis hits a
+      stationary car of mass $800$ kg. After the glancing collision the $1200$ kg
+      car moves at $6$ m/s at $60^\circ$ to the $x$-axis. Calculate the $x$- and
+      $y$-components of the momentum of the $800$ kg car.
+    answer_label: Momentum components
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '1200 * 15 - 1200 * 6 * (1/2)', answer: '14400'}
+        - {kind: evaluate, expression: '1200 * 6 * sqrt(3) / 2', answer: '3600 * sqrt(3)'}
+    answer_text: >-
+      The total momentum is $1200 \times 15 = 18000$ kg m/s along the $x$-axis.
+      The $1200$ kg car leaves with $x$-momentum
+      $1200 \times 6\cos 60^\circ = 3600$ and $y$-momentum
+      $1200 \times 6\sin 60^\circ = 3600\sqrt{3}$ kg m/s. The $800$ kg car
+      therefore has $x$-momentum $18000 - 3600 = 14400$ kg m/s and $y$-momentum
+      $3600\sqrt{3}$ kg m/s in the opposite direction.
+
+  - id: am6-6-crash-speed
+    section: '6.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      The $800$ kg car has momentum components $14400$ kg m/s and
+      $3600\sqrt{3}$ kg m/s at right angles. Calculate its speed.
+    answer_label: Speed
+    check:
+      kind: evaluate
+      expression: 'sqrt(18**2 + (9/2 * sqrt(3))**2)'
+      answer: '9 * sqrt(19) / 2'
+    answer_text: >-
+      Divide each momentum component by the mass $800$ kg: the velocity
+      components are $18$ m/s and $4.5\sqrt{3}$ m/s. The speed is
+      $\sqrt{18^2 + (4.5\sqrt{3})^2} = \sqrt{324 + 60.75} = \sqrt{384.75}
+      \approx 19.62$ m/s.
+
+  - id: am6-6-crash-angle
+    section: '6.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      The $800$ kg car has velocity components $18$ m/s and $4.5\sqrt{3}$ m/s at
+      right angles. Calculate the angle between its direction of motion and the
+      $x$-axis, in radians to three significant figures.
+    answer_label: Angle
+    check:
+      kind: approx
+      value: 'atan(9/2 * sqrt(3) / 18)'
+      target: '0.4086'
+      tolerance: '0.001'
+    answer_text: >-
+      The angle satisfies
+      $\tan\theta = \dfrac{4.5\sqrt{3}}{18} = \dfrac{\sqrt{3}}{4}$. So
+      $\theta = \arctan 0.4330 \approx 0.409$ rad, about $23.4^\circ$ below the
+      $x$-axis.
+
+  - id: am6-6-right-angles
+    section: '6.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball of mass $1$ kg moves at $6$ m/s and hits a stationary ball of mass
+      $1$ kg. After the collision the two balls move off at right angles. The
+      first ball moves at $3.6$ m/s. Calculate the speed of the second ball.
+    answer_label: Speed
+    check: {kind: evaluate, expression: 'sqrt(6**2 - 3.6**2)', answer: '4.8'}
+    answer_text: >-
+      The total momentum has magnitude $1 \times 6 = 6$ kg m/s. The two final
+      momenta are at right angles, so their magnitudes add in quadrature:
+      $p_1^2 + p_2^2 = 6^2$. With $p_1 = 3.6$ kg m/s,
+      $p_2 = \sqrt{36 - 12.96} = \sqrt{23.04} = 4.8$ kg m/s, so the speed is
+      $4.8$ m/s.
+
+  - id: am6-6-components
+    section: '6.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      Describe how conservation of momentum is used in a two-dimensional
+      collision.
+    answer_label: The method
+    check:
+      kind: structured
+      requires: [x-direction, y-direction, vector]
+      concepts: [vector-momentum]
+      points:
+        - id: x-direction
+          text: >-
+            momentum is conserved in the $x$-direction on its own, so write the
+            total $x$-momentum before equal to the total $x$-momentum after
+          concepts: [vector-momentum]
+        - id: y-direction
+          text: >-
+            momentum is conserved in the $y$-direction on its own, giving a
+            second equation
+          concepts: [vector-momentum]
+        - id: vector
+          text: >-
+            each velocity is resolved into components first, because momentum is
+            a vector and the components are conserved separately
+          concepts: [vector-momentum]
+    answer_text: >-
+      Momentum is a vector, so conservation applies to each direction on its own.
+      Resolve every velocity into an $x$-component and a $y$-component before the
+      collision and after it. Write the total $x$-momentum before equal to the
+      total $x$-momentum after, and do the same for the $y$-direction. That gives
+      two equations, which is enough for the two unknown quantities in most
+      two-dimensional collision problems.

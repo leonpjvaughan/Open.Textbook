@@ -1,0 +1,206 @@
+# Junior Cycle Mathematics, Chapter 9, section 9.2.
+#
+# Every check is an arithmetic identity the CAS proves, so the answer the reader
+# is shown is the answer the verifier proved. A general term is checked by
+# substituting several positions into it and matching the terms of the sequence,
+# which proves the rule and not just one value. The letter n stands for the
+# position, so it is declared as a symbol. Units, words and the euro sign stay in
+# `statement`: the CAS parses numbers and symbols only.
+chapter: 9
+symbols:
+  n:
+    real: true
+
+problems:
+- id: jc9-9.2-rule-1
+  section: '9.2'
+  tier: O
+  refs:
+  - AF.1
+  statement: Find the general term of the pattern 7, 11, 15, 19, ...
+  answer_label: Find the general term of 7, 11, 15, 19, ...
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4*1 + 3
+      answer: '7'
+    - kind: evaluate
+      expression: 4*2 + 3
+      answer: '11'
+    - kind: evaluate
+      expression: 4*4 + 3
+      answer: '19'
+  answer_text: >-
+    $4n+3$. The common difference is 4, so the rule starts with $4n$. The $4n$
+    pattern is $4, 8, 12, 16, \ldots$, and each term here is 3 more, so the rule
+    is $4n+3$. Check position 1: $4(1)+3=7$.
+- id: jc9-9.2-rule-2
+  section: '9.2'
+  tier: O
+  refs:
+  - AF.1
+  statement: Find the general term of the pattern 5, 9, 13, 17, ...
+  answer_label: Find the general term of 5, 9, 13, 17, ...
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4*1 + 1
+      answer: '5'
+    - kind: evaluate
+      expression: 4*2 + 1
+      answer: '9'
+    - kind: evaluate
+      expression: 4*4 + 1
+      answer: '17'
+  answer_text: >-
+    $4n+1$. The common difference is 4. The $4n$ pattern is $4, 8, 12, 16,
+    \ldots$, and each term here is 1 more. Check position 2: $4(2)+1=9$.
+- id: jc9-9.2-rule-3
+  section: '9.2'
+  tier: O
+  refs:
+  - AF.1
+  statement: Find the general term of the pattern 15, 11, 7, 3, ...
+  answer_label: Find the general term of 15, 11, 7, 3, ...
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: -4*1 + 19
+      answer: '15'
+    - kind: evaluate
+      expression: -4*2 + 19
+      answer: '11'
+    - kind: evaluate
+      expression: -4*3 + 19
+      answer: '7'
+  answer_text: >-
+    $-4n+19$. The pattern goes down by 4, so the common difference is $-4$ and
+    the rule starts with $-4n$. At position 1, $-4(1)=-4$, and you need 19 more
+    to reach 15. Check position 3: $-4(3)+19=7$.
+- id: jc9-9.2-term-1
+  section: '9.2'
+  tier: O
+  refs:
+  - AF.1
+  statement: A pattern has general term $6n-2$. Work out the 20th term.
+  answer_label: A pattern has general term $6n-2$. Work out the 20th term.
+  check:
+    kind: evaluate
+    expression: 6*20 - 2
+    answer: '118'
+  answer_text: >-
+    $118$. Put $n=20$ into the rule: $6(20)-2=120-2=118$.
+- id: jc9-9.2-position-1
+  section: '9.2'
+  tier: O
+  refs:
+  - AF.1
+  statement: Which term of the pattern with general term $5n-2$ is 48?
+  answer_label: Which term of $5n-2$ is 48?
+  check:
+    kind: evaluate
+    expression: 5*10 - 2
+    answer: '48'
+  answer_text: >-
+    The 10th term. Solve $5n-2=48$, so $5n=50$ and $n=10$. Check it:
+    $5(10)-2=48$.
+- id: jc9-9.2-aoife-rule
+  section: '9.2'
+  tier: O
+  refs:
+  - AF.1
+  statement: Aoife saves 3 euro in week 1, 6 euro in week 2 and 9 euro in week 3. Find the general term for her saving in week $n$.
+  answer_label: Aoife saves 3, 6, 9, ... euro. Find the general term.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3*1
+      answer: '3'
+    - kind: evaluate
+      expression: 3*2
+      answer: '6'
+    - kind: evaluate
+      expression: 3*4
+      answer: '12'
+  answer_text: >-
+    $3n$ euro. The common difference is 3 and the first term is 3, so the rule is
+    $3n$. In week 1 she saves $3(1)=3$ euro.
+- id: jc9-9.2-aoife-week10
+  section: '9.2'
+  tier: O
+  refs:
+  - AF.1
+  statement: Use Aoife's rule $3n$ to work out how much she saves in week 10.
+  answer_label: Use Aoife's rule $3n$. How much does she save in week 10?
+  check:
+    kind: evaluate
+    expression: 3*10
+    answer: '30'
+  answer_text: >-
+    $30$ euro. Put $n=10$ into the rule: $3(10)=30$. The number is in euro, so
+    write the unit with it.
+- id: jc9-9.2-rule-4
+  section: '9.2'
+  tier: O
+  refs:
+  - AF.1
+  statement: A pattern has first term 7 and common difference 5. Find its general term.
+  answer_label: A pattern has first term 7 and common difference 5. Find its rule.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 5*1 + 2
+      answer: '7'
+    - kind: evaluate
+      expression: 5*2 + 2
+      answer: '12'
+    - kind: evaluate
+      expression: 5*3 + 2
+      answer: '17'
+  answer_text: >-
+    $5n+2$. The common difference is 5, so start with $5n$. At position 1,
+    $5(1)=5$, and you need 2 more to reach 7. Check position 2: $5(2)+2=12$.
+- id: jc9-9.2-match-1
+  section: '9.2'
+  tier: O
+  refs:
+  - AF.1
+  statement: Does the rule $7n+1$ generate the pattern 8, 15, 22, 29?
+  answer_label: Does $7n+1$ generate 8, 15, 22, 29?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 7*1 + 1
+      answer: '8'
+    - kind: evaluate
+      expression: 7*2 + 1
+      answer: '15'
+    - kind: evaluate
+      expression: 7*3 + 1
+      answer: '22'
+    - kind: evaluate
+      expression: 7*4 + 1
+      answer: '29'
+  answer_text: >-
+    Yes. Put $n=1, 2, 3, 4$ into the rule: $8, 15, 22, 29$. Every term matches,
+    so the rule fits.
+- id: jc9-9.2-context-1
+  section: '9.2'
+  tier: O
+  refs:
+  - AF.1
+  statement: The first row of a theatre has 12 seats, and each next row has 4 more seats than the row in front. How many seats are in row 10?
+  answer_label: Row 1 has 12 seats and each row has 4 more. How many in row 10?
+  check:
+    kind: evaluate
+    expression: 12 + 9*4
+    answer: '48'
+  answer_text: >-
+    $48$ seats. Row 10 is 9 steps past row 1, and each step adds 4 seats, so
+    $12+9\times4=12+36=48$. The general term is $4n+8$.

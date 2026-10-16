@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.4 The principle of superposition — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.6
+Work independently. The questions and answers are shown together at the end.
+
+Keep the sign of every displacement when you add. A resultant of $+2.0\,\text{cm}$ is a
+different answer from a resultant of $-2.0\,\text{cm}$.
+
+:::problems chapter-09-practice-9.4
+
+:::answers chapter-09-practice-9.4

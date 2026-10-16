@@ -1,0 +1,143 @@
+# Practice set for 1.4 (strand S1, modelling). The `evaluate` checks prove the
+# algebra of each rearrangement with the CAS; `dimensions` and `convert` come
+# from the units oracle and prove the unit of a result as well as its size.
+chapter: 1
+problems:
+  - id: am1-4-net-rate
+    section: '1.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A till serves 12 students each minute and 4 students join each minute.
+      Find the net rate at which the queue shrinks, in students per minute.
+    answer_label: Net rate
+    check: {kind: evaluate, expression: '12 - 4', answer: '8'}
+    answer_text: >-
+      The net rate is $s - a = 12 - 4 = 8$ students each minute.
+
+  - id: am1-4-net-from-time
+    section: '1.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue of 45 students clears in 9 minutes. Find the net rate
+      $s - a$, in students per minute.
+    answer_label: Net rate
+    check: {kind: evaluate, expression: '45 / 9', answer: '5'}
+    answer_text: >-
+      Rearranged, the net rate is the queue divided by the time:
+      $s - a = \dfrac{Q}{T} = \dfrac{45}{9} = 5$ students each minute.
+
+  - id: am1-4-service-needed
+    section: '1.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue of 40 students must be gone in 5 minutes. Students join at 4 each
+      minute. Find the service rate the till needs, in students per minute.
+    answer_label: Service rate
+    check: {kind: evaluate, expression: '4 + 40 / 5', answer: '12'}
+    answer_text: >-
+      From $T = \dfrac{Q}{s - a}$, rearrange to $s = a + \dfrac{Q}{T}$. Then
+      $s = 4 + \dfrac{40}{5} = 4 + 8 = 12$ students each minute.
+
+  - id: am1-4-arrival-subject
+    section: '1.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue of 40 students clears in 5 minutes and the till serves 12 each
+      minute. Find the arrival rate, in students per minute.
+    answer_label: Arrival rate
+    check: {kind: evaluate, expression: '12 - 40 / 5', answer: '4'}
+    answer_text: >-
+      Rearranged, $a = s - \dfrac{Q}{T} = 12 - \dfrac{40}{5} = 12 - 8 = 4$
+      students each minute.
+
+  - id: am1-4-units-distance
+    section: '1.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A cyclist travels at a steady 15 m/s for 8 s. Use the relationship
+      $d = vt$ to find the distance travelled, in metres.
+    answer_label: Distance
+    check:
+      kind: dimensions
+      expression: v * t
+      values:
+        v: {value: '15', unit: 'm/s'}
+        t: {value: '8', unit: s}
+      answer: {value: '120', unit: m}
+    answer_text: >-
+      $d = vt = 15 \times 8 = 120$ m. The units confirm it: m/s multiplied by s
+      leaves m, which is a length.
+
+  - id: am1-4-convert-km
+    section: '1.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A distance is measured as 1500 m. Convert it to kilometres.
+    answer_label: Distance in kilometres
+    check:
+      kind: convert
+      value: '1500'
+      from: m
+      to: km
+      answer: '1.5'
+    answer_text: >-
+      There are 1000 m in a kilometre, so $1500 \div 1000 = 1.5$ km. The two
+      measurements have the same dimension, so the conversion is allowed.
+
+  - id: am1-4-define-letters
+    section: '1.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Write the relationship for the clear time of a queue, and define every
+      letter with its unit.
+    answer_label: The relationship and its letters
+    check:
+      kind: structured
+      requires: [letters, relationship]
+      concepts: [translate]
+      points:
+        - id: letters
+          text: Q is the queue in students, a and s are rates in students per minute, and T is the clear time in minutes
+          concepts: [translate]
+        - id: relationship
+          text: the clear time is T = Q / (s - a)
+          concepts: [translate]
+    answer_text: >-
+      Let $Q$ be the number of students in the queue, in students. Let $a$ be
+      the rate at which students join, and $s$ the rate at which the till
+      serves, both in students per minute. Let $T$ be the clear time, in
+      minutes. Then $T = \dfrac{Q}{s - a}$.
+
+  - id: am1-4-negative-time
+    section: '1.4'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A student writes $T = \dfrac{Q}{a - s}$ for the clear time. Explain what
+      goes wrong when the arrival rate is less than the service rate, and write
+      the correct relationship.
+    answer_label: What goes wrong, and the correction
+    check:
+      kind: structured
+      requires: [negative, correction]
+      concepts: [units]
+      points:
+        - id: negative
+          text: with a less than s the denominator is negative, so the time comes out negative, which is impossible
+          concepts: [units]
+        - id: correction
+          text: the correct relationship is T = Q / (s - a), so the queue drains at the positive rate s minus a
+          concepts: [units]
+    answer_text: >-
+      When $a < s$ the denominator $a - s$ is negative, so the time comes out
+      negative. A negative time is impossible, and it is the signal that the
+      rates are the wrong way round. The correct relationship is
+      $T = \dfrac{Q}{s - a}$, because the queue drains at the service rate minus
+      the arrival rate.

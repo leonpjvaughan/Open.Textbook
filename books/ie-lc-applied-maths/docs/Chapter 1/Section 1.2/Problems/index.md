@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.2 Formulating a problem and decomposing it — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S1
+Work independently. The questions and answers are shown together at the end.
+
+Before you calculate, write the question down in full. If you cannot give it a
+unit and a moment, it is not ready to answer.
+
+:::problems chapter-01-practice-1.2
+
+:::answers chapter-01-practice-1.2

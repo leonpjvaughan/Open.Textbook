@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.4 Newton's experimental law of restitution — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Number the two bodies, choose a positive direction, and write both equations:
+conservation of momentum and restitution. When a ball bounces on a fixed
+surface, the coefficient is the rebound speed divided by the approach speed.
+
+:::problems chapter-06-practice-6.4
+
+:::answers chapter-06-practice-6.4

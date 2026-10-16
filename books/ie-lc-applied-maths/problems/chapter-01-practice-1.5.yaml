@@ -1,0 +1,147 @@
+# Practice set for 1.5 (strand S1, modelling). The `evaluate` checks prove the
+# arithmetic; `sigfigs` proves a value rounded once to a declared number of
+# significant figures. The `structured` records prove only that a model answer
+# contains the declared ideas, in order.
+chapter: 1
+problems:
+  - id: am1-5-wait
+    section: '1.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A canteen queue holds 40 students at 12:30. The till serves 10 students
+      each minute. Find the wait for a student who joins at 12:30, in minutes.
+    answer_label: Wait
+    check: {kind: evaluate, expression: '40 / 10', answer: '4'}
+    answer_text: >-
+      $W = \dfrac{Q}{s} = \dfrac{40}{10} = 4$. The wait is 4 minutes, so the
+      student is served at about 12:34.
+
+  - id: am1-5-clear
+    section: '1.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A canteen queue holds 40 students at 12:30. Students join at 5 each minute
+      and the till serves 10 each minute. Find the time until the queue is gone,
+      in minutes.
+    answer_label: Time to clear
+    check: {kind: evaluate, expression: '40 / (10 - 5)', answer: '8'}
+    answer_text: >-
+      $T = \dfrac{Q}{s - a} = \dfrac{40}{10 - 5} = \dfrac{40}{5} = 8$. The
+      queue is gone at about 12:38.
+
+  - id: am1-5-wait-1235
+    section: '1.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A canteen queue holds 40 students at 12:30. Students join at 5 each minute
+      and the till serves 10 each minute. Find the wait for a student who joins
+      at 12:35, in minutes.
+    answer_label: Wait
+    check: {kind: evaluate, expression: '(40 - (10 - 5) * 5) / 10', answer: '1.5'}
+    answer_text: >-
+      The queue drains at $10 - 5 = 5$ students each minute. After 5 minutes it
+      holds $40 - 25 = 15$ students. The wait is
+      $W = \dfrac{15}{10} = 1.5$ minutes.
+
+  - id: am1-5-wait-1237
+    section: '1.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A canteen queue holds 40 students at 12:30. Students join at 5 each minute
+      and the till serves 10 each minute. Find the wait for a student who joins
+      at 12:37, in minutes.
+    answer_label: Wait
+    check: {kind: evaluate, expression: '(40 - (10 - 5) * 7) / 10', answer: '0.5'}
+    answer_text: >-
+      After 7 minutes the queue holds $40 - 5 \times 7 = 5$ students. The wait
+      is $W = \dfrac{5}{10} = 0.5$ minutes. A student who joins at 12:39 finds
+      the queue already gone, so the wait is zero.
+
+  - id: am1-5-round-3sf
+    section: '1.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue of 40 students clears at a net rate of 3 students each minute.
+      Find the clear time, in minutes, correct to 3 significant figures.
+    answer_label: Clear time
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: '40/3'
+      figures: 3
+      answer: '13.3'
+    answer_text: >-
+      $T = \dfrac{40}{3} = 13.333\ldots$ minutes, which is 13.3 minutes to
+      3 significant figures. The value is rounded once, at the end.
+
+  - id: am1-5-round-2sf
+    section: '1.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue of 40 students clears at a net rate of 6 students each minute.
+      Find the clear time, in minutes, correct to 2 significant figures.
+    answer_label: Clear time
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: '40/6'
+      figures: 2
+      answer: '6.7'
+    answer_text: >-
+      $T = \dfrac{40}{6} = 6.666\ldots$ minutes, which is 6.7 minutes to
+      2 significant figures.
+
+  - id: am1-5-check-reverse
+    section: '1.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model gives a wait of 4 minutes, with a service rate of 10 students each
+      minute. Explain how to check the answer by reversing the arithmetic.
+    answer_label: How to check the answer
+    check:
+      kind: structured
+      requires: [multiply, compare]
+      concepts: [check]
+      points:
+        - id: multiply
+          text: multiply the wait by the service rate, giving 4 times 10 equals 40 students
+          concepts: [check]
+        - id: compare
+          text: compare 40 with the number who were in the queue, and they agree, so the answer passes the check
+          concepts: [check]
+    answer_text: >-
+      Multiply the wait by the service rate: $4 \times 10 = 40$ students. If the
+      queue held 40 students, the two numbers agree and the answer passes the
+      check. If they disagree, the arithmetic or the relationship is wrong.
+
+  - id: am1-5-units-required
+    section: '1.5'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Explain why "the answer is 4" is not a complete answer to a question about
+      a queue.
+    answer_label: Why the unit matters
+    check:
+      kind: structured
+      requires: [ambiguous, unit]
+      concepts: [unit]
+      points:
+        - id: ambiguous
+          text: the number 4 could mean 4 minutes, 4 seconds or 4 students
+          concepts: [unit]
+        - id: unit
+          text: writing the unit says which quantity the number measures, so a reader can check it
+          concepts: [unit]
+    answer_text: >-
+      The number 4 on its own could mean 4 minutes, 4 seconds or 4 students, and
+      those are different answers. Writing the unit says which quantity the
+      number measures. It also lets a reader check the answer against the
+      situation.

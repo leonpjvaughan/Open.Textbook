@@ -1,0 +1,255 @@
+# Leaving Certificate Physics, Chapter 8, section 8.4 (strand 2 outcome 2.1).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 8
+problems:
+- id: p8-4-conduction
+  section: '8.4'
+  tier: O
+  refs:
+  - '2.1'
+  statement: Explain how energy is transferred through a metal rod by conduction, and say why metals
+    are better conductors than wood.
+  answer_label: Conduction in a metal
+  check:
+    kind: structured
+    requires:
+    - particles
+    - electrons
+    - wood
+    concepts:
+    - particle-collisions
+    - free-electrons
+    - poor-conductor
+    points:
+    - id: particles
+      text: At the hot end the particles vibrate faster, and they pass energy to neighbouring particles
+        when they collide.
+      concepts:
+      - particle-collisions
+    - id: electrons
+      text: Metals also have free electrons that move through the metal and carry energy quickly, so
+        metals are good conductors.
+      concepts:
+      - free-electrons
+    - id: wood
+      text: Wood has no free electrons and its particles pass energy on slowly, so wood is a poor
+        conductor.
+      concepts:
+      - poor-conductor
+  answer_text: At the hot end the particles vibrate faster and pass energy to neighbouring particles
+    when they collide. Metals also have free electrons that move through the metal and carry energy
+    quickly. Wood has no free electrons, so its particles pass energy on slowly and it is a poor
+    conductor.
+- id: p8-4-convection
+  section: '8.4'
+  tier: O
+  refs:
+  - '2.1'
+  statement: Explain how a room is heated by a radiator by convection.
+  answer_label: Heating a room by convection
+  check:
+    kind: structured
+    requires:
+    - warms-air
+    - rises
+    - circulation
+    concepts:
+    - density
+    - convection-current
+    points:
+    - id: warms-air
+      text: The radiator warms the air next to it, and the warm air expands and becomes less dense.
+      concepts:
+      - density
+    - id: rises
+      text: The less dense warm air rises, and cooler, denser air moves in to take its place.
+      concepts:
+      - density
+    - id: circulation
+      text: The moving air carries energy around the room and forms a convection current.
+      concepts:
+      - convection-current
+  answer_text: The radiator warms the air next to it. The warm air expands and becomes less dense, so
+    it rises. Cooler, denser air moves in to take its place. The moving air carries energy around the
+    room and forms a convection current.
+- id: p8-4-radiation
+  section: '8.4'
+  tier: O
+  refs:
+  - '2.1'
+  statement: Explain what is meant by thermal radiation, and why it can transfer energy through a
+    vacuum.
+  answer_label: Thermal radiation
+  check:
+    kind: structured
+    requires:
+    - infrared
+    - waves
+    - vacuum
+    concepts:
+    - electromagnetic-waves
+    - no-medium
+    points:
+    - id: infrared
+      text: Thermal radiation is energy carried by infrared electromagnetic waves.
+      concepts:
+      - electromagnetic-waves
+    - id: waves
+      text: The waves travel at the speed of light and do not need particles to carry them.
+      concepts:
+      - no-medium
+    - id: vacuum
+      text: A vacuum has no particles, so conduction and convection cannot happen there, but radiation
+        can still pass through.
+      concepts:
+      - no-medium
+  answer_text: Thermal radiation is energy carried by infrared electromagnetic waves. The waves travel
+    at the speed of light and do not need particles. A vacuum has no particles, so conduction and
+    convection cannot happen there, but radiation can still pass through.
+- id: p8-4-vacuum-flask
+  section: '8.4'
+  tier: O
+  refs:
+  - '2.1'
+  statement: A vacuum flask has a vacuum between two silvered glass walls and a stopper. Explain how
+    each feature reduces the transfer of energy.
+  answer_label: The vacuum flask
+  check:
+    kind: structured
+    requires:
+    - vacuum
+    - silver
+    - stopper
+    concepts:
+    - no-conduction-convection
+    - reflect-radiation
+    - no-convection
+    points:
+    - id: vacuum
+      text: The vacuum has no particles, so it stops energy transfer by conduction and convection.
+      concepts:
+      - no-conduction-convection
+    - id: silver
+      text: The silvered surfaces are shiny, so they reflect infrared radiation back and reduce energy
+        transfer by radiation.
+      concepts:
+      - reflect-radiation
+    - id: stopper
+      text: The stopper is a poor conductor and it traps air, so it reduces conduction and stops
+        convection at the top.
+      concepts:
+      - no-convection
+  answer_text: The vacuum has no particles, so it stops conduction and convection. The silvered
+    surfaces are shiny, so they reflect infrared radiation back and reduce energy transfer by
+    radiation. The stopper is a poor conductor and traps air, so it reduces conduction and stops
+    convection at the top.
+- id: p8-4-metal-wood
+  section: '8.4'
+  tier: O
+  refs:
+  - '2.1'
+  statement: A metal bench and a wooden bench are both at room temperature. Explain why the metal
+    bench feels colder to touch.
+  answer_label: The metal bench
+  check:
+    kind: structured
+    requires:
+    - same-temperature
+    - conduction
+    - skin
+    concepts:
+    - good-conductor
+    - energy-away
+    points:
+    - id: same-temperature
+      text: The two benches are at the same temperature, so the difference is not in their temperature.
+      concepts:
+      - good-conductor
+    - id: conduction
+      text: The metal is a good conductor, so it carries energy away from your hand quickly.
+      concepts:
+      - energy-away
+    - id: skin
+      text: The wood is a poor conductor, so it carries energy away slowly, and your skin stays warmer.
+      concepts:
+      - energy-away
+  answer_text: The two benches are at the same temperature. The metal is a good conductor, so it
+    carries energy away from your hand quickly. The wood is a poor conductor, so it carries energy
+    away slowly and your skin stays warmer.
+- id: p8-4-energy-rate
+  section: '8.4'
+  tier: O
+  refs:
+  - '2.1'
+  statement: Energy is transferred through a wall at a steady rate of 500 W. Calculate the energy
+    transferred in 5.0 minutes.
+  answer_label: Energy transferred
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: P * t
+      values:
+        P:
+          value: '500'
+          unit: W
+        t:
+          value: '300'
+          unit: s
+      answer:
+        value: '1.5e5'
+        unit: J
+    - kind: sigfigs
+      value: 500 * 300
+      figures: 2
+      answer: 1.5e5
+      convention: round-once
+  answer_text: The time is $5.0 \times 60 = 300\,\text{s}$. Then $E = Pt = 500 \times 300 =
+    1.5 \times 10^{5}\,\text{J}$. A steady rate of transfer is a power, and power is energy each
+    second.
+- id: p8-4-compare
+  section: '8.4'
+  tier: O
+  refs:
+  - '2.1'
+  statement: Compare conduction, convection and radiation as ways of transferring energy.
+  answer_label: The three mechanisms
+  check:
+    kind: structured
+    requires:
+    - conduction
+    - convection
+    - radiation
+    concepts:
+    - particles-contact
+    - moving-fluid
+    - no-medium
+    points:
+    - id: conduction
+      text: Conduction transfers energy through a solid by particle collisions, and it needs the
+        particles to be in contact.
+      concepts:
+      - particles-contact
+    - id: convection
+      text: Convection transfers energy by the movement of a warm fluid, and it needs a liquid or a
+        gas that can flow.
+      concepts:
+      - moving-fluid
+    - id: radiation
+      text: Radiation transfers energy by infrared waves, and it needs no particles at all, so it can
+        cross a vacuum.
+      concepts:
+      - no-medium
+  answer_text: Conduction transfers energy through a solid by particle collisions, and it needs the
+    particles to be in contact. Convection transfers energy by the movement of a warm fluid, so it
+    needs a liquid or a gas. Radiation transfers energy by infrared waves and needs no particles, so
+    it can cross a vacuum.

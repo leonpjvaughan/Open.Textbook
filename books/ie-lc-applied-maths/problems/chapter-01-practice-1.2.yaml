@@ -1,0 +1,153 @@
+# Practice set for 1.2 (strand S1, modelling). The `evaluate` checks prove the
+# arithmetic of each sub-question with the CAS. The `structured` records prove
+# only that a model answer contains the declared ideas, in order.
+chapter: 1
+problems:
+  - id: am1-2-wait
+    section: '1.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A canteen queue holds 40 students at 12:30. The till serves 10 students
+      each minute. Find the wait, in minutes, for a student who joins at 12:30.
+    answer_label: Wait
+    check: {kind: evaluate, expression: '40 / 10', answer: '4'}
+    answer_text: >-
+      The student waits for the 40 students in front. The till serves 10 each
+      minute, so the wait is $40 \div 10 = 4$ minutes.
+
+  - id: am1-2-queue-after
+    section: '1.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A canteen queue holds 40 students at 12:30. Students join at 5 each
+      minute and the till serves 10 each minute. Find the number in the queue
+      3 minutes later.
+    answer_label: Number in the queue
+    check: {kind: evaluate, expression: '40 - (10 - 5) * 3', answer: '25'}
+    answer_text: >-
+      The net rate is $10 - 5 = 5$ students each minute. In 3 minutes the queue
+      falls by $5 \times 3 = 15$, so $40 - 15 = 25$ students remain.
+
+  - id: am1-2-clear
+    section: '1.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A canteen queue holds 40 students at 12:30. Students join at 5 each
+      minute and the till serves 10 each minute. Find the time until the queue
+      is gone, in minutes.
+    answer_label: Time to clear
+    check: {kind: evaluate, expression: '40 / (10 - 5)', answer: '8'}
+    answer_text: >-
+      The queue shrinks at $10 - 5 = 5$ students each minute. The time is
+      $40 \div 5 = 8$ minutes, so the queue is gone at 12:38.
+
+  - id: am1-2-net-input
+    section: '1.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue holds 45 students. It is gone 9 minutes later. Find the net rate
+      at which the queue shrinks, in students per minute.
+    answer_label: Net rate
+    check: {kind: evaluate, expression: '45 / 9', answer: '5'}
+    answer_text: >-
+      The net rate is the queue divided by the time: $45 \div 9 = 5$ students
+      each minute.
+
+  - id: am1-2-tank
+    section: '1.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A tank holds 450 litres. A tap puts water in at 20 litres each minute and
+      a leak takes water out at 5 litres each minute. Find the time to fill the
+      tank, in minutes.
+    answer_label: Time to fill
+    check: {kind: evaluate, expression: '450 / (20 - 5)', answer: '30'}
+    answer_text: >-
+      The net rate is $20 - 5 = 15$ litres each minute, so the time is
+      $450 \div 15 = 30$ minutes.
+
+  - id: am1-2-precise-question
+    section: '1.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      The question "How long is the queue?" is vague. Rewrite it as a precise
+      question about the wait for one student, and say what makes it precise.
+    answer_label: A precise question
+    check:
+      kind: structured
+      requires: [measure, unit, moment]
+      concepts: [formulate]
+      points:
+        - id: measure
+          text: it says what is measured — a time, not a length
+          concepts: [formulate]
+        - id: unit
+          text: it gives the unit — minutes
+          concepts: [formulate]
+        - id: moment
+          text: it names the person and the moment — a student who joins at 12:30
+          concepts: [formulate]
+    answer_text: >-
+      "How many minutes does a student who joins the canteen queue at 12:30 wait
+      before being served?" It is precise because it names what is measured
+      (a time), the unit (minutes) and the moment (a student joining at 12:30).
+
+  - id: am1-2-inputs
+    section: '1.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      List the three inputs the wait for a student at the back of a canteen
+      queue depends on, and give the unit of each.
+    answer_label: The three inputs
+    check:
+      kind: structured
+      requires: [queue, arrival, service]
+      concepts: [decompose]
+      points:
+        - id: queue
+          text: the number of students already in the queue, in students
+          concepts: [decompose]
+        - id: arrival
+          text: the rate at which students join, in students per minute
+          concepts: [decompose]
+        - id: service
+          text: the rate at which the till serves students, in students per minute
+          concepts: [decompose]
+    answer_text: >-
+      The number of students already in the queue, in students. The rate at
+      which students join, in students per minute. The rate at which the till
+      serves them, in students per minute. The wait for a student at the back is
+      the queue divided by the service rate.
+
+  - id: am1-2-two-meanings
+    section: '1.2'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Explain the difference between "how long is the queue" when it means a
+      length and when it means a time. Give one answer of each kind for a queue
+      of 40 students served at 10 each minute.
+    answer_label: Two meanings
+    check:
+      kind: structured
+      requires: [length, duration]
+      concepts: [formulate]
+      points:
+        - id: length
+          text: as a length, the answer counts the people, so the queue holds 40 students
+          concepts: [formulate]
+        - id: duration
+          text: as a time, the answer is how long a person waits, which is 4 minutes here
+          concepts: [formulate]
+    answer_text: >-
+      A length counts the people, so the queue holds 40 students. A time
+      measures how long something takes, so a student at the back waits
+      4 minutes. Both answers are correct, because the question asked two
+      different things.

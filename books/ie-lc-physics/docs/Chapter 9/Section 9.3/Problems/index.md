@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.3 Transverse and longitudinal waves — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.2
+Work independently. The questions and answers are shown together at the end.
+
+For each explanation, name the direction of the vibration and the kind of wave. A
+comparison needs both waves, not one of them.
+
+:::problems chapter-09-practice-9.3
+
+:::answers chapter-09-practice-9.3

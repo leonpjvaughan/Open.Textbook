@@ -1,0 +1,183 @@
+# Practice set for 1.7 (strand S1, modelling). The `evaluate` checks prove the
+# arithmetic a report would contain. The `structured` records prove only that a
+# model answer contains the declared ideas, in order — a report's honesty cannot
+# be checked by a machine.
+chapter: 1
+problems:
+  - id: am1-7-report-parts
+    section: '1.7'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Name the six parts of a modelling report, in order.
+    answer_label: The six parts
+    check:
+      kind: structured
+      requires: [question, assumptions, model, solution, evaluation, conclusion]
+      concepts: [report]
+      points:
+        - id: question
+          text: the question, in one sentence with its unit
+          concepts: [report]
+        - id: assumptions
+          text: the assumptions, each one saying what it leaves out
+          concepts: [report]
+        - id: model
+          text: the model, with every letter defined and its unit given
+          concepts: [report]
+        - id: solution
+          text: the solution, with the substitution, the arithmetic and the units
+          concepts: [report]
+        - id: evaluation
+          text: the evaluation, comparing the answer with data and saying what would change it
+          concepts: [report]
+        - id: conclusion
+          text: the conclusion, giving the answer and its limits
+          concepts: [report]
+    answer_text: >-
+      The question, the assumptions, the model, the solution, the evaluation and
+      the conclusion. The six parts follow the cycle: the question and the
+      assumptions are formulating, the model is translating, the solution is
+      computing, and the evaluation is evaluating and refining.
+
+  - id: am1-7-wait-report
+    section: '1.7'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A report models a canteen queue of 40 students served at 10 students each
+      minute. Find the wait, in minutes, for a student who joins at the back.
+    answer_label: Wait
+    check: {kind: evaluate, expression: '40 / 10', answer: '4'}
+    answer_text: >-
+      $W = \dfrac{Q}{s} = \dfrac{40}{10} = 4$ minutes. The report states the
+      answer as "about 4 minutes", because the model is an estimate.
+
+  - id: am1-7-refined-wait
+    section: '1.7'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A count shows that 60 students, not 40, were queuing. The till serves
+      10 students each minute. Find the wait, in minutes.
+    answer_label: Wait
+    check: {kind: evaluate, expression: '60 / 10', answer: '6'}
+    answer_text: >-
+      $W = \dfrac{60}{10} = 6$ minutes, which matches the measured wait. The
+      assumption about the starting queue was the one that was wrong.
+
+  - id: am1-7-clear-report
+    section: '1.7'
+    tier: O
+    refs: [S1]
+    statement: >-
+      The same canteen queue holds 40 students, students join at 5 each minute
+      and the till serves 10 each minute. Find the clear time, in minutes, for
+      the report.
+    answer_label: Clear time
+    check: {kind: evaluate, expression: '40 / (10 - 5)', answer: '8'}
+    answer_text: >-
+      $T = \dfrac{Q}{s - a} = \dfrac{40}{10 - 5} = 8$ minutes. The report says
+      the queue is gone at about 12:38.
+
+  - id: am1-7-assumptions-part
+    section: '1.7'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A report gives an answer of 6 minutes but lists no assumptions. Explain
+      why the report is incomplete.
+    answer_label: Why the report is incomplete
+    check:
+      kind: structured
+      requires: [cannot-check, cannot-apply]
+      concepts: [assumptions]
+      points:
+        - id: cannot-check
+          text: a reader cannot check the answer without knowing what the model treated as true
+          concepts: [assumptions]
+        - id: cannot-apply
+          text: a reader cannot tell whether the answer applies to their own canteen, which may have different rates
+          concepts: [assumptions]
+    answer_text: >-
+      A reader cannot check the answer without knowing what the model treated as
+      true. A reader also cannot tell whether the answer applies to their own
+      canteen, which may have different rates. The assumptions are what make the
+      answer usable, so the report is incomplete without them.
+
+  - id: am1-7-units
+    section: '1.7'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Explain why every letter in a report's model needs a unit beside it.
+    answer_label: Why every letter needs a unit
+    check:
+      kind: structured
+      requires: [meaning, check]
+      concepts: [unit]
+      points:
+        - id: meaning
+          text: the unit says what the letter measures, so the model can be read by someone else
+          concepts: [unit]
+        - id: check
+          text: the units also let a reader check that the relationship balances
+          concepts: [unit]
+    answer_text: >-
+      The unit says what the letter measures, so another person can read the
+      model and know what each symbol means. The units also let a reader check
+      that the relationship balances. A model with missing units cannot be
+      checked.
+
+  - id: am1-7-limit
+    section: '1.7'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A report concludes that a student waits about 6 minutes at 12:30. State
+      one thing the model cannot tell the reader, and explain why it matters.
+    answer_label: One limit of the model
+    check:
+      kind: structured
+      requires: [limit, matters]
+      concepts: [limits]
+      points:
+        - id: limit
+          text: the model cannot tell the reader how long any one student waits, only the average
+          concepts: [limits]
+        - id: matters
+          text: a real wait could be longer or shorter, so the answer is an estimate and not a promise
+          concepts: [limits]
+    answer_text: >-
+      The model gives an average, so it cannot tell the reader how long any one
+      student waits. A real student could be served sooner or later. This
+      matters because a reader who treats the average as a promise will be
+      surprised by the real queue.
+
+  - id: am1-7-conclusion
+    section: '1.7'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Write the conclusion of the canteen report. It must give the answer with
+      its unit, the assumption the answer depends on most, and one limit.
+    answer_label: The conclusion
+    check:
+      kind: structured
+      requires: [answer, assumption, limit]
+      concepts: [conclusion]
+      points:
+        - id: answer
+          text: a student who joins at 12:30 waits about 6 minutes
+          concepts: [conclusion]
+        - id: assumption
+          text: the answer depends most on the starting queue, so a heavier lunch rush would make the wait longer
+          concepts: [conclusion]
+        - id: limit
+          text: the model gives an average, not the wait for one particular student
+          concepts: [conclusion]
+    answer_text: >-
+      A student who joins the canteen queue at 12:30 waits about 6 minutes. The
+      answer depends most on how many students are already queuing, so a heavier
+      lunch rush would make the wait longer. The model gives an average, so it
+      cannot say how long one particular student waits.

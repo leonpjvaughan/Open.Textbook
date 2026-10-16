@@ -1,0 +1,161 @@
+# Practice set for 1.1 (strand S1, modelling). The `evaluate` checks prove the
+# arithmetic of each rate problem with the CAS. The `structured` records prove
+# only that a model answer contains the declared ideas, in order — they cannot
+# prove that the reasoning itself is right.
+chapter: 1
+problems:
+  - id: am1-1-tank-net
+    section: '1.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A tank holds 300 litres. A tap puts water in at 12 litres each minute, and
+      a leak takes water out at 2 litres each minute. The tank starts empty.
+      Find the time to fill the tank, in minutes.
+    answer_label: Time to fill
+    check: {kind: evaluate, expression: '300 / (12 - 2)', answer: '30'}
+    answer_text: >-
+      The net rate is $12 - 2 = 10$ litres each minute. The time is
+      $300 \div 10 = 30$ minutes. Check: in 30 minutes the tap adds
+      $12 \times 30 = 360$ litres and the leak removes $2 \times 30 = 60$
+      litres, which leaves 300 litres.
+
+  - id: am1-1-queue-no-arrivals
+    section: '1.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A canteen till serves 10 students each minute. At 12:30 there are 40
+      students in the queue, and no new students join. Find the time until the
+      queue is gone, in minutes.
+    answer_label: Time to clear
+    check: {kind: evaluate, expression: '40 / 10', answer: '4'}
+    answer_text: >-
+      The till serves 10 students each minute, so the queue falls by 10 each
+      minute. Then $40 \div 10 = 4$ minutes. Check: $10 \times 4 = 40$, so all
+      40 students are served.
+
+  - id: am1-1-net-rate
+    section: '1.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Students join a queue at 7 each minute. The till serves 12 students each
+      minute. Find the net rate at which the queue shrinks, in students per
+      minute.
+    answer_label: Net rate
+    check: {kind: evaluate, expression: '12 - 7', answer: '5'}
+    answer_text: >-
+      The queue changes by the service rate minus the arrival rate:
+      $12 - 7 = 5$ students each minute. The rate is positive, so the queue
+      shrinks.
+
+  - id: am1-1-tap-time
+    section: '1.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A tap fills a tank at 15 litres each minute. The tank holds 90 litres.
+      Find the time to fill it, in minutes.
+    answer_label: Time to fill
+    check: {kind: evaluate, expression: '90 / 15', answer: '6'}
+    answer_text: >-
+      $90 \div 15 = 6$ minutes.
+
+  - id: am1-1-two-taps
+    section: '1.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A tank holds 240 litres. Two taps put water in at 8 litres and 7 litres
+      each minute. A drain takes water out at 3 litres each minute. Find the
+      time to fill the tank, in minutes.
+    answer_label: Time to fill
+    check: {kind: evaluate, expression: '240 / (8 + 7 - 3)', answer: '20'}
+    answer_text: >-
+      The net rate is $8 + 7 - 3 = 12$ litres each minute. The time is
+      $240 \div 12 = 20$ minutes.
+
+  - id: am1-1-cycle-order
+    section: '1.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      Name the five stages of the modelling cycle in order, and say in one
+      sentence what happens at each stage.
+    answer_label: The five stages
+    check:
+      kind: structured
+      requires: [formulate, translate, compute, evaluate, refine]
+      concepts: [cycle]
+      points:
+        - id: formulate
+          text: formulate — decide the question precisely, with a unit
+          concepts: [cycle]
+        - id: translate
+          text: translate — choose letters and write the relationship
+          concepts: [cycle]
+        - id: compute
+          text: compute — put the numbers in and work out the answer
+          concepts: [cycle]
+        - id: evaluate
+          text: evaluate — compare the answer with the real situation
+          concepts: [cycle]
+        - id: refine
+          text: refine — change one assumption and go round again
+          concepts: [cycle]
+    answer_text: >-
+      Formulate, translate, compute, evaluate, refine. Formulate means deciding
+      the question. Translate means writing the question in symbols. Compute
+      means working out the answer. Evaluate means comparing the answer with
+      reality. Refine means changing one assumption and going round again.
+
+  - id: am1-1-model-purpose
+    section: '1.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model leaves things out on purpose. Explain why leaving something out
+      can make a model more useful, not less.
+    answer_label: Why a model leaves things out
+    check:
+      kind: structured
+      requires: [simplify, answer-question]
+      concepts: [model]
+      points:
+        - id: simplify
+          text: leaving out detail makes the situation simple enough to write as mathematics
+          concepts: [model]
+        - id: answer-question
+          text: the simpler model can answer the chosen question, which the full situation is too detailed to answer
+          concepts: [model]
+    answer_text: >-
+      A real situation carries far too much detail to calculate with. Leaving
+      detail out makes the situation small enough to write as mathematics, so
+      the chosen question can be answered. The model is useful because of what
+      it keeps, not because of what it leaves out.
+
+  - id: am1-1-refine-stage
+    section: '1.1'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model predicts a clear time of 8 minutes. The real queue took 12 minutes
+      to clear. Name the stage of the cycle that deals with this difference, and
+      say what it does.
+    answer_label: Which stage, and what it does
+    check:
+      kind: structured
+      requires: [evaluate, refine]
+      concepts: [data]
+      points:
+        - id: evaluate
+          text: evaluate — compare the model's 8 minutes with the measured 12 minutes
+          concepts: [data]
+        - id: refine
+          text: refine — change one assumption and work the model again
+          concepts: [data]
+    answer_text: >-
+      The stage is evaluate, which compares the model's answer with the measured
+      answer. The next stage is refine, which changes one assumption and works
+      the model again. The comparison shows which assumption to change.

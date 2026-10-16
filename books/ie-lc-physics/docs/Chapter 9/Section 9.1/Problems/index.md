@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.1 What a wave is — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.2
+Work independently. The questions and answers are shown together at the end.
+
+Give every amplitude as a positive number, and convert a length in centimetres into
+metres before you use it in a calculation.
+
+:::problems chapter-09-practice-9.1
+
+:::answers chapter-09-practice-9.1

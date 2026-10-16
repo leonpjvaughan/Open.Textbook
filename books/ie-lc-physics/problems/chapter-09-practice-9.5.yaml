@@ -1,0 +1,286 @@
+# Leaving Certificate Physics, Chapter 9, section 9.5 (strand 2 outcome 2.6).
+#
+# The string records use `dimensions` and `sigfigs` together: the first proves the
+# magnitude and the unit, and the second proves the rounding to the figures the
+# data support. The fundamental-frequency record uses the relationship
+# f = (1/2l)sqrt(T/mu) from the formulae and tables booklet, so the reader is not
+# asked to recall it. The `structured` records prove only that a model answer
+# contains the declared steps in order and covers the declared concepts.
+chapter: 9
+problems:
+- id: p9-5-fundamental-wavelength
+  section: '9.5'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    A guitar string is fixed at both ends and is 0.650 m long. The string sounds
+    its fundamental note. Calculate the wavelength of the standing wave on the
+    string.
+  answer_label: Wavelength of the fundamental
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 2 * L
+      values:
+        L:
+          value: '0.650'
+          unit: m
+      answer:
+        value: '1.30'
+        unit: m
+    - kind: sigfigs
+      value: 2 * 0.650
+      figures: 3
+      answer: '1.30'
+      convention: round-once
+  answer_text: >-
+    The fundamental standing wave has a node at each end and one antinode in the
+    middle, so half a wavelength fits on the string. The wavelength is
+    $\lambda = 2L = 2 \times 0.650 = 1.30\,\text{m}$.
+- id: p9-5-string-speed
+  section: '9.5'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    The wave on the string has a frequency of 196 Hz and a wavelength of 1.30 m.
+    Calculate the speed of the wave along the string.
+  answer_label: Wave speed on the string
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: f * wavelength
+      values:
+        f:
+          value: '196'
+          unit: Hz
+        wavelength:
+          value: '1.30'
+          unit: m
+      answer:
+        value: '255'
+        unit: m/s
+      tolerance: '1'
+    - kind: sigfigs
+      value: 196 * 1.30
+      figures: 3
+      answer: '255'
+      convention: round-once
+  answer_text: >-
+    $v = f\lambda = 196 \times 1.30 = 255\,\text{m/s}$. The speed of the wave on
+    the string is set by the tension and the mass per unit length of the string,
+    not by the frequency.
+- id: p9-5-second-harmonic
+  section: '9.5'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    The fundamental frequency of the string is 196 Hz. Calculate the frequency of
+    the second harmonic.
+  answer_label: Frequency of the second harmonic
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 2 * f
+      values:
+        f:
+          value: '196'
+          unit: Hz
+      answer:
+        value: '392'
+        unit: Hz
+    - kind: sigfigs
+      value: 2 * 196
+      figures: 3
+      answer: '392'
+      convention: round-once
+  answer_text: >-
+    The harmonics of a string are whole-number multiples of the fundamental, so
+    $f_2 = 2f_1 = 2 \times 196 = 392\,\text{Hz}$. The second harmonic has twice the
+    frequency and half the wavelength of the fundamental.
+- id: p9-5-second-wavelength
+  section: '9.5'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    The second harmonic on the string has a frequency of 392 Hz. The wave speed on
+    the string is 255 m/s. Calculate the wavelength of this standing wave.
+  answer_label: Wavelength of the second harmonic
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v / f
+      values:
+        v:
+          value: '255'
+          unit: m/s
+        f:
+          value: '392'
+          unit: Hz
+      answer:
+        value: '0.65'
+        unit: m
+      tolerance: '0.005'
+    - kind: sigfigs
+      value: 255 / 392
+      figures: 2
+      answer: '0.65'
+      convention: round-once
+  answer_text: >-
+    $\lambda = \dfrac{v}{f} = \dfrac{255}{392} = 0.65\,\text{m}$. That is half the
+    wavelength of the fundamental, which is why the second harmonic fits two
+    half-wavelengths on the same string.
+- id: p9-5-nodes
+  section: '9.5'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    Describe where the nodes and the antinodes are on a guitar string fixed at
+    both ends when it sounds its fundamental note.
+  answer_label: Nodes and antinodes
+  check:
+    kind: structured
+    requires:
+    - node
+    - antinode
+    - spacing
+    concepts:
+    - node
+    - antinode
+    - half-wavelength
+    points:
+    - id: node
+      text: there is a node at each fixed end, because the ends cannot move
+      concepts:
+      - node
+    - id: antinode
+      text: there is one antinode in the middle of the string, where the displacement is
+        largest
+      concepts:
+      - antinode
+    - id: spacing
+      text: the distance from a node to the next antinode is a quarter of a wavelength, so
+        the distance between the two nodes is half a wavelength
+      concepts:
+      - half-wavelength
+  answer_text: >-
+    There is a node at each fixed end, because the ends cannot move. There is one
+    antinode in the middle of the string, where the displacement is largest. The
+    distance from a node to the next antinode is a quarter of a wavelength, so the
+    distance between the two nodes is half a wavelength.
+- id: p9-5-resonance
+  section: '9.5'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    State what resonance is, and give one example of it.
+  answer_label: Resonance
+  check:
+    kind: structured
+    requires:
+    - definition
+    - example
+    concepts:
+    - driving-frequency
+    - natural-frequency
+    - amplitude
+    points:
+    - id: definition
+      text: resonance is the large amplitude of vibration that happens when the driving
+        frequency equals a natural frequency of the object
+      concepts:
+      - driving-frequency
+      - natural-frequency
+      - amplitude
+    - id: example
+      text: a guitar string sounds loudly when it is plucked at its natural frequency, and a
+        swing goes higher when it is pushed at its natural frequency
+      concepts:
+      - natural-frequency
+  answer_text: >-
+    Resonance is the large amplitude of vibration that happens when the driving
+    frequency equals a natural frequency of the object. A guitar string sounds
+    loudly when it is plucked at its natural frequency, and a swing goes higher
+    when it is pushed at its natural frequency.
+- id: p9-5-fundamental-formula
+  section: '9.5'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    A stretched string is 0.50 m long. Its tension is 500 N and its mass per unit
+    length is 0.0080 kg/m. Use $f = \dfrac{1}{2l}\sqrt{\dfrac{T}{\mu}}$ to
+    calculate the fundamental frequency of the string.
+  answer_label: Fundamental frequency
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 1 / (2 * l) * sqrt(T / mu)
+      values:
+        l:
+          value: '0.50'
+          unit: m
+        T:
+          value: '500'
+          unit: N
+        mu:
+          value: '0.0080'
+          unit: kg/m
+      answer:
+        value: '250'
+        unit: Hz
+    - kind: sigfigs
+      value: 1 / (2 * 0.50) * sqrt(500 / 0.0080)
+      figures: 3
+      answer: 2.50e2
+      convention: round-once
+  answer_text: >-
+    $\dfrac{T}{\mu} = \dfrac{500}{0.0080} = 62500$, so
+    $\sqrt{\dfrac{T}{\mu}} = 250\,\text{m/s}$. Then
+    $f = \dfrac{250}{2 \times 0.50} = 250\,\text{Hz}$. A tighter string or a
+    shorter string gives a higher note.
+- id: p9-5-length-frequency
+  section: '9.5'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    Explain what happens to the fundamental frequency of a stretched string when
+    its length is halved, with the tension and the mass per unit length unchanged.
+  answer_label: Halving the length
+  check:
+    kind: structured
+    requires:
+    - inverse
+    - reason
+    concepts:
+    - inverse
+    - wavelength
+    - wave-speed
+    points:
+    - id: inverse
+      text: the fundamental frequency doubles when the length is halved
+      concepts:
+      - inverse
+    - id: reason
+      text: the wave speed is unchanged, and the wavelength of the fundamental is twice the
+        length, so halving the length halves the wavelength and doubles the frequency
+      concepts:
+      - wavelength
+      - wave-speed
+  answer_text: >-
+    The fundamental frequency doubles when the length is halved. The wave speed is
+    unchanged, because it is set by the tension and the mass per unit length. The
+    wavelength of the fundamental is twice the length, so halving the length
+    halves the wavelength. Since $v = f\lambda$ and $v$ is unchanged, halving
+    $\lambda$ doubles $f$.

@@ -1,0 +1,188 @@
+# Practice set for 6.1 (strand S3, the physical world). Every answer is a
+# quantity, so most checks come from the `units` oracle: `dimensions` proves the
+# arithmetic *and* the unit together. The `structured` record proves only that a
+# model answer contains the declared ideas, in order — not that the physics is
+# right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics.
+# A dimensionally consistent, arithmetically correct, physically absurd answer
+# would pass.
+chapter: 6
+problems:
+  - id: am6-1-momentum-car
+    section: '6.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A test car of mass $1200$ kg travels in a straight line at $15$ m/s.
+      Calculate its momentum.
+    answer_label: Momentum
+    check:
+      kind: dimensions
+      expression: m * v
+      values:
+        m: {value: '1200', unit: kg}
+        v: {value: '15', unit: 'm/s'}
+      answer: {value: '18000', unit: 'kg m/s'}
+    answer_text: >-
+      Momentum is mass times velocity: $p = mv = 1200 \times 15 = 18000$ kg m/s.
+      The momentum points in the direction of travel, so it is a vector. Its unit
+      is kg m/s, which is the same as N s.
+
+  - id: am6-1-momentum-ball
+    section: '6.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $0.25$ kg is thrown at $8$ m/s. Calculate its momentum.
+    answer_label: Momentum
+    check:
+      kind: dimensions
+      expression: m * v
+      values:
+        m: {value: '0.25', unit: kg}
+        v: {value: '8', unit: 'm/s'}
+      answer: {value: '2', unit: 'kg m/s'}
+    answer_text: >-
+      $p = mv = 0.25 \times 8 = 2$ kg m/s. A small mass moving quickly can carry
+      a momentum as large as a bigger mass moving slowly.
+
+  - id: am6-1-impulse-force
+    section: '6.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A force of $60$ N acts on a trolley for $0.5$ s. Calculate the impulse
+      delivered to the trolley.
+    answer_label: Impulse
+    check:
+      kind: dimensions
+      expression: F * t
+      values:
+        F: {value: '60', unit: N}
+        t: {value: '0.5', unit: s}
+      answer: {value: '30', unit: 'N s'}
+    answer_text: >-
+      Impulse is force times time: $J = F\Delta t = 60 \times 0.5 = 30$ N s. The
+      unit N s is the same as kg m/s, because a force is a rate of change of
+      momentum.
+
+  - id: am6-1-impulse-stop
+    section: '6.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $3$ kg moves at $12$ m/s. A keeper catches it and brings it
+      to rest. Calculate the magnitude of the impulse on the ball.
+    answer_label: Impulse
+    check:
+      kind: dimensions
+      expression: m * v
+      values:
+        m: {value: '3', unit: kg}
+        v: {value: '12', unit: 'm/s'}
+      answer: {value: '36', unit: 'N s'}
+    answer_text: >-
+      The impulse equals the change in momentum. The momentum starts at
+      $3 \times 12 = 36$ kg m/s and ends at zero, so the impulse is $36$ N s
+      against the motion.
+
+  - id: am6-1-average-force
+    section: '6.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball receives an impulse of $36$ N s over $0.08$ s. Calculate the
+      average force on the ball.
+    answer_label: Average force
+    check:
+      kind: dimensions
+      expression: J / t
+      values:
+        J: {value: '36', unit: 'N s'}
+        t: {value: '0.08', unit: s}
+      answer: {value: '450', unit: N}
+    answer_text: >-
+      Impulse is force times time, so the average force is
+      $F = \dfrac{J}{\Delta t} = \dfrac{36}{0.08} = 450$ N. A shorter catching
+      time needs a larger force for the same impulse.
+
+  - id: am6-1-rebound-impulse
+    section: '6.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $0.5$ kg hits a wall at $6$ m/s and rebounds at $4$ m/s.
+      Taking the direction away from the wall as positive, calculate the impulse
+      on the ball.
+    answer_label: Impulse
+    check:
+      kind: dimensions
+      expression: m * (v2 - v1)
+      values:
+        m: {value: '0.5', unit: kg}
+        v1: {value: '-6', unit: 'm/s'}
+        v2: {value: '4', unit: 'm/s'}
+      answer: {value: '5', unit: 'N s'}
+    answer_text: >-
+      Take the direction away from the wall as positive. The velocity changes
+      from $-6$ m/s to $+4$ m/s, so the change is $4 - (-6) = 10$ m/s. The
+      impulse is $0.5 \times 10 = 5$ N s away from the wall. A rebound gives a
+      larger change in momentum than simply stopping the ball.
+
+  - id: am6-1-newton-momentum
+    section: '6.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car of mass $1500$ kg speeds up from $10$ m/s to $25$ m/s in $5$ s.
+      Calculate the average resultant force on the car.
+    answer_label: Average force
+    check:
+      kind: dimensions
+      expression: m * (v - u) / t
+      values:
+        m: {value: '1500', unit: kg}
+        u: {value: '10', unit: 'm/s'}
+        v: {value: '25', unit: 'm/s'}
+        t: {value: '5', unit: s}
+      answer: {value: '4500', unit: N}
+    answer_text: >-
+      The change in momentum is $1500 \times (25 - 10) = 22500$ kg m/s. Newton's
+      second law in momentum form gives
+      $F = \dfrac{\Delta p}{\Delta t} = \dfrac{22500}{5} = 4500$ N. The force is
+      in the direction of travel.
+
+  - id: am6-1-crumple
+    section: '6.1'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car hits a wall and is brought to rest. Explain why a crumple zone, which
+      makes the collision last longer, reduces the force on the driver.
+    answer_label: Why a crumple zone works
+    check:
+      kind: structured
+      requires: [impulse-fixed, time-longer, force-smaller]
+      concepts: [impulse, force]
+      points:
+        - id: impulse-fixed
+          text: >-
+            the change in momentum is fixed by the car's mass and speed, so the
+            impulse needed to stop it is fixed
+          concepts: [impulse]
+        - id: time-longer
+          text: >-
+            a crumple zone makes the collision last a longer time
+          concepts: [force]
+        - id: force-smaller
+          text: >-
+            since force is impulse divided by time, a longer time gives a smaller
+            average force
+          concepts: [force]
+    answer_text: >-
+      The car must lose the same momentum however it stops, so the impulse is
+      fixed. A crumple zone stretches the collision over a longer time. Because
+      the average force is the impulse divided by the time, a longer time means a
+      smaller force. A smaller force on the driver is what makes the crash
+      survivable.

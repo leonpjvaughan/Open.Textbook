@@ -1,0 +1,252 @@
+# Leaving Certificate Physics, Chapter 8, section 8.2 (strand 2 outcome 2.1).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `4.2e5`, since `420000` is six figures.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` record proves only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in it is right.
+chapter: 8
+problems:
+- id: p8-2-heat-water
+  section: '8.2'
+  tier: O
+  refs:
+  - '2.1'
+  statement: Calculate the energy needed to heat 2.0 kg of water from 15°C to 65°C. The specific heat
+    capacity of water is 4200 J/(kg K).
+  answer_label: Energy needed
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * c * dtheta
+      values:
+        m:
+          value: '2.0'
+          unit: kg
+        c:
+          value: '4200'
+          unit: J kg^-1 K^-1
+        dtheta:
+          value: '50'
+          unit: K
+      answer:
+        value: '4.2e5'
+        unit: J
+    - kind: sigfigs
+      value: 2.0 * 4200 * 50
+      figures: 2
+      answer: 4.2e5
+      convention: round-once
+  answer_text: $E = mc\Delta\theta = 2.0 \times 4200 \times 50 = 4.2 \times 10^{5}\,\text{J}$. The
+    temperature change is 50 K, which is the same as 50°C.
+- id: p8-2-find-c
+  section: '8.2'
+  tier: O
+  refs:
+  - '2.1'
+  statement: A 3.0 kg block gains 7.8 × 10^4 J of energy and its temperature rises by 40 K. Calculate
+    its specific heat capacity.
+  answer_label: Specific heat capacity
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: E / (m * dtheta)
+      values:
+        E:
+          value: '7.8e4'
+          unit: J
+        m:
+          value: '3.0'
+          unit: kg
+        dtheta:
+          value: '40'
+          unit: K
+      answer:
+        value: '650'
+        unit: J kg^-1 K^-1
+    - kind: sigfigs
+      value: 78000 / (3.0 * 40)
+      figures: 2
+      answer: 6.5e2
+      convention: round-once
+  answer_text: $c = \dfrac{E}{m\Delta\theta} = \dfrac{7.8 \times 10^{4}}{3.0 \times 40} =
+    650\,\text{J}\,\text{kg}^{-1}\,\text{K}^{-1}$. The block is not water, so its specific heat
+    capacity is smaller than 4200.
+- id: p8-2-aluminium
+  section: '8.2'
+  tier: O
+  refs:
+  - '2.1'
+  statement: Calculate the energy needed to heat a 0.50 kg aluminium block from 20°C to 120°C. The
+    specific heat capacity of aluminium is 900 J/(kg K).
+  answer_label: Energy needed
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * c * dtheta
+      values:
+        m:
+          value: '0.50'
+          unit: kg
+        c:
+          value: '900'
+          unit: J kg^-1 K^-1
+        dtheta:
+          value: '100'
+          unit: K
+      answer:
+        value: '4.5e4'
+        unit: J
+    - kind: sigfigs
+      value: 0.50 * 900 * 100
+      figures: 2
+      answer: 4.5e4
+      convention: round-once
+  answer_text: $E = mc\Delta\theta = 0.50 \times 900 \times 100 = 4.5 \times 10^{4}\,\text{J}$.
+    Aluminium has a smaller specific heat capacity than water, so it warms with less energy.
+- id: p8-2-heater
+  section: '8.2'
+  tier: O
+  refs:
+  - '2.1'
+  statement: A 700 W heater warms 2.0 kg of water for 300 s. Calculate the temperature rise of the
+    water. The specific heat capacity of water is 4200 J/(kg K).
+  answer_label: Temperature rise
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: P * t / (m * c)
+      values:
+        P:
+          value: '700'
+          unit: W
+        t:
+          value: '300'
+          unit: s
+        m:
+          value: '2.0'
+          unit: kg
+        c:
+          value: '4200'
+          unit: J kg^-1 K^-1
+      answer:
+        value: '25'
+        unit: K
+    - kind: sigfigs
+      value: 700 * 300 / (2.0 * 4200)
+      figures: 2
+      answer: 2.5e1
+      convention: round-once
+  answer_text: The energy supplied is $E = Pt = 700 \times 300 = 2.1 \times 10^{5}\,\text{J}$. Then
+    $\Delta\theta = \dfrac{E}{mc} = \dfrac{2.1 \times 10^{5}}{2.0 \times 4200} = 25\,\text{K}$.
+- id: p8-2-copper
+  section: '8.2'
+  tier: O
+  refs:
+  - '2.1'
+  statement: A 0.20 kg copper block is heated by 4680 J. The specific heat capacity of copper is 390
+    J/(kg K). Calculate the temperature rise of the block.
+  answer_label: Temperature rise
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: E / (m * c)
+      values:
+        E:
+          value: '4680'
+          unit: J
+        m:
+          value: '0.20'
+          unit: kg
+        c:
+          value: '390'
+          unit: J kg^-1 K^-1
+      answer:
+        value: '60'
+        unit: K
+    - kind: sigfigs
+      value: 4680 / (0.20 * 390)
+      figures: 2
+      answer: 6.0e1
+      convention: round-once
+  answer_text: $\Delta\theta = \dfrac{E}{mc} = \dfrac{4680}{0.20 \times 390} = 60\,\text{K}$. Copper
+    has a small specific heat capacity, so a little energy gives a large temperature rise.
+- id: p8-2-iron-cool
+  section: '8.2'
+  tier: O
+  refs:
+  - '2.1'
+  statement: A 1.5 kg iron block cools from 200°C to 20°C. The specific heat capacity of iron is 450
+    J/(kg K). Calculate the energy released by the block.
+  answer_label: Energy released
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * c * dtheta
+      values:
+        m:
+          value: '1.5'
+          unit: kg
+        c:
+          value: '450'
+          unit: J kg^-1 K^-1
+        dtheta:
+          value: '180'
+          unit: K
+      answer:
+        value: '1.215e5'
+        unit: J
+    - kind: sigfigs
+      value: 1.5 * 450 * 180
+      figures: 2
+      answer: 1.2e5
+      convention: round-once
+  answer_text: $E = mc\Delta\theta = 1.5 \times 450 \times 180 = 1.2 \times 10^{5}\,\text{J}$. The
+    block releases this energy to its surroundings as it cools.
+- id: p8-2-radiator
+  section: '8.2'
+  tier: O
+  refs:
+  - '2.1'
+  statement: Explain why water is used to carry energy around a central heating system.
+  answer_label: Water in a heating system
+  check:
+    kind: structured
+    requires:
+    - high-c
+    - energy
+    - cools-slowly
+    concepts:
+    - specific-heat-capacity
+    - energy-carried
+    points:
+    - id: high-c
+      text: Water has a high specific heat capacity of 4200 J/(kg K), so 1 kg of water stores a large
+        amount of energy for each degree it is warmed.
+      concepts:
+      - specific-heat-capacity
+    - id: energy
+      text: The boiler transfers energy to the water, and the moving water carries that energy to the
+        radiators.
+      concepts:
+      - energy-carried
+    - id: cools-slowly
+      text: Because its specific heat capacity is high, the water cools slowly as it gives out energy,
+        so it stays warm on the way round the system.
+      concepts:
+      - energy-carried
+  answer_text: Water has a high specific heat capacity, so 1 kg of water stores a large amount of
+    energy for each degree it is warmed. The boiler transfers energy to the water, and the moving
+    water carries that energy to the radiators. The water cools slowly as it gives out energy, so it
+    stays warm on the way round the system.

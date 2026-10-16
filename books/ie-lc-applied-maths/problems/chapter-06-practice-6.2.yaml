@@ -1,0 +1,195 @@
+# Practice set for 6.2 (strand S3, the physical world). Every answer is a
+# quantity, so the checks come from the `units` oracle: `dimensions` proves the
+# arithmetic *and* the unit together. The `structured` record proves only that a
+# model answer contains the declared ideas, in order — not that the physics is
+# right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics.
+chapter: 6
+problems:
+  - id: am6-2-lock-together
+    section: '6.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A test car of mass $1200$ kg moving at $15$ m/s collides with a stationary
+      car of mass $800$ kg. The two cars lock together and move off as one.
+      Calculate their common velocity.
+    answer_label: Common velocity
+    check:
+      kind: dimensions
+      expression: (m1 * u1) / (m1 + m2)
+      values:
+        m1: {value: '1200', unit: kg}
+        u1: {value: '15', unit: 'm/s'}
+        m2: {value: '800', unit: kg}
+      answer: {value: '9', unit: 'm/s'}
+    answer_text: >-
+      Momentum before the collision is $1200 \times 15 = 18000$ kg m/s. After
+      the collision the total mass is $1200 + 800 = 2000$ kg, moving at a common
+      velocity $v$. Momentum is conserved, so $2000v = 18000$ and $v = 9$ m/s.
+
+  - id: am6-2-trolley-lock
+    section: '6.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A trolley of mass $3$ kg moving at $4$ m/s catches a trolley of mass $1$
+      kg moving at $2$ m/s in the same direction. They lock together. Calculate
+      their common velocity.
+    answer_label: Common velocity
+    check:
+      kind: dimensions
+      expression: (m1 * u1 + m2 * u2) / (m1 + m2)
+      values:
+        m1: {value: '3', unit: kg}
+        u1: {value: '4', unit: 'm/s'}
+        m2: {value: '1', unit: kg}
+        u2: {value: '2', unit: 'm/s'}
+      answer: {value: '3.5', unit: 'm/s'}
+    answer_text: >-
+      Momentum before is $3 \times 4 + 1 \times 2 = 12 + 2 = 14$ kg m/s. The
+      total mass is $4$ kg, so $4v = 14$ and $v = 3.5$ m/s. Both trolleys move
+      in the original direction.
+
+  - id: am6-2-head-on-lock
+    section: '6.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A body of mass $3$ kg moving at $4$ m/s to the right meets a body of mass
+      $2$ kg moving at $3$ m/s to the left. They lock together. Calculate their
+      common velocity, taking the right as positive.
+    answer_label: Common velocity
+    check:
+      kind: dimensions
+      expression: (m1 * u1 - m2 * u2) / (m1 + m2)
+      values:
+        m1: {value: '3', unit: kg}
+        u1: {value: '4', unit: 'm/s'}
+        m2: {value: '2', unit: kg}
+        u2: {value: '3', unit: 'm/s'}
+      answer: {value: '1.2', unit: 'm/s'}
+    answer_text: >-
+      Take the right as positive. The momentum before is
+      $3 \times 4 - 2 \times 3 = 12 - 6 = 6$ kg m/s. The total mass is $5$ kg, so
+      $5v = 6$ and $v = 1.2$ m/s to the right.
+
+  - id: am6-2-explosion
+    section: '6.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A body of mass $5$ kg is at rest and splits into two parts. One part of
+      mass $2$ kg moves at $6$ m/s. Calculate the speed of the other part.
+    answer_label: Speed of the other part
+    check:
+      kind: dimensions
+      expression: (m1 * v1) / m2
+      values:
+        m1: {value: '2', unit: kg}
+        v1: {value: '6', unit: 'm/s'}
+        m2: {value: '3', unit: kg}
+      answer: {value: '4', unit: 'm/s'}
+    answer_text: >-
+      The body starts at rest, so the total momentum is zero. The parts must move
+      in opposite directions with equal and opposite momenta. So
+      $3v = 2 \times 6 = 12$, giving $v = 4$ m/s in the opposite direction. The
+      speed is $4$ m/s.
+
+  - id: am6-2-recoil
+    section: '6.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A rifle of mass $4$ kg fires a bullet of mass $0.02$ kg at $500$ m/s.
+      Calculate the recoil speed of the rifle.
+    answer_label: Recoil speed
+    check:
+      kind: dimensions
+      expression: (m * v) / M
+      values:
+        m: {value: '0.02', unit: kg}
+        v: {value: '500', unit: 'm/s'}
+        M: {value: '4', unit: kg}
+      answer: {value: '2.5', unit: 'm/s'}
+    answer_text: >-
+      Before firing, the total momentum is zero. After firing the bullet carries
+      $0.02 \times 500 = 10$ kg m/s forwards, so the rifle must carry $10$ kg m/s
+      backwards. Its recoil speed is $10 \div 4 = 2.5$ m/s.
+
+  - id: am6-2-find-final
+    section: '6.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A body of mass $4$ kg moving at $5$ m/s hits a stationary body of mass
+      $2$ kg. After the collision the $4$ kg body continues at $3$ m/s.
+      Calculate the velocity of the $2$ kg body.
+    answer_label: Velocity
+    check:
+      kind: dimensions
+      expression: (m1 * u1 - m1 * v1) / m2
+      values:
+        m1: {value: '4', unit: kg}
+        u1: {value: '5', unit: 'm/s'}
+        v1: {value: '3', unit: 'm/s'}
+        m2: {value: '2', unit: kg}
+      answer: {value: '4', unit: 'm/s'}
+    answer_text: >-
+      Momentum before is $4 \times 5 = 20$ kg m/s. After the collision the $4$ kg
+      body carries $4 \times 3 = 12$ kg m/s, so the $2$ kg body carries
+      $20 - 12 = 8$ kg m/s. Its velocity is $8 \div 2 = 4$ m/s, in the original
+      direction.
+
+  - id: am6-2-bullet-block
+    section: '6.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A bullet of mass $0.02$ kg moving at $300$ m/s embeds itself in a block of
+      mass $1.98$ kg at rest. Calculate the common speed after the impact.
+    answer_label: Common speed
+    check:
+      kind: dimensions
+      expression: (m1 * u1) / (m1 + m2)
+      values:
+        m1: {value: '0.02', unit: kg}
+        u1: {value: '300', unit: 'm/s'}
+        m2: {value: '1.98', unit: kg}
+      answer: {value: '3', unit: 'm/s'}
+    answer_text: >-
+      The bullet's momentum is $0.02 \times 300 = 6$ kg m/s. After the impact
+      the total mass is $0.02 + 1.98 = 2$ kg, so $2v = 6$ and $v = 3$ m/s. Almost
+      all of the momentum came from the bullet, because the block was at rest.
+
+  - id: am6-2-condition
+    section: '6.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      State the condition under which the total momentum of a system is
+      conserved, and explain how it applies to a collision between two cars.
+    answer_label: The condition
+    check:
+      kind: structured
+      requires: [no-external-force, before-equals-after]
+      concepts: [conservation]
+      points:
+        - id: no-external-force
+          text: >-
+            the total momentum stays constant when no external resultant force
+            acts on the system
+          concepts: [conservation]
+        - id: before-equals-after
+          text: >-
+            during a collision the only forces are the equal and opposite forces
+            between the cars, so the total momentum after equals the total
+            momentum before
+          concepts: [conservation]
+    answer_text: >-
+      The total momentum of a system is conserved when no external resultant
+      force acts on it. In a collision between two cars, the cars push on each
+      other with equal and opposite forces, which are internal to the system.
+      The friction from the road is small during the short impact, so the total
+      momentum after the collision equals the total momentum before it.

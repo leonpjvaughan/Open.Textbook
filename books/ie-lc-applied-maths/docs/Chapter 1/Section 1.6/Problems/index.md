@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.6 Evaluating, refining and reporting — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S1
+Work independently. The questions and answers are shown together at the end.
+
+For each refined answer, say which assumption changed and what the change did to
+the answer.
+
+:::problems chapter-01-practice-1.6
+
+:::answers chapter-01-practice-1.6

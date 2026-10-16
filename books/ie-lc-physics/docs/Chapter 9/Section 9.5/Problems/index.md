@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.5 Stationary waves and resonance — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 2.6
+Work independently. The questions and answers are shown together at the end.
+
+Decide first whether the question is about a standing wave on a string or about the wave
+speed along it. The two use different relationships, and choosing the right one is the
+first step in every question here.
+
+:::problems chapter-09-practice-9.5
+
+:::answers chapter-09-practice-9.5

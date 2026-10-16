@@ -1,0 +1,250 @@
+# Leaving Certificate Physics, Chapter 9, section 9.2 (strand 2 outcome 2.2).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. A `structured` record proves only that
+# a model answer contains the declared steps in order and covers the declared
+# concepts — not that the physics in them is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass.
+chapter: 9
+problems:
+- id: p9-2-period
+  section: '9.2'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    A wave has a frequency of 196 Hz. Calculate its period.
+  answer_label: Period
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 1 / f
+      values:
+        f:
+          value: '196'
+          unit: Hz
+      answer:
+        value: 5.1e-3
+        unit: s
+      tolerance: '0.0001'
+    - kind: sigfigs
+      value: 1 / 196
+      figures: 2
+      answer: 5.1e-3
+      convention: round-once
+  answer_text: >-
+    $T = \dfrac{1}{f} = \dfrac{1}{196} = 5.1 \times 10^{-3}\,\text{s}$. The wave
+    completes one vibration in about five milliseconds.
+- id: p9-2-wavelength-air
+  section: '9.2'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    A sound wave of frequency 196 Hz travels through air at 340 m/s. Calculate its
+    wavelength.
+  answer_label: Wavelength in air
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v / f
+      values:
+        v:
+          value: '340'
+          unit: m/s
+        f:
+          value: '196'
+          unit: Hz
+      answer:
+        value: '1.7'
+        unit: m
+      tolerance: '0.05'
+    - kind: sigfigs
+      value: 340 / 196
+      figures: 2
+      answer: '1.7'
+      convention: round-once
+  answer_text: >-
+    Rearranging $v = f\lambda$ gives
+    $\lambda = \dfrac{v}{f} = \dfrac{340}{196} = 1.7\,\text{m}$. Each complete
+    vibration of the air stretches 1.7 m along the direction the sound travels.
+- id: p9-2-wave-equation
+  section: '9.2'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    The wave equation is $v = f\lambda$. Use the units of the three quantities to
+    show that the equation is dimensionally consistent.
+  answer_label: Checking the wave equation
+  check:
+    kind: dimensions
+    consistency: v = f * wavelength
+    units:
+      v: m/s
+      f: Hz
+      wavelength: m
+  answer_text: >-
+    The frequency is in hertz, which is per second, and the wavelength is in
+    metres. Their product has the unit $\text{s}^{-1} \times \text{m}$, which is
+    metres per second. That is the unit of the wave speed, so the two sides of
+    $v = f\lambda$ agree.
+- id: p9-2-string-wavelength
+  section: '9.2'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    Waves travel along a guitar string at 255 m/s. The string sounds a note of
+    frequency 196 Hz. Calculate the wavelength of the wave on the string.
+  answer_label: Wavelength on the string
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v / f
+      values:
+        v:
+          value: '255'
+          unit: m/s
+        f:
+          value: '196'
+          unit: Hz
+      answer:
+        value: '1.30'
+        unit: m
+      tolerance: '0.005'
+    - kind: sigfigs
+      value: 255 / 196
+      figures: 3
+      answer: '1.30'
+      convention: round-once
+  answer_text: >-
+    $\lambda = \dfrac{v}{f} = \dfrac{255}{196} = 1.30\,\text{m}$. Keep this
+    number: in Section 9.5 you will see that it is exactly twice the length of the
+    string.
+- id: p9-2-frequency
+  section: '9.2'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    A wave travels at 340 m/s and has a wavelength of 0.50 m. Calculate its
+    frequency.
+  answer_label: Frequency
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v / wavelength
+      values:
+        v:
+          value: '340'
+          unit: m/s
+        wavelength:
+          value: '0.50'
+          unit: m
+      answer:
+        value: '680'
+        unit: Hz
+    - kind: sigfigs
+      value: 340 / 0.50
+      figures: 2
+      answer: 6.8e2
+      convention: round-once
+  answer_text: >-
+    Rearranging $v = f\lambda$ gives
+    $f = \dfrac{v}{\lambda} = \dfrac{340}{0.50} = 6.8 \times 10^{2}\,\text{Hz}$.
+    A frequency of $6.8 \times 10^{2}\,\text{Hz}$ means 680 complete
+    vibrations every second.
+- id: p9-2-new-medium
+  section: '9.2'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    A sound wave passes from air into water. State what happens to its frequency,
+    its speed and its wavelength.
+  answer_label: A wave entering a new medium
+  check:
+    kind: structured
+    requires:
+    - frequency
+    - speed
+    - wavelength
+    concepts:
+    - frequency
+    - medium
+    - wave-equation
+    points:
+    - id: frequency
+      text: the frequency stays the same, because it is set by the source of the wave
+      concepts:
+      - frequency
+    - id: speed
+      text: the speed changes, because the speed of a wave depends on the medium it is
+        travelling through
+      concepts:
+      - medium
+    - id: wavelength
+      text: the wavelength changes, because $v = f\lambda$ must still hold with the new speed
+        and the unchanged frequency
+      concepts:
+      - wave-equation
+  answer_text: >-
+    The frequency stays the same, because it is set by the source of the wave. The
+    speed changes, because the speed of a wave depends on the medium it is
+    travelling through. The wavelength changes, because $v = f\lambda$ must still
+    hold with the new speed and the unchanged frequency.
+- id: p9-2-define
+  section: '9.2'
+  tier: O
+  refs:
+  - '2.2'
+  statement: >-
+    Define the frequency, the period, the wavelength and the wave speed of a wave,
+    and give the unit of each.
+  answer_label: Frequency, period, wavelength and wave speed
+  check:
+    kind: structured
+    requires:
+    - frequency
+    - period
+    - wavelength
+    - wave-speed
+    concepts:
+    - frequency
+    - period
+    - wavelength
+    - wave-speed
+    points:
+    - id: frequency
+      text: the frequency is the number of complete waves produced each second, measured in
+        hertz
+      concepts:
+      - frequency
+    - id: period
+      text: the period is the time for one complete wave, measured in seconds
+      concepts:
+      - period
+    - id: wavelength
+      text: the wavelength is the distance between two successive crests, measured in metres
+      concepts:
+      - wavelength
+    - id: wave-speed
+      text: the wave speed is the distance the wave travels each second, measured in metres
+        per second
+      concepts:
+      - wave-speed
+  answer_text: >-
+    The frequency is the number of complete waves produced each second, in hertz.
+    The period is the time for one complete wave, in seconds. The wavelength is
+    the distance between two successive crests, in metres. The wave speed is the
+    distance the wave travels each second, in metres per second. The four are
+    linked by $f = \dfrac{1}{T}$ and $v = f\lambda$.

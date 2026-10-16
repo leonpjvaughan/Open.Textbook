@@ -1,0 +1,254 @@
+# Leaving Certificate Physics, Chapter 8, section 8.3 (strand 2 outcome 2.1).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 8
+problems:
+- id: p8-3-melt-ice
+  section: '8.3'
+  tier: O
+  refs:
+  - '2.1'
+  statement: Calculate the energy needed to melt 0.20 kg of ice at 0°C. The specific latent heat of
+    fusion of ice is 3.34 × 10^5 J/kg.
+  answer_label: Energy needed to melt the ice
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * L
+      values:
+        m:
+          value: '0.20'
+          unit: kg
+        L:
+          value: '3.34e5'
+          unit: J kg^-1
+      answer:
+        value: '6.68e4'
+        unit: J
+    - kind: sigfigs
+      value: 0.20 * 3.34e5
+      figures: 2
+      answer: 6.7e4
+      convention: round-once
+  answer_text: $E = mL = 0.20 \times 3.34 \times 10^{5} = 6.7 \times 10^{4}\,\text{J}$. The ice
+    stays at 0°C while it melts.
+- id: p8-3-boil-water
+  section: '8.3'
+  tier: O
+  refs:
+  - '2.1'
+  statement: Calculate the energy needed to turn 0.050 kg of water at 100°C into steam at 100°C. The
+    specific latent heat of vaporisation of water is 2.26 × 10^6 J/kg.
+  answer_label: Energy needed to boil the water
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * L
+      values:
+        m:
+          value: '0.050'
+          unit: kg
+        L:
+          value: '2.26e6'
+          unit: J kg^-1
+      answer:
+        value: '1.13e5'
+        unit: J
+    - kind: sigfigs
+      value: 0.050 * 2.26e6
+      figures: 2
+      answer: 1.1e5
+      convention: round-once
+  answer_text: $E = mL = 0.050 \times 2.26 \times 10^{6} = 1.1 \times 10^{5}\,\text{J}$. Boiling a
+    small mass of water needs a large amount of energy, because the bonds between the molecules must
+    be broken.
+- id: p8-3-two-stage
+  section: '8.3'
+  tier: O
+  refs:
+  - '2.1'
+  statement: A 0.50 kg mass of water is heated from 20°C to 100°C and then 0.10 kg of it is boiled
+    away. Use c = 4200 J/(kg K) and L = 2.26 × 10^6 J/kg. Calculate the total energy supplied.
+  answer_label: Total energy supplied
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m1 * c * dtheta + m2 * L
+      values:
+        m1:
+          value: '0.50'
+          unit: kg
+        c:
+          value: '4200'
+          unit: J kg^-1 K^-1
+        dtheta:
+          value: '80'
+          unit: K
+        m2:
+          value: '0.10'
+          unit: kg
+        L:
+          value: '2.26e6'
+          unit: J kg^-1
+      answer:
+        value: '3.94e5'
+        unit: J
+    - kind: sigfigs
+      value: 0.50 * 4200 * 80 + 0.10 * 2.26e6
+      figures: 2
+      answer: 3.9e5
+      convention: round-once
+  answer_text: Heating the water needs $E_1 = mc\Delta\theta = 0.50 \times 4200 \times 80 =
+    1.68 \times 10^{5}\,\text{J}$. Boiling needs $E_2 = mL = 0.10 \times 2.26 \times 10^{6} =
+    2.26 \times 10^{5}\,\text{J}$. The total is $E_1 + E_2 = 3.9 \times 10^{5}\,\text{J}$.
+- id: p8-3-find-L
+  section: '8.3'
+  tier: O
+  refs:
+  - '2.1'
+  statement: A 0.40 kg mass of a solid needs 8.0 × 10^4 J to melt it at its melting point. Calculate
+    the specific latent heat of fusion of the solid.
+  answer_label: Specific latent heat of fusion
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: E / m
+      values:
+        E:
+          value: '8.0e4'
+          unit: J
+        m:
+          value: '0.40'
+          unit: kg
+      answer:
+        value: '2.0e5'
+        unit: J kg^-1
+    - kind: sigfigs
+      value: 8.0e4 / 0.40
+      figures: 2
+      answer: 2.0e5
+      convention: round-once
+  answer_text: $L = \dfrac{E}{m} = \dfrac{8.0 \times 10^{4}}{0.40} = 2.0 \times 10^{5}\,\text{J/kg}$.
+    The value is smaller than the latent heat of vaporisation of water, because melting needs less
+    energy than boiling.
+- id: p8-3-constant-temperature
+  section: '8.3'
+  tier: O
+  refs:
+  - '2.1'
+  statement: Energy is supplied to ice at 0°C, and the ice melts. Explain why the temperature stays
+    at 0°C while the ice melts.
+  answer_label: The melting ice
+  check:
+    kind: structured
+    requires:
+    - energy-used
+    - bonds
+    - kinetic
+    concepts:
+    - latent-heat
+    - potential-energy
+    points:
+    - id: energy-used
+      text: The energy supplied is used to change the state of the ice, not to raise its temperature.
+      concepts:
+      - latent-heat
+    - id: bonds
+      text: The energy breaks the bonds that hold the particles in the solid, so the potential energy
+        of the particles rises.
+      concepts:
+      - potential-energy
+    - id: kinetic
+      text: The average kinetic energy of the particles does not change, so the temperature stays at
+        0°C.
+      concepts:
+      - latent-heat
+  answer_text: The energy supplied changes the state of the ice. It breaks the bonds that hold the
+    particles in the solid, so the potential energy of the particles rises. The average kinetic
+    energy of the particles does not change, so the temperature stays at 0°C.
+- id: p8-3-difference
+  section: '8.3'
+  tier: O
+  refs:
+  - '2.1'
+  statement: Explain the difference between specific heat capacity and specific latent heat, and say
+    when to use each.
+  answer_label: The two quantities
+  check:
+    kind: structured
+    requires:
+    - specific-heat
+    - latent
+    - when
+    concepts:
+    - temperature-change
+    - change-of-state
+    points:
+    - id: specific-heat
+      text: Specific heat capacity is the energy needed to raise the temperature of 1 kg of a substance
+        by 1 K, and it is used when the temperature changes.
+      concepts:
+      - temperature-change
+    - id: latent
+      text: Specific latent heat is the energy needed to change the state of 1 kg of a substance with
+        no change in temperature, and it is used at a melting or boiling point.
+      concepts:
+      - change-of-state
+    - id: when
+      text: Use E = mcΔθ for a temperature change and E = mL for a change of state.
+      concepts:
+      - temperature-change
+      - change-of-state
+  answer_text: Specific heat capacity is the energy needed to raise the temperature of 1 kg of a
+    substance by 1 K. Specific latent heat is the energy needed to change the state of 1 kg of a
+    substance with no change in temperature. Use E = mcΔθ for a temperature change and E = mL for a
+    change of state.
+- id: p8-3-heating-curve
+  section: '8.3'
+  tier: O
+  refs:
+  - '2.1'
+  statement: A graph of temperature against time is drawn for a solid heated at a steady rate. The
+    graph has a sloping part, then a flat part, then another sloping part. Explain what happens during
+    the flat part and why the graph is flat.
+  answer_label: The flat part of the graph
+  check:
+    kind: structured
+    requires:
+    - state-change
+    - energy
+    - flat
+    concepts:
+    - melting
+    - energy-breaks-bonds
+    - constant-temperature
+    points:
+    - id: state-change
+      text: The flat part is where the solid melts, so the substance changes from a solid to a liquid.
+      concepts:
+      - melting
+    - id: energy
+      text: The heater supplies energy at a steady rate, and that energy breaks the bonds between the
+        particles.
+      concepts:
+      - energy-breaks-bonds
+    - id: flat
+      text: The average kinetic energy of the particles does not change, so the temperature stays
+        constant and the graph is flat.
+      concepts:
+      - constant-temperature
+  answer_text: The flat part is where the solid melts. The heater still supplies energy at a steady
+    rate, and that energy breaks the bonds between the particles. The average kinetic energy of the
+    particles does not change, so the temperature stays constant and the graph is flat.

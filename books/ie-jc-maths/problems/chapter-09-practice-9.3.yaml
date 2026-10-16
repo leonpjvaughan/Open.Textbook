@@ -1,0 +1,250 @@
+# Junior Cycle Mathematics, Chapter 9, section 9.3.
+#
+# Every check is arithmetic the CAS proves, so the answer the reader is shown is
+# the answer the verifier proved. A quadratic general term is checked by
+# substituting several positions into it and matching the terms of the pattern,
+# so the rule is proved rather than one value. First and second differences are
+# checked as the subtractions that produce them. The letter n is declared as a
+# symbol. Units and words stay in `statement`.
+chapter: 9
+symbols:
+  n:
+    real: true
+
+problems:
+- id: jc9-9.3-firstdiff-1
+  section: '9.3'
+  tier: O
+  refs:
+  - AF.1
+  statement: Write down the first differences of the pattern 2, 7, 16, 29.
+  answer_label: Write down the first differences of 2, 7, 16, 29.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 7 - 2
+      answer: '5'
+    - kind: evaluate
+      expression: 16 - 7
+      answer: '9'
+    - kind: evaluate
+      expression: 29 - 16
+      answer: '13'
+  answer_text: >-
+    $5, 9, 13$. A first difference is the gap between one term and the next:
+    $7-2=5$, $16-7=9$ and $29-16=13$. The gaps themselves grow by 4.
+- id: jc9-9.3-seconddiff-1
+  section: '9.3'
+  tier: O
+  refs:
+  - AF.1
+  statement: Write down the second differences of the pattern 3, 9, 19, 33.
+  answer_label: Write down the second differences of 3, 9, 19, 33.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 9 - 3
+      answer: '6'
+    - kind: evaluate
+      expression: 19 - 9
+      answer: '10'
+    - kind: evaluate
+      expression: 33 - 19
+      answer: '14'
+    - kind: evaluate
+      expression: 10 - 6
+      answer: '4'
+    - kind: evaluate
+      expression: 14 - 10
+      answer: '4'
+  answer_text: >-
+    $4, 4$. The first differences are $6, 10, 14$, and the second differences are
+    the gaps between those: $10-6=4$ and $14-10=4$. A constant second difference
+    means the pattern is quadratic.
+- id: jc9-9.3-rule-1
+  section: '9.3'
+  tier: O
+  refs:
+  - AF.1
+  statement: Find the general term of the quadratic pattern 2, 7, 16, 29, ...
+  answer_label: Find the general term of 2, 7, 16, 29, ...
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*1**2 - 1 + 1
+      answer: '2'
+    - kind: evaluate
+      expression: 2*2**2 - 2 + 1
+      answer: '7'
+    - kind: evaluate
+      expression: 2*4**2 - 4 + 1
+      answer: '29'
+  answer_text: >-
+    $2n^2-n+1$. The first differences are $5, 9, 13$, and the second difference
+    is 4. Half of 4 is 2, so the rule starts with $2n^2$. The $2n^2$ pattern is
+    $2, 8, 18, 32, \ldots$; each term here is $1$ less than that at position 1,
+    so the remaining part is $-n+1$. Check position 4: $2(16)-4+1=29$.
+- id: jc9-9.3-ben-rule
+  section: '9.3'
+  tier: O
+  refs:
+  - AF.1
+  statement: Ben saves 1 euro in week 1, 4 euro in week 2, 9 euro in week 3 and 16 euro in week 4. Find the general term for his saving in week $n$.
+  answer_label: Ben saves 1, 4, 9, 16, ... euro. Find the general term.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1**2
+      answer: '1'
+    - kind: evaluate
+      expression: 2**2
+      answer: '4'
+    - kind: evaluate
+      expression: 3**2
+      answer: '9'
+    - kind: evaluate
+      expression: 4**2
+      answer: '16'
+  answer_text: >-
+    $n^2$ euro. His amounts are the square numbers, so the general term is $n^2$.
+    The first differences are $3, 5, 7$, and the second difference is 2, which is
+    twice 1.
+- id: jc9-9.3-ben-week10
+  section: '9.3'
+  tier: O
+  refs:
+  - AF.1
+  statement: Use Ben's rule $n^2$ to work out how much he saves in week 10.
+  answer_label: Use Ben's rule $n^2$. How much does he save in week 10?
+  check:
+    kind: evaluate
+    expression: 10**2
+    answer: '100'
+  answer_text: >-
+    $100$ euro. Put $n=10$ into the rule: $10^2=100$. The square numbers grow
+    faster than a fixed step, so Ben overtakes Aoife's plan.
+- id: jc9-9.3-rule-2
+  section: '9.3'
+  tier: O
+  refs:
+  - AF.1
+  statement: Find the general term of the quadratic pattern 3, 9, 19, 33, ...
+  answer_label: Find the general term of 3, 9, 19, 33, ...
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*1**2 + 1
+      answer: '3'
+    - kind: evaluate
+      expression: 2*2**2 + 1
+      answer: '9'
+    - kind: evaluate
+      expression: 2*3**2 + 1
+      answer: '19'
+    - kind: evaluate
+      expression: 2*4**2 + 1
+      answer: '33'
+  answer_text: >-
+    $2n^2+1$. The second difference is 4, and half of 4 is 2, so the rule starts
+    with $2n^2$. The $2n^2$ pattern is $2, 8, 18, 32, \ldots$, and each term here
+    is 1 more. Check position 3: $2(9)+1=19$.
+- id: jc9-9.3-rule-3
+  section: '9.3'
+  tier: O
+  refs:
+  - AF.1
+  statement: Find the general term of the quadratic pattern 4, 11, 22, 37, ...
+  answer_label: Find the general term of 4, 11, 22, 37, ...
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*1**2 + 1 + 1
+      answer: '4'
+    - kind: evaluate
+      expression: 2*2**2 + 2 + 1
+      answer: '11'
+    - kind: evaluate
+      expression: 2*3**2 + 3 + 1
+      answer: '22'
+    - kind: evaluate
+      expression: 2*4**2 + 4 + 1
+      answer: '37'
+  answer_text: >-
+    $2n^2+n+1$. The first differences are $7, 11, 15$ and the second difference
+    is 4, so the rule starts with $2n^2$. Subtract $2n^2$ from each term:
+    $4-2=2$, $11-8=3$, $22-18=4$, $37-32=5$, and those follow $n+1$. Check
+    position 4: $2(16)+4+1=37$.
+- id: jc9-9.3-rule-4
+  section: '9.3'
+  tier: O
+  refs:
+  - AF.1
+  statement: Find the general term of the quadratic pattern 5, 12, 23, 38, ...
+  answer_label: Find the general term of 5, 12, 23, 38, ...
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*1**2 + 1 + 2
+      answer: '5'
+    - kind: evaluate
+      expression: 2*2**2 + 2 + 2
+      answer: '12'
+    - kind: evaluate
+      expression: 2*3**2 + 3 + 2
+      answer: '23'
+    - kind: evaluate
+      expression: 2*4**2 + 4 + 2
+      answer: '38'
+  answer_text: >-
+    $2n^2+n+2$. The second difference is 4, so the rule starts with $2n^2$.
+    Subtract $2n^2$ from each term: $3, 4, 5, 6$, and those follow $n+2$. Check
+    position 3: $2(9)+3+2=23$.
+- id: jc9-9.3-seconddiff-2
+  section: '9.3'
+  tier: O
+  refs:
+  - AF.1
+  statement: A quadratic pattern has a constant second difference of 6. What number multiplies $n^2$ in its general term?
+  answer_label: A quadratic pattern has second difference 6. What multiplies $n^2$?
+  check:
+    kind: evaluate
+    expression: 6/2
+    answer: '3'
+  answer_text: >-
+    $3$. The coefficient of $n^2$ is half the constant second difference, because
+    $n^2$ itself has second difference 2. Half of 6 is 3.
+- id: jc9-9.3-term-1
+  section: '9.3'
+  tier: O
+  refs:
+  - AF.1
+  statement: A pattern has general term $n^2+3n+1$. Work out its 5th term.
+  answer_label: A pattern has general term $n^2+3n+1$. Work out its 5th term.
+  check:
+    kind: evaluate
+    expression: 5**2 + 3*5 + 1
+    answer: '41'
+  answer_text: >-
+    $41$. Put $n=5$ into the rule: $25+15+1=41$. Work out the index before the
+    multiplication.
+- id: jc9-9.3-context-1
+  section: '9.3'
+  tier: O
+  refs:
+  - AF.1
+  statement: A dot pattern has 1 dot in design 1, 4 dots in design 2, 9 dots in design 3 and 16 dots in design 4. How many dots are in design 7?
+  answer_label: A dot pattern has 1, 4, 9, 16, ... dots. How many in design 7?
+  check:
+    kind: evaluate
+    expression: 7**2
+    answer: '49'
+  answer_text: >-
+    $49$ dots. The numbers are the square numbers, so design $n$ has $n^2$ dots.
+    Design 7 has $7^2=49$ dots.

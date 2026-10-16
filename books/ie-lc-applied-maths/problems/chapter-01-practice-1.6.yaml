@@ -1,0 +1,144 @@
+# Practice set for 1.6 (strand S1, modelling). The `evaluate` checks prove the
+# refined arithmetic; `sigfigs` proves a rounded clear time. The `structured`
+# records prove only that a model answer contains the declared ideas, in order.
+chapter: 1
+problems:
+  - id: am1-6-refined-q
+    section: '1.6'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model predicts a wait of 4 minutes, but the measured wait is 6 minutes.
+      The service rate is 10 students each minute. Find the queue length that
+      gives a wait of 6 minutes.
+    answer_label: Queue length
+    check: {kind: evaluate, expression: '6 * 10', answer: '60'}
+    answer_text: >-
+      From $W = \dfrac{Q}{s}$, the queue is $Q = Ws = 6 \times 10 = 60$
+      students. The starting queue was 60, not 40, so that assumption was the
+      one that was wrong.
+
+  - id: am1-6-arrival-6
+    section: '1.6'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue holds 40 students and the till serves 10 each minute. The measured
+      arrival rate is 6 each minute. Find the clear time, in minutes.
+    answer_label: Clear time
+    check: {kind: evaluate, expression: '40 / (10 - 6)', answer: '10'}
+    answer_text: >-
+      $T = \dfrac{Q}{s - a} = \dfrac{40}{10 - 6} = \dfrac{40}{4} = 10$ minutes.
+
+  - id: am1-6-arrival-7
+    section: '1.6'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue holds 40 students and the till serves 10 each minute. The measured
+      arrival rate is 7 each minute. Find the clear time, in minutes, as an
+      exact fraction.
+    answer_label: Clear time
+    check: {kind: evaluate, expression: '40 / (10 - 7)', answer: '40/3'}
+    answer_text: >-
+      $T = \dfrac{40}{10 - 7} = \dfrac{40}{3}$ minutes, which is about
+      13.3 minutes. One extra student each minute stretched the clear time from
+      8 minutes to more than 13 minutes.
+
+  - id: am1-6-two-tills
+    section: '1.6'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue holds 40 students and students join at 5 each minute. A second
+      till opens, so the service rate becomes 20 students each minute. Find the
+      clear time, in minutes, correct to 2 significant figures.
+    answer_label: Clear time
+    check:
+      kind: sigfigs
+      convention: round-once
+      value: '40/(20 - 5)'
+      figures: 2
+      answer: '2.7'
+    answer_text: >-
+      $T = \dfrac{40}{20 - 5} = \dfrac{40}{15} = 2.666\ldots$ minutes, which is
+      2.7 minutes to 2 significant figures. The clear time fell from 8 minutes
+      to about 2.7 minutes.
+
+  - id: am1-6-range
+    section: '1.6'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A measurement of the arrival rate could be 5 or 6 students each minute.
+      The queue holds 40 students and the till serves 10 each minute. Explain
+      why the clear time should be reported as a range, not as one number.
+    answer_label: Why a range
+    check:
+      kind: structured
+      requires: [two-times, range]
+      concepts: [uncertainty]
+      points:
+        - id: two-times
+          text: the two rates give clear times of 8 minutes and 10 minutes
+          concepts: [uncertainty]
+        - id: range
+          text: the answer is only known between those two times, so report the range and say which measurement it depends on
+          concepts: [uncertainty]
+    answer_text: >-
+      The rate 5 gives $40 \div 5 = 8$ minutes and the rate 6 gives
+      $40 \div 4 = 10$ minutes. The clear time is therefore only known to lie
+      between 8 and 10 minutes. Reporting the range shows the reader how much
+      the answer depends on the measurement.
+
+  - id: am1-6-variability
+    section: '1.6'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A till serves 10 students each minute on average, but one student in five
+      takes twice as long as the others. Explain why the real queue is longer
+      than the model predicts.
+    answer_label: Why the real queue is longer
+    check:
+      kind: structured
+      requires: [average-same, blocking]
+      concepts: [variability]
+      points:
+        - id: average-same
+          text: the average service rate is still 10 each minute, so the model's arithmetic is unchanged
+          concepts: [variability]
+        - id: blocking
+          text: a slow student blocks the till, and everyone behind waits, so the queue is longer than a steady rate predicts
+          concepts: [variability]
+    answer_text: >-
+      The average service rate is still 10 each minute, so the model's
+      arithmetic is unchanged. But a slow student blocks the till, and everyone
+      behind waits while it is busy. The queue is longer than a steady rate
+      predicts, even though the average rate is the same. The model leaves out
+      variability.
+
+  - id: am1-6-refine-one
+    section: '1.6'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A model disagrees with the data. Explain why you should change one
+      assumption at a time when you refine it.
+    answer_label: Why one at a time
+    check:
+      kind: structured
+      requires: [one-change, see-effect]
+      concepts: [refine]
+      points:
+        - id: one-change
+          text: change one assumption, so only one thing is different from the previous model
+          concepts: [refine]
+        - id: see-effect
+          text: the new answer then shows which change caused which effect, so you can keep the change only if the data supports it
+          concepts: [refine]
+    answer_text: >-
+      If you change two assumptions at once, you cannot tell which change caused
+      the new answer. Change one assumption, work the model again, and compare
+      the new answer with the data. The change is kept only if the data supports
+      it.

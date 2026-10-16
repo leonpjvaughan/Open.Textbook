@@ -1,0 +1,211 @@
+# Practice set for 6.3 (strand S3, the physical world). Every answer is a
+# quantity, so the checks come from the `units` oracle: `dimensions` proves the
+# arithmetic *and* the unit together. The `structured` record proves only that a
+# model answer contains the declared ideas, in order — not that the physics is
+# right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics.
+chapter: 6
+problems:
+  - id: am6-3-impulse-stationary-car
+    section: '6.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      In the crash test, a car of mass $800$ kg is at rest and is struck by
+      another car. The two cars move off together at $9$ m/s. Calculate the
+      impulse on the $800$ kg car.
+    answer_label: Impulse
+    check:
+      kind: dimensions
+      expression: m * (v - u)
+      values:
+        m: {value: '800', unit: kg}
+        u: {value: '0', unit: 'm/s'}
+        v: {value: '9', unit: 'm/s'}
+      answer: {value: '7200', unit: 'N s'}
+    answer_text: >-
+      The impulse equals the change in momentum:
+      $J = m(v - u) = 800 \times (9 - 0) = 7200$ N s. The impulse points in the
+      direction the struck car moves.
+
+  - id: am6-3-impulse-moving-car
+    section: '6.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      In the same crash test, the car of mass $1200$ kg slows from $15$ m/s to
+      $9$ m/s as it strikes the other car. Calculate the impulse on it, taking
+      its original direction as positive.
+    answer_label: Impulse
+    check:
+      kind: dimensions
+      expression: m * (v - u)
+      values:
+        m: {value: '1200', unit: kg}
+        u: {value: '15', unit: 'm/s'}
+        v: {value: '9', unit: 'm/s'}
+      answer: {value: '-7200', unit: 'N s'}
+    answer_text: >-
+      $J = m(v - u) = 1200 \times (9 - 15) = -7200$ N s. The negative sign means
+      the impulse acts against the original direction of travel. The two
+      impulses are equal and opposite, which is Newton's third law at work.
+
+  - id: am6-3-cricket-ball
+    section: '6.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A cricket ball of mass $0.15$ kg approaches a bat at $30$ m/s and is hit
+      back along the same line at $40$ m/s. Calculate the magnitude of the
+      impulse on the ball.
+    answer_label: Impulse
+    check:
+      kind: dimensions
+      expression: m * (v2 - v1)
+      values:
+        m: {value: '0.15', unit: kg}
+        v1: {value: '-30', unit: 'm/s'}
+        v2: {value: '40', unit: 'm/s'}
+      answer: {value: '10.5', unit: 'N s'}
+    answer_text: >-
+      Take the direction back towards the bowler as positive. The velocity
+      changes from $-30$ m/s to $+40$ m/s, a change of $70$ m/s. The impulse is
+      $0.15 \times 70 = 10.5$ N s. The bat reverses the ball's momentum and adds
+      to it.
+
+  - id: am6-3-cricket-force
+    section: '6.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      The bat and ball in the previous question are in contact for $0.002$ s.
+      Calculate the average force on the ball.
+    answer_label: Average force
+    check:
+      kind: dimensions
+      expression: J / t
+      values:
+        J: {value: '10.5', unit: 'N s'}
+        t: {value: '0.002', unit: s}
+      answer: {value: '5250', unit: N}
+    answer_text: >-
+      $F = \dfrac{J}{\Delta t} = \dfrac{10.5}{0.002} = 5250$ N. The contact is
+      brief, so the average force is large. This is why a bat stings your hands
+      if you hit the ball near the edge.
+
+  - id: am6-3-head-on-reverse
+    section: '6.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A body of mass $2$ kg moving at $6$ m/s to the right meets a body of mass
+      $3$ kg moving at $4$ m/s to the left. After the collision the $2$ kg body
+      moves at $3$ m/s to the left. Calculate the velocity of the $3$ kg body,
+      taking the right as positive.
+    answer_label: Velocity
+    check:
+      kind: dimensions
+      expression: (m1 * u1 - m2 * u2 + m1 * v1) / m2
+      values:
+        m1: {value: '2', unit: kg}
+        u1: {value: '6', unit: 'm/s'}
+        m2: {value: '3', unit: kg}
+        u2: {value: '4', unit: 'm/s'}
+        v1: {value: '3', unit: 'm/s'}
+      answer: {value: '2', unit: 'm/s'}
+    answer_text: >-
+      Take the right as positive. The momentum before is
+      $2 \times 6 - 3 \times 4 = 12 - 12 = 0$. After the collision the $2$ kg
+      body has momentum $2 \times (-3) = -6$ kg m/s, so the $3$ kg body must
+      carry $+6$ kg m/s. Its velocity is $6 \div 3 = 2$ m/s to the right.
+
+  - id: am6-3-catch-up
+    section: '6.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A trolley of mass $5$ kg moving at $8$ m/s catches a trolley of mass $3$
+      kg moving at $2$ m/s in the same direction. They lock together. Calculate
+      their common velocity.
+    answer_label: Common velocity
+    check:
+      kind: dimensions
+      expression: (m1 * u1 + m2 * u2) / (m1 + m2)
+      values:
+        m1: {value: '5', unit: kg}
+        u1: {value: '8', unit: 'm/s'}
+        m2: {value: '3', unit: kg}
+        u2: {value: '2', unit: 'm/s'}
+      answer: {value: '5.75', unit: 'm/s'}
+    answer_text: >-
+      Momentum before is $5 \times 8 + 3 \times 2 = 40 + 6 = 46$ kg m/s. The
+      total mass is $8$ kg, so $8v = 46$ and $v = 5.75$ m/s. The common velocity
+      lies between the two original velocities, closer to the heavier trolley's.
+
+  - id: am6-3-two-part
+    section: '6.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car of mass $1000$ kg moving at $20$ m/s collides with a stationary car
+      of mass $1500$ kg. The cars lock together. Calculate their common velocity
+      and the impulse on the stationary car.
+    answer_label: Common velocity, then impulse
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (m1 * u1) / (m1 + m2)
+          values:
+            m1: {value: '1000', unit: kg}
+            u1: {value: '20', unit: 'm/s'}
+            m2: {value: '1500', unit: kg}
+          answer: {value: '8', unit: 'm/s'}
+        - kind: dimensions
+          expression: m2 * v
+          values:
+            m2: {value: '1500', unit: kg}
+            v: {value: '8', unit: 'm/s'}
+          answer: {value: '12000', unit: 'N s'}
+    answer_text: >-
+      Momentum before is $1000 \times 20 = 20000$ kg m/s, and the total mass is
+      $2500$ kg, so $v = 20000 \div 2500 = 8$ m/s. The stationary car gains
+      momentum $1500 \times 8 = 12000$ kg m/s, so the impulse on it is
+      $12000$ N s.
+
+  - id: am6-3-method
+    section: '6.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Describe the method for solving a one-dimensional collision problem when
+      both bodies have unknown final velocities after a collision that does not
+      lock them together.
+    answer_label: The method
+    check:
+      kind: structured
+      requires: [positive-direction, before-after, second-condition]
+      concepts: [conservation, restitution]
+      points:
+        - id: positive-direction
+          text: >-
+            choose a positive direction and write every velocity with a sign
+            before writing anything else
+          concepts: [conservation]
+        - id: before-after
+          text: >-
+            write the total momentum before equal to the total momentum after
+          concepts: [conservation]
+        - id: second-condition
+          text: >-
+            one equation is not enough for two unknown velocities, so use a
+            second condition such as the coefficient of restitution
+          concepts: [restitution]
+    answer_text: >-
+      First choose a positive direction, and give every velocity a sign. Then
+      write the total momentum before the collision equal to the total momentum
+      after. That gives one equation. A collision that does not lock the bodies
+      together has two unknown final velocities, and one equation cannot find
+      two unknowns. A second condition is needed, and the coefficient of
+      restitution supplies it in the next section.

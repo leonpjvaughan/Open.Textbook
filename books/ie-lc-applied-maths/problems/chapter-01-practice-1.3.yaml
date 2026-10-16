@@ -1,0 +1,148 @@
+# Practice set for 1.3 (strand S1, modelling). The `evaluate` checks prove the
+# sensitivity arithmetic with the CAS. The `structured` records prove only that a
+# model answer contains the declared ideas, in order.
+chapter: 1
+problems:
+  - id: am1-3-clear-s8
+    section: '1.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue holds 40 students. Students join at 5 each minute. Find the clear
+      time, in minutes, when the till serves 8 students each minute. Give the
+      exact fraction.
+    answer_label: Clear time
+    check: {kind: evaluate, expression: '40 / (8 - 5)', answer: '40/3'}
+    answer_text: >-
+      The net rate is $8 - 5 = 3$ students each minute, so the clear time is
+      $40 \div 3 = \dfrac{40}{3}$ minutes, which is about 13.3 minutes.
+
+  - id: am1-3-clear-s6
+    section: '1.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue holds 40 students. Students join at 5 each minute. Find the clear
+      time, in minutes, when the till serves 6 students each minute.
+    answer_label: Clear time
+    check: {kind: evaluate, expression: '40 / (6 - 5)', answer: '40'}
+    answer_text: >-
+      The net rate is $6 - 5 = 1$ student each minute, so the clear time is
+      $40 \div 1 = 40$ minutes. The service rate fell by only 2 each minute, and
+      the clear time rose from 8 minutes to 40 minutes.
+
+  - id: am1-3-double-q
+    section: '1.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue holds 80 students instead of 40. Students join at 5 each minute
+      and the till serves 10 each minute. Find the clear time, in minutes.
+    answer_label: Clear time
+    check: {kind: evaluate, expression: '80 / (10 - 5)', answer: '16'}
+    answer_text: >-
+      The net rate is $10 - 5 = 5$ students each minute, so the clear time is
+      $80 \div 5 = 16$ minutes. Doubling the queue doubled the clear time, so
+      the model is proportional to the queue length.
+
+  - id: am1-3-arrival-9
+    section: '1.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue holds 40 students and the till serves 10 each minute. Find the
+      clear time, in minutes, when students join at 9 each minute.
+    answer_label: Clear time
+    check: {kind: evaluate, expression: '40 / (10 - 9)', answer: '40'}
+    answer_text: >-
+      The net rate is $10 - 9 = 1$ student each minute, so the clear time is
+      $40 \div 1 = 40$ minutes. The arrival rate rose by 4 each minute, and the
+      clear time rose from 8 minutes to 40 minutes.
+
+  - id: am1-3-arrival-6
+    section: '1.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue holds 40 students and the till serves 10 each minute. Find the
+      clear time, in minutes, when students join at 6 each minute.
+    answer_label: Clear time
+    check: {kind: evaluate, expression: '40 / (10 - 6)', answer: '10'}
+    answer_text: >-
+      The net rate is $10 - 6 = 4$ students each minute, so the clear time is
+      $40 \div 4 = 10$ minutes.
+
+  - id: am1-3-assumptions
+    section: '1.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      State two assumptions of the canteen model, and say what each one leaves
+      out.
+    answer_label: Two assumptions
+    check:
+      kind: structured
+      requires: [steady-arrival, steady-service]
+      concepts: [assumption]
+      points:
+        - id: steady-arrival
+          text: students arrive at a steady rate, which leaves out the lunch rush
+          concepts: [assumption]
+        - id: steady-service
+          text: the till serves at a steady rate, which leaves out a slow customer
+          concepts: [assumption]
+    answer_text: >-
+      Students arrive at a steady rate of 5 each minute. This leaves out the
+      lunch rush, when many arrive at once. The till serves at a steady rate of
+      10 each minute. This leaves out the slow customer who pays in coins and
+      holds up the line.
+
+  - id: am1-3-never-clears
+    section: '1.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A queue holds 40 students. Students join at 5 each minute. Explain what
+      happens to the queue when the till serves 5 students each minute.
+    answer_label: What happens to the queue
+    check:
+      kind: structured
+      requires: [net-zero, never-clears]
+      concepts: [sensitivity]
+      points:
+        - id: net-zero
+          text: the net rate is 5 minus 5, which is zero
+          concepts: [sensitivity]
+        - id: never-clears
+          text: the queue stays at 40 students and never clears
+          concepts: [sensitivity]
+    answer_text: >-
+      The net rate is $5 - 5 = 0$ students each minute. The till serves exactly
+      as many as arrive, so the queue neither grows nor shrinks. It stays at
+      40 students and never clears.
+
+  - id: am1-3-sensitive
+    section: '1.3'
+    tier: O
+    refs: [S1]
+    statement: >-
+      A canteen model has a clear time of 8 minutes. Explain which assumption
+      the clear time depends on most, and give a reason.
+    answer_label: Which assumption matters most
+    check:
+      kind: structured
+      requires: [gap, small-divisor]
+      concepts: [sensitivity]
+      points:
+        - id: gap
+          text: the clear time depends on the gap between the service rate and the arrival rate
+          concepts: [sensitivity]
+        - id: small-divisor
+          text: a small gap divides by a small number, so a small change makes the time much larger
+          concepts: [sensitivity]
+    answer_text: >-
+      The clear time depends on the gap between the service rate and the arrival
+      rate, because the time is the queue divided by that gap. When the gap is
+      small, the model divides by a small number, so a small change in either
+      rate makes the time much larger. The assumptions about the two rates
+      therefore matter most.

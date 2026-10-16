@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.2 The general term of a linear pattern — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.1
+Work on your own. The questions and the answers are shown together at the end.
+
+For a question that asks for a general term, give the rule in terms of $n$ and check
+it at positions 1 and 2 before you write it down.
+
+:::problems chapter-09-practice-9.2
+
+:::answers chapter-09-practice-9.2

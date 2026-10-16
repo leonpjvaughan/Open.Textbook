@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.1 The problem-solving cycle — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S1
+Work independently. The questions and answers are shown together at the end.
+
+Work out the net rate before you divide, and check every answer by reversing the
+arithmetic.
+
+:::problems chapter-01-practice-1.1
+
+:::answers chapter-01-practice-1.1

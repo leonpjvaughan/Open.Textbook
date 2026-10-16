@@ -1,0 +1,250 @@
+# Leaving Certificate Physics, Chapter 9, section 9.4 (strand 2 outcome 2.6).
+#
+# The numeric records use `dimensions`, which proves the magnitude and the unit of
+# a sum of displacements. A displacement may be negative, so the sign is carried in
+# the value and never in the unit. The `structured` records prove only that a model
+# answer contains the declared steps in order and covers the declared concepts.
+chapter: 9
+problems:
+- id: p9-4-define
+  section: '9.4'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    State the principle of superposition.
+  answer_label: The principle of superposition
+  check:
+    kind: structured
+    requires:
+    - sum
+    - unchanged
+    concepts:
+    - displacement
+    - sum
+    points:
+    - id: sum
+      text: where two waves meet, the resultant displacement at a point is the sum of the
+        displacements of the individual waves
+      concepts:
+      - displacement
+      - sum
+    - id: unchanged
+      text: after the waves have passed through each other, each one continues unchanged
+      concepts:
+      - sum
+  answer_text: >-
+    Where two waves meet, the resultant displacement at a point is the sum of the
+    displacements of the individual waves. After the waves have passed through
+    each other, each one continues unchanged.
+- id: p9-4-add
+  section: '9.4'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    Two pulses travel towards each other along a rope. One pulse has a displacement
+    of $+3.0\,\text{cm}$ and the other has a displacement of $+5.0\,\text{cm}$.
+    Calculate the resultant displacement at the point where they meet.
+  answer_label: Resultant displacement
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: a + b
+      values:
+        a:
+          value: '3.0'
+          unit: cm
+        b:
+          value: '5.0'
+          unit: cm
+      answer:
+        value: '8.0'
+        unit: cm
+    - kind: sigfigs
+      value: 3.0 + 5.0
+      figures: 2
+      answer: '8.0'
+      convention: round-once
+  answer_text: >-
+    Both displacements are upwards, so they add:
+    $3.0 + 5.0 = 8.0\,\text{cm}$. This is constructive superposition, and the
+    resultant pulse is taller than either pulse on its own.
+- id: p9-4-cancel
+  section: '9.4'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    Two pulses travel towards each other along a rope. One pulse has a displacement
+    of $+4.0\,\text{cm}$ and the other has a displacement of
+    $-4.0\,\text{cm}$. Calculate the resultant displacement at the point where
+    they meet.
+  answer_label: Resultant displacement
+  check:
+    kind: dimensions
+    expression: a + b
+    values:
+      a:
+        value: '4.0'
+        unit: cm
+      b:
+        value: '-4.0'
+        unit: cm
+    answer:
+      value: '0'
+      unit: cm
+  answer_text: >-
+    The two displacements are equal and opposite, so they add to
+    $4.0 - 4.0 = 0\,\text{cm}$. At that instant the rope is straight. This is
+    destructive superposition, and the pulses reappear after they have passed
+    through each other.
+- id: p9-4-subtract
+  section: '9.4'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    Two pulses travel towards each other along a rope. One pulse has a displacement
+    of $+6.0\,\text{cm}$ and the other has a displacement of
+    $-2.0\,\text{cm}$. Calculate the resultant displacement at the point where
+    they meet.
+  answer_label: Resultant displacement
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: a + b
+      values:
+        a:
+          value: '6.0'
+          unit: cm
+        b:
+          value: '-2.0'
+          unit: cm
+      answer:
+        value: '4.0'
+        unit: cm
+    - kind: sigfigs
+      value: 6.0 - 2.0
+      figures: 2
+      answer: '4.0'
+      convention: round-once
+  answer_text: >-
+    The displacements are in opposite directions, so the smaller one takes away
+    from the larger: $6.0 - 2.0 = 4.0\,\text{cm}$. The resultant is smaller than
+    the larger pulse on its own, because the two displacements partly cancel.
+- id: p9-4-constructive
+  section: '9.4'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    Explain what constructive superposition is, and give one example of it.
+  answer_label: Constructive superposition
+  check:
+    kind: structured
+    requires:
+    - in-phase
+    - larger
+    - example
+    concepts:
+    - in-phase
+    - amplitude
+    - example
+    points:
+    - id: in-phase
+      text: constructive superposition happens when two waves arrive in phase, so their
+        displacements point the same way at the same time
+      concepts:
+      - in-phase
+    - id: larger
+      text: the displacements add, so the resultant wave has a larger amplitude than either
+        wave on its own
+      concepts:
+      - amplitude
+    - id: example
+      text: two crests meeting on a rope add to give a taller crest
+      concepts:
+      - example
+  answer_text: >-
+    Constructive superposition happens when two waves arrive in phase, so their
+    displacements point the same way at the same time. The displacements add, so
+    the resultant wave has a larger amplitude than either wave on its own. Two
+    crests meeting on a rope add to give a taller crest.
+- id: p9-4-destructive
+  section: '9.4'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    Explain what destructive superposition is, and give one example of it.
+  answer_label: Destructive superposition
+  check:
+    kind: structured
+    requires:
+    - antiphase
+    - smaller
+    - example
+    concepts:
+    - antiphase
+    - amplitude
+    - example
+    points:
+    - id: antiphase
+      text: destructive superposition happens when two waves arrive in antiphase, so one
+        displacement points opposite to the other
+      concepts:
+      - antiphase
+    - id: smaller
+      text: the displacements take away from each other, so the resultant has a smaller
+        amplitude; if the two are equal, the resultant is zero at that instant
+      concepts:
+      - amplitude
+    - id: example
+      text: a crest meeting a trough of the same height on a rope gives a flat rope at that
+        instant, and noise-cancelling headphones use the same effect on sound
+      concepts:
+      - example
+  answer_text: >-
+    Destructive superposition happens when two waves arrive in antiphase, so one
+    displacement points opposite to the other. The displacements take away from
+    each other, so the resultant has a smaller amplitude. If the two are equal,
+    the resultant is zero at that instant. A crest meeting a trough of the same
+    height on a rope gives a flat rope at that instant, and noise-cancelling
+    headphones use the same effect on sound.
+- id: p9-4-after-crossing
+  section: '9.4'
+  tier: O
+  refs:
+  - '2.6'
+  statement: >-
+    Two pulses travel towards each other along a rope. Describe what happens at
+    the instant they meet, and what happens after they have passed through each
+    other.
+  answer_label: Two pulses crossing
+  check:
+    kind: structured
+    requires:
+    - meet
+    - after
+    concepts:
+    - sum
+    - unchanged
+    points:
+    - id: meet
+      text: at the instant they meet, the resultant displacement is the sum of the two
+        displacements
+      concepts:
+      - sum
+    - id: after
+      text: after passing through each other, each pulse continues with the same shape, speed
+        and direction as before
+      concepts:
+      - unchanged
+  answer_text: >-
+    At the instant they meet, the resultant displacement is the sum of the two
+    displacements. After passing through each other, each pulse continues with the
+    same shape, speed and direction as before. The pulses do not bounce off each
+    other or change shape permanently.

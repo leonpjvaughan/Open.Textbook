@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.1 Momentum and impulse — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Choose a positive direction before you start, and keep the signs. A rebound
+makes the change in velocity larger than a stop, so read each question
+carefully.
+
+:::problems chapter-06-practice-6.1
+
+:::answers chapter-06-practice-6.1

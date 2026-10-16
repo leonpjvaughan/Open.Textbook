@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.3 Assumptions and what they cost you — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S1
+Work independently. The questions and answers are shown together at the end.
+
+For every answer, write down the assumption it rests on. A number with no
+assumption beside it cannot be checked.
+
+:::problems chapter-01-practice-1.3
+
+:::answers chapter-01-practice-1.3

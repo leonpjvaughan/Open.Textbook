@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.7 How to write a modelling report — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S1
+Work independently. The questions and answers are shown together at the end.
+
+Write each answer as it would appear in a report: a number, a unit, and the
+assumption it rests on.
+
+:::problems chapter-01-practice-1.7
+
+:::answers chapter-01-practice-1.7

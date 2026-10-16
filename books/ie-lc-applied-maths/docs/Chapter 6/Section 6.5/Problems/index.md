@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.5 Elastic and inelastic collisions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Find the kinetic energy before and after, and subtract to find the loss. Remember
+that momentum is conserved in every collision, while kinetic energy is conserved
+only when the collision is elastic.
+
+:::problems chapter-06-practice-6.5
+
+:::answers chapter-06-practice-6.5

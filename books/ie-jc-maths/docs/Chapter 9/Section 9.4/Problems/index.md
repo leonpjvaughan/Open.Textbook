@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.4 Linear, quadratic and exponential growth — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.1
+Work on your own. The questions and the answers are shown together at the end.
+
+For each question that asks which kind of pattern it is, test the pattern before you
+answer. Subtract for a linear or quadratic pattern, and divide for an exponential one.
+
+:::problems chapter-09-practice-9.4
+
+:::answers chapter-09-practice-9.4

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 9.5 Converting between representations — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.1
+Work on your own. The questions and the answers are shown together at the end.
+
+Before you write a rule, decide whether the pattern is linear, quadratic or
+exponential. The kind of pattern tells you the shape of its graph.
+
+:::problems chapter-09-practice-9.5
+
+:::answers chapter-09-practice-9.5

@@ -1,0 +1,190 @@
+# Practice set for 6.4 (strand S3, the physical world). Answers are quantities
+# or a pure ratio, so the checks come from the `units` and `sympy` oracles:
+# `dimensions` proves the arithmetic and the unit together, and `evaluate`
+# proves a dimensionless ratio. The `structured` record proves only that a model
+# answer contains the declared ideas, in order — not that the physics is right.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics.
+chapter: 6
+problems:
+  - id: am6-4-e-from-speeds
+    section: '6.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball hits the floor at $5$ m/s and rebounds at $4$ m/s. Calculate the
+      coefficient of restitution.
+    answer_label: Coefficient of restitution
+    check: {kind: evaluate, expression: '4 / 5', answer: '0.8'}
+    answer_text: >-
+      The coefficient of restitution is the speed of separation divided by the
+      speed of approach: $e = \dfrac{4}{5} = 0.8$. The value lies between $0$ and
+      $1$, as it must.
+
+  - id: am6-4-rebound-speed
+    section: '6.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball hits the floor at $12$ m/s. The coefficient of restitution is
+      $0.6$. Calculate its rebound speed.
+    answer_label: Rebound speed
+    check:
+      kind: dimensions
+      expression: e * v
+      values:
+        e: {value: '0.6'}
+        v: {value: '12', unit: 'm/s'}
+      answer: {value: '7.2', unit: 'm/s'}
+    answer_text: >-
+      For a bounce off a fixed floor, $e = \dfrac{v_{\text{sep}}}{v_{\text{app}}}$,
+      so the rebound speed is $ev = 0.6 \times 12 = 7.2$ m/s. Less than the
+      approach speed, because some kinetic energy is lost.
+
+  - id: am6-4-crash-e-half
+    section: '6.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A test car of mass $1200$ kg moving at $15$ m/s collides with a stationary
+      car of mass $800$ kg. The coefficient of restitution is $0.5$. Calculate
+      the velocity of each car after the collision.
+    answer_label: Velocities of the two cars
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (m1 - e * m2) * u1 / (m1 + m2)
+          values:
+            m1: {value: '1200', unit: kg}
+            m2: {value: '800', unit: kg}
+            u1: {value: '15', unit: 'm/s'}
+            e: {value: '0.5'}
+          answer: {value: '6', unit: 'm/s'}
+        - kind: dimensions
+          expression: (1 + e) * m1 * u1 / (m1 + m2)
+          values:
+            m1: {value: '1200', unit: kg}
+            m2: {value: '800', unit: kg}
+            u1: {value: '15', unit: 'm/s'}
+            e: {value: '0.5'}
+          answer: {value: '13.5', unit: 'm/s'}
+    answer_text: >-
+      Let $v_1$ be the velocity of the $1200$ kg car and $v_2$ that of the $800$
+      kg car. Momentum gives $1200v_1 + 800v_2 = 18000$, and restitution gives
+      $v_2 - v_1 = 0.5 \times 15 = 7.5$. Solving the two equations gives
+      $v_1 = 6$ m/s and $v_2 = 13.5$ m/s. Both cars continue forwards.
+
+  - id: am6-4-e-from-collision
+    section: '6.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A body of mass $2$ kg moving at $6$ m/s hits a stationary body of mass $4$
+      kg. After the collision the $2$ kg body moves at $1$ m/s backwards and the
+      $4$ kg body moves at $3.5$ m/s forwards. Calculate the coefficient of
+      restitution.
+    answer_label: Coefficient of restitution
+    check: {kind: evaluate, expression: '(3.5 - (-1)) / 6', answer: '0.75'}
+    answer_text: >-
+      The speed of approach is $6$ m/s and the speed of separation is
+      $3.5 - (-1) = 4.5$ m/s. So $e = \dfrac{4.5}{6} = 0.75$. Check the momentum
+      too: $2 \times 6 = 12$ before, and $2 \times (-1) + 4 \times 3.5 = -2 + 14
+      = 12$ after.
+
+  - id: am6-4-e-from-heights
+    section: '6.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is dropped from a height of $2$ m and rebounds to a height of
+      $1.28$ m. Calculate the coefficient of restitution.
+    answer_label: Coefficient of restitution
+    check: {kind: evaluate, expression: 'sqrt(1.28 / 2)', answer: '0.8'}
+    answer_text: >-
+      The speeds before and after the bounce are set by the drop and rebound
+      heights. Since $v^2 = 2gh$, the ratio of speeds is the square root of the
+      ratio of heights:
+      $e = \sqrt{\dfrac{1.28}{2}} = \sqrt{0.64} = 0.8$.
+
+  - id: am6-4-three-one
+    section: '6.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $3$ kg moving at $4$ m/s hits a stationary ball of mass $1$
+      kg. The coefficient of restitution is $0.5$. Calculate the velocity of
+      each ball after the collision.
+    answer_label: Velocities of the two balls
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (m1 - e * m2) * u1 / (m1 + m2)
+          values:
+            m1: {value: '3', unit: kg}
+            m2: {value: '1', unit: kg}
+            u1: {value: '4', unit: 'm/s'}
+            e: {value: '0.5'}
+          answer: {value: '2.5', unit: 'm/s'}
+        - kind: dimensions
+          expression: (1 + e) * m1 * u1 / (m1 + m2)
+          values:
+            m1: {value: '3', unit: kg}
+            m2: {value: '1', unit: kg}
+            u1: {value: '4', unit: 'm/s'}
+            e: {value: '0.5'}
+          answer: {value: '4.5', unit: 'm/s'}
+    answer_text: >-
+      Momentum gives $3v_1 + v_2 = 12$, and restitution gives
+      $v_2 - v_1 = 0.5 \times 4 = 2$. Solving, $v_1 = 2.5$ m/s and
+      $v_2 = 4.5$ m/s. Both move forwards, the lighter ball faster.
+
+  - id: am6-4-find-drop-height
+    section: '6.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball rebounds to a height of $0.45$ m. The coefficient of restitution is
+      $0.6$. Calculate the height from which it was dropped.
+    answer_label: Drop height
+    check: {kind: evaluate, expression: '0.45 / 0.6**2', answer: '1.25'}
+    answer_text: >-
+      The rebound height is $e^2$ times the drop height, so the drop height is
+      $\dfrac{0.45}{0.6^2} = \dfrac{0.45}{0.36} = 1.25$ m. Squaring $e$ appears
+      because the height depends on the square of the speed.
+
+  - id: am6-4-limits
+    section: '6.4'
+    tier: O
+    refs: [S3]
+    statement: >-
+      State the possible values of the coefficient of restitution and explain
+      what the values $e = 1$ and $e = 0$ mean.
+    answer_label: Range and meaning of e
+    check:
+      kind: structured
+      requires: [range, e-one, e-zero]
+      concepts: [restitution]
+      points:
+        - id: range
+          text: >-
+            the coefficient of restitution lies between $0$ and $1$ inclusive
+          concepts: [restitution]
+        - id: e-one
+          text: >-
+            $e = 1$ means the speed of separation equals the speed of approach,
+            so the collision is perfectly elastic and no kinetic energy is lost
+          concepts: [restitution]
+        - id: e-zero
+          text: >-
+            $e = 0$ means the bodies do not separate, so they move off together
+            and the collision is perfectly inelastic
+          concepts: [restitution]
+    answer_text: >-
+      The coefficient of restitution lies between $0$ and $1$. The value $e = 1$
+      describes a perfectly elastic collision: the bodies separate as fast as
+      they approached, and kinetic energy is conserved. The value $e = 0$
+      describes a perfectly inelastic collision: the bodies do not separate and
+      move off together. A value above $1$ would mean the collision created
+      energy, which is impossible.

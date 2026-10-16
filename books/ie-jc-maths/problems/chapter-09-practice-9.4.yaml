@@ -1,0 +1,203 @@
+# Junior Cycle Mathematics, Chapter 9, section 9.4.
+#
+# Every check is arithmetic the CAS proves, so the answer the reader is shown is
+# the answer the verifier proved. The three kinds of growth are told apart by
+# their defining arithmetic: a linear pattern has a constant first difference, a
+# quadratic pattern has a constant second difference, and an exponential pattern
+# has a constant multiplier. A comparison is proved with `compare`, which makes
+# the CAS test the inequality itself. The letter n is declared as a symbol.
+# Units and words stay in `statement`.
+chapter: 9
+symbols:
+  n:
+    real: true
+
+problems:
+- id: jc9-9.4-linear-1
+  section: '9.4'
+  tier: O
+  refs:
+  - AF.1
+  statement: Show that 2, 4, 6, 8 is linear, and say what its common difference is.
+  answer_label: Show that 2, 4, 6, 8 is linear. What is its common difference?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4 - 2
+      answer: '2'
+    - kind: evaluate
+      expression: 6 - 4
+      answer: '2'
+    - kind: evaluate
+      expression: 8 - 6
+      answer: '2'
+  answer_text: >-
+    The common difference is $2$. The gaps between neighbouring terms are
+    $4-2=2$, $6-4=2$ and $8-6=2$. A constant first difference means the pattern
+    is linear, and its general term is $2n$.
+- id: jc9-9.4-quadratic-1
+  section: '9.4'
+  tier: O
+  refs:
+  - AF.1
+  statement: Show that 1, 4, 9, 16 is quadratic, and say what its second difference is.
+  answer_label: Show that 1, 4, 9, 16 is quadratic. What is its second difference?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4 - 1
+      answer: '3'
+    - kind: evaluate
+      expression: 9 - 4
+      answer: '5'
+    - kind: evaluate
+      expression: 16 - 9
+      answer: '7'
+    - kind: evaluate
+      expression: 5 - 3
+      answer: '2'
+    - kind: evaluate
+      expression: 7 - 5
+      answer: '2'
+  answer_text: >-
+    The second difference is $2$. The first differences are $3, 5, 7$, and the
+    second differences are $5-3=2$ and $7-5=2$. A constant second difference
+    means the pattern is quadratic, and its general term is $n^2$.
+- id: jc9-9.4-exponential-1
+  section: '9.4'
+  tier: O
+  refs:
+  - AF.1
+  statement: Show that 1, 2, 4, 8 is exponential, and say what its multiplier is.
+  answer_label: Show that 1, 2, 4, 8 is exponential. What is its multiplier?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2/1
+      answer: '2'
+    - kind: evaluate
+      expression: 4/2
+      answer: '2'
+    - kind: evaluate
+      expression: 8/4
+      answer: '2'
+  answer_text: >-
+    The multiplier is $2$. Each term divided by the one before gives $2$, so the
+    pattern doubles. A constant multiplier means the pattern is exponential, and
+    its general term is $2^{n-1}$.
+- id: jc9-9.4-double-1
+  section: '9.4'
+  tier: O
+  refs:
+  - AF.1
+  statement: Continue the doubling pattern 3, 6, 12, 24 by one term.
+  answer_label: Continue the doubling pattern 3, 6, 12, 24 by one term.
+  check:
+    kind: evaluate
+    expression: 24*2
+    answer: '48'
+  answer_text: >-
+    $48$. The multiplier is $2$, so multiply the last term by 2:
+    $24\times2=48$. Do not add 2; the pattern multiplies.
+- id: jc9-9.4-triple-1
+  section: '9.4'
+  tier: O
+  refs:
+  - AF.1
+  statement: Continue the tripling pattern 5, 15, 45 by one term.
+  answer_label: Continue the tripling pattern 5, 15, 45 by one term.
+  check:
+    kind: evaluate
+    expression: 45*3
+    answer: '135'
+  answer_text: >-
+    $135$. The multiplier is $3$, so multiply the last term by 3:
+    $45\times3=135$.
+- id: jc9-9.4-exp-term-1
+  section: '9.4'
+  tier: O
+  refs:
+  - AF.1
+  statement: A pattern triples each time and starts at 2, so its general term is $2\times3^{n-1}$. Work out the 5th term.
+  answer_label: A pattern starts at 2 and triples. Work out the 5th term.
+  check:
+    kind: evaluate
+    expression: 2*3**4
+    answer: '162'
+  answer_text: >-
+    $162$. The 5th term is 4 steps past the 1st, so multiply by 3 four times:
+    $2\times3^4=2\times81=162$. Work out the power before multiplying.
+- id: jc9-9.4-compare-1
+  section: '9.4'
+  tier: O
+  refs:
+  - AF.1
+  statement: At position 6, which is larger, the doubling pattern $2^{n-1}$ or the linear pattern $3n$?
+  answer_label: At position 6, which is larger, $2^{n-1}$ or $3n$?
+  check:
+    kind: compare
+    relation: '>'
+    lhs: 2**5
+    rhs: 3*6
+  answer_text: >-
+    The doubling pattern. At position 6 it is $2^5=32$, and the linear pattern is
+    $3(6)=18$. Doubling has passed a fixed step by position 6.
+- id: jc9-9.4-cara-week10
+  section: '9.4'
+  tier: O
+  refs:
+  - AF.1
+  statement: Cara's saving doubles each week and starts at 1 euro, so her week-$n$ saving is $2^{n-1}$ euro. How much does she save in week 10?
+  answer_label: Cara's saving is $2^{n-1}$ euro. How much does she save in week 10?
+  check:
+    kind: evaluate
+    expression: 2**9
+    answer: '512'
+  answer_text: >-
+    $512$ euro. Week 10 is 9 steps past week 1, so the saving is
+    $2^9=512$ euro. Doubling grows very quickly: after ten weeks it is far ahead
+    of the other plans.
+- id: jc9-9.4-crossover-1
+  section: '9.4'
+  tier: O
+  refs:
+  - AF.1
+  statement: In which week does Cara's doubling first beat Aoife's fixed step of 3 euro? Cara's week-$n$ saving is $2^{n-1}$ euro, and Aoife's is $3n$ euro.
+  answer_label: In which week does $2^{n-1}$ first beat $3n$?
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      relation: '>'
+      lhs: 2**4
+      rhs: 3*5
+    - kind: compare
+      relation: '<'
+      lhs: 2**3
+      rhs: 3*4
+  answer_text: >-
+    Week 5. In week 4, Cara saves $2^3=8$ euro and Aoife saves $3(4)=12$ euro, so
+    Aoife is ahead. In week 5, Cara saves $2^4=16$ euro and Aoife saves
+    $3(5)=15$ euro, so Cara is ahead for the first time.
+- id: jc9-9.4-ratio-1
+  section: '9.4'
+  tier: O
+  refs:
+  - AF.1
+  statement: Find the multiplier of the pattern 4, 12, 36, ...
+  answer_label: Find the multiplier of 4, 12, 36, ...
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 12/4
+      answer: '3'
+    - kind: evaluate
+      expression: 36/12
+      answer: '3'
+  answer_text: >-
+    $3$. Divide a term by the one before it: $12\div4=3$ and $36\div12=3$. The
+    same answer both times, so the pattern triples.
