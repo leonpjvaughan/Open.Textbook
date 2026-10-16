@@ -2952,6 +2952,43 @@ against the polynomial instead.
   so the number of roots is checked rather than assumed.
 - `uv run python -m textbook.verify books/ie-lc-maths/problems/` still passes.
 
+## 51. The published Irish books serve 2,741 pages that say "Stub"
+
+**What is wrong.** `scaffold.py` writes a `<!-- scaffold:stub -->` marker into every
+page it creates, and the build publishes every page it finds. Nothing excludes a stub
+from the site, so the four Irish books are live with their unwritten pages visible:
+
+```
+$ uv run python -m textbook.scaffold && for b p in ...; do pipeline ...; done
+$ grep -rl 'scaffold:stub' site --include='*.html' | wc -l
+2741
+$ # and the reader sees it:
+$ #   site/ie-jc-maths/ordinary/glossary/number/index.html
+$ #   "Glossary — Number  Stub.  Terms introduced by this strand's chapters, alphabetically."
+```
+
+The English books do not have this problem because they are complete; the Irish ones
+were scaffolded whole and deployed as they were authored, so a reader following any
+chapter other than the four written ones arrives at a page whose only sentence is
+"Stub."
+
+This is a design decision, not an oversight to patch silently: the choices are to hide
+stub pages from the build (which breaks the navigation and every link into them), to
+mark them `noindex` and give them a reader-facing "being written" note, or to keep the
+Irish books out of the deployed collection until more is authored. It needs the author's
+call.
+
+**The fix.** Whichever is chosen, the marker already identifies every stub, so the
+build has what it needs.
+
+**Done means**
+
+- No published page contains the word "Stub" in its reader-facing text.
+- `grep -rl 'math-error' site --include='*.html'` still prints nothing, and every
+  profile still builds.
+- A reader arriving at an unwritten page gets something that tells them what it is and
+  what to do, rather than a bare "Stub."
+
 ---
 
 ## The Irish books — where they stand (2026-10-13)
