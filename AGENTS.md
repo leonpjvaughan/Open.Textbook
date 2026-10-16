@@ -22,7 +22,7 @@ reads them from `.claude/skills/`, projected with the
 | Writing or revising a chapter | `books/gcse-maths/AGENTS.md`, `.agents/chapter-brief.md` | `.agents/skills/author-textbook-chapter/SKILL.md` |
 | Editing book content | `books/AGENTS.md`, `books/gcse-maths/AGENTS.md` | `.agents/skills/write-textbook-prose/SKILL.md` |
 | Writing a problem bank | `books/AGENTS.md`, `PROBLEMS.md`, `books/gcse-maths/AGENTS.md` | `.agents/skills/build-practice-set/SKILL.md` |
-| Building a figure | `assets/AGENTS.md`, `books/AGENTS.md` | `.agents/skills/build-guided-figure/SKILL.md` |
+| Building a figure | `assets/AGENTS.md`, `ideas.md`, `books/AGENTS.md` | `.agents/skills/build-guided-figure/SKILL.md` |
 | Editing a booklet | `books/AGENTS.md`, `BOOKLETS.md`, `assets/AGENTS.md` | — |
 | Changing the shell or the renderer | `engine/AGENTS.md`, `SHAPE.md` | — |
 | Theming and CSS | `assets/AGENTS.md`, `themes/`, this file | — |
@@ -176,7 +176,7 @@ per-book layout is in `books/AGENTS.md`.
 | Path | Role |
 |---|---|
 | `AGENTS.md` | cross-cutting rules, routing and map |
-| `SHAPE.md`, `.agents/planning/plan.md`, `.agents/chapter-brief.md`, `PROBLEMS.md`, `BOOKLETS.md`, `DEPLOY.md`, `DECISIONS.md`, `.agents/todo.md`, `collection.yaml`, `wrangler.jsonc` | shape, plan, brief, banks, booklets, deploy, decisions, queue, collection, Worker |
+| `SHAPE.md`, `.agents/planning/plan.md`, `.agents/chapter-brief.md`, `PROBLEMS.md`, `BOOKLETS.md`, `DEPLOY.md`, `DECISIONS.md`, `ideas.md`, `.agents/todo.md`, `collection.yaml`, `wrangler.jsonc` | shape, plan, brief, banks, booklets, deploy, decisions, the interactive-aid queue, queue, collection, Worker |
 | `engine/`, `engine/AGENTS.md`, `assets/`, `assets/AGENTS.md` | the engine and the design system, and their rules |
 | `themes/`, `books/`, `books/AGENTS.md`, `books/gcse-maths/`, `books/gcse-maths/AGENTS.md` | bundles; the books and their rules |
 | `books/a-level-maths/`, `books/a-level-maths/AGENTS.md` | the A-level Mathematics book and its rules |

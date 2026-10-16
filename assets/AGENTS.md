@@ -51,6 +51,12 @@ copies of the same component.
   into a module, run `grep -l` for the idiom across the other modules. `research/design/reuse-audit.md`
   records what was measured already, including the idioms that are deliberately **not**
   shared and the reason for each.
+- **Before building a new interaction, read `ideas.md`.** It holds the queue of visual and
+  interactive aids for the whole collection, the measured state of what exists, the evidence
+  for each idea, and what a new one would cost. If the idea is there, build it and move it
+  to **Built**; if it is not, add it with the evidence that made you think of it — a count,
+  a command and its output — rather than adding the figure and leaving the reasoning in a
+  commit message.
 
 
 ## What lives here
