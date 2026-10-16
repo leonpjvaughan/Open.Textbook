@@ -243,7 +243,7 @@ a = \frac{51.96 - 27.2}{10} = \frac{24.76}{10} \approx 2.48 \text{ m s}^{-2}.
 $$
 </details>
 
-**8.** A block of mass $20$ kg on a rough horizontal floor is just on the point
+**8.** A block of mass $20$ kg on a rough horizontal floor is on the point
 of moving when a horizontal force of $50$ N is applied. Find the coefficient of
 friction.
 

@@ -16,7 +16,7 @@ and cosine ratios; Newton's first law (Section 16.1); weight, $W = mg$
 (Section 16.3).
 
 **By the end of this section you can:** resolve a force into two perpendicular
-components; choose a pair of axes that makes the algebra easy; write the
+components; choose a pair of axes that keeps the algebra simple; write the
 equilibrium equations in two directions; and find unknown forces and reactions,
 including on a slope.
 

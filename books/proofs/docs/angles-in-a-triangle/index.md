@@ -82,7 +82,7 @@ particular shape.
    third?
 2. A triangle has a right angle. What do the other two angles add to?
 3. Explain why a triangle cannot have two obtuse angles. Use the fact you have
-   just proved, and give a reason for each step.
+   proved above, and give a reason for each step.
 
 <details markdown="1">
 <summary>Answers</summary>

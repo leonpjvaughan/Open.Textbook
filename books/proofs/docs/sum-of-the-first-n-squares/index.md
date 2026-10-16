@@ -103,7 +103,7 @@ onward through every number.
 
 ## A common error
 
-Watch for this one, because it is easy to do in an exam and it costs the mark.
+Watch for this one, because it is a common slip in an exam and it costs the mark.
 
 When you write "suppose the statement is true for $n$", you must then **use** that
 supposition. A proof that subtracts the two sides and gets zero has usually assumed
