@@ -1,0 +1,224 @@
+# Junior Cycle Mathematics, Chapter 6, section 6.4.
+#
+# Inverse proportion means the two quantities move in opposite directions, so the
+# product is the constant that links them. Every check finds that product and then
+# divides by the new value, and the last problem proves a pair *is* in inverse
+# proportion by showing the two products are equal.
+chapter: 6
+symbols: {}
+
+problems:
+- id: jc6-6.4-workers
+  section: '6.4'
+  tier: O
+  refs:
+  - N.3
+  statement: Four workers build a wall in 6 hours. How long would three workers
+    take, working at the same rate?
+  answer_label: Four workers take 6 hours. How long would three workers take?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4*6
+      answer: '24'
+    - kind: evaluate
+      expression: 24/3
+      answer: '8'
+  answer_text: >-
+    8 hours. The whole job is $4\times6=24$ worker-hours. With three workers,
+    $24\div3=8$ hours are needed. Fewer workers means more time, which is the sign
+    that the two quantities are inversely proportional.
+- id: jc6-6.4-car
+  section: '6.4'
+  tier: O
+  refs:
+  - N.3
+  statement: A car takes 4 hours to make a journey at 60 km/h. How long does the
+    same journey take at 80 km/h?
+  answer_label: A journey takes 4 hours at 60 km/h. How long at 80 km/h?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 60*4
+      answer: '240'
+    - kind: evaluate
+      expression: 240/80
+      answer: '3'
+  answer_text: >-
+    3 hours. The journey is $60\times4=240$ km. At 80 km/h the time is
+    $240\div80=3$ hours. Going faster shortens the time, and the distance stays
+    the same, so speed and time are inversely proportional.
+- id: jc6-6.4-taps
+  section: '6.4'
+  tier: O
+  refs:
+  - N.3
+  statement: Six taps fill a tank in 10 minutes. How long would five taps take?
+  answer_label: Six taps fill a tank in 10 minutes. How long would five taps take?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 6*10
+      answer: '60'
+    - kind: evaluate
+      expression: 60/5
+      answer: '12'
+  answer_text: >-
+    12 minutes. The tank needs $6\times10=60$ tap-minutes of water. With five
+    taps, $60\div5=12$ minutes are needed. One fewer tap means a little more time,
+    and the answer is only slightly larger, which fits the small change.
+- id: jc6-6.4-prize
+  section: '6.4'
+  tier: O
+  refs:
+  - N.3
+  statement: Eight people share a prize equally and receive 45 euro each. How much
+    would each receive if twelve people shared the same prize?
+  answer_label: Eight people receive 45 euro each. What would twelve receive?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 8*45
+      answer: '360'
+    - kind: evaluate
+      expression: 360/12
+      answer: '30'
+  answer_text: >-
+    30 euro. The prize is $8\times45=360$ euro. Shared between twelve people, each
+    receives $360\div12=30$ euro. The prize does not change, so more people means
+    less each — inverse proportion.
+- id: jc6-6.4-journey
+  section: '6.4'
+  tier: O
+  refs:
+  - N.3
+  statement: A journey takes 6 hours at 50 km/h. How long does it take at
+    75 km/h?
+  answer_label: A journey takes 6 hours at 50 km/h. How long at 75 km/h?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 50*6
+      answer: '300'
+    - kind: evaluate
+      expression: 300/75
+      answer: '4'
+  answer_text: >-
+    4 hours. The journey is $50\times6=300$ km. At 75 km/h the time is
+    $300\div75=4$ hours. The speed went up by half again, so the time fell by
+    about a third, from 6 hours to 4.
+- id: jc6-6.4-pumps
+  section: '6.4'
+  tier: O
+  refs:
+  - N.3
+  statement: Three pumps empty a tank in 12 hours. How long would four pumps take?
+  answer_label: Three pumps empty a tank in 12 hours. How long would four take?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3*12
+      answer: '36'
+    - kind: evaluate
+      expression: 36/4
+      answer: '9'
+  answer_text: >-
+    9 hours. The tank holds $3\times12=36$ pump-hours of water. Four pumps take
+    $36\div4=9$ hours. Adding one pump to three shortens the time from 12 hours to
+    9, which is the right direction.
+- id: jc6-6.4-coach
+  section: '6.4'
+  tier: O
+  refs:
+  - N.3
+  statement: The coach for the school tour costs 480 euro. If 40 students go,
+    each pays 12 euro. How much does each pay if 48 students go?
+  answer_label: The coach costs 480 euro. What does each of 48 students pay?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 40*12
+      answer: '480'
+    - kind: evaluate
+      expression: 480/48
+      answer: '10'
+  answer_text: >-
+    10 euro. The coach cost is fixed at $40\times12=480$ euro. Spread over 48
+    students, each pays $480\div48=10$ euro. More students means less each, so the
+    number of students and the cost per student are inversely proportional.
+- id: jc6-6.4-days
+  section: '6.4'
+  tier: O
+  refs:
+  - N.3
+  statement: Twelve workers take 15 days to finish a job. How long would nine
+    workers take?
+  answer_label: Twelve workers take 15 days. How long would nine take?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 12*15
+      answer: '180'
+    - kind: evaluate
+      expression: 180/9
+      answer: '20'
+  answer_text: >-
+    20 days. The job is $12\times15=180$ worker-days. Nine workers need
+    $180\div9=20$ days. Fewer workers take longer, and the answer is bigger than
+    15, which is the check to make.
+- id: jc6-6.4-machines
+  section: '6.4'
+  tier: H
+  refs:
+  - N.3
+  statement: Five machines take 18 minutes to complete a job. How many machines
+    are needed to finish the same job in 10 minutes?
+  answer_label: Five machines take 18 minutes. How many finish it in 10 minutes?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 5*18
+      answer: '90'
+    - kind: evaluate
+      expression: 90/10
+      answer: '9'
+  answer_text: >-
+    9 machines. The job is $5\times18=90$ machine-minutes. To finish in 10
+    minutes you need $90\div10=9$ machines. This question asks for the number of
+    machines rather than the time, but the constant product is found in the same
+    way.
+- id: jc6-6.4-is-inverse
+  section: '6.4'
+  tier: H
+  refs:
+  - N.3
+  statement: Two people take 6 hours to paint a room, and three people take 4
+    hours. Show that the time is inversely proportional to the number of people.
+  answer_label: Show that the time is inversely proportional to the people.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*6
+      answer: '12'
+    - kind: evaluate
+      expression: 3*4
+      answer: '12'
+    - kind: compare
+      lhs: 2*6
+      relation: '='
+      rhs: 3*4
+  answer_text: >-
+    Both products equal 12, so the time is inversely proportional to the number of
+    people. Inverse proportion means the product of the two quantities stays the
+    same: $2\times6=12$ and $3\times4=12$. When you multiply the number of people
+    by 1.5, the time is divided by 1.5.

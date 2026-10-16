@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 4.5 Solving problems with the work-energy model — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 1.4
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**, and to the number of significant figures the data
+justify. For each question, decide first whether the energy route or the equations of
+motion is shorter, and say why.
+
+:::problems chapter-04-practice-4.5
+
+:::answers chapter-04-practice-4.5

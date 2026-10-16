@@ -1,0 +1,182 @@
+# Leaving Certificate Physics, Chapter 4, section 4.1 (strand 1 outcome 1.4).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 4
+problems:
+- id: p4-1-work-push
+  section: '4.1'
+  tier: O
+  refs: ['1.4']
+  statement: A box is pushed 3.0 m along a floor by a horizontal force of 12 N. Calculate the work done by the force.
+  answer_label: Work done
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F * d
+      values:
+        F: {value: '12', unit: N}
+        d: {value: '3.0', unit: m}
+      answer: {value: '36', unit: J}
+    - kind: sigfigs
+      value: '12 * 3.0'
+      figures: 2
+      answer: '36'
+      convention: round-once
+  answer_text: '$W = Fd = 12 \times 3.0 = 36\,\text{J}$. The force and the movement are in the same direction, so the whole force does work.'
+- id: p4-1-work-lift
+  section: '4.1'
+  tier: O
+  refs: ['1.4']
+  statement: A box of mass 20 kg is lifted 1.5 m onto a shelf. Calculate the work done against gravity. Take $g = 9.8$ m/s$^2$.
+  answer_label: Work done against gravity
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * g * h
+      values:
+        m: {value: '20', unit: kg}
+        g: {value: '9.8', unit: m/s^2}
+        h: {value: '1.5', unit: m}
+      answer: {value: '294', unit: J}
+    - kind: sigfigs
+      value: '20 * 9.8 * 1.5'
+      figures: 2
+      answer: 2.9e2
+      convention: round-once
+  answer_text: '$W = mgh = 20 \times 9.8 \times 1.5 = 294\,\text{J}$, which is $2.9\times10^2\,\text{J}$ to two significant figures. Lifting a mass means doing work against its weight, $mg$.'
+- id: p4-1-no-work
+  section: '4.1'
+  tier: O
+  refs: ['1.4']
+  statement: A student carries a box 5.0 m across a room at a steady height. The weight of the box is 40 N. State the work done against the weight, and explain your answer.
+  answer_label: Work done against the weight
+  check:
+    kind: structured
+    requires: [direction, zero, effort]
+    concepts: [perpendicular, zero-work, muscles]
+    points:
+    - id: direction
+      text: the weight acts downwards, and the box moves horizontally, so the force and the movement are perpendicular
+      concepts: [perpendicular]
+    - id: zero
+      text: there is no movement in the direction of the weight, so the work done against the weight is zero
+      concepts: [zero-work]
+    - id: effort
+      text: the student's muscles still transfer energy and warm up, so the effort is real even though the work done on the box against gravity is zero
+      concepts: [muscles]
+  answer_text: The work done against the weight is zero. The weight acts downwards and the box moves horizontally, so the force and the movement are perpendicular. The student's muscles still transfer energy and warm up, so the effort is real even though the work done on the box against gravity is zero.
+- id: p4-1-work-brake
+  section: '4.1'
+  tier: O
+  refs: ['1.4']
+  statement: A braking force of 4500 N brings a car to rest over a distance of 40 m. Calculate the work done by the brakes.
+  answer_label: Work done by the brakes
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F * d
+      values:
+        F: {value: '4500', unit: N}
+        d: {value: '40', unit: m}
+      answer: {value: '180000', unit: J}
+    - kind: sigfigs
+      value: '4500 * 40'
+      figures: 2
+      answer: 1.8e5
+      convention: round-once
+  answer_text: '$W = Fd = 4500 \times 40 = 1.8\times10^5\,\text{J}$. The brakes remove energy from the car; Section 4.2 shows where that energy was stored.'
+- id: p4-1-find-force
+  section: '4.1'
+  tier: O
+  refs: ['1.4']
+  statement: A force does 240 J of work while moving a crate 6.0 m in the direction of the force. Calculate the size of the force.
+  answer_label: Force
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: W / d
+      values:
+        W: {value: '240', unit: J}
+        d: {value: '6.0', unit: m}
+      answer: {value: '40', unit: N}
+    - kind: sigfigs
+      value: '240 / 6.0'
+      figures: 2
+      answer: 4.0e1
+      convention: round-once
+  answer_text: '$W = Fd$, so $F = \dfrac{W}{d} = \dfrac{240}{6.0} = 40\,\text{N}$, which is $4.0\times10^1\,\text{N}$.'
+- id: p4-1-joule
+  section: '4.1'
+  tier: O
+  refs: ['1.4']
+  statement: State what is meant by one joule of work, and write the joule in base SI units.
+  answer_label: The joule
+  check:
+    kind: structured
+    requires: [definition, base]
+    concepts: [one-newton, one-metre, kg-m-s]
+    points:
+    - id: definition
+      text: one joule is the work done when a force of one newton moves an object one metre in the direction of the force
+      concepts: [one-newton, one-metre]
+    - id: base
+      text: a joule is a kilogram metre squared per second squared, because a newton is a kilogram metre per second squared and work is force times distance
+      concepts: [kg-m-s]
+  answer_text: One joule is the work done when a force of one newton moves an object one metre in the direction of the force. A joule is a kilogram metre squared per second squared, because a newton is a kilogram metre per second squared and work is force times distance.
+- id: p4-1-work-ratio
+  section: '4.1'
+  tier: O
+  refs: ['1.4']
+  statement: A force does 50 J of work while moving a box 2.0 m. Calculate the work the same force would do over 8.0 m.
+  answer_label: Work over 8.0 m
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: W1 / d1 * d2
+      values:
+        W1: {value: '50', unit: J}
+        d1: {value: '2.0', unit: m}
+        d2: {value: '8.0', unit: m}
+      answer: {value: '200', unit: J}
+    - kind: sigfigs
+      value: '50 / 2.0 * 8.0'
+      figures: 2
+      answer: 2.0e2
+      convention: round-once
+  answer_text: '$F = \dfrac{W}{d} = \dfrac{50}{2.0} = 25\,\text{N}$. Then $W = Fd = 25 \times 8.0 = 2.0\times10^2\,\text{J}$. The force is the same, so the work is proportional to the distance.'
+- id: p4-1-chapter-lift
+  section: '4.1'
+  tier: O
+  refs: ['1.4']
+  statement: The pumped-storage station in the chapter problem lifts $1.0 \times 10^5$ kg of water through 300 m. Calculate the work done against gravity. Take $g = 9.8$ m/s$^2$.
+  answer_label: Work done lifting the water
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * g * h
+      values:
+        m: {value: '100000', unit: kg}
+        g: {value: '9.8', unit: m/s^2}
+        h: {value: '300', unit: m}
+      answer: {value: '294000000', unit: J}
+    - kind: sigfigs
+      value: '1.0e5 * 9.8 * 300'
+      figures: 2
+      answer: 2.9e8
+      convention: round-once
+  answer_text: '$W = mgh = 1.0\times10^5 \times 9.8 \times 300 = 2.9\times10^8\,\text{J}$. This is the first step of the chapter problem.'

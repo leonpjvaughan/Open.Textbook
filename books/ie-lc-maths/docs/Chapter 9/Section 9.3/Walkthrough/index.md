@@ -64,7 +64,7 @@ term $45$. Taking a square root always gives two answers.
 $$S_5 = \frac{2(3^5 - 1)}{3 - 1} = \frac{2(243 - 1)}{2} = 242$$
 
 Check by adding: $2 + 6 + 18 + 54 + 162 = 242$. Correct — and worth doing the first few
-times, because the formula is easy to misremember.
+times, because the formula is worth checking.
 
 **Example 4.** Find the sum of the first four terms of $80, 40, 20, \dots$
 

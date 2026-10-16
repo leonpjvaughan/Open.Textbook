@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.2 Motion with constant acceleration — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Choose a positive direction before you calculate, and write it down. List $u$,
+$v$, $a$, $s$ and $t$ first, and mark the quantity you were not given.
+
+:::problems chapter-03-practice-3.2
+
+:::answers chapter-03-practice-3.2

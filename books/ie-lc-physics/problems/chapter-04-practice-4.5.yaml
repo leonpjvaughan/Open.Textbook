@@ -1,0 +1,170 @@
+# Leaving Certificate Physics, Chapter 4, section 4.5 (strand 1 outcome 1.4).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure. An efficiency is a
+# percentage, so `sigfigs` proves its rounding.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` record proves only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in it is right.
+chapter: 4
+problems:
+- id: p4-5-braking-distance
+  section: '4.5'
+  tier: H
+  refs: ['1.4']
+  statement: A car of mass 1200 kg travels at 20 m/s. The brakes apply a force of 6000 N. Using the work-energy model, calculate the braking distance.
+  answer_label: Braking distance
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 0.5 * m * v**2 / F
+      values:
+        m: {value: '1200', unit: kg}
+        v: {value: '20', unit: m/s}
+        F: {value: '6000', unit: N}
+      answer: {value: '40', unit: m}
+    - kind: sigfigs
+      value: '0.5 * 1200 * 20**2 / 6000'
+      figures: 2
+      answer: 4.0e1
+      convention: round-once
+  answer_text: 'The brakes do work $Fd$ and remove all the kinetic energy, so $Fd = \tfrac{1}{2}mv^2$. Then $d = \dfrac{0.5 \times 1200 \times 20^2}{6000} = 40\,\text{m}$, which is $4.0\times10^1\,\text{m}$. No time and no acceleration is needed.'
+- id: p4-5-work-on-ball
+  section: '4.5'
+  tier: H
+  refs: ['1.4']
+  statement: A ball of mass 0.20 kg is thrown at 15 m/s and caught, coming to rest. Calculate the work done on the ball by the catch.
+  answer_label: Work done by the catch
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 0.5 * m * v**2
+      values:
+        m: {value: '0.20', unit: kg}
+        v: {value: '15', unit: m/s}
+      answer: {value: '22.5', unit: J}
+    - kind: sigfigs
+      value: '0.5 * 0.20 * 15**2'
+      figures: 2
+      answer: '23'
+      convention: round-once
+  answer_text: 'The work done on the ball equals the kinetic energy it loses: $W = \tfrac{1}{2}mv^2 = 0.5 \times 0.20 \times 15^2 = 22.5\,\text{J}$, which is $23\,\text{J}$ to two significant figures.'
+- id: p4-5-power-force
+  section: '4.5'
+  tier: H
+  refs: ['1.4']
+  statement: A car's engine delivers 30 kW while the car travels at a steady 15 m/s. Calculate the total resistive force on the car.
+  answer_label: Total resistive force
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: P / v
+      values:
+        P: {value: '30000', unit: W}
+        v: {value: '15', unit: m/s}
+      answer: {value: '2000', unit: N}
+    - kind: sigfigs
+      value: '30000 / 15'
+      figures: 2
+      answer: 2.0e3
+      convention: round-once
+  answer_text: 'At a steady speed the driving force equals the resistive force. $P = Fv$, so $F = \dfrac{P}{v} = \dfrac{30000}{15} = 2000\,\text{N}$, which is $2.0\times10^3\,\text{N}$.'
+- id: p4-5-slope-loss
+  section: '4.5'
+  tier: H
+  refs: ['1.4']
+  statement: A cyclist of total mass 70 kg freewheels down a slope and drops 8.0 m. At the bottom the cyclist is moving at 10 m/s. Calculate the energy transferred to the surroundings by friction and air resistance. Take $g = 9.8$ m/s$^2$.
+  answer_label: Energy transferred to the surroundings
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * g * h - 0.5 * m * v**2
+      values:
+        m: {value: '70', unit: kg}
+        g: {value: '9.8', unit: m/s^2}
+        h: {value: '8.0', unit: m}
+        v: {value: '10', unit: m/s}
+      answer: {value: '1988', unit: J}
+    - kind: sigfigs
+      value: '70 * 9.8 * 8.0 - 0.5 * 70 * 10**2'
+      figures: 2
+      answer: 2.0e3
+      convention: round-once
+  answer_text: 'The potential energy lost is $mgh = 70 \times 9.8 \times 8.0 = 5490\,\text{J}$. The kinetic energy gained is $\tfrac{1}{2}mv^2 = 0.5 \times 70 \times 10^2 = 3500\,\text{J}$. The difference, $1990\,\text{J}$, was transferred by friction and air resistance, which is $2.0\times10^3\,\text{J}$ to two significant figures.'
+- id: p4-5-method-choice
+  section: '4.5'
+  tier: H
+  refs: ['1.4']
+  statement: A question gives the force on an object, its mass and the distance it moves, and asks for its final speed. Explain which method you would use and why.
+  answer_label: Choosing the method
+  check:
+    kind: structured
+    requires: [method, why, alternative]
+    concepts: [work-energy, avoids-time, equations-of-motion]
+    points:
+    - id: method
+      text: use the work-energy model, because the work done by the net force equals the change in kinetic energy
+      concepts: [work-energy]
+    - id: why
+      text: this route never needs the time or the acceleration, so it avoids two quantities the question does not give
+      concepts: [avoids-time]
+    - id: alternative
+      text: the equations of motion would also reach the answer, but only after finding the acceleration, so the energy route is shorter
+      concepts: [equations-of-motion]
+  answer_text: Use the work-energy model, because the work done by the net force equals the change in kinetic energy. This route never needs the time or the acceleration, so it avoids two quantities the question does not give. The equations of motion would also reach the answer, but only after finding the acceleration, so the energy route is shorter.
+- id: p4-5-chapter-round-trip
+  section: '4.5'
+  tier: H
+  refs: ['1.4']
+  statement: The station takes 24 MW from the grid while pumping and delivers 16 MW while generating, moving the same mass of water each minute. Calculate the overall efficiency of the store, as a percentage.
+  answer_label: Overall efficiency
+  check:
+    kind: sigfigs
+    value: '100 * 16 / 24'
+    figures: 2
+    answer: '67'
+    convention: round-once
+  answer_text: '$\text{overall efficiency} = \dfrac{\text{energy out}}{\text{energy in}} \times 100\% = \dfrac{16}{24} \times 100\% = 66.7\%$, which is $67\%$ to two significant figures. The station gives back about two thirds of the energy it takes in, which is why it is used to store energy rather than to make it. This resolves the chapter problem.'
+- id: p4-5-chapter-pump
+  section: '4.5'
+  tier: H
+  refs: ['1.4']
+  statement: While pumping, the station takes 24 MW from the grid and transfers 19.6 MW to the water as gravitational potential energy. Calculate the efficiency of the pumping, as a percentage.
+  answer_label: Efficiency of the pumping
+  check:
+    kind: sigfigs
+    value: '100 * 19.6 / 24'
+    figures: 2
+    answer: '82'
+    convention: round-once
+  answer_text: '$\text{efficiency} = \dfrac{19.6}{24} \times 100\% = 81.7\%$, which is $82\%$ to two significant figures. The pumps lose the rest to friction in the pipes and in the machinery.'
+- id: p4-5-friction-work
+  section: '4.5'
+  tier: H
+  refs: ['1.4']
+  statement: A 5.0 kg box is pushed 4.0 m along a rough floor by a horizontal force of 30 N. The box moves at a constant speed. Calculate the work done against friction, and state what happens to that energy.
+  answer_label: Work done against friction
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: F * d
+      values:
+        F: {value: '30', unit: N}
+        d: {value: '4.0', unit: m}
+      answer: {value: '120', unit: J}
+    - kind: sigfigs
+      value: '30 * 4.0'
+      figures: 2
+      answer: 1.2e2
+      convention: round-once
+  answer_text: 'A constant speed means the forces balance, so the friction force is also 30 N. The work done against friction is $Fd = 30 \times 4.0 = 1.2\times10^2\,\text{J}$. That energy warms the floor and the box as thermal energy, so it is not stored in the motion.'

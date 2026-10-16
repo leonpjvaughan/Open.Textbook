@@ -1,0 +1,224 @@
+# Junior Cycle Mathematics, Chapter 6, section 6.3.
+#
+# Direct proportion means the two quantities grow together, so the value of one
+# unit is the constant that links them. Every check finds that unit first and then
+# scales it, and the last problem proves a pair is *not* in proportion by showing
+# the two unit values differ.
+chapter: 6
+symbols: {}
+
+problems:
+- id: jc6-6.3-pens
+  section: '6.3'
+  tier: O
+  refs:
+  - N.3
+  statement: Three pens cost 1.50 euro. Find the cost of seven pens.
+  answer_label: Three pens cost 1.50 euro. Find the cost of seven pens.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1.50/3
+      answer: '0.5'
+    - kind: evaluate
+      expression: 0.5*7
+      answer: '3.5'
+  answer_text: >-
+    3.50 euro. First find the cost of one pen: $1.50\div3=0.50$ euro. Then
+    multiply by 7: $0.50\times7=3.50$ euro. Finding the value of one first, then
+    scaling it, is the method for every direct proportion question.
+- id: jc6-6.3-apples
+  section: '6.3'
+  tier: O
+  refs:
+  - N.3
+  statement: Five kilograms of apples cost 6 euro. Find the cost of eight
+    kilograms.
+  answer_label: Five kilograms cost 6 euro. Find the cost of eight kilograms.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 6/5
+      answer: '1.2'
+    - kind: evaluate
+      expression: 1.2*8
+      answer: '9.6'
+  answer_text: >-
+    9.60 euro. One kilogram costs $6\div5=1.20$ euro, so eight kilograms cost
+    $1.20\times8=9.60$ euro. The cost and the mass grow together, so the cost
+    divided by the mass is the same for both amounts.
+- id: jc6-6.3-car
+  section: '6.3'
+  tier: O
+  refs:
+  - N.3
+  statement: A car travels 120 km in 2 hours at a steady speed. How far does it
+    travel in 5 hours?
+  answer_label: A car travels 120 km in 2 hours. How far in 5 hours?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 120/2
+      answer: '60'
+    - kind: evaluate
+      expression: 60*5
+      answer: '300'
+  answer_text: >-
+    300 km. In one hour the car travels $120\div2=60$ km, so in five hours it
+    travels $60\times5=300$ km. The distance is directly proportional to the time
+    when the speed stays the same.
+- id: jc6-6.3-books
+  section: '6.3'
+  tier: O
+  refs:
+  - N.3
+  statement: Four identical books have a total mass of 3 kg. Find the mass of ten
+    of these books.
+  answer_label: Four books have a mass of 3 kg. Find the mass of ten books.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3/4
+      answer: '0.75'
+    - kind: evaluate
+      expression: 0.75*10
+      answer: '7.5'
+  answer_text: >-
+    7.5 kg. One book has a mass of $3\div4=0.75$ kg, so ten books have a mass of
+    $0.75\times10=7.5$ kg. The answer is bigger than 3 kg, which it must be,
+    because ten books weigh more than four.
+- id: jc6-6.3-rice
+  section: '6.3'
+  tier: O
+  refs:
+  - N.3
+  statement: A recipe for 4 people uses 300 g of rice. How much rice is needed for
+    6 people?
+  answer_label: A recipe for 4 people uses 300 g of rice. How much for 6 people?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 300/4
+      answer: '75'
+    - kind: evaluate
+      expression: 75*6
+      answer: '450'
+  answer_text: >-
+    450 g. For one person you need $300\div4=75$ g, so for six people you need
+    $75\times6=450$ g. Each person gets the same amount, which is what makes the
+    two quantities directly proportional.
+- id: jc6-6.3-tickets
+  section: '6.3'
+  tier: O
+  refs:
+  - N.3
+  statement: Seven tickets cost 56 euro. Find the cost of twelve tickets.
+  answer_label: Seven tickets cost 56 euro. Find the cost of twelve tickets.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 56/7
+      answer: '8'
+    - kind: evaluate
+      expression: 8*12
+      answer: '96'
+  answer_text: >-
+    96 euro. One ticket costs $56\div7=8$ euro, so twelve tickets cost
+    $8\times12=96$ euro. Every ticket has the same price, so the total cost is
+    directly proportional to the number of tickets.
+- id: jc6-6.3-lunches
+  section: '6.3'
+  tier: O
+  refs:
+  - N.3
+  statement: On the school tour, 48 packed lunches cost 168 euro. Find the cost of
+    one packed lunch, and the cost of 60 packed lunches.
+  answer_label: 48 packed lunches cost 168 euro. Find the cost of one and of 60.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 168/48
+      answer: '3.5'
+    - kind: evaluate
+      expression: 3.5*60
+      answer: '210'
+  answer_text: >-
+    One packed lunch costs $168\div48=3.50$ euro, and 60 of them cost
+    $3.50\times60=210$ euro. The price of one lunch is the constant here: it is
+    the same for every student, so the total cost grows in step with the number
+    of lunches.
+- id: jc6-6.3-bottles
+  section: '6.3'
+  tier: O
+  refs:
+  - N.3
+  statement: A machine makes 180 bottles in 3 minutes. How many bottles does it
+    make in 7 minutes?
+  answer_label: A machine makes 180 bottles in 3 minutes. How many in 7 minutes?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 180/3
+      answer: '60'
+    - kind: evaluate
+      expression: 60*7
+      answer: '420'
+  answer_text: >-
+    420 bottles. In one minute the machine makes $180\div3=60$ bottles, so in
+    seven minutes it makes $60\times7=420$ bottles. The number of bottles is
+    directly proportional to the time the machine runs.
+- id: jc6-6.3-wire
+  section: '6.3'
+  tier: H
+  refs:
+  - N.3
+  statement: A piece of wire 8 m long has a mass of 2.4 kg. Find the mass of 15 m
+    of the same wire.
+  answer_label: 8 m of wire has a mass of 2.4 kg. Find the mass of 15 m.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2.4/8
+      answer: '0.3'
+    - kind: evaluate
+      expression: 0.3*15
+      answer: '4.5'
+  answer_text: >-
+    4.5 kg. One metre of wire has a mass of $2.4\div8=0.3$ kg, so 15 m have a
+    mass of $0.3\times15=4.5$ kg. The wire is the same thickness throughout, so
+    the mass is directly proportional to the length.
+- id: jc6-6.3-not-proportional
+  section: '6.3'
+  tier: H
+  refs:
+  - N.3
+  statement: A shop sells 2 bars for 1.20 euro and 5 bars for 3.20 euro. Is the
+    cost directly proportional to the number of bars? Give a reason.
+  answer_label: Are the costs directly proportional?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1.2/2
+      answer: '0.6'
+    - kind: evaluate
+      expression: 3.2/5
+      answer: '0.64'
+    - kind: compare
+      lhs: 1.2/2
+      relation: '!='
+      rhs: 3.2/5
+  answer_text: >-
+    No. Two bars cost $1.20\div2=0.60$ euro each, but five bars cost
+    $3.20\div5=0.64$ euro each. Direct proportion needs the same value for one
+    unit in both offers, and 0.60 is not 0.64. The shop is charging a little more
+    per bar in the larger pack, so the two quantities are not in proportion.

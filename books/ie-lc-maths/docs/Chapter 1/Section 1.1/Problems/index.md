@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.1 The number systems ℕ, ℤ, ℚ and ℝ — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 3.1
+Work independently. The questions and answers are shown together at the end.
+
+Name the smallest system that contains each number, and write every decimal as an
+exact fraction. Check whether a square root simplifies to a whole number before
+you call it irrational.
+
+:::problems chapter-01-practice-1.1
+
+:::answers chapter-01-practice-1.1

@@ -1,0 +1,207 @@
+# Junior Cycle Mathematics, Chapter 5, section 5.5.
+#
+# Every check is an arithmetic identity the CAS proves, so the answer the reader
+# is shown is the answer the verifier proved. A percentage change is written as a
+# multiplier, "40*(1+15/100)", which proves the new value rather than asserting
+# it. The per-cent sign, the euro sign and the words stay in `statement`: the CAS
+# parses numbers and symbols only.
+chapter: 5
+symbols: {}
+
+problems:
+- id: jc5-5.5-inc-1
+  section: '5.5'
+  tier: O
+  refs:
+  - N.2
+  statement: Increase 40 by $15\%$.
+  answer_label: Increase 40 by $15\%$.
+  check:
+    kind: evaluate
+    expression: 40*(1+15/100)
+    answer: '46'
+  steps:
+  - expr: 40*(1+15/100)
+  - expr: 40*1.15
+  - expr: '46'
+  answer_text: >-
+    $46$. A rise of $15\%$ multiplies the amount by $1.15$. The increase itself is
+    $40\times0.15=6$, and $40+6=46$.
+- id: jc5-5.5-dec-1
+  section: '5.5'
+  tier: O
+  refs:
+  - N.2
+  statement: Decrease 80 by $25\%$.
+  answer_label: Decrease 80 by $25\%$.
+  check:
+    kind: evaluate
+    expression: 80*(1-25/100)
+    answer: '60'
+  steps:
+  - expr: 80*(1-25/100)
+  - expr: 80*0.75
+  - expr: '60'
+  answer_text: >-
+    $60$. A fall of $25\%$ multiplies the amount by $0.75$, because $1-0.25=0.75$.
+    The fall itself is $80\times0.25=20$, and $80-20=60$.
+- id: jc5-5.5-dec-2
+  section: '5.5'
+  tier: O
+  refs:
+  - N.2
+  statement: A jacket costs €60. It is reduced by $20\%$ in a sale. Work out the sale price.
+  answer_label: Find the price of a €60 jacket reduced by $20\%$.
+  check:
+    kind: evaluate
+    expression: 60*(1-20/100)
+    answer: '48'
+  steps:
+  - expr: 60*(1-20/100)
+  - expr: 60*0.8
+  - expr: '48'
+  answer_text: >-
+    €48. The reduction is $60\times0.2=12$, and $60-12=48$. Multiplying by $0.8$
+    reaches the same answer in one step.
+- id: jc5-5.5-inc-2
+  section: '5.5'
+  tier: O
+  refs:
+  - N.2
+  statement: Increase 250 by $10\%$.
+  answer_label: Increase 250 by $10\%$.
+  check:
+    kind: evaluate
+    expression: 250*(1+10/100)
+    answer: '275'
+  answer_text: >-
+    $275$. One tenth of 250 is 25, so a rise of $10\%$ adds 25. Multiplying by
+    $1.1$ gives the same result.
+- id: jc5-5.5-dec-3
+  section: '5.5'
+  tier: O
+  refs:
+  - N.2
+  statement: Decrease 45 by $20\%$.
+  answer_label: Decrease 45 by $20\%$.
+  check:
+    kind: evaluate
+    expression: 45*(1-20/100)
+    answer: '36'
+  answer_text: >-
+    $36$. One fifth of 45 is 9, so a fall of $20\%$ takes away 9. Then
+    $45-9=36$, which is $45\times0.8$.
+- id: jc5-5.5-inc-3
+  section: '5.5'
+  tier: O
+  refs:
+  - N.2
+  statement: A 2-litre bottle of orange juice costs €2.50. The shop raises the price by $10\%$.
+    Work out the new price.
+  answer_label: Raise €2.50 by $10\%$.
+  check:
+    kind: evaluate
+    expression: 2.5*(1+10/100)
+    answer: '2.75'
+  steps:
+  - expr: 2.5*(1+10/100)
+  - expr: 2.5*1.1
+  - expr: '2.75'
+  answer_text: >-
+    €2.75. One tenth of €2.50 is €0.25, so the rise is 25 cent. Then
+    €2.50 + €0.25 = €2.75.
+- id: jc5-5.5-dec-4
+  section: '5.5'
+  tier: O
+  refs:
+  - N.2
+  statement: The bottle now costs €2.75. The committee has a voucher for $20\%$ off. Work out the
+    price it pays.
+  answer_label: Take $20\%$ off €2.75.
+  check:
+    kind: evaluate
+    expression: 2.75*(1-20/100)
+    answer: '2.20'
+  steps:
+  - expr: 2.75*(1-20/100)
+  - expr: 2.75*0.8
+  - expr: '2.20'
+  answer_text: >-
+    €2.20. One fifth of €2.75 is €0.55, so the voucher takes off 55 cent. Then
+    €2.75 - €0.55 = €2.20.
+- id: jc5-5.5-inc-4
+  section: '5.5'
+  tier: O
+  refs:
+  - N.2
+  statement: A phone costs €320. The price rises by $5\%$. Work out the new price.
+  answer_label: Raise €320 by $5\%$.
+  check:
+    kind: evaluate
+    expression: 320*(1+5/100)
+    answer: '336'
+  answer_text: >-
+    €336. Five per cent is half of ten per cent. One tenth of €320 is €32, so
+    $5\%$ is €16. Then €320 + €16 = €336.
+- id: jc5-5.5-dec-5
+  section: '5.5'
+  tier: O
+  refs:
+  - N.2
+  statement: A bill of €80 is reduced by $12.5\%$. Work out the new bill.
+  answer_label: Reduce €80 by $12.5\%$.
+  check:
+    kind: evaluate
+    expression: 80*(1-12.5/100)
+    answer: '70'
+  steps:
+  - expr: 80*(1-12.5/100)
+  - expr: 80*0.875
+  - expr: '70'
+  answer_text: >-
+    €70. The reduction is $12.5\%$ of €80, which is €10. So the new bill is
+    €80 - €10 = €70. You can check it with $80\times0.875=70$.
+- id: jc5-5.5-dec-6
+  section: '5.5'
+  tier: O
+  refs:
+  - N.2
+  statement: A car worth €12000 loses $15\%$ of its value in a year. Work out its value after one
+    year.
+  answer_label: Find €12000 after a fall of $15\%$.
+  check:
+    kind: evaluate
+    expression: 12000*(1-15/100)
+    answer: '10200'
+  answer_text: >-
+    €10200. Ten per cent of €12000 is €1200, and five per cent is €600. The total
+    fall is €1800, and €12000 - €1800 = €10200.
+- id: jc5-5.5-inc-5
+  section: '5.5'
+  tier: O
+  refs:
+  - N.2
+  statement: A ticket costs €4.00. The price goes up by $25\%$. Work out the new price.
+  answer_label: Raise €4.00 by $25\%$.
+  check:
+    kind: evaluate
+    expression: 4*(1+25/100)
+    answer: '5'
+  answer_text: >-
+    €5.00. A quarter of €4.00 is €1.00, so a rise of $25\%$ adds €1.00. The new
+    price is €4.00 + €1.00 = €5.00.
+- id: jc5-5.5-change-1
+  section: '5.5'
+  tier: O
+  refs:
+  - N.2
+  statement: A price rises from €40 to €46. Work out the percentage increase.
+  answer_label: Find the percentage increase from €40 to €46.
+  check:
+    kind: evaluate
+    expression: (46-40)/40 * 100
+    answer: '15'
+  answer_text: >-
+    $15\%$. The increase is €46 - €40 = €6. Divide it by the original price:
+    $\frac{6}{40}=0.15$. As a percentage that is $15\%$. The original price is the
+    one you divide by.

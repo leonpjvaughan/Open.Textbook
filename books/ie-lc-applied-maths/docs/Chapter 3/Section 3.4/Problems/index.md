@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.4 Differentiation and the chain rule — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Say whether the derivative you are finding is a velocity or an acceleration.
+Check every chain-rule answer for the factor from the inside function.
+
+:::problems chapter-03-practice-3.4
+
+:::answers chapter-03-practice-3.4

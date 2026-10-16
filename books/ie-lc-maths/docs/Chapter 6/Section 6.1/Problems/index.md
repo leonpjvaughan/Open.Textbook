@@ -15,7 +15,7 @@ kind: problems
 Work independently. The questions and answers are shown together at the end.
 
 For each relation, check every input before you decide. Write down the inputs and their
-outputs first, so a repeated input is easy to spot.
+outputs first, so a repeated input stands out.
 
 :::problems chapter-06-practice-6.1
 

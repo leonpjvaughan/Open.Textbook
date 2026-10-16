@@ -56,7 +56,7 @@ Some typical values show how wide the range is.
 | Ice on ice | 0.03 to 0.1 |
 
 A large coefficient means a strong grip. A small coefficient means the surfaces
-slide over each other easily. The table is a guide, not a promise: real
+slide over each other without much resistance. The table is a guide, not a promise: real
 surfaces vary with temperature, damp and wear.
 
 ## The coefficient has no unit

@@ -80,7 +80,7 @@ network. Notice where the two algorithms make different choices and still agree 
 Both always find a minimum spanning tree, and on a network with distinct weights they
 find the same one. So the choice is about the work, not the answer.
 
-- **Kruskal** sorts every edge once. That is simple and it is easy to do by hand on a
+- **Kruskal** sorts every edge once. That is simple and quick to do by hand on a
   small network, but on a large network the sorting dominates.
 - **Prim** never sorts anything. It keeps looking for the cheapest edge leaving the tree,
   which suits a network stored as a table — it can be done by scanning the row of the

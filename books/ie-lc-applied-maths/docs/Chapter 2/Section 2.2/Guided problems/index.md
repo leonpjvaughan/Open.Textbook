@@ -202,7 +202,7 @@ Even counts are $0, 2, 4, 6, \dots$
 
 The lemma allows $0, 2, 4, 6, \dots$ odd-degree vertices — any even number. The Eulerian
 test is stricter: only $0$ and $2$ work. A network with four odd-degree vertices is
-perfectly possible; it simply cannot be travelled in one trail that uses every edge once.
+perfectly possible; it cannot be travelled in one trail that uses every edge once.
 
 So the lemma tells you which networks can exist, and the test tells you which of those
 can be traversed. They answer different questions, and the test only makes sense once
@@ -219,7 +219,7 @@ answers it.
 <details markdown="1">
 <summary>Hint</summary>
 
-Think about a journey that must be possible, not just short.
+Think about a journey that must be possible, not only short.
 
 <details markdown="1">
 <summary>Next step</summary>

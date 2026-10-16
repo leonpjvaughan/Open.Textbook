@@ -1,0 +1,122 @@
+# Practice set for 1.2 (strand 3, outcome 3.1, Ordinary and Higher). Surd work is
+# exact, so sympy proves each simplification by equivalence; the one statement
+# that is a reason rather than a number is `structured`.
+chapter: 1
+problems:
+  - id: lc1-2-simplify-50
+    section: '1.2'
+    tier: O
+    refs: ['3.1']
+    statement: 'Simplify $\sqrt{50}$.'
+    answer_label: '$\sqrt{50}$ in simplest form'
+    check: {kind: evaluate, expression: 'sqrt(50)', answer: '5*sqrt(2)'}
+    answer_text: >-
+      $\sqrt{50} = \sqrt{25 \times 2} = \sqrt{25}\sqrt{2} = 5\sqrt{2}$. Look for
+      the largest square factor of $50$, which is $25$.
+
+  - id: lc1-2-simplify-12
+    section: '1.2'
+    tier: O
+    refs: ['3.1']
+    statement: 'Simplify $\sqrt{12}$.'
+    answer_label: '$\sqrt{12}$ in simplest form'
+    check: {kind: evaluate, expression: 'sqrt(12)', answer: '2*sqrt(3)'}
+    answer_text: >-
+      $\sqrt{12} = \sqrt{4 \times 3} = \sqrt{4}\sqrt{3} = 2\sqrt{3}$.
+
+  - id: lc1-2-sum
+    section: '1.2'
+    tier: O
+    refs: ['3.1']
+    statement: 'Simplify $\sqrt{18} + \sqrt{8}$.'
+    answer_label: 'The sum in simplest form'
+    check: {kind: evaluate, expression: 'sqrt(18) + sqrt(8)', answer: '5*sqrt(2)'}
+    answer_text: >-
+      $\sqrt{18} = 3\sqrt{2}$ and $\sqrt{8} = 2\sqrt{2}$, so
+      $\sqrt{18} + \sqrt{8} = 3\sqrt{2} + 2\sqrt{2} = 5\sqrt{2}$.
+
+      Simplify each surd first, then add the like terms.
+
+  - id: lc1-2-rationalise
+    section: '1.2'
+    tier: O
+    refs: ['3.1']
+    statement: 'Write $\dfrac{6}{\sqrt{3}}$ with a whole-number denominator.'
+    answer_label: 'The rationalised form'
+    check: {kind: evaluate, expression: '6/sqrt(3)', answer: '2*sqrt(3)'}
+    answer_text: >-
+      Multiply top and bottom by $\sqrt{3}$:
+
+      $$\frac{6}{\sqrt{3}} \times \frac{\sqrt{3}}{\sqrt{3}} = \frac{6\sqrt{3}}{3} = 2\sqrt{3}$$
+
+      Multiplying by $\sqrt{3}$ makes the bottom $\sqrt{3} \times \sqrt{3} = 3$,
+      which is a whole number.
+
+  - id: lc1-2-rationalise-conjugate
+    section: '1.2'
+    tier: O
+    refs: ['3.1']
+    statement: 'Write $\dfrac{1}{\sqrt{5} - 2}$ in the form $a + b\sqrt{5}$.'
+    answer_label: 'The rationalised form'
+    check: {kind: evaluate, expression: '1/(sqrt(5) - 2)', answer: 'sqrt(5) + 2'}
+    answer_text: >-
+      Multiply top and bottom by the conjugate $\sqrt{5} + 2$:
+
+      $$\frac{1}{\sqrt{5} - 2} \times \frac{\sqrt{5} + 2}{\sqrt{5} + 2} = \frac{\sqrt{5} + 2}{5 - 4} = \sqrt{5} + 2$$
+
+      The bottom becomes $(\sqrt{5})^2 - 2^2 = 5 - 4 = 1$, because the surds
+      cancel. So the answer is $\sqrt{5} + 2$.
+
+  - id: lc1-2-difference
+    section: '1.2'
+    tier: H
+    refs: ['3.1']
+    statement: 'Simplify $(\sqrt{7} + \sqrt{3})(\sqrt{7} - \sqrt{3})$.'
+    answer_label: 'The product in simplest form'
+    check: {kind: evaluate, expression: '(sqrt(7) + sqrt(3))*(sqrt(7) - sqrt(3))', answer: '4'}
+    answer_text: >-
+      This is the difference of two squares:
+
+      $$(\sqrt{7})^2 - (\sqrt{3})^2 = 7 - 3 = 4$$
+
+      The surds cancel, so the answer is a whole number. Multiplying a surd
+      expression by its conjugate always removes the surd.
+
+  - id: lc1-2-not-equal
+    section: '1.2'
+    tier: O
+    refs: ['3.1']
+    statement: 'A student writes $\sqrt{2} + \sqrt{3} = \sqrt{5}$. Explain why this is wrong.'
+    answer_label: 'Why the two are not equal'
+    check:
+      kind: structured
+      requires: [square, compare]
+      concepts: [sum-under-root, not-equal]
+      points:
+        - id: square
+          text: squaring sqrt(2) + sqrt(3) gives 5 + 2 sqrt(6), not 5, because the cross terms do not vanish
+          concepts: [sum-under-root]
+        - id: compare
+          text: so sqrt(2) + sqrt(3) is not equal to sqrt(5); the square root of a sum is not the sum of the square roots
+          concepts: [not-equal]
+    answer_text: >-
+      The square root does not split across a sum. Squaring gives
+
+      $$(\sqrt{2} + \sqrt{3})^2 = 2 + 3 + 2\sqrt{6} = 5 + 2\sqrt{6}$$
+
+      which is bigger than $5$. Since $\sqrt{5}$ squares to $5$, the two are not
+      equal. The rule $\sqrt{a}\sqrt{b} = \sqrt{ab}$ works for products, but
+      there is no matching rule for sums.
+
+  - id: lc1-2-decimal
+    section: '1.2'
+    tier: O
+    refs: ['3.1']
+    statement: 'Write $\sqrt{2}$ to 3 decimal places.'
+    answer_label: '$\sqrt{2}$ to 3 decimal places'
+    check: {kind: rounded, value: 'sqrt(2)', rounded: '1.414', to: '0.001'}
+    answer_text: >-
+      $\sqrt{2} = 1.41421\dots$, which rounds to $1.414$ to 3 decimal places.
+
+      The decimal is a rounded value, never the exact number. $\sqrt{2}$ is
+      irrational, so no decimal can show it exactly.

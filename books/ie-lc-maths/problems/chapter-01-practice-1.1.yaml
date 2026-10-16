@@ -1,0 +1,149 @@
+# Practice set for 1.1 (strand 3, outcome 3.1). The number systems are a
+# classification, so the explanations are `structured`; the arithmetic a reader
+# can do by hand is proved with `evaluate` over exact rationals.
+chapter: 1
+problems:
+  - id: lc1-1-classify
+    section: '1.1'
+    tier: F
+    refs: ['3.1']
+    statement: >-
+      Name the smallest number system that contains each of these numbers:
+      $5$, $-3$, $\frac{2}{5}$ and $\sqrt{7}$.
+    answer_label: 'Each number and its system'
+    check:
+      kind: structured
+      requires: [five, minus-three, two-fifths, root-seven]
+      concepts: [natural, integer, rational, irrational]
+      points:
+        - id: five
+          text: 5 is a natural number, so it is also an integer and a rational number
+          concepts: [natural]
+        - id: minus-three
+          text: -3 is an integer and a rational number, but it is not a natural number
+          concepts: [integer]
+        - id: two-fifths
+          text: 2/5 is a rational number, because it is one integer divided by another
+          concepts: [rational]
+        - id: root-seven
+          text: sqrt(7) is irrational, so the smallest system that contains it is the real numbers
+          concepts: [irrational]
+    answer_text: >-
+      $5$ is a natural number, so it is also an integer and a rational number.
+      $-3$ is an integer and a rational number, but not a natural number.
+      $\frac{2}{5}$ is a rational number. $\sqrt{7}$ is irrational, so only the
+      real numbers contain it.
+
+  - id: lc1-1-decimal-fraction
+    section: '1.1'
+    tier: F
+    refs: ['3.1']
+    statement: 'Write $0.75$ as a fraction in its lowest terms.'
+    answer_label: '$0.75$ as a fraction'
+    check: {kind: evaluate, expression: '0.75', answer: '3/4'}
+    answer_text: >-
+      $0.75 = \dfrac{75}{100} = \dfrac{3}{4}$. A terminating decimal always
+      turns into a fraction with a denominator that is a power of ten, so every
+      terminating decimal is rational.
+
+  - id: lc1-1-recurring
+    section: '1.1'
+    tier: F
+    refs: ['3.1']
+    statement: 'Write $0.777\dots$ as a fraction in its lowest terms.'
+    answer_label: '$0.777\dots$ as a fraction'
+    check: {kind: solve, equation: '9*x = 7', variable: x, answer: ['7/9']}
+    symbols: {x: {real: true}}
+    answer_text: >-
+      Let $x = 0.777\dots$. Then $10x = 7.777\dots$, so subtracting the first
+      from the second gives $9x = 7$ and $x = \dfrac{7}{9}$.
+
+      A recurring decimal is a rational number as well. Every number that can be
+      written as a fraction of two integers is rational.
+
+  - id: lc1-1-sqrt16
+    section: '1.1'
+    tier: F
+    refs: ['3.1']
+    statement: >-
+      Is $\sqrt{16}$ rational or irrational? Give a reason.
+    answer_label: 'Rational or irrational, with a reason'
+    check:
+      kind: structured
+      requires: [value, reason]
+      concepts: [perfect-square, rational]
+      points:
+        - id: value
+          text: the square root of 16 is exactly 4, because 4 times 4 is 16
+          concepts: [perfect-square]
+        - id: reason
+          text: 4 is a whole number, so it is rational; a square root is irrational only when it is not a whole number or a fraction
+          concepts: [rational]
+    answer_text: >-
+      $\sqrt{16} = 4$ exactly, and $4$ is a whole number. So $\sqrt{16}$ is
+      rational. A square root is irrational only when the number under it is not
+      a perfect square.
+
+  - id: lc1-1-order
+    section: '1.1'
+    tier: F
+    refs: ['3.1']
+    statement: >-
+      Write these numbers in order from smallest to largest: $-2$, $\frac{3}{4}$,
+      $-0.5$, $0$.
+    answer_label: 'The numbers in order'
+    check:
+      kind: all
+      checks:
+        - {kind: compare, relation: '<', lhs: '-2', rhs: '-1/2'}
+        - {kind: compare, relation: '<', lhs: '-1/2', rhs: '0'}
+        - {kind: compare, relation: '<', lhs: '0', rhs: '3/4'}
+    answer_text: '$-2$, $-0.5$, $0$, $\frac{3}{4}$.'
+
+  - id: lc1-1-decimal-78
+    section: '1.1'
+    tier: F
+    refs: ['3.1']
+    statement: 'Write $\frac{7}{8}$ as a decimal.'
+    answer_label: '$\frac{7}{8}$ as a decimal'
+    check: {kind: evaluate, expression: '7/8', answer: '0.875'}
+    answer_text: >-
+      $7 \div 8 = 0.875$. The decimal stops, so $\frac{7}{8}$ is a terminating
+      decimal and a rational number.
+
+  - id: lc1-1-integer-rational
+    section: '1.1'
+    tier: F
+    refs: ['3.1']
+    statement: 'Explain why every integer is also a rational number.'
+    answer_label: 'Why every integer is rational'
+    check:
+      kind: structured
+      requires: [fraction, denominator]
+      concepts: [integer-over-one, rational-definition]
+      points:
+        - id: fraction
+          text: every integer n can be written as n divided by 1, which is a fraction of two integers
+          concepts: [integer-over-one]
+        - id: denominator
+          text: the denominator 1 is not zero, so the definition of a rational number is met
+          concepts: [rational-definition]
+    answer_text: >-
+      Every integer $n$ can be written as $\dfrac{n}{1}$. That is one integer
+      divided by another, and the denominator is not zero. So every integer is a
+      rational number.
+
+  - id: lc1-1-recurring-27
+    section: '1.1'
+    tier: H
+    refs: ['3.1']
+    statement: 'Write $0.272727\dots$ as a fraction in its lowest terms.'
+    answer_label: '$0.272727\dots$ as a fraction'
+    check: {kind: solve, equation: '99*x = 27', variable: x, answer: ['3/11']}
+    symbols: {x: {real: true}}
+    answer_text: >-
+      Let $x = 0.272727\dots$. Then $100x = 27.272727\dots$, so subtracting the
+      first from the second gives $99x = 27$ and $x = \dfrac{27}{99} =
+      \dfrac{3}{11}$.
+
+      Two digits repeat, so multiplying by $100$ lines the repeating parts up.

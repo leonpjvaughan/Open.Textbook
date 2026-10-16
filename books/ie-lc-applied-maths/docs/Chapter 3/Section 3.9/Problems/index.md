@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.9 Projectiles launched at an angle — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+These questions are for the Higher level. Decide first whether the projectile
+lands at the height it started from. If it does, the range formula applies. If
+it does not, find the time from the vertical motion.
+
+:::problems chapter-03-practice-3.9
+
+:::answers chapter-03-practice-3.9

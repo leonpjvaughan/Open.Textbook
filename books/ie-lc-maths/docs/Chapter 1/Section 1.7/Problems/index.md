@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.7 Scientific notation and accuracy — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 3.1
+Work independently. The questions and answers are shown together at the end.
+
+Write every answer in scientific notation when the question asks for it. Keep
+full precision until the final line, and round once.
+
+:::problems chapter-01-practice-1.7
+
+:::answers chapter-01-practice-1.7

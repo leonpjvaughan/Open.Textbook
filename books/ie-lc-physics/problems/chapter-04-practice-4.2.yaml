@@ -1,0 +1,184 @@
+# Leaving Certificate Physics, Chapter 4, section 4.2 (strand 1 outcome 1.4).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure. A height built on a
+# quotient is irrational, so its `dimensions` check declares a tolerance.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 4
+problems:
+- id: p4-2-ke-car
+  section: '4.2'
+  tier: O
+  refs: ['1.4']
+  statement: A car of mass 1200 kg travels at 15 m/s. Calculate its kinetic energy.
+  answer_label: Kinetic energy
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 0.5 * m * v**2
+      values:
+        m: {value: '1200', unit: kg}
+        v: {value: '15', unit: m/s}
+      answer: {value: '135000', unit: J}
+    - kind: sigfigs
+      value: '0.5 * 1200 * 15**2'
+      figures: 2
+      answer: 1.4e5
+      convention: round-once
+  answer_text: '$E_k = \tfrac{1}{2}mv^2 = 0.5 \times 1200 \times 15^2 = 1.35\times10^5\,\text{J}$, which is $1.4\times10^5\,\text{J}$ to two significant figures.'
+- id: p4-2-pe-book
+  section: '4.2'
+  tier: O
+  refs: ['1.4']
+  statement: A book of mass 2.0 kg is placed on a shelf 1.5 m above the floor. Calculate its gravitational potential energy relative to the floor. Take $g = 9.8$ m/s$^2$.
+  answer_label: Gravitational potential energy
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * g * h
+      values:
+        m: {value: '2.0', unit: kg}
+        g: {value: '9.8', unit: m/s^2}
+        h: {value: '1.5', unit: m}
+      answer: {value: '29.4', unit: J}
+    - kind: sigfigs
+      value: '2.0 * 9.8 * 1.5'
+      figures: 2
+      answer: '29'
+      convention: round-once
+  answer_text: '$E_p = mgh = 2.0 \times 9.8 \times 1.5 = 29.4\,\text{J}$, which is $29\,\text{J}$ to two significant figures. The height is measured above the floor, because that is the level chosen as zero.'
+- id: p4-2-find-speed
+  section: '4.2'
+  tier: O
+  refs: ['1.4']
+  statement: A ball of mass 0.50 kg has 100 J of kinetic energy. Calculate its speed.
+  answer_label: Speed
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(2 * E / m)
+      values:
+        E: {value: '100', unit: J}
+        m: {value: '0.50', unit: kg}
+      answer: {value: '20', unit: m/s}
+    - kind: sigfigs
+      value: 'sqrt(2 * 100 / 0.50)'
+      figures: 2
+      answer: 2.0e1
+      convention: round-once
+  answer_text: '$E_k = \tfrac{1}{2}mv^2$, so $v = \sqrt{\dfrac{2E_k}{m}} = \sqrt{\dfrac{2 \times 100}{0.50}} = 20\,\text{m/s}$, which is $2.0\times10^1\,\text{m/s}$.'
+- id: p4-2-double-speed
+  section: '4.2'
+  tier: O
+  refs: ['1.4']
+  statement: A cyclist doubles her speed. Explain what happens to her kinetic energy, and support your answer with a calculation for a 70 kg cyclist at 6.0 m/s and at 12 m/s.
+  answer_label: Kinetic energy at double the speed
+  check:
+    kind: structured
+    requires: [formula, factor, calculation]
+    concepts: [squared, four-times, worked]
+    points:
+    - id: formula
+      text: kinetic energy is one half m v squared, so it depends on the square of the speed
+      concepts: [squared]
+    - id: factor
+      text: doubling the speed multiplies the kinetic energy by two squared, which is four
+      concepts: [four-times]
+    - id: calculation
+      text: at 6.0 m/s the kinetic energy is 0.5 times 70 times 36, which is 1260 J, and at 12 m/s it is 0.5 times 70 times 144, which is 5040 J, four times as much
+      concepts: [worked]
+  answer_text: Kinetic energy is $\tfrac{1}{2}mv^2$, so it depends on the square of the speed. Doubling the speed multiplies the kinetic energy by $2^2 = 4$. At 6.0 m/s a 70 kg cyclist has $0.5 \times 70 \times 6.0^2 = 1260\,\text{J}$, and at 12 m/s the same cyclist has $0.5 \times 70 \times 12^2 = 5040\,\text{J}$, four times as much.
+- id: p4-2-find-height
+  section: '4.2'
+  tier: O
+  refs: ['1.4']
+  statement: A ball of mass 0.25 kg has 5.0 J of gravitational potential energy above the ground. Calculate its height above the ground. Take $g = 9.8$ m/s$^2$.
+  answer_label: Height
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: E / (m * g)
+      values:
+        E: {value: '5.0', unit: J}
+        m: {value: '0.25', unit: kg}
+        g: {value: '9.8', unit: m/s^2}
+      answer: {value: '2.0', unit: m}
+      tolerance: '0.05'
+    - kind: sigfigs
+      value: '5.0 / (0.25 * 9.8)'
+      figures: 2
+      answer: '2.0'
+      convention: round-once
+  answer_text: '$E_p = mgh$, so $h = \dfrac{E_p}{mg} = \dfrac{5.0}{0.25 \times 9.8} = 2.0\,\text{m}$ to two significant figures.'
+- id: p4-2-chapter-pe
+  section: '4.2'
+  tier: O
+  refs: ['1.4']
+  statement: The pumped-storage station raises $4.0 \times 10^5$ kg of water through 300 m. Calculate the gravitational potential energy stored. Take $g = 9.8$ m/s$^2$.
+  answer_label: Gravitational potential energy stored
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * g * h
+      values:
+        m: {value: '400000', unit: kg}
+        g: {value: '9.8', unit: m/s^2}
+        h: {value: '300', unit: m}
+      answer: {value: '1176000000', unit: J}
+    - kind: sigfigs
+      value: '4.0e5 * 9.8 * 300'
+      figures: 2
+      answer: 1.2e9
+      convention: round-once
+  answer_text: '$E_p = mgh = 4.0\times10^5 \times 9.8 \times 300 = 1.2\times10^9\,\text{J}$. The station stores this energy in the height of the water above the lower reservoir. This is the second step of the chapter problem.'
+- id: p4-2-energy-change
+  section: '4.2'
+  tier: O
+  refs: ['1.4']
+  statement: A stone is dropped from rest and falls to the ground. Describe how its kinetic energy and its gravitational potential energy change as it falls, and state what happens to their total.
+  answer_label: Energy as a stone falls
+  check:
+    kind: structured
+    requires: [pe, ke, total]
+    concepts: [decreases, increases, constant]
+    points:
+    - id: pe
+      text: the gravitational potential energy decreases as the stone falls, because its height above the ground decreases
+      concepts: [decreases]
+    - id: ke
+      text: the kinetic energy increases as the stone speeds up
+      concepts: [increases]
+    - id: total
+      text: the total of the two stays the same, because the potential energy is transferred to kinetic energy
+      concepts: [constant]
+  answer_text: The gravitational potential energy decreases as the stone falls, because its height above the ground decreases. The kinetic energy increases as the stone speeds up. The total of the two stays the same, because the potential energy is transferred to kinetic energy.
+- id: p4-2-same-energy
+  section: '4.2'
+  tier: O
+  refs: ['1.4']
+  statement: A lorry and a car have the same kinetic energy. The lorry has the larger mass. State which vehicle is moving faster, and explain your answer.
+  answer_label: Which vehicle is faster
+  check:
+    kind: structured
+    requires: [relation, conclusion]
+    concepts: [inverse, lighter-faster]
+    points:
+    - id: relation
+      text: for the same kinetic energy, the value of m v squared is the same for both, so the larger mass must have the smaller speed
+      concepts: [inverse]
+    - id: conclusion
+      text: the car has the smaller mass, so the car is moving faster
+      concepts: [lighter-faster]
+  answer_text: For the same kinetic energy, the value of $mv^2$ is the same for both, so the larger mass must have the smaller speed. The car has the smaller mass, so the car is moving faster.

@@ -1,0 +1,202 @@
+# Practice set for 3.8 (strand S3, the physical world). The checks come from the
+# `units` oracle. Every value here is built on a trigonometric component, so it
+# is proved against a declared tolerance rather than exactly; the range of the
+# chapter's kick is also proved to four significant figures by `sigfigs`. The
+# `structured` record proves only that a model answer contains the declared
+# ideas, in order.
+chapter: 3
+problems:
+  - id: am3-8-time-of-flight
+    section: '3.8'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is kicked at $20$ m/s at $30^\circ$ above the horizontal. Its
+      vertical component is $10$ m/s. Taking $g = 9.8$ m/s$^2$, calculate the
+      time of flight.
+    answer_label: Time of flight
+    check:
+      kind: dimensions
+      expression: 2*uy/g
+      values:
+        uy: {value: '10', unit: 'm/s'}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '2.041', unit: s}
+      tolerance: '0.001'
+    answer_text: >-
+      The ball rises and then falls back to the ground. The time to the highest
+      point is $\dfrac{u_y}{g} = \dfrac{10}{9.8}$, and the fall takes the same
+      time again. So $T = \dfrac{2u_y}{g} = \dfrac{20}{9.8} = 2.041$ s, to
+      three decimal places.
+
+  - id: am3-8-range
+    section: '3.8'
+    tier: O
+    refs: [S3]
+    statement: >-
+      The same ball has a horizontal component of $17.32$ m/s and a time of
+      flight of $2.041$ s. Calculate its range, to $4$ significant figures.
+    answer_label: Range
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: ux*2*uy/g
+          values:
+            ux: {value: '17.32', unit: 'm/s'}
+            uy: {value: '10', unit: 'm/s'}
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '35.35', unit: m}
+          tolerance: '0.01'
+        - kind: sigfigs
+          value: '35.347'
+          figures: 4
+          answer: '35.35'
+          convention: round-once
+    answer_text: >-
+      The range is the horizontal distance travelled in the time of flight:
+      $R = u_x T = 17.32 \times 2.041 = 35.35$ m, to four significant figures.
+      The formula $R = \dfrac{u^2 \sin 2\theta}{g}$ gives the same value.
+
+  - id: am3-8-max-height
+    section: '3.8'
+    tier: O
+    refs: [S3]
+    statement: >-
+      The same ball has a vertical component of $10$ m/s. Taking
+      $g = 9.8$ m/s$^2$, calculate the greatest height it reaches.
+    answer_label: Greatest height
+    check:
+      kind: dimensions
+      expression: uy**2/(2*g)
+      values:
+        uy: {value: '10', unit: 'm/s'}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '5.102', unit: m}
+      tolerance: '0.001'
+    answer_text: >-
+      At the highest point the vertical velocity is zero. Use $v^2 = u^2 + 2as$
+      with $v = 0$ and $a = -g$:
+      $H = \dfrac{u_y^2}{2g} = \dfrac{100}{19.6} = 5.102$ m. The ball is about
+      $5.1$ m high at the top of its path.
+
+  - id: am3-8-range-45
+    section: '3.8'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is kicked at $25$ m/s at $45^\circ$ above the horizontal. Taking
+      $g = 9.8$ m/s$^2$, calculate its range.
+    answer_label: Range
+    check:
+      kind: dimensions
+      expression: u**2/g
+      values:
+        u: {value: '25', unit: 'm/s'}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '63.776', unit: m}
+      tolerance: '0.01'
+    answer_text: >-
+      At $45^\circ$ the range formula $R = \dfrac{u^2 \sin 2\theta}{g}$ has
+      $\sin 90^\circ = 1$, so $R = \dfrac{u^2}{g} = \dfrac{625}{9.8} =
+      63.776$ m. This angle gives the greatest range for this speed.
+
+  - id: am3-8-time-45
+    section: '3.8'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is kicked at $25$ m/s at $45^\circ$. Its vertical component is
+      $17.68$ m/s. Taking $g = 9.8$ m/s$^2$, calculate the time of flight.
+    answer_label: Time of flight
+    check:
+      kind: dimensions
+      expression: 2*uy/g
+      values:
+        uy: {value: '17.68', unit: 'm/s'}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '3.608', unit: s}
+      tolerance: '0.001'
+    answer_text: >-
+      $T = \dfrac{2u_y}{g} = \dfrac{2 \times 17.68}{9.8} = \dfrac{35.36}{9.8}
+      = 3.608$ s, to three decimal places.
+
+  - id: am3-8-range-20deg
+    section: '3.8'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is kicked at $30$ m/s at $20^\circ$ above the horizontal. Its
+      components are $28.19$ m/s horizontally and $10.26$ m/s vertically.
+      Taking $g = 9.8$ m/s$^2$, calculate its range.
+    answer_label: Range
+    check:
+      kind: dimensions
+      expression: ux*2*uy/g
+      values:
+        ux: {value: '28.19', unit: 'm/s'}
+        uy: {value: '10.26', unit: 'm/s'}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '59.03', unit: m}
+      tolerance: '0.01'
+    answer_text: >-
+      The time of flight is $T = \dfrac{2 \times 10.26}{9.8} = 2.094$ s. The
+      range is $R = u_x T = 28.19 \times 2.094 = 59.03$ m. The formula
+      $R = \dfrac{u^2 \sin 2\theta}{g}$ gives
+      $\dfrac{900 \times \sin 40^\circ}{9.8} = 59.03$ m.
+
+  - id: am3-8-max-height-time
+    section: '3.8'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A projectile has a time of flight of $3$ s. Taking $g = 9.8$ m/s$^2$,
+      calculate the greatest height it reaches.
+    answer_label: Greatest height
+    check:
+      kind: dimensions
+      expression: (g*T/2)**2/(2*g)
+      values:
+        T: {value: '3', unit: s}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '11.025', unit: m}
+    answer_text: >-
+      The time to the highest point is half the time of flight, so
+      $t = 1.5$ s. At the highest point $v = 0$, and $v = u_y - gt$, so
+      $u_y = 9.8 \times 1.5 = 14.7$ m/s. Then
+      $H = \dfrac{u_y^2}{2g} = \dfrac{216.09}{19.6} = 11.025$ m.
+
+  - id: am3-8-range-formula
+    section: '3.8'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Explain why the range of a projectile on level ground is greatest when it
+      is launched at $45^\circ$.
+    answer_label: Why 45 degrees gives the greatest range
+    check:
+      kind: structured
+      requires: [range-formula, sin-double-angle, maximum-at-one]
+      concepts: [range]
+      points:
+        - id: range-formula
+          text: >-
+            the range is $R = \dfrac{u^2 \sin 2\theta}{g}$ for a given launch
+            speed
+          concepts: [range]
+        - id: sin-double-angle
+          text: >-
+            only the factor $\sin 2\theta$ changes with the angle, so the range
+            is greatest when $\sin 2\theta$ is greatest
+          concepts: [range]
+        - id: maximum-at-one
+          text: >-
+            the sine of an angle is at most $1$, and that happens at
+            $2\theta = 90^\circ$, so $\theta = 45^\circ$
+          concepts: [range]
+    answer_text: >-
+      The range formula is $R = \dfrac{u^2 \sin 2\theta}{g}$. For a fixed launch
+      speed, the only factor that changes with the angle is $\sin 2\theta$. The
+      sine of an angle is never more than $1$, and it equals $1$ when the angle
+      is $90^\circ$. So $2\theta = 90^\circ$, which gives $\theta = 45^\circ$.
+      That angle gives the greatest range.

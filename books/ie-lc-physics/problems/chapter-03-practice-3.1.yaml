@@ -1,0 +1,186 @@
+# Leaving Certificate Physics, Chapter 3, section 3.1 (strand 1 outcome 1.2).
+#
+# This bank covers a force as a push or a pull, weight as a force, the difference
+# between contact and non-contact forces, and the free-body diagram. The units
+# oracle proves the magnitude *and* the unit whenever a quantity is asked for, and
+# `sigfigs` proves the rounding to the figures the data support. Both are written
+# out, because a rounded answer is never equal to the exact one. An integer that is
+# two significant figures is written as `5.9e2`, since `590` is three.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. `structured` proves only that a model answer contains the declared steps and
+# concepts, in order — not that the physics in them is right.
+chapter: 3
+problems:
+  - id: p3-1-passenger-weight
+    section: '3.1'
+    tier: O
+    refs: ['1.2']
+    statement: 'A passenger in a lift has a mass of 60 kg. Calculate her weight. Take $g = 9.8$ N/kg.'
+    answer_label: 'Weight of the passenger'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g
+          values:
+            m: {value: '60', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+          answer: {value: '588', unit: N}
+        - kind: sigfigs
+          value: '60 * 9.8'
+          figures: 2
+          answer: '5.9e2'
+          convention: round-once
+    answer_text: '$W = mg = 60 \times 9.8 = 588\,\text{N}$, which is $5.9 \times 10^{2}\,\text{N}$ to two significant figures. Weight is a force, so it is measured in newtons.'
+  - id: p3-1-box-weight
+    section: '3.1'
+    tier: O
+    refs: ['1.2']
+    statement: 'A box of mass 5.0 kg rests on a table. Calculate its weight, and state the size of the contact force the table exerts on the box. Take $g = 9.8$ N/kg.'
+    answer_label: 'Weight and contact force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g
+          values:
+            m: {value: '5.0', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+          answer: {value: '49', unit: N}
+        - kind: sigfigs
+          value: '5.0 * 9.8'
+          figures: 2
+          answer: '49'
+          convention: round-once
+    answer_text: '$W = mg = 5.0 \times 9.8 = 49\,\text{N}$ downwards. The box is at rest, so the forces on it balance. The contact force from the table is therefore $49\,\text{N}$ upwards, equal in size to the weight and opposite in direction.'
+  - id: p3-1-net-force
+    section: '3.1'
+    tier: O
+    refs: ['1.2']
+    statement: 'A box is pushed to the right with a force of 20 N. Friction acts on it to the left with a force of 8.0 N. Calculate the resultant force on the box, and state its direction.'
+    answer_label: 'Resultant force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F - f
+          values:
+            F: {value: '20', unit: N}
+            f: {value: '8.0', unit: N}
+          answer: {value: '12', unit: N}
+        - kind: sigfigs
+          value: '20 - 8.0'
+          figures: 2
+          answer: '12'
+          convention: round-once
+    answer_text: 'The two horizontal forces act in opposite directions, so subtract the smaller from the larger: $20 - 8.0 = 12\,\text{N}$ to the right. The vertical forces, weight and contact force, are equal and opposite, so together they add to zero.'
+  - id: p3-1-lift-weight
+    section: '3.1'
+    tier: O
+    refs: ['1.2']
+    statement: 'The lift in the chapter problem, with its passengers, has a total mass of 800 kg. Calculate its weight. Take $g = 9.8$ N/kg.'
+    answer_label: 'Weight of the lift'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g
+          values:
+            m: {value: '800', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+          answer: {value: '7840', unit: N}
+        - kind: sigfigs
+          value: '800 * 9.8'
+          figures: 2
+          answer: '7.8e3'
+          convention: round-once
+    answer_text: '$W = mg = 800 \times 9.8 = 7840\,\text{N}$, which is $7.8 \times 10^{3}\,\text{N}$ to two significant figures. This force acts downwards, on the lift.'
+  - id: p3-1-resting-forces
+    section: '3.1'
+    tier: O
+    refs: ['1.2']
+    statement: 'A book rests on a table. Name the two forces acting on the book, and explain why they do not change its motion.'
+    answer_label: 'The two forces on a resting book'
+    check:
+      kind: structured
+      requires: [weight, contact, balanced]
+      concepts: [gravity, normal, zero]
+      points:
+        - id: weight
+          text: 'The weight of the book acts downwards, and it comes from the Earth pulling on the book.'
+          concepts: [gravity]
+        - id: contact
+          text: 'The table pushes upwards on the book with a contact force, which is also called the normal force.'
+          concepts: [normal]
+        - id: balanced
+          text: 'The two forces are equal in size and opposite in direction, so the resultant force is zero and the book stays at rest.'
+          concepts: [zero]
+    answer_text: 'The weight of the book acts downwards, and the contact force from the table acts upwards. They are equal in size and opposite in direction, so the resultant force is zero and the book stays at rest.'
+  - id: p3-1-contact-noncontact
+    section: '3.1'
+    tier: O
+    refs: ['1.2']
+    statement: 'Sort these forces into contact forces and non-contact forces: the push of a hand on a door, weight, friction, the pull of a magnet on a paper clip, the tension in a rope, and the electric force between two charges. Explain the difference between the two groups.'
+    answer_label: 'Contact and non-contact forces'
+    check:
+      kind: structured
+      requires: [contact, noncontact, difference]
+      concepts: [touching, distance, field]
+      points:
+        - id: contact
+          text: 'Contact forces need the two objects to touch: the push on the door, friction, and the tension in the rope.'
+          concepts: [touching]
+        - id: noncontact
+          text: 'Non-contact forces act at a distance: weight, the magnetic pull, and the electric force.'
+          concepts: [distance]
+        - id: difference
+          text: 'A contact force is passed on where the two surfaces meet. A non-contact force acts through a field, with nothing in between.'
+          concepts: [field]
+    answer_text: 'Contact forces need the objects to touch, so the push on the door, friction and the tension in the rope belong together. Weight, the magnetic pull and the electric force act at a distance, so they are non-contact forces.'
+  - id: p3-1-lift-free-body
+    section: '3.1'
+    tier: O
+    refs: ['1.2']
+    statement: 'The lift is moving upwards and speeding up. List the three forces acting on the lift, give the direction of each, and say which of them is the largest.'
+    answer_label: 'The free-body diagram of the lift'
+    check:
+      kind: structured
+      requires: [tension, weight, friction, largest]
+      concepts: [upward, downward, resultant]
+      points:
+        - id: tension
+          text: 'The tension in the cable acts upwards, because the cable pulls the lift up.'
+          concepts: [upward]
+        - id: weight
+          text: 'The weight of the lift acts downwards, because the Earth pulls the lift down.'
+          concepts: [downward]
+        - id: friction
+          text: 'Friction in the guide rails acts downwards, because the lift is moving upwards and friction opposes the motion.'
+          concepts: [downward]
+        - id: largest
+          text: 'The tension is the largest of the three, because the lift is speeding up upwards. The forces do not balance, so there is a resultant force upwards.'
+          concepts: [resultant]
+    answer_text: 'The tension in the cable acts upwards, the weight acts downwards, and friction in the guides acts downwards. The tension is the largest, because the lift is speeding up upwards and the resultant force points the same way as the acceleration.'
+  - id: p3-1-recall-fall
+    section: '3.1'
+    tier: O
+    refs: ['1.2']
+    statement: 'A stone is dropped from rest and falls for 1.5 s. Calculate its speed. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'Speed of the falling stone'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: g * t
+          values:
+            g: {value: '9.8', unit: m/s^2}
+            t: {value: '1.5', unit: s}
+          answer: {value: '14.7', unit: m/s}
+        - kind: sigfigs
+          value: '9.8 * 1.5'
+          figures: 2
+          answer: '1.5e1'
+          convention: round-once
+    answer_text: 'The stone starts from rest and gains speed at $9.8\,\text{m/s}^2$, so $v = gt = 9.8 \times 1.5 = 14.7\,\text{m/s}$, which is $1.5 \times 10^{1}\,\text{m/s}$ to two significant figures. The only force on the stone is its weight.'

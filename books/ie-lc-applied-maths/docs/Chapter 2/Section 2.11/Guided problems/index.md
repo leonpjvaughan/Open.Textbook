@@ -101,7 +101,7 @@ have few connections. Kruskal's algorithm sorts 250 edges, which is small, and P
 200 rows with few entries each.
 
 Either is fine, and Kruskal is the natural choice for showing working, because the sorted
-list is short and easy to write out.
+list is short and quick to write out.
 
 </details>
 </details>

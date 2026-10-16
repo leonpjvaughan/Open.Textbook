@@ -1,0 +1,187 @@
+# Leaving Certificate Physics, Chapter 3, section 3.2 (strand 1 outcome 1.2).
+#
+# This bank covers Newton's first law, the equation of motion F = ma, and the
+# chapter's lift in each stage of its journey. The units oracle proves the
+# magnitude *and* the unit whenever a quantity is asked for, and `sigfigs` proves
+# the rounding to the figures the data support. Both are written out, because a
+# rounded answer is never equal to the exact one.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. `structured` proves only that a model answer contains the declared steps and
+# concepts, in order — not that the physics in them is right.
+chapter: 3
+problems:
+  - id: p3-2-acceleration
+    section: '3.2'
+    tier: O
+    refs: ['1.2']
+    statement: 'A resultant force of 24 N acts on a mass of 8.0 kg. Calculate the acceleration.'
+    answer_label: 'Acceleration'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F / m
+          values:
+            F: {value: '24', unit: N}
+            m: {value: '8.0', unit: kg}
+          answer: {value: '3.0', unit: m/s^2}
+        - kind: sigfigs
+          value: '24 / 8.0'
+          figures: 2
+          answer: '3.0'
+          convention: round-once
+    answer_text: '$F = ma$, so $a = \dfrac{F}{m} = \dfrac{24}{8.0} = 3.0\,\text{m/s}^2$. The unit follows from the equation: newtons divided by kilograms is metres per second squared.'
+  - id: p3-2-force
+    section: '3.2'
+    tier: O
+    refs: ['1.2']
+    statement: 'A car of mass 1500 kg accelerates at 2.5 m/s$^2$. Calculate the resultant force on it.'
+    answer_label: 'Resultant force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * a
+          values:
+            m: {value: '1500', unit: kg}
+            a: {value: '2.5', unit: m/s^2}
+          answer: {value: '3750', unit: N}
+        - kind: sigfigs
+          value: '1500 * 2.5'
+          figures: 2
+          answer: '3.8e3'
+          convention: round-once
+    answer_text: '$F = ma = 1500 \times 2.5 = 3750\,\text{N}$, which is $3.8 \times 10^{3}\,\text{N}$ to two significant figures. This is the resultant force, not the driving force, because friction and air resistance act the other way.'
+  - id: p3-2-mass
+    section: '3.2'
+    tier: O
+    refs: ['1.2']
+    statement: 'A resultant force of 60 N gives a trolley an acceleration of 4.0 m/s$^2$. Calculate the mass of the trolley.'
+    answer_label: 'Mass of the trolley'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F / a
+          values:
+            F: {value: '60', unit: N}
+            a: {value: '4.0', unit: m/s^2}
+          answer: {value: '15', unit: kg}
+        - kind: sigfigs
+          value: '60 / 4.0'
+          figures: 2
+          answer: '1.5e1'
+          convention: round-once
+    answer_text: 'Rearranging $F = ma$ for the mass gives $m = \dfrac{F}{a} = \dfrac{60}{4.0} = 15\,\text{kg}$. A newton is a kilogram metre per second squared, so the units cancel to kilograms.'
+  - id: p3-2-first-law
+    section: '3.2'
+    tier: O
+    refs: ['1.2']
+    statement: 'A box slides across a table at a steady speed. A student says the box must have a forward force acting on it. Explain why the student is wrong.'
+    answer_label: 'Newton''s first law at a steady speed'
+    check:
+      kind: structured
+      requires: [first-law, resultant, friction]
+      concepts: [constant-velocity, zero, balanced]
+      points:
+        - id: first-law
+          text: 'Newton''s first law says that an object keeps a constant velocity when the resultant force on it is zero.'
+          concepts: [constant-velocity]
+        - id: resultant
+          text: 'A steady speed means the velocity is not changing, so the resultant force must be zero.'
+          concepts: [zero]
+        - id: friction
+          text: 'The push and friction are equal and opposite, so they cancel. No extra forward force is needed to keep the box moving.'
+          concepts: [balanced]
+    answer_text: 'Newton''s first law says an object keeps a constant velocity when the resultant force on it is zero. A steady speed means the resultant force is zero, so the push and friction are equal and opposite. They cancel, and no extra forward force is needed.'
+  - id: p3-2-scale-up
+    section: '3.2'
+    tier: O
+    refs: ['1.2']
+    statement: 'The passenger of mass 60 kg stands on a scale in the lift. The lift accelerates upwards at 1.2 m/s$^2$. Calculate the reading on the scale. Take $g = 9.8$ N/kg.'
+    answer_label: 'Reading on the scale'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * (g + a)
+          values:
+            m: {value: '60', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+            a: {value: '1.2', unit: m/s^2}
+          answer: {value: '660', unit: N}
+        - kind: sigfigs
+          value: '60 * (9.8 + 1.2)'
+          figures: 2
+          answer: '6.6e2'
+          convention: round-once
+    answer_text: 'The scale reads the contact force it exerts on the passenger. Taking upwards as positive, $N - mg = ma$, so $N = m(g + a) = 60 \times (9.8 + 1.2) = 660\,\text{N}$. The reading is larger than her weight of 588 N, because the scale must also provide the force to accelerate her upwards.'
+  - id: p3-2-scale-down
+    section: '3.2'
+    tier: O
+    refs: ['1.2']
+    statement: 'Later in the journey the lift slows down at 1.2 m/s$^2$ while still moving upwards. Calculate the reading on the scale for the 60 kg passenger. Take $g = 9.8$ N/kg.'
+    answer_label: 'Reading on the scale while slowing'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * (g - a)
+          values:
+            m: {value: '60', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+            a: {value: '1.2', unit: m/s^2}
+          answer: {value: '516', unit: N}
+        - kind: sigfigs
+          value: '60 * (9.8 - 1.2)'
+          figures: 2
+          answer: '5.2e2'
+          convention: round-once
+    answer_text: 'The lift is moving upwards but slowing down, so the acceleration points downwards. Then $N = m(g - a) = 60 \times (9.8 - 1.2) = 516\,\text{N}$. The reading is smaller than her weight, so she feels lighter.'
+  - id: p3-2-tension-up
+    section: '3.2'
+    tier: O
+    refs: ['1.2']
+    statement: 'The lift has a mass of 800 kg. Friction in the guide rails is 160 N. The lift accelerates upwards at 1.2 m/s$^2$. Calculate the tension in the cable. Take $g = 9.8$ N/kg.'
+    answer_label: 'Tension in the cable'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * (g + a) + f
+          values:
+            m: {value: '800', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+            a: {value: '1.2', unit: m/s^2}
+            f: {value: '160', unit: N}
+          answer: {value: '8960', unit: N}
+        - kind: sigfigs
+          value: '800 * (9.8 + 1.2) + 160'
+          figures: 2
+          answer: '9.0e3'
+          convention: round-once
+    answer_text: 'Taking upwards as positive, the resultant force is $T - mg - f = ma$. Rearranging gives $T = m(g + a) + f = 800 \times (9.8 + 1.2) + 160 = 8960\,\text{N}$, which is $9.0 \times 10^{3}\,\text{N}$ to two significant figures. The tension must lift the weight, overcome friction, and still provide the force that accelerates the lift.'
+  - id: p3-2-tension-steady
+    section: '3.2'
+    tier: O
+    refs: ['1.2']
+    statement: 'The lift now moves upwards at a constant speed. Friction in the guides is still 160 N and the mass is 800 kg. Calculate the tension in the cable. Take $g = 9.8$ N/kg.'
+    answer_label: 'Tension at a constant speed'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g + f
+          values:
+            m: {value: '800', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+            f: {value: '160', unit: N}
+          answer: {value: '8000', unit: N}
+        - kind: sigfigs
+          value: '800 * 9.8 + 160'
+          figures: 2
+          answer: '8.0e3'
+          convention: round-once
+    answer_text: 'At a constant speed the acceleration is zero, so the resultant force is zero. The tension balances the weight and the friction: $T = mg + f = 800 \times 9.8 + 160 = 8000\,\text{N}$, which is $8.0 \times 10^{3}\,\text{N}$ to two significant figures.'

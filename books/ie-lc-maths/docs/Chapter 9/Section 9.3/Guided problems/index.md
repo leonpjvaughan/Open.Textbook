@@ -160,7 +160,7 @@ Multiplying by 1 leaves the term unchanged.
 With $r = 1$ every term equals the first, so the sequence is $a, a, a, \dots$ The
 differences are all $0$, so it is arithmetic with $d = 0$.
 
-This is the one overlap between the two kinds, along with the trivial case $a = 0$. Apart
+This is the one overlap between the two kinds, along with the special case $a = 0$. Apart
 from it, a sequence cannot be both, because adding a constant and multiplying by a
 constant are different operations.
 

@@ -1,0 +1,185 @@
+# Leaving Certificate Physics, Chapter 4, section 4.3 (strand 1 outcome 1.4).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure. A speed built on a
+# square root is irrational, so its rounding is proved across a declared tolerance.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 4
+problems:
+- id: p4-3-fall-speed
+  section: '4.3'
+  tier: O
+  refs: ['1.4']
+  statement: A stone is dropped from rest from a height of 5.0 m. Using conservation of energy, calculate its speed just before it lands. Take $g = 9.8$ m/s$^2$.
+  answer_label: Speed just before landing
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(2 * g * h)
+      values:
+        g: {value: '9.8', unit: m/s^2}
+        h: {value: '5.0', unit: m}
+      answer: {value: '9.9', unit: m/s}
+      tolerance: '0.05'
+    - kind: sigfigs
+      value: 'sqrt(2 * 9.8 * 5.0)'
+      figures: 2
+      tolerance: '0.01'
+      answer: '9.9'
+      convention: round-once
+  answer_text: 'All the gravitational potential energy becomes kinetic energy, so $mgh = \tfrac{1}{2}mv^2$. The mass cancels: $v = \sqrt{2gh} = \sqrt{2 \times 9.8 \times 5.0} = 9.9\,\text{m/s}$.'
+- id: p4-3-ramp-height
+  section: '4.3'
+  tier: O
+  refs: ['1.4']
+  statement: A skateboarder starts from rest at the top of a ramp and reaches the bottom at 7.0 m/s. Ignoring friction, calculate the height of the ramp. Take $g = 9.8$ m/s$^2$.
+  answer_label: Height of the ramp
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: v**2 / (2 * g)
+      values:
+        v: {value: '7.0', unit: m/s}
+        g: {value: '9.8', unit: m/s^2}
+      answer: {value: '2.5', unit: m}
+    - kind: sigfigs
+      value: '7.0**2 / (2 * 9.8)'
+      figures: 2
+      answer: '2.5'
+      convention: round-once
+  answer_text: 'The potential energy at the top becomes kinetic energy at the bottom: $mgh = \tfrac{1}{2}mv^2$, so $h = \dfrac{v^2}{2g} = \dfrac{7.0^2}{2 \times 9.8} = 2.5\,\text{m}$.'
+- id: p4-3-bounce-loss
+  section: '4.3'
+  tier: O
+  refs: ['1.4']
+  statement: A ball is dropped from a height of 2.0 m and bounces back up to 1.2 m. Calculate the percentage of the energy lost in the bounce.
+  answer_label: Percentage of energy lost
+  check:
+    kind: evaluate
+    expression: 100 * (1 - 1.2 / 2.0)
+    answer: '40'
+  answer_text: 'The gravitational potential energy is proportional to the height, so the ball keeps $\dfrac{1.2}{2.0} = 0.60$ of its energy. The energy lost is $100 \times (1 - 0.60) = 40\%$. The rest warmed the floor and the ball.'
+- id: p4-3-chapter-speed
+  section: '4.3'
+  tier: O
+  refs: ['1.4']
+  statement: Water falls 300 m to the turbines. Assuming no energy losses, calculate its speed at the turbines. Take $g = 9.8$ m/s$^2$.
+  answer_label: Speed at the turbines
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(2 * g * h)
+      values:
+        g: {value: '9.8', unit: m/s^2}
+        h: {value: '300', unit: m}
+      answer: {value: '76.7', unit: m/s}
+      tolerance: '0.1'
+    - kind: sigfigs
+      value: 'sqrt(2 * 9.8 * 300)'
+      figures: 2
+      tolerance: '0.05'
+      answer: '77'
+      convention: round-once
+  answer_text: 'With no losses, $mgh = \tfrac{1}{2}mv^2$, so $v = \sqrt{2gh} = \sqrt{2 \times 9.8 \times 300} = 77\,\text{m/s}$ to two significant figures. This is the third step of the chapter problem.'
+- id: p4-3-chapter-losses
+  section: '4.3'
+  tier: O
+  refs: ['1.4']
+  statement: In the station, the water arrives at the turbines at about 60 m/s, not 77 m/s. Explain where the missing energy has gone.
+  answer_label: Where the missing energy has gone
+  check:
+    kind: structured
+    requires: [compare, friction, thermal, conservation]
+    concepts: [less-ke, friction, thermal, total]
+    points:
+    - id: compare
+      text: the water arrives slower than the conservation calculation predicts, so it has less kinetic energy than the potential energy it lost
+      concepts: [less-ke]
+    - id: friction
+      text: the missing energy was transferred by friction and air resistance as the water moved through the pipe
+      concepts: [friction]
+    - id: thermal
+      text: that energy has not disappeared, because it warmed the water and the pipe slightly and spread into the surroundings as thermal energy
+      concepts: [thermal]
+    - id: conservation
+      text: the total energy is the same, because energy is conserved, and it is no longer all kinetic
+      concepts: [total]
+  answer_text: The water arrives slower than the conservation calculation predicts, so it has less kinetic energy than the potential energy it lost. The missing energy was transferred by friction and air resistance as the water moved through the pipe. That energy has not disappeared, because it warmed the water and the pipe slightly and spread into the surroundings as thermal energy. The total energy is the same, because energy is conserved, and it is no longer all kinetic.
+- id: p4-3-pendulum
+  section: '4.3'
+  tier: O
+  refs: ['1.4']
+  statement: A pendulum bob is released from rest at one side of its swing. Describe the energy transfers during one full swing, and state where the energy eventually goes.
+  answer_label: Energy in a pendulum swing
+  check:
+    kind: structured
+    requires: [top, bottom, back, eventually]
+    concepts: [pe, ke, back, thermal]
+    points:
+    - id: top
+      text: at the top of the swing the bob has maximum gravitational potential energy and no kinetic energy
+      concepts: [pe]
+    - id: bottom
+      text: at the bottom the potential energy is least and the kinetic energy is greatest, so the bob moves fastest there
+      concepts: [ke]
+    - id: back
+      text: the kinetic energy changes back into potential energy as the bob rises on the other side
+      concepts: [back]
+    - id: eventually
+      text: friction with the air gradually transfers the energy to the surroundings as thermal energy, so the swing dies away
+      concepts: [thermal]
+  answer_text: At the top of the swing the bob has maximum gravitational potential energy and no kinetic energy. At the bottom the potential energy is least and the kinetic energy is greatest, so the bob moves fastest there. The kinetic energy changes back into potential energy as the bob rises on the other side. Friction with the air gradually transfers the energy to the surroundings as thermal energy, so the swing dies away.
+- id: p4-3-coaster
+  section: '4.3'
+  tier: O
+  refs: ['1.4']
+  statement: A roller coaster car of mass 500 kg is released from rest at the top of a 20 m drop. Ignoring friction, calculate its speed at the bottom. Take $g = 9.8$ m/s$^2$.
+  answer_label: Speed at the bottom
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(2 * g * h)
+      values:
+        g: {value: '9.8', unit: m/s^2}
+        h: {value: '20', unit: m}
+      answer: {value: '19.8', unit: m/s}
+      tolerance: '0.1'
+    - kind: sigfigs
+      value: 'sqrt(2 * 9.8 * 20)'
+      figures: 2
+      tolerance: '0.05'
+      answer: 2.0e1
+      convention: round-once
+  answer_text: '$mgh = \tfrac{1}{2}mv^2$ gives $v = \sqrt{2gh} = \sqrt{2 \times 9.8 \times 20} = 19.8\,\text{m/s}$, which is $2.0\times10^1\,\text{m/s}$. The mass cancels, so the 500 kg does not appear in the answer.'
+- id: p4-3-mass-cancel
+  section: '4.3'
+  tier: O
+  refs: ['1.4']
+  statement: Two balls of different mass are released from rest from the same height. Explain why they reach the ground with the same speed when air resistance is ignored.
+  answer_label: Why the mass cancels
+  check:
+    kind: structured
+    requires: [pe, ke, cancel]
+    concepts: [mgh, half-m-v-squared, mass-cancels]
+    points:
+    - id: pe
+      text: each ball loses gravitational potential energy m g h, which is proportional to its mass
+      concepts: [mgh]
+    - id: ke
+      text: each ball gains kinetic energy one half m v squared
+      concepts: [half-m-v-squared]
+    - id: cancel
+      text: setting the two equal gives m g h equal to one half m v squared, and the mass cancels, leaving v equal to the square root of 2 g h
+      concepts: [mass-cancels]
+  answer_text: Each ball loses gravitational potential energy $mgh$, which is proportional to its mass. Each ball gains kinetic energy $\tfrac{1}{2}mv^2$. Setting the two equal gives $mgh = \tfrac{1}{2}mv^2$, and the mass cancels, leaving $v = \sqrt{2gh}$. The same height gives the same speed for every mass.

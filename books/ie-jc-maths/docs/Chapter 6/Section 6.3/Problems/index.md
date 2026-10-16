@@ -5,14 +5,18 @@ chapter_title: Ratio, proportion and rates
 section: '6.3'
 section_title: Direct proportion
 tier: O
-refs:
-- N.3
+refs: [N.3]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 6.3 Direct proportion — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: N.3
+Work independently. The questions and answers are shown together at the end.
+
+For every question, write down the value of one unit before you multiply. Then
+check that your answer is the right size: more units must give a larger total when
+the two quantities are directly proportional.
+
+:::problems chapter-06-practice-6.3
+
+:::answers chapter-06-practice-6.3

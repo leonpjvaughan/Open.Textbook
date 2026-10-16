@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.5 The fundamental theorem of calculus — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Write the antiderivative down before you substitute. Put the upper limit first,
+so you always subtract in the order $F(b) - F(a)$.
+
+:::problems chapter-03-practice-3.5
+
+:::answers chapter-03-practice-3.5

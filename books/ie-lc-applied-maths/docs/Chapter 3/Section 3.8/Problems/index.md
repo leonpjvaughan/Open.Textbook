@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.8 Time of flight and range — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Find the components first, then choose between the time of flight, the greatest
+height and the range. State the formula you use before you substitute.
+
+:::problems chapter-03-practice-3.8
+
+:::answers chapter-03-practice-3.8

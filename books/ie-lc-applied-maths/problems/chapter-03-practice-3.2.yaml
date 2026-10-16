@@ -1,0 +1,213 @@
+# Practice set for 3.2 (strand S3, the physical world). Every answer is a
+# quantity, so the checks come from the `units` oracle: `dimensions` proves the
+# arithmetic and the unit together, and `solve` proves a time found from the
+# equations of motion. The `structured` record proves only that a model answer
+# contains the declared ideas, in order — not that the choice is the best one.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics.
+# A dimensionally consistent, arithmetically correct answer would pass even if
+# the wrong equation of motion had been chosen.
+chapter: 3
+symbols:
+  t: {real: true}
+problems:
+  - id: am3-2-first-equation
+    section: '3.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car has an initial velocity of $6$ m/s and accelerates uniformly at
+      $4$ m/s$^2$ for $5$ s. Calculate its final velocity.
+    answer_label: Final velocity
+    check:
+      kind: dimensions
+      expression: u + a*t
+      values:
+        u: {value: '6', unit: 'm/s'}
+        a: {value: '4', unit: 'm/s^2'}
+        t: {value: '5', unit: s}
+      answer: {value: '26', unit: 'm/s'}
+    answer_text: >-
+      Use $v = u + at$: $v = 6 + 4 \times 5 = 26$ m/s. The velocity grows by
+      $4$ m/s every second, so after $5$ s it has grown by $20$ m/s.
+
+  - id: am3-2-second-equation
+    section: '3.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A trolley starts from rest and accelerates uniformly at $3$ m/s$^2$ for
+      $4$ s. Calculate the distance it travels.
+    answer_label: Distance travelled
+    check:
+      kind: dimensions
+      expression: u*t + 0.5*a*t**2
+      values:
+        u: {value: '0', unit: 'm/s'}
+        a: {value: '3', unit: 'm/s^2'}
+        t: {value: '4', unit: s}
+      answer: {value: '24', unit: m}
+    answer_text: >-
+      Use $s = ut + \frac{1}{2}at^2$. The trolley starts from rest, so $u = 0$
+      and the first term vanishes: $s = \frac{1}{2} \times 3 \times 16 = 24$ m.
+
+  - id: am3-2-third-equation
+    section: '3.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A cyclist speeds up from $8$ m/s to $20$ m/s with a constant acceleration
+      of $2$ m/s$^2$. Calculate the distance travelled while speeding up.
+    answer_label: Distance travelled
+    check:
+      kind: dimensions
+      expression: (v**2 - u**2)/(2*a)
+      values:
+        u: {value: '8', unit: 'm/s'}
+        v: {value: '20', unit: 'm/s'}
+        a: {value: '2', unit: 'm/s^2'}
+      answer: {value: '84', unit: m}
+    answer_text: >-
+      The question gives no time, so use $v^2 = u^2 + 2as$. Rearranged,
+      $s = \dfrac{v^2 - u^2}{2a} = \dfrac{400 - 64}{4} = \dfrac{336}{4} = 84$ m.
+
+  - id: am3-2-braking
+    section: '3.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A van travelling at $30$ m/s brakes uniformly and stops in $6$ s. Taking
+      forward as positive, calculate its acceleration and the distance it
+      travels while braking.
+    answer_label: Acceleration, then distance
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (v - u)/t
+          values:
+            u: {value: '30', unit: 'm/s'}
+            v: {value: '0', unit: 'm/s'}
+            t: {value: '6', unit: s}
+          answer: {value: '-5', unit: 'm/s^2'}
+        - kind: dimensions
+          expression: 0.5*(u + v)*t
+          values:
+            u: {value: '30', unit: 'm/s'}
+            v: {value: '0', unit: 'm/s'}
+            t: {value: '6', unit: s}
+          answer: {value: '90', unit: m}
+    answer_text: >-
+      The acceleration is $a = \dfrac{v - u}{t} = \dfrac{0 - 30}{6} = -5$
+      m/s$^2$. The negative sign means it points backwards, so the van slows
+      down. The distance is $s = \frac{1}{2}(u + v)t = \frac{1}{2} \times 30
+      \times 6 = 90$ m.
+
+  - id: am3-2-average-velocity
+    section: '3.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A runner accelerates uniformly from $4$ m/s to $16$ m/s in $6$ s.
+      Calculate the distance covered.
+    answer_label: Distance covered
+    check:
+      kind: dimensions
+      expression: 0.5*(u + v)*t
+      values:
+        u: {value: '4', unit: 'm/s'}
+        v: {value: '16', unit: 'm/s'}
+        t: {value: '6', unit: s}
+      answer: {value: '60', unit: m}
+    answer_text: >-
+      The average velocity is $\dfrac{u + v}{2} = \dfrac{4 + 16}{2} = 10$ m/s.
+      The distance is the average velocity times the time:
+      $s = 10 \times 6 = 60$ m. This is the form $s = \frac{1}{2}(u + v)t$.
+
+  - id: am3-2-solve-time
+    section: '3.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A particle starts at $10$ m/s and accelerates uniformly at $2$ m/s$^2$.
+      It travels $96$ m. Calculate the time taken.
+    answer_label: Time taken
+    check:
+      kind: solve
+      equation: "10*t + t**2 = 96"
+      variable: t
+      interval: [0, 20]
+      answer: ['6']
+    answer_text: >-
+      Use $s = ut + \frac{1}{2}at^2$: $96 = 10t + t^2$. Rearranged,
+      $t^2 + 10t - 96 = 0$, which factorises as $(t + 16)(t - 6) = 0$. The
+      roots are $t = -16$ and $t = 6$. A negative time is outside the model, so
+      the time taken is $6$ s.
+
+  - id: am3-2-train
+    section: '3.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A train travels at $108$ km/h and then brakes uniformly at $1.5$ m/s$^2$
+      until it stops. Calculate the time taken to stop and the distance it
+      travels while braking.
+    answer_label: Time to stop, then distance
+    check:
+      kind: all
+      checks:
+        - kind: convert
+          value: '108'
+          from: km/h
+          to: m/s
+          answer: '30'
+        - kind: dimensions
+          expression: u/a
+          values:
+            u: {value: '30', unit: 'm/s'}
+            a: {value: '1.5', unit: 'm/s^2'}
+          answer: {value: '20', unit: s}
+        - kind: dimensions
+          expression: 0.5*u*t
+          values:
+            u: {value: '30', unit: 'm/s'}
+            t: {value: '20', unit: s}
+          answer: {value: '300', unit: m}
+    answer_text: >-
+      First convert the speed: $108$ km/h $= 30$ m/s. The time to stop is
+      $t = \dfrac{u}{a} = \dfrac{30}{1.5} = 20$ s. The distance is
+      $s = \frac{1}{2}ut = \frac{1}{2} \times 30 \times 20 = 300$ m.
+
+  - id: am3-2-choose-equation
+    section: '3.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A question gives the initial velocity, the acceleration and the distance,
+      and asks for the final velocity. Explain how you would choose which
+      equation of motion to use, and name the equation you would use.
+    answer_label: How to choose an equation
+    check:
+      kind: structured
+      requires: [list-knowns, list-wanted, omit-unwanted]
+      concepts: [equation-of-motion]
+      points:
+        - id: list-knowns
+          text: >-
+            write down the values you are given, with their symbols $u$, $a$ and
+            $s$
+          concepts: [equation-of-motion]
+        - id: list-wanted
+          text: write down the quantity the question asks for, here $v$
+          concepts: [equation-of-motion]
+        - id: omit-unwanted
+          text: >-
+            choose the equation that does not contain the quantity you were not
+            given, here time, so use $v^2 = u^2 + 2as$
+          concepts: [equation-of-motion]
+    answer_text: >-
+      Write down the five symbols and mark each one as known or wanted. Here
+      $u$, $a$ and $s$ are known and $v$ is wanted. Time $t$ is not mentioned,
+      so choose the equation that contains no $t$. That is $v^2 = u^2 + 2as$.
+      Choosing the equation this way saves you from rearranging one that brings
+      in a quantity you do not have.

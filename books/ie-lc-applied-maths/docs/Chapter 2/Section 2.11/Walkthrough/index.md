@@ -31,7 +31,7 @@ answers. Read the question carefully before choosing.
 | the cheapest route between **two** vertices | a shortest path | Dijkstra |
 | the cheapest route through a **staged** network | dynamic programming | backward recursion |
 
-The first two are easy to confuse, and the mistake is common. A spanning tree reaches
+The first two are often confused, and the mistake is common. A spanning tree reaches
 everything; a shortest path reaches one place from another. Ask yourself: *does the answer
 have to touch every vertex?* If yes, it is a spanning tree. If no, it is a path.
 
@@ -41,13 +41,13 @@ Both spanning-tree algorithms give the same answer, so the choice is about the w
 
 - **Kruskal's algorithm** sorts all $E$ edges, then reads down the list. Its work grows
   with the number of **edges**.
-- **Prim's algorithm** adds one vertex at a time and scans the row of the vertex just
+- **Prim's algorithm** adds one vertex at a time and scans the row of the vertex most recently
   added. Its work grows with the number of **vertices** — and with how many edges there
   are per vertex.
 
 That gives a practical rule:
 
-- **Few edges, or edges given as a list** → Kruskal. It sorts once and the list is easy to
+- **Few edges, or edges given as a list** → Kruskal. It sorts once and the list is quick to
   work through by hand.
 - **A dense network, or the network stored as a matrix** → Prim. It never sorts, and the
   row scan is exactly what a matrix is good at.
@@ -67,7 +67,7 @@ likely to be lighter?
 
 60 edges is only slightly more than 50 vertices — a **sparse** network, so most vertices
 have few connections. Kruskal sorts 60 edges; Prim adds 50 vertices and scans the few
-edges at each. Kruskal's sorting is small here, and it is easy to do by hand, so either
+edges at each. Kruskal's sorting is small here, and it is quick to do by hand, so either
 works and Kruskal is the natural choice for showing working.
 
 **Example 2.** A network has 50 vertices and 1,200 edges. Which is likely to be lighter?
@@ -78,7 +78,7 @@ time. Prim is much lighter here.
 
 ## Why the answers cannot be swapped
 
-It is worth seeing *why* each algorithm fails on the other's question, not just that it
+It is worth seeing *why* each algorithm fails on the other's question, not only that it
 does.
 
 - **Kruskal on a shortest path.** Kruskal takes the cheapest edge anywhere. That edge may

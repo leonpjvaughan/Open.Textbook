@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.6 Deriving the equations of motion by calculus — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Write the constant of integration down at every step. It is the starting
+velocity or the starting displacement.
+
+:::problems chapter-03-practice-3.6
+
+:::answers chapter-03-practice-3.6

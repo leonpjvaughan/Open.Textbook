@@ -1,0 +1,174 @@
+# Practice set for 3.5 (strand S3, the physical world). Integration is an
+# operation, so an indefinite integral is proved by differentiating the answer
+# back, and a definite integral is proved by evaluating the exact value. The
+# `solve` check proves the time at which the displacement returns to zero.
+chapter: 3
+symbols:
+  t: {real: true}
+problems:
+  - id: am3-5-indefinite
+    section: '3.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Find $\displaystyle\int (6t + 2)\,dt$.
+    answer_label: The integral
+    check:
+      kind: apply
+      expression: "6*t + 2"
+      apply: {op: integrate, args: [t]}
+      answer: "3*t**2 + 2*t"
+      variable: t
+    answer_text: >-
+      Integrate term by term. Raise the power by one and divide by the new
+      power: $\dfrac{6t^2}{2} + 2t = 3t^2 + 2t$. A constant of integration
+      would be added, and it is free because differentiating it gives zero.
+
+  - id: am3-5-definite-velocity
+    section: '3.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A particle has velocity $v = 4t + 3$ m/s, where $t$ is in seconds.
+      Calculate the displacement between $t = 1$ s and $t = 3$ s.
+    answer_label: Displacement
+    check:
+      kind: apply
+      expression: "4*t + 3"
+      apply: {op: integrate, args: [t, '1', '3']}
+      answer: "22"
+    answer_text: >-
+      The displacement is the definite integral of the velocity:
+      $\displaystyle\int_1^3 (4t + 3)\,dt = \Big[2t^2 + 3t\Big]_1^3$. At
+      $t = 3$ this is $18 + 9 = 27$. At $t = 1$ it is $2 + 3 = 5$. The
+      displacement is $27 - 5 = 22$ m.
+
+  - id: am3-5-definite-linear
+    section: '3.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A particle has velocity $v = 12 - 3t$ m/s. Calculate the displacement
+      between $t = 0$ s and $t = 4$ s.
+    answer_label: Displacement
+    check:
+      kind: apply
+      expression: "12 - 3*t"
+      apply: {op: integrate, args: [t, '0', '4']}
+      answer: "24"
+    answer_text: >-
+      $\displaystyle\int_0^4 (12 - 3t)\,dt = \Big[12t - \frac{3t^2}{2}\Big]_0^4
+      = (48 - 24) - 0 = 24$ m. The velocity stays positive on this interval, so
+      the displacement and the distance are the same.
+
+  - id: am3-5-constant-velocity
+    section: '3.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A cyclist travels at a constant $7$ m/s for $5$ s. Calculate the
+      displacement by integrating the velocity.
+    answer_label: Displacement
+    check:
+      kind: apply
+      expression: "7"
+      apply: {op: integrate, args: [t, '0', '5']}
+      answer: "35"
+    answer_text: >-
+      $\displaystyle\int_0^5 7\,dt = \Big[7t\Big]_0^5 = 35$ m. The area under a
+      constant velocity–time graph is a rectangle, and the integral gives the
+      same answer.
+
+  - id: am3-5-quadratic
+    section: '3.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A particle has velocity $v = 3t^2$ m/s. Calculate the displacement
+      between $t = 0$ s and $t = 4$ s.
+    answer_label: Displacement
+    check:
+      kind: apply
+      expression: "3*t**2"
+      apply: {op: integrate, args: [t, '0', '4']}
+      answer: "64"
+    answer_text: >-
+      $\displaystyle\int_0^4 3t^2\,dt = \Big[t^3\Big]_0^4 = 64$ m.
+
+  - id: am3-5-return-to-zero
+    section: '3.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is thrown upwards with velocity $v = 10 - 9.8t$ m/s. Find the
+      positive time at which its displacement from the start returns to zero.
+    answer_label: Time
+    check:
+      kind: solve
+      equation: "10*t - 4.9*t**2 = 0"
+      variable: t
+      interval: [0.1, 10]
+      answer: ['100/49']
+    answer_text: >-
+      The displacement is the integral of the velocity:
+      $s = \displaystyle\int (10 - 9.8t)\,dt = 10t - 4.9t^2$. Setting $s = 0$
+      gives $t(10 - 4.9t) = 0$. The root $t = 0$ is the start, and the other
+      root is $t = \dfrac{10}{4.9} = \dfrac{100}{49}$ seconds, about $2.04$ s.
+      That is when the ball returns to the ground.
+
+  - id: am3-5-find-time
+    section: '3.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A particle starts from rest and has velocity $v = 4t$ m/s. Find the time
+      at which its displacement is $50$ m.
+    answer_label: Time
+    check:
+      kind: solve
+      equation: "2*t**2 = 50"
+      variable: t
+      interval: [0, 10]
+      answer: ['5']
+    answer_text: >-
+      The displacement is $\displaystyle\int_0^T 4t\,dt = \Big[2t^2\Big]_0^T =
+      2T^2$. Setting $2T^2 = 50$ gives $T^2 = 25$, so $T = 5$ s. The negative
+      root is rejected because a time cannot be negative.
+
+  - id: am3-5-meaning
+    section: '3.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Explain what the definite integral of a velocity tells you, and how you
+      would find the distance travelled rather than the displacement when the
+      velocity changes sign.
+    answer_label: The definite integral and distance
+    check:
+      kind: structured
+      requires: [integral-is-displacement, below-axis-negative, add-magnitudes]
+      concepts: [definite-integral]
+      points:
+        - id: integral-is-displacement
+          text: >-
+            the definite integral of the velocity between two times is the
+            displacement between those times
+          concepts: [definite-integral]
+        - id: below-axis-negative
+          text: >-
+            where the velocity is negative the integral is negative, so that
+            part reduces the displacement
+          concepts: [definite-integral]
+        - id: add-magnitudes
+          text: >-
+            to find the distance, split the time at each point where the
+            velocity is zero and add the size of each part
+          concepts: [definite-integral]
+    answer_text: >-
+      The definite integral of the velocity between two times is the
+      displacement between those times. Where the velocity is negative the
+      integral is negative, so that part of the journey reduces the
+      displacement. To find the distance travelled instead, split the time at
+      each moment the velocity is zero, integrate each part separately, and add
+      the sizes of the parts. That adds every step of the path and cancels
+      nothing.

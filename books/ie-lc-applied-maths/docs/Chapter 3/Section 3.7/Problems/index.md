@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.7 Projectile motion — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Write the two components down first. Find the time from one direction and use it
+in the other. Give each answer with its unit.
+
+:::problems chapter-03-practice-3.7
+
+:::answers chapter-03-practice-3.7

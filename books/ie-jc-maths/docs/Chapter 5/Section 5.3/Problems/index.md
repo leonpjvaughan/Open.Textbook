@@ -5,14 +5,17 @@ chapter_title: Fractions, decimals and percentages
 section: '5.3'
 section_title: Multiplying and dividing fractions
 tier: O
-refs:
-- N.2
+refs: [N.2]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.3 Multiplying and dividing fractions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: N.2
+Work independently. The questions and answers are shown together at the end.
+
+Write every answer in its simplest form. Before you divide, check that the size of
+your answer makes sense.
+
+:::problems chapter-05-practice-5.3
+
+:::answers chapter-05-practice-5.3

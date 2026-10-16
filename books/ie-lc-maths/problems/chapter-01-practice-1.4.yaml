@@ -1,0 +1,122 @@
+# Practice set for 1.4 (strand 3, outcome 3.1, Ordinary and Higher). Absolute
+# value is a distance, so the equations and the inequality are solved by sympy
+# and compared as exact solution sets; the reason is `structured`.
+chapter: 1
+symbols:
+  x: {real: true}
+problems:
+  - id: lc1-4-evaluate
+    section: '1.4'
+    tier: O
+    refs: ['3.1']
+    statement: 'Work out $|-7|$.'
+    answer_label: '$|-7|$'
+    check: {kind: evaluate, expression: 'Abs(-7)', answer: '7'}
+    answer_text: >-
+      $|-7| = 7$. The absolute value is the distance of $-7$ from $0$ on the
+      number line, and a distance is never negative.
+
+  - id: lc1-4-difference
+    section: '1.4'
+    tier: O
+    refs: ['3.1']
+    statement: 'Work out $|3 - 8|$.'
+    answer_label: '$|3 - 8|$'
+    check: {kind: evaluate, expression: 'Abs(3 - 8)', answer: '5'}
+    answer_text: >-
+      $3 - 8 = -5$, so $|3 - 8| = |-5| = 5$. Work out the inside first, then
+      take the absolute value.
+
+  - id: lc1-4-solve
+    section: '1.4'
+    tier: O
+    refs: ['3.1']
+    statement: 'Solve $|x| = 6$ for $x$.'
+    answer_label: 'Both values of $x$'
+    check: {kind: solve, equation: 'Abs(x) = 6', variable: x, answer: ['6', '-6']}
+    answer_text: >-
+      $x = 6$ or $x = -6$. Both are $6$ units from $0$, one to the right and one
+      to the left.
+
+      The equation $|x| = 6$ always has two solutions when the right-hand side
+      is positive.
+
+  - id: lc1-4-solve-shift
+    section: '1.4'
+    tier: O
+    refs: ['3.1']
+    statement: 'Solve $|x - 2| = 5$ for $x$.'
+    answer_label: 'Both values of $x$'
+    check: {kind: solve, equation: 'Abs(x - 2) = 5', variable: x, answer: ['7', '-3']}
+    answer_text: >-
+      The distance from $x$ to $2$ is $5$, so $x$ is $5$ either side of $2$:
+
+      $$x - 2 = 5 \quad\text{or}\quad x - 2 = -5$$
+
+      giving $x = 7$ or $x = -3$.
+
+  - id: lc1-4-distance
+    section: '1.4'
+    tier: O
+    refs: ['3.1']
+    statement: 'Work out the distance between $-4$ and $7$ on the number line.'
+    answer_label: 'The distance'
+    check: {kind: evaluate, expression: 'Abs(7 - (-4))', answer: '11'}
+    answer_text: >-
+      The distance is $|7 - (-4)| = |11| = 11$. Subtracting the two positions
+      and taking the absolute value gives the gap, whichever order you subtract
+      in.
+
+  - id: lc1-4-distance-form
+    section: '1.4'
+    tier: O
+    refs: ['3.1']
+    statement: 'Explain why $|a - b|$ gives the distance between $a$ and $b$ on the number line.'
+    answer_label: 'Why the difference gives the distance'
+    check:
+      kind: structured
+      requires: [difference, size]
+      concepts: [signed-difference, distance]
+      points:
+        - id: difference
+          text: subtracting b from a gives the signed change needed to move from b to a, which is negative when a is to the left of b
+          concepts: [signed-difference]
+        - id: size
+          text: taking the absolute value removes the sign, leaving the size of that change, which is the distance
+          concepts: [distance]
+    answer_text: >-
+      $a - b$ is the signed change from $b$ to $a$. It is negative when $a$ lies
+      to the left of $b$. The absolute value removes the sign, so $|a - b|$ is
+      the size of the change and never negative. That size is the distance.
+
+  - id: lc1-4-inequality
+    section: '1.4'
+    tier: O
+    refs: ['3.1']
+    statement: 'Solve $|x| < 4$ and show the solution on the number line.'
+    answer_label: 'The solution set'
+    check: {kind: inequality, inequality: 'Abs(x) < 4', variable: x, answer: 'Interval.open(-4, 4)'}
+    answer_text: >-
+      The solutions are the numbers whose distance from $0$ is less than $4$:
+
+      $$-4 < x < 4$$
+
+      On the number line this is the open interval between $-4$ and $4$. The
+      endpoints are not included, because the inequality is strict.
+
+  - id: lc1-4-solve-linear
+    section: '1.4'
+    tier: H
+    refs: ['3.1']
+    statement: 'Solve $|2x - 1| = 7$ for $x$.'
+    answer_label: 'Both values of $x$'
+    check: {kind: solve, equation: 'Abs(2*x - 1) = 7', variable: x, answer: ['4', '-3']}
+    answer_text: >-
+      Split the absolute value into its two cases:
+
+      $$2x - 1 = 7 \quad\text{or}\quad 2x - 1 = -7$$
+
+      The first gives $2x = 8$, so $x = 4$. The second gives $2x = -6$, so
+      $x = -3$.
+
+      Check: $|2(4) - 1| = |7| = 7$ and $|2(-3) - 1| = |-7| = 7$. Both work.

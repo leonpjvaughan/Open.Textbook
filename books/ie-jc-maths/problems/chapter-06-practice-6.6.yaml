@@ -1,0 +1,187 @@
+# Junior Cycle Mathematics, Chapter 6, section 6.6.
+#
+# Speed is a rate: it compares a distance with a time. Every check keeps the units
+# out of the CAS fields and puts them in the statement, so the arithmetic proves
+# the number and the prose carries km/h, m/s or minutes. Where a time is given in
+# minutes, the check converts it to a fraction of an hour first.
+chapter: 6
+symbols: {}
+
+problems:
+- id: jc6-6.6-speed-1
+  section: '6.6'
+  tier: O
+  refs:
+  - N.3
+  statement: A car travels 150 km in 3 hours. Find its average speed.
+  answer_label: A car travels 150 km in 3 hours. Find its average speed.
+  check:
+    kind: evaluate
+    expression: 150/3
+    answer: '50'
+  answer_text: >-
+    50 km/h. Speed is distance divided by time: $150\div3=50$. The unit is km/h,
+    read as kilometres per hour, because the distance is in kilometres and the
+    time is in hours.
+- id: jc6-6.6-distance-1
+  section: '6.6'
+  tier: O
+  refs:
+  - N.3
+  statement: A cyclist rides at 20 km/h for 3 hours. How far does the cyclist
+    travel?
+  answer_label: A cyclist rides at 20 km/h for 3 hours. How far?
+  check:
+    kind: evaluate
+    expression: 20*3
+    answer: '60'
+  answer_text: >-
+    60 km. Distance is speed multiplied by time: $20\times3=60$. Rearranging the
+    speed formula gives this one, so you do not need to remember three separate
+    formulas — remember $s=d\div t$ and move the letters.
+- id: jc6-6.6-time-1
+  section: '6.6'
+  tier: O
+  refs:
+  - N.3
+  statement: A train travels 240 km at an average speed of 80 km/h. How long does
+    the journey take?
+  answer_label: A train travels 240 km at 80 km/h. How long does it take?
+  check:
+    kind: evaluate
+    expression: 240/80
+    answer: '3'
+  answer_text: >-
+    3 hours. Time is distance divided by speed: $240\div80=3$. The units work out
+    too, because kilometres divided by kilometres per hour leaves hours.
+- id: jc6-6.6-ms
+  section: '6.6'
+  tier: O
+  refs:
+  - N.3
+  statement: A runner covers 400 m in 50 seconds. Find the runner's average speed
+    in metres per second.
+  answer_label: A runner covers 400 m in 50 seconds. Find the speed in m/s.
+  check:
+    kind: evaluate
+    expression: 400/50
+    answer: '8'
+  answer_text: >-
+    8 m/s. Both measurements are already in metres and seconds, so divide them
+    directly: $400\div50=8$. The unit is m/s, metres per second, which is the unit
+    for short fast events. A speed in m/s is not comparable with one in km/h until
+    you change one of them.
+- id: jc6-6.6-minutes
+  section: '6.6'
+  tier: O
+  refs:
+  - N.3
+  statement: A bus travels 45 km in 30 minutes. Find its average speed in km/h.
+  answer_label: A bus travels 45 km in 30 minutes. Find the speed in km/h.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 30/60
+      answer: '0.5'
+    - kind: evaluate
+      expression: 45/0.5
+      answer: '90'
+  answer_text: >-
+    90 km/h. The speed is wanted in km/h, so change 30 minutes to hours first:
+    $30\div60=0.5$ hours. Then $45\div0.5=90$ km/h. Dividing by 0.5 is the same as
+    multiplying by 2, so the bus covers 90 km in a full hour.
+- id: jc6-6.6-coach
+  section: '6.6'
+  tier: O
+  refs:
+  - N.3
+  statement: The coach for the school tour travels 96 km and the journey takes
+    1 hour 30 minutes. Find its average speed.
+  answer_label: The coach travels 96 km in 1 hour 30 minutes. Find its speed.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1+30/60
+      answer: '1.5'
+    - kind: evaluate
+      expression: 96/1.5
+      answer: '64'
+  answer_text: >-
+    64 km/h. Change 1 hour 30 minutes to $1.5$ hours first. Then
+    $96\div1.5=64$ km/h. If the coach travels 64 km in the first hour, it covers
+    the remaining 32 km in the next half hour, which fits a steady 64 km/h.
+- id: jc6-6.6-plane
+  section: '6.6'
+  tier: O
+  refs:
+  - N.3
+  statement: A plane flies at 800 km/h for 2.5 hours. How far does it fly?
+  answer_label: A plane flies at 800 km/h for 2.5 hours. How far?
+  check:
+    kind: evaluate
+    expression: 800*2.5
+    answer: '2000'
+  answer_text: >-
+    2000 km. Distance is speed multiplied by time: $800\times2.5=2000$. The half
+    hour adds 400 km to the 1600 km flown in the first two hours, which is a quick
+    way to see the answer is the right size.
+- id: jc6-6.6-walk
+  section: '6.6'
+  tier: O
+  refs:
+  - N.3
+  statement: A walker walks 12 km at a steady 4 km/h. How long does the walk
+    take?
+  answer_label: A walker walks 12 km at 4 km/h. How long does the walk take?
+  check:
+    kind: evaluate
+    expression: 12/4
+    answer: '3'
+  answer_text: >-
+    3 hours. Time is distance divided by speed: $12\div4=3$. At 4 km/h the walker
+    covers 4 km each hour, so 12 km takes three hours.
+- id: jc6-6.6-convert
+  section: '6.6'
+  tier: H
+  refs:
+  - N.3
+  statement: Convert a speed of 72 km/h into metres per second.
+  answer_label: Convert 72 km/h into metres per second.
+  check:
+    kind: evaluate
+    expression: 72*1000/3600
+    answer: '20'
+  answer_text: >-
+    20 m/s. One kilometre is 1000 m and one hour is 3600 seconds, so
+    $72\times1000\div3600=20$. A quick way to remember the conversion is to divide
+    by 3.6: $72\div3.6=20$. To go the other way, multiply by 3.6.
+- id: jc6-6.6-average
+  section: '6.6'
+  tier: H
+  refs:
+  - N.3
+  statement: A car travels 60 km at 40 km/h and then a further 60 km at 60 km/h.
+    Find the average speed for the whole journey.
+  answer_label: 60 km at 40 km/h, then 60 km at 60 km/h. Find the average speed.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 60/40
+      answer: '1.5'
+    - kind: evaluate
+      expression: 60/60
+      answer: '1'
+    - kind: evaluate
+      expression: 60+60
+      answer: '120'
+    - kind: evaluate
+      expression: 120/(60/40+60/60)
+      answer: '48'
+  answer_text: >-
+    48 km/h. The first 60 km takes $60\div40=1.5$ hours and the second takes
+    $60\div60=1$ hour, so the whole journey is 120 km in 2.5 hours. Then
+    $120\div2.5=48$ km/h. The answer is not the average of 40 and 60, which is 50,
+    because the car spends longer travelling at the slower speed.

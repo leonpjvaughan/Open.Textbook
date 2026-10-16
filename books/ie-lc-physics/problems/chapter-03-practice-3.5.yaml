@@ -1,0 +1,190 @@
+# Leaving Certificate Physics, Chapter 3, section 3.5 (strand 1 outcome 1.2).
+#
+# This section is Higher only, so every record carries `tier: H`. The bank covers
+# connected objects and systems: the whole system to find the acceleration, then one
+# object on its own to find the tension. The units oracle proves the magnitude *and*
+# the unit whenever a quantity is asked for, and `sigfigs` proves the rounding to the
+# figures the data support. Both are written out, because a rounded answer is never
+# equal to the exact one.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. `structured` proves only that a model answer contains the declared steps and
+# concepts, in order — not that the physics in them is right.
+chapter: 3
+problems:
+  - id: p3-5-pulley-acceleration
+    section: '3.5'
+    tier: H
+    refs: ['1.2']
+    statement: 'Two masses, 3.0 kg and 1.0 kg, hang from the ends of a light string that passes over a frictionless pulley. Calculate the acceleration of the system. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'Acceleration of the pulley system'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (m1 - m2) * g / (m1 + m2)
+          values:
+            m1: {value: '3.0', unit: kg}
+            m2: {value: '1.0', unit: kg}
+            g: {value: '9.8', unit: m/s^2}
+          answer: {value: '4.9', unit: m/s^2}
+        - kind: sigfigs
+          value: '(3.0 - 1.0) * 9.8 / (3.0 + 1.0)'
+          figures: 2
+          answer: '4.9'
+          convention: round-once
+    answer_text: 'Treat the two masses as one system. The net force is the difference in the weights, and the mass being accelerated is the total mass: $a = \dfrac{(m_1 - m_2)g}{m_1 + m_2} = \dfrac{(3.0 - 1.0) \times 9.8}{3.0 + 1.0} = 4.9\,\text{m/s}^2$. The heavier mass falls and the lighter one rises.'
+  - id: p3-5-pulley-tension
+    section: '3.5'
+    tier: H
+    refs: ['1.2']
+    statement: 'For the same pulley system, with masses 3.0 kg and 1.0 kg and an acceleration of 4.9 m/s$^2$, calculate the tension in the string. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'Tension in the string'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m1 * (g - a)
+          values:
+            m1: {value: '3.0', unit: kg}
+            g: {value: '9.8', unit: m/s^2}
+            a: {value: '4.9', unit: m/s^2}
+          answer: {value: '14.7', unit: N}
+        - kind: sigfigs
+          value: '3.0 * (9.8 - 4.9)'
+          figures: 2
+          answer: '1.5e1'
+          convention: round-once
+    answer_text: 'Take the 3.0 kg mass on its own. It accelerates downwards, so the weight is larger than the tension: $m_1g - T = m_1a$. Then $T = m_1(g - a) = 3.0 \times (9.8 - 4.9) = 14.7\,\text{N}$, which is $1.5 \times 10^{1}\,\text{N}$ to two significant figures. The same tension acts on the 1.0 kg mass: $T - m_2g = m_2a$ gives $1.0 \times (9.8 + 4.9) = 14.7\,\text{N}$, so the two objects agree.'
+  - id: p3-5-lift-acceleration
+    section: '3.5'
+    tier: H
+    refs: ['1.2']
+    statement: 'The lift of mass 800 kg is connected to a counterweight of mass 600 kg by a cable over a pulley. Ignore friction. Calculate the acceleration of the lift. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'Acceleration of the lift and counterweight'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (m1 - m2) * g / (m1 + m2)
+          values:
+            m1: {value: '800', unit: kg}
+            m2: {value: '600', unit: kg}
+            g: {value: '9.8', unit: m/s^2}
+          answer: {value: '1.4', unit: m/s^2}
+        - kind: sigfigs
+          value: '(800 - 600) * 9.8 / (800 + 600)'
+          figures: 2
+          answer: '1.4'
+          convention: round-once
+    answer_text: 'The lift is heavier than the counterweight, so the lift descends. Treat the two as one system: $a = \dfrac{(m_1 - m_2)g}{m_1 + m_2} = \dfrac{(800 - 600) \times 9.8}{800 + 600} = 1.4\,\text{m/s}^2$. Both objects have this acceleration, in opposite directions.'
+  - id: p3-5-lift-tension
+    section: '3.5'
+    tier: H
+    refs: ['1.2']
+    statement: 'For the same lift and counterweight, with masses 800 kg and 600 kg and an acceleration of 1.4 m/s$^2$, calculate the tension in the cable. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'Tension in the cable'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m2 * (g + a)
+          values:
+            m2: {value: '600', unit: kg}
+            g: {value: '9.8', unit: m/s^2}
+            a: {value: '1.4', unit: m/s^2}
+          answer: {value: '6720', unit: N}
+        - kind: sigfigs
+          value: '600 * (9.8 + 1.4)'
+          figures: 2
+          answer: '6.7e3'
+          convention: round-once
+    answer_text: 'Take the counterweight on its own. It accelerates upwards, so the tension is larger than its weight: $T - m_2g = m_2a$. Then $T = m_2(g + a) = 600 \times (9.8 + 1.4) = 6720\,\text{N}$, which is $6.7 \times 10^{3}\,\text{N}$ to two significant figures. The same tension acts on the lift, where $m_1g - T = m_1a$.'
+  - id: p3-5-train-acceleration
+    section: '3.5'
+    tier: H
+    refs: ['1.2']
+    statement: 'A locomotive of mass 20000 kg pulls two carriages, each of mass 8000 kg. The driving force is 18000 N. Ignore resistive forces. Calculate the acceleration of the train.'
+    answer_label: 'Acceleration of the train'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F / (m1 + m2 + m3)
+          values:
+            F: {value: '18000', unit: N}
+            m1: {value: '20000', unit: kg}
+            m2: {value: '8000', unit: kg}
+            m3: {value: '8000', unit: kg}
+          answer: {value: '0.50', unit: m/s^2}
+        - kind: sigfigs
+          value: '18000 / (20000 + 8000 + 8000)'
+          figures: 2
+          answer: '0.50'
+          convention: round-once
+    answer_text: 'The driving force accelerates the whole train, so the total mass is $20000 + 8000 + 8000 = 36000\,\text{kg}$. Then $a = \dfrac{F}{m} = \dfrac{18000}{36000} = 0.50\,\text{m/s}^2$. The couplings pull the carriages along, so every part of the train has this acceleration.'
+  - id: p3-5-train-coupling
+    section: '3.5'
+    tier: H
+    refs: ['1.2']
+    statement: 'For the same train, with an acceleration of 0.50 m/s$^2$ and two carriages of 8000 kg each, calculate the force in the coupling between the locomotive and the first carriage.'
+    answer_label: 'Force in the coupling'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (m2 + m3) * a
+          values:
+            m2: {value: '8000', unit: kg}
+            m3: {value: '8000', unit: kg}
+            a: {value: '0.50', unit: m/s^2}
+          answer: {value: '8000', unit: N}
+        - kind: sigfigs
+          value: '(8000 + 8000) * 0.50'
+          figures: 2
+          answer: '8.0e3'
+          convention: round-once
+    answer_text: 'The coupling behind the locomotive pulls both carriages, so the mass it accelerates is $8000 + 8000 = 16000\,\text{kg}$. Then $F = ma = 16000 \times 0.50 = 8000\,\text{N}$, which is $8.0 \times 10^{3}\,\text{N}$ to two significant figures. The coupling between the two carriages pulls only the rear carriage, so it carries half this force.'
+  - id: p3-5-system-reason
+    section: '3.5'
+    tier: H
+    refs: ['1.2']
+    statement: 'Explain why you add the masses to find the acceleration of a connected system, but use the mass of one object to find the tension in the string.'
+    answer_label: 'Finding the acceleration, then the tension'
+    check:
+      kind: structured
+      requires: [system, isolate, why]
+      concepts: [total-mass, net-force, single-object]
+      points:
+        - id: system
+          text: 'The whole system has one acceleration, so the net force is divided by the total mass of all the connected objects.'
+          concepts: [total-mass, net-force]
+        - id: isolate
+          text: 'To find the tension, treat one object on its own and write the forces that act on it.'
+          concepts: [single-object]
+        - id: why
+          text: 'The tension is an internal force for the whole system, so it cancels there. It is an external force for one object on its own, so it appears in that object''s equation.'
+          concepts: [single-object]
+    answer_text: 'The whole system has one acceleration, so divide the net force by the total mass of all the connected objects. To find the tension, treat one object on its own and write the forces that act on it. The tension is an internal force for the whole system, so it cancels there, but it is an external force for one object, so it appears in that object''s equation.'
+  - id: p3-5-tension-not-weight
+    section: '3.5'
+    tier: H
+    refs: ['1.2']
+    statement: 'A 3.0 kg mass hangs from a string over a pulley and accelerates downwards at 4.9 m/s$^2$. Explain why the tension in the string is not equal to the weight of the mass. Take $g = 9.8$ m/s$^2$.'
+    answer_label: 'Why the tension is less than the weight'
+    check:
+      kind: structured
+      requires: [weight, net, tension]
+      concepts: [unbalanced, accelerating, less-than]
+      points:
+        - id: weight
+          text: 'The weight of the mass is 29.4 N, pulling it downwards.'
+          concepts: [unbalanced]
+        - id: net
+          text: 'The mass is accelerating downwards, so the downward weight must be larger than the upward tension.'
+          concepts: [accelerating]
+        - id: tension
+          text: 'The tension is therefore less than the weight: it is 14.7 N, because $T = m(g - a)$.'
+          concepts: [less-than]
+    answer_text: 'The weight of the mass is $mg = 3.0 \times 9.8 = 29.4\,\text{N}$ downwards. The mass is accelerating downwards, so the downward weight must be larger than the upward tension. The tension is therefore less than the weight: $T = m(g - a) = 3.0 \times (9.8 - 4.9) = 14.7\,\text{N}$. If the tension equalled the weight, the resultant force would be zero and the mass would not accelerate.'

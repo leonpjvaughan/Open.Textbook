@@ -1,0 +1,227 @@
+# Practice set for 3.9 (strand S3, the physical world; Higher only). The checks
+# come from the `units` oracle. A resolution and every value built on a
+# trigonometric component are proved against a declared tolerance; the
+# `resolve` checks prove the two launch angles that give a stated range. The
+# `structured` record proves only that a model answer contains the declared
+# ideas, in order.
+chapter: 3
+problems:
+  - id: am3-9-complementary-range
+    section: '3.9'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball is kicked at $20$ m/s at $60^\circ$ above the horizontal. Its
+      components are $10$ m/s horizontally and $17.32$ m/s vertically. Taking
+      $g = 9.8$ m/s$^2$, calculate its range.
+    answer_label: Range
+    check:
+      kind: dimensions
+      expression: ux*2*uy/g
+      values:
+        ux: {value: '10', unit: 'm/s'}
+        uy: {value: '17.32', unit: 'm/s'}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '35.35', unit: m}
+      tolerance: '0.01'
+    answer_text: >-
+      The range is $R = \dfrac{u^2 \sin 2\theta}{g}$. Here
+      $2\theta = 120^\circ$, and $\sin 120^\circ = \sin 60^\circ = 0.8660$. So
+      $R = \dfrac{400 \times 0.8660}{9.8} = 35.35$ m. This is the same range as
+      the kick at $30^\circ$, because $30^\circ$ and $60^\circ$ are
+      complementary.
+
+  - id: am3-9-max-range-45
+    section: '3.9'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball is kicked at $20$ m/s. Taking $g = 9.8$ m/s$^2$, calculate the
+      greatest range it can have on level ground, and state the angle that
+      gives it.
+    answer_label: Greatest range and its angle
+    check:
+      kind: dimensions
+      expression: u**2/g
+      values:
+        u: {value: '20', unit: 'm/s'}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '40.82', unit: m}
+      tolerance: '0.01'
+    answer_text: >-
+      The range is $R = \dfrac{u^2 \sin 2\theta}{g}$. It is greatest when
+      $\sin 2\theta = 1$, so $2\theta = 90^\circ$ and $\theta = 45^\circ$. Then
+      $R = \dfrac{400}{9.8} = 40.82$ m. No other angle reaches this distance.
+
+  - id: am3-9-complementary-angle
+    section: '3.9'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A projectile is launched at $25^\circ$ to the horizontal. At what other
+      angle, with the same speed, does it have the same range?
+    answer_label: The other angle
+    check: {kind: evaluate, expression: '90 - 25', answer: '65'}
+    answer_text: >-
+      The range depends on $\sin 2\theta$. Two angles give the same sine when
+      they add to $90^\circ$, because $\sin(180^\circ - A) = \sin A$. Here
+      $2 \times 25^\circ = 50^\circ$ and $180^\circ - 50^\circ = 130^\circ$, so
+      the other angle is $65^\circ$. Both angles give the same range.
+
+  - id: am3-9-angle-for-range
+    section: '3.9'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball is kicked at $15$ m/s and lands $20$ m away on level ground.
+      Find the two possible launch angles, each to $2$ decimal places.
+    answer_label: The two angles
+    check:
+      kind: all
+      checks:
+        - kind: resolve
+          relation: magnitude-and-angle-from-components
+          components: {x: '12.95', y: '7.57'}
+          magnitude: '15'
+          angle_deg: '30.29'
+          tolerance: '0.05'
+        - kind: resolve
+          relation: magnitude-and-angle-from-components
+          components: {x: '7.57', y: '12.95'}
+          magnitude: '15'
+          angle_deg: '59.71'
+          tolerance: '0.05'
+    answer_text: >-
+      Use $R = \dfrac{u^2 \sin 2\theta}{g}$: $20 = \dfrac{225 \sin 2\theta}{9.8}$,
+      so $\sin 2\theta = \dfrac{196}{225} = 0.8711$. Then
+      $2\theta = 60.57^\circ$ or $119.43^\circ$. Halving gives
+      $\theta = 30.29^\circ$ or $59.71^\circ$. Both angles give a range of
+      $20$ m, because they are complementary.
+
+  - id: am3-9-launch-from-height
+    section: '3.9'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball is thrown at $15$ m/s at $30^\circ$ above the horizontal from the
+      top of a cliff $10$ m high. Its components are $12.99$ m/s horizontally
+      and $7.5$ m/s vertically. Taking $g = 9.8$ m/s$^2$, calculate the time
+      until it lands, and the horizontal distance it travels.
+    answer_label: Time of flight, then horizontal distance
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: (uy + sqrt(uy**2 + 2*g*h))/g
+          values:
+            uy: {value: '7.5', unit: 'm/s'}
+            g: {value: '9.8', unit: 'm/s^2'}
+            h: {value: '10', unit: m}
+          answer: {value: '2.386', unit: s}
+          tolerance: '0.001'
+        - kind: dimensions
+          expression: ux*(uy + sqrt(uy**2 + 2*g*h))/g
+          values:
+            ux: {value: '12.99', unit: 'm/s'}
+            uy: {value: '7.5', unit: 'm/s'}
+            g: {value: '9.8', unit: 'm/s^2'}
+            h: {value: '10', unit: m}
+          answer: {value: '30.99', unit: m}
+          tolerance: '0.01'
+    answer_text: >-
+      Take the top of the cliff as $y = 0$. The height at time $t$ is
+      $y = 7.5t - 4.9t^2$, and the ball lands when $y = -10$:
+      $4.9t^2 - 7.5t - 10 = 0$. The quadratic formula gives
+      $t = \dfrac{7.5 + \sqrt{7.5^2 + 4 \times 4.9 \times 10}}{9.8}
+      = \dfrac{7.5 + 15.88}{9.8} = 2.386$ s. The horizontal distance is
+      $x = 12.99 \times 2.386 = 30.99$ m.
+
+  - id: am3-9-max-range-and-height
+    section: '3.9'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball is kicked at $20$ m/s at $45^\circ$ to the horizontal. Taking
+      $g = 9.8$ m/s$^2$, calculate its range and its greatest height.
+    answer_label: Range, then greatest height
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: u**2/g
+          values:
+            u: {value: '20', unit: 'm/s'}
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '40.82', unit: m}
+          tolerance: '0.01'
+        - kind: dimensions
+          expression: u**2/(4*g)
+          values:
+            u: {value: '20', unit: 'm/s'}
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '10.20', unit: m}
+          tolerance: '0.01'
+    answer_text: >-
+      At $45^\circ$, $u_x = u_y = 20\sin 45^\circ = 14.14$ m/s. The range is
+      $R = \dfrac{u^2}{g} = \dfrac{400}{9.8} = 40.82$ m. The greatest height is
+      $H = \dfrac{u_y^2}{2g} = \dfrac{200}{19.6} = 10.20$ m. At $45^\circ$ the
+      greatest height is exactly one quarter of the range.
+
+  - id: am3-9-speed-from-range
+    section: '3.9'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A ball is kicked at $30^\circ$ above the horizontal and lands $25$ m
+      away on level ground. Taking $g = 9.8$ m/s$^2$, calculate the speed at
+      which it was kicked.
+    answer_label: Launch speed
+    check:
+      kind: dimensions
+      expression: sqrt(R*g/(sqrt(3)/2))
+      values:
+        R: {value: '25', unit: m}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '16.82', unit: 'm/s'}
+      tolerance: '0.01'
+    answer_text: >-
+      Use $R = \dfrac{u^2 \sin 2\theta}{g}$. Here $2\theta = 60^\circ$ and
+      $\sin 60^\circ = 0.8660$, so $25 = \dfrac{u^2 \times 0.8660}{9.8}$. Then
+      $u^2 = \dfrac{25 \times 9.8}{0.8660} = 282.9$, and
+      $u = \sqrt{282.9} = 16.82$ m/s.
+
+  - id: am3-9-complementary-angles
+    section: '3.9'
+    tier: H
+    refs: [S3]
+    statement: >-
+      Explain why two different launch angles can give the same range on level
+      ground, and why one of them stays in the air longer.
+    answer_label: Why two angles share a range
+    check:
+      kind: structured
+      requires: [same-sine, complementary, higher-angle-longer]
+      concepts: [complementary-angles]
+      points:
+        - id: same-sine
+          text: >-
+            the range depends only on $\sin 2\theta$, and two angles have the
+            same sine when they add to $180^\circ$
+          concepts: [complementary-angles]
+        - id: complementary
+          text: >-
+            that happens when the launch angles add to $90^\circ$, so
+            $\theta$ and $90^\circ - \theta$ give the same range
+          concepts: [complementary-angles]
+        - id: higher-angle-longer
+          text: >-
+            the steeper angle has the larger vertical component, so it stays in
+            the air longer and travels more slowly horizontally
+          concepts: [complementary-angles]
+    answer_text: >-
+      The range is $R = \dfrac{u^2 \sin 2\theta}{g}$. Two angles give the same
+      sine when they add to $180^\circ$. Doubling a pair of angles that add to
+      $90^\circ$ gives a pair that add to $180^\circ$, so $\theta$ and
+      $90^\circ - \theta$ give the same range. The steeper angle has the larger
+      vertical component. It rises higher and stays in the air longer, so it
+      travels more slowly horizontally to cover the same distance.

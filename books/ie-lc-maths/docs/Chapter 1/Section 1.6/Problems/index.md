@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.6 Solving problems with indices — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 3.2
+Work independently. The questions and answers are shown together at the end.
+
+Write both sides as powers of the same base before you compare indices. For a
+growth or decay question, say what the multiplier is before you raise it to a
+power.
+
+:::problems chapter-01-practice-1.6
+
+:::answers chapter-01-practice-1.6

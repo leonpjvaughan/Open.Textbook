@@ -22,7 +22,7 @@ again, so that a computer can work on it.
 
 ## A picture is not a list of numbers
 
-A drawing of a network is easy for you to read and hard for a computer. A table of
+A drawing of a network is quick for you to read and hard for a computer. A table of
 numbers is the opposite. The **adjacency matrix** is the table, and it holds exactly the
 same information as the drawing.
 

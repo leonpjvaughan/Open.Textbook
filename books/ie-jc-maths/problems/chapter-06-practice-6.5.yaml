@@ -1,0 +1,247 @@
+# Junior Cycle Mathematics, Chapter 6, section 6.5.
+#
+# An absolute change keeps the units and subtracts; a relative change divides by
+# the original value and is written as a fraction or a percentage. Every check
+# proves both, so a record cannot pass by reporting an absolute change as though
+# it were a percentage. Where the percentage does not come out exactly, the check
+# is an `approx` with a stated tolerance.
+chapter: 6
+symbols: {}
+
+problems:
+- id: jc6-6.5-rise
+  section: '6.5'
+  tier: O
+  refs:
+  - N.3
+  statement: A price rises from 40 euro to 44 euro. Find the absolute increase and
+    the percentage increase.
+  answer_label: A price rises from 40 euro to 44 euro. Find both increases.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 44-40
+      answer: '4'
+    - kind: evaluate
+      expression: 4/40*100
+      answer: '10'
+  answer_text: >-
+    The absolute increase is $44-40=4$ euro. The relative increase is
+    $4\div40=0.1$, which is 10%. The absolute increase keeps the unit, so it is
+    measured in euro; the relative increase has no unit, because it compares the
+    change with the original price.
+- id: jc6-6.5-fall
+  section: '6.5'
+  tier: O
+  refs:
+  - N.3
+  statement: A price falls from 80 euro to 60 euro. Find the absolute decrease and
+    the percentage decrease.
+  answer_label: A price falls from 80 euro to 60 euro. Find both decreases.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 80-60
+      answer: '20'
+    - kind: evaluate
+      expression: 20/80*100
+      answer: '25'
+  answer_text: >-
+    The absolute decrease is $80-60=20$ euro. The relative decrease is
+    $20\div80=0.25$, which is 25%. Always divide by the original value, 80, and
+    not by the new one, 60 — dividing by the new value would give a percentage
+    that describes the wrong thing.
+- id: jc6-6.5-which-bigger
+  section: '6.5'
+  tier: O
+  refs:
+  - N.3
+  statement: Which is the bigger increase, 5 euro on 20 euro or 5 euro on 50 euro?
+    Give the percentage increase for each.
+  answer_label: Which is the bigger increase?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 5/20*100
+      answer: '25'
+    - kind: evaluate
+      expression: 5/50*100
+      answer: '10'
+    - kind: compare
+      lhs: 5/20*100
+      relation: '>'
+      rhs: 5/50*100
+  answer_text: >-
+    5 euro on 20 euro is the bigger increase. It is $5\div20=25$%, while 5 euro on
+    50 euro is $5\div50=10$%. The absolute increase is the same 5 euro in both
+    cases, so only the relative increase can tell the two apart. This is why
+    percentages are used to compare changes on different starting amounts.
+- id: jc6-6.5-population
+  section: '6.5'
+  tier: O
+  refs:
+  - N.3
+  statement: A town's population rises from 8000 to 8400. Find the percentage
+    increase.
+  answer_label: A population rises from 8000 to 8400. Find the percentage increase.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 8400-8000
+      answer: '400'
+    - kind: evaluate
+      expression: 400/8000*100
+      answer: '5'
+  answer_text: >-
+    5%. The increase is $8400-8000=400$ people, and $400\div8000=0.05$. As a
+    percentage that is 5%. An increase of 400 sounds large, but against a town of
+    8000 it is a small relative change.
+- id: jc6-6.5-discount
+  section: '6.5'
+  tier: O
+  refs:
+  - N.3
+  statement: A jacket costs 50 euro and is reduced by 20%. Find the new price.
+  answer_label: A jacket costs 50 euro and is reduced by 20%. Find the new price.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 50*20/100
+      answer: '10'
+    - kind: evaluate
+      expression: 50-10
+      answer: '40'
+  answer_text: >-
+    40 euro. The reduction is $20\%$ of 50 euro, which is $50\times20\div100=10$
+    euro. Subtract it from the original price: $50-10=40$ euro. A 20% reduction
+    means you pay 80% of the price, and $50\times0.8=40$ as well.
+- id: jc6-6.5-coach
+  section: '6.5'
+  tier: O
+  refs:
+  - N.3
+  statement: Last year the coach for the school tour cost 450 euro. This year it
+    costs 480 euro. Find the absolute increase and the percentage increase,
+    correct to 1 decimal place.
+  answer_label: The coach rose from 450 euro to 480 euro. Find both increases.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 480-450
+      answer: '30'
+    - kind: approx
+      value: 30/450*100
+      target: '6.7'
+      tolerance: '0.05'
+  answer_text: >-
+    The absolute increase is 30 euro. The relative increase is
+    $30\div450=0.0666\ldots$, which is 6.7% to 1 decimal place. The fraction
+    $30\div450$ simplifies to $1\div15$, so the exact percentage is
+    $6\frac{2}{3}$%. The coach cost is up, but by less than a tenth of last
+    year's price.
+- id: jc6-6.5-shops
+  section: '6.5'
+  tier: O
+  refs:
+  - N.3
+  statement: Shop A sells a phone for 300 euro and reduces it by 30 euro. Shop B
+    sells the same phone for 200 euro and reduces it by 30 euro. Which shop gives
+    the bigger percentage reduction?
+  answer_label: Which shop gives the bigger percentage reduction?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 30/300*100
+      answer: '10'
+    - kind: evaluate
+      expression: 30/200*100
+      answer: '15'
+    - kind: compare
+      lhs: 30/200*100
+      relation: '>'
+      rhs: 30/300*100
+  answer_text: >-
+    Shop B. Shop A reduces by $30\div300=10$%, and Shop B reduces by
+    $30\div200=15$%. Both reductions are 30 euro, so the absolute reduction is the
+    same in each shop. The relative reduction is larger at Shop B, because the
+    same 30 euro is a bigger share of the smaller price.
+- id: jc6-6.5-pay
+  section: '6.5'
+  tier: O
+  refs:
+  - N.3
+  statement: A worker's pay rises from 12 euro an hour to 13.50 euro an hour. Find
+    the percentage increase.
+  answer_label: Pay rises from 12 euro to 13.50 euro an hour. Find the increase.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 13.5-12
+      answer: '1.5'
+    - kind: evaluate
+      expression: 1.5/12*100
+      answer: '12.5'
+  answer_text: >-
+    12.5%. The increase is $13.50-12=1.50$ euro an hour, and
+    $1.50\div12=0.125$. As a percentage that is 12.5%, which is one eighth. An
+    increase of 1.50 euro an hour sounds modest, but against 12 euro it is a rise
+    of one part in eight.
+- id: jc6-6.5-proportions
+  section: '6.5'
+  tier: O
+  refs:
+  - N.3
+  statement: In Class A, 15 of 20 students walk to school. In Class B, 18 of 25
+    students walk to school. Which class has the higher proportion of walkers?
+  answer_label: Which class has the higher proportion of walkers?
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 15/20*100
+      answer: '75'
+    - kind: evaluate
+      expression: 18/25*100
+      answer: '72'
+    - kind: compare
+      lhs: 15/20*100
+      relation: '>'
+      rhs: 18/25*100
+  answer_text: >-
+    Class A. Class A has $15\div20=75$% walkers, and Class B has
+    $18\div25=72$%. Class B has more walkers in total, but its class is larger, so
+    the proportion is slightly lower. Comparing counts alone would have given the
+    wrong answer; comparing proportions is what answers the question.
+- id: jc6-6.5-reverse
+  section: '6.5'
+  tier: H
+  refs:
+  - N.3
+  statement: A shop increases a price by 10%, and the new price is 55 euro. Find
+    the original price.
+  answer_label: After a 10% rise the price is 55 euro. Find the original price.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1+10/100
+      answer: '1.1'
+    - kind: evaluate
+      expression: 55/1.1
+      answer: '50'
+    - kind: evaluate
+      expression: 50*10/100
+      answer: '5'
+  answer_text: >-
+    50 euro. The new price is 110% of the original, so divide by 1.1:
+    $55\div1.1=50$ euro. You can check it: 10% of 50 euro is 5 euro, and
+    $50+5=55$ euro. Subtracting 10% from 55 would give 49.50 euro, which is
+    wrong — a 10% rise and a 10% fall do not undo each other.

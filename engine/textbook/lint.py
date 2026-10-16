@@ -120,7 +120,12 @@ STYLE_WORDS = {
     r"\beasy\b": "(rewrite: straightforward / quick)",
     r"\beasily\b": "(rewrite)",
     r"\btrivial\b": "(remove)",
-    r"\bjust\b(?! (?:as|like|the|now|yet|before|after|once|enough|over|under|so|one|two|three|how|what))": "(check: often removable)",
+    # `just` is belittling in "it is just a table" and precise in "just below zero" or
+    # "just begins to slide". The followers below are the senses that mean *exactly*, or
+    # *only barely* — a measurement, a threshold, a limit — and they are allowed. Every
+    # other use is the shaming one and is flagged.
+    r"\bjust\b(?! (?:as|like|the|now|yet|before|after|once|enough|over|under|so|one|two|three|how|what"
+    r"|above|below|outside|inside|past|short|at|begin|begins|start|starts|slide|slides|move|moves|clear|clears|miss|misses|touch|touches|reach|reaches|fit|fits|hold|holds|underneath))": "(check: often removable)",
 }
 
 US_SPELLINGS = {

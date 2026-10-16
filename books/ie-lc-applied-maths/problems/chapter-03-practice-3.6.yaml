@@ -1,0 +1,198 @@
+# Practice set for 3.6 (strand S3, the physical world). Each equation of motion
+# is derived by integrating, so the checks use `apply` with op: integrate, and
+# the final value is proved by a `dimensions` check. The `consistency` check
+# proves that the terms of s = ut + at^2/2 share a dimension, which a CAS
+# cannot see. The `structured` record proves only that a derivation states its
+# declared steps in order.
+chapter: 3
+symbols:
+  t: {real: true}
+problems:
+  - id: am3-6-integrate-acceleration
+    section: '3.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A particle has an initial velocity of $4$ m/s and a constant acceleration
+      of $6$ m/s$^2$. Integrate the acceleration to find its velocity after
+      $5$ s.
+    answer_label: Velocity after 5 s
+    check:
+      kind: all
+      checks:
+        - kind: apply
+          expression: "6"
+          apply: {op: integrate, args: [t]}
+          answer: "6*t"
+          variable: t
+        - kind: dimensions
+          expression: u + a*t
+          values:
+            u: {value: '4', unit: 'm/s'}
+            a: {value: '6', unit: 'm/s^2'}
+            t: {value: '5', unit: s}
+          answer: {value: '34', unit: 'm/s'}
+    answer_text: >-
+      The velocity is the integral of the acceleration, plus the initial value:
+      $v = 4 + \displaystyle\int 6\,dt = 4 + 6t$. At $t = 5$ s,
+      $v = 4 + 30 = 34$ m/s. This is $v = u + at$ with the symbols written out.
+
+  - id: am3-6-integrate-velocity
+    section: '3.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A particle has velocity $v = 4 + 6t$ m/s and starts at the origin.
+      Calculate its displacement after $5$ s.
+    answer_label: Displacement
+    check:
+      kind: apply
+      expression: "4 + 6*t"
+      apply: {op: integrate, args: [t, '0', '5']}
+      answer: "95"
+    answer_text: >-
+      The displacement is the integral of the velocity:
+      $\displaystyle\int_0^5 (4 + 6t)\,dt = \Big[4t + 3t^2\Big]_0^5
+      = 20 + 75 = 95$ m. This is $s = ut + \frac{1}{2}at^2$ with $u = 4$,
+      $a = 6$ and $t = 5$.
+
+  - id: am3-6-derive-height
+    section: '3.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is thrown upwards at $10$ m/s. Gravity gives it a constant
+      acceleration of $-9.8$ m/s$^2$. Integrate once to find its velocity, and
+      again to find its height, both as functions of $t$.
+    answer_label: Velocity, then height
+    check:
+      kind: all
+      checks:
+        - kind: apply
+          expression: "-9.8"
+          apply: {op: integrate, args: [t]}
+          answer: "-9.8*t"
+          variable: t
+        - kind: apply
+          expression: "10 - 9.8*t"
+          apply: {op: integrate, args: [t]}
+          answer: "10*t - 4.9*t**2"
+          variable: t
+    answer_text: >-
+      The velocity is $v = 10 + \displaystyle\int (-9.8)\,dt = 10 - 9.8t$. The
+      height is the integral of the velocity, and it starts at zero:
+      $y = \displaystyle\int (10 - 9.8t)\,dt = 10t - 4.9t^2$. The two constants
+      of integration are the starting velocity and the starting height.
+
+  - id: am3-6-v-squared
+    section: '3.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A particle starts at $3$ m/s and accelerates at $4$ m/s$^2$ over a
+      distance of $14$ m. Calculate its final velocity.
+    answer_label: Final velocity
+    check:
+      kind: dimensions
+      expression: sqrt(u**2 + 2*a*s)
+      values:
+        u: {value: '3', unit: 'm/s'}
+        a: {value: '4', unit: 'm/s^2'}
+        s: {value: '14', unit: m}
+      answer: {value: '11', unit: 'm/s'}
+    answer_text: >-
+      Use $v^2 = u^2 + 2as$: $v^2 = 9 + 2 \times 4 \times 14 = 9 + 112 = 121$.
+      The final velocity is $v = \sqrt{121} = 11$ m/s. Section 3.6 derives this
+      equation by the chain rule, writing $a = v\dfrac{dv}{ds}$.
+
+  - id: am3-6-time-of-flight
+    section: '3.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is thrown upwards at $12$ m/s. Its height is $y = 12t - 4.9t^2$
+      metres. Find the positive time at which it returns to the ground.
+    answer_label: Time
+    check:
+      kind: solve
+      equation: "12*t - 4.9*t**2 = 0"
+      variable: t
+      interval: [0.1, 10]
+      answer: ['120/49']
+    answer_text: >-
+      Set $y = 0$: $12t - 4.9t^2 = 0$, so $t(12 - 4.9t) = 0$. The root $t = 0$
+      is the throw, and the other root is $t = \dfrac{12}{4.9} = \dfrac{120}{49}$
+      seconds, about $2.45$ s. That is when the ball lands.
+
+  - id: am3-6-consistency
+    section: '3.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Show that the two terms on the right of $s = ut + \frac{1}{2}at^2$ have
+      the same dimensions as $s$.
+    answer_label: A dimensional check
+    check:
+      kind: dimensions
+      consistency: "s = u*t + a*t**2/2"
+      units: {s: m, u: "m/s", a: "m/s^2", t: s}
+    answer_text: >-
+      The term $ut$ is a velocity times a time, so its dimension is
+      $\text{m s}^{-1} \times \text{s} = \text{m}$. The term
+      $\frac{1}{2}at^2$ is an acceleration times a time squared, so its
+      dimension is $\text{m s}^{-2} \times \text{s}^2 = \text{m}$. Both terms
+      are lengths, so both match $s$. The constant $\frac{1}{2}$ has no
+      dimension and cannot change the result.
+
+  - id: am3-6-derive-first-equation
+    section: '3.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Derive $v = u + at$ from $a = \dfrac{dv}{dt}$ for a constant
+      acceleration.
+    answer_label: The derivation
+    check:
+      kind: structured
+      requires: [start-acceleration, integrate, initial-condition]
+      concepts: [calculus-of-motion]
+      points:
+        - id: start-acceleration
+          text: start from $a = \dfrac{dv}{dt}$, so $dv = a\,dt$
+          concepts: [calculus-of-motion]
+        - id: integrate
+          text: >-
+            integrate both sides from time $0$ to time $t$:
+            $v - u = at$
+          concepts: [calculus-of-motion]
+        - id: initial-condition
+          text: >-
+            the velocity at time $0$ is $u$, so rearrange to $v = u + at$
+          concepts: [calculus-of-motion]
+    answer_text: >-
+      Start from $a = \dfrac{dv}{dt}$, which rearranges to $dv = a\,dt$.
+      Integrate both sides between the start and time $t$. The left side gives
+      $v - u$ and the right side gives $at$, because $a$ is constant. So
+      $v - u = at$, and $v = u + at$.
+
+  - id: am3-6-decelerate
+    section: '3.6'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A car travelling at $15$ m/s brakes with a constant acceleration of
+      $-3$ m/s$^2$ until it stops. Calculate the distance it travels while
+      braking.
+    answer_label: Distance
+    check:
+      kind: dimensions
+      expression: (v**2 - u**2)/(2*a)
+      values:
+        u: {value: '15', unit: 'm/s'}
+        v: {value: '0', unit: 'm/s'}
+        a: {value: '-3', unit: 'm/s^2'}
+      answer: {value: '37.5', unit: m}
+    answer_text: >-
+      Use $v^2 = u^2 + 2as$ with $v = 0$. Then
+      $s = \dfrac{0 - 225}{2 \times (-3)} = \dfrac{-225}{-6} = 37.5$ m. The two
+      negative signs cancel, so the distance is positive.

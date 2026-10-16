@@ -42,7 +42,7 @@ $a + bi$, two real quantities are being carried together.
 ## Your turn to connect it
 
 Have you met a quantity that needs **two** numbers to describe it, where the two are
-combined in a way that is not simply a pair? A position on a map (two coordinates), a
+combined in a way that is not a pair? A position on a map (two coordinates), a
 force (size and direction), a colour (three, but the same idea).
 
 Choose one. Write down what the two numbers are and what combining two of the quantities

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.2 Newton's first and second laws — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 1.2
+Work independently. The questions and answers are shown together at the end.
+
+Before you use $F = ma$, find the **resultant** force. If two forces act along the
+same line, add them with their signs first.
+
+:::problems chapter-03-practice-3.2
+
+:::answers chapter-03-practice-3.2

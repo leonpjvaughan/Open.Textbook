@@ -1,0 +1,170 @@
+# Leaving Certificate Physics, Chapter 4, section 4.4 (strand 1 outcome 1.4).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure. An efficiency is a
+# percentage, so `sigfigs` proves its rounding and `evaluate` proves an exact one.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` record proves only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in it is right.
+chapter: 4
+problems:
+- id: p4-4-power-basic
+  section: '4.4'
+  tier: O
+  refs: ['1.4']
+  statement: A motor does 600 J of work in 4.0 s. Calculate its power.
+  answer_label: Power
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: W / t
+      values:
+        W: {value: '600', unit: J}
+        t: {value: '4.0', unit: s}
+      answer: {value: '150', unit: W}
+    - kind: sigfigs
+      value: '600 / 4.0'
+      figures: 2
+      answer: 1.5e2
+      convention: round-once
+  answer_text: '$P = \dfrac{W}{t} = \dfrac{600}{4.0} = 150\,\text{W}$, which is $1.5\times10^2\,\text{W}$. One watt is one joule per second.'
+- id: p4-4-power-lift
+  section: '4.4'
+  tier: O
+  refs: ['1.4']
+  statement: A motor lifts a 200 kg load 10 m in 20 s. Calculate the useful power output. Take $g = 9.8$ m/s$^2$.
+  answer_label: Useful power output
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * g * h / t
+      values:
+        m: {value: '200', unit: kg}
+        g: {value: '9.8', unit: m/s^2}
+        h: {value: '10', unit: m}
+        t: {value: '20', unit: s}
+      answer: {value: '980', unit: W}
+    - kind: sigfigs
+      value: '200 * 9.8 * 10 / 20'
+      figures: 2
+      answer: 9.8e2
+      convention: round-once
+  answer_text: 'The useful work is $mgh = 200 \times 9.8 \times 10 = 19600\,\text{J}$. The power is $\dfrac{19600}{20} = 980\,\text{W}$, which is $9.8\times10^2\,\text{W}$.'
+- id: p4-4-efficiency
+  section: '4.4'
+  tier: O
+  refs: ['1.4']
+  statement: A motor is supplied with 2450 J of energy and transfers 1960 J usefully. Calculate its efficiency as a percentage.
+  answer_label: Efficiency
+  check:
+    kind: evaluate
+    expression: 100 * 1960 / 2450
+    answer: '80'
+  answer_text: '$\text{efficiency} = \dfrac{\text{useful output}}{\text{total input}} \times 100\% = \dfrac{1960}{2450} \times 100\% = 80\%$. The other 20% warmed the motor and the surroundings.'
+- id: p4-4-energy-time
+  section: '4.4'
+  tier: O
+  refs: ['1.4']
+  statement: A 2.0 kW heater is switched on for 5.0 minutes. Calculate the energy it transfers.
+  answer_label: Energy transferred
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: P * t
+      values:
+        P: {value: '2000', unit: W}
+        t: {value: '300', unit: s}
+      answer: {value: '600000', unit: J}
+    - kind: sigfigs
+      value: '2000 * 300'
+      figures: 2
+      answer: 6.0e5
+      convention: round-once
+  answer_text: '$E = Pt = 2000 \times 300 = 6.0\times10^5\,\text{J}$. The time must be in seconds, because a watt is a joule per second: 5.0 minutes is 300 s.'
+- id: p4-4-chapter-power
+  section: '4.4'
+  tier: O
+  refs: ['1.4']
+  statement: The pumped-storage station moves $4.0 \times 10^5$ kg of water through a 300 m drop every 60 s. Calculate the rate at which gravitational potential energy is transferred to the turbines. Take $g = 9.8$ m/s$^2$.
+  answer_label: Rate of energy transfer
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: m * g * h / t
+      values:
+        m: {value: '400000', unit: kg}
+        g: {value: '9.8', unit: m/s^2}
+        h: {value: '300', unit: m}
+        t: {value: '60', unit: s}
+      answer: {value: '19600000', unit: W}
+    - kind: sigfigs
+      value: '4.0e5 * 9.8 * 300 / 60'
+      figures: 2
+      answer: 2.0e7
+      convention: round-once
+  answer_text: 'The energy transferred each minute is $mgh = 4.0\times10^5 \times 9.8 \times 300 = 1.2\times10^9\,\text{J}$. Dividing by 60 s gives $2.0\times10^7\,\text{W}$, which is 20 MW. This is the fourth step of the chapter problem.'
+- id: p4-4-chapter-efficiency
+  section: '4.4'
+  tier: O
+  refs: ['1.4']
+  statement: The station's electrical output is 16 MW while the water delivers energy at 19.6 MW. Calculate the efficiency of the station while it generates, as a percentage.
+  answer_label: Efficiency while generating
+  check:
+    kind: sigfigs
+    value: '100 * 16 / 19.6'
+    figures: 2
+    answer: '82'
+    convention: round-once
+  answer_text: '$\text{efficiency} = \dfrac{16}{19.6} \times 100\% = 81.6\%$, which is $82\%$ to two significant figures. The rest warmed the turbines and the water. This is the fifth step of the chapter problem.'
+- id: p4-4-efficiency-explain
+  section: '4.4'
+  tier: O
+  refs: ['1.4']
+  statement: Explain why the efficiency of a real machine is always less than 100%.
+  answer_label: Why efficiency is below 100%
+  check:
+    kind: structured
+    requires: [input, losses, output]
+    concepts: [surplus, thermal, ratio]
+    points:
+    - id: input
+      text: the machine is supplied with more energy than it transfers usefully
+      concepts: [surplus]
+    - id: losses
+      text: some energy is always transferred by friction and air resistance, which warms the machine and the surroundings
+      concepts: [thermal]
+    - id: output
+      text: so the useful output is less than the total input, and efficiency is useful output divided by total input
+      concepts: [ratio]
+  answer_text: The machine is supplied with more energy than it transfers usefully. Some energy is always transferred by friction and air resistance, which warms the machine and the surroundings. So the useful output is less than the total input, and efficiency is useful output divided by total input. Energy is not destroyed; it is transferred in a way the machine cannot use.
+- id: p4-4-power-kj
+  section: '4.4'
+  tier: O
+  refs: ['1.4']
+  statement: A machine transfers 3.0 kJ of energy in 1.5 minutes. Calculate its power.
+  answer_label: Power
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: E / t
+      values:
+        E: {value: '3000', unit: J}
+        t: {value: '90', unit: s}
+      answer: {value: '33.3', unit: W}
+      tolerance: '0.05'
+    - kind: sigfigs
+      value: '3000 / 90'
+      figures: 2
+      answer: '33'
+      convention: round-once
+  answer_text: 'The energy is $3.0\,\text{kJ} = 3000\,\text{J}$, and the time is 1.5 minutes $= 90\,\text{s}$. So $P = \dfrac{E}{t} = \dfrac{3000}{90} = 33\,\text{W}$ to two significant figures.'

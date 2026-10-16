@@ -1,0 +1,207 @@
+# Leaving Certificate Physics, Chapter 3, section 3.3 (strand 1 outcome 1.2).
+#
+# This bank covers Newton's third law and momentum: the momentum of a particle, the
+# impulse, the change in momentum, and the pair of forces between two objects. The
+# units oracle proves the magnitude *and* the unit whenever a quantity is asked for,
+# and `sigfigs` proves the rounding to the figures the data support. Both are written
+# out, because a rounded answer is never equal to the exact one.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. `structured` proves only that a model answer contains the declared steps and
+# concepts, in order — not that the physics in them is right.
+chapter: 3
+problems:
+  - id: p3-3-momentum-car
+    section: '3.3'
+    tier: O
+    refs: ['1.2']
+    statement: 'A car of mass 1200 kg travels at 15 m/s. Calculate its momentum.'
+    answer_label: 'Momentum of the car'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * v
+          values:
+            m: {value: '1200', unit: kg}
+            v: {value: '15', unit: m/s}
+          answer: {value: '18000', unit: kg*m/s}
+        - kind: sigfigs
+          value: '1200 * 15'
+          figures: 2
+          answer: '1.8e4'
+          convention: round-once
+    answer_text: '$p = mv = 1200 \times 15 = 18000\,\text{kg m/s}$, which is $1.8 \times 10^{4}\,\text{kg m/s}$ to two significant figures. Momentum is a vector, so it points along the velocity.'
+  - id: p3-3-momentum-lift
+    section: '3.3'
+    tier: O
+    refs: ['1.2']
+    statement: 'The lift of mass 800 kg rises at a constant speed of 2.4 m/s. Calculate its momentum.'
+    answer_label: 'Momentum of the lift'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * v
+          values:
+            m: {value: '800', unit: kg}
+            v: {value: '2.4', unit: m/s}
+          answer: {value: '1920', unit: kg*m/s}
+        - kind: sigfigs
+          value: '800 * 2.4'
+          figures: 2
+          answer: '1.9e3'
+          convention: round-once
+    answer_text: '$p = mv = 800 \times 2.4 = 1920\,\text{kg m/s}$, which is $1.9 \times 10^{3}\,\text{kg m/s}$ to two significant figures. This is the momentum once the lift has finished speeding up.'
+  - id: p3-3-impulse
+    section: '3.3'
+    tier: O
+    refs: ['1.2']
+    statement: 'A force of 250 N acts on a trolley for 0.40 s. Calculate the impulse.'
+    answer_label: 'Impulse'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F * t
+          values:
+            F: {value: '250', unit: N}
+            t: {value: '0.40', unit: s}
+          answer: {value: '100', unit: N*s}
+        - kind: sigfigs
+          value: '250 * 0.40'
+          figures: 2
+          answer: '1.0e2'
+          convention: round-once
+    answer_text: 'The impulse is $Ft = 250 \times 0.40 = 100\,\text{N s}$, which is $1.0 \times 10^{2}\,\text{N s}$ to two significant figures. An impulse of $1\,\text{N s}$ changes a momentum by $1\,\text{kg m/s}$, so the two units are the same size.'
+  - id: p3-3-rebound
+    section: '3.3'
+    tier: O
+    refs: ['1.2']
+    statement: 'A ball of mass 0.50 kg hits a wall at 8.0 m/s and rebounds at 6.0 m/s. Taking the direction towards the wall as positive, calculate the change in momentum of the ball.'
+    answer_label: 'Change in momentum'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * (v - u)
+          values:
+            m: {value: '0.50', unit: kg}
+            u: {value: '8.0', unit: m/s}
+            v: {value: '-6.0', unit: m/s}
+          answer: {value: '-7.0', unit: kg*m/s}
+        - kind: sigfigs
+          value: '0.50 * (-6.0 - 8.0)'
+          figures: 2
+          answer: '-7.0'
+          convention: round-once
+    answer_text: 'Momentum is a vector, so the rebound is negative: $\Delta p = m(v - u) = 0.50 \times (-6.0 - 8.0) = -7.0\,\text{kg m/s}$. The minus sign says the change points away from the wall, which is why the wall must push the ball away from it.'
+  - id: p3-3-lift-impulse
+    section: '3.3'
+    tier: O
+    refs: ['1.2']
+    statement: 'During the first 2.0 s the lift of mass 800 kg speeds up from rest to 2.4 m/s. Calculate the change in momentum of the lift and the resultant force on it.'
+    answer_label: 'Change in momentum and resultant force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * v
+          values:
+            m: {value: '800', unit: kg}
+            v: {value: '2.4', unit: m/s}
+          answer: {value: '1920', unit: kg*m/s}
+        - kind: sigfigs
+          value: '800 * 2.4'
+          figures: 2
+          answer: '1.9e3'
+          convention: round-once
+        - kind: dimensions
+          expression: m * v / t
+          values:
+            m: {value: '800', unit: kg}
+            v: {value: '2.4', unit: m/s}
+            t: {value: '2.0', unit: s}
+          answer: {value: '960', unit: N}
+        - kind: sigfigs
+          value: '800 * 2.4 / 2.0'
+          figures: 2
+          answer: '9.6e2'
+          convention: round-once
+    answer_text: 'The change in momentum is $\Delta p = mv = 800 \times 2.4 = 1920\,\text{kg m/s}$. The resultant force is the rate of change of momentum: $F = \dfrac{\Delta p}{t} = \dfrac{1920}{2.0} = 960\,\text{N}$. This is the resultant force, so $T - mg - f = 960\,\text{N}$.'
+  - id: p3-3-passenger-impulse
+    section: '3.3'
+    tier: O
+    refs: ['1.2']
+    statement: 'The passenger of mass 60 kg speeds up from rest to 2.4 m/s in 2.0 s. Calculate her change in momentum and the resultant force on her.'
+    answer_label: 'Change in momentum and resultant force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * v
+          values:
+            m: {value: '60', unit: kg}
+            v: {value: '2.4', unit: m/s}
+          answer: {value: '144', unit: kg*m/s}
+        - kind: sigfigs
+          value: '60 * 2.4'
+          figures: 2
+          answer: '1.4e2'
+          convention: round-once
+        - kind: dimensions
+          expression: m * v / t
+          values:
+            m: {value: '60', unit: kg}
+            v: {value: '2.4', unit: m/s}
+            t: {value: '2.0', unit: s}
+          answer: {value: '72', unit: N}
+        - kind: sigfigs
+          value: '60 * 2.4 / 2.0'
+          figures: 2
+          answer: '72'
+          convention: round-once
+    answer_text: 'Her change in momentum is $\Delta p = mv = 60 \times 2.4 = 144\,\text{kg m/s}$, which is $1.4 \times 10^{2}\,\text{kg m/s}$ to two significant figures. The resultant force on her is $F = \dfrac{\Delta p}{t} = \dfrac{144}{2.0} = 72\,\text{N}$ upwards. That resultant is the contact force from the scale minus her weight.'
+  - id: p3-3-third-law
+    section: '3.3'
+    tier: O
+    refs: ['1.2']
+    statement: 'State Newton''s third law, and explain why the two forces in a third-law pair do not cancel each other.'
+    answer_label: 'Newton''s third law'
+    check:
+      kind: structured
+      requires: [statement, objects, why]
+      concepts: [equal-opposite, different-objects, no-cancel]
+      points:
+        - id: statement
+          text: 'If A exerts a force on B, then B exerts an equal force on A in the opposite direction.'
+          concepts: [equal-opposite]
+        - id: objects
+          text: 'The two forces act on different objects: one acts on A and the other acts on B.'
+          concepts: [different-objects]
+        - id: why
+          text: 'Forces cancel only when they act on the same object. A force on A and a force on B change the motion of A and B separately, so neither cancels the other.'
+          concepts: [no-cancel]
+    answer_text: 'If A exerts a force on B, then B exerts an equal force on A in the opposite direction. The two forces act on different objects, and forces cancel only when they act on the same object. A force on A and a force on B change the motion of A and B separately.'
+  - id: p3-3-not-a-pair
+    section: '3.3'
+    tier: O
+    refs: ['1.2']
+    statement: 'A book rests on a table. A student says the weight of the book and the contact force from the table are a Newton''s third law pair. Explain why this is wrong, and name the correct partner for the weight of the book.'
+    answer_label: 'A pair that is not a third-law pair'
+    check:
+      kind: structured
+      requires: [same-object, pair-rule, partner]
+      concepts: [same-object, different-objects, earth]
+      points:
+        - id: same-object
+          text: 'The weight of the book and the contact force from the table both act on the book, so they act on the same object.'
+          concepts: [same-object]
+        - id: pair-rule
+          text: 'A third-law pair must act on two different objects, so these two forces are not a pair.'
+          concepts: [different-objects]
+        - id: partner
+          text: 'The correct partner for the weight of the book is the pull of the book on the Earth.'
+          concepts: [earth]
+    answer_text: 'The weight of the book and the contact force from the table both act on the book. A third-law pair must act on two different objects, so they are not a pair. The weight and the contact force are equal and opposite, which is why the book stays at rest, but that is a balanced pair and not a third-law pair. The correct partner for the weight of the book is the pull of the book on the Earth.'

@@ -46,7 +46,7 @@ $$\sqrt{-9} = \sqrt{9 \times (-1)} = \sqrt{9}\sqrt{-1} = 3i$$
 $$x^2 = -9 \qquad x = \pm\sqrt{-9} = \pm 3i$$
 
 The two solutions are $3i$ and $-3i$. There are two, because a quadratic has two roots —
-the same as before, they are simply not real.
+the same as before, they are not real.
 
 ## Complex numbers
 
@@ -79,7 +79,7 @@ So $a = 0$ and $b = -1$.
 
 ## Powers of $i$
 
-Powers of $i$ repeat in a cycle of four, and the cycle is easy to remember.
+Powers of $i$ repeat in a cycle of four, and the cycle is worth remembering.
 
 $$i^1 = i \qquad i^2 = -1 \qquad i^3 = -i \qquad i^4 = 1$$
 

@@ -214,7 +214,7 @@ It leaves out position: the network does not say which way round the places are,
 apart they are on the ground, or where the roads bend. Only the connections and their
 weights survive.
 
-What it makes easy is a question about *connections* rather than *places*: which set of
+What it makes straightforward is a question about *connections* rather than *places*: which set of
 roads reaches every town for the least total distance, or whether there is a route at all
 between two towns. On a map you would answer those by tracing with your finger; in the
 network you answer them by calculation. That is the whole reason for turning the map into

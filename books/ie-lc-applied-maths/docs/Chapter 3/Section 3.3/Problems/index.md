@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.3 Motion graphs — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Check the axis labels before you read anything from a graph. Say which feature
+you are using: a gradient or an area.
+
+:::problems chapter-03-practice-3.3
+
+:::answers chapter-03-practice-3.3

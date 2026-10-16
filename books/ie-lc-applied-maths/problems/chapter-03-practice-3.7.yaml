@@ -1,0 +1,214 @@
+# Practice set for 3.7 (strand S3, the physical world). The checks come from the
+# `units` oracle: `resolve` proves a pair of components against a declared
+# tolerance, `dimensions` proves the arithmetic and the unit together, and
+# `sigfigs` proves a value rounded once. The `structured` records prove only
+# that a model answer contains the declared ideas, in order.
+#
+# Honest limit: the resolution uses a trigonometric value, so it is proved
+# within a tolerance rather than exactly.
+chapter: 3
+problems:
+  - id: am3-7-components
+    section: '3.7'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is kicked at $20$ m/s at an angle of $30^\circ$ above the
+      horizontal. Resolve its velocity into a horizontal component and a
+      vertical component, each to $3$ significant figures.
+    answer_label: Horizontal and vertical components
+    check:
+      kind: resolve
+      relation: components-from-magnitude-and-angle
+      magnitude: '20'
+      angle_deg: '30'
+      components: {x: '17.32', y: '10'}
+      tolerance: '0.01'
+    answer_text: >-
+      The horizontal component is $20\cos 30^\circ = 17.32$ m/s. The vertical
+      component is $20\sin 30^\circ = 10$ m/s. The two components are at right
+      angles and have the same effect as the single $20$ m/s velocity.
+
+  - id: am3-7-height-at-time
+    section: '3.7'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A stone is thrown with a vertical component of $15$ m/s upwards. Taking
+      $g = 9.8$ m/s$^2$, calculate its height after $2$ s.
+    answer_label: Height
+    check:
+      kind: dimensions
+      expression: uy*t - 0.5*g*t**2
+      values:
+        uy: {value: '15', unit: 'm/s'}
+        t: {value: '2', unit: s}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '10.4', unit: m}
+    answer_text: >-
+      The vertical motion is $y = u_y t - \frac{1}{2}gt^2$. Substituting,
+      $y = 15 \times 2 - 4.9 \times 4 = 30 - 19.6 = 10.4$ m. The horizontal
+      component does not affect the height.
+
+  - id: am3-7-time-to-wall
+    section: '3.7'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball has a horizontal velocity component of $17.32$ m/s. The ball
+      travels towards a wall $15$ m away. Calculate the time it takes to reach
+      the wall, to $3$ significant figures.
+    answer_label: Time to reach the wall
+    check:
+      kind: dimensions
+      expression: x/ux
+      values:
+        x: {value: '15', unit: m}
+        ux: {value: '17.32', unit: 'm/s'}
+      answer: {value: '0.866', unit: s}
+      tolerance: '0.001'
+    answer_text: >-
+      The horizontal velocity is constant, so $x = u_x t$. Then
+      $t = \dfrac{15}{17.32} = 0.866$ s, to three significant figures. The
+      vertical motion does not change this time.
+
+  - id: am3-7-height-at-wall
+    section: '3.7'
+    tier: O
+    refs: [S3]
+    statement: >-
+      The same ball has a vertical velocity component of $10$ m/s upwards. It
+      reaches the wall after $0.866$ s. Taking $g = 9.8$ m/s$^2$, calculate its
+      height when it reaches the wall, to $3$ significant figures.
+    answer_label: Height at the wall
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: uy*t - 0.5*g*t**2
+          values:
+            uy: {value: '10', unit: 'm/s'}
+            t: {value: '0.866', unit: s}
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '4.99', unit: m}
+          tolerance: '0.01'
+        - kind: sigfigs
+          value: '4.985254'
+          figures: 3
+          answer: '4.99'
+          convention: round-once
+    answer_text: >-
+      Use $y = u_y t - \frac{1}{2}gt^2$ with $t = 0.866$ s:
+      $y = 10 \times 0.866 - 4.9 \times 0.75 = 8.66 - 3.675 = 4.985$ m. To
+      three significant figures the height is $4.99$ m. The wall is $3$ m high,
+      so the ball clears it by about $2$ m.
+
+  - id: am3-7-horizontal-distance
+    section: '3.7'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball has a horizontal velocity component of $12$ m/s and is in the air
+      for $3$ s. Calculate the horizontal distance it travels.
+    answer_label: Horizontal distance
+    check:
+      kind: dimensions
+      expression: ux*t
+      values:
+        ux: {value: '12', unit: 'm/s'}
+        t: {value: '3', unit: s}
+      answer: {value: '36', unit: m}
+    answer_text: >-
+      The horizontal velocity is constant, so $x = u_x t = 12 \times 3 = 36$ m.
+      Nothing in the vertical motion changes this, because the two directions
+      are independent.
+
+  - id: am3-7-height-from-angle
+    section: '3.7'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball is thrown at $25$ m/s at $40^\circ$ above the horizontal. Its
+      vertical component is $16.07$ m/s. Taking $g = 9.8$ m/s$^2$, calculate
+      its height after $1.5$ s, to $3$ significant figures.
+    answer_label: Height
+    check:
+      kind: dimensions
+      expression: uy*t - 0.5*g*t**2
+      values:
+        uy: {value: '16.07', unit: 'm/s'}
+        t: {value: '1.5', unit: s}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '13.08', unit: m}
+      tolerance: '0.01'
+    answer_text: >-
+      $y = u_y t - \frac{1}{2}gt^2 = 16.07 \times 1.5 - 4.9 \times 2.25
+      = 24.105 - 11.025 = 13.08$ m, to three significant figures.
+
+  - id: am3-7-independence
+    section: '3.7'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Explain why the horizontal and vertical parts of a projectile's motion
+      can be treated separately.
+    answer_label: Why the two directions are independent
+    check:
+      kind: structured
+      requires: [horizontal-constant, vertical-accelerates, shared-time]
+      concepts: [independence]
+      points:
+        - id: horizontal-constant
+          text: >-
+            no force acts horizontally, so the horizontal velocity stays
+            constant
+          concepts: [independence]
+        - id: vertical-accelerates
+          text: >-
+            gravity acts vertically, so the vertical velocity changes at
+            $9.8$ m/s each second
+          concepts: [independence]
+        - id: shared-time
+          text: >-
+            the two directions are joined by the single time $t$, so you find
+            the time from one direction and use it in the other
+          concepts: [independence]
+    answer_text: >-
+      Gravity acts downwards only, so nothing changes the horizontal velocity.
+      The horizontal velocity therefore stays constant. The vertical velocity
+      changes at $9.8$ m/s each second because of gravity. The two directions
+      share the same time $t$, and that shared time is the only link between
+      them. You can find the time from one direction and use it in the other.
+
+  - id: am3-7-drop-and-project
+    section: '3.7'
+    tier: O
+    refs: [S3]
+    statement: >-
+      One ball is dropped from a height. At the same moment, a second ball is
+      projected horizontally from the same height. Explain which ball lands
+      first, and why.
+    answer_label: Which lands first
+    check:
+      kind: structured
+      requires: [same-vertical, same-time, different-horizontal]
+      concepts: [independence]
+      points:
+        - id: same-vertical
+          text: >-
+            both balls start with a vertical velocity of zero and fall under
+            gravity alone
+          concepts: [independence]
+        - id: same-time
+          text: the vertical motion is the same, so both balls land at the same time
+          concepts: [independence]
+        - id: different-horizontal
+          text: >-
+            the projected ball also travels horizontally, so it lands further
+            away, but that does not change the time
+    answer_text: >-
+      Both balls start with a vertical velocity of zero. Gravity is the only
+      vertical force on either of them, so their vertical motions are the same.
+      They land at the same time. The projected ball also moves horizontally,
+      so it lands further from the starting point. The horizontal motion uses
+      the same time without changing it.

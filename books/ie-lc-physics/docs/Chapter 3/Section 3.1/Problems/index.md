@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.1 Forces and free-body diagrams — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 1.2
+Work independently. The questions and answers are shown together at the end.
+
+Give every force with its **unit** and its **direction**. Before you add two forces,
+check whether they act along the same line.
+
+:::problems chapter-03-practice-3.1
+
+:::answers chapter-03-practice-3.1

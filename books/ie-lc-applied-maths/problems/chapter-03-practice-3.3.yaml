@@ -1,0 +1,198 @@
+# Practice set for 3.3 (strand S3, the physical world). Motion graphs are read,
+# not calculated, so the checks mix two oracles: `dimensions` proves the
+# arithmetic of a gradient or an area, and `gradient` / `area` prove a value
+# read off a series against a declared interval. A reading is a measurement, so
+# it is proved within a band and never by equality.
+chapter: 3
+problems:
+  - id: am3-3-gradient-velocity
+    section: '3.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A displacement–time graph passes through the points $(2, 10)$ and
+      $(6, 30)$, where the displacement is in metres and the time in seconds.
+      Calculate the gradient, and state what it represents.
+    answer_label: Gradient and its meaning
+    check:
+      kind: dimensions
+      expression: (s2 - s1)/(t2 - t1)
+      values:
+        s1: {value: '10', unit: m}
+        s2: {value: '30', unit: m}
+        t1: {value: '2', unit: s}
+        t2: {value: '6', unit: s}
+      answer: {value: '5', unit: 'm/s'}
+    answer_text: >-
+      The gradient is $\dfrac{30 - 10}{6 - 2} = \dfrac{20}{4} = 5$. The unit is
+      metres per second, so the gradient of a displacement–time graph is the
+      velocity. The object moves at a steady $5$ m/s.
+
+  - id: am3-3-area-displacement
+    section: '3.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A velocity–time graph rises in a straight line from $0$ m/s at $0$ s to
+      $12$ m/s at $8$ s. Calculate the area under the graph, and state what it
+      represents.
+    answer_label: Area and its meaning
+    check:
+      kind: dimensions
+      expression: 0.5*t*v
+      values:
+        t: {value: '8', unit: s}
+        v: {value: '12', unit: 'm/s'}
+      answer: {value: '48', unit: m}
+    answer_text: >-
+      The region is a triangle with base $8$ s and height $12$ m/s. Its area is
+      $\frac{1}{2} \times 8 \times 12 = 48$. The unit is the metre, so the area
+      under a velocity–time graph is the displacement. The object moves $48$ m.
+
+  - id: am3-3-acceleration-gradient
+    section: '3.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A velocity–time graph passes through $(0, 4)$ and $(6, 16)$. Calculate
+      the gradient, and state what it represents.
+    answer_label: Gradient and its meaning
+    check:
+      kind: dimensions
+      expression: (v2 - v1)/(t2 - t1)
+      values:
+        v1: {value: '4', unit: 'm/s'}
+        v2: {value: '16', unit: 'm/s'}
+        t1: {value: '0', unit: s}
+        t2: {value: '6', unit: s}
+      answer: {value: '2', unit: 'm/s^2'}
+    answer_text: >-
+      The gradient is $\dfrac{16 - 4}{6 - 0} = 2$. The unit is metres per
+      second squared, so the gradient of a velocity–time graph is the
+      acceleration. The acceleration is $2$ m/s$^2$.
+
+  - id: am3-3-two-parts
+    section: '3.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A velocity–time graph is a straight line at $6$ m/s from $0$ s to $4$ s,
+      then falls in a straight line to $0$ m/s at $10$ s. Calculate the total
+      displacement.
+    answer_label: Total displacement
+    check:
+      kind: dimensions
+      expression: v1*t1 + 0.5*v1*t2
+      values:
+        v1: {value: '6', unit: 'm/s'}
+        t1: {value: '4', unit: s}
+        t2: {value: '6', unit: s}
+      answer: {value: '42', unit: m}
+    answer_text: >-
+      Split the area into two parts. The first part is a rectangle:
+      $6 \times 4 = 24$ m. The second part is a triangle with base $6$ s and
+      height $6$ m/s: $\frac{1}{2} \times 6 \times 6 = 18$ m. The total
+      displacement is $24 + 18 = 42$ m.
+
+  - id: am3-3-negative-area
+    section: '3.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A velocity–time graph is a straight line at $+4$ m/s from $0$ s to $5$ s,
+      then a straight line at $-2$ m/s from $5$ s to $9$ s. Calculate the
+      displacement and the distance travelled.
+    answer_label: Displacement, then distance
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: v1*t1 + v2*t2
+          values:
+            v1: {value: '4', unit: 'm/s'}
+            t1: {value: '5', unit: s}
+            v2: {value: '-2', unit: 'm/s'}
+            t2: {value: '4', unit: s}
+          answer: {value: '12', unit: m}
+        - kind: dimensions
+          expression: v1*t1 - v2*t2
+          values:
+            v1: {value: '4', unit: 'm/s'}
+            t1: {value: '5', unit: s}
+            v2: {value: '-2', unit: 'm/s'}
+            t2: {value: '4', unit: s}
+          answer: {value: '28', unit: m}
+    answer_text: >-
+      The area above the time axis is $4 \times 5 = 20$ m and it counts as
+      positive. The area below the axis is $2 \times 4 = 8$ m and it counts as
+      negative for displacement, so the displacement is $20 - 8 = 12$ m.
+      Distance adds both areas, because the path went both ways, so the
+      distance is $20 + 8 = 28$ m.
+
+  - id: am3-3-read-gradient
+    section: '3.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A velocity–time graph passes through the points $(0, 0)$, $(2, 6)$ and
+      $(4, 12)$. Read the acceleration from the graph.
+    answer_label: Acceleration
+    check:
+      kind: gradient
+      series: [['0', '0'], ['2', '6'], ['4', '12']]
+      between: ['2.9', '3.1']
+    answer_text: >-
+      The points lie on a straight line, so the gradient is the same between any
+      pair. From $(0, 0)$ to $(4, 12)$ the gradient is
+      $\dfrac{12 - 0}{4 - 0} = 3$ m/s$^2$. The acceleration is $3$ m/s$^2$.
+
+  - id: am3-3-read-area
+    section: '3.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A velocity–time graph passes through $(0, 0)$, $(2, 8)$ and $(4, 16)$.
+      Estimate the displacement from the graph.
+    answer_label: Displacement
+    check:
+      kind: area
+      series: [['0', '0'], ['2', '8'], ['4', '16']]
+      between: ['31.9', '32.1']
+    answer_text: >-
+      Split the area into two trapezia. From $0$ s to $2$ s the area is
+      $\dfrac{0 + 8}{2} \times 2 = 8$ m. From $2$ s to $4$ s the area is
+      $\dfrac{8 + 16}{2} \times 2 = 24$ m. The total displacement is
+      $8 + 24 = 32$ m.
+
+  - id: am3-3-meaning
+    section: '3.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Describe what the gradient of a displacement–time graph tells you, what
+      the gradient of a velocity–time graph tells you, and what the area under a
+      velocity–time graph tells you.
+    answer_label: What each feature of a graph means
+    check:
+      kind: structured
+      requires: [gradient-displacement, gradient-velocity, area-velocity]
+      concepts: [graph-gradient, graph-area]
+      points:
+        - id: gradient-displacement
+          text: the gradient of a displacement–time graph is the velocity
+          concepts: [graph-gradient]
+        - id: gradient-velocity
+          text: the gradient of a velocity–time graph is the acceleration
+          concepts: [graph-gradient]
+        - id: area-velocity
+          text: >-
+            the area under a velocity–time graph is the displacement, counted
+            negative below the time axis
+          concepts: [graph-area]
+    answer_text: >-
+      The gradient of a displacement–time graph is the velocity. The gradient of
+      a velocity–time graph is the acceleration. The area under a
+      velocity–time graph is the displacement: area above the time axis counts
+      positive and area below it counts negative. That is why a graph that dips
+      below the axis can show a displacement smaller than the distance
+      travelled.

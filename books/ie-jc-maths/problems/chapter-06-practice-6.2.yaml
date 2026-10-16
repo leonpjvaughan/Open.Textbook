@@ -1,0 +1,311 @@
+# Junior Cycle Mathematics, Chapter 6, section 6.2.
+#
+# Dividing a quantity in a ratio adds the parts, finds the value of one part, and
+# multiplies. Every check proves all three moves, so a record cannot pass with a
+# share that does not add back to the original quantity: the sub-checks include
+# the sum of the shares.
+chapter: 6
+symbols: {}
+
+problems:
+- id: jc6-6.2-share-1
+  section: '6.2'
+  tier: O
+  refs:
+  - N.2
+  statement: Divide 60 euro in the ratio $2:3$.
+  answer_label: Divide 60 euro in the ratio $2:3$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2+3
+      answer: '5'
+    - kind: evaluate
+      expression: 60/5
+      answer: '12'
+    - kind: evaluate
+      expression: 2*12
+      answer: '24'
+    - kind: evaluate
+      expression: 3*12
+      answer: '36'
+    - kind: evaluate
+      expression: 24+36
+      answer: '60'
+  answer_text: >-
+    24 euro and 36 euro. There are $2+3=5$ parts in total, and $60\div5=12$, so
+    one part is 12 euro. Then two parts are 24 euro and three parts are 36 euro.
+    The two shares add back to 60 euro, which is the check worth doing every time.
+- id: jc6-6.2-share-2
+  section: '6.2'
+  tier: O
+  refs:
+  - N.2
+  statement: Divide 45 kg in the ratio $4:5$.
+  answer_label: Divide 45 kg in the ratio $4:5$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 4+5
+      answer: '9'
+    - kind: evaluate
+      expression: 45/9
+      answer: '5'
+    - kind: evaluate
+      expression: 4*5
+      answer: '20'
+    - kind: evaluate
+      expression: 5*5
+      answer: '25'
+    - kind: evaluate
+      expression: 20+25
+      answer: '45'
+  answer_text: >-
+    20 kg and 25 kg. There are 9 parts in total, and $45\div9=5$, so one part is
+    5 kg. Four parts are 20 kg and five parts are 25 kg, and the two add back to
+    45 kg.
+- id: jc6-6.2-share-3
+  section: '6.2'
+  tier: O
+  refs:
+  - N.2
+  statement: Divide 120 sweets in the ratio $3:5$.
+  answer_label: Divide 120 sweets in the ratio $3:5$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 3+5
+      answer: '8'
+    - kind: evaluate
+      expression: 120/8
+      answer: '15'
+    - kind: evaluate
+      expression: 3*15
+      answer: '45'
+    - kind: evaluate
+      expression: 5*15
+      answer: '75'
+    - kind: evaluate
+      expression: 45+75
+      answer: '120'
+  answer_text: >-
+    45 and 75. The total number of parts is 8, and $120\div8=15$ sweets in one
+    part. Then $3\times15=45$ and $5\times15=75$. The larger share belongs to the
+    larger part of the ratio, which is a quick way to see that 75 is the bigger
+    number.
+- id: jc6-6.2-share-three
+  section: '6.2'
+  tier: O
+  refs:
+  - N.2
+  statement: Divide 84 in the ratio $1:2:4$.
+  answer_label: Divide 84 in the ratio $1:2:4$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1+2+4
+      answer: '7'
+    - kind: evaluate
+      expression: 84/7
+      answer: '12'
+    - kind: evaluate
+      expression: 1*12
+      answer: '12'
+    - kind: evaluate
+      expression: 2*12
+      answer: '24'
+    - kind: evaluate
+      expression: 4*12
+      answer: '48'
+    - kind: evaluate
+      expression: 12+24+48
+      answer: '84'
+  answer_text: >-
+    12, 24 and 48. A ratio with three parts is divided in the same way: there are
+    $1+2+4=7$ parts, and $84\div7=12$, so one part is 12. The three shares are
+    12, 24 and 48, and they add back to 84.
+- id: jc6-6.2-share-4
+  section: '6.2'
+  tier: O
+  refs:
+  - N.2
+  statement: Share 250 euro between two people in the ratio $7:3$.
+  answer_label: Share 250 euro in the ratio $7:3$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 7+3
+      answer: '10'
+    - kind: evaluate
+      expression: 250/10
+      answer: '25'
+    - kind: evaluate
+      expression: 7*25
+      answer: '175'
+    - kind: evaluate
+      expression: 3*25
+      answer: '75'
+    - kind: evaluate
+      expression: 175+75
+      answer: '250'
+  answer_text: >-
+    175 euro and 75 euro. There are 10 parts, and $250\div10=25$, so one part is
+    25 euro. The person with 7 parts gets 175 euro and the other gets 75 euro. The
+    difference between the shares is 100 euro, which is 4 parts of 25.
+- id: jc6-6.2-ribbon
+  section: '6.2'
+  tier: O
+  refs:
+  - N.2
+  statement: A ribbon 2 m long is cut in the ratio $3:5$. How long is each piece,
+    in centimetres?
+  answer_label: Cut a 2 m ribbon in the ratio $3:5$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2*100
+      answer: '200'
+    - kind: evaluate
+      expression: 3+5
+      answer: '8'
+    - kind: evaluate
+      expression: 200/8
+      answer: '25'
+    - kind: evaluate
+      expression: 3*25
+      answer: '75'
+    - kind: evaluate
+      expression: 5*25
+      answer: '125'
+    - kind: evaluate
+      expression: 75+125
+      answer: '200'
+  answer_text: >-
+    75 cm and 125 cm. Change 2 m to 200 cm first, because the answer is asked for
+    in centimetres. Then there are 8 parts, and $200\div8=25$ cm in one part. So
+    the pieces are $3\times25=75$ cm and $5\times25=125$ cm.
+- id: jc6-6.2-coach
+  section: '6.2'
+  tier: O
+  refs:
+  - N.2
+  statement: The coach for the school tour costs 480 euro. The two classes share
+    the cost in the ratio $5:7$. Find each class's share.
+  answer_label: Share the 480 euro coach cost in the ratio $5:7$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 5+7
+      answer: '12'
+    - kind: evaluate
+      expression: 480/12
+      answer: '40'
+    - kind: evaluate
+      expression: 5*40
+      answer: '200'
+    - kind: evaluate
+      expression: 7*40
+      answer: '280'
+    - kind: evaluate
+      expression: 200+280
+      answer: '480'
+  answer_text: >-
+    200 euro and 280 euro. The ratio of the class sizes is $20:28$, which
+    simplifies to $5:7$, so the cost is shared in that ratio. There are 12 parts,
+    and $480\div12=40$, so one part is 40 euro. The shares are 200 euro and 280
+    euro, and they add back to the full cost.
+- id: jc6-6.2-largest
+  section: '6.2'
+  tier: O
+  refs:
+  - N.2
+  statement: A sum of 720 euro is divided in the ratio $2:3:4$. Find the largest
+    share.
+  answer_label: Find the largest share of 720 euro in the ratio $2:3:4$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 2+3+4
+      answer: '9'
+    - kind: evaluate
+      expression: 720/9
+      answer: '80'
+    - kind: evaluate
+      expression: 4*80
+      answer: '320'
+    - kind: evaluate
+      expression: 2*80+3*80+4*80
+      answer: '720'
+  answer_text: >-
+    320 euro. There are 9 parts, and $720\div9=80$, so one part is 80 euro. The
+    largest share is the one with 4 parts, so it is $4\times80=320$ euro. The
+    other two shares are 160 euro and 240 euro, and all three add to 720.
+- id: jc6-6.2-twice
+  section: '6.2'
+  tier: H
+  refs:
+  - N.2
+  statement: Share 360 euro so that one person receives twice as much as the
+    other.
+  answer_label: Share 360 euro in the ratio $1:2$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1+2
+      answer: '3'
+    - kind: evaluate
+      expression: 360/3
+      answer: '120'
+    - kind: evaluate
+      expression: 1*120
+      answer: '120'
+    - kind: evaluate
+      expression: 2*120
+      answer: '240'
+    - kind: evaluate
+      expression: 240/120
+      answer: '2'
+  answer_text: >-
+    120 euro and 240 euro. "Twice as much" is the ratio $1:2$, because the second
+    share is two times the first. There are 3 parts, and $360\div3=120$. The
+    shares are 120 euro and 240 euro, and 240 is indeed twice 120.
+- id: jc6-6.2-difference
+  section: '6.2'
+  tier: H
+  refs:
+  - N.2
+  statement: Two amounts are in the ratio $5:3$, and the difference between them
+    is 12 euro. Find the two amounts.
+  answer_label: Two amounts are in the ratio $5:3$ and differ by 12 euro.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 5-3
+      answer: '2'
+    - kind: evaluate
+      expression: 12/2
+      answer: '6'
+    - kind: evaluate
+      expression: 5*6
+      answer: '30'
+    - kind: evaluate
+      expression: 3*6
+      answer: '18'
+    - kind: evaluate
+      expression: 30-18
+      answer: '12'
+  answer_text: >-
+    30 euro and 18 euro. The difference is $5-3=2$ parts, and that is 12 euro, so
+    one part is $12\div2=6$ euro. Then the amounts are $5\times6=30$ euro and
+    $3\times6=18$ euro. This question gives you the difference rather than the
+    total, so you divide the difference by the difference in the parts.

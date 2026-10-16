@@ -123,7 +123,7 @@ The equation $x^3 - 5x^2 + 11x - 15 = 0$ has three roots: $3$, $1 + 2i$ and $1 -
 down why there are exactly three, why two of them are a pair, and what the diagram looks
 like. Then check the sum and the product against the coefficients, as in Example 3.
 
-That is the chapter problem solved. The "impossible root" was never impossible — it just
+That is the chapter problem solved. The "impossible root" was never impossible — it
 needed a number whose square is $-1$, and the pair came for free because the coefficients
 are real.
 

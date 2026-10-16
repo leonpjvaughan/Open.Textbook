@@ -1,0 +1,203 @@
+# Junior Cycle Mathematics, Chapter 5, section 5.1.
+#
+# Every check is an arithmetic identity the CAS proves, so the answer the reader
+# is shown is the answer the verifier proved. A fraction is written as a division
+# the CAS evaluates exactly, so "12/18 = 2/3" is proved rather than asserted.
+# An ordering is proved with `compare`, which makes the CAS test the inequality
+# itself. Units, words and per-cent signs stay in `statement`: the CAS parses
+# numbers and symbols only.
+chapter: 5
+symbols: {}
+
+problems:
+- id: jc5-5.1-simplify-1
+  section: '5.1'
+  tier: O
+  refs:
+  - N.2
+  statement: Write $\frac{12}{18}$ in its simplest form.
+  answer_label: Write $\frac{12}{18}$ in its simplest form.
+  check:
+    kind: evaluate
+    expression: 12/18
+    answer: 2/3
+  steps:
+  - expr: 12/18
+  - expr: (12/6)/(18/6)
+  - expr: 2/3
+  answer_text: >-
+    $\frac{2}{3}$. Divide the top and the bottom by 6, which is the highest common
+    factor of 12 and 18. Both sides stay equal, so the fraction keeps its value.
+- id: jc5-5.1-simplify-2
+  section: '5.1'
+  tier: O
+  refs:
+  - N.2
+  statement: Write $\frac{45}{60}$ in its simplest form.
+  answer_label: Write $\frac{45}{60}$ in its simplest form.
+  check:
+    kind: evaluate
+    expression: 45/60
+    answer: 3/4
+  steps:
+  - expr: 45/60
+  - expr: (45/15)/(60/15)
+  - expr: 3/4
+  answer_text: >-
+    $\frac{3}{4}$. The highest common factor of 45 and 60 is 15, so divide the top
+    and the bottom by 15. Check that 45 and 60 have no factor left in common.
+- id: jc5-5.1-simplify-3
+  section: '5.1'
+  tier: O
+  refs:
+  - N.2
+  statement: Write $\frac{16}{40}$ in its simplest form.
+  answer_label: Write $\frac{16}{40}$ in its simplest form.
+  check:
+    kind: evaluate
+    expression: 16/40
+    answer: 2/5
+  steps:
+  - expr: 16/40
+  - expr: (16/8)/(40/8)
+  - expr: 2/5
+  answer_text: >-
+    $\frac{2}{5}$. Divide both parts by 8, the highest common factor of 16 and 40.
+    You can also divide by 2 three times, but dividing by 8 does it in one step.
+- id: jc5-5.1-equivalent-1
+  section: '5.1'
+  tier: O
+  refs:
+  - N.2
+  statement: Fill in the missing number. $\frac{3}{5}=\frac{?}{20}$
+  answer_label: Find the missing numerator in $\frac{3}{5}=\frac{?}{20}$.
+  check:
+    kind: evaluate
+    expression: 3/5
+    answer: 12/20
+  answer_text: >-
+    $12$. The denominator has been multiplied by 4, because $5\times4=20$. Do the
+    same to the numerator: $3\times4=12$.
+- id: jc5-5.1-equivalent-2
+  section: '5.1'
+  tier: O
+  refs:
+  - N.2
+  statement: Fill in the missing number. $\frac{7}{8}=\frac{?}{24}$
+  answer_label: Find the missing numerator in $\frac{7}{8}=\frac{?}{24}$.
+  check:
+    kind: evaluate
+    expression: 7/8
+    answer: 21/24
+  answer_text: >-
+    $21$. The denominator has been multiplied by 3, because $8\times3=24$. Multiply
+    the numerator by 3 as well: $7\times3=21$.
+- id: jc5-5.1-equivalent-3
+  section: '5.1'
+  tier: O
+  refs:
+  - N.2
+  statement: Are $\frac{2}{3}$ and $\frac{10}{15}$ equivalent fractions? Give a reason.
+  answer_label: Are $\frac{2}{3}$ and $\frac{10}{15}$ equivalent?
+  check:
+    kind: evaluate
+    expression: 2/3
+    answer: 10/15
+  answer_text: >-
+    Yes. Multiplying the top and the bottom of $\frac{2}{3}$ by 5 gives
+    $\frac{10}{15}$, and $2\times5=10$ and $3\times5=15$. Dividing $\frac{10}{15}$
+    by 5 brings it back to $\frac{2}{3}$.
+- id: jc5-5.1-equivalent-4
+  section: '5.1'
+  tier: O
+  refs:
+  - N.2
+  statement: Write down three fractions that are equivalent to $\frac{1}{4}$.
+  answer_label: Write three fractions equivalent to $\frac{1}{4}$.
+  check:
+    kind: all
+    checks:
+    - kind: evaluate
+      expression: 1/4
+      answer: 2/8
+    - kind: evaluate
+      expression: 1/4
+      answer: 3/12
+    - kind: evaluate
+      expression: 1/4
+      answer: 4/16
+  answer_text: >-
+    For example $\frac{2}{8}$, $\frac{3}{12}$ and $\frac{4}{16}$. Multiply the top
+    and the bottom by the same number each time. Here they were multiplied by 2, 3
+    and 4. Any whole number gives another equivalent fraction.
+- id: jc5-5.1-compare-1
+  section: '5.1'
+  tier: O
+  refs:
+  - N.2
+  statement: Which is larger, $\frac{3}{4}$ or $\frac{2}{3}$?
+  answer_label: Which is larger, $\frac{3}{4}$ or $\frac{2}{3}$?
+  check:
+    kind: compare
+    relation: '>'
+    lhs: 3/4
+    rhs: 2/3
+  answer_text: >-
+    $\frac{3}{4}$. Write both with the denominator 12: $\frac{3}{4}=\frac{9}{12}$
+    and $\frac{2}{3}=\frac{8}{12}$. Nine twelfths is more than eight twelfths, so
+    $\frac{3}{4}$ is larger.
+- id: jc5-5.1-compare-2
+  section: '5.1'
+  tier: O
+  refs:
+  - N.2
+  statement: Which is larger, $\frac{5}{8}$ or $\frac{3}{5}$?
+  answer_label: Which is larger, $\frac{5}{8}$ or $\frac{3}{5}$?
+  check:
+    kind: compare
+    relation: '>'
+    lhs: 5/8
+    rhs: 3/5
+  answer_text: >-
+    $\frac{5}{8}$. Write both with the denominator 40:
+    $\frac{5}{8}=\frac{25}{40}$ and $\frac{3}{5}=\frac{24}{40}$. So $\frac{5}{8}$
+    is larger by one fortieth.
+- id: jc5-5.1-order-1
+  section: '5.1'
+  tier: O
+  refs:
+  - N.2
+  statement: Write $\frac{2}{3}$, $\frac{5}{6}$ and $\frac{7}{12}$ in order, smallest first.
+  answer_label: Order $\frac{2}{3}$, $\frac{5}{6}$ and $\frac{7}{12}$, smallest first.
+  check:
+    kind: all
+    checks:
+    - kind: compare
+      relation: <
+      lhs: 7/12
+      rhs: 2/3
+    - kind: compare
+      relation: <
+      lhs: 2/3
+      rhs: 5/6
+  answer_text: >-
+    $\frac{7}{12}$, $\frac{2}{3}$, $\frac{5}{6}$. With the denominator 12 they are
+    $\frac{7}{12}$, $\frac{8}{12}$ and $\frac{10}{12}$. Comparing the numerators
+    puts them in order.
+- id: jc5-5.1-punch-1
+  section: '5.1'
+  tier: O
+  refs:
+  - N.2
+  statement: One jug of punch needs $\frac{3}{4}$ of a litre of orange juice. The committee has
+    $\frac{2}{3}$ of a litre left. Is that enough? Give a reason.
+  answer_label: Is $\frac{2}{3}$ of a litre enough for $\frac{3}{4}$ of a litre?
+  check:
+    kind: compare
+    relation: <
+    lhs: 2/3
+    rhs: 3/4
+  answer_text: >-
+    No. With the denominator 12, $\frac{2}{3}=\frac{8}{12}$ and
+    $\frac{3}{4}=\frac{9}{12}$. Eight twelfths is less than nine twelfths, so the
+    committee is short of orange juice by $\frac{1}{12}$ of a litre.

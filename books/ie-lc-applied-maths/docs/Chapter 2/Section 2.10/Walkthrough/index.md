@@ -64,7 +64,7 @@ will arrive.
 
 ## What the principle does not say
 
-It is easy to state this too strongly, so be careful.
+It is possible to state this too strongly, so be careful.
 
 - It says: every part of an **optimal** route is optimal. It does **not** say every part
   of **any** route is optimal. A part of a poor route is usually poor too.

@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.3 Geometric construction of √2 and √3 — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: 3.1
+Work independently. The questions and answers are shown together at the end.
+
+Describe each construction in full steps, and give every length in simplest surd
+form.
+
+:::problems chapter-01-practice-1.3
+
+:::answers chapter-01-practice-1.3

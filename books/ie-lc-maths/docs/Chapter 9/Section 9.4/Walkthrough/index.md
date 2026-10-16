@@ -74,7 +74,7 @@ a geometric series with $a = \dfrac{7}{10}$ and $r = \dfrac{1}{10}$:
 
 $$S_\infty = \frac{\frac{7}{10}}{1 - \frac{1}{10}} = \frac{\frac{7}{10}}{\frac{9}{10}} = \frac{7}{9}$$
 
-> **Watch out.** Always check $|r| < 1$ **before** using the formula. It is easy to
+> **Watch out.** Always check $|r| < 1$ **before** using the formula. It is possible to
 > compute $\dfrac{a}{1-r}$ on a series that diverges and get a number that means nothing.
 > State the check in your answer; examiners look for it.
 

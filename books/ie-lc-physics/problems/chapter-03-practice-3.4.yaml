@@ -1,0 +1,181 @@
+# Leaving Certificate Physics, Chapter 3, section 3.4 (strand 1 outcome 1.2).
+#
+# This bank covers friction and resistive forces: the friction between two surfaces,
+# the coefficient of friction, the resistive forces on a moving vehicle, and terminal
+# velocity. The units oracle proves the magnitude *and* the unit whenever a quantity
+# is asked for, and `sigfigs` proves the rounding to the figures the data support.
+# Both are written out, because a rounded answer is never equal to the exact one.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. `structured` proves only that a model answer contains the declared steps and
+# concepts, in order — not that the physics in them is right.
+chapter: 3
+problems:
+  - id: p3-4-friction-force
+    section: '3.4'
+    tier: O
+    refs: ['1.2']
+    statement: 'A box rests on a floor. The contact force between the box and the floor is 200 N, and the coefficient of friction is 0.35. Calculate the friction force while the box slides.'
+    answer_label: 'Friction force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: mu * N
+          values:
+            mu: {value: '0.35'}
+            N: {value: '200', unit: N}
+          answer: {value: '70', unit: N}
+        - kind: sigfigs
+          value: '0.35 * 200'
+          figures: 2
+          answer: '7.0e1'
+          convention: round-once
+    answer_text: 'The friction force is $F_f = \mu N = 0.35 \times 200 = 70\,\text{N}$, which is $7.0 \times 10^{1}\,\text{N}$ to two significant figures. The coefficient of friction has no unit, so the answer is a force in newtons.'
+  - id: p3-4-coefficient
+    section: '3.4'
+    tier: O
+    refs: ['1.2']
+    statement: 'A force of 40 N keeps a box sliding at a constant speed. The contact force between the box and the floor is 160 N. Calculate the coefficient of friction.'
+    answer_label: 'Coefficient of friction'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F / N
+          values:
+            F: {value: '40', unit: N}
+            N: {value: '160', unit: N}
+          answer: {value: '0.25'}
+        - kind: sigfigs
+          value: '40 / 160'
+          figures: 2
+          answer: '0.25'
+          convention: round-once
+    answer_text: 'At a constant speed the push equals the friction, so the friction is 40 N. Then $\mu = \dfrac{F_f}{N} = \dfrac{40}{160} = 0.25$. Dividing a force by a force leaves no unit, which is why the coefficient is a plain number.'
+  - id: p3-4-lift-friction
+    section: '3.4'
+    tier: O
+    refs: ['1.2']
+    statement: 'The lift of mass 800 kg moves upwards at a constant speed. The tension in the cable is 8000 N. Calculate the friction force in the guide rails. Take $g = 9.8$ N/kg.'
+    answer_label: 'Friction in the guides'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: T - m * g
+          values:
+            T: {value: '8000', unit: N}
+            m: {value: '800', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+          answer: {value: '160', unit: N}
+        - kind: sigfigs
+          value: '8000 - 800 * 9.8'
+          figures: 2
+          answer: '1.6e2'
+          convention: round-once
+    answer_text: 'At a constant speed the resultant force is zero, so the tension balances the weight and the friction. The weight is $mg = 800 \times 9.8 = 7840\,\text{N}$, so the friction is $8000 - 7840 = 160\,\text{N}$, which is $1.6 \times 10^{2}\,\text{N}$ to two significant figures.'
+  - id: p3-4-terminal
+    section: '3.4'
+    tier: O
+    refs: ['1.2']
+    statement: 'A skydiver of mass 70 kg falls at terminal velocity. Calculate the drag force on her. Take $g = 9.8$ N/kg.'
+    answer_label: 'Drag force at terminal velocity'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g
+          values:
+            m: {value: '70', unit: kg}
+            g: {value: '9.8', unit: N/kg}
+          answer: {value: '686', unit: N}
+        - kind: sigfigs
+          value: '70 * 9.8'
+          figures: 2
+          answer: '6.9e2'
+          convention: round-once
+    answer_text: 'At terminal velocity the skydiver falls at a constant speed, so the resultant force is zero. The drag force therefore equals her weight: $W = mg = 70 \times 9.8 = 686\,\text{N}$, which is $6.9 \times 10^{2}\,\text{N}$ to two significant figures.'
+  - id: p3-4-resistive-car
+    section: '3.4'
+    tier: O
+    refs: ['1.2']
+    statement: 'A car of mass 1500 kg accelerates at 0.20 m/s$^2$. The driving force is 900 N. Calculate the total resistive force on the car.'
+    answer_label: 'Total resistive force'
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: F - m * a
+          values:
+            F: {value: '900', unit: N}
+            m: {value: '1500', unit: kg}
+            a: {value: '0.20', unit: m/s^2}
+          answer: {value: '600', unit: N}
+        - kind: sigfigs
+          value: '900 - 1500 * 0.20'
+          figures: 2
+          answer: '6.0e2'
+          convention: round-once
+    answer_text: 'The resultant force is $ma = 1500 \times 0.20 = 300\,\text{N}$ forwards. The driving force is 900 N, so the resistive force is $900 - 300 = 600\,\text{N}$, which is $6.0 \times 10^{2}\,\text{N}$ to two significant figures. Air resistance and friction together make up this force.'
+  - id: p3-4-static-kinetic
+    section: '3.4'
+    tier: O
+    refs: ['1.2']
+    statement: 'Explain the difference between static friction and kinetic friction, and say why it can be harder to start a heavy box moving than to keep it moving.'
+    answer_label: 'Static and kinetic friction'
+    check:
+      kind: structured
+      requires: [static, kinetic, why]
+      concepts: [at-rest, sliding, limiting]
+      points:
+        - id: static
+          text: 'Static friction acts while the surfaces are not sliding past one another, and it can grow to match the push.'
+          concepts: [at-rest]
+        - id: kinetic
+          text: 'Kinetic friction acts once the surfaces slide, and its size is roughly constant.'
+          concepts: [sliding]
+        - id: why
+          text: 'Static friction can reach a larger value than kinetic friction, so the push needed to start the box is larger than the push needed to keep it moving.'
+          concepts: [limiting]
+    answer_text: 'Static friction acts while the surfaces are not sliding past one another, and it grows to match the push. Kinetic friction acts once the surfaces slide, and its size is roughly constant. Static friction can reach a larger value than kinetic friction, so starting the box needs a bigger push than keeping it moving.'
+  - id: p3-4-terminal-reason
+    section: '3.4'
+    tier: O
+    refs: ['1.2']
+    statement: 'A skydiver jumps from a plane. Explain, in terms of the two forces acting on her, why she reaches a terminal velocity.'
+    answer_label: 'Why terminal velocity is reached'
+    check:
+      kind: structured
+      requires: [start, drag-grows, balance]
+      concepts: [weight-constant, drag-speed, zero]
+      points:
+        - id: start
+          text: 'At the start the weight is much larger than the drag force, so the resultant force is downwards and she accelerates.'
+          concepts: [weight-constant]
+        - id: drag-grows
+          text: 'As she speeds up, the drag force grows, because air resistance increases with speed.'
+          concepts: [drag-speed]
+        - id: balance
+          text: 'When the drag force equals her weight, the resultant force is zero, so she stops accelerating and falls at a constant terminal velocity.'
+          concepts: [zero]
+    answer_text: 'At the start the weight is much larger than the drag force, so the resultant force is downwards and she accelerates. As she speeds up, the drag force grows. When the drag force equals her weight, the resultant force is zero, so she stops accelerating and falls at a constant terminal velocity.'
+  - id: p3-4-constant-speed
+    section: '3.4'
+    tier: O
+    refs: ['1.2']
+    statement: 'A box is pushed with a force of 50 N and moves at a constant speed. State the size of the friction force, and explain your answer.'
+    answer_label: 'Friction at a constant speed'
+    check:
+      kind: structured
+      requires: [friction, reason]
+      concepts: [equal, zero-resultant]
+      points:
+        - id: friction
+          text: 'The friction force is 50 N, because the box moves at a constant speed.'
+          concepts: [equal]
+        - id: reason
+          text: 'A constant speed means the resultant force is zero, so the push and the friction are equal and opposite.'
+          concepts: [zero-resultant]
+    answer_text: 'The friction force is 50 N. A constant speed means the resultant force is zero, so the push and the friction are equal and opposite. If the push were larger than the friction, the box would speed up.'

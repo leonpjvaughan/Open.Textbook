@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 3.4 Friction and resistive forces — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 1.2
+Work independently. The questions and answers are shown together at the end.
+
+Before you use $F_f = \mu N$, check that the surfaces are **sliding**. If the object is
+at rest, static friction is whatever balances the push.
+
+:::problems chapter-03-practice-3.4
+
+:::answers chapter-03-practice-3.4

@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 1.5 Indices and the rules of indices — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **F** · refs: 3.2
+Work independently. The questions and answers are shown together at the end.
+
+Decide which law applies before you write anything: multiplying powers adds the
+indices, a power of a power multiplies them. Higher-only questions are marked
+**H**.
+
+:::problems chapter-01-practice-1.5
+
+:::answers chapter-01-practice-1.5

@@ -33,7 +33,7 @@ definition can be read either way:
 - exactly one path between every pair of vertices.
 
 A network that is not connected but whose components are each trees is a **forest**. A
-forest is just a collection of trees.
+forest is a collection of trees.
 
 **Example 1.** Is a network with vertices $A, B, C, D$ and edges $AB$, $BC$, $CD$ a tree?
 
