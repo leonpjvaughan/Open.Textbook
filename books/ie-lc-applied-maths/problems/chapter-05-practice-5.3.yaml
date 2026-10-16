@@ -1,0 +1,203 @@
+# Practice set for 5.3 (strand S3, the physical world). Every answer is a
+# quantity, so the checks come from the `units` oracle: `dimensions` proves the
+# arithmetic *and* the unit together. A value built on a surd declares a
+# tolerance because it is irrational. The `compare` check proves the condition
+# for sliding, which is an inequality rather than a quantity.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics.
+# A dimensionally consistent, arithmetically correct, physically absurd answer
+# would pass.
+chapter: 5
+problems:
+  - id: am5-3-accel-30-mu02
+    section: '5.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block of mass $5$ kg slides down a rough plane inclined at $30^\circ$ to
+      the horizontal. The coefficient of friction is $0.2$. Taking
+      $g = 9.8$ m/s$^2$, calculate the acceleration of the block, to
+      $3$ significant figures.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: g * (1/2 - mu * sqrt(3) / 2)
+      values:
+        g: {value: '9.8', unit: 'm/s^2'}
+        mu: {value: '0.2'}
+      answer: {value: '3.20', unit: 'm/s^2'}
+      tolerance: '0.01'
+    answer_text: >-
+      Along the plane the component of the weight is
+      $mg\sin 30^\circ = 4.9m$ N and friction is
+      $\mu mg\cos 30^\circ = 0.2 \times 8.487m = 1.697m$ N. The resultant is
+      $(4.9 - 1.697)m = 3.203m$ N, so
+      $a = \dfrac{3.203m}{m} = 3.20$ m/s$^2$ down the plane. The mass cancels,
+      and $a = g(\sin 30^\circ - \mu\cos 30^\circ)$.
+
+  - id: am5-3-accel-30-mu03
+    section: '5.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block slides down a rough plane inclined at $30^\circ$ to the
+      horizontal. The coefficient of friction is $0.3$. Taking
+      $g = 9.8$ m/s$^2$, calculate the acceleration, to $3$ significant figures.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: g * (1/2 - mu * sqrt(3) / 2)
+      values:
+        g: {value: '9.8', unit: 'm/s^2'}
+        mu: {value: '0.3'}
+      answer: {value: '2.35', unit: 'm/s^2'}
+      tolerance: '0.01'
+    answer_text: >-
+      $a = g(\sin 30^\circ - \mu\cos 30^\circ) = 9.8(0.5 - 0.3 \times 0.8660)$.
+      Working out the bracket gives $0.5 - 0.2598 = 0.2402$, so
+      $a = 9.8 \times 0.2402 = 2.35$ m/s$^2$ down the plane. A rougher plane
+      gives a smaller acceleration.
+
+  - id: am5-3-accel-45-mu02
+    section: '5.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block slides down a rough plane inclined at $45^\circ$ to the
+      horizontal. The coefficient of friction is $0.2$. Taking
+      $g = 9.8$ m/s$^2$, calculate the acceleration, to $3$ significant figures.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: g * (sqrt(2) / 2 - mu * sqrt(2) / 2)
+      values:
+        g: {value: '9.8', unit: 'm/s^2'}
+        mu: {value: '0.2'}
+      answer: {value: '5.54', unit: 'm/s^2'}
+      tolerance: '0.01'
+    answer_text: >-
+      On a $45^\circ$ plane, $\sin 45^\circ = \cos 45^\circ$, so
+      $a = g\sin 45^\circ(1 - \mu)$. That gives
+      $a = 9.8 \times 0.7071 \times 0.8 = 5.54$ m/s$^2$ down the plane.
+
+  - id: am5-3-decel-rough-horizontal
+    section: '5.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block of mass $12$ kg slides on a rough horizontal floor. The
+      coefficient of friction is $0.25$ and no other horizontal force acts.
+      Taking $g = 9.8$ m/s$^2$, calculate the acceleration, taking the direction
+      of motion as positive.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: -mu * g
+      values:
+        mu: {value: '0.25'}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '-2.45', unit: 'm/s^2'}
+    answer_text: >-
+      The normal reaction is $R = mg$, so friction is $\mu mg$ against the
+      motion. Newton's second law gives $ma = -\mu mg$, so
+      $a = -\mu g = -0.25 \times 9.8 = -2.45$ m/s$^2$. The mass cancels, and the
+      negative sign means the block is slowing down.
+
+  - id: am5-3-slide-or-not-20-mu05
+    section: '5.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block rests on a rough plane inclined at $20^\circ$ to the horizontal.
+      The coefficient of friction is $0.5$. By comparing $\tan 20^\circ$ with
+      $\mu$, decide whether the block slides.
+    answer_label: Does it slide?
+    check:
+      kind: compare
+      relation: '<'
+      lhs: 'tan(20*pi/180)'
+      rhs: '0.5'
+    answer_text: >-
+      The block slides only when $\tan\theta > \mu$. Here
+      $\tan 20^\circ = 0.364$, and $0.364 < 0.5$, so the block does not slide.
+      The friction force takes the value $mg\sin 20^\circ$ that is needed to
+      hold it, and that is less than the maximum $\mu mg\cos 20^\circ$.
+
+  - id: am5-3-up-plane-decel
+    section: '5.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block is projected up a rough plane inclined at $30^\circ$ to the
+      horizontal. The coefficient of friction is $0.2$. Taking
+      $g = 9.8$ m/s$^2$, calculate its deceleration as it rises, to
+      $3$ significant figures.
+    answer_label: Deceleration
+    check:
+      kind: dimensions
+      expression: g * (1/2 + mu * sqrt(3) / 2)
+      values:
+        g: {value: '9.8', unit: 'm/s^2'}
+        mu: {value: '0.2'}
+      answer: {value: '6.60', unit: 'm/s^2'}
+      tolerance: '0.01'
+    answer_text: >-
+      While the block rises, the component of the weight down the plane and
+      friction both act against the motion. So
+      $a = g(\sin 30^\circ + \mu\cos 30^\circ) = 9.8(0.5 + 0.2 \times 0.8660)$.
+      The bracket is $0.5 + 0.1732 = 0.6732$, so the deceleration is
+      $6.60$ m/s$^2$.
+
+  - id: am5-3-normal-and-friction-20kg
+    section: '5.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A crate of mass $20$ kg slides down a rough plane inclined at $30^\circ$
+      to the horizontal. The coefficient of friction is $0.25$. Taking
+      $g = 9.8$ m/s$^2$, calculate the normal reaction and the friction force,
+      each to $4$ significant figures.
+    answer_label: Normal reaction, then friction
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g * sqrt(3) / 2
+          values:
+            m: {value: '20', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '169.74', unit: N}
+          tolerance: '0.01'
+        - kind: dimensions
+          expression: mu * m * g * sqrt(3) / 2
+          values:
+            mu: {value: '0.25'}
+            m: {value: '20', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '42.44', unit: N}
+          tolerance: '0.01'
+    answer_text: >-
+      Perpendicular to the plane, $R = mg\cos 30^\circ = 20 \times 9.8 \times
+      0.8660 = 169.74$ N. The crate is sliding, so friction is limiting:
+      $F = \mu R = 0.25 \times 169.74 = 42.44$ N, acting up the plane.
+
+  - id: am5-3-constant-speed-mu
+    section: '5.3'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block slides down a rough plane inclined at $30^\circ$ to the horizontal
+      at a constant speed. Show that the coefficient of friction is
+      $\tan 30^\circ$, and give its value.
+    answer_label: Coefficient of friction
+    check:
+      kind: evaluate
+      expression: 'tan(30*pi/180)'
+      answer: '1/sqrt(3)'
+    answer_text: >-
+      A constant speed means the acceleration is zero, so the resultant force
+      along the plane is zero. The component of the weight down the plane equals
+      friction: $mg\sin 30^\circ = \mu mg\cos 30^\circ$. The mass and $g$
+      cancel, leaving $\mu = \tan 30^\circ = \dfrac{1}{\sqrt{3}} = 0.577$ to
+      three significant figures. This is the same condition as the greatest
+      angle for rest in Section 5.4.

@@ -1,0 +1,281 @@
+# Leaving Certificate Physics, Chapter 2, section 2.3 (strand 1 outcome 1.1).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` record proves only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 2
+problems:
+- id: p2-3-final-velocity
+  section: '2.3'
+  tier: O
+  refs:
+  - '1.1'
+  statement: A car starts from rest and accelerates at 2.5 m/s$^2$ for 6.0 s. Calculate its final
+    velocity.
+  answer_label: Final velocity
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: u + a * t
+      values:
+        u:
+          value: '0'
+          unit: m/s
+        a:
+          value: '2.5'
+          unit: m/s^2
+        t:
+          value: '6.0'
+          unit: s
+      answer:
+        value: '15'
+        unit: m/s
+    - kind: sigfigs
+      value: '0 + 2.5 * 6.0'
+      figures: 2
+      answer: 1.5e1
+      convention: round-once
+  answer_text: $v = u + at = 0 + 2.5 \times 6.0 = 15\,\text{m/s}$.
+- id: p2-3-distance
+  section: '2.3'
+  tier: O
+  refs:
+  - '1.1'
+  statement: The same car accelerates from rest at 2.5 m/s$^2$ for 6.0 s. Calculate the distance it
+    travels.
+  answer_label: Distance travelled
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: u * t + 0.5 * a * t**2
+      values:
+        u:
+          value: '0'
+          unit: m/s
+        a:
+          value: '2.5'
+          unit: m/s^2
+        t:
+          value: '6.0'
+          unit: s
+      answer:
+        value: '45'
+        unit: m
+    - kind: sigfigs
+      value: '0 * 6.0 + 0.5 * 2.5 * 6.0**2'
+      figures: 2
+      answer: 4.5e1
+      convention: round-once
+  answer_text: $s = ut + \frac{1}{2}at^2 = 0 + \frac{1}{2} \times 2.5 \times 6.0^2 = 45\,\text{m}$.
+- id: p2-3-stopping-distance
+  section: '2.3'
+  tier: O
+  refs:
+  - '1.1'
+  statement: A train travelling at 30 m/s brakes to rest with a deceleration of 2.0 m/s$^2$.
+    Calculate the distance it travels while stopping.
+  answer_label: Stopping distance
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: (v**2 - u**2) / (2 * a)
+      values:
+        u:
+          value: '30'
+          unit: m/s
+        v:
+          value: '0'
+          unit: m/s
+        a:
+          value: '-2.0'
+          unit: m/s^2
+      answer:
+        value: '225'
+        unit: m
+    - kind: sigfigs
+      value: '(0**2 - 30**2) / (2 * -2.0)'
+      figures: 2
+      answer: 2.3e2
+      convention: round-once
+  answer_text: $v^2 = u^2 + 2as$, so $0 = 30^2 + 2 \times (-2.0) \times s$. Then
+    $s = \dfrac{30^2}{2 \times 2.0} = 225\,\text{m}$, which is $2.3 \times 10^{2}\,\text{m}$ to two
+    significant figures.
+- id: p2-3-final-speed
+  section: '2.3'
+  tier: O
+  refs:
+  - '1.1'
+  statement: A ball rolls at 4.0 m/s and accelerates at 2.0 m/s$^2$ over a distance of 12 m.
+    Calculate its final speed.
+  answer_label: Final speed
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(u**2 + 2 * a * s)
+      values:
+        u:
+          value: '4.0'
+          unit: m/s
+        a:
+          value: '2.0'
+          unit: m/s^2
+        s:
+          value: '12'
+          unit: m
+      answer:
+        value: '8.0'
+        unit: m/s
+    - kind: sigfigs
+      value: 'sqrt(4.0**2 + 2 * 2.0 * 12)'
+      figures: 2
+      answer: '8.0'
+      convention: round-once
+  answer_text: $v^2 = u^2 + 2as = 4.0^2 + 2 \times 2.0 \times 12 = 64$, so
+    $v = 8.0\,\text{m/s}$.
+- id: p2-3-time
+  section: '2.3'
+  tier: O
+  refs:
+  - '1.1'
+  statement: A car travelling at 10 m/s accelerates at 2.0 m/s$^2$ until it reaches 20 m/s. Calculate
+    the time this takes.
+  answer_label: Time taken
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: (v - u) / a
+      values:
+        u:
+          value: '10'
+          unit: m/s
+        v:
+          value: '20'
+          unit: m/s
+        a:
+          value: '2.0'
+          unit: m/s^2
+      answer:
+        value: '5.0'
+        unit: s
+    - kind: sigfigs
+      value: '(20 - 10) / 2.0'
+      figures: 2
+      answer: '5.0'
+      convention: round-once
+  answer_text: $v = u + at$, so $t = \dfrac{v - u}{a} = \dfrac{20 - 10}{2.0} = 5.0\,\text{s}$.
+- id: p2-3-average-velocity
+  section: '2.3'
+  tier: O
+  refs:
+  - '1.1'
+  statement: A car speeds up steadily from 6.0 m/s to 14 m/s in 8.0 s. Calculate the distance it
+    travels.
+  answer_label: Distance travelled
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: (u + v) / 2 * t
+      values:
+        u:
+          value: '6.0'
+          unit: m/s
+        v:
+          value: '14'
+          unit: m/s
+        t:
+          value: '8.0'
+          unit: s
+      answer:
+        value: '80'
+        unit: m
+    - kind: sigfigs
+      value: '(6.0 + 14) / 2 * 8.0'
+      figures: 2
+      answer: 8.0e1
+      convention: round-once
+  answer_text: $s = \dfrac{u + v}{2}\,t = \dfrac{6.0 + 14}{2} \times 8.0 = 80\,\text{m}$. The
+    average velocity is $10\,\text{m/s}$.
+- id: p2-3-drone
+  section: '2.3'
+  tier: O
+  refs:
+  - '1.1'
+  statement: The delivery drone starts from rest and accelerates at 2.0 m/s$^2$ for 4.0 s. Calculate
+    the height it rises.
+  answer_label: Height risen
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: u * t + 0.5 * a * t**2
+      values:
+        u:
+          value: '0'
+          unit: m/s
+        a:
+          value: '2.0'
+          unit: m/s^2
+        t:
+          value: '4.0'
+          unit: s
+      answer:
+        value: '16'
+        unit: m
+    - kind: sigfigs
+      value: '0 * 4.0 + 0.5 * 2.0 * 4.0**2'
+      figures: 2
+      answer: 1.6e1
+      convention: round-once
+  answer_text: $s = ut + \frac{1}{2}at^2 = 0 + \frac{1}{2} \times 2.0 \times 4.0^2 = 16\,\text{m}$.
+    This is the height at the end of the drone's acceleration phase in the chapter problem.
+- id: p2-3-choose
+  section: '2.3'
+  tier: O
+  refs:
+  - '1.1'
+  statement: You know the initial velocity, the final velocity and the time for a moving object.
+    State which equation of motion you would use to find the distance, and explain why.
+  answer_label: Choosing an equation
+  check:
+    kind: structured
+    requires:
+    - equation
+    - reason
+    - units
+    concepts:
+    - no-acceleration
+    - average-velocity
+    - check
+    points:
+    - id: equation
+      text: use s = (u + v) t / 2, because it links the distance, the two velocities and the time
+        without the acceleration
+      concepts:
+      - no-acceleration
+      - average-velocity
+    - id: reason
+      text: the acceleration is neither given nor wanted, so the equation with no a in it is the
+        shortest route
+      concepts:
+      - no-acceleration
+    - id: units
+      text: the units check, because m/s added to m/s is m/s, and m/s multiplied by s gives m
+      concepts:
+      - check
+  answer_text: Use $s = \dfrac{u + v}{2}\,t$, because it links the distance, the two velocities and
+    the time without the acceleration. The acceleration is neither given nor wanted, so the equation
+    with no $a$ in it is the shortest route. The units check is that m/s added to m/s is m/s, and m/s
+    multiplied by s gives m.

@@ -1,0 +1,138 @@
+# Junior Cycle Mathematics, Chapter 10, section 10.3.
+#
+# A "is this value a solution" question checks the left side at that value, so
+# the CAS proves the number the reader compares with the right side. A "find the
+# value" question uses `solve`, so the verifier proves the whole solution set of
+# the equation the answer text states. Units and words stay in `statement`: the
+# CAS parses numbers and symbols only.
+chapter: 10
+symbols:
+  k: {real: true}
+  x: {real: true}
+  n: {real: true}
+  h: {real: true}
+
+problems:
+- id: jc10-10.3-eq-1
+  section: '10.3'
+  tier: O
+  refs:
+  - AF.2
+  statement: Is $k=8$ a solution of $5+2k=25$?
+  answer_label: Is $k=8$ a solution of $5+2k=25$?
+  check:
+    kind: evaluate
+    expression: 5 + 2*8
+    answer: '21'
+  answer_text: 'No. The left side is $5+2\times8=21$, and the right side is 25. Since $21\neq25$, the equation is false when $k=8$.'
+- id: jc10-10.3-eq-2
+  section: '10.3'
+  tier: O
+  refs:
+  - AF.2
+  statement: Is $k=10$ a solution of $5+2k=25$?
+  answer_label: Is $k=10$ a solution of $5+2k=25$?
+  check:
+    kind: evaluate
+    expression: 5 + 2*10
+    answer: '25'
+  answer_text: 'Yes. The left side is $5+2\times10=25$, which equals the right side. So $k=10$ is a solution.'
+- id: jc10-10.3-eq-3
+  section: '10.3'
+  tier: O
+  refs:
+  - AF.2
+  statement: Find the value of $x$ that makes $x+6=15$ true.
+  answer_label: The value of $x$ in $x+6=15$
+  check:
+    kind: solve
+    equation: x + 6 = 15
+    variable: x
+    answer: '9'
+  answer_text: '$x=9$, because $9+6=15$. Test it: the left side is 15, which equals the right side.'
+- id: jc10-10.3-eq-4
+  section: '10.3'
+  tier: O
+  refs:
+  - AF.2
+  statement: Is $x=3$ a solution of $4x-5=23$?
+  answer_label: Is $x=3$ a solution of $4x-5=23$?
+  check:
+    kind: evaluate
+    expression: 4*3 - 5
+    answer: '7'
+  answer_text: 'No. The left side is $4\times3-5=12-5=7$, and the right side is 23. Since $7\neq23$, $x=3$ is not a solution.'
+- id: jc10-10.3-eq-5
+  section: '10.3'
+  tier: O
+  refs:
+  - AF.2
+  statement: Is $x=7$ a solution of $4x-5=23$?
+  answer_label: Is $x=7$ a solution of $4x-5=23$?
+  check:
+    kind: evaluate
+    expression: 4*7 - 5
+    answer: '23'
+  answer_text: 'Yes. The left side is $4\times7-5=28-5=23$, which equals the right side. So $x=7$ is a solution.'
+- id: jc10-10.3-eq-6
+  section: '10.3'
+  tier: O
+  refs:
+  - AF.2
+  statement: Find the value of $n$ that makes $3n=21$ true.
+  answer_label: The value of $n$ in $3n=21$
+  check:
+    kind: solve
+    equation: 3*n = 21
+    variable: n
+    answer: '7'
+  answer_text: '$n=7$, because $3\times7=21$. Try $n=5$: $3\times5=15$ is too small. Try $n=8$: $3\times8=24$ is too big. So $n=7$.'
+- id: jc10-10.3-eq-7
+  section: '10.3'
+  tier: O
+  refs:
+  - AF.2
+  statement: Is $n=5$ a solution of $3n+4=19$?
+  answer_label: Is $n=5$ a solution of $3n+4=19$?
+  check:
+    kind: evaluate
+    expression: 3*5 + 4
+    answer: '19'
+  answer_text: 'Yes. The left side is $3\times5+4=15+4=19$, which equals the right side.'
+- id: jc10-10.3-eq-8
+  section: '10.3'
+  tier: O
+  refs:
+  - AF.2
+  statement: Is $x=2$ a solution of $x^2+1=5$?
+  answer_label: Is $x=2$ a solution of $x^2+1=5$?
+  check:
+    kind: evaluate
+    expression: 2**2 + 1
+    answer: '5'
+  answer_text: 'Yes. The left side is $2^2+1=4+1=5$, which equals the right side.'
+- id: jc10-10.3-eq-9
+  section: '10.3'
+  tier: O
+  refs:
+  - AF.2
+  statement: Is $x=3$ a solution of $x^2+1=5$?
+  answer_label: Is $x=3$ a solution of $x^2+1=5$?
+  check:
+    kind: evaluate
+    expression: 3**2 + 1
+    answer: '10'
+  answer_text: 'No. The left side is $3^2+1=9+1=10$, and the right side is 5. Since $10\neq5$, $x=3$ is not a solution.'
+- id: jc10-10.3-eq-10
+  section: '10.3'
+  tier: O
+  refs:
+  - AF.2
+  statement: A plumber charges $40+25h$ euro for $h$ hours. The bill is €165. Write an equation, and find $h$.
+  answer_label: The equation, and the value of $h$
+  check:
+    kind: solve
+    equation: 40 + 25*h = 165
+    variable: h
+    answer: '5'
+  answer_text: 'The equation is $40+25h=165$. Test $h=5$: the left side is $40+25\times5=40+125=165$, which equals the right side. So $h=5$, and the plumber worked 5 hours.'

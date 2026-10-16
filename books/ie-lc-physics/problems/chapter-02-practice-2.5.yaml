@@ -1,0 +1,237 @@
+# Leaving Certificate Physics, Chapter 2, section 2.5 (strand 1 outcome 1.1, Higher level).
+#
+# This bank covers the derivation of the equations of motion from a velocity-time
+# graph. The `structured` records prove only that a model answer contains the declared
+# steps and concepts, in order; they cannot prove that the derivation is correct. The
+# numeric records use the derived equations and are checked by `dimensions` and
+# `sigfigs` like the rest of the chapter.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass.
+chapter: 2
+problems:
+- id: p2-5-derive-velocity
+  section: '2.5'
+  tier: H
+  refs:
+  - '1.1'
+  statement: A velocity-time graph is a straight line from (0, u) to (t, v). Derive $v = u + at$
+    from the gradient of the line.
+  answer_label: Deriving the first equation
+  check:
+    kind: structured
+    requires:
+    - gradient
+    - fraction
+    - result
+    concepts:
+    - gradient-is-acceleration
+    - straight-line
+    - change-in-velocity
+    points:
+    - id: gradient
+      text: the graph is a straight line, and its gradient is the acceleration a
+      concepts:
+      - gradient-is-acceleration
+      - straight-line
+    - id: fraction
+      text: the gradient is the change in velocity divided by the time, so a = (v - u) / t
+      concepts:
+      - change-in-velocity
+    - id: result
+      text: multiplying both sides by t and rearranging gives v = u + at
+      concepts:
+      - change-in-velocity
+  answer_text: The graph is a straight line, and its gradient is the acceleration $a$. The gradient
+    is the change in velocity divided by the time, so $a = \dfrac{v - u}{t}$. Multiplying both sides
+    by $t$ and rearranging gives $v = u + at$.
+- id: p2-5-derive-area
+  section: '2.5'
+  tier: H
+  refs:
+  - '1.1'
+  statement: Derive $s = \dfrac{u + v}{2}\,t$ from the area under the same velocity-time graph.
+  answer_label: Deriving the second equation
+  check:
+    kind: structured
+    requires:
+    - trapezium
+    - area
+    - result
+    concepts:
+    - area-is-displacement
+    - parallel-sides
+    points:
+    - id: trapezium
+      text: the area under the line is the displacement s, and the shape is a trapezium
+      concepts:
+      - area-is-displacement
+    - id: area
+      text: the area of a trapezium is half the sum of the parallel sides multiplied by the distance
+        between them
+      concepts:
+      - parallel-sides
+    - id: result
+      text: the parallel sides are u and v and the distance between them is t, so s = (u + v) t / 2
+      concepts:
+      - area-is-displacement
+      - parallel-sides
+  answer_text: The area under the line is the displacement $s$, and the shape is a trapezium. The
+    area of a trapezium is half the sum of the parallel sides multiplied by the distance between
+    them. The parallel sides are $u$ and $v$ and the distance between them is $t$, so
+    $s = \dfrac{u + v}{2}\,t$.
+- id: p2-5-derive-substitute
+  section: '2.5'
+  tier: H
+  refs:
+  - '1.1'
+  statement: Starting from $s = \dfrac{u + v}{2}\,t$ and $v = u + at$, derive
+    $s = ut + \frac{1}{2}at^2$.
+  answer_label: Deriving the third equation
+  check:
+    kind: structured
+    requires:
+    - substitute
+    - expand
+    - result
+    concepts:
+    - substitute-v
+    - expand
+    - simplify
+    points:
+    - id: substitute
+      text: substitute v = u + at into s = (u + v) t / 2 to get s = (u + u + at) t / 2
+      concepts:
+      - substitute-v
+    - id: expand
+      text: the bracket becomes 2u + at, so s = (2ut + at squared) / 2
+      concepts:
+      - expand
+    - id: result
+      text: dividing each term by 2 gives s = ut + half a t squared
+      concepts:
+      - simplify
+  answer_text: Substitute $v = u + at$ into $s = \dfrac{u + v}{2}\,t$ to get
+    $s = \dfrac{(u + u + at)t}{2}$. The bracket becomes $2u + at$, so
+    $s = \dfrac{2ut + at^2}{2}$. Dividing each term by 2 gives $s = ut + \frac{1}{2}at^2$.
+- id: p2-5-derive-eliminate
+  section: '2.5'
+  tier: H
+  refs:
+  - '1.1'
+  statement: Eliminate $t$ between $v = u + at$ and $s = \dfrac{u + v}{2}\,t$ to derive
+    $v^2 = u^2 + 2as$.
+  answer_label: Deriving the fourth equation
+  check:
+    kind: structured
+    requires:
+    - time
+    - substitute
+    - result
+    concepts:
+    - eliminate-time
+    - expand
+    - rearrange
+    points:
+    - id: time
+      text: rearrange v = u + at to get t = (v - u) / a
+      concepts:
+      - eliminate-time
+    - id: substitute
+      text: substitute this into s = (u + v) t / 2 to get s = (u + v)(v - u) / (2a)
+      concepts:
+      - substitute-v
+    - id: result
+      text: multiply out the bracket as v squared minus u squared, then rearrange to give v squared =
+        u squared + 2as
+      concepts:
+      - expand
+      - rearrange
+  answer_text: Rearrange $v = u + at$ to get $t = \dfrac{v - u}{a}$. Substitute this into
+    $s = \dfrac{u + v}{2}\,t$ to get $s = \dfrac{(u + v)(v - u)}{2a}$. The bracket multiplies out as
+    $v^2 - u^2$, so $2as = v^2 - u^2$, and rearranging gives $v^2 = u^2 + 2as$.
+- id: p2-5-gradient-numeric
+  section: '2.5'
+  tier: H
+  refs:
+  - '1.1'
+  statement: 'A velocity-time graph is a straight line from (0, 4.0 m/s) to (5.0 s, 14 m/s).
+    Calculate the gradient, and state what it represents.'
+  answer_label: Gradient of the graph
+  check:
+    kind: gradient
+    series:
+    - [0, 4.0]
+    - [5.0, 14]
+    between: [1.9, 2.1]
+  answer_text: 'Gradient $= \dfrac{\Delta v}{\Delta t} = \dfrac{14 - 4.0}{5.0} = 2.0\,\text{m/s}^2$.
+    The gradient of a velocity-time graph is the acceleration, so this is the value of $a$ in the
+    equations of motion.'
+- id: p2-5-area-numeric
+  section: '2.5'
+  tier: H
+  refs:
+  - '1.1'
+  statement: 'For the same graph, from (0, 4.0 m/s) to (5.0 s, 14 m/s), calculate the area under the
+    line, and state what it represents.'
+  answer_label: Area under the graph
+  check:
+    kind: area
+    series:
+    - [0, 4.0]
+    - [5.0, 14]
+    between: [44, 46]
+  answer_text: 'The shape is a trapezium, so area $= \dfrac{u + v}{2}\,t = \dfrac{4.0 + 14}{2} \times
+    5.0 = 45\,\text{m}$. The area under a velocity-time graph is the displacement, so this is $s$.'
+- id: p2-5-acceleration-numeric
+  section: '2.5'
+  tier: H
+  refs:
+  - '1.1'
+  statement: A car accelerates from 8.0 m/s to 20 m/s over a distance of 42 m. Use $v^2 = u^2 + 2as$
+    to calculate its acceleration.
+  answer_label: Acceleration
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: (v**2 - u**2) / (2 * s)
+      values:
+        u:
+          value: '8.0'
+          unit: m/s
+        v:
+          value: '20'
+          unit: m/s
+        s:
+          value: '42'
+          unit: m
+      answer:
+        value: '4.0'
+        unit: m/s^2
+    - kind: sigfigs
+      value: '(20**2 - 8.0**2) / (2 * 42)'
+      figures: 2
+      answer: '4.0'
+      convention: round-once
+  answer_text: $v^2 = u^2 + 2as$, so $a = \dfrac{v^2 - u^2}{2s} = \dfrac{20^2 - 8.0^2}{2 \times 42}
+    = 4.0\,\text{m/s}^2$.
+- id: p2-5-drone-area
+  section: '2.5'
+  tier: H
+  refs:
+  - '1.1'
+  statement: 'The velocity-time graph for the drone rises from (0, 0) to (4.0 s, 8.0 m/s), then stays
+    at 8.0 m/s until 4.5 s. Calculate the area under the graph, and state what it represents.'
+  answer_label: Area under the drone's graph
+  check:
+    kind: area
+    series:
+    - [0, 0]
+    - [4.0, 8.0]
+    - [4.5, 8.0]
+    between: [19, 21]
+  answer_text: 'The area is the triangle $\frac{1}{2} \times 4.0 \times 8.0 = 16\,\text{m}$ plus the
+    rectangle $0.50 \times 8.0 = 4.0\,\text{m}$, so the area is $20\,\text{m}$. The area under a
+    velocity-time graph is the displacement, so the drone has risen $20\,\text{m}$.'

@@ -1,0 +1,189 @@
+# Junior Cycle Mathematics, Chapter 2, section 2.2.
+#
+# Each record is an equivalence the CAS proves: the unsimplified product on the
+# left, the single power on the right. A wrong law fails, so `a^3 x a^4 = a^12`
+# cannot pass and `(a^2)^3 = a^5` cannot pass. Letters are declared real; no
+# record needs a sign assumption, because every index law used here is an
+# identity for a real base.
+chapter: 2
+symbols:
+  a: {real: true}
+  b: {real: true}
+  x: {real: true}
+  y: {real: true}
+
+problems:
+- id: jc2-2.2-mult-1
+  section: '2.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Simplify $2^3\times2^4$.
+  answer_label: Simplify $2^3\times2^4$.
+  check:
+    kind: evaluate
+    expression: 2**3*2**4
+    answer: 2**7
+  answer_text: >-
+    $2^7$. The base is the same, so add the indices: $3+4 = 7$. The value is
+    128, and $8\times16 = 128$ agrees.
+- id: jc2-2.2-div-1
+  section: '2.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Simplify $7^8\div7^5$.
+  answer_label: Simplify $7^8\div7^5$.
+  check:
+    kind: evaluate
+    expression: 7**8/7**5
+    answer: 7**3
+  answer_text: >-
+    $7^3$. Dividing powers with the same base subtracts the indices: $8-5 = 3$.
+    The value is 343.
+- id: jc2-2.2-div-2
+  section: '2.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Simplify $6^{10}\div6^4$.
+  answer_label: Simplify $6^{10}\div6^4$.
+  check:
+    kind: evaluate
+    expression: 6**10/6**4
+    answer: 6**6
+  answer_text: >-
+    $6^6$. The indices subtract: $10-4 = 6$. The value is 46656. Four matching
+    factors cancel underneath, which is what the subtraction records.
+- id: jc2-2.2-power-1
+  section: '2.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Simplify $(3^2)^5$.
+  answer_label: Simplify $(3^2)^5$.
+  check:
+    kind: evaluate
+    expression: (3**2)**5
+    answer: 3**10
+  answer_text: >-
+    $3^{10}$. One power is raised to another, so the indices multiply:
+    $2\times5 = 10$. It is not $3^7$, because the indices do not add here.
+- id: jc2-2.2-power-2
+  section: '2.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Simplify $(2^4)^3$.
+  answer_label: Simplify $(2^4)^3$.
+  check:
+    kind: evaluate
+    expression: (2**4)**3
+    answer: 2**12
+  answer_text: >-
+    $2^{12}$. Multiply the indices: $4\times3 = 12$. The value is 4096, and
+    $16^3 = 4096$ agrees.
+- id: jc2-2.2-algebra-1
+  section: '2.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Simplify $x^4\times x^6$.
+  answer_label: Simplify $x^4\times x^6$.
+  check:
+    kind: evaluate
+    expression: x**4*x**6
+    answer: x**10
+  answer_text: >-
+    $x^{10}$. The base $x$ is the same in both powers, so the indices add:
+    $4+6 = 10$. Write the answer as one power.
+- id: jc2-2.2-algebra-2
+  section: '2.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Simplify $y^9\div y^4$.
+  answer_label: Simplify $y^9\div y^4$.
+  check:
+    kind: evaluate
+    expression: y**9/y**4
+    answer: y**5
+  answer_text: >-
+    $y^5$. The indices subtract: $9-4 = 5$. Nine copies of $y$ on top with four
+    underneath leave five.
+- id: jc2-2.2-algebra-3
+  section: '2.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Simplify $(a^3)^4$.
+  answer_label: Simplify $(a^3)^4$.
+  check:
+    kind: evaluate
+    expression: (a**3)**4
+    answer: a**12
+  answer_text: >-
+    $a^{12}$. The brackets show a power of a power, so the indices multiply:
+    $3\times4 = 12$.
+- id: jc2-2.2-product
+  section: '2.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Simplify $(3b)^4$.
+  answer_label: Simplify $(3b)^4$.
+  check:
+    kind: evaluate
+    expression: (3*b)**4
+    answer: 81*b**4
+  answer_text: >-
+    $81b^4$. The power outside the bracket applies to every factor inside, so
+    $(3b)^4 = 3^4 b^4 = 81b^4$. The 3 is raised to the power as well as the $b$.
+- id: jc2-2.2-combined
+  section: '2.2'
+  tier: O
+  refs:
+  - N.1
+  statement: Simplify $\dfrac{4^6\times4^2}{4^5}$.
+  answer_label: Simplify $\dfrac{4^6\times4^2}{4^5}$.
+  check:
+    kind: evaluate
+    expression: 4**6*4**2/4**5
+    answer: 4**3
+  answer_text: >-
+    $4^3$. Add the indices on top: $6+2 = 8$. Then subtract the index
+    underneath: $8-5 = 3$. The value is 64.
+- id: jc2-2.2-misconception
+  section: '2.2'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    A pupil writes $a^3\times a^4 = a^{12}$. What is the correct answer? Give a
+    reason.
+  answer_label: The correct value of $a^3\times a^4$.
+  check:
+    kind: evaluate
+    expression: a**3*a**4
+    answer: a**7
+  answer_text: >-
+    $a^7$. The powers are multiplied, so the indices add: $3+4 = 7$. The pupil
+    multiplied the indices instead, which is the law for $(a^3)^4$ and not for a
+    product.
+- id: jc2-2.2-anchor
+  section: '2.2'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The 141% button multiplies the width by $2^{\frac12}$. Press it twice. Write
+    the width multiplier as a power of 2.
+  answer_label: The width multiplier after two presses, as a power of 2.
+  check:
+    kind: evaluate
+    expression: (2**(1/2))**2
+    answer: 2**1
+  answer_text: >-
+    $2^1 = 2$. A power raised to a power multiplies the indices:
+    $\frac12\times2 = 1$. So two presses double the width, which is what the
+    200% button would do in one press.

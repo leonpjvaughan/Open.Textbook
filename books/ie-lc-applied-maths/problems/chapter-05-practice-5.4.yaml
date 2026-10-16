@@ -1,0 +1,220 @@
+# Practice set for 5.4 (strand S3, the physical world; Higher only). The
+# `approx` checks prove an angle found from a tangent, within a declared
+# tolerance, because the angle is irrational. The `dimensions` checks prove the
+# arithmetic and the unit together. The `structured` record proves only that a
+# model answer contains the declared ideas, in order — not that the physics is
+# right.
+chapter: 5
+problems:
+  - id: am5-4-greatest-angle-05
+    section: '5.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A block rests on a rough plane. The coefficient of friction is $0.5$.
+      Calculate the greatest angle of the plane for which the block stays at
+      rest, to $1$ decimal place.
+    answer_label: Greatest angle
+    check:
+      kind: approx
+      value: 'atan(1/2) * 180 / pi'
+      target: '26.565'
+      tolerance: '0.01'
+    answer_text: >-
+      On the point of sliding, the component of the weight down the plane equals
+      limiting friction: $mg\sin\theta = \mu mg\cos\theta$. Dividing gives
+      $\tan\theta = \mu = 0.5$. So $\theta = \arctan 0.5 = 26.565^\circ$, which
+      is $26.6^\circ$ to one decimal place. At any steeper angle the block
+      slides.
+
+  - id: am5-4-greatest-angle-02
+    section: '5.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A block rests on a rough plane. The coefficient of friction is $0.2$.
+      Calculate the greatest angle of the plane for which the block stays at
+      rest, to $1$ decimal place.
+    answer_label: Greatest angle
+    check:
+      kind: approx
+      value: 'atan(1/5) * 180 / pi'
+      target: '11.31'
+      tolerance: '0.01'
+    answer_text: >-
+      The block stays at rest while $\tan\theta \le \mu$. The greatest angle
+      satisfies $\tan\theta = 0.2$, so
+      $\theta = \arctan 0.2 = 11.31^\circ$, which is $11.3^\circ$ to one decimal
+      place. The mass of the block does not affect this angle.
+
+  - id: am5-4-greatest-angle-01
+    section: '5.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A block rests on a rough plane. The coefficient of friction is $0.1$.
+      Calculate the greatest angle of the plane for which the block stays at
+      rest, to $1$ decimal place.
+    answer_label: Greatest angle
+    check:
+      kind: approx
+      value: 'atan(1/10) * 180 / pi'
+      target: '5.71'
+      tolerance: '0.01'
+    answer_text: >-
+      The greatest angle satisfies $\tan\theta = 0.1$, so
+      $\theta = \arctan 0.1 = 5.71^\circ$, which is $5.7^\circ$ to one decimal
+      place. A small coefficient means the block slides on all but the gentlest
+      slopes.
+
+  - id: am5-4-least-hold-force
+    section: '5.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A block of mass $10$ kg rests on a rough plane inclined at $30^\circ$ to
+      the horizontal. The coefficient of friction is $0.4$. A force acts on the
+      block up the plane, parallel to the surface. Calculate the smallest force
+      that keeps the block at rest, to $4$ significant figures. Take
+      $g = 9.8$ m/s$^2$.
+    answer_label: Smallest force up the plane
+    check:
+      kind: dimensions
+      expression: m * g / 2 - mu * m * g * sqrt(3) / 2
+      values:
+        m: {value: '10', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        mu: {value: '0.4'}
+      answer: {value: '15.05', unit: N}
+      tolerance: '0.01'
+    answer_text: >-
+      With the smallest force, the block is on the point of sliding down, so
+      friction acts up the plane and is limiting. The component of the weight
+      down the plane is $mg\sin 30^\circ = 49$ N, and limiting friction is
+      $\mu mg\cos 30^\circ = 0.4 \times 84.87 = 33.95$ N. The force and friction
+      together balance the weight component, so
+      $P = 49 - 33.95 = 15.05$ N.
+
+  - id: am5-4-just-move-up-force
+    section: '5.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      For the same block of mass $10$ kg on the $30^\circ$ plane with
+      $\mu = 0.4$, calculate the force up the plane needed to just start the
+      block moving up the plane, to $4$ significant figures.
+    answer_label: Force to start it moving up
+    check:
+      kind: dimensions
+      expression: m * g / 2 + mu * m * g * sqrt(3) / 2
+      values:
+        m: {value: '10', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        mu: {value: '0.4'}
+      answer: {value: '82.95', unit: N}
+      tolerance: '0.01'
+    answer_text: >-
+      With the block on the point of moving up, friction acts down the plane and
+      is limiting. Both the weight component and friction oppose the force, so
+      $P = mg\sin 30^\circ + \mu mg\cos 30^\circ = 49 + 33.95 = 82.95$ N. The
+      two answers differ because friction changes direction between sliding down
+      and sliding up.
+
+  - id: am5-4-force-at-angle-30
+    section: '5.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A block of mass $8$ kg rests on a rough horizontal floor. The coefficient
+      of friction is $0.5$. A force acts on the block at $30^\circ$ above the
+      horizontal. Calculate the smallest force that just starts the block
+      moving, to $4$ significant figures. Take $g = 9.8$ m/s$^2$.
+    answer_label: Smallest force
+    check:
+      kind: dimensions
+      expression: mu * m * g / (sqrt(3) / 2 + mu / 2)
+      values:
+        mu: {value: '0.5'}
+        m: {value: '8', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '35.12', unit: N}
+      tolerance: '0.01'
+    answer_text: >-
+      Let the force be $P$ at $30^\circ$ above the horizontal. Resolve
+      perpendicular to the floor: the force has an upward part
+      $P\sin 30^\circ$, so $R = mg - P\sin 30^\circ$. On the point of moving,
+      friction is limiting, so $P\cos 30^\circ = \mu R$. Substituting gives
+      $P\cos 30^\circ = \mu(mg - P\sin 30^\circ)$, so
+      $P = \dfrac{\mu mg}{\cos 30^\circ + \mu\sin 30^\circ} = \dfrac{39.2}{1.1160}
+      = 35.12$ N. The upward part of the force reduces the normal reaction, which
+      reduces friction.
+
+  - id: am5-4-tension-range
+    section: '5.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A block of mass $10$ kg rests on a rough plane inclined at $30^\circ$ to
+      the horizontal. The coefficient of friction is $0.3$. A string holds the
+      block, running up the plane parallel to the surface. Calculate the least
+      and the greatest tension for which the block stays at rest, each to
+      $4$ significant figures. Take $g = 9.8$ m/s$^2$.
+    answer_label: Least tension, then greatest tension
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g / 2 - mu * m * g * sqrt(3) / 2
+          values:
+            m: {value: '10', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+            mu: {value: '0.3'}
+          answer: {value: '23.54', unit: N}
+          tolerance: '0.01'
+        - kind: dimensions
+          expression: m * g / 2 + mu * m * g * sqrt(3) / 2
+          values:
+            m: {value: '10', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+            mu: {value: '0.3'}
+          answer: {value: '74.46', unit: N}
+          tolerance: '0.01'
+    answer_text: >-
+      The weight component down the plane is $49$ N and limiting friction is
+      $\mu mg\cos 30^\circ = 0.3 \times 84.87 = 25.46$ N. The least tension
+      occurs when the block is on the point of sliding down, so friction acts up
+      the plane: $T = 49 - 25.46 = 23.54$ N. The greatest tension occurs when it
+      is on the point of moving up, so friction acts down the plane:
+      $T = 49 + 25.46 = 74.46$ N. Any tension between the two holds the block at
+      rest, with friction taking the value needed.
+
+  - id: am5-4-friction-range
+    section: '5.4'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A block rests on a rough plane that is not steep enough for it to slide.
+      Explain why friction can take a range of values, and what sets the ends of
+      that range.
+    answer_label: The range of friction
+    check:
+      kind: structured
+      requires: [static-range, limiting-ends]
+      concepts: [limiting-friction]
+      points:
+        - id: static-range
+          text: >-
+            while the block is at rest, friction can take any value between
+            minus mu R and plus mu R along the plane
+          concepts: [limiting-friction]
+        - id: limiting-ends
+          text: >-
+            the ends of the range are the limiting values, reached only when the
+            block is on the point of sliding
+    answer_text: >-
+      While the block is at rest, the friction force is whatever is needed to
+      keep the forces along the plane in balance. It can point up the plane or
+      down it, so its value can be anything between $-\mu R$ and $+\mu R$. The
+      ends of the range are the limiting values, reached only when the block is
+      on the point of sliding. Once the force needed would be larger than
+      $\mu R$, the block slides.

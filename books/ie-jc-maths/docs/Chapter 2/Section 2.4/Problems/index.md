@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.4 Fractional indices and roots — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: N.1
+Work independently. The questions and answers are shown together at the end.
+
+Some answers are rounded. When a question asks for a given number of decimal
+places or the nearest millimetre, round only at the end.
+
+:::problems chapter-02-practice-2.4
+
+:::answers chapter-02-practice-2.4

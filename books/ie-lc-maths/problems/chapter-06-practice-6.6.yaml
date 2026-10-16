@@ -1,0 +1,122 @@
+# Practice set for 6.6 (strand 5, outcome 5.1). Exponential and logarithmic
+# values are proved with `evaluate`; an equation $a^x = b$ is solved exactly with
+# `solve` and to three significant figures with `approx`; the log laws are
+# `apply: logcombine`. The last two records resolve the chapter problem.
+chapter: 6
+symbols:
+  x: {real: true}
+  t: {real: true}
+  a: {positive: true}
+  b: {positive: true}
+problems:
+  - id: lc6-6-evaluate-power
+    section: '6.6'
+    tier: O
+    refs: ['5.1']
+    statement: 'Work out $2^3$.'
+    answer_label: 'The value'
+    check: {kind: evaluate, expression: '2**3', answer: '8'}
+    answer_text: '$2^3 = 2 \times 2 \times 2 = 8$.'
+
+  - id: lc6-6-solve-power
+    section: '6.6'
+    tier: O
+    refs: ['5.1']
+    statement: 'Solve $2^x = 32$.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: solve
+      equation: '2**x = 32'
+      variable: x
+      answer: [5]
+    answer_text: >-
+      Write $32$ as a power of $2$: $32 = 2^5$. Matching the powers gives $x = 5$.
+      This works because $2^x$ is injective.
+
+  - id: lc6-6-log-form
+    section: '6.6'
+    tier: O
+    refs: ['5.1']
+    statement: 'Write $3^4 = 81$ in logarithmic form.'
+    answer_label: 'The logarithm'
+    check: {kind: evaluate, expression: 'log(81, 3)', answer: '4'}
+    answer_text: >-
+      The exponent is $4$, so $\log_3 81 = 4$. The base stays the base, and the
+      logarithm is the power.
+
+  - id: lc6-6-log-value
+    section: '6.6'
+    tier: O
+    refs: ['5.1']
+    statement: 'Work out $\log_2 64$.'
+    answer_label: 'The value'
+    check: {kind: evaluate, expression: 'log(64, 2)', answer: '6'}
+    answer_text: >-
+      Ask which power of $2$ gives $64$. Since $2^6 = 64$, $\log_2 64 = 6$.
+
+  - id: lc6-6-solve-base-three
+    section: '6.6'
+    tier: O
+    refs: ['5.1']
+    statement: 'Solve $3^x = 20$, giving $x$ to three significant figures.'
+    answer_label: 'The value of $x$'
+    check:
+      kind: approx
+      value: 'log(20)/log(3)'
+      target: '2.73'
+      tolerance: '0.005'
+    answer_text: >-
+      Take logarithms of both sides: $x\log 3 = \log 20$, so
+      $x = \dfrac{\log 20}{\log 3} = 2.7268\dots$ To three significant figures,
+      $x = 2.73$.
+
+  - id: lc6-6-log-law
+    section: '6.6'
+    tier: O
+    refs: ['5.1']
+    statement: 'Simplify $\log a + \log b$ into a single logarithm.'
+    answer_label: 'The single logarithm'
+    check:
+      kind: apply
+      expression: 'log(a) + log(b)'
+      apply: {op: logcombine}
+      answer: 'log(a*b)'
+    answer_text: >-
+      Adding logarithms multiplies the arguments: $\log a + \log b = \log(ab)$.
+      This law works because $a^m a^n = a^{m+n}$.
+
+  - id: lc6-6-coffee-solve
+    section: '6.6'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      The coffee temperature is $T(t) = 20 + 70(0.5)^{t/5}$. Solve
+      $T(t) = 50$ for $t$, leaving the answer exact.
+    answer_label: 'The exact time'
+    check:
+      kind: solve
+      equation: '20 + 70*(1/2)**(t/5) = 50'
+      variable: t
+      answer: ['5*log(3/7)/log(1/2)']
+    answer_text: >-
+      Subtract $20$: $70(0.5)^{t/5} = 30$, so $(0.5)^{t/5} = \dfrac{3}{7}$. Take
+      logarithms: $\dfrac{t}{5} = \log_{0.5}\!\left(\dfrac{3}{7}\right)$, so
+      $t = 5\log_{0.5}\!\left(\dfrac{3}{7}\right)$.
+
+  - id: lc6-6-coffee-time
+    section: '6.6'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      Work out that exact time in minutes, to two decimal places, and say what it
+      means for the coffee.
+    answer_label: 'The time in minutes'
+    check:
+      kind: approx
+      value: '5*log(3/7)/log(1/2)'
+      target: '6.11'
+      tolerance: '0.02'
+    answer_text: >-
+      $t = 5\log_{0.5}\!\left(\dfrac{3}{7}\right) = 6.11\dots$, so the coffee
+      reaches $50^\circ C$ after about $6.11$ minutes. That is the answer to the
+      chapter problem.

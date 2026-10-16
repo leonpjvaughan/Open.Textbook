@@ -1,0 +1,141 @@
+# Practice set for 6.5 (strand 5, outcome 5.1). A transformation is an operation
+# on a function, so `apply: subs` proves a vertical shift and `apply: compose`
+# proves a horizontal one; evaluating the shifted graph at a point is a second,
+# independent check. The asymptote is a limit.
+chapter: 6
+symbols:
+  x: {real: true}
+  a: {real: true}
+  t: {real: true}
+problems:
+  - id: lc6-5-shift-up-value
+    section: '6.5'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      The graph of $y = x^2$ is shifted up by $3$. Work out the value of $y$ on
+      the new graph when $x = 2$.
+    answer_label: 'The value of $y$'
+    check: {kind: evaluate, expression: '2**2 + 3', answer: '7'}
+    answer_text: >-
+      Shifting up adds $3$ to every output, so the new rule is $y = x^2 + 3$. At
+      $x = 2$: $y = 4 + 3 = 7$.
+
+  - id: lc6-5-shift-up-rule
+    section: '6.5'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      The graph of $y = x^2$ is shifted up by $3$. Write the new rule by
+      substituting $a = 3$ into $y = x^2 + a$.
+    answer_label: 'The new rule'
+    check:
+      kind: apply
+      expression: 'x**2 + a'
+      apply: {op: subs, args: [a, '3']}
+      answer: 'x**2 + 3'
+    answer_text: >-
+      A shift up by $a$ adds $a$ to the output, so $y = x^2 + a$. With $a = 3$ the
+      rule is $y = x^2 + 3$. The shape is unchanged and only the height moves.
+
+  - id: lc6-5-shift-right-value
+    section: '6.5'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      The graph of $y = x^2$ is shifted right by $3$. Work out the value of $y$ on
+      the new graph when $x = 5$.
+    answer_label: 'The value of $y$'
+    check: {kind: evaluate, expression: '(5 - 3)**2', answer: '4'}
+    answer_text: >-
+      A shift right by $3$ replaces $x$ by $x - 3$, so the new rule is
+      $y = (x - 3)^2$. At $x = 5$: $y = (5 - 3)^2 = 4$. The old graph reached $4$
+      at $x = 2$, so the whole graph moved $3$ to the right.
+
+  - id: lc6-5-shift-right-rule
+    section: '6.5'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      The graph of $y = x^2$ is shifted right by $3$. Write the new rule by
+      substituting $x - 3$ into the function.
+    answer_label: 'The new rule'
+    check:
+      kind: apply
+      expression: 'x**2'
+      apply: {op: compose, args: ['x - 3']}
+      answer: '(x - 3)**2'
+    answer_text: >-
+      A shift right by $3$ replaces every $x$ by $x - 3$, so the new rule is
+      $y = (x - 3)^2$. The change is inside the function, which is why the graph
+      moves the opposite way to the sign.
+
+  - id: lc6-5-stretch-value
+    section: '6.5'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      The graph of $y = x^2$ is stretched vertically by a factor of $2$. Work out
+      the value of $y$ on the new graph when $x = 3$.
+    answer_label: 'The value of $y$'
+    check: {kind: evaluate, expression: '2*3**2', answer: '18'}
+    answer_text: >-
+      A vertical stretch by $2$ multiplies every output by $2$, so the rule is
+      $y = 2x^2$. At $x = 3$: $y = 2(9) = 18$.
+
+  - id: lc6-5-reflect-value
+    section: '6.5'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      The graph of $y = x^2$ is reflected in the $x$-axis. Work out the value of
+      $y$ on the new graph when $x = 2$.
+    answer_label: 'The value of $y$'
+    check: {kind: evaluate, expression: '-2**2', answer: '-4'}
+    answer_text: >-
+      A reflection in the $x$-axis multiplies every output by $-1$, so the rule is
+      $y = -x^2$. At $x = 2$: $y = -4$.
+
+  - id: lc6-5-coffee-transform
+    section: '6.5'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      Describe the transformations that change the graph of $y = (0.5)^t$ into the
+      coffee graph $T(t) = 20 + 70(0.5)^{t/5}$.
+    answer_label: 'The transformations'
+    check:
+      kind: structured
+      requires: [horizontal, vertical, shift]
+      concepts: [stretch-horizontal, stretch-vertical, translate-up]
+      points:
+        - id: horizontal
+          text: a horizontal stretch by a factor of 5 turns (0.5)^t into (0.5)^(t/5)
+          concepts: [stretch-horizontal]
+        - id: vertical
+          text: a vertical stretch by a factor of 70 multiplies the outputs by 70
+          concepts: [stretch-vertical]
+        - id: shift
+          text: a shift up by 20 raises the whole graph by 20
+          concepts: [translate-up]
+    answer_text: >-
+      Replace $t$ by $t/5$: a horizontal stretch by a factor of $5$. Multiply the
+      outputs by $70$: a vertical stretch by a factor of $70$. Then add $20$: a
+      shift up by $20$. The horizontal asymptote moves from $T = 0$ to $T = 20$.
+
+  - id: lc6-5-coffee-asymptote
+    section: '6.5'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      Find the value that the coffee temperature $T(t) = 20 + 70(0.5)^{t/5}$
+      approaches as $t$ grows without bound.
+    answer_label: 'The limiting temperature'
+    check:
+      kind: apply
+      expression: '20 + 70*(1/2)**(t/5)'
+      apply: {op: limit, args: [t, oo]}
+      answer: '20'
+    answer_text: >-
+      As $t$ grows, $(0.5)^{t/5}$ shrinks towards $0$, so $T$ approaches $20$. The
+      line $T = 20$ is the horizontal asymptote, and it is the room temperature.

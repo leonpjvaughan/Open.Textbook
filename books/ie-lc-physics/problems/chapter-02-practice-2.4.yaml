@@ -1,0 +1,274 @@
+# Leaving Certificate Physics, Chapter 2, section 2.4 (strand 1 outcomes 1.1 and 1.5).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure. A fall time built on a
+# square root is irrational, so its rounding is proved across a declared tolerance.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` record proves only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 2
+problems:
+- id: p2-4-height
+  section: '2.4'
+  tier: O
+  refs:
+  - '1.1'
+  - '1.5'
+  statement: A stone is dropped from rest from a bridge and takes 2.0 s to reach the water. Calculate
+    the height of the bridge. Take $g = 9.8$ m/s$^2$.
+  answer_label: Height of the bridge
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: 0.5 * g * t**2
+      values:
+        g:
+          value: '9.8'
+          unit: m/s^2
+        t:
+          value: '2.0'
+          unit: s
+      answer:
+        value: '19.6'
+        unit: m
+    - kind: sigfigs
+      value: '0.5 * 9.8 * 2.0**2'
+      figures: 2
+      answer: 2.0e1
+      convention: round-once
+  answer_text: $s = ut + \frac{1}{2}gt^2 = 0 + \frac{1}{2} \times 9.8 \times 2.0^2 = 19.6\,\text{m}$,
+    which is about $20\,\text{m}$.
+- id: p2-4-landing-speed
+  section: '2.4'
+  tier: O
+  refs:
+  - '1.1'
+  - '1.5'
+  statement: The same stone falls from rest for 2.0 s. Calculate its speed as it reaches the water.
+    Take $g = 9.8$ m/s$^2$.
+  answer_label: Landing speed
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: g * t
+      values:
+        g:
+          value: '9.8'
+          unit: m/s^2
+        t:
+          value: '2.0'
+          unit: s
+      answer:
+        value: '19.6'
+        unit: m/s
+    - kind: sigfigs
+      value: '9.8 * 2.0'
+      figures: 2
+      answer: 2.0e1
+      convention: round-once
+  answer_text: $v = u + gt = 0 + 9.8 \times 2.0 = 19.6\,\text{m/s}$, which is about
+    $20\,\text{m/s}$.
+- id: p2-4-fall-time
+  section: '2.4'
+  tier: O
+  refs:
+  - '1.1'
+  - '1.5'
+  statement: A stone is dropped from rest from a cliff 44.1 m high. Calculate the time it takes to
+    reach the bottom. Take $g = 9.8$ m/s$^2$.
+  answer_label: Time to fall
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(2 * s / g)
+      values:
+        s:
+          value: '44.1'
+          unit: m
+        g:
+          value: '9.8'
+          unit: m/s^2
+      answer:
+        value: '3.0'
+        unit: s
+    - kind: sigfigs
+      value: 'sqrt(2 * 44.1 / 9.8)'
+      figures: 2
+      answer: '3.0'
+      convention: round-once
+  answer_text: $s = \frac{1}{2}gt^2$, so $t = \sqrt{\dfrac{2s}{g}} = \sqrt{\dfrac{2 \times 44.1}{9.8}}
+    = 3.0\,\text{s}$.
+- id: p2-4-max-height
+  section: '2.4'
+  tier: O
+  refs:
+  - '1.1'
+  - '1.5'
+  statement: A ball is thrown straight up at 20 m/s. Calculate the maximum height it reaches. Take
+    $g = 9.8$ m/s$^2$.
+  answer_label: Maximum height
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: u**2 / (2 * g)
+      values:
+        u:
+          value: '20'
+          unit: m/s
+        g:
+          value: '9.8'
+          unit: m/s^2
+      answer:
+        value: '20'
+        unit: m
+      tolerance: '0.5'
+    - kind: sigfigs
+      value: '20**2 / (2 * 9.8)'
+      figures: 2
+      answer: 2.0e1
+      convention: round-once
+  answer_text: At the top the velocity is momentarily zero, so $v^2 = u^2 - 2gs$ gives
+    $s = \dfrac{u^2}{2g} = \dfrac{20^2}{2 \times 9.8} = 20\,\text{m}$ to two significant figures.
+- id: p2-4-time-to-top
+  section: '2.4'
+  tier: O
+  refs:
+  - '1.1'
+  - '1.5'
+  statement: A ball is thrown straight up at 24.5 m/s. Calculate the time it takes to reach its
+    highest point. Take $g = 9.8$ m/s$^2$.
+  answer_label: Time to the highest point
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: u / g
+      values:
+        u:
+          value: '24.5'
+          unit: m/s
+        g:
+          value: '9.8'
+          unit: m/s^2
+      answer:
+        value: '2.5'
+        unit: s
+    - kind: sigfigs
+      value: '24.5 / 9.8'
+      figures: 2
+      answer: '2.5'
+      convention: round-once
+  answer_text: At the top the velocity is zero, so $v = u - gt$ gives
+    $t = \dfrac{u}{g} = \dfrac{24.5}{9.8} = 2.5\,\text{s}$.
+- id: p2-4-drone-fall-time
+  section: '2.4'
+  tier: O
+  refs:
+  - '1.1'
+  - '1.5'
+  statement: The drone releases its parcel from rest at a height of 20 m. Calculate the time the
+    parcel takes to reach the ground. Take $g = 9.8$ m/s$^2$.
+  answer_label: Time for the parcel to fall
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(2 * s / g)
+      values:
+        s:
+          value: '20'
+          unit: m
+        g:
+          value: '9.8'
+          unit: m/s^2
+      answer:
+        value: '2.0'
+        unit: s
+      tolerance: '0.05'
+    - kind: sigfigs
+      value: 'sqrt(2 * 20 / 9.8)'
+      figures: 2
+      tolerance: '0.005'
+      answer: '2.0'
+      convention: round-once
+  answer_text: The parcel is released from rest, so $t = \sqrt{\dfrac{2s}{g}} =
+    \sqrt{\dfrac{2 \times 20}{9.8}} = 2.0\,\text{s}$ to two significant figures. This is the second
+    step of the chapter problem.
+- id: p2-4-drone-landing-speed
+  section: '2.4'
+  tier: O
+  refs:
+  - '1.1'
+  - '1.5'
+  statement: The parcel falls from rest from a height of 20 m. Calculate the speed at which it lands.
+    Take $g = 9.8$ m/s$^2$.
+  answer_label: Landing speed of the parcel
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: sqrt(2 * g * s)
+      values:
+        g:
+          value: '9.8'
+          unit: m/s^2
+        s:
+          value: '20'
+          unit: m
+      answer:
+        value: '20'
+        unit: m/s
+      tolerance: '0.3'
+    - kind: sigfigs
+      value: 'sqrt(2 * 9.8 * 20)'
+      figures: 2
+      tolerance: '0.05'
+      answer: 2.0e1
+      convention: round-once
+  answer_text: $v^2 = u^2 + 2gs = 0 + 2 \times 9.8 \times 20 = 392$, so
+    $v = 19.8\,\text{m/s}$, which is about $20\,\text{m/s}$. This resolves the chapter problem.
+- id: p2-4-structured
+  section: '2.4'
+  tier: O
+  refs:
+  - '1.1'
+  - '1.5'
+  statement: Explain why a stone dropped from rest and a ball thrown straight up have the same
+    acceleration, and state what that acceleration is.
+  answer_label: Acceleration in free fall
+  check:
+    kind: structured
+    requires:
+    - same
+    - value
+    - direction
+    concepts:
+    - gravity
+    - constant
+    - downward
+    points:
+    - id: same
+      text: both objects are in free fall, so gravity is the only force changing their motion
+      concepts:
+      - gravity
+    - id: value
+      text: near the surface of the Earth the acceleration is 9.8 m/s squared, whatever the mass
+      concepts:
+      - constant
+    - id: direction
+      text: the acceleration points downwards, towards the centre of the Earth
+      concepts:
+      - downward
+  answer_text: Both objects are in free fall, so gravity is the only force changing their motion.
+    Near the surface of the Earth the acceleration is $9.8\,\text{m/s}^2$, whatever the mass. The
+    acceleration points downwards, towards the centre of the Earth. A thrown ball has this
+    acceleration even while it is moving upwards, which is why it slows down.

@@ -1,0 +1,186 @@
+# Junior Cycle Mathematics, Chapter 2, section 2.1.
+#
+# A question that asks for index form is checked as an equivalence: the repeated
+# product on the left and the power on the right are both expressions, so the
+# verifier proves they are the same number. A question that asks for a value is
+# checked the same way, with the power on the left and the number on the right.
+# That is what makes "2^3 = 6" fail rather than pass.
+chapter: 2
+symbols: {}
+
+problems:
+- id: jc2-2.1-index-1
+  section: '2.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Write $7\times7\times7\times7$ in index form.
+  answer_label: Write $7\times7\times7\times7$ in index form.
+  check:
+    kind: evaluate
+    expression: 7*7*7*7
+    answer: 7**4
+  answer_text: >-
+    $7^4$. The base is 7, and four copies of it are multiplied together, so the
+    index is 4. Check the value if you wish: $7\times7\times7\times7 = 2401$.
+- id: jc2-2.1-index-2
+  section: '2.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Write $5\times5\times5\times5\times5\times5$ in index form.
+  answer_label: Write $5\times5\times5\times5\times5\times5$ in index form.
+  check:
+    kind: evaluate
+    expression: 5*5*5*5*5*5
+    answer: 5**6
+  answer_text: >-
+    $5^6$. Count the copies of 5. There are six of them, so the index is 6 and
+    the base is 5.
+- id: jc2-2.1-value-1
+  section: '2.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $2^6$.
+  answer_label: Work out $2^6$.
+  check:
+    kind: evaluate
+    expression: 2**6
+    answer: '64'
+  answer_text: >-
+    $64$. Multiply six copies of 2: 2, 4, 8, 16, 32, 64. The last value is the
+    answer.
+- id: jc2-2.1-value-2
+  section: '2.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $3^4$.
+  answer_label: Work out $3^4$.
+  check:
+    kind: evaluate
+    expression: 3**4
+    answer: '81'
+  answer_text: >-
+    $81$. The index 4 means four copies of 3: $3\times3\times3\times3$. Work from
+    the left to get $9$, then $27$, then $81$.
+- id: jc2-2.1-value-3
+  section: '2.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $5^3$.
+  answer_label: Work out $5^3$.
+  check:
+    kind: evaluate
+    expression: 5**3
+    answer: '125'
+  answer_text: >-
+    $125$. $5^3$ means $5\times5\times5$. The first product is $25$, and
+    $25\times5 = 125$. This is a cube number, because a cube of edge 5 has volume
+    125.
+- id: jc2-2.1-value-4
+  section: '2.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $2^{10}$.
+  answer_label: Work out $2^{10}$.
+  check:
+    kind: evaluate
+    expression: 2**10
+    answer: '1024'
+  answer_text: >-
+    $1024$. Keep doubling from $2^6 = 64$: 128, 256, 512, 1024. This value is
+    worth remembering, because 1024 is just over one thousand.
+- id: jc2-2.1-value-5
+  section: '2.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $6^3$.
+  answer_label: Work out $6^3$.
+  check:
+    kind: evaluate
+    expression: 6**3
+    answer: '216'
+  answer_text: >-
+    $216$. $6^3 = 6\times6\times6$. Work from the left: $6\times6 = 36$, then
+    $36\times6 = 216$.
+- id: jc2-2.1-value-6
+  section: '2.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $10^5$.
+  answer_label: Work out $10^5$.
+  check:
+    kind: evaluate
+    expression: 10**5
+    answer: '100000'
+  answer_text: >-
+    $100000$. For a power of 10 the index counts the zeros, so $10^5$ is a 1
+    followed by five zeros.
+- id: jc2-2.1-misconception
+  section: '2.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Is $4^3$ the same as $4\times3$? Give a reason.
+  answer_label: Is $4^3$ the same as $4\times3$?
+  check:
+    kind: compare
+    lhs: 4**3
+    relation: '!='
+    rhs: 4*3
+  answer_text: >-
+    No. $4^3 = 4\times4\times4 = 64$, while $4\times3 = 12$. The index tells you
+    how many copies of the base to multiply, not what to multiply the base by.
+    Write the product out whenever you are unsure.
+- id: jc2-2.1-compare
+  section: '2.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Which is larger, $2^5$ or $5^2$? Give a reason.
+  answer_label: Which is larger, $2^5$ or $5^2$?
+  check:
+    kind: compare
+    lhs: 2**5
+    relation: '>'
+    rhs: 5**2
+  answer_text: >-
+    $2^5$ is larger. $2^5 = 32$ and $5^2 = 25$, so 32 is the bigger value. The
+    base and the index both matter, so a smaller base with a larger index can
+    still win.
+- id: jc2-2.1-square
+  section: '2.1'
+  tier: O
+  refs:
+  - N.1
+  statement: Work out $12^2$.
+  answer_label: Work out $12^2$.
+  check:
+    kind: evaluate
+    expression: 12**2
+    answer: '144'
+  answer_text: >-
+    $144$. $12^2$ means $12\times12$, which is 144. This is a square number.
+- id: jc2-2.1-anchor-area
+  section: '2.1'
+  tier: O
+  refs:
+  - N.1
+  statement: >-
+    The photocopier's 141% button doubles the area of a sheet. Write the area
+    multiplier after three presses as a power of 2, and work out its value.
+  answer_label: The area multiplier after three presses, as a power of 2.
+  check:
+    kind: evaluate
+    expression: 2*2*2
+    answer: 2**3
+  answer_text: >-
+    $2^3 = 8$. Each press doubles the area, so three presses multiply it by
+    $2\times2\times2$. The base is 2 because the area doubles, and the index 3
+    counts the presses.

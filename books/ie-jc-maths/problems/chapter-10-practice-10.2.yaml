@@ -1,0 +1,139 @@
+# Junior Cycle Mathematics, Chapter 10, section 10.2.
+#
+# Every check writes the substituted calculation in `expression` and the claimed
+# value in `answer`, so the CAS proves the two agree rather than comparing a
+# number with itself. Negative numbers are written in brackets so the sign stays
+# attached to the number. Units and words stay in `statement`: the CAS parses
+# numbers and symbols only.
+chapter: 10
+symbols:
+  k: {real: true}
+  x: {real: true}
+  a: {real: true}
+  b: {real: true}
+  m: {real: true}
+  n: {real: true}
+  y: {real: true}
+  h: {real: true}
+
+problems:
+- id: jc10-10.2-sub-1
+  section: '10.2'
+  tier: O
+  refs:
+  - AF.2
+  statement: Find the value of $5+2k$ when $k=8$.
+  answer_label: $5+2k$ when $k=8$
+  check:
+    kind: evaluate
+    expression: 5 + 2*8
+    answer: '21'
+  answer_text: '$5+2\times8=5+16=21$. This is the payment from one sponsor when the walker completes 8 km.'
+- id: jc10-10.2-sub-2
+  section: '10.2'
+  tier: O
+  refs:
+  - AF.2
+  statement: Find the value of $3x-7$ when $x=4$.
+  answer_label: $3x-7$ when $x=4$
+  check:
+    kind: evaluate
+    expression: 3*4 - 7
+    answer: '5'
+  answer_text: '$3\times4-7=12-7=5$. Multiply before you subtract.'
+- id: jc10-10.2-sub-3
+  section: '10.2'
+  tier: O
+  refs:
+  - AF.2
+  statement: Find the value of $x^2+2x$ when $x=5$.
+  answer_label: $x^2+2x$ when $x=5$
+  check:
+    kind: evaluate
+    expression: 5**2 + 2*5
+    answer: '35'
+  answer_text: '$5^2+2\times5=25+10=35$. Work out the index before the multiplication and the addition.'
+- id: jc10-10.2-sub-4
+  section: '10.2'
+  tier: O
+  refs:
+  - AF.2
+  statement: Find the value of $x^2+2x$ when $x=-3$.
+  answer_label: $x^2+2x$ when $x=-3$
+  check:
+    kind: evaluate
+    expression: (-3)**2 + 2*(-3)
+    answer: '3'
+  answer_text: '$(-3)^2+2\times(-3)=9-6=3$. The square of a negative number is positive, because $(-3)\times(-3)=9$.'
+- id: jc10-10.2-sub-5
+  section: '10.2'
+  tier: O
+  refs:
+  - AF.2
+  statement: Find the value of $2a+3b$ when $a=4$ and $b=-2$.
+  answer_label: $2a+3b$ when $a=4$ and $b=-2$
+  check:
+    kind: evaluate
+    expression: 2*4 + 3*(-2)
+    answer: '2'
+  answer_text: '$2\times4+3\times(-2)=8-6=2$. Substitute each letter with its own number, and put the negative number in brackets.'
+- id: jc10-10.2-sub-6
+  section: '10.2'
+  tier: O
+  refs:
+  - AF.2
+  statement: Find the value of $10+0.05m$ when $m=240$.
+  answer_label: $10+0.05m$ when $m=240$
+  check:
+    kind: evaluate
+    expression: 10 + 0.05*240
+    answer: '22'
+  answer_text: '$10+0.05\times240=10+12=22$. This is the cost in euro of 240 minutes on the phone plan.'
+- id: jc10-10.2-sub-7
+  section: '10.2'
+  tier: O
+  refs:
+  - AF.2
+  statement: Find the value of $\frac{n}{2}+3$ when $n=9$.
+  answer_label: $\frac{n}{2}+3$ when $n=9$
+  check:
+    kind: evaluate
+    expression: 9/2 + 3
+    answer: '7.5'
+  answer_text: '$\frac{9}{2}+3=4.5+3=7.5$. Half of 9 is 4.5, and then 3 is added.'
+- id: jc10-10.2-sub-8
+  section: '10.2'
+  tier: O
+  refs:
+  - AF.2
+  statement: Find the value of $3a^2$ when $a=4$.
+  answer_label: $3a^2$ when $a=4$
+  check:
+    kind: evaluate
+    expression: 3*4**2
+    answer: '48'
+  answer_text: '$3\times4^2=3\times16=48$. The index applies to $a$ alone, so $3a^2$ means $3\times(a^2)$, not $(3a)^2$.'
+- id: jc10-10.2-sub-9
+  section: '10.2'
+  tier: O
+  refs:
+  - AF.2
+  statement: Find the value of $4y-2$ when $y=2.5$.
+  answer_label: $4y-2$ when $y=2.5$
+  check:
+    kind: evaluate
+    expression: 4*2.5 - 2
+    answer: '8'
+  answer_text: '$4\times2.5-2=10-2=8$. A decimal substitutes in the same way as a whole number.'
+- id: jc10-10.2-sub-10
+  section: '10.2'
+  tier: O
+  refs:
+  - AF.2
+  statement: Find the value of $40+25h$ when $h=3$.
+  answer_label: $40+25h$ when $h=3$
+  check:
+    kind: evaluate
+    expression: 40 + 25*3
+    answer: '115'
+  answer_text: '$40+25\times3=40+75=115$. The €40 is charged once, and €25 for each of the 3 hours.'

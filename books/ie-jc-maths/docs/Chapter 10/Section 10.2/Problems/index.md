@@ -5,14 +5,17 @@ chapter_title: Expressions and substitution
 section: '10.2'
 section_title: Substituting values into expressions
 tier: O
-refs:
-- AF.2
+refs: [AF.2]
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 10.2 Substituting values into expressions — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: AF.2
+Work independently. The questions and answers are shown together at the end.
+
+Show your substitution as well as your answer, so you can check a wrong sign or a
+wrong order.
+
+:::problems chapter-10-practice-10.2
+
+:::answers chapter-10-practice-10.2

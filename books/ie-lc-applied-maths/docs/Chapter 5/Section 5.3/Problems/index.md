@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.3 Motion on rough planes — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Take $g = 9.8$ m/s². Resolve along the plane and perpendicular to it. Write the
+perpendicular equation first to get $R$, then the along-plane equation to get
+the acceleration.
+
+:::problems chapter-05-practice-5.3
+
+:::answers chapter-05-practice-5.3

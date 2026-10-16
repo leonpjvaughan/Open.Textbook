@@ -1,0 +1,183 @@
+# Practice set for 6.4 (strand 5, outcome 5.1). The three definitions are prose,
+# so they use `structured`. The injectivity of a linear function is an equation
+# in two inputs, which `solve` proves; the failure of injectivity for $x^2$ is a
+# pair of equal outputs, which `evaluate` proves.
+chapter: 6
+symbols:
+  a: {real: true}
+  b: {real: true}
+  x: {real: true}
+problems:
+  - id: lc6-4-injective-def
+    section: '6.4'
+    tier: H
+    refs: ['5.1']
+    statement: 'Explain what it means for a function to be injective.'
+    answer_label: 'The definition of injective'
+    check:
+      kind: structured
+      requires: [same-output, same-input]
+      concepts: [one-to-one]
+      points:
+        - id: same-output
+          text: two different inputs never share the same output
+          concepts: [one-to-one]
+        - id: same-input
+          text: >-
+            equivalently, if f(a) = f(b) then a = b, so the function is
+            one-to-one and passes the horizontal line test
+          concepts: [one-to-one]
+    answer_text: >-
+      A function is injective when no two different inputs give the same output. In
+      symbols, if $f(a) = f(b)$ then $a = b$. On a graph, every horizontal line
+      meets the curve at most once.
+
+  - id: lc6-4-surjective-def
+    section: '6.4'
+    tier: H
+    refs: ['5.1']
+    statement: 'Explain what it means for a function to be surjective.'
+    answer_label: 'The definition of surjective'
+    check:
+      kind: structured
+      requires: [every-output, reached]
+      concepts: [onto]
+      points:
+        - id: every-output
+          text: every value in the codomain is an output of the function
+          concepts: [onto]
+        - id: reached
+          text: for every y in the codomain there is an input x with f(x) = y, so the function is onto
+          concepts: [onto]
+    answer_text: >-
+      A function is surjective onto a codomain when every value in that codomain is
+      reached. For every $y$ in the codomain there is an input $x$ with $f(x) = y$.
+      The function is then called onto.
+
+  - id: lc6-4-bijective-def
+    section: '6.4'
+    tier: H
+    refs: ['5.1']
+    statement: 'Explain what it means for a function to be bijective.'
+    answer_label: 'The definition of bijective'
+    check:
+      kind: structured
+      requires: [injective, surjective]
+      concepts: [both]
+      points:
+        - id: injective
+          text: the function is injective, so no two inputs share an output
+          concepts: [both]
+        - id: surjective
+          text: the function is surjective, so every codomain value is reached
+          concepts: [both]
+    answer_text: >-
+      A function is bijective when it is both injective and surjective. Each input
+      has its own output, and every value in the codomain is used. A bijection
+      pairs the two sets perfectly, with nothing left over on either side.
+
+  - id: lc6-4-horizontal-line
+    section: '6.4'
+    tier: H
+    refs: ['5.1']
+    statement: 'State the horizontal line test for injectivity.'
+    answer_label: 'The horizontal line test'
+    check:
+      kind: structured
+      requires: [draw-line, count-crossings]
+      concepts: [at-most-one-crossing]
+      points:
+        - id: draw-line
+          text: draw a horizontal line through the graph
+          concepts: [at-most-one-crossing]
+        - id: count-crossings
+          text: >-
+            the function is injective when every horizontal line crosses the graph
+            at most once; a line that crosses twice means two inputs share an output
+          concepts: [at-most-one-crossing]
+    answer_text: >-
+      If every horizontal line crosses the graph at most once, the function is
+      injective. A horizontal line that crosses twice has found two inputs with the
+      same output, so the function is not injective.
+
+  - id: lc6-4-square-not-injective
+    section: '6.4'
+    tier: H
+    refs: ['5.1']
+    statement: >-
+      Show that $f(x) = x^2$ is not injective on the real numbers by finding two
+      different inputs with the same output.
+    answer_label: 'The two outputs'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2**2', answer: '4'}
+        - {kind: evaluate, expression: '(-2)**2', answer: '4'}
+    answer_text: >-
+      $f(2) = 4$ and $f(-2) = 4$. Two different inputs give the same output, so
+      $f(x) = x^2$ is not injective on the real numbers. On the domain $x \ge 0$
+      it becomes injective.
+
+  - id: lc6-4-linear-injective
+    section: '6.4'
+    tier: H
+    refs: ['5.1']
+    statement: >-
+      Show that $f(x) = 2x + 1$ is injective by solving $2a + 1 = 2b + 1$ for $a$.
+    answer_label: 'The solution for $a$'
+    check:
+      kind: solve
+      equation: '2*a + 1 = 2*b + 1'
+      variable: a
+      answer: [b]
+    answer_text: >-
+      If $f(a) = f(b)$ then $2a + 1 = 2b + 1$. Subtracting $1$ from each side gives
+      $2a = 2b$, so $a = b$. Equal outputs force equal inputs, so $f$ is injective.
+
+  - id: lc6-4-coffee-injective
+    section: '6.4'
+    tier: H
+    refs: ['5.1']
+    statement: >-
+      Explain why the coffee function $T(t) = 20 + 70(0.5)^{t/5}$ is injective on
+      its domain $t \ge 0$.
+    answer_label: 'Why it is injective'
+    check:
+      kind: structured
+      requires: [always-falls, no-repeat]
+      concepts: [strictly-decreasing]
+      points:
+        - id: always-falls
+          text: as t increases, (0.5)^(t/5) strictly decreases, so T strictly decreases
+          concepts: [strictly-decreasing]
+        - id: no-repeat
+          text: a strictly decreasing function never repeats an output, so two different times cannot give the same temperature
+          concepts: [strictly-decreasing]
+    answer_text: >-
+      As $t$ grows, $(0.5)^{t/5}$ gets smaller, so $T$ gets smaller. The function
+      never rises and never repeats a value. Two different times therefore give two
+      different temperatures, so $T$ is injective on $t \ge 0$.
+
+  - id: lc6-4-inverse-bijection
+    section: '6.4'
+    tier: H
+    refs: ['5.1']
+    statement: >-
+      Explain why a function has an inverse exactly when it is bijective.
+    answer_label: 'Why bijective is the condition'
+    check:
+      kind: structured
+      requires: [inverse-needs-one-output, inverse-needs-every-output]
+      concepts: [injective, surjective]
+      points:
+        - id: inverse-needs-one-output
+          text: the inverse must give one output for each input, so the original function must be injective
+          concepts: [injective]
+        - id: inverse-needs-every-output
+          text: the inverse must be defined on the whole codomain, so the original function must be surjective; together these make it bijective
+          concepts: [surjective]
+    answer_text: >-
+      The inverse sends each output back to its input. That is a function only when
+      each output came from one input, which is injectivity. It is defined on the
+      whole codomain only when every codomain value is reached, which is
+      surjectivity. Both together make the function bijective.

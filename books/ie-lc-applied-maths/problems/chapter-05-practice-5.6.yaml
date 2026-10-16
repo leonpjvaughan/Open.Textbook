@@ -1,0 +1,209 @@
+# Practice set for 5.6 (strand S3, the physical world; Higher only). Every answer
+# is a quantity, so the checks come from the `units` oracle: `dimensions` proves
+# the arithmetic *and* the unit together, and a value built on a square root
+# declares a tolerance because it is irrational. The `structured` record proves
+# only that a model answer contains the declared ideas, in order — not that the
+# physics is right.
+chapter: 5
+problems:
+  - id: am5-6-terminal-linear
+    section: '5.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      An object of mass $0.5$ kg falls through the air. The drag force is
+      $D = kv$, where $k = 0.25$ kg/s. Taking $g = 9.8$ m/s$^2$, calculate the
+      terminal velocity.
+    answer_label: Terminal velocity
+    check:
+      kind: dimensions
+      expression: m * g / k
+      values:
+        m: {value: '0.5', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        k: {value: '0.25', unit: 'kg/s'}
+      answer: {value: '19.6', unit: 'm/s'}
+    answer_text: >-
+      At terminal velocity the acceleration is zero, so the resultant force is
+      zero and the drag balances the weight: $kv = mg$. Then
+      $v = \dfrac{mg}{k} = \dfrac{0.5 \times 9.8}{0.25} = \dfrac{4.9}{0.25} =
+      19.6$ m/s.
+
+  - id: am5-6-terminal-quadratic
+    section: '5.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A skydiver of mass $80$ kg falls through the air. The drag force is
+      $D = kv^2$, where $k = 0.2$ kg/m. Taking $g = 9.8$ m/s$^2$, calculate the
+      terminal velocity, to $4$ significant figures.
+    answer_label: Terminal velocity
+    check:
+      kind: dimensions
+      expression: sqrt(m * g / k)
+      values:
+        m: {value: '80', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        k: {value: '0.2', unit: 'kg/m'}
+      answer: {value: '62.61', unit: 'm/s'}
+      tolerance: '0.01'
+    answer_text: >-
+      At terminal velocity $kv^2 = mg$, so $v = \sqrt{\dfrac{mg}{k}} =
+      \sqrt{\dfrac{80 \times 9.8}{0.2}} = \sqrt{3920} = 62.61$ m/s. That is about
+      $225$ km/h, which is why a skydiver needs a parachute to land safely.
+
+  - id: am5-6-k-from-terminal
+    section: '5.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A parachutist of mass $70$ kg reaches a terminal velocity of $5$ m/s. The
+      drag force is $D = kv^2$. Taking $g = 9.8$ m/s$^2$, calculate $k$.
+    answer_label: Value of k
+    check:
+      kind: dimensions
+      expression: m * g / v**2
+      values:
+        m: {value: '70', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        v: {value: '5', unit: 'm/s'}
+      answer: {value: '27.44', unit: 'kg/m'}
+    answer_text: >-
+      At terminal velocity $kv^2 = mg$, so $k = \dfrac{mg}{v^2} =
+      \dfrac{70 \times 9.8}{25} = \dfrac{686}{25} = 27.44$ kg/m. A large $k$
+      means a lot of drag at a given speed, which is what a parachute provides.
+
+  - id: am5-6-chapter-terminal
+    section: '5.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A skier of mass $70$ kg goes down a slope inclined at $30^\circ$ to the
+      horizontal. The coefficient of friction is $0.2$ and the drag force is
+      $D = kv^2$ with $k = 0.3$ kg/m. Taking $g = 9.8$ m/s$^2$, calculate the
+      terminal speed, to $4$ significant figures.
+    answer_label: Terminal speed
+    check:
+      kind: dimensions
+      expression: sqrt((m * g / 2 - mu * m * g * sqrt(3) / 2) / k)
+      values:
+        m: {value: '70', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        mu: {value: '0.2'}
+        k: {value: '0.3', unit: 'kg/m'}
+      answer: {value: '27.34', unit: 'm/s'}
+      tolerance: '0.01'
+    answer_text: >-
+      At the terminal speed the resultant force down the slope is zero. The
+      component of the weight down the slope is
+      $mg\sin 30^\circ = 343$ N, and limiting friction is
+      $\mu mg\cos 30^\circ = 0.2 \times 594.1 = 118.8$ N. The drag must supply
+      the balance, so $kv^2 = 343 - 118.8 = 224.2$ N. Then
+      $v = \sqrt{\dfrac{224.2}{0.3}} = \sqrt{747.3} = 27.34$ m/s.
+
+  - id: am5-6-smooth-slope-terminal
+    section: '5.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      A block of mass $10$ kg slides down a smooth plane inclined at
+      $30^\circ$ to the horizontal. The drag force is $D = kv^2$ with
+      $k = 0.5$ kg/m. Taking $g = 9.8$ m/s$^2$, calculate the terminal speed, to
+      $3$ significant figures.
+    answer_label: Terminal speed
+    check:
+      kind: dimensions
+      expression: sqrt(m * g / 2 / k)
+      values:
+        m: {value: '10', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        k: {value: '0.5', unit: 'kg/m'}
+      answer: {value: '9.90', unit: 'm/s'}
+      tolerance: '0.01'
+    answer_text: >-
+      The plane is smooth, so there is no friction. At the terminal speed the
+      component of the weight down the plane balances the drag:
+      $mg\sin 30^\circ = kv^2$. So $v = \sqrt{\dfrac{10 \times 9.8 \times 0.5}{0.5}}
+      = \sqrt{98} = 9.90$ m/s, to three significant figures.
+
+  - id: am5-6-mass-from-terminal
+    section: '5.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      An object falling through the air reaches a terminal velocity of
+      $7$ m/s. The drag force is $D = kv^2$ with $k = 0.4$ kg/m. Taking
+      $g = 9.8$ m/s$^2$, calculate the mass of the object.
+    answer_label: Mass
+    check:
+      kind: dimensions
+      expression: k * v**2 / g
+      values:
+        k: {value: '0.4', unit: 'kg/m'}
+        v: {value: '7', unit: 'm/s'}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '2', unit: kg}
+    answer_text: >-
+      At terminal velocity $kv^2 = mg$, so $m = \dfrac{kv^2}{g} =
+      \dfrac{0.4 \times 49}{9.8} = \dfrac{19.6}{9.8} = 2$ kg.
+
+  - id: am5-6-drag-at-terminal
+    section: '5.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      An object of mass $60$ kg falls through the air with $D = kv^2$ and
+      $k = 0.15$ kg/m. Taking $g = 9.8$ m/s$^2$, calculate the terminal speed to
+      $4$ significant figures, and the drag force at that speed.
+    answer_label: Terminal speed, then drag
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: sqrt(m * g / k)
+          values:
+            m: {value: '60', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+            k: {value: '0.15', unit: 'kg/m'}
+          answer: {value: '62.61', unit: 'm/s'}
+          tolerance: '0.01'
+        - kind: dimensions
+          expression: m * g
+          values:
+            m: {value: '60', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '588', unit: N}
+    answer_text: >-
+      At terminal velocity $kv^2 = mg$, so
+      $v = \sqrt{\dfrac{60 \times 9.8}{0.15}} = \sqrt{3920} = 62.61$ m/s. The
+      drag at that speed equals the weight, so $D = mg = 60 \times 9.8 = 588$ N.
+      The same arithmetic that finds the speed also shows the drag.
+
+  - id: am5-6-terminal-meaning
+    section: '5.6'
+    tier: H
+    refs: [S3]
+    statement: >-
+      Explain what is meant by terminal velocity, and why the acceleration is
+      zero when an object reaches it.
+    answer_label: What terminal velocity means
+    check:
+      kind: structured
+      requires: [zero-resultant, constant-speed]
+      concepts: [terminal-velocity]
+      points:
+        - id: zero-resultant
+          text: >-
+            the drag force has grown until it equals the weight, so the
+            resultant force is zero
+          concepts: [terminal-velocity]
+        - id: constant-speed
+          text: >-
+            with no resultant force the acceleration is zero, so the speed stays
+            constant even though the object keeps moving
+    answer_text: >-
+      Terminal velocity is the constant speed an object reaches when the drag
+      force upwards has grown until it equals the weight downwards. The
+      resultant force is then zero, so by Newton's second law the acceleration
+      is zero. The object keeps moving at a steady speed; the forces on it
+      balance, but they have not disappeared.

@@ -1,0 +1,191 @@
+# Leaving Certificate Physics, Chapter 19, section 19.3 (strand 4 outcome 4.3).
+#
+# Emission and absorption spectra, and the photon energies that produce the lines.
+# Every record takes h = 6.6e-34 J s, c = 3.0e8 m/s and 1 eV = 1.6e-19 J.
+# `dimensions` proves the magnitude and the unit together; a photon energy reported
+# in electronvolts divides by the joule value of 1 eV, so the answer is the
+# dimensionless number of electronvolts and the arithmetic is proved. `sigfigs`
+# proves the single rounding. `structured` proves a model answer's steps and
+# concepts, in order.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass.
+chapter: 19
+problems:
+  - id: p19-3-absorption-energy
+    section: '19.3'
+    tier: O
+    refs: ['4.3']
+    statement: A cool gas of sodium absorbs light at a wavelength of 589 nm, and this makes a dark line in the spectrum. Calculate the energy of one absorbed photon. Take $h = 6.6 \times 10^{-34}$ J s and $c = 3.0 \times 10^{8}$ m/s.
+    answer_label: Energy of the absorbed photon
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / lam
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: 'm/s'}
+            lam: {value: '5.89e-7', unit: m}
+          answer: {value: '3.4e-19', unit: J}
+          tolerance: '5e-21'
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / 5.89e-7'
+          figures: 2
+          answer: '3.4e-19'
+          convention: round-once
+    answer_text: 'First change 589 nm to $5.89 \times 10^{-7}$ m. Then $E = \dfrac{hc}{\lambda} = \dfrac{6.6 \times 10^{-34} \times 3.0 \times 10^{8}}{5.89 \times 10^{-7}} = 3.4 \times 10^{-19}\,\text{J}$.'
+  - id: p19-3-absorption-frequency
+    section: '19.3'
+    tier: O
+    refs: ['4.3']
+    statement: Calculate the frequency of the light absorbed by sodium at a wavelength of 589 nm. Take $c = 3.0 \times 10^{8}$ m/s.
+    answer_label: Frequency of the absorbed light
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: c / lam
+          values:
+            c: {value: '3.0e8', unit: 'm/s'}
+            lam: {value: '5.89e-7', unit: m}
+          answer: {value: '5.1e14', unit: Hz}
+          tolerance: '5e12'
+        - kind: sigfigs
+          value: '3.0e8 / 5.89e-7'
+          figures: 2
+          answer: '5.1e14'
+          convention: round-once
+    answer_text: 'From $c = f\lambda$, $f = \dfrac{c}{\lambda} = \dfrac{3.0 \times 10^{8}}{5.89 \times 10^{-7}} = 5.1 \times 10^{14}\,\text{Hz}$.'
+  - id: p19-3-level-difference
+    section: '19.3'
+    tier: O
+    refs: ['4.3']
+    statement: The dark line at 589 nm in the sodium spectrum comes from an electron moving between two energy levels. Calculate the energy difference between the levels, in electronvolts. Take $h = 6.6 \times 10^{-34}$ J s, $c = 3.0 \times 10^{8}$ m/s and $1\,\text{eV} = 1.6 \times 10^{-19}$ J.
+    answer_label: Energy difference between the levels
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / lam / ev
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: 'm/s'}
+            lam: {value: '5.89e-7', unit: m}
+            ev: {value: '1.6e-19', unit: J}
+          answer: {value: '2.1'}
+          tolerance: '5e-2'
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / 5.89e-7 / 1.6e-19'
+          figures: 2
+          answer: '2.1'
+          convention: round-once
+    answer_text: 'The photon energy is $3.4 \times 10^{-19}$ J, from the first question. In electronvolts, $\Delta E = \dfrac{3.4 \times 10^{-19}}{1.6 \times 10^{-19}} = 2.1\,\text{eV}$. The two levels differ by 2.1 eV.'
+  - id: p19-3-wavelength-from-levels
+    section: '19.3'
+    tier: O
+    refs: ['4.3']
+    statement: Two energy levels in an atom differ by 2.1 eV. Calculate the wavelength of the photon emitted when an electron drops from the higher level to the lower one. Take $h = 6.6 \times 10^{-34}$ J s, $c = 3.0 \times 10^{8}$ m/s and $1\,\text{eV} = 1.6 \times 10^{-19}$ J.
+    answer_label: Wavelength of the emitted photon
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / dE
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: 'm/s'}
+            dE: {value: '2.1', unit: eV}
+          answer: {value: '5.9e-7', unit: m}
+          tolerance: '5e-9'
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / (2.1 * 1.6e-19)'
+          figures: 2
+          answer: '5.9e-7'
+          convention: round-once
+    answer_text: 'From $\Delta E = \dfrac{hc}{\lambda}$, $\lambda = \dfrac{hc}{\Delta E} = \dfrac{6.6 \times 10^{-34} \times 3.0 \times 10^{8}}{2.1 \times 1.6 \times 10^{-19}} = 5.9 \times 10^{-7}\,\text{m}$. That is 590 nm, in the yellow part of the spectrum.'
+  - id: p19-3-continuous
+    section: '19.3'
+    tier: O
+    refs: ['4.3']
+    statement: Describe a continuous spectrum, and state what produces one.
+    answer_label: A continuous spectrum
+    check:
+      kind: structured
+      requires: [all-wavelengths, source, temperature]
+      concepts: [continuous, no-gaps]
+      points:
+        - id: all-wavelengths
+          text: a continuous spectrum contains every wavelength, so the colours merge with no gaps and no dark lines
+          concepts: [continuous, no-gaps]
+        - id: source
+          text: a hot solid, or a hot dense liquid, gives out light at every wavelength
+          concepts: [continuous]
+        - id: temperature
+          text: the spectrum of a hot solid depends on its temperature, not on the material it is made of
+          concepts: [no-gaps]
+    answer_text: A continuous spectrum contains every wavelength, so the colours merge with no gaps and no dark lines. A hot solid or a hot dense liquid gives out light at every wavelength. The spectrum of a hot solid depends on its temperature, not on the material.
+  - id: p19-3-emission-line
+    section: '19.3'
+    tier: O
+    refs: ['4.3']
+    statement: Explain how a bright line in an emission spectrum is produced, using the idea of energy levels.
+    answer_label: How an emission line forms
+    check:
+      kind: structured
+      requires: [excited, falls, photon]
+      concepts: [energy-difference, photon-emitted]
+      points:
+        - id: excited
+          text: an atom gains energy, and an electron moves up to a higher energy level
+          concepts: [energy-difference]
+        - id: falls
+          text: the electron falls back down to a lower level
+          concepts: [energy-difference]
+        - id: photon
+          text: it gives out a photon whose energy equals the difference between the two levels, so the line has a fixed wavelength
+          concepts: [photon-emitted]
+    answer_text: An atom gains energy, and an electron moves up to a higher level. The electron then falls back to a lower level. It gives out a photon whose energy equals the difference between the two levels. The difference is fixed, so the line has a fixed wavelength.
+  - id: p19-3-absorption-line
+    section: '19.3'
+    tier: O
+    refs: ['4.3']
+    statement: Sodium gives out a bright line at 589 nm in emission, and shows a dark line at 589 nm in absorption. Explain why the two lines are at the same wavelength.
+    answer_label: Why emission and absorption lines match
+    check:
+      kind: structured
+      requires: [same-levels, direction, conclusion]
+      concepts: [energy-difference, absorbed-emitted]
+      points:
+        - id: same-levels
+          text: both lines come from the same pair of energy levels in the sodium atom
+          concepts: [energy-difference]
+        - id: direction
+          text: in emission the electron drops down and gives out a photon; in absorption it takes in a photon and moves up
+          concepts: [absorbed-emitted]
+        - id: conclusion
+          text: the energy difference is the same in both cases, so the wavelength is the same
+          concepts: [energy-difference]
+    answer_text: Both lines come from the same pair of energy levels in the sodium atom. In emission the electron drops down and gives out a photon of that energy. In absorption the electron takes in a photon of that energy and moves up. The energy difference is the same, so the wavelength is the same.
+  - id: p19-3-star
+    section: '19.3'
+    tier: O
+    refs: ['4.3']
+    statement: Explain how the spectrum of a star shows which elements the star contains.
+    answer_label: Identifying elements in a star
+    check:
+      kind: structured
+      requires: [unique-lines, compare, identify]
+      concepts: [fingerprint, spectrum]
+      points:
+        - id: unique-lines
+          text: each element gives its own set of lines at fixed wavelengths, so the pattern is a fingerprint
+          concepts: [fingerprint]
+        - id: compare
+          text: the lines from the star are compared with the known lines of elements measured in the laboratory
+          concepts: [spectrum]
+        - id: identify
+          text: a match identifies the element, so the spectrum shows what the star is made of
+          concepts: [fingerprint, spectrum]
+    answer_text: Each element gives its own set of lines at fixed wavelengths, so the pattern acts as a fingerprint. Astronomers compare the lines from the star with the known lines of elements measured in the laboratory. A match identifies the element, so the spectrum shows what the star is made of.

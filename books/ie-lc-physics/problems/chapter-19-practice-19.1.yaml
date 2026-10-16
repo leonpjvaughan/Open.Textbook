@@ -1,0 +1,161 @@
+# Leaving Certificate Physics, Chapter 19, section 19.1 (strand 4 outcome 4.3).
+#
+# The models of the atom, from Thomson's plum-pudding model to Rutherford's nuclear
+# model. The numeric records use `dimensions` to prove the magnitude and the unit
+# together, and `sigfigs` to prove the single rounding; a ratio or a fraction has no
+# unit, so its `dimensions` answer is the dimensionless value itself.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 19
+problems:
+  - id: p19-1-thomson
+    section: '19.1'
+    tier: O
+    refs: ['4.3']
+    statement: Describe Thomson's model of the atom, and state what it says about the positive charge and about the electrons.
+    answer_label: 'Thomson''s model'
+    check:
+      kind: structured
+      requires: [positive-sphere, electrons-embedded, neutral-overall]
+      concepts: [plum-pudding, spread-out]
+      points:
+        - id: positive-sphere
+          text: the atom is a ball of positive charge spread out through its whole volume
+          concepts: [plum-pudding, spread-out]
+        - id: electrons-embedded
+          text: the negative electrons are embedded in the positive ball, like plums in a pudding
+          concepts: [plum-pudding]
+        - id: neutral-overall
+          text: the total negative charge of the electrons equals the positive charge, so the atom is neutral overall
+          concepts: [spread-out]
+    answer_text: In Thomson's model the atom is a ball of positive charge spread out through its whole volume. The negative electrons sit inside it, like plums in a pudding. The total charge of the electrons equals the positive charge, so the atom is neutral overall.
+  - id: p19-1-observations
+    section: '19.1'
+    tier: O
+    refs: ['4.3']
+    statement: Describe the three main observations of the alpha-particle scattering experiment, and state what each one shows about the atom.
+    answer_label: The three observations
+    check:
+      kind: structured
+      requires: [most-straight, some-deflected, few-back]
+      concepts: [mostly-empty, concentrated-charge, tiny-nucleus]
+      points:
+        - id: most-straight
+          text: most alpha particles pass straight through the foil, so most of the atom is empty space
+          concepts: [mostly-empty]
+        - id: some-deflected
+          text: some are deflected through large angles, so they pass close to a concentrated positive charge
+          concepts: [concentrated-charge]
+        - id: few-back
+          text: a very few bounce back towards the source, so the positive charge and most of the mass sit in a very small nucleus
+          concepts: [tiny-nucleus]
+    answer_text: Most alpha particles pass straight through the gold foil, which shows that most of the atom is empty space. Some are deflected through large angles, which shows that they pass close to a concentrated positive charge. A very few bounce straight back, which shows that the positive charge and most of the mass sit in a very small nucleus.
+  - id: p19-1-nucleus-size
+    section: '19.1'
+    tier: O
+    refs: ['4.3']
+    statement: A gold atom has a diameter of about $2.9 \times 10^{-10}$ m. Its nucleus has a diameter about $1.0 \times 10^{5}$ times smaller. Calculate the diameter of the nucleus.
+    answer_label: Diameter of the nucleus
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: d_atom / factor
+          values:
+            d_atom: {value: '2.9e-10', unit: m}
+            factor: {value: '1.0e5'}
+          answer: {value: '2.9e-15', unit: m}
+        - kind: sigfigs
+          value: '2.9e-10 / 1.0e5'
+          figures: 2
+          answer: '2.9e-15'
+          convention: round-once
+    answer_text: 'The nucleus is $1.0 \times 10^{5}$ times smaller, so $d = \dfrac{2.9 \times 10^{-10}}{1.0 \times 10^{5}} = 2.9 \times 10^{-15}\,\text{m}$.'
+  - id: p19-1-backscatter
+    section: '19.1'
+    tier: O
+    refs: ['4.3']
+    statement: Explain why the small number of alpha particles that bounce straight back is the strongest evidence for a tiny, massive nucleus.
+    answer_label: Why the backward scatter matters
+    check:
+      kind: structured
+      requires: [repulsion, concentration, conclusion]
+      concepts: [positive-nucleus, concentrated-mass]
+      points:
+        - id: repulsion
+          text: an alpha particle is positive, so the positive charge in the atom repels it
+          concepts: [positive-nucleus]
+        - id: concentration
+          text: a large backward deflection needs a very strong force very close to the charge, so the charge must be concentrated in a tiny space
+          concepts: [concentrated-mass]
+        - id: conclusion
+          text: only a tiny, massive, positive nucleus can give that force, which is why a few alpha particles bounce back
+          concepts: [positive-nucleus, concentrated-mass]
+    answer_text: An alpha particle is positive, so the positive charge in the atom repels it. A large backward deflection needs a very strong force very close to the charge. That means the charge and most of the mass are concentrated in a tiny space. Only a tiny, massive, positive nucleus can give that force.
+  - id: p19-1-ratio
+    section: '19.1'
+    tier: O
+    refs: ['4.3']
+    statement: A gold atom has a diameter of about $2.9 \times 10^{-10}$ m and its nucleus has a diameter of about $1.4 \times 10^{-14}$ m. Calculate the ratio of the diameter of the atom to the diameter of the nucleus.
+    answer_label: Atom-to-nucleus ratio
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: d_atom / d_nucleus
+          values:
+            d_atom: {value: '2.9e-10', unit: m}
+            d_nucleus: {value: '1.4e-14', unit: m}
+          answer: {value: '2.0714e4'}
+          tolerance: '1e1'
+        - kind: sigfigs
+          value: '2.9e-10 / 1.4e-14'
+          figures: 2
+          answer: '2.1e4'
+          convention: round-once
+    answer_text: 'The ratio is $\dfrac{2.9 \times 10^{-10}}{1.4 \times 10^{-14}} = 2.1 \times 10^{4}$. The atom is about twenty thousand times wider than its nucleus, so almost all of the atom is empty space.'
+  - id: p19-1-fraction
+    section: '19.1'
+    tier: O
+    refs: ['4.3']
+    statement: In one scattering experiment $1.0 \times 10^{6}$ alpha particles are fired at a gold foil. Of these, 125 are deflected through more than $90^\circ$. Calculate the fraction of the alpha particles deflected through more than $90^\circ$.
+    answer_label: Fraction deflected through more than 90°
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: n_deflected / n_total
+          values:
+            n_deflected: {value: '125'}
+            n_total: {value: '1.0e6'}
+          answer: {value: '1.25e-4'}
+        - kind: sigfigs
+          value: '125 / 1.0e6'
+          figures: 2
+          answer: '1.3e-4'
+          convention: round-once
+    answer_text: 'The fraction is $\dfrac{125}{1.0 \times 10^{6}} = 1.3 \times 10^{-4}$. About one alpha particle in ten thousand comes close enough to a nucleus to be turned back, which is why the nucleus must be so small.'
+  - id: p19-1-limit
+    section: '19.1'
+    tier: O
+    refs: ['4.3']
+    statement: State one observation that the nuclear model could not explain, and explain why a new model was needed.
+    answer_label: What the nuclear model could not explain
+    check:
+      kind: structured
+      requires: [observation, why, new-model]
+      concepts: [line-spectra, energy-levels]
+      points:
+        - id: observation
+          text: a gas gives out light only at certain fixed wavelengths, so its spectrum is a set of bright lines and not a continuous band
+          concepts: [line-spectra]
+        - id: why
+          text: a model with electrons in any orbit has no reason to give only those wavelengths
+          concepts: [line-spectra]
+        - id: new-model
+          text: Bohr's model added fixed energy levels, and that explained the lines
+          concepts: [energy-levels]
+    answer_text: A gas gives out light only at certain fixed wavelengths, so its spectrum is a set of bright lines rather than a continuous band. A nuclear model with electrons free to take any orbit gives no reason for those particular wavelengths. Bohr's model added fixed energy levels, and that explained the lines.

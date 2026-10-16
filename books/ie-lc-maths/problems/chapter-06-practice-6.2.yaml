@@ -1,0 +1,104 @@
+# Practice set for 6.2 (strand 5, outcome 5.1). Function values are numbers, so
+# `evaluate` proves them. A domain restriction is the solution of the equation
+# that makes the rule fail, so `solve` and `inequality` prove the boundary. The
+# range of the coffee function is pinned by its largest value and its limit.
+chapter: 6
+symbols:
+  x: {real: true}
+  t: {real: true}
+problems:
+  - id: lc6-2-value-linear
+    section: '6.2'
+    tier: F
+    refs: ['5.1']
+    statement: 'For $f(x) = 3x - 5$, work out $f(4)$.'
+    answer_label: '$f(4)$'
+    check: {kind: evaluate, expression: '3*4 - 5', answer: '7'}
+    answer_text: 'Substitute $x = 4$: $f(4) = 3(4) - 5 = 12 - 5 = 7$.'
+
+  - id: lc6-2-value-square
+    section: '6.2'
+    tier: F
+    refs: ['5.1']
+    statement: 'For $f(x) = x^2 + 1$, work out $f(-3)$.'
+    answer_label: '$f(-3)$'
+    check: {kind: evaluate, expression: '(-3)**2 + 1', answer: '10'}
+    answer_text: >-
+      $f(-3) = (-3)^2 + 1 = 9 + 1 = 10$. The square removes the negative sign
+      before the $1$ is added.
+
+  - id: lc6-2-domain-rational
+    section: '6.2'
+    tier: F
+    refs: ['5.1']
+    statement: >-
+      Find the value of $x$ that is not in the domain of $f(x) = \dfrac{1}{x - 4}$.
+    answer_label: 'The excluded value'
+    check:
+      kind: solve
+      equation: 'x - 4 = 0'
+      variable: x
+      answer: [4]
+    answer_text: >-
+      A fraction is undefined when its bottom is zero, so $x - 4 = 0$ gives
+      $x = 4$. The domain is every real number except $4$.
+
+  - id: lc6-2-domain-root
+    section: '6.2'
+    tier: F
+    refs: ['5.1']
+    statement: 'State the domain of $f(x) = \sqrt{x - 5}$.'
+    answer_label: 'The domain'
+    check:
+      kind: inequality
+      variable: x
+      inequality: 'x - 5 >= 0'
+      answer: 'Interval(5, oo)'
+    answer_text: >-
+      A square root needs a value that is not negative, so $x - 5 \ge 0$. The
+      domain is $x \ge 5$, written $[5, \infty)$.
+
+  - id: lc6-2-coffee-domain
+    section: '6.2'
+    tier: F
+    refs: ['5.1']
+    statement: >-
+      The coffee temperature is $T(t) = 20 + 70(0.5)^{t/5}$. State the domain of
+      $T$, given that $t$ is the time since the coffee was poured.
+    answer_label: 'The domain'
+    check:
+      kind: inequality
+      variable: t
+      inequality: 't >= 0'
+      answer: 'Interval(0, oo)'
+    answer_text: >-
+      Time cannot run backwards from the moment the coffee is poured, so $t \ge 0$.
+      The domain is $[0, \infty)$.
+
+  - id: lc6-2-coffee-range
+    section: '6.2'
+    tier: F
+    refs: ['5.1']
+    statement: >-
+      For the coffee temperature $T(t) = 20 + 70(0.5)^{t/5}$, work out the largest
+      value of $T$ and the value that $T$ approaches as $t$ grows.
+    answer_label: 'The largest value, then the long-run value'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '20 + 70*(1/2)**0', answer: '90'}
+        - {kind: apply, expression: '20 + 70*(1/2)**(t/5)', apply: {op: limit, args: [t, oo]}, answer: '20'}
+    answer_text: >-
+      At $t = 0$, $T = 90$. As $t$ grows, $(0.5)^{t/5}$ shrinks towards $0$, so $T$
+      approaches $20$. The range is $20 < T \le 90$.
+
+  - id: lc6-2-notation-double
+    section: '6.2'
+    tier: F
+    refs: ['5.1']
+    statement: 'For $f(x) = x^2$, work out $f(2x)$ in its simplest form.'
+    answer_label: '$f(2x)$'
+    check: {kind: evaluate, expression: '(2*x)**2', answer: '4*x**2'}
+    answer_text: >-
+      Replace every $x$ by $2x$: $f(2x) = (2x)^2 = 4x^2$. The whole input is
+      squared, not only the $2$.

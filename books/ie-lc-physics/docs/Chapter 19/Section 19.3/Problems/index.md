@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 19.3 Emission and absorption spectra — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 4.3
+Work independently. The questions and answers are shown together at the end.
+
+Take $h = 6.6 \times 10^{-34}$ J s, $c = 3.0 \times 10^{8}$ m/s and
+$1\,\text{eV} = 1.6 \times 10^{-19}$ J. For a written answer, name the kind of spectrum
+and explain how it forms.
+
+:::problems chapter-19-practice-19.3
+
+:::answers chapter-19-practice-19.3

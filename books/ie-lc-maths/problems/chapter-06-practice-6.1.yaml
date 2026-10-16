@@ -1,0 +1,141 @@
+# Practice set for 6.1 (strand 5, outcome 5.1). Relations and functions are not a
+# symbolic calculation, so the explanations use `structured` (the units oracle,
+# declared in book.yaml) and the numeric work uses `evaluate`. The cooling coffee
+# is the chapter problem, so its values are checked here as well as in 6.6.
+chapter: 6
+symbols:
+  t: {real: true}
+  x: {real: true}
+problems:
+  - id: lc6-1-coffee-start
+    section: '6.1'
+    tier: F
+    refs: ['5.1']
+    statement: >-
+      The coffee cools by $T(t) = 20 + 70(0.5)^{t/5}$, where $t$ is the time in
+      minutes. Work out the starting temperature $T(0)$.
+    answer_label: 'The starting temperature'
+    check: {kind: evaluate, expression: '20 + 70*(1/2)**(0/5)', answer: '90'}
+    answer_text: >-
+      $T(0) = 20 + 70(0.5)^0 = 20 + 70 = 90$. The coffee starts at $90^\circ C$.
+
+  - id: lc6-1-coffee-five
+    section: '6.1'
+    tier: F
+    refs: ['5.1']
+    statement: 'Work out the temperature $T(5)$ after five minutes.'
+    answer_label: 'The temperature after five minutes'
+    check: {kind: evaluate, expression: '20 + 70*(1/2)**(5/5)', answer: '55'}
+    answer_text: >-
+      $T(5) = 20 + 70(0.5)^1 = 20 + 35 = 55$. The coffee is $55^\circ C$ after five
+      minutes, so it has lost half of the $70^\circ C$ gap to the room.
+
+  - id: lc6-1-ordered-pairs
+    section: '6.1'
+    tier: F
+    refs: ['5.1']
+    statement: >-
+      Is the relation $\{(1,2), (2,4), (3,6)\}$ a function? Give a reason.
+    answer_label: 'Is it a function?'
+    check:
+      kind: structured
+      requires: [one-output]
+      concepts: [each-input-one-output]
+      points:
+        - id: one-output
+          text: >-
+            Yes, it is a function, because every input appears once and has exactly
+            one output
+          concepts: [each-input-one-output]
+    answer_text: >-
+      Yes. Each input $1$, $2$ and $3$ appears once, and each has exactly one
+      output. A relation is a function when no input has two outputs.
+
+  - id: lc6-1-not-a-function
+    section: '6.1'
+    tier: F
+    refs: ['5.1']
+    statement: >-
+      Explain why $\{(1,2), (1,3), (2,4)\}$ is not a function.
+    answer_label: 'Why it is not a function'
+    check:
+      kind: structured
+      requires: [repeat-input, two-outputs]
+      concepts: [one-input-two-outputs]
+      points:
+        - id: repeat-input
+          text: the input 1 appears twice
+          concepts: [one-input-two-outputs]
+        - id: two-outputs
+          text: the input 1 is paired with two different outputs, 2 and 3, so the relation is not a function
+          concepts: [one-input-two-outputs]
+    answer_text: >-
+      The input $1$ appears twice, paired with the outputs $2$ and $3$. One input
+      cannot have two outputs in a function, so this relation is not a function.
+
+  - id: lc6-1-vertical-line
+    section: '6.1'
+    tier: F
+    refs: ['5.1']
+    statement: 'State the vertical line test for a graph.'
+    answer_label: 'The vertical line test'
+    check:
+      kind: structured
+      requires: [draw-line, count-crossings]
+      concepts: [at-most-one-crossing]
+      points:
+        - id: draw-line
+          text: draw a vertical line through the graph
+          concepts: [at-most-one-crossing]
+        - id: count-crossings
+          text: >-
+            the graph is a function when every vertical line crosses it at most
+            once; a line that crosses twice means one input has two outputs
+          concepts: [at-most-one-crossing]
+    answer_text: >-
+      If every vertical line crosses the graph at most once, the graph is a
+      function. A vertical line that crosses twice has found one input with two
+      outputs, so the graph is not a function.
+
+  - id: lc6-1-eval-linear
+    section: '6.1'
+    tier: F
+    refs: ['5.1']
+    statement: 'A function is $f(x) = 3x + 1$. Work out $f(4)$.'
+    answer_label: '$f(4)$'
+    check: {kind: evaluate, expression: '3*4 + 1', answer: '13'}
+    answer_text: 'Substitute $x = 4$: $f(4) = 3(4) + 1 = 12 + 1 = 13$.'
+
+  - id: lc6-1-double-rule
+    section: '6.1'
+    tier: F
+    refs: ['5.1']
+    statement: >-
+      A relation pairs each whole number $n$ with $2n + 1$. Work out the output for
+      the input $4$.
+    answer_label: 'The output'
+    check: {kind: evaluate, expression: '2*4 + 1', answer: '9'}
+    answer_text: 'Put $n = 4$: $2(4) + 1 = 9$. The ordered pair is $(4, 9)$.'
+
+  - id: lc6-1-table-function
+    section: '6.1'
+    tier: F
+    refs: ['5.1']
+    statement: >-
+      A table pairs the inputs $1$, $2$, $3$ with the outputs $4$, $5$, $6$. Is the
+      relation a function? Give a reason.
+    answer_label: 'Is it a function?'
+    check:
+      kind: structured
+      requires: [one-each, one-output]
+      concepts: [each-input-one-output]
+      points:
+        - id: one-each
+          text: each input appears once in the table
+          concepts: [each-input-one-output]
+        - id: one-output
+          text: each input has exactly one output, so the relation is a function
+          concepts: [each-input-one-output]
+    answer_text: >-
+      Yes. Each input appears once, and each input has exactly one output. Reading
+      across the table gives the ordered pairs $(1,4)$, $(2,5)$ and $(3,6)$.

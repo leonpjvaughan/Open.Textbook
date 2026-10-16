@@ -1,0 +1,267 @@
+# Leaving Certificate Physics, Chapter 2, section 2.1 (strand 1 outcome 1.1).
+#
+# The physics oracle checks two claims whenever a quantity is asked for:
+# `dimensions` proves the exact magnitude *and* the unit, and `sigfigs` proves the
+# rounding to the figures the data support. Both are written out, because a rounded
+# answer is never equal to the exact one. An integer that is two significant
+# figures is written as `2.0e1`, since `20` is one figure.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` record proves only that a model answer contains the
+# declared steps and concepts, in order — not that the physics in them is right.
+chapter: 2
+problems:
+- id: p2-1-average-speed
+  section: '2.1'
+  tier: O
+  refs:
+  - '1.1'
+  statement: A cyclist travels 120 m in 15 s. Calculate the average speed.
+  answer_label: Average speed
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: s / t
+      values:
+        s:
+          value: '120'
+          unit: m
+        t:
+          value: '15'
+          unit: s
+      answer:
+        value: '8.0'
+        unit: m/s
+    - kind: sigfigs
+      value: '120 / 15'
+      figures: 2
+      answer: '8.0'
+      convention: round-once
+  answer_text: $v = \dfrac{s}{t} = \dfrac{120}{15} = 8.0\,\text{m/s}$. The unit comes from
+    the division, because metres divided by seconds gives metres per second.
+- id: p2-1-lap
+  section: '2.1'
+  tier: O
+  refs:
+  - '1.1'
+  statement: A swimmer swims 50 m to the end of a pool and back again in 50 s. Calculate the average
+    speed and the average velocity.
+  answer_label: Average speed and average velocity
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: d / t
+      values:
+        d:
+          value: '100'
+          unit: m
+        t:
+          value: '50'
+          unit: s
+      answer:
+        value: '2.0'
+        unit: m/s
+    - kind: dimensions
+      expression: s / t
+      values:
+        s:
+          value: '0'
+          unit: m
+        t:
+          value: '50'
+          unit: s
+      answer:
+        value: '0'
+        unit: m/s
+    - kind: sigfigs
+      value: '100 / 50'
+      figures: 2
+      answer: '2.0'
+      convention: round-once
+  answer_text: The distance travelled is $50 + 50 = 100\,\text{m}$, so the average speed is
+    $\dfrac{100}{50} = 2.0\,\text{m/s}$. The swimmer finishes where they started, so the displacement is
+    zero and the average velocity is $0\,\text{m/s}$. Speed uses distance; velocity uses displacement.
+- id: p2-1-acceleration
+  section: '2.1'
+  tier: O
+  refs:
+  - '1.1'
+  statement: A car speeds up from 8.0 m/s to 20 m/s in 4.0 s. Calculate its acceleration.
+  answer_label: Acceleration
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: (v - u) / t
+      values:
+        u:
+          value: '8.0'
+          unit: m/s
+        v:
+          value: '20'
+          unit: m/s
+        t:
+          value: '4.0'
+          unit: s
+      answer:
+        value: '3.0'
+        unit: m/s^2
+    - kind: sigfigs
+      value: '(20 - 8.0) / 4.0'
+      figures: 2
+      answer: '3.0'
+      convention: round-once
+  answer_text: $a = \dfrac{\Delta v}{\Delta t} = \dfrac{20 - 8.0}{4.0} = 3.0\,\text{m/s}^2$. The car
+    gains 3.0 m/s of speed every second.
+- id: p2-1-deceleration
+  section: '2.1'
+  tier: O
+  refs:
+  - '1.1'
+  statement: A bus slows from 15 m/s to rest in 5.0 s. Taking the initial direction as positive,
+    calculate its acceleration.
+  answer_label: Acceleration
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: (v - u) / t
+      values:
+        u:
+          value: '15'
+          unit: m/s
+        v:
+          value: '0'
+          unit: m/s
+        t:
+          value: '5.0'
+          unit: s
+      answer:
+        value: '-3.0'
+        unit: m/s^2
+    - kind: sigfigs
+      value: '(0 - 15) / 5.0'
+      figures: 2
+      answer: '-3.0'
+      convention: round-once
+  answer_text: $a = \dfrac{0 - 15}{5.0} = -3.0\,\text{m/s}^2$. The negative sign shows that the
+    acceleration points opposite to the motion, so the bus is slowing down.
+- id: p2-1-drone
+  section: '2.1'
+  tier: O
+  refs:
+  - '1.1'
+  statement: A delivery drone lifts off and speeds up from rest to 8.0 m/s in 4.0 s. Calculate its
+    acceleration.
+  answer_label: Acceleration of the drone
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: (v - u) / t
+      values:
+        u:
+          value: '0'
+          unit: m/s
+        v:
+          value: '8.0'
+          unit: m/s
+        t:
+          value: '4.0'
+          unit: s
+      answer:
+        value: '2.0'
+        unit: m/s^2
+    - kind: sigfigs
+      value: '(8.0 - 0) / 4.0'
+      figures: 2
+      answer: '2.0'
+      convention: round-once
+  answer_text: $a = \dfrac{8.0 - 0}{4.0} = 2.0\,\text{m/s}^2$. This is the first phase of the
+    chapter problem, and Section 2.3 uses this acceleration to find how high the drone has risen.
+- id: p2-1-scalar-vector
+  section: '2.1'
+  tier: O
+  refs:
+  - '1.1'
+  statement: Explain the difference between distance and displacement, and between speed and velocity.
+  answer_label: Scalars and vectors
+  check:
+    kind: structured
+    requires:
+    - distance
+    - displacement
+    - speed
+    - velocity
+    concepts:
+    - scalar
+    - vector
+    - magnitude-only
+    - direction
+    points:
+    - id: distance
+      text: distance is how far an object travels along its path, and it has no direction
+      concepts:
+      - scalar
+      - magnitude-only
+    - id: displacement
+      text: displacement is the straight-line distance from the start to the finish, together with its
+        direction
+      concepts:
+      - vector
+      - direction
+    - id: speed
+      text: speed is the distance travelled divided by the time, so it has size only
+      concepts:
+      - scalar
+      - magnitude-only
+    - id: velocity
+      text: velocity is the displacement divided by the time, so it carries a direction as well as a
+        size
+      concepts:
+      - vector
+      - direction
+  answer_text: Distance is how far an object travels along its path, and it has no direction.
+    Displacement is the straight-line distance from the start to the finish, together with its
+    direction. Speed is distance divided by time, so it has size only. Velocity is displacement
+    divided by time, so it carries a direction as well as a size. Distance and speed are scalars;
+    displacement and velocity are vectors.
+- id: p2-1-rebound
+  section: '2.1'
+  tier: O
+  refs:
+  - '1.1'
+  statement: A tennis ball hits a wall at 20 m/s and rebounds along the same line at 15 m/s. The
+    contact lasts 0.050 s. Taking the direction towards the wall as positive, calculate the ball's
+    acceleration.
+  answer_label: Acceleration of the ball
+  check:
+    kind: all
+    checks:
+    - kind: dimensions
+      expression: (v - u) / t
+      values:
+        u:
+          value: '20'
+          unit: m/s
+        v:
+          value: '-15'
+          unit: m/s
+        t:
+          value: '0.050'
+          unit: s
+      answer:
+        value: '-700'
+        unit: m/s^2
+    - kind: sigfigs
+      value: '(-15 - 20) / 0.050'
+      figures: 2
+      answer: '-7.0e2'
+      convention: round-once
+  answer_text: Taking the direction towards the wall as positive, the initial velocity is $+20\,\text{m/s}$
+    and the final velocity is $-15\,\text{m/s}$. Then
+    $a = \dfrac{-15 - 20}{0.050} = -7.0 \times 10^{2}\,\text{m/s}^2$. The large negative value shows
+    the force from the wall reverses the ball's direction.

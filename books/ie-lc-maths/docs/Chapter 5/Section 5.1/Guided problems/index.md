@@ -117,7 +117,7 @@ For $4i$, write it as $0 + 4i$ first.
 - $4i = 0 + 4i$: real part $0$, imaginary part $4$.
 
 Writing $4i$ as $0 + 4i$ is the trick for reading the parts off a number with no visible
-real part. Without it, the real part is easy to miss.
+real part. Without it, the real part is the one that goes missing.
 
 </details>
 </details>

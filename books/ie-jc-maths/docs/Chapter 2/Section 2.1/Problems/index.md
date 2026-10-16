@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.1 Index form and powers — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: N.1
+Work independently. The questions and answers are shown together at the end.
+
+Some questions ask you to **give a reason**. A reason means a sentence, not a
+number. Say which power or product you worked out and what it gave you.
+
+:::problems chapter-02-practice-2.1
+
+:::answers chapter-02-practice-2.1

@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 2.1 Displacement, velocity and acceleration — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 1.1
+Work independently. The questions and answers are shown together at the end.
+
+Give every answer with its **unit**. Before you calculate an acceleration, state the
+direction you are taking as positive. Check whether the quantity you need is a scalar or
+a vector.
+
+:::problems chapter-02-practice-2.1
+
+:::answers chapter-02-practice-2.1

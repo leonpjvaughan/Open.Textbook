@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.2 The coefficient of friction — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Take $g = 9.8$ m/s². Find the normal reaction first, then decide whether the
+object is on the point of sliding or already sliding. Only then is friction
+equal to $\mu R$.
+
+:::problems chapter-05-practice-5.2
+
+:::answers chapter-05-practice-5.2

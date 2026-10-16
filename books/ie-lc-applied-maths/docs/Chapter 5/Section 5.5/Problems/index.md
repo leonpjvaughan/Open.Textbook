@@ -10,9 +10,14 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.5 Drag proportional to a power of speed — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+
+Take $g = 9.8$ m/s². Decide the direction of the drag before you write anything.
+Then write $F = ma$ with the weight and the drag on opposite sides, or on the
+same side if the object is rising.
+
+:::problems chapter-05-practice-5.5
+
+:::answers chapter-05-practice-5.5

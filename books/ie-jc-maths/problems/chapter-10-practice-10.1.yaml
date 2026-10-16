@@ -1,0 +1,140 @@
+# Junior Cycle Mathematics, Chapter 10, section 10.1.
+#
+# Every check is an identity the CAS proves, so the answer the reader is shown
+# is the answer the verifier proved. Where two different forms of the same
+# expression exist, `expression` holds one form and `answer` the other, so the
+# CAS proves the equivalence rather than comparing a string with itself. A
+# value question writes the substituted calculation in `expression` and the
+# claimed value in `answer`. Units and words stay in `statement`: the CAS parses
+# numbers and symbols only.
+chapter: 10
+symbols:
+  n: {real: true}
+  x: {real: true}
+  y: {real: true}
+  k: {real: true}
+  m: {real: true}
+  s: {real: true}
+  h: {real: true}
+
+problems:
+- id: jc10-10.1-expr-1
+  section: '10.1'
+  tier: O
+  refs:
+  - AF.2
+  statement: A notebook costs €3. Write an expression for the cost of $n$ notebooks.
+  answer_label: An expression for the cost of $n$ notebooks
+  check:
+    kind: evaluate
+    expression: n + n + n
+    answer: 3*n
+  answer_text: '$3n$. Each notebook costs €3, so the cost is 3 times the number of notebooks. The letter $n$ stands for the number of notebooks.'
+- id: jc10-10.1-expr-2
+  section: '10.1'
+  tier: O
+  refs:
+  - AF.2
+  statement: Write an expression for a number $x$ with 5 added to it.
+  answer_label: A number $x$ with 5 added
+  check:
+    kind: evaluate
+    expression: 5 + x
+    answer: x + 5
+  answer_text: '$x+5$. The number is $x$, and 5 is added to it. The order of an addition does not change the value, so $5+x$ is the same expression.'
+- id: jc10-10.1-expr-3
+  section: '10.1'
+  tier: O
+  refs:
+  - AF.2
+  statement: A number $y$ is multiplied by 4, and then 2 is subtracted. Write an expression.
+  answer_label: $y$ multiplied by 4, then 2 subtracted
+  check:
+    kind: evaluate
+    expression: 4*7 - 2
+    answer: '26'
+  answer_text: '$4y-2$. Multiplying by 4 gives $4y$, and then 2 is subtracted. With $y=7$ the value is $4\times7-2=26$, which matches the rule.'
+- id: jc10-10.1-expr-4
+  section: '10.1'
+  tier: O
+  refs:
+  - AF.2
+  statement: A taxi charges €4 to start and €2 for each kilometre. Write an expression for the fare for $k$ kilometres.
+  answer_label: The fare for $k$ kilometres
+  check:
+    kind: evaluate
+    expression: 4 + 2*9
+    answer: '22'
+  answer_text: '$4+2k$. The €4 is charged once, so it is the constant. The €2 is charged for each kilometre, so it multiplies $k$. For 9 km the fare is $4+2\times9=22$ euro.'
+- id: jc10-10.1-expr-5
+  section: '10.1'
+  tier: O
+  refs:
+  - AF.2
+  statement: A phone plan costs €10 a month plus €0.05 for each minute. Write an expression in euro for $m$ minutes.
+  answer_label: The cost in euro for $m$ minutes
+  check:
+    kind: evaluate
+    expression: 10 + 0.05*200
+    answer: '20'
+  answer_text: '$10+0.05m$. The €10 is charged once a month, and €0.05 is charged for each minute. For 200 minutes the cost is $10+0.05\times200=10+10=20$ euro.'
+- id: jc10-10.1-expr-6
+  section: '10.1'
+  tier: O
+  refs:
+  - AF.2
+  statement: Write an expression for the perimeter of a square with side $s$.
+  answer_label: The perimeter of a square with side $s$
+  check:
+    kind: evaluate
+    expression: s + s + s + s
+    answer: 4*s
+  answer_text: '$4s$. A square has four equal sides, so the perimeter is the side added four times. Adding $s$ four times is the same as multiplying it by 4.'
+- id: jc10-10.1-expr-7
+  section: '10.1'
+  tier: O
+  refs:
+  - AF.2
+  statement: Write an expression for half of a number $n$, plus 3.
+  answer_label: Half of $n$, plus 3
+  check:
+    kind: evaluate
+    expression: n/2 + 3
+    answer: 0.5*n + 3
+  answer_text: '$\frac{n}{2}+3$. Half of $n$ is $n\div2$, and then 3 is added. With $n=12$ the value is $6+3=9$.'
+- id: jc10-10.1-expr-8
+  section: '10.1'
+  tier: O
+  refs:
+  - AF.2
+  statement: A number $n$ is squared, and then the result is doubled. Write an expression.
+  answer_label: $n$ squared, then doubled
+  check:
+    kind: evaluate
+    expression: n*n*2
+    answer: 2*n**2
+  answer_text: '$2n^2$. Squaring gives $n^2$, and doubling multiplies it by 2. The index applies to $n$ alone, so the expression is $2\times(n^2)$.'
+- id: jc10-10.1-expr-9
+  section: '10.1'
+  tier: O
+  refs:
+  - AF.2
+  statement: A pattern uses 4 matches for 1 square, 7 for 2 squares and 10 for 3 squares. Write an expression for the number of matches in $n$ squares.
+  answer_label: The number of matches in $n$ squares
+  check:
+    kind: evaluate
+    expression: 3*5 + 1
+    answer: '16'
+  answer_text: '$3n+1$. Each new square adds 3 matches, so the coefficient of $n$ is 3. The first figure has 4 matches, and $3\times1+1=4$, so the constant is 1. For $n=5$ the value is $3\times5+1=16$.'
+- id: jc10-10.1-expr-10
+  section: '10.1'
+  tier: O
+  refs:
+  - AF.2
+  statement: A plumber charges €40 to call out and €25 for each hour of work. Write an expression in euro for $h$ hours.
+  answer_label: The cost in euro for $h$ hours
+  check:
+    kind: evaluate
+    expression: 40 + 25*3
+    answer: '115'
+  answer_text: '$40+25h$. The €40 is charged once, and €25 is charged for each hour. For 3 hours the cost is $40+25\times3=40+75=115$ euro.'

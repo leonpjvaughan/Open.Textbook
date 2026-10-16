@@ -1,0 +1,180 @@
+# Leaving Certificate Physics, Chapter 19, section 19.2 (strand 4 outcome 4.3).
+#
+# The Bohr model and the energy levels of hydrogen. Every record takes
+# h = 6.6e-34 J s, c = 3.0e8 m/s and 1 eV = 1.6e-19 J. `dimensions` proves the
+# magnitude and the unit together; where the answer is in electronvolts the
+# expression carries the eV unit on both sides, so the factor cancels and the
+# arithmetic is proved exactly. `sigfigs` proves the single rounding.
+#
+# Honest limit: this proves the arithmetic and the dimensions, not the physics. A
+# dimensionally consistent, arithmetically correct, physically absurd answer would
+# pass. The `structured` records prove only that a model answer contains the
+# declared steps and concepts, in order.
+chapter: 19
+problems:
+  - id: p19-2-level-n2
+    section: '19.2'
+    tier: O
+    refs: ['4.3']
+    statement: 'For the hydrogen atom the energy of level $n$ is $E_n = -\dfrac{13.6}{n^2}$ eV. Calculate the energy of the $n = 2$ level.'
+    answer_label: Energy of the n = 2 level
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: -E1 / 2**2
+          values:
+            E1: {value: '13.6', unit: eV}
+          answer: {value: '-3.40', unit: eV}
+        - kind: sigfigs
+          value: '-13.6 / 2**2'
+          figures: 3
+          answer: '-3.40'
+          convention: round-once
+    answer_text: '$E_2 = -\dfrac{13.6}{2^2} = -\dfrac{13.6}{4} = -3.40\,\text{eV}$. The minus sign shows that the electron is bound to the atom.'
+  - id: p19-2-level-n4
+    section: '19.2'
+    tier: O
+    refs: ['4.3']
+    statement: 'Calculate the energy of the $n = 4$ level of the hydrogen atom, using $E_n = -\dfrac{13.6}{n^2}$ eV.'
+    answer_label: Energy of the n = 4 level
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: -E1 / 4**2
+          values:
+            E1: {value: '13.6', unit: eV}
+          answer: {value: '-0.85', unit: eV}
+        - kind: sigfigs
+          value: '-13.6 / 4**2'
+          figures: 2
+          answer: '-0.85'
+          convention: round-once
+    answer_text: '$E_4 = -\dfrac{13.6}{4^2} = -\dfrac{13.6}{16} = -0.85\,\text{eV}$. The higher the level, the closer its energy is to zero.'
+  - id: p19-2-transition-3-2
+    section: '19.2'
+    tier: O
+    refs: ['4.3']
+    statement: Calculate the energy of the photon emitted when an electron in a hydrogen atom moves from the $n = 3$ level to the $n = 2$ level. Take the energies of the two levels as $-1.51$ eV and $-3.40$ eV.
+    answer_label: Photon energy for the 3 to 2 transition
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E3 - E2
+          values:
+            E3: {value: '-1.51', unit: eV}
+            E2: {value: '-3.40', unit: eV}
+          answer: {value: '1.89', unit: eV}
+        - kind: sigfigs
+          value: '-1.51 - (-3.40)'
+          figures: 3
+          answer: '1.89'
+          convention: round-once
+    answer_text: 'The photon energy is the difference between the two levels: $E_3 - E_2 = -1.51 - (-3.40) = 1.89\,\text{eV}$. The electron loses energy, so the atom gives out a photon.'
+  - id: p19-2-line-energy
+    section: '19.2'
+    tier: O
+    refs: ['4.3']
+    statement: A hydrogen discharge lamp gives a bright red line of wavelength 656 nm. Calculate the energy of one photon of this light, in joules. Take $h = 6.6 \times 10^{-34}$ J s and $c = 3.0 \times 10^{8}$ m/s.
+    answer_label: Energy of one photon of the red line
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: h * c / lam
+          values:
+            h: {value: '6.6e-34', unit: 'J s'}
+            c: {value: '3.0e8', unit: 'm/s'}
+            lam: {value: '6.56e-7', unit: m}
+          answer: {value: '3.0e-19', unit: J}
+          tolerance: '5e-21'
+        - kind: sigfigs
+          value: '6.6e-34 * 3.0e8 / 6.56e-7'
+          figures: 2
+          answer: '3.0e-19'
+          convention: round-once
+    answer_text: 'First change 656 nm to $6.56 \times 10^{-7}$ m. Then $E = \dfrac{hc}{\lambda} = \dfrac{6.6 \times 10^{-34} \times 3.0 \times 10^{8}}{6.56 \times 10^{-7}} = 3.0 \times 10^{-19}\,\text{J}$.'
+  - id: p19-2-line-frequency
+    section: '19.2'
+    tier: O
+    refs: ['4.3']
+    statement: A photon from the red line of a hydrogen lamp has an energy of $3.0 \times 10^{-19}$ J. Calculate its frequency. Take $h = 6.6 \times 10^{-34}$ J s.
+    answer_label: Frequency of the photon
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: E / h
+          values:
+            E: {value: '3.0e-19', unit: J}
+            h: {value: '6.6e-34', unit: 'J s'}
+          answer: {value: '4.5e14', unit: Hz}
+          tolerance: '5e12'
+        - kind: sigfigs
+          value: '3.0e-19 / 6.6e-34'
+          figures: 2
+          answer: '4.5e14'
+          convention: round-once
+    answer_text: 'From $E = hf$, $f = \dfrac{E}{h} = \dfrac{3.0 \times 10^{-19}}{6.6 \times 10^{-34}} = 4.5 \times 10^{14}\,\text{Hz}$.'
+  - id: p19-2-ionisation
+    section: '19.2'
+    tier: O
+    refs: ['4.3']
+    statement: Calculate the energy needed to remove the electron from the ground state of a hydrogen atom, where $E_1 = -13.6$ eV, to $n = \infty$, where $E_\infty = 0$.
+    answer_label: Ionisation energy of hydrogen
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: Einf - E1
+          values:
+            Einf: {value: '0', unit: eV}
+            E1: {value: '-13.6', unit: eV}
+          answer: {value: '13.6', unit: eV}
+        - kind: sigfigs
+          value: '0 - (-13.6)'
+          figures: 3
+          answer: '13.6'
+          convention: round-once
+    answer_text: 'The energy needed is the difference between the free state and the ground state: $E_\infty - E_1 = 0 - (-13.6) = 13.6\,\text{eV}$. This is the ionisation energy of hydrogen.'
+  - id: p19-2-bohr-model
+    section: '19.2'
+    tier: O
+    refs: ['4.3']
+    statement: State the two main ideas of Bohr's model of the hydrogen atom.
+    answer_label: The two ideas of Bohr's model
+    check:
+      kind: structured
+      requires: [allowed-levels, quantum-jump]
+      concepts: [fixed-energy, photon-emitted]
+      points:
+        - id: allowed-levels
+          text: an electron can occupy only certain allowed orbits, and each orbit has a fixed energy
+          concepts: [fixed-energy]
+        - id: quantum-jump
+          text: an electron changes orbit only by gaining or losing one fixed amount of energy, and a photon is emitted when it drops to a lower level
+          concepts: [photon-emitted]
+    answer_text: Bohr said that an electron in a hydrogen atom can occupy only certain allowed orbits, and each orbit has a fixed energy. An electron changes orbit only by gaining or losing one fixed amount of energy. When it drops to a lower level, the atom emits a photon.
+  - id: p19-2-why-negative
+    section: '19.2'
+    tier: O
+    refs: ['4.3']
+    statement: Explain why the energy of an electron in a hydrogen atom is given a negative value, and state what $n = \infty$ means.
+    answer_label: Why the energies are negative
+    check:
+      kind: structured
+      requires: [zero-at-infinity, negative-below, ionisation]
+      concepts: [bound-electron, energy-supplied]
+      points:
+        - id: zero-at-infinity
+          text: the zero of energy is chosen with the electron just free of the atom, at $n = \infty$
+          concepts: [bound-electron]
+        - id: negative-below
+          text: an electron bound in the atom has less energy than a free one, so its energy is negative
+          concepts: [bound-electron]
+        - id: ionisation
+          text: the energy needed to reach zero from the ground state is 13.6 eV, the ionisation energy
+          concepts: [energy-supplied]
+    answer_text: The zero of energy is chosen with the electron just free of the atom, at $n = \infty$. An electron bound in the atom has less energy than a free electron, so its energy is negative. The energy needed to lift it from the ground state to zero is 13.6 eV.

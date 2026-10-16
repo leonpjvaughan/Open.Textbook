@@ -1,0 +1,127 @@
+# Practice set for 6.3 (strand 5, outcome 5.1). Composite values are numbers, so
+# `evaluate` proves them; an inverse is the solution of $y = f(x)$ for $x$, so
+# `solve` proves the linear one and `apply: invert` proves the exponential one.
+# The composition check $T(t(T)) = T$ is the definition of an inverse.
+chapter: 6
+symbols:
+  x: {real: true}
+  y: {real: true}
+  t: {real: true}
+  T: {real: true}
+problems:
+  - id: lc6-3-composite-fg
+    section: '6.3'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      For $f(x) = 2x + 3$ and $g(x) = x^2$, work out $f(g(2))$.
+    answer_label: '$f(g(2))$'
+    check: {kind: evaluate, expression: '2*(2**2) + 3', answer: '11'}
+    answer_text: >-
+      Work from the inside: $g(2) = 2^2 = 4$, then $f(4) = 2(4) + 3 = 11$.
+
+  - id: lc6-3-composite-gf
+    section: '6.3'
+    tier: O
+    refs: ['5.1']
+    statement: 'For the same functions, work out $g(f(2))$.'
+    answer_label: '$g(f(2))$'
+    check: {kind: evaluate, expression: '(2*2 + 3)**2', answer: '49'}
+    answer_text: >-
+      Work from the inside: $f(2) = 2(2) + 3 = 7$, then $g(7) = 7^2 = 49$. The
+      order changed the answer, which is why $f(g(x))$ and $g(f(x))$ are different.
+
+  - id: lc6-3-inverse-linear
+    section: '6.3'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      Find the inverse of $f(x) = 2x + 3$, writing it as a formula in $x$.
+    answer_label: '$f^{-1}(x)$'
+    check:
+      kind: solve
+      equation: 'y = 2*x + 3'
+      variable: x
+      answer: ['(y - 3)/2']
+    answer_text: >-
+      Write $y = 2x + 3$, swap $x$ and $y$ to get $x = 2y + 3$, then solve for
+      $y$: $y = \dfrac{x - 3}{2}$. So $f^{-1}(x) = \dfrac{x - 3}{2}$.
+
+  - id: lc6-3-inverse-check
+    section: '6.3'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      Show that $f(f^{-1}(x)) = x$ for $f(x) = 2x + 3$ and
+      $f^{-1}(x) = \dfrac{x - 3}{2}$.
+    answer_label: 'The composite'
+    check: {kind: evaluate, expression: '2*((x - 3)/2) + 3', answer: 'x'}
+    answer_text: >-
+      Substitute the inverse into $f$: $2\left(\dfrac{x - 3}{2}\right) + 3
+      = (x - 3) + 3 = x$. An inverse undoes the function, so the composite is the
+      input again.
+
+  - id: lc6-3-inverse-value
+    section: '6.3'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      Using $f(x) = 2x + 3$, work out $f^{-1}(11)$ without writing the general
+      formula first.
+    answer_label: '$f^{-1}(11)$'
+    check: {kind: evaluate, expression: '(11 - 3)/2', answer: '4'}
+    answer_text: >-
+      The inverse asks which input gives $11$: solve $2x + 3 = 11$, so $2x = 8$ and
+      $x = 4$. So $f^{-1}(11) = 4$.
+
+  - id: lc6-3-not-commute
+    section: '6.3'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      For $f(x) = 2x + 3$ and $g(x) = x^2$, work out $f(g(1))$ and $g(f(1))$.
+    answer_label: 'Both composites'
+    check:
+      kind: all
+      checks:
+        - {kind: evaluate, expression: '2*(1**2) + 3', answer: '5'}
+        - {kind: evaluate, expression: '(2*1 + 3)**2', answer: '25'}
+    answer_text: >-
+      $g(1) = 1$, so $f(g(1)) = f(1) = 5$. Also $f(1) = 5$, so $g(f(1)) = g(5)
+      = 25$. The two composites differ, so the order of the functions matters.
+
+  - id: lc6-3-coffee-inverse
+    section: '6.3'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      The coffee temperature is $T(t) = 20 + 70(0.5)^{t/5}$. Rearrange the rule to
+      make $t$ the subject, leaving the logarithm in place.
+    answer_label: 'The inverse rule'
+    check:
+      kind: apply
+      expression: '20 + 70*(1/2)**(t/5)'
+      apply: {op: invert, args: [T]}
+      answer: '5*log(70/(T - 20))/log(2)'
+    answer_text: >-
+      Put $T = 20 + 70(0.5)^{t/5}$, so $(0.5)^{t/5} = \dfrac{T - 20}{70}$. Taking
+      logarithms gives $\dfrac{t}{5} = \log_{0.5}\!\left(\dfrac{T - 20}{70}\right)$,
+      so $t = 5\log_{0.5}\!\left(\dfrac{T - 20}{70}\right)$. Section 6.6 evaluates
+      this.
+
+  - id: lc6-3-coffee-inverse-check
+    section: '6.3'
+    tier: O
+    refs: ['5.1']
+    statement: >-
+      Show that the inverse rule returns $50$ when it is put back into $T$. That
+      is, work out $20 + 70(0.5)^{t/5}$ for $t = 5\log_{0.5}(3/7)$.
+    answer_label: 'The composite value'
+    check:
+      kind: evaluate
+      expression: '20 + 70*(1/2)**((5*log(3/7)/log(1/2))/5)'
+      answer: '50'
+    answer_text: >-
+      The exponent becomes $\log_{0.5}(3/7)$, and $(0.5)^{\log_{0.5}(3/7)} = 3/7$.
+      Then $20 + 70 \times \frac{3}{7} = 20 + 30 = 50$. The inverse and the
+      function undo each other.

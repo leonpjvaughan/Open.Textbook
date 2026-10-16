@@ -10,9 +10,13 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 19.1 From Thomson to Rutherford — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **O** · refs: 4.3
+Work independently. The questions and answers are shown together at the end.
+
+For a written answer, name the observation and say what it shows. For a numerical
+answer, give the unit and the number of significant figures the data support.
+
+:::problems chapter-19-practice-19.1
+
+:::answers chapter-19-practice-19.1

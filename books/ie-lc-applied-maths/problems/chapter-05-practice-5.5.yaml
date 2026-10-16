@@ -1,0 +1,187 @@
+# Practice set for 5.5 (strand S3, the physical world). Every answer is a
+# quantity, so the checks come from the `units` oracle: `dimensions` proves the
+# arithmetic *and* the unit together, including the unit of the drag constant.
+# The `structured` record proves only that a model answer contains the declared
+# ideas, in order — not that the physics is right.
+chapter: 5
+problems:
+  - id: am5-5-drag-linear
+    section: '5.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      An object falls through the air. The drag force on it is $D = kv$, where
+      $v$ is its speed and $k = 0.8$ kg/s. Calculate the drag force when the
+      speed is $12$ m/s.
+    answer_label: Drag force
+    check:
+      kind: dimensions
+      expression: k * v
+      values:
+        k: {value: '0.8', unit: 'kg/s'}
+        v: {value: '12', unit: 'm/s'}
+      answer: {value: '9.6', unit: N}
+    answer_text: >-
+      Substitute into $D = kv$: $D = 0.8 \times 12 = 9.6$ N. The drag force acts
+      upwards, against the motion, because the object is falling. Notice the
+      unit of $k$: kg/s, so that kg/s multiplied by m/s gives a force in newtons.
+
+  - id: am5-5-drag-quadratic
+    section: '5.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      An object falls through the air. The drag force on it is $D = kv^2$, where
+      $v$ is its speed and $k = 0.4$ kg/m. Calculate the drag force when the
+      speed is $15$ m/s.
+    answer_label: Drag force
+    check:
+      kind: dimensions
+      expression: k * v**2
+      values:
+        k: {value: '0.4', unit: 'kg/m'}
+        v: {value: '15', unit: 'm/s'}
+      answer: {value: '90', unit: N}
+    answer_text: >-
+      Substitute into $D = kv^2$: $D = 0.4 \times 15^2 = 0.4 \times 225 = 90$ N.
+      The unit of $k$ is kg/m, so that kg/m multiplied by m$^2$/s$^2$ gives a
+      force in newtons. Doubling the speed would multiply this drag by four.
+
+  - id: am5-5-falling-resultant
+    section: '5.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $2$ kg falls through the air. The drag force on it is
+      $5$ N. Taking $g = 9.8$ m/s$^2$, calculate the acceleration of the ball.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: (m * g - D) / m
+      values:
+        m: {value: '2', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        D: {value: '5', unit: N}
+      answer: {value: '7.3', unit: 'm/s^2'}
+    answer_text: >-
+      The weight is $mg = 2 \times 9.8 = 19.6$ N downwards and the drag is $5$ N
+      upwards. The resultant is $19.6 - 5 = 14.6$ N downwards, so
+      $a = \dfrac{14.6}{2} = 7.3$ m/s$^2$. The acceleration is less than $g$,
+      because drag opposes the fall.
+
+  - id: am5-5-rising-resultant
+    section: '5.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball of mass $0.5$ kg is thrown vertically upwards. The drag force on it
+      is $2$ N. Taking $g = 9.8$ m/s$^2$, calculate the acceleration, taking the
+      upward direction as positive.
+    answer_label: Acceleration
+    check:
+      kind: dimensions
+      expression: -(m * g + D) / m
+      values:
+        m: {value: '0.5', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        D: {value: '2', unit: N}
+      answer: {value: '-13.8', unit: 'm/s^2'}
+    answer_text: >-
+      On the way up, the weight and the drag both act downwards, against the
+      motion. The resultant is $mg + D = 4.9 + 2 = 6.9$ N downwards, so
+      $a = -\dfrac{6.9}{0.5} = -13.8$ m/s$^2$. The negative sign means the ball
+      is slowing down. Its deceleration is larger than on the way down, because
+      both forces point the same way.
+
+  - id: am5-5-drag-double-speed
+    section: '5.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      For an object falling through the air, the drag force is proportional to
+      the square of the speed. At $10$ m/s the drag is $20$ N. Calculate the
+      drag force at $30$ m/s.
+    answer_label: Drag force
+    check:
+      kind: dimensions
+      expression: D1 * (v2 / v1)**2
+      values:
+        D1: {value: '20', unit: N}
+        v1: {value: '10', unit: 'm/s'}
+        v2: {value: '30', unit: 'm/s'}
+      answer: {value: '180', unit: N}
+    answer_text: >-
+      The speed is multiplied by $3$, and the drag depends on the square of the
+      speed, so the drag is multiplied by $3^2 = 9$. The new drag is
+      $20 \times 9 = 180$ N. A threefold speed increase gives a ninefold drag.
+
+  - id: am5-5-parachutist-constant
+    section: '5.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A parachutist of mass $80$ kg descends at a constant speed. Taking
+      $g = 9.8$ m/s$^2$, calculate the drag force on the parachutist.
+    answer_label: Drag force
+    check:
+      kind: dimensions
+      expression: m * g
+      values:
+        m: {value: '80', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '784', unit: N}
+    answer_text: >-
+      A constant speed means the acceleration is zero, so the resultant force is
+      zero. The drag upwards must balance the weight downwards, so
+      $D = mg = 80 \times 9.8 = 784$ N. At this speed the drag is equal to the
+      weight, which is the idea of terminal velocity in Section 5.6.
+
+  - id: am5-5-net-force-rising
+    section: '5.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A stone of mass $0.4$ kg is thrown vertically upwards. The drag force on
+      it is $1.2$ N. Taking $g = 9.8$ m/s$^2$, calculate the resultant force on
+      the stone while it rises, and state its direction.
+    answer_label: Resultant force
+    check:
+      kind: dimensions
+      expression: m * g + D
+      values:
+        m: {value: '0.4', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+        D: {value: '1.2', unit: N}
+      answer: {value: '5.12', unit: N}
+    answer_text: >-
+      While the stone rises, its weight $mg = 3.92$ N and the drag $1.2$ N both
+      act downwards. The resultant is $3.92 + 1.2 = 5.12$ N downwards. The stone
+      therefore slows down.
+
+  - id: am5-5-acceleration-falls
+    section: '5.5'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A ball falls through the air, where drag grows with speed. Explain why the
+      acceleration of the ball decreases as its speed increases.
+    answer_label: Why the acceleration falls
+    check:
+      kind: structured
+      requires: [drag-grows, resultant-falls]
+      concepts: [drag]
+      points:
+        - id: drag-grows
+          text: >-
+            the drag force upwards grows as the speed grows
+          concepts: [drag]
+        - id: resultant-falls
+          text: >-
+            the resultant force is the weight minus the drag, so it falls as the
+            drag grows, and the acceleration falls with it
+    answer_text: >-
+      The weight stays the same, but the drag force upwards grows as the ball
+      speeds up. The resultant force is the weight minus the drag, so the
+      resultant falls as the speed rises. Since $F = ma$, the acceleration falls
+      with it. The ball still speeds up, but more and more slowly, until the
+      drag balances the weight.

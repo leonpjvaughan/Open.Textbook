@@ -1,0 +1,151 @@
+# Leaving Certificate Physics, Chapter 2, section 2.2 (strand 1 outcome 1.1).
+#
+# This bank covers motion graphs: the gradient of a distance-time graph, the gradient
+# and the area of a velocity-time graph, and the intercept. `gradient`, `intercept`
+# and `area` are graph readings, so each is proved against a declared interval, never
+# an equality. A graph is read by eye from measured points, so a tolerant interval is
+# the honest check.
+#
+# Honest limit: this proves the arithmetic of the reading, not that the graph was
+# drawn or the points measured well. `structured` proves presence, order and coverage
+# only, not that the physics in the answer is right.
+chapter: 2
+problems:
+- id: p2-2-gradient-speed
+  section: '2.2'
+  tier: O
+  refs:
+  - '1.1'
+  statement: 'A distance-time graph is a straight line through the origin, passing through the point
+    (5.0 s, 20 m). Calculate the gradient, and state what it represents.'
+  answer_label: Gradient of the distance-time graph
+  check:
+    kind: gradient
+    series:
+    - [0, 0]
+    - [5.0, 20]
+    between: [3.9, 4.1]
+  answer_text: 'Gradient $= \dfrac{\Delta d}{\Delta t} = \dfrac{20}{5.0} = 4.0\,\text{m/s}$. The
+    gradient of a distance-time graph is the speed, so the object moves at $4.0\,\text{m/s}$.'
+- id: p2-2-gradient-acceleration
+  section: '2.2'
+  tier: O
+  refs:
+  - '1.1'
+  statement: 'A velocity-time graph is a straight line from (0, 8.0 m/s) to (4.0 s, 20 m/s).
+    Calculate the gradient, and state what it represents.'
+  answer_label: Gradient of the velocity-time graph
+  check:
+    kind: gradient
+    series:
+    - [0, 8.0]
+    - [4.0, 20]
+    between: [2.9, 3.1]
+  answer_text: 'Gradient $= \dfrac{\Delta v}{\Delta t} = \dfrac{20 - 8.0}{4.0} = 3.0\,\text{m/s}^2$.
+    The gradient of a velocity-time graph is the acceleration, so the object accelerates at
+    $3.0\,\text{m/s}^2$.'
+- id: p2-2-area-triangle
+  section: '2.2'
+  tier: O
+  refs:
+  - '1.1'
+  statement: 'A velocity-time graph rises as a straight line from rest to 12 m/s over 6.0 s.
+    Calculate the area under the graph, and state what it represents.'
+  answer_label: Area under the velocity-time graph
+  check:
+    kind: area
+    series:
+    - [0, 0]
+    - [6.0, 12]
+    between: [35, 37]
+  answer_text: 'The area is a triangle: $\frac{1}{2} \times 6.0 \times 12 = 36\,\text{m}$. The area
+    under a velocity-time graph is the displacement, so the object travels $36\,\text{m}$.'
+- id: p2-2-area-rectangle
+  section: '2.2'
+  tier: O
+  refs:
+  - '1.1'
+  statement: 'A velocity-time graph is a horizontal line at 8.0 m/s from 0 s to 5.0 s. Calculate
+    the area under the graph, and state what it represents.'
+  answer_label: Area under the velocity-time graph
+  check:
+    kind: area
+    series:
+    - [0, 8.0]
+    - [5.0, 8.0]
+    between: [39, 41]
+  answer_text: 'The area is a rectangle: $8.0 \times 5.0 = 40\,\text{m}$. The area under a
+    velocity-time graph is the displacement, so the object travels $40\,\text{m}$ at a steady speed.'
+- id: p2-2-intercept
+  section: '2.2'
+  tier: O
+  refs:
+  - '1.1'
+  statement: 'A distance-time graph passes through (1.0 s, 6.0 m) and (3.0 s, 12.0 m). Find the
+    intercept on the distance axis, and say what it means.'
+  answer_label: Intercept on the distance axis
+  check:
+    kind: intercept
+    series:
+    - [1.0, 6.0]
+    - [3.0, 12.0]
+    between: [2.9, 3.1]
+  answer_text: 'The gradient is $\dfrac{12.0 - 6.0}{3.0 - 1.0} = 3.0\,\text{m/s}$. Using
+    $d = 3.0t + c$ at $t = 1.0\,\text{s}$: $6.0 = 3.0 + c$, so $c = 3.0\,\text{m}$. The intercept is
+    the distance at $t = 0$, which is $3.0\,\text{m}$.'
+- id: p2-2-drone
+  section: '2.2'
+  tier: O
+  refs:
+  - '1.1'
+  statement: 'A velocity-time graph for a drone rises as a straight line from (0, 0) to
+    (4.0 s, 8.0 m/s), then stays at 8.0 m/s until 4.5 s. Calculate the area under the graph, and
+    state what it represents.'
+  answer_label: Area under the drone's velocity-time graph
+  check:
+    kind: area
+    series:
+    - [0, 0]
+    - [4.0, 8.0]
+    - [4.5, 8.0]
+    between: [19, 21]
+  answer_text: 'The area is a triangle plus a rectangle. The triangle is
+    $\frac{1}{2} \times 4.0 \times 8.0 = 16\,\text{m}$ and the rectangle is
+    $0.50 \times 8.0 = 4.0\,\text{m}$. The total area is $20\,\text{m}$, so the drone has risen
+    $20\,\text{m}$. This is the height in the chapter problem.'
+- id: p2-2-describe
+  section: '2.2'
+  tier: O
+  refs:
+  - '1.1'
+  statement: Explain how to find the acceleration and the displacement from a velocity-time graph.
+  answer_label: Reading a velocity-time graph
+  check:
+    kind: structured
+    requires:
+    - gradient
+    - area
+    - units
+    concepts:
+    - gradient-is-acceleration
+    - area-is-displacement
+    points:
+    - id: gradient
+      text: the gradient of the line is the acceleration, found by dividing the change in velocity
+        by the time taken
+      concepts:
+      - gradient-is-acceleration
+    - id: area
+      text: the area between the line and the time axis is the displacement
+      concepts:
+      - area-is-displacement
+    - id: units
+      text: the units come from the axes, so m/s divided by s gives m/s squared for the gradient,
+        and m/s multiplied by s gives m for the area
+      concepts:
+      - gradient-is-acceleration
+      - area-is-displacement
+  answer_text: The gradient of a velocity-time graph is the acceleration, found by dividing the
+    change in velocity by the time taken. The area between the line and the time axis is the
+    displacement. The units come from the axes, so m/s divided by s gives m/s$^2$ for the gradient,
+    and m/s multiplied by s gives m for the area.

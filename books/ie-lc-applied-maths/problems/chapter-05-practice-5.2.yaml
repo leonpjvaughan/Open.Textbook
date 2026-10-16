@@ -1,0 +1,187 @@
+# Practice set for 5.2 (strand S3, the physical world). The `evaluate` checks
+# prove the algebra of a coefficient, which is a pure number; the `dimensions`
+# checks prove the arithmetic and the unit of a force together. The `structured`
+# record proves only that a model answer contains the declared ideas, in order —
+# not that the physics is right.
+chapter: 5
+problems:
+  - id: am5-2-mu-from-force
+    section: '5.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block of mass $20$ kg on a rough horizontal floor just begins to slide
+      when it is pushed with a horizontal force of $49$ N. Taking
+      $g = 9.8$ m/s$^2$, calculate the coefficient of friction.
+    answer_label: Coefficient of friction
+    check:
+      kind: evaluate
+      expression: '49 / (20 * 9.8)'
+      answer: '1/4'
+    answer_text: >-
+      The normal reaction is $R = mg = 20 \times 9.8 = 196$ N. On the point of
+      sliding, friction is at its maximum, so $F = \mu R$. Then
+      $\mu = \dfrac{F}{R} = \dfrac{49}{196} = 0.25$. The coefficient has no
+      unit, because it is one force divided by another.
+
+  - id: am5-2-limiting-friction
+    section: '5.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A crate of mass $15$ kg rests on a rough horizontal floor. The coefficient
+      of friction is $0.4$. Taking $g = 9.8$ m/s$^2$, calculate the greatest
+      friction force the floor can provide.
+    answer_label: Greatest friction force
+    check:
+      kind: dimensions
+      expression: mu * m * g
+      values:
+        mu: {value: '0.4'}
+        m: {value: '15', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '58.8', unit: N}
+    answer_text: >-
+      The normal reaction is $R = mg = 15 \times 9.8 = 147$ N. The greatest
+      friction force is $\mu R = 0.4 \times 147 = 58.8$ N. Until the push
+      reaches $58.8$ N, friction matches the push and the crate stays at rest.
+
+  - id: am5-2-mu-slope-30
+    section: '5.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block rests on a rough plane inclined at $30^\circ$ to the horizontal
+      and is on the point of sliding. Show that the coefficient of friction is
+      $\tan 30^\circ$, and give its value.
+    answer_label: Coefficient of friction
+    check:
+      kind: evaluate
+      expression: 'tan(30*pi/180)'
+      answer: '1/sqrt(3)'
+    answer_text: >-
+      On the point of sliding, friction is limiting, so $F = \mu R$. Along the
+      plane, $F = mg\sin 30^\circ$. Perpendicular to the plane,
+      $R = mg\cos 30^\circ$. Dividing gives
+      $\mu = \dfrac{mg\sin 30^\circ}{mg\cos 30^\circ} = \tan 30^\circ$. The mass
+      cancels, so $\mu = \dfrac{1}{\sqrt{3}} = 0.577$ to three significant
+      figures.
+
+  - id: am5-2-mu-slope-45
+    section: '5.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block rests on a rough plane inclined at $45^\circ$ to the horizontal
+      and is on the point of sliding. Calculate the coefficient of friction.
+    answer_label: Coefficient of friction
+    check:
+      kind: evaluate
+      expression: 'tan(45*pi/180)'
+      answer: '1'
+    answer_text: >-
+      On the point of sliding, $\mu = \tan\theta$. Here $\theta = 45^\circ$, so
+      $\mu = \tan 45^\circ = 1$. The friction force at the point of sliding is
+      equal to the normal reaction.
+
+  - id: am5-2-mass-from-limiting
+    section: '5.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A crate on a rough horizontal floor just begins to slide when it is pushed
+      with a horizontal force of $98$ N. The coefficient of friction is $0.5$.
+      Taking $g = 9.8$ m/s$^2$, calculate the mass of the crate.
+    answer_label: Mass
+    check:
+      kind: dimensions
+      expression: F / (mu * g)
+      values:
+        F: {value: '98', unit: N}
+        mu: {value: '0.5'}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '20', unit: kg}
+    answer_text: >-
+      At the point of sliding, $F = \mu R = \mu mg$. Rearranging gives
+      $m = \dfrac{F}{\mu g} = \dfrac{98}{0.5 \times 9.8} = \dfrac{98}{4.9} = 20$
+      kg.
+
+  - id: am5-2-friction-on-slope
+    section: '5.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block of mass $10$ kg slides down a rough plane inclined at $30^\circ$
+      to the horizontal. The coefficient of friction is $0.3$. Taking
+      $g = 9.8$ m/s$^2$, calculate the friction force, to $4$ significant
+      figures.
+    answer_label: Friction force
+    check:
+      kind: dimensions
+      expression: mu * m * g * sqrt(3) / 2
+      values:
+        mu: {value: '0.3'}
+        m: {value: '10', unit: kg}
+        g: {value: '9.8', unit: 'm/s^2'}
+      answer: {value: '25.46', unit: N}
+      tolerance: '0.01'
+    answer_text: >-
+      The normal reaction is
+      $R = mg\cos 30^\circ = 10 \times 9.8 \times 0.8660 = 84.87$ N. Because the
+      block is sliding, friction is limiting, so
+      $F = \mu R = 0.3 \times 84.87 = 25.46$ N, acting up the plane.
+
+  - id: am5-2-normal-and-mu
+    section: '5.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      A block of mass $25$ kg rests on a rough horizontal floor. It just begins
+      to slide when it is pushed with a horizontal force of $73.5$ N. Taking
+      $g = 9.8$ m/s$^2$, calculate the normal reaction and the coefficient of
+      friction.
+    answer_label: Normal reaction, then coefficient
+    check:
+      kind: all
+      checks:
+        - kind: dimensions
+          expression: m * g
+          values:
+            m: {value: '25', unit: kg}
+            g: {value: '9.8', unit: 'm/s^2'}
+          answer: {value: '245', unit: N}
+        - kind: evaluate
+          expression: '73.5 / (25 * 9.8)'
+          answer: '0.3'
+    answer_text: >-
+      The block does not move vertically, so $R = mg = 25 \times 9.8 = 245$ N.
+      At the point of sliding, $F = \mu R$, so
+      $\mu = \dfrac{73.5}{245} = 0.3$.
+
+  - id: am5-2-mu-no-unit
+    section: '5.2'
+    tier: O
+    refs: [S3]
+    statement: >-
+      Explain why the coefficient of friction has no unit, and state what it
+      depends on.
+    answer_label: Why the coefficient has no unit
+    check:
+      kind: structured
+      requires: [ratio-of-forces, surfaces-only]
+      concepts: [coefficient-of-friction]
+      points:
+        - id: ratio-of-forces
+          text: >-
+            the coefficient is the friction force divided by the normal
+            reaction, and both are forces, so the units cancel
+          concepts: [coefficient-of-friction]
+        - id: surfaces-only
+          text: >-
+            it depends on the two surfaces in contact and not on the mass of the
+            object
+    answer_text: >-
+      The coefficient is $\mu = \dfrac{F}{R}$, one force divided by another
+      force. The two units cancel, so $\mu$ is a pure number. It depends on the
+      two surfaces in contact and on how rough and how dry they are. It does not
+      depend on the mass of the object or on the area of contact, in this model.

@@ -10,9 +10,15 @@ refs:
 kind: problems
 ---
 
-<!-- scaffold:stub -->
-
 # 5.4 Statics on a rough plane — Practise
 
-> **Stub.** Independent, homework-style practice. Answers and concise solutions in a collapsed block. Mark Higher-only questions explicitly.
-> Tier: **H** · refs: S3
+Work independently. The questions and answers are shown together at the end.
+Every question here is Higher level.
+
+Take $g = 9.8$ m/s². Decide first which way the body is about to slide, then put
+friction the other way. If an extra force acts at an angle, resolve it and find
+the normal reaction again.
+
+:::problems chapter-05-practice-5.4
+
+:::answers chapter-05-practice-5.4
